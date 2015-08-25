@@ -15,5 +15,5 @@ fi
 GIT_BRANCH_NAME=$1
 export GIT_BRANCH_NAME
 
-# 强制切换到指定分支
+# checkout
 git checkout $1
