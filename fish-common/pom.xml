@@ -56,7 +56,9 @@
 		</dependency>
 	</dependencies>
 	<scm>
-		<connection>scm:svn:http://svn.nj.yihuacomputer.com/svn/atmvs/trunk/fish-common</connection>
-		<developerConnection>scm:svn:http://svn.nj.yihuacomputer.com/svn/atmvs/trunk/fish-common</developerConnection>
+	 	<connection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</connection>
+        <developerConnection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</developerConnection>
+        <url>http://git.nj.yihuacomputer.com/gitweb/?p=atmvs.git</url>
+        <tag>HEAD</tag>
 	</scm>
 </project>

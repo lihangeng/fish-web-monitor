@@ -9,12 +9,15 @@
 	<artifactId>fish-domain</artifactId>
 	<name>Fish Domain Base</name>
 	<description>数据库底层支持</description>
+	<properties>
+		<fish-common.version>2.0.0.0-SNAPSHOT</fish-common.version>
+	</properties>
 	<dependencies>
 		<!-- local -->
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-common</artifactId>
-			<version>${project.version}</version>
+			<version>${fish-common.version}</version>
 		</dependency>
 		<!--数据库驱动 -->
 		<dependency>
@@ -87,8 +90,10 @@
 		</dependency>
 	</dependencies>
 	<scm>
-		<connection>scm:svn:http://svn.nj.yihuacomputer.com/svn/atmvs/trunk/fish-domain</connection>
-		<developerConnection>scm:svn:http://svn.nj.yihuacomputer.com/svn/atmvs/trunk/fish-domain</developerConnection>
+	 	<connection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</connection>
+        <developerConnection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</developerConnection>
+        <url>http://git.nj.yihuacomputer.com/gitweb/?p=atmvs.git</url>
+        <tag>HEAD</tag>
 	</scm>
 	<build>
 		<plugins>
