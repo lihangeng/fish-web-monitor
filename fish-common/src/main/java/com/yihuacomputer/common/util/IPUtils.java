@@ -1,0 +1,43 @@
+package com.yihuacomputer.common.util;
+
+import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+
+import com.yihuacomputer.common.ITypeIP;
+
+public class IPUtils {
+    
+    public static List<ITypeIP> listLocalIp(){
+        List<ITypeIP> ipList = new ArrayList<ITypeIP>();
+        Enumeration<NetworkInterface> netInterfaces = null;  
+        try {  
+            netInterfaces = NetworkInterface.getNetworkInterfaces();  
+            while (netInterfaces.hasMoreElements()) {  
+                NetworkInterface ni = netInterfaces.nextElement();  
+                Enumeration<InetAddress> ips = ni.getInetAddresses();  
+                while (ips.hasMoreElements()) {  
+                    String ip = ips.nextElement().getHostAddress();
+                    if(isValidIp(ip)){
+                        ipList.add(new IP(ip));
+                    }
+                }  
+            }  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        }  
+        return ipList;
+    }
+    
+    private static boolean isValidIp(String ip){
+        if(ip.contains(":")){
+            return false;
+        }
+        if(ip.equals("127.0.0.1")){
+            return false;
+        }
+        return true;
+    }
+}
