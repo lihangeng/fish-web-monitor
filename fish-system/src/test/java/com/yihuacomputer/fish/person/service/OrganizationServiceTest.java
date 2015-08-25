@@ -22,17 +22,17 @@ import com.yihuacomputer.fish.api.person.OrganizationState;
 import com.yihuacomputer.fish.person.H2TestConfig;
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = H2TestConfig.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = H2TestConfig.class)
 public class OrganizationServiceTest extends BindSessionInTest2{
 
-	@Autowired
+//	@Autowired
 	private IOrganizationService organizationService;
 
-	@Autowired
+//	@Autowired
 	private IPersonService personService;
 
-	@Test
+//	@Test
 	public void testC(){
 
 		//测试增加一条机构信息并初始化其编号和名称方法
