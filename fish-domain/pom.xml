@@ -1,0 +1,120 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.yihuacomputer.fish</groupId>
+		<artifactId>fish-parent</artifactId>
+		<version>2.0.0.0-SNAPSHOT</version>
+		<relativePath>../fish-parent</relativePath>
+	</parent>
+	<artifactId>fish-domain</artifactId>
+	<name>Fish Domain Base</name>
+	<description>数据库底层支持</description>
+	<dependencies>
+		<!-- local -->
+		<dependency>
+			<groupId>com.yihuacomputer.fish</groupId>
+			<artifactId>fish-common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<!--数据库驱动 -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+		<!-- Hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-dbcp</groupId>
+			<artifactId>commons-dbcp</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-annotation_1.0_spec</artifactId>
+		</dependency>
+
+		<!-- Spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
+ 		<!-- logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<scm>
+		<connection>scm:svn:http://svn.nj.yihuacomputer.com/svn/atmvs/trunk/fish-domain</connection>
+		<developerConnection>scm:svn:http://svn.nj.yihuacomputer.com/svn/atmvs/trunk/fish-domain</developerConnection>
+	</scm>
+	<build>
+		<plugins>
+			<!-- hibernate插件 -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>hibernate3-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<componentProperties>
+						<configurationfile>src/test/resources/hibernate-hsqldb.cfg.xml</configurationfile>
+						<outputfilename>sic-hsqldb.sql</outputfilename>
+						<!-- configurationfile>src/test/resources/hibernate.cfg.xml</configurationfile>
+							<outputfilename>sic-oracle.sql</outputfilename> -->
+						<drop>true</drop>
+					</componentProperties>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.h2database</groupId>
+						<artifactId>h2</artifactId>
+						<version>1.2.138</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
