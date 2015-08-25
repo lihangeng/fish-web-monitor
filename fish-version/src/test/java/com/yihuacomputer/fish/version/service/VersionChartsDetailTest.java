@@ -23,15 +23,15 @@ import com.yihuacomputer.fish.api.version.VersionChartsDetailForm;
 import com.yihuacomputer.fish.version.MySqlTestConfig;
 import com.yihuacomputer.fish.version.service.db.VersionService;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {MySqlTestConfig.class})
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = {MySqlTestConfig.class})
 public class VersionChartsDetailTest {
 	
-	@Autowired
+//	@Autowired
 	private IVersionStaticsStautsService versionStaticsStautsService;
-	@Autowired
+//	@Autowired
 	private IVersionTypeAtmTypeRelationService versionTypeAtmTypeRelationService;
-	@Autowired
+//	@Autowired
 	private IVersionService versionService;
 	
 //	@Test
@@ -45,7 +45,7 @@ public class VersionChartsDetailTest {
 		IPageResult<VersionChartsDetailForm> page = versionStaticsStautsService.getVersionChartsDetailForm(0,10,filter);
 		System.out.println(JsonUtils.toJson(page));
 	}
-	@Test
+//	@Test
 	public void getTotalDeviceNumber(){
 		versionStaticsStautsService.getOpeningDeviceTotal("%-1", 1l);
 	}
