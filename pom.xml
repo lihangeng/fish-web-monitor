@@ -1,0 +1,37 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.yihuacomputer.fish</groupId>
+	<artifactId>atmvs</artifactId>
+	<version>2.0.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<modules>
+		<module>fish-parent</module>
+		<module>fish-common</module>
+		<module>fish-api</module>
+		<module>fish-domain</module>
+		<module>fish-system</module>
+		<module>fish-machine</module>
+		<module>fish-monitor</module>
+		<module>fish-version</module>
+		<module>fish-fault</module>
+		<module>fish-report</module>
+		<module>fish-web-monitor</module>
+	</modules>
+	<scm>
+		<connection>scm:svn:http://svn.nj.yihuacomputer.com/svn/atmvs/trunk</connection>
+		<developerConnection>scm:svn:http://svn.nj.yihuacomputer.com/svn/atmvs/trunk</developerConnection>
+	</scm>
+	<!-- 设定持续集成发布包服务器 -->
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>Release Repository</name>
+			<url>${profile.repository}</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<url>${profile.snapshotRepository}</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>
