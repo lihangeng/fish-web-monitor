@@ -8,21 +8,27 @@
 	<artifactId>fish-version</artifactId>
 	<name>Fish Version Implement</name>
 	<description>版本分发的实现</description>
+	<properties>
+		<fish-api.version>2.0.0.0-SNAPSHOT</fish-api.version>
+		<fish-machine.version>2.0.0.0-SNAPSHOT</fish-machine.version>
+		<fish-domain.version>2.0.0.0-SNAPSHOT</fish-domain.version>
+		<fish-system.version>2.0.0.0-SNAPSHOT</fish-system.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-api-version</artifactId>
-			<version>${project.version}</version>
+			<version>${fish-api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-machine</artifactId>
-			<version>${project.version}</version>
+			<version>${fish-machine.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-domain</artifactId>
-			<version>${project.version}</version>
+			<version>${fish-domain.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-jxpath</groupId>
@@ -31,12 +37,12 @@
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-api-system</artifactId>
-			<version>${project.version}</version>
+			<version>${fish-api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-system</artifactId>
-			<version>${project.version}</version>
+			<version>${fish-system.version}</version>
 		</dependency>
 
 		<!-- test -->
