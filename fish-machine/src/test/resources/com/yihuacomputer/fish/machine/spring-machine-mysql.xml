@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" 
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/jdbc
+	http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+
+	<description>
+		fish-device测试过程中，mysql版本的配置
+	</description>
+
+	<!--事务、拦截器和基础Dao的配置 -->
+	<import resource="classpath:/com/yihuacomputer/domain/fish-domain.xml" />
+
+	<!--自身的配置(数据源的配置) -->
+	<bean id="hiberanteDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/fish"/>
+		<property name="username" value="root"/>
+		<property name="password" value="root"/>
+	</bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="hiberanteDataSource" />
+		</property>
+		<property name="entityInterceptor">
+			<ref bean="hibernateEntityInterceptor"/>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">create</prop>
+			</props>
+		</property> 
+		<property name="packagesToScan">  
+			<list> 
+				<value>com.yihuacomputer.fish.machine.entity</value>
+				<value>com.yihuacomputer.fish.person.entity</value>
+			</list>  
+		</property>
+	</bean>
+	
+	<!-- hibernate实现的service扫描 -->
+	<import resource="classpath:/com/yihuacomputer/fish/machine/spring-machine-scan-hibernate.xml" />
+	<import resource="classpath:/com/yihuacomputer/fish/person/spring-person-core-scan-hibernate.xml" />
+
+	<!--测试数据 <import resource="classpath:/net/bwda/fish/config/test-data.xml"/> -->
+
+</beans>

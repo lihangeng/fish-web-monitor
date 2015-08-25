@@ -1,0 +1,22 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>fish-api</artifactId>
+    <groupId>com.yihuacomputer.fish</groupId>
+    <version>2.0.0.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>fish-api-monitor</artifactId>
+  <name>Fish API for Monitor</name>
+  <description>监控模型</description>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.cometd.java</groupId>
+  		<artifactId>bayeux-api</artifactId>
+  	</dependency>
+  	<dependency>
+		<groupId>com.yihuacomputer.fish</groupId>
+		<artifactId>fish-api-machine</artifactId>
+		<version>${project.version}</version>
+	</dependency>
+  </dependencies>
+</project>

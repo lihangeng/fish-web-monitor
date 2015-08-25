@@ -1,0 +1,107 @@
+package com.yihuacomputer.fish.monitor.service.db;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.monitor.business.IHostRet;
+import com.yihuacomputer.fish.api.monitor.business.ITransaction;
+import com.yihuacomputer.fish.api.monitor.business.ITransactionService;
+import com.yihuacomputer.fish.api.person.IOrganization;
+import com.yihuacomputer.fish.api.person.IOrganizationService;
+import com.yihuacomputer.fish.monitor.entity.business.Transaction;
+
+@Service
+@Transactional
+public class TransactionService implements ITransactionService {
+
+    @Autowired
+    private IGenericDao dao;
+
+    @Autowired
+    private IOrganizationService orgService;
+
+    @Override
+    public ITransaction make() {
+        Transaction transaction = new Transaction();
+        return transaction;
+    }
+
+    @Override
+    public void save(ITransaction transaction) {
+        this.dao.save(transaction);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    @Deprecated
+    @Transactional(readOnly = true)
+    public IPageResult<ITransaction> page(int offset, int limit, IFilter filter, long orgId) {
+        StringBuffer hql = new StringBuffer();
+        IOrganization org = orgService.get(String.valueOf(orgId));
+        hql.append("select transaction from Transaction transaction,Device device ");
+        hql.append("where transaction.terminalId = device.terminalId and device.organization.orgFlag like ? ");
+        hql.append(" order by transaction.dateTime desc");
+        IPageResult<ITransaction> page = (IPageResult<ITransaction>) dao.page(offset, limit, filter, hql.toString(),
+                "%" + org.getOrgFlag());
+        return page;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Transactional(readOnly = true)
+	public IPageResult<ITransaction> page(int offset, int limit, IFilter filter) {
+		StringBuffer hql = new StringBuffer();
+		hql.append("from Transaction transaction where 1=1 order by transaction.dateTime desc");
+		IPageResult<ITransaction> page = (IPageResult<ITransaction>) dao.page(offset, limit, filter, hql.toString());
+		return page;
+	}
+
+
+    @SuppressWarnings("unchecked")
+    @Override
+    @Deprecated
+    @Transactional(readOnly = true)
+    public IPageResult<ITransaction> pageBlackList(int offset, int limit, IFilter filter, long orgId) {
+        StringBuffer hql = new StringBuffer();
+        IOrganization org = orgService.get(String.valueOf(orgId));
+
+        hql.append("select transaction from Transaction transaction , Device device ");
+        hql.append("where transaction.terminalId = device.terminalId and device.organization.orgFlag like ? and  ");
+        hql.append(" EXISTS(select cardNo from BlackListCard blackListCard where blackListCard.cardNo=transaction.debitAccount or blackListCard.cardNo=transaction.creditAccount) ");
+        hql.append(" order by transaction.dateTime desc");
+
+        IPageResult<ITransaction> page = (IPageResult<ITransaction>) dao.page(offset, limit, filter, hql.toString(),
+                "%" + org.getOrgFlag());
+        return page;
+    }
+
+    @SuppressWarnings("unchecked")
+    @Override
+    @Deprecated
+    @Transactional(readOnly = true)
+    public IPageResult<ITransaction> pageNoBlackList(int offset, int limit, IFilter filter, long orgId) {
+        StringBuffer hql = new StringBuffer();
+        IOrganization org = orgService.get(String.valueOf(orgId));
+
+        hql.append("select transaction from Transaction transaction , Device device ");
+        hql.append("where transaction.terminalId = device.terminalId and device.organization.orgFlag like ? and  ");
+        hql.append(" NOT EXISTS(select cardNo from BlackListCard blackListCard where blackListCard.cardNo=transaction.debitAccount or blackListCard.cardNo=transaction.creditAccount) ");
+        hql.append(" order by transaction.dateTime desc");
+
+        IPageResult<ITransaction> page = (IPageResult<ITransaction>) dao.page(offset, limit, filter, hql.toString(),
+                "%" + org.getOrgFlag());
+        return page;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<IHostRet> listHostRet() {
+        return dao.loadAll(IHostRet.class);
+    }
+
+}

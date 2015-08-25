@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+<!-- 要调用的工作类 -->
+	<bean id="deleteTempDoc" class="com.yihuacomputer.common.file.DeleteFileDirectory"/>
+	
+	<bean id="clearFileService" class="com.yihuacomputer.fish.web.util.ClearFileService"/>
+	
+	<bean id="FishServletContext" class="com.yihuacomputer.fish.web.util.FishServletContext"/>
+	
+    <!-- 定义调用对象和调用对象的方法 -->
+    <bean id="deletetask"
+        class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <ref bean="clearFileService" />
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>clearFile</value>
+        </property>
+    </bean>
+    <!-- 定义触发时间 -->
+    <bean id="deleteTime"
+        class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="deletetask" />
+        </property>
+        <!-- cron表达式 -->
+        <property name="cronExpression">
+            <!--每日11点加载删除临时目录文件-->
+             <value>${deleteTime}</value>
+        </property>
+    </bean>
+
+
+</beans>

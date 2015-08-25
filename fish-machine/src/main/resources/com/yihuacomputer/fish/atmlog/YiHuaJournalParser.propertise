@@ -1,0 +1,36 @@
+
+#周期信息开始匹配串		例如:周期开始
+CYCLE_BEGIN_PATTERN_TEXT=周期开始
+
+#客户周期开始匹配串		例如:插卡 卡号:6228370008480295
+CLIENT_BEGIN_PATTERN_TEXT=插卡 卡号:\\d{13,19}
+
+#客户插卡时间匹配串              例如:日期:2009-09-10
+CLIENT_INSERTCARD_PATTERN_TEXT=日期:\\d{4}-\\d{2}-\\d{2}
+
+#交易账号（卡号）匹配串                 例如:卡号:6228370008480295
+TRANS_ACCOUNT_PATTERN_TEXT=卡号:\\d{13,19}
+
+#交易周期开始匹配串		例如: 交易代码:INQ
+TRANS_BEGIN_PATTERN_TEXT=交易代码:[a-z|A-Z]{3}
+
+#终端流水号匹配串                  例如: 流水号:012010  
+TRANS_TERMINALSERIAL_PATTERN_TEXT=流水号:\\d{6}
+
+#主机流水号匹配串		例如: 流水号:A012010
+TRANS_HOSTSERIAL_PATTERN_TEXT=主机流水号:[a-z|A-Z]{0,6}\\d{6,15}
+
+#交易类型匹配串		例如: 转账
+TRANS_TYPE_PATTERN_TEXT=(转账|取款|存款|查询|进入管理员|取款冲正)
+
+#交易金额匹配串		例如: 金额:10888.88
+TRANS_AMOUNT_PATTERN_TEXT=金额:\\d{0,10}\\.\\d{2}
+
+#主机响应码匹配串		例如: 主机返回码:*11
+TRANS_HOSTRETURN_PATTERN_TEXT=主机返回码:[\\W]{0,2}\\d{2}
+
+#钞箱列表匹配串		例如: 钞箱:A11
+TRANS_BOXLIST_PATTERN_TEXT=钞箱:[\\W]{0,2}\\d{2}
+
+#交易时间匹配串		例如: 03:53:11
+TRANS_TIME_PATTERN_TEXT=\\d{2}:\\d{2}:\\d{2}

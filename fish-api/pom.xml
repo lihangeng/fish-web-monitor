@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>fish-parent</artifactId>
+		<groupId>com.yihuacomputer.fish</groupId>
+		<version>2.0.0.0-SNAPSHOT</version>
+		<relativePath>../fish-parent</relativePath>
+	</parent>
+	<artifactId>fish-api</artifactId>
+	<packaging>pom</packaging>
+	<name>Fish API</name>
+	<modules>
+		<module>fish-api-system</module>
+		<module>fish-api-machine</module>
+		<module>fish-api-monitor</module>
+		<module>fish-api-version</module>
+		<module>fish-api-fault</module>		
+		<module>fish-api-report</module>
+	</modules>
+	<dependencies>
+		<dependency>
+			<groupId>com.yihuacomputer.fish</groupId>
+			<artifactId>fish-common</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+	</dependencies>
+	<scm>
+		<connection>scm:svn:http://svn.nj.yihuacomputer.com/svn/atmvs/trunk/fish-api</connection>
+		<developerConnection>scm:svn:http://svn.nj.yihuacomputer.com/svn/atmvs/trunk/fish-api</developerConnection>
+	</scm>
+
+</project>

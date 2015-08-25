@@ -1,0 +1,122 @@
+Ext.define('Eway.view.index.LineBasic', {
+    extend: 'Ext.Panel',
+    xtype: 'lineBasic',
+
+
+//    width: 650,
+    title :'日均故障趋势图',
+
+    initComponent: function() {
+        var me = this;
+
+        me.myDataStore = Ext.create('Ext.data.JsonStore', {
+            fields: ['month', 'data1' ],
+            data: [
+                { month: '4-10', data1: 20 },
+                { month: '4-11', data1: 20 },
+                { month: '4-12', data1: 19 },
+                { month: '4-13', data1: 18 },
+                { month: '4-14', data1: 18 },
+                { month: '4-15', data1: 17 },
+                { month: '4-16', data1: 16 }
+            ]
+        });
+
+
+        me.items = [{
+            xtype: 'cartesian',
+            width: '100%',
+            height: 300,
+            interactions: {
+                type: 'panzoom',
+                zoomOnPanGesture: false
+            },
+            store: this.myDataStore,
+            insetPadding: 40,
+            innerPadding: {
+                left: 40,
+                right: 40
+            },
+            sprites: [/*{
+                type: 'text',
+                text: 'Line Charts - Basic Line',
+                fontSize: 22,
+                width: 100,
+                height: 30,
+                x: 40, // the sprite x position
+                y: 20  // the sprite y position
+            },{
+                type: 'text',
+                text: 'Data: Browser Stats 2012',
+                fontSize: 10,
+                x: 12,
+                y: 470
+            },  */{
+                type: 'text',
+                text: '日均故障趋势图',
+                fontSize: 10,
+                x: 230,
+                y: 485
+            }],
+            axes: [{
+                type: 'numeric',
+                fields: 'data1',
+                position: 'left',
+                grid: true,
+                minimum: 0,
+                maximum: 24,
+                renderer: function (v, layoutContext) {
+                    // Custom renderer overrides the native axis label renderer.
+                    // Since we don't want to do anything fancy with the value
+                    // ourselves except appending a '%' sign, but at the same time
+                    // don't want to loose the formatting done by the native renderer,
+                    // we let the native renderer process the value first.
+                    return layoutContext.renderer(v);
+                }
+            }, {
+                type: 'category',
+                fields: 'month',
+                position: 'bottom',
+                grid: true,
+                label: {
+                    rotate: {
+                        degrees: -45
+                    }
+                }
+            }],
+            series: [{
+                type: 'line',
+                xField: 'month',
+                yField: 'data1',
+                style: {
+                    lineWidth: 4
+                },
+                marker: {
+                    radius: 4
+                },
+                label: {
+                    field: 'data1',
+                    display: 'over'
+                },
+                highlight: {
+                    fillStyle: '#000',
+                    radius: 5,
+                    lineWidth: 2,
+                    strokeStyle: '#fff'
+                },
+                tooltip: {
+                    trackMouse: true,
+                    style: 'background: #fff',
+                    showDelay: 0,
+                    dismissDelay: 0,
+                    hideDelay: 0,
+                    renderer: function(storeItem, item) {
+                        this.setHtml(storeItem.get('month') + ' 产生的故障数量: ' + storeItem.get('data1') + '%');
+                    }
+                }
+            }]
+        }];
+
+        me.callParent();
+    }
+});

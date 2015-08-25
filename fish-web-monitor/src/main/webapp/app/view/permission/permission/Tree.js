@@ -1,0 +1,60 @@
+
+Ext.define('Eway.view.permission.permission.Tree', {
+	alias: 'widget.permission.tree',
+	extend: 'Ext.tree.Panel',
+	
+	store: 'permission.PermissionTree',
+	
+	id:'permissionTreeId',
+	
+	useArrows: true,
+	collapseFirst : true,
+    columns: [{
+        xtype: 'treecolumn', //this is so we know which column will show the tree
+        text: '菜单名称',
+        flex: 2,
+        sortable: true,
+        dataIndex: 'text'
+    },{
+        text: '菜单描述',
+        flex: 2,
+        sortable: true,
+        dataIndex: 'text'
+   }],
+
+	
+	initComponent: function() {		
+/*        Ext.apply(this, {
+        	checkModel: 'cascade' ,
+        	rootVisible : false,
+        	lines : true,
+        	 useArrows: true,
+        	 frame: true,
+        	 title: 'Check Tree',
+        	 autoScroll:true,
+        	 dockedItems : [{
+        		 xtype:'toolbar',
+        		 items:[{
+        			 text:'Get checked nodes',
+        			 handler : function(){
+        				 var records = this.getView().getChecked();
+        				 names=[];
+        				 
+        				 Ext.Array.each(records,function(rec){
+        					 names.push(rec.get('text'));
+        				 });
+        				 Ext.MessageBox.show({
+        					 title:'Selected Nodes',
+        					 msg: names.join('<br />'),
+                             icon: Ext.MessageBox.INFO
+        				 });
+        			 },
+        			 scope:this
+        		 }]
+        	 }]
+		});*/
+		
+		this.callParent(arguments);
+	}
+
+});

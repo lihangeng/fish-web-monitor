@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+
+    <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->
+    <bean id="startQuertz" lazy-init="false" autowire="no"
+        class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="backupTime" />
+                <ref bean="deleteTime" />
+                <ref bean="offlineTime" />
+                <ref bean="dayDeportTime" />
+                <ref bean="monthReportTime" />
+                <ref bean="yearReportTime" />
+
+            </list>
+        </property>
+    </bean>
+    <import resource="classpath:/com/yihuacomputer/fish/monitor/monitor-quartz.xml"/>
+	<import resource="classpath:/com/yihuacomputer/fish/atmlog/atmlog-quartz.xml"/>
+	<import resource="classpath:/com/yihuacomputer/fish/report/report-quartz.xml"/>
+	<import resource="classpath:deldoc-quartz.xml"/>
+</beans>

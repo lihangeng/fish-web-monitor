@@ -1,0 +1,495 @@
+#loading { 
+	position: absolute;
+	width: 180px;
+	margin: -70px 0 0 -90px;
+	height: 140px;
+	top: 50%;
+	left: 50%;
+}
+
+#loading .title {
+	font-size:16px; 
+	position: absolute;
+	display: block;
+  	top: 0;
+    left: 0px;
+    width:180px;
+    height: 27px;
+}
+
+#loading .logo {
+	background: url(../images/loading.gif) no-repeat;
+	position: absolute;
+	display: block;
+	top: 25px;
+	left: 22px;
+	width: 120px;
+	height: 120px;
+}
+
+.fish-logo{
+	font-size: 20px;
+	font-weight: normal;
+	font-family: "Helvetica Neue", Arial, Verdana, sans-serif; 
+}
+/**grid隐藏动作列*/
+.actioncolumn-hidden {
+	visibility: hidden;
+}
+
+/**菜单按钮图标**/
+.refreshBtn{
+	background: url(../images/refresh.png) left center no-repeat !important;
+}
+.sureBtn {
+	background: url(../images/accept.png) left center no-repeat !important;
+}
+.returnBtn {
+	background: url(../images/return.png) left center no-repeat !important;
+}
+.closeBtn {
+	background: url(../images/close.png) left center no-repeat !important;
+}
+.headerItemConfig {
+	background: url(../images/user_dark.gif) !important;
+}
+.exportBtn {
+	background: url(../images/down.gif) left center no-repeat !important;
+}
+.cardReceiveBtn {
+	background: url(../images/shape_move_backwards.png) left center no-repeat !important;
+}
+.cardHandoverBtn {
+	background: url(../images/shape_move_forwards.png) left center no-repeat !important;
+}
+.cardDetoryBtn {
+	background: url(../images/report_delete.png) left center no-repeat !important;
+}
+.importBtn {
+	background: url(../images/table_add.png) left center no-repeat !important;
+}
+.more{
+	background: url(../images/application_cascade.png) left center no-repeat !important;
+}
+.join{
+	background: url(../images/group_add.png) left center no-repeat !important;
+}
+.clear {
+	background: url(../images/wand.png) left center no-repeat !important;
+}
+.send {
+	background: url(../images/comment_add.png) left center no-repeat !important;
+}
+.leave {
+	background: url(../images/group_delete.png) left center no-repeat !important;
+}
+.db-save{
+	background: url(../images/database_save.png) left center no-repeat !important;
+}
+.exportToExcel{
+	background: url(../images/excel.png) left center no-repeat !important;
+}
+.pointerLink{
+	text-decoration: underline;
+	cursor: pointer;
+}
+.grid-x-column-header-checkbox{
+	display : none;	
+}
+.loginImg {
+	position : absolute;
+	width : 600px;
+	height : 300px;
+	z-index: -9999;
+	bottom : 300px;
+	right : 500px; 
+}
+#loginPanel{
+	position: absolute;
+	right : 470px;
+	bottom: 340px;
+	z-index: 100;
+}
+.hiddenComp{
+	visibility: hidden;
+}
+.changeCursor{
+	cursor: pointer;	
+}
+
+/* Notification.js */
+.ux-notification-window .x-window-body {
+	text-align: center;
+	padding: 15px 15px 15px 15px;
+	height: 20px;
+}
+.ux-notification-icon-information {
+	background-image: url('../images/icon16_info.png');
+}
+
+.ux-notification-icon-error {
+	background-image: url('../images/icon16_error.png');
+}
+.ux-notification-light .x-window-header {
+	background-color: transparent;
+}
+
+body .ux-notification-light {
+	background-image: url('../images/fader.png');
+}
+
+.ux-notification-light .x-window-body {
+	text-align: center;
+	padding: 15px 15px 15px 15px;
+	width: 200px;
+	background-color: transparent;
+	border: 0px solid white;
+}
+
+/*extjs disalbed*/
+.x-item-disabled .x-form-item-label{
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6; 
+}
+.x-item-disabled .x-form-field{
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6;
+}
+.x-item-disabled .x-form-cb-label{
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6;
+}
+.x-item-disabled .x-form-trigger {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6;
+}  
+.x-item-disabled .x-grid-cell{
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=60);
+  opacity: 0.6;
+}
+.warningHighLight {
+	color: orange;
+}
+
+.fatalHighLight {
+	color: red;
+}
+
+#images-view .x-panel-body {
+	background: white;
+	font: 11px Arial, Helvetica, sans-serif;
+}
+
+#images-view .thumb-wrap {
+	float: left;
+	margin: 5px;
+	padding: 3px;
+	border-color: black;
+	border-style: solid;
+	border-width: 1px;
+	cursor: pointer;
+}
+
+#images-view .thumb {
+	padding: 4px;
+	padding-bottom: 0;
+	width: 140px;
+}
+
+#images-view .thumb ul{
+	padding-left: 0px;
+	*margin-left:0px;/**hack IE7 padding-left澶辨晥鐨勯棶棰�*/
+	_margin-left:0px;
+	padding-top:0px;
+	margin-top:0px;
+	margin-bottom:0px;
+	list-style-type :none;
+}
+
+#images-view .thumb img {
+	padding: 4px;
+	height: 32px;
+	width: 32px;
+	*height: 25px;
+	*width: 25px;
+	_height: 25px;
+	_width: 25px;
+}
+
+#images-view .thumb .left {
+	float: left;
+	padding: 4px;
+}
+
+#images-view .x-item-over {
+	border: 1px solid #1264bd;
+	padding: 3px;
+}
+
+#images-view ul li {
+	float: left;
+	overflow: hidden;
+}
+
+.x-quirks #images-view .thumb {
+	padding-bottom: 3px;
+}
+
+#images-view .thumb-wrap span {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	text-align: center;
+	width: 140px; /**for ie to ensure that the text is centered**/
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    word-break:keep-all;
+}
+
+/**瓒呭ぇ鍥炬爣*/
+#images-view.maxicon .thumb-wrap {
+	border-width: 4px;
+}
+
+#images-view.maxicon .thumb {
+	width: 265px;
+	height: 80px;
+}
+
+#images-view.maxicon .thumb img {
+	padding: 4px;
+	height: 64px;
+	width: 64px;
+	*height: 50px;
+	*width: 50px;
+	_height: 50px;
+	_width: 50px;
+}
+
+#images-view.maxicon .thumb-wrap span {
+	font-size: 20px;
+	width: 265px; /**for ie to ensure that the text is centered**/
+}
+
+/**杩滅▼ATM浣撴閮ㄥ垎鐨刢ss瀹氫箟**/
+.checkATM-btn-custom {
+	background-image: url('../images/monitor/world_go.png');
+	background-repeat: repeat-x;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+/**杩滅▼娴忚閮ㄥ垎鐨刢ss瀹氫箟**/
+.refresh-btn-custom {
+	background-image: url('../images/yihua-exploer/refresh.gif');
+	background-repeat: repeat-x;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+
+.up-btn-custom {
+	background-image: url('../images/yihua-exploer/up.gif');
+	background-repeat: repeat-x;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.upfile-btn-custom {
+	background-image: url('../images/yihua-exploer/upfile.gif');
+	background-repeat: repeat-x;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.disk-name-blackground {
+	background-image: url('../images/yihua-exploer/disk.gif');
+	background-repeat: repeat-x;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.floder-name-blackground {
+	background-image: url('../images/yihua-exploer/icon_folder.gif');
+	/*  overflow: hidden;  */
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.file-name-blackground {
+	background-image: url('../images/yihua-exploer/icon_unknown.gif');
+	/* overflow: hidden; */
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+/**鐩戞帶閮ㄥ垎鐨刢ss瀹氫箟**/
+.monitor-btn-start {
+	background-image: url('../images/monitor/control_fastforward_blue.png');
+	background-repeat: repeat-x;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.monitor-btn-stop {
+	background-image: url('../images/monitor/control_pause_blue.png');
+	background-repeat: repeat-x;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+.nextBtn {
+	background: url(../images/monitor/arrow_right.gif) left center no-repeat
+		!important;
+}
+
+.previousBtn {
+	background: url(../images/monitor/arrow_left.gif) left center no-repeat
+		!important;
+}
+
+.filterBtn {
+	background: url(../images/monitor/filter.png) left center no-repeat
+		!important;
+}
+
+.listPattern {
+	background: url(../images/application_view_columns.png) left center
+		no-repeat !important;
+}
+
+.matrixPattern {
+	background: url(../images/application_view_tile.png) left center
+		no-repeat !important;
+}
+
+.monitorStart {
+	background: url(../images/control_play_blue.png) left center no-repeat
+		!important;
+}
+
+.monitorStop {
+	background: url(../images/control_pause_blue.png) left center no-repeat
+		!important;
+}
+
+.monitorRefresh {
+	cursor: pointer;
+	width: 16px;
+	height: 16px;
+}
+
+.text_ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	word-break: keep-all;
+}
+
+/* chrome銆�祻瑙堝櫒銆�缃�white-space: nowrap;鏍峰紡鏃讹紝浼氭拺寮�埗div锛屾墍浠ョ粰闄愬畾鏈�ぇ瀹藉害  */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.text_ellipsis {
+		max-width : 230px;
+	}
+}
+
+.x-grid-row.user-online .x-grid-cell
+{
+    color: #FF0000;
+}
+.report-overflow {
+	overflow-x : auto!important;
+	overflow-y : hidden!important;
+}
+.report-overflow>div {
+	overflow-x : auto;
+	overflow-y : hidden;
+}
+.historyBtn {
+	background: url(../images/application_cascade.png) left center no-repeat
+		!important;
+}
+
+.link {
+	text-decoration: underline;
+}
+
+pre.link{
+    margin-top: 0;
+    text-decoration: underline;
+}
+
+.remoteDeleteBtn{
+	background: url(../images/yihua-exploer/delete.gif) left center no-repeat !important;
+}
+
+.remoteMkdirBtn{
+	background: url(../images/yihua-exploer/icon_folder.gif) left center no-repeat !important;
+}
+
+.remoteFileBtn{
+	background: url(../images/yihua-exploer/icon_txt.gif) left center no-repeat !important;
+}
+.remoteExecBtn{
+	background: url(../images/yihua-exploer/icon_exe.gif) left center no-repeat !important;
+}
+
+/**广告管理部分的样式**/
+.advert-image-view{
+    font: 12px Arial, Helvetica, sans-serif;
+    background: white;
+}
+
+.advert-image-view .advert-item-over{
+	border: 1px solid #1264bd;
+	background:#efefef;
+	padding:4px;
+}
+.advert-image-view .thumb{
+    padding:3px;
+}
+
+.advert-image-view .thumb-wrap{
+    float: left;
+    margin: 4px;
+    margin-right: 0;
+    padding: 4px;
+    border: 1px solid white;
+}
+
+.advert-image-view .remove_adevert_res{
+	position: absolute;
+	display:none;
+	left:20;
+    top:20;
+}
+
+.advert-image-view .thumb img{
+  	width: 148px;
+    height:108px;
+}
+
+.advert-image-view .thumb-wrap span{
+    display: block;
+    overflow: hidden;
+    text-align: center;
+    width: 148px; 
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+<!-- 要调用的工作类 -->
+	
+    <!-- 每日报表数据抽取 -->
+    <bean id="dayReportTask"
+        class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="DayETLJob" />
+        </property>
+        <property name="targetMethod">
+            <value>execute</value>
+        </property>
+    </bean>
+    <bean id="dayDeportTime"
+        class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="dayReportTask" />
+        </property>
+        <property name="cronExpression">
+             <value>${dayETLJobTime}</value>
+        </property>
+    </bean>
+
+    <!-- 每月数据抽取 -->
+    <bean id="monthReportTask"
+        class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="MonthETLJob" />
+        </property>
+        <property name="targetMethod">
+            <value>execute</value>
+        </property>
+    </bean>
+    <bean id="monthReportTime"
+        class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="monthReportTask" />
+        </property>
+        <property name="cronExpression">
+             <value>${monthETLJobTime}</value>
+        </property>
+    </bean>
+
+    <!-- 每年数据抽取 -->
+    <bean id="yearReportTask"
+        class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject">
+            <ref bean="YearETLJob" />
+        </property>
+        <property name="targetMethod">
+            <value>execute</value>
+        </property>
+    </bean>
+    <bean id="yearReportTime"
+        class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="yearReportTask" />
+        </property>
+        <property name="cronExpression">
+             <value>${yearETLJobTime}</value>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,148 @@
+
+Ext.define('Eway.view.monitor.card.CardDestoryFilterForm', {
+	extend: 'Eway.view.base.FilterForm',
+	alias: 'widget.card_CardDestoryFilterForm',
+
+
+	requires : ['Eway.view.field.card.ActionStatus',
+				'Eway.view.field.card.InOutComboBox',
+				'Eway.view.field.card.StartDate', 'Eway.view.field.card.EndDate',
+				'Eway.view.field.card.AccountNo',
+				'Eway.view.field.card.TerminalId',
+				'Eway.view.field.card.DeviceAtmVendorComboBox',
+				'Eway.view.field.card.DeviceTypeComboBox',
+				'Eway.view.common.OrgComboOrgTree',
+				'Ext.ux.form.DateTimeField',
+	             'Eway.lib.Util'],
+	height : 120,
+	layout : 'column',
+	hideLabel : false,
+	initComponent: function() {
+		Ext.apply(Ext.form.field.VTypes,{
+			cardDestoryDateRange : function(val, field){
+				var beginDate = null,//开始日期
+					beginDateCmp = null,//开始日期组件
+					endDate = null,//结束日期
+					enddateCmp = null,//结束日期组件
+					validStatus = true;//验证状态
+					if(field.dateRange){
+						//获取开始时间
+						if(!Ext.isEmpty(field.dateRange.begin)){
+							var filterForm = Ext.ComponentQuery.query('card_CardDestoryFilterForm')[0];
+							beginDateCmp = filterForm.down('field[name="startData"]');
+							beginDate = beginDateCmp.getValue();
+						}
+						//获取结束时间
+						if(!Ext.isEmpty(field.dateRange.end)){
+							var filterForm = Ext.ComponentQuery.query('card_CardDestoryFilterForm')[0];
+							enddateCmp = filterForm.down('field[name="endData"]');
+							endDate = enddateCmp.getValue();
+						}
+					}
+					if(!Ext.isEmpty(beginDate) && !Ext.isEmpty(endDate)){
+						validStatus = beginDate <= endDate;
+					}
+					return validStatus;
+			},
+			cardDestoryDateRangeText : '吞卡起始日期不能大于吞卡截止日期,请重新选择'
+		});
+		Ext.apply(this, {
+			items : [{
+					columnWidth : .3,
+					items : [{
+								style : 'padding-top:0px',
+								xtype : 'hiddenfield',
+								name : 'orgId'
+							}, {
+/*								xtype : 'common_orgComboOrgTree',
+								fieldLabel : '所属机构',
+								emptyText : '--请选择--',
+								name : 'orgName',
+								hiddenValue : 'orgId',
+								editable : false,
+								labelAlign : 'right'*/
+
+								//只带出银行机构
+								xtype : 'common_orgComboOrgTree',
+								fieldLabel : '所属机构 (包含处理机构)',
+								labelAlign : 'right',
+								emptyText : '--请选择--',
+								name : 'orgName',
+								hiddenValue : 'orgId',
+								editable : false,
+								filters : '{"type" : "0"}',
+								rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
+							}, {
+								xtype : 'card_InOutComboBox',
+								labelAlign : 'right',
+								editable:false
+							},{
+								xtype : 'card_AccountNo',
+								msgTarget : 'side',
+								labelAlign : 'right'
+							}]
+					}, {
+					columnWidth : .3,
+					items : [{
+								xtype : 'field_card_DeviceAtmVendorComboBox',
+								labelAlign : 'right'
+							}, {
+								xtype: 'datetimefield',
+								fieldLabel : '开始时间',
+								name: 'startData',
+								editable : false,
+								format: 'Y-m-d H:i:s',
+								 dateRange : {
+									 begin : 'startData',
+									 end : 'endDate'
+								 },
+								 vtype : 'cardDestoryDateRange',
+								 msgTarget : 'side',
+								 labelAlign : 'right',
+								 listeners: {
+							 		change : function(){
+								 		var endDate = this.up('form').down('field[name="endData"]');
+								 		endDate.clearInvalid();
+							 		}
+							 	}
+							},{
+								xtype : 'card_TerminalId',
+								maxLength:20,
+								labelAlign : 'right'
+							}]
+					}, {
+					columnWidth : .4,
+					items : [{
+								xtype : 'field_card_DeviceTypeComboBox',
+								labelAlign : 'right'
+							}, {
+								xtype: 'datetimefield',
+								fieldLabel : '结束时间',
+								editable : false,
+								format: 'Y-m-d H:i:s',
+								name: 'endData',
+								dateRange : {
+									begin : 'startData',
+									end : 'endDate'
+								},
+								vtype : 'cardDestoryDateRange',
+								msgTarget : 'side',
+								labelAlign : 'right',
+								listeners : {
+									change : function(){
+										var beginDate = this.up('form').down('field[name="startData"]');
+										beginDate.clearInvalid();
+									}
+								}
+							},{
+								xtype: 'card_ActionStatus',
+								labelAlign : 'right',
+								editable:false
+							}]
+					}
+			]
+		});
+
+		this.callParent(arguments);
+	}
+});
