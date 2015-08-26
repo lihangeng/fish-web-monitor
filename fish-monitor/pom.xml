@@ -25,7 +25,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
-			<artifactId>fish-api-case</artifactId>
+			<artifactId>fish-api-fault</artifactId>
 			<version>${fish-api.version}</version>
 		</dependency>
 		<dependency>
