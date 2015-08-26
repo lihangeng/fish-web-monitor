@@ -7,7 +7,7 @@ PATH=$PATH:/usr/local/bin:$M2_HOME/bin
 export PATH
 CI_SCRIPT_PATH=$WORKSPACE
 export CI_SCRIPT_PATH
-if [ -z "$1"]
+if [ -z "$1" ]
 then
 	echo "Please set branch name"
 	exit -100
