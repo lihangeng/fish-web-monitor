@@ -24,26 +24,26 @@ import com.yihuacomputer.fish.api.version.IVersionTypeAtmTypeRelationService;
 import com.yihuacomputer.fish.api.version.IVersionTypeService;
 import com.yihuacomputer.fish.version.H2TestConfig;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {H2TestConfig.class})
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = {H2TestConfig.class})
 public class VersionTypeServiceTest extends BindSessionInTest2{
 	
-	@Autowired
+//	@Autowired
 	private IVersionTypeService versionTypeService;
 	
-	@Autowired
+//	@Autowired
 	private IAtmTypeService atmTypeService;
 	
-	@Autowired
+	//	@Autowired
 	private IAtmCatalogService atmCatalogService;
 	
-	@Autowired
+	//	@Autowired
 	private IAtmBrandService atmVendorService;
 	
-	@Autowired
+	//	@Autowired
 	private IVersionTypeAtmTypeRelationService relationService;
 	
-	@Test
+	//	@Test
 	public void test(){
 		IAtmCatalog atmCatalog = atmCatalogService.make();
 		atmCatalog.setName("yihuacomputer");
