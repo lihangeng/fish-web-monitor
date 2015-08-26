@@ -18,18 +18,6 @@
 		<module>fish-report</module>
 		<module>fish-web-monitor</module>
 	</modules>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>com.yihuacomputer.maven</groupId>
-				<artifactId>layer-maven-plugin</artifactId>
-				<version>0.0.9</version>
-				<configuration>
-					<releaseModuleName>fish-web-monitor</releaseModuleName>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 	<scm>
 	 	<connection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</connection>
         <developerConnection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</developerConnection>
