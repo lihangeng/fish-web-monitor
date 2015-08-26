@@ -30,7 +30,12 @@
 			</plugin>
 		</plugins>
 	</build>
-
+	<scm>
+	 	<connection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</connection>
+        <developerConnection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</developerConnection>
+        <url>http://git.nj.yihuacomputer.com/gitweb/?p=atmvs.git</url>
+        <tag>HEAD</tag>
+	</scm>
 	<!-- 设定持续集成发布包服务器 -->
 	<distributionManagement>
 		<repository>
