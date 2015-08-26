@@ -7,11 +7,4 @@
   </parent>
   <artifactId>fish-api-system</artifactId>
   <name>Fish API for System</name>
-  <dependencies>
-  	<dependency>
-  		<groupId>com.yihuacomputer.fish</groupId>
-  		<artifactId>fish-api-person</artifactId>
-  		<version>${project.version}</version>
-  	</dependency>
-  </dependencies>
 </project>
