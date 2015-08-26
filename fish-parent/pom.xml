@@ -593,8 +593,10 @@
 	</dependencyManagement>
 
 	<scm>
-		<connection>scm:svn:http://svn.nj.yihuacomputer.com/svn/atmvs/trunk/fish-parent</connection>
-		<developerConnection>scm:svn:http://svn.nj.yihuacomputer.com/svn/atmvs/trunk/fish-parent</developerConnection>
+	 	<connection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</connection>
+        <developerConnection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</developerConnection>
+        <url>http://git.nj.yihuacomputer.com/gitweb/?p=atmvs.git</url>
+        <tag>HEAD</tag>
 	</scm>
 	<organization>
 		<name>YIHUA</name>
