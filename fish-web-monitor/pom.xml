@@ -3,17 +3,18 @@
 	<parent>
 		<artifactId>fish-parent</artifactId>
 		<groupId>com.yihuacomputer.fish</groupId>
-		<version>2.0.0.0</version>
+		<version>2.0.0.0-SNAPSHOT</version>
 		<relativePath>../fish-parent</relativePath>
 	</parent>
 	<artifactId>fish-web-monitor</artifactId>
+	<version>2.0.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>Fish web monitor Maven Webapp</name>
 	<properties>
-		<fish-monitor.version>2.0.0.0</fish-monitor.version>
-		<fish-version.version>2.0.0.0</fish-version.version>
-		<fish-fault.version>2.0.0.0</fish-fault.version>
-		<fish-report.version>2.0.0.0</fish-report.version>
+		<fish-monitor.version>2.0.0.0-SNAPSHOT</fish-monitor.version>
+		<fish-version.version>2.0.0.0-SNAPSHOT</fish-version.version>
+		<fish-fault.version>2.0.0.0-SNAPSHOT</fish-fault.version>
+		<fish-report.version>2.0.0.0-SNAPSHOT</fish-report.version>
 	</properties>
 	<dependencies>
 		<!-- local -->
