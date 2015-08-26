@@ -18,11 +18,14 @@
 		<module>fish-api-fault</module>		
 		<module>fish-api-report</module>
 	</modules>
+	<properties>
+		<fish-common.version>2.0.0.0-SNAPSHOT</fish-common.version>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-common</artifactId>
-			<version>${project.version}</version>
+			<version>${fish-common.version}</version>
 		</dependency>
 	</dependencies>
 	<scm>
