@@ -3,15 +3,15 @@
 	<parent>
 		<groupId>com.yihuacomputer.fish</groupId>
 		<artifactId>atmvs</artifactId>
-		<version>2.0.0.2-SNAPSHOT</version>
+		<version>2.0.0.2</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>fish-system</artifactId>
 	<name>Fish System Implement</name>
 	<description>FISH系统自身管理</description>
 	<properties>
-		<fish-api.version>2.0.0.2-SNAPSHOT</fish-api.version>
-		<fish-domain.version>2.0.0.2-SNAPSHOT</fish-domain.version>
+		<fish-api.version>2.0.0.2</fish-api.version>
+		<fish-domain.version>2.0.0.2</fish-domain.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -45,6 +45,6 @@
 	 	<connection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</connection>
         <developerConnection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</developerConnection>
         <url>http://git.nj.yihuacomputer.com/gitweb/?p=atmvs.git</url>
-        <tag>HEAD</tag>
+        <tag>atmvs-2.0.0.2</tag>
 	</scm>
 </project>
