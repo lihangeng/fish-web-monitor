@@ -7,7 +7,6 @@
 		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>fish-report</artifactId>
-	<version>2.0.0.0-SNAPSHOT</version>
 	<name>Fish Report Implement</name>
 	<description>基本报表、统计报表实现</description>
 	<properties>

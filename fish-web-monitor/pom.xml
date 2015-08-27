@@ -7,7 +7,6 @@
 		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>fish-web-monitor</artifactId>
-	<version>2.0.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>Fish web monitor Maven Webapp</name>
 	<properties>
