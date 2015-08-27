@@ -11,9 +11,6 @@ $COMMAND
 RETVAL=$?
 if [ $RETVAL -eq 0 ]
 then
-	COMMAND="$MVNCMD release:clean"
-	echo $COMMAND
-	$COMMAND
 	COMMAND="$MVNCMD release:prepare -DdryRun=false -Dresume=false"
 	echo $COMMAND
 	$COMMAND
