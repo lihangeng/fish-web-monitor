@@ -58,7 +58,6 @@
 			<groupId>org.cometd.java</groupId>
 			<artifactId>bayeux-api</artifactId>
 		</dependency>
-		
 		<!-- file upload -->
 		<dependency>
 			<groupId>commons-fileupload</groupId>
@@ -81,7 +80,6 @@
 			<artifactId>poi-ooxml</artifactId>
 			<version>3.7</version>
 		</dependency>
-
 		<!-- test -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -104,7 +102,6 @@
         <url>http://git.nj.yihuacomputer.com/gitweb/?p=atmvs.git</url>
         <tag>HEAD</tag>
 	</scm>
-
 	<build>
 		<finalName>ATMVS</finalName>
 		<plugins>
@@ -181,5 +178,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
