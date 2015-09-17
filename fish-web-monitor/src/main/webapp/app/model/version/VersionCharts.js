@@ -3,6 +3,7 @@
  */
 Ext.define('Eway.model.version.VersionCharts', {
 	extend: 'Ext.data.Model',
+			/**版本标题,*/
 	fields: ['title', 'value','flag','versionId']
     ,proxy: {
         type: 'rest',

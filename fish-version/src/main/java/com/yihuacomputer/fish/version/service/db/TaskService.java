@@ -26,6 +26,8 @@ import com.yihuacomputer.fish.api.version.IDeviceVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.VersionStatus;
+import com.yihuacomputer.fish.api.version.job.IJob;
+import com.yihuacomputer.fish.api.version.job.IJobService;
 import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistory;
 import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistoryService;
 import com.yihuacomputer.fish.api.version.job.NoticeStatus;
@@ -54,6 +56,9 @@ public class TaskService implements IDomainTaskService {
 
 	@Autowired
 	private IVersionService versionService;
+
+	@Autowired
+	private IJobService jobService;
 
 	@Autowired
 	private IUpdateDeployDateHistoryService updateDeployDateService;
@@ -110,7 +115,7 @@ public class TaskService implements IDomainTaskService {
 		}
 		// 修改或者保存设备版本表
 		//@since 2.0 删除
-//		dvService.saveOrUpdateDeviceVersion(entity.getDeviceId(), version.getId(), TaskStatus.NEW, null);
+		dvService.saveOrUpdateDeviceVersion(entity.getDeviceId(), version.getId(), TaskStatus.NEW, null);
 		return entity;
 	}
 
@@ -131,7 +136,7 @@ public class TaskService implements IDomainTaskService {
 
 			// 修改
 			//@since 2.0 删除
-//			dvService.saveOrUpdateDeviceVersion(entity.getDeviceId(), version.getId(), entity.getStatus(), entity.getReason());
+			dvService.saveOrUpdateDeviceVersion(entity.getDeviceId(), version.getId(), entity.getStatus(), entity.getReason());
 		}
 	}
 
@@ -155,17 +160,17 @@ public class TaskService implements IDomainTaskService {
 	 * 取消前，任务的状态已经是removed 取消一批任务
 	 */
 	public void cancelTasks(List<ITask> tasks) {
-		/*int size = tasks.size();
+		/**/int size = tasks.size();
 		if (size > 0) {
-			IJob job = tasks.get(0).getJob();
-			if (jobService.getNotRemovedTasks(job) == 0) {// 该作业下的任务全部被取消
-				jobService.cascadeDelete(job);
-			} else {
+//			IJob job = tasks.get(0).getJob();
+//			if (jobService.getNotRemovedTasks(job) == 0) {// 该作业下的任务全部被取消
+//				jobService.cascadeDelete(job);
+//			} else {
 				for (ITask task : tasks) {// 修改设备版本表的任务状态为“删除”
 					dvService.updateDeviceVersionStatus(task.getDevice().getId(), task.getVersion().getId(), TaskStatus.REMOVED);
 				}
-			}
-		}*/
+//			}
+		}
 	}
 
 	@Override
