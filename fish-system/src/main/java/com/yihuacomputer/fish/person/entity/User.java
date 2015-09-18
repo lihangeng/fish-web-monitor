@@ -24,6 +24,7 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.person.UserState;
+import com.yihuacomputer.fish.api.person.UserType;
 import com.yihuacomputer.fish.person.service.api.IDomainUserService;
 
 /**
@@ -107,6 +108,10 @@ public class User implements IUser {
 
 	@Column(name = "CHECK_REMARK")
 	private String checkRemark;
+
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "USER_TYPE", nullable = false, length = 3)
+	private UserType userType;
 
 	@Transient
 	private IDomainUserService service;
@@ -302,6 +307,14 @@ public class User implements IUser {
 
 	public void setCheckRemark(String checkRemark) {
 		this.checkRemark = checkRemark;
+	}
+
+	public UserType getUserType() {
+		return userType;
+	}
+
+	public void setUserType(UserType userType) {
+		this.userType = userType;
 	}
 
 }

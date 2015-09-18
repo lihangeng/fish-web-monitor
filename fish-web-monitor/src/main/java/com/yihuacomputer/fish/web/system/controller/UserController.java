@@ -31,9 +31,9 @@ import com.yihuacomputer.fish.api.person.IPersonService;
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.person.IUserLogService;
 import com.yihuacomputer.fish.api.person.IUserService;
-import com.yihuacomputer.fish.api.person.OrganizationType;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.person.UserState;
+import com.yihuacomputer.fish.api.person.UserType;
 import com.yihuacomputer.fish.api.relation.IUserRoleRelation;
 import com.yihuacomputer.fish.web.system.form.RoleForm;
 import com.yihuacomputer.fish.web.system.form.UserForm;
@@ -143,6 +143,7 @@ public class UserController {
 				try {
 					IUser user = userService.make();
 					user.setCode(form.getCode());
+					user.setUserType(UserType.getById(form.getUserType()));
 					IPerson person = personService.get(form.getUserGuid());
 					if(person==null){
 						result.put(FishConstant.ERROR_MSG, "增加失败:该人员信息已经不存在，请刷新后再操作.");
@@ -246,6 +247,7 @@ public class UserController {
 					if (user.getState() == UserState.LOCK) {
 						user.setAccessTime(null);
 					}
+//					user.setUserType(UserType.getById(form.getUserType()));
 					user.setState(UserState.getById(Integer.valueOf(form.getUserState())));
 				} else {
 					form.setUserState(String.valueOf((user.getState().getId())));

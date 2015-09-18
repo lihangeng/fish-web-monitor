@@ -1,0 +1,2 @@
+--默认增加的人员类型为普通用户
+ALTER TABLE SM_USER ADD  USER_TYPE INT(5) DEFAULT 1;

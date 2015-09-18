@@ -7,6 +7,7 @@ Ext.define('Eway.controller.person.User', {
 			'person.user.AddingRole',
 			'GenderDict',
 			'person.user.UserStateDict',
+			'person.user.UserTypeDict',
 			'person.user.UserStateFilterDict',
 			'person.person.GenderFilterDict',
 			'person.person.PersonTypeFilterDict',
@@ -234,7 +235,8 @@ Ext.define('Eway.controller.person.User', {
 
 			addedRoleGrid.getView().on('drop', this.onAddedRole, this);
 			roleGrid.getView().on('drop', this.onAddingRole, this);
-
+			
+			win.down("field_userType").select(record.get("userType"));
 
 			addedRoleGrid.getStore().load({
 				params : {

@@ -101,7 +101,7 @@ Ext.define('Eway.view.monitor.card.CardActionFilterForm', {
 							 },
 							 vtype : 'cardActionDateRange',
 							 msgTarget : 'side',
-							 labelAlign : 'right'
+							 labelAlign : 'right',
 							 listeners: {
 							 	change : function(){
 							 		var endDate = this.up('form').down('field[name="endData"]');
@@ -132,7 +132,7 @@ Ext.define('Eway.view.monitor.card.CardActionFilterForm', {
 							},
 							vtype : 'cardActionDateRange',
 							msgTarget : 'side',
-							labelAlign : 'right'
+							labelAlign : 'right',
 							listeners : {
 								change : function(){
 									var beginDate = this.up('form').down('field[name="startData"]');
@@ -144,6 +144,7 @@ Ext.define('Eway.view.monitor.card.CardActionFilterForm', {
 							labelAlign : 'right',
 							editable:false
 						}]
+					}
 			]
 		});
 

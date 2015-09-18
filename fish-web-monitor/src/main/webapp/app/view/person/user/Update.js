@@ -3,6 +3,7 @@ Ext.define('Eway.view.person.user.Update', {
 	alias : 'widget.user_update',
 
 	requires : [ 'Eway.view.person.user.RoleGrid',
+		           'Eway.view.field.person.UserType',
 			'Eway.view.person.user.AddedRoleGrid' ],
 
 	title : '更改用户角色（使用拖拽的方式）',
@@ -16,6 +17,12 @@ Ext.define('Eway.view.person.user.Update', {
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
+//				fieldLabel : '<font color="red">*</font> 用户类型',
+//				xtype : 'field_userType',
+//				region : 'north',
+//				name:'userType',
+//				allowBlank : false
+//			},{
 				xtype : 'panel',
 				trackResetOnLoad : true,
 				selectOnFocus : true,
