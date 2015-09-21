@@ -54,7 +54,7 @@
 				<value>com.yihuacomputer.fish.person.entity</value>
 				<value>com.yihuacomputer.fish.permission.entity</value>
 				<value>com.yihuacomputer.fish.relation.entity</value>
-				<value>com.yihuacomputer.fish.relation.system</value>
+				<value>com.yihuacomputer.fish.system.entity</value>
 			</list>  
 		</property>
 	</bean>

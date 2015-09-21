@@ -59,6 +59,7 @@ Ext.define('Eway.controller.version.Version', {
 		});
 		 
 	},
+	//点击表格进行查看当前版本详情对应的设备信息
 	onItemClick:function(series, item, event, eOpts){
 //		var versionId = item.record.data.versionId;
 		var gridFlag = item.record.data.flag;

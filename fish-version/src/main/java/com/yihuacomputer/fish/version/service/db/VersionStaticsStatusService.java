@@ -1,7 +1,9 @@
 package com.yihuacomputer.fish.version.service.db;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
-import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.charts.ChartsInfo;
@@ -21,10 +22,13 @@ import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
+import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.IVersionStaticsStautsService;
 import com.yihuacomputer.fish.api.version.VersionChartsDetailForm;
 import com.yihuacomputer.fish.api.version.VersionStaticsStatus;
+import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.machine.entity.device.Device;
+import com.yihuacomputer.fish.version.entity.DeviceSoftVersion;
 import com.yihuacomputer.fish.version.entity.DeviceVersion;
 import com.yihuacomputer.fish.version.entity.Version;
 import com.yihuacomputer.fish.version.entity.VersionTypeAtmTypeRelation;
@@ -33,6 +37,10 @@ import com.yihuacomputer.fish.version.entity.VersionTypeAtmTypeRelation;
  * //TODO 逻辑要进行更改
  * @author GQ
  * 获取图形信息
+ */
+/**
+ * @author GQ
+ *
  */
 @Service
 @Transactional
@@ -48,42 +56,58 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     private IDeviceService deviceService;
     @Autowired
     private IDeviceSoftVersionService deviceSoftVersionService;
+    @Autowired
+    private IVersionService versionService;
     
+    
+    /**
+     * 根据版本类型获取所有设备上对应版本类型的版本
+     * @param versionType 版本类型
+     * @return 所有设备对应的版本Map集合
+     */
+    private Map<String,IVersion> getDeviceVersionOfVersionType(String versionType){
+    	Map<String,IVersion> deviceVersionMap = new HashMap<String,IVersion>();
+    	StringBuffer hqlSb = new StringBuffer("select deviceSoftVersion.terminalId,version from ");
+    	hqlSb.append(Version.class.getSimpleName()).append(" version ,").
+    	append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ").
+    	append(" where version.versionType.typeName=deviceSoftVersion.typeName ").
+    	append(" and version.versionNo =deviceSoftVersion.versionNo and version.versionType.typeName=?");
+    	Object [] argObj = {versionType};
+    	List<Object> list = dao.findByHQL(hqlSb.toString(), argObj);
+    	for(Object obj:list){
+    		Object[] result = (Object[])obj;
+    		deviceVersionMap.put(String.valueOf(result[0]), (Version)result[1]);
+    	}
+    	return deviceVersionMap;
+    }
     
 	@Override
-	public List<ChartsInfo> getVersionDetailsInfo(long versionId,String orgFlag) {
+	public List<ChartsInfo> getVersionSummaryInfo(long versionId,String orgFlag,int start,int limit) {
+		logger.info(String.format("get orgFlag %s Version %d detail charts info", orgFlag,versionId));
 		List<ChartsInfo> list = new ArrayList<ChartsInfo>();
 		orgFlag = "%"+orgFlag;
-		List<Object> result = getVersionDetailInfo(versionId,orgFlag);
-		Object[] resultObj = (Object[])result.get(0);
+
 		ChartsInfo chartsT = new ChartsInfo();
 		chartsT.setTitle(VersionStaticsStatus.TOTALDEVICE.getText());
 		chartsT.setFlag(VersionStaticsStatus.TOTALDEVICE.getId());
 		chartsT.setVersionId(versionId);
-		chartsT.setValue(getOpeningDeviceTotal(orgFlag,versionId));
+		chartsT.setValue(getMatchConditionDeviceTotal(versionId, orgFlag, start, limit).getTotal());
 		ChartsInfo chartsS = new ChartsInfo();
 		chartsS.setTitle(VersionStaticsStatus.SUCCESSDEVICE.getText());
-		if(null==resultObj[1]){
-			chartsS.setValue(0);
-		}
-		else{
-			chartsS.setValue((Long)resultObj[1]);
-		}
+		chartsS.setValue(getMatchConditionDeviceSuccess(versionId, orgFlag, start, limit).getTotal());
+
 		chartsS.setFlag(VersionStaticsStatus.SUCCESSDEVICE.getId());
 		chartsS.setVersionId(versionId);
 		ChartsInfo chartsF = new ChartsInfo();
 		chartsF.setTitle(VersionStaticsStatus.FAILDEVICE.getText());
-		if(null==resultObj[2]){
-			chartsF.setValue(0);
-		}
-		else{
-			chartsF.setValue((Long)resultObj[2]);
-		}
+		chartsF.setValue(getMatchConditionDeviceFatal(versionId, orgFlag, start, limit).getTotal());
+
 		chartsF.setFlag(VersionStaticsStatus.FAILDEVICE.getId());
 		chartsF.setVersionId(versionId);
 		ChartsInfo chartsP = new ChartsInfo();
 		chartsP.setTitle(VersionStaticsStatus.PASHDEVICE.getText());
-		chartsP.setValue(chartsT.getValue()-chartsS.getValue());
+
+		chartsP.setValue(getMatchConditionDevicePush(versionId, orgFlag, start, limit).getTotal());
 		chartsP.setFlag(VersionStaticsStatus.PASHDEVICE.getId());
 		chartsP.setVersionId(versionId);
 		list.add(chartsT);
@@ -108,139 +132,178 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
 		return atmTypeList;
 	}
 	
-    /* (non-Javadoc)
-     * @see com.yihuacomputer.fish.api.version.IVersionStaticsStautsService#getOpeningDeviceTotal(java.lang.String, long)
+    /**
+     * 根据机构和版本ID获取当前机构机型符合的设备数量
+     * @param versionId
+     * @param orgFlag
+     * @return
      */
-    public long getOpeningDeviceTotal(String orgFlag,long versionId) {
-    	List<Long> atmTypeList = this.getAtmTypeIdsByVersionId(versionId);
-    	if(atmTypeList==null){
-    		
+    private IPageResult<VersionChartsDetailForm> getMatchConditionDeviceTotal(long versionId,String orgFlag,int start,int limit){
+    	StringBuffer hqlsb = new StringBuffer();
+    	hqlsb.append("select device from ").append(Device.class.getSimpleName()).append(" device ,").
+    	append(Version.class.getSimpleName()).append(" version ,").
+    	append(VersionTypeAtmTypeRelation.class.getSimpleName()).
+    	append(" as versionatmType where device.devType.id=versionatmType.atmTypeId ").
+    	append(" and versionatmType.versionTypeId=version.versionType.id ").
+    	append(" and version.id=? and device.organization.orgFlag like ? and device.status=?");
+    	Object[] obj = {versionId,orgFlag,Status.OPENING};
+		List<Object> totalList =  dao.findByHQL(hqlsb.toString(), obj);
+    	IPageResult<VersionChartsDetailForm> pageResult= convertResult(start,limit,totalList,versionId,false);
+    	return pageResult;
+    }
+    
+  
+    /**
+     * 查询的设备结果进行转换并通过条件进行过滤 
+     * @param result 查询的设备结果
+     * @param versionId 要比对的版本号
+     * @param isMatchVersion 是否进行版本号比对,true 则比对
+     * @return
+     *  TODO 此处效率较低，需要优化(versionNo无法比对，考虑将versionNo加入数据库；再数据库内部进行比对)
+     */
+    private IPageResult<VersionChartsDetailForm> convertResult(int start, int limit,List<Object> result,long versionId,boolean isMatchVersion){
+    	IVersion version = versionService.getById(versionId);
+    	IPageResult<VersionChartsDetailForm> pageResult = null;
+    	List<VersionChartsDetailForm> formList = new ArrayList<VersionChartsDetailForm>();
+    	if(null==version){
+    		logger.warn(String.format("version %d don't exist,refresh please!", versionId));
+    		return pageResult;
     	}
-    	List<Object> list = new ArrayList<Object>();
-    	list.add(Status.OPENING);
-    	list.add(orgFlag);
-    	StringBuffer hql= new StringBuffer("select count(t.id) from Device t where t.status = ? and t.organization.orgFlag like ?");
-    	StringBuffer atmtype = new StringBuffer(" and t.devType.id in (" );
-    	for(int listIndex=0;listIndex<atmTypeList.size();listIndex++){
-    		atmtype.append("?");
-    		list.add(atmTypeList.get(listIndex));
-    		if(listIndex<atmTypeList.size()-1){
-    			atmtype.append(",");
+//    	if(limit==0){
+//    		return new  PageResult<VersionChartsDetailForm>(formList,start,limit);
+//    	}
+    	for(Object object :result){
+//    		Object[] objects = (Object[])object;
+    		IDevice device = (IDevice)object;
+    		IDeviceSoftVersion deviceSoftVersion = deviceSoftVersionService.get(device.getTerminalId(), version.getVersionType().getTypeName());
+    		VersionChartsDetailForm versionChartsDetailForm = new VersionChartsDetailForm();
+    		versionChartsDetailForm.setTerminalId(device.getTerminalId());
+    		versionChartsDetailForm.setDevType(device.getDevType().getName());
+    		versionChartsDetailForm.setIp(device.getIp().toString());
+    		versionChartsDetailForm.setOrgName(device.getOrganization().getName());
+    		versionChartsDetailForm.setVersionId(versionId);
+    		versionChartsDetailForm.setVersionNo(deviceSoftVersion==null?"":deviceSoftVersion.getVersionNo());
+    		if(isMatchVersion){
+    			if(deviceSoftVersion==null){
+    				formList.add(versionChartsDetailForm);
+    				continue;
+    			}
+    			IVersion deviceNowVersion = versionService.findVersion(deviceSoftVersion.getTypeName(), deviceSoftVersion.getVersionNo());
+    			if(version.isAfter(deviceNowVersion)){
+    				formList.add(versionChartsDetailForm);
+    				continue;
+    			}
+    		}
+    		else{
+    			formList.add(versionChartsDetailForm);
     		}
     	}
-    	atmtype.append(")");
-    	if(list.size()>2){
-    		hql.append(atmtype);
-    	}
-        Object object =  dao.findUniqueByHql(hql.toString(), list.toArray());
-        return Long.parseLong(object.toString());
+    	return new  PageResult<VersionChartsDetailForm>(formList,start,limit);
+    }
+    /**
+     * 根据机构和版本ID获取当前机构机型符合并且下发成功的设备数量
+     * 此处只能和task进行关联，因为当前查看的版本下发记录只能在此表中查到历史记录
+     * @param versionId
+     * @param orgFlag
+     * @return
+     *  TODO 如果设备型号变更可能导致成功数量大于设备总数量
+     */
+    public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceSuccess(long versionId,String orgFlag,int start,int limit){
+    	StringBuffer hql = new StringBuffer();
+		//设备下发成功的台数
+		hql.append("select device from  ").
+		append(DeviceVersion.class.getSimpleName()).append( " deviceVersion , ").
+		append(Device.class.getSimpleName()).append(" device ,").
+		append(Version.class.getSimpleName()).append(" version ,").
+		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType ").
+		append(" where  deviceVersion.deviceId=device.id ").
+		append(" and deviceVersion.versionId=version.id and ").
+		append(" version.id=? and deviceVersion.taskStatus=? and device.status=?").
+		append(" and device.devType.id=versionatmType.atmTypeId ").
+    	append(" and versionatmType.versionTypeId=version.versionType.id ").
+		append(" and device.organization.orgFlag like ? ");
+		Object[] obj = {versionId,TaskStatus.CHECKED,Status.OPENING,orgFlag};
+    	List<Object> successList = dao.findByHQL(hql.toString(), obj);
+    	IPageResult<VersionChartsDetailForm> pageResult= convertResult(start,limit,successList,versionId,false);
+    	return pageResult;
+    }
+    /**
+     * 根据机构和版本ID获取当前机构机型符合下发失败的设备数量
+     * @param versionId
+     * @param orgFlag
+     * @return
+     * TODO 当前所有设备型号符合条件，并且版本依赖符合条件(如果没有依赖，则要求设备对应的版本低于当前下发的版本)，并且没有下发成功的设备数量
+     */
+    private IPageResult<VersionChartsDetailForm> getMatchConditionDevicePush(long versionId,String orgFlag,int start,int limit){
+    	StringBuffer hqlsb = new StringBuffer();
+    	hqlsb.append("select device from ").append(Device.class.getSimpleName()).append(" device ,").
+    	append(Version.class.getSimpleName()).append(" version ,").
+    	append(VersionTypeAtmTypeRelation.class.getSimpleName()).
+    	append(" versionatmType where device.devType.id=versionatmType.atmTypeId ").
+    	append(" and versionatmType.versionTypeId=version.versionType.id ").
+    	append(" and version.id=? and device.organization.orgFlag like ? and device.status=?");
+    
+    	Object[] obj = {versionId,orgFlag,Status.OPENING};
+		List<Object> totalList =  dao.findByHQL(hqlsb.toString(), obj);
+    	IPageResult<VersionChartsDetailForm> pageResult= convertResult(start,limit,totalList,versionId,true);
+    	return pageResult;
+    }
+    /**
+     * 根据机构和版本ID获取当前机构机型符合并且设备版本的依赖关系符合条件的设备数量
+     * @param versionId
+     * @param orgFlag
+     * @return
+     */
+    private IPageResult<VersionChartsDetailForm> getMatchConditionDeviceFatal(long versionId,String orgFlag,int start,int limit){
+    	StringBuffer hql = new StringBuffer();
+		//设备下发失败的台数
+		hql.append("select device  from ").
+		append(DeviceVersion.class.getSimpleName()).append( " deviceVersion , ").
+		append(Device.class.getSimpleName()).append(" device, ").
+		append(Version.class.getSimpleName()).append(" version ,").
+    	append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType ").
+		append(" where  deviceVersion.deviceId=device.id and deviceVersion.versionId=version.id and ").
+		append("deviceVersion.versionId=?  and device.status=? and device.organization.orgFlag like ? ").
+		append(" and deviceVersion.taskStatus in('DEPLOYED_FAIL','NOTICED_FAIL','DOWNLOADED_FAIL','NOTICE_APP_FAIL')").
+		append(" and versionatmType.versionTypeId=version.versionType.id and device.devType.id=versionatmType.atmTypeId ");
+		Object[] obj = {versionId,Status.OPENING,orgFlag};
+    	List<Object> fatalList = dao.findByHQL(hql.toString(), obj);
+    	IPageResult<VersionChartsDetailForm> pageResult= convertResult(start,limit,fatalList,versionId,true);
+    	return pageResult;
     }
 	
-	
-	private List<Object> getVersionDetailInfo(long versionId,String orgFlag){
-		StringBuffer hql = new StringBuffer();
-		hql.append("select count(dev.id),").append("sum( case vdv.taskStatus when 'CHECKED' then 1 else 0 end) as success , ").
-		append("sum( case vdv.taskStatus when 'NEW' then 1 when 'RUN' then 1 ").
-		append("when 'CANCELED' then 1  when 'CANCEL_FAIL' then 1 ").append(" when 'NOTICED' then 1 when 'NOTICED_FAIL' then 1 ").
-		append("when 'DOWNLOADED' then 1 when 'DOWNLOADED_FAIL' then 1 ").append("when 'DEPLOYED' then 1 when 'DEPLOYED_WAIT' then 1 ").
-		append(" when 'DEPLOYED_FAIL' then 1 when 'OTHER' then 1 ").
-		append(" when 'NOTICE_APP_OK' then 1 when 'NOTICE_APP_FAIL' then 1 else 0 end) as fail from ").
-		append(Device.class.getSimpleName()).append(" dev").
-		append(" , ").append(DeviceVersion.class.getSimpleName()).
-		append(" vdv where  vdv.deviceId=dev.id and vdv.versionId=? and dev.organization.orgFlag like ?");
-		List<Object> list = new ArrayList<Object>();
-		list.add(versionId);
-		list.add(orgFlag);
-		List<Object> obj = dao.findByHQL(hql.toString(), list.toArray());
-		return obj;
-	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public IPageResult<VersionChartsDetailForm> getVersionChartsDetailForm(int start,int limit,IFilter filter) {
-		String orgFlagStr ="",  versionTypeName="";
+		String orgFlagStr ="";
 		IPageResult<VersionChartsDetailForm> pageResult = null;
-		List<Long> devTypeList = null;
 		//机构号
 		Object orgFlag = filter.getValue("orgFlag");
 		if(null!=orgFlag){
 			orgFlagStr = String.valueOf(orgFlag);
 		}
-		//可支持的设备型号
-		Object devType = filter.getValue("devType");
-		if(null!=devType){
-			devTypeList = (List<Long>)devType;
-		}
+
 		Object versionO = filter.getValue("version");
 		IVersion version = (Version)versionO;
 		//要查询的标识
 		Object detailNO =  filter.getValue("flag");
-		//版本归属版本类型
-		versionTypeName = String.valueOf(filter.getValue("versionTypeName"));
 		VersionStaticsStatus status = VersionStaticsStatus.getById(Integer.parseInt(detailNO.toString()));
 		if(status.equals(VersionStaticsStatus.TOTALDEVICE)){
-			pageResult = getVersionAllDevice(start,limit,orgFlagStr,devTypeList,versionTypeName,version);
+			pageResult = getMatchConditionDeviceTotal(version.getId(),orgFlagStr,start,limit);
 		}
 		else if(status.equals(VersionStaticsStatus.FAILDEVICE)){
-			pageResult = new PageResult<VersionChartsDetailForm>();
-			//TODO 计算下发失败的设备明细
+			pageResult = getMatchConditionDeviceFatal(version.getId(),orgFlagStr,start,limit);
 		}
 		else if(status.equals(VersionStaticsStatus.SUCCESSDEVICE)){
-			//TODO 计算下发成功的设备明细
-			pageResult = new PageResult<VersionChartsDetailForm>();
+			pageResult = getMatchConditionDeviceSuccess(version.getId(),orgFlagStr,start,limit);
 		}
 		else if(status.equals(VersionStaticsStatus.PASHDEVICE)){
-			//TODO 计算可进行下发的设备明细
-			pageResult = new PageResult<VersionChartsDetailForm>();
+			pageResult = getMatchConditionDevicePush(version.getId(),orgFlagStr,start,limit);
 		}
 		return pageResult;
 	}
 	
-	/**
-	 * 获取当前版本可下发的所有设备信息
-	 * @param orgFlag
-	 * @param devType
-	 * @param versionTypeName
-	 * @return
-	 */
-	private IPageResult<VersionChartsDetailForm> getVersionAllDevice(int start,int limit,String orgFlag,List<Long> devType,String versionTypeName,IVersion version){
-		IFilter filter = new Filter();
-		filter.llike("organization.orgFlag",orgFlag);
-		filter.in("device.devType.id",devType);
-		filter.eq("device.status",Status.OPENING);
-		//获取所有符合条件的设备
-		IPageResult<IDevice> pageResult = deviceService.page(start, limit, filter, null);
-		//版本依赖关系不达标计数器
-		int counter = 0;
-		List<VersionChartsDetailForm> formList = new ArrayList<VersionChartsDetailForm>();
-		
-		//获取依赖版本
-		String depVersionNo = null;
-		IVersion dependVersion = version.getDependVersion();
-		if(dependVersion!=null){
-			depVersionNo = dependVersion.getVersionNo();
-		}
-		
-		for(IDevice device:pageResult.list()){
-			IDeviceSoftVersion dsv = deviceSoftVersionService.get(device.getTerminalId(), versionTypeName);
-			if(depVersionNo!=null&&!depVersionNo.equals(dsv==null?"":dsv.getVersionNo())){
-				counter++;
-				continue;
-			}
-			VersionChartsDetailForm vcdf = new VersionChartsDetailForm();
-			vcdf.setIp(device.getIp().toString());
-			vcdf.setOrgName(device.getOrganization().getName());
-			vcdf.setTerminalId(device.getTerminalId());
-			vcdf.setDevType(device.getDevType().getName());
-			if(null!=dsv){
-				vcdf.setVersionNo(dsv.getVersionNo());
-			}else{
-				vcdf.setVersionNo("");
-			}
-			formList.add(vcdf);
-		}
-		return new PageResult<VersionChartsDetailForm>(pageResult.getTotal()-counter,formList);
-	}
+	
 	
 	
 	
