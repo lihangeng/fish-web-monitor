@@ -19,7 +19,6 @@ import com.yihuacomputer.fish.api.charts.ChartsInfo;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.device.Status;
-import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionService;
@@ -59,7 +58,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     @Autowired
     private IVersionService versionService;
     
-    
+  
     /**
      * 根据版本类型获取所有设备上对应版本类型的版本
      * @param versionType 版本类型
@@ -138,7 +137,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
      * @param orgFlag
      * @return
      */
-    private IPageResult<VersionChartsDetailForm> getMatchConditionDeviceTotal(long versionId,String orgFlag,int start,int limit){
+    public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceTotal(long versionId,String orgFlag,int start,int limit){
     	StringBuffer hqlsb = new StringBuffer();
     	hqlsb.append("select device from ").append(Device.class.getSimpleName()).append(" device ,").
     	append(Version.class.getSimpleName()).append(" version ,").
@@ -163,35 +162,41 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
      */
     private IPageResult<VersionChartsDetailForm> convertResult(int start, int limit,List<Object> result,long versionId,boolean isMatchVersion){
     	IVersion version = versionService.getById(versionId);
-    	IPageResult<VersionChartsDetailForm> pageResult = null;
+//    	IPageResult<VersionChartsDetailForm> pageResult = null;
     	List<VersionChartsDetailForm> formList = new ArrayList<VersionChartsDetailForm>();
     	if(null==version){
     		logger.warn(String.format("version %d don't exist,refresh please!", versionId));
-    		return pageResult;
+    		return null;
     	}
-//    	if(limit==0){
-//    		return new  PageResult<VersionChartsDetailForm>(formList,start,limit);
-//    	}
+    	Map<String,IVersion> map = getDeviceVersionOfVersionType(version.getVersionType().getTypeName());
     	for(Object object :result){
-//    		Object[] objects = (Object[])object;
     		IDevice device = (IDevice)object;
-    		IDeviceSoftVersion deviceSoftVersion = deviceSoftVersionService.get(device.getTerminalId(), version.getVersionType().getTypeName());
+    		IVersion deviceVersion = map.get(device.getTerminalId());
     		VersionChartsDetailForm versionChartsDetailForm = new VersionChartsDetailForm();
     		versionChartsDetailForm.setTerminalId(device.getTerminalId());
     		versionChartsDetailForm.setDevType(device.getDevType().getName());
     		versionChartsDetailForm.setIp(device.getIp().toString());
     		versionChartsDetailForm.setOrgName(device.getOrganization().getName());
     		versionChartsDetailForm.setVersionId(versionId);
-    		versionChartsDetailForm.setVersionNo(deviceSoftVersion==null?"":deviceSoftVersion.getVersionNo());
+    		versionChartsDetailForm.setVersionNo(deviceVersion==null?"":deviceVersion.getVersionNo());
     		if(isMatchVersion){
-    			if(deviceSoftVersion==null){
-    				formList.add(versionChartsDetailForm);
+    			if(null==version.getDependVersion()){
+    				if(deviceVersion==null){
+    					formList.add(versionChartsDetailForm);
+    				}
+    				else if(version.isAfter(deviceVersion)){
+    					formList.add(versionChartsDetailForm);
+    				}
     				continue;
     			}
-    			IVersion deviceNowVersion = versionService.findVersion(deviceSoftVersion.getTypeName(), deviceSoftVersion.getVersionNo());
-    			if(version.isAfter(deviceNowVersion)){
-    				formList.add(versionChartsDetailForm);
-    				continue;
+    			else{
+	    			if(deviceVersion==null){
+	    				continue;
+	    			}
+	    			else if(version.getDependVersion().equals(deviceVersion)){
+	    				formList.add(versionChartsDetailForm);
+	    				continue;
+	    			}
     			}
     		}
     		else{
@@ -234,17 +239,33 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
      * @return
      * TODO 当前所有设备型号符合条件，并且版本依赖符合条件(如果没有依赖，则要求设备对应的版本低于当前下发的版本)，并且没有下发成功的设备数量
      */
-    private IPageResult<VersionChartsDetailForm> getMatchConditionDevicePush(long versionId,String orgFlag,int start,int limit){
-    	StringBuffer hqlsb = new StringBuffer();
-    	hqlsb.append("select device from ").append(Device.class.getSimpleName()).append(" device ,").
-    	append(Version.class.getSimpleName()).append(" version ,").
-    	append(VersionTypeAtmTypeRelation.class.getSimpleName()).
-    	append(" versionatmType where device.devType.id=versionatmType.atmTypeId ").
+    public IPageResult<VersionChartsDetailForm> getMatchConditionDevicePush(long versionId,String orgFlag,int start,int limit){
+    	
+    	StringBuffer hqlDevice = new StringBuffer();
+		//设备可下发成功的台数
+    	hqlDevice.append("select device from  ").
+		append(Device.class.getSimpleName()).append(" device ,").
+		append(Version.class.getSimpleName()).append(" version ,").
+		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType ").
+		append(" where version.id=?  and device.status=?").
+		append(" and device.devType.id=versionatmType.atmTypeId ").
     	append(" and versionatmType.versionTypeId=version.versionType.id ").
-    	append(" and version.id=? and device.organization.orgFlag like ? and device.status=?");
-    
-    	Object[] obj = {versionId,orgFlag,Status.OPENING};
-		List<Object> totalList =  dao.findByHQL(hqlsb.toString(), obj);
+		append(" and device.organization.orgFlag like ? and device.id not in").
+		//下发成功的设备
+    	append("(select device.id from  ").
+		append(DeviceVersion.class.getSimpleName()).append( " deviceVersion , ").
+		append(Device.class.getSimpleName()).append(" device ,").
+		append(Version.class.getSimpleName()).append(" version ,").
+		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType ").
+		append(" where  deviceVersion.deviceId=device.id ").
+		append(" and deviceVersion.versionId=version.id and ").
+		append(" version.id=? and deviceVersion.taskStatus=? and device.status=?").
+		append(" and device.devType.id=versionatmType.atmTypeId ").
+    	append(" and versionatmType.versionTypeId=version.versionType.id ").
+		append(" and device.organization.orgFlag like ?) ");
+		Object[] objDevice = {versionId,Status.OPENING,orgFlag,versionId,TaskStatus.CHECKED,Status.OPENING,orgFlag};
+    	
+		List<Object> totalList =  dao.findByHQL(hqlDevice.toString(), objDevice);
     	IPageResult<VersionChartsDetailForm> pageResult= convertResult(start,limit,totalList,versionId,true);
     	return pageResult;
     }
@@ -254,7 +275,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
      * @param orgFlag
      * @return
      */
-    private IPageResult<VersionChartsDetailForm> getMatchConditionDeviceFatal(long versionId,String orgFlag,int start,int limit){
+    public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceFatal(long versionId,String orgFlag,int start,int limit){
     	StringBuffer hql = new StringBuffer();
 		//设备下发失败的台数
 		hql.append("select device  from ").

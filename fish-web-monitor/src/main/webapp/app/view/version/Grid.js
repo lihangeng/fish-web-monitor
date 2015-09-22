@@ -64,22 +64,27 @@ Ext.define('Eway.view.version.Grid', {
 			columns : [{
 				header : '软件分类编码',
 				dataIndex : 'versionType',
+	            locked: true,
 				width: 150
 			},{
 				header:'版本号',
 				dataIndex:'versionNo',
+	            locked: true,
 				width: 100
 			},{
 				header : '版本类型ID',
 				dataIndex : 'versionTypeId',
+	            locked: true,
 				hidden : true
 			},{
 				header : '版本路径',
 				dataIndex : 'versionPath',
+	            locked: true,
 				width: 200
 			},{
 				header : '创建时间',
 				dataIndex : 'createdTime',
+	            locked: true,
 				width: 140
 			},{
 				header:'创建人',
