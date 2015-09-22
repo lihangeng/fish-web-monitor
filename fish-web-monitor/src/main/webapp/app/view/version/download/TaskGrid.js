@@ -6,7 +6,6 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 
 	store : 'version.Task',
 	border : false,
-	autoScroll : true,
 	viewConfig : {
 		forceFit : true,
 		stripeRows : true,
@@ -53,13 +52,32 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 			{
 				header : 'ID',
 				dataIndex : 'id',
+	            locked: true,
 				hidden: true
 			},{
 				header: '作业批次名称',
+	            locked: true,
 				dataIndex:'jobName'
 			},{
 				header: '设备编号',
+	            locked: true,
 				dataIndex:'terminalId'
+			},{
+				header:'分发版本',
+	            locked: true,
+				dataIndex:'version'
+			},{
+				header :'任务状态',
+	            locked: true,
+				dataIndex:'taskStatus',
+				renderer:function(value,meta,record){
+					if(value == '部署已确认'){
+						return value + "&nbsp;<img src='resources/images/accept.png'>";
+					}else{
+						return value;
+					}
+				},
+				width: 150
 			},{
 				header: '设备IP',
 				dataIndex:'deviceIp',
@@ -72,22 +90,8 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 				header:'分发前的版本',
 				dataIndex:'versionBeforeUpdate'
 			},{
-				header:'分发版本',
-				dataIndex:'version'
-			},{
 				header:'预期版本',
 				dataIndex:'exceptVersion'
-			},{
-				header :'任务状态',
-				dataIndex:'taskStatus',
-				renderer:function(value,meta,record){
-					if(value == '部署已确认'){
-						return value + "&nbsp;<img src='resources/images/accept.png'>";
-					}else{
-						return value;
-					}
-				},
-				width: 150
 			},{
 				header :'执行时间',
 				dataIndex:'excuteTime',
