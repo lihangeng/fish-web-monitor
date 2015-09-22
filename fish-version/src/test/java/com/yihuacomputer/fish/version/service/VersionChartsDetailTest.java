@@ -46,7 +46,7 @@ public class VersionChartsDetailTest {
 //		findDeviceType();
 //		leftJionDeviceSoftVersion();
 //		getVersionDetailsInfo();long versionId,String orgFlag,int start,int limit
-		versionStaticsStautsService.getMatchConditionDevicePush(1l,"%-1",0,25);
+		versionStaticsStautsService.getMatchConditionDevicePush(3l,"%-1",0,25);
 //		List<ChartsInfo> chartPage = versionStaticsStautsService.getVersionSummaryInfo(1,"%-1",0,25);
 //		System.out.println(JsonUtils.toJson(chartPage));
 	}

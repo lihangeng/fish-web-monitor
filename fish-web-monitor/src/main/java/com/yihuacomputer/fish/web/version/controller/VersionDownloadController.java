@@ -42,6 +42,7 @@ import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
 import com.yihuacomputer.fish.api.version.IVersionService;
+import com.yihuacomputer.fish.api.version.IVersionStaticsStautsService;
 import com.yihuacomputer.fish.api.version.LinkedDeviceForm;
 import com.yihuacomputer.fish.api.version.job.IJob;
 import com.yihuacomputer.fish.api.version.job.IJobService;
@@ -52,6 +53,7 @@ import com.yihuacomputer.fish.api.version.job.task.ITaskManager;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.api.version.job.task.TaskType;
+import com.yihuacomputer.fish.version.service.db.VersionStaticsStatusService;
 import com.yihuacomputer.fish.web.command.format.CommandLevel;
 import com.yihuacomputer.fish.web.command.format.RestartForm;
 import com.yihuacomputer.fish.web.command.format.RestartParamForm;
@@ -79,6 +81,9 @@ public class VersionDownloadController {
 
     @Autowired
     private IVersionDownloadService downloadService;
+    
+    @Autowired
+    private IVersionStaticsStautsService versionStaticsStatusService;
 
     @Autowired
     private ITaskService taskService;
@@ -293,6 +298,7 @@ public class VersionDownloadController {
         IFilter filter = getDeviceFilter(webRequest);
         IVersion version = versionService.getById(versionId);
         UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
+//        versionStaticsStatusService.getMatchConditionDevicePush(versionId, orgFlag, start, limit)
         IPageResult<LinkedDeviceForm> page = downloadService.pageDevices(start, limit, version, filter,userSession.getUserId());
         ModelMap result = new ModelMap();
         result.addAttribute(FishConstant.SUCCESS, true);

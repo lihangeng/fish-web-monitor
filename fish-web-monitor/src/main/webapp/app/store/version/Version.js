@@ -6,5 +6,5 @@ Ext.define('Eway.store.version.Version', {
 	model: 'Eway.model.version.Version',
 	autoSync : false,
 	pageSize: 15,
-    autoLoad: true
+    autoLoad: false
 });

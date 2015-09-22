@@ -1,6 +1,5 @@
 Ext.define('Eway.controller.version.Version', {
 	extend : 'Eway.controller.base.Controller',
-
 	stores : [ 'version.Version','version.ComboVersionType','version.VersionCharts','machine.DeviceAtmType','version.VersionStatus','version.AutoUpdate',
 			   'version.JobType','version.JobStatus','version.JobPriority','version.VersionCatalog'],
 	models : [ 'version.Version','version.VersionType','version.VersionCharts'],
@@ -31,6 +30,9 @@ Ext.define('Eway.controller.version.Version', {
 	},{
 		ref : 'chartsGrid',
 		selector : 'version_charts_grid'
+	},{
+		ref : 'bar3d',
+		selector : 'bar_3d series[type="bar3d"]'
 	}],
 
 	init : function() {
@@ -47,11 +49,11 @@ Ext.define('Eway.controller.version.Version', {
 			'versionView button[action=update]' : {
 				click : this.onUpdate
 			},
-			'versionView button[action=downStatics]' : {
-				click : this.onDownStatics
+			'versionView version_grid':{
+				   itemclick : this.onClickHref
 			},
 			'versionView version_grid':{
-			   itemclick : this.onClickHref
+				   select : this.onSelect
 			},
 			'versionView button[action=down]' :{
 				click : this.onDown
@@ -59,21 +61,29 @@ Ext.define('Eway.controller.version.Version', {
 		});
 		 
 	},
-	//点击表格进行查看当前版本详情对应的设备信息
-	onItemClick:function(series, item, event, eOpts){
-//		var versionId = item.record.data.versionId;
-		var gridFlag = item.record.data.flag;
-		var gridVersionId = item.record.data.versionId;
-		this.getEwayView().down("version_charts_grid").getStore().load({
-			 params: {
-			        versionId:gridVersionId,
-			        flag:gridFlag
-			    }
-		 });
-	},
-
-	//版本下发统计
-	onDownStatics :function(){
+	onSelect:function( _this, record, index, eOpts ){
+		var me = this;
+		if(undefined==record){
+			return;
+		}
+		var chartsStore = this.getEwayView().down("bar_3d cartesian").getStore();
+		
+		chartsStore.load({
+		    params: {
+		        versionId:record.get("id")
+		    },
+		    callback: function(records, operation, success) {
+        		var grid = me.getEwayView().down("version_charts_grid")
+        		grid.getStore().load({
+        			 params: {
+        			        versionId:record.get("id"),
+        			        flag:0
+        			    }
+        		 });
+        		grid.setTitle(chartsStore.getAt(0).get("title")+"信息");
+		    }
+		});
+		this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionType")+"-"+record.get("versionNo"));
 	},
 
 	//点击超链接下载版本文件
@@ -85,18 +95,8 @@ Ext.define('Eway.controller.version.Version', {
 			var url = 'api/version/version/download?typeName=' + typeName + '&fileName=' + fileName;
 			var iframe = document.getElementById('downloadFileFromWeb');
 			iframe.src = url;
-		}
-		else{
-			var chartsStore = this.getEwayView().down("bar_3d cartesian").getStore();
-			chartsStore.load({
-			    params: {
-			        versionId:record.get("id")
-			    }
-			});
-			this.getEwayView().down("bar_3d series[type='bar3d']").on("itemclick",this.onItemClick,this);	
-			this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionType")+"-"+record.get("versionNo"));
+		}else{
 			
-//			this.getEwayView().down("bar_3d cartesian").config.sprites[0].text=record.get("versionType")+record.get("versionNo");
 		}
 	},
 
