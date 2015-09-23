@@ -60,6 +60,7 @@ import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
+import com.yihuacomputer.fish.api.version.IVersionTypeAtmTypeRelationService;
 import com.yihuacomputer.fish.web.machine.form.AtmTypeForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.system.form.PersonForm;
@@ -78,6 +79,9 @@ public class DeviceController {
 
 	@Autowired
 	private IDeviceExtendService deviceExtendService;
+	
+	@Autowired
+	private IVersionTypeAtmTypeRelationService versionAtmTypeService;
 
 	/**
 	 * 机构接口
@@ -723,10 +727,24 @@ public class DeviceController {
 	 */
 	@RequestMapping(value = "/queryAtmType", method = RequestMethod.GET)
 	public @ResponseBody
-	ModelMap queryAtmType() {
+	ModelMap queryAtmType(HttpServletRequest request) {
 		logger.info(String.format("search device : queryAtmType"));
+		//版本关联机型品牌信息
+		String versionId = request.getParameter("versionId");
+		List<Long> atmTypeIdList = null;
+		if(null!=versionId){
+			atmTypeIdList = versionAtmTypeService.getAtmTypeIdsByVersionId(Long.parseLong(versionId));
+		}
 		ModelMap model = new ModelMap();
-		List<IAtmType> atmTypeList = typeService.list();
+		List<IAtmType> atmTypeList = null;
+		if(null==atmTypeIdList){
+			atmTypeList = typeService.list();
+		}
+		else{
+			IFilter filter = new Filter();
+			filter.in("id", atmTypeIdList);
+			atmTypeList =typeService.list(filter);
+		}
 
 		model.put(FishConstant.SUCCESS, true);
 		model.put(FishConstant.DATA, AtmTypeForm.convert(atmTypeList));

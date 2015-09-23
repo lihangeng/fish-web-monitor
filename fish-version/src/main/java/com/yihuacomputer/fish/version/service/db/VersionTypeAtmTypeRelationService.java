@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.atm.IAtmType;
+import com.yihuacomputer.fish.api.version.IVersion;
+import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.IVersionTypeAtmTypeRelationService;
 import com.yihuacomputer.fish.version.entity.VersionTypeAtmTypeRelation;
 
@@ -18,6 +20,9 @@ public class VersionTypeAtmTypeRelationService implements IVersionTypeAtmTypeRel
 	@Autowired
 	private IGenericDao dao;
 	
+	@Autowired
+	private IVersionService VersionService;
+	
 	@Override
 	public void link(long versionTypeId, long atmTypeId) {
 		VersionTypeAtmTypeRelation relation = new VersionTypeAtmTypeRelation();
@@ -26,6 +31,14 @@ public class VersionTypeAtmTypeRelationService implements IVersionTypeAtmTypeRel
 		dao.save(relation);
 	}
 
+	public List<Long> getAtmTypeIdsByVersionId(long versionId){
+		IVersion version = VersionService.getById(versionId);
+		if(null==version){
+			return null;
+		}
+		return this.findAtmTypeIds(version.getVersionType().getId());
+	}
+	
 	@Override
 	public void unlink(long versionTypeId, long atmTypeId) {
 		StringBuffer hql = new StringBuffer();

@@ -2,7 +2,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 	alias : 'widget.version_download_selectableDeviceGrid',
 	extend : 'Ext.grid.Panel',
 
-	requires : [ 'Eway.lib.Util','Eway.model.version.SelectableDevice','Ext.selection.CheckboxModel',
+	requires : [ 'Eway.lib.Util','Ext.form.field.VTypes','Eway.model.version.SelectableDevice','Ext.selection.CheckboxModel',
 				 'Eway.view.field.device.DeviceAtmType','Eway.view.common.OrgComboOrgTree'],
 	viewConfig : {
 		forceFit : true,
@@ -90,6 +90,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 			tbar:[{
 				xtype:'textfield',
 				fieldLabel:'IP',
+				 enableKeyEvents:true,
 				name:'ip',
 				labelSeparator:'',
 				labelWidth : 10,
@@ -98,9 +99,12 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 			}, {
 				xtype:'textfield',
 				fieldLabel:'设备编号',
+				 enableKeyEvents:true,
 				name:'terminalId',
 				labelSeparator:'',
+				maxLength:20,
 				labelWidth : 60,
+				vtype : "terminalId",
 				width: 140
 			},{
 				style : 'padding-top:0px',
@@ -110,6 +114,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				xtype : 'common_orgComboOrgTree',
 				fieldLabel : '所属机构',
 				emptyText : '--请选择--',
+				 enableKeyEvents:true,
 				name : 'orgName',
 				hiddenValue : 'orgId',
 				editable : false,
@@ -131,6 +136,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 			},{
 				xtype:'field_device_deviceatmtype',
 				fieldLabel : '设备型号',
+				 enableKeyEvents:true,
 				name: 'atmTypeId',
 				editable  : false,
 				store: 'machine.DeviceAtmType',

@@ -57,6 +57,7 @@ Ext.define('Eway.controller.version.Version', {
 			},
 			'versionView button[action=down]' :{
 				click : this.onDown
+
 			}
 		});
 		 
@@ -137,8 +138,14 @@ Ext.define('Eway.controller.version.Version', {
 				form.findField("versionType").setValue(record.get("versionType"));
 				form.findField("versionNo").setValue(record.get("versionNo"));
 				form.findField("serverPath").setValue(record.get("serverPath"));
-
+				var atmTypeStore = win.down("field_device_deviceatmtype[name=atmTypeId]").getStore();
+				atmTypeStore.proxy.extraParams={versionId:record.get("id")};
+				atmTypeStore.load();
 				win.show();
+				win.down("textfield[name=ip]").on({keydown:this.queryOnKeyDownEnter, scope: this });
+				win.down("textfield[name=terminalId]").on({keydown:this.queryOnKeyDownEnter, scope: this});
+				win.down("common_orgComboOrgTree[name=orgName]").on({keydown:this.queryOnKeyDownEnter, scope: this});
+				win.down("field_device_deviceatmtype[name=atmTypeId]").on({keydown:this.queryOnKeyDownEnter, scope: this});
 			}else{
 				Eway.alert("版本文件丢失,暂不能对版本进行下发控制.");
 			}
@@ -147,22 +154,33 @@ Ext.define('Eway.controller.version.Version', {
 			Eway.alert("请选择您要下发的版本.");
 		}
 	},
+	queryOnKeyDownEnter:function( e, t, eOpts ){
+		if(t.keyCode==13){
+			var grid = this.getAddJobWin().down("version_download_selectableDeviceGrid");
+			var form = grid.up('window').down('form').getForm();
+			if(this.setSearchFilter(grid,form)){
+				grid.getStore().loadPage(1);
+			}
+		}
+	},
 
 	//选择页面显示记录数
 	onPageSizeChange:function(combo,newValue){
 		var grid = combo.up("version_download_selectableDeviceGrid");
 		grid.getStore().pageSize = newValue;
 		var form = grid.up('window').down('form').getForm();
-		this.setSearchFilter(grid,form);
-		grid.getStore().loadPage(1);
+		if(this.setSearchFilter(grid,form)){
+			grid.getStore().loadPage(1);
+		}
 	},
 
 	//单击选择设备列表页面的查询按钮
 	onQueryDownDevice : function(button){
 		var grid = button.up("version_download_selectableDeviceGrid");
 		var form = grid.up('window').down('form').getForm();
-		this.setSearchFilter(grid,form);
-		grid.getStore().loadPage(1);
+		if(this.setSearchFilter(grid,form)){
+			grid.getStore().loadPage(1);
+		}
 	},
 
 	//下发管理页面刷新可选择设备时
@@ -177,12 +195,19 @@ Ext.define('Eway.controller.version.Version', {
 	setSearchFilter  : function(grid,form){
 		var extraParams = {versionId : form.findField("versionId").value};
 		var fields = grid.query('field');
+		var flag = true;
 		Ext.each(fields,function(field){
-			if(field.name !== 'orgName' && field.name !== 'inputItem' && field.name !== 'pageSize'){
-				extraParams[field.name] = field.getValue();
+			if(field.isValid()){
+				if(field.name !== 'orgName' && field.name !== 'inputItem' && field.name !== 'pageSize'){
+					extraParams[field.name] = field.getValue();
+				}
+			}
+			else{
+				flag=false;
 			}
 		});
 		grid.getStore().proxy.extraParams = extraParams;
+		return flag;
 	},
 
 	//关闭下发页面
