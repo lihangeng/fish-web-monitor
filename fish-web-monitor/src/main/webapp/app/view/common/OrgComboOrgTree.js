@@ -8,6 +8,9 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	readOnly:false,
 	editable:true,
 	isOrg:true,
+	hiddenField:'',
+	treePanel:'',
+	orgGridPanel:'',
 	matchFieldWidth:true,
 	config : {
 		hiddenValue : '',
@@ -17,13 +20,14 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 		defaultRootId : 1,
 		defaultRootName: '组织机构',
 		expandRoot:true,
-		isFilterOrgStatus:true
+		isFilterOrgStatus:true,
+		parentXtype:'form'
 	},
 
 	onClearClick : function(){
+		this.getOtherCompement();
 		this.setValue('');
-		var orgorg = this.getHiddenValue();
-		this.up('form').getForm().findField(orgorg).setValue('');
+		this.hiddenField.setValue('');
 	},
 
 	reflesh : function(){
@@ -51,10 +55,24 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 		var me = this;
 		this.createPicker("treePanel");
 	},
+	getOtherCompement:function(){
+		var orgorg = this.getHiddenValue();
+		if(this.getParentXtype()=="form"){
+			this.treePanel = this.up('form').down("treepanel");
+			this.orgGridPanel = this.up('form').down("orgGridPanel");
+			this.hiddenField = this.up('form').getForm().findField(orgorg);
+		}
+		else if(this.getParentXtype()=="toolbar"){
+			this.treePanel = this.up('toolbar').down("treepanel");
+			this.orgGridPanel = this.up('toolbar').down("orgGridPanel");
+			this.hiddenField = this.up('toolbar').down("hidden");
+		}
+	},
 	//此方法为必须实现的方法
 	createPicker : function(type){
-		var treepanel = this.up('form').down("treepanel");
-		var gridpanel = this.up('form').down("orgGridPanel");
+		this.getOtherCompement();
+		var treepanel=this.treePanel;
+		var gridpanel = this.orgGridPanel;
 		if("treePanel"==type){
 			if(treepanel&&null!=treepanel&&treepanel.isVisible()){
 				return;
@@ -110,13 +128,13 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 		if(undefined!=store){
 			store.each(function(item,index){
 				if(item.data.name==value){
-					me.up('form').getForm().findField(orgorg).setValue(item.data.guid);
+					me.hiddenField.setValue(item.data.guid);
 					setEmpty = false;
 				}
 			},this);
 		}
 		if(setEmpty){
-			me.up('form').getForm().findField(orgorg).setValue("");
+			me.hiddenField.setValue("");
 			me.setValue("");
 		}
 	},
@@ -153,7 +171,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 		this.setValue(record.get('name'));
 		this.setEditable(false);
 		var orgorg = this.getHiddenValue();
-		this.up('form').getForm().findField(orgorg).setValue(record.get('guid'));
+		this.hiddenField.setValue(record.get('guid'));
 		this.collapse();
 	},
 	creatTreePanel:function(){
@@ -204,7 +222,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	onTreeItemClick : function(view,record){
 		this.setValue(record.get('text'));
 		var orgorg = this.getHiddenValue();
-		this.up('form').getForm().findField(orgorg).setValue(record.get('id'));
+		this.hiddenField.setValue(record.get('id'));
 		this.collapse();
 	},
 	
