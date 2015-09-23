@@ -62,7 +62,7 @@ public class TaskForm {
 		}
 		this.exceptVersion = task.getExceptVersion();
 		this.currentVersion = "";
-		this.jobName = task.getJobName();
+		this.jobName = task.getJob().getJobName();
 		this.planTime = DateUtils.getTimestamp(task.getPlanTime());
 		this.downSource = task.getDownSource();
 		this.excuteMachine = task.getExcuteMachine();

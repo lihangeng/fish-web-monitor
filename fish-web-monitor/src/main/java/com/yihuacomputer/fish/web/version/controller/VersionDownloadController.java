@@ -296,10 +296,12 @@ public class VersionDownloadController {
             WebRequest webRequest, HttpServletRequest request) {
         logger.info(String.format("search selectable device : start = %s ,limit = %s , versionId = %s ", start, limit,versionId));
         IFilter filter = getDeviceFilter(webRequest);
-        IVersion version = versionService.getById(versionId);
         UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
-//        versionStaticsStatusService.getMatchConditionDevicePush(versionId, orgFlag, start, limit)
-        IPageResult<LinkedDeviceForm> page = downloadService.pageDevices(start, limit, version, filter,userSession.getUserId());
+        if(null==filter.getValue("orgId")){
+        	filter.eq("orgId", userSession.getOrgId());
+        }
+        IVersion version = versionService.getById(versionId);
+        IPageResult<LinkedDeviceForm> page = downloadService.pageCanPushDevices(start, limit, version, filter);
         ModelMap result = new ModelMap();
         result.addAttribute(FishConstant.SUCCESS, true);
         result.addAttribute("total", page.getTotal());
@@ -322,19 +324,19 @@ public class VersionDownloadController {
             }
 
             if (name.equals("orgId")) {
-                filter.eq("device.organization", value);
+                filter.eq(name, value);
             }
 
             if (name.equals("ip")) {
-                filter.eq("device.ip", new IP(value));
+                filter.eq(name, value);
             }
 
             if (name.equals("atmTypeId")) {
-                filter.eq("device.devType.id", Long.valueOf(value));
+                filter.eq(name, Long.valueOf(value));
             }
 
             if (name.equals("terminalId")) {
-                filter.like("device.terminalId", value);
+                filter.like(name, value);
             }
         }
         return filter;

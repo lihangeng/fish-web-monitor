@@ -61,13 +61,11 @@ public class VersionService implements IDomainVersionService {
 
 
 	@Override
-	@Transactional(readOnly = true)
 	public IVersion make() {
 		return new Version();
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public IVersion getById(long id) {
 		return dao.get(id, Version.class);
 	}
