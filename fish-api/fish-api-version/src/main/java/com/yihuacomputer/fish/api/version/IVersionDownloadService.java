@@ -49,4 +49,6 @@ public interface IVersionDownloadService {
 	 */
 	public long getMayBeDownDevice(IVersion version,IOrganization org);
 	
+	 public IPageResult<LinkedDeviceForm> pageCanPushDevices(int start, int limit, IVersion version, IFilter outerFilter);
+	
 }

@@ -40,4 +40,11 @@ public interface IVersionTypeAtmTypeRelationService {
 	 */
 	public void link(long versionTypeId,List<Long> atmTypeIds);
 	
+	/**
+	 * 根据版本ID获取机型信息
+	 * @param versionId
+	 * @return
+	 */
+	public List<Long> getAtmTypeIdsByVersionId(long versionId);
+	
 }

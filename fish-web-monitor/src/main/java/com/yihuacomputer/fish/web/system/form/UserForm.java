@@ -24,6 +24,7 @@ public class UserForm
     private String email;
     private String organizationName;
     private Gender gender;
+    private int userType;
     
     private String roles;
     
@@ -39,6 +40,7 @@ public class UserForm
         this.mobile = user.getPerson().getMobile();
         this.phone = user.getPerson().getPhone();
         this.email = user.getPerson().getEmail();
+        this.userType = user.getUserType().getId();
         userState = Integer.toString(user
                 .getState() == null ? 0 : user
                 .getState().getId());
@@ -186,5 +188,13 @@ public class UserForm
     {
         this.roles = roles;
     }
+
+	public int getUserType() {
+		return userType;
+	}
+
+	public void setUserType(int userType) {
+		this.userType = userType;
+	}
 
 }

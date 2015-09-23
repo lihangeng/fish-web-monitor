@@ -60,6 +60,18 @@ Ext.define('Eway.view.person.user.Grid', {
 			},{
 				header : '姓名',
 				dataIndex : 'name'
+//			},{
+//				header : '用户类型',
+//				dataIndex : 'userType',
+//				renderer: function(value,metadata,record){
+//					if(value=="0"){
+//	                	   return "超级用户";
+//	                   }else if(value=="1"){
+//	                	   return "普通用户";
+//	                   }else{
+//	                	   return "未知";
+//	                   }
+//					}
 			},{
 				header : '性别',
 				dataIndex : 'gender',

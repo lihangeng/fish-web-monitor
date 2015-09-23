@@ -4,7 +4,7 @@ Ext.define('Eway.view.version.ChartsGrid', {
 	extend: 'Eway.view.base.Grid',
 	store: 'version.VersionChartsDetails',
 	border : false,
-	
+
 	initComponent: function() {
 		var me =this;
 		me.store = Ext.create("Eway.store.version.VersionChartsDetails");

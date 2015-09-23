@@ -67,6 +67,14 @@ public class Version implements IVersion, Serializable {
      */
     @Column(name = "VERSION_NO", nullable = false, length = 40)
     private String versionNo;
+    
+    /**
+     * 版本号字符串拼接
+     * 1.2.3.4* 00000001000000020000000300000004
+     * 1.1.32.5*00000001000000020000003200000005
+     */
+    @Column(name = "VERSION_STR", nullable = false, length = 40)
+    private String versionStr;
 
     @Column(name = "VERSION_PATH", nullable = false, length = 50)
     private String versionPath;
@@ -332,5 +340,13 @@ public class Version implements IVersion, Serializable {
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
+
+	public String getVersionStr() {
+		return versionStr;
+	}
+
+	public void setVersionStr(String versionStr) {
+		this.versionStr = versionStr;
+	}
 
 }

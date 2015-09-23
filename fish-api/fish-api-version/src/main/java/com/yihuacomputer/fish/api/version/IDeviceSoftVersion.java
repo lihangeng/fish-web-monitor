@@ -27,4 +27,8 @@ public interface IDeviceSoftVersion {
 	public Date getLastUpdatedTime();
 	public void setDesc(String desc);
 	public String getDesc();
+
+
+	public String getVersionStr();
+	public void setVersionStr(String versionStr);
 }

@@ -19,6 +19,7 @@ import com.yihuacomputer.common.exception.NotFoundException;
 import com.yihuacomputer.common.file.FileMD5;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.filter.FilterFactory;
+import com.yihuacomputer.common.util.StringUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.person.IUserService;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
@@ -28,6 +29,7 @@ import com.yihuacomputer.fish.api.version.IVersionType;
 import com.yihuacomputer.fish.api.version.IVersionTypeService;
 import com.yihuacomputer.fish.api.version.TaskCanceledException;
 import com.yihuacomputer.fish.api.version.VersionCfg;
+import com.yihuacomputer.fish.api.version.VersionNo;
 import com.yihuacomputer.fish.api.version.VersionStatus;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
@@ -57,14 +59,13 @@ public class VersionService implements IDomainVersionService {
 	@Autowired
 	private IVersionTypeService typeService;
 
+
 	@Override
-	@Transactional(readOnly = true)
 	public IVersion make() {
 		return new Version();
 	}
 
 	@Override
-	@Transactional(readOnly = true)
 	public IVersion getById(long id) {
 		return dao.get(id, Version.class);
 	}
@@ -77,8 +78,22 @@ public class VersionService implements IDomainVersionService {
 		if (version.getReleaseDate() == null) {
 			version.setReleaseDate(new Date());
 		}
+		VersionNo versionNo = new VersionNo(version.getVersionNo());
+		StringBuffer versionNoSb = new StringBuffer();
+		versionNoSb.append(StringUtils.preZeroStr(String.valueOf(versionNo.getMajor()), 8)).
+		append(StringUtils.preZeroStr(String.valueOf(versionNo.getMinor()), 8)).
+		append(StringUtils.preZeroStr(String.valueOf(versionNo.getIncremental()), 8)).
+		append(StringUtils.preZeroStr(String.valueOf(versionNo.getRevision()), 8));
+		entity.setVersionStr(versionNoSb.toString());
 		dao.save(entity);
 		return entity;
+	}
+	
+	public static void main(String args[]){
+		String abc = "1231";
+		String major = "00000000"+abc;
+		major = major.substring(major.length()-8);
+		System.out.println(major);
 	}
 
 	private String getMD5CheckNum(String serverPath, String fileName) {
@@ -293,6 +308,7 @@ public class VersionService implements IDomainVersionService {
 				throw new AppException("版本号为空");
 			}
 			IDeviceSoftVersion dsv = deviceVersionService.get(terminalId, typeName);
+			IVersion version = this.autoUpdate(typeName, versionNo);
 			if (dsv != null) {
 				if (!versionNo.equals(dsv.getVersionNo())) {
 					dsv.setVersionNo(versionNo);
@@ -303,6 +319,8 @@ public class VersionService implements IDomainVersionService {
 				dsv.setTerminalId(terminalId);
 				dsv.setTypeName(typeName);
 				dsv.setVersionNo(versionNo);
+				dsv.setVersionNo(versionNo);
+				dsv.setVersionStr(version.getVersionStr());
 				deviceVersionService.add(dsv);
 			}
 		} catch (Exception ex) {

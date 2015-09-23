@@ -35,14 +35,9 @@ public interface IVersionStaticsStautsService {
 	 */
 	public List<Long> getAtmTypeIdsByVersionId(long versionId);
 	
-//	 public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceTotalLeftJion(long versionId,String orgFlag,int start,int limit);
-	 public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceSuccess(long versionId,String orgFlag,int start,int limit);
-		    
-//	/**
-//	 * 获取符合条件设备数量(条件一:机构,条件二：设备型号,条件三:版本)
-//	 * @param orgFlag
-//	 * @param versionId
-//	 * @return
-//	 */
-//	public long getOpeningDeviceTotal(String orgFlag,long versionId);
+	public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceSuccess(long versionId,String orgFlag,int start,int limit);
+    public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceTotal(long versionId,String orgFlag,int start,int limit);
+    public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceFatal(long versionId,String orgFlag,int start,int limit);
+    public IPageResult<VersionChartsDetailForm> getMatchConditionDevicePush(long versionId,String orgFlag,int start,int limit);
+
 }

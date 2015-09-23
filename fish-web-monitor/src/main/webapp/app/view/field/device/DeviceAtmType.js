@@ -12,6 +12,7 @@ Ext.define('Eway.view.field.device.DeviceAtmType', {
 	emptyText : '--请选择--',
 	listeners : {
 		beforerender : function() {
+//			this.proxy.extraParams = this.proxy.extraParams || {versionId:this.getVersionId()};
 			this.store.load({
 				callback : function(records, operation, success) {
 					if (success) {

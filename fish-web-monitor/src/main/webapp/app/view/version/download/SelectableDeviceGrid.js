@@ -2,7 +2,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 	alias : 'widget.version_download_selectableDeviceGrid',
 	extend : 'Ext.grid.Panel',
 
-	requires : [ 'Eway.lib.Util','Eway.model.version.SelectableDevice','Ext.selection.CheckboxModel',
+	requires : [ 'Eway.lib.Util','Ext.form.field.VTypes','Eway.model.version.SelectableDevice','Ext.selection.CheckboxModel',
 				 'Eway.view.field.device.DeviceAtmType','Eway.view.common.OrgComboOrgTree'],
 	viewConfig : {
 		forceFit : true,
@@ -53,22 +53,18 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 			checkOnly: true,//只保留checkbox的选择能力，row选择失效
 			listeners:{
 				beforeselect : function(me,record,rowIndex){
-					if(!this.isRowOK(record)){
-						return false;
-					}else{
-						var form = this.up('window').down('form').getForm();
-						var deviceIdsField = form.findField("deviceIds");
-						var deviceId = record.get("id");
-						if(!this.isExist(deviceIdsField.value,deviceId)){
-							deviceIdsField.value = deviceIdsField.value + "," + deviceId;
-							//
-							var linkedGrid =  this.up('window').down('version_download_linkedDeviceGrid');
-							var linkedStore = linkedGrid.getStore();
-							linkedStore.add(record);
-							linkedGrid.setTitle("已选择的设备(<font color='red'>" + linkedStore.getCount() + "</font>)台");
-						}
-						return true;
+					var form = this.up('window').down('form').getForm();
+					var deviceIdsField = form.findField("deviceIds");
+					var deviceId = record.get("id");
+					if(!this.isExist(deviceIdsField.value,deviceId)){
+						deviceIdsField.value = deviceIdsField.value + "," + deviceId;
+						//
+						var linkedGrid =  this.up('window').down('version_download_linkedDeviceGrid');
+						var linkedStore = linkedGrid.getStore();
+						linkedStore.add(record);
+						linkedGrid.setTitle("已选择的设备(<font color='red'>" + linkedStore.getCount() + "</font>)台");
 					}
+					return true;
 				},
 				deselect: function(me,record,rowIndex){
 					var form = this.up('window').down('form').getForm();
@@ -94,6 +90,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 			tbar:[{
 				xtype:'textfield',
 				fieldLabel:'IP',
+				 enableKeyEvents:true,
 				name:'ip',
 				labelSeparator:'',
 				labelWidth : 10,
@@ -102,9 +99,12 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 			}, {
 				xtype:'textfield',
 				fieldLabel:'设备编号',
+				 enableKeyEvents:true,
 				name:'terminalId',
 				labelSeparator:'',
+				maxLength:20,
 				labelWidth : 60,
+				vtype : "terminalId",
 				width: 140
 			},{
 				style : 'padding-top:0px',
@@ -114,6 +114,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				xtype : 'common_orgComboOrgTree',
 				fieldLabel : '所属机构',
 				emptyText : '--请选择--',
+				 enableKeyEvents:true,
 				name : 'orgName',
 				hiddenValue : 'orgId',
 				editable : false,
@@ -121,6 +122,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				labelSeparator:'',
 				width: 200,
 				filters : '{"type" : "0"}',
+				parentXtype:'toolbar',
 				rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false,
 				onTreeItemClick : function(view,record){
 					this.setValue(record.get('text'));
@@ -134,6 +136,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 			},{
 				xtype:'field_device_deviceatmtype',
 				fieldLabel : '设备型号',
+				 enableKeyEvents:true,
 				name: 'atmTypeId',
 				editable  : false,
 				store: 'machine.DeviceAtmType',
@@ -245,12 +248,12 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 		return d;
 	},
 
-	isRowOK : function(record){
-		if(record.get('selectable') ==  false){
-			return false;
-		}
-		return true;
-	},
+//	isRowOK : function(record){
+//		if(record.get('selectable') ==  false){
+//			return false;
+//		}
+//		return true;
+//	},
 
 	isExist : function(deviceIds,id){
 		var d = this.toArray(deviceIds);

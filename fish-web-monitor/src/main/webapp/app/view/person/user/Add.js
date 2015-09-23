@@ -7,6 +7,7 @@ Ext.define('Eway.view.person.user.Add', {
 	           'Eway.view.field.person.UserState',
 	           'Eway.view.field.person.Gender',
 	           'Eway.view.field.person.UserName',
+	           'Eway.view.field.person.UserType',
 	           'Eway.view.person.user.Role'],
 
 	title: '增加用户信息',
@@ -56,6 +57,11 @@ Ext.define('Eway.view.person.user.Add', {
 					xtype : 'field.code',
 					regex: /^[a-zA-Z0-9][a-zA-Z0-9-_\.]{0,19}$/,
 					regexText:'只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！',
+					allowBlank : false
+				},{
+					fieldLabel : '<font color="red">*</font> 用户类型',
+					xtype : 'field_userType',
+					name:'userType',
 					allowBlank : false
 				},{
 				    xtype : 'field.userState',

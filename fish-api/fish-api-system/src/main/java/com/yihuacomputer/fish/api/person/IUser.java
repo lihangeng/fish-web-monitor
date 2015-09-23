@@ -95,4 +95,15 @@ public interface IUser {
 	 * @param roles
 	 */
 	public List<IRole> getRoles();
+	
+	/**
+	 * 获取用户类型
+	 * @return
+	 */
+	public UserType getUserType();
+	/**
+	 * 设置用户类型
+	 * @param userType
+	 */
+	public void setUserType(UserType userType);
 }

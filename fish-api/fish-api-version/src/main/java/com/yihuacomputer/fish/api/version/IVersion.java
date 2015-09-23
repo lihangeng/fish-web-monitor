@@ -201,4 +201,14 @@ public interface IVersion {
 	public void setReleaseDate(Date releaseDate);
 
 	public Date getReleaseDate();
+	/**
+	 * 获取可比较的版本号字符串信息
+	 * @return
+	 */
+	public String getVersionStr();
+	/**
+	 * 设置可比较的版本号字符串信息
+	 * @param versionStr
+	 */
+	public void setVersionStr(String versionStr);
 }

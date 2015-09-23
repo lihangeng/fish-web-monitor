@@ -55,6 +55,7 @@ Ext.define('Eway.view.version.AddJob', {
 					fieldLabel:"<font color='red'>*</font>任务批次名称",
 					name :'jobName',
 					maxLength: 128,
+					allowBlank:false,
 					emptyText:'例如:****需求第1批次升级'
 			 },{
 					xtype: 'container',

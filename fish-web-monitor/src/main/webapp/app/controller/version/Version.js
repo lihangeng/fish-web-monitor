@@ -1,6 +1,5 @@
 Ext.define('Eway.controller.version.Version', {
 	extend : 'Eway.controller.base.Controller',
-
 	stores : [ 'version.Version','version.ComboVersionType','version.VersionCharts','machine.DeviceAtmType','version.VersionStatus','version.AutoUpdate',
 			   'version.JobType','version.JobStatus','version.JobPriority','version.VersionCatalog'],
 	models : [ 'version.Version','version.VersionType','version.VersionCharts'],
@@ -31,6 +30,9 @@ Ext.define('Eway.controller.version.Version', {
 	},{
 		ref : 'chartsGrid',
 		selector : 'version_charts_grid'
+	},{
+		ref : 'bar3d',
+		selector : 'bar_3d series[type="bar3d"]'
 	}],
 
 	init : function() {
@@ -47,33 +49,42 @@ Ext.define('Eway.controller.version.Version', {
 			'versionView button[action=update]' : {
 				click : this.onUpdate
 			},
-			'versionView button[action=downStatics]' : {
-				click : this.onDownStatics
+			'versionView version_grid':{
+				   itemclick : this.onClickHref
 			},
 			'versionView version_grid':{
-			   itemclick : this.onClickHref
+				   select : this.onSelect
 			},
 			'versionView button[action=down]' :{
 				click : this.onDown
+
 			}
 		});
 		 
 	},
-	//点击表格进行查看当前版本详情对应的设备信息
-	onItemClick:function(series, item, event, eOpts){
-//		var versionId = item.record.data.versionId;
-		var gridFlag = item.record.data.flag;
-		var gridVersionId = item.record.data.versionId;
-		this.getEwayView().down("version_charts_grid").getStore().load({
-			 params: {
-			        versionId:gridVersionId,
-			        flag:gridFlag
-			    }
-		 });
-	},
-
-	//版本下发统计
-	onDownStatics :function(){
+	onSelect:function( _this, record, index, eOpts ){
+		var me = this;
+		if(undefined==record){
+			return;
+		}
+		var chartsStore = this.getEwayView().down("bar_3d cartesian").getStore();
+		
+		chartsStore.load({
+		    params: {
+		        versionId:record.get("id")
+		    },
+		    callback: function(records, operation, success) {
+        		var grid = me.getEwayView().down("version_charts_grid")
+        		grid.getStore().load({
+        			 params: {
+        			        versionId:record.get("id"),
+        			        flag:0
+        			    }
+        		 });
+        		grid.setTitle(chartsStore.getAt(0).get("title")+"信息");
+		    }
+		});
+		this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionType")+"-"+record.get("versionNo"));
 	},
 
 	//点击超链接下载版本文件
@@ -85,18 +96,8 @@ Ext.define('Eway.controller.version.Version', {
 			var url = 'api/version/version/download?typeName=' + typeName + '&fileName=' + fileName;
 			var iframe = document.getElementById('downloadFileFromWeb');
 			iframe.src = url;
-		}
-		else{
-			var chartsStore = this.getEwayView().down("bar_3d cartesian").getStore();
-			chartsStore.load({
-			    params: {
-			        versionId:record.get("id")
-			    }
-			});
-			this.getEwayView().down("bar_3d series[type='bar3d']").on("itemclick",this.onItemClick,this);	
-			this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionType")+"-"+record.get("versionNo"));
+		}else{
 			
-//			this.getEwayView().down("bar_3d cartesian").config.sprites[0].text=record.get("versionType")+record.get("versionNo");
 		}
 	},
 
@@ -137,8 +138,14 @@ Ext.define('Eway.controller.version.Version', {
 				form.findField("versionType").setValue(record.get("versionType"));
 				form.findField("versionNo").setValue(record.get("versionNo"));
 				form.findField("serverPath").setValue(record.get("serverPath"));
-
+				var atmTypeStore = win.down("field_device_deviceatmtype[name=atmTypeId]").getStore();
+				atmTypeStore.proxy.extraParams={versionId:record.get("id")};
+				atmTypeStore.load();
 				win.show();
+				win.down("textfield[name=ip]").on({keydown:this.queryOnKeyDownEnter, scope: this });
+				win.down("textfield[name=terminalId]").on({keydown:this.queryOnKeyDownEnter, scope: this});
+				win.down("common_orgComboOrgTree[name=orgName]").on({keydown:this.queryOnKeyDownEnter, scope: this});
+				win.down("field_device_deviceatmtype[name=atmTypeId]").on({keydown:this.queryOnKeyDownEnter, scope: this});
 			}else{
 				Eway.alert("版本文件丢失,暂不能对版本进行下发控制.");
 			}
@@ -147,22 +154,33 @@ Ext.define('Eway.controller.version.Version', {
 			Eway.alert("请选择您要下发的版本.");
 		}
 	},
+	queryOnKeyDownEnter:function( e, t, eOpts ){
+		if(t.keyCode==13){
+			var grid = this.getAddJobWin().down("version_download_selectableDeviceGrid");
+			var form = grid.up('window').down('form').getForm();
+			if(this.setSearchFilter(grid,form)){
+				grid.getStore().loadPage(1);
+			}
+		}
+	},
 
 	//选择页面显示记录数
 	onPageSizeChange:function(combo,newValue){
 		var grid = combo.up("version_download_selectableDeviceGrid");
 		grid.getStore().pageSize = newValue;
 		var form = grid.up('window').down('form').getForm();
-		this.setSearchFilter(grid,form);
-		grid.getStore().loadPage(1);
+		if(this.setSearchFilter(grid,form)){
+			grid.getStore().loadPage(1);
+		}
 	},
 
 	//单击选择设备列表页面的查询按钮
 	onQueryDownDevice : function(button){
 		var grid = button.up("version_download_selectableDeviceGrid");
 		var form = grid.up('window').down('form').getForm();
-		this.setSearchFilter(grid,form);
-		grid.getStore().loadPage(1);
+		if(this.setSearchFilter(grid,form)){
+			grid.getStore().loadPage(1);
+		}
 	},
 
 	//下发管理页面刷新可选择设备时
@@ -177,12 +195,19 @@ Ext.define('Eway.controller.version.Version', {
 	setSearchFilter  : function(grid,form){
 		var extraParams = {versionId : form.findField("versionId").value};
 		var fields = grid.query('field');
+		var flag = true;
 		Ext.each(fields,function(field){
-			if(field.name !== 'orgName' && field.name !== 'inputItem' && field.name !== 'pageSize'){
-				extraParams[field.name] = field.getValue();
+			if(field.isValid()){
+				if(field.name !== 'orgName' && field.name !== 'inputItem' && field.name !== 'pageSize'){
+					extraParams[field.name] = field.getValue();
+				}
+			}
+			else{
+				flag=false;
 			}
 		});
 		grid.getStore().proxy.extraParams = extraParams;
+		return flag;
 	},
 
 	//关闭下发页面

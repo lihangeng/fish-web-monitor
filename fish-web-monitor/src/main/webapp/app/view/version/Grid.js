@@ -4,12 +4,13 @@ Ext.define('Eway.view.version.Grid', {
 	extend: 'Eway.view.base.Grid',
 
 	requires: ['Eway.lib.Util'],
-
 	store: 'version.Version',
 	border : false,
 
 	initComponent: function() {
+		var store = Ext.create('Eway.store.version.Version');
 		Ext.apply(this, {
+			store : store,
 			tbar: ['->', {
 				text: '查询',
 				glyph : 0xf002,
@@ -52,34 +53,31 @@ Ext.define('Eway.view.version.Grid', {
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
-			}/*, {
-				text: '下发统计',
-				iconCls :'downStatics',
-				action: 'downStatics',
-				code : 'downStatics',
-				listeners:{
-					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-				}
-			}*/],
+			}],
 			columns : [{
 				header : '软件分类编码',
 				dataIndex : 'versionType',
+	            locked: true,
 				width: 150
 			},{
 				header:'版本号',
 				dataIndex:'versionNo',
+	            locked: true,
 				width: 100
 			},{
 				header : '版本类型ID',
 				dataIndex : 'versionTypeId',
+	            locked: true,
 				hidden : true
 			},{
 				header : '版本路径',
 				dataIndex : 'versionPath',
+	            locked: true,
 				width: 200
 			},{
 				header : '创建时间',
 				dataIndex : 'createdTime',
+	            locked: true,
 				width: 140
 			},{
 				header:'创建人',
@@ -144,6 +142,7 @@ Ext.define('Eway.view.version.Grid', {
 		        dock: 'bottom',
 		        displayInfo: true
    			 }]
+
 		});
 
 		this.callParent(arguments);

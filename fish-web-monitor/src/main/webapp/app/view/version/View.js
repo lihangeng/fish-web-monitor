@@ -37,7 +37,16 @@ Ext.define('Eway.view.version.View', {
 			    	minWidth:800,
 			    	minHeight:350
 			    }]
-			} ]
+			} ],
+			listeners : {
+				activate : function(panel) {
+					if (panel.isLoad) {
+						return;
+					}
+					panel.isLoad = true;
+					panel.down('version_grid').getStore().load();
+				}
+			}
 		});
 
 		this.callParent(arguments);
