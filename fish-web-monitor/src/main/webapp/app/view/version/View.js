@@ -24,10 +24,12 @@ Ext.define('Eway.view.version.View', {
 			    items:[{
 			    	xtype:'bar_3d',
 			    	region:"west",
+					padding:'0 10 0 0',
 			    	rowField:'title',
 			    	columnField:'value'
 			    },{//当选择一个图形的内容时，现实对应的设备信息（Grid）
 			    	xtype:'version_charts_grid',
+					padding:'0  0 0 10',
 			    	region: "center" 
 			    }]
 			} ],
