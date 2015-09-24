@@ -17,6 +17,8 @@ import com.yihuacomputer.common.ITypeIP;
 import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.http.HttpProxy;
+import com.yihuacomputer.common.util.DateUtils;
+import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
@@ -26,11 +28,11 @@ import com.yihuacomputer.fish.api.version.IDeviceVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.VersionStatus;
-import com.yihuacomputer.fish.api.version.job.IJob;
 import com.yihuacomputer.fish.api.version.job.IJobService;
 import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistory;
 import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistoryService;
 import com.yihuacomputer.fish.api.version.job.NoticeStatus;
+import com.yihuacomputer.fish.api.version.job.task.AutoUpdateTaskForm;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.api.version.job.task.TaskType;
@@ -337,6 +339,68 @@ public class TaskService implements IDomainTaskService {
 		StringBuffer hql = new StringBuffer();
 		hql.append("from Task task where task.planTime = ?");
 		return dao.findByHQL(hql.toString(), planTime);
+	}
+	
+	public IPageResult<AutoUpdateTaskForm> pageAutoUpdateTask(int start,int limit,IFilter filter){
+		StringBuffer hql = new StringBuffer();
+		hql.append("select task,device from Task task,Device device ").
+		append("where task.deviceId=device.id and task.taskType= ? ");
+		List<Object> args = new ArrayList<Object>();
+		args.add(TaskType.AUTO_UPDATE);
+		Object versionType = filter.getValue("versionType");
+		Object versionNo = filter.getValue("versionNo");
+		Object taskStatus = filter.getValue("taskStatus");
+		Object orgFlag = filter.getValue("orgFlag");
+		Object atmTypeId = filter.getValue("atmTypeId");
+		Object terminalId = filter.getValue("terminalId");
+		Object deviceIp = filter.getValue("deviceIp");
+		if(null!=versionType){
+			hql.append(" and task.version.versionType.id=? ");
+			args.add(versionType);
+		}if(null!=versionNo){
+			hql.append(" and task.version.versionNo=? ");
+			args.add(versionNo);
+		}if(null!=taskStatus){
+			hql.append(" and task.status=? ");
+			args.add(taskStatus);
+		}if(null!=orgFlag){
+			hql.append(" and device.organization.orgFlag like ? ");
+			args.add(orgFlag);
+		}if(null!=atmTypeId){
+			hql.append(" and device.devType.id = ? ");
+			args.add(atmTypeId);
+		}if(null!=terminalId){
+			hql.append(" and device.terminalId like ? ");
+			args.add(terminalId);
+		}if(null!=deviceIp){
+			hql.append(" and device.ip = ? ");
+			args.add(deviceIp);
+		}
+		@SuppressWarnings("unchecked")
+		IPageResult<Object> result = (IPageResult<Object>) dao.page(start, limit, hql.toString(), args.toArray());
+		List<AutoUpdateTaskForm> list = new ArrayList<AutoUpdateTaskForm>();
+		for(Object queryResult :result.list()){
+			Object[]entity = (Object[])queryResult;
+			ITask task = (ITask)entity[0];
+			IDevice device = (IDevice)entity[1];
+			AutoUpdateTaskForm autoUpdateTaskForm = new AutoUpdateTaskForm();
+			autoUpdateTaskForm.setId(task.getId());
+			autoUpdateTaskForm.setAtmType(device.getDevType().getName());
+			autoUpdateTaskForm.setDeviceIp(device.getIp().toString());
+			autoUpdateTaskForm.setDownSource(task.getDownSource());
+			autoUpdateTaskForm.setExcuteMachine(task.getExcuteMachine());
+			if(null!=task.getExcuteTime()){
+				autoUpdateTaskForm.setExcuteTime(DateUtils.getTimestamp(task.getExcuteTime()));
+			}
+			autoUpdateTaskForm.setOrgName(device.getOrganization().getName());
+			autoUpdateTaskForm.setTaskStatus(task.getState());
+			autoUpdateTaskForm.setTerminalId(device.getTerminalId());
+			autoUpdateTaskForm.setVersion(task.getExceptVersion());
+			autoUpdateTaskForm.setVersionBeforeUpdate(task.getVersionBeforeUpdate());
+			autoUpdateTaskForm.setVersionType(task.getVersion().getVersionType().getDesc());
+			list.add(autoUpdateTaskForm);
+		}
+		return new PageResult<AutoUpdateTaskForm>(result.getTotal(), list);
 	}
 
 }

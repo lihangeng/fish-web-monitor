@@ -109,4 +109,11 @@ public interface ITaskService {
     public void onlyUpdateTask(ITask task);
 
     public void cancelTasks(List<ITask> tasks);
+    
+    /**
+     * 获取自动升级任务列表
+     * @param filter
+     * @return
+     */
+    public IPageResult<AutoUpdateTaskForm> pageAutoUpdateTask(int start,int limit,IFilter filter);
 }

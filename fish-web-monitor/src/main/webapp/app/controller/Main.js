@@ -209,6 +209,8 @@ Ext.define('Eway.controller.Main', {
 			this.activeController('version.DeviceVersion');
 		}else if(code == "versionType"){
 			this.activeController('version.VersionType');
+		}else if(code=="versionAutoUpdate"){
+			this.activeController('version.VersionAutoUpdate');
 		}
 	},
 

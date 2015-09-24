@@ -179,9 +179,9 @@ public class VersionDownloadService implements IVersionDownloadService {
 		}
 		if(null!=filter.getValue("terminalId")){
 			terminalId = String.valueOf(filter.getValue("terminalId"));
-			terminalIdHql=" and device.terminalId=? ";
+			terminalIdHql=" and device.terminalId like ? ";
 			hqlDevice.append(terminalIdHql);
-			args.add(terminalId);
+			args.add("%"+terminalId+"%");
 		}
 		if(null!=filter.getValue("orgId")){
 			String orgId = String.valueOf(filter.getValue("orgId"));

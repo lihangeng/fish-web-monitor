@@ -87,9 +87,8 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					filters : '{"type" : "1"}',
 					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '1' ? true : false
 				}, {
-					xtype : 'field_device_deviceatmtype',
-					name : 'devType',
-					hiddenName : 'devType'
+
+
 				}, {
 					xtype : 'field_atmType_DeviceAtmCatalogComboBox',
 					fieldLabel : '设备类型'
