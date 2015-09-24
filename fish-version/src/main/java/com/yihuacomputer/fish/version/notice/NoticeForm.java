@@ -17,203 +17,209 @@ import com.yihuacomputer.fish.api.version.job.task.ITask;
  *
  */
 public class NoticeForm {
-    private long taskId;
+	private long taskId;
 
-    private String patch;
+	private String patch;
 
-    private String patchNo;
+	private String patchNo;
 
-    private String prePatchNo;
+	private String prePatchNo;
 
-    private String serverPath;
+	private String serverPath;
 
-    private String localPath;
+	private String localPath;
 
-    private String fileName;
+	private String fileName;
 
-    //文件大小
-    private String fileSize;
+	// 文件大小
+	private String fileSize;
 
-    // 文件的MD5校验码
-    private String md5CheckNum;
+	// 文件的MD5校验码
+	private String md5CheckNum;
 
-    private boolean uncompress;
+	private boolean uncompress;
 
-    private boolean eagerRestart;
+	private boolean eagerRestart;
 
-    // 软件分类的版本号通过页面自定义
-    private boolean customVersion;
+	// 软件分类的版本号通过页面自定义
+	private boolean customVersion;
 
-    private boolean system;
+	private boolean system;
 
-    private String deployStartDate;
+	private String deployStartDate;
 
-    private String deployEndDate;
+	private String deployEndDate;
 
-    private String versionCatalog;
+	private String versionCatalog;
 
-    private String ret;
+	private String ret;
 
-    public NoticeForm() {
-    }
+	// 版本文件下载源地址
+	private String downUrl;
 
-    public NoticeForm(ITask task) {
-        IVersion version = task.getVersion();
-        this.taskId = task.getId();
-        IVersionType type = version.getVersionType();
-        this.patch = type.getTypeName();
-        this.patchNo = version.getVersionNo();
-        this.prePatchNo = version.getDependVersion() == null ? null : version.getDependVersion().getVersionNo();
-        this.serverPath = VersionCfg.getVersionDir() + File.separator + version.getVersionType().getTypeName();
-        this.localPath = version.getVersionPath();
-        this.fileName = version.getServerPath();
-        this.md5CheckNum = version.getMd5CheckNum();
-        this.uncompress = version.isUncompress();
-        this.eagerRestart = task.isEagerRestart();
-        this.customVersion = type.isCustomVersion();
-        this.system = type.isSystem();
-        this.versionCatalog = type.getVersionCatalog() == null ? VersionCatalog.OTHER.name() : type.getVersionCatalog().name();
-        this.deployStartDate = task.getDeployStartDate() == null ? "" : DateUtils.getDate(task.getDeployStartDate());
-        this.deployEndDate = task.getDeployEndDate() == null ? "" : DateUtils.getDate(task.getDeployEndDate());
-        this.fileSize = getVersionFileSize();
-    }
+	// 部署之前执行的脚本命令
+	private String execBefore;
 
-    private String getVersionFileSize(){
-    	File file = new File(this.serverPath + File.separator + this.fileName);
-    	if(file.exists()){
-    		return String.valueOf(file.length());
-    	}else{
-    		return "0";
-    	}
-    }
+	public NoticeForm() {
+	}
 
-    public String getPatch() {
-        return patch;
-    }
+	public NoticeForm(ITask task) {
+		IVersion version = task.getVersion();
+		this.taskId = task.getId();
+		IVersionType type = version.getVersionType();
+		this.patch = type.getTypeName();
+		this.patchNo = version.getVersionNo();
+		this.prePatchNo = version.getDependVersion() == null ? null : version.getDependVersion().getVersionNo();
+		this.serverPath = VersionCfg.getVersionDir() + File.separator + version.getVersionType().getTypeName();
+		this.localPath = version.getVersionPath();
+		this.fileName = version.getServerPath();
+		this.md5CheckNum = version.getMd5CheckNum();
+		this.uncompress = version.isUncompress();
+		this.eagerRestart = task.isEagerRestart();
+		this.customVersion = type.isCustomVersion();
+		this.system = type.isSystem();
+		this.versionCatalog = type.getVersionCatalog() == null ? VersionCatalog.OTHER.name() : type.getVersionCatalog().name();
+		this.deployStartDate = task.getDeployStartDate() == null ? "" : DateUtils.getDate(task.getDeployStartDate());
+		this.deployEndDate = task.getDeployEndDate() == null ? "" : DateUtils.getDate(task.getDeployEndDate());
+		this.fileSize = getVersionFileSize();
+	}
 
-    public void setPatch(String patch) {
-        this.patch = patch;
-    }
+	private String getVersionFileSize() {
+		File file = new File(this.serverPath + File.separator + this.fileName);
+		if (file.exists()) {
+			return String.valueOf(file.length());
+		} else {
+			return "0";
+		}
+	}
 
-    public String getPatchNo() {
-        return patchNo;
-    }
+	public String getPatch() {
+		return patch;
+	}
 
-    public void setPatchNo(String patchNo) {
-        this.patchNo = patchNo;
-    }
+	public void setPatch(String patch) {
+		this.patch = patch;
+	}
 
-    public String getPrePatchNo() {
-        return prePatchNo;
-    }
+	public String getPatchNo() {
+		return patchNo;
+	}
 
-    public void setPrePatchNo(String prePatchNo) {
-        this.prePatchNo = prePatchNo;
-    }
+	public void setPatchNo(String patchNo) {
+		this.patchNo = patchNo;
+	}
 
-    public String getServerPath() {
-        return serverPath;
-    }
+	public String getPrePatchNo() {
+		return prePatchNo;
+	}
 
-    public void setServerPath(String serverPath) {
-        this.serverPath = serverPath;
-    }
+	public void setPrePatchNo(String prePatchNo) {
+		this.prePatchNo = prePatchNo;
+	}
 
-    public String getLocalPath() {
-        return localPath;
-    }
+	public String getServerPath() {
+		return serverPath;
+	}
 
-    public void setLocalPath(String localPath) {
-        this.localPath = localPath;
-    }
+	public void setServerPath(String serverPath) {
+		this.serverPath = serverPath;
+	}
 
-    public String getFileName() {
-        return fileName;
-    }
+	public String getLocalPath() {
+		return localPath;
+	}
 
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
+	public void setLocalPath(String localPath) {
+		this.localPath = localPath;
+	}
 
-    public String getFileSize() {
-        return fileSize;
-    }
+	public String getFileName() {
+		return fileName;
+	}
 
-    public void setFileSize(String fileSize) {
-        this.fileSize = fileSize;
-    }
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 
-    public String getRet() {
-        return ret;
-    }
+	public String getFileSize() {
+		return fileSize;
+	}
 
-    public void setRet(String ret) {
-        this.ret = ret;
-    }
+	public void setFileSize(String fileSize) {
+		this.fileSize = fileSize;
+	}
 
-    public boolean isUncompress() {
-        return uncompress;
-    }
+	public String getRet() {
+		return ret;
+	}
 
-    public void setUncompress(boolean uncompress) {
-        this.uncompress = uncompress;
-    }
+	public void setRet(String ret) {
+		this.ret = ret;
+	}
 
-    public long getTaskId() {
-        return taskId;
-    }
+	public boolean isUncompress() {
+		return uncompress;
+	}
 
-    public void setTaskId(long taskId) {
-        this.taskId = taskId;
-    }
+	public void setUncompress(boolean uncompress) {
+		this.uncompress = uncompress;
+	}
 
-    public boolean isEagerRestart() {
-        return eagerRestart;
-    }
+	public long getTaskId() {
+		return taskId;
+	}
 
-    public void setEagerRestart(boolean eagerRestart) {
-        this.eagerRestart = eagerRestart;
-    }
+	public void setTaskId(long taskId) {
+		this.taskId = taskId;
+	}
 
-    public boolean isCustomVersion() {
-        return customVersion;
-    }
+	public boolean isEagerRestart() {
+		return eagerRestart;
+	}
 
-    public void setCustomVersion(boolean customVersion) {
-        this.customVersion = customVersion;
-    }
+	public void setEagerRestart(boolean eagerRestart) {
+		this.eagerRestart = eagerRestart;
+	}
 
-    public boolean isSystem() {
-        return system;
-    }
+	public boolean isCustomVersion() {
+		return customVersion;
+	}
 
-    public void setSystem(boolean system) {
-        this.system = system;
-    }
+	public void setCustomVersion(boolean customVersion) {
+		this.customVersion = customVersion;
+	}
 
-    public String getDeployStartDate() {
-        return deployStartDate;
-    }
+	public boolean isSystem() {
+		return system;
+	}
 
-    public void setDeployStartDate(String deployStartDate) {
-        this.deployStartDate = deployStartDate;
-    }
+	public void setSystem(boolean system) {
+		this.system = system;
+	}
 
-    public String getDeployEndDate() {
-        return deployEndDate;
-    }
+	public String getDeployStartDate() {
+		return deployStartDate;
+	}
 
-    public void setDeployEndDate(String deployEndDate) {
-        this.deployEndDate = deployEndDate;
-    }
+	public void setDeployStartDate(String deployStartDate) {
+		this.deployStartDate = deployStartDate;
+	}
 
-    public String getVersionCatalog() {
-        return versionCatalog;
-    }
+	public String getDeployEndDate() {
+		return deployEndDate;
+	}
 
-    public void setVersionCatalog(String versionCatalog) {
-        this.versionCatalog = versionCatalog;
-    }
+	public void setDeployEndDate(String deployEndDate) {
+		this.deployEndDate = deployEndDate;
+	}
+
+	public String getVersionCatalog() {
+		return versionCatalog;
+	}
+
+	public void setVersionCatalog(String versionCatalog) {
+		this.versionCatalog = versionCatalog;
+	}
 
 	public String getMd5CheckNum() {
 		return md5CheckNum;
@@ -221,6 +227,22 @@ public class NoticeForm {
 
 	public void setMd5CheckNum(String md5CheckNum) {
 		this.md5CheckNum = md5CheckNum;
+	}
+
+	public String getDownUrl() {
+		return downUrl;
+	}
+
+	public void setDownUrl(String downUrl) {
+		this.downUrl = downUrl;
+	}
+
+	public String getExecBefore() {
+		return execBefore;
+	}
+
+	public void setExecBefore(String execBefore) {
+		this.execBefore = execBefore;
 	}
 
 }
