@@ -1,9 +1,7 @@
 package com.yihuacomputer.fish.version.service.db;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +17,7 @@ import com.yihuacomputer.fish.api.charts.ChartsInfo;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.device.Status;
+import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionService;
@@ -124,8 +123,10 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     	append(" and versionatmType.versionTypeId=version.versionType.id ").
     	append(" and version.id=? and device.organization.orgFlag like ? and device.status=?");
     	Object[] obj = {versionId,orgFlag,Status.OPENING};
-//		List<Object> totalList =  dao.findByHQL(hqlsb.toString(), obj);
-//    	IPageResult<VersionChartsDetailForm> pageResult= convertResult(start,limit,totalList,versionId,false);
+    	IVersion version = versionService.getById(versionId);
+    	if(version==null){
+    		return null;
+    	}
     	@SuppressWarnings("unchecked")
 		IPageResult<Object> result = (IPageResult<Object>) dao.page(start, limit, hqlsb.toString(), obj);
     	List<Object> list = result.list();
@@ -133,11 +134,13 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     	for(Object objDevice:list){
     		IDevice device = (IDevice)objDevice;
     		VersionChartsDetailForm versionChartsDetailForm = new VersionChartsDetailForm();
+    		IDeviceSoftVersion deviceSoftVersion = deviceSoftVersionService.get(device.getTerminalId(), version.getVersionType().getTypeName());
     		versionChartsDetailForm.setTerminalId(device.getTerminalId());
     		versionChartsDetailForm.setDevType(device.getDevType().getName());
     		versionChartsDetailForm.setIp(device.getIp().toString());
     		versionChartsDetailForm.setOrgName(device.getOrganization().getName());
     		versionChartsDetailForm.setVersionId(versionId);
+    		versionChartsDetailForm.setVersionNo(deviceSoftVersion.getVersionNo());
     		resultList.add(versionChartsDetailForm);
     	}
     	

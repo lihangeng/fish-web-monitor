@@ -7,35 +7,28 @@ Ext.define('Eway.view.version.View', {
 
 	title : '版本管理',
 	scrollable : 'y',
-
+	
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-				xtype : 'version_filterForm'
+				xtype : 'version_filterForm',
+			    	region:"north"
 			}, {
 				xtype : 'version_grid',
-				border: true,
-				minHeight:300
+		    	region:"center"
 			}, {
 				xtype : 'panel',
-				layout: {
-			        type: 'table',
-			        columns: 2
-			    },
-			    defaults: {
-			    	frame: true,
-			    	border:3,
-			    	width: 300
-			    },
+				layout : 'border',
+				height:350,
+		    	region:"south",
 			    items:[{
 			    	xtype:'bar_3d',
+			    	region:"west",
 			    	rowField:'title',
 			    	columnField:'value'
 			    },{//当选择一个图形的内容时，现实对应的设备信息（Grid）
 			    	xtype:'version_charts_grid',
-//			    	xtype:'panel',
-			    	minWidth:800,
-			    	minHeight:350
+			    	region: "center" 
 			    }]
 			} ],
 			listeners : {
