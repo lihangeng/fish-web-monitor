@@ -15,6 +15,7 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.advert.H2TestConfig;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.charts.ChartsInfo;
 import com.yihuacomputer.fish.api.device.IDevice;
@@ -29,7 +30,7 @@ import com.yihuacomputer.fish.version.MySqlTestConfig;
 import com.yihuacomputer.fish.version.service.db.VersionService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {MySqlTestConfig.class})
+@ContextConfiguration(classes = {H2TestConfig.class})
 public class VersionChartsDetailTest {
 	
 	@Autowired
