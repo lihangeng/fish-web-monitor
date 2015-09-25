@@ -230,7 +230,10 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     	
     	//由于版本的依赖版本是版本自依赖关系，所有在差巡之前进行判断是否有依赖关系
     	IVersion version = versionService.getById(versionId);
-    	
+    	if(version==null){
+    		logger.error(String.format("version %d is not exist", versionId));
+    		return null;
+    	}
 		//设备可下发成功的台数
     	hqlDevice.append("select device,deviceSoftVersion.versionNo from  ").
 		append(Device.class.getSimpleName()).append(" device ,").
