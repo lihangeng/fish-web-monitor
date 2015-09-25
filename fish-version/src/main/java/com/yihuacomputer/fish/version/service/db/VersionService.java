@@ -1,8 +1,11 @@
 package com.yihuacomputer.fish.version.service.db;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,12 +32,17 @@ import com.yihuacomputer.fish.api.version.IVersionType;
 import com.yihuacomputer.fish.api.version.IVersionTypeService;
 import com.yihuacomputer.fish.api.version.TaskCanceledException;
 import com.yihuacomputer.fish.api.version.VersionCfg;
+import com.yihuacomputer.fish.api.version.VersionDistribute;
 import com.yihuacomputer.fish.api.version.VersionNo;
 import com.yihuacomputer.fish.api.version.VersionStatus;
+import com.yihuacomputer.fish.api.version.VersionStatusDistribute;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
+import com.yihuacomputer.fish.machine.entity.device.Device;
+import com.yihuacomputer.fish.version.entity.DeviceSoftVersion;
 import com.yihuacomputer.fish.version.entity.Version;
+import com.yihuacomputer.fish.version.entity.VersionTypeAtmTypeRelation;
 import com.yihuacomputer.fish.version.service.api.IDomainVersionService;
 
 /**
@@ -359,6 +367,46 @@ public class VersionService implements IDomainVersionService {
 			return "0" + v;
 		}
 		return String.valueOf(v);
+	}
+	
+
+	/**
+	 * versionType,orgId
+	 * @param filter
+	 * @return
+	 */
+	public Map<Long,VersionDistribute> getVersionDistribute(IFilter filter){
+		StringBuffer hqlSb = new StringBuffer();
+		List<Object> hqlArgList = new ArrayList<Object>();
+		hqlSb.append("select version.id,version.versionNo,count(devicesoftVersion) from ").
+		append(DeviceSoftVersion.class.getSimpleName()).append(" devicesoftVersion,").
+		append(Version.class.getSimpleName()).append(" version, ").
+		append(Device.class.getSimpleName()).append(" device, ").
+		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionTypeAtmType ").
+		append("where version.versionNo= devicesoftVersion.versionNo and version.versionType.typeName=devicesoftVersion.typeName ").
+		append("and device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId ").
+		append("and device.terminalId= devicesoftVersion.terminalId and version.versionType.id=? ");
+		Object versionType = filter.getValue("versionType");
+		hqlArgList.add(versionType);
+		hqlSb.append(" group by version.id,version.versionNo order by version.versionStr desc");
+		List<Object> hqlResultList =  dao.findByHQL(hqlSb.toString(), hqlArgList.toArray());
+		Map<Long,VersionDistribute> map = new HashMap<Long,VersionDistribute>();
+		for(int index=0;index<hqlResultList.size();index++){
+			Object hqlResult = hqlResultList.get(index);
+			Object obj[] = (Object[])hqlResult;
+			VersionDistribute versionDistribute = new VersionDistribute();
+			versionDistribute.setVersionTypeId(Long.parseLong(String.valueOf(versionType)));
+			versionDistribute.setVersionId(Long.parseLong(String.valueOf(obj[0]==null?0:obj[0])));
+			versionDistribute.setVersionNo(String.valueOf(obj[1]==null?"":obj[1]));
+			versionDistribute.setVersionNoNumber(Integer.parseInt(String.valueOf(obj[2]==null?0:obj[2])));
+			map.put(versionDistribute.getVersionId(),versionDistribute);
+		}
+		return map;
+	}
+	
+	public List<VersionStatusDistribute> getVersionStatusDistribute(IFilter filter){
+			
+		return null;
 	}
 }
 

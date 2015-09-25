@@ -13,7 +13,7 @@ Ext.define('Eway.view.version.autoUpdate.FilterForm', {
 					xtype:'field_versionTypeComboBoxAdd',
 					fieldLabel : '软件分类',
 					name:'versionType'
-				},,{
+				},{
 				   xtype: 'textfield',
 			       fieldLabel : '版本号',
 				   name : 'versionNo',

@@ -211,7 +211,10 @@ Ext.define('Eway.controller.Main', {
 			this.activeController('version.VersionType');
 		}else if(code=="versionAutoUpdate"){
 			this.activeController('version.VersionAutoUpdate');
+		}else if(code=="versionDistribute"){
+			this.activeController('version.VersionDistribute');
 		}
+		
 	},
 
 	//打开“故障管理”下子菜单
