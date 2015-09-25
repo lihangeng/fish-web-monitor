@@ -63,17 +63,6 @@ Ext.define('Eway.view.monitor.device.filterManager.FilterConfig',{
 					listeners : {
 //						change : this.cascade
 					}
-				}, {
-					fieldLabel : EwayLocale.commen.devTypeName,
-					name : 'classifyItem',
-					xtype : 'combo',
-					displayField : 'name',
-					store : FilterClassifyItem,
-					queryMode : 'local',
-					typeAhead : false,
-					editable : false,
-					valueField : 'value',
-					value : '0'
 				} ]
 			}, {
 				columnWidth : .5,
@@ -87,7 +76,8 @@ Ext.define('Eway.view.monitor.device.filterManager.FilterConfig',{
 					typeAhead : false,
 					valueField : 'value',
 					value : '0',
-					editable : false
+					editable : false,
+					hidden : true
 				}, {
 					fieldLabel : EwayLocale.commen.insideOutside,
 					xtype : 'combo',
@@ -110,6 +100,17 @@ Ext.define('Eway.view.monitor.device.filterManager.FilterConfig',{
 					valueField : 'value',
 					value : '0',
 					editable : false
+				}, {
+					fieldLabel : EwayLocale.commen.devTypeName,
+					name : 'classifyItem',
+					xtype : 'combo',
+					displayField : 'name',
+					store : FilterClassifyItem,
+					queryMode : 'local',
+					typeAhead : false,
+					editable : false,
+					valueField : 'value',
+					value : '0'
 				} ]
 			} ]
 		});

@@ -69,23 +69,23 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 			{
 				header : 'ID',
 				dataIndex : 'id',
-	            locked: true,
+//	            locked: true,
 				hidden: true
 			},{
 				header: EwayLocale.version.task.jobBatchName,//'作业批次名称',
-	            locked: true,
+//	            locked: true,
 				dataIndex:'jobName'
 			},{
 				header: EwayLocale.refs.terminalId,//'设备编号',
-	            locked: true,
+//	            locked: true,
 				dataIndex:'terminalId'
 			},{
 				header:EwayLocale.version.task.patchVersion,//'分发版本',
-	            locked: true,
+//	            locked: true,
 				dataIndex:'version'
 			},{
 				header :EwayLocale.version.task.taskStatus,//'任务状态',
-	            locked: true,
+//	            locked: true,
 				dataIndex:'taskStatus',
 				renderer:function(value,meta,record){
 					if(value == EwayLocale.version.taskStatus.checked){//'部署已确认'){

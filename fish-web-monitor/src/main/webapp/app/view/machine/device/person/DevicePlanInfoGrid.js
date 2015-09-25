@@ -65,5 +65,11 @@ Ext.define('Eway.view.machine.device.person.DevicePlanInfoGrid', {
 		});
 		
 		this.callParent(arguments);
+	},
+
+	onReload : function(params) {
+		this.getStore().load({
+			params : params
+		});
 	}
 });
