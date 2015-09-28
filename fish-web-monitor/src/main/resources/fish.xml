@@ -18,6 +18,13 @@
 			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
   		<property name="location" value="classpath:fish.properties" />
 	</bean>
+	
+	<!-- Spring 国际化配置 -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="defaultEncoding" value="utf-8"/>
+		<property name="basename" value="message"/>
+		<property name="useCodeAsDefaultMessage" value="true" /> 
+	</bean>		
 
 	<!--内存版本
 	<import resource="classpath:fish-mem.xml"/>-->

@@ -1,7 +1,9 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <title>金融自助设备监控系统</title>
+  <title><spring:message code="login.title"/></title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
   <link rel="shortcut icon" type="image/ico" href="resources/images/logo.ico" />
@@ -103,10 +105,10 @@
 				<div id="loginError" class="form-message error" style="display:none"></div>
 			</div>
 				<div style="position:relative;left:150px;background: transparent;">
-					用户：<input id="username" type="text" style="width: 155px" value="admin"/>
+					<spring:message code="login.username"/>：<input id="username" type="text" style="width: 155px" value="admin"/>
 					<br/>
 					<br/>
-					密码：<input id="password" type="password" style="width: 155px" value="admin"/>
+					<spring:message code="login.password"/>：<input id="password" type="password" style="width: 155px" value="admin"/>
 					<br/><br/>
 					<div style="position:relative;left:75px;">
 						<img id="loginBtn" src="resources/images/index/login_01.gif" onclick="javascript:return ajax();" style="cursor: pointer;"></img>
@@ -117,7 +119,7 @@
 		</div>
 	</div>
 	<div id="foot">
-		<center>&copy;深圳市怡化时代科技有限公司&nbsp;&nbsp;&nbsp;&nbsp;</center>
+		<center>&copy;<spring:message code="login.footer"/>&nbsp;&nbsp;&nbsp;&nbsp;</center>
 	</div>
 </div>
 
