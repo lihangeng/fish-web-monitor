@@ -30,5 +30,7 @@ public interface IDeviceVersionService {
     
     IDeviceVersion updateDeviceVersionStatus(long deviceId, long versionId, TaskStatus taskStatus);
 
+    IDeviceVersion updateDeviceVersionStatusWithTaskId(long deviceId, long versionId, TaskStatus taskStatus,long taskId);
+    IDeviceVersion saveOrUpdateDeviceVersionWithTaskId(long deviceId, long versionId, TaskStatus taskStatus, String reason,long taskId);
 
 }

@@ -39,7 +39,19 @@ public class DeviceVersionService implements IDomainDeviceVersionService {
 		dv.setDesc(reason);
 		return dao.saveOrUpdate(dv);
 	}
-
+	@Override
+	public IDeviceVersion saveOrUpdateDeviceVersionWithTaskId(long deviceId, long versionId, TaskStatus taskStatus, String reason,long taskId) {
+		IDeviceVersion dv = this.findDeviceVersionContainsRemoved(deviceId, versionId);
+		if(dv == null){
+			dv = new DeviceVersion();
+			dv.setDeviceId(deviceId);
+			dv.setVersionId(versionId);
+		}
+		dv.setCompleteTaskId(taskId);
+		dv.setTaskStatus(taskStatus);
+		dv.setDesc(reason);
+		return dao.saveOrUpdate(dv);
+	}
 	
    @Transactional(readOnly = true)
    public IDeviceVersion findDeviceVersionContainsRemoved(long deviceId, long versionId) {
@@ -87,7 +99,18 @@ public class DeviceVersionService implements IDomainDeviceVersionService {
 		dv.setTaskStatus(taskStatus);
 		return dao.saveOrUpdate(dv);
 	}
-
+	
+	public IDeviceVersion updateDeviceVersionStatusWithTaskId(long deviceId,long versionId, TaskStatus taskStatus,long taskId) {
+		IDeviceVersion dv = this.findDeviceVersionContainsRemoved(deviceId, versionId);
+		if(dv == null){
+			dv = new DeviceVersion();
+			dv.setDeviceId(deviceId);
+			dv.setVersionId(versionId);
+		}
+		dv.setCompleteTaskId(taskId);
+		dv.setTaskStatus(taskStatus);
+		return dao.saveOrUpdate(dv);
+	}
 
     @Override
     public int getRelationTaskSize(long deviceId,long versionId) {

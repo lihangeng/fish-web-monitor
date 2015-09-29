@@ -118,6 +118,7 @@ public class TaskService implements IDomainTaskService {
 		// 修改或者保存设备版本表
 		//@since 2.0 删除
 		dvService.saveOrUpdateDeviceVersion(entity.getDeviceId(), version.getId(), TaskStatus.NEW, null);
+		dvService.saveOrUpdateDeviceVersionWithTaskId(entity.getDeviceId(), version.getId(), TaskStatus.NEW, null,entity.getId());
 		return entity;
 	}
 
