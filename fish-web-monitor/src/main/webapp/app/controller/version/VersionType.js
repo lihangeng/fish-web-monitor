@@ -67,6 +67,7 @@ Ext.define('Eway.controller.version.VersionType', {
 		if(atmTypes && !Ext.isArray(atmTypes)){
 			data.atmTypes = [atmTypes];
 		}
+		return data;
 	},
 	
 	//在打开修改页面之前
