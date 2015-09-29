@@ -8,6 +8,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,6 +40,8 @@ public class AtmBrandController {
 
 	@Autowired
 	private IAtmBrandService atmBrandService;
+	@Autowired
+	private MessageSource messageSource;
 
 	@Autowired
 	private IAtmTypeService atmTypeService;
@@ -80,7 +83,7 @@ public class AtmBrandController {
 		}
 		forms = ItemForm.toTypeForms(list);
 		if (flag) {
-			forms.add(new ItemForm("-全部-", "0"));
+			forms.add(new ItemForm(messageSource.getMessage("c.brand.combox.all", null, request.getLocale()), "0"));
 		}
 		Collections.reverse(forms);
 		map.addAttribute(FishConstant.SUCCESS, true);
@@ -108,7 +111,7 @@ public class AtmBrandController {
 			list.add(atmType);
 		}
 		forms = ItemForm.toTypeForms(list);
-		forms.add(new ItemForm("-全部-", "0"));
+		forms.add(new ItemForm(messageSource.getMessage("c.brand.combox.all", null, request.getLocale()), "0"));
 		Collections.reverse(forms);
 		map.addAttribute(FishConstant.SUCCESS, true);
 		map.addAttribute(FishConstant.DATA, forms);
