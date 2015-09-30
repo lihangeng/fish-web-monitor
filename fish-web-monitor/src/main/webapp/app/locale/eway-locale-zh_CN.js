@@ -10,7 +10,9 @@ Ext.apply(Eway,{
 			add : '增加',
 			update:'更改',
 			remove:'删除',
-			refresh:'刷新'
+			refresh:'刷新',
+			reset:'重置',
+			back:'返回'
 		},
 		combox:{
 			select:'--请选择--'
@@ -61,7 +63,11 @@ Ext.apply(Eway,{
 				}
 			},
 			atmCatalog:{
-				
+				title:'ATM分类',
+				name:'分类名称',
+				note:'备注',
+				addTitle:'增加ATM分类信息',
+				updateTitle:'更改ATM型号信息'
 			},
 			atmType:{
 				

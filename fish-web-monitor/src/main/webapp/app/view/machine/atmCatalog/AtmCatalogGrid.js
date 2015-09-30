@@ -15,7 +15,7 @@ Ext.define('Eway.view.machine.atmCatalog.AtmCatalogGrid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-				text:'查询',
+				text:Eway.locale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			}
@@ -35,14 +35,11 @@ Ext.define('Eway.view.machine.atmCatalog.AtmCatalogGrid', {
 //				action:'update'
 //			},
 			],
-			columns : [/*{
-				header : '编号',
-				dataIndex : 'no'
-			}, */{
-				header : '分类名称',
+			columns : [{
+				header : Eway.locale.machine.atmCatalog.name,
 				dataIndex : 'name'
 			},{
-				header : '描述',
+				header : Eway.locale.machine.atmCatalog.note,
 				dataIndex : 'note',
 				flex : 1
 			}],
