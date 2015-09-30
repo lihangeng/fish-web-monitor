@@ -35,10 +35,10 @@ Ext.define('Eway.view.Header', {
 					method : 'POST',
 					url : 'api/logout',
 					success : function(response){
-						window.location='login.html';
+						window.location='login.jsp';
 					},
 					failure : function(response){
-						window.location='login.html';
+						window.location='login.jsp';
 					}
 				});
 			}

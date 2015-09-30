@@ -54,10 +54,10 @@ Ext.define('Eway.view.personal.UpdatePwdController', {
 			method : 'POST',
 			url : 'api/logout',
 			success : function(response){
-				window.location='login.html';
+				window.location='login.jsp';
 			},
 			failure : function(response){
-				window.location='login.html';
+				window.location='login.jsp';
 			}
 		});
 	}

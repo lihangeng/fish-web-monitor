@@ -4,6 +4,6 @@ Ext.define('Eway.store.machine.atmBrand.StatusComboBox', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:1, display:'设备供应'}, 
-	       {value:3, display:'设备服役'}]
+	data: [{value:1, display:Eway.locale.machine.atmBrand.comboxStatus.provider}, 
+	       {value:3, display:Eway.locale.machine.atmBrand.comboxStatus.maintance}]
 });
