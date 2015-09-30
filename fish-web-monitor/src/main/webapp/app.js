@@ -24,7 +24,7 @@ Ext.application({
 					            buttons:Ext.Msg.OK,
 					            fn:function(btn,text){
 						   			if (btn == 'ok'){
-						   				window.location='login.html';
+						   				window.location='login.jsp';
 						   			}
 						   		},
 								msg : '会话超时，3秒后自动跳转到登录页面',
@@ -32,7 +32,7 @@ Ext.application({
 							});
 
 							Ext.defer(function(){
-								window.location='login.html';
+								window.location='login.jsp';
 							},3000);
 				     }}catch(e){}
 			}, this);

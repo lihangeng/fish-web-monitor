@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -130,7 +131,7 @@ public class AtmBrandController {
 
 		List<ItemForm> forms = new ArrayList<ItemForm>();
 		forms = ItemForm.toForms(list);
-		forms.add(new ItemForm("-全部-", "0"));
+		forms.add(new ItemForm(messageSource.getMessage("c.brand.combox.all", null, request.getLocale()), "0"));
 		Collections.reverse(forms);
 		map.addAttribute(FishConstant.SUCCESS, true);
 		map.addAttribute(FishConstant.DATA, forms);

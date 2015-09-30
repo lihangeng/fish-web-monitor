@@ -15,7 +15,6 @@
 	<link rel="stylesheet" type="text/css" href="resources/css/font-awesome.css" media="all" />
 
 	<script type="text/javascript" src="ext/ext-all-debug.js"></script>
-	<script type="text/javascript" src="ext/locale/ext-locale-zh_CN.js"></script>
 	<script type="text/javascript" src="ext/packages/ext-theme-crisp/build/ext-theme-crisp.js"></script>  
 	<script type="text/javascript" src="ext/packages/sencha-charts/sencha-charts.js"></script>  
 	<script type="text/javascript" src="ext/ux/cometd/cometd.js"></script>
@@ -56,7 +55,7 @@
 	}
 
 	<%if (session.getAttribute("SESSION_USER") == null) {%>
-		window.location.href="login.html";
+		window.location.href="login.jsp";
 	<%} else {
 		UserSession userSession = (UserSession) session.getAttribute("SESSION_USER");%>
 		var ewayUser = new EwayUserObject(
@@ -83,9 +82,19 @@
         }
       });
   	Ext.cxtPath = '<%=request.getContextPath()%>';
+  	var Eway = Eway || {};
 	</script>
 	<script type="text/javascript" src="app.js"></script>
 	<script type="text/javascript" src="ext/patch.js"></script>
+	<script type="text/javascript" >
+		if(Ext.String.startsWith(Ext.global.navigator.language,"zh")){
+			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-zh_CN.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN.js");
+		}else{
+			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-en.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-en.js");
+		}
+	</script>
 </head>
 
 <body>

@@ -15,11 +15,11 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->',{
-				text:'查询',
+				text:Eway.locale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			},{
-				text: '增加',
+				text: Eway.locale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'atmBrandAdd',
@@ -27,7 +27,7 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '更改',
+				text: Eway.locale.button.update,
 				glyph : 0xf040,
 				action:'update',
 				code : 'atmBrandUpdate',
@@ -35,7 +35,7 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '删除',
+				text: Eway.locale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'atmBrandDel',
@@ -48,27 +48,27 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandGrid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '品牌名称',
+				header : Eway.locale.machine.atmBrand.name,
 				dataIndex : 'name',
 				flex : 1
 			},{
-				header : '生产商国家或地区',
+				header : Eway.locale.machine.atmBrand.country,
 				dataIndex : 'country',
 				flex : 2
 			},{
-				header : '生产商热线1',
+				header : Eway.locale.machine.atmBrand.hotline1,
 				dataIndex : 'hotline1',
 				flex : 1
 			},{
-				header : '生产商热线2',
+				header : Eway.locale.machine.atmBrand.hotline2,
 				dataIndex : 'hotline2',
 				flex : 1
 			},{
-				header : '生产商地址',
+				header : Eway.locale.machine.atmBrand.address,
 				dataIndex : 'address',
 				flex : 3
 			},{
-				header : '生产商状态',
+				header : Eway.locale.machine.atmBrand.status,
 				dataIndex : 'status',
 				sortable : true,
 				renderer: function(value){

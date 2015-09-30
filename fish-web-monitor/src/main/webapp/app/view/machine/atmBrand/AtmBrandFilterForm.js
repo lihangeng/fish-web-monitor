@@ -16,7 +16,7 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandFilterForm', {
 					xtype : 'textfield',
 					labelAlign : 'right',
 					name : 'name',
-					fieldLabel : '品牌名称',
+					fieldLabel : Eway.locale.machine.atmBrand.name,
 					maxLength : 20,
 					msgTarget : 'side'
 				}]
