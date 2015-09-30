@@ -18,6 +18,7 @@ public interface ITask {
 	public long getId();
 
 	public void setId(long id);
+
 	/**
 	 * 设置设备
 	 * @return

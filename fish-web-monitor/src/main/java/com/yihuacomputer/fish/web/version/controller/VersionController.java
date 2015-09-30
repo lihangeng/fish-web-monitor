@@ -502,9 +502,11 @@ public class VersionController {
 		filter.eq("versionType", versionType);
 		filter.descOrder("versionStr");
 		List<IVersion> versionList = versionService.list(filter);
-
+		
 		IFilter filterVersionDistribute = new Filter();
 		filterVersionDistribute.eq("versionType", versionTypeId);
+		UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
+		filterVersionDistribute.eq("orgFlag", userSession.getOrgFlag());
 		Map<Long, VersionDistribute> map = versionService.getVersionDistribute(filterVersionDistribute);
 		List<VersionDistribute> diplayList = new ArrayList<VersionDistribute>();
 		VersionDistribute versionDistribute = new VersionDistribute();
@@ -531,7 +533,18 @@ public class VersionController {
 	@RequestMapping(value = "distributeStatus", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap getVersionDistributeStatus(@RequestParam long versionId, WebRequest webRequest, HttpServletRequest request) {
-		
+
+		UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
+//		filterVersionDistribute.eq("orgFlag", userSession.getOrgFlag());
+		return null;
+	}
+	
+	@RequestMapping(value = "distributeStatusDetail", method = RequestMethod.GET)
+	@ResponseBody
+	public ModelMap getVersionDistributeStatusDetail(@RequestParam long versionId, WebRequest webRequest, HttpServletRequest request) {
+
+		UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
+//		filterVersionDistribute.eq("orgFlag", userSession.getOrgFlag());
 		return null;
 	}
 }

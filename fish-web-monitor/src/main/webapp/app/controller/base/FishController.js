@@ -129,8 +129,13 @@ Ext.define('Eway.controller.base.FishController', {
 				if(action == 'add') {
 					actionName = '增加';
 					var values = form.getCusValues();
-					this.beforeAddSave(win,grid);
-					record = Ext.create(store.getModelName(),values);
+					record = this.beforeAddSave(win,grid);
+					if(undefined==record){
+						record = Ext.create(store.getModelName(),values);
+					}
+					else{
+						record = Ext.create(store.getModelName(),record);
+					}
 				}
 				else if(action == 'update') {
 					actionName = '更改'
