@@ -15,7 +15,7 @@ Ext.define('Eway.controller.base.FishController', {
 		var form = view.down('form').getForm();
 		var bool = form.isValid();
 		if (bool == false) {// 查询输入验证
-			Eway.alert("查询条件存在错误项.");
+			Eway.alert(Eway.locale.tip.search.warn);
 			return;
 		}
 		var values = form.getValues();
@@ -39,14 +39,14 @@ Ext.define('Eway.controller.base.FishController', {
 			sm = grid.getSelectionModel(),
 			count = sm.getCount();
 		if(count == 0){
-			Eway.alert("请选择您要删除的记录.");
+			Eway.alert(Eway.locale.tip.remove.none);
 			return;
 		}
 		else if(count > 1){
-			Eway.alert("只能选择一条记录删除.");
+			Eway.alert(Eway.locale.tip.remove.one);
 			return;
 		}
-		Ext.MessageBox.confirm("请确认", "是否删除该记录?",function(button,text){
+		Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title, Eway.locale.tip.remove.confirm.info,function(button,text){
 			if(button == 'yes'){
 				var record = sm.getLastSelected();
 				record.erase({
@@ -55,7 +55,7 @@ Ext.define('Eway.controller.base.FishController', {
 						me.onQuery();
 					},
 					failure: function(record,operation){
-						Eway.alert("删除失败:" + operation.getError());
+						Eway.alert(Eway.locale.tip.remove.error+ operation.getError());
 					},
 					scope:this
 				});
@@ -65,7 +65,7 @@ Ext.define('Eway.controller.base.FishController', {
 
 
 	_onAddOrUpdate : function(action){
-		var title = action=='add' ? "增加"+this.formConfig.title : "更改"+this.formConfig.title;
+		var title = action=='add' ? Eway.locale.button.add+this.formConfig.title : Eway.locale.button.update+this.formConfig.title;
 		var me = this;
 		Ext.require([this.formConfig.form],function(){
 			if(action=='update'){
@@ -77,7 +77,7 @@ Ext.define('Eway.controller.base.FishController', {
 					return;
 				}
 				else if(count > 1){
-					Eway.alert("只能选择一条记录更改.");
+					Eway.alert(Eway.locale.tip.update.one);
 					return;
 				}
 			}
@@ -127,7 +127,7 @@ Ext.define('Eway.controller.base.FishController', {
 				store.cleanUrlParam();
 				
 				if(action == 'add') {
-					actionName = '增加';
+					actionName = Eway.locale.button.add;
 					var values = form.getCusValues();
 					record = this.beforeAddSave(win,grid);
 					if(undefined==record){
@@ -138,7 +138,7 @@ Ext.define('Eway.controller.base.FishController', {
 					}
 				}
 				else if(action == 'update') {
-					actionName = '更改'
+					actionName = Eway.locale.button.update
 					record = grid.getSelectionModel().getLastSelected(),
 					form.updateCusRecord(record);
 					this.beforeUpdateSave(win,grid,record);
@@ -146,7 +146,7 @@ Ext.define('Eway.controller.base.FishController', {
 				var id = record.get("id");
 				record.save({
 					 success: function(recordInDB) {
-						Eway.alert(actionName + '成功.');
+						Eway.alert(actionName + Eway.locale.tip.success);
 						win.close();
 						if(action == 'add'){
 							this.onQueryAfterAdd();
@@ -160,7 +160,7 @@ Ext.define('Eway.controller.base.FishController', {
 					 },
 					 failure: function(record,operation){
 						store.setUrlParamsByObject(oldParams);
-						Eway.alert(actionName + "失败:" + operation.getError());
+						Eway.alert(actionName + Eway.locale.tip.fail + operation.getError());
 						store.rejectChanges();
 						button.enable();
 					 },

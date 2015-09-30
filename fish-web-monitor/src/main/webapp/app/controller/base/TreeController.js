@@ -7,8 +7,8 @@ Ext.define('Eway.controller.base.TreeController', {
 	filterConfig : {xtype : '', height : 90},
 	gridConfig : {xtype : ''},
 	detailConfig : {xtype : '', height : 100},
-	addFormConfig : {xtype : '', title : '增加'},
-	updateFormConfig : {xtype : '', title : '修改'},
+	addFormConfig : {xtype : '', title : Eway.locale.button.add},
+	updateFormConfig : {xtype : '', title : Eway.locale.button.update},
 	treeConfig : {xtype : '', width : 200},
 
 	makeEwayView : function() {
@@ -63,7 +63,7 @@ Ext.define('Eway.controller.base.TreeController', {
 					},*/'->', {
 					xtype : 'buttongroup',
 					items : [{
-						text : '刷新',
+						text : Eway.locale.button.refresh,
 						listeners : {
 							click : this.onRefresh,
 							scope : this
@@ -167,8 +167,8 @@ Ext.define('Eway.controller.base.TreeController', {
 		var selectModel = this.getGrid().getSelectionModel();
 		var selectedRecord = selectModel.getSelected();
 		if(selectModel.getCount()==1){
-		Ext.MessageBox.confirm("请确认",
-			"是否删除该记录?",
+		Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
+			Eway.locale.tip.remove.confirm.info,
 			function(button,text) {
 				if(button=="yes"){
 					this.getStore().remove(this.selectedRecord);

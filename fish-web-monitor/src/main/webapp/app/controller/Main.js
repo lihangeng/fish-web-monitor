@@ -45,12 +45,7 @@ Ext.define('Eway.controller.Main', {
 					slideBackAnimation: 'elasticIn',
 					html: msg
 				}).show();
-			},
-			addSuccess : '增加成功.',
-			updateSuccess : '更改成功.',
-			deleteSuccess : '删除成功.',
-			choiceUpdateMsg :'请选择您要更改的记录.',
-			choiceDeleteMsg :'请选择您要删除的记录.'
+			}
 		});
 	},
 
