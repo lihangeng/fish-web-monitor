@@ -450,12 +450,12 @@ public class VersionService implements IDomainVersionService {
 		List<Object> hqlArgList1 = new ArrayList<Object>();
 		hqlArgList1.add(Status.OPENING);
 		hqlArgList1.add("%"+orgFlag);
-		int allDevice = dao.findUniqueByHql(allDeviceHql.toString(), hqlArgList1.toArray());
+		Object allDevice = dao.findUniqueByHql(allDeviceHql.toString(), hqlArgList1.toArray());
 		VersionStatusDistribute versionStatusDistribute = new VersionStatusDistribute();
 		versionStatusDistribute.setTaskStatus(TaskStatus.OTHER.name());
 		versionStatusDistribute.setTaskStatusText(TaskStatus.OTHER.getText());
 		versionStatusDistribute.setVersionId(Integer.parseInt(String.valueOf(versionId)));
-		versionStatusDistribute.setTaskStatusNumber(allDevice-hasStatusCounter);
+		versionStatusDistribute.setTaskStatusNumber(Integer.parseInt(String.valueOf(allDevice==null?0:allDevice))-hasStatusCounter);
 		statusDistributeList.add(versionStatusDistribute);
 		return statusDistributeList;
 	}
