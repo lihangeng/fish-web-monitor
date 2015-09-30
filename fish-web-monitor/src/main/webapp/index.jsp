@@ -73,20 +73,16 @@
 
   	</script>
 	<script type="text/javascript">
-	Ext.BLANK_IMAGE_URL = 'resources/images/s.gif';
-  	Ext.themeModel = "new";
-  	Ext.Loader.setConfig({
-  		enabled : true,//动态加载
-        paths: {
-            'Ext.ux': 'ext/ux'
-        }
-      });
-  	Ext.cxtPath = '<%=request.getContextPath()%>';
-  	var Eway = Eway || {};
-	</script>
-	<script type="text/javascript" src="app.js"></script>
-	<script type="text/javascript" src="ext/patch.js"></script>
-	<script type="text/javascript" >
+		Ext.BLANK_IMAGE_URL = 'resources/images/s.gif';
+	  	Ext.themeModel = "new";
+	  	Ext.Loader.setConfig({
+	  		enabled : true,//动态加载
+	        paths: {
+	            'Ext.ux': 'ext/ux'
+	        }
+	      });
+	  	Ext.cxtPath = '<%=request.getContextPath()%>';
+	  	var Eway = Eway || {};
 		if(Ext.String.startsWith(Ext.global.navigator.language,"zh")){
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN.js");
@@ -95,6 +91,8 @@
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-en.js");
 		}
 	</script>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="ext/patch.js"></script>
 </head>
 
 <body>

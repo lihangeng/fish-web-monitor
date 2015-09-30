@@ -39,11 +39,11 @@ Ext.define('Eway.view.machine.atmBrand.Form',{
 					xtype : 'field_atmBrand_hotline1',
 					allowBlank: false,
 					regex:/(^[0-9]{3,4}[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^[0-9]{3,4}\-[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^\([0-9]{3,4}\)[0-9]{3,8}$)|(^0{0,1}13[0-9]{9}$)/,
-					regexText: '请输入正确的电话号码'
+					regexText: Eway.locale.tip.phone
 			},{
 					xtype : 'field_atmBrand_hotline2',
 					regex:/(^[0-9]{3,4}[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^[0-9]{3,4}\-[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^\([0-9]{3,4}\)[0-9]{3,8}$)|(^0{0,1}13[0-9]{9}$)/,
-					regexText: '请输入正确的电话号码'
+					regexText: Eway.locale.tip.phone
 			},{
 					xtype : 'field_atmBrand_address',
 					maxLength : 60,
