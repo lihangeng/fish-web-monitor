@@ -5,8 +5,8 @@ Ext.define('Eway.store.person.person.PersonStateFilterDict', {
 	model: 'Eway.model.Dict',
 	
 	data: [
-	       {value:'1', display:'在岗'}, 
-	       {value:'2', display:'调休'}, 
-	       {value:'3', display:'休假'}, 
-	       {value:'0', display:'其他'}]
+	       {value:'1', display:Eway.locale.person.bankPer.comboxStatus.onJob}, 
+	       {value:'2', display:Eway.locale.person.bankPer.comboxStatus.onAdjust}, 
+	       {value:'3', display:Eway.locale.person.bankPer.comboxStatus.onVacation}, 
+	       {value:'0', display:Eway.locale.person.bankPer.comboxStatus.other}]
 });

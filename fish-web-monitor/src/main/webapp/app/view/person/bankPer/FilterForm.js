@@ -25,16 +25,16 @@ Ext.define('Eway.view.person.bankPer.FilterForm', {
 					msgTarget : 'side'
 				}, {
 					xtype : 'field.mobile',
-					fieldLabel : '手机',
+					fieldLabel : Eway.locale.person.bankPer.mobile,
 					labelWidth : 50,
 					regex : /^\d{8,11}$/,
-					regexText : '手机电话号码只能输入8到11位数字‘0-9’！',
+					regexText : Eway.locale.vtype.mobile,
 					msgTarget : 'side'
 				} ]
 			}, {
 				columnWidth : .3,
 				items : [ {
-					fieldLabel : '工号',
+					fieldLabel : Eway.locale.person.bankPer.jobNum,
 					xtype : 'textfield',
 					labelWidth : 50,
 					editable : true,
@@ -53,7 +53,7 @@ Ext.define('Eway.view.person.bankPer.FilterForm', {
 				items : [ {
 					labelWidth : 50,
 					xtype : 'field_person_personJobComboBox',
-					fieldLabel : '岗位',
+					fieldLabel : Eway.locale.person.bankPer.personJobName,
 					msgTarget : 'side'
 				} ]
 			} ]

@@ -5,7 +5,7 @@ Ext.define('Eway.view.person.bankOrg.Add', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.bank_organization_add',
 
-	title: '增加银行机构信息',
+	title: Eway.locale.person.bankOrg.addBankOrgTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -29,20 +29,20 @@ Ext.define('Eway.view.person.bankOrg.Add', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font> 机构编号',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.bankOrg.code,
 					xtype: 'field.code',
 					regex: /^[a-zA-Z0-9][a-zA-Z0-9-_\.]{0,19}$/,
-					regexText:'只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！',
+					regexText: Eway.locale.vtype.bankOrgCode,
 					allowBlank: false
 				}, {
-					fieldLabel : '<font color="red">*</font> 机构名称',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.bankOrg.name,
 					xtype: 'field.name',
 					maxLength : 40,
 					allowBlank: false
 				},{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font>上级机构',
-					emptyText: '--请选择--',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.bankOrg.upgradeOrg,
+					emptyText: Eway.locale.combox.select,
 					editable : false,
 					allowBlank: false,
 					name : 'parent',
@@ -58,29 +58,29 @@ Ext.define('Eway.view.person.bankOrg.Add', {
 					name:'orgLevel',
 					store:'person.organization.OrganizationLevelDict',
 					editable : false,
-					fieldLabel : '<font color="red">*</font>机构级别',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.person.bankOrg.orgLevel,
 					allowBlank:false,
 					value:0
 				},{
 					xtype:'textfield',
-					fieldLabel : '机构地址',
+					fieldLabel : Eway.locale.person.bankOrg.address,
 					maxLength : 60,
 					allowBlank: true,
 					name :'address'
 				},{
 					xtype:'textfield',
-					fieldLabel:'邮政编码',
+					fieldLabel: Eway.locale.person.bankOrg.zip,
 					allowBlank: true,
 					name :'zip',
 					regex: /^[\d]{6}$/,
-					regexText:'只能输入6个‘0-9’的数字！',
+					regexText: Eway.locale.vtype.zip,
 			        hideTrigger: true,
 			        keyNavEnabled: false,
 			        mouseWheelEnabled: false
 				},{
 					xtype : 'textarea',
 					name : 'description',
-					fieldLabel : '机构描述',
+					fieldLabel : Eway.locale.person.bankOrg.description,
 					autoScroll : true,
 					maxLength :40,
 					allowBlank : true
@@ -88,14 +88,14 @@ Ext.define('Eway.view.person.bankOrg.Add', {
 				buttonAlign : 'center',
 				buttons: [{
 					xtype : 'button',
-					text: '确认',
+					text: Eway.locale.button.confirm,
 					action: 'add'
 				}, {
-					text: '重置',
+					text: Eway.locale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: '取消',
+					text: Eway.locale.button.cancle,
 					handler: this.onOver
 				}]
 			}
