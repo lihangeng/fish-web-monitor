@@ -4,9 +4,9 @@ Ext.define('Eway.store.person.organization.OrganizationStateDict', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'0', display:'新建'}, 
-	       {value:'1', display:'正常'}, 
-	       {value:'2', display:'锁定'}, 
-	       {value:'3', display:'无效'}, 
-	       {value:'4', display:'冻结'}]
+	data: [{value:'0', display:Eway.locale.person.bankOrg.organizationStateDict.newCreate}, 
+	       {value:'1', display:Eway.locale.person.bankOrg.organizationStateDict.normal}, 
+	       {value:'2', display:Eway.locale.person.bankOrg.organizationStateDict.locked}, 
+	       {value:'3', display:Eway.locale.person.bankOrg.organizationStateDict.disable}, 
+	       {value:'4', display:Eway.locale.person.bankOrg.organizationStateDict.frozen}]
 });
