@@ -1,10 +1,10 @@
 Ext.define('Eway.store.person.organization.OrganizationLevelDict', {
 	extend: 'Ext.data.Store',
 	model: 'Eway.model.Dict',
-    data : [{value:0, display:'总行'},
-            {value:1, display:'分行'},
-            {value:2, display:'支行'},
-            {value:3, display:'网点'}]
+    data : [{value:0, display:Eway.locale.person.bankOrg.organizationLevelDict.rootBank},
+            {value:1, display:Eway.locale.person.bankOrg.organizationLevelDict.branchBank},
+            {value:2, display:Eway.locale.person.bankOrg.organizationLevelDict.tagBranchBank},
+            {value:3, display:Eway.locale.person.bankOrg.organizationLevelDict.netBank}]
 
 
 });

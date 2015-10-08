@@ -17,11 +17,11 @@ Ext.define('Eway.view.person.bankPer.Grid', {
 				action:'tip',
 				xtype:'tbtext'
 			},'->', {
-				text: '查询',
+				text: Eway.locale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			}, {
-				text: '增加',
+				text: Eway.locale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'bankPerAdd',
@@ -29,7 +29,7 @@ Ext.define('Eway.view.person.bankPer.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '更改',
+				text: Eway.locale.button.update,
 				glyph : 0xf040,
 				action: 'update',
 				code : 'bankPerUpdate',
@@ -37,7 +37,7 @@ Ext.define('Eway.view.person.bankPer.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '删除',
+				text: Eway.locale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'bankPerDel',
@@ -45,7 +45,7 @@ Ext.define('Eway.view.person.bankPer.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '关联设备',
+				text: Eway.locale.button.bankPerlink,
 				glyph : 0xf0c1,
 				action: 'link',
 				code : 'bankPerlink',
@@ -58,65 +58,65 @@ Ext.define('Eway.view.person.bankPer.Grid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '工号',
+				header : Eway.locale.person.bankPer.jobNum,
 				dataIndex : 'jobNum'
 			},{
-				header : '姓名',
+				header : Eway.locale.person.bankPer.name,
 				dataIndex : 'name'
 			}, {
-				header : '岗位',
+				header : Eway.locale.person.bankPer.personJobName,
 				dataIndex : 'personJobName'
 			},{
-				header : '机构',
+				header : Eway.locale.person.bankPer.organizationName,
 				dataIndex : 'organizationName'
 			},{
-				header : '状态',
+				header : Eway.locale.person.bankPer.state,
 				dataIndex : 'state',
 				renderer: function(value,metadata,record){
 					if(value==1){
-		                	 return "在岗";
+		                	 return Eway.locale.person.bankPer.comboxStatus.onJob;
 		             }else if(value==2){
-		                	   return "调休";
+		                	   return Eway.locale.person.bankPer.comboxStatus.onAdjust;
 		             }else if(value==3){
-		                	   return "休假";
+		                	   return Eway.locale.person.bankPer.comboxStatus.onVacation;
 		             }else if(value==0){
-		                	   return "其他";
+		                	   return Eway.locale.person.bankPer.comboxStatus.other;
 		             }
 				}
 			},{
-				header : '类型',
+				header : Eway.locale.person.bankPer.type,
 				dataIndex : 'type',
 				renderer: function(value,metadata,record){
 					if(value==0){
-		                	 return "管机员";
+		                	 return Eway.locale.person.bankPer.comboxType.machineManager;
 		             }else if(value==1){
-		                	   return "维修人员";
+		                	   return Eway.locale.person.bankPer.comboxType.machineRepairer;
 		             }
 				}
 			}, {
-				header : '手机',
+				header : Eway.locale.person.bankPer.mobile,
 				dataIndex : 'mobile'
 			},{
-				header : '邮箱',
+				header : Eway.locale.person.bankPer.email,
 				dataIndex : 'email',
 				width : 150
 			}, {
-				header : '固话',
+				header : Eway.locale.person.bankPer.phone,
 				dataIndex : 'phone'
 			},{
-				header : '性别',
+				header : Eway.locale.person.bankPer.gender,
 				dataIndex : 'gender',
 				renderer: function(value,metadata,record){
 					if(value=="MALE"){
-	                	   return "男";
+	                	   return Eway.locale.person.bankPer.comboxGender.male;
 	                   }else if(value=="FEMALE"){
-	                	   return "女";
+	                	   return Eway.locale.person.bankPer.comboxGender.female;
 	                   }else{
-	                	   return "未知";
+	                	   return Eway.locale.person.bankPer.comboxGender.unkown;
 	                   }
 				}
 			},{
-				header : '备注',
+				header : Eway.locale.person.bankPer.remark,
 				dataIndex : 'remark',
 				width : 150
 			}],

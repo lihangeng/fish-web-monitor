@@ -8,7 +8,7 @@ Ext.define('Eway.view.person.bankOrg.View', {
 	requires: ['Eway.view.person.bankOrg.Grid',
 	           'Eway.view.person.bankOrg.FilterForm'],
 
-	title: '银行机构管理',
+	title: Eway.locale.person.bankOrg.title,
 	layout: 'border',
 
 	initComponent: function() {
@@ -16,7 +16,7 @@ Ext.define('Eway.view.person.bankOrg.View', {
 		Ext.apply(this, {
 			items: [{
 				region: 'east',
-				title : '机构导航',
+				title : Eway.view.person.bankOrg.orgNavi,
 				header: false,
 				xtype : 'treepanel',
 				width : 200,

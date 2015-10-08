@@ -3,7 +3,7 @@ Ext.define('Eway.view.field.person.GenderFilter', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field.genderFilter',
 	
-	fieldLabel : '性别',
+	fieldLabel : Eway.locale.person.bankPer.gender,
 	name : 'gender',
 	hiddenName : 'gender',
 	msgTarget : 'side',

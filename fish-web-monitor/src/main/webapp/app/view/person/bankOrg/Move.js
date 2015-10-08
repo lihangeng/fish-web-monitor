@@ -5,7 +5,7 @@ Ext.define('Eway.view.person.bankOrg.Move', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.bank_organization_move',
 
-	title : '组织迁移',
+	title : Eway.locale.person.bankOrg.moveBankTitle,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -30,8 +30,8 @@ Ext.define('Eway.view.person.bankOrg.Move', {
 				},
 				items : [ {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font>上级机构',
-					emptyText : '--请选择--',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.person.bankOrg.upgradeOrg,
+					emptyText : Eway.locale.combox.select,
 					allowBlank : false,
 					editable : false,
 					name : 'parent',
@@ -43,15 +43,15 @@ Ext.define('Eway.view.person.bankOrg.Move', {
 					name : 'parentId'
 				} ],
 				fbar : [ {
-					text : '确定',
+					text : Eway.locale.button.confirm,
 					iconCls : 'sureBtn',
 					action : 'move'
 				}, {
-					text : '重置',
+					text : Eway.locale.button.reset,
 					handler : this.onReset,
 					hidden : true
 				}, {
-					text : '返回',
+					text : Eway.locale.button.back,
 					iconCls : 'returnBtn',
 					handler : this.onOver
 				} ]
