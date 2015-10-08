@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,6 +50,7 @@ public class AtmBrandController {
 	public @ResponseBody
 	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search brand : start = %s ,limt = %s ", start, limit));
+		logger.info("locale : " +request.getLocale().getDisplayName());
 		IFilter filter = request2filter(request);
 		ModelMap result = new ModelMap();
 		IPageResult<IAtmVendor> pageResult = atmBrandService.page(start, limit, filter);

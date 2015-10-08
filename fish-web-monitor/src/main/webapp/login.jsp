@@ -105,10 +105,10 @@
 				<div id="loginError" class="form-message error" style="display:none"></div>
 			</div>
 				<div style="position:relative;left:150px;background: transparent;">
-					<spring:message code="login.username"/>：<input id="username" type="text" style="width: 155px" value="admin"/>
+					<spring:message code="login.username"/><input id="username" type="text" style="width: 155px" value="admin"/>
 					<br/>
 					<br/>
-					<spring:message code="login.password"/>：<input id="password" type="password" style="width: 155px" value="admin"/>
+					<spring:message code="login.password"/><input id="password" type="password" style="width: 155px" value="admin"/>
 					<br/><br/>
 					<div style="position:relative;left:75px;">
 						<img id="loginBtn" src="resources/images/index/login_01.gif" onclick="javascript:return ajax();" style="cursor: pointer;"></img>
