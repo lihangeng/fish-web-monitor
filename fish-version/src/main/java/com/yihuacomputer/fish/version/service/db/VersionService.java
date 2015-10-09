@@ -24,6 +24,8 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.common.util.StringUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.person.IUserService;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
@@ -43,7 +45,6 @@ import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.machine.entity.device.Device;
 import com.yihuacomputer.fish.version.entity.DeviceSoftVersion;
-import com.yihuacomputer.fish.version.entity.DeviceVersion;
 import com.yihuacomputer.fish.version.entity.Version;
 import com.yihuacomputer.fish.version.entity.VersionTypeAtmTypeRelation;
 import com.yihuacomputer.fish.version.service.api.IDomainVersionService;
@@ -65,6 +66,8 @@ public class VersionService implements IDomainVersionService {
 	private IUserService userService;
 	@Autowired
 	private IDeviceSoftVersionService deviceVersionService;
+	@Autowired
+	private IDeviceService deviceService;
 	@Autowired
 	private ITaskService taskService;
 	@Autowired
@@ -100,13 +103,6 @@ public class VersionService implements IDomainVersionService {
 		return entity;
 	}
 	
-	public static void main(String args[]){
-		String abc = "1231";
-		String major = "00000000"+abc;
-		major = major.substring(major.length()-8);
-		System.out.println(major);
-	}
-
 	private String getMD5CheckNum(String serverPath, String fileName) {
 		File file = new File(serverPath, fileName);
 		if (file.exists()) {
@@ -312,13 +308,17 @@ public class VersionService implements IDomainVersionService {
 	@Override
 	public void collectCurrentVersionInfo(String terminalId, String typeName, String versionNo) {
 		try {
+			IDevice device = deviceService.get(terminalId);
+			if(null==device){
+				throw new AppException("设备不存在");
+			}
 			if (typeName == null || "".equals(typeName)) {
 				throw new AppException("版本类型为空");
 			}
 			if (versionNo == null || "".equals(versionNo)) {
 				throw new AppException("版本号为空");
 			}
-			IDeviceSoftVersion dsv = deviceVersionService.get(terminalId, typeName);
+			IDeviceSoftVersion dsv = deviceVersionService.get(device.getId(), typeName);
 			IVersion version = this.autoUpdate(typeName, versionNo);
 			if (dsv != null) {
 				if (!versionNo.equals(dsv.getVersionNo())) {
@@ -327,7 +327,7 @@ public class VersionService implements IDomainVersionService {
 				}
 			} else {
 				dsv = deviceVersionService.make();
-				dsv.setTerminalId(terminalId);
+				dsv.setDeviceId(device.getId());
 				dsv.setTypeName(typeName);
 				dsv.setVersionNo(versionNo);
 				dsv.setVersionNo(versionNo);
@@ -389,7 +389,8 @@ public class VersionService implements IDomainVersionService {
 		append("where version.versionNo= devicesoftVersion.versionNo and version.versionType.typeName=devicesoftVersion.typeName ").
 		append("and device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId ").
 		append(" and device.status= ? ").append(" and device.organization.orgFlag like ? ").
-		append("and device.terminalId= devicesoftVersion.terminalId and version.versionType.id=? ");
+//		append("and device.terminalId= devicesoftVersion.terminalId ").
+		append(" and version.versionType.id=? ");
 		Object versionType = filter.getValue("versionType");
 		Object orgFlag = filter.getValue("orgFlag");
 		hqlArgList.add(Status.OPENING);
@@ -415,7 +416,7 @@ public class VersionService implements IDomainVersionService {
 		StringBuffer statusHql = new StringBuffer();
 		List<Object> hqlArgList = new ArrayList<Object>();
 		statusHql.append("select deviceVersion.taskStatus,deviceVersion.versionId,count(deviceVersion) from ").
-		append(DeviceVersion.class.getSimpleName()).append(" deviceVersion,").
+//		append(DeviceVersion.class.getSimpleName()).append(" deviceVersion,").
 		append(Device.class.getSimpleName()).append(" device, ").
 		append(Version.class.getSimpleName()).append(" version, ").
 		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionTypeAtmType ").
@@ -450,12 +451,12 @@ public class VersionService implements IDomainVersionService {
 		List<Object> hqlArgList1 = new ArrayList<Object>();
 		hqlArgList1.add(Status.OPENING);
 		hqlArgList1.add("%"+orgFlag);
-		Object allDevice = dao.findUniqueByHql(allDeviceHql.toString(), hqlArgList1.toArray());
+		int allDevice = dao.findUniqueByHql(allDeviceHql.toString(), hqlArgList1.toArray());
 		VersionStatusDistribute versionStatusDistribute = new VersionStatusDistribute();
 		versionStatusDistribute.setTaskStatus(TaskStatus.OTHER.name());
 		versionStatusDistribute.setTaskStatusText(TaskStatus.OTHER.getText());
 		versionStatusDistribute.setVersionId(Integer.parseInt(String.valueOf(versionId)));
-		versionStatusDistribute.setTaskStatusNumber(Integer.parseInt(String.valueOf(allDevice==null?0:allDevice))-hasStatusCounter);
+		versionStatusDistribute.setTaskStatusNumber(allDevice-hasStatusCounter);
 		statusDistributeList.add(versionStatusDistribute);
 		return statusDistributeList;
 	}
@@ -464,7 +465,7 @@ public class VersionService implements IDomainVersionService {
 		StringBuffer statusDetailHql = new StringBuffer();
 		List<Object> hqlArgList = new ArrayList<Object>();
 		statusDetailHql.append("select device, from ").
-		append(DeviceVersion.class.getSimpleName()).append(" deviceVersion,").
+//		append(DeviceVersion.class.getSimpleName()).append(" deviceVersion,").
 		append(Device.class.getSimpleName()).append(" device, ").
 		append(Version.class.getSimpleName()).append(" version, ").
 		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionTypeAtmType ").

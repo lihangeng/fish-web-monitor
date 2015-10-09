@@ -14,7 +14,6 @@ import com.yihuacomputer.fish.api.version.IVersionDownloadService;
 import com.yihuacomputer.fish.api.version.IVersionStatics;
 import com.yihuacomputer.fish.api.version.IVersionStaticsService;
 import com.yihuacomputer.fish.version.entity.VersionStatics;
-import com.yihuacomputer.fish.version.service.api.IDomainDeviceVersionService;
 
 /**
  * @author xuxigang
@@ -26,9 +25,6 @@ public class VersionStaticsService implements IVersionStaticsService {
 
     @Autowired
     private IDeviceService deviceService;   
-    
-    @Autowired
-    private IDomainDeviceVersionService dvService;
     
     @Autowired
     private IVersionDownloadService downloadService;
@@ -43,22 +39,13 @@ public class VersionStaticsService implements IVersionStaticsService {
         return deviceService.getOpeningDeviceTotal(org);
     }
 
-    @Override
-    public long getSuccessTotal(IVersion version) {
-        return dvService.getSuccess(version.getId());
-    }
-
-    @Override
-    public long getFailTotal(IVersion version) {
-        return dvService.getFail(version.getId());
-    }
 
     @Override
     public IVersionStatics getVersionStatics(IVersion version,IOrganization org) {
         VersionStatics vs = new VersionStatics(version);
         vs.setDeviceTotal(this.getDeviceTotal(org));
-        vs.setSuccessTotal(this.getSuccessTotal(version));
-        vs.setFailTotal(this.getFailTotal(version));
+//        vs.setSuccessTotal(this.getSuccessTotal(version));
+//        vs.setFailTotal(this.getFailTotal(version));
         vs.setMayBeDownTotal(downloadService.getMayBeDownDevice(version,org));
         return vs;
     }

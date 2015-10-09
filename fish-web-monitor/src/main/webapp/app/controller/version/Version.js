@@ -50,9 +50,6 @@ Ext.define('Eway.controller.version.Version', {
 				click : this.onUpdate
 			},
 			'versionView version_grid':{
-				   itemclick : this.onClickHref
-			},
-			'versionView version_grid':{
 				   select : this.onSelect
 			},
 			'versionView button[action=down]' :{
@@ -85,20 +82,6 @@ Ext.define('Eway.controller.version.Version', {
 		    }
 		});
 		this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionType")+"-"+record.get("versionNo"));
-	},
-
-	//点击超链接下载版本文件
-	onClickHref : function(grid, record, item, index, e, options) {
-		var fileName = record.get("serverPath");
-		if (e && e.getTarget().innerHTML === fileName) { //当单击超链接的时候
-			var typeName =  record.get("versionType");
-			fileName = fileName.replace("&","%26");
-			var url = 'api/version/version/download?typeName=' + typeName + '&fileName=' + fileName;
-			var iframe = document.getElementById('downloadFileFromWeb');
-			iframe.src = url;
-		}else{
-			
-		}
 	},
 
 	//获得版本的Store

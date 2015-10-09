@@ -26,7 +26,7 @@ public interface IDeviceSoftVersionService {
 
 	public IPageResult<IDeviceSoftVersion> page(int offset, int limit, IFilter filter);
 	
-	public IDeviceSoftVersion get(String terminalId,String typeName);
+	public IDeviceSoftVersion get(long terminalId,String typeName);
 	
 	public List<Object> findDeviceSoftVersions(String typeName);
 }

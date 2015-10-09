@@ -24,11 +24,9 @@ import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
-import com.yihuacomputer.fish.api.version.IDeviceVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.VersionStatus;
-import com.yihuacomputer.fish.api.version.job.IJobService;
 import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistory;
 import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistoryService;
 import com.yihuacomputer.fish.api.version.job.NoticeStatus;
@@ -54,13 +52,7 @@ public class TaskService implements IDomainTaskService {
 	private IGenericDao dao;
 
 	@Autowired
-	private IDeviceVersionService dvService;
-
-	@Autowired
 	private IVersionService versionService;
-
-	@Autowired
-	private IJobService jobService;
 
 	@Autowired
 	private IUpdateDeployDateHistoryService updateDeployDateService;
@@ -77,8 +69,8 @@ public class TaskService implements IDomainTaskService {
 	}
 
 	@Override
-	public ITask make() {
-		Task task = new Task();
+	public ITask make(Date firstCreateDate) {
+		Task task = new Task(firstCreateDate);
 		task.setTaskService(this);
 		return task;
 	}
@@ -117,8 +109,6 @@ public class TaskService implements IDomainTaskService {
 		}
 		// 修改或者保存设备版本表
 		//@since 2.0 删除
-		dvService.saveOrUpdateDeviceVersion(entity.getDeviceId(), version.getId(), TaskStatus.NEW, null);
-		dvService.saveOrUpdateDeviceVersionWithTaskId(entity.getDeviceId(), version.getId(), TaskStatus.NEW, null,entity.getId());
 		return entity;
 	}
 
@@ -139,7 +129,6 @@ public class TaskService implements IDomainTaskService {
 
 			// 修改
 			//@since 2.0 删除
-			dvService.saveOrUpdateDeviceVersion(entity.getDeviceId(), version.getId(), entity.getStatus(), entity.getReason());
 		}
 	}
 
@@ -165,14 +154,9 @@ public class TaskService implements IDomainTaskService {
 	public void cancelTasks(List<ITask> tasks) {
 		/**/int size = tasks.size();
 		if (size > 0) {
-//			IJob job = tasks.get(0).getJob();
-//			if (jobService.getNotRemovedTasks(job) == 0) {// 该作业下的任务全部被取消
-//				jobService.cascadeDelete(job);
-//			} else {
-				for (ITask task : tasks) {// 修改设备版本表的任务状态为“删除”
-					dvService.updateDeviceVersionStatus(task.getDevice().getId(), task.getVersion().getId(), TaskStatus.REMOVED);
-				}
-//			}
+			for (ITask task : tasks) {// 修改设备版本表的任务状态为“删除”
+				task.setStatus(TaskStatus.CANCELED);
+			}
 		}
 	}
 
@@ -205,7 +189,7 @@ public class TaskService implements IDomainTaskService {
 	@Transactional(readOnly = true)
 	public ITask findTask(long deviceId, long versionId) {
 		StringBuffer hql = new StringBuffer();
-		hql.append("from Task t where t.deviceId = ? and t.job.version.id = ? and t.status <> ?");
+		hql.append("from Task t where t.deviceId = ? and t.version.id = ? and t.status <> ?");
 		return dao.findUniqueByHql(hql.toString(), deviceId, versionId, TaskStatus.REMOVED);
 	}
 
