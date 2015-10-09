@@ -65,7 +65,7 @@ Ext.define('Eway.view.person.bankOrg.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				},
 				menu: [{
-					text: Eway.locale.person.bankOrg.setManager,
+					text: Eway.locale.commen.setManager,
 					action: 'setManager'
 				}, {
 					text: Eway.locale.person.bankOrg.removeManager,

@@ -33,7 +33,7 @@ Ext.define('Eway.view.person.bankPer.Add', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.bankPer.name,
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.commen.name,
 					xtype : 'field.username',
 					maxLength : 20,
 					allowBlank : false
@@ -47,30 +47,30 @@ Ext.define('Eway.view.person.bankPer.Add', {
 					hiddenValue : 'organizationId',
 					editable : false
 			 	},{
-					fieldLabel: '<font color="red">*</font> '+Eway.locale.person.bankPer.mobile,
+					fieldLabel: '<font color="red">*</font> '+Eway.locale.commen.mobile,
 					xtype : 'field.mobile',
 					vtype:'mobile',
 					allowBlank : false
 				},{
 					xtype : 'field_person_personJobComboBox',
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.bankPer.personJobName,
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.commen.personJobName,
 					value : '0005',
 					allowBlank: false
 			 	},{
-					fieldLabel : Eway.locale.person.bankPer.jobNum,
+					fieldLabel : Eway.locale.commen.jobNum,
 					xtype : 'textfield',
 					name:'jobNum',
 					maxLength : 20,
 					allowBlank : true
 				},{
 					xtype : 'field.state',
-					fieldLabel : Eway.locale.person.bankPer.state,
+					fieldLabel : Eway.locale.commen.state,
 					value : '1',
 					allowBlank : false,
 					editable : false
 				},{
 				    xtype : 'field.gender',
-				    fieldLabel : Eway.locale.person.bankPer.gender,
+				    fieldLabel : Eway.locale.commen.gender,
 				    emptyText: Eway.locale.combox.select,
 				    allowBlank : false,
 				    value : 'MALE',
@@ -84,7 +84,7 @@ Ext.define('Eway.view.person.bankPer.Add', {
 					editable : false
 				},{
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.person.bankPer.phone,
+					fieldLabel : Eway.locale.commen.phone,
 					name :'phone',
 					vtype:'telephone'
 				},{

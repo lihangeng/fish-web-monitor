@@ -13,5 +13,5 @@ Ext.define('Eway.view.field.person.UserType', {
 	queryMode : 'local',
 	value:1,
 	autoLoadOnValue:true,
-	emptyText: '--请选择--'
+	emptyText: Eway.locale.combox.select
 });

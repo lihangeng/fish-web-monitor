@@ -5,7 +5,7 @@ Ext.define('Eway.view.person.user.ViewUserLog', {
 	alias: 'widget.person_user_viewUserLog',
 	extend: 'Eway.view.base.Panel',
 
-	title: '操作员日志',
+	title: Eway.locale.person.user.operTitle,
 	layout: 'border',
 
 	requires: ['Eway.view.person.user.UserLogGrid',

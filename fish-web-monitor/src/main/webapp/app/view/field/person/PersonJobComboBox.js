@@ -1,7 +1,7 @@
 Ext.define('Eway.view.field.person.PersonJobComboBox', {
 	extend : 'Ext.form.field.ComboBox',
 	alias : 'widget.field_person_personJobComboBox',
-	fieldLabel : Eway.locale.person.bankPer.personJobName,
+	fieldLabel : Eway.locale.commen.personJobName,
 	name : 'personJobCode',
 	msgTarget : 'side',
 	store : 'person.person.PersonJob',

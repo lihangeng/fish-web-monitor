@@ -6,7 +6,7 @@ Ext.define('Eway.view.person.organization.LinkedPersonGrid', {
 	requires: ['Eway.lib.Util'],
 	border : false,
 	
-	title: '当前机构下人员：',
+	title: Eway.locale.person.bankOrg.linkPeronTitle,
 	
 	initComponent: function() {
 		var store = Ext.create('Eway.store.person.organization.LinkedPerson');
@@ -18,59 +18,59 @@ Ext.define('Eway.view.person.organization.LinkedPersonGrid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '姓名',
+				header : Eway.locale.commen.name,
 				dataIndex : 'name'
 			},{
-				header : '性别',
+				header : Eway.locale.commen.gender,
 				dataIndex : 'gender',
 				renderer: function(value,metadata,record){
 					if(value=="MALE"){
-	                	   return "男";
+	                	   return Eway.locale.commen.comboxGender.male;
 	                   }else if(value=="FEMALE"){
-	                	   return "女";
+	                	   return Eway.locale.commen.comboxGender.female;
 	                   }else{
-	                	   return "未知";
+	                	   return Eway.locale.commen.comboxGender.unkown;
 	                   }
 				}
 			},{
-				header : '出生年月',
+				header : Eway.locale.commen.birthday,
 				dataIndex : 'birthday',
 				xtype : 'datecolumn',
 				format : 'Y-m-d'
 			}, {
-				header : '手机',
+				header : Eway.locale.commen.mobile,
 				dataIndex : 'mobile'
 			}, {
-				header : '固话',
+				header : Eway.locale.commen.phone,
 				dataIndex : 'phone'
 			},{
-				header : '邮箱',
+				header : Eway.locale.commen.email,
 				dataIndex : 'email'
 			},{
-				header : '类型',
+				header : Eway.locale.commen.type,
 				dataIndex : 'type',
 				renderer: function(value,metadata,record){
 					if(value==0){
-		                	 return "管机员";
+		                	 return Eway.locale.commen.comboxType.machineManager;
 		             }else if(value==1){
-		                	   return "维修人员";
+		                	   return Eway.locale.commen.comboxType.machineRepairer;
 		             }
 				}
 			},{
-				header : '机构',
+				header : Eway.locale.person.bankPer.organizationName,
 				dataIndex : 'organizationName'
 			},{
-				header : '状态',
+				header : Eway.locale.commen.state,
 				dataIndex : 'state',
 				renderer: function(value,metadata,record){
 					if(value==1){
-		                	 return "在岗";
+		                	 return Eway.locale.commen.comboxStatus.onJob;
 		             }else if(value==2){
-		                	   return "调休";
+		                	   return Eway.locale.commen.comboxStatus.onAdjust;
 		             }else if(value==3){
-		                	   return "休假";
+		                	   return Eway.locale.commen.comboxStatus.onVacation;
 		             }else if(value==0){
-		                	   return "其他";
+		                	   return Eway.locale.commen.comboxStatus.other;
 		             }
 				}
 			}],

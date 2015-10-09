@@ -31,7 +31,7 @@ Ext.define('Eway.view.person.person.FilterForm', {
 					xtype : 'field.mobile',
 					labelWidth: 50,
 					regex: /^\d{8,11}$/,
-					regexText:'手机电话号码只能输入8到11位数字‘0-9’！',
+					regexText: Eway.locale.vtype.mobile,
 					msgTarget : 'side'
 				}]
 			}, {

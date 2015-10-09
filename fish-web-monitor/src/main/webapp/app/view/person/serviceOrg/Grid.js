@@ -17,11 +17,11 @@ Ext.define('Eway.view.person.serviceOrg.Grid', {
 				action : 'tip',
 				xtype : 'tbtext'
 			}, '->', {
-				text : '查询',
+				text : Eway.locale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : '增加',
+				text : Eway.locale.button.add,
 				glyph : 0xf067,
 				action : 'add',
 				code : 'serviceOrgAdd',
@@ -29,7 +29,7 @@ Ext.define('Eway.view.person.serviceOrg.Grid', {
 					'beforerender' : Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : '更改',
+				text : Eway.locale.button.update,
 				glyph : 0xf040,
 				action : 'update',
 				code : 'serviceOrgUpdate',
@@ -37,7 +37,7 @@ Ext.define('Eway.view.person.serviceOrg.Grid', {
 					'beforerender' : Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : '删除',
+				text : Eway.locale.button.remove,
 				glyph : 0xf014,
 				action : 'remove',
 				code : 'serviceOrgDel',
@@ -45,42 +45,42 @@ Ext.define('Eway.view.person.serviceOrg.Grid', {
 					'beforerender' : Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : '管理员',
+				text : Eway.locale.person.serviceOrg.serviceOrgAdmin,
 				glyph : 0xf007,
 				code : 'serviceOrgAdmin',
 				listeners : {
 					'beforerender' : Eway.lib.ButtonUtils.onButtonBeforeRender
 				},
 				menu : [ {
-					text : '设置',
+					text : Eway.locale.person.serviceOrg.setManager,
 					action : 'setManager'
 				}, {
-					text : '删除',
+					text : Eway.locale.person.serviceOrg.removeManager,
 					action : 'removeManager'
 				} ]
 			} ],
 			columns : [ {
-				header : '厂商编号',
+				header : Eway.locale.person.serviceOrg.code,
 				dataIndex : 'code',
 				sortable : true
 			}, {
-				header : '厂商名称',
+				header : Eway.locale.person.serviceOrg.name,
 				dataIndex : 'name',
 				sortable : true
 			}, {
-				header : '邮政编码',
+				header : Eway.locale.person.serviceOrg.zip,
 				dataIndex : 'zip',
 				sortable : true
 			}, {
-				header : '管理员',
+				header : Eway.locale.person.serviceOrg.serviceOrgAdmin,
 				dataIndex : 'manager'
 			}, {
-				header : '厂商地址',
+				header : Eway.locale.person.serviceOrg.address,
 				dataIndex : 'address',
 				sortable : true,
 				width : 250
 			}, {
-				header : '厂商描述',
+				header : Eway.locale.person.serviceOrg.description,
 				dataIndex : 'description',
 				sortable : true,
 				flex : 1

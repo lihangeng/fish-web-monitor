@@ -10,7 +10,7 @@ Ext.define('Eway.view.person.user.PersonWin', {
 	requires : [ 'Eway.view.person.user.PersonGrid',
 			'Eway.view.person.user.PersonUserFilterForm' ],
 
-	title : '人员列表：',
+	title : Eway.locale.person.user.userListTitle,
 	width : 750,
 	height : 400,
 	// layout : 'fit',

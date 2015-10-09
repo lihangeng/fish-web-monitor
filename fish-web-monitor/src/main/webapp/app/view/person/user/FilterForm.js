@@ -25,8 +25,8 @@ Ext.define('Eway.view.person.user.FilterForm', {
 					xtype : 'field.code',
 					labelAlign : 'right',
 					regex: /^[a-zA-Z0-9][a-zA-Z0-9-_\.]{0,19}$/,
-					regexText:'只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！',
-					fieldLabel : '用户名',
+					regexText:Eway.locale.vtype.bankOrgCode,
+					fieldLabel : Eway.locale.person.user.code,
 					msgTarget : 'side'
 				}]
 			}, {

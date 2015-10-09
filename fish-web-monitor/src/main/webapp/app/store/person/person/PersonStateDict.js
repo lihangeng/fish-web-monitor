@@ -4,8 +4,8 @@ Ext.define('Eway.store.person.person.PersonStateDict', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'1', display:Eway.locale.person.bankPer.comboxStatus.onJob}, 
-	       {value:'2', display:Eway.locale.person.bankPer.comboxStatus.onAdjust}, 
-	       {value:'3', display:Eway.locale.person.bankPer.comboxStatus.onVacation}, 
-	       {value:'0', display:Eway.locale.person.bankPer.comboxStatus.other}]
+	data: [{value:'1', display:Eway.locale.commen.comboxStatus.onJob}, 
+	       {value:'2', display:Eway.locale.commen.comboxStatus.onAdjust}, 
+	       {value:'3', display:Eway.locale.commen.comboxStatus.onVacation}, 
+	       {value:'0', display:Eway.locale.commen.comboxStatus.other}]
 });

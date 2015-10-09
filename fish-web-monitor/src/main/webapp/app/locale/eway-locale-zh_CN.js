@@ -75,6 +75,11 @@ Ext.apply(Eway,{
 		},
 		index:{
 			
+		},
+		person:{
+			bankOrg:{title:'hehe'}
+			
+			
 		}
 	}
 });
