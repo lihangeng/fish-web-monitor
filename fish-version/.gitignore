@@ -1,5 +1,4 @@
 /target/
 /.classpath
 /.project
-/fish.log
-/fish.log.2015-09-28.zip
+/fish.log*
