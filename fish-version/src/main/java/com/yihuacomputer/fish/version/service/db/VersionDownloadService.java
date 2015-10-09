@@ -183,7 +183,7 @@ public class VersionDownloadService implements IVersionDownloadService {
 			argList.add(Status.OPENING);
 			hqlDevice.append(" and device.devType.id=versionatmType.atmTypeId ").
         	append(" and versionatmType.versionTypeId=version.versionType.id ").
-    		append(" and version.dependVersion.versionNo=deviceSoftVersion.versionNo").
+    		append(" and version.dependVersion.versionNo>=deviceSoftVersion.versionNo").
     		append(" and version.versionType.typeName=deviceSoftVersion.typeName ").
     		append(" and device.id=deviceSoftVersion.deviceId ");
 			if(terminalId!=null){

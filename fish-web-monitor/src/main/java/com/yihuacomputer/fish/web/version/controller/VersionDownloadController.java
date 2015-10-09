@@ -148,6 +148,7 @@ public class VersionDownloadController {
                 else{
                 	task = taskService.make(createdTime);
                 }
+                task.setTaskBatchName(form.getJobName()+"第"+version.getDownloadCounter()+"次");
                 task.setDeviceId(deviceId);
                 String versionNo = maps.get(deviceId);
                 if(versionNo != null){
@@ -164,7 +165,8 @@ public class VersionDownloadController {
         taskManager.createTasksByWeb(tasks);
 
         form.setVersionName(version.getFullName() + " [" + version.getServerPath() + "]");
-
+        form.setDownLoadCounter(version.getDownloadCounter());
+        versionService.updateDownLoadCounter(form.getVersionId());
         result.addAttribute(FishConstant.SUCCESS, true);
         result.addAttribute("data", form);
         return result;

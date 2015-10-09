@@ -115,6 +115,10 @@ public class Version implements IVersion, Serializable {
 
     @Column(name = "MD5_CHECK_NUM", nullable = true, length = 32)
     private String md5CheckNum;
+    
+
+    @Column(name = "DOWNLOAD_COUNTER")
+    private int downloadCounter;
 
     @Transient
     private IUser createUser;
@@ -347,6 +351,14 @@ public class Version implements IVersion, Serializable {
 
 	public void setVersionStr(String versionStr) {
 		this.versionStr = versionStr;
+	}
+
+	public int getDownloadCounter() {
+		return downloadCounter;
+	}
+
+	public void setDownloadCounter(int downloadCounter) {
+		this.downloadCounter = downloadCounter;
 	}
 
 }

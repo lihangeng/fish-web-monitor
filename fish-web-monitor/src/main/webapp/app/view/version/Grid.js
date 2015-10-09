@@ -57,35 +57,32 @@ Ext.define('Eway.view.version.Grid', {
 			columns : [{
 				header : '软件分类编码',
 				dataIndex : 'versionType',
-	            locked: true,
-				width: 150
+				width: 200
 			},{
 				header:'版本号',
-				dataIndex:'versionNo',
-	            locked: true,
-				width: 100
+				dataIndex:'versionNo'
 			},{
 				header : '版本类型ID',
 				dataIndex : 'versionTypeId',
-	            locked: true,
 				hidden : true
 			},{
 				header : '版本路径',
 				dataIndex : 'versionPath',
-	            locked: true,
+				hidden : true,
 				width: 200
 			},{
 				header : '创建时间',
 				dataIndex : 'createdTime',
-	            locked: true,
+				hidden : true,
 				width: 140
 			},{
 				header:'创建人',
+				hidden : true,
 				dataIndex:'userName'
 			},{
 				header: '依赖版本',
 				dataIndex : 'dependVersion',
-				width: 140
+				width: 300
 			},{
 				header: '版本文件',
 				dataIndex: 'serverPath',
@@ -100,7 +97,7 @@ Ext.define('Eway.view.version.Grid', {
 						return value;
 					}
 				},
-				width: 120
+				width: 300
 			},{
 				header: '版本状态',
 				dataIndex :'versionStatus',
@@ -112,7 +109,8 @@ Ext.define('Eway.view.version.Grid', {
 					}else{
 						return  "已下发";
 					}
-				}
+				},
+				width: 100
 			},{
 				header: '允许自动更新',
 				dataIndex : 'autoDown',
@@ -123,7 +121,7 @@ Ext.define('Eway.view.version.Grid', {
 						return "否";
 					}
 				},
-				width: 100
+				flex : 1
 			}/*,{
 				header: '自动解压缩',
 				dataIndex : 'uncompress',
@@ -138,7 +136,7 @@ Ext.define('Eway.view.version.Grid', {
 			}*/,{
 				header : '备注',
 				dataIndex : 'desc',
-				flex : 1
+				hidden : true
 			}],
 			dockedItems: [{  //分页栏
 		        xtype: 'pagingtoolbar',

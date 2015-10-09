@@ -8,7 +8,7 @@ Ext.define('Eway.model.version.Version', {
 	         'versionTypeId','versionType','dependVersionId','execBefore',
 	         {name:'versionStatus',defaultValue: 'NEW'},{'name':'uncompress','type':'boolean'},
 	         'dependVersion','dvDisplayName','versionPath',{'name':'autoDown','type':'boolean'},
-	         {'name':'eagerRestart','type':'boolean'},'desc',
+	         {'name':'eagerRestart','type':'boolean'},'desc','downLoadCounter',
 	        /* 'deviceTotal','mayBeDownTotal',
 	         'downedTotal',
 	         'successTotal',

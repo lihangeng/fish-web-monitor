@@ -83,7 +83,13 @@ public class VersionService implements IDomainVersionService {
 	public IVersion getById(long id) {
 		return dao.get(id, Version.class);
 	}
-
+	
+	public synchronized IVersion updateDownLoadCounter(long versionId) {
+		IVersion version = this.getById(versionId);
+		int counter = version.getDownloadCounter();
+		version.setDownloadCounter(++counter);
+		return dao.save(version);
+	}
 	@Override
 	public IVersion add(IVersion version) {
 		Version entity = this.interface2Entity(version, false);

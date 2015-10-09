@@ -3,35 +3,81 @@ Ext.define('Eway.view.version.View', {
 	alias : 'widget.versionView',
 
 	requires : [ 'Eway.view.version.Grid', 'Eway.view.version.ChartsGrid',
-	             'Eway.view.version.charts.Bar3dBasic','Eway.view.version.FilterForm','Eway.view.version.VersionInstallInfo' ],
+			'Eway.view.version.charts.Bar3dBasic',
+			'Eway.view.version.FilterForm',
+			'Eway.view.version.VersionInstallInfo' ],
 
 	title : '版本管理',
-	scrollable : 'y',
-	
+	scrollable : true,
+	autoScroll : true,
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-				xtype : 'version_filterForm',
-			    	region:"north"
-			}, {
-				xtype : 'version_grid',
-		    	region:"center"
-			}, {
 				xtype : 'panel',
-				layout : 'border',
-				height:350,
-		    	region:"south",
-			    items:[{
-			    	xtype:'bar_3d',
-			    	region:"west",
-					padding:'0 10 0 0',
-			    	rowField:'title',
-			    	columnField:'value'
-			    },{//当选择一个图形的内容时，现实对应的设备信息（Grid）
-			    	xtype:'version_charts_grid',
-					padding:'0  0 0 10',
-			    	region: "center" 
-			    }]
+				items : [ {
+					xtype : 'panel',
+					items : [ {
+						xtype : 'version_filterForm',
+						region : "north"
+					}, {
+						xtype : 'version_grid',
+						height : 350,
+						region : 'center'
+					} ]
+				}, {
+					xtype : 'panel',
+					 itemId: 'versionPic',
+					 layout: {
+					        type: 'table',
+					        // The total column count must be specified here
+					        columns:2
+				    },
+					items : [{
+						xtype : 'bar_3d',
+//						region : "center",
+						// height : 350,
+						 width : 600,
+						rowField : 'title',
+						columnField : 'value',
+							rowspan: 4
+					} ,{
+				        xtype: 'label',
+				        itemId: 'versionPath',
+				        text: '',
+				        style: {
+				            fontSize: '20px'
+				        },
+				        margin: '0 0 0 120'
+				    },{
+				        xtype: 'label',
+				        itemId: 'versionTime',
+				        text: '',
+				        style: {
+				            fontSize: '20px'
+				        },
+				        margin: '0 0 0 120'
+				    },{
+				        xtype: 'label',
+				        itemId: 'versionPerson',
+				        text: '',
+				        style: {
+				            fontSize: '20px'
+				        },
+				        margin: '0 0 0 120'
+				    },{
+				        xtype: 'label',
+				        itemId: 'desc',
+				        text: '',
+				        style: {
+				            fontSize: '20px'
+				        },
+				        margin: '0 0 0 120'
+				    } ]
+				}, {// 当选择一个图形的内容时，现实对应的设备信息（Grid）
+					xtype : 'version_charts_grid',
+					height : 350,
+					region : "south"
+				} ]
 			} ],
 			listeners : {
 				activate : function(panel) {

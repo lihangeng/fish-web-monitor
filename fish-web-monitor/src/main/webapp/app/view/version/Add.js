@@ -113,7 +113,10 @@ Ext.define('Eway.view.version.Add', {
 					name:'dependVersionId'
 				},{
 					xtype : 'field.desc',
-					maxLength : 100
+					fieldLabel:'<font color="red">*</font>版本描述',
+					emptyText:'请用文字描述此版本需求(最长20字符串)',
+					allowBlank : false,
+					maxLength : 20
 				},{
 		            xtype: 'fieldcontainer',
 		            fieldLabel: '其他配置',

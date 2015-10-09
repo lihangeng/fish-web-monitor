@@ -26,6 +26,8 @@ public class JobForm {
 	private String deployStartDate;
 
 	private String deployEndDate;
+	
+	private int downLoadCounter;
 
 	public JobForm() {
 	}
@@ -116,6 +118,14 @@ public class JobForm {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public int getDownLoadCounter() {
+		return downLoadCounter;
+	}
+
+	public void setDownLoadCounter(int downLoadCounter) {
+		this.downLoadCounter = downLoadCounter;
 	}
 
 }

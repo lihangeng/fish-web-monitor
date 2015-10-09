@@ -113,5 +113,12 @@ public interface IVersionService {
 	 * @return
 	 */
 	public List<VersionStatusDistribute> getVersionStatusDistribute(IFilter filter);
+	
+	/**
+	 * 更新版本下发次数
+	 * @param versionId
+	 * @return
+	 */
+	public  IVersion updateDownLoadCounter(long versionId) ;
 
 }

@@ -211,4 +211,16 @@ public interface IVersion {
 	 * @param versionStr
 	 */
 	public void setVersionStr(String versionStr);
+
+	/**
+	 * 当前版本手工下发次数
+	 * @return
+	 */
+	public int getDownloadCounter() ;
+
+	/**
+	 * 当前版本手工下发次数
+	 * @return
+	 */
+	public void setDownloadCounter(int downloadCounter);
 }

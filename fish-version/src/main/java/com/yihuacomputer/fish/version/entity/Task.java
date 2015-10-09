@@ -35,6 +35,9 @@ public class Task implements ITask {
 	@Column(name = "ID")
 	private long id;
 
+	@Column(name = "BATCH_NAME", nullable = true, length = 16)
+	private String taskBatchName;
+
 	@Transient
 	private IDevice device;
 
@@ -329,6 +332,12 @@ public class Task implements ITask {
 
 	public void setTaskCount(int taskCount) {
 		this.taskCount = taskCount;
+	}
+	public String getTaskBatchName() {
+		return taskBatchName;
+	}
+	public void setTaskBatchName(String taskBatchName) {
+		this.taskBatchName = taskBatchName;
 	}
 
 }

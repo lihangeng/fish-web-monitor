@@ -82,6 +82,11 @@ Ext.define('Eway.controller.version.Version', {
 		    }
 		});
 		this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionType")+"-"+record.get("versionNo"));
+		this.getEwayView().down("panel label[itemId='versionPath']").setText("版本路径:"+record.get("versionPath"));
+		this.getEwayView().down("panel label[itemId='versionTime']").setText("创建时间:"+record.get("createdTime"));
+		this.getEwayView().down("panel label[itemId='versionPerson']").setText("创建人:"+record.get("userName"));
+		this.getEwayView().down("panel label[itemId='desc']").setText("备注:"+record.get("desc"));
+
 	},
 
 	//获得版本的Store
@@ -125,6 +130,8 @@ Ext.define('Eway.controller.version.Version', {
 				atmTypeStore.proxy.extraParams={versionId:record.get("id")};
 				atmTypeStore.load();
 				win.show();
+				
+				win.down("textfield[name=jobName]").setValue(record.get("desc"));
 				win.down("textfield[name=ip]").on({keydown:this.queryOnKeyDownEnter, scope: this });
 				win.down("textfield[name=terminalId]").on({keydown:this.queryOnKeyDownEnter, scope: this});
 				win.down("common_orgComboOrgTree[name=orgName]").on({keydown:this.queryOnKeyDownEnter, scope: this});
@@ -220,7 +227,7 @@ Ext.define('Eway.controller.version.Version', {
 					 	//保存成功后让用户选择是否跳转到分发监控页面
 					 	win.close();
 					 	Ext.MessageBox.confirm('提示',
-							'作业保存成功,是否跳转到"分发监控"页面?',this.goToVersionDownloadPage,this);
+					 			record.get("jobName")+"第"+ed.data.downLoadCounter+'次作业保存成功,是否跳转到"分发监控"页面?',this.goToVersionDownloadPage,this);
 
 					 },
 					 failure: function(record,operation){

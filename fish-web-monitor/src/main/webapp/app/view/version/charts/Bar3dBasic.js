@@ -2,7 +2,7 @@ Ext.define('Eway.view.version.charts.Bar3dBasic', {
     extend: 'Ext.Panel',
     alias: 'widget.bar_3d',
     requires: ['Ext.chart.theme.Muted'],
-    width: 450,
+    width: 550,
     height:300,
     config:{
     	columnField:'data1',

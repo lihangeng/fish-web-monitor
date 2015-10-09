@@ -236,4 +236,15 @@ public interface ITask {
 	 * @param taskCount
 	 */
 	public void setTaskCount(int taskCount);
+	
+	/**
+	 * 任务批次名称
+	 * @return
+	 */
+	public String getTaskBatchName();
+	/**
+	 * 任务批次名称
+	 * @param taskBatchName
+	 */
+	public void setTaskBatchName(String taskBatchName);
 }
