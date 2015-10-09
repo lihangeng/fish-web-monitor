@@ -17,8 +17,8 @@ public interface IDeviceSoftVersion {
 	public String getVersionNo();
 //	public void setVersion(IVersion version);
 	public IVersion getVersion();
-	public void setTerminalId(String terminalId);
-	public String getTerminalId();
+	public long getDeviceId();
+	public void setDeviceId(long deviceId);
 //	public void setDevice(IDevice device);
 	public IDevice getDevice();
 	public void setCreatedTime(Date createTime);

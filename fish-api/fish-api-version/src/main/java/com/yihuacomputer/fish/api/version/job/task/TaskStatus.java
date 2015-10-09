@@ -59,14 +59,15 @@ public enum TaskStatus {
 		return false;
 	}
 
-	//没有下载成功,没有通知成功，新建的任务放入任务队列
+	//没有下载成功,没有通知成功或者取消任务的，新建的任务放入任务队列
 	public static boolean canRun(TaskStatus status){
 	    if((status.equals(TaskStatus.DOWNLOADED_FAIL))
                 || (status.equals(TaskStatus.NOTICED_FAIL))
                 || (status.equals(TaskStatus.DEPLOYED_FAIL))
                 || (status.equals(TaskStatus.NOTICE_APP_FAIL))
                 || (status.equals(TaskStatus.OTHER))
-                || status.equals(TaskStatus.NEW)){
+                || status.equals(TaskStatus.NEW)
+                || status.equals(TaskStatus.CANCELED)){
 	        return true;
 	    }
 	    return false;

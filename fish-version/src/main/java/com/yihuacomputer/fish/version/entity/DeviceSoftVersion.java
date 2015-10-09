@@ -41,8 +41,8 @@ public class DeviceSoftVersion implements IDeviceSoftVersion, Serializable {
 	@Transient
 	private IDevice device;
 
-	@Column(name = "TERMINAL_ID", nullable = false, updatable = false,length = 20)
-	private String terminalId;
+	@Column(name = "DEVICE_ID", nullable = false)
+	private long deviceId;
 
 	@Transient
 	private IVersion version;
@@ -129,12 +129,12 @@ public class DeviceSoftVersion implements IDeviceSoftVersion, Serializable {
 		this.desc = desc;
 	}
 
-	public String getTerminalId() {
-		return terminalId;
+	public long getDeviceId() {
+		return deviceId;
 	}
 
-	public void setTerminalId(String terminalId) {
-		this.terminalId = terminalId;
+	public void setDeviceId(long deviceId) {
+		this.deviceId = deviceId;
 	}
 
 	public String getTypeName() {

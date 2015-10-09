@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.web.atm;
 
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,10 +104,10 @@ public class AutoUpdateController {
         if(device == null){
             return null;
         }
-        ITask task = taskService.make();
+        ITask task = taskService.make(new Date());
         task.setDevice(device);
         String typeName = autoUpdateVersion.getVersionType().getTypeName();
-        IDeviceSoftVersion dsv = deviceSoftVersionService.get(device.getTerminalId(), typeName);
+        IDeviceSoftVersion dsv = deviceSoftVersionService.get(device.getId(), typeName);
     	if(dsv != null){
     		task.setVersionBeforeUpdate(typeName + "_" + dsv.getVersionNo());
     	}

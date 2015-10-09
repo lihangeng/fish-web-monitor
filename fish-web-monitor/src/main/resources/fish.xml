@@ -25,6 +25,13 @@
 		<property name="basename" value="message"/>
 		<property name="useCodeAsDefaultMessage" value="true" /> 
 	</bean>		
+	
+	<!-- <bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver">  
+    	<property name="defaultLocale" value="en_US"/>  
+	</bean>  -->
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.FixedLocaleResolver"> 
+    	<property name="defaultLocale" value="en_US" /> <!-- en_US zh_CN -->
+	</bean>
 
 	<!--内存版本
 	<import resource="classpath:fish-mem.xml"/>-->

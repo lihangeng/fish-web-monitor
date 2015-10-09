@@ -20,7 +20,6 @@ import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.version.IVersion;
-import com.yihuacomputer.fish.api.version.job.IJob;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.api.version.job.task.TaskType;
@@ -75,12 +74,6 @@ public class Task implements ITask {
 	@Column(name = "REASON", nullable = true, length = 40)
 	private String reason;
 
-//	@Column(name = "JOB_NAME", nullable = true, length = 128)
-//	private String jobName;
-    @ManyToOne(targetEntity = Job.class)
-    @JoinColumn(name = "JOB_ID")
-    private IJob job;
-
 	@ManyToOne(targetEntity = Version.class, fetch = FetchType.EAGER)
 	@JoinColumn(name = "VERSION_ID", nullable = false)
 	private IVersion version;
@@ -90,6 +83,19 @@ public class Task implements ITask {
 
 	@Column(name = "EXCEPT_VERSION", nullable = true, length = 70)
 	private String exceptVersion;
+	
+	/**
+	 * 任务首次创建时间
+	 */
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "FIRST_TIME",nullable=false)
+	private Date firstTime;
+	
+	/**
+	 * 任务下发的次数
+	 */
+	@Column(name = "TASK_COUNT", nullable = false)
+	private int taskCount;
 
 	/**
 	 * 从２.０开始禁用
@@ -102,13 +108,17 @@ public class Task implements ITask {
 	@Transient
 	private IDomainTaskService taskService;
 
-	public Task() {
+	public Task(Date firstCreateDate) {
 		this.status = TaskStatus.NEW;
 		this.taskType = TaskType.MANUAL;
 		this.eagerRestart = false;
+		this.setFirstTime(firstCreateDate);
+		this.setTaskCount(1);
 		this.createTime = new Date();
 	}
-
+	public Task() {
+	
+	}
 	public long getId() {
 		return id;
 	}
@@ -135,8 +145,13 @@ public class Task implements ITask {
 		return status;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.yihuacomputer.fish.api.version.job.task.ITask#setStatus(com.yihuacomputer.fish.api.version.job.task.TaskStatus)
+	 */
 	public void setStatus(TaskStatus status) {
-		this.status = status;
+		if(!this.status.equals(TaskStatus.CHECKED)){
+			this.status = status;
+		}
 	}
 
 	public Date getExcuteTime() {
@@ -261,13 +276,11 @@ public class Task implements ITask {
 	@Override
 	public Date getDeployStartDate() {
 		return new Date();
-		// TODO : return this.getJob().getDeployStartDate();
 	}
 
 	@Override
 	public Date getDeployEndDate() {
 		return new Date();
-		// TODO :return this.getJob().getDeployEndDate();
 	}
 
 	public Date getCreateTime() {
@@ -302,16 +315,20 @@ public class Task implements ITask {
 		this.planTime = planTime;
 	}
 
-	public IJob getJob() {
-		return this.job;
+	public Date getFirstTime() {
+		return firstTime;
 	}
 
-	public void setJob(IJob job){
-		this.job = job;
+	public void setFirstTime(Date firstTime) {
+		this.firstTime = firstTime;
 	}
 
-	public String getJobName() {
-		return this.getJob().getJobName();
+	public int getTaskCount() {
+		return taskCount;
+	}
+
+	public void setTaskCount(int taskCount) {
+		this.taskCount = taskCount;
 	}
 
 }

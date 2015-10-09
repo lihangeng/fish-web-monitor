@@ -17,7 +17,7 @@ public interface ITaskService {
 	 * 创建任务
 	 * @return
 	 */
-	public ITask make();
+	public ITask make(Date firstCreateDate);
 
 	/**
 	 * 根据设备Id查找任务列表

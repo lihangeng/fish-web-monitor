@@ -2,7 +2,6 @@ package com.yihuacomputer.fish.web.version.form;
 
 import java.util.Date;
 
-import com.yihuacomputer.fish.api.version.job.task.TaskType;
 
 public class JobForm {
 

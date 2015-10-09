@@ -31,8 +31,6 @@ import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
-import com.yihuacomputer.fish.api.version.IDeviceVersion;
-import com.yihuacomputer.fish.api.version.IDeviceVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
@@ -53,9 +51,6 @@ public class DeviceVersionController {
     private IDeviceService deviceService;
     @Autowired
     private IComplexDeviceService complexDeviceService;
-    @Autowired
-    private IDeviceVersionService dvService;
-    
     @Autowired
     private ITaskService taskService;
     @Autowired
@@ -88,7 +83,7 @@ public class DeviceVersionController {
 
         ModelMap result = new ModelMap();
 
-        List<IDeviceVersion> lists = dvService.listDeviceVersions(deviceId);     
+        List<ITask> lists = taskService.findTasks(deviceId);     
              
         List<DeviceVersionHistory> forms = getHistoryForms(lists , deviceId);
         result.addAttribute(FishConstant.SUCCESS, true);
@@ -97,30 +92,32 @@ public class DeviceVersionController {
         return result;
     }
 
-    private List<DeviceVersionHistory> getHistoryForms(List<IDeviceVersion> lists , long deviceId) {
+    private List<DeviceVersionHistory> getHistoryForms(List<ITask> lists , long deviceId) {
         List<DeviceVersionHistory> forms = new ArrayList<DeviceVersionHistory>();
 
         
-        for(IDeviceVersion dv : lists){
-        	 DeviceVersionHistory form = new DeviceVersionHistory();             
-             IVersion ver = versionService.getById(dv.getVersionId());
-             if(ver == null){
-                 continue;
-             }            
-             
-             form.setVersionId(dv.getVersionId());
+        for(ITask task : lists){
+        	 DeviceVersionHistory form = new DeviceVersionHistory();   
+             IVersion ver = task.getVersion();   
+        	 if(null==ver){
+        		 continue;
+        	 }
+             form.setVersionId(ver.getId());
              form.setVersionNo(ver.getVersionNo());
              form.setFullName(ver.getFullName());
              form.setVersionType(ver.getVersionType().getTypeName());
-             form.setId(dv.getId());
-             form.setDeviceId(dv.getDeviceId());
-             IDevice device = deviceService.get(dv.getDeviceId());
+             form.setId(task.getId());
+             form.setDeviceId(task.getDeviceId());
+             IDevice device = task.getDevice();
+             if(null==device){
+            	 continue;
+             }
              form.setTerminalId(device.getTerminalId());
              form.setIp(device.getIp().toString());
-             form.setDownTime(dv.getLastUpdatedTime());
-             form.setStatus(dv.getTaskStatus().getText());
-             form.setRemark(dv.getDesc());
-             form.setUserName(getTaskCreatedUserName(deviceId,dv.getVersionId()));
+             form.setDownTime(task.getExcuteTime());
+             form.setStatus(task.getStatus().getText());
+             form.setRemark(task.getReason());
+//             form.setUserName(getTaskCreatedUserName(deviceId,ver.getId()));
              forms.add(form);
              //index++;
         }                

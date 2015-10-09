@@ -91,7 +91,11 @@ Ext.define('Eway.view.version.Grid', {
 				dataIndex: 'serverPath',
 				renderer:function(value,meta,record){
 					if(value != null){
-						return "<a class='link' href='#'>"+ value + "</a>";
+						var fileName = record.get("serverPath");
+						var typeName =  record.get("versionType");
+						fileName = fileName.replace("&","%26");
+						var url = 'api/version/version/download?typeName=' + typeName + '&fileName=' + fileName
+						return "<a class='link' href='"+url+"'>"+ value + "</a>";
 					}else{
 						return value;
 					}

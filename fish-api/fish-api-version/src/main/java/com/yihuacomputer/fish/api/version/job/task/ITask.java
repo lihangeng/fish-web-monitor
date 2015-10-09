@@ -4,7 +4,6 @@ import java.util.Date;
 
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.version.IVersion;
-import com.yihuacomputer.fish.api.version.job.IJob;
 
 /**
  *
@@ -12,7 +11,7 @@ import com.yihuacomputer.fish.api.version.job.IJob;
  * 每一台设备和每个版本的关系构建成一个任务
  * (一台设备的一次升级过程叫做任务)
  * @author xuxigang
- *
+ * @since 2.0.0.0 一个版本和一个设备对应唯一的任务
  */
 public interface ITask {
 	public long getId();
@@ -46,7 +45,7 @@ public interface ITask {
 	 */
 	public TaskStatus getStatus();
 	/**
-	 * 获得任务状态
+	 * 任务状态 如果为CHECKED,则不用做任何处理
 	 * @param status
 	 */
 	public void setStatus(TaskStatus status);
@@ -106,22 +105,6 @@ public interface ITask {
 	 * @return
 	 */
 	public String getReason();
-
-	/**
-	 * 设置任务归属的批次名称
-	 * @param job
-	 */
-//	public void setJobName(String jobName);
-	public void setJob(IJob job);
-	/**
-	 * 获得任务归属的批次名称
-	 * 从２.０开始弱化ＩＪｏｂ的概念，只是一个普通属性，兼具定时器的作用
-	 * @return
-	 *
-	 */
-	public IJob getJob();
-	public String getJobName();
-
 	/**
 	 * 得到状态
 	 * 根据任务状态和执行结果组合起来的状态
@@ -229,5 +212,28 @@ public interface ITask {
      * @since
      */
     public void setDownSource(String downSource);
+    
+    /**
+     * 第一次创建任务时间
+     * @return
+     */
+    public Date getFirstTime();
 
+	/**
+	 * 第一次创建任务时间
+	 * @param firstTime
+	 */
+	public void setFirstTime(Date firstTime);
+
+	/**
+	 * 创建下发任务的次数
+	 * @return
+	 */
+	public int getTaskCount();
+
+	/**
+	 * 创建下发任务次数
+	 * @param taskCount
+	 */
+	public void setTaskCount(int taskCount);
 }

@@ -16,8 +16,6 @@ import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.IVersionType;
 import com.yihuacomputer.fish.api.version.IVersionTypeService;
-import com.yihuacomputer.fish.api.version.job.IJob;
-import com.yihuacomputer.fish.api.version.job.IJobService;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.version.H2TestConfig;
@@ -36,14 +34,9 @@ public class TaskServiceTest  extends BindSessionInTest2{
 	@Autowired
 	private IVersionService versionService;
 
-	@Autowired
-	private IJobService jobService;
 
 	@Test
 	public void test(){
-		IJob job = jobService.make();
-		job.setJobName("ATMC需求第二批次上线");
-		jobService.add(job);
 
 		IVersionType versionType = versionTypeService.make("JCOLS");
 		versionTypeService.add(versionType);
@@ -57,8 +50,7 @@ public class TaskServiceTest  extends BindSessionInTest2{
 		versionService.add(version);
 
 		Date planTime = new Date();
-		ITask task = taskService.make();
-		task.setJob(job);
+		ITask task = taskService.make(new Date());
 		task.setPlanTime(planTime);
 		task.setVersion(version);
 		taskService.addTask(task);
@@ -66,7 +58,7 @@ public class TaskServiceTest  extends BindSessionInTest2{
 		assertEquals(tasks.size(),1);
 
 		ITask taskInDB = tasks.get(0);
-		assertEquals(taskInDB.getJobName(),"ATMC需求第二批次上线");
+		assertEquals(taskInDB.getVersion().getVersionType().getTypeName(),"JCOLS");
 	}
 
 }

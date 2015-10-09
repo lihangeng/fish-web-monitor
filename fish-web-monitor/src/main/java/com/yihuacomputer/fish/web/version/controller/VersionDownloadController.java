@@ -34,8 +34,9 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.person.IOrganization;
+import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
@@ -44,8 +45,6 @@ import com.yihuacomputer.fish.api.version.IVersionDownloadService;
 import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.IVersionStaticsStautsService;
 import com.yihuacomputer.fish.api.version.LinkedDeviceForm;
-import com.yihuacomputer.fish.api.version.job.IJob;
-import com.yihuacomputer.fish.api.version.job.IJobService;
 import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistory;
 import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistoryService;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
@@ -53,7 +52,6 @@ import com.yihuacomputer.fish.api.version.job.task.ITaskManager;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.api.version.job.task.TaskType;
-import com.yihuacomputer.fish.version.service.db.VersionStaticsStatusService;
 import com.yihuacomputer.fish.web.command.format.CommandLevel;
 import com.yihuacomputer.fish.web.command.format.RestartForm;
 import com.yihuacomputer.fish.web.command.format.RestartParamForm;
@@ -87,9 +85,10 @@ public class VersionDownloadController {
 
     @Autowired
     private ITaskService taskService;
-
+    
     @Autowired
-    private IJobService jobService;
+    private IOrganizationService organizationService;
+
 
 	@Autowired
 	private IDeviceSoftVersionService deviceSoftVersionService;
@@ -103,7 +102,6 @@ public class VersionDownloadController {
         logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
         IFilter filter = getFilter(request);
         filter.descOrder("createdTime");
-        IPageResult<IJob> pageResult = null;/*jobService.page(start, limit, filter);*/
         ModelMap result = new ModelMap();
         result.addAttribute(FishConstant.SUCCESS, true);
        /* result.addAttribute("total", pageResult.getTotal());
@@ -129,16 +127,27 @@ public class VersionDownloadController {
         String deviceIds = form.getDeviceIds();
         if (StringUtils.isNotEmpty(deviceIds)) {
         	Date createdTime = new Date();
-        	IJob job = jobService.make();
-        	job.setJobName(form.getJobName());
-        	job.setCreatedTime(createdTime);
-        	jobService.add(job);
         	List<Object> lists = deviceSoftVersionService.findDeviceSoftVersions(versionTypeName);
             Map<Long,String> maps = convertToMap(lists);
             String[] ids = deviceIds.substring(1).split(",");
             for (String id : ids) {
-                ITask task = taskService.make();
                 Long deviceId = Long.valueOf(id);
+                ITask task = taskService.findTask(deviceId, form.getVersionId());
+                //如果存在相关的任务则要判断当前是否可以下发
+                if(null != task){
+                	 if(!TaskStatus.canRun(task.getStatus())){
+                		 continue;
+                	 }
+                	 else{
+                		 task.setStatus(TaskStatus.NEW);
+                		 task.setTaskType(TaskType.MANUAL);
+                		 task.setCreateTime(createdTime);
+                		 task.setTaskCount(task.getTaskCount()+1);
+                	 }
+                }
+                else{
+                	task = taskService.make(createdTime);
+                }
                 task.setDeviceId(deviceId);
                 String versionNo = maps.get(deviceId);
                 if(versionNo != null){
@@ -146,42 +155,12 @@ public class VersionDownloadController {
                 }
                 task.setVersion(version);
                 task.setCreateTime(createdTime);
-//                task.setEagerRestart(form.isEagerRestart());
                 task.setPlanTime(form.getPlanTime() == null ? new Date() : form.getPlanTime());
                 task.setTaskType(TaskType.valueOf(form.getTaskType()));
-                task.setJob(job);
                 task.setExcuteMachine(request.getLocalAddr());
                 tasks.add(task);
             }
         }
-//        IJob job = jobService.make();
-//        job.setJobName(form.getJobName());
-//        job.setVersion(versionService.getById(form.getVersionId()));
-//        job.setJobType(form.getJobType());
-//        job.setJobPriority(form.getJobPriority());
-//        UserSession userSession= (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
-//        job.setCreateUserId(userSession.getUserId());
-//        if (form.getDeployStartDate() == null || "".equals(form.getDeployStartDate())) {
-//            job.setDeployStartDate(new Date());
-//        } else {
-//            job.setDeployStartDate(DateUtils.getDate(form.getDeployStartDate()));
-//        }
-//        if (form.getDeployEndDate() != null && !"".equals(form.getDeployEndDate())) {
-//            job.setDeployEndDate(DateUtils.getDate(form.getDeployEndDate()));
-//        }
-//        job.setDesc(form.getDesc());
-//        if (form.getJobType().equals(JobType.SCHEDULER)) {
-//            job.setPlanTime(form.getPlanTime());
-//            job.setJobStatus(JobStatus.SCHEDULER);
-//        } else {
-//            job.setJobStatus(JobStatus.NEW);
-//            job.setPlanTime(new Date());
-//        }
-//        job.addTasks(tasks);
-//        jobManager.createJob(job);
-
-        // 回填值到form中
-//        form.setId(job.getJobId());
         taskManager.createTasksByWeb(tasks);
 
         form.setVersionName(version.getFullName() + " [" + version.getServerPath() + "]");
@@ -271,8 +250,7 @@ public class VersionDownloadController {
     public @ResponseBody
     ModelMap linked(@RequestParam int start, @RequestParam int limit, WebRequest request) {
         logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
-        IFilter filter = new Filter();// getFilter(request);
-        IJob job = null;
+//        IFilter filter = new Filter();// getFilter(request);
 //        IPageResult<IDevice> page = downloadService.pageLinkedDevices(start, limit, job, filter);
         ModelMap result = new ModelMap();
         result.addAttribute(FishConstant.SUCCESS, true);
@@ -297,11 +275,11 @@ public class VersionDownloadController {
         logger.info(String.format("search selectable device : start = %s ,limit = %s , versionId = %s ", start, limit,versionId));
         IFilter filter = getDeviceFilter(webRequest);
         UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
-        if(null==filter.getValue("orgId")){
-        	filter.eq("orgId", userSession.getOrgId());
+        if(null==filter.getValue("orgFlag")){
+        	filter.eq("orgFlag", userSession.getOrgFlag());
         }
         IVersion version = versionService.getById(versionId);
-        IPageResult<LinkedDeviceForm> page = downloadService.pageCanPushDevices(start, limit, version, filter);
+        IPageResult<LinkedDeviceForm> page = downloadService.pageDownLoadDevices(start, limit, version, filter);
         ModelMap result = new ModelMap();
         result.addAttribute(FishConstant.SUCCESS, true);
         result.addAttribute("total", page.getTotal());
@@ -324,7 +302,8 @@ public class VersionDownloadController {
             }
 
             if (name.equals("orgId")) {
-                filter.eq(name, value);
+            	IOrganization org = organizationService.get(value);
+                filter.eq("orgFlag", org.getOrgFlag());
             }
 
             if (name.equals("ip")) {
@@ -598,10 +577,10 @@ public class VersionDownloadController {
         logger.info(" updateDeployDate  : jobId.id = " + jobId);
         ModelMap result = new ModelMap();
         try {
-            Date startDate = DateUtils.getDate(deployStartDate);
-            Date endDate = null;
+//            Date startDate = DateUtils.getDate(deployStartDate);
+//            Date endDate = null;
             if (deployEndDate != null && !"".equals(deployEndDate)) {
-                endDate = DateUtils.getDate(deployEndDate);
+//                endDate = DateUtils.getDate(deployEndDate);
             }
 //            jobService.updateDeployDate(jobId, startDate, endDate);
             result.addAttribute(FishConstant.SUCCESS, true);

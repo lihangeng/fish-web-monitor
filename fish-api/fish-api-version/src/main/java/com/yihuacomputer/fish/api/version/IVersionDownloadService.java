@@ -3,6 +3,7 @@
  */
 package com.yihuacomputer.fish.api.version;
 
+
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.fish.api.device.IDevice;
@@ -49,6 +50,26 @@ public interface IVersionDownloadService {
 	 */
 	public long getMayBeDownDevice(IVersion version,IOrganization org);
 	
-	 public IPageResult<LinkedDeviceForm> pageCanPushDevices(int start, int limit, IVersion version, IFilter outerFilter);
+	
+	
+	
+	/**
+	 * 获取可下发设备列表（可以进行封装）Object==Device
+	 * @param start
+	 * @param limit
+	 * @param version
+	 * @param outerFilter
+	 * @return
+	 */
+	public IPageResult<Object> getCanPushDevicePagesInfo(int start, int limit, IVersion version, IFilter outerFilter);
+	 /**
+	  * 指定版本可以下发的设备信息（分两类，1.无依赖关系的设备，当前版本下发失败的;2.有依赖关系的，版本号依赖完全正确才可以下发）
+	 * @param start
+	 * @param limit
+	 * @param version
+	 * @param outerFilter
+	 * @return
+	 */
+	public IPageResult<LinkedDeviceForm> pageDownLoadDevices(int start, int limit, IVersion version, IFilter outerFilter);
 	
 }

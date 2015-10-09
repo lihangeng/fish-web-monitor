@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
-import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.common.util.PageResult;
@@ -24,8 +23,6 @@ import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
-import com.yihuacomputer.fish.api.version.IDeviceVersion;
-import com.yihuacomputer.fish.api.version.IDeviceVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
 import com.yihuacomputer.fish.api.version.IVersionService;
@@ -35,12 +32,10 @@ import com.yihuacomputer.fish.api.version.LinkedDeviceForm;
 import com.yihuacomputer.fish.api.version.RestrictionColumn;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
-import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.machine.entity.device.Device;
 import com.yihuacomputer.fish.version.entity.DeviceSoftVersion;
-import com.yihuacomputer.fish.version.entity.DeviceVersion;
+import com.yihuacomputer.fish.version.entity.Task;
 import com.yihuacomputer.fish.version.entity.Version;
-import com.yihuacomputer.fish.version.entity.VersionType;
 import com.yihuacomputer.fish.version.entity.VersionTypeAtmTypeRelation;
 
 /**
@@ -69,9 +64,6 @@ public class VersionDownloadService implements IVersionDownloadService {
     @Autowired
     private IComplexDeviceService complexDeviceService;
 
-    @Autowired
-    private IDeviceVersionService dvService;
-
     /**
      * 对应增加作业页面可选择的设备列表
      * 还可以下发的设备列表
@@ -81,197 +73,167 @@ public class VersionDownloadService implements IVersionDownloadService {
      * 
      * 3.软件分类适用的设备型号 @sincie 2.0增加
      */
-	@Override
+//	@Override
     public IPageResult<LinkedDeviceForm> pageDevices(int start, int limit, IVersion selectedVersion, IFilter outerFilter,long currentLoginUserId) {
-        IFilter filter = null;
-        if (outerFilter == null) {
-            filter = new Filter();
-        }
-        else {
-            filter = outerFilter;
-        }
-//        IVersionType vType = selectedVersion.getVersionType();
-//        List<IVersionTypeRestriction> vTypeRestrictions = vType.listVersionTypeRestrictions();
-//        for(IVersionTypeRestriction vTypeRestriction : vTypeRestrictions){
-//            if(vTypeRestriction.getRestrictionColumn().equals(RestrictionColumn.CASH_TYPE)){
-//                filter.addFilterEntry(FilterFactory.eq("device.cashType",CashType.valueOf(vTypeRestriction.getRestrictionValue())));
-//            }else if(vTypeRestriction.getRestrictionColumn().equals(RestrictionColumn.AWAY_FLAG)){
-//                filter.addFilterEntry(FilterFactory.eq("device.awayFlag",AwayFlag.valueOf(vTypeRestriction.getRestrictionValue())));
-//            }
-//        }
-        //是否显示网络不通的设备这个条件放到页面中由用户自行选择，默认不显示
-        //TODO 补充
-        //获取当前登陆用户能够查看的设备信息列表
-//        StringBuffer hql = new StringBuffer();
-//        hql.append("from Device device ,VersionTypeAtmTypeRelation va where versionTypeId = ?");
-        IPageResult<IDevice> devices =  complexDeviceService.page(start, limit, filter,currentLoginUserId);
-        List<LinkedDeviceForm> forms = new ArrayList<LinkedDeviceForm>();
-        for(IDevice device : devices.list()){
-            LinkedDeviceForm form = new LinkedDeviceForm(device);
-            IDeviceSoftVersion deviceSoftVersion = deviceSoftVersionService.get(device.getTerminalId(), selectedVersion.getVersionType().getTypeName());
-            if(deviceSoftVersion != null){
-                form.setDeviceVersion(deviceSoftVersion.getVersionNo());
-                IVersion dv = deviceSoftVersion.getVersion();
-                if(dv == null){
-                    dv = versionService.make();
-                    dv.setVersionNo(deviceSoftVersion.getVersionNo());
-                    VersionType temp = new VersionType();
-                    temp.setTypeName(selectedVersion.getVersionType().getTypeName());
-                    dv.setVersionType(temp);
-                }
-                if(!selectedVersion.isAfter(dv) && selectedVersion.getVersionNo() != dv.getVersionNo() ){
-                    form.setSelectable(false);
-                }
-            }else{
-                form.setSelectable(selectedVersion.isAfter(null));
-            }
-            //@since 2.0
-            //只有可下发的设备才放入form中
-            if(form.isSelectable()){
-	            IDeviceVersion deviceVersion = dvService.findDeviceVersion(device.getId(), selectedVersion.getId());
-	            if(deviceVersion != null){
-	                form.setTargetVersion(selectedVersion.getVersionNo());
-	                form.setTaskStatus(deviceVersion.getTaskStatus().getText());
-	                form.setReason(deviceVersion.getDesc());
-	            }
-	            //下发状态的判断
-            	forms.add(form);
-            }
-        }
-        IPageResult<LinkedDeviceForm> page = new PageResult<LinkedDeviceForm>(forms.size(),forms);
-        return page;
+
+    	return null;
     }
 
-	
-	 public IPageResult<LinkedDeviceForm> pageCanPushDevices(int start, int limit, IVersion version, IFilter outerFilter) {
-		 IFilter filter = null;
-        if (outerFilter == null) {
-            filter = new Filter();
-        }
-        else {
-            filter = outerFilter;
-        }
-		StringBuffer hqlDevice = new StringBuffer();
-		List<Object> args = new ArrayList<Object>();
-		//设备可下发成功的台数
-    	hqlDevice.append("select device,deviceSoftVersion from  ").
-		append(Device.class.getSimpleName()).append(" device ,").
-		append(Version.class.getSimpleName()).append(" version ,").
-		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType ,").
-		append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ").
-		append(" where versionatmType.versionTypeId=version.versionType.id ").
-		append(" and device.devType.id=versionatmType.atmTypeId ").
-    	append(" and version.id=?  and device.status=? ");
-    	args.add(version.getId());
-    	args.add(Status.OPENING);
-    	//需要拼接的hql
-    	String ipHql,terminalIdHql,orgHql,atmTypeHql;
-    	//参数信息
-    	String terminalId;
-    	IP ip;
-    	IOrganization org;
-    	long atmTypeId;
-		if(null!=filter.getValue("ip")){
-			ip = new IP(String.valueOf(filter.getValue("ip")));
-			ipHql=" and device.ip=? ";
-			hqlDevice.append(ipHql);
-			args.add(ip);
-		}
-		if(null!=filter.getValue("terminalId")){
-			terminalId = String.valueOf(filter.getValue("terminalId"));
-			terminalIdHql=" and device.terminalId like ? ";
-			hqlDevice.append(terminalIdHql);
-			args.add("%"+terminalId+"%");
-		}
-		if(null!=filter.getValue("orgId")){
-			String orgId = String.valueOf(filter.getValue("orgId"));
-			org = organizationService.get(orgId);
-			if(null!=org){
-				orgHql = " and device.organization.orgFlag like ? ";
-				hqlDevice.append(orgHql);
-				args.add("%"+org.getOrgFlag());
-			}
-		}
-		if(null!=filter.getValue("atmTypeId")){
-			atmTypeId = Long.parseLong(String.valueOf(filter.getValue("atmTypeId")));
-			atmTypeHql ="and device.devType.id=? ";
-			hqlDevice.append(atmTypeHql);
-			args.add(atmTypeId);
-		}
-		hqlDevice.append(" and version.versionType.typeName=deviceSoftVersion.typeName ").
-		append(" and device.terminalId=deviceSoftVersion.terminalId ");
-    	if(null==version.getDependVersion()){
-    		hqlDevice.append(" and version.versionNo>deviceSoftVersion.versionNo ");
-    	}
-    	else{
-    		hqlDevice.append(" and version.dependVersion.versionNo=deviceSoftVersion.versionNo");
-    	}
-    	hqlDevice.append(" and device.id not in").
-		//下发成功的设备
-    	append("(select device1.id from  ").
-		append(DeviceVersion.class.getSimpleName()).append( " deviceVersion1 , ").
-		append(Device.class.getSimpleName()).append(" device1 ,").
-		append(Version.class.getSimpleName()).append(" version1 ,").
-		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType1 ").
-		append(" where  deviceVersion1.deviceId=device1.id ").
-		append(" and deviceVersion1.versionId=version1.id and ").
-		append(" version1.id=? and deviceVersion1.taskStatus=? and device1.status=?");
-    	args.add(version.getId());
-    	args.add(TaskStatus.CHECKED);
-    	args.add(Status.OPENING);
-    	if(null!=filter.getValue("ip")){
-			ip = new IP(String.valueOf(filter.getValue("ip")));
-			ipHql=" and device1.ip=? ";
-			hqlDevice.append(ipHql);
-			args.add(ip);
-		}
-		if(null!=filter.getValue("terminalId")){
-			terminalId = String.valueOf(filter.getValue("terminalId"));
-			terminalIdHql=" and device1.terminalId=? ";
-			hqlDevice.append(terminalIdHql);
-			args.add(terminalId);
-		}
-		if(null!=filter.getValue("orgId")){
-			String orgId = String.valueOf(filter.getValue("orgId"));
-			org = organizationService.get(orgId);
-			if(null!=org){
-				orgHql = " and device1.organization.orgFlag like ? ";
-				hqlDevice.append(orgHql);
-				args.add("%"+org.getOrgFlag());
-			}
-		}
-		if(null!=filter.getValue("atmTypeId")){
-			atmTypeId = Long.parseLong(String.valueOf(filter.getValue("atmTypeId")));
-			atmTypeHql ="and device.devType.id=? ";
-			hqlDevice.append(atmTypeHql);
-			args.add(atmTypeId);
-		}
-    	hqlDevice.append(" and device1.devType.id=versionatmType1.atmTypeId ").
-    	append(" and versionatmType1.versionTypeId=version1.versionType.id )");
-		@SuppressWarnings("unchecked")
-		IPageResult<Object> pushResult = (IPageResult<Object>) dao.page(start, limit, hqlDevice.toString(), args.toArray());
+	/* (non-Javadoc)
+	 * @see com.yihuacomputer.fish.api.version.IVersionDownloadService#pageCanPushDevices(int, int, com.yihuacomputer.fish.api.version.IVersion, com.yihuacomputer.common.IFilter)
+	 */
+	public IPageResult<LinkedDeviceForm> pageDownLoadDevices(int start, int limit, IVersion version, IFilter outerFilter) {
 		List<LinkedDeviceForm> linkDeviceList = new ArrayList<LinkedDeviceForm>();
+		IPageResult<Object> pushResult = this.getCanPushDevicePagesInfo(start, limit, version, outerFilter);
 		for(Object record:pushResult.list()){
-			Object[] objs = (Object[])record;
-			IDevice device = (IDevice)objs[0];
-			IDeviceSoftVersion deviceSoftVersion =  (IDeviceSoftVersion)objs[1];
+			IDevice device = (IDevice)record;
+			
 			LinkedDeviceForm linkDevice = new LinkedDeviceForm(device);
-			linkDevice.setDeviceVersion(deviceSoftVersion.getVersionNo());
-			linkDevice.setTargetVersion(version.getVersionNo());
-			linkDevice.setSelectable(true);
-			IDeviceVersion deviceVersion = dvService.findDeviceVersion(device.getId(), version.getId());
-			if(null!=deviceVersion){
-				linkDevice.setTaskStatus(deviceVersion.getTaskStatus().getText());
+			IDeviceSoftVersion deviceSoftVersion = deviceSoftVersionService.get(device.getId(), version.getVersionType().getTypeName());
+			if(null==deviceSoftVersion){
+				linkDevice.setDeviceVersion("");
 			}
+			else{
+				linkDevice.setDeviceVersion(deviceSoftVersion.getVersionNo());
+			}
+
+			linkDevice.setTargetVersion(version.getVersionNo());
 			linkDeviceList.add(linkDevice);
 		}
-//    	IPageResult<VersionChartsDetailForm> pageResult= convertResult(pushResult);
-//			List<Object> totalList =  dao.findByHQL(hqlDevice.toString(), objDevice);
-//	    	IPageResult<VersionChartsDetailForm> pageResult= convertResult(start,limit,totalList,versionId,true);
-//	    	return pageResult;
         IPageResult<LinkedDeviceForm> page = new PageResult<LinkedDeviceForm>(pushResult.getTotal(),linkDeviceList);
         return page;
-	 }
+	}
+	
+	
+	public IPageResult<Object> getCanPushDevicePagesInfo(int start, int limit, IVersion version, IFilter outerFilter){
+		List<Object> argList=new ArrayList<Object>();
+		Object orgFlag = outerFilter.getValue("orgFlag");
+		String orgFlagStr = "%"+orgFlag;
+		Object terminalId = outerFilter.getValue("terminalId");
+		Object atmTypeId = outerFilter.getValue("atmTypeId");
+		Object ip = outerFilter.getValue("ip");
+		//如果有没有依赖版本则版本号要小于当前要下发的版本号;并且下发的设备如果存在下发的任务，任务不可以为没有失败的任务
+		StringBuffer hqlDevice = new StringBuffer();
+		if(null==version.getDependVersion()){
+			//设备可下发成功的台数
+	    	hqlDevice.append("select device from  ").
+			append(Device.class.getSimpleName()).append(" device ,").
+			append(Version.class.getSimpleName()).append(" version ,").
+			append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion, ").
+			append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType ").
+	    	append(" where version.id=?  and device.status=?");
+			argList.add(version.getId());
+			argList.add(Status.OPENING);
+	    	hqlDevice.append(" and device.devType.id=versionatmType.atmTypeId ").
+
+			append(" and deviceSoftVersion.typeName=version.versionType.typeName and deviceSoftVersion.deviceId=device.id  and version.versionStr>deviceSoftVersion.versionStr ").
+	    	append(" and versionatmType.versionTypeId=version.versionType.id ");
+	    	if(terminalId!=null){
+	    		hqlDevice.append(" and device.terminalId like ? ");
+	    		argList.add("%"+String.valueOf(terminalId)+"%");
+	    	}
+	    	if(atmTypeId!=null){
+	    		hqlDevice.append(" and device.devType.id =? ");
+	    		argList.add(Long.parseLong(String.valueOf(atmTypeId)));
+	    	}
+	    	if(ip!=null){
+	    		hqlDevice.append(" and device.ip =? ");
+	    		argList.add(new IP(String.valueOf(ip)));
+	    	}
+	    	hqlDevice.append(" and device.organization.orgFlag like ? and device.id not in");
+	    	argList.add(orgFlagStr);
+			//下发成功的设备
+	    	hqlDevice.append("(select device1.id from  ").
+			append(Task.class.getSimpleName()).append( " task1 , ").
+			append(Device.class.getSimpleName()).append(" device1 ,").
+			append(Version.class.getSimpleName()).append(" version1 ,").
+			append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType1 ").
+			append(" where  task1.deviceId=device1.id ").
+			append(" and task1.version.id=version1.id and ").
+			append(" version1.id=? and task1.status in('NEW','RUN','NOTICED','DOWNLOADED','DEPLOYED','CHECKED') and device1.status=?").
+			append(" and device1.devType.id=versionatmType1.atmTypeId ").
+	    	append(" and versionatmType1.versionTypeId=version1.versionType.id ");
+			argList.add(version.getId());
+			argList.add(Status.OPENING);
+	    	if(terminalId!=null){
+	    		hqlDevice.append(" and device1.terminalId like ? ");
+	    		argList.add("%"+String.valueOf(terminalId)+"%");
+	    	}
+	    	if(atmTypeId!=null){
+	    		hqlDevice.append(" and device1.devType.id =? ");
+	    		argList.add(Long.parseLong(String.valueOf(atmTypeId)));
+	    	}
+	    	if(ip!=null){
+	    		hqlDevice.append(" and device1.ip =? ");
+	    		argList.add(new IP(String.valueOf(ip)));
+	    	}
+	    	argList.add(orgFlagStr);
+			hqlDevice.append(" and device1.organization.orgFlag like ?) ");
+    	}
+//    	存在版本依赖关系
+    	else{
+    		//设备可下发成功的台数
+        	hqlDevice.append("select device from  ").
+    		append(Device.class.getSimpleName()).append(" device ,").
+    		append(Version.class.getSimpleName()).append(" version ,").
+    		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType, ").
+    		append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ").
+    		append(" where version.id=?  and device.status=?");
+    		argList.add(version.getId());
+			argList.add(Status.OPENING);
+			hqlDevice.append(" and device.devType.id=versionatmType.atmTypeId ").
+        	append(" and versionatmType.versionTypeId=version.versionType.id ").
+    		append(" and version.dependVersion.versionNo=deviceSoftVersion.versionNo").
+    		append(" and version.versionType.typeName=deviceSoftVersion.typeName ").
+    		append(" and device.id=deviceSoftVersion.deviceId ");
+			if(terminalId!=null){
+	    		hqlDevice.append(" and device.terminalId like ? ");
+	    		argList.add("%"+String.valueOf(terminalId)+"%");
+	    	}
+	    	if(atmTypeId!=null){
+	    		hqlDevice.append(" and device.devType.id =? ");
+	    		argList.add(Long.parseLong(String.valueOf(atmTypeId)));
+	    	}
+	    	if(ip!=null){
+	    		hqlDevice.append(" and device.ip =? ");
+	    		argList.add(new IP(String.valueOf(ip)));
+	    	}
+        	hqlDevice.append(" and device.organization.orgFlag like ? and device.id not in");
+
+	    	argList.add(orgFlagStr);
+    		//下发成功的设备
+        	hqlDevice.append("(select device1.id from  ").
+    		append(Task.class.getSimpleName()).append( " task1 , ").
+    		append(Device.class.getSimpleName()).append(" device1 ,").
+    		append(Version.class.getSimpleName()).append(" version1 ,").
+    		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType1 ").
+    		append(" where  task1.deviceId=device1.id ").
+    		append(" and task1.version.id=version1.id and ").
+    		append(" version1.id=? and task1.status in('NEW','RUN','NOTICED','DOWNLOADED','DEPLOYED','CHECKED') and device1.status=?").
+    		append(" and device1.devType.id=versionatmType1.atmTypeId ");
+			argList.add(version.getId());
+			argList.add(Status.OPENING);
+        	if(terminalId!=null){
+	    		hqlDevice.append(" and device1.terminalId like ? ");
+	    		argList.add("%"+String.valueOf(terminalId)+"%");
+	    	}
+	    	if(atmTypeId!=null){
+	    		hqlDevice.append(" and device1.devType.id =? ");
+	    		argList.add(Long.parseLong(String.valueOf(atmTypeId)));
+	    	}
+	    	if(ip!=null){
+	    		hqlDevice.append(" and device1.ip =? ");
+	    		argList.add(new IP(String.valueOf(ip)));
+	    	}
+    		hqlDevice.append(" and versionatmType1.versionTypeId=version1.versionType.id ").
+    		append(" and device1.organization.orgFlag like ?) ");
+	    	argList.add(orgFlagStr);
+    	}
+		@SuppressWarnings("unchecked")
+		IPageResult<Object> pushResult = (IPageResult<Object>) dao.page(start, limit, hqlDevice.toString(), argList.toArray());
+		
+		return pushResult;
+	}
 	
     @Override
     public IPageResult<IDevice> pageLinkedDevices(int start, int limit, IFilter filter) {

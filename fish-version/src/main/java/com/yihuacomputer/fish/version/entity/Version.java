@@ -54,7 +54,7 @@ public class Version implements IVersion, Serializable {
     @Column(name = "RELEASE_DATE")
     private Date releaseDate;
 
-    @ManyToOne(targetEntity = VersionType.class,fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = VersionType.class,fetch = FetchType.EAGER)
     @JoinColumn(name = "VERSION_TYPE_ID", nullable = false)
     private IVersionType versionType;
 
