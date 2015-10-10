@@ -101,17 +101,17 @@ Ext.define('Eway.view.person.user.Grid', {
 				dataIndex : 'userState',
 				renderer: function(value,metadata,record){
 						if(value==0){
-	                	   return Eway.locale.person.bankOrg.organizationStateDict.newCreate;
+	                	   return Eway.locale.commen.stateDict.newCreate;
 	                   }else if(value==1){
-	                	   return Eway.locale.person.bankOrg.organizationStateDict.newCreate;
+	                	   return Eway.locale.commen.stateDict.newCreate;
 	                   }else if(value==2){
-	                	   return Eway.locale.person.bankOrg.organizationStateDict.normal;
+	                	   return Eway.locale.commen.stateDict.normal;
 	                   }else if(value==3){
-	                	   return Eway.locale.person.bankOrg.organizationStateDict.locked;
+	                	   return Eway.locale.commen.stateDict.locked;
 	                   }else if(value==4){
-	                	   return Eway.locale.person.bankOrg.organizationStateDict.deleted;
+	                	   return Eway.locale.commen.stateDict.deleted;
 	                   }else{
-	                	   return Eway.locale.person.bankOrg.organizationStateDict.frozen;
+	                	   return Eway.locale.commen.stateDict.frozen;
 	                   }
 					}
 			},{

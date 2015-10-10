@@ -65,7 +65,7 @@ Ext.define('Eway.view.report.baseReport.TransactionCountReportFilter', {
 					},
 					items : [ {
 						xtype : 'common_orgComboOrgTree',
-						fieldLabel : '所属机构',
+						fieldLabel : Eway.locale.commen.orgNameBelongs,
 						labelAlign : 'right',
 						emptyText : '--请选择--',
 						name : 'orgName',

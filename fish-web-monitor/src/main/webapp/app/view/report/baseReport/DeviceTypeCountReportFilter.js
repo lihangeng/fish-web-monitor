@@ -22,7 +22,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportFilter', {
 								}, {
 									//只带出银行机构
 									xtype : 'common_orgComboOrgTree',
-									fieldLabel : '所属机构',
+									fieldLabel : Eway.locale.commen.orgNameBelongs,
 									labelAlign : 'right',
 									emptyText : '--请选择--',
 									name : 'orgName',

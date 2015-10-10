@@ -134,7 +134,7 @@ Ext.define('Eway.view.version.Grid', {
 				},
 				width: 100
 			}*/,{
-				header : '备注',
+				header : Eway.locale.commen.remark,
 				dataIndex : 'desc',
 				hidden : true
 			}],

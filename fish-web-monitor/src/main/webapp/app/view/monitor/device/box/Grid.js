@@ -12,7 +12,7 @@ Ext.define('Eway.view.monitor.device.box.Grid', {
 				header : '钞箱类型',
 				dataIndex : 'type'
 			}, {
-				header : '钞箱状态',
+				header : Eway.locale.monitor.devMonitor.boxStatus,
 				dataIndex : 'binStatus'
 			}, {
 				header : '初始张数',

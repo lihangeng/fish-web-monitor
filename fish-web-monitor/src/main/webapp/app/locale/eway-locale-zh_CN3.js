@@ -21,7 +21,8 @@ Ext.apply(Eway,{
 			bankPerlink:'绑定设备',
 			confirm:'确认',
 			cancle:'取消',
-			choose:'选择'
+			choose:'选择',
+			pause:'暂停'
 		},
 		combox:{
 			select:'--请选择--'
@@ -50,6 +51,9 @@ Ext.apply(Eway,{
 			phone:'请输入正确的电话号码',
 			//add by panxin
 			tips:'提示',
+			input:'请正确输入',
+			roleName:'由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位',
+			roleDescription:'由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入100位',
 			passwd:{
 				confirmPasswd:'是否确认密码重置？',
 				resetPasswding:'正在重置密码......',
@@ -103,8 +107,23 @@ Ext.apply(Eway,{
 				allSerPer:'所有维护商人员信息'
 			},
 			user:{
-				
-				
+				add:{
+					createAcc:'请选择您要创建的账号的人员',
+					createSuccess:'创建成功,新建账户',
+					initPasswd:'初始密码为: 888888'
+				},
+				remove:{
+					failRoot:'删除失败:系统管理员用户,无法删除.',
+					confirm:'是否删除该记录:删除用户会删除该用户的日志信息.',
+					fail:'删除失败:无法删除角色,请重新操作.'
+				},
+				update:{
+					fail:'更改失败:记录不存在,请刷新后操作.',
+				},
+				move:{
+					choose:'请选择需要移动的记录.'
+					
+				}
 			}
 			
 		},
@@ -122,6 +141,7 @@ Ext.apply(Eway,{
 			bankOrgCode:'只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！',
 			zip:'只能输入6个‘0-9’的数字！',
 			endDateGtBenginDate:'操作起始时间不能大于操作结束日期,请重新选择',
+			personRemark:'由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入200位',
 		},
 		commen:{
 			jobNum:'工号',
@@ -144,7 +164,7 @@ Ext.apply(Eway,{
 			email:'邮箱',
 			phone:'固话',
 			gender:'性别',
-			allGender:'全部',
+			all:'全部',
 			comboxGender:{
 				male:'男',
 				female:'女',
@@ -167,11 +187,37 @@ Ext.apply(Eway,{
 			cashboxLimit:'钞箱报警金额',
 			installDate:'安装日期',
 			address:'地址',
+			areaCode:'区域编号',
+			areaName:'区域名称',
 			toolbar:'总共：{2}条，显示{0}-{1}',
 			bindMachine :'已关联的设备',
 			lift:'解除',
 			canBindMachine:'可关联的设备',
 			bind:'关联',
+			filter:'过滤条件',
+			stateDict:{
+				newCreate:'新建',
+				normal:'正常',
+				locked:'锁定',
+				disable:'无效',
+				frozen:'冻结',
+				deleted:'已删除'
+			},
+			yes:'是',
+			no:'否',
+			selectAll:'全部选择',
+			selectNon:'全部不选',
+			content:'消息',
+			upgrade:'上级',
+			port:'网络Port',
+			previous:'上一页',
+			next:'下一页',
+			installAddr:'装机地址',
+			seviceMode:'经营方式',
+			insideOutside:'在行/离行',
+			appVersion:'应用版本号',
+			devInfo:'设备基本信息'
+			//check end
 		},
 		machine:{
 			atmBrand : {
@@ -226,14 +272,6 @@ Ext.apply(Eway,{
 					tagBranchBank:'支行',
 					netBank:'网点'
 				},
-				organizationStateDict:{
-					newCreate:'新建',
-					normal:'正常',
-					locked:'锁定',
-					disable:'无效',
-					frozen:'冻结',
-					deleted:'已删除'
-				},
 				addOrgTitle:'该机构人员信息',
 				linkPeronTitle:'当前机构下人员：',
 				personList:'人员列表',
@@ -267,7 +305,7 @@ Ext.apply(Eway,{
 				updateServiceTitle:'更改维护商信息',
 				personDevSerLink:'该厂商的关联设备和人员',
 				devSerLink:'该厂商下设备',
-				personSerLink:'该厂商下人员',
+				personSerLink:'该厂商下人员'
 			},
 			servicePer:{
 				title:'维护人员管理',
@@ -303,9 +341,52 @@ Ext.apply(Eway,{
 				operTitle:'操作员日志',
 				operDetailTitle:'操作日志信息',
 				operLogList:'操作日志列表',
-				personDevice:'人员<-->设备'
+				personDevice:'人员<-->设备',
+				rootUser:'超级用户',
+				generalUser:'普通用户'
 			}
 			
+		},
+		permission:{
+			role:{
+				title:'角色管理',
+				update:'更改角色',
+				name:'角色名称',
+				type:'角色类型',
+				description:'角色描述',
+				isSysRole:'是否是系统内置角色',
+				chooseRight:'请选择菜单权限',
+				add:'增加角色'
+			},
+			permission:{
+				menuName:'菜单名称',
+				menuDescription:'菜单描述',
+				menuPermission:'菜单权限',
+			}
+		},
+		monitor:{
+			devMonitor:{
+				title:'状态监控',
+				runStatus:'运行状态',
+				modStatus:'模块状态',
+				boxStatus:'钞箱状态',
+				netStatus:'网络状态',
+				monitorState:'监控状态',
+				showWay:'展示方式',
+				comboxShowWay:{
+					matrixPattern:'矩形方式',
+					maxIconPattern:'超大图标',
+					listPattern:'列表方式',
+					boxPattern:'钞箱方式'
+				},
+				numberfield:'监控台数',
+				retainCardCount:'当前吞卡数量',
+				boxInitCount:'钞箱初始金额',
+				boxCurrentCount:'钞箱当前金额',
+				noData:'无记录',
+				cashboxLimit:'钞箱报警金额阈值',
+			}
 		}
+		
 	}
 });

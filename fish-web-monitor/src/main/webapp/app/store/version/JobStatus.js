@@ -3,7 +3,7 @@ Ext.define('Eway.store.version.JobStatus', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'NEW', display:'新建'}, 
+	data: [{value:'NEW', display:Eway.locale.commen.stateDict.newCreate}, 
 	       {value:'RUN', display:'运行中'}, 
 	       {value:'SCHEDULER', display:'计划中'},
 	       {value:'READY_RUN', display:'准备运行'},

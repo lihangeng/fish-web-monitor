@@ -41,7 +41,7 @@ Ext.define('Eway.view.machine.atmGroup.GroupGrid', {
 				header : '组名',
 				dataIndex : 'name'
 			}, {
-				header : '备注',
+				header : Eway.locale.commen.remark,
 				dataIndex : 'note',
 				flex : 1
 			} ],

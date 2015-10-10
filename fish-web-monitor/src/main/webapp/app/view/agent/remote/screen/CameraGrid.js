@@ -45,7 +45,7 @@ Ext.define('Eway.view.agent.remote.screen.CameraGrid', {
 			} ],
 			features: [groupingFeature],
 			columns : [ {
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				sortable : true,
 				width : 131,
 				dataIndex : 'terminalId'
@@ -69,7 +69,7 @@ Ext.define('Eway.view.agent.remote.screen.CameraGrid', {
 				width : 172,
 				dataIndex : 'fileNameClient'
 			}, {
-				header : '状态',
+				header : Eway.locale.commen.state,
 				sortable : true,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {

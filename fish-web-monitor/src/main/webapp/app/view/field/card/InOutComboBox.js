@@ -5,7 +5,7 @@ Ext.define('Eway.view.field.card.InOutComboBox',{
 	alias:'widget.card_InOutComboBox',
 	
 	name : 'inOut',
-	fieldLabel : '在行/离行',
+	fieldLabel : Eway.locale.commen.insideOutside,
 	store : 'monitor.card.InoutComboBox',
 	queryMode: 'local',
 	displayField: 'display',

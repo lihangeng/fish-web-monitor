@@ -49,11 +49,11 @@ Ext.define('Eway.view.monitor.card.CardDestoryGrid', {
 				}
 			}],
 			columns : [{
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'terminalId',
 				flex : 1
 			}, {
-				header : '所属机构',
+				header : Eway.locale.commen.orgNameBelongs,
 				dataIndex : 'subsidiaryorganName',
 				flex : 1
 			}, {
@@ -84,7 +84,7 @@ Ext.define('Eway.view.monitor.card.CardDestoryGrid', {
 				dataIndex : 'cardDistributionBank',
 				flex : 1
 			},{
-				header : '状态',
+				header : Eway.locale.commen.state,
 				dataIndex : 'status',
 				renderer : function(value){
 					if(value == 0){

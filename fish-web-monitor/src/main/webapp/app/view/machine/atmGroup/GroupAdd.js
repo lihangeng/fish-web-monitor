@@ -32,7 +32,7 @@ Ext.define('Eway.view.machine.atmGroup.GroupAdd', {
 					allowBlank : false
 				},{
 				    xtype : 'textarea',
-				    fieldLabel : '备注',
+				    fieldLabel : Eway.locale.commen.remark,
 				    name : 'note',
 				    autoScroll : true,
 					maxLength :30,

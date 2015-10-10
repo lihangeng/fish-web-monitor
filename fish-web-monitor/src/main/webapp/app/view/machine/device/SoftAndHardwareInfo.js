@@ -26,7 +26,7 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 							anchor : '90%'
 						},
 						items : [ {
-							fieldLabel : '设备号',
+							fieldLabel : Eway.locale.commen.terminalId,
 							name : 'termId',
 							style : 'margin-top:2px'
 						}, {

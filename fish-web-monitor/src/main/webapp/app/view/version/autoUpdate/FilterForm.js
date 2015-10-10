@@ -28,7 +28,7 @@ Ext.define('Eway.view.version.autoUpdate.FilterForm', {
 	                queryMode: 'local',
 	                valueField : 'value',
 	                displayField: 'display',
-	                emptyText : '全部',
+	                emptyText : Eway.locale.commen.all,
 	                editable : false
 				}]},{
 				columnWidth : .3,
@@ -38,7 +38,7 @@ Ext.define('Eway.view.version.autoUpdate.FilterForm', {
 					name : 'orgId'
 				}, {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '所属机构',
+					fieldLabel : Eway.locale.commen.orgNameBelongs,
 					emptyText : '--请选择--',
 					name : 'orgName',
 					hiddenValue : 'orgId',
@@ -47,7 +47,7 @@ Ext.define('Eway.view.version.autoUpdate.FilterForm', {
 					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
 				},{
 					xtype:'field_device_deviceatmtype',
-					fieldLabel : '设备型号',
+					fieldLabel : Eway.locale.commen.devTypeName,
 					name: 'atmTypeId',
 					editable  : false,
 					store: 'machine.DeviceAtmType',
@@ -59,7 +59,7 @@ Ext.define('Eway.view.version.autoUpdate.FilterForm', {
 				columnWidth : .4,
 				items : [{
 					xtype : 'textfield',
-					fieldLabel : '设备号',
+					fieldLabel : Eway.locale.commen.terminalId,
 					name : 'terminalId',
 					vtype : 'terminalId',
 					allowBlank : true,

@@ -22,11 +22,11 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 				action : 'export'
 			}],
 			columns : [{
-				header : '所属机构',
+				header : Eway.locale.commen.orgNameBelongs,
 				dataIndex : 'org',
 				width : 100
 			},{
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'terminalId',
 				width : 80
 			}, {

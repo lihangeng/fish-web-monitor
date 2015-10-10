@@ -57,16 +57,16 @@ Ext.define('Eway.view.machine.device.Info', {
 								readOnly : true
 							},
 							items : [ {
-								boxLabel : '开通',
+								boxLabel : Eway.locale.commen.comboxDevStatus.open,
 								name : 'status',
 								inputValue : 1
 							}, {
-								boxLabel : '停用',
+								boxLabel : Eway.locale.commen.comboxDevStatus.stop,
 								name : 'status',
 								inputValue : 2
 							} ]
 						}, {
-							fieldLabel : '设备维护商',
+							fieldLabel : Eway.locale.commen.devServiceName,
 							name : 'devServiceName'
 						} ]
 					}, {
@@ -86,7 +86,7 @@ Ext.define('Eway.view.machine.device.Info', {
 							fieldLabel : '<font color="red">*</font> 设备型号',
 							name : 'devTypeName'
 						}, {
-							fieldLabel : '钞箱报警金额',
+							fieldLabel : Eway.locale.commen.cashboxLimit,
 							xtype : 'numberfield',
 							hideTrigger : true,
 							name : 'cashboxLimit'
@@ -486,7 +486,7 @@ Ext.define('Eway.view.machine.device.Info', {
 									inputValue : 3
 								} ]
 							}, {
-								fieldLabel : '经营方式',
+								fieldLabel : Eway.locale.commen.seviceMode,
 								xtype : 'radiogroup',
 								defaults : {
 									readOnly : true
@@ -507,7 +507,7 @@ Ext.define('Eway.view.machine.device.Info', {
 							} ]
 						} ]
 					}, {
-						title : '管机员',
+						title : Eway.locale.commen.comboxType.machineManager,
 						itemid : 'tubeMachineItemID',
 						xtype : 'machine_device_person_tmGrid'
 					}, {

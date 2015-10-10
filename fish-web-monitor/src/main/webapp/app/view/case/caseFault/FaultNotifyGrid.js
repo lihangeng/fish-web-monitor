@@ -102,7 +102,7 @@ Ext.define('Eway.view.case.caseFault.FaultNotifyGrid', {
 				dataIndex : 'sendTime',
 				flex : 1
 			}, {
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'terminalId',
 				flex : 1
 			}],

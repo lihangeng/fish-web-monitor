@@ -96,7 +96,7 @@ Ext.define('Eway.view.machine.atmMove.AtmMove', {
 				},{
 					xtype : 'textarea',
 					name : 'notice',
-					fieldLabel : '备注',
+					fieldLabel : Eway.locale.commen.remark,
 					autoScroll : true,
 					maxLength : 50,
 					msgTarget : 'side'

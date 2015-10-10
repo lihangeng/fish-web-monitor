@@ -48,7 +48,7 @@ Ext.define('Eway.view.machine.atmType.AtmTypeGrid', {
 				dataIndex : 'no',
 				flex : 1
 			}, */{
-				header : '设备型号',
+				header : Eway.locale.commen.devTypeName,
 				dataIndex : 'name',
 				flex : 1
 			}, {

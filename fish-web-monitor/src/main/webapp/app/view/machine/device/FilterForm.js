@@ -20,7 +20,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : '设备号',
+					fieldLabel : Eway.locale.commen.terminalId,
 					name : 'terminalId',
 					vtype : 'terminalId',
 					allowBlank : true,
@@ -38,7 +38,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					name : 'organization'
 				}, {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '所属机构',
+					fieldLabel : Eway.locale.commen.orgNameBelongs,
 					emptyText : '--请选择--',
 					name : 'orgName',
 					hiddenValue : 'organization',
@@ -47,7 +47,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
 				}, {
 					xtype : 'field_atmType_DeviceAtmVendorComboBox',
-					fieldLabel : '设备品牌'
+					fieldLabel : Eway.locale.commen.devVendorName
 				}, {
 					xtype : 'combobox',
 					fieldLabel : '在离行标志',
@@ -79,7 +79,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					name : 'devService'
 				}, {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '设备维护商',
+					fieldLabel : Eway.locale.commen.devServiceName,
 					emptyText : '--请选择--',
 					name : 'devServiceName',
 					hiddenValue : 'devService',
@@ -91,7 +91,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 
 				}, {
 					xtype : 'field_atmType_DeviceAtmCatalogComboBox',
-					fieldLabel : '设备类型'
+					fieldLabel : Eway.locale.commen.devCatalogName
 				} ]
 			}, {
 				columnWidth : .44,
@@ -101,7 +101,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 				},
 				items : [ {
 					xtype : 'fieldcontainer',
-					fieldLabel : '钞箱报警金额',
+					fieldLabel : Eway.locale.commen.cashboxLimit,
 					layout : 'hbox',
 					defaults : {
 						hideLabel : true
@@ -152,7 +152,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					} ]
 				}, {
 					xtype : 'fieldcontainer',
-					fieldLabel : '安装日期',
+					fieldLabel : Eway.locale.commen.installDate,
 					layout : 'hbox',
 					defaults : {
 						hideLabel : true

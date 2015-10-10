@@ -66,7 +66,7 @@ Ext.define('Eway.view.monitor.business.BlackListCardGrid', {
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,
 				displayInfo : true,
-				displayMsg : '总共：{2}条，显示{0}-{1}'
+				displayMsg : 'Eway.locale.commen.toolbar：{2}条，显示{0}-{1}'
 			})
 		});
 		

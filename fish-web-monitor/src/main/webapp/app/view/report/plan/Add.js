@@ -69,7 +69,7 @@ Ext.define('Eway.view.report.plan.Add', {
 					}
 				},{
 					xtype : 'textarea',
-				    fieldLabel : '备注',
+				    fieldLabel : Eway.locale.commen.remark,
 				    name : 'note',
 				    autoScroll : true,
 					maxLength :30,

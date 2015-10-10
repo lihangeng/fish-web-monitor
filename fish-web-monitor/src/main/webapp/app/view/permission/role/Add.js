@@ -33,10 +33,10 @@ Ext.define('Eway.view.permission.role.Add', {
 				}],
 				buttonAlign : 'center',
 				buttons: [{
-					text: '确认',
+					text: Eway.locale.button.confirm,
 					action: 'confirm'
 				},{
-					text: '取消',
+					text: Eway.locale.button.cancle,
 					handler: this.onOver
 				}]
 			}

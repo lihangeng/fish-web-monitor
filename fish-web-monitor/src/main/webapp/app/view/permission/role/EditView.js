@@ -7,6 +7,6 @@ Ext.define('Eway.view.permission.role.EditView', {
 	resizable: false,
 	constrainHeader: true,
 //	maximizable : true,
-	title: '增加角色'
+	title: Eway.locale.permission.role.add
 
 });

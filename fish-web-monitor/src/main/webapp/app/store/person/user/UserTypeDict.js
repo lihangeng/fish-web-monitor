@@ -4,6 +4,6 @@ Ext.define('Eway.store.person.user.UserTypeDict', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'0', display:'超级用户'}, 
-	       {value:'1', display:'普通用户'}]
+	data: [{value:'0', display:Eway.locale.person.user.rootUser}, 
+	       {value:'1', display:Eway.locale.person.user.generalUser}]
 });

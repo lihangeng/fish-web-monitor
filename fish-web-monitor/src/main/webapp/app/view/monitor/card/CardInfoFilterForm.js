@@ -55,7 +55,7 @@ Ext.define('Eway.view.monitor.card.CardInfoFilterForm', {
 									name : 'orgId'
 								}, {
 /*									xtype : 'common_orgComboOrgTree',
-									fieldLabel : '所属机构',
+									fieldLabel : Eway.locale.commen.orgNameBelongs,
 									emptyText : '--请选择--',
 									name : 'orgName',
 									hiddenValue : 'orgId',
@@ -64,7 +64,7 @@ Ext.define('Eway.view.monitor.card.CardInfoFilterForm', {
 
 									//只带出银行机构
 									xtype : 'common_orgComboOrgTree',
-									fieldLabel : '所属机构',
+									fieldLabel : Eway.locale.commen.orgNameBelongs,
 									labelAlign : 'right',
 									emptyText : '--请选择--',
 									name : 'orgName',

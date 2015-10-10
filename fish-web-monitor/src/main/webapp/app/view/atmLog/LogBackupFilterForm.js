@@ -13,7 +13,7 @@ Ext.define('Eway.view.atmLog.LogBackupFilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype : 'textfield',
-					fieldLabel : '设备号',
+					fieldLabel : Eway.locale.commen.terminalId,
 					name : 'terminalId'
 				},{
 					xtype : 'datefield',

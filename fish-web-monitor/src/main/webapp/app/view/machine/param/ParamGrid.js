@@ -40,7 +40,7 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 				dataIndex : 'paramValue',
 				width : 250
 			},{
-				header: '类型',
+				header: Eway.locale.commen.type,
 				dataIndex: 'classify',
 				width : 150,
 				renderer: function(value){

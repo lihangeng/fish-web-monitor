@@ -55,7 +55,7 @@ Ext.define('Eway.view.monitor.transaction.TransactionGrid', {
 				hidden : true,
 				dataIndex : 'currency'
 			}, {
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				width : 80,
 				dataIndex : 'termId'
 			}, {

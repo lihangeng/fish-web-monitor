@@ -51,7 +51,7 @@ Ext.define('Eway.view.machine.device.Grid', {
 				action : 'export'
 			} ],
 			columns : [ {
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'terminalId',
 				width : 100
 			}, {
@@ -59,23 +59,23 @@ Ext.define('Eway.view.machine.device.Grid', {
 				dataIndex : 'ip',
 				width : 120
 			}, {
-				header : '所属机构',
+				header : Eway.locale.commen.orgNameBelongs,
 				dataIndex : 'orgName',
 				width : 140
 			}, {
-				header : '设备型号',
+				header : Eway.locale.commen.devTypeName,
 				dataIndex : 'devTypeName',
 				width : 90
 			}, {
-				header : '设备品牌',
+				header : Eway.locale.commen.devVendorName,
 				dataIndex : 'devVendorName',
 				width : 80
 			}, {
-				header : '设备类型',
+				header : Eway.locale.commen.devCatalogName,
 				dataIndex : 'devCatalogName',
 				width : 80
 			}, {
-				header : '设备状态',
+				header : Eway.locale.commen.devStatus,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
@@ -102,15 +102,15 @@ Ext.define('Eway.view.machine.device.Grid', {
 				},
 				width : 120
 			}, {
-				header : '设备维护商',
+				header : Eway.locale.commen.devServiceName,
 				dataIndex : 'devServiceName',
 				width : 100
 			}, {
-				header : '钞箱报警金额',
+				header : Eway.locale.commen.cashboxLimit,
 				dataIndex : 'cashboxLimit',
 				width : 100
 			}, {
-				header : '安装日期',
+				header : Eway.locale.commen.installDate,
 				dataIndex : 'installDate',
 				width : 90
 			}, {
@@ -133,7 +133,7 @@ Ext.define('Eway.view.machine.device.Grid', {
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : '总共：{2}条，显示{0}-{1}'
+				displayMsg : 'Eway.locale.commen.toolbar：{2}条，显示{0}-{1}'
 			})
 		});
 

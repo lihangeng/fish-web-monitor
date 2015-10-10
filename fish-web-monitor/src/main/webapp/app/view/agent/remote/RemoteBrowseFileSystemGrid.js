@@ -106,7 +106,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 	            }
 
 			}, {
-				header : '类型',
+				header : Eway.locale.commen.type,
 				dataIndex : 'type',
 				hidden: true,
 				sortable : true

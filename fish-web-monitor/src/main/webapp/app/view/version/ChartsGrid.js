@@ -18,10 +18,10 @@ Ext.define('Eway.view.version.ChartsGrid', {
 				dataIndex:'ip',
 				width: 100
 			},{
-				header : '所属机构',
+				header : Eway.locale.commen.orgNameBelongs,
 				dataIndex : 'orgName'
 			},{
-				header : '设备型号',
+				header : Eway.locale.commen.devTypeName,
 				dataIndex : 'devType',
 				width: 200
 			},{

@@ -26,7 +26,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 					columnWidth : .28,
 					items : [ {
 						labelWidth : 60,
-						fieldLabel : '设备号',
+						fieldLabel : Eway.locale.commen.terminalId,
 						labelAlign : 'right',
 						xtype : 'textfield',
 						name : 'terminalId',

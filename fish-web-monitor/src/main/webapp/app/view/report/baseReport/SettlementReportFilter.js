@@ -19,7 +19,7 @@ Ext.define('Eway.view.report.baseReport.SettlementReportFilter', {
 								}, {
 									//只带出银行机构
 									xtype : 'common_orgComboOrgTree',
-									fieldLabel : '所属机构',
+									fieldLabel : Eway.locale.commen.orgNameBelongs,
 									labelAlign : 'right',
 									emptyText : '--请选择--',
 									name : 'orgName',
@@ -29,7 +29,7 @@ Ext.define('Eway.view.report.baseReport.SettlementReportFilter', {
 									rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
 								},{
 									xtype : 'textfield',
-									fieldLabel : '设备号',
+									fieldLabel : Eway.locale.commen.terminalId,
 									labelAlign : 'right',
 									name : 'terminalId',
 									regex : /^\w+[\w-\.]*$/,

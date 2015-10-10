@@ -24,7 +24,7 @@ Ext.define('Eway.view.version.FilterForm', {
 	                queryMode: 'local',
 	                valueField : 'value',
 	                displayField: 'display',
-	                emptyText : '全部',
+	                emptyText : Eway.locale.commen.all,
 	                editable : false,
 					labelWidth:60
 				}]},{
@@ -37,7 +37,7 @@ Ext.define('Eway.view.version.FilterForm', {
 	                queryMode: 'local',
 	                valueField : 'value',
 	                displayField: 'display',
-	                emptyText : '全部',
+	                emptyText : Eway.locale.commen.all,
 	                editable : false,
 					labelWidth:100
 				}]}

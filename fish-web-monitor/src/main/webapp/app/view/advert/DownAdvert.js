@@ -111,7 +111,7 @@ Ext.define('Eway.view.advert.DownAdvert', {
 					}]
 				},{
 					xtype: 'textarea',
-					fieldLabel:'备注',
+					fieldLabel:Eway.locale.commen.remark,
 					name :'desc',
 					height : 40,
 					maxWidth:600,

@@ -57,7 +57,7 @@ Ext.define('Eway.controller.report.openPlan.OpenPlan', {
 			var PlanDeviceWin = Ext.create('Eway.view.report.plan.PlanDevice');
 			var linkedDeviceGrid = PlanDeviceWin.down('plan_linkedDeviceGrid');
 			var actionTip1 = linkedDeviceGrid.down("tbtext[action=tip]");
-			actionTip1.setText("已关联的设备");
+			actionTip1.setText(Eway.locale.commen.bindMachine);
 			linkedDeviceGrid.getStore().load({
 				params : {
 					flag:0,
@@ -66,7 +66,7 @@ Ext.define('Eway.controller.report.openPlan.OpenPlan', {
 			});
 			var linkingDeviceGrid = PlanDeviceWin.down('plan_linkingDeviceGrid');
 			var actionTip2 = linkingDeviceGrid.down("tbtext[action=tip]");
-			actionTip2.setText("可关联的设备");
+			actionTip2.setText(Eway.locale.commen.canBindMachine);
 			linkingDeviceGrid.getStore().load({
 				params : {
 					flag:1,
@@ -74,8 +74,8 @@ Ext.define('Eway.controller.report.openPlan.OpenPlan', {
 				}
 			});
 			if(record.data.startDate<now){
-				actionTip1.setText('已关联的设备'+'<font color="red">'+'(此方案已过期，不可应用！)'+'</font>');
-				actionTip2.setText('可关联的设备'+'<font color="red">'+'(此方案已过期，不可应用！)'+'</font>');
+				actionTip1.setText(Eway.locale.commen.bindMachine+'<font color="red">'+'(此方案已过期，不可应用！)'+'</font>');
+				actionTip2.setText(Eway.locale.commen.canBindMachine+'<font color="red">'+'(此方案已过期，不可应用！)'+'</font>');
 				linkedDeviceGrid.down('button[action="unlink"]').setDisabled(true);
 				linkingDeviceGrid.down('button[action="link"]').setDisabled(true);
 			}

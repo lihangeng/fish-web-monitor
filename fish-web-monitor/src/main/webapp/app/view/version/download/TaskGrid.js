@@ -83,7 +83,7 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 				dataIndex:'deviceIp',
 				sortable: true
 			},{
-				header: '所属机构',
+				header: Eway.locale.commen.orgNameBelongs,
 				dataIndex:'orgName',
 				sortable: true
 			},{
@@ -106,7 +106,7 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 				header :'执行服务器',
 				dataIndex:'excuteMachine',
 			},{
-				header: '备注',
+				header: Eway.locale.commen.remark,
 				dataIndex:'reason',
 				flex:1
 			},{
@@ -160,7 +160,7 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 					tooltip: '取消下发',
 					getClass : function(value,metadata,record,ronwIndex,colindex,store){
 						var taskStatus = record.get('taskStatus');
-						if(taskStatus == '新建'){
+						if(taskStatus == Eway.locale.commen.stateDict.newCreate){
 							return '';
 						}else {
 							return 'hiddenComp';

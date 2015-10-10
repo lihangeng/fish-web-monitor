@@ -15,7 +15,7 @@ Ext.define('Eway.view.atmLog.successAtmLogInfo.SuccessAtmLogInfoGrid',{
 				flex : 1,
 				hidden : true
 			},{
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'terminalId',
 				flex : 1
 			},{

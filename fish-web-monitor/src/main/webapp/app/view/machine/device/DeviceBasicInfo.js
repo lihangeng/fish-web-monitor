@@ -3,7 +3,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 	alias : 'widget.device.deviceBasicInfo',
 
 //	id : 'deviceBasicInfoId',
-	title : '设备基本信息',
+	title : Eway.locale.commen.devInfo,
 	bodyStyle : 'padding: 10px 10px 30px 10px',
 
 	layout : 'column',
@@ -24,7 +24,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : '设备号',
+					fieldLabel : Eway.locale.commen.terminalId,
 					name : 'number',
 					msgTarget : 'side'
 				} ]
@@ -39,7 +39,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : {
 					xtype : 'textfield',
-					fieldLabel : '所属机构',
+					fieldLabel : Eway.locale.commen.orgNameBelongs,
 					name : 'affiliation'
 				}
 			}, {
@@ -69,7 +69,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : '设备型号',
+					fieldLabel : Eway.locale.commen.devTypeName,
 					name : 'model'
 				}, {
 					xtype : 'textfield',
@@ -77,7 +77,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 					name : 'lineLogo'
 				}, {
 					xtype : 'textfield',
-					fieldLabel : '设备维护商',
+					fieldLabel : Eway.locale.commen.devServiceName,
 					name : 'maintainer'
 				}, {
 					xtype : 'textfield',
@@ -95,7 +95,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : '经营方式',
+					fieldLabel : Eway.locale.commen.seviceMode,
 					name : 'operation'
 				}, {
 					xtype : 'textfield',

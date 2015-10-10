@@ -13,7 +13,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 	bodyStyle:'padding:10px',
 	tools: [ {
 		type:'refresh',
-		tooltip: '刷新',
+		tooltip: Eway.locale.button.refresh,
 		action : 'refresh'
 	} ],
 
@@ -27,7 +27,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 			},
 			items : [ {
 				xtype : 'fieldset',
-				title : '设备基本信息',
+				title : Eway.locale.commen.devInfo,
 				collapsible : true,
 				defaults : {
 					border : false
@@ -37,12 +37,12 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [ {
 						columnWidth : .5,
-						fieldLabel : '设备号',
+						fieldLabel : Eway.locale.commen.terminalId,
 						name : 'code',
 						link : true
 					}, {
 						columnWidth : .49,
-						fieldLabel : '所属机构',
+						fieldLabel : Eway.locale.commen.orgNameBelongs,
 						name : 'org'
 					} ]
 				}, {
@@ -50,7 +50,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [ {
 						columnWidth : .5,
-						fieldLabel : '设备型号',
+						fieldLabel : Eway.locale.commen.devTypeName,
 						name : 'type'
 					}, {
 						columnWidth : .49,
@@ -75,13 +75,13 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [ {
 						columnWidth : .5,
-						fieldLabel : '装机地址',
+						fieldLabel : Eway.locale.commen.installAddr,
 						name : 'address',
 						tips : true,
 						fieldCls : 'text_ellipsis'
 					}, {
 						columnWidth : .49,
-						fieldLabel : '应用版本号',
+						fieldLabel : Eway.locale.commen.appVersion,
 						name : 'appRelease'
 					} ]
 				} ]
@@ -97,7 +97,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [ {
 						columnWidth : .5,
-						fieldLabel : '运行状态',
+						fieldLabel : Eway.locale.monitor.devMonitor.runStatus,
 						name : 'runStatus',
 						link : true
 					}, {
@@ -118,7 +118,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 				        defaultType : 'displayfield',
 				        items: [ {
 							columnWidth : .5,
-							fieldLabel : '模块状态',
+							fieldLabel : Eway.locale.monitor.devMonitor.modStatus,
 							name : 'modStatus',
 							link : true
 						}, {
@@ -135,7 +135,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					}, {
 						columnWidth : .49,
 						xtype: 'displayfield',
-						fieldLabel : '钞箱当前金额',
+						fieldLabel : Eway.locale.monitor.devMonitor.boxCurrentCount,
 						name : 'boxCurrentCount'
 					} ]
 				}, {
@@ -143,12 +143,12 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [ {
 						columnWidth : .5,
-						fieldLabel : '钞箱状态',
+						fieldLabel : Eway.locale.monitor.devMonitor.boxStatus,
 						name : 'boxStatus',
 						link : true
 					}, {
 						columnWidth : .49,
-						fieldLabel : '当前吞卡数量',
+						fieldLabel : Eway.locale.monitor.devMonitor.retainCardCount,
 						name : 'retainCardCount'
 					} ]
 				}, {
@@ -156,7 +156,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [ {
 						columnWidth : .5,
-						fieldLabel : '网络状态',
+						fieldLabel : Eway.locale.monitor.devMonitor.netStatus,
 						name : 'netStatus',
 						link : true
 					}, {
@@ -446,7 +446,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 
 	_getText : function(value){
 		if(value=='Healthy'){
-			return '正常';
+			return Eway.locale.commen.stateDict.normal;
 		}
 		if(value=='Warning'){
 			return '警告';

@@ -24,11 +24,11 @@ Ext.define('Eway.view.monitor.device.MonitorStateConfig', {
 					allowBlank : false,
 					defaultType : 'radiofield',
 					items : [ {
-						boxLabel : '全部',
+						boxLabel : Eway.locale.commen.all,
 						name : 'shortcusStatus',
 						inputValue : 'all'
 					}, {
-						boxLabel : '正常',
+						boxLabel : Eway.locale.commen.stateDict.normal,
 						name : 'shortcusStatus',
 						inputValue : 'healthy'
 					}, {
@@ -61,7 +61,7 @@ Ext.define('Eway.view.monitor.device.MonitorStateConfig', {
 					},
 					items : [ {
 						xtype : 'component',
-						html : '运行状态',
+						html : Eway.locale.monitor.devMonitor.runStatus,
 						cls : 'x-form-check-group-label',
 						action : 'title'
 					}, {
@@ -256,7 +256,7 @@ Ext.define('Eway.view.monitor.device.MonitorStateConfig', {
 					},
 					items : [ {
 						xtype : 'component',
-						html : '模块状态',
+						html : Eway.locale.monitor.devMonitor.modStatus,
 						cls : 'x-form-check-group-label'
 					}, {
 						boxLabel : '所有',
@@ -340,7 +340,7 @@ Ext.define('Eway.view.monitor.device.MonitorStateConfig', {
 					},
 					items : [ {
 						xtype : 'component',
-						html : '钞箱状态',
+						html : Eway.locale.monitor.devMonitor.boxStatus,
 						cls : 'x-form-check-group-label'
 					}, {
 						boxLabel : '所有',
@@ -354,7 +354,7 @@ Ext.define('Eway.view.monitor.device.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : '正常',
+						boxLabel : Eway.locale.commen.stateDict.normal,
 						name : 'box_healthy',
 						statusGroup : 'healthy',
 						action : 'box',
@@ -446,7 +446,7 @@ Ext.define('Eway.view.monitor.device.MonitorStateConfig', {
 					},
 					items : [ {
 						xtype : 'component',
-						html : '网络状态',
+						html : Eway.locale.monitor.devMonitor.netStatus,
 						cls : 'x-form-check-group-label'
 					}, {
 						boxLabel : '所有',

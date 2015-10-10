@@ -11,10 +11,10 @@ Ext.define('Eway.view.version.download.SelectableTaskGrid', {
 	initComponent: function() {
 		Ext.apply(this, {
 			tbar: ['->', {
-				text: '全部选择',
+				text: Eway.locale.commen.selectAll,
 				action: 'selectAll'
 			}, {
-				text: '全部不选',
+				text: Eway.locale.commen.selectNon,
 				action: 'selectNone'
 			}],
 			columns : [{
@@ -42,7 +42,7 @@ Ext.define('Eway.view.version.download.SelectableTaskGrid', {
 				dataIndex: 'jobStatus',
 				sortable: true
 			},{
-				header : '备注',
+				header : Eway.locale.commen.remark,
 				dataIndex : 'desc',
 				sortable : true
 			}],

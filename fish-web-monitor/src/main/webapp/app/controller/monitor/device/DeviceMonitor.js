@@ -152,11 +152,11 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			target:codeHtml,
 			dismissDelay:10000,
 			trackMouse :false,
-			html: '<li style="list-style-type :none">设备型号：'+record.data.type+'</li>'+
-				  '<li style="list-style-type :none">所属机构：'+record.data.org+'</li>'+
-				  '<li style="list-style-type :none">应用版本号：'+record.data.appRelease+'</li>'+
-				  '<li style="list-style-type :none">钞箱当前金额：'+record.data.boxCurrentCount+'</li>'+
-				  '<li style="list-style-type :none">当前吞卡数量：'+record.data.retainCardCount+'</li>'
+			html: '<li style="list-style-type :none">'+Eway.locale.commen.devTypeName+':'+record.data.type+'</li>'+
+				  '<li style="list-style-type :none">'+Eway.locale.commen.orgNameBelongs+':'+record.data.org+'</li>'+
+				  '<li style="list-style-type :none">'+Eway.locale.commen.appVersion+':'+record.data.appRelease+'</li>'+
+				  '<li style="list-style-type :none">'+Eway.locale.monitor.devMonitor.boxCurrentCount+':'+record.data.boxCurrentCount+'</li>'+
+				  '<li style="list-style-type :none">'+Eway.locale.monitor.devMonitor.retainCardCount+':'+record.data.retainCardCount+'</li>'
 		});
 	},
 

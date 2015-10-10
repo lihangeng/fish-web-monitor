@@ -12,7 +12,7 @@ Ext.define('Eway.view.version.deviceVersion.VersionHistoryGrid', {
 			store : store,
 			features: [groupingFeature],
 			columns : [{
-				header:'设备号',
+				header:Eway.locale.commen.terminalId,
 				dataIndex:'terminalId'
 			},{
 				header : '设备IP',
@@ -36,7 +36,7 @@ Ext.define('Eway.view.version.deviceVersion.VersionHistoryGrid', {
 				header: '下发结果',
 				dataIndex : 'status'
 			},{
-				header: '备注',
+				header: Eway.locale.commen.remark,
 				dataIndex : 'remark',
 				flex:1
 			}],

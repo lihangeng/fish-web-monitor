@@ -24,7 +24,7 @@ Ext.define('Eway.view.monitor.cashinit.Grid', {
 				stripeRows : true
 			},
 			columns : [ Ext.create('Ext.grid.RowNumberer'), {
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'termId'
 			}, {
 				header : '加钞ID',
@@ -41,7 +41,7 @@ Ext.define('Eway.view.monitor.cashinit.Grid', {
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : '总共：{2}条，显示{0}-{1}'
+				displayMsg : 'Eway.locale.commen.toolbar：{2}条，显示{0}-{1}'
 			})
 		});
 

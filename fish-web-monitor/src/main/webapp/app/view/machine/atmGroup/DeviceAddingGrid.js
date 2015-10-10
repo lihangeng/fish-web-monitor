@@ -26,25 +26,25 @@ Ext.define('Eway.view.machine.atmGroup.DeviceAddingGrid', {
 				stripeRows : true
 			},
 			columns : [ {
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'terminalId'
 			}, {
-				header : '网络地址',
+				header : Eway.locale.commen.ip,
 				dataIndex : 'ip'
 			}, {
-				header : '所属机构',
+				header : Eway.locale.commen.orgNameBelongs,
 				dataIndex : 'orgName'
 			}, {
-				header : '设备型号',
+				header : Eway.locale.commen.devTypeName,
 				dataIndex : 'devTypeName'
 			}, {
-				header : '设备品牌',
+				header : Eway.locale.commen.devVendorName,
 				dataIndex : 'devVendorName'
 			}, {
-				header : '设备类型',
+				header : Eway.locale.commen.devCatalogName,
 				dataIndex : 'devCatalogName'
 			}, {
-				header : '设备状态',
+				header : Eway.locale.commen.devStatus,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
@@ -69,16 +69,16 @@ Ext.define('Eway.view.machine.atmGroup.DeviceAddingGrid', {
 					}
 				}
 			}, {
-				header : '设备维护商',
+				header : Eway.locale.commen.devServiceName,
 				dataIndex : 'devServiceName'
 			}, {
-				header : '钞箱报警金额',
+				header : Eway.locale.commen.cashboxLimit,
 				dataIndex : 'cashboxLimit'
 			}, {
-				header : '安装日期',
+				header : Eway.locale.commen.installDate,
 				dataIndex : 'installDate'
 			}, {
-				header : '地址',
+				header : Eway.locale.commen.address,
 				dataIndex : 'address',
 				flex : 1
 			} ],

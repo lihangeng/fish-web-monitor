@@ -39,12 +39,12 @@ Ext.define('Eway.view.machine.device.Form',{
 						allowBlank : false,
 						xtype : 'radiogroup',
 						items : [ {
-							boxLabel : '开通',
+							boxLabel : Eway.locale.commen.comboxDevStatus.open,
 							name : 'status',
 							checked : true,
 							inputValue : 1
 						}, {
-							boxLabel : '停用',
+							boxLabel : Eway.locale.commen.comboxDevStatus.stop,
 							name : 'status',
 							inputValue : 2
 						} ]
@@ -93,7 +93,7 @@ Ext.define('Eway.view.machine.device.Form',{
 						value: 1,
 						allowBlank : false
 					}, {
-						fieldLabel : '钞箱报警金额',
+						fieldLabel : Eway.locale.commen.cashboxLimit,
 						xtype : 'numberfield',
 						regex : /^(0|[1-9]\d{0,5})$/,
 		        		hideTrigger:true,
@@ -552,7 +552,7 @@ Ext.define('Eway.view.machine.device.Form',{
 								inputValue : 3
 							} ]
 						}, {
-							fieldLabel : '经营方式',
+							fieldLabel : Eway.locale.commen.seviceMode,
 							xtype : 'radiogroup',
 							items : [ {
 								boxLabel : '自营',

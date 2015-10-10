@@ -11,7 +11,7 @@ Ext.define('Eway.view.permission.role.FilterForm', {
 	initComponent: function() {
 		Ext.apply(this,{
 			items:[{
-				fieldLabel :'角色名称',
+				fieldLabel :Eway.locale.permission.role.name,
 				xtype:'field_roleName',
 				width: 300,
 				maxLength : 40,

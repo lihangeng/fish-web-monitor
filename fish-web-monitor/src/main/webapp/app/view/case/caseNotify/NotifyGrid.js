@@ -64,7 +64,7 @@ Ext.define('Eway.view.case.caseNotify.NotifyGrid', {
 				dataIndex : 'sendTime',
 				width : 120
 			}, {
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'terminalId',
 				width : 80
 			}, {
@@ -100,7 +100,7 @@ Ext.define('Eway.view.case.caseNotify.NotifyGrid', {
 										msgTarget : 'side'
 									},
 							    	items : [{
-							    		fieldLabel : '设备号',
+							    		fieldLabel : Eway.locale.commen.terminalId,
 										xtype : 'displayfield',
 										name : 'terminalId',
 										allowBlank : false

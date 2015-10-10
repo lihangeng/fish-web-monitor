@@ -37,7 +37,7 @@ Ext.define('Eway.view.monitor.settlement.Info', {
 							readOnly : true
 						},
 						items : [ {
-							fieldLabel : '设备号',
+							fieldLabel : Eway.locale.commen.terminalId,
 							name : 'termId'
 						}, {
 							fieldLabel : '清机ID',

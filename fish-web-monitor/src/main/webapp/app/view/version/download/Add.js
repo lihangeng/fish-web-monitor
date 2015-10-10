@@ -130,7 +130,7 @@ Ext.define('Eway.view.version.download.Add', {
 					}]
 				},{
 					xtype: 'textarea',
-					fieldLabel:'备注',
+					fieldLabel:Eway.locale.commen.remark,
 					name :'desc',
 					height : 40,
 					maxWidth:700

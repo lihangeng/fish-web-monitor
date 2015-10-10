@@ -6,10 +6,10 @@ Ext.define('Eway.view.permission.role.ComboBox',{
 	
 	store:'permission.ComboBox',
 	queryMode: 'local',
-	fieldLabel:'角色类型',
+	fieldLabel:Eway.locale.permission.role.type,
 	name:'type',
 	 valueField: 'abbr',
 	 displayField: 'name',
 	msgTarget : 'side',
-	emptyText: '--请选择--'
+	emptyText: Eway.locale.combox.select
 });

@@ -12,14 +12,14 @@ Ext.define('Eway.view.permission.role.Tree', {
 		        xtype: 'toolbar',
 		        dock: 'top',
 		        items: [{
-		        	text:'请选择菜单权限',
+		        	text:Eway.locale.permission.role.chooseRight,
 		        	xtype:'tbtext'
 		        },{
-		            	text: '全部选择',
+		            	text: Eway.locale.commen.selectAll,
 		            	action :'checkAll',
 		            	disabled: true
 		            },{
-		            	text: '全部不选',
+		            	text: Eway.locale.commen.selectNon,
 		            	action:'checkNone',
 		            	disabled: true
 		            }/*,{

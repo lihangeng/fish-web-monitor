@@ -27,22 +27,22 @@ Ext.define('Eway.view.personal.PersonalInfo', {
 					fieldLabel : '账号',
 					value:ewayUser.getCode()
 				},{
-					fieldLabel : '姓名',
+					fieldLabel : Eway.locale.commen.name,
 					value:ewayUser.getName()
 				},{
-					fieldLabel : '所属机构',
+					fieldLabel : Eway.locale.commen.orgNameBelongs,
 					name : 'organizationName'
 				},{
-					fieldLabel : '手机号码',
+					fieldLabel : Eway.locale.commen.mobile,
 					name : 'phone'
 				},{
-					fieldLabel : '邮箱',
+					fieldLabel : Eway.locale.commen.email,
 					name : 'mail'
 				},{
-					fieldLabel : '工号',
+					fieldLabel : Eway.locale.commen.jobNum,
 					name : 'jobNum'
 				},{
-					fieldLabel : '备注',
+					fieldLabel : Eway.locale.commen.remark,
 					name : 'remark'
 				}]
 			}/*,{

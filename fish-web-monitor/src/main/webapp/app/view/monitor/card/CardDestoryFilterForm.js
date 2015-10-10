@@ -55,7 +55,7 @@ Ext.define('Eway.view.monitor.card.CardDestoryFilterForm', {
 								name : 'orgId'
 							}, {
 /*								xtype : 'common_orgComboOrgTree',
-								fieldLabel : '所属机构',
+								fieldLabel : Eway.locale.commen.orgNameBelongs,
 								emptyText : '--请选择--',
 								name : 'orgName',
 								hiddenValue : 'orgId',

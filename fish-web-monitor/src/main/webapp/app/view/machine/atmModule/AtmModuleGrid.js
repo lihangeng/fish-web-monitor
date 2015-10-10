@@ -28,7 +28,7 @@ Ext.define('Eway.view.machine.atmModule.AtmModuleGrid', {
 				header : '模块名称',
 				dataIndex : 'name'
 			}, {
-				header : '备注',
+				header : Eway.locale.commen.remark,
 				dataIndex : 'note',
 				flex : 1
 			}],

@@ -19,7 +19,7 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 					vtype : 'terminalId',
 					maxLength:20,
 					regexText:'输入错误,设备号由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’点号‘.’组成,只能以字母或数字开头,长度1到20位。',
-					fieldLabel : '设备号',
+					fieldLabel : Eway.locale.commen.terminalId,
 					msgTarget:'side',
 					name : 'terminalId'
 				},{

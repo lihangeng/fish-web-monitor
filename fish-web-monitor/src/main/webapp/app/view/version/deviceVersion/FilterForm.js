@@ -18,7 +18,7 @@ Ext.define('Eway.view.version.deviceVersion.FilterForm', {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : '设备号',
+					fieldLabel : Eway.locale.commen.terminalId,
 					name : 'terminalId',
 					maxLength : 20
 				},{
@@ -51,7 +51,7 @@ Ext.define('Eway.view.version.deviceVersion.FilterForm', {
 					name : 'organization'
 				}, {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '所属机构',
+					fieldLabel : Eway.locale.commen.orgNameBelongs,
 					emptyText : '--请选择--',
 					name : 'orgName',
 					hiddenValue : 'organization',

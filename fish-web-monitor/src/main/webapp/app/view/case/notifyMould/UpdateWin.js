@@ -55,7 +55,7 @@ Ext.define('Eway.view.case.notifyMould.UpdateWin', {
 					allowBlank : false,
 					blankText : '此项为必选项',
 					items : [ {
-						boxLabel : '设备号',
+						boxLabel : Eway.locale.commen.terminalId,
 						name : 'notifySet',
 						inputValue : 'terminalId'
 					}, {

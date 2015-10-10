@@ -22,10 +22,10 @@ Ext.define('Eway.view.machine.quittingNotice.DeviceGrid', {
 				action: 'select'
 			}],
 			columns : [{
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'terminalId'
 			}, {
-				header : '所属机构',
+				header : Eway.locale.commen.orgNameBelongs,
 				dataIndex : 'orgName',
 				flex : 1
 			}, {

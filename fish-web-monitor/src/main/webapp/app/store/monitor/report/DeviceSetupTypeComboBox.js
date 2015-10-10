@@ -4,7 +4,7 @@ Ext.define('Eway.store.monitor.report.DeviceSetupTypeComboBox', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value: '', display:'全部'},
+	data: [{value: '', display:Eway.locale.commen.all},
 			{value:'0', display:'穿墙'}, 
 	       {value:'1', display:'大堂'}]
 });

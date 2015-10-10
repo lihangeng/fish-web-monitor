@@ -14,7 +14,7 @@ Ext.define('Eway.view.machine.atmMove.MoveDeviceFilterForm', {
 				columnWidth : .45,
 				items : [{
 					xtype : 'textfield',
-					fieldLabel : '设备号',
+					fieldLabel : Eway.locale.commen.terminalId,
 					labelAlign : 'right',
 					vtype : 'terminalId',
 					labelWidth : 60,
@@ -38,7 +38,7 @@ Ext.define('Eway.view.machine.atmMove.MoveDeviceFilterForm', {
 					labelWidth : 60,
 					labelAlign : 'right',
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '所属机构',
+					fieldLabel : Eway.locale.commen.orgNameBelongs,
 					emptyText : '--请选择--',
 					name : 'orgName',
 					hiddenValue : 'organization',

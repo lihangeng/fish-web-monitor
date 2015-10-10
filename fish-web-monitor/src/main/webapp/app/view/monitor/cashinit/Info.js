@@ -38,7 +38,7 @@ Ext.define('Eway.view.monitor.cashinit.Info', {
 							readOnly : true
 						},
 						items : [ {
-							fieldLabel : '设备号',
+							fieldLabel : Eway.locale.commen.terminalId,
 							name : 'termId'
 						}, {
 							fieldLabel : '加钞ID',

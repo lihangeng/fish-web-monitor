@@ -40,7 +40,7 @@ Ext.define('Eway.controller.person.UserLog', {
 			store.setUrlParamsByObject(values);
 			store.loadPage(1);
 		}else{
-			Eway.alert('请正确输入.');
+			Eway.alert(Eway.locale.tip.input);
 		}
 	}
 });

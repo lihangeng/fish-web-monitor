@@ -6,7 +6,7 @@ Ext.define('Eway.view.field.card.OrganizationComboBox',{
 	
 	name : 'orgId',
 	hiddenName : 'orgId',
-	fieldLabel : '所属机构',
+	fieldLabel : Eway.locale.commen.orgNameBelongs,
 	store : 'monitor.card.OrganizationComboBox',
 	queryMode: 'local',
 	displayField: 'name',

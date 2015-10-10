@@ -14,7 +14,7 @@ Ext.define('Eway.view.machine.atmMove.NoticeFilterForm', {
 				items : [{
 					xtype : 'textfield',
 					labelAlign : 'right',
-					fieldLabel : '设备号',
+					fieldLabel : Eway.locale.commen.terminalId,
 					vtype : 'terminalId',
 					maxLength:20,
 					width : 300,

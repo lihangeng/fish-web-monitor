@@ -64,7 +64,7 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 			} ,{
 				columnWidth : .2,
 				labelAlign : 'right',
-				fieldLabel:'设备号',
+				fieldLabel:Eway.locale.commen.terminalId,
 				labelAlign : 'right',
 				xtype : 'textfield',
 				name:'terminalId',

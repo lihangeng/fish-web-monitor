@@ -25,16 +25,16 @@ Ext.define('Eway.view.permission.role.Form',{
 					autoScroll : true,
 					height: 360,
 					tbar : [{
-			        	text:'请选择菜单权限',
+			        	text:Eway.locale.permission.role.chooseRight,
 			        	xtype:'tbtext'
 			        },{
 						xtype : 'button',
-						text : '全部选择',
+						text : Eway.locale.commen.selectAll,
 						handler : this.onCheckAll,
 						scope : this
 					},{
 						xtype : 'button',
-						text : '全部不选',
+						text : Eway.locale.commen.selectNon,
 						handler : this.onCheckNone,
 						scope : this
 					}],

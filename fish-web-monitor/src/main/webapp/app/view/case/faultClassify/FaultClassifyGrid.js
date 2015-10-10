@@ -30,7 +30,7 @@ Ext.define('Eway.view.case.faultClassify.FaultClassifyGrid', {
 				width : 110,
 				renderer : function(value){
 					if(value == 1){
-						return '管机员';
+						return Eway.locale.commen.comboxType.machineManager;
 					}else if(value == 2){
 						return '维护员';
 					}else if(value == 3){

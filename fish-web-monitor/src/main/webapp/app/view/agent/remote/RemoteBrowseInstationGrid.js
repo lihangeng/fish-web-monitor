@@ -39,7 +39,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseInstationGrid', {
 				dataIndex: 'publisher',
 				flex: 2
 			},{
-				header: '安装日期',
+				header: Eway.locale.commen.installDate,
 				sortable: true,
 				dataIndex: 'installDate',
 				flex: 1

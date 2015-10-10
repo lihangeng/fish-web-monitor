@@ -19,24 +19,24 @@ Ext.define('Eway.view.version.deviceVersion.Grid', {
 				action:'history'
 			}],
 			columns : [{
-				header:'设备号',
+				header:Eway.locale.commen.terminalId,
 				dataIndex:'terminalId'
 			},{
 				header : '设备IP地址',
 				dataIndex : 'ip',
 				width : 120
 			},{
-				header : '所属机构',
+				header : Eway.locale.commen.orgNameBelongs,
 				dataIndex : 'orgName',
 				width : 200
 			},{
-				header : '设备品牌',
+				header : Eway.locale.commen.devVendorName,
 				dataIndex : 'devBrand'
 			},{
-				header : '设备型号',
+				header : Eway.locale.commen.devTypeName,
 				dataIndex : 'devType'
 			},{
-				header: '设备类型',
+				header: Eway.locale.commen.devCatalogName,
 				dataIndex : 'devCatalog',
 				flex:1
 			}/*,{

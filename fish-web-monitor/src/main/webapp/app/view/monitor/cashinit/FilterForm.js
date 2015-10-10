@@ -16,7 +16,7 @@ Ext.define('Eway.view.monitor.cashinit.FilterForm', {
 				},
 				items : [{
 					xtype : 'textfield',
-					fieldLabel : '设备号',
+					fieldLabel : Eway.locale.commen.terminalId,
 					name : 'terminalId',
 					regex : /^\w+[\w-\.]*$/,
 					regexText : '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’和点号‘.’，只能以字母或数字开头。',

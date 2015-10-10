@@ -23,7 +23,7 @@ Ext.define('Eway.view.machine.device.person.PersonInfo', {
 				xtype : 'tabpanel',
 				frame : true,
 				items : [ {
-					title : '管机员',
+					title : Eway.locale.commen.comboxType.machineManager,
 					itemid : 'tubeMachineItemID',
 					xtype : 'machine_device_person_tmGrid'
 				}, {

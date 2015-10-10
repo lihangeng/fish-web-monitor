@@ -4,10 +4,10 @@ Ext.define('Eway.view.field.RoleName', {
 	alias: 'widget.field_roleName',
 
 	name : 'name',
-	fieldLabel : '<font color="red">*</font> 角色名称',
+	fieldLabel : '<font color="red">*</font> '+Eway.locale.permission.role.name,
 	allowBlank : false,
 	regex : /^[a-zA-Z0-9\u4E00-\u9FA5]{0,40}$/,
-	regexText : '由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位',
+	regexText : Eway.locale.tip.roleName,
 	xtype : 'field_roleName',
 	width : 600,
 	msgTarget : 'side'

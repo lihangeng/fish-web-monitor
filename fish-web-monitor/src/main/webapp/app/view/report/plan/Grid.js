@@ -50,7 +50,7 @@ Ext.define('Eway.view.report.plan.Grid', {
 				width : 180,
 				dataIndex : 'endDate'
 			},{
-				header : '备注',
+				header : Eway.locale.commen.remark,
 				dataIndex : 'note',
 				flex : 1
 			}],

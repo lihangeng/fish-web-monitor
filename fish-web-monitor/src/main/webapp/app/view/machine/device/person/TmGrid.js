@@ -12,10 +12,10 @@ Ext.define('Eway.view.machine.device.person.TmGrid', {
 			autoScroll: true,
 			height: 200,
 			columns : [ Ext.create('Ext.grid.RowNumberer'), {
-				header : '姓名',
+				header : Eway.locale.commen.name,
 				dataIndex : 'name'
 			}, {
-				header : '手机',
+				header : Eway.locale.commen.mobile,
 				dataIndex : 'mobile'
 			}, {
 				header : '固定电话',

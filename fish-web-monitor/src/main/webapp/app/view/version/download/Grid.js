@@ -108,7 +108,7 @@ Ext.define('Eway.view.version.download.Grid', {
 				sortable: true,
 				width: 60
 			},{
-				header : '备注',
+				header : Eway.locale.commen.remark,
 				dataIndex : 'desc',
 				flex : 1,
 				sortable : true

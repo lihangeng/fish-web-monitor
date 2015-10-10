@@ -27,7 +27,7 @@ Ext.define('Eway.view.version.download.FilterForm', {
 					queryMode : 'local',
 					valueField : 'value',
 					displayField : 'name',
-					emptyText:'全部'
+					emptyText:Eway.locale.commen.all
 				}]},{
 					columnWidth: 0.3,
 					items:[{
@@ -45,7 +45,7 @@ Ext.define('Eway.view.version.download.FilterForm', {
 						queryMode : 'local',
 						valueField : 'value',
 						displayField : 'name',
-						emptyText:'全部'
+						emptyText:Eway.locale.commen.all
 					},{
 						xtype:'textfield',
 						fieldLabel:'任务批次名称',

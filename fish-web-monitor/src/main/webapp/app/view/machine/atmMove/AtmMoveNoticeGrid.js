@@ -27,7 +27,7 @@ Ext.define('Eway.view.machine.atmMove.AtmMoveNoticeGrid', {
 				}
 			}],
 			columns : [{
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'terminalId',
 				width : 100
 			}, {
@@ -63,7 +63,7 @@ Ext.define('Eway.view.machine.atmMove.AtmMoveNoticeGrid', {
 				dataIndex : 'date',
 				width : 100
 			}, {
-				header : '备注',
+				header : Eway.locale.commen.remark,
 				dataIndex : 'notice',
 				width : 150
 			}],
