@@ -49,6 +49,7 @@ import com.yihuacomputer.fish.api.version.VersionChartsDetailForm;
 import com.yihuacomputer.fish.api.version.VersionDistribute;
 import com.yihuacomputer.fish.api.version.VersionNo;
 import com.yihuacomputer.fish.api.version.VersionStatus;
+import com.yihuacomputer.fish.api.version.VersionStatusDistribute;
 import com.yihuacomputer.fish.web.util.BasicErrorTips;
 import com.yihuacomputer.fish.web.util.DownFromWebUtils;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
@@ -219,6 +220,7 @@ public class VersionController {
 			UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
 			v.setCreateUserId(userSession.getUserId());
 			v.setExecBefore(form.getExecBefore());
+			v.setDownloadCounter(1);
 			versionService.add(v);
 
 			// 回填值到form中
@@ -533,10 +535,17 @@ public class VersionController {
 	@RequestMapping(value = "distributeStatus", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap getVersionDistributeStatus(@RequestParam long versionId, WebRequest webRequest, HttpServletRequest request) {
-
+		ModelMap result = new ModelMap();
 		UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
-//		filterVersionDistribute.eq("orgFlag", userSession.getOrgFlag());
-		return null;
+		IFilter filter = new Filter();
+		filter.eq("versionId", versionId);
+		filter.eq("orgFlag", userSession.getOrgFlag());
+		List<VersionStatusDistribute> list = versionService.getVersionStatusDistribute(filter);
+
+		result.addAttribute(FishConstant.SUCCESS, true);
+		result.addAttribute(FishConstant.TOTAL, list.size());
+		result.addAttribute(FishConstant.DATA, list);
+		return result;
 	}
 	
 	@RequestMapping(value = "distributeStatusDetail", method = RequestMethod.GET)

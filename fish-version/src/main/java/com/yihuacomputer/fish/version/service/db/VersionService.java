@@ -22,6 +22,7 @@ import com.yihuacomputer.common.exception.NotFoundException;
 import com.yihuacomputer.common.file.FileMD5;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.filter.FilterFactory;
+import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.common.util.StringUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.IDevice;
@@ -45,6 +46,7 @@ import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.machine.entity.device.Device;
 import com.yihuacomputer.fish.version.entity.DeviceSoftVersion;
+import com.yihuacomputer.fish.version.entity.Task;
 import com.yihuacomputer.fish.version.entity.Version;
 import com.yihuacomputer.fish.version.entity.VersionTypeAtmTypeRelation;
 import com.yihuacomputer.fish.version.service.api.IDomainVersionService;
@@ -395,7 +397,7 @@ public class VersionService implements IDomainVersionService {
 		append("where version.versionNo= devicesoftVersion.versionNo and version.versionType.typeName=devicesoftVersion.typeName ").
 		append("and device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId ").
 		append(" and device.status= ? ").append(" and device.organization.orgFlag like ? ").
-//		append("and device.terminalId= devicesoftVersion.terminalId ").
+		append(" and device.id= devicesoftVersion.deviceId ").
 		append(" and version.versionType.id=? ");
 		Object versionType = filter.getValue("versionType");
 		Object orgFlag = filter.getValue("orgFlag");
@@ -421,16 +423,16 @@ public class VersionService implements IDomainVersionService {
 	public List<VersionStatusDistribute> getVersionStatusDistribute(IFilter filter){
 		StringBuffer statusHql = new StringBuffer();
 		List<Object> hqlArgList = new ArrayList<Object>();
-		statusHql.append("select deviceVersion.taskStatus,deviceVersion.versionId,count(deviceVersion) from ").
-//		append(DeviceVersion.class.getSimpleName()).append(" deviceVersion,").
+		statusHql.append("select task.status,count(task) from ").
 		append(Device.class.getSimpleName()).append(" device, ").
+		append(Task.class.getSimpleName()).append(" task, ").
 		append(Version.class.getSimpleName()).append(" version, ").
 		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionTypeAtmType ").
-		append(" where device.id=deviceVersion.deviceId  and version.id = deviceVersion.versionId and ").
+		append(" where device.id=task.deviceId  and version.id = task.version.id and ").
 		append(" device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId and ").
 		append(" version.id=? and device.status=? and device.organization.orgFlag like ? ").
-		append(" group by deviceVersion.taskStatus,deviceVersion.versionId order by deviceVersion.taskStatus ");
-		Object versionId = filter.getValue("versionId");
+		append(" group by task.status order by task.status ");
+		long versionId = Long.parseLong(String.valueOf(filter.getValue("versionId")));
 		Object orgFlag = filter.getValue("orgFlag");
 		hqlArgList.add(versionId);
 		hqlArgList.add(Status.OPENING);
@@ -444,41 +446,46 @@ public class VersionService implements IDomainVersionService {
 			Object obj[] = (Object[])hqlResult;
 			VersionStatusDistribute versionStatusDistribute = new VersionStatusDistribute();
 			versionStatusDistribute.setTaskStatus(String.valueOf(obj[0]));
-			versionStatusDistribute.setVersionId(Long.parseLong(String.valueOf(obj[1])));
-			versionStatusDistribute.setTaskStatusNumber(Integer.parseInt(String.valueOf(obj[2])));
+			versionStatusDistribute.setVersionId(versionId);
+			versionStatusDistribute.setTaskStatusNumber(Integer.parseInt(String.valueOf(obj[1])));
 			TaskStatus status = TaskStatus.valueOf(versionStatusDistribute.getTaskStatus());
 			versionStatusDistribute.setTaskStatusText(status.getText());
 			statusDistributeList.add(versionStatusDistribute);
 			hasStatusCounter+=versionStatusDistribute.getTaskStatusNumber();
 		}
 		StringBuffer allDeviceHql = new StringBuffer();
-		allDeviceHql.append("select count(device) from ").append(Device.class.getSimpleName()).
-		append(" device where device.status=? and device.organization.orgFlag like ? ");
+		allDeviceHql.append("select count(device) from ").
+		append(Version.class.getSimpleName()).append(" version ,").
+		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionTypeAtmType, ").
+		append(Device.class.getSimpleName()).
+		append(" device where device.status=? and device.organization.orgFlag like ?  and  version.id=? and ").
+		append(" device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId  ");
 		List<Object> hqlArgList1 = new ArrayList<Object>();
 		hqlArgList1.add(Status.OPENING);
 		hqlArgList1.add("%"+orgFlag);
-		int allDevice = dao.findUniqueByHql(allDeviceHql.toString(), hqlArgList1.toArray());
+		hqlArgList1.add(versionId);
+		long allDevice = dao.findUniqueByHql(allDeviceHql.toString(), hqlArgList1.toArray());
 		VersionStatusDistribute versionStatusDistribute = new VersionStatusDistribute();
 		versionStatusDistribute.setTaskStatus(TaskStatus.OTHER.name());
 		versionStatusDistribute.setTaskStatusText(TaskStatus.OTHER.getText());
 		versionStatusDistribute.setVersionId(Integer.parseInt(String.valueOf(versionId)));
-		versionStatusDistribute.setTaskStatusNumber(allDevice-hasStatusCounter);
+		versionStatusDistribute.setTaskStatusNumber((int)allDevice-hasStatusCounter);
 		statusDistributeList.add(versionStatusDistribute);
 		return statusDistributeList;
 	}
 	
-	public List<VersionDistributeDetail> getVersionStatusDistributeDetail(IFilter filter){
+	public IPageResult<VersionDistributeDetail> getVersionStatusDistributeDetail(int start, int limit , IFilter filter){
 		StringBuffer statusDetailHql = new StringBuffer();
 		List<Object> hqlArgList = new ArrayList<Object>();
-		statusDetailHql.append("select device, from ").
-//		append(DeviceVersion.class.getSimpleName()).append(" deviceVersion,").
+		statusDetailHql.append("select task,device from ").
 		append(Device.class.getSimpleName()).append(" device, ").
+		append(Task.class.getSimpleName()).append(" task, ").
 		append(Version.class.getSimpleName()).append(" version, ").
 		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionTypeAtmType ").
-		append(" where device.id=deviceVersion.deviceId  and version.id = deviceVersion.versionId and ").
+		append(" where device.id=task.deviceId  and version.id = task.version.id and ").
 		append(" device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId and ").
-		append(" version.id=? and device.status=? and device.organization.orgFlag like ? and deviceVersion.taskStatus=?");
-		Object versionId = filter.getValue("versionId");
+		append(" version.id=? and device.status=? and device.organization.orgFlag like ? and task.status=? ");
+		long versionId = Long.parseLong(String.valueOf(filter.getValue("versionId")));
 		Object orgFlag = filter.getValue("orgFlag");
 		Object taskStatusObj = filter.getValue("taskStatus");
 		hqlArgList.add(versionId);
@@ -486,11 +493,26 @@ public class VersionService implements IDomainVersionService {
 		hqlArgList.add("%"+orgFlag);
 		TaskStatus taskStatus = TaskStatus.valueOf(String.valueOf(taskStatusObj));
 		hqlArgList.add(taskStatus);
-		List<Object> hqlResultList =  dao.findByHQL(statusDetailHql.toString(), hqlArgList.toArray());
+		@SuppressWarnings("unchecked")
+		IPageResult<Object> hqlResultList =  (IPageResult<Object>) dao.page(start, limit,statusDetailHql.toString(), hqlArgList.toArray());
 		List<VersionDistributeDetail> statusDistributeList = new ArrayList<VersionDistributeDetail>();
-//		for()
-		
-		return null;
+		for(Object result:hqlResultList.list()){
+			Object[] objs = (Object[])result;
+			ITask task = (Task)objs[0];
+			IDevice device = (Device)objs[1];
+			VersionDistributeDetail versionDistributeDetail = new VersionDistributeDetail();
+			versionDistributeDetail.setTerminalId(device.getTerminalId());
+			versionDistributeDetail.setAfterUpdateVersionNo(task.getExceptVersion());
+			versionDistributeDetail.setBeforeUpdateVersionNo(task.getVersionBeforeUpdate());
+			versionDistributeDetail.setDeviceType(device.getDevType().getName());
+			versionDistributeDetail.setIp(device.getIp().toString());
+			versionDistributeDetail.setOrgName(device.getOrganization().getName());
+			versionDistributeDetail.setStatusText(task.getStatus().getText());
+			versionDistributeDetail.setUpdateType(task.getTaskType().getText());
+			versionDistributeDetail.setVendor(device.getDevType().getDevVendor().getName());
+			statusDistributeList.add(versionDistributeDetail);
+		}
+		return new PageResult<VersionDistributeDetail>(hqlResultList.getTotal(), statusDistributeList);
 	}
 }
 

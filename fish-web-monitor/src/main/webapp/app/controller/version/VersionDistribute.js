@@ -28,7 +28,10 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 				change : this.onQuery
 			},
 			'version_distributeView version_pie polar' : {
-				itemclick : this.diplayVersionStatusPie
+				itemmouseover : this.diplayVersionStatusPie
+			},
+			'version_distributeView versionStatusPie polar' : {
+				itemmouseover : this.diplayVersionStatusDetail
 			}
 		})
 	},
@@ -49,31 +52,31 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 			},
 			callback:function(records, operation, success){
 				var statuspolar = view.down('versionstatus_pie polar');
+				statuspolar.setTitle(records[0].get("versionNo")+"版本下发历史状态分布图");
 				var statuspieStore = statuspolar.getStore();
-				Ext.Msg.alert(records[0].get("versionNo"),records[0].get("versionId"));
-//				statuspieStore.load({
-//					params : {
-//						versionId :records[0].get("versionId")
-//					}
-//				});
+				statuspieStore.load({
+					params : {
+						versionId :records[0].get("versionId")
+					}
+				});
 			}
 		})
 
 	},
+	diplayVersionStatusDetail:function(series, item, event, eOpts){
+		
+	},
 	diplayVersionStatusPie:function(series, item, event, eOpts ){
-//		itemclick:function( series, item, event, eOpts ){
-//    		var gridFlag = item.record.data.flag;
-//    		var gridVersionId = item.record.data.versionId;
-//		  fields: ['versionNo', 'versionNoNumber', 'versionId', 'versionTypeId' ],
-		Ext.Msg.alert(item.record.data.versionNo,item.record.data.versionNoNumber);
-//    		var grid = me.up("versionView").down("version_charts_grid")
-//    		grid.getStore().load({
-//    			 params: {
-//    			        versionId:gridVersionId,
-//    			        flag:gridFlag
-//    			    }
-//    		 });
-//    		grid.setTitle(item.record.data.title+"信息")
-//    	}
+//item.record.data.versionId
+//		Ext.Msg.alert(item.record.data.versionNo,item.record.data.versionNoNumber);
+		var view = this.getEwayView();
+		var statuspolar = view.down('versionstatus_pie polar');
+		statuspolar.setTitle(item.record.data.versionNo+"版本下发历史状态分布图");
+		var statuspieStore = statuspolar.getStore();
+		statuspieStore.load({
+			params : {
+				versionId :item.record.data.versionId
+			}
+		});
 	}
 });

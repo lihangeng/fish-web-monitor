@@ -6,16 +6,18 @@ Ext.define('Eway.view.version.distribute.VersionStatusPie', {
     height:300,
     initComponent: function() {
         var me = this;
-
+        
         me.myDataStore = Ext.create('Ext.data.JsonStore', {
-            fields: ['os', 'data1' ],
-            data: [
-                { os: 'Android', data1: 68.3 },
-                { os: 'BlackBerry', data1: 1.7 },
-                { os: 'iOS', data1: 17.9 },
-                { os: 'Windows Phone', data1: 10.2 },
-                { os: 'Others', data1: 1.9 }
-            ]
+            fields: ['taskStatusText', 'taskStatusNumber','versionTypeId','versionId','taskStatus' ],
+            proxy: {
+                type: 'ajax',
+                url: 'api/version/version/distributeStatus',
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data'
+                }
+            },
+            autoLoad :false
         });
 
 
@@ -31,20 +33,20 @@ Ext.define('Eway.view.version.distribute.VersionStatusPie', {
                 docked: 'left'
             },
             interactions: ['rotate', 'itemhighlight'],
-            sprites: [{
-                type: 'text',
-                text: '版本分布图',
-                fontSize: 22,
-                width: 100,
-                height: 30,
-                x: 40, // the sprite x position
-                y: 20  // the sprite y position
-            }],
+//            sprites: [{
+//                type: 'text',
+//                text: '版本下发历史图',
+//                fontSize: 22,
+//                width: 100,
+//                height: 30,
+//                x: 40, // the sprite x position
+//                y: 20  // the sprite y position
+//            }],
             series: [{
                 type: 'pie',
-                angleField: 'data1',
+                angleField: 'taskStatusNumber',
                 label: {
-                    field: 'os',
+                    field: 'taskStatusText',
                     calloutLine: {
                         length: 60,
                         width: 3
@@ -55,7 +57,7 @@ Ext.define('Eway.view.version.distribute.VersionStatusPie', {
                 tooltip: {
                     trackMouse: true,
                     renderer: function(storeItem, item) {
-                        this.setHtml(storeItem.get('os') + ': ' + storeItem.get('data1') + '%');
+                        this.setHtml(storeItem.get('taskStatusText') + ': ' + storeItem.get('taskStatusNumber') + '%');
                     }
                 }
             }]

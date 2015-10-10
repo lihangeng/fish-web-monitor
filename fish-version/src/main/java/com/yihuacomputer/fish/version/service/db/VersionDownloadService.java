@@ -183,7 +183,9 @@ public class VersionDownloadService implements IVersionDownloadService {
 			argList.add(Status.OPENING);
 			hqlDevice.append(" and device.devType.id=versionatmType.atmTypeId ").
         	append(" and versionatmType.versionTypeId=version.versionType.id ").
-    		append(" and version.dependVersion.versionNo>=deviceSoftVersion.versionNo").
+    		append(" and version.dependVersion.versionStr>=deviceSoftVersion.versionStr").
+    		//依赖版本大于等于当前设备上版本，但是如果当前版本处于初始化即31个0;还是不可以下发
+    		append(" and deviceSoftVersion.versionStr<>'0000000000000000000000000000000'").
     		append(" and version.versionType.typeName=deviceSoftVersion.typeName ").
     		append(" and device.id=deviceSoftVersion.deviceId ");
 			if(terminalId!=null){
