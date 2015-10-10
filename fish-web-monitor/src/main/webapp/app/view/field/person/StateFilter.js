@@ -1,7 +1,7 @@
 Ext.define('Eway.view.field.person.StateFilter', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field.stateFilter',
-	fieldLabel : Eway.locale.person.bankPer.state,
+	fieldLabel : Eway.locale.commen.state,
 	name : 'state',
 	hiddenName : 'state',
 	msgTarget : 'side',

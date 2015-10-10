@@ -15,41 +15,41 @@ Ext.define('Eway.view.person.organization.OrganizationManagerGrid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->', {
-				text: '设置',
+				text: Eway.locale.commen.setManager,
 				iconCls :'sureBtn',
 				action: 'set'
 			}],
 			columns : [{
-				header : '姓名',
+				header : Eway.locale.commen.name,
 				dataIndex : 'name'
 			},{
-				header : '性别',
+				header : Eway.locale.commen.gender,
 				dataIndex : 'gender',
 				renderer: function(value,metadata,record){
 					if(value=="MALE"){
-	                	   return "男";
+	                	   return Eway.locale.commen.comboxGender.male;
 	                   }else if(value=="FEMALE"){
-	                	   return "女";
+	                	   return Eway.locale.commen.comboxGender.female;
 	                   }else{
-	                	   return "未知";
+	                	   return Eway.locale.commen.comboxGender.unknow;
 	                   }
 				}
 			},{
-				header : '出生年月',
+				header : Eway.locale.commen.birthday,
 				dataIndex : 'birthday',
 				xtype : 'datecolumn',
 				format : 'Y-m-d'
 			}, {
-				header : '手机',
+				header : Eway.locale.commen.mobile,
 				dataIndex : 'mobile'
 			}, {
-				header : '固话',
+				header : Eway.locale.commen.phone,
 				dataIndex : 'phone'
 			},{
-				header : '邮箱',
+				header : Eway.locale.commen.email,
 				dataIndex : 'email'
 			},{
-				header : '机构名称',
+				header : Eway.locale.person.bankPer.organizationName,
 				dataIndex : 'organizationName',
 				flex : 1
 			}],

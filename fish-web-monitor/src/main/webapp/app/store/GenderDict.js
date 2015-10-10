@@ -4,6 +4,6 @@ Ext.define('Eway.store.GenderDict', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'MALE', display:Eway.locale.person.bankPer.comboxGender.male}, 
-	       {value:'FEMALE', display:Eway.locale.person.bankPer.comboxGender.female}]
+	data: [{value:'MALE', display:Eway.locale.commen.comboxGender.male}, 
+	       {value:'FEMALE', display:Eway.locale.commen.comboxGender.female}]
 });

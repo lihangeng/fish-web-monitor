@@ -16,15 +16,15 @@ Ext.define('Eway.view.person.serviceOrg.SerLinkedDevice', {
 	
 	initComponent: function() {
 		Ext.apply(this, {
-			title : '该厂商的关联设备和人员',
+			title : Eway.locale.person.serviceOrg.personDevSerLink,
 			items : [{
-				title : ' 该厂商下设备',
+				title : Eway.locale.person.serviceOrg.devSerLink,
 				region: 'west',
 				width:'50%',
 				padding : 1,
 				xtype : 'linkedDeviceSerGrid'
 			},{
-				title : '该厂商下人员',
+				title : Eway.locale.person.serviceOrg.personSerLink,
 				region: 'center',
 				padding : 1,
 				xtype : 'linkedPersonGrid'

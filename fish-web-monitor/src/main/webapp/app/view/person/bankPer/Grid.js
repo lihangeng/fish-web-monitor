@@ -58,65 +58,65 @@ Ext.define('Eway.view.person.bankPer.Grid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : Eway.locale.person.bankPer.jobNum,
+				header : Eway.locale.commen.jobNum,
 				dataIndex : 'jobNum'
 			},{
-				header : Eway.locale.person.bankPer.name,
+				header : Eway.locale.commen.name,
 				dataIndex : 'name'
 			}, {
-				header : Eway.locale.person.bankPer.personJobName,
+				header : Eway.locale.commen.personJobName,
 				dataIndex : 'personJobName'
 			},{
 				header : Eway.locale.person.bankPer.organizationName,
 				dataIndex : 'organizationName'
 			},{
-				header : Eway.locale.person.bankPer.state,
+				header : Eway.locale.commen.state,
 				dataIndex : 'state',
 				renderer: function(value,metadata,record){
 					if(value==1){
-		                	 return Eway.locale.person.bankPer.comboxStatus.onJob;
+		                	 return Eway.locale.commen.comboxStatus.onJob;
 		             }else if(value==2){
-		                	   return Eway.locale.person.bankPer.comboxStatus.onAdjust;
+		                	   return Eway.locale.commen.comboxStatus.onAdjust;
 		             }else if(value==3){
-		                	   return Eway.locale.person.bankPer.comboxStatus.onVacation;
+		                	   return Eway.locale.commen.comboxStatus.onVacation;
 		             }else if(value==0){
-		                	   return Eway.locale.person.bankPer.comboxStatus.other;
+		                	   return Eway.locale.commen.comboxStatus.other;
 		             }
 				}
 			},{
-				header : Eway.locale.person.bankPer.type,
+				header : Eway.locale.commen.type,
 				dataIndex : 'type',
 				renderer: function(value,metadata,record){
 					if(value==0){
-		                	 return Eway.locale.person.bankPer.comboxType.machineManager;
+		                	 return Eway.locale.commen.comboxType.machineManager;
 		             }else if(value==1){
-		                	   return Eway.locale.person.bankPer.comboxType.machineRepairer;
+		                	   return Eway.locale.commen.comboxType.machineRepairer;
 		             }
 				}
 			}, {
-				header : Eway.locale.person.bankPer.mobile,
+				header : Eway.locale.commen.mobile,
 				dataIndex : 'mobile'
 			},{
-				header : Eway.locale.person.bankPer.email,
+				header : Eway.locale.commen.email,
 				dataIndex : 'email',
 				width : 150
 			}, {
-				header : Eway.locale.person.bankPer.phone,
+				header : Eway.locale.commen.phone,
 				dataIndex : 'phone'
 			},{
-				header : Eway.locale.person.bankPer.gender,
+				header : Eway.locale.commen.gender,
 				dataIndex : 'gender',
 				renderer: function(value,metadata,record){
 					if(value=="MALE"){
-	                	   return Eway.locale.person.bankPer.comboxGender.male;
+	                	   return Eway.locale.commen.comboxGender.male;
 	                   }else if(value=="FEMALE"){
-	                	   return Eway.locale.person.bankPer.comboxGender.female;
+	                	   return Eway.locale.commen.comboxGender.female;
 	                   }else{
-	                	   return Eway.locale.person.bankPer.comboxGender.unkown;
+	                	   return Eway.locale.commen.comboxGender.unknow;
 	                   }
 				}
 			},{
-				header : Eway.locale.person.bankPer.remark,
+				header : Eway.locale.commen.remark,
 				dataIndex : 'remark',
 				width : 150
 			}],

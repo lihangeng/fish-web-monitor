@@ -39,14 +39,14 @@ Ext.define('Eway.view.person.user.UserLogFilterForm', {
 				}
 				return validStatus;
 			},
-			userLogDateRangeText : '操作起始时间不能大于操作结束日期,请重新选择'
+			userLogDateRangeText : Eway.locale.vtype.endDateGtBenginDate
 		});
 
 		Ext.apply(this, {
 			items : [{
 				columnWidth : .5,
 				items : [{
-					fieldLabel: '操作日期开始于',
+					fieldLabel: Eway.locale.tip.operateDate.operateDateBegin,
 		        	xtype : 'datetimefield',
 					name : 'operTimeStart',
 					format : 'Y-m-d H:i:s',
@@ -71,7 +71,7 @@ Ext.define('Eway.view.person.user.UserLogFilterForm', {
 			{
 				columnWidth : .5,
 				items : [{
-					fieldLabel: '操作日期结束于',
+					fieldLabel: Eway.locale.tip.operateDate.operateDateEnd,
 		        	xtype : 'datetimefield',
 					name : 'operTimeEnd',
 					format : 'Y-m-d H:i:s',

@@ -13,7 +13,7 @@ Ext.define('Eway.view.person.servicePer.Update', {
 	           'Eway.view.field.person.State',
 	           'Eway.view.field.PersonRemark'],
 
-	title: '更改维护人员信息',
+	title: Eway.locale.person.servicePer.updateServicePerTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -32,13 +32,13 @@ Ext.define('Eway.view.person.servicePer.Update', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font> 姓名',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.commen.name,
 					xtype : 'field.username',
 					maxLength : 20,
 					allowBlank : false
 				},{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font> 厂商',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.serviceOrg.shortName,
 					allowBlank: false,
 					name : 'organizationName',
 					filters : '{"type" : "1"}',
@@ -46,12 +46,12 @@ Ext.define('Eway.view.person.servicePer.Update', {
 					hiddenValue : 'organizationId',
 					editable : false
 			 	},{
-					fieldLabel: '<font color="red">*</font> 手机',
+					fieldLabel: '<font color="red">*</font> '+Eway.locale.commen.mobile,
 					xtype : 'field.mobile',
 					vtype:'mobile',
 					allowBlank : false
 				},{
-					fieldLabel : '工号',
+					fieldLabel : Eway.locale.commen.jobNum,
 					xtype : 'textfield',
 					name:'jobNum',
 					maxLength : 20,
@@ -65,19 +65,19 @@ Ext.define('Eway.view.person.servicePer.Update', {
 						editable : false
 				},{
 					xtype : 'field.state',
-					fieldLabel : '状态',
+					fieldLabel : Eway.locale.commen.state,
 					allowBlank : true,
 					allowBlank : false,
 					editable : false
 				},,{
 					xtype : 'textfield',
-					fieldLabel : '固话',
+					fieldLabel : Eway.locale.commen.phone,
 					allowBlank: true,
 					vtype:'telephone',
 					name :'phone'
 				},{
 				    xtype : 'field.gender',
-				    fieldLabel : '性别',
+				    fieldLabel : Eway.locale.commen.gender,
 				    allowBlank : false,
 					editable : false
 				},{
@@ -87,14 +87,14 @@ Ext.define('Eway.view.person.servicePer.Update', {
 				}],
 				buttonAlign:'center',
 				fbar: [{
-					text: '确认',
+					text: Eway.locale.button.confirm,
 					action: 'update'
 				}, {
-					text: '重置',
+					text: Eway.locale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: '取消',
+					text: Eway.locale.button.cancle,
 					handler: this.onOver
 				}]
 			}

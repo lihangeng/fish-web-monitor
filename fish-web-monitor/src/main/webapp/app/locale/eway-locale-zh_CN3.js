@@ -21,6 +21,7 @@ Ext.apply(Eway,{
 			bankPerlink:'绑定设备',
 			confirm:'确认',
 			cancle:'取消',
+			choose:'选择'
 		},
 		combox:{
 			select:'--请选择--'
@@ -41,9 +42,71 @@ Ext.apply(Eway,{
 				},
 				error:'删除失败:'
 			},
+			add:{
+				error:'新增失败',
+			},
 			success:'成功.',
 			fail:'失败:',
-			phone:'请输入正确的电话号码'
+			phone:'请输入正确的电话号码',
+			//add by panxin
+			tips:'提示',
+			passwd:{
+				confirmPasswd:'是否确认密码重置？',
+				resetPasswding:'正在重置密码......',
+				resetPasswdFail:'密码重置失败！'
+			},
+			operateDate:{
+				operateDateBegin:'操作日期开始于',
+				operateDateEnd:'操作日期结束于'
+			},
+			bankOrg:{
+				manager:{
+					set:{
+						chooseOrg:'请选择您要设置的机构.',
+						managerSuccess:'设置管理员成功.',
+						managerFail:'设置管理员失败.',
+					},
+					remove:{
+						confirm:'是否删除该机构管理员?',
+						reChoose:'您未选择您要设置的机构或该机构下没有管理员，请重新选择.',
+						delSuccess:'删除管理员成功.',
+						delFail:'删除管理员失败.'
+					}
+				},
+				orgEligible:'符合条件的机构',
+				downGradeOrg:'的直接下级机构',
+				move:{
+					chooseOrg:'请选择您要迁移的组织.',
+					moveSuccess:'组织迁移成功.',
+				}
+			},
+			bankPer:{
+				allPersonInfo:'所有银行人员信息',
+				link:{
+					linkPerson:'请选择您关联的人员',
+					unLinkPersonFail:'关联失败.',
+					unlinkDev:'请选择要解除的设备.',
+					linkDev:'请选择要关联的设备.',
+					unLinkDevFail:'解除失败.',
+				},
+				personEligible:'符合条件的人员',
+				downGradePer:'以及其下属机构下的人员信息',
+				personBelongs:'下的人员信息',
+			},
+			serviceOrg:{
+				chooseOrg:'请选择您要设置的维护商.',
+				remove:{
+					reChoose:'您未选择要设置的维护商或该维护商下没有管理员,请重新选择.',
+				}
+			},
+			servicePer:{
+				allSerPer:'所有维护商人员信息'
+			},
+			user:{
+				
+				
+			}
+			
 		},
 		vtype:{
 			ip:'请输入正确的IP地址',
@@ -57,7 +120,58 @@ Ext.apply(Eway,{
 			numberrange:'金额范围不正确.',
 			//banOrg
 			bankOrgCode:'只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！',
-			zip:'只能输入6个‘0-9’的数字！'
+			zip:'只能输入6个‘0-9’的数字！',
+			endDateGtBenginDate:'操作起始时间不能大于操作结束日期,请重新选择',
+		},
+		commen:{
+			jobNum:'工号',
+			name:'姓名',
+			personJobName:'岗位',
+			state:'状态',
+			birthday:'生日',
+			comboxStatus:{
+				onJob:'在岗',
+				onAdjust:'调休',
+				onVacation:'休假',
+				other:'其他'
+			},
+			type:'类型',
+			comboxType:{
+				machineManager:'管机员',
+				machineRepairer:'维修人员'
+			},
+			mobile:'手机',
+			email:'邮箱',
+			phone:'固话',
+			gender:'性别',
+			allGender:'全部',
+			comboxGender:{
+				male:'男',
+				female:'女',
+				unknow:'未知'
+			},
+			remark:'备注',
+			terminalId:'设备号',
+			ip:'网络地址',
+			orgNameBelongs:'所属机构',
+			devTypeName:'设备型号',
+			devVendorName:'设备品牌',
+			devCatalogName:'设备类型',
+			devStatus:'设备状态',
+			comboxDevStatus:{
+				open:'开通',
+				stop:'停用'
+			},
+			setManager:'设置',
+			devServiceName:'设备维护商',
+			cashboxLimit:'钞箱报警金额',
+			installDate:'安装日期',
+			address:'地址',
+			toolbar:'总共：{2}条，显示{0}-{1}',
+			bindMachine :'已关联的设备',
+			lift:'解除',
+			canBindMachine:'可关联的设备',
+			bind:'关联',
 		},
 		machine:{
 			atmBrand : {
@@ -91,11 +205,11 @@ Ext.apply(Eway,{
 				updateBankTitle:'更改银行机构信息',
 				addBankOrgTitle:'增加银行机构信息',
 				code:'机构编号',
+				orgType:'机构类型',
 				name:'机构名称',
 				orgLevel:'机构级别',
 				orgNavi:'机构导航',
 				zip:'邮政编码',
-				setManager:'设置',
 				removeManager:'删除',
 				manager:'管理员',
 				address:'机构地址',
@@ -117,44 +231,81 @@ Ext.apply(Eway,{
 					normal:'正常',
 					locked:'锁定',
 					disable:'无效',
-					frozen:'冻结'
-				}
+					frozen:'冻结',
+					deleted:'已删除'
+				},
+				addOrgTitle:'该机构人员信息',
+				linkPeronTitle:'当前机构下人员：',
+				personList:'人员列表',
+				orgLinkTitle:'该机构的关联设备和人员',
+				machineOrg:' 该机构下设备',
+				personOrg:'该机构下人员',
+				
 			},
 			bankPer :{
 				title:'银行人员管理',
-				jobNum:'工号',
-				name:'姓名',
-				personJobName:'岗位',
 				organizationName:'机构',
-				state:'状态',
-				comboxStatus:{
-					onJob:'在岗',
-					onAdjust:'调休',
-					onVacation:'休假',
-					other:'其他'
-					
-				},
 				orgNavi:'机构导航',
-				type:'类型',
-				comboxType:{
-					machineManager:'管机员',
-					machineRepairer:'维修人员'
-				},
-				mobile:'手机',
-				email:'邮箱',
-				phone:'固话',
-				gender:'性别',
-				allGender:'全部',
-				comboxGender:{
-					male:'男',
-					female:'女',
-					unkown:'未知'
-				},
-				remark:'备注',
 				addBankPerTitle:'增加银行人员信息',
 				updateBankPerTitle:'更改银行人员信息',
 				
+			},
+			serviceOrg:{
+				title:'维护商管理',
+				serviceNavi:'厂商导航',
+				serviceOrgAdmin:'管理员',
+				setManager:'设置',
+				removeManager:'删除',
+				code:'厂商编号',
+				name:'厂商名称',
+				zip:'邮政编码',
+				shortName:'厂商',
+				address:'厂商地址',
+				description:'厂商描述',
+				addServiceTitle:'增加维护商信息',
+				upgradeService:'上级厂商',
+				updateServiceTitle:'更改维护商信息',
+				personDevSerLink:'该厂商的关联设备和人员',
+				devSerLink:'该厂商下设备',
+				personSerLink:'该厂商下人员',
+			},
+			servicePer:{
+				title:'维护人员管理',
+				servicePerlink:'关联设备',
+				addServicePerTitle:'增加维护人员信息',
+				updateServicePerTitle:'更改维护人员信息'
+			},
+			user:{
+				title:'用户管理',
+				code:'用户名',
+				clickToCheckLog:'单击即可查看用户 ',
+				userLog:' 的操作日志',
+				resetPasswd:'密码重置',
+				clickToPasswdInit:'单击即可密码重置为初始化密码',
+				clickToRole:'单击即可查看所有角色列表',
+				addUserTitle:'增加用户信息',
+				clickToUser:'请点击查询，选择人员',
+				userType:'用户类型',
+				role:'角色',
+				roleGiven:'角色赋予',
+				roleName:'角色名称',
+				roleDescription:'角色描述',
+				userListTitle:'人员列表',
+				updateUserTitle:'更改用户角色（使用拖拽的方式）',
+				roleCanBeAdd:'可添加的角色列表',
+				roleAlreadyBeAdd:'可添加的角色列表',
+				operCode:'操作人编号',
+				operName:'操作人姓名',
+				operTime:'操作时间',
+				operResult:'操作结果',
+				operContent:'操作内容',
+				roleListTitle:'用户角色列表',
+				operTitle:'操作员日志',
+				operDetailTitle:'操作日志信息',
+				operLogList:'操作日志列表',
+				personDevice:'人员<-->设备'
 			}
+			
 		}
 	}
 });

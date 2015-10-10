@@ -16,15 +16,15 @@ Ext.define('Eway.view.person.organization.OrglinkWin', {
 	
 	initComponent: function() {
 		Ext.apply(this, {
-			title : '该机构的关联设备和人员',
+			title : Eway.locale.person.bankOrg.orgLinkTitle,
 			items : [{
-				title : ' 该机构下设备',
+				title : Eway.locale.person.bankOrg.machineOrg,
 				region: 'west',
 				width:'50%',
 				padding : 1,
 				xtype : 'linkedDeviceGrid'
 			},{
-				title : '该机构下人员',
+				title : Eway.locale.person.bankOrg.personOrg,
 				region: 'center',
 				padding : 1,
 				xtype : 'linkedPersonGrid'

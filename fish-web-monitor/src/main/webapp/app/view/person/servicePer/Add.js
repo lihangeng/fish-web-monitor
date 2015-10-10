@@ -13,7 +13,7 @@ Ext.define('Eway.view.person.servicePer.Add', {
 	           'Eway.view.field.person.State',
 	           'Eway.view.field.PersonRemark'],
 
-	title: '增加维护人员信息',
+	title: Eway.locale.person.servicePer.addServicePerTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -32,13 +32,13 @@ Ext.define('Eway.view.person.servicePer.Add', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font> 姓名',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.commen.name,
 					xtype : 'field.username',
 					maxLength : 20,
 					allowBlank : false
 				},{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font> 厂商',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.serviceOrg.shortName,
 					allowBlank: false,
 					name : 'organizationName',
 					filters : '{"type" : "1"}',
@@ -46,26 +46,26 @@ Ext.define('Eway.view.person.servicePer.Add', {
 					hiddenValue : 'organizationId',
 					editable : false
 			 	},{
-					fieldLabel: '<font color="red">*</font> 手机',
+					fieldLabel: '<font color="red">*</font> '+Eway.locale.commen.mobile,
 					xtype : 'field.mobile',
 					vtype:'mobile',
 					allowBlank : false
 				},{
-					fieldLabel : '工号',
+					fieldLabel : Eway.locale.commen.jobNum,
 					xtype : 'textfield',
 					name:'jobNum',
 					maxLength : 20,
 					allowBlank : true
 				},{
 					xtype : 'field.state',
-					fieldLabel : '状态',
+					fieldLabel : Eway.locale.commen.state,
 					value : '1',
 					allowBlank : false,
 					editable : false
 				},{
 				    xtype : 'field.gender',
-				    fieldLabel : '性别',
-				    emptyText: '--请选择--',
+				    fieldLabel : Eway.locale.commen.gender,
+				    emptyText: Eway.locale.combox.select,
 				    allowBlank : false,
 				    value : 'MALE',
 					editable : false
@@ -78,7 +78,7 @@ Ext.define('Eway.view.person.servicePer.Add', {
 					editable : false
 				},{
 					xtype : 'textfield',
-					fieldLabel : '固话',
+					fieldLabel : Eway.locale.commen.phone,
 					allowBlank: true,
 					name :'phone',
 					vtype:'telephone'
@@ -90,14 +90,14 @@ Ext.define('Eway.view.person.servicePer.Add', {
 				}],
 				buttonAlign:'center',
 				buttons: [{
-					text: '确认',
+					text: Eway.locale.button.confirm,
 					action: 'add'
 				}, {
-					text: '重置',
+					text: Eway.locale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: '取消',
+					text: Eway.locale.button.cancle,
 					handler: this.onOver
 				}]
 			}

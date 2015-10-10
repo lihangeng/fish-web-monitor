@@ -4,7 +4,7 @@ Ext.define('Eway.store.person.person.PersonTypeFilterDict', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'', display:Eway.locale.person.bankPer.allGender}, 
-		   {value:'0', display:Eway.locale.person.bankPer.comboxType.machineManager}, 
-	       {value:'1', display:Eway.locale.person.bankPer.comboxType.machineRepairer}]
+	data: [{value:'', display:Eway.locale.commen.allGender}, 
+		   {value:'0', display:Eway.locale.commen.comboxType.machineManager}, 
+	       {value:'1', display:Eway.locale.commen.comboxType.machineRepairer}]
 });

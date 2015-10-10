@@ -21,7 +21,7 @@ Ext.define('Eway.view.person.person.PersonDevice', {
 	
 	initComponent: function() {
 		Ext.apply(this, {
-			title : '人员<-->设备',
+			title : Eway.locale.person.user.personDevice,
 			items : [{
 				region: 'west',
 				width:'50%',

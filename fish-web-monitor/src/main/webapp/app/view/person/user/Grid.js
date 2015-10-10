@@ -14,11 +14,11 @@ Ext.define('Eway.view.person.user.Grid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-				text: '查询',
+				text: Eway.locale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			}, {
-				text: '增加',
+				text: Eway.locale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'userAdd',
@@ -26,7 +26,7 @@ Ext.define('Eway.view.person.user.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '更改',
+				text: Eway.locale.button.update,
 				glyph : 0xf040,
 				action: 'update',
 				code : 'userUpdate',
@@ -34,7 +34,7 @@ Ext.define('Eway.view.person.user.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '删除',
+				text: Eway.locale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'userDel',
@@ -47,10 +47,10 @@ Ext.define('Eway.view.person.user.Grid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '用户名',
+				header : Eway.locale.person.user.code,
 				dataIndex : 'code',
 				renderer:function(value,meta,record){
-					meta.tdAttr ='data-qtip="'+"单击即可查看用户   " + value+" 的操作日志"+'"';
+					meta.tdAttr ='data-qtip="'+Eway.locale.person.user.clickToCheckLog + value+Eway.locale.person.user.userLog+'"';
 					if(value != null){
 						return "<a class='link' href='#'>"+ value + "</a>";
 					}else{
@@ -58,7 +58,7 @@ Ext.define('Eway.view.person.user.Grid', {
 					}
 				}
 			},{
-				header : '姓名',
+				header : Eway.locale.commen.name,
 				dataIndex : 'name'
 //			},{
 //				header : '用户类型',
@@ -73,49 +73,49 @@ Ext.define('Eway.view.person.user.Grid', {
 //	                   }
 //					}
 			},{
-				header : '性别',
+				header : Eway.locale.commen.gender,
 				dataIndex : 'gender',
 				renderer: function(value,metadata,record){
 					if(value=="MALE"){
-	                	   return "男";
+	                	   return Eway.locale.commen.comboxGender.male;
 	                   }else if(value=="FEMALE"){
-	                	   return "女";
+	                	   return Eway.locale.commen.comboxGender.female;
 	                   }else{
-	                	   return "未知";
+	                	   return Eway.locale.commen.comboxGender.unknow;
 	                   }
 					}
 			}, {
-				header : '手机',
+				header : Eway.locale.commen.mobile,
 				dataIndex : 'mobile'
 			}, {
-				header : '固话',
+				header : Eway.locale.commen.phone,
 				dataIndex : 'phone'
 			}, {
-				header : '机构',
+				header : Eway.locale.person.bankPer.organizationName,
 				dataIndex : 'organizationName'
 			},{
-				header : '邮箱',
+				header : Eway.locale.commen.email,
 				dataIndex : 'email'
 			},{
-				header : '状态',
+				header : Eway.locale.commen.state,
 				dataIndex : 'userState',
 				renderer: function(value,metadata,record){
 						if(value==0){
-	                	   return "新建";
+	                	   return Eway.locale.person.bankOrg.organizationStateDict.newCreate;
 	                   }else if(value==1){
-	                	   return "新建";
+	                	   return Eway.locale.person.bankOrg.organizationStateDict.newCreate;
 	                   }else if(value==2){
-	                	   return "正常";
+	                	   return Eway.locale.person.bankOrg.organizationStateDict.normal;
 	                   }else if(value==3){
-	                	   return "锁定";
+	                	   return Eway.locale.person.bankOrg.organizationStateDict.locked;
 	                   }else if(value==4){
-	                	   return "已删除";
+	                	   return Eway.locale.person.bankOrg.organizationStateDict.deleted;
 	                   }else{
-	                	   return "冻结";
+	                	   return Eway.locale.person.bankOrg.organizationStateDict.frozen;
 	                   }
 					}
 			},{
-				header : '密码重置',
+				header : Eway.locale.person.user.resetPasswd,
 				xtype:'actioncolumn',
 				items:[{
                     icon:"././././resources/images/update.png",
@@ -124,17 +124,17 @@ Ext.define('Eway.view.person.user.Grid', {
 						if(rec.data.code==ewayUser.getCode()){
 							return "actioncolumn-hidden";
 	                    }else{
-	                        metadata.tdAttr ='data-qtip="'+"单击即可密码重置为初始化密码"+'"';
+	                        metadata.tdAttr ='data-qtip="'+Eway.locale.person.user.clickToPasswdInit+'"';
 	                    }
 					},
                     handler:function(grid,rowIndex,colIndex){
                        var rec=grid.getStore().getAt(rowIndex);
                        var username = rec.get('code');
 	                   var gridEl = grid.getEl();
-					   Ext.MessageBox.confirm('提示','是否确认密码重置？',callBack);
+					   Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.passwd.confirmPasswd,callBack);
 					    function callBack(button){
 					    	if(button=='yes'){
-					    		gridEl.mask('正在重置密码......');
+					    		gridEl.mask(Eway.locale.tip.tips.passwd.resetPasswding);
 					    		Ext.Ajax.request({
 			               			method : 'POST',
 			               			url : 'api/person/user/resetPassword',
@@ -154,7 +154,7 @@ Ext.define('Eway.view.person.user.Grid', {
 			               			},
 			               			failure : function(){
 			               				gridEl.unmask();
-			               				Eway.alert("密码重置失败！");
+			               				Eway.alert(Eway.locale.tip.tips.passwd.resetPasswdFail);
 			               			}
 		               			});
 					    	}
@@ -162,11 +162,11 @@ Ext.define('Eway.view.person.user.Grid', {
 					}
 				}]
 			},{
-				header : '角色',
+				header : Eway.locale.person.user.role,
 				dataIndex : 'roles',
 				flex :1,
 				renderer:function(value,meta,record){
-					meta.tdAttr ='data-qtip="'+"单击即可查看所有角色列表"+'"';
+					meta.tdAttr ='data-qtip="'+Eway.locale.person.user.clickToRole+'"';
 					if(value != null){
 						return "<a class='link' href='#'>"+ value + "</a>";
 					}else{

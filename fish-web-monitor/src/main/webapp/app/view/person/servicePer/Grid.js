@@ -17,11 +17,11 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 				action:'tip',
 				xtype:'tbtext'
 			},'->', {
-				text: '查询',
+				text: Eway.locale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			}, {
-				text: '增加',
+				text: Eway.locale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'servicePerAdd',
@@ -29,7 +29,7 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '更改',
+				text: Eway.locale.button.update,
 				glyph : 0xf040,
 				action: 'update',
 				code : 'servicePerUpdate',
@@ -37,7 +37,7 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '删除',
+				text: Eway.locale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'servicePerDel',
@@ -45,7 +45,7 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '关联设备',
+				text: Eway.locale.person.servicePer.servicePerlink,
 				glyph : 0xf0c1,
 				action: 'link',
 				code : 'servicePerlink',
@@ -58,49 +58,49 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '工号',
+				header : Eway.locale.commen.jobNum,
 				dataIndex : 'jobNum'
 			},{
-				header : '姓名',
+				header : Eway.locale.commen.name,
 				dataIndex : 'name'
 			},{
-				header : '厂商',
+				header : Eway.locale.person.servicePer.serviceName,
 				dataIndex : 'organizationName'
 			},{
-				header : '状态',
+				header : Eway.locale.commen.state,
 				dataIndex : 'state',
 				renderer: function(value,metadata,record){
 					if(value==1){
-		                	 return "在岗";
+		                	 return Eway.locale.commen.comboxStatus.onJob;
 		             }else if(value==2){
-		                	   return "调休";
+		                	   return Eway.locale.commen.comboxStatus.onAdjust;
 		             }else if(value==3){
-		                	   return "休假";
+		                	   return Eway.locale.commen.comboxStatus.onVacation;
 		             }else if(value==0){
-		                	   return "其他";
+		                	   return Eway.locale.commen.comboxStatus.other;
 		             }
 				}
 			},{
-				header : '类型',
+				header : Eway.locale.commen.type,
 				dataIndex : 'type',
 				renderer: function(value,metadata,record){
 					if(value==0){
-		                	 return "管机员";
+		                	 return Eway.locale.commen.comboxType.machineManager;
 		             }else if(value==1){
-		                	   return "维修人员";
+		                	   return Eway.locale.commen.comboxType.machineRepairer;
 		             }
 				}
 			}, {
-				header : '手机',
+				header : Eway.locale.commen.mobile,
 				dataIndex : 'mobile'
 			},{
-				header : '邮箱',
+				header : Eway.locale.commen.email,
 				dataIndex : 'email'
 			}, {
-				header : '固话',
+				header : Eway.locale.commen.phone,
 				dataIndex : 'phone'
 			},{
-				header : '备注',
+				header : Eway.locale.commen.remark,
 				dataIndex : 'remark',
 				flex :1
 			}],
