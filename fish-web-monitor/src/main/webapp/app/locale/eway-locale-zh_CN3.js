@@ -1,244 +1,244 @@
 Ext.apply(Eway,{
-	addSuccess : '增加成功.',
-	updateSuccess : '更改成功.',
-	deleteSuccess : '删除成功.',
-	choiceUpdateMsg :'请选择您要更改的记录.',
-	choiceDeleteMsg :'请选择您要删除的记录.',
+	addSuccess : '增加成功.',//Eway.addSuccess
+	updateSuccess : '更改成功.',//Eway.updateSuccess
+	deleteSuccess : '删除成功.',//Eway.deleteSuccess
+	choiceUpdateMsg :'请选择您要更改的记录.',//Eway.choiceUpdateMsg
+	choiceDeleteMsg :'请选择您要删除的记录.',//Eway.choiceDeleteMsg
 	locale:{
 		button:{
-			search:'查询',
-			add : '增加',
-			update:'更改',
-			remove:'删除',
-			refresh:'刷新',
-			reset:'重置',
-			back:'返回',
+			search:'查询',//Eway.locale.button.search
+			add : '增加',//Eway.locale.button.add
+			update:'更改',//Eway.locale.button.update
+			remove:'删除',//Eway.locale.button.remove
+			refresh:'刷新',//Eway.locale.button.refresh
+			reset:'重置',//Eway.locale.button.reset
+			back:'返回',//Eway.locale.button.back
 			//bankOrg
-			deepQuery:'深度查询',
-			bankOrgMove:'组织迁移',
-			bankOrgAdmin:'管理员',
+			deepQuery:'深度查询',//Eway.locale.button.deepQuery
+			bankOrgMove:'组织迁移',//Eway.locale.button.bankOrgMove
+			bankOrgAdmin:'管理员',//Eway.locale.button.bankOrgAdmin
 			//bankPerson
-			bankPerlink:'绑定设备',
-			confirm:'确认',
-			cancle:'取消',
-			choose:'选择',
-			pause:'暂停'
+			bankPerlink:'绑定设备',//Eway.locale.button.bankPerlink
+			confirm:'确认',//Eway.locale.button.confirm
+			cancle:'取消',//Eway.locale.button.cancle
+			choose:'选择',//Eway.locale.button.choose
+			pause:'暂停'//Eway.locale.button.pause
 		},
 		combox:{
-			select:'--请选择--'
+			select:'--请选择--'//Eway.locale.combox.select
 		},
 		tip : {
 			search :{
-				warn:'查询条件存在错误项.'
+				warn:'查询条件存在错误项.'//Eway.locale.tip.search.warn
 			},
 			update:{
-				one:'只能选择一条记录更改.'
+				one:'只能选择一条记录更改.'//Eway.locale.tip.update.one
 			},
 			remove :{
-				none:'请选择您要删除的记录.',
-				one:'只能选择一条记录删除',
+				none:'请选择您要删除的记录.',//Eway.locale.tip.remove.none
+				one:'只能选择一条记录删除',//Eway.locale.tip.remove.one
 				confirm:{
-					title:'请确认',
-					info:'是否删除该记录?'
+					title:'请确认',//Eway.locale.tip.confirm.title
+					info:'是否删除该记录?'//Eway.locale.tip.confirm.info
 				},
-				error:'删除失败:'
+				error:'删除失败:'//Eway.locale.tip.error
 			},
 			add:{
-				error:'新增失败',
+				error:'新增失败',//Eway.locale.tip.add.error
 			},
-			success:'成功.',
-			fail:'失败:',
-			phone:'请输入正确的电话号码',
+			success:'成功.',//Eway.locale.tip.success
+			fail:'失败:',//Eway.locale.tip.fail
+			phone:'请输入正确的电话号码',//Eway.locale.tip.phone
 			//add by panxin
-			tips:'提示',
-			input:'请正确输入',
-			roleName:'由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位',
-			roleDescription:'由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入100位',
+			tips:'提示',//Eway.locale.tip.tips
+			input:'请正确输入',//Eway.locale.tip.input
+			roleName:'由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位',//Eway.locale.tip.roleName
+			roleDescription:'由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入100位',//Eway.locale.tip.roleDescription
 			passwd:{
-				confirmPasswd:'是否确认密码重置？',
-				resetPasswding:'正在重置密码......',
-				resetPasswdFail:'密码重置失败！'
+				confirmPasswd:'是否确认密码重置？',//Eway.locale.tip.confirmPasswd
+				resetPasswding:'正在重置密码......',//Eway.locale.tip.resetPasswding
+				resetPasswdFail:'密码重置失败！'//Eway.locale.tip.resetPasswdFail
 			},
 			operateDate:{
-				operateDateBegin:'操作日期开始于',
-				operateDateEnd:'操作日期结束于'
+				operateDateBegin:'操作日期开始于',//Eway.locale.tip.operateDate.operateDateBegin
+				operateDateEnd:'操作日期结束于'//Eway.locale.tip.operateDate.operateDateEnd
 			},
 			bankOrg:{
 				manager:{
 					set:{
-						chooseOrg:'请选择您要设置的机构.',
-						managerSuccess:'设置管理员成功.',
-						managerFail:'设置管理员失败.',
+						chooseOrg:'请选择您要设置的机构.',//Eway.locale.tip.bankOrg.manager.set.chooseOrg
+						managerSuccess:'设置管理员成功.',//Eway.locale.tip.bankOrg.manager.set.managerSuccess
+						managerFail:'设置管理员失败.',//Eway.locale.tip.bankOrg.manager.set.managerFail
 					},
 					remove:{
-						confirm:'是否删除该机构管理员?',
-						reChoose:'您未选择您要设置的机构或该机构下没有管理员，请重新选择.',
-						delSuccess:'删除管理员成功.',
-						delFail:'删除管理员失败.'
+						confirm:'是否删除该机构管理员?',//Eway.locale.tip.bankOrg.manager.remove.confirm
+						reChoose:'您未选择您要设置的机构或该机构下没有管理员，请重新选择.',//Eway.locale.tip.bankOrg.manager.remove.reChoose
+						delSuccess:'删除管理员成功.',//Eway.locale.tip.bankOrg.manager.remove.delSuccess
+						delFail:'删除管理员失败.'//Eway.locale.tip.bankOrg.manager.remove.delFail
 					}
 				},
-				orgEligible:'符合条件的机构',
-				downGradeOrg:'的直接下级机构',
+				orgEligible:'符合条件的机构',//Eway.locale.tip.bankOrg.orgEligible
+				downGradeOrg:'的直接下级机构',//Eway.locale.tip.bankOrg.downGradeOrg
 				move:{
-					chooseOrg:'请选择您要迁移的组织.',
-					moveSuccess:'组织迁移成功.',
+					chooseOrg:'请选择您要迁移的组织.',//Eway.locale.tip.bankOrg.move.chooseOrg
+					moveSuccess:'组织迁移成功.',//Eway.locale.tip.bankOrg.move.moveSuccess
 				}
 			},
 			bankPer:{
-				allPersonInfo:'所有银行人员信息',
+				allPersonInfo:'所有银行人员信息',//Eway.locale.tip.bankPer.allPersonInfo
 				link:{
-					linkPerson:'请选择您关联的人员',
-					unLinkPersonFail:'关联失败.',
-					unlinkDev:'请选择要解除的设备.',
-					linkDev:'请选择要关联的设备.',
-					unLinkDevFail:'解除失败.',
+					linkPerson:'请选择您关联的人员',//Eway.locale.tip.bankPer.link.linkPerson
+					unLinkPersonFail:'关联失败.',//Eway.locale.tip.bankPer.link.unLinkPersonFail
+					unlinkDev:'请选择要解除的设备.',//Eway.locale.tip.bankPer.link.unlinkDev
+					linkDev:'请选择要关联的设备.',//Eway.locale.tip.bankPer.link.linkDev
+					unLinkDevFail:'解除失败.',//Eway.locale.tip.bankPer.link.unLinkDevFail
 				},
-				personEligible:'符合条件的人员',
-				downGradePer:'以及其下属机构下的人员信息',
-				personBelongs:'下的人员信息',
+				personEligible:'符合条件的人员',//Eway.locale.tip.bankPer.personEligible
+				downGradePer:'以及其下属机构下的人员信息',//Eway.locale.tip.bankPer.downGradePer
+				personBelongs:'下的人员信息',//Eway.locale.tip.bankPer.personBelongs
 			},
 			serviceOrg:{
-				chooseOrg:'请选择您要设置的维护商.',
+				chooseOrg:'请选择您要设置的维护商.',//Eway.locale.tip.serviceOrg.chooseOrg
 				remove:{
-					reChoose:'您未选择要设置的维护商或该维护商下没有管理员,请重新选择.',
+					reChoose:'您未选择要设置的维护商或该维护商下没有管理员,请重新选择.',//Eway.locale.tip.serviceOrg.remove.reChoose
 				}
 			},
 			servicePer:{
-				allSerPer:'所有维护商人员信息'
+				allSerPer:'所有维护商人员信息'//Eway.locale.tip.servicePer.allSerPer
 			},
 			user:{
 				add:{
-					createAcc:'请选择您要创建的账号的人员',
-					createSuccess:'创建成功,新建账户',
-					initPasswd:'初始密码为: 888888'
+					createAcc:'请选择您要创建的账号的人员',//Eway.locale.tip.user.add.createAcc
+					createSuccess:'创建成功,新建账户',//Eway.locale.tip.user.add.createSuccess
+					initPasswd:'初始密码为: 888888'//Eway.locale.tip.user.add.initPasswd
 				},
 				remove:{
-					failRoot:'删除失败:系统管理员用户,无法删除.',
-					confirm:'是否删除该记录:删除用户会删除该用户的日志信息.',
-					fail:'删除失败:无法删除角色,请重新操作.'
+					failRoot:'删除失败:系统管理员用户,无法删除.',//Eway.locale.tip.user.remove.failRoot
+					confirm:'是否删除该记录:删除用户会删除该用户的日志信息.',//Eway.locale.tip.user.remove.confirm
+					fail:'删除失败:无法删除角色,请重新操作.'//Eway.locale.tip.user.remove.fail
 				},
 				update:{
-					fail:'更改失败:记录不存在,请刷新后操作.',
+					fail:'更改失败:记录不存在,请刷新后操作.',//Eway.locale.tip.user.update.fail
 				},
 				move:{
-					choose:'请选择需要移动的记录.'
+					choose:'请选择需要移动的记录.'//Eway.locale.tip.user.move.choose
 					
 				}
 			}
 			
 		},
 		vtype:{
-			ip:'请输入正确的IP地址',
-			zip:'请输入正确的邮编格式，6位的数字',
-			versionNo:'不是正确的版本号格式,格式说明：1.版本号由4个部分组成 A.B.C.D ;2.只有A部分是必须的 ；3. A、B、C、D必须为大于等于0的整数 ,每个部分最大长度为8位； 4.ABCD部分必须用.分隔',
-			terminalId:'输入错误,设备号由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’点号‘.’组成,只能以字母或数字开头,长度1到20位。',
-			mobile:'输入错误,手机号码只能输入8到11位数字。',
-			cardNo:'输入错误,银行卡号只能输入16到19位数字。',
-			telephone:'输入错误,固定电话号码只能输入8到11位数字。',
-			daterange:'日期段不正确.',
-			numberrange:'金额范围不正确.',
+			ip:'请输入正确的IP地址',//Eway.locale.vtype.ip
+			zip:'请输入正确的邮编格式，6位的数字',//Eway.locale.zip
+			versionNo:'不是正确的版本号格式,格式说明：1.版本号由4个部分组成 A.B.C.D ;2.只有A部分是必须的 ；3. A、B、C、D必须为大于等于0的整数 ,每个部分最大长度为8位； 4.ABCD部分必须用.分隔',//Eway.locale.vtype.versionNo
+			terminalId:'输入错误,设备号由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’点号‘.’组成,只能以字母或数字开头,长度1到20位。',//Eway.locale.vtype.terminalId
+			mobile:'输入错误,手机号码只能输入8到11位数字。',//Eway.locale.vtype.mobile
+			cardNo:'输入错误,银行卡号只能输入16到19位数字。',//Eway.locale.vtype.cardNo
+			telephone:'输入错误,固定电话号码只能输入8到11位数字。',//Eway.locale.vtype.telephone
+			daterange:'日期段不正确.',//Eway.locale.vtype.daterange
+			numberrange:'金额范围不正确.',//Eway.locale.vtype.numberrange
 			//banOrg
-			bankOrgCode:'只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！',
-			zip:'只能输入6个‘0-9’的数字！',
-			endDateGtBenginDate:'操作起始时间不能大于操作结束日期,请重新选择',
-			personRemark:'由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入200位',
+			bankOrgCode:'只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！',//Eway.locale.vtype.bankOrgCode
+			zip:'只能输入6个‘0-9’的数字！',//Eway.locale.vtype.zip
+			endDateGtBenginDate:'操作起始时间不能大于操作结束日期,请重新选择',//Eway.locale.vtype.endDateGtBenginDate
+			personRemark:'由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入200位',//Eway.locale.vtype.endDateGtBenginDate
 		},
 		commen:{
-			jobNum:'工号',
-			name:'姓名',
-			personJobName:'岗位',
-			state:'状态',
-			birthday:'生日',
+			jobNum:'工号',//Eway.locale.commen.jobNum
+			name:'姓名',//Eway.locale.commen.name
+			personJobName:'岗位',//Eway.locale.commen.personJobName
+			state:'状态',//Eway.locale.commen.state
+			birthday:'生日',//Eway.locale.commen.birthday
 			comboxStatus:{
-				onJob:'在岗',
-				onAdjust:'调休',
-				onVacation:'休假',
-				other:'其他'
+				onJob:'在岗',//Eway.locale.commen.comboxStatus.onJob
+				onAdjust:'调休',//Eway.locale.commen.comboxStatus.onAdjust
+				onVacation:'休假',//Eway.locale.commen.comboxStatus.onVacation
+				other:'其他'//Eway.locale.commen.comboxStatus.other
 			},
-			type:'类型',
+			type:'类型',//Eway.locale.commen.type
 			comboxType:{
-				machineManager:'管机员',
-				machineRepairer:'维修人员'
+				machineManager:'管机员',//Eway.locale.commen.comboxType.machineManager
+				machineRepairer:'维修人员'//Eway.locale.commen.comboxType.machineRepairer
 			},
-			mobile:'手机',
-			email:'邮箱',
-			phone:'固话',
-			gender:'性别',
-			all:'全部',
+			mobile:'手机',//Eway.locale.commen.mobile
+			email:'邮箱',//Eway.locale.commen.email
+			phone:'固话',//Eway.locale.commen.phone
+			gender:'性别',//Eway.locale.commen.gender
+			all:'全部',//Eway.locale.commen.all
 			comboxGender:{
-				male:'男',
-				female:'女',
-				unknow:'未知'
+				male:'男',//Eway.locale.commen.comboxGender.male
+				female:'女',//Eway.locale.commen.comboxGender.female
+				unknow:'未知'//Eway.locale.commen.comboxGender.unknow
 			},
-			remark:'备注',
-			terminalId:'设备号',
-			ip:'网络地址',
-			orgNameBelongs:'所属机构',
-			devTypeName:'设备型号',
-			devVendorName:'设备品牌',
-			devCatalogName:'设备类型',
-			devStatus:'设备状态',
+			remark:'备注',//Eway.locale.commen.remark
+			terminalId:'设备号',//Eway.locale.commen.terminalId
+			ip:'网络地址',//Eway.locale.commen.ip
+			orgNameBelongs:'所属机构',//Eway.locale.commen.orgNameBelongs
+			devTypeName:'设备型号',//Eway.locale.commen.devTypeName
+			devVendorName:'设备品牌',//Eway.locale.commen.devVendorName
+			devCatalogName:'设备类型',//Eway.locale.commen.devCatalogName
+			devStatus:'设备状态',//Eway.locale.commen.devStatus
 			comboxDevStatus:{
-				open:'开通',
-				stop:'停用'
+				open:'开通',//Eway.locale.commen.comboxDevStatus.open
+				stop:'停用'//Eway.locale.commen.comboxDevStatus.stop
 			},
-			setManager:'设置',
-			devServiceName:'设备维护商',
-			cashboxLimit:'钞箱报警金额',
-			installDate:'安装日期',
-			address:'地址',
-			areaCode:'区域编号',
-			areaName:'区域名称',
-			toolbar:'总共：{2}条，显示{0}-{1}',
-			bindMachine :'已关联的设备',
-			lift:'解除',
-			canBindMachine:'可关联的设备',
-			bind:'关联',
-			filter:'过滤条件',
+			setManager:'设置',//Eway.locale.commen.setManager
+			devServiceName:'设备维护商',//Eway.locale.commen.devServiceName
+			cashboxLimit:'钞箱报警金额',//Eway.locale.commen.cashboxLimit
+			installDate:'安装日期',//Eway.locale.commen.installDate
+			address:'地址',//Eway.locale.commen.address
+			areaCode:'区域编号',//Eway.locale.commen.areaCode
+			areaName:'区域名称',//Eway.locale.commen.areaName
+			toolbar:'总共：{2}条，显示{0}-{1}',//Eway.locale.commen.toolbar
+			bindMachine :'已关联的设备',//Eway.locale.commen.bindMachine
+			lift:'解除',//Eway.locale.commen.lift
+			canBindMachine:'可关联的设备',//Eway.locale.commen.canBindMachine
+			bind:'关联',//Eway.locale.commen.bind
+			filter:'过滤条件',//Eway.locale.commen.filter
 			stateDict:{
-				newCreate:'新建',
-				normal:'正常',
-				locked:'锁定',
-				disable:'无效',
-				frozen:'冻结',
-				deleted:'已删除'
+				newCreate:'新建',//Eway.locale.commen.stateDict.newCreate
+				normal:'正常',//Eway.locale.commen.stateDict.normal
+				locked:'锁定',//Eway.locale.commen.stateDict.locked
+				disable:'无效',//Eway.locale.commen.stateDict.disable
+				frozen:'冻结',//Eway.locale.commen.stateDict.frozen
+				deleted:'已删除'//Eway.locale.commen.stateDict.deleted
 			},
-			yes:'是',
-			no:'否',
-			selectAll:'全部选择',
-			selectNon:'全部不选',
-			content:'消息',
-			upgrade:'上级',
-			port:'网络Port',
-			previous:'上一页',
-			next:'下一页',
-			installAddr:'装机地址',
-			seviceMode:'经营方式',
-			insideOutside:'在行/离行',
-			appVersion:'应用版本号',
-			devInfo:'设备基本信息'
+			yes:'是',//Eway.locale.commen.yes
+			no:'否',//Eway.locale.commen.no
+			selectAll:'全部选择',//Eway.locale.commen.selectAll
+			selectNon:'全部不选',//Eway.locale.commen.selectNon
+			content:'消息',//Eway.locale.commen.content
+			upgrade:'上级',//Eway.locale.commen.upgrade
+			port:'网络Port',//Eway.locale.commen.port
+			previous:'上一页',//Eway.locale.commen.previous
+			next:'下一页',//Eway.locale.commen.next
+			installAddr:'装机地址',//Eway.locale.commen.installAddr
+			seviceMode:'经营方式',//Eway.locale.commen.seviceMode
+			insideOutside:'在行/离行',//Eway.locale.commen.insideOutside
+			appVersion:'应用版本号',//Eway.locale.commen.appVersion
+			devInfo:'设备基本信息'//Eway.locale.commen.devInfo
 			//check end
 		},
 		machine:{
 			atmBrand : {
-				title:'品牌管理',
-				name: "品牌名称",
-				country:'生产商国家或地区',
-				hotline1:'生产商热线1',
-				hotline2:'生产商热线2',
-				address:'生产商地址',
-				status:'生产商状态',
+				title:'品牌管理',//Eway.locale.machine.atmBrand.title
+				name: "品牌名称",//Eway.locale.machine.atmBrand.name
+				country:'生产商国家或地区',//Eway.locale.machine.atmBrand.country
+				hotline1:'生产商热线1',//Eway.locale.machine.atmBrand.hotline1
+				hotline2:'生产商热线2',//Eway.locale.machine.atmBrand.hotline2
+				address:'生产商地址',//Eway.locale.machine.atmBrand.address
+				status:'生产商状态',//Eway.locale.machine.atmBrand.status
 				comboxStatus:{
-					provider:'设备供应',
-					maintance:'设备服役'
+					provider:'设备供应',//Eway.locale.machine.atmBrand.comboxStatus.provider
+					maintance:'设备服役'//Eway.locale.machine.atmBrand.comboxStatus.maintance
 				}
 			},
 			atmCatalog:{
-				title:'ATM分类',
-				name:'分类名称',
-				note:'备注',
-				addTitle:'增加ATM分类信息',
-				updateTitle:'更改ATM型号信息'
+				title:'ATM分类',//Eway.locale.atmCatalog.title
+				name:'分类名称',//Eway.locale.atmCatalog.name
+				note:'备注',//Eway.locale.atmCatalog.note
+				addTitle:'增加ATM分类信息',//Eway.locale.atmCatalog.addTitle
+				updateTitle:'更改ATM型号信息'//Eway.locale.atmCatalog.updateTitle
 			},
 			atmType:{
 				
@@ -246,145 +246,145 @@ Ext.apply(Eway,{
 		},
 		person:{
 			bankOrg :{
-				title:'银行机构管理',
-				moveBankTitle:'组织迁移',
-				updateBankTitle:'更改银行机构信息',
-				addBankOrgTitle:'增加银行机构信息',
-				code:'机构编号',
-				orgType:'机构类型',
-				name:'机构名称',
-				orgLevel:'机构级别',
-				orgNavi:'机构导航',
-				zip:'邮政编码',
-				removeManager:'删除',
-				manager:'管理员',
-				address:'机构地址',
-				upgradeOrg:'上级机构',
-				description:'机构描述',
-				serOrganization:'机构描述',
+				title:'银行机构管理',//Eway.locale.person.bankOrg.title
+				moveBankTitle:'组织迁移',//Eway.locale.person.bankOrg.moveBankTitle
+				updateBankTitle:'更改银行机构信息',//Eway.locale.person.bankOrg.updateBankTitle
+				addBankOrgTitle:'增加银行机构信息',//Eway.locale.person.bankOrg.addBankOrgTitle
+				code:'机构编号',//Eway.locale.person.bankOrg.code
+				orgType:'机构类型',//Eway.locale.person.bankOrg.orgType
+				name:'机构名称',//Eway.locale.person.bankOrg.name
+				orgLevel:'机构级别',//Eway.locale.person.bankOrg.orgLevel
+				orgNavi:'机构导航',//Eway.locale.person.bankOrg.orgNavi
+				zip:'邮政编码',//Eway.locale.person.bankOrg.zip
+				removeManager:'删除',//Eway.locale.person.bankOrg.removeManager
+				manager:'管理员',//Eway.locale.person.bankOrg.manager
+				address:'机构地址',//Eway.locale.person.bankOrg.address
+				upgradeOrg:'上级机构',//Eway.locale.person.bankOrg.upgradeOrg
+				description:'机构描述',//Eway.locale.person.bankOrg.description
+				serOrganization:'机构描述',//Eway.locale.person.bankOrg.serOrganization
 				organizationType:{
-					bank:'银行',
-					serviceOrg:'维护商'
+					bank:'银行',//Eway.locale.person.bankOrg.organizationType.bank
+					serviceOrg:'维护商'//Eway.locale.person.bankOrg.organizationType.serviceOrg
 				},
 				organizationLevelDict:{
-					rootBank:'总行',
-					branchBank:'分行',
-					tagBranchBank:'支行',
-					netBank:'网点'
+					rootBank:'总行',//Eway.locale.person.bankOrg.organizationLevelDict.rootBank
+					branchBank:'分行',//Eway.locale.person.bankOrg.organizationLevelDict.branchBank
+					tagBranchBank:'支行',//Eway.locale.person.bankOrg.organizationLevelDict.tagBranchBank
+					netBank:'网点'//Eway.locale.person.bankOrg.organizationLevelDict.netBank
 				},
-				addOrgTitle:'该机构人员信息',
-				linkPeronTitle:'当前机构下人员：',
-				personList:'人员列表',
-				orgLinkTitle:'该机构的关联设备和人员',
-				machineOrg:' 该机构下设备',
-				personOrg:'该机构下人员',
+				addOrgTitle:'该机构人员信息',//Eway.locale.person.bankOrg.addOrgTitle
+				linkPeronTitle:'当前机构下人员：',//Eway.locale.person.bankOrg.linkPeronTitle
+				personList:'人员列表',//Eway.locale.person.bankOrg.personList
+				orgLinkTitle:'该机构的关联设备和人员',//Eway.locale.person.bankOrg.orgLinkTitle
+				machineOrg:' 该机构下设备',//Eway.locale.person.bankOrg.machineOrg
+				personOrg:'该机构下人员',//Eway.locale.person.bankOrg.personOrg
 				
 			},
 			bankPer :{
-				title:'银行人员管理',
-				organizationName:'机构',
-				orgNavi:'机构导航',
-				addBankPerTitle:'增加银行人员信息',
-				updateBankPerTitle:'更改银行人员信息',
+				title:'银行人员管理',//Eway.locale.person.bankPer.title
+				organizationName:'机构',//Eway.locale.person.bankPer.organizationName
+				orgNavi:'机构导航',//Eway.locale.person.bankPer.orgNavi
+				addBankPerTitle:'增加银行人员信息',//Eway.locale.person.bankPer.addBankPerTitle
+				updateBankPerTitle:'更改银行人员信息',//Eway.locale.person.bankPer.updateBankPerTitle
 				
 			},
 			serviceOrg:{
-				title:'维护商管理',
-				serviceNavi:'厂商导航',
-				serviceOrgAdmin:'管理员',
-				setManager:'设置',
-				removeManager:'删除',
-				code:'厂商编号',
-				name:'厂商名称',
-				zip:'邮政编码',
-				shortName:'厂商',
-				address:'厂商地址',
-				description:'厂商描述',
-				addServiceTitle:'增加维护商信息',
-				upgradeService:'上级厂商',
-				updateServiceTitle:'更改维护商信息',
-				personDevSerLink:'该厂商的关联设备和人员',
-				devSerLink:'该厂商下设备',
-				personSerLink:'该厂商下人员'
+				title:'维护商管理',//Eway.locale.person.serviceOrg.title
+				serviceNavi:'厂商导航',//Eway.locale.person.serviceOrg.serviceNavi
+				serviceOrgAdmin:'管理员',//Eway.locale.person.serviceOrg.serviceOrgAdmin
+				setManager:'设置',//Eway.locale.person.serviceOrg.setManager
+				removeManager:'删除',//Eway.locale.person.serviceOrg.removeManager
+				code:'厂商编号',//Eway.locale.person.serviceOrg.code
+				name:'厂商名称',//Eway.locale.person.serviceOrg.name
+				zip:'邮政编码',//Eway.locale.person.serviceOrg.zip
+				shortName:'厂商',//Eway.locale.person.serviceOrg.shortName
+				address:'厂商地址',//Eway.locale.person.serviceOrg.address
+				description:'厂商描述',//Eway.locale.person.serviceOrg.description
+				addServiceTitle:'增加维护商信息',//Eway.locale.person.serviceOrg.addServiceTitle
+				upgradeService:'上级厂商',//Eway.locale.person.serviceOrg.upgradeService
+				updateServiceTitle:'更改维护商信息',//Eway.locale.person.serviceOrg.updateServiceTitle
+				personDevSerLink:'该厂商的关联设备和人员',//Eway.locale.person.serviceOrg.personDevSerLink
+				devSerLink:'该厂商下设备',//Eway.locale.person.serviceOrg.devSerLink
+				personSerLink:'该厂商下人员'//Eway.locale.person.serviceOrg.personSerLink
 			},
 			servicePer:{
-				title:'维护人员管理',
-				servicePerlink:'关联设备',
-				addServicePerTitle:'增加维护人员信息',
-				updateServicePerTitle:'更改维护人员信息'
+				title:'维护人员管理',//Eway.locale.person.servicePer.title
+				servicePerlink:'关联设备',//Eway.locale.person.servicePer.servicePerlink
+				addServicePerTitle:'增加维护人员信息',//Eway.locale.person.servicePer.addServicePerTitle
+				updateServicePerTitle:'更改维护人员信息'//Eway.locale.person.servicePer.updateServicePerTitle
 			},
 			user:{
-				title:'用户管理',
-				code:'用户名',
-				clickToCheckLog:'单击即可查看用户 ',
-				userLog:' 的操作日志',
-				resetPasswd:'密码重置',
-				clickToPasswdInit:'单击即可密码重置为初始化密码',
-				clickToRole:'单击即可查看所有角色列表',
-				addUserTitle:'增加用户信息',
-				clickToUser:'请点击查询，选择人员',
-				userType:'用户类型',
-				role:'角色',
-				roleGiven:'角色赋予',
-				roleName:'角色名称',
-				roleDescription:'角色描述',
-				userListTitle:'人员列表',
-				updateUserTitle:'更改用户角色（使用拖拽的方式）',
-				roleCanBeAdd:'可添加的角色列表',
-				roleAlreadyBeAdd:'可添加的角色列表',
-				operCode:'操作人编号',
-				operName:'操作人姓名',
-				operTime:'操作时间',
-				operResult:'操作结果',
-				operContent:'操作内容',
-				roleListTitle:'用户角色列表',
-				operTitle:'操作员日志',
-				operDetailTitle:'操作日志信息',
-				operLogList:'操作日志列表',
-				personDevice:'人员<-->设备',
-				rootUser:'超级用户',
-				generalUser:'普通用户'
+				title:'用户管理',//Eway.locale.person.user.title
+				code:'用户名',//Eway.locale.person.user.code
+				clickToCheckLog:'单击即可查看用户 ',//Eway.locale.person.user.clickToCheckLog
+				userLog:' 的操作日志',//Eway.locale.person.user.userLog
+				resetPasswd:'密码重置',//Eway.locale.person.user.resetPasswd
+				clickToPasswdInit:'单击即可密码重置为初始化密码',//Eway.locale.person.user.clickToPasswdInit
+				clickToRole:'单击即可查看所有角色列表',//Eway.locale.person.user.clickToRole
+				addUserTitle:'增加用户信息',//Eway.locale.person.user.addUserTitle
+				clickToUser:'请点击查询，选择人员',//Eway.locale.person.user.clickToUser
+				userType:'用户类型',//Eway.locale.person.user.userType
+				role:'角色',//Eway.locale.person.user.role
+				roleGiven:'角色赋予',//Eway.locale.person.user.roleGiven
+				roleName:'角色名称',//Eway.locale.person.user.roleName
+				roleDescription:'角色描述',//Eway.locale.person.user.roleDescription
+				userListTitle:'人员列表',//Eway.locale.person.user.userListTitle
+				updateUserTitle:'更改用户角色（使用拖拽的方式）',//Eway.locale.person.user.updateUserTitle
+				roleCanBeAdd:'可添加的角色列表',//Eway.locale.person.user.roleCanBeAdd
+				roleAlreadyBeAdd:'可添加的角色列表',//Eway.locale.person.user.roleAlreadyBeAdd
+				operCode:'操作人编号',//Eway.locale.person.user.operCode
+				operName:'操作人姓名',//Eway.locale.person.user.operName
+				operTime:'操作时间',//Eway.locale.person.user.operTime
+				operResult:'操作结果',//Eway.locale.person.user.operResult
+				operContent:'操作内容',//Eway.locale.person.user.operContent
+				roleListTitle:'用户角色列表',//Eway.locale.person.user.roleListTitle
+				operTitle:'操作员日志',//Eway.locale.person.user.operTitle
+				operDetailTitle:'操作日志信息',//Eway.locale.person.user.operDetailTitle
+				operLogList:'操作日志列表',//Eway.locale.person.user.operLogList
+				personDevice:'人员<-->设备',//Eway.locale.person.user.personDevice
+				rootUser:'超级用户',//Eway.locale.person.user.rootUser
+				generalUser:'普通用户'//Eway.locale.person.user.generalUser
 			}
 			
 		},
 		permission:{
 			role:{
-				title:'角色管理',
-				update:'更改角色',
-				name:'角色名称',
-				type:'角色类型',
-				description:'角色描述',
-				isSysRole:'是否是系统内置角色',
-				chooseRight:'请选择菜单权限',
-				add:'增加角色'
+				title:'角色管理',//Eway.locale.permission.role.title
+				update:'更改角色',//Eway.locale.permission.role.update
+				name:'角色名称',//Eway.locale.permission.role.name
+				type:'角色类型',//Eway.locale.permission.role.type
+				description:'角色描述',//Eway.locale.permission.role.description
+				isSysRole:'是否是系统内置角色',//Eway.locale.permission.role.isSysRole
+				chooseRight:'请选择菜单权限',//Eway.locale.permission.role.chooseRight
+				add:'增加角色'//Eway.locale.permission.role.add
 			},
 			permission:{
-				menuName:'菜单名称',
-				menuDescription:'菜单描述',
-				menuPermission:'菜单权限',
+				menuName:'菜单名称',//Eway.locale.permission.permission.menuName
+				menuDescription:'菜单描述',//Eway.locale.permission.permission.menuDescription
+				menuPermission:'菜单权限',//Eway.locale.permission.permission.menuPermission
 			}
 		},
 		monitor:{
 			devMonitor:{
-				title:'状态监控',
-				runStatus:'运行状态',
-				modStatus:'模块状态',
-				boxStatus:'钞箱状态',
-				netStatus:'网络状态',
-				monitorState:'监控状态',
-				showWay:'展示方式',
+				title:'状态监控',//Eway.locale.monitor.devMonitor.title
+				runStatus:'运行状态',//Eway.locale.monitor.devMonitor.runStatus
+				modStatus:'模块状态',//Eway.locale.monitor.devMonitor.modStatus
+				boxStatus:'钞箱状态',//Eway.locale.monitor.devMonitor.boxStatus
+				netStatus:'网络状态',//Eway.locale.monitor.devMonitor.netStatus
+				monitorState:'监控状态',//Eway.locale.monitor.devMonitor.monitorState
+				showWay:'展示方式',//Eway.locale.monitor.devMonitor.showWay
 				comboxShowWay:{
-					matrixPattern:'矩形方式',
-					maxIconPattern:'超大图标',
-					listPattern:'列表方式',
-					boxPattern:'钞箱方式'
+					matrixPattern:'矩形方式',//Eway.locale.monitor.devMonitor.comboxShowWay.matrixPattern
+					maxIconPattern:'超大图标',//Eway.locale.monitor.devMonitor.comboxShowWay.maxIconPattern
+					listPattern:'列表方式',//Eway.locale.monitor.devMonitor.comboxShowWay.listPattern
+					boxPattern:'钞箱方式'//Eway.locale.monitor.devMonitor.comboxShowWay.boxPattern
 				},
-				numberfield:'监控台数',
-				retainCardCount:'当前吞卡数量',
-				boxInitCount:'钞箱初始金额',
-				boxCurrentCount:'钞箱当前金额',
-				noData:'无记录',
-				cashboxLimit:'钞箱报警金额阈值',
+				numberfield:'监控台数',//Eway.locale.monitor.devMonitor.numberfield
+				retainCardCount:'当前吞卡数量',//Eway.locale.monitor.devMonitor.retainCardCount
+				boxInitCount:'钞箱初始金额',//Eway.locale.monitor.devMonitor.boxInitCount
+				boxCurrentCount:'钞箱当前金额',//Eway.locale.monitor.devMonitor.boxCurrentCount
+				noData:'无记录',//Eway.locale.monitor.devMonitor.noData
+				cashboxLimit:'钞箱报警金额阈值',//Eway.locale.monitor.devMonitor.cashboxLimit
 			}
 		}
 		
