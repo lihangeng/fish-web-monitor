@@ -1,6 +1,9 @@
 package com.yihuacomputer.fish.version.service.db;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +14,11 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.device.IDeviceListener;
+import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
+import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionType;
 import com.yihuacomputer.fish.api.version.IVersionTypeService;
@@ -18,12 +26,17 @@ import com.yihuacomputer.fish.version.entity.VersionType;
 
 @Service
 @Transactional
-public class VersionTypeService implements IVersionTypeService {
+public class VersionTypeService implements IVersionTypeService,IDeviceListener {
 
 	@Autowired
 	private IGenericDao dao;
 
 
+	@Autowired
+	private IDeviceSoftVersionService deviceSoftVersionService;
+	@Autowired
+	private IDeviceService deviceService;
+	
 	@Override
 	public IVersionType make() {
 		return make(null);
@@ -50,7 +63,19 @@ public class VersionTypeService implements IVersionTypeService {
 	}
 
 	@Override
+	@Transactional
 	public IVersionType add(IVersionType versionType) {
+		List<IDevice> deviceList = deviceService.list();
+		Date date = new Date();
+		for(IDevice device:deviceList){
+			IDeviceSoftVersion deviceSoftVersion = deviceSoftVersionService.make();
+			deviceSoftVersion.setCreatedTime(date);
+			deviceSoftVersion.setDeviceId(device.getId());
+			deviceSoftVersion.setTypeName(versionType.getTypeName());
+			deviceSoftVersion.setVersionNo("0.0.0.0");
+			deviceSoftVersion.setVersionStr("00000000000000000000000000000000");
+			deviceSoftVersionService.add(deviceSoftVersion);
+		}
 		return dao.save(this.interface2Entity(versionType, false));
 	}
 
@@ -112,6 +137,64 @@ public class VersionTypeService implements IVersionTypeService {
 			return (VersionType) versionType;
 		}
 		return null;
+	}
+
+	@Override
+	public String getListenerName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void beforeAdd(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+	@PostConstruct
+    public void init() {
+    	deviceService.addDeviceListener(this);
+    }
+	@Override
+	public void afterAdd(IDevice device) {
+		//查找所有可见的版本类型
+		IFilter filter = new Filter();
+		filter.eq("display", true);
+		List<IVersionType> versionTypeList = this.list(filter);
+		Date date = new Date();
+		//每个新增的设备都有一个版本号为0.0.0.0
+		for(IVersionType versionType :versionTypeList){
+			IDeviceSoftVersion deviceSoftVersion = deviceSoftVersionService.make();
+			deviceSoftVersion.setCreatedTime(date);
+			deviceSoftVersion.setDeviceId(device.getId());
+			deviceSoftVersion.setTypeName(versionType.getTypeName());
+			deviceSoftVersion.setVersionNo("0.0.0.0");
+			deviceSoftVersion.setVersionStr("00000000000000000000000000000000");
+			deviceSoftVersionService.add(deviceSoftVersion);
+		}
+	}
+
+	@Override
+	public void beforeUpdate(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterUpdate(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeDelete(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterDelete(IDevice device) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
