@@ -5,10 +5,12 @@ import java.util.List;
 
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.IPageResult;
@@ -48,6 +50,10 @@ public class UserService extends DomainUserService {
     @Autowired
     private LocalSessionFactoryBean sf;
 
+	@Autowired
+	protected MessageSource messageSource;
+
+    
     /**
      * 增加一条账户信息并初始化账号
      */
@@ -274,9 +280,9 @@ public class UserService extends DomainUserService {
             if(user.getLoginFailCount() >= 4){//连续5次输入密码错误,冻结5分钟
                  user.setFreezeTime(currentDate);
                  dao.update(user);
-                 throw new AppException("密码错误超过5次，用户已被冻结，5分钟后再操作！");
+                 throw new AppException("密码错误超过5次，用户已被冻结，5分钟后再操作!");
             }else{
-                throw new PasswordErrorException("连续5次密码错误用户将被冻结5分钟！已输错" + (user.getLoginFailCount() + 1) + "次");
+                throw new PasswordErrorException(messageSource.getMessage("login.pwderrorfive", new Object[]{user.getLoginFailCount()+1}, FishCfg.locale));//"连续5次密码错误用户将被冻结5分钟！已输错" + (user.getLoginFailCount() + 1) + "次"
             }
         }
 //@since 2.0.0.0 删除此逻辑
