@@ -14,11 +14,11 @@ Ext.define('Eway.view.machine.atmGroup.DeviceAddingGrid', {
 			initRegion : true,
 			store : store,
 			tbar : [ '->', {
-				text : '查询',
+				text : Eway.locale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			},{
-				text : '增加',
+				text : Eway.locale.button.confirm,
 				action : 'confirm'
 			} ],
 			viewConfig : {
@@ -26,59 +26,59 @@ Ext.define('Eway.view.machine.atmGroup.DeviceAddingGrid', {
 				stripeRows : true
 			},
 			columns : [ {
-				header : Eway.locale.commen.terminalId,
+				header : Eway.locale.machine.atmGroup.terminalId,
 				dataIndex : 'terminalId'
 			}, {
-				header : Eway.locale.commen.ip,
+				header : Eway.locale.machine.atmGroup.ip,
 				dataIndex : 'ip'
 			}, {
-				header : Eway.locale.commen.orgNameBelongs,
+				header : Eway.locale.machine.atmGroup.orgName,
 				dataIndex : 'orgName'
 			}, {
-				header : Eway.locale.commen.devTypeName,
+				header : Eway.locale.machine.atmGroup.devTypeName,
 				dataIndex : 'devTypeName'
 			}, {
-				header : Eway.locale.commen.devVendorName,
+				header : Eway.locale.machine.atmGroup.devVendorName,
 				dataIndex : 'devVendorName'
 			}, {
-				header : Eway.locale.commen.devCatalogName,
+				header : Eway.locale.machine.atmGroup.devCatalogName,
 				dataIndex : 'devCatalogName'
 			}, {
-				header : Eway.locale.commen.devStatus,
+				header : Eway.locale.machine.atmGroup.status,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return "启用";
+						return Eway.locale.machine.atmGroup.comboxStatus.open;
 					}
 					if (value == 2) {
-						return "停用";
+						return Eway.locale.machine.atmGroup.comboxStatus.close;
 					}
 				}
 			}, {
-				header : '在行离行标志',
+				header : Eway.locale.machine.atmGroup.awayFlag,
 				dataIndex : 'awayFlag',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return "在行自助服务区";
+						return Eway.locale.machine.atmGroup.comboxAwayFlag.inBank;
 					}
 					if (value == 2) {
-						return "离行自助银行";
+						return Eway.locale.machine.atmGroup.comboxAwayFlag.outBank;
 					}
 					if (value == 3) {
-						return "单机离行自助服务点";
+						return Eway.locale.machine.atmGroup.comboxAwayFlag.clickBank;
 					}
 				}
 			}, {
-				header : Eway.locale.commen.devServiceName,
+				header : Eway.locale.machine.atmGroup.devServiceName,
 				dataIndex : 'devServiceName'
 			}, {
-				header : Eway.locale.commen.cashboxLimit,
+				header : Eway.locale.machine.atmGroup.cashboxLimit,
 				dataIndex : 'cashboxLimit'
 			}, {
-				header : Eway.locale.commen.installDate,
+				header : Eway.locale.machine.atmGroup.installDate,
 				dataIndex : 'installDate'
 			}, {
-				header : Eway.locale.commen.address,
+				header : Eway.locale.machine.atmGroup.address,
 				dataIndex : 'address',
 				flex : 1
 			} ],

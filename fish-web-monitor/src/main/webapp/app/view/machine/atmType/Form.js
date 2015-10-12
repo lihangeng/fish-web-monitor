@@ -30,20 +30,20 @@ Ext.define('Eway.view.machine.atmType.Form',{
 				regexText: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以字母或数字开头。(1-20位)',
 				allowBlank : false
 			},*/{
-				fieldLabel: '<font color="red">*</font> 设备型号',
+				fieldLabel: '<font color="red">*</font> '+Eway.locale.machine.atmType.name,
 				xtype : 'field_atmType_name',
 				maxLength : 20,
-				maxLengthText : '允许的最大长度为20',
+				maxLengthText : Eway.locale.vtype.maxLength20,
 				msgTarget : 'side',
 				allowBlank : false
 			},{
-				fieldLabel: '<font color="red">*</font> 所属品牌',
+				fieldLabel: '<font color="red">*</font> '+Eway.locale.machine.atmType.devVendorName,
 				xtype : 'field_atmType_DeviceAtmVendorForTypeComboBox',
 				value : 1,
 				allowBlank : false,
 				editable : false
 			},{
-				fieldLabel: '<font color="red">*</font> 所属类型',
+				fieldLabel: '<font color="red">*</font> '+Eway.locale.machine.atmType.devCatalogName,
 				xtype : 'field_atmType_DeviceAtmCatalogComboBox',
 				value : 2,
 				allowBlank : false,
@@ -51,17 +51,17 @@ Ext.define('Eway.view.machine.atmType.Form',{
 			},{
 				xtype : 'field_atmType_spec',
 				maxLength : 20,
-				maxLengthText : '允许的最大长度为20'
+				maxLengthText : Eway.locale.vtype.maxLength20
 			},{
 				xtype : 'field_atmType_weight',
 				maxLength : 20,
-				maxLengthText : '允许的最大长度为20'
+				maxLengthText : Eway.locale.vtype.maxLength20
 			},{
 				xtype : 'field_atmType_watt',
 				maxLength : 20,
-				maxLengthText : '允许的最大长度为20'
+				maxLengthText : Eway.locale.vtype.maxLength20
 			},{
-				fieldLabel: '非现金标志',
+				fieldLabel: Eway.locale.machine.atmType.cashtype,
 				xtype : 'field_atmType_cashtypeComboBox',
 				value: '1',
 				allowBlank : false,

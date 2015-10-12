@@ -3,7 +3,7 @@ Ext.define('Eway.view.field.atmType.CashtypeComboBox', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field_atmType_cashtypeComboBox',
 	
-	fieldLabel : '非现金标志',
+	fieldLabel : Eway.locale.machine.atmType.cashtype,
 	name : 'cashtype',
 	hiddenName : 'cashtype',
 	msgTarget : 'side',
@@ -11,5 +11,5 @@ Ext.define('Eway.view.field.atmType.CashtypeComboBox', {
 	valueField : 'value',
 	displayField : 'display',
 	queryMode : 'local',
-	emptyText: '--请选择--'
+	emptyText: Eway.locale.combox.select
 });

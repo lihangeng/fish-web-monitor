@@ -15,11 +15,11 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->',{
-				text:'查询',
+				text:Eway.locale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			},{
-				text: '更改',
+				text: Eway.locale.button.update,
 				glyph : 0xf040,
 				action:'update',
 				code : 'configurationUpdate',
@@ -32,26 +32,26 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '参数',
+				header : Eway.locale.machine.param.paramKey,
 				dataIndex : 'paramKey',
 				width : 150
 			}, {
-				header : '参数值',
+				header : Eway.locale.machine.param.paramValue,
 				dataIndex : 'paramValue',
 				width : 250
 			},{
-				header: Eway.locale.commen.type,
+				header: Eway.locale.machine.param.classify,
 				dataIndex: 'classify',
 				width : 150,
 				renderer: function(value){
 					if(value == 0){
-						return '不可修改';
+						return Eway.locale.machine.param.comboxClassify.unableUpdate;
 					}else if(value == 1){
-						return '可以修改';
+						return Eway.locale.machine.param.comboxClassify.ableUpdate;
 					}
 				}
 			},{
-				header : '参数信息描述',
+				header : Eway.locale.machine.param.description,
 				dataIndex : 'description',
 				flex :1
 			}],

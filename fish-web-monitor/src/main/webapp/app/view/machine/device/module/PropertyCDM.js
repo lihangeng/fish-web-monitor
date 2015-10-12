@@ -7,7 +7,7 @@ Ext.define("Eway.view.machine.device.module.PropertyCDM", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : '取款模块（CDM）属性信息',
+				title : Eway.locale.machine.device.CDMInfo,
 				titleAlign: 'center',
 				layout : 'column',
 				items : [ {
@@ -22,23 +22,23 @@ Ext.define("Eway.view.machine.device.module.PropertyCDM", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '是否具有暂存器',
+						fieldLabel :Eway.locale.machine.device.hasStack,
 						name : 'hasStack',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '是否具有shutter门',
+						fieldLabel : Eway.locale.machine.device.hasShutter,
 						name : 'hasShutter'
 					}, {
-						fieldLabel : '是否具有回收能力',
+						fieldLabel : Eway.locale.machine.device.canRetract,
 						name : 'canRetract'
 					}, {
-						fieldLabel : '是否探测钞币被拿走',
+						fieldLabel :Eway.locale.machine.device.canDetectCashTaken,
 						name : 'canDetectCashTaken'
 					}, {
-						fieldLabel : '是否能测试物理单元',
+						fieldLabel : Eway.locale.machine.device.canTestPhysicalUnits,
 						name : 'canTestPhysicalUnits'
 					}, {
-						fieldLabel : '获取单笔最大挖钞张数',
+						fieldLabel : Eway.locale.machine.device.maxDispensBills,
 						name : 'maxDispensBills'
 					} ]
 				}, {
@@ -53,20 +53,20 @@ Ext.define("Eway.view.machine.device.module.PropertyCDM", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '逻辑钞箱个数',
+						fieldLabel : Eway.locale.machine.device.logicalUnits,
 						name : 'logicalUnits',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '物理钞箱个数',
+						fieldLabel : Eway.locale.machine.device.physicalUnits,
 						name : 'physicalUnits'
 					}, {
-						fieldLabel : '支持的币种类别总个数',
+						fieldLabel : Eway.locale.machine.device.currency,
 						name : 'currency'
 					}, {
-						fieldLabel : '支持的币种类别',
+						fieldLabel : Eway.locale.machine.device.currencies,
 						name : 'currencies'
 					}, {
-						fieldLabel : '指数',
+						fieldLabel : Eway.locale.machine.device.exponents,
 						name : 'exponents'
 					} ]
 				} ]

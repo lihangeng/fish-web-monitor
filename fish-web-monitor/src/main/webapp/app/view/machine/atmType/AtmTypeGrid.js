@@ -15,11 +15,11 @@ Ext.define('Eway.view.machine.atmType.AtmTypeGrid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-					text:'查询',
+					text: Eway.locale.button.search,
 					glyph : 0xf002,
 					action:'query'
 				},{
-					text: '增加',
+					text: Eway.locale.button.add,
 					glyph : 0xf067,
 					action: 'add',
 					code : 'atmTypeAdd',
@@ -27,7 +27,7 @@ Ext.define('Eway.view.machine.atmType.AtmTypeGrid', {
 						'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 					}
 				},{
-					text: '更改',
+					text: Eway.locale.button.update,
 					glyph : 0xf040,
 					action:'update',
 					code : 'atmTypeUpdate',
@@ -35,7 +35,7 @@ Ext.define('Eway.view.machine.atmType.AtmTypeGrid', {
 						'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 					}
 				},{
-					text: '删除',
+					text: Eway.locale.button.remove,
 					glyph : 0xf014,
 					action: 'remove',
 					code : 'atmTypeDel',
@@ -48,38 +48,38 @@ Ext.define('Eway.view.machine.atmType.AtmTypeGrid', {
 				dataIndex : 'no',
 				flex : 1
 			}, */{
-				header : Eway.locale.commen.devTypeName,
+				header : Eway.locale.machine.atmType.name,
 				dataIndex : 'name',
 				flex : 1
 			}, {
-				header : '所属品牌',
+				header : Eway.locale.machine.atmType.devVendorName,
 				dataIndex : 'devVendorName',
 				flex : 1
 			},{
-				header : '所属类型',
+				header : Eway.locale.machine.atmType.devCatalogName,
 				dataIndex : 'devCatalogName',
 				flex : 1
 			},{
-				header : '设备规格',
+				header : Eway.locale.machine.atmType.spec,
 				dataIndex : 'spec',
 				flex : 1
 			},{
-				header : '设备重量',
+				header : Eway.locale.machine.atmType.weight,
 				dataIndex : 'weight',
 				flex : 1
 			},{
-				header : '平均功率',
+				header : Eway.locale.machine.atmType.watt,
 				dataIndex : 'watt',
 				flex : 1
 			},{
-				header : '非现金标志',
+				header : Eway.locale.machine.atmType.cashtype,
 				dataIndex : 'cashtype',
 				flex : 1,
 				renderer: function(value,metadata,record){
 	                   if(value==1){
-	                	   return "现金";
+	                	   return Eway.locale.machine.atmType.iscash;
 	                   }else if(value==2){
-	                	   return "非现金";
+	                	   return Eway.locale.machine.atmType.nocash;
 	                   }
 					}
 			}],

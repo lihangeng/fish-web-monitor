@@ -14,15 +14,15 @@ Ext.define('Eway.view.machine.device.Grid', {
 			initRegion : true,
 			store : store,
 			tbar : [ '->',{
-				text : '查询',
+				text : Eway.locale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : '详细信息',
+				text : Eway.locale.button.info,
 				glyph : 0xf129,
 				action : 'info'
 			}, {
-				text : '增加',
+				text : Eway.locale.button.add,
 				glyph : 0xf067,
 				action : 'add',
 				code : 'deviceAdd',
@@ -30,7 +30,7 @@ Ext.define('Eway.view.machine.device.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : '更改',
+				text :Eway.locale.button.update,
 				glyph : 0xf040,
 				action : 'update',
 				code : 'deviceUpdate',
@@ -38,7 +38,7 @@ Ext.define('Eway.view.machine.device.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : '删除',
+				text : Eway.locale.button.remove,
 				glyph : 0xf014,
 				action : 'remove',
 				code : 'deviceDel',
@@ -46,94 +46,94 @@ Ext.define('Eway.view.machine.device.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : '导出',
+				text : Eway.locale.button.exported,
 				iconCls : 'exportToExcel',
 				action : 'export'
 			} ],
 			columns : [ {
-				header : Eway.locale.commen.terminalId,
+				header : Eway.locale.machine.atmGroup.terminalId,
 				dataIndex : 'terminalId',
 				width : 100
 			}, {
-				header : '设备IP地址',
+				header : Eway.locale.machine.atmGroup.ip,
 				dataIndex : 'ip',
 				width : 120
 			}, {
-				header : Eway.locale.commen.orgNameBelongs,
+				header : Eway.locale.machine.atmGroup.orgName,
 				dataIndex : 'orgName',
 				width : 140
 			}, {
-				header : Eway.locale.commen.devTypeName,
+				header : Eway.locale.machine.atmGroup.devTypeName,
 				dataIndex : 'devTypeName',
 				width : 90
 			}, {
-				header : Eway.locale.commen.devVendorName,
+				header : Eway.locale.machine.atmGroup.devVendorName,
 				dataIndex : 'devVendorName',
 				width : 80
 			}, {
-				header : Eway.locale.commen.devCatalogName,
+				header : Eway.locale.machine.atmGroup.devCatalogName,
 				dataIndex : 'devCatalogName',
 				width : 80
 			}, {
-				header : Eway.locale.commen.devStatus,
+				header : Eway.locale.machine.atmGroup.status,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return "开通";
+						return Eway.locale.machine.atmGroup.comboxStatus.dredge;
 					}
 					if (value == 2) {
-						return "停用";
+						return Eway.locale.machine.atmGroup.comboxStatus.close;
 					}
 				},
 				width : 80
 			}, {
-				header : '在行离行标志',
+				header : Eway.locale.machine.device.onBankSignal,
 				dataIndex : 'awayFlag',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return "在行自助服务区";
+						return Eway.locale.machine.device.inBank;
 					}
 					if (value == 2) {
-						return "离行自助银行";
+						return Eway.locale.machine.device.outBank;
 					}
 					if (value == 3) {
-						return "单机离行自助服务点";
+						return Eway.locale.machine.device.clickBank;
 					}
 				},
 				width : 120
 			}, {
-				header : Eway.locale.commen.devServiceName,
+				header : Eway.locale.machine.atmGroup.devServiceName,
 				dataIndex : 'devServiceName',
 				width : 100
 			}, {
-				header : Eway.locale.commen.cashboxLimit,
+				header :  Eway.locale.machine.atmGroup.cashboxLimit,
 				dataIndex : 'cashboxLimit',
 				width : 100
 			}, {
-				header : Eway.locale.commen.installDate,
+				header :  Eway.locale.machine.atmGroup.installDate,
 				dataIndex : 'installDate',
 				width : 90
 			}, {
-				header : '安装方式',
+				header : Eway.locale.machine.device.installStyle,
 				dataIndex : 'setupType',
 				renderer:function(value, metadata, record){
 					if(value == 0){
-						return '穿墙';
+						return Eway.locale.machine.device.crossWall;
 					}
 					if(value == 1){
-						return '大堂';
+						return Eway.locale.machine.device.mainRoom;
 					}
 				},
 				width : 80
 			}, {
-				header : '设备地址',
+				header : Eway.locale.machine.device.devAddress,
 				dataIndex : 'address',
 				width : 160
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : Eway.locale.commen.toolbar
+				displayMsg : Eway.locale.tip.displayMessage
 			})
 		});
 

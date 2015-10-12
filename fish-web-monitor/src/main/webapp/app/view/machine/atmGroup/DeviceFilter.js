@@ -21,7 +21,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.commen.terminalId,
+					fieldLabel : Eway.locale.machine.atmGroup.terminalId,
 					name : 'terminalId',
 					msgTarget : 'side',
 					maxLength : 20
@@ -31,11 +31,11 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 					name : 'devService'
 				}, {
 					xtype : 'field_atmType_DeviceAtmVendorComboBox',
-					fieldLabel : Eway.locale.commen.devVendorName
+					fieldLabel : Eway.locale.machine.atmGroup.devVendorName
 				}, {
 				xtype : 'common_orgComboOrgTree',
-				fieldLabel : '维护商',
-				emptyText : '--请选择--',
+				fieldLabel : Eway.locale.machine.atmGroup.devServiceName,
+				emptyText : Eway.locale.combox.select,
 				name : 'devServiceName',
 				hiddenValue : 'devService',
 				editable : false,
@@ -58,7 +58,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 					hiddenName : 'devType'
 				}, {
 					xtype : 'field_atmType_DeviceAtmCatalogComboBox',
-					fieldLabel : Eway.locale.commen.devCatalogName
+					fieldLabel : Eway.locale.machine.atmGroup.devCatalogName
 				}, {
 					style : 'padding-top:0px',
 					xtype : 'hiddenfield',
@@ -70,8 +70,8 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 					name : 'organization'
 				}, {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : Eway.locale.commen.orgNameBelongs,
-					emptyText : '--请选择--',
+					fieldLabel : Eway.locale.machine.atmGroup.orgName,
+					emptyText : Eway.locale.combox.select,
 					name : 'orgName',
 					hiddenValue : 'organization',
 					editable : false,

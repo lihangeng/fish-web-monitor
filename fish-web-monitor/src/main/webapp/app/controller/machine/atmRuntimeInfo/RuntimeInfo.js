@@ -46,7 +46,7 @@ Ext.define('Eway.controller.machine.atmRuntimeInfo.RuntimeInfo', {
 
 		// 查询输入验证
 		if (bool == false) {
-			Eway.alert("查询项中存在不合法的输入,不能提交.");
+			Eway.alert(Eway.locale.tip.searchOfNoLegal);
 			return
 		}
 		var values = form.getValues();
@@ -69,7 +69,7 @@ Ext.define('Eway.controller.machine.atmRuntimeInfo.RuntimeInfo', {
 			form.loadRecord(sm.getLastSelected());
 			win.show();
 		}else{
-			Eway.alert('请选择要导出信息的设备.');
+			Eway.alert(Eway.locale.tip.choseExportDevInfo);
 		}
 	},
 
@@ -85,7 +85,7 @@ Ext.define('Eway.controller.machine.atmRuntimeInfo.RuntimeInfo', {
 		var endDate = data.endDate;
 
 		var winEl = win.getEl();
-		winEl.mask('正在连接......');
+		winEl.mask(Eway.locale.tip.nowLink);
 
 		Ext.Ajax.request({
 			method : 'POST',
@@ -109,7 +109,7 @@ Ext.define('Eway.controller.machine.atmRuntimeInfo.RuntimeInfo', {
 			},
 			failure : function(){
 				winEl.unmask();
-				Eway.alert('连接失败.');
+				Eway.alert(Eway.locale.tip.linkFailure);
 			}
 		});
 		},
@@ -120,7 +120,7 @@ Ext.define('Eway.controller.machine.atmRuntimeInfo.RuntimeInfo', {
 		var sm = grid.getSelectionModel();
 
 		var gridEl = grid.getEl();
-		gridEl.mask('正在连接......');
+		gridEl.mask(Eway.locale.tip.nowLink);
 		if(sm.getCount() == 1){
 			var record = sm.getLastSelected();
 			var ip = record.data.ip;
@@ -164,7 +164,7 @@ Ext.define('Eway.controller.machine.atmRuntimeInfo.RuntimeInfo', {
 				},
 				failure : function(){
 					gridEl.unmask();
-					Eway.alert('连接失败.');
+					Eway.alert(Eway.locale.tip.linkFailure);
 				}
 			});
 			/*var itemEl = grid.getEl();
@@ -208,7 +208,7 @@ Ext.define('Eway.controller.machine.atmRuntimeInfo.RuntimeInfo', {
 		});*/
 		}else {
 			gridEl.unmask();
-			Eway.alert('请选择要导出信息的设备.');
+			Eway.alert(Eway.locale.tip.linkFailure.choseExportDevInfo);
 		}
 
 

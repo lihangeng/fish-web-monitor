@@ -10,7 +10,7 @@ Ext.define("Eway.view.machine.device.module.StatusJPR", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : '厂商状态信息',
+				title : Eway.locale.machine.device.comStatus,
 				titleAlign: 'center',
 				layout : 'column',
 				border : 'false',
@@ -26,13 +26,13 @@ Ext.define("Eway.view.machine.device.module.StatusJPR", {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : '厂商故障码',
+						fieldLabel : Eway.locale.machine.device.hwCode,
 						name : 'hwCode',
 						style : 'margin-top:2px'
 					} ]
 				} ]
 			}, {
-				title : '<center>日志打印机模块(JPR)状态信息</center>',
+				title : '<center>'+Eway.locale.machine.device.JRPStatus+'</center>',
 				layout : 'column',
 				border : 'false',
 				items : [ {
@@ -47,11 +47,11 @@ Ext.define("Eway.view.machine.device.module.StatusJPR", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '打印纸状态',
+						fieldLabel : Eway.locale.machine.device.supplyLevel,
 						name : 'supplyLevel',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '墨水',
+						fieldLabel : Eway.locale.machine.device.ink,
 						name : 'ink'
 					} ]
 				}, {
@@ -66,11 +66,11 @@ Ext.define("Eway.view.machine.device.module.StatusJPR", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '媒体状态',
+						fieldLabel : Eway.locale.machine.device.media,
 						name : 'media',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '色带',
+						fieldLabel : Eway.locale.machine.device.toner,
 						name : 'toner'
 					} ]
 				} ]

@@ -16,11 +16,11 @@ Ext.define('Eway.view.machine.atmMove.MoveDeviceGrid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-				text: '查询',
+				text: Eway.locale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			}, {
-				text: '移机',
+				text: Eway.locale.machine.atmMove.moveDev,
 				iconCls :'moveBtn',
 				action: 'move',
 				code : 'deviceMove',
@@ -29,14 +29,14 @@ Ext.define('Eway.view.machine.atmMove.MoveDeviceGrid', {
 				}
 			}],
 			columns : [{
-				header : Eway.locale.commen.terminalId,
+				header : Eway.locale.machine.atmMove.terminalId,
 				dataIndex : 'terminalId'
 			}, {
-				header : Eway.locale.commen.orgNameBelongs,
+				header : Eway.locale.machine.atmMove.sOrgName,
 				dataIndex : 'orgName',
 				flex : 1
 			}, {
-				header : '所属地址',
+				header : Eway.locale.machine.atmMove.sAddress,
 				dataIndex : 'address',
 				flex : 1
 			}],

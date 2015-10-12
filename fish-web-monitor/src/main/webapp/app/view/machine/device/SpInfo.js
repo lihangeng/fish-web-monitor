@@ -7,7 +7,7 @@ Ext.define("Eway.view.machine.device.SpInfo", {
 	initComponent : function() {
 		Ext.apply(this, {
 			defaults : {
-				anchor : '100%'
+				anchor : '100%' 
 			}
 		});
 		this.callParent(arguments);

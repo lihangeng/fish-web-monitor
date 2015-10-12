@@ -13,15 +13,15 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.Grid', {
 			initRegion : true,
 			store : store,
 			tbar : [ '->',  {
-				text : '查询',
+				text : Eway.locale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : '导出',
+				text : Eway.locale.button.exported,
 				iconCls :'exportToExcel',
 				action : 'export'
 			},{
-				text :'导出最后30天汇总信息',
+				text :Eway.locale.machine.atmRuntimeInfo.exportLast30,
 				iconCls :'exportToExcel',
 				action : 'exportLast30'
 			}],
@@ -30,45 +30,45 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.Grid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '编号',
+				header : Eway.locale.machine.atmRuntimeInfo.terminalId,
 				dataIndex : 'terminalId'
 			}, {
-				header : Eway.locale.commen.ip,
+				header : Eway.locale.machine.atmRuntimeInfo.netIp,
 				dataIndex : 'ip'
 			}, {
-				header : Eway.locale.commen.orgNameBelongs,
+				header : Eway.locale.machine.atmGroup.orgName,
 				dataIndex : 'orgName'
 			}, {
-				header : Eway.locale.commen.devTypeName,
+				header : Eway.locale.machine.atmGroup.devTypeName,
 				dataIndex : 'devTypeName'
 			}, {
-				header : Eway.locale.commen.devVendorName,
+				header : Eway.locale.machine.atmGroup.devVendorName,
 				dataIndex : 'devVendorName'
 			}, {
-				header : Eway.locale.commen.devCatalogName,
+				header : Eway.locale.machine.atmGroup.devCatalogName,
 				dataIndex : 'devCatalogName'
 			}, {
-				header : Eway.locale.commen.devStatus,
+				header : Eway.locale.machine.atmGroup.status,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return "开通";
+						return Eway.locale.machine.atmGroup.open;
 					}
 					if (value == 2) {
-						return "停用";
+						return Eway.locale.machine.atmGroup.close;
 					}
 				}
 			}, {
-				header : Eway.locale.commen.devServiceName,
+				header : Eway.locale.machine.atmGroup.devServiceName,
 				dataIndex : 'devServiceName'
 			}, {
-				header : '钞箱报警金额(单位：张数)',
+				header : Eway.locale.machine.atmGroup.cashboxLimit,
 				dataIndex : 'cashboxLimit'
 			}, {
-				header : Eway.locale.commen.installDate,
+				header : Eway.locale.machine.atmGroup.installDate,
 				dataIndex : 'installDate'
 			}, {
-				header : Eway.locale.commen.address,
+				header : Eway.locale.machine.atmGroup.address,
 				dataIndex : 'address',
 				flex : 1
 			} ],

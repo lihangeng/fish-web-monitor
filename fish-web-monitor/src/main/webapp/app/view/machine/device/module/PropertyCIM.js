@@ -7,7 +7,7 @@ Ext.define("Eway.view.machine.device.module.PropertyCIM", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : '存款模块 （CIM）属性信息',
+				title : Eway.locale.machine.device.CIMInfo,
 				titleAlign: 'center',
 				layout : 'column',
 				items : [ {
@@ -22,14 +22,14 @@ Ext.define("Eway.view.machine.device.module.PropertyCIM", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '是否具有暂存器',
+						fieldLabel : Eway.locale.machine.device.canEscrow,
 						name : 'canEscrow',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '是否支持控制shutter门',
+						fieldLabel : Eway.locale.machine.device.shutterControlSupported,
 						name : 'shutterControlSupported'
 					}, {
-						fieldLabel : '单笔最大验钞张数',
+						fieldLabel : Eway.locale.machine.device.maxAcceptItems,
 						name : 'maxAcceptItems'
 					} ]
 				}, {
@@ -44,14 +44,14 @@ Ext.define("Eway.view.machine.device.module.PropertyCIM", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '是否能探测钞票放入',
+						fieldLabel : Eway.locale.machine.device.canDetectCashInserted,
 						name : 'canDetectCashInserted',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '是否能探测钞票被取走',
+						fieldLabel : Eway.locale.machine.device.canDetectCashTaken,
 						name : 'canDetectCashTaken'
 					}, {
-						fieldLabel : '回收位置',
+						fieldLabel : Eway.locale.machine.device.retractAreas,
 						name : 'retractAreas'
 					} ]
 				} ]

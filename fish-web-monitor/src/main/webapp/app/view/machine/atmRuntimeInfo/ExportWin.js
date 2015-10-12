@@ -5,7 +5,7 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.ExportWin',{
 
 	requires : [],
 
-	title : '导出',
+	title : Eway.store.machine.atmRuntimeInfo.exportName,
 	modal : true,
 	constrainHeader : true,
 
@@ -39,7 +39,7 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.ExportWin',{
 					}
 					return validStatus;
 			},
-			exportDateRangeText : '开始时间不能大于结束时间'
+			exportDateRangeText : Eway.locale.machine.atmRuntimeInfo.exportDateRangeText
 		});
 		Ext.apply(this,{
 			items : {
@@ -54,16 +54,16 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.ExportWin',{
 				items : [{
 					xtype : 'displayfield',
 					name : 'terminalId',
-					fieldLabel : '终端号'
+					fieldLabel : Eway.locale.machine.atmRuntimeInfo.terminalId
 				},{
 					xtype : 'displayfield',
 					name : 'ip',
-					fieldLabel : '终端IP'
+					fieldLabel : Eway.locale.machine.atmRuntimeInfo.terminalIp
 				},{
 					xtype : 'datefield',
 					format : 'Y-m-d',
 					name : 'startDate',
-					fieldLabel : '开始时间',
+					fieldLabel : Eway.locale.machine.atmRuntimeInfo.startDate,
 					allowBlank : false,
 					eidtable:false,
 					dateRange : {
@@ -83,7 +83,7 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.ExportWin',{
 					xtype : 'datefield',
 					format : 'Y-m-d',
 					name : 'endDate',
-					fieldLabel : '结束时间',
+					fieldLabel : Eway.locale.machine.atmRuntimeInfo.endDate,
 					allowBlank : false,
 					editable : false,
 					dateRange : {
@@ -105,11 +105,11 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.ExportWin',{
 				}*/
 				],
 				buttons : [{
-					text : '导出',
+					text : Eway.locale.button.exported,
 					iconCls :'exportToExcel',
 					action : 'exportFromDate'
 				},{
-					text : '返回',
+					text : Eway.locale.back,
 					iconCls :'returnBtn',
 					handler : this.onOver
 				}]

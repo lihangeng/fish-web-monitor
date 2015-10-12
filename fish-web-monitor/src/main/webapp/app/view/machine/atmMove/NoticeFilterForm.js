@@ -14,7 +14,7 @@ Ext.define('Eway.view.machine.atmMove.NoticeFilterForm', {
 				items : [{
 					xtype : 'textfield',
 					labelAlign : 'right',
-					fieldLabel : Eway.locale.commen.terminalId,
+					fieldLabel : Eway.locale.machine.atmMove.terminalId,
 					vtype : 'terminalId',
 					maxLength:20,
 					width : 300,
@@ -22,7 +22,7 @@ Ext.define('Eway.view.machine.atmMove.NoticeFilterForm', {
 					msgTarget : 'side'
 				},{
 					xtype : 'fieldcontainer',
-					fieldLabel : '日期',
+					fieldLabel : Eway.locale.machine.atmMove.date,
 					labelWidth : 62,
 					labelAlign : 'right',
 					layout : 'hbox',
@@ -54,7 +54,7 @@ Ext.define('Eway.view.machine.atmMove.NoticeFilterForm', {
 						}
 					}, {
 						xtype : 'displayfield',
-						value : '至'
+						value : Eway.locale.machine.atmMove.to//"至"
 					}, {
 						fieldLabel : 'minute',
 						displayField : 'display',
@@ -83,9 +83,9 @@ Ext.define('Eway.view.machine.atmMove.NoticeFilterForm', {
 				columnWidth : .40,
 				items : [{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '源机构',
+					fieldLabel : Eway.locale.machine.atmMove.orgName,
 					labelAlign : 'right',
-					emptyText : '--请选择--',
+					emptyText : Eway.locale.combox.select,
 					name : 'orgName',
 					hiddenValue : 'orgId',
 					editable : false,
@@ -98,9 +98,9 @@ Ext.define('Eway.view.machine.atmMove.NoticeFilterForm', {
 					name : 'orgId'
 				},{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '目标机构',
+					fieldLabel : Eway.locale.machine.atmMove.targetOrganization,
 					labelAlign : 'right',
-					emptyText : '--请选择--',
+					emptyText : Eway.locale.combox.select,
 					name : 'targetOrganization',
 					hiddenValue : 'targetOrganizationId',
 					editable : false,

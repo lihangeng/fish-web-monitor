@@ -3,7 +3,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 	alias : 'widget.device.deviceBasicInfo',
 
 //	id : 'deviceBasicInfoId',
-	title : Eway.locale.commen.devInfo,
+	title : Eway.locale.machine.device.deviceBasicInfo,
 	bodyStyle : 'padding: 10px 10px 30px 10px',
 
 	layout : 'column',
@@ -24,7 +24,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.commen.terminalId,
+					fieldLabel : Eway.locale.machine.atmGroup.terminalId,
 					name : 'number',
 					msgTarget : 'side'
 				} ]
@@ -39,7 +39,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.commen.orgNameBelongs,
+					fieldLabel : Eway.locale.machine.atmGroup.orgName,
 					name : 'affiliation'
 				}
 			}, {
@@ -53,7 +53,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : {
 					xtype : 'textfield',
-					fieldLabel : '设备地址',
+					fieldLabel : Eway.locale.machine.atmGroup.address,
 					maxLength : 24,
 					name : 'address',
 					msgTarget : 'side'
@@ -69,19 +69,19 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.commen.devTypeName,
+					fieldLabel : Eway.locale.machine.atmGroup.devTypeName,
 					name : 'model'
 				}, {
 					xtype : 'textfield',
-					fieldLabel : '在行标志',
+					fieldLabel : Eway.locale.machine.device.lineLogo,
 					name : 'lineLogo'
 				}, {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.commen.devServiceName,
+					fieldLabel : Eway.locale.machine.atmGroup.devServiceName,
 					name : 'maintainer'
 				}, {
 					xtype : 'textfield',
-					fieldLabel : '钞箱报警金额(人民币)',
+					fieldLabel : Eway.locale.machine.device.alarmRateRMB,
 					name : 'alarmRateRMB'
 				} ]
 			}, {
@@ -95,19 +95,19 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.commen.seviceMode,
+					fieldLabel : Eway.locale.machine.device.operation,
 					name : 'operation'
 				}, {
 					xtype : 'textfield',
-					fieldLabel : 'IP地址',
+					fieldLabel : Eway.locale.machine.device.ipAddress,
 					name : 'ipAddress'
 				}, {
 					xtype : 'textfield',
-					fieldLabel : '吞卡张数',
+					fieldLabel : Eway.locale.machine.device.swallowCard,
 					name : 'swallowCard'
 				}, {
 					xtype : 'textfield',
-					fieldLabel : '钞箱报警金额(港币)',
+					fieldLabel : Eway.locale.machine.device.alarmRateHKD,
 					name : 'alarmRateHKD'
 				} ]
 			}, {
@@ -121,7 +121,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : {
 					xtype : 'textfield',
-					fieldLabel : '管理员(手机号)',
+					fieldLabel : Eway.locale.machine.device.adminPhone,
 					name : 'adminPhone'
 				}
 			}, {
@@ -135,7 +135,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : {
 					xtype : 'textfield',
-					fieldLabel : '维护员(手机号)',
+					fieldLabel : Eway.locale.machine.device.maintainPhone,
 					name : 'maintainPhone'
 				}
 			} ]

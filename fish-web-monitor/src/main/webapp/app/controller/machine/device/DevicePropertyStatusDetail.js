@@ -40,7 +40,7 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 		this.win = win;
 		this.deviceId = deviceId;
 		this.ip = ip;
-		win.setTitle("设备" + deviceId + "配置信息");
+		win.setTitle(Eway.locale.device.devices + deviceId + Eway.locale.device.configuration);
 		win.show();
 	},
 
@@ -48,7 +48,7 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 	loadDeviceBase : function(tab) {
 		var store = this.getMachineAtmHardSoftAtmHardSoftStore();
 		var winEl = this.win.getEl();
-		winEl.mask("正在加载数据......");
+		winEl.mask(Eway.locale.vtype.dataLoad);
 		store.load({
 			params : {
 				terminalId : this.deviceId
@@ -56,7 +56,7 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 			callback : function(records, operation, success) {// 回调函数
 				winEl.unmask();
 				if (!success) {
-					Eway.alert('请检查与设备的连接是否正常.');
+					Eway.alert(Eway.locale.vtype.devLinkNormal);
 					return;
 				}
 				if (records && records.length > 0) { // 判断是否有数据
@@ -93,7 +93,7 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 	loadModuleHardVersion : function(tab) {
 		var store = this.getMachineAtmHardSoftModuleHardVersionStore();
 		var winEl = this.win.getEl();
-		winEl.mask("正在加载数据......");
+		winEl.mask(Eway.locale.vtype.dataLoad);
 		store.load({
 			params : {
 				terminalId : this.deviceId,
@@ -102,12 +102,12 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 			callback : function(records, operation, success) {// 回调函数
 				winEl.unmask();
 				if (!success) {
-					Eway.alert('请检查与设备的连接是否正常.');
+					Eway.alert(Eway.locale.vtype.devLinkNormal);
 					return;
 				}
 				if (records) { // 判断是否有数据
 					if(records.length == 0){
-						Eway.alert('硬件模块正在初始化......');
+						Eway.alert(Eway.locale.vtype.hardwayInitialize);
 						return ;
 					}
 					for(var i = 0; i<records[0].data.listHal.length; i++) {
@@ -127,12 +127,12 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 									height: 40
 								},
 								items : [ {
-									fieldLabel : 'SP版本',
-									value : obj.spVersion == 'notsupport' ? '不支持' : obj.spVersion,
+									fieldLabel : Eway.locale.machine.device.spVersion,
+									value : obj.spVersion == 'notsupport' ? Eway.locale.machine.device.notSupport : obj.spVersion,
 									style : 'margin-top:2px'
 								}, {
-									fieldLabel : '驱动',
-									value : obj.driverVersion == 'notsupport' ? '不支持' : obj.driverVersion
+									fieldLabel : Eway.locale.machine.device.drive,
+									value : obj.driverVersion == 'notsupport' ? Eway.locale.machine.device.notSupport : obj.driverVersion
 								} ]
 							}, {
 								columnWidth : .5,
@@ -145,8 +145,8 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 									height: 40
 								},
 								items : [ {
-									fieldLabel : '固件',
-									value : obj.fwVersion == 'notsupport' ? '不支持' : obj.fwVersion,
+									fieldLabel : Eway.locale.machine.device.firmway,
+									value : obj.fwVersion == 'notsupport' ? Eway.locale.machine.device.notSupport : obj.fwVersion,
 									style : 'margin-top:2px'
 								} ]
 							} ]
@@ -161,7 +161,7 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 	onLoadProperty : function(tab) {
 		var store = this.getMonitorDeviceDevicePropertyStore();
 		var winEl = this.win.getEl();
-		winEl.mask("正在加载数据......");
+		winEl.mask(Eway.locale.vtype.dataLoad);
 		store.load({
 			params : {
 				deviceId : this.deviceId,
@@ -171,11 +171,11 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 			callback : function(records, operation, success) {
 				winEl.unmask();
 				if (!success) {
-					Eway.alert('请检查与设备的连接是否正常.');
+					Eway.alert(Eway.locale.vtype.devLinkNormal);
 					return;
 				}
 				if(records.length == 0){
-					Eway.alert('硬件模块正在初始化......');
+					Eway.alert(Eway.locale.vtype.hardwayInitialize);
 					return ;
 				}
 				if (records && records.length > 0) { // 判断是否有数据
@@ -198,9 +198,9 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 
 	getDeviceModulePropertyValue : function(value){
 		if(value == 'T'){
-			return '<a href="#" class="link">有</a>';
+			return '<a href="#" class="link">'+Eway.locale.tip.own.have+'</a>';
 		}else{
-			return '无';
+			return Eway.locale.tip.own.nothing;
 		}
 	},
 
@@ -208,7 +208,7 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 	onLoadStatus : function(tab) {
 		var store = this.getMonitorDeviceDeviceStatusStore();
 		var winEl = this.win.getEl();
-		winEl.mask("正在加载数据......");
+		winEl.mask(Eway.locale.vtype.dataLoad);
 		store.load({
 			params : {
 				deviceId : this.deviceId,
@@ -218,11 +218,11 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 			callback : function(records, operation, success) {// 回调函数
 				winEl.unmask();
 				if (!success) {
-					Eway.alert('请检查与设备的连接是否正常.');
+					Eway.alert(Eway.locale.vtype.devLinkNormal);
 					return;
 				}
 				if(records.length == 0){
-					Eway.alert('硬件模块正在初始化......');
+					Eway.alert(Eway.locale.vtype.hardwayInitialize);
 					return ;
 				}
 				if (records && records.length > 0) { // 判断是否有数据
@@ -244,7 +244,7 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 	},
 
 	getDeviceModuleStatusValue : function(statusName){
-		if(statusName == "未知" || statusName == "无设备"){
+		if(statusName == Eway.locale.tip.unCertain || statusName == Eway.locale.machine.device.noDevice){
 			return statusName;
 		}else{
 			return '<a href="#" class="link">' + statusName + '</a>';
@@ -352,7 +352,7 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 			fields.each(function(item) {
 				var name = item.getName();
 				var value = record[name];
-				item.setValue(value == 'T' ? '是' : value == 'F' ? '否' : value);
+				item.setValue(value == 'T' ? Eway.locale.tip.right.yes : value == 'F' ? Eway.locale.tip.right.no : value);
 			});
 		}
 	},
@@ -365,7 +365,7 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 			fields.each(function(item) {
 				var name = item.getName();
 				var value = record[name];
-				item.setValue(value == 'notsupport' ? '不支持' : value);
+				item.setValue(value == 'notsupport' ? Eway.locale.machine.device.notSupport : value);
 			});
 //			form.getForm().setValues(store.getRange(0, 1)[0].get(module));
 		}

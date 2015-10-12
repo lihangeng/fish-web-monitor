@@ -7,7 +7,7 @@ Ext.define('Eway.view.machine.device.module.StatusCDM', {
 				anchor : '100%'
 			},
 			items : [ {
-				title : '厂商状态信息',
+				title : Eway.locale.machine.device.comStatus,
 				titleAlign:'center',
 				layout : 'column',
 				border : 'false',
@@ -23,13 +23,13 @@ Ext.define('Eway.view.machine.device.module.StatusCDM', {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '厂商故障码',
+						fieldLabel: Eway.locale.machine.device.hwCode,
 						name : 'hwCode',
 						style : 'margin-top:2px'
 					} ]
 				} ]
 			}, {
-				title : '取款模块(CDM)状态信息',
+				title :Eway.locale.machine.device.CDMStatus,
 				titleAlign: 'center',
 				layout : 'column',
 				border : 'false',
@@ -45,11 +45,11 @@ Ext.define('Eway.view.machine.device.module.StatusCDM', {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '钞箱状态',
+						fieldLabel : Eway.locale.machine.device.cashUnits,
 						name : 'cashUnits',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '安全门状态',
+						fieldLabel : Eway.locale.machine.device.safeDoor,
 						name : 'safeDoor'
 					} ]
 				}, {
@@ -64,13 +64,13 @@ Ext.define('Eway.view.machine.device.module.StatusCDM', {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '暂存器状态',
+						fieldLabel : Eway.locale.machine.device.intermediateStacker,
 						name : 'intermediateStacker',
 						style : 'margin-top:2px'
 					} ]
 				} ]
 			}, {
-				title : '<center>取款钞箱</center>',
+				title : '<center>'+ Eway.locale.machine.device.outBox+'</center>',
 				layout : 'column',
 				border : 'false',
 				items : [ {
@@ -86,29 +86,29 @@ Ext.define('Eway.view.machine.device.module.StatusCDM', {
 						labelWidth: 120
 					},
 					items : [ {
-						fieldLabel : '物理逻辑钞箱对应关系',
+						fieldLabel : Eway.locale.machine.device.pcuId,
 						name : 'pcuId',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '逻辑钞箱ID',
+						fieldLabel : Eway.locale.machine.device.cuId,
 						name : 'cuId'
 					}, {
-						fieldLabel : '逻辑钞箱币种',
+						fieldLabel : Eway.locale.machine.device.cuCurrency',
 						name : 'cuCurrency'
 					}, {
-						fieldLabel : '逻辑钞箱当前张数',
+						fieldLabel : Eway.locale.machine.device.cuCurrentCount,
 						name : 'cuCurrentCount'
 					}, {
-						fieldLabel : '逻辑钞箱初始张数',
+						fieldLabel : Eway.locale.machine.device.cuInitialCount,
 						name : 'cuInitialCount'
 					}, {
-						fieldLabel : '逻辑钞箱reject张数',
+						fieldLabel : Eway.locale.machine.device.cuRejectCount,
 						name : 'cuRejectCount'
 					}, {
-						fieldLabel : '逻辑钞箱面值',
+						fieldLabel : Eway.locale.machine.device.cuNoteValue,
 						name : 'cuNoteValue'
 					}, {
-						fieldLabel : '逻辑钞箱状态',
+						fieldLabel : Eway.locale.machine.device.cuBinStatus,
 						name : 'cuBinStatus'
 					} ]
 				}, {
@@ -123,26 +123,26 @@ Ext.define('Eway.view.machine.device.module.StatusCDM', {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '物理钞箱ID',
+						fieldLabel : Eway.locale.machine.device.puId,
 						name : 'puId',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '物理钞箱位置名称',
+						fieldLabel : Eway.locale.machine.device.puPosName,
 						name : 'puPosName'
 					}, {
-						fieldLabel : '物理钞箱状态',
+						fieldLabel : Eway.locale.machine.device.puBinStatus,
 						name : 'puBinStatus'
 					}, {
-						fieldLabel : '物理钞箱当前张数',
+						fieldLabel : Eway.locale.machine.device.puCurrentCount,
 						name : 'puCurrentCount'
 					}, {
-						fieldLabel : '物理钞箱初始张数',
+						fieldLabel : Eway.locale.machine.device.puInitialCount,
 						name : 'puInitialCount'
 					}, {
-						fieldLabel : '物理钞箱Reject张数',
+						fieldLabel : Eway.locale.machine.device.puRejectCount,
 						name : 'puRejectCount'
 					}, {
-						fieldLabel : '逻辑钞箱类型',
+						fieldLabel : Eway.locale.machine.device.cuBinType,
 						name : 'cuBinType'
 					} ]
 				} ]

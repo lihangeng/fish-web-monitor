@@ -20,7 +20,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.commen.terminalId,
+					fieldLabel : Eway.locale.machine.atmGroup.terminalId,
 					name : 'terminalId',
 					vtype : 'terminalId',
 					allowBlank : true,
@@ -38,8 +38,8 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					name : 'organization'
 				}, {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : Eway.locale.commen.orgNameBelongs,
-					emptyText : '--请选择--',
+					fieldLabel : Eway.locale.machine.atmGroup.orgName,
+					emptyText : Eway.locale.combox.select,
 					name : 'orgName',
 					hiddenValue : 'organization',
 					editable : false,
@@ -47,11 +47,11 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
 				}, {
 					xtype : 'field_atmType_DeviceAtmVendorComboBox',
-					fieldLabel : Eway.locale.commen.devVendorName
+					fieldLabel : Eway.locale.machine.atmGroup.devVendorName,
 				}, {
 					xtype : 'combobox',
-					fieldLabel : '在离行标志',
-					emptyText : '--请选择--',
+					fieldLabel : Eway.locale.machine.device.onBankSignal,
+					emptyText :  Eway.locale.combox.select,
 					name : 'awayFlag',
 					hiddenName : 'awayFlag',
 					editable : false,
@@ -68,10 +68,10 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : '设备IP地址',
+					fieldLabel :  Eway.locale.machine.atmGroup.ip,
 					name : 'ip',
 					regex : /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/,
-					regexText : '请输入正确的IP地址',
+					regexText : Eway.locale.vtype.ip,
 					msgTarget : 'side'
 				}, {
 					style : 'padding-top:0px',
@@ -79,8 +79,8 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					name : 'devService'
 				}, {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : Eway.locale.commen.devServiceName,
-					emptyText : '--请选择--',
+					fieldLabel : Eway.locale.machine.atmGroup.devServiceName,
+					emptyText : Eway.locale.combox.select,
 					name : 'devServiceName',
 					hiddenValue : 'devService',
 					editable : false,
@@ -91,7 +91,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 
 				}, {
 					xtype : 'field_atmType_DeviceAtmCatalogComboBox',
-					fieldLabel : Eway.locale.commen.devCatalogName
+					fieldLabel : Eway.locale.machine.atmGroup.devCatalogName
 				} ]
 			}, {
 				columnWidth : .44,
@@ -101,7 +101,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 				},
 				items : [ {
 					xtype : 'fieldcontainer',
-					fieldLabel : Eway.locale.commen.cashboxLimit,
+					fieldLabel : Eway.locale.machine.atmGroup.cashboxLimit,
 					layout : 'hbox',
 					defaults : {
 						hideLabel : true
@@ -128,7 +128,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 						}
 					}, {
 						xtype : 'displayfield',
-						value : '至'
+						value : Eway.locale.machine.device.to
 					}, {
 						fieldLabel : 'endAmt',
 						displayField : 'display',
@@ -152,7 +152,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					} ]
 				}, {
 					xtype : 'fieldcontainer',
-					fieldLabel : Eway.locale.commen.installDate,
+					fieldLabel :Eway.locale.machine.atmGroup.installDate,
 					layout : 'hbox',
 					defaults : {
 						hideLabel : true
@@ -181,7 +181,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 						}
 					}, {
 						xtype : 'displayfield',
-						value : '至'
+						value : Eway.locale.machine.device.to,
 					}, {
 						fieldLabel : 'minute',
 						displayField : 'display',
@@ -208,7 +208,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 				}, {
 					xtype : 'textfield',
 					width : '100%',
-					fieldLabel : '设备地址',
+					fieldLabel : Eway.locale.machine.device.devAddress,
 					maxLength : 50,
 					name : 'address',
 					msgTarget : 'side'

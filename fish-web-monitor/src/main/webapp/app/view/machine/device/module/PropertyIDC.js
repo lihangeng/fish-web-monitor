@@ -7,7 +7,7 @@ Ext.define('Eway.view.machine.device.module.PropertyIDC', {
 				anchor : '100%'
 			},
 			items : [ {
-				title : '读卡器模块(IDC)属性信息',
+				title : Eway.locale.machine.device.IDCInfo,
 				titleAlign: 'center',
 				layout : 'column',
 				items : [ {
@@ -22,26 +22,26 @@ Ext.define('Eway.view.machine.device.module.PropertyIDC', {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '读卡器类型',
+						fieldLabel : Eway.locale.machine.device.variant,
 						name : 'variant',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '是否具有退卡能力',
+						fieldLabel : Eway.locale.machine.device.canEjectCard,
 						name : 'canEject'
 					}, {
-						fieldLabel : '是否具有TrackJisii读能力',
+						fieldLabel : Eway.locale.machine.device.trackJisiiRead,
 						name : 'trackJisiiRead'
 					}, {
-						fieldLabel : '是否具有读一磁道数据能力',
+						fieldLabel : Eway.locale.machine.device.track1Read,
 						name : 'track1Read'
 					}, {
-						fieldLabel : '是否具有读二磁道数据能力',
+						fieldLabel : Eway.locale.machine.device.track2Read,
 						name : 'track2Read'
 					}, {
-						fieldLabel : '是否具有读三磁道数据能力',
+						fieldLabel : Eway.locale.machine.device.track3Read,
 						name : 'track3Read'
 					}, {
-						fieldLabel : '是否具有吞卡能力',
+						fieldLabel : Eway.locale.machine.device.canCapture,
 						name : 'canCapture'
 					} ]
 				}, {
@@ -56,23 +56,23 @@ Ext.define('Eway.view.machine.device.module.PropertyIDC', {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '最大吞卡张数',
+						fieldLabel :  Eway.locale.machine.device.binCapacity,
 						name : 'binCapacity',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '是否具有安全支持',
+						fieldLabel : Eway.locale.machine.device.security,
 						name : 'security'
 					}, {
-						fieldLabel : '是否具有TrackJisii写能力',
+						fieldLabel : Eway.locale.machine.device.trackJisiiWrite,
 						name : 'trackJisiiWrite'
 					}, {
-						fieldLabel : '是否具有写一磁道数据能力',
+						fieldLabel :  Eway.locale.machine.device.track1Write,
 						name : 'track1Write'
 					}, {
-						fieldLabel : '是否具有写二磁道数据能力',
+						fieldLabel :  Eway.locale.machine.device.track2Write,
 						name : 'track2Write'
 					}, {
-						fieldLabel : '是否具有写三磁道数据能力',
+						fieldLabel : Eway.locale.machine.device.track3Write,
 						name : 'track3Write'
 					} ]
 				} ]

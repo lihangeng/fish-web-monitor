@@ -5,12 +5,12 @@ Ext.define('Eway.store.machine.DeviceAwayFlagComboBox', {
 
 	data : [ {
 		value : '1',
-		display : '在行自助服务区'
+		display : Eway.locale.machine.device.inBank,
 	}, {
 		value : '2',
-		display : '离行自助银行'
+		display : Eway.locale.machine.device.outBank,
 	}, {
 		value : '3',
-		display : '单机离行自助服务点'
+		display : Eway.locale.machine.device.clickBank,
 	} ]
 });

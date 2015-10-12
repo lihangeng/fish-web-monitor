@@ -8,7 +8,7 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 		Ext.apply(this, {
 			items : [ {
 				xtype : 'fieldset',
-				title : '系统硬件信息',
+				title : Eway.locale.machine.device.sysHardwareInfo,
 				collapsible : true,
 				defaults : {
 					border : false
@@ -26,20 +26,20 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 							anchor : '90%'
 						},
 						items : [ {
-							fieldLabel : Eway.locale.commen.terminalId,
+							fieldLabel : Eway.locale.machine.atmGroup.terminalId,
 							name : 'termId',
 							style : 'margin-top:2px'
 						}, {
-							fieldLabel : '硬盘大小',
+							fieldLabel : Eway.locale.machine.device.diskMem,
 							name : 'diskMem'
 						}, {
-							fieldLabel : 'Bios版本',
+							fieldLabel : Eway.locale.machine.device.biosVersion,
 							name : 'biosVersion'
 						}, {
-							fieldLabel : 'Bios厂商',
+							fieldLabel : Eway.locale.machine.device.biosVendor,
 							name : 'biosVendor'
 						}, {
-							fieldLabel : 'Bios发布日期',
+							fieldLabel : Eway.locale.machine.device.biosReleaseDate,
 							name : 'biosReleaseDate'
 						} ]
 					}, {
@@ -52,17 +52,17 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 							anchor : '90%'
 						},
 						items : [ {
-							fieldLabel : '内存总数',
+							fieldLabel :Eway.locale.machine.device.memorySize,
 							name : 'memorySize',
 							style : 'margin-top:2px'
 						}, {
-							fieldLabel : '已使用内存',
+							fieldLabel : Eway.locale.machine.device.memoryUsed,
 							name : 'used'
 						}, {
-							fieldLabel : '空闲内存',
+							fieldLabel : Eway.locale.machine.device.memoryFree,
 							name : 'free'
 						}, {
-							fieldLabel : '内存使用率',
+							fieldLabel : Eway.locale.machine.device.memoryPercent,
 							name : 'usedPercent'
 						} ]
 					} ]
@@ -70,64 +70,64 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 					xtype : 'tabpanel',
 					padding : '1 0 0 0',
 					items : [ {
-						title : 'cpu信息',
+						title : Eway.locale.machine.device.cpuItemID,
 						itemid : 'cpuItemID',
 						xtype : 'grid',
 						store : 'machine.atmHardSoft.Cpu',
 						columns : [ Ext.create('Ext.grid.RowNumberer'), {
-							header : 'CPU频率(MHz)',
+							header : Eway.locale.machine.device.cpuFrequency,
 							dataIndex : 'frequency'
 						}, {
-							header : 'CPU的厂商',
+							header : Eway.locale.machine.device.cpuVendor,
 							dataIndex : 'vendor'
 						}, {
-							header : 'CPU的类别',
+							header : Eway.locale.machine.device.cpuModel,
 							dataIndex : 'model',
 							flex : 1
 						}, {
-							header : '缓冲存储器数量',
+							header : Eway.locale.machine.device.cacheSize,
 							dataIndex : 'cacheSize',
 							hidden:true
 						}, {
-							header : 'CPU核数',
+							header : Eway.locale.machine.device.totalCores,
 							dataIndex : 'totalCores',
 							hidden:true
 						}, {
-							header : '用户使用率',
+							header : Eway.locale.machine.device.userUsePercent,
 							dataIndex : 'user',
 							width : 90
 						}, {
-							header : '系统使用率',
+							header : Eway.locale.machine.device.sysUsePercent,
 							dataIndex : 'sys',
 							width : 90
 						}, {
-							header : '当前空闲率',
+							header : Eway.locale.machine.device.idlePercent,
 							dataIndex : 'idle',
 							width : 90
 						}, {
-							header : '总的使用率',
+							header : Eway.locale.machine.device.combinedPercent,
 							dataIndex : 'combined',
 							width : 90
 						} ]
 					}, {
-						title : '磁盘信息',
+						title : Eway.locale.machine.device.diskItemID,
 						itemid : 'diskItemID',
 						xtype : 'grid',
 						store : 'machine.atmHardSoft.Disk',
 						columns : [ Ext.create('Ext.grid.RowNumberer'), {
-							header : '磁盘分区名称',
+							header : Eway.locale.machine.device.diskName,
 							dataIndex : 'name'
 						}, {
-							header : '磁盘文件系统',
+							header : Eway.locale.machine.device.diskFileSys,
 							dataIndex : 'fileSys'
 						}, {
-							header : '磁盘总大小',
+							header : Eway.locale.machine.device.diskTotalSize,
 							renderer : function(value, metadata, record) {
 								return (value / (1024 * 1024)).toFixed(1) + "GB";
 							},
 							dataIndex : 'totalSize'
 						}, {
-							header : '磁盘可用空间大小',
+							header : Eway.locale.machine.device.diskFreeSize,
 							renderer : function(value, metadata, record) {
 								return (value / (1024 * 1024)).toFixed(1) + "GB";
 							},
@@ -138,7 +138,7 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 				} ]
 			}, {
 				xtype : 'fieldset',
-				title : '系统软件信息',
+				title : Eway.locale.machine.device.sysSoftInfo,
 				collapsible : true,
 				border : false,
 				defaults : {
@@ -157,17 +157,17 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 							readOnly : true
 						},
 						items : [ {
-							fieldLabel : '操作系统ID',
+							fieldLabel : Eway.locale.machine.device.OSID,
 							name : 'arch',
 							style : 'margin-top:2px'
 						}, {
-							fieldLabel : 'OS描述',
+							fieldLabel : Eway.locale.machine.device.OSDescription,
 							name : 'description'
 						}, {
-							fieldLabel : 'OS类型',
+							fieldLabel : Eway.locale.machine.device.OSType,
 							name : 'type'
 						}, {
-							fieldLabel : '系统补丁级别',
+							fieldLabel : Eway.locale.machine.device.sysPatchLevel,
 							name : 'patchLevel'
 						} ]
 					}, {
@@ -180,17 +180,17 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 							xtype : 'textfield'
 						},
 						items : [ {
-							fieldLabel : '验钞数据版本',
+							fieldLabel : Eway.locale.machine.device.chkCashData,
 							name : 'chkCashData',
 							style : 'margin-top:2px'
 						}, {
-							fieldLabel : 'OS供应商',
+							fieldLabel : Eway.locale.machine.device.OSVendor,
 							name : 'vendor'
 						}, {
-							fieldLabel : 'OS供应商名',
+							fieldLabel : Eway.locale.machine.device.OSVendorName,
 							name : 'vendorName'
 						}, {
-							fieldLabel : '系统版本号',
+							fieldLabel : Eway.locale.machine.device.sysVersion,
 							name : 'version'
 						} ]
 					} ]

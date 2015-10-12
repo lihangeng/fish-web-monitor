@@ -19,7 +19,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceWin', {
 	
 	initComponent: function() {
 		Ext.apply(this, {
-			title : '分组<-->设备',
+			title : Eway.locale.machine.atmGroup.groupDev,
 			items : [{
 				region: 'north',
 				xtype: 'atmGroup_deviceFilter'

@@ -10,7 +10,7 @@ Ext.define("Eway.view.machine.device.module.StatusRPR", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : '<center>厂商状态信息</center>',
+				title : '<center>'+Eway.locale.machine.device.comStatus+'</center>',
 				layout : 'column',
 				border : 'false',
 				items : [ {
@@ -25,13 +25,13 @@ Ext.define("Eway.view.machine.device.module.StatusRPR", {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : '厂商故障码',
+						fieldLabel : Eway.locale.machine.device.hwCode,
 						name : 'hwCode',
 						style : 'margin-top:2px'
 					} ]
 				} ]
 			}, {
-				title : '<center>凭条打印机模块(RPR)状态信息</center>',
+				title : '<center>'+Eway.locale.machine.device.RPRStatus+'</center>',
 				layout : 'column',
 				border : 'false',
 				items : [ {
@@ -44,14 +44,14 @@ Ext.define("Eway.view.machine.device.module.StatusRPR", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '媒体状态',
+						fieldLabel : Eway.locale.machine.device.media,
 						name : 'media',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '回收单元状态',
+						fieldLabel : Eway.locale.machine.device.bin,
 						name : 'bin'
 					}, {
-						fieldLabel : '打印机纸状态',
+						fieldLabel : Eway.locale.machine.device.supplyLevel,
 						name : 'supplyLevel'
 					} ]
 				}, {
@@ -64,11 +64,11 @@ Ext.define("Eway.view.machine.device.module.StatusRPR", {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : '墨水',
+						fieldLabel :  Eway.locale.machine.device.ink,
 						name : 'ink',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '色带',
+						fieldLabel : Eway.locale.machine.device.toner,
 						name : 'toner'
 					} ]
 				} ]

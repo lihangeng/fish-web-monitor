@@ -5,7 +5,7 @@ Ext.define('Eway.view.machine.atmGroup.GroupUpdate', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.atmGroup_groupUpdate',
 
-	title: '更改设备组信息',
+	title: Eway.locale.machine.atmGroup.updateTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -26,14 +26,14 @@ Ext.define('Eway.view.machine.atmGroup.GroupUpdate', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font> 组名',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.groupName,
 					xtype : 'textfield',
 					name : 'name',
 					maxLength : 30,
 					allowBlank : false
 				},{
 				    xtype : 'textarea',
-				    fieldLabel : Eway.locale.commen.remark,
+				    fieldLabel : Eway.locale.machine.atmGroup.note,
 				    name : 'note',
 				    autoScroll : true,
 					maxLength :30,
@@ -41,14 +41,14 @@ Ext.define('Eway.view.machine.atmGroup.GroupUpdate', {
 				}],
 				buttonAlign : 'center',
 				buttons: [{
-					text: '确认',
+					text: Eway.locale.button.confirm,
 					action: 'update'
 				}, {
-					text: '重置',
+					text: Eway.locale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: '取消',
+					text: Eway.locale.button.cancle,
 					handler: this.onOver
 				}]
 			}

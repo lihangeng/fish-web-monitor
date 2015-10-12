@@ -14,22 +14,22 @@ Ext.define('Eway.view.machine.quittingNotice.DeviceGrid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-				text: '查询',
+				text: Eway.locale.button.search,
 				glyph : 0xf002,
 				action: 'queryDevice'	
 			},{
-				text: '选择',
+				text: Eway.locale.button.select,
 				action: 'select'
 			}],
 			columns : [{
-				header : Eway.locale.commen.terminalId,
+				header : Eway.locale.machine.atmGroup.terminalId,
 				dataIndex : 'terminalId'
 			}, {
-				header : Eway.locale.commen.orgNameBelongs,
+				header : Eway.locale.machine.atmGroup.orgName,
 				dataIndex : 'orgName',
 				flex : 1
 			}, {
-				header : '所属地址',
+				header : Eway.locale.machine.quittingNotice.address,
 				dataIndex : 'address',
 				flex : 1
 			}],

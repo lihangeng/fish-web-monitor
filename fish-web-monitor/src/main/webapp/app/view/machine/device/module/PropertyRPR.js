@@ -11,7 +11,7 @@ Ext.define("Eway.view.machine.device.module.PropertyRPR", {
 			},
 			border : false,
 			items : [ {
-				title : '凭条打印机(RPR)属性信息',
+				title : Eway.locale.machine.device.RPRInfo,
 				titleAlign:'center',
 				layout : 'column',
 				items : [ {
@@ -26,11 +26,11 @@ Ext.define("Eway.view.machine.device.module.PropertyRPR", {
 						labelWidth : 150
 					},
 					items : [ {
-						fieldLabel : '是否具有退纸能力',
+						fieldLabel : Eway.locale.machine.device.canEject,
 						name : 'canEject',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '是否具有回收能力',
+						fieldLabel : Eway.locale.machine.device.canCapture,
 						name : 'canCapture'
 					} ]
 				}, {
@@ -45,11 +45,11 @@ Ext.define("Eway.view.machine.device.module.PropertyRPR", {
 						labelWidth : 150
 					},
 					items : [ {
-						fieldLabel : '是否具有暂存能力',
+						fieldLabel : Eway.locale.machine.device.canStack,
 						name : 'canStack',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '最大回收张数',
+						fieldLabel : Eway.locale.machine.device.maxRetract,
 						name : 'maxRetract'
 					} ]
 				} ]

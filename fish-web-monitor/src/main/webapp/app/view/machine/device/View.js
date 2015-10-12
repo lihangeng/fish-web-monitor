@@ -5,7 +5,7 @@ Ext.define('Eway.view.machine.device.View', {
 	requires : [ 'Eway.view.machine.device.Grid',
 			'Eway.view.machine.device.FilterForm' ],
 
-	title : '设备信息管理',
+	title : Eway.locale.machine.device.title,
 	layout : 'border',
 
 	isLoad : false,

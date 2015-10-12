@@ -73,9 +73,9 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandGrid', {
 				sortable : true,
 				renderer: function(value){
 	                   if(value==1){
-	                	   return "设备供应";
+	                	   return Eway.locale.machine.atmBrand.comboxStatus.provider;
 	                   }else if(value==3){
-	                	   return "设备服役";
+	                	   return Eway.locale.machine.atmBrand.comboxStatus.maintance;
 	                   }
 					},
 				flex : 1

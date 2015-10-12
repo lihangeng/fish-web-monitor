@@ -18,14 +18,14 @@ Ext.define("Eway.view.machine.device.module.PropertyJPR", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '是否具有退纸能力',
+						fieldLabel : Eway.locale.machine.device.canEject,
 						name : 'canEject',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '是否具有回收能力',
+						fieldLabel :  Eway.locale.machine.device.canCapture,
 						name : 'canCapture'
 					}, {
-						fieldLabel : '是否具有暂存能力',
+						fieldLabel : Eway.locale.machine.device.canStack,
 						name : 'canStack'
 					} ]
 				}]

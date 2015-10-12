@@ -14,35 +14,35 @@ Ext.define('Eway.view.machine.device.DeviceBox', {
 		Ext.apply(this, {
 			
 			columns : [{
-				header :'钞箱标识',
+				header :Eway.locale.machine.device.log,
 				sortable : true,
 				dataIndex : 'log'
 			}, {
-				header : '钞箱类型',
+				header : Eway.locale.machine.device.style,
 				dataIndex : 'style',
 				sortable : true
 			}, {
-				header : '钞箱状态',
+				header : Eway.locale.machine.device.status,
 				dataIndex : 'status',
 				sortable : true
 			},{
-				header : '初始张数',
+				header : Eway.locale.machine.device.initailnumber,
 				dataIndex : 'initailnumber',
 				sortable :true
 			},{
-				header : '存款张数',
+				header : Eway.locale.machine.device.postnumber,
 				dataIndex : 'postnumber',
 				sortable : true
 			},{
-				header : '当前钞箱张数',
+				header : Eway.locale.machine.device.currentnumber,
 				dataIndex : 'currentnumber',
 				sortable : true
 			},{
-				header : Eway.locale.monitor.devMonitor.cash.currentCount,
+				header : Eway.locale.machine.device.facevalue,
 				dataIndex : 'facevalue',
 				sortable : true
 			},{
-				header : Eway.locale.monitor.devMonitor.cash.currency,
+				header : Eway.locale.machine.device.currency,
 				dataIndex : 'currency',
 				sortable : true
 			}]

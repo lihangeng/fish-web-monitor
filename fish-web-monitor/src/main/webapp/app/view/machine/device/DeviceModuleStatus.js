@@ -2,7 +2,7 @@ Ext.define("Eway.view.machine.device.DeviceModuleStatus", {
 	extend : 'Ext.panel.Panel',
 	alias : 'widget.machine_device_devicemodulestatus',
 
-	title : Eway.locale.commen.devInfo,
+	title : Eway.locale.machine.device.devBasicMsg,
 
 	requires : [ 'Eway.view.machine.device.module.Status',
 			'Eway.view.machine.device.module.StatusCDM',

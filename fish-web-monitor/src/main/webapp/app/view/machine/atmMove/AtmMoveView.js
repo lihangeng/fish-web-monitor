@@ -8,12 +8,12 @@ Ext.define('Eway.view.machine.atmMove.AtmMoveView', {
 				'Eway.view.machine.atmMove.NoticeFilterForm',
 	           'Eway.view.machine.atmMove.AtmMoveNoticeGrid'],
 
-	title: '移机管理',
+	title: Eway.locale.machine.atmMove.title,
 	layout: 'border',
 	initComponent: function() {
 		Ext.apply(this, {
 			items: [{
-				title : '移机记录信息',
+				title : Eway.locale.machine.atmMove.moveRecordInfo,
 			    region: 'center',
 			    margins: '5 0 0 5',
 			    split: true,
@@ -27,7 +27,7 @@ Ext.define('Eway.view.machine.atmMove.AtmMoveView', {
 					xtype: 'atmMove_atmMoveNoticeGrid'
 				}]
 			},{
-				title :'待移动的机器',
+				title :Eway.locale.machine.atmMove.waitMove,
 				region: 'west',
 				width: 500,
 				margins: '5 0 0 5',

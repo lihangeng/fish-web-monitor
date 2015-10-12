@@ -9,7 +9,7 @@ Ext.define('Eway.view.machine.quittingNotice.DeviceWin', {
 
 	requires : [ 'Eway.view.machine.quittingNotice.DeviceFilterForm',
 			'Eway.view.machine.quittingNotice.DeviceGrid' ],
-	title : '选择需要报停的设备',
+	title : Eway.locale.machine.quittingNotice.selectDev,
 	width : 750,
 	height : 400,
 	layout : 'border',
