@@ -1,10 +1,10 @@
-Ext.apply(Eway,{
-	addSuccess : '增加成功.',//Eway.addSuccess
+Ext.override(Eway.locale,{
+	/*addSuccess : '增加成功.',//Eway.addSuccess
 	updateSuccess : '更改成功.',//Eway.updateSuccess
 	deleteSuccess : '删除成功.',//Eway.deleteSuccess
 	choiceUpdateMsg :'请选择您要更改的记录.',//Eway.choiceUpdateMsg
 	choiceDeleteMsg :'请选择您要删除的记录.',//Eway.choiceDeleteMsg
-	locale:{
+	locale:{*/
 		button:{
 			search:'查询',//Eway.locale.button.search
 			add : '增加',//Eway.locale.button.add
@@ -257,7 +257,7 @@ Ext.apply(Eway,{
 				updateTitle:'更改ATM型号信息'//Eway.locale.atmCatalog.updateTitle
 			},
 			atmType:{
-				
+				typeName:'ATM型号XX',
 			}
 		},
 		person:{
@@ -547,7 +547,7 @@ Ext.apply(Eway,{
 					tranAmt:'交易总金额',//Eway.locale.monitor.business.settlement.tranAmt
 				},
 				
-			}
+			/*}*/
 			
 		}
 		

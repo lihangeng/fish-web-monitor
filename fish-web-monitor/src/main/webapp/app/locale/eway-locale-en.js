@@ -1,4 +1,4 @@
-Ext.apply(Eway,{
+Ext.applyIf(Eway,{
 	locale:{
 		atmBrand : {
 			name: "Name",

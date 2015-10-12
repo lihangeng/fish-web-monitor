@@ -1,11 +1,11 @@
-Ext.apply(Eway,{
-	yihua:'深圳怡化XX',
+Ext.override(Eway.locale,{
+	/*	yihua:'深圳怡化XX',
 	addSuccess : '增加成功.XX',
 	updateSuccess : '更改成功.XX',
 	deleteSuccess : '删除成功.XX',
 	choiceUpdateMsg :'请选择您要更改的记录.XX',
 	choiceDeleteMsg :'请选择您要删除的记录.XX',
-	locale:{
+	locale:{*/
 		button:{
 			search:'查询XX',
 			add : '增加XX',
@@ -697,6 +697,6 @@ Ext.apply(Eway,{
 			person:{
 				
 			}
-		}
+		/*}*/
 	}
 });
