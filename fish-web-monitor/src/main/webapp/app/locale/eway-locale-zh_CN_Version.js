@@ -1,13 +1,4 @@
 Ext.override(Eway.locale,{
-//	addSuccess : '增加成功.',//Eway.addSuccess
-//	updateSuccess : '更改成功.',//Eway.updateSuccess
-//	deleteSuccess : '删除成功.',//Eway.deleteSuccess
-//	choiceUpdateMsg :'请选择您要更改的记录.',//Eway.choiceUpdateMsg
-//	choiceDeleteMsg :'请选择您要删除的记录.',//Eway.choiceDeleteMsg
-//	locale:{
-//		commen:{
-//			desc:'备注'
-//		},
 		view:{
 			version:{
 				View:{
@@ -20,7 +11,11 @@ Ext.override(Eway.locale,{
 					title:'更改版本信息',
 					items:{
 						items:{
-							versionTypeId:'版本类型',
+							versionTypeId:{
+								emptyText:'请选择版本类型',
+								fieldLabel:'版本类型'
+							},
+							
 							versionNo:'版本号',
 							dependVersion:{
 								fieldLabel:'依赖版本',

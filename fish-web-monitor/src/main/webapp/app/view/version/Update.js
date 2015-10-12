@@ -37,9 +37,9 @@ Ext.define('Eway.view.version.Update', {
 				},
 				items: [{
 						xtype:'combobox',
-						fieldLabel : '<font color="red">*</font>'+ Eway.locale.view.version.Update.items.items.versionTypeId,//版本类型',
+						fieldLabel : '<font color="red">*</font>'+ Eway.locale.view.version.Update.items.items.versionTypeId.versionNo,//版本类型',
 						name: 'versionTypeId',
-						emptyText : '请选择版本类型',
+						emptyText :  Eway.locale.view.version.Update.items.items.versionTypeId.emptyText,//'请选择版本类型',
 						mode : 'remote',
 						triggerAction: 'all',
 						valueField : 'id',

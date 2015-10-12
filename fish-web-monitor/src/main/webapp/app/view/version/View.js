@@ -29,44 +29,43 @@ Ext.define('Eway.view.version.View', {
 					 itemId: 'versionPic',
 					 layout: {
 					        type: 'table',
-					        // The total column count must be specified here
 					        columns:2
 				    },
-					items : [{
+					defaultType : 'displayfield',
+					items : [
+					{
 						xtype : 'bar_3d',
-//						region : "center",
-						// height : 350,
 						 width : 600,
 						rowField : 'title',
 						columnField : 'value',
 							rowspan: 4
 					} ,{
-				        xtype: 'label',
-				        itemId: 'versionPath',
+						name: 'versionPath',
+						fieldLabel : '版本路径',
 				        text: '',
 				        style: {
 				            fontSize: '20px'
 				        },
 				        margin: '0 0 0 120'
 				    },{
-				        xtype: 'label',
-				        itemId: 'versionTime',
+				    	name: 'versionTime',
+						fieldLabel : '创建时间',
 				        text: '',
 				        style: {
 				            fontSize: '20px'
 				        },
 				        margin: '0 0 0 120'
 				    },{
-				        xtype: 'label',
-				        itemId: 'versionPerson',
+				    	name: 'versionPerson',
+						fieldLabel : '创建人',
 				        text: '',
 				        style: {
 				            fontSize: '20px'
 				        },
 				        margin: '0 0 0 120'
 				    },{
-				        xtype: 'label',
-				        itemId: 'desc',
+				    	name: 'desc',
+						fieldLabel : '备注',
 				        text: '',
 				        style: {
 				            fontSize: '20px'

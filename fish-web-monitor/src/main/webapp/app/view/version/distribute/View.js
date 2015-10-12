@@ -16,7 +16,6 @@ Ext.define('Eway.view.version.distribute.View', {
 			},
 			items : [ {
 				region : 'west',
-				padding:'0 5 10 0',
 				items : [ {
 					region : 'north',
 					xtype : 'distribute_filterForm'
@@ -25,7 +24,6 @@ Ext.define('Eway.view.version.distribute.View', {
 					xtype : 'version_pie'
 				} ]
 				}, {
-					padding:'0 0 10 0',
 					region : 'center',
 //					xtype : 'version_pie'
 					xtype : 'versionstatus_pie'

@@ -82,10 +82,10 @@ Ext.define('Eway.controller.version.Version', {
 		    }
 		});
 		this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionType")+"-"+record.get("versionNo"));
-		this.getEwayView().down("panel label[itemId='versionPath']").setText("版本路径:"+record.get("versionPath"));
-		this.getEwayView().down("panel label[itemId='versionTime']").setText("创建时间:"+record.get("createdTime"));
-		this.getEwayView().down("panel label[itemId='versionPerson']").setText("创建人:"+record.get("userName"));
-		this.getEwayView().down("panel label[itemId='desc']").setText("备注:"+record.get("desc"));
+		this.getEwayView().down("panel displayfield[name='versionPath']").setValue(record.get("versionPath"));
+		this.getEwayView().down("panel displayfield[name='versionTime']").setValue(record.get("createdTime"));
+		this.getEwayView().down("panel displayfield[name='versionPerson']").setValue(record.get("userName"));
+		this.getEwayView().down("panel displayfield[name='desc']").setValue(record.get("desc"));
 
 	},
 

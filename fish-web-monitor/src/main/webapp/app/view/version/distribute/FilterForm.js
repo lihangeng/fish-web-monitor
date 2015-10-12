@@ -11,24 +11,9 @@ Ext.define('Eway.view.version.distribute.FilterForm', {
 				columnWidth : .5,
 				items : [ {
 					xtype:'field_versionTypeComboBoxAdd',
-					fieldLabel : '软件分类',
+					fieldLabel : '',
 					selectFirst:true,
 					name:'versionType'
-//				}]},{
-//				columnWidth : .5,
-//				items : [{
-//					style : 'padding-top:0px',
-//					xtype : 'hiddenfield',
-//					name : 'orgId'
-//				}, {
-//					xtype : 'common_orgComboOrgTree',
-//					fieldLabel : Eway.locale.commen.orgNameBelongs,
-//					emptyText : '--请选择--',
-//					name : 'orgName',
-//					hiddenValue : 'orgId',
-//					editable : false,
-//					filters : '{"type" : "0"}',
-//					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
 				}]}
 			 ]
 		});

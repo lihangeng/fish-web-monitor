@@ -42,7 +42,6 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 		var record = versionTypeCombo.getSelectedRecord();
 		var selectedVersionName = record.get("desc");
 		var panel = view.down('version_pie'); 
-		panel.setTitle(selectedVersionName);
 		var polar = view.down('version_pie polar');
 		var pieStore = polar.getStore();
 		pieStore.load({
