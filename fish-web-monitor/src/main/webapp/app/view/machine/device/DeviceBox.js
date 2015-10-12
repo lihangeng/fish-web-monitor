@@ -38,11 +38,11 @@ Ext.define('Eway.view.machine.device.DeviceBox', {
 				dataIndex : 'currentnumber',
 				sortable : true
 			},{
-				header : '钞箱面值',
+				header : Eway.locale.monitor.devMonitor.cash.currentCount,
 				dataIndex : 'facevalue',
 				sortable : true
 			},{
-				header : '钞箱币种',
+				header : Eway.locale.monitor.devMonitor.cash.currency,
 				dataIndex : 'currency',
 				sortable : true
 			}]

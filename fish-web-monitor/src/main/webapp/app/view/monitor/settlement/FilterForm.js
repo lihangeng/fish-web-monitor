@@ -20,11 +20,11 @@ Ext.define('Eway.view.monitor.settlement.FilterForm', {
 					fieldLabel : Eway.locale.commen.terminalId,
 					name : 'terminalId',
 					regex : /^\w+[\w-\.]*$/,
-					regexText : '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’和点号‘.’，只能以字母或数字开头。',
+					regexText : Eway.locale.vtype.terminalId,
 					maxLength : 20
 				}, {
 					xtype : 'textfield',
-					fieldLabel : '周期ID',
+					fieldLabel : Eway.locale.monitor.business.settlement.uuId,
 					name : 'uuId',
 					maxLength : 20
 				} ]
@@ -35,7 +35,7 @@ Ext.define('Eway.view.monitor.settlement.FilterForm', {
 				},
 				items : [ {
 					xtype : 'fieldcontainer',
-					fieldLabel : '尾箱余额',
+					fieldLabel : Eway.locale.monitor.business.settlement.endAmt,
 					layout : 'hbox',
 					defaults : {
 						hideLabel : true
@@ -63,7 +63,7 @@ Ext.define('Eway.view.monitor.settlement.FilterForm', {
 						}
 					}, {
 						xtype : 'displayfield',
-						value : '至'
+						value : Eway.locale.monitor.business.transaction.toNum
 					}, {
 						fieldLabel : 'endAmt',
 						displayField : 'display',
@@ -87,7 +87,7 @@ Ext.define('Eway.view.monitor.settlement.FilterForm', {
 					} ]
 				}, {
 					xtype : 'fieldcontainer',
-					fieldLabel : '结帐日期',
+					fieldLabel : Eway.locale.monitor.business.settlement.endDate,
 					layout : 'hbox',
 					defaults : {
 						hideLabel : true
@@ -116,7 +116,7 @@ Ext.define('Eway.view.monitor.settlement.FilterForm', {
 						}
 					}, {
 						xtype : 'displayfield',
-						value : '至'
+						value : Eway.locale.monitor.business.transaction.toNum
 					}, {
 						fieldLabel : 'minute',
 						displayField : 'display',

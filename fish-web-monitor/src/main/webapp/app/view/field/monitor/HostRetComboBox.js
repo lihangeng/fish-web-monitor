@@ -1,7 +1,7 @@
 Ext.define('Eway.view.field.monitor.HostRetComboBox', {
 	extend : 'Ext.form.field.ComboBox',
 	alias : 'widget.monitor_HostRetComboBox',
-	fieldLabel : '主机返回码',
+	fieldLabel : Eway.locale.monitor.business.transaction.hostRet,
 	name : 'hostRet',
 	hiddenName : 'hostRet',
 	msgTarget : 'side',
@@ -10,7 +10,7 @@ Ext.define('Eway.view.field.monitor.HostRetComboBox', {
 	displayField : 'name',
 	queryMode : 'local',
 	editable : false,
-	emptyText : '--请选择--',
+	emptyText : Eway.locale.combox.select,
 	listeners : {
 		beforerender : function() {
 			this.store.load();

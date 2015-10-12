@@ -6,7 +6,7 @@ Ext.define('Eway.view.monitor.transaction.TransactionMonitorView', {
 	requires: ['Eway.view.monitor.transaction.TransactionGrid',
 				'Eway.view.monitor.transaction.TransactionFilterForm'],
 
-	title: '实时交易监控',
+	title: Eway.locale.monitor.business.transaction.transactionMonitor.title,
 	layout: 'border',
 
 	config : {

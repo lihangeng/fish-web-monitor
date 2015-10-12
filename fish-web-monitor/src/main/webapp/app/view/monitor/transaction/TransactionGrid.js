@@ -28,29 +28,29 @@ Ext.define('Eway.view.monitor.transaction.TransactionGrid', {
 			initRegion : true,
 			tbar : [ '->', {
 				xtype : 'button',
-				text : '开始监控',
+				text : Eway.locale.monitor.business.transaction.transactionMonitor.begin,
 				action : 'start',
 				iconCls : 'monitorStart',
 				disabled : true
 			}, {
 				xtype : 'button',
-				text : '停止监控',
+				text : Eway.locale.monitor.business.transaction.transactionMonitor.stop,
 				iconCls : 'monitorStop',
 				action : 'stop'
 			} ],
 			columns : [ {
-				header : '交易时间',
+				header : Eway.locale.monitor.business.transaction.dateTime,
 				width : 150,
 				dataIndex : 'dateTime'
 			}, {
-				header : '交易码',
+				header : Eway.locale.monitor.business.transaction.transCode,
 				width : 80,
 				dataIndex : 'transCode'
 			}, {
-				header : '交易金额',
+				header : Eway.locale.monitor.business.transaction.amt,
 				dataIndex : 'amt'
 			}, {
-				header : '交易币种',
+				header : Eway.locale.monitor.business.transaction.currency,
 				width : 80,
 				hidden : true,
 				dataIndex : 'currency'
@@ -59,21 +59,21 @@ Ext.define('Eway.view.monitor.transaction.TransactionGrid', {
 				width : 80,
 				dataIndex : 'termId'
 			}, {
-				header : '交易流水号',
+				header : Eway.locale.monitor.business.transaction.transId,
 				dataIndex : 'transId'
 			}, {
-				header : '客户账号或者卡号',
+				header : Eway.locale.monitor.business.transaction.debitAccount,
 				width : 180,
 				dataIndex : 'debitAccount'
 			}, {
-				header : '对方账号或者卡号',
+				header : Eway.locale.monitor.business.transaction.creditAccount,
 				dataIndex : 'creditAccount',
 				minWidth : 180
 			}, {
-				header : 'ATMC本地代码',
+				header : Eway.locale.monitor.business.transaction.localRet,
 				dataIndex : 'localRet'
 			}, {
-				header : '主机返回码',
+				header : Eway.locale.monitor.business.transaction.hostRet,
 				dataIndex : 'hostRet',/*
 				renderer : function(value){
 					var box = Ext.create('Eway.view.field.monitor.HostRetComboBox',{});

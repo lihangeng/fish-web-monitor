@@ -21,13 +21,13 @@ Ext.define('Eway.view.monitor.device.box.FilterForm', {
 					readOnly:true
 				},
 				items : [ {
-					fieldLabel : '加钞总金额',
+					fieldLabel : Eway.locale.monitor.devMonitor.cash.initAmount,
 					name : 'initAmount'
 				}, {
-					fieldLabel : '剩钞金额',
+					fieldLabel : Eway.locale.monitor.devMonitor.cash.amount,
 					name : 'amount'
 				}, {
-					fieldLabel : '出钞总金额',
+					fieldLabel : Eway.locale.monitor.devMonitor.cash.dispenseAmount,
 					name : 'dispenseAmount'
 				} ]
 			}, {
@@ -37,14 +37,14 @@ Ext.define('Eway.view.monitor.device.box.FilterForm', {
 					readOnly:true
 				},
 				items : [ {
-					fieldLabel : '废钞金额',
+					fieldLabel : Eway.locale.monitor.devMonitor.cash.rejectAmount,
 					name : 'rejectAmount'
 				}, {
-					fieldLabel : '钞票回收次数',
+					fieldLabel : Eway.locale.monitor.devMonitor.cash.retractCount,
 					name : 'retractCount',
 					hidden : true
 				}, {
-					fieldLabel : '最小取款金额',
+					fieldLabel : Eway.locale.monitor.devMonitor.cash.minAmount,
 					name : 'minAmount'
 				} ]
 			} ]

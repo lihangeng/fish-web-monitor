@@ -52,7 +52,7 @@ Ext.define('Eway.view.monitor.device.FilterConfig',{
 			value : '0',
 			editable : false
 		},{
-			fieldLabel : '在行标志',
+			fieldLabel : Eway.locale.commen.insideOutside,
 			xtype : 'combo',
 			displayField : 'name',
 			name : 'ingItem',
@@ -63,7 +63,7 @@ Ext.define('Eway.view.monitor.device.FilterConfig',{
 			value : '0',
 			editable : false
 		},{
-			fieldLabel : '分组',
+			fieldLabel : Eway.locale.monitor.devMonitor.atmGroup,
 			xtype : 'combo',
 			displayField : 'name',
 			name : 'atmGroup',

@@ -30,13 +30,13 @@ Ext.define('Eway.view.monitor.device.View',{
 						'<div class="thumb">',
 							'<ul>',
 								'<li><img class="left" src="{[this.getRunPath(values.run)]}"  ' +
-									'onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.runStatus,\'{runStatus}\');"/></li>',
+									'onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.comboxStatus.runStatus,\'{runStatus}\');"/></li>',
 								'<li><img class="left" src="{[this.getModulePath(values.mod)]}" ' +
-									'onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.modStatus,\'{modStatus}\');"/></li>',
+									'onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.comboxStatus.modStatus,\'{modStatus}\');"/></li>',
 								'<li><img class="left" src="{[this.getBoxPath(values.box)]}"  ' +
-									'onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.boxStatus,\'{boxStatus}\');"/></li>',
+									'onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,\'{boxStatus}\');"/></li>',
 								'<li><img class="left" src="{[this.getNetPath(values.net)]}"  ' +
-									'onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.netStatus,\'{netStatus}\');"/></li>',
+									'onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.comboxStatus.netStatus,\'{netStatus}\');"/></li>',
 							'</ul>',
 						'</div>',
 					'<span class="x-editable">{code}({org})</span>',
@@ -226,7 +226,7 @@ Ext.define('Eway.view.monitor.device.View',{
 							{header : Eway.locale.person.bankOrg.name, dataIndex : 'org', flex : 1},
 							{header : Eway.locale.commen.terminalId,dataIndex : 'code',width:100,tdCls:'pointerLink'},
 							{header : Eway.locale.commen.ip,dataIndex : 'ip',width:100},
-							{header : Eway.locale.monitor.devMonitor.runStatus,dataIndex : 'runStatus',
+							{header : Eway.locale.monitor.devMonitor.comboxStatus.runStatus,dataIndex : 'runStatus',
 								renderer:function(value,meta,record){
 									var runFatals= ['SubHealth','Maintain','Halt','ReBoot','StopAtmp','StopManmade','StopMod','StopUnCashIn','StopUnKnown'];
 									var run = record.get('run');
@@ -236,7 +236,7 @@ Ext.define('Eway.view.monitor.device.View',{
 										return value;
 									}
 								},width:100},
-							{header : Eway.locale.monitor.devMonitor.modStatus,dataIndex : 'modStatus',
+							{header : Eway.locale.monitor.devMonitor.comboxStatus.modStatus,dataIndex : 'modStatus',
 								renderer:function(value,meta,record){
 									var mod = record.get('mod');
 									if(mod == "Warning"){
@@ -247,7 +247,7 @@ Ext.define('Eway.view.monitor.device.View',{
 										return value;
 									}
 								},width:100},
-							{header : Eway.locale.monitor.devMonitor.boxStatus,dataIndex : 'boxStatus',
+							{header : Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,dataIndex : 'boxStatus',
 								renderer:function(value,meta,record){
 									var boxFatals= ['Full','Low','Empty','High','Fatal'];
 									var box = record.get('box');
@@ -257,7 +257,7 @@ Ext.define('Eway.view.monitor.device.View',{
 										return value;
 									}
 								},width:100},
-							{header : Eway.locale.monitor.devMonitor.netStatus,dataIndex : 'netStatus',
+							{header : Eway.locale.monitor.devMonitor.comboxStatus.netStatus,dataIndex : 'netStatus',
 							renderer:function(value,meta,record){
 									var net = record.get('net');
 									if(net == "Warning"){
@@ -269,8 +269,8 @@ Ext.define('Eway.view.monitor.device.View',{
 									}
 								},width:100},
 							{header : Eway.locale.monitor.devMonitor.retainCardCount , dataIndex : 'retainCardCount',width:100},
-							{header : Eway.locale.monitor.devMonitor.boxInitCount , dataIndex : 'boxInitCount',width:100},
-							{header : Eway.locale.monitor.devMonitor.boxCurrentCount , dataIndex : 'boxCurrentCount',width:100},
+							{header : Eway.locale.monitor.devMonitor.cash.boxInitCount , dataIndex : 'boxInitCount',width:100},
+							{header : Eway.locale.monitor.devMonitor.cash.boxCurrentCount , dataIndex : 'boxCurrentCount',width:100},
 							{header : Eway.locale.commen.devTypeName,dataIndex : 'type',width:100},
 							{header : Eway.locale.commen.orgNameBelongs,dataIndex : 'org', flex: 1},
 							{header : Eway.locale.commen.installAddr,dataIndex : 'address', flex: 1},
@@ -316,7 +316,7 @@ Ext.define('Eway.view.monitor.device.View',{
 							{xtype: 'rownumberer'},
 							{header : Eway.locale.person.bankOrg.name, dataIndex : 'org', flex : 1},
 							{header : Eway.locale.commen.terminalId, dataIndex : 'code', flex : 1, tdCls:'pointerLink'},
-							{header : Eway.locale.monitor.devMonitor.boxStatus,dataIndex : 'boxStatus',
+							{header : Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,dataIndex : 'boxStatus',
 								renderer:function(value,meta,record){
 									var boxFatals= ['Full','Empty','High','Fatal'];
 									var box = record.get('box');
@@ -328,9 +328,9 @@ Ext.define('Eway.view.monitor.device.View',{
 										return value;
 									}
 								}, flex : 1,tdCls:'pointerLink'},
-							{header : Eway.locale.monitor.devMonitor.boxInitCount , dataIndex : 'boxInitCount',flex : 1},
-							{header : Eway.locale.monitor.devMonitor.boxCurrentCount , dataIndex : 'boxCurrentCount',flex : 1},
-							{header : Eway.locale.monitor.devMonitor.cashboxLimit,dataIndex : 'cashboxLimit',flex : 1},
+							{header : Eway.locale.monitor.devMonitor.cash.boxInitCount , dataIndex : 'boxInitCount',flex : 1},
+							{header : Eway.locale.monitor.devMonitor.cash.boxCurrentCount , dataIndex : 'boxCurrentCount',flex : 1},
+							{header : Eway.locale.monitor.devMonitor.cash.cashboxLimit,dataIndex : 'cashboxLimit',flex : 1},
 							{header : Eway.locale.monitor.devMonitor.retainCardCount,dataIndex : 'retainCardCount',
 								renderer:function(value,meta,record){
 									if(value >= 20){
@@ -520,22 +520,22 @@ Ext.define('Eway.view.monitor.device.View',{
 				if (index == 0) {
 					_img.attr('src', me.getRunPath(object.run));
 					_img.bind('mouseover', function() {
-						Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.runStatus, object.runStatus);
+						Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.comboxStatus.runStatus, object.runStatus);
 					});
 				} else if (index == 1) {
 					_img.attr('src', me.getModulePath(object.mod));
 					_img.bind('mouseover', function() {
-						Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.modStatus, object.modStatus);
+						Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.comboxStatus.modStatus, object.modStatus);
 					});
 				} else if (index == 2) {
 					_img.attr('src', me.getBoxPath(object.box));
 					_img.bind('mouseover', function() {
-						Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.boxStatus, object.boxStatus);
+						Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.comboxStatus.boxStatus, object.boxStatus);
 					});
 				} else if (index == 3) {
 					_img.attr('src', me.getNetPath(object.net));
 					_img.bind('mouseover', function() {
-						Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.netStatus, object.netStatus);
+						Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.comboxStatus.netStatus, object.netStatus);
 					});
 				}
 			});

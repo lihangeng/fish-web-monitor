@@ -45,7 +45,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseProcessGrid', {
 				dataIndex: 'memoryRate',
 				flex: 1
 			},{
-				header: '描述',
+				header: Eway.locale.commen.description,
 				sortable: true,
 				dataIndex: 'description',
 				flex: 4

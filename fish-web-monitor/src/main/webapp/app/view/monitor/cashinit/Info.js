@@ -1,7 +1,7 @@
 Ext.define('Eway.view.monitor.cashinit.Info', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.monitor_cashinit_info',
-	title : '加钞详细信息',
+	title : Eway.locale.monitor.business.cashInit.info,
 	modal : true,
 	constrainHeader : true,
 	resizable : false,
@@ -41,7 +41,7 @@ Ext.define('Eway.view.monitor.cashinit.Info', {
 							fieldLabel : Eway.locale.commen.terminalId,
 							name : 'termId'
 						}, {
-							fieldLabel : '加钞ID',
+							fieldLabel : Eway.locale.monitor.business.cashInit.uuId,
 							name : 'uuId'
 						} ]
 					}, {
@@ -56,27 +56,27 @@ Ext.define('Eway.view.monitor.cashinit.Info', {
 							readOnly : true
 						},
 						items : [ {
-							fieldLabel : '加钞总金额',
+							fieldLabel : Eway.locale.monitor.devMonitor.cash.initAmount,
 							name : 'amt'
 						}, {
-							fieldLabel : '加钞时间',
+							fieldLabel : Eway.locale.monitor.business.cashInit.date,
 							name : 'date'
 						} ]
 					} ]
 				}, {
-					title : '详细信息',
+					title : Eway.locale.commen.info,
 					itemid : 'detailItemId',
 					xtype : 'grid',
 					store : 'monitor.cashinit.CashInitDetail',
 					border:true,
 					columns : [ Ext.create('Ext.grid.RowNumberer'), {
-						header : '钞箱ID',
+						header : Eway.locale.monitor.business.cashInit.boxId,
 						dataIndex : 'boxId'
 					}, {
-						header : '币种',
+						header : Eway.locale.monitor.business.cashInit.boxCurrency,
 						dataIndex : 'boxCurrency'
 					}, {
-						header : '初始金额',
+						header : Eway.locale.monitor.business.cashInit.boxInitAmt,
 						dataIndex : 'boxInitAmt',
 						flex:1
 					} ]

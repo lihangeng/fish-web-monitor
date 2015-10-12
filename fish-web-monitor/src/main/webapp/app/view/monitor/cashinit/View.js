@@ -4,7 +4,7 @@ Ext.define('Eway.view.monitor.cashinit.View', {
 	requires : [ 'Eway.view.monitor.cashinit.Grid',
 			'Eway.view.monitor.cashinit.FilterForm' ],
 
-	title : '加钞信息查询',
+	title : Eway.locale.monitor.business.cashInit.titile,
 	layout : 'border',
 
 	initComponent : function() {

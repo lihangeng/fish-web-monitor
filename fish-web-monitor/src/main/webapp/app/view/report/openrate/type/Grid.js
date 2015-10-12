@@ -67,7 +67,7 @@ Ext.define('Eway.view.report.openrate.type.Grid', {
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : 'Eway.locale.commen.toolbar：{2}条，显示{0}-{1}'
+				displayMsg : Eway.locale.commen.toolbar
 			})
 		});
 

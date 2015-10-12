@@ -31,7 +31,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 						xtype : 'textfield',
 						name : 'terminalId',
 						regex : /^\w[\w-_\.]{0,19}$/,
-						regexText : '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’，只能以字母或数字开头。',
+						regexText : Eway.locale.vtype.terminalId,
 						msgTarget : 'side'
 					}, {
 						labelWidth : 60,
@@ -46,19 +46,19 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 					columnWidth : .28,
 					items : [ {
 						labelWidth : 60,
-						fieldLabel : '流水号',
+						fieldLabel : Eway.locale.monitor.business.transaction.transId,
 						xtype : 'textfield',
 						name : 'transId',
 						labelAlign : 'right'
 					}, {
 						labelWidth : 60,
-						fieldLabel : '客户帐号',
+						fieldLabel : Eway.locale.monitor.business.transaction.debitAccount,
 						xtype : 'textfield',
 						name : 'debitAccount',
 						labelAlign : 'right'
 					}, {
 						labelWidth : 60,
-						fieldLabel : '交易币种',
+						fieldLabel : Eway.locale.monitor.business.transaction.currency,
 						xtype : 'textfield',
 						name : 'currency',
 						labelAlign : 'right',
@@ -81,7 +81,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 					items : [ {
 						xtype : 'fieldcontainer',
 						labelWidth : 70,
-						fieldLabel : '金额范围',
+						fieldLabel : Eway.locale.monitor.business.transaction.amtfield,
 						layout : 'hbox',
 						defaults : {
 							hideLabel : true
@@ -107,7 +107,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 							}
 						}, {
 							xtype : 'displayfield',
-							value : '至'
+							value : Eway.locale.monitor.business.transaction.toNum
 						}, {
 							fieldLabel : 'endAmt',
 							displayField : 'display',
@@ -130,7 +130,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 						}]
 					}, {
 						xtype : 'fieldcontainer',
-						fieldLabel : '交易时间段',
+						fieldLabel : Eway.locale.monitor.business.transaction.transContainer,
 						labelWidth : 70,
 						layout : 'hbox',
 						defaults : {
@@ -161,12 +161,12 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 						}
 						}, {
 							xtype : 'displayfield',
-							value : '至'
+							value : Eway.locale.monitor.business.transaction.toNum
 						}, {
 							fieldLabel : 'minute',
 							displayField : 'display',
 							valueField : 'value',
-							fieldLabel : '金额',
+							fieldLabel : Eway.locale.monitor.business.transaction.amt,
 							width : 100,
 							xtype : 'datefield',
 							format : 'Y-m-d',

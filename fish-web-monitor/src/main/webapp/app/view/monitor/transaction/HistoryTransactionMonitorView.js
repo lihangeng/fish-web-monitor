@@ -6,7 +6,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionMonitorView', {
 	requires: [ 'Eway.view.monitor.transaction.HistoryTransactionGrid',
 	           'Eway.view.monitor.transaction.HistoryTransactionFilterForm' ],
 	            
-	title: '历史交易查询',
+	title: Eway.locale.monitor.business.transaction.historyTransaction.title,
 	layout: 'border',
 	modal : true,
 	constrainHeader : true,

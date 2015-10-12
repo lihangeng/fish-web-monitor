@@ -124,7 +124,16 @@ Ext.apply(Eway,{
 					choose:'请选择需要移动的记录.'//Eway.locale.tip.user.move.choose
 					
 				}
-			}
+			},
+			business:{
+				transaction:{
+					transactionMonitor:{
+						beginMonitor:'请先停止监控后再输入条件，按开始监控按钮即可进行条件监控！',//Eway.locale.tip.business.transaction.transactionMonitor.beginMonitor
+					}
+					
+				},
+			},
+			
 			
 		},
 		vtype:{
@@ -214,15 +223,22 @@ Ext.apply(Eway,{
 			next:'下一页',//Eway.locale.commen.next
 			installAddr:'装机地址',//Eway.locale.commen.installAddr
 			seviceMode:'经营方式',//Eway.locale.commen.seviceMode
-			insideOutside:'在行/离行',//Eway.locale.commen.insideOutside
+			insideOutside:'在行标志',//Eway.locale.commen.insideOutside
 			appVersion:'应用版本号',//Eway.locale.commen.appVersion
-			devInfo:'设备基本信息'//Eway.locale.commen.devInfo
+			devInfo:'设备基本信息',//Eway.locale.commen.devInfo
 			//check end
+			personnel:'联系人',//Eway.locale.commen.personnel
+			warn:'警告',//Eway.locale.commen.warn
+			fatal:'故障',//Eway.locale.commen.fatal
+			unStable:'不稳定',//Eway.locale.commen.unStable
+			unknow:'未知',//Eway.locale.commen.unknow
+			description:'描述',//Eway.locale.commen.description
+			info:'详细信息',//Eway.locale.commen.info
 		},
 		machine:{
 			atmBrand : {
 				title:'品牌管理',//Eway.locale.machine.atmBrand.title
-				name: "品牌名称",//Eway.locale.machine.atmBrand.name
+				name: '品牌名称',//Eway.locale.machine.atmBrand.name
 				country:'生产商国家或地区',//Eway.locale.machine.atmBrand.country
 				hotline1:'生产商热线1',//Eway.locale.machine.atmBrand.hotline1
 				hotline2:'生产商热线2',//Eway.locale.machine.atmBrand.hotline2
@@ -367,10 +383,12 @@ Ext.apply(Eway,{
 		monitor:{
 			devMonitor:{
 				title:'状态监控',//Eway.locale.monitor.devMonitor.title
-				runStatus:'运行状态',//Eway.locale.monitor.devMonitor.runStatus
-				modStatus:'模块状态',//Eway.locale.monitor.devMonitor.modStatus
-				boxStatus:'钞箱状态',//Eway.locale.monitor.devMonitor.boxStatus
-				netStatus:'网络状态',//Eway.locale.monitor.devMonitor.netStatus
+				comboxStatus:{
+					runStatus:'运行状态',//Eway.locale.monitor.devMonitor.comboxStatus.runStatus
+					modStatus:'模块状态',//Eway.locale.monitor.devMonitor.comboxStatus.modStatus
+					boxStatus:'钞箱状态',//Eway.locale.monitor.devMonitor.comboxStatus.boxStatus
+					netStatus:'网络状态',//Eway.locale.monitor.devMonitor.comboxStatus.netStatus
+				},
 				monitorState:'监控状态',//Eway.locale.monitor.devMonitor.monitorState
 				showWay:'展示方式',//Eway.locale.monitor.devMonitor.showWay
 				comboxShowWay:{
@@ -380,12 +398,157 @@ Ext.apply(Eway,{
 					boxPattern:'钞箱方式'//Eway.locale.monitor.devMonitor.comboxShowWay.boxPattern
 				},
 				numberfield:'监控台数',//Eway.locale.monitor.devMonitor.numberfield
-				retainCardCount:'当前吞卡数量',//Eway.locale.monitor.devMonitor.retainCardCount
-				boxInitCount:'钞箱初始金额',//Eway.locale.monitor.devMonitor.boxInitCount
-				boxCurrentCount:'钞箱当前金额',//Eway.locale.monitor.devMonitor.boxCurrentCount
 				noData:'无记录',//Eway.locale.monitor.devMonitor.noData
-				cashboxLimit:'钞箱报警金额阈值',//Eway.locale.monitor.devMonitor.cashboxLimit
+				retainCardCount:'当前吞卡数量',//Eway.locale.monitor.devMonitor.retainCardCount
+				cash:{
+					boxInitCount:'钞箱初始金额',//Eway.locale.monitor.devMonitor.cash.boxInitCount
+					boxCurrentCount:'钞箱当前金额',//Eway.locale.monitor.devMonitor.cash.boxCurrentCount
+					cashboxLimit:'钞箱报警金额阈值',//Eway.locale.monitor.devMonitor.cash.cashboxLimit
+					initAmount:'加钞总金额',//Eway.locale.monitor.devMonitor.cash.initAmount
+					amount:'剩钞金额',//Eway.locale.monitor.devMonitor.cash.amount
+					dispenseAmount:'出钞总金额',//Eway.locale.monitor.devMonitor.cash.dispenseAmount
+					rejectAmount:'废钞金额',//Eway.locale.monitor.devMonitor.cash.rejectAmount
+					retractCount:'钞票回收次数',//Eway.locale.monitor.devMonitor.cash.retractCount
+					minAmount:'最小取款金额',//Eway.locale.monitor.devMonitor.cash.minAmount
+					boxId:'钞箱标识',//Eway.locale.monitor.devMonitor.cash.boxId
+					type:'钞箱类型',//Eway.locale.monitor.devMonitor.cash.type
+					initialCount:'初始张数',//Eway.locale.monitor.devMonitor.cash.initialCount
+					cashInCount:'存款张数',//Eway.locale.monitor.devMonitor.cash.initialCount
+					currentCount:'当前计数[张/笔]',//Eway.locale.monitor.devMonitor.cash.currentCount
+					noteValue:'钞箱面值',//Eway.locale.monitor.devMonitor.cash.currentCount
+					currency:'钞箱币种',//Eway.locale.monitor.devMonitor.cash.currency
+					boxDetail:'钞箱详情',//Eway.locale.monitor.devMonitor.cash.boxDetail
+					cimFull:'存款钞满',//Eway.locale.monitor.devMonitor.cash.cimFull
+					cdmEmpty:'取款钞空',//Eway.locale.monitor.devMonitor.cash.cdmEmpty
+					cdmLow:'取款钞少',//Eway.locale.monitor.devMonitor.cash.cdmLow
+					low:'钞少',//Eway.locale.monitor.devMonitor.cash.low
+					empty:'钞空',//Eway.locale.monitor.devMonitor.cash.empty
+					cimAFull:'存款钞将满',//Eway.locale.monitor.devMonitor.cash.cimAFull
+					cashFault:'钞箱故障',//Eway.locale.monitor.devMonitor.cash.cashFault
+					cashUnknow:'钞箱未知',//Eway.locale.monitor.devMonitor.cash.cashUnknow
+					
+				},
+				modStateGraphic:'模块状态图示',//Eway.locale.monitor.devMonitor.modStateGraphic
+				modGraphic:'模块图示',//Eway.locale.monitor.devMonitor.modGraphic
+				registerStatus:'注册状态',//Eway.locale.monitor.devMonitor.registerStatus
+				devModStatus:'设备模块状态',//Eway.locale.monitor.devMonitor.devModStatus
+				mod:{
+					idc:'读卡器',//Eway.locale.monitor.devMonitor.mod.idc
+					jpr:'日志打印机',//Eway.locale.monitor.devMonitor.mod.jpr
+					cdm:'取款模块',//Eway.locale.monitor.devMonitor.mod.cdm
+					cim:'存款模块',//Eway.locale.monitor.devMonitor.mod.cim
+					siu:'传感器',//Eway.locale.monitor.devMonitor.mod.siu
+					rpr:'凭条打印机',//Eway.locale.monitor.devMonitor.mod.rpr
+					pin:'密码键盘',//Eway.locale.monitor.devMonitor.mod.pin
+					ttu:'文本终端',//Eway.locale.monitor.devMonitor.mod.ttu
+					isc:'身份证扫描仪',//Eway.locale.monitor.devMonitor.mod.isc
+					icc:'发卡器',//Eway.locale.monitor.devMonitor.mod.icc
+					fgp:'指纹仪',//Eway.locale.monitor.devMonitor.mod.fgp
+					healthy:'模块正常',//Eway.locale.monitor.devMonitor.mod.healthy
+					
+				},
+				remote:{
+					control:'远程控制',//Eway.locale.monitor.devMonitor.remote.control
+					screen:'远程抓屏',//Eway.locale.monitor.devMonitor.remote.screen
+					log:'提取电子日志',//Eway.locale.monitor.devMonitor.remote.log
+					net:'查看网络连接',//Eway.locale.monitor.devMonitor.remote.net
+					softwareList:'获取软件列表',//Eway.locale.monitor.devMonitor.remote.softwareList
+					powerOff:'关机',//Eway.locale.monitor.devMonitor.remote.powerOff
+					restart:'重启',//Eway.locale.monitor.devMonitor.remote.restart
+					logicOpen:'开启服务',//Eway.locale.monitor.devMonitor.remote.logicOpen
+					logicClose:'暂停服务',//Eway.locale.monitor.devMonitor.remote.logicClose
+					remoteBrowser:'远程浏览',//Eway.locale.monitor.devMonitor.remote.remoteBrowser
+					processList:'查看进程信息',//Eway.locale.monitor.devMonitor.remote.processList
+					screenCamera:'屏幕录制',//Eway.locale.monitor.devMonitor.remote.screenCamera
+					reset:'强制复位',//Eway.locale.monitor.devMonitor.remote.reset
+					remoteLook:'查看应用版本',//Eway.locale.monitor.devMonitor.remote.remoteLook
+					remoteCheckATM:'ATM体检',//Eway.locale.monitor.devMonitor.remote.remoteCheckATM
+					halfSer:'半功能',//Eway.locale.monitor.devMonitor.remote.halfSer
+					healthy:'正常服务',//Eway.locale.monitor.devMonitor.remote.healthy
+					staff:'维护',//Eway.locale.monitor.devMonitor.remote.staff
+					pFault:'交易前置故障',//Eway.locale.monitor.devMonitor.remote.pFault
+					stop:'报停',//Eway.locale.monitor.devMonitor.remote.stop
+					manualStop:'人工报停',////Eway.locale.monitor.devMonitor.remote.manualStop
+					stopFault:'暂停服务-模块故障',//Eway.locale.monitor.devMonitor.remote.pauseFault
+					stopCash:'暂停服务-未加钞',//Eway.locale.monitor.devMonitor.remote.pauseCash
+					pauseSer:'暂停服务',//Eway.locale.monitor.devMonitor.remote.pauseSer
+					pauseSerUnknow:'未知原因暂停服务',//Eway.locale.monitor.devMonitor.remote.pauseSerUnknow
+					manaAndstaff:'管机员',//Eway.locale.monitor.devMonitor.remote.manaAndstaff
+				},
+				atmGroup:'分组',//Eway.locale.monitor.devMonitor.atmGroup
+				solution:'建议解决方案',//Eway.locale.monitor.devMonitor.solution
+				faultDescription:'模块故障描述',//Eway.locale.monitor.devMonitor.faultDescription
+				fastChoose:'快捷选择',//Eway.locale.monitor.devMonitor.fastChoose
+				init:'初始化',//Eway.locale.monitor.devMonitor.init
+				accTrans:'客户交易',//Eway.locale.monitor.devMonitor.accTrans
+				factureStaff:'厂商模式维护',//Eway.locale.monitor.devMonitor.factureStaff
+				netHealthy:'网络正常',//Eway.locale.monitor.devMonitor.netHealthy
+				netUnStable:'网络不稳定',//Eway.locale.monitor.devMonitor.netUnStable
+				netFatal:'网络故障',//Eway.locale.monitor.devMonitor.netFatal
+			},
+			business:{
+				transaction:{
+					card:'交易卡号',//Eway.locale.monitor.business.transaction.card
+					dateTime:'交易时间',//Eway.locale.monitor.business.transaction.dateTime
+					transCode:'交易类型',//Eway.locale.monitor.business.transaction.transCode
+					amt:'交易金额',//Eway.locale.monitor.business.transaction.amt
+					currency:'交易币种',//Eway.locale.monitor.business.transaction.currency
+					transId:'交易流水号',//Eway.locale.monitor.business.transaction.transId
+					amtfield:'金额范围',//Eway.locale.monitor.business.transaction.amtfield
+					toNum:'至',//Eway.locale.monitor.business.transaction.toNum
+					transContainer:'交易时间段',//Eway.locale.monitor.business.transaction.transContainer
+					debitAccountOrCard:'客户账号或者卡号',//Eway.locale.monitor.business.transaction.debitAccountOrCard
+					creditAccountOrCard:'对方账号或者卡号',//Eway.locale.monitor.business.transaction.creditAccountOrCard
+					debitAccount:'客户帐号',//Eway.locale.monitor.business.transaction.debitAccount
+					creditAccount:'对方账号',//Eway.locale.monitor.business.transaction.creditAccount
+					localRet:'ATMC本地代码',//Eway.locale.monitor.business.transaction.localRet
+					hostRet:'主机返回码',//Eway.locale.monitor.business.transaction.hostRet
+					userName:'用户姓名',//Eway.locale.monitor.business.transaction.userName
+					historyTransaction:{
+						title:'历史交易查询',//Eway.locale.monitor.business.transaction.historyTransaction.title
+						
+					},
+					transactionMonitor:{
+						title:'实时交易监控',//Eway.locale.monitor.business.transaction.transactionMonitor.title
+						begin:'开始监控',//Eway.locale.monitor.business.transaction.transactionMonitor.begin
+						stop:'停止监控',//Eway.locale.monitor.business.transaction.transactionMonitor.stop
+					}
+				},
+				blackList:{
+					title:'黑名单卡管理',//Eway.locale.monitor.business.blackList.title
+					black:'黑名单卡',//Eway.locale.monitor.business.blackList.black
+					
+				},
+				cashInit:{
+					titile:'加钞信息查询',//Eway.locale.monitor.business.cashInit.titile
+					uuId:'加钞ID',//Eway.locale.monitor.business.cashInit.uuId
+					date:'加钞日期',//Eway.locale.monitor.business.cashInit.date
+					amt:'加钞金额',//Eway.locale.monitor.business.cashInit.amt
+					info:'加钞详细信息',//Eway.locale.monitor.business.cashInit.info
+					boxId:'钞箱ID',//Eway.locale.monitor.business.cashInit.boxId
+					boxCurrency:'币种',//Eway.locale.monitor.business.cashInit.boxCurrency
+					boxInitAmt:'初始金额',//Eway.locale.monitor.business.cashInit.boxInitAmt
+					lastAmt:'剩余金额',//Eway.locale.monitor.business.cashInit.lastAmt
+				},
+				settlement:{
+					title:'清机信息查询',//Eway.locale.monitor.business.settlement.title
+					deTitle:'清机详细信息',//Eway.locale.monitor.business.settlement.deTitle
+					settleId:'清机ID',//Eway.locale.monitor.business.settlement.settleId
+					uuId:'周期ID',//Eway.locale.monitor.business.settlement.uuId
+					endAmt:'尾箱余额',//Eway.locale.monitor.business.settlement.endAmt
+					endDate:'结帐日期',//Eway.locale.monitor.business.settlement.endDate
+					cimNum:'存款笔数',//Eway.locale.monitor.business.settlement.cimNum
+					cdmNum:'取款笔数',//Eway.locale.monitor.business.settlement.cdmNum
+					totalNum:'交易总笔数',//Eway.locale.monitor.business.settlement.totalNum
+					cimNum:'存款笔数',//Eway.locale.monitor.business.settlement.cimNum
+					leftDate:'结账日期',//Eway.locale.monitor.business.settlement.leftDate
+					cimAmt:'存款金额',//Eway.locale.monitor.business.settlement.cimAmt
+					cdmAmt:'取款金额',//Eway.locale.monitor.business.settlement.cdmAmt
+					tranAmt:'交易总金额',//Eway.locale.monitor.business.settlement.tranAmt
+				},
+				
 			}
+			
 		}
 		
 	}
