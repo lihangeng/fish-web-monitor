@@ -3,7 +3,6 @@ Ext.define('Eway.view.version.distribute.VersionStatusPie', {
     alias: 'widget.versionstatus_pie',
     requires: ['Ext.chart.theme.Muted'],
     width: 450,
-    height:300,
     initComponent: function() {
         var me = this;
         
@@ -29,26 +28,24 @@ Ext.define('Eway.view.version.distribute.VersionStatusPie', {
             store: me.myDataStore,
             insetPadding: 30,
             innerPadding: 20,
+            plugins: {
+                ptype: 'chartitemevents',
+                moveEvents: true,
+                clickEvents: true,
+                dbClickEvents: true
+            },
             legend: {
-                docked: 'left'
+                docked: 'right'
             },
             interactions: ['rotate', 'itemhighlight'],
-//            sprites: [{
-//                type: 'text',
-//                text: '版本下发历史图',
-//                fontSize: 22,
-//                width: 100,
-//                height: 30,
-//                x: 40, // the sprite x position
-//                y: 20  // the sprite y position
-//            }],
+
             series: [{
                 type: 'pie',
                 angleField: 'taskStatusNumber',
                 label: {
                     field: 'taskStatusText',
                     calloutLine: {
-                        length: 60,
+                        length: 20,
                         width: 3
                         // specifying 'color' is also possible here
                     }
@@ -57,7 +54,7 @@ Ext.define('Eway.view.version.distribute.VersionStatusPie', {
                 tooltip: {
                     trackMouse: true,
                     renderer: function(storeItem, item) {
-                        this.setHtml(storeItem.get('taskStatusText') + ': ' + storeItem.get('taskStatusNumber') + '%');
+                        this.setHtml(storeItem.get('taskStatusText') + ': ' + storeItem.get('taskStatusNumber') );
                     }
                 }
             }]

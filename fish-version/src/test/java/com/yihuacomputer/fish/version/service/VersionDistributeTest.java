@@ -19,7 +19,7 @@ import com.yihuacomputer.fish.version.H2TestConfig;
 import com.yihuacomputer.fish.version.MySqlTestConfig;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { MySqlTestConfig.class })
+@ContextConfiguration(classes = { H2TestConfig.class })
 public class VersionDistributeTest {
 
 	@Autowired

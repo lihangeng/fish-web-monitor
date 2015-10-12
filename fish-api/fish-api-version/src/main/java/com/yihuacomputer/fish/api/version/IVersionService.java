@@ -114,6 +114,16 @@ public interface IVersionService {
 	 */
 	public List<VersionStatusDistribute> getVersionStatusDistribute(IFilter filter);
 	
+	
+	/**
+	 * 查看某个版本的历史状态详情
+	 * @param start
+	 * @param limit
+	 * @param filter
+	 * @return
+	 */
+	public IPageResult<VersionDistributeDetail> getVersionStatusDistributeDetail(int start, int limit , IFilter filter);
+	
 	/**
 	 * 更新版本下发次数
 	 * @param versionId

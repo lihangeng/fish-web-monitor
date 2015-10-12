@@ -5,7 +5,8 @@ Ext.define('Eway.view.version.distribute.View', {
 	requires : [ 'Eway.view.version.field.VersionTypeComboBoxAdd',
 			'Eway.view.version.distribute.VersionPie',
 			'Eway.view.version.distribute.FilterForm',
-			'Eway.view.version.distribute.VersionStatusPie' ],
+			'Eway.view.version.distribute.VersionStatusPie',
+			'Eway.view.version.distribute.VersionStatusDetailGrid'],
 
 	title : '版本分布图',
 	initComponent : function() {
@@ -30,7 +31,7 @@ Ext.define('Eway.view.version.distribute.View', {
 					xtype : 'versionstatus_pie'
 				}, {
 					region : 'south',
-					xtype : 'versionstatus_pie'
+					xtype : 'version_distribute_grid'
 				} ]
 		});
 

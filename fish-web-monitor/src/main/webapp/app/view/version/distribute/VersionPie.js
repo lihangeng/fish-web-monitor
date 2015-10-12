@@ -3,7 +3,6 @@ Ext.define('Eway.view.version.distribute.VersionPie', {
     alias: 'widget.version_pie',
     requires: ['Ext.chart.theme.Muted'],
     width: 450,
-    height:200,
     title:'',
     initComponent: function() {
         var me = this;
@@ -38,18 +37,9 @@ Ext.define('Eway.view.version.distribute.VersionPie', {
             },
             
             legend: {
-                docked: 'left'
+                docked: 'right'
             },
             interactions: ['rotate', 'itemhighlight'],
-//            sprites: [{
-//                type: 'text',
-//                text: '版本分布图',
-//                fontSize: 22,
-//                width: 100,
-//                height: 30,
-//                x: 40, // the sprite x position
-//                y: 20  // the sprite y position
-//            }],
             series: [{
                 type: 'pie',
                 angleField: 'versionNoNumber',
@@ -65,7 +55,7 @@ Ext.define('Eway.view.version.distribute.VersionPie', {
                 tooltip: {
                     trackMouse: true,
                     renderer: function(storeItem, item) {
-                        this.setHtml(storeItem.get('versionNo') + ': ' + storeItem.get('versionNoNumber') + '%');
+                        this.setHtml(storeItem.get('versionNo') + ': ' + storeItem.get('versionNoNumber'));
                     }
                 }
             }]

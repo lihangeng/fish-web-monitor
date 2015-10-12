@@ -47,6 +47,7 @@ import com.yihuacomputer.fish.api.version.IVersionTypeService;
 import com.yihuacomputer.fish.api.version.VersionCfg;
 import com.yihuacomputer.fish.api.version.VersionChartsDetailForm;
 import com.yihuacomputer.fish.api.version.VersionDistribute;
+import com.yihuacomputer.fish.api.version.VersionDistributeDetail;
 import com.yihuacomputer.fish.api.version.VersionNo;
 import com.yihuacomputer.fish.api.version.VersionStatus;
 import com.yihuacomputer.fish.api.version.VersionStatusDistribute;
@@ -550,10 +551,19 @@ public class VersionController {
 	
 	@RequestMapping(value = "distributeStatusDetail", method = RequestMethod.GET)
 	@ResponseBody
-	public ModelMap getVersionDistributeStatusDetail(@RequestParam long versionId, WebRequest webRequest, HttpServletRequest request) {
-
+	public ModelMap getVersionDistributeStatusDetail(@RequestParam long versionId,@RequestParam int start,@RequestParam int limit, WebRequest webRequest, HttpServletRequest request) {
+		ModelMap result = new ModelMap();
 		UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
-//		filterVersionDistribute.eq("orgFlag", userSession.getOrgFlag());
-		return null;
+
+		IFilter filter = new Filter();
+		filter.eq("versionId", versionId);
+		filter.eq("orgFlag", userSession.getOrgFlag());
+		filter.eq("taskStatus", request.getParameter("taskStatus"));
+		IPageResult<VersionDistributeDetail> pageResult =  versionService.getVersionStatusDistributeDetail(start, limit, filter);
+
+		result.addAttribute(FishConstant.SUCCESS, true);
+		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
+		result.addAttribute(FishConstant.DATA, pageResult.list());
+		return result;
 	}
 }
