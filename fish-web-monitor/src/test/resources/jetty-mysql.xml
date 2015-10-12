@@ -9,7 +9,7 @@
 				<Set name="driverClassName">com.mysql.jdbc.Driver</Set>
 				<Set name="url">jdbc:mysql://127.0.0.1:3306/atmv</Set>
 				<Set name="username">root</Set>
-				<Set name="password">pass</Set>
+				<Set name="password">root</Set>
 			</New>
 		</Arg>
 	</New>
