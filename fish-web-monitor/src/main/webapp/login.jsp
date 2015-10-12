@@ -1,9 +1,11 @@
 <%@ page contentType="text/html; charset=utf-8"%>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <title><spring:message code="login.title"/></title>
+  <fmt:setLocale value="en_US" scope="session"/>
+  <title><spring:message code="login.title" text=""/></title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
   <link rel="shortcut icon" type="image/ico" href="resources/images/logo.ico" />

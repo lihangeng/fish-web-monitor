@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import com.yihuacomputer.common.util.DateUtils;
@@ -25,6 +26,8 @@ public class FishCfg {
 	public static String fileSep = System.getProperty("file.separator");
 
 	public static String hostIp = "127.0.0.1";
+	
+	public static Locale locale;
 
 	public FishCfg() {
 

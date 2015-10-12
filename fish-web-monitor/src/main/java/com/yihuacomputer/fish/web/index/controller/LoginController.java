@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -57,6 +58,9 @@ public class LoginController {
 
 	@Autowired
 	private LocalSessionFactoryBean sf;
+	
+	@Autowired
+	protected MessageSource messageSource;
 
 	/**
 	 * 登录并验证用户
@@ -144,7 +148,7 @@ public class LoginController {
 		String pwd = MsgDigestAlgorithm.getMD5Str(password);
 		if (!user.getPassword().equals(pwd)) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "您输入的密码错误,请重新输入密码.");
+			result.addAttribute(FishConstant.ERROR_MSG,  messageSource.getMessage("login.pwderror", null, FishCfg.locale));//"您输入的密码错误,请重新输入密码."
 		} else {
 			result.addAttribute(FishConstant.SUCCESS, true);
 		}
