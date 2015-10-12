@@ -4,7 +4,7 @@ Ext.define('Eway.view.version.Update', {
 
 	requires : ['Eway.view.version.field.Desc',
 	            'Eway.view.version.field.VersionComboBox'],
-	title: '更改版本信息',
+	title: Eway.locale.view.version.Update.title,//'更改版本信息'
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -37,7 +37,7 @@ Ext.define('Eway.view.version.Update', {
 				},
 				items: [{
 						xtype:'combobox',
-						fieldLabel : '<font color="red">*</font>版本类型',
+						fieldLabel : '<font color="red">*</font>'+ Eway.locale.view.version.Update.items.items.versionTypeId,//版本类型',
 						name: 'versionTypeId',
 						emptyText : '请选择版本类型',
 						mode : 'remote',
@@ -58,18 +58,18 @@ Ext.define('Eway.view.version.Update', {
 						disabled : true
 				},{
 				   xtype: 'textfield',
-			       fieldLabel : '<font color="red">*</font>版本号',
+			       fieldLabel : '<font color="red">*</font>'+Eway.locale.view.version.Update.items.items.versionNo,//版本号',
 				   name : 'versionNo',
 				   allowBlank: false,
 				   maxLength: 40,
 				   disabled: true
 				}, {
 					xtype:'combobox',
-					fieldLabel : '依赖版本',
+					fieldLabel : Eway.locale.view.version.Update.items.items.dependVersion.fieldLabel,//'依赖版本',
 					name: 'dependVersion',
 					editable  : false,
 					store: comboVersioncStore,
-					emptyText : '请选择依赖类型',
+					emptyText : Eway.locale.view.version.Update.items.items.dependVersion.emptyText,//'请选择依赖类型',
 					mode : 'remote',
 					triggerAction: 'all',
 					valueField : 'id',
@@ -83,13 +83,13 @@ Ext.define('Eway.view.version.Update', {
 					pageSize : 15*/
 				},{
 					   xtype: 'textfield',
-				       fieldLabel : '升级前执行脚本',
+				       fieldLabel : Eway.locale.view.version.Update.items.items.execBefore.fieldLabel,//'升级前执行脚本',
 					   name : 'execBefore',
 					   allowBlank: false,
 					   maxLength: 50,
-					   emptyText:'请输入升级包中的以bat或cmd结尾的文件',
+					   emptyText: Eway.locale.view.version.Update.items.items.execBefore.emptyText,//'请输入升级包中的以bat或cmd结尾的文件',
 					   regex : /^([\w|\W]*)(\.bat|cmd)$/i,
-					   regexText:'只能输入bat或cmd结尾的文件'
+					   regexText:Eway.locale.view.version.Update.items.items.execBefore.regexText//'只能输入bat或cmd结尾的文件'
 				},{
 					xtype:'hidden',
 					name:'dependVersionId'
@@ -98,11 +98,11 @@ Ext.define('Eway.view.version.Update', {
 					maxLength : 100
 				},{
 		            xtype: 'fieldcontainer',
-		            fieldLabel: '其他配置',
+		            fieldLabel: Eway.locale.view.version.Update.items.items.otherConfig.containerTitle,//'其他配置',
 		            defaultType: 'checkboxfield',
 		            items: [
 		                {
-		                    boxLabel  : '允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)',
+		                    boxLabel  : Eway.locale.view.version.Update.items.items.otherConfig.autoDown,//'允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)',
 		                    name      : 'autoDown',
 		                    inputValue: 'true'
 		                }/*, {
@@ -111,7 +111,7 @@ Ext.define('Eway.view.version.Update', {
 		                    checked : false,
 		                    inputValue: 'true'
 		                }*/, {
-		                    boxLabel  : '自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>',
+		                    boxLabel  :  Eway.locale.view.version.Update.items.items.otherConfig.uncompress,//'自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>',
 		                    name      : 'uncompress',
 		                    checked : false,
 		                    inputValue: 'true'
@@ -120,14 +120,14 @@ Ext.define('Eway.view.version.Update', {
 		        }],
 		        buttonAlign : 'center',
 				fbar: [{
-					text: '确认',
+					text: Eway.locale.button.refresh.confirm,//'确认',
 				//	iconCls:'db-save',
 					action:'confirm'
 				},/* {
 					text: '重置',
 					handler: this.onReset
 				},*/ {
-					text: '取消',
+					text: Eway.locale.button.refresh.cancle,//'取消',
 				//	iconCls :'returnBtn',
 					handler: this.onOver
 				}]

@@ -7,7 +7,7 @@ Ext.define('Eway.view.version.View', {
 			'Eway.view.version.FilterForm',
 			'Eway.view.version.VersionInstallInfo' ],
 
-	title : '版本管理',
+	title : Eway.locale.view.version.View.title,//'版本管理'
 	scrollable : true,
 	autoScroll : true,
 	initComponent : function() {

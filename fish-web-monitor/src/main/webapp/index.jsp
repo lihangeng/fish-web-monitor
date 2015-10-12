@@ -70,7 +70,7 @@
 			'<%=userSession.getOrgName()%>',
 			'<%=userSession.getOrgCode()%>');
 		var test_userId = Math.random()+'';
-	<%}%>
+	<%} %>
 
   	</script>
 	<script type="text/javascript">
@@ -84,10 +84,11 @@
 	      });
 	  	Ext.cxtPath = '<%=request.getContextPath()%>';
 	  	var Eway = Eway || {};
+	  	
 		if(Ext.String.startsWith(Ext.global.navigator.language,"zh")){
-			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-zh_CN.js");
-			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN.js");
-			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN3.js");
+			document.write("<script type='text/javascript' src='app/locale/eway-locale-zh_CN.js'></"+"script>");
+			document.write("<script type='text/javascript' src='app/locale/eway-locale-zh_CN3.js'></"+"script>");
+			document.write("<script type='text/javascript' src='app/locale/eway-locale-zh_CN_Version.js'></"+"script>");
 		}else{
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-en.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-en.js");
