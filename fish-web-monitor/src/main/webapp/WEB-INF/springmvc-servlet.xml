@@ -22,21 +22,7 @@
 	http://www.springframework.org/schema/aop 
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 	
-	<!--          
-		<mvc:annotation-driven conversion-service="conversionService" />
-
-		<bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
-			<property name="converters">
-				<list>
-					<bean class="net.bwda.fish.web.resource.convert.IPToString" />
-				</list>
-			</property>
-		</bean>
-		-->
-
 	<!-- 自动搜索@Controller标注的类 -->
-	
-	
 	<context:component-scan base-package="com.yihuacomputer.fish.web.machine.controller">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
@@ -76,9 +62,7 @@
     <context:component-scan base-package="com.yihuacomputer.fish.web.report.controller">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	
- 	<!--context:component-scan base-package="net.bwda.fish.web.resource.json" /-->
-	
+		
 	<bean id="logInterceptor" class="com.yihuacomputer.fish.web.interceptor.UserLogInterceptor"/> 
 	<bean id="timeoutInterceptor" class="com.yihuacomputer.fish.web.interceptor.TimeoutInterceptor" init-method="init"/> 
 	
