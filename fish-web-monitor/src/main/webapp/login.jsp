@@ -7,7 +7,6 @@
   <fmt:setLocale value="en_US" scope="session"/>
   <title><spring:message code="login.title" text=""/></title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
   <link rel="shortcut icon" type="image/ico" href="resources/images/logo.ico" />
   <link rel="stylesheet" type="text/css" href="resources/css/login.css" media="all" />
 
