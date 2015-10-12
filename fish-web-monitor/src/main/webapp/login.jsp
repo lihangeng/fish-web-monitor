@@ -73,8 +73,8 @@
 
 	    function resetValue()
 	    {
-	    	document.getElementsByName("username")[0].value="";
-	    	document.getElementsByName("password")[0].value="";
+	    	form1.username.value="";
+	    	form1.password.value="";
 	    }
 
 	    function imageOn(obj)
@@ -89,9 +89,9 @@
 
 	</script>
 </head>
-
-<body>
 <form name="form1" method="post" action="api/login">
+<body>
+<!-- 
 <div id="wrap" style="visibility:visible;">
 	<div id="top">
 	</div>
@@ -112,8 +112,8 @@
 					<spring:message code="login.password"/><input id="password" type="password" style="width: 155px" value="admin"/>
 					<br/><br/>
 					<div style="position:relative;left:75px;">
-						<img id="loginBtn" src="resources/images/index/login_01.gif" onclick="javascript:return ajax();" style="cursor: pointer;"></img>
-						<img id="cancelBtn" src="resources/images/index/cancel_01.gif" onclick="resetValue();" style="cursor: pointer;"></img>
+						<img id="loginBtn" src="resources/images/index/login.png" onclick="javascript:return ajax();" style="cursor: pointer;"></img>
+						<img id="cancelBtn" src="resources/images/index/cancel.png" onclick="resetValue();" style="cursor: pointer;"></img>
 					</div>
 				</div>
 			</div>
@@ -121,6 +121,27 @@
 	</div>
 	<div id="foot">
 		<center>&copy;<spring:message code="login.footer"/>&nbsp;&nbsp;&nbsp;&nbsp;</center>
+	</div>
+</div> -->
+
+<div id="wrap">
+	
+	<div id="main">
+		<div style="height:40px;top:254px;position:relative;width:500px;left:627px;" >
+				<div id="loginError" class="form-message error" style="display:none"></div>
+		</div>
+		<div style="position:relative;top:255px;left:758px;overflow:hidden;width:300px;height:230px">
+			<input id="username" type="text" style="width:275px;border:0;height:24px;font-size: 20px" />
+			<div id="distance" style="height:50px;overflow:hidden" ></div>
+			<input id="password" type="password" style="width:275px;border:0;height:24px;font-size: 20px"/>
+			<div style="position:relative;left:50px;top:50px">
+				<img id="loginBtn" src="resources/images/index/login.png" onclick="javascript:return ajax();" style="cursor: pointer;"></img>
+				<img id="cancelBtn" src="resources/images/index/cancel.png" onclick="resetValue();" style="cursor: pointer;"></img>
+			</div>
+		</div>
+	</div>
+	<div id="foot">
+		<center style="margin-top: 3px">&copy;深圳市怡化时代科技有限公司&nbsp;&nbsp;&nbsp;&nbsp;建议使用IE 9.0、FireFox、Google 浏览器&nbsp;&nbsp;&nbsp;&nbsp;</center>
 	</div>
 </div>
 
@@ -186,6 +207,6 @@
 		</div>
 	</div>
 </div>
-</form>
 </body>
+</form>
 </html>
