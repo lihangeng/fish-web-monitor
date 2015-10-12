@@ -1,5 +1,5 @@
 Ext.apply(Eway,{
-	yihua:'深圳怡化@@@@@@@@@@@@@',
+	yihua:'深圳怡化XX',
 	addSuccess : '增加成功.XX',
 	updateSuccess : '更改成功.XX',
 	deleteSuccess : '删除成功.XX',
@@ -34,40 +34,55 @@ Ext.apply(Eway,{
 		tip : {
 			search :{
 				warn:'查询条件存在错误项XX.',
-				record:'请选择您要查看的记录.XX@@@@@@@@@@@@@@'
+				record:'请选择您要查看的记录.XX'
 			},
 			update:{
 				one:'只能选择一条记录更改XX.',
-				two:'此条记录不能被更改.@@@@@@@@@@@@'
+				two:'此条记录不能被更改.XX'
 			},
 			remove :{
 				none:'请选择您要删除的记录.XX',
 				one:'只能选择一条记录删除XX',
 				confirm:{
 					title:'请确认XX',
-					info:'是否删除该记录?'
+					info:'是否删除该记录?XX'
 				},
-				error:'删除失败:'
+				error:'删除失败:XX'
 			},
 			own:{
-				have:'有@@@@@@@@@@@@@@@@',
-				nothing:'无'
+				have:'有XX',
+				nothing:'无XX'
 			},
 			right:{
-				yes:'是@@@@@@@@@@@@@@@@@@@@',
-				no:'否'
+				yes:'是XX',
+				no:'否XX'
 			},	
 			success:'成功.XX',
 			fail:'失败:XX',
 			phone:'请输入正确的电话号码XX',
 			remind:'提示XX',
-			displayMessage:'总共：{2}条，显示{0}-{1}',
+			displayMessage:'总共：{2}条，显示{0}-{1}XX',
 			
-			unCertain:'未知@@@@@@@@@@@@',
-			searchOfNoLegal:'查询项中存在不合法的输入,不能提交.',
-			choseExportDevInfo:'请选择要导出信息的设备',
-			nowLink:'正在连接......',
-			linkFailure:'连接失败.'
+			unCertain:'未知XX',
+			searchOfNoLegal:'查询项中存在不合法的输入,不能提交.XX',
+			choseExportDevInfo:'请选择要导出信息的设备XX',
+			nowLink:'正在连接......XX',
+			linkFailure:'连接失败.XX',
+			inputError:'输入有误.XX',
+			numberExist:'此编号已经存在,请重新输入.XX',
+			isConfirmRemove:'删除分组,关联关系也被删除,是否真的要删除指定分组?XX',
+			noGroupInfo:'没有组信息,无法查询.XX',
+			selectAdd:'请选择您要增加的记录.XX',
+			continueAdd:'添加成功,是否继续向组内添加设备?XX',
+			addFail:'添加失败.XX',
+			isRemoveDev:'是否从该组移除该设备?XX',
+			removeFail:'移除失败.XX',
+			selectRemoveGroup:'请选择您要移除的设备所在组.XX',
+			selectRemoveDev:'请选择您要移除的设备.XX',
+			selectMoveDev:'请选择要移动的设备.XX',
+			moveSuc:'移机成功.XX',
+			
+				
 			
 		},
 		vtype:{
@@ -79,22 +94,27 @@ Ext.apply(Eway,{
 			cardNo:'输入错误,银行卡号只能输入16到19位数字。XX',
 			telephone:'输入错误,固定电话号码只能输入8到11位数字。XX',
 			daterange:'日期段不正确.XX',
-			numberrange:'金额范围不正确.',
+			numberrange:'金额范围不正确.XX',
 			//banOrg
 			bankOrgCode:'只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！XX',
 			zip:'只能输入6个‘0-9’的数字！XX',
 			maxLength20:'允许的最大长度为20XX',
 			numberRule: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’和点号‘.’，只能以字母或数字开头。XX',
-			numberRulesOne: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入100位',
-			numberRulesFour	: '由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位',
-			numberRules: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入200位',
+			numberRulesOne: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入100位XX',
+			numberRulesFour	: '由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位XX',
+			numberRules: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入200位XX',
 			
 			
-			mobileRules:'手机电话号码只能输入8到11位数字‘0-9’！@@@@@@',
-			choseDev:'请选择您报停的设备.@@@@@@@@',
-			dataLoad:'正在加载数据......@@@@@@@@@@',
-			devLinkNormal:'请检查与设备的连接是否正常.@@@@@@@@@@@',
-			hardwayInitialize:'硬件模块正在初始化......'
+			mobileRules:'手机电话号码只能输入8到11位数字‘0-9’XX',
+			choseDev:'请选择您报停的设备.XX',
+			dataLoad:'正在加载数据......XX',
+			devLinkNormal:'请检查与设备的连接是否正常.XX',
+			hardwayInitialize:'硬件模块正在初始化......XX',
+			
+			
+			
+				
+				
 			
 		},
 		machine:{
@@ -116,7 +136,7 @@ Ext.apply(Eway,{
 				name:'分类名称XX',
 				note:'备注XX',
 				addTitle:'增加ATM分类信息XX',
-				updateTitle:'更改ATM型号信息'
+				updateTitle:'更改ATM型号信息XX'
 			},
 			atmGroup : {
 				terminalId:'设备号XX',
@@ -541,19 +561,19 @@ Ext.apply(Eway,{
 				maintainPerson:'维护员XX',
 				to:'至XX',
 				range: '范围1－－100年XX',
-				roleDescription:'角色描述',
-				roleName:'角色名称',
+				roleDescription:'角色描述XX',
+				roleName:'角色名称XX',
 
 				
 					
-				devices:'设备@@@@@@@@@@@@@',
-				configuration:'配置信息',
-				spVersion:'SP版本',
-				notSupport:'不支持',
-				drive:'驱动',
-				firmway: '固件',
-				noDevice:'无设备',
-				devTypeInfo: '设备型号信息'
+				devices:'设备XX',
+				configuration:'配置信息XX',
+				spVersion:'SP版本XX',
+				notSupport:'不支持XX',
+				drive:'驱动XX',
+				firmway: '固件XX',
+				noDevice:'无设备XX',
+				devTypeInfo: '设备型号信息XX'
 			},
 			param:{
 				paramKey:'参数XX',
@@ -666,12 +686,12 @@ Ext.apply(Eway,{
 				
 			},
 			organization:{
-				orgPersonInfo:'该机构人员信息',
-				personList:'人员列表',
-				thisOrgPer:'当前机构下人员：',
-				organizationName:'机构名称',
-				email:'邮箱',
-				thisOrgDevPer:'该机构的关联设备和人员',
+				orgPersonInfo:'该机构人员信息XX',
+				personList:'人员列表XX',
+				thisOrgPer:'当前机构下人员：XX',
+				organizationName:'机构名称XX',
+				email:'邮箱XX',
+				thisOrgDevPer:'该机构的关联设备和人员XX',
 				
 			},
 			person:{

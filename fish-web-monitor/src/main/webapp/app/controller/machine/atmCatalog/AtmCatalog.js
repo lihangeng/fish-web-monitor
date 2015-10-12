@@ -117,7 +117,7 @@ Ext.define('Eway.controller.machine.atmCatalog.AtmCatalog', {
 					success : function(response) {
 						var object = Ext.decode(response.responseText);
 						if (object.success == true) {
-							no.markInvalid(Eway.locale.tip.alreadyExist);
+							no.markInvalid(Eway.locale.tip.numberExist);
 						}
 					}
 				});

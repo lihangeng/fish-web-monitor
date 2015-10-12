@@ -182,7 +182,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		var store = this.getEwayView().down('atmGroup_groupGrid').getStore();
 		if(sm.getCount() == 1) {
 			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
-					Eway.locale.tip.remove.confirm.isDeleteGroup,
+					Eway.locale.tip.isConfirmRemove,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
@@ -232,7 +232,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			tubeMachine.on('render', this.renderTubeMachine, this);
 			win.show();
 		} else {
-			Eway.alert(Eway.locale.tip.chooseRecord);
+			Eway.alert(Eway.locale.tip.search.record);
 		}
 	},
 
@@ -263,7 +263,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		var bool = form.isValid();
 		// 查询输入验证
 		if (bool == false) {
-			Eway.alert(Eway.locale.tip.unableCommit);
+			Eway.alert(Eway.locale.tip.searchOfNoLegal);
 			return
 		}
 		var values = form.getValues();
@@ -274,7 +274,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			store.setUrlParam('groupId',groupRecord.data.id);
 			store.loadPage(1);
 		}else {
-			Eway.alert(Eway.locale.tip.unableSearch);
+			Eway.alert(Eway.locale.tip.noGroupInfo);
 		}
 
 	},
@@ -306,7 +306,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 				}
 			});
 		}else {
-			Eway.alert(Eway.locale.tip.selectAddRecord);
+			Eway.alert(Eway.locale.tip.selectAdd);
 		}
 	},
 
@@ -319,7 +319,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		var bool = form.isValid();
 		// 查询输入验证
 		if (bool == false) {
-			Eway.alert(Eway.locale.tip.unableCommit);
+			Eway.alert(Eway.locale.tip.searchOfNoLegal);
 			return
 		}
 		var values = form.getValues();
@@ -398,7 +398,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 				scope:this
 			});
 		}else{
-			Eway.alert(Eway.locale.tip.chooseRecord);
+			Eway.alert(Eway.locale.tip.selectAdd);
 		}
 
 	},
@@ -411,7 +411,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		if(sm.getCount() == 1) {
 			if(groupRecord!=null){
 				Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
-						Eway.locale.tip.isRemoveDev,
+						Eway.locale.tip.removeFail.isRemoveDev,
 						function(button,text) {
 							if(button=="yes"){
 								var record = sm.getLastSelected();

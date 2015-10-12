@@ -61,7 +61,7 @@ Ext.define('Eway.controller.machine.atmMove.AtmMove', {
 			store.setBaseParam('organizationID',ewayUser.getOrgId());
 			store.loadPage(1);
 		}else{
-			Eway.alert(Eway.locale.tip.unableCommit);
+			Eway.alert(Eway.locale.tip.searchOfNoLegal);
 		}
 	},
 
@@ -72,7 +72,7 @@ Ext.define('Eway.controller.machine.atmMove.AtmMove', {
 			store.setUrlParamsByObject(data);
 			store.loadPage(1);
 		}else{
-			Eway.alert(Eway.locale.tip.unableCommit);
+			Eway.alert(Eway.locale.tip.searchOfNoLegal);
 		}
 
 	},
