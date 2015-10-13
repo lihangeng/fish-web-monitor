@@ -50,7 +50,7 @@ Ext.define('Eway.controller.monitor.card.CardDestory', {
 					store.setBaseParam('organizationId', ewayUser.getOrgId());
 					store.loadPage(1);
 				}else{
-					Eway.alert('请正确输入.');
+					Eway.alert(Eway.locale.tip.input);
 				}
 
 			},
@@ -63,7 +63,7 @@ Ext.define('Eway.controller.monitor.card.CardDestory', {
 				var view = this.getEwayView();
 				var viewValues = view.down('form').getForm().getValues();
 				if (sm.getCount() == 1) {
-					Ext.MessageBox.confirm('请确认', '是否销毁这张卡片?', function(button, text) {
+					Ext.MessageBox.confirm(Eway.locale.tip.confirm.title, Eway.locale.tip.business.card.destroyConfirm, function(button, text) {
 								if (button == 'yes') {
 									Ext.Ajax.request({
 										scope : this,
@@ -77,7 +77,7 @@ Ext.define('Eway.controller.monitor.card.CardDestory', {
 										success : function(response) {
 											var object = Ext.decode(response.responseText);
 											if(object.success == true){
-												Eway.alert('销毁成功.');
+												Eway.alert(Eway.locale.tip.business.card.destroySuccess);
 												store.remove(record);
 												store.setUrlParamsByObject(viewValues);
 												store.setBaseParam('organizationId',ewayUser.getOrgId());
@@ -91,7 +91,7 @@ Ext.define('Eway.controller.monitor.card.CardDestory', {
 								}
 							}, this);
 				} else {
-					Eway.alert('请选择要销毁的卡片.');
+					Eway.alert(Eway.locale.tip.business.card.chooseDestroy);
 				}
 			}
 

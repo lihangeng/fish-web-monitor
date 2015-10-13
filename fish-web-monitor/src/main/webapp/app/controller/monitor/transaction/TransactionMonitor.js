@@ -65,7 +65,7 @@ Ext.define('Eway.controller.monitor.transaction.TransactionMonitor', {
 		var ewayView = this.getEwayView();
 		var data = ewayView.down('transactionFilterForm').getForm().getValues();
 		if(data.creditAccount == '' && data.debitAccount == '' && data.terminalId == ''){
-			Eway.alert("设备号、对方账号、客户账号至少输入一个.");
+			Eway.alert(Eway.locale.tip.business.transaction.transactionMonitor.input);
 			return;
 		}
 		var grid = this.getTransactionGrid();
@@ -81,7 +81,7 @@ Ext.define('Eway.controller.monitor.transaction.TransactionMonitor', {
 		this.getEwayView().config.__transactionSub = this.cometd.subscribe("/service/transaction/join", this, this.onReceive);
 
 		this.cometd.publish("/service/transaction/join",{
-			userId : '离开',
+			userId : Eway.locale.tip.business.transaction.transactionMonitor.left,
 			organizationId : ewayUser.getOrgId(),
 			terminalId : data.terminalId,
 			currency : data.currency,

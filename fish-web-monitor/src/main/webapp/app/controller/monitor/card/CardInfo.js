@@ -49,7 +49,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 				var bool = form.isValid();
 				// 查询输入验证
 				if (bool == false) {
-					Eway.alert("查询项中存在不合法的输入,不能导出,");
+					Eway.alert(Eway.locale.tip.searchOfNoLegal);
 					return
 				}
 
@@ -89,7 +89,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 				var store = this.getCardInfoGrid().getStore();
 				if(data.cardRetainTime == ''){
 					var field = form.down('datetimefield');
-					field.setActiveError('不能为空');
+					field.setActiveError(Eway.locale.tip.notNull);
 				}
 				if (bool == true && data.cardRetainTime != '') {
 					record.save({
@@ -123,7 +123,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 					store.setBaseParam('organizationId',ewayUser.getOrgId());
 					store.loadPage(1);
 				}else{
-					Eway.alert('请正确输入.');
+					Eway.alert(Eway.locale.tip.input);
 				}
 
 			},
@@ -147,7 +147,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 						success: function(response){
 							var object = Ext.decode(response.responseText);
 							if(object.success == true){
-								Ext.MessageBox.confirm("请确认", "是否删除该记录?", function(
+								Ext.MessageBox.confirm(Eway.locale.tip.confirm.title, Eway.locale.tip.confirm.info, function(
 									button, text) {
 								if (button == 'yes') {
 									var record = sm.getLastSelected();
