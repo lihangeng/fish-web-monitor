@@ -97,6 +97,7 @@ Ext.override(Eway.locale,{
 			versionFileUploadMsg:'正在上传文件...XX',//Eway.locale.version.View.versionFileUploadMsg
 			versionFileEmpty:'请将要下发的版本文件(或者文件夹)打包zip或rar格式XX',//Eway.locale.version.View.versionFileEmpty
 			versionTypeCode:'软件分类编码XX',//Eway.locale.version.View.versionTypeCode
+			versionTypeName:'软件分类名称XX',//Eway.locale.version.View.versionTypeName
 			versionTypeId:'版本类型IDXX',//Eway.locale.version.View.versionTypeId
 			versionTypeEmpty:'请选择版本类型XX',
 			versionTime:'创建时间XX',//Eway.locale.version.View.versionTime
@@ -214,18 +215,26 @@ Ext.override(Eway.locale,{
 		resourceFormatTips:'(仅支持.jpg、.avi格式的文件)XX',//Eway.locale.advert.resourceFormatTips
 		resourceAlias:'修改后的文件名XX',//Eway.locale.advert.resourceAlias
 		advertDownMethodCover:'覆盖XX',//Eway.locale.advert.advertDownMethodCover
-		uploading:'正在上传资源...',//Eway.locale.advert.uploading
-		advertPreviewTitle0:'广告预览(共有 ',//Eway.locale.advert.advertPreviewTitle0
-		advertPreviewTitle1:'个资源,当前播放第 ',//Eway.locale.advert.advertPreviewTitle1
-		advertPreviewTitle2:'个) ',//Eway.locale.advert.advertPreviewTitle2
+		uploading:'正在上传资源...XX',//Eway.locale.advert.uploading
+		advertPreviewTitle0:'广告预览(共有 XX',//Eway.locale.advert.advertPreviewTitle0
+		advertPreviewTitle1:'个资源,当前播放第 XX',//Eway.locale.advert.advertPreviewTitle1
+		advertPreviewTitle2:'个) XX',//Eway.locale.advert.advertPreviewTitle2
 		
-		choosedAdvertRes:'您已经选择了',//Eway.locale.advert.choosedAdvertRes
+		choosedAdvertRes:'您已经选择了XX',//Eway.locale.advert.choosedAdvertRes
 //		choosed1:'</b>'
 //		您已经选择了 <b>"+ oFileName + "</b>
 //		advert'已下发'
-		perviewAdertWithIEBrowse:'非IE浏览器不支持视频广告的预览.',//Eway.locale.advert.perviewAdertWithIEBrowse
+		perviewAdertWithIEBrowse:'非IE浏览器不支持视频广告的预览.XX',//Eway.locale.advert.perviewAdertWithIEBrowse
 		
 		
 		configTitle:'广告详细配置XX'//Eway.locale.advert.configTitle
+	},
+	versionType:{
+		title:'软件分类管理XX',//Eway.locale.versionType.title
+		defaultInstallPath:'默认安装路径XX',//Eway.locale.versionType.defaultInstallPath
+		needRestart:'需要重启设备完成升级XX',//Eway.locale.versionType.needRestart
+		devTypeOfUser:'适用的设备型号XX',//Eway.locale.versionType.devTypeOfUser
+		
+		versionTypeNameRegText:'只能输入字母(a-z或A-Z)、数字(0-9)、下划线(_)、横线(-)XX'//Eway.locale.versionType.versionTypeNameRegText
 	}
 });
