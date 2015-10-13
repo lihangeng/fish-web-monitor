@@ -5,11 +5,11 @@ Ext.override(Eway.locale,{
 	},
 	//提示对话框模块
 	msg:{
-		
 		perviewFailForText:'预览失败:不支持文字滚动广告和公告的预览.XX',//Eway.locale.msg.perviewFailForText
 		perviewFailNoResource:'预览失败:此广告没有配置广告资源.XX',//Eway.locale.msg.perviewFailNoResource
 		choseResToPerview:'请选择您要预览的广告.XX',//Eway.locale.msg.choseResToPerview
 		chooseAdvert:'请选择一条广告.XX',//Eway.locale.msg.chooseAdvert
+		chooseOneDevice:'"请选择一台设备.XX',//Eway.locale.msg.chooseOneDevice
 		downLoadedAdvertCantDelete:'删除失败:不能删除"已下发"和"等待下发"状态的广告.XX',//Eway.locale.msg.downLoadedAdvertCantDelete
 		chooseAdvertToDelete:'请选择您要删除的广告.XX',//Eway.locale.msg.chooseAdvertToDelete
 		chooseAdvertToDownload:'请选择您要删除的广告.XX',//Eway.locale.msg.chooseAdvertToDownload
@@ -67,7 +67,7 @@ Ext.override(Eway.locale,{
 	},
 	//版本管理模块
 	version:{
-		selectDeviceInfo0:"已选择的设备(<font color='red'>",//Eway.locale.version.selectDeviceInfo0
+		selectDeviceInfo0:"已选择的设备(<font color='red'>XX",//Eway.locale.version.selectDeviceInfo0
 		selectDeviceInfo1:"</font>)台XX",//Eway.locale.version.selectDeviceInfo1
 		addVersionTitle:'增加版本信息XX',//Eway.locale.version.addVersionTitle
 		batchTaskName:'任务批次名称XX',//Eway.locale.version.batchTaskName
@@ -131,6 +131,34 @@ Ext.override(Eway.locale,{
 		},
 		VersionInstallInfo:{
 			title:'版本安装信息统计图XX'
+		},
+		jobPriority:{
+			hight:'高XX',//Eway.locale.version.jobPriority.hight
+			middle:'中等XX',//Eway.locale.version.jobPriority.middle
+			general:'普通XX'//Eway.locale.version.jobPriority.general
+		},
+		jobType:{
+			float:'手工作业(立即下发)XX',//Eway.locale.version.jobType.float
+			fix:'计划作业(定时下发)XX'//Eway.locale.version.jobType.fix
+		},
+		taskStatus:{
+			news:'新建XX',//Eway.locale.version.taskStatus.news
+			running:'运行中XX',//Eway.locale.version.taskStatus.running
+			noticed:'通知成功XX',//Eway.locale.version.taskStatus.noticed
+			noticedFail:'通知失败XX',//Eway.locale.version.taskStatus.noticedFail
+			downloaded:'已下发XX',//Eway.locale.version.taskStatus.downloaded
+			downloadedFail:'下发失败XX',//Eway.locale.version.taskStatus.downloadedFail
+			deployed:'正在部署XX',//Eway.locale.version.taskStatus.deployed
+			deployedWait:'等待部署XX',//Eway.locale.version.taskStatus.deployedWait
+			deployedFail:'部署失败XX',//Eway.locale.version.taskStatus.deployedFail
+			checked:'部署已确认XX',//Eway.locale.version.taskStatus.checked
+			noticeOk:'已通知应用XX',//Eway.locale.version.taskStatus.noticeOk
+			noticeFail:'通知应用失败XX'//Eway.locale.version.taskStatus.noticeFail
+		},
+		versionCatalog:{
+			app:'应用程序XX',//Eway.locale.version.versionCatalog.app
+			agent:'监控代理XX',//Eway.locale.version.versionCatalog.agent
+			param:'应用配置XX'//Eway.locale.version.versionCatalog.param
 		}
 	},
 	//广告模块
@@ -231,10 +259,15 @@ Ext.override(Eway.locale,{
 	},
 	versionType:{
 		title:'软件分类管理XX',//Eway.locale.versionType.title
+		treeRoot:'所有软件分类XX',//Eway.locale.versionType.treeRoot
 		defaultInstallPath:'默认安装路径XX',//Eway.locale.versionType.defaultInstallPath
 		needRestart:'需要重启设备完成升级XX',//Eway.locale.versionType.needRestart
 		devTypeOfUser:'适用的设备型号XX',//Eway.locale.versionType.devTypeOfUser
-		
+		winTitle:'软件分类XX',//Eway.locale.versionType.winTitle
 		versionTypeNameRegText:'只能输入字母(a-z或A-Z)、数字(0-9)、下划线(_)、横线(-)XX'//Eway.locale.versionType.versionTypeNameRegText
+	},
+	statics:{
+		title:'下发结果统计XX',//Eway.locale.statics.title
+		versionInfo:'版本信息XX'//Eway.locale.statics.versionInfo
 	}
 });

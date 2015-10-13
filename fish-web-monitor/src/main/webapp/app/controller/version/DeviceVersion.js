@@ -53,7 +53,7 @@ Ext.define('Eway.controller.version.DeviceVersion', {
 			/*grid.down('pagingtoolbar').on('beforechange',Ext.bind(this.onRefleshPerson,this,[personGrid.down('pagingtoolbar'),record.data.guid]),this);*/
 			win.show();
 		}else{
-			Eway.alert("请选择一台设备.");
+			Eway.alert(Eway.locale.msg.chooseOneDevice);//"请选择一台设备.");
 		}
 	}
 
