@@ -4,7 +4,7 @@ Ext.define('Eway.view.advert.View', {
 
 	requires : [ 'Eway.view.advert.Grid','Eway.view.advert.AdvertConfig', 'Eway.view.advert.FilterForm'/*,'Eway.view.advert.AdvertVersion'*/],
 
-	title : '广告管理',
+	title : Eway.locale.advert.title,//'广告管理',
 	layout : 'border',
 	initComponent : function() {
 		Ext.apply(this, {
@@ -22,7 +22,7 @@ Ext.define('Eway.view.advert.View', {
 					plain:true,
 					split: true,
 					items:	[{
-						title: '广告详细配置',
+						title: Eway.locale.advert.configTitle,//'广告详细配置',
 						xtype:'advert_advertConfig',
 						action:'advertConfig'
 					}/*,{

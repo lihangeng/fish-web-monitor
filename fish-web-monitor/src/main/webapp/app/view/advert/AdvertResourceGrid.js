@@ -13,25 +13,25 @@ Ext.define('Eway.view.advert.AdvertResourceGrid', {
 				action : 'query1'
 			} */],
 			columns : [ {
-				header : '广告播放时长',
+				header : Eway.locale.advert.playTime,//'广告播放时长',
 				dataIndex : 'playTime'
 			},{
-				header: '开始日期',
+				header: Eway.locale.advert.beginDate,//'开始日期',
 				dataIndex : 'beginDate'
 			},{
-				header: '结束日期',
+				header: Eway.locale.advert.endDate,//'结束日期',
 				dataIndex : 'endDate'
 			},{
-				header: '开始时间',
+				header: Eway.locale.advert.beginTime,//'开始时间',
 				dataIndex : 'beginTime'
 			},{
-				header: '结束时间',
+				header: Eway.locale.advert.endTime,//'结束时间',
 				dataIndex : 'endTime'
 			},{
-				header: '资源大小',
+				header: Eway.locale.advert.fileSize,//'资源大小',
 				dataIndex : 'fileSize'
 			},{
-				header: '播放资源内容',
+				header: Eway.locale.advert.content,//'播放资源内容',
 				dataIndex : 'content',
 				flex : 1
 			}]/*,

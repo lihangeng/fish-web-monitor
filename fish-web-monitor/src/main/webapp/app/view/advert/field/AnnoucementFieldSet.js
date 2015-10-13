@@ -4,7 +4,7 @@ Ext.define('Eway.view.advert.field.AnnoucementFieldSet', {
 
 	requires : [ 'Eway.store.Hour', 'Eway.store.Minute' ],
 	checkboxToggle : false,
-	title : '添加公告',
+	title : Eway.locale.advert.annoucementMoreTitle,//'添加公告',
 	collapsed : false,
 	collapsible : true,
 	defaults : {
@@ -39,16 +39,16 @@ Ext.define('Eway.view.advert.field.AnnoucementFieldSet', {
 	initComponent : function() {
 		Ext.apply(this, {
 		    items :[ {
-		    	fieldLabel :'公告内容',
+		    	fieldLabel :Eway.locale.advert.annoucementContext,//'公告内容',
 		    	xtype: 'textarea',
 				name:'content',
 				allowBlank : false,
 				maxLength: 140,
 				regex: /^\S+$/,
-				regexText:'不能包含空格'
+				regexText:Eway.locale.advert.annoucementContextRegText//'不能包含空格'
 		    },{
 		    	xtype: 'fieldcontainer',
-		        fieldLabel: '广告播放时长',
+		        fieldLabel: Eway.locale.advert.playTime,//'广告播放时长',
 		        combineErrors: true,
 		        msgTarget: 'under',
 		        defaults: {
@@ -57,7 +57,7 @@ Ext.define('Eway.view.advert.field.AnnoucementFieldSet', {
 		        items:[{
 		        	xtype:'numberfield',
 		        	hideTrigger:true,
-		        	fieldLabel: '时长',
+		        	fieldLabel: Eway.locale.advert.times,//'时长',
 		        	value: 10,
 		            minValue: 1,
 		            maxValue: 60,
@@ -65,14 +65,14 @@ Ext.define('Eway.view.advert.field.AnnoucementFieldSet', {
 		            width:50
 		        },{
 		        	xtype: 'displayfield',
-		        	value :'单位:秒，提示：广告播放时长请控制在60秒内'
+		        	value :Eway.locale.advert.timesTips//'单位:秒，提示：广告播放时长请控制在60秒内'
 		        }]
 		    }, {
 		    	xtype: 'container',
 		        msgTarget: 'under',
 		        items:[{
 			    	xtype:'datefield',
-			    	fieldLabel: '开始日期',
+			    	fieldLabel: Eway.locale.advert.beginDate,//'开始日期',
 			    	name:'beginDate',
 			    	disabled: false,
 			    	editable: true,
@@ -82,7 +82,7 @@ Ext.define('Eway.view.advert.field.AnnoucementFieldSet', {
 		            width:250
 			    },{
 			    	xtype:'datefield',
-			    	fieldLabel: '结束日期',
+			    	fieldLabel: Eway.locale.advert.endDate,//'结束日期',
 			    	labelAlign :'right',
 			    	name:'endDate',
 			    	disabled: false,
@@ -94,7 +94,7 @@ Ext.define('Eway.view.advert.field.AnnoucementFieldSet', {
 			    }]
 		     },{
 		        xtype: 'fieldcontainer',
-		        fieldLabel: '开始时间',
+		        fieldLabel: Eway.locale.advert.beginTime,//'开始时间',
 		        combineErrors: true,
 		        defaults: {
 		            hideLabel: true
@@ -112,7 +112,7 @@ Ext.define('Eway.view.advert.field.AnnoucementFieldSet', {
 		                name: 'hour',
 		                width:50
 		            },
-		            {xtype: 'displayfield', value: '时'},
+		            {xtype: 'displayfield', value: Eway.locale.advert.hourDisplay},//'时'},
 		            {
 		            	xtype: 'combobox',
 		            	fieldLabel: 'minute',
@@ -123,7 +123,7 @@ Ext.define('Eway.view.advert.field.AnnoucementFieldSet', {
 		                value:'00',
 		                name:'minute',
 		                width:50
-		            }, {xtype: 'displayfield', value: '分'},
+		            }, {xtype: 'displayfield', value: Eway.locale.advert.minuteDisplay},//'分'},
 		            {
 		            	xtype: 'combobox',
 		            	fieldLabel: 'second',
@@ -135,12 +135,12 @@ Ext.define('Eway.view.advert.field.AnnoucementFieldSet', {
 		                name:'second',
 		                width:50
 		            },
-		            {xtype: 'displayfield', value: '秒'}
+		            {xtype: 'displayfield', value: Eway.locale.advert.secondDisplay},//'秒'}
 
 		        ]
 		    },{
 		        xtype: 'fieldcontainer',
-		        fieldLabel: '结束时间',
+		        fieldLabel: Eway.locale.advert.endTime,//'结束时间',
 		        combineErrors: true,
 		        defaults: {
 		            hideLabel: true
@@ -158,7 +158,7 @@ Ext.define('Eway.view.advert.field.AnnoucementFieldSet', {
 		                name:'hour',
 		                width:50
 		            },
-		            {xtype: 'displayfield', value: '时'},
+		            {xtype: 'displayfield', value: Eway.locale.advert.hourDisplay},//'时'}
 		            {
 		            	xtype: 'combobox',
 		            	fieldLabel: 'minute',
@@ -169,7 +169,7 @@ Ext.define('Eway.view.advert.field.AnnoucementFieldSet', {
 		                value:'59',
 		                name:'minute',
 		                width:50
-		            }, {xtype: 'displayfield', value: '分'},
+		            }, {xtype: 'displayfield', value: Eway.locale.advert.minuteDisplay},//'分'}
 		            {
 		            	xtype: 'combobox',
 		            	fieldLabel: 'second',
@@ -181,7 +181,7 @@ Ext.define('Eway.view.advert.field.AnnoucementFieldSet', {
 		                name:'second',
 		                width:50
 		            },
-		            {xtype: 'displayfield', value: '秒'}
+		            {xtype: 'displayfield', value: Eway.locale.advert.secondDisplay},//'秒'}
 		           ]
 		       }]
 		});

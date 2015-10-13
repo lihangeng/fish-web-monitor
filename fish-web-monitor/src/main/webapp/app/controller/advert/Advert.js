@@ -104,7 +104,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			if(record.get("advertType") == 'TEXT' || record.get('advertType') == 'ANNOUNCEMENT'){
-				Eway.alert("预览失败:不支持文字滚动广告和公告的预览.");
+				Eway.alert(Eway.locale.msg.perviewFailForText);//"预览失败:不支持文字滚动广告和公告的预览.");
 			}else{
 				var advertId = record.get('id');
 				Ext.Ajax.request({
@@ -115,7 +115,7 @@ Ext.define('Eway.controller.advert.Advert', {
 					success: function(response){
 						 var images = Ext.decode(response.responseText);
 						 if(Ext.isEmpty(images)){
-						 	Eway.alert("预览失败:此广告没有配置广告资源.");
+						 	Eway.alert(Eway.locale.msg.perviewFailNoResource);//"预览失败:此广告没有配置广告资源.");
 						 }
 						 var vedioCfg = '<OBJECT id=WindowsMediaPlayer1 name="player" height=490 width=700 classid=clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6>'+
 											'<PARAM NAME="URL" VALUE="">'+
@@ -216,7 +216,7 @@ Ext.define('Eway.controller.advert.Advert', {
 				});
 			}
 		}else{
-			Eway.alert("请选择您要预览的广告.");
+			Eway.alert(Eway.locale.msg.choseResToPerview);//"请选择您要预览的广告.");
 		}
 	},
 	//作业详情
@@ -227,7 +227,7 @@ Ext.define('Eway.controller.advert.Advert', {
 			var record = sm.getLastSelected();
 
 		}else{
-			Eway.alert("请选择一条广告.");
+			Eway.alert(Eway.locale.msg.chooseAdvert);//"请选择一条广告.");
 		}
 	},
 	//删除广告
@@ -237,7 +237,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			if(record.get("versionStatus") == '已下发' || record.get("versionStatus") == '等待下发' ){
-				Eway.alert('删除失败:不能删除"已下发"和"等待下发"状态的广告.');
+				Eway.alert(Eway.locale.msg.downLoadedAdvertCantDelete);//'删除失败:不能删除"已下发"和"等待下发"状态的广告.');
 			}else{
 				Ext.MessageBox.confirm("请确认","是否删除该记录?",
 						function(button,text) {
@@ -260,7 +260,7 @@ Ext.define('Eway.controller.advert.Advert', {
 			}
 		}
 		else {
-			Eway.alert("请选择您要删除的广告.");
+			Eway.alert(Eway.locale.msg.chooseAdvertToDelete);//"请选择您要删除的广告.");
 		}
 	},
 
@@ -271,20 +271,20 @@ Ext.define('Eway.controller.advert.Advert', {
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			if(record.get('versionStatus') == '已下发'){
-				Eway.alert('生成版本文件失败:"已下发"状态的广告不能再生成版本信息.');
+				Eway.alert(Eway.locale.msg.generalVersionFailForDownloaded);//'生成版本文件失败:"已下发"状态的广告不能再生成版本信息.');
 			}else{
 				Ext.Ajax.request({
 				    url: 'api/advert/' + record.get("id") + "/generateVersion",
 				    success: function(response){
 				        var text = response.responseText;
-				        Eway.alert("生成版本文件成功.");
+				        Eway.alert(Eway.locale.msg.generalVersionSuccess);//"生成版本文件成功.");
 				     	grid.getStore().load();//刷新列表页面
 				    }
 				});
 			}
 		}
 		else {
-			Eway.alert("请选择一条广告.");
+			Eway.alert(Eway.locale.msg.chooseAdvert);//"请选择一条广告.");
 		}
 	},
 
@@ -477,7 +477,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		var win = Ext.create("Eway.view.advert.AddText");
 		var b1 = win.query('button[action=confirm]')[0];
 		b1.on('click', this.onAddTextConfirm, this);
-		b1.on('doubleClick');
+//		b1.on('doubleClick');
 //		var b3 = win.query('button[action=addMore]')[0];
 //		b3.on('click',this.onAddTextMore,this);
 		var b4 = win.query('form combobox[name=advertValidity]')[0];
@@ -490,7 +490,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		var win = Ext.create("Eway.view.advert.AddTrans");
 		var b1 = win.query('button[action=confirm]')[0];
 		b1.on('click', this.onAddTransConfirm, this);
-		b1.on('doubleClick');
+//		b1.on('doubleClick');
 		var b3 = win.query('button[action=addMore]')[0];
 		b3.on('click',this.onAddTransMore,this);
 		var b4 = win.query('form combobox[name=advertValidity]')[0];
@@ -504,7 +504,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		var win = Ext.create("Eway.view.advert.AddWait");
 		var b1 = win.query('button[action=confirm]')[0];
 		b1.on('click', this.onAddWaitConfirm, this);
-		b1.on('doubleClick');
+//		b1.on('doubleClick');
 		var b3 = win.query('button[action=addMore]')[0];
 		b3.on('click',this.onAddWaitMore,this);
 		var b4 = win.query('form combobox[name=advertValidity]')[0];
@@ -518,7 +518,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		var win = Ext.create("Eway.view.advert.AddAnnoucement");
 		var b1 = win.query('button[action=confirm]')[0];
 		b1.on('click', this.onAddAnnoucementConfirm, this);
-		b1.on('doubleClick');
+//		b1.on('doubleClick');
 		var b2 = win.query('form combobox[name=advertValidity]')[0];
 		b2.on('change',this.onValidityChange,this);
 		win.show();
@@ -632,7 +632,7 @@ Ext.define('Eway.controller.advert.Advert', {
 				Eway.alert("至少包含一个广告资源!");
 			}else {
 				this.doSave(win,fss,data,store,advertType);
-				Ext.getCmp('savaAdvert').setDisabled(true)
+				win.down("toolbar [action ='confirm']").setDisabled(true)
 			}
 		}
 	},
