@@ -17,7 +17,7 @@ Ext.define('Eway.view.monitor.card.CardHandoverWin', {
 			'Ext.ux.form.DateTimeField'
 			],
 
-	title : '移交卡片',
+	title : Eway.locale.monitor.business.card.transferCard,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -55,7 +55,7 @@ Ext.define('Eway.view.monitor.card.CardHandoverWin', {
 									disabled : true
 								}, {
 									xtype: 'datetimefield',
-									fieldLabel: '吞卡时间',
+									fieldLabel: Eway.locale.monitor.business.card.time,
 									format : 'Y-m-d H:i:s',
 									name: 'cardRetainTime',
 									allowBlank : false,
@@ -63,14 +63,14 @@ Ext.define('Eway.view.monitor.card.CardHandoverWin', {
 									
 									
 								}, {
-									fieldLabel: '<font color="red">*</font> 吞卡原因',
+									fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.reason,
 									xtype : 'textarea',
 									grow:true,
 									name : 'reason',
 									allowBlank : false,
 									disabled : true
 								}, {
-									fieldLabel: '<font color="red">*</font> 发卡行',
+									fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.cardHolder,
 									name : 'cardDistributionBank',
 									xtype:'field',
 									allowBlank : false,
@@ -81,9 +81,9 @@ Ext.define('Eway.view.monitor.card.CardHandoverWin', {
 									name : 'orgGuid'
 								}, {
 									xtype : 'common_orgComboOrgTree',
-									fieldLabel : '<font color="red">*</font> 处理机构',
+									fieldLabel : '<font color="red">*</font> '+Eway.locale.monitor.business.card.processOrg,
 									allowBlank : false,
-									emptyText : '--请选择--',
+									emptyText : Eway.locale.combox.select,
 									name : 'orgName',
 									hiddenValue : 'orgGuid',
 									editable : false,
@@ -92,10 +92,10 @@ Ext.define('Eway.view.monitor.card.CardHandoverWin', {
 								}],
 						buttonAlign : 'center',
 						buttons : [{
-									text : '确认',
+									text : Eway.locale.button.confirm,
 									action : 'confirm'
 								}, {
-									text : '取消',
+									text : Eway.locale.button.cancle,
 									handler : this.onOver
 								}]
 					}

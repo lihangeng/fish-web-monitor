@@ -126,8 +126,8 @@ Ext.define('Eway.controller.monitor.business.BlackListCard', {
 				var view = this.getEwayView();
 				var viewValues = view.down('form').getForm().getValues();
 				if(sm.getCount() == 1) {
-					Ext.MessageBox.confirm("请确认",
-							"是否删除该记录?",
+					Ext.MessageBox.confirm(Eway.locale.tip.confirm.title,
+							Eway.locale.tip.confirm.info,
 							function(button,text) {
 								if(button=="yes"){
 									var record = sm.getLastSelected();
@@ -163,7 +163,7 @@ Ext.define('Eway.controller.monitor.business.BlackListCard', {
 				var win = this.win;
 				var importForm = this.getImportWin().down("form").getForm();
 				if(importForm.isValid()){
-					Ext.Msg.wait('正在导入文件');
+					Ext.Msg.wait(Eway.locale.tip.business.blackList.importing);
 					importForm.submit({
 					 	url: 'api/monitor/blacklistcard/import',
 					    success: function(form, action) {
@@ -171,7 +171,7 @@ Ext.define('Eway.controller.monitor.business.BlackListCard', {
 							win.close();
 							var store = this.getGrid().getStore();
 							store.load();
-							Eway.alert("导入黑名单卡文件成功.");
+							Eway.alert(Eway.locale.tip.business.blackList.importSuccess);
 
 					    },
 					    failure: function(form, action) {

@@ -5,7 +5,7 @@ Ext.define('Eway.view.advert.AddWait', {
 
 	requires : [ 'Eway.view.advert.field.WaitResourceFieldSet'],
 
-	title : '增加等待插卡广告信息',
+	title : Eway.locale.advert.addIdleTitle,//'增加等待插卡广告信息',
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -19,7 +19,7 @@ Ext.define('Eway.view.advert.AddWait', {
 		        xtype: 'toolbar',
 		        dock: 'top',
 		        items: [{
-					text : '保存',
+					text : Eway.locale.button.save,//'保存',
 					action : 'confirm',
 					iconCls:'db-save',
 					id : "savaAdvert"
@@ -30,7 +30,7 @@ Ext.define('Eway.view.advert.AddWait', {
 					text : '返回',
 					handler : this.onOver
 				}*/,"->",{
-					text : '再增加一个广告资源',
+					text : Eway.locale.advert.addIdleMore,//'再增加一个广告资源',
 					action : 'addMore',
 					iconCls:'addBtn'
 				}]
@@ -47,7 +47,7 @@ Ext.define('Eway.view.advert.AddWait', {
 				items : [{
 					 	xtype:'fieldset',
 			            checkboxToggle:false,
-			            title: '广告基本信息',
+			            title: Eway.locale.advert.advertBasicInfo,//'广告基本信息',
 			            defaultType: 'combobox',
 			            collapsed: false,
 			            layout: 'anchor',
@@ -57,16 +57,16 @@ Ext.define('Eway.view.advert.AddWait', {
 			            },
 			            items :[{
 			            	xtype: 'displayfield',
-			            	fieldLabel: '广告类型',
+			            	fieldLabel: Eway.locale.advert.type,//'广告类型',
 			            	name : 'advertType',
-			            	value: '等待插卡页面广告'
+			            	value: Eway.locale.advert.idleAdvertInfo//'等待插卡页面广告'
 			            },{
 					    	xtype: 'container',
 					        msgTarget: 'under',
 					        layout:'hbox',
 					        defaultType: 'combobox',
 					        items:[{
-				                fieldLabel: '下发方式',
+				                fieldLabel: Eway.locale.advert.downType,//'下发方式',
 				                displayField: 'display',
 				                store: Ext.StoreMgr.lookup("advert.AdvertDownMethod"),
 				                queryMode: 'local',
@@ -77,7 +77,7 @@ Ext.define('Eway.view.advert.AddWait', {
 				                forceSelection: true,//强制选择一个,不起作用
 				                width:250
 				            },{
-				                fieldLabel: '广告有效期',
+				                fieldLabel: Eway.locale.advert.advertValidity,//'广告有效期',
 				                displayField: 'display',
 				                store: Ext.StoreMgr.lookup("advert.AdvertValidity"),
 				                queryMode: 'local',
@@ -90,7 +90,7 @@ Ext.define('Eway.view.advert.AddWait', {
 			            }]
 				},{
 					xtype:'field_waitResourceFieldSet',
-					title: '等待插卡页面广告资源配置'
+					title: Eway.locale.advert.idleAdvertResConfig//'等待插卡页面广告资源配置'
 				}]/*,
 				buttons : [ {
 					text : '再增加一个广告资源',

@@ -5,7 +5,7 @@ Ext.define('Eway.view.advert.AddText', {
 
 	requires : [ 'Eway.view.advert.field.TextResourceFieldSet'],
 
-	title : '增加文字滚动广告信息',
+	title : Eway.locale.advert.addTextTitle,//'增加文字滚动广告信息',
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -21,7 +21,7 @@ Ext.define('Eway.view.advert.AddText', {
 		        dock: 'top',
 //		        ui: 'footer',
 		        items: [{
-					text : '保存',
+					text : Eway.locale.button.save,//'保存',
 					action : 'confirm',
 					id : "savaAdvert",
 					iconCls:'db-save'
@@ -48,7 +48,7 @@ Ext.define('Eway.view.advert.AddText', {
 				items : [{
 					 	xtype:'fieldset',
 			            checkboxToggle:false,
-			            title: '广告基本信息',
+			            title: Eway.locale.advert.advertBasicInfo,//'广告基本信息',
 			            defaultType: 'combobox',
 			            collapsed: false,
 			            layout: 'anchor',
@@ -58,16 +58,16 @@ Ext.define('Eway.view.advert.AddText', {
 			            },
 			            items :[{
 			            	xtype: 'displayfield',
-			            	fieldLabel: '广告类型',
+			            	fieldLabel:  Eway.locale.advert.type,//'广告类型',
 			            	name : 'advertType',
-			            	value: '文字滚动广告'
+			            	value: Eway.locale.advert.textInfoAdvert//'文字滚动广告'
 			            },{
 					    	xtype: 'container',
 					        msgTarget: 'under',
 					        layout:'hbox',
 					        defaultType: 'combobox',
 					        items:[{
-				                fieldLabel: '下发方式',
+				                fieldLabel: Eway.locale.advert.downType,//'下发方式',
 				                displayField: 'display',
 				                store: Ext.StoreMgr.lookup("advert.AdvertDownMethod"),
 				                queryMode: 'local',
@@ -78,7 +78,7 @@ Ext.define('Eway.view.advert.AddText', {
 				                forceSelection: true,//强制选择一个,不起作用
 				                width:250
 				            },{
-				                fieldLabel: '广告有效期',
+				                fieldLabel:  Eway.locale.advert.advertValidity,//'广告有效期',
 				                displayField: 'display',
 				                store: Ext.StoreMgr.lookup("advert.AdvertValidity"),
 				                queryMode: 'local',
@@ -91,7 +91,7 @@ Ext.define('Eway.view.advert.AddText', {
 			            }]
 				},{
 					xtype:'field_textResourceFieldSet',
-					title: '文字滚动广告资源配置'
+					title: Eway.locale.advert.textAdvertResConfig//'文字滚动广告资源配置'
 				}]
 			}
 		});

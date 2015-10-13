@@ -171,7 +171,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		var menu = Ext.create("Ext.menu.Menu",{
 			 		floating : true,
                     items : [{
-                    		text:'远程抓屏',
+                    		text:Eway.locale.monitor.devMonitor.remote.screen,
                     		code : 'remoteScreen',
 							listeners:{
 								'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender,
@@ -198,7 +198,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 											modal: true,
 											height: 450,
 										    width: 500,
-										    title : '远程抓屏浏览',
+										    title : Eway.locale.monitor.devMonitor.remote.screen,
 										    autoScroll : true,
 										    maximizable: true,
 										    items:[{
@@ -224,12 +224,12 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
                         		scope : this
                         	}
                     	},{
-                    		text:'提取日志',
+                    		text:Eway.locale.monitor.devMonitor.remote.log,
                     		code : 'takeLog',
 							listeners:{
 								'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender,
                         		'click' : function(){
-									winEl.mask('正在连接......');
+									winEl.mask(Eway.locale.tip.nowLink);
 									Ext.Ajax.request({
 										method : 'POST',
 										url : 'api/agent/downLogs/download',
@@ -241,8 +241,8 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 											var object = Ext.decode(response.responseText);
 											if (object.success == true) {
 												winEl.unmask();
-												Ext.MessageBox.confirm('提示',
-													'应用日志提取成功,是否下载?', function(button, text) {
+												Ext.MessageBox.confirm(Eway.locale.tip.tips,
+														Eway.locale.tip.business.device.logLoadConfirm, function(button, text) {
 														if (button == "yes") {
 															var url = 'api/agent/downLogs/downloadFile?path=' + object.path + '&fileName=' + object.fileName;
 															var iframe = document.getElementById('downloadFileFromWeb');
@@ -252,16 +252,16 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 											} else {
 												winEl.unmask();
 												if(undefined==object.errors||''==object.errors){
-													Eway.alert('提取应用电子日志失败.');
+													Eway.alert(Eway.locale.tip.business.device.logFail);
 												}
 												else{
-													Eway.alert('提取应用电子日志失败:' + object.errors);
+													Eway.alert(Eway.locale.tip.business.device.logFail + object.errors);
 												}
 											}
 										},
 										failure : function() {
 											winEl.unmask();
-											Eway.alert('log处理失败.');
+											Eway.alert(Eway.locale.tip.business.device.logFail);
 										}
 									});
                         		},
@@ -269,7 +269,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
                         		scope : this
                         	}
                     	},{
-                        	text : "远程浏览",
+                        	text : Eway.locale.monitor.devMonitor.remote.remoteBrowser,
                         	code : 'remoteBrowser',
 							listeners:{
 								'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender,
@@ -281,21 +281,21 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
                         		scope : this
                         	}
                     	},{
-                    		text :'重新启动',
+                    		text :Eway.locale.monitor.devMonitor.remote.restart,
                     		code : 'restart',
                     		listeners:{
                     			'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender,
                     			'click' : function(){
 	                    			var dialog = Ext.create('Ext.window.MessageBox', {
 						            buttons: [{
-						                text: '正常重启',
+						                text: Eway.locale.tip.business.device.reboot,
 						                iconCls: 'icon-add',
 						                handler: function() {
-						                	Ext.MessageBox.confirm('提示','确认要执行正常重启命令么,可能会存在风险?',callBack);
+						                	Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.rebootConfirm,callBack);
 						                	function callBack(id){
 						                		if(id == 'yes'){
 								            		dialog.close();
-													winEl.mask('正在执行正常重启');
+													winEl.mask(Eway.locale.tip.business.device.rebooting);
 													Ext.Ajax.request({
 														method : 'POST',
 														url : 'api/agent/normalReboot',
@@ -308,29 +308,29 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 															var object = Ext.decode(response.responseText);
 															if (object.appRet == 00) {
 																winEl.unmask();
-																Eway.alert("正常重启成功.");
+																Eway.alert(Eway.locale.tip.business.device.rebootSucess);
 															} else {
 																winEl.unmask();
-																Eway.alert("正常重启失败.");
+																Eway.alert(Eway.locale.tip.business.device.rebootFail);
 															}
 														},
 														failure: function(){
 															winEl.unmask();
-															Eway.alert("正常重启命令发送失败.");
+															Eway.alert(Eway.locale.tip.business.device.rebootSendFail);
 														}
 													})
 						                		}
 						                	}
 						            	}
 						            },{
-						            	text: '强制重启',
+						            	text: Eway.locale.tip.business.device.forceReboot,
 						            	iconCls: 'icon-add',
 						            	handler: function(){
-						            		Ext.MessageBox.confirm('提示','确认要执行强制重启命令么,可能会存在严重风险?',callBack);
+						            		Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.forceRebootConfirm,callBack);
 						            		function callBack(id){
 						            			if(id == 'yes'){
 						            				dialog.close();
-													winEl.mask('正在执行强制重启');
+													winEl.mask(Eway.locale.tip.business.device.forceRebooting);
 													Ext.Ajax.request({
 														method : 'POST',
 														url : 'api/agent/reboot',
@@ -343,22 +343,22 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 															var object = Ext.decode(response.responseText);
 															if (object.appRet == 00) {
 																winEl.unmask();
-																Eway.alert("强制重启成功.");
+																Eway.alert(Eway.locale.tip.business.device.forceRebootSuccess);
 															} else {
 																winEl.unmask();
-																Eway.alert("强制重启失败.");
+																Eway.alert(Eway.locale.tip.business.device.forceRebootFail);
 															}
 														},
 														failure: function(){
 															winEl.unmask();
-															Eway.alert("强制重启命令发送失败.");
+															Eway.alert(Eway.locale.tip.business.device.forceRebootSendFail);
 														}
 													})
 						            			}
 						            		}
 						            	}
 						            },{
-						            	text: '返回',
+						            	text: Eway.locale.button.back,
 						            	iconCls: 'icon-add',
 						            	handler: function(){
 						            		dialog.close();
@@ -367,8 +367,8 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 						        });
 
 						        dialog.show({
-						            title: '重启',
-						            msg: '请选择重启方式',
+						            title: Eway.locale.monitor.devMonitor.remote.restart,
+						            msg: Eway.locale.monitor.devMonitor.remote.restartWay,
 						            icon: Ext.MessageBox.WARNING
 						        });
 
@@ -378,7 +378,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 
                     		}
                     	},{
-                    		text: '查看进程',
+                    		text: Eway.locale.monitor.devMonitor.remote.processList,
                     		listeners:{
                         		click : function(){
 									var controller = this.getController('agent.remote.RemoteBrowseProcess');
@@ -415,12 +415,12 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		btn.setDisabled(true);
 		var text = "";
 		if (monitor) {
-			text = "开始";
+			text = Eway.locale.monitor.business.transaction.transactionMonitor.begin;
 			btn.glyph = 0xf04b;
 			view.config.monitor = false;
 			this.getEwayView().closeMatrixMonitor();
 		} else {
-			text = "停止";
+			text = Eway.locale.monitor.business.transaction.transactionMonitor.stop;
 			btn.glyph = 0xf04c;
 			view.config.monitor = true;
 			var ewayView = this.getEwayView();
@@ -462,7 +462,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				action : 'monitor_decice_reginConfig'
 			});
 		}
-		win.setTitle('机构筛选');
+		win.setTitle(Eway.locale.tip.business.device.chooseOrg);
 		win.display(treepanel,button);
 	},
 
@@ -576,7 +576,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				}
 			});
 		}
-		win.setTitle('状态监控项配置');
+		win.setTitle(Eway.locale.tip.business.device.stateSet);
 		win.display(panel,button);
 	},
 
@@ -611,7 +611,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				}
 			});
 		}
-		win.setTitle('过滤条件项配置');
+		win.setTitle(Eway.locale.tip.business.device.filterSet);
 		win.height = 240;
 		win.width =400;
 		win.display(panel,button);
@@ -660,8 +660,8 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 	_reload : function(params){
 		var view = this.getEwayView();
 		var button = view.down('button[action="monitorOK"]');
-		if(button.getText() == '开始'){
-			Eway.alert('当前已经暂停了与服务器的监控连接,请先与服务器建立连接,即"开始监控"');
+		if(button.getText() == Eway.locale.commen.begin){
+			Eway.alert(Eway.locale.tip.business.device.connFirst);
 			return;
 		}
 		var card = view.down('#card_itemId');
@@ -686,11 +686,11 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		currentPanel = layout.getActiveItem();
 		itemId = currentPanel.itemId;
 		if(itemId == 'list'){
-			button.setText('矩阵方式');
+			button.setText(Eway.locale.tip.business.device.matrixPattern);
 			button.setIconCls('matrixPattern');
 		}
 		else if(itemId == 'dataview'){
-			button.setText('列表方式');
+			button.setText(Eway.locale.tip.business.device.listPattern);
 			button.setIconCls('listPattern');
 		}
 		var view = this.getEwayView();
@@ -746,7 +746,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		var controller = this.getController('monitor.device.DeviceBox');
 		var view = this.getEwayView();
 		var winEl = view.getEl();
-		winEl.mask('正在连接');
+		winEl.mask(Eway.locale.tip.nowLink);
 		deviceBoxModel.load(ip, {
 			success : function(record) {
 				winEl.unmask();
@@ -755,7 +755,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			},
 			failure: function(){
 				winEl.unmask();
-				Eway.alert('获取钞箱信息失败.');
+				Eway.alert(Eway.locale.tip.business.device.getCashInfoFail);
 			}
 		});
 	}

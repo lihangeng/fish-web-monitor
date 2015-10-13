@@ -2,7 +2,7 @@ Ext.define('Eway.view.monitor.business.AddBlackListCard', {
 			extend : 'Ext.window.Window',
 			alias : 'widget.business_AddBlackListCard',
 
-			title : '添加黑名单卡',
+			title : Eway.locale.monitor.business.blackList.addBlack,
 			modal : true,
 			resizable : false,
 			constrainHeader : true,
@@ -22,37 +22,37 @@ Ext.define('Eway.view.monitor.business.AddBlackListCard', {
 								},
 								items : [{
 											xtype:'textfield',
-											fieldLabel : '<font color="red">*</font> 交易卡号',
+											fieldLabel : '<font color="red">*</font> '+Eway.locale.monitor.business.transaction.card,
 											width : 300,
 											allowBlank: false, 
 											name :'cardNo',
 											regex: /^[0-9]{13,19}$/,
-											regexText:'只能输入13到19个数字！'
+											regexText:Eway.locale.tip.cardNo
 										},{
 											xtype:'textfield',
-											fieldLabel : '<font color="red">*</font> 用户姓名',
+											fieldLabel : '<font color="red">*</font> '+Eway.locale.monitor.business.transaction.userName,
 											width : 300,
 											allowBlank: false, 
 											regex : /^[^\s]+.*$/, // 不能以空格开头和全是空格
 											name :'userName',
 											maxLength : 20,
-											regexText:'不能以空格开头！'
+											regexText:Eway.locale.tip.blankBegin
 										},{
 											xtype:'textfield',
-											fieldLabel : '<font color="red">*</font> 所属银行',
+											fieldLabel : '<font color="red">*</font> '+Eway.locale.monitor.business.blackList.cardBank,
 											width : 300,
 											allowBlank: false,
 											regex : /^[^\s]+.*$/, // 不能以空格开头和全是空格
 											name :'organization',
 											maxLength : 60,
-											regexText:'不能以空格开头！'
+											regexText:Eway.locale.tip.blankBegin
 										}],
 										buttonAlign : 'center',
 										buttons : [{
-													text : '确认',
+													text : Eway.locale.button.confirm,
 													action : 'add'
 												}, {
-													text : '取消',
+													text : Eway.locale.button.cancle,
 													handler : this.onOver
 												}]
 							}

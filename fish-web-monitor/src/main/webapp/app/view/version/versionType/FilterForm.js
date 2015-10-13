@@ -11,14 +11,14 @@ Ext.define('Eway.view.version.versionType.FilterForm',{
 				columnWidth:.3,
 				items : [{
 					xtype : 'textfield',
-					fieldLabel : '软件分类编码',
+					fieldLabel : Eway.locale.version.View.versionTypeCode,//'软件分类编码',
 					name : 'typeName'
 				}]
 			},{
 				columnWidth:.3,
 				items : [{
 					xtype : 'textfield',
-					fieldLabel : '软件分类名称',
+					fieldLabel : Eway.locale.version.View.versionTypeName,//'软件分类名称',
 					name : 'desc'
 				}]
 			}]

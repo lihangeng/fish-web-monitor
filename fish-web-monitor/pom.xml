@@ -22,6 +22,7 @@
 			<artifactId>fish-monitor</artifactId>
 			<version>${fish-monitor.version}</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-version</artifactId>
