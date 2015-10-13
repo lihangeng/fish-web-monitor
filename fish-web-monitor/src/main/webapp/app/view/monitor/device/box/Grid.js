@@ -18,14 +18,14 @@ Ext.define('Eway.view.monitor.device.box.Grid', {
 				header : Eway.locale.monitor.devMonitor.cash.initialCount,
 				dataIndex : 'initialCount'
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.initialCount,
+				header : Eway.locale.monitor.devMonitor.cash.cashInCount,
 				dataIndex : 'cashInCount'
 			}, {
 				header : Eway.locale.monitor.devMonitor.cash.currentCount,
 				dataIndex : 'currentCount',
 				width:120
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.currentCount,
+				header : Eway.locale.monitor.devMonitor.cash.noteValue,
 				dataIndex : 'noteValue'
 			}, {
 				header : Eway.locale.monitor.devMonitor.cash.currency,

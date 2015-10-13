@@ -192,7 +192,7 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 				success : function(response) {
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
-						Eway.alert(Eway.locale.tip.business.card.chooseBack);
+						Eway.alert(Eway.locale.tip.business.card.getSuccess);
 						var win = Ext.ComponentQuery.query('card_ReceiveCardWin')[0];
 						win.close();
 						store.remove(record);

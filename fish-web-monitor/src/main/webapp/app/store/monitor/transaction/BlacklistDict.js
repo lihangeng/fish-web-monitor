@@ -5,6 +5,6 @@ Ext.define('Eway.store.monitor.transaction.BlacklistDict', {
 	model: 'Eway.model.Dict',
 	
 	data: [ 
-			{value:'1', display:'是'}, 
-	       {value:'2', display:'否'}]
+			{value:'1', display:Eway.locale.commen.yes}, 
+	       {value:'2', display:Eway.locale.commen.no}]
 });

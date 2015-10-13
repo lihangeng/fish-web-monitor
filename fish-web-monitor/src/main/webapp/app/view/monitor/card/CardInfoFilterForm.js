@@ -44,7 +44,7 @@ Ext.define('Eway.view.monitor.card.CardInfoFilterForm', {
 				}
 				return validStatus;
 			},
-			cardInfoDateRangeText : '吞卡起始时间不能大于吞卡截止日期,请重新选择'
+			cardInfoDateRangeText : Eway.locale.vtype.endDateGtBenginDate
 		});
 		Ext.apply(this, {
 			items : [{
@@ -66,7 +66,7 @@ Ext.define('Eway.view.monitor.card.CardInfoFilterForm', {
 									xtype : 'common_orgComboOrgTree',
 									fieldLabel : Eway.locale.commen.orgNameBelongs,
 									labelAlign : 'right',
-									emptyText : '--请选择--',
+									emptyText : Eway.locale.combox.select,
 									name : 'orgName',
 									hiddenValue : 'orgId',
 									editable : false,
@@ -79,7 +79,7 @@ Ext.define('Eway.view.monitor.card.CardInfoFilterForm', {
 								},{
 									xtype : 'card_AccountNo',
 									regex: /^\d{13,19}$/,
-									regexText: '只能输入数字,13-19位',
+									regexText: Eway.locale.tip.cardNo,
 									msgTarget : 'side',
 									labelAlign : 'right'
 								}]
@@ -90,7 +90,7 @@ Ext.define('Eway.view.monitor.card.CardInfoFilterForm', {
 									labelAlign : 'right'
 								}, {
 									xtype: 'datetimefield',
-									fieldLabel : '开始时间',
+									fieldLabel : Eway.locale.monitor.business.card.beginTime,
 									editable:false,
 									name: 'startData',
 									format: 'Y-m-d H:i:s',
@@ -121,7 +121,7 @@ Ext.define('Eway.view.monitor.card.CardInfoFilterForm', {
 									labelAlign : 'right'
 								}, {
 									xtype: 'datetimefield',
-									fieldLabel : '结束时间',
+									fieldLabel : Eway.locale.monitor.business.card.endTime,
 									editable:false,
 									name: 'endData',
 									format: 'Y-m-d H:i:s',

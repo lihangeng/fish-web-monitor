@@ -2,7 +2,7 @@ Ext.define('Eway.view.monitor.business.ImportBlackListCard', {
 			extend : 'Ext.window.Window',
 			alias : 'widget.business_ImportBlackListCard',
 
-			title : '批量导入黑名单卡',
+			title : Eway.locale.monitor.business.blackList.importTitle,
 			modal : true,
 			resizable : false,
 			constrainHeader : true,
@@ -22,25 +22,25 @@ Ext.define('Eway.view.monitor.business.ImportBlackListCard', {
 								},
 								items : [{
 											xtype:'filefield',
-											buttonText : '浏览...',
-											fieldLabel : '导入文件',
-											emptyText:'请选择导入文件,只支持.xls和.xlsx格式的文件',
+											buttonText : Eway.locale.version.View.versionFileButton,
+											fieldLabel : Eway.locale.monitor.business.blackList.importFile,
+											emptyText:Eway.locale.monitor.business.blackList.chooseFileRegex,
 											width : 400,
 											allowBlank: false, 
 											name :'file',
 											regex : /^([\w|\W]*)(\.xlsx)|([\w|\W]*)(\.xls)$/,
-											regexText:'只能导入.xls格式和.xlsx格式的文件'
+											regexText:Eway.locale.monitor.business.blackList.fileRegex
 										}],
 								buttons : [{
-											text : '模版下载',
+											text : Eway.locale.monitor.business.blackList.tempDownload,
 											iconCls :'sureBtn',
 											action: 'down'
 										}, {
-											text : '导入',
+											text : Eway.locale.monitor.business.blackList.importNow,
 											iconCls :'sureBtn',
 											action: 'import'
 										}, {
-											text : '返回',
+											text : Eway.locale.button.back,
 											iconCls :'returnBtn',
 											handler : this.onOver
 										}]
