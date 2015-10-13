@@ -150,7 +150,7 @@ public class DeviceVersionController {
 
     private String getAppVersion(IDevice device){
         IFilter filter = new Filter();
-        filter.eq("terminalId", device.getTerminalId());
+        filter.eq("deviceId", device.getId());
         List<IDeviceSoftVersion> versions = dsvService.list(filter);
         for(IDeviceSoftVersion dsv : versions){
             if(dsv.getTypeName().equalsIgnoreCase("gump-professional")){

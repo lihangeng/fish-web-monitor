@@ -151,7 +151,8 @@ Ext.define('Eway.controller.advert.Advert', {
 						 var len = images.length;
 						 var stoped = false;
 						 var win = Ext.create('Ext.window.Window',{
-							title:'广告预览(共有 '+ len +' 个资源,当前播放第 ',
+							title:Eway.locale.advert.advertPreviewTitle0+len+Eway.locale.advert.advertPreviewTitle1,
+//							title:'广告预览(共有 '+ len +' 个资源,当前播放第 ',
 							width: 705,
 							height: document.body.clientHeight < 525 ? document.body.clientHeight: 525,
 							layout : 'fit',
@@ -188,7 +189,7 @@ Ext.define('Eway.controller.advert.Advert', {
 										if(Ext.isIE){
 											v.URL = currentPic.picName;
 										}else{
-											divVedio.innerHTML = '<font color="red">非IE浏览器不支持视频广告的预览.</font>';
+											divVedio.innerHTML = '<font color="red">'+Eway.locale.advert.perviewAdertWithIEBrowse+'</font>';//非IE浏览器不支持视频广告的预览.
 										}
 									}else{
 										divVedio.style.display = "none";
@@ -196,7 +197,7 @@ Ext.define('Eway.controller.advert.Advert', {
 										img.src = currentPic.picName;
 									}
 
-								   	win.setTitle(title + (i+1) +" 个)");
+								   	win.setTitle(title + (i+1) +Eway.locale.advert.advertPreviewTitle1);//" 个)");
 								   	time = currentPic.playTime * 1000;
 									i ++
 								}
@@ -236,10 +237,12 @@ Ext.define('Eway.controller.advert.Advert', {
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
-			if(record.get("versionStatus") == '已下发' || record.get("versionStatus") == '等待下发' ){
+			Eway.locale.version.View.downLoaded
+			if(record.get("versionStatus") == Eway.locale.version.View.downLoaded || record.get("versionStatus") == Eway.locale.version.View.waitting ){
+//				if(record.get("versionStatus") == '已下发' || record.get("versionStatus") == '等待下发' ){
 				Eway.alert(Eway.locale.msg.downLoadedAdvertCantDelete);//'删除失败:不能删除"已下发"和"等待下发"状态的广告.');
 			}else{
-				Ext.MessageBox.confirm("请确认","是否删除该记录?",
+				Ext.MessageBox.confirm(Eway.locale.confirm.titleSure,Eway.locale.confirm.todoDelete,//"请确认","是否删除该记录?",
 						function(button,text) {
 							if(button=="yes"){
 								record.erase({
@@ -270,7 +273,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
-			if(record.get('versionStatus') == '已下发'){
+			if(record.get('versionStatus') == Eway.locale.version.View.downLoaded){//'已下发'){
 				Eway.alert(Eway.locale.msg.generalVersionFailForDownloaded);//'生成版本文件失败:"已下发"状态的广告不能再生成版本信息.');
 			}else{
 				Ext.Ajax.request({
@@ -366,11 +369,11 @@ Ext.define('Eway.controller.advert.Advert', {
 
 				win.show();
 			}else{
-				Eway.alert("下发版本文件失败:还没有生成版本文件或者版本文件丢失,请先生成版本文件.");
+				Eway.alert(Eway.locale.msg.downloadFailForNoVersion);//"下发版本文件失败:还没有生成版本文件或者版本文件丢失,请先生成版本文件.");
 			}
 		}
 		else {
-			Eway.alert("请选择您要下发的广告.");
+			Eway.alert(Eway.locale.msg.chooseAdvertToDownload);//"请选择您要下发的广告.");
 		}
 	},
 
@@ -427,7 +430,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		if(addForm.isValid()){
 			var deviceIdsField = addForm.findField("deviceIds");
 			if(Ext.isEmpty(deviceIdsField.value)){
-				Eway.alert("请选择设备.");
+				Eway.alert(Eway.locale.msg.chooseDevice);//"请选择设备.");
 				btn.enable();
 			}else{
 				record.set("deviceIds",deviceIdsField.value);
@@ -436,12 +439,14 @@ Ext.define('Eway.controller.advert.Advert', {
 					 	deviceIdsField.setValue("");
 					 	var linkedGrid = win.down('version_download_linkedDeviceGrid');
 						linkedGrid.getStore().removeAll();//清空已选择的设备列表
-						linkedGrid.setTitle("已选择的设备(<font color='red'>0</font>)台");
+						Eway.locale.version.selectDeviceInfo0
+						linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo0+0+Eway.locale.version.selectDeviceInfo1);
+//						linkedGrid.setTitle("已选择的设备(<font color='red'>0</font>)台");
 					 	//保存成功后刷新下发设备列表
-					 	Eway.alert('保存成功！');
+					 	Eway.alert(Eway.locale.msg.saveSuccess);//'保存成功！');
 						win.close();
-						Ext.MessageBox.confirm('提示',
-							'作业保存成功,是否跳转到"分发监控"页面?',this.goToVersionDownloadPage,this);
+						Ext.MessageBox.confirm(Eway.locale.confirm.title,//'提示',作业保存成功,是否跳转到"分发监控"页面?
+								Eway.locale.confirm.withoutNumTaskConfirmInfo,this.goToVersionDownloadPage,this);
 					 },
 					 failure: function(ed){
 						 btn.enable();
@@ -528,7 +533,7 @@ Ext.define('Eway.controller.advert.Advert', {
 	onAddTransMore: function(){
 		var form = this.getAddTransWin().down('form');
 		var fs = Ext.create('Eway.view.advert.field.TransResourceFieldSet',{
-			title:"交易页面广告资源配置"
+			title:Eway.locale.advert.transAdvertResConfig//"交易页面广告资源配置"
 		});
 		this.onAddMore(form,fs);
 	},
@@ -537,7 +542,7 @@ Ext.define('Eway.controller.advert.Advert', {
 	onAddWaitMore: function(){
 		var form = this.getAddWaitWin().down('form');
 		var fs = Ext.create('Eway.view.advert.field.WaitResourceFieldSet',{
-			title:"等待插卡广告资源配置"
+			title:Eway.locale.advert.idleAdvertResConfig//"等待插卡广告资源配置"
 		});
 		this.onAddMore(form,fs);
 	},
@@ -545,7 +550,7 @@ Ext.define('Eway.controller.advert.Advert', {
 	onAddTextMore: function(){
 		var form = this.getAddTextWin().down('form');
 		var fs = Ext.create('Eway.view.advert.field.TextResourceFieldSet',{
-			title:"文字滚动广告资源配置"
+			title:Eway.locale.advert.textAdvertResConfig//"文字滚动广告资源配置"
 		});
 		this.onAddMore(form,fs);
 	},
@@ -569,23 +574,24 @@ Ext.define('Eway.controller.advert.Advert', {
 		if(!Ext.isEmpty(value)){
 			form.submit({
 				 	url: 'api/advert/uploadRes',
-				 	waitMsg: '正在上传资源...',
+				 	waitMsg: Eway.locale.advert.uploading,//'正在上传资源...',
 				    success: function(form, action) {
 				    	var oFileName = action.result.oFileName;
-				    	form.findField("oFileName").setValue("您已经选择了 <b>"+ oFileName + "</b>");
+//				    	form.findField("oFileName").setValue("您已经选择了 <b>"+ oFileName + "</b>");
+				    	form.findField("oFileName").setValue(Eway.locale.advert.choosedAdvertRes+" <b>"+ oFileName + "</b>");
 				    	form.findField("content").setValue(oFileName);
 				    	file.allowBlank = true;
 				    },
 				    failure: function(form, action) {
 			       	   switch (action.failureType) {
 				            case Ext.form.action.Action.CONNECT_FAILURE:
-				                Eway.alert('保存失败:与服务器通讯失败.');
+				                Eway.alert(Eway.locale.msg.saveFileCommunicationFail);//'保存失败:与服务器通讯失败.');
 				                break;
 				            case Ext.form.action.Action.SERVER_INVALID:
 				            	if(action.result.msg==0){
-				            		Eway.alert('保存失败:超过最大单个文件大小限制（最大30M）');
+				            		Eway.alert(Eway.locale.msg.saveFileSizeMaxFail);//'保存失败:超过最大单个文件大小限制（最大30M）');
 				            	}else{
-				            		Eway.alert('保存失败:'+action.result.msg);
+				            		Eway.alert(Eway.locale.msg.saveFail+action.result.msg);//保存失败
 				            	}
 				       }
 				    },
@@ -629,7 +635,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		if(addForm.isValid()){
 			var data = addForm.getValues();
 			if(Ext.isEmpty(fss)){//如果没有一个广告资源
-				Eway.alert("至少包含一个广告资源!");
+				Eway.alert(Eway.locale.msg.mustHaveOneResource);//"至少包含一个广告资源!");
 			}else {
 				this.doSave(win,fss,data,store,advertType);
 				win.down("toolbar [action ='confirm']").setDisabled(true)
@@ -698,7 +704,7 @@ Ext.define('Eway.controller.advert.Advert', {
     	adv.save({
 			 success: function(ed) {
 			 	store.insert(0,ed);
-			 	Eway.alert("创建成功.");
+			 	Eway.alert(Eway.locale.msg.createSuccess);//"创建成功.");
 				win.close();
 			 },
 			 failure: function(record,operation){

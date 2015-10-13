@@ -223,7 +223,7 @@ Ext.define('Eway.controller.version.Version', {
 					 	deviceIdsField.setValue("");//清空隐藏字段的值
 					 	var linkedGrid = win.down('version_download_linkedDeviceGrid');
 						linkedGrid.getStore().removeAll();//清空已选择的设备列表
-						linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo);//"已选择的设备(<font color='red'>0</font>)台");
+						linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo0+0+Eway.locale.version.selectDeviceInfo1);//"已选择的设备(<font color='red'>0</font>)台");
 					 	//保存成功后让用户选择是否跳转到分发监控页面
 					 	win.close();
 					 	Ext.MessageBox.confirm(Eway.locale.confirm.title,//'提示',

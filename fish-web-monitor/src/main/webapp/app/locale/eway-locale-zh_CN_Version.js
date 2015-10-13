@@ -6,15 +6,23 @@ Ext.override(Eway.locale,{
 	//提示对话框模块
 	msg:{
 		
-		perviewFailForText:'预览失败:不支持文字滚动广告和公告的预览.',//Eway.locale.msg.perviewFailForText
-		perviewFailNoResource:'预览失败:此广告没有配置广告资源.',//Eway.locale.msg.perviewFailNoResource
-		choseResToPerview:'请选择您要预览的广告.',//Eway.locale.msg.choseResToPerview
-		chooseAdvert:'请选择一条广告.',//Eway.locale.msg.chooseAdvert
-		downLoadedAdvertCantDelete:'删除失败:不能删除"已下发"和"等待下发"状态的广告.',//Eway.locale.msg.downLoadedAdvertCantDelete
-		chooseAdvertToDelete:'请选择您要删除的广告.',//Eway.locale.msg.chooseAdvertToDelete
-		generalVersionFailForDownloaded:'生成版本文件失败:"已下发"状态的广告不能再生成版本信息.',//Eway.locale.msg.generalVersionFailForDownloaded
-		generalVersionSuccess:"生成版本文件成功.",//Eway.locale.msg.generalVersionSuccess
-		
+		perviewFailForText:'预览失败:不支持文字滚动广告和公告的预览.XX',//Eway.locale.msg.perviewFailForText
+		perviewFailNoResource:'预览失败:此广告没有配置广告资源.XX',//Eway.locale.msg.perviewFailNoResource
+		choseResToPerview:'请选择您要预览的广告.XX',//Eway.locale.msg.choseResToPerview
+		chooseAdvert:'请选择一条广告.XX',//Eway.locale.msg.chooseAdvert
+		downLoadedAdvertCantDelete:'删除失败:不能删除"已下发"和"等待下发"状态的广告.XX',//Eway.locale.msg.downLoadedAdvertCantDelete
+		chooseAdvertToDelete:'请选择您要删除的广告.XX',//Eway.locale.msg.chooseAdvertToDelete
+		chooseAdvertToDownload:'请选择您要删除的广告.XX',//Eway.locale.msg.chooseAdvertToDownload
+		generalVersionFailForDownloaded:'生成版本文件失败:"已下发"状态的广告不能再生成版本信息.XX',//Eway.locale.msg.generalVersionFailForDownloaded
+		generalVersionSuccess:"生成版本文件成功.XX",//Eway.locale.msg.generalVersionSuccess
+		createSuccess:"创建成功.XX",//Eway.locale.msg.createSuccess
+		mustHaveOneResource:'至少包含一个广告资源!XX',//Eway.locale.msg.mustHaveOneResource
+		saveFail:'保存失败XX',//Eway.locale.msg.saveFail
+		saveFileSizeMaxFail:'保存失败:超过最大单个文件大小限制（最大30M）XX',//Eway.locale.msg.saveFileSizeMaxFail
+		saveFileCommunicationFail:'保存失败:与服务器通讯失败XX',//Eway.locale.msg.saveFileCommunicationFail
+		chooseDevice:"请选择设备.XX",//Eway.locale.msg.chooseDevice
+		downloadFailForNoVersion:"下发版本文件失败:还没有生成版本文件或者版本文件丢失,请先生成版本文件.XX",//Eway.locale.msg.downloadFailForNoVersion
+		saveSuccess:'保存成功！XX',//Eway.locale.msg.saveSuccess
 		
 		versionDownloaded:'不能删除"等待下发"和"已下发"状态的版本.XX',//Eway.locale.msg.versionDownloaded
 		selectVersionToDelete:'请选择您要删除的版本.XX',//Eway.locale.msg.selectVersionToDelete
@@ -32,6 +40,7 @@ Ext.override(Eway.locale,{
 		titleSure:'确认XX',//Eway.locale.confirm.titleSure
 		todoDelete:'是否删除该记录?XX',//Eway.locale.confirm.todoDelete
 		title:'提示XX',//Eway.locale.confirm.title
+		withoutNumTaskConfirmInfo:'作业保存成功,是否跳转到"分发监控"页面?XX',//Eway.locale.confirm.withoutNumTaskConfirmInfo
 		//TODO *为数字需要替换
 		taskConfirmInfo:'第*次作业保存成功,是否跳转到"分发监控"页面?XX'//Eway.locale.confirm.taskConfirmInfo
 	},
@@ -58,7 +67,8 @@ Ext.override(Eway.locale,{
 	},
 	//版本管理模块
 	version:{
-		selectDeviceInfo:"已选择的设备(<font color='red'>0</font>)台",//Eway.locale.version.selectDeviceInfo
+		selectDeviceInfo0:"已选择的设备(<font color='red'>",//Eway.locale.version.selectDeviceInfo0
+		selectDeviceInfo1:"</font>)台XX",//Eway.locale.version.selectDeviceInfo1
 		addVersionTitle:'增加版本信息XX',//Eway.locale.version.addVersionTitle
 		batchTaskName:'任务批次名称XX',//Eway.locale.version.batchTaskName
 		batchTaskNameEmpty:'例如:****需求第1批次升级XX',//Eway.locale.version.batchTaskNameEmpty
@@ -175,12 +185,10 @@ Ext.override(Eway.locale,{
 		annoucementInfoAdvert:'公告XX',//Eway.locale.advert.annoucementInfoAdvert	
 		annoucementAdvertResConfig:'公告页面广告资源配置XX',//Eway.locale.advert.annoucementAdvertResConfig
 		advertTypeSelectEmpty:'请选择广告类型XX',//Eway.locale.advert.advertTypeSelectEmpty
-		
 		advertTypeTrans:'交易页面广告XX',//Eway.locale.advert.advertTypeTrans
 		advertTypeIdle:'等待插卡广告XX',//Eway.locale.advert.advertTypeIdle
 		advertTypeText:'文字滚动广告XX',//Eway.locale.advert.advertTypeText
 		advertTypeAnnou:'公告XX',//Eway.locale.advert.advertTypeAnnou
-		
 		annoucementMoreTitle:'添加公告XX',//Eway.locale.advert.annoucementMoreTitle
 		annoucementContext:'公告内容XX',//Eway.locale.advert.annoucementContext
 		annoucementContextRegText:'不能包含空格XX',//Eway.locale.advert.annoucementContextRegText
@@ -189,10 +197,8 @@ Ext.override(Eway.locale,{
 		hourDisplay:'时XX',//Eway.locale.advert.hourDisplay
 		minuteDisplay:'分XX',//Eway.locale.advert.minuteDisplay
 		secondeDisplay:'秒XX',//Eway.locale.advert.secondeDisplay
-
 		textMoreTitle:'添加文字滚动页面广告XX',//Eway.locale.advert.textMoreTitle
 		textContext:'滚动文字XX',//Eway.locale.advert.textContext
-
 		idleMoreTitle:'添加等待插卡页面广告XX',//Eway.locale.advert.idleMoreTitle
 		chooseMediaFile:'请选择媒体文件XX',//Eway.locale.advert.chooseMediaFile
 		uploadResource:'上传资源...XX',//Eway.locale.advert.uploadResource
@@ -200,7 +206,6 @@ Ext.override(Eway.locale,{
 		uploadRegText:'上传的资源格式不支持,只能上传.jpg、.avi格式的文件XX',//Eway.locale.advert.uploadRegText
 		resourceFormatTips:'(仅支持.jpg、.avi格式的文件)XX',//Eway.locale.advert.resourceFormatTips
 		resourceAlias:'修改后的文件名XX',//Eway.locale.advert.resourceAlias
-		
 		transMoreTitle:'添加交易页面广告XX',//Eway.locale.advert.transMoreTitle
 		chooseMediaFile:'请选择媒体文件XX',//Eway.locale.advert.chooseMediaFile
 		uploadResource:'上传资源...XX',//Eway.locale.advert.uploadResource
@@ -209,6 +214,18 @@ Ext.override(Eway.locale,{
 		resourceFormatTips:'(仅支持.jpg、.avi格式的文件)XX',//Eway.locale.advert.resourceFormatTips
 		resourceAlias:'修改后的文件名XX',//Eway.locale.advert.resourceAlias
 		advertDownMethodCover:'覆盖XX',//Eway.locale.advert.advertDownMethodCover
+		uploading:'正在上传资源...',//Eway.locale.advert.uploading
+		advertPreviewTitle0:'广告预览(共有 ',//Eway.locale.advert.advertPreviewTitle0
+		advertPreviewTitle1:'个资源,当前播放第 ',//Eway.locale.advert.advertPreviewTitle1
+		advertPreviewTitle2:'个) ',//Eway.locale.advert.advertPreviewTitle2
+		
+		choosedAdvertRes:'您已经选择了',//Eway.locale.advert.choosedAdvertRes
+//		choosed1:'</b>'
+//		您已经选择了 <b>"+ oFileName + "</b>
+//		advert'已下发'
+		perviewAdertWithIEBrowse:'非IE浏览器不支持视频广告的预览.',//Eway.locale.advert.perviewAdertWithIEBrowse
+		
+		
 		configTitle:'广告详细配置XX'//Eway.locale.advert.configTitle
 	}
 });
