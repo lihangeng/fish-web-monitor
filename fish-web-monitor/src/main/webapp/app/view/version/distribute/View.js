@@ -11,6 +11,7 @@ Ext.define('Eway.view.version.distribute.View', {
 	title : '版本分布图',
 	initComponent : function() {
 		Ext.apply(this, {
+			padding:'10 0 10 0',
 			layout : {
 				type : 'border'
 			},
@@ -25,7 +26,6 @@ Ext.define('Eway.view.version.distribute.View', {
 				} ]
 				}, {
 					region : 'center',
-//					xtype : 'version_pie'
 					xtype : 'versionstatus_pie'
 				}, {
 					region : 'south',

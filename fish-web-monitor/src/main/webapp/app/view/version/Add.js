@@ -7,7 +7,7 @@ Ext.define('Eway.view.version.Add', {
 	            'Eway.lib.Util',
 	            'Eway.view.version.field.VersionComboBox','Eway.view.version.field.VersionTypeComboBoxAdd'],
 
-	title : '增加版本信息',
+	title : Eway.locale.version.addVersionTitle,//'增加版本信息',
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -28,17 +28,17 @@ Ext.define('Eway.view.version.Add', {
 				},
 				items : [{
 					xtype:'field_versionTypeComboBoxAdd',
-					fieldLabel : '<font color="red">*</font>版本类型'
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.version.View.versionType,//版本类型'
 				},{
 				   xtype: 'textfield',
-			       fieldLabel : '<font color="red">*</font>版本号',
+			       fieldLabel : '<font color="red">*</font>'+Eway.locale.version.View.versionNo,//版本号',
 				   name : 'versionNo',
 				   allowBlank: false,
 				   maxLength: 40,
 				   vtype:'versionNo'
 				},{
 			        xtype: 'fieldcontainer',
-			        fieldLabel: '<font color="red">*</font>版本路径',
+			        fieldLabel: '<font color="red">*</font>'+Eway.locale.version.View.versionPath,//版本路径',
 			        combineErrors: true,
 			        hidden: true,
 			        layout: 'hbox',
@@ -47,32 +47,32 @@ Ext.define('Eway.view.version.Add', {
 			        },
 			        items: [{
 								xtype: 'textfield',
-								fieldLabel : '<font color="red">*</font>版本路径',
+								fieldLabel : '<font color="red">*</font>'+Eway.locale.version.View.versionPath,//版本路径',
 								name : 'versionPath',
 								allowBlank: false,
 								width: 230,
 								regex:/^[a-zA-z]{1}:([/][\w-]+)*$/i,
-								regexText:'不符合文件路径规则，规则如下：1.文件名只能包含英文字母(a-z A-Z)、数字(0-9)、下划线(_)、横线(-) ； 2.路径统一用正斜杠(/)作为分隔符 ；3.不区分大小 ; 示例 E: E:/yihua',
+								regexText:Eway.locale.version.View.versionPathRegText,//'不符合文件路径规则，规则如下：1.文件名只能包含英文字母(a-z A-Z)、数字(0-9)、下划线(_)、横线(-) ； 2.路径统一用正斜杠(/)作为分隔符 ；3.不区分大小 ; 示例 E: E:/yihua',
 								maxLength:50
 							},
 							{
 								xtype: 'displayfield',
-								value: '(版本文件在自助设备上的安装路径)',
+								value: Eway.locale.version.View.versionPathDesc,//'(版本文件在自助设备上的安装路径)',
 								margin: '0 0 0 5'
 							}]
 				},{
 					xtype: 'filefield',
-					fieldLabel:'<font color="red">*</font>版本文件',
-					emptyText:'请将要下发的版本文件(或者文件夹)打包zip或rar格式',
+					fieldLabel:'<font color="red">*</font>'+Eway.locale.version.View.versionFile,//版本文件',
+					emptyText:Eway.locale.version.View.versionFileEmpty,//'请将要下发的版本文件(或者文件夹)打包zip或rar格式',
 					name: 'file',
-					waitMsg:'正在上传文件...',
+					waitMsg:Eway.locale.version.View.versionFileUploadMsg,//'正在上传文件...',
 					allowBlank : false,
-					buttonText: '浏览...',
+					buttonText: Eway.locale.version.View.versionFileButton,//'浏览...',
 					regex : /^([\w|\W]*)(\.zip|rar)$/i,
-					regexText:'只能上传zip或rar格式的文件'
+					regexText:Eway.locale.version.View.versionFileRegexText//'只能上传zip或rar格式的文件'
 				},{
 					name:'dependVersion',
-					fieldLabel:'依赖版本',
+					fieldLabel:Eway.locale.version.View.dependVersion,//'依赖版本',
 					disabled :true,
 					xtype: 'combobox',
 					editable  : false,
@@ -102,28 +102,28 @@ Ext.define('Eway.view.version.Add', {
 					pageSize: 20*/
 				},{
 					   xtype: 'textfield',
-				       fieldLabel : '升级前执行脚本',
+				       fieldLabel : Eway.locale.version.View.execBefore,//'升级前执行脚本',
 					   name : 'execBefore',
 					   maxLength: 50,
-					   emptyText:'请输入升级包中的以bat或cmd结尾的文件',
+					   emptyText:Eway.locale.version.View.execBeforeEmptyText,//'请输入升级包中的以bat或cmd结尾的文件',
 					   regex : /^([\w|\W]*)(\.bat|cmd)$/i,
-					   regexText:'只能输入bat或cmd结尾的文件'
+					   regexText:Eway.locale.version.View.execBeforeRegexText//'只能输入bat或cmd结尾的文件'
 				},{
 					xtype:'hidden',
 					name:'dependVersionId'
 				},{
 					xtype : 'field.desc',
-					fieldLabel:'<font color="red">*</font>版本描述',
-					emptyText:'请用文字描述此版本需求(最长20字符串)',
+					fieldLabel:'<font color="red">*</font>'+Eway.locale.version.View.versionDesc,//版本描述',
+					emptyText:Eway.locale.version.View.versionDescEmpty,//'请用文字描述此版本需求(最长20字符串)',
 					allowBlank : false,
 					maxLength : 20
 				},{
 		            xtype: 'fieldcontainer',
-		            fieldLabel: '其他配置',
+		            fieldLabel: Eway.locale.version.View.otherConfigTitle,//'其他配置',
 		            defaultType: 'checkboxfield',
 		            items: [
 		                {
-		                    boxLabel  : '允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)',
+		                    boxLabel  : Eway.locale.version.View.otherConfigAutoDown,//'允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)',
 		                    name      : 'autoDown',
 		                    inputValue: 'true'
 		                }/*, {
@@ -132,7 +132,7 @@ Ext.define('Eway.view.version.Add', {
 		                    checked : false,
 		                    inputValue: 'true'
 		                }*/, {
-		                    boxLabel  : '自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>',
+		                    boxLabel  : Eway.locale.version.View.otherConfigUncompress,//'自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>',
 		                    name      : 'uncompress',
 		                    checked : false,
 		                    inputValue: 'true'
@@ -141,15 +141,15 @@ Ext.define('Eway.view.version.Add', {
 		        },{
 					xtype:'hidden',
 					hideLabel : true,
-					fieldLabel: '文件在服务器上的位置',
+					fieldLabel: Eway.locale.version.View.versionServerPath,//'文件在服务器上的位置',
 					name:'serverPath'
 				} ],
 				buttonAlign : 'center',
 				buttons : [ {
-					text : '确认',
+					text : Eway.locale.button.confirm,//'确认',
 					action : 'confirm'
 				}, {
-					text : '取消',
+					text : Eway.locale.button.cancel,//'取消',
 					handler : this.onOver
 				} ]
 			}

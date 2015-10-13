@@ -29,10 +29,10 @@ Ext.define('Eway.view.version.download.LinkedDeviceGrid', {
 				dataIndex : 'ip',
 				width: 110
 			},{
-				header : Eway.locale.commen.orgNameBelongs,
+				header : Eway.locale.refs.orgName,
 				dataIndex : 'orgName'
 			}, {
-				header: Eway.locale.commen.devTypeName,
+				header: Eway.locale.refs.devType,
 				dataIndex : 'deviceType'
 			},{
 				header: '当前版本',

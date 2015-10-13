@@ -6,7 +6,7 @@ Ext.define('Eway.view.version.AddJob', {
 	            'Eway.view.version.download.SelectableDeviceGrid',
 	            'Eway.view.version.download.LinkedDeviceGrid'],
 
-	title : '配置作业信息',
+	title : Eway.locale.version.addJobTitle,//'配置作业信息',
 	modal : true,
 	resizable : true,
 	constrainHeader : true,
@@ -29,7 +29,7 @@ Ext.define('Eway.view.version.AddJob', {
 				    pack: 'center'
 				},
 				items :[{
-					text : '保存',
+					text : Eway.locale.button.save,//'保存',
 					action : 'confirm',
 					iconCls:'db-save'
 				}]
@@ -52,31 +52,31 @@ Ext.define('Eway.view.version.AddJob', {
 				},
 				items : [{
 					xtype: 'textfield',
-					fieldLabel:"<font color='red'>*</font>任务批次名称",
+					fieldLabel:"<font color='red'>*</font>"+Eway.locale.version.batchTaskName,//任务批次名称",
 					name :'jobName',
 					maxLength: 128,
 					allowBlank:false,
-					emptyText:'例如:****需求第1批次升级'
+					emptyText:Eway.locale.version.batchTaskNameEmpty//'例如:****需求第1批次升级'
 			 },{
 					xtype: 'container',
                     layout: 'hbox',
                     items: [{
     					xtype: 'hidden',
-    					fieldLabel : '下发版本ID',
+    					fieldLabel : Eway.locale.version.downloadVersionId,//'下发版本ID',
     					name: 'versionId'
     				},{
     					xtype: 'displayfield',
-    					fieldLabel : '软件分类',
+    					fieldLabel : Eway.locale.version.View.versionType,//'软件分类',
     					name: 'versionType',
     					width : 350
     				},{
     					xtype: 'displayfield',
-    					fieldLabel : '版本号',
+    					fieldLabel : Eway.locale.version.View.versionNo,//'版本号',
     					name: 'versionNo',
     					width : 200
     				},{
     					xtype: 'displayfield',
-    					fieldLabel : '版本文件',
+    					fieldLabel : Eway.locale.version.View.versionFile,//'版本文件',
     					name: 'serverPath'
     				}]
 				},{
@@ -96,7 +96,7 @@ Ext.define('Eway.view.version.AddJob', {
 		                width : 200
 		            },*/{
                     	xtype: 'combobox',
-                    	fieldLabel: '任务类型',
+                    	fieldLabel: Eway.locale.version.taskType,//'任务类型',
 		                store: Ext.StoreMgr.lookup("version.JobType"),
 		                queryMode: 'local',
 		                valueField : 'value',
@@ -109,7 +109,7 @@ Ext.define('Eway.view.version.AddJob', {
 		                width : 245
 		            }, {
 			        	xtype:'datetimefield',
-			        	fieldLabel:'计划执行时间',
+			        	fieldLabel:Eway.locale.version.planTime,//'计划执行时间',
 			        	name:'planTime',
 			        	disabled: true,
 			        	editable: false,
@@ -157,12 +157,12 @@ Ext.define('Eway.view.version.AddJob', {
 				padding: '1px 0px 0px 0px',
 				items : [{
 						xtype:'version_download_selectableDeviceGrid',
-						title: '可以下发的设备',
+						title: Eway.locale.version.selectableDevice,//'可以下发的设备',
 						minHeight:260,
 				        flex : 1
 					},{
 						xtype: 'version_download_linkedDeviceGrid',
-						title: '已选择的设备',
+						title: Eway.locale.version.linkedDevice,//'已选择的设备',
 						minHeight:260,
 				        flex : 1
 					}

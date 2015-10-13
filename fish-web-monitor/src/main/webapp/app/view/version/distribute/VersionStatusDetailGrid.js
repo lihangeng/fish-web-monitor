@@ -11,7 +11,7 @@ Ext.define('Eway.view.version.distribute.VersionStatusDetailGrid', {
 		Ext.apply(this, {
 			store : store,
 			columns : [{
-				header : Eway.locale.commen.orgNameBelongs,
+				header : Eway.locale.refs.orgName,
 				dataIndex : 'orgName'
 			},{
 				header : '设备编号',
@@ -22,7 +22,7 @@ Ext.define('Eway.view.version.distribute.VersionStatusDetailGrid', {
 				dataIndex:'ip',
 				width: 100
 			},{
-				header : Eway.locale.commen.devTypeName,
+				header : Eway.locale.refs.devType,
 				dataIndex : 'deviceType',
 				width: 100
 			},{

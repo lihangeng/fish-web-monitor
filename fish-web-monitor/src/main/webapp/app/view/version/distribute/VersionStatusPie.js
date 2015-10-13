@@ -24,7 +24,7 @@ Ext.define('Eway.view.version.distribute.VersionStatusPie', {
             xtype: 'polar',
             theme: 'default-gradients',
             width: '100%',
-            height: 300,
+            height: 250,
             store: me.myDataStore,
             insetPadding: 30,
             innerPadding: 20,
@@ -47,7 +47,6 @@ Ext.define('Eway.view.version.distribute.VersionStatusPie', {
                     calloutLine: {
                         length: 20,
                         width: 3
-                        // specifying 'color' is also possible here
                     }
                 },
                 highlight: true,

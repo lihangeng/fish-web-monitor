@@ -112,7 +112,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				name : 'orgId'
 			}, {
 				xtype : 'common_orgComboOrgTree',
-				fieldLabel : Eway.locale.commen.orgNameBelongs,
+				fieldLabel : Eway.locale.refs.orgName,
 				emptyText : '--请选择--',
 				 enableKeyEvents:true,
 				name : 'orgName',
@@ -135,7 +135,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				}
 			},{
 				xtype:'field_device_deviceatmtype',
-				fieldLabel : Eway.locale.commen.devTypeName,
+				fieldLabel : Eway.locale.refs.devType,
 				 enableKeyEvents:true,
 				name: 'atmTypeId',
 				editable  : false,
@@ -193,11 +193,11 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				sortable : true,
 				width: 110
 			},{
-				header : Eway.locale.commen.orgNameBelongs,
+				header : Eway.locale.refs.orgName,
 				dataIndex : 'orgName',
 				sortable : true
 			}, {
-				header: Eway.locale.commen.devTypeName,
+				header: Eway.locale.refs.devType,
 				dataIndex : 'deviceType',
 				sortable : true
 			},{

@@ -1,42 +1,106 @@
 Ext.override(Eway.locale,{
-		view:{
-			version:{
-				View:{
-					title:'版本管理'
-				},
-				VersionInstallInfo:{
-					title:'版本安装信息统计图'
-				},
-				Update:{
-					title:'更改版本信息',
-					items:{
-						items:{
-							versionTypeId:{
-								emptyText:'请选择版本类型',
-								fieldLabel:'版本类型'
-							},
-							
-							versionNo:'版本号',
-							dependVersion:{
-								fieldLabel:'依赖版本',
-								emptyText:'请选择依赖类型'
-							},
-							execBefore:{
-								fieldLabel:'升级前执行脚本',
-								emptyText:'请输入升级包中的以bat或cmd结尾的文件',
-								regexText:'只能输入bat或cmd结尾的文件'
-							},
-							otherConfig:{
-								containerTitle:'其他配置',
-								autoDown:'允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)',
-								uncompress:'自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>'
-							}
-						}
-					}
-				}
+	title:{
+		msg:'信息'//Eway.locale.title.msg
+	},
+	msg:{
+		versionDownloaded:'不能删除"等待下发"和"已下发"状态的版本.',//Eway.locale.msg.versionDownloaded
+		selectVersionToDelete:'请选择您要删除的版本.',//Eway.locale.msg.selectVersionToDelete
+		communicationFail:'增加失败:与服务器通讯失败.',//Eway.locale.msg.communicationFail
+		sameVersionNoFail:'增加失败:已经存在相同的版本号.',//Eway.locale.msg.sameVersionNoFail
+		fileSizeMaxFail:'增加失败:超过最大文件大小限制（最大300M）',//Eway.locale.msg.fileSizeMaxFail
+		fileUnzipFail:'增加失败:上传的压缩包不能正常解压',//Eway.locale.msg.fileUnzipFail
+		addFileFail:'增加失败:',//Eway.locale.msg.addFileFail
+		mustSelectDevice:'请至少选择一个设备.',//Eway.locale.msg.mustSelectDevice
+		selectVersionRecord:'请选择您要下发的版本.',//Eway.locale.msg.selectVersionRecord
+		missVersionFile:"版本文件丢失,暂不能对版本进行下发控制."//Eway.locale.msg.missVersionFile
+	},
+	confirm:{
+		titleSure:'确认',//Eway.locale.confirm.titleSure
+		todoDelete:'是否删除该记录?',//Eway.locale.confirm.todoDelete
+		title:'提示',//Eway.locale.confirm.title
+		//TODO *为数字需要替换
+		taskConfirmInfo:'第*次作业保存成功,是否跳转到"分发监控"页面?'//Eway.locale.confirm.taskConfirmInfo
+	},
+	button:{
+		search:'查询',//Eway.locale.button.search
+		add : '增加',//Eway.locale.button.add
+		update:'更改',//Eway.locale.button.update
+		remove:'删除',//Eway.locale.button.remove
+		download:'下发',
+		downloadToolTip:'配置下发作业',
+		save:'保存',
+		confirm:'确认',//Eway.locale.button.confirm
+		cancel:'取消'//Eway.locale.button.cancel
+	},
+	refs:{
+		orgName:'机构',//Eway.locale.refs.orgName
+		terminalId:'设备编号',//Eway.locale.refs.terminalId
+		ip:'IP地址',//Eway.locale.refs.ip
+		devType:"设备型号"//Eway.locale.refs.devType
+	},
+	version:{
+		selectDeviceInfo:"已选择的设备(<font color='red'>0</font>)台",//Eway.locale.version.selectDeviceInfo
+		addVersionTitle:'增加版本信息',//Eway.locale.version.addVersionTitle
+		batchTaskName:'任务批次名称',//Eway.locale.version.batchTaskName
+		batchTaskNameEmpty:'例如:****需求第1批次升级',//Eway.locale.version.batchTaskNameEmpty
+		UpdateTitle:'更改版本信息',//Eway.locale.version.UpdateTitle
+		addJobTitle:'配置作业信息',//Eway.locale.version.addJobTitle
+		downloadVersionId:'下发版本ID',//Eway.locale.version.downloadVersionId
+		taskType:'任务类型',//Eway.locale.version.taskType
+		planTime:'计划执行时间',//Eway.locale.version.planTime
+		selectableDevice:'可以下发的设备',//Eway.locale.version.selectableDevice
+		linkedDevice:'已选择的设备',//Eway.locale.version.linkedDevice
+		View:{
+			title:'版本管理',
+			remark:'备注', //Eway.locale.version.View.remark
+			newCreate:'新建',//Eway.locale.version.View.newCreate
+			downLoaded:'已下发',//Eway.locale.version.View.downLoaded
+			waitting:'等待下发',//Eway.locale.version.View.waitting
+			versionPath:'版本路径',//Eway.locale.version.View.versionPath
+			versionPathRegText:'不符合文件路径规则，规则如下：1.文件名只能包含英文字母(a-z A-Z)、数字(0-9)、下划线(_)、横线(-) ； 2.路径统一用正斜杠(/)作为分隔符 ；3.不区分大小 ; 示例 E: E:/yihua',//Eway.locale.version.View.versionPathRegText
+			versionPathDesc:'(版本文件在自助设备上的安装路径)',//Eway.locale.version.View.versionPathDesc
+			versionPerson:'创建人',//Eway.locale.version.View.versionPerson
+			versionType:'版本类型',//Eway.locale.version.View.versionType
+			versionFile:'版本文件',//Eway.locale.version.View.versionFile
+			versionFileButton:'浏览...',//Eway.locale.version.View.versionFileButton
+			versionFileRegexText:'只能上传zip或rar格式的文件',//Eway.locale.version.View.versionFileRegexText
+			versionFileUploadMsg:'正在上传文件...',//Eway.locale.version.View.versionFileUploadMsg
+			versionFileEmpty:'请将要下发的版本文件(或者文件夹)打包zip或rar格式',//Eway.locale.version.View.versionFileEmpty
+			versionTypeCode:'软件分类编码',//Eway.locale.version.View.versionTypeCode
+			versionTypeId:'版本类型ID',//Eway.locale.version.View.versionTypeId
+			versionTypeEmpty:'请选择版本类型',
+			versionTime:'创建时间',//Eway.locale.version.View.versionTime
+			versionNo:'版本号',//Eway.locale.version.View.versionNo
+			nowVersionNo:'当前版本号',//Eway.locale.version.View.nowVersionNo
+			versionStatus:'版本状态',//Eway.locale.version.View.versionStatus
+			versionStatusEmptyText:'全部',
+			autoUpdate:'允许自动更新',//Eway.locale.version.View.autoUpdate
+			autoUpdateYes:'是',//Eway.locale.version.View.autoUpdateYes
+			autoUpdateNo:'否',//Eway.locale.version.View.autoUpdateNo
+			autoUpdateEmptyText:'全部',
+			dependVersion:'依赖版本',//Eway.locale.version.View.dependVersion
+			dependVersionEmptyText:'请选择依赖类型',
+			execBefore:'升级前执行脚本',//Eway.locale.version.View.execBefore
+			execBeforeEmptyText:'请输入升级包中的以bat或cmd结尾的文件',//Eway.locale.version.View.execBeforeEmptyText
+			execBeforeRegexText:'只能输入bat或cmd结尾的文件',//Eway.locale.version.View.execBeforeRegexText
+			versionDesc:'版本描述',//Eway.locale.version.View.versionDesc
+			versionDescEmpty:'请用文字描述此版本需求(最长20字符串)',//Eway.locale.version.View.versionDescEmpty
+			otherConfigTitle:'其他配置',//Eway.locale.version.View.otherConfigTitle
+			otherConfigAutoDown:'允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)',//Eway.locale.version.View.otherConfigAutoDown
+			otherConfigUncompress:'自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>',//Eway.locale.version.View.otherConfigUncompress
+			versionServerPath:'文件在服务器上的位置', //Eway.locale.version.View.versionServerPath
+			job:{
+				newCreate:'新建',
+				running:'运行中',
+				scheduler:'计划中',
+				ready:'准备运行',
+				pause:'暂停',
+				complete:'完成'
 			}
+		},
+		VersionInstallInfo:{
+			title:'版本安装信息统计图'
+		}
+	
 	}
-			
-		
-//	}
 });

@@ -6,13 +6,13 @@ Ext.apply(Eway,{
 	choiceDeleteMsg :'请选择您要删除的记录.',
 	locale:{
 		button:{
-			search:'查询',
-			add : '增加',
-			update:'更改',
-			remove:'删除',
-			refresh:'刷新',
-			reset:'重置',
-			back:'返回'
+			search:'查询',//Eway.locale.button.search
+			add : '增加',//Eway.locale.button.add
+			update:'更改',//Eway.locale.button.update
+			remove:'删除',//Eway.locale.button.remove
+			refresh:'刷新',//Eway.locale.button.refresh
+			reset:'重置',//Eway.locale.button.reset
+			back:'返回'//Eway.locale.button.back
 		},
 		combox:{
 			select:'--请选择--'

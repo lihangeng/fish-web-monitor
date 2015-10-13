@@ -10,22 +10,22 @@ Ext.define('Eway.view.version.ChartsGrid', {
 		me.store = Ext.create("Eway.store.version.VersionChartsDetails");
 		Ext.apply(this, {
 			columns : [{
-				header : '设备编号',
+				header : Eway.locale.refs.terminalId,//'设备编号',
 				dataIndex : 'terminalId',
 				width: 150
 			},{
-				header:'IP地址',
+				header:Eway.locale.refs.ip,//'IP地址',
 				dataIndex:'ip',
 				width: 100
 			},{
-				header : Eway.locale.commen.orgNameBelongs,
+				header : Eway.locale.refs.orgName,//机构
 				dataIndex : 'orgName'
 			},{
-				header : Eway.locale.commen.devTypeName,
+				header : Eway.locale.refs.devType,
 				dataIndex : 'devType',
 				width: 200
 			},{
-				header : '当前版本号',
+				header : Eway.locale.version.View.nowVersionNo,//'当前版本号',
 				dataIndex : 'versionNo',
 				width: 140,
 				flex : 1
