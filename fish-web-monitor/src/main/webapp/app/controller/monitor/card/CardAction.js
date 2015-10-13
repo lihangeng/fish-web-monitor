@@ -74,12 +74,12 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 					}
 				},
 				failure: function(response){
-					Eway.alert('移交失败:后台处理出错.');
+					Eway.alert(Eway.locale.tip.business.card.returnFail);
 				}
 
 			});
 		} else {
-			Eway.alert("请选择您移交的卡片.");
+			Eway.alert(Eway.locale.tip.business.card.choose);
 		}
 	},
 
@@ -107,7 +107,7 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 				success : function(response) {
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
-						Eway.alert('移交成功.');
+						Eway.alert(Eway.locale.tip.business.card.returnSucess);
 						var win = Ext.ComponentQuery.query('card_CardHandoverWin')[0];
 						win.close();
 						store.setUrlParamsByObject(viewValues);
@@ -161,7 +161,7 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 //			button.on('click', this.onReceiveConfirm, this);
 //			win.show();
 		} else {
-			Eway.alert("请选择要领取的卡片.");
+			Eway.alert(Eway.locale.tip.business.card.chooseBack);
 		}
 	},
 
@@ -192,7 +192,7 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 				success : function(response) {
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
-						Eway.alert('领取成功.');
+						Eway.alert(Eway.locale.tip.business.card.chooseBack);
 						var win = Ext.ComponentQuery.query('card_ReceiveCardWin')[0];
 						win.close();
 						store.remove(record);
@@ -225,7 +225,7 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 			store.setBaseParam('organizationId',ewayUser.getOrgId());
 			store.loadPage(1);
 		}else{
-			Eway.alert('请正确输入.');
+			Eway.alert(Eway.locale.tip.input);
 		}
 
 	}
