@@ -2,7 +2,7 @@ Ext.define('Eway.view.case.vendorCode.ImportVendorCode', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.vendorCode_ImportVendorCode',
 
-	title : '导入厂商故障信息',
+	title : Eway.locale.cases.vendorCode.exportProviderInfo,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -28,8 +28,8 @@ Ext.define('Eway.view.case.vendorCode.ImportVendorCode', {
                   {
                     xtype : 'common_orgComboOrgTree',
                     labelAlign : 'right',
-                    fieldLabel : '厂商',
-                    emptyText : '--请选择--',
+                    fieldLabel : Eway.locale.cases.vendorCode.provider,
+                    emptyText : Eway.locale.combox.combox,
                     name : 'name',
                     hiddenValue : 'vendor',
                     editable : false,
@@ -37,22 +37,22 @@ Ext.define('Eway.view.case.vendorCode.ImportVendorCode', {
                     rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '1' ? true : false
                   }, {
 					xtype : 'filefield',
-					buttonText : '浏览...',
-					fieldLabel : '导入文件',
-					emptyText : '请选择导入文件,只支持.xls和.xlsx格式的文件',
+					buttonText : Eway.locale.combox.explorer,
+					fieldLabel : Eway.locale.cases.vendorCode.exportFile,
+					emptyText : Eway.locale.tip.exportFiles,
 					width : 400,
 					allowBlank : false,
 					name : 'file',
 					regex : /^([\w|\W]*)(\.xlsx)|([\w|\W]*)(\.xls)$/,
-					regexText : '只能导入.xls格式和.xlsx格式的文件'
+					regexText : Eway.locale.tip.exportFiles
 				} ],
 				buttonAlign : 'center',
 				buttons : [ {
-					text : '确认',
+					text : Eway.locale.cases.confirm,
 					// iconCls : 'sureBtn',
 					action : 'import'
 				}, {
-					text : '取消',
+					text : Eway.locale.cases.cancel,
 					// iconCls : 'returnBtn',
 					handler : this.onOver
 				} ]

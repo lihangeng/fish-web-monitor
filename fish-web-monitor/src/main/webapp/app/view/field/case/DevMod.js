@@ -3,7 +3,7 @@ Ext.define('Eway.view.field.case.DevMod', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field_devMod',
 	
-	fieldLabel : '故障状态',
+	fieldLabel : Eway.locale.cases.caseFault.faultState,
 	name : 'devMod',
 	hiddenName : 'devMod',
 	msgTarget : 'side',
@@ -11,7 +11,7 @@ Ext.define('Eway.view.field.case.DevMod', {
 	valueField : 'value',
 	displayField : 'display',
 	queryMode : 'local',
-	emptyText: '--请选择--',
+	emptyText: Eway.locale.combox.select,
 	editable : false
 	
 });

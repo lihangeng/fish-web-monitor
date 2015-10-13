@@ -2,7 +2,7 @@ Ext.define('Eway.view.field.case.NotifyWay', {
 	extend : 'Ext.form.field.ComboBox',
 	alias : 'widget.field_notifyWay',
 
-	fieldLabel : '通知方式',
+	fieldLabel : Eway.locale.cases.caseFault.informWay,
 	name : 'notifyWay',
 	hiddenName : 'notifyWay',
 	msgTarget : 'side',
@@ -10,6 +10,6 @@ Ext.define('Eway.view.field.case.NotifyWay', {
 	valueField : 'value',
 	displayField : 'display',
 	queryMode : 'local',
-	emptyText : '--请选择--',
+	emptyText : Eway.locale.combox.select,
 	editable : false
 });

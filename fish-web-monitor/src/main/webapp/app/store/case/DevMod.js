@@ -4,13 +4,13 @@ Ext.define('Eway.store.case.DevMod', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'IDC', display:'读卡器模块'}, 
-	       {value:'CIM', display:'存款模块'},
-		   {value:'CDM', display:'取款模块'},
-		   {value:'RPR', display:'凭条打印模块'},
-		   {value:'JPR', display:'日志打印模块'},
-		   {value:'PIN', display:'密码键盘模块'},
-		   {value:'TTU', display:'文本终端单元'},
-		   {value:'SIU', display:'传感器模块'}]
+	data: [{value:'IDC', display:Eway.locale.cases.caseFault.cardReaderModule}, 
+	       {value:'CIM', display:Eway.locale.cases.caseFault.depoistModule},
+		   {value:'CDM', display:Eway.locale.cases.caseFault.drawModule},
+		   {value:'RPR', display:Eway.locale.cases.caseFault.rprModule},
+		   {value:'JPR', display:Eway.locale.cases.caseFault.jprModule},
+		   {value:'PIN', display:Eway.locale.cases.caseFault.pinModule},
+		   {value:'TTU', display:Eway.locale.cases.caseFault.textTerminalUnit},
+		   {value:'SIU', display:Eway.locale.cases.caseFault.sensoModule}]
 
 });
