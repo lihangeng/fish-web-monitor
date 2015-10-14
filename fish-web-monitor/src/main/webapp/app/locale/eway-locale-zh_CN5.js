@@ -869,7 +869,6 @@ Ext.override(Eway.locale,{
 			customerPhone:'客户电话XX',//Eway.locale.card.customerPhone
 			endData:'吞卡截止日期XX',//Eway.locale.card.endData
 			startData:'吞卡起始日期XX',//Eway.locale.card.startData
-			
 		}
 		/*}*/
 });

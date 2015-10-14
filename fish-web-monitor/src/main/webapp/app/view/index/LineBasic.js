@@ -4,7 +4,7 @@ Ext.define('Eway.view.index.LineBasic', {
 
 
 //    width: 650,
-    title :'日均故障趋势图',
+    title :Eway.locale.index.dailyFaultPic,
 
     initComponent: function() {
         var me = this;
@@ -53,7 +53,7 @@ Ext.define('Eway.view.index.LineBasic', {
                 y: 470
             },  */{
                 type: 'text',
-                text: '日均故障趋势图',
+                text: Eway.locale.index.dailyFaultPic,
                 fontSize: 10,
                 x: 230,
                 y: 485
@@ -111,7 +111,7 @@ Ext.define('Eway.view.index.LineBasic', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                        this.setHtml(storeItem.get('month') + ' 产生的故障数量: ' + storeItem.get('data1') + '%');
+                        this.setHtml(storeItem.get('month') + Eway.locale.index.faultAmount + storeItem.get('data1') + '%');
                     }
                 }
             }]
