@@ -140,7 +140,7 @@ public class DeviceServiceTest extends BindSessionInTest2
         // ==============删除==================
         deviceAdd2.setStatus(Status.DISABLED);
         deviceService.update(deviceAdd2);
-        deviceService.remove("20120223");
+        deviceService.remove(deviceAdd2.getId());
         List<IDevice> deviceList1 = deviceService.list();
         assertEquals(1, deviceList1.size());
 

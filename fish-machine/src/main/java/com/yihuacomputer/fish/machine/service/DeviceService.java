@@ -94,12 +94,6 @@ public class DeviceService implements IDeviceService {
 		remove(device);
 	}
 
-	@Override
-	public void remove(String code) {
-		IDevice device = this.get(code);
-		remove(device);
-	}
-
 	public void remove(IDevice device) {
 		for (IDeviceListener each : this.deviceListeners) {
 			each.beforeDelete(device);
