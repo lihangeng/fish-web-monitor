@@ -54,6 +54,7 @@ Ext.override(Eway.locale,{
 		download:'下发XX',
 		reset:'重置XX',//Eway.locale.button.reset
 		downloadToolTip:'配置下发作业XX',
+		exported:'导出XX',
 		save:'保存XX',//Eway.locale.button.save
 		confirm:'确认XX',//Eway.locale.button.confirm
 		cancel:'取消XX'//Eway.locale.button.cancel
