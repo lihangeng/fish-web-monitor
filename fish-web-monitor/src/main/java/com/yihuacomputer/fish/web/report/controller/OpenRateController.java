@@ -48,7 +48,7 @@ import com.yihuacomputer.fish.api.person.OrganizationType;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.report.base.IDayOpenRate;
 import com.yihuacomputer.fish.api.report.base.IDayOpenRateService;
-import com.yihuacomputer.fish.machine.service.db.AtmTypeService;
+import com.yihuacomputer.fish.machine.service.AtmTypeService;
 import com.yihuacomputer.fish.web.report.form.OpenRateForm;
 import com.yihuacomputer.fish.web.report.form.OpenRateTreeForm;
 

@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.atmlog.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.yihuacomputer.fish.api.atmlog.ICustomerCycle;
@@ -10,7 +11,12 @@ import com.yihuacomputer.fish.api.atmlog.ITransCycle;
  * @author YiHua
  *
  */
-public class CustomerCycle implements ICustomerCycle{
+public class CustomerCycle implements ICustomerCycle,Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2886270693176824976L;
 
 	/*交易时间 */
 	private String dateTime;

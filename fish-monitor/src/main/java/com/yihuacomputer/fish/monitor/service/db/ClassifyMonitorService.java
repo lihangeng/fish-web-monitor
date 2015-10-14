@@ -19,7 +19,7 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.NetStatus;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
-import com.yihuacomputer.fish.machine.entity.device.Device;
+import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.monitor.entity.business.DeviceRegister;
 import com.yihuacomputer.fish.monitor.entity.report.ClassifyReport;
 import com.yihuacomputer.fish.monitor.entity.xfs.status.XfsStatus;

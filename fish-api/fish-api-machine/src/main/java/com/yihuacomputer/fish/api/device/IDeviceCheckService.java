@@ -6,14 +6,6 @@ import com.yihuacomputer.common.IPageResult;
 public interface IDeviceCheckService
 {
     /**
-     * 实例化设备对象
-     *
-     * @return 设备对象
-     */
-    public IDevice make();
-
-
-    /**
      * 获取需要审核设备的分页信息
      *
      * @param offset

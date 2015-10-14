@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.machine.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -28,7 +29,12 @@ import com.yihuacomputer.fish.api.device.TypeStatus;
  */
 @Entity
 @Table(name = "DEV_TYPE")
-public class AtmType implements IAtmType {
+public class AtmType implements IAtmType,Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5649648438244601048L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_DEV_TYPE")

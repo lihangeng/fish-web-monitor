@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.machine.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -23,9 +25,14 @@ import com.yihuacomputer.fish.api.atm.IAtmBrandService;
  */
 @Entity
 @Table(name = "DEV_VENDOR")
-public class AtmVendor implements IAtmVendor
+public class AtmVendor implements IAtmVendor,Serializable
 {
-    @Transient
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7696388152736249153L;
+
+	@Transient
     private IAtmBrandService service;
 
     @Id

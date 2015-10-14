@@ -15,18 +15,18 @@ import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNoticeService;
 import com.yihuacomputer.fish.api.relation.IDeviceGroupRelation;
 import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
-import com.yihuacomputer.fish.machine.service.db.AtmBrandService;
-import com.yihuacomputer.fish.machine.service.db.AtmCatalogService;
-import com.yihuacomputer.fish.machine.service.db.AtmGroupService;
-import com.yihuacomputer.fish.machine.service.db.AtmModuleService;
-import com.yihuacomputer.fish.machine.service.db.AtmMoveService;
-import com.yihuacomputer.fish.machine.service.db.AtmQuittingNoticeService;
-import com.yihuacomputer.fish.machine.service.db.AtmTypeService;
-import com.yihuacomputer.fish.machine.service.db.ComplexDeviceService;
-import com.yihuacomputer.fish.machine.service.db.DeviceExtendService;
-import com.yihuacomputer.fish.machine.service.db.DeviceGroupRelation;
-import com.yihuacomputer.fish.machine.service.db.DevicePersonRelation;
-import com.yihuacomputer.fish.machine.service.db.DeviceService;
+import com.yihuacomputer.fish.machine.service.AtmBrandService;
+import com.yihuacomputer.fish.machine.service.AtmCatalogService;
+import com.yihuacomputer.fish.machine.service.AtmGroupService;
+import com.yihuacomputer.fish.machine.service.AtmModuleService;
+import com.yihuacomputer.fish.machine.service.AtmMoveService;
+import com.yihuacomputer.fish.machine.service.AtmQuittingNoticeService;
+import com.yihuacomputer.fish.machine.service.AtmTypeService;
+import com.yihuacomputer.fish.machine.service.ComplexDeviceService;
+import com.yihuacomputer.fish.machine.service.DeviceExtendService;
+import com.yihuacomputer.fish.machine.service.DeviceGroupRelation;
+import com.yihuacomputer.fish.machine.service.DevicePersonRelation;
+import com.yihuacomputer.fish.machine.service.DeviceService;
 
 @Configuration
 public class MachineModule {

@@ -27,7 +27,7 @@ import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.device.WorkType;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.OrganizationType;
-import com.yihuacomputer.fish.machine.entity.device.DeviceExtend;
+import com.yihuacomputer.fish.machine.entity.DeviceExtend;
 
 /**
  * @author dell

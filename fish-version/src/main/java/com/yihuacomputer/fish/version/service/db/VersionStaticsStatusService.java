@@ -27,7 +27,7 @@ import com.yihuacomputer.fish.api.version.IVersionStaticsStautsService;
 import com.yihuacomputer.fish.api.version.VersionChartsDetailForm;
 import com.yihuacomputer.fish.api.version.VersionStaticsStatus;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
-import com.yihuacomputer.fish.machine.entity.device.Device;
+import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.version.entity.DeviceSoftVersion;
 import com.yihuacomputer.fish.version.entity.Task;
 import com.yihuacomputer.fish.version.entity.Version;

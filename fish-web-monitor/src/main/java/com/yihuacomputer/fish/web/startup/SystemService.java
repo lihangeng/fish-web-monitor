@@ -6,7 +6,7 @@ import org.springframework.web.servlet.i18n.FixedLocaleResolver;
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.fish.api.fault.IFaultFilter;
 import com.yihuacomputer.fish.api.system.config.IParamService;
-import com.yihuacomputer.fish.machine.service.db.AtmModuleService;
+import com.yihuacomputer.fish.machine.service.AtmModuleService;
 
 /**
  * WEB系统服务

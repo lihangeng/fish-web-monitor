@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.atmlog.entity;
 
+import java.io.Serializable;
+
 import com.yihuacomputer.fish.api.atmlog.ITransCycle;
 
 /**
@@ -7,7 +9,12 @@ import com.yihuacomputer.fish.api.atmlog.ITransCycle;
  * @author YiHua
  *
  */
-public class TransCycle implements ITransCycle{
+public class TransCycle implements ITransCycle,Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5746769044277486797L;
 
 	/*终端流水号*/
 	private String terminalSerial; 
