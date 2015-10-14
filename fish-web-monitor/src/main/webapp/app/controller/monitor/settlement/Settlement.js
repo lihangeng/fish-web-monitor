@@ -39,7 +39,7 @@ Ext.define('Eway.controller.monitor.settlement.Settlement', {
 			win.down('grid').getStore().loadData(record.get('boxDetail'));
 			win.show();
 		} else {
-			Eway.alert("请选择您要查看的记录.");
+			Eway.alert(Eway.locale.tip.search.record);
 		}
 	}
 });

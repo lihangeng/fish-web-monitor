@@ -3,7 +3,7 @@ Ext.define('Eway.view.case.faultClassify.UpdateWin', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.faultClassify_UpdateWin',
 
-	title: '更改故障类型配置',
+	title: Eway.locale.cases.faultClassify.updateFaultTypeConfiguration,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -27,11 +27,11 @@ Ext.define('Eway.view.case.faultClassify.UpdateWin', {
 				items: [{
 					xtype: 'displayfield',
 					name : 'classifyName',
-					fieldLabel: '故障分类名称'
+					fieldLabel: Eway.locale.cases.faultClassify.faultClassifyName
 				},{
 					xtype : 'combobox',
 					name : 'responsorType',
-					fieldLabel : '<font color="red">*</font> 故障责任人类型',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.cases.faultClassify.faultresponsorType,
 					store : response,
 					queryMode: 'local',
     				displayField: 'name',
@@ -41,27 +41,27 @@ Ext.define('Eway.view.case.faultClassify.UpdateWin', {
 				},{
 					xtype : 'textfield',
 					name : 'resolveHour',
-					fieldLabel : '<font color="red">*</font> 故障规定关闭时间间隔（单位:小时）',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.cases.faultClassify.faultCloseInterval,
 					regex : /^\d{0,9}(\.\d*)?$/,
-					regexText: '由数字‘0-9’,‘.’组成',
+					regexText: Eway.locale.cases.faultClassify.number,
 					allowBlank : false
 				},{
 					xtype : 'textfield',
 					name : 'upgrade',
-					fieldLabel : '<font color="red">*</font> 最高升级次数',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.cases.faultClassify.upGradeTimes,
 					regex : /^[\d]{0,5}$/,
-					regexText: '由数字‘0-9’组成',
+					regexText: Eway.locale.cases.faultClassify.number,
 					allowBlank : false
 				},{
 					xtype : 'textfield',
 					name : 'notifyTimes',
-					fieldLabel : '重复通知次数',
+					fieldLabel : Eway.locale.cases.caseFault.notifyRepeatTimes,
 					regex : /^[1-9][\d]{0,4}$/,
-					regexText: '通知次数不能为0,由数字‘0-9’组成,1-5位'
+					regexText: Eway.locale.cases.faultClassify.informNumber
 				},{
 					xtype : 'combobox',
 					name : 'notifyWay',
-					fieldLabel : '<font color="red">*</font> 故障通知方式',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.cases.faultClassify.faultInformWay,
 					store : notifyway,
 					queryMode: 'local',
     				displayField: 'display',
@@ -72,11 +72,11 @@ Ext.define('Eway.view.case.faultClassify.UpdateWin', {
 				buttonAlign : 'center',
 				buttons : [ {
 					xtype : 'button',
-					text : '确认',
+					text : Eway.locale.cases.confirm,
 					action : 'confirm'
 				}, {
 					xtype : 'button',
-					text : '取消',
+					text : Eway.locale.cases.cancel,
 					handler : this.onOver
 				} ]
 			}

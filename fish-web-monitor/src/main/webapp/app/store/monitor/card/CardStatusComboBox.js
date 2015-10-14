@@ -3,15 +3,15 @@ Ext.define('Eway.store.monitor.card.CardStatusComboBox', {
 	model : 'Eway.model.Dict',
 	data : [ {
 		value : '0',
-		display : '待领'
+		display : Eway.locale.monitor.business.card.comboxStatus.wait
 	}, {
 		value : '1',
-		display : '已领'
+		display : Eway.locale.monitor.business.card.comboxStatus.received
 	}, {
 		value : '2',
-		display : '销毁'
+		display : Eway.locale.monitor.business.card.comboxStatus.destroy
 	}, {
 		value : '3',
-		display : '调出'
+		display : Eway.locale.monitor.business.card.comboxStatus.bringed
 	} ]
 });

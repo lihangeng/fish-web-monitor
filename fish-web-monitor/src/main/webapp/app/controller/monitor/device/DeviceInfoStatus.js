@@ -117,7 +117,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									var store = this.getMonitorDeviceDeviceStatusStore();
 									var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 									var winEl = win.getEl();
-									winEl.mask("正在加载数据......");
+									winEl.mask(Eway.locale.vtype.dataLoad);
 									store.load({
 										params : {
 											deviceId : code,
@@ -132,11 +132,11 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 										callback : function(records, operation, success) {// 回调函数
 											winEl.unmask();
 											if (!success) {
-												Eway.alert('请检查与设备的连接是否正常.');
+												Eway.alert(Eway.locale.vtype.devLinkNormal);
 												return;
 											}
 											if(records.length == 0){
-												Eway.alert('硬件模块正在初始化......');
+												Eway.alert(Eway.locale.vtype.hardwayInitialize);
 												return ;
 											}
 											if (records && records.length > 0) { // 判断是否有数据
@@ -164,7 +164,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 									var winEl = win.getEl();
 									//var deviceBoxModel = this.getMonitorDeviceDeviceBoxModel();
-									winEl.mask('正在连接');
+									winEl.mask(Eway.locale.tip.nowLink);
 									Eway.model.monitor.device.DeviceBox.load(ip,{
 										scope:this,
 										success : function(record, operation) {
@@ -175,7 +175,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 										},
 										failure: function(record, operation){
 											winEl.unmask();
-											Eway.alert('获取钞箱信息失败.');
+											Eway.alert(Eway.locale.tip.business.device.getCashInfoFail);
 										}
 									});
 								}, this);
@@ -235,7 +235,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									var win = controller.win;
 									var statusView = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 									var winEl = statusView.getEl();
-									winEl.mask('正在执行');
+									winEl.mask(Eway.locale.tip.business.device.operating);
 
 									Ext.Ajax.request({
 							   			method : 'POST',
@@ -258,17 +258,17 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 
 							   					}else{
 							   						win.close();
-							   						Eway.alert("查看失败.");
+							   						Eway.alert(Eway.locale.tip.business.device.reviewFail);
 							   					}
 							   				}else{
 							   					win.close();
-							   					Eway.alert("查看失败.");
+							   					Eway.alert(Eway.locale.tip.business.device.reviewFail);
 							   				}
 							   			},
 							   			failure : function(){
 							   				winEl.unmask();
 							   				win.close();
-							   				Eway.alert("查看失败.");
+							   				Eway.alert(Eway.locale.tip.business.device.reviewFail);
 							   			}
 									});
 
@@ -558,7 +558,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					modal: true,
 					height: 520,
 				    width: 700,
-				    title : '远程抓屏浏览',
+				    title : Eway.locale.monitor.devMonitor.remote.screen,
 				    autoScroll : true,
 				    maximizable: true,
 				    items:[{
@@ -584,7 +584,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 		ip = Ext.util.Format.stripTags(ip);
 		var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 		var winEl = win.getEl();
-		winEl.mask('正在连接');
+		winEl.mask(Eway.locale.tip.nowLink);
 		Ext.Ajax.request({
 			method : 'POST',
 			url : 'api/agent/downLogs/download',
@@ -596,7 +596,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				var object = Ext.decode(response.responseText);
 				if (object.success == true) {
 					winEl.unmask();
-					Ext.MessageBox.confirm('提示','应用日志提取成功,是否下载?',
+					Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.logLoadConfirm,
 							 function(button, text) {
 								if (button == "yes") {
 									var url = 'api/agent/downLogs/downloadFile?path=' + object.path + '&fileName=' + object.fileName
@@ -607,16 +607,16 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				} else {
 					winEl.unmask();
 					if(undefined==object.errors||''==object.errors){
-						Eway.alert('提取应用电子日志失败.');
+						Eway.alert(Eway.locale.tip.business.device.logPullFail);
 					}
 					else{
-						Eway.alert('提取应用电子日志失败:' + object.errors);
+						Eway.alert(Eway.locale.tip.business.device.logPullFail + object.errors);
 					}
 				}
 			},
 			failure : function() {
 				winEl.unmask();
-				Eway.alert('log处理失败.');
+				Eway.alert(Eway.locale.tip.business.device.logFail);
 			}
 		});
 	},
@@ -629,7 +629,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 		ip = Ext.util.Format.stripTags(ip);
 		var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 		var winEl = win.getEl();
-		winEl.mask('正在连接');
+		winEl.mask(Eway.locale.tip.nowLink);
 		Ext.Ajax.request({
 			method: 'POST',
 			url: 'api/agent/netWork/getNetWork',
@@ -645,7 +645,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 			},
 			failure: function(form, action) {
 					winEl.unmask();
-					Eway.alert('服务器连接失败.');
+					Eway.alert(Eway.locale.tip.business.device.linkServerFail);
 			}
 		});
 	},
@@ -662,7 +662,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 
 	//逻辑开
 	onLogicOpenAction : function(btn){
-		Ext.MessageBox.confirm('提示','确认要执行开启服务命令?',
+		Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.logicOpen,
 			function(button,text){
 				if(button == 'yes'){
 					var form = btn.up('form');
@@ -670,7 +670,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					ip = Ext.util.Format.stripTags(ip);
 					var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 					var winEl = win.getEl();
-					winEl.mask('正在执行');
+					winEl.mask(Eway.locale.tip.business.device.operating);
 					Ext.Ajax.request({
 						method : 'POST',
 						url : 'api/agent/logic/open',
@@ -681,15 +681,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 							var object = Ext.decode(response.responseText);
 							if (object.appRet == 00) {
 								winEl.unmask();
-								Eway.alert('执行开启服务命令成功.');
+								Eway.alert(Eway.locale.tip.business.device.openSuccess);
 							} else {
 								winEl.unmask();
-								 Eway.alert("执行开启服务命令失败.");
+								 Eway.alert(Eway.locale.tip.business.device.openFail);
 							}
 						},
 						failure: function(){
 							winEl.unmask();
-							Eway.alert("执行开启服务命令失败.");
+							Eway.alert(Eway.locale.tip.business.device.openFail);
 						}
 					});
 			}
@@ -698,7 +698,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 
 	//逻辑关
 	onLogicCloseAction : function(btn){
-		Ext.MessageBox.confirm('提示','确认要执行暂停服务命令?',
+		Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.closeConfirm,
 			function(button,text){
 				if(button == 'yes'){
 					var form = btn.up('form');
@@ -706,7 +706,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					ip = Ext.util.Format.stripTags(ip);
 					var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 					var winEl = win.getEl();
-					winEl.mask('正在执行');
+					winEl.mask(Eway.locale.tip.business.device.operating);
 					Ext.Ajax.request({
 						method : 'POST',
 						url : 'api/agent/logic/close',
@@ -717,15 +717,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 							var object = Ext.decode(response.responseText);
 							if (object.appRet == 00) {
 								winEl.unmask();
-								Eway.alert('执行暂停服务命令成功.');
+								Eway.alert(Eway.locale.tip.business.device.openSuccess);
 							} else {
 								winEl.unmask();
-								Eway.alert("执行暂停服务命令失败.");
+								Eway.alert(Eway.locale.tip.business.device.openFail);
 							}
 						},
 						failure: function(){
 							winEl.unmask();
-							Eway.alert("执行暂停服务命令失败.");
+							Eway.alert(Eway.locale.tip.business.device.openFail);
 						}
 					});
 				}
@@ -754,9 +754,9 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	onCloseAction : function(btn){
 		var dialog = Ext.create('Ext.window.MessageBox', {
             buttons: [{
-                text: '正常关机',
+                text: Eway.locale.tip.business.device.closeNormal,
                 handler: function() {
-            		Ext.MessageBox.confirm('提示','确认要执行正常关机命令么,可能会存在风险?',callBack);
+            		Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.closeNorml,callBack);
             		function callBack(id){
             			if(id == 'yes'){
             				dialog.close();
@@ -767,7 +767,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 		            		terminalId = Ext.util.Format.stripTags(terminalId);
 		            		var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 		            		var winEl = win.getEl();
-							winEl.mask('正在执行正常关机');
+							winEl.mask(Eway.locale.tip.business.device.closing);
 							Ext.Ajax.request({
 								method : 'POST',
 								url : 'api/agent/normalShutdown',
@@ -780,25 +780,25 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									var object = Ext.decode(response.responseText);
 									if (object.appRet == 00) {
 										winEl.unmask();
-										Eway.alert("正常关机成功.");
+										Eway.alert(Eway.locale.tip.business.device.closeSucess);
 									} else {
 										winEl.unmask();
-										Eway.alert("正常关机失败.");
+										Eway.alert(Eway.locale.tip.business.device.closeFail);
 									}
 								},
 								failure: function(){
 									winEl.unmask();
-									Eway.alert("正常关机命令发送失败.");
+									Eway.alert(Eway.locale.tip.business.device.closeSentFail);
 								}
 							})
             			}
             		}
             	}
             },{
-            	text: '强制关机',
+            	text: Eway.locale.tip.business.device.forceClose,
             	iconCls: 'icon-add',
             	handler: function(){
-            		Ext.MessageBox.confirm('提示','确认要执行强制关机命令么,可能会存在严重风险?',callBack);
+            		Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.forceCloseComfirm,callBack);
             		function callBack(id){
             			if(id == 'yes'){
             				dialog.close();
@@ -809,7 +809,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 		            		ip = Ext.util.Format.stripTags(ip);
 		            		var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 		            		var winEl = win.getEl();
-							winEl.mask('正在执行强制关机');
+							winEl.mask(Eway.locale.tip.business.device.forceClosing);
 							Ext.Ajax.request({
 								method : 'POST',
 								url : 'api/agent/shutdown',
@@ -822,22 +822,22 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									var object = Ext.decode(response.responseText);
 									if (object.appRet == 00) {
 										winEl.unmask();
-										Eway.alert("强制关机成功.");
+										Eway.alert(Eway.locale.tip.business.device.forceCloseSucess);
 									} else {
 										winEl.unmask();
-										Eway.alert("强制关机失败.");
+										Eway.alert(Eway.locale.tip.business.device.forceCloseFail);
 									}
 								},
 								failure: function(){
 									winEl.unmask();
-									Eway.alert("强制关机命令发送失败.");
+									Eway.alert(Eway.locale.tip.business.device.ForceCloseSentFail);
 								}
 							})
             			}
             		}
             	}
             },{
-            	text: '返回',
+            	text: Eway.locale.button.back,
             	iconCls: 'icon-add',
             	handler: function(){
             		dialog.close();
@@ -845,8 +845,8 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
             }]
         });
         dialog.show({
-            title: '关机',
-            msg: '请选择关机方式',
+            title: Eway.locale.monitor.devMonitor.remote.powerOff,
+            msg: Eway.locale.monitor.devMonitor.remote.closeWays,
             icon: Ext.MessageBox.WARNING
         });
 
@@ -856,10 +856,10 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	onRestartAction : function(btn){
 		var dialog = Ext.create('Ext.window.MessageBox', {
             buttons: [{
-                text: '正常重启',
+                text: Eway.locale.tip.business.device.reboot,
                 iconCls: 'icon-add',
                 handler: function() {
-                	Ext.MessageBox.confirm('提示','确认要执行正常重启命令么,可能会存在风险?',callBack);
+                	Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.rebootConfirm,callBack);
                 	function callBack(id){
                 		if(id == 'yes'){
 		            		dialog.close();
@@ -870,7 +870,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 							ip = Ext.util.Format.stripTags(ip);
 							var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 							var winEl = win.getEl();
-							winEl.mask('正在执行正常重启');
+							winEl.mask(Eway.locale.tip.business.device.rebooting);
 							Ext.Ajax.request({
 								method : 'POST',
 								url : 'api/agent/normalReboot',
@@ -883,25 +883,25 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									var object = Ext.decode(response.responseText);
 									if (object.appRet == 00) {
 										winEl.unmask();
-										Eway.alert("正常重启成功.");
+										Eway.alert(Eway.locale.tip.business.device.rebootSucess);
 									} else {
 										winEl.unmask();
-										Eway.alert("正常重启失败.");
+										Eway.alert(Eway.locale.tip.business.device.rebootFail);
 									}
 								},
 								failure: function(){
 									winEl.unmask();
-									Eway.alert("正常重启命令发送失败.");
+									Eway.alert(Eway.locale.tip.business.device.rebootSendFail);
 								}
 							})
                 		}
                 	}
             	}
             },{
-            	text: '强制重启',
+            	text: Eway.locale.tip.business.device.forceReboot,
             	iconCls: 'icon-add',
             	handler: function(){
-            		Ext.MessageBox.confirm('提示','确认要执行强制重启命令么,可能会存在严重风险?',callBack);
+            		Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.rebootConfirm,callBack);
             		function callBack(id){
             			if(id == 'yes'){
             				dialog.close();
@@ -912,7 +912,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 							ip = Ext.util.Format.stripTags(ip);
 							var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 							var winEl = win.getEl();
-							winEl.mask('正在执行强制重启');
+							winEl.mask(Eway.locale.tip.business.device.forceReboot);
 							Ext.Ajax.request({
 								method : 'POST',
 								url : 'api/agent/reboot',
@@ -925,22 +925,22 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									var object = Ext.decode(response.responseText);
 									if (object.appRet == 00) {
 										winEl.unmask();
-										Eway.alert("强制重启成功.");
+										Eway.alert(Eway.locale.tip.business.device.forceRebootSuccess);
 									} else {
 										winEl.unmask();
-										Eway.alert("强制重启失败.");
+										Eway.alert(Eway.locale.tip.business.device.forceRebootFail);
 									}
 								},
 								failure: function(){
 									winEl.unmask();
-									Eway.alert("强制重启命令发送失败.");
+									Eway.alert(Eway.locale.tip.business.device.forceRebootSendFail);
 								}
 							})
             			}
             		}
             	}
             },{
-            	text: '返回',
+            	text: Eway.locale.button.back,
             	iconCls: 'icon-add',
             	handler: function(){
             		dialog.close();
@@ -949,15 +949,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
         });
 
         dialog.show({
-            title: '重启',
-            msg: '请选择重启方式',
+            title: Eway.locale.monitor.devMonitor.remote.restart,
+            msg: Eway.locale.monitor.devMonitor.remote.restartWay,
             icon: Ext.MessageBox.WARNING
         });
 	},
 
 	//复位命令，需要C端配合
 	onResetAction : function(btn){
-		Ext.MessageBox.confirm('提示','确认要执行强制复位?',callBack);
+		Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.resetConfirm,callBack);
 		function callBack(id){
 			if(id == 'yes'){
 				var form = btn.up('form');
@@ -965,7 +965,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				ip = Ext.util.Format.stripTags(ip);
 				var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 				var winEl = win.getEl();
-				winEl.mask('正在执行');
+				winEl.mask(Eway.locale.tip.business.device.operating);
 				Ext.Ajax.timeout = 120000;
 				Ext.Ajax.request({
 					method : 'POST',
@@ -977,15 +977,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 						var object = Ext.decode(response.responseText);
 						if (object.appRet == 00) {
 							winEl.unmask();
-							Eway.alert('强制复位成功.');
+							Eway.alert(Eway.locale.tip.business.device.resetSuccess);
 						} else {
 							winEl.unmask();
-							Eway.alert('强制复位失败.');
+							Eway.alert(Eway.locale.tip.business.device.resetFail);
 						}
 					},
 					failure: function(){
 						winEl.unmask();
-						Eway.alert("强制复位命令发送失败.");
+						Eway.alert(Eway.locale.tip.business.device.resetSendFail);
 					}
 				});
 			}
@@ -1021,7 +1021,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	//显示设备详情页面
 	displayWin : function(record) {
 		var win = Ext.widget('monitor_device_DeviceInfoStatus');
-		win.setTitle("设备" + record.data.code + "详情");
+		win.setTitle(Eway.locale.tip.business.device.term + record.data.code + Eway.locale.tip.business.device.detail);
 		win.on('afterrender',function(){
 			win.fillForm(record);
 		},this)
@@ -1030,7 +1030,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 		var me = this; // 保留当前对象的作用域/
 		win.query('tool[action="refresh"]')[0].on('click', function() {
 			var el = win.getEl();
-			el.mask('正在刷新......');
+			el.mask(Eway.locale.tip.business.device.refresh);
 			setTimeout(function() {
 				me.refreshView(win, win.record.get('code'));
 				el.unmask();

@@ -12,17 +12,17 @@ Ext.define('Eway.view.advert.FilterForm', {
 				columnWidth : .4,
 				items : [{
 			                xtype: 'combobox',
-			                fieldLabel: '广告类型',
+			                fieldLabel: Eway.locale.advert.type,//'广告类型',
 			                displayField: 'display',
-			                store: Ext.StoreMgr.lookup("advert.AdvertType"),
+			                store: "advert.AdvertType",
 			                queryMode: 'local',
 			                valueField : 'value',
+			            	hiddenName : 'advertType',
 			                name:'advertType',
 			                editable : false,
-			                value :'',
 				            width: 280
 			            },{
-			                fieldLabel: '制作时间开始于',
+			                fieldLabel: Eway.locale.advert.createdTimeStart,//'制作时间开始于',
 			                xtype:'datetimefield',
 				        	name:'createdTimeStart',
 				        	editable: true,
@@ -34,17 +34,17 @@ Ext.define('Eway.view.advert.FilterForm', {
 				columnWidth : .4,
 				items : [{
 			                xtype: 'combobox',
-			                fieldLabel: '下发方式',
+			                fieldLabel: Eway.locale.advert.downType,//'下发方式',
 			                displayField: 'display',
-			                store: Ext.StoreMgr.lookup("advert.AdvertDownMethodSearch"),
+			                store: "advert.AdvertDownMethodSearch",
 			                queryMode: 'local',
 			                valueField : 'value',
+			            	hiddenName : 'advertDownMethod',
 			                name:'advertDownMethod',
 			                editable : false,
-			                value :'',
 				            width: 280
 			            },{
-			                fieldLabel: '制作时间结束于',
+			                fieldLabel: Eway.locale.advert.createdTimeStop,//'制作时间结束于',
 			                xtype:'datetimefield',
 				        	name:'createdTimeEnd',
 				        	editable: true,

@@ -50,7 +50,7 @@ Ext.define('Eway.controller.monitor.transaction.HistoryTransaction', {
 						}
 				    });
 			}else{
-				Eway.alert("查询必须输入设备号.");
+				Eway.alert(Eway.locale.tip.business.transaction.historyTransaction.input);
 			}
 		}
 

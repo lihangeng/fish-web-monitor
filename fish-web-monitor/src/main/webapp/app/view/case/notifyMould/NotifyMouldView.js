@@ -5,7 +5,7 @@ Ext.define('Eway.view.case.notifyMould.NotifyMouldView', {
 	
 	requires: ['Eway.view.case.notifyMould.NotifyMouldGrid'],
 	
-	title: '短信内容配置',
+	title: Eway.locale.cases.notifyMould.messageContentConfiguration,
 	layout: 'border',
 	
 	initComponent: function() {

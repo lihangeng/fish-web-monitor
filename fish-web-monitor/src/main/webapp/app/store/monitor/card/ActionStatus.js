@@ -8,9 +8,9 @@ Ext.define('Eway.store.monitor.card.ActionStatus', {
 						display : Eway.locale.commen.all
 					}, {
 						value : '0',
-						display : '待领'
+						display : Eway.locale.monitor.business.card.comboxStatus.wait
 					}, {
 						value : '3',
-						display : '调出'
+						display : Eway.locale.monitor.business.card.comboxStatus.bringed
 					}]
 		});

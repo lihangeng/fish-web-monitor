@@ -9,7 +9,7 @@ Ext.define('Eway.view.monitor.card.AddCardInfo', {
 						'Eway.view.field.card.CardStatusComboBox',
 						'Ext.ux.form.DateTimeField'],
 
-			title : '增加吞卡信息',
+			title : Eway.locale.monitor.business.card.addTitle,
 			modal : true,
 			resizable : false,
 			constrainHeader : true,
@@ -38,19 +38,19 @@ Ext.define('Eway.view.monitor.card.AddCardInfo', {
 											},
 											readOnly : true
 										}, {
-											fieldLabel: '<font color="red">*</font> 设备号',
+											fieldLabel: '<font color="red">*</font> '+Eway.locale.commen.terminalId,
 											xtype : 'card_TerminalId',
 											allowBlank : false,
 											regex: /^[a-zA-Z0-9\u4E00-\u9FA5][a-zA-Z0-9-_\.\u4E00-\u9FA5]{0,19}$/,
-											regexText: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’，只能以字母或数字开头{1-20}。'
+											regexText: Eway.locale.vtype.terminalId
 										}, {
-											fieldLabel: '<font color="red">*</font> 卡号',
+											fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.transaction.card,
 											xtype : 'card_AccountNo',
 											allowBlank : false,
 											regex : /^\d{13,19}$/,
-											regexText : '由数字‘0-9’组成,13到19位'
+											regexText : Eway.locale.tip.cardNo
 										}, {
-											fieldLabel: '<font color="red">*</font> 吞卡时间',
+											fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.time,
 											xtype : 'datetimefield',
 											name: 'cardRetainTime',
 											format: 'Y-m-d H:i:s',
@@ -59,28 +59,28 @@ Ext.define('Eway.view.monitor.card.AddCardInfo', {
 											maxValue : Ext.Date.add(Ext.Date.parse(Ext.Date.format(new Date(), 'Y-m-d') + " 23:59:59","Y-m-d H:i:s")),
 											allowBlank : false
 										}, {
-											fieldLabel: '<font color="red">*</font> 吞卡原因',
+											fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.reason,
 											xtype : 'textarea',
 											grow:true,
 											name : 'reason',
 											allowBlank : false,
 											maxLength: 50,
-											maxLengthText : '允许的最大长度为50'
+											maxLengthText : Eway.locale.monitor.business.card.cardRegex+'50'
 										}, {
-											fieldLabel: '<font color="red">*</font> 发卡行',
+											fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.cardHolder,
 											xtype:'textfield',
 											name : 'cardDistributionBank',
 											allowBlank: false,
 											maxLength: 40,
-											maxLengthText : '允许的最大长度为40'
+											maxLengthText : Eway.locale.monitor.business.card.cardRegex+'40'
 										}
 										],
 								buttonAlign : 'center',
 								buttons : [{
-											text : '确认',
+											text : Eway.locale.button.confirm,
 											action : 'confirm'
 										}, {
-											text : '取消',
+											text : Eway.locale.button.cancle,
 											handler : this.onOver
 										}]
 							}

@@ -4,16 +4,16 @@ Ext.define('Eway.store.monitor.device.FilterSellItem',{
 	model : 'Eway.model.monitor.device.FilterItem',
 	
 	data : [{
-			name : '-全部-',
+			name : Eway.locale.commen.all,
 			value : '0'
 		},{
-			name : '自营',
+			name : Eway.locale.machine.device.operationSelf,
 			value : '1'
 		},{
-			name : '合作',
+			name : Eway.locale.machine.device.cooperation,
 			value : '2'
 		},{
-			name : '外包',
+			name : Eway.locale.machine.device.epiboly,
 			value : '3'
 		}]
 });

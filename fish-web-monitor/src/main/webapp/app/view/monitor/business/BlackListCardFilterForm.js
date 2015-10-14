@@ -20,16 +20,16 @@ Ext.define('Eway.view.monitor.business.BlackListCardFilterForm', {
 	        				items : [{
 	        					xtype : 'field.monitor.CardNo',
 	        					labelAlign : 'right',
-	        					fieldLabel : '交易卡号',
+	        					fieldLabel : Eway.locale.monitor.business.transaction.card,
 	        					regex: /^[0-9]{13,19}$/,
-								regexText:'只能输入13到19个数字！'
+								regexText:Eway.locale.tip.cardNo
 	        				}]
 	        			}, {
 	        				columnWidth : .3,
 	        				items : [{
 	        					xtype : 'field.monitor.UserName',
 	        					labelAlign : 'right',
-	        					fieldLabel : '用户姓名',
+	        					fieldLabel : Eway.locale.monitor.business.transaction.userName,
 	        					maxLength : 20
 	        				}]
 	        			}, {
@@ -38,7 +38,7 @@ Ext.define('Eway.view.monitor.business.BlackListCardFilterForm', {
 	        					xtype : 'textfield',
 	        					name :'organization',
 	        					labelAlign : 'right',
-	        					fieldLabel : '所属银行',
+	        					fieldLabel : Eway.locale.monitor.business.blackList.cardBank,
 	        					maxLength : 60
 	        				}]
 	        			}]

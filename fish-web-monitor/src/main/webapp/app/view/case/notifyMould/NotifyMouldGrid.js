@@ -12,7 +12,7 @@ Ext.define('Eway.view.case.notifyMould.NotifyMouldGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->', {
-				text: '更改',
+				text: Eway.locale.button.update,
 				glyph : 0xf040,
 				action:'update'
 //				code : 'atmBrandUpdate',
@@ -21,37 +21,37 @@ Ext.define('Eway.view.case.notifyMould.NotifyMouldGrid', {
 //				}
 			}],
 			columns : [{
-				header : '故障分类',
+				header : Eway.locale.cases.caseFault.faultClassify,
 				dataIndex : 'classifyName',
 				width : 150
 			}, {
-				header : '通知类型',
+				header : Eway.locale.cases.notifyMould.noticeType,
 				dataIndex : 'notifyType',
 				width : 80,
 				renderer : function(value){
 					if(value == 1){
-						return "创建通知";
+						return Eway.locale.cases.notifyMould.createNotice;
 					}else if(value == 2){
-						return "升级通知";
+						return Eway.locale.cases.notifyMould.upgradeNotice;
 					}else if(value == 3){
-						return "关闭通知"
+						return Eway.locale.cases.notifyMould.closeNotice;
 					}
 				}
 			}, {
-				header : '通知方式',
+				header : Eway.locale.cases.caseFault.informWay,
 				dataIndex : 'notifyWay',
 				width : 80,
 				renderer : function(value){
 					if(value == 'SMS'){
-						return "短信";
+						return Eway.locale.cases.caseFault.message;
 					}else if(value == 'MAIL'){
-						return "邮件";
+						return Eway.locale.cases.caseFault.mail;
 					}else if(value == 'BOTH'){
-						return "短信和邮件";
+						return Eway.locale.cases.caseFault.messageAndMail;
 					}
 				}
 			}, {
-				header : '通知参数',
+				header : Eway.locale.cases.notifyMould.noticeValue,
 				dataIndex : 'notifySet',
 				flex : 1
 			}],

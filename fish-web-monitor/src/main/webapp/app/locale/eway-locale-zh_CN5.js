@@ -14,6 +14,7 @@ Ext.override(Eway.locale,{
 			refresh:'刷新XX',
 			reset:'重置XX',
 			back:'返回XX',
+			apply:'应用XX',
 			//bankOrg
 			deepQuery:'深度查询XX',
 			bankOrgMove:'组织迁移XX',
@@ -25,13 +26,15 @@ Ext.override(Eway.locale,{
 			exported:'导出XX',
 			select:'选择XX',
 			info :'详细信息XX',
-			move:'移机XX'
+			move:'移机XX',
+			exportXLS:'导出XLS',
+			exportPDF:'导出PDF',
 		},
 		combox:{
 			select:'--请选择--XX',
 			
 		},
-		tip : {
+		tip:{
 			search :{
 				warn:'查询条件存在错误项XX.',
 				record:'请选择您要查看的记录.XX'
@@ -81,8 +84,14 @@ Ext.override(Eway.locale,{
 			selectRemoveDev:'请选择您要移除的设备.XX',
 			selectMoveDev:'请选择要移动的设备.XX',
 			moveSuc:'移机成功.XX',
-			
-				
+			dateReSelect:'开始时间不能大于结束日期,请重新选择XX',
+			selectPlan:'请选择您应用的方案.XX',
+			removeFail:'解除失败.XX',
+			selectRemoveDev:'请选择要解除的设备.',
+			relatedFail:'关联失败.',
+			selectRelatedDev:'请选择要关联的设备.',
+			planNoUpdate:'该方案已经执行,不可修改.',
+			planNoRemove:'该方案已经执行,不可删除.',
 			
 		},
 		vtype:{
@@ -110,12 +119,103 @@ Ext.override(Eway.locale,{
 			dataLoad:'正在加载数据......XX',
 			devLinkNormal:'请检查与设备的连接是否正常.XX',
 			hardwayInitialize:'硬件模块正在初始化......XX',
-			
-			
-			
-				
-				
-			
+			inputCorrect:'请正确输入.XX',
+			exportRepError:'导出报表出错，请重新操作!XX',
+			planOutdate:'(此方案已过期，不可应用！)',
+		},
+		commen:{
+			jobNum:'工号XX',//Eway.locale.commen.jobNum
+			name:'姓名XX',//Eway.locale.commen.name
+			personJobName:'岗位XX',//Eway.locale.commen.personJobName
+			state:'状态XX',//Eway.locale.commen.state
+			birthday:'生日XX',//Eway.locale.commen.birthday
+			comboxStatus:{
+				onJob:'在岗XX',//Eway.locale.commen.comboxStatus.onJob
+				onAdjust:'调休XX',//Eway.locale.commen.comboxStatus.onAdjust
+				onVacation:'休假XX',//Eway.locale.commen.comboxStatus.onVacation
+				other:'其他XX',//Eway.locale.commen.comboxStatus.other
+				dredge:'开通XX',//Eway.locale.commen.comboxStatus.dredge
+				open:'启用XX',//Eway.locale.commen.comboxStatus.open
+				close:'停用XX',//Eway.locale.commen.comboxStatus.close
+			},
+			type:'类型XX',//Eway.locale.commen.type
+			comboxType:{
+				machineManager:'管机员XX',//Eway.locale.commen.comboxType.machineManager
+				machineRepairer:'维修人员'//Eway.locale.commen.comboxType.machineRepairer
+			},
+			mobile:'手机XX',//Eway.locale.commen.mobile
+			email:'邮箱XX',//Eway.locale.commen.email
+			phone:'固话XX',//Eway.locale.commen.phone
+			gender:'性别XX',//Eway.locale.commen.gender
+			all:'全部XX',//Eway.locale.commen.all
+			comboxGender:{
+				male:'男XX',//Eway.locale.commen.comboxGender.male
+				female:'女XX',//Eway.locale.commen.comboxGender.female
+				unknow:'未知'//Eway.locale.commen.comboxGender.unknow
+			},
+			remark:'备注XX',//Eway.locale.commen.remark
+			terminalId:'设备号XX',//Eway.locale.commen.terminalId
+			ip:'网络地址XX',//Eway.locale.commen.ip
+			orgNameBelongs:'所属机构XX',//Eway.locale.commen.orgNameBelongs
+			devTypeName:'设备型号XX',//Eway.locale.commen.devTypeName
+			devVendorName:'设备品牌XX',//Eway.locale.commen.devVendorName
+			devCatalogName:'设备类型XX',//Eway.locale.commen.devCatalogName
+			devStatus:'设备状态XX',//Eway.locale.commen.devStatus
+			comboxDevStatus:{
+				open:'开通XX',//Eway.locale.commen.comboxDevStatus.open
+				stop:'停用'//Eway.locale.commen.comboxDevStatus.stop
+			},
+			setManager:'设置XX',//Eway.locale.commen.setManager
+			devServiceName:'设备维护商XX',//Eway.locale.commen.devServiceName
+			cashboxLimit:'钞箱报警金额XX',//Eway.locale.commen.cashboxLimit
+			installDate:'安装日期XX',//Eway.locale.commen.installDate
+			address:'地址XX',//Eway.locale.commen.address
+			areaCode:'区域编号XX',//Eway.locale.commen.areaCode
+			areaName:'区域名称XX',//Eway.locale.commen.areaName
+			toolbar:'总共：{2}条，显示{0}-{1}XX',//Eway.locale.commen.toolbar
+			bindMachine :'已关联的设备XX',//Eway.locale.commen.bindMachine
+			lift:'解除XX',//Eway.locale.commen.lift
+			canBindMachine:'可关联的设备XX',//Eway.locale.commen.canBindMachine
+			bind:'关联XX',//Eway.locale.commen.bind
+			filter:'过滤条件XX',//Eway.locale.commen.filter
+			stateDict:{
+				newCreate:'新建XX',//Eway.locale.commen.stateDict.newCreate
+				normal:'正常XX',//Eway.locale.commen.stateDict.normal
+				locked:'锁定XX',//Eway.locale.commen.stateDict.locked
+				disable:'无效XX',//Eway.locale.commen.stateDict.disable
+				frozen:'冻结XX',//Eway.locale.commen.stateDict.frozen
+				deleted:'已删除XX'//Eway.locale.commen.stateDict.deleted
+			},
+			yes:'是XX',//Eway.locale.commen.yes
+			no:'否XX',//Eway.locale.commen.no
+			selectAll:'全部选择XX',//Eway.locale.commen.selectAll
+			selectNon:'全部不选XX',//Eway.locale.commen.selectNon
+			content:'消息XX',//Eway.locale.commen.content
+			upgrade:'上级XX',//Eway.locale.commen.upgrade
+			port:'网络PortXX',//Eway.locale.commen.port
+			previous:'上一页XX',//Eway.locale.commen.previous
+			next:'下一页XX',//Eway.locale.commen.next
+			installAddr:'装机地址XX',//Eway.locale.commen.installAddr
+			seviceMode:'经营方式XX',//Eway.locale.commen.seviceMode
+			insideOutside:'在行标志XX',//Eway.locale.commen.insideOutside
+			appVersion:'应用版本号XX',//Eway.locale.commen.appVersion
+			devInfo:'设备基本信息XX',//Eway.locale.commen.devInfo
+			//check end
+			personnel:'联系人XX',//Eway.locale.commen.personnel
+			warn:'警告XX',//Eway.locale.commen.warn
+			fatal:'故障XX',//Eway.locale.commen.fatal
+			unStable:'不稳定XX',//Eway.locale.commen.unStable
+			unknow:'未知XX',//Eway.locale.commen.unknow
+			description:'描述XX',//Eway.locale.commen.description
+			info:'详细信息XX',//Eway.locale.commen.info
+			startDataTime:'开始时间XXXX',//Eway.locale.commen.startDataTime
+			endDataTime:'结束时间XXXX',//Eway.locale.commen.endDataTime
+			year:'年XXXX',//Eway.locale.commen.year
+			month:'月XXXX',//Eway.locale.commen.month
+			day:'日XXXX',//Eway.locale.commen.day
+			yearTime:'年份XXXX',//Eway.locale.commen.yearTime
+			monthTime:'月份XX',//Eway.locale.commen.monthTime
+			dayTime:'日期XX',//Eway.locale.commen.dayTime
 		},
 		machine:{
 			atmBrand : {
@@ -212,6 +312,7 @@ Ext.override(Eway.locale,{
 				name:'设备型号XX',
 				devVendorName:'所属品牌XX',
 				devCatalogName:'所属类型XX',
+				devTerminalName:'所属型号XX',
 				spec:'设备规格XX',
 				weight:'设备重量XX',
 				watt:'平均功率XX',
@@ -697,6 +798,78 @@ Ext.override(Eway.locale,{
 			person:{
 				
 			}
+		},
+		report:{
+			baseReport:{
+				date:'加钞日期XX',//Eway.locale.report.baseReport.date
+				amt:'加钞金额XX',//Eway.locale.report.baseReport.amt
+				boxId:'钞箱IDXX',//Eway.locale.report.baseReport.boxId
+				boxCurrency:'币种XX',//Eway.locale.report.baseReport.boxCurrency
+				boxInitAmt:'初始金额XX',//Eway.locale.report.baseReport.boxInitAmt
+				lastAmt:'剩余金额XX',//Eway.locale.report.baseReport.lastAmt
+				cashAddRep:'加钞情况报表XX',//Eway.locale.report.baseReport.cashAddRep
+				boxBalanceRep:'钞箱余额报表XX',//Eway.locale.report.baseReport.boxBalanceRep
+				sysConfRep:'系统硬件配置报表XX',//Eway.locale.report.baseReport.sysConfRep
+				devDetailRep:'设备明细报表XX',//Eway.locale.report.baseReport.devDetailRep
+				devBrandRep:'设备品牌统计报表XX',//Eway.locale.report.baseReport.devBrandRep
+				devRunInfoRep:'设备运行情况报表XX',//Eway.locale.report.baseReport.devRunInfoRep
+				eatCardRep:'吞卡统计报表XX',//Eway.locale.report.baseReport.eatCardRep
+				eatCardDetailRep:'吞卡明细报表XX',//Eway.locale.report.baseReport.eatCardDetailRep
+				clearDate:'清机日期XX',//Eway.locale.report.baseReport.clearDate
+				clearTable:'清机情况报表XX',//Eway.locale.report.baseReport.clearTable
+				dependDev:'按设备XX',//Eway.locale.report.baseReport.dependDev
+				tradeRep:'交易统计报表XX',//Eway.locale.report.baseReport.tradeRep
+				tradeResultRep:'交易结果统计报表XX',//Eway.locale.report.baseReport.tradeResultRep
+			},
+			openrate:{
+				device:{
+					statisticsMethod:'统计方式XX',//Eway.locale.report.openrate.device.statisticsMethod
+					statistics:'统计XX',//Eway.locale.report.openrate.device.statistics
+					importStat:'导出XX',//Eway.locale.report.openrate.device.importStat
+					statDate:'统计日期XX',//Eway.locale.report.openrate.device.statDate
+					openTimes:'设备应工作时长XX',//Eway.locale.report.openrate.device.openTimes
+					healthyTimeReal:'正常状态时长XX',//Eway.locale.report.openrate.device.healthyTimeReal
+					maintainTimeReal:'管机员维护时长XX',//Eway.locale.report.openrate.device.maintainTimeReal
+					unknownTimeReal:'离线未知时长XX',//Eway.locale.report.openrate.device.unknownTimeReal
+					faultTimeReal:'硬件故障停机时长XX',//Eway.locale.report.openrate.device.faultTimeReal
+					atmpTimeReal:'ATMP故障时长XX',//Eway.locale.report.openrate.device.atmpTimeReal
+					stopTimeReal:'其它暂停服务状态时长XX',//Eway.locale.report.openrate.device.stopTimeReal
+					openRate:'实际工作开机率XX',//Eway.locale.report.openrate.device.openRate
+					devOpenRate:'设备开机率XX',//Eway.locale.report.openrate.device.devOpenRate
+					organizationName:'机构XX',//Eway.locale.report.openrate.device.organizationName
+				},
+				org:{
+					orgOpenRate:'机构开机率XX',//Eway.locale.report.openrate.org.orgOpenRate
+				},
+				type:{
+					terminalId:'型号XX',//Eway.locale.report.openrate.type.terminalId
+					typeOpenRate:'型号开机率XX',//Eway.locale.report.openrate.type.typeOpenRate
+				},
+			},
+			plan:{
+				addPlan:'增加方案XX',//Eway.locale.report.plan.addPlan
+				name:'名称XX',//Eway.locale.report.plan.name
+				startDate:'有效开始时间XX',//Eway.locale.report.plan.startDate
+				endDate:'有效结束时间XX',//Eway.locale.report.plan.endDate
+				terminalId:'编号XX',//Eway.locale.report.plan.terminalId
+				cashboxLimit:'钞箱报警金额(单位：张数)XX',//Eway.locale.report.plan.cashboxLimit
+				perToDev:'人员<-->设备XX',//Eway.locale.report.plan.perToDev
+				changePlan:'更改方案XX',//Eway.locale.report.plan.changePlan
+				openPlan:'开机方案',//Eway.locale.report.plan.openPlan
+			}
+		},
+		card:{
+			cardNum:'卡号XX',//Eway.locale.card.cardNum
+			onlyNumber:'只能输入数字,13-19位XX',//Eway.locale.card.onlyNumber
+			cardStatus:'卡片状态XX',//Eway.locale.card.cardStatus
+			eatCardTime:'吞卡时间XX',//Eway.locale.card.eatCardTime
+			IDType:'证件类型XX',//Eway.locale.card.IDType
+			customerName:'客户姓名XX',//Eway.locale.card.customerName
+			customerPapers:'客户证件号XX',//Eway.locale.card.customerPapers
+			customerPhone:'客户电话XX',//Eway.locale.card.customerPhone
+			endData:'吞卡截止日期XX',//Eway.locale.card.endData
+			startData:'吞卡起始日期XX',//Eway.locale.card.startData
+			
+		}
 		/*}*/
-	}
 });

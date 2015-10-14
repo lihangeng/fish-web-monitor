@@ -13,11 +13,11 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->', {
-				text: '查询',
+				text: Eway.locale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			},{
-				text : '导出',
+				text : Eway.locale.button.exported,
 				iconCls :'exportToExcel',
 				action : 'export'
 			}],
@@ -30,83 +30,83 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 				dataIndex : 'terminalId',
 				width : 80
 			}, {
-				header : '故障模块',
+				header : Eway.locale.cases.caseFault.faultModule,
 				dataIndex : 'devMod',
 				width : 120,
 				renderer: function(value,metadata,record){
 					if(value=="IDC"){
-	                 	 return "读卡器模块";
+	                 	 return Eway.locale.cases.caseFault.cardReaderModule;
 	                }
 					else if(value=="CIM"){
-						 return "存款模块";
+						 return Eway.locale.cases.caseFault.depoistModule;
 	                }
 					else if(value=="CDM"){
-						return "取款模块";
+						return Eway.locale.cases.caseFault.drawModule;
 					}
 					else if(value=="RPR"){
-						return "凭条打印模块";
+						return Eway.locale.cases.caseFault.rprModule;
 					}
 					else if(value=="JPR"){
-						return "日志打印模块";
+						return Eway.locale.cases.caseFault.jprModule;
 					}
 					else if(value=="PIN"){
-						return "密码键盘模块";
+						return Eway.locale.cases.caseFault.pinModule;
 					}
 					else if(value=="TTU"){
-						return "文本终端单元";
+						return Eway.locale.cases.caseFault.textTerminalUnit;
 					}
 					else if(value=="SIU"){
-						return "传感器模块";
+						return Eway.locale.cases.caseFault.sensoModule;
 					}
 				}
 			}, {
-				header : '故障分类',
+				header : Eway.locale.cases.caseFault.faultClassify,
 				dataIndex : 'faultClassify',
 				width : 120
 			}, {
-				header : '故障码',
+				header : Eway.locale.cases.caseFault.faultCode,
 				dataIndex : 'faultCode',
 				hidden : true,
 				width : 60
 			}, {
-				header : '厂商故障码',
+				header : Eway.locale.cases.caseFault.providerFaultCode,
 				dataIndex : 'vendorHwCode',
 				width : 80
 			}, {
-				header : '故障开始时间',
+				header : Eway.locale.cases.caseFault.faultStartTime,
 				dataIndex : 'faultTime',
 				width : 120
 			}, {
-				header : '故障关闭时间',
+				header : Eway.locale.cases.caseFault.faultCloseTime,
 				dataIndex : 'closedTime',
 				width : 120
 			}, {
-				header : '持续时长',
+				header : Eway.locale.cases.caseFault.faultContinueTime,
 				dataIndex : 'duration',
 				width : 60
 			}, {
-				header : '故障状态',
+				header : Eway.locale.cases.caseFault.faultState,
 				dataIndex : 'faultStatus',
 				width : 80,
 				renderer: function(value,metadata,record){
 					if(value=="OPEN"){
-	                 	 return '<font color="red">未关闭</font>';
+	                 	 return '<font color="red">'+Eway.locale.cases.caseFault.status.open+'</font>';
 	                }
 					else if(value=="CLOSED"){
-						 return "已关闭";
+						 return Eway.locale.cases.caseFault.status.close;
 	                }
 				}
 			}, {
-				header : '升级次数',
+				header : Eway.locale.cases.caseFault.upgradeTimes,
 				dataIndex : 'upgrade',
 				width : 60
 			}, {
 				xtype:'actioncolumn',
-				header : '短信',
+				header : Eway.locale.cases.caseFault.message,
 				dataIndex : 'id',
 				items : [{
 					icon : 'resources/images/icon_email.gif',
-					tooltip: '查看详情',
+					tooltip: Eway.locale.cases.caseFault.checkDetails,
 					getClass : function(value,metadata,record,ronwIndex,colindex,store){
 						var result = record.get('id'); 
 						if(result != null){
@@ -129,10 +129,10 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 					}
 				}]
 			}, {
-				header : '银行联系人',
+				header : Eway.locale.cases.caseFault.bankPer,
 				dataIndex : 'bankPer'
 			}, {
-				header : '供应商联系人',
+				header : Eway.locale.cases.caseFault.serPer,
 				dataIndex : 'serPer',
 				flex : 1
 			}],

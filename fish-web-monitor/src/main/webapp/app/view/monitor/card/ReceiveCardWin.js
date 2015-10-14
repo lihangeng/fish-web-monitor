@@ -15,7 +15,7 @@ Ext.define('Eway.view.monitor.card.ReceiveCardWin', {
 	           'Eway.view.field.card.CardStatusComboBox',
 	           'Ext.ux.form.DateTimeField'],
 	
-	title: '客户领卡',
+	title: Eway.locale.monitor.business.card.accGetCard,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -54,40 +54,40 @@ Ext.define('Eway.view.monitor.card.ReceiveCardWin', {
 					disabled : true
 				},{
 					xtype: 'datetimefield',
-					fieldLabel: '吞卡时间',
+					fieldLabel: Eway.locale.monitor.business.card.time,
 					format : 'Y-m-d H:i:s',
 					name: 'cardRetainTime',
 					allowBlank : false,
 					disabled : true
 				},{
-					fieldLabel: '<font color="red">*</font> 吞卡原因',
+					fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.reason,
 					xtype : 'textarea',
 					name : 'reason',
 					allowBlank : false,
 					disabled : true
 				},{
-					fieldLabel: '<font color="red">*</font> 发卡行',
+					fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.cardHolder,
 					name : 'cardDistributionBank',
 					xtype:'field',
 					allowBlank : false,
 					disabled : true
 				},
 				{
-					fieldLabel: '<font color="red">*</font> 客户姓名',
+					fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.customerName,
 					xtype : 'card_CustomerName',
 					allowBlank : false,
 //					regex: /^[\u4E00-\u9FA5\a-zA-Z][\u4E00-\u9FA5\.\a-zA-Z]{0,10}$/,
 //					regexText: '输入姓名，英文，.,汉字，0到10位'
 					maxLength : 10,
-					maxLengthText : '允许的最大长度为10'
+					maxLengthText : Eway.locale.monitor.business.card.cardRegex+'10'
 				},{
-					fieldLabel: '<font color="red">*</font> 客户电话',
+					fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.customerPhone,
 					xtype : 'card_CustomerPhone',
 					allowBlank : false,
 					regex:/(^[0-9]{3,4}[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^[0-9]{3,4}\-[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^\([0-9]{3,4}\)[0-9]{3,8}$)|(^0{0,1}13[0-9]{9}$)/,
-					regexText: '请输入正确的电话号码'
+					regexText: Eway.locale.tip.phone
 				},{
-					fieldLabel: '<font color="red">*</font> 证件类型',
+					fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.paperType,
 					xtype : 'card_CardTypeComboBox',
 					allowBlank : false,
 					editable : false,
@@ -96,36 +96,36 @@ Ext.define('Eway.view.monitor.card.ReceiveCardWin', {
 							var customerPapers = this.up('form').down('field[name="customerPapers"]');
 							if(this.value == 1){
 								customerPapers.regex = /(^(\d{15}|\d{17}[\dxX])$)/;
-								customerPapers.regexText = '请输入正确的身份证号码,15位或者18位';
+								customerPapers.regexText = Eway.locale.tip.business.card.idCardRegex;
 							}else if(this.value == 2){
 								customerPapers.regex = /(^(\d{15}|\d{17}[\dxX])$)/;
-								customerPapers.regexText = '请正确输入户口本上的身份证号码,15位或者18位';
+								customerPapers.regexText = Eway.locale.tip.business.card.accountRegex;
 							}else if(this.value == 3){
 								customerPapers.regex = /(^(\d{15}|\d{17}[\dxX])$)/;
-								customerPapers.regexText = '请正确输入驾驶证上的身份证号码,15位或者18位';
+								customerPapers.regexText = Eway.locale.tip.business.card.driveCardRegex;
 							}else if(this.value == 4){
 								customerPapers.regex = /(^(\d{15}|\d{17}[\dxX])$)/;
-								customerPapers.regexText = '请正确输入护照上的身份证号码,15位或者18位';
+								customerPapers.regexText = Eway.locale.tip.business.card.passportRegex;
 							}else if(this.value == 5){
 								customerPapers.regex = /^[\u4E00-\u9FA5]{0,5}[0-9]{0,10}$/;
-								customerPapers.regexText = '请输入正确的军官证号码,1-5位汉字和1-10位数字';
+								customerPapers.regexText = Eway.locale.tip.business.card.soldierRegex;
 							}else if(this.value == 6){
 								customerPapers.regex = /(^(\d{7}|\d{8})$)/;
-								customerPapers.regexText = '请输入正确的士兵证,7-8位数字';
+								customerPapers.regexText = Eway.locale.tip.business.card.soldierCard;
 							}else if(this.value == 7){
 								customerPapers.regex = /^\d{12,15}$/;
-								customerPapers.regexText = '请输入正确的法人营业执照,12-15位数字';
+								customerPapers.regexText = Eway.locale.tip.business.card.busnessPaper;
 							}else if(this.value == 8){
 								customerPapers.regex = /^\d{15}$/;
-								customerPapers.regexText = '请输入正确的法人代码证,15位数字';
+								customerPapers.regexText = Eway.locale.tip.business.card.busnessCode;
 							}else if(this.value == 9){
 								customerPapers.regex = /^\d{15}$/;
-								customerPapers.regexText = '请输入正确的税务登记证,15位数字';
+								customerPapers.regexText = Eway.locale.tip.business.card.taxPaper;
 							}
 						}
 					}
 				},{
-					fieldLabel: '<font color="red">*</font> 证件号',
+					fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.paperCode,
 					xtype : 'card_CustomerPapers',
 					allowBlank : false,
 					regex:/^$/,
@@ -133,10 +133,10 @@ Ext.define('Eway.view.monitor.card.ReceiveCardWin', {
 				}],
 				buttonAlign : 'center',
 				buttons: [{
-					text: '确认',
+					text: Eway.locale.button.confirm,
 					action: 'confirm'
 				},{
-					text: '返回',
+					text: Eway.locale.button.back,
 					handler: this.onOver
 				}]
 			}

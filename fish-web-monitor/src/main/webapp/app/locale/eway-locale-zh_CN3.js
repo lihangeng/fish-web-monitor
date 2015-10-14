@@ -44,7 +44,7 @@ Ext.override(Eway.locale,{
 				error:'删除失败:'//Eway.locale.tip.error
 			},
 			add:{
-				error:'新增失败',//Eway.locale.tip.add.error
+				error:'新增失败'//Eway.locale.tip.add.error
 			},
 			success:'成功.',//Eway.locale.tip.success
 			fail:'失败:',//Eway.locale.tip.fail
@@ -54,6 +54,9 @@ Ext.override(Eway.locale,{
 			input:'请正确输入',//Eway.locale.tip.input
 			roleName:'由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位',//Eway.locale.tip.roleName
 			roleDescription:'由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入100位',//Eway.locale.tip.roleDescription
+			notNull:'不能为空',//Eway.locale.tip.notNull
+			cardNo:'只能输入13到19个数字',//Eway.locale.tip.cardNo
+			blankBegin:'不能以空格开头',//Eway.locale.tip.blankBegin
 			passwd:{
 				confirmPasswd:'是否确认密码重置？',//Eway.locale.tip.confirmPasswd
 				resetPasswding:'正在重置密码......',//Eway.locale.tip.resetPasswding
@@ -68,7 +71,7 @@ Ext.override(Eway.locale,{
 					set:{
 						chooseOrg:'请选择您要设置的机构.',//Eway.locale.tip.bankOrg.manager.set.chooseOrg
 						managerSuccess:'设置管理员成功.',//Eway.locale.tip.bankOrg.manager.set.managerSuccess
-						managerFail:'设置管理员失败.',//Eway.locale.tip.bankOrg.manager.set.managerFail
+						managerFail:'设置管理员失败.'//Eway.locale.tip.bankOrg.manager.set.managerFail
 					},
 					remove:{
 						confirm:'是否删除该机构管理员?',//Eway.locale.tip.bankOrg.manager.remove.confirm
@@ -81,7 +84,7 @@ Ext.override(Eway.locale,{
 				downGradeOrg:'的直接下级机构',//Eway.locale.tip.bankOrg.downGradeOrg
 				move:{
 					chooseOrg:'请选择您要迁移的组织.',//Eway.locale.tip.bankOrg.move.chooseOrg
-					moveSuccess:'组织迁移成功.',//Eway.locale.tip.bankOrg.move.moveSuccess
+					moveSuccess:'组织迁移成功.'//Eway.locale.tip.bankOrg.move.moveSuccess
 				}
 			},
 			bankPer:{
@@ -91,16 +94,16 @@ Ext.override(Eway.locale,{
 					unLinkPersonFail:'关联失败.',//Eway.locale.tip.bankPer.link.unLinkPersonFail
 					unlinkDev:'请选择要解除的设备.',//Eway.locale.tip.bankPer.link.unlinkDev
 					linkDev:'请选择要关联的设备.',//Eway.locale.tip.bankPer.link.linkDev
-					unLinkDevFail:'解除失败.',//Eway.locale.tip.bankPer.link.unLinkDevFail
+					unLinkDevFail:'解除失败.'//Eway.locale.tip.bankPer.link.unLinkDevFail
 				},
 				personEligible:'符合条件的人员',//Eway.locale.tip.bankPer.personEligible
 				downGradePer:'以及其下属机构下的人员信息',//Eway.locale.tip.bankPer.downGradePer
-				personBelongs:'下的人员信息',//Eway.locale.tip.bankPer.personBelongs
+				personBelongs:'下的人员信息'//Eway.locale.tip.bankPer.personBelongs
 			},
 			serviceOrg:{
 				chooseOrg:'请选择您要设置的维护商.',//Eway.locale.tip.serviceOrg.chooseOrg
 				remove:{
-					reChoose:'您未选择要设置的维护商或该维护商下没有管理员,请重新选择.',//Eway.locale.tip.serviceOrg.remove.reChoose
+					reChoose:'您未选择要设置的维护商或该维护商下没有管理员,请重新选择.'//Eway.locale.tip.serviceOrg.remove.reChoose
 				}
 			},
 			servicePer:{
@@ -129,10 +132,91 @@ Ext.override(Eway.locale,{
 				transaction:{
 					transactionMonitor:{
 						beginMonitor:'请先停止监控后再输入条件，按开始监控按钮即可进行条件监控！',//Eway.locale.tip.business.transaction.transactionMonitor.beginMonitor
+						input:'设备号、对方账号、客户账号至少输入一个.',//Eway.locale.tip.business.transaction.transactionMonitor.input
+						left:'离开',//Eway.locale.tip.business.transaction.transactionMonitor.left
+					},
+					historyTransaction:{
+						input:'查询必须输入设备号.'//Eway.locale.tip.business.transaction.historyTransaction.input
+						
+						
 					}
+				},
+				blackList:{
+					importing:'正在导入文件',//Eway.locale.tip.business.blackList.importing
+					importSuccess:'导入黑名单卡文件成功'//Eway.locale.tip.business.blackList.importSuccess
+				},
+				card:{
+					returnFail:'移交失败:后台处理出错.',//Eway.locale.tip.business.card.returnFail
+					choose:'请选择您移交的卡片.',//Eway.locale.tip.business.card.choose
+					returnSucess:'移交成功.',//Eway.locale.tip.business.card.returnSucess
+					chooseBack:'请选择要领取的卡片',//Eway.locale.tip.business.card.chooseBack
+					getSuccess:'领取成功.',//Eway.locale.tip.business.card.getSuccess
+					destroyConfirm:'是否销毁这张卡片?',//Eway.locale.tip.business.card.destroyConfirm
+					destroySuccess:'销毁成功',//Eway.locale.tip.business.card.destroySuccess
+					chooseDestroy:'请选择要销毁的卡片.',//Eway.locale.tip.business.card.chooseDestroy
+					idCardRegex:'请输入正确的身份证号码,15位或者18位',//Eway.locale.tip.business.card.idCardRegex
+					accountRegex:'请正确输入户口本上的身份证号码,15位或者18位',//Eway.locale.tip.business.card.accountRegex
+					driveCardRegex:'请正确输入驾驶证上的身份证号码,15位或者18位',//Eway.locale.tip.business.card.driveCardRegex
+					passportRegex:'请正确输入护照上的身份证号码,15位或者18位',//Eway.locale.tip.business.card.passportRegex
+					soldierRegex:'请输入正确的军官证号码,1-5位汉字和1-10位数字',//Eway.locale.tip.business.card.soldierRegex
+					soldierCard:'请输入正确的士兵证,7-8位数字',//Eway.locale.tip.business.card.soldierCard
+					busnessPaper:'请输入正确的法人营业执照,12-15位数字',//Eway.locale.tip.business.card.busnessPaper
+					busnessCode:'请输入正确的法人代码证,15位数字',//Eway.locale.tip.business.card.busnessCode
+					taxPaper:'请输入正确的税务登记证,15位数字'//Eway.locale.tip.business.card.taxPaper
 					
 				},
-			},
+				device:{
+					getCashInfoFail:'获取钞箱信息失败',//Eway.locale.tip.business.device.getCashInfoFail
+					operating:'正在执行',//Eway.locale.tip.business.device.operating
+					reviewFail:'查看失败.',//Eway.locale.tip.business.device.reviewFail
+					logLoadConfirm:'应用日志提取成功,是否下载?',//Eway.locale.tip.business.device.logLoadConfirm
+					logPullFail:'提取应用电子日志失败',//Eway.locale.tip.business.device.logPullFail
+					logFail:'log处理失败.',//Eway.locale.tip.business.device.logFail
+					linkServerFail:'服务器连接失败.',//Eway.locale.tip.business.device.linkServerFail
+					logicOpen:'确认要执行开启服务命令',//Eway.locale.tip.business.device.logicOpen
+					openSuccess:'执行开启服务命令成功.',//Eway.locale.tip.business.device.openSuccess
+					openFail:'执行开启服务命令失败.',//Eway.locale.tip.business.device.openFail
+					closeConfirm:'确认要执行暂停服务命令?',//Eway.locale.tip.business.device.closeConfirm
+					closeNormal:'正常关机',//Eway.locale.tip.business.device.closeNormal
+					closeComfirm:'确认要执行正常关机命令么,可能会存在风险?',//Eway.locale.tip.business.device.closeComfirm
+					closing:'正在执行正常关机',//Eway.locale.tip.business.device.closing
+					closeSucess:'正常关机成功.',//Eway.locale.tip.business.device.closeSucess
+					closeFail:'正常关机失败.',//Eway.locale.tip.business.device.closeFail
+					closeSentFail:'正常关机命令发送失败.',//Eway.locale.tip.business.device.closeSentFail
+					forceClose:'强制关机',//Eway.locale.tip.business.device.forceClose
+					forceCloseComfirm:'确认要执行强制关机命令么,可能会存在严重风险?',//Eway.locale.tip.business.device.forceCloseComfirm
+					forceClosing:'正在执行强制关机',//Eway.locale.tip.business.device.forceClosing
+					forceCloseSucess:'强制关机成功.',//Eway.locale.tip.business.device.forceCloseSucess
+					forceCloseFail:'强制关机失败.',//Eway.locale.tip.business.device.forceCloseFail
+					ForceCloseSentFail:'强制关机命令发送失败.',//Eway.locale.tip.business.device.ForceCloseSentFail
+					reboot:'正常重启',//Eway.locale.tip.business.device.reboot
+					rebootConfirm:'确认要执行正常重启命令么,可能会存在风险?',//Eway.locale.tip.business.device.rebootConfirm
+					rebooting:'正在执行正常重启',//Eway.locale.tip.business.device.rebooting
+					rebootSucess:'正常重启成功.',//Eway.locale.tip.business.device.rebootSucess
+					rebootFail:'正常重启失败.',//Eway.locale.tip.business.device.rebootFail
+					rebootSendFail:'正常重启命令发送失败.',//Eway.locale.tip.business.device.rebootSendFail
+					forceReboot:'强制重启',//Eway.locale.tip.business.device.forceReboot
+					forceRebootConfirm:'确认要执行强制重启命令么,可能会存在严重风险?',//Eway.locale.tip.business.device.forceRebootConfirm
+					forceRebooting:'正在执行强制重启',//Eway.locale.tip.business.device.forceRebooting
+					forceRebootSuccess:'强制重启成功.',//Eway.locale.tip.business.device.forceRebootSuccess
+					forceRebootFail:'强制重启失败.',//Eway.locale.tip.business.device.forceRebootFail
+					forceRebootSendFail:'强制重启命令发送失败.',//Eway.locale.tip.business.device.forceRebootSendFail
+					resetConfirm:'确认要执行强制复位?',//Eway.locale.tip.business.device.resetConfirm
+					resetSuccess:'强制复位成功',//Eway.locale.tip.business.device.resetSuccess
+					resetFail:'强制复位成功',//Eway.locale.tip.business.device.resetFail
+					resetSendFail:'强制复位命令发送失败.',//Eway.locale.tip.business.device.resetSendFail
+					term:'设备',//Eway.locale.tip.business.device.term
+					detail:'详情',//Eway.locale.tip.business.device.detail
+					refresh:'正在刷新......',//Eway.locale.tip.business.device.refresh
+					chooseOrg:'机构筛选',//Eway.locale.tip.business.device.chooseOrg
+					stateSet:'状态监控项配置',//Eway.locale.tip.business.device.stateSet
+					filterSet:'过滤条件项配置',//Eway.locale.tip.business.device.filterSet
+					connFirst:'当前已经暂停了与服务器的监控连接,请先与服务器建立连接,即"开始监控"',//Eway.locale.tip.business.device.connFirst
+					matrixPattern:'矩阵方式',//Eway.locale.tip.business.device.matrixPattern
+					listPattern:'列表方式'//Eway.locale.tip.business.device.listPattern
+				}
+				
+			}
 			
 			
 		},
@@ -150,7 +234,7 @@ Ext.override(Eway.locale,{
 			bankOrgCode:'只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！',//Eway.locale.vtype.bankOrgCode
 			zip:'只能输入6个‘0-9’的数字！',//Eway.locale.vtype.zip
 			endDateGtBenginDate:'操作起始时间不能大于操作结束日期,请重新选择',//Eway.locale.vtype.endDateGtBenginDate
-			personRemark:'由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入200位',//Eway.locale.vtype.endDateGtBenginDate
+			personRemark:'由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入200位'//Eway.locale.vtype.personRemark
 		},
 		commen:{
 			jobNum:'工号',//Eway.locale.commen.jobNum
@@ -234,32 +318,9 @@ Ext.override(Eway.locale,{
 			unknow:'未知',//Eway.locale.commen.unknow
 			description:'描述',//Eway.locale.commen.description
 			info:'详细信息',//Eway.locale.commen.info
+			begin:'开始'//Eway.locale.commen.begin
 		},
-		machine:{
-			atmBrand : {
-				title:'品牌管理',//Eway.locale.machine.atmBrand.title
-				name: '品牌名称',//Eway.locale.machine.atmBrand.name
-				country:'生产商国家或地区',//Eway.locale.machine.atmBrand.country
-				hotline1:'生产商热线1',//Eway.locale.machine.atmBrand.hotline1
-				hotline2:'生产商热线2',//Eway.locale.machine.atmBrand.hotline2
-				address:'生产商地址',//Eway.locale.machine.atmBrand.address
-				status:'生产商状态',//Eway.locale.machine.atmBrand.status
-				comboxStatus:{
-					provider:'设备供应',//Eway.locale.machine.atmBrand.comboxStatus.provider
-					maintance:'设备服役'//Eway.locale.machine.atmBrand.comboxStatus.maintance
-				}
-			},
-			atmCatalog:{
-				title:'ATM分类',//Eway.locale.atmCatalog.title
-				name:'分类名称',//Eway.locale.atmCatalog.name
-				note:'备注',//Eway.locale.atmCatalog.note
-				addTitle:'增加ATM分类信息',//Eway.locale.atmCatalog.addTitle
-				updateTitle:'更改ATM型号信息'//Eway.locale.atmCatalog.updateTitle
-			},
-			atmType:{
-				typeName:'ATM型号XX',
-			}
-		},
+		
 		person:{
 			bankOrg :{
 				title:'银行机构管理',//Eway.locale.person.bankOrg.title
@@ -293,7 +354,7 @@ Ext.override(Eway.locale,{
 				personList:'人员列表',//Eway.locale.person.bankOrg.personList
 				orgLinkTitle:'该机构的关联设备和人员',//Eway.locale.person.bankOrg.orgLinkTitle
 				machineOrg:' 该机构下设备',//Eway.locale.person.bankOrg.machineOrg
-				personOrg:'该机构下人员',//Eway.locale.person.bankOrg.personOrg
+				personOrg:'该机构下人员'//Eway.locale.person.bankOrg.personOrg
 				
 			},
 			bankPer :{
@@ -301,7 +362,7 @@ Ext.override(Eway.locale,{
 				organizationName:'机构',//Eway.locale.person.bankPer.organizationName
 				orgNavi:'机构导航',//Eway.locale.person.bankPer.orgNavi
 				addBankPerTitle:'增加银行人员信息',//Eway.locale.person.bankPer.addBankPerTitle
-				updateBankPerTitle:'更改银行人员信息',//Eway.locale.person.bankPer.updateBankPerTitle
+				updateBankPerTitle:'更改银行人员信息'//Eway.locale.person.bankPer.updateBankPerTitle
 				
 			},
 			serviceOrg:{
@@ -377,7 +438,7 @@ Ext.override(Eway.locale,{
 			permission:{
 				menuName:'菜单名称',//Eway.locale.permission.permission.menuName
 				menuDescription:'菜单描述',//Eway.locale.permission.permission.menuDescription
-				menuPermission:'菜单权限',//Eway.locale.permission.permission.menuPermission
+				menuPermission:'菜单权限'//Eway.locale.permission.permission.menuPermission
 			}
 		},
 		monitor:{
@@ -387,7 +448,7 @@ Ext.override(Eway.locale,{
 					runStatus:'运行状态',//Eway.locale.monitor.devMonitor.comboxStatus.runStatus
 					modStatus:'模块状态',//Eway.locale.monitor.devMonitor.comboxStatus.modStatus
 					boxStatus:'钞箱状态',//Eway.locale.monitor.devMonitor.comboxStatus.boxStatus
-					netStatus:'网络状态',//Eway.locale.monitor.devMonitor.comboxStatus.netStatus
+					netStatus:'网络状态'//Eway.locale.monitor.devMonitor.comboxStatus.netStatus
 				},
 				monitorState:'监控状态',//Eway.locale.monitor.devMonitor.monitorState
 				showWay:'展示方式',//Eway.locale.monitor.devMonitor.showWay
@@ -413,9 +474,9 @@ Ext.override(Eway.locale,{
 					boxId:'钞箱标识',//Eway.locale.monitor.devMonitor.cash.boxId
 					type:'钞箱类型',//Eway.locale.monitor.devMonitor.cash.type
 					initialCount:'初始张数',//Eway.locale.monitor.devMonitor.cash.initialCount
-					cashInCount:'存款张数',//Eway.locale.monitor.devMonitor.cash.initialCount
+					cashInCount:'存款张数',//Eway.locale.monitor.devMonitor.cash.cashInCount
 					currentCount:'当前计数[张/笔]',//Eway.locale.monitor.devMonitor.cash.currentCount
-					noteValue:'钞箱面值',//Eway.locale.monitor.devMonitor.cash.currentCount
+					noteValue:'钞箱面值',//Eway.locale.monitor.devMonitor.cash.noteValue
 					currency:'钞箱币种',//Eway.locale.monitor.devMonitor.cash.currency
 					boxDetail:'钞箱详情',//Eway.locale.monitor.devMonitor.cash.boxDetail
 					cimFull:'存款钞满',//Eway.locale.monitor.devMonitor.cash.cimFull
@@ -425,7 +486,7 @@ Ext.override(Eway.locale,{
 					empty:'钞空',//Eway.locale.monitor.devMonitor.cash.empty
 					cimAFull:'存款钞将满',//Eway.locale.monitor.devMonitor.cash.cimAFull
 					cashFault:'钞箱故障',//Eway.locale.monitor.devMonitor.cash.cashFault
-					cashUnknow:'钞箱未知',//Eway.locale.monitor.devMonitor.cash.cashUnknow
+					cashUnknow:'钞箱未知'//Eway.locale.monitor.devMonitor.cash.cashUnknow
 					
 				},
 				modStateGraphic:'模块状态图示',//Eway.locale.monitor.devMonitor.modStateGraphic
@@ -444,7 +505,7 @@ Ext.override(Eway.locale,{
 					isc:'身份证扫描仪',//Eway.locale.monitor.devMonitor.mod.isc
 					icc:'发卡器',//Eway.locale.monitor.devMonitor.mod.icc
 					fgp:'指纹仪',//Eway.locale.monitor.devMonitor.mod.fgp
-					healthy:'模块正常',//Eway.locale.monitor.devMonitor.mod.healthy
+					healthy:'模块正常'//Eway.locale.monitor.devMonitor.mod.healthy
 					
 				},
 				remote:{
@@ -454,7 +515,9 @@ Ext.override(Eway.locale,{
 					net:'查看网络连接',//Eway.locale.monitor.devMonitor.remote.net
 					softwareList:'获取软件列表',//Eway.locale.monitor.devMonitor.remote.softwareList
 					powerOff:'关机',//Eway.locale.monitor.devMonitor.remote.powerOff
+					closeWays:'请选择关机方式',//Eway.locale.monitor.devMonitor.remote.closeWays
 					restart:'重启',//Eway.locale.monitor.devMonitor.remote.restart
+					restartWay:'请选择重启方式',//Eway.locale.monitor.devMonitor.remote.restartWay
 					logicOpen:'开启服务',//Eway.locale.monitor.devMonitor.remote.logicOpen
 					logicClose:'暂停服务',//Eway.locale.monitor.devMonitor.remote.logicClose
 					remoteBrowser:'远程浏览',//Eway.locale.monitor.devMonitor.remote.remoteBrowser
@@ -473,7 +536,7 @@ Ext.override(Eway.locale,{
 					stopCash:'暂停服务-未加钞',//Eway.locale.monitor.devMonitor.remote.pauseCash
 					pauseSer:'暂停服务',//Eway.locale.monitor.devMonitor.remote.pauseSer
 					pauseSerUnknow:'未知原因暂停服务',//Eway.locale.monitor.devMonitor.remote.pauseSerUnknow
-					manaAndstaff:'管机员',//Eway.locale.monitor.devMonitor.remote.manaAndstaff
+					manaAndstaff:'管机员'//Eway.locale.monitor.devMonitor.remote.manaAndstaff
 				},
 				atmGroup:'分组',//Eway.locale.monitor.devMonitor.atmGroup
 				solution:'建议解决方案',//Eway.locale.monitor.devMonitor.solution
@@ -484,7 +547,7 @@ Ext.override(Eway.locale,{
 				factureStaff:'厂商模式维护',//Eway.locale.monitor.devMonitor.factureStaff
 				netHealthy:'网络正常',//Eway.locale.monitor.devMonitor.netHealthy
 				netUnStable:'网络不稳定',//Eway.locale.monitor.devMonitor.netUnStable
-				netFatal:'网络故障',//Eway.locale.monitor.devMonitor.netFatal
+				netFatal:'网络故障'//Eway.locale.monitor.devMonitor.netFatal
 			},
 			business:{
 				transaction:{
@@ -505,20 +568,76 @@ Ext.override(Eway.locale,{
 					hostRet:'主机返回码',//Eway.locale.monitor.business.transaction.hostRet
 					userName:'用户姓名',//Eway.locale.monitor.business.transaction.userName
 					historyTransaction:{
-						title:'历史交易查询',//Eway.locale.monitor.business.transaction.historyTransaction.title
+						title:'历史交易查询'//Eway.locale.monitor.business.transaction.historyTransaction.title
 						
 					},
 					transactionMonitor:{
 						title:'实时交易监控',//Eway.locale.monitor.business.transaction.transactionMonitor.title
 						begin:'开始监控',//Eway.locale.monitor.business.transaction.transactionMonitor.begin
-						stop:'停止监控',//Eway.locale.monitor.business.transaction.transactionMonitor.stop
-					}
+						stop:'停止监控'//Eway.locale.monitor.business.transaction.transactionMonitor.stop
+						}
 				},
 				blackList:{
 					title:'黑名单卡管理',//Eway.locale.monitor.business.blackList.title
 					black:'黑名单卡',//Eway.locale.monitor.business.blackList.black
-					
+					addBlack:'添加黑名单卡',//Eway.locale.monitor.business.blackList.addBlack
+					cardBank:'所属银行',//Eway.locale.monitor.business.blackList.cardBank
+					importData:'批量导入',//Eway.locale.monitor.business.blackList.importData
+					addDate:'添加日期',//Eway.locale.monitor.business.blackList.addDate
+					importTitle:'批量导入黑名单卡',//Eway.locale.monitor.business.blackList.importTitle
+					importFile:'导入文件',//Eway.locale.monitor.business.blackList.importFile
+					chooseFileRegex:'请选择导入文件,只支持.xls和.xlsx格式的文件',//Eway.locale.monitor.business.blackList.chooseFileRegex
+					fileRegex:'只支持.xls和.xlsx格式的文件',//Eway.locale.monitor.business.blackList.fileRegex
+					tempDownload:'模版下载',//Eway.locale.monitor.business.blackList.tempDownload
+					importNow:'导入',//Eway.locale.monitor.business.blackList.importNow
+					updateTitle:'更改黑名单卡信息'//Eway.locale.monitor.business.blackList.updateTitle
 				},
+				card:{
+					title:'吞卡管理',//Eway.locale.monitor.business.card.title
+					addTitle:'增加吞卡信息',//Eway.locale.monitor.business.card.addTitle
+					time:'吞卡时间',//Eway.locale.monitor.business.card.time
+					reason:'吞卡原因',//Eway.locale.monitor.business.card.reason
+					cardHolder:'发卡行',//Eway.locale.monitor.business.card.cardHolder
+					cardRegex:'允许的最大长度为',//Eway.locale.monitor.business.card.cardRegex
+					beginEndDate:'吞卡起始日期不能大于吞卡截止日期,请重新选择',//Eway.locale.monitor.business.card.beginEndDate
+					orgBelongs:'所属机构 (包含处理机构)',//Eway.locale.monitor.business.card.orgBelongs
+					beginTime:'开始时间',//Eway.locale.monitor.business.card.beginTime
+					endTime:'结束时间',//Eway.locale.monitor.business.card.endTime
+					accGetCard:'客户领卡',//Eway.locale.monitor.business.card.accGetCard
+					transferCard:'卡片移交',//Eway.locale.monitor.business.card.transferCard
+					processOrg:'处理机构',//Eway.locale.monitor.business.card.processOrg
+					type:'吞卡类型',//Eway.locale.monitor.business.card.type
+					manual:'手动添加',//Eway.locale.monitor.business.card.manual
+					auto:'自动添加',//Eway.locale.monitor.business.card.auto
+					comboxStatus:{
+						wait:'待领',//Eway.locale.monitor.business.card.comboxStatus.wait
+						received:'已领',//Eway.locale.monitor.business.card.comboxStatus.received
+						destroy:'销毁',//Eway.locale.monitor.business.card.comboxStatus.destroy
+						bringed:'调出'//Eway.locale.monitor.business.card.comboxStatus.bringed
+					},
+					treatmentPeople:'处理人员',//Eway.locale.monitor.business.card.treatmentPeople
+					treatmentTime:'处理时间',//Eway.locale.monitor.business.card.treatmentTime
+					customerName:'客户姓名',//Eway.locale.monitor.business.card.customerName
+					customerPhone:'客户电话',//Eway.locale.monitor.business.card.customerPhone
+					customerPapers:'客户证件号',//Eway.locale.monitor.business.card.customerPapers
+					processCard:'吞卡处理',//Eway.locale.monitor.business.card.processCard
+					destroyCard:'卡片销毁',//Eway.locale.monitor.business.card.destroyCard
+					exportData:'导出',//Eway.locale.monitor.business.card.exportData
+					paperType:'证件类型',//Eway.locale.monitor.business.card.paperType
+					paperCode:'证件号',//Eway.locale.monitor.business.card.paperCode
+					idCard:'身份证',//Eway.locale.monitor.business.card.idCard
+					accountPaper:'户口本',//Eway.locale.monitor.business.card.accountPaper
+					drivePaper:'驾驶执照',//Eway.locale.monitor.business.card.drivePaper
+					passport:'护照',//Eway.locale.monitor.business.card.passport
+					officer:'军官证',//Eway.locale.monitor.business.card.officer
+					soldier:'士兵证',//Eway.locale.monitor.business.card.soldier
+					busnessPaper:'法人营业证',//Eway.locale.monitor.business.card.busnessPaper
+					busnessCode:'法人代码证',//Eway.locale.monitor.business.card.busnessCode
+					taxPaper:'税务登记证',//Eway.locale.monitor.business.card.taxPaper
+					withDev:'按设备'//Eway.locale.monitor.business.card.withDev
+				},
+				
+				
 				cashInit:{
 					titile:'加钞信息查询',//Eway.locale.monitor.business.cashInit.titile
 					uuId:'加钞ID',//Eway.locale.monitor.business.cashInit.uuId
@@ -528,7 +647,7 @@ Ext.override(Eway.locale,{
 					boxId:'钞箱ID',//Eway.locale.monitor.business.cashInit.boxId
 					boxCurrency:'币种',//Eway.locale.monitor.business.cashInit.boxCurrency
 					boxInitAmt:'初始金额',//Eway.locale.monitor.business.cashInit.boxInitAmt
-					lastAmt:'剩余金额',//Eway.locale.monitor.business.cashInit.lastAmt
+					lastAmt:'剩余金额'//Eway.locale.monitor.business.cashInit.lastAmt
 				},
 				settlement:{
 					title:'清机信息查询',//Eway.locale.monitor.business.settlement.title
@@ -540,13 +659,11 @@ Ext.override(Eway.locale,{
 					cimNum:'存款笔数',//Eway.locale.monitor.business.settlement.cimNum
 					cdmNum:'取款笔数',//Eway.locale.monitor.business.settlement.cdmNum
 					totalNum:'交易总笔数',//Eway.locale.monitor.business.settlement.totalNum
-					cimNum:'存款笔数',//Eway.locale.monitor.business.settlement.cimNum
 					leftDate:'结账日期',//Eway.locale.monitor.business.settlement.leftDate
 					cimAmt:'存款金额',//Eway.locale.monitor.business.settlement.cimAmt
 					cdmAmt:'取款金额',//Eway.locale.monitor.business.settlement.cdmAmt
-					tranAmt:'交易总金额',//Eway.locale.monitor.business.settlement.tranAmt
-				},
-				
+					tranAmt:'交易总金额'//Eway.locale.monitor.business.settlement.tranAmt
+				}		
 			/*}*/
 			
 		}
