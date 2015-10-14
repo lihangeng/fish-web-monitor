@@ -3,12 +3,12 @@ package com.yihuacomputer.fish.person.interceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yihuacomputer.domain.interceptor.IEntityInjector;
-import com.yihuacomputer.fish.person.entity.Organization;
-import com.yihuacomputer.fish.person.entity.Person;
-import com.yihuacomputer.fish.person.entity.User;
 import com.yihuacomputer.fish.person.service.api.IDomainOrganizationService;
 import com.yihuacomputer.fish.person.service.api.IDomainPersonService;
 import com.yihuacomputer.fish.person.service.api.IDomainUserService;
+import com.yihuacomputer.fish.system.entity.Organization;
+import com.yihuacomputer.fish.system.entity.Person;
+import com.yihuacomputer.fish.system.entity.User;
 
 public class PersonCoreEntityInjector implements IEntityInjector
 {

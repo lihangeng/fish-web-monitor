@@ -60,7 +60,7 @@ public class AtmMove implements IAtmMove {
     /**
      * 源机构
      */
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.person.entity.Organization.class)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
     @JoinColumn(name = "SRC_ORG_ID")
     private IOrganization organization;
 
@@ -84,7 +84,7 @@ public class AtmMove implements IAtmMove {
     /**
      * 源机构
      */
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.person.entity.Organization.class)
+    @ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
     @JoinColumn(name = "TARGET_ORG_ID")
     private IOrganization targetOrganization;
 

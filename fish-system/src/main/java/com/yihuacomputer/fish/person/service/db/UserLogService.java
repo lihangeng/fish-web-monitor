@@ -19,8 +19,8 @@ import com.yihuacomputer.domain.util.DBType;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IUserLog;
-import com.yihuacomputer.fish.person.entity.UserLog;
 import com.yihuacomputer.fish.person.service.base.DomainUserLogService;
+import com.yihuacomputer.fish.system.entity.UserLog;
 
 /**
  * 数据库版UserLogService实现：

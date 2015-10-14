@@ -46,7 +46,7 @@
 			<list>
 				<value>com.yihuacomputer.fish.atmlog.entity</value>
 				<value>com.yihuacomputer.fish.machine.entity</value>
-				<value>com.yihuacomputer.fish.person.entity</value>
+				<value>com.yihuacomputer.fish.system.entity</value>
 			</list>
 		</property>
 	</bean>

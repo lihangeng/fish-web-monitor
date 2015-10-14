@@ -14,8 +14,8 @@ import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IPerson;
-import com.yihuacomputer.fish.person.entity.Person;
 import com.yihuacomputer.fish.person.service.base.DomainPersonService;
+import com.yihuacomputer.fish.system.entity.Person;
 
 /**
  * 数据库版PersonService实现：
