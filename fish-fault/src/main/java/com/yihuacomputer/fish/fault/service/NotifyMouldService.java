@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.fault.service.db;
+package com.yihuacomputer.fish.fault.service;
 
 import java.util.List;
 
