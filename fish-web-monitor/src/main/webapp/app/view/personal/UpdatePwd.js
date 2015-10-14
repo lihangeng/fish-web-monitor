@@ -5,7 +5,7 @@ Ext.define('Eway.view.personal.UpdatePwd', {
 
 	requires: ['Eway.view.field.person.Code','Eway.view.field.person.UserName','Eway.view.personal.UpdatePwdController'],
 
-	title: '修改密码',
+	title: Eway.locale.personal.changePwd,
 	
 	controller : 'updatePwd',
 
@@ -38,7 +38,7 @@ Ext.define('Eway.view.personal.UpdatePwd', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '当前登录账号',
+					fieldLabel : Eway.locale.personal.nowLogin,
 					xtype : 'field.code',
 					allowBlank : false,
 					readOnly: true,
@@ -50,33 +50,33 @@ Ext.define('Eway.view.personal.UpdatePwd', {
 					value:ewayUser.getName()
 				},{
 				    xtype : 'textfield',
-				    fieldLabel: '<font color="red">*</font> 输入原始密码',
+				    fieldLabel: '<font color="red">*</font>'+Eway.locale.personal.inputOldPwd,
 				    name : 'password',
 				    inputType : 'password',
 				    allowBlank : false
 				},{
 					xtype : 'textfield',
-					fieldLabel: '<font color="red">*</font> 输入新密码',
+					fieldLabel: '<font color="red">*</font>'+Eway.locale.personal.inputNewPwd,
 					name : 'newPassword',
 					inputType : 'password',
 					id : 'pass1',
 					regex: /^[-a-zA-Z0-9'=\\[\];,.?"`~!@#$%^&*()_+|{}:"<>/]{8,20}$/,
-					regexText:'只能输入8到20位字母‘a-z’或‘A-Z’、数字‘0-9’、特殊字符！',
+					regexText:Eway.locale.personal.inputVali,
 					allowBlank : false
 				},{
 					xtype : 'textfield',
-					fieldLabel: '<font color="red">*</font> 再次输入新密码',
+					fieldLabel: '<font color="red">*</font>'+Eway.locale.personal.inputAgain,
 					inputType : 'password',
 					name : 'newPassword2',
 					id:'pass2',
 					vtype:"password",//自定义的验证类型
-	                vtypeText:"两次密码不一致！",
+	                vtypeText:Eway.locale.personal.pwdNotSame,
 	                confirmTo:"pass1",//要比较的另外一个的组件的id
 					allowBlank : false
 				}],
 				buttonAlign:'center',
-				fbar: ['单击确定即可修改密码，请牢记新密码！',{
-					text: '确定',
+				fbar: [Eway.locale.personal.rememberPwd,{
+					text: Eway.locale.button.sure,
 					action: 'confirm',
 					handler:'onConfirm'
 				}]

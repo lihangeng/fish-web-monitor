@@ -26,6 +26,7 @@ Ext.override(Eway.locale,{
 			bankOrgAdmin:'管理员XX',
 			//bankPerson
 			bankPerlink:'绑定设备XX',
+			sure:'确定',//Eway.locale.button.sure
 			confirm:'确认XX',//Eway.locale.button.confirm
 			cancle:'取消XX',//Eway.locale.button.cancle
 			choose:'选择',//Eway.locale.button.choose
@@ -1305,6 +1306,20 @@ Ext.override(Eway.locale,{
 				solveProject: '解决方案@@',
 				providerFaultInfo:'厂商故障信息管理@@'
 			}
+		},
+		personal:{
+			baseInfo:'基本信息',//Eway.locale.personal.baseInfo
+			accountNum:'账号',//Eway.locale.personal.accountNum
+			personalInfo:'个人信息',//Eway.locale.personal.personalInfo
+			changePwd:'修改密码',//Eway.locale.personal.changePwd
+			nowLogin:'当前登录账号',//Eway.locale.personal.nowLogin
+			inputOldPwd:'输入原始密码',//Eway.locale.personal.inputOldPwd
+			inputNewPwd:'输入新密码',//Eway.locale.personal.inputNewPwd
+			inputVali:'只能输入8到20位字母‘a-z’或‘A-Z’、数字‘0-9’、特殊字符！',//Eway.locale.personal.inputVali
+			inputAgain:'再次输入新密码',//Eway.locale.personal.inputAgain
+			pwdNotSame:'两次密码不一致！',//Eway.locale.personal.pwdNotSame
+			rememberPwd:'单击确定即可修改密码，请牢记新密码！',//Eway.locale.personal.rememberPwd
+			//未完待续
 		},
 		
 
