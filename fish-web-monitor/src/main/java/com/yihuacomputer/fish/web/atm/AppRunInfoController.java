@@ -3,6 +3,7 @@ package com.yihuacomputer.fish.web.atm;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.monitor.ICollectService;
 import com.yihuacomputer.fish.api.monitor.business.IRunInfo;
@@ -35,6 +37,8 @@ public class AppRunInfoController {
 	@Autowired
 	private IRunInfoService runInfoService;
 	
+	@Autowired
+	protected MessageSource messageSource;
 	
 	/**
 	 * 采集设备应用运行状态信息
@@ -52,7 +56,7 @@ public class AppRunInfoController {
 		try{
 			collectService.collectATMCRunInfo(msg.getTermId(), runInfo);
 		}catch(Exception e){
-            logger.error(String.format("处理ATMC运行状态异常![%s],运行状态内容:[%s]",e,JsonUtils.toJson(msg)));
+            logger.error(String.format(messageSource.getMessage("appRunInfo.processError", null, FishCfg.locale),e,JsonUtils.toJson(msg)));
 		}
 		return result;
 	}

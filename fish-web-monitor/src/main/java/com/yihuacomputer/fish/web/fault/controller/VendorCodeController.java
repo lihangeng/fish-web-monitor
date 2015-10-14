@@ -24,6 +24,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,6 +55,9 @@ public class VendorCodeController {
 
 	@Autowired
 	private IOrganizationService organizationService;
+	
+	@Autowired
+	protected MessageSource messageSource;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
@@ -86,7 +90,7 @@ public class VendorCodeController {
 		List<MultipartFile> files = multipartRequest.getFiles("file");
 		MultipartFile file = files.get(0);
 		if (!file.getOriginalFilename().isEmpty() && file.getSize() > 10485760) {
-			return "{'success':false,'content':'超过最大文件大小限制（最大10M）'}";
+			return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileSize", null, FishCfg.locale)+"'}";
 		}
 		String fileType = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'));
 		if (!file.getOriginalFilename().isEmpty()) {
@@ -103,11 +107,11 @@ public class VendorCodeController {
 					vendorCodeList = this.readExl(readFile, "1");// 从excel
 																	// 2007文件解析数据：
 				} else {
-					return "{'success':false,'content':'文件类型不符合要求'}";
+					return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileType", null, FishCfg.locale)+"'}";
 				}
 				if (vendorCodeList != null && !vendorCodeList.isEmpty()) {
 					if (this.check(vendorCodeList, vendor)) {
-						return "{'success':false,'content':'文件内容不符合要求!(可能含有故障码相同记录或已经导入的故障码)'}";
+						return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileComment", null, FishCfg.locale)+"'}";
 					} else {
 						for (IVendorCode item : vendorCodeList) {
 							item.setVendor(vendor);
@@ -115,16 +119,16 @@ public class VendorCodeController {
 						}
 					}
 				} else {
-					return "{'success':false,'content':'文件内容不能为空！请检查！'}";
+					return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileEmpty", null, FishCfg.locale)+"'}";
 				}
 			} catch (Exception ex) {
 				ex.printStackTrace();
-				return "{'success':false,'content':'文件内容不符合要求!请检查！'}";
+				return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileComment", null, FishCfg.locale)+"'}";
 			}
 		}
 		else
 		{
-			return "{'success':false,'content':'文件内容不符合要求！请检查！'}";
+			return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileComment", null, FishCfg.locale)+"'}";
 		}
 		return "{'success':true}";
 	}
@@ -141,12 +145,12 @@ public class VendorCodeController {
 		logger.info(String.format("remove vendorCode by vendor"));
 		List<IVendorCode> list = vendorCodeService.getByVendor(vendor);
 		if (list == null || list.isEmpty()) {
-			return "{'success':false,'content':'删除失败:记录不存在.'}";
+			return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.deleteFail", null, FishCfg.locale)+"'}";
 		} else {
 			try {
 				vendorCodeService.deleteByVendor(vendor);
 			} catch (Exception e) {
-				return "{'success':false,'content':'删除失败:后台处理出错.'}";
+				return "{'success':false,'content'"+messageSource.getMessage("person.delError", null, FishCfg.locale)+"'}";
 			}
 		}
 		return "{'success':true}";
