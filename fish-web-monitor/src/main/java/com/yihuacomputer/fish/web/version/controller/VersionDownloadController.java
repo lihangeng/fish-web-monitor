@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -96,6 +97,9 @@ public class VersionDownloadController {
     @Autowired
     private IUpdateDeployDateHistoryService updateDeployDateHistoryService;
 
+    @Autowired
+    private MessageSource messageSourceVersion;
+    
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
     ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -410,12 +414,21 @@ public class VersionDownloadController {
             jobId = "0";
         }
         IFilter filter = new Filter();
-        filter.eq("job.jobId", Long.valueOf(jobId));
+//        filter.eq("job.jobId", Long.valueOf(jobId));
         filter.ne("status", TaskStatus.REMOVED);
         List<ITask> tasks = taskService.list(filter);
 
         Excel excel = new Excel();
-        String[] headers = new String[]{"终端编号", "设备IP", "所属机构", "分发前版本", "分发版本", "预期版本", "执行时间", "执行结果", "备注"};
+
+        String[] headers = new String[]{messageSourceVersion.getMessage("version.export.terminalId", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.ip", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.orgName", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.versionNoBeforeUpdate", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.updateVersionNo", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.exceptVersionNo", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.executeTime", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.executeResult", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.remark", null, FishCfg.locale)};
         excel.setHeaders(headers);
 
         // 填充数据
@@ -435,9 +448,11 @@ public class VersionDownloadController {
             data.add(row);
         }
         excel.setData(data);
-
-        String fileName = FishCfg.getTempDir() + File.separator + "作业_" + DateUtils.getDate(new Date()) + ".xls";
-        excel.export(fileName, "执行结果");
+        String fileName = messageSourceVersion.getMessage("version.export.fileName", new Object[]{FishCfg.getTempDir() + File.separator,DateUtils.getDate(new Date())}, FishCfg.locale);
+//        String fileName = FishCfg.getTempDir() + File.separator + "作业_" + DateUtils.getDate(new Date()) + ".xls";
+        String result = messageSourceVersion.getMessage("version.export.result", null, FishCfg.locale);
+        excel.export(fileName, "result");
+//        excel.export(fileName, "执行结果");
 
         File file = new File(fileName);
         DownFromWebUtils.download(file, request, response);

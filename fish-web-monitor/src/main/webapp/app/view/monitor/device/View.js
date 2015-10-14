@@ -179,6 +179,7 @@ Ext.define('Eway.view.monitor.device.View',{
 							hiddenValue : 'orgId',
 							editable : false,
 							labelWidth : 60,
+							parentXtype:'toolbar',
 							filters : '{"type" : "0"}',
 							rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false,
 							onTreeItemClick : function(view,record){

@@ -18,6 +18,8 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +47,9 @@ public class RuntimeInfoController {
 	private final String RUNTIMEINFO_FROMDATE_PATH = "/ctr/runtimeInfo/fromDate";
 
 	private final String RUNTIMEINFO_LASTTOTAL30_PATH = "/ctr/runtimeInfo/LastTotal30";
+	
+	@Autowired
+	protected MessageSource messageSource;
 
 	@RequestMapping(value = "/exportFromDate/check", method = RequestMethod.POST)
 	public @ResponseBody
@@ -60,83 +65,83 @@ public class RuntimeInfoController {
 			RuntimeInfoListForm form = (RuntimeInfoListForm) HttpProxy.httpPost(url, msg, RuntimeInfoListForm.class);
 			if (form.getAppRet().equals("01")) {
 				HSSFWorkbook wb = new HSSFWorkbook();
-				HSSFSheet sheet = wb.createSheet("ATM运行信息");
+				HSSFSheet sheet = wb.createSheet(messageSource.getMessage("runtimeInfo.excleTitle", null, FishCfg.locale));
 
 				HSSFRow row = sheet.createRow(0);
 				HSSFCellStyle style = wb.createCellStyle();
 				style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 
 				HSSFCell cell = row.createCell(0);
-				cell.setCellValue("内部序列号");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.innerSerialNo", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(1);
-				cell.setCellValue("日期");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(2);
-				cell.setCellValue("拒钞率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.refuseRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(3);
-				cell.setCellValue("拒钞张数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.refuseCashCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(4);
-				cell.setCellValue("点钞张数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cashCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(5);
-				cell.setCellValue("卡钞率（故障率）");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.errorRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(6);
-				cell.setCellValue("现金交易故障次数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cashTransFailRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(7);
-				cell.setCellValue("存取款交易笔数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cimCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(8);
-				cell.setCellValue("存取款交易张数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cimCashCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(9);
-				cell.setCellValue("其他交易笔数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.otherCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(10);
-				cell.setCellValue("设备开机率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.openRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(11);
-				cell.setCellValue("设备维护率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.serviceRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(12);
-				cell.setCellValue("故障率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.faultRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
-				HSSFSheet hardWare = wb.createSheet("硬件信息");
+				HSSFSheet hardWare = wb.createSheet(messageSource.getMessage("runtimeInfo.hardWareInfo", null, FishCfg.locale));
 				HSSFRow hardwarerow = hardWare.createRow(0);
 
 				HSSFCell hardWarecell = hardwarerow.createCell(0);
-				hardWarecell.setCellValue("日期");
+				hardWarecell.setCellValue(messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale));
 				hardWarecell.setCellStyle(style);
 //				Region region = new Region(0, (short) 0, 1, (short) 0);
 //				hardWare.addMergedRegion(region);
 				hardWare.addMergedRegion(new CellRangeAddress(0,1,0,0));
 
 				hardWarecell = hardwarerow.createCell(1);
-				hardWarecell.setCellValue("硬件");
+				hardWarecell.setCellValue(messageSource.getMessage("runtimeInfo.hardWare", null, FishCfg.locale));
 				hardWarecell.setCellStyle(style);
 //				hardWare.addMergedRegion(new Region(0, (short) 1, 0, (short) 4));
 				hardWare.addMergedRegion(new CellRangeAddress(0,0,1,4));
 
 				HSSFRow hardWareInfoRow = hardWare.createRow(1);
 				HSSFCell hardWareInfocell = hardWareInfoRow.createCell(1);
-				hardWareInfocell.setCellValue("device(组成硬件模块)");
+				hardWareInfocell.setCellValue("device("+messageSource.getMessage("runtimeInfo.deviceMod", null, FishCfg.locale)+")");
 				hardWarecell.setCellStyle(style);
 
 				hardWareInfocell = hardWareInfoRow.createCell(2);
@@ -151,28 +156,28 @@ public class RuntimeInfoController {
 				hardWareInfocell.setCellValue("FW version");
 				hardWarecell.setCellStyle(style);
 
-				HSSFSheet softWare = wb.createSheet("软件信息");
+				HSSFSheet softWare = wb.createSheet(messageSource.getMessage("runtimeInfo.softWareInfo", null, FishCfg.locale));
 				HSSFRow softWareRow = softWare.createRow(0);
 
 				HSSFCell softWareCell = softWareRow.createCell(0);
-				softWareCell.setCellValue("日期");
+				softWareCell.setCellValue(messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale));
 				softWareCell.setCellStyle(style);
 //				softWare.addMergedRegion(new Region(0, (short) 0, 1, (short) 0));
 				softWare.addMergedRegion(new CellRangeAddress(0,1,0,0));
 
 				softWareCell = softWareRow.createCell(1);
-				softWareCell.setCellValue("软件");
+				softWareCell.setCellValue(messageSource.getMessage("runtimeInfo.softWare", null, FishCfg.locale));
 				softWareCell.setCellStyle(style);
 //				softWare.addMergedRegion(new Region(0, (short) 1, 0, (short) 2));
 				softWare.addMergedRegion(new CellRangeAddress(0,0,1,2));
 
 				HSSFRow softWareInfoRow = softWare.createRow(1);
 				HSSFCell softWareInfoCell = softWareInfoRow.createCell(1);
-				softWareInfoCell.setCellValue("软件名称");
+				softWareInfoCell.setCellValue(messageSource.getMessage("runtimeInfo.softWareName", null, FishCfg.locale));
 				softWareInfoCell.setCellStyle(style);
 
 				softWareInfoCell = softWareInfoRow.createCell(2);
-				softWareInfoCell.setCellValue("软件版本");
+				softWareInfoCell.setCellValue(messageSource.getMessage("runtimeInfo.softWareVersion", null, FishCfg.locale));
 				softWareInfoCell.setCellStyle(style);
 
 				// String name = "RuntimeInfo" + "_" + date + "_" + limit +"_"+
@@ -196,69 +201,69 @@ public class RuntimeInfoController {
 				List<RuntimeInfoForm> list = form.getRuntimeInfoList();
 
 				HSSFWorkbook wb = new HSSFWorkbook();
-				HSSFSheet sheet = wb.createSheet("ATM运行信息");
+				HSSFSheet sheet = wb.createSheet(messageSource.getMessage("runtimeInfo.excleTitle", null, FishCfg.locale));
 
 				HSSFRow row = sheet.createRow(0);
 				HSSFCellStyle style = wb.createCellStyle();
 				style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 
 				HSSFCell cell = row.createCell(0);
-				cell.setCellValue("内部序列号");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.innerSerialNo", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(1);
-				cell.setCellValue("日期");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(2);
-				cell.setCellValue("拒钞率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.refuseRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(3);
-				cell.setCellValue("拒钞张数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.refuseCashCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(4);
-				cell.setCellValue("点钞张数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cashCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(5);
-				cell.setCellValue("卡钞率（故障率）");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.errorRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(6);
-				cell.setCellValue("现金交易故障次数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cashTransFailRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(7);
-				cell.setCellValue("存取款交易笔数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cimCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(8);
-				cell.setCellValue("存取款交易张数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cimCashCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(9);
-				cell.setCellValue("其他交易笔数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.otherCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(10);
-				cell.setCellValue("设备开机率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.openRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(11);
-				cell.setCellValue("设备维护率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.serviceRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(12);
-				cell.setCellValue("故障率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.faultRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
-				HSSFSheet hardWare = wb.createSheet("硬件信息");
+				HSSFSheet hardWare = wb.createSheet(messageSource.getMessage("runtimeInfo.hardWareInfo", null, FishCfg.locale));
 				HSSFRow hardwarerow = hardWare.createRow(0);
 
 				HSSFCell hardWarecell = hardwarerow.createCell(0);
-				hardWarecell.setCellValue("日期");
+				hardWarecell.setCellValue(messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale));
 				hardWarecell.setCellStyle(style);
 //				Region region = new Region(0, (short) 0, 1, (short) 0);
 //				hardWare.addMergedRegion(region);
@@ -266,14 +271,14 @@ public class RuntimeInfoController {
 				hardWare.addMergedRegion(region);
 
 				hardWarecell = hardwarerow.createCell(1);
-				hardWarecell.setCellValue("硬件");
+				hardWarecell.setCellValue(messageSource.getMessage("runtimeInfo.hardWare", null, FishCfg.locale));
 				hardWarecell.setCellStyle(style);
 //				hardWare.addMergedRegion(new Region(0, (short) 1, 0, (short) 4));
 				hardWare.addMergedRegion(new CellRangeAddress(0,0,1,4));
 
 				HSSFRow hardWareInfoRow = hardWare.createRow(1);
 				HSSFCell hardWareInfocell = hardWareInfoRow.createCell(1);
-				hardWareInfocell.setCellValue("device(组成硬件模块)");
+				hardWareInfocell.setCellValue("device("+messageSource.getMessage("runtimeInfo.deviceMod", null, FishCfg.locale)+")");
 				hardWarecell.setCellStyle(style);
 
 				hardWareInfocell = hardWareInfoRow.createCell(2);
@@ -288,28 +293,28 @@ public class RuntimeInfoController {
 				hardWareInfocell.setCellValue("FW version");
 				hardWarecell.setCellStyle(style);
 
-				HSSFSheet softWare = wb.createSheet("软件信息");
+				HSSFSheet softWare = wb.createSheet(messageSource.getMessage("runtimeInfo.softWareInfo", null, FishCfg.locale));
 				HSSFRow softWareRow = softWare.createRow(0);
 
 				HSSFCell softWareCell = softWareRow.createCell(0);
-				softWareCell.setCellValue("日期");
+				softWareCell.setCellValue(messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale));
 				softWareCell.setCellStyle(style);
 //				softWare.addMergedRegion(new Region(0, (short) 0, 1, (short) 0));
 				softWare.addMergedRegion(new CellRangeAddress(0,1,0,0));
 
 				softWareCell = softWareRow.createCell(1);
-				softWareCell.setCellValue("软件");
+				softWareCell.setCellValue(messageSource.getMessage("runtimeInfo.softWare", null, FishCfg.locale));
 				softWareCell.setCellStyle(style);
 //				softWare.addMergedRegion(new Region(0, (short) 1, 0, (short) 2));
 				softWare.addMergedRegion(new CellRangeAddress(0,0,1,2));
 
 				HSSFRow softWareInfoRow = softWare.createRow(1);
 				HSSFCell softWareInfoCell = softWareInfoRow.createCell(1);
-				softWareInfoCell.setCellValue("软件名称");
+				softWareInfoCell.setCellValue(messageSource.getMessage("runtimeInfo.softWare", null, FishCfg.locale));
 				softWareInfoCell.setCellStyle(style);
 
 				softWareInfoCell = softWareInfoRow.createCell(2);
-				softWareInfoCell.setCellValue("软件版本");
+				softWareInfoCell.setCellValue(messageSource.getMessage("runtimeInfo.softWareVersion", null, FishCfg.locale));
 				softWareInfoCell.setCellStyle(style);
 
 				int m = 0;
@@ -466,65 +471,65 @@ public class RuntimeInfoController {
 			RuntimeInfoForm runtimeInfoForm = (RuntimeInfoForm) HttpProxy.httpGet(url, RuntimeInfoForm.class);
 			if (runtimeInfoForm.getAppRet().equals("01")) {
 				HSSFWorkbook wb = new HSSFWorkbook();
-				HSSFSheet sheet = wb.createSheet("ATM运行信息表30天总汇");
+				HSSFSheet sheet = wb.createSheet(messageSource.getMessage("runtimeInfo.excle30DaysTitle", null, FishCfg.locale));
 				HSSFRow row = sheet.createRow(0);
 				HSSFCellStyle style = wb.createCellStyle();
 				style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 
 				HSSFCell cell = row.createCell(0);
-				cell.setCellValue("内部序列号");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.innerSerialNo", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(1);
-				cell.setCellValue("日期");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(2);
-				cell.setCellValue("拒钞率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.refuseRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(3);
-				cell.setCellValue("拒钞张数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.refuseCashCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(4);
-				cell.setCellValue("点钞张数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cashCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(5);
-				cell.setCellValue("卡钞率（故障率）");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.errorRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(6);
-				cell.setCellValue("现金交易故障次数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cashTransFailRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(7);
-				cell.setCellValue("存取款交易笔数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cimCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(8);
-				cell.setCellValue("存取款交易张数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cimCashCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(9);
-				cell.setCellValue("其他交易笔数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.otherCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(10);
-				cell.setCellValue("设备开机率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.openRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(11);
-				cell.setCellValue("设备维护率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.serviceRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(12);
-				cell.setCellValue("故障率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.faultRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(13);
-				cell.setCellValue("组成硬件模块");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.deviceMod", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(14);
@@ -540,11 +545,11 @@ public class RuntimeInfoController {
 				cell.setCellStyle(style);
 
 				cell = row.createCell(17);
-				cell.setCellValue("软件名称");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.softWareName", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(18);
-				cell.setCellValue("软件版本");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.softWareVersion", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				String date = DateUtils.getDate(new Date());
@@ -569,65 +574,65 @@ public class RuntimeInfoController {
 				List<RuntimeVersionForm> listRuntimeVersion = runtimeInfoForm.getListSoftwareVersion();
 
 				HSSFWorkbook wb = new HSSFWorkbook();
-				HSSFSheet sheet = wb.createSheet("ATM运行信息表30天总汇");
+				HSSFSheet sheet = wb.createSheet(messageSource.getMessage("runtimeInfo.excle30DaysTitle", null, FishCfg.locale));
 				HSSFRow row = sheet.createRow(0);
 				HSSFCellStyle style = wb.createCellStyle();
 				style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
 
 				HSSFCell cell = row.createCell(0);
-				cell.setCellValue("内部序列号");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.innerSerialNo", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(1);
-				cell.setCellValue("日期");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(2);
-				cell.setCellValue("拒钞率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.refuseRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(3);
-				cell.setCellValue("拒钞张数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.refuseCashCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(4);
-				cell.setCellValue("点钞张数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cashCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(5);
-				cell.setCellValue("卡钞率（故障率）");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.errorRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(6);
-				cell.setCellValue("现金交易故障次数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cashTransFailRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(7);
-				cell.setCellValue("存取款交易笔数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cimCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(8);
-				cell.setCellValue("存取款交易张数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.cimCashCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(9);
-				cell.setCellValue("其他交易笔数");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.otherCount", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(10);
-				cell.setCellValue("设备开机率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.openRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(11);
-				cell.setCellValue("设备维护率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.serviceRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(12);
-				cell.setCellValue("故障率");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.faultRate", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(13);
-				cell.setCellValue("组成硬件模块");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.deviceMod", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(14);
@@ -643,11 +648,11 @@ public class RuntimeInfoController {
 				cell.setCellStyle(style);
 
 				cell = row.createCell(17);
-				cell.setCellValue("软件名称");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.softWareName", null, FishCfg.locale));
 				cell.setCellStyle(style);
 
 				cell = row.createCell(18);
-				cell.setCellValue("软件版本");
+				cell.setCellValue(messageSource.getMessage("runtimeInfo.softWareVersion", null, FishCfg.locale));
 				cell.setCellStyle(style);
 				/**
 				 * 比较size 拼凑成excel表格

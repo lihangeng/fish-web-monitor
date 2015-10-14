@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -52,6 +54,9 @@ public class AtmGroupController {
 	 */
 	@Autowired
 	private IDeviceService deviceService;
+	
+	@Autowired
+	protected MessageSource messageSource;
 
 	/**
 	 * 机构接口
@@ -90,7 +95,7 @@ public class AtmGroupController {
 			}
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "删除失败:后台处理出错.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.delError", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -104,7 +109,7 @@ public class AtmGroupController {
 			boolean isExist = this.isExistCode(request.getId(), request.getName());
 			if (isExist) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "增加失败:组名重复.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("atmGroup.groupDup", null, FishCfg.locale));
 			} else {
 				IAtmGroup atmGroup = atmGroupService.make();
 				request.translate(atmGroup);
@@ -114,7 +119,7 @@ public class AtmGroupController {
 			}
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "增加失败:后台处理出错.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.addFail", null, FishCfg.locale)+":"+messageSource.getMessage("commen.error", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -129,12 +134,12 @@ public class AtmGroupController {
 			group = atmGroupService.get(id);
 			if (group == null) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "更改失败:更改的记录不存在,请刷新后操作.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.updateNotExist", null, FishCfg.locale));
 			} else {
 				boolean isExist = this.isExistCode(id, request.getName());
 				if (isExist) {
 					result.addAttribute(FishConstant.SUCCESS, false);
-					result.addAttribute(FishConstant.ERROR_MSG, "更改失败:组名重复.");
+					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("atmGroup.groupDup", null, FishCfg.locale));
 				} else {
 					IAtmGroup atmGroup = atmGroupService.get(id);
 					request.translate(atmGroup);
@@ -146,7 +151,7 @@ public class AtmGroupController {
 			}
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "更改失败:后台处理出错.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.updateError", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -362,7 +367,7 @@ public class AtmGroupController {
 		ModelMap map = new ModelMap();
 		Iterable<IAtmGroup> devGroups = atmGroupService.list();
 		List<ItemForm> forms = new ArrayList<ItemForm>();
-		forms.add(new ItemForm("-全部-", "0"));
+		forms.add(new ItemForm(messageSource.getMessage("commen.all", null, FishCfg.locale), "0"));
 		for (IAtmGroup devGroup : devGroups) {
 			forms.add(new ItemForm(devGroup.getName(), String.valueOf(devGroup.getId())));
 		}

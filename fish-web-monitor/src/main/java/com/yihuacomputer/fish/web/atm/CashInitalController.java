@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.monitor.ICollectService;
@@ -39,6 +41,10 @@ public class CashInitalController {
 
 	@Autowired
 	private ICashInitService cashInitService;
+	
+	
+	@Autowired
+	protected MessageSource messageSource;
 	/**
 	 * 采集设备应用加钞信息
 	 * @param runInfo
@@ -63,7 +69,7 @@ public class CashInitalController {
 		try{
 			collectService.collectCashInit(msg.getTermId(), cashInitInfo);
 		}catch(Exception e){
-			logger.error(String.format("处理ATMC加钞请求异常![%s],加钞内容:[%s]",e,JsonUtils.toJson(msg)));
+			logger.error(String.format(messageSource.getMessage("cashInital.processError", null, FishCfg.locale),e,JsonUtils.toJson(msg)));
 		}
 
 		return result;

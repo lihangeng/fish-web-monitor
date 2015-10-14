@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,6 +43,9 @@ public class UserLogController {
 
 	@Autowired
 	private IUserLogService service;
+	
+	@Autowired
+	protected MessageSource messageSource;
 
 	public UserLogController() {
 	}

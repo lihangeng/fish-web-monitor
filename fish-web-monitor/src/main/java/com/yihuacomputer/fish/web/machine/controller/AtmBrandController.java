@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -163,7 +164,7 @@ public class AtmBrandController {
 			List<IAtmType> list = atmTypeService.listByBrand(vendor);
 			if (list.size() > 0) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "该品牌与设备类型有关联.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("atmBrand.bindAlready", null, FishCfg.locale));
 			} else {
 				atmBrandService.remove(id);
 				result.addAttribute(FishConstant.SUCCESS, true);
@@ -181,7 +182,7 @@ public class AtmBrandController {
 		ModelMap result = new ModelMap();
 		if (this.isExistCode(String.valueOf(request.getId()), request.getName())) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "品牌名称重复.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("atmBrand.brandDup", null, FishCfg.locale));
 		} else {
 			IAtmVendor brand = atmBrandService.make();
 			request.translate(brand);
@@ -201,11 +202,11 @@ public class AtmBrandController {
 		IAtmVendor brand = atmBrandService.get(id);
 		if (brand == null) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "记录不存在,请刷新后操作.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.updateNotExist", null, FishCfg.locale));
 		} else {
 			if (this.isExistCode(String.valueOf(id), request.getName())) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "品牌名称重复.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("atmBrand.brandDup", null, FishCfg.locale));
 				result.addAttribute(FishConstant.DATA, new AtmBrandForm(brand));
 			} else {
 				request.translate(brand);
