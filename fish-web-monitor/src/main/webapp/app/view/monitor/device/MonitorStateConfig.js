@@ -200,7 +200,7 @@ Ext.define('Eway.view.monitor.device.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.remote.manualStop,
+						boxLabel : Eway.locale.monitor.devMonitor.remote.stopCash,
 						name : 'run_stopManmade',
 						statusGroup : 'waring',
 						action : 'run',
@@ -212,7 +212,7 @@ Ext.define('Eway.view.monitor.device.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.remote.pauseFault,
+						boxLabel : Eway.locale.monitor.devMonitor.remote.pauseSer,
 						name : 'run_stopMod',
 						statusGroup : 'fatal',
 						action : 'run',
