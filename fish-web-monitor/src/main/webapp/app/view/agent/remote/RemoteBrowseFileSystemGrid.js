@@ -15,21 +15,21 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 			initRegion : true,
 			viewConfig : {
 				loadMask   : {
-       			 	msg : '加载数据中，请稍候...'
+       			 	msg : Eway.locale.agent.remote.loadData
         		}
 			},
 			tbar: [{
-				text:'返回',
+				text:Eway.locale.agent.remote.back,
 				iconCls:'up-btn-custom',
 				action:'returnMenu',
 				xtype : 'button'
 			},{
-				text: '刷新',
+				text: Eway.locale.agent.remote.refresh,
 				iconCls:'refresh-btn-custom',
 				action:'reflesh',
 				xtype : 'button'
 			},{
-				text: '上传',
+				text: Eway.locale.agent.remote.upload,
 				iconCls:'upfile-btn-custom',
 				action:'upFile',
 				xtype : 'button',
@@ -38,7 +38,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '新建文件夹',
+				text: Eway.locale.agent.remote.Mkdir,
 				iconCls:'remoteMkdirBtn',
 				action:'remoteMkDir',
 				xtype : 'button',
@@ -47,7 +47,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '新建文件',
+				text: Eway.locale.agent.remote.MkFile,
 				iconCls:'remoteFileBtn',
 				action:'remoteMkFile',
 				xtype : 'button',
@@ -56,7 +56,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '删除',
+				text: Eway.locale.agent.remote.remove,
 				iconCls:'remoteDeleteBtn',
 				action:'remoteDel',
 				xtype : 'button',
@@ -83,19 +83,19 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 				name : 'path',
 				hidden: true
 			},{
-				fieldLabel : '路径',
+				fieldLabel : Eway.locale.agent.remote.path,
 				width: 400,
 				labelAlign: 'right',
 				xtype : 'textfield',
 				enableKeyEvents:true,
 				name : 'queryPath'
 			}, {
-				text: '搜索',
+				text: Eway.locale.agent.remote.search,
 				glyph : 0xf002,
 				action: 'query'
 			}],
 			columns : [{
-				header : '名称',
+				header : Eway.locale.agent.remote.name,
 				sortable : true,
 				renderer: this.iconBackground,
 				width : 200,
@@ -111,13 +111,13 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 				hidden: true,
 				sortable : true
 			}, {
-				header : '大小',
+				header : Eway.locale.agent.remote.size,
 				dataIndex : 'size',
 				renderer: function(value,metadata,record){
 					if(record.data.type=="DIR"){
 	                 	   return "";;
 	                   }else{
-	                   	metadata.tdAttr ='data-qtip="'+"文件大小：" + value+" B"+'"';
+	                   	metadata.tdAttr ='data-qtip="'+Eway.locale.agent.remote.fileSize + value+" B"+'"';
 	                   	if(value>1024*1024*1024){
 	                   		return (value/(1024*1024*1024)).toFixed(2)+" GB";
 	                   	}else if(value>1024*1024){
@@ -130,7 +130,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 				},
 				sortable : true
 			},{
-				header : '路径',
+				header : Eway.locale.agent.remote.path,
 				dataIndex : 'path',
 				width : 150,
 				hidden: true,
@@ -141,12 +141,12 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 //				width : 120,
 //				sortable : true
 			},{
-				header : '最后修改时间',
+				header : Eway.locale.agent.remote.lastTime,
 				dataIndex : 'lastTime',
 				width : 160,
 				sortable : true
 			},{
-				header : '下载',
+				header : Eway.locale.agent.remote.screen.loading,
 				flex: 1,
 				xtype:'actioncolumn',
 				items:[{
@@ -157,7 +157,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 						if(rec.data.type=="DIR"){
 							return "actioncolumn-hidden";
 	                       }else{
-	                       		metadata.tdAttr ='data-qtip="'+"单击即可下载该文件"+'"';
+	                       		metadata.tdAttr ='data-qtip="'+Eway.locale.agent.remote.clickLoadFile+'"';
 	                       }
 					},
 					scope : me,
@@ -168,14 +168,14 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 						var requestPath = rec.get('path');
 						var ip = grid.up('remote_remoteBrowseView').down('textfield[name="ip"]').getValue();
 						if (rec.get('size') > 209715200) {
-							Eway.alert("下载文件 不能超过200M！");
+							Eway.alert(Eway.locale.agent.remote.loadFileSize);
 						} else {
 							var win = grid.up('window');
 							var gridEl = grid.getEl();
-							var mask = new Ext.LoadMask(grid, {msg : "正在下载文件......"});
+							var mask = new Ext.LoadMask(grid, {msg : Eway.locale.agent.remote.nowLoadFile});
 							Ext.MessageBox.show({
-								title : '提示',
-								msg : '是否续传下载！',
+								title : Eway.locale.tip.remind,
+								msg : Eway.locale.agent.remote.judgeLoad,
 								modal : true,
 								fn : function(id) {
 									mask.show();
@@ -251,7 +251,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 			},
 			failure : function() {
 				mask.hide();
-				Eway.alert("下载失败！");
+				Eway.alert(Eway.locale.agent.remote.loadFailure);
 			}
 		});
 	}

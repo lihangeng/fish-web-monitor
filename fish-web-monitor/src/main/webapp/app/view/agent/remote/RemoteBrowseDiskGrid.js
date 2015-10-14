@@ -16,35 +16,35 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseDiskGrid', {
 			initRegion : true,
 			viewConfig : {
 				loadMask   : {
-       			 	msg : '加载数据中，请稍候...'
+       			 	msg : Eway.locale.agent.remote.loadData
         		}
 			},
 			tbar: [{
-				text: '刷新',
+				text: Eway.locale.agent.remote.refresh,
 				iconCls:'refresh-btn-custom',
 				handler: this.onReload,
 				scope: this
 			}],
 			store : store,
 			columns : [{
-				header : '名称',
+				header : Eway.locale.agent.remote.name,
 				width : 150,
 				sortable : true,
 				renderer: this.iconBackground,
 				dataIndex : 'name'
 			}, {
-				header : '格式',
+				header : Eway.locale.agent.remote.format,
 				dataIndex : 'fileSys',
 				sortable : true
 			}, {
-				header : '总大小',
+				header : Eway.locale.agent.remote.totalSize,
 				dataIndex : 'totalSize',
 				renderer: function(value,metadata,record){
 	               return (value/(1024*1024)).toFixed(1)+"GB";
 				},
 				sortable : true
 			},{
-				header : '可用空间',
+				header : Eway.locale.agent.remote.freeSize,
 				dataIndex : 'freeSize',
 				renderer: function(value,metadata,record){
 	               return (value/(1024*1024)).toFixed(1)+"GB";
@@ -71,7 +71,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseDiskGrid', {
 		    callback: function(records, operation, success) {
 		        if(success==true){
 				}else{
-					Eway.alert("刷新失败！");
+					Eway.alert(Eway.locale.agent.remote.refreshFailure);
 				}
 			}
 		});

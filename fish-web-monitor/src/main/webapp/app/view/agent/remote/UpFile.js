@@ -3,7 +3,7 @@ Ext.define('Eway.view.agent.remote.UpFile', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.remote_upFile',
 
-	title : '上传文件',
+	title : Eway.locale.agent.remote.uploadFile,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -24,26 +24,26 @@ Ext.define('Eway.view.agent.remote.UpFile', {
 				},
 				items : [{
 					xtype: 'filefield',
-					fieldLabel:'待上传文件',
-					emptyText:'请选择上传文件',
+					fieldLabel:Eway.locale.agent.remote.prepareFile,
+					emptyText:Eway.locale.agent.remote.choseUploadFile,
 					name: 'file',
-					waitMsg:'正在上传文件...',
+					waitMsg:Eway.locale.agent.remote.nowUploadFile,
 					allowBlank : false,
-					buttonText: '浏览...'
+					buttonText: Eway.locale.agent.remote.explorer
 				},{
 					xtype:'hidden',
 					hideLabel : true,
-					fieldLabel: '文件在服务器上的位置',
+					fieldLabel: Eway.locale.agent.remote.serverPath,
 					name:'serverPath'
 				} ],
 				buttons : [ {
-					text : '保存',
+					text : Eway.locale.agent.remote.confirm,
 					action : 'confirm'
 				}, {
-					text : '重置',
+					text : Eway.locale.agent.remote.reset,
 					handler : this.onReset
 				}, {
-					text : '返回',
+					text : Eway.locale.agent.remote.back,
 					handler : this.onOver
 				} ]
 			}

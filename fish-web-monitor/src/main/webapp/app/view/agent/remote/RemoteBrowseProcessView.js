@@ -6,7 +6,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseProcessView',{
 		'Eway.view.agent.remote.RemoteBrowseProcessGrid'
 	], 
 	
-	title: '系统进程信息',
+	title: Eway.locale.agent.remote.systemProgressInfo,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,

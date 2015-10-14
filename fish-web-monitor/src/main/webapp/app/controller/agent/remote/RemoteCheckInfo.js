@@ -38,7 +38,7 @@ Ext.define('Eway.controller.agent.remote.RemoteCheckInfo',{
 			interval: 500,
 		    duration: 50000,
 		    increment: 2,
-		    text: '<font color="#FFB6C1" size = "3">正在ATM体检中...</font>',
+		    text: '<font color="#FFB6C1" size = "3">'+Eway.locale.agent.remote.ATMCheck+'</font>',
 		    scope: this
         });
 		Ext.Ajax.request({
@@ -57,13 +57,13 @@ Ext.define('Eway.controller.agent.remote.RemoteCheckInfo',{
    	   					win.down('form').down('displayfield[name="memoryIdle"]').setValue(object.data.memoryIdle);
    	   					win.down('form').down('displayfield[name="hardDiskIdle"]').setValue('<pre class="link">'+object.data.hardDiskIdle+'</pre>');
    	   					if(object.data.checkPoint>=85){
-   	   						htmlPanel.body.update('<p><font color="#45B97C" size = "3">ATM体检:&nbsp;&nbsp;&nbsp<font size="4">优（'+object.data.checkPoint+'分）</p>'+'<br>'); 
+   	   						htmlPanel.body.update('<p><font color="#45B97C" size = "3">'+Eway.locale.agent.remote.ATMExamination+':&nbsp;&nbsp;&nbsp<font size="4">'+Eway.locale.agent.remote.excellent+'（'+object.data.checkPoint+Eway.locale.agent.remote.point'）</p>'+'<br>'); 
    	   					}else if(object.data.checkPoint>=70){
-   	   						htmlPanel.body.update('<p><font color="#698B22" size = "3">ATM体检:&nbsp;&nbsp;&nbsp<font size="4">良（'+object.data.checkPoint+'分）</p>'+'<br>'); 
+   	   						htmlPanel.body.update('<p><font color="#698B22" size = "3">'+Eway.locale.agent.remote.ATMExamination+':&nbsp;&nbsp;&nbsp<font size="4">'+Eway.locale.agent.remote.fine+'（'+object.data.checkPoint+Eway.locale.agent.remote.point'）</p>'+'<br>'); 
    	   					}else if(object.data.checkPoint>=50){
-   	   						htmlPanel.body.update('<p><font color="#FF8C00" size = "3">ATM体检:&nbsp;&nbsp;&nbsp<font size="4">中（'+object.data.checkPoint+'分）</p>'+'<br>'); 
+   	   						htmlPanel.body.update('<p><font color="#FF8C00" size = "3">'+Eway.locale.agent.remote.ATMExamination+':&nbsp;&nbsp;&nbsp<font size="4">'+Eway.locale.agent.remote.middle+'（'+object.data.checkPoint+Eway.locale.agent.remote.point'）</p>'+'<br>'); 
    	   					}else{
-   	   						htmlPanel.body.update('<p><font color="#FF0000" size = "3">ATM体检:&nbsp;&nbsp;&nbsp<font size="4">差（'+object.data.checkPoint+'分）</p>'+'<br>'); 
+   	   						htmlPanel.body.update('<p><font color="#FF0000" size = "3">'+Eway.locale.agent.remote.ATMExamination+':&nbsp;&nbsp;&nbsp<font size="4">'+Eway.locale.agent.remote.bad+'（'+object.data.checkPoint+Eway.locale.agent.remote.point'）</p>'+'<br>'); 
    	   					}
    	   					var hardDiskIdle = win.down('displayfield[name="hardDiskIdle"]');
 						var text = hardDiskIdle.getEl().down('pre.link');
@@ -78,7 +78,7 @@ Ext.define('Eway.controller.agent.remote.RemoteCheckInfo',{
 									},
 									callback : function(records, operation, success) {// 回调函数
 										if (!success) {
-											Eway.alert('请检查与设备的连接是否正常.');
+											Eway.alert(Eway.locale.vtype.devLinkNormal);
 											return;
 										}
 										if (records && records.length > 0) { // 判断是否有数据
@@ -92,16 +92,16 @@ Ext.define('Eway.controller.agent.remote.RemoteCheckInfo',{
 							win.show();
 						}
    					}else{
-   						Eway.alert("ATM体检失败,请重新操作.");
+   						Eway.alert(Eway.locale.agent.remote.checkFailure);
    						win.close();
    					}
    				}else{
-   					Eway.alert("ATM体检失败,请重新操作.");
+   					Eway.alert(Eway.locale.agent.remote.checkFailure);
    					win.close();
    				}
    			},
    			failure : function(){
-   				Eway.alert("ATM体检失败,请重新操作.");
+   				Eway.alert(Eway.locale.agent.remote.checkFailure);
    				win.close();
    			}
 		});

@@ -35,7 +35,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowseScreenCustom',{
 		win.show();
 		var grid = this.getGrid();
 		var winEl = grid.getEl();
-		winEl.mask('正在处理......');
+		winEl.mask(Eway.locale.agent.remote.handle);
 		var store = grid.getStore();
 		store.load({
 			params : {ip : ip, code : code},
@@ -45,7 +45,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowseScreenCustom',{
 					Eway.alert(operation.request.scope.reader.jsonData.errors);
 					operation.request.scope.reader.jsonData="";
 				}else if(operation.request.scope.reader.jsonData.hasOwnProperty('errors')== false && success == false){
-					Eway.alert("与服务器断开连接.");
+					Eway.alert(Eway.locale.agent.remote.offServer);
 				}
 			}
 		});
@@ -54,7 +54,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowseScreenCustom',{
 	onCustom : function(button){
 		var win = button.up('agent_remote_remoteBrowseScreenCustomView');
 		var winEl = win.getEl();
-		winEl.mask('正在处理......');
+		winEl.mask(Eway.locale.agent.remote.handle);
 		var grid = button.up('remote_remoteBrowseScreenCustomGrid');
 		var store =  grid.getStore();
 		var ip = this.win.down('textfield[name="ip"]').getValue();
@@ -75,7 +75,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowseScreenCustom',{
 		var store =  grid.getStore();
 		var win = button.up('agent_remote_remoteBrowseScreenCustomView');
 		var winEl = win.getEl();
-		winEl.mask('正在处理......');
+		winEl.mask(Eway.locale.agent.remote.handle);
 		var ip = this.win.down('textfield[name="ip"]').getValue();
 		var code = this.win.down('textfield[name="code"]').getValue();
 		store.load({
@@ -95,7 +95,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowseScreenCustom',{
 		var store =  grid.getStore();
 		var win = button.up('agent_remote_remoteBrowseScreenCustomView');
 		var winEl = win.getEl();
-		winEl.mask('正在处理......');
+		winEl.mask(Eway.locale.agent.remote.handle);
 		var ip = this.win.down('textfield[name="ip"]').getValue();
 		var code = this.win.down('textfield[name="code"]').getValue();
 		store.load({

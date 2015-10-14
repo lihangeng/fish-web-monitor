@@ -15,7 +15,7 @@ Ext.define('Eway.controller.agent.remote.RemoteLookVesion',{
 		var win = Ext.create('Ext.window.Window',{
 			width : 400,
 			height : 200,
-			title : '查看版本信息',
+			title : Eway.locale.agent.remote.checkVersionInfo,
 			modal : true,
 		    layout: 'border',
 		    items: [{
@@ -23,18 +23,18 @@ Ext.define('Eway.controller.agent.remote.RemoteLookVesion',{
 			    	height: 50,
 			    	border:false,
 			    	xtype:'panel',
-			    	html:'<br><font size="2" face="Times"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp您要查看的版本信息如下:</b></font>'
+			    	html:'<br><font size="2" face="Times"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+Eway.locale.agent.remote.versionInfo+'</b></font>'
 				},{
 			    	xtype : 'form',
 			    	border : 0 ,
 			    	region:'center',
 			    	items : [{
 					    xtype : 'displayfield',
-					    fieldLabel: 'ATMC应用版本',
+					    fieldLabel: Eway.locale.agent.remote.ATMCVersion,
 					    name : 'atmcVersion'
 					},{
 						xtype : 'displayfield',
-						fieldLabel: '监控客户端版本',
+						fieldLabel: Eway.locale.agent.remote.monitorVersion,
 						name : 'agentVersion'
 					}]
 				}]

@@ -8,7 +8,7 @@ Ext.override(Eway.locale,{
 		myTable:'我的工作台',//Eway.locale.myTable
 		ATMV:'自助设备监控系统(ATMV)',//Eway.locale.ATMV
 		welcome:'欢迎你,',//Eway.locale.welcome
-		personalConf：'个人设置',//Eway.locale.personalConf
+		personalConf:'个人设置',//Eway.locale.personalConf
 		systemHelp:'系统帮助',///Eway.locale.systemHelp
 		exitSystem:'退出系统',//Eway.locale.exitSystem
 		button:{
@@ -29,7 +29,7 @@ Ext.override(Eway.locale,{
 			confirm:'确认XX',//Eway.locale.button.confirm
 			cancle:'取消XX',//Eway.locale.button.cancle
 			choose:'选择',//Eway.locale.button.choose
-			pause:'暂停'//Eway.locale.button.pause
+			pause:'暂停',//Eway.locale.button.pause
 				
 			exported:'导出XX',
 			select:'选择XX',
@@ -160,6 +160,144 @@ Ext.override(Eway.locale,{
 		},
 		
 		//**********************************************************/
+		agent:{
+			remote:{
+				screen:{
+					message:'信息',
+					startcustom:'开始录制客户前屏',
+					stopcustom:'停止录制客户前屏',
+					startadmin:'开始录制管理后屏',
+					stopadmin: '停止录制管理后屏',
+					startadvertise: '开始录制广告屏',
+					stopadvertise: '停止录制广告屏',
+					startCameraDate: '开始录制时间',
+					stopCameraDate: '结束录制时间',
+					monitorType: '屏幕类型',
+					fileNameClient: '文件名称',
+					nowCamera:'正在录制...',
+					finishCamera:'完成录制',
+					videoLoad:'正在将视频文件下载至服务端...',
+					stopManage:'自动停止.如需取得视频文件,请联系管理员!',
+					manage: '操作',
+					loading:'下载',
+					screenCamera: '屏幕录制',
+				},
+				discInfo: '磁盘信息',
+				discName: '磁盘分区名称',
+				fileSys: '磁盘文件系统',
+				totalSize: '磁盘总大小',
+				freeSize: '磁盘可用空间大小',
+				networkInfo:'网络连接信息',
+				conenctRate: '连接速率',
+				receivedByte: '接收到的字节数',
+				sendByte: '发动的字节数',
+				loadData: '加载数据中，请稍候...',
+				refresh: '刷新',
+				name: '名称',
+				format: '格式',
+				totalSize: '总大小',
+				freeSize: '可用空间',
+				refreshFailure:'刷新失败！',
+				back:'返回',
+				upload: '上传',
+				Mkdir: '新建文件夹',
+				MkFile: '新建文件',
+				MKcatalog:'新建目录',
+				catalogName:'目录名称',
+				remove: '删除',
+				execute: '执行',
+				path: '路径',
+				search: '搜索',
+				size: '大小',
+				fileSize:'文件大小：',
+				lastTime: '最后修改时间',
+				clickLoadFile:'单击即可下载该文件',
+				loadFileSize:'下载文件 不能超过200M！',
+				nowLoadFile:'正在下载文件......',
+				judgeLoad: '是否续传下载！',
+				loadFailure:'下载失败！',
+				number: '编号',
+				programName: '程序名称',
+				version: '版本号',
+				publisher: '发布商',
+				diskUsed: '磁盘使用',
+				softwayList: '软件安装列表',
+				networkInfo: '网络信息',
+				networkLinkStatus: '网络连接状态',
+				send: '已发送',
+				receive: '已接收',
+				bite: '字节:',
+				speed: '速度(Mbps):',
+				bandWidth: '宽带测速',
+				unit: '单位：MB',
+				againTest: '重新测试',
+				impressionName: '印象名称',
+				userName: '用户名',
+				memoryRate: '内存使用',
+				systemProgressInfo:'系统进程信息',
+				screenShotTime: '截屏时间',
+				distanceScreen: '远程抓屏',
+				distanceExplorer: '远程浏览',
+				ATMExamination:'ATM体检',
+				checkATM: '重新体检',
+				ATMExamInfo: 'ATM体检详情',
+				cpuIdle: 'CPU空闲率',
+				memoryIdle: '内存空闲率',
+				hardDiskIdle: '硬盘空闲率',
+				uploadFile: '上传文件',
+				rules:'不能包含一下字符:\/?*":<>|',
+				nowCreat:'正在新建...',
+				nowPath: '当前路径',
+				confirm: '保存',
+				reset: '重置',
+				back: '返回',
+				prepareFile:'待上传文件',
+				choseUploadFile:'请选择上传文件',
+				nowUploadFile:'正在上传文件...',
+				explorer: '浏览...',
+				serverPath: '文件在服务器上的位置',
+				distanceSuccess:'远程创建成功.',
+				distanceFailure:'远程创建失败.',
+				confirmDelete:'确定删除',
+				confirmExecute:'确定执行',
+				choseDeleteFile:'请选择要删除的文件.',
+				distanceExecuteSuccess:'远程执行成功.',
+				distanceExecuteFailure:'远程执行失败.',
+				choseExecuteFile:'请选择要执行的文件.',
+				distanceExplorer:'远程浏览:',
+				distanceExplorerFailure:'远程浏览失败.',
+				fileExist:'该文件已存在！',
+				nowUploadFile:'正在上传文件......',
+				uploadSuccess:'上传成功.',
+				yes: "续传",
+				no: "覆盖",
+				cancel: "取消",
+				choseFile:'未选择上传文件,请选择文件.',
+				returnFailure:'返回失败.',
+				refreshFailure:'刷新失败.',
+				catalogExist:'搜索的目录不存在,请重新输入.',
+				testBandWidth:'测试宽带异常.',
+				networkMaxSpeed:'网络最大接入速度为',
+				minutes:'秒',
+				amount:'相当于',
+				specialLine:'专线',
+				bandWidth:'宽带',
+				handle:'正在处理......',
+				offServer:'与服务器断开连接.',
+				ATMCheck:'正在ATM体检中...',
+				excellent:'优',
+				fine:'良',
+				middle:'中',
+				bad:'差',
+				point:'分',
+				checkFailure:'ATM体检失败,请重新操作.',
+				checkVersionInfo:'查看版本信息',
+				versionInfo:'您要查看的版本信息如下:',
+				ATMCVersion:'ATMC应用版本',
+				monitorVersion: '监控客户端版本',
+				
+			}
+		},
 		commen:{
 			
 			jobNum:'工号XX',//Eway.locale.commen.jobNum
@@ -258,7 +396,7 @@ Ext.override(Eway.locale,{
 			matchOrg:'匹配机构XX',//Eway.locale.commen.matchOrg
 			orgID:'机构IDXX',//Eway.locale.commen.orgID
 			endValidty:'截止有效期',//Eway.locale.commen.endValidty
-			publishDate:'发布日期'//Eway.locale.commen.publishDate
+			publishDate:'发布日期',//Eway.locale.commen.publishDate
 			announceTheme:'公告主题',//Eway.locale.commen.announceTheme
 			
 			

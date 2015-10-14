@@ -82,8 +82,8 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowseNetWork', {
 
 				tab.query('button')[0].setDisabled(false);
 				if (!object.success || 'false' == object.success) {
-					Eway.alert('测试宽带异常.');
-					tab.query('displayfield')[0].setValue('<font color="red">测试宽带异常.</font>');
+					Eway.alert(Eway.locale.agent.remote.testBandWidth);
+					tab.query('displayfield')[0].setValue('<font color="red">'+Eway.locale.agent.remote.testBandWidth+'</font>');
 					return;
 				}
 
@@ -98,11 +98,11 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowseNetWork', {
 				});
 				store.loadData(data);
 
-				var text = '网络最大接入速度为<font color="red">' + value
-						+ 'MB</font>/秒';
+				var text = Eway.locale.agent.remote.networkMaxSpeed+'<font color="red">' + value
+						+ 'MB</font>/'+Eway.locale.agent.remote.minutes;
 
 				if (value >= 2) {
-					text += '，相当于 <font color="red">专线</font>  宽带'
+					text += '，'+Eway.locale.agent.remote.amount+' <font color="red">'+Eway.locale.agent.remote.specialLine+'</font>  '+Eway.locale.agent.remote.bandWidth
 				}
 				tab.query('displayfield')[0].setValue(text);
 			}
