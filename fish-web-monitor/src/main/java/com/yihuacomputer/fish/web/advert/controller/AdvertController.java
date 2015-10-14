@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -59,9 +60,13 @@ public class AdvertController {
 
 	@Autowired
 	private IAdvertService advertService;
+	
 	@Autowired
 	private IAdvertResourceService advertResourceService;
 
+    @Autowired
+    private MessageSource messageSourceVersion;
+    
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap searchAdvert(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search advert : start = %s ,limit = %s ", start, limit));
@@ -262,11 +267,15 @@ public class AdvertController {
 		} catch(NotFoundException iae){
             logger.warn(iae.getMessage());
             result.addAttribute(FishConstant.SUCCESS, false);
-            result.put(FishConstant.ERROR_MSG, "删除失败:"+iae.getMessage()+",请刷新列表.");
+            String tips = messageSourceVersion.getMessage("advert.deleteFailNoFound", new Object[]{iae.getMessage()}, FishCfg.locale);
+            result.put(FishConstant.ERROR_MSG, tips);
+//          result.put(FishConstant.ERROR_MSG, "删除失败:"+iae.getMessage()+",请刷新列表.");
         }catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			logger.error(ex.getMessage());
-			result.put(FishConstant.ERROR_MSG, "删除失败:" + ex.getMessage());
+			logger.error(ex.getMessage()); 
+			String tips = messageSourceVersion.getMessage("versionType.deleteFail", new Object[]{ex.getMessage()}, FishCfg.locale);
+			result.put(FishConstant.ERROR_MSG, tips);
+//			result.put(FishConstant.ERROR_MSG, "删除失败:" + ex.getMessage());
 		}
 		return result;
 	}
