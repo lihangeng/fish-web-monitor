@@ -29,8 +29,8 @@ import com.yihuacomputer.fish.monitor.entity.report.StatusMonitorMapOrg;
 import com.yihuacomputer.fish.monitor.entity.report.StatusReport;
 import com.yihuacomputer.fish.monitor.entity.xfs.prop.XfsPropertise;
 import com.yihuacomputer.fish.monitor.entity.xfs.status.XfsStatus;
-import com.yihuacomputer.fish.person.entity.Organization;
 import com.yihuacomputer.fish.person.service.api.IDomainOrganizationService;
+import com.yihuacomputer.fish.system.entity.Organization;
 
 @Service
 @Transactional

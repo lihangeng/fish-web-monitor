@@ -12,7 +12,7 @@ import com.yihuacomputer.fish.api.permission.IPermission;
 import com.yihuacomputer.fish.api.permission.IPermissionService;
 import com.yihuacomputer.fish.api.permission.IRole;
 import com.yihuacomputer.fish.api.relation.IRolePermissionRelation;
-import com.yihuacomputer.fish.relation.entity.RolePermissionObj;
+import com.yihuacomputer.fish.system.entity.RolePermissionObj;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

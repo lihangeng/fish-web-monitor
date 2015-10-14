@@ -36,7 +36,7 @@ import com.yihuacomputer.fish.api.device.WorkType;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.machine.entity.AtmType;
-import com.yihuacomputer.fish.person.entity.User;
+import com.yihuacomputer.fish.system.entity.User;
 
 /**
  * 设备基本信息表
@@ -74,7 +74,7 @@ public class Device implements IDevice, Serializable {
 	/**
 	 * 所属机构
 	 */
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.person.entity.Organization.class)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
 	@JoinColumn(name = "ORG_ID")
 	private IOrganization organization;
 
@@ -94,7 +94,7 @@ public class Device implements IDevice, Serializable {
 	/**
 	 * 设备维护商
 	 */
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.person.entity.Organization.class)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
 	@JoinColumn(name = "DEV_SERVICE_ID")
 	private IOrganization devService;
 
