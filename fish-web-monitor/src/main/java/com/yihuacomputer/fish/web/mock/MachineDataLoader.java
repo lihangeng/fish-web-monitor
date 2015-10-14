@@ -26,7 +26,6 @@ import com.yihuacomputer.fish.api.device.SetupType;
 import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.device.WorkType;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
-import com.yihuacomputer.fish.api.person.OrganizationType;
 import com.yihuacomputer.fish.machine.entity.DeviceExtend;
 
 /**
@@ -112,10 +111,10 @@ public class MachineDataLoader {
 			device.setWorkType(WorkType.COOPERATION);
 			de.setInstallDate(new Date());
 
-			device.setOrganization(orgService.getByCode("shnsh001"));
+			device.setOrganization(orgService.get("1"));
 			device.setDeviceExtend(de);
 			device.setStatus(Status.OPENING);
-			device.setDevService(orgService.getByCode("yihua001", OrganizationType.MAINTAINER));
+			device.setDevService(orgService.get("2"));
 			device.setAddress(String.format("nanjing-%d", i));
 
 			deviceService.add(device);

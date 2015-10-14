@@ -59,7 +59,7 @@ public class OrganizationController {
 
 	@Autowired
 	private IPersonService personService;
-	
+
 	@Autowired
 	protected MessageSource messageSource;
 
@@ -80,17 +80,8 @@ public class OrganizationController {
 		ModelMap result = new ModelMap();
 		boolean isExist = this.isExistCode(form.getGuid(), form.getCode(), form.getOrganizationType());
 		if (isExist) {
-			IOrganization organizationSame = service.getByCode(form.getCode());
-			organizationSame = organizationSame == null ? service.getByCode(form.getCode(), OrganizationType.MAINTAINER) : organizationSame;
-
-			// if ("0".equals(form.getOrganizationType())) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, String.format(messageSource.getMessage("org.addDup", null, FishCfg.locale), organizationSame.getOrganizationType().getText()));
-			// }
-			// if ("1".equals(form.getOrganizationType())) {
-			// result.addAttribute(FishConstant.SUCCESS, false);
-			// result.addAttribute(FishConstant.ERROR_MSG, "增加失败:厂商编号重复.");
-			// }
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("org.addDup", null, FishCfg.locale));
 			return result;
 
 		} else {
@@ -193,16 +184,8 @@ public class OrganizationController {
 
 		boolean isExist = this.isExistCode(guid, form.getCode(), form.getOrganizationType());
 		if (isExist) {
-			IOrganization organizationSame = service.getByCode(form.getCode());
-			organizationSame = organizationSame == null ? service.getByCode(form.getCode(), OrganizationType.MAINTAINER) : organizationSame;
-			// if ("0".equals(form.getOrganizationType())) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, String.format("更改失败:和[%s]编号重复.", organizationSame.getOrganizationType().getText()));
-			// }
-			// if ("1".equals(form.getOrganizationType())) {
-			// result.addAttribute(FishConstant.SUCCESS, false);
-			// result.addAttribute(FishConstant.ERROR_MSG, "更改失败:厂商编号重复.");
-			// }
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("org.updateDup", null, FishCfg.locale));
 			return result;
 		}
 		IOrganization organization = service.get(guid);
@@ -268,11 +251,11 @@ public class OrganizationController {
 	 * @return Map<String, Object>
 	 */
 	@RequestMapping(value = "/move", method = RequestMethod.POST)
-	public @ResponseBody ModelMap move(@RequestParam String code, @RequestParam String parentId, HttpServletRequest request, WebRequest webrequest) {
-		logger.info(" move org : org.id = " + code);
+	public @ResponseBody ModelMap move(@RequestParam String guid, @RequestParam String parentId, HttpServletRequest request, WebRequest webrequest) {
+		logger.info(" move org : org.guid = " + guid);
 		ModelMap result = new ModelMap();
 		try {
-			IOrganization org = service.getByCode(code);
+			IOrganization org = service.get(guid);
 			IOrganization parentOrg = service.get(parentId);
 			if (org.getGuid().equals(parentId)) {
 				result.addAttribute(FishConstant.SUCCESS, false);
@@ -405,26 +388,6 @@ public class OrganizationController {
 	}
 
 	/**
-	 *
-	 * 验证组织机构编码code的唯一性
-	 *
-	 * @param id
-	 *            组织的主键，增加页面传入的id为0
-	 * @param code
-	 *            组织编码
-	 * @return ModelMap
-	 */
-	/*
-	 * @RequestMapping(value = "/unique", method = RequestMethod.GET) public
-	 *
-	 * @ResponseBody ModelMap unique(@RequestParam String id, @RequestParam
-	 * String code) { logger.info("org code unique checking..."); ModelMap
-	 * result = new ModelMap(); result.addAttribute(FishConstant.SUCCESS,
-	 * isExistCode(id, code)); if (isExistCode(id, code)) {
-	 * result.addAttribute("errios", "输入的编号已存在,请重新录入."); } return result; }
-	 */
-
-	/**
 	 * 是否存在code
 	 *
 	 * @param id
@@ -437,17 +400,14 @@ public class OrganizationController {
 			String orgType = "";
 			IFilter filter = new Filter();
 			filter.eq("code", code);
-			List<IOrganization> list = (List<IOrganization>) service
-					.list(filter);
-			System.out.println("list.size=" + list.size());
+			List<IOrganization> list = (List<IOrganization>) service.list(filter);
 			if (list.size() == 0) {
 				return false;
 			} else if (id == null || id.isEmpty()) {
 				if (list.size() == 2) {
 					return true;
 				} else {
-					orgType = String.valueOf(list.get(0).getOrganizationType()
-							.getId());
+					orgType = String.valueOf(list.get(0).getOrganizationType().getId());
 					if (type.equals(orgType)) {
 						return true;
 					}
@@ -459,8 +419,7 @@ public class OrganizationController {
 					return false;
 				} else {
 					for (IOrganization org : list) {
-						orgType = String.valueOf(org.getOrganizationType()
-								.getId());
+						orgType = String.valueOf(org.getOrganizationType().getId());
 						if (type.equals(orgType)) {
 							return true;
 						}

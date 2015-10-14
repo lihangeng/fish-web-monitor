@@ -131,14 +131,6 @@ public class OrganizationService extends DomainOrganizationService {
     }
 
     /**
-     * 根据编号获得机构信息
-     */
-    @Override
-    public IOrganization getByCode(String code) {
-        return getByCode(code, OrganizationType.BANK);
-    }
-
-    /**
      * 获得跟节点的所有机构信息
      */
     @Override
@@ -298,21 +290,15 @@ public class OrganizationService extends DomainOrganizationService {
         this.orgListeners.remove(orgListener);
     }
 
-    @Override
+ /*   @Override
     public IOrganization getByCode(String code, OrganizationType orgType) {
         Organization organization = (Organization) dao
                 .getCriteria(Organization.class)
                 .add(Restrictions.eq("code", code))
                 .add(Restrictions.or(Restrictions.eq("organizationType", orgType),
-                        Restrictions.isNull("organizationType"))).uniqueResult();
-
-        // 注释代码，查询不到数据，直接返回null,不需要抛异常
-        // if (organization == null) {
-        // throw new NotFoundException(String.format("不存在组织[%s]", code));
-        // }
-
+                Restrictions.isNull("organizationType"))).uniqueResult();
         return organization;
-    }
+    }*/
 
     @Override
     public List<Long> listParent(String orgId, OrganizationType orgType) {

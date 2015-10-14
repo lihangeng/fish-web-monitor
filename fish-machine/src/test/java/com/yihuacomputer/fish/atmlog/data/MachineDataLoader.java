@@ -105,10 +105,10 @@ public class MachineDataLoader {
 			de.setTerminalId("000" + i);
 			de.setInstallDate(new Date());
 
-			device.setOrganization(orgService.getByCode("yihua"));
+			device.setOrganization(orgService.get("1"));
 			device.setDeviceExtend(de);
 			device.setStatus(Status.OPENING);
-			device.setDevService(orgService.getByCode("yihua"));
+			device.setDevService(orgService.get("1"));
 			device.setAddress(String.format("nanjing-%d", i));
 			deviceService.add(device);
 		}

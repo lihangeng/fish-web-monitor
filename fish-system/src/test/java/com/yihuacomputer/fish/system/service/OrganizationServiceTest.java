@@ -87,17 +87,6 @@ public class OrganizationServiceTest extends BindSessionInTest2{
         assertEquals(OrganizationState.START,test.getOrganizationState());
       //  assertEquals("商业机构",test1.getOrganizationType());
 
-        //根据编号获得机构信息方法
-        test = organizationService.getByCode("test1");
-        assertEquals("test1",test.getCode());
-        assertEquals("测试子组1",test.getName());
-        assertEquals("郁金香大厦",test.getAddress());
-        assertEquals("123456",test.getZip());
-        assertEquals("测试作用",test.getDescription());
-        assertEquals(person1,test.getManager());
-        assertEquals(OrganizationState.START,test1.getOrganizationState());
-       // assertEquals("商业机构",test1.getOrganizationType());
-
         //获得所有机构信息方法
         Iterable<IOrganization> organizationIterable = organizationService.list();
         for(IOrganization or : organizationIterable){
@@ -140,21 +129,17 @@ public class OrganizationServiceTest extends BindSessionInTest2{
 		assertEquals("cache",cache.getCode());
 		assertEquals("cacheTest",cache.getName());
 		System.out.println("2222222222222222222");
-		IOrganization org =  organizationService.getByCode("cache");
-		assertEquals("cache",org.getCode());
-		assertEquals("cacheTest",org.getName());
-		System.out.println("333333333333333333");
 		
 		//update
-		org.setAddress("Shanghai");
-		organizationService.update(org);
-		IOrganization org2 =  organizationService.get(org.getGuid());
+		cache.setAddress("Shanghai");
+		organizationService.update(cache);
+		IOrganization org2 =  organizationService.get(cache.getGuid());
 		assertEquals("Shanghai",org2.getAddress());
 		System.out.println("44444444444444444444");
 		
 		//remove
-		organizationService.remove(org.getGuid());
-		IOrganization org4 =  organizationService.get(org.getGuid());
+		organizationService.remove(cache.getGuid());
+		IOrganization org4 =  organizationService.get(cache.getGuid());
 		assertNull(org4);
 		
 	}
