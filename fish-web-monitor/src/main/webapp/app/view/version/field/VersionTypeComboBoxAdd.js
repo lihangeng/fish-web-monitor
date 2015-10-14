@@ -5,7 +5,7 @@ Ext.define('Eway.view.version.field.VersionTypeComboBoxAdd', {
 			config:{
 				selectFirst:false //是否选中第一条
 			},
-			fieldLabel : '版本类型',
+			fieldLabel : Eway.locale.version.View.versionType,//'版本类型',
 			name : 'versionTypeId',
 			editable : false,
 			autoScroll : true,
@@ -14,7 +14,7 @@ Ext.define('Eway.view.version.field.VersionTypeComboBoxAdd', {
 			valueField : 'id',
 			displayField : 'desc',
 			queryMode : 'local',
-			emptyText : '-请选择版本类型-',
+			emptyText : Eway.locale.version.View.versionTypeEmpty,//'-请选择版本类型-',
 			listeners : {
 				beforerender : function() {
 					this.store.load({

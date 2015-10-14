@@ -62,7 +62,8 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 						var linkedGrid =  this.up('window').down('version_download_linkedDeviceGrid');
 						var linkedStore = linkedGrid.getStore();
 						linkedStore.add(record);
-						linkedGrid.setTitle("已选择的设备(<font color='red'>" + linkedStore.getCount() + "</font>)台");
+//						linkedGrid.setTitle("已选择的设备(<font color='red'>" + linkedStore.getCount() + "</font>)台");
+						linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo0 + linkedStore.getCount() + Eway.locale.version.selectDeviceInfo1);
 					}
 					return true;
 				},
@@ -75,7 +76,8 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 					var linkedGrid =  this.up('window').down('version_download_linkedDeviceGrid');
 					var linkedStore = linkedGrid.getStore();
 					linkedStore.remove(linkedStore.getById(deviceId));
-					linkedGrid.setTitle("已选择的设备(<font color='red'>" + linkedStore.getCount() + "</font>)台");
+//					linkedGrid.setTitle("已选择的设备(<font color='red'>" + linkedStore.getCount() + "</font>)台");
+					linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo0 + linkedStore.getCount() + Eway.locale.version.selectDeviceInfo1);
 					//
 					return true;
 				},
@@ -98,7 +100,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				vtype:'ip'
 			}, {
 				xtype:'textfield',
-				fieldLabel:'设备编号',
+				fieldLabel:Eway.locale.refs.terminalId,//'设备编号',
 				 enableKeyEvents:true,
 				name:'terminalId',
 				labelSeparator:'',
@@ -113,7 +115,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 			}, {
 				xtype : 'common_orgComboOrgTree',
 				fieldLabel : Eway.locale.refs.orgName,
-				emptyText : '--请选择--',
+				emptyText : Eway.locale.combox.select,//'--请选择--',
 				 enableKeyEvents:true,
 				name : 'orgName',
 				hiddenValue : 'orgId',
@@ -140,7 +142,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				name: 'atmTypeId',
 				editable  : false,
 				store: 'machine.DeviceAtmType',
-				emptyText : '--请选择--',
+				emptyText : Eway.locale.combox.select,//'--请选择--',
 				mode : 'local',
 				triggerAction: 'all',
 				valueField : 'id',
@@ -151,12 +153,12 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 			},{
 				action :'queryDownDevice',
 				glyph : 0xf002,
-				tooltip:'根据条件查找'
+				tooltip:Eway.locale.version.task.queryByFilter//'根据条件查找'
 			},
 			"->",
 			{
 				xtype:"combobox",
-				fieldLabel: '每页显示条数',
+				fieldLabel: Eway.locale.version.task.displayNumPerPage,//'每页显示条数',
 				canClear:false,
 				store:Ext.create('Ext.data.Store', {
 				    fields: ['value', 'name'],
@@ -183,12 +185,12 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				dataIndex : 'id',
 				width:50
 			}, */{
-				header : '设备编号',
+				header : Eway.locale.refs.terminalId,//'设备编号',
 				sortable : true,
 				dataIndex : 'code',
 				width:80
 			}, {
-				header : 'IP地址',
+				header : Eway.locale.refs.ip,//'IP地址',
 				dataIndex : 'ip',
 				sortable : true,
 				width: 110
@@ -201,19 +203,19 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				dataIndex : 'deviceType',
 				sortable : true
 			},{
-				header: '当前版本',
+				header: Eway.locale.version.View.nowVersionNo,//'当前版本',
 				dataIndex : 'deviceVersion',
 				sortable: true
 			} ,{
-				header: '目标版本',
+				header: Eway.locale.version.task.targetVersionNo,//'目标版本',
 				dataIndex : 'targetVersion',
 				sortable: true
 			} ,{
-				header: '下发状态',
+				header: Eway.locale.version.task.downloadStatus,//'下发状态',
 				dataIndex : 'taskStatus',
 				sortable: true
 			} ,{
-				header: '下发结果',
+				header: Eway.locale.version.task.downloadResult,//'下发结果',
 				dataIndex : 'reason',
 				flex : 1
 			}],

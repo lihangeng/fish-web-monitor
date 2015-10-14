@@ -5,8 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IPersonService;
 import com.yihuacomputer.fish.api.person.IUser;
-import com.yihuacomputer.fish.person.entity.User;
 import com.yihuacomputer.fish.person.service.api.IDomainUserService;
+import com.yihuacomputer.fish.system.entity.User;
 
 public abstract class DomainUserService implements IDomainUserService {
 

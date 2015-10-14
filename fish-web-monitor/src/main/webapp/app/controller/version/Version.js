@@ -227,7 +227,8 @@ Ext.define('Eway.controller.version.Version', {
 					 	//保存成功后让用户选择是否跳转到分发监控页面
 					 	win.close();
 					 	Ext.MessageBox.confirm(Eway.locale.confirm.title,//'提示',
-					 			record.get("jobName")+Eway.locale.confirm.taskConfirmInfo,this.goToVersionDownloadPage,this);
+					 			record.get("jobName")+Eway.locale.confirm.taskConfirmInfo0+ed.data.downLoadCounter+Eway.locale.confirm.taskConfirmInfo1,this.goToVersionDownloadPage,this);
+//					 			record.get("jobName")+"第"+ed.data.downLoadCounter+'次作业保存成功,是否跳转到"分发监控"页面?',this.goToVersionDownloadPage,this);
 
 					 },
 					 failure: function(record,operation){

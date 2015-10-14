@@ -5,7 +5,7 @@ Ext.define('Eway.view.report.baseReport.CashInReportView', {
 	requires : [ 'Eway.view.report.baseReport.CashInReportFilter',
 			'Eway.view.report.baseReport.ReportDownload' ],
 
-	title : '加钞情况报表',
+	title : Eway.locale.report.baseReport.cashAddRep,
 	layout : 'border',
 
 	initComponent : function() {

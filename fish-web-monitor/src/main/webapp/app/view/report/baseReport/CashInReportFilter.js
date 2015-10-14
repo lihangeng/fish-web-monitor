@@ -21,7 +21,7 @@ Ext.define('Eway.view.report.baseReport.CashInReportFilter', {
 									xtype : 'common_orgComboOrgTree',
 									fieldLabel : Eway.locale.commen.orgNameBelongs,
 									labelAlign : 'right',
-									emptyText : '--请选择--',
+									emptyText : Eway.locale.combox.select,
 									name : 'orgName',
 									hiddenValue : 'orgId',
 									editable : false,
@@ -33,7 +33,7 @@ Ext.define('Eway.view.report.baseReport.CashInReportFilter', {
 									name : 'terminalId',
 									labelAlign : 'right',
 									regex : /^\w+[\w-\.]*$/,
-									regexText : '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’和点号‘.’，只能以字母或数字开头。',
+									regexText : Eway.locale.vtype.numberRule,
 									maxLength : 20
 								}]
 					}, {
@@ -44,7 +44,7 @@ Ext.define('Eway.view.report.baseReport.CashInReportFilter', {
 						},
 						items : [{
 							xtype : 'fieldcontainer',
-							fieldLabel : '加钞金额',
+							fieldLabel : Eway.locale.report.baseReport.amt,
 							layout : 'hbox',
 							defaults : {
 								hideLabel : true
@@ -71,7 +71,7 @@ Ext.define('Eway.view.report.baseReport.CashInReportFilter', {
 								}
 							}, {
 								xtype : 'displayfield',
-								value : '至'
+								value : Eway.locale.machine.device.to
 							}, {
 								fieldLabel : 'endAmt',
 								displayField : 'display',
@@ -95,7 +95,7 @@ Ext.define('Eway.view.report.baseReport.CashInReportFilter', {
 							} ]
 						}, {
 							xtype : 'fieldcontainer',
-							fieldLabel : '加钞日期',
+							fieldLabel : Eway.locale.report.baseReport.date,
 							layout : 'hbox',
 							defaults : {
 								hideLabel : true
@@ -124,7 +124,7 @@ Ext.define('Eway.view.report.baseReport.CashInReportFilter', {
 								}
 							}, {
 								xtype : 'displayfield',
-								value : '至'
+								value : Eway.locale.machine.device.to
 							}, {
 								fieldLabel : 'minute',
 								displayField : 'display',

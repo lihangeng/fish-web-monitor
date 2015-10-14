@@ -68,7 +68,7 @@ Ext.define('Eway.controller.report.baseReport.DeviceHardWareReport', {
 			    }
 			});
 		}else{
-			Eway.alert('请正确输入.');
+			Eway.alert(Eway.locale.vtype.inputCorrect);
 		}
 	},
 

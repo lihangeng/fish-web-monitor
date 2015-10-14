@@ -45,7 +45,7 @@ Ext.define('Eway.view.report.baseReport.RetainCardReportFilter', {
 				}
 				return validStatus;
 			},
-			cardInfoDateRangeText : '开始时间不能大于结束日期,请重新选择'
+			cardInfoDateRangeText : Eway.locale.tip.dateReSelect
 		});
 		Ext.apply(this, {
 			items : [{
@@ -59,7 +59,7 @@ Ext.define('Eway.view.report.baseReport.RetainCardReportFilter', {
 									xtype : 'common_orgComboOrgTree',
 									fieldLabel : Eway.locale.commen.orgNameBelongs,
 									labelAlign : 'right',
-									emptyText : '--请选择--',
+									emptyText : Eway.locale.combox.select,
 									name : 'orgName',
 									hiddenValue : 'orgId',
 									editable : false,
@@ -81,7 +81,7 @@ Ext.define('Eway.view.report.baseReport.RetainCardReportFilter', {
 									labelAlign : 'right'
 								}, {
 									xtype: 'datetimefield',
-									fieldLabel : '开始时间',
+									fieldLabel : Eway.locale.commen.startDataTime,
 									name: 'startDataTime',
 									format: 'Y-m-d H:i:s',
 									editable : false,
@@ -111,7 +111,7 @@ Ext.define('Eway.view.report.baseReport.RetainCardReportFilter', {
 									labelAlign : 'right'
 								}, {
 									xtype: 'datetimefield',
-									fieldLabel : '结束时间',
+									fieldLabel : Eway.locale.commen.endDataTime,
 									name: 'endDataTime',
 									format: 'Y-m-d H:i:s',
 									editable : false,

@@ -1,7 +1,7 @@
 package com.yihuacomputer.fish.person.service.base;
 
-import com.yihuacomputer.fish.person.entity.Person;
 import com.yihuacomputer.fish.person.service.api.IDomainPersonService;
+import com.yihuacomputer.fish.system.entity.Person;
 
 /**
  * 基础的PersonService抽象：

@@ -31,25 +31,4 @@
 	<!--基础DAO的配置-->
 	<bean id="hibernateDao" class="com.yihuacomputer.domain.dao.Hibernate4Dao"></bean>
 	
-	<!-- 缓存配置 -->
-	<cache:annotation-driven />
-	<bean id="cacheManager" class="org.springframework.cache.support.SimpleCacheManager">
-      <property name="caches">
-         <set>
-            <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
-            <property name="name" value="orgs"></property>
-            </bean>
-            <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
-            <property name="name" value="users"></property>
-            </bean>
-            <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
-            <property name="name" value="persons"></property>
-            </bean>
-            <bean class="org.springframework.cache.concurrent.ConcurrentMapCacheFactoryBean">
-            <property name="name" value="devices"></property>
-            </bean>
-         </set>
-      </property>
-
-   </bean>	
 </beans>

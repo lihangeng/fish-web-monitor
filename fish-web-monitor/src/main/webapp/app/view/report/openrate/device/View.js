@@ -6,7 +6,7 @@ Ext.define('Eway.view.report.openrate.device.View', {
 			'Eway.view.report.openrate.device.FilterForm',
 			'Eway.view.report.openrate.device.Grid' ],
 
-	title : '设备开机率',
+	title : Eway.locale.report.openrate.device.devOpenRate,
 	layout : 'border',
 
 	isLoad : false,

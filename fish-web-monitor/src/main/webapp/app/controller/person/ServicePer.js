@@ -347,7 +347,7 @@ Ext.define('Eway.controller.person.ServicePer', {
 				store.setBaseParam('type','1');
 				store.loadPage(1);
             	var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	    		actionTip.setText("所有维护商人员信息");
+	    		actionTip.setText(Eway.locale.person.servicePer.maintainInfo);
 			}
         }else{
         	var store = this.getEwayView().down('ser_person_grid').getStore();

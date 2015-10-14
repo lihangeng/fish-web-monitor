@@ -5,7 +5,7 @@ Ext.define('Eway.view.report.baseReport.DeviceReportView', {
 	requires : [ 'Eway.view.report.baseReport.ReportDownload',
 			'Eway.view.report.baseReport.DeviceReportFilter' ],
 
-	title : '设备明细报表',
+	title : Eway.locale.report.baseReport.devDetailRep,
 	layout : 'border',
 
 	isLoad : false,

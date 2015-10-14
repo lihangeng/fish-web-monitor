@@ -37,7 +37,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 		});
 	},
 	onCellclick : function(grid, record, item, index, e, options) {
-		if (e && e.getTarget().innerHTML === '下载') { // 借助事件的target来判断，这里是链接可以这样判断，其他方式亦可
+		if (e && e.getTarget().innerHTML === Eway.locale.button.load) { // 借助事件的target来判断，这里是链接可以这样判断，其他方式亦可
 			var code = record.data.code;
 
 			var itemEl = grid.getEl();
@@ -96,7 +96,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 		var grid = this.getGrid();
 		var store = grid.getStore();
 		var winEl = this.win.getEl();
-		winEl.mask('正在加载数据......');
+		winEl.mask(Eway.locale.vtype.dataLoad);
 		store.load({
 			params : {
 				userId : ewayUser.getName(),
@@ -124,7 +124,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 		var grid = this.getGrid();
 		var store = grid.getStore();
 		var winEl = this.win.getEl();
-		winEl.mask('正在启动录制......');
+		winEl.mask(Eway.locale.vtype.launchTranscribe);
 		store.load({
 			url : 'api/agent/screenshot/startCamera',
 			params : {
@@ -137,7 +137,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 			callback : function(r, options, success) {// 回调函数
 				winEl.unmask();
 				if (!success) {
-					Eway.alert('请检查与设备的连接是否正常.');
+					Eway.alert(Eway.locale.vtype.devLinkNormal);
 					return;
 				}
 				this._callback(r, 'CUSTOM', 'start');
@@ -148,7 +148,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 		var grid = this.getGrid();
 		var store = grid.getStore();
 		var winEl = this.win.getEl();
-		winEl.mask('正在停止录制......');
+		winEl.mask(Eway.locale.vtype.stopTranscribe);
 		store.load({
 			url : 'api/agent/screenshot/stopCamera',
 			params : {
@@ -162,7 +162,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 			callback : function(r, options, success) {// 回调函数
 				winEl.unmask();
 				if (!success) {
-					Eway.alert('请检查与设备的连接是否正常.');
+					Eway.alert(Eway.locale.vtype.devLinkNormal);
 					return;
 				}
 				this._callback(r, 'CUSTOM', 'stop');
@@ -173,7 +173,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 		var grid = this.getGrid();
 		var store = grid.getStore();
 		var winEl = this.win.getEl();
-		winEl.mask('正在启动录制......');
+		winEl.mask(Eway.locale.vtype.launchTranscribe);
 		store.load({
 			url : 'api/agent/screenshot/startCamera',
 			params : {
@@ -186,7 +186,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 			callback : function(r, options, success) {// 回调函数
 				winEl.unmask();
 				if (!success) {
-					Eway.alert('请检查与设备的连接是否正常.');
+					Eway.alert(Eway.locale.vtype.devLinkNormal);
 					return;
 				}
 				this._callback(r, 'ADMIN', 'start');
@@ -197,7 +197,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 		var grid = this.getGrid();
 		var store = grid.getStore();
 		var winEl = this.win.getEl();
-		winEl.mask('正在停止录制......');
+		winEl.mask(Eway.locale.vtype.stopTranscribe);
 		store.load({
 			url : 'api/agent/screenshot/stopCamera',
 			params : {
@@ -211,7 +211,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 			callback : function(r, options, success) {// 回调函数
 				winEl.unmask();
 				if (!success) {
-					Eway.alert('请检查与设备的连接是否正常.');
+					Eway.alert(Eway.locale.vtype.devLinkNormal);
 					return;
 				}
 				this._callback(r, 'ADMIN', 'stop');
@@ -222,7 +222,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 		var grid = this.getGrid();
 		var store = grid.getStore();
 		var winEl = this.win.getEl();
-		winEl.mask('正在启动录制......');
+		winEl.mask(Eway.locale.vtype.launchTranscribe);
 		store.load({
 			url : 'api/agent/screenshot/startCamera',
 			params : {
@@ -235,7 +235,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 			callback : function(r, options, success) {// 回调函数
 				winEl.unmask();
 				if (!success) {
-					Eway.alert('请检查与设备的连接是否正常.');
+					Eway.alert(Eway.locale.vtype.devLinkNormal);
 					return;
 				}
 				this._callback(r, 'ADVERTISE', 'start');
@@ -246,7 +246,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 		var grid = this.getGrid();
 		var store = grid.getStore();
 		var winEl = this.win.getEl();
-		winEl.mask('正在停止录制......');
+		winEl.mask(Eway.locale.vtype.stopTranscribe);
 		store.load({
 			url : 'api/agent/screenshot/stopCamera',
 			params : {
@@ -260,7 +260,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 			callback : function(r, options, success) {// 回调函数
 				winEl.unmask();
 				if (!success) {
-					Eway.alert('请检查与设备的连接是否正常.');
+					Eway.alert(Eway.locale.vtype.devLinkNormal);
 					return;
 				}
 				this._callback(r, 'ADVERTISE', 'stop');
@@ -272,10 +272,10 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 		if (records && records.length > 0) { // 判断是否有数据
 			var status = records[0].data.status;
 			if (status == 5) {
-				Eway.alert('不存在此屏幕.');
+				Eway.alert(Eway.locale.vtype.inexistenceScreen);
 			} else if (status == 2) {
 				var currUserId = records[0].data.currUserId;
-				Eway.alert('该台设备已经被\"' + currUserId + '\"用户占用!');
+				Eway.alert(Eway.locale.vtype.devEmploy+'\"' + currUserId + '\"'+Eway.locale.vtype.userEmploy);
 			} else {
 				this.setDisabled(camera, type);
 				if (type == 'stop') {
@@ -290,7 +290,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 	downloadService : function(code) {
 		var This = this;
 		var winEl = this.win.getEl();
-		winEl.mask('正在下载录制好的视频文件......');
+		winEl.mask(Eway.locale.vtype.loadTranscribe);
 		setTimeout(function() {
 			Ext.Ajax.request({
 				method : 'get',

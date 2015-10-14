@@ -13,8 +13,8 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.person.IPersonJob;
-import com.yihuacomputer.fish.person.entity.PersonJob;
 import com.yihuacomputer.fish.person.service.base.DomainPersonJobService;
+import com.yihuacomputer.fish.system.entity.PersonJob;
 
 /**
  * 数据库版PersonJobService实现：

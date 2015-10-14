@@ -4,7 +4,7 @@ Ext.define('Eway.view.version.autoUpdate.View', {
 
 	requires : [ 'Eway.view.version.autoUpdate.Grid', 'Eway.view.version.autoUpdate.FilterForm'],
 
-	title : '自动更新信息',
+	title : Eway.locale.version.task.autoUpdateInfo,//'自动更新信息',
 	layout : 'border',
 	
 	initComponent : function() {

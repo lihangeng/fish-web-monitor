@@ -16,17 +16,17 @@ Ext.define('Eway.view.base.Window',{
 			buttonAlign : 'center',
 			buttons : [{
 				xtype : 'button',
-				text : '确认',
+				text : Eway.locale.button.confirm,
 				action : 'confirm'
 			},{
 				xtype : 'button',
-				text : '重置',
+				text : Eway.locale.button.reset,
 				handler : this.onReset,
 				hidden : true,
 				scope : this
 			},{
 				xtype : 'button',
-				text : '取消',
+				text : Eway.locale.button.cancle,
 				handler : this.onOver,
 				scope : this
 			}]

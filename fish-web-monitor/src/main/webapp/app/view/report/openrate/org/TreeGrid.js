@@ -15,54 +15,54 @@ Ext.define('Eway.view.report.openrate.org.TreeGrid', {
 			store : store,
 			multiSelect : true,
 			tbar : [ '->', {
-				text : '统计',
+				text : Eway.locale.report.openrate.device.statistics,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : '导出',
+				text : Eway.locale.report.openrate.device.importStat,
 				iconCls : 'sureBtn',
 				action : 'importStat'
 			} ],
 			columns : [ {
 				xtype : 'treecolumn',
-				text : '机构',
+				text : Eway.locale.report.openrate.device.organizationName,
 				width : 200,
 				sortable : true,
 				dataIndex : 'terminalId'
 			}, {
-				header : '统计日期',
+				header : Eway.locale.report.openrate.device.statDate,
 				dataIndex : 'statDate',
 				width : 100
 			}, {
-				header : '设备应工作时长',
+				header : Eway.locale.report.openrate.device.openTimes,
 				dataIndex : 'openTimes',
 				width : 140
 			}, {
-				header : '正常状态时长',
+				header : Eway.locale.report.openrate.device.healthyTimeReal,
 				dataIndex : 'healthyTimeReal',
 				width : 120
 			}, {
-				header : '管机员维护时长',
+				header : Eway.locale.report.openrate.device.maintainTimeReal,
 				dataIndex : 'maintainTimeReal',
 				width : 130
 			}, {
-				header : '离线未知时长',
+				header : Eway.locale.report.openrate.device.unknownTimeReal,
 				dataIndex : 'unknownTimeReal',
 				width : 120
 			}, {
-				header : '硬件故障停机时长',
+				header : Eway.locale.report.openrate.device.faultTimeReal,
 				dataIndex : 'faultTimeReal',
 				width : 140
 			}, {
-				header : 'ATMP故障时长',
+				header : Eway.locale.report.openrate.device.atmpTimeReal,
 				dataIndex : 'atmpTimeReal',
 				width : 130
 			}, {
-				header : '其它暂停服务状态时长',
+				header : Eway.locale.report.openrate.device.stopTimeReal,
 				dataIndex : 'stopTimeReal',
 				width : 180
 			}, {
-				header : '实际工作开机率',
+				header : Eway.locale.report.openrate.device.openRate,
 				sortable : true,
 				renderer : this.pctChange,
 				dataIndex : 'openRate'

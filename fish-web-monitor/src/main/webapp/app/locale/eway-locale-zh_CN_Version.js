@@ -42,7 +42,8 @@ Ext.override(Eway.locale,{
 		title:'提示XX',//Eway.locale.confirm.title
 		withoutNumTaskConfirmInfo:'作业保存成功,是否跳转到"分发监控"页面?XX',//Eway.locale.confirm.withoutNumTaskConfirmInfo
 		//TODO *为数字需要替换
-		taskConfirmInfo:'第*次作业保存成功,是否跳转到"分发监控"页面?XX'//Eway.locale.confirm.taskConfirmInfo
+		taskConfirmInfo0:'第XX',//Eway.locale.confirm.taskConfirmInfo0
+		taskConfirmInfo1:'次作业保存成功,是否跳转到"分发监控"页面?XX'//Eway.locale.confirm.taskConfirmInfo1
 	},
 	//按钮模块
 	button:{
@@ -53,9 +54,12 @@ Ext.override(Eway.locale,{
 		download:'下发XX',
 		reset:'重置XX',//Eway.locale.button.reset
 		downloadToolTip:'配置下发作业XX',
+		exported:'导出XX',
 		save:'保存XX',//Eway.locale.button.save
 		confirm:'确认XX',//Eway.locale.button.confirm
-		cancel:'取消XX'//Eway.locale.button.cancel
+		cancel:'取消XX',//Eway.locale.button.cancel
+		exportXLS:'导出XLS',//Eway.locale.button.exportXLS
+		exportPDF:'导出PDF',//Eway.locale.button.exportPDF
 	},
 	//引用其他模块
 	refs:{
@@ -76,12 +80,16 @@ Ext.override(Eway.locale,{
 		addJobTitle:'配置作业信息XX',//Eway.locale.version.addJobTitle
 		downloadVersionId:'下发版本IDXX',//Eway.locale.version.downloadVersionId
 		taskType:'任务类型XX',//Eway.locale.version.taskType
+		taskTypeManual:'手动升级XX',//Eway.locale.version.taskTypeManual
+		taskTypeAuto:'自动升级XX',//Eway.locale.version.taskTypeAuto
+		taskTypeScheduler:'计划作业XX',//Eway.locale.version.taskTypeScheduler
 		planTime:'计划执行时间XX',//Eway.locale.version.planTime
 		selectableDevice:'可以下发的设备XX',//Eway.locale.version.selectableDevice
 		linkedDevice:'已选择的设备XX',//Eway.locale.version.linkedDevice
+		downloadVerFile:'下载版本文件',//Eway.locale.version.downloadVerFile
 		View:{
 			title:'版本管理XX',
-			versionDetail:'版本详情',//Eway.locale.version.View.versionDetail
+			versionDetail:'版本详情XX',//Eway.locale.version.View.versionDetail
 			remark:'备注XX', //Eway.locale.version.View.remark
 			newCreate:'新建XX',//Eway.locale.version.View.newCreate
 			downLoaded:'已下发XX',//Eway.locale.version.View.downLoaded
@@ -99,7 +107,7 @@ Ext.override(Eway.locale,{
 			versionTypeCode:'软件分类编码XX',//Eway.locale.version.View.versionTypeCode
 			versionTypeName:'软件分类名称XX',//Eway.locale.version.View.versionTypeName
 			versionTypeId:'版本类型IDXX',//Eway.locale.version.View.versionTypeId
-			versionTypeEmpty:'请选择版本类型XX',
+			versionTypeEmpty:'-请选择版本类型-XX',//Eway.locale.version.View.versionTypeEmpty
 			versionTime:'创建时间XX',//Eway.locale.version.View.versionTime
 			versionNo:'版本号XX',//Eway.locale.version.View.versionNo
 			nowVersionNo:'当前版本号XX',//Eway.locale.version.View.nowVersionNo
@@ -120,6 +128,9 @@ Ext.override(Eway.locale,{
 			otherConfigAutoDown:'允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)XX',//Eway.locale.version.View.otherConfigAutoDown
 			otherConfigUncompress:'自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>XX',//Eway.locale.version.View.otherConfigUncompress
 			versionServerPath:'文件在服务器上的位置XX', //Eway.locale.version.View.versionServerPath
+			versionName:'版本名称XX',//Eway.locale.version.View.versionName
+			downloadVersionName:'下发的版本XX',//Eway.locale.version.View.downloadVersionName
+			downloadVersionNameEmpty:'请选择下发的版本XX',//Eway.locale.version.View.downloadVersionNameEmpty
 			job:{
 				newCreate:'新建XX',
 				running:'运行中XX',
@@ -159,6 +170,62 @@ Ext.override(Eway.locale,{
 			app:'应用程序XX',//Eway.locale.version.versionCatalog.app
 			agent:'监控代理XX',//Eway.locale.version.versionCatalog.agent
 			param:'应用配置XX'//Eway.locale.version.versionCatalog.param
+		},
+		download:{
+			title:'分发监控XX',//Eway.locale.version.download.title
+			updateTitle:'修改版本下发信息XX',//Eway.locale.version.download.updateTitle
+			taskQueryTips:'根据条件查询选中作业下的详情信息XX',//Eway.locale.version.download.taskQueryTips
+			autoRefresh:'开启自动刷新XX',//Eway.locale.version.download.autoRefresh
+			stopAutoRefresh:'停止自动刷新XX',//Eway.locale.version.download.stopAutoRefresh
+			autoRefreshTips:'刷新周期60秒XX',//Eway.locale.version.download.autoRefreshTips
+			taskExportTips:'导出选中作业下的全部下发结果XX'//Eway.locale.version.download.taskExportTips
+		},
+		task:{
+			selectJobStartRefresh:'请选择一个作业,再开启定时刷新！XX',//Eway.locale.version.task.selectJobStartRefresh
+			jobBatchName:'作业批次名称XX',//Eway.locale.version.task.jobBatchName
+			patchVersion:'分发版本XX',//Eway.locale.version.task.patchVersion
+			taskStatus:'任务状态XX',//Eway.locale.version.task.taskStatus
+			beforeUpdate:'分发前的版本XX',//Eway.locale.version.task.beforeUpdate
+			exceptVersion:'预期版本XX',//Eway.locale.version.task.exceptVersion
+			actionTime:'执行时间XX',//Eway.locale.version.task.actionTime
+			downSource:'下载源XX',//Eway.locale.version.task.downSource
+			planTime:'计划时间XX',//Eway.locale.version.task.planTime
+			excuteMachine:'执行服务器XX',//Eway.locale.version.task.excuteMachine
+			restartATM:'重启ATMXX',//Eway.locale.version.task.restartATM
+			restartATMTips:'执行重启命令可能存在风险,确认重启?XX',//Eway.locale.version.task.restartATMTips
+			sendRestartCmd:'已发送重启命令！XX',//Eway.locale.version.task.sendRestartCmd
+			cancelDownloadSuccess:'取消下发成功！XX',//Eway.locale.version.task.cancelDownloadSuccess
+			cancelDownload:'取消下发XX',//Eway.locale.version.task.cancelDownload
+			jobName:'作业名称XX',//Eway.locale.version.task.jobName
+			jobStatus:'作业状态XX',//Eway.locale.version.task.jobStatus
+			chooseTitleDevice:'选择设备XX',//Eway.locale.version.task.chooseTitleDevice
+			closeWindow:'关闭窗口XX',//Eway.locale.version.task.closeWindow
+			queryByFilter:'根据条件查找XX',//Eway.locale.version.task.queryByFilter
+			displayNumPerPage:'每页显示条数XX',//Eway.locale.version.task.displayNumPerPage
+			targetVersionNo:'目标版本XX',//Eway.locale.version.task.targetVersionNo
+			downloadStatus:'下发状态XX',//Eway.locale.version.task.downloadStatus
+			downloadResult:'下发结果XX',//Eway.locale.version.task.downloadResult
+			cancelJob:'下发结果XX',//Eway.locale.version.task.cancelJob
+			jobId:'作业IDXX',	//Eway.locale.version.task.jobId
+			selectDownloadDevice:'选择下发的设备XX',	//Eway.locale.version.task.selectDownloadDevice
+			versionNoBeforeUpdate:'升级前版本号XX',	//Eway.locale.version.task.versionNoBeforeUpdate
+			versionNoAfterUpdate:'目标版本号XX',	//Eway.locale.version.task.versionNoAfterUpdate
+			deviceVersionHis:'查看设备历史版本XX',	//Eway.locale.version.task.deviceVersionHis
+			downloadUser:'下发人XX',	//Eway.locale.version.task.downloadUser
+			downloadTime:'下发时间XX',	//Eway.locale.version.task.downloadTime
+			downloadResult:'下发结果XX',	//Eway.locale.version.task.downloadResult
+			deviceVersionHisTitle:'设备历史版本信息XX',	//Eway.locale.version.task.deviceVersionHisTitle
+			deviceVersions:'设备版本XX',	//Eway.locale.version.task.deviceVersions
+			deviceVersionHisTip:'查看设备历史版本信息XX',	//Eway.locale.version.task.deviceVersionHisTip
+			autoUpdateInfo:'自动更新信息XX',//Eway.locale.version.task.autoUpdateInfo
+			selectAJob:'请选择一个作业.XX',//Eway.locale.version.task.selectAJob
+			versionDownHisStatusPic:'版本下发历史状态分布图XX',//Eway.locale.version.task.versionDownHisStatusPic
+			cantCancelCompleteJob:'不能撤销"完成"状态的作业.XX',//Eway.locale.version.task.cantCancelCompleteJob
+			doSureCancelTheJob:'是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)XX',//Eway.locale.version.task.doSureCancelTheJob
+			deleting:'正在删除......XX',//Eway.locale.version.task.deleting
+			cancelSuccessBut:'已经成功撤销作业中还没有运行的任务,此时作业的状态仍然是"运行中",请稍等后刷新作业列表.XX',//Eway.locale.version.task.cancelSuccessBut
+			cancelJobSuccess:'成功撤销作业XX',//Eway.locale.version.task.cancelJobSuccess
+			updateResult:'升级结果XX'	//Eway.locale.version.task.updateResult
 		}
 	},
 	//广告模块
@@ -179,7 +246,7 @@ Ext.override(Eway.locale,{
 		createdTime:'制作时间XX',//Eway.locale.advert.createdTime
 		userName:'制作人XX',//Eway.locale.advert.userName
 		versionStatus:'广告版本状态XX',//Eway.locale.advert.versionStatus
-		versionFile:'版本文件XX',//Eway.locale.advert.versionFile
+		advertVersionFile:'版本文件XX',//Eway.locale.advert.advertVersionFile
 		createdTimeStart:'制作时间开始于XX',//Eway.locale.advert.createdTimeStart
 		createdTimeStop:'制作时间结束于XX',//Eway.locale.advert.createdTimeStop
 		downloadAdvertConfig:'下发广告配置XX',//Eway.locale.advert.downloadAdvertConfig
@@ -247,14 +314,8 @@ Ext.override(Eway.locale,{
 		advertPreviewTitle0:'广告预览(共有 XX',//Eway.locale.advert.advertPreviewTitle0
 		advertPreviewTitle1:'个资源,当前播放第 XX',//Eway.locale.advert.advertPreviewTitle1
 		advertPreviewTitle2:'个) XX',//Eway.locale.advert.advertPreviewTitle2
-		
 		choosedAdvertRes:'您已经选择了XX',//Eway.locale.advert.choosedAdvertRes
-//		choosed1:'</b>'
-//		您已经选择了 <b>"+ oFileName + "</b>
-//		advert'已下发'
 		perviewAdertWithIEBrowse:'非IE浏览器不支持视频广告的预览.XX',//Eway.locale.advert.perviewAdertWithIEBrowse
-		
-		
 		configTitle:'广告详细配置XX'//Eway.locale.advert.configTitle
 	},
 	versionType:{

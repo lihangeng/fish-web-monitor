@@ -23,8 +23,8 @@ Ext.define('Eway.view.Viewport', {
 				xtype : 'appheader',
 			}, {
 				region : 'west',
-				width : 200,
-				title : '我的工作台',
+				width : 205,
+				title : Eway.locale.myTable,
 				id:'appmenu',
 				header : true,
 				xtype : 'treepanel',

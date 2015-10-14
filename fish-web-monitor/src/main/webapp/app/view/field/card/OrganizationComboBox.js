@@ -11,5 +11,5 @@ Ext.define('Eway.view.field.card.OrganizationComboBox',{
 	queryMode: 'local',
 	displayField: 'name',
 	valueField: 'id',
-	emptyText: '--请选择--'
+	emptyText: Eway.locale.combox.select
 });

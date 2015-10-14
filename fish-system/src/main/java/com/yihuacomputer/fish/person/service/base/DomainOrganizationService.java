@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IPersonService;
 import com.yihuacomputer.fish.api.person.OrganizationType;
-import com.yihuacomputer.fish.person.entity.Organization;
 import com.yihuacomputer.fish.person.service.api.IDomainOrganizationService;
+import com.yihuacomputer.fish.system.entity.Organization;
 
 /**
  * 基础的OrganizationService抽象：

@@ -60,7 +60,7 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 				var statuspieStore = statuspolar.getStore();
 				var detailGrid = view.down('version_distribute_grid');
 				var detailGridStore = detailGrid.getStore();
-				statuspolar.setTitle(records[0].get("versionNo")+"版本下发历史状态分布图");
+				statuspolar.setTitle(records[0].get("versionNo")+Eway.locale.version.task.versionDownHisStatusPic);//"版本下发历史状态分布图");
 				statuspieStore.load({
 					params : {
 						versionId :records[0].get("versionId")
@@ -125,7 +125,7 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 		var me = this;
 		var view = this.getEwayView();
 		var statuspolar = view.down('versionstatus_pie polar');
-		statuspolar.setTitle(item.record.data.versionNo+"版本下发历史状态分布图");
+		statuspolar.setTitle(item.record.data.versionNo+Eway.locale.version.task.versionDownHisStatusPic);//"版本下发历史状态分布图");
 		var statuspieStore = statuspolar.getStore();
 		statuspieStore.load({
 			params : {

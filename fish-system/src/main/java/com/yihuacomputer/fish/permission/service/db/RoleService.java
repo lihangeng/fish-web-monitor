@@ -17,8 +17,8 @@ import com.yihuacomputer.fish.api.permission.IPermission;
 import com.yihuacomputer.fish.api.permission.IRole;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.relation.IRolePermissionRelation;
-import com.yihuacomputer.fish.permission.entity.Role;
 import com.yihuacomputer.fish.permission.service.api.IDomainRoleService;
+import com.yihuacomputer.fish.system.entity.Role;
 
 /**
  *

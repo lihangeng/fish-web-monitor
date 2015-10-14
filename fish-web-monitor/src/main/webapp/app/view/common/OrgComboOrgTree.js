@@ -4,7 +4,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	extend : 'Ext.form.field.Picker',
 	alias : 'widget.common_orgComboOrgTree',
 
-	fieldLabel : '组织机构',
+	fieldLabel : Eway.locale.commen.orgFramework,
 	readOnly:false,
 	editable:true,
 	isOrg:true,
@@ -18,7 +18,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 		rootVisible : false,
 		treeExist : '',
 		defaultRootId : 1,
-		defaultRootName: '组织机构',
+		defaultRootName: Eway.locale.commen.orgFramework,
 		expandRoot:true,
 		isFilterOrgStatus:true,
 		parentXtype:'form'
@@ -150,8 +150,8 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 		    store: me.store,
 		    hideHeaders:true,
 		    columns: [
-		        { text: '匹配机构',  dataIndex: 'name', flex: 1,menuDisabled:true },
-		        { text: '机构ID', dataIndex: 'guid',hidden:true }
+		        { text: Eway.locale.commen.matchOrg,  dataIndex: 'name', flex: 1,menuDisabled:true },
+		        { text: Eway.locale.commen.orgID, dataIndex: 'guid',hidden:true }
 		    ],
 		    height: 100,
 			minHeight : 100,
@@ -203,7 +203,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 		if(data.type == "1" || ewayUser.getOrgType() == ""){//维护商
 			treePanel.setRootNode({
 				id: 1,
-				text: '组织机构',
+				text: Eway.locale.commen.orgFramework,
 				expanded: isExpanded
 			});
 		}

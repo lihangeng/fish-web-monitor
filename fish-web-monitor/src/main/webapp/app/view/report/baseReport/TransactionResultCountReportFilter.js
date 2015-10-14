@@ -45,7 +45,7 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportFilter', {
 								}
 								return validStatus;
 							},
-							cardInfoDateRangeText : '开始时间不能大于结束日期,请重新选择'
+							cardInfoDateRangeText : Eway.locale.tip.dateReSelect
 						});
 				Ext.apply(this, {
 							items : [{
@@ -59,7 +59,7 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportFilter', {
 											xtype : 'common_orgComboOrgTree',
 											fieldLabel : Eway.locale.commen.orgNameBelongs,
 											labelAlign : 'right',
-											emptyText : '--请选择--',
+											emptyText : Eway.locale.combox.select,
 											name : 'orgName',
 											hiddenValue : 'orgId',
 											editable : false,
@@ -74,7 +74,7 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportFilter', {
 											xtype : 'textfield',
 											name : 'terminalId',
 											regex : /^\w[\w-_\.]{0,19}$/,
-											regexText : '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’，只能以字母或数字开头。',
+											regexText : Eway.locale.vtype.numberRule,
 											msgTarget : 'side',
 											hidden:true
 										}, {
@@ -86,7 +86,7 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportFilter', {
 								columnWidth : .3,
 								items : [{
 									xtype : 'datefield',
-									fieldLabel : '开始时间',
+									fieldLabel : Eway.locale.commen.startDataTime,
 									name : 'startData',
 									format : 'Y-m-d',
 									editable : false,
@@ -112,7 +112,7 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportFilter', {
 								columnWidth : .4,
 								items : [{
 									xtype : 'datefield',
-									fieldLabel : '结束时间',
+									fieldLabel : Eway.locale.commen.endDataTime,
 									name : 'endData',
 									format : 'Y-m-d',
 									editable : false,

@@ -13,7 +13,7 @@ import com.yihuacomputer.fish.api.permission.IPermission;
 import com.yihuacomputer.fish.api.permission.IUserRole;
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.relation.IUserPermissionRelation;
-import com.yihuacomputer.fish.relation.entity.UserPermissionObj;
+import com.yihuacomputer.fish.system.entity.UserPermissionObj;
 
 @Service
 @Transactional
