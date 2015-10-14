@@ -56,7 +56,7 @@ public class AdvertResourceForm {
             File file = new File(fileName);
             long size = file.length();
             if(size < 1024){
-                return size + " 字节";
+                return size + " Byte";
             }else{
                 return size/1024 + " KB";
             }

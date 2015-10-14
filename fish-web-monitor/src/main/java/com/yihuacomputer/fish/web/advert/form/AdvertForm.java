@@ -29,7 +29,7 @@ public class AdvertForm {
 
     private long versionId;
 
-    private String versionStatus = "不存在版本";
+    private String versionStatus;
 
     private String versionFile;
 
