@@ -92,7 +92,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 		store.loadPage(1);
 		var actionTip = this.getGrid().down("tbtext[action=tip]");
 		actionTip.setText('<font color="red">' + selectedNode.data.text
-				+ '</font>' + "的直接下级机构");
+				+ '</font>' + Eway.locale.person.serviceOrg.directOrganization);
 	},
 
 	/**
