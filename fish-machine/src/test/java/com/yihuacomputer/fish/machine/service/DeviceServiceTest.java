@@ -215,6 +215,9 @@ public class DeviceServiceTest extends BindSessionInTest2
          IDevice device = deviceService.get(deviceAdd1.getId());
          System.out.println("22222222222222");
          
+         IOrganization org = device.getOrganization();
+         assertEquals("shenzhen",org.getCode());
+         System.out.println("@@@@@@@@@@@@@@@@@@@@");
          //update
          device.setAddress("xxxx");
          device.setStatus(Status.DISABLED);
