@@ -2,6 +2,7 @@ package com.yihuacomputer.fish.system.service;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Ignore;
@@ -42,26 +43,16 @@ public class UserServiceTest extends BindSessionInTest2
     @Test
     @Ignore
     public void test(){
-
         //增加人员信息
         IPerson person1 = personService.add("person5");
         assertTrue(Long.valueOf(person1.getGuid())>0);
         assertTrue(person1.getName()=="person5");
-
-        //增加一条机构信息并初始化其编号和名称方法
-        IOrganization root = organizationService.add("test5","测试组5");
-        assertTrue(Long.valueOf(root.getGuid()) > 0);
-        assertEquals("test5",root.getCode());
-        assertEquals("测试组5",root.getName());
 
         //测试增加一条账户信息并初始化账号方法
         IUser user1 = userService.add("abc", person1);
         assertTrue(user1.getId()>0);
         assertEquals("abc",user1.getCode());
         assertEquals(person1,user1.getPerson());
-
-//        userService.login("abc", "1");
-
 
         //增加人员信息
         IPerson person2 = personService.add("person6");
@@ -104,13 +95,6 @@ public class UserServiceTest extends BindSessionInTest2
         user.setState(UserState.LOCK);
         userService.update(user);
 
-        //测试根据条件分页显示人员信息方法
-  /*      IFilter filter = new Filter();
-        filter.eq("code", "abc");
-        filter.like("person.name", "p");
-        IPageResult<IUser> page = userService.page(0, 10, filter);
-        assertEquals(1,page.getTotal());*/
-
         //测试删除账户信息方法
         userService.remove("456");
         userIterable = userService.list();
@@ -119,11 +103,30 @@ public class UserServiceTest extends BindSessionInTest2
             assertNotNull(u.getPerson());
         }
 
-
-
-        //测试账户登录验证
-     //   assertTrue(userService.isValiadUser("abc", "yihuasoftware"));
-
+    }
+    
+    @Test
+    public void testCache(){
+    	 IPerson person = personService.add("cachePerson");
+         IUser user = userService.add("cacheUser", person);
+         assertEquals("cacheUser",user.getCode());
+         
+         IUser cache = userService.get(user.getId());
+         assertEquals("cacheUser",cache.getCode());
+         System.out.println("1111111111111");
+         
+         cache.setCheckRemark("888");
+         userService.update(user);
+         System.out.println("222222");
+         
+         IUser cache2 = userService.get(user.getId());
+         assertEquals("888",cache2.getCheckRemark());
+         System.out.println("333333");
+         
+         userService.remove(user.getId());
+         IUser cache3 = userService.get(user.getId());
+         assertNull(cache3);
+         System.out.println("4444444");
     }
 
 }

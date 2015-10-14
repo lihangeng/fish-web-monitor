@@ -10,9 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.yihuacomputer.common.IFilter;
-import com.yihuacomputer.common.IPageResult;
-import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.test.BindSessionInTest2;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
@@ -124,11 +121,11 @@ public class OrganizationServiceTest extends BindSessionInTest2{
 		assertEquals("123456",child.getZip());
 
 		//测试有条件的分页显示机构信息方法
-		IFilter filter = new Filter();
-		filter.like("code", "test");
-		filter.eq("parent", root);
-		IPageResult<IOrganization> page = organizationService.page(0, 10,filter);
-		assertEquals(1,page.getTotal());
+//		IFilter filter = new Filter();
+//		filter.like("code", "test");
+//		filter.eq("parent", root);
+//		IPageResult<IOrganization> page = organizationService.page(0, 10,filter);
+//		assertEquals(1,page.getTotal());
 
 	}
 	
