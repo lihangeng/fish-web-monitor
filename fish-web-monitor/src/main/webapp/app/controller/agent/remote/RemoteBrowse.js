@@ -42,7 +42,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 					win.down('button[action="remoteDel"]').on('click',me.onRemoteDel,this);;
 					win.down('button[action="remoteExec"]').on('click',me.onRemoteExec,this);
 				}else{
-					Eway.alert("远程浏览失败.");
+					Eway.alert(Eway.locale.vtype.remoteFailure);
 				}
 			}
 		});

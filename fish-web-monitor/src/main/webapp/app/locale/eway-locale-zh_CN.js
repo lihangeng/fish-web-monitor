@@ -143,6 +143,20 @@ Ext.override(Eway.locale,{
 			emailRules: 'email必须符合*@*.*标准。@@@@',
 			notifyTimesRules: '通知次数必须为数字，最小值为0,最大值为100。@@@',
 			sendTimesRules: '发送次数必须为数字，最小值为0,最大值为100。@@@@@'	,
+			
+			launchTranscribe:'正在启动录制......$$',
+			stopTranscribe:'正在停止录制......',
+			inexistenceScreen:'不存在此屏幕$$',
+			devEmploy:'该台设备已经被$$',
+			userEmploy:'用户占用!$$',
+			loadTranscribe:'正在下载录制好的视频文件......',
+			remoteFailure:'远程浏览失败',
+			versionChart:'版本下发历史状态分布图',
+			openRefresh:'开启自动刷新',
+			choseTask:'请选择一个作业',
+			cancelTask:'不能撤销"完成"状态的作业.',
+			cancelParticularTask:'是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)',
+			nowDelete:'正在删除......',
 		},
 		
 		//**********************************************************/
@@ -312,13 +326,17 @@ Ext.override(Eway.locale,{
 				updateServiceTitle:'更改维护商信息',//Eway.locale.person.serviceOrg.updateServiceTitle
 				personDevSerLink:'该厂商的关联设备和人员',//Eway.locale.person.serviceOrg.personDevSerLink
 				devSerLink:'该厂商下设备',//Eway.locale.person.serviceOrg.devSerLink
-				personSerLink:'该厂商下人员'//Eway.locale.person.serviceOrg.personSerLink
+				personSerLink:'该厂商下人员',//Eway.locale.person.serviceOrg.personSerLink
+
+				directOrganization:'的直接下级机构$$'
 			},
 			servicePer:{
 				title:'维护人员管理',//Eway.locale.person.servicePer.title
 				servicePerlink:'关联设备',//Eway.locale.person.servicePer.servicePerlink
 				addServicePerTitle:'增加维护人员信息',//Eway.locale.person.servicePer.addServicePerTitle
-				updateServicePerTitle:'更改维护人员信息'//Eway.locale.person.servicePer.updateServicePerTitle
+				updateServicePerTitle:'更改维护人员信息',//Eway.locale.person.servicePer.updateServicePerTitle
+
+				maintainInfo:'所有维护商人员信息'
 			},
 			user:{
 				title:'用户管理',//Eway.locale.person.user.title
@@ -1062,7 +1080,9 @@ Ext.override(Eway.locale,{
 				drive:'驱动XX',
 				firmway: '固件XX',
 				noDevice:'无设备XX',
-				devTypeInfo: '设备型号信息XX'
+				devTypeInfo: '设备型号信息XX',
+				
+				devInfo:'设备信息$$'
 			},
 			param:{
 				paramKey:'参数XX',//Eway.locale.machine.param.paramKey
