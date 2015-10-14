@@ -131,6 +131,7 @@ Ext.override(Eway.locale,{
 			versionName:'版本名称XX',//Eway.locale.version.View.versionName
 			downloadVersionName:'下发的版本XX',//Eway.locale.version.View.downloadVersionName
 			downloadVersionNameEmpty:'请选择下发的版本XX',//Eway.locale.version.View.downloadVersionNameEmpty
+			distributionPic:'版本分布图',//Eway.locale.version.View.distributionPic
 			job:{
 				newCreate:'新建XX',
 				running:'运行中XX',

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -65,6 +67,9 @@ public class UserController {
 
 	@Autowired
 	private IUserLogService logService;
+	
+	@Autowired
+	protected MessageSource messageSource;
 
 	public UserController() {
 	}
@@ -84,7 +89,7 @@ public class UserController {
 			IUser user = userService.get(request.getUserId());
 			if (user == null) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "正在操作的用户已不存在,请刷新后操作.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.notExist", null, FishCfg.locale));
 				return result;
 			}
 
@@ -94,7 +99,7 @@ public class UserController {
 		} catch (Exception ex) {
 			logger.info(ex.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "后台处理错误.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.processError", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -146,7 +151,7 @@ public class UserController {
 					user.setUserType(UserType.getById(form.getUserType()));
 					IPerson person = personService.get(form.getUserGuid());
 					if(person==null){
-						result.put(FishConstant.ERROR_MSG, "增加失败:该人员信息已经不存在，请刷新后再操作.");
+						result.put(FishConstant.ERROR_MSG, messageSource.getMessage("user.addExist", null, FishCfg.locale));
 						result.put(FishConstant.SUCCESS, false);
 						return result;
 					}
@@ -161,7 +166,7 @@ public class UserController {
 						for (String roleId : permissions) {
 							IRole role =roleService.get(Long.valueOf(roleId));
 							if(role==null){
-								result.put(FishConstant.ERROR_MSG, "用户增加成功,关联的角色不存在.");
+								result.put(FishConstant.ERROR_MSG, messageSource.getMessage("user.addSuccessRoleNotExist", null, FishCfg.locale));
 								result.put(FishConstant.SUCCESS, false);
 								return result;
 							}
@@ -179,15 +184,15 @@ public class UserController {
 					result.put(FishConstant.SUCCESS, true);
 					result.addAttribute(FishConstant.DATA, form);
 				} catch (Exception ex) {
-					result.put(FishConstant.ERROR_MSG, "增加失败");
+					result.put(FishConstant.ERROR_MSG, messageSource.getMessage("user.addFail", null, FishCfg.locale));
 					result.put(FishConstant.SUCCESS, false);
 				}
 			} else {
-				result.put(FishConstant.ERROR_MSG, "增加失败:用户名重复.");
+				result.put(FishConstant.ERROR_MSG, messageSource.getMessage("user.addFailDup", null, FishCfg.locale));
 				result.put(FishConstant.SUCCESS, false);
 			}
 		} else {
-			result.put(FishConstant.ERROR_MSG, "增加失败:该人员已创建用户.");
+			result.put(FishConstant.ERROR_MSG, messageSource.getMessage("user.addFailAcc", null, FishCfg.locale));
 			result.put(FishConstant.SUCCESS, false);
 		}
 		return result;
@@ -217,7 +222,7 @@ public class UserController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
 			logger.info(ex.getMessage());
-			result.addAttribute(FishConstant.ERROR_MSG, "删除失败:后台处理出错.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.delError", null, FishCfg.locale));
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
@@ -287,14 +292,14 @@ public class UserController {
 			userService.update(user);
 
 			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute("message", "密码重置成功.");
+			result.addAttribute("message", messageSource.getMessage("user.resetPwdSuccess", null, FishCfg.locale));
 
 		} catch (Exception e) {
 
 			logger.error(e.toString());
 
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "密码重置失败:用户不存在,请重新操作.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.resetPwdFail", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -320,7 +325,7 @@ public class UserController {
 		user.setAccessTime(new Date());
 		userService.update(user);
 		result.addAttribute(FishConstant.SUCCESS, true);
-		result.addAttribute("message", "用户解锁成功.");
+		result.addAttribute("message", messageSource.getMessage("user.unlockSuccess", null, FishCfg.locale));
 		return result;
 	}
 
@@ -444,7 +449,7 @@ public class UserController {
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, isExistCode(id, code));
 		if (isExistCode(id, code)) {
-			result.addAttribute("errios", "账号重复");
+			result.addAttribute("errios", messageSource.getMessage("user.accDup", null, FishCfg.locale));
 		}
 		return result;
 	}

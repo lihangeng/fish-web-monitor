@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +53,9 @@ public class DeviceUseCountReportController {
 
     @Autowired
     private IDeviceUseCountRptService deviceUseCountService;
+    
+    @Autowired
+	protected MessageSource messageSource;
 
     @RequestMapping(value = "/deviceUseCount", method = RequestMethod.GET)
     public @ResponseBody
@@ -73,7 +77,7 @@ public class DeviceUseCountReportController {
                 data == null ? new ArrayList<IDeviceUseCountRpt>() : data);
         if (path == null) {
             result.addAttribute(FishConstant.SUCCESS, false);
-            result.addAttribute("message", "报表统计出错.");
+            result.addAttribute("message", messageSource.getMessage("deviceUseReport.genFail", null, FishCfg.locale));
         } else {
             result.addAttribute(FishConstant.SUCCESS, true);
             result.addAttribute("path", path);

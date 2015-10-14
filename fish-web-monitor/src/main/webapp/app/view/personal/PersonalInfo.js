@@ -12,7 +12,7 @@ Ext.define('Eway.view.personal.PersonalInfo', {
 		Ext.apply(this,{
 			items : [ {
 				xtype : 'fieldset',
-				title : '基本信息',
+				title : Eway.locale.personal.baseInfo,
 				collapsible : true,
 				defaults : {
 					border : false,
@@ -24,7 +24,7 @@ Ext.define('Eway.view.personal.PersonalInfo', {
 					readOnly: true
 				},
 				items: [{
-					fieldLabel : '账号',
+					fieldLabel : Eway.locale.personal.accountNum,
 					value:ewayUser.getCode()
 				},{
 					fieldLabel : Eway.locale.commen.name,

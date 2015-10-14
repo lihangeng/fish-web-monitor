@@ -1,5 +1,5 @@
 Ext.define('Eway.controller.version.VersionDownload', {
-	extend : 'Ext.app.Controller',
+	extend : 'Eway.controller.base.FishController',
 
 	stores : [ 'version.VersionDownload','version.JobType','version.JobStatus','version.JobPriority','version.TaskStatus','version.Task' ],
 	models : [ 'version.VersionDownload','version.Task' ],
@@ -265,7 +265,8 @@ Ext.define('Eway.controller.version.VersionDownload', {
 
 	//导出升级报告
 	onTaskExport : function(){
-		var grid = this.getGrid();
+		var view = this.getEwayView();
+		var grid = view.down("version_download_taskGrid");
 		var sm = grid.getSelectionModel();
 		if (sm.getCount() == 1) {
 			var record = sm.getLastSelected();

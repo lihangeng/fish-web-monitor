@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -57,6 +59,9 @@ public class OrganizationController {
 
 	@Autowired
 	private IPersonService personService;
+	
+	@Autowired
+	protected MessageSource messageSource;
 
 	public OrganizationController() {
 	}
@@ -80,7 +85,7 @@ public class OrganizationController {
 
 			// if ("0".equals(form.getOrganizationType())) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, String.format("增加失败:和[%s]编号重复.", organizationSame.getOrganizationType().getText()));
+			result.addAttribute(FishConstant.ERROR_MSG, String.format(messageSource.getMessage("org.addDup", null, FishCfg.locale), organizationSame.getOrganizationType().getText()));
 			// }
 			// if ("1".equals(form.getOrganizationType())) {
 			// result.addAttribute(FishConstant.SUCCESS, false);
@@ -112,7 +117,7 @@ public class OrganizationController {
 				parent = service.get(form.getParentId());
 				if (parent == null) {
 					result.addAttribute(FishConstant.SUCCESS, false);
-					result.addAttribute(FishConstant.ERROR_MSG, "父机构不存在,请先关闭当前页面再次操作.");
+					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("org.addNoParent", null, FishCfg.locale));
 					return result;
 				}
 				org.setParent(parent);
@@ -148,7 +153,7 @@ public class OrganizationController {
 		}
 		List<Long> organizationIds = service.listSubOrgId(guid);
 		if (organizationIds.size() > 1) {
-			result.addAttribute(FishConstant.ERROR_MSG, "删除失败:该机构存在子机构,不可删除.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("org.delHasChild", null, FishCfg.locale));
 			result.addAttribute("flag", false);
 			result.addAttribute(FishConstant.SUCCESS, false);
 			return result;
@@ -159,12 +164,12 @@ public class OrganizationController {
 		} catch (Exception ex) {
 			switch (organization.getOrganizationType()) {
 			case BANK:
-				result.addAttribute(FishConstant.ERROR_MSG, "删除失败:该机构存在关联,不可删除,是否查看关联?");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("org.delHasRelation", null, FishCfg.locale));
 				result.addAttribute("flag", true);
 				result.addAttribute(FishConstant.SUCCESS, false);
 				break;
 			case MAINTAINER:
-				result.addAttribute(FishConstant.ERROR_MSG, "删除失败:该维护商存在关联,不可删除,是否查看关联?");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("org.delSerHasRelation", null, FishCfg.locale));
 				result.addAttribute("flag", true);
 				result.addAttribute(FishConstant.SUCCESS, false);
 				break;

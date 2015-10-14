@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -62,6 +64,9 @@ public class QuittingNoticeController {
 	@Autowired
 	private IRunInfoService runInfoService;
 
+	@Autowired
+	protected MessageSource messageSource;
+
 	/**
 	 * 增加一条设备报停记录：
 	 *
@@ -78,7 +83,7 @@ public class QuittingNoticeController {
 
 			if (device == null) {
 				result.put(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "增加失败:设备号不存在.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.addFailDev", null, FishCfg.locale));
 				return result;
 			}
 
@@ -118,7 +123,7 @@ public class QuittingNoticeController {
 			result.addAttribute("data", form);
 		} catch (Exception e) {
 			result.put(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "增加失败:后台处理出错.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.addFail", null, FishCfg.locale)+messageSource.getMessage("commen.error", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -158,7 +163,7 @@ public class QuittingNoticeController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "删除失败:后台处理出错.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.delError", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -179,12 +184,12 @@ public class QuittingNoticeController {
 			IDevice device = deviceService.get(form.getDeviceCode());
 			if (device == null) {
 				result.put(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "更改失败:设备号不存在.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.updateFailDev", null, FishCfg.locale));
 				return result;
 			}
 			IQuittingNotice quittingNotice = quittingNoticeService.get(id);
 			if (quittingNotice == null) {
-				result.addAttribute(FishConstant.ERROR_MSG, "更改失败:更改的记录不存在，请刷新后操作.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.updateNotExist", null, FishCfg.locale));
 				result.addAttribute(FishConstant.SUCCESS, false);
 			} else {
 				/* 停机结束 */
@@ -218,7 +223,7 @@ public class QuittingNoticeController {
 			}
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "更改失败:后台处理出错.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.updateError", null, FishCfg.locale));
 		}
 		return result;
 	}

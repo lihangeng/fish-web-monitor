@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -82,6 +84,10 @@ public class PersonController {
      */
     @Autowired
     private IDeviceService deviceService;
+    
+    
+    @Autowired
+	protected MessageSource messageSource;
 
     @Autowired
     private IPersonJobService personJobService;
@@ -242,7 +248,7 @@ public class PersonController {
             organization = organizationService.get(form.getOrganizationId());
             if(null==organization){
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "机构不存在,请先关闭当前页面再次操作.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("org.notExist", null, FishCfg.locale));
                 return result;
             }
             person.setOrganization(organization);
@@ -288,7 +294,7 @@ public class PersonController {
             filter.eq("personId", Long.valueOf(id));
             if (organizationService.list(filter).iterator().hasNext()) {
                 result.addAttribute(FishConstant.SUCCESS, false);
-                result.addAttribute(FishConstant.ERROR_MSG, "人员已被设置为管理员,无法删除.");
+                result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.delManager", null, FishCfg.locale));
                 return result;
             }
             IPerson person = service.get(id);
@@ -296,7 +302,7 @@ public class PersonController {
             // 是否与人员有关联
             if (deviceList != null && !deviceList.isEmpty()) {
                 result.addAttribute(FishConstant.SUCCESS, false);
-                result.addAttribute(FishConstant.ERROR_MSG, "人员已与设备关联,无法删除.");
+                result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.delDevRela", null, FishCfg.locale));
                 return result;
             }
             filter = new Filter();
@@ -308,11 +314,11 @@ public class PersonController {
                 }
                 catch (Exception ex) {
                     result.addAttribute(FishConstant.SUCCESS, false);
-                    result.addAttribute(FishConstant.ERROR_MSG, "删除失败:后台处理出错.");
+                    result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.delError", null, FishCfg.locale));
                 }
             } else {
                 result.addAttribute(FishConstant.SUCCESS, false);
-                result.addAttribute(FishConstant.ERROR_MSG, "人员有对应的账号,无法删除.");
+                result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.delAcc", null, FishCfg.locale));
             }
         } else {
             result.addAttribute(FishConstant.SUCCESS, true);
@@ -337,7 +343,7 @@ public class PersonController {
         IPerson person = service.get(id);
         if (person == null) {
             result.addAttribute(FishConstant.SUCCESS, false);
-            result.addAttribute(FishConstant.ERROR_MSG, "更改失败:更改的记录不存在,请刷新后操作.");
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.updateNotExist", null, FishCfg.locale));
             return result;
         }
         try {
@@ -346,7 +352,7 @@ public class PersonController {
                 IOrganization newOrganization = organizationService.get(form.getOrganizationId());
                 if(null==newOrganization){
     				result.addAttribute(FishConstant.SUCCESS, false);
-    				result.addAttribute(FishConstant.ERROR_MSG, "机构不存在,请先关闭当前页面再次操作.");
+    				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("org.notExist", null, FishCfg.locale));
                     return result;
                 }
                 if (!oldOrganization.equals(newOrganization)) {
@@ -354,7 +360,7 @@ public class PersonController {
                     filter.eq("personId",  Long.valueOf(id));
                     if (organizationService.list(filter).iterator().hasNext()) {
                         result.addAttribute(FishConstant.SUCCESS, false);
-                        result.addAttribute(FishConstant.ERROR_MSG, "人员已被设置为机构管理员,无法变更机构.");
+                        result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.updateManager", null, FishCfg.locale));
                         return result;
                     }
                 }
