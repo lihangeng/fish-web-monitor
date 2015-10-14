@@ -123,13 +123,6 @@ public class OrganizationServiceTest extends BindSessionInTest2{
 		assertEquals("郁金香大厦",child.getAddress());
 		assertEquals("123456",child.getZip());
 
-		//根据编号删除机构信息方法
-		organizationService.removeByCode("test1");
-//		childs = root.listChildren();
-//	    for(IOrganization each : childs){
-//	        System.out.println(each.getCode());
-//	    }
-
 		//测试有条件的分页显示机构信息方法
 		IFilter filter = new Filter();
 		filter.like("code", "test");
@@ -137,6 +130,36 @@ public class OrganizationServiceTest extends BindSessionInTest2{
 		IPageResult<IOrganization> page = organizationService.page(0, 10,filter);
 		assertEquals(1,page.getTotal());
 
+	}
+	
+	@Test
+	public void testOrgCache(){
+		IOrganization root = organizationService.add("cache","cacheTest");
+		assertTrue(Long.valueOf(root.getGuid()) > 0);
+		assertEquals("cache",root.getCode());
+		assertEquals("cacheTest",root.getName());
+		System.out.println("1111111111111111111");
+		IOrganization cache = organizationService.get(root.getGuid());
+		assertEquals("cache",cache.getCode());
+		assertEquals("cacheTest",cache.getName());
+		System.out.println("2222222222222222222");
+		IOrganization org =  organizationService.getByCode("cache");
+		assertEquals("cache",org.getCode());
+		assertEquals("cacheTest",org.getName());
+		System.out.println("333333333333333333");
+		
+		//update
+		org.setAddress("Shanghai");
+		organizationService.update(org);
+		IOrganization org2 =  organizationService.get(org.getGuid());
+		assertEquals("Shanghai",org2.getAddress());
+		System.out.println("44444444444444444444");
+		
+		//remove
+		organizationService.remove(org.getGuid());
+		IOrganization org4 =  organizationService.get(org.getGuid());
+		assertNull(org4);
+		
 	}
 
 }

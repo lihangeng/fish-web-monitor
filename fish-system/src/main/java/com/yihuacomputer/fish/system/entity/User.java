@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.system.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -36,7 +37,12 @@ import com.yihuacomputer.fish.person.service.api.IDomainUserService;
  */
 @Entity
 @Table(name = "SM_USER")
-public class User implements IUser {
+public class User implements IUser,Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3229719598176884463L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_SM_USER")

@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.system.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -29,9 +30,14 @@ import com.yihuacomputer.fish.api.system.im.IAnnouncementService;
  */
 @Entity
 @Table(name = "SM_ANNOUNCEMENT")
-public class Announcement implements IAnnouncement {
+public class Announcement implements IAnnouncement,Serializable {
 
-    @Transient
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8226018780411690007L;
+
+	@Transient
     private IAnnouncementService service;
 
     @Id

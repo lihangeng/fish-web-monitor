@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.system.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -25,8 +26,13 @@ import com.yihuacomputer.fish.permission.service.api.IDomainRoleService;
  */
 @Entity
 @Table(name = "SM_ROLE")
-public class Role implements IRole {
-    @Id
+public class Role implements IRole,Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7792137637891252883L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_SM_ROLE")
     @SequenceGenerator(name = "SEQ_SM_ROLE", sequenceName = "SEQ_SM_ROLE")
     @Column(name = "PM_ROLE_ID")
