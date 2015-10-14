@@ -18,13 +18,13 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 					xtype : 'textfield',
 					vtype : 'terminalId',
 					maxLength:20,
-					regexText:'输入错误,设备号由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’点号‘.’组成,只能以字母或数字开头,长度1到20位。',
+					regexText:Eway.locale.vtype.terminalId,
 					fieldLabel : Eway.locale.commen.terminalId,
 					msgTarget:'side',
 					name : 'terminalId'
 				},{
 					xtype : 'field_notifyWay',
-					fieldLabel : '通知方式',
+					fieldLabel : Eway.locale.cases.caseFault.informWay,
 					name : 'notifyWay'
 				}]
 			},{
@@ -33,15 +33,15 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 				items : [{
 					xtype : 'textfield',
 					vtype : 'mobile',
-					fieldLabel : '通知手机号',
-					regexText : '手机电话号码只能输入8到11位数字‘0-9’！',
+					fieldLabel : Eway.locale.cases.caseFault.informMobile,
+					regexText : Eway.locale.vtype.mobileRules,
 					msgTarget : 'side',
 					name : 'mobile'
 				},{
 					xtype : 'textfield',
 					fieldLabel : 'E-Mail',
 					vtype : 'email',
-					regexText : 'email必须符合*@*.*标准。',
+					regexText : Eway.locale.vtype.emailRules,
 					msgTarget : 'side',
 					maxLength:50,
 					name : 'mail'
@@ -51,7 +51,7 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype : 'datefield',
-					fieldLabel : '创建时间',
+					fieldLabel : Eway.locale.cases.caseFault.createTime,
 					name : 'createTime',
 					value : new Date(),
 		        	editable: false,
@@ -79,7 +79,7 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 					}
 				},{
 					xtype : 'datefield',
-					fieldLabel : '发送时间',
+					fieldLabel : Eway.locale.cases.caseFault.sendTime,
 					name : 'sendTime',
 					editable: false,
 					format : 'Y-m-d',
@@ -110,19 +110,19 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype:'numberfield',
-					fieldLabel : '通知次数',
+					fieldLabel : Eway.locale.cases.caseFault.notifyTimes,
 					hideTrigger: true,
 					name : 'notifyTimes',
-					regexText : '通知次数必须为数字，最小值为0,最大值为100。',
+					regexText : Eway.locale.vtype.notifyTimesRules,
 					msgTarget : 'side',
 			        minValue: 0,
 			        maxValue: 100
 				},{
 					xtype : 'numberfield',
-					fieldLabel : '发送次数',
+					fieldLabel : Eway.locale.cases.caseFault.sendTimes,
 					hideTrigger: true,
 					name : 'sendTimes',
-					regexText : '发送次数必须为数字，最小值为0,最大值为100。',
+					regexText : Eway.locale.vtype.sendTimesRules,
 					msgTarget : 'side',
 			        minValue: 0,
 			        maxValue: 100

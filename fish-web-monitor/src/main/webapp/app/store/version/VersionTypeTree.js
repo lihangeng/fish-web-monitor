@@ -3,7 +3,7 @@ Ext.define('Eway.store.version.VersionTypeTree', {
 	extend: 'Ext.data.TreeStore',
 
 	root: {
-		text: '所有软件分类',
+		text: Eway.locale.versionType.treeRoot,//'所有软件分类',
 		expanded: true
 	},
 	defaultRootId: 0,

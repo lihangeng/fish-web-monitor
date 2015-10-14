@@ -5,9 +5,9 @@ Ext.define('Eway.store.case.NotifyType',{
 	
 	fields : ['value','name'],
 	data : [
-		{'value':'1', 'name':'创建通知'},
-		{'value':'2', 'name':'升级通知'},
-		{'value':'3', 'name':'关闭通知'}
+		{'value':'1', 'name':Eway.locale.cases.notifyMould.createNotice},
+		{'value':'2', 'name':Eway.locale.cases.notifyMould.upgradeNotice},
+		{'value':'3', 'name':Eway.locale.cases.notifyMould.closeNotice}
 	]
 
 });

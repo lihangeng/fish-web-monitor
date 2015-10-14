@@ -66,8 +66,8 @@ Ext.define('Eway.controller.case.NotifyMould', {
 		var record = sm.getLastSelected();
 		var updateForm = this.getUpdateWin().down('form').getForm();
 		var data = updateForm.getValues();
-		var start = '请关注';
-		var end = '上海农商行新监控发送';
+		var start = Eway.locale.cases.concern;
+		var end = Eway.locale.cases.SRCBView;
 		var checkboxgroup = win.down('checkboxgroup');
 		var checked = checkboxgroup.getChecked();
 		for ( var i = 0; i < checked.length; i++) {

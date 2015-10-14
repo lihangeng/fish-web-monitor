@@ -4,6 +4,6 @@ Ext.define('Eway.store.version.AutoUpdate', {
 	model: 'Eway.model.Dict',
 	
 	data: [
-	       {value:'true', display:'是'},
-	       {value:'false', display:'否'}]
+	       {value:'true', display:Eway.locale.tip.right.yes},
+	       {value:'false', display:Eway.locale.tip.right.no}]
 });

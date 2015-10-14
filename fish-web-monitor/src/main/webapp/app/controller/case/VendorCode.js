@@ -48,7 +48,7 @@ Ext.define('Eway.controller.case.VendorCode',{
 		var importForm = this.getImportWin().down("form").getForm();
 		var vendor = win.down('common_orgComboOrgTree').getValue();
 		if(importForm.isValid()){
-			Ext.Msg.wait("正在导入文件");
+			Ext.Msg.wait(Eway.locale.cases.nowExportFile);
 			importForm.submit({
 				url : 'api/case/vendorCode/import',
 				params : {
@@ -59,7 +59,7 @@ Ext.define('Eway.controller.case.VendorCode',{
 					win.close();
 					var store = this.getVendorCodeGrid().getStore();
 					store.load();
-					Eway.alert("导入厂商故障信息成功.");
+					Eway.alert(Eway.locale.cases.exportFaultInfo);
 				},
 				failure :function(form, action){
 					Eway.alert(action.result.content);

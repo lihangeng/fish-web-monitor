@@ -11,11 +11,11 @@ Ext.define('Eway.view.case.vendorCode.VendorCodeGrid', {
 			initRegion : true,
 			store : store,
 			tbar : ['->',{
-				text : '查询',
+				text : Eway.locale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			},{
-				text : '批量导入',
+				text : Eway.locale.button.massExport,
 				iconCls : 'importBtn',
 				action : 'import',
 				code : 'vendorCodeImport',
@@ -24,7 +24,7 @@ Ext.define('Eway.view.case.vendorCode.VendorCodeGrid', {
 				}
 			},
 			{
-				  text:'模板下载',
+				  text:Eway.locale.cases.vendorCode.templateLoad,
 				  iconCls : 'exportBtn',
 				  code : 'vendorCodeDownLoad',
 				  handler:function(){
@@ -34,7 +34,7 @@ Ext.define('Eway.view.case.vendorCode.VendorCodeGrid', {
                    }
 			},
 			{
-				text : '批量删除',
+				text : Eway.locale.cases.vendorCode.massRemove,
 				glyph : 0xf014,
 				action : 'remove',
 				code : 'vendorCodeDelete',
@@ -43,19 +43,19 @@ Ext.define('Eway.view.case.vendorCode.VendorCodeGrid', {
 			}
 			}],
 			columns : [{
-				header : '厂商',
+				header : Eway.locale.cases.vendorCode.provider,
 				dataIndex : 'vendorName',
 				flex : 2
 			},{
-				header : '厂商故障码',
+				header : Eway.locale.cases.caseFault.providerFaultCode,
 				dataIndex : 'code',
 				flex : 2
 			},{
-				header : '厂商故障描述',
+				header : Eway.locale.cases.vendorCode.providerDescription,
 				dataIndex : 'description',
 				flex : 4
 			},{
-				header : '解决方案',
+				header : Eway.locale.cases.vendorCode.solveProject,
 				dataIndex : 'solution',
 				flex : 4
 			}],

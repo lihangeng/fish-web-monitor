@@ -17,8 +17,8 @@ Ext.define('Eway.view.case.vendorCode.VendorCodeFilterForm', {
                       {
 	                    xtype : 'common_orgComboOrgTree',
 	                    labelAlign : 'right',
-	                    fieldLabel : '厂商',
-	                    emptyText : '--请选择--',
+	                    fieldLabel : Eway.locale.cases.vendorCode.provider,
+	                    emptyText : Eway.locale.combox.select,
 	                    name : 'name',
 	                    hiddenValue : 'vendor',
 	                    editable : false,
@@ -32,7 +32,7 @@ Ext.define('Eway.view.case.vendorCode.VendorCodeFilterForm', {
 					xtype : 'textfield',
 					labelAlign : 'right',
 					name : 'code',
-					fieldLabel : '厂商故障码',
+					fieldLabel : Eway.locale.cases.caseFault.providerFaultCode,
 					msgTarget : 'side'
 				} ]
 			} ]

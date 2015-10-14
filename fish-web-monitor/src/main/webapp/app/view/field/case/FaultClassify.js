@@ -1,7 +1,7 @@
 Ext.define('Eway.view.field.case.FaultClassify', {
 	extend : 'Ext.form.field.ComboBox',
 	alias : 'widget.field_case_faultClassify',
-	fieldLabel : '故障分类',
+	fieldLabel : Eway.locale.cases.caseFault.faultClassify,
 	name : 'faultClassify',
 	hiddenName : 'faultClassify',
 	store : 'case.FaultClassify',
@@ -9,7 +9,7 @@ Ext.define('Eway.view.field.case.FaultClassify', {
 	displayField : 'classifyName',
 	queryMode : 'local',
 	editable : false,
-	emptyText : '--请选择--',
+	emptyText : Eway.locale.combox.select,
 	listeners : {
 		beforerender : function() {
 			this.store.load();

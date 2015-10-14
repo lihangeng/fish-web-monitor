@@ -6,7 +6,7 @@ Ext.define('Eway.view.case.caseFault.FaultView', {
 	requires: ['Eway.view.case.caseFault.FaultGrid',
 	           'Eway.view.case.caseFault.FilterForm'],
 	
-	title: '故障查询',
+	title: Eway.locale.cases.caseFault.faultSearch,
 	layout: 'border',
 	
 	initComponent: function() {

@@ -5,7 +5,7 @@ Ext.define('Eway.view.case.vendorCode.VendorCodeView',{
 	requires : ['Eway.view.case.vendorCode.VendorCodeFilterForm',
 				'Eway.view.case.vendorCode.VendorCodeGrid'],
 
-	title : '厂商故障信息管理',
+	title : Eway.locale.cases.vendorCode.providerFaultInfo,
 	layout : 'border',
 
 	isLoad : false,
