@@ -77,7 +77,7 @@ Ext.define('Eway.view.person.serviceOrg.Add', {
 				buttonAlign:'center',
 				buttons: [{
 					xtype : 'button',
-					text: Eway.locale.button.comfirm,
+					text: Eway.locale.button.confirm,
 					action: 'add'
 				}, {
 					text: Eway.locale.button.reset,

@@ -149,7 +149,7 @@ Ext.define('Eway.view.version.Add', {
 					text : Eway.locale.button.confirm,//'确认',
 					action : 'confirm'
 				}, {
-					text : Eway.locale.button.cancel,//'取消',
+					text : Eway.locale.button.cancle,//'取消',
 					handler : this.onOver
 				} ]
 			}

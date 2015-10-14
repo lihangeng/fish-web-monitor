@@ -18,7 +18,7 @@ Ext.override(Eway,{
 			remove:'删除XX',
 			refresh:'刷新XX',
 			reset:'重置XX',//Eway.locale.button.reset
-			back:'返回XX',
+			back:'返回XX',//Eway.locale.button.back
 			apply:'应用XX',
 			//bankOrg
 			deepQuery:'深度查询XX',
@@ -657,9 +657,10 @@ Ext.override(Eway,{
 					pFault:'交易前置故障',//Eway.locale.monitor.devMonitor.remote.pFault
 					stop:'报停',//Eway.locale.monitor.devMonitor.remote.stop
 					manualStop:'人工报停',////Eway.locale.monitor.devMonitor.remote.manualStop
-					stopFault:'暂停服务-模块故障',//Eway.locale.monitor.devMonitor.remote.pauseFault
-					stopCash:'暂停服务-未加钞',//Eway.locale.monitor.devMonitor.remote.pauseCash
+					stopFault:'暂停服务-模块故障',//Eway.locale.monitor.devMonitor.remote.stopFault
+					stopCash:'暂停服务-未加钞',//Eway.locale.monitor.devMonitor.remote.stopCash
 					pauseSer:'暂停服务',//Eway.locale.monitor.devMonitor.remote.pauseSer
+					pauseCash:'现金暂停',//Eway.locale.monitor.devMonitor.remote.pauseCash   ----中文不明，我猜的----
 					pauseSerUnknow:'未知原因暂停服务',//Eway.locale.monitor.devMonitor.remote.pauseSerUnknow
 					manaAndstaff:'管机员'//Eway.locale.monitor.devMonitor.remote.manaAndstaff
 				},
