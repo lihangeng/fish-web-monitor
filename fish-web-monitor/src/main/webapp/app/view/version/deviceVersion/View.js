@@ -4,7 +4,7 @@ Ext.define('Eway.view.version.deviceVersion.View', {
 
 	requires : [ 'Eway.view.version.deviceVersion.Grid', 'Eway.view.version.deviceVersion.FilterForm'],
 
-	title : '设备版本',
+	title : Eway.locale.version.task.deviceVersions,//'设备版本',
 	layout : 'border',
 
 	initComponent : function() {

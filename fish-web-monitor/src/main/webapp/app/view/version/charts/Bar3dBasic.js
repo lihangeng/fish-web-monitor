@@ -101,7 +101,7 @@ Ext.define('Eway.view.version.charts.Bar3dBasic', {
                     			        flag:gridFlag
                     			    }
                     		 });
-                    		grid.setTitle(item.record.data.title+"信息")
+                    		grid.setTitle(item.record.data.title+Eway.locale.title.msg);//"信息")
                     	}
                     },
                     renderer: (function () {

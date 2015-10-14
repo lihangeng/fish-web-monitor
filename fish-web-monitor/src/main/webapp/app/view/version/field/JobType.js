@@ -2,7 +2,7 @@ Ext.define('Eway.view.version.field.JobType', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field.jobType',
 	
-	fieldLabel : '作业类型',
+	fieldLabel : Eway.locale.advert.jobType,//'作业类型',
 	name : 'jobType',
 	hiddenName : 'jobType',
 	store: 'JobType',
