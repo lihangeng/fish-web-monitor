@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.MessageSource;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.stereotype.Service;
@@ -91,8 +93,7 @@ public class UserService extends DomainUserService {
      */
     @Override
     public User getByPerson(String id) {
-        User user = (User)dao.getCriteria(User.class)
-                        .add(Restrictions.eq("personId",id)).uniqueResult();
+        User user = (User)dao.getCriteria(User.class).add(Restrictions.eq("personId",id)).uniqueResult();
         if(user == null){
             throw new NotFoundException(String.format("不存在人员ID[%s]",id));
         }
@@ -104,6 +105,7 @@ public class UserService extends DomainUserService {
      */
     @Override
     @Transactional(readOnly=true)
+    @Cacheable(value = "users",key = "#id")
     public IUser get(long id) {
         return dao.get(id,User.class);
     }
@@ -129,14 +131,9 @@ public class UserService extends DomainUserService {
      * 根据ID删除一条账户信息
      */
     @Override
+    @CacheEvict(value = "users",key = "#id")
     public void remove(long id) {
-        try{
-            dao.delete(id,User.class);
-        }catch(NotFoundException nfe){
-            throw nfe;
-        }catch(Exception ex){
-            throw new ServiceException(String.format("删除主账号[%l]失败",id),ex);
-        }
+       dao.delete(id,User.class);
     }
 
     /**

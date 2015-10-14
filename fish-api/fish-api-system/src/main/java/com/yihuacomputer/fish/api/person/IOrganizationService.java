@@ -86,20 +86,6 @@ public interface IOrganizationService
     public void remove(String guid);
 
     /**
-     * 根据编号删除组织机构
-     *
-     * @param code
-     */
-    public void removeByCode(String code);
-
-    /**
-     * 删除组织机构
-     *
-     * @param organization
-     */
-    public void remove(IOrganization organization);
-
-    /**
      * 更新组织机构信息
      *
      * @param organization

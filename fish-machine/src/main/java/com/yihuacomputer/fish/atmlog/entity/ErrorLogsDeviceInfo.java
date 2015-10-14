@@ -1,8 +1,15 @@
 package com.yihuacomputer.fish.atmlog.entity;
 
+import java.io.Serializable;
+
 import com.yihuacomputer.fish.api.atmlog.IErrorLogsDeviceInfo;
 
-public class ErrorLogsDeviceInfo implements IErrorLogsDeviceInfo {
+public class ErrorLogsDeviceInfo implements IErrorLogsDeviceInfo,Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5142377225032867483L;
 
 	private long id;
 	

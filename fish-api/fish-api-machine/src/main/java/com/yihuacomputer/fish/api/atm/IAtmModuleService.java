@@ -11,13 +11,9 @@ public interface IAtmModuleService {
 
 	public IAtmModule get(long id);
 
-	public IAtmModule get(String no);
-
 	public IAtmModule add(IAtmModule module);
 
 	public void remove(long id);
-
-	public void remove(String no);
 
 	public void update(IAtmModule module);
 

@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.system.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +21,12 @@ import com.yihuacomputer.fish.permission.service.api.IDomainPermissionService;
 
 @Entity
 @Table(name = "SM_PERMISSION")
-public class Permission implements IPermission {
+public class Permission implements IPermission ,Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5061010132143690700L;
 
 	@Id
 	@Column(name = "PERMISSION_ID")

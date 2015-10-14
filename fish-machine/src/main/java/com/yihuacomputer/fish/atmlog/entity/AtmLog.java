@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.atmlog.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -17,7 +19,12 @@ import com.yihuacomputer.fish.api.atmlog.IAtmLog;
  */
 @Entity
 @Table(name = "ATMC_APP_LOGS")
-public class AtmLog implements IAtmLog{
+public class AtmLog implements IAtmLog,Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2845793070494260038L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_ATMC_APP_LOGS")
 	@SequenceGenerator(name = "SEQ_ATMC_APP_LOGS", sequenceName = "SEQ_ATMC_APP_LOGS")

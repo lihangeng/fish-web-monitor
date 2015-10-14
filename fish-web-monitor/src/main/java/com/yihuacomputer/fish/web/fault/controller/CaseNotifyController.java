@@ -24,7 +24,7 @@ import com.yihuacomputer.fish.api.fault.ICaseNotifyService;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.PersonType;
 import com.yihuacomputer.fish.api.person.UserSession;
-import com.yihuacomputer.fish.machine.service.db.DevicePersonRelation;
+import com.yihuacomputer.fish.machine.service.DevicePersonRelation;
 import com.yihuacomputer.fish.web.fault.form.CaseNotifyForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 

@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.atmlog.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.yihuacomputer.fish.api.atmlog.IAtmCycle;
@@ -10,7 +11,12 @@ import com.yihuacomputer.fish.api.atmlog.ICustomerCycle;
  * @author YiHua
  *
  */
-public class AtmCycle implements IAtmCycle{
+public class AtmCycle implements IAtmCycle,Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8323574070145667179L;
 
 	/*结账ID*/
 	private String cashInId;

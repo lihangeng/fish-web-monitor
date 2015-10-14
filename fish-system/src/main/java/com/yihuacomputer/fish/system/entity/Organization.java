@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.system.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,7 +36,12 @@ import com.yihuacomputer.fish.person.service.api.IDomainOrganizationService;
  */
 @Entity
 @Table(name = "SM_ORG")
-public class Organization implements IOrganization {
+public class Organization implements IOrganization,Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 191792206466727269L;
 
 	@Transient
 	private IDomainOrganizationService service;
@@ -111,11 +117,7 @@ public class Organization implements IOrganization {
 	@Column(name = "APPLICATION_PER", nullable = true, length = 24)
 	private String applicationPer;
 
-	public Organization() {
-
-		 //this.organizationState = OrganizationState.NEW;
-
-	}
+	public Organization() {}
 
 	public IDomainOrganizationService getService() {
 		return service;
@@ -189,12 +191,6 @@ public class Organization implements IOrganization {
 			}
 		}
 		return EntityUtils.<IOrganization> convert(listChildren);
-	}
-
-	@Override
-	public void removeChild(String code) {
-		children.remove(getChild(code));
-		service.removeByCode(code);
 	}
 
 	@Override
@@ -291,18 +287,6 @@ public class Organization implements IOrganization {
 	public List<Organization> getChildren() {
 		return children;
 	}
-
-	// @Override
-	// public OrganizationLevel getOrganizationLevel()
-	// {
-	// return this.organizationLevel;
-	// }
-	//
-	// @Override
-	// public void setOrganizationLevel(OrganizationLevel level)
-	// {
-	// this.organizationLevel = level;
-	// }
 
 	@Override
 	public OrganizationType getOrganizationType() {

@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.system.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,9 +16,13 @@ import com.yihuacomputer.fish.api.system.config.IParamService;
 
 @Entity
 @Table(name = "SM_PARAM")
-public class Param implements IParam {
+public class Param implements IParam,Serializable {
 	
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -5074691289583960484L;
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_SM_PARAM")
     @SequenceGenerator(name = "SEQ_SM_PARAM", sequenceName = "SEQ_SM_PARAM")
     @Column(name = "ID")

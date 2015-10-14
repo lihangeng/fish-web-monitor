@@ -32,7 +32,7 @@ import com.yihuacomputer.fish.api.version.LinkedDeviceForm;
 import com.yihuacomputer.fish.api.version.RestrictionColumn;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
-import com.yihuacomputer.fish.machine.entity.device.Device;
+import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.version.entity.DeviceSoftVersion;
 import com.yihuacomputer.fish.version.entity.Task;
 import com.yihuacomputer.fish.version.entity.Version;

@@ -8,6 +8,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.exception.NotFoundException;
-import com.yihuacomputer.common.exception.ServiceException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.person.IOrganization;
@@ -179,37 +179,9 @@ public class OrganizationService extends DomainOrganizationService {
      * 根据外部ID删除机构信息
      */
     @Override
+    @CacheEvict(value = "orgs",key = "#guid")
     public void remove(String guid) {
-        try {
-            dao.delete(get(guid));
-        } catch (NotFoundException nfe) {
-            throw nfe;
-        } catch (Exception ex) {
-            throw new ServiceException(String.format("删除组织[%s]失败", guid), ex);
-        }
-    }
-
-    /**
-     * 根据编号删除机构信息
-     */
-    @Override
-    public void removeByCode(String code) {
-        try {
-            dao.delete(getByCode(code));
-        } catch (NotFoundException nfe) {
-            throw nfe;
-        } catch (Exception ex) {
-            throw new ServiceException(String.format("删除组织[%s]失败", code), ex);
-        }
-    }
-
-    /**
-     * 删除机构信息
-     */
-    @Override
-    public void remove(IOrganization organization) {
-        dao.delete(organization);
-
+    	 dao.delete(Long.valueOf(guid), Organization.class);
     }
 
     /**

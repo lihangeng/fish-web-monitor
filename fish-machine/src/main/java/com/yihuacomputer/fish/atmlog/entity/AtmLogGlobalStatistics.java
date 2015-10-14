@@ -1,11 +1,17 @@
 package com.yihuacomputer.fish.atmlog.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.yihuacomputer.fish.api.atmlog.IAtmLogGlobalStatistics;
 
-public class AtmLogGlobalStatistics implements IAtmLogGlobalStatistics {
+public class AtmLogGlobalStatistics implements IAtmLogGlobalStatistics,Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4323392700507750066L;
+
 	private long id;
 	
 	private String orgName;

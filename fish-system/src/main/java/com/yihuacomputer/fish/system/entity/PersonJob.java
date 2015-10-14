@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.system.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,8 +20,13 @@ import com.yihuacomputer.fish.api.person.IPersonJob;
  */
 @Entity
 @Table(name = "SM_PERSON_JOB")
-public class PersonJob implements IPersonJob {
+public class PersonJob implements IPersonJob,Serializable {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7384753444582361614L;
+
+	/**
      * ID,自增长
      */
     @Id

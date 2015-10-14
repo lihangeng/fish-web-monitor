@@ -1,12 +1,18 @@
 package com.yihuacomputer.fish.system.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.yihuacomputer.fish.api.system.sms.IShortMessage;
 import com.yihuacomputer.fish.api.system.sms.IShortMessageService;
 
-public class ShortMessage implements IShortMessage {
+public class ShortMessage implements IShortMessage,Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8997032317930250485L;
 
 	private List<String> mobiles = new ArrayList<String>();
 
