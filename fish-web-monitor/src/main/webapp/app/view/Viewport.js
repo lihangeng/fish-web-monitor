@@ -23,7 +23,7 @@ Ext.define('Eway.view.Viewport', {
 				xtype : 'appheader',
 			}, {
 				region : 'west',
-				width : 200,
+				width : 205,
 				title : '我的工作台',
 				id:'appmenu',
 				header : true,
