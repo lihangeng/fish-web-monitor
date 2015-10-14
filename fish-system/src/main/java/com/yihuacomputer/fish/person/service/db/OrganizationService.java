@@ -8,14 +8,13 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
-import com.yihuacomputer.common.exception.NotFoundException;
-import com.yihuacomputer.common.exception.ServiceException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.person.IOrganization;
@@ -93,19 +92,6 @@ public class OrganizationService extends DomainOrganizationService {
     }
 
     /**
-     * 根据机构名称获得机构信息
-     */
-    @Override
-    public IOrganization getByName(String name) {
-        Organization organization = (Organization) dao.getCriteria(Organization.class)
-                .add(Restrictions.eq("name", name)).uniqueResult();
-        if (organization == null) {
-            throw new NotFoundException(String.format("不存在机构[%s]", name));
-        }
-        return organization;
-    }
-
-    /**
      * 取到当前机构子机构中最小的机构级别
      *
      * @param id
@@ -145,14 +131,6 @@ public class OrganizationService extends DomainOrganizationService {
     }
 
     /**
-     * 根据编号获得机构信息
-     */
-    @Override
-    public IOrganization getByCode(String code) {
-        return getByCode(code, OrganizationType.BANK);
-    }
-
-    /**
      * 获得跟节点的所有机构信息
      */
     @Override
@@ -179,37 +157,9 @@ public class OrganizationService extends DomainOrganizationService {
      * 根据外部ID删除机构信息
      */
     @Override
+    @CacheEvict(value = "orgs",key = "#guid")
     public void remove(String guid) {
-        try {
-            dao.delete(get(guid));
-        } catch (NotFoundException nfe) {
-            throw nfe;
-        } catch (Exception ex) {
-            throw new ServiceException(String.format("删除组织[%s]失败", guid), ex);
-        }
-    }
-
-    /**
-     * 根据编号删除机构信息
-     */
-    @Override
-    public void removeByCode(String code) {
-        try {
-            dao.delete(getByCode(code));
-        } catch (NotFoundException nfe) {
-            throw nfe;
-        } catch (Exception ex) {
-            throw new ServiceException(String.format("删除组织[%s]失败", code), ex);
-        }
-    }
-
-    /**
-     * 删除机构信息
-     */
-    @Override
-    public void remove(IOrganization organization) {
-        dao.delete(organization);
-
+    	 dao.delete(Long.valueOf(guid), Organization.class);
     }
 
     /**
@@ -340,21 +290,15 @@ public class OrganizationService extends DomainOrganizationService {
         this.orgListeners.remove(orgListener);
     }
 
-    @Override
+ /*   @Override
     public IOrganization getByCode(String code, OrganizationType orgType) {
         Organization organization = (Organization) dao
                 .getCriteria(Organization.class)
                 .add(Restrictions.eq("code", code))
                 .add(Restrictions.or(Restrictions.eq("organizationType", orgType),
-                        Restrictions.isNull("organizationType"))).uniqueResult();
-
-        // 注释代码，查询不到数据，直接返回null,不需要抛异常
-        // if (organization == null) {
-        // throw new NotFoundException(String.format("不存在组织[%s]", code));
-        // }
-
+                Restrictions.isNull("organizationType"))).uniqueResult();
         return organization;
-    }
+    }*/
 
     @Override
     public List<Long> listParent(String orgId, OrganizationType orgType) {

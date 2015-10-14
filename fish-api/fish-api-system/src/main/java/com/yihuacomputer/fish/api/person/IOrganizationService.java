@@ -28,32 +28,16 @@ public interface IOrganizationService
      * @return
      */
     public IOrganization get(String guid);
-
-    /**
-     * 根据编号返回组织机构实例,默认的组织类型是银行
-     *
-     * @param code
-     * @return
-     */
-    public IOrganization getByCode(String code);
-
-    /**
+/*
+    *//**
      * 根据组织的code和类型来获取组织
      * @param code
      * @param orgType
      * @since 1.0.0
      * @return
-     */
+     *//*
     public IOrganization getByCode(String code,OrganizationType orgType);
-
-    /**
-     * 根据机构名称返回机构实例
-     *
-     * @param name
-     * @return
-     */
-    public IOrganization getByName(String name);
-
+*/
     /**
      * 返回所有组织机构列表
      *
@@ -84,20 +68,6 @@ public interface IOrganizationService
      * @param guid
      */
     public void remove(String guid);
-
-    /**
-     * 根据编号删除组织机构
-     *
-     * @param code
-     */
-    public void removeByCode(String code);
-
-    /**
-     * 删除组织机构
-     *
-     * @param organization
-     */
-    public void remove(IOrganization organization);
 
     /**
      * 更新组织机构信息

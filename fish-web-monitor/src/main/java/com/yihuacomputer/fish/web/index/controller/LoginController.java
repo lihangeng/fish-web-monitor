@@ -117,7 +117,7 @@ public class LoginController {
 		} catch (Exception e) {
 			logger.error(String.format("User login error![%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute("message", "用户登录发生异常.");
+			result.addAttribute("message", messageSource.getMessage("login.loginError", null, FishCfg.locale));
 		}
 		result.addAttribute("isRegister", true);
 		return result;
@@ -175,7 +175,7 @@ public class LoginController {
 		String pwd = MsgDigestAlgorithm.getMD5Str(password);
 		if (!user.getPassword().equals(pwd)) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "输入的原始密码有误,请重新操作.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("login.initPwdError", null, FishCfg.locale));
 		} else {
 			user.setPlainText(newPassword);
 			if (user.getState().equals(UserState.NEW)) {
@@ -188,7 +188,7 @@ public class LoginController {
 			form.setUserId(String.valueOf(userService.get(username).getId()));
 			result.addAttribute("user", form);
 			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute("message", "修改成功.");
+			result.addAttribute("message", messageSource.getMessage("login.updateSuccess", null, FishCfg.locale));
 			result.addAttribute("sessionId", session.getId());
 		}
 		return result;
@@ -352,6 +352,7 @@ class TreeMenu {
 	private String text;
 	private String desc;
 	private boolean leaf = true;
+	
 
 	public TreeMenu(IPermission permission,boolean hasChild) {
 		this.id = permission.getCode();

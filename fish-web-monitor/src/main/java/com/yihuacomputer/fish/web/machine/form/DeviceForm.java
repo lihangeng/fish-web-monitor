@@ -347,32 +347,8 @@ public class DeviceForm {
     public void translate(IDevice device) {
         device.setAddress(getAddress());
         device.setCashboxLimit(getCashboxLimit());
-
-//        device.getDevService().setGuid(getDevServiceId());
-
-        // device.setId(getId());
         device.setIp(new IP(getIp()));
         device.setTerminalId(getTerminalId());
-        // 机构
-//        device.getOrganization().setGuid(getOrgId());
-        // device.setOrganization(org);
-        // org.setName(getOrgName());
-
-        // 型号
-//        device.getDevType().setId(getDevTypeId());
-        // device.setDevType(type);
-        // atmType.setName(getDevTypeName());
-
-        // 品牌
-        // IAtmVendor atmVendor = atmType.getDevVendor();
-        // atmVendor.setId(getDevVendorId());
-        // atmVendor.setName(getDevVendorName());
-
-        // 类型
-        // IAtmCatalog atmCatalog = atmType.getDevCatalog();
-        // atmCatalog.setId(getDevCatalogId());
-        // atmCatalog.setName(getDevCatalogName());
-
         // 扩展信息
         IDeviceExtend deviceExtend = device.getDeviceExtend();
         device.setAtmcSoft(getAtmcSoft());
@@ -382,8 +358,6 @@ public class DeviceForm {
         device.setCareLevel(nullObject(getCareLevel(), CareLevel.class));
         device.setCashType(nullObject(getCashType(), CashType.class));
         deviceExtend.setNetType(nullObject(getNetType(), NetType.class));
-        // deviceExtend.setRegStatus(nullObject(getRegStatus(),
-        // RegStatus.class));
         device.setSetupType(nullObject(getSetupType(), SetupType.class));
         device.setWorkType(nullObject(getWorkType(), WorkType.class));
 
@@ -412,7 +386,6 @@ public class DeviceForm {
         deviceExtend.setDepreciationLife(getDepreciationLife());
         deviceExtend.setGovernanceCost(getGovernanceCost());
         deviceExtend.setGovernanceRent(getGovernanceRent());
-        // deviceExtend.setId(getId());
         deviceExtend.setMoneyCost(getMoneyCost());
         deviceExtend.setMoneyOrg(getMoneyOrg());
         deviceExtend.setNetCost(getNetCost());
@@ -422,7 +395,6 @@ public class DeviceForm {
         deviceExtend.setPrice(getPrice());
         deviceExtend.setSerial(getSerial());
         device.setSp(getSp());
-        // deviceExtend.setTrminate(getTrminate());
     }
 
     public static List<DeviceForm> convert(List<IDevice> list) {
@@ -529,16 +501,6 @@ public class DeviceForm {
         this.devTypeName = devTypeName;
     }
 
-    // public long getDevVendorId()
-    // {
-    // return devVendorId;
-    // }
-
-    // public void setDevVendorId(long devVendorId)
-    // {
-    // this.devVendorId = devVendorId;
-    // }
-
     public String getDevVendorName() {
         return devVendorName;
     }
@@ -546,16 +508,6 @@ public class DeviceForm {
     public void setDevVendorName(String devVendorName) {
         this.devVendorName = devVendorName;
     }
-
-    // public long getDevCatalogId()
-    // {
-    // return devCatalogId;
-    // }
-
-    // public void setDevCatalogId(long devCatalogId)
-    // {
-    // this.devCatalogId = devCatalogId;
-    // }
 
     public String getDevCatalogName() {
         return devCatalogName;

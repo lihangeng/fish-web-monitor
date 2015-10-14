@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.system.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,8 +12,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "SM_USER_PERMISSION")
-public class UserPermissionObj {
+public class UserPermissionObj implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4783217718248700194L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_SM_USER_PERMISSION")
 	@SequenceGenerator(name = "SEQ_SM_USER_PERMISSION", sequenceName = "SEQ_SM_USER_PERMISSION")

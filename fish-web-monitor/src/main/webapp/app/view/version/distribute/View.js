@@ -8,7 +8,7 @@ Ext.define('Eway.view.version.distribute.View', {
 			'Eway.view.version.distribute.VersionStatusPie',
 			'Eway.view.version.distribute.VersionStatusDetailGrid'],
 
-	title : '版本分布图',
+	title : Eway.locale.version.View.distributionPic,
 	initComponent : function() {
 		Ext.apply(this, {
 			padding:'10 0 10 0',

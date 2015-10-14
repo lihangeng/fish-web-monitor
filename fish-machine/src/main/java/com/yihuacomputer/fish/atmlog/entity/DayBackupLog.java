@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.atmlog.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,7 +13,12 @@ import com.yihuacomputer.fish.api.atmlog.DayBackupResult;
 import com.yihuacomputer.fish.api.atmlog.IDayBackupLog;
 @Entity
 @Table(name = "ATMC_DAYBACKUP_LOG")
-public class DayBackupLog implements IDayBackupLog {
+public class DayBackupLog implements IDayBackupLog,Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2770536884041695828L;
 
 	@Id
 	@Column(name = "DAYBACKUP_DATE",length=20,nullable=false)

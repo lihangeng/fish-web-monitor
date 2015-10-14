@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.system.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -34,9 +35,14 @@ import com.yihuacomputer.fish.person.service.api.IDomainPersonService;
  */
 @Entity
 @Table(name = "SM_PERSON")
-public class Person implements IPerson {
+public class Person implements IPerson,Serializable {
 
-    @Transient
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1338768197823599280L;
+
+	@Transient
     private IDomainPersonService service;
 
     @Id

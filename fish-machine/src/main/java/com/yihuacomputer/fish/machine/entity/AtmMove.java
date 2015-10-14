@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.machine.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -14,17 +15,17 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.atmMove.IAtmMove;
 import com.yihuacomputer.fish.api.person.IOrganization;
-import com.yihuacomputer.fish.machine.service.api.IDomainAtmMoveService;
 
 @Entity
 @Table(name = "DEV_MOVE")
-public class AtmMove implements IAtmMove {
-    @Transient
-    private IDomainAtmMoveService service;
+public class AtmMove implements IAtmMove,Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6302659515984618904L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_DEV_MOVE")
@@ -50,12 +51,6 @@ public class AtmMove implements IAtmMove {
      */
     @Column(name = "SRC_ADDR", length = 50)
     private String address;
-
-    // /**
-    // * 源机构
-    // */
-    // @Column(name = "SRC_ORG" ,length = 20)
-    // private String organization;
 
     /**
      * 源机构
@@ -99,22 +94,6 @@ public class AtmMove implements IAtmMove {
      */
     @Column(name = "NOTE", length = 50)
     private String notice;
-
-//    /**
-//     * 原IP
-//     */
-//    @Column(name = "IP", length = 20)
-//    private String ip;
-//
-//    /**
-//     * 目的ip
-//     */
-//    @Column(name = "TARGET_IP", length = 20)
-//    private String targetIp;
-
-    public AtmMove(IDomainAtmMoveService service) {
-        this.service = service;
-    }
 
     public AtmMove() {
     }

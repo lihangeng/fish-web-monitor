@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.machine.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,9 +24,14 @@ import com.yihuacomputer.fish.api.atm.IAtmGroupService;
  */
 @Entity
 @Table(name = "DEV_GROUP")
-public class AtmGroup implements IAtmGroup {
+public class AtmGroup implements IAtmGroup,Serializable {
 	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 381297126968571251L;
+
 	@Transient
     private IAtmGroupService service;
 

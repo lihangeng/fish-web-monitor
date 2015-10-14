@@ -24,7 +24,10 @@
 			<artifactId>fish-domain</artifactId>
 			<version>${fish-domain.version}</version>
 		</dependency>
-		
+			<dependency>
+		  	<groupId>net.sf.ehcache</groupId>
+		  	<artifactId>ehcache</artifactId>
+		</dependency>
 		<!-- test -->
 		<dependency>
 			<groupId>junit</groupId>

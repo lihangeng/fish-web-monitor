@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.system.entity;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -24,7 +25,12 @@ import com.yihuacomputer.fish.permission.service.api.IDomainGroupService;
  */
 //@Entity
 //@Table(name = "SM_GROUP")
-public class Group implements IGroup {
+public class Group implements IGroup,Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2808614573192936507L;
+
 	/** 用户组的ID**/
 	@Id @GeneratedValue(strategy=GenerationType.AUTO,generator="SEQ_SM_GROUP")
 	@SequenceGenerator(name="SEQ_SM_GROUP", sequenceName="SEQ_SM_GROUP")

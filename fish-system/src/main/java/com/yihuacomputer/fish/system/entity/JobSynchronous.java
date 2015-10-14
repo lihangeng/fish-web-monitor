@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.system.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -16,9 +17,14 @@ import com.yihuacomputer.fish.api.system.quartz.IJobSynchronous;
 
 @Entity
 @Table(name = "SM_JOB_SYNCHRON")
-public class JobSynchronous implements IJobSynchronous {
+public class JobSynchronous implements IJobSynchronous, Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6587926842321410439L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_SM_JOB_SYNCHRON")
     @SequenceGenerator(name = "SEQ_SM_JOB_SYNCHRON", sequenceName = "SEQ_SM_JOB_SYNCHRON")
     @Column(name = "ID")

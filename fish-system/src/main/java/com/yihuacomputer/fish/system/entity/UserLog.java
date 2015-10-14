@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.system.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -26,9 +27,14 @@ import com.yihuacomputer.fish.person.service.api.IDomainUserLogService;
  */
 @Entity
 @Table(name = "SM_USER_LOG")
-public class UserLog implements IUserLog {
+public class UserLog implements IUserLog,Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -924643267240921084L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_SM_USER_LOG")
     @SequenceGenerator(name = "SEQ_SM_USER_LOG", sequenceName = "SEQ_SM_USER_LOG")
     @Column(name = "ID")

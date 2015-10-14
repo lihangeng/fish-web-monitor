@@ -51,13 +51,14 @@ Ext.override(Eway.locale,{
 		add : '增加XX',//Eway.locale.button.add
 		update:'更改XX',//Eway.locale.button.update
 		remove:'删除XX',//Eway.locale.button.remove
+		back:'返回XX',//Eway.locale.button.back
 		download:'下发XX',
 		reset:'重置XX',//Eway.locale.button.reset
 		downloadToolTip:'配置下发作业XX',
 		exported:'导出XX',
 		save:'保存XX',//Eway.locale.button.save
 		confirm:'确认XX',//Eway.locale.button.confirm
-		cancel:'取消XX',//Eway.locale.button.cancel
+		cancle:'取消XX',//Eway.locale.button.cancle
 		exportXLS:'导出XLS',//Eway.locale.button.exportXLS
 		exportPDF:'导出PDF',//Eway.locale.button.exportPDF
 	},
@@ -131,6 +132,7 @@ Ext.override(Eway.locale,{
 			versionName:'版本名称XX',//Eway.locale.version.View.versionName
 			downloadVersionName:'下发的版本XX',//Eway.locale.version.View.downloadVersionName
 			downloadVersionNameEmpty:'请选择下发的版本XX',//Eway.locale.version.View.downloadVersionNameEmpty
+			distributionPic:'版本分布图',//Eway.locale.version.View.distributionPic
 			job:{
 				newCreate:'新建XX',
 				running:'运行中XX',

@@ -413,7 +413,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 		var win = this.getMoveWin();
 		var moveForm = this.getMoveWin().down("form").getForm();
 		var parentId = record.data.parentId;
-		var code = record.data.code;
+		var guid = record.data.guid;
 		var store = this.getGrid().getStore();
 		if (moveForm.isValid()) {
 			var data = moveForm.getValues();
@@ -421,7 +421,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 			method : 'POST',
 			url : 'api/person/organization/move',
 			params : {
-				code : code,
+				guid : guid,
 				parentId : data.parentId
 			},
 			success : function(response) {

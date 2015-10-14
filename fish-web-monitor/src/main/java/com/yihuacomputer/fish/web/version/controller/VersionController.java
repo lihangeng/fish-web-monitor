@@ -29,7 +29,6 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.exception.DependException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.common.util.ZipUtils;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
@@ -121,7 +120,7 @@ public class VersionController {
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA, toForm(pageResult.list(), orgService.getByCode(userSession.getOrgCode())));
+		result.addAttribute(FishConstant.DATA, toForm(pageResult.list(), orgService.get(String.valueOf(userSession.getOrgCode()))));
 		return result;
 	}
 
@@ -306,25 +305,11 @@ public class VersionController {
 		return result;
 	}
 
-	private IPageResult<VersionForm> toFormPageResult(IPageResult<IVersion> pageResult) {
-		List<VersionForm> forms = new ArrayList<VersionForm>();
-		for (IVersion v : pageResult.list()) {
-			VersionForm form = new VersionForm(v);
-			// form.setVersionStatics(vsService.getVersionStatics(v,org));
-			if (v.getCreateUser() != null) {
-				form.setUserName(v.getCreateUser().getName());
-			}
-			forms.add(form);
-		}
-		return new PageResult<VersionForm>(pageResult.getTotal(), forms);
-	}
-
 	// 转换数据格式
 	private List<VersionForm> toForm(List<IVersion> versions, IOrganization org) {
 		List<VersionForm> forms = new ArrayList<VersionForm>();
 		for (IVersion v : versions) {
 			VersionForm form = new VersionForm(v);
-			// form.setVersionStatics(vsService.getVersionStatics(v,org));
 			if (v.getCreateUser() != null) {
 				form.setUserName(v.getCreateUser().getName());
 			}
@@ -395,8 +380,7 @@ public class VersionController {
 		}
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, true);
-		// result.addAttribute("total", pageResult.getTotal());
-		result.addAttribute("data", toForm(target, orgService.getByCode(userSession.getOrgCode())));
+		result.addAttribute("data", toForm(target, orgService.get(String.valueOf(userSession.getOrgId()))));
 		return result;
 	}
 

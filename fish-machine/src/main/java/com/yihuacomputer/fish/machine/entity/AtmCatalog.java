@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.machine.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,9 +20,14 @@ import com.yihuacomputer.fish.api.atm.IAtmCatalog;
  */
 @Entity
 @Table(name = "DEV_CATALOG")
-public class AtmCatalog implements IAtmCatalog
+public class AtmCatalog implements IAtmCatalog,Serializable
 {
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5872818316106112221L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_DEV_CATALOG")
     @SequenceGenerator(name = "SEQ_DEV_CATALOG", sequenceName = "SEQ_DEV_CATALOG")
     @Column(name = "ID")
