@@ -27,8 +27,8 @@ import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.person.UserState;
-import com.yihuacomputer.fish.person.entity.User;
 import com.yihuacomputer.fish.person.service.base.DomainUserService;
+import com.yihuacomputer.fish.system.entity.User;
 
 /**
  * 账户信息服务

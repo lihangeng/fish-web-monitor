@@ -4,7 +4,7 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IPersonService;
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.person.IUserService;
-import com.yihuacomputer.fish.person.entity.User;
+import com.yihuacomputer.fish.system.entity.User;
 
 /**
  * 领域层Service接口

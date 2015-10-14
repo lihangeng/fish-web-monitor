@@ -22,8 +22,8 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationListener;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.OrganizationType;
-import com.yihuacomputer.fish.person.entity.Organization;
 import com.yihuacomputer.fish.person.service.base.DomainOrganizationService;
+import com.yihuacomputer.fish.system.entity.Organization;
 
 /**
  * 数据库版OrganizationService实现：

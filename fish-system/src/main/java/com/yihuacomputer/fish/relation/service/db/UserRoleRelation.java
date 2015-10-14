@@ -17,7 +17,7 @@ import com.yihuacomputer.fish.api.permission.IPermission;
 import com.yihuacomputer.fish.api.permission.IRole;
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.relation.IUserRoleRelation;
-import com.yihuacomputer.fish.relation.entity.UserRoleObj;
+import com.yihuacomputer.fish.system.entity.UserRoleObj;
 
 /**
  * 维护主帐号与角色之间的关系服务

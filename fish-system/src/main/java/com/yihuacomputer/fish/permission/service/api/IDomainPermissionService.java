@@ -3,7 +3,7 @@ package com.yihuacomputer.fish.permission.service.api;
 import java.util.List;
 
 import com.yihuacomputer.fish.api.permission.IPermissionService;
-import com.yihuacomputer.fish.permission.entity.Permission;
+import com.yihuacomputer.fish.system.entity.Permission;
 
 public interface IDomainPermissionService extends IPermissionService {
 	/**

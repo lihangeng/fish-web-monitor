@@ -21,9 +21,9 @@ Ext.define('Eway.store.device.RPR', {
 	              {
                    	  id:2,
                 	  type:'Journal',
-                	  canPopupReceipt:'不可以',
-       	           	  canEatReceipt:'不可以',
-       	           	  canTempStore:'能',
+                	  canPopupReceipt:Eway.locale.machine.device.unable,
+       	           	  canEatReceipt:Eway.locale.machine.device.unable,
+       	           	  canTempStore:Eway.locale.machine.device.able,
        	           	  maxRetrieveSizecan : 5,
        	           	  deviceId:2
 	              }   

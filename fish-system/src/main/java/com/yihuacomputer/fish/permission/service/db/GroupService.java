@@ -18,8 +18,8 @@ import com.yihuacomputer.fish.api.permission.IRole;
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.relation.IGroupRoleRelation;
 import com.yihuacomputer.fish.api.relation.IUserGroupRelation;
-import com.yihuacomputer.fish.permission.entity.Group;
 import com.yihuacomputer.fish.permission.service.api.IDomainGroupService;
+import com.yihuacomputer.fish.system.entity.Group;
 
 /**
  * @author weizaiqin

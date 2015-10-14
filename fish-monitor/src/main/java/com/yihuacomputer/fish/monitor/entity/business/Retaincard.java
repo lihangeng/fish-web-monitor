@@ -65,7 +65,7 @@ public class Retaincard implements IRetaincard {
 	/**
 	 * 处理机构
 	 */
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.person.entity.Organization.class)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
 	@JoinColumn(name = "ORG_ID")
 	private IOrganization treatmentOrganization;
 
@@ -137,7 +137,7 @@ public class Retaincard implements IRetaincard {
 	/**
 	 * 移交到的机构
 	 */
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.person.entity.Organization.class)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
 	@JoinColumn(name = "HANDOVER_ORG_ID")
 	private IOrganization handOverOrg;
 

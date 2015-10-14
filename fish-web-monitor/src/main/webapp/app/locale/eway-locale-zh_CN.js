@@ -376,6 +376,7 @@ Ext.override(Eway.locale,{
 		
 		//**********************************************************/
 		permission:{
+			systemMenu:'系统菜单'
 			role:{
 				title:'角色管理',//Eway.locale.permission.role.title
 				update:'更改角色',//Eway.locale.permission.role.update
@@ -1083,7 +1084,10 @@ Ext.override(Eway.locale,{
 				noDevice:'无设备XX',
 				devTypeInfo: '设备型号信息XX',
 				
-				devInfo:'设备信息$$'
+				devInfo:'设备信息$$',
+				unable:'不可以',
+				able:'能',
+				
 			},
 			param:{
 				paramKey:'参数XX',//Eway.locale.machine.param.paramKey

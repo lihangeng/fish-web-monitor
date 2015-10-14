@@ -17,8 +17,8 @@ import com.yihuacomputer.common.exception.ServiceException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.permission.IPermission;
-import com.yihuacomputer.fish.permission.entity.Permission;
 import com.yihuacomputer.fish.permission.service.api.IDomainPermissionService;
+import com.yihuacomputer.fish.system.entity.Permission;
 
 @Service
 @Transactional
