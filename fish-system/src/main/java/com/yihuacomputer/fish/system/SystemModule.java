@@ -37,11 +37,11 @@ import com.yihuacomputer.fish.relation.service.db.RolePermissionRelation;
 import com.yihuacomputer.fish.relation.service.db.UserGroupRelation;
 import com.yihuacomputer.fish.relation.service.db.UserPermissionRelation;
 import com.yihuacomputer.fish.relation.service.db.UserRoleRelation;
-import com.yihuacomputer.fish.system.service.db.AnnouncementService;
-import com.yihuacomputer.fish.system.service.db.JobSynchService;
-import com.yihuacomputer.fish.system.service.db.MessageService;
-import com.yihuacomputer.fish.system.service.db.ParamService;
-import com.yihuacomputer.fish.system.service.db.ShortMessageService;
+import com.yihuacomputer.fish.system.service.AnnouncementService;
+import com.yihuacomputer.fish.system.service.JobSynchService;
+import com.yihuacomputer.fish.system.service.MessageService;
+import com.yihuacomputer.fish.system.service.ParamService;
+import com.yihuacomputer.fish.system.service.ShortMessageService;
 
 @Configuration
 public class SystemModule {

@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.system.service.db;
+package com.yihuacomputer.fish.system.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,8 +9,8 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.system.im.IAnnouncement;
+import com.yihuacomputer.fish.api.system.im.IAnnouncementService;
 import com.yihuacomputer.fish.system.entity.Announcement;
-import com.yihuacomputer.fish.system.service.base.DomainAnnouncementService;
 
 /**
  * 数据库版AnnouncementService实现：
@@ -20,10 +20,16 @@ import com.yihuacomputer.fish.system.service.base.DomainAnnouncementService;
  */
 @Service
 @Transactional
-public class AnnouncementService extends DomainAnnouncementService {
+public class AnnouncementService implements IAnnouncementService {
 
     @Autowired
     private IGenericDao dao;
+    
+    @Override
+	public Announcement make(){
+		Announcement ann = new Announcement(this);
+		return ann;
+	}
 
     @Override
     public Announcement add(IAnnouncement entity) {

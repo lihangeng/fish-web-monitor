@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.system.service.db;
+package com.yihuacomputer.fish.system.service;
 
 import java.util.Calendar;
 import java.util.Date;

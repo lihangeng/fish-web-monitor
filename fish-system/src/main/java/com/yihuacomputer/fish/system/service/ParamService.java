@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.system.service.db;
+package com.yihuacomputer.fish.system.service;
 
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +10,12 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.system.config.IParam;
+import com.yihuacomputer.fish.api.system.config.IParamService;
 import com.yihuacomputer.fish.system.entity.Param;
-import com.yihuacomputer.fish.system.service.base.DomainParamService;
 
 @Service
 @Transactional
-public class ParamService extends DomainParamService {
+public class ParamService implements IParamService {
 
     @Autowired
     private IGenericDao dao;
@@ -85,6 +85,27 @@ public class ParamService extends DomainParamService {
 	@Override
 	public IPageResult<IParam> page(int offset, int limit, IFilter filter) {
 		return dao.page(offset, limit, filter, Param.class);
+	}
+	
+	@Override
+	public IParam make() {
+		return new Param(this);
+	}
+
+	@Override
+	public IParam add(String name, String value, String description) {
+		IParam param = make();
+		param.setParamKey(name);
+		param.setParamValue(value);
+		param.setDescription(description);
+		this.add(param);
+        FishCfg.setFishCfg(name, value);
+		return param;
+	}
+	
+	@Override
+	public void reload() {
+		
 	}
 
 

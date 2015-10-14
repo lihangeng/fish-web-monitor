@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.system.service.db;
+package com.yihuacomputer.fish.system.service;
 
 import java.io.BufferedInputStream;
 import java.io.DataInputStream;
@@ -10,12 +10,18 @@ import org.springframework.stereotype.Service;
 
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.fish.api.system.sms.IShortMessage;
+import com.yihuacomputer.fish.api.system.sms.IShortMessageService;
 import com.yihuacomputer.fish.system.entity.ShortMessage;
-import com.yihuacomputer.fish.system.service.base.DomainShortMessageService;
 
 @Service
-public class ShortMessageService extends DomainShortMessageService {
+public class ShortMessageService implements IShortMessageService {
 
+	@Override
+	public ShortMessage make(){
+		ShortMessage msg = new ShortMessage(this);
+		return msg;
+	}
+	
 	@Override
 	public boolean send(IShortMessage message) throws Exception {
 		List<String> messageList = message.listMobile();

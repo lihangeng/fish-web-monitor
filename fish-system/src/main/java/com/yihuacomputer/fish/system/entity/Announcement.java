@@ -17,7 +17,7 @@ import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.system.im.AnnounceStatus;
 import com.yihuacomputer.fish.api.system.im.IAnnouncement;
-import com.yihuacomputer.fish.system.service.api.IDomainAnnouncementService;
+import com.yihuacomputer.fish.api.system.im.IAnnouncementService;
 
 /**
  * 公告信息：（信息实体对应数据库表SM_ANNOUNCEMENT）
@@ -32,7 +32,7 @@ import com.yihuacomputer.fish.system.service.api.IDomainAnnouncementService;
 public class Announcement implements IAnnouncement {
 
     @Transient
-    private IDomainAnnouncementService service;
+    private IAnnouncementService service;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_SM_ANNOUNCEMENT")
@@ -106,7 +106,7 @@ public class Announcement implements IAnnouncement {
     public Announcement() {
     }
 
-    public Announcement(IDomainAnnouncementService service) {
+    public Announcement(IAnnouncementService service) {
         this.service = service;
     }
 
