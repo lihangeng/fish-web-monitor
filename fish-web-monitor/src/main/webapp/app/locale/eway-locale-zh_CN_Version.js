@@ -81,6 +81,7 @@ Ext.override(Eway.locale,{
 		planTime:'计划执行时间XX',//Eway.locale.version.planTime
 		selectableDevice:'可以下发的设备XX',//Eway.locale.version.selectableDevice
 		linkedDevice:'已选择的设备XX',//Eway.locale.version.linkedDevice
+		downloadVerFile:'下载版本文件',//Eway.locale.version.downloadVerFile
 		View:{
 			title:'版本管理XX',
 			versionDetail:'版本详情',//Eway.locale.version.View.versionDetail

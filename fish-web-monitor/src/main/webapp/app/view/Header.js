@@ -12,22 +12,22 @@ Ext.define('Eway.view.Header', {
     items: [
         {
             xtype : 'label',
-            text : '自助设备监控系统(ATMV)',
+            text : Eway.locale.ATMV,
             style : 'font-size : 18px; color : white;'
         },"->",{
         	xtype:'tbtext',
-        	text: "欢迎你,"+ewayUser.getName(),
+        	text: Eway.locale.welcome+ewayUser.getName(),
         	style : 'font-size : 14px; color : white;'
         },{
-        	tooltip:'个人设置',
+        	tooltip:Eway.locale.personalConf,
         	glyph : 0xf013,
         	action:'personalSettings'
         },{
             glyph : 0xf059,
-            tooltip:'系统帮助',
+            tooltip:Eway.locale.systemHelp,
         	action:'systemHelp'
         },{
-        	tooltip : '退出系统',
+        	tooltip : Eway.locale.exitSystem,
             glyph : 0xf011,
             handler : function(){
 				Ext.Cometd.disconnect();//关闭订阅连接
