@@ -14,11 +14,11 @@ Ext.define('Eway.view.version.distribute.VersionStatusDetailGrid', {
 				header : Eway.locale.refs.orgName,
 				dataIndex : 'orgName'
 			},{
-				header : '设备编号',
+				header : Eway.locale.refs.terminalId,//'设备编号',
 				dataIndex : 'terminalId',
 				width: 100
 			},{
-				header:'IP地址',
+				header:Eway.locale.refs.ip,//'IP地址',
 				dataIndex:'ip',
 				width: 100
 			},{
@@ -26,19 +26,19 @@ Ext.define('Eway.view.version.distribute.VersionStatusDetailGrid', {
 				dataIndex : 'deviceType',
 				width: 100
 			},{
-				header : '维护商',
+				header : Eway.locale.person.bankOrg.organizationType.serviceOrg,//'维护商', 
 				dataIndex : 'vendor',
 				width: 100
 			},{
-				header : '升级前版本号',
+				header : Eway.locale.version.task.versionNoBeforeUpdate,//'升级前版本号',
 				dataIndex : 'beforeUpdateVersionNo',
 				width: 200
 			},{
-				header : '目标版本号',
+				header : Eway.locale.version.task.versionNoAfterUpdate,//'目标版本号',
 				dataIndex : 'afterUpdateVersionNo',
 				width: 200
 			},{
-				header : '升级方式',
+				header : Eway.locale.version.taskType,//'任务类型',
 				dataIndex : 'updateType',
 				flex:1
 			}],

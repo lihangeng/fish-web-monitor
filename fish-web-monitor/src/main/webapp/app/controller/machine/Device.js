@@ -37,7 +37,7 @@ Ext.define('Eway.controller.machine.Device', {
 	formConfig : {
 		form : 'Eway.view.machine.device.Form',
 		xtype : 'machine_device_form',
-		title : '设备信息',
+		title : Eway.locale.machine.device.devInfo,
 		width : 700,
 		height : 450
 	},

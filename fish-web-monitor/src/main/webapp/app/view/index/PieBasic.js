@@ -2,7 +2,7 @@ Ext.define('Eway.view.index.PieBasic', {
     extend: 'Ext.Panel',
     xtype: 'pieBasic',
     
-    title :'设备状态分布图',
+    title :Eway.locale.index.devStatusDisPic,
 
     initComponent: function() {
         var me = this;
@@ -10,9 +10,9 @@ Ext.define('Eway.view.index.PieBasic', {
         me.myDataStore = Ext.create('Ext.data.JsonStore', {
             fields: ['os', 'data1' ],
             data: [
-                { os: '正常设备', data1: 100 },
-                { os: '未知设备', data1: 5 },
-                { os: '异常设备', data1: 10 }
+                { os: Eway.locale.index.normalDev, data1: 100 },
+                { os: Eway.locale.index.unknownDev, data1: 5 },
+                { os: Eway.locale.index.exceptionDev, data1: 10 }
             ]
         });
 
@@ -63,7 +63,7 @@ Ext.define('Eway.view.index.PieBasic', {
                 tooltip: {
                     trackMouse: true,
                     renderer: function(storeItem, item) {
-                        this.setHtml(storeItem.get('os') + ': ' + storeItem.get('data1') + '台');
+                        this.setHtml(storeItem.get('os') + ': ' + storeItem.get('data1') + Eway.locale.index.amount);
                     }
                 }
             }]

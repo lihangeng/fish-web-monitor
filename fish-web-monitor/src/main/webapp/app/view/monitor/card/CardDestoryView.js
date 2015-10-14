@@ -7,7 +7,7 @@ Ext.define('Eway.view.monitor.card.CardDestoryView', {
 	           'Eway.view.monitor.card.CardDestoryFilterForm'
 	           ],
 	
-	title: '吞卡销毁',
+	title: Eway.locale.monitor.business.card.destory,
 	layout: 'border',
 	
 	initComponent: function() {

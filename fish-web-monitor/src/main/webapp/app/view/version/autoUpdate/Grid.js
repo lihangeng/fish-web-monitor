@@ -12,41 +12,41 @@ Ext.define('Eway.view.version.autoUpdate.Grid', {
 		Ext.apply(this, {
 			store : store,
 			tbar: ['->', {
-				text: '查询',
+				text: Eway.locale.button.search,//'查询',
 				glyph : 0xf002,
 				action: 'query'
 			}],
 			columns : [{
-				header : '软件分类',
+				header : Eway.locale.versionType.winTitle,//'软件分类',
 				width : 130,
 				dataIndex : 'versionType'
 			},{
-				header : Eway.locale.commen.terminalId,
+				header : Eway.locale.refs.terminalId,
 				width : 100,
 				dataIndex : 'terminalId'
 			},{
-				header : '设备IP',
+				header : Eway.locale.refs.ip,//'设备IP',
 				width : 120,
 				dataIndex : 'deviceIp'
 			},{
 
-				header : Eway.locale.commen.orgNameBelongs,
+				header : Eway.locale.refs.orgName,
 				width : 150,
 				dataIndex : 'orgName'
 			},{
-				header:'版本号',
+				header:Eway.locale.version.task.versionNoBeforeUpdate,//'版本号',
 				width : 180,
 				dataIndex:'versionBeforeUpdate'
 			},{
-				header : '更新时间',
+				header : Eway.locale.version.task.actionTime,//'更新时间',
 				width : 150,
 				dataIndex : 'excuteTime'
 			},{
-				header: '任务状态',
+				header: Eway.locale.version.task.taskStatus,//'任务状态',
 				width : 180,
 				dataIndex :'taskStatus'
 			},{
-				header : '预期版本号',
+				header : Eway.locale.version.task.exceptVersion,//'预期版本号',
 				flex : 1,
 				dataIndex : 'version'
 				

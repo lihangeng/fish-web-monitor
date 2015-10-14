@@ -3,7 +3,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceWindow', {
 	alias : 'widget.selectableDeviceWindow',
 	requires : ['Eway.view.version.download.SelectableDeviceGrid'],
 
-	title : '选择设备',
+	title : Eway.locale.version.task.chooseTitleDevice,//'选择设备',
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -15,11 +15,11 @@ Ext.define('Eway.view.version.download.SelectableDeviceWindow', {
 				xtype:'version_download_selectableDeviceGrid'
 			}],
 			buttons:[{
-				text : '确定',
+				text : Eway.locale.button.confirm,//'确定',
 				action :'confirm',
 				handler: this.onChoose
 			},{
-				text: '关闭窗口',
+				text: Eway.locale.version.task.closeWindow,//'关闭窗口',
 				handler : this.onOver
 			}]
 		});
