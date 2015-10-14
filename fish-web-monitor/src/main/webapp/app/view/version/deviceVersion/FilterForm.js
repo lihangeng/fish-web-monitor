@@ -52,7 +52,7 @@ Ext.define('Eway.view.version.deviceVersion.FilterForm', {
 				}, {
 					xtype : 'common_orgComboOrgTree',
 					fieldLabel : Eway.locale.refs.orgName,//
-					emptyText : '--请选择--',
+					emptyText : Eway.locale.combox.select,
 					name : 'orgName',
 					hiddenValue : 'organization',
 					editable : false,
