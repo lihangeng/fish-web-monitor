@@ -47,14 +47,6 @@ public interface IOrganizationService
     public IOrganization getByCode(String code,OrganizationType orgType);
 
     /**
-     * 根据机构名称返回机构实例
-     *
-     * @param name
-     * @return
-     */
-    public IOrganization getByName(String name);
-
-    /**
      * 返回所有组织机构列表
      *
      * @return

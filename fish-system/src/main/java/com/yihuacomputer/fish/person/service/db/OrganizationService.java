@@ -15,7 +15,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
-import com.yihuacomputer.common.exception.NotFoundException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.person.IOrganization;
@@ -90,19 +89,6 @@ public class OrganizationService extends DomainOrganizationService {
     @Cacheable(value = "orgs",key = "#guid")
     public IOrganization get(String guid) {
         return dao.get(Long.valueOf(guid), Organization.class);
-    }
-
-    /**
-     * 根据机构名称获得机构信息
-     */
-    @Override
-    public IOrganization getByName(String name) {
-        Organization organization = (Organization) dao.getCriteria(Organization.class)
-                .add(Restrictions.eq("name", name)).uniqueResult();
-        if (organization == null) {
-            throw new NotFoundException(String.format("不存在机构[%s]", name));
-        }
-        return organization;
     }
 
     /**
