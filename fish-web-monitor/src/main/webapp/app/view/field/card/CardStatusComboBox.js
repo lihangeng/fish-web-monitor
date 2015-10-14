@@ -6,11 +6,11 @@ Ext.define('Eway.view.field.card.CardStatusComboBox',{
 	
 	store:'monitor.card.CardStatusComboBox',
 	queryMode: 'local',
-	fieldLabel:'卡片状态',
+	fieldLabel:Eway.locale.card.cardStatus,
 	name:'status',
 	valueField: 'value',
 	displayField: 'display',
 	msgTarget : 'side',
 	hiddenName : 'status',
-	emptyText: '--请选择--'
+	emptyText: Eway.locale.combox.select
 });

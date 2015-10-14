@@ -30,7 +30,9 @@ Ext.override(Eway.locale,{
 		downloadToolTip:'配置下发作业',
 		save:'保存',
 		confirm:'确认',//Eway.locale.button.confirm
-		cancel:'取消'//Eway.locale.button.cancel
+		cancel:'取消',//Eway.locale.button.cancel
+		exportXLS:'导出XLS',
+		exportPDF:'导出PDF',
 	},
 	refs:{
 		orgName:'机构',//Eway.locale.refs.orgName

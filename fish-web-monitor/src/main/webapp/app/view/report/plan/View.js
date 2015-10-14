@@ -6,7 +6,7 @@ Ext.define('Eway.view.report.plan.View', {
 	requires: ['Eway.view.report.plan.FilterForm',
 	           'Eway.view.report.plan.Grid'],
 	
-	title: '开机方案',
+	title: Eway.locale.report.plan.openPlan,
 	layout: 'border',
 	
 	initComponent: function() {

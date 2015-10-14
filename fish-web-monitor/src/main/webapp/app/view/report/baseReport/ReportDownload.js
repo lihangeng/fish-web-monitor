@@ -15,7 +15,7 @@ Ext.define('Eway.view.report.baseReport.ReportDownload', {
 			} ],
 			tbar : [ '->', {
 				xtype : 'button',
-				text : '查询',
+				text : Eway.locale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}/*
@@ -23,12 +23,12 @@ Ext.define('Eway.view.report.baseReport.ReportDownload', {
 				 * action : 'exportHtml' }
 				 */, {
 				xtype : 'button',
-				text : '导出XLS',
+				text : Eway.locale.button.exportXLS,
 				iconCls : 'exportBtn',
 				action : 'exportXls'
 			}, {
 				xtype : 'button',
-				text : '导出PDF',
+				text : Eway.locale.button.exportPDF,
 				iconCls : 'exportBtn',
 				action : 'exportPdf'
 			} ]

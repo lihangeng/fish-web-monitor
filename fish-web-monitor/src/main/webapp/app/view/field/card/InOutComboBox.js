@@ -10,5 +10,5 @@ Ext.define('Eway.view.field.card.InOutComboBox',{
 	queryMode: 'local',
 	displayField: 'display',
 	valueField: 'value',
-	emptyText: '--请选择--'
+	emptyText: Eway.locale.combox.select
 });

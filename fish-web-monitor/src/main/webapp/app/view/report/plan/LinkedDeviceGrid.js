@@ -29,7 +29,7 @@ Ext.define('Eway.view.report.plan.LinkedDeviceGrid', {
 				action: 'unlink'
 			}],
 			columns : [ {
-				header : '编号',
+				header : Eway.locale.report.plan.terminalId,
 				dataIndex : 'terminalId'
 			}, {
 				header : Eway.locale.commen.ip,
@@ -51,17 +51,17 @@ Ext.define('Eway.view.report.plan.LinkedDeviceGrid', {
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return "开通";
+						return Eway.locale.commen.comboxStatus.dredge;
 					}
 					if (value == 2) {
-						return "停用";
+						return Eway.locale.commen.comboxStatus.close;
 					}
 				}
 			}, {
 				header : Eway.locale.commen.devServiceName,
 				dataIndex : 'devServiceName'
 			}, {
-				header : '钞箱报警金额(单位：张数)',
+				header : Eway.locale.report.plan.cashboxLimit,
 				dataIndex : 'cashboxLimit'
 			}, {
 				header : Eway.locale.commen.installDate,

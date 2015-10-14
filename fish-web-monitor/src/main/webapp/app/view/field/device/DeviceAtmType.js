@@ -1,7 +1,7 @@
 Ext.define('Eway.view.field.device.DeviceAtmType', {
 	extend : 'Ext.form.field.ComboBox',
 	alias : 'widget.field_device_deviceatmtype',
-	fieldLabel : Eway.locale.machine.atmType.typeName,
+	fieldLabel : Eway.locale.machine.atmType.title,
 	name : 'devTypeId',
 	hiddenName : 'devTypeId',
 	store : 'machine.DeviceAtmType',

@@ -22,7 +22,7 @@ Ext.define('Eway.view.report.baseReport.DeviceBoxDetailReportFilter', {
 									xtype : 'common_orgComboOrgTree',
 									fieldLabel : Eway.locale.commen.orgNameBelongs,
 									labelAlign : 'right',
-									emptyText : '--请选择--',
+									emptyText : Eway.locale.combox.select,
 									name : 'orgName',
 									hiddenValue : 'orgId',
 									editable : false,
