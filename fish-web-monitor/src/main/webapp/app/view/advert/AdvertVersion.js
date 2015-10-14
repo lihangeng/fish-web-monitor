@@ -10,7 +10,7 @@ Ext.define('Eway.view.advert.AdvertVersion', {
 							tpl : '<p>'+Eway.locale.advert.userName+'：    {createdUser}</p>'//制作人
 									+ '<p>'+Eway.locale.advert.createdTime+': {createdTime}</p>'//制作时间
 									+ '<p>'+Eway.locale.version.View.versionNo+':   {versionNo}</p>'//版本号
-									+ "<p>"+Eway.locale.version.View.versionFile+"：{versionFile} <a class='link' href='api/version/version/download?typeName=advert&fileName={versionFile}' target='_blank'>下载版本文件</a></p>"
+									+ "<p>"+Eway.locale.advert.advertVersionFile+"：{versionFile} <a class='link' href='api/version/version/download?typeName=advert&fileName={versionFile}' target='_blank'>下载版本文件</a></p>"
 									+ "<p>"+Eway.locale.version.View.versionStatus+"：{versionStatus}</p>",
 							html:Eway.locale.advert.toVersionButton,//'还没有生成版本信息，可以单击按钮[生成版本]。',
 							loader : {

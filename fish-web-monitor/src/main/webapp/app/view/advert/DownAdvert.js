@@ -69,7 +69,7 @@ Ext.define('Eway.view.advert.DownAdvert', {
     					width : 260
     				},{
     					xtype: 'displayfield',
-    					fieldLabel : Eway.locale.version.View.versionFile,//'版本文件',
+    					fieldLabel : Eway.locale.advert.advertVersionFile,//'版本文件',
     					name: 'serverPath'
     				}]
 				},{
@@ -111,7 +111,7 @@ Ext.define('Eway.view.advert.DownAdvert', {
 					}]
 				},{
 					xtype: 'textarea',
-					fieldLabel:Eway.locale.commen.remark,
+					fieldLabel:Eway.locale.version.View.remark,
 					name :'desc',
 					height : 40,
 					maxWidth:600,

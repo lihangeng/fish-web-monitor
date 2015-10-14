@@ -2,7 +2,7 @@ Ext.define('Eway.view.version.field.VersionTypeComboBox', {
 			extend : 'Ext.form.field.ComboBox',
 			alias : 'widget.field_versionTypeComboBox',
 
-			fieldLabel : '版本类型',
+			fieldLabel : Eway.locale.version.View.versionType,//'版本类型',
 			name : 'versionTypeId',
 			editable : false,
 			store : Ext.create('Ext.data.Store', {
