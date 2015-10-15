@@ -72,7 +72,8 @@ public class ExportReportService implements IExportReportService {
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(params.getReportModule());
 			jasperPrint = JasperFillManager.fillReport(jasperReport,params.getParameters(), ds);
 		} catch (JRException e) {
-			log.error(String.format("填充报表数据时出错！[%s]", e));
+			log.error(String.format("Fill the report data error![%s]", e));
+//			log.error(String.format("填充报表数据时出错！[%s]", e));
 			result.setResult(false);
 			return result;
 		}

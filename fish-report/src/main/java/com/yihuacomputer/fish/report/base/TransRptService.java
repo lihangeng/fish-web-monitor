@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.domain.dao.IGenericDao;
@@ -18,10 +20,11 @@ public class TransRptService implements ITransRptService {
 
     @Autowired
     private IGenericDao dao;
+    
+	@Autowired
+	private MessageSource messageSource;
 
-    private final String transCountName = "交易笔数";
 
-    private final String transAmtName = "交易金额";
 
 //    private final String transTipsName = "手续费";
 
@@ -81,12 +84,12 @@ public class TransRptService implements ITransRptService {
 
             transCountRpt.setOrgName(objectToString(o[1]));
             transCountRpt.setTransType(objectToString(o[3]));
-            transCountRpt.setCountName(transCountName);
+            transCountRpt.setCountName(messageSource.getMessage("report.trans.transCountName", null, FishCfg.locale));
             transCountRpt.setTransCount(Long.valueOf(objectToString(o[0])));
 
             transAmtRpt.setOrgName(objectToString(o[1]));
             transAmtRpt.setTransType(objectToString(o[3]));
-            transAmtRpt.setCountName(transAmtName);
+            transAmtRpt.setCountName(messageSource.getMessage("report.trans.transAmtName", null, FishCfg.locale));
             transAmtRpt.setTransCount(Double.valueOf(objectToString(o[2])));
 
 //            transTpsRpt.setOrgName(objectToString(o[1]));
@@ -159,13 +162,13 @@ public class TransRptService implements ITransRptService {
             transCountRpt.setOrgName(objectToString(o[0]));
             transCountRpt.setTerminalId(objectToString(o[1]));
             transCountRpt.setTransType(objectToString(o[2]));
-            transCountRpt.setCountName(transCountName);
+            transCountRpt.setCountName(messageSource.getMessage("report.trans.transCountName", null, FishCfg.locale));
             transCountRpt.setTransCount(Long.valueOf(objectToString(o[3])));
 
             transAmtRpt.setOrgName(objectToString(o[0]));
             transAmtRpt.setTerminalId(objectToString(o[1]));
             transAmtRpt.setTransType(objectToString(o[2]));
-            transAmtRpt.setCountName(transAmtName);
+            transAmtRpt.setCountName(messageSource.getMessage("report.trans.transAmtName", null, FishCfg.locale));
             transAmtRpt.setTransCount(Double.valueOf(objectToString(o[4])));
 
 //            transTpsRpt.setOrgName(objectToString(o[1]));
@@ -225,12 +228,12 @@ public class TransRptService implements ITransRptService {
 
             transResultCountRpt.setOrgName(objectToString(o[1]));
             transResultCountRpt.setResult(objectToString(o[3]));
-            transResultCountRpt.setCountName(transCountName);
+            transResultCountRpt.setCountName(messageSource.getMessage("report.trans.transCountName", null, FishCfg.locale));
             transResultCountRpt.setTransCount(Long.valueOf(objectToString(o[0])));
 
             transResultAmtRpt.setOrgName(objectToString(o[1]));
             transResultAmtRpt.setResult(objectToString(o[3]));
-            transResultAmtRpt.setCountName(transAmtName);
+            transResultAmtRpt.setCountName(messageSource.getMessage("report.trans.transAmtName", null, FishCfg.locale));
             transResultAmtRpt.setTransCount(Double.valueOf(objectToString(o[2])));
 
             countList.add(transResultCountRpt);

@@ -25,7 +25,7 @@ public class IOUtils {
         catch (IOException e) {
             e.printStackTrace();
         }
-        throw new AppException("文件创建时失败:" + fileName);
+        throw new AppException("Create Files Failed:" + fileName);
     }
 
     /**
@@ -108,7 +108,7 @@ public class IOUtils {
          catch (Exception e) {
              e.printStackTrace();
          }
-         throw new AppException("文件夹创建时失败:" + path);
+         throw new AppException("Create Files Failed:" + path);
     }
     
     public static void main(String...args){
