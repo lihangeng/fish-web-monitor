@@ -1,5 +1,11 @@
 package com.yihuacomputer.fish.api.device;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import com.yihuacomputer.common.FishCfg;
+
 /**
  * 安装方式
  * 
@@ -9,8 +15,20 @@ package com.yihuacomputer.fish.api.device;
  */
 public enum SetupType
 {
-    WEAR_WALL(0, "穿墙"), LOBBY(1, "大堂");
+    WEAR_WALL(0, "SetupType.WEAR_WALL"), LOBBY(1, "SetupType.LOBBY");
+//    WEAR_WALL(0, "穿墙"), LOBBY(1, "大堂");
+    private final static String BASENAME = "enum";
+    private final static ResourceBundle resource = ResourceBundle.getBundle(BASENAME, FishCfg.locale==null?Locale.CHINA:FishCfg.locale);
 
+    public String getText(){
+    	String result =  text == null || resource == null || !resource.containsKey(text) ? text : resource.getString(text);
+    	try {
+			return new String(result.getBytes("iso-8859-1"),"utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return text;
+		}
+    }
     private int id;
 
     private String text;
@@ -29,11 +47,6 @@ public enum SetupType
     public void setId(int id)
     {
         this.id = id;
-    }
-
-    public String getText()
-    {
-        return text;
     }
 
     public void setText(String text)

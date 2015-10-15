@@ -4,16 +4,19 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import org.junit.Ignore;
 import org.junit.Test;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.test.BindSessionInTest2;
 import com.yihuacomputer.fish.api.atmlog.BackupResult;
 import com.yihuacomputer.fish.api.atmlog.IAtmLog;
 import com.yihuacomputer.fish.api.atmlog.IBackupRule;
+import com.yihuacomputer.fish.api.device.CashType;
 import com.yihuacomputer.fish.atmlog.job.BackupManager;
 import com.yihuacomputer.fish.atmlog.rule.BackupRule;
 import com.yihuacomputer.fish.atmlog.service.db.AtmLogService;
