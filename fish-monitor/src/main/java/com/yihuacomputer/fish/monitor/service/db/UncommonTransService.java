@@ -3,9 +3,11 @@ package com.yihuacomputer.fish.monitor.service.db;
 
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.exception.NotFoundException;
@@ -21,6 +23,9 @@ public class UncommonTransService implements IUncommonTransService {
 	
 	 @Autowired
 	 private IGenericDao dao;
+	 
+	@Autowired
+	private MessageSource messageSource;
 
 
 	@Override
@@ -68,7 +73,7 @@ public class UncommonTransService implements IUncommonTransService {
 		UncommonTrans trans = (UncommonTrans) dao.getCriteria(UncommonTrans.class)
                 .add(Restrictions.eq("transId", transId)).uniqueResult();
         if (trans == null) {
-            throw new NotFoundException(String.format("不存在交易流水号[%s]", transId));
+            throw new NotFoundException(String.format(messageSource.getMessage("exception.uncommonTrans.noSerialno", null, FishCfg.locale), transId));
         }
 		return trans;
 	}

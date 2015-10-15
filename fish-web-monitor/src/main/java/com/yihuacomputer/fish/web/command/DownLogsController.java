@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +46,8 @@ public class DownLogsController {
     @Autowired
     private IDeviceService deviceService;
 
+	@Autowired
+	private MessageSource messageSource;
     /**
      * 下载文件到服务端：
      *
@@ -94,7 +97,7 @@ public class DownLogsController {
             else {
                 result.addAttribute(FishConstant.SUCCESS, false);
                 if(ret.equals(HttpFileRet.REQ_FILE_NOTEXIT)){
-                    result.addAttribute(FishConstant.ERROR_MSG,String.format("在设备[%s]上,不存在文件[%s\\%s]",code,requestPath,localName));
+                    result.addAttribute(FishConstant.ERROR_MSG,String.format(messageSource.getMessage("downLogs.failNotExist", null, FishCfg.locale),code,requestPath,localName));
                 }else{
                     result.addAttribute(FishConstant.ERROR_MSG,ret.getText());
                 }

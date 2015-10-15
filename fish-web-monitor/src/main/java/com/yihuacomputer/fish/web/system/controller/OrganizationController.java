@@ -191,14 +191,14 @@ public class OrganizationController {
 		IOrganization organization = service.get(guid);
 		if (organization == null) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "更改失败:更改的记录不存在,请刷新后操作.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.updateNotExist", null, FishCfg.locale));
 			return result;
 		}
 		List<Long> subids = service.listSubOrgId(guid);
 		for (Long id : subids) {
 			if (form.getParentId().equals(String.valueOf(id))) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "更改失败:不可将自身以及下级机构设为上级机构,请重选上级机构再操作.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("organization.update.faileRule", null, FishCfg.locale));
 				return result;
 			}
 		}
@@ -211,7 +211,7 @@ public class OrganizationController {
 			IOrganization parent = service.get(form.getParentId());
 			if (parent == null) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "父机构不存在,请先关闭当前页面再次操作.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("organization.update.noParent", null, FishCfg.locale));
 				return result;
 			}
 			organization.setParent(parent);
@@ -259,10 +259,10 @@ public class OrganizationController {
 			IOrganization parentOrg = service.get(parentId);
 			if (org.getGuid().equals(parentId)) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "迁移失败:不可迁移至自身,请重新选择上级机构.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("organization.move.failSelf", null, FishCfg.locale));
 			} else if (isChild(org.getGuid(), parentId) == true) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "迁移失败:不可迁移至下级机构,请重新选择上级机构.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("organization.move.failSelfDown", null, FishCfg.locale));
 			} else {
 				org.setParent(parentOrg);
 				service.update(org);
@@ -270,10 +270,10 @@ public class OrganizationController {
 			}
 		} catch (NotFoundException nfe) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, String.format("%s,请刷新后操作.", nfe.getMessage()));
+			result.addAttribute(FishConstant.ERROR_MSG, String.format("%s,"+messageSource.getMessage("organization.move.refresh", null, FishCfg.locale), nfe.getMessage()));
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "后台处理错误.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.processError", null, FishCfg.locale));
 		}
 		return result;
 	}
