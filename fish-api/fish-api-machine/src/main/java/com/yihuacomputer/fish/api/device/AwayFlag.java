@@ -1,5 +1,11 @@
 package com.yihuacomputer.fish.api.device;
 
+import java.io.UnsupportedEncodingException;
+import java.util.Locale;
+import java.util.ResourceBundle;
+
+import com.yihuacomputer.common.FishCfg;
+
 /**
  * @author 彭文超
  * @E-mail pengwenchao@yihuacomputer
@@ -8,8 +14,19 @@ package com.yihuacomputer.fish.api.device;
  */
 public enum AwayFlag
 {
-    LINE(1, "在行自助服务区"), FROM_THE_LINE(2, "离行自助银行"), STAND_ALONE(3, "单机离行自助服务点");
+    LINE(1, "AwayFlag.LINE"), FROM_THE_LINE(2, "AwayFlag.FROM_THE_LINE"), STAND_ALONE(3, "AwayFlag.STAND_ALONE");
+    private final static String BASENAME = "enum";
+    private final static ResourceBundle resource = ResourceBundle.getBundle(BASENAME, FishCfg.locale==null?Locale.CHINA:FishCfg.locale);
 
+    public String getText(){
+    	String result =  text == null || resource == null || !resource.containsKey(text) ? text : resource.getString(text);
+    	try {
+			return new String(result.getBytes("iso-8859-1"),"utf-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			return text;
+		}
+    }
     private int id;
 
     private String text;
@@ -28,11 +45,6 @@ public enum AwayFlag
     public void setId(int id)
     {
         this.id = id;
-    }
-
-    public String getText()
-    {
-        return text;
     }
 
     public void setText(String text)
