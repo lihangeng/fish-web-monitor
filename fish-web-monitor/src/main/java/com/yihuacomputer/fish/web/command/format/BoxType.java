@@ -38,7 +38,7 @@ public enum BoxType
      */
     OTHERTYPECASSETTE("其他");
 
-    private String name;
+    private String text;
 
     /**
      * 构造方法.<br/>
@@ -47,18 +47,18 @@ public enum BoxType
      */
     private BoxType(String name)
     {
-        this.name = name;
+        this.text = name;
     }
 
-    public String getName()
+    public String getText()
     {
-        return this.name;
+        return this.text;
     }
 
     @Override
     public String toString()
     {
-        return super.toString() + ":" + name;
+        return super.toString() + ":" + text;
     }
 
 }

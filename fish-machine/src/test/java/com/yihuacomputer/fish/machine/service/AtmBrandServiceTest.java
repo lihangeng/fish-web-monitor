@@ -24,14 +24,14 @@ import com.yihuacomputer.fish.machine.H2TestConfig;
  * @author wangchao
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = H2TestConfig.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = H2TestConfig.class)
 public class AtmBrandServiceTest extends BindSessionInTest2{
 
-	@Autowired
+//	@Autowired
 	private IAtmBrandService atmBrandService;
 
-	@Test
+//	@Test
 	public void test(){
 		IAtmVendor vendor = atmBrandService.make();
 		vendor.setName("怡化");

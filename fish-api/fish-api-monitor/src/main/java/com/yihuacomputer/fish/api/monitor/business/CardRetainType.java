@@ -2,9 +2,9 @@ package com.yihuacomputer.fish.api.monitor.business;
 
 public enum CardRetainType {
 
-	MANUAL_CARD(1, "手动添加"),
+	MANUAL_CARD(1, "CardRetainType.MANUAL_CARD"),
 
-	AUTOMATIC_CARD(2, "自动添加");
+	AUTOMATIC_CARD(2, "CardRetainType.AUTOMATIC_CARD");
 
 	private int id;
 
