@@ -55,7 +55,12 @@ public class UserService extends DomainUserService {
 	@Autowired
 	protected MessageSource messageSource;
 
-    
+	@Autowired
+	private MessageSource messageSourceVersion;
+
+	private final long FREEZEMILLISECONDS =300000l;
+	
+	private final long PERMINMILLISECONDS =60000l;
     /**
      * 增加一条账户信息并初始化账号
      */
@@ -83,7 +88,7 @@ public class UserService extends DomainUserService {
         User user = (User)dao.getCriteria(User.class)
                         .add(Restrictions.eq("code",code)).uniqueResult();
         if(user == null){
-            throw new NotFoundException(String.format("输入的用户名[%s]不存在,请重新输入！",code));
+            throw new NotFoundException(messageSourceVersion.getMessage("system.user.notExistUserName", new Object[]{code}, FishCfg.locale));
         }
         return user;
     }
@@ -95,7 +100,7 @@ public class UserService extends DomainUserService {
     public User getByPerson(String id) {
         User user = (User)dao.getCriteria(User.class).add(Restrictions.eq("personId",id)).uniqueResult();
         if(user == null){
-            throw new NotFoundException(String.format("不存在人员ID[%s]",id));
+            throw new NotFoundException(messageSourceVersion.getMessage("system.user.notExistPersonId", new Object[]{id}, FishCfg.locale));
         }
         return user;
     }
@@ -146,7 +151,7 @@ public class UserService extends DomainUserService {
         }catch(NotFoundException nfe){
             throw nfe;
         }catch(Exception ex){
-            throw new ServiceException(String.format("删除账号[%s]失败",code),ex);
+            throw new ServiceException(messageSourceVersion.getMessage("system.user.deleteFailByCode", new Object[]{code}, FishCfg.locale),ex);
         }
     }
 
@@ -233,7 +238,7 @@ public class UserService extends DomainUserService {
             //验证用户名是否存在
             user = dao.findUniqueByHql("from User user where user.code = ? and user.userState <> ?", userCode,UserState.REMOVED);
             if(user == null){
-                throw new NotFoundException(String.format("输入的用户名[%s]不存在,请重新输入！",userCode));
+                throw new NotFoundException(messageSourceVersion.getMessage("system.user.userNameNotExistRedo", new Object[]{userCode}, FishCfg.locale));
             }
 
             isValidUser(user,plainText);
@@ -261,12 +266,12 @@ public class UserService extends DomainUserService {
         //验证是否被冻结
         Date currentDate = new Date();
         if(user.getFreezeTime() != null){
-            if(currentDate.getTime()-user.getFreezeTime().getTime()>300000){//锁定时间大于5分钟,解冻
+            if(currentDate.getTime()-user.getFreezeTime().getTime()>FREEZEMILLISECONDS){//锁定时间大于5分钟,解冻
                  user.setFreezeTime(null);
                  user.setLoginFailCount(0);
                  dao.update(user);
             }else{
-                throw new AppException("密码错误超过5次，用户已被冻结，5分钟后再操作！");
+                throw new AppException(messageSourceVersion.getMessage("system.user.passwdErrorToFreeze", new Object[]{user.getLoginFailCount()+1,FREEZEMILLISECONDS/PERMINMILLISECONDS}, FishCfg.locale));
             }
         }
 
@@ -277,7 +282,7 @@ public class UserService extends DomainUserService {
             if(user.getLoginFailCount() >= 4){//连续5次输入密码错误,冻结5分钟
                  user.setFreezeTime(currentDate);
                  dao.update(user);
-                 throw new AppException("密码错误超过5次，用户已被冻结，5分钟后再操作!");
+                 throw new AppException(messageSourceVersion.getMessage("system.user.passwdErrorToFreeze", new Object[]{user.getLoginFailCount()+1,FREEZEMILLISECONDS/PERMINMILLISECONDS}, FishCfg.locale));
             }else{
                 throw new PasswordErrorException(messageSource.getMessage("login.pwderrorfive", new Object[]{user.getLoginFailCount()+1}, FishCfg.locale));//"连续5次密码错误用户将被冻结5分钟！已输错" + (user.getLoginFailCount() + 1) + "次"
             }

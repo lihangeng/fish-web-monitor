@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.exception.NotFoundException;
@@ -31,7 +33,8 @@ public class RoleService implements IDomainRoleService {
 	private IOrganizationService organizationService;
 	@Autowired(required = false)
 	private IRolePermissionRelation rolePermissionRelation;
-
+	@Autowired
+	private MessageSource messageSourceVersion;
 	@Autowired
 	private IGenericDao dao;
 
@@ -57,7 +60,8 @@ public class RoleService implements IDomainRoleService {
 	public IRole get(String name) {
 		Role role = (Role) dao.getCriteria(Role.class).add(Restrictions.eq("name", name)).uniqueResult();
 		if (role == null) {
-			throw new NotFoundException(String.format("不存在角色[%s]", name));
+			
+			throw new NotFoundException(messageSourceVersion.getMessage("system.role.notExist", new Object[]{name}, FishCfg.locale));
 		}
 		return role;
 	}
