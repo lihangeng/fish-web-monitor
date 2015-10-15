@@ -80,7 +80,7 @@ Ext.override(Eway,{
 			success:'成功.XX',
 			fail:'失败:XX',
 			phone:'请输入正确的电话号码XX',
-			remind:'提示XX',
+			remind:'提示XX',//Eway.locale.tip.remind
 			displayMessage:'总共：{2}条，显示{0}-{1}XX',
 			
 			unCertain:'未知XX',
@@ -350,7 +350,7 @@ Ext.override(Eway,{
 					finishCamera:'完成录制',
 					videoLoad:'正在将视频文件下载至服务端...',
 					stopManage:'自动停止.如需取得视频文件,请联系管理员!',
-					manage: '操作',
+					manage: '操作',	
 					loading:'下载',
 					screenCamera: '屏幕录制',
 				},
@@ -1633,7 +1633,8 @@ Ext.override(Eway,{
 			inputAgain:'再次输入新密码',//Eway.locale.personal.inputAgain
 			pwdNotSame:'两次密码不一致！',//Eway.locale.personal.pwdNotSame
 			rememberPwd:'单击确定即可修改密码，请牢记新密码！',//Eway.locale.personal.rememberPwd
-			//未完待续
+			pwdSameNoChange:'输入的新密码与旧密码相同,不可修改.',//Eway.locale.personal.pwdSameNoChange
+			reOperate:'无法修改密码,请重新操作.',//Eway.locale.personal.reOperate
 		}
 	}
 });
