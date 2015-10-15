@@ -189,14 +189,16 @@ public class SystemRegisterUtil {
 		RegisterResult registerResult = new RegisterResult();
 		if(!regInfo.isAnalySuccess()){
 			registerResult.setSuccess(false);
-			registerResult.setMessage("注册码格式错误");
+			registerResult.setMessage("Registration code format error");
+//			registerResult.setMessage("注册码格式错误");
 			return registerResult;
 		}
 		else {
 			String convertKey = SystemRegisterUtil.convertKey(regInfo.getKey()); 
 			if(!key.equals(convertKey)){
 				registerResult.setSuccess(false);
-				registerResult.setMessage("系统序列号不正确");
+				registerResult.setMessage("The serialno of system is not correct");
+//				registerResult.setMessage("系统序列号不正确");
 				return registerResult;
 			}
 			//两个时间点相差的天数
@@ -205,28 +207,33 @@ public class SystemRegisterUtil {
 			int disDay = Integer.parseInt(Long.toString(millOffset/(1000*60*60*24)));
 			if(disDay != regInfo.getDisDay()){
 				registerResult.setSuccess(false);
-				registerResult.setMessage("注册码不正确");
+				registerResult.setMessage("Registration code is not correct");
+//				registerResult.setMessage("注册码不正确");
 				return registerResult;
 			}
 			else if(disDay == 9999){//这个注册码是无期限的
 				registerResult.setSuccess(true);
-				registerResult.setMessage("注册码正确,注册码类型：没有限制");
+				registerResult.setMessage("Registration code is correct,type of code：unlimit");
+//				registerResult.setMessage("注册码正确,注册码类型：没有限制");
 				return registerResult;
 			}
 			else if(disDay != 9999){
 				if(new Date().compareTo(regInfo.getEndDate().getTime()) > 0){
 					registerResult.setSuccess(false);
-					registerResult.setMessage("注册码已经过期");
+					registerResult.setMessage("Registration code is already overdue");
+//					registerResult.setMessage("注册码已经过期");
 					return registerResult;
 				}
 				registerResult.setSuccess(true);
 				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-				registerResult.setMessage("注册码正确,注册码类型：到期时间："+format.format(regInfo.getEndDate().getTime()));
+				registerResult.setMessage("Registration code is correct,type of code：overdue date："+format.format(regInfo.getEndDate().getTime()));
+//				registerResult.setMessage("注册码正确,注册码类型：到期时间："+format.format(regInfo.getEndDate().getTime()));
 				return registerResult;
 			}
 		}
 		registerResult.setSuccess(false);
-		registerResult.setMessage("未知错误");
+		registerResult.setMessage("Unkown error");
+//		registerResult.setMessage("未知错误");
 		return registerResult;
 	}
 	
@@ -448,11 +455,13 @@ public class SystemRegisterUtil {
 		
 	    System.out.println("----------------------------------------");
 		
-		System.out.println("输入服务器序列号[090591449465]");
+		System.out.println("Please enter ther server serialno [090591449465]");
+		//System.out.println("输入服务器序列号[090591449465]");
 		BufferedReader keys = new BufferedReader(new InputStreamReader(System.in)); 
 		String key = keys.readLine();
 		
-		System.out.println("选择有效期[1-永久,2-试用]");
+		System.out.println("Choose period of validity[1-forerver,2-probation]");
+//		System.out.println("选择有效期[1-永久,2-试用]");
 		BufferedReader types = new BufferedReader(new InputStreamReader(System.in));
 		String type = types.readLine();
 		
@@ -464,7 +473,8 @@ public class SystemRegisterUtil {
 				date = calendar.getTime();
 		}
 		else {
-			System.out.println("\n请输入有效期[Example:2012-6-12]:");
+			System.out.println("\nPlease enter Expripy Date [Example:2012-6-12]:");
+//			System.out.println("\n请输入有效期[Example:2012-6-12]:");
 			
 			BufferedReader dates = new BufferedReader(new InputStreamReader(System.in)); 
 			String dateString = dates.readLine();		
@@ -474,7 +484,8 @@ public class SystemRegisterUtil {
 			try {
 				date = format.parse(dateString);
 			} catch (ParseException e) {
-				System.out.println("失败");
+//				System.out.println("失败");
+				System.out.println("Failed");
 			}		
 		}
 		SystemRegisterUtil.getSerial(key,date);

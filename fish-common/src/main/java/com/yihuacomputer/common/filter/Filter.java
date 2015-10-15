@@ -111,12 +111,12 @@ public class Filter implements IFilter {
 			return true;
 		}
 		catch (IllegalAccessException e) {
-			throw new AppException("不合法的访问 " + e.getMessage());
+			throw new AppException("Illegal interview" + e.getMessage());
 		} catch (InvocationTargetException e) {
 			e.printStackTrace();
-			throw new AppException("调用的方法内部发生异常 " + e.getMessage());
+			throw new AppException("System error!" + e.getMessage());
 		} catch (NoSuchMethodException e) {
-			throw new AppException("没有找到方法 " + e.getMessage());
+			throw new AppException("Can't find Method" + e.getMessage());
 		}
 	}
 
