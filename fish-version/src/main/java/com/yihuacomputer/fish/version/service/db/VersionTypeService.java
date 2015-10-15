@@ -6,9 +6,11 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.exception.AppException;
@@ -36,6 +38,8 @@ public class VersionTypeService implements IVersionTypeService,IDeviceListener {
 	private IDeviceSoftVersionService deviceSoftVersionService;
 	@Autowired
 	private IDeviceService deviceService;
+	@Autowired
+	private MessageSource messageSourceVersion;
 	
 	@Override
 	public IVersionType make() {
@@ -95,7 +99,7 @@ public class VersionTypeService implements IVersionTypeService,IDeviceListener {
 	    filter.eq("versionType.id", id);
 	    List<IVersion> versions = dao.findByFilter(filter, IVersion.class);
 	    if(versions.size() > 0){
-	        throw new AppException(String.format("该软件分类下存在[%s]个版本信息,不能删除",versions.size()));
+	        throw new AppException(messageSourceVersion.getMessage("versionType.deleteFailForExistSubVersion",new Object[]{versions.size()}, FishCfg.locale));
 	    }else{
 	        dao.delete(id, VersionType.class);
 	    }

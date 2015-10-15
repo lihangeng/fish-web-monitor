@@ -10,9 +10,11 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.OrderBy;
@@ -74,6 +76,8 @@ public class VersionService implements IDomainVersionService {
 	private ITaskService taskService;
 	@Autowired
 	private IVersionTypeService typeService;
+	@Autowired
+	private MessageSource messageSourceVersion;
 
 
 	@Override
@@ -140,7 +144,9 @@ public class VersionService implements IDomainVersionService {
 			return;
 		}
 		if (findByDependVersion(id).size() > 0) {
-			throw new DependException("删除失败:该版本被其它版本依赖,无法删除.");
+			String exceptionMsg = messageSourceVersion.getMessage("exception.delete.exsitDepend", null, FishCfg.locale);
+//			throw new DependException("删除失败:该版本被其它版本依赖,无法删除.");
+			throw new DependException(exceptionMsg);
 		}
 		IVersionType type = version.getVersionType();
 		String fileName = version.getServerPath();
@@ -231,7 +237,9 @@ public class VersionService implements IDomainVersionService {
 			return;
 		}
 		if (TaskStatus.isCancel(task.getStatus())) {
-			throw new TaskCanceledException("任务已取消");
+			String exceptionMsg = messageSourceVersion.getMessage("exception.task.canceled", null, FishCfg.locale);
+//			throw new TaskCanceledException("任务已取消");
+			throw new TaskCanceledException(exceptionMsg);
 		}
 		AgentRet agentRet = AgentRet.valueOf(ret);
 		if (agentRet.equals(AgentRet.RET40)) {
@@ -261,12 +269,14 @@ public class VersionService implements IDomainVersionService {
 	public IVersion autoUpdate(String typeName, String versionNo) {
 		IVersionType type = typeService.getByName(typeName);
 		if (type == null) {
-			logger.error(String.format("在数据库中没有找到对应的软件分类:typeName = %s", typeName));
+//			logger.error(String.format("在数据库中没有找到对应的软件分类:typeName = %s", typeName));
+			logger.error(String.format("Don't find versionType in the database:typeName = %s", typeName));
 			return null;
 		}
 		IVersion currentVersion = this.findVersion(typeName, versionNo);
 		if (currentVersion == null) {// 虚拟一个对象出来，这样就不需要通过页面配置一个初始化版本
-			logger.warn(String.format("在数据库中没有找到版本:typeName = %s ,versionNo = %s", typeName, versionNo));
+//			logger.warn(String.format("在数据库中没有找到版本:typeName = %s ,versionNo = %s", typeName, versionNo));
+			logger.warn(String.format("Don't find version in the database:typeName = %s ,versionNo = %s", typeName, versionNo));
 			currentVersion = this.make();
 			currentVersion.setVersionNo(versionNo);
 			currentVersion.setVersionType(type);
@@ -291,7 +301,8 @@ public class VersionService implements IDomainVersionService {
 		List<IVersion> versions = list(filter);
 		targetVersion = getMaxVersion(versions, currentVersion);
 		if (targetVersion == null) {
-			logger.info(String.format("没有找到合适的自动更新版本:typeName = %s ,versionNo = %s", typeName, versionNo));
+//			logger.info(String.format("没有找到合适的自动更新版本:typeName = %s ,versionNo = %s", typeName, versionNo));
+			logger.info(String.format("Don't find version to autoUpdate:typeName = %s ,versionNo = %s", typeName, versionNo));
 		}
 		return targetVersion;
 	}
@@ -317,14 +328,18 @@ public class VersionService implements IDomainVersionService {
 	public void collectCurrentVersionInfo(String terminalId, String typeName, String versionNo) {
 		try {
 			IDevice device = deviceService.get(terminalId);
+
 			if(null==device){
-				throw new AppException("设备不存在");
+				String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.deviceNotExist", null, FishCfg.locale);
+				throw new AppException(exceptionMsg);
 			}
 			if (typeName == null || "".equals(typeName)) {
-				throw new AppException("版本类型为空");
+				String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.versionTypeIsEmpty", null, FishCfg.locale);
+				throw new AppException(exceptionMsg);
 			}
 			if (versionNo == null || "".equals(versionNo)) {
-				throw new AppException("版本号为空");
+				String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.versionNoIsEmpty", null, FishCfg.locale);
+				throw new AppException(exceptionMsg);
 			}
 			IDeviceSoftVersion dsv = deviceVersionService.get(device.getId(), typeName);
 			IVersion version = this.autoUpdate(typeName, versionNo);
@@ -343,7 +358,8 @@ public class VersionService implements IDomainVersionService {
 				deviceVersionService.add(dsv);
 			}
 		} catch (Exception ex) {
-			logger.error(String.format("登记软件版本信息失败[%s]", ex.getMessage()));
+//			logger.error(String.format("登记软件版本信息失败[%s]", ex.getMessage()));
+			logger.error(String.format("save version fail[%s]", ex.getMessage()));
 		}
 	}
 

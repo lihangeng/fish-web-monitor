@@ -26,7 +26,9 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.context.MessageSource;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.util.IOUtils;
 import com.yihuacomputer.common.util.ZipUtils;
@@ -122,8 +124,20 @@ public class Advert implements IAdvert, Serializable {
 
     @Transient
     private OrganizationLevel level;
+    
+    @Transient
+    private MessageSource messageSourceVersion;
 
-    public Advert() {
+    
+    public MessageSource getMessageSourceVersion() {
+		return messageSourceVersion;
+	}
+
+	public void setMessageSourceVersion(MessageSource messageSourceVersion) {
+		this.messageSourceVersion = messageSourceVersion;
+	}
+
+	public Advert() {
         this.createdTime = new Date();
     }
 
@@ -228,7 +242,7 @@ public class Advert implements IAdvert, Serializable {
             try {
                 meta.createNewFile();
             } catch (IOException e) {
-                throw new AppException("创建meta文件失败");
+                throw new AppException(messageSourceVersion.getMessage("advert.createMetaFail", null, FishCfg.locale));
             }
         }
 
