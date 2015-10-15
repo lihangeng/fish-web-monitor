@@ -90,8 +90,8 @@
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN.js");
 			/* Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN3.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN4.js");
-			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN5.js"); */
-			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN_Version.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN5.js"); 
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN_Version.js");*/
 		}else{
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-en.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-en.js");

@@ -179,7 +179,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 										}
 									},this);
 		}else {
-			Eway.alert(locale.tip.bankOrg.manager.remove.reChoose);
+			Eway.alert(Eway.locale.tip.bankOrg.manager.remove.reChoose);
 		}
 	},
 
