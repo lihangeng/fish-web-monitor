@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.util.RegisterInfo;
 import com.yihuacomputer.common.util.RegisterResult;
@@ -27,18 +29,21 @@ public class SystemRegisterController {
 
 	@Autowired
 	private IParamService paramService;
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	@RequestMapping(method=RequestMethod.POST)
 	public @ResponseBody ModelMap register(WebRequest request){
 		ModelMap map = new ModelMap();
 		if("".equals(request.getParameter("key")) || null == request.getParameter("key")){
 			map.addAttribute("isRegister", false);
-			map.addAttribute("message", "序列号为空，请您输入！");
+			map.addAttribute("message", messageSource.getMessage("system.register.noSerialNo", null, FishCfg.locale));
 			return map;
 		}
 		if("".equals(request.getParameter("serial")) || null == request.getParameter("serial")){
 			map.addAttribute("isRegister", false);
-			map.addAttribute("message", "注册码为空，请您输入！");
+			map.addAttribute("message", messageSource.getMessage("system.register.noRegisterNo", null, FishCfg.locale));
 			return map;
 		}
 		String key = request.getParameter("key");
@@ -52,7 +57,7 @@ public class SystemRegisterController {
 				paramService.update(param);
 			}
 			else {
-				paramService.add("register_serial",serial,"系统注册序列号");
+				paramService.add("register_serial",serial,messageSource.getMessage("system.register.registerNo", null, FishCfg.locale));
 			}
 
 			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -71,7 +76,7 @@ public class SystemRegisterController {
 			}
 
 		}else{
-			map.addAttribute("message", "注册失败,请您重新注册！");
+			map.addAttribute("message", messageSource.getMessage("system.register.registerFail", null, FishCfg.locale));
 		}
 		//注册成功就直接跳转到index（成功登陆系统）页面。
 		map.addAttribute(FishConstant.SUCCESS, success);
