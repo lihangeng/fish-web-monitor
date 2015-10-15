@@ -6,7 +6,7 @@ Ext.define('Eway.view.atmLog.errorAtmLogInfo.ErrorAtmLogInfoWin', {
 	requires: [
 	           'Eway.view.atmLog.errorAtmLogInfo.ErrorAtmLogInfoGrid'],
 	           
-	title: '查看备份失败详情',
+	title: Eway.locale.atmLog.checkFailInfo,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,

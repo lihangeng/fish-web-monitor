@@ -5,7 +5,7 @@ Ext.define('Eway.view.atmLog.LogAnalysisForm', {
 	initComponent : function(){
 		var me = this;
 		Ext.apply(this,{
-		    title : '业务日志分析',
+		    title : Eway.locale.atmLog.busLogAnalysis,
 		    layout: 'border',
 		    header:false,
 		    bodyStyle:'padding:0px',
@@ -16,7 +16,7 @@ Ext.define('Eway.view.atmLog.LogAnalysisForm', {
 			    	border:false,
 			    	xtype:'panel',
 			    	html:'<br>' +
-			    			'<font size="2"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp请选择需要分析的日志文件，分析的结果将以Excel表格文件导出</b></font>'
+			    			'<font size="2"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+Eway.locale.atmLog.selectAnalysis+'</b></font>'
 				},{
 			    	xtype : 'form',
 			    	border:false,
@@ -24,10 +24,10 @@ Ext.define('Eway.view.atmLog.LogAnalysisForm', {
 			    	items : [{
 			    		xtype : 'filefield',
 						width : 350,
-						fieldLabel : '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp选择日志',
+						fieldLabel : '&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+Eway.locale.atmLog.selectLog,
 						allowBlank : true,
 						name : 'file',
-						buttonText : '浏览...',
+						buttonText : Eway.locale.combox.explorer,
 						checkboxToggle: true,
 						listeners : {
 						'change' : function(fileForm, value){
@@ -61,7 +61,7 @@ Ext.define('Eway.view.atmLog.LogAnalysisForm', {
 			    	height: 50,
 			    	layout: 'border',
 			    	xtype:'panel',
-			    	html:'<br>'+'<font size="2"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp请下载</b></font>',
+			    	html:'<br>'+'<font size="2"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+Eway.locale.atmLog.pleaseDownload+'</b></font>',
 			    	items:[{
 			    		region:'center',
 			    		xtype : 'button',
@@ -87,7 +87,7 @@ Ext.define('Eway.view.atmLog.LogAnalysisForm', {
 			    		width:120,
 			    		xtype:'panel',
 			    		border:false,
-			    		html:'<br>'+'<font size="2"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp请下载</b></font>'
+			    		html:'<br>'+'<font size="2"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+Eway.locale.atmLog.pleaseDownload+'</b></font>'
 			    	}]
 				}],
 				buttons: [{
@@ -117,7 +117,7 @@ Ext.define('Eway.view.atmLog.LogAnalysisForm', {
 								}
 							},
 							failure : function(){
-								Eway.alert('内部错误');
+								Eway.alert(Eway.locale.cases.caseNotify.innerFault);
 							}
 						})
 					}

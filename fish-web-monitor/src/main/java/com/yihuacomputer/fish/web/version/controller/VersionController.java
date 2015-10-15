@@ -120,7 +120,7 @@ public class VersionController {
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA, toForm(pageResult.list(), orgService.get(String.valueOf(userSession.getOrgCode()))));
+		result.addAttribute(FishConstant.DATA, toForm(pageResult.list(), orgService.get(String.valueOf(userSession.getOrgId()))));
 		return result;
 	}
 

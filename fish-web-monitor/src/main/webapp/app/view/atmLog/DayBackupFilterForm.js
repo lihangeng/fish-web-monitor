@@ -13,42 +13,42 @@ Ext.define('Eway.view.atmLog.DayBackupFilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype : 'datefield',
-					fieldLabel : '备份日期',
+					fieldLabel : Eway.locale.atmLog.backupDate,
 					name : 'date',
 					editable:false,
 					format : 'Y-m-d'
 				},{
 					xtype : 'combo',
-					fieldLabel : '当日备份结果',
+					fieldLabel : Eway.locale.atmLog.dayBackupResult,
 					editable : false,
 					name : 'dayBackupResult',
 					store : Ext.create('Ext.data.Store',{
 						fields : ['dayBackupResult','displayField'],
 						data : [
-							{'dayBackupResult':'','displayField':'所有'},
-							{'dayBackupResult':'SUCCESS','displayField':'成功'},
-							{'dayBackupResult':'DOING','displayField':'正在备份'},
-							{'dayBackupResult':'ERROR','displayField':'未知原因失败'}
+							{'dayBackupResult':'','displayField':Eway.locale.atmLog.whole},
+							{'dayBackupResult':'SUCCESS','displayField':Eway.locale.tip.success},
+							{'dayBackupResult':'DOING','displayField':Eway.locale.atmLog.backupProcess},
+							{'dayBackupResult':'ERROR','displayField':Eway.locale.atmLog.unKnownFail}
 						]
 					}),
 					queryMode : 'local',
 					valueField : 'dayBackupResult',
 					displayField : 'displayField',
 					hiddenName : 'dayBackupResult',
-					emptyText: '--请选择--'
+					emptyText: Eway.locale.combox.select
 				}]
 			},{
 				columnWidth : .4,
 				xtype : 'form',
 				items : [{
 					xtype : 'datefield',
-					fieldLabel : '执行时间',
+					fieldLabel : Eway.locale.version.task.actionTime,
 					editable:false,
 					name : 'doTime',
 					format : 'Y-m-d'
 				},{
 					xtype : 'datefield',
-					fieldLabel : '结束时间',
+					fieldLabel : Eway.locale.commen.endDataTime,
 					editable:false,
 					name : 'endTime',
 					format : 'Y-m-d'
