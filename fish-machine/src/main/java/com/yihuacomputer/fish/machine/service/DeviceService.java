@@ -7,9 +7,11 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.exception.ServiceException;
@@ -49,6 +51,10 @@ public class DeviceService implements IDeviceService {
 
 	@Autowired
 	private IQuittingNoticeService quittingNoticeService;
+	
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	public List<IDeviceListener> deviceListeners = new ArrayList<IDeviceListener>();
 
@@ -101,7 +107,7 @@ public class DeviceService implements IDeviceService {
 
 		if (device.getStatus() == com.yihuacomputer.fish.api.device.Status.OPENING) {
 			// 设备启用时，不能删除
-			throw new ServiceException("该设备已经被启用,请停用后操作.");
+			throw new ServiceException(messageSource.getMessage("exception.device.alreadyUsed", null, FishCfg.locale));
 		}
 
 		List<IPerson> personList = devicePersonRelation.listPersonByDevice(device.getTerminalId());
@@ -121,7 +127,7 @@ public class DeviceService implements IDeviceService {
 			}
 
 		} else {
-			throw new ServiceException("该设备与人员有关联,请清除关联后操作.");
+			throw new ServiceException(messageSource.getMessage("exception.device.alreadyBind", null, FishCfg.locale));
 		}
 
 		for (IDeviceListener each : this.deviceListeners) {

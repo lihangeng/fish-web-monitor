@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.web.command;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
@@ -23,6 +26,9 @@ import com.yihuacomputer.fish.web.command.format.ProcessForm;
 @Controller
 @RequestMapping("agent/process")
 public class SysProcessController {
+	
+	@Autowired
+	private MessageSource messageSource;
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap searchInstation(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -34,7 +40,7 @@ public class SysProcessController {
 			result.addAttribute("data", ProcessForm.convert(listProcessForm.getProcessList()));
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "获取进程失败.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("sysProcess.getFail", null, FishCfg.locale));
 		}
 		return result;
 	}

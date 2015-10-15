@@ -18,6 +18,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.springframework.context.MessageSource;
+
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
@@ -110,7 +113,16 @@ public class Task implements ITask {
 
 	@Transient
 	private IDomainTaskService taskService;
+	
+	@Transient
+	private MessageSource messageSourceVersion;
 
+	public MessageSource getMessageSourceVersion() {
+		return messageSourceVersion;
+	}
+	public void setMessageSourceVersion(MessageSource messageSourceVersion) {
+		this.messageSourceVersion = messageSourceVersion;
+	}
 	public Task(Date firstCreateDate) {
 		this.status = TaskStatus.NEW;
 		this.taskType = TaskType.MANUAL;
@@ -206,7 +218,7 @@ public class Task implements ITask {
 		if (this.getStatus().equals(TaskStatus.NEW) || this.getStatus().equals(TaskStatus.RUN)) {
 			return this.getStatus().getText();
 		} else {
-			return this.getStatus().getText() + (this.isSuccess() ? "(成功)" : "(失败)");
+			return this.getStatus().getText() + (this.isSuccess() ? messageSourceVersion.getMessage("task.taskStauts.success", null, FishCfg.locale) : messageSourceVersion.getMessage("task.taskStauts.fail", null, FishCfg.locale) );
 		}
 	}
 

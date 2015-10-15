@@ -9,6 +9,8 @@ import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +54,10 @@ public class ExploerController
      * @param request
      * @return
      */
+	
+	@Autowired
+	private MessageSource messageSource;
+	
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
     ModelMap searchDisk(@RequestParam int start, @RequestParam int limit,
@@ -143,19 +149,19 @@ public class ExploerController
             result.addAttribute("fileName", localName);
             result.addAttribute(FishConstant.SUCCESS, true);
         }else if(ret.equals(HttpFileRet.CFG_ERROR)){
-            result.addAttribute(FishConstant.ERROR_MSG, "下载失败,参数配置出错.");
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failParam", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
         }else if(ret.equals(HttpFileRet.REQ_FILE_NOTEXIT)){
-            result.addAttribute(FishConstant.ERROR_MSG, "下载失败,请求文件不存在.");
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failNotExist", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
         }else if(ret.equals(HttpFileRet.CONN_ERROR)){
-            result.addAttribute(FishConstant.ERROR_MSG, "下载失败,通信出错.");
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failConn", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
         }else if(ret.equals(HttpFileRet.URL_ERROR)){
-            result.addAttribute(FishConstant.ERROR_MSG, "下载失败,URL出错.");
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failURL", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
         }else if(ret.equals(HttpFileRet.ERROR)){
-            result.addAttribute(FishConstant.ERROR_MSG, "下载文件失败.");
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.error", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
         }
         return result;

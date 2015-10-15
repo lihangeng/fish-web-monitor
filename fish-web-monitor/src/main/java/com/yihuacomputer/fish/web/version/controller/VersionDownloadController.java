@@ -152,7 +152,7 @@ public class VersionDownloadController {
                 else{
                 	task = taskService.make(createdTime);
                 }
-                task.setTaskBatchName(form.getJobName()+"第"+version.getDownloadCounter()+"次");
+                task.setTaskBatchName( messageSourceVersion.getMessage("version.download.batchNumber", new Object[]{form.getJobName(),version.getDownloadCounter()}, FishCfg.locale));
                 task.setDeviceId(deviceId);
                 String versionNo = maps.get(deviceId);
                 if(versionNo != null){

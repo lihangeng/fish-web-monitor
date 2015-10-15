@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -67,6 +69,9 @@ public class ScreenShotController {
 	private Map<String, ScreenForm> cameraMap = new HashMap<String, ScreenForm>();
 
 	private List<ScreenForm> historyCamera = new ArrayList<ScreenForm>();
+	
+	@Autowired
+	private MessageSource messageSource;
 
 
 
@@ -119,7 +124,7 @@ public class ScreenShotController {
 			return result;
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "截屏失败.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("screenShot.fail", null, FishCfg.locale));
 			return result;
 		}
 
@@ -174,7 +179,7 @@ public class ScreenShotController {
 			return result;
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "远程抓屏失败.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("screenShot.getScreenFail", null, FishCfg.locale));
 			return result;
 		}
 

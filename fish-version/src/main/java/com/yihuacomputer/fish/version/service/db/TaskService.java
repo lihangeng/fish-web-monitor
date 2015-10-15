@@ -8,9 +8,11 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.ITypeIP;
@@ -62,6 +64,9 @@ public class TaskService implements IDomainTaskService {
 
 	@Autowired
 	private IDeviceSoftVersionService deviceSoftVersionService;
+	
+	@Autowired
+	private MessageSource messageSourceVersion;
 
 	@Override
 	public IDeviceService getDeviceService() {
@@ -232,7 +237,8 @@ public class TaskService implements IDomainTaskService {
 		if (!task.isSuccess()) {
 			noticeATM(task);
 		} else {
-			throw new AppException("分发过程中，没有异常，无需重新分发");
+			String exceptionMsg = messageSourceVersion.getMessage("exception.task.dontNeedReDO", null, FishCfg.locale);
+			throw new AppException(exceptionMsg);
 		}
 	}
 
@@ -247,7 +253,7 @@ public class TaskService implements IDomainTaskService {
 
 				if (notice.getRet().equals("RET0100")) {
 					task.setStatus(TaskStatus.NOTICED_FAIL);
-					task.setReason("监控客户端拒绝下发:相同的软件分类正在升级");
+					task.setReason(messageSourceVersion.getMessage("exception.task.sameTaskRuningForAgentRefuse", null, FishCfg.locale));
 					task.setSuccess(false);
 				} else {
 					task.setStatus(TaskStatus.NOTICED);
@@ -257,7 +263,7 @@ public class TaskService implements IDomainTaskService {
 			} catch (Exception ex) {
 				task.setStatus(TaskStatus.NOTICED_FAIL);
 				task.setSuccess(false);
-				task.setReason("连接监控客户端失败");
+				task.setReason(messageSourceVersion.getMessage("exception.task.connectAgentFail", null, FishCfg.locale));
 			}
 			// 更新任务状态
 			task.setExcuteTime(new Date());
@@ -281,10 +287,10 @@ public class TaskService implements IDomainTaskService {
 				HttpProxy.httpPost(getCancelUrl(device.getIp()), notice, NoticeForm.class);
 			} catch (Exception ex) {
 				ex.printStackTrace();
-				throw new AppException("取消失败:" + ex.getMessage());
+				throw new AppException(messageSourceVersion.getMessage("exception.task.cancelFail", new Object[]{ex.getMessage()}, FishCfg.locale) );
 			}
 		} else {
-			throw new AppException("分发已完成，无法取消");
+			throw new AppException(messageSourceVersion.getMessage("exception.task.cantCancelForComplete", null, FishCfg.locale));
 		}
 	}
 
@@ -305,12 +311,12 @@ public class TaskService implements IDomainTaskService {
 			} catch (Exception ex) {
 				ex.printStackTrace();
 				updateDeployDateHistory.setNoticeStatus(NoticeStatus.FAIL);
-				updateDeployDateHistory.setReason("通知失败");
+				updateDeployDateHistory.setReason(messageSourceVersion.getMessage("exception.task.noticeFail", null, FishCfg.locale));
 			}
 			updateDeployDateService.update(updateDeployDateHistory);
 
 		} else {
-			throw new AppException("已通知成功，不需要重复通知应用");
+			throw new AppException(messageSourceVersion.getMessage("exception.task.dontReNoticeForNoticeSuccess", null, FishCfg.locale));
 		}
 	}
 

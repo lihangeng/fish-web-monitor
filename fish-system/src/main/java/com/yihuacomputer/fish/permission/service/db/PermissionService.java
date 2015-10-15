@@ -7,9 +7,11 @@ import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.exception.NotFoundException;
@@ -26,8 +28,9 @@ public class PermissionService implements IDomainPermissionService {
 	private static final Logger logger = LoggerFactory.getLogger(PermissionService.class);
 	@Autowired
 	private IGenericDao dao;
+	@Autowired
+	private MessageSource messageSourceVersion;
 	@Override
-
 	public Permission add(String id,String code, String description,boolean isButton) {
 		Permission permission= make(id);
 		permission.setCode(code);
@@ -48,7 +51,8 @@ public class PermissionService implements IDomainPermissionService {
 		Permission permission = (Permission)dao.getCriteria(Permission.class)
 		.add(Restrictions.eq("code", code)).uniqueResult();
 		if(permission == null){
-			throw new NotFoundException(String.format("不存在许可[%s]", code));
+			
+			throw new NotFoundException(messageSourceVersion.getMessage("system.permission.notExist", new Object[]{code}, FishCfg.locale));
 		}
 		return permission;
 	}
@@ -91,7 +95,7 @@ public class PermissionService implements IDomainPermissionService {
 		} catch(NotFoundException nfe){
 			throw nfe;
 		} catch(Exception ex){
-			throw new ServiceException(String.format("删除许可[%l]失败",id),ex);
+			throw new ServiceException(messageSourceVersion.getMessage("system.permission.deleteFail", new Object[]{id}, FishCfg.locale),ex);
 		}
 
 	}
@@ -103,7 +107,7 @@ public class PermissionService implements IDomainPermissionService {
 		} catch(NotFoundException nfe){
 			throw nfe;
 		} catch(Exception ex){
-			throw new ServiceException(String.format("删除许可[%l]失败",code),ex);
+			throw new ServiceException(messageSourceVersion.getMessage("system.permission.deleteFail", new Object[]{code}, FishCfg.locale),ex);
 		}
 
 	}

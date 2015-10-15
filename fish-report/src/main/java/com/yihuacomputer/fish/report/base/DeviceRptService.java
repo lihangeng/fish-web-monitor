@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.domain.dao.IGenericDao;
@@ -20,6 +22,9 @@ public class DeviceRptService implements IDeviceRptService {
 
 	@Autowired
 	private IGenericDao dao;
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	@Override
 	public List<IDeviceRpt> getDeviceByOrg(String orgId) {
@@ -69,17 +74,17 @@ public class DeviceRptService implements IDeviceRptService {
             
             String awayType = objectToString(o[6]);
             if ("LINE".equals(awayType)) {
-            	deviceRpt.setAwayFlag("在行自助服务区");
+            	deviceRpt.setAwayFlag(messageSource.getMessage("report.device.line", null, FishCfg.locale));
             } else if ("FROM_THE_LINE".equals(awayType)) {
-            	deviceRpt.setAwayFlag("离行自助银行");
+            	deviceRpt.setAwayFlag(messageSource.getMessage("report.device.fromline", null, FishCfg.locale));
             } else if ("STAND_ALONE".equals(awayType)) {
-            	deviceRpt.setAwayFlag("单机自助服务点");
+            	deviceRpt.setAwayFlag(messageSource.getMessage("report.device.standAlone", null, FishCfg.locale));
             }
             
             if (objectToString(o[7]).equals("WEAR_WALL")) {
-                deviceRpt.setSetupType("穿墙");
+                deviceRpt.setSetupType(messageSource.getMessage("report.deviceBoxDetail.wareWall", null, FishCfg.locale));
             } else if (objectToString(o[7]).equals("LOBBY")) {
-                deviceRpt.setSetupType("大堂");
+                deviceRpt.setSetupType(messageSource.getMessage("report.deviceBoxDetail.lobby", null, FishCfg.locale));
             }
             deviceRpt.setMantainOrg(objectToString(o[8]));
             deviceRpt.setAddress(objectToString(o[9]));

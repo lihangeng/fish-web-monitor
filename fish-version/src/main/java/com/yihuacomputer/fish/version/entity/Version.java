@@ -22,6 +22,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.springframework.context.MessageSource;
+
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.version.IVersion;
@@ -125,6 +128,9 @@ public class Version implements IVersion, Serializable {
 
     @Transient
     private IDomainVersionService versionService;
+    
+    @Transient
+    private MessageSource messageSourceVersion;
 
     public Version() {
         this.createdTime = new Date();
@@ -270,7 +276,15 @@ public class Version implements IVersion, Serializable {
         this.eagerRestart = eagerRestart;
     }
 
-    /**
+    public MessageSource getMessageSourceVersion() {
+		return messageSourceVersion;
+	}
+
+	public void setMessageSourceVersion(MessageSource messageSourceVersion) {
+		this.messageSourceVersion = messageSourceVersion;
+	}
+
+	/**
      * 目标版本是否在当前版本在之后 1.目标版本大于当前版本 2.目标版本的依赖版本小于等于当前版本
      */
     public boolean isAfter(IVersion currentVersion) {
@@ -279,7 +293,8 @@ public class Version implements IVersion, Serializable {
         }
 
         if (!this.getVersionType().getTypeName().equals(currentVersion.getVersionType().getTypeName())) {
-            throw new AppException("不同的软件分类之间不能进行版本比较");
+//        	"不同的软件分类之间不能进行版本比较"
+            throw new AppException(messageSourceVersion.getMessage("exception.version.diffVersionTypeCantCompare", null, FishCfg.locale));
         }
 
         if (biggerThan(currentVersion)) {// 1.目标版本大于当前版本
