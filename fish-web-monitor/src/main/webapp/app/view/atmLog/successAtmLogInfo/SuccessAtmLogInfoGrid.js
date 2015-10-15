@@ -19,18 +19,18 @@ Ext.define('Eway.view.atmLog.successAtmLogInfo.SuccessAtmLogInfoGrid',{
 				dataIndex : 'terminalId',
 				flex : 1
 			},{
-				header : '日志日期',
+				header : Eway.locale.atmLog.logDate,
 				dataIndex : 'dateTime',
 				flex : 1
 			},{
-				header : '备份结果',
+				header : Eway.locale.atmLog.backupResult,
 				dataIndex : 'backupResult',
 				width : 100,
 				renderer : function(value,metaData,record,rowIndex,colIndex,store,view){
 					if(value == 'SUCCESS'){
-						return '成功';
+						return Eway.locale.tip.success;
 					}else{
-						return '失败';
+						return Eway.locale.tip.fail;
 					}
 				}
 			}],
@@ -40,7 +40,7 @@ Ext.define('Eway.view.atmLog.successAtmLogInfo.SuccessAtmLogInfoGrid',{
 			}),
 			tbar : ['->',{
 				xtype : 'button',
-				text : '导出',
+				text : Eway.locale.button.exported,
 				iconCls : 'exportToExcel',
 				action : 'export'
 			}]

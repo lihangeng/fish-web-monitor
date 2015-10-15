@@ -33,6 +33,11 @@
 		<property name="basename" value="messageVersion"/>
 		<property name="useCodeAsDefaultMessage" value="true" /> 
 	</bean>	
+	<bean id="messageSourceStateCode" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="defaultEncoding" value="utf-8"/>
+		<property name="basename" value="messageStateCode"/>
+		<property name="useCodeAsDefaultMessage" value="true" /> 
+	</bean>	
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.FixedLocaleResolver"> 
     	<property name="defaultLocale" value="zh_CN" /> <!-- en_US zh_CN -->
 	</bean>

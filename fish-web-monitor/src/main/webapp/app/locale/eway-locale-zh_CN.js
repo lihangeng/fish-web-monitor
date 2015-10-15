@@ -55,7 +55,7 @@ Ext.override(Eway,{
 			taskConfirmInfo1:'次作业保存成功,是否跳转到"分发监控"页面?XX'//Eway.locale.confirm.taskConfirmInfo1
 		},
 		button:{
-			search:'查询XX',
+			search:'查询XX',//Eway.locale.button.search
 			add : '增加XX',
 			update:'更改XX',
 			remove:'删除XX',
@@ -75,7 +75,7 @@ Ext.override(Eway,{
 			choose:'选择',//Eway.locale.button.choose
 			pause:'暂停',//Eway.locale.button.pause
 				
-			exported:'导出XX',
+			exported:'导出XX',//Eway.locale.button.exported
 			select:'选择XX',
 			info :'详细信息XX',
 			move:'移机XX',
@@ -124,8 +124,8 @@ Ext.override(Eway,{
 			add:{
 				error:'新增失败'//Eway.locale.tip.add.error
 			},
-			success:'成功.XX',
-			fail:'失败:XX',
+			success:'成功.XX',//Eway.locale.tip.success
+			fail:'失败:XX',//Eway.locale.tip.fail
 			phone:'请输入正确的电话号码XX',
 			remind:'提示XX',//Eway.locale.tip.remind
 			displayMessage:'总共：{2}条，显示{0}-{1}XX',
@@ -134,7 +134,7 @@ Ext.override(Eway,{
 			searchOfNoLegal:'查询项中存在不合法的输入,不能提交.XX',
 			choseExportDevInfo:'请选择要导出信息的设备XX',
 			nowLink:'正在连接......XX',
-			linkFailure:'连接失败.XX',
+			linkFailure:'连接失败.XX',//Eway.locale.tip.linkFailure
 			inputError:'输入有误.XX',
 			numberExist:'此编号已经存在,请重新输入.XX',
 			isConfirmRemove:'删除分组,关联关系也被删除,是否真的要删除指定分组?XX',
@@ -331,8 +331,8 @@ Ext.override(Eway,{
 		//**********************************************************/
 		
 		combox:{
-			select:'--请选择--',
-			explorer: '浏览...@@',
+			select:'--请选择--',//Eway.locale.combox.select
+			explorer: '浏览...@@',//Eway.locale.combox.explorer
 		},
 		
 		
@@ -670,7 +670,7 @@ Ext.override(Eway,{
 					videoLoad:'正在将视频文件下载至服务端...',
 					stopManage:'自动停止.如需取得视频文件,请联系管理员!',
 					manage: '操作',	
-					loading:'下载',
+					loading:'下载',//Eway.locale.agent.remote.screen.loading
 					screenCamera: '屏幕录制',
 				},
 				discInfo: '磁盘信息',
@@ -1900,7 +1900,7 @@ Ext.override(Eway,{
 				faultDetails:'故障详情@@',
 				faultlastTime: '故障持续时长(单位:小时)@@',
 				checkFailure:'查看失败！@@',
-				innerFault:'内部错误@@',
+				innerFault:'内部错误@@',//Eway.locale.cases.caseNotify.innerFault
 				messageCheck:'短信查询@@'
 			},
 			faultClassify:{
@@ -1940,6 +1940,8 @@ Ext.override(Eway,{
 				providerFaultInfo:'厂商故障信息管理@@'
 			}
 		},
+		
+		//**********************************************************/
 		personal:{
 			baseInfo:'基本信息',//Eway.locale.personal.baseInfo
 			accountNum:'账号',//Eway.locale.personal.accountNum
@@ -1954,6 +1956,47 @@ Ext.override(Eway,{
 			rememberPwd:'单击确定即可修改密码，请牢记新密码！',//Eway.locale.personal.rememberPwd
 			pwdSameNoChange:'输入的新密码与旧密码相同,不可修改.',//Eway.locale.personal.pwdSameNoChange
 			reOperate:'无法修改密码,请重新操作.',//Eway.locale.personal.reOperate
+		},
+		
+		//**********************************************************/
+		atmLog:{
+			dayBackup:'当日备份结果',//Eway.locale.atmLog.dayBackup
+			whole:'所有',//Eway.locale.atmLog.whole
+			execute:'执行中',//Eway.locale.atmLog.execute
+			unKnownFail:'未知原因失败',//Eway.locale.atmLog.unKnownFail
+			logDate:'日志日期',//Eway.locale.atmLog.logDate
+			backupResult:'备份结果',//Eway.locale.atmLog.backupResult
+			checkFailInfo:'查看备份失败详情',//Eway.locale.atmLog.checkFailInfo
+			checkSucInfo:'查看备份成功详情',//Eway.locale.atmLog.checkSucInfo
+			backupSucAmount:'备份成功台数',//Eway.locale.atmLog.backupSucAmount
+			backupFailAmount:'备份失败台数',//Eway.locale.atmLog.backupFailAmount
+			backupAllAmount:'总备份台数',//Eway.locale.atmLog.backupAllAmount
+			logBackupSta:'日志备份统计',//Eway.locale.atmLog.logBackupSta
+			dailyBackup:'每日备份任务',//Eway.locale.atmLog.dailyBackup
+			backupDate:'备份日期',//Eway.locale.atmLog.backupDate
+			dayBackupResult:'当日备份结果',//Eway.locale.atmLog.dayBackupResult
+			backupProcess:'正在备份',//Eway.locale.atmLog.backupProcess
+			backupSuccess:'备份成功',//Eway.locale.atmLog.backupSuccess
+			backupError:'备份错误',//Eway.locale.atmLog.backupError
+			logDevAccount:'日志设备数量累计',//Eway.locale.atmLog.logDevAccount
+			reform:'重做',//Eway.locale.atmLog.reform
+			busLogAnalysis:'业务日志分析',//Eway.locale.atmLog.busLogAnalysis
+			selectAnalysis:'请选择需要分析的日志文件，分析的结果将以Excel表格文件导出',//Eway.locale.atmLog.selectAnalysis
+			selectLog:'选择日志',//Eway.locale.atmLog.selectLog
+			pleaseDownload:'请下载',//Eway.locale.atmLog.pleaseDownload
+			appLogDownload:'应用日志下载',//Eway.locale.atmLog.appLogDownload
+			lastBackupTime:'最后一次备份时间',//Eway.locale.atmLog.lastBackupTime
+			noBegin:'未开始',//Eway.locale.atmLog.noBegin
+			noLog:'无日志',//Eway.locale.atmLog.noLog
+			connectFail:'连接失败',//Eway.locale.atmLog.connectFail
+			fileSize:'文件大小',//Eway.locale.atmLog.fileSize
+			
+			
 		}
+		
+		
+		
+		
+		
 	}
 });

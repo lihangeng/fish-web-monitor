@@ -18,15 +18,15 @@ Ext.define('Eway.view.atmLog.LogBackupGrid',{
 				dataIndex : 'terminalId',
 				flex : 1
 			},{
-				header : '日志日期',
+				header : Eway.locale.atmLog.logDate,
 				dataIndex : 'dateTime',
 				flex : 1
 			},{
-				header : '最后一次备份时间',
+				header : Eway.locale.atmLog.lastBackupTime,
 				dataIndex : 'lastDoDate',
 				flex : 1
 			},{
-				header : '文件大小',
+				header : Eway.locale.atmLog.fileSize,
 				dataIndex : 'size',
 				renderer: function(value,metadata,record){
                    	if(value>1024*1024*1024){
@@ -41,24 +41,24 @@ Ext.define('Eway.view.atmLog.LogBackupGrid',{
 				},
 				flex : 1
 			},{
-				header : '备份结果',
+				header : Eway.locale.atmLog.backupResult,
 				dataIndex : 'backupResult',
 				width : 100,
 				renderer : function(value,metaData,record,rowIndex,colIndex,store,view){
 					if(value == 'SUCCESS'){
-						return '成功';
+						return Eway.locale.tip.success;
 					}
 					else if(value == 'UNDO'){
-						return '未开始';
+						return Eway.locale.atmLog.noBegin;
 					}
 					else if(value == 'ERROR_CONNECT'){
-						return '连接失败';
+						return Eway.locale.atmLog.connectFail;
 					}
 					else if(value == 'ERROR_NOLOG'){
-						return '无日志';
+						return Eway.locale.atmLog.noLog;
 					}
 					else if(value == 'ERROR'){
-						return '未知原因失败';
+						return Eway.locale.atmLog.unKnownFail;
 					}
 				}
 			},{
@@ -68,7 +68,7 @@ Ext.define('Eway.view.atmLog.LogBackupGrid',{
 				header: '下载',
 				items : [{
 					icon : 'resources/images/down.gif',
-					tooltip: '下载',
+					tooltip: Eway.locale.agent.remote.screen.loading,
 					getClass : function(value,metadata,record,ronwIndex,colindex,store){
 						var result = record.get('backupResult'); 
 						if(result == 'SUCCESS'){
@@ -104,7 +104,7 @@ Ext.define('Eway.view.atmLog.LogBackupGrid',{
 			}),
 			tbar : ['->',{
 				xtype : 'button',
-				text : '查询',
+				text : Eway.locale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}]

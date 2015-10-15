@@ -18,15 +18,15 @@ Ext.define('Eway.view.atmLog.errorAtmLogInfo.ErrorAtmLogInfoFilterForm',{
 					format : 'y-m-d'
 				},*/{
 					xtype : 'combo',
-					fieldLabel : '当日备份结果',
+					fieldLabel : Eway.locale.atmLog.dayBackup,
 					name : 'dayBackupResult',
 					store : Ext.create('Ext.data.Store',{
 						fields : ['dayBackupResult','displayField'],
 						data : [
-							{'dayBackupResult':'','displayField':'所有'},
-							{'dayBackupResult':'SUCCESS','displayField':'成功'},
-							{'dayBackupResult':'DOING','displayField':'执行中'},
-							{'dayBackupResult':'ERROR','displayField':'未知原因失败'}
+							{'dayBackupResult':'','displayField':Eway.locale.atmLog.whole},
+							{'dayBackupResult':'SUCCESS','displayField':Eway.locale.atmLog.success},
+							{'dayBackupResult':'DOING','displayField':Eway.locale.atmLog.execute},
+							{'dayBackupResult':'ERROR','displayField':Eway.locale.atmLog.unKnownFail}
 						]
 					}),
 					queryMode : 'local',

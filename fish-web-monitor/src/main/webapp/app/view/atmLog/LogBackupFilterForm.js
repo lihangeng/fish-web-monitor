@@ -17,7 +17,7 @@ Ext.define('Eway.view.atmLog.LogBackupFilterForm',{
 					name : 'terminalId'
 				},{
 					xtype : 'datefield',
-					fieldLabel : '日志日期',
+					fieldLabel : Eway.locale.atmLog.logDate,
 					value : Ext.Date.add(new Date(), Ext.Date.DAY, -1),
 					editable:false,
 					name : 'dateTime',
@@ -28,32 +28,32 @@ Ext.define('Eway.view.atmLog.LogBackupFilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype : 'datefield',
-					fieldLabel : '最后一次备份时间',
+					fieldLabel : Eway.locale.atmLog.lastBackupTime,
 					name : 'lastDoDate',
 					format : 'Y-m-d',
 					editable:false,
 					labelWidth: 110
 				},{
 					xtype : 'combo',
-					fieldLabel : '备份结果',
+					fieldLabel : Eway.locale.atmLog.backupResult,
 					editable : false,
 					name : 'backupResult',
 					labelWidth: 110,
 					store : Ext.create('Ext.data.Store',{
 						fields : ['backupResult','displayField'],
 						data : [
-							{'backupResult':'SUCCESS','displayField':'成功'},
-							{'backupResult':'UNDO','displayField':'未开始'},
-							{'backupResult':'ERROR_CONNECT','displayField':'连接失败'},
-							{'backupResult':'ERROR_NOLOG','displayField':'无日志'},
-							{'backupResult':'ERROR','displayField':'未知原因失败'}
+							{'backupResult':'SUCCESS','displayField':Eway.locale.tip.success},
+							{'backupResult':'UNDO','displayField':Eway.locale.atmLog.noBegin},
+							{'backupResult':'ERROR_CONNECT','displayField':Eway.locale.tip.linkFailure},
+							{'backupResult':'ERROR_NOLOG','displayField':Eway.locale.atmLog.noLog},
+							{'backupResult':'ERROR','displayField':Eway.locale.atmLog.unKnownFail}
 						]
 					}),
 					queryMode : 'local',
 					valueField : 'backupResult',
 					displayField : 'displayField',
 					hiddenName : 'backupResult',
-					emptyText: '--请选择--'
+					emptyText: Eway.locale.combox.select
 				}]
 			}]
 		});
