@@ -65,7 +65,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '执行',
+				text: Eway.locale.agent.remote.execute,
 				iconCls:'remoteExecBtn',
 				action:'remoteExec',
 				xtype : 'button',

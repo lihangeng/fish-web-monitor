@@ -27,6 +27,7 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 			},{
 				text: Eway.locale.button.exported,//'导出',
 				iconCls : 'exportToExcel',
+				glyph : 0xf1c3,
 				action: 'export',
 				tooltip:Eway.locale.version.download.taskExportTips,//'导出选中作业下的全部下发结果',
 				code : 'exportJobToExcel',

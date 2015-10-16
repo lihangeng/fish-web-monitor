@@ -23,6 +23,7 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.Grid', {
 			},{
 				text :Eway.locale.machine.atmRuntimeInfo.exportLast30,
 				iconCls :'exportToExcel',
+				glyph : 0xf1c3,
 				action : 'exportLast30'
 			}],
 			viewConfig : {

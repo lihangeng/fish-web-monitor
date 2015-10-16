@@ -65,7 +65,7 @@ Ext.define('Eway.view.atmLog.LogBackupGrid',{
 				xtype:'actioncolumn',
 				flex : .5,
 				dataIndex : 'backupResult',
-				header: '下载',
+				header: Eway.locale.agent.remote.screen.loading,
 				items : [{
 					icon : 'resources/images/down.gif',
 					tooltip: Eway.locale.agent.remote.screen.loading,
