@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,6 +55,10 @@ public class CashInReportController {
 
 	@Autowired
 	private ICashInRptService cashInRptService;
+	
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	/**
 	 * 加钞统计报表
@@ -72,8 +77,12 @@ public class CashInReportController {
 		ModelMap result = new ModelMap();
 		String resourcePath = rq.getSession().getServletContext().getRealPath("/resources/report/w_cashIn.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("title", ReportTitle.CashIn.getText());
+		parameters.put("title", messageSource.getMessage(ReportTitle.CashIn.getText(), null, FishCfg.locale));
 		parameters.put("reportDate", DateUtils.getTimestamp(new Date()));
+		parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+		parameters.put("terminalId", messageSource.getMessage("device.terminalId", null, FishCfg.locale));
+		parameters.put("date", messageSource.getMessage("report.cashIn.cashDate", null, FishCfg.locale));
+		parameters.put("cashInAmt", messageSource.getMessage("report.cashIn.cashInAmt", null, FishCfg.locale));
 
 		List<ICashInRpt> data = cashInRptService.listCashInRpt(filter);
 

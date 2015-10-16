@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +52,10 @@ public class DeviceHardwareReportController {
 
     @Autowired
     private IOrganizationService orgService;
+    
+    
+    @Autowired
+	private MessageSource messageSource;
 
     @RequestMapping(value = "/deviceHardware", method = RequestMethod.GET)
     public @ResponseBody
@@ -71,6 +76,14 @@ public class DeviceHardwareReportController {
         HashMap<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("title", ReportTitle.DeviceHardware.getText());
         parameters.put("reportDate", DateUtils.getTimestamp(new Date()));
+        
+        parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+		parameters.put("terminalId", messageSource.getMessage("device.terminalId", null, FishCfg.locale));
+		parameters.put("typeName", messageSource.getMessage("device.devType", null, FishCfg.locale));
+		parameters.put("memory", messageSource.getMessage("report.devHard.memory", null, FishCfg.locale));
+		parameters.put("cpu", messageSource.getMessage("report.devHard.cpu", null, FishCfg.locale));
+		parameters.put("hardDisk", messageSource.getMessage("report.devHard.hardDisk", null, FishCfg.locale));
+        
         reportParam.setParameters(parameters);
 
         if ("pdf".equals(request.getParameter("exportType"))) {

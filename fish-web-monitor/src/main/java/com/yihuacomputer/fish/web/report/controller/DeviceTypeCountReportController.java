@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,6 +54,10 @@ public class DeviceTypeCountReportController {
 
     @Autowired
     private IOrganizationService orgService;
+    
+    
+	@Autowired
+	private MessageSource messageSource;
 
     @RequestMapping(value = "/deviceTypeCount", method = RequestMethod.GET)
     public @ResponseBody
@@ -65,8 +70,13 @@ public class DeviceTypeCountReportController {
         String resourcePath = rq.getSession().getServletContext()
                 .getRealPath("/resources/report/w_deviceType_count.jasper");
         HashMap<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("title", ReportTitle.DeviceTypeCount.getText());
+        parameters.put("title", messageSource.getMessage(ReportTitle.DeviceTypeCount.getText(), null, FishCfg.locale));
         parameters.put("reportDate", DateUtils.getTimestamp(new Date()));
+        parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+        parameters.put("vendorName", messageSource.getMessage("report.devTypeCount.vendorName", null, FishCfg.locale));
+        parameters.put("type", messageSource.getMessage("report.devTypeCount.type", null, FishCfg.locale));
+        parameters.put("total", messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
+        parameters.put("subTotal", messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
 
         List<IDeviceTypeCountRpt> data = deviceTypeCountService.listDeviceTypeCount(filter);
 
