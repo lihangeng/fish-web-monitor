@@ -8,10 +8,14 @@ import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.yihuacomputer.common.FishCfg;
 
 /**
  * 报表下载
@@ -23,6 +27,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping(value = "/report/downloadFile")
 public class DownloadReportController {
 
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	/**
 	 * 下载文件到浏览器端：
 	 */
@@ -32,7 +44,7 @@ public class DownloadReportController {
 		File file = new File(path);
 
 		String type = path.substring(path.lastIndexOf("."));
-		String fileName = reportTitle.getText() + type;
+		String fileName = getEnumI18n(reportTitle.getText()) + type;
 		response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName(request, fileName) + "\"");
 		response.setContentType("application/x-msdownload;charset=UTF-8");
 		OutputStream out = null;

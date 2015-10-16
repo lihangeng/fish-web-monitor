@@ -60,6 +60,14 @@ public class CashInReportController {
 	@Autowired
 	private MessageSource messageSource;
 
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	/**
 	 * 加钞统计报表
 	 *
@@ -77,7 +85,7 @@ public class CashInReportController {
 		ModelMap result = new ModelMap();
 		String resourcePath = rq.getSession().getServletContext().getRealPath("/resources/report/w_cashIn.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("title", messageSource.getMessage(ReportTitle.CashIn.getText(), null, FishCfg.locale));
+		parameters.put("title", getEnumI18n(ReportTitle.CashIn.getText()));
 		parameters.put("reportDate", DateUtils.getTimestamp(new Date()));
 		parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
 		parameters.put("terminalId", messageSource.getMessage("device.terminalId", null, FishCfg.locale));
