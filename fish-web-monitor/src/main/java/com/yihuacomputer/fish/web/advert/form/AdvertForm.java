@@ -1,6 +1,5 @@
 package com.yihuacomputer.fish.web.advert.form;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,10 +8,6 @@ import org.apache.commons.lang.StringUtils;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.yihuacomputer.common.jackson.JsonUtils;
-import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.fish.api.advert.IAdvert;
-import com.yihuacomputer.fish.api.version.IVersion;
-import com.yihuacomputer.fish.api.version.VersionCfg;
 
 public class AdvertForm {
     private long id;
@@ -40,31 +35,6 @@ public class AdvertForm {
     private String userName;
 
     public AdvertForm() {
-    }
-
-    public AdvertForm(IAdvert advert) {
-        this.id = advert.getId();
-        this.advertType = advert.getAdvertType().name();
-        this.advertDownMethod = advert.getAdvertDownMethod().name();
-        this.advertValidity = advert.getAdvertValidity().name();
-        this.createdTime = DateUtils.getTimestamp(advert.getCreatedTime());
-        IVersion version = advert.getVersion();
-        if (version != null) {
-            this.setVersion(version);
-        }
-    }
-
-    public void setVersion(IVersion version) {
-        this.versionId = version.getId();
-        this.versionType = version.getVersionType().getTypeName();
-        this.versionFile = getVersionFile(versionType, version.getServerPath());
-        this.versionStatus = version.getVersionStatus().getText();
-        this.versionNo = version.getVersionNo();
-    }
-
-    private String getVersionFile(String typeName, String fileName) {
-        File file = new File(VersionCfg.getVersionDir() + File.separator + typeName + File.separator + fileName);
-        return file.exists() ? fileName : null;
     }
 
     public long getId() {

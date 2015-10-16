@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.monitor.service;
 
+import org.springframework.context.MessageSource;
+
 import com.yihuacomputer.fish.api.monitor.AlarmInfo;
 import com.yihuacomputer.fish.api.monitor.BusinessInfo;
 import com.yihuacomputer.fish.api.monitor.ICollectListener;
@@ -62,12 +64,12 @@ public class CollectListener implements ICollectListener{
 	public void receivedBusiness(String deviceId, BusinessInfo info,IDeviceReport deviceReport){
 
 		switch (info) {
-			case RUN_INFO: {
-				if(workUnit.hasDevice(deviceId)){
-					workUnit.fireMonitorUser(deviceId, deviceReport);
-				}
-				break;
-			}
+//			case RUN_INFO: {
+//				if(workUnit.hasDevice(deviceId)){
+//					workUnit.fireMonitorUser(deviceId, deviceReport,messageSourceRef);
+//				}
+//				break;
+//			}
 			case TRANSACTION:{
 				if(workUnit.hasDevice(deviceId)){
 					workUnit.fireTransationUser(deviceId, deviceReport);
@@ -103,9 +105,9 @@ public class CollectListener implements ICollectListener{
 	 * 模块状态
 	 * @param deviceId
 	 */
-	public void receivedStatus(String deviceId,IDeviceReport deviceReport){
+	public void receivedStatus(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef){
 		if(workUnit.hasDevice(deviceId)){
-			workUnit.fireMonitorUser(deviceId,deviceReport);
+			workUnit.fireMonitorUser(deviceId,deviceReport,messageSourceRef);
 		}
 	}
 
@@ -117,9 +119,9 @@ public class CollectListener implements ICollectListener{
 
 	}
 	@Override
-	public void signed(String deviceId, IDeviceReport deviceReport) {
+	public void signed(String deviceId, IDeviceReport deviceReport,MessageSource messageSourceRef) {
 		if(workUnit.hasDevice(deviceId)){
-			workUnit.fireBootSign(deviceId, deviceReport);
+			workUnit.fireBootSign(deviceId, deviceReport,messageSourceRef);
 		}
 	}
 

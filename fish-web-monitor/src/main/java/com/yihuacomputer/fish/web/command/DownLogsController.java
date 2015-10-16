@@ -99,13 +99,21 @@ public class DownLogsController {
                 if(ret.equals(HttpFileRet.REQ_FILE_NOTEXIT)){
                     result.addAttribute(FishConstant.ERROR_MSG,String.format(messageSource.getMessage("downLogs.failNotExist", null, FishCfg.locale),code,requestPath,localName));
                 }else{
-                    result.addAttribute(FishConstant.ERROR_MSG,ret.getText());
+                    result.addAttribute(FishConstant.ERROR_MSG,getEnumI18n(ret.getText()));
                 }
             }
         }
         return result;
     }
 
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
     private String getLocalName(String code) {
         IDevice device = deviceService.get(code);
         String orgCode = device.getOrganization().getCode();

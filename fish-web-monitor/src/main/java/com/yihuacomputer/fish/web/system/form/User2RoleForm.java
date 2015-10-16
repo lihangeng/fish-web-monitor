@@ -24,7 +24,7 @@ public class User2RoleForm {
 	public User2RoleForm(){
 		
 	}
-	
+	// TODO 暂时无引用此处的form 国际化不做处理 role.getType().getText();
 	public User2RoleForm(IRole role){
 		this.id = role.getId();
 		this.name = role.getName();
@@ -41,7 +41,7 @@ public class User2RoleForm {
 //		}
 	}
 	
-	public static List<User2RoleForm> toForm (List<IRole> list){
+	public static List<User2RoleForm> toForm (List<IRole> list,String ii){
 		List<User2RoleForm> result = new ArrayList<User2RoleForm>();
 		for(IRole master : list){
 			result.add(new User2RoleForm(master));

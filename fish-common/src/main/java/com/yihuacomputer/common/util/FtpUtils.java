@@ -219,7 +219,8 @@ public class FtpUtils {
             result = true;
         }
         catch (IOException e) {
-            logger.error(String.format("下载文件时发生IO错误：[%s]", e));
+//            logger.error(String.format("下载文件时发生IO错误：[%s]", e));
+            logger.error(String.format("when download file with IOException：[%s]", e));
         }
         finally {
             if (ftp.isConnected()) {
@@ -227,7 +228,7 @@ public class FtpUtils {
                     ftp.disconnect();
                 }
                 catch (IOException ioe) {
-                    logger.error(String.format("下载文件时发生IO错误：[%s]", ioe));
+                    logger.error(String.format("when download file with IOException：[%s]", ioe));
                 }
             }
         }
@@ -263,7 +264,7 @@ public class FtpUtils {
             }
         }
         catch (IOException e) {
-            logger.error(String.format("下载文件时发生IO错误：[%s]", e));
+            logger.error(String.format("when download file with IOException：[%s]", e));
         }
         finally {
             try {
@@ -271,7 +272,8 @@ public class FtpUtils {
                 is.close();
             }
             catch (IOException e) {
-                logger.error(String.format("关闭文件输出流时发生IO错误：[%s]", e));
+                logger.error(String.format("when close fileOutputStream with IOException：[%s]", e));
+//                logger.error(String.format("关闭文件输出流时发生IO错误：[%s]", e));
             }
             disconnectFtp(ftp);
         }
@@ -310,7 +312,8 @@ public class FtpUtils {
             }
         }
         catch (IOException e) {
-            logger.error(String.format("列出相对路径下的文件列表时发生IO错误：[%s]", e));
+            logger.error(String.format("when list subFile with IOException [%s]", e));
+//            logger.error(String.format("列出相对路径下的文件列表时发生IO错误：[%s]", e));
             return null;
         }
         finally {
@@ -349,11 +352,12 @@ public class FtpUtils {
             return ftp;
         }
         catch (SocketException e) {
-            logger.error(String.format("登录ftp时发生socket错误：[%s]", e));
+            logger.error(String.format("when login fpt with SocketException ：[%s]", e));
+//            logger.error(String.format("登录ftp时发生socket错误：[%s]", e));
             return null;
         }
         catch (IOException e) {
-            logger.error(String.format("登录ftp时发生IO错误：[%s]", e));
+            logger.error(String.format("when login fpt with IOException：[%s]", e));
             return null;
         }
     }
@@ -371,7 +375,7 @@ public class FtpUtils {
                 ftp.disconnect();
             }
             catch (IOException ioe) {
-                logger.error(String.format("断开FTP链接时发生IO错误：[%s]", ioe));
+                logger.error(String.format("when logout FTP with IOException：[%s]", ioe));
             }
         }
     }

@@ -53,7 +53,15 @@ public class DeviceBoxDetailReportController {
 
     @Autowired
     private IExportReportService exportReportService;
-    
+
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }    
     
     @Autowired
 	private MessageSource messageSource;
@@ -69,7 +77,7 @@ public class DeviceBoxDetailReportController {
         String resourcePath = req.getSession().getServletContext()
                 .getRealPath("/resources/report/w_deviceBoxDetail.jasper");
         HashMap<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("title", messageSource.getMessage(ReportTitle.DeviceBox.getText(), null, FishCfg.locale));
+        parameters.put("title", getEnumI18n(ReportTitle.DeviceBox.getText()));
         parameters.put("reportDate", DateUtils.getTimestamp(new Date()));
         parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
 		parameters.put("terminalId", messageSource.getMessage("device.terminalId", null, FishCfg.locale));
@@ -146,7 +154,7 @@ public class DeviceBoxDetailReportController {
         File file = new File(path);
 
         String type = path.substring(path.lastIndexOf("."));
-        String fileName = reportTitle.getText() + type;
+        String fileName = getEnumI18n(reportTitle.getText()) + type;
 
         response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName(request, fileName) + "\"");
         response.setContentType("application/x-msdownload;charset=UTF-8");

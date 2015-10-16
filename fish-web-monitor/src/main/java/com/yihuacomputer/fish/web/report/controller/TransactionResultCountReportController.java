@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,6 +56,14 @@ public class TransactionResultCountReportController {
 	@Autowired
 	private ITransRptService transRptService;
 
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	/**
 	 * 交易结果统计报表
 	 *
@@ -73,7 +82,7 @@ public class TransactionResultCountReportController {
 		String resourcePath = rq.getSession().getServletContext()
 				.getRealPath("/resources/report/w_trans_Result_count.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("title", ReportTitle.TransactionResultCount.getText());
+		parameters.put("title", getEnumI18n(ReportTitle.TransactionResultCount.getText()));
 		// parameters.put("reportDate", DateUtils.getTimestamp(new Date()));
 		Date startReportDate = new Date();
 		if (filter.getFilterEntry("startData") != null) {

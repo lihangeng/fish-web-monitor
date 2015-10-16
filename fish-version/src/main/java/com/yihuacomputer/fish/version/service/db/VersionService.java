@@ -221,7 +221,14 @@ public class VersionService implements IDomainVersionService {
 	public IUserService getUserService() {
 		return this.userService;
 	}
-
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	/**
 	 * 收集版本下发后的更新报告结果
 	 * 
@@ -246,7 +253,7 @@ public class VersionService implements IDomainVersionService {
 			task.setStatus(TaskStatus.DOWNLOADED);
 		} else if (AgentRet.isDownFail(agentRet)) {
 			task.setStatus(TaskStatus.DOWNLOADED_FAIL);
-			task.setReason(agentRet.getText());
+			task.setReason(getEnumI18n(agentRet.getText()));
 		} else if (agentRet.equals(AgentRet.RET50)) {
 			task.setStatus(TaskStatus.DEPLOYED);
 			task.setReason(null);
@@ -255,7 +262,7 @@ public class VersionService implements IDomainVersionService {
 			task.setReason(null);
 		} else if (AgentRet.isDeployFail(agentRet)) {
 			task.setStatus(TaskStatus.DEPLOYED_FAIL);
-			task.setReason(agentRet.getText());
+			task.setReason(getEnumI18n(agentRet.getText()));
 		} else {
 			task.setStatus(TaskStatus.OTHER);
 		}
@@ -465,7 +472,7 @@ public class VersionService implements IDomainVersionService {
 			versionStatusDistribute.setVersionId(versionId);
 			versionStatusDistribute.setTaskStatusNumber(Integer.parseInt(String.valueOf(obj[1])));
 			TaskStatus status = TaskStatus.valueOf(versionStatusDistribute.getTaskStatus());
-			versionStatusDistribute.setTaskStatusText(status.getText());
+			versionStatusDistribute.setTaskStatusText(getEnumI18n(status.getText()));
 			statusDistributeList.add(versionStatusDistribute);
 //			hasStatusCounter+=versionStatusDistribute.getTaskStatusNumber();
 		}
@@ -523,8 +530,8 @@ public class VersionService implements IDomainVersionService {
 			versionDistributeDetail.setDeviceType(device.getDevType().getName());
 			versionDistributeDetail.setIp(device.getIp().toString());
 			versionDistributeDetail.setOrgName(device.getOrganization().getName());
-			versionDistributeDetail.setStatusText(task.getStatus().getText());
-			versionDistributeDetail.setUpdateType(task.getTaskType().getText());
+			versionDistributeDetail.setStatusText(getEnumI18n(task.getStatus().getText()));
+			versionDistributeDetail.setUpdateType(getEnumI18n(task.getTaskType().getText()));
 			versionDistributeDetail.setVendor(device.getDevType().getDevVendor().getName());
 			statusDistributeList.add(versionDistributeDetail);
 		}

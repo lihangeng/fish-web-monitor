@@ -57,6 +57,14 @@ public class DeviceHardwareReportController {
     @Autowired
 	private MessageSource messageSource;
 
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
     @RequestMapping(value = "/deviceHardware", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap searchDeviceHardware(WebRequest request, HttpServletRequest rq, HttpServletResponse response) {
@@ -74,7 +82,7 @@ public class DeviceHardwareReportController {
         ReportParam reportParam = new ReportParam();
 
         HashMap<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("title", ReportTitle.DeviceHardware.getText());
+        parameters.put("title", getEnumI18n(ReportTitle.DeviceHardware.getText()));
         parameters.put("reportDate", DateUtils.getTimestamp(new Date()));
         
         parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
@@ -154,7 +162,7 @@ public class DeviceHardwareReportController {
         File file = new File(path);
 
         String type = path.substring(path.lastIndexOf("."));
-        String fileName = reportTitle.getText() + type;
+        String fileName = getEnumI18n(reportTitle.getText()) + type;
 
         response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName(request, fileName) + "\"");
         response.setContentType("application/x-msdownload;charset=UTF-8");

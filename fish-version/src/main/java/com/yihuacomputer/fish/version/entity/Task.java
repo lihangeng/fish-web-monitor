@@ -18,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 
 import com.yihuacomputer.common.FishCfg;
@@ -117,11 +118,26 @@ public class Task implements ITask {
 	@Transient
 	private MessageSource messageSourceVersion;
 
+	@Transient
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	public MessageSource getMessageSourceVersion() {
 		return messageSourceVersion;
 	}
 	public void setMessageSourceVersion(MessageSource messageSourceVersion) {
 		this.messageSourceVersion = messageSourceVersion;
+	}
+	
+	public MessageSource getMessageSourceEnum() {
+		return messageSourceEnum;
+	}
+	public void setMessageSourceEnum(MessageSource messageSourceEnum) {
+		this.messageSourceEnum = messageSourceEnum;
 	}
 	public Task(Date firstCreateDate) {
 		this.status = TaskStatus.NEW;
@@ -215,10 +231,11 @@ public class Task implements ITask {
 
 	@Override
 	public String getState() {
+		String tip = getEnumI18n(this.getStatus().getText());
 		if (this.getStatus().equals(TaskStatus.NEW) || this.getStatus().equals(TaskStatus.RUN)) {
-			return this.getStatus().getText();
+			return tip;
 		} else {
-			return this.getStatus().getText() + (this.isSuccess() ? messageSourceVersion.getMessage("task.taskStauts.success", null, FishCfg.locale) : messageSourceVersion.getMessage("task.taskStauts.fail", null, FishCfg.locale) );
+			return  tip + (this.isSuccess() ? messageSourceVersion.getMessage("task.taskStauts.success", null, FishCfg.locale) : messageSourceVersion.getMessage("task.taskStauts.fail", null, FishCfg.locale) );
 		}
 	}
 

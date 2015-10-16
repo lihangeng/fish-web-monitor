@@ -100,7 +100,8 @@ public class HardwareController {
 				collectService.collectDeviceHardware(msg.getTermId(), hardware);	
 			}
 		}catch(Exception e){
-			logger.error(String.format("处理操作系统硬件配置信息异常![%s],系统硬件内容:[%s]",e,JsonUtils.toJson(msg)));
+//			logger.error(String.format("处理操作系统硬件配置信息异常![%s],系统硬件内容:[%s]",e,JsonUtils.toJson(msg)));
+			logger.error(String.format("collection os hardware config info exception![%s],hardware config is:[%s]",e,JsonUtils.toJson(msg)));
 		}
 		return result;
 	}

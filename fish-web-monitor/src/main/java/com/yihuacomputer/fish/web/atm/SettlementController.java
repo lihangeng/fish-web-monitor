@@ -67,7 +67,7 @@ public class SettlementController {
 		try{
 			collectService.collectSettlement(msg.getTermId(), settlementInfo);
 		}catch(Exception e){
-			logger.error(String.format("处理ATMC结账异常![%s],请求信息[%s]",e,JsonUtils.toJson(msg)));
+			logger.error(String.format("collection settlementInfo exception![%s],settlementInfo is [%s]",e,JsonUtils.toJson(msg)));
 		}
 
 		return result;

@@ -79,7 +79,7 @@ public class HttpProxy {
 				return stream;
 			}
 		} catch (Exception e) {
-			throw new ConnectionException(String.format("连接ATM失败[%s]",e));
+			throw new ConnectionException(String.format("connectting ATM Fail[%s]",e));
 		} finally {
 			if (stream != null) {
 				try {

@@ -53,7 +53,15 @@ public class DeviceReportController {
 
     @Autowired
     private IExportReportService exportReportService;
-    
+
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
     
     @Autowired
 	private MessageSource messageSource;
@@ -68,7 +76,7 @@ public class DeviceReportController {
         ModelMap result = new ModelMap();
         String resourcePath = rq.getSession().getServletContext().getRealPath("/resources/report/w_device.jasper");
         HashMap<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("title", messageSource.getMessage(ReportTitle.Device.getText(), null, FishCfg.locale));
+        parameters.put("title", getEnumI18n(ReportTitle.Device.getText()));
         parameters.put("reportDate", DateUtils.getTimestamp(new Date()));
         
         
@@ -149,7 +157,7 @@ public class DeviceReportController {
         File file = new File(path);
         
         String type = path.substring(path.lastIndexOf("."));
-        String fileName = reportTitle.getText() + type;
+        String fileName = getEnumI18n(reportTitle.getText()) + type;
         
         response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName(request, fileName) + "\"");
         response.setContentType("application/x-msdownload;charset=UTF-8");

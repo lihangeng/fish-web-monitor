@@ -59,6 +59,14 @@ public class SettlementReportController {
     @Autowired
 	private MessageSource messageSource;
 
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	/**
 	 * 清机统计报表
 	 *
@@ -76,7 +84,7 @@ public class SettlementReportController {
 		ModelMap result = new ModelMap();
 		String resourcePath = rq.getSession().getServletContext().getRealPath("/resources/report/w_sett_cash.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("title", messageSource.getMessage(ReportTitle.Settlement.getText(), null, FishCfg.locale));
+		parameters.put("title",getEnumI18n(ReportTitle.Settlement.getText()));
 		parameters.put("reportDate", DateUtils.getTimestamp(new Date()));
 		
 		parameters.put("orgNo", messageSource.getMessage("report.device.orgNo", null, FishCfg.locale));

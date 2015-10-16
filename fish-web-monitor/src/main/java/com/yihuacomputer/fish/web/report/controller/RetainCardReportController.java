@@ -61,6 +61,14 @@ public class RetainCardReportController {
     @Autowired
 	private MessageSource messageSource;
 
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	/**
 	 * 吞卡明细报表
 	 *
@@ -78,7 +86,7 @@ public class RetainCardReportController {
 
 		String resourcePath = rq.getSession().getServletContext().getRealPath("/resources/report/w_retaincard.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("title", messageSource.getMessage(ReportTitle.RetainCard.getText(), null, FishCfg.locale));
+		parameters.put("title", getEnumI18n(ReportTitle.RetainCard.getText()));
 
 		Date startReportDate = new Date();
 		if (filter.getFilterEntry("startData") != null) {

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+import org.springframework.context.MessageSource;
+
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.fish.api.monitor.report.IDeviceReport;
@@ -167,14 +170,14 @@ public class WorkUnit implements IWorkUnit{
 	 * 加工状态数据
 	 * @param deviceId
 	 */
-	public void fireMonitorUser(String deviceId,IDeviceReport deviceReport){
+	public void fireMonitorUser(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef){
 		for(int i=this.monitorUserList.size()-1;i>=0;i--){
 			MonitorUser user = this.monitorUserList.get(i);
-			user.statusFilter(deviceId, deviceReport);
+			user.statusFilter(deviceId, deviceReport,messageSourceRef);
 		}
 		for(int i = this.monitorClassifyUserList.size() - 1; i >= 0; i--){
 			MonitorUser user = this.monitorClassifyUserList.get(i);
-			user.modFilter(deviceId, deviceReport);
+			user.modFilter(deviceId, deviceReport,messageSourceRef);
 		}
 	}
 	/**
@@ -201,10 +204,10 @@ public class WorkUnit implements IWorkUnit{
 	}
 
 	@Override
-	public void fireBootSign(String deviceId, IDeviceReport deviceReport) {
+	public void fireBootSign(String deviceId, IDeviceReport deviceReport,MessageSource messageSourceRef) {
 		for(int i=this.monitorUserList.size()-1;i>=0;i--){
 			MonitorUser user = this.monitorUserList.get(i);
-			user.deviceSign(deviceId, deviceReport);
+			user.deviceSign(deviceId, deviceReport,messageSourceRef);
 		}
 	}
 

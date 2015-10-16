@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -102,6 +103,10 @@ public class CollectService implements ICollectService , IDeviceListener{
     @Autowired
     private ICounterFeitMoneyService counterFeitMoneyService;
     
+
+    @Autowired
+    private MessageSource messageSourceEnum;
+    
     @Autowired
     private IUncommonTransService uncommonTransService;
 
@@ -142,10 +147,10 @@ public class CollectService implements ICollectService , IDeviceListener{
      * @return 签到是否成功
      */
     public void collectBootSign(String terminalId,
-            IDeviceRegister deviceRegister) {
+            IDeviceRegister deviceRegister,MessageSource messageSourceRef) {
         DeviceReport deviceReport = this.getDeviceReport(terminalId);
         deviceReport.setDeviceRegister((DeviceRegister) deviceRegister);
-        collectListener.signed(terminalId, deviceReport);
+        collectListener.signed(terminalId, deviceReport,messageSourceRef);
     }
 
     /**
@@ -189,7 +194,8 @@ public class CollectService implements ICollectService , IDeviceListener{
         	try{
         		deviceCaseService.handleModStatus(xfsStatus);
         	}catch(Exception e){
-        		logger.error(String.format("处理设备故障工单异常[%s]", e));
+//        		logger.error(String.format("处理设备故障工单异常[%s]", e));
+        		logger.error(String.format("handle device caseFault exception[%s]", e));
         		return ;
         	}
         }
@@ -215,7 +221,7 @@ public class CollectService implements ICollectService , IDeviceListener{
                 .load(terminalId));
 
         xfsService.updateXfsStatus(histXfsStatus);
-        this.collectListener.receivedStatus(terminalId, deviceReport);
+        this.collectListener.receivedStatus(terminalId, deviceReport,messageSourceEnum);
 
     }
 
@@ -241,7 +247,7 @@ public class CollectService implements ICollectService , IDeviceListener{
                 .load(terminalId));
 
         xfsService.updateXfsStatus(xfsStatus);
-        this.collectListener.receivedStatus(terminalId, deviceReport);
+        this.collectListener.receivedStatus(terminalId, deviceReport,messageSourceEnum);
     }
 
     /**
@@ -371,8 +377,8 @@ public class CollectService implements ICollectService , IDeviceListener{
         deviceReport.setDeviceRegister((DeviceRegister) this.registSerivce
                 .load(terminalId));
 
-        this.collectListener.receivedBusiness(terminalId,
-                BusinessInfo.RUN_INFO, deviceReport);
+        this.collectListener.receivedStatus(terminalId,
+                 deviceReport,messageSourceEnum);
     }
 
     /**
@@ -481,7 +487,7 @@ public class CollectService implements ICollectService , IDeviceListener{
         deviceReport.setDeviceRegister((DeviceRegister) reg);
 
         this.collectListener.receivedStatus(device.getTerminalId(),
-                deviceReport);
+                deviceReport,messageSourceEnum);
     }
 
 	public void deleteDevice(IDevice device) {
@@ -507,7 +513,7 @@ public class CollectService implements ICollectService , IDeviceListener{
 		deviceReport.setDeviceRegister((DeviceRegister) reg);
 		device.setOrganization(null);
 		this.collectListener.receivedStatus(device.getTerminalId(),
-				deviceReport);
+				deviceReport,messageSourceEnum);
 	}
 
     @Override

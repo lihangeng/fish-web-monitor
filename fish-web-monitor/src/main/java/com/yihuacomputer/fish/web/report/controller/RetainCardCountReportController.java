@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,6 +56,14 @@ public class RetainCardCountReportController {
 	@Autowired
 	private IExportReportService exportReportService;
 
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	/**
 	 * 吞卡统计报表
 	 *
@@ -74,7 +83,7 @@ public class RetainCardCountReportController {
 		String resourcePath = rq.getSession().getServletContext()
 				.getRealPath("/resources/report/w_retain_card_count.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("title", ReportTitle.RetainCardCount.getText());
+		parameters.put("title", getEnumI18n(ReportTitle.RetainCardCount.getText()));
 		parameters.put("reportDate", DateUtils.getTimestamp(new Date()));
 
 		List<IRetainCardCountRpt> data = retainCardRptService.listRetainCardCount(filter);

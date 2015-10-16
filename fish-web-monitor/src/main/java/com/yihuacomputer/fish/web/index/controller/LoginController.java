@@ -276,7 +276,6 @@ public class LoginController {
 			createMenu(menus, parent, p, all);
 		}
 	}
-
 	private void createMenu(List<Menu> menus, Menu parent, SimplePermission p, List<SimplePermission> all) {
 		List<SimplePermission> child = getChild(p, all);
 		Menu menu = null;
