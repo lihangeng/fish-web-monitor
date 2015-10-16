@@ -22,10 +22,13 @@ import com.yihuacomputer.fish.api.report.base.IRetainCardRptService;
 @Transactional(readOnly = true)
 public class RetainCardRptService implements IRetainCardRptService {
 
-	private final String countName = "吞卡数量统计";
+	private String countName ;
 
 	@Autowired
 	private IGenericDao dao;
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	@Override
 	public List<IRetainCardRpt> listRetainCardDetail(IFilter filter) {
@@ -145,10 +148,17 @@ public class RetainCardRptService implements IRetainCardRptService {
 		for (Object obj : list) {
 			Object[] o = (Object[]) obj;
 			RetainCardCountRpt retainCardCount = new RetainCardCountRpt();
+			countName = messageSource.getMessage("report.retainCard.title", null, FishCfg.locale);
 			retainCardCount.setCountName(countName);
 			retainCardCount.setRetainCount(Long.valueOf(objectToString(o[0])));
 			retainCardCount.setOrgName(objectToString(o[1]));
 			retainCardCount.setDeviceType(objectToString(o[2]));
+			
+			retainCardCount.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+			retainCardCount.setDevTypeNameColumn(messageSource.getMessage("report.devTypeCount.type", null, FishCfg.locale));
+			retainCardCount.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
+			retainCardCount.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
+			
 			countList.add(retainCardCount);
 		}
 		return countList;

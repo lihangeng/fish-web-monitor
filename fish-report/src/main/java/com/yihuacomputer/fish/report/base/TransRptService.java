@@ -255,11 +255,24 @@ public class TransRptService implements ITransRptService {
             transResultCountRpt.setResult(objectToString(o[3]));
             transResultCountRpt.setCountName(messageSource.getMessage("report.trans.transCountName", null, FishCfg.locale));
             transResultCountRpt.setTransCount(Long.valueOf(objectToString(o[0])));
+            
+            
+            transResultCountRpt.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+            transResultCountRpt.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
+            transResultCountRpt.setTransResultColumn(messageSource.getMessage("report.trans.transResult", null, FishCfg.locale));
+            transResultCountRpt.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
+            
 
             transResultAmtRpt.setOrgName(objectToString(o[1]));
             transResultAmtRpt.setResult(objectToString(o[3]));
             transResultAmtRpt.setCountName(messageSource.getMessage("report.trans.transAmtName", null, FishCfg.locale));
             transResultAmtRpt.setTransCount(Double.valueOf(objectToString(o[2])));
+            
+            
+            transResultAmtRpt.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+            transResultAmtRpt.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
+            transResultAmtRpt.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
+            transResultAmtRpt.setTransResultColumn(messageSource.getMessage("report.trans.transResult", null, FishCfg.locale));
 
             countList.add(transResultCountRpt);
             countList.add(transResultAmtRpt);
