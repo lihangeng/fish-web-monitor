@@ -12,151 +12,151 @@ Ext.override(Eway,{
 		systemHelp:'系统帮助',///Eway.locale.systemHelp
 		exitSystem:'退出系统',//Eway.locale.exitSystem
 		title:{
-			msg:'信息XX'//Eway.locale.title.msg
+			msg:'信息'//Eway.locale.title.msg
 		},
 		msg:{
-			perviewFailForText:'预览失败:不支持文字滚动广告和公告的预览.XX',//Eway.locale.msg.perviewFailForText
-			perviewFailNoResource:'预览失败:此广告没有配置广告资源.XX',//Eway.locale.msg.perviewFailNoResource
-			choseResToPerview:'请选择您要预览的广告.XX',//Eway.locale.msg.choseResToPerview
-			chooseAdvert:'请选择一条广告.XX',//Eway.locale.msg.chooseAdvert
-			chooseOneDevice:'"请选择一台设备.XX',//Eway.locale.msg.chooseOneDevice
-			downLoadedAdvertCantDelete:'删除失败:不能删除"已下发"和"等待下发"状态的广告.XX',//Eway.locale.msg.downLoadedAdvertCantDelete
-			chooseAdvertToDelete:'请选择您要删除的广告.XX',//Eway.locale.msg.chooseAdvertToDelete
-			chooseAdvertToDownload:'请选择您要删除的广告.XX',//Eway.locale.msg.chooseAdvertToDownload
-			generalVersionFailForDownloaded:'生成版本文件失败:"已下发"状态的广告不能再生成版本信息.XX',//Eway.locale.msg.generalVersionFailForDownloaded
-			generalVersionSuccess:"生成版本文件成功.XX",//Eway.locale.msg.generalVersionSuccess
-			createSuccess:"创建成功.XX",//Eway.locale.msg.createSuccess
-			mustHaveOneResource:'至少包含一个广告资源!XX',//Eway.locale.msg.mustHaveOneResource
-			saveFail:'保存失败XX',//Eway.locale.msg.saveFail
-			saveFileSizeMaxFail:'保存失败:超过最大单个文件大小限制（最大30M）XX',//Eway.locale.msg.saveFileSizeMaxFail
-			saveFileCommunicationFail:'保存失败:与服务器通讯失败XX',//Eway.locale.msg.saveFileCommunicationFail
-			chooseDevice:"请选择设备.XX",//Eway.locale.msg.chooseDevice
-			downloadFailForNoVersion:"下发版本文件失败:还没有生成版本文件或者版本文件丢失,请先生成版本文件.XX",//Eway.locale.msg.downloadFailForNoVersion
-			saveSuccess:'保存成功！XX',//Eway.locale.msg.saveSuccess
+			perviewFailForText:'预览失败:不支持文字滚动广告和公告的预览.',//Eway.locale.msg.perviewFailForText
+			perviewFailNoResource:'预览失败:此广告没有配置广告资源.',//Eway.locale.msg.perviewFailNoResource
+			choseResToPerview:'请选择您要预览的广告.',//Eway.locale.msg.choseResToPerview
+			chooseAdvert:'请选择一条广告.',//Eway.locale.msg.chooseAdvert
+			chooseOneDevice:'请选择一台设备.',//Eway.locale.msg.chooseOneDevice
+			downLoadedAdvertCantDelete:'删除失败:不能删除"已下发"和"等待下发"状态的广告.',//Eway.locale.msg.downLoadedAdvertCantDelete
+			chooseAdvertToDelete:'请选择您要删除的广告.',//Eway.locale.msg.chooseAdvertToDelete
+			chooseAdvertToDownload:'请选择您要删除的广告.',//Eway.locale.msg.chooseAdvertToDownload
+			generalVersionFailForDownloaded:'生成版本文件失败:"已下发"状态的广告不能再生成版本信息.',//Eway.locale.msg.generalVersionFailForDownloaded
+			generalVersionSuccess:"生成版本文件成功.",//Eway.locale.msg.generalVersionSuccess
+			createSuccess:"创建成功.",//Eway.locale.msg.createSuccess
+			mustHaveOneResource:'至少包含一个广告资源!',//Eway.locale.msg.mustHaveOneResource
+			saveFail:'保存失败',//Eway.locale.msg.saveFail
+			saveFileSizeMaxFail:'保存失败:超过最大单个文件大小限制（最大30M）',//Eway.locale.msg.saveFileSizeMaxFail
+			saveFileCommunicationFail:'保存失败:与服务器通讯失败',//Eway.locale.msg.saveFileCommunicationFail
+			chooseDevice:"请选择设备.",//Eway.locale.msg.chooseDevice
+			downloadFailForNoVersion:"下发版本文件失败:还没有生成版本文件或者版本文件丢失,请先生成版本文件.",//Eway.locale.msg.downloadFailForNoVersion
+			saveSuccess:'保存成功！',//Eway.locale.msg.saveSuccess
 			
-			versionDownloaded:'不能删除"等待下发"和"已下发"状态的版本.XX',//Eway.locale.msg.versionDownloaded
-			selectVersionToDelete:'请选择您要删除的版本.XX',//Eway.locale.msg.selectVersionToDelete
-			communicationFail:'增加失败:与服务器通讯失败.XX',//Eway.locale.msg.communicationFail
-			sameVersionNoFail:'增加失败:已经存在相同的版本号.XX',//Eway.locale.msg.sameVersionNoFail
-			fileSizeMaxFail:'增加失败:超过最大文件大小限制（最大300M）XX',//Eway.locale.msg.fileSizeMaxFail
-			fileUnzipFail:'增加失败:上传的压缩包不能正常解压XX',//Eway.locale.msg.fileUnzipFail
-			addFileFail:'增加失败:XX',//Eway.locale.msg.addFileFail
-			mustSelectDevice:'请至少选择一个设备.XX',//Eway.locale.msg.mustSelectDevice
-			selectVersionRecord:'请选择您要下发的版本.XX',//Eway.locale.msg.selectVersionRecord
-			missVersionFile:"版本文件丢失,暂不能对版本进行下发控制.XX"//Eway.locale.msg.missVersionFile
+			versionDownloaded:'不能删除"等待下发"和"已下发"状态的版本.',//Eway.locale.msg.versionDownloaded
+			selectVersionToDelete:'请选择您要删除的版本.',//Eway.locale.msg.selectVersionToDelete
+			communicationFail:'增加失败:与服务器通讯失败.',//Eway.locale.msg.communicationFail
+			sameVersionNoFail:'增加失败:已经存在相同的版本号.',//Eway.locale.msg.sameVersionNoFail
+			fileSizeMaxFail:'增加失败:超过最大文件大小限制（最大300M）',//Eway.locale.msg.fileSizeMaxFail
+			fileUnzipFail:'增加失败:上传的压缩包不能正常解压',//Eway.locale.msg.fileUnzipFail
+			addFileFail:'增加失败:',//Eway.locale.msg.addFileFail
+			mustSelectDevice:'请至少选择一个设备.',//Eway.locale.msg.mustSelectDevice
+			selectVersionRecord:'请选择您要下发的版本.',//Eway.locale.msg.selectVersionRecord
+			missVersionFile:"版本文件丢失,暂不能对版本进行下发控制."//Eway.locale.msg.missVersionFile
 		},
 		confirm:{
-			titleSure:'确认XX',//Eway.locale.confirm.titleSure
-			todoDelete:'是否删除该记录?XX',//Eway.locale.confirm.todoDelete
-			title:'提示XX',//Eway.locale.confirm.title
-			withoutNumTaskConfirmInfo:'作业保存成功,是否跳转到"分发监控"页面?XX',//Eway.locale.confirm.withoutNumTaskConfirmInfo
+			titleSure:'确认',//Eway.locale.confirm.titleSure
+			todoDelete:'是否删除该记录?',//Eway.locale.confirm.todoDelete
+			title:'提示',//Eway.locale.confirm.title
+			withoutNumTaskConfirmInfo:'作业保存成功,是否跳转到"分发监控"页面?',//Eway.locale.confirm.withoutNumTaskConfirmInfo
 			//TODO *为数字需要替换
-			taskConfirmInfo0:'第XX',//Eway.locale.confirm.taskConfirmInfo0
-			taskConfirmInfo1:'次作业保存成功,是否跳转到"分发监控"页面?XX'//Eway.locale.confirm.taskConfirmInfo1
+			taskConfirmInfo0:'第',//Eway.locale.confirm.taskConfirmInfo0
+			taskConfirmInfo1:'次作业保存成功,是否跳转到"分发监控"页面?'//Eway.locale.confirm.taskConfirmInfo1
 		},
 		button:{
-			search:'查询XX',//Eway.locale.button.search
-			add : '增加XX',
-			update:'更改XX',
-			remove:'删除XX',
-			refresh:'刷新XX',
-			reset:'重置XX',//Eway.locale.button.reset
-			back:'返回XX',//Eway.locale.button.back
-			apply:'应用XX',
+			search:'查询',//Eway.locale.button.search
+			add : '增加',
+			update:'更改',
+			remove:'删除',
+			refresh:'刷新',
+			reset:'重置',//Eway.locale.button.reset
+			back:'返回',//Eway.locale.button.back
+			apply:'应用',
 			//bankOrg
-			deepQuery:'深度查询XX',
-			bankOrgMove:'组织迁移XX',
-			bankOrgAdmin:'管理员XX',
+			deepQuery:'深度查询',
+			bankOrgMove:'组织迁移',
+			bankOrgAdmin:'管理员',
 			//bankPerson
-			bankPerlink:'绑定设备XX',
+			bankPerlink:'绑定设备',
 			sure:'确定',//Eway.locale.button.sure
-			confirm:'确认XX',//Eway.locale.button.confirm
-			cancle:'取消XX',//Eway.locale.button.cancle
+			confirm:'确认',//Eway.locale.button.confirm
+			cancle:'取消',//Eway.locale.button.cancle
 			choose:'选择',//Eway.locale.button.choose
 			pause:'暂停',//Eway.locale.button.pause
 				
-			exported:'导出XX',//Eway.locale.button.exported
-			select:'选择XX',
-			info :'详细信息XX',
-			move:'移机XX',
+			exported:'导出',//Eway.locale.button.exported
+			select:'选择',
+			info :'详细信息',
+			move:'移机',
 			exportXLS:'导出XLS',
 			exportPDF:'导出PDF',
-			massExport:'批量导入@@',
-			download:'下发XX',
-			downloadToolTip:'配置下发作业XX',
-			save:'保存XX',//Eway.locale.button.save
+			massExport:'批量导入',
+			download:'下发',
+			downloadToolTip:'配置下发作业',
+			save:'保存',//Eway.locale.button.save
 		},
 		//引用其他模块
 		refs:{
-			selectAll:'全部XX',//Eway.locale.refs.selectAll
-			orgName:'机构XX',//Eway.locale.refs.orgName
-			terminalId:'设备编号XX',//Eway.locale.refs.terminalId
-			ip:'IP地址XX',//Eway.locale.refs.ip
-			devType:"设备型号XX"//Eway.locale.refs.devType
+			selectAll:'全部',//Eway.locale.refs.selectAll
+			orgName:'机构',//Eway.locale.refs.orgName
+			terminalId:'设备编号',//Eway.locale.refs.terminalId
+			ip:'IP地址',//Eway.locale.refs.ip
+			devType:"设备型号"//Eway.locale.refs.devType
 		},
 		//**********************************************************/
 		tip:{
 			search :{
-				warn:'查询条件存在错误项XX.',
-				record:'请选择您要查看的记录.XX'
+				warn:'查询条件存在错误项.',
+				record:'请选择您要查看的记录.'
 			},
 			update:{
-				one:'只能选择一条记录更改XX.',
-				two:'此条记录不能被更改.XX'
+				one:'只能选择一条记录更改.',
+				two:'此条记录不能被更改.'
 			},
 			remove :{
-				none:'请选择您要删除的记录.XX',
-				one:'只能选择一条记录删除XX',
+				none:'请选择您要删除的记录.',
+				one:'只能选择一条记录删除',
 				confirm:{
-					title:'请确认XX',
-					info:'是否删除该记录?XX'
+					title:'请确认',
+					info:'是否删除该记录?'
 				},
-				error:'删除失败:XX'
+				error:'删除失败:'
 			},
 			own:{
-				have:'有XX',
-				nothing:'无XX'
+				have:'有',
+				nothing:'无'
 			},
 			right:{
-				yes:'是XX',
-				no:'否XX'
+				yes:'是',
+				no:'否'
 			},
 			add:{
 				error:'新增失败'//Eway.locale.tip.add.error
 			},
-			success:'成功.XX',//Eway.locale.tip.success
-			fail:'失败:XX',//Eway.locale.tip.fail
-			phone:'请输入正确的电话号码XX',
-			remind:'提示XX',//Eway.locale.tip.remind
-			displayMessage:'总共：{2}条，显示{0}-{1}XX',
+			success:'成功.',//Eway.locale.tip.success
+			fail:'失败:',//Eway.locale.tip.fail
+			phone:'请输入正确的电话号码',
+			remind:'提示',//Eway.locale.tip.remind
+			displayMessage:'总共：{2}条，显示{0}-{1}',
 			
-			unCertain:'未知XX',
-			searchOfNoLegal:'查询项中存在不合法的输入,不能提交.XX',
-			choseExportDevInfo:'请选择要导出信息的设备XX',
-			nowLink:'正在连接......XX',
-			linkFailure:'连接失败.XX',//Eway.locale.tip.linkFailure
-			inputError:'输入有误.XX',
-			numberExist:'此编号已经存在,请重新输入.XX',
-			isConfirmRemove:'删除分组,关联关系也被删除,是否真的要删除指定分组?XX',
-			noGroupInfo:'没有组信息,无法查询.XX',
-			selectAdd:'请选择您要增加的记录.XX',
-			continueAdd:'添加成功,是否继续向组内添加设备?XX',
-			addFail:'添加失败.XX',
-			isRemoveDev:'是否从该组移除该设备?XX',
-			removeFail:'移除失败.XX',
-			selectRemoveGroup:'请选择您要移除的设备所在组.XX',
-			selectRemoveDev:'请选择您要移除的设备.XX',
-			selectMoveDev:'请选择要移动的设备.XX',
-			moveSuc:'移机成功.XX',
-			dateReSelect:'开始时间不能大于结束日期,请重新选择XX',
-			selectPlan:'请选择您应用的方案.XX',
-			removeFail:'解除失败.XX',
+			unCertain:'未知',
+			searchOfNoLegal:'查询项中存在不合法的输入,不能提交.',
+			choseExportDevInfo:'请选择要导出信息的设备',
+			nowLink:'正在连接......',
+			linkFailure:'连接失败.',//Eway.locale.tip.linkFailure
+			inputError:'输入有误.',
+			numberExist:'此编号已经存在,请重新输入.',
+			isConfirmRemove:'删除分组,关联关系也被删除,是否真的要删除指定分组?',
+			noGroupInfo:'没有组信息,无法查询.',
+			selectAdd:'请选择您要增加的记录.',
+			continueAdd:'添加成功,是否继续向组内添加设备?',
+			addFail:'添加失败.',
+			isRemoveDev:'是否从该组移除该设备?',
+			removeFail:'移除失败.',
+			selectRemoveGroup:'请选择您要移除的设备所在组.',
+			selectRemoveDev:'请选择您要移除的设备.',
+			selectMoveDev:'请选择要移动的设备.',
+			moveSuc:'移机成功.',
+			dateReSelect:'开始时间不能大于结束日期,请重新选择',
+			selectPlan:'请选择您应用的方案.',
+			removeFail:'解除失败.',
 			selectRemoveDev:'请选择要解除的设备.',
 			relatedFail:'关联失败.',
 			selectRelatedDev:'请选择要关联的设备.',
 			planNoUpdate:'该方案已经执行,不可修改.',
 			planNoRemove:'该方案已经执行,不可删除.',
-			exportFiles: '@@请选择导入文件,只支持.xls和.xlsx格式的文件',
+			exportFiles: '请选择导入文件,只支持.xls和.xlsx格式的文件',
 			
 			//add by panxin
 			tips:'提示',//Eway.locale.tip.tips
@@ -332,7 +332,7 @@ Ext.override(Eway,{
 		
 		combox:{
 			select:'--请选择--',//Eway.locale.combox.select
-			explorer: '浏览...@@',//Eway.locale.combox.explorer
+			explorer: '浏览...',//Eway.locale.combox.explorer
 		},
 		
 		
@@ -348,33 +348,33 @@ Ext.override(Eway,{
 			daterange:'日期段不正确.',
 			numberrange:'金额范围不正确.',
 			
-			bankOrgCode:'只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！XX',
-			zip:'只能输入6个‘0-9’的数字！XX',
-			maxLength20:'允许的最大长度为20XX',
-			numberRule: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’和点号‘.’，只能以字母或数字开头。XX',
-			numberRulesOne: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入100位XX',
-			numberRulesFour	: '由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位XX',
-			numberRules: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入200位XX',
+			bankOrgCode:'只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！',
+			zip:'只能输入6个‘0-9’的数字！',
+			maxLength20:'允许的最大长度为20',
+			numberRule: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’和点号‘.’，只能以字母或数字开头。',
+			numberRulesOne: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入100位',
+			numberRulesFour	: '由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位',
+			numberRules: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入200位',
 			
 			
-			mobileRules:'手机电话号码只能输入8到11位数字‘0-9’XX',
-			choseDev:'请选择您报停的设备.XX',
-			dataLoad:'正在加载数据......XX',
-			devLinkNormal:'请检查与设备的连接是否正常.XX',
-			hardwayInitialize:'硬件模块正在初始化......XX',
-			inputCorrect:'请正确输入.XX',
-			exportRepError:'导出报表出错，请重新操作!XX',
+			mobileRules:'手机电话号码只能输入8到11位数字‘0-9’',
+			choseDev:'请选择您报停的设备.',
+			dataLoad:'正在加载数据......',
+			devLinkNormal:'请检查与设备的连接是否正常.',
+			hardwayInitialize:'硬件模块正在初始化......',
+			inputCorrect:'请正确输入.',
+			exportRepError:'导出报表出错，请重新操作!',
 			planOutdate:'(此方案已过期，不可应用！)',
 			
-			emailRules: 'email必须符合*@*.*标准。@@@@',
-			notifyTimesRules: '通知次数必须为数字，最小值为0,最大值为100。@@@',
-			sendTimesRules: '发送次数必须为数字，最小值为0,最大值为100。@@@@@'	,
+			emailRules: 'email必须符合*@*.*标准。',
+			notifyTimesRules: '通知次数必须为数字，最小值为0,最大值为100。',
+			sendTimesRules: '发送次数必须为数字，最小值为0,最大值为100。'	,
 			
-			launchTranscribe:'正在启动录制......$$',
+			launchTranscribe:'正在启动录制......',
 			stopTranscribe:'正在停止录制......',
-			inexistenceScreen:'不存在此屏幕$$',
-			devEmploy:'该台设备已经被$$',
-			userEmploy:'用户占用!$$',
+			inexistenceScreen:'不存在此屏幕',
+			devEmploy:'该台设备已经被',
+			userEmploy:'用户占用!',
 			loadTranscribe:'正在下载录制好的视频文件......',
 			remoteFailure:'远程浏览失败',
 			versionChart:'版本下发历史状态分布图',
@@ -386,266 +386,266 @@ Ext.override(Eway,{
 		},
 		//**********************************************************/
 		versionType:{
-			title:'软件分类管理XX',//Eway.locale.versionType.title
-			treeRoot:'所有软件分类XX',//Eway.locale.versionType.treeRoot
-			defaultInstallPath:'默认安装路径XX',//Eway.locale.versionType.defaultInstallPath
-			needRestart:'需要重启设备完成升级XX',//Eway.locale.versionType.needRestart
-			devTypeOfUser:'适用的设备型号XX',//Eway.locale.versionType.devTypeOfUser
-			winTitle:'软件分类XX',//Eway.locale.versionType.winTitle
-			versionTypeNameRegText:'只能输入字母(a-z或A-Z)、数字(0-9)、下划线(_)、横线(-)XX'//Eway.locale.versionType.versionTypeNameRegText
+			title:'软件分类管理',//Eway.locale.versionType.title
+			treeRoot:'所有软件分类',//Eway.locale.versionType.treeRoot
+			defaultInstallPath:'默认安装路径',//Eway.locale.versionType.defaultInstallPath
+			needRestart:'需要重启设备完成升级',//Eway.locale.versionType.needRestart
+			devTypeOfUser:'适用的设备型号',//Eway.locale.versionType.devTypeOfUser
+			winTitle:'软件分类',//Eway.locale.versionType.winTitle
+			versionTypeNameRegText:'只能输入字母(a-z或A-Z)、数字(0-9)、下划线(_)、横线(-)'//Eway.locale.versionType.versionTypeNameRegText
 		},
 		statics:{
-			title:'下发结果统计XX',//Eway.locale.statics.title
-			versionInfo:'版本信息XX'//Eway.locale.statics.versionInfo
+			title:'下发结果统计',//Eway.locale.statics.title
+			versionInfo:'版本信息'//Eway.locale.statics.versionInfo
 		},
 		//广告模块
 		advert:{
-			title:'广告管理XX',//Eway.locale.advert.title
-			createAdvert:'创建广告XX',//Eway.locale.advert.createAdvert
-			idleAdvert:'创建等待插卡广告XX',//Eway.locale.advert.idleAdvert
-			transAdvert:'创建交易页面广告XX',//Eway.locale.advert.transAdvert
-			textAdvert:'创建文字滚动广告XX',//Eway.locale.advert.textAdvert
-			annoucementAdvert:'创建公告XX',//Eway.locale.advert.annoucementAdvert
-			updateTitle:'更改广告信息XX',//Eway.locale.advert.updateTitle
-			downloadButton:'下发广告XX',//Eway.locale.advert.downloadButton
-			preview:'广告预览XX',//Eway.locale.advert.preview
-			id:'广告IDXX',//Eway.locale.advert.id
-			type:'广告类型XX',//Eway.locale.advert.type
-			downType:'广告下发方式XX',//Eway.locale.advert.downType
-			validity:'广告有效期XX',//Eway.locale.advert.validity
-			createdTime:'制作时间XX',//Eway.locale.advert.createdTime
-			userName:'制作人XX',//Eway.locale.advert.userName
-			versionStatus:'广告版本状态XX',//Eway.locale.advert.versionStatus
-			advertVersionFile:'版本文件XX',//Eway.locale.advert.advertVersionFile
-			createdTimeStart:'制作时间开始于XX',//Eway.locale.advert.createdTimeStart
-			createdTimeStop:'制作时间结束于XX',//Eway.locale.advert.createdTimeStop
-			downloadAdvertConfig:'下发广告配置XX',//Eway.locale.advert.downloadAdvertConfig
-			versionType:'软件分类XX',//Eway.locale.advert.versionType
-			jobPriority:'作业优先级XX',//Eway.locale.advert.jobPriority
-			jobType:'作业类型XX',//Eway.locale.advert.jobType
-			toVersionButton:'还没有生成版本信息，可以单击按钮[生成版本]。XX',//Eway.locale.advert.toVersionButton
-			playTime:'广告播放时长XX',//Eway.locale.advert.playTime
-			beginDate:'开始日期XX',//Eway.locale.advert.beginDate
-			endDate:'结束日期XX',//Eway.locale.advert.endDate
-			beginTime:'开始时间XX',//Eway.locale.advert.beginTime
-			endTime:'结束时间XX',//Eway.locale.advert.endTime
-			fileSize:'资源大小XX',//Eway.locale.advert.fileSize
-			content:'播放资源内容XX',//Eway.locale.advert.content
-			advertConfig:'广告配置XX',//Eway.locale.advert.advertConfig
-			addIdleTitle:'增加等待插卡广告信息XX',//Eway.locale.advert.addIdleTitle
-			addIdleMore:'再增加一个广告资源XX',//Eway.locale.advert.addIdleMore
-			advertBasicInfo:'广告基本信息XX',//Eway.locale.advert.advertBasicInfo
-			idleAdvertInfo:'等待插卡页面广告XX',//Eway.locale.advert.idleAdvertInfo
-			advertValidity:'广告有效期XX',//Eway.locale.advert.advertValidity
-			validityTemp:'临时播放XX',//Eway.locale.advert.validityTemp
-			validityAlways:'永久播放XX',//Eway.locale.advert.validityAlways
-			idleAdvertResConfig:'等待插卡页面广告资源配置XX',//Eway.locale.advert.idleAdvertResConfig
-			addTransTitle:'增加交易页面广告信息XX',//Eway.locale.advert.addTransTitle
-			transInfoAdvert:'交易页面广告XX',//Eway.locale.advert.transInfoAdvert	
-			transAdvertResConfig:'交易页面广告资源配置XX',//Eway.locale.advert.transAdvertResConfig
-			addTextTitle:'增加文字滚动广告信息XX',//Eway.locale.advert.addTextTitle
-			textInfoAdvert:'文字广告XX',//Eway.locale.advert.textInfoAdvert	
-			textAdvertResConfig:'文字广告资源配置XX',//Eway.locale.advert.textAdvertResConfig
-			addAnnoucementTitle:'增加公告信息XX',//Eway.locale.advert.addAnnoucementTitle
-			annoucementBasicInfo:'公告基本信息XX',//Eway.locale.advert.annoucementBasicInfo
-			annoucementInfoAdvert:'公告XX',//Eway.locale.advert.annoucementInfoAdvert	
-			annoucementAdvertResConfig:'公告页面广告资源配置XX',//Eway.locale.advert.annoucementAdvertResConfig
-			advertTypeSelectEmpty:'请选择广告类型XX',//Eway.locale.advert.advertTypeSelectEmpty
-			advertTypeTrans:'交易页面广告XX',//Eway.locale.advert.advertTypeTrans
-			advertTypeIdle:'等待插卡广告XX',//Eway.locale.advert.advertTypeIdle
-			advertTypeText:'文字滚动广告XX',//Eway.locale.advert.advertTypeText
-			advertTypeAnnou:'公告XX',//Eway.locale.advert.advertTypeAnnou
-			annoucementMoreTitle:'添加公告XX',//Eway.locale.advert.annoucementMoreTitle
-			annoucementContext:'公告内容XX',//Eway.locale.advert.annoucementContext
-			annoucementContextRegText:'不能包含空格XX',//Eway.locale.advert.annoucementContextRegText
-			times:'时长XX',//Eway.locale.advert.times
-			timesTips:'单位:秒，提示：广告播放时长请控制在60秒内XX',//Eway.locale.advert.timesTips
-			hourDisplay:'时XX',//Eway.locale.advert.hourDisplay
-			minuteDisplay:'分XX',//Eway.locale.advert.minuteDisplay
-			secondeDisplay:'秒XX',//Eway.locale.advert.secondeDisplay
-			textMoreTitle:'添加文字滚动页面广告XX',//Eway.locale.advert.textMoreTitle
-			textContext:'滚动文字XX',//Eway.locale.advert.textContext
-			idleMoreTitle:'添加等待插卡页面广告XX',//Eway.locale.advert.idleMoreTitle
-			chooseMediaFile:'请选择媒体文件XX',//Eway.locale.advert.chooseMediaFile
-			uploadResource:'上传资源...XX',//Eway.locale.advert.uploadResource
-			uploadResourceBlank:'请上传资源XX',//Eway.locale.advert.uploadResourceBlank
-			uploadRegText:'上传的资源格式不支持,只能上传.jpg、.avi格式的文件XX',//Eway.locale.advert.uploadRegText
-			resourceFormatTips:'(仅支持.jpg、.avi格式的文件)XX',//Eway.locale.advert.resourceFormatTips
-			resourceAlias:'修改后的文件名XX',//Eway.locale.advert.resourceAlias
-			transMoreTitle:'添加交易页面广告XX',//Eway.locale.advert.transMoreTitle
-			chooseMediaFile:'请选择媒体文件XX',//Eway.locale.advert.chooseMediaFile
-			uploadResource:'上传资源...XX',//Eway.locale.advert.uploadResource
-			uploadResourceBlank:'请上传资源XX',//Eway.locale.advert.uploadResourceBlank
-			uploadRegText:'上传的资源格式不支持,只能上传.jpg、.avi格式的文件XX',//Eway.locale.advert.uploadRegText
-			resourceFormatTips:'(仅支持.jpg、.avi格式的文件)XX',//Eway.locale.advert.resourceFormatTips
-			resourceAlias:'修改后的文件名XX',//Eway.locale.advert.resourceAlias
-			advertDownMethodCover:'覆盖XX',//Eway.locale.advert.advertDownMethodCover
-			uploading:'正在上传资源...XX',//Eway.locale.advert.uploading
-			advertPreviewTitle0:'广告预览(共有 XX',//Eway.locale.advert.advertPreviewTitle0
-			advertPreviewTitle1:'个资源,当前播放第 XX',//Eway.locale.advert.advertPreviewTitle1
-			advertPreviewTitle2:'个) XX',//Eway.locale.advert.advertPreviewTitle2
-			choosedAdvertRes:'您已经选择了XX',//Eway.locale.advert.choosedAdvertRes
-			perviewAdertWithIEBrowse:'非IE浏览器不支持视频广告的预览.XX',//Eway.locale.advert.perviewAdertWithIEBrowse
-			configTitle:'广告详细配置XX'//Eway.locale.advert.configTitle
+			title:'广告管理',//Eway.locale.advert.title
+			createAdvert:'创建广告',//Eway.locale.advert.createAdvert
+			idleAdvert:'创建等待插卡广告',//Eway.locale.advert.idleAdvert
+			transAdvert:'创建交易页面广告',//Eway.locale.advert.transAdvert
+			textAdvert:'创建文字滚动广告',//Eway.locale.advert.textAdvert
+			annoucementAdvert:'创建公告',//Eway.locale.advert.annoucementAdvert
+			updateTitle:'更改广告信息',//Eway.locale.advert.updateTitle
+			downloadButton:'下发广告',//Eway.locale.advert.downloadButton
+			preview:'广告预览',//Eway.locale.advert.preview
+			id:'广告ID',//Eway.locale.advert.id
+			type:'广告类型',//Eway.locale.advert.type
+			downType:'广告下发方式',//Eway.locale.advert.downType
+			validity:'广告有效期',//Eway.locale.advert.validity
+			createdTime:'制作时间',//Eway.locale.advert.createdTime
+			userName:'制作人',//Eway.locale.advert.userName
+			versionStatus:'广告版本状态',//Eway.locale.advert.versionStatus
+			advertVersionFile:'版本文件',//Eway.locale.advert.advertVersionFile
+			createdTimeStart:'制作时间开始于',//Eway.locale.advert.createdTimeStart
+			createdTimeStop:'制作时间结束于',//Eway.locale.advert.createdTimeStop
+			downloadAdvertConfig:'下发广告配置',//Eway.locale.advert.downloadAdvertConfig
+			versionType:'软件分类',//Eway.locale.advert.versionType
+			jobPriority:'作业优先级',//Eway.locale.advert.jobPriority
+			jobType:'作业类型',//Eway.locale.advert.jobType
+			toVersionButton:'还没有生成版本信息，可以单击按钮[生成版本]。',//Eway.locale.advert.toVersionButton
+			playTime:'广告播放时长',//Eway.locale.advert.playTime
+			beginDate:'开始日期',//Eway.locale.advert.beginDate
+			endDate:'结束日期',//Eway.locale.advert.endDate
+			beginTime:'开始时间',//Eway.locale.advert.beginTime
+			endTime:'结束时间',//Eway.locale.advert.endTime
+			fileSize:'资源大小',//Eway.locale.advert.fileSize
+			content:'播放资源内容',//Eway.locale.advert.content
+			advertConfig:'广告配置',//Eway.locale.advert.advertConfig
+			addIdleTitle:'增加等待插卡广告信息',//Eway.locale.advert.addIdleTitle
+			addIdleMore:'再增加一个广告资源',//Eway.locale.advert.addIdleMore
+			advertBasicInfo:'广告基本信息',//Eway.locale.advert.advertBasicInfo
+			idleAdvertInfo:'等待插卡页面广告',//Eway.locale.advert.idleAdvertInfo
+			advertValidity:'广告有效期',//Eway.locale.advert.advertValidity
+			validityTemp:'临时播放',//Eway.locale.advert.validityTemp
+			validityAlways:'永久播放',//Eway.locale.advert.validityAlways
+			idleAdvertResConfig:'等待插卡页面广告资源配置',//Eway.locale.advert.idleAdvertResConfig
+			addTransTitle:'增加交易页面广告信息',//Eway.locale.advert.addTransTitle
+			transInfoAdvert:'交易页面广告',//Eway.locale.advert.transInfoAdvert	
+			transAdvertResConfig:'交易页面广告资源配置',//Eway.locale.advert.transAdvertResConfig
+			addTextTitle:'增加文字滚动广告信息',//Eway.locale.advert.addTextTitle
+			textInfoAdvert:'文字广告',//Eway.locale.advert.textInfoAdvert	
+			textAdvertResConfig:'文字广告资源配置',//Eway.locale.advert.textAdvertResConfig
+			addAnnoucementTitle:'增加公告信息',//Eway.locale.advert.addAnnoucementTitle
+			annoucementBasicInfo:'公告基本信息',//Eway.locale.advert.annoucementBasicInfo
+			annoucementInfoAdvert:'公告',//Eway.locale.advert.annoucementInfoAdvert	
+			annoucementAdvertResConfig:'公告页面广告资源配置',//Eway.locale.advert.annoucementAdvertResConfig
+			advertTypeSelectEmpty:'请选择广告类型',//Eway.locale.advert.advertTypeSelectEmpty
+			advertTypeTrans:'交易页面广告',//Eway.locale.advert.advertTypeTrans
+			advertTypeIdle:'等待插卡广告',//Eway.locale.advert.advertTypeIdle
+			advertTypeText:'文字滚动广告',//Eway.locale.advert.advertTypeText
+			advertTypeAnnou:'公告',//Eway.locale.advert.advertTypeAnnou
+			annoucementMoreTitle:'添加公告',//Eway.locale.advert.annoucementMoreTitle
+			annoucementContext:'公告内容',//Eway.locale.advert.annoucementContext
+			annoucementContextRegText:'不能包含空格',//Eway.locale.advert.annoucementContextRegText
+			times:'时长',//Eway.locale.advert.times
+			timesTips:'单位:秒，提示：广告播放时长请控制在60秒内',//Eway.locale.advert.timesTips
+			hourDisplay:'时',//Eway.locale.advert.hourDisplay
+			minuteDisplay:'分',//Eway.locale.advert.minuteDisplay
+			secondeDisplay:'秒',//Eway.locale.advert.secondeDisplay
+			textMoreTitle:'添加文字滚动页面广告',//Eway.locale.advert.textMoreTitle
+			textContext:'滚动文字',//Eway.locale.advert.textContext
+			idleMoreTitle:'添加等待插卡页面广告',//Eway.locale.advert.idleMoreTitle
+			chooseMediaFile:'请选择媒体文件',//Eway.locale.advert.chooseMediaFile
+			uploadResource:'上传资源...',//Eway.locale.advert.uploadResource
+			uploadResourceBlank:'请上传资源',//Eway.locale.advert.uploadResourceBlank
+			uploadRegText:'上传的资源格式不支持,只能上传.jpg、.avi格式的文件',//Eway.locale.advert.uploadRegText
+			resourceFormatTips:'(仅支持.jpg、.avi格式的文件)',//Eway.locale.advert.resourceFormatTips
+			resourceAlias:'修改后的文件名',//Eway.locale.advert.resourceAlias
+			transMoreTitle:'添加交易页面广告',//Eway.locale.advert.transMoreTitle
+			chooseMediaFile:'请选择媒体文件',//Eway.locale.advert.chooseMediaFile
+			uploadResource:'上传资源...',//Eway.locale.advert.uploadResource
+			uploadResourceBlank:'请上传资源',//Eway.locale.advert.uploadResourceBlank
+			uploadRegText:'上传的资源格式不支持,只能上传.jpg、.avi格式的文件',//Eway.locale.advert.uploadRegText
+			resourceFormatTips:'(仅支持.jpg、.avi格式的文件)',//Eway.locale.advert.resourceFormatTips
+			resourceAlias:'修改后的文件名',//Eway.locale.advert.resourceAlias
+			advertDownMethodCover:'覆盖',//Eway.locale.advert.advertDownMethodCover
+			uploading:'正在上传资源...',//Eway.locale.advert.uploading
+			advertPreviewTitle0:'广告预览(共有 ',//Eway.locale.advert.advertPreviewTitle0
+			advertPreviewTitle1:'个资源,当前播放第 ',//Eway.locale.advert.advertPreviewTitle1
+			advertPreviewTitle2:'个) ',//Eway.locale.advert.advertPreviewTitle2
+			choosedAdvertRes:'您已经选择了',//Eway.locale.advert.choosedAdvertRes
+			perviewAdertWithIEBrowse:'非IE浏览器不支持视频广告的预览.',//Eway.locale.advert.perviewAdertWithIEBrowse
+			configTitle:'广告详细配置'//Eway.locale.advert.configTitle
 		},
 		//版本管理模块
 		version:{
-			selectDeviceInfo0:"已选择的设备(<font color='red'>XX",//Eway.locale.version.selectDeviceInfo0
-			selectDeviceInfo1:"</font>)台XX",//Eway.locale.version.selectDeviceInfo1
-			addVersionTitle:'增加版本信息XX',//Eway.locale.version.addVersionTitle
-			batchTaskName:'任务批次名称XX',//Eway.locale.version.batchTaskName
-			batchTaskNameEmpty:'例如:****需求第1批次升级XX',//Eway.locale.version.batchTaskNameEmpty
-			UpdateTitle:'更改版本信息XX',//Eway.locale.version.UpdateTitle
-			addJobTitle:'配置作业信息XX',//Eway.locale.version.addJobTitle
-			downloadVersionId:'下发版本IDXX',//Eway.locale.version.downloadVersionId
-			taskType:'任务类型XX',//Eway.locale.version.taskType
-			taskTypeManual:'手动升级XX',//Eway.locale.version.taskTypeManual
-			taskTypeAuto:'自动升级XX',//Eway.locale.version.taskTypeAuto
-			taskTypeScheduler:'计划作业XX',//Eway.locale.version.taskTypeScheduler
-			planTime:'计划执行时间XX',//Eway.locale.version.planTime
-			selectableDevice:'可以下发的设备XX',//Eway.locale.version.selectableDevice
-			linkedDevice:'已选择的设备XX',//Eway.locale.version.linkedDevice
+			selectDeviceInfo0:"已选择的设备(<font color='red'>",//Eway.locale.version.selectDeviceInfo0
+			selectDeviceInfo1:"</font>)台",//Eway.locale.version.selectDeviceInfo1
+			addVersionTitle:'增加版本信息',//Eway.locale.version.addVersionTitle
+			batchTaskName:'任务批次名称',//Eway.locale.version.batchTaskName
+			batchTaskNameEmpty:'例如:****需求第1批次升级',//Eway.locale.version.batchTaskNameEmpty
+			UpdateTitle:'更改版本信息',//Eway.locale.version.UpdateTitle
+			addJobTitle:'配置作业信息',//Eway.locale.version.addJobTitle
+			downloadVersionId:'下发版本ID',//Eway.locale.version.downloadVersionId
+			taskType:'任务类型',//Eway.locale.version.taskType
+			taskTypeManual:'手动升级',//Eway.locale.version.taskTypeManual
+			taskTypeAuto:'自动升级',//Eway.locale.version.taskTypeAuto
+			taskTypeScheduler:'计划作业',//Eway.locale.version.taskTypeScheduler
+			planTime:'计划执行时间',//Eway.locale.version.planTime
+			selectableDevice:'可以下发的设备',//Eway.locale.version.selectableDevice
+			linkedDevice:'已选择的设备',//Eway.locale.version.linkedDevice
 			downloadVerFile:'下载版本文件',//Eway.locale.version.downloadVerFile
 			View:{
-				title:'版本管理XX',
-				versionDetail:'版本详情XX',//Eway.locale.version.View.versionDetail
-				remark:'备注XX', //Eway.locale.version.View.remark
-				newCreate:'新建XX',//Eway.locale.version.View.newCreate
-				downLoaded:'已下发XX',//Eway.locale.version.View.downLoaded
-				waitting:'等待下发XX',//Eway.locale.version.View.waitting
-				versionPath:'版本路径XX',//Eway.locale.version.View.versionPath
-				versionPathRegText:'不符合文件路径规则，规则如下：1.文件名只能包含英文字母(a-z A-Z)、数字(0-9)、下划线(_)、横线(-) ； 2.路径统一用正斜杠(/)作为分隔符 ；3.不区分大小 ; 示例 E: E:/yihuaXX',//Eway.locale.version.View.versionPathRegText
-				versionPathDesc:'(版本文件在自助设备上的安装路径)XX',//Eway.locale.version.View.versionPathDesc
-				versionPerson:'创建人XX',//Eway.locale.version.View.versionPerson
-				versionType:'版本类型XX',//Eway.locale.version.View.versionType
-				versionFile:'版本文件XX',//Eway.locale.version.View.versionFile
-				versionFileButton:'浏览...XX',//Eway.locale.version.View.versionFileButton
-				versionFileRegexText:'只能上传zip或rar格式的文件XX',//Eway.locale.version.View.versionFileRegexText
-				versionFileUploadMsg:'正在上传文件...XX',//Eway.locale.version.View.versionFileUploadMsg
-				versionFileEmpty:'请将要下发的版本文件(或者文件夹)打包zip或rar格式XX',//Eway.locale.version.View.versionFileEmpty
-				versionTypeCode:'软件分类编码XX',//Eway.locale.version.View.versionTypeCode
-				versionTypeName:'软件分类名称XX',//Eway.locale.version.View.versionTypeName
-				versionTypeId:'版本类型IDXX',//Eway.locale.version.View.versionTypeId
-				versionTypeEmpty:'-请选择版本类型-XX',//Eway.locale.version.View.versionTypeEmpty
-				versionTime:'创建时间XX',//Eway.locale.version.View.versionTime
-				versionNo:'版本号XX',//Eway.locale.version.View.versionNo
-				nowVersionNo:'当前版本号XX',//Eway.locale.version.View.nowVersionNo
-				versionStatus:'版本状态XX',//Eway.locale.version.View.versionStatus
-				versionStatusEmptyText:'全部XX',
-				autoUpdate:'允许自动更新XX',//Eway.locale.version.View.autoUpdate
-				autoUpdateYes:'是XX',//Eway.locale.version.View.autoUpdateYes
-				autoUpdateNo:'否XX',//Eway.locale.version.View.autoUpdateNo
-				autoUpdateEmptyText:'全部XX',
-				dependVersion:'依赖版本XX',//Eway.locale.version.View.dependVersion
-				dependVersionEmptyText:'请选择依赖类型XX',
-				execBefore:'升级前执行脚本XX',//Eway.locale.version.View.execBefore
-				execBeforeEmptyText:'请输入升级包中的以bat或cmd结尾的文件XX',//Eway.locale.version.View.execBeforeEmptyText
-				execBeforeRegexText:'只能输入bat或cmd结尾的文件XX',//Eway.locale.version.View.execBeforeRegexText
-				versionDesc:'版本描述XX',//Eway.locale.version.View.versionDesc
-				versionDescEmpty:'请用文字描述此版本需求(最长20字符串)XX',//Eway.locale.version.View.versionDescEmpty
-				otherConfigTitle:'其他配置XX',//Eway.locale.version.View.otherConfigTitle
-				otherConfigAutoDown:'允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)XX',//Eway.locale.version.View.otherConfigAutoDown
-				otherConfigUncompress:'自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>XX',//Eway.locale.version.View.otherConfigUncompress
-				versionServerPath:'文件在服务器上的位置XX', //Eway.locale.version.View.versionServerPath
-				versionName:'版本名称XX',//Eway.locale.version.View.versionName
-				downloadVersionName:'下发的版本XX',//Eway.locale.version.View.downloadVersionName
-				downloadVersionNameEmpty:'请选择下发的版本XX',//Eway.locale.version.View.downloadVersionNameEmpty
+				title:'版本管理',
+				versionDetail:'版本详情',//Eway.locale.version.View.versionDetail
+				remark:'备注', //Eway.locale.version.View.remark
+				newCreate:'新建',//Eway.locale.version.View.newCreate
+				downLoaded:'已下发',//Eway.locale.version.View.downLoaded
+				waitting:'等待下发',//Eway.locale.version.View.waitting
+				versionPath:'版本路径',//Eway.locale.version.View.versionPath
+				versionPathRegText:'不符合文件路径规则，规则如下：1.文件名只能包含英文字母(a-z A-Z)、数字(0-9)、下划线(_)、横线(-) ； 2.路径统一用正斜杠(/)作为分隔符 ；3.不区分大小 ; 示例 E: E:/yihua',//Eway.locale.version.View.versionPathRegText
+				versionPathDesc:'(版本文件在自助设备上的安装路径)',//Eway.locale.version.View.versionPathDesc
+				versionPerson:'创建人',//Eway.locale.version.View.versionPerson
+				versionType:'版本类型',//Eway.locale.version.View.versionType
+				versionFile:'版本文件',//Eway.locale.version.View.versionFile
+				versionFileButton:'浏览...',//Eway.locale.version.View.versionFileButton
+				versionFileRegexText:'只能上传zip或rar格式的文件',//Eway.locale.version.View.versionFileRegexText
+				versionFileUploadMsg:'正在上传文件...',//Eway.locale.version.View.versionFileUploadMsg
+				versionFileEmpty:'请将要下发的版本文件(或者文件夹)打包zip或rar格式',//Eway.locale.version.View.versionFileEmpty
+				versionTypeCode:'软件分类编码',//Eway.locale.version.View.versionTypeCode
+				versionTypeName:'软件分类名称',//Eway.locale.version.View.versionTypeName
+				versionTypeId:'版本类型ID',//Eway.locale.version.View.versionTypeId
+				versionTypeEmpty:'-请选择版本类型-',//Eway.locale.version.View.versionTypeEmpty
+				versionTime:'创建时间',//Eway.locale.version.View.versionTime
+				versionNo:'版本号',//Eway.locale.version.View.versionNo
+				nowVersionNo:'当前版本号',//Eway.locale.version.View.nowVersionNo
+				versionStatus:'版本状态',//Eway.locale.version.View.versionStatus
+				versionStatusEmptyText:'全部',
+				autoUpdate:'允许自动更新',//Eway.locale.version.View.autoUpdate
+				autoUpdateYes:'是',//Eway.locale.version.View.autoUpdateYes
+				autoUpdateNo:'否',//Eway.locale.version.View.autoUpdateNo
+				autoUpdateEmptyText:'全部',
+				dependVersion:'依赖版本',//Eway.locale.version.View.dependVersion
+				dependVersionEmptyText:'请选择依赖类型',
+				execBefore:'升级前执行脚本',//Eway.locale.version.View.execBefore
+				execBeforeEmptyText:'请输入升级包中的以bat或cmd结尾的文件',//Eway.locale.version.View.execBeforeEmptyText
+				execBeforeRegexText:'只能输入bat或cmd结尾的文件',//Eway.locale.version.View.execBeforeRegexText
+				versionDesc:'版本描述',//Eway.locale.version.View.versionDesc
+				versionDescEmpty:'请用文字描述此版本需求(最长20字符串)',//Eway.locale.version.View.versionDescEmpty
+				otherConfigTitle:'其他配置',//Eway.locale.version.View.otherConfigTitle
+				otherConfigAutoDown:'允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)',//Eway.locale.version.View.otherConfigAutoDown
+				otherConfigUncompress:'自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>',//Eway.locale.version.View.otherConfigUncompress
+				versionServerPath:'文件在服务器上的位置', //Eway.locale.version.View.versionServerPath
+				versionName:'版本名称',//Eway.locale.version.View.versionName
+				downloadVersionName:'下发的版本',//Eway.locale.version.View.downloadVersionName
+				downloadVersionNameEmpty:'请选择下发的版本',//Eway.locale.version.View.downloadVersionNameEmpty
 				distributionPic:'版本分布图',//Eway.locale.version.View.distributionPic
 				job:{
-					newCreate:'新建XX',
-					running:'运行中XX',
-					scheduler:'计划中XX',
-					ready:'准备运行XX',
-					pause:'暂停XX',
-					complete:'完成XX'
+					newCreate:'新建',
+					running:'运行中',
+					scheduler:'计划中',
+					ready:'准备运行',
+					pause:'暂停',
+					complete:'完成'
 				}
 			},
 			VersionInstallInfo:{
-				title:'版本安装信息统计图XX'
+				title:'版本安装信息统计图'
 			},
 			jobPriority:{
-				hight:'高XX',//Eway.locale.version.jobPriority.hight
-				middle:'中等XX',//Eway.locale.version.jobPriority.middle
-				general:'普通XX'//Eway.locale.version.jobPriority.general
+				hight:'高',//Eway.locale.version.jobPriority.hight
+				middle:'中等',//Eway.locale.version.jobPriority.middle
+				general:'普通'//Eway.locale.version.jobPriority.general
 			},
 			jobType:{
-				float:'手工作业(立即下发)XX',//Eway.locale.version.jobType.float
-				fix:'计划作业(定时下发)XX'//Eway.locale.version.jobType.fix
+				float:'手工作业(立即下发)',//Eway.locale.version.jobType.float
+				fix:'计划作业(定时下发)'//Eway.locale.version.jobType.fix
 			},
 			taskStatus:{
-				news:'新建XX',//Eway.locale.version.taskStatus.news
-				running:'运行中XX',//Eway.locale.version.taskStatus.running
-				noticed:'通知成功XX',//Eway.locale.version.taskStatus.noticed
-				noticedFail:'通知失败XX',//Eway.locale.version.taskStatus.noticedFail
-				downloaded:'已下发XX',//Eway.locale.version.taskStatus.downloaded
-				downloadedFail:'下发失败XX',//Eway.locale.version.taskStatus.downloadedFail
-				deployed:'正在部署XX',//Eway.locale.version.taskStatus.deployed
-				deployedWait:'等待部署XX',//Eway.locale.version.taskStatus.deployedWait
-				deployedFail:'部署失败XX',//Eway.locale.version.taskStatus.deployedFail
-				checked:'部署已确认XX',//Eway.locale.version.taskStatus.checked
-				noticeOk:'已通知应用XX',//Eway.locale.version.taskStatus.noticeOk
-				noticeFail:'通知应用失败XX'//Eway.locale.version.taskStatus.noticeFail
+				news:'新建',//Eway.locale.version.taskStatus.news
+				running:'运行中',//Eway.locale.version.taskStatus.running
+				noticed:'通知成功',//Eway.locale.version.taskStatus.noticed
+				noticedFail:'通知失败',//Eway.locale.version.taskStatus.noticedFail
+				downloaded:'已下发',//Eway.locale.version.taskStatus.downloaded
+				downloadedFail:'下发失败',//Eway.locale.version.taskStatus.downloadedFail
+				deployed:'正在部署',//Eway.locale.version.taskStatus.deployed
+				deployedWait:'等待部署',//Eway.locale.version.taskStatus.deployedWait
+				deployedFail:'部署失败',//Eway.locale.version.taskStatus.deployedFail
+				checked:'部署已确认',//Eway.locale.version.taskStatus.checked
+				noticeOk:'已通知应用',//Eway.locale.version.taskStatus.noticeOk
+				noticeFail:'通知应用失败'//Eway.locale.version.taskStatus.noticeFail
 			},
 			versionCatalog:{
-				app:'应用程序XX',//Eway.locale.version.versionCatalog.app
-				agent:'监控代理XX',//Eway.locale.version.versionCatalog.agent
-				param:'应用配置XX'//Eway.locale.version.versionCatalog.param
+				app:'应用程序',//Eway.locale.version.versionCatalog.app
+				agent:'监控代理',//Eway.locale.version.versionCatalog.agent
+				param:'应用配置'//Eway.locale.version.versionCatalog.param
 			},
 			download:{
-				title:'分发监控XX',//Eway.locale.version.download.title
-				updateTitle:'修改版本下发信息XX',//Eway.locale.version.download.updateTitle
-				taskQueryTips:'根据条件查询选中作业下的详情信息XX',//Eway.locale.version.download.taskQueryTips
-				autoRefresh:'开启自动刷新XX',//Eway.locale.version.download.autoRefresh
-				stopAutoRefresh:'停止自动刷新XX',//Eway.locale.version.download.stopAutoRefresh
-				autoRefreshTips:'刷新周期60秒XX',//Eway.locale.version.download.autoRefreshTips
-				taskExportTips:'导出选中作业下的全部下发结果XX'//Eway.locale.version.download.taskExportTips
+				title:'分发监控',//Eway.locale.version.download.title
+				updateTitle:'修改版本下发信息',//Eway.locale.version.download.updateTitle
+				taskQueryTips:'根据条件查询选中作业下的详情信息',//Eway.locale.version.download.taskQueryTips
+				autoRefresh:'开启自动刷新',//Eway.locale.version.download.autoRefresh
+				stopAutoRefresh:'停止自动刷新',//Eway.locale.version.download.stopAutoRefresh
+				autoRefreshTips:'刷新周期60秒',//Eway.locale.version.download.autoRefreshTips
+				taskExportTips:'导出选中作业下的全部下发结果'//Eway.locale.version.download.taskExportTips
 			},
 			task:{
-				selectJobStartRefresh:'请选择一个作业,再开启定时刷新！XX',//Eway.locale.version.task.selectJobStartRefresh
-				jobBatchName:'作业批次名称XX',//Eway.locale.version.task.jobBatchName
-				patchVersion:'分发版本XX',//Eway.locale.version.task.patchVersion
-				taskStatus:'任务状态XX',//Eway.locale.version.task.taskStatus
-				beforeUpdate:'分发前的版本XX',//Eway.locale.version.task.beforeUpdate
-				exceptVersion:'预期版本XX',//Eway.locale.version.task.exceptVersion
-				actionTime:'执行时间XX',//Eway.locale.version.task.actionTime
-				downSource:'下载源XX',//Eway.locale.version.task.downSource
-				planTime:'计划时间XX',//Eway.locale.version.task.planTime
-				excuteMachine:'执行服务器XX',//Eway.locale.version.task.excuteMachine
-				restartATM:'重启ATMXX',//Eway.locale.version.task.restartATM
-				restartATMTips:'执行重启命令可能存在风险,确认重启?XX',//Eway.locale.version.task.restartATMTips
-				sendRestartCmd:'已发送重启命令！XX',//Eway.locale.version.task.sendRestartCmd
-				cancelDownloadSuccess:'取消下发成功！XX',//Eway.locale.version.task.cancelDownloadSuccess
-				cancelDownload:'取消下发XX',//Eway.locale.version.task.cancelDownload
-				jobName:'作业名称XX',//Eway.locale.version.task.jobName
-				jobStatus:'作业状态XX',//Eway.locale.version.task.jobStatus
-				chooseTitleDevice:'选择设备XX',//Eway.locale.version.task.chooseTitleDevice
-				closeWindow:'关闭窗口XX',//Eway.locale.version.task.closeWindow
-				queryByFilter:'根据条件查找XX',//Eway.locale.version.task.queryByFilter
-				displayNumPerPage:'每页显示条数XX',//Eway.locale.version.task.displayNumPerPage
-				targetVersionNo:'目标版本XX',//Eway.locale.version.task.targetVersionNo
-				downloadStatus:'下发状态XX',//Eway.locale.version.task.downloadStatus
-				downloadResult:'下发结果XX',//Eway.locale.version.task.downloadResult
-				cancelJob:'下发结果XX',//Eway.locale.version.task.cancelJob
-				jobId:'作业IDXX',	//Eway.locale.version.task.jobId
-				selectDownloadDevice:'选择下发的设备XX',	//Eway.locale.version.task.selectDownloadDevice
-				versionNoBeforeUpdate:'升级前版本号XX',	//Eway.locale.version.task.versionNoBeforeUpdate
-				versionNoAfterUpdate:'目标版本号XX',	//Eway.locale.version.task.versionNoAfterUpdate
-				deviceVersionHis:'查看设备历史版本XX',	//Eway.locale.version.task.deviceVersionHis
-				downloadUser:'下发人XX',	//Eway.locale.version.task.downloadUser
-				downloadTime:'下发时间XX',	//Eway.locale.version.task.downloadTime
-				downloadResult:'下发结果XX',	//Eway.locale.version.task.downloadResult
-				deviceVersionHisTitle:'设备历史版本信息XX',	//Eway.locale.version.task.deviceVersionHisTitle
-				deviceVersions:'设备版本XX',	//Eway.locale.version.task.deviceVersions
-				deviceVersionHisTip:'查看设备历史版本信息XX',	//Eway.locale.version.task.deviceVersionHisTip
-				autoUpdateInfo:'自动更新信息XX',//Eway.locale.version.task.autoUpdateInfo
-				selectAJob:'请选择一个作业.XX',//Eway.locale.version.task.selectAJob
-				versionDownHisStatusPic:'版本下发历史状态分布图XX',//Eway.locale.version.task.versionDownHisStatusPic
-				cantCancelCompleteJob:'不能撤销"完成"状态的作业.XX',//Eway.locale.version.task.cantCancelCompleteJob
-				doSureCancelTheJob:'是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)XX',//Eway.locale.version.task.doSureCancelTheJob
-				deleting:'正在删除......XX',//Eway.locale.version.task.deleting
-				cancelSuccessBut:'已经成功撤销作业中还没有运行的任务,此时作业的状态仍然是"运行中",请稍等后刷新作业列表.XX',//Eway.locale.version.task.cancelSuccessBut
-				cancelJobSuccess:'成功撤销作业XX',//Eway.locale.version.task.cancelJobSuccess
-				updateResult:'升级结果XX'	//Eway.locale.version.task.updateResult
+				selectJobStartRefresh:'请选择一个作业,再开启定时刷新！',//Eway.locale.version.task.selectJobStartRefresh
+				jobBatchName:'作业批次名称',//Eway.locale.version.task.jobBatchName
+				patchVersion:'分发版本',//Eway.locale.version.task.patchVersion
+				taskStatus:'任务状态',//Eway.locale.version.task.taskStatus
+				beforeUpdate:'分发前的版本',//Eway.locale.version.task.beforeUpdate
+				exceptVersion:'预期版本',//Eway.locale.version.task.exceptVersion
+				actionTime:'执行时间',//Eway.locale.version.task.actionTime
+				downSource:'下载源',//Eway.locale.version.task.downSource
+				planTime:'计划时间',//Eway.locale.version.task.planTime
+				excuteMachine:'执行服务器',//Eway.locale.version.task.excuteMachine
+				restartATM:'重启ATM',//Eway.locale.version.task.restartATM
+				restartATMTips:'执行重启命令可能存在风险,确认重启?',//Eway.locale.version.task.restartATMTips
+				sendRestartCmd:'已发送重启命令！',//Eway.locale.version.task.sendRestartCmd
+				cancelDownloadSuccess:'取消下发成功！',//Eway.locale.version.task.cancelDownloadSuccess
+				cancelDownload:'取消下发',//Eway.locale.version.task.cancelDownload
+				jobName:'作业名称',//Eway.locale.version.task.jobName
+				jobStatus:'作业状态',//Eway.locale.version.task.jobStatus
+				chooseTitleDevice:'选择设备',//Eway.locale.version.task.chooseTitleDevice
+				closeWindow:'关闭窗口',//Eway.locale.version.task.closeWindow
+				queryByFilter:'根据条件查找',//Eway.locale.version.task.queryByFilter
+				displayNumPerPage:'每页显示条数',//Eway.locale.version.task.displayNumPerPage
+				targetVersionNo:'目标版本',//Eway.locale.version.task.targetVersionNo
+				downloadStatus:'下发状态',//Eway.locale.version.task.downloadStatus
+				downloadResult:'下发结果',//Eway.locale.version.task.downloadResult
+				cancelJob:'下发结果',//Eway.locale.version.task.cancelJob
+				jobId:'作业ID',	//Eway.locale.version.task.jobId
+				selectDownloadDevice:'选择下发的设备',	//Eway.locale.version.task.selectDownloadDevice
+				versionNoBeforeUpdate:'升级前版本号',	//Eway.locale.version.task.versionNoBeforeUpdate
+				versionNoAfterUpdate:'目标版本号',	//Eway.locale.version.task.versionNoAfterUpdate
+				deviceVersionHis:'查看设备历史版本',	//Eway.locale.version.task.deviceVersionHis
+				downloadUser:'下发人',	//Eway.locale.version.task.downloadUser
+				downloadTime:'下发时间',	//Eway.locale.version.task.downloadTime
+				downloadResult:'下发结果',	//Eway.locale.version.task.downloadResult
+				deviceVersionHisTitle:'设备历史版本信息',	//Eway.locale.version.task.deviceVersionHisTitle
+				deviceVersions:'设备版本',	//Eway.locale.version.task.deviceVersions
+				deviceVersionHisTip:'查看设备历史版本信息',	//Eway.locale.version.task.deviceVersionHisTip
+				autoUpdateInfo:'自动更新信息',//Eway.locale.version.task.autoUpdateInfo
+				selectAJob:'请选择一个作业.',//Eway.locale.version.task.selectAJob
+				versionDownHisStatusPic:'版本下发历史状态分布图',//Eway.locale.version.task.versionDownHisStatusPic
+				cantCancelCompleteJob:'不能撤销"完成"状态的作业.',//Eway.locale.version.task.cantCancelCompleteJob
+				doSureCancelTheJob:'是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)',//Eway.locale.version.task.doSureCancelTheJob
+				deleting:'正在删除......',//Eway.locale.version.task.deleting
+				cancelSuccessBut:'已经成功撤销作业中还没有运行的任务,此时作业的状态仍然是"运行中",请稍等后刷新作业列表.',//Eway.locale.version.task.cancelSuccessBut
+				cancelJobSuccess:'成功撤销作业',//Eway.locale.version.task.cancelJobSuccess
+				updateResult:'升级结果'	//Eway.locale.version.task.updateResult
 			}
 		},
 		
@@ -791,101 +791,101 @@ Ext.override(Eway,{
 		},
 		commen:{
 			
-			jobNum:'工号XX',//Eway.locale.commen.jobNum
-			name:'姓名XX',//Eway.locale.commen.name
-			personJobName:'岗位XX',//Eway.locale.commen.personJobName
-			state:'状态XX',//Eway.locale.commen.state
-			birthday:'生日XX',//Eway.locale.commen.birthday
+			jobNum:'工号',//Eway.locale.commen.jobNum
+			name:'姓名',//Eway.locale.commen.name
+			personJobName:'岗位',//Eway.locale.commen.personJobName
+			state:'状态',//Eway.locale.commen.state
+			birthday:'生日',//Eway.locale.commen.birthday
 			comboxStatus:{
-				onJob:'在岗XX',//Eway.locale.commen.comboxStatus.onJob
-				onAdjust:'调休XX',//Eway.locale.commen.comboxStatus.onAdjust
-				onVacation:'休假XX',//Eway.locale.commen.comboxStatus.onVacation
-				other:'其他XX',//Eway.locale.commen.comboxStatus.other
-				dredge:'开通XX',//Eway.locale.commen.comboxStatus.dredge
-				open:'启用XX',//Eway.locale.commen.comboxStatus.open
-				close:'停用XX',//Eway.locale.commen.comboxStatus.close
+				onJob:'在岗',//Eway.locale.commen.comboxStatus.onJob
+				onAdjust:'调休',//Eway.locale.commen.comboxStatus.onAdjust
+				onVacation:'休假',//Eway.locale.commen.comboxStatus.onVacation
+				other:'其他',//Eway.locale.commen.comboxStatus.other
+				dredge:'开通',//Eway.locale.commen.comboxStatus.dredge
+				open:'启用',//Eway.locale.commen.comboxStatus.open
+				close:'停用',//Eway.locale.commen.comboxStatus.close
 			},
-			type:'类型XX',//Eway.locale.commen.type
+			type:'类型',//Eway.locale.commen.type
 			comboxType:{
-				machineManager:'管机员XX',//Eway.locale.commen.comboxType.machineManager
+				machineManager:'管机员',//Eway.locale.commen.comboxType.machineManager
 				machineRepairer:'维修人员'//Eway.locale.commen.comboxType.machineRepairer
 			},
-			mobile:'手机XX',//Eway.locale.commen.mobile
-			email:'邮箱XX',//Eway.locale.commen.email
-			phone:'固话XX',//Eway.locale.commen.phone
-			gender:'性别XX',//Eway.locale.commen.gender
-			all:'全部XX',//Eway.locale.commen.all
+			mobile:'手机',//Eway.locale.commen.mobile
+			email:'邮箱',//Eway.locale.commen.email
+			phone:'固话',//Eway.locale.commen.phone
+			gender:'性别',//Eway.locale.commen.gender
+			all:'全部',//Eway.locale.commen.all
 			comboxGender:{
-				male:'男XX',//Eway.locale.commen.comboxGender.male
-				female:'女XX',//Eway.locale.commen.comboxGender.female
+				male:'男',//Eway.locale.commen.comboxGender.male
+				female:'女',//Eway.locale.commen.comboxGender.female
 				unknow:'未知'//Eway.locale.commen.comboxGender.unknow
 			},
-			remark:'备注XX',//Eway.locale.commen.remark
-			terminalId:'设备号XX',//Eway.locale.commen.terminalId
-			ip:'网络地址XX',//Eway.locale.commen.ip
-			orgNameBelongs:'所属机构XX',//Eway.locale.commen.orgNameBelongs
-			devTypeName:'设备型号XX',//Eway.locale.commen.devTypeName
-			devVendorName:'设备品牌XX',//Eway.locale.commen.devVendorName
-			devCatalogName:'设备类型XX',//Eway.locale.commen.devCatalogName
-			devStatus:'设备状态XX',//Eway.locale.commen.devStatus
+			remark:'备注',//Eway.locale.commen.remark
+			terminalId:'设备号',//Eway.locale.commen.terminalId
+			ip:'网络地址',//Eway.locale.commen.ip
+			orgNameBelongs:'所属机构',//Eway.locale.commen.orgNameBelongs
+			devTypeName:'设备型号',//Eway.locale.commen.devTypeName
+			devVendorName:'设备品牌',//Eway.locale.commen.devVendorName
+			devCatalogName:'设备类型',//Eway.locale.commen.devCatalogName
+			devStatus:'设备状态',//Eway.locale.commen.devStatus
 			comboxDevStatus:{
-				open:'开通XX',//Eway.locale.commen.comboxDevStatus.open
+				open:'开通',//Eway.locale.commen.comboxDevStatus.open
 				stop:'停用'//Eway.locale.commen.comboxDevStatus.stop
 			},
-			setManager:'设置XX',//Eway.locale.commen.setManager
-			devServiceName:'设备维护商XX',//Eway.locale.commen.devServiceName
-			cashboxLimit:'钞箱报警金额XX',//Eway.locale.commen.cashboxLimit
-			installDate:'安装日期XX',//Eway.locale.commen.installDate
-			address:'地址XX',//Eway.locale.commen.address
-			areaCode:'区域编号XX',//Eway.locale.commen.areaCode
-			areaName:'区域名称XX',//Eway.locale.commen.areaName
-			toolbar:'总共：{2}条，显示{0}-{1}XX',//Eway.locale.commen.toolbar
-			bindMachine :'已关联的设备XX',//Eway.locale.commen.bindMachine
-			lift:'解除XX',//Eway.locale.commen.lift
-			canBindMachine:'可关联的设备XX',//Eway.locale.commen.canBindMachine
-			bind:'关联XX',//Eway.locale.commen.bind
-			filter:'过滤条件XX',//Eway.locale.commen.filter
+			setManager:'设置',//Eway.locale.commen.setManager
+			devServiceName:'设备维护商',//Eway.locale.commen.devServiceName
+			cashboxLimit:'钞箱报警金额',//Eway.locale.commen.cashboxLimit
+			installDate:'安装日期',//Eway.locale.commen.installDate
+			address:'地址',//Eway.locale.commen.address
+			areaCode:'区域编号',//Eway.locale.commen.areaCode
+			areaName:'区域名称',//Eway.locale.commen.areaName
+			toolbar:'总共：{2}条，显示{0}-{1}',//Eway.locale.commen.toolbar
+			bindMachine :'已关联的设备',//Eway.locale.commen.bindMachine
+			lift:'解除',//Eway.locale.commen.lift
+			canBindMachine:'可关联的设备',//Eway.locale.commen.canBindMachine
+			bind:'关联',//Eway.locale.commen.bind
+			filter:'过滤条件',//Eway.locale.commen.filter
 			stateDict:{
-				newCreate:'新建XX',//Eway.locale.commen.stateDict.newCreate
-				normal:'正常XX',//Eway.locale.commen.stateDict.normal
-				locked:'锁定XX',//Eway.locale.commen.stateDict.locked
-				disable:'无效XX',//Eway.locale.commen.stateDict.disable
-				frozen:'冻结XX',//Eway.locale.commen.stateDict.frozen
-				deleted:'已删除XX'//Eway.locale.commen.stateDict.deleted
+				newCreate:'新建',//Eway.locale.commen.stateDict.newCreate
+				normal:'正常',//Eway.locale.commen.stateDict.normal
+				locked:'锁定',//Eway.locale.commen.stateDict.locked
+				disable:'无效',//Eway.locale.commen.stateDict.disable
+				frozen:'冻结',//Eway.locale.commen.stateDict.frozen
+				deleted:'已删除'//Eway.locale.commen.stateDict.deleted
 			},
-			yes:'是XX',//Eway.locale.commen.yes
-			no:'否XX',//Eway.locale.commen.no
-			selectAll:'全部选择XX',//Eway.locale.commen.selectAll
-			selectNon:'全部不选XX',//Eway.locale.commen.selectNon
-			content:'消息XX',//Eway.locale.commen.content
-			upgrade:'上级XX',//Eway.locale.commen.upgrade
-			port:'网络PortXX',//Eway.locale.commen.port
-			previous:'上一页XX',//Eway.locale.commen.previous
-			next:'下一页XX',//Eway.locale.commen.next
-			installAddr:'装机地址XX',//Eway.locale.commen.installAddr
-			seviceMode:'经营方式XX',//Eway.locale.commen.seviceMode
-			insideOutside:'在行标志XX',//Eway.locale.commen.insideOutside
-			appVersion:'应用版本号XX',//Eway.locale.commen.appVersion
-			devInfo:'设备基本信息XX',//Eway.locale.commen.devInfo
+			yes:'是',//Eway.locale.commen.yes
+			no:'否',//Eway.locale.commen.no
+			selectAll:'全部选择',//Eway.locale.commen.selectAll
+			selectNon:'全部不选',//Eway.locale.commen.selectNon
+			content:'消息',//Eway.locale.commen.content
+			upgrade:'上级',//Eway.locale.commen.upgrade
+			port:'网络Port',//Eway.locale.commen.port
+			previous:'上一页',//Eway.locale.commen.previous
+			next:'下一页',//Eway.locale.commen.next
+			installAddr:'装机地址',//Eway.locale.commen.installAddr
+			seviceMode:'经营方式',//Eway.locale.commen.seviceMode
+			insideOutside:'在行标志',//Eway.locale.commen.insideOutside
+			appVersion:'应用版本号',//Eway.locale.commen.appVersion
+			devInfo:'设备基本信息',//Eway.locale.commen.devInfo
 			//check end
-			personnel:'联系人XX',//Eway.locale.commen.personnel
-			warn:'警告XX',//Eway.locale.commen.warn
-			fatal:'故障XX',//Eway.locale.commen.fatal
-			unStable:'不稳定XX',//Eway.locale.commen.unStable
-			unknow:'未知XX',//Eway.locale.commen.unknow
-			description:'描述XX',//Eway.locale.commen.description
-			info:'详细信息XX',//Eway.locale.commen.info
-			startDataTime:'开始时间XXXX',//Eway.locale.commen.startDataTime
-			endDataTime:'结束时间XXXX',//Eway.locale.commen.endDataTime
-			year:'年XXXX',//Eway.locale.commen.year
-			month:'月XXXX',//Eway.locale.commen.month
-			day:'日XXXX',//Eway.locale.commen.day
-			yearTime:'年份XXXX',//Eway.locale.commen.yearTime
-			monthTime:'月份XX',//Eway.locale.commen.monthTime
-			dayTime:'日期XX',//Eway.locale.commen.dayTime
-			orgFramework:'组织机构XX',//Eway.locale.commen.orgFramework
-			matchOrg:'匹配机构XX',//Eway.locale.commen.matchOrg
-			orgID:'机构IDXX',//Eway.locale.commen.orgID
+			personnel:'联系人',//Eway.locale.commen.personnel
+			warn:'警告',//Eway.locale.commen.warn
+			fatal:'故障',//Eway.locale.commen.fatal
+			unStable:'不稳定',//Eway.locale.commen.unStable
+			unknow:'未知',//Eway.locale.commen.unknow
+			description:'描述',//Eway.locale.commen.description
+			info:'详细信息',//Eway.locale.commen.info
+			startDataTime:'开始时间',//Eway.locale.commen.startDataTime
+			endDataTime:'结束时间',//Eway.locale.commen.endDataTime
+			year:'年',//Eway.locale.commen.year
+			month:'月',//Eway.locale.commen.month
+			day:'日',//Eway.locale.commen.day
+			yearTime:'年份',//Eway.locale.commen.yearTime
+			monthTime:'月份',//Eway.locale.commen.monthTime
+			dayTime:'日期',//Eway.locale.commen.dayTime
+			orgFramework:'组织机构',//Eway.locale.commen.orgFramework
+			matchOrg:'匹配机构',//Eway.locale.commen.matchOrg
+			orgID:'机构ID',//Eway.locale.commen.orgID
 			endValidty:'截止有效期',//Eway.locale.commen.endValidty
 			publishDate:'发布日期',//Eway.locale.commen.publishDate
 			announceTheme:'公告主题',//Eway.locale.commen.announceTheme
@@ -957,7 +957,7 @@ Ext.override(Eway,{
 				devSerLink:'该厂商下设备',//Eway.locale.person.serviceOrg.devSerLink
 				personSerLink:'该厂商下人员',//Eway.locale.person.serviceOrg.personSerLink
 
-				directOrganization:'的直接下级机构$$'
+				directOrganization:'的直接下级机构'
 			},
 			servicePer:{
 				title:'维护人员管理',//Eway.locale.person.servicePer.title
@@ -1255,505 +1255,505 @@ Ext.override(Eway,{
 		//**********************************************************/
 		machine:{
 			atmBrand : {
-				title:'品牌管理XX',
-				name: '品牌名称XX',
-				country:'生产商国家或地区XX',
-				hotline1:'生产商热线1XX',
-				hotline2:'生产商热线2XX',
-				address:'生产商地址XX',
-				status:'生产商状态XX',
+				title:'品牌管理',
+				name: '品牌名称',
+				country:'生产商国家或地区',
+				hotline1:'生产商热线1',
+				hotline2:'生产商热线2',
+				address:'生产商地址',
+				status:'生产商状态',
 				comboxStatus:{
-					provider:'设备供应XX',
-					maintance:'设备服役XX'
+					provider:'设备供应',
+					maintance:'设备服役'
 				}
 			},
 			atmCatalog:{
-				title:'ATM分类XX',//Eway.locale.machine.title
-				name:'分类名称XX',//Eway.locale.machine.atmCatalog.name
-				note:'备注XX',
-				addTitle:'增加ATM分类信息XX',
-				updateTitle:'更改ATM型号信息XX',
+				title:'ATM分类',//Eway.locale.machine.title
+				name:'分类名称',//Eway.locale.machine.atmCatalog.name
+				note:'备注',
+				addTitle:'增加ATM分类信息',
+				updateTitle:'更改ATM型号信息',
 				number:'编号',//Eway.locale.machine.atmCatalog.number
 			},
 			atmGroup : {
-				terminalId:'设备号XX',
-				ip: '设备IP地址XX',
-				orgName:'所属机构XX',
-				devTypeName:'设备型号XX',
-				devVendorName:'设备品牌XX',
-				devCatalogName:'设备类型XX',
-				devGroupName: '设备分组XX',
-				status:'设备状态XX',
+				terminalId:'设备号',
+				ip: '设备IP地址',
+				orgName:'所属机构',
+				devTypeName:'设备型号',
+				devVendorName:'设备品牌',
+				devCatalogName:'设备类型',
+				devGroupName: '设备分组',
+				status:'设备状态',
 				comboxStatus:{
-					dredge:'开通XX',
-					open:'启用XX',
-					close:'停用XX'
+					dredge:'开通',
+					open:'启用',
+					close:'停用'
 				},
-				awayFlag:'离行标志XX',
+				awayFlag:'离行标志',
 				comboxAwayFlag:{
-					inBank:'在行自助服务区XX',
-					outBank:'离行自助银行XX',
-					clickBank:'单机离行自助服务点XX'
+					inBank:'在行自助服务区',
+					outBank:'离行自助银行',
+					clickBank:'单机离行自助服务点'
 				},
-				devServiceName:'设备维护商XX',
-				cashboxLimit:'钞箱报警金额XX',
-				installDate:'安装日期XX',
-				address:'地址XX',
-				gourpDev:'分组<-->设备XX',
-				addTitle: '增加设备组信息XX',
-				groupName:'组名XX',
-				note:'备注XX',
-				updateTitle:'更改设备组信息XX'
+				devServiceName:'设备维护商',
+				cashboxLimit:'钞箱报警金额',
+				installDate:'安装日期',
+				address:'地址',
+				gourpDev:'分组<-->设备',
+				addTitle: '增加设备组信息',
+				groupName:'组名',
+				note:'备注',
+				updateTitle:'更改设备组信息'
 			},
 			atmModule:{
-				moduleName:'模块名称XX',
-				note:'备注XX',
-				atmModules:'ATM模块XX'	
+				moduleName:'模块名称',
+				note:'备注',
+				atmModules:'ATM模块'	
 			},
 			atmMove:{
-				title:'移机管理XX',
-				moveDev:'移机XX',
-				moveDevRec:'移动设备并产生移机记录XX',
-				moveRecordInfo:'移机记录信息XX',
-				waitMove:'待移动的机器XX',
-				terminalId:'设备号XX',
-				address:'源地址XX',
-				orgName:'源机构XX',
-				targetAddress:'目标地址XX',
-				targetOrganization:'目标机构XX',
-				targetPerson:'目标机构负责人XX',
-				responsibility:'负责人XX',
-				destPerson:'源机构负责人XX',
-				date:'日期XX',
-				recoverDate:'恢复时间XX',
-				notice:'备注XX',
-				sAddress:'所属地址XX',
-				sOrgName:'所属机构XX',
-				to:'至XX'
+				title:'移机管理',
+				moveDev:'移机',
+				moveDevRec:'移动设备并产生移机记录',
+				moveRecordInfo:'移机记录信息',
+				waitMove:'待移动的机器',
+				terminalId:'设备号',
+				address:'源地址',
+				orgName:'源机构',
+				targetAddress:'目标地址',
+				targetOrganization:'目标机构',
+				targetPerson:'目标机构负责人',
+				responsibility:'负责人',
+				destPerson:'源机构负责人',
+				date:'日期',
+				recoverDate:'恢复时间',
+				notice:'备注',
+				sAddress:'所属地址',
+				sOrgName:'所属机构',
+				to:'至'
 			},
 			atmRuntimeInfo:{
-				exportName:'导出XX',
-				exportDateRangeText:'开始时间不能大于结束时间XX',
-				terminalId:'终端号XX',
-				terminalIp:'终端IPXX',
-				startDate:'开始时间XX',
-				endDate:'结束时间XX',
-				exportLast30: '导出最后30天汇总信息XX',
-				terminalId:'编号XX',
-				netIp:'网络地址XX',
-				msgCollect:'客服信息采集XX'
+				exportName:'导出',
+				exportDateRangeText:'开始时间不能大于结束时间',
+				terminalId:'终端号',
+				terminalIp:'终端IP',
+				startDate:'开始时间',
+				endDate:'结束时间',
+				exportLast30: '导出最后30天汇总信息',
+				terminalId:'编号',
+				netIp:'网络地址',
+				msgCollect:'客服信息采集'
 			},
 			atmType:{
-				title:'设备型号XX',
-				atmName:'ATM型号XX',
-				name:'设备型号XX',
-				devVendorName:'所属品牌XX',
-				devCatalogName:'所属类型XX',
-				devTerminalName:'所属型号XX',
-				spec:'设备规格XX',
-				weight:'设备重量XX',
-				watt:'平均功率XX',
-				no:'编号XX',
-				cashtype:'非现金标志XX',
-				iscash:'现金XX',
-				nocash:'非现金XX'
+				title:'设备型号',
+				atmName:'ATM型号',
+				name:'设备型号',
+				devVendorName:'所属品牌',
+				devCatalogName:'所属类型',
+				devTerminalName:'所属型号',
+				spec:'设备规格',
+				weight:'设备重量',
+				watt:'平均功率',
+				no:'编号',
+				cashtype:'非现金标志',
+				iscash:'现金',
+				nocash:'非现金'
 			},
 			device:{
-				title:'设备信息管理XX',
-				devDetailInfo:'设备模块详细信息XX',
-			    IDC:'读卡器模块(IDC)XX',
-				JPR:'日志打印机模块(JPR)XX',
-				CDM:'取款模块(CDM)XX',
-				SIU:'传感器模块(SIU)XX',
-				CIM:'存款模块(CIM)XX',
-				TTU:'文本终端单元(TTU)XX',
-				RPR:'凭条打印机模块(RPR)XX',
-				PIN:'密码键盘模块(PIN)XX',
-				CDMInfo:'取款模块（CDM）属性信息XX',
-				hasStack:'是否具有暂存器XX',
-				hasShutter:'是否具有shutter门XX',
-				canRetract:'是否具有回收能力XX',
-				canDetectCashTaken:'是否探测钞币被拿走XX',
-				canTestPhysicalUnits:'是否能测试物理单元XX',
-				maxDispensBills:'获取单笔最大挖钞张数XX',
-				logicalUnits:'逻辑钞箱个数XX',
-				physicalUnits:'物理钞箱个数XX',
-				currency:'支持的币种类别总个数XX',
-				currencies:'支持的币种类别XX',
-				exponents:'指数XX',
+				title:'设备信息管理',
+				devDetailInfo:'设备模块详细信息',
+			    IDC:'读卡器模块(IDC)',
+				JPR:'日志打印机模块(JPR)',
+				CDM:'取款模块(CDM)',
+				SIU:'传感器模块(SIU)',
+				CIM:'存款模块(CIM)',
+				TTU:'文本终端单元(TTU)',
+				RPR:'凭条打印机模块(RPR)',
+				PIN:'密码键盘模块(PIN)',
+				CDMInfo:'取款模块（CDM）属性信息',
+				hasStack:'是否具有暂存器',
+				hasShutter:'是否具有shutter门',
+				canRetract:'是否具有回收能力',
+				canDetectCashTaken:'是否探测钞币被拿走',
+				canTestPhysicalUnits:'是否能测试物理单元',
+				maxDispensBills:'获取单笔最大挖钞张数',
+				logicalUnits:'逻辑钞箱个数',
+				physicalUnits:'物理钞箱个数',
+				currency:'支持的币种类别总个数',
+				currencies:'支持的币种类别',
+				exponents:'指数',
 				 
-				CIMInfo:'存款模块 （CIM）属性信息XX',
+				CIMInfo:'存款模块 （CIM）属性信息',
 				canEscrow:'是否具有暂存器X',
-				shutterControlSupported:'是否支持控制shutter门XX',
-				maxAcceptItems:'单笔最大验钞张数XX',
-				canDetectCashInserted:'是否能探测钞票放入XX',
-				canDetectCashTaken:'是否能探测钞票被取走XX',
-				retractAreas:'回收位置XX',
+				shutterControlSupported:'是否支持控制shutter门',
+				maxAcceptItems:'单笔最大验钞张数',
+				canDetectCashInserted:'是否能探测钞票放入',
+				canDetectCashTaken:'是否能探测钞票被取走',
+				retractAreas:'回收位置',
 				 
 				 
-				IDCInfo:'读卡器模块(IDC)属性信息XX',
-				variant:'读卡器类型XX',
-				canEjectCard:'是否具有退卡能力XX',
-				trackJisiiRead:'是否具有TrackJisii读能力XX',
-				track1Read:'是否具有读一磁道数据能力XX',
-				track2Read:'是否具有读二磁道数据能力XX',
-				track3Read:'是否具有读三磁道数据能力XX',
-				canCapture:'是否具有吞卡能力XX',
-				binCapacity:'最大吞卡张数XX',
-				security:'是否具有安全支持XX',
-				trackJisiiWrite:'是否具有TrackJisii写能力XX',
-				track1Write:'是否具有写一磁道数据能力XX',
-				track2Write:'是否具有写二磁道数据能力XX',
-				track3Write:'是否具有写三磁道数据能力XX',
+				IDCInfo:'读卡器模块(IDC)属性信息',
+				variant:'读卡器类型',
+				canEjectCard:'是否具有退卡能力',
+				trackJisiiRead:'是否具有TrackJisii读能力',
+				track1Read:'是否具有读一磁道数据能力',
+				track2Read:'是否具有读二磁道数据能力',
+				track3Read:'是否具有读三磁道数据能力',
+				canCapture:'是否具有吞卡能力',
+				binCapacity:'最大吞卡张数',
+				security:'是否具有安全支持',
+				trackJisiiWrite:'是否具有TrackJisii写能力',
+				track1Write:'是否具有写一磁道数据能力',
+				track2Write:'是否具有写二磁道数据能力',
+				track3Write:'是否具有写三磁道数据能力',
 
 				 
-				JPRInfo:'日志打印机模块(JPR)属性信息XX',
-				canEject:'是否具有退纸能力XX',
-				canCapture:'是否具有回收能力XX',
-				canStack:'是否具有暂存能力XX',
+				JPRInfo:'日志打印机模块(JPR)属性信息',
+				canEject:'是否具有退纸能力',
+				canCapture:'是否具有回收能力',
+				canStack:'是否具有暂存能力',
 
-				PINInfo:'密码键盘(PIN)属性信息XX',
-				canEBC:'能否EBCXX',
-				canCBC:'能否CBCXX',  
-				canMAC:'能否MACXX',
-				canRSA:'能否RSAXX',
-				canVerifyVISA:'能否验证VISAXX',
-				canVerifyDES:'能否验证DESXX',
-				functionKeys:'功能键支持XX',
-				canTripleEBC:'是否支持多重EBCXX',
-				canTripleCBC:'是否支持多重CBCXX',
-				canTripleMAC:'是否支持多重MACXX',
-				canTripleCFB:'是否支持多重CFBXX',
-				canVerifyECB:'能否验证ECBXX', 
-				canDESOffset:'能否DeS偏移XX',
+				PINInfo:'密码键盘(PIN)属性信息',
+				canEBC:'能否EBC',
+				canCBC:'能否CBC',  
+				canMAC:'能否MAC',
+				canRSA:'能否RSA',
+				canVerifyVISA:'能否验证VISA',
+				canVerifyDES:'能否验证DES',
+				functionKeys:'功能键支持',
+				canTripleEBC:'是否支持多重EBC',
+				canTripleCBC:'是否支持多重CBC',
+				canTripleMAC:'是否支持多重MAC',
+				canTripleCFB:'是否支持多重CFB',
+				canVerifyECB:'能否验证ECB', 
+				canDESOffset:'能否DeS偏移',
 
-				RPRInfo:'凭条打印机(RPR)属性信息XX',
-				canEject:'是否具有退纸能力XX',
-				canCapture:'是否具有回收能力XX',
-				canStack:'是否具有暂存能力XX',
-				maxRetract:'最大回收张数XX',
+				RPRInfo:'凭条打印机(RPR)属性信息',
+				canEject:'是否具有退纸能力',
+				canCapture:'是否具有回收能力',
+				canStack:'是否具有暂存能力',
+				maxRetract:'最大回收张数',
 
-				SIUInfo:'SIU能力属性信息XX',
-				operatorSwitchSupported:'是否支持操作员开关XX',
-				cabinetSupported:'是否支持后盖门打开传感能力XX',
-				safeSupported:'是否支持安全门打开传感能力XX',
-				indicatorSupported:'是否支持靠近传感能力XX',
-				guidelightIdcSupported:'是否支持插卡指示灯能力XX',
-				guidelightCdmSupported:'是否支持取款指示灯能力XX',
-				guidelightReceiptSupported:'是否支持凭条打印指示灯能力XX',
-				guidelightCimSupported:'是否支持存款指示灯能力XX',
+				SIUInfo:'SIU能力属性信息',
+				operatorSwitchSupported:'是否支持操作员开关',
+				cabinetSupported:'是否支持后盖门打开传感能力',
+				safeSupported:'是否支持安全门打开传感能力',
+				indicatorSupported:'是否支持靠近传感能力',
+				guidelightIdcSupported:'是否支持插卡指示灯能力',
+				guidelightCdmSupported:'是否支持取款指示灯能力',
+				guidelightReceiptSupported:'是否支持凭条打印指示灯能力',
+				guidelightCimSupported:'是否支持存款指示灯能力',
 
-				TTUInfo:'文本终端单元(TTU)属性信息XX',
-				alphanumericKeysPresent:'是否支持字母数字键输入XX',
-				numericKeysPresent:'是否支持数字键输入XX',
-				displayLightPresent:'是否支持屏幕亮度调节XX',
-				cursorSupported:'是否支持鼠标XX',
-				resolutionX:'横轴分辨率XX',
-				hexadecimalKeysPresent:'是否支持十六进制键输入XX',
-				keyboardLockPresent:'是否支持键盘锁定XX',
-				formsSupported:'是否支持表格XX',
-				resolutionY:'纵轴分辨率XX',
+				TTUInfo:'文本终端单元(TTU)属性信息',
+				alphanumericKeysPresent:'是否支持字母数字键输入',
+				numericKeysPresent:'是否支持数字键输入',
+				displayLightPresent:'是否支持屏幕亮度调节',
+				cursorSupported:'是否支持鼠标',
+				resolutionX:'横轴分辨率',
+				hexadecimalKeysPresent:'是否支持十六进制键输入',
+				keyboardLockPresent:'是否支持键盘锁定',
+				formsSupported:'是否支持表格',
+				resolutionY:'纵轴分辨率',
 
-				comStatus:'厂商状态信息XX',
-				hwCode:'厂商故障码XX',
-				CDMStatus:'取款模块(CDM)状态信息XX',
-				cashUnits:'钞箱状态XX',
-				safeDoor:'安全门状态XX',
-				intermediateStacker:'暂存器状态XX',
-				outBox:'取款钞箱XX',
-				pcuId:'物理逻辑钞箱对应关系XX',
-				cuId:'逻辑钞箱IDXX',
-				cuCurrency:'逻辑钞箱币种XX',
-				cuCurrentCount:'逻辑钞箱当前张数XX',
-				cuInitialCount:'逻辑钞箱初始张数XX',
-				cuRejectCount:'逻辑钞箱reject张数XX',
-				cuNoteValue:'逻辑钞箱面值XX',
-				cuBinStatus:'逻辑钞箱状态XX',
-				puId:'物理钞箱IDXX',
-				puPosName:'物理钞箱位置名称XX',
-				puBinStatus:'物理钞箱状态XX',
-				puCurrentCount:'物理钞箱当前张数XX',
-				puInitialCount:'物理钞箱初始张数XX',
-				puRejectCount:'物理钞箱Reject张数XX',
-				cuBinType:'逻辑钞箱类型XX',
+				comStatus:'厂商状态信息',
+				hwCode:'厂商故障码',
+				CDMStatus:'取款模块(CDM)状态信息',
+				cashUnits:'钞箱状态',
+				safeDoor:'安全门状态',
+				intermediateStacker:'暂存器状态',
+				outBox:'取款钞箱',
+				pcuId:'物理逻辑钞箱对应关系',
+				cuId:'逻辑钞箱ID',
+				cuCurrency:'逻辑钞箱币种',
+				cuCurrentCount:'逻辑钞箱当前张数',
+				cuInitialCount:'逻辑钞箱初始张数',
+				cuRejectCount:'逻辑钞箱reject张数',
+				cuNoteValue:'逻辑钞箱面值',
+				cuBinStatus:'逻辑钞箱状态',
+				puId:'物理钞箱ID',
+				puPosName:'物理钞箱位置名称',
+				puBinStatus:'物理钞箱状态',
+				puCurrentCount:'物理钞箱当前张数',
+				puInitialCount:'物理钞箱初始张数',
+				puRejectCount:'物理钞箱Reject张数',
+				cuBinType:'逻辑钞箱类型',
 
-				CIMStatus:'存款模块(CIM)状态信息XX',
-				baffle:'挡板状态XX',
-				inOutPositionStatus:'传输状态XX',
-				inBox:'存款钞箱XX',
-				puCashInCount:'物理钞箱入钞张数XX',
-				pcuId:'物理钞箱与逻辑钞箱对应关系XX',
-				cuType:'逻辑钞箱类型XX',
-				cuBinStatus:'逻辑钞箱状态XX',
-				cuCurrentCount:'逻辑钞箱当前张数XX',
-				cuCurrency:'逻辑钞箱币种XX',
-				cuNoteValue:'逻辑钞箱面值XX',
+				CIMStatus:'存款模块(CIM)状态信息',
+				baffle:'挡板状态',
+				inOutPositionStatus:'传输状态',
+				inBox:'存款钞箱',
+				puCashInCount:'物理钞箱入钞张数',
+				pcuId:'物理钞箱与逻辑钞箱对应关系',
+				cuType:'逻辑钞箱类型',
+				cuBinStatus:'逻辑钞箱状态',
+				cuCurrentCount:'逻辑钞箱当前张数',
+				cuCurrency:'逻辑钞箱币种',
+				cuNoteValue:'逻辑钞箱面值',
 
-				IDCStatus:'读卡器模块(IDC)状态信息XX',
-				media:'媒体状态XX',
-				retainBin:'回收盒状态XX',
-				cards:'回收盒数量XX',
+				IDCStatus:'读卡器模块(IDC)状态信息',
+				media:'媒体状态',
+				retainBin:'回收盒状态',
+				cards:'回收盒数量',
 
-				JRPStatus:'日志打印机模块(JPR)状态信息XX',
-				supplyLevel:'打印纸状态XX',
-				ink:'墨水XX',
-				toner:'色带XX',
+				JRPStatus:'日志打印机模块(JPR)状态信息',
+				supplyLevel:'打印纸状态',
+				ink:'墨水',
+				toner:'色带',
 
-				PINStatus:'密码键盘模块(PIN)状态信息XX',
+				PINStatus:'密码键盘模块(PIN)状态信息',
 
-				RPRStatus:'凭条打印机模块(RPR)状态信息XX',
-				bin:'回收单元状态XX',
+				RPRStatus:'凭条打印机模块(RPR)状态信息',
+				bin:'回收单元状态',
 
-				SIUStatus:'SIU能力状态信息XX',
-				vandalShield:'防护罩状态XX',
-				operatorSwitch:'操作员按钮状态XX',
-				ambientLight:'环境灯状态XX',
-				cabinet:'箱门状态XX',
-				safe:'安全门状态XX',
-				idcGuidelight:'插卡导引灯状态XX',
-				cdmGuidelight:'取钞引导指示灯状态XX',
-				receiptGuidelight:'凭条导引灯状态XX',
-				cimGuidelight:'CIM导引灯状态XX',
+				SIUStatus:'SIU能力状态信息',
+				vandalShield:'防护罩状态',
+				operatorSwitch:'操作员按钮状态',
+				ambientLight:'环境灯状态',
+				cabinet:'箱门状态',
+				safe:'安全门状态',
+				idcGuidelight:'插卡导引灯状态',
+				cdmGuidelight:'取钞引导指示灯状态',
+				receiptGuidelight:'凭条导引灯状态',
+				cimGuidelight:'CIM导引灯状态',
 
-				TTUStatus:'文本终端单元(TTU)状态信息XX',
+				TTUStatus:'文本终端单元(TTU)状态信息',
 				
-				devPerson:'设备人员信息XX',
-				devModuleMsg:'设备模块属性信息XX',
-				devBasicMsg:'设备基本信息XX',
-				devTailMsg:'设备详细信息XX',
-				managePerson:'管机员XX',
-				maintainPerson:'维护员XX',
-				name:'姓名XX',
-				mobile:'手机XX',
-				phone:'固定电话XX',
-				email:'邮件地址XX',
-				deviceBasicInfo:'设备基本信息XX',
-				lineLogo:'在行标志XX',
-				alarmRateRMB:'钞箱报警金额(人民币)XX',
-				operation:'经营方式XX',
-				ipAddress:'IP地址XX',
+				devPerson:'设备人员信息',
+				devModuleMsg:'设备模块属性信息',
+				devBasicMsg:'设备基本信息',
+				devTailMsg:'设备详细信息',
+				managePerson:'管机员',
+				maintainPerson:'维护员',
+				name:'姓名',
+				mobile:'手机',
+				phone:'固定电话',
+				email:'邮件地址',
+				deviceBasicInfo:'设备基本信息',
+				lineLogo:'在行标志',
+				alarmRateRMB:'钞箱报警金额(人民币)',
+				operation:'经营方式',
+				ipAddress:'IP地址',
 				swallowCard:'吞卡张数',
-				alarmRateHKD:'钞箱报警金额(港币)XX',
-				adminPhone:'管理员(手机号)XX',
-				maintainPhone: '维护员(手机号)XX',
-				log:'钞箱标识XX',
-				style: '钞箱类型XX',
-				status: '钞箱状态XX',
-				initailnumber: '初始张数XX',
-				postnumber: '存款张数XX',
-				currentnumber: '当前钞箱张数XX',
-				facevalue: '钞箱面值XX',
-				currency: '钞箱币种XX',
-				systemHardwareInfo: '系统软硬件信息XX',
-				moduleVersionInfo:'模块硬件版本信息（实时）XX',
-				devModuleStatusInfo: '设备模块状态（实时）XX',
-				devModuleAttributeInfo: '设备模块属性信息（实时）XX',
+				alarmRateHKD:'钞箱报警金额(港币)',
+				adminPhone:'管理员(手机号)',
+				maintainPhone: '维护员(手机号)',
+				log:'钞箱标识',
+				style: '钞箱类型',
+				status: '钞箱状态',
+				initailnumber: '初始张数',
+				postnumber: '存款张数',
+				currentnumber: '当前钞箱张数',
+				facevalue: '钞箱面值',
+				currency: '钞箱币种',
+				systemHardwareInfo: '系统软硬件信息',
+				moduleVersionInfo:'模块硬件版本信息（实时）',
+				devModuleStatusInfo: '设备模块状态（实时）',
+				devModuleAttributeInfo: '设备模块属性信息（实时）',
 				
-				remoteControl: '远程控制XX',
-				collectJPR:'提取日志XX',
-				remoteScreen:'远程抓屏XX',
-				processCheck:'进程查看XX',
-				remoteExplorer:'远程浏览XX',
-				netWorkLink:'网络连接XX',
-				remoteRestart:'远程重启XX',
+				remoteControl: '远程控制',
+				collectJPR:'提取日志',
+				remoteScreen:'远程抓屏',
+				processCheck:'进程查看',
+				remoteExplorer:'远程浏览',
+				netWorkLink:'网络连接',
+				remoteRestart:'远程重启',
 				
-				progressTip:'进度提示XX',
-				updateProBar:'这是通过动态更新内容形成的进度条XX',
-				currentProcess:'当前进度XX',
-				
-				
-				restartApply: ' 重启应用XX',
-				confirmRestartApply:'确定要重启应用？XX',
-				nowRestartApply:'正在重启应用XX',
-				restartApplySuc:'成功重启该设备应用XX',
-				restartApplyFail:'重启应用失败！XX',
+				progressTip:'进度提示',
+				updateProBar:'这是通过动态更新内容形成的进度条',
+				currentProcess:'当前进度',
 				
 				
-				restartDrive:'重启硬件驱动XX',
-				confirmRestartDrive:'确定要重启硬件驱动？XX',
-				nowRestartDrive:'正在重启硬件驱动XX',
-				restartDriveSuc:'成功重启该设备硬件驱动XX',
-				restartDriveFail:'重启硬件驱动失败！XX',
+				restartApply: ' 重启应用',
+				confirmRestartApply:'确定要重启应用？',
+				nowRestartApply:'正在重启应用',
+				restartApplySuc:'成功重启该设备应用',
+				restartApplyFail:'重启应用失败！',
 				
-				restartOS:'重启操作系统XX',
-				confirmRestartOS:'确定要重启操作系统？XX',
-				nowRestartOS:'正在重启操作系统XX',
-				restartOSSuc:'成功重启该设备操作系统XX',
-				restartOSFail:'重启操作系统失败！XX',
 				
-				remoteShutdown:'远程关机XX',
-				shutdownApply:'关闭应用XX',
-				confirmShutdownApply:'确定要关闭应用？XX',
-				nowShutdownApply:'正在关闭应用XX',
-				shutdownApplySuc:'成功关闭该设备应用XX',
-				shutdownApplyFail:'关闭应用失败！XX',
+				restartDrive:'重启硬件驱动',
+				confirmRestartDrive:'确定要重启硬件驱动？',
+				nowRestartDrive:'正在重启硬件驱动',
+				restartDriveSuc:'成功重启该设备硬件驱动',
+				restartDriveFail:'重启硬件驱动失败！',
 				
-				shutdownDrive:'关闭硬件驱动XX',
-				confirmShutdownDrive:'确定要关闭硬件驱动？XX',
-				nowShutdownDrive:'正在关闭硬件驱动XX',
-				shutdownDriveSuc:'成功关闭该设备硬件驱动XX',
-				shutdownDriveFail:'关闭硬件驱动失败！XX',
+				restartOS:'重启操作系统',
+				confirmRestartOS:'确定要重启操作系统？',
+				nowRestartOS:'正在重启操作系统',
+				restartOSSuc:'成功重启该设备操作系统',
+				restartOSFail:'重启操作系统失败！',
 				
-				shutdownOS:'关闭操作系统XX',
-				confirmShutdownOS:'确定要关闭操作系统？XX',
-				nowShutdownOS:'正在关闭操作系统XX',
-				shutdownOSSuc:'成功关闭该设备操作系统XX',
-				shutdownOSFail:'关闭操作系统失败！XX',
-				getSoftwareList:'获取软件安装列表XX',
-				forceReset:'强制复位XX',
-				openService:'开启服务XX',
-				pauseService:'暂停服务XX',
-				checkStatus:'状态检测XX',
+				remoteShutdown:'远程关机',
+				shutdownApply:'关闭应用',
+				confirmShutdownApply:'确定要关闭应用？',
+				nowShutdownApply:'正在关闭应用',
+				shutdownApplySuc:'成功关闭该设备应用',
+				shutdownApplyFail:'关闭应用失败！',
 				
-				remoteBrowseDisk:'远程浏览XX',
+				shutdownDrive:'关闭硬件驱动',
+				confirmShutdownDrive:'确定要关闭硬件驱动？',
+				nowShutdownDrive:'正在关闭硬件驱动',
+				shutdownDriveSuc:'成功关闭该设备硬件驱动',
+				shutdownDriveFail:'关闭硬件驱动失败！',
 				
-				sysHardwareInfo:'系统硬件信息XX',
-				diskMem:'硬盘大小XX',
-				biosVersion:'Bios版本XX',
-				biosVendor:'Bios厂商XX',
-				biosReleaseDate:'Bios发布日期XX',
-				memorySize:'内存总数XX',
-				memoryUsed:'已使用内存XX',
-				memoryFree:'空闲内存XX',
-				memoryPercent:'内存使用率XX',
-				cpuItemID:'cpu信息XX',
-				cpuFrequency:'CPU频率(MHz)XX',
-				cpuVendor:'CPU的厂商XX',
-				cpuModel:'CPU的类别XX',
-				cacheSize:'缓冲存储器数量XX',
-				totalCores:'CPU核数XX',
-				userUsePercent:'用户使用率XX',
-				sysUsePercent:'系统使用率XX',
-				idlePercent:'当前空闲率XX',
-				combinedPercent:'总的使用率XX',
-				diskItemID:'磁盘信息XX',
-				diskName:'磁盘分区名称XX',
-				diskFileSys:'磁盘文件系统XX',
-				diskTotalSize:'磁盘总大小XX',
-				diskFreeSize:'磁盘可用空间大小XX',
-				sysSoftInfo:'系统软件信息XX',
-				OSID:'操作系统IDXX',
-				OSDescription:'OS描述XX',
-				OSType:'OS类型XX',
-				sysPatchLevel:'系统补丁级别XX',
-				chkCashData:'验钞数据版本XX',
-				OSVendor:'OS供应商XX',
-				OSVendorName:'OS供应商名XX',
-				sysVersion:'系统版本号XX',
-				devAddress:'设备地址XX',
-				basicInfo:'基本信息XX',
-				virtual:'虚拟设备号XX',
-				serial:'设备序列号XX',
-				carrier:'运营商XX',
-				moneyOrg:'加钞机构XX',
-				costInterest:'资金成本利率XX',
-				atmcSoft:'atmc软件XX',
-				spType:'厂商sp类型XX',
-				column:'日期信息XX',
-				buyDate:'设备购买日期XX',
-				installDate:'设备安装日期XX',
-				startDate:'设备启用日期XX',	
-				stopDate:'设备停用日期XX',
-				expireDate:'保修到期日期XX',
-				daliyOpen:'每日开机时间XX',
-				openTimeHour:'时XX',
-				openTimeMinute:'分XX',
-				openTimeSecond:'秒XX',
-				daliyClose:'每日关机时间XX',
-				lastPmDate:'上次巡检日期XX',
-				expirePmDate:'巡检到期日期XX',
-				costInfo:'费用信息XX',
-				price:'入账成本(元)XX',
-				depreciationLife:'折旧年限(年)XX',
-				decoration:'装修费用XX',
-				decorationCost:'装修摊销年限(年)XX',
-				governanceRent:'物业租赁费(元/月)XX',
-				governanceCost:'物业管理费用(元/月)XX',
-				netCost:'通讯线路费用(元/月)XX',
-				powerCost:'电费(元/月)XX',
-				moneyCost:'加钞维护费用(元/次)XX',
-				statusInfo:'状态信息XX',
-				deviceAttention:'设备关注程序XX',
-				stress:'重点XX',
-				medium:'中等XX',
-				ordinary:'一般XX',
-				notCashSignal:'非现金标志XX',
-				cash: '现金XX',
-				notCash:'非现金XX',
-				installStyle: '安装方式XX',
-				crossWall: '穿墙XX',
-				mainRoom: '大堂XX',
-				netType: '网络类型XX',
-				wired: '有线XX',
-				wireless: '无线XX',
-				wiredAndWireless: '有线无线XX',
-				onBankSignal:'在行离行标志XX',
-				inBank:'在行自助服务区XX',
-				outBank:'离行自助银行XX',
-				clickBank:'单机离行自助服务点XX',
-				operation:'经营方式XX',
-				operationSelf: '自营XX',
-				cooperation: '合作XX',
-				epiboly: '外包XX',
-				managePerson:'管机员XX',
-				maintainPerson:'维护员XX',
-				to:'至XX',
-				range: '范围1－－100年XX',
-				roleDescription:'角色描述XX',
-				roleName:'角色名称XX',
+				shutdownOS:'关闭操作系统',
+				confirmShutdownOS:'确定要关闭操作系统？',
+				nowShutdownOS:'正在关闭操作系统',
+				shutdownOSSuc:'成功关闭该设备操作系统',
+				shutdownOSFail:'关闭操作系统失败！',
+				getSoftwareList:'获取软件安装列表',
+				forceReset:'强制复位',
+				openService:'开启服务',
+				pauseService:'暂停服务',
+				checkStatus:'状态检测',
+				
+				remoteBrowseDisk:'远程浏览',
+				
+				sysHardwareInfo:'系统硬件信息',
+				diskMem:'硬盘大小',
+				biosVersion:'Bios版本',
+				biosVendor:'Bios厂商',
+				biosReleaseDate:'Bios发布日期',
+				memorySize:'内存总数',
+				memoryUsed:'已使用内存',
+				memoryFree:'空闲内存',
+				memoryPercent:'内存使用率',
+				cpuItemID:'cpu信息',
+				cpuFrequency:'CPU频率(MHz)',
+				cpuVendor:'CPU的厂商',
+				cpuModel:'CPU的类别',
+				cacheSize:'缓冲存储器数量',
+				totalCores:'CPU核数',
+				userUsePercent:'用户使用率',
+				sysUsePercent:'系统使用率',
+				idlePercent:'当前空闲率',
+				combinedPercent:'总的使用率',
+				diskItemID:'磁盘信息',
+				diskName:'磁盘分区名称',
+				diskFileSys:'磁盘文件系统',
+				diskTotalSize:'磁盘总大小',
+				diskFreeSize:'磁盘可用空间大小',
+				sysSoftInfo:'系统软件信息',
+				OSID:'操作系统ID',
+				OSDescription:'OS描述',
+				OSType:'OS类型',
+				sysPatchLevel:'系统补丁级别',
+				chkCashData:'验钞数据版本',
+				OSVendor:'OS供应商',
+				OSVendorName:'OS供应商名',
+				sysVersion:'系统版本号',
+				devAddress:'设备地址',
+				basicInfo:'基本信息',
+				virtual:'虚拟设备号',
+				serial:'设备序列号',
+				carrier:'运营商',
+				moneyOrg:'加钞机构',
+				costInterest:'资金成本利率',
+				atmcSoft:'atmc软件',
+				spType:'厂商sp类型',
+				column:'日期信息',
+				buyDate:'设备购买日期',
+				installDate:'设备安装日期',
+				startDate:'设备启用日期',	
+				stopDate:'设备停用日期',
+				expireDate:'保修到期日期',
+				daliyOpen:'每日开机时间',
+				openTimeHour:'时',
+				openTimeMinute:'分',
+				openTimeSecond:'秒',
+				daliyClose:'每日关机时间',
+				lastPmDate:'上次巡检日期',
+				expirePmDate:'巡检到期日期',
+				costInfo:'费用信息',
+				price:'入账成本(元)',
+				depreciationLife:'折旧年限(年)',
+				decoration:'装修费用',
+				decorationCost:'装修摊销年限(年)',
+				governanceRent:'物业租赁费(元/月)',
+				governanceCost:'物业管理费用(元/月)',
+				netCost:'通讯线路费用(元/月)',
+				powerCost:'电费(元/月)',
+				moneyCost:'加钞维护费用(元/次)',
+				statusInfo:'状态信息',
+				deviceAttention:'设备关注程序',
+				stress:'重点',
+				medium:'中等',
+				ordinary:'一般',
+				notCashSignal:'非现金标志',
+				cash: '现金',
+				notCash:'非现金',
+				installStyle: '安装方式',
+				crossWall: '穿墙',
+				mainRoom: '大堂',
+				netType: '网络类型',
+				wired: '有线',
+				wireless: '无线',
+				wiredAndWireless: '有线无线',
+				onBankSignal:'在行离行标志',
+				inBank:'在行自助服务区',
+				outBank:'离行自助银行',
+				clickBank:'单机离行自助服务点',
+				operation:'经营方式',
+				operationSelf: '自营',
+				cooperation: '合作',
+				epiboly: '外包',
+				managePerson:'管机员',
+				maintainPerson:'维护员',
+				to:'至',
+				range: '范围1－－100年',
+				roleDescription:'角色描述',
+				roleName:'角色名称',
 
 				
 					
-				devices:'设备XX',
-				configuration:'配置信息XX',
-				spVersion:'SP版本XX',
-				notSupport:'不支持XX',
-				drive:'驱动XX',
-				firmway: '固件XX',
-				noDevice:'无设备XX',
-				devTypeInfo: '设备型号信息XX',
+				devices:'设备',
+				configuration:'配置信息',
+				spVersion:'SP版本',
+				notSupport:'不支持',
+				drive:'驱动',
+				firmway: '固件',
+				noDevice:'无设备',
+				devTypeInfo: '设备型号信息',
 				
-				devInfo:'设备信息$$',
+				devInfo:'设备信息',
 				unable:'不可以',
 				able:'能',
 				
 			},
 			param:{
-				paramKey:'参数XX',//Eway.locale.machine.param.paramKey
-				paramValue:'参数值XX',//Eway.locale.machine.param.paramValue
-				classify:'类型XX',//Eway.locale.machine.param.classify
+				paramKey:'参数',//Eway.locale.machine.param.paramKey
+				paramValue:'参数值',//Eway.locale.machine.param.paramValue
+				classify:'类型',//Eway.locale.machine.param.classify
 				comboxClassify:{
-					unableUpdate:'不可修改XX',
-					ableUpdate:'可以修改XX'
+					unableUpdate:'不可修改',
+					ableUpdate:'可以修改'
 				},
-				description:'参数信息描述XX',//Eway.locale.machine.param.description
-				systemCon:'系统配置XX',//Eway.locale.machine.param.systemCon
-				updateSystemCon:'更改系统配置XX'//Eway.locale.machine.param.updateSystemCon
+				description:'参数信息描述',//Eway.locale.machine.param.description
+				systemCon:'系统配置',//Eway.locale.machine.param.systemCon
+				updateSystemCon:'更改系统配置'//Eway.locale.machine.param.updateSystemCon
 			},
 			quittingNotice:{
-				addCloseMsg:'增加报停信息XX',
-				updateCloseMsg:'更改报停信息XX',
-				dateRangeText:'恢复日期不能小于等于停止日期,请重新选择XX',
-				click:'请点击查询，选择设备XX',
-				stopTime:'停机时间XX',
-				openTime:'恢复时间XX',
-				currentStatus:'当前状态XX',
-				closeType:'停机类型XX',
-				responsibilityName:'停机负责人XX',
-				stopReason:'停机原因XX',
-				address:'所属地址XX',
-				selectDev:'选择需要报停的设备XX',
-				to:'至XX',
-				stopType:'停机类型XX',
+				addCloseMsg:'增加报停信息',
+				updateCloseMsg:'更改报停信息',
+				dateRangeText:'恢复日期不能小于等于停止日期,请重新选择',
+				click:'请点击查询，选择设备',
+				stopTime:'停机时间',
+				openTime:'恢复时间',
+				currentStatus:'当前状态',
+				closeType:'停机类型',
+				responsibilityName:'停机负责人',
+				stopReason:'停机原因',
+				address:'所属地址',
+				selectDev:'选择需要报停的设备',
+				to:'至',
+				stopType:'停机类型',
 				comboxStopType:{
-					recess:'放假XX',
-					fit:'装修XX',
-					power:'停电XX',
-					devFailue:'设备故障未修复XX',
-					other:'其他XX'	
+					recess:'放假',
+					fit:'装修',
+					power:'停电',
+					devFailue:'设备故障未修复',
+					other:'其他'	
 				},
-				setTime:'设置时间XX',
-				closeManage:'报停管理XX'
+				setTime:'设置时间',
+				closeManage:'报停管理'
 			}
 		},
 		
@@ -1772,172 +1772,172 @@ Ext.override(Eway,{
 		//**********************************************************/
 		report:{
 			baseReport:{
-				date:'加钞日期XX',//Eway.locale.report.baseReport.date
-				amt:'加钞金额XX',//Eway.locale.report.baseReport.amt
-				boxId:'钞箱IDXX',//Eway.locale.report.baseReport.boxId
-				boxCurrency:'币种XX',//Eway.locale.report.baseReport.boxCurrency
-				boxInitAmt:'初始金额XX',//Eway.locale.report.baseReport.boxInitAmt
-				lastAmt:'剩余金额XX',//Eway.locale.report.baseReport.lastAmt
-				cashAddRep:'加钞情况报表XX',//Eway.locale.report.baseReport.cashAddRep
-				boxBalanceRep:'钞箱余额报表XX',//Eway.locale.report.baseReport.boxBalanceRep
-				sysConfRep:'系统硬件配置报表XX',//Eway.locale.report.baseReport.sysConfRep
-				devDetailRep:'设备明细报表XX',//Eway.locale.report.baseReport.devDetailRep
-				devBrandRep:'设备品牌统计报表XX',//Eway.locale.report.baseReport.devBrandRep
-				devRunInfoRep:'设备运行情况报表XX',//Eway.locale.report.baseReport.devRunInfoRep
-				eatCardRep:'吞卡统计报表XX',//Eway.locale.report.baseReport.eatCardRep
-				eatCardDetailRep:'吞卡明细报表XX',//Eway.locale.report.baseReport.eatCardDetailRep
-				clearDate:'清机日期XX',//Eway.locale.report.baseReport.clearDate
-				clearTable:'清机情况报表XX',//Eway.locale.report.baseReport.clearTable
-				dependDev:'按设备XX',//Eway.locale.report.baseReport.dependDev
-				tradeRep:'交易统计报表XX',//Eway.locale.report.baseReport.tradeRep
-				tradeResultRep:'交易结果统计报表XX',//Eway.locale.report.baseReport.tradeResultRep
+				date:'加钞日期',//Eway.locale.report.baseReport.date
+				amt:'加钞金额',//Eway.locale.report.baseReport.amt
+				boxId:'钞箱ID',//Eway.locale.report.baseReport.boxId
+				boxCurrency:'币种',//Eway.locale.report.baseReport.boxCurrency
+				boxInitAmt:'初始金额',//Eway.locale.report.baseReport.boxInitAmt
+				lastAmt:'剩余金额',//Eway.locale.report.baseReport.lastAmt
+				cashAddRep:'加钞情况报表',//Eway.locale.report.baseReport.cashAddRep
+				boxBalanceRep:'钞箱余额报表',//Eway.locale.report.baseReport.boxBalanceRep
+				sysConfRep:'系统硬件配置报表',//Eway.locale.report.baseReport.sysConfRep
+				devDetailRep:'设备明细报表',//Eway.locale.report.baseReport.devDetailRep
+				devBrandRep:'设备品牌统计报表',//Eway.locale.report.baseReport.devBrandRep
+				devRunInfoRep:'设备运行情况报表',//Eway.locale.report.baseReport.devRunInfoRep
+				eatCardRep:'吞卡统计报表',//Eway.locale.report.baseReport.eatCardRep
+				eatCardDetailRep:'吞卡明细报表',//Eway.locale.report.baseReport.eatCardDetailRep
+				clearDate:'清机日期',//Eway.locale.report.baseReport.clearDate
+				clearTable:'清机情况报表',//Eway.locale.report.baseReport.clearTable
+				dependDev:'按设备',//Eway.locale.report.baseReport.dependDev
+				tradeRep:'交易统计报表',//Eway.locale.report.baseReport.tradeRep
+				tradeResultRep:'交易结果统计报表',//Eway.locale.report.baseReport.tradeResultRep
 			},
 			openrate:{
 				device:{
-					statisticsMethod:'统计方式XX',//Eway.locale.report.openrate.device.statisticsMethod
-					statistics:'统计XX',//Eway.locale.report.openrate.device.statistics
-					importStat:'导出XX',//Eway.locale.report.openrate.device.importStat
-					statDate:'统计日期XX',//Eway.locale.report.openrate.device.statDate
-					openTimes:'设备应工作时长XX',//Eway.locale.report.openrate.device.openTimes
-					healthyTimeReal:'正常状态时长XX',//Eway.locale.report.openrate.device.healthyTimeReal
-					maintainTimeReal:'管机员维护时长XX',//Eway.locale.report.openrate.device.maintainTimeReal
-					unknownTimeReal:'离线未知时长XX',//Eway.locale.report.openrate.device.unknownTimeReal
-					faultTimeReal:'硬件故障停机时长XX',//Eway.locale.report.openrate.device.faultTimeReal
-					atmpTimeReal:'ATMP故障时长XX',//Eway.locale.report.openrate.device.atmpTimeReal
-					stopTimeReal:'其它暂停服务状态时长XX',//Eway.locale.report.openrate.device.stopTimeReal
-					openRate:'实际工作开机率XX',//Eway.locale.report.openrate.device.openRate
-					devOpenRate:'设备开机率XX',//Eway.locale.report.openrate.device.devOpenRate
-					organizationName:'机构XX',//Eway.locale.report.openrate.device.organizationName
+					statisticsMethod:'统计方式',//Eway.locale.report.openrate.device.statisticsMethod
+					statistics:'统计',//Eway.locale.report.openrate.device.statistics
+					importStat:'导出',//Eway.locale.report.openrate.device.importStat
+					statDate:'统计日期',//Eway.locale.report.openrate.device.statDate
+					openTimes:'设备应工作时长',//Eway.locale.report.openrate.device.openTimes
+					healthyTimeReal:'正常状态时长',//Eway.locale.report.openrate.device.healthyTimeReal
+					maintainTimeReal:'管机员维护时长',//Eway.locale.report.openrate.device.maintainTimeReal
+					unknownTimeReal:'离线未知时长',//Eway.locale.report.openrate.device.unknownTimeReal
+					faultTimeReal:'硬件故障停机时长',//Eway.locale.report.openrate.device.faultTimeReal
+					atmpTimeReal:'ATMP故障时长',//Eway.locale.report.openrate.device.atmpTimeReal
+					stopTimeReal:'其它暂停服务状态时长',//Eway.locale.report.openrate.device.stopTimeReal
+					openRate:'实际工作开机率',//Eway.locale.report.openrate.device.openRate
+					devOpenRate:'设备开机率',//Eway.locale.report.openrate.device.devOpenRate
+					organizationName:'机构',//Eway.locale.report.openrate.device.organizationName
 				},
 				org:{
-					orgOpenRate:'机构开机率XX',//Eway.locale.report.openrate.org.orgOpenRate
+					orgOpenRate:'机构开机率',//Eway.locale.report.openrate.org.orgOpenRate
 				},
 				type:{
-					terminalId:'型号XX',//Eway.locale.report.openrate.type.terminalId
-					typeOpenRate:'型号开机率XX',//Eway.locale.report.openrate.type.typeOpenRate
+					terminalId:'型号',//Eway.locale.report.openrate.type.terminalId
+					typeOpenRate:'型号开机率',//Eway.locale.report.openrate.type.typeOpenRate
 				},
 			},
 			plan:{
-				addPlan:'增加方案XX',//Eway.locale.report.plan.addPlan
-				name:'名称XX',//Eway.locale.report.plan.name
-				startDate:'有效开始时间XX',//Eway.locale.report.plan.startDate
-				endDate:'有效结束时间XX',//Eway.locale.report.plan.endDate
-				terminalId:'编号XX',//Eway.locale.report.plan.terminalId
-				cashboxLimit:'钞箱报警金额(单位：张数)XX',//Eway.locale.report.plan.cashboxLimit
-				perToDev:'人员<-->设备XX',//Eway.locale.report.plan.perToDev
-				changePlan:'更改方案XX',//Eway.locale.report.plan.changePlan
+				addPlan:'增加方案',//Eway.locale.report.plan.addPlan
+				name:'名称',//Eway.locale.report.plan.name
+				startDate:'有效开始时间',//Eway.locale.report.plan.startDate
+				endDate:'有效结束时间',//Eway.locale.report.plan.endDate
+				terminalId:'编号',//Eway.locale.report.plan.terminalId
+				cashboxLimit:'钞箱报警金额(单位：张数)',//Eway.locale.report.plan.cashboxLimit
+				perToDev:'人员<-->设备',//Eway.locale.report.plan.perToDev
+				changePlan:'更改方案',//Eway.locale.report.plan.changePlan
 				openPlan:'开机方案',//Eway.locale.report.plan.openPlan
 			}
 		},
 		
 		//**********************************************************/
 		card:{
-			cardNum:'卡号XX',//Eway.locale.card.cardNum
-			onlyNumber:'只能输入数字,13-19位XX',//Eway.locale.card.onlyNumber
-			cardStatus:'卡片状态XX',//Eway.locale.card.cardStatus
-			eatCardTime:'吞卡时间XX',//Eway.locale.card.eatCardTime
-			IDType:'证件类型XX',//Eway.locale.card.IDType
-			customerName:'客户姓名XX',//Eway.locale.card.customerName
-			customerPapers:'客户证件号XX',//Eway.locale.card.customerPapers
-			customerPhone:'客户电话XX',//Eway.locale.card.customerPhone
-			endData:'吞卡截止日期XX',//Eway.locale.card.endData
-			startData:'吞卡起始日期XX',//Eway.locale.card.startData
+			cardNum:'卡号',//Eway.locale.card.cardNum
+			onlyNumber:'只能输入数字,13-19位',//Eway.locale.card.onlyNumber
+			cardStatus:'卡片状态',//Eway.locale.card.cardStatus
+			eatCardTime:'吞卡时间',//Eway.locale.card.eatCardTime
+			IDType:'证件类型',//Eway.locale.card.IDType
+			customerName:'客户姓名',//Eway.locale.card.customerName
+			customerPapers:'客户证件号',//Eway.locale.card.customerPapers
+			customerPhone:'客户电话',//Eway.locale.card.customerPhone
+			endData:'吞卡截止日期',//Eway.locale.card.endData
+			startData:'吞卡起始日期',//Eway.locale.card.startData
 		},
 		
 		//**********************************************************/
 		
 		cases:{
-			confirm:'确认@@',
-			cancel:'取消@@',
+			confirm:'确认',
+			cancel:'取消',
 			concern:'请关注',
 			SRCBView:'上海农商行新监控发送',
 			nowExportFile:'正在导入文件',
 			exportFaultInfo:'导入厂商故障信息成功.',
 			caseFault:{
-				faultRelevantInfo:'故障相关短信@@',
-				faultModule:'故障模块@@',
-				cardReaderModule:'读卡器模块@@',
-				depoistModule:'存款模块@@',
-				drawModule:'取款模块@@',
-				rprModule:'凭条打印模块@@',
-				jprModule:'日志打印模块@@',
-				pinModule:'密码键盘模块@@',
-				textTerminalUnit:'文本终端单元@@',
-				sensoModule:'传感器模块@@',
-				faultClassify: '故障分类@@',
-				faultCode : '故障码@@',
-				providerFaultCode: '厂商故障码@@',
-				faultStartTime : '故障开始时间@@',
-				faultCloseTime : '故障关闭时间@@',
-				faultContinueTime : '持续时长@@',
-			    faultState : '故障状态@@',
+				faultRelevantInfo:'故障相关短信',
+				faultModule:'故障模块',
+				cardReaderModule:'读卡器模块',
+				depoistModule:'存款模块',
+				drawModule:'取款模块',
+				rprModule:'凭条打印模块',
+				jprModule:'日志打印模块',
+				pinModule:'密码键盘模块',
+				textTerminalUnit:'文本终端单元',
+				sensoModule:'传感器模块',
+				faultClassify: '故障分类',
+				faultCode : '故障码',
+				providerFaultCode: '厂商故障码',
+				faultStartTime : '故障开始时间',
+				faultCloseTime : '故障关闭时间',
+				faultContinueTime : '持续时长',
+			    faultState : '故障状态',
 			    status:{
-			    	open:'未关闭@@',
-			    	close:'已关闭@@'
+			    	open:'未关闭',
+			    	close:'已关闭'
 			    },
-			    upgradeTimes: '升级次数@@',
-			    message: '短信@@',
-			    checkDetails: '查看详情@@',
-			    bankPer: '银行联系人@@',
-			    serPer: '供应商联系人@@',
-			    createTime: '创建时间@@',
-			    informContent: '通知内容@@',
-			    messageContentDetail: '短信内容详情@@',
-			    informWay: '通知方式@@',
-			    mail:'邮件@@',
-			    messageAndMail:'短信和邮件@@',
-			    informMobile: '通知手机号@@',
-			    notifyTimes: '通知次数@@',
-			    notifyRepeatTimes: '重复通知次数@@',
-			    sendTimes: '发送次数@@',
-			    sendInterval: '发送时间间隔@@',
-			    sendTime: '发送时间@@',
-			    faultSearch:'故障查询@@'
+			    upgradeTimes: '升级次数',
+			    message: '短信',
+			    checkDetails: '查看详情',
+			    bankPer: '银行联系人',
+			    serPer: '供应商联系人',
+			    createTime: '创建时间',
+			    informContent: '通知内容',
+			    messageContentDetail: '短信内容详情',
+			    informWay: '通知方式',
+			    mail:'邮件',
+			    messageAndMail:'短信和邮件',
+			    informMobile: '通知手机号',
+			    notifyTimes: '通知次数',
+			    notifyRepeatTimes: '重复通知次数',
+			    sendTimes: '发送次数',
+			    sendInterval: '发送时间间隔',
+			    sendTime: '发送时间',
+			    faultSearch:'故障查询'
 			    
 			},
 			caseNotify:{
-				fault:'故障@@',
-				faultDetails:'故障详情@@',
-				faultlastTime: '故障持续时长(单位:小时)@@',
-				checkFailure:'查看失败！@@',
-				innerFault:'内部错误@@',//Eway.locale.cases.caseNotify.innerFault
-				messageCheck:'短信查询@@'
+				fault:'故障',
+				faultDetails:'故障详情',
+				faultlastTime: '故障持续时长(单位:小时)',
+				checkFailure:'查看失败！',
+				innerFault:'内部错误',//Eway.locale.cases.caseNotify.innerFault
+				messageCheck:'短信查询'
 			},
 			faultClassify:{
-				faultClassifyName: '故障分类名称@@',
-				faultresponsorType: '故障责任人类型@@',
-				maintain:'维护员@@',
-				manageAndMaintain:'管机员和维护员@@ ',
-				upGradeTimes: '最高升级次数@@',
-				faultInformWay:'故障通知方式@@',
-				faultCloseInterval:'故障规定关闭时间间隔（单位:小时）@@',
-				faultTypeConfiguration: '故障类型配置@@',
-				updateFaultTypeConfiguration: '更改故障类型配置@@',
+				faultClassifyName: '故障分类名称',
+				faultresponsorType: '故障责任人类型',
+				maintain:'维护员',
+				manageAndMaintain:'管机员和维护员 ',
+				upGradeTimes: '最高升级次数',
+				faultInformWay:'故障通知方式',
+				faultCloseInterval:'故障规定关闭时间间隔（单位:小时）',
+				faultTypeConfiguration: '故障类型配置',
+				updateFaultTypeConfiguration: '更改故障类型配置',
 				number:'由数字‘0-9’,‘.’组成',
 				informNumber:'通知次数不能为0,由数字‘0-9’组成,1-5位'
 			},
 			notifyMould:{
-				noticeType:'通知类型@@',
-				createNotice:'创建通知@@',
-				upgradeNotice:'升级通知@@',
-				closeNotice:'关闭通知@@',
-				noticeValue: '通知参数@@',
-				messageContentConfiguration:'短信内容配置@@',
-				updateMessageContentConfiguration: '更改短信内容配置@@',
-				necessaryOption: '此项为必选项@@',
-				faultType:'故障类型@@',
-				applyStatus:'应用状态@@'
+				noticeType:'通知类型',
+				createNotice:'创建通知',
+				upgradeNotice:'升级通知',
+				closeNotice:'关闭通知',
+				noticeValue: '通知参数',
+				messageContentConfiguration:'短信内容配置',
+				updateMessageContentConfiguration: '更改短信内容配置',
+				necessaryOption: '此项为必选项',
+				faultType:'故障类型',
+				applyStatus:'应用状态'
 			},
 			vendorCode:{
-				exportProviderInfo: '导入厂商故障信息@@',
-				provider:'厂商@@',
-				exportFile: '导入文件@@',
-				deleteFaultInfo:'删除厂商故障信息@@',
-				templateLoad:'模板下载@@',
-				massRemove: '批量删除@@',
-				providerDescription:'厂商故障描述@@',
-				solveProject: '解决方案@@',
-				providerFaultInfo:'厂商故障信息管理@@'
+				exportProviderInfo: '导入厂商故障信息',
+				provider:'厂商',
+				exportFile: '导入文件',
+				deleteFaultInfo:'删除厂商故障信息',
+				templateLoad:'模板下载',
+				massRemove: '批量删除',
+				providerDescription:'厂商故障描述',
+				solveProject: '解决方案',
+				providerFaultInfo:'厂商故障信息管理'
 			}
 		},
 		
@@ -1990,8 +1990,6 @@ Ext.override(Eway,{
 			noLog:'无日志',//Eway.locale.atmLog.noLog
 			connectFail:'连接失败',//Eway.locale.atmLog.connectFail
 			fileSize:'文件大小',//Eway.locale.atmLog.fileSize
-			
-			
 		}
 		
 		
