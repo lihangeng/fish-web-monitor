@@ -11,6 +11,11 @@
 	<field name="devTypeName" class="java.lang.String"/>
 	<field name="deviceCount" class="java.lang.Long"/>
 	<field name="countName" class="java.lang.String"/>
+	<field name="subtotalColumn" class="java.lang.String"/>
+	<field name="totalColumn" class="java.lang.String"/>
+	<field name="devTypeNameColumn" class="java.lang.String"/>
+	<field name="orgNameColumn" class="java.lang.String"/>
+	<field name="vendorNameColumn" class="java.lang.String"/>
 	<variable name="variable1" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -41,11 +46,24 @@
 		<band height="150" splitType="Stretch">
 			<crosstab>
 				<reportElement uuid="e1c5a6e0-77a8-4b8d-8273-efe164207038" x="263" y="0" width="961" height="149"/>
-				<crosstabParameter name="orgName"/>
-				<crosstabParameter name="vendorName"/>
-				<crosstabParameter name="total"/>
-				<crosstabParameter name="type"/>
-				<crosstabParameter name="subtotal"/>
+				<crosstabParameter name="orgName">
+					<parameterValueExpression><![CDATA[$F{orgNameColumn}]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabParameter name="vendorName">
+					<parameterValueExpression><![CDATA[$F{vendorNameColumn}]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabParameter name="total">
+					<parameterValueExpression><![CDATA[$F{totalColumn}]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabParameter name="type">
+					<parameterValueExpression><![CDATA[$F{devTypeNameColumn}]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabParameter name="subtotal">
+					<parameterValueExpression><![CDATA[$F{subtotalColumn}]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabParameter name="devType">
+					<parameterValueExpression><![CDATA[$F{devTypeNameColumn}]]></parameterValueExpression>
+				</crosstabParameter>
 				<crosstabHeaderCell>
 					<cellContents backcolor="#C0C0C0" mode="Opaque">
 						<box>
@@ -58,9 +76,7 @@
 						<textField>
 							<reportElement uuid="4e3ddf6f-4be8-4722-be98-a56c6639062e" style="Crosstab Data Text" x="0" y="0" width="174" height="30"/>
 							<box>
-								<topPen lineWidth="0.5"/>
-								<leftPen lineWidth="0.5"/>
-								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement>
 								<font size="13"/>
@@ -70,9 +86,7 @@
 						<textField>
 							<reportElement uuid="8f8e0380-a422-46a5-89bb-f40ca199e404" style="Crosstab Data Text" x="174" y="0" width="153" height="30"/>
 							<box>
-								<topPen lineWidth="0.5"/>
-								<leftPen lineWidth="0.5"/>
-								<bottomPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement>
 								<font size="13"/>
@@ -81,11 +95,6 @@
 						</textField>
 						<textField>
 							<reportElement uuid="56d98ba1-0594-4af4-bf31-27c4ab15a641" style="Crosstab Data Text" x="327" y="0" width="160" height="30"/>
-							<box>
-								<topPen lineWidth="0.5"/>
-								<leftPen lineWidth="0.5"/>
-								<bottomPen lineWidth="0.5"/>
-							</box>
 							<textElement>
 								<font size="13"/>
 							</textElement>
@@ -223,12 +232,6 @@
 							</box>
 							<textField>
 								<reportElement uuid="f748d9c4-c094-4529-b9d4-f1a6b8a788b1" style="Crosstab Data Text" x="0" y="0" width="163" height="30" backcolor="#FFFFFF"/>
-								<box>
-									<topPen lineWidth="0.5"/>
-									<leftPen lineWidth="0.5"/>
-									<bottomPen lineWidth="0.5"/>
-									<rightPen lineWidth="0.5"/>
-								</box>
 								<textElement verticalAlignment="Middle">
 									<font size="12" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 								</textElement>

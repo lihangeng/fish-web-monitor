@@ -86,11 +86,22 @@ public class TransRptService implements ITransRptService {
             transCountRpt.setTransType(objectToString(o[3]));
             transCountRpt.setCountName(messageSource.getMessage("report.trans.transCountName", null, FishCfg.locale));
             transCountRpt.setTransCount(Long.valueOf(objectToString(o[0])));
+            
+            transCountRpt.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+            transCountRpt.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
+            transCountRpt.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
+            transCountRpt.setTransTypeColumn(messageSource.getMessage("atmLog.transType", null, FishCfg.locale));
+            
 
             transAmtRpt.setOrgName(objectToString(o[1]));
             transAmtRpt.setTransType(objectToString(o[3]));
             transAmtRpt.setCountName(messageSource.getMessage("report.trans.transAmtName", null, FishCfg.locale));
             transAmtRpt.setTransCount(Double.valueOf(objectToString(o[2])));
+            
+            transAmtRpt.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+            transAmtRpt.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
+            transAmtRpt.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
+            transAmtRpt.setTransTypeColumn(messageSource.getMessage("atmLog.transType", null, FishCfg.locale));
 
 //            transTpsRpt.setOrgName(objectToString(o[1]));
 //            transTpsRpt.setTransType(objectToString(o[3]));
@@ -164,12 +175,26 @@ public class TransRptService implements ITransRptService {
             transCountRpt.setTransType(objectToString(o[2]));
             transCountRpt.setCountName(messageSource.getMessage("report.trans.transCountName", null, FishCfg.locale));
             transCountRpt.setTransCount(Long.valueOf(objectToString(o[3])));
+            
+            
+            transCountRpt.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+            transCountRpt.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
+            transCountRpt.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
+            transCountRpt.setTransTypeColumn(messageSource.getMessage("atmLog.transType", null, FishCfg.locale));
+            transCountRpt.setDevNoColumn(messageSource.getMessage("device.terminalId", null, FishCfg.locale));
 
             transAmtRpt.setOrgName(objectToString(o[0]));
             transAmtRpt.setTerminalId(objectToString(o[1]));
             transAmtRpt.setTransType(objectToString(o[2]));
             transAmtRpt.setCountName(messageSource.getMessage("report.trans.transAmtName", null, FishCfg.locale));
             transAmtRpt.setTransCount(Double.valueOf(objectToString(o[4])));
+            
+            
+            transAmtRpt.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+            transAmtRpt.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
+            transAmtRpt.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
+            transAmtRpt.setTransTypeColumn(messageSource.getMessage("atmLog.transType", null, FishCfg.locale));
+            transAmtRpt.setDevNoColumn(messageSource.getMessage("device.terminalId", null, FishCfg.locale));
 
 //            transTpsRpt.setOrgName(objectToString(o[1]));
 //            transTpsRpt.setTransType(objectToString(o[3]));

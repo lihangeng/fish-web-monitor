@@ -23,7 +23,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="24" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[交易统计报表]]></text>
+				<text><![CDATA[$P{title}]]></text>
 			</staticText>
 		</band>
 	</title>

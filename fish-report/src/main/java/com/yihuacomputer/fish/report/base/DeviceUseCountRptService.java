@@ -24,7 +24,7 @@ public class DeviceUseCountRptService implements IDeviceUseCountRptService {
     @Autowired
     private IGenericDao dao;
 
-    private String countName ="";
+    private String countName ;
     
 	@Autowired
 	private MessageSource messageSource;
@@ -74,6 +74,13 @@ public class DeviceUseCountRptService implements IDeviceUseCountRptService {
             if (objectToString(o[2]).equals("DISABLED")) {
                 deviceUseCount.setDevUseState(messageSource.getMessage("report.deviceBoxDetail.disabled", null, FishCfg.locale));
             }
+            
+            deviceUseCount.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+            deviceUseCount.setDevTypeNameColumn(messageSource.getMessage("report.devTypeCount.type", null, FishCfg.locale));
+            deviceUseCount.setDevStatusColumn(messageSource.getMessage("report.devUseCount.devRunStatus", null, FishCfg.locale));
+            deviceUseCount.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
+            deviceUseCount.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
+            
             deviceUseCount.setDeviceCount(Integer.valueOf(objectToString(o[3])));
             deviceUseCountList.add(deviceUseCount);
         }
