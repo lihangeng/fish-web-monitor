@@ -46,6 +46,9 @@ import com.yihuacomputer.fish.web.command.format.MyComputerForm;
 public class ExploerController
 {
 
+	private final static long MAXFILESIZE=209715200L;
+	private final static long SIZEOFPERM=1024*1024L;
+	
     /**
      * 通过URL请求获得Agent所采集的ATM的磁盘信息：
      *
@@ -54,7 +57,6 @@ public class ExploerController
      * @param request
      * @return
      */
-	
 	@Autowired
 	private MessageSource messageSource;
 	
@@ -227,8 +229,9 @@ public class ExploerController
         String fileName = file.getOriginalFilename();
         long fileSize = file.getSize();
         response.setContentType("text/html;charset=UTF-8");
-        if(fileSize > 209715200){
-            return "{'success':false,'errors':'文件过大（超过200M）,上传失败.'}";//超过最大文件大小限制（最大200M）
+        if(fileSize > MAXFILESIZE){
+        	String tips = messageSource.getMessage("exploer.fileUpload.failSize", new Object[]{MAXFILESIZE/SIZEOFPERM}, FishCfg.locale);
+            return "{'success':false,'errors':'"+tips+"'}";//超过最大文件大小限制（最大200M）
         }
         File targetFile = new File(temDir + System.getProperty("file.separator") +fileName);
         if(!targetFile.exists()){
@@ -247,11 +250,13 @@ public class ExploerController
             String url = MonitorCfg.getHttpUrl(request.getParameter("ip"))+"/ctr/downfile";
             form = (DownFileForm) HttpProxy.httpPost(url,form,DownFileForm.class);
             if(!form.getRet().equals(FishConstant.SUCCESS)){
-                return "{'success':false,'errors':'上传失败.'}";
+            	String tips = messageSource.getMessage("exploer.fileUpload.fail", null, FishCfg.locale);
+                return "{'success':false,'errors':'"+tips+"'}";
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return "{'success':false,'errors':'上传失败.'}";
+        	String tips = messageSource.getMessage("exploer.fileUpload.fail", null, FishCfg.locale);
+            return "{'success':false,'errors':'"+tips+"'}";
         }
         return "{'success':true,'serverPath':'"+fileName+"'}";
     }
