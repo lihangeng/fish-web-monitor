@@ -34,7 +34,7 @@ public class FileUploadController {
 	public @ResponseBody ModelMap uploadFile(@RequestBody HttpFileCfg fileCfg){		
 		ModelMap result = new ModelMap();
 		HttpFileRet ret = HttpFileClient.downloadFile(fileCfg);	       
-        logger.info(String.format("文件上传结果[%s]", ret.getText()));
+        logger.info(String.format("file upload result is [%s]", ret.getText()));
 		result.addAttribute("ret", ret);        
 		return result;
 	}

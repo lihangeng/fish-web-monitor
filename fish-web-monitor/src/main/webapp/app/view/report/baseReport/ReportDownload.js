@@ -25,11 +25,13 @@ Ext.define('Eway.view.report.baseReport.ReportDownload', {
 				xtype : 'button',
 				text : Eway.locale.button.exportXLS,
 				iconCls : 'exportBtn',
+				glyph : 0xf1c3,
 				action : 'exportXls'
 			}, {
 				xtype : 'button',
 				text : Eway.locale.button.exportPDF,
 				iconCls : 'exportBtn',
+				glyph : 0xf1c1,
 				action : 'exportPdf'
 			} ]
 		});
