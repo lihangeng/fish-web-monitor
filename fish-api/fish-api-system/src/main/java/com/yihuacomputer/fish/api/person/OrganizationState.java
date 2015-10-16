@@ -2,11 +2,26 @@ package com.yihuacomputer.fish.api.person;
 
 
 public enum OrganizationState {
-	NEW(0,"新设立"),
-	APPROVING(1, "正在审批"),
-	START(2, "启用"),//超过60天没有修改密码，会被锁定
-	STOP_APPLICATION(3, "停用申请"),//假删除
-	STOP(4, "停用");
+	/**
+	 * 新设立
+	 */
+	NEW(0,"OrganizationState.NEW"),
+	/**
+	 * 正在审批
+	 */
+	APPROVING(1, "OrganizationState.APPROVING"),
+	/**
+	 * 启用
+	 */
+	START(2, "OrganizationState.START"),//超过60天没有修改密码，会被锁定
+	/**
+	 * 停用申请
+	 */
+	STOP_APPLICATION(3, "OrganizationState.STOP_APPLICATION"),//假删除
+	/**
+	 * 停用
+	 */
+	STOP(4, "OrganizationState.STOP");
 	
 	private int id;
 	private String text;

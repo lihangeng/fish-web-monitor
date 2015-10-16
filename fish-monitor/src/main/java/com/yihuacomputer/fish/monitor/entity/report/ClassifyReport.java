@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.monitor.entity.report;
 
+
 import com.yihuacomputer.fish.api.monitor.business.RunStatus;
 import com.yihuacomputer.fish.api.monitor.filter.ReportMedthod;
 import com.yihuacomputer.fish.api.monitor.report.IClassifyReport;
@@ -11,7 +12,6 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.NetStatus;
 public class ClassifyReport implements IClassifyReport {
 
     private long id;
-
     /** 设备号 */
     private String code;
 
@@ -381,7 +381,17 @@ public class ClassifyReport implements IClassifyReport {
 
     }
 
-    /**
+//    private MessageSource messageSourceEnum;
+//    
+//    public MessageSource getMessageSourceEnum() {
+//		return messageSourceEnum;
+//	}
+//
+//	public void setMessageSourceEnum(MessageSource messageSourceEnum) {
+//		this.messageSourceEnum = messageSourceEnum;
+//	}
+
+	/**
      * 格式化设备状态监控页面显示信息
      *
      * @param device

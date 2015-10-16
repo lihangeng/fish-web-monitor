@@ -9,13 +9,34 @@ package com.yihuacomputer.fish.api.person;
  *
  */
 public enum OrganizationLevel {
-    TOTAL(0, "总行"),
-    BRANCH(1, "分行"), 
-    SUB_BRANCH(2, "一级支行"), 
-    SUBTWO_BRANCH(3, "二级支行"),
-    NETWORK_NODE(4, "网点"),
-    HELPYOURSELF_BANK(5,"自助银行"),
-    YINYE_BANK(6,"营业部");
+    /**
+     * 总行
+     */
+    TOTAL(0, "OrganizationLevel.TOTAL"),
+    /**
+     * 分行
+     */
+    BRANCH(1, "OrganizationLevel.BRANCH"), 
+    /**
+     * 一级支行
+     */
+    SUB_BRANCH(2, "OrganizationLevel.SUB_BRANCH"), 
+    /**
+     * 二级支行
+     */
+    SUBTWO_BRANCH(3, "OrganizationLevel.SUBTWO_BRANCH"),
+    /**
+     * 网点
+     */
+    NETWORK_NODE(4, "OrganizationLevel.NETWORK_NODE"),
+    /**
+     * 自助银行
+     */
+    HELPYOURSELF_BANK(5,"OrganizationLevel.HELPYOURSELF_BANK"),
+    /**
+     * 营业部
+     */
+    YINYE_BANK(6,"OrganizationLevel.YINYE_BANK");
 
     private int id;
 

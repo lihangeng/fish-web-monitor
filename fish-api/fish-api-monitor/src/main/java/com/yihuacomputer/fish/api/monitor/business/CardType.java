@@ -5,33 +5,33 @@ public enum CardType {
     /**
      * 本行借记卡 卡表对应1（本行借记卡）、3（本行准贷记卡 业务处理同借记卡：苏稀春）
      */
-    LOCAL_BANK(0,"本行借记卡"),
+    LOCAL_BANK(0,"CardType.LOCAL_BANK"),
     /**
      * 本行信用卡 卡表对应2
      */
-    LOCAL_CREDIT(1,"本行信用卡"),
+    LOCAL_CREDIT(1,"CardType.LOCAL_CREDIT"),
 
     /**
      * 本行准贷记卡  对应卡表文件中的3   业务同借记卡处理，注意：不支持理财账户交易。（周峰  江苏农行现场增加）
      */
-    LOCAL_QUASICREDIT(2,"本行准贷记卡"),
+    LOCAL_QUASICREDIT(2,"CardType.LOCAL_QUASICREDIT"),
 
     /**
      * 他行卡
      */
-    OTHER_BANK(3,"他行卡"),
+    OTHER_BANK(3,"CardType.OTHER_BANK"),
     /**
      * 本行异地
      */
-    REMOTE_BANK(4,"本行异地卡"),
+    REMOTE_BANK(4,"CardType.REMOTE_BANK"),
     /**
      * 国际卡(也属于他行卡)
      */
-    INTERNATIONAL(5,"国际卡"),
+    INTERNATIONAL(5,"CardType.INTERNATIONAL"),
     /**
      * 不能识别的卡
      */
-    UNKONWN(6,"未知卡");
+    UNKONWN(6,"CardType.UNKONWN");
 
 
 	private int id;

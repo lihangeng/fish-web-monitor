@@ -1,8 +1,14 @@
 package com.yihuacomputer.fish.api.person;
 
 public enum UserType {
-	SUPERUSER(0,"超级用户"),
-	NORMAlUSER(1,"普通用户");
+	/**
+	 * 超级用户
+	 */
+	SUPERUSER(0,"UserType.SUPERUSER"),
+	/**
+	 * 普通用户
+	 */
+	NORMAlUSER(1,"UserType.NORMAlUSER");
 	private int id;
 	private String text;
 	private UserType(int id,String text){

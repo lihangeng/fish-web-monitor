@@ -7,9 +7,9 @@ package com.yihuacomputer.fish.api.version.job.task;
  *
  */
 public enum TaskType {
-	AUTO_UPDATE(0, "自动升级"), // 自动更新任务
-	MANUAL(1, "手动升级"),// 手工任务
-	SCHEDULER(2, "计划作业"); // 计划作业
+	AUTO_UPDATE(0, "TaskType.AUTO_UPDATE"), // 自动更新任务
+	MANUAL(1, "TaskType.MANUAL"),// 手工任务
+	SCHEDULER(2, "TaskType.SCHEDULER"); // 计划作业
 
 	private int id;
 	private String text;

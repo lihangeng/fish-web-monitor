@@ -9,8 +9,10 @@ package com.yihuacomputer.fish.api.device;
  */
 public enum RegStatus
 {
-	UNKNOWN(0, "未知"),UNREGISTERED(1, "未注册"), REGISTRATION(1, "注册");
-
+	UNKNOWN(0, "RegStatus.UNKNOWN"),UNREGISTERED(1, "RegStatus.UNREGISTERED"), REGISTRATION(1, "RegStatus.REGISTRATION");
+    public String getText(){
+		return text;
+    }
     private int id;
 
     private String text;
@@ -29,11 +31,6 @@ public enum RegStatus
     public void setId(int id)
     {
         this.id = id;
-    }
-
-    public String getText()
-    {
-        return text;
     }
 
     public void setText(String text)

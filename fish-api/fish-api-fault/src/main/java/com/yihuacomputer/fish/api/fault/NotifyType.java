@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.api.fault;
 
+
 /**
  * 通知类型
  * 
@@ -7,10 +8,13 @@ package com.yihuacomputer.fish.api.fault;
  * 
  */
 public enum NotifyType {
-	CREATE(1, "创建通知"), // 创建通知
-	UPDATE(2, "升级通知"), // 升级通知
-	CLOSE(3, "关闭通知");// 关闭通知
+	CREATE(1, "NotifyType.CREATE"), // 创建通知
+	UPDATE(2, "NotifyType.UPDATE"), // 升级通知
+	CLOSE(3, "NotifyType.CLOSE");// 关闭通知
 
+    public String getText(){
+		return text;
+    }
 	private int id;
 
 	private String text;
@@ -26,10 +30,6 @@ public enum NotifyType {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getText() {
-		return text;
 	}
 
 	public void setText(String text) {

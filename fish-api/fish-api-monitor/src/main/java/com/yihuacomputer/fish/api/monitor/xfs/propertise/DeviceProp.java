@@ -7,10 +7,10 @@ package com.yihuacomputer.fish.api.monitor.xfs.propertise;
  */
 public enum DeviceProp {
 	/**具备*/
-	T("有"),
+	T("DeviceProp.T"),
 	
 	/**不具备*/
-	F("无");
+	F("DeviceProp.F");
 	
 	private String text;
 	

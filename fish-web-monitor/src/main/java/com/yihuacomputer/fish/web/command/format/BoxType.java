@@ -11,34 +11,34 @@ public enum BoxType
     /**
      * 现金取款箱
      */
-    BILLCASSETTE("取款"),
+    BILLCASSETTE("BoxType.BILLCASSETTE"),
 
     /**
      * 现金存款箱
      */
-    CASHINCASSETTE("存款"),
+    CASHINCASSETTE("BoxType.CASHINCASSETTE"),
 
     /**
      * 现金循环箱
      */
-    RECYCLECASSETTE("循环"),
+    RECYCLECASSETTE("BoxType.RECYCLECASSETTE"),
 
     /**
      * 回收箱
      */
-    RETRACTCASSETTE("回收"),
+    RETRACTCASSETTE("BoxType.RETRACTCASSETTE"),
 
     /**
      * 拒钞箱、废钞箱
      */
-    REJECTCASSETTE("废钞"),
+    REJECTCASSETTE("BoxType.REJECTCASSETTE"),
 
     /**
      * 其他类型箱
      */
-    OTHERTYPECASSETTE("其他");
+    OTHERTYPECASSETTE("BoxType.OTHERTYPECASSETTE");
 
-    private String name;
+    private String text;
 
     /**
      * 构造方法.<br/>
@@ -47,18 +47,18 @@ public enum BoxType
      */
     private BoxType(String name)
     {
-        this.name = name;
+        this.text = name;
     }
 
-    public String getName()
+    public String getText()
     {
-        return this.name;
+        return this.text;
     }
 
     @Override
     public String toString()
     {
-        return super.toString() + ":" + name;
+        return super.toString() + ":" + text;
     }
 
 }

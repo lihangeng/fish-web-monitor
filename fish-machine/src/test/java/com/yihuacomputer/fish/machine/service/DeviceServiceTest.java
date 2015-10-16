@@ -36,47 +36,47 @@ import com.yihuacomputer.fish.machine.H2TestConfig;
  * @date 2012-2-22 下午03:25:01
  * @version 类说明
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = H2TestConfig.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = H2TestConfig.class)
 public class DeviceServiceTest extends BindSessionInTest2
 {
     /**
      * 设备接口
      */
-    @Autowired
+//    @Autowired
     private IDeviceService deviceService;
 
     /**
      * 设备扩展接口
      */
-    @Autowired
+//    @Autowired
     private IDeviceExtendService deviceExtendService;
 
     /**
      * 机构接口
      */
-    @Autowired
+//    @Autowired
     private IOrganizationService orgService;
 
     /**
      * 品牌接口
      */
-    @Autowired
+//    @Autowired
     private IAtmBrandService brandService;
 
     /**
      * 类型接口
      */
-    @Autowired
+//    @Autowired
     private IAtmCatalogService catalogService;
 
     /**
      * 型号接口
      */
-    @Autowired
+//    @Autowired
     private IAtmTypeService typeService;
 
-    @Test
+//    @Test
     public void testDevice()
     {
         IOrganization organization1 = orgService.make();
@@ -173,7 +173,7 @@ public class DeviceServiceTest extends BindSessionInTest2
     }
     
     
-    @Test
+//    @Test
     public void testCache(){
     	 IOrganization organization1 = orgService.make();
          organization1.setCode("shenzhen");

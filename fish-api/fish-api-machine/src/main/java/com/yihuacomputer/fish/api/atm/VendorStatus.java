@@ -1,6 +1,5 @@
 package com.yihuacomputer.fish.api.atm;
 
-
 /**
  * 品牌状态
  *
@@ -11,8 +10,18 @@ package com.yihuacomputer.fish.api.atm;
 public enum VendorStatus
 {
 
-    SUPPLY(1, "设备供应"), SERVE(3, "设备服役");
+    /**
+     * 供应
+     */
+    SUPPLY(1, "VendorStatus.SUPPLY"), 
+    /**
+     *服务 
+     */
+    SERVE(3, "VendorStatus.SERVE");
 
+    public String getText(){
+		return text;
+    }
     private int id;
 
     private String text;
@@ -31,11 +40,6 @@ public enum VendorStatus
     public void setId(int id)
     {
         this.id = id;
-    }
-
-    public String getText()
-    {
-        return text;
     }
 
     public void setText(String text)

@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.api.device;
 
+
 /**
  * 经营方式
  * 
@@ -9,8 +10,12 @@ package com.yihuacomputer.fish.api.device;
  */
 public enum WorkType
 {
-    FROM_OPERATING(1, "自营"), COOPERATION(2, "合作"), OUTSOURCING(3, "外包");
+    FROM_OPERATING(1, "WorkType.FROM_OPERATING"), COOPERATION(2, "WorkType.FROM_OPERATING"), OUTSOURCING(3, "WorkType.FROM_OPERATING");
+//FROM_OPERATING(1, "自营"), COOPERATION(2, "合作"), OUTSOURCING(3, "外包");
 
+    public String getText(){
+		return text;
+    }
     private int id;
 
     private String text;
@@ -29,11 +34,6 @@ public enum WorkType
     public void setId(int id)
     {
         this.id = id;
-    }
-
-    public String getText()
-    {
-        return text;
     }
 
     public void setText(String text)

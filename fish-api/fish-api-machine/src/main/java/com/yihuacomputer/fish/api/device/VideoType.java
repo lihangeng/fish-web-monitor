@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.api.device;
 
+
 /**
  *
  * 是否支持视频播放
@@ -10,8 +11,10 @@ package com.yihuacomputer.fish.api.device;
  */
 public enum VideoType
 {
-    VIDEO_YES(1, "是"), VIDEO_NO(2, "否");
-
+    VIDEO_YES(1, "VideoType.VIDEO_YES"), VIDEO_NO(2, "VideoType.VIDEO_NO");
+    public String getText(){
+		return text;
+    }
     private int id;
 
     private String text;
@@ -30,11 +33,6 @@ public enum VideoType
     public void setId(int id)
     {
         this.id = id;
-    }
-
-    public String getText()
-    {
-        return text;
     }
 
     public void setText(String text)

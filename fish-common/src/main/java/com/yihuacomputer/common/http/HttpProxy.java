@@ -37,13 +37,13 @@ public class HttpProxy {
 				return stream;
 			}
 		} catch (Exception e) {
-			throw new ConnectionException(String.format("连接ATM失败[%s]",e.getMessage()));
+			throw new ConnectionException(String.format("Connect to ATM Failed[%s]",e.getMessage()));
 		} finally {
 			if (stream != null) {
 				try {
 					stream.close();
 				} catch (IOException e) {
-					throw new ConnectionException(String.format("关闭连接失败[%s]",e));
+					throw new ConnectionException(String.format("Close Connection Failed[%s]",e));
 				}
 			}
 		}

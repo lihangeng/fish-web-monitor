@@ -37,13 +37,13 @@ public class DateUtils {
 
 	public static Date get(String strDate, String format) {
 		if (format == null) {
-			throw new AppException("时间格式不能为空");
+			throw new AppException("Date format can not be null");
 		}
 		Date date = null;
 		try {
 			date = new SimpleDateFormat(format).parse(strDate);
 		} catch (ParseException ex) {
-			throw new AppException("时间转化错误：" + ex.getMessage());
+			throw new AppException("Format Error" + ex.getMessage());
 		}
 		return date;
 	}

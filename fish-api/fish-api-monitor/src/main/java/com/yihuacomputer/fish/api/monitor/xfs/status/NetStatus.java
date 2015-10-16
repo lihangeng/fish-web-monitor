@@ -7,16 +7,16 @@ package com.yihuacomputer.fish.api.monitor.xfs.status;
  */
 public enum NetStatus {
 	/**网络正常*/
-	Healthy("正常"),
+	Healthy("NetStatus.Healthy"),
 	
 	/**网络不稳定*/
-	Warning("不稳定"),
+	Warning("NetStatus.Warning"),
 	
 	/**网络故障*/
-	Fatal("故障"), 
+	Fatal("NetStatus.Fatal"), 
 	
 	/**未知*/
-	Unknown("未知");
+	Unknown("NetStatus.Unknown");
 	
 	private String text;
 	

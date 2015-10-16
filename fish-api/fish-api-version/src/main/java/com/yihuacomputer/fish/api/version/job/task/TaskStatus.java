@@ -7,26 +7,26 @@ package com.yihuacomputer.fish.api.version.job.task;
  *
  */
 public enum TaskStatus {
-	NEW(0, "新建"), // 新建
-	RUN(1, "运行中"), // 运行中,已进入任务队列
-	REMOVED(2,"已删除"),//删除的标记，假删除
-	CANCELED(3,"已取消"),//已取消
-	CANCEL_FAIL(4,"取消失败"),//取消失败，因为取消的动作通知应用失败
+	NEW(0, "TaskStatus.NEW"), // 新建
+	RUN(1, "TaskStatus.RUN"), // 运行中,已进入任务队列
+	REMOVED(2,"TaskStatus.REMOVED"),//删除的标记，假删除
+	CANCELED(3,"TaskStatus.CANCELED"),//已取消
+	CANCEL_FAIL(4,"TaskStatus.CANCEL_FAIL"),//取消失败，因为取消的动作通知应用失败
 
-	NOTICED(30, "已通知监控客户端"),
-	NOTICED_FAIL(31,"通知监控客户端失败"),
+	NOTICED(30, "TaskStatus.NOTICED"),
+	NOTICED_FAIL(31,"TaskStatus.NOTICED_FAIL"),
 
-	DOWNLOADED(40, "已下发"), //下发到客户端的临时目录
-	DOWNLOADED_FAIL(41, "下发失败"),
+	DOWNLOADED(40, "TaskStatus.DOWNLOADED"), //下发到客户端的临时目录
+	DOWNLOADED_FAIL(41, "TaskStatus.DOWNLOADED_FAIL"),
 
-	DEPLOYED(50,"正在部署"),//根据不同的软件类型，对于部署有不同的含义，如简单的拷贝到指定目录，调用第三方的部署服务，重启系统等
-	DEPLOYED_WAIT(51,"等待部署"),//等待部署的任务需要从页面手动触发一次“重启ATM”的动作，完成最终的流程，执行此动作后修改任务状态为DEPLOYED
-	DEPLOYED_FAIL(52,"部署失败"),//任务的最终状态“失败”
-	CHECKED(53,"部署已确认"),//任务的最终状态“成功”
-	NOTICE_APP_OK(54,"已通知应用"),
-	NOTICE_APP_FAIL(55,"通知应用失败"),
+	DEPLOYED(50,"TaskStatus.DEPLOYED"),//根据不同的软件类型，对于部署有不同的含义，如简单的拷贝到指定目录，调用第三方的部署服务，重启系统等
+	DEPLOYED_WAIT(51,"TaskStatus.DEPLOYED_WAIT"),//等待部署的任务需要从页面手动触发一次“重启ATM”的动作，完成最终的流程，执行此动作后修改任务状态为DEPLOYED
+	DEPLOYED_FAIL(52,"TaskStatus.DEPLOYED_FAIL"),//任务的最终状态“失败”
+	CHECKED(53,"TaskStatus.CHECKED"),//任务的最终状态“成功”
+	NOTICE_APP_OK(54,"TaskStatus.NOTICE_APP_OK"),
+	NOTICE_APP_FAIL(55,"TaskStatus.NOTICE_APP_FAIL"),
 
-	OTHER(99,"其它");
+	OTHER(99,"TaskStatus.OTHER");
 
 	private int id;
 	private String text;

@@ -1,10 +1,22 @@
 package com.yihuacomputer.fish.api.version;
 
 public enum VersionStaticsStatus {
-	TOTALDEVICE(0,"设备总台数"),
-	PASHDEVICE(1,"可下发台数"),
-	FAILDEVICE(2,"失败台数"),
-	SUCCESSDEVICE(3,"成功台数");
+	/**
+	 * 设备总台数
+	 */
+	TOTALDEVICE(0,"VersionStaticsStatus.TOTALDEVICE"),
+	/**
+	 * 可下发台数
+	 */
+	PASHDEVICE(1,"VersionStaticsStatus.PASHDEVICE"),
+	/**
+	 * 失败台数
+	 */
+	FAILDEVICE(2,"VersionStaticsStatus.FAILDEVICE"),
+	/**
+	 * 成功台数
+	 */
+	SUCCESSDEVICE(3,"VersionStaticsStatus.SUCCESSDEVICE");
 	private String text;
 	private int id;
 	private VersionStaticsStatus(int id,String text) {

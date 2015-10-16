@@ -533,12 +533,78 @@ public class VersionService implements IDomainVersionService {
 }
 
 enum AgentRet {
-	RET00("成功"), // 成功
-	RET01("失败"), // 失败
-	RET0100("相同的软件分类正在升级"), RET02("ATC应用忙"), // ATMC应用忙
-	RET03("Agent异常"), // Agent异常
-	RET40("升级包下载成功"), RET41("升级包下载失败"), RET4100("D盘磁盘空间不足"), RET4101("部署路径所在盘磁盘空间不足"), RET4102("部署路径所在盘不存在"), RET4103("部署路径没有配置"), RET4104("服务器中断"), RET4105("下发文件MD5值校验失败"), RET4106(
-			"分发的版本号比ATM上已有的版本号低,无需分发"), RET50("正在部署"), RET51("等待部署"), RET52("部署失败"), RET99("其它");
+	/**
+	 * 成功
+	 */
+	RET00("AgentRet.RET00"), // 成功
+	/**
+	 * 失败
+	 */
+	RET01("AgentRet.RET01"), // 失败
+	/**
+	 * 相同的软件分类正在升级
+	 */
+	RET0100("AgentRet.RET0100"), 
+	/**
+	 * ATC应用忙
+	 */
+	RET02("AgentRet.RET02"), // ATMC应用忙
+	/**
+	 * Agent异常
+	 */
+	RET03("AgentRet.RET03"), // Agent异常
+	/**
+	 * 升级包下载成功
+	 */
+	RET40("AgentRet.RET40"),
+	/**
+	 * 升级包下载失败
+	 */
+	RET41("AgentRet.RET41"), 
+	/**
+	 * D盘磁盘空间不足
+	 */
+	RET4100("AgentRet.RET4100"), 
+	/**
+	 * 部署路径所在盘磁盘空间不足
+	 */
+	RET4101("AgentRet.RET4101"), 
+	/**
+	 * 部署路径所在盘不存在
+	 */
+	RET4102("AgentRet.RET4102"), 
+	/**
+	 * 部署路径没有配置
+	 */
+	RET4103("AgentRet.RET4103"), 
+	/**
+	 * 服务器中断
+	 */
+	RET4104("AgentRet.RET4104"), 
+	/**
+	 * 下发文件MD5值校验失败
+	 */
+	RET4105("AgentRet.RET4105"), 
+	/**
+	 * 分发的版本号比ATM上已有的版本号低,无需分发
+	 */
+	RET4106("AgentRet.RET4106"), 
+	/**
+	 * 正在部署
+	 */
+	RET50("AgentRet.RET50"), 
+	/**
+	 * 等待部署
+	 */
+	RET51("AgentRet.RET51"),
+	/**
+	 * 部署失败
+	 */
+	RET52("AgentRet.RET52"),
+	/**
+	 * 其它
+	 */
+	RET99("AgentRet.RET99");
 
 	private String text;
 

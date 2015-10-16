@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.api.device;
 
+
 /**
  * 设备状态
  *
@@ -10,9 +11,14 @@ package com.yihuacomputer.fish.api.device;
 //1.启用、2.报废、3.启用待审核、4.报废待审核、5.修改待审核、6.启用审核不通过、7.报废审核不通过、8.修改审核不通过
 public enum DevStatus
 {
-    OPENING(0, "启用"), SCRAP(1, "报废"),OPE_WAI_CHE(2,"启用待审核"),SCR_WAI_CHE(3,"报废待审核"),
-    UPD_WAI_CHE(4,"修改待审核"),OPE_CHE_NO(5,"启用审核不通过"),SCR_CHE_NO(6,"报废审核不通过"),UPD_CHE_NO(7,"修改审核不通过");
-
+	OPENING(0, "DevStatus.OPENING"), SCRAP(1, "DevStatus.SCRAP"),OPE_WAI_CHE(2,"DevStatus.OPE_WAI_CHE"),SCR_WAI_CHE(3,"DevStatus.SCR_WAI_CHE"),
+    UPD_WAI_CHE(4,"DevStatus.UPD_WAI_CHE"),OPE_CHE_NO(5,"DevStatus.OPE_CHE_NO"),SCR_CHE_NO(6,"DevStatus.SCR_CHE_NO"),UPD_CHE_NO(7,"DevStatus.UPD_CHE_NO");
+	  
+//    OPENING(0, "启用"), SCRAP(1, "报废"),OPE_WAI_CHE(2,"启用待审核"),SCR_WAI_CHE(3,"报废待审核"),
+//    UPD_WAI_CHE(4,"修改待审核"),OPE_CHE_NO(5,"启用审核不通过"),SCR_CHE_NO(6,"报废审核不通过"),UPD_CHE_NO(7,"修改审核不通过");
+    public String getText(){
+			return text;
+    }
     private int id;
 
     private String text;
@@ -31,11 +37,6 @@ public enum DevStatus
     public void setId(int id)
     {
         this.id = id;
-    }
-
-    public String getText()
-    {
-        return text;
     }
 
     public void setText(String text)

@@ -41,7 +41,7 @@ Ext.define('Eway.view.person.bankOrg.FilterForm', {
 				columnWidth : .3,
 				items : [{
 					xtype : 'field.organizationLevel',
-					name : Eway.locale.person.bankOrg.orgLevel,
+					name : 'orgLevel',
 					store : levelStore
 				}]
 			}]

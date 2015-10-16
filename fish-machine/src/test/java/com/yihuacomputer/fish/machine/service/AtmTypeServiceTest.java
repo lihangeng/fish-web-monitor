@@ -20,14 +20,14 @@ import com.yihuacomputer.fish.machine.H2TestConfig;
  * @author wangchao
  *
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = H2TestConfig.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = H2TestConfig.class)
 public class AtmTypeServiceTest extends BindSessionInTest2{
 
-	@Autowired
+//	@Autowired
 	private IAtmTypeService atmTypeService;
 
-	@Test
+//	@Test
 	public void test(){
 		IAtmType type1 = atmTypeService.make();
 		type1.setName("存取款一体机");
