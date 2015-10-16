@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,6 +55,9 @@ public class SettlementReportController {
 
 	@Autowired
 	private ISettlementCashInRptService settlementCashInRptService;
+	
+    @Autowired
+	private MessageSource messageSource;
 
 	/**
 	 * 清机统计报表
@@ -72,9 +76,20 @@ public class SettlementReportController {
 		ModelMap result = new ModelMap();
 		String resourcePath = rq.getSession().getServletContext().getRealPath("/resources/report/w_sett_cash.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("title", ReportTitle.Settlement.getText());
+		parameters.put("title", messageSource.getMessage(ReportTitle.Settlement.getText(), null, FishCfg.locale));
 		parameters.put("reportDate", DateUtils.getTimestamp(new Date()));
-
+		
+		parameters.put("orgNo", messageSource.getMessage("report.device.orgNo", null, FishCfg.locale));
+		parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+		parameters.put("terminalId", messageSource.getMessage("device.terminalId", null, FishCfg.locale));
+		parameters.put("devTypeName", messageSource.getMessage("device.devType", null, FishCfg.locale));
+		parameters.put("upCashDate", messageSource.getMessage("report.settlement.upCashDate", null, FishCfg.locale));
+		parameters.put("upcashAmt", messageSource.getMessage("report.settlement.upcashAmt", null, FishCfg.locale));
+		parameters.put("settleDate", messageSource.getMessage("report.settlement.settleDate", null, FishCfg.locale));
+		parameters.put("cashDate", messageSource.getMessage("report.settlement.cashDate", null, FishCfg.locale));
+		parameters.put("cashAmt", messageSource.getMessage("report.settlement.cashAmt", null, FishCfg.locale));
+		parameters.put("leftAmt", messageSource.getMessage("report.settlement.leftAmt", null, FishCfg.locale));
+		
 		List<ISettlementCashInRpt> data = settlementCashInRptService.listSettlementCashInRpt(filter);
 		String path = this.getReport(parameters, resourcePath, request.getParameter("exportType"),
 				data == null ? new ArrayList<List<ISettlementCashInRpt>>() : data);

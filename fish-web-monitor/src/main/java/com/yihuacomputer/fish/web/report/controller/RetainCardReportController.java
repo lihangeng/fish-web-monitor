@@ -95,6 +95,14 @@ public class RetainCardReportController {
 		} else {
 			parameters.put("endReportDate", "");
 		}
+		
+		parameters.put("orgNo", messageSource.getMessage("report.device.orgNo", null, FishCfg.locale));
+		parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+		parameters.put("terminalId", messageSource.getMessage("device.terminalId", null, FishCfg.locale));
+		parameters.put("address", messageSource.getMessage("device.devAddress", null, FishCfg.locale));
+		parameters.put("dateTime", messageSource.getMessage("report.retainCard.dateTime", null, FishCfg.locale));
+		parameters.put("cardNo", messageSource.getMessage("report.retainCard.cardNo", null, FishCfg.locale));
+		parameters.put("reason", messageSource.getMessage("report.retainCard.reason", null, FishCfg.locale));
 
 		List<IRetainCardRpt> data = retainCardRptService.listRetainCardDetail(filter);
 

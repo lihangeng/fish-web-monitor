@@ -11,6 +11,7 @@
 	<field name="devTypeName" class="java.lang.String"/>
 	<field name="deviceCount" class="java.lang.Long"/>
 	<field name="countName" class="java.lang.String"/>
+	<variable name="variable1" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -60,7 +61,6 @@
 								<topPen lineWidth="0.5"/>
 								<leftPen lineWidth="0.5"/>
 								<bottomPen lineWidth="0.5"/>
-								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement>
 								<font size="13"/>
@@ -73,7 +73,6 @@
 								<topPen lineWidth="0.5"/>
 								<leftPen lineWidth="0.5"/>
 								<bottomPen lineWidth="0.5"/>
-								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement>
 								<font size="13"/>
@@ -86,7 +85,6 @@
 								<topPen lineWidth="0.5"/>
 								<leftPen lineWidth="0.5"/>
 								<bottomPen lineWidth="0.5"/>
-								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement>
 								<font size="13"/>
@@ -207,7 +205,7 @@
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textField>
-								<reportElement uuid="bb1d18b9-d1cf-4d10-abec-29ce7c29f16d" style="Crosstab Data Text" x="0" y="0" width="160" height="25"/>
+								<reportElement uuid="166c2a23-d400-47c1-a194-9e8e61b4b2dd" style="Crosstab Data Text" x="0" y="0" width="160" height="25"/>
 								<textElement/>
 								<textFieldExpression><![CDATA[$P{subtotal}]]></textFieldExpression>
 							</textField>
@@ -226,9 +224,10 @@
 							<textField>
 								<reportElement uuid="f748d9c4-c094-4529-b9d4-f1a6b8a788b1" style="Crosstab Data Text" x="0" y="0" width="163" height="30" backcolor="#FFFFFF"/>
 								<box>
-									<topPen lineWidth="0.0"/>
-									<bottomPen lineWidth="0.0"/>
-									<rightPen lineWidth="0.0"/>
+									<topPen lineWidth="0.5"/>
+									<leftPen lineWidth="0.5"/>
+									<bottomPen lineWidth="0.5"/>
+									<rightPen lineWidth="0.5"/>
 								</box>
 								<textElement verticalAlignment="Middle">
 									<font size="12" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
