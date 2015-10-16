@@ -16,9 +16,9 @@ public class StateCodeServiceTest extends BindSessionInTest2{
 
 //	@Test
 	public void testGetStateCode(){
-		IStateAnalysis ana =this.statCode.getStateCode("01213111",DeviceMod.IDC);
-		System.out.println(ana.getDescription());
-		System.out.println(ana.getSolution());
-		assertEquals("有卡.回收槽卡将满.",ana.getDescription());
+//		IStateAnalysis ana =this.statCode.getStateCode("01213111",DeviceMod.IDC);
+//		System.out.println(ana.getDescription());
+//		System.out.println(ana.getSolution());
+//		assertEquals("有卡.回收槽卡将满.",ana.getDescription());
 	}
 }

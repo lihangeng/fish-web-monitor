@@ -49,7 +49,7 @@ public class HttpFileController {
 			maxConnect = Integer.valueOf(masCon);
 		}
 			
-		logger.info(String.format("当前连接数为:[%s]",currentConnect));
+		logger.info(String.format("now connecter number is:[%s]",currentConnect));
 
 		if(currentConnect>=maxConnect){
 			return;

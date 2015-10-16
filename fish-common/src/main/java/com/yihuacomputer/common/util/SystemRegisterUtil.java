@@ -90,7 +90,7 @@ public class SystemRegisterUtil {
 		//最后将额外增加的4位key加到注册码中
 		result = result + otherKey;
 
-		System.out.println("\n注册码为:"+result);		
+		System.out.println("\nregister code is :"+result);		
 		
 		return result;
 	}

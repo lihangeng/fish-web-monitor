@@ -194,7 +194,8 @@ public class CollectService implements ICollectService , IDeviceListener{
         	try{
         		deviceCaseService.handleModStatus(xfsStatus);
         	}catch(Exception e){
-        		logger.error(String.format("处理设备故障工单异常[%s]", e));
+//        		logger.error(String.format("处理设备故障工单异常[%s]", e));
+        		logger.error(String.format("handle device caseFault exception[%s]", e));
         		return ;
         	}
         }
