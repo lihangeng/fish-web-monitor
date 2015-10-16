@@ -443,7 +443,7 @@ public class VersionDownloadController {
             row.add(task.getVersion().getVersionNo());
             row.add(task.getExceptVersion());
             row.add(task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime()));
-            row.add(task.getStatus().getText());
+            row.add(getEnumI18n(task.getStatus().getText()));
             row.add(task.getReason() == null ? "" : task.getReason());
             data.add(row);
         }
@@ -451,13 +451,21 @@ public class VersionDownloadController {
         String fileName = messageSourceVersion.getMessage("version.export.fileName", new Object[]{FishCfg.getTempDir() + File.separator,DateUtils.getDate(new Date())}, FishCfg.locale);
 //        String fileName = FishCfg.getTempDir() + File.separator + "作业_" + DateUtils.getDate(new Date()) + ".xls";
         String result = messageSourceVersion.getMessage("version.export.result", null, FishCfg.locale);
-        excel.export(fileName, "result");
+        excel.export(fileName, result);
 //        excel.export(fileName, "执行结果");
 
         File file = new File(fileName);
         DownFromWebUtils.download(file, request, response);
     }
 
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
     /**
      * 撤销一个任务
      *
@@ -533,11 +541,38 @@ public class VersionDownloadController {
     private List<TaskForm> toTaskForm(List<ITask> tasks) {
         List<TaskForm> forms = new ArrayList<TaskForm>();
         for (ITask task : tasks) {
-            forms.add(new TaskForm(task));
+            forms.add(convertTaskToTaskForm(task));
         }
         return forms;
     }
-
+    public TaskForm convertTaskToTaskForm(ITask task) {
+    	TaskForm taskForm = new TaskForm();
+		taskForm.setId(task.getId());
+		taskForm.setExcuteTime(task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime()));
+		taskForm.setSuccess(task.isSuccess());
+		taskForm.setReason(task.getReason());
+		taskForm.setTaskStatus(task.getStatus() == null ? "" : getEnumI18n(task.getStatus().getText()));
+		// taskForm.setjobId(task.getJob().getJobId();
+		taskForm.setVersion(task.getVersion().getVersionNo());
+		taskForm.setState(task.getState());
+		IDevice device = task.getDevice();
+		taskForm.setDeviceId(device.getId());
+		taskForm.setTerminalId(device.getTerminalId());
+		taskForm.setDeviceIp(device.getIp().toString());
+		taskForm.setOrgName(device.getOrganization().getName());
+		if (task.getVersionBeforeUpdate() != null) {
+			int index = task.getVersionBeforeUpdate().indexOf("_");
+			taskForm.setVersionBeforeUpdate(task.getVersionBeforeUpdate().substring(index + 1));
+		}
+		taskForm.setExceptVersion(task.getExceptVersion());
+		taskForm.setCurrentVersion("");
+//		taskForm.setjobName(task.getJob().getJobName();
+		taskForm.setPlanTime(DateUtils.getTimestamp(task.getPlanTime()));
+		taskForm.setDownSource(task.getDownSource());
+		taskForm.setExcuteMachine(task.getExcuteMachine());
+		return taskForm;
+	}
+    
     /**
      * 重启某作业下的可以重启的全部设备
      *

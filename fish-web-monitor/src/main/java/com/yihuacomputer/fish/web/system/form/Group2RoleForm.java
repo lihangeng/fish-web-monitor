@@ -24,7 +24,7 @@ public class Group2RoleForm {
 	public Group2RoleForm(){
 		
 	}
-	
+	// TODO 暂时无引用此处的form 国际化不做处理 role.getType().getText();
 	public Group2RoleForm(IRole role){
 		this.id = role.getId();
 		this.name = role.getName();

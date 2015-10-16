@@ -329,6 +329,14 @@ public class DeviceController {
 		}
 	}
 
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	private String createExls(List<IDevice> data, String sheetName) {
 
 		String pathname = FishCfg.getTempDir() + File.separator + DateUtils.getDate(new Date()) + ".xls";
@@ -478,7 +486,7 @@ public class DeviceController {
 			cell.setCellValue(cellValue(device.getIp() == null ? "" : device.getIp().toString()));
 
 			cell = row.createCell(3);
-			cell.setCellValue(cellValue(device.getStatus() == null ? "" : device.getStatus().getText()));
+			cell.setCellValue(cellValue(device.getStatus() == null ? "" : getEnumI18n(device.getStatus().getText())));
 
 			cell = row.createCell(4);
 			cell.setCellValue(cellValue(device.getDevService() == null ? "" : device.getDevService().getName()));
@@ -571,24 +579,24 @@ public class DeviceController {
 
 				NetType netType = device.getDeviceExtend().getNetType();
 				cell = row.createCell(36);
-				cell.setCellValue(cellValue(netType == null ? "" : netType.getText()));
+				cell.setCellValue(cellValue(netType == null ? "" : getEnumI18n(netType.getText())));
 
 			}
 
 			cell = row.createCell(33);
-			cell.setCellValue(cellValue(device.getCareLevel() == null ? "" : device.getCareLevel().getText()));
+			cell.setCellValue(cellValue(device.getCareLevel() == null ? "" : getEnumI18n(device.getCareLevel().getText())));
 
 			cell = row.createCell(34);
-			cell.setCellValue(cellValue(device.getCashType() == null ? "" : device.getCashType().getText()));
+			cell.setCellValue(cellValue(device.getCashType() == null ? "" : getEnumI18n(device.getCashType().getText())));
 
 			cell = row.createCell(35);
-			cell.setCellValue(cellValue(device.getSetupType() == null ? "" : device.getSetupType().getText()));
+			cell.setCellValue(cellValue(device.getSetupType() == null ? "" : getEnumI18n(device.getSetupType().getText())));
 
 			cell = row.createCell(37);
-			cell.setCellValue(cellValue(device.getAwayFlag() == null ? "" : device.getAwayFlag().getText()));
+			cell.setCellValue(cellValue(device.getAwayFlag() == null ? "" : getEnumI18n(device.getAwayFlag().getText())));
 
 			cell = row.createCell(38);
-			cell.setCellValue(cellValue(device.getWorkType() == null ? "" : device.getWorkType().getText()));
+			cell.setCellValue(cellValue(device.getWorkType() == null ? "" : getEnumI18n(device.getWorkType().getText())));
 
 		}
 

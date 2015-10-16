@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.util.DateUtils;
@@ -96,12 +98,19 @@ public class RetainCardRptService implements IRetainCardRptService {
 			retainCard.setAddress(objectToString(o[4]));
 			retainCard.setOrgName(objectToString(o[5]));
 			retainCard.setOrgCode(objectToString(o[6]));
-			retainCard.setStatus(((CardStatus) o[7]).getText());
+			retainCard.setStatus(getEnumI18n(((CardStatus) o[7]).getText()));
 			retainCardList.add(retainCard);
 		}
 		return retainCardList;
 	}
-
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	@Override
 	public List<IRetainCardCountRpt> listRetainCardCount(IFilter filter) {
 		StringBuffer hql = new StringBuffer();

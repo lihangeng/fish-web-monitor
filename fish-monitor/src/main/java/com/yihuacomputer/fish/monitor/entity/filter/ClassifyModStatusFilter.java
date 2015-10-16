@@ -3,6 +3,8 @@ package com.yihuacomputer.fish.monitor.entity.filter;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.context.MessageSource;
+
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.monitor.filter.IClassifyModStatusFilter;
@@ -142,9 +144,9 @@ public class ClassifyModStatusFilter implements IClassifyModStatusFilter{
 	}
 
 	@Override
-	public IClassifyReport filterMod(IDeviceReport deviceReport) {
+	public IClassifyReport filterMod(IDeviceReport deviceReport,MessageSource messageSourceRef) {
 		IClassifyReport classifyReport = new ClassifyReport();
-		classifyReport.setStatusReport(deviceReport);
+		classifyReport.setStatusReport(deviceReport,messageSourceRef);
 		IDevice device = deviceReport.getDevice();
 		// 设备号不存在
 		if (null==subOrg||subOrg.isEmpty()||device == null||deviceReport==null||deviceReport.getXfsStatus()==null||deviceReport.getXfsStatus().getModStatus()==null) {

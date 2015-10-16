@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -118,7 +119,7 @@ public class DeviceVersionController {
              form.setTerminalId(device.getTerminalId());
              form.setIp(device.getIp().toString());
              form.setDownTime(task.getExcuteTime());
-             form.setStatus(task.getStatus().getText());
+             form.setStatus(getEnumI18n(task.getStatus().getText()));
              form.setRemark(task.getReason());
 //             form.setUserName(getTaskCreatedUserName(deviceId,ver.getId()));
              forms.add(form);
@@ -126,7 +127,15 @@ public class DeviceVersionController {
         }                
         return forms;
     }
-    
+
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
     private String getTaskCreatedUserName(long deviceId,long versionId){
        List<ITask>  tasks = taskService.findTaskByDeviceIdAndVersionId(deviceId,versionId); 
        if(tasks.size() > 0){

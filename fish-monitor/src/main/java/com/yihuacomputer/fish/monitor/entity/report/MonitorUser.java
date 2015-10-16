@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.monitor.entity.report;
 
 import org.cometd.bayeux.server.ServerSession;
+import org.springframework.context.MessageSource;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.util.PageResult;
@@ -87,10 +88,10 @@ public class MonitorUser implements IMonitorUser {
 	}
 
 
-	public void modFilter(String deviceId, IDeviceReport deviceReport){
+	public void modFilter(String deviceId, IDeviceReport deviceReport,MessageSource messageSourceRef){
 		if (this.userSession.isHandshook() && this.userSession.isConnected()) {
 			IMonitorListener monitorListener = this.monitorService.getMonitorListener();
-			IClassifyReport classifyReport = modStatusFilter.filterMod(deviceReport);
+			IClassifyReport classifyReport = modStatusFilter.filterMod(deviceReport,messageSourceRef);
 			if(classifyReport.getMethod().equals(ReportMedthod.BEFILTERED)&&classifyReport.getBoxMethod().equals(ReportMedthod.BEFILTERED)
 					&&classifyReport.getNetMethod().equals(ReportMedthod.BEFILTERED)){
 
@@ -145,13 +146,13 @@ public class MonitorUser implements IMonitorUser {
 	 * 过滤并状态数据
 	 * @param deviceId
 	 */
-	public void statusFilter(String deviceId,IDeviceReport deviceReport) {
+	public void statusFilter(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef) {
 
 		if (this.userSession.isHandshook()&&this.userSession.isConnected()) {
 
 			IMonitorListener monitorListener = this.monitorService
 					.getMonitorListener();
-
+			monitorListener.setMessageSourceRef(messageSourceRef);
 			ReportMedthod reportMedthod = statusFilter.filterStatus(deviceReport);
 			//logger.info(this.userSession.getId()+"过滤结果:"+reportMedthod);
 
@@ -247,9 +248,10 @@ public class MonitorUser implements IMonitorUser {
 		}
 	}
 
-	public void deviceSign(String deviceId,IDeviceReport deviceReport){
+	public void deviceSign(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef){
 		if(this.userSession.isConnected()){
 			IMonitorListener monitorListener = this.monitorService.getMonitorListener();
+			monitorListener.setMessageSourceRef(messageSourceRef);
 			monitorListener.deviceSign(userSession, deviceReport);
 		}else{
 			this.monitorService.removeMonitorUser(this.userId,MonitorUserType.Status);

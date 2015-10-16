@@ -6,9 +6,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
@@ -60,31 +62,38 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     private IVersionDownloadService versionDownloadService;
     @Autowired
     private IVersionService versionService;
-    
+    @Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	@Override
 	public List<ChartsInfo> getVersionSummaryInfo(long versionId,String orgFlag,int start,int limit) {
 		logger.info(String.format("get orgFlag %s Version %d detail charts info", orgFlag,versionId));
 		List<ChartsInfo> list = new ArrayList<ChartsInfo>();
 
 		ChartsInfo chartsT = new ChartsInfo();
-		chartsT.setTitle(VersionStaticsStatus.TOTALDEVICE.getText());
+		chartsT.setTitle(getEnumI18n(VersionStaticsStatus.TOTALDEVICE.getText()));
 		chartsT.setFlag(VersionStaticsStatus.TOTALDEVICE.getId());
 		chartsT.setVersionId(versionId);
 		chartsT.setValue(getMatchConditionDeviceTotal(versionId, orgFlag, start, limit).getTotal());
 		ChartsInfo chartsS = new ChartsInfo();
-		chartsS.setTitle(VersionStaticsStatus.SUCCESSDEVICE.getText());
+		chartsS.setTitle(getEnumI18n(VersionStaticsStatus.SUCCESSDEVICE.getText()));
 		chartsS.setValue(getMatchConditionDeviceSuccess(versionId, orgFlag, start, limit).getTotal());
 
 		chartsS.setFlag(VersionStaticsStatus.SUCCESSDEVICE.getId());
 		chartsS.setVersionId(versionId);
 		ChartsInfo chartsF = new ChartsInfo();
-		chartsF.setTitle(VersionStaticsStatus.FAILDEVICE.getText());
+		chartsF.setTitle(getEnumI18n(VersionStaticsStatus.FAILDEVICE.getText()));
 		chartsF.setValue(getMatchConditionDeviceFatal(versionId, orgFlag, start, limit).getTotal());
 
 		chartsF.setFlag(VersionStaticsStatus.FAILDEVICE.getId());
 		chartsF.setVersionId(versionId);
 		ChartsInfo chartsP = new ChartsInfo();
-		chartsP.setTitle(VersionStaticsStatus.PASHDEVICE.getText());
+		chartsP.setTitle(getEnumI18n(VersionStaticsStatus.PASHDEVICE.getText()));
 
 		chartsP.setValue(getMatchConditionDevicePush(versionId, orgFlag, start, limit).getTotal());
 		chartsP.setFlag(VersionStaticsStatus.PASHDEVICE.getId());
