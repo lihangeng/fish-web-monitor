@@ -117,7 +117,8 @@ public class PropertiseController {
 		try{
 			collectService.collectModulePropertise(msg.getTermId(), xfsProp);
 		}catch(Exception e){
-			logger.error(String.format("处理设备模块属性请求异常![%s],请求信息[%s]",e,JsonUtils.toJson(msg)));
+//			logger.error(String.format("处理设备模块属性请求异常![%s],请求信息[%s]",e,JsonUtils.toJson(msg)));  
+			logger.error(String.format("collection device model properties exception![%s],the model properties info is [%s]",e,JsonUtils.toJson(msg)));
 		}
 
 		return result;

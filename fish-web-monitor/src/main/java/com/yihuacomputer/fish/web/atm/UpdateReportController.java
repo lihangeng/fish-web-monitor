@@ -41,10 +41,10 @@ public class UpdateReportController {
 				versionServic.collectUpdateReport(msg.getTaskId(),msg.getRet());
 			}catch(TaskCanceledException cancelException){
 				msg.setRet("CANCEL");
-				logger.error(String.format("更新报告被取消:[%s]",JsonUtils.toJson(msg)));
+				logger.error(String.format("collection UpdateReport is cancel :[%s]",JsonUtils.toJson(msg)));
 			}
 			catch(Exception e){
-	            logger.error(String.format("更新报告信息异常![%s],异常内容:[%s]",e,JsonUtils.toJson(msg)));
+	            logger.error(String.format("collection UpdateReport exception![%s],UpdateReport is [%s]",e,JsonUtils.toJson(msg)));
 			}
 		}
 		return msg;

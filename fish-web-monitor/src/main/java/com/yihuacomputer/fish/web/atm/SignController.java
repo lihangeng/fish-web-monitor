@@ -66,7 +66,7 @@ public class SignController {
 				}
 			}
 		}catch(Exception e){
-			logger.error(String.format("处理签到信息异常![%s],请求信息[%s]",e,JsonUtils.toJson(signInfo)));
+			logger.error(String.format("collection signInfo exception![%s],signInfo is [%s]",e,JsonUtils.toJson(signInfo)));
 		}
 		return signInfo;
 	}

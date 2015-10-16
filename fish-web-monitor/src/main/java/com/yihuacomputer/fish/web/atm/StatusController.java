@@ -155,7 +155,7 @@ public class StatusController {
         try{
         	collectService.collectModuleStatus(msg.getTermId(), xfsStatus);
         }catch(Exception e){
-        	logger.error(String.format("处理设备模块状态信息异常![%s],请求信息[%s]",e,JsonUtils.toJson(msg)));
+        	logger.error(String.format("collection xfsStatus exception![%s],xfsStatus is [%s]",e,JsonUtils.toJson(msg)));
         }
         return result;
 	}
