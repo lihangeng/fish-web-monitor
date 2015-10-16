@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.yihuacomputer.domain.test.BindSessionInTest2;
 import com.yihuacomputer.fish.api.monitor.xfs.IStateAnalysis;
-import com.yihuacomputer.fish.api.monitor.xfs.IStateCodeService;
+//import com.yihuacomputer.fish.api.monitor.xfs.IStateCodeService;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
 
 //@RunWith(SpringJUnit4ClassRunner.class)
@@ -12,7 +12,7 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
 public class StateCodeServiceTest extends BindSessionInTest2{
 
 //	@Autowired
-	private IStateCodeService statCode;
+//	private IStateCodeService statCode;
 
 //	@Test
 	public void testGetStateCode(){
