@@ -7,8 +7,14 @@ package com.yihuacomputer.fish.api.advert;
  * 
  */
 public enum AdvertValidity {
-	ALWAYS(0, "永久播放"),
-	TEMP(1, "临时");
+	/**
+	 * 永久播放
+	 */
+	ALWAYS(0, "AdvertValidity.ALWAYS"),
+	/**
+	 * 临时
+	 */
+	TEMP(1, "AdvertValidity.TEMP");
 
 	private int id;
 	private String text;

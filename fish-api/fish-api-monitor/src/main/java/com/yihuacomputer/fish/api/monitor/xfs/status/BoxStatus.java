@@ -7,25 +7,25 @@ package com.yihuacomputer.fish.api.monitor.xfs.status;
 public enum BoxStatus {
 	
 	/**模块正常*/
-	Healthy("正常"),
+	Healthy("BoxStatus.Healthy"),
 	
 	/**取款钞满正常*/
-	Full("存款钞满"),
+	Full("BoxStatus.Full"),
 	
 	/**钞少*/
-	Low("取款钞少"),
+	Low("BoxStatus.Low"),
 	
 	/**钞空*/
-	Empty("取款钞空"),
+	Empty("BoxStatus.Empty"),
 	
 	/**存款入钞满*/
-	High("存款钞将满"),
+	High("BoxStatus.High"),
 	
 	/**钞箱故障*/
-	Fatal("钞箱故障"),
+	Fatal("BoxStatus.Fatal"),
 	
 	/**钞箱未知*/
-	Unknown("未知");
+	Unknown("BoxStatus.Unknown");
 	
 	private String text;
 	

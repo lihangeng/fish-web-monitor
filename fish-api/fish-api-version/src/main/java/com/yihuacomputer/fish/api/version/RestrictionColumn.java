@@ -2,8 +2,14 @@ package com.yihuacomputer.fish.api.version;
 
 
 public enum RestrictionColumn {
-    CASH_TYPE("现金标志"),
-    AWAY_FLAG("离行标志");
+    /**
+     * 现金标志
+     */
+    CASH_TYPE("RestrictionColumn.CASH_TYPE"),
+    /**
+     * 离行标志
+     */
+    AWAY_FLAG("RestrictionColumn.AWAY_FLAG");
 
     private String text;
 

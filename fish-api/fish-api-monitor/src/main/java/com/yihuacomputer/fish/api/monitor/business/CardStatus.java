@@ -5,37 +5,37 @@ public enum CardStatus {
 	/**
 	 * 待领
 	 */
-	WAIT_RECEIVE(0,"待领"),
+	WAIT_RECEIVE(0,"CardStatus.WAIT_RECEIVE"),
 
 	/**
 	 * 已领
 	 */
-	ALREADY_RECEIVE(1,"已领"),
+	ALREADY_RECEIVE(1,"CardStatus.ALREADY_RECEIVE"),
 
 	/**
 	 * 销毁
 	 */
-	DESTORYED(2,"销毁"),
+	DESTORYED(2,"CardStatus.DESTORYED"),
 
 	/**
 	 * 调出
 	 */
-	HAND_OVER(3,"调出"),
+	HAND_OVER(3,"CardStatus.HAND_OVER"),
 
 
 	/////////江苏农信专用///////////////
 	/**
 	 * 新吞卡
 	 */
-	NEW_CREATE(4, "新吞卡"),
+	NEW_CREATE(4, "CardStatus.NEW_CREATE"),
 	/**
 	 * 保管
 	 */
-	SAVE(5, "保管"),
+	SAVE(5, "CardStatus.SAVE"),
 	/**
 	 * 已登记
 	 */
-	REGISTER(6, "已登记");
+	REGISTER(6, "CardStatus.REGISTER");
 	///////////////////////////////////
 
     private int id;

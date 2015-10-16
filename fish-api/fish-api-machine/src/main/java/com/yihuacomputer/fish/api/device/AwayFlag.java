@@ -8,7 +8,18 @@ package com.yihuacomputer.fish.api.device;
  */
 public enum AwayFlag
 {
-    LINE(1, "AwayFlag.LINE"), FROM_THE_LINE(2, "AwayFlag.FROM_THE_LINE"), STAND_ALONE(3, "AwayFlag.STAND_ALONE");
+    /**
+     * 在行自助服务区
+     */
+    LINE(1, "AwayFlag.LINE"), 
+    /**
+     *离行自助银行 
+     */
+    FROM_THE_LINE(2, "AwayFlag.FROM_THE_LINE"), 
+    /**
+     * 单机离行自助服务点
+     */
+    STAND_ALONE(3, "AwayFlag.STAND_ALONE");
     public String getText(){
 			return text;
     }

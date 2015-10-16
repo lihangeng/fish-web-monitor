@@ -2,8 +2,14 @@ package com.yihuacomputer.fish.api.person;
 
 
 public enum PersonType {
-    MANAGE(0,"管机员"),
-    FIXMAN(1, "维修人员");
+    /**
+     * 管机员
+     */
+    MANAGE(0,"PersonType.MANAGE"),
+    /**
+     * 维修人员
+     */
+    FIXMAN(1, "PersonType.FIXMAN");
     
     private int id;
     private String text;

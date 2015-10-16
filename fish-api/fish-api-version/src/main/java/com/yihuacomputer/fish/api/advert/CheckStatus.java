@@ -6,9 +6,18 @@ package com.yihuacomputer.fish.api.advert;
  */
 public enum CheckStatus {
 
-	NO_CHECK(0,"未复核"),
-	CHECKED(1,"已复核"),
-	IGNORE(2,"无需复核");
+	/**
+	 * 未复核
+	 */
+	NO_CHECK(0,"CheckStatus.NO_CHECK"),
+	/**
+	 * 已复核
+	 */
+	CHECKED(1,"CheckStatus.CHECKED"),
+	/**
+	 * 无需复核
+	 */
+	IGNORE(2,"CheckStatus.IGNORE");
 
 	private int id;
 

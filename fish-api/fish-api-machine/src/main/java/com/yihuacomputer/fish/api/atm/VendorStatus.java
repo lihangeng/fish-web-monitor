@@ -10,7 +10,14 @@ package com.yihuacomputer.fish.api.atm;
 public enum VendorStatus
 {
 
-    SUPPLY(1, "VendorStatus.SUPPLY"), SERVE(3, "VendorStatus.SERVE");
+    /**
+     * 供应
+     */
+    SUPPLY(1, "VendorStatus.SUPPLY"), 
+    /**
+     *服务 
+     */
+    SERVE(3, "VendorStatus.SERVE");
 
     public String getText(){
 		return text;

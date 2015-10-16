@@ -1,7 +1,22 @@
 package com.yihuacomputer.fish.api.person;
 
 public enum PersonState {
-    OTHER(0, "其他"),ONGUARD(1, "在岗"), OFF(2, "调休"), VACATION(3, "休假");
+    /**
+     * 其他
+     */
+    OTHER(0, "PersonState.OTHER"),
+    /**
+     * 在岗
+     */
+    ONGUARD(1, "PersonState.ONGUARD"), 
+    /**
+     * 调休
+     */
+    OFF(2, "PersonState.OFF"), 
+    /**
+     * 休假
+     */
+    VACATION(3, "PersonState.VACATION");
 
     private int id;
 

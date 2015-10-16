@@ -3,13 +3,25 @@ package com.yihuacomputer.fish.api.permission;
 
 public enum RoleType {
 
-	PERMISSION(1, "总行角色"),
+	/**
+	 * 总行角色
+	 */
+	PERMISSION(1, "RoleType.PERMISSION"),
 	
-	SLAVE_USE(2, "分行角色"),
+	/**
+	 * 分行角色
+	 */
+	SLAVE_USE(2, "RoleType.SLAVE_USE"),
 	
-	RESOURCE(3, "支行角色"),
+	/**
+	 * 支行角色
+	 */
+	RESOURCE(3, "RoleType.RESOURCE"),
 	
-	INNER(4, "网点角色");
+	/**
+	 * 网点角色
+	 */
+	INNER(4, "RoleType.INNER");
 	
 	private int id;
 	private String text;

@@ -3,6 +3,7 @@ package com.yihuacomputer.fish.monitor.entity.report;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.fish.api.monitor.report.IDeviceReport;
@@ -153,7 +154,15 @@ public class WorkUnit implements IWorkUnit{
 	public List<String> listUser(){
 		return null;
 	}
-
+//	private MessageSource messageSourceEnum;
+//    
+//    public MessageSource getMessageSourceEnum() {
+//		return messageSourceEnum;
+//	}
+//
+//	public void setMessageSourceEnum(MessageSource messageSourceEnum) {
+//		this.messageSourceEnum = messageSourceEnum;
+//	}
 	/**
 	 * 加工状态数据
 	 * @param deviceId
