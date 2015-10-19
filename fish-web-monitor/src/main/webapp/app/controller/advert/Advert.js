@@ -353,7 +353,8 @@ Ext.define('Eway.controller.advert.Advert', {
 				var win = Ext.create('Eway.view.advert.DownAdvert');
 				win.down("button[action=confirm]").on("click",this.onDownConfirm,this);
 				win.on("destroy",this.onCloseDownWin,this);
-				win.down("form combobox[name=jobType]").on('change',this.onJobTypeChange,this);
+				win.down("form combobox[name=taskType]").on('change',this.onJobTypeChange,this);
+				win.down("form textfield[name=jobName]").setValue(record.get("versionFile"));
 				win.down("version_download_multiselectableDeviceGrid pagingtoolbar").on("beforechange",this.onSelectalbeDeviceFresh,this);
 				var pagingtoolbar = win.down("pagingtoolbar");
 				//增加请求参数

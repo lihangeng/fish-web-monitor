@@ -118,16 +118,20 @@ public class VersionDownloadService implements IVersionDownloadService {
 			//设备可下发成功的台数
 	    	hqlDevice.append("select device from  ").
 			append(Device.class.getSimpleName()).append(" device ,").
-			append(Version.class.getSimpleName()).append(" version ,").
-			append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion, ").
-			append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType ").
+			append(Version.class.getSimpleName()).append(" version ,");
+	    	//如果是广告等不显示的版本不用进行设备型号比对
+			if(version.getVersionType().isDisplay()){
+				hqlDevice.append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType, ");
+			}
+			hqlDevice.append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ").
 	    	append(" where version.id=?  and device.status=?");
 			argList.add(version.getId());
 			argList.add(Status.OPENING);
-	    	hqlDevice.append(" and device.devType.id=versionatmType.atmTypeId ").
-
-			append(" and deviceSoftVersion.typeName=version.versionType.typeName and deviceSoftVersion.deviceId=device.id  and version.versionStr>deviceSoftVersion.versionStr ").
-	    	append(" and versionatmType.versionTypeId=version.versionType.id ");
+			if(version.getVersionType().isDisplay()){
+				hqlDevice.append(" and device.devType.id=versionatmType.atmTypeId ").append(" and versionatmType.versionTypeId=version.versionType.id ");
+			}
+	    	hqlDevice.append(" and deviceSoftVersion.typeName=version.versionType.typeName and deviceSoftVersion.deviceId=device.id  and version.versionStr>deviceSoftVersion.versionStr ");
+	    	
 	    	if(terminalId!=null){
 	    		hqlDevice.append(" and device.terminalId like ? ");
 	    		argList.add("%"+String.valueOf(terminalId)+"%");
@@ -145,14 +149,19 @@ public class VersionDownloadService implements IVersionDownloadService {
 			//下发成功的设备
 	    	hqlDevice.append("(select device1.id from  ").
 			append(Task.class.getSimpleName()).append( " task1 , ").
-			append(Device.class.getSimpleName()).append(" device1 ,").
-			append(Version.class.getSimpleName()).append(" version1 ,").
-			append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType1 ").
+			append(Device.class.getSimpleName()).append(" device1 ,");
+
+			if(version.getVersionType().isDisplay()){
+				hqlDevice.append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType1 ,");
+			}
+	    	hqlDevice.append(Version.class.getSimpleName()).append(" version1 ").
 			append(" where  task1.deviceId=device1.id ").
 			append(" and task1.version.id=version1.id and ").
-			append(" version1.id=? and task1.status in('NEW','RUN','NOTICED','DOWNLOADED','DEPLOYED','CHECKED') and device1.status=?").
-			append(" and device1.devType.id=versionatmType1.atmTypeId ").
-	    	append(" and versionatmType1.versionTypeId=version1.versionType.id ");
+			append(" version1.id=? and task1.status in('NEW','RUN','NOTICED','DOWNLOADED','DEPLOYED','CHECKED') and device1.status=?");
+	    	if(version.getVersionType().isDisplay()){
+		    	hqlDevice.append(" and device1.devType.id=versionatmType1.atmTypeId ").
+		    	append(" and versionatmType1.versionTypeId=version1.versionType.id ");
+	    	}
 			argList.add(version.getId());
 			argList.add(Status.OPENING);
 	    	if(terminalId!=null){

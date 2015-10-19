@@ -51,6 +51,13 @@ Ext.define('Eway.view.advert.DownAdvert', {
 					border : false
 				},
 				items : [{
+					xtype: 'textfield',
+					fieldLabel:Eway.locale.version.View.remark,
+					name :'jobName',
+					height : 40,
+					maxWidth:600,
+					maxLength: 40
+				},{
 					xtype: 'container',
                     layout: 'hbox',
                     items: [{
@@ -73,20 +80,23 @@ Ext.define('Eway.view.advert.DownAdvert', {
     					name: 'serverPath'
     				}]
 				},{
+
+//					{jobName: "2次", versionId: "2", taskType: "MANUAL", deviceIds: ",1"}
+//					{versionId: "4", jobPriority: "GENERAL", jobType: "MANUAL", desc: "", deviceIds: ",1"}
 					xtype: 'container',
                     layout: 'hbox',
                     items: [{
-                    	xtype: 'combobox',
-                    	fieldLabel: Eway.locale.advert.jobPriority,//'作业优先级',
-		                store: Ext.StoreMgr.lookup("version.JobPriority"),
-		                queryMode: 'local',
-		                valueField : 'value',
-		                displayField: 'display',
-		                value:'GENERAL',
-		                name:'jobPriority',
-		                editable : false,
-		                width : 200
-		            },{
+//                    	xtype: 'combobox',
+//                    	fieldLabel: Eway.locale.advert.jobPriority,//'作业优先级',
+//		                store: Ext.StoreMgr.lookup("version.JobPriority"),
+//		                queryMode: 'local',
+//		                valueField : 'value',
+//		                displayField: 'display',
+//		                value:'GENERAL',
+//		                name:'jobPriority',
+//		                editable : false,
+//		                width : 200
+//		            },{
                     	xtype: 'combobox',
                     	fieldLabel: Eway.locale.advert.jobType,//'作业类型',
 		                store: Ext.StoreMgr.lookup("version.JobType"),
@@ -94,7 +104,7 @@ Ext.define('Eway.view.advert.DownAdvert', {
 		                valueField : 'value',
 		                displayField: 'display',
 		                value:'MANUAL',
-		                name:'jobType',
+		                name:'taskType',
 		                editable : false,
 		                width : 245
 		            }, {
@@ -110,13 +120,6 @@ Ext.define('Eway.view.advert.DownAdvert', {
 			            maxValue:Ext.Date.add(Ext.Date.parse(Ext.Date.format(new Date(), 'Y-m-d') + " 23:59:59","Y-m-d H:i:s"), Ext.Date.DAY, 7)
 					}]
 				},{
-					xtype: 'textarea',
-					fieldLabel:Eway.locale.version.View.remark,
-					name :'desc',
-					height : 40,
-					maxWidth:600,
-					maxLength: 40
-			 },{
 					xtype: 'hidden',
 					name: 'deviceIds',
 					value:''
