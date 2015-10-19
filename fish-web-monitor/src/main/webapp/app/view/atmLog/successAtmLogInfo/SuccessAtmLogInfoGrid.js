@@ -41,7 +41,6 @@ Ext.define('Eway.view.atmLog.successAtmLogInfo.SuccessAtmLogInfoGrid',{
 			tbar : ['->',{
 				xtype : 'button',
 				text : Eway.locale.button.exported,
-				iconCls : 'exportToExcel',
 				glyph : 0xf1c3,
 				action : 'export'
 			}]

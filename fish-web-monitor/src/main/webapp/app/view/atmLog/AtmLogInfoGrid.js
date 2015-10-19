@@ -54,7 +54,6 @@ Ext.define('Eway.view.atmLog.AtmLogInfoGrid', {
 					},{
 						xtype : 'button',
 						text : Eway.locale.button.exported,
-						iconCls : 'exportBtn',
 						glyph : 0xf1c3,
 						action : 'export'
 					}]

@@ -26,7 +26,6 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 				tooltip:Eway.locale.version.download.taskQueryTips,//'根据条件查询选中作业下的详情信息'
 			},{
 				text: Eway.locale.button.exported,//'导出',
-				iconCls : 'exportToExcel',
 				glyph : 0xf1c3,
 				action: 'export',
 				tooltip:Eway.locale.version.download.taskExportTips,//'导出选中作业下的全部下发结果',

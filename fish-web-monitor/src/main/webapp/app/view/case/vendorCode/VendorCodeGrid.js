@@ -25,7 +25,6 @@ Ext.define('Eway.view.case.vendorCode.VendorCodeGrid', {
 			},
 			{
 				  text:Eway.locale.cases.vendorCode.templateLoad,
-				  iconCls : 'exportBtn',
 				  glyph : 0xf1c3,
 				  code : 'vendorCodeDownLoad',
 				  handler:function(){

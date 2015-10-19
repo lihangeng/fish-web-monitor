@@ -47,7 +47,6 @@ Ext.define('Eway.view.machine.device.Grid', {
 				}
 			}, {
 				text : Eway.locale.button.exported,
-				iconCls : 'exportToExcel',
 				glyph : 0xf1c3,
 				action : 'export'
 			} ],
