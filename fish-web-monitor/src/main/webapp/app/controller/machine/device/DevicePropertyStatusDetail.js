@@ -40,7 +40,7 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 		this.win = win;
 		this.deviceId = deviceId;
 		this.ip = ip;
-		win.setTitle(Eway.locale.device.devices + deviceId + Eway.locale.device.configuration);
+		win.setTitle(Eway.locale.machine.device.devices + deviceId + Eway.locale.machine.device.configuration);
 		win.show();
 	},
 

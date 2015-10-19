@@ -93,7 +93,7 @@ Ext.define('Eway.view.machine.device.module.StatusCDM', {
 						fieldLabel : Eway.locale.machine.device.cuId,
 						name : 'cuId'
 					}, {
-						fieldLabel : Eway.locale.machine.device.cuCurrency',
+						fieldLabel : Eway.locale.machine.device.cuCurrency,
 						name : 'cuCurrency'
 					}, {
 						fieldLabel : Eway.locale.machine.device.cuCurrentCount,
