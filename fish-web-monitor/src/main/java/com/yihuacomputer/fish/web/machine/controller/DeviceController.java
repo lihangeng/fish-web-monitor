@@ -863,7 +863,11 @@ public class DeviceController {
 				filter.eq("device.ip", ip);
 			} else if ("awayFlag".equals(name)) {
 				filter.eq("device.awayFlag", AwayFlag.getById(Integer.valueOf(value)));
-			} else {
+			} else if ("devTypeId".equals(name)) {
+				filter.eq("device.devType.id", Long.parseLong(value));
+			} 
+//			
+			else {
 				filter.like("device." + name, value);
 			}
 		}

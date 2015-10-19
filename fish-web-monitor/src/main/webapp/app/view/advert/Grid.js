@@ -66,11 +66,11 @@ Ext.define('Eway.view.advert.Grid', {
 			},{
 				text :'广告详情',
 				atcion: 'detail'
-			},{
+			}*/,{
 				text :'生成版本',
 				iconCls : 'generateVersion',
 				action:'generateVersion'
-			}*/,{
+			},{
 				text:Eway.locale.advert.downloadButton,//'下发广告',
 //				iconCls : 'versionDown',
 				glyph : 0xf0ed,

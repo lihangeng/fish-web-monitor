@@ -92,7 +92,7 @@ public class OpenRateForm {
 		Date d = new Date(times);
 		d.setHours(d.getHours() - 8);
 
-		return day + "天:" + formatter.format(d);
+		return day + "day:" + formatter.format(d);
 	}
 
 	public long getId() {

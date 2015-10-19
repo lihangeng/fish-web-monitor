@@ -162,8 +162,8 @@ public class VersionTypeService implements IVersionTypeService,IDeviceListener {
 	public void afterAdd(IDevice device) {
 		//查找所有可见的版本类型
 		IFilter filter = new Filter();
-		filter.eq("display", true);
-		List<IVersionType> versionTypeList = this.list(filter);
+//		filter.eq("display", true);
+		List<IVersionType> versionTypeList = this.listContainsAdvert(filter);
 		Date date = new Date();
 		//每个新增的设备都有一个版本号为0.0.0.0
 		for(IVersionType versionType :versionTypeList){
@@ -171,8 +171,14 @@ public class VersionTypeService implements IVersionTypeService,IDeviceListener {
 			deviceSoftVersion.setCreatedTime(date);
 			deviceSoftVersion.setDeviceId(device.getId());
 			deviceSoftVersion.setTypeName(versionType.getTypeName());
-			deviceSoftVersion.setVersionNo("0.0.0.0");
-			deviceSoftVersion.setVersionStr("00000000000000000000000000000000");
+			if(!versionType.isDisplay()){
+				deviceSoftVersion.setVersionNo("0");
+				deviceSoftVersion.setVersionStr("0");
+			}
+			else{
+				deviceSoftVersion.setVersionNo("0.0.0.0");
+				deviceSoftVersion.setVersionStr("00000000000000000000000000000000");
+			}
 			deviceSoftVersionService.add(deviceSoftVersion);
 		}
 	}

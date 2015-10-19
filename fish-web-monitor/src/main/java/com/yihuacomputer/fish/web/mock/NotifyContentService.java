@@ -54,7 +54,8 @@ public class NotifyContentService implements INotifyContentService{
 			notifyContent = StringUtils.replaceLogRule(notifyContent, "\\{orgName\\}", device.getOrganization().getName());
 		}
 
-		logger.info("短信内容:"+notifyContent);
+//		logger.info("短信内容:"+notifyContent);
+		logger.info("SMS content:"+notifyContent);
 		return notifyContent;
 	}
 }

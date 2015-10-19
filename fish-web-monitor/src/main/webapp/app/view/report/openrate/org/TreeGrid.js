@@ -20,7 +20,6 @@ Ext.define('Eway.view.report.openrate.org.TreeGrid', {
 				action : 'query'
 			}, {
 				text : Eway.locale.report.openrate.device.importStat,
-				iconCls : 'sureBtn',
 				glyph : 0xf1c3,
 				action : 'importStat'
 			} ],

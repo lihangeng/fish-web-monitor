@@ -20,6 +20,9 @@ import com.yihuacomputer.fish.api.version.VersionCfg;
  *
  */
 public class AbstractAdvertZipGenerator implements IAdvertZipGenerator {
+	
+	private static final String ADVERT="advert";
+	
     @Override
     public void generateZipFile(IAdvert advert) {
         getAdvertConfigInfoAndSaveToFile(advert);
@@ -32,7 +35,12 @@ public class AbstractAdvertZipGenerator implements IAdvertZipGenerator {
     }
 
     protected void beforeZip(IAdvert advert) {
-        genenateMetaFile(advert);// 二代应用需要
+    	String advertVersionFilePath = VersionCfg.getVersionDir() + File.separator + ADVERT + File.separator;
+        File advertFile = new File(advertVersionFilePath);
+        if(!advertFile.exists()||!advertFile.isDirectory()){
+        	advertFile.mkdirs();
+        }
+    	genenateMetaFile(advert);// 二代应用需要
     }
 
     protected void getAdvertConfigInfoAndSaveToFile(IAdvert advert) {
@@ -66,7 +74,7 @@ public class AbstractAdvertZipGenerator implements IAdvertZipGenerator {
      * @return
      */
     private String getZipFileName(IAdvert advert) {
-        return VersionCfg.getVersionDir() + File.separator + "advert" + File.separator + "advert_" + advert.getId()
+        return VersionCfg.getVersionDir() + File.separator + ADVERT + File.separator + "advert_" + advert.getId()
                 + ".zip";
     }
 

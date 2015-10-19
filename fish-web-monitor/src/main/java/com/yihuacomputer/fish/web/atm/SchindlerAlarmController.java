@@ -65,7 +65,7 @@ public class SchindlerAlarmController {
 
 			collectService.collectSchindlerAlarm(schindler.getTermId(), processList);
 		}catch(Exception e){
-            logger.error(String.format("处理黑名单信息异常![%s],信息内容:[%s]",e,JsonUtils.toJson(schindler)));
+//            logger.error(String.format("处理黑名单信息异常![%s],信息内容:[%s]",e,JsonUtils.toJson(schindler)));
             logger.error(String.format("collection illegalProc info exception![%s],illegalProc info is :[%s]",e,JsonUtils.toJson(schindler)));
 		}
 		return result;
