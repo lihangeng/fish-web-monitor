@@ -343,27 +343,6 @@ public class VersionDownloadController {
     // 获得任务的过滤条件
     private IFilter getTaskFilter(WebRequest request) {
         IFilter filter = new Filter();
-       /* String jobId = request.getParameter("jobId");
-        if (StringUtils.isEmpty(jobId)) {
-            jobId = "0";
-        }
-        filter.eq("task.job.jobId", Long.valueOf(jobId));*/
-
-//        String updateResult = request.getParameter("updateResult");
-//        if (StringUtils.isNotEmpty(updateResult)) {
-//            if (updateResult.equals("1")) {// 成功的升级
-//                filter.eq("task.status", TaskStatus.CHECKED);
-//            } else {
-//                filter.ne("task.status", TaskStatus.CHECKED);
-//            }
-//        }
-//
-//        String terminalId = request.getParameter("terminalId");
-//        if (StringUtils.isNotEmpty(terminalId)) {
-//            filter.like("device.terminalId", terminalId);
-//        }
-//
-//
         Iterator<String> iterator = request.getParameterNames();
         while (iterator.hasNext()) {
             String name = iterator.next();
@@ -385,11 +364,11 @@ public class VersionDownloadController {
             }else if (name.equals("terminalId")) {
                 filter.like("device.terminalId", value);
             }else if(name.equals("jobName")){
-            	filter.like("task.jobName", value);
+            	filter.like("task.taskBatchName", value);
             }else if(name.equals("taskType")){
-            	filter.eq("task.taskType", value);
-            }else if(name.equals("versionType")){
-            	filter.eq("task.version.versionType.id", value);
+            	filter.eq("task.taskType", TaskType.getById(Integer.parseInt(value)));
+            }else if(name.equals("versionTypeId")){
+            	filter.eq("task.version.versionType.id", Long.parseLong(value));
             }else if(name.equals("versionNo")){
             	filter.eq("task.version.versionNo", value);
             }
@@ -408,15 +387,9 @@ public class VersionDownloadController {
     public void export(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        String jobId = request.getParameter("jobId");
-        logger.info("jobId is " + jobId);
-        if (StringUtils.isEmpty(jobId)) {
-            jobId = "0";
-        }
-        IFilter filter = new Filter();
-//        filter.eq("job.jobId", Long.valueOf(jobId));
-        filter.ne("status", TaskStatus.REMOVED);
-        List<ITask> tasks = taskService.list(filter);
+        IFilter filter =	getTaskFilter(webRequest);
+//        filter.ne("status", TaskStatus.REMOVED);
+        List<ITask> tasks = taskService.export(filter).list();
 
         Excel excel = new Excel();
 
@@ -559,6 +532,8 @@ public class VersionDownloadController {
 		taskForm.setDeviceId(device.getId());
 		taskForm.setTerminalId(device.getTerminalId());
 		taskForm.setDeviceIp(device.getIp().toString());
+		
+//		IOrganization org = organizationService.get(device.getOrganization().getGuid());
 		taskForm.setOrgName(device.getOrganization().getName());
 		if (task.getVersionBeforeUpdate() != null) {
 			int index = task.getVersionBeforeUpdate().indexOf("_");
@@ -566,7 +541,7 @@ public class VersionDownloadController {
 		}
 		taskForm.setExceptVersion(task.getExceptVersion());
 		taskForm.setCurrentVersion("");
-//		taskForm.setjobName(task.getJob().getJobName();
+		taskForm.setJobName(task.getTaskBatchName());
 		taskForm.setPlanTime(DateUtils.getTimestamp(task.getPlanTime()));
 		taskForm.setDownSource(task.getDownSource());
 		taskForm.setExcuteMachine(task.getExcuteMachine());

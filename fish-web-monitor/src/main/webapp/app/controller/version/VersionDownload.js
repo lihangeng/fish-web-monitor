@@ -219,35 +219,34 @@ Ext.define('Eway.controller.version.VersionDownload', {
 
 	//查找任务
 	onTaskQuery : function(){
-//		var grid = this.getGrid();
-//		var sm = grid.getSelectionModel();
-//		if (sm.getCount() == 1) {
-//			var record = sm.getLastSelected();
-			this.setTaskSearchFilter(/*record.get('id')*/);
-			this.getTaskGrid().getStore().loadPage(1);
-//		}else{
-//			this.setTaskTip();
-//		}
+		var form = this.getFilterForm().getForm();
+		if(!form.isValid()){
+			return;
+		}
+		var data = this.getFilterForm().getForm().getValues();
+		var store = this.getTaskGrid().getStore();
+		store.setUrlParamsByObject(data);
+		store.loadPage(1);
 	},
 
 	currentTask : null,
 
 	//自动刷新任务列表
 	onAutoRefresh : function(btn,e,options){
-		var grid = this.getGrid();
-		var sm = grid.getSelectionModel();
-		if (sm.getCount() == 1) {
-			if(this.currentTask == null){
+//		var grid = this.getTaskGrid();
+//		var sm = grid.getSelectionModel();
+//		if (sm.getCount() == 1) {
+//			if(this.currentTask == null){
 				this.currentTask = {
 				   run : function() {
-				   		var record = sm.getLastSelected();
-						this.setTaskSearchFilter(record.get('id'));
+//				   		var record = sm.getLastSelected();
+//						this.setTaskSearchFilter(record.get('id'));
 						this.getTaskGrid().getStore().loadPage(1);
 				    },
 				   interval : 60000, //60秒刷新一次
 				   scope : this
 				   };
-			}
+//			}
 			if(btn.started){
 				btn.setText(Eway.locale.version.download.autoRefresh);//"开启自动刷新");
 				btn.started = false;
@@ -258,24 +257,23 @@ Ext.define('Eway.controller.version.VersionDownload', {
 				btn.started = true;
 				Ext.TaskManager.start(this.currentTask);
 			}
-		}else{
-			this.setTaskTip(Eway.locale.version.task.selectJobStartRefresh);//'请选择一个作业,再开启定时刷新！');
-		}
+//		}else{
+//			this.setTaskTip(Eway.locale.version.task.selectJobStartRefresh);//'请选择一个作业,再开启定时刷新！');
+//		}
 	},
 
 	//导出升级报告
 	onTaskExport : function(){
-		var view = this.getEwayView();
-		var grid = view.down("version_download_taskGrid");
-		var sm = grid.getSelectionModel();
-		if (sm.getCount() == 1) {
-			var record = sm.getLastSelected();
-			var url = 'api/version/download/exportToExcel?jobId=' + record.get("id") ;
-			var iframe = document.getElementById('downloadFileFromWeb');
-			iframe.src = url;
-		}else{
-			this.setTaskTip();
+		var form = this.getFilterForm().getForm();
+		if(!form.isValid()){
+			return;
 		}
+		var data = form.getValues();
+		var url = 'api/version/download/exportToExcel?terminalId='+data.terminalId+
+		'&updateResult='+data.updateResult+'&taskType='+data.taskType+
+		'&jobName='+data.jobName+'&versionTypeId='+data.versionTypeId+'&versionNo='+data.versionNo+'' ;
+		var iframe = document.getElementById('downloadFileFromWeb');
+		iframe.src = url;
 	},
 
 	//重启所有设备

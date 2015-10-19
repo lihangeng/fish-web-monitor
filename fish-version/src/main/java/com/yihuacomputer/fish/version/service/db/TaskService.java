@@ -174,7 +174,15 @@ public class TaskService implements IDomainTaskService {
 	public List<ITask> list(IFilter filter) {
 		return dao.findByFilter(filter, ITask.class);
 	}
-
+	@SuppressWarnings("unchecked")
+	@Transactional(readOnly = true)
+	public IPageResult<ITask> export( IFilter filter) {
+		StringBuffer hql = new StringBuffer();
+		hql.append("select task from Task task,Device device where task.deviceId = device.id ");
+		
+		return (IPageResult<ITask>) dao.page(0, -1, filter, hql.toString());
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Transactional(readOnly = true)
 	public IPageResult<ITask> page(int start, int limit, IFilter filter) {

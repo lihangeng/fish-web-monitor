@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.api.version.job.task;
 
+
 /**
  * 任务类型
  * @since 0.17
@@ -34,6 +35,16 @@ public enum TaskType {
 	public void setText(String text) {
 		this.text = text;
 	}
-	
+	 public static TaskType getById(int id)
+	    {
+	        for (TaskType each : TaskType.values())
+	        {
+	            if (each.getId() == id)
+	            {
+	                return each;
+	            }
+	        }
+	        throw new IllegalArgumentException(String.format("id=[%d] error", id));
+	    }
 
 }

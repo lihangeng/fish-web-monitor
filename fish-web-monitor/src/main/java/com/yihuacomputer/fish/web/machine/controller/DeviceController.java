@@ -753,14 +753,19 @@ public class DeviceController {
 		if(null==atmTypeIdList){
 			atmTypeList = typeService.list();
 		}
+		else if(atmTypeIdList.size()==0){
+			model.put(FishConstant.SUCCESS, true);
+			model.put(FishConstant.DATA, new AtmTypeForm());
+			return model;
+		}
 		else{
 			IFilter filter = new Filter();
 			filter.in("id", atmTypeIdList);
 			atmTypeList =typeService.list(filter);
 		}
-
 		model.put(FishConstant.SUCCESS, true);
 		model.put(FishConstant.DATA, AtmTypeForm.convert(atmTypeList));
+		
 
 		return model;
 	}

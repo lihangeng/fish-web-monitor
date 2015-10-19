@@ -73,7 +73,7 @@ public class Device implements IDevice, Serializable {
 	/**
 	 * 所属机构
 	 */
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
 	@JoinColumn(name = "ORG_ID")
 	private IOrganization organization;
 

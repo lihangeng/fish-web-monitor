@@ -77,7 +77,7 @@ public class VersionTypeService implements IVersionTypeService,IDeviceListener {
 			deviceSoftVersion.setDeviceId(device.getId());
 			deviceSoftVersion.setTypeName(versionType.getTypeName());
 			deviceSoftVersion.setVersionNo("0.0.0.0");
-			deviceSoftVersion.setVersionStr("00000000000000000000000000000000");
+			deviceSoftVersion.setVersionStr("0000000000000000000000000000000");
 			deviceSoftVersionService.add(deviceSoftVersion);
 		}
 		return dao.save(this.interface2Entity(versionType, false));
@@ -177,7 +177,7 @@ public class VersionTypeService implements IVersionTypeService,IDeviceListener {
 			}
 			else{
 				deviceSoftVersion.setVersionNo("0.0.0.0");
-				deviceSoftVersion.setVersionStr("00000000000000000000000000000000");
+				deviceSoftVersion.setVersionStr("0000000000000000000000000000000");
 			}
 			deviceSoftVersionService.add(deviceSoftVersion);
 		}

@@ -116,4 +116,5 @@ public interface ITaskService {
      * @return
      */
     public IPageResult<AutoUpdateTaskForm> pageAutoUpdateTask(int start,int limit,IFilter filter);
+	public IPageResult<ITask> export( IFilter filter) ;
 }

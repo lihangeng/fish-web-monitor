@@ -16,7 +16,16 @@ Ext.define('Eway.view.version.download.View', {
 						region:'center',
 						xtype:'version_download_taskGrid',
 						action:'taskGrid'
-				} ]
+				} ],
+			listeners : {
+				activate : function(panel) {
+					if (panel.isLoad) {
+						return;
+					}
+					panel.isLoad = true;
+					panel.down('version_download_taskGrid').getStore().load();
+				}
+			}
 		});
 
 		this.callParent(arguments);
