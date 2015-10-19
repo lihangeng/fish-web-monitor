@@ -21,12 +21,12 @@ import com.yihuacomputer.fish.api.monitor.filter.IFilterService;
 import com.yihuacomputer.fish.api.monitor.hardware.IHardwareService;
 import com.yihuacomputer.fish.api.monitor.software.IRuntimeParamService;
 import com.yihuacomputer.fish.api.monitor.software.ISoftwareService;
-import com.yihuacomputer.fish.api.monitor.xfs.IStateCodeService;
+//import com.yihuacomputer.fish.api.monitor.xfs.IStateCodeService;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
 import com.yihuacomputer.fish.monitor.service.CollectService;
 import com.yihuacomputer.fish.monitor.service.DeviceOfflineCheck;
 import com.yihuacomputer.fish.monitor.service.MonitorService;
-import com.yihuacomputer.fish.monitor.service.StateCodeService;
+//import com.yihuacomputer.fish.monitor.service.StateCodeService;
 import com.yihuacomputer.fish.monitor.service.db.BlackListCardService;
 import com.yihuacomputer.fish.monitor.service.db.CashInitService;
 import com.yihuacomputer.fish.monitor.service.db.CounterFeitMoneyService;
@@ -63,10 +63,10 @@ public class MonitorModule {
 		return new MonitorService();
 	}
 
-	@Bean
-	public IStateCodeService stateCodeService() {
-		return new StateCodeService();
-	}
+//	@Bean
+//	public IStateCodeService stateCodeService() {
+//		return new StateCodeService();
+//	}
 
 	@Bean
 	public IBlackListCardService blackListCardService() {

@@ -6,19 +6,19 @@ package com.yihuacomputer.fish.api.monitor.xfs.status;
  */
 public enum DeviceStatus {
 	/**模块正常*/
-	Healthy("正常"),
+	Healthy("DeviceStatus.Healthy"),
 	
 	/**报警*/
-	Warning("警告"),
+	Warning("DeviceStatus.Warning"),
 	
 	/**故障*/
-	Fatal("故障"), 
+	Fatal("DeviceStatus.Fatal"), 
 	
 	/**未知*/
-	Unknown("未知"),
+	Unknown("DeviceStatus.Unknown"),
 	
 	/**无设备*/
-	NoDevice("无设备");
+	NoDevice("DeviceStatus.NoDevice");
 	
 	private String text;
 	

@@ -87,11 +87,19 @@ public class TransactionCountReportController {
 
 		return result;
 	}
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 
 	private String isOrgStatistics(WebRequest request, HttpServletRequest rq, IFilter filter) {
 		String resourcePath = rq.getSession().getServletContext().getRealPath("/resources/report/w_trans_count.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("title", ReportTitle.TransactionCount.getText());
+		parameters.put("title", getEnumI18n(ReportTitle.TransactionCount.getText()));
 
 		Date startReportDate = new Date();
 		if (filter.getFilterEntry("startData") != null) {
@@ -133,7 +141,7 @@ public class TransactionCountReportController {
 		String resourcePath = rq.getSession().getServletContext()
 				.getRealPath("/resources/report/w_trans_count_device.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("title", ReportTitle.TransactionCount.getText());
+		parameters.put("title", getEnumI18n(ReportTitle.TransactionCount.getText()));
 		Date startReportDate = new Date();
 		if (filter.getFilterEntry("startData") != null) {
 			startReportDate = (Date) filter.getFilterEntry("startData").getValue();

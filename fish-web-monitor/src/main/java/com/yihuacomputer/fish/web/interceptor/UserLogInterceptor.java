@@ -6,12 +6,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.MessageSource;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.fish.api.person.IUserLog;
@@ -29,7 +32,9 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
  */
 public class UserLogInterceptor extends HandlerInterceptorAdapter {
 
-
+	@Autowired
+	private MessageSource messageSource;
+	
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		/*
@@ -73,9 +78,9 @@ public class UserLogInterceptor extends HandlerInterceptorAdapter {
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
 		String operResult = "";
 		if (ex == null) {
-			operResult = "成功";
+			operResult =messageSource.getMessage("user.operate.success",null,FishCfg.locale);// "成功";
 		} else {
-			operResult = "失败";
+			operResult = messageSource.getMessage("user.operate.fail",null,FishCfg.locale);//"失败";
 		}
 		HttpSession session = null;
 		try {
@@ -92,7 +97,7 @@ public class UserLogInterceptor extends HandlerInterceptorAdapter {
 				return;
 			}
 			StringBuffer operatorAction = new StringBuffer();
-			operatorAction.append(classDesc.describle()).append("->").append(methodDesc.describle());
+			operatorAction.append(messageSource.getMessage(classDesc.describle(),null,FishCfg.locale)).append("->").append(messageSource.getMessage(methodDesc.describle(),null,FishCfg.locale));
 			if(!methodDesc.isNumberArgs()){
 				operatorAction.append("->").append(request.getParameter(methodDesc.argsContext()));
 			}

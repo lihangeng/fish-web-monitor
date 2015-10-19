@@ -1,10 +1,21 @@
 package com.yihuacomputer.fish.api.fault;
 
 
+/**
+ * 是否通知
+ * @author GQ
+ *
+ */
 public enum IsNotify {
 
+	/**
+	 * 是
+	 */
 	YES(1,"IsNotify.YES"),
 	
+	/**
+	 * 否
+	 */
 	NO(2,"IsNotify.NO");
 
     public String getText(){

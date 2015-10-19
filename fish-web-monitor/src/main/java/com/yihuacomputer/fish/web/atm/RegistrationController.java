@@ -58,7 +58,8 @@ public class RegistrationController {
 				registration.setRet("RET_00");
 			}	
 		}catch(Exception e){
-			logger.error(String.format("处理注册请求异常![%s],请求信息[%s]",e,JsonUtils.toJson(registration)));
+//			logger.error(String.format("处理注册请求异常![%s],请求信息[%s]",e,JsonUtils.toJson(registration)));
+			logger.error(String.format("collection register info exception![%s],register info is [%s]",e,JsonUtils.toJson(registration)));
 		}
 		return registration;
 	}

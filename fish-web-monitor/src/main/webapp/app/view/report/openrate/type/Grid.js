@@ -20,6 +20,7 @@ Ext.define('Eway.view.report.openrate.type.Grid', {
 			}, {
 				text : Eway.locale.report.openrate.device.importStat,
 				iconCls : 'exportToExcel',
+				glyph : 0xf1c3,
 				action : 'importStat'
 			} ],
 			columns : [ {

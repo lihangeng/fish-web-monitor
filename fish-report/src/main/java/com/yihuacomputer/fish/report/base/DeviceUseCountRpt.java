@@ -14,6 +14,56 @@ public class DeviceUseCountRpt implements IDeviceUseCountRpt {
 
 	private String countName;
 
+	private String orgNameColumn;
+
+	private String devTypeNameColumn;
+
+	private String devStatusColumn;
+
+	private String totalColumn;
+
+	private String subtotalColumn;
+
+	public String getOrgNameColumn() {
+		return orgNameColumn;
+	}
+
+	public void setOrgNameColumn(String orgNameColumn) {
+		this.orgNameColumn = orgNameColumn;
+	}
+
+	public String getDevTypeNameColumn() {
+		return devTypeNameColumn;
+	}
+
+	public void setDevTypeNameColumn(String devTypeNameColumn) {
+		this.devTypeNameColumn = devTypeNameColumn;
+	}
+
+	public String getDevStatusColumn() {
+		return devStatusColumn;
+	}
+
+	public void setDevStatusColumn(String devStatusColumn) {
+		this.devStatusColumn = devStatusColumn;
+	}
+
+	public String getTotalColumn() {
+		return totalColumn;
+	}
+
+	public void setTotalColumn(String totalColumn) {
+		this.totalColumn = totalColumn;
+	}
+
+	public String getSubtotalColumn() {
+		return subtotalColumn;
+	}
+
+	public void setSubtotalColumn(String subtotalColumn) {
+		this.subtotalColumn = subtotalColumn;
+	}
+
 	@Override
 	public String getOrgName() {
 		return orgName;

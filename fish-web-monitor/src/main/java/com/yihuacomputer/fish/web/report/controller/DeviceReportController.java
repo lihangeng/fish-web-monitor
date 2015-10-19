@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,6 +54,18 @@ public class DeviceReportController {
     @Autowired
     private IExportReportService exportReportService;
 
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
+    
+    @Autowired
+	private MessageSource messageSource;
+
     @RequestMapping(value = "/device", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap deviceTypeCount(WebRequest request, HttpServletRequest rq) {
@@ -63,8 +76,23 @@ public class DeviceReportController {
         ModelMap result = new ModelMap();
         String resourcePath = rq.getSession().getServletContext().getRealPath("/resources/report/w_device.jasper");
         HashMap<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("title", ReportTitle.Device.getText());
+        parameters.put("title", getEnumI18n(ReportTitle.Device.getText()));
         parameters.put("reportDate", DateUtils.getTimestamp(new Date()));
+        
+        
+        parameters.put("serial", messageSource.getMessage("report.device.serial", null, FishCfg.locale));
+        parameters.put("orgNo", messageSource.getMessage("report.device.orgNo", null, FishCfg.locale));
+        parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+        parameters.put("terminalId", messageSource.getMessage("device.terminalId", null, FishCfg.locale));
+		parameters.put("vendorName", messageSource.getMessage("report.devTypeCount.vendorName", null, FishCfg.locale));
+		parameters.put("typeName", messageSource.getMessage("device.devType", null, FishCfg.locale));
+		
+		
+		parameters.put("IP", messageSource.getMessage("report.device.IP", null, FishCfg.locale));
+		parameters.put("mantainOrg", messageSource.getMessage("device.devSer", null, FishCfg.locale));
+		parameters.put("awayFlag", messageSource.getMessage("device.devInsideOutside", null, FishCfg.locale));
+		parameters.put("setupType", messageSource.getMessage("report.devBoxDetail.setupType", null, FishCfg.locale));
+		parameters.put("address", messageSource.getMessage("report.device.address", null, FishCfg.locale));
 
         List<IDeviceRpt> data = deviceRptService.listDevice(filter);
 
@@ -129,7 +157,7 @@ public class DeviceReportController {
         File file = new File(path);
         
         String type = path.substring(path.lastIndexOf("."));
-        String fileName = reportTitle.getText() + type;
+        String fileName = getEnumI18n(reportTitle.getText()) + type;
         
         response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName(request, fileName) + "\"");
         response.setContentType("application/x-msdownload;charset=UTF-8");

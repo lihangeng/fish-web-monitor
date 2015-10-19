@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="retain_card_count" language="groovy" pageWidth="1400" pageHeight="1500" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="1360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="29812c6b-87a2-4250-a2fa-e142d6fdd668">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="346"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<parameter name="reportDate" class="java.lang.String"/>
+	<parameter name="title" class="java.lang.String"/>
 	<field name="orgName" class="java.lang.String"/>
 	<field name="terminalId" class="java.lang.String"/>
 	<field name="deviceType" class="java.lang.String"/>
 	<field name="retainCount" class="java.lang.Long"/>
 	<field name="countName" class="java.lang.String"/>
+	<field name="orgNameColumn" class="java.lang.String"/>
+	<field name="devTypeNameColumn" class="java.lang.String"/>
+	<field name="subtotalColumn" class="java.lang.String"/>
+	<field name="totalColumn" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -20,7 +25,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="24" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[吞卡统计报表]]></text>
+				<text><![CDATA[$P{title}]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -51,6 +56,18 @@
 		<band height="42" splitType="Stretch">
 			<crosstab>
 				<reportElement uuid="8ebdd8d8-d8b0-4363-aabe-6c7d33da29b1" x="334" y="0" width="706" height="42"/>
+				<crosstabParameter name="total">
+					<parameterValueExpression><![CDATA[$F{totalColumn}]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabParameter name="subtotal">
+					<parameterValueExpression><![CDATA[$F{subtotalColumn}]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabParameter name="orgName">
+					<parameterValueExpression><![CDATA[$F{orgNameColumn}]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabParameter name="devTypeName">
+					<parameterValueExpression><![CDATA[$F{devTypeNameColumn}]]></parameterValueExpression>
+				</crosstabParameter>
 				<crosstabHeaderCell>
 					<cellContents backcolor="#C0C0C0" mode="Opaque">
 						<box>
@@ -60,27 +77,23 @@
 							<bottomPen lineWidth="0.5"/>
 							<rightPen lineWidth="0.5"/>
 						</box>
-						<staticText>
-							<reportElement uuid="1649f0ff-e075-4331-a860-73de4fe12c68" style="Crosstab Data Text" x="0" y="0" width="202" height="30"/>
+						<textField>
+							<reportElement uuid="7171c824-dd2a-4fee-9ea8-1d3c2c65441f" style="Crosstab Data Text" x="0" y="0" width="202" height="30"/>
 							<box>
-								<pen lineWidth="0.0"/>
-								<topPen lineWidth="0.0"/>
-								<leftPen lineWidth="0.0"/>
-								<bottomPen lineWidth="0.0"/>
 								<rightPen lineWidth="0.5"/>
 							</box>
-							<textElement verticalAlignment="Middle">
-								<font size="12" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+							<textElement>
+								<font size="13"/>
 							</textElement>
-							<text><![CDATA[机构名称]]></text>
-						</staticText>
-						<staticText>
-							<reportElement uuid="437fb4cf-7f4b-4a5b-af83-555d15390b0c" style="Crosstab Data Text" x="202" y="0" width="193" height="30"/>
-							<textElement verticalAlignment="Middle">
-								<font size="12" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+							<textFieldExpression><![CDATA[$P{orgName}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement uuid="08e7a8b9-d719-4c37-a34c-a02c6a47e7e7" style="Crosstab Data Text" x="202" y="0" width="193" height="30"/>
+							<textElement>
+								<font size="13"/>
 							</textElement>
-							<text><![CDATA[机型]]></text>
-						</staticText>
+							<textFieldExpression><![CDATA[$P{devTypeName}]]></textFieldExpression>
+						</textField>
 					</cellContents>
 				</crosstabHeaderCell>
 				<rowGroup name="orgName" width="202" totalPosition="End">
@@ -106,13 +119,13 @@
 							<box>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
-							<staticText>
-								<reportElement uuid="b7117ee2-219e-408a-bd51-484ebe17f563" x="0" y="0" width="395" height="25" forecolor="#FFFFFF"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+							<textField>
+								<reportElement uuid="b9667948-0076-4d0c-ae0a-3a2bf10c0057" style="Crosstab Data Text" x="0" y="0" width="395" height="25"/>
+								<textElement>
+									<font size="13"/>
 								</textElement>
-								<text><![CDATA[总计]]></text>
-							</staticText>
+								<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+							</textField>
 						</cellContents>
 					</crosstabTotalRowHeader>
 				</rowGroup>
@@ -139,13 +152,13 @@
 							<box>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
-							<staticText>
-								<reportElement uuid="b42d0f87-448c-4a74-a8bb-928ff8afabd7" x="0" y="0" width="193" height="25"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+							<textField>
+								<reportElement uuid="5e031b0e-ae5c-400d-aa6c-20770f9a904e" style="Crosstab Data Text" x="0" y="0" width="193" height="25"/>
+								<textElement>
+									<font size="13"/>
 								</textElement>
-								<text><![CDATA[小计]]></text>
-							</staticText>
+								<textFieldExpression><![CDATA[$P{subtotal}]]></textFieldExpression>
+							</textField>
 						</cellContents>
 					</crosstabTotalRowHeader>
 				</rowGroup>

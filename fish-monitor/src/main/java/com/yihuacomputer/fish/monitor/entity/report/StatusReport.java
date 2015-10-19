@@ -1,5 +1,8 @@
 package com.yihuacomputer.fish.monitor.entity.report;
 
+import org.springframework.context.MessageSource;
+
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.fish.api.monitor.business.RunStatus;
 import com.yihuacomputer.fish.api.monitor.filter.ReportMedthod;
 import com.yihuacomputer.fish.api.monitor.report.IDeviceReport;
@@ -376,25 +379,31 @@ public class StatusReport implements IStatusReport {
     public StatusReport() {
 
     }
-
+    
+    private String getEnumI18n(String enumText,MessageSource messageSourceRef){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceRef.getMessage(enumText, null, FishCfg.locale);
+    }
     /**
      * 格式化设备状态监控页面显示信息
      *
      * @param device
      * @return
      */
-    public void setStatusReport(IDeviceReport device) {
+    public void setStatusReport(IDeviceReport device,MessageSource messageSourceRef) {
         try {
 
             this.code = device.getDeviceId();
             if (device.getRunInfo() != null) {
-                this.runStatus = device.getRunInfo().getRunStatus().getText();
+                this.runStatus = getEnumI18n(device.getRunInfo().getRunStatus().getText(),messageSourceRef);
                 this.run = device.getRunInfo().getRunStatus();
             }
             if (device.getXfsStatus() != null) {
-                this.boxStatus = getInfo(device.getXfsStatus().getBoxStatus().getText());
-                this.modStatus = getInfo(device.getXfsStatus().getModStatus().getText());
-                this.netStatus = getInfo(device.getXfsStatus().getNetStatus().getText());
+                this.boxStatus = getEnumI18n(device.getXfsStatus().getBoxStatus().getText(),messageSourceRef);
+                this.modStatus = getEnumI18n(device.getXfsStatus().getModStatus().getText(),messageSourceRef);
+                this.netStatus = getEnumI18n(device.getXfsStatus().getNetStatus().getText(),messageSourceRef);
 
                 this.box = device.getXfsStatus().getBoxStatus();
                 this.mod = device.getXfsStatus().getModStatus();
@@ -427,14 +436,14 @@ public class StatusReport implements IStatusReport {
                 this.address = device.getDevice().getAddress();
                 this.org = device.getDevice().getOrganization().getName();
                 this.type = device.getDevice().getDevType().getName();
-                this.insideOutside = getInfo(device.getDevice().getAwayFlag().getText());
-                this.seviceMode = getInfo(device.getDevice().getWorkType().getText());
+                this.insideOutside = getEnumI18n(device.getDevice().getAwayFlag().getText(),messageSourceRef);
+                this.seviceMode = getEnumI18n(device.getDevice().getWorkType().getText(),messageSourceRef);
                 this.cashboxLimit = getInfo(device.getDevice().getCashboxLimit());
             }
 
             if (device.getDeviceRegister() != null) {
                 this.appRelease = device.getDeviceRegister().getAtmcVersion();
-                this.registerStatus = device.getDeviceRegister().getRegStatus().getText();
+                this.registerStatus = getEnumI18n(device.getDeviceRegister().getRegStatus().getText(),messageSourceRef);
             }
         }
         catch (Exception e) {
@@ -450,9 +459,9 @@ public class StatusReport implements IStatusReport {
         }
     }
 
-    public void setDeviceSign(IDeviceReport device) {
+    public void setDeviceSign(IDeviceReport device,MessageSource messageSourceRef) {
         this.code = device.getDeviceId();
-        this.registerStatus = device.getDeviceRegister().getRegStatus().getText();
+        this.registerStatus = getEnumI18n(device.getDeviceRegister().getRegStatus().getText(),messageSourceRef);
         this.appRelease = device.getDeviceRegister().getAtmcVersion();
     }
 

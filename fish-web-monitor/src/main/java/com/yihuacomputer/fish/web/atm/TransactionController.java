@@ -50,7 +50,7 @@ public class TransactionController{
     public @ResponseBody
     ModelMap acceptStatus(@RequestBody TransactionMsg msg)
     {
-        logger.info(String.format("处理交易信息:[%s]",JsonUtils.toJson(msg)));
+        logger.info(String.format("collection transaction :[%s]",JsonUtils.toJson(msg)));
 
         ModelMap result = new ModelMap();
         result.addAttribute("Ret", "00");
@@ -96,7 +96,7 @@ public class TransactionController{
 
         }catch(Exception e){
         	e.printStackTrace();
-            logger.error(String.format("处理交易信息异常![%s],交易内容:[%s]",e,JsonUtils.toJson(msg)));
+            logger.error(String.format("collection transaction exception![%s],transaction is [%s]",e,JsonUtils.toJson(msg)));
         }
 
         return result;

@@ -54,7 +54,7 @@ public class DefaultHwFaultService {
 
 		}catch(Exception e){
 			e.printStackTrace();
-			logger.error(String.format("处理故障异常[%s]", e));
+			logger.error(String.format("collection caseFault exception[%s]", e));
 		}
 	}
 

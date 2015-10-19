@@ -4,7 +4,7 @@ Ext.define('Eway.view.system.AboutSystemView',{
 	requires: ['Eway.view.system.AboutSystemForm'
 	          ],
 	layout: 'border',
-	title :'关于系统',
+	title :Eway.locale.system.aboutSystem,
 	header:false,
 	border:false,
 	layout: {

@@ -4,25 +4,56 @@ package com.yihuacomputer.fish.api.monitor.business;
  * @author wangchao
  *		证件类型
  */
+/**
+ * @author GQ
+ *
+ */
 public enum IDCardType {
 
-	IDCARD(1, "身份证"),
+	/**
+	 * 身份证
+	 */
+	IDCARD(1, "IDCardType.IDCARD"),
 
-	RESIDENT_CARD(2, "户口本"),
+	/**
+	 * 户口本
+	 */
+	RESIDENT_CARD(2, "IDCardType.RESIDENT_CARD"),
 
-	DRIVE_CARD(3, "驾驶执照"),
+	/**
+	 * 驾驶执照
+	 */
+	DRIVE_CARD(3, "IDCardType.DRIVE_CARD"),
 
-	PASSPORT(4, "护照"),
+	/**
+	 * 护照
+	 */
+	PASSPORT(4, "IDCardType.PASSPORT"),
 
-	OFFICER_CARD(5, "军官证"),
+	/**
+	 * 军官证
+	 */
+	OFFICER_CARD(5, "IDCardType.OFFICER_CARD"),
 
-	SOLDIER_CARD(6, "士兵证"),
+	/**
+	 * 士兵证
+	 */
+	SOLDIER_CARD(6, "IDCardType.SOLDIER_CARD"),
 
-	PERSON_BUSINESS_LICENSE(7, "法人营业执照"),
+	/**
+	 * 法人营业执照
+	 */
+	PERSON_BUSINESS_LICENSE(7, "IDCardType.PERSON_BUSINESS_LICENSE"),
 
-	PERSON_CODE_CARD(8, "法人代码证"),
+	/**
+	 * 法人代码证
+	 */
+	PERSON_CODE_CARD(8, "IDCardType.PERSON_CODE_CARD"),
 
-	TAXATION_REGISTRATION_CARD(9, "税务登记证");
+	/**
+	 * 税务登记证
+	 */
+	TAXATION_REGISTRATION_CARD(9, "IDCardType.TAXATION_REGISTRATION_CARD");
 
 	private int id;
 	private String text;

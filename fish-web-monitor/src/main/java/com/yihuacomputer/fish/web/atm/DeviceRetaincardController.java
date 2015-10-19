@@ -62,7 +62,8 @@ public class DeviceRetaincardController {
 		try{
 			collectService.collectATMCRetainCard(msg.getTermId(), retaincardInfo);
 		}catch(Exception e){
-			logger.error(String.format("处理ATMC吞卡信息异常![%s],吞卡内容:[%s]",e,JsonUtils.toJson(msg)));
+//			logger.error(String.format("处理ATMC吞卡信息异常![%s],吞卡内容:[%s]",e,JsonUtils.toJson(msg)));
+			logger.error(String.format("collection retain card info error![%s],retain card info is:[%s]",e,JsonUtils.toJson(msg)));
 		}		
 		return result;
 	}

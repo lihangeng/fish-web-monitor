@@ -173,7 +173,7 @@ public class DeviceServiceTest extends BindSessionInTest2
     }
     
     
-    @Test
+//    @Test
     public void testCache(){
     	 IOrganization organization1 = orgService.make();
          organization1.setCode("shenzhen");

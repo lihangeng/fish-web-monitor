@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
@@ -167,7 +169,14 @@ public class XfsService implements IXfsService {
             }
         }
     }
-
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
     @SuppressWarnings("unchecked")
     @Override
     @Transactional(readOnly=true)
@@ -241,17 +250,17 @@ public class XfsService implements IXfsService {
             statusReport.setIp(device.getIp().toString());
 
             statusReport.setType(device.getDevType().getName());
-            statusReport.setInsideOutside(String.valueOf(device.getAwayFlag().getText()));
-            statusReport.setSeviceMode(String.valueOf(device.getWorkType().getText()));
+            statusReport.setInsideOutside(getEnumI18n(device.getAwayFlag().getText()));
+            statusReport.setSeviceMode(getEnumI18n(device.getWorkType().getText()));
             statusReport.setOrg(device.getOrganization().getName());
 
-            statusReport.setRegisterStatus(reg.getRegStatus().getText());
+            statusReport.setRegisterStatus(getEnumI18n(reg.getRegStatus().getText()));
             statusReport.setAppRelease(reg.getAtmcVersion());
 
-            statusReport.setRunStatus(xfs.getRunStatus().getText());
-            statusReport.setModStatus(xfs.getModStatus().getText());
-            statusReport.setNetStatus(xfs.getNetStatus().getText());
-            statusReport.setBoxStatus(xfs.getBoxStatus().getText());
+            statusReport.setRunStatus(getEnumI18n(xfs.getRunStatus().getText()));
+            statusReport.setModStatus(getEnumI18n(xfs.getModStatus().getText()));
+            statusReport.setNetStatus(getEnumI18n(xfs.getNetStatus().getText()));
+            statusReport.setBoxStatus(getEnumI18n(xfs.getBoxStatus().getText()));
 
             statusReport.setRun(xfs.getRunStatus());
             statusReport.setMod(xfs.getModStatus());
@@ -465,11 +474,11 @@ public class XfsService implements IXfsService {
             statusMonitorMapOrg.setOrgFlag(org.getOrgFlag());
 
             if (org.getOrganizationType() != null) {
-                statusMonitorMapOrg.setOrgType("" + org.getOrganizationType().getText());
+                statusMonitorMapOrg.setOrgType(getEnumI18n(org.getOrganizationType().getText()));
             }
 
             if (org.getOrganizationState() != null) {
-                statusMonitorMapOrg.setState("" + org.getOrganizationState().getText());
+                statusMonitorMapOrg.setState(getEnumI18n(org.getOrganizationState().getText()));
             }
 
             statusMonitorList.add(statusMonitorMapOrg);

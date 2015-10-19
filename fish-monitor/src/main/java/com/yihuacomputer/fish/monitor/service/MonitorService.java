@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 
 import com.yihuacomputer.fish.api.monitor.ICollectService;
@@ -30,6 +31,7 @@ public class MonitorService implements IMonitorService{
 
     @Autowired
     private IFilterService filterService;
+    
 
 	private IMonitorListener monitorListener;
 
@@ -40,7 +42,6 @@ public class MonitorService implements IMonitorService{
 	public IMonitorListener getMonitorListener(){
 		return this.monitorListener;
 	}
-
     @PostConstruct
 	public void init() {
 		MonitorListener monitorListener = new MonitorListener();

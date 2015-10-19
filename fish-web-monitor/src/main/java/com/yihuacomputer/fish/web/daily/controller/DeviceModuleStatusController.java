@@ -3,6 +3,7 @@ package com.yihuacomputer.fish.web.daily.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.fish.api.monitor.ICollectService;
@@ -27,6 +29,14 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.NetStatus;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.web.monitor.form.ModStatus;
+import com.yihuacomputer.fish.web.monitor.form.StatusCdm;
+import com.yihuacomputer.fish.web.monitor.form.StatusCim;
+import com.yihuacomputer.fish.web.monitor.form.StatusIdc;
+import com.yihuacomputer.fish.web.monitor.form.StatusJpr;
+import com.yihuacomputer.fish.web.monitor.form.StatusPin;
+import com.yihuacomputer.fish.web.monitor.form.StatusRpr;
+import com.yihuacomputer.fish.web.monitor.form.StatusSiu;
+import com.yihuacomputer.fish.web.monitor.form.StatusTtu;
 
 /**
  * 设备模块状态控制器
@@ -78,14 +88,48 @@ public class DeviceModuleStatusController {
         		logger.info("updateStatus status details error！" + e.toString());
         	}
             result.put(FishConstant.SUCCESS, true);
-            result.put("data", modStatus);
+            result.put("data", enumI18n(modStatus));
             return result;
         }
         result.put(FishConstant.SUCCESS, false);
         return result;
 
     }
-
+    private ModStatus enumI18n(ModStatus modStatus){
+    	StatusCdm cdm= modStatus.getCdm();
+    	cdm.setStatusName(getEnumI18n(cdm.getStatus().getText()));
+    	modStatus.setCdm(cdm);
+    	StatusCim cim= modStatus.getCim();
+    	cim.setStatusName(getEnumI18n(cim.getStatus().getText()));
+    	modStatus.setCim(cim);
+    	StatusIdc idc= modStatus.getIdc();
+    	idc.setStatusName(getEnumI18n(idc.getStatus().getText()));
+    	modStatus.setIdc(idc);
+    	StatusJpr jpr= modStatus.getJpr();
+    	jpr.setStatusName(getEnumI18n(jpr.getStatus().getText()));
+    	modStatus.setJpr(jpr);
+    	StatusPin pin= modStatus.getPin();
+    	pin.setStatusName(getEnumI18n(pin.getStatus().getText()));
+    	modStatus.setPin(pin);
+    	StatusRpr rpr= modStatus.getRpr();
+    	rpr.setStatusName(getEnumI18n(rpr.getStatus().getText()));
+    	modStatus.setRpr(rpr);
+    	StatusSiu siu= modStatus.getSiu();
+    	siu.setStatusName(getEnumI18n(siu.getStatus().getText()));
+    	modStatus.setSiu(siu);
+    	StatusTtu ttu= modStatus.getTtu();
+    	ttu.setStatusName(getEnumI18n(ttu.getStatus().getText()));
+    	modStatus.setTtu(ttu);
+    	return modStatus;
+    }
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
     private void updateStatus(String terminalId, ModStatus modStatus) {
         IXfsStatus histXfsStatus = xfsService.loadXfsStatus(terminalId);
         if (histXfsStatus == null) {

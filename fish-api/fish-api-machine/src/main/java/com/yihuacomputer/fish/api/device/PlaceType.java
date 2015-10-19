@@ -9,6 +9,11 @@ package com.yihuacomputer.fish.api.device;
  */
 public enum PlaceType
 {
+//	PRO_CAP=省会城市
+//			PLA_CIT=地级市
+//			COU_TOW=县城
+//			VIL_TOW=乡镇
+//			VILLAGE=行政（自然）村
 	PRO_CAP(1, "PlaceType.PRO_CAP"), PLA_CIT(2, "PlaceType.PLA_CIT"), COU_TOW(3, "PlaceType.COU_TOW"), 
 	VIL_TOW(4, "PlaceType.VIL_TOW"), VILLAGE(5, "PlaceType.VILLAGE");
 

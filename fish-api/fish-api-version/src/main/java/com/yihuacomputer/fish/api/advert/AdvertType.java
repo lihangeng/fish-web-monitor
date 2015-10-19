@@ -7,10 +7,22 @@ package com.yihuacomputer.fish.api.advert;
  * 
  */
 public enum AdvertType {
-	TRANS(0, "交易页面广告"),
-	WAIT_INSERT_CARD(1, "等待插卡广告"),
-	TEXT(2, "文字滚动广告"),
-	ANNOUNCEMENT(3,"公告");
+	/**
+	 * 交易页面广告
+	 */
+	TRANS(0, "AdvertType.TRANS"),
+	/**
+	 * 等待插卡广告
+	 */
+	WAIT_INSERT_CARD(1, "AdvertType.WAIT_INSERT_CARD"),
+	/**
+	 * 文字滚动广告
+	 */
+	TEXT(2, "AdvertType.TEXT"),
+	/**
+	 * 公告
+	 */
+	ANNOUNCEMENT(3,"AdvertType.ANNOUNCEMENT");
 
 	private int id;
 	private String text;

@@ -43,7 +43,7 @@ public class EveryYearReportJob {
 				dataEtl.reportETL(DateUtils.getLastDate());
 			}
 		}catch(Exception e){
-			logger.error(String.format("每年抽取数据异常[%s]", e));
+			logger.error(String.format("load data exception once every year[%s]", e));
 		}
 		
 		logger.debug("year data ETL finished");

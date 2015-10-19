@@ -7,8 +7,14 @@ package com.yihuacomputer.fish.api.advert;
  * 
  */
 public enum AdvertDownMethod {
-	APPEND(0, "追加"),
-	COVER(1, "覆盖");
+	/**
+	 * 追加
+	 */
+	APPEND(0, "AdvertDownMethod.APPEND"),
+	/**
+	 * 覆盖
+	 */
+	COVER(1, "AdvertDownMethod.COVER");
 
 	private int id;
 	private String text;

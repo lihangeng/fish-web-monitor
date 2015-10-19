@@ -19,6 +19,7 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 			},{
 				text : Eway.locale.button.exported,
 				iconCls :'exportToExcel',
+				glyph : 0xf1c3,
 				action : 'export'
 			}],
 			columns : [{

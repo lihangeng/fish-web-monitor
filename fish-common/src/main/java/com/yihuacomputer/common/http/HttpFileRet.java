@@ -1,12 +1,12 @@
 package com.yihuacomputer.common.http;
 
 public enum HttpFileRet {
-    SUCCESS("成功"), // 成功
-    CFG_ERROR("参数配置出错"), // 参数配置出错
-    REQ_FILE_NOTEXIT("请求文件不存在"), // 请求文件不存在
-    CONN_ERROR("通信出错"), // 通信出错
-    URL_ERROR("URL出错"), // URL出错
-    ERROR("文件下载失败");// 文件下载失败
+    SUCCESS("HttpFileRet.SUCCESS"), // 成功
+    CFG_ERROR("HttpFileRet.CFG_ERROR"), // 参数配置出错
+    REQ_FILE_NOTEXIT("HttpFileRet.REQ_FILE_NOTEXIT"), // 请求文件不存在
+    CONN_ERROR("HttpFileRet.CONN_ERROR"), // 通信出错
+    URL_ERROR("HttpFileRet.URL_ERROR"), // URL出错
+    ERROR("HttpFileRet.ERROR");// 文件下载失败
 
     private String text;
 

@@ -3,9 +3,15 @@ package com.yihuacomputer.fish.api.system.im;
 
 public enum AnnounceStatus {
 
-	NEW(0,"新建"),
+	/**
+	 * 新建
+	 */
+	NEW(0,"AnnounceStatus.NEW"),
 
-	RELEASE(1,"已发布");
+	/**
+	 * 已发布
+	 */
+	RELEASE(1,"AnnounceStatus.RELEASE");
 
 	private int  id;
 

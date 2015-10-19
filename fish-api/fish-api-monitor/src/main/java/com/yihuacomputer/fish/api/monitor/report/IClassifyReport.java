@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.api.monitor.report;
 
+import org.springframework.context.MessageSource;
+
 import com.yihuacomputer.fish.api.monitor.business.RunStatus;
 import com.yihuacomputer.fish.api.monitor.filter.ReportMedthod;
 import com.yihuacomputer.fish.api.monitor.xfs.status.BoxStatus;
@@ -174,7 +176,7 @@ public interface IClassifyReport {
 
 	public void setNetMethod(ReportMedthod netMethod);
 
-	public void setStatusReport(IDeviceReport deviceReport);
+	public void setStatusReport(IDeviceReport deviceReport,MessageSource messageSourceRef);
 
 	public DeviceStatus getIccStatus();
 

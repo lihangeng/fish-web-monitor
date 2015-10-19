@@ -2,6 +2,8 @@ package com.yihuacomputer.fish.api.monitor.report;
 
 import java.util.List;
 
+import org.springframework.context.MessageSource;
+
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.util.PageResult;
 
@@ -67,7 +69,7 @@ public interface IWorkUnit {
 	 * @param deviceId
 	 * @param deviceReport
 	 */
-	public void fireMonitorUser(String deviceId,IDeviceReport deviceReport);
+	public void fireMonitorUser(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef);
 
 	/**
 	 * 加工交易数据
@@ -88,7 +90,7 @@ public interface IWorkUnit {
 	 * @param deviceId
 	 * @param deviceReport
 	 */
-	public void fireBootSign(String deviceId,IDeviceReport deviceReport);
+	public void fireBootSign(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef);
 
 	/**
 	 * 加工假币疑问币数据

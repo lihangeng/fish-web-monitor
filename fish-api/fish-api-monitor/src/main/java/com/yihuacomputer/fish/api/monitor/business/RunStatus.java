@@ -7,46 +7,46 @@ package com.yihuacomputer.fish.api.monitor.business;
 public enum RunStatus {
 
 	/**未知*/
-	Unknown("未知"),
+	Unknown("RunStatus.Unknown"),
 	
 	/**初始化*/
-	Initial("初始化"),
+	Initial("RunStatus.Initial"),
 	
 	/**正常服务*/
-	Healthy("正常"),
+	Healthy("RunStatus.Healthy"),
 	
 	/**半功能服务*/
-	SubHealth("半功能"),
+	SubHealth("RunStatus.SubHealth"),
 	
 	/**客户交易*/
-	Customer("交易"),
+	Customer("RunStatus.Customer"),
 	
 	/**维护*/
-	Maintain("维护"),
+	Maintain("RunStatus.Maintain"),
 	
 	/**厂商模式维护*/
-	Vdm("厂商模式"),	
+	Vdm("RunStatus.Vdm"),	
 	
 	/**关机*/
-	Halt("关机"),
+	Halt("RunStatus.Halt"),
 
 	/**重启*/
-	ReBoot("重启"),	
+	ReBoot("RunStatus.ReBoot"),	
 	
 	/**P端通讯故障*/
-	StopAtmp("交易前置故障"),
+	StopAtmp("RunStatus.StopAtmp"),
 	
 	/**人工报停*/
-	StopManmade("报停"),
+	StopManmade("RunStatus.StopManmade"),
 	
 	/**模块故障暂停服务*/
-	StopMod("暂停服务-模块故障"),
+	StopMod("RunStatus.StopMod"),
 	
 	/**未加钞暂停服务*/
-	StopUnCashIn("暂停服务-未加钞"),
+	StopUnCashIn("RunStatus.StopUnCashIn"),
 	
 	/**未知原因暂停服务*/
-	StopUnKnown("暂停服务");
+	StopUnKnown("RunStatus.StopUnKnown");
 	
 	private String text;
 	

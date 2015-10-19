@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="w_trans_count" language="groovy" pageWidth="1400" pageHeight="1500" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="1360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="29812c6b-87a2-4250-a2fa-e142d6fdd668">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="204"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<parameter name="startReportDate" class="java.lang.String"/>
@@ -11,6 +11,9 @@
 	<field name="transType" class="java.lang.String"/>
 	<field name="transCount" class="java.lang.Double"/>
 	<field name="countName" class="java.lang.String"/>
+	<field name="orgNameColumn" class="java.lang.String"/>
+	<field name="subtotalColumn" class="java.lang.String"/>
+	<field name="transTypeColumn" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -21,7 +24,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="24" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<text><![CDATA[交易情况统计表]]></text>
+				<text><![CDATA[$P{title} ]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -59,6 +62,10 @@
 		<band height="108" splitType="Stretch">
 			<crosstab>
 				<reportElement uuid="b34511b5-cc51-4020-a76f-e1d409be9e97" x="299" y="0" width="850" height="87"/>
+				<crosstabParameter name="total"/>
+				<crosstabParameter name="subtotal"/>
+				<crosstabParameter name="orgName"/>
+				<crosstabParameter name="tansType"/>
 				<crosstabHeaderCell>
 					<cellContents backcolor="#C0C0C0" mode="Opaque">
 						<box>
@@ -68,23 +75,23 @@
 							<bottomPen lineWidth="0.5"/>
 							<rightPen lineWidth="0.5"/>
 						</box>
-						<staticText>
-							<reportElement uuid="a0686a60-85a1-4730-a06b-cbe86de7ed6e" style="Crosstab Data Text" x="0" y="0" width="206" height="30"/>
+						<textField>
+							<reportElement uuid="32c2eeb7-f161-4dcd-ba92-4bb5b0dcd9c2" style="Crosstab Data Text" x="0" y="0" width="206" height="30"/>
 							<box>
 								<rightPen lineWidth="0.5"/>
 							</box>
-							<textElement verticalAlignment="Middle" markup="none">
-								<font size="12" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+							<textElement>
+								<font size="13"/>
 							</textElement>
-							<text><![CDATA[机构名称]]></text>
-						</staticText>
-						<staticText>
-							<reportElement uuid="575a2b35-87a0-4fb2-85dd-2f47e00248a9" style="Crosstab Data Text" x="206" y="0" width="196" height="30"/>
-							<textElement verticalAlignment="Middle" markup="none">
-								<font size="12" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+							<textFieldExpression><![CDATA[$P{orgName}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement uuid="7acd66c6-debf-4c66-bb53-56965be80052" style="Crosstab Data Text" x="206" y="0" width="196" height="30"/>
+							<textElement>
+								<font size="13"/>
 							</textElement>
-							<text><![CDATA[交易类型]]></text>
-						</staticText>
+							<textFieldExpression><![CDATA[$P{tansType}]]></textFieldExpression>
+						</textField>
 					</cellContents>
 				</crosstabHeaderCell>
 				<rowGroup name="orgName" width="206" totalPosition="End">
@@ -112,13 +119,13 @@
 							<box>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
-							<staticText>
-								<reportElement uuid="8c9156a2-66f3-42d6-ab51-4a65280dd1d9" x="44" y="0" width="358" height="25" forecolor="#FFFFFF"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+							<textField>
+								<reportElement uuid="7f064c50-fd9a-445b-8576-91afafaa01dc" style="Crosstab Data Text" x="0" y="0" width="402" height="25"/>
+								<textElement>
+									<font size="13"/>
 								</textElement>
-								<text><![CDATA[合计]]></text>
-							</staticText>
+								<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+							</textField>
 						</cellContents>
 					</crosstabTotalRowHeader>
 				</rowGroup>
@@ -145,13 +152,13 @@
 							<box>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
-							<staticText>
-								<reportElement uuid="3b74142f-cb79-427d-95ab-a8aacd491c03" x="0" y="0" width="196" height="25"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+							<textField>
+								<reportElement uuid="2a4170a9-5820-4860-b80b-0baf6a66cc4d" style="Crosstab Data Text" x="0" y="0" width="196" height="25"/>
+								<textElement>
+									<font size="13"/>
 								</textElement>
-								<text><![CDATA[小计]]></text>
-							</staticText>
+								<textFieldExpression><![CDATA[$P{subtotal}]]></textFieldExpression>
+							</textField>
 						</cellContents>
 					</crosstabTotalRowHeader>
 				</rowGroup>

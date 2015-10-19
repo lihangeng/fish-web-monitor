@@ -6,11 +6,11 @@ package com.yihuacomputer.fish.api.advert;
  *
  */
 public enum Screen {
-    SCREEN_1024("1024"),
-    SCREEN_800("800"),
-    SCREEN_600("600"),
-    SCREEN_video("video"),
-    SCREEN_resource("resource");
+    SCREEN_1024("Screen.SCREEN_1024"),
+    SCREEN_800("Screen.SCREEN_800"),
+    SCREEN_600("Screen.SCREEN_600"),
+    SCREEN_video("Screen.SCREEN_video"),
+    SCREEN_resource("Screen.SCREEN_resource");
 
     private String text;
 
