@@ -81,7 +81,7 @@ public class OpenRateController {
     /**
      * 导出excel文件名称 ,response/file目录下
      */
-    private String importFileName = "开机率统计.xls";
+    private String importFileName;
 
     /**
      * 日志
@@ -306,6 +306,7 @@ public class OpenRateController {
 
     private String createExls(List<OpenRateForm> data, String sheetName, boolean isProg) {
 
+    	importFileName = messageSource.getMessage("report.openRate.title", null, FishCfg.locale);
         String pathname = FishCfg.getTempDir() + File.separator + importFileName;
 
         HSSFWorkbook workBook = new HSSFWorkbook();

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -50,7 +52,6 @@ import com.yihuacomputer.fish.api.version.VersionDistributeDetail;
 import com.yihuacomputer.fish.api.version.VersionNo;
 import com.yihuacomputer.fish.api.version.VersionStatus;
 import com.yihuacomputer.fish.api.version.VersionStatusDistribute;
-import com.yihuacomputer.fish.web.util.BasicErrorTips;
 import com.yihuacomputer.fish.web.util.DownFromWebUtils;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 import com.yihuacomputer.fish.web.version.form.BaseForm;
@@ -83,6 +84,9 @@ public class VersionController {
 
 	@Autowired
 	private IVersionStaticsStautsService versionStaticsStatusService;
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	@Autowired
 	private IVersionTypeAtmTypeRelationService versionTypeAtmTypeRelationService;
@@ -240,7 +244,8 @@ public class VersionController {
 			result.addAttribute("data", form);
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, BasicErrorTips.SERVER_HANDLE_ERROR);
+			
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("error.handleError", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -254,7 +259,7 @@ public class VersionController {
 		IVersion v = versionService.getById(id);
 		if (v == null) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, BasicErrorTips.UPDATE_ID_NOT_EXIST);
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("error.update.noData", null, FishCfg.locale));
 			return result;
 		}
 		// @since 2.0.0.0不在从更新页面编辑，直接从版本分类信息中获取
@@ -300,7 +305,7 @@ public class VersionController {
 		} catch (Exception ex) {
 			logger.error(ex.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.put(FishConstant.ERROR_MSG, BasicErrorTips.SERVER_HANDLE_ERROR);
+			result.put(FishConstant.ERROR_MSG, messageSource.getMessage("error.handleError", null, FishCfg.locale));
 		}
 		return result;
 	}

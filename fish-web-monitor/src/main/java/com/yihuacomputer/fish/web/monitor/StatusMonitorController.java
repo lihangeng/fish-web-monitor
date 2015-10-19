@@ -1,6 +1,8 @@
 package com.yihuacomputer.fish.web.monitor;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -70,6 +72,9 @@ public class StatusMonitorController {
 	
 	@Autowired
 	private MessageSource messageSourceStateCode;
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	/**
 	 * 初始化设备属性信息
@@ -118,7 +123,7 @@ public class StatusMonitorController {
 		ModelMap map = new ModelMap();
 		map.addAttribute(FishConstant.SUCCESS, true);
 		map.addAttribute("total", pageResult.getTotal());
-		map.addAttribute("data", StatusMonitorForm.convert(pageResult.list()));
+		map.addAttribute("data", convert(pageResult.list()));
 		return map;
 	}
 
@@ -145,7 +150,7 @@ public class StatusMonitorController {
 		ModelMap map = new ModelMap();
 		map.addAttribute(FishConstant.SUCCESS, true);
 		map.addAttribute("total", pageResult.getTotal());
-		map.addAttribute("data", StatusMonitorForm.convert(pageResult.list()));
+		map.addAttribute("data", convert(pageResult.list()));
 		return map;
 	}
 
@@ -429,6 +434,20 @@ public class StatusMonitorController {
 		return stAna;
 		
 	}
-	
+	//add by panxin 国际化将“未知”提示放入controller层中
+	private List<StatusMonitorForm> convert(List<IStatusReport> list) {
+		
+        List<StatusMonitorForm> result = new ArrayList<StatusMonitorForm>();
+        String unkown= messageSource.getMessage("monitor.statusMonitor.unkown", null, FishCfg.locale);
+        
+        for (IStatusReport item : list) {
+        	if(item.getAppRelease()==null){
+        		item.setAppRelease(unkown);
+        	}
+            result.add(new StatusMonitorForm(item));
+        }
+        return result;
+		
+	}
 
 }

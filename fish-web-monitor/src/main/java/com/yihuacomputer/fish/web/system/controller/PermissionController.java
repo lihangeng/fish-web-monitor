@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -49,6 +51,9 @@ public class PermissionController {
 	private IRolePermissionRelation rolePermissionRelation;
 	@Autowired
 	private IRoleService roleService;
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	public PermissionController() {
 	}
@@ -179,7 +184,7 @@ public class PermissionController {
 	public @ResponseBody
 	List<PermissionTreeForm> tree(@RequestParam String node) {
 		Iterable<IPermission> data = service.get(node).listChildren();
-		return PermissionTreeForm.convert(data);
+		return convert(data);
 	}
 
 	@RequestMapping(value = "/checkedTree", method = RequestMethod.GET)
@@ -201,6 +206,17 @@ public class PermissionController {
 			permissions = rolePermissionRelation.listPermissionByRole(roleService.get(new Integer(roleId)));
 		}
 		return PermissionCheckedTreeForm.convert(datalist, permissions);
+	}
+	
+	
+	public List<PermissionTreeForm> convert(Iterable<IPermission> data) {
+		List<PermissionTreeForm> result = new ArrayList<PermissionTreeForm>();
+		String desc = messageSource.getMessage("login.remark", null, FishCfg.locale);
+		for (IPermission item : data) {
+			item.setDescription(desc);
+			result.add(new PermissionTreeForm(item));
+		}
+		return result;
 	}
 
 }
