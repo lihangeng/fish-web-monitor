@@ -29,7 +29,9 @@ public class VersionEntityInjector implements IEntityInjector {
     
     @Autowired
     private MessageSource messageSourceVersion;
-
+    
+    @Autowired
+	private MessageSource messageSourceEnum;
     @Autowired
     private IDomainVersionService versionService;
     @Override
@@ -38,6 +40,7 @@ public class VersionEntityInjector implements IEntityInjector {
             Task task = (Task) entity;
             task.setTaskService(taskService);
             task.setMessageSourceVersion(messageSourceVersion);
+            task.setMessageSourceEnum(messageSourceEnum);
         }
         else if (entity instanceof DeviceSoftVersion) {
             DeviceSoftVersion dsv = (DeviceSoftVersion) entity;

@@ -42,7 +42,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
 @RequestMapping("/login")
-@ClassNameDescrible(describle="用户登录")
+@ClassNameDescrible(describle="user.login")
 public class LoginController {
 
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(LoginController.class);
@@ -65,7 +65,7 @@ public class LoginController {
 	/**
 	 * 登录并验证用户
 	 */
-	@MethodNameDescrible(describle="登录操作",isNumberArgs=false,argsContext="username")
+	@MethodNameDescrible(describle="user.login.login",isNumberArgs=false,argsContext="username")
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap login(@RequestParam String username, @RequestParam String password, HttpSession session, HttpServletRequest request, WebRequest webrequest) {
 		ModelMap result = new ModelMap();
@@ -215,7 +215,9 @@ public class LoginController {
 		for (IPermission permission : permissions) {
 			IPermission parent = permission.getParent();
 			if (parent != null && parent.getCode().equals(node)) {
-				forms.add(new TreeMenu(permission,hasChildMenu(permission,permissions)));
+				TreeMenu menu = new TreeMenu(permission,hasChildMenu(permission,permissions));
+				menu.setDesc(messageSource.getMessage("user.login.remark", null, FishCfg.locale));
+				forms.add(menu);
 			}
 		}
 		return forms;
@@ -276,7 +278,6 @@ public class LoginController {
 			createMenu(menus, parent, p, all);
 		}
 	}
-
 	private void createMenu(List<Menu> menus, Menu parent, SimplePermission p, List<SimplePermission> all) {
 		List<SimplePermission> child = getChild(p, all);
 		Menu menu = null;
@@ -357,7 +358,6 @@ class TreeMenu {
 	public TreeMenu(IPermission permission,boolean hasChild) {
 		this.id = permission.getCode();
 		this.text = permission.getDescription();
-		this.desc = "备注";
 		this.leaf = !hasChild;
 	}
 
@@ -368,7 +368,9 @@ class TreeMenu {
 	public String getText() {
 		return text;
 	}
-
+	protected void setDesc(String desc){
+		
+	}
 	public String getDesc() {
 		return desc;
 	}

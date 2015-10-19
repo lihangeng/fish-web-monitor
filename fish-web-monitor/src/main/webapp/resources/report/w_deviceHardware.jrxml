@@ -3,7 +3,7 @@
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="614"/>
+	<property name="ireport.x" value="288"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -12,6 +12,12 @@
 	<style name="song" fontName="宋体" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 	<parameter name="title" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="reportDate" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="orgName" class="java.lang.String"/>
+	<parameter name="terminalId" class="java.lang.String"/>
+	<parameter name="typeName" class="java.lang.String"/>
+	<parameter name="memory" class="java.lang.String"/>
+	<parameter name="cpu" class="java.lang.String"/>
+	<parameter name="hardDisk" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[select * from w_retaincard]]>
 	</queryString>
@@ -29,81 +35,6 @@
 	</title>
 	<pageHeader>
 		<band height="80" splitType="Stretch">
-			<staticText>
-				<reportElement uuid="882c6e72-e4b6-460f-ba25-a53a66bb5cd3" key="staticText-22" style="song" stretchType="RelativeToTallestObject" mode="Opaque" x="1147" y="55" width="160" height="25" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="SansSerif" size="12"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[硬盘信息(G)]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="f92165d1-b87c-4ac9-b5c7-e7e299b70534" key="staticText-20" style="song" stretchType="RelativeToTallestObject" mode="Opaque" x="730" y="55" width="417" height="25" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="SansSerif" size="12"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[处理器]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="490832b7-b2fa-48e0-a36e-aaa9621a8b81" key="staticText-19" style="song" stretchType="RelativeToTallestObject" mode="Opaque" x="631" y="55" width="99" height="25" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="SansSerif" size="12"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[系统内存(G)]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="77c2c8ff-8638-4950-998f-da0b4e90a3e5" key="staticText-25" style="song" stretchType="RelativeToTallestObject" mode="Opaque" x="388" y="55" width="243" height="25" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5"/>
-					<leftPen lineWidth="0.5"/>
-					<bottomPen lineWidth="0.5"/>
-					<rightPen lineWidth="0.5"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
-					<font fontName="SansSerif" size="12"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[设备类型名称]]></text>
-			</staticText>
-			<staticText>
-				<reportElement uuid="00a3ca49-d6fa-48e9-905d-ec6a52cc8332" key="staticText-18" style="song" stretchType="RelativeToTallestObject" mode="Opaque" x="241" y="55" width="147" height="25" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#CCCCCC"/>
-				<box>
-					<pen lineWidth="0.5"/>
-					<topPen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
-					<leftPen lineWidth="0.5" lineStyle="Solid"/>
-					<bottomPen lineWidth="0.5" lineStyle="Solid"/>
-					<rightPen lineWidth="0.5" lineStyle="Solid"/>
-				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
-					<font fontName="SansSerif" size="12"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[设备号]]></text>
-			</staticText>
 			<textField isStretchWithOverflow="true" pattern="yyyy.MM.dd" isBlankWhenNull="false">
 				<reportElement uuid="79c7a757-b687-4b5c-8750-2e15b1310438" key="textField-34" style="song" stretchType="RelativeToTallestObject" mode="Transparent" x="93" y="30" width="1214" height="25" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box>
@@ -132,20 +63,79 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
 			</textField>
-			<staticText>
-				<reportElement uuid="168fc878-282c-4c98-87ec-db037b8e876a" style="song" stretchType="RelativeToTallestObject" mode="Opaque" x="93" y="55" width="148" height="25" backcolor="#CCCCCC"/>
+			<textField>
+				<reportElement uuid="4f6f1c54-3cf2-41af-af46-93cd282b02f4" mode="Opaque" x="93" y="55" width="148" height="25" backcolor="#CCCCCC"/>
 				<box>
-					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{orgName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="435799eb-e1d0-41b2-8db5-f01e9793cbb7" mode="Opaque" x="241" y="55" width="147" height="25" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{terminalId}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d9b03b74-f138-4883-a85a-0fdf9c2886a2" mode="Opaque" x="388" y="55" width="243" height="25" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{typeName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="733da9fd-057e-497f-94a1-36ea5dc71fb4" mode="Opaque" x="631" y="55" width="99" height="25" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{memory}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="9fadba22-cfc3-4167-a46d-ae20c185879e" mode="Opaque" x="730" y="55" width="417" height="25" backcolor="#CCCCCC"/>
+				<box>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font size="13"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cpu}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="e3654185-2c15-48d7-9f1a-b1c93a8ede5c" mode="Opaque" x="1147" y="55" width="160" height="25" backcolor="#CCCCCC"/>
+				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
 					<rightPen lineWidth="0.5"/>
 				</box>
-				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-					<font fontName="SansSerif" size="12" isPdfEmbedded="false"/>
+				<textElement textAlignment="Center">
+					<font size="13"/>
 				</textElement>
-				<text><![CDATA[机构名称]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$P{hardDisk}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>

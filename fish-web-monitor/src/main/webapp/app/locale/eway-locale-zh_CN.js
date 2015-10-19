@@ -1990,7 +1990,45 @@ Ext.override(Eway,{
 			noLog:'无日志',//Eway.locale.atmLog.noLog
 			connectFail:'连接失败',//Eway.locale.atmLog.connectFail
 			fileSize:'文件大小',//Eway.locale.atmLog.fileSize
-		}
+			searchIllegal:'查询项中存在不合法的输入,不能导出.'//Eway.locale.atmLog.searchIllegal
+		},
+		//**********************************************************/
+		system:{
+			sysRegist:'系统注册',//Eway.locale.system.sysRegist
+			registCode:'注册码',//Eway.locale.system.registCode
+			startDate:'开始时间',//Eway.locale.system.startDate
+			endDate:'到期时间',//Eway.locale.system.endDate
+			registType:'注册类型',//Eway.locale.system.registType
+			serialNum:'序列号',//Eway.locale.system.serialNum
+			getSerialNum:'正在获取序列号......',//Eway.locale.system.getSerialNum
+			checkCode:'校验码',//Eway.locale.system.checkCode
+			tryOut:'试用',//Eway.locale.system.tryOut
+			noLimit:'没有限制',//Eway.locale.system.noLimit
+			getSerialNumFail:'序列号获取失败',//Eway.locale.system.getSerialNumFail
+			registSuc:'注册成功',//Eway.locale.system.registSuc
+			registFail:'注册失败',//Eway.locale.system.registFail
+			appearInnerFalse:'出现内部错误',//Eway.locale.system.appearInnerFalse
+			regist:'注册',//Eway.locale.system.regist
+			aboutSystem:'关于系统',//Eway.locale.system.aboutSystem
+			softwareName:'软件名称',//Eway.locale.system.softwareName
+			ATMV:'金融自助设备集中监控系统',//Eway.locale.system.ATMV
+			softwareVersion:'软件版本',//Eway.locale.system.softwareVersion
+			innerVersion:'内部版本号',//Eway.locale.system.innerVersion
+			copyRight:'版权信息：&copy;深圳市怡化电脑有限公司 版权所有',//Eway.locale.system.copyRight
+			introduction:'系统简介：',//Eway.locale.system.introduction
+			introductionA:'本系统是监控系统的基础功能有ATM信息管理、',//Eway.locale.system.introductionA
+			introductionB:'自动化版本分发管理、 ATM设备监控等功能。通过这些功能，各大银行可以集中管理ATM设备信息  监视 远程的ATM，对远程ATM机器上的软件升',//Eway.locale.system.introductionB
+			introductionC:'级和软件维护，方便了各大银 行对自助设备进行高效的管理和维护。',//Eway.locale.system.introductionC
+			guideUsers:'本手册指导用户操作本系统，更快的掌握系统的各项功能。',//Eway.locale.system.guideUsers
+			systemHelp:'系统帮助',//Eway.locale.system.systemHelp
+			helpName:'名称',//Eway.locale.system.helpName
+			helpExpain:'说明',//Eway.locale.system.helpExpain
+			helpDownload:'下载',//Eway.locale.system.helpDownload
+			clickDownload:'单击此处即可下载该文档',//Eway.locale.system.clickDownload
+		},
+		thread:{
+			
+		},
 		
 		
 		

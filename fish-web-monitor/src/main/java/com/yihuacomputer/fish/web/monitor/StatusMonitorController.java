@@ -30,7 +30,7 @@ import com.yihuacomputer.fish.api.monitor.filter.IStatusFilter;
 import com.yihuacomputer.fish.api.monitor.report.IStatusMonitorMapOrg;
 import com.yihuacomputer.fish.api.monitor.report.IStatusReport;
 import com.yihuacomputer.fish.api.monitor.xfs.IStateAnalysis;
-import com.yihuacomputer.fish.api.monitor.xfs.IStateCodeService;
+//import com.yihuacomputer.fish.api.monitor.xfs.IStateCodeService;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
@@ -64,8 +64,8 @@ public class StatusMonitorController {
 	@Autowired
 	private IFilterService filterService;
 
-	@Autowired
-	private IStateCodeService stateCodeService;
+//	@Autowired
+//	private IStateCodeService stateCodeService;
 	
 	
 	@Autowired

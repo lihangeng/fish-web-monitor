@@ -2,6 +2,8 @@ package com.yihuacomputer.fish.web.command;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
@@ -26,6 +29,8 @@ import com.yihuacomputer.fish.web.command.format.ListInstationForm;
 @RequestMapping("agent/instation")
 public class InstationController {
 
+	@Autowired
+	private MessageSource messageSource;
 	private Logger logger = LoggerFactory.getLogger(InstationController.class);
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -38,9 +43,9 @@ public class InstationController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("data", InstationForm.convert(listInstationForm.getInstationList()));
 		} catch (Exception e) {
-			logger.error(String.format("获取软件安装列表失败！[%s]",e));
+			logger.error(String.format("get installed applications failed![%s]",e));
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "获取软件安装列表失败.");
+			result.addAttribute(FishConstant.ERROR_MSG,messageSource.getMessage("command.instation.listFail", null, FishCfg.locale) );
 		}
 		return result;
 	}

@@ -7,7 +7,7 @@
 			height : 400,
 			width : 800,
 			layout : 'card',
-			title : '系统注册',
+			title : Eway.locale.system.sysRegist,
 			header:false,
 			activeItem : 0,
 			items : [{
@@ -21,20 +21,20 @@
 				},
 				items : [{
 							xtype : 'textfield',
-							fieldLabel : '注册码',
+							fieldLabel : Eway.locale.system.registCode,
 							name : 'serial',
 							width: 450
 						}, {
 							xtype : 'textfield',
-							fieldLabel : '开始时间',
+							fieldLabel : Eway.locale.system.startDate,
 							name : 'startDate'
 						}, {
 							xtype : 'textfield',
-							fieldLabel : '到期时间',
+							fieldLabel : Eway.locale.system.endDate,
 							name : 'endDate'
 						}, {
 							xtype : 'textfield',
-							fieldLabel : '注册类型',
+							fieldLabel : Eway.locale.system.registType,
 							name : 'type'
 						}],
 				listeners : {
@@ -48,7 +48,7 @@
 										me._fillDisplayForm(panel, object);
 									},
 									failure : function() {
-										Eway.alert('内部错误');
+										Eway.alert(Eway.locale.cases.caseNotify.innerFault);
 									}
 								});
 					}
@@ -64,7 +64,7 @@
 				},
 				items : [{
 					xtype : 'fieldcontainer',
-					fieldLabel : '序列号',
+					fieldLabel : Eway.locale.system.serialNum,
 					layout : 'column',
 					defaults : {
 						hideLabel : true
@@ -79,7 +79,7 @@
 						name : 'getKey',
 						xtype : 'displayfield',
 						columnWidth: .5,
-						value : '<font color="blue">正在获取序列号......</font>'
+						value : '<font color="blue">'+Eway.locale.system.getSerialNum+'</font>'
 					}]
 				},{
 					xtype : 'textfield',
@@ -87,7 +87,7 @@
 					hidden : true
 				},{
 					xtype : 'fieldcontainer',
-					fieldLabel : '校验码',
+					fieldLabel : Eway.locale.system.checkCode,
 					layout : 'column',
 					defaults : {
 						hideLabel : true
@@ -107,7 +107,7 @@
 				buttonAlign : 'center',
 				fbar : [{
 					xtype : 'button',
-					text : '确定',
+					text : Eway.locale.button.sure,
 					name : 'ok',
 					disabled : true,
 					iconCls :'sureBtn',
@@ -121,7 +121,7 @@
 			}],
 			tbar : ['->',{
 				xtype : 'button',
-				text : '注册',
+				text : Eway.locale.system.regist,
 				iconCls :'sureBtn',
 				pressed : true,
 				action : 'register',
@@ -134,7 +134,7 @@
 				}
 			},{
 				xtype : 'button',
-				text : '返回',
+				text : Eway.locale.button.back,
 				hidden : true,
 				action : 'return',
 				iconCls :'returnBtn',
@@ -155,13 +155,13 @@
 		var endDate = object.endDate;
 		var type = '';
 		if(object.type=='0'){
-			type = '试用';
+			type = Eway.locale.system.tryOut;
 			var endDateField = panel.down('textfield[name="endDate"]');
 			endDateField.show();
 			endDateField.setValue(endDate);
 		}
 		else if(object.type=='1') {
-			type = '没有限制';
+			type = Eway.locale.system.noLimit;
 			panel.down('textfield[name="endDate"]').hide();
 		}
 		panel.down('textfield[name="serial"]').setValue(serial);
@@ -185,7 +185,7 @@
 					button.enable();
 				},
 				failure : function(){
-					getKeyField.setValue('<font color="red">序列号获取失败</font>');
+					getKeyField.setValue('<font color="red">'+Eway.locale.system.getSerialNumFail+'</font>');
 				}
 			});
 		}
@@ -218,7 +218,7 @@
 			success : function(response){
 				var object = Ext.decode(response.responseText);
 				if(object.success){
-					Eway.alert('注册成功');
+					Eway.alert(Eway.locale.system.registSuc);
 					var win = btn.up('form');
 					var form = win.down('form[action="displayInfo"]');
 					win.getLayout().setActiveItem(form);
@@ -227,12 +227,12 @@
 					win.down('button[action="return"]').hide();
 				}
 				else {
-					Eway.alert('注册失败');
+					Eway.alert(Eway.locale.system.registFail);
 				}
 
 			},
 			failure : function(){
-				Eway.alert('出现内部错误');
+				Eway.alert(Eway.locale.system.appearInnerFalse);
 			}
 		});
 	}

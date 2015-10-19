@@ -243,7 +243,7 @@ public class FaultController
             }
             else
             {
-                cell.setCellValue(cellValue(fault.getDevMod().getText()));
+                cell.setCellValue(cellValue(getEnumI18n(fault.getDevMod().getText())));
             }
 
             cell = row.createCell(2);
@@ -397,5 +397,13 @@ public class FaultController
             return String.valueOf(obj.toString());
         }
         return obj.toString();
+    }
+    @Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
     }
 }

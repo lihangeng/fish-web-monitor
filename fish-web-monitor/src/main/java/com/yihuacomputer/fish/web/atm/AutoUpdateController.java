@@ -94,7 +94,8 @@ public class AutoUpdateController {
 			    }
 			}
 		}catch(Exception e){
-			logger.error(String.format("处理自动升级请求异常![%s],请求内容:[%s]",e,JsonUtils.toJson(msg)));
+			logger.error(String.format("autoupdate exception![%s],request context is:[%s]",e,JsonUtils.toJson(msg)));
+//			logger.error(String.format("处理自动升级请求异常![%s],请求内容:[%s]",e,JsonUtils.toJson(msg)));
 		}
 		return msg;
 	}

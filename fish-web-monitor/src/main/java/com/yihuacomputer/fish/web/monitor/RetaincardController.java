@@ -569,14 +569,14 @@ public class RetaincardController {
 			row.createCell(2)
 					.setCellValue(cellValue(retaincard.getAccountNo()));
 			row.createCell(3).setCellValue(
-					cellValue(retaincard.getCardRetainType().getText()));
+					cellValue(getEnumI18n(retaincard.getCardRetainType().getText())));
 			row.createCell(4).setCellValue(
 					cellValue(DateUtils.getTimestamp(retaincard
 							.getCardRetainTime())));
 			row.createCell(5).setCellValue(
 					cellValue(retaincard.getCardDistributionBank()));
 			row.createCell(6).setCellValue(
-					cellValue(retaincard.getStatus().getText()));
+					cellValue(getEnumI18n(retaincard.getStatus().getText())));
 			row.createCell(7).setCellValue(cellValue(retaincard.getReason()));
 		}
 
@@ -596,7 +596,14 @@ public class RetaincardController {
 		this.download(file, response, "gb2312", "application/x-xls");
 		return null;
 	}
-
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	/**
 	 * 下载文件
 	 *

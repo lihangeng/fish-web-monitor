@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.api.monitor;
 
 import org.cometd.bayeux.server.ServerSession;
+import org.springframework.context.MessageSource;
 
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.fish.api.monitor.report.IClassifyReport;
@@ -94,4 +95,7 @@ public interface IMonitorListener {
 	 */
 	public void reportClassifyMonitor(ServerSession userSession,IClassifyReport classifyReport);
 
+	public MessageSource getMessageSourceRef();
+
+	public void setMessageSourceRef(MessageSource messageSourceRef);
 }

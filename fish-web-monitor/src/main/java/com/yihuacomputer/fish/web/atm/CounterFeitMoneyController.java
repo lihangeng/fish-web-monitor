@@ -49,7 +49,7 @@ public class CounterFeitMoneyController{
     public @ResponseBody
     ModelMap acceptStatus(@RequestBody CounterFeitMoneyMsg msg)
     {
-        logger.info(String.format("处理交易信息:[%s]",JsonUtils.toJson(msg)));
+        logger.info(String.format("tranaction info is :[%s]",JsonUtils.toJson(msg)));
 
         ModelMap result = new ModelMap();
         result.addAttribute("Ret", "00");
@@ -74,7 +74,7 @@ public class CounterFeitMoneyController{
         	collectService.collectATMCCounterFeitMoney(msg.getTermId(), counterFeitMoney);
         }catch(Exception e){
         	e.printStackTrace();
-            logger.error(String.format("处理交易信息异常![%s],交易内容:[%s]",e,JsonUtils.toJson(msg)));
+            logger.error(String.format("collection transaction info fail![%s],transaction context is:[%s]",e,JsonUtils.toJson(msg)));
         }
         
         return result;

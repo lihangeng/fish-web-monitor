@@ -43,7 +43,7 @@ public class EveryMonthReportJob {
 				dataEtl.reportETL(DateUtils.getLastDate());
 			}
 		}catch(Exception e){
-			logger.error(String.format("每月抽取数据异常[%s]", e));
+			logger.error(String.format("load data exception once every month[%s]", e));
 		}
 		logger.debug("month data ETL finished");
 

@@ -2,6 +2,8 @@ package com.yihuacomputer.fish.api.monitor;
 
 import java.util.List;
 
+import org.springframework.context.MessageSource;
+
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.monitor.alarm.IIllegalProcess;
 import com.yihuacomputer.fish.api.monitor.alarm.ISoftwareFailure;
@@ -60,7 +62,7 @@ public interface ICollectService {
 	 * @param terminalId
 	 * @param deviceRegister
 	 */
-	public void collectBootSign(String terminalId, IDeviceRegister deviceRegister);	
+	public void collectBootSign(String terminalId, IDeviceRegister deviceRegister,MessageSource messageSourceRef);	
 
 	
     /**
