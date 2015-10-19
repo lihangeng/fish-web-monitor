@@ -108,7 +108,7 @@
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
-				<version>7.6.0.RC5</version>
+				<version>8.1.5.v20120716</version>
 				<configuration>
 					<webAppConfig>
 						<contextPath>/atmv</contextPath>
@@ -166,6 +166,7 @@
 					<ext>
 						<enabled>true</enabled>
 					</ext>
+					<attachClasses>true</attachClasses>
 					<packagingExcludes>
 						compress.html,
 						app.jsb3,
