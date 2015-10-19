@@ -18,11 +18,10 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.Grid', {
 				action : 'query'
 			}, {
 				text : Eway.locale.button.exported,
-				iconCls :'exportToExcel',
+				glyph : 0xf1c3,
 				action : 'export'
 			},{
 				text :Eway.locale.machine.atmRuntimeInfo.exportLast30,
-				iconCls :'exportToExcel',
 				glyph : 0xf1c3,
 				action : 'exportLast30'
 			}],

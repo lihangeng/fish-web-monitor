@@ -59,7 +59,6 @@ Ext.define('Eway.view.monitor.card.CardInfoGrid', {
 				}
 			},{
 				text : Eway.locale.monitor.business.card.exportData,
-				iconCls :'exportToExcel',
 				glyph : 0xf1c3,
 				action : 'export'
 			}],
