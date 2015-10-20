@@ -484,7 +484,7 @@ Ext.define('Eway.controller.person.BankPer', {
 						}
 					});
 					var actionTip = ewayView.down("tbtext[action=tip]");
-	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+Eway.locale.tip.bankPer.link.personBelongs);
+	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+Eway.locale.tip.bankPer.personBelongs);
 					win.close();
 				},
 				failure: function(record,operation){

@@ -2028,7 +2028,7 @@ Ext.override(Eway,{
 		},
 		thread:{
 			
-		},
+		}
 		
 		
 		
