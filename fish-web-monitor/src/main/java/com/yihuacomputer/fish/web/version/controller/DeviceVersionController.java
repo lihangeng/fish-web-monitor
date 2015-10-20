@@ -136,16 +136,6 @@ public class DeviceVersionController {
     	}
     	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
     }
-    private String getTaskCreatedUserName(long deviceId,long versionId){
-       List<ITask>  tasks = taskService.findTaskByDeviceIdAndVersionId(deviceId,versionId); 
-       if(tasks.size() > 0){
-    	   return "";
-//    	   TODO  : 
-//    	   return tasks.get(0).getJob().getCreateUser().getName();
-       }else{
-    	   return "";
-       }
-    }
 
     private List<VersionDeviceForm> getForms(List<IDevice> devices){
         List<VersionDeviceForm> forms = new ArrayList<VersionDeviceForm>();
