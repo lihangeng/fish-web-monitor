@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.monitor.service.db;
+package com.yihuacomputer.fish.monitor.service;
 
 
 import org.hibernate.criterion.Restrictions;

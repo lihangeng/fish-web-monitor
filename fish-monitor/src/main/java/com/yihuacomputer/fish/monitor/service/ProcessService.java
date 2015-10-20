@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.monitor.service.db;
+package com.yihuacomputer.fish.monitor.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,18 +8,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.util.EntityUtils;
+import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.monitor.alarm.IIllegalProcess;
 import com.yihuacomputer.fish.api.monitor.alarm.IProcess;
+import com.yihuacomputer.fish.api.monitor.alarm.IProcessService;
 import com.yihuacomputer.fish.monitor.entity.alarm.IllegalProcess;
 import com.yihuacomputer.fish.monitor.entity.alarm.SysProcess;
-import com.yihuacomputer.fish.monitor.service.base.DomainProcessService;
 
 @Service
 @Transactional
-public class ProcessService extends DomainProcessService{
+public class ProcessService implements IProcessService {
 
-    @Autowired
+	@Autowired
 	private IGenericDao dao;
 
 	@Override
@@ -64,7 +67,7 @@ public class ProcessService extends DomainProcessService{
 	}
 
 	@Override
-	public void saveSchindlerAlarm(String terminalId,List<IIllegalProcess> processList) {
+	public void saveSchindlerAlarm(String terminalId, List<IIllegalProcess> processList) {
 		for (IIllegalProcess process : processList) {
 			process.setTerminalId(terminalId);
 			this.dao.save(process);
@@ -76,33 +79,46 @@ public class ProcessService extends DomainProcessService{
 		return new IllegalProcess();
 	}
 
-    @Override
-    public IIllegalProcess getSchindlerAlarm(long id)
-    {
-        return dao.get(id, IllegalProcess.class);
-    }
-
-    @Override
-    public Iterable<IIllegalProcess> listSchindlerAlarm()
-    {
-        List<IIllegalProcess> illegalProcess = new ArrayList<IIllegalProcess>();
-        illegalProcess.addAll(this.dao.loadAll(IllegalProcess.class));
-        return illegalProcess;
-    }
-
-    @Override
-    public Iterable<IIllegalProcess> listSchindlerAlarm(IFilter filter)
-    {
-        List<IIllegalProcess> illegalProcess = new ArrayList<IIllegalProcess>();
-        illegalProcess.addAll(this.dao.findByFilter(filter, IllegalProcess.class));
-        return illegalProcess;
-    }
+	@Override
+	public IIllegalProcess getSchindlerAlarm(long id) {
+		return dao.get(id, IllegalProcess.class);
+	}
 
 	@Override
-	public List <IProcess> findByHQL(String value)
-	{
+	public Iterable<IIllegalProcess> listSchindlerAlarm() {
+		List<IIllegalProcess> illegalProcess = new ArrayList<IIllegalProcess>();
+		illegalProcess.addAll(this.dao.loadAll(IllegalProcess.class));
+		return illegalProcess;
+	}
+
+	@Override
+	public Iterable<IIllegalProcess> listSchindlerAlarm(IFilter filter) {
+		List<IIllegalProcess> illegalProcess = new ArrayList<IIllegalProcess>();
+		illegalProcess.addAll(this.dao.findByFilter(filter, IllegalProcess.class));
+		return illegalProcess;
+	}
+
+	@Override
+	public List<IProcess> findByHQL(String value) {
 		String hql = "from SysProcess sys where Upper(sys.name) = ?";
-	    List <IProcess> list  = dao.findByHQL( hql,value);
-	    return list;
+		List<IProcess> list = dao.findByHQL(hql, value);
+		return list;
+	}
+
+	@Override
+	public IProcess make() {
+		return new SysProcess();
+	}
+
+	@Override
+	public IPageResult<IProcess> page(int offset, int limit, IFilter filter) {
+		return dao.page(offset, limit, filter, SysProcess.class);
+	}
+
+	@Override
+	public IPageResult<IIllegalProcess> pageSchindlerAlarm(int offset, int limit, IFilter filter) {
+		List<IIllegalProcess> lists = new ArrayList<IIllegalProcess>();
+		EntityUtils.convert(listSchindlerAlarm(filter), lists);
+		return new PageResult<IIllegalProcess>(lists, offset, limit);
 	}
 }

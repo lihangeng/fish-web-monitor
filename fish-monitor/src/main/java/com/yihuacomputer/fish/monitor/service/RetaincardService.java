@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.monitor.service.db;
+package com.yihuacomputer.fish.monitor.service;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,14 +25,14 @@ import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.monitor.business.CardStatus;
 import com.yihuacomputer.fish.api.monitor.business.IRetaincard;
+import com.yihuacomputer.fish.api.monitor.business.IRetaincardService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.monitor.entity.business.Retaincard;
-import com.yihuacomputer.fish.monitor.service.base.DomainRetaincardService;
 
 @Service
 @Transactional
-public class RetaincardService extends DomainRetaincardService{
+public class RetaincardService implements IRetaincardService{
 
     @Autowired
     private IGenericDao dao;
@@ -307,6 +307,11 @@ public class RetaincardService extends DomainRetaincardService{
 		page.setData(lists);
 		page.setTotal(total);
 		return page;
+	}
+
+	@Override
+	public IRetaincard make() {
+		return new Retaincard();
 	}
 
 

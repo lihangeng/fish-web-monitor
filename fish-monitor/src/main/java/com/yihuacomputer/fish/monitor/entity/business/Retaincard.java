@@ -16,21 +16,16 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.monitor.business.CardRetainType;
 import com.yihuacomputer.fish.api.monitor.business.CardStatus;
 import com.yihuacomputer.fish.api.monitor.business.IDCardType;
 import com.yihuacomputer.fish.api.monitor.business.IRetaincard;
 import com.yihuacomputer.fish.api.person.IOrganization;
-import com.yihuacomputer.fish.monitor.service.base.DomainRetaincardService;
 
 @Entity
 @Table(name = "ATMC_RETAIN_CARD")
 public class Retaincard implements IRetaincard {
-
-	@Transient
-	private DomainRetaincardService service;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_ATMC_RETAIN_CARD")
@@ -155,18 +150,6 @@ public class Retaincard implements IRetaincard {
 
 	public Retaincard() {
 
-	}
-
-	public Retaincard(DomainRetaincardService service) {
-		this.service = service;
-	}
-
-	public DomainRetaincardService getService() {
-		return service;
-	}
-
-	public void setService(DomainRetaincardService service) {
-		this.service = service;
 	}
 
 	public void setAccountNo(String accountNo) {

@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.monitor.service.db;
+package com.yihuacomputer.fish.monitor.service;
 
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +10,8 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.monitor.business.IBlackListCard;
+import com.yihuacomputer.fish.api.monitor.business.IBlackListCardService;
 import com.yihuacomputer.fish.monitor.entity.business.BlackListCard;
-import com.yihuacomputer.fish.monitor.service.base.DomainBlackListCardService;
 
 /**
  * 数据库版BlackListCardService实现：
@@ -21,10 +21,15 @@ import com.yihuacomputer.fish.monitor.service.base.DomainBlackListCardService;
  */
 @Service
 @Transactional
-public class BlackListCardService extends DomainBlackListCardService {
+public class BlackListCardService implements IBlackListCardService {
 
     @Autowired
     private IGenericDao dao;
+    
+    @Override
+	public BlackListCard make(){
+		return new BlackListCard();
+	}
 
     @Override
     public BlackListCard add(IBlackListCard entity) {

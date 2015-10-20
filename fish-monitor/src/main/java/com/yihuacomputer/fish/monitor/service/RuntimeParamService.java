@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.monitor.service.db;
+package com.yihuacomputer.fish.monitor.service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +13,14 @@ import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.monitor.software.IDeviceParam;
+import com.yihuacomputer.fish.api.monitor.software.IRuntimeParamService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.monitor.entity.software.DeviceParam;
-import com.yihuacomputer.fish.monitor.service.base.DomainRuntimeParamService;
 
 @Service
 @Transactional
-public class RuntimeParamService extends DomainRuntimeParamService {
+public class RuntimeParamService implements IRuntimeParamService {
     @Autowired
     private IGenericDao dao;
 
@@ -128,4 +128,9 @@ public class RuntimeParamService extends DomainRuntimeParamService {
         }
         return result;
     }
+
+	@Override
+	public IDeviceParam make() {
+		return new DeviceParam();
+	}
 }
