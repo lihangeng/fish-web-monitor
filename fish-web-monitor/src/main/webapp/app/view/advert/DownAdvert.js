@@ -53,6 +53,7 @@ Ext.define('Eway.view.advert.DownAdvert', {
 				items : [{
 					xtype: 'textfield',
 					fieldLabel:Eway.locale.version.View.remark,
+					readOnly:true,
 					name :'jobName',
 					height : 40,
 					maxWidth:600,
@@ -118,6 +119,16 @@ Ext.define('Eway.view.advert.DownAdvert', {
 			            labelWidth:100,
 			            minValue: new Date(),
 			            maxValue:Ext.Date.add(Ext.Date.parse(Ext.Date.format(new Date(), 'Y-m-d') + " 23:59:59","Y-m-d H:i:s"), Ext.Date.DAY, 7)
+					},{
+						 xtype: 'radiogroup',
+						 fieldLabel: '设备全选',
+					        // Arrange radio buttons into two columns, distributed vertically
+					        columns: 2,
+					        vertical: true,
+					        items: [
+					            { boxLabel: '是', name: 'allDevice', inputValue: 'true' },
+					            { boxLabel: '否', name: 'allDevice', inputValue: 'false', checked: true}
+					        ]
 					}]
 				},{
 					xtype: 'hidden',

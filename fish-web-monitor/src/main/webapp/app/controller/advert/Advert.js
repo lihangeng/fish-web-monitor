@@ -430,9 +430,12 @@ Ext.define('Eway.controller.advert.Advert', {
 		var record = Ext.create("Eway.model.version.VersionDownload",data);
 		if(addForm.isValid()){
 			var deviceIdsField = addForm.findField("deviceIds");
-			if(Ext.isEmpty(deviceIdsField.value)){
-				Eway.alert(Eway.locale.msg.chooseDevice);//"请选择设备.");
+			var allDeviceField = addForm.findField("allDevice");
+			if(Ext.isEmpty(deviceIdsField.value)&&!allDeviceField.value){
+				Eway.alert(Eway.locale.msg.mustSelectDevice);//"请选择设备.");
 				btn.enable();
+			}else if(allDeviceField.value&&linkGrid.getStore().getCount()==0){
+				Eway.alert(Eway.locale.msg.mustSelectDevice);
 			}else{
 				record.set("deviceIds",deviceIdsField.value);
 				record.save({
