@@ -16,10 +16,10 @@ import com.yihuacomputer.common.exception.NotFoundException;
 import com.yihuacomputer.common.util.IOUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.advert.entity.Advert;
-import com.yihuacomputer.fish.advert.service.api.IDomainAdvertResourceService;
 import com.yihuacomputer.fish.advert.service.api.IDomainAdvertService;
 import com.yihuacomputer.fish.api.advert.AdvertType;
 import com.yihuacomputer.fish.api.advert.IAdvert;
+import com.yihuacomputer.fish.api.advert.IAdvertResourceService;
 import com.yihuacomputer.fish.api.advert.IAdvertZipGenerator;
 import com.yihuacomputer.fish.api.person.IUserService;
 import com.yihuacomputer.fish.api.version.IVersion;
@@ -43,7 +43,7 @@ public class AdvertService implements IDomainAdvertService {
     private IGenericDao dao;
 
     @Autowired
-    private IDomainAdvertResourceService advertResourceService;
+    private IAdvertResourceService advertResourceService;
 
     @Autowired(required = false)
     private IVersionService versionService;
@@ -172,7 +172,7 @@ public class AdvertService implements IDomainAdvertService {
     }
 
     @Override
-    public IDomainAdvertResourceService getAdvertResourceService() {
+    public IAdvertResourceService getAdvertResourceService() {
         return this.advertResourceService;
     }
 

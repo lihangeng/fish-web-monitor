@@ -32,7 +32,6 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.util.IOUtils;
 import com.yihuacomputer.common.util.ZipUtils;
-import com.yihuacomputer.fish.advert.service.api.IDomainAdvertResourceService;
 import com.yihuacomputer.fish.advert.service.api.IDomainAdvertService;
 import com.yihuacomputer.fish.api.advert.AbstractAdvertZipGenerator;
 import com.yihuacomputer.fish.api.advert.AdvertDownMethod;
@@ -41,6 +40,7 @@ import com.yihuacomputer.fish.api.advert.AdvertValidity;
 import com.yihuacomputer.fish.api.advert.CheckStatus;
 import com.yihuacomputer.fish.api.advert.IAdvert;
 import com.yihuacomputer.fish.api.advert.IAdvertResource;
+import com.yihuacomputer.fish.api.advert.IAdvertResourceService;
 import com.yihuacomputer.fish.api.advert.IAdvertZipGenerator;
 import com.yihuacomputer.fish.api.advert.Screen;
 import com.yihuacomputer.fish.api.advert.util.AdvertTypeConversionService;
@@ -179,7 +179,7 @@ public class Advert implements IAdvert, Serializable {
         }
     }
 
-    private IDomainAdvertResourceService getResourceService() {
+    private IAdvertResourceService getResourceService() {
         return this.advertService.getAdvertResourceService();
     }
 
