@@ -915,7 +915,7 @@ Ext.override(Eway,{
 				address:'机构地址',//Eway.locale.person.bankOrg.address
 				upgradeOrg:'上级机构',//Eway.locale.person.bankOrg.upgradeOrg
 				description:'机构描述',//Eway.locale.person.bankOrg.description
-				serOrganization:'机构描述',//Eway.locale.person.bankOrg.serOrganization
+				serOrganization:'维护商描述',//Eway.locale.person.bankOrg.serOrganization
 				organizationType:{
 					bank:'银行',//Eway.locale.person.bankOrg.organizationType.bank
 					serviceOrg:'维护商'//Eway.locale.person.bankOrg.organizationType.serviceOrg
