@@ -129,6 +129,6 @@ public interface IVersionService {
 	 * @param versionId
 	 * @return
 	 */
-	public  IVersion updateDownLoadCounter(long versionId) ;
+	public  IVersion updateDownLoadCounter(IVersion version) ;
 
 }

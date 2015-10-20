@@ -52,10 +52,11 @@ Ext.define('Eway.view.version.AddJob', {
 				},
 				items : [{
 					xtype: 'textfield',
-					fieldLabel:"<font color='red'>*</font>"+Eway.locale.version.batchTaskName,//任务批次名称",
+					fieldLabel:Eway.locale.version.batchTaskName,//任务批次名称",
 					name :'jobName',
 					maxLength: 128,
 					allowBlank:false,
+					readOnly:true,
 					emptyText:Eway.locale.version.batchTaskNameEmpty//'例如:****需求第1批次升级'
 			 },{
 					xtype: 'container',
@@ -118,6 +119,16 @@ Ext.define('Eway.view.version.AddJob', {
 			            format: 'Y-m-d H:i:s',
 			            minValue: new Date(),
 			            maxValue:Ext.Date.add(Ext.Date.parse(Ext.Date.format(new Date(), 'Y-m-d') + " 23:59:59","Y-m-d H:i:s"), Ext.Date.DAY, 7)
+					},{
+						 xtype: 'radiogroup',
+						 fieldLabel: '设备全选',
+					        // Arrange radio buttons into two columns, distributed vertically
+					        columns: 2,
+					        vertical: true,
+					        items: [
+					            { boxLabel: '是', name: 'allDevice', inputValue: 'true' },
+					            { boxLabel: '否', name: 'allDevice', inputValue: 'false', checked: true}
+					        ]
 					}]
 				}/*,{
 					xtype: 'container',

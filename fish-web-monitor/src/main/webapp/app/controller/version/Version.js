@@ -216,10 +216,16 @@ Ext.define('Eway.controller.version.Version', {
 		var addForm = win.down("form").getForm();
 		var data = addForm.getValues();
 		var record = Ext.create("Eway.model.version.VersionDownload",data);
+		var linkGrid = win.down('version_download_selectableDeviceGrid');
 		if(addForm.isValid()){
 			var deviceIdsField = addForm.findField("deviceIds");
-			if(Ext.isEmpty(deviceIdsField.value)){
+			var allDeviceField = addForm.findField("allDevice");
+			//allDeviceField
+			if(Ext.isEmpty(deviceIdsField.value)&&!allDeviceField.value){
 				Eway.alert(Eway.locale.msg.mustSelectDevice);//"请至少选择一个设备.");
+			}
+			else if(allDeviceField.value&&linkGrid.getStore().getCount()==0){
+				Eway.alert(Eway.locale.msg.mustSelectDevice);
 			}else{
 				record.set("deviceIds",deviceIdsField.value);
 				record.save({

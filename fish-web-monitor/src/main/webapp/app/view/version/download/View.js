@@ -19,10 +19,10 @@ Ext.define('Eway.view.version.download.View', {
 				} ],
 			listeners : {
 				activate : function(panel) {
-					if (panel.isLoad) {
-						return;
-					}
-					panel.isLoad = true;
+//					if (panel.isLoad) {
+//						return;
+//					}
+//					panel.isLoad = true;
 					panel.down('version_download_taskGrid').getStore().load();
 				}
 			}

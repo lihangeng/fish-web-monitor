@@ -28,6 +28,16 @@ public class JobForm {
 	private String deployEndDate;
 	
 	private int downLoadCounter;
+	
+	private boolean allDevice;
+
+	public boolean isAllDevice() {
+		return allDevice;
+	}
+
+	public void setAllDevice(boolean allDevice) {
+		this.allDevice = allDevice;
+	}
 
 	public JobForm() {
 	}

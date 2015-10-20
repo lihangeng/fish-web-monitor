@@ -129,13 +129,29 @@ public class VersionDownloadController {
         String versionTypeName = version.getVersionType().getTypeName();
         List<ITask> tasks = new ArrayList<ITask>();
         String deviceIds = form.getDeviceIds();
-        if (StringUtils.isNotEmpty(deviceIds)) {
+        UserSession session = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
+        Object[] ids = null;
+//        if (StringUtils.isNotEmpty(deviceIds)) {
         	Date createdTime = new Date();
         	List<Object> lists = deviceSoftVersionService.findDeviceSoftVersions(versionTypeName);
             Map<Long,String> maps = convertToMap(lists);
-            String[] ids = deviceIds.substring(1).split(",");
-            for (String id : ids) {
-                Long deviceId = Long.valueOf(id);
+            if(form.isAllDevice()){
+            	List<String> list = new ArrayList<String>();
+            	IFilter filter = new Filter();
+            	filter.eq("orgFlag", session.getOrgFlag());
+            	IPageResult<Object> pageResult = downloadService.getCanPushDevicePagesInfo(0, Integer.MAX_VALUE, version, filter);
+            	for(Object obj:pageResult.list()){
+            		IDevice device = (IDevice)obj;
+            		list.add(String.valueOf(device.getId()));
+            	}
+            	ids = list.toArray();
+            }
+            else{
+                ids = deviceIds.substring(1).split(",");
+            }
+            
+            for (Object id : ids) {
+                Long deviceId = Long.valueOf(String.valueOf(id));
                 ITask task = taskService.findTask(deviceId, form.getVersionId());
                 //如果存在相关的任务则要判断当前是否可以下发
                 if(null != task){
@@ -165,12 +181,12 @@ public class VersionDownloadController {
                 task.setExcuteMachine(request.getLocalAddr());
                 tasks.add(task);
             }
-        }
+//        }
         taskManager.createTasksByWeb(tasks);
 
         form.setVersionName(version.getFullName() + " [" + version.getServerPath() + "]");
         form.setDownLoadCounter(version.getDownloadCounter());
-        versionService.updateDownLoadCounter(form.getVersionId());
+        versionService.updateDownLoadCounter(version);
         result.addAttribute(FishConstant.SUCCESS, true);
         result.addAttribute("data", form);
         return result;
