@@ -96,10 +96,14 @@ Ext.define('Eway.controller.version.Version', {
 
 	//查询
 	onQuery: function(){
-		 var store =  this.getGrid().getStore();
-		 var data = this.getFilterForm().getForm().getValues();//得到所有的查询条件的值 {code='n',name='',....}
-		 store.setUrlParamsByObject(data);
-		 store.loadPage(1);
+		var form = this.getFilterForm().getForm()
+		if(!form.isValid()){
+			return;
+		}
+		var store =  this.getGrid().getStore();
+		var data = this.getFilterForm().getForm().getValues();//得到所有的查询条件的值 {code='n',name='',....}
+		store.setUrlParamsByObject(data);
+		store.loadPage(1);
 	},
 
 	//下发

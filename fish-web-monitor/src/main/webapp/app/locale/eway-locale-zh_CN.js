@@ -312,7 +312,7 @@ Ext.override(Eway,{
 					forceRebootSendFail:'强制重启命令发送失败.',//Eway.locale.tip.business.device.forceRebootSendFail
 					resetConfirm:'确认要执行强制复位?',//Eway.locale.tip.business.device.resetConfirm
 					resetSuccess:'强制复位成功',//Eway.locale.tip.business.device.resetSuccess
-					resetFail:'强制复位成功',//Eway.locale.tip.business.device.resetFail
+					resetFail:'强制复位失败',//Eway.locale.tip.business.device.resetFail
 					resetSendFail:'强制复位命令发送失败.',//Eway.locale.tip.business.device.resetSendFail
 					term:'设备',//Eway.locale.tip.business.device.term
 					detail:'详情',//Eway.locale.tip.business.device.detail
