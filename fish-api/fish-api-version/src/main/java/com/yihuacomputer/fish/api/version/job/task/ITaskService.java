@@ -117,4 +117,11 @@ public interface ITaskService {
      */
     public IPageResult<AutoUpdateTaskForm> pageAutoUpdateTask(int start,int limit,IFilter filter);
 	public IPageResult<ITask> export( IFilter filter) ;
+	
+	/**
+	 * 网页上重置任务状态(标记为部署失败)
+	 * @param taskId
+	 * @return
+	 */
+	public ITask webResetTaskStatus(long taskId);
 }

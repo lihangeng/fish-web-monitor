@@ -61,10 +61,45 @@ Ext.define('Eway.controller.version.VersionDownload', {
 			},
 			'#versionDownload version_download_taskGrid button[action=autoRefresh]':{
 				click :this.onAutoRefresh
+			},
+			'#versionDownload version_download_taskGrid button[action=resetStatus]':{
+				click :this.onResetStatus
 			}
 		});
 	},
-
+	//任务处于某种状态无法继续需要重置任务状态
+	onResetStatus:function(){
+		var grid = this.getTaskGrid();
+		var sm = grid.getSelectionModel();
+		if (sm.getCount() == 1) {
+			var record = sm.getLastSelected();
+			if(record.get("taskStatus")==Eway.locale.version.taskStatus.checked||
+					record.get("taskStatus")==Eway.locale.version.taskStatus.noticedFail||
+					record.get("taskStatus")==Eway.locale.version.taskStatus.downloadedFail||
+					record.get("taskStatus")==Eway.locale.version.taskStatus.deployedFail||
+					record.get("taskStatus")==Eway.locale.version.taskStatus.noticeFail||
+					record.get("taskStatus")==Eway.locale.version.taskStatus.checked||
+					record.get("taskStatus")==Eway.locale.version.taskStatus.checked){
+				Eway.alert(Eway.locale.version.download.checkedTaskCantResetTips);
+				return;
+			}
+			Ext.Ajax.request({
+			    url: 'api/version/download/resetTaskStatus',
+			    method:'GET',
+			    params: {
+			        id: record.get('id')
+			    },
+			    success: function(response){
+			        var text = response.responseText;
+			        Eway.alert(Eway.locale.version.taskStatus.taskResetSuccessTips);
+			        grid.getStore().load();
+			    }
+			});
+		}
+		else{
+			Eway.alert(Eway.locale.version.download.selectTask);
+		}
+	},
 	//选中第一条记录
 	onSelectFirst : function(grid){
 		if(grid.getStore().getCount() > 0){

@@ -584,6 +584,7 @@ Ext.override(Eway,{
 				deployedFail:'部署失败',//Eway.locale.version.taskStatus.deployedFail
 				checked:'部署已确认',//Eway.locale.version.taskStatus.checked
 				noticeOk:'已通知应用',//Eway.locale.version.taskStatus.noticeOk
+				taskResetSuccessTips:'任务重置成功！',//Eway.locale.version.taskStatus.taskResetSuccessTips
 				noticeFail:'通知应用失败'//Eway.locale.version.taskStatus.noticeFail
 			},
 			versionCatalog:{
@@ -598,6 +599,9 @@ Ext.override(Eway,{
 				autoRefresh:'开启自动刷新',//Eway.locale.version.download.autoRefresh
 				stopAutoRefresh:'停止自动刷新',//Eway.locale.version.download.stopAutoRefresh
 				autoRefreshTips:'刷新周期60秒',//Eway.locale.version.download.autoRefreshTips
+				resetTaskStatus:'重置任务状态',//Eway.locale.version.download.resetTaskStatus
+				selectTask:'请选择一条任务记录！',//Eway.locale.version.download.selectTask
+				checkedTaskCantResetTips:'非运行中的任务无法重置！',//Eway.locale.version.download.checkedTaskCantResetTips
 				taskExportTips:'导出选中作业下的全部下发结果'//Eway.locale.version.download.taskExportTips
 			},
 			task:{

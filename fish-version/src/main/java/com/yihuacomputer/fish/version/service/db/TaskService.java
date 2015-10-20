@@ -197,6 +197,14 @@ public class TaskService implements IDomainTaskService {
 		}
 		return null;
 	}
+	
+	public ITask webResetTaskStatus(long taskId){
+		ITask task = this.get(taskId);
+		task.setStatus(TaskStatus.DEPLOYED_FAIL);
+		task.setReason(messageSourceVersion.getMessage("exception.task.resetTask", null, FishCfg.locale));
+		this.updateTaskStatus(task);
+		return task;
+	}
 
 	@Override
 	@Transactional(readOnly = true)

@@ -666,4 +666,18 @@ public class VersionDownloadController {
         }
         return result;
     }
+    @RequestMapping(value = "/resetTaskStatus", method = RequestMethod.GET)
+    public @ResponseBody
+    ModelMap resetTaskStatus(@RequestParam long id , WebRequest request) {
+        logger.info(String.format("reset taskStatus  : taskId = %s  ", id));
+        ModelMap result = new ModelMap();
+        try {
+            taskService.webResetTaskStatus(id);
+            result.addAttribute(FishConstant.SUCCESS, true);
+        } catch (Exception e) {
+            result.addAttribute(FishConstant.SUCCESS, false);
+        }
+        return result;
+    }
+    
 }

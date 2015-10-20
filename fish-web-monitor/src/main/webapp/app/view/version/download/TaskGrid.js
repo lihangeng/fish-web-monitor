@@ -38,6 +38,10 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 				action:'autoRefresh',
 				tooltip:Eway.locale.version.download.autoRefreshTips,//'刷新周期60秒',
 				started:false
+			},{
+				text:Eway.locale.version.download.resetTaskStatus,//'重置任务状态',
+				action:'resetStatus',
+				tooltip:Eway.locale.version.download.resetTaskStatus
 			}/*,{
 				text: '全部重启',
 				iconCls : 'exportToExcel',
