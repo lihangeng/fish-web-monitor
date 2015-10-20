@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.web.mvc;
 
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public abstract class CommonSpringMvcConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-		converters.add(new StringHttpMessageConverter());
+		converters.add(new StringHttpMessageConverter(Charset.forName("UTF-8")));
 		converters.add(mappingJackson2HttpMessageConverter());
 	}
 
