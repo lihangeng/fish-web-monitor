@@ -1,7 +1,6 @@
 Ext.define('Eway.controller.advert.Advert', {
 	extend : 'Ext.app.Controller',
 
-	requires : ['Ext.form.field.File'],
 	stores : [  'advert.Advert','advert.AdvertResource','advert.AdvertType','machine.DeviceAtmType',
 				'advert.AdvertDownMethod','advert.AdvertDownMethodSearch',
 				'advert.AdvertValidity','Hour','Minute',
@@ -52,8 +51,14 @@ Ext.define('Eway.controller.advert.Advert', {
 			'#advert button[action=query]' : {
 				click : this.onQuery
 			},
-			'#advert button[action=preview]' :{
-				click : this.onPreview
+			'#advert menuitem[action=preview1024]' :{
+				click : this.onPreview1024
+			},
+			'#advert menuitem[action=preview800]' :{
+				click : this.onPreview800
+			},
+			'#advert menuitem[action=preview600]' :{
+				click : this.onPreview600
 			},
 			'#advert button menuitem[action=text]' :{
 				click : this.onAddText
@@ -97,127 +102,140 @@ Ext.define('Eway.controller.advert.Advert', {
 		store.loadPage(1);
 	},
 
+	onPreview1024 : function(){
+		this.onPreview("1024");
+	},
+
+	onPreview800 : function(){
+		this.onPreview("800");
+	},
+
+	onPreview600 : function(){
+		this.onPreview("600");
+	},
+
 	//广告预览
-	onPreview : function(){
+	onPreview : function(screen){
 		var grid = this.getGrid();
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
-			if(record.get("advertType") == 'TEXT' || record.get('advertType') == 'ANNOUNCEMENT'){
-				Eway.alert(Eway.locale.msg.perviewFailForText);//"预览失败:不支持文字滚动广告和公告的预览.");
+			if(record.get("advertType") == "TEXT" || record.get('advertType') == 'ANNOUNCEMENT'){
+				Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.perviewFailForText);
 			}else{
 				var advertId = record.get('id');
 				Ext.Ajax.request({
 					url :"api/advert/preview2",
 					params: {
-				        id: advertId
+				        id: advertId,
+				        screen:screen
 				    },
 					success: function(response){
 						 var images = Ext.decode(response.responseText);
 						 if(Ext.isEmpty(images)){
-						 	Eway.alert(Eway.locale.msg.perviewFailNoResource);//"预览失败:此广告没有配置广告资源.");
-						 }
-						 var vedioCfg = '<OBJECT id=WindowsMediaPlayer1 name="player" height=490 width=700 classid=clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6>'+
-											'<PARAM NAME="URL" VALUE="">'+
-											'<PARAM NAME="rate" VALUE="1">'+
-											'<PARAM NAME="balance" VALUE="0">'+
-											'<PARAM NAME="currentPosition" VALUE="0">'+
-											'<PARAM NAME="defaultFrame" VALUE="">'+
-											'<PARAM NAME="playCount" VALUE="1">'+
-											'<PARAM NAME="autoStart" VALUE="-1">'+
-											'<PARAM NAME="currentMarker" VALUE="0">'+
-											'<PARAM NAME="invokeURLs" VALUE="-1">'+
-											'<PARAM NAME="baseURL" VALUE="">'+
-											'<PARAM NAME="volume" VALUE="50">'+
-											'<PARAM NAME="mute" VALUE="0">'+
-											'<PARAM NAME="uiMode" VALUE="full">'+
-											'<PARAM NAME="stretchToFit" VALUE="0">'+
-											'<PARAM NAME="windowlessVideo" VALUE="0">'+
-											'<PARAM NAME="enabled" VALUE="-1">'+
-											'<PARAM NAME="enableContextMenu" VALUE="-1">'+
-											'<PARAM NAME="fullScreen" VALUE="0">'+
-											'<PARAM NAME="SAMIStyle" VALUE="">'+
-											'<PARAM NAME="SAMILang" VALUE="">'+
-											'<PARAM NAME="SAMIFilename" VALUE="">'+
-											'<PARAM NAME="captioningID" VALUE="">'+
-											'<PARAM NAME="enableErrorDialogs" VALUE="0">'+
-											'<PARAM NAME="_cx" VALUE="12700">'+
-											'<PARAM NAME="_cy" VALUE="9525">'+
-												'<embed src="" width="480" height="360" autostart="-1" url="" rate="1" balance="0" currentposition="0" defaultframe="" playcount="1" '+
-													'currentmarker="0" invokeurls="-1" baseurl="" volume="50" mute="0" uimode="full" stretchtofit="0" windowlessvideo="0" '+
-												    'enabled="-1" enablecontextmenu="-1" fullscreen="0" samistyle="" samilang="" samifilename="" captioningid="" enableerrordialogs="0" _cx="12700" _cy="9525">'+
-												'</embed> '+
-										'</OBJECT>';
-						 var len = images.length;
-						 var stoped = false;
-						 var win = Ext.create('Ext.window.Window',{
-							title:Eway.locale.advert.advertPreviewTitle0+len+Eway.locale.advert.advertPreviewTitle1,
-//							title:'广告预览(共有 '+ len +' 个资源,当前播放第 ',
-							width: 705,
-							height: document.body.clientHeight < 525 ? document.body.clientHeight: 525,
-							layout : 'fit',
-							maximizable: false,
-							autoScroll : true,
-							modal : true,
-							resizable : true,
-							constrainHeader : true,
-							html:'<div class="_previewAD"><img width="680" height="485"></div><div class="_previewVedio" style="display:none">'+vedioCfg+'</div>',
-							listeners:{
-								'beforeclose' : function(win){
-									stoped = true;
+						 	Ext.Msg.alert(Eway.locale.confirm.title, "["+screen+"]"+Eway.locale.msg.noAdvertResAtTheResolution);
+						 }else{
+							 var vedioCfg = '<OBJECT id=WindowsMediaPlayer1 name="player" height=490 width=700 classid=clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6>'+
+												'<PARAM NAME="URL" VALUE="">'+
+												'<PARAM NAME="rate" VALUE="1">'+
+												'<PARAM NAME="balance" VALUE="0">'+
+												'<PARAM NAME="currentPosition" VALUE="0">'+
+												'<PARAM NAME="defaultFrame" VALUE="">'+
+												'<PARAM NAME="playCount" VALUE="1">'+
+												'<PARAM NAME="autoStart" VALUE="-1">'+
+												'<PARAM NAME="currentMarker" VALUE="0">'+
+												'<PARAM NAME="invokeURLs" VALUE="-1">'+
+												'<PARAM NAME="baseURL" VALUE="">'+
+												'<PARAM NAME="volume" VALUE="50">'+
+												'<PARAM NAME="mute" VALUE="0">'+
+												'<PARAM NAME="uiMode" VALUE="full">'+
+												'<PARAM NAME="stretchToFit" VALUE="0">'+
+												'<PARAM NAME="windowlessVideo" VALUE="0">'+
+												'<PARAM NAME="enabled" VALUE="-1">'+
+												'<PARAM NAME="enableContextMenu" VALUE="-1">'+
+												'<PARAM NAME="fullScreen" VALUE="0">'+
+												'<PARAM NAME="SAMIStyle" VALUE="">'+
+												'<PARAM NAME="SAMILang" VALUE="">'+
+												'<PARAM NAME="SAMIFilename" VALUE="">'+
+												'<PARAM NAME="captioningID" VALUE="">'+
+												'<PARAM NAME="enableErrorDialogs" VALUE="0">'+
+												'<PARAM NAME="_cx" VALUE="12700">'+
+												'<PARAM NAME="_cy" VALUE="9525">'+
+													'<embed src="" width="480" height="360" autostart="-1" url="" rate="1" balance="0" currentposition="0" defaultframe="" playcount="1" '+
+														'currentmarker="0" invokeurls="-1" baseurl="" volume="50" mute="0" uimode="full" stretchtofit="0" windowlessvideo="0" '+
+													    'enabled="-1" enablecontextmenu="-1" fullscreen="0" samistyle="" samilang="" samifilename="" captioningid="" enableerrordialogs="0" _cx="12700" _cy="9525">'+
+													'</embed> '+
+											'</OBJECT>';
+							 var len = images.length;
+							 var stoped = false;
+							 var win = Ext.create('Ext.window.Window',{
+								title:Eway.locale.advert.advertPreviewTitle0+ len +Eway.locale.advert.advertPreviewTitle1,
+								width: 705,
+								height: document.body.clientHeight < 525 ? document.body.clientHeight: 525,
+								layout : 'fit',
+								maximizable: false,
+								autoScroll : true,
+								modal : true,
+								resizable : true,
+								constrainHeader : true,
+								html:'<div class="_previewAD"><img width="680" height="485"></div><div class="_previewVedio" style="display:none">'+vedioCfg+'</div>',
+								listeners:{
+									'beforeclose' : function(win){
+										stoped = true;
+									}
 								}
-							}
-						});
+							});
 
-						win.show();
-						var title = win.title;
-						var el = win.getEl();
-						var div = Ext.DomQuery.select("div[class=_previewAD]",el.dom)[0],
-							divVedio =  Ext.DomQuery.select("div[class=_previewVedio]",el.dom)[0],
-							img = Ext.DomQuery.select("div[class=_previewAD] img",el.dom)[0],
-							v = document.getElementById('WindowsMediaPlayer1');
-						var time = 0;
-						var i = 0;
-						var playNext = function(){
-							if(!stoped){
-								if(i < len){
-									var currentPic = images[i];
-									if(currentPic.picName.indexOf('.avi') > 0){
-										divVedio.style.display = "block";
-										div.style.display = "none";
-										img.src = "";
-										if(Ext.isIE){
-											v.URL = currentPic.picName;
+							win.show();
+							var title = win.title;
+							var el = win.getEl();
+							var div = Ext.DomQuery.select("div[class=_previewAD]",el.dom)[0],
+								divVedio =  Ext.DomQuery.select("div[class=_previewVedio]",el.dom)[0],
+								img = Ext.DomQuery.select("div[class=_previewAD] img",el.dom)[0],
+								v = document.getElementById('WindowsMediaPlayer1');
+							var time = 0;
+							var i = 0;
+							var playNext = function(){
+								if(!stoped){
+									if(i < len){
+										var currentPic = images[i];
+										if(currentPic.picName.indexOf('.avi') > 0){
+											divVedio.style.display = "block";
+											div.style.display = "none";
+											img.src = "";
+											if(Ext.isIE){
+												v.URL = currentPic.picName;
+											}else{
+												divVedio.innerHTML = '<font color="red">'+Eway.locale.advert.perviewAdertWithIEBrowse+'</font>';
+											}
 										}else{
-											divVedio.innerHTML = '<font color="red">'+Eway.locale.advert.perviewAdertWithIEBrowse+'</font>';//非IE浏览器不支持视频广告的预览.
+											divVedio.style.display = "none";
+											div.style.display = "block";
+											img.src = currentPic.picName;
 										}
-									}else{
-										divVedio.style.display = "none";
-										div.style.display = "block";
-										img.src = currentPic.picName;
+
+									   	win.setTitle(title + (i+1) +Eway.locale.advert.advertPreviewTitle2);
+									   	time = currentPic.playTime * 1000;
+										i ++
+									}
+									if(i==len){
+										i = 0;
 									}
 
-								   	win.setTitle(title + (i+1) +Eway.locale.advert.advertPreviewTitle1);//" 个)");
-								   	time = currentPic.playTime * 1000;
-									i ++
+									setTimeout(function(){
+										playNext();
+									},time);
 								}
-								if(i==len){
-									i = 0;
-								}
+							};
 
-								setTimeout(function(){
-									playNext();
-								},time);
-							}
-						};
+							playNext();
 
-						playNext();
-
+						}
 					}
 				});
 			}
 		}else{
-			Eway.alert(Eway.locale.msg.choseResToPerview);//"请选择您要预览的广告.");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.choseResToPerview);
 		}
 	},
 	//作业详情
@@ -228,7 +246,7 @@ Ext.define('Eway.controller.advert.Advert', {
 			var record = sm.getLastSelected();
 
 		}else{
-			Eway.alert(Eway.locale.msg.chooseAdvert);//"请选择一条广告.");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.chooseAdvert);
 		}
 	},
 	//删除广告
@@ -237,24 +255,22 @@ Ext.define('Eway.controller.advert.Advert', {
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
-			Eway.locale.version.View.downLoaded
 			if(record.get("versionStatus") == Eway.locale.version.View.downLoaded || record.get("versionStatus") == Eway.locale.version.View.waitting ){
-//				if(record.get("versionStatus") == '已下发' || record.get("versionStatus") == '等待下发' ){
-				Eway.alert(Eway.locale.msg.downLoadedAdvertCantDelete);//'删除失败:不能删除"已下发"和"等待下发"状态的广告.');
+				Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.downLoadedAdvertCantDelete);
 			}else{
-				Ext.MessageBox.confirm(Eway.locale.confirm.titleSure,Eway.locale.confirm.todoDelete,//"请确认","是否删除该记录?",
+				Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,Eway.locale.tip.remove.confirm.info,
 						function(button,text) {
 							if(button=="yes"){
 								record.erase({
 									success: function(){
 										grid.getStore().remove(record);
-										Eway.alert(Eway.deleteSuccess);
+										Ext.Msg.alert(Eway.locale.confirm.title, Eway.deleteSuccess);
 										//刷新详细配置列表
-										var tabCard = this.getTabs().getActiveTab();
-										tabCard.refresh(0);
+										var resourceGrid = this.getAdvertResourceGrid();
+										resourceGrid.getStore().load({params:{advertId:0}});
 									},
 									failure: function(record,operation){
-										Eway.alert(operation.getError());
+										Ext.Msg.alert(Eway.locale.confirm.title, operation.request.scope.reader.jsonData.errors);
 									},
 									scope:this
 								});
@@ -263,7 +279,7 @@ Ext.define('Eway.controller.advert.Advert', {
 			}
 		}
 		else {
-			Eway.alert(Eway.locale.msg.chooseAdvertToDelete);//"请选择您要删除的广告.");
+			Ext.Msg.alert(Eway.locale.confirm.title,Eway.locale.msg.chooseAdvertToDelete);
 		}
 	},
 
@@ -273,21 +289,21 @@ Ext.define('Eway.controller.advert.Advert', {
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
-			if(record.get('versionStatus') == Eway.locale.version.View.downLoaded){//'已下发'){
-				Eway.alert(Eway.locale.msg.generalVersionFailForDownloaded);//'生成版本文件失败:"已下发"状态的广告不能再生成版本信息.');
+			if(record.get('versionStatus') == Eway.locale.version.taskStatus.downloaded){
+				Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.generalVersionFailForDownloaded);
 			}else{
 				Ext.Ajax.request({
 				    url: 'api/advert/' + record.get("id") + "/generateVersion",
 				    success: function(response){
 				        var text = response.responseText;
-				        Eway.alert(Eway.locale.msg.generalVersionSuccess);//"生成版本文件成功.");
+				        Ext.Msg.alert(Eway.locale.confirm.title,Eway.locale.msg.generalVersionSuccess);
 				     	grid.getStore().load();//刷新列表页面
 				    }
 				});
 			}
 		}
 		else {
-			Eway.alert(Eway.locale.msg.chooseAdvert);//"请选择一条广告.");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.chooseAdvert);
 		}
 	},
 
@@ -316,13 +332,14 @@ Ext.define('Eway.controller.advert.Advert', {
 			var iframe = document.getElementById('downloadFileFromWeb');
 			iframe.src = url;
 		}else{//其他的时候，刷新tab显示内容
-			var tabs = this.getTabs();
-			var tabCard = tabs.getActiveTab();
-			if(tabCard.action == "advertConfig"){
-				tabCard.refresh(record.get("id"));
-			}else if(tabCard.action == "advertVersion"){
-				tabCard.loader.load({params:{id:record.get('id')}});
+			var resourceGrid = this.getAdvertResourceGrid();
+			var btnPreview = resourceGrid.down('button[code=advertPreview]');
+			if(record.get('advertType') == 'TEXT'){
+				btnPreview.disable();
+			}else{
+				btnPreview.enable();
 			}
+			resourceGrid.getStore().load({params:{advertId:record.get('id')}});
 		}
 	},
 
@@ -351,10 +368,11 @@ Ext.define('Eway.controller.advert.Advert', {
 			var record = sm.getLastSelected();
 			if(record.get('versionId') != 0 && record.get('versionFile') != null){
 				var win = Ext.create('Eway.view.advert.DownAdvert');
+				win.show();
 				win.down("button[action=confirm]").on("click",this.onDownConfirm,this);
+				win.down("textfield[name=jobName]").setValue(record.get("versionDesc"));
 				win.on("destroy",this.onCloseDownWin,this);
-				win.down("form combobox[name=taskType]").on('change',this.onJobTypeChange,this);
-				win.down("form textfield[name=jobName]").setValue(record.get("versionFile"));
+				//win.down("form combobox[name=jobType]").on('change',this.onJobTypeChange,this);
 				win.down("version_download_multiselectableDeviceGrid pagingtoolbar").on("beforechange",this.onSelectalbeDeviceFresh,this);
 				var pagingtoolbar = win.down("pagingtoolbar");
 				//增加请求参数
@@ -368,13 +386,12 @@ Ext.define('Eway.controller.advert.Advert', {
 				form.findField("versionNo").setValue(record.get("versionNo"));
 				form.findField("serverPath").setValue(record.get("versionFile"));
 
-				win.show();
 			}else{
-				Eway.alert(Eway.locale.msg.downloadFailForNoVersion);//"下发版本文件失败:还没有生成版本文件或者版本文件丢失,请先生成版本文件.");
+				Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.downloadFailForNoVersion);
 			}
 		}
 		else {
-			Eway.alert(Eway.locale.msg.chooseAdvertToDownload);//"请选择您要下发的广告.");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.chooseAdvert);
 		}
 	},
 
@@ -428,11 +445,12 @@ Ext.define('Eway.controller.advert.Advert', {
 		var addForm = win.down("form").getForm();
 		var data = addForm.getValues();
 		var record = Ext.create("Eway.model.version.VersionDownload",data);
+		var linkGrid = win.down('version_download_multiselectableDeviceGrid');
 		if(addForm.isValid()){
 			var deviceIdsField = addForm.findField("deviceIds");
 			var allDeviceField = addForm.findField("allDevice");
 			if(Ext.isEmpty(deviceIdsField.value)&&!allDeviceField.value){
-				Eway.alert(Eway.locale.msg.mustSelectDevice);//"请选择设备.");
+				Ext.MessageBox.alert(Eway.locale.confirm.title,Eway.locale.msg.chooseOneDevice);
 				btn.enable();
 			}else if(allDeviceField.value&&linkGrid.getStore().getCount()==0){
 				Eway.alert(Eway.locale.msg.mustSelectDevice);
@@ -443,13 +461,12 @@ Ext.define('Eway.controller.advert.Advert', {
 					 	deviceIdsField.setValue("");
 					 	var linkedGrid = win.down('version_download_linkedDeviceGrid');
 						linkedGrid.getStore().removeAll();//清空已选择的设备列表
-						Eway.locale.version.selectDeviceInfo0
 						linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo0+0+Eway.locale.version.selectDeviceInfo1);
-//						linkedGrid.setTitle("已选择的设备(<font color='red'>0</font>)台");
 					 	//保存成功后刷新下发设备列表
-					 	Eway.alert(Eway.locale.msg.saveSuccess);//'保存成功！');
+//					 	 Ext.Msg.alert(Eway.locale.confirm.title, '保存成功！');
+//						//win.down("version_download_multiselectableDeviceGrid").getStore().load();
 						win.close();
-						Ext.MessageBox.confirm(Eway.locale.confirm.title,//'提示',作业保存成功,是否跳转到"分发监控"页面?
+						Ext.MessageBox.confirm(Eway.locale.confirm.title,
 								Eway.locale.confirm.withoutNumTaskConfirmInfo,this.goToVersionDownloadPage,this);
 					 },
 					 failure: function(ed){
@@ -486,7 +503,6 @@ Ext.define('Eway.controller.advert.Advert', {
 		var win = Ext.create("Eway.view.advert.AddText");
 		var b1 = win.query('button[action=confirm]')[0];
 		b1.on('click', this.onAddTextConfirm, this);
-//		b1.on('doubleClick');
 //		var b3 = win.query('button[action=addMore]')[0];
 //		b3.on('click',this.onAddTextMore,this);
 		var b4 = win.query('form combobox[name=advertValidity]')[0];
@@ -499,7 +515,6 @@ Ext.define('Eway.controller.advert.Advert', {
 		var win = Ext.create("Eway.view.advert.AddTrans");
 		var b1 = win.query('button[action=confirm]')[0];
 		b1.on('click', this.onAddTransConfirm, this);
-//		b1.on('doubleClick');
 		var b3 = win.query('button[action=addMore]')[0];
 		b3.on('click',this.onAddTransMore,this);
 		var b4 = win.query('form combobox[name=advertValidity]')[0];
@@ -508,26 +523,143 @@ Ext.define('Eway.controller.advert.Advert', {
 		b5.on('change',this.onFileChanged,this);
 		win.show();
 	},
+
 	//打开等待插卡广告创建页面
 	onAddWait : function(button){
 		var win = Ext.create("Eway.view.advert.AddWait");
 		var b1 = win.query('button[action=confirm]')[0];
 		b1.on('click', this.onAddWaitConfirm, this);
-//		b1.on('doubleClick');
-		var b3 = win.query('button[action=addMore]')[0];
-		b3.on('click',this.onAddWaitMore,this);
-		var b4 = win.query('form combobox[name=advertValidity]')[0];
-		b4.on('change',this.onValidityChange,this);
-		var b5 = win.query('form filefield[name=file]')[0];
-		b5.on('change',this.onFileChanged,this);
+		var b5 = win.query('filefield[name=file]')[0];
+		b5.on('change',this.onFileChangedScreen,this);
+		var b51 = win.query('filefield[name=file]')[1];
+		b51.on('change',this.onFileChangedScreen,this);
+		var b52 = win.query('filefield[name=file]')[2];
+		b52.on('change',this.onFileChangedScreen,this);
+		var b6 = win.query('advertimgview[name=1024]')[0];
+		b6.on('itemclick',this.onAdvertImgItemClick,this);
+		var b61 = win.query('advertimgview[name=800]')[0];
+		b61.on('itemclick',this.onAdvertImgItemClick,this);
+		var b62 = win.query('advertimgview[name=600]')[0];
+		b62.on('itemclick',this.onAdvertImgItemClick,this);
+		var resConfigForm = win.down('advert_resourceConfigForm').getForm();
+		var b7 = resConfigForm.findField('playTime');
+		b7.on('change',this.onResourceConfigChanged,this);
+		var b8 = resConfigForm.findField('beginDate');
+		b8.on('change',this.onResourceConfigChanged,this);
+		var b9 = resConfigForm.findField('endDate');
+		b9.on('change',this.onResourceConfigChanged,this);
+		var b10 = resConfigForm.findField('beginHour');
+		b10.on('change',this.onResourceConfigChanged,this);
+		var b11 = resConfigForm.findField('beginMinute');
+		b11.on('change',this.onResourceConfigChanged,this);
+		var b12 = resConfigForm.findField('beginSecond');
+		b12.on('change',this.onResourceConfigChanged,this);
+		var b13 = resConfigForm.findField('endHour');
+		b13.on('change',this.onResourceConfigChanged,this);
+		var b14 = resConfigForm.findField('endMinute');
+		b14.on('change',this.onResourceConfigChanged,this);
+		var b15 = resConfigForm.findField('endSecond');
+		b15.on('change',this.onResourceConfigChanged,this);
 		win.show();
 	},
+
+	onAdvertImgItemClick :  function(me,record,itemHtml,index,e){
+		var win = this.getAddWaitWin();
+		var advertView = win.down('advertimgview');
+		var lastSeletedItem = advertView.selectedItem;
+		if(lastSeletedItem != null){
+			lastSeletedItem.removeCls('advert-item-selected');
+		}
+		var currentEle = Ext.get(itemHtml);
+		currentEle.addCls('advert-item-selected');
+		advertView.selectedItem = currentEle;
+		var resourceConfigForm = win.down('advert_resourceConfigForm').getForm();
+		resourceConfigForm.loadRecord(record);
+	    return false;
+	},
+
+	//选择一个新文件的时候,立即上传到服务器
+	onFileChangedScreen :function(file,value){
+		var form = file.up('form').getForm();
+		var title = file.up('form').up('panel').title;
+		var win = this.getAddWaitWin();
+		var tab = win.down('advert_waitTab').getActiveTab();
+		var count = tab.down('advertimgview').getStore().getCount();
+		if(count == 10){
+			 Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.advert.limitNumberTenForEveryResolution);
+			return;
+		}else{
+			if(!Ext.isEmpty(value)){
+				if(!form.isValid()){
+					var tip = form.findField("tip");
+					tip.setValue(Eway.locale.advert.fileFormatTipsInfo);
+					setTimeout(function(){
+								tip.setValue("");
+							},3000);
+					return;
+				}
+				
+				
+				
+				form.submit({
+					 	url: 'api/advert/uploadRes/screen',
+					 	params: {
+					 		screen: title
+					 	},
+					 	waitMsg: Eway.locale.advert.uploading,
+					    success: function(form, action) {
+					    	var record = Ext.create("Eway.model.advert.UploadResource",{
+					    		fileName:action.result.fileName,
+					    		displayName:action.result.displayName,
+					    		path:action.result.path,
+					    		originalFileName:action.result.originalFileName,
+					    		playTime: action.result.playTime,
+					    		beginDate: action.result.beginDate,
+					    		endDate:action.result.endDate,
+					    		screen: action.result.screen,
+					    		beginHour: action.result.beginHour,
+					    		beginMinute: action.result.beginMinute,
+					    		beginSecond: action.result.beginSecond,
+					    		endHour: action.result.endHour,
+					    		endMinute: action.result.endMinute,
+					    		endSecond: action.result.endSecond
+					    	});
+					    	tab.down('advertimgview').updateStoreData(record);
+					    },
+					    failure: function(form, action) {
+				       	   switch (action.failureType) {
+					            case Ext.form.action.Action.CONNECT_FAILURE:
+					                Ext.Msg.alert(Eway.locale.msg.saveFail, Eway.locale.msg.saveFileCommunicationFail);
+					                break;
+					            case Ext.form.action.Action.SERVER_INVALID:
+					               Ext.Msg.alert(Eway.locale.msg.saveFail, action.result.errors);
+					       }
+					    },
+					    scope: this
+				});
+			}
+		}
+	},
+
+	//资源文件配置项修改时
+	onResourceConfigChanged : function(field,newValue,oldValue){
+		var win = this.getAddWaitWin();
+		var fileNameField = win.down('advert_resourceConfigForm').getForm().findField('fileName');
+		if(fileNameField.getValue() != ''){
+			var activeTab = win.down('advert_waitTab').getActiveTab();
+			var advertImgStore = activeTab.down('advertimgview').getStore();
+			var selectedRecord = advertImgStore.findRecord("fileName",fileNameField.getValue());
+			if(selectedRecord != null){
+				selectedRecord.set(field.name,newValue);
+			}
+		}
+	},
+
 	//创建公告
 	onAddAnnoucement : function(button){
 		var win = Ext.create("Eway.view.advert.AddAnnoucement");
 		var b1 = win.query('button[action=confirm]')[0];
 		b1.on('click', this.onAddAnnoucementConfirm, this);
-//		b1.on('doubleClick');
 		var b2 = win.query('form combobox[name=advertValidity]')[0];
 		b2.on('change',this.onValidityChange,this);
 		win.show();
@@ -537,7 +669,7 @@ Ext.define('Eway.controller.advert.Advert', {
 	onAddTransMore: function(){
 		var form = this.getAddTransWin().down('form');
 		var fs = Ext.create('Eway.view.advert.field.TransResourceFieldSet',{
-			title:Eway.locale.advert.transAdvertResConfig//"交易页面广告资源配置"
+			title:Eway.locale.advert.transAdvertResConfig
 		});
 		this.onAddMore(form,fs);
 	},
@@ -546,7 +678,7 @@ Ext.define('Eway.controller.advert.Advert', {
 	onAddWaitMore: function(){
 		var form = this.getAddWaitWin().down('form');
 		var fs = Ext.create('Eway.view.advert.field.WaitResourceFieldSet',{
-			title:Eway.locale.advert.idleAdvertResConfig//"等待插卡广告资源配置"
+			title:Eway.locale.advert.idleAdvertResConfig
 		});
 		this.onAddMore(form,fs);
 	},
@@ -554,7 +686,7 @@ Ext.define('Eway.controller.advert.Advert', {
 	onAddTextMore: function(){
 		var form = this.getAddTextWin().down('form');
 		var fs = Ext.create('Eway.view.advert.field.TextResourceFieldSet',{
-			title:Eway.locale.advert.textAdvertResConfig//"文字滚动广告资源配置"
+			title:Eway.locale.advert.textAdvertResConfig
 		});
 		this.onAddMore(form,fs);
 	},
@@ -578,10 +710,9 @@ Ext.define('Eway.controller.advert.Advert', {
 		if(!Ext.isEmpty(value)){
 			form.submit({
 				 	url: 'api/advert/uploadRes',
-				 	waitMsg: Eway.locale.advert.uploading,//'正在上传资源...',
+				 	waitMsg: Eway.locale.advert.uploading,
 				    success: function(form, action) {
 				    	var oFileName = action.result.oFileName;
-//				    	form.findField("oFileName").setValue("您已经选择了 <b>"+ oFileName + "</b>");
 				    	form.findField("oFileName").setValue(Eway.locale.advert.choosedAdvertRes+" <b>"+ oFileName + "</b>");
 				    	form.findField("content").setValue(oFileName);
 				    	file.allowBlank = true;
@@ -589,14 +720,10 @@ Ext.define('Eway.controller.advert.Advert', {
 				    failure: function(form, action) {
 			       	   switch (action.failureType) {
 				            case Ext.form.action.Action.CONNECT_FAILURE:
-				                Eway.alert(Eway.locale.msg.saveFileCommunicationFail);//'保存失败:与服务器通讯失败.');
+				            	 Ext.Msg.alert(Eway.locale.msg.saveFail, Eway.locale.msg.saveFileCommunicationFail);
 				                break;
 				            case Ext.form.action.Action.SERVER_INVALID:
-				            	if(action.result.msg==0){
-				            		Eway.alert(Eway.locale.msg.saveFileSizeMaxFail);//'保存失败:超过最大单个文件大小限制（最大30M）');
-				            	}else{
-				            		Eway.alert(Eway.locale.msg.saveFail+action.result.msg);//保存失败
-				            	}
+				               Ext.Msg.alert(Eway.locale.msg.saveFail, action.result.errors);
 				       }
 				    },
 				    scope: this
@@ -628,8 +755,91 @@ Ext.define('Eway.controller.advert.Advert', {
 	//等待插卡广告页面保存
 	onAddWaitConfirm : function(){
 		var win = this.getAddWaitWin();
-		var fss = win.query("field_waitResourceFieldSet");
-		this.onAddConfirm(win,fss,"WAIT_INSERT_CARD");
+		var btn = win.down('button[action=confirm]');
+//		btn.disable();
+		var addForm = win.down("form").getForm();
+		var store = Ext.StoreManager.get("advert.Advert");
+		if(addForm.isValid()){
+			var tab = win.down('advert_waitTab');
+			var s1024 = tab.down('advertimgview[name=1024]');
+			var s1024Store = s1024.getStore();
+			if(s1024Store.getCount() == 0){
+				Ext.MessageBox.alert(Eway.locale.confirm.title,Eway.locale.advert.mustContainerOnePicAt1024);
+				btn.enable();
+				return;
+			}
+
+			var s800 = tab.down('advertimgview[name=800]');
+			var s800Store = s800.getStore();
+			/*if(s800Store.getCount() == 0){
+				Ext.MessageBox.alert(Eway.locale.confirm.title,"800分辨率至少包含一个图片!");
+				return;
+			}*/
+
+			var s600 = tab.down('advertimgview[name=600]');
+			var s600Store = s600.getStore();
+			/*if(s600Store.getCount() == 0){
+				Ext.MessageBox.alert(Eway.locale.confirm.title,"600分辨率下至少包含一个图片!");
+				return;
+			}*/
+
+			/*if((s1024Store.getCount() !== s800Store.getCount()) || (s800Store.getCount()!== s600Store.getCount())){
+				Ext.MessageBox.alert(Eway.locale.confirm.title,"每种分辨率下的图片数量必须相等!");
+				return;
+			}*/
+
+			var data = addForm.getValues();
+			this.doSaveWait(win,data,s1024Store,s800Store,s600Store);
+		}
+	},
+
+	generateAdvertResource : function(advRess,store){
+		for(var i = 0; i < store.getCount(); i++){
+			var record = store.getAt(i);
+			advRess.push(record.convertToAdvertResource());
+		}
+	},
+
+	doSaveWait : function(win,data,s1024Strore,s800Strore,s600Strore){
+		var advRess = [];
+    	this.generateAdvertResource(advRess,s1024Strore);
+    	this.generateAdvertResource(advRess,s800Strore);
+    	this.generateAdvertResource(advRess,s600Strore);
+    	var resources = '[';
+    	for(var i in advRess){
+    		var res = advRess[i];
+			var advRes_str = "{'playTime':" + res.data.playTime + ",'beginTime':'" + res.data.beginTime
+			+ "','endTime':'"+res.data.endTime
+			+"','beginDate':'"+res.data.beginDate
+			+"','endDate':'"+res.data.endDate
+			+"','screen':'"+res.data.screen
+			+ "','content':'" + res.data.content +"'}";
+			if(resources == '['){
+				resources = resources + advRes_str;
+			}else{
+				resources = resources + "," + advRes_str;
+			}
+    	}
+    	resources = resources + "]";
+
+    	var adv = Ext.create("Eway.model.advert.Advert",{
+    		advertType : "WAIT_INSERT_CARD",
+    		advertDownMethod : data.advertDownMethod,
+    		advertValidity : data.advertValidity,
+    		resources : resources
+    	});
+
+    	adv.save({
+			 success: function(ed) {
+			 	this.getGrid().getStore().insert(0,ed);
+			 	Ext.MessageBox.alert(Eway.locale.confirm.title,Eway.locale.msg.createSuccess);
+				win.close();
+			 },
+			 failure: function(record,operation){
+				 Ext.Msg.alert(Eway.locale.confirm.title, operation.request.scope.reader.jsonData.errors);
+			 },
+			 scope : this
+		});
 	},
 
 	//保存广告信息
@@ -639,10 +849,10 @@ Ext.define('Eway.controller.advert.Advert', {
 		if(addForm.isValid()){
 			var data = addForm.getValues();
 			if(Ext.isEmpty(fss)){//如果没有一个广告资源
-				Eway.alert(Eway.locale.msg.mustHaveOneResource);//"至少包含一个广告资源!");
+				Ext.MessageBox.alert(Eway.locale.confirm.title,Eway.locale.msg.mustHaveOneResource);
 			}else {
 				this.doSave(win,fss,data,store,advertType);
-				win.down("toolbar [action ='confirm']").setDisabled(true)
+				Ext.getCmp('savaAdvert').setDisabled(true)
 			}
 		}
 	},
@@ -708,11 +918,11 @@ Ext.define('Eway.controller.advert.Advert', {
     	adv.save({
 			 success: function(ed) {
 			 	store.insert(0,ed);
-			 	Eway.alert(Eway.locale.msg.createSuccess);//"创建成功.");
+			 	Ext.MessageBox.alert(Eway.locale.confirm.title,Eway.locale.msg.createSuccess);
 				win.close();
 			 },
 			 failure: function(record,operation){
-				 Eway.alert(operation.getError());
+				 Ext.Msg.alert(Eway.locale.confirm.title, operation.request.scope.reader.jsonData.errors);
 			 },
 			 scope : this
 		});

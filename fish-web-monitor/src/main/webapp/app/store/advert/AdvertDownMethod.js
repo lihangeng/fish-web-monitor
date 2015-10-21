@@ -5,4 +5,5 @@ Ext.define('Eway.store.advert.AdvertDownMethod', {
 	
 	data: [/*{value:'APPEND', display:'追加'}, */
 	       {value:'COVER', display:Eway.locale.advert.advertDownMethodCover}]//'覆盖'}]
+
 });

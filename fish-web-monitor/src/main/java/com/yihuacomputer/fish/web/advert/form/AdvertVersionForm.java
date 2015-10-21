@@ -13,7 +13,7 @@ public class AdvertVersionForm {
 	private String versionFile;
 	private VersionStatus versionStatus;
 	private String createdUser = "admin";
-	private boolean exist = false;// 是否存在版本信息,默认不存在
+	private boolean exist = false;
 
 	public AdvertVersionForm() {
 	}

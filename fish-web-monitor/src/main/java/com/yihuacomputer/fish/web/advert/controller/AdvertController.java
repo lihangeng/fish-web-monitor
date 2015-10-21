@@ -1,9 +1,14 @@
 package com.yihuacomputer.fish.web.advert.controller;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,10 +32,13 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.exception.NotFoundException;
 import com.yihuacomputer.common.filter.Filter;
+import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IOUtils;
+import com.yihuacomputer.fish.api.advert.AbstractAdvertZipGenerator;
 import com.yihuacomputer.fish.api.advert.AdvertDownMethod;
 import com.yihuacomputer.fish.api.advert.AdvertType;
 import com.yihuacomputer.fish.api.advert.AdvertValidity;
@@ -38,6 +46,7 @@ import com.yihuacomputer.fish.api.advert.IAdvert;
 import com.yihuacomputer.fish.api.advert.IAdvertResource;
 import com.yihuacomputer.fish.api.advert.IAdvertResourceService;
 import com.yihuacomputer.fish.api.advert.IAdvertService;
+import com.yihuacomputer.fish.api.advert.Screen;
 import com.yihuacomputer.fish.api.advert.util.AdvertTypeConversionService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.version.IVersion;
@@ -45,6 +54,7 @@ import com.yihuacomputer.fish.api.version.VersionCfg;
 import com.yihuacomputer.fish.web.advert.form.AdvertForm;
 import com.yihuacomputer.fish.web.advert.form.AdvertResourceForm;
 import com.yihuacomputer.fish.web.advert.form.AdvertVersionForm;
+import com.yihuacomputer.fish.web.advert.form.UploadResourceForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 /**
@@ -59,18 +69,17 @@ public class AdvertController {
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(AdvertController.class);
 
 	@Autowired
+	private MessageSource messageSourceEnum;
+	
+	@Autowired
 	private IAdvertService advertService;
 
 	@Autowired
 	private IAdvertResourceService advertResourceService;
 
-	@Autowired
-	private MessageSource messageSourceVersion;
-	@Autowired
-	private MessageSource messageSourceEnum;
-
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody ModelMap searchAdvert(@RequestParam int start, @RequestParam int limit, WebRequest request) {
+	@ResponseBody
+	public ModelMap searchAdvert(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search advert : start = %s ,limit = %s ", start, limit));
 		IFilter filter = getFilter(request);
 		filter.descOrder("createdTime");
@@ -78,13 +87,14 @@ public class AdvertController {
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("total", pageResult.getTotal());
-		result.addAttribute("data", toAdvertForm(pageResult.list()));
+		result.addAttribute(FishConstant.DATA, toAdvertForm(pageResult.list()));
 
 		return result;
 	}
 
 	@RequestMapping(value = "/resource", method = RequestMethod.GET)
-	public @ResponseBody ModelMap searchAdvertResource(@RequestParam int start, @RequestParam int limit, WebRequest request) {
+	@ResponseBody
+	public ModelMap searchAdvertResource(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search advert resource: start = %s ,limit = %s ", start, limit));
 		IFilter filter = getFilter(request);
 
@@ -92,7 +102,7 @@ public class AdvertController {
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("total", pageResult.getTotal());
-		result.addAttribute("data", toAdvertResourceForm(pageResult.list()));
+		result.addAttribute(FishConstant.DATA, toAdvertResourceForm(pageResult.list()));
 		return result;
 	}
 
@@ -100,33 +110,82 @@ public class AdvertController {
 	 * 上传广告资源
 	 */
 	@RequestMapping(value = "/uploadRes", method = RequestMethod.POST)
-	public @ResponseBody String upload(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
+	@ResponseBody
+	public String upload(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html;charset=UTF-8");
 		String oFileName = file.getOriginalFilename();
 		long fileSize = file.getSize();
-		if (fileSize > 31457280) {
-			return "{'success':false,'errors':'0'}";
+		if (fileSize > 5242880) {
+			return "{'success':false,'errors':'超过最大单个文件大小限制（最大5M）'}";
 		}
 
 		String saveFileName = IOUtils.addTimeStampInFileName(oFileName);
-		File targetFile = IOUtils.createFile(getTempDir(request) + File.separator + saveFileName);
+		File targetFile = IOUtils.createFile(getTempRealDir(request) + File.separator + saveFileName);
 
 		// 保存
 		try {
 			file.transferTo(targetFile);
 			return "{'success':true,'oFileName':'" + saveFileName + "'}";
 		} catch (Exception e) {
-			e.printStackTrace();
-			return "{'success':false,'errors':'" + e.getMessage() + "'}";
+			logger.error("上传过程中出现错误:" + e.getMessage());
+			return "{'success':false,'errors':'文件[" + saveFileName + "]上传过程中出现错误:" + e.getMessage() + "'}";
 		}
 	}
 
-	private String getTempDir(HttpServletRequest request) {
+	@RequestMapping(value = "/uploadRes/screen", method = RequestMethod.POST)
+	@ResponseBody
+	public String uploadByScreen(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
+		response.setContentType("text/html;charset=UTF-8");
+		String oFileName = file.getOriginalFilename();
+		long fileSize = file.getSize();
+		if (fileSize > 5242880) {
+			return "{'success':false,'errors':'超过最大单个文件大小限制（最大5M）'}";
+		}
+
+		String handledOFileName = oFileName;
+		String suffixs[] = oFileName.split("\\.");
+		String suffixName = suffixs[suffixs.length - 1];
+		logger.info("suffixName name is" + suffixName);
+		if (this.containsChinese(oFileName)) {
+			handledOFileName = "zh." + suffixName;
+		}
+		logger.info("uploadfile name is" + handledOFileName);
+		String screen = request.getParameter("screen");
+
+		String saveFileName = IOUtils.addTimeStampInFileName(handledOFileName);
+		File targetFile = IOUtils.createFile(getTempRealDir(request) + File.separator + screen + File.separator + saveFileName);
+
+		// 保存
+		try {
+			file.transferTo(targetFile);
+			UploadResourceForm form = new UploadResourceForm(oFileName, saveFileName, getTempWebDir(request, screen, saveFileName), screen);
+			return JsonUtils.toJson(form);
+		} catch (Exception e) {
+			logger.error("上传过程中出现错误:" + e.getMessage());
+			return "{'success':false,'errors':'文件[" + saveFileName + "]上传过程中出现错误:" + e.getMessage() + "'}";
+		}
+	}
+
+	public boolean containsChinese(String s) {
+		String pattern = "[u4e00-u9fa5]+";
+		Pattern p = Pattern.compile(pattern);
+		Matcher result = p.matcher(s);
+		return result.find();
+	}
+
+	private String getSessionDir(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String sessionId = session.getId();
 		UserSession user = (UserSession) session.getAttribute(FishWebUtils.USER);
-		String dir = FishCfg.getTempDir() + File.separator + user.getUserCode() + "_" + sessionId;
-		return dir;
+		return user.getUserCode() + "_" + sessionId;
+	}
+
+	private String getTempWebDir(HttpServletRequest request, String screen, String saveFileName) {
+		return "tmp/advert/" + this.getSessionDir(request) + "/" + screen + "/" + saveFileName;
+	}
+
+	private String getTempRealDir(HttpServletRequest request) {
+		return this.getRealPath(request) + File.separator + this.getSessionDir(request);
 	}
 
 	private IFilter getFilter(WebRequest request) {
@@ -164,32 +223,89 @@ public class AdvertController {
 	private List<AdvertForm> toAdvertForm(List<IAdvert> adverts) {
 		List<AdvertForm> forms = new ArrayList<AdvertForm>();
 		for (IAdvert advert : adverts) {
-			AdvertForm form = convertToAdvertForm(advert);
+			AdvertForm form = convertToFrom(advert);
 			form.setUserName(advert.getCreateUser() == null ? "" : advert.getCreateUser().getName());
 			forms.add(form);
 		}
 		return forms;
 	}
 
+    public AdvertForm convertToFrom(IAdvert advert) {
+    	AdvertForm form = new AdvertForm();
+    	form.setId(advert.getId());
+    	form.setAdvertType(advert.getAdvertType().name());
+    	form.setAdvertDownMethod(advert.getAdvertDownMethod().name());
+    	form.setAdvertValidity(advert.getAdvertValidity().name());
+    	form.setCreatedTime(DateUtils.getTimestamp(advert.getCreatedTime()));
+        IVersion version = advert.getVersion();
+        if (version != null) {
+        	setVersion(form,version);
+        	form.setVersionDesc(version.getVersionType().getTypeName()+"_"+advert.getId());
+        }
+        return form;
+    }
+    
+    public AdvertForm setVersion(AdvertForm form,IVersion version) {
+    	form.setVersionId(version.getId());
+    	form.setVersionType(version.getVersionType().getTypeName());
+    	form.setVersionFile(getVersionFile(version.getVersionType().getTypeName(), version.getServerPath()));
+    	form.setVersionStatus(getEnumI18n(version.getVersionStatus().getText()));
+    	form.setVersionNo(version.getVersionNo());
+    	return form;
+    }
+
+    private String getVersionFile(String typeName, String fileName) {
+        File file = new File(VersionCfg.getVersionDir() + File.separator + typeName + File.separator + fileName);
+        return file.exists() ? fileName : null;
+    }
 	private List<AdvertResourceForm> toAdvertResourceForm(List<IAdvertResource> adverts) {
 		List<AdvertResourceForm> forms = new ArrayList<AdvertResourceForm>();
 		for (IAdvertResource advert : adverts) {
-			AdvertResourceForm form = new AdvertResourceForm(advert);
+			AdvertResourceForm form =convert(advert);
 			forms.add(form);
 		}
 		return forms;
 	}
+	public AdvertResourceForm convert(IAdvertResource advRes) {
+		AdvertResourceForm form = new AdvertResourceForm();
+		form.setId(advRes.getId());
+		form.setAdvertId(advRes.getAdvert().getId());
+		form.setPlayTime(advRes.getPlayTime());
+		form.setBeginDate(advRes.getBeginDate() == null ? "" : DateUtils.getDate(advRes.getBeginDate()));
+		form.setEndDate(advRes.getEndDate() == null ? "" : DateUtils.getDate(advRes.getEndDate()));
+		form.setBeginTime(advRes.getBeginTime());
+		form.setEndTime(advRes.getEndTime());
+		form.setContent(advRes.getContent());
+		form.setScreen(advRes.getScreen());
+		form.setFileSize(getResourceFileSize(form,advRes.getAdvert().getAdvertType(), advRes.getAdvert().getId()));
+		return form;
+	}
 
+	private String getResourceFileSize(AdvertResourceForm form,AdvertType type, long id) {
+		if (AdvertType.isWords(type)) {
+			return "0";
+		} else {
+			String fileName = VersionCfg.getAdvertDir() + File.separator + id + File.separator
+					+ AdvertTypeConversionService.convert(type) + File.separator + getEnumI18n(form.getScreen().getText())+File.separator + form.getContent();
+			File file = new File(fileName);
+			long size = file.length();
+			if (size < 1024) {
+				return size + " byte";
+			} else {
+				return size / 1024 + " KB";
+			}
+		}
+	}
 	/**
-	 * 二代应用广告的目录结构 advert_1.zip --META-INF --AD_IDLE ----0.jpg ----1.jpg
-	 * ----..... ----config.xml
-	 * 
+	 * 二代应用广告的目录结构 advert_1.zip --META-INF --AD_IDLE ----1024 ------0.jpg ------1.jpg ------..... ------config.ini ----800 ------0.jpg ------..... ------config.ini
+	 *
 	 * @param form
 	 * @param request
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody ModelMap add(@RequestBody AdvertForm form, HttpServletRequest request) {
+	@ResponseBody
+	public ModelMap add(@RequestBody AdvertForm form, HttpServletRequest request) {
 		logger.info(" add advert...");
 
 		ModelMap result = new ModelMap();
@@ -198,62 +314,185 @@ public class AdvertController {
 		advert.setAdvertValidity(AdvertValidity.valueOf(form.getAdvertValidity()));
 		UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
 		advert.setCreateUserId(userSession.getUserId());
-		int num = 0;
-		String tempDir = getTempDir(request);
-		List<String> fileNames = new ArrayList<String>();
-		for (AdvertResourceForm resForm : form.getAdvertResources()) {
-			IAdvertResource res = advertResourceService.make();
-			res.setPlayTime(resForm.getPlayTime());
-			res.setBeginTime(resForm.getBeginTime());
-			res.setEndTime(resForm.getEndTime());
-			if (resForm.getBeginDate() != null) {
-				res.setBeginDate(DateUtils.getDate(resForm.getBeginDate()));
-			}
-			if (resForm.getEndDate() != null) {
-				res.setEndDate(DateUtils.getDate(resForm.getEndDate()));
-			}
-			if (AdvertType.isWords(advert.getAdvertType())) {
+		IVersion version = null;
+
+		if (AdvertType.isWords(advert.getAdvertType())) {
+			for (AdvertResourceForm resForm : form.getAdvertResources()) {
+				IAdvertResource res = advertResourceService.make();
+				res.setPlayTime(resForm.getPlayTime());
+				res.setBeginTime(resForm.getBeginTime());
+				res.setEndTime(resForm.getEndTime());
+				if (resForm.getBeginDate() != null) {
+					res.setBeginDate(DateUtils.getDate(resForm.getBeginDate()));
+				}
+				if (resForm.getEndDate() != null) {
+					res.setEndDate(DateUtils.getDate(resForm.getEndDate()));
+				}
 				res.setContent(resForm.getContent());
-			} else {
-				String oFileName = resForm.getContent();
-				File file = new File(tempDir + File.separator + oFileName);
-				String newFileName = num + IOUtils.getFileSuffix(oFileName).toLowerCase();
-				file.renameTo(new File(tempDir + File.separator + newFileName));
-				res.setContent(newFileName);
-				fileNames.add(newFileName);
-				num++;
+				res.setAdvert(advert);
+				advert.addAdvertResource(res);
 			}
-			res.setAdvert(advert);
-			advert.addAdvertResource(res);
+
+			advertService.add(advert);
+			version = advert.toVersion(new AbstractAdvertZipGenerator() {
+
+				protected void beforeZip(IAdvert advert) {
+					// 二代应用需要
+					genenateMetaFile(advert);
+				}
+
+				private String getAdvertSourcePath(IAdvert advert) {
+					return VersionCfg.getAdvertDir() + File.separator + advert.getId();
+				}
+
+				private void genenateMetaFile(IAdvert advert) {
+					File file = new File(getAdvertSourcePath(advert) + File.separator + "META-INF");
+					if (!file.exists()&&!file.mkdirs()){
+							throw new AppException(file.getName()+"创建文件夹失败");
+					}
+
+					File meta = new File(file.getAbsolutePath() + File.separator + "MANIFEST.MF");
+					if (!meta.exists()) {
+						try {
+							meta.createNewFile();
+						} catch (IOException e) {
+							throw new AppException("创建meta文件失败");
+						}
+					}
+
+					FileWriter fw = null;
+					BufferedWriter bw = null;
+					try {
+						fw = new FileWriter(meta);
+						bw = new BufferedWriter(fw);
+						bw.write("Manifest-Version: 1.0");
+						bw.newLine();
+						bw.write("Gump-Scheduler: IMMEDIATE");
+						bw.newLine();
+						bw.write("Gump-Type: ADVERTISE");
+						bw.newLine();
+						bw.write("Gump-AppName: YHATMC-AD_MESSAGE");
+						bw.newLine();
+						bw.write("Built-By: yihua");
+						bw.newLine();
+						bw.write("Build-Jdk: 1.6.0_25");
+						bw.newLine();
+						bw.write("Gump-Version: 0001");
+						bw.newLine();
+						bw.write("Created-By: monitor");
+						bw.newLine();
+						bw.write("Archiver-Version: Plexus Archiver");
+						bw.newLine();
+						bw.write("Gump-InstallDate: 2012-02-01 00:00:00");
+						bw.newLine();
+						bw.write("Gump-InstallEndDate: 2012-02-01 00:00:00");
+						bw.flush();
+					} catch (IOException e) {
+						logger.error("写入出现错误:" + e.getMessage());
+					} finally {
+						try {
+							if (bw != null) {
+								bw.close();
+							}
+							if (fw != null) {
+								fw.close();
+							}
+						} catch (IOException e) {
+							logger.error("关闭流错误:" + e.getMessage());
+						}
+					}
+				}
+			});
+		} else {
+			int num1024 = 0;
+			int num800 = 0;
+			int num600 = 0;
+			String tempDir = getTempRealDir(request);
+			List<ScreenFile> fileNames = new ArrayList<ScreenFile>();
+			for (AdvertResourceForm resForm : form.getAdvertResources()) {
+				IAdvertResource res = advertResourceService.make();
+				res.setPlayTime(resForm.getPlayTime());
+				res.setBeginTime(resForm.getBeginTime());
+				res.setEndTime(resForm.getEndTime());
+				if (resForm.getBeginDate() != null && !"".equals(resForm.getBeginDate())) {
+					res.setBeginDate(DateUtils.getDate(resForm.getBeginDate()));
+				}
+				if (resForm.getEndDate() != null && resForm.getEndDate().length()>9) {
+					res.setEndDate(DateUtils.getDate(resForm.getEndDate()));
+				}
+				if (AdvertType.isWords(advert.getAdvertType())) {
+					res.setContent(resForm.getContent());
+				} else {
+					int num = 0;
+					if (resForm.getScreen().equals(Screen.SCREEN_1024)) {
+						num = num1024;
+						num1024++;
+					} else if (resForm.getScreen().equals(Screen.SCREEN_800)) {
+						num = num800;
+						num800++;
+					} else {
+						num = num600;
+						num600++;
+					}
+					String oFileName = resForm.getContent();
+					String absDir = tempDir + File.separator + getEnumI18n(resForm.getScreen().getText());
+					File file = new File(absDir + File.separator + oFileName);
+					String newFileName = num + IOUtils.getFileSuffix(oFileName).toLowerCase();
+					if(!file.renameTo(new File(absDir + File.separator + newFileName))){
+						throw new AppException(newFileName+"重命名失败");
+					}
+					res.setContent(newFileName);
+					fileNames.add(new ScreenFile(resForm.getScreen(), File.separator + newFileName));
+					res.setScreen(resForm.getScreen());
+					num++;
+				}
+				res.setAdvert(advert);
+				advert.addAdvertResource(res);
+			}
+			advertService.add(advert);
+
+			// 拷贝临时目录中的文件到advert目录中
+			for (ScreenFile screenFile : fileNames) {
+				IOUtils.copyFileToDirectory(tempDir + File.separator + getEnumI18n(screenFile.getScreen().getText()) + File.separator + screenFile.getFileName(), VersionCfg.getAdvertDir() + File.separator
+						+ advert.getId() + File.separator + AdvertTypeConversionService.convert(advert.getAdvertType()) + File.separator + getEnumI18n(screenFile.getScreen().getText()));
+			}
+
+			// 删除临时目录
+			IOUtils.deleteDir(tempDir);
+
+			// 生成广告版本文件
+			version = advert.toVersion(new AbstractAdvertZipGenerator() {
+				protected void getAdvertConfigInfoAndSaveToFile(IAdvert advert) {
+					saveConfigInfoToFileByScreen(advert, Screen.SCREEN_1024);
+					saveConfigInfoToFileByScreen(advert, Screen.SCREEN_800);
+					saveConfigInfoToFileByScreen(advert, Screen.SCREEN_600);
+				}
+
+				private void saveConfigInfoToFileByScreen(IAdvert advert, Screen screen) {
+					String configInfo = advert.getAdvertConfigByScreen(screen);
+					IOUtils.writeStringToFile(getConfigFileBasePath(advert) + File.separator + getEnumI18n(screen.getText()) + File.separator + "config.ini", configInfo);
+				}
+			});
+
 		}
-		advertService.add(advert);
-
-		// 拷贝临时目录中的文件到advert目录中
-		for (String fileName : fileNames) {
-			IOUtils.copyFileToDirectory(tempDir + File.separator + fileName, VersionCfg.getAdvertDir() + File.separator + advert.getId() + File.separator + AdvertTypeConversionService.convert(advert.getAdvertType()));
-		}
-
-		// 删除临时目录
-		IOUtils.deleteDir(tempDir);
-
-		// 生成广告版本文件
-		IVersion version = advert.toVersion();
 		advert.setVersionId(version.getId());
 		advertService.update(advert);
 
 		// 回填值到form中
 		form.setId(advert.getId());
 		form.setCreatedTime(DateUtils.getTimestamp(advert.getCreatedTime()));
-		form = setVersionToForm(version,form);
+		setVersion(form,version);
 		form.setUserName(userSession.getUserName());
 		result.addAttribute(FishConstant.SUCCESS, true);
-		result.addAttribute("data", form);
+		result.addAttribute(FishConstant.DATA, form);
+
 		return result;
 	}
 
 	// 删除广告
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public @ResponseBody ModelMap delete(@PathVariable long id) {
+	@ResponseBody
+	public ModelMap delete(@PathVariable long id) {
 		logger.info(" delete advert with cascade: advert.id = " + id);
 		ModelMap result = new ModelMap();
 		try {
@@ -263,44 +502,46 @@ public class AdvertController {
 		} catch (NotFoundException iae) {
 			logger.warn(iae.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
-			String tips = messageSourceVersion.getMessage("advert.deleteFailNoFound", new Object[] { iae.getMessage() }, FishCfg.locale);
-			result.put(FishConstant.ERROR_MSG, tips);
-			// result.put(FishConstant.ERROR_MSG,
-			// "删除失败:"+iae.getMessage()+",请刷新列表.");
+			result.put("errors", "删除失败：" + iae.getMessage() + ",请刷新列表");
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			logger.error(ex.getMessage());
-			String tips = messageSourceVersion.getMessage("versionType.deleteFail", new Object[] { ex.getMessage() }, FishCfg.locale);
-			result.put(FishConstant.ERROR_MSG, tips);
-			// result.put(FishConstant.ERROR_MSG, "删除失败:" + ex.getMessage());
+			result.put("errors", "删除失败:" + ex.getMessage());
 		}
 		return result;
 	}
-
+	 private String getEnumI18n(String enumText){
+	    	if(null==enumText){
+	    		return "";
+	    	}
+	    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+	    }
 	@RequestMapping(value = "/{id}/generateVersion", method = RequestMethod.GET)
-	public @ResponseBody ModelMap generateVersion(@PathVariable long id) {
+	@ResponseBody
+	public ModelMap generateVersion(@PathVariable long id) {
 		logger.info(" generateVersion: advert.id = " + id);
 		ModelMap result = new ModelMap();
 		try {
 			advertService.getById(id).toVersion();
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			logger.error("生成版本出现错误:" + ex.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
 	}
 
 	@RequestMapping(value = "/version", method = RequestMethod.POST)
-	public @ResponseBody ModelMap getVersion(@RequestParam long id) {
+	@ResponseBody
+	public ModelMap getVersion(@RequestParam long id) {
 		logger.info(" getVersion: advert.id = " + id);
 		ModelMap result = new ModelMap();
 		try {
 			IVersion version = advertService.getById(id).getVersion();
 			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute("data", toAdvertVersion(version));
+			result.addAttribute(FishConstant.DATA, toAdvertVersion(version));
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			logger.error("获得广告版本错误:" + ex.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
@@ -312,7 +553,7 @@ public class AdvertController {
 
 	/**
 	 * 广告预览
-	 * 
+	 *
 	 * @param id
 	 *            广告编号
 	 * @return
@@ -325,8 +566,8 @@ public class AdvertController {
 		String workHome = VersionCfg.getAdvertDir();
 		String contextPath = this.getRealPath(request);
 		File targetDir = new File(contextPath + File.separator + id);
-		if (!targetDir.exists()) {
-			targetDir.mkdir();
+		if (!targetDir.exists()&&!targetDir.mkdir()) {
+			throw new AppException(targetDir.getName()+"创建文件夹失败");
 		}
 		List<String> images = new ArrayList<String>();
 		for (IAdvertResource resource : advert.getAdvertResources()) {
@@ -344,22 +585,26 @@ public class AdvertController {
 	}
 
 	@RequestMapping(value = "/preview2", method = RequestMethod.POST)
-	public @ResponseBody String preview2(@RequestParam long id, HttpServletRequest request) {
+	@ResponseBody
+	public String preview2(@RequestParam long id, @RequestParam String screen, HttpServletRequest request) {
 		// 1.根据广告编号把媒体文件放到临时目录，并把临时目录保存到request中
 		// 2.获取媒体资源的文件名并保存到到request中
 		IAdvert advert = advertService.getById(id);
 		String workHome = VersionCfg.getAdvertDir();
 		String contextPath = this.getRealPath(request);
-		File targetDir = new File(contextPath + File.separator + id);
-		if (!targetDir.exists()) {
-			targetDir.mkdir();
+		File targetDir = new File(contextPath + File.separator + id + File.separator + screen);
+		if (!targetDir.exists()&&!targetDir.mkdirs()){
+			throw new AppException(targetDir.getName()+"创建文件夹失败");
 		}
 		StringBuffer result = new StringBuffer("[");
 		for (IAdvertResource resource : advert.getAdvertResources()) {
-			String sourceFilePath = workHome + File.separator + id + File.separator + AdvertTypeConversionService.convert(advert.getAdvertType()) + File.separator + resource.getContent();
-			IOUtils.copyFileToDirectory(sourceFilePath, targetDir.getAbsolutePath());
-			String image = "tmp/advert/" + id + "/" + resource.getContent();
-			result.append("{'picName':'").append(image).append("','playTime':'").append(resource.getPlayTime()).append("'}").append(",");
+			if (getEnumI18n(resource.getScreen().getText()).equals(screen)) {
+				String sourceFilePath = workHome + File.separator + id + File.separator + AdvertTypeConversionService.convert(advert.getAdvertType()) + File.separator + getEnumI18n(resource.getScreen().getText())
+						+ File.separator + resource.getContent();
+				IOUtils.copyFileToDirectory(sourceFilePath, targetDir.getAbsolutePath());
+				String image = "tmp/advert/" + id + "/" + screen + "/" + resource.getContent();
+				result.append("{'picName':'").append(image).append("','playTime':'").append(resource.getPlayTime()).append("'}").append(",");
+			}
 		}
 
 		if (!result.toString().equals("[")) {
@@ -373,35 +618,32 @@ public class AdvertController {
 		return FishWebUtils.getRealPathByTmp(request) + "/advert";
 	}
 
-	public AdvertForm convertToAdvertForm(IAdvert advert) {
-		AdvertForm advertForm = new AdvertForm();
-		advertForm.setId(advert.getId());
-		advertForm.setAdvertType(advert.getAdvertType().name());
-		advertForm.setAdvertDownMethod(advert.getAdvertDownMethod().name());
-		advertForm.setAdvertValidity(advert.getAdvertValidity().name());
-		advertForm.setCreatedTime(DateUtils.getTimestamp(advert.getCreatedTime()));
-		IVersion version = advert.getVersion();
-		if (version != null) {
-			advertForm = setVersionToForm(version,advertForm);
+	class ScreenFile {
+		private Screen screen;
+
+		private String fileName;
+
+		public ScreenFile(Screen screen, String fileName) {
+			this.screen = screen;
+			this.fileName = fileName;
 		}
-		return advertForm;
+
+		public Screen getScreen() {
+			return screen;
+		}
+
+		public void setScreen(Screen screen) {
+			this.screen = screen;
+		}
+
+		public String getFileName() {
+			return fileName;
+		}
+
+		public void setFileName(String fileName) {
+			this.fileName = fileName;
+		}
+
 	}
-	public AdvertForm setVersionToForm(IVersion version,AdvertForm advertForm) {
-		advertForm.setVersionId(version.getId());
-		advertForm.setVersionType(version.getVersionType().getTypeName());
-		advertForm.setVersionFile(getVersionFile(version.getVersionType().getTypeName(), version.getServerPath()));
-		advertForm.setVersionStatus(getEnumI18n(version.getVersionStatus().getText()));
-		advertForm.setVersionNo(version.getVersionNo());
-		return advertForm;
-    }
-    private String getEnumI18n(String enumText){
-    	if(null==enumText){
-    		return "";
-    	}
-    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
-    }
-	private String getVersionFile(String typeName, String fileName) {
-		File file = new File(VersionCfg.getVersionDir() + File.separator + typeName + File.separator + fileName);
-		return file.exists() ? fileName : null;
-	}
+
 }

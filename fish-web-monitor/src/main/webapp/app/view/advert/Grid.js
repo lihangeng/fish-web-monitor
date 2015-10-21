@@ -11,36 +11,36 @@ Ext.define('Eway.view.advert.Grid', {
 		Ext.apply(this, {
 			initRegion : true,
 			tbar: ['->', {
-				text: Eway.locale.button.search,//'查询',
-				glyph : 0xf002,
+				text: Eway.locale.button.search,
+				iconCls :'queryBtn',
 				action: 'query'
 			}, {
-				text : Eway.locale.advert.createAdvert,//'创建广告',
-				glyph : 0xf067,
+				text : Eway.locale.advert.createAdvert,
+				iconCls : 'ad',
 				menu : new Ext.menu.Menu({
 					items : [  {
-						text : Eway.locale.advert.idleAdvert,//'创建等待插卡广告',
+						text : Eway.locale.advert.idleAdvert,
 						action:'wait',
 						code : 'advertWait',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					}, {
-						text : Eway.locale.advert.transAdvert,//'创建交易页面广告',
+						text : Eway.locale.advert.transAdvert,
 						action:'trans',
 						code : 'advertTrans',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					},{
-						text : Eway.locale.advert.textAdvert,//'创建文字滚动广告',
+						text : Eway.locale.advert.textAdvert,
 						action:'text',
 						code : 'advertText',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					},{
-						text: Eway.locale.advert.annoucementAdvert,//'创建公告',
+						text: Eway.locale.advert.annoucementAdvert,
 						action:'annoucement',
 						code : 'advertAnnoucement',
 						listeners:{
@@ -53,70 +53,43 @@ Ext.define('Eway.view.advert.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: Eway.locale.button.remove,//'删除',
-				glyph : 0xf014,
+				text: Eway.locale.button.remove,
+				iconCls :'deleteBtn',
 				action: 'remove',
 				code : 'advertDel',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
-			}/*, {
-				text: '更改',
-				action: 'update'
-			},{
-				text :'广告详情',
-				atcion: 'detail'
-			},{
-				text :'生成版本',
-				iconCls : 'generateVersion',
-				action:'generateVersion'
-			}*/,{
-				text:Eway.locale.advert.downloadButton,//'下发广告',
-//				iconCls : 'versionDown',
-				glyph : 0xf0ed,
-				action :'downAdvert',
-				code : 'advertDownAdvert',
-				listeners:{
-					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-				}
-			},{
-				text :Eway.locale.advert.preview,//'广告预览',
-//				iconCls : 'adPreview',
-				glyph : 0xf152,
-				action:'preview',
-				code : 'advertPreview',
-				listeners:{
-					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-				}
 			}],
 			columns : [{
-				header: Eway.locale.advert.id,//'广告ID',
+				header: 'ID',
 				dataIndex: 'id',
-				width: 40
+				width: 45
 			},{
-				header : Eway.locale.advert.type,//'广告类型',
+				header : Eway.locale.advert.type,
 				dataIndex : 'advertType',
 				renderer: Eway.lib.Util.dictRenderer('advert.AdvertType')
-			},{
-				header : Eway.locale.advert.downType,//'广告下发方式',
+			},/*{
+				header : '广告下发方式',
 				dataIndex : 'advertDownMethod',
 				renderer: Eway.lib.Util.dictRenderer('advert.AdvertDownMethod')
-			},{
-				header : Eway.locale.advert.validity,//'广告有效期',
+			},*/{
+				header : Eway.locale.advert.validity,
 				dataIndex : 'advertValidity',
-				renderer: Eway.lib.Util.dictRenderer('advert.AdvertValidity')
+				renderer: Eway.lib.Util.dictRenderer('advert.AdvertValidity'),
+				hidden:true
 			},{
-				header : Eway.locale.advert.createdTime,//'制作时间',
+				header : Eway.locale.advert.createdTime,
 				dataIndex : 'createdTime',
 				width: 130
 			},{
-				header:Eway.locale.advert.userName,//'创建人',
+				header:Eway.locale.advert.userName,
 				dataIndex:'userName'
 			},{
-				header : Eway.locale.advert.versionStatus,//'广告版本状态',
+				header : Eway.locale.advert.versionStatus,
 				dataIndex:'versionStatus'
 			},{
-				header: Eway.locale.advert.versionFile,//'版本文件',
+				header: Eway.locale.advert.advertVersionFile,
 				dataIndex:'versionFile',
 				renderer:function(value,meta,record){
 					if(value != null){

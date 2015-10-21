@@ -33,9 +33,12 @@ public class AdvertForm {
     private String versionNo;
 
     private String userName;
+    
+    private String versionDesc;
 
     public AdvertForm() {
     }
+
 
     public long getId() {
         return id;
@@ -147,5 +150,15 @@ public class AdvertForm {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+
+	public String getVersionDesc() {
+		return versionDesc;
+	}
+
+
+	public void setVersionDesc(String versionDesc) {
+		this.versionDesc = versionDesc;
+	}
 
 }

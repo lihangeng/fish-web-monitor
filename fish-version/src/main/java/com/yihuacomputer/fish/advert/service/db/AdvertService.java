@@ -141,7 +141,8 @@ public class AdvertService implements IDomainAdvertService {
             IVersionType type = versionTypeService.getByName("advert");
             version = versionService.make();
             version.setVersionType(type);
-
+            version.setDesc("advert_" + advert.getId());
+            version.setDownloadCounter(1);
             version.setVersionPath(type.getDefaultInstallPath());
             version.setVersionNo(versionService.getNextVersionNo(type.getId()));
             version.setServerPath("advert_" + advert.getId() + ".zip");

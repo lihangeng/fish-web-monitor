@@ -18,6 +18,7 @@ Ext.override(Eway,{
 			perviewFailForText:'预览失败:不支持文字滚动广告和公告的预览.',//Eway.locale.msg.perviewFailForText
 			perviewFailNoResource:'预览失败:此广告没有配置广告资源.',//Eway.locale.msg.perviewFailNoResource
 			choseResToPerview:'请选择您要预览的广告.',//Eway.locale.msg.choseResToPerview
+			noAdvertResAtTheResolution:'分辨率下没有配置广告资源.',//Eway.locale.msg.noAdvertResAtTheResolution
 			chooseAdvert:'请选择一条广告.',//Eway.locale.msg.chooseAdvert
 			chooseOneDevice:'请选择一台设备.',//Eway.locale.msg.chooseOneDevice
 			downLoadedAdvertCantDelete:'删除失败:不能删除"已下发"和"等待下发"状态的广告.',//Eway.locale.msg.downLoadedAdvertCantDelete
@@ -58,7 +59,7 @@ Ext.override(Eway,{
 			search:'查询',//Eway.locale.button.search
 			add : '增加',
 			update:'更改',
-			remove:'删除',
+			remove:'删除',//Eway.locale.button.remove
 			refresh:'刷新',
 			reset:'重置',//Eway.locale.button.reset
 			back:'返回',//Eway.locale.button.back
@@ -108,8 +109,8 @@ Ext.override(Eway,{
 				none:'请选择您要删除的记录.',
 				one:'只能选择一条记录删除',
 				confirm:{
-					title:'请确认',
-					info:'是否删除该记录?'
+					title:'请确认',//Eway.locale.tip.remove.confirm.title
+					info:'是否删除该记录?'//Eway.locale.tip.remove.confirm.info
 				},
 				error:'删除失败:'
 			},
@@ -409,6 +410,10 @@ Ext.override(Eway,{
 			updateTitle:'更改广告信息',//Eway.locale.advert.updateTitle
 			downloadButton:'下发广告',//Eway.locale.advert.downloadButton
 			preview:'广告预览',//Eway.locale.advert.preview
+			preview1024:'预览1024分辨率',//Eway.locale.advert.preview1024
+			preview800:'预览800分辨率',//Eway.locale.advert.preview800
+			preview600:'预览600分辨率',//Eway.locale.advert.preview600
+			
 			id:'广告ID',//Eway.locale.advert.id
 			type:'广告类型',//Eway.locale.advert.type
 			downType:'广告下发方式',//Eway.locale.advert.downType
@@ -469,15 +474,16 @@ Ext.override(Eway,{
 			chooseMediaFile:'请选择媒体文件',//Eway.locale.advert.chooseMediaFile
 			uploadResource:'上传资源...',//Eway.locale.advert.uploadResource
 			uploadResourceBlank:'请上传资源',//Eway.locale.advert.uploadResourceBlank
-			uploadRegText:'上传的资源格式不支持,只能上传.jpg、.avi格式的文件',//Eway.locale.advert.uploadRegText
-			resourceFormatTips:'(仅支持.jpg、.avi格式的文件)',//Eway.locale.advert.resourceFormatTips
+			uploadRegText:'上传的资源格式不支持,只能上传.jpg、.gif格式的文件',//Eway.locale.advert.uploadRegText
+			resourceFormatTips:'(仅支持.jpg、.gif格式的文件)',//Eway.locale.advert.resourceFormatTips
 			resourceAlias:'修改后的文件名',//Eway.locale.advert.resourceAlias
 			transMoreTitle:'添加交易页面广告',//Eway.locale.advert.transMoreTitle
 			chooseMediaFile:'请选择媒体文件',//Eway.locale.advert.chooseMediaFile
 			uploadResource:'上传资源...',//Eway.locale.advert.uploadResource
 			uploadResourceBlank:'请上传资源',//Eway.locale.advert.uploadResourceBlank
-			uploadRegText:'上传的资源格式不支持,只能上传.jpg、.avi格式的文件',//Eway.locale.advert.uploadRegText
-			resourceFormatTips:'(仅支持.jpg、.avi格式的文件)',//Eway.locale.advert.resourceFormatTips
+			addMorePic:'添加图片',//Eway.locale.advert.addMorePic
+			uploadRegText:'上传的资源格式不支持,只能上传.jpg、.gif格式的文件',//Eway.locale.advert.uploadRegText
+			resourceFormatTips:'(仅支持.jpg、.gif格式的文件)',//Eway.locale.advert.resourceFormatTips
 			resourceAlias:'修改后的文件名',//Eway.locale.advert.resourceAlias
 			advertDownMethodCover:'覆盖',//Eway.locale.advert.advertDownMethodCover
 			uploading:'正在上传资源...',//Eway.locale.advert.uploading
@@ -485,7 +491,14 @@ Ext.override(Eway,{
 			advertPreviewTitle1:'个资源,当前播放第 ',//Eway.locale.advert.advertPreviewTitle1
 			advertPreviewTitle2:'个) ',//Eway.locale.advert.advertPreviewTitle2
 			choosedAdvertRes:'您已经选择了',//Eway.locale.advert.choosedAdvertRes
+			limitNumberTenForEveryResolution:'每种分辨率下最多只能上传10张图片.',//Eway.locale.advert.limitNumberTenForEveryResolution
+			mustContainerOnePicAt1024:'1024分辨率下至少包含一个图片',//Eway.locale.advert.mustContainerOnePicAt1024
+			deleteAdvertResource:'删除该图片',//Eway.locale.advert.deleteAdvertResource
+			fileName:'文件名',//Eway.locale.advert.fileName
+			resourceName:'资源名称',//Eway.locale.advert.resourceName
 			perviewAdertWithIEBrowse:'非IE浏览器不支持视频广告的预览.',//Eway.locale.advert.perviewAdertWithIEBrowse
+			fileFormatTipsInfo:"<font color='red'>上传的图片格式不支持,只能上传.jpg格式的图片</font>",//Eway.locale.advert.fileFormatTipsInfo
+			idleAdvertUpTipsInfo:'<font color="red">仅支持.jpg和.gif格式的图片;每种分辨率最多上传10张图片;每张图片最大5M</font>',//Eway.locale.advert.idleAdvertUpTipsInfo
 			configTitle:'广告详细配置'//Eway.locale.advert.configTitle
 		},
 		//版本管理模块
@@ -1851,8 +1864,8 @@ Ext.override(Eway,{
 		//**********************************************************/
 		
 		cases:{
-			confirm:'确认',
-			cancel:'取消',
+			confirm:'确认',//Eway.locale.cases.confirm
+			cancel:'取消',//Eway.locale.cases.cancel
 			concern:'请关注',
 			SRCBView:'上海农商行新监控发送',
 			nowExportFile:'正在导入文件',

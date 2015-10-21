@@ -3,55 +3,61 @@ Ext.define('Eway.view.advert.FilterForm', {
 	alias : 'widget.advert_filterForm',
 
 	requires : ['Ext.ux.form.DateTimeField'],
-	height : 70,
+	height : 105,
 	initComponent : function() {
 		var me = this;
 		Ext.apply(this, {
 			layout : 'column',
 			items : [{
-				columnWidth : .4,
+				columnWidth : .8,
 				items : [{
 			                xtype: 'combobox',
-			                fieldLabel: Eway.locale.advert.type,//'广告类型',
+			                fieldLabel: Eway.locale.advert.type,
 			                displayField: 'display',
-			                store: "advert.AdvertType",
+			                store: Ext.StoreMgr.lookup("advert.AdvertType"),
 			                queryMode: 'local',
 			                valueField : 'value',
-			            	hiddenName : 'advertType',
 			                name:'advertType',
 			                editable : false,
 				            width: 280
 			            },{
-			                fieldLabel: Eway.locale.advert.createdTimeStart,//'制作时间开始于',
+			                fieldLabel: Eway.locale.advert.createdTimeStart,
 			                xtype:'datetimefield',
 				        	name:'createdTimeStart',
-				        	editable: true,
+				        	editable: false,
+				            format: 'Y-m-d H:i:s',
+				            width: 280
+			            },{
+			                fieldLabel: Eway.locale.advert.createdTimeStop,
+			                xtype:'datetimefield',
+				        	name:'createdTimeEnd',
+				        	editable: false,
 				            format: 'Y-m-d H:i:s',
 				            width: 280
 			            }]
-			    },
+			    }/*,
 			    {
 				columnWidth : .4,
 				items : [{
 			                xtype: 'combobox',
-			                fieldLabel: Eway.locale.advert.downType,//'下发方式',
+			                fieldLabel: '下发方式',
 			                displayField: 'display',
-			                store: "advert.AdvertDownMethodSearch",
+			                store: Ext.StoreMgr.lookup("advert.AdvertDownMethodSearch"),
 			                queryMode: 'local',
 			                valueField : 'value',
-			            	hiddenName : 'advertDownMethod',
 			                name:'advertDownMethod',
 			                editable : false,
+			                value :'',
 				            width: 280
 			            },{
-			                fieldLabel: Eway.locale.advert.createdTimeStop,//'制作时间结束于',
+			                fieldLabel: '制作时间结束于',
 			                xtype:'datetimefield',
 				        	name:'createdTimeEnd',
 				        	editable: true,
 				            format: 'Y-m-d H:i:s',
 				            width: 280
 			            }]
-			    }]
+			    }*/]
 		});
 		this.callParent(arguments);
 	}
