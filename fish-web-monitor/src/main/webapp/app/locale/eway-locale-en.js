@@ -5,7 +5,7 @@ Ext.override(Eway,{
 	choiceUpdateMsg :'Please select the record which you want to update.',//Eway.choiceUpdateMsg 请选择您要更改的记录.
 	choiceDeleteMsg :'Please select the record which you want to delete.',//Eway.choiceDeleteMsg 请选择您要删除的记录.
 	locale:{
-		myTable:'My workbench',//Eway.locale.myTable 我的工作台
+		myTable:'Workbench',//Eway.locale.myTable 我的工作台
 		ATMV:'Self-service machine monitor system(ATMV)',//Eway.locale.ATMV 自助设备监控系统(ATMV)
 		welcome:'welcome,',//Eway.locale.welcome 欢迎你,
 		personalConf:'Personal settings',//Eway.locale.personalConf 个人设置
@@ -65,7 +65,7 @@ Ext.override(Eway,{
 			apply:'Apply',//Eway.locale.button.apply 应用
 			//bankOrg
 			deepQuery:'Deep search', //深度查询
-			bankOrgMove:'Migrate organization',  //组织迁移
+			bankOrgMove:'Move',  //组织迁移
 			bankOrgAdmin:'Manager', //管理员
 			//bankPerson
 			bankPerlink:'Binding machine', //绑定设备
@@ -131,7 +131,7 @@ Ext.override(Eway,{
 			remind:'Tip',//Eway.locale.tip.remind 提示
 			displayMessage:'Total:{2} items,display{0}-{1}',//总共：{2}条，显示{0}-{1}
 			
-			unCertain:'Unkown',//未知
+			unCertain:'Unknown',//未知
 			searchOfNoLegal:'There are some illegal parameters in the query condition,can not commit ',//查询项中存在不合法的输入,不能提交.
 			choseExportDevInfo:'Please select the machine which you want to export for detail ',//请选择要导出信息的设备
 			nowLink:'Connecting',//正在连接......
@@ -574,7 +574,7 @@ Ext.override(Eway,{
 				fix:'Plan job (issue timer)'//Eway.locale.version.jobType.fix 计划作业(定时下发)
 			},
 			taskStatus:{
-				news:'new',//Eway.locale.version.taskStatus.news 新建
+				news:'New',//Eway.locale.version.taskStatus.news 新建
 				running:'running',//Eway.locale.version.taskStatus.running 运行中
 				noticed:'Notice successful',//Eway.locale.version.taskStatus.noticed 通知成功
 				noticedFail:'Notice failed',//Eway.locale.version.taskStatus.noticedFail 通知失败
@@ -792,10 +792,10 @@ Ext.override(Eway,{
 		},
 		commen:{
 			
-			jobNum:'Job number',//Eway.locale.commen.jobNum 工号
-			name:'name',//Eway.locale.commen.name 姓名
-			personJobName:'Job name',//Eway.locale.commen.personJobName 岗位
-			state:'status',//Eway.locale.commen.state 状态
+			jobNum:'JobNo',//Eway.locale.commen.jobNum 工号
+			name:'Name',//Eway.locale.commen.name 姓名
+			personJobName:'Quarters',//Eway.locale.commen.personJobName 岗位
+			state:'Status',//Eway.locale.commen.state 状态
 			birthday:'Birthday',//Eway.locale.commen.birthday 生日
 			comboxStatus:{
 				onJob:'On job',//Eway.locale.commen.comboxStatus.onJob 在岗
@@ -847,7 +847,7 @@ Ext.override(Eway,{
 			bind:'Bind',//Eway.locale.commen.bind 关联
 			filter:'Filter',//Eway.locale.commen.filter 过滤条件
 			stateDict:{
-				newCreate:'new',//Eway.locale.commen.stateDict.newCreate 新建
+				newCreate:'New',//Eway.locale.commen.stateDict.newCreate 新建
 				normal:'Normal',//Eway.locale.commen.stateDict.normal 正常
 				locked:'Locked',//Eway.locale.commen.stateDict.locked 锁定
 				disable:'Disable',//Eway.locale.commen.stateDict.disable 无效
@@ -901,17 +901,17 @@ Ext.override(Eway,{
 				moveBankTitle:'Migrate organization',//Eway.locale.person.bankOrg.moveBankTitle 组织迁移
 				updateBankTitle:'Modify organization info',//Eway.locale.person.bankOrg.updateBankTitle 更改银行机构信息
 				addBankOrgTitle:'Add organization info',//Eway.locale.person.bankOrg.addBankOrgTitle 增加银行机构信息
-				code:'Organization code',//Eway.locale.person.bankOrg.code 机构编号
-				orgType:'Organization type',//Eway.locale.person.bankOrg.orgType 机构类型
-				name:'Organization name',//Eway.locale.person.bankOrg.name 机构名称
-				orgLevel:'Organization level',//Eway.locale.person.bankOrg.orgLevel 机构级别
-				orgNavi:'Organization navigator',//Eway.locale.person.bankOrg.orgNavi 机构导航
-				zip:'Zip',//Eway.locale.person.bankOrg.zip 邮政编码
+				code:'Code',//Eway.locale.person.bankOrg.code 机构编号
+				orgType:'Type',//Eway.locale.person.bankOrg.orgType 机构类型
+				name:'Name',//Eway.locale.person.bankOrg.name 机构名称
+				orgLevel:'Level',//Eway.locale.person.bankOrg.orgLevel 机构级别
+				orgNavi:'Navigator',//Eway.locale.person.bankOrg.orgNavi 机构导航
+				zip:'Zipcode',//Eway.locale.person.bankOrg.zip 邮政编码
 				removeManager:'Remove',//Eway.locale.person.bankOrg.removeManager 删除
 				manager:'Manager',//Eway.locale.person.bankOrg.manager 管理员
-				address:'Organization address',//Eway.locale.person.bankOrg.address 机构地址
-				upgradeOrg:'Organization upgrade',//Eway.locale.person.bankOrg.upgradeOrg 上级机构
-				description:'Organization description',//Eway.locale.person.bankOrg.description 机构描述
+				address:'Address',//Eway.locale.person.bankOrg.address 机构地址
+				upgradeOrg:'Upper',//Eway.locale.person.bankOrg.upgradeOrg 上级机构
+				description:'Description',//Eway.locale.person.bankOrg.description 机构描述
 				serOrganization:'Maintenance description',//Eway.locale.person.bankOrg.serOrganization
 				organizationType:{
 					bank:'Bank',//Eway.locale.person.bankOrg.organizationType.bank 银行
@@ -1058,63 +1058,63 @@ Ext.override(Eway,{
 					type:'Cashbox type',//Eway.locale.monitor.devMonitor.cash.type 钞箱类型
 					initialCount:'Initial count',//Eway.locale.monitor.devMonitor.cash.initialCount 初始张数
 					cashInCount:'Deposit count',//Eway.locale.monitor.devMonitor.cash.cashInCount 存款张数
-					currentCount:'当前计数[张/笔]',//Eway.locale.monitor.devMonitor.cash.currentCount
-					noteValue:'钞箱面值',//Eway.locale.monitor.devMonitor.cash.noteValue
-					currency:'钞箱币种',//Eway.locale.monitor.devMonitor.cash.currency
-					boxDetail:'钞箱详情',//Eway.locale.monitor.devMonitor.cash.boxDetail
-					cimFull:'存款钞满',//Eway.locale.monitor.devMonitor.cash.cimFull
-					cdmEmpty:'取款钞空',//Eway.locale.monitor.devMonitor.cash.cdmEmpty
-					cdmLow:'取款钞少',//Eway.locale.monitor.devMonitor.cash.cdmLow
-					low:'钞少',//Eway.locale.monitor.devMonitor.cash.low
-					empty:'钞空',//Eway.locale.monitor.devMonitor.cash.empty
-					cimAFull:'存款钞将满',//Eway.locale.monitor.devMonitor.cash.cimAFull
-					cashFault:'钞箱故障',//Eway.locale.monitor.devMonitor.cash.cashFault
-					cashUnknow:'钞箱未知'//Eway.locale.monitor.devMonitor.cash.cashUnknow
+					currentCount:'Count',//Eway.locale.monitor.devMonitor.cash.currentCount 当前计数
+					noteValue:'Cashbox denomination',//Eway.locale.monitor.devMonitor.cash.noteValue 钞箱面值
+					currency:'Cashbox currency',//Eway.locale.monitor.devMonitor.cash.currency 钞箱币种
+					boxDetail:'Cashbox detail',//Eway.locale.monitor.devMonitor.cash.boxDetail 钞箱详情
+					cimFull:'Cashbox full',//Eway.locale.monitor.devMonitor.cash.cimFull 存款钞满
+					cdmEmpty:'Draw cash empty',//Eway.locale.monitor.devMonitor.cash.cdmEmpty 取款钞空
+					cdmLow:'Draw cash low',//Eway.locale.monitor.devMonitor.cash.cdmLow 取款钞少
+					low:'Cash empty',//Eway.locale.monitor.devMonitor.cash.low 钞少
+					empty:'Cash empty',//Eway.locale.monitor.devMonitor.cash.empty 钞空
+					cimAFull:'Deposit almost full',//Eway.locale.monitor.devMonitor.cash.cimAFull 存款钞将满
+					cashFault:'Cashbox error',//Eway.locale.monitor.devMonitor.cash.cashFault 钞箱故障
+					cashUnknow:'Cashbox unknown'//Eway.locale.monitor.devMonitor.cash.cashUnknow 钞箱未知
 					
 				},
-				modStateGraphic:'模块状态图示',//Eway.locale.monitor.devMonitor.modStateGraphic
-				modGraphic:'模块图示',//Eway.locale.monitor.devMonitor.modGraphic
-				registerStatus:'注册状态',//Eway.locale.monitor.devMonitor.registerStatus
-				devModStatus:'设备模块状态',//Eway.locale.monitor.devMonitor.devModStatus
+				modStateGraphic:'Module status graphic',//Eway.locale.monitor.devMonitor.modStateGraphic 模块状态图示
+				modGraphic:'Module graphic',//Eway.locale.monitor.devMonitor.modGraphic
+				registerStatus:'Register status',//Eway.locale.monitor.devMonitor.registerStatus 注册状态
+				devModStatus:'Status of module',//Eway.locale.monitor.devMonitor.devModStatus 设备模块状态
 				mod:{
 					idc:'Card reader',//Eway.locale.monitor.devMonitor.mod.idc 读卡器
 					jpr:'Log printer',//Eway.locale.monitor.devMonitor.mod.jpr 日志打印机
-					cdm:'CDM module',//Eway.locale.monitor.devMonitor.mod.cdm 取款模块
-					cim:'CIM module',//Eway.locale.monitor.devMonitor.mod.cim 存款模块
-					siu:'传感器',//Eway.locale.monitor.devMonitor.mod.siu 传感器
+					cdm:'Draw module',//Eway.locale.monitor.devMonitor.mod.cdm 取款模块
+					cim:'Deposit module',//Eway.locale.monitor.devMonitor.mod.cim 存款模块
+					siu:'Sensor',//Eway.locale.monitor.devMonitor.mod.siu 传感器
 					rpr:'凭条打印机',//Eway.locale.monitor.devMonitor.mod.rpr 凭条打印机
 					pin:'Pin keyboard',//Eway.locale.monitor.devMonitor.mod.pin 密码键盘
-					ttu:'文本终端',//Eway.locale.monitor.devMonitor.mod.ttu 文本终端
-					isc:'身份证扫描仪',//Eway.locale.monitor.devMonitor.mod.isc 身份证扫描仪
+					ttu:'Text terminal',//Eway.locale.monitor.devMonitor.mod.ttu 文本终端
+					isc:'I.D.card scanner',//Eway.locale.monitor.devMonitor.mod.isc 身份证扫描仪
 					icc:'发卡器',//Eway.locale.monitor.devMonitor.mod.icc 发卡器
-					fgp:'指纹仪',//Eway.locale.monitor.devMonitor.mod.fgp 指纹仪
+					fgp:'Fingerprints',//Eway.locale.monitor.devMonitor.mod.fgp 指纹仪
 					healthy:'Healthy'//Eway.locale.monitor.devMonitor.mod.healthy 模块正常
 					
 				},
 				remote:{
-					control:'远程控制',//Eway.locale.monitor.devMonitor.remote.control
-					screen:'远程抓屏',//Eway.locale.monitor.devMonitor.remote.screen
-					log:'提取电子日志',//Eway.locale.monitor.devMonitor.remote.log
-					net:'查看网络连接',//Eway.locale.monitor.devMonitor.remote.net
-					softwareList:'获取软件列表',//Eway.locale.monitor.devMonitor.remote.softwareList
-					powerOff:'关机',//Eway.locale.monitor.devMonitor.remote.powerOff
-					closeWays:'请选择关机方式',//Eway.locale.monitor.devMonitor.remote.closeWays
-					restart:'重启',//Eway.locale.monitor.devMonitor.remote.restart
-					restartWay:'请选择重启方式',//Eway.locale.monitor.devMonitor.remote.restartWay
-					logicOpen:'开启服务',//Eway.locale.monitor.devMonitor.remote.logicOpen
-					logicClose:'暂停服务',//Eway.locale.monitor.devMonitor.remote.logicClose
-					remoteBrowser:'远程浏览',//Eway.locale.monitor.devMonitor.remote.remoteBrowser
-					processList:'查看进程信息',//Eway.locale.monitor.devMonitor.remote.processList
-					screenCamera:'屏幕录制',//Eway.locale.monitor.devMonitor.remote.screenCamera
-					reset:'强制复位',//Eway.locale.monitor.devMonitor.remote.reset
-					remoteLook:'查看应用版本',//Eway.locale.monitor.devMonitor.remote.remoteLook
-					remoteCheckATM:'ATM体检',//Eway.locale.monitor.devMonitor.remote.remoteCheckATM
-					halfSer:'半功能',//Eway.locale.monitor.devMonitor.remote.halfSer
-					healthy:'正常服务',//Eway.locale.monitor.devMonitor.remote.healthy
-					staff:'维护',//Eway.locale.monitor.devMonitor.remote.staff
-					pFault:'交易前置故障',//Eway.locale.monitor.devMonitor.remote.pFault
-					stop:'报停',//Eway.locale.monitor.devMonitor.remote.stop
-					manualStop:'人工报停',////Eway.locale.monitor.devMonitor.remote.manualStop
+					control:'Remote control',//Eway.locale.monitor.devMonitor.remote.control 远程控制
+					screen:'Remote screenshot',//Eway.locale.monitor.devMonitor.remote.screen 远程抓拍
+					log:'Get logs',//Eway.locale.monitor.devMonitor.remote.log 提取电子日志
+					net:'Check network',//Eway.locale.monitor.devMonitor.remote.net 查看网络连接
+					softwareList:'Get software list',//Eway.locale.monitor.devMonitor.remote.softwareList 获取软件列表
+					powerOff:'PowerOff',//Eway.locale.monitor.devMonitor.remote.powerOff 关机
+					closeWays:'Choose way of poweroff',//Eway.locale.monitor.devMonitor.remote.closeWays 请选择关机方式
+					restart:'Reboot',//Eway.locale.monitor.devMonitor.remote.restart 重启
+					restartWay:'Choose way of reboot',//Eway.locale.monitor.devMonitor.remote.restartWay 请选择重启方式
+					logicOpen:'Open service',//Eway.locale.monitor.devMonitor.remote.logicOpen 开启服务
+					logicClose:'Pause service',//Eway.locale.monitor.devMonitor.remote.logicClose 暂停服务
+					remoteBrowser:'Remote browse',//Eway.locale.monitor.devMonitor.remote.remoteBrowser 远程浏览
+					processList:'Check process',//Eway.locale.monitor.devMonitor.remote.processList 查看进程信息
+					screenCamera:'Screen recording',//Eway.locale.monitor.devMonitor.remote.screenCamera 屏幕录制
+					reset:'Force reset',//Eway.locale.monitor.devMonitor.remote.reset 强制复位
+					remoteLook:'Check version application',//Eway.locale.monitor.devMonitor.remote.remoteLook 查看应用版本
+					remoteCheckATM:'Physical of ATM',//Eway.locale.monitor.devMonitor.remote.remoteCheckATM ATM体检
+					halfSer:'Half service',//Eway.locale.monitor.devMonitor.remote.halfSer 半功能
+					healthy:'Healthy',//Eway.locale.monitor.devMonitor.remote.healthy 正常服务
+					staff:'Maintenance',//Eway.locale.monitor.devMonitor.remote.staff 维护
+					pFault:'交易前置故障',//Eway.locale.monitor.devMonitor.remote.pFault 
+					stop:'Stop',//Eway.locale.monitor.devMonitor.remote.stop 报停
+					manualStop:'Stop manual',////Eway.locale.monitor.devMonitor.remote.manualStop 人工报停
 					stopFault:'暂停服务-模块故障',//Eway.locale.monitor.devMonitor.remote.stopFault
 					stopCash:'暂停服务-未加钞',//Eway.locale.monitor.devMonitor.remote.stopCash
 					pauseSer:'暂停服务',//Eway.locale.monitor.devMonitor.remote.pauseSer
@@ -1761,12 +1761,12 @@ Ext.override(Eway,{
 		//**********************************************************/
 		
 		index:{
-			indexPage:'Page index',//Eway.locale.index.indexPage 首页
+			indexPage:'Home',//Eway.locale.index.indexPage 首页
 			dailyFaultPic:'日均故障趋势图',//Eway.locale.index.dailyFaultPic
 			faultAmount:' 产生的故障数量: ',//Eway.locale.index.faultAmount
 			devStatusDisPic:'设备状态分布图',//Eway.locale.index.devStatusDisPic
 			normalDev:'正常设备',//Eway.locale.index.normalDev
-			unknownDev:'Device-unkown',//Eway.locale.index.unknownDev
+			unknownDev:'Device-unknown',//Eway.locale.index.unknownDev
 			exceptionDev:'异常设备',//Eway.locale.index.exceptionDev
 			amount:'台',//Eway.locale.index.amount
 		},
