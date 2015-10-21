@@ -72,10 +72,16 @@ public class AdvertController {
 	private MessageSource messageSourceEnum;
 	
 	@Autowired
+	private MessageSource messageSourceVersion;
+	
+	@Autowired
 	private IAdvertService advertService;
 
 	@Autowired
 	private IAdvertResourceService advertResourceService;
+
+	private final static long ADVERTBYTESIZE=5242880;
+	private final static long MILLO=1024*1024l;
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
@@ -115,8 +121,10 @@ public class AdvertController {
 		response.setContentType("text/html;charset=UTF-8");
 		String oFileName = file.getOriginalFilename();
 		long fileSize = file.getSize();
-		if (fileSize > 5242880) {
-			return "{'success':false,'errors':'超过最大单个文件大小限制（最大5M）'}";
+		
+		if (fileSize > ADVERTBYTESIZE) {
+			
+			return "{'success':false,'errors':'"+messageSourceVersion.getMessage("advert.fileSize", new Object[]{ADVERTBYTESIZE/MILLO}, FishCfg.locale)+"'}";
 		}
 
 		String saveFileName = IOUtils.addTimeStampInFileName(oFileName);
@@ -127,8 +135,8 @@ public class AdvertController {
 			file.transferTo(targetFile);
 			return "{'success':true,'oFileName':'" + saveFileName + "'}";
 		} catch (Exception e) {
-			logger.error("上传过程中出现错误:" + e.getMessage());
-			return "{'success':false,'errors':'文件[" + saveFileName + "]上传过程中出现错误:" + e.getMessage() + "'}";
+			logger.error("upload file exception:" + e.getMessage());
+			return "{'success':false,'errors':'"+messageSourceVersion.getMessage("advert.upload.exception", new Object[]{saveFileName, e.getMessage()}, FishCfg.locale)+"'}";
 		}
 	}
 
@@ -138,8 +146,8 @@ public class AdvertController {
 		response.setContentType("text/html;charset=UTF-8");
 		String oFileName = file.getOriginalFilename();
 		long fileSize = file.getSize();
-		if (fileSize > 5242880) {
-			return "{'success':false,'errors':'超过最大单个文件大小限制（最大5M）'}";
+		if (fileSize > ADVERTBYTESIZE) {
+			return "{'success':false,'errors':'"+messageSourceVersion.getMessage("advert.fileSize", new Object[]{ADVERTBYTESIZE/MILLO}, FishCfg.locale)+"'}";
 		}
 
 		String handledOFileName = oFileName;
@@ -161,8 +169,8 @@ public class AdvertController {
 			UploadResourceForm form = new UploadResourceForm(oFileName, saveFileName, getTempWebDir(request, screen, saveFileName), screen);
 			return JsonUtils.toJson(form);
 		} catch (Exception e) {
-			logger.error("上传过程中出现错误:" + e.getMessage());
-			return "{'success':false,'errors':'文件[" + saveFileName + "]上传过程中出现错误:" + e.getMessage() + "'}";
+			logger.error("upload file exception:" + e.getMessage());
+			return "{'success':false,'errors':'"+messageSourceVersion.getMessage("advert.upload.exception", new Object[]{saveFileName, e.getMessage()}, FishCfg.locale)+"'}";
 		}
 	}
 
@@ -290,7 +298,7 @@ public class AdvertController {
 			File file = new File(fileName);
 			long size = file.length();
 			if (size < 1024) {
-				return size + " byte";
+				return size + " Byte";
 			} else {
 				return size / 1024 + " KB";
 			}
@@ -348,7 +356,7 @@ public class AdvertController {
 				private void genenateMetaFile(IAdvert advert) {
 					File file = new File(getAdvertSourcePath(advert) + File.separator + "META-INF");
 					if (!file.exists()&&!file.mkdirs()){
-							throw new AppException(file.getName()+"创建文件夹失败");
+							throw new AppException(messageSourceVersion.getMessage("advert.createDir.fail", new Object[]{file.getName()}, FishCfg.locale));
 					}
 
 					File meta = new File(file.getAbsolutePath() + File.separator + "MANIFEST.MF");
@@ -356,7 +364,7 @@ public class AdvertController {
 						try {
 							meta.createNewFile();
 						} catch (IOException e) {
-							throw new AppException("创建meta文件失败");
+							throw new AppException(messageSourceVersion.getMessage("advert.createMeta.fail",null,FishCfg.locale));
 						}
 					}
 
@@ -388,7 +396,7 @@ public class AdvertController {
 						bw.write("Gump-InstallEndDate: 2012-02-01 00:00:00");
 						bw.flush();
 					} catch (IOException e) {
-						logger.error("写入出现错误:" + e.getMessage());
+						logger.error("inputStream execption:" + e.getMessage());
 					} finally {
 						try {
 							if (bw != null) {
@@ -398,7 +406,7 @@ public class AdvertController {
 								fw.close();
 							}
 						} catch (IOException e) {
-							logger.error("关闭流错误:" + e.getMessage());
+							logger.error("close ioStream exception:" + e.getMessage());
 						}
 					}
 				}
@@ -439,7 +447,8 @@ public class AdvertController {
 					File file = new File(absDir + File.separator + oFileName);
 					String newFileName = num + IOUtils.getFileSuffix(oFileName).toLowerCase();
 					if(!file.renameTo(new File(absDir + File.separator + newFileName))){
-						throw new AppException(newFileName+"重命名失败");
+						throw new AppException(getVersionI18n("advert.rename.fail", new Object[]{newFileName}));
+						
 					}
 					res.setContent(newFileName);
 					fileNames.add(new ScreenFile(resForm.getScreen(), File.separator + newFileName));
@@ -488,7 +497,9 @@ public class AdvertController {
 
 		return result;
 	}
-
+	private String getVersionI18n(String key,Object[] value){
+		return messageSourceVersion.getMessage(key,value, FishCfg.locale);
+	}
 	// 删除广告
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
@@ -502,11 +513,11 @@ public class AdvertController {
 		} catch (NotFoundException iae) {
 			logger.warn(iae.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.put("errors", "删除失败：" + iae.getMessage() + ",请刷新列表");
+			result.put("errors", getVersionI18n("advert.deleteFailNoFound",new Object[]{iae.getMessage() }));
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			logger.error(ex.getMessage());
-			result.put("errors", "删除失败:" + ex.getMessage());
+			result.put("errors", getVersionI18n("advert.deleteFail",new Object[]{ex.getMessage() }));
 		}
 		return result;
 	}
@@ -516,6 +527,8 @@ public class AdvertController {
 	    	}
 	    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
 	    }
+	
+	 
 	@RequestMapping(value = "/{id}/generateVersion", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap generateVersion(@PathVariable long id) {
@@ -525,7 +538,7 @@ public class AdvertController {
 			advertService.getById(id).toVersion();
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
-			logger.error("生成版本出现错误:" + ex.getMessage());
+			logger.error("general version File execption:" + ex.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
@@ -541,7 +554,7 @@ public class AdvertController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, toAdvertVersion(version));
 		} catch (Exception ex) {
-			logger.error("获得广告版本错误:" + ex.getMessage());
+			logger.error("get advert version error:" + ex.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
@@ -567,7 +580,7 @@ public class AdvertController {
 		String contextPath = this.getRealPath(request);
 		File targetDir = new File(contextPath + File.separator + id);
 		if (!targetDir.exists()&&!targetDir.mkdir()) {
-			throw new AppException(targetDir.getName()+"创建文件夹失败");
+			throw new AppException(getVersionI18n("advert.createDir.fail", new Object[]{targetDir.getName()}));
 		}
 		List<String> images = new ArrayList<String>();
 		for (IAdvertResource resource : advert.getAdvertResources()) {
@@ -594,7 +607,7 @@ public class AdvertController {
 		String contextPath = this.getRealPath(request);
 		File targetDir = new File(contextPath + File.separator + id + File.separator + screen);
 		if (!targetDir.exists()&&!targetDir.mkdirs()){
-			throw new AppException(targetDir.getName()+"创建文件夹失败");
+			throw new AppException(getVersionI18n("advert.createDir.fail", new Object[]{targetDir.getName()}));
 		}
 		StringBuffer result = new StringBuffer("[");
 		for (IAdvertResource resource : advert.getAdvertResources()) {
