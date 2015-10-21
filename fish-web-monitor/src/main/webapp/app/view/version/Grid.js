@@ -8,9 +8,7 @@ Ext.define('Eway.view.version.Grid', {
 	border : false,
 
 	initComponent: function() {
-		var store = Ext.create('Eway.store.version.Version');
 		Ext.apply(this, {
-			store : store,
 			tbar: ['->', {
 				text: Eway.locale.button.search,//'查询',
 				glyph : 0xf002,

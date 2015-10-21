@@ -324,6 +324,7 @@ Ext.define('Eway.controller.version.Version', {
 
 	//保存版本信息
 	onAddConfirm : function(){
+		var me = this;
 		var win = this.getAddWin();
 		var addForm = win.down('form').getForm();
 		var data = addForm.getValues();
@@ -348,7 +349,7 @@ Ext.define('Eway.controller.version.Version', {
 							 	Eway.alert(Eway.addSuccess);
 //								store.insert(0,ed);
 								win.close();
-								this.onQuery();
+								me.onQuery();
 							 },
 							 failure: function(record,operation){
 							 	winEl.unmask();
