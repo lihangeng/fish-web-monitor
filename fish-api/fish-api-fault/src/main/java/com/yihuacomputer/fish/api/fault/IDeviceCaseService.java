@@ -10,31 +10,31 @@ public interface IDeviceCaseService {
 
 	/**
 	 * 处理设备安装注册
-	 * 
+	 *
 	 * @param deviceRegister
 	 */
 	public void handleDeviceRegister(IDeviceRegister deviceRegister);
-	
+
 
 	/**
 	 * 处理吞卡消息
 	 * @param retianCard
 	 */
 	public void handleRetainCard(IRetaincard retainCard);
-	
+
 	/**
 	 *  收集运行信息
 	 * @param runtimeInfo
 	 */
 	public void handleRumtimeInfo(IRuntimeInfo runtimeInfo);
-	
+
 
 	/**
 	 * 处理设备模块状态
 	 * @param xfsStatus
 	 */
-	public void handleModStatus(IXfsStatus xfsStatus);
-	
+	public void handleModStatus(IXfsStatus xfsStatus,IXfsStatus hisXfsStatus);
+
 	/**
 	 * 处理应用状态
 	 * @param appStatus

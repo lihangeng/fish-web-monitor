@@ -311,4 +311,18 @@ public class CaseFaultService implements ICaseFaultService {
         List<ICaseFault> list = dao.findByHQL(hql.toString(), valueObj.toArray());
         return list ;
     }
+
+	@Override
+	public void closeHealthyModCase(List<ICaseFault> openCaseList,
+			DeviceMod devMod, String modType) {
+		if(openCaseList==null||openCaseList.isEmpty()){
+			return;
+		}
+		for(ICaseFault caseFault:openCaseList){
+			if(caseFault.getDevMod().equals(devMod)
+					&& caseFault.getFaultClassify().getId().equals(modType)){
+				this.closeCaseFault(caseFault);
+			}
+		}
+	}
 }

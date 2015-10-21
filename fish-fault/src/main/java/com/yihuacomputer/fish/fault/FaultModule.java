@@ -61,7 +61,7 @@ public class FaultModule {
 	public CaseFaultEntityInjector caseFaultEntityInjector() {
 		return new CaseFaultEntityInjector();
 	}
-	
+
 	@Bean
 	public IUnuauslNotifyMouldService unuauslNotifyMouldService() {
 		return new UnuauslNotifyMouldService();
