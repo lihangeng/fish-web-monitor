@@ -614,6 +614,7 @@ Ext.override(Eway,{
 				autoRefreshTips:'刷新周期60秒',//Eway.locale.version.download.autoRefreshTips
 				resetTaskStatus:'重置任务状态',//Eway.locale.version.download.resetTaskStatus
 				selectTask:'请选择一条任务记录！',//Eway.locale.version.download.selectTask
+				selectAllDevice:'全部设备',//Eway.locale.version.download.selectAllDevice
 				checkedTaskCantResetTips:'非运行中的任务无法重置！',//Eway.locale.version.download.checkedTaskCantResetTips
 				taskExportTips:'导出选中作业下的全部下发结果'//Eway.locale.version.download.taskExportTips
 			},

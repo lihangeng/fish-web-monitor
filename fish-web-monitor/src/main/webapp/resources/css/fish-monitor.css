@@ -6,7 +6,75 @@
 	top: 50%;
 	left: 50%;
 }
-
+.x-mask {
+    background-image: none;
+    background-color: rgba(255,255,255,0.93);
+    cursor: default;
+    border-style: solid;
+    border-width: 1px;
+    border-color: transparent;
+}
+.x-window-header-title-default {
+    color: #1c396f;
+    font-weight: 600;
+    font-family: cursive;
+/*     font-family: helvetica,arial,verdana,sans-serif; */
+    line-height: 16px;
+}
+.x-tab-default-top {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    padding: 3px 8px 3px 8px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: lightsteelblue;
+}
+.x-btn-over.x-btn-default-toolbar-small {
+    background-color: #3386c2;
+}
+.x-btn-focus.x-btn-default-toolbar-small{
+    background-color: #3386c2;
+}
+.x-btn-focus.x-btn-pressed.x-btn-default-toolbar-small {
+    background-color: #3386c2;
+}
+.x-btn.x-btn-menu-active.x-btn-default-toolbar-small,
+.x-btn.x-btn-pressed.x-btn-default-toolbar-small{
+	    background-color: #3386c2;
+}
+.x-btn-default-toolbar-small {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    padding: 3px 3px 3px 3px;
+    border-width: 1px;
+    font-family: cursive;
+    border-style: solid;
+    background-color: #1c396f;
+}
+.x-btn-inner-default-toolbar-small {
+    font: 300 12px/16px helvetica,arial,verdana,sans-serif;
+    color: #FFF;
+    padding: 0 5px;
+    max-width: 100%;
+}
+.x-btn-icon-el-default-toolbar-small.x-btn-glyph {
+    font-size: 16px;
+    line-height: 16px;
+    color: white;
+}
+.x-panel-header-title-default {
+    color: #1c396f;
+    font-size: 15px;
+    font-weight: 900;
+    font-family: cursive;
+    line-height: 16px;
+}
 #loading .title {
 	font-size:16px; 
 	position: absolute;
