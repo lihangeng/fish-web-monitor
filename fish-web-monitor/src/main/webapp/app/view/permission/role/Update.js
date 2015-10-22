@@ -32,10 +32,10 @@ Ext.define('Eway.view.permission.role.Update', {
 					height:400
 				}],
 			fbar: [{
-					text: '更改',
+					text: Eway.locale.button.update,
 					action: 'confirm'
 				},{
-					text: '返回',
+					text: Eway.locale.button.back,
 					handler: this.onOver
 				}]
 			}

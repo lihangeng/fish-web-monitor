@@ -41,8 +41,8 @@ public class DeviceSoftVersion implements IDeviceSoftVersion, Serializable {
 	@Transient
 	private IDevice device;
 
-	@Column(name = "TERMINAL_ID", nullable = false, updatable = false,length = 20)
-	private String terminalId;
+	@Column(name = "DEVICE_ID", nullable = false)
+	private long deviceId;
 
 	@Transient
 	private IVersion version;
@@ -52,6 +52,14 @@ public class DeviceSoftVersion implements IDeviceSoftVersion, Serializable {
 
 	@Column(name = "VERSION_NO", nullable = false, length = 40)
 	private String versionNo;
+
+    /**
+     * 版本号字符串拼接
+     * 1.2.3.4* 00000001000000020000000300000004
+     * 1.1.32.5*00000001000000020000003200000005
+     */
+    @Column(name = "VERSION_STR", nullable = false, length = 40)
+    private String versionStr;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CREATED_TIME", nullable = false)
@@ -121,12 +129,12 @@ public class DeviceSoftVersion implements IDeviceSoftVersion, Serializable {
 		this.desc = desc;
 	}
 
-	public String getTerminalId() {
-		return terminalId;
+	public long getDeviceId() {
+		return deviceId;
 	}
 
-	public void setTerminalId(String terminalId) {
-		this.terminalId = terminalId;
+	public void setDeviceId(long deviceId) {
+		this.deviceId = deviceId;
 	}
 
 	public String getTypeName() {
@@ -155,6 +163,14 @@ public class DeviceSoftVersion implements IDeviceSoftVersion, Serializable {
 
 	public void setDsvService(IDomainDeviceSoftVersionService dsvService) {
 		this.dsvService = dsvService;
+	}
+
+	public String getVersionStr() {
+		return versionStr;
+	}
+
+	public void setVersionStr(String versionStr) {
+		this.versionStr = versionStr;
 	}
 
 }

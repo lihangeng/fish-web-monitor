@@ -1,11 +1,26 @@
 package com.yihuacomputer.fish.api.fault;
 
+
+/**
+ * 是否通知
+ * @author GQ
+ *
+ */
 public enum IsNotify {
 
-	YES(1,"是"),
+	/**
+	 * 是
+	 */
+	YES(1,"IsNotify.YES"),
 	
-	NO(2,"否");
-	
+	/**
+	 * 否
+	 */
+	NO(2,"IsNotify.NO");
+
+    public String getText(){
+		return text;
+    }
 	private int id;
 	
 	private String text;
@@ -18,13 +33,11 @@ public enum IsNotify {
 		return id;
 	}
 
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getText() {
-		return text;
-	}
-
+	
 	public void setText(String text) {
 		this.text = text;
 	}	

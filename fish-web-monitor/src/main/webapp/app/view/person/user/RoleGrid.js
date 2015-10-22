@@ -24,11 +24,11 @@ Ext.define('Eway.view.person.user.RoleGrid', {
 		Ext.apply(this, {
 			initRegion : true,
 			columns : [ {
-				header : '角色名称',
+				header : Eway.locale.person.user.roleName,
 				dataIndex : 'name',
 				storable : true
 			}, {
-				header : '角色描述',
+				header : Eway.locale.person.user.roleDescription,
 				dataIndex : 'description',
 				flex : 1
 			}, {

@@ -27,19 +27,19 @@ Ext.define('Eway.view.machine.atmMove.AtmMove', {
 				items: [{
 					xtype : 'textfield',
 					name : 'terminalId',
-					fieldLabel : '<font color="red">*</font> 设备号',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmMove.terminalId,
 					readOnly: true,
 					allowBlank : false
 				},{
 					xtype : 'textfield',
 					name : 'address',
-					fieldLabel : '源地址',
+					fieldLabel : Eway.locale.machine.atmMove.address,
 					readOnly: true,
 					allowBlank : true
 				},{
 					xtype : 'textfield',
 					name : 'targetAddress',
-					fieldLabel : '<font color="red">*</font>目标地址',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmMove.targetAddress,
 					maxLength : 50,
 					allowBlank : false
 				},{
@@ -49,9 +49,9 @@ Ext.define('Eway.view.machine.atmMove.AtmMove', {
 //					readOnly: true,
 //					allowBlank : false
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font> 源机构',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmMove.orgName,
 					allowBlank : false,
-					emptyText : '--请选择--',
+					emptyText : Eway.locale.combox.select,
 					name : 'orgName',
 					hiddenValue : 'orgId',
 					readOnly: true,
@@ -65,9 +65,9 @@ Ext.define('Eway.view.machine.atmMove.AtmMove', {
 					name : 'orgId'
 				}, {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font> 目标机构',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.machine.atmMove.targetOrganization,
 					allowBlank : false,
-					emptyText : '--请选择--',
+					emptyText : Eway.locale.combox.select,
 					name : 'targetOrganization',
 					hiddenValue : 'targetOrganizationId',
 					editable : false,
@@ -82,13 +82,13 @@ Ext.define('Eway.view.machine.atmMove.AtmMove', {
 				}, {
 					xtype : 'textfield',
 					name : 'responsibility',
-					fieldLabel : '<font color="red">*</font> 负责人',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmMove.responsibility,
 					maxLength :20,
 					msgTarget : 'side',
 					allowBlank : false
 				},{
 					xtype : 'field_date',
-					fieldLabel : '<font color="red">*</font> 日期',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmMove.date,
 					allowBlank : false,
 					editable : false,
 					value : new Date(),
@@ -96,17 +96,17 @@ Ext.define('Eway.view.machine.atmMove.AtmMove', {
 				},{
 					xtype : 'textarea',
 					name : 'notice',
-					fieldLabel : '备注',
+					fieldLabel : Eway.locale.machine.atmMove.notice,
 					autoScroll : true,
 					maxLength : 50,
 					msgTarget : 'side'
 				}],
 				buttonAlign : 'center',
 				buttons: [{
-					text: '确认',
+					text: Eway.locale.button.confirm,
 					action: 'confirm'
 				}, {
-					text: '取消',
+					text: Eway.locale.button.cancle,
 					handler: this.onOver
 				}]
 			}

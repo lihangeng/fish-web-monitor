@@ -40,7 +40,7 @@ public class CashBoxDetail {
 	}
 
 	public String getType() {
-		return type.getName();
+		return type.getText();
 	}
 
 	public void setType(BoxType type) {

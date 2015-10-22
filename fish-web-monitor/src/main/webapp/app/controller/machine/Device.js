@@ -37,7 +37,7 @@ Ext.define('Eway.controller.machine.Device', {
 	formConfig : {
 		form : 'Eway.view.machine.device.Form',
 		xtype : 'machine_device_form',
-		title : '设备信息',
+		title : Eway.locale.machine.device.devInfo,
 		width : 700,
 		height : 450
 	},
@@ -143,7 +143,7 @@ Ext.define('Eway.controller.machine.Device', {
 			win.show();
 
 		} else {
-			Eway.alert("请选择您要查看的记录.");
+			Eway.alert(Eway.locale.tip.search.record);
 		}
 	},
 	// 加载维护员的数据
@@ -163,7 +163,7 @@ Ext.define('Eway.controller.machine.Device', {
 		tab.onReload(params);
 	},
 	_onAddOrUpdate : function(action){
-		var title = action=='add' ? "增加"+this.formConfig.title : "更改"+this.formConfig.title;
+		var title = action=='add' ? Eway.locale.button.add+this.formConfig.title : Eway.locale.button.update+this.formConfig.title;
 		var me = this;
 		Ext.require([this.formConfig.form],function(){
 			if(action=='update'){
@@ -175,7 +175,7 @@ Ext.define('Eway.controller.machine.Device', {
 					return;
 				}
 				else if(count > 1){
-					Eway.alert("只能选择一条记录更改.");
+					Eway.alert(Eway.locale.tip.update.one);
 					return;
 				}
 			}
@@ -191,7 +191,7 @@ Ext.define('Eway.controller.machine.Device', {
 			if(action == 'add'){
 			    //将设备维护商默认选择怡化
 				win.down('field[name="devServiceId"]').setValue("2");
-				win.down('field[name="devServiceName"]').setValue("深圳怡化");
+				win.down('field[name="devServiceName"]').setValue(Eway.yihua);
 
                 //如果是维护商用户或者是admin用户登陆时设置银行机构为空。
 				if(ewayUser.getOrgId() == 1 || ewayUser.getOrgType() == 1){

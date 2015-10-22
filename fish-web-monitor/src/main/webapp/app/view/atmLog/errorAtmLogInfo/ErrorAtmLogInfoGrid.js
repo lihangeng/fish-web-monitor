@@ -15,22 +15,22 @@ Ext.define('Eway.view.atmLog.errorAtmLogInfo.ErrorAtmLogInfoGrid',{
 				flex : 1,
 				hidden : true
 			},{
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'terminalId',
 				flex : 1
 			},{
-				header : '日志日期',
+				header : Eway.locale.atmLog.logDate,
 				dataIndex : 'dateTime',
 				flex : 1
 			},{
-				header : '备份结果',
+				header : Eway.locale.atmLog.backupResult,
 				dataIndex : 'backupResult',
 				width : 100,
 				renderer : function(value,metaData,record,rowIndex,colIndex,store,view){
 					if(value == 'SUCCESS'){
-						return '成功';
+						return Eway.locale.tip.success;
 					}else{
-						return '失败';
+						return Eway.locale.tip.fail;
 					}
 				}
 			}],
@@ -41,8 +41,8 @@ Ext.define('Eway.view.atmLog.errorAtmLogInfo.ErrorAtmLogInfoGrid',{
 			}),
 			tbar : ['->',{
 				xtype : 'button',
-				text : '导出',
-				iconCls : 'exportToExcel',
+				text : Eway.locale.button.exported,
+				glyph : 0xf1c3,
 				action : 'export'
 			}]
 		});

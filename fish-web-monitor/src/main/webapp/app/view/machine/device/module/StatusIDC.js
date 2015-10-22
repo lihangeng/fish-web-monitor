@@ -10,7 +10,7 @@ Ext.define("Eway.view.machine.device.module.StatusIDC", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : '<center>厂商状态信息</center>',
+				title : '<center>'+ Eway.locale.machine.device.comStatus+'</center>',
 				layout : 'column',
 				border : 'false',
 				items : [ {
@@ -25,13 +25,13 @@ Ext.define("Eway.view.machine.device.module.StatusIDC", {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : '厂商故障码',
+						fieldLabel : Eway.locale.machine.device.hwCode,
 						name : 'hwCode',
 						style : 'margin-top:2px'
 					} ]
 				} ]
 			}, {
-				title : '读卡器模块(IDC)状态信息',
+				title : Eway.locale.machine.device.IDCStatus,
 				titleAlign:'center',
 				layout : 'column',
 				border : 'false',
@@ -45,11 +45,11 @@ Ext.define("Eway.view.machine.device.module.StatusIDC", {
 						height : 40
 					},
 					items : [ {
-						fieldLabel : '媒体状态',
+						fieldLabel : Eway.locale.machine.device.media,
 						name : 'media',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '回收盒状态',
+						fieldLabel : Eway.locale.machine.device.retainBin,
 						name : 'retainBin'
 					} ]
 				}, {
@@ -62,7 +62,7 @@ Ext.define("Eway.view.machine.device.module.StatusIDC", {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : '回收盒数量',
+						fieldLabel : Eway.locale.machine.device.cards,
 						name : 'cards',
 						style : 'margin-top:2px'
 					} ]

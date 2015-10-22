@@ -5,7 +5,7 @@ Ext.define('Eway.view.machine.device.View', {
 	requires : [ 'Eway.view.machine.device.Grid',
 			'Eway.view.machine.device.FilterForm' ],
 
-	title : '设备信息管理',
+	title : Eway.locale.machine.device.title,
 	layout : 'border',
 
 	isLoad : false,
@@ -30,7 +30,7 @@ Ext.define('Eway.view.machine.device.View', {
 						return;
 					}
 					// 刷新设备型号信息
-					panel.down('device_filterform').down('field_device_deviceatmtype').getStore().load();
+//					panel.down('device_filterform').down('field_device_deviceatmtype').getStore().load();
 					// 刷新设备类型信息
 					panel.down('device_filterform').down('field_atmType_DeviceAtmCatalogComboBox').getStore().load();
 					// 刷新设备品牌信息

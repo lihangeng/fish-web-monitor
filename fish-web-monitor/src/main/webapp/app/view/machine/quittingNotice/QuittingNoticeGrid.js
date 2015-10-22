@@ -15,11 +15,11 @@ Ext.define('Eway.view.machine.quittingNotice.QuittingNoticeGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->',{
-				text: '查询',
+				text: Eway.locale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			}, {
-				text: '增加',
+				text: Eway.locale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'quittingNoticeAdd',
@@ -27,7 +27,7 @@ Ext.define('Eway.view.machine.quittingNotice.QuittingNoticeGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '更改',
+				text: Eway.locale.button.update,
 				glyph : 0xf040,
 				action: 'update',
 				code : 'quittingNoticeUpdate',
@@ -35,7 +35,7 @@ Ext.define('Eway.view.machine.quittingNotice.QuittingNoticeGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '删除',
+				text: Eway.locale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'quittingNoticeDel',
@@ -44,59 +44,59 @@ Ext.define('Eway.view.machine.quittingNotice.QuittingNoticeGrid', {
 				}
 			}],
 			columns : [{
-				header : '设备编号',
+				header : Eway.locale.machine.atmGroup.terminalId,
 				dataIndex : 'deviceCode',
 				flex : 1
 			}, {
-				header : '停机时间',
+				header : Eway.locale.machine.quittingNotice.stopTime,
 				dataIndex : 'stopTime',
 				flex : 1/*,
 				renderer:Ext.util.Format.dateRenderer('Y-m-d H:i:s')*/
 			}, {
-				header : '恢复时间',
+				header : Eway.locale.machine.quittingNotice.openTime,
 				dataIndex : 'openTime',
 				flex : 1/*,
 				renderer:Ext.util.Format.dateRenderer('Y-m-d H:i:s')*/
 			},{
-				header : '当前状态',
+				header : Eway.locale.machine.quittingNotice.currentStatus,
 				dataIndex : 'devStatus',
 				renderer: function(value,metadata,record){  
                    if(value=='DISABLED'){
-                	   return "停用";
+                	   return Eway.locale.machine.atmGroup.comboxStatus.close;
                    }else if(value=='OPENING'){
-                	   return "开通";
+                	   return Eway.locale.machine.atmGroup.comboxStatus.open;
                    }
 				},
 				flex : 1
 			},{
-				header : '停机类型',
+				header : Eway.locale.machine.quittingNotice.stopType,
 				dataIndex : 'stopType',
 				renderer: function(value,metadata,record){  
                    if(value==0){
-                	   return "放假";
+                	   return Eway.locale.machine.quittingNotice.comboxStopType.recess;
                    }else if(value==1){
-                	   return "装修";
+                	   return Eway.locale.machine.quittingNotice.comboxStopType.fit;
                    }else if(value==2){
-                	   return "停电";
+                	   return Eway.locale.machine.quittingNotice.comboxStopType.power;
                    }else if(value==3){
-                	   return "设备故障未修复";
+                	   return Eway.locale.machine.quittingNotice.comboxStopType.devFailue;
                    }else{
-                	   return "其它";
+                	   return Eway.locale.machine.quittingNotice.comboxStopType.other;
                    }
 				},
 				flex : 1
 			},{
-				header : '停机原因',
+				header : Eway.locale.machine.quittingNotice.stopReason,
 				dataIndex : 'stopReason',
 				flex : 1
 			},{
-				header : '设置时间',
+				header : Eway.locale.machine.quittingNotice.setTime,
 				dataIndex : 'setTime',
 				flex : 1/*,
 				renderer:Ext.util.Format.dateRenderer('Y-m-d H:i:s')*/
 			//	format : 'Y-m-d H:i:s'
 			},{
-				header : '停机责任人',
+				header : Eway.locale.machine.quittingNotice.responsibilityName,
 				dataIndex : 'responsibilityName',
 				flex : 1
 			}],

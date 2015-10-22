@@ -2,6 +2,8 @@ package com.yihuacomputer.fish.api.monitor.filter;
 
 import java.util.List;
 
+import org.springframework.context.MessageSource;
+
 import com.yihuacomputer.fish.api.monitor.report.IClassifyReport;
 import com.yihuacomputer.fish.api.monitor.report.IDeviceReport;
 
@@ -50,7 +52,7 @@ public interface IClassifyModStatusFilter {
 	 * @param trans
 	 * @return
 	 */
-	public IClassifyReport filterMod(IDeviceReport trans);
+	public IClassifyReport filterMod(IDeviceReport trans,MessageSource messageSourceRef);
 
 
 

@@ -13,11 +13,11 @@ Ext.define('Eway.view.version.versionType.Grid', {
 			initRegion : true,
 			store: store,
 			tbar: ['->', {
-				text: '查询',
+				text: Eway.locale.button.search,//'查询',
 				action: 'query',
 				glyph : 0xf002
 			}, {
-				text: '增加',
+				text: Eway.locale.button.add,//'增加',
 				action: 'add',
 				glyph : 0xf067,
 				code : 'versionTypeQuery',
@@ -25,7 +25,7 @@ Ext.define('Eway.view.version.versionType.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '更改',
+				text: Eway.locale.button.update,//'更改',
 				action: 'update',
 				glyph : 0xf040,
 				code : 'versionTypeUpdate',
@@ -33,7 +33,7 @@ Ext.define('Eway.view.version.versionType.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '删除',
+				text: Eway.locale.button.remove,//'删除',
 				action: 'remove',
 				glyph : 0xf014,
 				code : 'versionTypeDel',
@@ -42,25 +42,25 @@ Ext.define('Eway.view.version.versionType.Grid', {
 				}
 			}],
 			columns : [{
-				header : '软件分类编码',
+				header : Eway.locale.version.View.versionTypeCode,//'软件分类编码',
 				dataIndex : 'typeName',
 				width: '20%'
 			},{
-				header : '软件分类名称',
+				header : Eway.locale.version.View.versionTypeName,//'软件分类名称',
 				dataIndex : 'desc',
 				width: '30%'
 			},{
-				header:'默认安装路径',
+				header:Eway.locale.versionType.defaultInstallPath,//'默认安装路径',
 				dataIndex:'defaultInstallPath',
 				width: '30%'
 			},{
-				header:'需要重启设备完成升级',
+				header:Eway.locale.versionType.needRestart,//'需要重启设备完成升级',
 				dataIndex:'autoDeploy',
 				renderer: function(value){
 					if(value == 'true'){
-						return "是";
+						return Eway.locale.tip.right.yes;//"是";
 					}else{
-						return "否"
+						return Eway.locale.tip.right.no//"否"
 					}
 				},
 				flex : 1

@@ -3,7 +3,7 @@ Ext.define('Eway.view.field.quittingNotice.DeviceCode', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field_deviceCode',
 
-	fieldLabel : '设备编号',
+	fieldLabel : Eway.locale.machine.atmGroup.terminalId,
 	name : 'deviceCode',
 	regex:/^[a-zA-Z0-9-\.]{1,20}$/,
 	hiddenName : 'deviceCode',

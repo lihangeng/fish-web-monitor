@@ -4,7 +4,7 @@ Ext.define('Eway.store.person.person.PersonTypeFilterDict', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'', display:'全部'}, 
-		   {value:'0', display:'管机员'}, 
-	       {value:'1', display:'维修人员'}]
+	data: [{value:'', display:Eway.locale.commen.all}, 
+		   {value:'0', display:Eway.locale.commen.comboxType.machineManager}, 
+	       {value:'1', display:Eway.locale.commen.comboxType.machineRepairer}]
 });

@@ -33,6 +33,7 @@ public class TimeoutInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = httpServletRequest.getSession(false);
 		// 用户超时或没有登陆时跳转到登陆页面
 		String uri = httpServletRequest.getRequestURI();
+		System.out.print("uri" + uri);
 		if (isIgnoreUrl(uri)) {//在忽略列表中
 		    return true;
 		}
@@ -46,7 +47,7 @@ public class TimeoutInterceptor extends HandlerInterceptorAdapter {
 			// ajax超时处理
 			httpServletResponse.addHeader("sessionStatus", "timeout");
 		} else {// http超时处理
-			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.html");
+			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.jsp");
 		}
         return false;
 	}
@@ -62,6 +63,7 @@ public class TimeoutInterceptor extends HandlerInterceptorAdapter {
 		ignoreUrls.add("/api/login");
 		ignoreUrls.add("/api/system/register");
 		ignoreUrls.add("/api/register/isRegister");
+		ignoreUrls.add("login.jsp");
 	}
 
 	private boolean isIgnoreUrl(String uri) {

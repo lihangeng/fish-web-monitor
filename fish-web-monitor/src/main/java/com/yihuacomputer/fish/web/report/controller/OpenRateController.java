@@ -24,6 +24,7 @@ import org.apache.poi.hssf.util.HSSFColor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +49,7 @@ import com.yihuacomputer.fish.api.person.OrganizationType;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.report.base.IDayOpenRate;
 import com.yihuacomputer.fish.api.report.base.IDayOpenRateService;
-import com.yihuacomputer.fish.machine.service.db.AtmTypeService;
+import com.yihuacomputer.fish.machine.service.AtmTypeService;
 import com.yihuacomputer.fish.web.report.form.OpenRateForm;
 import com.yihuacomputer.fish.web.report.form.OpenRateTreeForm;
 
@@ -70,6 +71,9 @@ public class OpenRateController {
 
     @Autowired
     private AtmTypeService typeService;
+    
+    @Autowired
+	protected MessageSource messageSource;
 
     // @Autowired
     // private IDeviceOpenRateService deviceOpenRateService;
@@ -77,7 +81,7 @@ public class OpenRateController {
     /**
      * 导出excel文件名称 ,response/file目录下
      */
-    private String importFileName = "开机率统计.xls";
+    private String importFileName;
 
     /**
      * 日志
@@ -198,7 +202,7 @@ public class OpenRateController {
 
         List<OpenRateForm> date = OpenRateForm.convert(dayOpenRateService.listDev(filter));
 
-        String path = createExls(date, "设备号", true);
+        String path = createExls(date, messageSource.getMessage("device.terminalId", null, FishCfg.locale), true);
         try {
             download(path, webRequest, response);
         }
@@ -219,7 +223,7 @@ public class OpenRateController {
 
         List<OpenRateForm> date = listType2Form(EntityUtils.<IAtmType> convert(iterable), filter);
 
-        String path = createExls(date, "型号", false);
+        String path = createExls(date, messageSource.getMessage("openRateReport.devType", null, FishCfg.locale), false);
 
         try {
             download(path, webRequest, response);
@@ -246,7 +250,7 @@ public class OpenRateController {
         IFilter filter = request2filter(webRequest, "rate.statDate");
         List<OpenRateForm> date = listOrg2Form(treeFormList, filter);
 
-        String path = createExls(date, "机构", false);
+        String path = createExls(date, messageSource.getMessage("openRateReport.org", null, FishCfg.locale), false);
 
         try {
             download(path, webRequest, response);
@@ -302,6 +306,7 @@ public class OpenRateController {
 
     private String createExls(List<OpenRateForm> data, String sheetName, boolean isProg) {
 
+    	importFileName = messageSource.getMessage("report.openRate.title", null, FishCfg.locale);
         String pathname = FishCfg.getTempDir() + File.separator + importFileName;
 
         HSSFWorkbook workBook = new HSSFWorkbook();
@@ -385,16 +390,16 @@ public class OpenRateController {
         if(isProg)
         {
         	 cell = row.createCell(columnIndex++);
-             cell.setCellValue("所属机构");
+             cell.setCellValue(messageSource.getMessage("device.devOrg", null, FishCfg.locale));
              cell.setCellStyle(titleCellStyle);
 
              cell = row.createCell(columnIndex++);
-             cell.setCellValue("设备类型");
+             cell.setCellValue(messageSource.getMessage("openRateReport.devCatalog", null, FishCfg.locale));
              cell.setCellStyle(titleCellStyle);
 
         }
         cell = row.createCell(columnIndex++);
-        cell.setCellValue("统计日期");
+        cell.setCellValue(messageSource.getMessage("openRateReport.date", null, FishCfg.locale));
         cell.setCellStyle(titleCellStyle);
 
         /*
@@ -413,35 +418,35 @@ public class OpenRateController {
          */
 
         cell = row.createCell(columnIndex++);
-        cell.setCellValue("设备应工作时长");
+        cell.setCellValue(messageSource.getMessage("openRateReport.totalTime", null, FishCfg.locale));
         cell.setCellStyle(titleCellStyle);
 
         cell = row.createCell(columnIndex++);
-        cell.setCellValue("正常状态时长");
+        cell.setCellValue(messageSource.getMessage("openRateReport.normalTime", null, FishCfg.locale));
         cell.setCellStyle(titleCellStyle);
 
         cell = row.createCell(columnIndex++);
-        cell.setCellValue("管机员维护时长");
+        cell.setCellValue(messageSource.getMessage("openRateReport.managerTime", null, FishCfg.locale));
         cell.setCellStyle(titleCellStyle);
 
         cell = row.createCell(columnIndex++);
-        cell.setCellValue("离线未知时长");
+        cell.setCellValue(messageSource.getMessage("openRateReport.netErrorTime", null, FishCfg.locale));
         cell.setCellStyle(titleCellStyle);
 
         cell = row.createCell(columnIndex++);
-        cell.setCellValue("硬件故障停机时长");
+        cell.setCellValue(messageSource.getMessage("openRateReport.hardErrorTime", null, FishCfg.locale));
         cell.setCellStyle(titleCellStyle);
 
         cell = row.createCell(columnIndex++);
-        cell.setCellValue("ATMP故障时长");
+        cell.setCellValue(messageSource.getMessage("openRateReport.pErrorTime", null, FishCfg.locale));
         cell.setCellStyle(titleCellStyle);
 
         cell = row.createCell(columnIndex++);
-        cell.setCellValue("其他暂停服务状态时长");
+        cell.setCellValue(messageSource.getMessage("openRateReport.otherTime", null, FishCfg.locale));
         cell.setCellStyle(titleCellStyle);
 
         cell = row.createCell(columnIndex++);
-        cell.setCellValue("实际工作开机率");
+        cell.setCellValue(messageSource.getMessage("openRateReport.openRate", null, FishCfg.locale));
         cell.setCellStyle(titleCellStyle);
 
        /* if (isProg) {

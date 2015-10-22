@@ -138,7 +138,7 @@ public class PersonDataLoader {
 		person1.setJobNum("0001");
         person1.setPersonJob(personJobService.get(1));
         person1.setState(PersonState.VACATION);
-		person1.setOrganization(orgService.getByCode("root"));
+		person1.setOrganization(orgService.get("1"));
 		person1.setBirthday(new Date());
 		person1.setEmail("11@qq.com");
 		person1.setGender(Gender.MALE);
@@ -161,7 +161,7 @@ public class PersonDataLoader {
 		IPersonJob job1 = personJobService.get(2);
         person2.setPersonJob(job1);
         person2.setState(PersonState.OTHER);
-		person2.setOrganization(orgService.getByCode("shnsh001"));
+		person2.setOrganization(orgService.get("2"));
 		person2.setBirthday(new Date());
 		person2.setEmail("shnsh001@qq.com");
 		person2.setGender(Gender.MALE);
@@ -174,7 +174,7 @@ public class PersonDataLoader {
 		person3.setCode("fixMan001");
 		person3.setName("维护人员01");
 		person3.setJobNum("0003");
-		person3.setOrganization(orgService.getByCode("yihua001",OrganizationType.MAINTAINER));
+		person3.setOrganization(orgService.get("3"));
 		person3.setBirthday(new Date());
 		person3.setEmail("fixMan001@qq.com");
 		person3.setState(PersonState.OFF);
@@ -188,7 +188,7 @@ public class PersonDataLoader {
 		person4.setCode("fixMan002");
 		person4.setName("维护人员02");
 		person4.setJobNum("0004");
-		person4.setOrganization(orgService.getByCode("yihua002",OrganizationType.MAINTAINER));
+		person4.setOrganization(orgService.get("2"));
 		person4.setBirthday(new Date());
 		person4.setEmail("fixMan002@qq.com");
 		person4.setGender(Gender.MALE);

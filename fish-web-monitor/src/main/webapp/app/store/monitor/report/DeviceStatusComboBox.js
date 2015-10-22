@@ -4,7 +4,7 @@ Ext.define('Eway.store.monitor.report.DeviceStatusComboBox', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value: '', display:'全部'},
-			{value:'1', display:'开通'}, 
-	       {value:'2', display:'停用'}]
+	data: [{value: '', display:Eway.locale.commen.all},
+			{value:'1', display:Eway.locale.commen.comboxDevStatus.open}, 
+	       {value:'2', display:Eway.locale.commen.comboxDevStatus.stop}]
 });

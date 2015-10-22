@@ -21,11 +21,11 @@ Ext.define('Eway.view.person.user.Role', {
 			initRegion : true,
 			store : store,
 			columns : [{
-					header : '角色名称',
+					header : Eway.locale.person.user.roleName,
 					width : 200,
 					dataIndex : 'name'
 				},{
-					header : '角色描述',
+					header : Eway.locale.person.user.roleDescription,
 					dataIndex : 'description',
 					flex:1,
 					storable: true

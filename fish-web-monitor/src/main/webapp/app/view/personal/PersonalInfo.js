@@ -12,7 +12,7 @@ Ext.define('Eway.view.personal.PersonalInfo', {
 		Ext.apply(this,{
 			items : [ {
 				xtype : 'fieldset',
-				title : '基本信息',
+				title : Eway.locale.personal.baseInfo,
 				collapsible : true,
 				defaults : {
 					border : false,
@@ -24,25 +24,25 @@ Ext.define('Eway.view.personal.PersonalInfo', {
 					readOnly: true
 				},
 				items: [{
-					fieldLabel : '账号',
+					fieldLabel : Eway.locale.personal.accountNum,
 					value:ewayUser.getCode()
 				},{
-					fieldLabel : '姓名',
+					fieldLabel : Eway.locale.commen.name,
 					value:ewayUser.getName()
 				},{
-					fieldLabel : '所属机构',
+					fieldLabel : Eway.locale.commen.orgNameBelongs,
 					name : 'organizationName'
 				},{
-					fieldLabel : '手机号码',
+					fieldLabel : Eway.locale.commen.mobile,
 					name : 'phone'
 				},{
-					fieldLabel : '邮箱',
+					fieldLabel : Eway.locale.commen.email,
 					name : 'mail'
 				},{
-					fieldLabel : '工号',
+					fieldLabel : Eway.locale.commen.jobNum,
 					name : 'jobNum'
 				},{
-					fieldLabel : '备注',
+					fieldLabel : Eway.locale.commen.remark,
 					name : 'remark'
 				}]
 			}/*,{

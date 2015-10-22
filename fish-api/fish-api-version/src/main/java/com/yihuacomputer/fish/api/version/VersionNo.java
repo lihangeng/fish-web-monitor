@@ -16,22 +16,22 @@ public class VersionNo{
     /**
      * 主版本号
      */
-    private int major = -1;
+    private int major = 0;
 
     /**
      * 次版本号
      */
-    private int minor = -1;
+    private int minor = 0;
 
     /**
      * 增量版本号
      */
-    private int incremental = -1;
+    private int incremental = 0;
 
     /**
      * 修正版本号
      */
-    private int revision = -1;
+    private int revision = 0;
 
     /**
      * 里程碑版本，可以看作是一些说明

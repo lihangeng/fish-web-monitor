@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.api.fault;
 
+
 /**
  * 责任人类型
  * 
@@ -7,10 +8,12 @@ package com.yihuacomputer.fish.api.fault;
  * 
  */
 public enum ResponsorType {
-	ADMIN(1, "管机员"), // 管机员
-	MAINTAIN(2, "维护员"), // 维护员
-	BOTH(3, "管机员与维护员");// 管机员与维护员
-
+	ADMIN(1, "ResponsorType.ADMIN"), // 管机员
+	MAINTAIN(2, "ResponsorType.MAINTAIN"), // 维护员
+	BOTH(3, "ResponsorType.BOTH");// 管机员与维护员
+    public String getText(){
+		return text;
+    }
 	private int id;
 
 	private String text;
@@ -26,10 +29,6 @@ public enum ResponsorType {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getText() {
-		return text;
 	}
 
 	public void setText(String text) {

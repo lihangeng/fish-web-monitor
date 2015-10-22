@@ -1,6 +1,5 @@
 Ext.define('Eway.controller.version.Version', {
 	extend : 'Eway.controller.base.Controller',
-
 	stores : [ 'version.Version','version.ComboVersionType','version.VersionCharts','machine.DeviceAtmType','version.VersionStatus','version.AutoUpdate',
 			   'version.JobType','version.JobStatus','version.JobPriority','version.VersionCatalog'],
 	models : [ 'version.Version','version.VersionType','version.VersionCharts'],
@@ -31,6 +30,9 @@ Ext.define('Eway.controller.version.Version', {
 	},{
 		ref : 'chartsGrid',
 		selector : 'version_charts_grid'
+	},{
+		ref : 'bar3d',
+		selector : 'bar_3d series[type="bar3d"]'
 	}],
 
 	init : function() {
@@ -47,56 +49,44 @@ Ext.define('Eway.controller.version.Version', {
 			'versionView button[action=update]' : {
 				click : this.onUpdate
 			},
-			'versionView button[action=downStatics]' : {
-				click : this.onDownStatics
-			},
 			'versionView version_grid':{
-			   itemclick : this.onClickHref
+				   select : this.onSelect
 			},
 			'versionView button[action=down]' :{
 				click : this.onDown
+
 			}
 		});
 		 
 	},
-	onItemClick:function(series, item, event, eOpts){
-//		var versionId = item.record.data.versionId;
-		var gridFlag = item.record.data.flag;
-		var gridVersionId = item.record.data.versionId;
-		this.getEwayView().down("version_charts_grid").getStore().load({
-			 params: {
-			        versionId:gridVersionId,
-			        flag:gridFlag
-			    }
-		 });
-	},
-
-	//版本下发统计
-	onDownStatics :function(){
-	},
-
-	//点击超链接下载版本文件
-	onClickHref : function(grid, record, item, index, e, options) {
-		var fileName = record.get("serverPath");
-		if (e && e.getTarget().innerHTML === fileName) { //当单击超链接的时候
-			var typeName =  record.get("versionType");
-			fileName = fileName.replace("&","%26");
-			var url = 'api/version/version/download?typeName=' + typeName + '&fileName=' + fileName;
-			var iframe = document.getElementById('downloadFileFromWeb');
-			iframe.src = url;
+	onSelect:function( _this, record, index, eOpts ){
+		var me = this;
+		if(undefined==record){
+			return;
 		}
-		else{
-			var chartsStore = this.getEwayView().down("bar_3d cartesian").getStore();
-			chartsStore.load({
-			    params: {
-			        versionId:record.get("id")
-			    }
-			});
-			this.getEwayView().down("bar_3d series[type='bar3d']").on("itemclick",this.onItemClick,this);	
-			this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionType")+"-"+record.get("versionNo"));
-			
-//			this.getEwayView().down("bar_3d cartesian").config.sprites[0].text=record.get("versionType")+record.get("versionNo");
-		}
+		var chartsStore = this.getEwayView().down("bar_3d cartesian").getStore();
+		
+		chartsStore.load({
+		    params: {
+		        versionId:record.get("id")
+		    },
+		    callback: function(records, operation, success) {
+        		var grid = me.getEwayView().down("version_charts_grid")
+        		grid.getStore().load({
+        			 params: {
+        			        versionId:record.get("id"),
+        			        flag:0
+        			    }
+        		 });
+        		grid.setTitle(chartsStore.getAt(0).get("title")+Eway.locale.title.msg);//"信息");
+		    }
+		});
+		this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionType")+"-"+record.get("versionNo"));
+		this.getEwayView().down("panel displayfield[name='versionPath']").setValue(record.get("versionPath"));
+		this.getEwayView().down("panel displayfield[name='versionTime']").setValue(record.get("createdTime"));
+		this.getEwayView().down("panel displayfield[name='versionPerson']").setValue(record.get("userName"));
+		this.getEwayView().down("panel displayfield[name='desc']").setValue(record.get("desc"));
+
 	},
 
 	//获得版本的Store
@@ -106,10 +96,14 @@ Ext.define('Eway.controller.version.Version', {
 
 	//查询
 	onQuery: function(){
-		 var store =  this.getGrid().getStore();
-		 var data = this.getFilterForm().getForm().getValues();//得到所有的查询条件的值 {code='n',name='',....}
-		 store.setUrlParamsByObject(data);
-		 store.loadPage(1);
+		var form = this.getFilterForm().getForm()
+		if(!form.isValid()){
+			return;
+		}
+		var store =  this.getGrid().getStore();
+		var data = this.getFilterForm().getForm().getValues();//得到所有的查询条件的值 {code='n',name='',....}
+		store.setUrlParamsByObject(data);
+		store.loadPage(1);
 	},
 
 	//下发
@@ -136,14 +130,31 @@ Ext.define('Eway.controller.version.Version', {
 				form.findField("versionType").setValue(record.get("versionType"));
 				form.findField("versionNo").setValue(record.get("versionNo"));
 				form.findField("serverPath").setValue(record.get("serverPath"));
-
+				var atmTypeStore = win.down("field_device_deviceatmtype[name=atmTypeId]").getStore();
+				atmTypeStore.proxy.extraParams={versionId:record.get("id")};
+				atmTypeStore.load();
 				win.show();
+				
+				win.down("textfield[name=jobName]").setValue(record.get("desc"));
+				win.down("textfield[name=ip]").on({keydown:this.queryOnKeyDownEnter, scope: this });
+				win.down("textfield[name=terminalId]").on({keydown:this.queryOnKeyDownEnter, scope: this});
+				win.down("common_orgComboOrgTree[name=orgName]").on({keydown:this.queryOnKeyDownEnter, scope: this});
+				win.down("field_device_deviceatmtype[name=atmTypeId]").on({keydown:this.queryOnKeyDownEnter, scope: this});
 			}else{
-				Eway.alert("版本文件丢失,暂不能对版本进行下发控制.");
+				Eway.alert(Eway.locale.msg.missVersionFile);//"版本文件丢失,暂不能对版本进行下发控制.");
 			}
 		}
 		else {
-			Eway.alert("请选择您要下发的版本.");
+			Eway.alert(Eway.locale.msg.selectVersionRecord);//"请选择您要下发的版本.");
+		}
+	},
+	queryOnKeyDownEnter:function( e, t, eOpts ){
+		if(t.keyCode==13){
+			var grid = this.getAddJobWin().down("version_download_selectableDeviceGrid");
+			var form = grid.up('window').down('form').getForm();
+			if(this.setSearchFilter(grid,form)){
+				grid.getStore().loadPage(1);
+			}
 		}
 	},
 
@@ -152,16 +163,18 @@ Ext.define('Eway.controller.version.Version', {
 		var grid = combo.up("version_download_selectableDeviceGrid");
 		grid.getStore().pageSize = newValue;
 		var form = grid.up('window').down('form').getForm();
-		this.setSearchFilter(grid,form);
-		grid.getStore().loadPage(1);
+		if(this.setSearchFilter(grid,form)){
+			grid.getStore().loadPage(1);
+		}
 	},
 
 	//单击选择设备列表页面的查询按钮
 	onQueryDownDevice : function(button){
 		var grid = button.up("version_download_selectableDeviceGrid");
 		var form = grid.up('window').down('form').getForm();
-		this.setSearchFilter(grid,form);
-		grid.getStore().loadPage(1);
+		if(this.setSearchFilter(grid,form)){
+			grid.getStore().loadPage(1);
+		}
 	},
 
 	//下发管理页面刷新可选择设备时
@@ -176,12 +189,19 @@ Ext.define('Eway.controller.version.Version', {
 	setSearchFilter  : function(grid,form){
 		var extraParams = {versionId : form.findField("versionId").value};
 		var fields = grid.query('field');
+		var flag = true;
 		Ext.each(fields,function(field){
-			if(field.name !== 'orgName' && field.name !== 'inputItem' && field.name !== 'pageSize'){
-				extraParams[field.name] = field.getValue();
+			if(field.isValid()){
+				if(field.name !== 'orgName' && field.name !== 'inputItem' && field.name !== 'pageSize'){
+					extraParams[field.name] = field.getValue();
+				}
+			}
+			else{
+				flag=false;
 			}
 		});
 		grid.getStore().proxy.extraParams = extraParams;
+		return flag;
 	},
 
 	//关闭下发页面
@@ -196,10 +216,16 @@ Ext.define('Eway.controller.version.Version', {
 		var addForm = win.down("form").getForm();
 		var data = addForm.getValues();
 		var record = Ext.create("Eway.model.version.VersionDownload",data);
+		var linkGrid = win.down('version_download_selectableDeviceGrid');
 		if(addForm.isValid()){
 			var deviceIdsField = addForm.findField("deviceIds");
-			if(Ext.isEmpty(deviceIdsField.value)){
-				Eway.alert("请至少选择一个设备.");
+			var allDeviceField = addForm.findField("allDevice");
+			//allDeviceField
+			if(Ext.isEmpty(deviceIdsField.value)&&!allDeviceField.value){
+				Eway.alert(Eway.locale.msg.mustSelectDevice);//"请至少选择一个设备.");
+			}
+			else if(allDeviceField.value&&linkGrid.getStore().getCount()==0){
+				Eway.alert(Eway.locale.msg.mustSelectDevice);
 			}else{
 				record.set("deviceIds",deviceIdsField.value);
 				record.save({
@@ -207,11 +233,12 @@ Ext.define('Eway.controller.version.Version', {
 					 	deviceIdsField.setValue("");//清空隐藏字段的值
 					 	var linkedGrid = win.down('version_download_linkedDeviceGrid');
 						linkedGrid.getStore().removeAll();//清空已选择的设备列表
-						linkedGrid.setTitle("已选择的设备(<font color='red'>0</font>)台");
+						linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo0+0+Eway.locale.version.selectDeviceInfo1);//"已选择的设备(<font color='red'>0</font>)台");
 					 	//保存成功后让用户选择是否跳转到分发监控页面
 					 	win.close();
-					 	Ext.MessageBox.confirm('提示',
-							'作业保存成功,是否跳转到"分发监控"页面?',this.goToVersionDownloadPage,this);
+					 	Ext.MessageBox.confirm(Eway.locale.confirm.title,//'提示',
+					 			record.get("jobName")+Eway.locale.confirm.taskConfirmInfo0+ed.data.downLoadCounter+Eway.locale.confirm.taskConfirmInfo1,this.goToVersionDownloadPage,this);
+//					 			record.get("jobName")+"第"+ed.data.downLoadCounter+'次作业保存成功,是否跳转到"分发监控"页面?',this.goToVersionDownloadPage,this);
 
 					 },
 					 failure: function(record,operation){
@@ -297,6 +324,7 @@ Ext.define('Eway.controller.version.Version', {
 
 	//保存版本信息
 	onAddConfirm : function(){
+		var me = this;
 		var win = this.getAddWin();
 		var addForm = win.down('form').getForm();
 		var data = addForm.getValues();
@@ -306,7 +334,7 @@ Ext.define('Eway.controller.version.Version', {
 		if(addForm.isValid()){//isValid对markInvalid不起作用
 			//1.上传文件返回保存在服务器上的位置，并填充到隐藏字段中
 			var winEl = win.getEl();
-			winEl.mask('正在上传文件......');
+			winEl.mask(Eway.locale.version.View.versionFileUploadMsg);//'正在上传文件......');
 			addForm.submit({
 				 	url: 'api/version/version/upload',
 //				 	waitMsg: '正在上传文件...',
@@ -321,7 +349,7 @@ Ext.define('Eway.controller.version.Version', {
 							 	Eway.alert(Eway.addSuccess);
 //								store.insert(0,ed);
 								win.close();
-								this.onQuery();
+								me.onQuery();
 							 },
 							 failure: function(record,operation){
 							 	winEl.unmask();
@@ -335,17 +363,18 @@ Ext.define('Eway.controller.version.Version', {
 				    	winEl.unmask();
 				        switch (action.failureType) {
 				            case Ext.form.action.Action.CONNECT_FAILURE:
-				                Eway.alert('增加失败:与服务器通讯失败.');
+				                Eway.alert(Eway.locale.msg.communicationFail);//'增加失败:与服务器通讯失败.');
 				                break;
 				            case Ext.form.action.Action.SERVER_INVALID:
 				            	if(action.result.msg==0){
-				            		Eway.alert('增加失败:已经存在相同的版本号.');
+				            		Eway.alert(Eway.locale.msg.sameVersionNoFail);//'增加失败:已经存在相同的版本号.');
 				            	}else if(action.result.msg==1){
-				            		Eway.alert('增加失败:超过最大文件大小限制（最大300M）');
+				            		Eway.alert(Eway.locale.msg.fileSizeMaxFail);//'增加失败:超过最大文件大小限制（最大300M）');
 				            	}else if(action.result.msg==2){
-				            		Eway.alert('增加失败:上传的压缩包不能正常解压');
+				            		Eway.alert(Eway.locale.msg.fileUnzipFail);//'增加失败:上传的压缩包不能正常解压');
 				            	}else{
-				            		Eway.alert("增加失败:" + action.result.msg);
+				            		Eway.alert(Eway.locale.msg.addFileFail+//"增加失败:" + 
+				            				action.result.msg);
 				            	}
 				       }
 				    },
@@ -375,7 +404,7 @@ Ext.define('Eway.controller.version.Version', {
 				depver.on("change",this.onDependVersionChange,this);
 			}else{
 				field_dependVersion.disable();
-				form.findField("versionPath").up("fieldcontainer").disable();
+//				form.findField("versionPath").up("fieldcontainer").disable();
 			}
 			var b = win.query("form button[action=confirm]")[0];
 			b.on("click",this.onUpdateConfirm,this);
@@ -419,8 +448,8 @@ Ext.define('Eway.controller.version.Version', {
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			if(record.get("versionStatus") == "NEW"){
-				Ext.MessageBox.confirm("请确认",
-				"是否删除该记录?",
+				Ext.MessageBox.confirm(Eway.locale.confirm.titleSure,//"请确认",
+						Eway.locale.confirm.todoDelete,//"是否删除该记录?",
 				function(button,text) {
 					if(button=="yes"){
 						record.erase({
@@ -437,11 +466,11 @@ Ext.define('Eway.controller.version.Version', {
 					}
 				}, this);
 			}else{
-				Eway.alert('不能删除"等待下发"和"已下发"状态的版本.');
+				Eway.alert(Eway.locale.msg.versionDownloaded);//'不能删除"等待下发"和"已下发"状态的版本.');
 			}
 		}
 		else {
-			Eway.alert("请选择您要删除的版本.");
+			Eway.alert(Eway.locale.msg.selectVersionToDelete);//"请选择您要删除的版本.");
 		}
 	}
 

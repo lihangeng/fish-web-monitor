@@ -5,7 +5,7 @@ Ext.define('Eway.view.machine.atmGroup.GroupAdd', {
 	
 	requires: [],
 	
-	title: '增加设备组信息',
+	title: Eway.locale.machine.atmGroup.addTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -24,7 +24,7 @@ Ext.define('Eway.view.machine.atmGroup.GroupAdd', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font> 组名',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.groupName,
 					xtype : 'textfield',
 					name : 'name',
 					maxLength : 30,
@@ -32,7 +32,7 @@ Ext.define('Eway.view.machine.atmGroup.GroupAdd', {
 					allowBlank : false
 				},{
 				    xtype : 'textarea',
-				    fieldLabel : '备注',
+				    fieldLabel : Eway.locale.machine.atmGroup.note,
 				    name : 'note',
 				    autoScroll : true,
 					maxLength :30,
@@ -41,14 +41,14 @@ Ext.define('Eway.view.machine.atmGroup.GroupAdd', {
 				}],
 				buttonAlign : 'center',
 				buttons: [{
-					text: '确认',
+					text: Eway.locale.button.confirm,
 					action: 'add'
 				}, {
-					text: '重置',
+					text: Eway.locale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: '取消',
+					text: Eway.locale.button.cancle,
 					handler: this.onOver
 				}]
 			}

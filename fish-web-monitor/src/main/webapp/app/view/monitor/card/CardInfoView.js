@@ -7,7 +7,7 @@ Ext.define('Eway.view.monitor.card.CardInfoView', {
 	           'Eway.view.monitor.card.CardInfoFilterForm'
 	           ],
 
-	title: '吞卡管理',
+	title: Eway.locale.monitor.business.card.title,
 	layout: 'border',
 
 	initComponent: function() {

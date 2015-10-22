@@ -13,23 +13,23 @@ Ext.define('Eway.view.report.plan.Grid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-				text: '应用',
+				text: Eway.locale.button.apply,
 				iconCls :'connectBtn',
 				action: 'link'
 			}, {
-				text: '查询',
+				text: Eway.locale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			}, {
-				text: '增加',
+				text: Eway.locale.button.add,
 				glyph : 0xf067,
 				action: 'add'
 			}, {
-				text: '更改',
+				text: Eway.locale.button.update,
 				glyph : 0xf040,
 				action: 'update'
 			}, {
-				text: '删除',
+				text: Eway.locale.button.remove,
 				glyph : 0xf014,
 				action: 'remove'
 			}],
@@ -38,19 +38,19 @@ Ext.define('Eway.view.report.plan.Grid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '名称',
+				header : Eway.locale.report.plan.name,
 				width : 180,
 				dataIndex : 'name'
 			},{
-				header : '有效开始时间',
+				header : Eway.locale.report.plan.startDate,
 				width : 180,
 				dataIndex : 'startDate'
 			},{
-				header : '有效结束时间',
+				header : Eway.locale.report.plan.endDate,
 				width : 180,
 				dataIndex : 'endDate'
 			},{
-				header : '备注',
+				header : Eway.locale.commen.remark,
 				dataIndex : 'note',
 				flex : 1
 			}],

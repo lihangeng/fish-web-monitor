@@ -5,7 +5,7 @@ Ext.define('Eway.view.report.plan.Add', {
 	
 	requires: ['Eway.lib.Util'],
 	           
-	title: '增加方案',
+	title: Eway.locale.report.plan.addPlan,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -23,13 +23,13 @@ Ext.define('Eway.view.report.plan.Add', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font> 名称',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.name,
 					xtype : 'textfield',
 					name : 'name',
 					maxLength : 30,
 					allowBlank : false
 				},{
-					fieldLabel : '<font color="red">*</font>有效开始时间',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.startDate,
 					xtype : 'datefield',
 					name : 'startDate',
 					format : 'Y-m-d',
@@ -49,7 +49,7 @@ Ext.define('Eway.view.report.plan.Add', {
 						}
 					}
 				},{
-					fieldLabel : '<font color="red">*</font>有效结束时间',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.endDate,
 					xtype : 'datefield',
 					name : 'endDate',
 					format : 'Y-m-d',
@@ -69,7 +69,7 @@ Ext.define('Eway.view.report.plan.Add', {
 					}
 				},{
 					xtype : 'textarea',
-				    fieldLabel : '备注',
+				    fieldLabel : Eway.locale.commen.remark,
 				    name : 'note',
 				    autoScroll : true,
 					maxLength :30,
@@ -77,15 +77,15 @@ Ext.define('Eway.view.report.plan.Add', {
 				}],
 				buttons: [{
 					xtype : 'button',
-					text: '增加',
+					text: Eway.locale.button.add,
 					iconCls :'sureBtn',
 					action: 'add'
 				}, {
-					text: '重置',
+					text: Eway.locale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: '返回',
+					text: Eway.locale.button.back,
 					iconCls :'returnBtn',
 					handler: this.onOver
 				}]

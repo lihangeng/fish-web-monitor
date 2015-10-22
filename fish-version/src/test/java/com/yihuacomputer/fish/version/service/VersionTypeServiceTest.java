@@ -45,6 +45,7 @@ public class VersionTypeServiceTest extends BindSessionInTest2{
 	
 	//	@Test
 	public void test(){
+		
 		IAtmCatalog atmCatalog = atmCatalogService.make();
 		atmCatalog.setName("yihuacomputer");
 		atmCatalogService.add(atmCatalog);

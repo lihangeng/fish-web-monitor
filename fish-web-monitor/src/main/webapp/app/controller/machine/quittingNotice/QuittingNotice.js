@@ -83,7 +83,7 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 			this.win.down('field[name="deviceCode"]').setValue(sm.getLastSelected().data.terminalId);
 			win.close();
 		}else{
-			Eway.alert('请选择您报停的设备.');
+			Eway.alert(Eway.locale.vtype.choseDev);
 		}
 	},
 
@@ -173,8 +173,8 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 		var quaryData = view.down('form').getForm().getValues();
 		var store = this.getEwayView().down('gridpanel').getStore();
 		if(sm.getCount() == 1) {
-			Ext.MessageBox.confirm("请确认",
-					"是否删除该记录?",
+			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
+					Eway.locale.tip.remove.confirm.info,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();

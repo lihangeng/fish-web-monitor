@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -31,8 +33,6 @@ import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
-import com.yihuacomputer.fish.api.version.IDeviceVersion;
-import com.yihuacomputer.fish.api.version.IDeviceVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
@@ -54,14 +54,13 @@ public class DeviceVersionController {
     @Autowired
     private IComplexDeviceService complexDeviceService;
     @Autowired
-    private IDeviceVersionService dvService;
-    
-    @Autowired
     private ITaskService taskService;
     @Autowired
     private IVersionService versionService;
     @Autowired
     private IDeviceSoftVersionService dsvService;
+    @Autowired
+    private MessageSource messageSourceVersion;
  
 
     @RequestMapping(method = RequestMethod.GET)
@@ -88,7 +87,7 @@ public class DeviceVersionController {
 
         ModelMap result = new ModelMap();
 
-        List<IDeviceVersion> lists = dvService.listDeviceVersions(deviceId);     
+        List<ITask> lists = taskService.findTasks(deviceId);     
              
         List<DeviceVersionHistory> forms = getHistoryForms(lists , deviceId);
         result.addAttribute(FishConstant.SUCCESS, true);
@@ -97,45 +96,45 @@ public class DeviceVersionController {
         return result;
     }
 
-    private List<DeviceVersionHistory> getHistoryForms(List<IDeviceVersion> lists , long deviceId) {
+    private List<DeviceVersionHistory> getHistoryForms(List<ITask> lists , long deviceId) {
         List<DeviceVersionHistory> forms = new ArrayList<DeviceVersionHistory>();
 
         
-        for(IDeviceVersion dv : lists){
-        	 DeviceVersionHistory form = new DeviceVersionHistory();             
-             IVersion ver = versionService.getById(dv.getVersionId());
-             if(ver == null){
-                 continue;
-             }            
-             
-             form.setVersionId(dv.getVersionId());
+        for(ITask task : lists){
+        	 DeviceVersionHistory form = new DeviceVersionHistory();   
+             IVersion ver = task.getVersion();   
+        	 if(null==ver){
+        		 continue;
+        	 }
+             form.setVersionId(ver.getId());
              form.setVersionNo(ver.getVersionNo());
              form.setFullName(ver.getFullName());
              form.setVersionType(ver.getVersionType().getTypeName());
-             form.setId(dv.getId());
-             form.setDeviceId(dv.getDeviceId());
-             IDevice device = deviceService.get(dv.getDeviceId());
+             form.setId(task.getId());
+             form.setDeviceId(task.getDeviceId());
+             IDevice device = task.getDevice();
+             if(null==device){
+            	 continue;
+             }
              form.setTerminalId(device.getTerminalId());
              form.setIp(device.getIp().toString());
-             form.setDownTime(dv.getLastUpdatedTime());
-             form.setStatus(dv.getTaskStatus().getText());
-             form.setRemark(dv.getDesc());
-             form.setUserName(getTaskCreatedUserName(deviceId,dv.getVersionId()));
+             form.setDownTime(task.getExcuteTime());
+             form.setStatus(getEnumI18n(task.getStatus().getText()));
+             form.setRemark(task.getReason());
+//             form.setUserName(getTaskCreatedUserName(deviceId,ver.getId()));
              forms.add(form);
              //index++;
         }                
         return forms;
     }
-    
-    private String getTaskCreatedUserName(long deviceId,long versionId){
-       List<ITask>  tasks = taskService.findTaskByDeviceIdAndVersionId(deviceId,versionId); 
-       if(tasks.size() > 0){
-    	   return "";
-//    	   TODO  : 
-//    	   return tasks.get(0).getJob().getCreateUser().getName();
-       }else{
-    	   return "";
-       }
+
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
     }
 
     private List<VersionDeviceForm> getForms(List<IDevice> devices){
@@ -153,7 +152,7 @@ public class DeviceVersionController {
 
     private String getAppVersion(IDevice device){
         IFilter filter = new Filter();
-        filter.eq("terminalId", device.getTerminalId());
+        filter.eq("deviceId", device.getId());
         List<IDeviceSoftVersion> versions = dsvService.list(filter);
         for(IDeviceSoftVersion dsv : versions){
             if(dsv.getTypeName().equalsIgnoreCase("gump-professional")){

@@ -20,50 +20,50 @@ Ext.define('Eway.view.person.person.LinkingDeviceGrid', {
 				forceFit : true,
 				stripeRows : true
 			},
-			tbar: [{text:'可关联的设备',xtype:'tbtext'},'->', {
-				text:'查询',
+			tbar: [{text:Eway.locale.commen.canBindMachine,xtype:'tbtext'},'->', {
+				text:Eway.locale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			},{
-				text: '关联',
+				text: Eway.locale.commen.bind,
 				iconCls :'connectBtn',
 				action: 'link'
 			}],
 			columns : [ {
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'terminalId',
 				width:80
 			}, {
-				header : '网络地址',
+				header : Eway.locale.commen.ip,
 				dataIndex : 'ip'
 			}, {
-				header : '所属机构',
+				header : Eway.locale.commen.orgNameBelongs,
 				dataIndex : 'orgName'
 			}, {
-				header : '设备型号',
+				header : Eway.locale.commen.devTypeName,
 				dataIndex : 'devTypeName'
 			}, {
-				header : '设备品牌',
+				header : Eway.locale.commen.devVendorName,
 				dataIndex : 'devVendorName'
 			}, {
-				header : '设备类型',
+				header : Eway.locale.commen.devCatalogName,
 				dataIndex : 'devCatalogName'
 			}, {
-				header : '设备状态',
+				header : Eway.locale.commen.status,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return "开通";
+						return Eway.locale.commen.comboxDevStatus.open;
 					}
 					if (value == 2) {
-						return "停用";
+						return Eway.locale.commen.comboxDevStatus.stop;
 					}
 				}
 			}, {
-				header : '设备维护商',
+				header : Eway.locale.commen.devServiceName,
 				dataIndex : 'devServiceName'
 			}, {
-				header : '地址',
+				header : Eway.locale.commen.address,
 				dataIndex : 'address',
 				minWidth:100,
 				flex:1

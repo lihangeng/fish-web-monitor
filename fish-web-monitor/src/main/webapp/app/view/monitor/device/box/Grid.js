@@ -6,29 +6,29 @@ Ext.define('Eway.view.monitor.device.box.Grid', {
 	initComponent : function() {
 		Ext.apply(this, {
 			columns : [ {
-				header : '钞箱标识',
+				header : Eway.locale.monitor.devMonitor.cash.boxId,
 				dataIndex : 'boxId'
 			}, {
-				header : '钞箱类型',
+				header : Eway.locale.monitor.devMonitor.cash.type,
 				dataIndex : 'type'
 			}, {
-				header : '钞箱状态',
+				header : Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,
 				dataIndex : 'binStatus'
 			}, {
-				header : '初始张数',
+				header : Eway.locale.monitor.devMonitor.cash.initialCount,
 				dataIndex : 'initialCount'
 			}, {
-				header : '存款张数',
+				header : Eway.locale.monitor.devMonitor.cash.cashInCount,
 				dataIndex : 'cashInCount'
 			}, {
-				header : '当前计数[张/笔]',
+				header : Eway.locale.monitor.devMonitor.cash.currentCount,
 				dataIndex : 'currentCount',
 				width:120
 			}, {
-				header : '钞箱面值',
+				header : Eway.locale.monitor.devMonitor.cash.noteValue,
 				dataIndex : 'noteValue'
 			}, {
-				header : '钞箱币种',
+				header : Eway.locale.monitor.devMonitor.cash.currency,
 				dataIndex : 'currency',
 				flex:1
 			} ]

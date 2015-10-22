@@ -5,7 +5,7 @@ Ext.define('Eway.view.report.baseReport.TransactionCountReportView', {
 	requires : [ 'Eway.view.report.baseReport.TransactionCountReportFilter',
 			'Eway.view.report.baseReport.ReportDownload' ],
 
-	title : '交易统计报表',
+	title : Eway.locale.report.baseReport.tradeRep,
 	layout : 'border',
 
 	initComponent : function() {

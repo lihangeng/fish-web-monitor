@@ -28,6 +28,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -60,6 +61,7 @@ import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
+import com.yihuacomputer.fish.api.version.IVersionTypeAtmTypeRelationService;
 import com.yihuacomputer.fish.web.machine.form.AtmTypeForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.system.form.PersonForm;
@@ -78,6 +80,13 @@ public class DeviceController {
 
 	@Autowired
 	private IDeviceExtendService deviceExtendService;
+	
+	@Autowired
+	private IVersionTypeAtmTypeRelationService versionAtmTypeService;
+	
+	
+	@Autowired
+	protected MessageSource messageSource;
 
 	/**
 	 * 机构接口
@@ -109,21 +118,21 @@ public class DeviceController {
 		IOrganization org = orgService.get(request.getOrgId());
 		if (org == null) {
 			model.put(FishConstant.SUCCESS, false);
-			model.put("errorMsg", "机构不存在.");
+			model.put("errorMsg", messageSource.getMessage("device.orgNotExist", null, FishCfg.locale));
 			return model;
 		}
 
 		IOrganization serviceOrg = orgService.get(request.getDevServiceId());
 		if (serviceOrg == null) {
 			model.put(FishConstant.SUCCESS, false);
-			model.put("errorMsg", "维护商不存在.");
+			model.put("errorMsg", messageSource.getMessage("device.serNotExist", null, FishCfg.locale));
 			return model;
 		}
 
 		IAtmType atmType = typeService.get(request.getDevTypeId());
 		if (atmType == null) {
 			model.put(FishConstant.SUCCESS, false);
-			model.put("errorMsg", "设备型号不存在.");
+			model.put("errorMsg", messageSource.getMessage("device.typeNotExist", null, FishCfg.locale));
 			return model;
 		}
 
@@ -146,9 +155,9 @@ public class DeviceController {
 		try {
 			deviceService.add(device);
 		} catch (Exception e) {
-			logger.error(String.format("增加设备失败!错误信息[%s]", e));
+			logger.error(String.format(messageSource.getMessage("device.addError", null, FishCfg.locale), e));
 			model.put(FishConstant.SUCCESS, false);
-			model.put("errorMsg", "后台处理出错.");
+			model.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
 			return model;
 		}
 
@@ -180,7 +189,7 @@ public class DeviceController {
 
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "后台处理出错.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("commen.error", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -203,7 +212,7 @@ public class DeviceController {
 		IDevice device = deviceService.get(id);
 		if (device == null) {
 			model.put(FishConstant.SUCCESS, false);
-			model.put(FishConstant.ERROR_MSG, "记录不存在,请刷新后操作.");
+			model.put(FishConstant.ERROR_MSG, messageSource.getMessage("person.updateNotExist", null, FishCfg.locale));
 
 			// 验证失败时，需要把正确(数据库)的数据返回
 			model.addAttribute(FishConstant.DATA, request);
@@ -215,21 +224,21 @@ public class DeviceController {
 		IOrganization org = orgService.get(request.getOrgId());
 		if (org == null) {
 			model.put(FishConstant.SUCCESS, false);
-			model.put("errorMsg", "机构不存在.");
+			model.put("errorMsg", messageSource.getMessage("device.orgNotExist", null, FishCfg.locale));
 			return model;
 		}
 
 		IOrganization serviceOrg = orgService.get(request.getDevServiceId());
 		if (serviceOrg == null) {
 			model.put(FishConstant.SUCCESS, false);
-			model.put("errorMsg", "维护商不存在.");
+			model.put("errorMsg", messageSource.getMessage("device.serNotExist", null, FishCfg.locale));
 			return model;
 		}
 
 		IAtmType atmType = typeService.get(request.getDevTypeId());
 		if (atmType == null) {
 			model.put(FishConstant.SUCCESS, false);
-			model.put("errorMsg", "设备型号不存在.");
+			model.put("errorMsg", messageSource.getMessage("device.typeNotExist", null, FishCfg.locale));
 			return model;
 		}
 
@@ -242,9 +251,9 @@ public class DeviceController {
 		try {
 			deviceService.update(device);
 		} catch(Exception e) {
-			logger.error(String.format("更改设备失败!错误信息[%s]", e));
+			logger.error(String.format(messageSource.getMessage("device.updateError", null, FishCfg.locale), e));
 			model.put(FishConstant.SUCCESS, false);
-			model.put("errorMsg", "后台处理出错.");
+			model.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
 			return model;
 		}
 
@@ -276,7 +285,7 @@ public class DeviceController {
 		// 获得机构下所有的设备信息
 		List<IDevice> data = deviceService.list(hql.toString(), fixedFilters);
 
-		String path = createExls(data, "设备信息");
+		String path = createExls(data, messageSource.getMessage("device.devinfo", null, FishCfg.locale));
 
 		File file = new File(path);
 
@@ -320,6 +329,14 @@ public class DeviceController {
 		}
 	}
 
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	private String createExls(List<IDevice> data, String sheetName) {
 
 		String pathname = FishCfg.getTempDir() + File.separator + DateUtils.getDate(new Date()) + ".xls";
@@ -331,121 +348,121 @@ public class DeviceController {
 		HSSFRow row = sheet.createRow(0);
 
 		HSSFCell cell = row.createCell(0);
-		cell.setCellValue("序号");
+		cell.setCellValue(messageSource.getMessage("device.id", null, FishCfg.locale));
 
 		cell = row.createCell(1);
-		cell.setCellValue("设备号");
+		cell.setCellValue(messageSource.getMessage("device.terminalId", null, FishCfg.locale));
 
 		cell = row.createCell(2);
-		cell.setCellValue("设备IP地址");
+		cell.setCellValue(messageSource.getMessage("device.devIp", null, FishCfg.locale));
 
 		cell = row.createCell(3);
-		cell.setCellValue("设备状态");
+		cell.setCellValue(messageSource.getMessage("device.devStatus", null, FishCfg.locale));
 
 		cell = row.createCell(4);
-		cell.setCellValue("设备维护商");
+		cell.setCellValue(messageSource.getMessage("device.devSer", null, FishCfg.locale));
 
 		cell = row.createCell(5);
-		cell.setCellValue("所属机构");
+		cell.setCellValue(messageSource.getMessage("device.devOrg", null, FishCfg.locale));
 
 		cell = row.createCell(6);
-		cell.setCellValue("设备型号");
+		cell.setCellValue(messageSource.getMessage("device.devType", null, FishCfg.locale));
 
 		cell = row.createCell(7);
-		cell.setCellValue("钞箱报警金额");
+		cell.setCellValue(messageSource.getMessage("device.devCashWarn", null, FishCfg.locale));
 
 		cell = row.createCell(8);
-		cell.setCellValue("设备地址");
+		cell.setCellValue(messageSource.getMessage("device.devAddress", null, FishCfg.locale));
 
 		cell = row.createCell(9);
-		cell.setCellValue("设备序列号");
+		cell.setCellValue(messageSource.getMessage("device.devSerialNo", null, FishCfg.locale));
 
 		cell = row.createCell(10);
-		cell.setCellValue("运营商");
+		cell.setCellValue(messageSource.getMessage("device.devOperators", null, FishCfg.locale));
 
 		cell = row.createCell(11);
-		cell.setCellValue("加钞机构");
+		cell.setCellValue(messageSource.getMessage("device.devCashOrg", null, FishCfg.locale));
 
 		cell = row.createCell(12);
-		cell.setCellValue("资金成本利率");
+		cell.setCellValue(messageSource.getMessage("device.devCapitalRate", null, FishCfg.locale));
 
 		cell = row.createCell(13);
-		cell.setCellValue("atmc软件");
+		cell.setCellValue(messageSource.getMessage("device.devAtmcSoftWare", null, FishCfg.locale));
 
 		cell = row.createCell(14);
-		cell.setCellValue("厂商sp类型");
+		cell.setCellValue(messageSource.getMessage("device.devSP", null, FishCfg.locale));
 
 		cell = row.createCell(15);
-		cell.setCellValue("购买日期");
+		cell.setCellValue(messageSource.getMessage("device.devPurchaseDate", null, FishCfg.locale));
 
 		cell = row.createCell(16);
-		cell.setCellValue("安装日期");
+		cell.setCellValue(messageSource.getMessage("device.devInstallDate", null, FishCfg.locale));
 
 		cell = row.createCell(17);
-		cell.setCellValue("启用日期");
+		cell.setCellValue(messageSource.getMessage("device.devStartDate", null, FishCfg.locale));
 
 		cell = row.createCell(18);
-		cell.setCellValue("停用日期");
+		cell.setCellValue(messageSource.getMessage("device.devStopDate", null, FishCfg.locale));
 
 		cell = row.createCell(19);
-		cell.setCellValue("保修到期日期");
+		cell.setCellValue(messageSource.getMessage("device.devOverDate", null, FishCfg.locale));
 
 		cell = row.createCell(20);
-		cell.setCellValue("每日开机时间");
+		cell.setCellValue(messageSource.getMessage("device.devOpenTime", null, FishCfg.locale));
 
 		cell = row.createCell(21);
-		cell.setCellValue("每日关机时间");
+		cell.setCellValue(messageSource.getMessage("device.devCloseTime", null, FishCfg.locale));
 
 		cell = row.createCell(22);
-		cell.setCellValue("上次巡检日期");
+		cell.setCellValue(messageSource.getMessage("device.devLastCheckDate", null, FishCfg.locale));
 
 		cell = row.createCell(23);
-		cell.setCellValue("巡检到期日期");
+		cell.setCellValue(messageSource.getMessage("device.devCheckDate", null, FishCfg.locale));
 
 		cell = row.createCell(24);
-		cell.setCellValue("入账成本(元)");
+		cell.setCellValue(messageSource.getMessage("device.devCost", null, FishCfg.locale));
 
 		cell = row.createCell(25);
-		cell.setCellValue("折旧年限(年)");
+		cell.setCellValue(messageSource.getMessage("device.devDepre", null, FishCfg.locale));
 
 		cell = row.createCell(26);
-		cell.setCellValue("装修费用");
+		cell.setCellValue(messageSource.getMessage("device.devDecorateCost", null, FishCfg.locale));
 
 		cell = row.createCell(27);
-		cell.setCellValue("装修摊销年限(年)");
+		cell.setCellValue(messageSource.getMessage("device.devDecorateYear", null, FishCfg.locale));
 
 		cell = row.createCell(28);
-		cell.setCellValue("物业租赁费用(元/月)");
+		cell.setCellValue(messageSource.getMessage("device.devRentCost", null, FishCfg.locale));
 
 		cell = row.createCell(29);
-		cell.setCellValue("物业管理费用(元/月)");
+		cell.setCellValue(messageSource.getMessage("device.devPropertyCost", null, FishCfg.locale));
 
 		cell = row.createCell(30);
-		cell.setCellValue("通讯线路费用(元/月)");
+		cell.setCellValue(messageSource.getMessage("device.devCommFee", null, FishCfg.locale));
 
 		cell = row.createCell(31);
-		cell.setCellValue("电费(元/月)");
+		cell.setCellValue(messageSource.getMessage("device.devElecFee", null, FishCfg.locale));
 
 		cell = row.createCell(32);
-		cell.setCellValue("加钞维护费用(元/月)");
+		cell.setCellValue(messageSource.getMessage("device.devCashFee", null, FishCfg.locale));
 
 		cell = row.createCell(33);
-		cell.setCellValue("设备关注程度");
+		cell.setCellValue(messageSource.getMessage("device.devAttentionDegree", null, FishCfg.locale));
 
 		cell = row.createCell(34);
-		cell.setCellValue("非现金标志");
+		cell.setCellValue(messageSource.getMessage("device.devCashFlag", null, FishCfg.locale));
 
 		cell = row.createCell(35);
-		cell.setCellValue("安装方式");
+		cell.setCellValue(messageSource.getMessage("device.devInstallWay", null, FishCfg.locale));
 
 		cell = row.createCell(36);
-		cell.setCellValue("网络类型");
+		cell.setCellValue(messageSource.getMessage("device.devNetType", null, FishCfg.locale));
 
 		cell = row.createCell(37);
-		cell.setCellValue("在行离行标志");
+		cell.setCellValue(messageSource.getMessage("device.devInsideOutside", null, FishCfg.locale));
 
 		cell = row.createCell(38);
-		cell.setCellValue("经营方式");
+		cell.setCellValue(messageSource.getMessage("device.devMangeWay", null, FishCfg.locale));
 
 		HSSFCellStyle cellStyle = workBook.createCellStyle();
 		HSSFDataFormat format = workBook.createDataFormat();
@@ -469,7 +486,7 @@ public class DeviceController {
 			cell.setCellValue(cellValue(device.getIp() == null ? "" : device.getIp().toString()));
 
 			cell = row.createCell(3);
-			cell.setCellValue(cellValue(device.getStatus() == null ? "" : device.getStatus().getText()));
+			cell.setCellValue(cellValue(device.getStatus() == null ? "" : getEnumI18n(device.getStatus().getText())));
 
 			cell = row.createCell(4);
 			cell.setCellValue(cellValue(device.getDevService() == null ? "" : device.getDevService().getName()));
@@ -562,24 +579,24 @@ public class DeviceController {
 
 				NetType netType = device.getDeviceExtend().getNetType();
 				cell = row.createCell(36);
-				cell.setCellValue(cellValue(netType == null ? "" : netType.getText()));
+				cell.setCellValue(cellValue(netType == null ? "" : getEnumI18n(netType.getText())));
 
 			}
 
 			cell = row.createCell(33);
-			cell.setCellValue(cellValue(device.getCareLevel() == null ? "" : device.getCareLevel().getText()));
+			cell.setCellValue(cellValue(device.getCareLevel() == null ? "" : getEnumI18n(device.getCareLevel().getText())));
 
 			cell = row.createCell(34);
-			cell.setCellValue(cellValue(device.getCashType() == null ? "" : device.getCashType().getText()));
+			cell.setCellValue(cellValue(device.getCashType() == null ? "" : getEnumI18n(device.getCashType().getText())));
 
 			cell = row.createCell(35);
-			cell.setCellValue(cellValue(device.getSetupType() == null ? "" : device.getSetupType().getText()));
+			cell.setCellValue(cellValue(device.getSetupType() == null ? "" : getEnumI18n(device.getSetupType().getText())));
 
 			cell = row.createCell(37);
-			cell.setCellValue(cellValue(device.getAwayFlag() == null ? "" : device.getAwayFlag().getText()));
+			cell.setCellValue(cellValue(device.getAwayFlag() == null ? "" : getEnumI18n(device.getAwayFlag().getText())));
 
 			cell = row.createCell(38);
-			cell.setCellValue(cellValue(device.getWorkType() == null ? "" : device.getWorkType().getText()));
+			cell.setCellValue(cellValue(device.getWorkType() == null ? "" : getEnumI18n(device.getWorkType().getText())));
 
 		}
 
@@ -723,13 +740,32 @@ public class DeviceController {
 	 */
 	@RequestMapping(value = "/queryAtmType", method = RequestMethod.GET)
 	public @ResponseBody
-	ModelMap queryAtmType() {
+	ModelMap queryAtmType(HttpServletRequest request) {
 		logger.info(String.format("search device : queryAtmType"));
+		//版本关联机型品牌信息
+		String versionId = request.getParameter("versionId");
+		List<Long> atmTypeIdList = null;
+		if(null!=versionId){
+			atmTypeIdList = versionAtmTypeService.getAtmTypeIdsByVersionId(Long.parseLong(versionId));
+		}
 		ModelMap model = new ModelMap();
-		List<IAtmType> atmTypeList = typeService.list();
-
+		List<IAtmType> atmTypeList = null;
+		if(null==atmTypeIdList){
+			atmTypeList = typeService.list();
+		}
+		else if(atmTypeIdList.size()==0){
+			model.put(FishConstant.SUCCESS, true);
+			model.put(FishConstant.DATA, new AtmTypeForm());
+			return model;
+		}
+		else{
+			IFilter filter = new Filter();
+			filter.in("id", atmTypeIdList);
+			atmTypeList =typeService.list(filter);
+		}
 		model.put(FishConstant.SUCCESS, true);
 		model.put(FishConstant.DATA, AtmTypeForm.convert(atmTypeList));
+		
 
 		return model;
 	}
@@ -745,7 +781,7 @@ public class DeviceController {
 		if (device != null) {
 			// 该设备号已经被使用
 			validatorTi = true;
-			errorMsg.append("设备号重复.<BR>");
+			errorMsg.append(messageSource.getMessage("device.termIdDup", null, FishCfg.locale)+".<BR>");
 		}
 
 		result.put("validator", validatorTi);
@@ -832,7 +868,11 @@ public class DeviceController {
 				filter.eq("device.ip", ip);
 			} else if ("awayFlag".equals(name)) {
 				filter.eq("device.awayFlag", AwayFlag.getById(Integer.valueOf(value)));
-			} else {
+			} else if ("devTypeId".equals(name)) {
+				filter.eq("device.devType.id", Long.parseLong(value));
+			} 
+//			
+			else {
 				filter.like("device." + name, value);
 			}
 		}

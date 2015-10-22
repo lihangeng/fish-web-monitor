@@ -2,7 +2,7 @@ package com.yihuacomputer.fish.person.service.api;
 
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IPersonService;
-import com.yihuacomputer.fish.person.entity.Organization;
+import com.yihuacomputer.fish.system.entity.Organization;
 
 /**
  * 领域层Service接口

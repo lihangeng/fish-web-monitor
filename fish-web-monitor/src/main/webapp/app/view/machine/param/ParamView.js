@@ -6,7 +6,7 @@ Ext.define('Eway.view.machine.param.ParamView', {
 	requires: ['Eway.view.machine.param.ParamFilterForm',
 	           'Eway.view.machine.param.ParamGrid'],
 
-	title: '系统配置',
+	title: Eway.locale.machine.param.systemCon,
 	layout: 'border',
 
 	initComponent: function() {

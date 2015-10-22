@@ -18,9 +18,12 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.version.IVersion;
-import com.yihuacomputer.fish.api.version.job.IJob;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.api.version.job.task.TaskType;
@@ -35,6 +38,9 @@ public class Task implements ITask {
 	@SequenceGenerator(name = "SEQ_VER_TASK", sequenceName = "SEQ_VER_TASK")
 	@Column(name = "ID")
 	private long id;
+
+	@Column(name = "BATCH_NAME", nullable = true, length = 16)
+	private String taskBatchName;
 
 	@Transient
 	private IDevice device;
@@ -75,12 +81,6 @@ public class Task implements ITask {
 	@Column(name = "REASON", nullable = true, length = 40)
 	private String reason;
 
-//	@Column(name = "JOB_NAME", nullable = true, length = 128)
-//	private String jobName;
-    @ManyToOne(targetEntity = Job.class)
-    @JoinColumn(name = "JOB_ID")
-    private IJob job;
-
 	@ManyToOne(targetEntity = Version.class, fetch = FetchType.EAGER)
 	@JoinColumn(name = "VERSION_ID", nullable = false)
 	private IVersion version;
@@ -90,6 +90,19 @@ public class Task implements ITask {
 
 	@Column(name = "EXCEPT_VERSION", nullable = true, length = 70)
 	private String exceptVersion;
+	
+	/**
+	 * 任务首次创建时间
+	 */
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "FIRST_TIME",nullable=false)
+	private Date firstTime;
+	
+	/**
+	 * 任务下发的次数
+	 */
+	@Column(name = "TASK_COUNT", nullable = false)
+	private int taskCount;
 
 	/**
 	 * 从２.０开始禁用
@@ -101,14 +114,42 @@ public class Task implements ITask {
 
 	@Transient
 	private IDomainTaskService taskService;
+	
+	@Transient
+	private MessageSource messageSourceVersion;
 
-	public Task() {
+	@Transient
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
+	public MessageSource getMessageSourceVersion() {
+		return messageSourceVersion;
+	}
+	public void setMessageSourceVersion(MessageSource messageSourceVersion) {
+		this.messageSourceVersion = messageSourceVersion;
+	}
+	
+	public MessageSource getMessageSourceEnum() {
+		return messageSourceEnum;
+	}
+	public void setMessageSourceEnum(MessageSource messageSourceEnum) {
+		this.messageSourceEnum = messageSourceEnum;
+	}
+	public Task(Date firstCreateDate) {
 		this.status = TaskStatus.NEW;
 		this.taskType = TaskType.MANUAL;
 		this.eagerRestart = false;
+		this.setFirstTime(firstCreateDate);
+		this.setTaskCount(1);
 		this.createTime = new Date();
 	}
-
+	public Task() {
+	
+	}
 	public long getId() {
 		return id;
 	}
@@ -135,8 +176,13 @@ public class Task implements ITask {
 		return status;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.yihuacomputer.fish.api.version.job.task.ITask#setStatus(com.yihuacomputer.fish.api.version.job.task.TaskStatus)
+	 */
 	public void setStatus(TaskStatus status) {
-		this.status = status;
+		if(!this.status.equals(TaskStatus.CHECKED)){
+			this.status = status;
+		}
 	}
 
 	public Date getExcuteTime() {
@@ -185,10 +231,11 @@ public class Task implements ITask {
 
 	@Override
 	public String getState() {
+		String tip = getEnumI18n(this.getStatus().getText());
 		if (this.getStatus().equals(TaskStatus.NEW) || this.getStatus().equals(TaskStatus.RUN)) {
-			return this.getStatus().getText();
+			return tip;
 		} else {
-			return this.getStatus().getText() + (this.isSuccess() ? "(成功)" : "(失败)");
+			return  tip + (this.isSuccess() ? messageSourceVersion.getMessage("task.taskStauts.success", null, FishCfg.locale) : messageSourceVersion.getMessage("task.taskStauts.fail", null, FishCfg.locale) );
 		}
 	}
 
@@ -261,13 +308,11 @@ public class Task implements ITask {
 	@Override
 	public Date getDeployStartDate() {
 		return new Date();
-		// TODO : return this.getJob().getDeployStartDate();
 	}
 
 	@Override
 	public Date getDeployEndDate() {
 		return new Date();
-		// TODO :return this.getJob().getDeployEndDate();
 	}
 
 	public Date getCreateTime() {
@@ -302,16 +347,26 @@ public class Task implements ITask {
 		this.planTime = planTime;
 	}
 
-	public IJob getJob() {
-		return this.job;
+	public Date getFirstTime() {
+		return firstTime;
 	}
 
-	public void setJob(IJob job){
-		this.job = job;
+	public void setFirstTime(Date firstTime) {
+		this.firstTime = firstTime;
 	}
 
-	public String getJobName() {
-		return this.getJob().getJobName();
+	public int getTaskCount() {
+		return taskCount;
+	}
+
+	public void setTaskCount(int taskCount) {
+		this.taskCount = taskCount;
+	}
+	public String getTaskBatchName() {
+		return taskBatchName;
+	}
+	public void setTaskBatchName(String taskBatchName) {
+		this.taskBatchName = taskBatchName;
 	}
 
 }

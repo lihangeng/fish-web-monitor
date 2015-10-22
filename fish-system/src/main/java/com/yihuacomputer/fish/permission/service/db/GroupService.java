@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.exception.NotFoundException;
@@ -18,8 +20,8 @@ import com.yihuacomputer.fish.api.permission.IRole;
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.relation.IGroupRoleRelation;
 import com.yihuacomputer.fish.api.relation.IUserGroupRelation;
-import com.yihuacomputer.fish.permission.entity.Group;
 import com.yihuacomputer.fish.permission.service.api.IDomainGroupService;
+import com.yihuacomputer.fish.system.entity.Group;
 
 /**
  * @author weizaiqin
@@ -37,6 +39,8 @@ public class GroupService implements IDomainGroupService {
 
 	@Autowired
 	private IGenericDao dao;
+	@Autowired
+	private MessageSource messageSourceVersion;
 	@Override
 	public IGroup add(String name) {
 		IGroup group = this.make(name);
@@ -60,7 +64,8 @@ public class GroupService implements IDomainGroupService {
 		Group group = (Group)dao.getCriteria(Group.class)
 		.add(Restrictions.eq("name", name)).uniqueResult();
 		if(group == null){
-			throw new NotFoundException(String.format("不存在组[%l]",name));
+			
+			throw new NotFoundException(messageSourceVersion.getMessage("system.group.groupNotExist", new Object[]{name}, FishCfg.locale));
 		}
 		return group;
 	}
@@ -94,7 +99,7 @@ public class GroupService implements IDomainGroupService {
 		} catch(NotFoundException nfe){
 			throw nfe;
 		} catch(Exception ex){
-			throw new ServiceException(String.format("删除组[%l]失败",id),ex);
+			throw new ServiceException(messageSourceVersion.getMessage("system.group.deleteFail", new Object[]{id}, FishCfg.locale),ex);
 		}
 	}
 
@@ -105,7 +110,7 @@ public class GroupService implements IDomainGroupService {
 		} catch(NotFoundException nfe){
 			throw nfe;
 		} catch(Exception ex){
-			throw new ServiceException(String.format("删除组[%l]失败",name),ex);
+			throw new ServiceException(messageSourceVersion.getMessage("system.group.deleteFail", new Object[]{name}, FishCfg.locale),ex);
 		}
 
 	}

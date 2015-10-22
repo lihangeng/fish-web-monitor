@@ -12,31 +12,31 @@ Ext.define('Eway.view.version.deviceVersion.VersionHistoryGrid', {
 			store : store,
 			features: [groupingFeature],
 			columns : [{
-				header:'设备号',
+				header:Eway.locale.refs.terminalId,
 				dataIndex:'terminalId'
 			},{
-				header : '设备IP',
+				header : Eway.locale.refs.ip,//'设备IP',
 				dataIndex : 'ip'
 			},/*{
 				header : '软件分类',
 				dataIndex : 'versionType'
 			},*/{
-				header : '版本号',
+				header : Eway.locale.version.View.versionNo,//'版本号',
 				dataIndex : 'versionNo'
 			},{
-				header: '版本文件',
+				header: Eway.locale.version.View.versionFile,//'版本文件',
 				dataIndex:'fullName'
 			},{
-				header : '下发人',
+				header : Eway.locale.version.task.downloadUser,//'下发人',
 				dataIndex : 'userName'
 			},{
-				header : '下发时间',
+				header : Eway.locale.version.task.downloadTime,//'下发时间',
 				dataIndex : 'downTime'
 			},{
-				header: '下发结果',
+				header: Eway.locale.version.task.downloadResult,//'下发结果',
 				dataIndex : 'status'
 			},{
-				header: '备注',
+				header: Eway.locale.version.View.remark,
 				dataIndex : 'remark',
 				flex:1
 			}],

@@ -1,13 +1,19 @@
 package com.yihuacomputer.fish.system.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.yihuacomputer.fish.api.system.im.IMessage;
-import com.yihuacomputer.fish.system.service.api.IDomainMessageService;
+import com.yihuacomputer.fish.api.system.im.IMessageService;
 
-public class Message implements IMessage {
+public class Message implements IMessage, Serializable {
 
-	private IDomainMessageService service;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6851638447973414026L;
+
+	private IMessageService service;
 	
 	private long id;
 	private Date createTime;
@@ -15,17 +21,16 @@ public class Message implements IMessage {
 	private String content;
 	
 	
-	public Message(IDomainMessageService service){
-		
+	public Message(IMessageService service){
 		this.service = service;		
 	}
 	
-	public IDomainMessageService getService() {
+	public IMessageService getService() {
 		return service;
 	}
 
-	public void setService(IDomainMessageService service) {
-		this.service = service;
+	public void setService(IMessageService service) {
+		this.service = service;	
 	}
 
 	public void setId(long id) {

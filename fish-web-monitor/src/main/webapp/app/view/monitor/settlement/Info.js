@@ -1,7 +1,7 @@
 Ext.define('Eway.view.monitor.settlement.Info', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.monitor_settlement_info',
-	title : '清机详细信息',
+	title : Eway.locale.monitor.business.settlement.deTitle,
 	modal : true,
 	constrainHeader : true,
 	width : 700,
@@ -37,19 +37,19 @@ Ext.define('Eway.view.monitor.settlement.Info', {
 							readOnly : true
 						},
 						items : [ {
-							fieldLabel : '设备号',
+							fieldLabel : Eway.locale.commen.terminalId,
 							name : 'termId'
 						}, {
-							fieldLabel : '清机ID',
+							fieldLabel : Eway.locale.monitor.business.settlement.settleId,
 							name : 'uuId'
 						}, {
-							fieldLabel : '存款笔数',
+							fieldLabel : Eway.locale.monitor.business.settlement.cimNum,
 							name : 'deposit'
 						}, {
-							fieldLabel : '取款笔数',
+							fieldLabel : Eway.locale.monitor.business.settlement.cdmNum,
 							name : 'withdrawal'
 						}, {
-							fieldLabel : '交易总笔数',
+							fieldLabel : Eway.locale.monitor.business.settlement.totalNum,
 							name : 'transaction'
 						} ]
 					}, {
@@ -64,36 +64,36 @@ Ext.define('Eway.view.monitor.settlement.Info', {
 							readOnly : true
 						},
 						items : [ {
-							fieldLabel : '尾箱余额',
+							fieldLabel : Eway.locale.monitor.business.settlement.endAmt,
 							name : 'leftAmt'
 						}, {
-							fieldLabel : '结账日期',
+							fieldLabel : Eway.locale.monitor.business.settlement.leftDate,
 							name : 'date'
 						}, {
-							fieldLabel : '存款金额',
+							fieldLabel : Eway.locale.monitor.business.settlement.cimAmt,
 							name : 'depositAmt'
 						}, {
-							fieldLabel : '取款金额',
+							fieldLabel : Eway.locale.monitor.business.settlement.cdmAmt,
 							name : 'withdrawalAmt'
 						}, {
-							fieldLabel : '交易总金额',
+							fieldLabel : Eway.locale.monitor.business.settlement.tranAmt,
 							name : 'transactionAmt'
 						} ]
 					} ]
 				}, {
-					title : '详细信息',
+					title : Eway.locale.commen.info,
 					itemid : 'detailItemId',
 					xtype : 'grid',
 					store : 'monitor.settlement.SettlementDetail',
 					border : true,
 					columns : [ Ext.create('Ext.grid.RowNumberer'), {
-						header : '钞箱ID',
+						header : Eway.locale.monitor.business.cashInit.boxId,
 						dataIndex : 'boxId'
 					}, {
-						header : '币种',
+						header : Eway.locale.monitor.business.cashInit.boxCurrency,
 						dataIndex : 'boxCurrency'
 					}, {
-						header : '剩余金额',
+						header : Eway.locale.monitor.business.cashInit.lastAmt,
 						dataIndex : 'boxLeftAmt',
 						flex:1
 					} ]

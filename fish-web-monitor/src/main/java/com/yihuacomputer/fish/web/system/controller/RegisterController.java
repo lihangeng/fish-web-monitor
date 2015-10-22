@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,6 +27,9 @@ public class RegisterController {
     @Autowired
     private LocalSessionFactoryBean sf;
     
+	@Autowired
+	private MessageSource messageSource;
+    
     @RequestMapping(value = "/isRegister",method = RequestMethod.POST)
     public @ResponseBody
     ModelMap isRegister(HttpSession session, HttpServletRequest request, WebRequest webrequest) {
@@ -33,7 +37,7 @@ public class RegisterController {
         ModelMap result = new ModelMap();
         if (!new DBType(sf.getHibernateProperties()).isMemDB() && FishCfg.isFishExpiry()) {
             result.addAttribute(FishConstant.SUCCESS, false);
-            result.addAttribute("message", "请进行系统注册.");
+            result.addAttribute("message", messageSource.getMessage("register.regist", null, FishCfg.locale));
         }else{
             result.addAttribute(FishConstant.SUCCESS, true);
         }

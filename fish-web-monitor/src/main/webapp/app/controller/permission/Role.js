@@ -24,7 +24,7 @@ Ext.define('Eway.controller.permission.Role', {
 	formConfig : {
 		form : 'Eway.view.permission.role.Form',
 		xtype : 'permission_role_form',
-		title : '角色管理'
+		title : Eway.locale.permission.role.title
 	},
 
 	init : function() {
@@ -74,7 +74,7 @@ Ext.define('Eway.controller.permission.Role', {
 				Ext.require([me.formConfig.form],function(){
 					var win = Ext.create('Eway.view.base.Window',{
 					layout : 'fit',
-					title : '更改角色',
+					title : Eway.locale.permission.role.title.update,
 					width :700,
 					height :540,
 					maximizable : false,

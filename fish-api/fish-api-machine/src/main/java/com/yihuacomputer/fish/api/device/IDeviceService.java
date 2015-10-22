@@ -52,14 +52,6 @@ public interface IDeviceService
     public void remove(long id);
 
     /**
-     * 设备设备
-     *
-     * @param code
-     *            设备号
-     */
-    public void remove(String code);
-
-    /**
      * 修改设备
      *
      * @param device

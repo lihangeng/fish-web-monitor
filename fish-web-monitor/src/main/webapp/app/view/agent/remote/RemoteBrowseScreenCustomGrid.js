@@ -53,23 +53,23 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseScreenCustomGrid', {
 					}
 				}
 			},*/{
-				header: '文件名称',
+				header: Eway.locale.agent.remote.screen.fileNameClient,
 				sortable: true,
 				dataIndex: 'fileNameClient',
 				flex: 3
 			},{
-				header: '截屏时间',
+				header: Eway.locale.agent.remote.screenShotTime,
 				sortable: true,
 				dataIndex: 'screenShotTime',
 				flex: 2
 			},{
-				header: '操作',
+				header: Eway.locale.agent.remote.screen.manage,
 				xtype:'actioncolumn',
 				flex : 1,
 				dataIndex : 'backupResult',
 				items : [{
 					icon : 'resources/images/down.gif',
-					tooltip: '下载',
+					tooltip: Eway.locale.agent.remote.screen.loading,
 					handler : function(grid,rowIndex,colIndex){
 						var record = grid.getStore().getAt(rowIndex);
 						var value = record.data.allPath;

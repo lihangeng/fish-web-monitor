@@ -2,9 +2,18 @@ package com.yihuacomputer.fish.api.person;
 
 public enum OrganizationType
 {
-    BANK(0,"银行"),
-    MAINTAINER(1, "维护商"),
-    WORK(2,"怡化电脑");
+    /**
+     * 银行
+     */
+    BANK(0,"OrganizationType.BANK"),
+    /**
+     * 维护商
+     */
+    MAINTAINER(1, "OrganizationType.MAINTAINER"),
+    /**
+     * 怡化电脑
+     */
+    WORK(2,"OrganizationType.WORK");
     
     private int id;
     private String text;

@@ -125,7 +125,8 @@ public class ZipUtils {
 		OutputStream os=null;
 		InputStream is=null;
 		if (!file.isFile() || !file.getName().endsWith(".zip")) {
-			System.out.println("该程序无法解压非zip文件");
+//			System.out.println("该程序无法解压非zip文件");
+			System.out.println("The application only decompression zipFile");
 		}else{
 			destDir = destDir.endsWith("\\") ? destDir : destDir + "\\";
 			byte b[] = new byte[1024];  
@@ -156,7 +157,7 @@ public class ZipUtils {
 					}
 				
 				}
-				System.out.println("解压文件成功");
+				System.out.println("decompression zipFile success!");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally{

@@ -2,7 +2,7 @@ Ext.define('Eway.view.case.notifyMould.UpdateWin', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.notifyMould_UpdateWin',
 
-	title : '更改短信内容配置',
+	title : Eway.locale.cases.notifyMould.updateMessageContentConfiguration,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -26,11 +26,11 @@ Ext.define('Eway.view.case.notifyMould.UpdateWin', {
 				items : [ {
 					xtype : 'displayfield',
 					name : 'classifyName',
-					fieldLabel : '故障分类名称'
+					fieldLabel : Eway.locale.cases.faultClassify.faultClassifyName
 				}, {
 					xtype : 'combobox',
 					name : 'notifyType',
-					fieldLabel : '<font color="red">*</font> 通知类型',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.cases.notifyMould.noticeType,
 					store : notifyType,
 					queryMode : 'local',
 					displayField : 'name',
@@ -40,7 +40,7 @@ Ext.define('Eway.view.case.notifyMould.UpdateWin', {
 				}, {
 					xtype : 'combobox',
 					name : 'notifyWay',
-					fieldLabel : '<font color="red">*</font> 故障通知方式',
+					fieldLabel : '<font color="red">*</font>' +Eway.locale.cases.faultClassify.faultInformWay,
 					store : notifyway,
 					queryMode : 'local',
 					displayField : 'display',
@@ -49,25 +49,25 @@ Ext.define('Eway.view.case.notifyMould.UpdateWin', {
 					allowBlank : false
 				}, {
 					xtype : 'checkboxgroup',
-					fieldLabel : '<font color="red">*</font> 通知参数',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.cases.notifyMould.noticeValue,
 					columns : 2,
 					vertical : true,
 					allowBlank : false,
-					blankText : '此项为必选项',
+					blankText : Eway.locale.cases.notifyMould.necessaryOption,
 					items : [ {
-						boxLabel : '设备号',
+						boxLabel : Eway.locale.commen.terminalId,
 						name : 'notifySet',
 						inputValue : 'terminalId'
 					}, {
-						boxLabel : '故障类型',
+						boxLabel : Eway.locale.cases.notifyMould.faultType,
 						name : 'notifySet',
 						inputValue : 'faultClassify'
 					}, {
-						boxLabel : '故障模块',
+						boxLabel : Eway.locale.cases.caseFault.faultModule,
 						name : 'notifySet',
 						inputValue : 'faultMod'
 					}, {
-						boxLabel : '应用状态',
+						boxLabel : Eway.locale.cases.notifyMould.applyStatus,
 						name : 'notifySet',
 						inputValue : 'appStatus'
 					} ]
@@ -75,11 +75,11 @@ Ext.define('Eway.view.case.notifyMould.UpdateWin', {
 				buttonAlign : 'center',
 				buttons : [ {
 					xtype : 'button',
-					text : '确认',
+					text : Eway.locale.cases.confirm,
 					action : 'confirm'
 				}, {
 					xtype : 'button',
-					text : '取消',
+					text : Eway.locale.cases.cancel,
 					handler : this.onOver
 				} ]
 			}

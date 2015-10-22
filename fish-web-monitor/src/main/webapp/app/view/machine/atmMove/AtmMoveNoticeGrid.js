@@ -14,11 +14,11 @@ Ext.define('Eway.view.machine.atmMove.AtmMoveNoticeGrid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-				text: '查询',
+				text: Eway.locale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			}, {
-				text: '删除',
+				text: Eway.locale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'moveDel',
@@ -27,43 +27,43 @@ Ext.define('Eway.view.machine.atmMove.AtmMoveNoticeGrid', {
 				}
 			}],
 			columns : [{
-				header : '设备号',
+				header : Eway.locale.machine.atmMove.terminalId,
 				dataIndex : 'terminalId',
 				width : 100
 			}, {
-				header : '源地址',
+				header : Eway.locale.machine.atmMove.address,
 				dataIndex : 'address',
 				width : 150
 			}, {
-				header : '目标地址',
+				header : Eway.locale.machine.atmMove.targetAddress,
 				dataIndex : 'targetAddress',
 				width : 150
 			}, {
-				header : '源机构',
+				header : Eway.locale.machine.atmMove.orgName,
 				dataIndex : 'orgName',
 				width : 100
 			}, {
-				header : '源机构负责人',
+				header : Eway.locale.machine.atmMove.destPerson,
 				dataIndex : 'destPerson',
 				width : 100
 			}, {
-				header : '目标机构',
+				header : Eway.locale.machine.atmMove.targetOrganization,
 				dataIndex : 'targetOrganization',
 				width : 100
 			}, {
-				header : '目标机构负责人',
+				header : Eway.locale.machine.atmMove.targetPerson,
 				dataIndex : 'targetPerson',
 				width : 100
 			}, {
-				header : '责任人',
+				header : Eway.locale.machine.atmMove.responsibility,
 				dataIndex : 'responsibility',
 				width : 100
 			}, {
-				header : '日期',
+				header : Eway.locale.machine.atmMove.date,
 				dataIndex : 'date',
 				width : 100
 			}, {
-				header : '备注',
+				header : Eway.locale.machine.atmMove.notice,
 				dataIndex : 'notice',
 				width : 150
 			}],

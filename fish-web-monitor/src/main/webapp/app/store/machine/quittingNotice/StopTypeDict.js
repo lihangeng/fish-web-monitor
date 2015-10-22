@@ -4,9 +4,9 @@ Ext.define('Eway.store.machine.quittingNotice.StopTypeDict', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'0', display:'放假'}, 
-	       {value:'1', display:'装修'}, 
-	       {value:'2', display:'停电'}, 
-	       {value:'3', display:'设备故障未修复'}, 
-	       {value:'4', display:'其它'}]
+	data: [{value:'0', display:Eway.locale.machine.quittingNotice.comboxStopType.recess}, 
+	       {value:'1', display:Eway.locale.machine.quittingNotice.comboxStopType.fit}, 
+	       {value:'2', display:Eway.locale.machine.quittingNotice.comboxStopType.power}, 
+	       {value:'3', display:Eway.locale.machine.quittingNotice.comboxStopType.devFailue}, 
+	       {value:'4', display:Eway.locale.machine.quittingNotice.comboxStopType.other}]
 });

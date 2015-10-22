@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.domain.dao.IGenericDao;
@@ -22,7 +24,10 @@ public class DeviceUseCountRptService implements IDeviceUseCountRptService {
     @Autowired
     private IGenericDao dao;
 
-    private final String countName = "设备数量";
+    private String countName ;
+    
+	@Autowired
+	private MessageSource messageSource;
 
     @Override
     public List<IDeviceUseCountRpt> listDeviceUseCount(IFilter filter) {
@@ -54,6 +59,7 @@ public class DeviceUseCountRptService implements IDeviceUseCountRptService {
         
         logger.info(hql.toString());
         
+        countName = messageSource.getMessage("report.device.line", null, FishCfg.locale);
         List<Object> list = dao.findByHQL(hql.toString(), valueObj.toArray());
         List<IDeviceUseCountRpt> deviceUseCountList = new ArrayList<IDeviceUseCountRpt>();
         for (Object obj : list) {
@@ -63,11 +69,18 @@ public class DeviceUseCountRptService implements IDeviceUseCountRptService {
             deviceUseCount.setOrgName(objectToString(o[0]));
             deviceUseCount.setDevTypeName(objectToString(o[1]));
             if (objectToString(o[2]).equals("OPENING")) {
-                deviceUseCount.setDevUseState("开通");
+                deviceUseCount.setDevUseState(messageSource.getMessage("report.deviceBoxDetail.opening", null, FishCfg.locale));
             }
             if (objectToString(o[2]).equals("DISABLED")) {
-                deviceUseCount.setDevUseState("停用");
+                deviceUseCount.setDevUseState(messageSource.getMessage("report.deviceBoxDetail.disabled", null, FishCfg.locale));
             }
+            
+            deviceUseCount.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+            deviceUseCount.setDevTypeNameColumn(messageSource.getMessage("report.devTypeCount.type", null, FishCfg.locale));
+            deviceUseCount.setDevStatusColumn(messageSource.getMessage("report.devUseCount.devRunStatus", null, FishCfg.locale));
+            deviceUseCount.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
+            deviceUseCount.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
+            
             deviceUseCount.setDeviceCount(Integer.valueOf(objectToString(o[3])));
             deviceUseCountList.add(deviceUseCount);
         }

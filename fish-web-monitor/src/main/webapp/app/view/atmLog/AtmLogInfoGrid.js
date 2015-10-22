@@ -8,15 +8,15 @@ Ext.define('Eway.view.atmLog.AtmLogInfoGrid', {
 		Ext.apply(this, {
 			store : store,
 			columns : [{
-						header : '机构名称',
+						header : Eway.locale.person.bankOrg.name,
 						dataIndex : 'orgName',
 						flex : 1
 					}, {
-						header : '日志日期',
+						header : Eway.locale.atmLog.logDate,
 						dataIndex : 'backupDate',
 						flex : 1
 					}, {
-						header : '备份成功台数',
+						header : Eway.locale.atmLog.backupSucAmount,
 						dataIndex : 'backupSuccessNumber',
 						flex : 1,
 						renderer:function(value,meta,record){
@@ -27,7 +27,7 @@ Ext.define('Eway.view.atmLog.AtmLogInfoGrid', {
 							}
 						}
 					}, {
-						header : '备份失败台数',
+						header : Eway.locale.atmLog.backupFailAmount,
 						dataIndex : 'backupErrorNumber',
 						flex : 1,
 						renderer:function(value,meta,record){
@@ -38,7 +38,7 @@ Ext.define('Eway.view.atmLog.AtmLogInfoGrid', {
 							}
 						}
 					}, {
-						header : '总备份台数',
+						header : Eway.locale.atmLog.backupAllAmount,
 						dataIndex : 'totalBackupNumber',
 						flex : 1
 					}],
@@ -48,13 +48,13 @@ Ext.define('Eway.view.atmLog.AtmLogInfoGrid', {
 					}),
 			tbar : ['->', {
 						xtype : 'button',
-						text : '查询',
+						text : Eway.locale.button.search,
 						glyph : 0xf002,
 						action : 'query'
 					},{
 						xtype : 'button',
-						text : '导出',
-						iconCls : 'exportBtn',
+						text : Eway.locale.button.exported,
+						glyph : 0xf1c3,
 						action : 'export'
 					}]
 

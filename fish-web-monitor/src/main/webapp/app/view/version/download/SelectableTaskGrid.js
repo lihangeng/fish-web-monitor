@@ -11,38 +11,38 @@ Ext.define('Eway.view.version.download.SelectableTaskGrid', {
 	initComponent: function() {
 		Ext.apply(this, {
 			tbar: ['->', {
-				text: '全部选择',
+				text: Eway.locale.commen.selectAll,
 				action: 'selectAll'
 			}, {
-				text: '全部不选',
+				text: Eway.locale.commen.selectNon,
 				action: 'selectNone'
 			}],
 			columns : [{
-				header : '作业名称',
+				header : Eway.locale.version.task.jobName,//'作业名称',
 				dataIndex : 'jobName',
 				sortable : true
 			},{
-				header : '计划执行时间',
+				header : Eway.locale.version.planTime,//'计划执行时间',
 				dataIndex : 'planTime',
 				sortable : true
 			},{
-				header: '下发的版本',
+				header: Eway.locale.version.View.downloadVersionName,//'下发的版本',
 				dataIndex: 'versionName',
 				sortable: true
 			},{
-				header: '作业类型',
+				header: Eway.locale.advert.jobType,//'作业类型',
 				dataIndex: 'jobType',
 				sortable: true
 			},{
-				header: '作业优先级',
+				header: Eway.locale.advert.jobPriority,//'作业优先级',
 				dataIndex: 'jobPriority',
 				sortable: true
 			},{
-				header: '作业状态',
+				header: Eway.locale.version.task.jobStatus,//'作业状态',
 				dataIndex: 'jobStatus',
 				sortable: true
 			},{
-				header : '备注',
+				header : Eway.locale.version.View.remark,
 				dataIndex : 'desc',
 				sortable : true
 			}],

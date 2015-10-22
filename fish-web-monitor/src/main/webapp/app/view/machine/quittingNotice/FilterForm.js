@@ -36,7 +36,7 @@ Ext.define('Eway.view.machine.quittingNotice.FilterForm', {
 					labelAlign : 'right',
 					name : 'responsibilityName',
 					maxLength:20,
-					fieldLabel : '停机负责人'
+					fieldLabel : Eway.locale.machine.quittingNotice.responsibilityName
 				}]
 			},{
 				columnWidth : .3,
@@ -57,7 +57,7 @@ Ext.define('Eway.view.machine.quittingNotice.FilterForm', {
 				},
 				items : [ {
 							xtype : 'fieldcontainer',
-							fieldLabel : '停机时间',
+							fieldLabel : Eway.locale.machine.quittingNotice.stopTime,
 							layout : 'hbox',
 							defaults : {
 								hideLabel : true
@@ -87,7 +87,7 @@ Ext.define('Eway.view.machine.quittingNotice.FilterForm', {
 								}
 							}, {
 								xtype : 'displayfield',
-								value : '至'
+								value : Eway.locale.machine.quittingNotice.to
 							}, {
 								fieldLabel : 'minute',
 								displayField : 'display',

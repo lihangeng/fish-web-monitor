@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
@@ -35,6 +37,9 @@ public class FaultClassifyController
 
     @Autowired
     private IFaultClassifyService faultClassifyService;
+    
+    @Autowired
+	protected MessageSource messageSource;
 
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
@@ -86,7 +91,7 @@ public class FaultClassifyController
         catch (Exception e)
         {
             result.addAttribute(FishConstant.SUCCESS, false);
-            result.addAttribute(FishConstant.ERROR_MSG, "更改失败:后台处理出错.");
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.updateError", null, FishCfg.locale));
         }
         return result;
     }

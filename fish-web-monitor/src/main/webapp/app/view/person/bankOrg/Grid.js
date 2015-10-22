@@ -18,15 +18,15 @@ Ext.define('Eway.view.person.bankOrg.Grid', {
 				action:'tip',
 				xtype:'tbtext'
 			},'->',{
-				text: '查询',
+				text: Eway.locale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			},{
-				text: '深度查询',
+				text: Eway.locale.button.deepQuery,
 				glyph : 0xf002,
 				action: 'deepQuery'
 			}, {
-				text: '增加',
+				text: Eway.locale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'bankOrgAdd',
@@ -34,7 +34,7 @@ Ext.define('Eway.view.person.bankOrg.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '更改',
+				text: Eway.locale.button.update,
 				glyph : 0xf040,
 				action: 'update',
 				code : 'bankOrgUpdate',
@@ -42,7 +42,7 @@ Ext.define('Eway.view.person.bankOrg.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : '组织迁移',
+				text : Eway.locale.button.bankOrgMove,
 				glyph : 0xf0ec,
 				action : 'move',
 				code : 'bankOrgMove',
@@ -50,7 +50,7 @@ Ext.define('Eway.view.person.bankOrg.Grid', {
 					'beforerender' : Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '删除',
+				text: Eway.locale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'bankOrgDel',
@@ -58,59 +58,59 @@ Ext.define('Eway.view.person.bankOrg.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '管理员',
+				text: Eway.locale.button.bankOrgAdmin,
 				glyph : 0xf007,
 				code : 'bankOrgAdmin',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				},
 				menu: [{
-					text: '设置',
+					text: Eway.locale.commen.setManager,
 					action: 'setManager'
 				}, {
-					text: '删除',
+					text: Eway.locale.person.bankOrg.removeManager,
 					action: 'removeManager'
 				}]
 			}],
 			columns : [{
-				header : '机构编号',
+				header : Eway.locale.person.bankOrg.code,
 				dataIndex : 'code',
 				sortable : true
 			},{
-				header : '机构名称',
+				header : Eway.locale.person.bankOrg.name,
 				dataIndex : 'name',
 				sortable : true
 			},{
-				header : '机构级别',
+				header : Eway.locale.person.bankOrg.orgLevel,
 				dataIndex : 'orgLevel',
 				sortable : true,
 				renderer: Eway.lib.Util.dictRenderer('person.organization.OrganizationLevelDict')
 			},{
-				header : '邮政编码',
+				header : Eway.locale.person.bankOrg.zip,
 				dataIndex : 'zip',
 				sortable : true
 			},{
-				header : '机构类型',
+				header : Eway.locale.person.bankOrg.organizationType,
 				dataIndex : 'organizationType',
 				renderer: function(value,metadata,record){
 					if(value==0){
-	                	   return "银行";
+	                	   return Eway.locale.person.bankOrg.bank;
 	                   }else if(value==1){
-	                	   return "维护商";
+	                	   return Eway.locale.person.bank.bankOrg.serviceOrg;
 	                   }
 				},
 				hidden: true,
 				sortable : true
 			},{
-				header : '管理员',
+				header : Eway.locale.person.bankOrg.manager,
 				dataIndex : 'manager'
 			},{
-				header : '机构地址',
+				header : Eway.locale.person.bankOrg.address,
 				dataIndex : 'address',
 				sortable : true,
 				width : 200
 			},{
-				header : '机构描述',
+				header : Eway.locale.person.bankOrg.description,
 				dataIndex : 'description',
 				sortable : true,
 				flex : 1

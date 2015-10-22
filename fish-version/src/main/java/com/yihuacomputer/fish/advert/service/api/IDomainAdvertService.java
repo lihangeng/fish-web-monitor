@@ -4,6 +4,7 @@
 package com.yihuacomputer.fish.advert.service.api;
 
 import com.yihuacomputer.fish.advert.entity.Advert;
+import com.yihuacomputer.fish.api.advert.IAdvertResourceService;
 import com.yihuacomputer.fish.api.advert.IAdvertService;
 import com.yihuacomputer.fish.api.advert.IAdvertZipGenerator;
 import com.yihuacomputer.fish.api.person.IUserService;
@@ -15,7 +16,7 @@ import com.yihuacomputer.fish.api.version.IVersion;
  */
 public interface IDomainAdvertService extends IAdvertService {
 
-	public IDomainAdvertResourceService getAdvertResourceService();
+	public IAdvertResourceService getAdvertResourceService();
 
 	public IVersion generateVersion(Advert advert,IAdvertZipGenerator zipGenerator);
 

@@ -13,7 +13,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 	bodyStyle:'padding:10px',
 	tools: [ {
 		type:'refresh',
-		tooltip: '刷新',
+		tooltip: Eway.locale.button.refresh,
 		action : 'refresh'
 	} ],
 
@@ -27,7 +27,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 			},
 			items : [ {
 				xtype : 'fieldset',
-				title : '设备基本信息',
+				title : Eway.locale.commen.devInfo,
 				collapsible : true,
 				defaults : {
 					border : false
@@ -37,12 +37,12 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [ {
 						columnWidth : .5,
-						fieldLabel : '设备号',
+						fieldLabel : Eway.locale.commen.terminalId,
 						name : 'code',
 						link : true
 					}, {
 						columnWidth : .49,
-						fieldLabel : '所属机构',
+						fieldLabel : Eway.locale.commen.orgNameBelongs,
 						name : 'org'
 					} ]
 				}, {
@@ -50,11 +50,11 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [ {
 						columnWidth : .5,
-						fieldLabel : '设备型号',
+						fieldLabel : Eway.locale.commen.devTypeName,
 						name : 'type'
 					}, {
 						columnWidth : .49,
-						fieldLabel : '联系人',
+						fieldLabel : Eway.locale.commen.personnel,
 						name : 'personnel',
 						link : true
 					} ]
@@ -63,11 +63,11 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [ {
 						columnWidth : .5,
-						fieldLabel : '在行标志',
+						fieldLabel : Eway.locale.commen.insideOutside,
 						name : 'insideOutside'
 					}, {
 						columnWidth : .49,
-						fieldLabel : 'IP地址',
+						fieldLabel : Eway.locale.commen.ip,
 						name : 'ip'
 					} ]
 				}, {
@@ -75,19 +75,19 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [ {
 						columnWidth : .5,
-						fieldLabel : '装机地址',
+						fieldLabel : Eway.locale.commen.installAddr,
 						name : 'address',
 						tips : true,
 						fieldCls : 'text_ellipsis'
 					}, {
 						columnWidth : .49,
-						fieldLabel : '应用版本号',
+						fieldLabel : Eway.locale.commen.appVersion,
 						name : 'appRelease'
 					} ]
 				} ]
 			}, {
 				xtype : 'fieldset',
-				title : '设备状态信息',
+				title : Eway.locale.commen.devStatus,
 				collapsible : true,
 				defaults : {
 					border : false
@@ -97,12 +97,12 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [ {
 						columnWidth : .5,
-						fieldLabel : '运行状态',
+						fieldLabel : Eway.locale.monitor.devMonitor.comboxStatus.runStatus,
 						name : 'runStatus',
 						link : true
 					}, {
 						columnWidth : .49,
-						fieldLabel : '钞箱初始金额',
+						fieldLabel : Eway.locale.monitor.devMonitor.cash.boxInitCount,
 						name : 'boxInitCount'
 					} ]
 				}, {
@@ -118,13 +118,13 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 				        defaultType : 'displayfield',
 				        items: [ {
 							columnWidth : .5,
-							fieldLabel : '模块状态',
+							fieldLabel : Eway.locale.monitor.devMonitor.comboxStatus.modStatus,
 							name : 'modStatus',
 							link : true
 						}, {
 							hideLabel: true,
 							columnWidth : .49,
-							fieldLabel : '模块状态图示',
+							fieldLabel : Eway.locale.monitor.devMonitor.modStateGraphic,
 							name : 'modGraphic',
 							link : true,
 							code : 'modStatusGraphic',
@@ -135,7 +135,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					}, {
 						columnWidth : .49,
 						xtype: 'displayfield',
-						fieldLabel : '钞箱当前金额',
+						fieldLabel : Eway.locale.monitor.devMonitor.cash.boxCurrentCount,
 						name : 'boxCurrentCount'
 					} ]
 				}, {
@@ -143,12 +143,12 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [ {
 						columnWidth : .5,
-						fieldLabel : '钞箱状态',
+						fieldLabel : Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,
 						name : 'boxStatus',
 						link : true
 					}, {
 						columnWidth : .49,
-						fieldLabel : '当前吞卡数量',
+						fieldLabel : Eway.locale.monitor.devMonitor.retainCardCount,
 						name : 'retainCardCount'
 					} ]
 				}, {
@@ -156,18 +156,18 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [ {
 						columnWidth : .5,
-						fieldLabel : '网络状态',
+						fieldLabel : Eway.locale.monitor.devMonitor.comboxStatus.netStatus,
 						name : 'netStatus',
 						link : true
 					}, {
 						columnWidth : .49,
-						fieldLabel : '注册状态',
+						fieldLabel : Eway.locale.monitor.devMonitor.registerStatus,
 						name : 'registerStatus'
 					} ]
 				} ]
 			}, {
 				xtype : 'fieldset',
-				title : '设备模块状态',
+				title : Eway.locale.monitor.devMonitor.devModStatus,
 				collapsible : true,
 				defaults : {
 					border : false
@@ -177,17 +177,17 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [ {
 						columnWidth : .3,
-						fieldLabel : '读卡器',
+						fieldLabel : Eway.locale.monitor.devMonitor.mod.idc,
 						name : 'idcStatus',
 						link : true
 					},{
 						columnWidth : .3,
-						fieldLabel : '日志打印机',
+						fieldLabel : Eway.locale.monitor.devMonitor.mod.jpr,
 						name : 'jprStatus',
 						link : true
 					},{
 						columnWidth : .3,
-						fieldLabel : '取款模块',
+						fieldLabel : Eway.locale.monitor.devMonitor.mod.cdm,
 						name : 'cdmStatus',
 						link : true
 					}]
@@ -196,17 +196,17 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [{
 						columnWidth : .3,
-						fieldLabel : '存款模块',
+						fieldLabel : Eway.locale.monitor.devMonitor.mod.cim,
 						name : 'cimStatus',
 						link : true
 					},{
 						columnWidth : .3,
-						fieldLabel : '传感器',
+						fieldLabel : Eway.locale.monitor.devMonitor.mod.siu,
 						name : 'siuStatus',
 						link : true
 					},{
 						columnWidth : .3,
-						fieldLabel : '凭条打印机',
+						fieldLabel : Eway.locale.monitor.devMonitor.mod.rpr,
 						name : 'rprStatus',
 						link : true
 					}]
@@ -215,17 +215,17 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [{
 						columnWidth : .3,
-						fieldLabel : '密码键盘',
+						fieldLabel : Eway.locale.monitor.devMonitor.mod.pin,
 						name : 'pinStatus',
 						link : true
 					},{
 						columnWidth : .3,
-						fieldLabel : '文本终端',
+						fieldLabel : Eway.locale.monitor.devMonitor.mod.ttu,
 						name : 'ttuStatus',
 						link : true
 					}, {
 						columnWidth : .3,
-						fieldLabel : '身份证扫描仪',
+						fieldLabel : Eway.locale.monitor.devMonitor.mod.isc,
 						name : 'iscStatus',
 						link : true
 					} ]
@@ -234,19 +234,19 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaultType : 'displayfield',
 					items : [ {
 						columnWidth : .3,
-						fieldLabel : '发卡器',
+						fieldLabel : Eway.locale.monitor.devMonitor.mod.icc,
 						name : 'iccStatus',
 						link : true
 					}, {
 						columnWidth : .3,
-						fieldLabel : '指纹仪',
+						fieldLabel : Eway.locale.monitor.devMonitor.mod.fgp,
 						name : 'fgpStatus',
 						link : true
 					} ]
 				} ]
 			}, {
 				xtype : 'fieldset',
-				title : '远程控制',
+				title : Eway.locale.monitor.devMonitor.remote.control,
 				collapsible : true,
 				defaults : {
 					border : false
@@ -254,12 +254,12 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 				items : [ {
 					layout : 'column',
 					xtype:'toolbar',
-					defaultType : 'transparentbutton',
+//					defaultType : 'transparentbutton',
 					minHeight : 90,
 					items : [ {
 						columnWidth : .24,
 						name : 'remoteScreenAction',
-						text : '远程抓屏',
+						text : Eway.locale.monitor.devMonitor.remote.screen,
 						code : 'remoteScreen',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
@@ -267,23 +267,23 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					}, {
 						columnWidth : .24,
 						name : 'logAction',
-						text : '提取电子日志',
+						text : Eway.locale.monitor.devMonitor.remote.log,
 						code : 'takeLog',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					}, {
 						columnWidth : .24,
-						text : '查看网络连接</a>',
+						text : Eway.locale.monitor.devMonitor.remote.net+'</a>',
 						name : 'netAction'
 					}, {
 						columnWidth : .24,
-						text : '获取软件列表</a>',
+						text : Eway.locale.monitor.devMonitor.remote.softwareList+'</a>',
 						name : 'softwareListAction'
 					}, {
 						columnWidth : .24,
 						name: 'closeAction',
-						text : '关机</a>',
+						text : Eway.locale.monitor.devMonitor.remote.powerOff+'</a>',
 						code : 'close',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
@@ -291,7 +291,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					}, {
 						columnWidth : .24,
 						name : 'restartAction',
-						text : '重新启动',
+						text : Eway.locale.monitor.devMonitor.remote.restart,
 						code : 'restart',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
@@ -299,7 +299,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					}, {
 						columnWidth : .24,
 						name : 'logicOpenAction',
-						text : '开启服务',
+						text : Eway.locale.monitor.devMonitor.remote.logicOpen,
 						code : 'logicOpen',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
@@ -307,7 +307,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					}, {
 						columnWidth : .24,
 						name : 'logicCloseAction',
-						text : '暂停服务',
+						text : Eway.locale.monitor.devMonitor.remote.logicClose,
 						code : 'logicClose',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
@@ -315,19 +315,19 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					}, {
 						columnWidth : .24,
 						name : 'remoteBrowserAction',
-						text : '远程浏览',
+						text : Eway.locale.monitor.devMonitor.remote.remoteBrowser,
 						code : 'remoteBrowser',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					}, {
 						columnWidth : .24,
-						text : '查看进程信息',
+						text : Eway.locale.monitor.devMonitor.remote.processList,
 						name : 'processListAction'
 					}, {
 						columnWidth : .24,
 						name : 'screenCameraAction',
-						text : '屏幕录制',
+						text : Eway.locale.monitor.devMonitor.remote.screenCamera,
 						code : 'screenCamera',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
@@ -335,7 +335,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					}, {
 						columnWidth : .24,
 						name : 'resetAction',
-						text : '强制复位',
+						text : Eway.locale.monitor.devMonitor.remote.reset,
 						code : 'reset',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
@@ -343,11 +343,11 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					}, {
 						columnWidth : .24,
 						name : 'remoteLookAction',
-						value : '查看应用版本'
+						text : Eway.locale.monitor.devMonitor.remote.remoteLook
 					}, {
 						columnWidth : .24,
 						name : 'remoteCheckATMAction',
-						value : 'ATM体检',
+						text : Eway.locale.monitor.devMonitor.remote.remoteCheckATM,
 						code : 'remoteCheckATM',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
@@ -388,7 +388,11 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 				}else if(name == "runStatus"){
 					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getRunPath(record.get("run")) + '"/>&nbsp;&nbsp;</div>';
 
-					var runFatals= ['半功能','维护','关机','重启','交易前置故障','报停','暂停服务-模块故障','暂停服务-未加钞','暂停服务'];
+					var runFatals= [Eway.locale.monitor.devMonitor.remote.halfSer,Eway.locale.monitor.devMonitor.remote.staff,
+					                Eway.locale.monitor.devMonitor.remote.powerOff,Eway.locale.monitor.devMonitor.remote.restart,
+					                Eway.locale.monitor.devMonitor.remote.pFault,
+					                Eway.locale.monitor.devMonitor.remote.stop,Eway.locale.monitor.devMonitor.remote.pauseFault,
+					                Eway.locale.monitor.devMonitor.remote.pauseCash,Eway.locale.monitor.devMonitor.remote.pauseSer];
 					if(Ext.Array.contains(runFatals,value)){
 						item.setValue(img + "<span class='fatalHighLight'>"+ value + "</span>");
 					}else{
@@ -399,9 +403,9 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 
 					var className = 'link ';
 
-					if(value == '警告'){
+					if(value == Eway.locale.commen.warn){
 						className += ' warningHighLight ';
-					}else if(value == '故障'){
+					}else if(value == Eway.locale.commen.fatal){
 						className += ' fatalHighLight ';
 					}
 					item.setValue(img + '<a href="#" class="'+className+'">' + value + '</a>');
@@ -410,10 +414,11 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getBoxPath(record.get("box")) + '"/>&nbsp;&nbsp;</div>';
 
 					var className = 'link';
-					var boxFatals= ['存款钞满','取款钞空','存款钞将满','钞箱故障'];
+					var boxFatals= [Eway.locale.monitor.devMonitor.cash.cimFull,Eway.locale.monitor.devMonitor.cash.cdmEmpty,
+					                Eway.locale.monitor.devMonitor.cash.cimAFull,Eway.locale.monitor.devMonitor.cash.cashFault];
 					if(Ext.Array.contains(boxFatals,value)){
 						className += ' fatalHighLight ';
-					} else if(value == '取款钞少') {
+					} else if(value == Eway.locale.monitor.devMonitor.cash.cdmLow) {
 						className += ' warningHighLight ';
 					}
 					item.setValue(img + '<a href="#" class="'+className+'">'+value+'</a>');
@@ -421,17 +426,17 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 				}else if(name == "netStatus"){
 					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getNetPath(record.get("net")) + '"/>&nbsp;&nbsp;</div>';
 
-					if(value =="故障"){
+					if(value ==Eway.locale.commen.fatal){
 						item.setValue(img + "<span class='fatalHighLight'>"+ value + "</span>");
-					}else if(value =="不稳定"){
+					}else if(value ==Eway.locale.commen.unStable){
 						item.setValue(img + "<span class='warningHighLight'>"+ value + "</span>");
 					}else{
 						item.setValue(img + value);
 					}
 				} else if (name == 'personnel') {
-					item.setValue('<a href="#" class="link">管机员和维护员</a>');
+					item.setValue('<a href="#" class="link">'+Eway.locale.monitor.devMonitor.remote.manaAndstaff+'</a>');
 				} else if (name == "modGraphic") {
-					item.setValue('<a href="#" class="link">模块图示</a>');
+					item.setValue('<a href="#" class="link">'+Eway.locale.monitor.devMonitor.modGraphic+'</a>');
 				} else {
 					item.setValue('<a href="#" class="link">'+value+'</a>');
 				}
@@ -446,19 +451,19 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 
 	_getText : function(value){
 		if(value=='Healthy'){
-			return '正常';
+			return Eway.locale.commen.stateDict.normal;
 		}
 		if(value=='Warning'){
-			return '警告';
+			return Eway.locale.commen.warn;
 		}
 		if(value=='Fatal'){
-			return '故障';
+			return Eway.locale.commen.fatal;
 		}
 		if(value=='Unknown'){
-			return '未知';
+			return Eway.locale.commen.unknow;
 		}
 		if(value=='NoDevice'){
-			return '无设备';
+			return Eway.locale.monitor.devMonitor.noData;
 		}
 	}
 });

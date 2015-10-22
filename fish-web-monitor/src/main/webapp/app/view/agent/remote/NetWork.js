@@ -23,7 +23,7 @@ Ext.define("Eway.view.agent.remote.NetWork", {
 			    	layout:'column',
 			    	border :'false',
 			    	items:[{
-			    		title:'网络连接信息',
+			    		title:Eway.locale.agent.remote.networkInfo,
 			    		columnWidth:.5,
 		                border:false,
 		                layout: 'anchor',
@@ -34,13 +34,13 @@ Ext.define("Eway.view.agent.remote.NetWork", {
 		                	style : 'padding-top:10px'
 		                },
 		                items:[{
-							fieldLabel : '连接速率',
+							fieldLabel : Eway.locale.agent.remote.conenctRate,
 							name : 'conenctRate'
 						}, {
-							fieldLabel : '接收到的字节数',
+							fieldLabel : Eway.locale.agent.remote.receivedByte,
 							name : 'receivedByte'
 						} , {
-							fieldLabel : '发动的字节数',
+							fieldLabel : Eway.locale.agent.remote.sendByte,
 							name : 'sendByte'
 						}]
 			    	}]

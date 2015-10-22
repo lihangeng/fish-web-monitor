@@ -4,9 +4,11 @@ import java.io.File;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.exception.AppException;
@@ -14,10 +16,10 @@ import com.yihuacomputer.common.exception.NotFoundException;
 import com.yihuacomputer.common.util.IOUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.advert.entity.Advert;
-import com.yihuacomputer.fish.advert.service.api.IDomainAdvertResourceService;
 import com.yihuacomputer.fish.advert.service.api.IDomainAdvertService;
 import com.yihuacomputer.fish.api.advert.AdvertType;
 import com.yihuacomputer.fish.api.advert.IAdvert;
+import com.yihuacomputer.fish.api.advert.IAdvertResourceService;
 import com.yihuacomputer.fish.api.advert.IAdvertZipGenerator;
 import com.yihuacomputer.fish.api.person.IUserService;
 import com.yihuacomputer.fish.api.version.IVersion;
@@ -41,7 +43,7 @@ public class AdvertService implements IDomainAdvertService {
     private IGenericDao dao;
 
     @Autowired
-    private IDomainAdvertResourceService advertResourceService;
+    private IAdvertResourceService advertResourceService;
 
     @Autowired(required = false)
     private IVersionService versionService;
@@ -52,6 +54,9 @@ public class AdvertService implements IDomainAdvertService {
     @Autowired(required = false)
     private IUserService userService;
 
+    @Autowired
+    private MessageSource messageSourceVersion;
+    
     @Override
     @Transactional(readOnly = true)
     public IAdvert make(AdvertType advertType) {
@@ -88,14 +93,14 @@ public class AdvertService implements IDomainAdvertService {
     @Override
     public void delete(IAdvert advert) {
         if (advert == null) {
-            throw new NotFoundException("删除的记录不存在");
+            throw new NotFoundException(messageSourceVersion.getMessage("advert.deleteNullRecord", null, FishCfg.locale));
         }
         // delete version
         IVersion version = advert.getVersion();
         if (version != null && versionService != null) {
         	if(VersionStatus.WAITING.equals(version.getVersionStatus())
         			||VersionStatus.DOWNLOADED.equals(version.getVersionStatus())){
-        		throw new AppException("不能删除'已下发'和'等待下发'状态的广告.");
+        		throw new AppException(messageSourceVersion.getMessage("advert.cantDeleteDownOrWaitAdvert", null, FishCfg.locale));
         	}
             versionService.delete(version);
         }
@@ -136,7 +141,8 @@ public class AdvertService implements IDomainAdvertService {
             IVersionType type = versionTypeService.getByName("advert");
             version = versionService.make();
             version.setVersionType(type);
-
+            version.setDesc("advert_" + advert.getId());
+            version.setDownloadCounter(1);
             version.setVersionPath(type.getDefaultInstallPath());
             version.setVersionNo(versionService.getNextVersionNo(type.getId()));
             version.setServerPath("advert_" + advert.getId() + ".zip");
@@ -167,7 +173,7 @@ public class AdvertService implements IDomainAdvertService {
     }
 
     @Override
-    public IDomainAdvertResourceService getAdvertResourceService() {
+    public IAdvertResourceService getAdvertResourceService() {
         return this.advertResourceService;
     }
 

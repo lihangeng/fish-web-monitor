@@ -15,7 +15,7 @@ Ext.define('Eway.view.atmLog.AtmLogInfoFilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype : 'datefield',
-					fieldLabel : '日志日期',
+					fieldLabel : Eway.locale.atmLog.logDate,
 					name : 'backupDate',
 					editable : false,
 					format : 'Y-m-d'
@@ -29,9 +29,9 @@ Ext.define('Eway.view.atmLog.AtmLogInfoFilterForm',{
 					name : 'orgId'
 				},{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '所属机构 ',
+					fieldLabel : Eway.locale.commen.orgNameBelongs,
 					labelAlign : 'right',
-					emptyText : '--请选择--',
+					emptyText : Eway.locale.combox.select,
 					name : 'orgName',
 					hiddenValue : 'orgId',
 					editable : false,

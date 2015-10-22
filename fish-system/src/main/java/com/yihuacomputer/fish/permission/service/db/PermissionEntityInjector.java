@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.yihuacomputer.domain.interceptor.IEntityInjector;
-import com.yihuacomputer.fish.permission.entity.Permission;
 import com.yihuacomputer.fish.permission.service.api.IDomainPermissionService;
+import com.yihuacomputer.fish.system.entity.Permission;
 
 @Component("permissionEntityInjector")
 public class PermissionEntityInjector implements IEntityInjector {

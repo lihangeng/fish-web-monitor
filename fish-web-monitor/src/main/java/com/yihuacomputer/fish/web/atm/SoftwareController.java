@@ -69,7 +69,7 @@ public class SoftwareController {
 				collectService.collectDeviceSoftware(softwareMsg.getTermId(), software);
 			}
     	}catch(Exception e){
-    		logger.error(String.format("处理操作系统信息异常![%s],请求信息[%s]",e,JsonUtils.toJson(softwareMsg)));
+    		logger.error(String.format("collection software exception![%s],software is [%s]",e,JsonUtils.toJson(softwareMsg)));
     	}
 		return result;
 	}

@@ -22,6 +22,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,6 +53,9 @@ public class FaultController
 
     @Autowired
     private ICaseFaultService service;
+
+    @Autowired
+	protected MessageSource messageSource;
 
     /**
      * 根据条件得到故障列表
@@ -173,7 +177,7 @@ public class FaultController
         // 创建一个webbook，对应一个Excel文件
         HSSFWorkbook wb = new HSSFWorkbook();
         // 在webbook中添加一个sheet,对应Excel文件中的sheet
-        HSSFSheet sheet = wb.createSheet("故障列表");
+        HSSFSheet sheet = wb.createSheet(messageSource.getMessage("fault.faultList", null, FishCfg.locale));
         // 在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
         HSSFRow row = sheet.createRow(0);
         // 创建单元格，并设置值表头 设置表头居中
@@ -181,39 +185,39 @@ public class FaultController
         style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
 
         HSSFCell cell = row.createCell(0);
-        cell.setCellValue("设备号");
+        cell.setCellValue(messageSource.getMessage("device.terminalId", null, FishCfg.locale));
         cell.setCellStyle(style);
 
         cell = row.createCell(1);
-        cell.setCellValue("故障模块");
+        cell.setCellValue(messageSource.getMessage("fault.faultMod", null, FishCfg.locale));
         cell.setCellStyle(style);
 
         cell = row.createCell(2);
-        cell.setCellValue("故障分类");
+        cell.setCellValue(messageSource.getMessage("fault.type", null, FishCfg.locale));
         cell.setCellStyle(style);
 
         cell = row.createCell(3);
-        cell.setCellValue("厂商故障码");
+        cell.setCellValue(messageSource.getMessage("fault.faultCode", null, FishCfg.locale));
         cell.setCellStyle(style);
 
         cell = row.createCell(4);
-        cell.setCellValue("故障开始时间");
+        cell.setCellValue(messageSource.getMessage("fault.beginTime", null, FishCfg.locale));
         cell.setCellStyle(style);
 
         cell = row.createCell(5);
-        cell.setCellValue("故障关闭时间");
+        cell.setCellValue(messageSource.getMessage("fault.endTime", null, FishCfg.locale));
         cell.setCellStyle(style);
 
         cell = row.createCell(6);
-        cell.setCellValue("持续时长");
+        cell.setCellValue(messageSource.getMessage("fault.lastTime", null, FishCfg.locale));
         cell.setCellStyle(style);
 
         cell = row.createCell(7);
-        cell.setCellValue("故障状态");
+        cell.setCellValue(messageSource.getMessage("fault.status", null, FishCfg.locale));
         cell.setCellStyle(style);
 
         cell = row.createCell(8);
-        cell.setCellValue("升级次数");
+        cell.setCellValue(messageSource.getMessage("fault.updateTimes", null, FishCfg.locale));
         cell.setCellStyle(style);
 
         HSSFCellStyle cellStyle = wb.createCellStyle();
@@ -239,7 +243,7 @@ public class FaultController
             }
             else
             {
-                cell.setCellValue(cellValue(fault.getDevMod().getText()));
+                cell.setCellValue(cellValue(getEnumI18n(fault.getDevMod().getText())));
             }
 
             cell = row.createCell(2);
@@ -273,11 +277,11 @@ public class FaultController
             cell.setCellStyle(cellStyle);
             if (fault.getFaultStatus().equals(FaultStatus.OPEN))
             {
-                cell.setCellValue("未关闭");
+                cell.setCellValue(messageSource.getMessage("fault.unClosed", null, FishCfg.locale));
             }
             else if (fault.getFaultStatus().equals(FaultStatus.CLOSED))
             {
-                cell.setCellValue("已关闭");
+                cell.setCellValue(messageSource.getMessage("fault.closed", null, FishCfg.locale));
             }
 
             cell = row.createCell(8);
@@ -393,5 +397,13 @@ public class FaultController
             return String.valueOf(obj.toString());
         }
         return obj.toString();
+    }
+    @Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
     }
 }

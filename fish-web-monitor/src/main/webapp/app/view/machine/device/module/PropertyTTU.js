@@ -7,7 +7,7 @@ Ext.define("Eway.view.machine.device.module.PropertyTTU", {
 	extend : 'Ext.form.Panel',
 	alias : 'widget.machine_device_module_propertyttu',
 	items : [ {
-		title : '文本终端单元(TTU)属性信息',
+		title : Eway.locale.machine.device.TTUInfo,
 		titleAlign: 'center',
 		layout : 'column',
 		items : [ {
@@ -21,20 +21,20 @@ Ext.define("Eway.view.machine.device.module.PropertyTTU", {
 				labelWidth: 150
 			},
 			items : [ {
-				fieldLabel : '是否支持字母数字键输入',
+				fieldLabel : Eway.locale.machine.device.alphanumericKeysPresent,
 				name : 'alphanumericKeysPresent',
 				style : 'margin-top:2px'
 			}, {
-				fieldLabel : '是否支持数字键输入',
+				fieldLabel : Eway.locale.machine.device.numericKeysPresent,
 				name : 'numericKeysPresent'
 			}, {
-				fieldLabel : '是否支持屏幕亮度调节',
+				fieldLabel : Eway.locale.machine.device.displayLightPresent,
 				name : 'displayLightPresent'
 			}, {
-				fieldLabel : '是否支持鼠标',
+				fieldLabel : Eway.locale.machine.device.cursorSupported,
 				name : 'cursorSupported'
 			}, {
-				fieldLabel : '横轴分辨率',
+				fieldLabel : Eway.locale.machine.device.resolutionX,
 				name : 'resolutionX'
 			} ]
 		}, {
@@ -48,17 +48,17 @@ Ext.define("Eway.view.machine.device.module.PropertyTTU", {
 				labelWidth : 150
 			},
 			items : [ {
-				fieldLabel : '是否支持十六进制键输入',
+				fieldLabel : Eway.locale.machine.device.hexadecimalKeysPresent,
 				name : 'hexadecimalKeysPresent',
 				style : 'margin-top:2px'
 			}, {
-				fieldLabel : '是否支持键盘锁定',
+				fieldLabel : Eway.locale.machine.device.keyboardLockPresent,
 				name : 'keyboardLockPresent'
 			}, {
-				fieldLabel : '是否支持表格',
+				fieldLabel : Eway.locale.machine.device.formsSupported,
 				name : 'formsSupported'
 			}, {
-				fieldLabel : '纵轴分辨率',
+				fieldLabel : Eway.locale.machine.device.resolutionY,
 				name : 'resolutionY'
 			} ]
 		} ]

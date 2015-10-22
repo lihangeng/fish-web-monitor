@@ -57,7 +57,7 @@ Ext.define('Eway.controller.report.openPlan.OpenPlan', {
 			var PlanDeviceWin = Ext.create('Eway.view.report.plan.PlanDevice');
 			var linkedDeviceGrid = PlanDeviceWin.down('plan_linkedDeviceGrid');
 			var actionTip1 = linkedDeviceGrid.down("tbtext[action=tip]");
-			actionTip1.setText("已关联的设备");
+			actionTip1.setText(Eway.locale.commen.bindMachine);
 			linkedDeviceGrid.getStore().load({
 				params : {
 					flag:0,
@@ -66,7 +66,7 @@ Ext.define('Eway.controller.report.openPlan.OpenPlan', {
 			});
 			var linkingDeviceGrid = PlanDeviceWin.down('plan_linkingDeviceGrid');
 			var actionTip2 = linkingDeviceGrid.down("tbtext[action=tip]");
-			actionTip2.setText("可关联的设备");
+			actionTip2.setText(Eway.locale.commen.canBindMachine);
 			linkingDeviceGrid.getStore().load({
 				params : {
 					flag:1,
@@ -74,8 +74,8 @@ Ext.define('Eway.controller.report.openPlan.OpenPlan', {
 				}
 			});
 			if(record.data.startDate<now){
-				actionTip1.setText('已关联的设备'+'<font color="red">'+'(此方案已过期，不可应用！)'+'</font>');
-				actionTip2.setText('可关联的设备'+'<font color="red">'+'(此方案已过期，不可应用！)'+'</font>');
+				actionTip1.setText(Eway.locale.commen.bindMachine+'<font color="red">'+Eway.locale.vtype.planOutdate+'</font>');
+				actionTip2.setText(Eway.locale.commen.canBindMachine+'<font color="red">'+Eway.locale.vtype.planOutdate+'</font>');
 				linkedDeviceGrid.down('button[action="unlink"]').setDisabled(true);
 				linkingDeviceGrid.down('button[action="link"]').setDisabled(true);
 			}
@@ -94,7 +94,7 @@ Ext.define('Eway.controller.report.openPlan.OpenPlan', {
 			PlanDeviceWin.show();
 		}
 		else {
-			Eway.alert("请选择您应用的方案.");
+			Eway.alert(Eway.locale.tip.selectPlan);
 		}
 	},
 
@@ -157,12 +157,12 @@ Ext.define('Eway.controller.report.openPlan.OpenPlan', {
 					});
 				},
 				failure: function(){
-					Eway.alert("解除失败.");
+					Eway.alert(Eway.locale.tip.removeFail);
 				},
 				scope:this
 			});
 		}else{
-			Eway.alert("请选择要解除的设备.");
+			Eway.alert(Eway.locale.tip.selectRemoveDev);
 		}
 	},
 
@@ -202,12 +202,12 @@ Ext.define('Eway.controller.report.openPlan.OpenPlan', {
 					});
 				},
 				failure: function(){
-					Eway.alert("关联失败.");
+					Eway.alert(Eway.locale.tip.relatedFail);
 				},
 				scope:this
 			});
 		}else{
-			Eway.alert("请选择要关联的设备.");
+			Eway.alert(Eway.locale.tip.selectRelatedDev);
 		}
 	},
 
@@ -259,7 +259,7 @@ Ext.define('Eway.controller.report.openPlan.OpenPlan', {
 				win.down('button[action="update"]').on('click',Ext.bind(this.onUpdateConfirm,this,[win]),this);
 				win.show();
 			}else{
-				Eway.alert("该方案已经执行,不可修改.");
+				Eway.alert(Eway.locale.tip.planNoUpdate);
 			}
 		}
 		else {
@@ -303,8 +303,8 @@ Ext.define('Eway.controller.report.openPlan.OpenPlan', {
 			var record = sm.getLastSelected();
 			var now = Ext.Date.format(new Date(), 'Y-m-d');
 			if(record.data.startDate>=now){
-				Ext.MessageBox.confirm("请确认",
-						"是否删除该记录?",
+				Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
+						Eway.locale.tip.remove.confirm.info,
 						function(button,text) {
 							if(button=="yes"){
 								var record = sm.getLastSelected();
@@ -321,7 +321,7 @@ Ext.define('Eway.controller.report.openPlan.OpenPlan', {
 							}
 						}, this);
 			}else{
-				Eway.alert("该方案已经执行,不可删除.");
+				Eway.alert(Eway.locale.tip.planNoRemove);
 			}
 		}
 		else {

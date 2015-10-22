@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,8 +16,8 @@ import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IPerson;
-import com.yihuacomputer.fish.person.entity.Person;
 import com.yihuacomputer.fish.person.service.base.DomainPersonService;
+import com.yihuacomputer.fish.system.entity.Person;
 
 /**
  * 数据库版PersonService实现：
@@ -55,20 +57,10 @@ public class PersonService extends DomainPersonService {
      * 根据外部ID获得人员信息
      */
     @Override
+    @Cacheable(value = "persons",key = "#guid")
     public Person get(String guid) {
         return dao.get(Long.valueOf(guid) , Person.class);
     }
-
-    // /**
-    // * 根据编号获得人员信息
-    // */
-    // @Override
-    // public Person findByCode(String code) {
-    // Person person =
-    // (Person)dao.getCriteria(Person.class).add(Restrictions.eq("code",
-    // code)).uniqueResult();
-    // return person;
-    // }
 
     /**
      * 获得所有人员信息列表
@@ -100,6 +92,7 @@ public class PersonService extends DomainPersonService {
      * 根据外部ID删除人员信息
      */
     @Override
+    @CacheEvict(value = "persons",key = "#guid")
     public void remove(String guid) {
         dao.delete(Long.valueOf(guid), Person.class);
     }

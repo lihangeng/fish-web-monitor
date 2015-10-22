@@ -5,7 +5,7 @@ import java.util.List;
 import com.yihuacomputer.fish.api.permission.IPermission;
 import com.yihuacomputer.fish.api.permission.IRole;
 import com.yihuacomputer.fish.api.permission.IRoleService;
-import com.yihuacomputer.fish.permission.entity.Role;
+import com.yihuacomputer.fish.system.entity.Role;
 
 /**
  * @author 樊晓雨

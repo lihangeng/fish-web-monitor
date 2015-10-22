@@ -14,7 +14,7 @@ Ext.define('Eway.view.person.bankPer.Add', {
 	           'Eway.view.field.person.PersonJobComboBox',
 	           'Eway.view.field.PersonRemark'],
 
-	title: '增加银行人员信息',
+	title: Eway.locale.person.bankPer.addBankPerTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -33,13 +33,13 @@ Ext.define('Eway.view.person.bankPer.Add', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font> 姓名',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.commen.name,
 					xtype : 'field.username',
 					maxLength : 20,
 					allowBlank : false
 				},{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font> 机构',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.bankPer.organizationName,
 					allowBlank: false,
 					name : 'organizationName',
 					filters : '{"type" : "0"}',
@@ -47,31 +47,31 @@ Ext.define('Eway.view.person.bankPer.Add', {
 					hiddenValue : 'organizationId',
 					editable : false
 			 	},{
-					fieldLabel: '<font color="red">*</font> 手机',
+					fieldLabel: '<font color="red">*</font> '+Eway.locale.commen.mobile,
 					xtype : 'field.mobile',
 					vtype:'mobile',
 					allowBlank : false
 				},{
 					xtype : 'field_person_personJobComboBox',
-					fieldLabel : '<font color="red">*</font> 岗位',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.commen.personJobName,
 					value : '0005',
 					allowBlank: false
 			 	},{
-					fieldLabel : '工号',
+					fieldLabel : Eway.locale.commen.jobNum,
 					xtype : 'textfield',
 					name:'jobNum',
 					maxLength : 20,
 					allowBlank : true
 				},{
 					xtype : 'field.state',
-					fieldLabel : '状态',
+					fieldLabel : Eway.locale.commen.state,
 					value : '1',
 					allowBlank : false,
 					editable : false
 				},{
 				    xtype : 'field.gender',
-				    fieldLabel : '性别',
-				    emptyText: '--请选择--',
+				    fieldLabel : Eway.locale.commen.gender,
+				    emptyText: Eway.locale.combox.select,
 				    allowBlank : false,
 				    value : 'MALE',
 					editable : false
@@ -84,7 +84,7 @@ Ext.define('Eway.view.person.bankPer.Add', {
 					editable : false
 				},{
 					xtype : 'textfield',
-					fieldLabel : '固话',
+					fieldLabel : Eway.locale.commen.phone,
 					name :'phone',
 					vtype:'telephone'
 				},{
@@ -95,15 +95,15 @@ Ext.define('Eway.view.person.bankPer.Add', {
 				}],
 				buttonAlign : 'center',
 				buttons: [{
-					text: '确认',
+					text: Eway.locale.button.confirm,
 					//iconCls :'sureBtn',
 					action: 'add'
 				}, {
-					text: '重置',
+					text: Eway.locale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: '取消',
+					text: Eway.locale.button.cancle,
 					//iconCls :'returnBtn',
 					handler: this.onOver
 				}]

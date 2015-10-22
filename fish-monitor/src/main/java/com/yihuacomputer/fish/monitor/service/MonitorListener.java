@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.cometd.bayeux.server.ServerSession;
+import org.springframework.context.MessageSource;
 
 import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.common.util.PageResult;
@@ -39,6 +40,17 @@ public class MonitorListener implements IMonitorListener{
 	private final String RETAINCARD_DATA_CHANNEL = "/service/retaincard/join";
 
 	private final String CLASSIFY_DATA_CHANNEL = "/service/classifyMod/join";
+	
+	private MessageSource messageSourceRef;
+	
+	public MessageSource getMessageSourceRef() {
+		return messageSourceRef;
+	}
+
+	public void setMessageSourceRef(MessageSource messageSourceRef) {
+		this.messageSourceRef = messageSourceRef;
+	}
+
 	/**
 	 * 初始化或重置设备列表.
 	 * @param userId
@@ -55,7 +67,7 @@ public class MonitorListener implements IMonitorListener{
 	 */
 	public void updateDevice(ServerSession userSession, IDeviceReport device){
 		StatusReport statusMonitor = new StatusReport();
-		statusMonitor.setStatusReport(device);
+		statusMonitor.setStatusReport(device,messageSourceRef);
 
 		statusMonitor.setMethod(ReportMedthod.UPDATE);
 		userSession.deliver(userSession, STATUS_DATA_CHANNEL, JsonUtils.toJson(statusMonitor), null);
@@ -68,7 +80,7 @@ public class MonitorListener implements IMonitorListener{
 	 */
 	public void addDevice(ServerSession userSession, IDeviceReport device){
 		StatusReport statusMonitor = new StatusReport();
-		statusMonitor.setStatusReport(device);
+		statusMonitor.setStatusReport(device,messageSourceRef);
 
 		statusMonitor.setMethod(ReportMedthod.ADD);
 		userSession.deliver(userSession, STATUS_DATA_CHANNEL, JsonUtils.toJson(statusMonitor), null);
@@ -82,7 +94,7 @@ public class MonitorListener implements IMonitorListener{
 	 */
 	public void removeDevice(ServerSession userSession, IDeviceReport device){
 		StatusReport statusMonitor = new StatusReport();
-		statusMonitor.setStatusReport(device);
+		statusMonitor.setStatusReport(device,messageSourceRef);
 		statusMonitor.setMethod(ReportMedthod.DELETE);
 
 		userSession.deliver(userSession, STATUS_DATA_CHANNEL, JsonUtils.toJson(statusMonitor), null);
@@ -124,7 +136,7 @@ public class MonitorListener implements IMonitorListener{
 	 */
 	public void deviceSign(ServerSession userSession, IDeviceReport device) {
 		StatusReport statusMonitor = new StatusReport();
-		statusMonitor.setDeviceSign(device);
+		statusMonitor.setDeviceSign(device,messageSourceRef);
 		statusMonitor.setMethod(ReportMedthod.UPDATE);
 		userSession.deliver(userSession, PROCESS_DATA_CHANNEL, JsonUtils.toJson(statusMonitor), null);
 	}

@@ -9,7 +9,7 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 	           'Eway.view.field.quittingNotice.DeviceCode',
 	           'Eway.lib.Util'],
 
-	title: '增加报停信息',
+	title: Eway.locale.machine.quittingNotice.addCloseMsg,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -39,7 +39,7 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 					}
 					return validStatus;
 			},
-			dateRangeText : '恢复日期不能小于等于停止日期,请重新选择'
+			dateRangeText : Eway.locale.machine.quittingNotice.dateRangeText
 		});
 		Ext.apply(this, {
 			items : {
@@ -54,14 +54,14 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font> 设备编号',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.terminalId,
 					xtype : 'field_deviceCode',
-					regexText : '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’和点号‘.’，只能以字母或数字开头。',
+					regexText : Eway.locale.vtype.bankOrgCode,
 					maxLength : 20,
-					blankText:"请点击查询，选择设备",
+					blankText:Eway.locale.machine.quittingNotice.click,
 					allowBlank : false
 				},{
-					fieldLabel : '<font color="red">*</font> 停机时间',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.quittingNotice.stopTime,
 					xtype : 'datetimefield',
 					name : 'stopTime',
 					editable : false,
@@ -77,7 +77,7 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 						}
 					}
 				},{
-					fieldLabel : '恢复时间',
+					fieldLabel : Eway.locale.machine.quittingNotice.openTime,
 					xtype : 'datetimefield',
 					name : 'openTime',
 					editable : false,
@@ -92,25 +92,25 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 						}
 					}
 				},{
-					fieldLabel : '<font color="red">*</font> 当前状态',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.quittingNotice.currentStatus,
 					xtype : 'field_devStatus',
 					allowBlank : false,
 					value : 'DISABLED',
 					editable : false
 				},{
-					fieldLabel : '<font color="red">*</font> 停机类型',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.quittingNotice.closeType,
 					xtype : 'field_stopType',
 					allowBlank : false,
 					value : '1',
 					editable : false
 				},{
-					fieldLabel : '<font color="red">*</font> 停机负责人',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.quittingNotice.responsibilityName,
 					xtype : 'textfield',
 					maxLength :20,
 					name : 'responsibilityName',
 					allowBlank : false
 				},{
-					fieldLabel : '停机原因',
+					fieldLabel : Eway.locale.machine.quittingNotice.stopReason,
 					xtype : 'textarea',
 					name : 'stopReason',
 					maxLength :60,
@@ -124,14 +124,14 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 				}],
 				buttonAlign : 'center',
 				buttons: [{
-					text: '确认',
+					text: Eway.locale.button.confirm,
 					action: 'confirm'
 				}, {
-					text: '重置',
+					text: Eway.locale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: '取消',
+					text: Eway.locale.button.back,
 					handler: this.onOver
 				}]
 			}

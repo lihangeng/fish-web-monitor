@@ -16,21 +16,16 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.monitor.business.CardRetainType;
 import com.yihuacomputer.fish.api.monitor.business.CardStatus;
 import com.yihuacomputer.fish.api.monitor.business.IDCardType;
 import com.yihuacomputer.fish.api.monitor.business.IRetaincard;
 import com.yihuacomputer.fish.api.person.IOrganization;
-import com.yihuacomputer.fish.monitor.service.base.DomainRetaincardService;
 
 @Entity
 @Table(name = "ATMC_RETAIN_CARD")
 public class Retaincard implements IRetaincard {
-
-	@Transient
-	private DomainRetaincardService service;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_ATMC_RETAIN_CARD")
@@ -65,7 +60,7 @@ public class Retaincard implements IRetaincard {
 	/**
 	 * 处理机构
 	 */
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.person.entity.Organization.class)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
 	@JoinColumn(name = "ORG_ID")
 	private IOrganization treatmentOrganization;
 
@@ -137,7 +132,7 @@ public class Retaincard implements IRetaincard {
 	/**
 	 * 移交到的机构
 	 */
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.person.entity.Organization.class)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
 	@JoinColumn(name = "HANDOVER_ORG_ID")
 	private IOrganization handOverOrg;
 
@@ -155,18 +150,6 @@ public class Retaincard implements IRetaincard {
 
 	public Retaincard() {
 
-	}
-
-	public Retaincard(DomainRetaincardService service) {
-		this.service = service;
-	}
-
-	public DomainRetaincardService getService() {
-		return service;
-	}
-
-	public void setService(DomainRetaincardService service) {
-		this.service = service;
 	}
 
 	public void setAccountNo(String accountNo) {

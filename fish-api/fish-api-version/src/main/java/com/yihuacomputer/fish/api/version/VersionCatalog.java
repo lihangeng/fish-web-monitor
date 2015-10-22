@@ -11,11 +11,26 @@ package com.yihuacomputer.fish.api.version;
  * @since 0.20
  */
 public enum VersionCatalog {
-    APP("应用"),
-    ADVERT("广告"),
-    ATM_PARAM("ATM参数"),
-    V_AGENT("监控客户端"),
-    OTHER("其它");
+    /**
+     * 应用
+     */
+    APP("VersionCatalog.APP"),
+    /**
+     * 广告
+     */
+    ADVERT("VersionCatalog.ADVERT"),
+    /**
+     * ATM参数
+     */
+    ATM_PARAM("VersionCatalog.ATM_PARAM"),
+    /**
+     * 监控客户端
+     */
+    V_AGENT("VersionCatalog.V_AGENT"),
+    /**
+     * 其它
+     */
+    OTHER("VersionCatalog.OTHER");
 
     private String text;
 

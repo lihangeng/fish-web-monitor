@@ -1,7 +1,7 @@
 Ext.define('Eway.view.field.person.PersonJobComboBox', {
 	extend : 'Ext.form.field.ComboBox',
 	alias : 'widget.field_person_personJobComboBox',
-	fieldLabel : '岗位',
+	fieldLabel : Eway.locale.commen.personJobName,
 	name : 'personJobCode',
 	msgTarget : 'side',
 	store : 'person.person.PersonJob',
@@ -9,7 +9,7 @@ Ext.define('Eway.view.field.person.PersonJobComboBox', {
 	displayField : 'name',
 	queryMode : 'local',
 	editable : false,
-	emptyText : '--请选择--',
+	emptyText : Eway.locale.combox.select,
 	listeners : {
 		beforerender : function() {
 			this.store.load();

@@ -4,7 +4,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseScreenCustomView',{
 	
 	requires: ['Eway.view.agent.remote.RemoteBrowseScreenCustomGrid'], 
 	
-	title: '远程抓屏',
+	title: Eway.locale.agent.remote.distanceScreen,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,

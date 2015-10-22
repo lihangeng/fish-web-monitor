@@ -20,7 +20,7 @@ Ext.apply(Ext.form.field.VTypes,{
 	zip :function(v){
 		return  /^\d{6}$/.test(v);
 	},
-	zipText : '请输入正确的邮编格式，6位的数字',
+	zipText : Eway.locale.vtype.zip,
 	zipMask : /[\d]/
 });
 //custom Vtype : ip地址
@@ -28,7 +28,7 @@ Ext.apply(Ext.form.field.VTypes,{
 	ip :function(v){
 		return /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/.test(v);
 	},
-	ipText : '请输入正确的IP地址',
+	ipText : Eway.locale.vtype.ip,
 	ipMask : /[\d\.]/i
 });
 //custom Vtype : 版本号
@@ -36,7 +36,7 @@ Ext.apply(Ext.form.field.VTypes,{/*(-{1}\w+){0,1}*/
 	versionNo :function(v){
 		return /^(\d{1,8})(\.{1}\d{1,8}){0,3}$/.test(v);
 	},
-	versionNoText : '不是正确的版本号格式,格式说明：1.版本号由4个部分组成 A.B.C.D ;2.只有A部分是必须的 ；3. A、B、C、D必须为大于等于0的整数 ,每个部分最大长度为8位； 4.ABCD部分必须用.分隔',
+	versionNoText : Eway.locale.vtype.versionNo,
 	versionNoMask : /[\d\.]/i
 });
 //自定义验证类型设备号
@@ -44,7 +44,7 @@ Ext.apply(Ext.form.field.VTypes,{
 	terminalId :function(v){
 		return /^([a-zA-Z0-9]+[a-zA-Z0-9-\.]*){1,20}$/.test(v);
 	},
-	terminalIdText : '输入错误,设备号由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’点号‘.’组成,只能以字母或数字开头,长度1到20位。',
+	terminalIdText : Eway.locale.vtype.terminalId,
 	terminalIdMask : /[\d\w-_\.]/i
 });
 //自定义手机号码的验证
@@ -52,7 +52,7 @@ Ext.apply(Ext.form.field.VTypes,{
 	mobile :function(v){
 		return /^\d{8,11}$/.test(v);
 	},
-	mobileText : '输入错误,手机号码只能输入8到11位数字。',
+	mobileText : Eway.locale.vtype.mobile,
 	mobileMask : /[\d]/i
 });
 //自定义银行卡号的验证
@@ -60,7 +60,7 @@ Ext.apply(Ext.form.field.VTypes,{
 	cardNo :function(v){
 		return /^\d{16,19}$/.test(v);
 	},
-	cardNoText : '输入错误,银行卡号只能输入16到19位数字。',
+	cardNoText : Eway.locale.vtype.cardNo,
 	cardNoMask : /[\d]/i
 });
 //自定义固定号码的验证
@@ -68,7 +68,7 @@ Ext.apply(Ext.form.field.VTypes,{
 	telephone :function(v){
 		return /^(\d{3}-?|\d{4}-?)?(\d{8}|\d{7})$/.test(v);
 	},
-	telephoneText : '输入错误,固定电话号码只能输入8到11位数字。',
+	telephoneText : Eway.locale.vtype.telephone,
 	telephoneMask : /[\d-]/i
 });
 
@@ -94,7 +94,7 @@ Ext.apply(Ext.form.field.VTypes, {
          */
         return true;
     },
-    daterangeText: '日期段不正确.'
+    daterangeText: Eway.locale.vtype.daterange
 });
 
 //冠字号历史查询时时间段为30天
@@ -122,7 +122,7 @@ Ext.apply(Ext.form.field.VTypes, {
          */
         return true;
     },
-    crowndaterangeText: '日期段不正确.'
+    crowndaterangeText: Eway.locale.vtype.daterange
 });
 
 Ext.apply(Ext.form.field.VTypes, {
@@ -137,6 +137,6 @@ Ext.apply(Ext.form.field.VTypes, {
     	}
     	return true;
     },
-    numberrangeText : '金额范围不正确.'
+    numberrangeText : Eway.locale.vtype.numberrange
 });
 

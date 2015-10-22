@@ -33,11 +33,11 @@ public class DeviceSoftVersionService implements IDomainDeviceSoftVersionService
 	}
 	
     @Transactional(readOnly = true)
-	public IDeviceSoftVersion get(String terminalId,String typeName){
+	public IDeviceSoftVersion get(long deviceId,String typeName){
 		StringBuffer hql = new StringBuffer();
 		hql.append("from DeviceSoftVersion t where ");
-		hql.append("t.terminalId = ? and t.typeName = ? ");
-		return dao.findUniqueByHql(hql.toString(), terminalId,typeName);
+		hql.append("t.deviceId = ? and t.typeName = ? ");
+		return dao.findUniqueByHql(hql.toString(), deviceId,typeName);
 	}
 
 	@Override
@@ -96,7 +96,7 @@ public class DeviceSoftVersionService implements IDomainDeviceSoftVersionService
 	public List<Object> findDeviceSoftVersions(String typeName) {
 		StringBuffer sql = new StringBuffer();
 		sql.append("select dev.id,dsv.VERSION_NO from DEV_INFO dev,VER_DEVICE_SOFT_VERSION dsv ");
-		sql.append("where dev.TERMINAL_ID = dsv.TERMINAL_ID and dsv.TYPE_NAME = ?");
+		sql.append("where dev.id = dsv.DEVICE_ID and dsv.TYPE_NAME = ?");
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		query.setString(0,typeName);
 		return query.list();

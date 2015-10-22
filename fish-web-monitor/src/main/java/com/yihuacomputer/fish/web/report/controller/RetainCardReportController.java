@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -56,7 +57,18 @@ public class RetainCardReportController {
 
 	@Autowired
 	private IExportReportService exportReportService;
+	
+    @Autowired
+	private MessageSource messageSource;
 
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	/**
 	 * 吞卡明细报表
 	 *
@@ -74,7 +86,7 @@ public class RetainCardReportController {
 
 		String resourcePath = rq.getSession().getServletContext().getRealPath("/resources/report/w_retaincard.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
-		parameters.put("title", ReportTitle.RetainCard.getText());
+		parameters.put("title", getEnumI18n(ReportTitle.RetainCard.getText()));
 
 		Date startReportDate = new Date();
 		if (filter.getFilterEntry("startData") != null) {
@@ -91,6 +103,14 @@ public class RetainCardReportController {
 		} else {
 			parameters.put("endReportDate", "");
 		}
+		
+		parameters.put("orgNo", messageSource.getMessage("report.device.orgNo", null, FishCfg.locale));
+		parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+		parameters.put("terminalId", messageSource.getMessage("device.terminalId", null, FishCfg.locale));
+		parameters.put("address", messageSource.getMessage("device.devAddress", null, FishCfg.locale));
+		parameters.put("dateTime", messageSource.getMessage("report.retainCard.dateTime", null, FishCfg.locale));
+		parameters.put("cardNo", messageSource.getMessage("report.retainCard.cardNo", null, FishCfg.locale));
+		parameters.put("reason", messageSource.getMessage("report.retainCard.reason", null, FishCfg.locale));
 
 		List<IRetainCardRpt> data = retainCardRptService.listRetainCardDetail(filter);
 

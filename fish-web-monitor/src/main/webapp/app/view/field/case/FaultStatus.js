@@ -3,7 +3,7 @@ Ext.define('Eway.view.field.case.FaultStatus', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field_faultStatus',
 	
-	fieldLabel : '故障状态',
+	fieldLabel : Eway.locale.cases.caseFault.faultState,
 	name : 'faultStatus',
 	hiddenName : 'faultStatus',
 	msgTarget : 'side',
@@ -12,6 +12,6 @@ Ext.define('Eway.view.field.case.FaultStatus', {
 	displayField : 'display',
 	editable : false,
 	queryMode : 'local',
-	emptyText: '--请选择--'
+	emptyText: Eway.locale.combox.select
 	
 });

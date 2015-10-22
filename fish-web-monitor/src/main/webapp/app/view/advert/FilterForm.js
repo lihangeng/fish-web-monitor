@@ -3,33 +3,39 @@ Ext.define('Eway.view.advert.FilterForm', {
 	alias : 'widget.advert_filterForm',
 
 	requires : ['Ext.ux.form.DateTimeField'],
-	height : 70,
+	height : 105,
 	initComponent : function() {
 		var me = this;
 		Ext.apply(this, {
 			layout : 'column',
 			items : [{
-				columnWidth : .4,
+				columnWidth : .8,
 				items : [{
 			                xtype: 'combobox',
-			                fieldLabel: '广告类型',
+			                fieldLabel: Eway.locale.advert.type,
 			                displayField: 'display',
 			                store: Ext.StoreMgr.lookup("advert.AdvertType"),
 			                queryMode: 'local',
 			                valueField : 'value',
 			                name:'advertType',
 			                editable : false,
-			                value :'',
 				            width: 280
 			            },{
-			                fieldLabel: '制作时间开始于',
+			                fieldLabel: Eway.locale.advert.createdTimeStart,
 			                xtype:'datetimefield',
 				        	name:'createdTimeStart',
-				        	editable: true,
+				        	editable: false,
+				            format: 'Y-m-d H:i:s',
+				            width: 280
+			            },{
+			                fieldLabel: Eway.locale.advert.createdTimeStop,
+			                xtype:'datetimefield',
+				        	name:'createdTimeEnd',
+				        	editable: false,
 				            format: 'Y-m-d H:i:s',
 				            width: 280
 			            }]
-			    },
+			    }/*,
 			    {
 				columnWidth : .4,
 				items : [{
@@ -51,7 +57,7 @@ Ext.define('Eway.view.advert.FilterForm', {
 				            format: 'Y-m-d H:i:s',
 				            width: 280
 			            }]
-			    }]
+			    }*/]
 		});
 		this.callParent(arguments);
 	}

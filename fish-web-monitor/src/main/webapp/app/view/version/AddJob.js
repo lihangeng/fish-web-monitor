@@ -6,7 +6,7 @@ Ext.define('Eway.view.version.AddJob', {
 	            'Eway.view.version.download.SelectableDeviceGrid',
 	            'Eway.view.version.download.LinkedDeviceGrid'],
 
-	title : '配置作业信息',
+	title : Eway.locale.version.addJobTitle,//'配置作业信息',
 	modal : true,
 	resizable : true,
 	constrainHeader : true,
@@ -21,19 +21,13 @@ Ext.define('Eway.view.version.AddJob', {
 		Ext.apply(this,{
 			items : [ {
 				region : 'south',
-				padding: '1px 0px 0px 0px',
-				dockedItems : [{
-				xtype: 'toolbar',
-				dock: 'bottom',
-				layout: {
-				    pack: 'center'
-				},
-				items :[{
-					text : '保存',
+				buttonAlign:'center',
+				buttons :[{
+					text : Eway.locale.button.save,//'保存',
 					action : 'confirm',
 					iconCls:'db-save'
 				}]
-			}]
+//			}]
 			},{
 				region : 'north',
 				xtype:'form',
@@ -52,30 +46,32 @@ Ext.define('Eway.view.version.AddJob', {
 				},
 				items : [{
 					xtype: 'textfield',
-					fieldLabel:"<font color='red'>*</font>任务批次名称",
+					fieldLabel:Eway.locale.version.batchTaskName,//任务批次名称",
 					name :'jobName',
 					maxLength: 128,
-					emptyText:'例如:****需求第1批次升级'
+					allowBlank:false,
+					readOnly:true,
+					emptyText:Eway.locale.version.batchTaskNameEmpty//'例如:****需求第1批次升级'
 			 },{
 					xtype: 'container',
                     layout: 'hbox',
                     items: [{
     					xtype: 'hidden',
-    					fieldLabel : '下发版本ID',
+    					fieldLabel : Eway.locale.version.downloadVersionId,//'下发版本ID',
     					name: 'versionId'
     				},{
     					xtype: 'displayfield',
-    					fieldLabel : '软件分类',
+    					fieldLabel : Eway.locale.version.View.versionType,//'软件分类',
     					name: 'versionType',
     					width : 350
     				},{
     					xtype: 'displayfield',
-    					fieldLabel : '版本号',
+    					fieldLabel : Eway.locale.version.View.versionNo,//'版本号',
     					name: 'versionNo',
     					width : 200
     				},{
     					xtype: 'displayfield',
-    					fieldLabel : '版本文件',
+    					fieldLabel : Eway.locale.version.View.versionFile,//'版本文件',
     					name: 'serverPath'
     				}]
 				},{
@@ -95,7 +91,7 @@ Ext.define('Eway.view.version.AddJob', {
 		                width : 200
 		            },*/{
                     	xtype: 'combobox',
-                    	fieldLabel: '任务类型',
+                    	fieldLabel: Eway.locale.version.taskType,//'任务类型',
 		                store: Ext.StoreMgr.lookup("version.JobType"),
 		                queryMode: 'local',
 		                valueField : 'value',
@@ -108,7 +104,7 @@ Ext.define('Eway.view.version.AddJob', {
 		                width : 245
 		            }, {
 			        	xtype:'datetimefield',
-			        	fieldLabel:'计划执行时间',
+			        	fieldLabel:Eway.locale.version.planTime,//'计划执行时间',
 			        	name:'planTime',
 			        	disabled: true,
 			        	editable: false,
@@ -117,6 +113,16 @@ Ext.define('Eway.view.version.AddJob', {
 			            format: 'Y-m-d H:i:s',
 			            minValue: new Date(),
 			            maxValue:Ext.Date.add(Ext.Date.parse(Ext.Date.format(new Date(), 'Y-m-d') + " 23:59:59","Y-m-d H:i:s"), Ext.Date.DAY, 7)
+					},{
+						 xtype: 'radiogroup',
+						 fieldLabel: Eway.locale.version.download.selectAllDevice,
+					        // Arrange radio buttons into two columns, distributed vertically
+					        columns: 2,
+					        vertical: true,
+					        items: [
+					            { boxLabel: Eway.locale.commen.yes, name: 'allDevice', inputValue: 'true' },
+					            { boxLabel: Eway.locale.commen.no, name: 'allDevice', inputValue: 'false', checked: true}
+					        ]
 					}]
 				}/*,{
 					xtype: 'container',
@@ -156,12 +162,12 @@ Ext.define('Eway.view.version.AddJob', {
 				padding: '1px 0px 0px 0px',
 				items : [{
 						xtype:'version_download_selectableDeviceGrid',
-						title: '可以下发的设备',
+						title: Eway.locale.version.selectableDevice,//'可以下发的设备',
 						minHeight:260,
 				        flex : 1
 					},{
 						xtype: 'version_download_linkedDeviceGrid',
-						title: '已选择的设备',
+						title: Eway.locale.version.linkedDevice,//'已选择的设备',
 						minHeight:260,
 				        flex : 1
 					}

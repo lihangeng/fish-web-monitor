@@ -5,37 +5,17 @@ Ext.define('Eway.view.advert.AddText', {
 
 	requires : [ 'Eway.view.advert.field.TextResourceFieldSet'],
 
-	title : '增加文字滚动广告信息',
+	title : Eway.locale.advert.addTextTitle,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
 	width : 600,
-	height: 500,
+	height: 445,
 	maxHeight : 800,
 	autoScroll : true,
 
 	initComponent : function() {
 		Ext.apply(this, {
-			dockedItems: [{
-		        xtype: 'toolbar',
-		        dock: 'top',
-//		        ui: 'footer',
-		        items: [{
-					text : '保存',
-					action : 'confirm',
-					id : "savaAdvert",
-					iconCls:'db-save'
-				}/*, {
-					text : '重置',
-					handler : this.onReset
-				}, {
-					text : '返回',
-					handler : this.onOver
-				}*//*,"->",{
-					text : '再增加一个广告资源',
-					action : 'addMore'
-				}*/]
-		    }],
 			items : {
 				xtype : 'form',
 				bodyStyle : 'padding: 10px 10px 40px 10px',
@@ -48,7 +28,7 @@ Ext.define('Eway.view.advert.AddText', {
 				items : [{
 					 	xtype:'fieldset',
 			            checkboxToggle:false,
-			            title: '广告基本信息',
+			            title: Eway.locale.advert.advertBasicInfo,
 			            defaultType: 'combobox',
 			            collapsed: false,
 			            layout: 'anchor',
@@ -58,16 +38,16 @@ Ext.define('Eway.view.advert.AddText', {
 			            },
 			            items :[{
 			            	xtype: 'displayfield',
-			            	fieldLabel: '广告类型',
+			            	fieldLabel: Eway.locale.advert.type,
 			            	name : 'advertType',
-			            	value: '文字滚动广告'
+			            	value: Eway.locale.advert.advertTypeText
 			            },{
 					    	xtype: 'container',
 					        msgTarget: 'under',
 					        layout:'hbox',
 					        defaultType: 'combobox',
 					        items:[{
-				                fieldLabel: '下发方式',
+				                fieldLabel: Eway.locale.advert.downType,
 				                displayField: 'display',
 				                store: Ext.StoreMgr.lookup("advert.AdvertDownMethod"),
 				                queryMode: 'local',
@@ -78,7 +58,7 @@ Ext.define('Eway.view.advert.AddText', {
 				                forceSelection: true,//强制选择一个,不起作用
 				                width:250
 				            },{
-				                fieldLabel: '广告有效期',
+				                fieldLabel: Eway.locale.advert.validity,
 				                displayField: 'display',
 				                store: Ext.StoreMgr.lookup("advert.AdvertValidity"),
 				                queryMode: 'local',
@@ -91,7 +71,17 @@ Ext.define('Eway.view.advert.AddText', {
 			            }]
 				},{
 					xtype:'field_textResourceFieldSet',
-					title: '文字滚动广告资源配置'
+					title: Eway.locale.advert.textAdvertResConfig,
+					height:218
+				}],
+				buttonAlign : 'center',
+				buttons : [ {
+					text : Eway.locale.cases.confirm,
+					id:'savaAdvert',
+					action : 'confirm'
+				}, {
+					text : Eway.locale.cases.cancel,
+					handler : this.onOver
 				}]
 			}
 		});

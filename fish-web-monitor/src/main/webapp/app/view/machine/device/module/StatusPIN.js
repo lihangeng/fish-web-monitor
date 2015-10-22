@@ -10,7 +10,7 @@ Ext.define("Eway.view.machine.device.module.StatusPIN", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : '<center>厂商状态信息</center>',
+				title : '<center>'+Eway.locale.machine.device.comStatus+'</center>',
 				layout : 'column',
 				border : 'false',
 				items : [ {
@@ -25,13 +25,13 @@ Ext.define("Eway.view.machine.device.module.StatusPIN", {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : '厂商故障码',
+						fieldLabel : Eway.locale.machine.device.hwCode,
 						name : 'hwCode',
 						style : 'margin-top:2px'
 					} ]
 				} ]
 			}, {
-				title : '<center>密码键盘模块(PIN)状态信息</center>',
+				title : '<center>'+Eway.locale.machine.device.PINStatus+'</center>',
 				layout : 'column',
 				border : 'false',
 				items : [ {

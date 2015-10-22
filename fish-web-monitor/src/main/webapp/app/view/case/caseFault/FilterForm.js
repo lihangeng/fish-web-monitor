@@ -20,16 +20,16 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 				items : [{
 					labelWidth : 60,
 					xtype : 'textfield',
-					fieldLabel : '设备号',
+					fieldLabel : Eway.locale.commen.terminalId,
 					maxLength:20,
-					regexText:'输入错误,设备号由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’点号‘.’组成,只能以字母或数字开头,长度1到20位。',
+					regexText:Eway.locale.vtype.terminalId,
 					name : 'terminalId',
 					msgTarget:'side',
 					vtype : 'terminalId'
 				},{
 					labelWidth : 60,
 					xtype : 'field_faultStatus',
-					fieldLabel : '故障状态',
+					fieldLabel :Eway.locale.cases.caseFault.faultState,
 					name : 'faultStatus'
 				}]
 			},{
@@ -38,12 +38,12 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 				items : [{
 					labelWidth : 60,
 					xtype : 'field_devMod',
-					fieldLabel : '故障模块',
+					fieldLabel : Eway.locale.cases.caseFault.faultModule,
 					name : 'devMod'
 				},{
 					labelWidth : 60,
 					xtype : 'field_case_faultClassify',
-					fieldLabel : '故障分类',
+					fieldLabel : Eway.locale.cases.caseFault.faultClassify,
 					name : 'faultClassify'
 				}]
 			},{
@@ -51,7 +51,7 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype:'datefield',
-					fieldLabel : '故障开始时间',
+					fieldLabel : Eway.locale.cases.caseFault.faultStartTime,
 					name : 'faultTime',
 					value : new Date(),
 					editable : false,
@@ -79,7 +79,7 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 					}
 				},{
 					xtype : 'datefield',
-					fieldLabel : '故障关闭时间',
+					fieldLabel : Eway.locale.cases.caseFault.faultCloseTime,
 					name : 'closedTime',
 					editable : false,
 					format : 'Y-m-d',

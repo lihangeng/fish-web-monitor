@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.domain.dao.IGenericDao;
@@ -19,6 +21,9 @@ public class DeviceBoxDetailRptService implements IDeviceBoxDetailRptService {
 
     @Autowired
     private IGenericDao dao;
+    
+	@Autowired
+	private MessageSource messageSource;
 
     @Override
     public List<IDeviceBoxDetailRpt> listDeviceBoxDetail(IFilter filter) {
@@ -70,16 +75,16 @@ public class DeviceBoxDetailRptService implements IDeviceBoxDetailRptService {
             deviceBoxDetail.setVendorName(objectToString(o[2]));
             deviceBoxDetail.setTypeName(objectToString(o[3]));
             if (objectToString(o[4]).equals("WEAR_WALL")) {
-                deviceBoxDetail.setSetupType("穿墙");
+                deviceBoxDetail.setSetupType(messageSource.getMessage("report.deviceBoxDetail.wareWall", null, FishCfg.locale));
             }
             if (objectToString(o[4]).equals("LOBBY")) {
-                deviceBoxDetail.setSetupType("大堂");
+                deviceBoxDetail.setSetupType(messageSource.getMessage("report.deviceBoxDetail.lobby", null, FishCfg.locale));
             }
             if (objectToString(o[5]).equals("OPENING")) {
-                deviceBoxDetail.setStatus("开通");
+                deviceBoxDetail.setStatus(messageSource.getMessage("report.deviceBoxDetail.opening", null, FishCfg.locale));
             }
             if (objectToString(o[5]).equals("DISABLED")) {
-                deviceBoxDetail.setStatus("停用");
+                deviceBoxDetail.setStatus(messageSource.getMessage("report.deviceBoxDetail.disabled", null, FishCfg.locale));
             }
             deviceBoxDetail.setBoxLeft(objectToString(o[6]));
             deviceBoxDetailList.add(deviceBoxDetail);

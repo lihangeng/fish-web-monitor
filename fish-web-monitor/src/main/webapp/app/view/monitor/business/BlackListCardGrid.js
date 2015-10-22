@@ -12,11 +12,11 @@ Ext.define('Eway.view.monitor.business.BlackListCardGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->',{
-				text:'查询',
+				text:Eway.locale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			},{
-				text: '增加',
+				text: Eway.locale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'blackCardAdd',
@@ -24,7 +24,7 @@ Ext.define('Eway.view.monitor.business.BlackListCardGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '更改',
+				text: Eway.locale.button.update,
 				glyph : 0xf040,
 				action: 'update',
 				code : 'blackCardUpdate',
@@ -32,7 +32,7 @@ Ext.define('Eway.view.monitor.business.BlackListCardGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '删除',
+				text: Eway.locale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'blackCardDel',
@@ -40,7 +40,7 @@ Ext.define('Eway.view.monitor.business.BlackListCardGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '批量导入',
+				text: Eway.locale.monitor.business.blackList.importData,
 				iconCls :'importBtn',
 				action: 'import',
 				code : 'blackCardImportBtn',
@@ -49,24 +49,24 @@ Ext.define('Eway.view.monitor.business.BlackListCardGrid', {
 				}
 			}],
 			columns : [{
-				header : '交易卡号',
+				header : Eway.locale.monitor.business.transaction.card,
 				dataIndex : 'cardNo',
 				width : 200
 			}, {
-				header : '用户姓名',
+				header : Eway.locale.monitor.business.transaction.userName,
 				dataIndex : 'userName'
 			}, {
-				header : '所属银行',
+				header : Eway.locale.monitor.business.blackList.cardBank,
 				dataIndex : 'organization'
 			}, {
-				header : '添加日期',
+				header : Eway.locale.monitor.business.blackList.addDate,
 				dataIndex : 'addDate',
 				flex : 1
 			}],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,
 				displayInfo : true,
-				displayMsg : '总共：{2}条，显示{0}-{1}'
+				displayMsg : Eway.locale.commen.toolbar
 			})
 		});
 		

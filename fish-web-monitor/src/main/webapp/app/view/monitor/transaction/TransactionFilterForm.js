@@ -20,7 +20,7 @@ Ext.define('Eway.view.monitor.transaction.TransactionFilterForm', {
 				items : [ {
 						columnWidth : .5,
 						items : [ {
-							fieldLabel : '设备号',
+							fieldLabel : Eway.locale.commen.terminalId,
 							labelAlign : 'right',
 							xtype : 'textfield',
 							name : 'terminalId',
@@ -29,14 +29,14 @@ Ext.define('Eway.view.monitor.transaction.TransactionFilterForm', {
 						            fn: function(This,event, options){
 						            	view = this.up('transactionFilterForm').up('transactionMonitorView');
 						            	if(view.down('button[action="start"]').disabled){
-						            		Eway.alert("请先停止监控后再输入条件，按开始监控按钮即可进行条件监控！");
+						            		Eway.alert(Eway.locale.tip.business.transaction.transactionMonitor.beginMonitor);
 						            	}
 						            }
 								}
 							},
 							msgTarget : 'side'
 						},{
-							fieldLabel : '对方账号',
+							fieldLabel : Eway.locale.monitor.business.transaction.creditAccount,
 							xtype : 'textfield',
 							name : 'creditAccount',
 							listeners : {
@@ -44,7 +44,7 @@ Ext.define('Eway.view.monitor.transaction.TransactionFilterForm', {
 						            fn: function(This,event, options){
 						            	view = this.up('transactionFilterForm').up('transactionMonitorView');
 						            	if(view.down('button[action="start"]').disabled){
-						            		Eway.alert("请先停止监控后再输入条件，按开始监控按钮即可进行条件监控！");
+						            		Eway.alert(Eway.locale.tip.business.transaction.transactionMonitor.beginMonitor);
 						            	}
 						            }
 								}
@@ -54,7 +54,7 @@ Ext.define('Eway.view.monitor.transaction.TransactionFilterForm', {
 					}, {
 						columnWidth : .5,
 						items : [ {
-							fieldLabel : '客户帐号',
+							fieldLabel : Eway.locale.monitor.business.transaction.debitAccount,
 							xtype : 'textfield',
 							name : 'debitAccount',
 							listeners : {
@@ -62,7 +62,7 @@ Ext.define('Eway.view.monitor.transaction.TransactionFilterForm', {
 									fn: function(This,event, options){
 										view = this.up('transactionFilterForm').up('transactionMonitorView');
 										if(view.down('button[action="start"]').disabled){
-											Eway.alert("请先停止监控后再输入条件，按开始监控按钮即可进行条件监控！");
+											Eway.alert(Eway.locale.tip.business.transaction.transactionMonitor.beginMonitor);
 										}
 									}
 								}
@@ -75,7 +75,7 @@ Ext.define('Eway.view.monitor.transaction.TransactionFilterForm', {
 						            fn: function(This,event, options){
 						            	view = this.up('transactionFilterForm').up('transactionMonitorView');
 						            	if(view.down('button[action="start"]').disabled){
-						            		Eway.alert("请先停止监控后再输入条件，按开始监控按钮即可进行条件监控！");
+						            		Eway.alert(Eway.locale.tip.business.transaction.transactionMonitor.beginMonitor);
 						            	}
 						            }
 								}

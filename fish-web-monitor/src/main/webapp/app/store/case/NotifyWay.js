@@ -5,9 +5,9 @@ Ext.define('Eway.store.case.NotifyWay',{
 	
 	fields : ['value','display'],
 	data : [
-		{'value':'SMS', 'display':'短信'},
-		{'value':'MAIL', 'display':'邮件'},
-		{'value':'BOTH', 'display':'短信和邮件'}
+		{'value':'SMS', 'display':Eway.locale.cases.caseFault.message},
+		{'value':'MAIL', 'display':Eway.locale.cases.caseFault.mail},
+		{'value':'BOTH', 'display':Eway.locale.cases.caseFault.messageAndMail}
 	]
 
 });

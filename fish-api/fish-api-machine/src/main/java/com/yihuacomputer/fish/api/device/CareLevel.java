@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.api.device;
 
+
 /**
  * 设备关注程度
  * 
@@ -9,8 +10,12 @@ package com.yihuacomputer.fish.api.device;
  */
 public enum CareLevel
 {
-    EMPHASIS(1, "重点"), MEDIUM(2, "中等"), GENERAL(3, "一般");
+//  EMPHASIS(1, "重点"), MEDIUM(2, "中等"), GENERAL(3, "一般");
+  EMPHASIS(1, "CareLevel.EMPHASIS"), MEDIUM(2, "CareLevel.MEDIUM"), GENERAL(3, "CareLevel.GENERAL");
 
+    public String getText(){
+			return text;
+    }
     private int id;
 
     private String text;
@@ -29,11 +34,6 @@ public enum CareLevel
     public void setId(int id)
     {
         this.id = id;
-    }
-
-    public String getText()
-    {
-        return text;
     }
 
     public void setText(String text)

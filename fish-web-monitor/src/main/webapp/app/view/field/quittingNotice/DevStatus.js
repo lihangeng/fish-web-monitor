@@ -3,7 +3,7 @@ Ext.define('Eway.view.field.quittingNotice.DevStatus', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field_devStatus',
 
-	fieldLabel : '性别',
+	fieldLabel : Eway.locale.person.bankPer.gender,
 	name : 'devStatus',
 	hiddenName : 'devStatus',
 	msgTarget : 'side',

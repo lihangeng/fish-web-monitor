@@ -13,19 +13,14 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.device.StopType;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNotice;
-import com.yihuacomputer.fish.machine.service.api.IDomainQuittingNoticeService;
 
 @Entity
 @Table(name = "DEV_STOP")
 public class QuittingNotice implements IQuittingNotice {
-
-	@Transient
-	private IDomainQuittingNoticeService service;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_DEV_STOP")
@@ -80,11 +75,6 @@ public class QuittingNotice implements IQuittingNotice {
 	private Status devStatus;
 
 	public QuittingNotice(){}
-	
-	public QuittingNotice(IDomainQuittingNoticeService service) {
-		this.service = service;
-	}
-
 	
 	public Status getDevStatus() {
 		return devStatus;

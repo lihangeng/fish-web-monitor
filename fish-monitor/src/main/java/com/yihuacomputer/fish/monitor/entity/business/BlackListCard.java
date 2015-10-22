@@ -11,10 +11,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.monitor.business.IBlackListCard;
-import com.yihuacomputer.fish.monitor.service.api.IDomainBlackListCardService;
 
 /**
  * 黑名单卡
@@ -25,9 +23,6 @@ import com.yihuacomputer.fish.monitor.service.api.IDomainBlackListCardService;
 @Entity
 @Table(name = "ATMC_BLACK_CARDS")
 public class BlackListCard implements IBlackListCard {
-
-    @Transient
-    private IDomainBlackListCardService service;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_ATMC_BLACK_CARDS")
@@ -59,10 +54,6 @@ public class BlackListCard implements IBlackListCard {
     }
 
     public BlackListCard() {
-    }
-
-    public BlackListCard(IDomainBlackListCardService service) {
-        this.service = service;
     }
 
     @Override

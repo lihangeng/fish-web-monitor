@@ -5,7 +5,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportView', {
 	requires : [ 'Eway.view.report.baseReport.ReportDownload',
 			'Eway.view.report.baseReport.DeviceTypeCountReportFilter' ],
 
-	title : '设备品牌统计报表',
+	title : Eway.locale.report.baseReport.devBrandRep,
 	layout : 'border',
 
 	initComponent : function() {

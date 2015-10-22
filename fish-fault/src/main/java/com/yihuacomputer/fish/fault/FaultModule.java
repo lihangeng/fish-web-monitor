@@ -11,13 +11,13 @@ import com.yihuacomputer.fish.api.fault.INotifyMouldService;
 import com.yihuacomputer.fish.api.fault.IUnuauslNotifyMouldService;
 import com.yihuacomputer.fish.api.fault.IVendorCodeService;
 import com.yihuacomputer.fish.fault.interceptor.CaseFaultEntityInjector;
-import com.yihuacomputer.fish.fault.service.db.CaseFaultService;
-import com.yihuacomputer.fish.fault.service.db.CaseNotifyService;
-import com.yihuacomputer.fish.fault.service.db.FaultClassifyService;
-import com.yihuacomputer.fish.fault.service.db.FaultFilter;
-import com.yihuacomputer.fish.fault.service.db.NotifyMouldService;
-import com.yihuacomputer.fish.fault.service.db.UnuauslNotifyMouldService;
-import com.yihuacomputer.fish.fault.service.db.VendorCodeService;
+import com.yihuacomputer.fish.fault.service.CaseFaultService;
+import com.yihuacomputer.fish.fault.service.CaseNotifyService;
+import com.yihuacomputer.fish.fault.service.FaultClassifyService;
+import com.yihuacomputer.fish.fault.service.FaultFilter;
+import com.yihuacomputer.fish.fault.service.NotifyMouldService;
+import com.yihuacomputer.fish.fault.service.UnuauslNotifyMouldService;
+import com.yihuacomputer.fish.fault.service.VendorCodeService;
 
 /**
  * 故障管理模块配置

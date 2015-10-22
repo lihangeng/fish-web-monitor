@@ -5,6 +5,7 @@ import java.util.Iterator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -50,6 +52,9 @@ public class AtmMoveController {
 	 */
 	@Autowired
 	private IOrganizationService orgService;
+	
+	@Autowired
+	protected MessageSource messageSource;
 
 	/**
 	 * 增加一条移机记录：
@@ -72,12 +77,12 @@ public class AtmMoveController {
 			IDevice device = deviceService.get(request.getTerminalId());
 			if(request.getOrgId() == request.getTargetOrganizationId()){
 				result.put(FishConstant.SUCCESS, false);
-				result.put(FishConstant.ERROR_MSG, "移机失败:目标机构和源机构相同.");
+				result.put(FishConstant.ERROR_MSG, messageSource.getMessage("atmMove.failOrg", null, FishCfg.locale));
 				return result;
 			}
 			if (device == null) {
 				result.put(FishConstant.SUCCESS, false);
-				result.put(FishConstant.ERROR_MSG, "移机失败:设备不存在，请刷新后操作.");
+				result.put(FishConstant.ERROR_MSG, messageSource.getMessage("atmMove.failDev", null, FishCfg.locale));
 				return result;
 			} else {
 				IAtmMove atmMove = atmMoveService.add(addAtmMove);
@@ -89,7 +94,7 @@ public class AtmMoveController {
 			}
 		} catch (Exception e) {
 			result.put(FishConstant.SUCCESS, false);
-			result.put(FishConstant.ERROR_MSG, "移机失败:后台处理出错.");
+			result.put(FishConstant.ERROR_MSG, messageSource.getMessage("atmMove.fail", null, FishCfg.locale)+messageSource.getMessage("commen.error", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -108,7 +113,7 @@ public class AtmMoveController {
 		ModelMap result = new ModelMap();
 		if (atmMoveService.get(id) == null) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "删除成功.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("commen.delSucess", null, FishCfg.locale));
 			return result;
 		}
 		try {
@@ -116,7 +121,7 @@ public class AtmMoveController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "删除失败:后台处理出错.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.delError", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -137,7 +142,7 @@ public class AtmMoveController {
 			IAtmMove atmMove = atmMoveService.get(id);
 			if (atmMove == null) {
 				result.put(FishConstant.SUCCESS, false);
-				result.put(FishConstant.ERROR_MSG, "移机失败:设备不存在,请刷新后操作.");
+				result.put(FishConstant.ERROR_MSG, messageSource.getMessage("atmMove.failDev", null, FishCfg.locale));
 				return result;
 			}
 			request.translate(atmMove);
@@ -145,7 +150,7 @@ public class AtmMoveController {
 			IDevice device = deviceService.get(request.getTerminalId());
 			if (device == null) {
 				result.put(FishConstant.SUCCESS, false);
-				result.put(FishConstant.ERROR_MSG, "移机失败:设备不存在,请刷新后操作.");
+				result.put(FishConstant.ERROR_MSG, messageSource.getMessage("atmMove.failDev", null, FishCfg.locale));
 				return result;
 			}
 			device.setOrganization(orgService.get(request.getTargetOrganizationId() + ""));
@@ -157,7 +162,7 @@ public class AtmMoveController {
 			result.addAttribute("data", new AtmMoveForm(atmMove));
 		} catch (Exception e) {
 			result.put(FishConstant.SUCCESS, false);
-			result.put(FishConstant.ERROR_MSG, "移机失败:后台处理出错.");
+			result.put(FishConstant.ERROR_MSG, messageSource.getMessage("atmMove.fail", null, FishCfg.locale)+messageSource.getMessage("commen.error", null, FishCfg.locale));
 		}
 		return result;
 	}

@@ -18,5 +18,9 @@
 		<artifactId>fish-api-machine</artifactId>
 		<version>${project.version}</version>
 	</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
   </dependencies>
 </project>

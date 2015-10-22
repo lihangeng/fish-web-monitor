@@ -11,11 +11,11 @@ Ext.define('Eway.view.monitor.device.BaseWindow',{
 	initComponent : function(){
 		var me = this;
 		this.buttons = [{
-				text : '确定',
+				text : Eway.locale.button.confirm,
 				iconCls :'sureBtn',
 				action :'save'
 			},{
-				text : '取消',
+				text : Eway.locale.button.cancle,
 				iconCls :'returnBtn',
 				handler : function(btn){
 					btn.up('window').hide();

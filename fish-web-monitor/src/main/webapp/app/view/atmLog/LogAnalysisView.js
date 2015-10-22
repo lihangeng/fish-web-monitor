@@ -2,7 +2,7 @@ Ext.define('Eway.view.atmLog.LogAnalysisView',{
 	alias : 'widget.atmLog_LogAnalysisView',
 	extend : 'Eway.view.base.Panel',
 	requires: ['Eway.view.atmLog.LogAnalysisForm'],
-	title :'业务日志分析',
+	title :Eway.locale.atmLog.busLogAnalysis,
 	layout:'border',
 	header:false,
 	border:false,

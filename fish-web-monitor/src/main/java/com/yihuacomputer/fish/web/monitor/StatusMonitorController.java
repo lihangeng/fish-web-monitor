@@ -1,11 +1,14 @@
 package com.yihuacomputer.fish.web.monitor;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.http.HttpProxy;
@@ -28,7 +32,7 @@ import com.yihuacomputer.fish.api.monitor.filter.IStatusFilter;
 import com.yihuacomputer.fish.api.monitor.report.IStatusMonitorMapOrg;
 import com.yihuacomputer.fish.api.monitor.report.IStatusReport;
 import com.yihuacomputer.fish.api.monitor.xfs.IStateAnalysis;
-import com.yihuacomputer.fish.api.monitor.xfs.IStateCodeService;
+//import com.yihuacomputer.fish.api.monitor.xfs.IStateCodeService;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
@@ -37,6 +41,7 @@ import com.yihuacomputer.fish.monitor.entity.filter.BoxStatusFilter;
 import com.yihuacomputer.fish.monitor.entity.filter.ModStatusFilter;
 import com.yihuacomputer.fish.monitor.entity.filter.NetStatusFilter;
 import com.yihuacomputer.fish.monitor.entity.filter.RunStatusFilter;
+import com.yihuacomputer.fish.monitor.entity.xfs.StateAnalysis;
 import com.yihuacomputer.fish.web.monitor.form.MapMonitorForm;
 import com.yihuacomputer.fish.web.monitor.form.ModProperty;
 import com.yihuacomputer.fish.web.monitor.form.ModStatusForm;
@@ -61,8 +66,15 @@ public class StatusMonitorController {
 	@Autowired
 	private IFilterService filterService;
 
+//	@Autowired
+//	private IStateCodeService stateCodeService;
+	
+	
 	@Autowired
-	private IStateCodeService stateCodeService;
+	private MessageSource messageSourceStateCode;
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	/**
 	 * 初始化设备属性信息
@@ -111,7 +123,7 @@ public class StatusMonitorController {
 		ModelMap map = new ModelMap();
 		map.addAttribute(FishConstant.SUCCESS, true);
 		map.addAttribute("total", pageResult.getTotal());
-		map.addAttribute("data", StatusMonitorForm.convert(pageResult.list()));
+		map.addAttribute("data", convert(pageResult.list()));
 		return map;
 	}
 
@@ -138,7 +150,7 @@ public class StatusMonitorController {
 		ModelMap map = new ModelMap();
 		map.addAttribute(FishConstant.SUCCESS, true);
 		map.addAttribute("total", pageResult.getTotal());
-		map.addAttribute("data", StatusMonitorForm.convert(pageResult.list()));
+		map.addAttribute("data", convert(pageResult.list()));
 		return map;
 	}
 
@@ -294,7 +306,7 @@ public class StatusMonitorController {
 		}
 		}
 
-		IStateAnalysis analysis = stateCodeService.getStateCode(stateCode, deviceMod);
+		IStateAnalysis analysis = this.getStateCode(stateCode, deviceMod);
 		map.addAttribute("data", ModStatusForm.toForm(analysis));
 		map.addAttribute(FishConstant.SUCCESS, true);
 		return map;
@@ -389,6 +401,53 @@ public class StatusMonitorController {
 
 	private boolean getValue(WebRequest request, String name) {
 		return Boolean.valueOf(request.getParameter(name)).booleanValue();
+	}
+	
+	private IStateAnalysis getStateCode(String stateCode,DeviceMod deviceMod) {
+		StateAnalysis stAna = new StateAnalysis();
+		if(stateCode==null||deviceMod==null){
+			stAna.setDescription("No explanation");
+			stAna.setSolution("No Explication");
+			return stAna;
+		}
+		
+		String mod = deviceMod.toString();
+		StringBuffer desc = new StringBuffer();
+		StringBuffer solution = new StringBuffer();
+		String code = null;
+		
+		int codeAt = 5;//由于客户端在组织状态码时少组一位，所以从第五位开始计算
+		for(int codeIdx=0;codeIdx<stateCode.length();codeIdx++){
+			code = mod+Integer.toHexString(codeAt).toUpperCase()+stateCode.charAt(codeIdx);
+			codeAt++;
+			String descD = messageSourceStateCode.getMessage(code+".desc", null, FishCfg.locale);
+			String soluD = messageSourceStateCode.getMessage(code+".slution", null, FishCfg.locale);
+			if(descD.equals(code+".desc")||soluD.equals(code+".slution")){//如果找不到，返回的是原字符串。舍弃
+				continue;
+			}
+			
+			desc.append(descD).append(".");
+			solution.append(soluD).append(".");
+		}
+		stAna.setDescription(desc.toString());
+		stAna.setSolution(solution.toString());
+		return stAna;
+		
+	}
+	//add by panxin 国际化将“未知”提示放入controller层中
+	private List<StatusMonitorForm> convert(List<IStatusReport> list) {
+		
+        List<StatusMonitorForm> result = new ArrayList<StatusMonitorForm>();
+        String unkown= messageSource.getMessage("monitor.statusMonitor.unkown", null, FishCfg.locale);
+        
+        for (IStatusReport item : list) {
+        	if(item.getAppRelease()==null){
+        		item.setAppRelease(unkown);
+        	}
+            result.add(new StatusMonitorForm(item));
+        }
+        return result;
+		
 	}
 
 }

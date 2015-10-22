@@ -5,37 +5,37 @@ public enum BoxStatus {
 	/**
 	 * 正常
 	 */
-	OK("正常"),
+	OK("BoxStatusW.OK"),
 	
 	/**
 	 * 钞少
 	 */
-	LOW("钞少"),
+	LOW("BoxStatusW.LOW"),
 	
 	/**
 	 * 钞空
 	 */
-	EMPTY("钞空"),
+	EMPTY("BoxStatusW.EMPTY"),
 	
 	/**
 	 * 钞多
 	 */
-	HIGH("钞多"),
+	HIGH("BoxStatusW.HIGH"),
 	
 	/**
 	 * 钞满
 	 */
-	FULL("钞满"),
+	FULL("BoxStatusW.FULL"),
 	
 	/**
 	 * 不存在
 	 */
-	MISSING("不存在"),
+	MISSING("BoxStatusW.MISSING"),
 	
 	/**
 	 * 故障
 	 */
-	BAD("故障");
+	BAD("BoxStatusW.BAD");
 	
 	private String text;
 	

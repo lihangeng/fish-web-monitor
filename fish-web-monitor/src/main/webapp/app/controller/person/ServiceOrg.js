@@ -92,7 +92,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 		store.loadPage(1);
 		var actionTip = this.getGrid().down("tbtext[action=tip]");
 		actionTip.setText('<font color="red">' + selectedNode.data.text
-				+ '</font>' + "的直接下级机构");
+				+ '</font>' + Eway.locale.person.serviceOrg.directOrganization);
 	},
 
 	/**
@@ -124,7 +124,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 				}
 			});
 		} else {
-			Eway.alert("请选择您要设置的维护商.");
+			Eway.alert(Eway.locale.tip.serviceOrg.chooseOrg);
 		}
 	},
 
@@ -147,11 +147,11 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 			record.save({
 						success : function(record, operation) {
 							store.load();
-							Eway.alert("设置管理员成功.");
+							Eway.alert(Eway.locale.tip.bankOrg.manager.set.managerSuccess);
 							addManagerwin.close();
 						},
 						failure : function(record, operation) {
-							Eway.alert("设置管理员失败.");
+							Eway.alert(Eway.locale.tip.bankOrg.manager.set.managerFail);
 						}
 					});
 		}
@@ -165,14 +165,14 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 		var sm = grid.getSelectionModel();
 		if (sm.getCount() == 1 && sm.getLastSelected().get('userGuid') != null
 				&& sm.getLastSelected().get('userGuid') != 0) {
-			Ext.MessageBox.confirm('请确认', '是否删除该记录?',
+			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title, Eway.locale.tip.remove.confirm.info,
 					function(button, text) {
 						if (button == "yes") {
 							this.onRemoveManagerConfirm(sm);
 						}
 					}, this);
 		} else {
-			Eway.alert("您未选择要设置的维护商或该维护商下没有管理员,请重新选择.");
+			Eway.alert(Eway.locale.tip.serviceOrg.remove.reChoose);
 		}
 	},
 
@@ -183,10 +183,10 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 		record.save({
 					success : function(record, operation) {
 						store.load();
-						Eway.alert("删除管理员成功.");
+						Eway.alert(Eway.locale.tip.bankOrg.manager.remove.delSuccess);
 					},
 					failure : function(record, operation) {
-						Eway.alert("删除管理员失败.");
+						Eway.alert(Eway.locale.tip.bankOrg.manager.remove.delFail);
 					}
 				});
 	},
@@ -204,7 +204,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 			store.setUrlParam(i, data[i])
 		}
 		var actionTip = ewayView.down("tbtext[action=tip]");
-		actionTip.setText('符合条件的机构');
+		actionTip.setText(Eway.locale.tip.bankOrg.orgEligible);
 		store.loadPage(1);
 		ewayView.down('treepanel').getSelectionModel().select(0, true);// 选择根节点
 	},
@@ -221,7 +221,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 				.findField("organizationType");
 		//维护商机构的上级机构默认显示机构。
 		win.down('field[name="parentId"]').setValue(1);
-		win.down('field[name="parent"]').setValue("机构");
+		win.down('field[name="parent"]').setValue(Eway.locale.person.bankPer.organizationName);
 		win.show();
 	},
 
@@ -252,7 +252,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 										}
 									});
 							var actionTip = ewayView.down("tbtext[action=tip]");
-							actionTip.setText('<font color="red">' + record.data.parent + '</font>' + "的直接下级机构");
+							actionTip.setText('<font color="red">' + record.data.parent + '</font>' + Eway.locale.tip.bankOrg.downGradeOrg);
 							win.close();
 						},
 						failure : function(record, operation) {
@@ -335,7 +335,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 							var actionTip = ewayView.down("tbtext[action=tip]");
 							actionTip.setText('<font color="red">'
 									+ record.data.parent + '</font>'
-									+ "的直接下级机构");
+									+ Eway.locale.tip.bankOrg.downGradeOrg);
 							win.close();
 						},
 						failure : function(record, operation) {
@@ -355,7 +355,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 		var grid = this.getGrid();
 		var sm = grid.getSelectionModel();
 		if (sm.getCount() == 1) {
-			Ext.MessageBox.confirm("请确认", "是否删除该记录?", function(button,
+			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title, Eway.locale.tip.remove.confirm.info, function(button,
 					text) {
 				if (button == "yes") {
 					var record = sm.getLastSelected();
@@ -379,7 +379,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 						failure : function(record, operation) {
 							if (operation.request.scope.reader.jsonData.flag) {
 								Ext.MessageBox.show({
-									title : '提示',
+									title : Eway.locale.tip.tips,
 									msg : operation.getError(),
 									modal : true,
 									fn : function callBack(id) {
@@ -446,7 +446,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 		store.setBaseParam('selectedNode', node.data.id);
 		store.loadPage(1);
 		var actionTip = this.getEwayView().down("tbtext[action=tip]");
-		actionTip.setText('<font color="red">' + node.data.text + '</font>'+ "的直接下级机构");
+		actionTip.setText('<font color="red">' + node.data.text + '</font>'+ Eway.locale.tip.bankOrg.downGradeOrg);
 	},
 
 	onOrganizationTypeChange : function(field, newValue) {

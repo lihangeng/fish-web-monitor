@@ -12,9 +12,6 @@ import com.yihuacomputer.fish.atmlog.AtmLogModule;
 import com.yihuacomputer.fish.fault.FaultModule;
 import com.yihuacomputer.fish.machine.MachineModule;
 import com.yihuacomputer.fish.monitor.MonitorModule;
-import com.yihuacomputer.fish.permission.PersonPermissionModule;
-import com.yihuacomputer.fish.person.PersonCoreModule;
-import com.yihuacomputer.fish.relation.PersonRelationModule;
 import com.yihuacomputer.fish.report.base.ReportBaseModule;
 import com.yihuacomputer.fish.report.engine.ReportEngineModule;
 import com.yihuacomputer.fish.system.SystemModule;
@@ -30,9 +27,6 @@ import com.yihuacomputer.fish.web.mock.DefaultHwFaultService;
 @Configuration
 @Import({
 		DomainModule.class,
-		PersonCoreModule.class,
-		PersonPermissionModule.class,
-		PersonRelationModule.class,
 		MachineModule.class,
 		SystemModule.class,
 		MonitorModule.class,

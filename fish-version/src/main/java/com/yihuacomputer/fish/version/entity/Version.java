@@ -22,6 +22,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.springframework.context.MessageSource;
+
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.version.IVersion;
@@ -54,7 +57,7 @@ public class Version implements IVersion, Serializable {
     @Column(name = "RELEASE_DATE")
     private Date releaseDate;
 
-    @ManyToOne(targetEntity = VersionType.class,fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = VersionType.class,fetch = FetchType.EAGER)
     @JoinColumn(name = "VERSION_TYPE_ID", nullable = false)
     private IVersionType versionType;
 
@@ -67,6 +70,14 @@ public class Version implements IVersion, Serializable {
      */
     @Column(name = "VERSION_NO", nullable = false, length = 40)
     private String versionNo;
+    
+    /**
+     * 版本号字符串拼接
+     * 1.2.3.4* 00000001000000020000000300000004
+     * 1.1.32.5*00000001000000020000003200000005
+     */
+    @Column(name = "VERSION_STR", nullable = false, length = 40)
+    private String versionStr;
 
     @Column(name = "VERSION_PATH", nullable = false, length = 50)
     private String versionPath;
@@ -107,12 +118,19 @@ public class Version implements IVersion, Serializable {
 
     @Column(name = "MD5_CHECK_NUM", nullable = true, length = 32)
     private String md5CheckNum;
+    
+
+    @Column(name = "DOWNLOAD_COUNTER")
+    private int downloadCounter;
 
     @Transient
     private IUser createUser;
 
     @Transient
     private IDomainVersionService versionService;
+    
+    @Transient
+    private MessageSource messageSourceVersion;
 
     public Version() {
         this.createdTime = new Date();
@@ -258,7 +276,15 @@ public class Version implements IVersion, Serializable {
         this.eagerRestart = eagerRestart;
     }
 
-    /**
+    public MessageSource getMessageSourceVersion() {
+		return messageSourceVersion;
+	}
+
+	public void setMessageSourceVersion(MessageSource messageSourceVersion) {
+		this.messageSourceVersion = messageSourceVersion;
+	}
+
+	/**
      * 目标版本是否在当前版本在之后 1.目标版本大于当前版本 2.目标版本的依赖版本小于等于当前版本
      */
     public boolean isAfter(IVersion currentVersion) {
@@ -267,7 +293,8 @@ public class Version implements IVersion, Serializable {
         }
 
         if (!this.getVersionType().getTypeName().equals(currentVersion.getVersionType().getTypeName())) {
-            throw new AppException("不同的软件分类之间不能进行版本比较");
+//        	"不同的软件分类之间不能进行版本比较"
+            throw new AppException(messageSourceVersion.getMessage("exception.version.diffVersionTypeCantCompare", null, FishCfg.locale));
         }
 
         if (biggerThan(currentVersion)) {// 1.目标版本大于当前版本
@@ -332,5 +359,21 @@ public class Version implements IVersion, Serializable {
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
+
+	public String getVersionStr() {
+		return versionStr;
+	}
+
+	public void setVersionStr(String versionStr) {
+		this.versionStr = versionStr;
+	}
+
+	public int getDownloadCounter() {
+		return downloadCounter;
+	}
+
+	public void setDownloadCounter(int downloadCounter) {
+		this.downloadCounter = downloadCounter;
+	}
 
 }

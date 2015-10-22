@@ -11,6 +11,11 @@
 	<field name="devUseState" class="java.lang.String"/>
 	<field name="deviceCount" class="java.lang.Long"/>
 	<field name="countName" class="java.lang.String"/>
+	<field name="orgNameColumn" class="java.lang.String"/>
+	<field name="devTypeNameColumn" class="java.lang.String"/>
+	<field name="devStatusColumn" class="java.lang.String"/>
+	<field name="totalColumn" class="java.lang.String"/>
+	<field name="subtotalColumn" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -40,6 +45,21 @@
 		<band height="43" splitType="Stretch">
 			<crosstab>
 				<reportElement uuid="e1c5a6e0-77a8-4b8d-8273-efe164207038" x="235" y="1" width="815" height="42"/>
+				<crosstabParameter name="total">
+					<parameterValueExpression><![CDATA[$F{totalColumn}]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabParameter name="orgName">
+					<parameterValueExpression><![CDATA[$F{orgNameColumn}]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabParameter name="devTypeName">
+					<parameterValueExpression><![CDATA[$F{devTypeNameColumn}]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabParameter name="devStatus">
+					<parameterValueExpression><![CDATA[$F{devStatusColumn}]]></parameterValueExpression>
+				</crosstabParameter>
+				<crosstabParameter name="subtotal">
+					<parameterValueExpression><![CDATA[$F{subtotalColumn}]]></parameterValueExpression>
+				</crosstabParameter>
 				<crosstabHeaderCell>
 					<cellContents backcolor="#C0C0C0" mode="Opaque">
 						<box>
@@ -49,48 +69,33 @@
 							<bottomPen lineWidth="0.5"/>
 							<rightPen lineWidth="0.5"/>
 						</box>
-						<staticText>
-							<reportElement uuid="42112d15-8f66-4001-a471-4950b100f3b4" x="161" y="0" width="156" height="30"/>
+						<textField>
+							<reportElement uuid="208b9cd2-3e1b-403c-a502-146f793825ef" style="Crosstab Data Text" x="0" y="0" width="161" height="30"/>
 							<box>
-								<pen lineWidth="0.0"/>
-								<topPen lineWidth="0.0"/>
-								<leftPen lineWidth="0.5"/>
-								<bottomPen lineWidth="0.0"/>
 								<rightPen lineWidth="0.5"/>
 							</box>
-							<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-								<font size="12" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+							<textElement>
+								<font size="13"/>
 							</textElement>
-							<text><![CDATA[机型]]></text>
-						</staticText>
-						<staticText>
-							<reportElement uuid="2854d50b-aca5-4c7f-872d-8a01d7c3a1bb" mode="Transparent" x="0" y="0" width="161" height="30"/>
+							<textFieldExpression><![CDATA[$P{orgName}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement uuid="9667d538-6033-40ca-8748-a5225957b997" style="Crosstab Data Text" x="161" y="0" width="156" height="30"/>
 							<box>
-								<pen lineWidth="0.0"/>
-								<topPen lineWidth="0.0"/>
-								<leftPen lineWidth="0.0"/>
-								<bottomPen lineWidth="0.0"/>
-								<rightPen lineWidth="1.0"/>
+								<rightPen lineWidth="0.5"/>
 							</box>
-							<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-								<font size="12" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+							<textElement>
+								<font size="13"/>
 							</textElement>
-							<text><![CDATA[机构名称]]></text>
-						</staticText>
-						<staticText>
-							<reportElement uuid="6fc8a6cb-07d0-40a5-884b-ab66c85d7ba1" x="317" y="0" width="203" height="30"/>
-							<box>
-								<pen lineWidth="0.0"/>
-								<topPen lineWidth="0.0"/>
-								<leftPen lineWidth="0.0"/>
-								<bottomPen lineWidth="0.0"/>
-								<rightPen lineWidth="0.0"/>
-							</box>
-							<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
-								<font size="12" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+							<textFieldExpression><![CDATA[$P{devTypeName}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement uuid="4df2969e-54ab-444f-a8a3-2e3c32d1d7d6" style="Crosstab Data Text" x="317" y="0" width="203" height="30"/>
+							<textElement>
+								<font size="13"/>
 							</textElement>
-							<text><![CDATA[设备运行状态]]></text>
-						</staticText>
+							<textFieldExpression><![CDATA[$P{devStatus}]]></textFieldExpression>
+						</textField>
 					</cellContents>
 				</crosstabHeaderCell>
 				<rowGroup name="orgName" width="161" totalPosition="End">
@@ -116,20 +121,13 @@
 							<box>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
-							<staticText>
-								<reportElement uuid="19328a19-b213-4a16-b964-fed0a3e84486" x="0" y="0" width="520" height="25" forecolor="#FFFFFF"/>
-								<box>
-									<pen lineWidth="0.0"/>
-									<topPen lineWidth="0.0"/>
-									<leftPen lineWidth="0.0"/>
-									<bottomPen lineWidth="0.0"/>
-									<rightPen lineWidth="0.0"/>
-								</box>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+							<textField>
+								<reportElement uuid="af071356-b969-40df-92e2-28ff7e787677" style="Crosstab Data Text" x="0" y="0" width="520" height="25"/>
+								<textElement>
+									<font size="13"/>
 								</textElement>
-								<text><![CDATA[总计]]></text>
-							</staticText>
+								<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
+							</textField>
 						</cellContents>
 					</crosstabTotalRowHeader>
 				</rowGroup>
@@ -156,20 +154,13 @@
 							<box>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
-							<staticText>
-								<reportElement uuid="01ecb9a2-3a8b-4569-b6d7-e0f6d1011056" x="0" y="0" width="358" height="25"/>
-								<box>
-									<pen lineWidth="0.0"/>
-									<topPen lineWidth="0.0"/>
-									<leftPen lineWidth="0.0"/>
-									<bottomPen lineWidth="0.0"/>
-									<rightPen lineWidth="0.0"/>
-								</box>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+							<textField>
+								<reportElement uuid="87357755-1fc9-4293-a112-67882244cbea" style="Crosstab Data Text" x="0" y="0" width="359" height="25"/>
+								<textElement>
+									<font size="13"/>
 								</textElement>
-								<text><![CDATA[小计]]></text>
-							</staticText>
+								<textFieldExpression><![CDATA[$P{subtotal}]]></textFieldExpression>
+							</textField>
 						</cellContents>
 					</crosstabTotalRowHeader>
 				</rowGroup>
@@ -204,20 +195,13 @@
 								<bottomPen lineWidth="0.5"/>
 								<rightPen lineWidth="0.5"/>
 							</box>
-							<staticText>
-								<reportElement uuid="7de0a3d3-fc79-4f04-b19a-bd5cecdc5f80" style="Crosstab Data Text" x="0" y="0" width="203" height="25"/>
-								<box>
-									<pen lineWidth="0.0"/>
-									<topPen lineWidth="0.0"/>
-									<leftPen lineWidth="0.0"/>
-									<bottomPen lineWidth="0.0"/>
-									<rightPen lineWidth="0.0"/>
-								</box>
-								<textElement verticalAlignment="Middle" markup="none">
-									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+							<textField>
+								<reportElement uuid="809bbe39-181a-40be-b231-321bb2803968" style="Crosstab Data Text" x="0" y="0" width="203" height="25"/>
+								<textElement>
+									<font size="13"/>
 								</textElement>
-								<text><![CDATA[小计]]></text>
-							</staticText>
+								<textFieldExpression><![CDATA[$P{subtotal}]]></textFieldExpression>
+							</textField>
 						</cellContents>
 					</crosstabTotalRowHeader>
 				</rowGroup>
@@ -271,7 +255,7 @@
 						</box>
 					</cellContents>
 				</crosstabCell>
-				<crosstabCell width="181" rowTotalGroup="devUseState">
+				<crosstabCell width="181" height="25" rowTotalGroup="devUseState">
 					<cellContents>
 						<box>
 							<pen lineWidth="0.5"/>
@@ -296,7 +280,7 @@
 						</textField>
 					</cellContents>
 				</crosstabCell>
-				<crosstabCell width="0" rowTotalGroup="devUseState" columnTotalGroup="countName">
+				<crosstabCell width="0" height="25" rowTotalGroup="devUseState" columnTotalGroup="countName">
 					<cellContents/>
 				</crosstabCell>
 				<crosstabCell width="181" height="25" rowTotalGroup="devTypeName">

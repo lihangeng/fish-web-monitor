@@ -13,7 +13,7 @@ Ext.define('Eway.view.atmLog.LogBackup',{
 	initComponent : function(){
 		
 		Ext.apply(this,{
-			title : '应用日志下载',
+			title : Eway.locale.atmLog.appLogDownload,
 			
 			items : [{
 				region : 'north',

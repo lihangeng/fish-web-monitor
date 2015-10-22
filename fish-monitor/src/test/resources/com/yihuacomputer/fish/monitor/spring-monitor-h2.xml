@@ -23,6 +23,9 @@
 
 	<!--自身的配置(数据源的配置) -->
 	<jdbc:embedded-database id="hiberanteDataSource" type="H2"/>
+	
+	<!-- ehcache缓存配置 -->
+	<import resource="classpath:/com/yihuacomputer/domain/fish-cache-ehcache.xml"/>
 
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -46,7 +49,7 @@
 			<list>
 				<value>com.yihuacomputer.fish.monitor.entity</value>
 				<value>com.yihuacomputer.fish.machine.entity</value>
-				<value>com.yihuacomputer.fish.person.entity</value>
+				<value>com.yihuacomputer.fish.system.entity</value>
 			</list>
 		</property>
 	</bean>

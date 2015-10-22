@@ -1,7 +1,7 @@
 Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.agent_remote_remoteBrowseNetWorkView',
-	title : '网络信息',
+	title : Eway.locale.agent.remote.networkInfo,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -20,7 +20,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 			items : {
 				xtype : 'tabpanel',
 				items : [ {
-					title : '网络连接状态',
+					title : Eway.locale.agent.remote.networkLinkStatus,
 					xtype : 'draw',
 					x : 10,
 					y : 10,
@@ -30,7 +30,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 					sprites : [ {
 						type : 'text',
 						stroke : 'black',
-						text : '已发送',
+						text : Eway.locale.agent.remote.send,
 						x : 90,
 						y : 30
 					}, {
@@ -41,7 +41,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 					}, {
 						type : 'text',
 						stroke : 'black',
-						text : '已接收',
+						text : Eway.locale.agent.remote.receive,
 						x : 285,
 						y : 30
 					}, {
@@ -57,13 +57,13 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 					}, {
 						type : 'text',
 						stroke : 'black',
-						text : '字节:',
+						text : Eway.locale.agent.remote.bite,
 						x : 30,
 						y : 78
 					}, {
 						type : 'text',
 						stroke : 'black',
-						text : '速度(Mbps):',
+						text : Eway.locale.agent.remote.speed,
 						x : 15,
 						y : 120
 					}, {
@@ -75,7 +75,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 						x : 180
 					} ]
 				}, {
-					title : '宽带测速',
+					title : Eway.locale.agent.remote.bandWidth,
 					itemId : 'bandWidth',
 					xtype : 'panel',
 					layout : 'border',
@@ -98,7 +98,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 							minimum : 0,
 							maximum : 10,
 							steps : 10,
-							title : '单位：MB',
+							title : Eway.locale.agent.remote.unit,
 							margin : 7
 						} ],
 						series : [ {
@@ -114,7 +114,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 						fieldCls : ''
 					} ],
 					buttons : [ {
-						text : '重新测试',
+						text : Eway.locale.agent.remote.againTest,
 						action : 'againTest'
 					} ]
 				} ]

@@ -18,7 +18,7 @@ Ext.define('Eway.view.version.deviceVersion.FilterForm', {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : '设备号',
+					fieldLabel : Eway.locale.refs.terminalId,
 					name : 'terminalId',
 					maxLength : 20
 				},{
@@ -32,10 +32,10 @@ Ext.define('Eway.view.version.deviceVersion.FilterForm', {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : '设备IP地址',
+					fieldLabel : Eway.locale.refs.ip,//'设备IP地址',
 					name : 'ip',
 					regex : /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/,
-					regexText : '请输入正确的IP地址'
+					regexText : Eway.locale.vtype.ip//'请输入正确的IP地址'
 				},{
 					xtype : 'field_card_DeviceTypeComboBox',
 					name:'devTypeId'
@@ -51,8 +51,8 @@ Ext.define('Eway.view.version.deviceVersion.FilterForm', {
 					name : 'organization'
 				}, {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '所属机构',
-					emptyText : '--请选择--',
+					fieldLabel : Eway.locale.refs.orgName,//
+					emptyText : Eway.locale.combox.select,
 					name : 'orgName',
 					hiddenValue : 'organization',
 					editable : false,

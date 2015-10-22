@@ -1,11 +1,17 @@
 package com.yihuacomputer.fish.atmlog.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.yihuacomputer.fish.api.atmlog.IAtmLogInfo;
 
-public class AtmLogInfo implements IAtmLogInfo {
+public class AtmLogInfo implements IAtmLogInfo,Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8165898395421364503L;
+
 	private long id;
 
 	private String orgName;

@@ -16,8 +16,6 @@
 	
 	<!--内存版本-->
 	<import resource="classpath:/com/yihuacomputer/fish/machine/spring-machine-mem.xml"/>
-	<!--内嵌数据库版本
-	<import resource="classpath:/com/yihuacomputer/fish/machine/spring-machine-h2.xml" />-->
 	<!--oracle数据库版本
 	<import resource="classpath:/com/yihuacomputer/fish/machine/spring-machine-oracle.xml" />-->
 	

@@ -77,7 +77,7 @@ public class DayBackupExcuter implements IDayBackupExcuter{
 				today = new SimpleDateFormat("yy-MM-dd").parse(date);
 			} catch (ParseException e) {
 				dayBackup.setResult(DayBackupResult.ERROR);
-				logger.error(String.format("转换时间出错![%s]", e));
+				logger.error(String.format("ParseTimeException![%s]", e));
 			}
 			c.setTime(today);
 			int day=c.get(Calendar.DATE);
@@ -88,7 +88,7 @@ public class DayBackupExcuter implements IDayBackupExcuter{
 				dayBackup.setResult(DayBackupResult.SUCCESS);
 			} catch (Exception e) {
 				dayBackup.setResult(DayBackupResult.ERROR);
-				logger.error(String.format("执行备份出错![%s]", e));
+				logger.error(String.format("backup file exception![%s]", e));
 			}
 			dayBackup.setEndTime(DateUtils.getTimestamp(new Date()));
 			this.dayBackupService.update(dayBackup);
@@ -108,7 +108,7 @@ public class DayBackupExcuter implements IDayBackupExcuter{
 				dayBackup.setResult(DayBackupResult.SUCCESS);
 			} catch (Exception e) {
 				dayBackup.setResult(DayBackupResult.ERROR);
-				logger.error(String.format("重做任务出错![%s]", e));
+				logger.error(String.format("redo backup task exception![%s]", e));
 			}
 			dayBackup.setEndTime(DateUtils.getTimestamp(new Date()));
 			this.dayBackupService.update(dayBackup);
@@ -147,7 +147,8 @@ public class DayBackupExcuter implements IDayBackupExcuter{
 			dayBackup.setResult(DayBackupResult.SUCCESS);
 		} catch (Exception e) {
 			dayBackup.setResult(DayBackupResult.ERROR);
-			logger.error(String.format("定时调度出错![%s]", e));
+//			logger.error(String.format("定时调度出错![%s]", e));
+			logger.error(String.format("schedule execute exception![%s]", e));
 		}
 		dayBackup.setEndTime(DateUtils.getTimestamp(new Date()));
 		this.dayBackupService.update(dayBackup);

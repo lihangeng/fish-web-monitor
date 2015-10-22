@@ -17,7 +17,7 @@ public interface ITaskService {
 	 * 创建任务
 	 * @return
 	 */
-	public ITask make();
+	public ITask make(Date firstCreateDate);
 
 	/**
 	 * 根据设备Id查找任务列表
@@ -109,4 +109,19 @@ public interface ITaskService {
     public void onlyUpdateTask(ITask task);
 
     public void cancelTasks(List<ITask> tasks);
+    
+    /**
+     * 获取自动升级任务列表
+     * @param filter
+     * @return
+     */
+    public IPageResult<AutoUpdateTaskForm> pageAutoUpdateTask(int start,int limit,IFilter filter);
+	public IPageResult<ITask> export( IFilter filter) ;
+	
+	/**
+	 * 网页上重置任务状态(标记为部署失败)
+	 * @param taskId
+	 * @return
+	 */
+	public ITask webResetTaskStatus(long taskId);
 }

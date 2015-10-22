@@ -38,11 +38,11 @@ Ext.define('Eway.view.monitor.card.CardInfoGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->',{
-				text:'查询',
+				text:Eway.locale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			},{
-				text: '增加',
+				text: Eway.locale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'cardAdd',
@@ -50,7 +50,7 @@ Ext.define('Eway.view.monitor.card.CardInfoGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '删除',
+				text: Eway.locale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'cardDel',
@@ -58,16 +58,16 @@ Ext.define('Eway.view.monitor.card.CardInfoGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text : '导出',
-				iconCls :'exportToExcel',
+				text : Eway.locale.monitor.business.card.exportData,
+				glyph : 0xf1c3,
 				action : 'export'
 			}],
 			columns : [{
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'terminalId',
 				flex : 1
 			}, {
-				header : '所属机构',
+				header : Eway.locale.commen.orgNameBelongs,
 				dataIndex : 'subsidiaryorganName',
 				flex : 1
 			},
@@ -79,45 +79,45 @@ Ext.define('Eway.view.monitor.card.CardInfoGrid', {
 				dataIndex : 'handOverOrgName',
 				flex : 1
 			},*/ {
-				header : '卡号',
+				header : Eway.locale.monitor.business.transaction.card,
 				dataIndex : 'accountNo',
 				flex : 1
 			},{
-				header : '吞卡类型',
+				header : Eway.locale.monitor.business.card.type,
 				dataIndex : 'cardRetainType',
 				flex : 1,
 				renderer : function(value){
 					if(value == 1){
-						return '手动添加';
+						return Eway.locale.monitor.business.card.manual;
 					}else if(value == 2){
-						return '自动添加';
+						return Eway.locale.monitor.business.card.auto;
 					}
 				}
 			},{
-				header : '吞卡时间',
+				header : Eway.locale.monitor.business.card.time,
 				dataIndex : 'cardRetainTime',
 				flex : 1
 			},{
-				header : '发卡行',
+				header : Eway.locale.monitor.business.card.cardHolder,
 				dataIndex : 'cardDistributionBank',
 				flex : 1
 			},{
-				header : '状态',
+				header : Eway.locale.commen.state,
 				dataIndex : 'status',
 				renderer : function(value){
 					if(value == 0){
-						return '待领';
+						return Eway.locale.monitor.business.card.comboxStatus.wait;
 					}else if(value == 1){
-						return '已领';
+						return Eway.locale.monitor.business.card.comboxStatus.received;
 					}else if(value == 2){
-						return '销毁';
+						return Eway.locale.monitor.business.card.comboxStatus.destroy;
 					}else if(value == 3){
-						return '调出';
+						return Eway.locale.monitor.business.card.comboxStatus.bringed;
 					}
 				},
 				flex : 1
 			},{
-				header : '吞卡原因',
+				header : Eway.locale.monitor.business.card.reason,
 				dataIndex : 'reason',
 				flex : 1
 			}

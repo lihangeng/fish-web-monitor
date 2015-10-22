@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -42,6 +44,9 @@ public class TransactionHisController {
 
     @Autowired
     private IDeviceService deviceService;
+    
+	@Autowired
+	private MessageSource messageSource;
 
     //获得交易类型
     @RequestMapping(value = "/queryTransType", method = RequestMethod.GET)
@@ -79,7 +84,7 @@ public class TransactionHisController {
         String orgFlag = userSession.getOrgFlag();
         IDevice device = deviceService.get(terminalId);
         if(device == null){
-        	return makeErrorPage(result,String.format("查找的设备号[%s]不存在",terminalId));
+        	return makeErrorPage(result,String.format(messageSource.getMessage("transactionHis.termNotExist", null, FishCfg.locale),terminalId));
         }
 
         if(device.getOrganization().getOrgFlag().contains(orgFlag)){
@@ -100,7 +105,7 @@ public class TransactionHisController {
             result.put("data", TransactionForm.convert(pageResultTransList.list()));
             return result;
         }else{
-        	return makeErrorPage(result,String.format("查找的设备号[%s]不在你的查看权限范围内",terminalId));
+        	return makeErrorPage(result,String.format(messageSource.getMessage("transactionHis.termRight", null, FishCfg.locale),terminalId));
         }
 
 

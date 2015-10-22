@@ -4,7 +4,7 @@ Ext.define('Eway.view.monitor.device.box.View', {
 
 	requires : [ 'Eway.view.monitor.device.box.FilterForm',
 			'Eway.view.monitor.device.box.Grid' ],
-	title : '钞箱详情',
+	title : Eway.locale.monitor.devMonitor.cash.boxDetail,
 	layout : 'border',
 	width : 900,
 	height : 400,

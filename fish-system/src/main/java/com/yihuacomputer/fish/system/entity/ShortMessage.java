@@ -1,26 +1,31 @@
 package com.yihuacomputer.fish.system.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.yihuacomputer.fish.api.system.sms.IShortMessage;
-import com.yihuacomputer.fish.system.service.api.IDomainShortMessageService;
+import com.yihuacomputer.fish.api.system.sms.IShortMessageService;
 
-public class ShortMessage implements IShortMessage {
+public class ShortMessage implements IShortMessage,Serializable {
 
-	private List<String> mobiles;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8997032317930250485L;
+
+	private List<String> mobiles = new ArrayList<String>();
 
 	private String content;
 	
-	private IDomainShortMessageService service;
+	private IShortMessageService service;
 
 	public ShortMessage(){
 		mobiles = new ArrayList<String>();
 	}
 	
-	public ShortMessage(IDomainShortMessageService service) {
+	public ShortMessage(IShortMessageService service) {
 		this.service = service;
-		mobiles = new ArrayList<String>();
 	}
 
 	@Override
@@ -48,11 +53,11 @@ public class ShortMessage implements IShortMessage {
 		this.content = content;
 	}
 
-	public IDomainShortMessageService getService() {
+	public IShortMessageService getService() {
 		return service;
 	}
 
-	public void setService(IDomainShortMessageService service) {
+	public void setService(IShortMessageService service) {
 		this.service = service;
 	}
 	

@@ -5,7 +5,7 @@ Ext.define('Eway.store.monitor.card.InoutComboBox', {
 	model: 'Eway.model.Dict',
 	
 	data: [
-			{value:'1', display:'在行自助服务区'}, 
-	       {value:'2', display:'离行自助银行'},
-	       {value:'3', display:'单机离行自助服务点'}]
+			{value:'1', display:Eway.locale.machine.atmGroup.comboxAwayFlag.inBank}, 
+	       {value:'2', display:Eway.locale.machine.atmGroup.comboxAwayFlag.outBank},
+	       {value:'3', display:Eway.locale.machine.atmGroup.comboxAwayFlag.clickBank}]
 });

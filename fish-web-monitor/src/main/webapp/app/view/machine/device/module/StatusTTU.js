@@ -10,7 +10,7 @@ Ext.define("Eway.view.machine.device.module.StatusTTU", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : '<center>厂商状态信息</center>',
+				title : '<center>'+Eway.locale.machine.device.comStatus+'</center>',
 				layout : 'column',
 				border : 'false',
 				items : [ {
@@ -24,13 +24,13 @@ Ext.define("Eway.view.machine.device.module.StatusTTU", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '厂商故障码',
+						fieldLabel : Eway.locale.machine.device.hwCode,
 						name : 'hwCode',
 						style : 'margin-top:2px'
 					} ]
 				} ]
 			}, {
-				title : '<center>文本终端单元(TTU)状态信息</center>',
+				title : '<center>'+Eway.locale.machine.device.TTUStatus+'</center>',
 				layout : 'column',
 				border : 'false',
 				items : [ {

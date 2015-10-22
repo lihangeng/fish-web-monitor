@@ -94,7 +94,7 @@ Ext.define('Eway.controller.person.BankPer', {
 		store.setBaseParam('type','0');
 	  	store.loadPage(1);
 	    var actionTip = grid.down("tbtext[action=tip]");
-	    actionTip.setText("所有银行人员信息");
+	    actionTip.setText(Eway.locale.tip.bankPer.allPersonInfo);
 	},
 
 	/*关联设备管理*/
@@ -146,7 +146,7 @@ Ext.define('Eway.controller.person.BankPer', {
 			});
 		}
 		else {
-			Eway.alert("请选择您关联的人员.");
+			Eway.alert(Eway.locale.tip.bankPer.link.linkPerson);
 		}
 	},
 	//刷新“已/可关联的设备”列表
@@ -226,12 +226,12 @@ Ext.define('Eway.controller.person.BankPer', {
 					});
 				},
 				failure: function(){
-					Eway.alert("解除失败.");
+					Eway.alert(Eway.locale.tip.bankPer.link.unLinkDevFail);
 				},
 				scope:this
 			});
 		}else{
-			Eway.alert("请选择要解除的设备.");
+			Eway.alert(Eway.locale.tip.bankPer.link.unlinkDev);
 		}
 	},
 
@@ -275,12 +275,12 @@ Ext.define('Eway.controller.person.BankPer', {
 					});
 				},
 				failure: function(){
-					Eway.alert("关联失败.");
+					Eway.alert(Eway.locale.tip.bankPer.link.unLinkPersonFail);
 				},
 				scope:this
 			});
 		}else{
-			Eway.alert("请选择要关联的设备.");
+			Eway.alert(Eway.locale.tip.bankPer.link.linkDev);
 		}
 	},
 
@@ -296,7 +296,7 @@ Ext.define('Eway.controller.person.BankPer', {
 		 	store.setUrlParam(i,data[i])
 		 }
 		 var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	     actionTip.setText("符合条件的人员");
+	     actionTip.setText(Eway.locale.tip.bankPer.personEligible);
 		 store.loadPage(1);
 		 this.getEwayView().down('treepanel').getSelectionModel().select(0,true);//选择根节点
 	},
@@ -313,7 +313,7 @@ Ext.define('Eway.controller.person.BankPer', {
 		 	store.setUrlParam(i,null)
 		 }
 		 var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	     actionTip.setText("符合条件的人员");
+	     actionTip.setText(Eway.locale.tip.bankPer.personEligible);
 		 store.loadPage(1);
 		 this.getEwayView().down('treepanel').getSelectionModel().select(0,true);//选择根节点
 	},
@@ -348,13 +348,13 @@ Ext.define('Eway.controller.person.BankPer', {
 				store.setBaseParam('selectedNode',node.data.id);
 				store.loadPage(1);
             	var actionTip = this.getEwayView().down("tbtext[action=tip]");
-		     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+"以及其下属机构下的人员信息");
+		     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+Eway.locale.tip.bankPer.downGradePer);
 
 			}else{
 				store.setBaseParam('type','0');
 				store.loadPage(1);
             	var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	    		actionTip.setText("所有银行人员信息");
+	    		actionTip.setText(Eway.locale.tip.bankPer.allPersonInfo);
 			}
         }else{
         	var store = this.getEwayView().down('bank_person_grid').getStore();
@@ -362,7 +362,7 @@ Ext.define('Eway.controller.person.BankPer', {
 			store.setBaseParam('selectedNode',node.data.id);
 			store.loadPage(1);
        		var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+"以及其下属机构下的人员信息");
+	     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+Eway.locale.tip.bankPer.downGradePer);
 	    }
     },
 
@@ -405,14 +405,14 @@ Ext.define('Eway.controller.person.BankPer', {
 						}
 					});
 					var actionTip = ewayView.down("tbtext[action=tip]");
-	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+"以及其下属机构下的人员信息");
+	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+Eway.locale.tip.bankPer.downGradePer);
 					win.close();
 					Eway.alert(Eway.addSuccess);
                     me.onQueryAfterAdd();
 
 			    },
 			    failure: function(record,operation){
-					Eway.alert("增加失败:" + operation.getError());
+					Eway.alert(Eway.locale.tip.add.error + operation.getError());
 				}
 			});
 		}
@@ -484,7 +484,7 @@ Ext.define('Eway.controller.person.BankPer', {
 						}
 					});
 					var actionTip = ewayView.down("tbtext[action=tip]");
-	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+"下的人员信息");
+	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+Eway.locale.tip.bankPer.personBelongs);
 					win.close();
 				},
 				failure: function(record,operation){
@@ -506,8 +506,8 @@ Ext.define('Eway.controller.person.BankPer', {
 		var grid = this.getGrid();
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
-			Ext.MessageBox.confirm("请确认",
-					"是否删除该记录?",
+			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
+					Eway.locale.tip.remove.confirm.info,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
@@ -517,7 +517,7 @@ Ext.define('Eway.controller.person.BankPer', {
 									grid.getStore().remove(record);
 								},
 								failure: function(record,operation){
-									Eway.alert("删除失败:" + operation.getError());
+									Eway.alert(Eway.locale.tip.remove.error + operation.getError());
 								},
 								scope:this
 							});

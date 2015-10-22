@@ -2,7 +2,7 @@ Ext.define('Eway.view.field.atmType.DeviceAtmVendorComboBox', {
 	extend : 'Ext.form.field.ComboBox',
 	alias : 'widget.field_atmType_DeviceAtmVendorComboBox',
 
-	fieldLabel : '所属品牌',
+	fieldLabel : Eway.locale.machine.atmType.devVendorName,
 	name : 'devVendorId',
 	hiddenName : 'devVendorId',
 	msgTarget : 'side',
@@ -11,7 +11,7 @@ Ext.define('Eway.view.field.atmType.DeviceAtmVendorComboBox', {
 	displayField : 'name',
 	queryMode : 'local',
 	editable : false,
-	emptyText : '--请选择--',
+	emptyText : Eway.locale.combox.select,
 	listeners : {
 		select : function() {
 			var type = this.up("form").query("field_device_deviceatmtype")[0];

@@ -2,7 +2,7 @@ Ext.define('Eway.view.field.person.OrganizationState', {
 	extend : 'Ext.form.field.ComboBox',
 	alias : 'widget.field.organizationState',
 
-	fieldLabel : '状态',
+	fieldLabel : Eway.locale.commen.state,
 	name : 'organizationState',
 	hiddenName : 'organizationState',
 	msgTarget : 'side',
@@ -10,5 +10,5 @@ Ext.define('Eway.view.field.person.OrganizationState', {
 	valueField : 'value',
 	displayField : 'display',
 	queryMode : 'local',
-	emptyText : '--请选择--'
+	emptyText : Eway.locale.combox.select
 });

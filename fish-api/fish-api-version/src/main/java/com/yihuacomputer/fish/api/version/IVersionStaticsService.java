@@ -12,10 +12,6 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 public interface IVersionStaticsService {
 
     public long getDeviceTotal();
-
-    long getSuccessTotal(IVersion version);
-
-    long getFailTotal(IVersion version);
     
     public IVersionStatics getVersionStatics(IVersion version,IOrganization org);
     

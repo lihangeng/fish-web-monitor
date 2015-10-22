@@ -8,10 +8,22 @@ package com.yihuacomputer.fish.api.version.job;
  *
  */
 public enum NoticeStatus {
-    SUCCESS(0, "修改成功"),
-    FAIL(1, "修改失败"),
-    IGNORE(2,"不需修改"),
-    UNKNOW(3,"未知");
+    /**
+     * 修改成功
+     */
+    SUCCESS(0, "NoticeStatus.SUCCESS"),
+    /**
+     * 修改失败
+     */
+    FAIL(1, "NoticeStatus.FAIL"),
+    /**
+     * 不需修改
+     */
+    IGNORE(2,"NoticeStatus.IGNORE"),
+    /**
+     * 未知
+     */
+    UNKNOW(3,"NoticeStatus.UNKNOW");
 
     private int id;
     private String text;

@@ -2,9 +2,15 @@ package com.yihuacomputer.fish.api.person;
 
 public enum Gender {
 
-	MALE(1,"男"),
+	/**
+	 * 男
+	 */
+	MALE(1,"Gender.MALE"),
 	
-	FEMALE(2,"女");
+	/**
+	 * 女
+	 */
+	FEMALE(2,"Gender.FEMALE");
 	
 	private int id;
 	

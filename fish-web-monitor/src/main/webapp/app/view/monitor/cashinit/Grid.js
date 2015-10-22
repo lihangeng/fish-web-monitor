@@ -11,11 +11,11 @@ Ext.define('Eway.view.monitor.cashinit.Grid', {
 			initRegion : true,
 			store : store,
 			tbar : [ '->', {
-				text : '查询',
+				text : Eway.locale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : '详细信息',
+				text : Eway.locale.commen.description,
 				glyph : 0xf129,
 				action : 'info'
 			} ],
@@ -24,24 +24,24 @@ Ext.define('Eway.view.monitor.cashinit.Grid', {
 				stripeRows : true
 			},
 			columns : [ Ext.create('Ext.grid.RowNumberer'), {
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'termId'
 			}, {
-				header : '加钞ID',
+				header : Eway.locale.monitor.business.cashInit.uuId,
 				dataIndex : 'uuId'
 			}, {
-				header : '加钞总金额',
+				header : Eway.locale.monitor.devMonitor.cash.initAmount,
 				dataIndex : 'amt',
 				renderer: this.cnMoney
 			}, {
-				header : '加钞日期',
+				header : Eway.locale.monitor.business.cashInit.date,
 				dataIndex : 'date',
 				flex : 1
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : '总共：{2}条，显示{0}-{1}'
+				displayMsg : Eway.locale.commen.toolbar
 			})
 		});
 

@@ -7,7 +7,7 @@ Ext.define('Eway.view.machine.atmModule.AtmModuleView', {
 	           'Eway.view.machine.atmModule.AtmModuleFilterForm'
 	           ],
 	
-	title: 'ATM模块',
+	title: Eway.locale.machine.atmModule.atmModules,
 	layout: 'border',
 	
 	initComponent: function() {

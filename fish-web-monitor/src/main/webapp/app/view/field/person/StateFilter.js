@@ -1,7 +1,7 @@
 Ext.define('Eway.view.field.person.StateFilter', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field.stateFilter',
-	fieldLabel : '状态',
+	fieldLabel : Eway.locale.commen.state,
 	name : 'state',
 	hiddenName : 'state',
 	msgTarget : 'side',
@@ -11,5 +11,5 @@ Ext.define('Eway.view.field.person.StateFilter', {
 	queryMode : 'local',
 	queryMode : 'local',
 	editable : false,
-	emptyText : '--请选择--'
+	emptyText : Eway.locale.combox.select
 });

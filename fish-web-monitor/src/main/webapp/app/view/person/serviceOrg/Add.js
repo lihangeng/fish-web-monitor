@@ -5,7 +5,7 @@ Ext.define('Eway.view.person.serviceOrg.Add', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.ser_organization_add',
 
-	title: '增加维护商信息',
+	title: Eway.locale.person.serviceOrg.addServiceTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -27,20 +27,20 @@ Ext.define('Eway.view.person.serviceOrg.Add', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font> 厂商编号',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.serviceOrg.code,
 					xtype: 'field.code',
 					regex: /^[a-zA-Z0-9][a-zA-Z0-9-_\.]{0,19}$/,
-					regexText:'只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！',
+					regexText:Eway.locale.vtype.bankOrgCode,
 					allowBlank: false
 				}, {
-					fieldLabel : '<font color="red">*</font> 厂商名称',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.serviceOrg.name,
 					xtype: 'field.name',
 					maxLength : 40,
 					allowBlank: false
 				},{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font>上级厂商',
-					emptyText: '--请选择--',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.person.serviceOrg.upgradeService,
+					emptyText: Eway.locale.combox.select,
 					allowBlank: false,
 					editable : false,
 					name : 'parent',
@@ -52,24 +52,24 @@ Ext.define('Eway.view.person.serviceOrg.Add', {
 					name :'parentId'
 				},{
 					xtype:'textfield',
-					fieldLabel : '厂商地址',
+					fieldLabel : Eway.locale.person.serviceOrg.address,
 					maxLength : 60,
 					allowBlank: true,
 					name :'address'
 				},{
 					xtype:'textfield',
-					fieldLabel:'邮政编码',
+					fieldLabel:Eway.locale.person.serviceOrg.zip,
 					allowBlank: true,
 					name :'zip',
 					regex: /^[\d]{6}$/,
-					regexText:'只能输入6个‘0-9’的数字！',
+					regexText:Eway.locale.vtype.zip,
 			        hideTrigger: true,
 			        keyNavEnabled: false,
 			        mouseWheelEnabled: false
 				},{
 					xtype : 'textarea',
 					name : 'description',
-					fieldLabel : '厂商描述',
+					fieldLabel : Eway.locale.person.serviceOrg.description,
 					autoScroll : true,
 					maxLength :40,
 					allowBlank : true
@@ -77,14 +77,14 @@ Ext.define('Eway.view.person.serviceOrg.Add', {
 				buttonAlign:'center',
 				buttons: [{
 					xtype : 'button',
-					text: '确认',
+					text: Eway.locale.button.confirm,
 					action: 'add'
 				}, {
-					text: '重置',
+					text: Eway.locale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: '取消',
+					text: Eway.locale.button.cancle,
 					handler: this.onOver
 				}]
 			}

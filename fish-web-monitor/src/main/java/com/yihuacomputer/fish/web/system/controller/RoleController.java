@@ -8,6 +8,7 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -53,6 +55,9 @@ public class RoleController {
 
 	@Autowired
 	private IUserRoleRelation userRoleRelation;
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	/**
 	 *
@@ -69,7 +74,7 @@ public class RoleController {
 		boolean isExist = this.isExistRoleName(form.getId(), form.getName());
 		if (isExist) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "增加失败:该角色名称已存在.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("role.add.exist", null, FishCfg.locale));
 		} else {
 			IRole role = service.make(form.getName().trim());
 			role.setDescription(form.getDescription());
@@ -110,10 +115,10 @@ public class RoleController {
 				boolean isSystem = this.isSystem(id);
 				if (isSystem) {
 					result.addAttribute(FishConstant.SUCCESS, false);
-					result.addAttribute("errorMsg", "此角色为系统内部角色,不能删除.");
+					result.addAttribute("errorMsg", messageSource.getMessage("role.del.systemRole", null, FishCfg.locale));
 				} else if (this.isLinkedByUser(id)) {
 					result.addAttribute(FishConstant.SUCCESS, false);
-					result.addAttribute("errorMsg", "有用户和该角色关联,不能删除.");
+					result.addAttribute("errorMsg", messageSource.getMessage("role.del.bindRole", null, FishCfg.locale));
 
 				} else {
 					for (IPermission p : permissions) {
@@ -124,13 +129,13 @@ public class RoleController {
 					} catch (IllegalArgumentException iae) {
 						logger.warn(iae.getMessage());
 						result.addAttribute(FishConstant.SUCCESS, false);
-						result.put("errorMsg", "后台处理出错.");
+						result.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
 					}
 				}
 			}
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute("errorMsg", "后台处理出错.");
+			result.addAttribute("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -164,7 +169,7 @@ public class RoleController {
 		IRole role = service.get(id);
 		if (role == null) {
 			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute("updateMsg", "更改失败:更改的记录不存在,请刷新后操作.");
+			result.addAttribute("updateMsg", messageSource.getMessage("person.updateNotExist", null, FishCfg.locale));
 			return result;
 		} else if (role != null) {
 			if (isExist) {
@@ -176,7 +181,7 @@ public class RoleController {
 				RoleForm oldRole = new RoleForm(role);
 				oldRole.setPermissions(s);
 				result.addAttribute(FishConstant.SUCCESS, true);
-				result.addAttribute("errorMsg", "更改失败:该角色名称已存在.");
+				result.addAttribute("errorMsg", messageSource.getMessage("role.update.exist", null, FishCfg.locale));
 				result.addAttribute(FishConstant.DATA, oldRole);
 				return result;
 			}
@@ -191,7 +196,7 @@ public class RoleController {
 				oldRole.setPermissions(s);
 
 				result.addAttribute(FishConstant.SUCCESS, true);
-				result.addAttribute("errorMsg", "更改失败:该角色为系统内部角色,不能更改.");
+				result.addAttribute("errorMsg", messageSource.getMessage("role.update.systemRole", null, FishCfg.locale));
 				result.addAttribute(FishConstant.DATA, oldRole);
 				return result;
 			}
@@ -407,13 +412,13 @@ public class RoleController {
 			IRole role = service.get(id);
 			if (role == null) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute("errorMsg", "此条记录已不存在,请刷新列表.");
+				result.addAttribute("errorMsg", messageSource.getMessage("role.isRoleExist.notExist", null, FishCfg.locale));
 			} else {
 				result.addAttribute(FishConstant.SUCCESS, true);
 			}
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute("errorMsg", "此条记录已不存在,请刷新列表.");
+			result.addAttribute("errorMsg", messageSource.getMessage("role.isRoleExist.notExist", null, FishCfg.locale));
 		}
 		return result;
 	}

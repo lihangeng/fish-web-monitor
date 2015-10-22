@@ -1,7 +1,7 @@
 Ext.define('Eway.view.machine.device.person.PersonInfo', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.machine_device_person_personInfo',
-	title : '设备人员信息',
+	title : Eway.locale.machine.device.devPerson,
 	modal : true,
 	constrainHeader : true,
 	width : 700,
@@ -23,11 +23,11 @@ Ext.define('Eway.view.machine.device.person.PersonInfo', {
 				xtype : 'tabpanel',
 				frame : true,
 				items : [ {
-					title : '管机员',
+					title : Eway.locale.machine.device.managePerson,
 					itemid : 'tubeMachineItemID',
 					xtype : 'machine_device_person_tmGrid'
 				}, {
-					title : '维护员',
+					title : Eway.locale.machine.device.maintainPerson,
 					itemid : 'maintainItemID',
 					xtype : 'machine_device_person_tGrid'
 				} ]

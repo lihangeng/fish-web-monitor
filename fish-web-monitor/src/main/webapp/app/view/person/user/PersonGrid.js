@@ -12,11 +12,11 @@ Ext.define('Eway.view.person.user.PersonGrid', {
 			store : store,
 			initRegion : true,
 			tbar : [ '->', {
-				text : '查询',
+				text : Eway.locale.button.search,
 				glyph : 0xf002,
 				action : 'queryPerson'
 			}, {
-				text : '选择',
+				text : Eway.locale.button.choose,
 				action : 'select'
 			} ],
 			viewConfig : {
@@ -24,43 +24,43 @@ Ext.define('Eway.view.person.user.PersonGrid', {
 				stripeRows : true
 			},
 			columns : [ {
-				header : '姓名',
+				header : Eway.locale.commen.name,
 				dataIndex : 'name',
 				width : 80
 			}, {
-				header : '岗位',
+				header : Eway.locale.commen.personJobName,
 				dataIndex : 'personJobName',
 				width : 100
 			}, {
-				header : '性别',
+				header : Eway.locale.commen.gender,
 				dataIndex : 'gender',
 				width : 80,
 				renderer : function(value, metadata, record) {
 					if (value == "MALE") {
-						return "男";
+						return Eway.locale.commen.comboxGender.male;
 					} else if (value == "FEMALE") {
-						return "女";
+						return Eway.locale.commen.comboxGender.female;
 					} else {
-						return "未知";
+						return Eway.locale.commen.comboxGender.know;
 					}
 				}
 			}, {
-				header : '出生年月',
+				header : Eway.locale.commen.birthday,
 				dataIndex : 'birthday',
 				xtype : 'datecolumn',
 				format : 'Y-m-d'
 			}, {
-				header : '手机',
+				header : Eway.locale.commen.mobile,
 				dataIndex : 'mobile'
 			}, {
-				header : '固话',
+				header : Eway.locale.commen.phone,
 				dataIndex : 'phone'
 			}, {
-				header : '邮箱',
+				header : Eway.locale.commen.email,
 				dataIndex : 'email',
 				width : 130
 			}, {
-				header : '机构',
+				header : Eway.locale.person.bankPer.organizationName,
 				dataIndex : 'organizationName',
 				width : 130
 			}, {
@@ -68,18 +68,18 @@ Ext.define('Eway.view.person.user.PersonGrid', {
 				dataIndex : 'ID',
 				hidden : true
 			}, {
-				header : '状态',
+				header : Eway.locale.commen.state,
 				dataIndex : 'state',
 				width : 60,
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return "在岗";
+						return Eway.locale.commen.comboxStatus.onJob;
 					} else if (value == 2) {
-						return "调休";
+						return Eway.locale.commen.comboxStatus.onAdjust;
 					} else if (value == 3) {
-						return "休假";
+						return Eway.locale.commen.comboxStatus.onVacation;
 					} else if (value == 0) {
-						return "其他";
+						return Eway.locale.commen.comboxStatus.other;
 					}
 				}
 			} ],

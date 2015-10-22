@@ -2,7 +2,6 @@ package com.yihuacomputer.fish.web.version.form;
 
 import java.util.Date;
 
-import com.yihuacomputer.fish.api.version.job.task.TaskType;
 
 public class JobForm {
 
@@ -27,6 +26,18 @@ public class JobForm {
 	private String deployStartDate;
 
 	private String deployEndDate;
+	
+	private int downLoadCounter;
+	
+	private boolean allDevice;
+
+	public boolean isAllDevice() {
+		return allDevice;
+	}
+
+	public void setAllDevice(boolean allDevice) {
+		this.allDevice = allDevice;
+	}
 
 	public JobForm() {
 	}
@@ -117,6 +128,14 @@ public class JobForm {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public int getDownLoadCounter() {
+		return downLoadCounter;
+	}
+
+	public void setDownLoadCounter(int downLoadCounter) {
+		this.downLoadCounter = downLoadCounter;
 	}
 
 }

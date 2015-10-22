@@ -11,12 +11,12 @@ Ext.define('Eway.view.permission.permission.Tree', {
 	collapseFirst : true,
     columns: [{
         xtype: 'treecolumn', //this is so we know which column will show the tree
-        text: '菜单名称',
+        text: Eway.locale.permission.permission.menuName,
         flex: 2,
         sortable: true,
         dataIndex: 'text'
     },{
-        text: '菜单描述',
+        text: Eway.locale.permission.permission.menuDescription,
         flex: 2,
         sortable: true,
         dataIndex: 'text'

@@ -24,6 +24,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -75,6 +76,9 @@ public class RetaincardController {
 
 	@Autowired
 	private IOrganizationService orgService;
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
@@ -84,15 +88,15 @@ public class RetaincardController {
 			String terminalId = request.getTerminalId();
 			if (!this.isInDevicelist(terminalId)) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "增加失败:设备号不存在.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.addFailDev", null, FishCfg.locale));
 			} else if (!this.isConsilientTerminalId(terminalId,
 					request.getUserOrgId())) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "增加失败:设备号不属于您所属机构下,请核实.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("retaincard.addRefuseOrg", null, FishCfg.locale));
 			} else if (this.checkAccountNo(request.getAccountNo(),
 					request.getUserOrgId(), request.getCardRetainTime())) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "增加失败:此张卡片不能再次添加.");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("retaincard.addRefuseDup", null, FishCfg.locale));
 			} else {
 				IDevice device = deviceService.get(terminalId);
 				String subsidiaryorganId = device.getOrganization().getGuid();
@@ -108,7 +112,7 @@ public class RetaincardController {
 			}
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "增加失败:后台处理出错.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("retaincard.addRefuseError", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -145,21 +149,21 @@ public class RetaincardController {
 		{
 		if (card.getCardRetainType() == CardRetainType.AUTOMATIC_CARD) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute("errorMsg", "删除失败:此条为自动添加记录 ,不可删除.");
+			result.addAttribute("errorMsg", messageSource.getMessage("retaincard.delFailAuto", null, FishCfg.locale));
 		} else {
 			try {
 				retaincardService.remove(id);
 				result.addAttribute(FishConstant.SUCCESS, true);
 			} catch (Exception ex) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute("errorMsg", "删除失败.");
+				result.addAttribute("errorMsg", messageSource.getMessage("retaincard.delError", null, FishCfg.locale));
 			}
 		}
 		}
 		else
 		{
 			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute("errorMsg", "删除成功.");
+			result.addAttribute("errorMsg", messageSource.getMessage("retaincard.delSuccess", null, FishCfg.locale));
 		}
 
 		return result;
@@ -192,10 +196,10 @@ public class RetaincardController {
 		try {
 			if (card == null) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute("errorMsg", "领取失败:记录不存在，请刷新后操作.");
+				result.addAttribute("errorMsg", messageSource.getMessage("retaincard.getFailNotExist", null, FishCfg.locale));
 			} else if(card.getStatus().equals(CardStatus.DESTORYED)){
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute("errorMsg", "领取失败:卡片已被销毁.");
+				result.addAttribute("errorMsg", messageSource.getMessage("retaincard.getFailDestroied", null, FishCfg.locale));
 				return result;
 			} else {
 				card.setCardType(IDCardType.getById(cardType));
@@ -210,7 +214,7 @@ public class RetaincardController {
 			}
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute("errorMsg", "领取失败:后台处理出错.");
+			result.addAttribute("errorMsg", messageSource.getMessage("retaincard.getFailError", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -245,7 +249,7 @@ public class RetaincardController {
 						result.addAttribute(FishConstant.SUCCESS, true);
 					} else {
 						result.addAttribute(FishConstant.SUCCESS, false);
-						result.addAttribute("errorMsg", "操作失败:您没有权限处理该卡片.");
+						result.addAttribute("errorMsg", messageSource.getMessage("retaincard.operateFaileRight", null, FishCfg.locale));
 					}
 				}
 			}
@@ -255,7 +259,7 @@ public class RetaincardController {
 			}
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute("errorMsg", "操作失败:后台处理出错.");
+			result.addAttribute("errorMsg", messageSource.getMessage("retaincard.operateError", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -278,10 +282,10 @@ public class RetaincardController {
 			if (card != null) {
 				if (card.getStatus().getId() == 1) { // 如果卡片状态已经变为1(已领)
 					result.addAttribute(FishConstant.SUCCESS, false);
-					result.addAttribute("errorMsg", "领取失败:卡片已经被领取,请刷新后再操作.");
+					result.addAttribute("errorMsg", messageSource.getMessage("retaincard.getFailNotExist", null, FishCfg.locale));
 				} else if (card.getStatus().getId() == 2) {
 					result.addAttribute(FishConstant.SUCCESS, false);
-					result.addAttribute("errorMsg", "领取失败:卡片已经被销毁,请刷新后再操作.");
+					result.addAttribute("errorMsg", messageSource.getMessage("retaincard.getFailDestroied", null, FishCfg.locale));
 				} else {
 					if (card.getHandOverOrg() == null) {
 						result.addAttribute(FishConstant.SUCCESS, true);
@@ -292,18 +296,18 @@ public class RetaincardController {
 						} else {
 							result.addAttribute(FishConstant.SUCCESS, false);
 							result.addAttribute("errorMsg",
-									"领取失败:卡片已经移交,您无法处理该卡片.");
+									messageSource.getMessage("retaincard.getFailHandover", null, FishCfg.locale));
 						}
 					}
 				}
 
 			} else {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute("errorMsg", "领取失败:记录不存在,请刷新后操作.");
+				result.addAttribute("errorMsg", messageSource.getMessage("retaincard.getFailNotExist", null, FishCfg.locale));
 			}
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute("errorMsg", "领取失败:后台处理出错.");
+			result.addAttribute("errorMsg", messageSource.getMessage("retaincard.getFailError", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -364,7 +368,7 @@ public class RetaincardController {
 			// if (StringUtils.isEmpty(card.getOrgGuid())) {
 			if (card == null) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute("errorMsg", "移交失败:记录不存在,请刷新后操作.");
+				result.addAttribute("errorMsg", messageSource.getMessage("retaincard.handoverFailNotExist", null, FishCfg.locale));
 			} else {
 				if (card.getHandOverOrg() == null) {
 					card.setTreatmentTime(new Date());
@@ -390,13 +394,13 @@ public class RetaincardController {
 								orgService, deviceService));
 					} else {
 						result.addAttribute(FishConstant.SUCCESS, false);
-						result.addAttribute("errorMsg", "移交失败:卡片已经移交,您无法处理该卡片.");
+						result.addAttribute("errorMsg", messageSource.getMessage("retaincard.handoverFailRight", null, FishCfg.locale));
 					}
 				}
 			}
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute("errorMsg", "移交失败:后台处理出错.");
+			result.addAttribute("errorMsg", messageSource.getMessage("retaincard.handoverError", null, FishCfg.locale));
 		}
 
 		return result;
@@ -420,11 +424,11 @@ public class RetaincardController {
 			IRetaincard retaincard = retaincardService.get(id);
 			if(retaincard == null) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute("errorMsg", "销毁失败:记录不存在，请刷新后操作.");
+				result.addAttribute("errorMsg", messageSource.getMessage("retaincard.destroyFailNotExist", null, FishCfg.locale));
 			}
 			else if(retaincard.getStatus().equals(CardStatus.ALREADY_RECEIVE)){
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute("errorMsg", "销毁失败:卡片已被领.");
+				result.addAttribute("errorMsg", messageSource.getMessage("retaincard.destroyFailGeted", null, FishCfg.locale));
 				return result;
 			}
 			else{
@@ -437,7 +441,7 @@ public class RetaincardController {
 			}
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute("errorMsg", "销毁失败:后台处理出错.");
+			result.addAttribute("errorMsg", messageSource.getMessage("retaincard.destroyFailError", null, FishCfg.locale));
 		}
 
 		return result;
@@ -509,10 +513,10 @@ public class RetaincardController {
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
 
 		HSSFCell cell = row.createCell(0);
-		cell.setCellValue("设备号");
+		cell.setCellValue(messageSource.getMessage("device.terminalId", null, FishCfg.locale));
 		cell.setCellStyle(style);
 		cell = row.createCell(1);
-		cell.setCellValue("所属机构");
+		cell.setCellValue(messageSource.getMessage("device.devOrg", null, FishCfg.locale));
 		cell.setCellStyle(style);
 		/**
 		 * 上海农商行暂不需要
@@ -522,24 +526,24 @@ public class RetaincardController {
 		 * cell.setCellStyle(style);
 		 */
 		cell = row.createCell(2);
-		cell.setCellValue("卡号");
+		cell.setCellValue(messageSource.getMessage("retaincard.cardNo", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
 		cell = row.createCell(3);
-		cell.setCellValue("吞卡类型");
+		cell.setCellValue(messageSource.getMessage("retaincard.retainType", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
 		cell = row.createCell(4);
-		cell.setCellValue("吞卡时间");
+		cell.setCellValue(messageSource.getMessage("retaincard.retainTime", null, FishCfg.locale));
 		cell.setCellStyle(style);
 		cell = row.createCell(5);
-		cell.setCellValue("发卡行");
+		cell.setCellValue(messageSource.getMessage("retaincard.cardHoldBank", null, FishCfg.locale));
 		cell.setCellStyle(style);
 		cell = row.createCell(6);
-		cell.setCellValue("状态");
+		cell.setCellValue(messageSource.getMessage("retaincard.cardStatus", null, FishCfg.locale));
 		cell.setCellStyle(style);
 		cell = row.createCell(7);
-		cell.setCellValue("吞卡原因");
+		cell.setCellValue(messageSource.getMessage("retaincard.retainReason", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
 		/**
@@ -565,14 +569,14 @@ public class RetaincardController {
 			row.createCell(2)
 					.setCellValue(cellValue(retaincard.getAccountNo()));
 			row.createCell(3).setCellValue(
-					cellValue(retaincard.getCardRetainType().getText()));
+					cellValue(getEnumI18n(retaincard.getCardRetainType().getText())));
 			row.createCell(4).setCellValue(
 					cellValue(DateUtils.getTimestamp(retaincard
 							.getCardRetainTime())));
 			row.createCell(5).setCellValue(
 					cellValue(retaincard.getCardDistributionBank()));
 			row.createCell(6).setCellValue(
-					cellValue(retaincard.getStatus().getText()));
+					cellValue(getEnumI18n(retaincard.getStatus().getText())));
 			row.createCell(7).setCellValue(cellValue(retaincard.getReason()));
 		}
 
@@ -592,7 +596,14 @@ public class RetaincardController {
 		this.download(file, response, "gb2312", "application/x-xls");
 		return null;
 	}
-
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	/**
 	 * 下载文件
 	 *

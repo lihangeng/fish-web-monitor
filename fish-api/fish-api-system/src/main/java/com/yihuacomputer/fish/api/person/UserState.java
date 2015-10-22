@@ -2,14 +2,35 @@ package com.yihuacomputer.fish.api.person;
 
 
 public enum UserState {
-	WAITCHECK(0,"待审核"),
-	NEW(1,"新建"),
-	NORMAL(2, "正常"),
-	LOCK(3, "锁定"),//超过60天没有修改密码，会被锁定
-	REMOVED(4, "已删除"),//假删除
+	/**
+	 * 待审核
+	 */
+	WAITCHECK(0,"UserState.WAITCHECK"),
+	/**
+	 * 新建
+	 */
+	NEW(1,"UserState.NEW"),
+	/**
+	 * 正常
+	 */
+	NORMAL(2, "UserState.NORMAL"),
+	/**
+	 * 锁定
+	 */
+	LOCK(3, "UserState.LOCK"),//超过60天没有修改密码，会被锁定
+	/**
+	 * 已删除
+	 */
+	REMOVED(4, "UserState.REMOVED"),//假删除
+	/**
+	 * 冻结
+	 */
 	@Deprecated
-	FREEZE(4, "冻结"),//用user.getFreezeTime()是否为null来判断用户是否被冻结
-	NOTPASS(6,"审核未通过");
+	FREEZE(4, "UserState.FREEZE"),//用user.getFreezeTime()是否为null来判断用户是否被冻结
+	/**
+	 * 审核未通过
+	 */
+	NOTPASS(6,"UserState.NOTPASS");
 
 	private int id;
 	private String text;

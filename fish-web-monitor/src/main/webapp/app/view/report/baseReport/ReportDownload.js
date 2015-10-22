@@ -15,7 +15,7 @@ Ext.define('Eway.view.report.baseReport.ReportDownload', {
 			} ],
 			tbar : [ '->', {
 				xtype : 'button',
-				text : '查询',
+				text : Eway.locale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}/*
@@ -23,13 +23,13 @@ Ext.define('Eway.view.report.baseReport.ReportDownload', {
 				 * action : 'exportHtml' }
 				 */, {
 				xtype : 'button',
-				text : '导出XLS',
-				iconCls : 'exportBtn',
+				text : Eway.locale.button.exportXLS,
+				glyph : 0xf1c3,
 				action : 'exportXls'
 			}, {
 				xtype : 'button',
-				text : '导出PDF',
-				iconCls : 'exportBtn',
+				text : Eway.locale.button.exportPDF,
+				glyph : 0xf1c1,
 				action : 'exportPdf'
 			} ]
 		});

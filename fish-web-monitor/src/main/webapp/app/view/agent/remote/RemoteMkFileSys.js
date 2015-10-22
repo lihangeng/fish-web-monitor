@@ -3,7 +3,7 @@ Ext.define('Eway.view.agent.remote.RemoteMkFileSys', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.remote_mkFileSys',
 
-	title : '上传文件',
+	title : Eway.locale.agent.remote.uploadFile,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -27,24 +27,24 @@ Ext.define('Eway.view.agent.remote.RemoteMkFileSys', {
 					fieldLabel:'',
 //					regex:/^[a-zA-Z]:?\\(?:[^\\\?\/\*\|<>:"]+\\)*[^\\\?\/\*\|<>:"]*?\.*[^.\\\?\/\*\|<>:"]*$/,
 					regex:/^[^\\\/\:\*\?\"\<\>\|\,]+(\,[^\\\/\:\*\?\"\<\>\|\,]+)*$/,
-					regexText:'不能包含一下字符:\/?*":<>|',
+					regexText:Eway.locale.agent.remote.rules,
 					name: 'file',
-					waitMsg:'正在新建...',
+					waitMsg:Eway.locale.agent.remote.nowCreat,
 					allowBlank : false
 				},{
 					xtype:'hidden',
 					hideLabel : true,
-					fieldLabel: '当前路径',
+					fieldLabel: Eway.locale.agent.remote.nowPath,
 					name:'nowPath'
 				} ],
 				buttons : [ {
-					text : '保存',
+					text : Eway.locale.agent.remote.confirm,
 					action : 'confirm'
 				}, {
-					text : '重置',
+					text : Eway.locale.agent.remote.reset,
 					handler : this.onReset
 				}, {
-					text : '返回',
+					text : Eway.locale.agent.remote.back,
 					handler : this.onOver
 				} ]
 			}

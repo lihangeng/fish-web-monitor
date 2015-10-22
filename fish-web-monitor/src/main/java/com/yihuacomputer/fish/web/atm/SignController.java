@@ -5,6 +5,7 @@ import java.util.Date;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,7 +36,8 @@ public class SignController {
 
 	@Autowired
 	private IRegistService registSerivce;
-
+	@Autowired
+	private MessageSource messageSourceEnum;
 	/**
 	 * 接收开机签到请求
 	 * @param signInfo
@@ -58,13 +60,13 @@ public class SignController {
 
 				registSerivce.update(deviceRegister);
 
-				collectService.collectBootSign(signInfo.getTermId(), deviceRegister);
+				collectService.collectBootSign(signInfo.getTermId(), deviceRegister, messageSourceEnum);
 				if(MonitorCfg.getCheckTime()){
 					signInfo.setServerDateTime(DateUtils.getTimestamp(new Date()));
 				}
 			}
 		}catch(Exception e){
-			logger.error(String.format("处理签到信息异常![%s],请求信息[%s]",e,JsonUtils.toJson(signInfo)));
+			logger.error(String.format("collection signInfo exception![%s],signInfo is [%s]",e,JsonUtils.toJson(signInfo)));
 		}
 		return signInfo;
 	}

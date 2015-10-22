@@ -3,7 +3,7 @@ Ext.define('Eway.view.field.Address', {
 	extend: 'Ext.form.field.Text',
 	alias: 'widget.field.address',
 	
-	fieldLabel : '地址',
+	fieldLabel : Eway.locale.commen.address,
 	name : 'address'
 	
 });

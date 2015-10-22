@@ -61,7 +61,7 @@ Ext.define('Eway.controller.machine.atmMove.AtmMove', {
 			store.setBaseParam('organizationID',ewayUser.getOrgId());
 			store.loadPage(1);
 		}else{
-			Eway.alert("查询项中存在不合法的输入,不能提交.");
+			Eway.alert(Eway.locale.tip.searchOfNoLegal);
 		}
 	},
 
@@ -72,7 +72,7 @@ Ext.define('Eway.controller.machine.atmMove.AtmMove', {
 			store.setUrlParamsByObject(data);
 			store.loadPage(1);
 		}else{
-			Eway.alert("查询项中存在不合法的输入,不能提交.");
+			Eway.alert(Eway.locale.tip.searchOfNoLegal);
 		}
 
 	},
@@ -89,7 +89,7 @@ Ext.define('Eway.controller.machine.atmMove.AtmMove', {
 			win.show();
 		}
 		else {
-			Eway.alert("请选择要移动的设备.");
+			Eway.alert(Eway.locale.tip.selectMoveDev);
 		}
 
 	},
@@ -110,7 +110,7 @@ Ext.define('Eway.controller.machine.atmMove.AtmMove', {
 					moveDeviceGrid.getSelectionModel().clearSelections();
 					win.close();
 
-					Eway.alert("移机成功.");
+					Eway.alert(Eway.locale.tip.moveSuc);
 
 					me.getMoveDeviceGrid().getStore().loadPage(1);
 			    },
@@ -127,8 +127,8 @@ Ext.define('Eway.controller.machine.atmMove.AtmMove', {
 		var store = this.getAtmMoveNoticeGrid().getStore();
 		var quaryData = this.getNoticeFilterForm().getForm().getValues();//得到所有的查询条件的值 {code='n',name='',....}
 		if(sm.getCount() == 1) {
-			Ext.MessageBox.confirm("请确认",
-					"是否删除该记录?",
+			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
+					Eway.locale.tip.remove.confirm.info,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();

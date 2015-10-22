@@ -4,7 +4,7 @@ Ext.define('Eway.view.version.deviceVersion.VersionHistoryWin', {
 	alias : 'widget.deviceVersion_history',
 	requires : ['Eway.view.version.deviceVersion.VersionHistoryGrid'],
 
-	title : '设备历史版本信息',
+	title : Eway.locale.version.task.deviceVersionHisTitle,//'设备历史版本信息',
 	modal : true,
 	resizable : true,
 	constrainHeader : true,

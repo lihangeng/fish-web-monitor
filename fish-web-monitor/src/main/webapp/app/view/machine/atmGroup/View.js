@@ -6,7 +6,7 @@ Ext.define('Eway.view.machine.atmGroup.View', {
 	             'Eway.view.machine.atmGroup.DeviceFilter',
 			'Eway.view.machine.atmGroup.DeviceGrid' ],
 
-	title : '设备分组',
+	title : Eway.locale.machine.atmGroup.devGroupName,
 	layout : 'border',
 
 	initComponent : function() {
@@ -28,7 +28,7 @@ Ext.define('Eway.view.machine.atmGroup.View', {
 						xtype : 'textfield',
 						name : 'name',
 						maxLength : 30,
-						fieldLabel : '组名',
+						fieldLabel : Eway.locale.machine.atmGroup.groupName,
 						msgTarget : 'side'
 					} ]
 				}, {

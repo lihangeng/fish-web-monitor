@@ -1,10 +1,22 @@
 package com.yihuacomputer.fish.web.command.format;
 
 public enum FileSysOperatorType {
-	MKDIR(0,"新建文件夹"),
-	MKFILE(1,"新建文件"),
-	DELFILE(2,"删除文件"),
-	FILEEXEC(3,"执行文件");
+	/**
+	 * 新建文件夹
+	 */
+	MKDIR(0,"FileSysOperatorType.MKDIR"),
+	/**
+	 * 新建文件
+	 */
+	MKFILE(1,"FileSysOperatorType.MKFILE"),
+	/**
+	 * 删除文件
+	 */
+	DELFILE(2,"FileSysOperatorType.DELFILE"),
+	/**
+	 * 执行文件
+	 */
+	FILEEXEC(3,"FileSysOperatorType.FILEEXEC");
 	private int id;
 	private String text;
 	FileSysOperatorType(int id,String text){

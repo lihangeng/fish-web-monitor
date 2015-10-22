@@ -18,42 +18,42 @@ Ext.define("Eway.view.machine.device.module.Status", {
 			},
 			items : [ {
 				columnWidth : .5,
-				fieldLabel : '读卡器模块(IDC)',
+				fieldLabel : Eway.locale.machine.deviceIDC,
 				name : 'statusIdc',
 				minHeight : 20
 			}, {
 				columnWidth : .5,
-				fieldLabel : '日志打印机模块(JPR)',
+				fieldLabel : Eway.locale.machine.deviceJPR,
 				name : 'statusJpr',
 				minHeight : 20
 			}, {
 				columnWidth : .5,
-				fieldLabel : '取款模块(CDM)',
+				fieldLabel : Eway.locale.machine.deviceCDM,
 				name : 'statusCdm',
 				minHeight : 20
 			}, {
 				columnWidth : .5,
-				fieldLabel : '传感器模块(SIU)',
+				fieldLabel : Eway.locale.machine.deviceSIU,
 				name : 'statusSiu',
 				minHeight : 20
 			}, {
 				columnWidth : .5,
-				fieldLabel : '存款模块(CIM)',
+				fieldLabel : Eway.locale.machine.deviceCIM,
 				name : 'statusCim',
 				minHeight : 20
 			}, {
 				columnWidth : .5,
-				fieldLabel : '文本终端单元(TTU)',
+				fieldLabel : Eway.locale.machine.deviceTTU,
 				name : 'statusTtu',
 				minHeight : 20
 			}, {
 				columnWidth : .5,
-				fieldLabel : '凭条打印机模块(RPR)',
+				fieldLabel : Eway.locale.machine.deviceRPR,
 				name : 'statusRpr',
 				minHeight : 20
 			}, {
 				columnWidth : .5,
-				fieldLabel : '密码键盘模块(PIN)',
+				fieldLabel : Eway.locale.machine.devicePIN,
 				name : 'statusPin',
 				minHeight : 20
 			} ]

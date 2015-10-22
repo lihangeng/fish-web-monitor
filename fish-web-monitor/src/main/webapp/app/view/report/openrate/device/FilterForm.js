@@ -14,19 +14,19 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 					labelAlign : 'right'
 				},
 				items : [{
-					fieldLabel : '统计方式',
+					fieldLabel : Eway.locale.report.openrate.device.statisticsMethod,
 					xtype : 'radiogroup',
 					width : 280,
 					items : [ {
-						boxLabel : '年',
+						boxLabel : Eway.locale.commen.year,
 						name : 'statType',
 						inputValue : 1
 					}, {
-						boxLabel : '月',
+						boxLabel : Eway.locale.commen.month,
 						name : 'statType',
 						inputValue : 2
 					}, {
-						boxLabel : '日',
+						boxLabel : Eway.locale.commen.day,
 						name : 'statType',
 						checked : true,
 						inputValue : 3
@@ -38,7 +38,7 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 					width : 280,
 					name : 'year',
 					xtype : 'datefield',
-					fieldLabel : '年份',
+					fieldLabel : Eway.locale.commen.yearTime,
 					hidden : true,
 					value : new Date(),
 					editable : false,
@@ -47,7 +47,7 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 					width : 280,
 					name : 'month',
 					xtype : 'datefield',
-					fieldLabel : '月份',
+					fieldLabel : Eway.locale.commen.monthTime,
 					editable : false,
 					hidden : true,
 					value : new Date(),
@@ -56,7 +56,7 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 					width : 280,
 					name : 'day',
 					xtype : 'datefield',
-					fieldLabel : '日期',
+					fieldLabel : Eway.locale.commen.dayTime,
 					editable : false,
 					value : new Date(),
 					format : 'Y-m-d'
@@ -64,7 +64,7 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 			} ,{
 				columnWidth : .2,
 				labelAlign : 'right',
-				fieldLabel:'设备号',
+				fieldLabel:Eway.locale.commen.terminalId,
 				labelAlign : 'right',
 				xtype : 'textfield',
 				name:'terminalId',

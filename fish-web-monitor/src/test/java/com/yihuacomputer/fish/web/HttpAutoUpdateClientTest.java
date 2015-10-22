@@ -28,9 +28,9 @@ public class  HttpAutoUpdateClientTest {
 	 */
 	public static void main(String[] args) {
 		AutoUpdateMsg request= new AutoUpdateMsg();
-		request.setTermId("12345678");
+		request.setTermId("0001");
 		List<SimpleVersion> currentPatches = new ArrayList<SimpleVersion>(); 
-		currentPatches.add(new SimpleVersion("gump-professional","0.20"));
+		currentPatches.add(new SimpleVersion("gump-professional","1.0.1"));
 		request.setCurrentPatches(currentPatches);
 		
 //		AutoUpdateMsg response = (AutoUpdateMsg)HttpProxy.httpPost("http://localhost:8085/fish-web/api/msg/autoupdate", request, AutoUpdateMsg.class);
@@ -41,7 +41,7 @@ public class  HttpAutoUpdateClientTest {
 		
 		try {
 //			HttpPost httpPost = new HttpPost("http://192.168.91.130:8080?action=update");
-			HttpPost httpPost = new HttpPost("http://192.168.0.32:8085/fish-web-monitor/atm/msg/autoupdate");
+			HttpPost httpPost = new HttpPost("http://localhost:8080/atmv/atm/msg/autoupdate");
 			
 			 StringEntity entity = new StringEntity(JsonUtils.toJson(request), "UTF-8");
 

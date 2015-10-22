@@ -11,11 +11,11 @@ Ext.define('Eway.view.monitor.settlement.Grid', {
 			initRegion : true,
 			store : store,
 			tbar : [ '->', {
-				text : '查询',
+				text : Eway.locale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : '详细信息',
+				text : Eway.locale.commen.info,
 				glyph : 0xf129,
 				action : 'info'
 			} ],
@@ -24,37 +24,37 @@ Ext.define('Eway.view.monitor.settlement.Grid', {
 				stripeRows : true
 			},
 			columns : [ Ext.create('Ext.grid.RowNumberer'), {
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'termId'
 			}, {
-				header : '周期ID',
+				header : Eway.locale.monitor.business.settlement.uuId,
 				dataIndex : 'uuId'
 			}, {
-				header : '尾箱余额',
+				header : Eway.locale.monitor.business.settlement.endAmt,
 				dataIndex : 'leftAmt',
 				renderer: this.cnMoney
 			}, {
-				header : '结账日期',
+				header : Eway.locale.monitor.business.settlement.leftDate,
 				dataIndex : 'date'
 			}, {
-				header : '存款笔数',
+				header : Eway.locale.monitor.business.settlement.cimNum,
 				dataIndex : 'deposit'
 			}, {
-				header : '存款金额',
+				header : Eway.locale.monitor.business.settlement.cimAmt,
 				dataIndex : 'depositAmt',
 				renderer: this.cnMoney
 			}, {
-				header : '取款笔数',
+				header : Eway.locale.monitor.business.settlement.cdmNum,
 				dataIndex : 'withdrawal'
 			}, {
-				header : '取款金额',
+				header : Eway.locale.monitor.business.settlement.cdmAmt,
 				dataIndex : 'withdrawalAmt',
 				renderer: this.cnMoney
 			}, {
-				header : '交易总笔数',
+				header : Eway.locale.monitor.business.settlement.totalNum,
 				dataIndex : 'transaction'
 			}, {
-				header : '交易总金额',
+				header : Eway.locale.monitor.business.settlement.tranAmt,
 				dataIndex : 'transactionAmt',
 				renderer: this.cnMoney,
 				flex : 1
@@ -62,7 +62,7 @@ Ext.define('Eway.view.monitor.settlement.Grid', {
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : '总共：{2}条，显示{0}-{1}'
+				displayMsg : Eway.locale.commen.toolbar
 			})
 		});
 

@@ -13,8 +13,8 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.advert.entity.AdvertResource;
-import com.yihuacomputer.fish.advert.service.api.IDomainAdvertResourceService;
 import com.yihuacomputer.fish.api.advert.IAdvertResource;
+import com.yihuacomputer.fish.api.advert.IAdvertResourceService;
 
 /**
  * 广告资源的数据库版本实现
@@ -23,7 +23,7 @@ import com.yihuacomputer.fish.api.advert.IAdvertResource;
  */
 @Service
 @Transactional
-public class AdvertResourceService implements IDomainAdvertResourceService{
+public class AdvertResourceService implements IAdvertResourceService{
 	@Autowired
 	private IGenericDao dao;
 	

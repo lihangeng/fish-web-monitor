@@ -25,6 +25,7 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,6 +64,10 @@ public class AtmLogController {
 
 	@Autowired
 	private IJournalFileService ournalFileService;
+	
+	
+	@Autowired
+	protected MessageSource messageSource;
 
 	@RequestMapping(value = "/getBackup", method = RequestMethod.GET)
 	public @ResponseBody
@@ -218,7 +223,7 @@ public class AtmLogController {
 		long fileSize = file.getSize();
 		response.setContentType("text/html;charset=UTF-8");
 		if (fileSize > 209715200) {
-			return "{'success':false,'errors':'文件过大（超过200M）,上传失败.'}";// 超过最大文件大小限制（最大200M）
+			return "{'success':false,'errors':"+"'"+messageSource.getMessage("atmLog.size", null, FishCfg.locale)+"'}";// 超过最大文件大小限制（最大200M）
 		}
 		File targetFile = new File(temDir + System.getProperty("file.separator") + fileName);
 		if (!targetFile.exists()) {
@@ -228,7 +233,8 @@ public class AtmLogController {
 			file.transferTo(targetFile);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return "{'success':false,'errors':'上传失败.'}";
+			String tips = messageSource.getMessage("exploer.fileUpload.fail", null, FishCfg.locale);
+			return "{'success':false,'errors':'"+tips+"'}";
 		}
 		return "{'success':true,'serverPath':'" + fileName + "'}";
 	}
@@ -246,7 +252,7 @@ public class AtmLogController {
 		String[] fileNames = request.getParameter("info").split(",");
 		if (fileNames.length == 1 && fileNames[0].isEmpty()) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "请选择日志后再分析.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("atmLog.selectLog", null, FishCfg.locale));
 		} else {
 			List<File> files = new ArrayList<File>();
 			for (String fileName : fileNames) {
@@ -298,7 +304,7 @@ public class AtmLogController {
 			// 创建一个webbook，对应一个Excel文件
 			HSSFWorkbook wb = new HSSFWorkbook();
 			// 在webbook中添加一个sheet,对应Excel文件中的sheet
-			HSSFSheet sheet = wb.createSheet("ATM日志表");
+			HSSFSheet sheet = wb.createSheet(messageSource.getMessage("log.backup.excelTitle", null, FishCfg.locale));
 			// 在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
 			HSSFRow row = sheet.createRow((int) 0);
 			// 创建单元格，并设置值表头 设置表头居中
@@ -306,34 +312,34 @@ public class AtmLogController {
 			style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
 
 			HSSFCell cell = row.createCell((int) 0);
-			cell.setCellValue("加钞ID");
+			cell.setCellValue(messageSource.getMessage("atmLog.cashId", null, FishCfg.locale));
 			cell.setCellStyle(style);
 			cell = row.createCell((int) 1);
-			cell.setCellValue("加钞时间");
+			cell.setCellValue(messageSource.getMessage("atmLog.cashTime", null, FishCfg.locale));
 			cell.setCellStyle(style);
 			cell = row.createCell((int) 2);
-			cell.setCellValue("客户插卡时间");
+			cell.setCellValue(messageSource.getMessage("atmLog.cardInsertTime", null, FishCfg.locale));
 			cell.setCellStyle(style);
 			cell = row.createCell((int) 3);
-			cell.setCellValue("交易账号");
+			cell.setCellValue(messageSource.getMessage("atmLog.accNo", null, FishCfg.locale));
 			cell.setCellStyle(style);
 			cell = row.createCell((int) 4);
-			cell.setCellValue("终端流水号");
+			cell.setCellValue(messageSource.getMessage("atmLog.termSerialNo", null, FishCfg.locale));
 			cell.setCellStyle(style);
 			cell = row.createCell((int) 5);
-			cell.setCellValue("主机流水号");
+			cell.setCellValue(messageSource.getMessage("atmLog.hostSerialNo", null, FishCfg.locale));
 			cell.setCellStyle(style);
 			cell = row.createCell((int) 6);
-			cell.setCellValue("交易类型");
+			cell.setCellValue(messageSource.getMessage("atmLog.transType", null, FishCfg.locale));
 			cell.setCellStyle(style);
 			cell = row.createCell((int) 7);
-			cell.setCellValue("交易金额");
+			cell.setCellValue(messageSource.getMessage("atmLog.transAmt", null, FishCfg.locale));
 			cell.setCellStyle(style);
 			cell = row.createCell((int) 8);
-			cell.setCellValue("主机返回");
+			cell.setCellValue(messageSource.getMessage("atmLog.hostCode", null, FishCfg.locale));
 			cell.setCellStyle(style);
 			cell = row.createCell((int) 9);
-			cell.setCellValue("钞箱列表");
+			cell.setCellValue(messageSource.getMessage("atmLog.cashList", null, FishCfg.locale));
 			cell.setCellStyle(style);
 			for (int i = 0; i < entities.size(); i++) {
 				row = sheet.createRow((int) i + 1);

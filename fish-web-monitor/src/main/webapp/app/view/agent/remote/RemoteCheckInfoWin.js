@@ -9,7 +9,7 @@ Ext.define('Eway.view.agent.remote.RemoteCheckInfoWin', {
 	//maximizable : true,
 	modal : true,
 	border : false,
-	title:'ATM体检',
+	title:Eway.locale.agent.remote.ATMExamination,
 	layout : 'border',
 	constrain : true,
 	constrainHeader : true,
@@ -37,7 +37,7 @@ Ext.define('Eway.view.agent.remote.RemoteCheckInfoWin', {
 	    		iconCls:'checkATM-btn-custom',
 	    		xtype: 'button',
 	    		action : 'checkATM',
-	    		text: '重新体检' 
+	    		text: Eway.locale.agent.remote.checkATM 
 	    	}],
 	    	html:'<br>'
 		},{
@@ -61,7 +61,7 @@ Ext.define('Eway.view.agent.remote.RemoteCheckInfoWin', {
 				},
 				items : [ {
 					xtype : 'fieldset',
-					title : 'ATM体检详情',
+					title : Eway.locale.agent.remote.ATMExamInfo,
 					collapsible : true,
 					defaults : {
 						border : false,
@@ -72,19 +72,19 @@ Ext.define('Eway.view.agent.remote.RemoteCheckInfoWin', {
 					items : [ {
 						defaultType : 'displayfield',
 						items : [ {
-							fieldLabel : 'CPU空闲率',
+							fieldLabel : Eway.locale.agent.remote.cpuIdle,
 							name : 'cpuIdle'
 						} ]
 					}, {
 						defaultType : 'displayfield',
 						items : [ {
-							fieldLabel : '内存空闲率',
+							fieldLabel : Eway.locale.agent.remote.memoryIdle,
 							name : 'memoryIdle'
 						} ]
 					}, {
 						defaultType : 'displayfield',
 						items : [ {
-							fieldLabel : '硬盘空闲率',
+							fieldLabel : Eway.locale.agent.remote.hardDiskIdle,
 							name : 'hardDiskIdle'
 						} ]
 					} ]

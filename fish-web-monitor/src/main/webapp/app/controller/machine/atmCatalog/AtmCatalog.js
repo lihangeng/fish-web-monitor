@@ -67,7 +67,7 @@ Ext.define('Eway.controller.machine.atmCatalog.AtmCatalog', {
 			this.addRecord(data);
 			this.getAddWin().close();
 		} else {
-			Eway.alert('输入有误.');
+			Eway.alert(Eway.locale.tip.inputError);
 		}
 	},
 
@@ -117,7 +117,7 @@ Ext.define('Eway.controller.machine.atmCatalog.AtmCatalog', {
 					success : function(response) {
 						var object = Ext.decode(response.responseText);
 						if (object.success == true) {
-							no.markInvalid('此编号已经存在,请重新输入.');
+							no.markInvalid(Eway.locale.tip.numberExist);
 						}
 					}
 				});
@@ -127,8 +127,8 @@ Ext.define('Eway.controller.machine.atmCatalog.AtmCatalog', {
 		var grid = this.getAtmCatalogGrid();
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
-			Ext.MessageBox.confirm("请确认",
-					"是否删除该记录?",
+			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
+					Eway.locale.tip.remove.confirm.info,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();

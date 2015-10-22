@@ -11,16 +11,16 @@ Ext.define('Eway.view.case.caseFault.FaultNotifyGrid', {
 			initRegion : true,
 			store : store,
 			columns : [{
-				header : '创建时间',
+				header : Eway.locale.cases.caseFault.createTime,
 				dataIndex : 'createTime',
 				flex : 1
 			}, {
 				xtype:'actioncolumn',
-				header : '通知内容',
+				header : Eway.locale.cases.caseFault.informContent,
 				dataIndex : 'id',
 				items : [{
 					icon : 'resources/images/detail.png',
-					tooltip: '查看详情',
+					tooltip: Eway.locale.cases.caseFault.checkDetails,
 					getClass : function(value,metadata,record,ronwIndex,colindex,store){
 						var result = record.get('id'); 
 						if(result != null){
@@ -37,7 +37,7 @@ Ext.define('Eway.view.case.caseFault.FaultNotifyGrid', {
 						var aboutInfoWin = Ext.create('Ext.window.Window', {
 						    height:150,
 						    width: 500,
-						    title : '短信内容详情',
+						    title : Eway.locale.cases.caseFault.messageContentDetail,
 						    layout: 'border',
 						    items: [{
 							    	xtype : 'form',
@@ -50,7 +50,7 @@ Ext.define('Eway.view.case.caseFault.FaultNotifyGrid', {
 										msgTarget : 'center'
 									},
 							    	items : [{
-							    		fieldLabel : '通知内容',
+							    		fieldLabel : Eway.locale.cases.caseFault.informContent,
 										xtype : 'displayfield',
 										name : 'content',
 										value :content,
@@ -63,22 +63,22 @@ Ext.define('Eway.view.case.caseFault.FaultNotifyGrid', {
 					scope : this
 				}],
 			}, {
-				header : '通知方式',
+				header : Eway.locale.cases.caseFault.informWay,
 				dataIndex : 'notifyWay',
 				renderer: function(value,metadata,record){
 					if(value=="SMS"){
-	                 	 return "短信";
+	                 	 return Eway.locale.cases.caseFault.message;
 	                }
 					else if(value=="MAIL"){
-						 return "邮件";
+						 return Eway.locale.cases.caseFault.mail;
 	                }
 					else if(value=="BOTH"){
-						return "短信和邮件";
+						return Eway.locale.cases.caseFault.messageAndMail;
 					}
 				},
 				flex : 1
 			}, {
-				header : '通知手机号',
+				header : Eway.locale.cases.caseFault.informMobile,
 				dataIndex : 'mobile',
 				flex : 1
 			}, {
@@ -86,23 +86,23 @@ Ext.define('Eway.view.case.caseFault.FaultNotifyGrid', {
 				dataIndex : 'mail',
 				flex : 1
 			}, {
-				header : '通知次数',
+				header : Eway.locale.cases.caseFault.notifyTimes,
 				dataIndex : 'notifyTimes',
 				flex : 1
 			}, {
-				header : '发送次数',
+				header : Eway.locale.cases.caseFault.sendTimes,
 				dataIndex : 'sendTimes',
 				flex : 1
 			}, {
-				header : '发送时间间隔',
+				header : Eway.locale.cases.caseFault.sendInterval,
 				dataIndex : 'sendInterval',
 				flex : 1
 			}, {
-				header : '发送时间',
+				header : Eway.locale.cases.caseFault.sendTime,
 				dataIndex : 'sendTime',
 				flex : 1
 			}, {
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				dataIndex : 'terminalId',
 				flex : 1
 			}],

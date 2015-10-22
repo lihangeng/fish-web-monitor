@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.api.device;
 
+
 /**
  * 
  * 非现金标志
@@ -10,8 +11,11 @@ package com.yihuacomputer.fish.api.device;
  */
 public enum CashType
 {
-    CASH(1, "现金"), NOT_CASH(2, "非现金");
-
+    CASH(1, "CashType.CASH"), NOT_CASH(2, "CashType.NOT_CASH");
+    public String getText(){
+			return text;
+    }
+    
     private int id;
 
     private String text;
@@ -30,11 +34,6 @@ public enum CashType
     public void setId(int id)
     {
         this.id = id;
-    }
-
-    public String getText()
-    {
-        return text;
     }
 
     public void setText(String text)

@@ -15,7 +15,7 @@ import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.permission.IGroup;
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.relation.IUserGroupRelation;
-import com.yihuacomputer.fish.relation.entity.UserGroupObj;
+import com.yihuacomputer.fish.system.entity.UserGroupObj;
 
 /**
  * 维护主帐号和组之间的关系服务

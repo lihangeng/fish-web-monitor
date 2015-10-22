@@ -13,7 +13,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControlPanel', {
 			initRegion : true,
 			tbar: [{
 				xtype : 'button',
-				text: '远程浏览',
+				text: Eway.locale.machine.device.remoteBrowseDisk,
 				action: 'remoteBrowseDisk'
    			 }]
 		});

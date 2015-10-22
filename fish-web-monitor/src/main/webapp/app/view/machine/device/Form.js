@@ -24,27 +24,27 @@ Ext.define('Eway.view.machine.device.Form',{
 						style : 'padding-top:10px'
 					},
 					items : [ {
-						fieldLabel : '<font color="red">*</font> 设备号',
+						fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.terminalId,
 						name : 'terminalId',
 						allowBlank : false,
 						maxLength:20,
 						vtype : "terminalId"
 					}, {
-						fieldLabel : '<font color="red">*</font> 设备IP地址',
+						fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.ip,
 						name : 'ip',
 						allowBlank : false,
 						vtype :'ip'
 					}, {
-						fieldLabel : '<font color="red">*</font> 设备状态',
+						fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.status,
 						allowBlank : false,
 						xtype : 'radiogroup',
 						items : [ {
-							boxLabel : '开通',
+							boxLabel : Eway.locale.machine.atmGroup.comboxStatus.open,
 							name : 'status',
 							checked : true,
 							inputValue : 1
 						}, {
-							boxLabel : '停用',
+							boxLabel : Eway.locale.machine.atmGroup.comboxStatus.close,
 							name : 'status',
 							inputValue : 2
 						} ]
@@ -54,9 +54,9 @@ Ext.define('Eway.view.machine.device.Form',{
 						name : 'devServiceId'
 					}, {
 						xtype : 'common_orgComboOrgTree',
-						fieldLabel : '<font color="red">*</font> 设备维护商',
+						fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.devServiceName,
 						allowBlank : false,
-						emptyText : '--请选择--',
+						emptyText : Eway.locale.combox.select,
 						name : 'devServiceName',
 						hiddenValue : 'devServiceId',
 //						value: "深圳怡化",
@@ -79,9 +79,9 @@ Ext.define('Eway.view.machine.device.Form',{
 						name : 'orgId'
 					}, {
 						xtype : 'common_orgComboOrgTree',
-						fieldLabel : '<font color="red">*</font> 所属机构',
+						fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.orgName,
 						allowBlank : false,
-						emptyText : '--请选择--',
+						emptyText : Eway.locale.combox.select,
 						name : 'orgName',
 						hiddenValue : 'orgId',
 						editable : false,
@@ -89,18 +89,18 @@ Ext.define('Eway.view.machine.device.Form',{
 						rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
 					}, {
 						xtype : 'field_device_deviceatmtype',
-						fieldLabel : '<font color="red">*</font> 设备型号',
+						fieldLabel : '<font color="red">*</font> '+Eway.locale.machine.atmGroup.devTypeName,
 						value: 1,
 						allowBlank : false
 					}, {
-						fieldLabel : '钞箱报警金额',
+						fieldLabel : Eway.locale.machine.atmGroup.cashboxLimit,
 						xtype : 'numberfield',
 						regex : /^(0|[1-9]\d{0,5})$/,
 		        		hideTrigger:true,
 						maxLength : 6,
 						name : 'cashboxLimit'
 					}, {
-						fieldLabel : '设备地址',
+						fieldLabel : Eway.locale.machine.device.devAddress,
 						maxLength : 50,
 						name : 'address'
 					} ]
@@ -113,7 +113,7 @@ Ext.define('Eway.view.machine.device.Form',{
 				},
 
 				items : [ {
-					title : '基本信息',
+					title : Eway.locale.machine.device.basicInfo,
 					layout : 'column',
 					border : false,
 					items : [ {
@@ -126,23 +126,23 @@ Ext.define('Eway.view.machine.device.Form',{
 							style : 'padding-top:10px'
 						},
 						items : [{
-							fieldLabel : '虚拟设备号',
+							fieldLabel : Eway.locale.machine.device.virtual,
 							regex : /^\w+[\w-\.]*$/,
-							regexText : '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’和点号‘.’，只能以字母或数字开头。',
+							regexText : Eway.locale.vtype.numberRule,
 							maxLength : 25,
 							name : 'virtual'
 						},{
-							fieldLabel : '设备序列号',
+							fieldLabel : Eway.locale.machine.device.serial,
 							regex : /^\w+[\w-\.]*$/,
-							regexText : '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’和点号‘.’，只能以字母或数字开头。',
+							regexText : Eway.locale.vtype.numberRule,
 							maxLength : 40,
 							name : 'serial'
 						}, {
-							fieldLabel : '运营商',
+							fieldLabel : Eway.locale.machine.device.carrier,
 							maxLength : 20,
 							name : 'carrier'
 						}, {
-							fieldLabel : '加钞机构',
+							fieldLabel : Eway.locale.machine.device.moneyOrg,
 							maxLength : 20,
 							name : 'moneyOrg'
 						} ]
@@ -156,21 +156,21 @@ Ext.define('Eway.view.machine.device.Form',{
 							style : 'padding-top:10px'
 						},
 						items : [ {
-							fieldLabel : '资金成本利率',
+							fieldLabel : Eway.locale.machine.device.costInterest,
 							maxLength : 50,
 							name : 'costInterest'
 						}, {
-							fieldLabel : 'atmc软件',
+							fieldLabel : Eway.locale.machine.device.atmcSoft,
 							maxLength : 50,
 							name : 'atmcSoft'
 						}, {
-							fieldLabel : '厂商sp类型',
+							fieldLabel : Eway.locale.machine.device.spType,
 							maxLength : 50,
 							name : 'sp'
 						} ]
 					} ]
 				}, {
-					title : '日期信息',
+					title :  Eway.locale.machine.device.column,
 					layout : 'column',
 					border : false,
 					items : [ {
@@ -183,19 +183,19 @@ Ext.define('Eway.view.machine.device.Form',{
 							style : 'padding-top:10px'
 						},
 						items : [ {
-							fieldLabel : '设备购买日期',
+							fieldLabel : Eway.locale.machine.device.buyDate,
 							xtype : 'datefield',
 							name : 'buyDate',
 							editable : false,
 							format : 'Y-m-d'
 						}, {
-							fieldLabel : '设备安装日期',
+							fieldLabel :  Eway.locale.machine.device.installDate,
 							xtype : 'datefield',
 							format : 'Y-m-d',
 							editable : false,
 							name : 'installDate'
 						}, {
-							fieldLabel : '设备启用日期',
+							fieldLabel : Eway.locale.machine.device.startDate,
 							xtype : 'datefield',
 							format : 'Y-m-d',
 							editable : false,
@@ -215,7 +215,7 @@ Ext.define('Eway.view.machine.device.Form',{
 								}
 							}
 						}, {
-							fieldLabel : '设备停用日期',
+							fieldLabel :  Eway.locale.machine.device.stopDate,
 							xtype : 'datefield',
 							format : 'Y-m-d',
 							vtype : 'daterange',
@@ -235,7 +235,7 @@ Ext.define('Eway.view.machine.device.Form',{
 								}
 							}
 						}, {
-							fieldLabel : '保修到期日期',
+							fieldLabel : Eway.locale.machine.device.expireDate,
 							xtype : 'datefield',
 							format : 'Y-m-d',
 							editable : false,
@@ -252,7 +252,7 @@ Ext.define('Eway.view.machine.device.Form',{
 						},
 						items : [ {
 							xtype : 'fieldcontainer',
-							fieldLabel : '每日开机时间',
+							fieldLabel : Eway.locale.machine.device.daliyOpen,
 							layout : 'hbox',
 							defaults : {
 								hideLabel : true
@@ -270,7 +270,7 @@ Ext.define('Eway.view.machine.device.Form',{
 								width : 50
 							}, {
 								xtype : 'displayfield',
-								value : '时'
+								value : Eway.locale.machine.device.openTimeHour
 
 							}, {
 								xtype : 'combobox',
@@ -285,7 +285,7 @@ Ext.define('Eway.view.machine.device.Form',{
 								width : 50
 							}, {
 								xtype : 'displayfield',
-								value : '分'
+								value :  Eway.locale.machine.device.openTimeMinute
 							}, {
 								xtype : 'combobox',
 								fieldLabel : 'second',
@@ -299,11 +299,11 @@ Ext.define('Eway.view.machine.device.Form',{
 								width : 50
 							}, {
 								xtype : 'displayfield',
-								value : '秒'
+								value : Eway.locale.machine.device.openTimeSecond
 							} ]
 						}, {
 							xtype : 'fieldcontainer',
-							fieldLabel : '每日关机时间',
+							fieldLabel : Eway.locale.machine.device.daliyClose,
 							layout : 'hbox',
 							defaults : {
 								hideLabel : true
@@ -321,7 +321,7 @@ Ext.define('Eway.view.machine.device.Form',{
 								width : 50
 							}, {
 								xtype : 'displayfield',
-								value : '时'
+								value : Eway.locale.machine.device.openTimeHour
 							}, {
 								xtype : 'combobox',
 								fieldLabel : 'minute',
@@ -335,7 +335,7 @@ Ext.define('Eway.view.machine.device.Form',{
 								width : 50
 							}, {
 								xtype : 'displayfield',
-								value : '分'
+								value : Eway.locale.machine.device.openTimeMinute
 							}, {
 								xtype : 'combobox',
 								fieldLabel : 'second',
@@ -349,16 +349,16 @@ Ext.define('Eway.view.machine.device.Form',{
 								width : 50
 							}, {
 								xtype : 'displayfield',
-								value : '秒'
+								value : Eway.locale.machine.device.openTimeSecond
 							} ]
 						}, {
-							fieldLabel : '上次巡检日期',
+							fieldLabel : Eway.locale.machine.device.lastPmDate,
 							xtype : 'datefield',
 							format : 'Y-m-d',
 							editable : false,
 							name : 'lastPmDate'
 						}, {
-							fieldLabel : '巡检到期日期',
+							fieldLabel : Eway.locale.machine.device.expirePmDate,
 							xtype : 'datefield',
 							format : 'Y-m-d',
 							editable : false,
@@ -366,7 +366,7 @@ Ext.define('Eway.view.machine.device.Form',{
 						} ]
 					} ]
 				}, {
-					title : '费用信息',
+					title : Eway.locale.machine.device.costInfo,
 					layout : 'column',
 					border : false,
 					items : [ {
@@ -379,35 +379,35 @@ Ext.define('Eway.view.machine.device.Form',{
 							style : 'padding-top:10px'
 						},
 						items : [ {
-							fieldLabel : '入账成本(元)',
+							fieldLabel : Eway.locale.machine.device.price,
 							xtype : 'numberfield',
 		        			hideTrigger:true,
 							name : 'price',
 							regex : /^\d{0,9}(\.\d*)?$/
 						}, {
-							fieldLabel : '折旧年限(年)',
+							fieldLabel : Eway.locale.machine.device.depreciationLife,
 							xtype : 'numberfield',
 		        			hideTrigger:true,
 		        			regex : /^(0|[1-9]\d{0,3})$/,
 							name : 'depreciationLife',
 							maxValue : 100,
-							maxText : '范围1－－100年'
+							maxText : Eway.locale.machine.device.range
 						}, {
-							fieldLabel : '装修费用',
+							fieldLabel : Eway.locale.machine.device.decoration,
 							xtype : 'numberfield',
 		        			hideTrigger:true,
 							name : 'decoration',
 							regex : /^\d{0,9}(\.\d*)?$/
 						}, {
-							fieldLabel : '装修摊销年限(年)',
+							fieldLabel : Eway.locale.machine.device.decorationCost,
 							xtype : 'numberfield',
 		        			hideTrigger:true,
 		        			regex : /^(0|[1-9]\d{0,3})$/,
 							name : 'decorationCost',
 							maxValue : 100,
-							maxText : '范围1－－100年'
+							maxText : Eway.locale.machine.device.range
 						}, {
-							fieldLabel : '物业租赁费(元/月)',
+							fieldLabel : Eway.locale.machine.device.governanceRent,
 							xtype : 'numberfield',
 		        			hideTrigger:true,
 							name : 'governanceRent',
@@ -423,25 +423,25 @@ Ext.define('Eway.view.machine.device.Form',{
 							style : 'padding-top:10px'
 						},
 						items : [ {
-							fieldLabel : '物业管理费用(元/月)',
+							fieldLabel : Eway.locale.machine.device.governanceCost,
 							xtype : 'numberfield',
 		        			hideTrigger:true,
 							name : 'governanceCost',
 							regex : /^\d{0,9}(\.\d*)?$/
 						}, {
-							fieldLabel : '通讯线路费用(元/月)',
+							fieldLabel :  Eway.locale.machine.device.netCost,
 							xtype : 'numberfield',
 		        			hideTrigger:true,
 							name : 'netCost',
 							regex : /^\d{0,9}(\.\d*)?$/
 						}, {
-							fieldLabel : '电费(元/月)',
+							fieldLabel : Eway.locale.machine.device.powerCost,
 							xtype : 'numberfield',
 		        			hideTrigger:true,
 							name : 'powerCost',
 							regex : /^\d{0,9}(\.\d*)?$/
 						}, {
-							fieldLabel : '加钞维护费用(元/次)',
+							fieldLabel : Eway.locale.machine.device.moneyCost,
 							xtype : 'numberfield',
 		        			hideTrigger:true,
 							name : 'moneyCost',
@@ -449,7 +449,7 @@ Ext.define('Eway.view.machine.device.Form',{
 						} ]
 					} ]
 				}, {
-					title : '状态信息',
+					title : Eway.locale.machine.device.statusInfo,
 					layout : 'column',
 					border : false,
 					items : [ {
@@ -461,65 +461,65 @@ Ext.define('Eway.view.machine.device.Form',{
 							style : 'padding-top:10px'
 						},
 						items : [ {
-							fieldLabel : '设备关注程度',
+							fieldLabel : Eway.locale.machine.device.deviceAttention,
 							xtype : 'radiogroup',
 							items : [ {
-								boxLabel : '重点',
+								boxLabel : Eway.locale.machine.device.stress,
 								name : 'careLevel',
 								checked : true,
 								inputValue : 1
 							}, {
-								boxLabel : '中等',
+								boxLabel : Eway.locale.machine.device.medium,
 								name : 'careLevel',
 								inputValue : 2
 							}, {
-								boxLabel : '一般',
+								boxLabel :Eway.locale.machine.device.ordinary,
 								name : 'careLevel',
 								inputValue : 3
 							} ]
 						}, {
-							fieldLabel : '非现金标志',
+							fieldLabel : Eway.locale.machine.device.notCashSignal,
 							xtype : 'radiogroup',
 							allowBlank : false,
 							items : [ {
-								boxLabel : '现金',
+								boxLabel : Eway.locale.machine.device.cash,
 								name : 'cashType',
 								checked : true,
 								inputValue : 1
 							}, {
-								boxLabel : '非现金',
+								boxLabel : Eway.locale.machine.device.notCash,
 								name : 'cashType',
 								inputValue : 2
 							} ]
 						}, {
-							fieldLabel : '安装方式',
+							fieldLabel : Eway.locale.machine.device.installStyle,
 							xtype : 'radiogroup',
 							allowBlank : false,
 							items : [ {
-								boxLabel : '穿墙',
+								boxLabel : Eway.locale.machine.device.crossWall,
 								name : 'setupType',
 								checked : true,
 								inputValue : 0
 							}, {
-								boxLabel : '大堂',
+								boxLabel : Eway.locale.machine.device.mainRoom,
 								name : 'setupType',
 								inputValue : 1
 							} ]
 						}, {
-							fieldLabel : '网络类型',
+							fieldLabel : Eway.locale.machine.device.netType,
 							xtype : 'radiogroup',
 							allowBlank : false,
 							items : [ {
-								boxLabel : '有线',
+								boxLabel : Eway.locale.machine.device.wired,
 								name : 'netType',
 								checked : true,
 								inputValue : 0
 							}, {
-								boxLabel : '无线',
+								boxLabel : Eway.locale.machine.device.wireless,
 								name : 'netType',
 								inputValue : 1
 							}, {
-								boxLabel : '有线无线',
+								boxLabel : Eway.locale.machine.device.wiredAndWireless,
 								name : 'netType',
 								inputValue : 2
 							} ]
@@ -535,36 +535,36 @@ Ext.define('Eway.view.machine.device.Form',{
 							labelAlign:'right'
 						},
 						items : [ {
-							fieldLabel : '在行离行标志',
+							fieldLabel : Eway.locale.machine.device.onBankSignal,
 							xtype : 'radiogroup',
 							items : [ {
-								boxLabel : '在行自助服务区',
+								boxLabel : Eway.locale.machine.device.inBank,
 								name : 'awayFlag',
 								checked : true,
 								inputValue : 1
 							}, {
-								boxLabel : '离行自助银行',
+								boxLabel : Eway.locale.machine.device.outBank,
 								name : 'awayFlag',
 								inputValue : 2
 							}, {
-								boxLabel : '单机离行自助服务点',
+								boxLabel :  Eway.locale.machine.device.clickBank,
 								name : 'awayFlag',
 								inputValue : 3
 							} ]
 						}, {
-							fieldLabel : '经营方式',
+							fieldLabel : Eway.locale.machine.device.operation,
 							xtype : 'radiogroup',
 							items : [ {
-								boxLabel : '自营',
+								boxLabel : Eway.locale.machine.device.operationSelf,
 								name : 'workType',
 								checked : true,
 								inputValue : 1
 							}, {
-								boxLabel : '合作',
+								boxLabel : Eway.locale.machine.device.cooperation,
 								name : 'workType',
 								inputValue : 2
 							}, {
-								boxLabel : '外包',
+								boxLabel :  Eway.locale.machine.device.epiboly,
 								name : 'workType',
 								inputValue : 3
 							} ]

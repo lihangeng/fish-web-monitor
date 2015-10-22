@@ -2,7 +2,7 @@
 Ext.define('Eway.view.field.monitor.TransTypeComboBox', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.monitor_TransTypeComboBox',
-	fieldLabel : '交易类型',
+	fieldLabel : Eway.locale.monitor.business.transaction.transCode,
 	name : 'transCode',
 	hiddenName : 'transCode',
 	msgTarget : 'side',
@@ -11,7 +11,7 @@ Ext.define('Eway.view.field.monitor.TransTypeComboBox', {
 	displayField : 'codeDesc',
 	queryMode : 'local',
 	editable : false,
-	emptyText: '--请选择--',
+	emptyText: Eway.locale.combox.select,
 	listeners: {
 		beforerender: function(){
 			this.store.load();

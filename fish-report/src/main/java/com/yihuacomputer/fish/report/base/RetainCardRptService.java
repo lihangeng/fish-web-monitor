@@ -4,9 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.util.DateUtils;
@@ -20,10 +22,13 @@ import com.yihuacomputer.fish.api.report.base.IRetainCardRptService;
 @Transactional(readOnly = true)
 public class RetainCardRptService implements IRetainCardRptService {
 
-	private final String countName = "吞卡数量统计";
+	private String countName ;
 
 	@Autowired
 	private IGenericDao dao;
+	
+	@Autowired
+	private MessageSource messageSource;
 
 	@Override
 	public List<IRetainCardRpt> listRetainCardDetail(IFilter filter) {
@@ -96,12 +101,19 @@ public class RetainCardRptService implements IRetainCardRptService {
 			retainCard.setAddress(objectToString(o[4]));
 			retainCard.setOrgName(objectToString(o[5]));
 			retainCard.setOrgCode(objectToString(o[6]));
-			retainCard.setStatus(((CardStatus) o[7]).getText());
+			retainCard.setStatus(getEnumI18n(((CardStatus) o[7]).getText()));
 			retainCardList.add(retainCard);
 		}
 		return retainCardList;
 	}
-
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
 	@Override
 	public List<IRetainCardCountRpt> listRetainCardCount(IFilter filter) {
 		StringBuffer hql = new StringBuffer();
@@ -136,10 +148,17 @@ public class RetainCardRptService implements IRetainCardRptService {
 		for (Object obj : list) {
 			Object[] o = (Object[]) obj;
 			RetainCardCountRpt retainCardCount = new RetainCardCountRpt();
+			countName = messageSource.getMessage("report.retainCard.title", null, FishCfg.locale);
 			retainCardCount.setCountName(countName);
 			retainCardCount.setRetainCount(Long.valueOf(objectToString(o[0])));
 			retainCardCount.setOrgName(objectToString(o[1]));
 			retainCardCount.setDeviceType(objectToString(o[2]));
+			
+			retainCardCount.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+			retainCardCount.setDevTypeNameColumn(messageSource.getMessage("report.devTypeCount.type", null, FishCfg.locale));
+			retainCardCount.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
+			retainCardCount.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
+			
 			countList.add(retainCardCount);
 		}
 		return countList;

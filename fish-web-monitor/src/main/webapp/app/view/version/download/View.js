@@ -4,7 +4,7 @@ Ext.define('Eway.view.version.download.View', {
 
 	requires : ['Eway.view.version.download.TaskGrid','Eway.view.version.download.FilterForm'],
 
-	title : '分发监控',
+	title : Eway.locale.version.download.title,//'分发监控',
 	layout : 'border',
 	initComponent : function() {
 		Ext.apply(this, {
@@ -16,7 +16,16 @@ Ext.define('Eway.view.version.download.View', {
 						region:'center',
 						xtype:'version_download_taskGrid',
 						action:'taskGrid'
-				} ]
+				} ],
+			listeners : {
+				activate : function(panel) {
+//					if (panel.isLoad) {
+//						return;
+//					}
+//					panel.isLoad = true;
+					panel.down('version_download_taskGrid').getStore().load();
+				}
+			}
 		});
 
 		this.callParent(arguments);

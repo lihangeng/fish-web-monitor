@@ -9,11 +9,11 @@ Ext.define('Eway.view.machine.atmGroup.GroupGrid', {
 			initRegion : true,
 			store : store,
 			tbar : [ '->', {
-				text : '查询',
+				text : Eway.locale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : '增加',
+				text : Eway.locale.button.add,
 				glyph : 0xf067,
 				action : 'add',
 				code : 'atmGroupAdd',
@@ -21,7 +21,7 @@ Ext.define('Eway.view.machine.atmGroup.GroupGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : '更改',
+				text : Eway.locale.button.update,
 				glyph : 0xf040,
 				action : 'update',
 				code : 'atmGroupUpdate',
@@ -29,7 +29,7 @@ Ext.define('Eway.view.machine.atmGroup.GroupGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : '删除',
+				text : Eway.locale.button.remove,
 				glyph : 0xf014,
 				action : 'remove',
 				code : 'atmGroupDel',
@@ -38,10 +38,10 @@ Ext.define('Eway.view.machine.atmGroup.GroupGrid', {
 				}
 			} ],
 			columns : [ {
-				header : '组名',
+				header : Eway.locale.machine.atmGroup.groupName,
 				dataIndex : 'name'
 			}, {
-				header : '备注',
+				header : Eway.locale.machine.atmGroup.note,
 				dataIndex : 'note',
 				flex : 1
 			} ],

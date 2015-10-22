@@ -7,7 +7,7 @@ Ext.define('Eway.view.machine.device.DevicePropertyStatusDetailView', {
 			'Eway.view.machine.device.SoftAndHardwareInfo',
 			'Eway.view.machine.device.DeviceModuleConfig' ],
 
-	title : '设备详细信息',
+	title : Eway.locale.machine.device.devTailMsg,
 	maximizable : true,
 	modal : true,
 	resizable : false,
@@ -23,17 +23,17 @@ Ext.define('Eway.view.machine.device.DevicePropertyStatusDetailView', {
 				split : true,
 				border : true,
 				items : [ {
-					title : '系统软硬件信息',
+					title : Eway.locale.machine.device.systemHardwareInfo,
 					xtype : 'machine_device_softAndHardwareInfo'
 				}, {
-					title : '模块硬件版本信息（实时）',
+					title : Eway.locale.machine.device.moduleVersionInfo,
 					xtype : 'machine_device_spinfo'
 				}, {
-					title : '设备模块状态（实时）',
+					title : Eway.locale.machine.device.devModuleStatusInfo,
 					xtype : 'machine_device_devicemodulestatus'
 				}, {
 					xtype : 'machine_device_deviceModuleConfig',
-					title : '设备模块属性信息（实时）'
+					title : Eway.locale.machine.device.devModuleAttributeInfo
 				} ]
 			}
 		});

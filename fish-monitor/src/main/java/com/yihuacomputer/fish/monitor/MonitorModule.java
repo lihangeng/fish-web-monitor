@@ -21,29 +21,29 @@ import com.yihuacomputer.fish.api.monitor.filter.IFilterService;
 import com.yihuacomputer.fish.api.monitor.hardware.IHardwareService;
 import com.yihuacomputer.fish.api.monitor.software.IRuntimeParamService;
 import com.yihuacomputer.fish.api.monitor.software.ISoftwareService;
-import com.yihuacomputer.fish.api.monitor.xfs.IStateCodeService;
+//import com.yihuacomputer.fish.api.monitor.xfs.IStateCodeService;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
+import com.yihuacomputer.fish.monitor.service.BlackListCardService;
+import com.yihuacomputer.fish.monitor.service.CashInitService;
 import com.yihuacomputer.fish.monitor.service.CollectService;
+import com.yihuacomputer.fish.monitor.service.CounterFeitMoneyService;
 import com.yihuacomputer.fish.monitor.service.DeviceOfflineCheck;
+import com.yihuacomputer.fish.monitor.service.FilterService;
+import com.yihuacomputer.fish.monitor.service.HardwareService;
+import com.yihuacomputer.fish.monitor.service.HostRetService;
 import com.yihuacomputer.fish.monitor.service.MonitorService;
-import com.yihuacomputer.fish.monitor.service.StateCodeService;
-import com.yihuacomputer.fish.monitor.service.db.BlackListCardService;
-import com.yihuacomputer.fish.monitor.service.db.CashInitService;
-import com.yihuacomputer.fish.monitor.service.db.CounterFeitMoneyService;
-import com.yihuacomputer.fish.monitor.service.db.FilterService;
-import com.yihuacomputer.fish.monitor.service.db.HardwareService;
-import com.yihuacomputer.fish.monitor.service.db.HostRetService;
-import com.yihuacomputer.fish.monitor.service.db.ProcessService;
-import com.yihuacomputer.fish.monitor.service.db.RegistService;
-import com.yihuacomputer.fish.monitor.service.db.RetaincardService;
-import com.yihuacomputer.fish.monitor.service.db.RunInfoService;
-import com.yihuacomputer.fish.monitor.service.db.RuntimeParamService;
-import com.yihuacomputer.fish.monitor.service.db.SettlementService;
-import com.yihuacomputer.fish.monitor.service.db.SoftwareService;
-import com.yihuacomputer.fish.monitor.service.db.TransTypeService;
-import com.yihuacomputer.fish.monitor.service.db.TransactionService;
-import com.yihuacomputer.fish.monitor.service.db.UncommonTransService;
-import com.yihuacomputer.fish.monitor.service.db.XfsService;
+//import com.yihuacomputer.fish.monitor.service.StateCodeService;
+import com.yihuacomputer.fish.monitor.service.ProcessService;
+import com.yihuacomputer.fish.monitor.service.RegistService;
+import com.yihuacomputer.fish.monitor.service.RetaincardService;
+import com.yihuacomputer.fish.monitor.service.RunInfoService;
+import com.yihuacomputer.fish.monitor.service.RuntimeParamService;
+import com.yihuacomputer.fish.monitor.service.SettlementService;
+import com.yihuacomputer.fish.monitor.service.SoftwareService;
+import com.yihuacomputer.fish.monitor.service.TransTypeService;
+import com.yihuacomputer.fish.monitor.service.TransactionService;
+import com.yihuacomputer.fish.monitor.service.UncommonTransService;
+import com.yihuacomputer.fish.monitor.service.XfsService;
 
 @Configuration
 public class MonitorModule {
@@ -63,10 +63,10 @@ public class MonitorModule {
 		return new MonitorService();
 	}
 
-	@Bean
-	public IStateCodeService stateCodeService() {
-		return new StateCodeService();
-	}
+//	@Bean
+//	public IStateCodeService stateCodeService() {
+//		return new StateCodeService();
+//	}
 
 	@Bean
 	public IBlackListCardService blackListCardService() {

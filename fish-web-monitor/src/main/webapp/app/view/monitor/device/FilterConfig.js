@@ -16,7 +16,7 @@ Ext.define('Eway.view.monitor.device.FilterConfig',{
 		var atmGroupStore = Ext.create("Eway.store.monitor.device.AtmGroup");
 		atmGroupStore.load();
 		this.items = [{
-			fieldLabel : '设备品牌',
+			fieldLabel : Eway.locale.commen.devVendorName,
 			xtype : 'combo',
 			displayField : 'name',
 			name : 'brandItem',
@@ -30,7 +30,7 @@ Ext.define('Eway.view.monitor.device.FilterConfig',{
 				change : this.cascade
 			}
 		},{
-			fieldLabel : '设备型号',
+			fieldLabel : Eway.locale.commen.devTypeName,
 			name : 'classifyItem',
 			xtype : 'combo',
 			displayField : 'name',
@@ -41,7 +41,7 @@ Ext.define('Eway.view.monitor.device.FilterConfig',{
 			valueField : 'value',
 			value : '0'
 		},{
-			fieldLabel : '经营方式',
+			fieldLabel : Eway.locale.commen.seviceMode,
 			xtype : 'combo',
 			displayField : 'name',
 			name : 'sellItem',
@@ -52,7 +52,7 @@ Ext.define('Eway.view.monitor.device.FilterConfig',{
 			value : '0',
 			editable : false
 		},{
-			fieldLabel : '在行标志',
+			fieldLabel : Eway.locale.commen.insideOutside,
 			xtype : 'combo',
 			displayField : 'name',
 			name : 'ingItem',
@@ -63,7 +63,7 @@ Ext.define('Eway.view.monitor.device.FilterConfig',{
 			value : '0',
 			editable : false
 		},{
-			fieldLabel : '分组',
+			fieldLabel : Eway.locale.monitor.devMonitor.atmGroup,
 			xtype : 'combo',
 			displayField : 'name',
 			name : 'atmGroup',

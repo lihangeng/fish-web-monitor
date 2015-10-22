@@ -5,7 +5,7 @@
 			<pattern>%-5p [%t] %d{yyyy-MM-dd HH:mm:ss SSS} [%c] %m%n</pattern>
 		</encoder>
 	</appender>
-	<appender name="file"
+	<!-- <appender name="file"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<Append>true</Append>
 		<File>fish.log</File>
@@ -20,7 +20,7 @@
 				<maxFileSizeAsString>100MB</maxFileSizeAsString>
 			</timeBasedFileNamingAndTriggeringPolicy>
 		</rollingPolicy>
-	</appender>
+	</appender> -->
 	<!-- Application Loggers -->
 	<logger name="com.yihuacomputer.fish">
 		<level value="info" />
@@ -48,6 +48,6 @@
 	</logger>
 	<root level="INFO">
 		<appender-ref ref="console" />
-		<appender-ref ref="file" />
+	<!-- 	<appender-ref ref="file" /> -->
 	</root>
 </configuration>

@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.api.monitor;
 
+import org.springframework.context.MessageSource;
+
 import com.yihuacomputer.fish.api.monitor.report.IDeviceReport;
 import com.yihuacomputer.fish.api.monitor.report.IWorkUnit;
 
@@ -23,7 +25,7 @@ public interface ICollectListener {
 	 * 设备签到
 	 * @param deviceId
 	 */
-	public void signed(String deviceId,IDeviceReport deviceReport);
+	public void signed(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef);
 
 	/**
 	 * 网络超时
@@ -56,7 +58,7 @@ public interface ICollectListener {
 	 * 模块状态
 	 * @param deviceId
 	 */
-	public void receivedStatus(String deviceId,IDeviceReport deviceReport);
+	public void receivedStatus(String deviceId,IDeviceReport deviceReport,MessageSource messageSourceRef);
 
 	/**
 	 * 模块属性

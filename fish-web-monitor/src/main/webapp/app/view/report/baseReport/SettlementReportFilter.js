@@ -19,9 +19,9 @@ Ext.define('Eway.view.report.baseReport.SettlementReportFilter', {
 								}, {
 									//只带出银行机构
 									xtype : 'common_orgComboOrgTree',
-									fieldLabel : '所属机构',
+									fieldLabel : Eway.locale.commen.orgNameBelongs,
 									labelAlign : 'right',
-									emptyText : '--请选择--',
+									emptyText : Eway.locale.combox.select,
 									name : 'orgName',
 									hiddenValue : 'orgId',
 									editable : false,
@@ -29,11 +29,11 @@ Ext.define('Eway.view.report.baseReport.SettlementReportFilter', {
 									rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
 								},{
 									xtype : 'textfield',
-									fieldLabel : '设备号',
+									fieldLabel : Eway.locale.commen.terminalId,
 									labelAlign : 'right',
 									name : 'terminalId',
 									regex : /^\w+[\w-\.]*$/,
-									regexText : '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’和点号‘.’，只能以字母或数字开头。',
+									regexText : Eway.locale.vtype.numberRule,
 									maxLength : 20
 								}]
 					}, {
@@ -45,7 +45,7 @@ Ext.define('Eway.view.report.baseReport.SettlementReportFilter', {
 						},
 						items : [{
 							xtype : 'fieldcontainer',
-							fieldLabel : '加钞金额',
+							fieldLabel : Eway.locale.report.baseReport.amt,
 							layout : 'hbox',
 							defaults : {
 								hideLabel : true
@@ -72,7 +72,7 @@ Ext.define('Eway.view.report.baseReport.SettlementReportFilter', {
 								}
 							}, {
 								xtype : 'displayfield',
-								value : '至'
+								value : Eway.locale.machine.device.to
 							}, {
 								fieldLabel : 'endAmt',
 								displayField : 'display',
@@ -96,7 +96,7 @@ Ext.define('Eway.view.report.baseReport.SettlementReportFilter', {
 							} ]
 						}, {
 							xtype : 'fieldcontainer',
-							fieldLabel : '清机日期',
+							fieldLabel : Eway.locale.report.baseReport.clearDate,
 							labelWidth : 70,
 							layout : 'hbox',
 							defaults : {
@@ -126,7 +126,7 @@ Ext.define('Eway.view.report.baseReport.SettlementReportFilter', {
 								}
 							}, {
 								xtype : 'displayfield',
-								value : '至'
+								value : Eway.locale.machine.device.to
 							}, {
 								fieldLabel : 'minute',
 								displayField : 'display',

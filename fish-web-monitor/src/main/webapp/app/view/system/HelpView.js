@@ -8,7 +8,7 @@ Ext.define('Eway.view.system.HelpView',{
 		var store = new Ext.create('Ext.data.Store', {
 	    	fields:['name', 'describe'],
 		    data:{'items':[
-		        {"name":"The user manual.doc", "describe":"本手册指导用户操作本系统，更快的掌握系统的各项功能。"}
+		        {"name":"The user manual.doc", "describe":Eway.locale.system.guideUsers}
 		    ]},
 		    proxy: {
 		        type: 'memory',
@@ -21,19 +21,19 @@ Ext.define('Eway.view.system.HelpView',{
 
 		Ext.apply(this,{
 			layout : 'fit',
-			title : '系统帮助',
+			title : Eway.locale.system.systemHelp,
 			items : [{
 				xtype : 'grid',
 			    store: store,
 			    columns: [
-			        {header: '名称',  dataIndex: 'name',width:150},
-			        {header: '说明', dataIndex: 'describe',width:400},
+			        {header: Eway.locale.system.helpName,  dataIndex: 'name',width:150},
+			        {header: Eway.locale.system.helpExpain, dataIndex: 'describe',width:400},
 			        {
-			        	header: '下载',
+			        	header: Eway.locale.system.helpDownload,
 						xtype:'actioncolumn',
 						flex : 1,
 						renderer: function(value,metadata,record){
-			                   	metadata.tdAttr ='data-qtip="'+"单击此处即可下载该文档"+'"';
+			                   	metadata.tdAttr ='data-qtip="'+Eway.locale.system.clickDownload+'"';
 						},
 						items:[{
 		                    icon:"./././resources/images/downfile.png",

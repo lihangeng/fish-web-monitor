@@ -6,7 +6,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseView', {
 	requires: ['Eway.view.agent.remote.RemoteBrowseDiskGrid',
 	           'Eway.view.agent.remote.RemoteBrowseFileSystemGrid'],
 
-	title: '远程浏览',
+	title: Eway.locale.agent.remote.distanceExplorer,
 	modal: true,
 	resizable: false,
 	maximizable: true,

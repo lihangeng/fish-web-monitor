@@ -2,7 +2,7 @@ Ext.define('Eway.view.field.card.DeviceTypeComboBox', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field_card_DeviceTypeComboBox',
 	
-	fieldLabel : '所属型号',
+	fieldLabel : Eway.locale.machine.atmType.devTerminalName,
 	name : 'devTypeId',
 	hiddenName : 'devTypeId',
 	msgTarget : 'side',
@@ -10,7 +10,7 @@ Ext.define('Eway.view.field.card.DeviceTypeComboBox', {
 	valueField : 'id',
 	displayField : 'name',
 	queryMode : 'local',
-	emptyText: '--请选择--',
+	emptyText: Eway.locale.combox.select,
 	triggerAction:'all',
 	anchor:'100%',
 	remote:true,

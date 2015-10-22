@@ -6,33 +6,63 @@ Ext.define('Eway.view.advert.AdvertResourceGrid', {
 	border : false,
 
 	initComponent : function() {
+		var groupingFeature = Ext.create('Ext.grid.feature.Grouping',{
+	        groupHeaderTpl: '{name}'
+    	});
 		Ext.apply(this, {
 			initRegion : true,
-			tbar : [ /*'->', {
-				text : '查询',
-				action : 'query1'
-			} */],
-			columns : [ {
-				header : '广告播放时长',
-				dataIndex : 'playTime'
+			features: [groupingFeature],
+			tbar: [{
+				text:Eway.locale.advert.downloadButton,
+				iconCls : 'versionDown',
+				action :'downAdvert',
+				code : 'advertDownAdvert',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			},{
-				header: '开始日期',
+				text :Eway.locale.advert.preview,
+				iconCls : 'adPreview',
+				code : 'advertPreview',
+				disabled : true,
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				},
+				menu : new Ext.menu.Menu({
+					items : [  {
+						text : Eway.locale.advert.preview1024,
+						action:'preview1024'
+					},{
+						text : Eway.locale.advert.preview800,
+						action:'preview800'
+					},{
+						text : Eway.locale.advert.preview600,
+						action:'preview600'
+					}]
+				})
+			}],
+			columns : [{
+				header: Eway.locale.advert.content,
+				dataIndex : 'content'
+			},{
+				header : Eway.locale.advert.playTime,
+				dataIndex : 'playTime',
+				width: 100
+			},{
+				header: Eway.locale.advert.beginDate,
 				dataIndex : 'beginDate'
 			},{
-				header: '结束日期',
+				header: Eway.locale.advert.endDate,
 				dataIndex : 'endDate'
 			},{
-				header: '开始时间',
+				header: Eway.locale.advert.beginTime,
 				dataIndex : 'beginTime'
 			},{
-				header: '结束时间',
+				header: Eway.locale.advert.endTime,
 				dataIndex : 'endTime'
 			},{
-				header: '资源大小',
-				dataIndex : 'fileSize'
-			},{
-				header: '播放资源内容',
-				dataIndex : 'content',
+				header: Eway.locale.advert.fileSize,
+				dataIndex : 'fileSize',
 				flex : 1
 			}]/*,
 			dockedItems : [ { // 分页栏

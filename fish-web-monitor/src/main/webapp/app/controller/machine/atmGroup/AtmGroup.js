@@ -181,8 +181,8 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		var quarydata = this.getEwayView().down('form').getForm().getValues();// 得到所有的查询条件的值
 		var store = this.getEwayView().down('atmGroup_groupGrid').getStore();
 		if(sm.getCount() == 1) {
-			Ext.MessageBox.confirm("请确认",
-					"删除分组,关联关系也被删除,是否真的要删除指定分组?",
+			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
+					Eway.locale.tip.isConfirmRemove,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
@@ -232,7 +232,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			tubeMachine.on('render', this.renderTubeMachine, this);
 			win.show();
 		} else {
-			Eway.alert("请选择您要查看的记录.");
+			Eway.alert(Eway.locale.tip.search.record);
 		}
 	},
 
@@ -263,7 +263,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		var bool = form.isValid();
 		// 查询输入验证
 		if (bool == false) {
-			Eway.alert("查询项中存在不合法的输入,不能提交.");
+			Eway.alert(Eway.locale.tip.searchOfNoLegal);
 			return
 		}
 		var values = form.getValues();
@@ -274,7 +274,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			store.setUrlParam('groupId',groupRecord.data.id);
 			store.loadPage(1);
 		}else {
-			Eway.alert('没有组信息,无法查询.');
+			Eway.alert(Eway.locale.tip.noGroupInfo);
 		}
 
 	},
@@ -306,7 +306,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 				}
 			});
 		}else {
-			Eway.alert('请选择您要增加的记录.');
+			Eway.alert(Eway.locale.tip.selectAdd);
 		}
 	},
 
@@ -319,7 +319,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		var bool = form.isValid();
 		// 查询输入验证
 		if (bool == false) {
-			Eway.alert("查询项中存在不合法的输入,不能提交.");
+			Eway.alert(Eway.locale.tip.searchOfNoLegal);
 			return
 		}
 		var values = form.getValues();
@@ -370,7 +370,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			record.save({
 				success: function() {
 
-					Ext.Msg.confirm('提示', '添加成功,是否继续向组内添加设备?', function(result) {
+					Ext.Msg.confirm(Eway.locale.tip.remind, Eway.locale.tip.continueAdd, function(result) {
 						if ("yes" != result) {
 							win.close();
 						}
@@ -393,12 +393,12 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 					});
 				},
 				failure: function(){
-					Eway.alert("添加失败.");
+					Eway.alert(Eway.locale.tip.addFail);
 				},
 				scope:this
 			});
 		}else{
-			Eway.alert("请选择您要增加的记录.");
+			Eway.alert(Eway.locale.tip.selectAdd);
 		}
 
 	},
@@ -410,8 +410,8 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			if(groupRecord!=null){
-				Ext.MessageBox.confirm("请确认",
-						"是否从该组移除该设备?",
+				Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
+						Eway.locale.tip.removeFail.isRemoveDev,
 						function(button,text) {
 							if(button=="yes"){
 								var record = sm.getLastSelected();
@@ -424,19 +424,19 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 										grid.getStore().remove(record);
 									},
 									failure: function(){
-										Eway.alert("移除失败.");
+										Eway.alert(Eway.locale.tip.removeFail);
 									},
 									scope:this
 								});
 							}
 						}, this);
 			}else {
-				Eway.alert("请选择您要移除的设备所在组.");
+				Eway.alert(Eway.locale.tip.selectRemoveGroup);
 			}
 
 		}
 		else {
-			Eway.alert("请选择您要移除的设备.");
+			Eway.alert(Eway.locale.tip.selectRemoveDev);
 		}
 	}
 });

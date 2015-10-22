@@ -7,6 +7,7 @@ Ext.define('Eway.controller.person.User', {
 			'person.user.AddingRole',
 			'GenderDict',
 			'person.user.UserStateDict',
+			'person.user.UserTypeDict',
 			'person.user.UserStateFilterDict',
 			'person.person.GenderFilterDict',
 			'person.person.PersonTypeFilterDict',
@@ -135,7 +136,7 @@ Ext.define('Eway.controller.person.User', {
 			this.addWin.down('field[name="gender"]').setValue(sm.getLastSelected().data.gender);
 			win.close();
 		}else{
-			Eway.alert('请选择您要创建的账号的人员.');
+			Eway.alert(Eway.locale.tip.user.add.createAcc);
 		}
 	},
 
@@ -170,7 +171,7 @@ Ext.define('Eway.controller.person.User', {
 			record.save({
 				success : function(record,operation){
 					ewayView.down('user_grid').getStore()
-					Eway.alert('创建成功,新建账户'+data.code+'初始密码为: 888888');
+					Eway.alert(Eway.locale.tip.user.add.createSuccess+data.code+Eway.locale.tip.user.add.initPasswd);
 					var store = ewayView.down('user_grid').getStore();
 					store.cleanUrlParam();
 					store.load();
@@ -191,11 +192,11 @@ Ext.define('Eway.controller.person.User', {
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			if(sm.getLastSelected().data.code=='admin'){
-				Eway.alert("删除失败:系统管理员用户,无法删除.");
+				Eway.alert(Eway.locale.tip.user.remove.failRoot);
 				return;
 			}
-			Ext.MessageBox.confirm("请确认",
-					"是否删除该记录:删除用户会删除该用户的日志信息.",
+			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.info,
+					Eway.locale.tip.user.remove.confirm,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
@@ -234,7 +235,8 @@ Ext.define('Eway.controller.person.User', {
 
 			addedRoleGrid.getView().on('drop', this.onAddedRole, this);
 			roleGrid.getView().on('drop', this.onAddingRole, this);
-
+			
+			win.down("field_userType").select(record.get("userType"));
 
 			addedRoleGrid.getStore().load({
 				params : {
@@ -242,7 +244,7 @@ Ext.define('Eway.controller.person.User', {
 				},
 				callback: function(records, operation, success) {
 					if(success==false){
-						Eway.alert("更改失败:记录不存在,请刷新后操作.");
+						Eway.alert(Eway.locale.tip.user.update.fail);
 						win.close();
 					}
 			    }
@@ -254,7 +256,7 @@ Ext.define('Eway.controller.person.User', {
 				},
 				callback: function(records, operation, success) {
 					if(success==false){
-						Eway.alert("更改失败:记录不存在,请刷新后操作.");
+						Eway.alert(Eway.locale.tip.user.update.fail);
 						win.close();
 					}
 			    }
@@ -288,7 +290,7 @@ Ext.define('Eway.controller.person.User', {
 				Eway.alert(Eway.addSuccess);
 			},
 			failure : function(record, operation) {
-				Eway.alert('增加失败:' + operation.getError());
+				Eway.alert(Eway.locale.tip.add.error + operation.getError());
 
 				this.getRoleGrid().getStore().reload();
 				this.getAddedRoleGrid().getStore().reload();
@@ -300,7 +302,7 @@ Ext.define('Eway.controller.person.User', {
 	onAddingRole: function(node, record, overModel, dropPosition){
 		var addingRoleRecord = this.getRoleGrid().getSelectionModel().getLastSelected();
 		if(addingRoleRecord == null){
-			Eway.alert('请选择需要移动的记录.');
+			Eway.alert(Eway.locale.tip.user.add.choose);
 			this.getRoleGrid().getStore().load();
 			return;
 		}
@@ -322,11 +324,11 @@ Ext.define('Eway.controller.person.User', {
 				if(object.success == true){
 					Eway.alert(Eway.deleteSuccess);
 				} else {
-					Eway.alert('删除失败.');
+					Eway.alert(Eway.locale.tip.remove.error);
 				}
 			},
 			failure : function() {
-				Eway.alert("删除失败:无法删除角色,请重新操作.");
+				Eway.alert(Eway.locale.tip.user.remove.fail);
 			},
 			scope : this
 		});

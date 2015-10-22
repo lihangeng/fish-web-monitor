@@ -25,6 +25,7 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,6 +74,10 @@ public class DaybackupInfoController {
 
 	@Autowired
 	private IDayBackupExcuter dayBackupExcuter;
+	
+	
+	@Autowired
+	protected MessageSource messageSource;
 
 	@RequestMapping(value = "/getDayBackup", method = RequestMethod.GET)
 	public @ResponseBody
@@ -160,7 +165,7 @@ public class DaybackupInfoController {
 		// 创建一个webbook，对应一个Excel文件
 		HSSFWorkbook wb = new HSSFWorkbook();
 		// 在webbook中添加一个sheet,对应Excel文件中的sheet
-		HSSFSheet sheet = wb.createSheet("日志备份情况统计表");
+		HSSFSheet sheet = wb.createSheet(messageSource.getMessage("dayBackupInfo.excelTitle", null, FishCfg.locale));
 		// 在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
 		HSSFRow row = sheet.createRow(0);
 		// 创建单元格，并设置值表头 设置表头居中
@@ -168,23 +173,23 @@ public class DaybackupInfoController {
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
 
 		HSSFCell cell = row.createCell(0);
-		cell.setCellValue("机构名称");
+		cell.setCellValue(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
 		cell = row.createCell(1);
-		cell.setCellValue("日志日期");
+		cell.setCellValue(messageSource.getMessage("dayBackupInfo.logDate", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
 		cell = row.createCell(2);
-		cell.setCellValue("备份成功台数");
+		cell.setCellValue(messageSource.getMessage("dayBackupInfo.backUpSuccess", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
 		cell = row.createCell(3);
-		cell.setCellValue("备份失败台数");
+		cell.setCellValue(messageSource.getMessage("dayBackupInfo.backUpFail", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
 		cell = row.createCell(4);
-		cell.setCellValue("总备份台数");
+		cell.setCellValue(messageSource.getMessage("dayBackupInfo.backUpTotal", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
 		HSSFCellStyle cellStyle = wb.createCellStyle();
@@ -226,7 +231,7 @@ public class DaybackupInfoController {
 		// 创建一个webbook，对应一个Excel文件
 		HSSFWorkbook wb = new HSSFWorkbook();
 		// 在webbook中添加一个sheet,对应Excel文件中的sheet
-		HSSFSheet sheet = wb.createSheet("日志备份情况统计表");
+		HSSFSheet sheet = wb.createSheet(messageSource.getMessage("dayBackupInfo.excelTitle", null, FishCfg.locale));
 		// 在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
 		HSSFRow row = sheet.createRow(0);
 		// 创建单元格，并设置值表头 设置表头居中
@@ -234,15 +239,15 @@ public class DaybackupInfoController {
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
 
 		HSSFCell cell = row.createCell(0);
-		cell.setCellValue("设备号");
+		cell.setCellValue(messageSource.getMessage("device.terminalId", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
 		cell = row.createCell(1);
-		cell.setCellValue("日志日期");
+		cell.setCellValue(messageSource.getMessage("dayBackupInfo.logDate", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
 		cell = row.createCell(2);
-		cell.setCellValue("备份结果");
+		cell.setCellValue(messageSource.getMessage("dayBackupInfo.logResult", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
 		// 解决'0001'在excel表格中点击单元格后显示为1的问题
@@ -265,13 +270,13 @@ public class DaybackupInfoController {
 
 			cell = row.createCell(2);
 			if (atmLog.getBackupResult().toString().equals("UNDO")) {
-				cell.setCellValue("任务未开始");
+				cell.setCellValue(messageSource.getMessage("dayBackupInfo.undo", null, FishCfg.locale));
 			} else if (atmLog.getBackupResult().toString().equals("ERROR_CONNECT")) {
-				cell.setCellValue("连接ATM设备失败");
+				cell.setCellValue(messageSource.getMessage("dayBackupInfo.errorConnect", null, FishCfg.locale));
 			} else if (atmLog.getBackupResult().toString().equals("ERROR_NOLOG")) {
-				cell.setCellValue("无当日ATM日志");
+				cell.setCellValue(messageSource.getMessage("dayBackupInfo.errorNoLog", null, FishCfg.locale));
 			} else if (atmLog.getBackupResult().toString().equals("ERROR")) {
-				cell.setCellValue("未知原因失败");
+				cell.setCellValue(messageSource.getMessage("dayBackupInfo.errorUnknown", null, FishCfg.locale));
 			}
 		}
 
@@ -297,7 +302,7 @@ public class DaybackupInfoController {
 		// 创建一个webbook，对应一个Excel文件
 		HSSFWorkbook wb = new HSSFWorkbook();
 		// 在webbook中添加一个sheet,对应Excel文件中的sheet
-		HSSFSheet sheet = wb.createSheet("日志备份情况统计表");
+		HSSFSheet sheet = wb.createSheet(messageSource.getMessage("dayBackupInfo.excelTitle", null, FishCfg.locale));
 		// 在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
 		HSSFRow row = sheet.createRow(0);
 		// 创建单元格，并设置值表头 设置表头居中
@@ -305,15 +310,15 @@ public class DaybackupInfoController {
 		style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
 
 		HSSFCell cell = row.createCell(0);
-		cell.setCellValue("设备号");
+		cell.setCellValue(messageSource.getMessage("device.terminalId", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
 		cell = row.createCell(1);
-		cell.setCellValue("日志日期");
+		cell.setCellValue(messageSource.getMessage("dayBackupInfo.logDate", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
 		cell = row.createCell(2);
-		cell.setCellValue("备份结果");
+		cell.setCellValue(messageSource.getMessage("dayBackupInfo.logResult", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
 		HSSFCellStyle cellStyle = wb.createCellStyle();
@@ -335,7 +340,7 @@ public class DaybackupInfoController {
 
 			cell = row.createCell(2);
 			if (atmLog.getBackupResult().toString().equals(FishConstant.SUCCESS)) {
-				cell.setCellValue("成功");
+				cell.setCellValue(messageSource.getMessage("dayBackupInfo.success", null, FishCfg.locale));
 			}
 
 		}

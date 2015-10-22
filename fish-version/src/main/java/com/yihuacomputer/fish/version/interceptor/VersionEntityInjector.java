@@ -4,6 +4,7 @@
 package com.yihuacomputer.fish.version.interceptor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import com.yihuacomputer.domain.interceptor.IEntityInjector;
@@ -25,7 +26,12 @@ public class VersionEntityInjector implements IEntityInjector {
 
     @Autowired
     private IDomainDeviceSoftVersionService dsvService;
-
+    
+    @Autowired
+    private MessageSource messageSourceVersion;
+    
+    @Autowired
+	private MessageSource messageSourceEnum;
     @Autowired
     private IDomainVersionService versionService;
     @Override
@@ -33,6 +39,8 @@ public class VersionEntityInjector implements IEntityInjector {
         if (entity instanceof Task) {
             Task task = (Task) entity;
             task.setTaskService(taskService);
+            task.setMessageSourceVersion(messageSourceVersion);
+            task.setMessageSourceEnum(messageSourceEnum);
         }
         else if (entity instanceof DeviceSoftVersion) {
             DeviceSoftVersion dsv = (DeviceSoftVersion) entity;
@@ -40,6 +48,7 @@ public class VersionEntityInjector implements IEntityInjector {
         }else if(entity instanceof Version){
             Version v = (Version)entity;
             v.setVersionService(versionService);
+            v.setMessageSourceVersion(messageSourceVersion);
         }
     }
 

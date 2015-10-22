@@ -2,7 +2,7 @@ Ext.define('Eway.view.version.charts.Bar3dBasic', {
     extend: 'Ext.Panel',
     alias: 'widget.bar_3d',
     requires: ['Ext.chart.theme.Muted'],
-    width: 450,
+    width: 550,
     height:300,
     config:{
     	columnField:'data1',
@@ -37,7 +37,7 @@ Ext.define('Eway.view.version.charts.Bar3dBasic', {
                 store: me.myDataStore,
                 sprites: [{
                     type  : 'text',
-                    text  : '版本详情',
+                    text  : Eway.locale.version.View.versionDetail,//'版本详情',
                     font  : '14px Helvetica',
                     fontStyle:'oblique',
                     width : 100,
@@ -53,11 +53,7 @@ Ext.define('Eway.view.version.charts.Bar3dBasic', {
                     fields: [me.getColumnField()],  
                     label: {
                         textAlign: 'right'
-                    }
-//                ,renderer: function (v, layoutContext) {
-//                    return Ext.util.Format.number(layoutContext.renderer(v) , '0');
-//                }
-                ,
+                    },
                     grid: {
                         odd: {
                             fillStyle: 'rgba(255, 255, 255, 0.06)'
@@ -93,6 +89,21 @@ Ext.define('Eway.view.version.charts.Bar3dBasic', {
                         	this.setHtml(storeItem.get(me.getRowField()) + ': ' + storeItem.get(me.getColumnField()) + ' views');
                         }
                     }, 
+                    listeners:{
+                    	//点击表格进行查看当前版本详情对应的设备信息
+                    	itemclick:function( series, item, event, eOpts ){
+                    		var gridFlag = item.record.data.flag;
+                    		var gridVersionId = item.record.data.versionId;
+                    		var grid = me.up("versionView").down("version_charts_grid")
+                    		grid.getStore().load({
+                    			 params: {
+                    			        versionId:gridVersionId,
+                    			        flag:gridFlag
+                    			    }
+                    		 });
+                    		grid.setTitle(item.record.data.title+Eway.locale.title.msg);//"信息")
+                    	}
+                    },
                     renderer: (function () {
                         var colors = [
                                       '#8ca640',

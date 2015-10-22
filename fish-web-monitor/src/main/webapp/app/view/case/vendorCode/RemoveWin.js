@@ -2,7 +2,7 @@ Ext.define('Eway.view.case.vendorCode.RemoveWin', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.vendorCode_RemoveWin',
 
-	title : '删除厂商故障信息',
+	title : Eway.locale.cases.vendorCode.deleteFaultInfo,
 	modal : true,
 	initComponent : function() {
 		Ext.apply(this, {
@@ -25,8 +25,8 @@ Ext.define('Eway.view.case.vendorCode.RemoveWin', {
                   {
                     xtype : 'common_orgComboOrgTree',
                     labelAlign : 'right',
-                    fieldLabel : '厂商',
-                    emptyText : '--请选择--',
+                    fieldLabel :  Eway.locale.cases.vendorCode.provider,
+                    emptyText : Eway.locale.combox.select,
                     name : 'name',
                     hiddenValue : 'vendor',
                     editable : false,
@@ -35,11 +35,11 @@ Ext.define('Eway.view.case.vendorCode.RemoveWin', {
                   }],
 				buttonAlign : 'center',
 				buttons : [ {
-					text : '确认',
+					text : Eway.locale.cases.confirm,
 //					glyph : 0xf014,
 					action : 'delete'
 				}, {
-					text : '取消',
+					text : Eway.locale.cases.cancel,
 //					iconCls : 'returnBtn',
 					handler : this.onOver
 				} ]

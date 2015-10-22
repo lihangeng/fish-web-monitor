@@ -42,32 +42,6 @@ public class TaskForm {
 	public TaskForm() {
 	}
 
-	public TaskForm(ITask task) {
-		this.id = task.getId();
-		this.excuteTime = task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime());
-		this.success = task.isSuccess();
-		this.reason = task.getReason();
-		this.taskStatus = task.getStatus() == null ? "" : task.getStatus().getText();
-		// this.jobId = task.getJob().getJobId();
-		this.version = task.getVersion().getVersionNo();
-		this.state = task.getState();
-		IDevice device = task.getDevice();
-		this.deviceId = device.getId();
-		this.terminalId = device.getTerminalId();
-		this.deviceIp = device.getIp().toString();
-		this.orgName = device.getOrganization().getName();
-		if (task.getVersionBeforeUpdate() != null) {
-			int index = task.getVersionBeforeUpdate().indexOf("_");
-			this.versionBeforeUpdate = task.getVersionBeforeUpdate().substring(index + 1);
-		}
-		this.exceptVersion = task.getExceptVersion();
-		this.currentVersion = "";
-		this.jobName = task.getJobName();
-		this.planTime = DateUtils.getTimestamp(task.getPlanTime());
-		this.downSource = task.getDownSource();
-		this.excuteMachine = task.getExcuteMachine();
-	}
-
 	public long getId() {
 		return id;
 	}

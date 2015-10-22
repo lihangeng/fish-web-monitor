@@ -63,10 +63,10 @@ public class TaskManager implements ITaskManager ,ITaskManagerStatus {
 			// 定时时间到，执行任务分发
 			@Override
 			public void run() {
-				logger.info(String.format("开始执行[%s]创建的任务:放入队列", DateUtils.getTimestamp(planDate)));
+				logger.info(String.format("start [%s] task:push to queue", DateUtils.getTimestamp(planDate)));
 				List<ITask> tasks = taskService.findTasks(planDate);
 				for (ITask task : tasks) {
-					logger.info(String.format("准备放入队列的任务是[%s]",task.toString()));
+					logger.info(String.format("the task will push to queue is [%s]",task.toString()));
 					// 没有下载成功,没有通知成功，新建的任务放入任务队列
 					if (TaskStatus.canRun(task.getStatus())) {
 						taskCollection.put(task);
@@ -74,7 +74,7 @@ public class TaskManager implements ITaskManager ,ITaskManagerStatus {
 						logger.info(String.format("ignore a task [%s]", task.toString()));
 					}
 				}
-				logger.info(String.format("完成执行[%s]创建的任务:放入队列", DateUtils.getTimestamp(planDate)));
+				logger.info(String.format("complete[%s] task:push to queue", DateUtils.getTimestamp(planDate)));
 			}
 
 		}, delay <= 0 ? 0 : delay, TimeUnit.MILLISECONDS);

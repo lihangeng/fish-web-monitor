@@ -7,10 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.monitor.alarm.IProcess;
-import com.yihuacomputer.fish.monitor.service.api.IDomainProcessService;
 
 /**
  * 进程白名单信息
@@ -21,20 +19,16 @@ import com.yihuacomputer.fish.monitor.service.api.IDomainProcessService;
 @Entity
 @Table(name = "DEV_WHITE_PROCESS")
 public class SysProcess implements IProcess {
-	
-	@Transient
-	private IDomainProcessService service;
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_DEV_WHITE_PROCESS")
 	@SequenceGenerator(name = "SEQ_DEV_WHITE_PROCESS", sequenceName = "SEQ_DEV_WHITE_PROCESS")
 	@Column(name = "ID")
 	private long id;
 
-	@Column(name = "NAME",nullable=false,length = 50)
+	@Column(name = "NAME", nullable = false, length = 50)
 	private String name;
 
-	@Column(name = "PROCESS_USER",length = 30)
+	@Column(name = "PROCESS_USER", length = 30)
 	private String user;
 
 	@Column(name = "CPU_USE")
@@ -43,28 +37,13 @@ public class SysProcess implements IProcess {
 	@Column(name = "MEN_USE")
 	private long memoryRate;
 
-	@Column(name = "NOTE",length = 50)
+	@Column(name = "NOTE", length = 50)
 	private String description;
-	
-	@Column(name = "PROCESS_DATE",length = 20)
-    private String date;
 
-	
-	public IDomainProcessService getService() {
-		return service;
-	}
-	public void setService(IDomainProcessService service) {
-		this.service = service;
-	}
-	
-	public void setProcessService(IDomainProcessService service){
-		this.service = service;
-	}
+	@Column(name = "PROCESS_DATE", length = 20)
+	private String date;
+
 	public SysProcess() {
-	}
-
-	public SysProcess(IDomainProcessService service) {
-		this.service = service;
 	}
 
 	public long getId() {
@@ -124,11 +103,9 @@ public class SysProcess implements IProcess {
 	public void setDate(String date) {
 		this.date = date;
 	}
-    
+
 	public String toString() {
-		return "Process [name=" + name + ", user=" + user + ", cpuRate="
-				+ cpuRate + ", memoryRate=" + memoryRate + ", description="
-				+ description +", date="+ date + "]";
+		return "Process [name=" + name + ", user=" + user + ", cpuRate=" + cpuRate + ", memoryRate=" + memoryRate + ", description=" + description + ", date=" + date + "]";
 	}
 
 	public void update(IProcess process) {
@@ -139,5 +116,5 @@ public class SysProcess implements IProcess {
 		setDescription(process.getDescription());
 		setDate(process.getDate());
 	}
-    
+
 }

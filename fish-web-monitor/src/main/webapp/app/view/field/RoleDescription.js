@@ -4,10 +4,10 @@ Ext.define('Eway.view.field.RoleDescription', {
 	alias: 'widget.field_roleDescription',
 
 	name : 'description',
-	fieldLabel: '<font color="red">*</font> 角色描述',
+	fieldLabel: '<font color="red">*</font> '+Eway.locale.permission.role.description,
 	xtype:'field_roleDescription',
 	regex: /^[a-zA-Z0-9\u4E00-\u9FA5][a-zA-Z0-9-_\.\u4E00-\u9FA5]{0,99}$/,
-	regexText: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入100位',
+	regexText: Eway.locale.tip.roleDescription,
 	width:600,
 	height:60,
 	allowBlank:false,

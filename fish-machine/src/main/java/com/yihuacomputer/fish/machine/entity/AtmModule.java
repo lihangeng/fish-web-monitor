@@ -1,26 +1,26 @@
 package com.yihuacomputer.fish.machine.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Transient;
-
-
 import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.atm.IAtmModule;
-import com.yihuacomputer.fish.machine.service.api.IDomainAtmModuleService;
 
 @Entity
 @Table(name = "DEV_MODULE")
-public class AtmModule implements IAtmModule {
+public class AtmModule implements IAtmModule ,Serializable{
 	
-	@Transient
-	private IDomainAtmModuleService service;
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7139332064779989246L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_DEV_MODULE")
 	@SequenceGenerator(name = "SEQ_DEV_MODULE", sequenceName = "SEQ_DEV_MODULE")
@@ -49,10 +49,6 @@ public class AtmModule implements IAtmModule {
 	@Column(name = "IS_CASE", nullable = true, columnDefinition="CHAR",length=1)
 	private boolean isCase;
 	
-	public AtmModule(IDomainAtmModuleService service){
-		this.service = service;
-	}
-
 	public AtmModule(){
 		
 	}

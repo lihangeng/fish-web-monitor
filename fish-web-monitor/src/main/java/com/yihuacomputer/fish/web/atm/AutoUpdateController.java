@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.web.atm;
 
+import java.util.Date;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,7 +94,8 @@ public class AutoUpdateController {
 			    }
 			}
 		}catch(Exception e){
-			logger.error(String.format("处理自动升级请求异常![%s],请求内容:[%s]",e,JsonUtils.toJson(msg)));
+			logger.error(String.format("autoupdate exception![%s],request context is:[%s]",e,JsonUtils.toJson(msg)));
+//			logger.error(String.format("处理自动升级请求异常![%s],请求内容:[%s]",e,JsonUtils.toJson(msg)));
 		}
 		return msg;
 	}
@@ -102,10 +105,10 @@ public class AutoUpdateController {
         if(device == null){
             return null;
         }
-        ITask task = taskService.make();
+        ITask task = taskService.make(new Date());
         task.setDevice(device);
         String typeName = autoUpdateVersion.getVersionType().getTypeName();
-        IDeviceSoftVersion dsv = deviceSoftVersionService.get(device.getTerminalId(), typeName);
+        IDeviceSoftVersion dsv = deviceSoftVersionService.get(device.getId(), typeName);
     	if(dsv != null){
     		task.setVersionBeforeUpdate(typeName + "_" + dsv.getVersionNo());
     	}

@@ -42,7 +42,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 					win.down('button[action="remoteDel"]').on('click',me.onRemoteDel,this);;
 					win.down('button[action="remoteExec"]').on('click',me.onRemoteExec,this);
 				}else{
-					Eway.alert("远程浏览失败.");
+					Eway.alert(Eway.locale.vtype.remoteFailure);
 				}
 			}
 		});
@@ -57,12 +57,12 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		var path = me.win.down('textfield[name="path"]').getValue();
 
 		if(isDirectory){
-			mkFileWin.setTitle("新建目录");
-			mkFileWin.down('textfield[name="file"]').setFieldLabel("目录名称");
+			mkFileWin.setTitle(Eway.locale.agent.remote.MKcatalog);
+			mkFileWin.down('textfield[name="file"]').setFieldLabel(Eway.locale.agent.remote.catalogName);
 		}
 		else{
-			mkFileWin.setTitle("新建文件");
-			mkFileWin.down('textfield[name="file"]').setFieldLabel("文件名称");
+			mkFileWin.setTitle(Eway.locale.agent.remote.MkFile);
+			mkFileWin.down('textfield[name="file"]').setFieldLabel(Eway.locale.agent.remote.screen.fileNameClient);
 		}
 		mkFileWin.down('[name="nowPath"]').setValue(path);
 		mkFileWin.down('button[action="confirm"]').on('click',Ext.bind(this.onMkDirConfirm,this,[path,mkFileWin,isDirectory]),this);
@@ -91,17 +91,17 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		    success: function(response){
 		        var obj = Ext.decode(response.responseText);
 		        if(obj.success==true){
-					Eway.alert("远程创建成功.");
+					Eway.alert(Eway.locale.agent.remote.distanceSuccess);
 		        }
 		        else{
-					Eway.alert("远程创建失败.");
+					Eway.alert(Eway.locale.agent.remote.distanceFailure);
 		        }
 		        me.onQuery();
 		        mkFileWin.close();
 		    },
 		    failure:function(){
 
-				Eway.alert("远程创建失败.");
+				Eway.alert(Eway.locale.agent.remote.distanceFailure);
 		    }
 		});
 	},
@@ -119,8 +119,8 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			var record = sm.getLastSelected();
 			var newFile = record.get("name");
 			Ext.Msg.confirm({
-			    title: '提示',
-			    msg: '确定删除['+newFile+']?',
+			    title: Eway.locale.tip.remind.,
+			    msg: Eway.locale.agent.remote.confirmDelete+'['+newFile+']?',
 			    width: 300,
 	            modal:true,
 	            closable:true,
@@ -138,16 +138,16 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 						    success: function(response){
 						        var obj = Ext.decode(response.responseText);
 						        if(obj.success==true){
-									Eway.alert("远程删除成功.");
+									Eway.alert(Eway.locale.agent.remote.distanceSuccess);
 						        }
 						        else{
-									Eway.alert("远程删除失败.");
+									Eway.alert(Eway.locale.agent.remote.distanceFailure);
 						        }
 						        me.onQuery();
 						    },
 						    failure:function(){
 
-								Eway.alert("远程删除失败.");
+								Eway.alert(Eway.locale.agent.remote.distanceFailure);
 						    }
 						});
 						sm.deselect(record);
@@ -158,7 +158,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 
 		}
 		else{
-			Eway.alert("请选择要删除的文件.");
+			Eway.alert(Eway.locale.agent.remote.choseDeleteFile);
 		}
 	},
 
@@ -177,8 +177,8 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			var record = sm.getLastSelected();
 			var newFile = record.get("name");
 			Ext.Msg.confirm({
-			    title: '提示',
-			    msg: '确定执行['+newFile+']?',
+			    title: Eway.locale.tip.remind.,
+			    msg: Eway.locale.agent.remote.confirmExecute+'['+newFile+']?',
 			    width: 300,
 	            modal:true,
 	            closable:true,
@@ -196,16 +196,16 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 						    success: function(response){
 						        var obj = Ext.decode(response.responseText);
 						        if(obj.success==true){
-									Eway.alert("远程执行成功.");
+									Eway.alert(Eway.locale.agent.remote.distanceExecuteSuccess);
 						        }
 						        else{
-									Eway.alert("远程执行失败.");
+									Eway.alert(Eway.locale.agent.remote.distanceExecuteFailure);
 						        }
 						        me.onQuery();
 						    },
 						    failure:function(){
 
-								Eway.alert("远程执行失败.");
+								Eway.alert(Eway.locale.agent.remote.distanceExecuteFailure);
 						    }
 						});
 						sm.deselect(record);
@@ -215,7 +215,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			});
 		}
 		else{
-			Eway.alert("请选择要执行的文件.");
+			Eway.alert(Eway.locale.agent.remote.choseExecuteFile);
 		}
 	},
 
@@ -236,12 +236,12 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		    callback: function(records, operation, success) {
 				this.store = store;
 		        if(success==true){
-		        	this.win.setTitle('远程浏览:'+path);
+		        	this.win.setTitle(Eway.locale.agent.remote.distanceExplorer+path);
 					this.win.down('textfield[name="path"]').setValue(path);
 					this.win.down('textfield[name="queryPath"]').setValue(path);
 					panel.on('itemdblclick',me.onRemoteBrowseFileSystem2,this);
 				}else{
-					Eway.alert("远程浏览失败.");
+					Eway.alert(Eway.locale.agent.remote.distanceExplorerFailure);
 				}
 			}
 		});
@@ -277,12 +277,12 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		    	scope   : this,
 			    callback: function(records, operation, success) {
 			        if(success==true){
-			        	this.win.setTitle('远程浏览:'+path);
+			        	this.win.setTitle(Eway.locale.agent.remote.distanceExplorer+path);
 					    this.win.down('textfield[name="path"]').setValue(path);
 					    this.win.down('textfield[name="queryPath"]').setValue(path);
 						grid.on('itemdblclick',me.onRemoteBrowseFileSystem2,this);
 					}else{
-						Eway.alert("远程浏览失败.");
+						Eway.alert(Eway.locale.agent.remote.distanceExplorerFailure);
 					}
 				}
 		    });
@@ -336,12 +336,12 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			  if(form.isValid()){
 		   		 if(i<store.getCount()){
 			  		 Ext.MessageBox.show({
-						title : '提示',
-						msg : '该文件已存在！',
+						title : Eway.locale.tip.remind.,
+						msg : Eway.locale.agent.remote.fileExist,
 						modal : true,
 						fn : function callBack(id){
 							var winEl = upFileWin.getEl();
-							winEl.mask('正在上传文件......');
+							winEl.mask(Eway.locale.agent.remote.nowUploadFile);
 					     	if(id=='yes'){
 							     form.submit({
 					                  url: 'api/agent/remoteBrowse/upload',
@@ -352,7 +352,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 					                  },
 					                  success: function(form, action) {
 					                  	  winEl.unmask();
-					                	  Eway.alert("上传成功.");
+					                	  Eway.alert(Eway.locale.agent.remote.uploadSuccess);
 					                	  upFileWin.close();
 					                	  me.reflesh();
 					                  },
@@ -371,7 +371,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 					                  },
 					                  success: function(form, action) {
 					                  	  winEl.unmask();
-					                  	  Eway.alert("上传成功.");
+					                  	  Eway.alert(Eway.locale.agent.remote.uploadSuccess);
 					                	  upFileWin.close();
 					                	  me.reflesh();
 					                  },
@@ -385,11 +385,11 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 						   }
 				  	 	},
 						buttons : Ext.Msg.YESNOCANCEL,
-						buttonText: {yes: "续传",no: "覆盖",cancel: "取消"}
+						buttonText: {yes: Eway.locale.agent.remote.yes,no: Eway.locale.agent.remote.cancel,cancel: Eway.locale.agent.remote.cancel}
 				     });
 				  }else{
 				  	var winEl = upFileWin.getEl();
-					winEl.mask('正在上传文件......');
+					winEl.mask(Eway.locale.agent.remote.nowUploadFile);
 				  	form.submit({
 	                  url: 'api/agent/remoteBrowse/upload',
 	                  params: {
@@ -399,7 +399,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 	                  },
 	                  success: function(form, action) {
 	                  	  winEl.unmask();
-	                	  Eway.alert("上传成功.");
+	                	  Eway.alert(Eway.locale.agent.remote.uploadSuccess);
 	                	  upFileWin.close();
 	                	  me.reflesh();
 	                  },
@@ -411,7 +411,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 				  }
 			   }
 		}else{
-			Eway.alert("未选择上传文件,请选择文件.");
+			Eway.alert(Eway.locale.agent.remote.choseFile);
 		}
 
 	},
@@ -430,7 +430,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		if(parentPath==""){
 			var layout = win.getLayout();
 			layout.setActiveItem(0);
-			this.win.setTitle('远程浏览');
+			this.win.setTitle(Eway.locale.agent.remote.distanceExplorer);
 			store.removeAll();
 		}else{
 			this.store.load({
@@ -438,11 +438,11 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 				scope   : this,
 			    callback: function(records, operation, success) {
 			        if(success==true){
-			        	this.win.setTitle('远程浏览:'+parentPath);
+			        	this.win.setTitle(Eway.locale.agent.remote.distanceExplorer+parentPath);
 						this.win.down('textfield[name="path"]').setValue(parentPath);
 						this.win.down('textfield[name="queryPath"]').setValue(parentPath);
 					}else{
-						Eway.alert("返回失败.");
+						Eway.alert(Eway.locale.agent.remote.returnFailure);
 					}
 				}
 			});
@@ -460,9 +460,9 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			scope   : this,
 		    callback: function(records, operation, success) {
 		        if(success==true){
-		        	this.win.setTitle('远程浏览:'+currentPath);
+		        	this.win.setTitle(Eway.locale.agent.remote.distanceExplore+currentPath);
 				}else{
-					Eway.alert("刷新失败.");
+					Eway.alert(Eway.locale.agent.remote.refreshFailure);
 				}
 			}
 		});
@@ -479,13 +479,13 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 	    	scope   : this,
 		    callback: function(records, operation, success) {
 		        if(success==true){
-		        	this.win.setTitle('远程浏览:'+path);
+		        	this.win.setTitle(Eway.locale.agent.remote.distanceExplore+path);
 				    this.win.down('textfield[name="path"]').setValue(path);
 				    this.win.down('textfield[name="queryPath"]').setValue(path);
 					grid.on('itemdblclick',me.onRemoteBrowseFileSystem2,this);
 					grid.on()
 				}else{
-					Eway.alert("搜索的目录不存在,请重新输入.");
+					Eway.alert(Eway.locale.agent.remote.catalogExist);
 				}
 			}
 	    });

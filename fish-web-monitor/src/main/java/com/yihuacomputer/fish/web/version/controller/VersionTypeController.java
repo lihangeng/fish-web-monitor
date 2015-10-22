@@ -11,6 +11,7 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -53,6 +55,10 @@ public class VersionTypeController {
 	
 	@Autowired
 	private IAtmTypeService atmTypeService;
+	
+
+    @Autowired
+    private MessageSource messageSourceVersion;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -94,7 +100,10 @@ public class VersionTypeController {
 	    IVersionType db= versionTypeService.getByName(typeName);
 		if(db != null){
 		    result.addAttribute(FishConstant.SUCCESS, false);
-		    result.addAttribute(FishConstant.ERROR_MSG,String.format("增加失败,软件分类[%s]已存在",typeName));
+
+    		String tips = messageSourceVersion.getMessage("versionType.addSameVersionType", null, FishCfg.locale);
+		    result.addAttribute(FishConstant.ERROR_MSG,String.format(tips,typeName));
+//		    result.addAttribute(FishConstant.ERROR_MSG,String.format("增加失败,软件分类[%s]已存在",typeName));
 		    return result;
 		}
 
@@ -127,7 +136,9 @@ public class VersionTypeController {
         if(type == null)
 		{
 			result.addAttribute(FishConstant.SUCCESS,false);
-			result.addAttribute("errorMsg","更改的记录不存在，请刷新后操作");
+    		String tips = messageSourceVersion.getMessage("versionType.versionTypeNotExist", null, FishCfg.locale);
+//			result.addAttribute("errorMsg","更改的记录不存在，请刷新后操作");
+			result.addAttribute(FishConstant.ERROR_MSG,tips);
 			return result;
 		}
         result.addAttribute("data", new VersionTypeForm(type));
@@ -143,7 +154,8 @@ public class VersionTypeController {
 			if(type == null)
 			{
 				result.addAttribute(FishConstant.SUCCESS,false);
-				result.addAttribute(FishConstant.ERROR_MSG,"更改的记录不存在，请刷新后操作");
+				String tips = messageSourceVersion.getMessage("versionType.versionTypeNotExist", null, FishCfg.locale);
+				result.addAttribute(FishConstant.ERROR_MSG,tips);
 				return result;
 			}
 			type.setDesc(form.getDesc());
@@ -199,7 +211,9 @@ public class VersionTypeController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG,"删除失败：" + ex.getMessage());
+			String tips = messageSourceVersion.getMessage("versionType.deleteFail", new Object[]{ex.getMessage()}, FishCfg.locale);
+//			result.addAttribute(FishConstant.ERROR_MSG,"删除失败：" + ex.getMessage());
+			result.addAttribute(FishConstant.ERROR_MSG,tips);
 		}
 		return result;
 	}

@@ -10,7 +10,7 @@ Ext.define("Eway.view.machine.device.module.StatusSIU", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : 'SIU能力状态信息',
+				title : Eway.locale.machine.device.SIUStatus,
 				titleAlign:'center',
 				layout : 'column',
 				border : 'false',
@@ -26,20 +26,20 @@ Ext.define("Eway.view.machine.device.module.StatusSIU", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '防护罩状态',
+						fieldLabel : Eway.locale.machine.device.vandalShield,
 						name : 'vandalShield',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '操作员按钮状态',
+						fieldLabel : Eway.locale.machine.device.operatorSwitch,
 						name : 'operatorSwitch'
 					}, {
-						fieldLabel : '环境灯状态',
+						fieldLabel : Eway.locale.machine.device.ambientLight,
 						name : 'ambientLight'
 					}, {
-						fieldLabel : '箱门状态',
+						fieldLabel : Eway.locale.machine.device.cabinet,
 						name : 'cabinet'
 					}, {
-						fieldLabel : '安全门状态',
+						fieldLabel : Eway.locale.machine.device.safe,
 						name : 'safe'
 					} ]
 				}, {
@@ -55,17 +55,17 @@ Ext.define("Eway.view.machine.device.module.StatusSIU", {
 						height : 40
 					},
 					items : [ {
-						fieldLabel : '插卡导引灯状态',
+						fieldLabel : Eway.locale.machine.device.idcGuidelight,
 						name : 'idcGuidelight',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '取钞引导指示灯状态',
+						fieldLabel :Eway.locale.machine.device.cdmGuidelight,
 						name : 'cdmGuidelight'
 					}, {
-						fieldLabel : '凭条导引灯状态',
+						fieldLabel : Eway.locale.machine.device.receiptGuidelight,
 						name : 'receiptGuidelight'
 					}, {
-						fieldLabel : 'CIM导引灯状态',
+						fieldLabel : Eway.locale.machine.device.cimGuidelight,
 						name : 'cimGuidelight'
 					} ]
 				} ]

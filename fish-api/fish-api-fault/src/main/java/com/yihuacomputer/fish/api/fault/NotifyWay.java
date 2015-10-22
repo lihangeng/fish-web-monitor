@@ -1,14 +1,18 @@
 package com.yihuacomputer.fish.api.fault;
+
+
 /**
  * 通知方式
  * @author YiHua
  *
  */
 public enum NotifyWay {
-	SMS(1,"短信"),//短信
-	MAIL(2,"邮件"),//邮件
-	BOTH(3,"短信和邮件");
-	
+	SMS(1,"NotifyWay.SMS"),//短信
+	MAIL(2,"NotifyWay.MAIL"),//邮件
+	BOTH(3,"NotifyWay.BOTH");
+    public String getText(){
+		return text;
+    }
 	private int id;
 	
 	private String text;
@@ -24,10 +28,6 @@ public enum NotifyWay {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public String getText() {
-		return text;
 	}
 
 	public void setText(String text) {

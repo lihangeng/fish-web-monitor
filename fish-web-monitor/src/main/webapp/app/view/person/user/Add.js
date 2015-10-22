@@ -7,9 +7,10 @@ Ext.define('Eway.view.person.user.Add', {
 	           'Eway.view.field.person.UserState',
 	           'Eway.view.field.person.Gender',
 	           'Eway.view.field.person.UserName',
+	           'Eway.view.field.person.UserType',
 	           'Eway.view.person.user.Role'],
 
-	title: '增加用户信息',
+	title: Eway.locale.person.user.addUserTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -32,7 +33,7 @@ Ext.define('Eway.view.person.user.Add', {
 				},
 				items: [{
 			        xtype: 'fieldcontainer',
-			        fieldLabel: '<font color="red">*</font>姓名',
+			        fieldLabel: '<font color="red">*</font>'+Eway.locale.commen.name,
 			        combineErrors: true,
 			        layout: 'hbox',
 			        defaults: {
@@ -40,8 +41,8 @@ Ext.define('Eway.view.person.user.Add', {
 			        },
 			        items: [{
 						xtype : 'field.username',
-						fieldLabel : '<font color="red">*</font> 姓名',
-						emptyText:"请点击查询，选择人员",
+						fieldLabel : '<font color="red">*</font> '+Eway.locale.commen.name,
+						emptyText:Eway.locale.person.bankPer.clickToUser,
 						allowBlank : false,
 						readOnly : true
 					},{
@@ -52,14 +53,19 @@ Ext.define('Eway.view.person.user.Add', {
 				        margin: '0 0 0 5'
 					}]
 				},{
-					fieldLabel : '<font color="red">*</font> 用户名',
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.user.code,
 					xtype : 'field.code',
 					regex: /^[a-zA-Z0-9][a-zA-Z0-9-_\.]{0,19}$/,
-					regexText:'只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！',
+					regexText: Eway.locale.vtype.bankOrgCode,
+					allowBlank : false
+				},{
+					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.user.userType,
+					xtype : 'field_userType',
+					name:'userType',
 					allowBlank : false
 				},{
 				    xtype : 'field.userState',
-				    fieldLabel : '<font color="red">*</font> 状态',
+				    fieldLabel : '<font color="red">*</font> '+Eway.locale.person.bankPer.status,
 				    allowBlank : false,
 				    value : '0',
 				    hidden : true,
@@ -76,17 +82,17 @@ Ext.define('Eway.view.person.user.Add', {
 					hidden : true
 				}]
 			},{
-				title:'角色赋予',
+				title:Eway.locale.person.user.roleGiven,
 				xtype: 'user_role',
 				region: 'center',
 				autoLoadStore : false
 			}],
 			buttonAlign : 'center',
 			buttons: [{
-					text: '确认',
+					text: Eway.locale.button.confirm,
 					action: 'confirm'
 				}, {
-					text: '取消',
+					text: Eway.locale.button.cancle,
 					handler: this.onOver
 			}]
 		});

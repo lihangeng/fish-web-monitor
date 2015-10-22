@@ -9,6 +9,8 @@ import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,6 +46,9 @@ import com.yihuacomputer.fish.web.command.format.MyComputerForm;
 public class ExploerController
 {
 
+	private final static long MAXFILESIZE=209715200L;
+	private final static long SIZEOFPERM=1024*1024L;
+	
     /**
      * 通过URL请求获得Agent所采集的ATM的磁盘信息：
      *
@@ -52,6 +57,9 @@ public class ExploerController
      * @param request
      * @return
      */
+	@Autowired
+	private MessageSource messageSource;
+	
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
     ModelMap searchDisk(@RequestParam int start, @RequestParam int limit,
@@ -143,19 +151,19 @@ public class ExploerController
             result.addAttribute("fileName", localName);
             result.addAttribute(FishConstant.SUCCESS, true);
         }else if(ret.equals(HttpFileRet.CFG_ERROR)){
-            result.addAttribute(FishConstant.ERROR_MSG, "下载失败,参数配置出错.");
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failParam", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
         }else if(ret.equals(HttpFileRet.REQ_FILE_NOTEXIT)){
-            result.addAttribute(FishConstant.ERROR_MSG, "下载失败,请求文件不存在.");
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failNotExist", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
         }else if(ret.equals(HttpFileRet.CONN_ERROR)){
-            result.addAttribute(FishConstant.ERROR_MSG, "下载失败,通信出错.");
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failConn", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
         }else if(ret.equals(HttpFileRet.URL_ERROR)){
-            result.addAttribute(FishConstant.ERROR_MSG, "下载失败,URL出错.");
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failURL", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
         }else if(ret.equals(HttpFileRet.ERROR)){
-            result.addAttribute(FishConstant.ERROR_MSG, "下载文件失败.");
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.error", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
         }
         return result;
@@ -221,8 +229,9 @@ public class ExploerController
         String fileName = file.getOriginalFilename();
         long fileSize = file.getSize();
         response.setContentType("text/html;charset=UTF-8");
-        if(fileSize > 209715200){
-            return "{'success':false,'errors':'文件过大（超过200M）,上传失败.'}";//超过最大文件大小限制（最大200M）
+        if(fileSize > MAXFILESIZE){
+        	String tips = messageSource.getMessage("exploer.fileUpload.failSize", new Object[]{MAXFILESIZE/SIZEOFPERM}, FishCfg.locale);
+            return "{'success':false,'errors':'"+tips+"'}";//超过最大文件大小限制（最大200M）
         }
         File targetFile = new File(temDir + System.getProperty("file.separator") +fileName);
         if(!targetFile.exists()){
@@ -241,11 +250,13 @@ public class ExploerController
             String url = MonitorCfg.getHttpUrl(request.getParameter("ip"))+"/ctr/downfile";
             form = (DownFileForm) HttpProxy.httpPost(url,form,DownFileForm.class);
             if(!form.getRet().equals(FishConstant.SUCCESS)){
-                return "{'success':false,'errors':'上传失败.'}";
+            	String tips = messageSource.getMessage("exploer.fileUpload.fail", null, FishCfg.locale);
+                return "{'success':false,'errors':'"+tips+"'}";
             }
         } catch (Exception e) {
             e.printStackTrace();
-            return "{'success':false,'errors':'上传失败.'}";
+        	String tips = messageSource.getMessage("exploer.fileUpload.fail", null, FishCfg.locale);
+            return "{'success':false,'errors':'"+tips+"'}";
         }
         return "{'success':true,'serverPath':'"+fileName+"'}";
     }

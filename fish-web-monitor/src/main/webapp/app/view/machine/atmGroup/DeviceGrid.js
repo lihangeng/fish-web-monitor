@@ -11,15 +11,15 @@ Ext.define('Eway.view.machine.atmGroup.DeviceGrid', {
 			initRegion : true,
 			store : store,
 			tbar : [ '->', {
-				text : '详细信息',
+				text : Eway.locale.button.info,
 				glyph : 0xf129,
 				action : 'info'
 			}, {
-				text : '查询',
+				text : Eway.locale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : '增加',
+				text : Eway.locale.button.add,
 				glyph : 0xf067,
 				action : 'add',
 				code : 'atmGroupDeviceAdd',
@@ -27,7 +27,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : '删除',
+				text : Eway.locale.button.remove,
 				glyph : 0xf014,
 				action : 'remove',
 				code : 'atmGroupDeviceDel',
@@ -36,60 +36,60 @@ Ext.define('Eway.view.machine.atmGroup.DeviceGrid', {
 				}
 			} ],
 			columns : [ {
-				header : '设备号',
+				header : Eway.locale.machine.atmGroup.terminalId,
 				dataIndex : 'terminalId'
 			}, {
-				header : '设备IP地址',
+				header : Eway.locale.machine.atmGroup.ip,
 				dataIndex : 'ip',
 				width : 120
 			}, {
-				header : '所属机构',
+				header : Eway.locale.machine.atmGroup.orgName,
 				dataIndex : 'orgName'
 			}, {
-				header : '设备型号',
+				header : Eway.locale.machine.atmGroup.devTypeName,
 				dataIndex : 'devTypeName'
 			}, {
-				header : '设备品牌',
+				header : Eway.locale.machine.atmGroup.devVendorName,
 				dataIndex : 'devVendorName'
 			}, {
-				header : '设备类型',
+				header : Eway.locale.machine.atmGroup.devCatalogName,
 				dataIndex : 'devCatalogName'
 			}, {
-				header : '设备状态',
+				header : Eway.locale.machine.atmGroup.status,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return "启用";
+						return Eway.locale.machine.atmGroup.comboxStatus.open;
 					}
 					if (value == 2) {
-						return "停用";
+						return Eway.locale.machine.atmGroup.comboxStatus.close;
 					}
 				}
 			}, {
-				header : '在行离行标志',
+				header : Eway.locale.machine.atmGroup.awayFlag,
 				dataIndex : 'awayFlag',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return "在行自助服务区";
+						return Eway.locale.machine.atmGroup.comboxAwayFlag.inBank;
 					}
 					if (value == 2) {
-						return "离行自助银行";
+						return Eway.locale.machine.atmGroup.comboxAwayFlag.outBank;
 					}
 					if (value == 3) {
-						return "单机离行自助服务点";
+						return Eway.locale.machine.atmGroup.comboxAwayFlag.clickBank;
 					}
 				}
 			}, {
-				header : '设备维护商',
+				header : Eway.locale.machine.atmGroup.devServiceName,
 				dataIndex : 'devServiceName'
 			}, {
-				header : '钞箱报警金额',
+				header : Eway.locale.machine.atmGroup.cashboxLimit,
 				dataIndex : 'cashboxLimit'
 			}, {
-				header : '安装日期',
+				header : Eway.locale.machine.atmGroup.installDate,
 				dataIndex : 'installDate'
 			}, {
-				header : '地址',
+				header : Eway.locale.machine.atmGroup.address,
 				dataIndex : 'address',
 				width : 150
 			} ],

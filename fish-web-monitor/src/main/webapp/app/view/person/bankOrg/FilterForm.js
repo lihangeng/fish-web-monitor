@@ -24,7 +24,7 @@ Ext.define('Eway.view.person.bankOrg.FilterForm', {
 				items : [{
 					xtype : 'field.code',
 					labelAlign : 'right',
-					fieldLabel : '机构编号',
+					fieldLabel : Eway.locale.person.bankOrg.code,
 					maxLength:20,
 					msgTarget : 'side'
 				}]
@@ -33,7 +33,7 @@ Ext.define('Eway.view.person.bankOrg.FilterForm', {
 				items : [{
 					xtype : 'field.name',
 					labelAlign : 'right',
-					fieldLabel: '机构名称',
+					fieldLabel: Eway.locale.person.bankOrg.name,
 					maxLength:40,
 					msgTarget : 'side'
 				}]

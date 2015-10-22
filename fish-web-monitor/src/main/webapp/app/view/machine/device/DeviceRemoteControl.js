@@ -12,7 +12,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 	            ],
 
 	id : 'DeviceRemoteControlId',
-	title : '远程控制',
+	title : Eway.locale.machine.device.remoteControl,
 
 	initComponent : function() {
 		Ext.apply(this, {
@@ -26,26 +26,26 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 				border : true,
 
 				items:[{
-						 title:'提取日志',
+						 title:Eway.locale.machine.device.collectJPR,
 						 id:'log'
 					 },{
-						 title:'远程抓屏',
+						 title:Eway.locale.machine.device.remoteScreen,
 						 id:'screen',
 						 xtype : 'remote_remoteBrowseScreenCustomGrid'
 					 },{
-						 title:'进程查看',
+						 title:Eway.locale.machine.device.processCheck,
 						 id:'process',
 						 xtype : 'remote_remoteBrowseProcessGrid'
 					 },{
-						 title:'远程浏览',
+						 title:Eway.locale.machine.device.remoteExplorer,
 						 id:'deviceRemoteControlPanelId',
 						 xtype : 'device.deviceRemoteControlPanel'
 					 },{
-						 title:'网络连接',
+						 title:Eway.locale.machine.device.netWorkLink,
 						 id:'netWorkId',
 						 xtype : 'remote.NetWork'
 					 },{
-						 title:'远程重启',
+						 title:Eway.locale.machine.device.remoteRestart,
 						 layout: {
                              type: 'hbox',
                              padding:'5',
@@ -54,10 +54,10 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 						 defaults : {margins:'0 5 0 0'},
 						 items : [{
 							 xtype : 'button',
-							 text : ' 重启应用',
+							 text : Eway.locale.machine.device.restartApply,
 							 scale : 'large',
 							 handler : function(){
-								 Ext.MessageBox.confirm('提示','确定要重启应用？',callback);
+								 Ext.MessageBox.confirm(Eway.locale.tip.remind,Eway.locale.machine.device.confirmRestartApply,callback);
 								 function callback(id){
 									 if(id == 'yes'){
 
@@ -72,7 +72,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 													var appRet = object.appRet;
 													if(appRet = '00'){
 												           var msgBox = Ext.MessageBox.show({
-												                title:'进度提示',
+												                title:Eway.locale.machine.device.progressTip,
 												                modal:true,
 												                msg : '',
 												                progress:true,
@@ -86,12 +86,12 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 												        		   count++;
 												        		   percentage = count/10;
 //												        		   processText = '当前进度：'+percentage*100+'%';
-												        		   processText ='正在重启应用';
-												        		   msgBox.updateProgress(percentage,processText,'<font color="red">这是通过动态更新内容形成的进度条</font>');
+												        		   processText =Eway.locale.machine.device.nowRestartApply;
+												        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+Eway.locale.machine.device.updateProBar+'</font>');
 												        		   if(count>10){
 												        			   Ext.TaskManager.stop(task);
 												                        msgBox.hide();
-												                        Eway.alert('成功重启该设备应用');
+												                        Eway.alert(Eway.locale.machine.device.restartApplySuc);
 												                    }
 												        	   } ,
 												        	   interval:1000
@@ -99,7 +99,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 												           Ext.TaskManager.start(task);
 
 													}else if(appRet = '01'){
-														Eway.alert('重启应用失败！');
+														Eway.alert(Eway.locale.machine.device.restartApplyFail);
 													}
 												}
 											});
@@ -108,10 +108,10 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 								}
 						 },{
 							 xtype : 'button',
-							 text : '重启硬件驱动',
+							 text : Eway.locale.machine.device.restartDrive,
 							 scale : 'large',
 							 handler : function(){
-								 Ext.MessageBox.confirm('提示','确定要重启硬件驱动？',callback);
+								 Ext.MessageBox.confirm(Eway.locale.tip.remind,Eway.locale.machine.device.confirmRestartDrive,callback);
 								 function callback(id){
 									 if(id == 'yes'){
 										 Ext.Ajax.request({
@@ -125,7 +125,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 													var appRet = object.appRet;
 													if(appRet = '00'){
 												           var msgBox = Ext.MessageBox.show({
-												                title:'进度提示',
+												                title:Eway.locale.machine.device.progressTip,
 												                modal:true,
 												                msg : '',
 												                progress:true,
@@ -139,19 +139,19 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 												        		   count++;
 												        		   percentage = count/10;
 //												        		   processText = '当前进度：'+percentage*100+'%';
-												        		   processText ='正在重启硬件驱动';
-												        		   msgBox.updateProgress(percentage,processText,'<font color="red">这是通过动态更新内容形成的进度条</font>');
+												        		   processText =Eway.locale.machine.device.nowRestartDrive;
+												        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+Eway.locale.machine.device.updateProBar+'</font>');
 												        		   if(count>10){
 												        			   Ext.TaskManager.stop(task);
 												                        msgBox.hide();
-												                        Eway.alert('成功重启该设备硬件驱动');
+												                        Eway.alert(Eway.locale.machine.device.restartDriveSuc);
 												                    }
 												        	   } ,
 												        	   interval:1000
 												           }
 												           Ext.TaskManager.start(task);
 													}else if(appRet = '01'){
-														Eway.alert('重启硬件驱动失败！');
+														Eway.alert(Eway.locale.machine.device.restartDriveFail);
 													}
 												}
 											});
@@ -161,10 +161,10 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 								}
 						 },{
 							 xtype : 'button',
-							 text : '重启操作系统',
+							 text : Eway.locale.machine.device.restartOS,
 							 scale : 'large',
 							 handler : function(){
-								 Ext.MessageBox.confirm('提示','确定要重启操作系统？',callback);
+								 Ext.MessageBox.confirm(Eway.locale.tip.remind,Eway.locale.machine.device.confirmRestartOS,callback);
 								 function callback(id){
 									 if(id == 'yes'){
 										 Ext.Ajax.request({
@@ -179,7 +179,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 													if(appRet = '00'){
 
 												           var msgBox = Ext.MessageBox.show({
-												                title:'进度提示',
+												                title:Eway.locale.machine.device.progressTip,
 												                modal:true,
 												                msg : '',
 												                progress:true,
@@ -193,19 +193,19 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 												        		   count++;
 												        		   percentage = count/10;
 //												        		   processText = '当前进度：'+percentage*100+'%';
-												        		   processText ='正在重启操作系统';
-												        		   msgBox.updateProgress(percentage,processText,'<font color="red">这是通过动态更新内容形成的进度条</font>');
+												        		   processText =Eway.locale.machine.device.nowRestartOS;
+												        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+Eway.locale.machine.device.updateProBar+'</font>');
 												        		   if(count>10){
 												        			   Ext.TaskManager.stop(task);
 												                        msgBox.hide();
-												                        Eway.alert('成功重启该设备操作系统');
+												                        Eway.alert(Eway.locale.machine.device.restartOSSuc);
 												                    }
 												        	   } ,
 												        	   interval:1000
 												           }
 												           Ext.TaskManager.start(task);
 													}else if(appRet = '01'){
-														Eway.alert('重启操作系统失败！');
+														Eway.alert(Eway.locale.machine.device.restartOSFail);
 													}
 												}
 											});
@@ -215,7 +215,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 								}
 						 }]
 					 },{
-						 title:'远程关机',
+						 title:Eway.locale.machine.device.remoteShutdown,
 						 layout: {
                              type: 'hbox',
                              padding:'5',
@@ -224,10 +224,10 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 						 defaults : {margins:'0 5 0 0'},
 						 items : [{
 							 xtype : 'button',
-							 text : ' 关闭应用',
+							 text : Eway.locale.machine.device.shutdownApply,
 							 scale : 'large',
 							 handler : function(){
-								 Ext.MessageBox.confirm('提示','确定要关闭应用？',callback);
+								 Ext.MessageBox.confirm(Eway.locale.tip.remind,Eway.locale.machine.device.confirmShutdownApply,callback);
 								 function callback(id){
 									 if(id == 'yes'){
 										 Ext.Ajax.request({
@@ -242,7 +242,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 													if(appRet = '00'){
 
 														var msgBox = Ext.MessageBox.show({
-											                title:'进度提示',
+											                title:Eway.locale.machine.device.progressTip,
 											                modal:true,
 											                msg : '',
 											                progress:true,
@@ -256,12 +256,12 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 											        		   count++;
 											        		   percentage = count/10;
 //											        		   processText = '当前进度：'+percentage*100+'%';
-											        		   processText ='正在关闭应用';
-											        		   msgBox.updateProgress(percentage,processText,'<font color="red">这是通过动态更新内容形成的进度条</font>');
+											        		   processText =Eway.locale.machine.device.nowShutdownApply;
+											        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+Eway.locale.machine.device.updateProBar+'</font>');
 											        		   if(count>10){
 											        			   Ext.TaskManager.stop(task);
 											                        msgBox.hide();
-											                        Eway.alert('成功关闭该设备应用');
+											                        Eway.alert(Eway.locale.machine.device.shutdownApplySuc);
 											                    }
 											        	   } ,
 											        	   interval:1000
@@ -269,7 +269,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 											           Ext.TaskManager.start(task);
 
 													}else if(appRet = '01'){
-														Eway.alert('关闭应用失败！');
+														Eway.alert(Eway.locale.machine.device.shutdownApplyFail);
 													}
 												}
 											});
@@ -279,10 +279,10 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 							 }
 						 },{
 							 xtype : 'button',
-							 text : '关闭硬件驱动',
+							 text : Eway.locale.machine.device.shutdownDrive,
 							 scale : 'large',
 							 handler : function(){
-								 Ext.MessageBox.confirm('提示','确定要关闭硬件驱动？',callback);
+								 Ext.MessageBox.confirm(Eway.locale.tip.remind,Eway.locale.machine.device.confirmShutdownDrive,callback);
 								 function callback(id){
 									 if(id == 'yes'){
 										 Ext.Ajax.request({
@@ -297,7 +297,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 													if(appRet = '00'){
 
 														var msgBox = Ext.MessageBox.show({
-											                title:'进度提示',
+											                title:Eway.locale.machine.device.progressTip,
 											                modal:true,
 											                msg : '',
 											                progress:true,
@@ -311,19 +311,19 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 											        		   count++;
 											        		   percentage = count/10;
 //											        		   processText = '当前进度：'+percentage*100+'%';
-											        		   processText ='正在关闭硬件驱动';
-											        		   msgBox.updateProgress(percentage,processText,'<font color="red">这是通过动态更新内容形成的进度条</font>');
+											        		   processText =Eway.locale.machine.device.nowShutdownDrive;
+											        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+Eway.locale.machine.device.updateProBar+'</font>');
 											        		   if(count>10){
 											        			   Ext.TaskManager.stop(task);
 											                        msgBox.hide();
-											                        Eway.alert('成功关闭该设备硬件驱动');
+											                        Eway.alert(Eway.locale.machine.device.shutdownDriveSuc);
 											                    }
 											        	   } ,
 											        	   interval:1000
 											           }
 											           Ext.TaskManager.start(task);
 													}else if(appRet = '01'){
-														Eway.alert('关闭硬件驱动失败！');
+														Eway.alert(Eway.locale.machine.device.shutdownDriveFail);
 													}
 												}
 											});
@@ -335,10 +335,10 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 
 						 },{
 							 xtype : 'button',
-							 text : '关闭操作系统',
+							 text : Eway.locale.machine.device.shutdownOS,
 							 scale : 'large',
 							 handler : function(){
-								 Ext.MessageBox.confirm('提示','确定要关闭操作系统？',callback);
+								 Ext.MessageBox.confirm(Eway.locale.tip.remind,Eway.locale.machine.device.confirmShutdownOS,callback);
 								 function callback(id){
 									 if(id == 'yes'){
 										 Ext.Ajax.request({
@@ -353,7 +353,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 													if(appRet == '00'){
 
 														var msgBox = Ext.MessageBox.show({
-											                title:'进度提示',
+											                title:Eway.locale.machine.device.progressTip,
 											                modal:true,
 											                msg : '',
 											                progress:true,
@@ -367,12 +367,12 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 											        		   count++;
 											        		   percentage = count/10;
 //											        		   processText = '当前进度：'+percentage*100+'%';
-											        		   processText ='正在关闭操作系统';
-											        		   msgBox.updateProgress(percentage,processText,'<font color="red">这是通过动态更新内容形成的进度条</font>');
+											        		   processText =Eway.locale.machine.device.nowShutdownOS;
+											        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+Eway.locale.machine.device.updateProBar+'</font>');
 											        		   if(count>10){
 											        			   Ext.TaskManager.stop(task);
 											                        msgBox.hide();
-											                        Eway.alert('成功关闭该设备操作系统');
+											                        Eway.alert(Eway.locale.machine.device.shutdownOSSuc);
 											                    }
 											        	   } ,
 											        	   interval:1000
@@ -380,7 +380,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 											           Ext.TaskManager.start(task);
 
 													}else if(appRet == '01'){
-														Eway.alert('关闭操作系统失败！');
+														Eway.alert(Eway.locale.machine.device.shutdownOSFail);
 													}
 												}
 											});
@@ -391,20 +391,20 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 							 }
 						 }]
 					 },{
-						 title:'获取软件安装列表',
+						 title:Eway.locale.machine.device.getSoftwareList,
 						 id:'software',
 						 xtype : 'remote_remoteBrowseInstationGrid'
 					 },{
-						 title:'强制复位',
+						 title:Eway.locale.machine.device.forceReset,
 						 id:'reset'
 					 },{
-						 title:'开启服务',
+						 title:Eway.locale.machine.device.openService,
 						 id:'openservice'
 					 },{
-						 title:'暂停服务',
+						 title:Eway.locale.machine.device.pauseService,
 						 id:'pause'
 					 },{
-						 title:'状态检测',
+						 title:Eway.locale.machine.device.checkStatus,
 						 id:'check'
 					 }]
 			}

@@ -14,85 +14,85 @@ Ext.define('Eway.view.agent.remote.screen.CameraGrid', {
 
 	initComponent : function() {
 		var groupingFeature = Ext.create('Ext.grid.feature.Grouping', {
-			groupHeaderTpl: '{name}信息'
+			groupHeaderTpl: '{name}'+Eway.locale.agent.remote.screen.message
 		});
 		Ext.apply(this, {
 			initRegion : true,
 			tbar : [ {
-				text : '开始录制客户前屏',
+				text : Eway.locale.agent.remote.screen.startcustom,
 				action : 'startcustom',
 				xtype : 'button'
 			}, {
-				text : '停止录制客户前屏',
+				text : Eway.locale.agent.remote.screen.stopcustom,
 				action : 'stopcustom',
 				xtype : 'button'
 			}, {
-				text : '开始录制管理后屏',
+				text : Eway.locale.agent.remote.screen.startadmin,
 				action : 'startadmin',
 				xtype : 'button'
 			}, {
-				text : '停止录制管理后屏',
+				text : Eway.locale.agent.remote.screen.stopadmin,
 				action : 'stopadmin',
 				xtype : 'button'
 			}, {
-				text : '开始录制广告屏',
+				text : Eway.locale.agent.remote.screen.startadvertise,
 				action : 'startadvertise',
 				xtype : 'button'
 			}, {
-				text : '停止录制广告屏',
+				text : Eway.locale.agent.remote.screen.stopadvertise,
 				action : 'stopadvertise',
 				xtype : 'button'
 			} ],
 			features: [groupingFeature],
 			columns : [ {
-				header : '设备号',
+				header : Eway.locale.commen.terminalId,
 				sortable : true,
 				width : 131,
 				dataIndex : 'terminalId'
 			},{
-				header : '开始录制时间',
+				header : Eway.locale.agent.remote.screen.startCameraDate,
 				sortable : true,
 				width : 131,
 				dataIndex : 'startCameraDate'
 			}, {
-				header : '结束录制时间',
+				header :Eway.locale.agent.remote.screen.stopCameraDate,
 				sortable : true,
 				width : 131,
 				dataIndex : 'stopCameraDate'
 			}, {
-				header : '屏幕类型',
+				header :Eway.locale.agent.remote.screen.monitorType,
 				sortable : true,
 				dataIndex : 'monitorType'
 			}, {
-				header : '文件名称',
+				header : Eway.locale.agent.remote.screen.fileNameClient,
 				sortable : true,
 				width : 172,
 				dataIndex : 'fileNameClient'
 			}, {
-				header : '状态',
+				header : Eway.locale.commen.state,
 				sortable : true,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return "<font color='red'>正在录制...</font>";
+						return "<font color='red'>"+Eway.locale.agent.remote.screen.nowCamera+"</font>";
 					}
 					if (value == 4) {
-						return "完成录制";
+						return Eway.locale.agent.remote.screen.finishCamera;
 					}
 					if (value == 0) {
-						return "<font color='red'>正在将视频文件下载至服务端...</font>";
+						return "<font color='red'>"+Eway.locale.agent.remote.screen.videoLoad+"</font>";
 					}
 					if (value == 3) {
-						return "<font color='red'>自动停止.如需取得视频文件,请联系管理员!</font>";
+						return "<font color='red'>"+Eway.locale.agent.remote.screen.stopManage+"</font>";
 					}
 				}
 			}, {
-				header : '操作',
+				header : Eway.locale.agent.remote.screen.manage,
 				sortable : true,
 				dataIndex : 'status',
 				renderer : function(value, p, record) {
 					if (value == 4) {
-						return "<a class='link' href='javascript:void(0);'>下载</a>";
+						return "<a class='link' href='javascript:void(0);'>"+Eway.locale.agent.remote.screen.loading+"</a>";
 					}
 				}
 			} ]

@@ -10,44 +10,44 @@ Ext.define('Eway.view.atmLog.DayBackupGrid',{
 		Ext.apply(this,{
 			store : store,
 			columns : [{
-				header : '备份日期',
+				header : Eway.locale.atmLog.backupDate,
 				dataIndex : 'date',
 				flex : 1
 			},{
-				header : '当日备份结果',
+				header : Eway.locale.atmLog.dayBackupResult,
 				dataIndex : 'result',
 				flex : 1,
 				renderer : function(value){
 					if(value == 'SUCCESS'){
-						return "备份成功";
+						return Eway.locale.atmLog.backupSuccess;
 					}
 					else if(value == "DOING"){
-						return "<pre style='color:green'>正在备份</pre>";
+						return "<pre style='color:green'>"+Eway.locale.atmLog.backupProcess+"</pre>";
 					}
 					else if(value == "ERROR"){
-						return "<pre style='color:red'>备份错误</pre>";
+						return "<pre style='color:red'>"+Eway.locale.atmLog.backupError+"</pre>";
 					}
 				}
 			},{
-				header : '执行时间',
+				header : Eway.locale.version.task.actionTime,
 				dataIndex : 'doTime',
 				flex : 1
 			},{
-				header : '结束时间',
+				header : Eway.locale.commen.endDataTime,
 				dataIndex : 'endTime',
 				flex : 1
 			},{
-				header : '日志设备数量累计',
+				header : Eway.locale.atmLog.logDevAccount,
 				dataIndex : 'deviceCount',
 				flex : 1
 			},{
 				xtype:'actioncolumn',
 				flex : .5,
-				header: '重做',
+				header: Eway.locale.atmLog.reform,
 				dataIndex : 'backupResult',
 				items : [{
 					icon : 'resources/images/arrow_undo.png',
-					tooltip: '重做',
+					tooltip: Eway.locale.atmLog.reform,
 					getClass : function(value,metadata,record,ronwIndex,colindex,store){
 						var result = record.get('result'); 
 						if(result == 'SUCCESS'){
@@ -80,7 +80,7 @@ Ext.define('Eway.view.atmLog.DayBackupGrid',{
 			}),
 			tbar : ['->',{
 				xtype : 'button',
-				text : '查询',
+				text : Eway.locale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}]

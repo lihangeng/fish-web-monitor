@@ -12,7 +12,7 @@ Ext.define('Eway.view.case.faultClassify.FaultClassifyGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->', {
-				text: '更改',
+				text: Eway.locale.button.update,
 				glyph : 0xf040,
 				action:'update'
 //				code : 'atmBrandUpdate',
@@ -21,45 +21,45 @@ Ext.define('Eway.view.case.faultClassify.FaultClassifyGrid', {
 //				}
 			}],
 			columns : [{
-				header : '故障分类名称',
+				header : Eway.locale.cases.faultClassify.faultClassifyName,
 				dataIndex : 'classifyName',
 				width : 140
 			}, {
-				header : '故障责任人类型',
+				header : Eway.locale.cases.faultClassify.faultresponsorType,
 				dataIndex : 'responsorType',
 				width : 110,
 				renderer : function(value){
 					if(value == 1){
-						return '管机员';
+						return Eway.locale.commen.comboxType.machineManager;
 					}else if(value == 2){
-						return '维护员';
+						return Eway.locale.cases.faultClassify.maintain;
 					}else if(value == 3){
-						return '管机员和维护员 ';
+						return Eway.locale.cases.faultClassify.manageAndMaintain;
 					}
 				}
 			}, {
-				header : '最高升级次数',
+				header : Eway.locale.cases.faultClassify.upGradeTimes,
 				dataIndex : 'upgrade',
 				width : 90
 			},{
-				header : '重复通知次数',
+				header : Eway.locale.cases.caseFault.notifyRepeatTimes,
 				dataIndex : 'notifyTimes',
 				width : 90
 			},{
-				header : '故障通知方式',
+				header : Eway.locale.cases.faultClassify.faultInformWay,
 				dataIndex : 'notifyWay',
 				width : 90,
 				renderer : function(value){
 					if(value == 'SMS'){
-						return "短信";
+						return Eway.locale.cases.caseFault.message;
 					}else if(value == 'MAIL'){
-						return "邮件";
+						return Eway.locale.cases.caseFault.mail;
 					}else if(value == 'BOTH'){
-						return "短信和邮件";
+						return Eway.locale.cases.caseFault.messageAndMail;
 					}
 				}
 			}, {
-				header : '故障规定关闭时间间隔（单位:小时）',
+				header : Eway.locale.cases.faultClassify.faultCloseInterval,
 				dataIndex : 'resolveHour',
 				flex : 1
 			}],

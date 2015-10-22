@@ -180,13 +180,6 @@ public interface IOrganization extends Comparable<IOrganization> {
      */
     public IOrganization addChild(String code, String name);
 
-    /**
-     * 根据编号删除一个子机构
-     *
-     * @param code
-     */
-    public void removeChild(String code);
-
     public String getOrgFlag();
 
     public void setOrgFlag(String orgFlag);

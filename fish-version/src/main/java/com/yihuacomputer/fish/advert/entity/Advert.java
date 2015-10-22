@@ -26,11 +26,12 @@ import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
 import org.apache.commons.lang.StringUtils;
+import org.springframework.context.MessageSource;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.util.IOUtils;
 import com.yihuacomputer.common.util.ZipUtils;
-import com.yihuacomputer.fish.advert.service.api.IDomainAdvertResourceService;
 import com.yihuacomputer.fish.advert.service.api.IDomainAdvertService;
 import com.yihuacomputer.fish.api.advert.AbstractAdvertZipGenerator;
 import com.yihuacomputer.fish.api.advert.AdvertDownMethod;
@@ -39,6 +40,7 @@ import com.yihuacomputer.fish.api.advert.AdvertValidity;
 import com.yihuacomputer.fish.api.advert.CheckStatus;
 import com.yihuacomputer.fish.api.advert.IAdvert;
 import com.yihuacomputer.fish.api.advert.IAdvertResource;
+import com.yihuacomputer.fish.api.advert.IAdvertResourceService;
 import com.yihuacomputer.fish.api.advert.IAdvertZipGenerator;
 import com.yihuacomputer.fish.api.advert.Screen;
 import com.yihuacomputer.fish.api.advert.util.AdvertTypeConversionService;
@@ -122,8 +124,20 @@ public class Advert implements IAdvert, Serializable {
 
     @Transient
     private OrganizationLevel level;
+    
+    @Transient
+    private MessageSource messageSourceVersion;
 
-    public Advert() {
+    
+    public MessageSource getMessageSourceVersion() {
+		return messageSourceVersion;
+	}
+
+	public void setMessageSourceVersion(MessageSource messageSourceVersion) {
+		this.messageSourceVersion = messageSourceVersion;
+	}
+
+	public Advert() {
         this.createdTime = new Date();
     }
 
@@ -165,7 +179,7 @@ public class Advert implements IAdvert, Serializable {
         }
     }
 
-    private IDomainAdvertResourceService getResourceService() {
+    private IAdvertResourceService getResourceService() {
         return this.advertService.getAdvertResourceService();
     }
 
@@ -228,7 +242,7 @@ public class Advert implements IAdvert, Serializable {
             try {
                 meta.createNewFile();
             } catch (IOException e) {
-                throw new AppException("创建meta文件失败");
+                throw new AppException(messageSourceVersion.getMessage("advert.createMetaFail", null, FishCfg.locale));
             }
         }
 

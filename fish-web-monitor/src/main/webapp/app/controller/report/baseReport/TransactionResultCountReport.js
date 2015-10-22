@@ -67,7 +67,7 @@ Ext.define('Eway.controller.report.baseReport.TransactionResultCountReport', {
 			    }
 			});
 		}else{
-			Eway.alert('请正确输入.');
+			Eway.alert(Eway.locale.vtype.inputCorrect);
 		}
 	},
 
@@ -105,12 +105,12 @@ Ext.define('Eway.controller.report.baseReport.TransactionResultCountReport', {
 						var iframe = document.getElementById('downloadFileFromWeb');
 						iframe.src = url;
 			        }else{
-			        	Eway.alert('导出报表出错，请重新操作!');
+			        	Eway.alert(Eway.locale.vtype.exportRepError);
 			        }
 			    }
 			});
 		}else{
-			Eway.alert('请正确输入!');
+			Eway.alert(Eway.locale.vtype.inputCorrect);
 		}
 	}
 });

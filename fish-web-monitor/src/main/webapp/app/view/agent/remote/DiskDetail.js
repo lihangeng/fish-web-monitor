@@ -16,23 +16,23 @@ Ext.define('Eway.view.agent.remote.DiskDetail', {
 	initComponent : function() {
 		var me = this;
 		this.items = [{
-			title : '磁盘信息',
+			title : Eway.locale.agent.remote.discInfo,
 			xtype : 'grid',
 			store : 'machine.atmHardSoft.Disk',
 			columns : [{
-				header : '磁盘分区名称',
+				header : Eway.locale.agent.remote.discName,
 				dataIndex : 'name'
 			}, {
-				header : '磁盘文件系统',
+				header : Eway.locale.agent.remote.fileSys,
 				dataIndex : 'fileSys'
 			}, {
-				header : '磁盘总大小',
+				header : Eway.locale.agent.remote.totalSize,
 				renderer : function(value, metadata, record) {
 					return (value / (1024 * 1024)).toFixed(1) + "GB";
 				},
 				dataIndex : 'totalSize'
 			}, {
-				header : '磁盘可用空间大小',
+				header : Eway.locale.agent.remote.freeSize,
 				renderer : function(value, metadata, record) {
 					return (value / (1024 * 1024)).toFixed(1) + "GB";
 				},

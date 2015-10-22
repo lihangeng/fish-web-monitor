@@ -5,7 +5,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseInstationView',{
 	requires: ['Eway.view.agent.remote.RemoteBrowseInstationGrid'], 
 	
 //	id: 'deviceInstationInfoWinId',
-	title: '软件安装列表',
+	title: Eway.locale.agent.remote.softwayList,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,

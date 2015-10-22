@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -41,7 +42,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
 @RequestMapping("/login")
-@ClassNameDescrible(describle="用户登录")
+@ClassNameDescrible(describle="user.login")
 public class LoginController {
 
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(LoginController.class);
@@ -57,11 +58,14 @@ public class LoginController {
 
 	@Autowired
 	private LocalSessionFactoryBean sf;
+	
+	@Autowired
+	protected MessageSource messageSource;
 
 	/**
 	 * 登录并验证用户
 	 */
-	@MethodNameDescrible(describle="登录操作",isNumberArgs=false,argsContext="username")
+	@MethodNameDescrible(describle="user.login.login",isNumberArgs=false,argsContext="username")
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap login(@RequestParam String username, @RequestParam String password, HttpSession session, HttpServletRequest request, WebRequest webrequest) {
 		ModelMap result = new ModelMap();
@@ -113,7 +117,7 @@ public class LoginController {
 		} catch (Exception e) {
 			logger.error(String.format("User login error![%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute("message", "用户登录发生异常.");
+			result.addAttribute("message", messageSource.getMessage("login.loginError", null, FishCfg.locale));
 		}
 		result.addAttribute("isRegister", true);
 		return result;
@@ -144,7 +148,7 @@ public class LoginController {
 		String pwd = MsgDigestAlgorithm.getMD5Str(password);
 		if (!user.getPassword().equals(pwd)) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "您输入的密码错误,请重新输入密码.");
+			result.addAttribute(FishConstant.ERROR_MSG,  messageSource.getMessage("login.pwderror", null, FishCfg.locale));//"您输入的密码错误,请重新输入密码."
 		} else {
 			result.addAttribute(FishConstant.SUCCESS, true);
 		}
@@ -171,7 +175,7 @@ public class LoginController {
 		String pwd = MsgDigestAlgorithm.getMD5Str(password);
 		if (!user.getPassword().equals(pwd)) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "输入的原始密码有误,请重新操作.");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("login.initPwdError", null, FishCfg.locale));
 		} else {
 			user.setPlainText(newPassword);
 			if (user.getState().equals(UserState.NEW)) {
@@ -184,7 +188,7 @@ public class LoginController {
 			form.setUserId(String.valueOf(userService.get(username).getId()));
 			result.addAttribute("user", form);
 			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute("message", "修改成功.");
+			result.addAttribute("message", messageSource.getMessage("login.updateSuccess", null, FishCfg.locale));
 			result.addAttribute("sessionId", session.getId());
 		}
 		return result;
@@ -211,7 +215,9 @@ public class LoginController {
 		for (IPermission permission : permissions) {
 			IPermission parent = permission.getParent();
 			if (parent != null && parent.getCode().equals(node)) {
-				forms.add(new TreeMenu(permission,hasChildMenu(permission,permissions)));
+				TreeMenu menu = new TreeMenu(permission,hasChildMenu(permission,permissions));
+				menu.setDesc(messageSource.getMessage("user.login.remark", null, FishCfg.locale));
+				forms.add(menu);
 			}
 		}
 		return forms;
@@ -272,7 +278,6 @@ public class LoginController {
 			createMenu(menus, parent, p, all);
 		}
 	}
-
 	private void createMenu(List<Menu> menus, Menu parent, SimplePermission p, List<SimplePermission> all) {
 		List<SimplePermission> child = getChild(p, all);
 		Menu menu = null;
@@ -348,11 +353,11 @@ class TreeMenu {
 	private String text;
 	private String desc;
 	private boolean leaf = true;
+	
 
 	public TreeMenu(IPermission permission,boolean hasChild) {
 		this.id = permission.getCode();
 		this.text = permission.getDescription();
-		this.desc = "备注";
 		this.leaf = !hasChild;
 	}
 
@@ -363,7 +368,9 @@ class TreeMenu {
 	public String getText() {
 		return text;
 	}
-
+	protected void setDesc(String desc){
+		
+	}
 	public String getDesc() {
 		return desc;
 	}

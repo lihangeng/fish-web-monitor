@@ -16,7 +16,7 @@ Ext.define('Eway.view.personal.UpdatePwdController', {
 		var newPassword = form.down('field[name="newPassword"]').getValue();
 		if(form.getForm().isValid()){
 			if(password==newPassword){
-				Eway.alert('输入的新密码与旧密码相同,不可修改.');
+				Eway.alert(Eway.locale.personal.pwdSameNoChange);
 				form.getForm().reset();
 				form.down('field[name="code"]').setValue(ewayUser.getCode());
 				form.down('field[name="name"]').setValue(ewayUser.getName());
@@ -40,7 +40,7 @@ Ext.define('Eway.view.personal.UpdatePwdController', {
 						}
 					},
 					failure: function(){
-						Eway.alert("无法修改密码,请重新操作.");
+						Eway.alert(Eway.locale.personal.reOperate);
 					},
 					scope:this
 				});
@@ -54,10 +54,10 @@ Ext.define('Eway.view.personal.UpdatePwdController', {
 			method : 'POST',
 			url : 'api/logout',
 			success : function(response){
-				window.location='login.html';
+				window.location='login.jsp';
 			},
 			failure : function(response){
-				window.location='login.html';
+				window.location='login.jsp';
 			}
 		});
 	}

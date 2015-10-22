@@ -13,7 +13,7 @@ Ext.define('Eway.view.atmLog.AtmLogInfoView',{
 	initComponent : function(){
 		
 		Ext.apply(this,{
-			title : '日志备份统计',
+			title : Eway.locale.atmLog.logBackupSta,
 			items : [{
 				region : 'north',
 				xtype : 'atmLog_AtmLogInfoFilterForm',

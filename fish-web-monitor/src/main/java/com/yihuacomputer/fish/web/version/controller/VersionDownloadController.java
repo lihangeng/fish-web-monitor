@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,17 +35,17 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.person.IOrganization;
+import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
 import com.yihuacomputer.fish.api.version.IVersionService;
+import com.yihuacomputer.fish.api.version.IVersionStaticsStautsService;
 import com.yihuacomputer.fish.api.version.LinkedDeviceForm;
-import com.yihuacomputer.fish.api.version.job.IJob;
-import com.yihuacomputer.fish.api.version.job.IJobService;
 import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistory;
 import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistoryService;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
@@ -79,12 +80,16 @@ public class VersionDownloadController {
 
     @Autowired
     private IVersionDownloadService downloadService;
+    
+    @Autowired
+    private IVersionStaticsStautsService versionStaticsStatusService;
 
     @Autowired
     private ITaskService taskService;
-
+    
     @Autowired
-    private IJobService jobService;
+    private IOrganizationService organizationService;
+
 
 	@Autowired
 	private IDeviceSoftVersionService deviceSoftVersionService;
@@ -92,13 +97,15 @@ public class VersionDownloadController {
     @Autowired
     private IUpdateDeployDateHistoryService updateDeployDateHistoryService;
 
+    @Autowired
+    private MessageSource messageSourceVersion;
+    
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
     ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
         logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
         IFilter filter = getFilter(request);
         filter.descOrder("createdTime");
-        IPageResult<IJob> pageResult = null;/*jobService.page(start, limit, filter);*/
         ModelMap result = new ModelMap();
         result.addAttribute(FishConstant.SUCCESS, true);
        /* result.addAttribute("total", pageResult.getTotal());
@@ -122,18 +129,46 @@ public class VersionDownloadController {
         String versionTypeName = version.getVersionType().getTypeName();
         List<ITask> tasks = new ArrayList<ITask>();
         String deviceIds = form.getDeviceIds();
-        if (StringUtils.isNotEmpty(deviceIds)) {
+        UserSession session = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
+        Object[] ids = null;
+//        if (StringUtils.isNotEmpty(deviceIds)) {
         	Date createdTime = new Date();
-        	IJob job = jobService.make();
-        	job.setJobName(form.getJobName());
-        	job.setCreatedTime(createdTime);
-        	jobService.add(job);
         	List<Object> lists = deviceSoftVersionService.findDeviceSoftVersions(versionTypeName);
             Map<Long,String> maps = convertToMap(lists);
-            String[] ids = deviceIds.substring(1).split(",");
-            for (String id : ids) {
-                ITask task = taskService.make();
-                Long deviceId = Long.valueOf(id);
+            if(form.isAllDevice()){
+            	List<String> list = new ArrayList<String>();
+            	IFilter filter = new Filter();
+            	filter.eq("orgFlag", session.getOrgFlag());
+            	IPageResult<Object> pageResult = downloadService.getCanPushDevicePagesInfo(0, Integer.MAX_VALUE, version, filter);
+            	for(Object obj:pageResult.list()){
+            		IDevice device = (IDevice)obj;
+            		list.add(String.valueOf(device.getId()));
+            	}
+            	ids = list.toArray();
+            }
+            else{
+                ids = deviceIds.substring(1).split(",");
+            }
+            
+            for (Object id : ids) {
+                Long deviceId = Long.valueOf(String.valueOf(id));
+                ITask task = taskService.findTask(deviceId, form.getVersionId());
+                //如果存在相关的任务则要判断当前是否可以下发
+                if(null != task){
+                	 if(!TaskStatus.canRun(task.getStatus())){
+                		 continue;
+                	 }
+                	 else{
+                		 task.setStatus(TaskStatus.NEW);
+                		 task.setTaskType(TaskType.MANUAL);
+                		 task.setCreateTime(createdTime);
+                		 task.setTaskCount(task.getTaskCount()+1);
+                	 }
+                }
+                else{
+                	task = taskService.make(createdTime);
+                }
+                task.setTaskBatchName( messageSourceVersion.getMessage("version.download.batchNumber", new Object[]{form.getJobName(),version.getDownloadCounter()}, FishCfg.locale));
                 task.setDeviceId(deviceId);
                 String versionNo = maps.get(deviceId);
                 if(versionNo != null){
@@ -141,46 +176,17 @@ public class VersionDownloadController {
                 }
                 task.setVersion(version);
                 task.setCreateTime(createdTime);
-//                task.setEagerRestart(form.isEagerRestart());
                 task.setPlanTime(form.getPlanTime() == null ? new Date() : form.getPlanTime());
                 task.setTaskType(TaskType.valueOf(form.getTaskType()));
-                task.setJob(job);
                 task.setExcuteMachine(request.getLocalAddr());
                 tasks.add(task);
             }
-        }
-//        IJob job = jobService.make();
-//        job.setJobName(form.getJobName());
-//        job.setVersion(versionService.getById(form.getVersionId()));
-//        job.setJobType(form.getJobType());
-//        job.setJobPriority(form.getJobPriority());
-//        UserSession userSession= (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
-//        job.setCreateUserId(userSession.getUserId());
-//        if (form.getDeployStartDate() == null || "".equals(form.getDeployStartDate())) {
-//            job.setDeployStartDate(new Date());
-//        } else {
-//            job.setDeployStartDate(DateUtils.getDate(form.getDeployStartDate()));
 //        }
-//        if (form.getDeployEndDate() != null && !"".equals(form.getDeployEndDate())) {
-//            job.setDeployEndDate(DateUtils.getDate(form.getDeployEndDate()));
-//        }
-//        job.setDesc(form.getDesc());
-//        if (form.getJobType().equals(JobType.SCHEDULER)) {
-//            job.setPlanTime(form.getPlanTime());
-//            job.setJobStatus(JobStatus.SCHEDULER);
-//        } else {
-//            job.setJobStatus(JobStatus.NEW);
-//            job.setPlanTime(new Date());
-//        }
-//        job.addTasks(tasks);
-//        jobManager.createJob(job);
-
-        // 回填值到form中
-//        form.setId(job.getJobId());
         taskManager.createTasksByWeb(tasks);
 
         form.setVersionName(version.getFullName() + " [" + version.getServerPath() + "]");
-
+        form.setDownLoadCounter(version.getDownloadCounter());
+        versionService.updateDownLoadCounter(version);
         result.addAttribute(FishConstant.SUCCESS, true);
         result.addAttribute("data", form);
         return result;
@@ -266,8 +272,7 @@ public class VersionDownloadController {
     public @ResponseBody
     ModelMap linked(@RequestParam int start, @RequestParam int limit, WebRequest request) {
         logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
-        IFilter filter = new Filter();// getFilter(request);
-        IJob job = null;
+//        IFilter filter = new Filter();// getFilter(request);
 //        IPageResult<IDevice> page = downloadService.pageLinkedDevices(start, limit, job, filter);
         ModelMap result = new ModelMap();
         result.addAttribute(FishConstant.SUCCESS, true);
@@ -291,9 +296,12 @@ public class VersionDownloadController {
             WebRequest webRequest, HttpServletRequest request) {
         logger.info(String.format("search selectable device : start = %s ,limit = %s , versionId = %s ", start, limit,versionId));
         IFilter filter = getDeviceFilter(webRequest);
-        IVersion version = versionService.getById(versionId);
         UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
-        IPageResult<LinkedDeviceForm> page = downloadService.pageDevices(start, limit, version, filter,userSession.getUserId());
+        if(null==filter.getValue("orgFlag")){
+        	filter.eq("orgFlag", userSession.getOrgFlag());
+        }
+        IVersion version = versionService.getById(versionId);
+        IPageResult<LinkedDeviceForm> page = downloadService.pageDownLoadDevices(start, limit, version, filter);
         ModelMap result = new ModelMap();
         result.addAttribute(FishConstant.SUCCESS, true);
         result.addAttribute("total", page.getTotal());
@@ -316,19 +324,20 @@ public class VersionDownloadController {
             }
 
             if (name.equals("orgId")) {
-                filter.eq("device.organization", value);
+            	IOrganization org = organizationService.get(value);
+                filter.eq("orgFlag", org.getOrgFlag());
             }
 
             if (name.equals("ip")) {
-                filter.eq("device.ip", new IP(value));
+                filter.eq(name, value);
             }
 
             if (name.equals("atmTypeId")) {
-                filter.eq("device.devType.id", Long.valueOf(value));
+                filter.eq(name, Long.valueOf(value));
             }
 
             if (name.equals("terminalId")) {
-                filter.like("device.terminalId", value);
+                filter.like(name, value);
             }
         }
         return filter;
@@ -350,27 +359,6 @@ public class VersionDownloadController {
     // 获得任务的过滤条件
     private IFilter getTaskFilter(WebRequest request) {
         IFilter filter = new Filter();
-       /* String jobId = request.getParameter("jobId");
-        if (StringUtils.isEmpty(jobId)) {
-            jobId = "0";
-        }
-        filter.eq("task.job.jobId", Long.valueOf(jobId));*/
-
-//        String updateResult = request.getParameter("updateResult");
-//        if (StringUtils.isNotEmpty(updateResult)) {
-//            if (updateResult.equals("1")) {// 成功的升级
-//                filter.eq("task.status", TaskStatus.CHECKED);
-//            } else {
-//                filter.ne("task.status", TaskStatus.CHECKED);
-//            }
-//        }
-//
-//        String terminalId = request.getParameter("terminalId");
-//        if (StringUtils.isNotEmpty(terminalId)) {
-//            filter.like("device.terminalId", terminalId);
-//        }
-//
-//
         Iterator<String> iterator = request.getParameterNames();
         while (iterator.hasNext()) {
             String name = iterator.next();
@@ -392,11 +380,11 @@ public class VersionDownloadController {
             }else if (name.equals("terminalId")) {
                 filter.like("device.terminalId", value);
             }else if(name.equals("jobName")){
-            	filter.like("task.jobName", value);
+            	filter.like("task.taskBatchName", value);
             }else if(name.equals("taskType")){
-            	filter.eq("task.taskType", value);
-            }else if(name.equals("versionType")){
-            	filter.eq("task.version.versionType.id", value);
+            	filter.eq("task.taskType", TaskType.getById(Integer.parseInt(value)));
+            }else if(name.equals("versionTypeId")){
+            	filter.eq("task.version.versionType.id", Long.parseLong(value));
             }else if(name.equals("versionNo")){
             	filter.eq("task.version.versionNo", value);
             }
@@ -415,18 +403,21 @@ public class VersionDownloadController {
     public void export(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response)
             throws Exception {
 
-        String jobId = request.getParameter("jobId");
-        logger.info("jobId is " + jobId);
-        if (StringUtils.isEmpty(jobId)) {
-            jobId = "0";
-        }
-        IFilter filter = new Filter();
-        filter.eq("job.jobId", Long.valueOf(jobId));
-        filter.ne("status", TaskStatus.REMOVED);
-        List<ITask> tasks = taskService.list(filter);
+        IFilter filter =	getTaskFilter(webRequest);
+//        filter.ne("status", TaskStatus.REMOVED);
+        List<ITask> tasks = taskService.export(filter).list();
 
         Excel excel = new Excel();
-        String[] headers = new String[]{"终端编号", "设备IP", "所属机构", "分发前版本", "分发版本", "预期版本", "执行时间", "执行结果", "备注"};
+
+        String[] headers = new String[]{messageSourceVersion.getMessage("version.export.terminalId", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.ip", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.orgName", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.versionNoBeforeUpdate", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.updateVersionNo", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.exceptVersionNo", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.executeTime", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.executeResult", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.remark", null, FishCfg.locale)};
         excel.setHeaders(headers);
 
         // 填充数据
@@ -441,19 +432,29 @@ public class VersionDownloadController {
             row.add(task.getVersion().getVersionNo());
             row.add(task.getExceptVersion());
             row.add(task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime()));
-            row.add(task.getStatus().getText());
+            row.add(getEnumI18n(task.getStatus().getText()));
             row.add(task.getReason() == null ? "" : task.getReason());
             data.add(row);
         }
         excel.setData(data);
-
-        String fileName = FishCfg.getTempDir() + File.separator + "作业_" + DateUtils.getDate(new Date()) + ".xls";
-        excel.export(fileName, "执行结果");
+        String fileName = messageSourceVersion.getMessage("version.export.fileName", new Object[]{FishCfg.getTempDir() + File.separator,DateUtils.getDate(new Date())}, FishCfg.locale);
+//        String fileName = FishCfg.getTempDir() + File.separator + "作业_" + DateUtils.getDate(new Date()) + ".xls";
+        String result = messageSourceVersion.getMessage("version.export.result", null, FishCfg.locale);
+        excel.export(fileName, result);
+//        excel.export(fileName, "执行结果");
 
         File file = new File(fileName);
         DownFromWebUtils.download(file, request, response);
     }
 
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
     /**
      * 撤销一个任务
      *
@@ -529,11 +530,40 @@ public class VersionDownloadController {
     private List<TaskForm> toTaskForm(List<ITask> tasks) {
         List<TaskForm> forms = new ArrayList<TaskForm>();
         for (ITask task : tasks) {
-            forms.add(new TaskForm(task));
+            forms.add(convertTaskToTaskForm(task));
         }
         return forms;
     }
-
+    public TaskForm convertTaskToTaskForm(ITask task) {
+    	TaskForm taskForm = new TaskForm();
+		taskForm.setId(task.getId());
+		taskForm.setExcuteTime(task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime()));
+		taskForm.setSuccess(task.isSuccess());
+		taskForm.setReason(task.getReason());
+		taskForm.setTaskStatus(task.getStatus() == null ? "" : getEnumI18n(task.getStatus().getText()));
+		// taskForm.setjobId(task.getJob().getJobId();
+		taskForm.setVersion(task.getVersion().getVersionNo());
+		taskForm.setState(task.getState());
+		IDevice device = task.getDevice();
+		taskForm.setDeviceId(device.getId());
+		taskForm.setTerminalId(device.getTerminalId());
+		taskForm.setDeviceIp(device.getIp().toString());
+		
+//		IOrganization org = organizationService.get(device.getOrganization().getGuid());
+		taskForm.setOrgName(device.getOrganization().getName());
+		if (task.getVersionBeforeUpdate() != null) {
+			int index = task.getVersionBeforeUpdate().indexOf("_");
+			taskForm.setVersionBeforeUpdate(task.getVersionBeforeUpdate().substring(index + 1));
+		}
+		taskForm.setExceptVersion(task.getExceptVersion());
+		taskForm.setCurrentVersion("");
+		taskForm.setJobName(task.getTaskBatchName());
+		taskForm.setPlanTime(DateUtils.getTimestamp(task.getPlanTime()));
+		taskForm.setDownSource(task.getDownSource());
+		taskForm.setExcuteMachine(task.getExcuteMachine());
+		return taskForm;
+	}
+    
     /**
      * 重启某作业下的可以重启的全部设备
      *
@@ -590,10 +620,10 @@ public class VersionDownloadController {
         logger.info(" updateDeployDate  : jobId.id = " + jobId);
         ModelMap result = new ModelMap();
         try {
-            Date startDate = DateUtils.getDate(deployStartDate);
-            Date endDate = null;
+//            Date startDate = DateUtils.getDate(deployStartDate);
+//            Date endDate = null;
             if (deployEndDate != null && !"".equals(deployEndDate)) {
-                endDate = DateUtils.getDate(deployEndDate);
+//                endDate = DateUtils.getDate(deployEndDate);
             }
 //            jobService.updateDeployDate(jobId, startDate, endDate);
             result.addAttribute(FishConstant.SUCCESS, true);
@@ -652,4 +682,18 @@ public class VersionDownloadController {
         }
         return result;
     }
+    @RequestMapping(value = "/resetTaskStatus", method = RequestMethod.GET)
+    public @ResponseBody
+    ModelMap resetTaskStatus(@RequestParam long id , WebRequest request) {
+        logger.info(String.format("reset taskStatus  : taskId = %s  ", id));
+        ModelMap result = new ModelMap();
+        try {
+            taskService.webResetTaskStatus(id);
+            result.addAttribute(FishConstant.SUCCESS, true);
+        } catch (Exception e) {
+            result.addAttribute(FishConstant.SUCCESS, false);
+        }
+        return result;
+    }
+    
 }

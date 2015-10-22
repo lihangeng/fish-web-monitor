@@ -2,11 +2,11 @@ Ext.define('Eway.store.version.JobStatus', {
 	extend: 'Ext.data.Store',
 	
 	model: 'Eway.model.Dict',
-	
-	data: [{value:'NEW', display:'新建'}, 
-	       {value:'RUN', display:'运行中'}, 
-	       {value:'SCHEDULER', display:'计划中'},
-	       {value:'READY_RUN', display:'准备运行'},
-	       {value:'PAUSE', display:'暂停'},
-	       {value:'COMPLETE', display:'完成'}]
+
+	data: [{value:'NEW', display:Eway.locale.version.View.job.newCreate}, 
+	       {value:'RUN', display:Eway.locale.version.View.job.running}, 
+	       {value:'SCHEDULER', display:Eway.locale.version.View.job.scheduler},
+	       {value:'READY_RUN', display:Eway.locale.version.View.job.ready},
+	       {value:'PAUSE', display:Eway.locale.version.View.job.pause},
+	       {value:'COMPLETE', display:Eway.locale.version.View.job.complete}]
 });

@@ -4,7 +4,7 @@ Ext.define('Eway.view.monitor.settlement.View', {
 	requires : [ 'Eway.view.monitor.settlement.Grid',
 			'Eway.view.monitor.settlement.FilterForm' ],
 
-	title : '清机信息查询',
+	title : Eway.locale.monitor.business.settlement.title,
 	layout : 'border',
 
 	initComponent : function() {

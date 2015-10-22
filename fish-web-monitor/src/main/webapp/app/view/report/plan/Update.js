@@ -5,7 +5,7 @@ Ext.define('Eway.view.report.plan.Update', {
 	
 	requires: ['Eway.lib.Util'],
 	
-	title: '更改方案',
+	title: Eway.locale.report.plan.changePlan,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -24,13 +24,13 @@ Ext.define('Eway.view.report.plan.Update', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font> 名称',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.name,
 					xtype : 'textfield',
 					name : 'name',
 					maxLength : 30,
 					allowBlank : false
 				},{
-					fieldLabel : '<font color="red">*</font>有效开始时间',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.startDate,
 					xtype : 'datefield',
 					name : 'startDate',
 					format : 'Y-m-d',
@@ -50,7 +50,7 @@ Ext.define('Eway.view.report.plan.Update', {
 						}
 					}
 				},{
-					fieldLabel : '<font color="red">*</font>有效结束时间',
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.endDate,
 					xtype : 'datefield',
 					name : 'endDate',
 					format : 'Y-m-d',
@@ -70,18 +70,18 @@ Ext.define('Eway.view.report.plan.Update', {
 					}
 				},{
 					xtype : 'textarea',
-				    fieldLabel : '备注',
+				    fieldLabel : Eway.locale.commen.remark,
 				    name : 'note',
 				    autoScroll : true,
 					maxLength :30,
 					allowBlank : true
 				}],
 				fbar: [{
-					text: '更改',
+					text: Eway.locale.button.update,
 					iconCls :'sureBtn',
 					action: 'update'
 				},{
-					text: '返回',
+					text: Eway.locale.button.back,
 					iconCls :'returnBtn',
 					handler: this.onOver
 				}]

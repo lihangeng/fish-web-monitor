@@ -3,9 +3,10 @@ Ext.define('Eway.view.person.user.Update', {
 	alias : 'widget.user_update',
 
 	requires : [ 'Eway.view.person.user.RoleGrid',
+		           'Eway.view.field.person.UserType',
 			'Eway.view.person.user.AddedRoleGrid' ],
 
-	title : '更改用户角色（使用拖拽的方式）',
+	title : Eway.locale.person.user.updateUserTitle,
 	modal : true,
 	resizable : true,
 	constrainHeader : true,
@@ -16,20 +17,26 @@ Ext.define('Eway.view.person.user.Update', {
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
+//				fieldLabel : '<font color="red">*</font> 用户类型',
+//				xtype : 'field_userType',
+//				region : 'north',
+//				name:'userType',
+//				allowBlank : false
+//			},{
 				xtype : 'panel',
 				trackResetOnLoad : true,
 				selectOnFocus : true,
 				region : 'center',
 				layout : 'border',
 				items : [ {
-					title : '可添加的角色列表',
+					title : Eway.locale.person.user.roleCanBeAdd,
 					region : 'west',
 					width : 400,
 					xtype : 'user_roleGrid',
 					margin : '0 5px 0 0',
 					autoLoadStore : true
 				}, {
-					title : '已添加的角色列表',
+					title : Eway.locale.person.user.roleAlreadyBeAdd,
 					region : 'center',
 					xtype : 'user_addedRoleGrid',
 					autoLoadStore : true
@@ -37,7 +44,7 @@ Ext.define('Eway.view.person.user.Update', {
 			} ],
 			buttonAlign : 'center',
 			fbar : [ {
-				text : '返回',
+				text : Eway.locale.button.back,
 				// iconCls :'returnBtn',
 				handler : this.onOver
 			} ]

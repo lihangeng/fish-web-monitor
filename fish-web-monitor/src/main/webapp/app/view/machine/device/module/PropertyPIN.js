@@ -7,7 +7,7 @@ Ext.define("Eway.view.machine.device.module.PropertyPIN", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : '密码键盘(PIN)属性信息',
+				title :  Eway.locale.machine.device.PINInfo,
 				titleAlign:'center',
 				layout : 'column',
 				items : [ {
@@ -21,26 +21,26 @@ Ext.define("Eway.view.machine.device.module.PropertyPIN", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '能否EBC',
+						fieldLabel :  Eway.locale.machine.device.canEBC,
 						name : 'canEBC',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '能否CBC',
+						fieldLabel :  Eway.locale.machine.device.canCBC,
 						name : 'canCBC'
 					}, {
-						fieldLabel : '能否MAC',
+						fieldLabel : Eway.locale.machine.device.canMAC,
 						name : 'canMAC'
 					}, {
-						fieldLabel : '能否RSA',
+						fieldLabel : Eway.locale.machine.device.canRSA,
 						name : 'canRSA'
 					}, {
-						fieldLabel : '能否验证VISA',
+						fieldLabel : Eway.locale.machine.device.canVerifyVISA,
 						name : 'canVerifyVISA'
 					}, {
-						fieldLabel : '能否验证DES',
+						fieldLabel :  Eway.locale.machine.device.canVerifyDES,
 						name : 'canVerifyDES'
 					}, {
-						fieldLabel : '功能键支持',
+						fieldLabel : Eway.locale.machine.device.functionKeys,
 						xtype : 'textareafield',
 						name : 'functionKeys'
 					} ]
@@ -56,23 +56,23 @@ Ext.define("Eway.view.machine.device.module.PropertyPIN", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '是否支持多重EBC',
+						fieldLabel :Eway.locale.machine.device.canTripleEBC,
 						name : 'canTripleEBC',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '是否支持多重CBC',
+						fieldLabel : Eway.locale.machine.device.canTripleCBC,
 						name : 'canTripleCBC'
 					}, {
-						fieldLabel : '是否支持多重MAC',
+						fieldLabel : Eway.locale.machine.device.canTripleMAC,
 						name : 'canTripleMAC'
 					}, {
-						fieldLabel : '是否支持多重CFB',
+						fieldLabel : Eway.locale.machine.device.canTripleCFB,
 						name : 'canTripleCFB'
 					}, {
-						fieldLabel : '能否验证ECB',
+						fieldLabel : Eway.locale.machine.device.canVerifyECB,
 						name : 'canVerifyECB'
 					}, {
-						fieldLabel : '能否DeS偏移',
+						fieldLabel :Eway.locale.machine.device.canDESOffset,
 						name : 'canDESOffset'
 					} ]
 				} ]

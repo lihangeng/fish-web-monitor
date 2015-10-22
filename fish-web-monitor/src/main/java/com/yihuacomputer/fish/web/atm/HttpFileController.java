@@ -49,7 +49,7 @@ public class HttpFileController {
 			maxConnect = Integer.valueOf(masCon);
 		}
 			
-		logger.info(String.format("当前连接数为:[%s]",currentConnect));
+		logger.info(String.format("now connecter number is:[%s]",currentConnect));
 
 		if(currentConnect>=maxConnect){
 			return;
@@ -111,20 +111,22 @@ public class HttpFileController {
 				out.write(by, 0, len);
 			}
 		} catch (Exception e) {
-			logger.error(String.format("处理文件请求异常![%s],请求信息[%s]", e, JsonUtils.toJson(fileCfg)));
+//			logger.error(String.format("处理文件请求异常![%s],请求信息[%s]", e, JsonUtils.toJson(fileCfg)));
+			logger.error(String.format("request download file exception![%s],request body is [%s]", e, JsonUtils.toJson(fileCfg)));
 		} finally {
 			if (out != null) {
 				try {
 					out.close();
 				} catch (IOException e) {
-					logger.error(String.format("关闭输出流出错,出错信息[%s]", e));
+//					logger.error(String.format("关闭输出流出错,出错信息[%s]", e));
+					logger.error(String.format("close outputstream exception,the exception info is [%s]", e));
 				}
 			}
 			if (randomFile != null) {
 				try {
 					randomFile.close();
 				} catch (IOException e) {
-					logger.error(String.format("关闭输出流出错,出错信息[%s]", e));
+					logger.error(String.format("close outputstream exception,the exception info is [%s]", e));
 				}
 			}
 		}

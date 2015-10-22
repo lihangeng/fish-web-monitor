@@ -6,7 +6,7 @@ Ext.define('Eway.view.monitor.business.BlackListCardView', {
 	requires: ['Eway.view.monitor.business.BlackListCardGrid',
 	           'Eway.view.monitor.business.BlackListCardFilterForm'],
 	
-	title: '黑名单卡管理',
+	title: Eway.locale.monitor.business.blackList.title,
 	layout: 'border',
 	
 	initComponent: function() {

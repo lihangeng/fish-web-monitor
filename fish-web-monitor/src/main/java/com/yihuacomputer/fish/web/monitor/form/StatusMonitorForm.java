@@ -108,7 +108,8 @@ public class StatusMonitorForm {
         this.insideOutside = statusReport.getInsideOutside();
         this.ip = statusReport.getIp();
         this.address = statusReport.getAddress();
-        this.appRelease = statusReport.getAppRelease() == null ? "未知" : statusReport.getAppRelease();
+//        this.appRelease = statusReport.getAppRelease() == null ? "未知" : statusReport.getAppRelease();
+        this.appRelease = statusReport.getAppRelease();
         this.registerStatus = statusReport.getRegisterStatus();
         this.runStatus = statusReport.getRunStatus();
         this.run = statusReport.getRun();

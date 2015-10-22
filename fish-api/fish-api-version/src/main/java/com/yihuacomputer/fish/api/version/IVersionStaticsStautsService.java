@@ -14,12 +14,12 @@ import com.yihuacomputer.fish.api.charts.ChartsInfo;
 public interface IVersionStaticsStautsService {
 	
 	/**
-	 * 根据版本Id，和当前人所在机构获取版本下发明细信息
+	 * 根据版本Id，和当前人所在机构获取版本下发概况信息(图表)
 	 * @param versionId
 	 * @param orgFlag
 	 * @return
 	 */
-	List<ChartsInfo> getVersionDetailsInfo(long versionId,String orgFlag);
+	List<ChartsInfo> getVersionSummaryInfo(long versionId,String orgFlag,int start,int limit);
 	
 	/**
 	 * 获取版本视图详情
@@ -35,11 +35,9 @@ public interface IVersionStaticsStautsService {
 	 */
 	public List<Long> getAtmTypeIdsByVersionId(long versionId);
 	
-	/**
-	 * 获取符合条件设备数量(条件一:机构,条件二：设备型号,条件三:版本)
-	 * @param orgFlag
-	 * @param versionId
-	 * @return
-	 */
-	public long getOpeningDeviceTotal(String orgFlag,long versionId);
+	public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceSuccess(long versionId,String orgFlag,int start,int limit);
+    public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceTotal(long versionId,String orgFlag,int start,int limit);
+    public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceFatal(long versionId,String orgFlag,int start,int limit);
+    public IPageResult<VersionChartsDetailForm> getMatchConditionDevicePush(long versionId,String orgFlag,int start,int limit);
+
 }

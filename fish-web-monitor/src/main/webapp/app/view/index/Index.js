@@ -20,7 +20,7 @@ Ext.define('Eway.view.index.Index', {
     
 	initComponent: function() {
 		Ext.apply(this, {
-		    title: '首页',
+		    title: Eway.locale.index.indexPage,
 		    items:[{
 		    	xtype:'pieBasic'
 		    },{

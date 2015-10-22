@@ -5,7 +5,7 @@ Ext.define("Eway.view.machine.device.module.PropertySIU", {
 		anchor : '100%' //
 	},
 	items : [ {
-		title : 'SIU能力属性信息',
+		title : Eway.locale.machine.device.SIUInfo,
 		titleAlign:'center',
 		layout : 'column',
 		items : [ {
@@ -19,17 +19,17 @@ Ext.define("Eway.view.machine.device.module.PropertySIU", {
 				labelWidth: 180
 			},
 			items : [ {
-				fieldLabel : '是否支持操作员开关',
+				fieldLabel : Eway.locale.machine.device.operatorSwitchSupported,
 				name : 'operatorSwitchSupported',
 				style : 'margin-top:2px'
 			}, {
-				fieldLabel : '是否支持后盖门打开传感能力',
+				fieldLabel : Eway.locale.machine.device.cabinetSupported,
 				name : 'cabinetSupported'
 			}, {
-				fieldLabel : '是否支持安全门打开传感能力',
+				fieldLabel : Eway.locale.machine.device.safeSupported,
 				name : 'safeSupported'
 			}, {
-				fieldLabel : '是否支持靠近传感能力',
+				fieldLabel : Eway.locale.machine.device.indicatorSupported,
 				name : 'indicatorSupported'
 			} ]
 		}, {
@@ -43,17 +43,17 @@ Ext.define("Eway.view.machine.device.module.PropertySIU", {
 				labelWidth: 180
 			},
 			items : [ {
-				fieldLabel : '是否支持插卡指示灯能力',
+				fieldLabel : Eway.locale.machine.device.guidelightIdcSupported,
 				name : 'guidelightIdcSupported',
 				style : 'margin-top:2px'
 			}, {
-				fieldLabel : '是否支持取款指示灯能力',
+				fieldLabel : Eway.locale.machine.device.guidelightCdmSupported,
 				name : 'guidelightCdmSupported'
 			}, {
-				fieldLabel : '是否支持凭条打印指示灯能力',
+				fieldLabel : Eway.locale.machine.device.guidelightReceiptSupported,
 				name : 'guidelightReceiptSupported'
 			}, {
-				fieldLabel : '是否支持存款指示灯能力',
+				fieldLabel : Eway.locale.machine.device.guidelightCimSupported,
 				name : 'guidelightCimSupported'
 			} ]
 		} ]
