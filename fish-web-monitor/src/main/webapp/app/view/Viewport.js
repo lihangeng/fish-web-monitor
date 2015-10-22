@@ -33,8 +33,8 @@ Ext.define('Eway.view.Viewport', {
 				lines : false,
 				bufferedRenderer : false,
 				store : store,
-				collapsible : false,
-				collapseMode : 'mini',
+				collapsible : true,
+				collapseMode : 'header',
 				split : false
 			}, {
 				region : 'center',
