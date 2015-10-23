@@ -16,7 +16,7 @@ import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IPerson;
-import com.yihuacomputer.fish.person.service.base.DomainPersonService;
+import com.yihuacomputer.fish.api.person.IPersonService;
 import com.yihuacomputer.fish.system.entity.Person;
 
 /**
@@ -27,13 +27,19 @@ import com.yihuacomputer.fish.system.entity.Person;
  */
 @Service
 @Transactional
-public class PersonService extends DomainPersonService {
+public class PersonService implements IPersonService {
 
     @Autowired
     private IGenericDao dao;
 
     @Autowired
     private IOrganizationService orgService;
+    
+	@Override
+	public Person make() {
+		Person result = new Person();
+		return result;
+	}
 
     /**
      * 根据名称增加人员信息

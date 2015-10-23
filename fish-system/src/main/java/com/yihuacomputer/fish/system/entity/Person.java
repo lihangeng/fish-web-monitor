@@ -17,7 +17,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.person.Gender;
 import com.yihuacomputer.fish.api.person.IOrganization;
@@ -25,7 +24,6 @@ import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.IPersonJob;
 import com.yihuacomputer.fish.api.person.PersonState;
 import com.yihuacomputer.fish.api.person.PersonType;
-import com.yihuacomputer.fish.person.service.api.IDomainPersonService;
 
 /**
  * 人员信息：（信息实体对应数据库表PERSON）
@@ -41,9 +39,6 @@ public class Person implements IPerson,Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -1338768197823599280L;
-
-	@Transient
-    private IDomainPersonService service;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_SM_PERSON")
@@ -153,8 +148,7 @@ public class Person implements IPerson,Serializable {
     public Person() {
     }
 
-    public Person(IDomainPersonService service, String name) {
-        this.service = service;
+    public Person(String name) {
         this.name = name;
     }
 
@@ -254,14 +248,6 @@ public class Person implements IPerson,Serializable {
     @Override
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public IDomainPersonService getService() {
-        return service;
-    }
-
-    public void setService(IDomainPersonService service) {
-        this.service = service;
     }
 
     @Override

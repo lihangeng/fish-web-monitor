@@ -24,7 +24,14 @@ Ext.define('Eway.view.index.Index', {
 		    items:[{
 		    	xtype:'pieBasic'
 		    },{
-		    	xtype:'lineBasic'
+		    	xtype:'lineBasic',
+		    	tools:[{
+		    	    type:'refresh',
+		    	    tooltip: 'Refresh',
+		    	    handler: function(event, toolEl, panelHeader) {
+		    	     	this.up('lineBasic').down('cartesian').getStore().load();
+		    	    }
+		    	}]
 		    },{
 		    	xtype:'pieBasic'
 		    },{
