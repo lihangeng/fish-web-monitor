@@ -1012,7 +1012,7 @@ Ext.override(Eway,{
 				name:'Role name',//Eway.locale.permission.role.name 角色名称
 				type:'Role type',//Eway.locale.permission.role.type 角色类型
 				description:'Role description',//Eway.locale.permission.role.description 角色描述
-				isSysRole:'Is system role or not',//Eway.locale.permission.role.isSysRole 是否是系统内置角色
+				isSysRole:'Is system role',//Eway.locale.permission.role.isSysRole 是否是系统内置角色
 				chooseRight:'Please choose permission of menu',//Eway.locale.permission.role.chooseRight 请选择菜单权限
 				add:'Add role'//Eway.locale.permission.role.add 增加角色
 			},
@@ -1294,7 +1294,7 @@ Ext.override(Eway,{
 				comboxAwayFlag:{
 					inBank:'Inside bank',//在行自助服务区
 					outBank:'Outside bank',//离行自助银行
-					clickBank:'Outside self-service'//单机离行自助服务点
+					clickBank:'Alone out-bank self-service'//单机离行自助服务点
 				},
 				devServiceName:'Manufacturer',//设备维护商
 				cashboxLimit:'Alarm cashbox',//钞箱报警金额
@@ -1647,114 +1647,114 @@ Ext.override(Eway,{
 				serial:'Serial',//设备序列号
 				carrier:'Carrieroperator',//运营商
 				moneyOrg:'Cash org',//加钞机构
-				costInterest:'资金成本利率',//资金成本利率
-				atmcSoft:'atmc软件',
-				spType:'厂商sp类型',
-				column:'日期信息',
-				buyDate:'设备购买日期',
-				installDate:'设备安装日期',
-				startDate:'设备启用日期',	
-				stopDate:'设备停用日期',
-				expireDate:'保修到期日期',
-				daliyOpen:'每日开机时间',
-				openTimeHour:'时',
-				openTimeMinute:'分',
-				openTimeSecond:'秒',
-				daliyClose:'每日关机时间',
-				lastPmDate:'上次巡检日期',
-				expirePmDate:'巡检到期日期',
-				costInfo:'费用信息',
-				price:'入账成本(元)',
+				costInterest:'Rate of fund cost',//资金成本利率
+				atmcSoft:'atmc software',//atmc软件
+				spType:'sp type',//厂商sp类型
+				column:'Date',//日期信息
+				buyDate:'Buy date',//设备购买日期
+				installDate:'Install date',//设备安装日期
+				startDate:'Start date',//设备启用日期
+				stopDate:'Stop date',//设备停用日期
+				expireDate:'Guaranteed date',//保修到期日期
+				daliyOpen:'Start time everyday',//每日开机时间
+				openTimeHour:'Hour',//时
+				openTimeMinute:'Minute',//分
+				openTimeSecond:'Second',//秒
+				daliyClose:'Close time everyday',//每日关机时间
+				lastPmDate:'Last check date',//上次巡检日期
+				expirePmDate:'Next check date',//巡检到期日期
+				costInfo:'Expenses',//费用信息
+				price:'Cost',//入账成本(元)
 				depreciationLife:'折旧年限(年)',
-				decoration:'装修费用',
-				decorationCost:'装修摊销年限(年)',
-				governanceRent:'物业租赁费(元/月)',
-				governanceCost:'物业管理费用(元/月)',
-				netCost:'通讯线路费用(元/月)',
-				powerCost:'电费(元/月)',
-				moneyCost:'加钞维护费用(元/次)',
-				statusInfo:'状态信息',
-				deviceAttention:'设备关注程序',
-				stress:'重点',
-				medium:'中等',
-				ordinary:'一般',
-				notCashSignal:'非现金标志',
-				cash: '现金',
-				notCash:'非现金',
-				installStyle: '安装方式',
-				crossWall: '穿墙',
-				mainRoom: '大堂',
-				netType: '网络类型',
-				wired: '有线',
-				wireless: '无线',
-				wiredAndWireless: '有线无线',
-				onBankSignal:'在行离行标志',
-				inBank:'在行自助服务区',
-				outBank:'离行自助银行',
-				clickBank:'单机离行自助服务点',
-				operation:'经营方式',
-				operationSelf: '自营',
-				cooperation: '合作',
-				epiboly: '外包',
-				managePerson:'管机员',
+				decoration:'Decorate charge',//装修费用
+				decorationCost:'Decorate charge(year)',//装修摊销年限(年)
+				governanceRent:'Property charge(RMB/mon)',//物业租赁费(元/月)
+				governanceCost:'Property charge(RMB/mon)',//物业管理费用(元/月)
+				netCost:'Net charge(元/月)',//通讯线路费用(元/月)
+				powerCost:'Electriccharge(RMB/mon)',
+				moneyCost:'Cash charge(Rmb/time)',//加钞维护费用(元/次)
+				statusInfo:'Status',//状态信息
+				deviceAttention:'follow with ',//设备关注程序
+				stress:'Important',//重要
+				medium:'Medium',//中等
+				ordinary:'Ordinary',//一般
+				notCashSignal:'Cash flag',//非现金标志
+				cash: 'Cash',//现金
+				notCash:'Not cash',//非现金
+				installStyle: 'Insatall way',//安装方式
+				crossWall: 'CrossWall',//穿墙
+				mainRoom: 'MainRoom',//mainRoom
+				netType: 'Net type',//网络类型
+				wired: 'Wired',//有线
+				wireless: 'Wireless',//wireless
+				wiredAndWireless: 'Wired flag',//wiredAndWireless
+				onBankSignal:'Inbank flag',//在行离行标志
+				inBank:'In-bank self-servce area',//在行自助服务区
+				outBank:'Out-bank self-servce',//离行自助银行
+				clickBank:'Alone out-bank self-service',//单机离行自助服务点
+				operation:'Service mode',//经营方式
+				operationSelf: 'Self-business',//自营
+				cooperation: 'Cooperation',//合作
+				epiboly: 'Outsource',//外包
+				managePerson:'Manager',//管机员
 				maintainPerson:'Maintainer',
-				to:'至',
-				range: '范围1－－100年',
-				roleDescription:'角色描述',
-				roleName:'角色名称',
+				to:'至',//to
+				range: 'Range 1-100 years',//范围1－－100年
+				roleDescription:'Role description',//角色描述
+				roleName:'Role name',//角色名称
 
 				
 					
-				devices:'设备',
-				configuration:'配置信息',
-				spVersion:'SP版本',
-				notSupport:'不支持',
-				drive:'驱动',
-				firmway: '固件',
-				noDevice:'无设备',
-				devTypeInfo: '设备型号信息',
+				devices:'Device',//设备
+				configuration:'Setting',//配置信息
+				spVersion:'SP',//SP 版本
+				notSupport:'Unsupport',//不支持
+				drive:'Driver',//驱动
+				firmway: 'Firmware',//固件
+				noDevice:'No device',//无设备
+				devTypeInfo: 'Device type',//设备型号信息
 				
-				devInfo:'设备信息',
-				unable:'不可以',
-				able:'能',
+				devInfo:'Device info',//设备信息
+				unable:'Can not',//不可以
+				able:'Can',//能
 				
 			},
 			param:{
-				paramKey:'参数',//Eway.locale.machine.param.paramKey
-				paramValue:'参数值',//Eway.locale.machine.param.paramValue
-				classify:'类型',//Eway.locale.machine.param.classify
+				paramKey:'Parameter',//Eway.locale.machine.param.paramKey 参数
+				paramValue:'Parameter value',//Eway.locale.machine.param.paramValue参数值
+				classify:'Type',//Eway.locale.machine.param.classify 类型
 				comboxClassify:{
-					unableUpdate:'不可修改',
-					ableUpdate:'可以修改'
+					unableUpdate:'Unable modify',//不可修改
+					ableUpdate:'Can modify'//可以修改
 				},
-				description:'参数信息描述',//Eway.locale.machine.param.description
-				systemCon:'系统配置',//Eway.locale.machine.param.systemCon
-				updateSystemCon:'更改系统配置'//Eway.locale.machine.param.updateSystemCon
+				description:'Parameter info',//Eway.locale.machine.param.description 参数信息描述
+				systemCon:'System setting',//Eway.locale.machine.param.systemCon 系统配置
+				updateSystemCon:'Modify system setting'//Eway.locale.machine.param.updateSystemCon 更改系统配置
 			},
 			quittingNotice:{
-				addCloseMsg:'增加报停信息',
-				updateCloseMsg:'更改报停信息',
-				dateRangeText:'恢复日期不能小于等于停止日期,请重新选择',
-				click:'请点击查询，选择设备',
-				stopTime:'停机时间',
-				openTime:'恢复时间',
-				currentStatus:'当前状态',
-				closeType:'停机类型',
-				responsibilityName:'停机负责人',
-				stopReason:'停机原因',
-				address:'所属地址',
-				selectDev:'选择需要报停的设备',
-				to:'至',
-				stopType:'停机类型',
+				addCloseMsg:'Add stop',//增加报停信息
+				updateCloseMsg:'Modify stop',//
+				dateRangeText:'Recover date can not be earlier than stop date,please choose again',//恢复日期不能小于等于停止日期,请重新选择
+				click:'Click query to choose device',//请点击查询，选择设备
+				stopTime:'Stop time',//停机时间
+				openTime:'Recover time',//恢复时间
+				currentStatus:'Current status',//当前状态
+				closeType:'Type',//停机类型
+				responsibilityName:'Personincharge',//停机负责人
+				stopReason:'Reason',//停机原因
+				address:'Address',//所属地址
+				selectDev:'Please select the device which you want to stop',//选择需要报停的设备
+				to:'to',//至
+				stopType:'Type',//停机类型
 				comboxStopType:{
-					recess:'放假',
-					fit:'装修',
-					power:'停电',
-					devFailue:'设备故障未修复',
-					other:'其他'	
+					recess:'Holiday',//放假
+					fit:'Decorate',//装修
+					power:'Powercut',
+					devFailue:'Error never fix',//设备故障未修复
+					other:'Other'	//其他
 				},
-				setTime:'设置时间',
-				closeManage:'报停管理'
+				setTime:'Set time',//
+				closeManage:'Stop manager'//报停管理
 			}
 		},
 		
@@ -1762,270 +1762,270 @@ Ext.override(Eway,{
 		
 		index:{
 			indexPage:'Home',//Eway.locale.index.indexPage 首页
-			dailyFaultPic:'日均故障趋势图',//Eway.locale.index.dailyFaultPic
+			dailyFaultPic:'日均故障趋势图',//Eway.locale.index.dailyFaultPic 日均故障趋势图
 			faultAmount:' 产生的故障数量: ',//Eway.locale.index.faultAmount
 			devStatusDisPic:'设备状态分布图',//Eway.locale.index.devStatusDisPic
-			normalDev:'正常设备',//Eway.locale.index.normalDev
+			normalDev:'Device normal',//Eway.locale.index.normalDev 正常设备
 			unknownDev:'Device-unknown',//Eway.locale.index.unknownDev
-			exceptionDev:'异常设备',//Eway.locale.index.exceptionDev
-			amount:'台',//Eway.locale.index.amount
+			exceptionDev:'Device unusual',//Eway.locale.index.exceptionDev 异常设备
+			amount:'',//Eway.locale.index.amount 台
 		},
 		//**********************************************************/
 		report:{
 			baseReport:{
-				date:'加钞日期',//Eway.locale.report.baseReport.date
-				amt:'加钞金额',//Eway.locale.report.baseReport.amt
-				boxId:'钞箱ID',//Eway.locale.report.baseReport.boxId
-				boxCurrency:'币种',//Eway.locale.report.baseReport.boxCurrency
-				boxInitAmt:'初始金额',//Eway.locale.report.baseReport.boxInitAmt
-				lastAmt:'剩余金额',//Eway.locale.report.baseReport.lastAmt
-				cashAddRep:'加钞情况报表',//Eway.locale.report.baseReport.cashAddRep
-				boxBalanceRep:'钞箱余额报表',//Eway.locale.report.baseReport.boxBalanceRep
-				sysConfRep:'系统硬件配置报表',//Eway.locale.report.baseReport.sysConfRep
-				devDetailRep:'设备明细报表',//Eway.locale.report.baseReport.devDetailRep
-				devBrandRep:'设备品牌统计报表',//Eway.locale.report.baseReport.devBrandRep
-				devRunInfoRep:'设备运行情况报表',//Eway.locale.report.baseReport.devRunInfoRep
-				eatCardRep:'吞卡统计报表',//Eway.locale.report.baseReport.eatCardRep
-				eatCardDetailRep:'吞卡明细报表',//Eway.locale.report.baseReport.eatCardDetailRep
-				clearDate:'清机日期',//Eway.locale.report.baseReport.clearDate
-				clearTable:'清机情况报表',//Eway.locale.report.baseReport.clearTable
-				dependDev:'按设备',//Eway.locale.report.baseReport.dependDev
-				tradeRep:'交易统计报表',//Eway.locale.report.baseReport.tradeRep
-				tradeResultRep:'交易结果统计报表',//Eway.locale.report.baseReport.tradeResultRep
+				date:'Cash date',//Eway.locale.report.baseReport.date 加钞日期
+				amt:'Cash amount',//Eway.locale.report.baseReport.amt 加钞金额
+				boxId:'Cashbox ID',//Eway.locale.report.baseReport.boxId 钞箱ID 
+				boxCurrency:'Currency',//Eway.locale.report.baseReport.boxCurrency 币种
+				boxInitAmt:'InitAmt',//Eway.locale.report.baseReport.boxInitAmt 初始金额
+				lastAmt:'LeftAmt',//Eway.locale.report.baseReport.lastAmt
+				cashAddRep:'Cash detail report',//Eway.locale.report.baseReport.cashAddRep 加钞情况报表
+				boxBalanceRep:'Cashbox left report',//Eway.locale.report.baseReport.boxBalanceRep 钞箱余额报表
+				sysConfRep:'Hardware report',//Eway.locale.report.baseReport.sysConfRep 系统硬件配置报表
+				devDetailRep:'Device detail report',//Eway.locale.report.baseReport.devDetailRep 设备明细报表
+				devBrandRep:'Device brand report',//Eway.locale.report.baseReport.devBrandRep 设备品牌统计报表
+				devRunInfoRep:'Device run report',//Eway.locale.report.baseReport.devRunInfoRep 设备运行情况报表
+				eatCardRep:'Retain card report',//Eway.locale.report.baseReport.eatCardRep 吞卡统计报表
+				eatCardDetailRep:'Retain card detail report',//Eway.locale.report.baseReport.eatCardDetailRep 吞卡明细报表
+				clearDate:'Clear date',//Eway.locale.report.baseReport.clearDate 清机日期
+				clearTable:'Clear report',//Eway.locale.report.baseReport.clearTable 清机情况报表
+				dependDev:'Depend on Dev',//Eway.locale.report.baseReport.dependDev 按设备
+				tradeRep:'Transation report',//Eway.locale.report.baseReport.tradeRep 交易统计报表
+				tradeResultRep:'Transation result report',//Eway.locale.report.baseReport.tradeResultRep 交易结果统计报表
 			},
 			openrate:{
 				device:{
-					statisticsMethod:'统计方式',//Eway.locale.report.openrate.device.statisticsMethod
-					statistics:'统计',//Eway.locale.report.openrate.device.statistics
-					importStat:'导出',//Eway.locale.report.openrate.device.importStat
-					statDate:'统计日期',//Eway.locale.report.openrate.device.statDate
-					openTimes:'设备应工作时长',//Eway.locale.report.openrate.device.openTimes
-					healthyTimeReal:'正常状态时长',//Eway.locale.report.openrate.device.healthyTimeReal
-					maintainTimeReal:'管机员维护时长',//Eway.locale.report.openrate.device.maintainTimeReal
-					unknownTimeReal:'离线未知时长',//Eway.locale.report.openrate.device.unknownTimeReal
-					faultTimeReal:'硬件故障停机时长',//Eway.locale.report.openrate.device.faultTimeReal
-					atmpTimeReal:'ATMP故障时长',//Eway.locale.report.openrate.device.atmpTimeReal
-					stopTimeReal:'其它暂停服务状态时长',//Eway.locale.report.openrate.device.stopTimeReal
-					openRate:'实际工作开机率',//Eway.locale.report.openrate.device.openRate
-					devOpenRate:'设备开机率',//Eway.locale.report.openrate.device.devOpenRate
-					organizationName:'机构',//Eway.locale.report.openrate.device.organizationName
+					statisticsMethod:'Statistics way',//Eway.locale.report.openrate.device.statisticsMethod 统计方式
+					statistics:'Statistics',//Eway.locale.report.openrate.device.statistics 统计
+					importStat:'Export',//Eway.locale.report.openrate.device.importStat 导出
+					statDate:'Statistics date',//Eway.locale.report.openrate.device.statDate 统计日期
+					openTimes:'Time device should run',//Eway.locale.report.openrate.device.openTimes 设备应工作时长
+					healthyTimeReal:'Time device run normally',//Eway.locale.report.openrate.device.healthyTimeReal 正常状态时长
+					maintainTimeReal:'Time device manage-mode',//Eway.locale.report.openrate.device.maintainTimeReal 管机员维护时长
+					unknownTimeReal:'Time device off-line',//Eway.locale.report.openrate.device.unknownTimeReal 离线未知时长
+					faultTimeReal:'Time device hardware-error',//Eway.locale.report.openrate.device.faultTimeReal 硬件故障停机时长
+					atmpTimeReal:'Time ATMP error',//Eway.locale.report.openrate.device.atmpTimeReal ATMP故障时长
+					stopTimeReal:'Time other reason stop-service',//Eway.locale.report.openrate.device.stopTimeReal 其它暂停服务状态时长
+					openRate:'OpenRate',//Eway.locale.report.openrate.device.openRate 实际工作开机率
+					devOpenRate:'OpenRate',//Eway.locale.report.openrate.device.devOpenRate 设备开机率
+					organizationName:'Org',//Eway.locale.report.openrate.device.organizationName 机构
 				},
 				org:{
-					orgOpenRate:'机构开机率',//Eway.locale.report.openrate.org.orgOpenRate
+					orgOpenRate:'OpenRate-org',//Eway.locale.report.openrate.org.orgOpenRate 机构开机率
 				},
 				type:{
-					terminalId:'型号',//Eway.locale.report.openrate.type.terminalId
-					typeOpenRate:'型号开机率',//Eway.locale.report.openrate.type.typeOpenRate
+					terminalId:'Type',//Eway.locale.report.openrate.type.terminalId 型号
+					typeOpenRate:'OpenRate of device type',//Eway.locale.report.openrate.type.typeOpenRate 型号开机率
 				},
 			},
 			plan:{
-				addPlan:'增加方案',//Eway.locale.report.plan.addPlan
-				name:'名称',//Eway.locale.report.plan.name
-				startDate:'有效开始时间',//Eway.locale.report.plan.startDate
-				endDate:'有效结束时间',//Eway.locale.report.plan.endDate
-				terminalId:'编号',//Eway.locale.report.plan.terminalId
-				cashboxLimit:'钞箱报警金额(单位：张数)',//Eway.locale.report.plan.cashboxLimit
-				perToDev:'人员<-->设备',//Eway.locale.report.plan.perToDev
-				changePlan:'更改方案',//Eway.locale.report.plan.changePlan
-				openPlan:'开机方案',//Eway.locale.report.plan.openPlan
+				addPlan:'AddPlan',//Eway.locale.report.plan.addPlan 增加方案
+				name:'Name',//Eway.locale.report.plan.name 名称
+				startDate:'Start time',//Eway.locale.report.plan.startDate 有效开始时间
+				endDate:'End time',//Eway.locale.report.plan.endDate 有效结束时间
+				terminalId:'Code',//Eway.locale.report.plan.terminalId 编号
+				cashboxLimit:'Alarm cashbox(unit:piece)',//Eway.locale.report.plan.cashboxLimit 钞箱报警金额(单位：张数)
+				perToDev:'Person<-->Device',//Eway.locale.report.plan.perToDev 人员<-->设备
+				changePlan:'Modify plan',//Eway.locale.report.plan.changePlan 更改方案
+				openPlan:'Start up plan',//Eway.locale.report.plan.openPlan 开机方案
 			}
 		},
 		
 		//**********************************************************/
 		card:{
-			cardNum:'卡号',//Eway.locale.card.cardNum
-			onlyNumber:'只能输入数字,13-19位',//Eway.locale.card.onlyNumber
-			cardStatus:'卡片状态',//Eway.locale.card.cardStatus
-			eatCardTime:'吞卡时间',//Eway.locale.card.eatCardTime
-			IDType:'证件类型',//Eway.locale.card.IDType
-			customerName:'客户姓名',//Eway.locale.card.customerName
-			customerPapers:'客户证件号',//Eway.locale.card.customerPapers
-			customerPhone:'客户电话',//Eway.locale.card.customerPhone
-			endData:'吞卡截止日期',//Eway.locale.card.endData
-			startData:'吞卡起始日期',//Eway.locale.card.startData
+			cardNum:'Card num',//Eway.locale.card.cardNum 卡号
+			onlyNumber:'Just for numbers,13-19 numbers',//Eway.locale.card.onlyNumber 只能输入数字,13-19位
+			cardStatus:'Status',//Eway.locale.card.cardStatus 卡片状态
+			eatCardTime:'Time',//Eway.locale.card.eatCardTime 吞卡时间
+			IDType:'License type',//Eway.locale.card.IDType 证件类型
+			customerName:'CustomerName',//Eway.locale.card.customerName 客户姓名
+			customerPapers:'CustomerPapers',//Eway.locale.card.customerPapers 客户证件号
+			customerPhone:'CustomerPhone',//Eway.locale.card.customerPhone 客户电话
+			endData:'EndData',//Eway.locale.card.endData 吞卡截止日期
+			startData:'StartData',//Eway.locale.card.startData 吞卡起始日期
 		},
 		
 		//**********************************************************/
 		
 		cases:{
-			confirm:'确认',
-			cancel:'取消',
-			concern:'请关注',
-			SRCBView:'上海农商行新监控发送',
-			nowExportFile:'正在导入文件',
-			exportFaultInfo:'导入厂商故障信息成功.',
+			confirm:'Confirm',//确认
+			cancel:'Cancel',//取消
+			concern:'Attention please',//请关注
+			SRCBView:'',//上海农商行新监控发送
+			nowExportFile:'File Importing',//正在导入文件
+			exportFaultInfo:'Import fault code successful',//导入厂商故障信息成功.
 			caseFault:{
-				faultRelevantInfo:'故障相关短信',
-				faultModule:'故障模块',
-				cardReaderModule:'读卡器模块',
-				depoistModule:'存款模块',
-				drawModule:'取款模块',
-				rprModule:'凭条打印模块',
-				jprModule:'日志打印模块',
-				pinModule:'密码键盘模块',
-				textTerminalUnit:'文本终端单元',
-				sensoModule:'传感器模块',
-				faultClassify: '故障分类',
-				faultCode : '故障码',
-				providerFaultCode: '厂商故障码',
-				faultStartTime : '故障开始时间',
-				faultCloseTime : '故障关闭时间',
-				faultContinueTime : '持续时长',
-			    faultState : '故障状态',
+				faultRelevantInfo:'SMS about fault',//故障相关短信
+				faultModule:'Fault module ',
+				cardReaderModule:'Card reader',//读卡器模块
+				depoistModule:'Deposit module',//存款模块
+				drawModule:'Draw module',//取款模块
+				rprModule:'Voucher printer',//凭条打印模块
+				jprModule:'Log printer',//日志打印模块
+				pinModule:'Pin keyboard',//密码键盘模块
+				textTerminalUnit:'Text terminal',//文本终端单元
+				sensoModule:'Sensor',//传感器模块
+				faultClassify: 'Fault catalog',//故障分类
+				faultCode : 'Fault code',//故障码
+				providerFaultCode: 'Fault code manufacturer',//厂商故障码
+				faultStartTime : 'Open time',//故障开始时间
+				faultCloseTime : 'Close time',//故障关闭时间
+				faultContinueTime : 'Time last',//持续时长
+			    faultState : 'Status',//故障状态
 			    status:{
-			    	open:'未关闭',
-			    	close:'已关闭'
+			    	open:'Opening',//未关闭
+			    	close:'Closed'//已关闭
 			    },
-			    upgradeTimes: '升级次数',
-			    message: '短信',
-			    checkDetails: '查看详情',
-			    bankPer: '银行联系人',
-			    serPer: '供应商联系人',
-			    createTime: '创建时间',
-			    informContent: '通知内容',
-			    messageContentDetail: '短信内容详情',
-			    informWay: '通知方式',
-			    mail:'邮件',
-			    messageAndMail:'短信和邮件',
-			    informMobile: '通知手机号',
-			    notifyTimes: '通知次数',
-			    notifyRepeatTimes: '重复通知次数',
-			    sendTimes: '发送次数',
-			    sendInterval: '发送时间间隔',
-			    sendTime: '发送时间',
-			    faultSearch:'故障查询'
+			    upgradeTimes: 'Upgrade times',//升级次数
+			    message: 'SMS',//短信
+			    checkDetails: 'Detail',//查看详情
+			    bankPer: 'Bnak contact',//银行联系人
+			    serPer: 'SUppliers contact',//供应商联系人
+			    createTime: 'Create time',//创建时间
+			    informContent: 'Notify content',//通知内容
+			    messageContentDetail: 'SMS content',//短信内容详情
+			    informWay: 'Notify way',//通知方式
+			    mail:'Email',//邮件
+			    messageAndMail:'SMS and email',//短信和邮件
+			    informMobile: 'Notify mobile',//通知手机号
+			    notifyTimes: 'Notify times',//通知次数
+			    notifyRepeatTimes: 'Repeat notify times',//重复通知次数
+			    sendTimes: 'Send times',//发送次数
+			    sendInterval: 'Intervals between each send',//发送时间间隔
+			    sendTime: 'Send time',//发送时间
+			    faultSearch:'Fault search'//故障查询
 			    
 			},
 			caseNotify:{
-				fault:'故障',
-				faultDetails:'故障详情',
-				faultlastTime: '故障持续时长(单位:小时)',
-				checkFailure:'查看失败！',
-				innerFault:'内部错误',//Eway.locale.cases.caseNotify.innerFault
-				messageCheck:'短信查询'
+				fault:'Fault',//故障
+				faultDetails:'Detail',//故障详情
+				faultlastTime: 'Fault last(unit:hour)',//故障持续时长(单位:小时)
+				checkFailure:'View failed!',//查看失败！
+				innerFault:'System error',//Eway.locale.cases.caseNotify.innerFault 内部错误
+				messageCheck:'Query SMS'//短信查询
 			},
 			faultClassify:{
-				faultClassifyName: '故障分类名称',
-				faultresponsorType: '故障责任人类型',
+				faultClassifyName: 'Fault type name',//故障分类名称
+				faultresponsorType: 'Fault personliable type', //故障责任人类型
 				maintain:'Maintainer',//维护员
 				manageAndMaintain:'Manager&Maintainer',//管机员和维护员
-				upGradeTimes: '最高升级次数',
-				faultInformWay:'故障通知方式',
-				faultCloseInterval:'故障规定关闭时间间隔（单位:小时）',
-				faultTypeConfiguration: '故障类型配置',
-				updateFaultTypeConfiguration: '更改故障类型配置',
-				number:'由数字‘0-9’,‘.’组成',
-				informNumber:'通知次数不能为0,由数字‘0-9’组成,1-5位'
+				upGradeTimes: 'Max upgrade times',//最高升级次数
+				faultInformWay:'Notify way',//故障通知方式
+				faultCloseInterval:'Intervals between close(unit:hour)',//故障规定关闭时间间隔（单位:小时）
+				faultTypeConfiguration: 'Fault type setting',//故障类型配置
+				updateFaultTypeConfiguration: 'Modify fault type',//更改故障类型配置
+				number:'Just for numbers ‘0-9’',//由数字‘0-9’,‘.’组成
+				informNumber:'Can not be 0,1-5 numbers'//通知次数不能为0,由数字‘0-9’组成,1-5位
 			},
 			notifyMould:{
-				noticeType:'通知类型',
-				createNotice:'创建通知',
-				upgradeNotice:'升级通知',
-				closeNotice:'关闭通知',
-				noticeValue: '通知参数',
-				messageContentConfiguration:'短信内容配置',
-				updateMessageContentConfiguration: '更改短信内容配置',
-				necessaryOption: '此项为必选项',
-				faultType:'故障类型',
-				applyStatus:'应用状态'
+				noticeType:'Type',//通知类型
+				createNotice:'Create',//创建通知
+				upgradeNotice:'Upgrade',//升级通知
+				closeNotice:'Close',//关闭通知
+				noticeValue: 'Parameters',//通知参数
+				messageContentConfiguration:'SMS content',//短信内容配置
+				updateMessageContentConfiguration: 'Modify SMS content',//更改短信内容配置
+				necessaryOption: 'This option is necessary',//此项为必选项
+				faultType:'Fault type',//故障类型
+				applyStatus:'App status'//应用状态
 			},
 			vendorCode:{
-				exportProviderInfo: '导入厂商故障信息',
-				provider:'厂商',
-				exportFile: '导入文件',
-				deleteFaultInfo:'删除厂商故障信息',
-				templateLoad:'模板下载',
-				massRemove: '批量删除',
-				providerDescription:'厂商故障描述',
-				solveProject: '解决方案',
-				providerFaultInfo:'厂商故障信息管理'
+				exportProviderInfo: 'Import manufacturer faultCode',//导入厂商故障信息
+				provider:'Manufacturer',
+				exportFile: 'Import file',//导入文件
+				deleteFaultInfo:'Delete manufacturer faultCode',//删除厂商故障信息
+				templateLoad:'Example download',//模板下载
+				massRemove: 'Batch delete',//批量删除
+				providerDescription:'DaultCode describe',//厂商故障描述
+				solveProject: 'Solution',//解决方案
+				providerFaultInfo:'Manufacturer faultCode'//厂商故障信息管理
 			}
 		},
 		
 		//**********************************************************/
 		personal:{
-			baseInfo:'基本信息',//Eway.locale.personal.baseInfo
-			accountNum:'账号',//Eway.locale.personal.accountNum
-			personalInfo:'个人信息',//Eway.locale.personal.personalInfo
-			changePwd:'修改密码',//Eway.locale.personal.changePwd
-			nowLogin:'当前登录账号',//Eway.locale.personal.nowLogin
-			inputOldPwd:'输入原始密码',//Eway.locale.personal.inputOldPwd
-			inputNewPwd:'输入新密码',//Eway.locale.personal.inputNewPwd
-			inputVali:'只能输入8到20位字母‘a-z’或‘A-Z’、数字‘0-9’、特殊字符！',//Eway.locale.personal.inputVali
-			inputAgain:'再次输入新密码',//Eway.locale.personal.inputAgain
-			pwdNotSame:'两次密码不一致！',//Eway.locale.personal.pwdNotSame
-			rememberPwd:'单击确定即可修改密码，请牢记新密码！',//Eway.locale.personal.rememberPwd
-			pwdSameNoChange:'输入的新密码与旧密码相同,不可修改.',//Eway.locale.personal.pwdSameNoChange
-			reOperate:'无法修改密码,请重新操作.',//Eway.locale.personal.reOperate
+			baseInfo:'Basic info',//Eway.locale.personal.baseInfo 基本信息
+			accountNum:'Account',//Eway.locale.personal.accountNum 账号
+			personalInfo:'Personal info',//Eway.locale.personal.personalInfo 个人信息
+			changePwd:'Change passwd',//Eway.locale.personal.changePwd 修改密码
+			nowLogin:'Current Account',//Eway.locale.personal.nowLogin 当前登录账号
+			inputOldPwd:'Input initial passwd',//Eway.locale.personal.inputOldPwd 输入原始密码
+			inputNewPwd:'Input new passwd',//Eway.locale.personal.inputNewPwd 输入新密码
+			inputVali:'Just for 8-20 characters ‘a-z’ or ‘A-Z’、number‘0-9’、minussign‘-’、underline‘_’',//Eway.locale.personal.inputVali 只能输入8到20位字母‘a-z’或‘A-Z’、数字‘0-9’、特殊字符！
+			inputAgain:'Input again',//Eway.locale.personal.inputAgain 再次输入新密码
+			pwdNotSame:'Passwds not same',//Eway.locale.personal.pwdNotSame 两次密码不一致！
+			rememberPwd:'Click confirm to update passwd ,please remember it',//Eway.locale.personal.rememberPwd 单击确定即可修改密码，请牢记新密码！
+			pwdSameNoChange:'New passwd is same with the old one,can not commit',//Eway.locale.personal.pwdSameNoChange 输入的新密码与旧密码相同,不可修改.
+			reOperate:'Can not modify passwd,please try again',//Eway.locale.personal.reOperate 无法修改密码,请重新操作.
 		},
 		
 		//**********************************************************/
 		atmLog:{
-			dayBackup:'当日备份结果',//Eway.locale.atmLog.dayBackup
-			whole:'所有',//Eway.locale.atmLog.whole
-			execute:'执行中',//Eway.locale.atmLog.execute
-			unKnownFail:'未知原因失败',//Eway.locale.atmLog.unKnownFail
-			logDate:'日志日期',//Eway.locale.atmLog.logDate
-			backupResult:'备份结果',//Eway.locale.atmLog.backupResult
-			checkFailInfo:'查看备份失败详情',//Eway.locale.atmLog.checkFailInfo
-			checkSucInfo:'查看备份成功详情',//Eway.locale.atmLog.checkSucInfo
-			backupSucAmount:'备份成功台数',//Eway.locale.atmLog.backupSucAmount
-			backupFailAmount:'备份失败台数',//Eway.locale.atmLog.backupFailAmount
-			backupAllAmount:'总备份台数',//Eway.locale.atmLog.backupAllAmount
-			logBackupSta:'日志备份统计',//Eway.locale.atmLog.logBackupSta
-			dailyBackup:'每日备份任务',//Eway.locale.atmLog.dailyBackup
-			backupDate:'备份日期',//Eway.locale.atmLog.backupDate
-			dayBackupResult:'当日备份结果',//Eway.locale.atmLog.dayBackupResult
-			backupProcess:'正在备份',//Eway.locale.atmLog.backupProcess
-			backupSuccess:'备份成功',//Eway.locale.atmLog.backupSuccess
-			backupError:'备份错误',//Eway.locale.atmLog.backupError
-			logDevAccount:'日志设备数量累计',//Eway.locale.atmLog.logDevAccount
-			reform:'重做',//Eway.locale.atmLog.reform
-			busLogAnalysis:'业务日志分析',//Eway.locale.atmLog.busLogAnalysis
-			selectAnalysis:'请选择需要分析的日志文件，分析的结果将以Excel表格文件导出',//Eway.locale.atmLog.selectAnalysis
-			selectLog:'选择日志',//Eway.locale.atmLog.selectLog
-			pleaseDownload:'请下载',//Eway.locale.atmLog.pleaseDownload
-			appLogDownload:'应用日志下载',//Eway.locale.atmLog.appLogDownload
-			lastBackupTime:'最后一次备份时间',//Eway.locale.atmLog.lastBackupTime
-			noBegin:'未开始',//Eway.locale.atmLog.noBegin
-			noLog:'无日志',//Eway.locale.atmLog.noLog
-			connectFail:'连接失败',//Eway.locale.atmLog.connectFail
-			fileSize:'文件大小',//Eway.locale.atmLog.fileSize
-			searchIllegal:'查询项中存在不合法的输入,不能导出.'//Eway.locale.atmLog.searchIllegal
+			dayBackup:'Back-up log result today',//Eway.locale.atmLog.dayBackup 当日备份结果
+			whole:'All',//Eway.locale.atmLog.whole 所有
+			execute:'Executing',//Eway.locale.atmLog.execute 执行中
+			unKnownFail:'Failed with unknown reason',//Eway.locale.atmLog.unKnownFail 未知原因失败
+			logDate:'Log date',//Eway.locale.atmLog.logDate 日志日期
+			backupResult:'Back-up result',//Eway.locale.atmLog.backupResult 备份结果
+			checkFailInfo:'Check detail of back-up failed',//Eway.locale.atmLog.checkFailInfo 查看备份失败详情
+			checkSucInfo:'Check detail of back-up successful',//Eway.locale.atmLog.checkSucInfo 查看备份成功详情
+			backupSucAmount:'Count of machine back-up successful',//Eway.locale.atmLog.backupSucAmount 备份成功台数
+			backupFailAmount:'Count of machine back-up failed',//Eway.locale.atmLog.backupFailAmount 备份失败台数
+			backupAllAmount:'Total count',//Eway.locale.atmLog.backupAllAmount 总备份台数
+			logBackupSta:'Back-up log total',//Eway.locale.atmLog.logBackupSta 日志备份统计
+			dailyBackup:'Back-up task everyday',//Eway.locale.atmLog.dailyBackup 每日备份任务
+			backupDate:'Back-up date',//Eway.locale.atmLog.backupDate 备份日期
+			dayBackupResult:'Back-up result today',//Eway.locale.atmLog.dayBackupResult 当日备份结果
+			backupProcess:'Backing-up',//Eway.locale.atmLog.backupProcess 正在备份
+			backupSuccess:'Back-up successful',//Eway.locale.atmLog.backupSuccess 备份成功
+			backupError:'Back-up error',//Eway.locale.atmLog.backupError 备份错误
+			logDevAccount:'Log back-up machine count total',//Eway.locale.atmLog.logDevAccount 日志设备数量累计
+			reform:'Reform',//Eway.locale.atmLog.reform 重做
+			busLogAnalysis:'Business log analysis',//Eway.locale.atmLog.busLogAnalysis 业务日志分析
+			selectAnalysis:'Please choose the log file which you want to analyse, the result will show in Excel file',//Eway.locale.atmLog.selectAnalysis 请选择需要分析的日志文件，分析的结果将以Excel表格文件导出
+			selectLog:'Choose log',//Eway.locale.atmLog.selectLog 选择日志
+			pleaseDownload:'Please download',//Eway.locale.atmLog.pleaseDownload 请下载
+			appLogDownload:'Download app logs',//Eway.locale.atmLog.appLogDownload 应用日志下载
+			lastBackupTime:'Last back-up time',//Eway.locale.atmLog.lastBackupTime 最后一次备份时间
+			noBegin:'noBegin',//Eway.locale.atmLog.noBegin 未开始
+			noLog:'No log',//Eway.locale.atmLog.noLog 无日志
+			connectFail:'Connect fail',//Eway.locale.atmLog.connectFail 连接失败
+			fileSize:'File size',//Eway.locale.atmLog.fileSize 文件大小
+			searchIllegal:'Query option has illegal input,can not export.'//Eway.locale.atmLog.searchIllegal 查询项中存在不合法的输入,不能导出.
 		},
 		//**********************************************************/
 		system:{
-			sysRegist:'系统注册',//Eway.locale.system.sysRegist
-			registCode:'注册码',//Eway.locale.system.registCode
-			startDate:'开始时间',//Eway.locale.system.startDate
-			endDate:'到期时间',//Eway.locale.system.endDate
-			registType:'注册类型',//Eway.locale.system.registType
-			serialNum:'序列号',//Eway.locale.system.serialNum
-			getSerialNum:'正在获取序列号......',//Eway.locale.system.getSerialNum
-			checkCode:'校验码',//Eway.locale.system.checkCode
-			tryOut:'试用',//Eway.locale.system.tryOut
-			noLimit:'没有限制',//Eway.locale.system.noLimit
-			getSerialNumFail:'序列号获取失败',//Eway.locale.system.getSerialNumFail
-			registSuc:'注册成功',//Eway.locale.system.registSuc
-			registFail:'注册失败',//Eway.locale.system.registFail
-			appearInnerFalse:'出现内部错误',//Eway.locale.system.appearInnerFalse
-			regist:'注册',//Eway.locale.system.regist
-			aboutSystem:'关于系统',//Eway.locale.system.aboutSystem
-			softwareName:'软件名称',//Eway.locale.system.softwareName
-			ATMV:'金融自助设备集中监控系统',//Eway.locale.system.ATMV
-			softwareVersion:'软件版本',//Eway.locale.system.softwareVersion
-			innerVersion:'内部版本号',//Eway.locale.system.innerVersion
-			copyRight:'版权信息：&copy;深圳市怡化电脑有限公司 版权所有',//Eway.locale.system.copyRight
-			introduction:'系统简介：',//Eway.locale.system.introduction
-			introductionA:'本系统是监控系统的基础功能有ATM信息管理、',//Eway.locale.system.introductionA
+			sysRegist:'SystemRegist',//Eway.locale.system.sysRegist 系统注册
+			registCode:'Regist code',//Eway.locale.system.registCode 注册码
+			startDate:'Start date',//Eway.locale.system.startDate 开始时间
+			endDate:'End date',//Eway.locale.system.endDate 到期时间
+			registType:'Regist type',//Eway.locale.system.registType 注册类型
+			serialNum:'SerialNo',//Eway.locale.system.serialNum 序列号
+			getSerialNum:'Getting SerialNo......',//Eway.locale.system.getSerialNum 正在获取序列号......
+			checkCode:'Check code',//Eway.locale.system.checkCode 校验码
+			tryOut:'Tryout',//Eway.locale.system.tryOut 试用
+			noLimit:'Limitless',//Eway.locale.system.noLimit 没有限制
+			getSerialNumFail:'Get SerialNo failed',//Eway.locale.system.getSerialNumFail 序列号获取失败
+			registSuc:'Regist successful',//Eway.locale.system.registSuc 注册成功
+			registFail:'Regist failed',//Eway.locale.system.registFail 注册失败
+			appearInnerFalse:'System error',//Eway.locale.system.appearInnerFalse 出现内部错误
+			regist:'Regist',//Eway.locale.system.regist 注册
+			aboutSystem:'About',//Eway.locale.system.aboutSystem 关于系统
+			softwareName:'Name',//Eway.locale.system.softwareName 软件名称
+			ATMV:'Self-service machine monitor system(ATMV)',//Eway.locale.system.ATMV 金融自助设备集中监控系统
+			softwareVersion:'Software-Version',//Eway.locale.system.softwareVersion 软件版本
+			innerVersion:'InnerVersion',//Eway.locale.system.innerVersion 内部版本号
+			copyRight:'CopyRight：&copy;YIHUA ',//Eway.locale.system.copyRight 版权信息
+			introduction:'introduction:',//Eway.locale.system.introduction 系统简介
+			introductionA:'This system is used for monitor ATM-basic-info,',//Eway.locale.system.introductionA 本系统是监控系统的基础功能有ATM信息管理
 			introductionB:'自动化版本分发管理、 ATM设备监控等功能。通过这些功能，各大银行可以集中管理ATM设备信息  监视 远程的ATM，对远程ATM机器上的软件升',//Eway.locale.system.introductionB
 			introductionC:'级和软件维护，方便了各大银 行对自助设备进行高效的管理和维护。',//Eway.locale.system.introductionC
-			guideUsers:'本手册指导用户操作本系统，更快的掌握系统的各项功能。',//Eway.locale.system.guideUsers
-			systemHelp:'系统帮助',//Eway.locale.system.systemHelp
-			helpName:'名称',//Eway.locale.system.helpName
-			helpExpain:'说明',//Eway.locale.system.helpExpain
-			helpDownload:'下载',//Eway.locale.system.helpDownload
-			clickDownload:'单击此处即可下载该文档',//Eway.locale.system.clickDownload 
+			guideUsers:'This handbook help user to use this system',//Eway.locale.system.guideUsers 本手册指导用户操作本系统，更快的掌握系统的各项功能。
+			systemHelp:'Help',//Eway.locale.system.systemHelp 系统帮助
+			helpName:'Name',//Eway.locale.system.helpName 名称
+			helpExpain:'Instructions',//Eway.locale.system.helpExpain 说明
+			helpDownload:'Download',//Eway.locale.system.helpDownload 下载
+			clickDownload:'Click to download',//Eway.locale.system.clickDownload 单击此处即可下载该文档
 		},
 		thread:{
 			
