@@ -22,14 +22,14 @@ Ext.define('Eway.view.person.bankOrg.View', {
 				width : 200,
 				minWidth:200,
 				maxWidth:300,
-				border : false,
-				padding : '10 0 10 0',
+				border : true,
+				//padding : '10 0 10 0',
 				rootVisible : true,
 				lines : true,
 				store : store,
-				collapsible: true,
-             	collapseMode: 'mini',
-             	split:true
+				collapsible: false,
+             	//collapseMode: 'mini',
+             	split:false
 			}, {
 				region: 'center',
 				xtype: 'panel',
