@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.fault.service;
+package com.yihuacomputer.fish.fault.service.db;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -319,7 +319,8 @@ public class CaseFaultService implements ICaseFaultService {
 			return;
 		}
 		for(ICaseFault caseFault:openCaseList){
-			if(caseFault.getDevMod().equals(devMod) && caseFault.getFaultClassify().getId().equals(modType)){
+			if(caseFault.getDevMod().equals(devMod)
+					&& caseFault.getFaultClassify().getId().equals(modType)){
 				this.closeCaseFault(caseFault);
 			}
 		}

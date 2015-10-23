@@ -63,6 +63,12 @@
     padding: 0 5px;
     max-width: 100%;
 }
+/* .x-btn-inner.x-btn-inner-default-toolbar-small{ */
+/*     font: 300 12px/16px helvetica,arial,verdana,sans-serif; */
+/*     color: #000; */
+/*     padding: 0 5px; */
+/*     max-width: 100%; */
+/* } */
 .x-btn-icon-el-default-toolbar-small.x-btn-glyph {
     font-size: 16px;
     line-height: 16px;

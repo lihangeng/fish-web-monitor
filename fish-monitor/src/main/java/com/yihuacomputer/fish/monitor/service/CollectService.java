@@ -192,7 +192,7 @@ public class CollectService implements ICollectService , IDeviceListener{
         /** 处理模块故障相关 */
         if (deviceCaseService != null) {
         	try{
-        		deviceCaseService.handleModStatus(xfsStatus);
+        		deviceCaseService.handleModStatus(xfsStatus,histXfsStatus);
         	}catch(Exception e){
 //        		logger.error(String.format("处理设备故障工单异常[%s]", e));
         		logger.error(String.format("handle device caseFault exception[%s]", e));
@@ -573,10 +573,10 @@ public class CollectService implements ICollectService , IDeviceListener{
 
 		counterFeitMoney.setTerminalId(terminalId);
 		counterFeitMoneyService.save(counterFeitMoney);
-		
+
 		List<CounterFeitMoneyForms> result = new ArrayList<CounterFeitMoneyForms>();
         List<INoteItem> noteResultList = counterFeitMoney.getNoteItem();
-		
+
 		for(INoteItem noteItem : noteResultList){
 			CounterFeitMoneyForms forms = new CounterFeitMoneyForms();
 			forms.setTermId(counterFeitMoney.getTerminalId());
@@ -593,7 +593,7 @@ public class CollectService implements ICollectService , IDeviceListener{
 			forms.setCounterFeitMoney(counterFeitMoney.getCounterFeitMoney());
 			forms.setSerial(noteItem.getSerial());
 			forms.setNoteCode(noteItem.getNoteCode());
-			
+
 			IDevice device = deviceService.get(terminalId);
 			forms.setOrgName(device.getOrganization().getName());
 			result.add(forms);
@@ -612,7 +612,7 @@ public class CollectService implements ICollectService , IDeviceListener{
 
 		uncommonTrans.setTerminalId(terminalId);
 		uncommonTransService.save(uncommonTrans);
-		
+
 	}
 
 }

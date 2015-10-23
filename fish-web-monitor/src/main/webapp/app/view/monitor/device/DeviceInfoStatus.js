@@ -254,7 +254,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 				items : [ {
 					layout : 'column',
 					xtype:'toolbar',
-					defaultType : 'transparentbutton',
+//					defaultType : 'transparentbutton',
 					minHeight : 90,
 					items : [ {
 						columnWidth : .24,
@@ -343,11 +343,11 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					}, {
 						columnWidth : .24,
 						name : 'remoteLookAction',
-						value : Eway.locale.monitor.devMonitor.remote.remoteLook
+						text : Eway.locale.monitor.devMonitor.remote.remoteLook
 					}, {
 						columnWidth : .24,
 						name : 'remoteCheckATMAction',
-						value : Eway.locale.monitor.devMonitor.remote.remoteCheckATM,
+						text : Eway.locale.monitor.devMonitor.remote.remoteCheckATM,
 						code : 'remoteCheckATM',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender

@@ -38,9 +38,9 @@ public class DefaultDeviceCaseService  implements IDeviceCaseService{
 	}
 
 	@Override
-	public void handleModStatus(IXfsStatus xfsStatus) {
+	public void handleModStatus(IXfsStatus xfsStatus,IXfsStatus hisXfsStatus) {
 		/*处理故障*/
-		hwFaultService.handleModFualt(xfsStatus);
+		hwFaultService.handleModFualt(xfsStatus,hisXfsStatus);
 	}
 
 	@Override

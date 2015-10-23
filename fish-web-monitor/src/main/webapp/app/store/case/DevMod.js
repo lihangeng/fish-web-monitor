@@ -1,7 +1,7 @@
 
 Ext.define('Eway.store.case.DevMod', {
 	extend: 'Ext.data.Store',
-	
+
 	model: 'Eway.model.Dict',
 	
 	data: [{value:'IDC', display:Eway.locale.cases.caseFault.cardReaderModule}, 

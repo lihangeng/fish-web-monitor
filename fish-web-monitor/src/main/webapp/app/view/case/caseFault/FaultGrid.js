@@ -2,11 +2,11 @@
 Ext.define('Eway.view.case.caseFault.FaultGrid', {
 	alias: 'widget.caseFault_faultGrid',
 	extend: 'Eway.view.base.Grid',
-	
+
 	border : false,
-	
+
 	requires: ['Eway.view.case.caseFault.CaseNotifyWin'],
-	
+
 	initComponent: function() {
 		var store = Ext.create('Eway.store.case.Fault');
 		Ext.apply(this,{
@@ -58,6 +58,15 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 					else if(value=="SIU"){
 						return Eway.locale.cases.caseFault.sensoModule;
 					}
+					else if(value=="ISC"){
+						return "身份证扫描仪模块";
+					}
+					else if(value=="ICC"){
+						return "发卡器模块";
+					}
+					else if(value=="FGP"){
+						return "指纹仪模块";
+					}
 				}
 			}, {
 				header : Eway.locale.cases.caseFault.faultClassify,
@@ -108,7 +117,7 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 					icon : 'resources/images/icon_email.gif',
 					tooltip: Eway.locale.cases.caseFault.checkDetails,
 					getClass : function(value,metadata,record,ronwIndex,colindex,store){
-						var result = record.get('id'); 
+						var result = record.get('id');
 						if(result != null){
 							return 'changeCursor';
 						}
@@ -120,7 +129,7 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 						var aboutInfoWin = Ext.create('Eway.view.case.caseFault.CaseNotifyWin');
 						aboutInfoWin.show();
 						var record = grid.getStore().getAt(rowIndex);
-						var faultId = record.get('id'); 
+						var faultId = record.get('id');
 						var store = aboutInfoWin.down("caseFault_faultNotifyGrid").getStore();
 						store.cleanUrlParam();
 						store.setBaseParam('faultId',faultId);
@@ -141,7 +150,7 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 				displayInfo : true
 			})
 		});
-		
+
 		this.callParent(arguments);
 	}
 });
