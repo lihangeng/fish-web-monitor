@@ -87,7 +87,7 @@
 	  	
 		if(Ext.String.startsWith(Ext.global.navigator.language,"zh")){
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-zh_CN.js");
-			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-en.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN.js");
 		}else{
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-en.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-en.js");
