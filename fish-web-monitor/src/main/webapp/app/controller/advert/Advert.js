@@ -407,9 +407,11 @@ Ext.define('Eway.controller.advert.Advert', {
 	//单击选择设备列表页面的查询按钮
 	onQueryDownDevice : function(button){
 		var grid = button.up("version_download_multiselectableDeviceGrid");
-		var form = grid.up('window').down('form').getForm();
-		this.setSearchFilter(grid,form);
-		grid.getStore().loadPage(1);
+		if(grid.down("textfield[name='terminalId']").isValid()&&grid.down("textfield[name='ip']").isValid()){
+			var form = grid.up('window').down('form').getForm();
+			this.setSearchFilter(grid,form);
+			grid.getStore().loadPage(1);
+		}
 	},
 
 	//下发管理页面刷新可选择设备时
