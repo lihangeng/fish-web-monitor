@@ -39,10 +39,10 @@ public class HttpStatusClientTest {
 
 //			String data = "{\"termId\":\"0001\",\"runStatus\":\"Unknown\",\"boxStatus\":\"Unknown\",\"modStatus\":\"Healthy\",\"idc\":\"Healthy\",\"idcCode\":\"00300000000\",\"idcHwCode\":\"0000000000\",\"idcReatianCard\":0,\"jpr\":\"Unknown\",\"jprHwCode\":\"unknow\",\"rpr\":\"Healthy\",\"rprCode\":\"0103300000\",\"rprHwCode\":\"0000000000\",\"cdm\":\"Unknown\",\"cdmHwCode\":\"unknow\",\"cim\":\"Unknown\",\"cimHwCode\":\"unknow\",\"pin\":\"Unknown\",\"pinHwCode\":\"unknow\",\"ttu\":\"Unknown\",\"ttuHwCode\":\"unknow\",\"siu\":\"Unknown\",\"boxInitCount\":0,\"boxCurrentCount\":0,\"icc\":\"Unknown\",\"iccHwCode\":\"\",\"iccReatianCard\":0,\"iccCurrentCount\":0,\"isc\":\"Healthy\",\"iscCode\":\"00300000000\",\"iscHwCode\":\"0000000000\",\"fgp\":\"Unknown\",\"fgpHwCode\":\"\"}";
 
-			status.setTermId("0008");
-			status.setModStatus(DeviceStatus.Fatal);
-			status.setBoxStatus(BoxStatus.Fatal);
-			status.setRunStatus(RunStatus.Healthy);
+			status.setTermId("0001");
+			status.setModStatus(DeviceStatus.Healthy);
+			status.setBoxStatus(BoxStatus.Low);
+			status.setRunStatus(RunStatus.StopAtmp);
 			status.setBoxInitCount(10300);
 			status.setIdc(DeviceStatus.Healthy);
 			status.setIdcCode("00300000000");

@@ -21,6 +21,7 @@ import com.yihuacomputer.fish.api.monitor.filter.IFilterService;
 import com.yihuacomputer.fish.api.monitor.hardware.IHardwareService;
 import com.yihuacomputer.fish.api.monitor.software.IRuntimeParamService;
 import com.yihuacomputer.fish.api.monitor.software.ISoftwareService;
+import com.yihuacomputer.fish.api.monitor.xfs.IXfsChartService;
 //import com.yihuacomputer.fish.api.monitor.xfs.IStateCodeService;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
 import com.yihuacomputer.fish.monitor.service.BlackListCardService;
@@ -43,6 +44,7 @@ import com.yihuacomputer.fish.monitor.service.SoftwareService;
 import com.yihuacomputer.fish.monitor.service.TransTypeService;
 import com.yihuacomputer.fish.monitor.service.TransactionService;
 import com.yihuacomputer.fish.monitor.service.UncommonTransService;
+import com.yihuacomputer.fish.monitor.service.XfsChartService;
 import com.yihuacomputer.fish.monitor.service.XfsService;
 
 @Configuration
@@ -151,5 +153,11 @@ public class MonitorModule {
 	@Bean
 	public IUncommonTransService uncommonTransService() {
 		return new UncommonTransService();
+	}
+	
+
+	@Bean
+	public IXfsChartService xfsChartService() {
+		return new XfsChartService();
 	}
 }
