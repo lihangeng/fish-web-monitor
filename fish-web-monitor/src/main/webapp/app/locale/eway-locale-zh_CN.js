@@ -1050,7 +1050,7 @@ Ext.override(Eway,{
 					boxStatus:'钞箱状态',//Eway.locale.monitor.devMonitor.comboxStatus.boxStatus
 					netStatus:'网络状态'//Eway.locale.monitor.devMonitor.comboxStatus.netStatus
 				},
-				monitorState:'监控状态',//Eway.locale.monitor.devMonitor.monitorState
+				monitorState:'订阅条件',//Eway.locale.monitor.devMonitor.monitorState
 				showWay:'展示方式',//Eway.locale.monitor.devMonitor.showWay
 				comboxShowWay:{
 					matrixPattern:'矩形方式',//Eway.locale.monitor.devMonitor.comboxShowWay.matrixPattern
