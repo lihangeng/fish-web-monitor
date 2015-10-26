@@ -45,13 +45,13 @@ public class Param implements IParam,Serializable {
     /**
      * 参数信息描述
      */
-    @Column(name = "DESCIPTION",length = 60)
+    @Column(name = "DESCIPTION",length = 128)
 	private String description;
     
     /**
-     * 参数类别:0-客户端参数，1-服务端参数，2-其他参数
+     * 参数类型
      */ 
-    @Column(name = "PARAM_TYPE",length = 1)
+    @Column(name = "PARAM_TYPE",length = 128)
 	private String paramType;
 	
 	public String getParamType() {

@@ -9,14 +9,11 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 	autoFit:true,
 	
 	initComponent: function() {
-		var store1 = Ext.create('Eway.store.machine.param.Param');
-		store1.loadPage(1);
 		var store = Ext.create('Eway.store.machine.param.Param',{
-	        model: 'Eway.model.machine.param.Param',
-	        store1: store1,
-	        sorters: {property: 'paramKey', direction: 'ASC'},
+			sorters: {property: 'paramKey', direction: 'ASC'},
 	        groupField: 'paramType'
 		});
+		store.loadPage(1);
 
 	    var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
 	        clicksToEdit: 1
