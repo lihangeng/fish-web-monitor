@@ -1782,10 +1782,11 @@ Ext.override(Eway,{
 			dailyFaultPic:'日均故障趋势图',//Eway.locale.index.dailyFaultPic
 			faultAmount:' 产生的故障数量: ',//Eway.locale.index.faultAmount
 			devStatusDisPic:'设备状态分布图',//Eway.locale.index.devStatusDisPic
-			normalDev:'正常设备',//Eway.locale.index.normalDev
-			unknownDev:'未知设备',//Eway.locale.index.unknownDev
-			exceptionDev:'异常设备',//Eway.locale.index.exceptionDev
-			amount:'台',//Eway.locale.index.amount
+			normalDev:'1.0.0.0',//Eway.locale.index.normalDev
+			unknownDev:'1.3.2.0',//Eway.locale.index.unknownDev
+			exceptionDev:'2.0.0.0',//Eway.locale.index.exceptionDev
+			amount:'台设备',//Eway.locale.index.amount
+			versionDistributePie:'版本分布图'//Eway.locale.index.versionDistributePie
 		},
 		//**********************************************************/
 		report:{
