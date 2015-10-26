@@ -49,4 +49,12 @@ public interface IParam {
 	public void setId(long id);
 	
 	public long getId();
+	
+	
+	/**
+     * 参数类别:0-客户端参数，1-服务端参数，2-其他参数
+     */
+	public String getParamType();
+
+	public void setParamType(String paramType) ;
 }

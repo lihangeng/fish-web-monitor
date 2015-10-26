@@ -9,9 +9,51 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 	autoFit:true,
 	
 	initComponent: function() {
-		var store = Ext.create('Eway.store.machine.param.Param');
-		store.loadPage(1);
+		var store1 = Ext.create('Eway.store.machine.param.Param');
+		store1.loadPage(1);
+		var store = Ext.create('Eway.store.machine.param.Param',{
+	        model: 'Eway.model.machine.param.Param',
+	        store1: store1,
+	        sorters: {property: 'paramKey', direction: 'ASC'},
+	        groupField: 'paramType'
+		});
+
+	    var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
+	        clicksToEdit: 1
+	    });
 		Ext.apply(this,{
+	        width: 840,
+	        height: 450,
+	        frame: true,
+//	        title: 'Sponsored Projects',
+	        iconCls: 'icon-grid',
+	        renderTo: document.body,
+	        store: store,
+	        plugins: [cellEditing],
+//	        dockedItems: [{
+//	            dock: 'top',
+//	            xtype: 'toolbar',
+//	            items: [{
+//	                tooltip: 'Toggle the visibility of the summary row',
+//	                text: 'Toggle Summary',
+//	                enableToggle: true,
+//	                pressed: true,
+//	                handler: function() {
+//	                    grid.getView().getFeature('group').toggleSummaryRow();
+//	                }
+//	            }]
+//	        }],
+	        
+	        
+	        features: [{
+	            id: 'group',
+	            ftype: 'groupingsummary',
+	            groupHeaderTpl: '{name}',
+	            hideGroupedHeader: true,
+	            enableGroupingMenu: false
+	        }],
+	        
+	        
 			initRegion : true,
 			store : store,
 			tbar: ['->',{
@@ -32,29 +74,62 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : Eway.locale.machine.param.paramKey,
-				dataIndex : 'paramKey',
-				width : 150
-			}, {
-				header : Eway.locale.machine.param.paramValue,
-				dataIndex : 'paramValue',
-				width : 250
-			},{
-				header: Eway.locale.machine.param.classify,
-				dataIndex: 'classify',
-				width : 150,
-				renderer: function(value){
+	            text: '参数类型',
+	            flex: 1,
+	            tdCls: 'paramKey',
+	            sortable: true,
+	            dataIndex: 'paramKey',
+	            hideable: false,
+	            summaryType: 'count',
+	            summaryRenderer: function(value, summaryData, dataIndex) {
+	                return ((value === 0 || value > 1) ? '(' + value + ' Params)' : '(1 Param)');
+	            }
+	        }, {
+	            header: 'paramType',
+	            width: 180,
+	            sortable: true,
+	            dataIndex: 'paramType',
+	            renderer: function(value){
 					if(value == 0){
 						return Eway.locale.machine.param.comboxClassify.unableUpdate;
 					}else if(value == 1){
 						return Eway.locale.machine.param.comboxClassify.ableUpdate;
 					}
 				}
-			},{
-				header : Eway.locale.machine.param.description,
-				dataIndex : 'description',
-				flex :1
-			}],
+	        }, {
+	            header: '是否可以修改',
+	            width: 136,
+	            sortable: true,
+	            dataIndex: 'classify',
+	            renderer: function(value){
+					if(value == 0){
+						return Eway.locale.machine.param.comboxClassify.unableUpdate;
+					}else if(value == 1){
+						return Eway.locale.machine.param.comboxClassify.ableUpdate;
+					}
+				}
+	            
+	        }
+	        , {
+	            header: '参数',
+	            width: 136,
+	            sortable: true,
+	            dataIndex: 'paramKey'
+	        }
+	        
+	        , {
+	            header: '参数值',
+	            width: 100,
+	            sortable: true,
+	            dataIndex: 'paramValue',
+	        }
+	        , {
+	            header: '备注',
+	            width: 100,
+	            sortable: true,
+	            dataIndex: 'description',
+	        }
+	        ],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,
 				displayInfo : true

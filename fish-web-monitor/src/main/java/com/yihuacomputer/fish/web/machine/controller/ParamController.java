@@ -1,6 +1,8 @@
 package com.yihuacomputer.fish.web.machine.controller;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +50,7 @@ public class ParamController {
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("total", pageResult.getTotal());
 		logger.info("param size:" + pageResult.getTotal());
-		result.addAttribute("data", ParamForm.convert(pageResult.list()));
+		result.addAttribute("data", convert(pageResult.list()));
 		return result;
 	}
 
@@ -116,5 +118,24 @@ public class ParamController {
 	private boolean isNotFilterName(String name) {
 		return "page".equals(name) || "start".equals(name)
 				|| "limit".equals(name) || "_dc".equals(name);
+	}
+	
+	
+	private  List<ParamForm> convert(List<IParam> list) {
+		List<ParamForm> result = new ArrayList<ParamForm>();
+		String type = "";
+		for (IParam item : list) {
+			type = item.getParamType();
+			if(type.equals("0")){
+				type = messageSource.getMessage("param.atmvcType", null, FishCfg.locale);
+			}else if(type.equals("1")){
+				type = messageSource.getMessage("param.atmvsType", null, FishCfg.locale);
+			}else{
+				type = messageSource.getMessage("param.otherType", null, FishCfg.locale);
+			}
+			item.setParamType(type);
+			result.add(new ParamForm(item));
+		}
+		return result;
 	}
 }
