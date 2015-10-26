@@ -18,47 +18,39 @@ Ext.define('Eway.view.monitor.charts.View', {
     
 	initComponent: function() {
 		Ext.apply(this, {
-		    title: Eway.locale.index.indexPage,
+		    title: '监控总览',
 		    items:[{
+		    	title:'概况',
 		    	xtype:'pie-donut',
 	            angleField:'displayName',
 	            labelField:'numberInfo',
-	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsNetSummary")
+	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsSummary")
 		    },{
-		    	xtype:'pie-donut',
-	            angleField:'displayName',
-	            labelField:'numberInfo',
-	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsModSummary")
-		    },{
-		    	xtype:'pie-donut',
-	            angleField:'displayName',
-	            labelField:'numberInfo',
-	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsBoxSummary")
-		    },{
+		    	title:'Run概况',
 		    	xtype:'pie-donut',
 	            angleField:'displayName',
 	            labelField:'numberInfo',
 	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsRunSummary")
 		    },{
+		    	title:'Mod概况',
 		    	xtype:'pie-donut',
 	            angleField:'displayName',
 	            labelField:'numberInfo',
-	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsSummary")
+	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsModSummary")
+		    },{
+		    	title:'Box概况',
+		    	xtype:'pie-donut',
+	            angleField:'displayName',
+	            labelField:'numberInfo',
+	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsBoxSummary")
+		    },{
+		    	title:'网络概况',
+		    	xtype:'pie-donut',
+	            angleField:'displayName',
+	            labelField:'numberInfo',
+	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsNetSummary")
 		    }]
-//		,
-//		    listeners:{
-//		    	activate:function(_this,eOpt){
-//		    		_this.removeAll();
-//		    		var pieBasic = Ext.create("Eway.view.monitor.charts.DonutCharts",{angleField:'displayName',labelField:'numberInfo'});
-//		    		var pieBasic1 = Ext.create("Eway.view.index.PieBasic");
-//		    		var LineBasic = Ext.create("Eway.view.index.LineBasic");
-//		    		var LineBasic1 = Ext.create("Eway.view.index.LineBasic");
-//		    		_this.add(pieBasic);
-//		    		_this.add(LineBasic);
-//		    		_this.add(pieBasic1);
-//		    		_this.add(LineBasic1);
-//		    	}
-//		    }
+
 		});
 
 		this.callParent(arguments);

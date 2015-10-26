@@ -1,7 +1,7 @@
 Ext.define('Eway.view.monitor.charts.DonutCharts', {
     extend: 'Ext.Panel',
     alias: 'widget.pie-donut',
-    width: 650,
+    width: 300,
     config:{
             angleField:'displayName',
             labelField:'numberInfo',
@@ -11,12 +11,17 @@ Ext.define('Eway.view.monitor.charts.DonutCharts', {
         var me = this;
 
         me.myDataStore = this.getStores();
-//        me.myDataStore = Ext.create('Eway.store.monitor.charts.DonutChartsSummary');
 
         me.items = [{
             xtype: 'polar',
             width: '100%',
-            height: 500,
+            plugins: {
+                ptype: 'chartitemevents',
+                moveEvents: true,
+                clickEvents: true,
+                dbClickEvents: true
+            },
+            height: 340,
             store: this.myDataStore,
             insetPadding: 50,
             innerPadding: 20,
@@ -24,25 +29,6 @@ Ext.define('Eway.view.monitor.charts.DonutCharts', {
                 docked: 'right'
             },
             interactions: ['rotate', 'itemhighlight'],
-//            sprites: [{
-//                type: 'text',
-//                text: 'Donut Charts - Basic',
-//                fontSize: 22,
-//                width: 100,
-//                height: 30,
-//                x: 40, // the sprite x position
-//                y: 20  // the sprite y position
-//            }, {
-//                type: 'text',
-//                text: 'Data: IDC Predictions - 2017',
-//                x: 12,
-//                y: 425
-//            }, {
-//                type: 'text',
-//                text: 'Source: Internet',
-//                x: 12,
-//                y: 440
-//            }],
             series: [{
                 type: 'pie',
                 angleField: this.getLabelField(),
@@ -58,6 +44,21 @@ Ext.define('Eway.view.monitor.charts.DonutCharts', {
                     renderer: function(storeItem, item) {
                         this.setHtml(storeItem.get(me.getLabelField()) + ': ' + storeItem.get(me.getAngleField()));
                     }
+                },
+                listeners:{
+                	//点击表格进行查看当前版本详情对应的设备信息
+                	itemclick:function( series, item, event, eOpts ){
+//                		Ext.scroll.Scroller.create({
+//                		    element: 'myElementId'
+//                		});
+                		var win = Ext.create('Eway.view.monitor.charts.MonitorDeviceDetailWindow', {
+                		    title: me.getTitle()+"-"+item.record.get(me.getAngleField())
+                		});
+                		win.show();
+                		var store = win.down("monitor_device_grid").getStore();
+                		store.setBaseParam("args",item.record.get("filterStr"));
+                		store.load();
+                	}
                 }
             }]
         }];

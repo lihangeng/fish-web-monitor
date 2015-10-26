@@ -1779,7 +1779,7 @@ Ext.override(Eway,{
 				boxCurrency:'Currency',//Eway.locale.report.baseReport.boxCurrency 币种
 				boxInitAmt:'InitAmt',//Eway.locale.report.baseReport.boxInitAmt 初始金额
 				lastAmt:'LeftAmt',//Eway.locale.report.baseReport.lastAmt
-				cashAddRep:'Cash detail report',//Eway.locale.report.baseReport.cashAddRep 加钞情况报表
+				cashAddRep:'CashAdd detail report',//Eway.locale.report.baseReport.cashAddRep 加钞情况报表
 				boxBalanceRep:'Cashbox left report',//Eway.locale.report.baseReport.boxBalanceRep 钞箱余额报表
 				sysConfRep:'Hardware report',//Eway.locale.report.baseReport.sysConfRep 系统硬件配置报表
 				devDetailRep:'Device detail report',//Eway.locale.report.baseReport.devDetailRep 设备明细报表
