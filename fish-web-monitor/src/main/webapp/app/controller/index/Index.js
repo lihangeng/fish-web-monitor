@@ -5,16 +5,16 @@ Ext.define('Eway.controller.index.Index', {
 	views: ['index.Index','monitor.charts.View'],
 
 	refs: [{
-//		ref: 'ewayView',
-//		selector: 'appindex',
-//		autoCreate: true,
-//		xtype: 'appindex'
-//	}
-//	{
 		ref: 'ewayView',
 		selector: 'appindex',
 		autoCreate: true,
-		xtype: 'monitor_view'
+		xtype: 'appindex'
+//	}
+//	{
+//		ref: 'ewayView',
+//		selector: 'appindex',
+//		autoCreate: true,
+//		xtype: 'monitor_view'
 	}],
 
 	init: function() {

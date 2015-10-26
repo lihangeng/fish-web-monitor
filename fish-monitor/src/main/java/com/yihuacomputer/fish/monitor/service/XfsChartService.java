@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.monitor.business.RunStatus;
@@ -27,6 +28,46 @@ public class XfsChartService implements IXfsChartService {
 	
 	@Autowired
 	private IGenericDao dao;
+	
+	public IPageResult<Object> getXfsChartsDetailInfo(int start, int limit,IFilter filter){
+		List<Object> argList = new ArrayList<Object>();
+		Object orgFlagObject = filter.getValue("orgFlag");
+		argList.add("%"+orgFlagObject);
+		argList.add(Status.OPENING);
+		StringBuffer sb = new StringBuffer(DEVICERUNINFOBASICHQL);
+		//监控概况 应用状态 明细
+		if(null!=filter.getFilterEntry("appRunInfo")){
+			sb.append(" and xfs.runStatus=? ");
+			argList.add(filter.getValue("appRunInfo"));
+		}
+		//监控概况 钞箱状态 明细
+		if(null!=filter.getFilterEntry("boxRunInfo")){
+			sb.append(" and xfs.boxStatus=? ");
+			argList.add(filter.getValue("boxRunInfo"));
+		}
+		//监控概况 模块状态 明细
+		if(null!=filter.getFilterEntry("modRunInfo")){
+			sb.append(" and xfs.modStatus=? ");
+			argList.add(filter.getValue("modRunInfo"));
+		}
+		//监控概况 网络状态 明细
+		if(null!=filter.getFilterEntry("netRunInfo")){
+			sb.append(" and xfs.netStatus=? ");
+			argList.add(filter.getValue("netRunInfo"));
+		}
+		//如果以上几种数据都为空，则是状态总览中异常设备信息
+		if(null==filter.getFilterEntry("appRunInfo")&&null==filter.getFilterEntry("boxRunInfo")
+				&&null==filter.getFilterEntry("modRunInfo")&&null==filter.getFilterEntry("netRunInfo")){
+			sb.append(" and (xfs.netStatus <>? or xfs.modStatus<>? or xfs.boxStatus<>? or xfs.runStatus<>? )");
+			argList.add(NetStatus.Healthy);
+			argList.add(DeviceStatus.Healthy);
+			argList.add(BoxStatus.Healthy);
+			argList.add(RunStatus.Healthy);
+		}
+		@SuppressWarnings("unchecked")
+		IPageResult<Object> deviceDetailResult = (IPageResult<Object>) dao.page(start,limit,sb.toString(), argList.toArray());
+		return deviceDetailResult;
+	}
 	
 	
 	public List<Object> getAllDeviceList(IFilter filter){

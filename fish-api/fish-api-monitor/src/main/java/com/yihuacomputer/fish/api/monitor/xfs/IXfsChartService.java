@@ -2,7 +2,10 @@ package com.yihuacomputer.fish.api.monitor.xfs;
 
 import java.util.List;
 
+
+
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.IPageResult;
 
 public interface IXfsChartService {
 
@@ -55,4 +58,10 @@ public interface IXfsChartService {
 	 * @return
 	 */
 	public List<Object> getDeviceNetRunInfo(IFilter filter);
+	/**
+	 * 根据过滤条件判断要显示的设备信息
+	 * @param filter
+	 * @return
+	 */
+	public IPageResult<Object> getXfsChartsDetailInfo(int start, int limit,IFilter filter);
 }
