@@ -19,7 +19,7 @@ import com.yihuacomputer.domain.util.DBType;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IUserLog;
-import com.yihuacomputer.fish.person.service.base.DomainUserLogService;
+import com.yihuacomputer.fish.api.person.IUserLogService;
 import com.yihuacomputer.fish.system.entity.UserLog;
 
 /**
@@ -30,7 +30,7 @@ import com.yihuacomputer.fish.system.entity.UserLog;
  */
 @Service
 @Transactional
-public class UserLogService extends DomainUserLogService {
+public class UserLogService implements IUserLogService {
 
     @Autowired
     private IGenericDao dao;
@@ -41,6 +41,11 @@ public class UserLogService extends DomainUserLogService {
     @Autowired
     private LocalSessionFactoryBean sf;
 
+    @Override
+    public UserLog make() {
+        return new UserLog();
+    }
+    
     @Override
     public UserLog add(IUserLog entity) {
         return dao.save(interface2Entity(entity, false));

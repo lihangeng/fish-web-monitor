@@ -45,9 +45,23 @@ public class Param implements IParam,Serializable {
     /**
      * 参数信息描述
      */
-    @Column(name = "DESCIPTION",length = 60)
+    @Column(name = "DESCIPTION",length = 128)
 	private String description;
+    
+    /**
+     * 参数类型
+     */ 
+    @Column(name = "PARAM_TYPE",length = 128)
+	private String paramType;
 	
+	public String getParamType() {
+		return paramType;
+	}
+
+	public void setParamType(String paramType) {
+		this.paramType = paramType;
+	}
+
 	@Transient
 	private IParamService paramService;
 

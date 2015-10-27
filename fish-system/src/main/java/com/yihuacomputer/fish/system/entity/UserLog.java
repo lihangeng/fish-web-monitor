@@ -12,10 +12,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.person.IUserLog;
-import com.yihuacomputer.fish.person.service.api.IDomainUserLogService;
 
 /**
  * 用户日志信息:（信息实体对应数据库表SM_USER_LOG）
@@ -71,15 +69,7 @@ public class UserLog implements IUserLog,Serializable {
     @Column(name = "OPER_RESULT", nullable = false, length = 10)
     private String operResult;
 
-    @Transient
-    private IDomainUserLogService service;
-
     public UserLog() {
-
-    }
-
-    public UserLog(IDomainUserLogService service) {
-        this.service = service;
     }
 
     @Override
@@ -141,13 +131,4 @@ public class UserLog implements IUserLog,Serializable {
     public void setOperResult(String operResult) {
         this.operResult = operResult;
     }
-
-    public IDomainUserLogService getService() {
-        return this.service;
-    }
-
-    public void setService(IDomainUserLogService service) {
-        this.service = service;
-    }
-
 }

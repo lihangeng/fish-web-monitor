@@ -189,7 +189,10 @@ Ext.define('Eway.controller.Main', {
 			this.activeController('service.MoneyService');
 		}else if(code =="openPlan"){
 			this.activeController('report.openPlan.OpenPlan');
+		}else if(code =="monitorSummaryInfo"){
+			this.activeController('monitor.MonitorSummaryInfo');
 		}
+		
 	},
 
 	//打开“软件管理”下子菜单

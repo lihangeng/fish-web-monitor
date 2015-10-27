@@ -474,11 +474,13 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		var ewayView = this.getEwayView();
 		var numberField = ewayView.down('numberfield[action="number"]');
 
-		if(!Ext.isNumeric(numberField.getValue()) || numberField.getValue()<=0 || numberField.getValue()>1000){
-			numberField.setValue(120);
-		}
-		var orgId = orgField.getValue();
-		var number = numberField.getValue();
+//		if(!Ext.isNumeric(numberField.getValue()) || numberField.getValue()<=0 || numberField.getValue()>1000){
+//			numberField.setValue(120);
+//		}
+//		var orgId = orgField.getValue();
+		var orgId = '';
+//		var number = numberField.getValue();
+		var number = 120;
 		var deviceCode = deviceCodeField.getValue();
 		var params = {
 			number : number

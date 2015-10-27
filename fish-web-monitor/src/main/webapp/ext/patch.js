@@ -184,7 +184,7 @@ Ext.override(Ext.form.field.Picker, {
                 scope: 'this'
     		}
         }
-    },
+    }
 });
 
 Ext.form.field.Picker.override({initEvents:function(){

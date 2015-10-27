@@ -10,5 +10,5 @@ Ext.define('Eway.store.version.ComboVersionType', {
         }
     },
 	pageSize: 100,
-	autoLoad : false		
+	autoLoad : false	
 });

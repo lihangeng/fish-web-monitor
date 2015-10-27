@@ -1,34 +1,20 @@
-Ext.define('Eway.view.index.LineBasic', {
+Ext.define('Eway.view.index.FaultTrendByDay', {
     extend: 'Ext.Panel',
-    xtype: 'lineBasic',
+    xtype: 'faultTrendByDay',
+    requires:['Eway.store.index.FaultTrendByDay'],
 
-
-//    width: 650,
     title :Eway.locale.index.dailyFaultPic,
 
     initComponent: function() {
         var me = this;
-
-        me.myDataStore = Ext.create('Ext.data.JsonStore', {
-            fields: ['month', 'data1' ],
-            data: [
-                { month: '4-10', data1: 20 },
-                { month: '4-11', data1: 20 },
-                { month: '4-12', data1: 19 },
-                { month: '4-13', data1: 18 },
-                { month: '4-14', data1: 18 },
-                { month: '4-15', data1: 17 },
-                { month: '4-16', data1: 16 }
-            ]
-        });
-
-
+        me.myDataStore = Ext.create('Eway.store.index.FaultTrendByDay');
+        me.myDataStore.load();
         me.items = [{
             xtype: 'cartesian',
             width: '100%',
             height: 300,
-            interactions: {
-                type: 'panzoom',
+           interactions: {
+                type: 'itemhighlight',
                 zoomOnPanGesture: false
             },
             store: this.myDataStore,
@@ -37,21 +23,7 @@ Ext.define('Eway.view.index.LineBasic', {
                 left: 40,
                 right: 40
             },
-            sprites: [/*{
-                type: 'text',
-                text: 'Line Charts - Basic Line',
-                fontSize: 22,
-                width: 100,
-                height: 30,
-                x: 40, // the sprite x position
-                y: 20  // the sprite y position
-            },{
-                type: 'text',
-                text: 'Data: Browser Stats 2012',
-                fontSize: 10,
-                x: 12,
-                y: 470
-            },  */{
+            sprites: [{
                 type: 'text',
                 text: Eway.locale.index.dailyFaultPic,
                 fontSize: 10,
@@ -64,13 +36,8 @@ Ext.define('Eway.view.index.LineBasic', {
                 position: 'left',
                 grid: true,
                 minimum: 0,
-                maximum: 24,
+//                maximum: 48,
                 renderer: function (v, layoutContext) {
-                    // Custom renderer overrides the native axis label renderer.
-                    // Since we don't want to do anything fancy with the value
-                    // ourselves except appending a '%' sign, but at the same time
-                    // don't want to loose the formatting done by the native renderer,
-                    // we let the native renderer process the value first.
                     return layoutContext.renderer(v);
                 }
             }, {
@@ -78,6 +45,9 @@ Ext.define('Eway.view.index.LineBasic', {
                 fields: 'month',
                 position: 'bottom',
                 grid: true,
+                renderer: function (v) {
+                    return v.substring(4);
+                },
                 label: {
                     rotate: {
                         degrees: -45
@@ -111,7 +81,7 @@ Ext.define('Eway.view.index.LineBasic', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                        this.setHtml(storeItem.get('month') + Eway.locale.index.faultAmount + storeItem.get('data1') + '%');
+                        this.setHtml(storeItem.get('month') + Eway.locale.index.faultAmount + storeItem.get('data1'));
                     }
                 }
             }]

@@ -9,9 +9,14 @@ Ext.define('Eway.controller.index.Index', {
 		selector: 'appindex',
 		autoCreate: true,
 		xtype: 'appindex'
-	}],
+	},{
+		ref : 'versionDistributePie',
+		selector : 'versionDistributePie'
+	},],
 
 	init: function() {
-		this.control({});
+		this.control({
+			
+		});
 	}
 });

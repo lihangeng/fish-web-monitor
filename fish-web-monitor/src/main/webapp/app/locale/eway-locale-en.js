@@ -1012,7 +1012,7 @@ Ext.override(Eway,{
 				name:'Role name',//Eway.locale.permission.role.name 角色名称
 				type:'Role type',//Eway.locale.permission.role.type 角色类型
 				description:'Role description',//Eway.locale.permission.role.description 角色描述
-				isSysRole:'Is system role or not',//Eway.locale.permission.role.isSysRole 是否是系统内置角色
+				isSysRole:'Is system role',//Eway.locale.permission.role.isSysRole 是否是系统内置角色
 				chooseRight:'Please choose permission of menu',//Eway.locale.permission.role.chooseRight 请选择菜单权限
 				add:'Add role'//Eway.locale.permission.role.add 增加角色
 			},
@@ -1082,11 +1082,11 @@ Ext.override(Eway,{
 					cdm:'Draw module',//Eway.locale.monitor.devMonitor.mod.cdm 取款模块
 					cim:'Deposit module',//Eway.locale.monitor.devMonitor.mod.cim 存款模块
 					siu:'Sensor',//Eway.locale.monitor.devMonitor.mod.siu 传感器
-					rpr:'凭条打印机',//Eway.locale.monitor.devMonitor.mod.rpr 凭条打印机
+					rpr:'Voucher printer',//Eway.locale.monitor.devMonitor.mod.rpr 凭条打印机
 					pin:'Pin keyboard',//Eway.locale.monitor.devMonitor.mod.pin 密码键盘
 					ttu:'Text terminal',//Eway.locale.monitor.devMonitor.mod.ttu 文本终端
 					isc:'I.D.card scanner',//Eway.locale.monitor.devMonitor.mod.isc 身份证扫描仪
-					icc:'发卡器',//Eway.locale.monitor.devMonitor.mod.icc 发卡器
+					icc:'Issue card module',//Eway.locale.monitor.devMonitor.mod.icc 发卡器
 					fgp:'Fingerprints',//Eway.locale.monitor.devMonitor.mod.fgp 指纹仪
 					healthy:'Healthy'//Eway.locale.monitor.devMonitor.mod.healthy 模块正常
 
@@ -1103,7 +1103,7 @@ Ext.override(Eway,{
 					restartWay:'Choose way of reboot',//Eway.locale.monitor.devMonitor.remote.restartWay 请选择重启方式
 					logicOpen:'Open service',//Eway.locale.monitor.devMonitor.remote.logicOpen 开启服务
 					logicClose:'Pause service',//Eway.locale.monitor.devMonitor.remote.logicClose 暂停服务
-					remoteBrowser:'Remote browse',//Eway.locale.monitor.devMonitor.remote.remoteBrowser 远程浏览
+					remoteBrowser:'Browse',//Eway.locale.monitor.devMonitor.remote.remoteBrowser 远程浏览
 					processList:'Check process',//Eway.locale.monitor.devMonitor.remote.processList 查看进程信息
 					screenCamera:'Screen recording',//Eway.locale.monitor.devMonitor.remote.screenCamera 屏幕录制
 					reset:'Force reset',//Eway.locale.monitor.devMonitor.remote.reset 强制复位
@@ -1112,143 +1112,144 @@ Ext.override(Eway,{
 					halfSer:'Half service',//Eway.locale.monitor.devMonitor.remote.halfSer 半功能
 					healthy:'Healthy',//Eway.locale.monitor.devMonitor.remote.healthy 正常服务
 					staff:'Maintenance',//Eway.locale.monitor.devMonitor.remote.staff 维护
-					pFault:'交易前置故障',//Eway.locale.monitor.devMonitor.remote.pFault
+
+					pFault:'ATMP error',//Eway.locale.monitor.devMonitor.remote.pFault 交易前置故障
+
 					stop:'Stop',//Eway.locale.monitor.devMonitor.remote.stop 报停
 					manualStop:'Stop manual',////Eway.locale.monitor.devMonitor.remote.manualStop 人工报停
-					stopFault:'暂停服务-模块故障',//Eway.locale.monitor.devMonitor.remote.stopFault
-					stopCash:'暂停服务-未加钞',//Eway.locale.monitor.devMonitor.remote.stopCash
-					pauseSer:'暂停服务',//Eway.locale.monitor.devMonitor.remote.pauseSer
-					pauseCash:'现金暂停',//Eway.locale.monitor.devMonitor.remote.pauseCash   ----中文不明，我猜的----
-					pauseSerUnknow:'未知原因暂停服务',//Eway.locale.monitor.devMonitor.remote.pauseSerUnknow
-					manaAndstaff:'管机员'//Eway.locale.monitor.devMonitor.remote.manaAndstaff
+					stopFault:'Pause serivce-module error',//Eway.locale.monitor.devMonitor.remote.stopFault 暂停服务
+					stopCash:'Pause serivce-no cash',//Eway.locale.monitor.devMonitor.remote.stopCash 暂停服务-未加钞
+					pauseSer:'Pause serivce',//Eway.locale.monitor.devMonitor.remote.pauseSer 暂停服务
+					pauseCash:'Pause cash',//Eway.locale.monitor.devMonitor.remote.pauseCash   ----中文不明，我猜的----
+					pauseSerUnknow:'Pause serivce-unkown',//Eway.locale.monitor.devMonitor.remote.pauseSerUnknow 未知原因暂停服务
+					manaAndstaff:'Machine manager'//Eway.locale.monitor.devMonitor.remote.manaAndstaff 管机员
 				},
-				atmGroup:'分组',//Eway.locale.monitor.devMonitor.atmGroup
-				solution:'建议解决方案',//Eway.locale.monitor.devMonitor.solution
-				faultDescription:'模块故障描述',//Eway.locale.monitor.devMonitor.faultDescription
-				fastChoose:'快捷选择',//Eway.locale.monitor.devMonitor.fastChoose
-				init:'初始化',//Eway.locale.monitor.devMonitor.init
-				accTrans:'客户交易',//Eway.locale.monitor.devMonitor.accTrans
-				factureStaff:'厂商模式维护',//Eway.locale.monitor.devMonitor.factureStaff
-				netHealthy:'网络正常',//Eway.locale.monitor.devMonitor.netHealthy
-				netUnStable:'网络不稳定',//Eway.locale.monitor.devMonitor.netUnStable
-				netFatal:'网络故障'//Eway.locale.monitor.devMonitor.netFatal
+				atmGroup:'Group',//Eway.locale.monitor.devMonitor.atmGroup 分组
+				solution:'Solution suggest',//Eway.locale.monitor.devMonitor.solution 建议解决方案
+				faultDescription:'Module error description',//Eway.locale.monitor.devMonitor.faultDescription 模块故障描述
+				fastChoose:'Fast choose',//Eway.locale.monitor.devMonitor.fastChoose 快捷选择
+				init:'Initialization',//Eway.locale.monitor.devMonitor.init 初始化
+				accTrans:'Transaction',//Eway.locale.monitor.devMonitor.accTrans 客户交易
+				factureStaff:'Manufacturer model',//Eway.locale.monitor.devMonitor.factureStaff 厂商模式维护
+				netHealthy:'Net healthy',//Eway.locale.monitor.devMonitor.netHealthy 网络正常
+				netUnStable:'Net unstable',//Eway.locale.monitor.devMonitor.netUnStable 网络不稳定
+				netFatal:'Net error'//Eway.locale.monitor.devMonitor.netFatal 网络故障
 			},
 			business:{
 				transaction:{
-					card:'交易卡号',//Eway.locale.monitor.business.transaction.card
-					dateTime:'交易时间',//Eway.locale.monitor.business.transaction.dateTime
-					transCode:'交易类型',//Eway.locale.monitor.business.transaction.transCode
-					amt:'交易金额',//Eway.locale.monitor.business.transaction.amt
-					currency:'交易币种',//Eway.locale.monitor.business.transaction.currency
-					transId:'交易流水号',//Eway.locale.monitor.business.transaction.transId
-					amtfield:'金额范围',//Eway.locale.monitor.business.transaction.amtfield
-					toNum:'至',//Eway.locale.monitor.business.transaction.toNum
-					transContainer:'交易时间段',//Eway.locale.monitor.business.transaction.transContainer
-					debitAccountOrCard:'客户账号或者卡号',//Eway.locale.monitor.business.transaction.debitAccountOrCard
-					creditAccountOrCard:'对方账号或者卡号',//Eway.locale.monitor.business.transaction.creditAccountOrCard
-					debitAccount:'客户帐号',//Eway.locale.monitor.business.transaction.debitAccount
-					creditAccount:'对方账号',//Eway.locale.monitor.business.transaction.creditAccount
-					localRet:'ATMC本地代码',//Eway.locale.monitor.business.transaction.localRet
-					hostRet:'主机返回码',//Eway.locale.monitor.business.transaction.hostRet
-					userName:'用户姓名',//Eway.locale.monitor.business.transaction.userName
+					card:'Card',//Eway.locale.monitor.business.transaction.card 交易卡号
+					dateTime:'Time',//Eway.locale.monitor.business.transaction.dateTime 交易时间
+					transCode:'Type',//Eway.locale.monitor.business.transaction.transCode 交易类型
+					amt:'Amt',//Eway.locale.monitor.business.transaction.amt 交易金额
+					currency:'currency',//Eway.locale.monitor.business.transaction.currency 交易币种
+					transId:'Serialno',//Eway.locale.monitor.business.transaction.transId 交易流水号
+					amtfield:'Amount scope',//Eway.locale.monitor.business.transaction.amtfield 金额范围
+					toNum:'to',//Eway.locale.monitor.business.transaction.toNum 至
+					transContainer:'Time scope',//Eway.locale.monitor.business.transaction.transContainer 交易时间段
+					debitAccountOrCard:'Debit/Card',//Eway.locale.monitor.business.transaction.debitAccountOrCard 客户账号或者卡号
+					creditAccountOrCard:'Credit/Card',//Eway.locale.monitor.business.transaction.creditAccountOrCard 对方账号或者卡号
+					debitAccount:'Debit',//Eway.locale.monitor.business.transaction.debitAccount 客户帐号
+					creditAccount:'Credit',//Eway.locale.monitor.business.transaction.creditAccount 对方账号
+					localRet:'Local code',//Eway.locale.monitor.business.transaction.localRet ATMC本地代码
+					hostRet:'Host code',//Eway.locale.monitor.business.transaction.hostRet 主机返回码
+					userName:'User name',//Eway.locale.monitor.business.transaction.userName 用户姓名
 					historyTransaction:{
-						title:'历史交易查询'//Eway.locale.monitor.business.transaction.historyTransaction.title
-
+						title:'Query histroy transaction '//Eway.locale.monitor.business.transaction.historyTransaction.title //历史交易查询
 					},
 					transactionMonitor:{
-						title:'实时交易监控',//Eway.locale.monitor.business.transaction.transactionMonitor.title
-						begin:'开始监控',//Eway.locale.monitor.business.transaction.transactionMonitor.begin
-						stop:'停止监控'//Eway.locale.monitor.business.transaction.transactionMonitor.stop
+						title:'Transaction monitoring',//Eway.locale.monitor.business.transaction.transactionMonitor.title 实时交易监控
+						begin:'Start',//Eway.locale.monitor.business.transaction.transactionMonitor.begin 开始监控
+						stop:'Stop'//Eway.locale.monitor.business.transaction.transactionMonitor.stop 停止监控
 						}
 				},
 				blackList:{
-					title:'黑名单卡管理',//Eway.locale.monitor.business.blackList.title
-					black:'黑名单卡',//Eway.locale.monitor.business.blackList.black
-					addBlack:'添加黑名单卡',//Eway.locale.monitor.business.blackList.addBlack
-					cardBank:'所属银行',//Eway.locale.monitor.business.blackList.cardBank
-					importData:'批量导入',//Eway.locale.monitor.business.blackList.importData
-					addDate:'添加日期',//Eway.locale.monitor.business.blackList.addDate
-					importTitle:'批量导入黑名单卡',//Eway.locale.monitor.business.blackList.importTitle
-					importFile:'导入文件',//Eway.locale.monitor.business.blackList.importFile
-					chooseFileRegex:'请选择导入文件,只支持.xls和.xlsx格式的文件',//Eway.locale.monitor.business.blackList.chooseFileRegex
-					fileRegex:'只支持.xls和.xlsx格式的文件',//Eway.locale.monitor.business.blackList.fileRegex
-					tempDownload:'模版下载',//Eway.locale.monitor.business.blackList.tempDownload
-					importNow:'导入',//Eway.locale.monitor.business.blackList.importNow
-					updateTitle:'更改黑名单卡信息'//Eway.locale.monitor.business.blackList.updateTitle
+					title:'BlackCard',//Eway.locale.monitor.business.blackList.title 黑名单卡管理
+					black:'BlackCard',//Eway.locale.monitor.business.blackList.black 黑名单卡
+					addBlack:'Add',//Eway.locale.monitor.business.blackList.addBlack 添加黑名单卡
+					cardBank:'Bank',//Eway.locale.monitor.business.blackList.cardBank 所属银行
+					importData:'Import',//Eway.locale.monitor.business.blackList.importData 批量导入
+					addDate:'Add date',//Eway.locale.monitor.business.blackList.addDate 添加日期
+					importTitle:'Bacth import',//Eway.locale.monitor.business.blackList.importTitle 批量导入黑名单卡
+					importFile:'Import file',//Eway.locale.monitor.business.blackList.importFile 导入文件
+					chooseFileRegex:'Please choose file to import,only .xls or .xlsx file is supported',//Eway.locale.monitor.business.blackList.chooseFileRegex 请选择导入文件,只支持.xls和.xlsx格式的文件
+					fileRegex:'only .xls or .xlsx file is supported',//Eway.locale.monitor.business.blackList.fileRegex 只支持.xls和.xlsx格式的文件
+					tempDownload:'Download temple',//Eway.locale.monitor.business.blackList.tempDownload 模版下载
+					importNow:'Import',//Eway.locale.monitor.business.blackList.importNow 导入
+					updateTitle:'Modify'//Eway.locale.monitor.business.blackList.updateTitle 更改黑名单卡信息
 				},
 				card:{
-					title:'吞卡管理',//Eway.locale.monitor.business.card.title
-					addTitle:'增加吞卡信息',//Eway.locale.monitor.business.card.addTitle
-					time:'吞卡时间',//Eway.locale.monitor.business.card.time
-					reason:'吞卡原因',//Eway.locale.monitor.business.card.reason
-					destroy:'吞卡销毁',//Eway.locale.monitor.business.card.destory
-					cardHolder:'发卡行',//Eway.locale.monitor.business.card.cardHolder
-					cardRegex:'允许的最大长度为',//Eway.locale.monitor.business.card.cardRegex
-					beginEndDate:'吞卡起始日期不能大于吞卡截止日期,请重新选择',//Eway.locale.monitor.business.card.beginEndDate
-					orgBelongs:'所属机构 (包含处理机构)',//Eway.locale.monitor.business.card.orgBelongs
-					beginTime:'开始时间',//Eway.locale.monitor.business.card.beginTime
-					endTime:'结束时间',//Eway.locale.monitor.business.card.endTime
-					accGetCard:'客户领卡',//Eway.locale.monitor.business.card.accGetCard
-					transferCard:'卡片移交',//Eway.locale.monitor.business.card.transferCard
-					processOrg:'处理机构',//Eway.locale.monitor.business.card.processOrg
-					type:'吞卡类型',//Eway.locale.monitor.business.card.type
-					manual:'手动添加',//Eway.locale.monitor.business.card.manual
-					auto:'自动添加',//Eway.locale.monitor.business.card.auto
+					title:'RetainCard',//Eway.locale.monitor.business.card.title 吞卡管理
+					addTitle:'Add',//Eway.locale.monitor.business.card.addTitle 增加吞卡信息
+					time:'Time',//Eway.locale.monitor.business.card.time 吞卡时间
+					reason:'Reason',//Eway.locale.monitor.business.card.reason  吞卡原因
+					destroy:'Destroy',//Eway.locale.monitor.business.card.destory 吞卡销毁
+					cardHolder:'Bank holder',//Eway.locale.monitor.business.card.cardHolder 发卡行
+					cardRegex:'Max length is ',//Eway.locale.monitor.business.card.cardRegex 允许的最大长度为
+					beginEndDate:'Begin date can not be later than end date,please choose again',//Eway.locale.monitor.business.card.beginEndDate 吞卡起始日期不能大于吞卡截止日期,请重新选择
+					orgBelongs:'Org belongs(Include process org)',//Eway.locale.monitor.business.card.orgBelongs 所属机构 (包含处理机构)
+					beginTime:'Begin time ',//Eway.locale.monitor.business.card.beginTime 开始时间
+					endTime:'End time',//Eway.locale.monitor.business.card.endTime
+					accGetCard:'Customer get card',//Eway.locale.monitor.business.card.accGetCard 客户领卡
+					transferCard:'Turnover',//Eway.locale.monitor.business.card.transferCard 卡片移交
+					processOrg:'Process org',//Eway.locale.monitor.business.card.processOrg 处理机构
+					type:'Type',//Eway.locale.monitor.business.card.type 吞卡类型
+					manual:'Add manually',//Eway.locale.monitor.business.card.manual 手动添加
+					auto:'Add automatically',//Eway.locale.monitor.business.card.auto 自动添加
 					comboxStatus:{
-						wait:'待领',//Eway.locale.monitor.business.card.comboxStatus.wait
-						received:'已领',//Eway.locale.monitor.business.card.comboxStatus.received
-						destroy:'销毁',//Eway.locale.monitor.business.card.comboxStatus.destroy
-						bringed:'调出'//Eway.locale.monitor.business.card.comboxStatus.bringed
+						wait:'Wait',//Eway.locale.monitor.business.card.comboxStatus.wait 待领
+						received:'Received',//Eway.locale.monitor.business.card.comboxStatus.received 已领
+						destroy:'Destroy',//Eway.locale.monitor.business.card.comboxStatus.destroy 销毁
+						bringed:'Bringed'//Eway.locale.monitor.business.card.comboxStatus.bringed 调出
 					},
-					treatmentPeople:'处理人员',//Eway.locale.monitor.business.card.treatmentPeople
-					treatmentTime:'处理时间',//Eway.locale.monitor.business.card.treatmentTime
-					customerName:'客户姓名',//Eway.locale.monitor.business.card.customerName
-					customerPhone:'客户电话',//Eway.locale.monitor.business.card.customerPhone
-					customerPapers:'客户证件号',//Eway.locale.monitor.business.card.customerPapers
-					processCard:'吞卡处理',//Eway.locale.monitor.business.card.processCard
-					destroyCard:'卡片销毁',//Eway.locale.monitor.business.card.destroyCard
-					exportData:'导出',//Eway.locale.monitor.business.card.exportData
-					paperType:'证件类型',//Eway.locale.monitor.business.card.paperType
-					paperCode:'证件号',//Eway.locale.monitor.business.card.paperCode
-					idCard:'身份证',//Eway.locale.monitor.business.card.idCard
-					accountPaper:'户口本',//Eway.locale.monitor.business.card.accountPaper
-					drivePaper:'驾驶执照',//Eway.locale.monitor.business.card.drivePaper
-					passport:'护照',//Eway.locale.monitor.business.card.passport
-					officer:'军官证',//Eway.locale.monitor.business.card.officer
-					soldier:'士兵证',//Eway.locale.monitor.business.card.soldier
-					busnessPaper:'法人营业证',//Eway.locale.monitor.business.card.busnessPaper
-					busnessCode:'法人代码证',//Eway.locale.monitor.business.card.busnessCode
-					taxPaper:'税务登记证',//Eway.locale.monitor.business.card.taxPaper
-					withDev:'按设备'//Eway.locale.monitor.business.card.withDev
+					treatmentPeople:'Processor',//Eway.locale.monitor.business.card.treatmentPeople 处理人员
+					treatmentTime:'Time',//Eway.locale.monitor.business.card.treatmentTime 处理时间
+					customerName:'Customer name',//Eway.locale.monitor.business.card.customerName 客户姓名
+					customerPhone:'Telephone',//Eway.locale.monitor.business.card.customerPhone 客户电话
+					customerPapers:'License code',//Eway.locale.monitor.business.card.customerPapers 客户证件号
+					processCard:'Process',//Eway.locale.monitor.business.card.processCard 吞卡处理
+					destroyCard:'Destroy',//Eway.locale.monitor.business.card.destroyCard 卡片销毁
+					exportData:'Export',//Eway.locale.monitor.business.card.exportData 导出
+					paperType:'License type',//Eway.locale.monitor.business.card.paperType 证件类型
+					paperCode:'License code',//Eway.locale.monitor.business.card.paperCode 证件号
+					idCard:'I.D card',//Eway.locale.monitor.business.card.idCard 身份证
+					accountPaper:'Register',//Eway.locale.monitor.business.card.accountPaper 户口本
+					drivePaper:'Drive License',//Eway.locale.monitor.business.card.drivePaper 驾驶执照
+					passport:'Passport',//Eway.locale.monitor.business.card.passport 护照
+					officer:'Officer License',//Eway.locale.monitor.business.card.officer 军官证
+					soldier:'Soldier License',//Eway.locale.monitor.business.card.soldier 士兵证
+					busnessPaper:'Juridicalperson License',//Eway.locale.monitor.business.card.busnessPaper 法人营业证
+					busnessCode:'Juridicalperson code',//Eway.locale.monitor.business.card.busnessCode 法人代码证
+					taxPaper:'Taxregistration License',//Eway.locale.monitor.business.card.taxPaper 税务登记证
+					withDev:'With device'//Eway.locale.monitor.business.card.withDev 按设备
 				},
 
 
 				cashInit:{
-					titile:'加钞信息查询',//Eway.locale.monitor.business.cashInit.titile
-					uuId:'加钞ID',//Eway.locale.monitor.business.cashInit.uuId
-					date:'加钞日期',//Eway.locale.monitor.business.cashInit.date
-					amt:'加钞金额',//Eway.locale.monitor.business.cashInit.amt
-					info:'加钞详细信息',//Eway.locale.monitor.business.cashInit.info
-					boxId:'钞箱ID',//Eway.locale.monitor.business.cashInit.boxId
-					boxCurrency:'币种',//Eway.locale.monitor.business.cashInit.boxCurrency
-					boxInitAmt:'初始金额',//Eway.locale.monitor.business.cashInit.boxInitAmt
-					lastAmt:'剩余金额'//Eway.locale.monitor.business.cashInit.lastAmt
+					titile:'Cash initiation',//Eway.locale.monitor.business.cashInit.titile 加钞信息查询
+					uuId:'CashID',//Eway.locale.monitor.business.cashInit.uuId 加钞ID
+					date:'Date',//Eway.locale.monitor.business.cashInit.date 加钞日期
+					amt:'Amount',//Eway.locale.monitor.business.cashInit.amt 金额
+					info:'Information',//Eway.locale.monitor.business.cashInit.info 加钞详细信息
+					boxId:'CashboxID',//Eway.locale.monitor.business.cashInit.boxId 钞箱ID
+					boxCurrency:'Currency',//Eway.locale.monitor.business.cashInit.boxCurrency 币种
+					boxInitAmt:'Amount init',//Eway.locale.monitor.business.cashInit.boxInitAmt 初始金额
+					lastAmt:'Amount left'//Eway.locale.monitor.business.cashInit.lastAmt 剩余金额
 				},
 				settlement:{
-					title:'清机信息查询',//Eway.locale.monitor.business.settlement.title
-					deTitle:'清机详细信息',//Eway.locale.monitor.business.settlement.deTitle
-					settleId:'清机ID',//Eway.locale.monitor.business.settlement.settleId
-					uuId:'周期ID',//Eway.locale.monitor.business.settlement.uuId
-					endAmt:'尾箱余额',//Eway.locale.monitor.business.settlement.endAmt
-					endDate:'结帐日期',//Eway.locale.monitor.business.settlement.endDate
-					cimNum:'存款笔数',//Eway.locale.monitor.business.settlement.cimNum
-					cdmNum:'取款笔数',//Eway.locale.monitor.business.settlement.cdmNum
-					totalNum:'交易总笔数',//Eway.locale.monitor.business.settlement.totalNum
-					leftDate:'结账日期',//Eway.locale.monitor.business.settlement.leftDate
-					cimAmt:'存款金额',//Eway.locale.monitor.business.settlement.cimAmt
-					cdmAmt:'取款金额',//Eway.locale.monitor.business.settlement.cdmAmt
-					tranAmt:'交易总金额'//Eway.locale.monitor.business.settlement.tranAmt
-				}
+					title:'Settlement information',//Eway.locale.monitor.business.settlement.title 清机信息查询
+					deTitle:'Information',//Eway.locale.monitor.business.settlement.deTitle 清机详细信息
+					settleId:'SettleID',//Eway.locale.monitor.business.settlement.settleId
+					uuId:'CycleID',//Eway.locale.monitor.business.settlement.uuId 周期ID
+					endAmt:'Endbox amount',//Eway.locale.monitor.business.settlement.endAmt 尾箱余额
+					endDate:'Date settlement',//Eway.locale.monitor.business.settlement.endDate 结帐日期
+					cimNum:'Deposit count',//Eway.locale.monitor.business.settlement.cimNum 存款笔数
+					cdmNum:'Draw count',//Eway.locale.monitor.business.settlement.cdmNum 取款笔数
+					totalNum:'Toatl',//Eway.locale.monitor.business.settlement.totalNum
+					leftDate:'Date settlement',//Eway.locale.monitor.business.settlement.leftDate 结帐日期
+					cimAmt:'Deposit amount',//Eway.locale.monitor.business.settlement.cimAmt 存款金额
+					cdmAmt:'Draw amount',//Eway.locale.monitor.business.settlement.cdmAmt 取款金额
+					tranAmt:'Total amount'//Eway.locale.monitor.business.settlement.tranAmt 交易总金额
+				}		
 			/*}*/
 			}
 		},
@@ -1259,27 +1260,27 @@ Ext.override(Eway,{
 				title:'Brand',//品牌管理
 				name: 'Brand name', //品牌名称
 				country:'Country or area of prduction',//生产商国家或地区
-				hotline1:'Product hotline',//生产商热线1
-				hotline2:'生产商热线2',//生产商热线2
-				address:'生产商地址',//生产商地址
-				status:'生产商状态',//生产商状态
+				hotline1:'Producer hotline',//生产商热线1
+				hotline2:'Producer hotline2',//生产商热线2 
+				address:'Producer address',//生产商地址
+				status:'Producer hotline',//生产商状态
 				comboxStatus:{
-					provider:'设备供应',
-					maintance:'设备服役'
+					provider:'Device supply',//设备供应
+					maintance:'Device use'//设备服役
 				}
 			},
 			atmCatalog:{
-				title:'ATM分类',//Eway.locale.machine.title
-				name:'分类名称',//Eway.locale.machine.atmCatalog.name
-				note:'备注',
-				addTitle:'增加ATM分类信息',
-				updateTitle:'更改ATM型号信息',
-				number:'编号',//Eway.locale.machine.atmCatalog.number
+				title:'ATM catalog',//Eway.locale.machine.title ATM分类
+				name:'Catalog name',//Eway.locale.machine.atmCatalog.name 分类名称
+				note:'Remark',//备注
+				addTitle:'Add catalog',//增加ATM分类信息
+				updateTitle:'Modify catalog', //更改ATM型号信息
+				number:'code',//Eway.locale.machine.atmCatalog.number 编号
 			},
 			atmGroup : {
 				terminalId:'Terminal number', //设备号
 				ip: 'IP address',//设备IP地址
-				orgName:'所属机构',
+				orgName:'Org belongs',//
 				devTypeName:'Device type',//设备型号
 				devVendorName:'Device vendor',//设备品牌
 				devCatalogName:'Device catalog',//设备类型
@@ -1290,14 +1291,14 @@ Ext.override(Eway,{
 					open:'Open',//启用
 					close:'Close'//close
 				},
-				awayFlag:'离行标志',
+				awayFlag:'AwayFlag',//离行标志
 				comboxAwayFlag:{
-					inBank:'在行自助服务区',
-					outBank:'离行自助银行',
-					clickBank:'单机离行自助服务点'
+					inBank:'Inside bank',//在行自助服务区
+					outBank:'Outside bank',//离行自助银行
+					clickBank:'Alone out-bank self-service'//单机离行自助服务点
 				},
-				devServiceName:'设备维护商',
-				cashboxLimit:'钞箱报警金额',
+				devServiceName:'Manufacturer',//设备维护商
+				cashboxLimit:'Alarm cashbox',//钞箱报警金额
 				installDate:'Install date',//安装日期
 				address:'Address',//地址
 				gourpDev:'Group<-->Device',//分组<-->设备
@@ -1318,19 +1319,19 @@ Ext.override(Eway,{
 				moveRecordInfo:'Move machine record',//移机记录信息
 				waitMove:'Wait for move machine',//待移动的机器
 				terminalId:'Terminal number',//设备号
-				address:'源地址',
-				orgName:'源机构',
+				address:'Source address',//源地址
+				orgName:'Source org',//源机构
 				targetAddress:'Target address',//目标地址
 				targetOrganization:'Target organization',//目标机构
 				targetPerson:'目标机构负责人',//目标机构负责人
-				responsibility:'负责人',
-				destPerson:'源机构负责人',
+				responsibility:'负责人',//负责人
+				destPerson:'源机构负责人',//源机构负责人
 				date:'date',//日期
 				recoverDate:'Recover date',//恢复时间
 				notice:'remark',//备注
-				sAddress:'所属地址',
-				sOrgName:'所属机构',
-				to:'至'
+				sAddress:'Address',//所属地址
+				sOrgName:'Organization',//所属机构
+				to:'to'//至
 			},
 			atmRuntimeInfo:{
 				exportName:'Export', //导出
@@ -1339,422 +1340,427 @@ Ext.override(Eway,{
 				terminalIp:'IP',//终端IP
 				startDate:'Begin time',//开始时间
 				endDate:'End time',//结束时间
-				exportLast30: '导出最后30天汇总信息',
+				exportLast30: 'Export last 30 days info',//导出最后30天汇总信息
 				terminalId:'number',//编号
 				netIp:'Net address',//网络地址
-				msgCollect:'客服信息采集'
+				msgCollect:'Collect info of customservice'//客服信息采集
 			},
 			atmType:{
 				title:'Device type',//设备型号
 				atmName:'ATM Type',//ATM型号
 				name:'Device type',//设备型号
-				devVendorName:'所属品牌',
-				devCatalogName:'所属类型',
-				devTerminalName:'所属型号',
-				spec:'设备规格',
-				weight:'设备重量',
-				watt:'平均功率',
-				no:'编号',
-				cashtype:'非现金标志',
-				iscash:'现金',
-				nocash:'非现金'
+				devVendorName:'Brand', //所属品牌
+				devCatalogName:'Catalog',//所属类型
+				devTerminalName:'Type',//所属型号
+				spec:'Gauge',//设备规格
+				weight:'Weight',//设备重量
+				watt:'Power',//平均功率
+				no:'code',//编号
+				cashtype:'Cash flag',//非现金标志
+				iscash:'Cash',//现金
+				nocash:'Not cash'//非现金
 			},
 			device:{
-				title:'设备信息管理',
-				devDetailInfo:'设备模块详细信息',
-			    IDC:'读卡器模块(IDC)',
-				JPR:'日志打印机模块(JPR)',
-				CDM:'取款模块(CDM)',
-				SIU:'传感器模块(SIU)',
-				CIM:'存款模块(CIM)',
-				TTU:'文本终端单元(TTU)',
-				RPR:'凭条打印机模块(RPR)',
-				PIN:'密码键盘模块(PIN)',
-				CDMInfo:'取款模块（CDM）属性信息',
+				title:'Deivce',//设备信息管理
+				devDetailInfo:'Module information',//设备模块详细信息
+			    IDC:'Card reader(IDC)',
+				JPR:'Log printer(JPR)',
+				CDM:'Draw module(CDM)',
+				SIU:'Sensor module(SIU)',
+				CIM:'Deposit module(CIM)',
+				TTU:'Text terminal(TTU)',
+				RPR:'Voucher printer(RPR)',
+				PIN:'Pin keyboard(PIN)',
+				CDMInfo:'Draw module（CDM）property',
 				hasStack:'是否具有暂存器',
-				hasShutter:'是否具有shutter门',
-				canRetract:'是否具有回收能力',
-				canDetectCashTaken:'是否探测钞币被拿走',
-				canTestPhysicalUnits:'是否能测试物理单元',
-				maxDispensBills:'获取单笔最大挖钞张数',
-				logicalUnits:'逻辑钞箱个数',
-				physicalUnits:'物理钞箱个数',
-				currency:'支持的币种类别总个数',
-				currencies:'支持的币种类别',
-				exponents:'指数',
-
-				CIMInfo:'存款模块 （CIM）属性信息',
+				hasShutter:'Shutter door exist',//是否具有shutter门
+				canRetract:'Ability of recovery', //是否具有回收能力
+				canDetectCashTaken:'Check if cash taked',//是否探测钞币被拿走
+				canTestPhysicalUnits:'Test physical unit',//是否能测试物理单元
+				maxDispensBills:'Get max count of gug cash in each trans',//获取单笔最大挖钞张数
+				logicalUnits:'Count of logic cashbox',//逻辑钞箱个数
+				physicalUnits:'Count of physical cashbox',//物理钞箱个数
+				currency:'Currency supported count',//支持的币种类别总个数
+				currencies:'Currency category supported ',//支持的币种类别
+				exponents:'index',//指数
+				 
+				CIMInfo:'Deposit module (CIM)property',//存款模块
 				canEscrow:'是否具有暂存器X',
-				shutterControlSupported:'是否支持控制shutter门',
-				maxAcceptItems:'单笔最大验钞张数',
-				canDetectCashInserted:'是否能探测钞票放入',
-				canDetectCashTaken:'是否能探测钞票被取走',
-				retractAreas:'回收位置',
 
+				shutterControlSupported:'Support shutter door',//是否支持控制shutter门
+				maxAcceptItems:'Max count of inspect cash in each trans',//单笔最大验钞张数
+				canDetectCashInserted:'Check if cash bringed',//是否能探测钞票放入
+				canDetectCashTaken:'Check if cash taked',//是否能探测钞票被取走
+				retractAreas:'Recovery position',//回收位置
+				 
+				 
+				IDCInfo:'Card reader(IDC) property',//读卡器模块(IDC)属性信息
+				variant:'Card reader type',//读卡器类型
+				canEjectCard:'Ability of quit card',//是否具有退卡能力
+				trackJisiiRead:'Ability of read TrackJisii',//是否具有TrackJisii读能力
+				track1Read:'Ability of read first track',//是否具有读一磁道数据能力
+				track2Read:'Ability of read second track',//是否具有读二磁道数据能力
+				track3Read:'Ability of read third track',//是否具有读二磁道数据能力
+				canCapture:'Ability of retain card',//是否具有吞卡能力
+				binCapacity:'Max count of retain card',//最大吞卡张数
+				security:'Safety support',//是否具有安全支持
+				trackJisiiWrite:'Ability of write TrackJisii',//是否具有TrackJisii写能力
+				track1Write:'Ability of write first track',//是否具有写一磁道数据能力
+				track2Write:'Ability of write first track',//是否具有写二磁道数据能力
+				track3Write:'Ability of write first track',//是否具有写三磁道数据能力
 
-				IDCInfo:'读卡器模块(IDC)属性信息',
-				variant:'读卡器类型',
-				canEjectCard:'是否具有退卡能力',
-				trackJisiiRead:'是否具有TrackJisii读能力',
-				track1Read:'是否具有读一磁道数据能力',
-				track2Read:'是否具有读二磁道数据能力',
-				track3Read:'是否具有读三磁道数据能力',
-				canCapture:'是否具有吞卡能力',
-				binCapacity:'最大吞卡张数',
-				security:'是否具有安全支持',
-				trackJisiiWrite:'是否具有TrackJisii写能力',
-				track1Write:'是否具有写一磁道数据能力',
-				track2Write:'是否具有写二磁道数据能力',
-				track3Write:'是否具有写三磁道数据能力',
+				 
+				JPRInfo:'Log printer(JPR) property',
+				canEject:'Ability of quit paper',//是否具有退纸能力
+				canCapture:'Ability of recovery',//是否具有回收能力
+				canStack:'是否具有暂存能力',//是否具有暂存能力
 
+				PINInfo:'Pin keyboard(PIN) property',
+				canEBC:'EBC',//能否EBC
+				canCBC:'CBC',//能否CBC
+				canMAC:'MAC',//能否MAC
+				canRSA:'RSA',//能否RSA
+				canVerifyVISA:'Inspect VISA',//能否验证VISA
+				canVerifyDES:'Inspect DES',//能否验证DES
+				functionKeys:'Function support',//功能键支持
+				canTripleEBC:'Multi EBC support',
+				canTripleCBC:'Multi CBC support',
+				canTripleMAC:'Multi MAC support',
+				canTripleCFB:'Multi CFB support',
+				canVerifyECB:'Inspect ECB', 
+				canDESOffset:'DeS shifting',
 
-				JPRInfo:'日志打印机模块(JPR)属性信息',
-				canEject:'是否具有退纸能力',
-				canCapture:'是否具有回收能力',
+				RPRInfo:'Voucher printer(RPR) property',
+				canEject:'Ability of quit paper',//是否具有退纸能力
+				canCapture:'Ability of recovery',//是否具有回收能力
+
 				canStack:'是否具有暂存能力',
+				maxRetract:'Max count of recovery paper',//最大回收张数
 
-				PINInfo:'密码键盘(PIN)属性信息',
-				canEBC:'能否EBC',
-				canCBC:'能否CBC',
-				canMAC:'能否MAC',
-				canRSA:'能否RSA',
-				canVerifyVISA:'能否验证VISA',
-				canVerifyDES:'能否验证DES',
-				functionKeys:'功能键支持',
-				canTripleEBC:'是否支持多重EBC',
-				canTripleCBC:'是否支持多重CBC',
-				canTripleMAC:'是否支持多重MAC',
-				canTripleCFB:'是否支持多重CFB',
-				canVerifyECB:'能否验证ECB',
-				canDESOffset:'能否DeS偏移',
+				SIUInfo:'SIU property',//SIU能力属性信息
+				operatorSwitchSupported:'Operator swicth support',//是否支持操作员开关
+				cabinetSupported:'Ability of induce  behindDoor open support',//是否支持后盖门打开传感能力
+				safeSupported:'Ability of induce safeDoor open support',//是否支持安全门打开传感能力
+				indicatorSupported:'Ability of induce closeto support',//是否支持靠近传感能力
+				guidelightIdcSupported:'Ability of card insert light support',//是否支持插卡指示灯能力
+				guidelightCdmSupported:'Ability of draw light  support',//是否支持取款指示灯能力
+				guidelightReceiptSupported:'Ability of voucher print light support',//是否支持凭条打印指示灯能力
+				guidelightCimSupported:'Ability of deposit light support',//是否支持存款指示灯能力
 
-				RPRInfo:'凭条打印机(RPR)属性信息',
-				canEject:'是否具有退纸能力',
-				canCapture:'是否具有回收能力',
-				canStack:'是否具有暂存能力',
-				maxRetract:'最大回收张数',
 
-				SIUInfo:'SIU能力属性信息',
-				operatorSwitchSupported:'是否支持操作员开关',
-				cabinetSupported:'是否支持后盖门打开传感能力',
-				safeSupported:'是否支持安全门打开传感能力',
-				indicatorSupported:'是否支持靠近传感能力',
-				guidelightIdcSupported:'是否支持插卡指示灯能力',
-				guidelightCdmSupported:'是否支持取款指示灯能力',
-				guidelightReceiptSupported:'是否支持凭条打印指示灯能力',
-				guidelightCimSupported:'是否支持存款指示灯能力',
+				TTUInfo:'Text terminal (TTU) property',
+				alphanumericKeysPresent:'Ability of character/number input support',//是否支持字母数字键输入
+				numericKeysPresent:'Ability of number input support',//是否支持数字键输入
+				displayLightPresent:'Ability of number adjust screen-brightness support',//是否支持屏幕亮度调节
+				cursorSupported:'Mouse support',//支持鼠标
+				resolutionX:'Resolution of cross axle',//横轴分辨率
+				hexadecimalKeysPresent:'Hexadecimal input support',//是否支持十六进制键输入
+				keyboardLockPresent:'Lock keyboard support',//是否支持键盘锁定
+				formsSupported:'Table support',//是否支持表格
+				resolutionY:'Resolution of vertical axle',//纵轴分辨率
 
-				TTUInfo:'文本终端单元(TTU)属性信息',
-				alphanumericKeysPresent:'是否支持字母数字键输入',
-				numericKeysPresent:'是否支持数字键输入',
-				displayLightPresent:'是否支持屏幕亮度调节',
-				cursorSupported:'是否支持鼠标',
-				resolutionX:'横轴分辨率',
-				hexadecimalKeysPresent:'是否支持十六进制键输入',
-				keyboardLockPresent:'是否支持键盘锁定',
-				formsSupported:'是否支持表格',
-				resolutionY:'纵轴分辨率',
-
-				comStatus:'厂商状态信息',
-				hwCode:'厂商故障码',
-				CDMStatus:'取款模块(CDM)状态信息',
-				cashUnits:'钞箱状态',
-				safeDoor:'安全门状态',
+				comStatus:'Manufacturer',//厂商状态信息
+				hwCode:'Fault code',//厂商故障码
+				CDMStatus:'Draw module(CDM) status',//取款模块(CDM)状态信息
+				cashUnits:'Cashbox',//钞箱状态
+				safeDoor:'SafeDoor',//安全门状态
 				intermediateStacker:'暂存器状态',
-				outBox:'取款钞箱',
-				pcuId:'物理逻辑钞箱对应关系',
-				cuId:'逻辑钞箱ID',
-				cuCurrency:'逻辑钞箱币种',
-				cuCurrentCount:'逻辑钞箱当前张数',
-				cuInitialCount:'逻辑钞箱初始张数',
-				cuRejectCount:'逻辑钞箱reject张数',
-				cuNoteValue:'逻辑钞箱面值',
-				cuBinStatus:'逻辑钞箱状态',
-				puId:'物理钞箱ID',
-				puPosName:'物理钞箱位置名称',
-				puBinStatus:'物理钞箱状态',
-				puCurrentCount:'物理钞箱当前张数',
-				puInitialCount:'物理钞箱初始张数',
-				puRejectCount:'物理钞箱Reject张数',
-				cuBinType:'逻辑钞箱类型',
+				outBox:'Cashbox draw',//取款钞箱
+				pcuId:'Relationship between physical and logic cashbox',//物理逻辑钞箱对应关系
+				cuId:'Logic cashboxID',//逻辑钞箱ID
+				cuCurrency:'Logic cashbox currency',//逻辑钞箱币种
+				cuCurrentCount:'Count of logic cashbox currently',//逻辑钞箱当前张数
+				cuInitialCount:'Count of logic cashbox initially',//逻辑钞箱初始张数
+				cuRejectCount:'Count of logic cashbox rejected',//逻辑钞箱reject张数
+				cuNoteValue:'Denomination of logic cashbox',//逻辑钞箱面值
+				cuBinStatus:'Logic cashbox status',//逻辑钞箱状态
+				puId:'Physical cashbox ID',//物理钞箱ID
+				puPosName:'Name of physical cashbox',//物理钞箱位置名称
+				puBinStatus:'Physical cashbox status',//物理钞箱状态
+				puCurrentCount:'Count of physical cashbox currently',//物理钞箱当前张数
+				puInitialCount:'Count of physical cashbox initially',//物理钞箱初始张数
+				puRejectCount:'Count of physical cashbox rejected',//物理钞箱Reject张数
+				cuBinType:'Logic cashbox status',//逻辑钞箱类型
 
-				CIMStatus:'存款模块(CIM)状态信息',
-				baffle:'挡板状态',
-				inOutPositionStatus:'传输状态',
-				inBox:'存款钞箱',
-				puCashInCount:'物理钞箱入钞张数',
-				pcuId:'物理钞箱与逻辑钞箱对应关系',
-				cuType:'逻辑钞箱类型',
-				cuBinStatus:'逻辑钞箱状态',
-				cuCurrentCount:'逻辑钞箱当前张数',
-				cuCurrency:'逻辑钞箱币种',
-				cuNoteValue:'逻辑钞箱面值',
+				CIMStatus:'Deposit module(CIM) status',
+				baffle:'Baffle',//挡板状态
+				inOutPositionStatus:'Transfer status',//传输状态
+				inBox:'Deposit cashbox',//存款钞箱
+				puCashInCount:'Count of physical cashbox in',//物理钞箱入钞张数
+				pcuId:'Relationship between physical and logic cashbox',//物理钞箱与逻辑钞箱对应关系
+				cuType:'Logic cashbox type',//逻辑钞箱类型
+				cuBinStatus:'Logic cashbox status',//逻辑钞箱状态
+				cuCurrentCount:'Count of logic cashbox',//逻辑钞箱当前张数
+				cuCurrency:'Currency of logic cashbox',//逻辑钞箱币种
+				cuNoteValue:'Denomination of logic cashbox',//逻辑钞箱面值
 
-				IDCStatus:'读卡器模块(IDC)状态信息',
-				media:'媒体状态',
-				retainBin:'回收盒状态',
-				cards:'回收盒数量',
+				IDCStatus:'Card reader (IDC) status',
+				media:'Media',//媒体状态
+				retainBin:'Recovery box status',//回收盒状态
+				cards:'Recovery box count',//回收盒数量
 
-				JRPStatus:'日志打印机模块(JPR)状态信息',
-				supplyLevel:'打印纸状态',
-				ink:'墨水',
-				toner:'色带',
+				JRPStatus:'Log printer (JPR) status',
+				supplyLevel:'Log printer status',
+				ink:'Ink',//墨水
+				toner:'Ribbon',//色带
 
-				PINStatus:'密码键盘模块(PIN)状态信息',
+				PINStatus:'Pin keyboard(PIN) status',
 
-				RPRStatus:'凭条打印机模块(RPR)状态信息',
-				bin:'回收单元状态',
+				RPRStatus:'Voucher printer(RPR)status',//凭条打印机模块(RPR)状态信息
+				bin:'Recovery unit status',//回收单元状态
 
-				SIUStatus:'SIU能力状态信息',
-				vandalShield:'防护罩状态',
-				operatorSwitch:'操作员按钮状态',
-				ambientLight:'环境灯状态',
-				cabinet:'箱门状态',
-				safe:'安全门状态',
-				idcGuidelight:'插卡导引灯状态',
-				cdmGuidelight:'取钞引导指示灯状态',
-				receiptGuidelight:'凭条导引灯状态',
-				cimGuidelight:'CIM导引灯状态',
+				SIUStatus:'SIU status',//SIU能力状态信息
+				vandalShield:'Shield',
+				operatorSwitch:'Operate butoon status',
+				ambientLight:'Environment light',//环境灯状态
+				cabinet:'Box door',//箱门状态
+				safe:'Safe door',//安全门状态
+				idcGuidelight:'Guide card-insert light',//插卡导引灯状态
+				cdmGuidelight:'Guide draw light',//取钞引导指示灯状态
+				receiptGuidelight:'Guide voucher light',//凭条导引灯状态
+				cimGuidelight:'Guide CIM light',//CIM导引灯状态
 
-				TTUStatus:'文本终端单元(TTU)状态信息',
+				TTUStatus:'Text terminal(TTU) status',//文本终端单元(TTU)状态信息
+				
+				devPerson:'Deivce person',//设备人员信息
+				devModuleMsg:'Device module property',//设备模块属性信息
+				devBasicMsg:'Basic info',//设备基本信息
+				devTailMsg:'Detail',//设备详细信息
+				managePerson:'Manager',//管机员
+				maintainPerson:'Maintainer',//维护员
+				name:'Name',//姓名
+				mobile:'Mobile',//手机
+				phone:'Phone',//固定电话
+				email:'Email',//邮件地址
+				deviceBasicInfo:'Basic info',//设备基本信息
+				lineLogo:'AwayFlag',//
+				alarmRateRMB:'Alarm cashbox(RMB)',//钞箱报警金额
+				operation:'Service mode',//经营方式
+				ipAddress:'IP address',//IP地址
+				swallowCard:'Count of retain card',//吞卡张数
+				alarmRateHKD:'Alarm cashbox(HKD)',//钞箱报警金额(港币)
+				adminPhone:'Manager(mobile)',//管理员(手机号)
+				maintainPhone: 'Maintainer(mobile)',//维护员(手机号)
+				log:'Flag',//钞箱标识
+				style: 'type',//钞箱类型
+				status: 'Status',//钞箱状态
+				initailnumber: 'Init count',//初始张数
+				postnumber: 'Deposit count',//存款张数
+				currentnumber: 'Current count',//当前钞箱张数
+				facevalue: 'Denomination',//钞箱面值
+				currency: 'Currency',//钞箱币种
+				systemHardwareInfo: 'Soft/hard ware info',//系统软硬件信息
+				moduleVersionInfo:'Hardware-module version(actual)',//模块硬件版本信息（实时）
+				devModuleStatusInfo: 'Module status(actual)',//设备模块状态（实时）
+				devModuleAttributeInfo: 'Module property(actual)',//设备模块属性信息（实时）
+				
+				remoteControl: 'Control',//远程控制
+				collectJPR:'Logs getting',//提取日志
+				remoteScreen:'Screenshot',//远程抓屏
+				processCheck:'View process',//进程查看
+				remoteExplorer:'Browse',//远程浏览
+				netWorkLink:'Connect',//网络连接
+				remoteRestart:'Reboot',//远程重启
+				
+				progressTip:'Progress tip',//进度提示
+				updateProBar:'This is generate with dynamic update',//这是通过动态更新内容形成的进度条
+				currentProcess:'Progress currently',//当前进度
+				
+				
+				restartApply: 'Restar app',//重启应用
+				confirmRestartApply:'Restar app?',//确定要重启应用？
+				nowRestartApply:'Restarting',//正在重启应用
+				restartApplySuc:'Restarting app successful!',//成功重启该设备应用
+				restartApplyFail:'Restarting app failed!',//重启应用失败
+				
+				
+				restartDrive:'Restar drivers',//重启硬件驱动
+				confirmRestartDrive:'Restar drivers?',//确定要重启硬件驱动？
+				nowRestartDrive:'Restarting',//正在重启硬件驱动
+				restartDriveSuc:'Restarting drivers successful!',//成功重启该设备硬件驱动
+				restartDriveFail:'Restarting drivers failed!',//重启硬件驱动失败！
+				
+				restartOS:'Restar os',//重启操作系统
+				confirmRestartOS:'Restar os?',//确定要重启操作系统
+				nowRestartOS:'Restarting',//正在重启操作系统
+				restartOSSuc:'Restarting os successful!',//成功重启该设备操作系统
+				restartOSFail:'Restarting os failed!',//重启操作系统失败
+				
+				remoteShutdown:'Shutdown',//关机
+				shutdownApply:'Shutdown app',//关闭应用
+				confirmShutdownApply:'Shutdown app?',//确定要关闭应用？
+				nowShutdownApply:'Shutting down',//
+				shutdownApplySuc:'Shutdown app successful!',//成功关闭该设备应用
+				shutdownApplyFail:'Shutdown app failed!',//关闭该设备应用失败
+				
+				shutdownDrive:'Shutdown drivers',//关闭硬件驱动
+				confirmShutdownDrive:'Shutdown drivers?',//确定要关闭硬件驱动？
+				nowShutdownDrive:'Shutting down',//正在关闭硬件驱动
+				shutdownDriveSuc:'Shutdown drivers successful!',//成功关闭硬件驱动
+				shutdownDriveFail:'Shutdown drivers failed!',//关闭硬件驱动失败！
+				
+				shutdownOS:'Shutdown os',//关闭操作系统
+				confirmShutdownOS:'Shutdown os?',//确定要关闭操作系统？
+				nowShutdownOS:'Shutting down',//正在关闭操作系统
+				shutdownOSSuc:'Shutdown os successful!',//成功关闭该设备操作系统
+				shutdownOSFail:'Shutdown os failed!',//关闭操作系统失败！
+				getSoftwareList:'Get software installed info',//获取软件安装列表
+				forceReset:'Reset force',//强制复位
+				openService:'Open service',//开启服务
+				pauseService:'Pause service',//暂停服务
+				checkStatus:'Test status',//状态检测
+				
+				remoteBrowseDisk:'Browse',//远程浏览
+				
+				sysHardwareInfo:'Hardware info',//系统硬件信息
+				diskMem:'Disk size',//硬盘大小
+				biosVersion:'Bios version',//Bios版本
+				biosVendor:'Bios producer',//Bios厂商
+				biosReleaseDate:'Bios date',//Bios发布日期
+				memorySize:'Total memory',//内存总数
+				memoryUsed:'Used memory',//已使用内存
+				memoryFree:'Free memory',//空闲内存
+				memoryPercent:'Use rate memory',//
+				cpuItemID:'CPU info',//cpu信息
+				cpuFrequency:'CPU(MHz)',//CPU频率(MHz)
+				cpuVendor:'CPU producer',//CPU的厂商
+				cpuModel:'CPU type',//CPU的类别
+				cacheSize:'Count of cache storage',//缓冲存储器数量
+				totalCores:'CPU cores',//CPU核数
+				userUsePercent:'Rate user used',//用户使用率
+				sysUsePercent:'Rate system used',//系统使用率
+				idlePercent:'Rate free current',//当前空闲率
+				combinedPercent:'Rate total used',//
+				diskItemID:'Disk info',//磁盘信息
+				diskName:'Pattern name',//磁盘分区名称
+				diskFileSys:'File system',//磁盘文件系统
+				diskTotalSize:'Total size',//磁盘总大小
+				diskFreeSize:'Total free size',//磁盘可用空间大小
+				sysSoftInfo:'Software info',//系统软件信息
+				OSID:'OS-ID',//操作系统ID
+				OSDescription:'OS describe',//OS描述
+				OSType:'OS type',//OS类型
+				sysPatchLevel:'OS patch level',//系统补丁级别
+				chkCashData:'BV-version',//验钞数据版本
+				OSVendor:'OS producer',//OS供应商
+				OSVendorName:'OS supplier',//OS供应商名
+				sysVersion:'OS version',//系统版本号
+				devAddress:'Address',//设备地址
+				basicInfo:'Basic info',//基本信息
+				virtual:'Virtual devCode',//虚拟设备号
+				serial:'Serial',//设备序列号
+				carrier:'Carrieroperator',//运营商
+				moneyOrg:'Cash org',//加钞机构
+				costInterest:'Rate of fund cost',//资金成本利率
+				atmcSoft:'atmc software',//atmc软件
+				spType:'sp type',//厂商sp类型
+				column:'Date',//日期信息
+				buyDate:'Buy date',//设备购买日期
+				installDate:'Install date',//设备安装日期
+				startDate:'Start date',//设备启用日期
+				stopDate:'Stop date',//设备停用日期
+				expireDate:'Guaranteed date',//保修到期日期
+				daliyOpen:'Start time everyday',//每日开机时间
+				openTimeHour:'Hour',//时
+				openTimeMinute:'Minute',//分
+				openTimeSecond:'Second',//秒
+				daliyClose:'Close time everyday',//每日关机时间
+				lastPmDate:'Last check date',//上次巡检日期
+				expirePmDate:'Next check date',//巡检到期日期
+				costInfo:'Expenses',//费用信息
+				price:'Cost',//入账成本(元)
 
-				devPerson:'设备人员信息',
-				devModuleMsg:'设备模块属性信息',
-				devBasicMsg:'设备基本信息',
-				devTailMsg:'设备详细信息',
-				managePerson:'管机员',
-				maintainPerson:'维护员',
-				name:'姓名',
-				mobile:'手机',
-				phone:'固定电话',
-				email:'邮件地址',
-				deviceBasicInfo:'设备基本信息',
-				lineLogo:'在行标志',
-				alarmRateRMB:'钞箱报警金额(人民币)',
-				operation:'经营方式',
-				ipAddress:'IP地址',
-				swallowCard:'吞卡张数',
-				alarmRateHKD:'钞箱报警金额(港币)',
-				adminPhone:'管理员(手机号)',
-				maintainPhone: '维护员(手机号)',
-				log:'钞箱标识',
-				style: '钞箱类型',
-				status: '钞箱状态',
-				initailnumber: '初始张数',
-				postnumber: '存款张数',
-				currentnumber: '当前钞箱张数',
-				facevalue: '钞箱面值',
-				currency: '钞箱币种',
-				systemHardwareInfo: '系统软硬件信息',
-				moduleVersionInfo:'模块硬件版本信息（实时）',
-				devModuleStatusInfo: '设备模块状态（实时）',
-				devModuleAttributeInfo: '设备模块属性信息（实时）',
-
-				remoteControl: '远程控制',
-				collectJPR:'提取日志',
-				remoteScreen:'远程抓屏',
-				processCheck:'进程查看',
-				remoteExplorer:'远程浏览',
-				netWorkLink:'网络连接',
-				remoteRestart:'远程重启',
-
-				progressTip:'进度提示',
-				updateProBar:'这是通过动态更新内容形成的进度条',
-				currentProcess:'当前进度',
-
-
-				restartApply: ' 重启应用',
-				confirmRestartApply:'确定要重启应用？',
-				nowRestartApply:'正在重启应用',
-				restartApplySuc:'成功重启该设备应用',
-				restartApplyFail:'重启应用失败！',
-
-
-				restartDrive:'重启硬件驱动',
-				confirmRestartDrive:'确定要重启硬件驱动？',
-				nowRestartDrive:'正在重启硬件驱动',
-				restartDriveSuc:'成功重启该设备硬件驱动',
-				restartDriveFail:'重启硬件驱动失败！',
-
-				restartOS:'重启操作系统',
-				confirmRestartOS:'确定要重启操作系统？',
-				nowRestartOS:'正在重启操作系统',
-				restartOSSuc:'成功重启该设备操作系统',
-				restartOSFail:'重启操作系统失败！',
-
-				remoteShutdown:'远程关机',
-				shutdownApply:'关闭应用',
-				confirmShutdownApply:'确定要关闭应用？',
-				nowShutdownApply:'正在关闭应用',
-				shutdownApplySuc:'成功关闭该设备应用',
-				shutdownApplyFail:'关闭应用失败！',
-
-				shutdownDrive:'关闭硬件驱动',
-				confirmShutdownDrive:'确定要关闭硬件驱动？',
-				nowShutdownDrive:'正在关闭硬件驱动',
-				shutdownDriveSuc:'成功关闭该设备硬件驱动',
-				shutdownDriveFail:'关闭硬件驱动失败！',
-
-				shutdownOS:'关闭操作系统',
-				confirmShutdownOS:'确定要关闭操作系统？',
-				nowShutdownOS:'正在关闭操作系统',
-				shutdownOSSuc:'成功关闭该设备操作系统',
-				shutdownOSFail:'关闭操作系统失败！',
-				getSoftwareList:'获取软件安装列表',
-				forceReset:'强制复位',
-				openService:'开启服务',
-				pauseService:'暂停服务',
-				checkStatus:'状态检测',
-
-				remoteBrowseDisk:'远程浏览',
-
-				sysHardwareInfo:'系统硬件信息',
-				diskMem:'硬盘大小',
-				biosVersion:'Bios版本',
-				biosVendor:'Bios厂商',
-				biosReleaseDate:'Bios发布日期',
-				memorySize:'内存总数',
-				memoryUsed:'已使用内存',
-				memoryFree:'空闲内存',
-				memoryPercent:'内存使用率',
-				cpuItemID:'cpu信息',
-				cpuFrequency:'CPU频率(MHz)',
-				cpuVendor:'CPU的厂商',
-				cpuModel:'CPU的类别',
-				cacheSize:'缓冲存储器数量',
-				totalCores:'CPU核数',
-				userUsePercent:'用户使用率',
-				sysUsePercent:'系统使用率',
-				idlePercent:'当前空闲率',
-				combinedPercent:'总的使用率',
-				diskItemID:'磁盘信息',
-				diskName:'磁盘分区名称',
-				diskFileSys:'磁盘文件系统',
-				diskTotalSize:'磁盘总大小',
-				diskFreeSize:'磁盘可用空间大小',
-				sysSoftInfo:'系统软件信息',
-				OSID:'操作系统ID',
-				OSDescription:'OS描述',
-				OSType:'OS类型',
-				sysPatchLevel:'系统补丁级别',
-				chkCashData:'验钞数据版本',
-				OSVendor:'OS供应商',
-				OSVendorName:'OS供应商名',
-				sysVersion:'系统版本号',
-				devAddress:'设备地址',
-				basicInfo:'基本信息',
-				virtual:'虚拟设备号',
-				serial:'设备序列号',
-				carrier:'运营商',
-				moneyOrg:'加钞机构',
-				costInterest:'资金成本利率',
-				atmcSoft:'atmc软件',
-				spType:'厂商sp类型',
-				column:'日期信息',
-				buyDate:'设备购买日期',
-				installDate:'设备安装日期',
-				startDate:'设备启用日期',
-				stopDate:'设备停用日期',
-				expireDate:'保修到期日期',
-				daliyOpen:'每日开机时间',
-				openTimeHour:'时',
-				openTimeMinute:'分',
-				openTimeSecond:'秒',
-				daliyClose:'每日关机时间',
-				lastPmDate:'上次巡检日期',
-				expirePmDate:'巡检到期日期',
-				costInfo:'费用信息',
-				price:'入账成本(元)',
 				depreciationLife:'折旧年限(年)',
-				decoration:'装修费用',
-				decorationCost:'装修摊销年限(年)',
-				governanceRent:'物业租赁费(元/月)',
-				governanceCost:'物业管理费用(元/月)',
-				netCost:'通讯线路费用(元/月)',
-				powerCost:'电费(元/月)',
-				moneyCost:'加钞维护费用(元/次)',
-				statusInfo:'状态信息',
-				deviceAttention:'设备关注程序',
-				stress:'重点',
-				medium:'中等',
-				ordinary:'一般',
-				notCashSignal:'非现金标志',
-				cash: '现金',
-				notCash:'非现金',
-				installStyle: '安装方式',
-				crossWall: '穿墙',
-				mainRoom: '大堂',
-				netType: '网络类型',
-				wired: '有线',
-				wireless: '无线',
-				wiredAndWireless: '有线无线',
-				onBankSignal:'在行离行标志',
-				inBank:'在行自助服务区',
-				outBank:'离行自助银行',
-				clickBank:'单机离行自助服务点',
-				operation:'经营方式',
-				operationSelf: '自营',
-				cooperation: '合作',
-				epiboly: '外包',
-				managePerson:'管机员',
-				maintainPerson:'维护员',
-				to:'至',
-				range: '范围1－－100年',
-				roleDescription:'角色描述',
-				roleName:'角色名称',
+				decoration:'Decorate charge',//装修费用
+				decorationCost:'Decorate charge(year)',//装修摊销年限(年)
+				governanceRent:'Property charge(RMB/mon)',//物业租赁费(元/月)
+				governanceCost:'Property charge(RMB/mon)',//物业管理费用(元/月)
+				netCost:'Net charge(元/月)',//通讯线路费用(元/月)
+				powerCost:'Electriccharge(RMB/mon)',
+				moneyCost:'Cash charge(Rmb/time)',//加钞维护费用(元/次)
+				statusInfo:'Status',//状态信息
+				deviceAttention:'follow with ',//设备关注程序
+				stress:'Important',//重要
+				medium:'Medium',//中等
+				ordinary:'Ordinary',//一般
+				notCashSignal:'Cash flag',//非现金标志
+				cash: 'Cash',//现金
+				notCash:'Not cash',//非现金
+				installStyle: 'Insatall way',//安装方式
+				crossWall: 'CrossWall',//穿墙
+				mainRoom: 'MainRoom',//mainRoom
+				netType: 'Net type',//网络类型
+				wired: 'Wired',//有线
+				wireless: 'Wireless',//wireless
+				wiredAndWireless: 'Wired flag',//wiredAndWireless
+				onBankSignal:'Inbank flag',//在行离行标志
+				inBank:'In-bank self-servce area',//在行自助服务区
+				outBank:'Out-bank self-servce',//离行自助银行
+				clickBank:'Alone out-bank self-service',//单机离行自助服务点
+				operation:'Service mode',//经营方式
+				operationSelf: 'Self-business',//自营
+				cooperation: 'Cooperation',//合作
+				epiboly: 'Outsource',//外包
+				managePerson:'Manager',//管机员
+				maintainPerson:'Maintainer',
+				to:'至',//to
+				range: 'Range 1-100 years',//范围1－－100年
+				roleDescription:'Role description',//角色描述
+				roleName:'Role name',//角色名称
 
-
-
-				devices:'设备',
-				configuration:'配置信息',
-				spVersion:'SP版本',
-				notSupport:'不支持',
-				drive:'驱动',
-				firmway: '固件',
-				noDevice:'无设备',
-				devTypeInfo: '设备型号信息',
-
-				devInfo:'设备信息',
-				unable:'不可以',
-				able:'能',
-
+				
+					
+				devices:'Device',//设备
+				configuration:'Setting',//配置信息
+				spVersion:'SP',//SP 版本
+				notSupport:'Unsupport',//不支持
+				drive:'Driver',//驱动
+				firmway: 'Firmware',//固件
+				noDevice:'No device',//无设备
+				devTypeInfo: 'Device type',//设备型号信息
+				
+				devInfo:'Device info',//设备信息
+				unable:'Can not',//不可以
+				able:'Can',//能
+				
 			},
 			param:{
-				paramKey:'参数',//Eway.locale.machine.param.paramKey
-				paramValue:'参数值',//Eway.locale.machine.param.paramValue
-				classify:'类型',//Eway.locale.machine.param.classify
+				paramKey:'Parameter',//Eway.locale.machine.param.paramKey 参数
+				paramValue:'Parameter value',//Eway.locale.machine.param.paramValue参数值
+				classify:'Type',//Eway.locale.machine.param.classify 类型
 				comboxClassify:{
-					unableUpdate:'不可修改',
-					ableUpdate:'可以修改'
+					unableUpdate:'Unable modify',//不可修改
+					ableUpdate:'Can modify'//可以修改
 				},
-				description:'参数信息描述',//Eway.locale.machine.param.description
-				systemCon:'系统配置',//Eway.locale.machine.param.systemCon
-				updateSystemCon:'更改系统配置'//Eway.locale.machine.param.updateSystemCon
+				description:'Parameter info',//Eway.locale.machine.param.description 参数信息描述
+				systemCon:'System setting',//Eway.locale.machine.param.systemCon 系统配置
+				updateSystemCon:'Modify system setting'//Eway.locale.machine.param.updateSystemCon 更改系统配置
 			},
 			quittingNotice:{
-				addCloseMsg:'增加报停信息',
-				updateCloseMsg:'更改报停信息',
-				dateRangeText:'恢复日期不能小于等于停止日期,请重新选择',
-				click:'请点击查询，选择设备',
-				stopTime:'停机时间',
-				openTime:'恢复时间',
-				currentStatus:'当前状态',
-				closeType:'停机类型',
-				responsibilityName:'停机负责人',
-				stopReason:'停机原因',
-				address:'所属地址',
-				selectDev:'选择需要报停的设备',
-				to:'至',
-				stopType:'停机类型',
+				addCloseMsg:'Add stop',//增加报停信息
+				updateCloseMsg:'Modify stop',//
+				dateRangeText:'Recover date can not be earlier than stop date,please choose again',//恢复日期不能小于等于停止日期,请重新选择
+				click:'Click query to choose device',//请点击查询，选择设备
+				stopTime:'Stop time',//停机时间
+				openTime:'Recover time',//恢复时间
+				currentStatus:'Current status',//当前状态
+				closeType:'Type',//停机类型
+				responsibilityName:'Personincharge',//停机负责人
+				stopReason:'Reason',//停机原因
+				address:'Address',//所属地址
+				selectDev:'Please select the device which you want to stop',//选择需要报停的设备
+				to:'to',//至
+				stopType:'Type',//停机类型
 				comboxStopType:{
-					recess:'放假',
-					fit:'装修',
-					power:'停电',
-					devFailue:'设备故障未修复',
-					other:'其他'
+
+					recess:'Holiday',//放假
+					fit:'Decorate',//装修
+					power:'Powercut',
+					devFailue:'Error never fix',//设备故障未修复
+					other:'Other'	//其他
 				},
-				setTime:'设置时间',
-				closeManage:'报停管理'
+				setTime:'Set time',//
+				closeManage:'Stop manager'//报停管理
 			}
 		},
 
@@ -1762,119 +1768,120 @@ Ext.override(Eway,{
 
 		index:{
 			indexPage:'Home',//Eway.locale.index.indexPage 首页
-			dailyFaultPic:'日均故障趋势图',//Eway.locale.index.dailyFaultPic
+			dailyFaultPic:'日均故障趋势图',//Eway.locale.index.dailyFaultPic 日均故障趋势图
 			faultAmount:' 产生的故障数量: ',//Eway.locale.index.faultAmount
 			devStatusDisPic:'设备状态分布图',//Eway.locale.index.devStatusDisPic
-			normalDev:'正常设备',//Eway.locale.index.normalDev
+			normalDev:'Device normal',//Eway.locale.index.normalDev 正常设备
 			unknownDev:'Device-unknown',//Eway.locale.index.unknownDev
-			exceptionDev:'异常设备',//Eway.locale.index.exceptionDev
-			amount:'台',//Eway.locale.index.amount
+			exceptionDev:'Device unusual',//Eway.locale.index.exceptionDev 异常设备
+			amount:'',//Eway.locale.index.amount 台
+			versionDistributePie:'Version Distribution'//Eway.locale.index.versionDistributePie
 		},
 		//**********************************************************/
 		report:{
 			baseReport:{
-				date:'加钞日期',//Eway.locale.report.baseReport.date
-				amt:'加钞金额',//Eway.locale.report.baseReport.amt
-				boxId:'钞箱ID',//Eway.locale.report.baseReport.boxId
-				boxCurrency:'币种',//Eway.locale.report.baseReport.boxCurrency
-				boxInitAmt:'初始金额',//Eway.locale.report.baseReport.boxInitAmt
-				lastAmt:'剩余金额',//Eway.locale.report.baseReport.lastAmt
-				cashAddRep:'加钞情况报表',//Eway.locale.report.baseReport.cashAddRep
-				boxBalanceRep:'钞箱余额报表',//Eway.locale.report.baseReport.boxBalanceRep
-				sysConfRep:'系统硬件配置报表',//Eway.locale.report.baseReport.sysConfRep
-				devDetailRep:'设备明细报表',//Eway.locale.report.baseReport.devDetailRep
-				devBrandRep:'设备品牌统计报表',//Eway.locale.report.baseReport.devBrandRep
-				devRunInfoRep:'设备运行情况报表',//Eway.locale.report.baseReport.devRunInfoRep
-				eatCardRep:'吞卡统计报表',//Eway.locale.report.baseReport.eatCardRep
-				eatCardDetailRep:'吞卡明细报表',//Eway.locale.report.baseReport.eatCardDetailRep
-				clearDate:'清机日期',//Eway.locale.report.baseReport.clearDate
-				clearTable:'清机情况报表',//Eway.locale.report.baseReport.clearTable
-				dependDev:'按设备',//Eway.locale.report.baseReport.dependDev
-				tradeRep:'交易统计报表',//Eway.locale.report.baseReport.tradeRep
-				tradeResultRep:'交易结果统计报表',//Eway.locale.report.baseReport.tradeResultRep
+				date:'Cash date',//Eway.locale.report.baseReport.date 加钞日期
+				amt:'Cash amount',//Eway.locale.report.baseReport.amt 加钞金额
+				boxId:'Cashbox ID',//Eway.locale.report.baseReport.boxId 钞箱ID 
+				boxCurrency:'Currency',//Eway.locale.report.baseReport.boxCurrency 币种
+				boxInitAmt:'InitAmt',//Eway.locale.report.baseReport.boxInitAmt 初始金额
+				lastAmt:'LeftAmt',//Eway.locale.report.baseReport.lastAmt
+				cashAddRep:'CashAdd detail report',//Eway.locale.report.baseReport.cashAddRep 加钞情况报表
+				boxBalanceRep:'Cashbox left report',//Eway.locale.report.baseReport.boxBalanceRep 钞箱余额报表
+				sysConfRep:'Hardware report',//Eway.locale.report.baseReport.sysConfRep 系统硬件配置报表
+				devDetailRep:'Device detail report',//Eway.locale.report.baseReport.devDetailRep 设备明细报表
+				devBrandRep:'Device brand report',//Eway.locale.report.baseReport.devBrandRep 设备品牌统计报表
+				devRunInfoRep:'Device run report',//Eway.locale.report.baseReport.devRunInfoRep 设备运行情况报表
+				eatCardRep:'Retain card report',//Eway.locale.report.baseReport.eatCardRep 吞卡统计报表
+				eatCardDetailRep:'Retain card detail report',//Eway.locale.report.baseReport.eatCardDetailRep 吞卡明细报表
+				clearDate:'Clear date',//Eway.locale.report.baseReport.clearDate 清机日期
+				clearTable:'Clear report',//Eway.locale.report.baseReport.clearTable 清机情况报表
+				dependDev:'Depend on Dev',//Eway.locale.report.baseReport.dependDev 按设备
+				tradeRep:'Transation report',//Eway.locale.report.baseReport.tradeRep 交易统计报表
+				tradeResultRep:'Transation result report',//Eway.locale.report.baseReport.tradeResultRep 交易结果统计报表
 			},
 			openrate:{
 				device:{
-					statisticsMethod:'统计方式',//Eway.locale.report.openrate.device.statisticsMethod
-					statistics:'统计',//Eway.locale.report.openrate.device.statistics
-					importStat:'导出',//Eway.locale.report.openrate.device.importStat
-					statDate:'统计日期',//Eway.locale.report.openrate.device.statDate
-					openTimes:'设备应工作时长',//Eway.locale.report.openrate.device.openTimes
-					healthyTimeReal:'正常状态时长',//Eway.locale.report.openrate.device.healthyTimeReal
-					maintainTimeReal:'管机员维护时长',//Eway.locale.report.openrate.device.maintainTimeReal
-					unknownTimeReal:'离线未知时长',//Eway.locale.report.openrate.device.unknownTimeReal
-					faultTimeReal:'硬件故障停机时长',//Eway.locale.report.openrate.device.faultTimeReal
-					atmpTimeReal:'ATMP故障时长',//Eway.locale.report.openrate.device.atmpTimeReal
-					stopTimeReal:'其它暂停服务状态时长',//Eway.locale.report.openrate.device.stopTimeReal
-					openRate:'实际工作开机率',//Eway.locale.report.openrate.device.openRate
-					devOpenRate:'设备开机率',//Eway.locale.report.openrate.device.devOpenRate
-					organizationName:'机构',//Eway.locale.report.openrate.device.organizationName
+					statisticsMethod:'Statistics way',//Eway.locale.report.openrate.device.statisticsMethod 统计方式
+					statistics:'Statistics',//Eway.locale.report.openrate.device.statistics 统计
+					importStat:'Export',//Eway.locale.report.openrate.device.importStat 导出
+					statDate:'Statistics date',//Eway.locale.report.openrate.device.statDate 统计日期
+					openTimes:'Time device should run',//Eway.locale.report.openrate.device.openTimes 设备应工作时长
+					healthyTimeReal:'Time device run normally',//Eway.locale.report.openrate.device.healthyTimeReal 正常状态时长
+					maintainTimeReal:'Time device manage-mode',//Eway.locale.report.openrate.device.maintainTimeReal 管机员维护时长
+					unknownTimeReal:'Time device off-line',//Eway.locale.report.openrate.device.unknownTimeReal 离线未知时长
+					faultTimeReal:'Time device hardware-error',//Eway.locale.report.openrate.device.faultTimeReal 硬件故障停机时长
+					atmpTimeReal:'Time ATMP error',//Eway.locale.report.openrate.device.atmpTimeReal ATMP故障时长
+					stopTimeReal:'Time other reason stop-service',//Eway.locale.report.openrate.device.stopTimeReal 其它暂停服务状态时长
+					openRate:'OpenRate',//Eway.locale.report.openrate.device.openRate 实际工作开机率
+					devOpenRate:'OpenRate',//Eway.locale.report.openrate.device.devOpenRate 设备开机率
+					organizationName:'Org',//Eway.locale.report.openrate.device.organizationName 机构
 				},
 				org:{
-					orgOpenRate:'机构开机率',//Eway.locale.report.openrate.org.orgOpenRate
+					orgOpenRate:'OpenRate-org',//Eway.locale.report.openrate.org.orgOpenRate 机构开机率
 				},
 				type:{
-					terminalId:'型号',//Eway.locale.report.openrate.type.terminalId
-					typeOpenRate:'型号开机率',//Eway.locale.report.openrate.type.typeOpenRate
+					terminalId:'Type',//Eway.locale.report.openrate.type.terminalId 型号
+					typeOpenRate:'OpenRate of device type',//Eway.locale.report.openrate.type.typeOpenRate 型号开机率
 				},
 			},
 			plan:{
-				addPlan:'增加方案',//Eway.locale.report.plan.addPlan
-				name:'名称',//Eway.locale.report.plan.name
-				startDate:'有效开始时间',//Eway.locale.report.plan.startDate
-				endDate:'有效结束时间',//Eway.locale.report.plan.endDate
-				terminalId:'编号',//Eway.locale.report.plan.terminalId
-				cashboxLimit:'钞箱报警金额(单位：张数)',//Eway.locale.report.plan.cashboxLimit
-				perToDev:'人员<-->设备',//Eway.locale.report.plan.perToDev
-				changePlan:'更改方案',//Eway.locale.report.plan.changePlan
-				openPlan:'开机方案',//Eway.locale.report.plan.openPlan
+				addPlan:'AddPlan',//Eway.locale.report.plan.addPlan 增加方案
+				name:'Name',//Eway.locale.report.plan.name 名称
+				startDate:'Start time',//Eway.locale.report.plan.startDate 有效开始时间
+				endDate:'End time',//Eway.locale.report.plan.endDate 有效结束时间
+				terminalId:'Code',//Eway.locale.report.plan.terminalId 编号
+				cashboxLimit:'Alarm cashbox(unit:piece)',//Eway.locale.report.plan.cashboxLimit 钞箱报警金额(单位：张数)
+				perToDev:'Person<-->Device',//Eway.locale.report.plan.perToDev 人员<-->设备
+				changePlan:'Modify plan',//Eway.locale.report.plan.changePlan 更改方案
+				openPlan:'Start up plan',//Eway.locale.report.plan.openPlan 开机方案
 			}
 		},
 
 		//**********************************************************/
 		card:{
-			cardNum:'卡号',//Eway.locale.card.cardNum
-			onlyNumber:'只能输入数字,13-19位',//Eway.locale.card.onlyNumber
-			cardStatus:'卡片状态',//Eway.locale.card.cardStatus
-			eatCardTime:'吞卡时间',//Eway.locale.card.eatCardTime
-			IDType:'证件类型',//Eway.locale.card.IDType
-			customerName:'客户姓名',//Eway.locale.card.customerName
-			customerPapers:'客户证件号',//Eway.locale.card.customerPapers
-			customerPhone:'客户电话',//Eway.locale.card.customerPhone
-			endData:'吞卡截止日期',//Eway.locale.card.endData
-			startData:'吞卡起始日期',//Eway.locale.card.startData
+			cardNum:'Card num',//Eway.locale.card.cardNum 卡号
+			onlyNumber:'Just for numbers,13-19 numbers',//Eway.locale.card.onlyNumber 只能输入数字,13-19位
+			cardStatus:'Status',//Eway.locale.card.cardStatus 卡片状态
+			eatCardTime:'Time',//Eway.locale.card.eatCardTime 吞卡时间
+			IDType:'License type',//Eway.locale.card.IDType 证件类型
+			customerName:'CustomerName',//Eway.locale.card.customerName 客户姓名
+			customerPapers:'CustomerPapers',//Eway.locale.card.customerPapers 客户证件号
+			customerPhone:'CustomerPhone',//Eway.locale.card.customerPhone 客户电话
+			endData:'EndData',//Eway.locale.card.endData 吞卡截止日期
+			startData:'StartData',//Eway.locale.card.startData 吞卡起始日期
 		},
 
 		//**********************************************************/
 
 		cases:{
-			confirm:'确认',
-			cancel:'取消',
-			concern:'请关注',
-			SRCBView:'上海农商行新监控发送',
-			nowExportFile:'正在导入文件',
-			exportFaultInfo:'导入厂商故障信息成功.',
+			confirm:'Confirm',//确认
+			cancel:'Cancel',//取消
+			concern:'Attention please',//请关注
+			SRCBView:'',//上海农商行新监控发送
+			nowExportFile:'File Importing',//正在导入文件
+			exportFaultInfo:'Import fault code successful',//导入厂商故障信息成功.
 			caseFault:{
-				faultRelevantInfo:'故障相关短信',
-				faultModule:'故障模块',
-				cardReaderModule:'读卡器模块',
-				depoistModule:'存款模块',
-				drawModule:'取款模块',
-				rprModule:'凭条打印模块',
-				jprModule:'日志打印模块',
-				pinModule:'密码键盘模块',
-				textTerminalUnit:'文本终端单元',
-				sensoModule:'传感器模块',
-				faultClassify: '故障分类',
-				faultCode : '故障码',
-				providerFaultCode: '厂商故障码',
-				faultStartTime : '故障开始时间',
-				faultCloseTime : '故障关闭时间',
-				faultContinueTime : '持续时长',
-			    faultState : '故障状态',
+				faultRelevantInfo:'SMS about fault',//故障相关短信
+				faultModule:'Fault module ',
+				cardReaderModule:'Card reader',//读卡器模块
+				depoistModule:'Deposit module',//存款模块
+				drawModule:'Draw module',//取款模块
+				rprModule:'Voucher printer',//凭条打印模块
+				jprModule:'Log printer',//日志打印模块
+				pinModule:'Pin keyboard',//密码键盘模块
+				textTerminalUnit:'Text terminal',//文本终端单元
+				sensoModule:'Sensor',//传感器模块
+				faultClassify: 'Fault catalog',//故障分类
+				faultCode : 'Fault code',//故障码
+				providerFaultCode: 'Fault code manufacturer',//厂商故障码
+				faultStartTime : 'Open time',//故障开始时间
+				faultCloseTime : 'Close time',//故障关闭时间
+				faultContinueTime : 'Time last',//持续时长
+			    faultState : 'Status',//故障状态
 			    status:{
-			    	open:'未关闭',
-			    	close:'已关闭'
+			    	open:'Opening',//未关闭
+			    	close:'Closed'//已关闭
 			    },
 			    closeType:{
 			    	force : 'closeByForce',
@@ -1882,157 +1889,159 @@ Ext.override(Eway,{
 			    },
 			    closeByForce : 'click to close fault by hand',
 			    faultCloseType : 'fault close type',
-			    upgradeTimes: '升级次数',
-			    message: '短信',
-			    checkDetails: '查看详情',
-			    bankPer: '银行联系人',
-			    serPer: '供应商联系人',
-			    createTime: '创建时间',
-			    informContent: '通知内容',
-			    messageContentDetail: '短信内容详情',
-			    informWay: '通知方式',
-			    mail:'邮件',
-			    messageAndMail:'短信和邮件',
-			    informMobile: '通知手机号',
-			    notifyTimes: '通知次数',
-			    notifyRepeatTimes: '重复通知次数',
-			    sendTimes: '发送次数',
-			    sendInterval: '发送时间间隔',
-			    sendTime: '发送时间',
-			    faultSearch:'故障查询',
 			    none : 'none'
+
+			    upgradeTimes: 'Upgrade times',//升级次数
+			    message: 'SMS',//短信
+			    checkDetails: 'Detail',//查看详情
+			    bankPer: 'Bnak contact',//银行联系人
+			    serPer: 'SUppliers contact',//供应商联系人
+			    createTime: 'Create time',//创建时间
+			    informContent: 'Notify content',//通知内容
+			    messageContentDetail: 'SMS content',//短信内容详情
+			    informWay: 'Notify way',//通知方式
+			    mail:'Email',//邮件
+			    messageAndMail:'SMS and email',//短信和邮件
+			    informMobile: 'Notify mobile',//通知手机号
+			    notifyTimes: 'Notify times',//通知次数
+			    notifyRepeatTimes: 'Repeat notify times',//重复通知次数
+			    sendTimes: 'Send times',//发送次数
+			    sendInterval: 'Intervals between each send',//发送时间间隔
+			    sendTime: 'Send time',//发送时间
+			    faultSearch:'Fault search'//故障查询
 
 			},
 			caseNotify:{
-				fault:'故障',
-				faultDetails:'故障详情',
-				faultlastTime: '故障持续时长(单位:小时)',
-				checkFailure:'查看失败！',
-				innerFault:'内部错误',//Eway.locale.cases.caseNotify.innerFault
-				messageCheck:'短信查询'
+				fault:'Fault',//故障
+				faultDetails:'Detail',//故障详情
+				faultlastTime: 'Fault last(unit:hour)',//故障持续时长(单位:小时)
+				checkFailure:'View failed!',//查看失败！
+				innerFault:'System error',//Eway.locale.cases.caseNotify.innerFault 内部错误
+				messageCheck:'Query SMS'//短信查询
 			},
 			faultClassify:{
-				faultClassifyName: '故障分类名称',
-				faultresponsorType: '故障责任人类型',
-				maintain:'维护员',
-				manageAndMaintain:'管机员和维护员 ',
-				upGradeTimes: '最高升级次数',
-				faultInformWay:'故障通知方式',
-				faultCloseInterval:'故障规定关闭时间间隔（单位:小时）',
-				faultTypeConfiguration: '故障类型配置',
-				updateFaultTypeConfiguration: '更改故障类型配置',
-				number:'由数字‘0-9’,‘.’组成',
-				informNumber:'通知次数不能为0,由数字‘0-9’组成,1-5位'
+				faultClassifyName: 'Fault type name',//故障分类名称
+				faultresponsorType: 'Fault personliable type', //故障责任人类型
+				maintain:'Maintainer',//维护员
+				manageAndMaintain:'Manager&Maintainer',//管机员和维护员
+				upGradeTimes: 'Max upgrade times',//最高升级次数
+				faultInformWay:'Notify way',//故障通知方式
+				faultCloseInterval:'Intervals between close(unit:hour)',//故障规定关闭时间间隔（单位:小时）
+				faultTypeConfiguration: 'Fault type setting',//故障类型配置
+				updateFaultTypeConfiguration: 'Modify fault type',//更改故障类型配置
+				number:'Just for numbers ‘0-9’',//由数字‘0-9’,‘.’组成
+				informNumber:'Can not be 0,1-5 numbers'//通知次数不能为0,由数字‘0-9’组成,1-5位
 			},
 			notifyMould:{
-				noticeType:'通知类型',
-				createNotice:'创建通知',
-				upgradeNotice:'升级通知',
-				closeNotice:'关闭通知',
-				noticeValue: '通知参数',
-				messageContentConfiguration:'短信内容配置',
-				updateMessageContentConfiguration: '更改短信内容配置',
-				necessaryOption: '此项为必选项',
-				faultType:'故障类型',
-				applyStatus:'应用状态'
+				noticeType:'Type',//通知类型
+				createNotice:'Create',//创建通知
+				upgradeNotice:'Upgrade',//升级通知
+				closeNotice:'Close',//关闭通知
+				noticeValue: 'Parameters',//通知参数
+				messageContentConfiguration:'SMS content',//短信内容配置
+				updateMessageContentConfiguration: 'Modify SMS content',//更改短信内容配置
+				necessaryOption: 'This option is necessary',//此项为必选项
+				faultType:'Fault type',//故障类型
+				applyStatus:'App status'//应用状态
 			},
 			vendorCode:{
-				exportProviderInfo: '导入厂商故障信息',
-				provider:'厂商',
-				exportFile: '导入文件',
-				deleteFaultInfo:'删除厂商故障信息',
-				templateLoad:'模板下载',
-				massRemove: '批量删除',
-				providerDescription:'厂商故障描述',
-				solveProject: '解决方案',
-				providerFaultInfo:'厂商故障信息管理'
+				exportProviderInfo: 'Import manufacturer faultCode',//导入厂商故障信息
+				provider:'Manufacturer',
+				exportFile: 'Import file',//导入文件
+				deleteFaultInfo:'Delete manufacturer faultCode',//删除厂商故障信息
+				templateLoad:'Example download',//模板下载
+				massRemove: 'Batch delete',//批量删除
+				providerDescription:'DaultCode describe',//厂商故障描述
+				solveProject: 'Solution',//解决方案
+				providerFaultInfo:'Manufacturer faultCode'//厂商故障信息管理
 			}
 		},
 
 		//**********************************************************/
 		personal:{
-			baseInfo:'基本信息',//Eway.locale.personal.baseInfo
-			accountNum:'账号',//Eway.locale.personal.accountNum
-			personalInfo:'个人信息',//Eway.locale.personal.personalInfo
-			changePwd:'修改密码',//Eway.locale.personal.changePwd
-			nowLogin:'当前登录账号',//Eway.locale.personal.nowLogin
-			inputOldPwd:'输入原始密码',//Eway.locale.personal.inputOldPwd
-			inputNewPwd:'输入新密码',//Eway.locale.personal.inputNewPwd
-			inputVali:'只能输入8到20位字母‘a-z’或‘A-Z’、数字‘0-9’、特殊字符！',//Eway.locale.personal.inputVali
-			inputAgain:'再次输入新密码',//Eway.locale.personal.inputAgain
-			pwdNotSame:'两次密码不一致！',//Eway.locale.personal.pwdNotSame
-			rememberPwd:'单击确定即可修改密码，请牢记新密码！',//Eway.locale.personal.rememberPwd
-			pwdSameNoChange:'输入的新密码与旧密码相同,不可修改.',//Eway.locale.personal.pwdSameNoChange
-			reOperate:'无法修改密码,请重新操作.',//Eway.locale.personal.reOperate
+			baseInfo:'Basic info',//Eway.locale.personal.baseInfo 基本信息
+			accountNum:'Account',//Eway.locale.personal.accountNum 账号
+			personalInfo:'Personal info',//Eway.locale.personal.personalInfo 个人信息
+			changePwd:'Change passwd',//Eway.locale.personal.changePwd 修改密码
+			nowLogin:'Current Account',//Eway.locale.personal.nowLogin 当前登录账号
+			inputOldPwd:'Input initial passwd',//Eway.locale.personal.inputOldPwd 输入原始密码
+			inputNewPwd:'Input new passwd',//Eway.locale.personal.inputNewPwd 输入新密码
+			inputVali:'Just for 8-20 characters ‘a-z’ or ‘A-Z’、number‘0-9’、minussign‘-’、underline‘_’',//Eway.locale.personal.inputVali 只能输入8到20位字母‘a-z’或‘A-Z’、数字‘0-9’、特殊字符！
+			inputAgain:'Input again',//Eway.locale.personal.inputAgain 再次输入新密码
+			pwdNotSame:'Passwds not same',//Eway.locale.personal.pwdNotSame 两次密码不一致！
+			rememberPwd:'Click confirm to update passwd ,please remember it',//Eway.locale.personal.rememberPwd 单击确定即可修改密码，请牢记新密码！
+			pwdSameNoChange:'New passwd is same with the old one,can not commit',//Eway.locale.personal.pwdSameNoChange 输入的新密码与旧密码相同,不可修改.
+			reOperate:'Can not modify passwd,please try again',//Eway.locale.personal.reOperate 无法修改密码,请重新操作.
 		},
 
 		//**********************************************************/
 		atmLog:{
-			dayBackup:'当日备份结果',//Eway.locale.atmLog.dayBackup
-			whole:'所有',//Eway.locale.atmLog.whole
-			execute:'执行中',//Eway.locale.atmLog.execute
-			unKnownFail:'未知原因失败',//Eway.locale.atmLog.unKnownFail
-			logDate:'日志日期',//Eway.locale.atmLog.logDate
-			backupResult:'备份结果',//Eway.locale.atmLog.backupResult
-			checkFailInfo:'查看备份失败详情',//Eway.locale.atmLog.checkFailInfo
-			checkSucInfo:'查看备份成功详情',//Eway.locale.atmLog.checkSucInfo
-			backupSucAmount:'备份成功台数',//Eway.locale.atmLog.backupSucAmount
-			backupFailAmount:'备份失败台数',//Eway.locale.atmLog.backupFailAmount
-			backupAllAmount:'总备份台数',//Eway.locale.atmLog.backupAllAmount
-			logBackupSta:'日志备份统计',//Eway.locale.atmLog.logBackupSta
-			dailyBackup:'每日备份任务',//Eway.locale.atmLog.dailyBackup
-			backupDate:'备份日期',//Eway.locale.atmLog.backupDate
-			dayBackupResult:'当日备份结果',//Eway.locale.atmLog.dayBackupResult
-			backupProcess:'正在备份',//Eway.locale.atmLog.backupProcess
-			backupSuccess:'备份成功',//Eway.locale.atmLog.backupSuccess
-			backupError:'备份错误',//Eway.locale.atmLog.backupError
-			logDevAccount:'日志设备数量累计',//Eway.locale.atmLog.logDevAccount
-			reform:'重做',//Eway.locale.atmLog.reform
-			busLogAnalysis:'业务日志分析',//Eway.locale.atmLog.busLogAnalysis
-			selectAnalysis:'请选择需要分析的日志文件，分析的结果将以Excel表格文件导出',//Eway.locale.atmLog.selectAnalysis
-			selectLog:'选择日志',//Eway.locale.atmLog.selectLog
-			pleaseDownload:'请下载',//Eway.locale.atmLog.pleaseDownload
-			appLogDownload:'应用日志下载',//Eway.locale.atmLog.appLogDownload
-			lastBackupTime:'最后一次备份时间',//Eway.locale.atmLog.lastBackupTime
-			noBegin:'未开始',//Eway.locale.atmLog.noBegin
-			noLog:'无日志',//Eway.locale.atmLog.noLog
-			connectFail:'连接失败',//Eway.locale.atmLog.connectFail
-			fileSize:'文件大小',//Eway.locale.atmLog.fileSize
-			searchIllegal:'查询项中存在不合法的输入,不能导出.'//Eway.locale.atmLog.searchIllegal
+			dayBackup:'Back-up log result today',//Eway.locale.atmLog.dayBackup 当日备份结果
+			whole:'All',//Eway.locale.atmLog.whole 所有
+			execute:'Executing',//Eway.locale.atmLog.execute 执行中
+			unKnownFail:'Failed with unknown reason',//Eway.locale.atmLog.unKnownFail 未知原因失败
+			logDate:'Log date',//Eway.locale.atmLog.logDate 日志日期
+			backupResult:'Back-up result',//Eway.locale.atmLog.backupResult 备份结果
+			checkFailInfo:'Check detail of back-up failed',//Eway.locale.atmLog.checkFailInfo 查看备份失败详情
+			checkSucInfo:'Check detail of back-up successful',//Eway.locale.atmLog.checkSucInfo 查看备份成功详情
+			backupSucAmount:'Count of machine back-up successful',//Eway.locale.atmLog.backupSucAmount 备份成功台数
+			backupFailAmount:'Count of machine back-up failed',//Eway.locale.atmLog.backupFailAmount 备份失败台数
+			backupAllAmount:'Total count',//Eway.locale.atmLog.backupAllAmount 总备份台数
+			logBackupSta:'Back-up log total',//Eway.locale.atmLog.logBackupSta 日志备份统计
+			dailyBackup:'Back-up task everyday',//Eway.locale.atmLog.dailyBackup 每日备份任务
+			backupDate:'Back-up date',//Eway.locale.atmLog.backupDate 备份日期
+			dayBackupResult:'Back-up result today',//Eway.locale.atmLog.dayBackupResult 当日备份结果
+			backupProcess:'Backing-up',//Eway.locale.atmLog.backupProcess 正在备份
+			backupSuccess:'Back-up successful',//Eway.locale.atmLog.backupSuccess 备份成功
+			backupError:'Back-up error',//Eway.locale.atmLog.backupError 备份错误
+			logDevAccount:'Log back-up machine count total',//Eway.locale.atmLog.logDevAccount 日志设备数量累计
+			reform:'Reform',//Eway.locale.atmLog.reform 重做
+			busLogAnalysis:'Business log analysis',//Eway.locale.atmLog.busLogAnalysis 业务日志分析
+			selectAnalysis:'Please choose the log file which you want to analyse, the result will show in Excel file',//Eway.locale.atmLog.selectAnalysis 请选择需要分析的日志文件，分析的结果将以Excel表格文件导出
+			selectLog:'Choose log',//Eway.locale.atmLog.selectLog 选择日志
+			pleaseDownload:'Please download',//Eway.locale.atmLog.pleaseDownload 请下载
+			appLogDownload:'Download app logs',//Eway.locale.atmLog.appLogDownload 应用日志下载
+			lastBackupTime:'Last back-up time',//Eway.locale.atmLog.lastBackupTime 最后一次备份时间
+			noBegin:'noBegin',//Eway.locale.atmLog.noBegin 未开始
+			noLog:'No log',//Eway.locale.atmLog.noLog 无日志
+			connectFail:'Connect fail',//Eway.locale.atmLog.connectFail 连接失败
+			fileSize:'File size',//Eway.locale.atmLog.fileSize 文件大小
+			searchIllegal:'Query option has illegal input,can not export.'//Eway.locale.atmLog.searchIllegal 查询项中存在不合法的输入,不能导出.
 		},
 		//**********************************************************/
 		system:{
-			sysRegist:'系统注册',//Eway.locale.system.sysRegist
-			registCode:'注册码',//Eway.locale.system.registCode
-			startDate:'开始时间',//Eway.locale.system.startDate
-			endDate:'到期时间',//Eway.locale.system.endDate
-			registType:'注册类型',//Eway.locale.system.registType
-			serialNum:'序列号',//Eway.locale.system.serialNum
-			getSerialNum:'正在获取序列号......',//Eway.locale.system.getSerialNum
-			checkCode:'校验码',//Eway.locale.system.checkCode
-			tryOut:'试用',//Eway.locale.system.tryOut
-			noLimit:'没有限制',//Eway.locale.system.noLimit
-			getSerialNumFail:'序列号获取失败',//Eway.locale.system.getSerialNumFail
-			registSuc:'注册成功',//Eway.locale.system.registSuc
-			registFail:'注册失败',//Eway.locale.system.registFail
-			appearInnerFalse:'出现内部错误',//Eway.locale.system.appearInnerFalse
-			regist:'注册',//Eway.locale.system.regist
-			aboutSystem:'关于系统',//Eway.locale.system.aboutSystem
-			softwareName:'软件名称',//Eway.locale.system.softwareName
-			ATMV:'金融自助设备集中监控系统',//Eway.locale.system.ATMV
-			softwareVersion:'软件版本',//Eway.locale.system.softwareVersion
-			innerVersion:'内部版本号',//Eway.locale.system.innerVersion
-			copyRight:'版权信息：&copy;深圳市怡化电脑有限公司 版权所有',//Eway.locale.system.copyRight
-			introduction:'系统简介：',//Eway.locale.system.introduction
-			introductionA:'本系统是监控系统的基础功能有ATM信息管理、',//Eway.locale.system.introductionA
+			sysRegist:'SystemRegist',//Eway.locale.system.sysRegist 系统注册
+			registCode:'Regist code',//Eway.locale.system.registCode 注册码
+			startDate:'Start date',//Eway.locale.system.startDate 开始时间
+			endDate:'End date',//Eway.locale.system.endDate 到期时间
+			registType:'Regist type',//Eway.locale.system.registType 注册类型
+			serialNum:'SerialNo',//Eway.locale.system.serialNum 序列号
+			getSerialNum:'Getting SerialNo......',//Eway.locale.system.getSerialNum 正在获取序列号......
+			checkCode:'Check code',//Eway.locale.system.checkCode 校验码
+			tryOut:'Tryout',//Eway.locale.system.tryOut 试用
+			noLimit:'Limitless',//Eway.locale.system.noLimit 没有限制
+			getSerialNumFail:'Get SerialNo failed',//Eway.locale.system.getSerialNumFail 序列号获取失败
+			registSuc:'Regist successful',//Eway.locale.system.registSuc 注册成功
+			registFail:'Regist failed',//Eway.locale.system.registFail 注册失败
+			appearInnerFalse:'System error',//Eway.locale.system.appearInnerFalse 出现内部错误
+			regist:'Regist',//Eway.locale.system.regist 注册
+			aboutSystem:'About',//Eway.locale.system.aboutSystem 关于系统
+			softwareName:'Name',//Eway.locale.system.softwareName 软件名称
+			ATMV:'Self-service machine monitor system(ATMV)',//Eway.locale.system.ATMV 金融自助设备集中监控系统
+			softwareVersion:'Software-Version',//Eway.locale.system.softwareVersion 软件版本
+			innerVersion:'InnerVersion',//Eway.locale.system.innerVersion 内部版本号
+			copyRight:'CopyRight：&copy;YIHUA ',//Eway.locale.system.copyRight 版权信息
+			introduction:'introduction:',//Eway.locale.system.introduction 系统简介
+			introductionA:'This system is used for monitor ATM-basic-info,',//Eway.locale.system.introductionA 本系统是监控系统的基础功能有ATM信息管理
 			introductionB:'自动化版本分发管理、 ATM设备监控等功能。通过这些功能，各大银行可以集中管理ATM设备信息  监视 远程的ATM，对远程ATM机器上的软件升',//Eway.locale.system.introductionB
 			introductionC:'级和软件维护，方便了各大银 行对自助设备进行高效的管理和维护。',//Eway.locale.system.introductionC
-			guideUsers:'本手册指导用户操作本系统，更快的掌握系统的各项功能。',//Eway.locale.system.guideUsers
-			systemHelp:'系统帮助',//Eway.locale.system.systemHelp
-			helpName:'名称',//Eway.locale.system.helpName
-			helpExpain:'说明',//Eway.locale.system.helpExpain
-			helpDownload:'下载',//Eway.locale.system.helpDownload
-			clickDownload:'单击此处即可下载该文档',//Eway.locale.system.clickDownload
+
+			guideUsers:'This handbook help user to use this system',//Eway.locale.system.guideUsers 本手册指导用户操作本系统，更快的掌握系统的各项功能。
+			systemHelp:'Help',//Eway.locale.system.systemHelp 系统帮助
+			helpName:'Name',//Eway.locale.system.helpName 名称
+			helpExpain:'Instructions',//Eway.locale.system.helpExpain 说明
+			helpDownload:'Download',//Eway.locale.system.helpDownload 下载
+			clickDownload:'Click to download',//Eway.locale.system.clickDownload 单击此处即可下载该文档
 		},
 		thread:{
 

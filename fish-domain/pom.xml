@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.yihuacomputer.fish</groupId>
@@ -14,23 +15,24 @@
 	</properties>
 	<dependencies>
 		<dependency>
-		    <groupId>org.apache.kafka</groupId>
-		    <artifactId>kafka-clients</artifactId>
-		    <version>0.8.2.0</version>
-		    <exclusions>
-		    	<exclusion>
-		    		<artifactId>slf4j-api</artifactId>
-		    		<groupId>org.slf4j</groupId>
-		    	</exclusion>
-		    </exclusions>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka_2.10</artifactId>
+			<version>0.8.2.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>log4j</artifactId>
+					<groupId>log4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.springframework.integration</groupId>
-			<artifactId>spring-integration-kafka</artifactId>
-			<version>1.2.1.RELEASE</version>
-		</dependency> -->
-	
-		<!-- local -->
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-common</artifactId>
@@ -84,7 +86,7 @@
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 		</dependency>
- 		<!-- logging -->
+		<!-- logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
@@ -107,10 +109,10 @@
 		</dependency>
 	</dependencies>
 	<scm>
-	 	<connection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</connection>
-        <developerConnection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</developerConnection>
-        <url>http://git.nj.yihuacomputer.com/gitweb/?p=atmvs.git</url>
-        <tag>HEAD</tag>
+		<connection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</connection>
+		<developerConnection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</developerConnection>
+		<url>http://git.nj.yihuacomputer.com/gitweb/?p=atmvs.git</url>
+		<tag>HEAD</tag>
 	</scm>
 	<build>
 		<plugins>
@@ -123,7 +125,7 @@
 					<componentProperties>
 						<configurationfile>src/test/resources/hibernate-hsqldb.cfg.xml</configurationfile>
 						<outputfilename>sic-hsqldb.sql</outputfilename>
-						<!-- configurationfile>src/test/resources/hibernate.cfg.xml</configurationfile>
+						<!-- configurationfile>src/test/resources/hibernate.cfg.xml</configurationfile> 
 							<outputfilename>sic-oracle.sql</outputfilename> -->
 						<drop>true</drop>
 					</componentProperties>

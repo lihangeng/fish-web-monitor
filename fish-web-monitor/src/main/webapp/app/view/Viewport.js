@@ -27,6 +27,7 @@ Ext.define('Eway.view.Viewport', {
 				title : Eway.locale.myTable,
 				id:'appmenu',
 				header : true,
+				bodyStyle: 'opacity:0.8',
 				xtype : 'treepanel',
 				border : true,
 				rootVisible : false,

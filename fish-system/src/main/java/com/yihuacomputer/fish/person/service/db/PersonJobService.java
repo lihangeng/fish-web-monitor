@@ -13,7 +13,7 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.person.IPersonJob;
-import com.yihuacomputer.fish.person.service.base.DomainPersonJobService;
+import com.yihuacomputer.fish.api.person.IPersonJobService;
 import com.yihuacomputer.fish.system.entity.PersonJob;
 
 /**
@@ -24,10 +24,16 @@ import com.yihuacomputer.fish.system.entity.PersonJob;
  */
 @Service
 @Transactional
-public class PersonJobService extends DomainPersonJobService {
+public class PersonJobService implements IPersonJobService {
 
     @Autowired
     private IGenericDao dao;
+    
+    @Override
+    public IPersonJob make() {
+        IPersonJob result = new PersonJob();
+        return result;
+    }
 
     @Override
     public IPersonJob get(long id) {

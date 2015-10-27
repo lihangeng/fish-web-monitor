@@ -24,7 +24,7 @@ Ext.define('Eway.view.version.versionType.Form', {
 					fieldLabel:'<font color="red">*</font>'+Eway.locale.version.View.versionTypeName,//软件分类名称',
 					allowBlank: false,
 					name :'desc',
-					maxLength: 128
+					maxLength: 42
 				},{
 					xtype:'textfield',
 					fieldLabel: '<font color="red">*</font>'+Eway.locale.versionType.defaultInstallPath,//默认安装路径',

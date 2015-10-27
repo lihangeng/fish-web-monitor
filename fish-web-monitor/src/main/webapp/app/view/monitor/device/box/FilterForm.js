@@ -28,7 +28,8 @@ Ext.define('Eway.view.monitor.device.box.FilterForm', {
 					name : 'amount'
 				}, {
 					fieldLabel : Eway.locale.monitor.devMonitor.cash.dispenseAmount,
-					name : 'dispenseAmount'
+					name : 'dispenseAmount',
+					hidden : true
 				} ]
 			}, {
 				columnWidth : .4,

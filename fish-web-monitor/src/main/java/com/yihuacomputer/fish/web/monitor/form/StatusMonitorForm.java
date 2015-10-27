@@ -98,7 +98,7 @@ public class StatusMonitorForm {
         }
         return result;
     }
-
+    public StatusMonitorForm(){}
     public StatusMonitorForm(IStatusReport statusReport) {
         this.id = statusReport.getId();
         this.code = statusReport.getCode();

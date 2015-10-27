@@ -69,6 +69,17 @@ public interface ICaseFault {
 	public Date getFaultTime();
 
 	public void setFaultTime(Date faultTime);
+	
+	/**
+	 * 设置故障创建日期，
+	 * 格式yyyymmdd 
+	 * 比如20150812
+	 * @since 2.0.0.3便于统计使用
+	 * @return
+	 */
+	public Long getFaultDate();
+	
+	public void setFaultDate(Long faultDate);
 
 	/**
 	 * 故障关闭时间

@@ -104,6 +104,8 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 				vtype:'ip'
 			}, {
 				xtype:'textfield',
+				vtype : 'terminalId',
+				maxLength:20,
 				fieldLabel:Eway.locale.refs.terminalId,//'设备编号',
 				name:'terminalId',
 				labelSeparator:'',
@@ -124,6 +126,7 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 				labelSeparator:'',
 				width: 200,
 				filters : '{"type" : "0"}',
+				parentXtype:'toolbar',
 				rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false,
 				onTreeItemClick : function(view,record){
 					this.setValue(record.get('text'));

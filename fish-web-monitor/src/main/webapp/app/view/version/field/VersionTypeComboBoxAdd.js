@@ -1,6 +1,7 @@
 Ext.define('Eway.view.version.field.VersionTypeComboBoxAdd', {
 			extend : 'Ext.form.field.ComboBox',
 			alias : 'widget.field_versionTypeComboBoxAdd',
+			requires:['Eway.store.version.ComboVersionType'],
 
 			config:{
 				selectFirst:false //是否选中第一条

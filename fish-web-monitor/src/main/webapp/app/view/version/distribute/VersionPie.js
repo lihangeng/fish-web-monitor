@@ -19,7 +19,6 @@ Ext.define('Eway.view.version.distribute.VersionPie', {
             }
         });
 
-
         me.items = [{
             xtype: 'polar',
             theme: 'default-gradients',

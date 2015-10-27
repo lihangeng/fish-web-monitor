@@ -4,19 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yihuacomputer.domain.interceptor.IEntityInjector;
 import com.yihuacomputer.fish.person.service.api.IDomainOrganizationService;
-import com.yihuacomputer.fish.person.service.api.IDomainPersonService;
 import com.yihuacomputer.fish.person.service.api.IDomainUserService;
 import com.yihuacomputer.fish.system.entity.Organization;
-import com.yihuacomputer.fish.system.entity.Person;
 import com.yihuacomputer.fish.system.entity.User;
 
 public class PersonCoreEntityInjector implements IEntityInjector
 {
     @Autowired
     private IDomainUserService domainUserService;
-
-    @Autowired
-    private IDomainPersonService personService;
 
     @Autowired
     private IDomainOrganizationService organizationService;
@@ -27,9 +22,6 @@ public class PersonCoreEntityInjector implements IEntityInjector
         if(entity instanceof User){
             User user = (User)entity;
             user.setService(domainUserService);
-        }else if(entity instanceof Person){
-            Person person = (Person)entity;
-            person.setService(personService);
         }else if(entity instanceof Organization){
             Organization organization = (Organization)entity;
             organization.setService(organizationService);

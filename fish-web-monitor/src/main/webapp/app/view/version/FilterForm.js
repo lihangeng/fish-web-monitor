@@ -12,7 +12,8 @@ Ext.define('Eway.view.version.FilterForm', {
 					xtype : 'textfield',
 					fieldLabel : Eway.locale.version.View.versionNo,//'版本号',
 					name : 'versionNo',
-					maxLength: 20,
+					maxLength: 40,
+					vtype:'versionNo',
 					labelWidth:60
 				}]},{
 				columnWidth : .3,

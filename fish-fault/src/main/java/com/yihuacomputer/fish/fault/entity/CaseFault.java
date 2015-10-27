@@ -18,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.fault.FaultCloseType;
@@ -39,13 +40,12 @@ import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
  */
 @Entity
 @Table(name = "CASE_FAULT")
-public class CaseFault implements ICaseFault{
+public class CaseFault implements ICaseFault {
 
 	@Transient
-    private IDevicePersonRelation devicePersonService;
+	private IDevicePersonRelation devicePersonService;
 	@Transient
 	private IDeviceService deviceService;
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_CASE_FAULT")
@@ -53,39 +53,42 @@ public class CaseFault implements ICaseFault{
 	@Column(name = "ID")
 	private long id;
 
-	@Column(name = "TERMINAL_ID",length = 20)
+	@Column(name = "TERMINAL_ID", length = 20)
 	private String terminalId;
 
 	@Transient
 	private RunStatus appStatus;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "DEV_MOD",length = 5)
+	@Column(name = "DEV_MOD", length = 5)
 	private DeviceMod devMod;
 
 	@OneToOne(targetEntity = FaultClassify.class)
 	@JoinColumn(name = "CLASSIFY_ID")
 	private FaultClassify faultClassify;
 
-	@Column(name = "FAULT_CODE",length = 20)
+	@Column(name = "FAULT_CODE", length = 20)
 	private String faultCode;
 
-	@Column(name = "VENDOR_HW_CODE",length = 20)
+	@Column(name = "VENDOR_HW_CODE", length = 20)
 	private String vendorHwCode;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "FAULT_TIME",length = 20)
+	@Column(name = "FAULT_TIME", length = 20)
 	private Date faultTime;
 
+	@Column(name = "FAULT_DATE")
+	private Long faultDate;
+
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "CLOSED_TIME",length = 20)
+	@Column(name = "CLOSED_TIME", length = 20)
 	private Date closedTime;
 
 	@Column(name = "DURATION")
 	private double duration;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "FAULT_STATUS",length = 10)
+	@Column(name = "FAULT_STATUS", length = 10)
 	private FaultStatus faultStatus;
 
 	@Column(name = "UPGRADE")
@@ -138,7 +141,7 @@ public class CaseFault implements ICaseFault{
 	}
 
 	public void setFaultClassify(IFaultClassify faultClassify) {
-		this.faultClassify = (FaultClassify)faultClassify;
+		this.faultClassify = (FaultClassify) faultClassify;
 	}
 
 	public String getFaultCode() {
@@ -197,18 +200,18 @@ public class CaseFault implements ICaseFault{
 		this.upgrade = upgrade;
 	}
 
-	public IDevice getDevice(){
-		if(this.device == null){
-			this.device =  deviceService.get(this.terminalId);
+	public IDevice getDevice() {
+		if (this.device == null) {
+			this.device = deviceService.get(this.terminalId);
 		}
 		return this.device;
 	}
 
 	@Override
 	public IOrganization getOrg() {
-		if(this.org == null){
+		if (this.org == null) {
 			IDevice device = getDevice();
-			if(device != null){
+			if (device != null) {
 				return device.getOrganization();
 			}
 		}
@@ -217,12 +220,12 @@ public class CaseFault implements ICaseFault{
 
 	@Override
 	public List<IPerson> getBankPerson() {
-		return this.devicePersonService.listAdminMaintainPersonByDevice(terminalId,PersonType.MANAGE);
+		return this.devicePersonService.listAdminMaintainPersonByDevice(terminalId, PersonType.MANAGE);
 	}
 
 	@Override
 	public List<IPerson> getServicePerson() {
-		return this.devicePersonService.listAdminMaintainPersonByDevice(terminalId,PersonType.FIXMAN);
+		return this.devicePersonService.listAdminMaintainPersonByDevice(terminalId, PersonType.FIXMAN);
 	}
 
 	public IDevicePersonRelation getDevicePersonService() {
@@ -249,6 +252,12 @@ public class CaseFault implements ICaseFault{
 	@Override
 	public FaultCloseType getCloseType() {
 		return faultCloseType;
+	public Long getFaultDate() {
+		return faultDate;
+	}
+
+	public void setFaultDate(Long faultDate) {
+		this.faultDate = faultDate;
 	}
 
 }
