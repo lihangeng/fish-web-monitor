@@ -2010,6 +2010,8 @@ Ext.override(Eway,{
 			backupFailAmount:'备份失败台数',//Eway.locale.atmLog.backupFailAmount
 			backupAllAmount:'总备份台数',//Eway.locale.atmLog.backupAllAmount
 			logBackupSta:'日志备份统计',//Eway.locale.atmLog.logBackupSta
+			lastDoDate:'最后执行时间',//Eway.locale.atmLog.lastDoDate
+			getLog:'提取日志',//Eway.locale.atmLog.getLog
 			dailyBackup:'每日备份任务',//Eway.locale.atmLog.dailyBackup
 			backupDate:'备份日期',//Eway.locale.atmLog.backupDate
 			dayBackupResult:'当日备份结果',//Eway.locale.atmLog.dayBackupResult

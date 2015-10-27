@@ -2001,6 +2001,8 @@ Ext.override(Eway,{
 			backupAllAmount:'Total count',//Eway.locale.atmLog.backupAllAmount 总备份台数
 			logBackupSta:'Back-up log total',//Eway.locale.atmLog.logBackupSta 日志备份统计
 			dailyBackup:'Back-up task everyday',//Eway.locale.atmLog.dailyBackup 每日备份任务
+			lastDoDate:'LastExecute Date',//Eway.locale.atmLog.lastDoDate
+			getLog:'GetLog',//Eway.locale.atmLog.getLog
 			backupDate:'Back-up date',//Eway.locale.atmLog.backupDate 备份日期
 			dayBackupResult:'Back-up result today',//Eway.locale.atmLog.dayBackupResult 当日备份结果
 			backupProcess:'Backing-up',//Eway.locale.atmLog.backupProcess 正在备份
