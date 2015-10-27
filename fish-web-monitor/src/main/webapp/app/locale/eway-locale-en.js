@@ -1728,10 +1728,14 @@ Ext.override(Eway,{
 				paramKey:'Parameter',//Eway.locale.machine.param.paramKey 参数
 				paramValue:'Parameter value',//Eway.locale.machine.param.paramValue参数值
 				classify:'Type',//Eway.locale.machine.param.classify 类型
+				paramType:'ParamType',//Eway.locale.machine.param.paramType 参数类型
+				modifyFlag:'ModifyFlag',//Eway.locale.machine.param.ModifyFlag 是否可以修改
 				comboxClassify:{
 					unableUpdate:'Unable modify',//不可修改
 					ableUpdate:'Can modify'//可以修改
 				},
+				paramCount:' Params)',//Eway.locale.machine.param.paramCount
+				oneParam:'(1 Param)',//Eway.locale.machine.param.oneParam
 				description:'Parameter info',//Eway.locale.machine.param.description 参数信息描述
 				systemCon:'System setting',//Eway.locale.machine.param.systemCon 系统配置
 				updateSystemCon:'Modify system setting'//Eway.locale.machine.param.updateSystemCon 更改系统配置

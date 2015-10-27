@@ -37,9 +37,11 @@ public class SummaryChartsRunInfoController {
 	
 	@Autowired
 	private IXfsChartService xfsChartService;
-	
+
 	@Autowired
 	private MessageSource messageSourceEnum;
+	@Autowired
+	private MessageSource messageSource;
     private String getEnumI18n(String enumText){
     	if(null==enumText){
     		return "";
@@ -59,7 +61,7 @@ public class SummaryChartsRunInfoController {
         filter = getFilterByRequest(request,filter);
         IPageResult<Object> result = xfsChartService.getXfsChartsDetailInfo(start,limit,filter);
         if(result.list().size()==0){
-            model.put(FishConstant.ERROR_MSG, "我的天啊数据无");
+            model.put(FishConstant.ERROR_MSG, messageSource.getMessage("monitor.summary.noDate=", null, FishCfg.locale));
             model.put(FishConstant.SUCCESS,false);
             return model;
         }
@@ -230,7 +232,7 @@ public class SummaryChartsRunInfoController {
     private IFilter getFilterByRequest(HttpServletRequest request, IFilter filter){
     	String args = request.getParameter("args");
     	String []argslipt =  args.split("\\.");
-    	if(args.startsWith(getEnumI18n(DeviceStatus.Healthy.getText()))){
+    	if(args.startsWith(getEnumI18n(DeviceStatus.Healthy.name()))){
     		filter.eq("netRunInfo", NetStatus.Healthy);
     		filter.eq("modRunInfo", DeviceStatus.Healthy);
     		filter.eq("boxRunInfo", BoxStatus.Healthy);

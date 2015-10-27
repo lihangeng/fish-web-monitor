@@ -2,27 +2,22 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
 	extend : 'Ext.grid.Panel',
 	alias : 'widget.monitor_device_grid',
 
-	onScrollEnd:function(x,y){
-		Eway.alert("123");
-	},
-	scrollable:'y',
+    width: 300,
+    height: 380,
+	scrollable:'both',
 	initComponent : function() {
 		var store = Ext.create('Eway.store.monitor.charts.DonutChartsDetail', {});
 		Ext.apply(this, {
 			store : store,
 			columns : [  {
-				header : Eway.locale.person.bankOrg.name,
-				dataIndex : 'org'
-			}, {
 				header : Eway.locale.commen.terminalId,
 				dataIndex : 'code',
+				width:80,
 				tdCls : 'pointerLink'
-			}, {
-				header : Eway.locale.commen.ip,
-				dataIndex : 'ip'
-			}, {
+			},  {
 				header : Eway.locale.monitor.devMonitor.comboxStatus.runStatus,
 				dataIndex : 'runStatus',
+				width:80,
 				renderer : function(value, meta, record) {
 				 	var runFatals = ['SubHealth', 'Maintain', 'Halt', 'ReBoot', 'StopAtmp', 'StopManmade', 'StopMod', 'StopUnCashIn', 'StopUnKnown'];
 				 	var run = record.get('run'); 
@@ -35,6 +30,7 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
 			}, {
 				header : Eway.locale.monitor.devMonitor.comboxStatus.modStatus,
 				dataIndex : 'modStatus',
+				width:80,
 //				locked:true,
 				renderer : function(value, meta, record) { 
 					var mod = record.get('mod'); 
@@ -49,6 +45,7 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
 			}, {
 				header : Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,
 				dataIndex : 'boxStatus',
+				width:80,
 //				locked:true,
 			  	renderer : function(value, meta, record) { 
 			  		var boxFatals = ['Full', 'Low', 'Empty', 'High', 'Fatal']; 
@@ -62,6 +59,7 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
 			}, {
 				header : Eway.locale.monitor.devMonitor.comboxStatus.netStatus,
 				dataIndex : 'netStatus',
+				width:80,
 //				locked:true,
 			  	renderer : function(value, meta, record) { 
 			  		var net = record.get('net'); 
@@ -73,6 +71,12 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
 	  					return value; 
   					} 
 				}
+			},{
+				header : Eway.locale.commen.ip,
+				dataIndex : 'ip'
+			}, {
+				header : Eway.locale.person.bankOrg.name,
+				dataIndex : 'org'
 			}, {
 				header : Eway.locale.monitor.devMonitor.retainCardCount,
 				dataIndex : 'retainCardCount'
