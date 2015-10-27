@@ -75,9 +75,9 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					editable : false,
 					filters : '{"type" : "1"}',
 					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '1' ? true : false
-				}, {
-					xtype : 'field_atmType_DeviceAtmCatalogComboBox',
-					fieldLabel : Eway.locale.machine.atmGroup.devCatalogName
+				},{
+					xtype : 'field_device_deviceatmtype',
+					emptyText :  Eway.locale.combox.select
 				}]
 			}, {
 				columnWidth : .44,
@@ -86,21 +86,21 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					labelWidth : 90
 				},
 				items : [{
-					xtype : 'field_device_deviceatmtype',
-					emptyText :  Eway.locale.combox.select,
-					labelWidth: 100
-				},{
-					xtype : 'combobox',
-					fieldLabel : Eway.locale.machine.device.onBankSignal,
-					emptyText :  Eway.locale.combox.select,
-					labelWidth: 100,
-					name : 'awayFlag',
-					hiddenName : 'awayFlag',
-					editable : false,
-					store: 'machine.DeviceAwayFlagComboBox',
-					valueField : 'value',
-					displayField : 'display',
-					queryMode : 'local'
+						xtype : 'field_atmType_DeviceAtmCatalogComboBox',
+						fieldLabel : Eway.locale.machine.atmGroup.devCatalogName,
+						labelWidth: 100
+					},{
+						xtype : 'combobox',
+						fieldLabel : Eway.locale.machine.device.onBankSignal,
+						emptyText :  Eway.locale.combox.select,
+						labelWidth: 100,
+						name : 'awayFlag',
+						hiddenName : 'awayFlag',
+						editable : false,
+						store: 'machine.DeviceAwayFlagComboBox',
+						valueField : 'value',
+						displayField : 'display',
+						queryMode : 'local'
 				} ]
 			} ]
 		});
