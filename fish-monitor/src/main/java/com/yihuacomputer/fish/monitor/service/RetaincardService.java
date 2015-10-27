@@ -314,5 +314,16 @@ public class RetaincardService implements IRetaincardService{
 		return new Retaincard();
 	}
 
+	@Override
+	public List<Object> statisticsReatainCardTrend(int days) {
+		StringBuffer hql = new StringBuffer();
+		hql.append("select retaincard.cardRetainTime,count(*) as cardCount from ").append(Retaincard.class.getName());
+		hql.append(" retaincard where cardRetainTime > ?");
+		hql.append(" group by retaincard.cardRetainTime");
+		hql.append(" order by retaincard.cardRetainTime");
+		Long date = Long.parseLong(DateUtils.get(new Date(), DateUtils.STANDARD_DATE_SHORT));
+		return dao.findByHQL(hql.toString(), Long.valueOf(date.intValue() - days));
+	}
+
 
 }
