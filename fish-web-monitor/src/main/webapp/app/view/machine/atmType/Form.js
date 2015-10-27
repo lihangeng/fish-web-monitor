@@ -23,13 +23,7 @@ Ext.define('Eway.view.machine.atmType.Form',{
 				labelAlign: 'right',
 				msgTarget : 'side'
 			},
-	 		items: [/*{
-	 			fieldLabel: '<font color="red">*</font> 编号',
-				xtype : 'field_atmType_no',
-				regex: /^[a-zA-Z0-9\u4E00-\u9FA5][a-zA-Z0-9-_\.\u4E00-\u9FA5]{0,20}$/,
-				regexText: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以字母或数字开头。(1-20位)',
-				allowBlank : false
-			},*/{
+	 		items: [{
 				fieldLabel: '<font color="red">*</font> '+Eway.locale.machine.atmType.name,
 				xtype : 'field_atmType_name',
 				maxLength : 20,
@@ -49,18 +43,6 @@ Ext.define('Eway.view.machine.atmType.Form',{
 				allowBlank : false,
 				editable : false
 			},{
-				xtype : 'field_atmType_spec',
-				maxLength : 20,
-				maxLengthText : Eway.locale.vtype.maxLength20
-			},{
-				xtype : 'field_atmType_weight',
-				maxLength : 20,
-				maxLengthText : Eway.locale.vtype.maxLength20
-			},{
-				xtype : 'field_atmType_watt',
-				maxLength : 20,
-				maxLengthText : Eway.locale.vtype.maxLength20
-			},{
 				fieldLabel: Eway.locale.machine.atmType.cashtype,
 				xtype : 'field_atmType_cashtypeComboBox',
 				value: '1',
@@ -68,9 +50,9 @@ Ext.define('Eway.view.machine.atmType.Form',{
 				editable : false
 			},
 			{
-
-	            xtype: 'checkboxgroup',
+				xtype: 'checkboxgroup',
 	            fieldLabel: '包含的设备模块',//'该类型包含的设备模块',
+	            labelWith:120,
 	            columns: 3,
 	            loader : {//使用自定义的加载方式
 					autoLoad: false,

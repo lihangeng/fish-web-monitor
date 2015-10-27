@@ -43,11 +43,7 @@ Ext.define('Eway.view.machine.atmType.AtmTypeGrid', {
 						'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 					}
 				}],
-			columns : [/*{
-				header : '编号',
-				dataIndex : 'no',
-				flex : 1
-			}, */{
+			columns : [{
 				header : Eway.locale.machine.atmType.name,
 				dataIndex : 'name',
 				flex : 1
@@ -58,18 +54,6 @@ Ext.define('Eway.view.machine.atmType.AtmTypeGrid', {
 			},{
 				header : Eway.locale.machine.atmType.devCatalogName,
 				dataIndex : 'devCatalogName',
-				flex : 1
-			},{
-				header : Eway.locale.machine.atmType.spec,
-				dataIndex : 'spec',
-				flex : 1
-			},{
-				header : Eway.locale.machine.atmType.weight,
-				dataIndex : 'weight',
-				flex : 1
-			},{
-				header : Eway.locale.machine.atmType.watt,
-				dataIndex : 'watt',
 				flex : 1
 			},{
 				header : Eway.locale.machine.atmType.cashtype,

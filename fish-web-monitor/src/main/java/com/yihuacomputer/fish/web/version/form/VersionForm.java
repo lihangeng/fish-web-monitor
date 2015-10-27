@@ -57,6 +57,8 @@ public class VersionForm {
 	private String userName;
 
 	private String execBefore;
+	
+	private String versionTypeDesc;
 
 	public VersionForm() {
 	}
@@ -67,6 +69,7 @@ public class VersionForm {
 		this.versionNo = version.getVersionNo();
 		this.versionPath = version.getVersionPath();
 		this.versionType = version.getVersionType().getTypeName();
+		this.versionTypeDesc = version.getVersionType().getDesc();
 		this.versionTypeId = version.getVersionType().getId();
 		this.createdTime = DateUtils.getTimestamp(version.getCreatedTime());
 		this.serverPath = getVersionFile(versionType, version.getServerPath());
@@ -241,4 +244,13 @@ public class VersionForm {
 	public void setExecBefore(String execBefore) {
 		this.execBefore = execBefore;
 	}
+
+	public String getVersionTypeDesc() {
+		return versionTypeDesc;
+	}
+
+	public void setVersionTypeDesc(String versionTypeDesc) {
+		this.versionTypeDesc = versionTypeDesc;
+	}
+	
 }

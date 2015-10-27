@@ -231,6 +231,7 @@ public class VersionController {
 			form.setId(v.getId());
 			form.setCreatedTime(DateUtils.getTimestamp(v.getCreatedTime()));
 			form.setVersionType(type != null ? type.getTypeName() : "");
+			form.setVersionTypeDesc(type != null ? type.getDesc() : "");
 			if (v.getDependVersion() != null) {
 				form.setDependVersionId(v.getDependVersion().getId());
 				form.setDependVersion(v.getDependVersion().getFullName());
