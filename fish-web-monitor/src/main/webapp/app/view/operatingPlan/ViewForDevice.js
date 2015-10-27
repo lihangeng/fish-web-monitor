@@ -1,0 +1,32 @@
+
+Ext.define('Eway.view.operatingPlan.ViewForDevice', {
+	extend: 'Ext.window.Window',
+	alias: 'widget.operatingPlan_viewForDevice',
+	
+	requires: ['Eway.view.operatingPlan.FilterForm',
+	           'Eway.view.operatingPlan.GridForDevice'],
+	
+	title: '选择开机方案',
+	
+	width: 900,
+	height: 600,
+	layout: 'border',
+	modal: true,
+	resizable: false,
+	maximizable: true,
+	constrainHeader: true,
+	
+	initComponent: function() {
+		Ext.apply(this, {
+			items: [{
+					region: 'north',
+					xtype: 'operatingPlan_filterForm'
+				}, {
+					region: 'center',
+					xtype: 'operatingPlan_gridForDevice'
+			}]
+		});
+		
+		this.callParent(arguments);
+	}
+});

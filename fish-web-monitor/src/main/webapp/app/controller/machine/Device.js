@@ -5,7 +5,13 @@ Ext.define('Eway.controller.machine.Device', {
 			'machine.PersonM', 'machine.PersonTM',
 			'machine.DeviceAwayFlagComboBox',
 			'machine.atmType.DeviceAtmVendor',
-			'machine.atmType.DeviceAtmCatalog' ],
+			'machine.atmType.DeviceAtmCatalog',
+			'machine.DeviceStatusComboBox',
+			'machine.CarrierOrdeComboBox',
+		//	'operatingPlan.TempOpenPlanForDevice',
+			'person.person.PersonStateFilterDict'
+			
+			],
 
 	models : [ 'machine.Device', 'machine.Person' ],
 
@@ -48,6 +54,12 @@ Ext.define('Eway.controller.machine.Device', {
 			'#device button[action=add]' : {
 				click : this.onAdd
 			},
+			'#device menuitem[action=personTM]' : {
+				click : this.onPersonTM
+			},
+			'#device menuitem[action=personM]' : {
+				click : this.onPersonM
+			},
 			'#device button[action=query]' : {
 				click : this.onQuery
 			},
@@ -65,6 +77,196 @@ Ext.define('Eway.controller.machine.Device', {
 			}
 		});
 	},
+	
+	onPersonTM : function(){
+		var grid = this.getGrid();
+		var sm = grid.getSelectionModel();
+		if(sm.getCount() == 1) {
+			var record = sm.getLastSelected();
+			var addManagerWin = Ext.create('Eway.view.machine.device.person.PersonTMManager');
+			var personGrid = addManagerWin.down('personTM_manager_grid');
+			var personStore=personGrid.getStore();
+			var type = 0;
+			var terminalId = record.data.terminalId;
+			//personStore.cleanUrlParam();
+			personStore.load({
+				params : {
+					terminalId : terminalId,
+					type : type
+				}
+			});
+			personGrid.down('button[action="queryRe"]').on('click',Ext.bind(this.onQuaryPerson,this,[personStore,terminalId,type]),this);
+			personGrid.down('button[action="add"]').on('click',Ext.bind(this.onSetPerson,this,[personStore,terminalId,type]),this);
+			personGrid.down('button[action="remove"]').on('click',Ext.bind(this.onDelPersonConfirm,this,[personGrid,personStore,type]),this);
+			addManagerWin.show();
+		}
+		else {
+			Ext.Msg.alert("提示", "请选择您要更改的设备！");
+		}
+	},
+	
+	onSetPerson: function (personStore,terminalId,type){
+		var grid = this.getGrid();
+		var sm1 = grid.getSelectionModel();
+		if(sm1.getCount() == 1) {
+		var selectManagerWin = Ext.create('Eway.view.machine.device.person.SelectPersonManager');
+		alert("365768761111111111111111");
+		var selectGrid = selectManagerWin.down('select_person_manager_grid');
+		alert("efgdsvrt11111111");
+		var selectForm = selectManagerWin.down('bank_person_filterform');
+		alert("345233452111rfdfu11");
+		var record1 = sm1.getLastSelected();
+		alert("34hkukj111111111");
+		var store = selectGrid.getStore();
+		store.setBaseParam('deviceId',record1.data.id);
+		store.setBaseParam('type',type);
+		store.load();
+		selectGrid.down('button[action="query"]').on('click',Ext.bind(this.onQueryPersonConfirm,this,[selectGrid,selectForm,type]),this);
+		selectGrid.down('button[action="addselect"]').on('click',Ext.bind(this.onAddPersonConfirm,this,[selectManagerWin,selectGrid,selectForm,type]),this);
+		selectManagerWin.on("destroy",Ext.bind(this.onQuaryPerson,this,[personStore,terminalId,type]));
+		selectManagerWin.show();
+		}else {
+			Ext.Msg.alert("提示", "请选择人员！");
+		}
+	},
+	
+	onAddPersonConfirm : function(win,selectGrid,selectForm,personType){
+		var grid = this.getGrid();
+		var sm1 = grid.getSelectionModel();
+		var record1 = sm1.getLastSelected();
+		var array = this.multiSelect(selectGrid);
+		if(array != null) {
+			var info = '';
+			var type = 'add';
+			for(var i=0;i<array.length;i++){
+                    info += array[i] + ',';
+            }
+			Ext.Ajax.request({
+				scope : this,
+				method : 'POST',
+				url : 'api/person/person/devicePerson',
+				params : {terminalId :record1.data.terminalId,personId:info,type:type,personType:personType},
+				success: function(response){
+					var object = Ext.decode(response.responseText);
+					if(object.success == true){
+						//Ext.Msg.alert("提示", "添加成功.",this.onQueryPersonConfirm(selectGrid,selectForm,personType));
+						Ext.Msg.confirm('提示', '添加成功,是否继续添加？', function(result) {
+							if ("yes" == result) {
+								this.onQueryPersonConfirm(selectGrid,selectForm,personType);
+							}else{
+								win.close();
+							}
+						}, this);
+					}else{
+						Ext.Msg.alert("提示", Ext.decode(response.responseText).errors+"条添加失败,请刷新后查看.",this.onQueryPersonConfirm(selectGrid,selectForm,personType));
+					}
+				},
+				failure: function(response){
+					Ext.Msg.alert("提示", "添加失败.");
+				},
+				scope:this
+			});
+		}else{
+			Ext.Msg.alert("提示", "请选择人员.");
+		}
+	},
+
+	onQueryPersonConfirm:function(selectGrid,selectForm,type){
+		var grid = this.getGrid();
+		var sm1 = grid.getSelectionModel();
+		var record1 = sm1.getLastSelected();
+		var store = selectGrid.getStore();
+//		store.cleanUrlParam();
+		var data = selectForm.getForm().getValues();
+		store.setUrlParamsByObject(data);
+		store.setBaseParam('deviceId',record1.data.id);
+		store.setBaseParam('type',type);
+		store.loadPage(1);
+	},
+	multiSelect : function(grid){
+		var record=grid.getSelectionModel().getSelection();
+        if(record == null || record.length == 0){
+        	return null;
+        }
+        var array = new Array(record.length);
+        for(var i=0;i<record.length;i++)
+        {
+            array[i] = record[i].get('guid');
+        }
+        return array;
+	},
+	onDelPersonConfirm: function (personGrid,personStore,personType){
+		var grid = this.getGrid();
+		var sm1 = grid.getSelectionModel();
+		var record1 = sm1.getLastSelected();
+		var array = this.multiSelect(personGrid);
+		if(array != null) {
+			var info = '';
+			var type = 'del';
+			for(var i=0;i<array.length;i++){
+                    info += array[i] + ',';
+            }
+			Ext.Ajax.request({
+				scope : this,
+				method : 'POST',
+				url : 'api/person/person/devicePerson',
+				params : {terminalId :record1.data.terminalId,personId:info,type:type,personType:personType},
+				success: function(response){
+					var object = Ext.decode(response.responseText);
+					if(object.success == true){
+						Ext.Msg.alert("提示", "解除成功.",this.onQuaryPerson(personStore,record1.data.terminalId,personType));
+					}else{
+						Ext.Msg.alert("提示", Ext.decode(response.responseText).errors+"条解除失败,请刷新后查看.",this.onQuaryPerson(personStore,record1.data.terminalId,personType));
+					}
+				},
+				failure: function(response){
+					Ext.Msg.alert("提示", "解除失败.");
+				},
+				scope:this
+			});
+		}else{
+			Ext.Msg.alert("提示", "请选择人员.");
+		}
+	},
+
+	onQuaryPerson: function(personStore,terminalId,type){
+//		personStore.cleanUrlParam();
+		personStore.load({
+			params : {
+				terminalId : terminalId,
+				type : type
+			}
+		});
+	},
+
+	onPersonM : function(){
+		var grid = this.getGrid();
+		var sm = grid.getSelectionModel();
+		if(sm.getCount() == 1) {
+			var record = sm.getLastSelected();
+			var addManagerWin = Ext.create('Eway.view.machine.device.person.PersonMManager');
+			var personGrid = addManagerWin.down('personM_manager_grid');
+			var personStore=personGrid.getStore();
+			var type = 1;
+			var terminalId = record.data.terminalId;
+	//		personStore.cleanUrlParam();
+			personStore.load({
+				params : {
+					terminalId : terminalId,
+					type : type
+				}
+			});
+			personGrid.down('button[action="queryRe"]').on('click',Ext.bind(this.onQuaryPerson,this,[personStore,terminalId,type]),this);	
+			personGrid.down('button[action="add"]').on('click',Ext.bind(this.onSetPerson,this,[personStore,terminalId,type]),this);
+			personGrid.down('button[action="remove"]').on('click',Ext.bind(this.onDelPersonConfirm,this,[personGrid,personStore,type]),this);
+			addManagerWin.show();
+		}
+		else {
+			Ext.Msg.alert("提示", "请选择您要更改的设备！");
+		}
+	},
+	
+	
 	onExport : function() {
 		var view = this.getEwayView();
 		var form = view.down('form').getForm();
