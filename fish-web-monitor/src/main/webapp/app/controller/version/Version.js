@@ -71,13 +71,17 @@ Ext.define('Eway.controller.version.Version', {
 		        versionId:record.get("id")
 		    },
 		    callback: function(records, operation, success) {
-        		var grid = me.getEwayView().down("version_charts_grid")
-        		grid.getStore().load({
-        			 params: {
-        			        versionId:record.get("id"),
-        			        flag:0
-        			    }
-        		 });
+        		var grid = me.getEwayView().down("version_charts_grid");
+        		var gridStore = grid.getStore();
+        		gridStore.setBaseParam("versionId",record.get("id"));
+        		gridStore.setBaseParam("flag",0);
+        		gridStore.loadPage(1);
+//        		grid.getStore().load({
+//        			 params: {
+//        			        versionId:record.get("id"),
+//        			        flag:0
+//        			    }
+//        		 });
         		grid.setTitle(chartsStore.getAt(0).get("title")+Eway.locale.title.msg);//"信息");
 		    }
 		});

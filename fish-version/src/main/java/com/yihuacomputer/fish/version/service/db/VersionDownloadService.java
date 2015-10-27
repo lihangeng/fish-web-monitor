@@ -157,7 +157,7 @@ public class VersionDownloadService implements IVersionDownloadService {
 	    	hqlDevice.append(Version.class.getSimpleName()).append(" version1 ").
 			append(" where  task1.deviceId=device1.id ").
 			append(" and task1.version.id=version1.id and ").
-			append(" version1.id=? and task1.status in('NEW','RUN','NOTICED','DOWNLOADED','DEPLOYED') and device1.status=?");
+			append(" version1.id=? and task1.status in('NEW','RUN','NOTICED','NOTICE_APP_OK','DOWNLOADED','DEPLOYED','DEPLOYED_WAIT') and device1.status=?");
 	    	if(version.getVersionType().isDisplay()){
 		    	hqlDevice.append(" and device1.devType.id=versionatmType1.atmTypeId ").
 		    	append(" and versionatmType1.versionTypeId=version1.versionType.id ");
@@ -220,7 +220,7 @@ public class VersionDownloadService implements IVersionDownloadService {
     		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType1 ").
     		append(" where  task1.deviceId=device1.id ").
     		append(" and task1.version.id=version1.id and ").
-    		append(" version1.id=? and task1.status in('NEW','RUN','NOTICED','DOWNLOADED','DEPLOYED') and device1.status=?").
+    		append(" version1.id=? and task1.status in('NEW','RUN','NOTICED','NOTICE_APP_OK','DOWNLOADED','DEPLOYED','DEPLOYED_WAIT') and device1.status=?").
     		append(" and device1.devType.id=versionatmType1.atmTypeId ");
 			argList.add(version.getId());
 			argList.add(Status.OPENING);

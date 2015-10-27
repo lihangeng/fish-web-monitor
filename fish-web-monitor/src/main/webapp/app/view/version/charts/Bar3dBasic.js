@@ -94,13 +94,17 @@ Ext.define('Eway.view.version.charts.Bar3dBasic', {
                     	itemclick:function( series, item, event, eOpts ){
                     		var gridFlag = item.record.data.flag;
                     		var gridVersionId = item.record.data.versionId;
-                    		var grid = me.up("versionView").down("version_charts_grid")
-                    		grid.getStore().load({
-                    			 params: {
-                    			        versionId:gridVersionId,
-                    			        flag:gridFlag
-                    			    }
-                    		 });
+                    		var grid = me.up("versionView").down("version_charts_grid");
+                    		var gridStore = grid.getStore();
+			        		gridStore.setBaseParam("versionId",gridVersionId);
+			        		gridStore.setBaseParam("flag",gridFlag);
+			        		gridStore.loadPage(1);
+//                    		grid.getStore().load({
+//                    			 params: {
+//                    			        versionId:gridVersionId,
+//                    			        flag:gridFlag
+//                    			    }
+//                    		 });
                     		grid.setTitle(item.record.data.title+Eway.locale.title.msg);//"信息")
                     	}
                     },

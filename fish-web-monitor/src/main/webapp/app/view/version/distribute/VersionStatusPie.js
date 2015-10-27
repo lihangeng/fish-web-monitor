@@ -2,7 +2,7 @@ Ext.define('Eway.view.version.distribute.VersionStatusPie', {
     extend: 'Ext.Panel',
     alias: 'widget.versionstatus_pie',
     requires: ['Ext.chart.theme.Muted'],
-    width: 450,
+    width: 350,
     initComponent: function() {
         var me = this;
         
@@ -24,7 +24,7 @@ Ext.define('Eway.view.version.distribute.VersionStatusPie', {
             xtype: 'polar',
             theme: 'default-gradients',
             width: '100%',
-            height: 250,
+            height: 300,
             store: me.myDataStore,
             insetPadding: 30,
             innerPadding: 20,

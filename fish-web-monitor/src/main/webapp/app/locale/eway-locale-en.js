@@ -1025,6 +1025,14 @@ Ext.override(Eway,{
 
 		//**********************************************************/
 		monitor:{
+			summary:{
+				title:'MonitorSummary',//Eway.locale.monitor.summary.title
+				allSummary:'AllSummary',//Eway.locale.monitor.summary.allSummary
+				appSummary:'AppSummary',//Eway.locale.monitor.summary.appSummary
+				modSummary:'ModSummary',//Eway.locale.monitor.summary.modSummary
+				boxSummary:'BoxSummary',//Eway.locale.monitor.summary.boxSummary
+				netSummary:'NetSummary'//Eway.locale.monitor.summary.netSummary
+			},
 			devMonitor:{
 				title:'Status',//Eway.locale.monitor.devMonitor.title 状态监控
 				comboxStatus:{
@@ -1893,7 +1901,7 @@ Ext.override(Eway,{
 			    },
 			    closeByForce : 'click to close fault by hand',
 			    faultCloseType : 'fault close type',
-			    none : 'none'
+			    none : 'none',
 
 			    upgradeTimes: 'Upgrade times',//升级次数
 			    message: 'SMS',//短信
