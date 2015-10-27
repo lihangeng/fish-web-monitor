@@ -1042,6 +1042,14 @@ Ext.override(Eway,{
 
 		//**********************************************************/
 		monitor:{
+			summary:{
+				title:'监控总览',//Eway.locale.monitor.summary.title
+				allSummary:'整体状态概况',//Eway.locale.monitor.summary.allSummary
+				appSummary:'应用状态概况',//Eway.locale.monitor.summary.appSummary
+				modSummary:'模块状态概况',//Eway.locale.monitor.summary.modSummary
+				boxSummary:'钞箱状态概况',//Eway.locale.monitor.summary.boxSummary
+				netSummary:'网络状态概况'//Eway.locale.monitor.summary.netSummary
+			},
 			devMonitor:{
 				title:'状态监控',//Eway.locale.monitor.devMonitor.title
 				comboxStatus:{
