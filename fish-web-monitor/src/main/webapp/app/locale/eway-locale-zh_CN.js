@@ -1740,10 +1740,14 @@ Ext.override(Eway,{
 				paramKey:'参数',//Eway.locale.machine.param.paramKey
 				paramValue:'参数值',//Eway.locale.machine.param.paramValue
 				classify:'类型',//Eway.locale.machine.param.classify
+				paramType:'参数类型',//Eway.locale.machine.param.paramType 参数类型
+				modifyFlag:'是否可以修改',//Eway.locale.machine.param.modifyFlag 是否可以修改
 				comboxClassify:{
 					unableUpdate:'不可修改',
 					ableUpdate:'可以修改'
 				},
+				paramCount:' 个参数)',//Eway.locale.machine.param.paramCount
+				oneParam:'(1 个参数)',//Eway.locale.machine.param.oneParam
 				description:'参数信息描述',//Eway.locale.machine.param.description
 				systemCon:'系统配置',//Eway.locale.machine.param.systemCon
 				updateSystemCon:'更改系统配置'//Eway.locale.machine.param.updateSystemCon
