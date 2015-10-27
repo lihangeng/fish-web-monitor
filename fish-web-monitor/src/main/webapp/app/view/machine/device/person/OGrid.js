@@ -1,10 +1,10 @@
-Ext.define('Eway.view.machine.device.person.TGrid', {
-	alias : 'widget.machine_device_person_tGrid',
+Ext.define('Eway.view.machine.device.person.OGrid', {
+	alias : 'widget.machine_device_person_oGrid',
 	extend : 'Eway.view.base.Grid',
 	border : false,
 	autoFit : true,
 	initComponent : function() {
-		var store = Ext.create('Eway.store.machine.PersonM');
+		var store = Ext.create('Eway.store.person.person.OrgManager');
 		// store.loadPage(1);
 		Ext.apply(this, {
 			initRegion : true,

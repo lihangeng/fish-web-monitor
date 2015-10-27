@@ -1,6 +1,6 @@
-Ext.define('Eway.view.machine.device.person.PersonInfo', {
+Ext.define('Eway.view.machine.device.person.MonitorPersonInfo', {
 	extend : 'Ext.window.Window',
-	alias : 'widget.machine_device_person_personInfo',
+	alias : 'widget.monitor_person_info',
 	title : '设备人员信息',
 	modal : true,
 	constrainHeader : true,
@@ -26,21 +26,17 @@ Ext.define('Eway.view.machine.device.person.PersonInfo', {
 				frame : true,
 				items : [{
 					title : '机构管理员',
-					itemid : 'organizationItemID',
+					itemid : 'mOrganizationItemID',
 					xtype : 'machine_device_person_oGrid'
 				},{
 					title : '管机员',
-					itemid : 'tubeMachineItemID',
+					itemid : 'mTubeMachineItemID',
 					xtype : 'machine_device_person_tmGrid'
 				}, {
-					title : '维护员',
-					itemid : 'maintainItemID',
+					title : '厂商管理员',
+					itemid : 'mMaintainItemID',
 					xtype : 'machine_device_person_tGrid'
-				} , {
-					title : '开机方案',
-					itemid : 'devicePlanInfoID',
-					xtype : 'device_planInfo_grid'
-				} ]
+				}]
 			}
 		});
 		this.callParent(arguments);
