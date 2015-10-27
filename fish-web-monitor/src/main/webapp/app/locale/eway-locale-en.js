@@ -1025,6 +1025,14 @@ Ext.override(Eway,{
 
 		//**********************************************************/
 		monitor:{
+			summary:{
+				title:'MonitorSummary',//Eway.locale.monitor.summary.title
+				allSummary:'AllSummary',//Eway.locale.monitor.summary.allSummary
+				appSummary:'AppSummary',//Eway.locale.monitor.summary.appSummary
+				modSummary:'ModSummary',//Eway.locale.monitor.summary.modSummary
+				boxSummary:'BoxSummary',//Eway.locale.monitor.summary.boxSummary
+				netSummary:'NetSummary'//Eway.locale.monitor.summary.netSummary
+			},
 			devMonitor:{
 				title:'Status',//Eway.locale.monitor.devMonitor.title 状态监控
 				comboxStatus:{
@@ -1893,7 +1901,7 @@ Ext.override(Eway,{
 			    },
 			    closeByForce : 'click to close fault by hand',
 			    faultCloseType : 'fault close type',
-			    none : 'none'
+			    none : 'none',
 
 			    upgradeTimes: 'Upgrade times',//升级次数
 			    message: 'SMS',//短信
@@ -1993,6 +2001,8 @@ Ext.override(Eway,{
 			backupAllAmount:'Total count',//Eway.locale.atmLog.backupAllAmount 总备份台数
 			logBackupSta:'Back-up log total',//Eway.locale.atmLog.logBackupSta 日志备份统计
 			dailyBackup:'Back-up task everyday',//Eway.locale.atmLog.dailyBackup 每日备份任务
+			lastDoDate:'LastExecute Date',//Eway.locale.atmLog.lastDoDate
+			getLog:'GetLog',//Eway.locale.atmLog.getLog
 			backupDate:'Back-up date',//Eway.locale.atmLog.backupDate 备份日期
 			dayBackupResult:'Back-up result today',//Eway.locale.atmLog.dayBackupResult 当日备份结果
 			backupProcess:'Backing-up',//Eway.locale.atmLog.backupProcess 正在备份

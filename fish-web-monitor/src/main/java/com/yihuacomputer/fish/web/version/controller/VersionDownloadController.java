@@ -682,14 +682,34 @@ public class VersionDownloadController {
         }
         return result;
     }
+    
+    public boolean canReset(TaskStatus status){
+	    if((status.equals(TaskStatus.DEPLOYED))
+                || (status.equals(TaskStatus.DOWNLOADED))
+                || (status.equals(TaskStatus.NEW))
+                || (status.equals(TaskStatus.NOTICE_APP_OK))
+                || (status.equals(TaskStatus.NOTICED))
+                || status.equals(TaskStatus.RUN)
+                || status.equals(TaskStatus.DEPLOYED_WAIT)){
+	        return true;
+	    }
+	    return false;
+	}
+    
     @RequestMapping(value = "/resetTaskStatus", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap resetTaskStatus(@RequestParam long id , WebRequest request) {
         logger.info(String.format("reset taskStatus  : taskId = %s  ", id));
         ModelMap result = new ModelMap();
         try {
-            taskService.webResetTaskStatus(id);
-            result.addAttribute(FishConstant.SUCCESS, true);
+        	ITask task = taskService.get(id);
+        	if(canReset(task.getStatus())){
+	            taskService.webResetTaskStatus(id);
+	            result.addAttribute(FishConstant.SUCCESS, true);
+        	}
+        	else{
+        		result.addAttribute(FishConstant.SUCCESS, false);
+        	}
         } catch (Exception e) {
             result.addAttribute(FishConstant.SUCCESS, false);
         }

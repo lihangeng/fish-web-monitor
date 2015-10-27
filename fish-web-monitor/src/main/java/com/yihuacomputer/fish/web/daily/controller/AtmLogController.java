@@ -40,6 +40,9 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
+import com.yihuacomputer.common.http.HttpFileCfg;
+import com.yihuacomputer.common.http.HttpFileClient;
+import com.yihuacomputer.common.http.HttpFileRet;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.StringUtils;
 import com.yihuacomputer.fish.api.atmlog.AtmLogCfg;
@@ -50,7 +53,9 @@ import com.yihuacomputer.fish.api.atmlog.IAtmLogService;
 import com.yihuacomputer.fish.api.atmlog.ICustomerCycle;
 import com.yihuacomputer.fish.api.atmlog.IJournalFileService;
 import com.yihuacomputer.fish.api.atmlog.ITransCycle;
+import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.UserSession;
+import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.web.daily.form.AtmLogForm;
 import com.yihuacomputer.fish.web.daily.form.AtmLogTotal;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
@@ -64,6 +69,10 @@ public class AtmLogController {
 
 	@Autowired
 	private IJournalFileService ournalFileService;
+	
+	
+	@Autowired
+	private IDeviceService deviceService;
 	
 	
 	@Autowired
@@ -418,5 +427,77 @@ public class AtmLogController {
 			}
 		}
 	}
+	
+	   /**
+     * 下载备份失败的文件到服务端：
+     * @param requestName
+     * @param requestPath
+     * @param request
+     * @return
+     */
+	@RequestMapping(value = "/fileDownError",method = RequestMethod.POST)
+    public @ResponseBody
+    ModelMap fileDownError(@RequestParam String terminalId, @RequestParam String dateTime,@RequestParam String flag,
+            WebRequest request){
+		String requestPath = AtmLogCfg.getAtmLogDoc();
+		
+		String requestName   = AtmLogCfg.getAtmLogFileCfg();
 
+		requestName = StringUtils.replaceLogRule(requestName, "\\{terminalId\\}", terminalId);
+		requestName = StringUtils.replaceLogRule(requestName, "\\{YYYYMMDD\\}", StringUtils.replaceLogRule(dateTime,"-",""));
+		requestName = StringUtils.replaceLogRule(requestName, "\\{YYYY-MM-DD\\}", dateTime);
+		
+		String ip = deviceService.get(terminalId).getIp().toString();
+		
+		
+		
+		ModelMap result = new ModelMap();
+        
+        HttpFileCfg httpFileCfg = new HttpFileCfg();
+        String localName = requestName;
+        String localPath = AtmLogCfg.getAtmAppLogDir() + FishCfg.fileSep
+				+ dateTime.substring(0, 4) + FishCfg.fileSep
+				+ dateTime.substring(5, 7) + FishCfg.fileSep
+				+ terminalId;
+        httpFileCfg.setLocalName(localName);
+        httpFileCfg.setLocalPath(localPath);
+        httpFileCfg.setRequestName(requestName);
+        httpFileCfg.setRequestPath(requestPath);
+        httpFileCfg.setCompress(true);
+        httpFileCfg.setIpAdd(ip);
+        httpFileCfg.setPort(MonitorCfg.getRemotePort());
+        File file = new File(localPath+System.getProperty("file.separator")+localName);
+        if(flag.equals("false")){
+            //不续传下载：
+            httpFileCfg.setRetry(false);
+            if(file.exists()){
+                file.delete();
+            }
+        }else{
+            //续传下载：
+            httpFileCfg.setRetry(true);
+        }
+        HttpFileRet ret = HttpFileClient.downloadFile(httpFileCfg);
+        if(ret.equals(HttpFileRet.SUCCESS)){
+            result.addAttribute("path", localPath);
+            result.addAttribute("fileName", localName);
+            result.addAttribute(FishConstant.SUCCESS, true);
+        }else if(ret.equals(HttpFileRet.CFG_ERROR)){
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failParam", null, FishCfg.locale));
+            result.addAttribute(FishConstant.SUCCESS, false);
+        }else if(ret.equals(HttpFileRet.REQ_FILE_NOTEXIT)){
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failNotExist", null, FishCfg.locale));
+            result.addAttribute(FishConstant.SUCCESS, false);
+        }else if(ret.equals(HttpFileRet.CONN_ERROR)){
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failConn", null, FishCfg.locale));
+            result.addAttribute(FishConstant.SUCCESS, false);
+        }else if(ret.equals(HttpFileRet.URL_ERROR)){
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failURL", null, FishCfg.locale));
+            result.addAttribute(FishConstant.SUCCESS, false);
+        }else if(ret.equals(HttpFileRet.ERROR)){
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.error", null, FishCfg.locale));
+            result.addAttribute(FishConstant.SUCCESS, false);
+        }
+        return result;
+    }
 }

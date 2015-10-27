@@ -66,7 +66,45 @@ Ext.define('Eway.view.machine.atmType.Form',{
 				value: '1',
 				allowBlank : false,
 				editable : false
-			}]
+			},
+			{
+
+	            xtype: 'checkboxgroup',
+	            fieldLabel: '包含的设备模块',//'该类型包含的设备模块',
+	            columns: 3,
+	            loader : {//使用自定义的加载方式
+					autoLoad: false,
+					url : 'api/machine/atmType/atmModule',
+					params : {
+						atmTypeId : 0//this.up('form').getForm().findField('id').getValue()
+					},
+					renderer:	function(loader, response, active){
+						var success = true,
+		                    target = loader.getTarget(),
+		                    items = [];
+		                try {
+		                	var text = Ext.decode(response.responseText);
+		                	if(Ext.isString(text.data)){
+		                		items = Ext.decode(text.data);//解析从后台返回的菜单列表是字符串的情况
+		                	}else{
+		                		items = text.data;
+		                	}
+		                } catch (e) {
+		                    success = false;
+		                }
+
+		                if (success) {
+		                    if (active.removeAll) {
+		                        target.removeAll();
+		                    }
+		                    target.add(items);
+		                }
+		                return success;
+					}
+				}
+			
+			},
+		]
 	 	});
 	 	this.callParent(arguments);
 	 }

@@ -23,6 +23,27 @@ Ext.define('Eway.view.atmLog.successAtmLogInfo.SuccessAtmLogInfoGrid',{
 				dataIndex : 'dateTime',
 				flex : 1
 			},{
+				header : Eway.locale.atmLog.lastDoDate,
+				dataIndex : 'lastDoDate',
+				width : 160
+			},{
+				xtype:'actioncolumn',
+				flex : .5,
+				dataIndex : 'backupResult',
+				header: Eway.locale.agent.remote.screen.loading,
+				items : [{
+					icon : 'resources/images/down.gif',
+					tooltip: Eway.locale.agent.remote.screen.loading,
+					getClass :'changeCursor',
+					handler : function(grid,rowIndex,colIndex){
+						var record = grid.getStore().getAt(rowIndex);
+						var url = 'api/machine/atmLog/downloadFile?deviceId='+record.get('terminalId')+"&dateTime="+record.get('dateTime'); 
+						var iframe = document.getElementById('downloadFileFromWeb'); 
+						iframe.src = url;
+					},
+					scope : this
+				}]
+			},{
 				header : Eway.locale.atmLog.backupResult,
 				dataIndex : 'backupResult',
 				width : 100,

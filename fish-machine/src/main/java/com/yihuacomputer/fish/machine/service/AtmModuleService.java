@@ -63,7 +63,7 @@ public class AtmModuleService implements IAtmModuleService {
 
     @Override
     @Transactional(readOnly = true)
-    public Iterable<IAtmModule> list() {
+    public List<IAtmModule> list() {
         return dao.loadAll(IAtmModule.class);
     }
 

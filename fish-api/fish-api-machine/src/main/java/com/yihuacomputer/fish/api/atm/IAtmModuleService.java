@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.api.atm;
 
+import java.util.List;
 import java.util.Map;
 
 import com.yihuacomputer.common.IFilter;
@@ -17,7 +18,7 @@ public interface IAtmModuleService {
 
 	public void update(IAtmModule module);
 
-	public Iterable<IAtmModule> list();
+	public List<IAtmModule> list();
 
 	public IPageResult<IAtmModule> page(int offset, int limit,IFilter filter);
 
