@@ -4,7 +4,7 @@ Ext.define('Eway.model.version.SelectableDevice', {
 	fields : [ 'id',
 	           	'code', 'ip',
 	           	'port',
-	           	'address', 'installDate',
+	           	'address',
 	           	'deviceVersion',
 	           	'orgName','deviceType','selectable','taskable','targetVersion','taskStatus','reason'
 	           	],

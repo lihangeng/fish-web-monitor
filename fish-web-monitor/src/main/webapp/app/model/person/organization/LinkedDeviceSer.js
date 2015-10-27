@@ -1,25 +1,9 @@
 Ext.define('Eway.model.person.organization.LinkedDeviceSer', {
 	extend : 'Ext.data.Model',
-	fields : [ {
-		name : 'id'
-	}, 'terminalId', 'ip', {
-		name : 'orgId'
-	}, {
-		name : 'orgName'
-	}, {
-		name : 'devTypeId'
-	}, {
-		name : 'devTypeName'
-	}, {
-		name : 'devVendorName'
-	}, {
-		name : 'devCatalogName'
-	}, 'address', 'status', 'devServiceName', 'devServiceId', {
-		name : 'cashboxLimit',
-		type : 'number'
-	}, {
-		name : 'installDate'
-	} ],
+	fields : ['id','terminalId', 'ip','orgId','orgName','devTypeId','devTypeName',
+	          'devVendorName','devCatalogName','address','status',
+	          'devServiceName','virtual','devServiceId','cashboxLimit',
+	          'serial','setupType','netType','awayFlag','workType'],
 	proxy : {
 		type : 'rest',
 		url : 'api/machine/device/findByService',

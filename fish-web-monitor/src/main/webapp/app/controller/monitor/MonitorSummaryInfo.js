@@ -9,12 +9,9 @@ Ext.define('Eway.controller.monitor.MonitorSummaryInfo', {
 		selector : 'monitor_view',
 		autoCreate : true,
 		xtype : 'monitor_view'
-	} ],
+	}],
 	init : function() {
-		this.control({
-			
-		});
+		this.control({});
 	}
-
 	
 });

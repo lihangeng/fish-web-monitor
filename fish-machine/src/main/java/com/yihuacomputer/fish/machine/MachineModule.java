@@ -7,10 +7,10 @@ import com.yihuacomputer.fish.api.atm.IAtmBrandService;
 import com.yihuacomputer.fish.api.atm.IAtmCatalogService;
 import com.yihuacomputer.fish.api.atm.IAtmGroupService;
 import com.yihuacomputer.fish.api.atm.IAtmModuleService;
+import com.yihuacomputer.fish.api.atm.IAtmTypeAtmModuleRelationService;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
 import com.yihuacomputer.fish.api.atmMove.IAtmMoveService;
 import com.yihuacomputer.fish.api.device.IComplexDeviceService;
-import com.yihuacomputer.fish.api.device.IDeviceExtendService;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNoticeService;
 import com.yihuacomputer.fish.api.relation.IDeviceGroupRelation;
@@ -21,9 +21,9 @@ import com.yihuacomputer.fish.machine.service.AtmGroupService;
 import com.yihuacomputer.fish.machine.service.AtmModuleService;
 import com.yihuacomputer.fish.machine.service.AtmMoveService;
 import com.yihuacomputer.fish.machine.service.AtmQuittingNoticeService;
+import com.yihuacomputer.fish.machine.service.AtmTypeAtmModuleRelationService;
 import com.yihuacomputer.fish.machine.service.AtmTypeService;
 import com.yihuacomputer.fish.machine.service.ComplexDeviceService;
-import com.yihuacomputer.fish.machine.service.DeviceExtendService;
 import com.yihuacomputer.fish.machine.service.DeviceGroupRelation;
 import com.yihuacomputer.fish.machine.service.DevicePersonRelation;
 import com.yihuacomputer.fish.machine.service.DeviceService;
@@ -72,11 +72,6 @@ public class MachineModule {
 	}
 
 	@Bean
-	public IDeviceExtendService deviceExtendService() {
-		return new DeviceExtendService();
-	}
-
-	@Bean
 	public IDeviceGroupRelation deviceGroupRelation() {
 		return new DeviceGroupRelation();
 	}
@@ -89,6 +84,10 @@ public class MachineModule {
 	@Bean
 	public IDeviceService deviceService() {
 		return new DeviceService();
+	}
+	@Bean
+	public IAtmTypeAtmModuleRelationService atmTypeAtmModuleRelationService(){
+		return new AtmTypeAtmModuleRelationService();
 	}
 
 }

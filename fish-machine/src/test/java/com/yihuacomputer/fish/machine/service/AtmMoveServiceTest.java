@@ -13,13 +13,13 @@ import com.yihuacomputer.fish.api.atmMove.IAtmMove;
 import com.yihuacomputer.fish.api.atmMove.IAtmMoveService;
 import com.yihuacomputer.fish.machine.H2TestConfig;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(classes = H2TestConfig.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = H2TestConfig.class)
 public class AtmMoveServiceTest extends BindSessionInTest2 {
-//	@Autowired
+	@Autowired
 	private IAtmMoveService atmMoveService;
 
-//	@Test
+	@Test
 	public void test() {
 
 		IAtmMove move1 = atmMoveService.make();

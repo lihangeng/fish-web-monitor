@@ -24,13 +24,13 @@ import com.yihuacomputer.fish.machine.H2TestConfig;
   * @author wangchao
   *
   */
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(classes = H2TestConfig.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = H2TestConfig.class)
 public class AtmModuleServiceTest extends BindSessionInTest2{
-//	@Autowired
+	@Autowired
 	private IAtmModuleService atmModuleService;
 
-//	@Test
+	@Test
 	public void test(){
 		IAtmModule module1 = atmModuleService.make();
 		module1.setName("读卡器");

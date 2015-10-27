@@ -31,6 +31,8 @@ public class AtmTypeForm {
 	private String watt;
 
 	private String cashtype;
+	
+	private List<Long> atmModules = new ArrayList<Long>();
 
 	public AtmTypeForm() {
 	}
@@ -157,6 +159,14 @@ public class AtmTypeForm {
 
 	public void setCashtype(String cashtype) {
 		this.cashtype = cashtype;
+	}
+	
+	public List<Long> getAtmModules() {
+		return atmModules;
+	}
+
+	public void setAtmModule(List<Long> atmModules) {
+		this.atmModules = atmModules;
 	}
 
 }

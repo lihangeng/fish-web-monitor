@@ -13,7 +13,7 @@
   		border-color: #333333;
   		border-style: solid;
   		border-width: 1px;
-  		width: 80px;
+  		width: 100px;
   		background-color: #666999;
   		color: yellow;
   		font-weight: bolder;

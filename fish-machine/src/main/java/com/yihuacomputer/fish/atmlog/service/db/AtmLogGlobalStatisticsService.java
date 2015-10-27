@@ -173,9 +173,8 @@ public class AtmLogGlobalStatisticsService implements IAtmLogGlobalStatisticsSer
 		sql.append("SELECT devInfo.TERMINAL_ID as terminalId, org.ID as orgId, org.NAME as orgName, ");
 		sql.append("devInfo.ADDRESS as address, appLogs.BACKUP_RESULT as backupResult, appLogs.DATE_TIME as dateTime,devExtend.INSTALL_DATE as installDate, ");
 		sql.append("devInfo.IP as ip ");
-		sql.append("from dev_info devInfo, dev_extend devExtend, atmc_app_logs appLogs, sm_org org ");
+		sql.append("from dev_info devInfo, atmc_app_logs appLogs, sm_org org ");
 		sql.append("WHERE appLogs.TERMINAL_ID = devInfo.TERMINAL_ID ");
-		sql.append("and devInfo.DEVICE_EXTEND_ID = devExtend.ID ");
 		sql.append("and devInfo.ORG_ID = org.ID ");
 		sql.append("and appLogs.BACKUP_RESULT <> 'SUCCESS' ");
 		sql.append("and org.org_flag like '%").append(org.getOrgFlag()).append("' ");
@@ -192,7 +191,6 @@ public class AtmLogGlobalStatisticsService implements IAtmLogGlobalStatisticsSer
 		query.addScalar("address", StandardBasicTypes.STRING);
 		query.addScalar("backupResult", StandardBasicTypes.STRING);
 		query.addScalar("dateTime", StandardBasicTypes.STRING);
-		query.addScalar("installDate", StandardBasicTypes.STRING);
 		query.addScalar("ip", StandardBasicTypes.STRING);
 
 		List<?> infos = query.list();

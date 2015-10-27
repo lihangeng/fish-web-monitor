@@ -1046,6 +1046,14 @@ Ext.override(Eway,{
 
 		//**********************************************************/
 		monitor:{
+			summary:{
+				title:'监控总览',//Eway.locale.monitor.summary.title
+				allSummary:'整体状态概况',//Eway.locale.monitor.summary.allSummary
+				appSummary:'应用状态概况',//Eway.locale.monitor.summary.appSummary
+				modSummary:'模块状态概况',//Eway.locale.monitor.summary.modSummary
+				boxSummary:'钞箱状态概况',//Eway.locale.monitor.summary.boxSummary
+				netSummary:'网络状态概况'//Eway.locale.monitor.summary.netSummary
+			},
 			devMonitor:{
 				title:'状态监控',//Eway.locale.monitor.devMonitor.title
 				comboxStatus:{
@@ -1663,7 +1671,7 @@ Ext.override(Eway,{
 				OSVendorName:'OS供应商名',
 				sysVersion:'系统版本号',
 				devAddress:'设备地址',
-				basicInfo:'基本信息',
+				basicInfo:'其它信息',
 				virtual:'虚拟设备号',
 				serial:'设备序列号',
 				carrier:'运营商',
@@ -1744,10 +1752,14 @@ Ext.override(Eway,{
 				paramKey:'参数',//Eway.locale.machine.param.paramKey
 				paramValue:'参数值',//Eway.locale.machine.param.paramValue
 				classify:'类型',//Eway.locale.machine.param.classify
+				paramType:'参数类型',//Eway.locale.machine.param.paramType 参数类型
+				modifyFlag:'是否可以修改',//Eway.locale.machine.param.modifyFlag 是否可以修改
 				comboxClassify:{
 					unableUpdate:'不可修改',
 					ableUpdate:'可以修改'
 				},
+				paramCount:' 个参数)',//Eway.locale.machine.param.paramCount
+				oneParam:'(1 个参数)',//Eway.locale.machine.param.oneParam
 				description:'参数信息描述',//Eway.locale.machine.param.description
 				systemCon:'系统配置',//Eway.locale.machine.param.systemCon
 				updateSystemCon:'更改系统配置'//Eway.locale.machine.param.updateSystemCon
@@ -2002,6 +2014,8 @@ Ext.override(Eway,{
 			backupFailAmount:'备份失败台数',//Eway.locale.atmLog.backupFailAmount
 			backupAllAmount:'总备份台数',//Eway.locale.atmLog.backupAllAmount
 			logBackupSta:'日志备份统计',//Eway.locale.atmLog.logBackupSta
+			lastDoDate:'最后执行时间',//Eway.locale.atmLog.lastDoDate
+			getLog:'提取日志',//Eway.locale.atmLog.getLog
 			dailyBackup:'每日备份任务',//Eway.locale.atmLog.dailyBackup
 			backupDate:'备份日期',//Eway.locale.atmLog.backupDate
 			dayBackupResult:'当日备份结果',//Eway.locale.atmLog.dayBackupResult

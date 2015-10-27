@@ -20,19 +20,18 @@ import com.yihuacomputer.fish.machine.H2TestConfig;
  * @author wangchao
  *
  */
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(classes = H2TestConfig.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = H2TestConfig.class)
 public class AtmTypeServiceTest extends BindSessionInTest2{
 
-//	@Autowired
+	@Autowired
 	private IAtmTypeService atmTypeService;
 
-//	@Test
+	@Test
 	public void test(){
 		IAtmType type1 = atmTypeService.make();
 		type1.setName("存取款一体机");
 		type1.setCashtype(CashType.CASH);
-//		type1.setNo("q0001");
 		type1.setSpec("0001");
 		type1.setWatt("GU001");
 		type1.setWeight("500");
@@ -41,7 +40,6 @@ public class AtmTypeServiceTest extends BindSessionInTest2{
 		IAtmType type2 = atmTypeService.make();
 		type2.setName("自助终端");
 		type2.setCashtype(CashType.CASH);
-//		type2.setNo("q0002");
 		type2.setSpec("0001");
 		type2.setWatt("GU001");
 		type2.setWeight("500");

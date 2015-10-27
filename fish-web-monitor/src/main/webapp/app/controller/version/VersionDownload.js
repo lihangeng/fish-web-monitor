@@ -11,9 +11,9 @@ Ext.define('Eway.controller.version.VersionDownload', {
 		autoCreate : true,
 		xtype : 'versionDownloadView',
 		id : 'versionDownload'
-	}, {
-		ref : 'grid',
-		selector : 'version_download_grid'
+//	}, {
+//		ref : 'grid',
+//		selector : 'version_download_grid'
 	},{
 		ref : 'filterForm',
 		selector: 'version_download_filterForm'
@@ -45,11 +45,11 @@ Ext.define('Eway.controller.version.VersionDownload', {
 				select : this.onTask
 			},
 			'#versionDownload version_download_taskGrid pagingtoolbar':{
-				beforechange :this.onTaskFresh
-			},
-			'#versionDownload version_download_grid pagingtoolbar':{
 				beforechange :this.onJobFresh
 			},
+//			'#versionDownload version_download_grid pagingtoolbar':{
+//				beforechange :this.onJobFresh
+//			},
 			'#versionDownload version_download_taskGrid button[action=taskquery]':{
 				click :this.onTaskQuery
 			},

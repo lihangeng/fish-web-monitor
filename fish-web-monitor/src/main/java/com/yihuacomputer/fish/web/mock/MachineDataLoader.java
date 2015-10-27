@@ -3,8 +3,6 @@
  */
 package com.yihuacomputer.fish.web.mock;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yihuacomputer.common.util.IP;
@@ -16,9 +14,6 @@ import com.yihuacomputer.fish.api.atm.IAtmModuleService;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
 import com.yihuacomputer.fish.api.atm.IAtmVendor;
-import com.yihuacomputer.fish.api.device.AwayFlag;
-import com.yihuacomputer.fish.api.device.CareLevel;
-import com.yihuacomputer.fish.api.device.CashType;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.device.NetType;
@@ -26,7 +21,6 @@ import com.yihuacomputer.fish.api.device.SetupType;
 import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.device.WorkType;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
-import com.yihuacomputer.fish.machine.entity.DeviceExtend;
 
 /**
  * @author dell
@@ -76,43 +70,11 @@ public class MachineDataLoader {
 			} else {
 				device.setDevType(atmTypeService.get(0002));
 			}
-			DeviceExtend de = new DeviceExtend();
-
-			device.setAtmcSoft("atmcSoft");
-			device.setAwayFlag(AwayFlag.FROM_THE_LINE);
-			de.setBuyDate(new Date());
-			device.setCareLevel(CareLevel.EMPHASIS);
-			de.setCarrier("carrier");
-			device.setCashType(CashType.CASH);
-			de.setCloseTime("10:10:10");
-			de.setCostInterest("costInterest");
-			de.setDecoration(1);
-			de.setDecorationCost(1);
-			de.setDepreciationLife(1);
-			de.setExpireDate(new Date());
-			de.setExpirePmDate(new Date());
-			de.setGovernanceCost(1);
-			de.setGovernanceRent(1);
-			de.setLastPmDate(new Date());
-			de.setMoneyCost(1);
-			de.setMoneyOrg("moneyOrg");
-			de.setNetCost(1);
-			de.setNetType(NetType.CABLE);
-			de.setOpenTime("10:10:10");
-			de.setPatrolPeriod(1);
-			de.setPowerCost(1);
-			de.setPrice(1);
-			de.setSerial("serial");
+			device.setNetType(NetType.CABLE);
+			device.setSerial("serial");
 			device.setSetupType(SetupType.LOBBY);
-			device.setSp("sp");
-			de.setStartDate(new Date());
-			de.setStopDate(new Date());
-			de.setTerminalId("ATM00" + i);
 			device.setWorkType(WorkType.COOPERATION);
-			de.setInstallDate(new Date());
-
 			device.setOrganization(orgService.get("1"));
-			device.setDeviceExtend(de);
 			device.setStatus(Status.OPENING);
 			device.setDevService(orgService.get("2"));
 			device.setAddress(String.format("nanjing-%d", i));

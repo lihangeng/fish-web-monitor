@@ -1025,6 +1025,14 @@ Ext.override(Eway,{
 
 		//**********************************************************/
 		monitor:{
+			summary:{
+				title:'MonitorSummary',//Eway.locale.monitor.summary.title
+				allSummary:'AllSummary',//Eway.locale.monitor.summary.allSummary
+				appSummary:'AppSummary',//Eway.locale.monitor.summary.appSummary
+				modSummary:'ModSummary',//Eway.locale.monitor.summary.modSummary
+				boxSummary:'BoxSummary',//Eway.locale.monitor.summary.boxSummary
+				netSummary:'NetSummary'//Eway.locale.monitor.summary.netSummary
+			},
 			devMonitor:{
 				title:'Status',//Eway.locale.monitor.devMonitor.title 状态监控
 				comboxStatus:{
@@ -1728,10 +1736,14 @@ Ext.override(Eway,{
 				paramKey:'Parameter',//Eway.locale.machine.param.paramKey 参数
 				paramValue:'Parameter value',//Eway.locale.machine.param.paramValue参数值
 				classify:'Type',//Eway.locale.machine.param.classify 类型
+				paramType:'ParamType',//Eway.locale.machine.param.paramType 参数类型
+				modifyFlag:'ModifyFlag',//Eway.locale.machine.param.ModifyFlag 是否可以修改
 				comboxClassify:{
 					unableUpdate:'Unable modify',//不可修改
 					ableUpdate:'Can modify'//可以修改
 				},
+				paramCount:' Params)',//Eway.locale.machine.param.paramCount
+				oneParam:'(1 Param)',//Eway.locale.machine.param.oneParam
 				description:'Parameter info',//Eway.locale.machine.param.description 参数信息描述
 				systemCon:'System setting',//Eway.locale.machine.param.systemCon 系统配置
 				updateSystemCon:'Modify system setting'//Eway.locale.machine.param.updateSystemCon 更改系统配置
@@ -1889,7 +1901,7 @@ Ext.override(Eway,{
 			    },
 			    closeByForce : 'click to close fault by hand',
 			    faultCloseType : 'fault close type',
-			    none : 'none'
+			    none : 'none',
 
 			    upgradeTimes: 'Upgrade times',//升级次数
 			    message: 'SMS',//短信
@@ -1989,6 +2001,8 @@ Ext.override(Eway,{
 			backupAllAmount:'Total count',//Eway.locale.atmLog.backupAllAmount 总备份台数
 			logBackupSta:'Back-up log total',//Eway.locale.atmLog.logBackupSta 日志备份统计
 			dailyBackup:'Back-up task everyday',//Eway.locale.atmLog.dailyBackup 每日备份任务
+			lastDoDate:'LastExecute Date',//Eway.locale.atmLog.lastDoDate
+			getLog:'GetLog',//Eway.locale.atmLog.getLog
 			backupDate:'Back-up date',//Eway.locale.atmLog.backupDate 备份日期
 			dayBackupResult:'Back-up result today',//Eway.locale.atmLog.dayBackupResult 当日备份结果
 			backupProcess:'Backing-up',//Eway.locale.atmLog.backupProcess 正在备份

@@ -8,8 +8,10 @@ Ext.define('Eway.view.advert.Grid', {
 	border : false,
 
 	initComponent: function() {
+		var me = this;
 		Ext.apply(this, {
 			initRegion : true,
+//			store:me.store,
 			tbar: ['->', {
 				text: Eway.locale.button.search,
 				iconCls :'queryBtn',
@@ -101,7 +103,7 @@ Ext.define('Eway.view.advert.Grid', {
 				flex : 1
 			}],
 			bbar : Ext.create('Ext.PagingToolbar',{
-				store : this.store,
+				store : me.store,
 				displayInfo : true
 			})
 		});

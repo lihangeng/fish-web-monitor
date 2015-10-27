@@ -18,7 +18,6 @@ public class LinkedDeviceForm {
 	private boolean success;
 	private String reason;
 	private boolean taskable = true;// 可以任务化的，意思可以加入任务。默认是可以加入。
-	private String videoType;
 
 	public LinkedDeviceForm() {
 
@@ -31,7 +30,6 @@ public class LinkedDeviceForm {
 		setAddress(device.getAddress());
 		this.deviceType = device.getDevType().getName();
 		this.orgName = device.getOrganization().getName();
-		this.videoType = device.getVideoType();
 	}
 
 	public long getId() {
@@ -153,13 +151,4 @@ public class LinkedDeviceForm {
 	public void setTargetVersion(String targetVersion) {
 		this.targetVersion = targetVersion;
 	}
-
-	public String getVideoType() {
-		return videoType;
-	}
-
-	public void setVideoType(String videoType) {
-		this.videoType = videoType;
-	}
-
 }

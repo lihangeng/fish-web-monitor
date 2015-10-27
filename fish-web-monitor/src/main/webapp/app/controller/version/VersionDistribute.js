@@ -70,12 +70,9 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 							return;
 						}
 						detailGrid.setTitle(records[0].get("taskStatusText"));
-						detailGridStore.load({
-							params : {
-								versionId :records[0].get("versionId"),
-								taskStatus:records[0].get("taskStatus")
-							}
-						});
+						detailGridStore.setBaseParam("versionId",records[0].get("versionId"));
+						detailGridStore.setBaseParam("taskStatus",records[0].get("taskStatus"));
+						detailGridStore.loadPage(1);
 					}
 				});
 			}
@@ -113,12 +110,15 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 		var detailGrid = view.down('version_distribute_grid');
 		detailGrid.setTitle(item.record.data.taskStatusText);
 		var detailGridStore = detailGrid.getStore();
-		detailGridStore.load({
-			params : {
-				versionId :item.record.data.versionId,
-				taskStatus:item.record.data.taskStatus
-			}
-		});
+		detailGridStore.setBaseParam("versionId",item.record.data.versionId);
+		detailGridStore.setBaseParam("taskStatus",item.record.data.taskStatus);
+		detailGridStore.loadPage(1);
+//		detailGridStore.load({
+//			params : {
+//				versionId :item.record.data.versionId,
+//				taskStatus:item.record.data.taskStatus
+//			}
+//		});
 	},
 	//加载版本分布饼图数据，并加载第一项数据
 	diplayVersionStatusPie:function(series, item, event, eOpts ){
@@ -140,12 +140,15 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 				var detailGrid = view.down('version_distribute_grid');
 				detailGrid.setTitle(records[0].get("taskStatusText"));
 				var detailGridStore = detailGrid.getStore();
-				detailGridStore.load({
-					params : {
-						versionId :records[0].get("versionId"),
-						taskStatus:records[0].get("taskStatus")
-					}
-				});
+				detailGridStore.setBaseParam("versionId",records[0].get("versionId"));
+				detailGridStore.setBaseParam("taskStatus",records[0].get("taskStatus"));
+				detailGridStore.loadPage(1);
+//				detailGridStore.load({
+//					params : {
+//						versionId :records[0].get("versionId"),
+//						taskStatus:records[0].get("taskStatus")
+//					}
+//				});
 			}
 		});
 	}
