@@ -21,10 +21,7 @@ import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
 import com.yihuacomputer.fish.api.atm.IAtmVendor;
 import com.yihuacomputer.fish.api.device.IDevice;
-import com.yihuacomputer.fish.api.device.IDeviceExtend;
-import com.yihuacomputer.fish.api.device.IDeviceExtendService;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.device.NetType;
 import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
@@ -36,47 +33,41 @@ import com.yihuacomputer.fish.machine.H2TestConfig;
  * @date 2012-2-22 下午03:25:01
  * @version 类说明
  */
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(classes = H2TestConfig.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = H2TestConfig.class)
 public class DeviceServiceTest extends BindSessionInTest2
 {
     /**
      * 设备接口
      */
-//    @Autowired
+    @Autowired
     private IDeviceService deviceService;
-
-    /**
-     * 设备扩展接口
-     */
-//    @Autowired
-    private IDeviceExtendService deviceExtendService;
 
     /**
      * 机构接口
      */
-//    @Autowired
+    @Autowired
     private IOrganizationService orgService;
 
     /**
      * 品牌接口
      */
-//    @Autowired
+   @Autowired
     private IAtmBrandService brandService;
 
     /**
      * 类型接口
      */
-//    @Autowired
+    @Autowired
     private IAtmCatalogService catalogService;
 
     /**
      * 型号接口
      */
-//    @Autowired
+    @Autowired
     private IAtmTypeService typeService;
 
-//    @Test
+    @Test
     public void testDevice()
     {
         IOrganization organization1 = orgService.make();
@@ -106,10 +97,6 @@ public class DeviceServiceTest extends BindSessionInTest2
         // ===========增加=============
         IDevice deviceAdd1 = deviceService.make();
         deviceAdd1.setTerminalId("20120222");
-        IDeviceExtend deviceExtendAdd1 = deviceExtendService.make();
-        deviceExtendAdd1.setNetType(NetType.CABLE);
-        deviceExtendAdd1.setTerminalId("20120222");
-        deviceAdd1.setDeviceExtend(deviceExtendAdd1);
         deviceAdd1.setIp(new IP("192.168.0.0"));
         deviceAdd1.setOrganization(organization1);
         deviceAdd1.setDevType(type);
@@ -124,18 +111,12 @@ public class DeviceServiceTest extends BindSessionInTest2
 
         IDevice deviceAdd2 = deviceService.make();
         deviceAdd2.setTerminalId("20120223");
-        IDeviceExtend deviceExtendAdd2 = deviceExtendService.make();
-        deviceExtendAdd2.setTerminalId("20120223");
-        deviceAdd2.setDeviceExtend(deviceExtendAdd2);
-        deviceAdd2.setOrganization(organization1);
-        deviceAdd2.setDevType(type);
         IDevice resultAdd2 = deviceService.add(deviceAdd2);
         assertEquals(resultAdd2, deviceAdd2);
 
         // ==============查询===============
         IDevice deviceGet1 = deviceService.get(resultAdd1.getTerminalId());
         assertEquals("20120222", deviceGet1.getTerminalId());
-        assertEquals("20120222", deviceGet1.getDeviceExtend().getTerminalId());
 
         // ==============删除==================
         deviceAdd2.setStatus(Status.DISABLED);
@@ -148,12 +129,9 @@ public class DeviceServiceTest extends BindSessionInTest2
         IDevice deviceUGet1 = deviceService.get("20120222");
         deviceUGet1.setOrganization(organization2);
         deviceUGet1.setTerminalId("20120223_U");
-        deviceUGet1.getDeviceExtend().setTerminalId("20120223_U");
         deviceService.update(deviceUGet1);
         IDevice deviceUGet2 = deviceService.get("20120223_U");
         assertEquals("20120223_U", deviceUGet2.getTerminalId());
-        assertEquals("20120223_U", deviceUGet2.getDeviceExtend()
-                .getTerminalId());
 
         // ==============查询全部=============
         List<IDevice> deviceListAll = deviceService.list();
@@ -173,7 +151,7 @@ public class DeviceServiceTest extends BindSessionInTest2
     }
     
     
-//    @Test
+    @Test
     public void testCache(){
     	 IOrganization organization1 = orgService.make();
          organization1.setCode("shenzhen");
@@ -202,10 +180,6 @@ public class DeviceServiceTest extends BindSessionInTest2
          // ===========ADD=============
          IDevice deviceAdd1 = deviceService.make();
          deviceAdd1.setTerminalId("9999");
-         IDeviceExtend deviceExtendAdd1 = deviceExtendService.make();
-         deviceExtendAdd1.setNetType(NetType.CABLE);
-         deviceExtendAdd1.setTerminalId("9999");
-         deviceAdd1.setDeviceExtend(deviceExtendAdd1);
          deviceAdd1.setIp(new IP("192.168.9.1"));
          deviceAdd1.setOrganization(organization1);
          deviceAdd1.setDevType(type);
@@ -221,7 +195,6 @@ public class DeviceServiceTest extends BindSessionInTest2
          //update
          device.setAddress("xxxx");
          device.setStatus(Status.DISABLED);
-         device.update(device);
          IDevice cache = deviceService.get(deviceAdd1.getId());
          assertEquals("xxxx",cache.getAddress());
          System.out.println("33333333333333");

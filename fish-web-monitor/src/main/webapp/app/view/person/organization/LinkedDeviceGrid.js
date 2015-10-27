@@ -48,9 +48,6 @@ Ext.define('Eway.view.person.organization.LinkedDeviceGrid', {
 				header : Eway.locale.commen.cashboxLimit,
 				dataIndex : 'cashboxLimit'
 			}, {
-				header : Eway.locale.commen.installDate,
-				dataIndex : 'installDate'
-			}, {
 				header : Eway.locale.commen.address,
 				dataIndex : 'address',
 				flex : 1

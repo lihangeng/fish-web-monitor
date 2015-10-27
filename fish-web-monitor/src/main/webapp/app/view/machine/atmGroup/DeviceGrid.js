@@ -85,10 +85,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceGrid', {
 			}, {
 				header : Eway.locale.machine.atmGroup.cashboxLimit,
 				dataIndex : 'cashboxLimit'
-			}, {
-				header : Eway.locale.machine.atmGroup.installDate,
-				dataIndex : 'installDate'
-			}, {
+			},{
 				header : Eway.locale.machine.atmGroup.address,
 				dataIndex : 'address',
 				width : 150

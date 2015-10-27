@@ -24,18 +24,17 @@ import com.yihuacomputer.fish.machine.H2TestConfig;
  * @author wangchao
  *
  */
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(classes = H2TestConfig.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = H2TestConfig.class)
 public class AtmBrandServiceTest extends BindSessionInTest2{
 
-//	@Autowired
+	@Autowired
 	private IAtmBrandService atmBrandService;
 
-//	@Test
+	@Test
 	public void test(){
 		IAtmVendor vendor = atmBrandService.make();
 		vendor.setName("怡化");
-//		vendor.setNo("0001");
 		vendor.setStatus(VendorStatus.SUPPLY);
 		vendor.setCountry("中国");
 		vendor.setAddress("南京郁金香路2号");
@@ -45,7 +44,6 @@ public class AtmBrandServiceTest extends BindSessionInTest2{
 
 		IAtmVendor oVendor = atmBrandService.make();
 		oVendor.setName("怡化1");
-//		oVendor.setNo("0002");
 		oVendor.setStatus(VendorStatus.SERVE);
 		oVendor.setCountry("中国深圳");
 		oVendor.setAddress("南京郁金香路2号");

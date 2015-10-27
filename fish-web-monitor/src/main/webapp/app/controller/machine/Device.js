@@ -98,20 +98,11 @@ Ext.define('Eway.controller.machine.Device', {
 		if (values.endCashboxLimit) {
 			params += '&endCashboxLimit=' + values.endCashboxLimit;
 		}
-		if (values.endInstallDate) {
-			params += '&endInstallDate=' + values.endInstallDate;
-		}
 		if (values.ip) {
 			params += '&ip=' + values.ip;
 		}
 		if (values.organization) {
 			params += '&organization=' + values.organization;
-		}
-		if (values.startCashboxLimit) {
-			params += '&startCashboxLimit=' + values.startCashboxLimit;
-		}
-		if (values.startInstallDate) {
-			params += '&startInstallDate=' + values.startInstallDate;
 		}
 		if (values.terminalId) {
 			params += '&terminalId=' + values.terminalId;

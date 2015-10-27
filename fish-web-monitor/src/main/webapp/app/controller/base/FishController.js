@@ -138,9 +138,11 @@ Ext.define('Eway.controller.base.FishController', {
 					}
 				}
 				else if(action == 'update') {
-					actionName = Eway.locale.button.update
-					record = grid.getSelectionModel().getLastSelected(),
+					actionName = Eway.locale.button.update;
+					record = grid.getSelectionModel().getLastSelected();
+					console.log(record);
 					form.updateCusRecord(record);
+					console.log(record);
 					this.beforeUpdateSave(win,grid,record);
 				}
 				var id = record.get("id");

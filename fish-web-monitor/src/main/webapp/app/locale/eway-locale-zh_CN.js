@@ -1667,7 +1667,7 @@ Ext.override(Eway,{
 				OSVendorName:'OS供应商名',
 				sysVersion:'系统版本号',
 				devAddress:'设备地址',
-				basicInfo:'基本信息',
+				basicInfo:'其它信息',
 				virtual:'虚拟设备号',
 				serial:'设备序列号',
 				carrier:'运营商',

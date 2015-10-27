@@ -102,350 +102,39 @@ Ext.define('Eway.view.machine.device.Info', {
 						title : Eway.locale.machine.device.basicInfo,
 						layout : 'column',
 						border : false,
-						items : [ {
-							columnWidth : .5,
+						items : [{
+							columnWidth : 1,
 							border : false,
 							layout : 'anchor',
 							defaults : {
-								anchor : '90%',
+								anchor : '80%',
 								xtype : 'textfield',
 								style : 'padding-top:10px',
 								readOnly : true
 							},
 							items : [{
-								fieldLabel : Eway.locale.machine.device.virtual,
-								name : 'virtual'
-							}, {
-								fieldLabel : Eway.locale.machine.device.serial,
-								name : 'serial'
-							}, {
-								fieldLabel : Eway.locale.machine.device.carrier,
-								name : 'carrier'
-							}, {
-								fieldLabel : Eway.locale.machine.device.moneyOrg,
-								name : 'moneyOrg'
-							} ]
-						}, {
-							columnWidth : .5,
-							border : false,
-							layout : 'anchor',
-							defaults : {
-								anchor : '90%',
-								xtype : 'textfield',
-								style : 'padding-top:10px',
-								readOnly : true
-							},
-							items : [ {
-								fieldLabel : Eway.locale.machine.device.costInterest,
-								name : 'costInterest'
-							}, {
-								fieldLabel : Eway.locale.machine.device.atmcSoft,
-								name : 'atmcSoft'
-							}, {
-								fieldLabel : Eway.locale.machine.device.spType,
-								name : 'sp'
-							} ]
-						} ]
-					}, {
-						title : Eway.locale.machine.device.column,
-						layout : 'column',
-						border : false,
-						items : [ {
-							columnWidth : .5,
-							border : false,
-							layout : 'anchor',
-							defaults : {
-								anchor : '90%',
-								xtype : 'textfield',
-								style : 'padding-top:10px',
-								readOnly : true
-							},
-							items : [ {
-								fieldLabel : Eway.locale.machine.device.buyDate,
-								xtype : 'datefield',
-								name : 'buyDate',
-								format : 'Y-m-d'
-							}, {
-								fieldLabel : Eway.locale.machine.device.installDate,
-								xtype : 'datefield',
-								format : 'Y-m-d',
-								name : 'installDate'
-							}, {
-								fieldLabel : Eway.locale.machine.device.startDate,
-								xtype : 'datefield',
-								format : 'Y-m-d',
-								name : 'startDate'
-							}, {
-								fieldLabel : Eway.locale.machine.device.stopDate,
-								xtype : 'datefield',
-								format : 'Y-m-d',
-								name : 'stopDate'
-							}, {
-								fieldLabel : Eway.locale.machine.device.expireDate,
-								xtype : 'datefield',
-								format : 'Y-m-d',
-								name : 'expireDate'
-							} ]
-						}, {
-							columnWidth : .5,
-							border : false,
-							layout : 'anchor',
-							defaults : {
-								anchor : '90%',
-								xtype : 'textfield',
-								style : 'padding-top:10px',
-								readOnly : true
-							},
-							items : [ {
-								xtype : 'fieldcontainer',
-								fieldLabel : Eway.locale.machine.device.daliyOpen,
-								layout : 'hbox',
-								defaults : {
-									hideLabel : true
-								},
-								items : [ {
-									xtype : 'combobox',
-									readOnly : true,
-									fieldLabel : 'hour',
-									displayField : 'display',
-									store : 'Hour',
-									queryMode : 'local',
-									valueField : 'value',
-									name : 'openTimeHour',
-									width : 40
-								}, {
-									xtype : 'displayfield',
-									value : Eway.locale.machine.device.openTimeHour
-
-								}, {
-									xtype : 'combobox',
-									readOnly : true,
-									fieldLabel : 'minute',
-									displayField : 'display',
-									store : 'Minute',
-									queryMode : 'local',
-									valueField : 'value',
-									name : 'openTimeMinute',
-									width : 40
-								}, {
-									xtype : 'displayfield',
-									value : Eway.locale.machine.device.openTimeMinute
-								}, {
-									xtype : 'combobox',
-									readOnly : true,
-									fieldLabel : 'second',
-									displayField : 'display',
-									store : 'Minute',
-									queryMode : 'local',
-									valueField : 'value',
-									name : 'openTimeSecond',
-									width : 40
-								}, {
-									xtype : 'displayfield',
-									value : Eway.locale.machine.device.openTimeSecond
-								} ]
-							}, {
-								xtype : 'fieldcontainer',
-								fieldLabel : Eway.locale.machine.device.daliyClose,
-								layout : 'hbox',
-								defaults : {
-									hideLabel : true
-								},
-								items : [ {
-									xtype : 'combobox',
-									readOnly : true,
-									fieldLabel : 'hour',
-									displayField : 'display',
-									store : 'Hour',
-									queryMode : 'local',
-									valueField : 'value',
-									name : 'closeTimeHour',
-									width : 40
-								}, {
-									xtype : 'displayfield',
-									value : Eway.locale.machine.device.openTimeHour
-								}, {
-									xtype : 'combobox',
-									readOnly : true,
-									fieldLabel : 'minute',
-									displayField : 'display',
-									store : 'Minute',
-									queryMode : 'local',
-									valueField : 'value',
-									name : 'closeTimeMinute',
-									width : 40
-								}, {
-									xtype : 'displayfield',
-									value : Eway.locale.machine.device.openTimeMinute
-								}, {
-									xtype : 'combobox',
-									readOnly : true,
-									fieldLabel : 'second',
-									displayField : 'display',
-									store : 'Minute',
-									queryMode : 'local',
-									valueField : 'value',
-									name : 'closeTimeSecond',
-									width : 40
-								}, {
-									xtype : 'displayfield',
-									value : Eway.locale.machine.device.openTimeSecond
-								} ]
-							}, {
-								fieldLabel : Eway.locale.machine.device.lastPmDate,
-								xtype : 'datefield',
-								format : 'Y-m-d',
-								name : 'lastPmDate'
-							}, {
-								fieldLabel : Eway.locale.machine.device.expirePmDate,
-								xtype : 'datefield',
-								format : 'Y-m-d',
-								name : 'expirePmDate'
-							} ]
-						} ]
-					}, {
-						title : Eway.locale.machine.device.costInfo,
-						layout : 'column',
-						border : false,
-						items : [ {
-							columnWidth : .5,
-							border : false,
-							layout : 'anchor',
-							defaults : {
-								anchor : '90%',
-								xtype : 'textfield',
-								style : 'padding-top:10px',
-								readOnly : true
-							},
-							items : [ {
-								fieldLabel : Eway.locale.machine.device.price,
-								xtype : 'numberfield',
-								hideTrigger : true,
-								name : 'price'
-							}, {
-								fieldLabel :Eway.locale.machine.device.depreciationLife,
-								xtype : 'numberfield',
-								hideTrigger : true,
-								name : 'depreciationLife'
-							}, {
-								fieldLabel : Eway.locale.machine.device.decoration,
-								xtype : 'numberfield',
-								hideTrigger : true,
-								name : 'decoration'
-							}, {
-								fieldLabel : Eway.locale.machine.device.decorationCost,
-								xtype : 'numberfield',
-								hideTrigger : true,
-								name : 'decorationCost'
-							}, {
-								fieldLabel : Eway.locale.machine.device.governanceRent,
-								xtype : 'numberfield',
-								hideTrigger : true,
-								name : 'governanceRent'
-							} ]
-						}, {
-							columnWidth : .5,
-							border : false,
-							layout : 'anchor',
-							defaults : {
-								anchor : '90%',
-								xtype : 'textfield',
-								style : 'padding-top:10px',
-								readOnly : true
-							},
-							items : [ {
-								fieldLabel : Eway.locale.machine.device.governanceCost,
-								xtype : 'numberfield',
-								hideTrigger : true,
-								name : 'governanceCost'
-							}, {
-								fieldLabel : Eway.locale.machine.device.netCost,
-								xtype : 'numberfield',
-								hideTrigger : true,
-								name : 'netCost'
-							}, {
-								fieldLabel :Eway.locale.machine.device.powerCost,
-								xtype : 'numberfield',
-								hideTrigger : true,
-								name : 'powerCost'
-							}, {
-								fieldLabel : Eway.locale.machine.device.moneyCost,
-								xtype : 'numberfield',
-								hideTrigger : true,
-								name : 'moneyCost'
-							} ]
-						} ]
-					}, {
-						title : Eway.locale.machine.device.statusInfo,
-						layout : 'column',
-						border : false,
-						items : [ {
-							columnWidth : .5,
-							border : false,
-							layout : 'anchor',
-							defaults : {
-								anchor : '90%',
-								xtype : 'textfield',
-								style : 'padding-top:10px'
-							},
-							items : [ {
-								fieldLabel : Eway.locale.machine.device.deviceAttention,
-								xtype : 'radiogroup',
-								defaults : {
-									readOnly : true
-								},
-								items : [ {
-									boxLabel : Eway.locale.machine.device.stress,
-									name : 'careLevel',
-									inputValue : 1
-								}, {
-									boxLabel : Eway.locale.machine.device.medium,
-									name : 'careLevel',
-									inputValue : 2
-								}, {
-									boxLabel : Eway.locale.machine.device.ordinary,
-									name : 'careLevel',
-									inputValue : 3
-								} ]
-							}, {
-								fieldLabel : Eway.locale.machine.device.notCashSignal,
-								xtype : 'radiogroup',
-								defaults : {
-									readOnly : true
-								},
-								items : [ {
-									boxLabel : Eway.locale.machine.device.cash,
-									name : 'cashType',
-									inputValue : 1
-								}, {
-									boxLabel : Eway.locale.machine.device.notCash,
-									name : 'cashType',
-									inputValue : 2
-								} ]
-							}, {
 								fieldLabel : Eway.locale.machine.device.installStyle,
 								xtype : 'radiogroup',
-								defaults : {
-									readOnly : true
-								},
+								allowBlank : false,
+								anchor : '59%',
 								items : [ {
 									boxLabel : Eway.locale.machine.device.crossWall,
 									name : 'setupType',
+									checked : true,
 									inputValue : 0
 								}, {
 									boxLabel : Eway.locale.machine.device.mainRoom,
 									name : 'setupType',
 									inputValue : 1
 								} ]
-							}, {
+							},{
 								fieldLabel : Eway.locale.machine.device.netType,
 								xtype : 'radiogroup',
-								defaults : {
-									readOnly : true
-								},
+								allowBlank : false,
 								items : [ {
 									boxLabel : Eway.locale.machine.device.wired,
 									name : 'netType',
+									checked : true,
 									inputValue : 0
 								}, {
 									boxLabel : Eway.locale.machine.device.wireless,
@@ -455,58 +144,50 @@ Ext.define('Eway.view.machine.device.Info', {
 									boxLabel : Eway.locale.machine.device.wiredAndWireless,
 									name : 'netType',
 									inputValue : 2
-								} ]
-							} ]
-						}, {
-							columnWidth : .5,
-							border : false,
-							layout : 'anchor',
-							defaults : {
-								anchor : '90%',
-								xtype : 'textfield',
-								style : 'padding-top:10px'
-							},
-							items : [ {
-								fieldLabel : Eway.locale.machine.device.onBankSignal,
-								xtype : 'radiogroup',
-								defaults : {
-									readOnly : true
-								},
-								items : [ {
-									boxLabel : Eway.locale.machine.device.inBank,
-									name : 'awayFlag',
-									inputValue : 1
+								}]}
+								,{
+									fieldLabel : Eway.locale.machine.device.onBankSignal,
+									xtype : 'radiogroup',
+									items : [ {
+										boxLabel : Eway.locale.machine.device.inBank,
+										name : 'awayFlag',
+										checked : true,
+										inputValue : 1
+									}, {
+										boxLabel : Eway.locale.machine.device.outBank,
+										name : 'awayFlag',
+										inputValue : 2
+									}, {
+										boxLabel :  Eway.locale.machine.device.clickBank,
+										name : 'awayFlag',
+										inputValue : 3
+									} ]
 								}, {
-									boxLabel : Eway.locale.machine.device.outBank,
-									name : 'awayFlag',
-									inputValue : 2
-								}, {
-									boxLabel : Eway.locale.machine.device.clickBank,
-									name : 'awayFlag',
-									inputValue : 3
-								} ]
-							}, {
-								fieldLabel : Eway.locale.machine.device.operation,
-								xtype : 'radiogroup',
-								defaults : {
-									readOnly : true
-								},
-								items : [ {
-									boxLabel: Eway.locale.machine.device.operationSelf,
-									name : 'workType',
-									inputValue : 1
-								}, {
-									boxLabel : Eway.locale.machine.device.cooperation,
-									name : 'workType',
-									inputValue : 2
-								}, {
-									boxLabel : Eway.locale.machine.device.epiboly,
-									name : 'workType',
-									inputValue : 3
-								} ]
-							} ]
+									fieldLabel : Eway.locale.machine.device.operation,
+									xtype : 'radiogroup',
+									items : [ {
+										boxLabel : Eway.locale.machine.device.operationSelf,
+										name : 'workType',
+										checked : true,
+										inputValue : 1
+									}, {
+										boxLabel : Eway.locale.machine.device.cooperation,
+										name : 'workType',
+										inputValue : 2
+									}, {
+										boxLabel :  Eway.locale.machine.device.epiboly,
+										name : 'workType',
+										inputValue : 3
+									} ]
+								},{
+								fieldLabel : Eway.locale.machine.device.installDate,
+								xtype : 'datefield',
+								format : 'Y-m-d',
+								name : 'installDate',
+								anchor : '50%',
+								}]
 						} ]
-					}, {
+					},{
 						title : Eway.locale.machine.device.managePerson,
 						itemid : 'tubeMachineItemID',
 						xtype : 'machine_device_person_tmGrid'

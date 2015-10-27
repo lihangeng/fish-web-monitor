@@ -52,8 +52,6 @@ import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
 import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.device.IDevice;
-import com.yihuacomputer.fish.api.device.IDeviceExtend;
-import com.yihuacomputer.fish.api.device.IDeviceExtendService;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.device.NetType;
 import com.yihuacomputer.fish.api.person.IOrganization;
@@ -78,9 +76,6 @@ public class DeviceController {
 	@Autowired
 	private IDeviceService deviceService;
 
-	@Autowired
-	private IDeviceExtendService deviceExtendService;
-	
 	@Autowired
 	private IVersionTypeAtmTypeRelationService versionAtmTypeService;
 	
@@ -113,8 +108,6 @@ public class DeviceController {
 		logger.info("add Device");
 		ModelMap model = new ModelMap();
 		IDevice device = deviceService.make();
-		IDeviceExtend de = deviceExtendService.make();
-
 		IOrganization org = orgService.get(request.getOrgId());
 		if (org == null) {
 			model.put(FishConstant.SUCCESS, false);
@@ -139,7 +132,6 @@ public class DeviceController {
 		device.setOrganization(org);
 		device.setDevService(serviceOrg);
 		device.setDevType(atmType);
-		device.setDeviceExtend(de);
 		request.translate(device);
 
 		Map<String, Object> result = validator(request, "add");
@@ -251,7 +243,7 @@ public class DeviceController {
 		try {
 			deviceService.update(device);
 		} catch(Exception e) {
-			logger.error(String.format(messageSource.getMessage("device.updateError", null, FishCfg.locale), e));
+			logger.error(String.format("add error : %s",e.getMessage()));
 			model.put(FishConstant.SUCCESS, false);
 			model.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
 			return model;
@@ -471,7 +463,6 @@ public class DeviceController {
 
 		int count = 1;
 		for (IDevice device : data) {
-
 			row = sheet.createRow(count);
 
 			cell = row.createCell(0);
@@ -503,99 +494,23 @@ public class DeviceController {
 			cell = row.createCell(8);
 			cell.setCellValue(cellValue(device.getAddress()));
 
-			cell = row.createCell(13);
-			cell.setCellValue(cellValue(device.getAtmcSoft()));
+			cell = row.createCell(9);
+			cell.setCellValue(cellValue(device.getSerial()));
 
-			cell = row.createCell(14);
-			cell.setCellValue(cellValue(device.getSp()));
+			NetType netType = device.getNetType();
+			cell = row.createCell(10);
+			cell.setCellValue(cellValue(getEnumI18n(netType.getText())));
 
-			if (device.getDeviceExtend() != null) {
-
-				cell = row.createCell(9);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getSerial()));
-
-				cell = row.createCell(10);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getCarrier()));
-
-				cell = row.createCell(11);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getMoneyOrg()));
-
-				cell = row.createCell(12);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getCostInterest()));
-
-				cell = row.createCell(15);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getBuyDate()));
-
-				cell = row.createCell(16);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getInstallDate()));
-
-				cell = row.createCell(17);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getStartDate()));
-
-				cell = row.createCell(18);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getStopDate()));
-
-				cell = row.createCell(19);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getExpireDate()));
-
-				cell = row.createCell(20);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getOpenTime()));
-
-				cell = row.createCell(21);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getCloseTime()));
-
-				cell = row.createCell(22);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getLastPmDate()));
-
-				cell = row.createCell(23);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getExpirePmDate()));
-
-				cell = row.createCell(24);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getPrice()));
-
-				cell = row.createCell(25);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getDepreciationLife()));
-
-				cell = row.createCell(26);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getDecoration()));
-
-				cell = row.createCell(27);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getDecorationCost()));
-
-				cell = row.createCell(28);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getGovernanceRent()));
-
-				cell = row.createCell(29);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getGovernanceCost()));
-
-				cell = row.createCell(30);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getNetCost()));
-
-				cell = row.createCell(31);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getPowerCost()));
-
-				cell = row.createCell(32);
-				cell.setCellValue(cellValue(device.getDeviceExtend().getMoneyCost()));
-
-				NetType netType = device.getDeviceExtend().getNetType();
-				cell = row.createCell(36);
-				cell.setCellValue(cellValue(netType == null ? "" : getEnumI18n(netType.getText())));
-
-			}
-
-			cell = row.createCell(33);
-			cell.setCellValue(cellValue(device.getCareLevel() == null ? "" : getEnumI18n(device.getCareLevel().getText())));
-
-			cell = row.createCell(34);
+			/*cell = row.createCell(11);
 			cell.setCellValue(cellValue(device.getCashType() == null ? "" : getEnumI18n(device.getCashType().getText())));
-
-			cell = row.createCell(35);
+*/
+			cell = row.createCell(12);
 			cell.setCellValue(cellValue(device.getSetupType() == null ? "" : getEnumI18n(device.getSetupType().getText())));
 
-			cell = row.createCell(37);
+			cell = row.createCell(13);
 			cell.setCellValue(cellValue(device.getAwayFlag() == null ? "" : getEnumI18n(device.getAwayFlag().getText())));
 
-			cell = row.createCell(38);
+			cell = row.createCell(14);
 			cell.setCellValue(cellValue(device.getWorkType() == null ? "" : getEnumI18n(device.getWorkType().getText())));
 
 		}
