@@ -1,13 +1,13 @@
 
 Ext.define('Eway.controller.case.CaseFault', {
 	extend: 'Ext.app.Controller',
-	
+
 	stores: ['case.Fault','case.DevMod','case.FaultStatus','case.FaultClassify'],
-			
+
 	models: ['case.Fault','case.FaultClassify'],
-			
+
 	views: ['case.caseFault.FaultView'],
-	
+
 	refs: [{
 		ref: 'ewayView',
 		selector: '#fault',
@@ -21,7 +21,7 @@ Ext.define('Eway.controller.case.CaseFault', {
 		ref :'filterForm',
 		selector:'caseFault_filterForm'
 	}],
-	
+
 	init: function() {
 		this.control({
 			'caseFault_faultGrid button[action=query]': {
@@ -29,21 +29,24 @@ Ext.define('Eway.controller.case.CaseFault', {
 			},
 			'caseFault_faultGrid button[action=export]': {
 				click: this.onExport
+			},
+			'caseFault_faultGrid' : {
+				cellclick : this.onCellClik
 			}
 		});
 		this.onQuery();
 	},
-	
+
 	/**
 	 * 根据条件查询
 	 */
 	onQuery: function(){
 		var store = this.getEwayView().down('caseFault_faultGrid').getStore();
-		var data = this.getFilterForm().getForm().getValues();//得到所有的查询条件的值 
+		var data = this.getFilterForm().getForm().getValues();//得到所有的查询条件的值
 		store.setUrlParamsByObject(data);
 		store.loadPage(1);
 	},
-	
+
 	onExport : function(){
 		var data = this.getFilterForm().getForm().getValues();
 		var terminalId = data.terminalId;
@@ -52,11 +55,34 @@ Ext.define('Eway.controller.case.CaseFault', {
 		var faultClassify = data.faultClassify;
 		var faultStatus = data.faultStatus;
 		var faultTime = data.faultTime;
-		
+
 		window.location.href = 'api/case/caseFault/export?devMod=' + devMod + '&terminalId=' + terminalId
 														+ '&closedTime=' + closedTime + '&faultClassify=' + faultClassify
 														+ '&faultStatus=' + faultStatus + '&faultTime=' + faultTime;
-		
+
+	},
+	onCellClik : function (grid, td, cellIndex, record, tr, rowIndex, e, eOpts) {//当单击超链接的时候
+		var me = this ;
+		if(cellIndex==9){
+			var faultStatus = record.get('faultStatus') ;
+			if(faultStatus=="OPEN"){
+				record.set('faultStatus', 'CLOSED');
+				record.save({
+					success : function(record, operation) {
+						Eway.alert(Eway.updateSuccess);
+						me.onQuery() ;
+					},
+					failure : function(record, operation) {
+						Eway.alert(operation.getError());
+						record.set('notifyTimes', notifyTimes);
+						record.set('notifyWay', notifyWay);
+						record.set('resolveHour', resolveHour);
+						record.set('responsorType', responsorType);
+						record.set('upgrade', upgrade);
+					}
+				});
+			}
+		}
 	}
-	
+
 });

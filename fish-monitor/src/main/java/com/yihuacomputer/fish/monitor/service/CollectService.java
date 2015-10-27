@@ -18,6 +18,7 @@ import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceListener;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.fault.IDeviceCaseService;
+import com.yihuacomputer.fish.api.fault.monitor.IFaultManager;
 import com.yihuacomputer.fish.api.monitor.AlarmInfo;
 import com.yihuacomputer.fish.api.monitor.BusinessInfo;
 import com.yihuacomputer.fish.api.monitor.ICollectListener;
@@ -102,17 +103,20 @@ public class CollectService implements ICollectService , IDeviceListener{
 
     @Autowired
     private ICounterFeitMoneyService counterFeitMoneyService;
-    
+
 
     @Autowired
     private MessageSource messageSourceEnum;
-    
+
     @Autowired
     private IUncommonTransService uncommonTransService;
 
     /** CASE处理相关注入 */
     @Autowired(required = false)
     private IDeviceCaseService deviceCaseService;
+
+    @Autowired(required = false)
+    private IFaultManager faultManager ;
 
 
     /**
@@ -180,24 +184,29 @@ public class CollectService implements ICollectService , IDeviceListener{
         }
         histXfsStatus.setDateTime(DateUtils.getTimestamp(new Date()));
 
-        if (histXfsStatus.equals(xfsStatus)) {
-            histXfsStatus.setBoxCurrentCount(xfsStatus.getBoxCurrentCount());
-            xfsService.updateXfsStatus(histXfsStatus);
-            return;
-        }
+//        if (histXfsStatus.equals(xfsStatus)) {
+//            histXfsStatus.setBoxCurrentCount(xfsStatus.getBoxCurrentCount());
+//            xfsService.updateXfsStatus(histXfsStatus);
+//            return;
+//        }
 
         IRunInfo runInfo = new RunInfo();
         runInfo.setRunStatus(histXfsStatus.getRunStatus());
 
         /** 处理模块故障相关 */
-        if (deviceCaseService != null) {
+        if (faultManager != null) {
         	try{
-        		deviceCaseService.handleModStatus(xfsStatus,histXfsStatus);
+        		IXfsStatus handleStatus = xfsService.makeXfsStatus() ;
+        		handleStatus.setXfsStatus(xfsStatus);
+        		IXfsStatus handleHistStatus = xfsService.makeXfsStatus() ;
+        		handleHistStatus.setXfsStatus(histXfsStatus);
+        		handleStatus.setHisXfsStatus(handleHistStatus);
+        		faultManager.handleFault(handleStatus);
         	}catch(Exception e){
-//        		logger.error(String.format("处理设备故障工单异常[%s]", e));
         		logger.error(String.format("handle device caseFault exception[%s]", e));
-        		return ;
         	}
+        }else{
+        	logger.info("don't handle device case fault!");
         }
 
         histXfsStatus.setXfsStatus(xfsStatus);

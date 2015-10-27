@@ -25,6 +25,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,6 +39,7 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
+import com.yihuacomputer.fish.api.fault.FaultCloseType;
 import com.yihuacomputer.fish.api.fault.FaultStatus;
 import com.yihuacomputer.fish.api.fault.ICaseFault;
 import com.yihuacomputer.fish.api.fault.ICaseFaultService;
@@ -220,6 +223,10 @@ public class FaultController
         cell.setCellValue(messageSource.getMessage("fault.updateTimes", null, FishCfg.locale));
         cell.setCellStyle(style);
 
+        cell = row.createCell(9);
+        cell.setCellValue(messageSource.getMessage("fault.closeType", null, FishCfg.locale));
+        cell.setCellStyle(style);
+
         HSSFCellStyle cellStyle = wb.createCellStyle();
         HSSFDataFormat format = wb.createDataFormat();
         cellStyle.setDataFormat(format.getFormat("@"));
@@ -287,6 +294,21 @@ public class FaultController
             cell = row.createCell(8);
             cell.setCellStyle(cellStyle);
             cell.setCellValue(cellValue(fault.getUpgrade()));
+
+            cell = row.createCell(9);
+            cell.setCellStyle(cellStyle);
+            if (FaultCloseType.FORCE.equals(fault.getCloseType()))
+            {
+                cell.setCellValue(messageSource.getMessage("fault.force", null, FishCfg.locale));
+            }
+            else if (FaultCloseType.NORMAL.equals(fault.getCloseType()))
+            {
+                cell.setCellValue(messageSource.getMessage("fault.normal", null, FishCfg.locale));
+            }
+            else
+            {
+            	cell.setCellValue("") ;
+            }
         }
 
         String date = DateUtils.getDate(new Date());
@@ -405,5 +427,28 @@ public class FaultController
     		return "";
     	}
     	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public @ResponseBody
+    ModelMap update(@PathVariable String id,
+            @RequestBody CaseFaultForm request)
+    {
+        logger.info("close fault: fault.id = " + id);
+        ModelMap result = new ModelMap();
+        try
+        {
+        	ICaseFault fault = service.getFault(Long.parseLong(id)) ;
+        	fault.setCloseType(FaultCloseType.FORCE);
+        	service.closeCaseFault(fault);
+            result.addAttribute(FishConstant.SUCCESS, true);
+            result.addAttribute("data", request);
+        }
+        catch (Exception e)
+        {
+            result.addAttribute(FishConstant.SUCCESS, false);
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.updateError", null, FishCfg.locale));
+        }
+        return result;
     }
 }

@@ -44,10 +44,6 @@ Ext.define('Eway.view.case.caseNotify.NotifyGrid', {
 				dataIndex : 'mobile',
 				width : 120
 			}, {
-				header : 'E-Mail',
-				dataIndex : 'mail',
-				width : 120
-			}, {
 				header : Eway.locale.cases.caseFault.notifyRepeatTimes,
 				dataIndex : 'notifyTimes',
 				width : 60
@@ -71,6 +67,7 @@ Ext.define('Eway.view.case.caseNotify.NotifyGrid', {
 				xtype:'actioncolumn',
 				header : Eway.locale.cases.caseNotify.fault,
 				dataIndex : 'faultId',
+				width : 60,
 				items : [{
 					icon : 'resources/images/s_error.gif',
 					tooltip: Eway.locale.cases.caseFault.checkDetails,
@@ -217,7 +214,7 @@ Ext.define('Eway.view.case.caseNotify.NotifyGrid', {
 			}, {
 				header : Eway.locale.cases.caseFault.serPer,
 				dataIndex : 'serPer',
-				flex : 1
+				width : 100
 			}],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,

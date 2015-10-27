@@ -56,6 +56,8 @@ Ext.define('Eway.view.case.faultClassify.FaultClassifyGrid', {
 						return Eway.locale.cases.caseFault.mail;
 					}else if(value == 'BOTH'){
 						return Eway.locale.cases.caseFault.messageAndMail;
+					}else if(value == 'NONE'){
+						return Eway.locale.cases.caseFault.none;
 					}
 				}
 			}, {

@@ -126,4 +126,12 @@ public interface ICaseFault {
 	 * @since 0.24
 	 */
 	public IDevice getDevice();
+
+
+	/**
+	 * 故障关闭方式
+	 * @return
+	 */
+	public void setCloseType(FaultCloseType closeType) ;
+	public FaultCloseType getCloseType() ;
 }

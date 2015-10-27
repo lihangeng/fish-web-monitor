@@ -46,4 +46,11 @@ public class DefaultDeviceCaseService  implements IDeviceCaseService{
 	@Override
 	public void handleAppStatus(IRunInfo appStatus) {
 	}
+
+	@Override
+	public void handleModStatus(IXfsStatus xfsStatus) {
+		/*处理故障*/
+		hwFaultService.handleModFualt(xfsStatus,xfsStatus.getHisXfsStatus());
+
+	}
 }

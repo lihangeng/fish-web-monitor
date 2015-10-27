@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.yihuacomputer.common.util.DateUtils;
+import com.yihuacomputer.fish.api.fault.FaultCloseType;
 import com.yihuacomputer.fish.api.fault.FaultStatus;
 import com.yihuacomputer.fish.api.fault.ICaseFault;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
@@ -37,6 +38,8 @@ public class CaseFaultForm {
 
 	private String org;
 	private String serPer;
+
+	private FaultCloseType faultCloseType ;
 
 	public CaseFaultForm(){
 
@@ -81,6 +84,8 @@ public class CaseFaultForm {
 			this.serPer+=";";
 		}
 		this.org = caseFault.getOrg().getName();
+
+		this.faultCloseType = caseFault.getCloseType() ;
 	}
 
 	/**
@@ -209,6 +214,14 @@ public class CaseFaultForm {
 
 	public void setSerPer(String serPer) {
 		this.serPer = serPer;
+	}
+
+	public FaultCloseType getFaultCloseType() {
+		return faultCloseType;
+	}
+
+	public void setFaultCloseType(FaultCloseType faultCloseType) {
+		this.faultCloseType = faultCloseType;
 	}
 
 }

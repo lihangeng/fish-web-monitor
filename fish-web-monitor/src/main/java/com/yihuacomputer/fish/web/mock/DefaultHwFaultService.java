@@ -210,7 +210,8 @@ public class DefaultHwFaultService {
 	private void handlePinFault(IXfsStatus pin,List<ICaseFault> openCaseList,IXfsStatus hisXfsStatus){
 		if(pin.getStatusPin().getStatus().equals(DeviceStatus.Healthy)){
 			caseFaultService.closeHealthyModCase(openCaseList,DeviceMod.PIN,F_MOD);
-		}else if(pin.getStatusPin().getStatus().equals(DeviceStatus.Fatal)){
+		}else if(pin.getStatusPin().getStatus().equals(DeviceStatus.Fatal)
+				&& DeviceStatus.Fatal.equals(hisXfsStatus.getStatusPin().getStatus())){
 			ICaseFault caseFault = caseFaultService.make();
 			caseFault.setDevMod(DeviceMod.PIN);
 			caseFault.setAppStatus(pin.getRunStatus());
@@ -271,7 +272,8 @@ public class DefaultHwFaultService {
 	private void handleIccFault(IXfsStatus icc,List<ICaseFault> openCaseList,IXfsStatus hisXfsStatus){
 		if(icc.getStatusIcc().getStatus().equals(DeviceStatus.Healthy)){
 			caseFaultService.closeHealthyModCase(openCaseList,DeviceMod.ICC,F_MOD);
-		}else if(icc.getStatusIcc().getStatus().equals(DeviceStatus.Fatal)){
+		}else if(icc.getStatusIcc().getStatus().equals(DeviceStatus.Fatal)
+				&& DeviceStatus.Fatal.equals(hisXfsStatus.getStatusIcc().getStatus())){
 			ICaseFault caseFault = caseFaultService.make();
 			caseFault.setDevMod(DeviceMod.ICC);
 			caseFault.setAppStatus(icc.getRunStatus());
@@ -290,7 +292,8 @@ public class DefaultHwFaultService {
 	private void handleFgpFault(IXfsStatus fgp,List<ICaseFault> openCaseList,IXfsStatus hisXfsStatus){
 		if(fgp.getStatusFgp().getStatus().equals(DeviceStatus.Healthy)){
 			caseFaultService.closeHealthyModCase(openCaseList,DeviceMod.FGP,F_MOD);
-		}else if(fgp.getStatusFgp().getStatus().equals(DeviceStatus.Fatal)){
+		}else if(fgp.getStatusFgp().getStatus().equals(DeviceStatus.Fatal)
+				&& DeviceStatus.Fatal.equals(hisXfsStatus.getStatusFgp().getStatus())){
 			ICaseFault caseFault = caseFaultService.make();
 			caseFault.setDevMod(DeviceMod.FGP);
 			caseFault.setAppStatus(fgp.getRunStatus());
@@ -309,7 +312,8 @@ public class DefaultHwFaultService {
 	private void handleIscFault(IXfsStatus isc,List<ICaseFault> openCaseList,IXfsStatus hisXfsStatus){
 		if(isc.getStatusIsc().getStatus().equals(DeviceStatus.Healthy)){
 			caseFaultService.closeHealthyModCase(openCaseList,DeviceMod.ISC,F_MOD);
-		}else if(isc.getStatusIsc().getStatus().equals(DeviceStatus.Fatal)){
+		}else if(isc.getStatusIsc().getStatus().equals(DeviceStatus.Fatal)
+				&& DeviceStatus.Fatal.equals(hisXfsStatus.getStatusIsc().getStatus())){
 			ICaseFault caseFault = caseFaultService.make();
 			caseFault.setDevMod(DeviceMod.ISC);
 			caseFault.setAppStatus(isc.getRunStatus());

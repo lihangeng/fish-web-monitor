@@ -37,7 +37,7 @@ public class FaultClassifyController
 
     @Autowired
     private IFaultClassifyService faultClassifyService;
-    
+
     @Autowired
 	protected MessageSource messageSource;
 

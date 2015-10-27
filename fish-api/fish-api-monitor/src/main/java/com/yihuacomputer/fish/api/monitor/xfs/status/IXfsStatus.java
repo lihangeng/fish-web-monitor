@@ -121,4 +121,8 @@ public interface IXfsStatus {
 	public IStatusIsc getStatusIsc() ;
 
 	public IStatusIsc makeStatusIsc() ;
+
+	public IXfsStatus getHisXfsStatus() ;
+
+	public void setHisXfsStatus(IXfsStatus hisXfsStatus) ;
 }

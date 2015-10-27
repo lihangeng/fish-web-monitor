@@ -33,7 +33,7 @@ Ext.override(Eway,{
 			chooseDevice:"Please select a machine",//Eway.locale.msg.chooseDevice 请选择设备.
 			downloadFailForNoVersion:"Version file issue failed :no generated version-file found or version-file lost,please generate version file first.",//Eway.locale.msg.downloadFailForNoVersion 下发版本文件失败:还没有生成版本文件或者版本文件丢失,请先生成版本文件.
 			saveSuccess:'Save successful',//Eway.locale.msg.saveSuccess 保存成功！
-			
+
 			versionDownloaded:'Can not delete the advertisement which status is "issued" or "wait for issue',//Eway.locale.msg.versionDownloaded 不能删除"等待下发"和"已下发"状态的版本.
 			selectVersionToDelete:'Please choose the version which you want to delete',//Eway.locale.msg.selectVersionToDelete 请选择您要删除的版本.
 			communicationFail:'Add failed : connction refused.',//Eway.locale.msg.communicationFail 增加失败:与服务器通讯失败.
@@ -74,7 +74,7 @@ Ext.override(Eway,{
 			cancle:'Cancle',//Eway.locale.button.cancle 取消
 			choose:'Select',//Eway.locale.button.choose 选择
 			pause:'Pause',//Eway.locale.button.pause 暂停
-				
+
 			exported:'Export',//Eway.locale.button.exported 导出
 			select:'Select', //选择
 			info :'Detail', //详细信息
@@ -130,7 +130,7 @@ Ext.override(Eway,{
 			phone:'Please enter the right telephone number', //请输入正确的电话号码
 			remind:'Tip',//Eway.locale.tip.remind 提示
 			displayMessage:'Total:{2} items,display{0}-{1}',//总共：{2}条，显示{0}-{1}
-			
+
 			unCertain:'Unknown',//未知
 			searchOfNoLegal:'There are some illegal parameters in the query condition,can not commit ',//查询项中存在不合法的输入,不能提交.
 			choseExportDevInfo:'Please select the machine which you want to export for detail ',//请选择要导出信息的设备
@@ -158,7 +158,7 @@ Ext.override(Eway,{
 			planNoUpdate:'This program has been executed ,can not be modified ',//该方案已经执行,不可修改.
 			planNoRemove:'This program has been executed ,can not be deleted ',///该方案已经执行,不可删除.
 			exportFiles: 'Please choose a file to import,only support .xls or .xlxs files ',//请选择导入文件,只支持.xls和.xlsx格式的文件
-			
+
 			//add by panxin
 			tips:'Tips',//Eway.locale.tip.tips 提示
 			input:'Please enter the right item',//Eway.locale.tip.input//请正确输入
@@ -235,7 +235,7 @@ Ext.override(Eway,{
 				},
 				move:{
 					choose:'Please choose the record which you want to move.'//Eway.locale.tip.user.move.choose 请选择需要移动的记录.
-					
+
 				}
 			},
 			business:{
@@ -247,8 +247,8 @@ Ext.override(Eway,{
 					},
 					historyTransaction:{
 						input:'Terminal ID is necessary for the query.'//Eway.locale.tip.business.transaction.historyTransaction.input 查询必须输入设备号
-						
-						
+
+
 					}
 				},
 				blackList:{
@@ -273,7 +273,7 @@ Ext.override(Eway,{
 					busnessPaper:'Please input the correct number of businesslicence,12-15 numbers',//Eway.locale.tip.business.card.busnessPaper 请输入正确的法人营业执照,12-15位数字
 					busnessCode:'Please input the correct number of juridicalperson,15 numbers',//Eway.locale.tip.business.card.busnessCode 请输入正确的法人代码证,15位数字
 					taxPaper:'Please input the correct number of taxregistration,15 numbers'//Eway.locale.tip.business.card.taxPaper 请输入正确的税务登记证,15位数字
-					
+
 				},
 				device:{
 					getCashInfoFail:'Get the cashbin info failed',//Eway.locale.tip.business.device.getCashInfoFail 获取钞箱信息失败
@@ -326,18 +326,18 @@ Ext.override(Eway,{
 					listPattern:'List Pattern'//Eway.locale.tip.business.device.listPattern 列表方式
 				},
 			},
-			
+
 		},
-		
+
 		//**********************************************************/
-		
+
 		combox:{
 			select:'Please select',//Eway.locale.combox.select --请选择--
 			explorer: 'Browse...',//Eway.locale.combox.explorer 浏览...
 		},
-		
-		
-		
+
+
+
 		vtype:{
 			ip:'Please enter the correct IP address',//请输入正确的IP地址
 			zip:'Please enter the correct ZIP ,6 numbers', //请输入正确的邮编格式，6位的数字
@@ -348,7 +348,7 @@ Ext.override(Eway,{
 			telephone:'Input error,phone number can only be 8-11 numbers',//输入错误,固定电话号码只能输入8到11位数字。
 			daterange:'Range of time is not correct.',//日期段不正确
 			numberrange:'Range of money is not correct.',//金额范围不正确
-			
+
 			bankOrgCode:'Just for 1-20 characters ‘a-z’ or ‘A-Z’ or number ‘0-9’ or‘-’ or‘_’ or ‘.’,and must be start with character or number',//只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！
 			zip:'Just for 6 ‘0-9’ numbers',//只能输入6个‘0-9’的数字！
 			maxLength20:'Max length is 20',//允许的最大长度为20
@@ -356,8 +356,8 @@ Ext.override(Eway,{
 			numberRulesOne: 'Just for character ‘a-z’ or ‘A-Z’、number‘0-9’、minussign‘-’、underline‘_’ or point‘.’,only start with Chinesecharacter,character or number,max length is 100',//由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入100位
 			numberRulesFour	: 'Just for character ‘a-z’ or ‘A-Z’、number‘0-9’,max length is 40',//由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位
 			numberRules: 'Just for character ‘a-z’ or ‘A-Z’、number‘0-9’、minussign‘-’、underline‘_’ or point‘.’,only start with Chinesecharacter,character or number,max length is 200',//由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入200位
-			
-			
+
+
 			mobileRules:'Input error,mobile number can only be 8-11 numbers',//手机电话号码只能输入8到11位数字‘0-9’
 			choseDev:'Please choose the machine which you want to stop.',//请选择您报停的设备.
 			dataLoad:'Data loading......',//正在加载数据
@@ -366,11 +366,11 @@ Ext.override(Eway,{
 			inputCorrect:'Please input correct data.',//请正确输入
 			exportRepError:'Export report error,please try again',//导出报表出错，请重新操作!
 			planOutdate:'(This program is out of date,can not be applied)',//(此方案已过期，不可应用！)
-			
+
 			emailRules: 'email must accord with the rule of *@*.* ',//email必须符合*@*.*标准。
 			notifyTimesRules: 'Times of notice must be numbers,minimum 0,maximum 100.',//通知次数必须为数字，最小值为0,最大值为100。
 			sendTimesRules: 'Times of sending must be numbers,minimum 0,maximum 100.',//发送次数必须为数字，最小值为0,最大值为100。
-			
+
 			launchTranscribe:'Starting record......', //正在启动录制
 			stopTranscribe:'Stoping record......',//正在停止录制......
 			inexistenceScreen:'Screen not found',//不存在此屏幕
@@ -482,7 +482,7 @@ Ext.override(Eway,{
 			resourceAlias:'File name after modified',//Eway.locale.advert.resourceAlias 修改后的文件名
 			advertDownMethodCover:'Override',//Eway.locale.advert.advertDownMethodCover 覆盖
 			uploading:'Resource uploading...',//Eway.locale.advert.uploading 正在上传资源...
-			advertPreviewTitle0:'Preview advertisement (Total ',//Eway.locale.advert.advertPreviewTitle0 广告预览(共有 
+			advertPreviewTitle0:'Preview advertisement (Total ',//Eway.locale.advert.advertPreviewTitle0 广告预览(共有
 			advertPreviewTitle1:'resources,play the no. ',//Eway.locale.advert.advertPreviewTitle1 个资源,当前播放第
 			advertPreviewTitle2:'at the present) ',//Eway.locale.advert.advertPreviewTitle2 //个
 			choosedAdvertRes:'You have choosed',//Eway.locale.advert.choosedAdvertRes 您已经选择了
@@ -649,8 +649,8 @@ Ext.override(Eway,{
 				updateResult:'Update result'	//Eway.locale.version.task.updateResult 升级结果
 			}
 		},
-		
-		
+
+
 		//**********************************************************/
 		agent:{
 			remote:{
@@ -787,11 +787,11 @@ Ext.override(Eway,{
 				versionInfo:'The version information :',//您要查看的版本信息如下:
 				ATMCVersion:'Version of ATMC application',//ATMC应用版本
 				monitorVersion: 'Version of monintor client',//监控客户端版本
-				
+
 			}
 		},
 		commen:{
-			
+
 			jobNum:'JobNo',//Eway.locale.commen.jobNum 工号
 			name:'Name',//Eway.locale.commen.name 姓名
 			personJobName:'Quarters',//Eway.locale.commen.personJobName 岗位
@@ -890,9 +890,9 @@ Ext.override(Eway,{
 			endValidty:'Valid date until',//Eway.locale.commen.endValidty 截止有效期
 			publishDate:'Issue date',//Eway.locale.commen.publishDate 发布日期
 			announceTheme:'Announce theme',//Eway.locale.commen.announceTheme 公告主题
-			
-			
-			
+
+
+
 		},
 		//**********************************************************/
 		person:{
@@ -929,7 +929,7 @@ Ext.override(Eway,{
 				orgLinkTitle:'Person and device which link this organization',//Eway.locale.person.bankOrg.orgLinkTitle 该机构的关联设备和人员
 				machineOrg:'Device under the organization:',//Eway.locale.person.bankOrg.machineOrg
 				personOrg:'Person under the organization:'//Eway.locale.person.bankOrg.personOrg
-				
+
 			},
 			bankPer :{
 				title:'Bank person',//Eway.locale.person.bankPer.title 银行人员管理
@@ -937,7 +937,7 @@ Ext.override(Eway,{
 				orgNavi:'Organization Navigator',//Eway.locale.person.bankPer.orgNavi 机构导航
 				addBankPerTitle:'Add information of bank person ',//Eway.locale.person.bankPer.addBankPerTitle 增加银行人员信息
 				updateBankPerTitle:'Modify information of bank person '//Eway.locale.person.bankPer.updateBankPerTitle 更改银行人员信息
-				
+
 			},
 			serviceOrg:{
 				title:'Maintenance',//Eway.locale.person.serviceOrg.title 维护商管理
@@ -1000,9 +1000,9 @@ Ext.override(Eway,{
 				rootUser:'Super user',//Eway.locale.person.user.rootUser 超级用户
 				generalUser:'General User'//Eway.locale.person.user.generalUser 普通用户
 			}
-			
+
 		},
-		
+
 		//**********************************************************/
 		permission:{
 			systemMenu:'System', //系统菜单
@@ -1022,7 +1022,7 @@ Ext.override(Eway,{
 				menuPermission:'Menu permission'//Eway.locale.permission.permission.menuPermission 菜单权限
 			}
 		},
-		
+
 		//**********************************************************/
 		monitor:{
 			devMonitor:{
@@ -1070,7 +1070,7 @@ Ext.override(Eway,{
 					cimAFull:'Deposit almost full',//Eway.locale.monitor.devMonitor.cash.cimAFull 存款钞将满
 					cashFault:'Cashbox error',//Eway.locale.monitor.devMonitor.cash.cashFault 钞箱故障
 					cashUnknow:'Cashbox unknown'//Eway.locale.monitor.devMonitor.cash.cashUnknow 钞箱未知
-					
+
 				},
 				modStateGraphic:'Module status graphic',//Eway.locale.monitor.devMonitor.modStateGraphic 模块状态图示
 				modGraphic:'Module graphic',//Eway.locale.monitor.devMonitor.modGraphic
@@ -1089,7 +1089,7 @@ Ext.override(Eway,{
 					icc:'发卡器',//Eway.locale.monitor.devMonitor.mod.icc 发卡器
 					fgp:'Fingerprints',//Eway.locale.monitor.devMonitor.mod.fgp 指纹仪
 					healthy:'Healthy'//Eway.locale.monitor.devMonitor.mod.healthy 模块正常
-					
+
 				},
 				remote:{
 					control:'Remote control',//Eway.locale.monitor.devMonitor.remote.control 远程控制
@@ -1112,7 +1112,7 @@ Ext.override(Eway,{
 					halfSer:'Half service',//Eway.locale.monitor.devMonitor.remote.halfSer 半功能
 					healthy:'Healthy',//Eway.locale.monitor.devMonitor.remote.healthy 正常服务
 					staff:'Maintenance',//Eway.locale.monitor.devMonitor.remote.staff 维护
-					pFault:'交易前置故障',//Eway.locale.monitor.devMonitor.remote.pFault 
+					pFault:'交易前置故障',//Eway.locale.monitor.devMonitor.remote.pFault
 					stop:'Stop',//Eway.locale.monitor.devMonitor.remote.stop 报停
 					manualStop:'Stop manual',////Eway.locale.monitor.devMonitor.remote.manualStop 人工报停
 					stopFault:'暂停服务-模块故障',//Eway.locale.monitor.devMonitor.remote.stopFault
@@ -1153,7 +1153,7 @@ Ext.override(Eway,{
 					userName:'用户姓名',//Eway.locale.monitor.business.transaction.userName
 					historyTransaction:{
 						title:'历史交易查询'//Eway.locale.monitor.business.transaction.historyTransaction.title
-						
+
 					},
 					transactionMonitor:{
 						title:'实时交易监控',//Eway.locale.monitor.business.transaction.transactionMonitor.title
@@ -1221,8 +1221,8 @@ Ext.override(Eway,{
 					taxPaper:'税务登记证',//Eway.locale.monitor.business.card.taxPaper
 					withDev:'按设备'//Eway.locale.monitor.business.card.withDev
 				},
-				
-				
+
+
 				cashInit:{
 					titile:'加钞信息查询',//Eway.locale.monitor.business.cashInit.titile
 					uuId:'加钞ID',//Eway.locale.monitor.business.cashInit.uuId
@@ -1248,11 +1248,11 @@ Ext.override(Eway,{
 					cimAmt:'存款金额',//Eway.locale.monitor.business.settlement.cimAmt
 					cdmAmt:'取款金额',//Eway.locale.monitor.business.settlement.cdmAmt
 					tranAmt:'交易总金额'//Eway.locale.monitor.business.settlement.tranAmt
-				}		
+				}
 			/*}*/
 			}
 		},
-		
+
 		//**********************************************************/
 		machine:{
 			atmBrand : {
@@ -1382,7 +1382,7 @@ Ext.override(Eway,{
 				currency:'支持的币种类别总个数',
 				currencies:'支持的币种类别',
 				exponents:'指数',
-				 
+
 				CIMInfo:'存款模块 （CIM）属性信息',
 				canEscrow:'是否具有暂存器X',
 				shutterControlSupported:'是否支持控制shutter门',
@@ -1390,8 +1390,8 @@ Ext.override(Eway,{
 				canDetectCashInserted:'是否能探测钞票放入',
 				canDetectCashTaken:'是否能探测钞票被取走',
 				retractAreas:'回收位置',
-				 
-				 
+
+
 				IDCInfo:'读卡器模块(IDC)属性信息',
 				variant:'读卡器类型',
 				canEjectCard:'是否具有退卡能力',
@@ -1407,7 +1407,7 @@ Ext.override(Eway,{
 				track2Write:'是否具有写二磁道数据能力',
 				track3Write:'是否具有写三磁道数据能力',
 
-				 
+
 				JPRInfo:'日志打印机模块(JPR)属性信息',
 				canEject:'是否具有退纸能力',
 				canCapture:'是否具有回收能力',
@@ -1415,7 +1415,7 @@ Ext.override(Eway,{
 
 				PINInfo:'密码键盘(PIN)属性信息',
 				canEBC:'能否EBC',
-				canCBC:'能否CBC',  
+				canCBC:'能否CBC',
 				canMAC:'能否MAC',
 				canRSA:'能否RSA',
 				canVerifyVISA:'能否验证VISA',
@@ -1425,7 +1425,7 @@ Ext.override(Eway,{
 				canTripleCBC:'是否支持多重CBC',
 				canTripleMAC:'是否支持多重MAC',
 				canTripleCFB:'是否支持多重CFB',
-				canVerifyECB:'能否验证ECB', 
+				canVerifyECB:'能否验证ECB',
 				canDESOffset:'能否DeS偏移',
 
 				RPRInfo:'凭条打印机(RPR)属性信息',
@@ -1517,7 +1517,7 @@ Ext.override(Eway,{
 				cimGuidelight:'CIM导引灯状态',
 
 				TTUStatus:'文本终端单元(TTU)状态信息',
-				
+
 				devPerson:'设备人员信息',
 				devModuleMsg:'设备模块属性信息',
 				devBasicMsg:'设备基本信息',
@@ -1549,7 +1549,7 @@ Ext.override(Eway,{
 				moduleVersionInfo:'模块硬件版本信息（实时）',
 				devModuleStatusInfo: '设备模块状态（实时）',
 				devModuleAttributeInfo: '设备模块属性信息（实时）',
-				
+
 				remoteControl: '远程控制',
 				collectJPR:'提取日志',
 				remoteScreen:'远程抓屏',
@@ -1557,44 +1557,44 @@ Ext.override(Eway,{
 				remoteExplorer:'远程浏览',
 				netWorkLink:'网络连接',
 				remoteRestart:'远程重启',
-				
+
 				progressTip:'进度提示',
 				updateProBar:'这是通过动态更新内容形成的进度条',
 				currentProcess:'当前进度',
-				
-				
+
+
 				restartApply: ' 重启应用',
 				confirmRestartApply:'确定要重启应用？',
 				nowRestartApply:'正在重启应用',
 				restartApplySuc:'成功重启该设备应用',
 				restartApplyFail:'重启应用失败！',
-				
-				
+
+
 				restartDrive:'重启硬件驱动',
 				confirmRestartDrive:'确定要重启硬件驱动？',
 				nowRestartDrive:'正在重启硬件驱动',
 				restartDriveSuc:'成功重启该设备硬件驱动',
 				restartDriveFail:'重启硬件驱动失败！',
-				
+
 				restartOS:'重启操作系统',
 				confirmRestartOS:'确定要重启操作系统？',
 				nowRestartOS:'正在重启操作系统',
 				restartOSSuc:'成功重启该设备操作系统',
 				restartOSFail:'重启操作系统失败！',
-				
+
 				remoteShutdown:'远程关机',
 				shutdownApply:'关闭应用',
 				confirmShutdownApply:'确定要关闭应用？',
 				nowShutdownApply:'正在关闭应用',
 				shutdownApplySuc:'成功关闭该设备应用',
 				shutdownApplyFail:'关闭应用失败！',
-				
+
 				shutdownDrive:'关闭硬件驱动',
 				confirmShutdownDrive:'确定要关闭硬件驱动？',
 				nowShutdownDrive:'正在关闭硬件驱动',
 				shutdownDriveSuc:'成功关闭该设备硬件驱动',
 				shutdownDriveFail:'关闭硬件驱动失败！',
-				
+
 				shutdownOS:'关闭操作系统',
 				confirmShutdownOS:'确定要关闭操作系统？',
 				nowShutdownOS:'正在关闭操作系统',
@@ -1605,9 +1605,9 @@ Ext.override(Eway,{
 				openService:'开启服务',
 				pauseService:'暂停服务',
 				checkStatus:'状态检测',
-				
+
 				remoteBrowseDisk:'远程浏览',
-				
+
 				sysHardwareInfo:'系统硬件信息',
 				diskMem:'硬盘大小',
 				biosVersion:'Bios版本',
@@ -1653,7 +1653,7 @@ Ext.override(Eway,{
 				column:'日期信息',
 				buyDate:'设备购买日期',
 				installDate:'设备安装日期',
-				startDate:'设备启用日期',	
+				startDate:'设备启用日期',
 				stopDate:'设备停用日期',
 				expireDate:'保修到期日期',
 				daliyOpen:'每日开机时间',
@@ -1703,8 +1703,8 @@ Ext.override(Eway,{
 				roleDescription:'角色描述',
 				roleName:'角色名称',
 
-				
-					
+
+
 				devices:'设备',
 				configuration:'配置信息',
 				spVersion:'SP版本',
@@ -1713,11 +1713,11 @@ Ext.override(Eway,{
 				firmway: '固件',
 				noDevice:'无设备',
 				devTypeInfo: '设备型号信息',
-				
+
 				devInfo:'设备信息',
 				unable:'不可以',
 				able:'能',
-				
+
 			},
 			param:{
 				paramKey:'参数',//Eway.locale.machine.param.paramKey
@@ -1751,15 +1751,15 @@ Ext.override(Eway,{
 					fit:'装修',
 					power:'停电',
 					devFailue:'设备故障未修复',
-					other:'其他'	
+					other:'其他'
 				},
 				setTime:'设置时间',
 				closeManage:'报停管理'
 			}
 		},
-		
+
 		//**********************************************************/
-		
+
 		index:{
 			indexPage:'Home',//Eway.locale.index.indexPage 首页
 			dailyFaultPic:'日均故障趋势图',//Eway.locale.index.dailyFaultPic
@@ -1830,7 +1830,7 @@ Ext.override(Eway,{
 				openPlan:'开机方案',//Eway.locale.report.plan.openPlan
 			}
 		},
-		
+
 		//**********************************************************/
 		card:{
 			cardNum:'卡号',//Eway.locale.card.cardNum
@@ -1844,9 +1844,9 @@ Ext.override(Eway,{
 			endData:'吞卡截止日期',//Eway.locale.card.endData
 			startData:'吞卡起始日期',//Eway.locale.card.startData
 		},
-		
+
 		//**********************************************************/
-		
+
 		cases:{
 			confirm:'确认',
 			cancel:'取消',
@@ -1876,6 +1876,12 @@ Ext.override(Eway,{
 			    	open:'未关闭',
 			    	close:'已关闭'
 			    },
+			    closeType:{
+			    	force : 'closeByForce',
+			    	normal : 'closeNormal'
+			    },
+			    closeByForce : 'click to close fault by hand',
+			    faultCloseType : 'fault close type',
 			    upgradeTimes: '升级次数',
 			    message: '短信',
 			    checkDetails: '查看详情',
@@ -1893,8 +1899,9 @@ Ext.override(Eway,{
 			    sendTimes: '发送次数',
 			    sendInterval: '发送时间间隔',
 			    sendTime: '发送时间',
-			    faultSearch:'故障查询'
-			    
+			    faultSearch:'故障查询',
+			    none : 'none'
+
 			},
 			caseNotify:{
 				fault:'故障',
@@ -1941,7 +1948,7 @@ Ext.override(Eway,{
 				providerFaultInfo:'厂商故障信息管理'
 			}
 		},
-		
+
 		//**********************************************************/
 		personal:{
 			baseInfo:'基本信息',//Eway.locale.personal.baseInfo
@@ -1958,7 +1965,7 @@ Ext.override(Eway,{
 			pwdSameNoChange:'输入的新密码与旧密码相同,不可修改.',//Eway.locale.personal.pwdSameNoChange
 			reOperate:'无法修改密码,请重新操作.',//Eway.locale.personal.reOperate
 		},
-		
+
 		//**********************************************************/
 		atmLog:{
 			dayBackup:'当日备份结果',//Eway.locale.atmLog.dayBackup
@@ -2025,15 +2032,15 @@ Ext.override(Eway,{
 			helpName:'名称',//Eway.locale.system.helpName
 			helpExpain:'说明',//Eway.locale.system.helpExpain
 			helpDownload:'下载',//Eway.locale.system.helpDownload
-			clickDownload:'单击此处即可下载该文档',//Eway.locale.system.clickDownload 
+			clickDownload:'单击此处即可下载该文档',//Eway.locale.system.clickDownload
 		},
 		thread:{
-			
+
 		},
-		
-		
-		
-		
-		
+
+
+
+
+
 	}
 });

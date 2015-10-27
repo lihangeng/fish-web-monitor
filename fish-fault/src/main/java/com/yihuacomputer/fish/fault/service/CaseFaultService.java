@@ -13,6 +13,7 @@ import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.fault.FaultCloseType;
 import com.yihuacomputer.fish.api.fault.FaultStatus;
 import com.yihuacomputer.fish.api.fault.ICaseFault;
 import com.yihuacomputer.fish.api.fault.ICaseFaultService;
@@ -67,6 +68,11 @@ public class CaseFaultService implements ICaseFaultService {
 		caseFault.setClosedTime(new Date());
 		caseFault.setFaultStatus(FaultStatus.CLOSED);
 		caseFault.setDuration(calculateDuration(caseFault.getFaultTime()));
+		if(caseFault.getCloseType()!=null){
+			caseFault.setCloseType(FaultCloseType.FORCE);
+		}else{
+			caseFault.setCloseType(FaultCloseType.NORMAL);
+		}
 		this.update(caseFault);
 	}
 
@@ -103,7 +109,7 @@ public class CaseFaultService implements ICaseFaultService {
 	@Override
 	public IPageResult<ICaseFault> page(int offset, int limit, IFilter filter,long orgId) {
 		StringBuffer hql = new StringBuffer();
-		IOrganization org = orgService.get(String.valueOf(orgId));
+//		IOrganization org = orgService.get(String.valueOf(orgId));
 		List<Object> valueObj = new ArrayList<Object>();
     	IFilterEntry terminalId = filter.getFilterEntry("terminalId");
     	IFilterEntry faultClassify = filter.getFilterEntry("faultClassify");
@@ -119,7 +125,8 @@ public class CaseFaultService implements ICaseFaultService {
     	IFilterEntry upgrade = filter.getFilterEntry("upgrade");
     	hql.append("select caseFault from CaseFault caseFault ,Device device ");
     	hql.append("where caseFault.terminalId = device.terminalId and device.organization.orgFlag like ? ");
-		valueObj.add("%" + org.getOrgFlag());
+//		valueObj.add("%" + org.getOrgFlag());
+    	valueObj.add("%-1" );
 		if(terminalId!=null){
 			hql.append(" and caseFault.terminalId like ?");
 			valueObj.add("%"+terminalId.getValue()+"%");

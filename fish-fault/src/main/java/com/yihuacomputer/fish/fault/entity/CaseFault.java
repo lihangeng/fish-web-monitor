@@ -20,6 +20,7 @@ import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.fault.FaultCloseType;
 import com.yihuacomputer.fish.api.fault.FaultStatus;
 import com.yihuacomputer.fish.api.fault.ICaseFault;
 import com.yihuacomputer.fish.api.fault.IFaultClassify;
@@ -89,6 +90,10 @@ public class CaseFault implements ICaseFault{
 
 	@Column(name = "UPGRADE")
 	private int upgrade;
+
+	@Enumerated(EnumType.STRING)
+	@Column(name = "CLOSE_TYPE",length = 10)
+	private FaultCloseType faultCloseType;
 
 	@Transient
 	private IOrganization org;
@@ -234,6 +239,16 @@ public class CaseFault implements ICaseFault{
 
 	public void setDeviceService(IDeviceService deviceService) {
 		this.deviceService = deviceService;
+	}
+
+	@Override
+	public void setCloseType(FaultCloseType closeType) {
+		this.faultCloseType = closeType ;
+	}
+
+	@Override
+	public FaultCloseType getCloseType() {
+		return faultCloseType;
 	}
 
 }

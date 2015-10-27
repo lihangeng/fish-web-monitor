@@ -99,6 +99,9 @@ public class XfsStatus implements IXfsStatus {
     @Embedded
     private StatusIsc isc;
 
+    @Embedded
+    private IXfsStatus hisXfsStatus ;
+
     public XfsStatus() {
         this.boxCurrentCount = -1;
         this.boxInitCount = -1;
@@ -314,6 +317,7 @@ public class XfsStatus implements IXfsStatus {
     }
 
     public void setXfsStatus(IXfsStatus xfsStatus) {
+    	this.terminalId = xfsStatus.getTerminalId() ;
         this.setBoxStatus(xfsStatus.getBoxStatus());
         this.setBoxCurrentCount(xfsStatus.getBoxCurrentCount());
         this.setBoxInitCount(xfsStatus.getBoxInitCount());
@@ -530,4 +534,14 @@ public class XfsStatus implements IXfsStatus {
     public IStatusIsc makeStatusIsc() {
         return new StatusIsc();
     }
+
+	@Override
+	public IXfsStatus getHisXfsStatus() {
+		return this.hisXfsStatus;
+	}
+
+	@Override
+	public void setHisXfsStatus(IXfsStatus hisXfsStatus) {
+		this.hisXfsStatus = hisXfsStatus ;
+	}
 }

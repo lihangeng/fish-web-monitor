@@ -3,10 +3,10 @@ Ext.define('Eway.model.case.Fault', {
 	extend: 'Ext.data.Model',
 	fields: [
 	       'id', 'terminalId','devMod', 'faultClassify','faultTime','org','bankPer','serPer',
-	       'vendorHwCode','faultCode','closedTime','duration','faultStatus','upgrade'
+	       'vendorHwCode','faultCode','closedTime','duration','faultStatus','upgrade','faultCloseType'
 	],
-	
-	idProperty : 'id',  
+
+	idProperty : 'id',
 	proxy : {
 		type : 'rest',
 		url : 'api/case/caseFault',

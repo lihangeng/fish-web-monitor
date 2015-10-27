@@ -13,6 +13,7 @@ import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.fault.FaultCloseType;
 import com.yihuacomputer.fish.api.fault.FaultStatus;
 import com.yihuacomputer.fish.api.fault.ICaseFault;
 import com.yihuacomputer.fish.api.fault.ICaseFaultService;
@@ -67,6 +68,11 @@ public class CaseFaultService implements ICaseFaultService {
 		caseFault.setClosedTime(new Date());
 		caseFault.setFaultStatus(FaultStatus.CLOSED);
 		caseFault.setDuration(calculateDuration(caseFault.getFaultTime()));
+		if(caseFault.getCloseType()!=null){
+			caseFault.setCloseType(FaultCloseType.FORCE);
+		}else{
+			caseFault.setCloseType(FaultCloseType.NORMAL);
+		}
 		this.update(caseFault);
 	}
 

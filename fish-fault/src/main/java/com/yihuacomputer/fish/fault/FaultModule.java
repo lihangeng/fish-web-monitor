@@ -10,7 +10,11 @@ import com.yihuacomputer.fish.api.fault.IFaultFilter;
 import com.yihuacomputer.fish.api.fault.INotifyMouldService;
 import com.yihuacomputer.fish.api.fault.IUnuauslNotifyMouldService;
 import com.yihuacomputer.fish.api.fault.IVendorCodeService;
+import com.yihuacomputer.fish.api.fault.monitor.IFaultManager;
+import com.yihuacomputer.fish.api.fault.monitor.IMessagHandleCollection;
 import com.yihuacomputer.fish.fault.interceptor.CaseFaultEntityInjector;
+import com.yihuacomputer.fish.fault.monitor.FaultManager;
+import com.yihuacomputer.fish.fault.monitor.MessagHandleCollection;
 import com.yihuacomputer.fish.fault.service.CaseFaultService;
 import com.yihuacomputer.fish.fault.service.CaseNotifyService;
 import com.yihuacomputer.fish.fault.service.FaultClassifyService;
@@ -65,6 +69,16 @@ public class FaultModule {
 	@Bean
 	public IUnuauslNotifyMouldService unuauslNotifyMouldService() {
 		return new UnuauslNotifyMouldService();
+	}
+
+	@Bean
+	public IMessagHandleCollection msgHandleCollection(){
+		return  new MessagHandleCollection();
+	}
+
+	@Bean
+	public IFaultManager faultManager(){
+		return new FaultManager();
 	}
 
 }

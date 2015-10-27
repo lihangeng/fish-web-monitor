@@ -40,4 +40,10 @@ public interface IDeviceCaseService {
 	 * @param appStatus
 	 */
 	public void handleAppStatus(IRunInfo appStatus);
+
+	/**
+	 * 处理设备模块状态
+	 * @param xfsStatus
+	 */
+	public void handleModStatus(IXfsStatus xfsStatus);
 }

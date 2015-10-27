@@ -99,7 +99,8 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 				width : 80,
 				renderer: function(value,metadata,record){
 					if(value=="OPEN"){
-	                 	 return '<font color="red">'+Eway.locale.cases.caseFault.status.open+'</font>';
+						 metadata.tdAttr ='data-qtip="'+Eway.locale.cases.caseFault.closeByForce+'"';
+	                 	 return '<a class="link" href="#">'+Eway.locale.cases.caseFault.status.open+'</a>';
 	                }
 					else if(value=="CLOSED"){
 						 return Eway.locale.cases.caseFault.status.close;
@@ -109,6 +110,18 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 				header : Eway.locale.cases.caseFault.upgradeTimes,
 				dataIndex : 'upgrade',
 				width : 60
+			},{
+				header : Eway.locale.cases.caseFault.faultCloseType,
+				dataIndex : 'faultCloseType',
+				width : 80,
+				renderer: function(value,metadata,record){
+				if(value=="FORCE"){
+                 	 return Eway.locale.cases.caseFault.closeType.force;
+                }
+				else if(value=="NORMAL"){
+					 return Eway.locale.cases.caseFault.closeType.normal;
+                }
+			}
 			}, {
 				xtype:'actioncolumn',
 				header : Eway.locale.cases.caseFault.message,
@@ -143,7 +156,7 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 			}, {
 				header : Eway.locale.cases.caseFault.serPer,
 				dataIndex : 'serPer',
-				flex : 1
+				width : 100
 			}],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,
