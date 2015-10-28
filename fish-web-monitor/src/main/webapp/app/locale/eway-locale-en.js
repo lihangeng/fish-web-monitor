@@ -1044,6 +1044,7 @@ Ext.override(Eway,{
 				monitorState:'Monitor status',//Eway.locale.monitor.devMonitor.monitorState 监控状态
 				showWay:'Show way',//Eway.locale.monitor.devMonitor.showWay 展示方式
 				comboxShowWay:{
+					summaryPattern:'Summary pattern',//Eway.locale.monitor.devMonitor.comboxShowWay.summaryPattern
 					matrixPattern:'Matrix pattern',//Eway.locale.monitor.devMonitor.comboxShowWay.matrixPattern 矩形方式
 					maxIconPattern:'MaxIcon pattern',//Eway.locale.monitor.devMonitor.comboxShowWay.maxIconPattern 超大图标
 					listPattern:'List pattern',//Eway.locale.monitor.devMonitor.comboxShowWay.listPattern 列表方式

@@ -1070,6 +1070,7 @@ Ext.override(Eway,{
 				monitorState:'订阅条件',//Eway.locale.monitor.devMonitor.monitorState
 				showWay:'展示方式',//Eway.locale.monitor.devMonitor.showWay
 				comboxShowWay:{
+					summaryPattern:'全局模式',//Eway.locale.monitor.devMonitor.comboxShowWay.summaryPattern
 					matrixPattern:'矩形方式',//Eway.locale.monitor.devMonitor.comboxShowWay.matrixPattern
 					maxIconPattern:'超大图标',//Eway.locale.monitor.devMonitor.comboxShowWay.maxIconPattern
 					listPattern:'列表方式',//Eway.locale.monitor.devMonitor.comboxShowWay.listPattern
