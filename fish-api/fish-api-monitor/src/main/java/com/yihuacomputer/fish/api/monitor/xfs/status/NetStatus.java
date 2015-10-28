@@ -7,21 +7,24 @@ package com.yihuacomputer.fish.api.monitor.xfs.status;
  */
 public enum NetStatus {
 	/**网络正常*/
-	Healthy("NetStatus.Healthy"),
+	Healthy("NetStatus.Healthy","#33ff00"),//green
 	
 	/**网络不稳定*/
-	Warning("NetStatus.Warning"),
+	Warning("NetStatus.Warning","#FFFF33"),//orange
 	
 	/**网络故障*/
-	Fatal("NetStatus.Fatal"), 
+	Fatal("NetStatus.Fatal","#FF0000"), //red
 	
 	/**未知*/
-	Unknown("NetStatus.Unknown");
+	Unknown("NetStatus.Unknown","#ccccff");//grey
 	
 	private String text;
 	
-	private NetStatus(String text) {
+	private String color;
+	
+	private NetStatus(String text,String color) {
 		this.text = text;
+		this.color = color;
 	}
 
 	public String getText() {
@@ -31,4 +34,13 @@ public enum NetStatus {
 	public void setText(String text) {
 		this.text = text;
 	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+	
 }

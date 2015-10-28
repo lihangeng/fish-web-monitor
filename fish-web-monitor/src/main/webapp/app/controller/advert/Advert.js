@@ -121,7 +121,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			if(record.get("advertType") == "TEXT" || record.get('advertType') == 'ANNOUNCEMENT'){
-				Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.perviewFailForText);
+				Eway.alert(Eway.locale.msg.perviewFailForText);
 			}else{
 				var advertId = record.get('id');
 				Ext.Ajax.request({
@@ -133,7 +133,7 @@ Ext.define('Eway.controller.advert.Advert', {
 					success: function(response){
 						 var images = Ext.decode(response.responseText);
 						 if(Ext.isEmpty(images)){
-						 	Ext.Msg.alert(Eway.locale.confirm.title, "["+screen+"]"+Eway.locale.msg.noAdvertResAtTheResolution);
+						 	Eway.alert("["+screen+"]"+Eway.locale.msg.noAdvertResAtTheResolution);
 						 }else{
 							 var vedioCfg = '<OBJECT id=WindowsMediaPlayer1 name="player" height=490 width=700 classid=clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6>'+
 												'<PARAM NAME="URL" VALUE="">'+
@@ -235,7 +235,7 @@ Ext.define('Eway.controller.advert.Advert', {
 				});
 			}
 		}else{
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.choseResToPerview);
+			Eway.alert(Eway.locale.msg.choseResToPerview);
 		}
 	},
 	//作业详情
@@ -246,7 +246,7 @@ Ext.define('Eway.controller.advert.Advert', {
 			var record = sm.getLastSelected();
 
 		}else{
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.chooseAdvert);
+			Eway.alert(Eway.locale.msg.chooseAdvert);
 		}
 	},
 	//删除广告
@@ -256,7 +256,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			if(record.get("versionStatus") == Eway.locale.version.View.downLoaded || record.get("versionStatus") == Eway.locale.version.View.waitting ){
-				Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.downLoadedAdvertCantDelete);
+				Eway.alert(Eway.locale.msg.downLoadedAdvertCantDelete);
 			}else{
 				Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,Eway.locale.tip.remove.confirm.info,
 						function(button,text) {
@@ -264,13 +264,13 @@ Ext.define('Eway.controller.advert.Advert', {
 								record.erase({
 									success: function(){
 										grid.getStore().remove(record);
-										Ext.Msg.alert(Eway.locale.confirm.title, Eway.deleteSuccess);
+										Eway.alert(Eway.deleteSuccess);
 										//刷新详细配置列表
 										var resourceGrid = this.getAdvertResourceGrid();
 										resourceGrid.getStore().load({params:{advertId:0}});
 									},
 									failure: function(record,operation){
-										Ext.Msg.alert(Eway.locale.confirm.title, operation.request.scope.reader.jsonData.errors);
+										Eway.alert(operation.request.scope.reader.jsonData.errors);
 									},
 									scope:this
 								});
@@ -279,7 +279,7 @@ Ext.define('Eway.controller.advert.Advert', {
 			}
 		}
 		else {
-			Ext.Msg.alert(Eway.locale.confirm.title,Eway.locale.msg.chooseAdvertToDelete);
+			Eway.alert(,Eway.locale.msg.chooseAdvertToDelete);
 		}
 	},
 
@@ -290,20 +290,20 @@ Ext.define('Eway.controller.advert.Advert', {
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			if(record.get('versionStatus') == Eway.locale.version.taskStatus.downloaded){
-				Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.generalVersionFailForDownloaded);
+				Eway.alert(Eway.locale.msg.generalVersionFailForDownloaded);
 			}else{
 				Ext.Ajax.request({
 				    url: 'api/advert/' + record.get("id") + "/generateVersion",
 				    success: function(response){
 				        var text = response.responseText;
-				        Ext.Msg.alert(Eway.locale.confirm.title,Eway.locale.msg.generalVersionSuccess);
+				        Eway.alert(Eway.locale.msg.generalVersionSuccess);
 				     	grid.getStore().load();//刷新列表页面
 				    }
 				});
 			}
 		}
 		else {
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.chooseAdvert);
+			Eway.alert(Eway.locale.msg.chooseAdvert);
 		}
 	},
 
@@ -387,11 +387,11 @@ Ext.define('Eway.controller.advert.Advert', {
 				form.findField("serverPath").setValue(record.get("versionFile"));
 
 			}else{
-				Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.downloadFailForNoVersion);
+				Eway.alert(Eway.locale.msg.downloadFailForNoVersion);
 			}
 		}
 		else {
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.chooseAdvert);
+			Eway.alert(Eway.locale.msg.chooseAdvert);
 		}
 	},
 
@@ -465,7 +465,7 @@ Ext.define('Eway.controller.advert.Advert', {
 						linkedGrid.getStore().removeAll();//清空已选择的设备列表
 						linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo0+0+Eway.locale.version.selectDeviceInfo1);
 					 	//保存成功后刷新下发设备列表
-//					 	 Ext.Msg.alert(Eway.locale.confirm.title, '保存成功！');
+//					 	 Eway.alert('保存成功！');
 //						//win.down("version_download_multiselectableDeviceGrid").getStore().load();
 						win.close();
 						Ext.MessageBox.confirm(Eway.locale.confirm.title,
@@ -588,7 +588,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		var tab = win.down('advert_waitTab').getActiveTab();
 		var count = tab.down('advertimgview').getStore().getCount();
 		if(count == 10){
-			 Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.advert.limitNumberTenForEveryResolution);
+			 Eway.alert(Eway.locale.advert.limitNumberTenForEveryResolution);
 			return;
 		}else{
 			if(!Ext.isEmpty(value)){
@@ -631,10 +631,10 @@ Ext.define('Eway.controller.advert.Advert', {
 					    failure: function(form, action) {
 				       	   switch (action.failureType) {
 					            case Ext.form.action.Action.CONNECT_FAILURE:
-					                Ext.Msg.alert(Eway.locale.msg.saveFail, Eway.locale.msg.saveFileCommunicationFail);
+					                Eway.alert(Eway.locale.msg.saveFileCommunicationFail);
 					                break;
 					            case Ext.form.action.Action.SERVER_INVALID:
-					               Ext.Msg.alert(Eway.locale.msg.saveFail, action.result.errors);
+					               Eway.alert(action.result.errors);
 					       }
 					    },
 					    scope: this
@@ -722,10 +722,10 @@ Ext.define('Eway.controller.advert.Advert', {
 				    failure: function(form, action) {
 			       	   switch (action.failureType) {
 				            case Ext.form.action.Action.CONNECT_FAILURE:
-				            	 Ext.Msg.alert(Eway.locale.msg.saveFail, Eway.locale.msg.saveFileCommunicationFail);
+				            	 Eway.alert(Eway.locale.msg.saveFileCommunicationFail);
 				                break;
 				            case Ext.form.action.Action.SERVER_INVALID:
-				               Ext.Msg.alert(Eway.locale.msg.saveFail, action.result.errors);
+				               Eway.alert(action.result.errors);
 				       }
 				    },
 				    scope: this
@@ -803,6 +803,7 @@ Ext.define('Eway.controller.advert.Advert', {
 	},
 
 	doSaveWait : function(win,data,s1024Strore,s800Strore,s600Strore){
+		var me =this;
 		var advRess = [];
     	this.generateAdvertResource(advRess,s1024Strore);
     	this.generateAdvertResource(advRess,s800Strore);
@@ -833,12 +834,12 @@ Ext.define('Eway.controller.advert.Advert', {
 
     	adv.save({
 			 success: function(ed) {
-			 	this.getGrid().getStore().insert(0,ed);
+				 me.onQuery();
 			 	Ext.MessageBox.alert(Eway.locale.confirm.title,Eway.locale.msg.createSuccess);
 				win.close();
 			 },
 			 failure: function(record,operation){
-				 Ext.Msg.alert(Eway.locale.confirm.title, operation.request.scope.reader.jsonData.errors);
+				 Eway.alert(operation.request.scope.reader.jsonData.errors);
 			 },
 			 scope : this
 		});
@@ -872,6 +873,7 @@ Ext.define('Eway.controller.advert.Advert', {
 
 	//保存
 	doSave : function(win,fss,data,store,advertType){
+		var me = this;
 		var advRess = [];
     	var resources = "";
     	for(var i in fss){
@@ -919,12 +921,12 @@ Ext.define('Eway.controller.advert.Advert', {
 
     	adv.save({
 			 success: function(ed) {
-			 	store.insert(0,ed);
+				 me.onQuery();
 			 	Ext.MessageBox.alert(Eway.locale.confirm.title,Eway.locale.msg.createSuccess);
 				win.close();
 			 },
 			 failure: function(record,operation){
-				 Ext.Msg.alert(Eway.locale.confirm.title, operation.request.scope.reader.jsonData.errors);
+				 Eway.alert(operation.request.scope.reader.jsonData.errors);
 			 },
 			 scope : this
 		});
