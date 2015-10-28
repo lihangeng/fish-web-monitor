@@ -8,11 +8,7 @@ import com.yihuacomputer.fish.api.atm.IAtmType;
 public class AtmTypeForm {
 	private long id;
 	/**
-	 * 编号
-	 */
-//	private String no;
-	/**
-	 * 型号
+	 * 型号名称
 	 */
 	private String name;
 
@@ -24,14 +20,8 @@ public class AtmTypeForm {
 
 	private String devVendorName;
 
-	private String spec;
-
-	private String weight;
-
-	private String watt;
-
 	private String cashtype;
-	
+
 	private List<Long> atmModules = new ArrayList<Long>();
 
 	public AtmTypeForm() {
@@ -45,10 +35,6 @@ public class AtmTypeForm {
 		setDevCatalogId(type.getDevCatalog().getId());
 		setDevCatalogName(type.getDevCatalog().getName());
 		setName(type.getName());
-//		setNo(type.getNo());
-		setSpec(type.getSpec());
-		setWatt(type.getWatt());
-		setWeight(type.getWeight());
 	}
 
 	public static List<AtmTypeForm> convert(List<IAtmType> list) {
@@ -59,20 +45,6 @@ public class AtmTypeForm {
 		return result;
 	}
 
-/*	public void translate(IAtmType type) {
-		type.setCashtype("1".equals(getCashtype()) ? CashType.CASH
-				: CashType.NOT_CASH);
-		type.getDevVendor().setName(getDevVendorName());
-		type.getDevCatalog().setId(getDevCatalogId());
-		type.getDevCatalog().setName(getDevCatalogName());
-		
-		type.setName(getName());
-		type.setNo(getNo());
-		type.setSpec(getSpec());
-		type.setWatt(getWatt());
-		type.setWeight(getWeight());
-	}*/
-
 	public long getId() {
 		return id;
 	}
@@ -80,14 +52,6 @@ public class AtmTypeForm {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-//	public String getNo() {
-//		return no;
-//	}
-//
-//	public void setNo(String no) {
-//		this.no = no;
-//	}
 
 	public String getName() {
 		return name;
@@ -129,30 +93,6 @@ public class AtmTypeForm {
 		this.devVendorName = devVendorName;
 	}
 
-	public String getSpec() {
-		return spec;
-	}
-
-	public void setSpec(String spec) {
-		this.spec = spec;
-	}
-
-	public String getWeight() {
-		return weight;
-	}
-
-	public void setWeight(String weight) {
-		this.weight = weight;
-	}
-
-	public String getWatt() {
-		return watt;
-	}
-
-	public void setWatt(String watt) {
-		this.watt = watt;
-	}
-
 	public String getCashtype() {
 		return cashtype;
 	}
@@ -160,7 +100,7 @@ public class AtmTypeForm {
 	public void setCashtype(String cashtype) {
 		this.cashtype = cashtype;
 	}
-	
+
 	public List<Long> getAtmModules() {
 		return atmModules;
 	}

@@ -1,20 +1,29 @@
-Ext.define('Eway.view.index.FaultTrendByDay', {
+Ext.define('Eway.view.index.RetainCardByDay', {
     extend: 'Ext.Panel',
-    xtype: 'faultTrendByDay',
-    requires:['Eway.store.index.FaultTrendByDay'],
+    xtype: 'retainCardByDay',
 
-    title :Eway.locale.index.dailyFaultPic,
+    title :Eway.locale.index.retainCardTrendTitle,
     
 	tools:[{
 	    type:'refresh',
 	    handler: function(event, toolEl, panelHeader) {
-	     	this.up('faultTrendByDay').down('cartesian').getStore().load();
+	     	this.up('retainCardByDay').down('cartesian').getStore().load();
 	    }
 	}],
 
     initComponent: function() {
         var me = this;
-        me.myDataStore = Ext.create('Eway.store.index.FaultTrendByDay');
+        me.myDataStore = Ext.create('Ext.data.JsonStore', {
+            fields: ['month', 'data1'],
+            proxy: {
+                type: 'ajax',
+                url: 'api/index/retainCardByDay',
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data'
+                }
+            }
+        });
         me.myDataStore.load();
         me.items = [{
             xtype: 'cartesian',
@@ -53,7 +62,8 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
                 position: 'bottom',
                 grid: true,
                 renderer: function (v) {
-                    return v.substring(4);
+                	return v;
+//                    return v.substring(4);
                 },
                 label: {
                     rotate: {
@@ -88,7 +98,7 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                        this.setHtml(storeItem.get('month') + Eway.locale.index.faultAmount + storeItem.get('data1'));
+                        this.setHtml(storeItem.get('data1'));
                     }
                 }
             }]

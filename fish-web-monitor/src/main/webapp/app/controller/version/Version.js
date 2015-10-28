@@ -54,7 +54,6 @@ Ext.define('Eway.controller.version.Version', {
 			},
 			'versionView button[action=down]' :{
 				click : this.onDown
-
 			}
 		});
 		 
@@ -85,7 +84,8 @@ Ext.define('Eway.controller.version.Version', {
         		grid.setTitle(chartsStore.getAt(0).get("title")+Eway.locale.title.msg);//"信息");
 		    }
 		});
-		this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionType")+"-"+record.get("versionNo"));
+		this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionTypeDesc")+" - V"+record.get("versionNo"));
+		this.getEwayView().down("panel displayfield[name='versionType']").setValue(record.get("versionType"));
 		this.getEwayView().down("panel displayfield[name='versionPath']").setValue(record.get("versionPath"));
 		this.getEwayView().down("panel displayfield[name='versionTime']").setValue(record.get("createdTime"));
 		this.getEwayView().down("panel displayfield[name='versionPerson']").setValue(record.get("userName"));

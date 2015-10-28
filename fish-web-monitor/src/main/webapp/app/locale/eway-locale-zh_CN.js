@@ -1807,7 +1807,8 @@ Ext.override(Eway,{
 			unknownDev:'1.3.2.0',//Eway.locale.index.unknownDev
 			exceptionDev:'2.0.0.0',//Eway.locale.index.exceptionDev
 			amount:'台设备',//Eway.locale.index.amount
-			versionDistributePie:'版本分布图'//Eway.locale.index.versionDistributePie
+			versionDistributePie:'版本分布图',//Eway.locale.index.versionDistributePie
+			retainCardTrendTitle:'日均吞卡趋势图'//Eway.locale.index.retainCardTrendTitle
 		},
 		//**********************************************************/
 		report:{

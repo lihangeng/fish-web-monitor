@@ -32,17 +32,11 @@ public class AtmTypeServiceTest extends BindSessionInTest2{
 		IAtmType type1 = atmTypeService.make();
 		type1.setName("存取款一体机");
 		type1.setCashtype(CashType.CASH);
-		type1.setSpec("0001");
-		type1.setWatt("GU001");
-		type1.setWeight("500");
 		atmTypeService.add(type1);
 
 		IAtmType type2 = atmTypeService.make();
 		type2.setName("自助终端");
 		type2.setCashtype(CashType.CASH);
-		type2.setSpec("0001");
-		type2.setWatt("GU001");
-		type2.setWeight("500");
 		atmTypeService.add(type2);
 
 		Iterable<IAtmType> lists = atmTypeService.list();
