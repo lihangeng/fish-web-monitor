@@ -15,7 +15,87 @@ Ext.define('Eway.view.monitor.charts.View', {
 	initComponent: function() {
 		var me = this;
 		Ext.apply(this, {
-		    title: Eway.locale.monitor.summary.title,//'监控总览',
+//		    title: Eway.locale.monitor.summary.title,//'监控总览',
+			refresh:function(){
+				var _this = this;
+	    		var item1 = _this.getComponent("DonutChartsNetSummary");
+	    		item1.down("polar").getStore().load({
+    			 	scope: this,
+    			    callback: function(records, operation, success) {
+    			    	if(success){
+    			    		var dount = this.getComponent("DonutChartsNetSummary");
+    			    		var colors = new Array();
+    			    		Ext.Array.forEach(records,function(item,index,allItems){
+    			    			colors.push(item.data.color);
+    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
+    			    		},this);
+    			    		dount.down("polar series[type='pie']").updateColors(colors);
+    			    	}
+    			    }
+        		});
+	    		var item2 = _this.getComponent("DonutChartsSummary");
+	    		item2.down("polar").getStore().load({
+    			 	scope: this,
+    			    callback: function(records, operation, success) {
+    			    	if(success){
+    			    		var dount = this.getComponent("DonutChartsSummary");
+    			    		var colors = new Array();
+    			    		Ext.Array.forEach(records,function(item,index,allItems){
+    			    			colors.push(item.data.color);	
+    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
+    			    		},this);
+    			    		dount.down("polar series[type='pie']").updateColors(colors);
+    			    	}
+    			    }
+        		});
+	    		var item3 = _this.getComponent("DonutChartsModSummary");
+	    		item3.down("polar").getStore().load({
+    			 	scope: this,
+    			    callback: function(records, operation, success) {
+    			    	if(success){
+    			    		var dount = this.getComponent("DonutChartsModSummary");
+    			    		var colors = new Array();
+    			    		Ext.Array.forEach(records,function(item,index,allItems){
+    			    			colors.push(item.data.color);	
+    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
+    			    		},this);
+    			    		dount.down("polar series[type='pie']").updateColors(colors);
+    			    	}
+    			    }
+        		});
+	    		var item4 = _this.getComponent("DonutChartsRunSummary");
+	    		item4.down("polar").getStore().load({
+    			 	scope: this,
+    			    callback: function(records, operation, success) {
+    			    	if(success){
+    			    		var dount = this.getComponent("DonutChartsRunSummary");
+    			    		var colors = new Array();
+    			    		Ext.Array.forEach(records,function(item,index,allItems){
+    			    			colors.push(item.data.color);
+    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
+    			    		},this);
+    			    		dount.down("polar series[type='pie']").updateColors(colors);
+    			    	}
+    			    }
+        		});
+	    		var item5 = _this.getComponent("DonutChartsBoxSummary");
+	    		item5.down("polar").getStore().load({
+    			 	scope: this,
+    			    callback: function(records, operation, success) {
+    			    	if(success){
+    			    		var dount = this.getComponent("DonutChartsBoxSummary");
+    			    		var colors = new Array();
+    			    		Ext.Array.forEach(records,function(item,index,allItems){
+    			    			colors.push(item.data.color);
+    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
+    			    		},this);
+    			    		dount.down("polar series[type='pie']").updateColors(colors);
+    			    	}
+    			    }
+        		});
+	    		
+	    	
+			},
 		    defaults: { 
 		    	frame: true,
 		    	width: 550,
@@ -27,15 +107,15 @@ Ext.define('Eway.view.monitor.charts.View', {
 	                type:'refresh',
 	                tooltip: 'Refresh form Data',
 	                handler: function(event, toolEl, panelHeader) {
-	                	
-	                	Ext.Array.forEach(me.items.items,function(item,index,allItems){
-	                		if(item.down("polar")!=undefined)
-	                		item.down("polar").getStore().load({
-                			 	scope: this,
-                			    callback: function(records, operation, success) {
-                			    }
-	                		});
-	                	},this);
+	                	me.refresh();
+//	                	Ext.Array.forEach(me.items.items,function(item,index,allItems){
+//	                		if(item.down("polar")!=undefined)
+//	                		item.down("polar").getStore().load({
+//                			 	scope: this,
+//                			    callback: function(records, operation, success) {
+//                			    }
+//	                		});
+//	                	},this);
 	                }
 	            }]
 		    },
@@ -79,82 +159,7 @@ Ext.define('Eway.view.monitor.charts.View', {
 		    }],
 		    listeners:{
 		    	beforeactivate:function( _this, eOpts ){
-		    		var item1 = _this.getComponent("DonutChartsNetSummary");
-		    		item1.down("polar").getStore().load({
-        			 	scope: this,
-        			    callback: function(records, operation, success) {
-        			    	if(success){
-        			    		var dount = this.getComponent("DonutChartsNetSummary");
-        			    		var colors = new Array();
-        			    		Ext.Array.forEach(records,function(item,index,allItems){
-        			    			colors.push(item.data.color);
-        			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
-        			    		},this);
-        			    		dount.down("polar series[type='pie']").setColors(colors);
-        			    	}
-        			    }
-            		});
-		    		var item2 = _this.getComponent("DonutChartsSummary");
-		    		item2.down("polar").getStore().load({
-        			 	scope: this,
-        			    callback: function(records, operation, success) {
-        			    	if(success){
-        			    		var dount = this.getComponent("DonutChartsSummary");
-        			    		var colors = new Array();
-        			    		Ext.Array.forEach(records,function(item,index,allItems){
-        			    			colors.push(item.data.color);	
-        			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
-        			    		},this);
-        			    		dount.down("polar series[type='pie']").setColors(colors);
-        			    	}
-        			    }
-            		});
-		    		var item3 = _this.getComponent("DonutChartsModSummary");
-		    		item3.down("polar").getStore().load({
-        			 	scope: this,
-        			    callback: function(records, operation, success) {
-        			    	if(success){
-        			    		var dount = this.getComponent("DonutChartsModSummary");
-        			    		var colors = new Array();
-        			    		Ext.Array.forEach(records,function(item,index,allItems){
-        			    			colors.push(item.data.color);	
-        			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
-        			    		},this);
-        			    		dount.down("polar series[type='pie']").setColors(colors);
-        			    	}
-        			    }
-            		});
-		    		var item4 = _this.getComponent("DonutChartsRunSummary");
-		    		item4.down("polar").getStore().load({
-        			 	scope: this,
-        			    callback: function(records, operation, success) {
-        			    	if(success){
-        			    		var dount = this.getComponent("DonutChartsRunSummary");
-        			    		var colors = new Array();
-        			    		Ext.Array.forEach(records,function(item,index,allItems){
-        			    			colors.push(item.data.color);
-        			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
-        			    		},this);
-        			    		dount.down("polar series[type='pie']").setColors(colors);
-        			    	}
-        			    }
-            		});
-		    		var item5 = _this.getComponent("DonutChartsBoxSummary");
-		    		item5.down("polar").getStore().load({
-        			 	scope: this,
-        			    callback: function(records, operation, success) {
-        			    	if(success){
-        			    		var dount = this.getComponent("DonutChartsBoxSummary");
-        			    		var colors = new Array();
-        			    		Ext.Array.forEach(records,function(item,index,allItems){
-        			    			colors.push(item.data.color);
-        			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
-        			    		},this);
-        			    		dount.down("polar series[type='pie']").setColors(colors);
-        			    	}
-        			    }
-            		});
-		    		
+		    		me.refresh();
 		    	}
 		    }
 

@@ -16,7 +16,7 @@ Ext.define('Eway.view.monitor.device.View',{
 		'Eway.view.monitor.device.showType.BoxGrid',
 		'Eway.view.monitor.device.showType.DataViewGrid',
 		'Eway.view.monitor.device.showType.ListGrid',
-		'Eway.view.monitor.device.showType.Tbar'
+		'Eway.view.monitor.device.showType.Tbar','Eway.view.monitor.charts.View'
 	],
 
 	initComponent : function(){
@@ -32,7 +32,7 @@ Ext.define('Eway.view.monitor.device.View',{
 					region : 'center',
 					xtype : 'panel',
 					layout : 'card',
-					activeItem : 1,
+					activeItem : 3,
 					itemId : 'card_itemId',
 					tbar : [
 						'订阅条件:南京分行&nbsp;0000111&nbsp;运行状态[正常服务|客户交易]&nbsp;模块状态[故障]&nbsp;钞箱状态[正常|钞少]&nbsp;网络状态[网络正常]'
@@ -72,6 +72,12 @@ Ext.define('Eway.view.monitor.device.View',{
 						itemId : 'box',
 						name : 'box',
 						xtype : 'monitor_device_showtype_boxgrid'
+					} , {
+						
+						//　全局模式
+						itemId : 'summary',
+						name : 'summary',
+						xtype : 'monitor_view'
 					} ]
 				} ]
 			} ],
@@ -137,7 +143,12 @@ Ext.define('Eway.view.monitor.device.View',{
 
 		var p = cardp.getLayout().getActiveItem();
 		var store;
-		if (p.getItemId() == 'dataview') {
+		if(p.getItemId() == 'summary'){
+//			cardp.tbar.setHtml("123");
+			this.doCometd(store);
+			return;
+		}
+		else if (p.getItemId() == 'dataview') {
 			
 			store = p.down('monitor_device_showtype_dataviewgrid').getStore();
 			

@@ -12,6 +12,7 @@ Ext.define('Eway.view.monitor.device.showType.Tbar', {
 				{xtype : 'button', text : Eway.locale.button.pause, action : 'monitorOK', glyph : 0xf04c},
 				'-',
 				{text : Eway.locale.monitor.devMonitor.showWay, menu: [
+				                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.summaryPattern, action : 'summaryPattern'},
 				                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.matrixPattern, action : 'matrixPattern'},
 				                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.maxIconPattern, action : 'maxIconPattern'},
 				                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.listPattern, action : 'listPattern'},
