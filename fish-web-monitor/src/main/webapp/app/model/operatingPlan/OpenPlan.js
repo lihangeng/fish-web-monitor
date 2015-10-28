@@ -4,10 +4,10 @@ Ext.define('Eway.model.operatingPlan.OpenPlan', {
 			'planType', 'planState', 'openPlanDetailForms','planStateType','deviceCount' ],
 	proxy : {
 		type : 'rest',
-		url : 'api/srcb/plan',
+		url : 'api/plan',
 		reader : {
 			type : 'json',
-			root : 'data'
+			rootProperty : 'data'
 		},
 		wirter : {
 			type : 'json'

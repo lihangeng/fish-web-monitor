@@ -8,14 +8,14 @@ Ext.define('Eway.controller.machine.Device', {
 			'machine.atmType.DeviceAtmCatalog',
 			'machine.DeviceStatusComboBox',
 			'machine.CarrierOrdeComboBox',
-			//'operatingPlan.TempOpenPlanForDevice',
+			'operatingPlan.TempOpenPlanForDevice',
 			'person.person.PersonStateFilterDict'
 			
 			],
 
 	models : [ 'machine.Device', 'machine.Person' ],
 
-	views : [ 'machine.device.View' ],
+	views : [ 'machine.device.View','operatingPlan.TempOpenPlanForDevGrid' ],
 	refs : [ {
 		ref : 'ewayView',
 		selector : '#device',
@@ -25,15 +25,24 @@ Ext.define('Eway.controller.machine.Device', {
 	}, {
 		ref : 'grid',
 		selector : 'device_grid'
-	}, {
+	},  {
+		ref : 'tempGrid',
+		selector : 'device_tempGrid'
+	},	{
 		ref : 'addWin',
 		selector : 'device_add'
 	}, {
 		ref : 'updateWin',
 		selector : 'device_update'
-	}, {
+	},  {
+		ref : 'updateWin',
+		selector:'device_info_update'
+	},	{
 		ref : 'filterForm',
 		selector : 'device_filterform'
+	},	{
+		ref :'addWin',
+		selector:'device_info_add'
 	} ],
 
 	addView : 'Eway.view.machine.device.Add',
@@ -53,6 +62,9 @@ Ext.define('Eway.controller.machine.Device', {
 		this.control({
 			'#device button[action=add]' : {
 				click : this.onAdd
+			},
+			'#device button[action=openPlan]' : {
+				click : this.onOpenPlan
 			},
 			'#device menuitem[action=personTM]' : {
 				click : this.onPersonTM
@@ -74,6 +86,18 @@ Ext.define('Eway.controller.machine.Device', {
 			},
 			'#device button[action=export]' : {
 				click : this.onExport
+			},
+			'#device button[action=tempDevQuery]' : {
+				click : this.onTempDevQuery
+			},
+			'#device button[action=tempDevUpdate]' : {
+				click : this.onTempDevUpdate
+			},
+			'#device button[action=tempDevDelete]' : {
+				click : this.onTempDevDelete
+			},
+			'#device button[action=tempDevOpenPlan]' :{
+				click : this.onTempDevOpenPlan
 			}
 		});
 	},
@@ -110,7 +134,6 @@ Ext.define('Eway.controller.machine.Device', {
 		var sm1 = grid.getSelectionModel();
 		if(sm1.getCount() == 1) {
 		var selectManagerWin = Ext.create('Eway.view.machine.device.person.SelectPersonManager');
-	
 		var selectGrid = selectManagerWin.down('select_person_manager_grid');
 		var selectForm = selectManagerWin.down('bank_person_filterform');
 		var record1 = sm1.getLastSelected();
@@ -263,6 +286,19 @@ Ext.define('Eway.controller.machine.Device', {
 		}
 	},
 	
+	onOpenPlan : function() {
+		var grid = this.getGrid();
+		var sm = grid.getSelectionModel();
+		if (sm.getCount() == 1) {
+			var c = this.getController('operatingPlan.OpenPlan');
+			var detailWin = Ext.create('Eway.view.operatingPlan.PlanInfoForDevice');
+			var record = sm.getLastSelected();
+			c.init();
+			c.onOpenPlan(detailWin,record.data.id,record.data.terminalId,0);
+		} else {
+			Ext.Msg.alert("提示", "请选择您要查看的记录！");
+		}
+	},
 	
 	onExport : function() {
 		var view = this.getEwayView();
@@ -326,9 +362,17 @@ Ext.define('Eway.controller.machine.Device', {
 
 			// 管机员
 			var tubeMachine = tabPanel.query('[itemid=tubeMachineItemID]')[0];
+			
+			// 机构管理员
+			var orgPerson = tabPanel.query('[itemid=organizationItemID]')[0];
+
+			// 开机方案
+			var planInfo = tabPanel.query('[itemid=devicePlanInfoID]')[0];
 
 			maintain.on('render', this.renderMaintain, this);
 			tubeMachine.on('render', this.renderTubeMachine, this);
+			orgPerson.on('render', this.renderOrganization, this);
+			planInfo.on('render', this.renderPlanInfo, this);
 
 			win.show();
 
@@ -336,6 +380,17 @@ Ext.define('Eway.controller.machine.Device', {
 			Eway.alert(Eway.locale.tip.search.record);
 		}
 	},
+	
+	//
+	renderPlanInfo : function(tab) {
+		var store = tab.getStore();
+		store.load({
+			params : {
+				terminalId : this.terminalId,
+			}
+		});
+	},
+	
 	// 加载维护员的数据
 	renderMaintain : function(tab) {
 		var params = {
@@ -352,6 +407,373 @@ Ext.define('Eway.controller.machine.Device', {
 		};
 		tab.onReload(params);
 	},
+	
+	onAdd : function(){
+		var win = Ext.create('Eway.view.machine.device.Add');
+		this.win = win ;
+		win.down('button[action = "add"]').on('click',this.onAddConfirm,this);
+		/*var form = win.down("form").getForm();
+		form.findField('status').setDisabled(true);*/
+		win.show();
+		},
+		
+		onUpdate : function(){
+			//this._onAddOrUpdate('update');
+		    var grid = this.getGrid();
+			var sm = grid.getSelectionModel();
+			var count = sm.getCount();
+			if(count == 0){
+				Ext.Msg.alert("提示", "请选择您要更改的记录！");
+				return;
+			}
+			else if(count > 1){
+				Ext.Msg.alert("提示", "一次只能修改一条记录！");
+				return;
+			}else{
+				var win = Ext.create('Eway.view.machine.device.Update');
+				var record = sm.getLastSelected();
+				var form = win.down('form');
+				form.loadCusRecord(sm.getLastSelected());
+				win.down('button[action="update"]').on('click',this.onUpdateConfirm,this);
+				win.show();
+			}
+		},
+		
+		onUpdateConfirm: function(){
+			var view = this.getEwayView();
+			var win  = this.getUpdateWin();
+			var form = win.down('form');
+			var grid = this.getGrid();
+			var store = grid.getStore();
+			params = store.getUrlParams();
+			if(form.getForm().isValid()){
+				var me = this;
+				var record = grid.getSelectionModel().getLastSelected();
+				form.updateCusRecord(record);
+				if(store.getModifiedRecords().length == 0){
+					Ext.Msg.alert('提示','没有更改数据,请更改后再点击确定!');
+				}else{
+					store.sync({
+						callback:function(batch,option){
+							var response  = batch.operations[0].response;
+							var object = Ext.decode(response.responseText);
+							if(object.hasOwnProperty('errorMsg')){
+							record.reject(true);
+							store.commitChanges();
+							Ext.Msg.alert('提示',object.errorMsg);
+						}else if(object.hasOwnProperty('updateMsg')){
+							win.close();
+							Ext.Msg.alert('提示',object.updateMsg);
+						}else{
+							Ext.Msg.alert('提示','操作成功');
+							this.onQuery();
+							win.close();
+						}
+						},
+						scope:me
+					});
+				}
+			}
+
+		},
+		
+		onRemove : function(){
+			var me = this;
+			var view = this.getEwayView();
+				grid = this.getGrid();
+				store = grid.getStore();
+				sm = grid.getSelectionModel();
+				count = sm.getCount();
+				params = store.getUrlParams();
+			if(count == 0){
+				Ext.Msg.alert("提示", "请选择您要删除的记录！");
+				return;
+			}
+			else if(count > 1){
+				Ext.Msg.alert("提示", "一次只能删除一条记录！");
+				return;
+			}
+			Ext.MessageBox.confirm("请确认", "是否真的要删除指定的记录？",function(button,text){
+				if(button == 'yes'){
+					var record = sm.getLastSelected();
+					var params = store.getUrlParams();
+					var index = store.indexOf(record);
+					store.cleanUrlParam();
+					store.remove(record);
+					store.remove(record);
+					store.sync({
+						callback : function(batch,option){
+							var response = batch.operations[0].response;
+							var object = Ext.decode(response.responseText);
+							if(object.hasOwnProperty('errorMsg')){
+								store.insert(index,[record]);
+								store.commitChanges();
+								Ext.Msg.alert('提示',object.errorMsg);
+							}
+							else {
+								Ext.Msg.alert('提示','操作成功');
+							}
+						},
+						scope : me
+					});
+
+				}
+			});
+
+		},
+		
+		onTempDevQuery:function(){
+			   var view = this.getEwayView();
+			   var form = view.down('form').getForm();
+			   var bool = form.isValid();
+			   if(bool == false){
+				   Ext.Msg.alert("提示","查询条件存在错误项.");
+				   return;
+			   }
+			   var vaules = form.getValues();
+			   var tempGrid= this.getTempGrid();
+			   var store = tempGrid.getStore();
+			   store.setUrlParamsByObject(vaules);
+			   store.loadPage(1);
+			},
+			
+			onTempDevUpdate : function(){
+			    var grid = this.getTempGrid();
+				var sm = grid.getSelectionModel();
+				var count = sm.getCount();
+				if(count == 0){
+					Ext.Msg.alert("提示", "请选择您要更改的记录！");
+					return;
+				}
+				else if(count > 1){
+					Ext.Msg.alert("提示", "一次只能修改一条记录！");
+					return;
+				}else{
+					var win = Ext.create('Eway.view.machine.device.Update');
+					var record = sm.getLastSelected();
+					var form = win.down('form');
+					form.loadCusRecord(record);
+					win.down('button[action="update"]').on('click',this.onUpdateTempDevConfirm,this);
+					win.show();
+				}
+			},
+			onUpdateTempDevConfirm: function(){
+				var view = this.getEwayView();
+				var win  = this.getUpdateWin();
+				var form = win.down('form');
+				var grid = this.getTempGrid();
+				var store = grid.getStore();
+				params = store.getUrlParams();
+				if(form.getForm().isValid()){
+					var me = this;
+					var record = grid.getSelectionModel().getLastSelected();
+					form.updateCusRecord(record);
+					if(store.getModifiedRecords().length == 0){
+						Ext.Msg.alert('提示','没有更改数据,请更改后再点击确定!');
+					}else{
+						store.sync({
+							callback:function(batch,option){
+								var response  = batch.operations[0].response;
+								var object = Ext.decode(response.responseText);
+								if(object.hasOwnProperty('errorMsg')){
+								record.reject(true);
+								store.commitChanges();
+								Ext.Msg.alert('提示',object.errorMsg);
+								win.close();
+							}else if(object.hasOwnProperty('updateMsg')){
+								win.close();
+								Ext.Msg.alert('提示',object.updateMsg);
+								this.onTempDevQuery();
+							}else{
+								Ext.Msg.alert('提示','操作成功');
+								this.onTempDevQuery();
+								win.close();
+							}
+							},
+							scope:me
+						});
+					}
+				}
+
+			},
+
+			onTempDevDelete : function(){
+				var me = this;
+				var view = this.getEwayView();
+					grid = this.getTempGrid();
+					store = grid.getStore();
+					sm = grid.getSelectionModel();
+					count = sm.getCount();
+					params = store.getUrlParams();
+				if(count == 0){
+					Ext.Msg.alert("提示", "请选择您要删除的记录！");
+					return;
+				}
+				else if(count > 1){
+					Ext.Msg.alert("提示", "一次只能删除一条记录！");
+					return;
+				}
+				Ext.MessageBox.confirm("请确认", "是否真的要删除指定的记录？",function(button,text){
+					if(button == 'yes'){
+						var record = sm.getLastSelected();
+						store.remove(record);
+						store.sync({
+							callback : function(batch,option){
+								var response = batch.operations[0].response;
+								var object = Ext.decode(response.responseText);
+								if(object.hasOwnProperty('errorMsg')){
+									store.insert(index,[record]);
+									store.commitChanges();
+									Ext.Msg.alert('提示',object.errorMsg);
+								}
+								else {
+									Ext.Msg.alert('提示','操作成功');
+								}
+							},
+							scope : me
+						});
+
+					}
+				});
+			},
+			onTempDevOpenPlan : function(){
+				var grid = this.getTempGrid();
+				var sm = grid.getSelectionModel();
+				if(sm.getCount() ==1)
+				{
+					var win = Ext.create('Eway.view.operatingPlan.TempOpenPlanForDevWin');
+					var planInfoGrid = win.down('temp_planofdevice_grid');
+					var record = sm.getLastSelected();
+					var store = planInfoGrid.getStore();
+					store.load({
+						params:{
+							deviceId : record.data.id
+						}
+					});
+					win.setTitle("设备"+record.data.terminalId+"开机方案");
+					win.down('button[action="tempDevLink"]').on('click',Ext.bind(this.onDeviceLink,this,[planInfoGrid,grid,win]),this);
+					win.down('button[action="tempDevUnlink"]').on('click',Ext.bind(this.onTempDevUnlink,this,[planInfoGrid,win]),this);
+					win.down('button[action="tempDevQueryDetail"]').on('click',Ext.bind(this.onTempDevQueryDetail,this,[planInfoGrid]),this);
+					win.show();
+				}else
+				{
+					Ext.Msg.alert("提示", "请选择您要关联的设备！");
+					return;
+				}
+			},
+			onTempDevQueryDetail : function(planInfoGrid){
+				var sm = planInfoGrid.getSelectionModel();
+				if(sm.getCount() == 1) {
+					var detailWin = Ext.create('Eway.view.operatingPlan.PlanInfoWin');
+					var record = sm.getLastSelected();
+					var store = detailWin.down('planInfo_grid').getStore();
+					store.load({
+						params : {
+							openPlanId:record.data.id
+						},
+						callback: function(records, operation, success) {
+					        if(Ext.isEmpty(records)){
+					        	detailWin.close();
+								Ext.Msg.alert("提示", "该方案无详细设置！");
+					        }else{
+					        	if(record.data.planType=="DATE"){
+									detailWin.down('planInfo_grid').columns[0].hidden=true;
+									detailWin.setTitle("方案详情(日期)");
+									detailWin.show();
+								}else{
+									detailWin.setTitle("方案详情(星期)");
+									detailWin.show();
+								}
+					        }
+					    }
+					});
+				}else {
+					Ext.Msg.alert("提示", "请选择您要查看的方案！");
+				}
+			},
+			onDeviceLink :function(planInfoGrid,tempGrid,win){
+				var count=planInfoGrid.getStore().getCount();
+				if(count==0){
+					var viewWin = Ext.create('Eway.view.operatingPlan.ViewForDevice');
+					//var store = viewWin.down('operatingPlan_gridForDevice').getStore();
+					//store.loadPage(1);
+					var openPlanGrid = viewWin.down('grid');
+					openPlanGrid.down('button[action="query"]').on('click',Ext.bind(this.onDeviceQuery,this,[viewWin]),this);
+					openPlanGrid.down('button[action="link"]').on('click',Ext.bind(this.onTempDeviceLinkOpenPlan,this,[viewWin,tempGrid,win]),this);
+					viewWin.show();
+				}else{
+					Ext.Msg.alert("提示", "设备已关联开机方案！");
+				}
+			},
+			onTempDevUnlink :function(planInfoGrid,win){
+				var sm = planInfoGrid.getSelectionModel();
+				if(sm.getCount() == 1)
+				{
+					var record_openPlan = sm.getLastSelected();
+					Ext.Ajax.request({
+						scope : this,
+						method : 'POST',
+						url : 'api/plan/tempunlinkplan',
+						params : {
+							planId :record_openPlan.data.id,
+							tempDeviceId:record_openPlan.data.deviceId
+							},
+						success: function(response){
+							var object = Ext.decode(response.responseText);
+							if(object.success == true){
+								win.close();
+								this.onTempDevOpenPlan();
+							}else{
+								Ext.Msg.alert("提示", "解除失败！");
+							}
+						},
+						failure: function(response){
+							Ext.Msg.alert("提示", "解除失败！");
+						},
+						scope:this
+
+					})
+				}
+			},
+			onDeviceQuery : function(viewWin){
+				var store = viewWin.down('operatingPlan_gridForDevice').getStore();
+				var values = viewWin.down('operatingPlan_filterForm').getForm().getValues();
+				store.setUrlParamsByObject(values);
+				store.loadPage(1);
+				viewWin.show();
+			},
+			onTempDeviceLinkOpenPlan : function(viewWin,tempGrid,win){
+				var openPlanGrid = viewWin.down('grid');
+				var sm_openPlan = openPlanGrid.getSelectionModel();
+				var sm_dev = tempGrid.getSelectionModel();
+				if (sm_openPlan.getCount() == 1&&sm_dev.getCount() == 1) {
+					var record_openPlan = sm_openPlan.getLastSelected();
+					var record_dev = sm_dev.getLastSelected();
+					Ext.Ajax.request({
+						scope : this,
+						method : 'POST',
+						url : 'api/srcb/plan/tempdevlinkplan',
+						params : {planId :record_openPlan.data.id,tempDeviceId:record_dev.data.id},
+						success: function(response){
+							var object = Ext.decode(response.responseText);
+							if(object.success == true){
+								viewWin.close();
+								win.close();
+								this.onTempDevOpenPlan();
+							}else{
+								Ext.Msg.alert("提示", "关联失败！");
+							}
+						},
+						failure: function(response){
+							Ext.Msg.alert("提示", "关联失败！");
+						},
+						scope:this
+					});
+				}else{
+					Ext.Msg.alert("提示", "请选择您要关联的记录.");
+				}
+			},
+		
 	_onAddOrUpdate : function(action){
 		var title = action=='add' ? Eway.locale.button.add+this.formConfig.title : Eway.locale.button.update+this.formConfig.title;
 		var me = this;
