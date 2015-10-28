@@ -7,30 +7,32 @@ package com.yihuacomputer.fish.api.monitor.xfs.status;
 public enum BoxStatus {
 	
 	/**模块正常*/
-	Healthy("BoxStatus.Healthy"),
+	Healthy("BoxStatus.Healthy","#33ff00"),
 	
 	/**取款钞满正常*/
-	Full("BoxStatus.Full"),
+	Full("BoxStatus.Full","#FFCC00"),
 	
 	/**钞少*/
-	Low("BoxStatus.Low"),
+	Low("BoxStatus.Low","#9999FF"),
 	
 	/**钞空*/
-	Empty("BoxStatus.Empty"),
+	Empty("BoxStatus.Empty","#FFFFFF"),
 	
 	/**存款入钞满*/
-	High("BoxStatus.High"),
+	High("BoxStatus.High","#FFFF66"),
 	
 	/**钞箱故障*/
-	Fatal("BoxStatus.Fatal"),
+	Fatal("BoxStatus.Fatal","#FFCC00"),
 	
 	/**钞箱未知*/
-	Unknown("BoxStatus.Unknown");
-	
+	Unknown("BoxStatus.Unknown","#ccccff");
+
 	private String text;
+	private String color;
 	
-	private BoxStatus(String text) {
+	private BoxStatus(String text,String color) {
 		this.text = text;
+		this.color = color;
 	}
 
 	public String getText() {
@@ -39,5 +41,13 @@ public enum BoxStatus {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 }
