@@ -57,7 +57,11 @@
 	}
 	var locale='<%=FishCfg.locale%>';
 	<%if (session.getAttribute("SESSION_USER") == null) {%>
-		window.location.href="login.jsp";
+		var ewayUser={getName:function(){
+			return "";
+		},getId:function(){
+			return 1;
+		}};
 	<%} else {
 		UserSession userSession = (UserSession) session.getAttribute("SESSION_USER");%>
 		var ewayUser = new EwayUserObject(
