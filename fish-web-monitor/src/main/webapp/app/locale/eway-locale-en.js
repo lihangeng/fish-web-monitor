@@ -599,6 +599,7 @@ Ext.override(Eway,{
 				autoRefresh:'Start auto refresh',//Eway.locale.version.download.autoRefresh 开启自动刷新
 				stopAutoRefresh:'Stop auto refresh',//Eway.locale.version.download.stopAutoRefresh 停止自动刷新
 				autoRefreshTips:'Refresh periodic 60 second',//Eway.locale.version.download.autoRefreshTips 刷新周期60秒
+				resetTaskStatus:'Reset Status',//Eway.locale.version.download.resetTaskStatus
 				taskExportTips:'Export all issue result of job selected'//Eway.locale.version.download.taskExportTips 导出选中作业下的全部下发结果
 			},
 			task:{

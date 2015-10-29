@@ -8,7 +8,7 @@
 	<title><spring:message code="login.title" /></title>
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=8,chrome=1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<link rel="shortcut icon" type="image/ico" href="resources/images/logo.ico" />
 
 	<link rel="stylesheet" type="text/css" href="ext/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" media="all" />
@@ -69,9 +69,7 @@
 			'<%=userSession.getUserCode()%>',
 			'<%=userSession.getUserName()%>',
 			'<%=userSession.getOrgId()%>',
-			'<%=String.valueOf(userSession.getOrgType() == null
-							? ""
-							: userSession.getOrgType().getId())%>',
+			'<%=userSession.getOrgType() == null ? "" : String.valueOf(userSession.getOrgType().getId())%>',
 			'<%=userSession.getOrgName()%>',
 			'<%=userSession.getOrgCode()%>');
 		var test_userId = Math.random()+'';
