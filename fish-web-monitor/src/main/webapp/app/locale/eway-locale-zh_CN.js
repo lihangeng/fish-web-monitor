@@ -1759,9 +1759,7 @@ Ext.override(Eway,{
 					unableUpdate:'不可修改',
 					ableUpdate:'可以修改'
 				},
-				paramCount:' 个参数)',//Eway.locale.machine.param.paramCount
-				oneParam:'(1 个参数)',//Eway.locale.machine.param.oneParam
-				description:'参数信息描述',//Eway.locale.machine.param.description
+				description:'描述',//Eway.locale.machine.param.description
 				systemCon:'系统配置',//Eway.locale.machine.param.systemCon
 				updateSystemCon:'更改系统配置'//Eway.locale.machine.param.updateSystemCon
 			},

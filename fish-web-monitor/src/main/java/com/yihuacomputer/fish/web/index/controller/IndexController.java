@@ -53,22 +53,15 @@ public class IndexController {
 	@ResponseBody
 	public ModelMap retainCardByDay(WebRequest wReq, HttpServletRequest req) {
 		logger.info("retainCardByDay...");
-//		List<Object> objects = null;
+		List<Object> objects = retainCardService.statisticsReatainCardTrend(-7);
 		List<ChartForm> forms = new ArrayList<ChartForm>();
-		forms.add(new ChartForm("10-20","15"));
-		forms.add(new ChartForm("10-21","19"));
-		forms.add(new ChartForm("10-22","25"));
-		forms.add(new ChartForm("10-23","5"));
-		forms.add(new ChartForm("10-24","9"));
-		forms.add(new ChartForm("10-25","3"));
-		forms.add(new ChartForm("10-26","17"));
-//		for(Object object : objects){
-//			Object[]objs = (Object[])object;
-//			ChartForm form = new ChartForm();
-//			form.setMonth(objs[0].toString());
-//			form.setData1(objs[1].toString());
-//			forms.add(form);
-//		}
+		for(Object object : objects){
+			Object[]objs = (Object[])object;
+			ChartForm form = new ChartForm();
+			form.setMonth(objs[0].toString());
+			form.setData1(objs[1].toString());
+			forms.add(form);
+		}
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("data", forms);
