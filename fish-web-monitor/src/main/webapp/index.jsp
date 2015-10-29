@@ -1,3 +1,4 @@
+<%@page import="com.yihuacomputer.common.FishCfg"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.yihuacomputer.fish.api.person.UserSession"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -7,7 +8,7 @@
 	<title><spring:message code="login.title" /></title>
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta http-equiv="X-UA-Compatible" content="IE=8,chrome=1" />
 	<link rel="shortcut icon" type="image/ico" href="resources/images/logo.ico" />
 
 	<link rel="stylesheet" type="text/css" href="ext/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" media="all" />
@@ -54,7 +55,7 @@
 			}			
 		}
 	}
-
+	var locale='<%=FishCfg.locale%>';
 	<%if (session.getAttribute("SESSION_USER") == null) {%>
 		window.location.href="login.jsp";
 	<%} else {
@@ -85,7 +86,7 @@
 	  	Ext.cxtPath = '<%=request.getContextPath()%>';
 	  	var Eway = Eway || {};
 	  	
-		if(Ext.String.startsWith(Ext.global.navigator.language,"zh")){
+		if(Ext.String.startsWith(locale,"zh")){
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN.js");
 		}else{
