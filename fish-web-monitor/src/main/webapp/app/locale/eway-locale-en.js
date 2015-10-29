@@ -6,10 +6,10 @@ Ext.override(Eway,{
 	choiceDeleteMsg :'Please select the record which you want to delete.',//Eway.choiceDeleteMsg 请选择您要删除的记录.
 	locale:{
 		myTable:'Workbench',//Eway.locale.myTable 我的工作台
-		ATMV:'Self-service machine monitor system(ATMV)',//Eway.locale.ATMV 自助设备监控系统(ATMV)
-		welcome:'welcome,',//Eway.locale.welcome 欢迎你,
-		personalConf:'Personal settings',//Eway.locale.personalConf 个人设置
-		systemHelp:'System help',///Eway.locale.systemHelp 系统帮助
+		ATMV:'Auto Machine Monitor View(ATMV)',//Eway.locale.ATMV 自助设备监控系统(ATMV)
+		welcome:'Welcome,',//Eway.locale.welcome 欢迎你,
+		personalConf:'Personal Settings',//Eway.locale.personalConf 个人设置
+		systemHelp:'System Help',///Eway.locale.systemHelp 系统帮助
 		exitSystem:'Quit',//Eway.locale.exitSystem 退出系统
 		title:{
 			msg:'Message'//Eway.locale.title.msg 信息
@@ -68,10 +68,10 @@ Ext.override(Eway,{
 			bankOrgMove:'Move',  //组织迁移
 			bankOrgAdmin:'Manager', //管理员
 			//bankPerson
-			bankPerlink:'Binding machine', //绑定设备
+			bankPerlink:'Binding Devices', //绑定设备
 			sure:'Confirm',//Eway.locale.button.sure 确定
 			confirm:'Confirm',//Eway.locale.button.confirm 确认
-			cancle:'Cancle',//Eway.locale.button.cancle 取消
+			cancle:'Cancel',//Eway.locale.button.cancle 取消
 			choose:'Select',//Eway.locale.button.choose 选择
 			pause:'Pause',//Eway.locale.button.pause 暂停
 
@@ -82,18 +82,18 @@ Ext.override(Eway,{
 			exportXLS:'Export as XLS', //导出XLS
 			exportPDF:'Export as PDF', //导出PDF
 //			massExport:'批量导入',
-			massExport:'Batch import', //批量导入
-			download:'issue', //下发
+			massExport:'Batch Import', //批量导入
+			download:'download', //下发
 			downloadToolTip:'Issue job settings', //配置下发作业
-			save:'save',//Eway.locale.button.save 保存
+			save:'Save',//Eway.locale.button.save 保存
 		},
 		//引用其他模块
 		refs:{
 			selectAll:'All',//Eway.locale.refs.selectAll 全部
 			orgName:'Organization',//Eway.locale.refs.orgName 机构
 			terminalId:'Terminal ID',//Eway.locale.refs.terminalId 设备编号
-			ip:'IP address',//Eway.locale.refs.ip IP地址
-			devType:"Device Type"//Eway.locale.refs.devType 设备型号
+			ip:'IP Address',//Eway.locale.refs.ip IP地址
+			devType:"Atm Type"//Eway.locale.refs.devType 设备型号
 		},
 		//**********************************************************/
 		tip:{
@@ -387,31 +387,31 @@ Ext.override(Eway,{
 		},
 		//**********************************************************/
 		versionType:{
-			title:'Software assortment',//Eway.locale.versionType.title 软件分类管理
-			treeRoot:'All software assortment',//Eway.locale.versionType.treeRoot 所有软件分类
-			defaultInstallPath:'Default install path',//Eway.locale.versionType.defaultInstallPath 默认安装路径
-			needRestart:'If reboot is necessary for update',//Eway.locale.versionType.needRestart 需要重启设备完成升级
-			devTypeOfUser:'Suitable device type',//Eway.locale.versionType.devTypeOfUser //适用的设备型号
-			winTitle:'Software assortment',//Eway.locale.versionType.winTitle 软件分类
+			title:'Version Type',//Eway.locale.versionType.title 软件分类管理
+			treeRoot:'All Types',//Eway.locale.versionType.treeRoot 所有软件分类
+			defaultInstallPath:'Default Install Path',//Eway.locale.versionType.defaultInstallPath 默认安装路径
+			needRestart:'Need Reboot For Update',//Eway.locale.versionType.needRestart 需要重启设备完成升级
+			devTypeOfUser:'Suitable Device Type',//Eway.locale.versionType.devTypeOfUser //适用的设备型号
+			winTitle:'Version Type',//Eway.locale.versionType.winTitle 软件分类
 			versionTypeNameRegText:'Just for character ‘a-z’ or ‘A-Z’、number‘0-9’、minussign‘-’、underline‘_’'//Eway.locale.versionType.versionTypeNameRegText 只能输入字母(a-z或A-Z)、数字(0-9)、下划线(_)、横线(-)
 		},
 		statics:{
-			title:'下发结果统计',//Eway.locale.statics.title
-			versionInfo:'Version info'//Eway.locale.statics.versionInfo //版本信息
+			title:'Distribution Statitics',//Eway.locale.statics.title
+			versionInfo:'Version Info'//Eway.locale.statics.versionInfo //版本信息
 		},
 		//广告模块
 		advert:{
-			title:'Advertisement',//Eway.locale.advert.title //广告管理
-			createAdvert:'Create Advertisement',//Eway.locale.advert.createAdvert 创建广告
-			idleAdvert:'Create card-insert waiting advertisement',//Eway.locale.advert.idleAdvert 创建等待插卡广告
-			transAdvert:'Create transaction advertisement',//Eway.locale.advert.transAdvert 创建交易页面广告
-			textAdvert:'Create rolling characters advertisement',//Eway.locale.advert.textAdvert 创建文字滚动广告
+			title:'Advert',//Eway.locale.advert.title //广告管理
+			createAdvert:'Create Advert',//Eway.locale.advert.createAdvert 创建广告
+			idleAdvert:'Idle Advert',//Eway.locale.advert.idleAdvert 创建等待插卡广告
+			transAdvert:'Transaction Advert',//Eway.locale.advert.transAdvert 创建交易页面广告
+			textAdvert:'Text Advert',//Eway.locale.advert.textAdvert 创建文字滚动广告
 			annoucementAdvert:'Create announcement',//Eway.locale.advert.annoucementAdvert 创建公告
 			updateTitle:'Modify advertisement information',//Eway.locale.advert.updateTitle 更改广告信息
-			downloadButton:'Download advertisement',//Eway.locale.advert.downloadButton 下发广告
-			preview:'Advertisement preview',//Eway.locale.advert.preview 广告预览
-			id:'AdvertisementID',//Eway.locale.advert.id 广告ID
-			type:'Advertisement type',//Eway.locale.advert.type 广告类型
+			downloadButton:'Download',//Eway.locale.advert.downloadButton 下发广告
+			preview:'Preview',//Eway.locale.advert.preview 广告预览
+			id:'ID',//Eway.locale.advert.id 广告ID
+			type:'Advert Type',//Eway.locale.advert.type 广告类型
 			downType:'Issuing way',//Eway.locale.advert.downType 广告下发方式
 			validity:'Expiry date',//Eway.locale.advert.validity 广告有效期
 			createdTime:'Created time',//Eway.locale.advert.createdTime 制作时间
@@ -509,7 +509,7 @@ Ext.override(Eway,{
 			downloadVerFile:'Download version file',//Eway.locale.version.downloadVerFile 下载版本文件
 			View:{
 				title:'Version', //版本管理
-				versionDetail:'Version detail',//Eway.locale.version.View.versionDetail 版本详情
+				versionDetail:'Version Detail',//Eway.locale.version.View.versionDetail 版本详情
 				remark:'remark', //Eway.locale.version.View.remark 备注
 				newCreate:'Create',//Eway.locale.version.View.newCreate 新建
 				downLoaded:'DownLoaded',//Eway.locale.version.View.downLoaded 已下发
@@ -517,38 +517,38 @@ Ext.override(Eway,{
 				versionPath:'Version path',//Eway.locale.version.View.versionPath 版本路径
 				versionPathRegText:'不符合文件路径规则，规则如下：1.文件名只能包含英文字母(a-z A-Z)、数字(0-9)、下划线(_)、横线(-) ； 2.路径统一用正斜杠(/)作为分隔符 ；3.不区分大小 ; 示例 E: E:/yihua',//Eway.locale.version.View.versionPathRegText
 				versionPathDesc:'(path of version file be installed)',//Eway.locale.version.View.versionPathDesc (版本文件在自助设备上的安装路径)
-				versionPerson:'Version maker',//Eway.locale.version.View.versionPerson 创建人
-				versionType:'Version type',//Eway.locale.version.View.versionType 版本类型
-				versionFile:'Version file',//Eway.locale.version.View.versionFile 版本文件
-				versionFileButton:'choose...',//Eway.locale.version.View.versionFileButton 浏览...
+				versionPerson:'Version Creater',//Eway.locale.version.View.versionPerson 创建人
+				versionType:'Version Type',//Eway.locale.version.View.versionType 版本类型
+				versionFile:'Version File',//Eway.locale.version.View.versionFile 版本文件
+				versionFileButton:'Choose...',//Eway.locale.version.View.versionFileButton 浏览...
 				versionFileRegexText:'Only .zip or .rar file can be uploaded',//Eway.locale.version.View.versionFileRegexText 只能上传zip或rar格式的文件
 				versionFileUploadMsg:'File uploading...',//Eway.locale.version.View.versionFileUploadMsg 正在上传文件...
 				versionFileEmpty:'Please zip the version file(or folder) to .zip or .rar format',//Eway.locale.version.View.versionFileEmpty 请将要下发的版本文件(或者文件夹)打包zip或rar格式
-				versionTypeCode:'Software classify code',//Eway.locale.version.View.versionTypeCode 软件分类编码
-				versionTypeName:'Software classify name',//Eway.locale.version.View.versionTypeName 软件分类名称
-				versionTypeId:'Version type ID',//Eway.locale.version.View.versionTypeId 版本类型ID
+				versionTypeCode:'Code',//Eway.locale.version.View.versionTypeCode 软件分类编码
+				versionTypeName:'Name',//Eway.locale.version.View.versionTypeName 软件分类名称
+				versionTypeId:'ID',//Eway.locale.version.View.versionTypeId 版本类型ID
 				versionTypeEmpty:'-select versionType-',//Eway.locale.version.View.versionTypeEmpty -请选择版本类型-
 				versionTime:'Create time',//Eway.locale.version.View.versionTime 创建时间
-				versionNo:'Version serialno',//Eway.locale.version.View.versionNo 版本号
-				nowVersionNo:'Current version number',//Eway.locale.version.View.nowVersionNo 当前版本号
-				versionStatus:'Version status',//Eway.locale.version.View.versionStatus 版本状态
+				versionNo:'Version No.',//Eway.locale.version.View.versionNo 版本号
+				nowVersionNo:'Current Version No.',//Eway.locale.version.View.nowVersionNo 当前版本号
+				versionStatus:'Version Status',//Eway.locale.version.View.versionStatus 版本状态
 				versionStatusEmptyText:'All', //全部
-				autoUpdate:'Update automatic permission',//Eway.locale.version.View.autoUpdate 允许自动更新
-				autoUpdateYes:'yes',//Eway.locale.version.View.autoUpdateYes //是
-				autoUpdateNo:'no',//Eway.locale.version.View.autoUpdateNo 否
+				autoUpdate:'Auto Update',//Eway.locale.version.View.autoUpdate 允许自动更新
+				autoUpdateYes:'Yes',//Eway.locale.version.View.autoUpdateYes //是
+				autoUpdateNo:'No',//Eway.locale.version.View.autoUpdateNo 否
 				autoUpdateEmptyText:'All', //全部
-				dependVersion:'Version dependent on',//Eway.locale.version.View.dependVersion 依赖版本
+				dependVersion:'Dependented Version',//Eway.locale.version.View.dependVersion 依赖版本
 				dependVersionEmptyText:'Please select type dependent on', //请选择依赖类型
 				execBefore:'Execute script before update',//Eway.locale.version.View.execBefore 升级前执行脚本
 				execBeforeEmptyText:'Please input the file in the update package which name is end with bat or cmd',//Eway.locale.version.View.execBeforeEmptyText 请输入升级包中的以bat或cmd结尾的文件
 				execBeforeRegexText:'Only the file which name end with ‘bat’ or ‘cmd’ can be inputed',//Eway.locale.version.View.execBeforeRegexText 只能输入bat或cmd结尾的文件
-				versionDesc:'Version description',//Eway.locale.version.View.versionDesc 版本描述
+				versionDesc:'Description',//Eway.locale.version.View.versionDesc 版本描述
 				versionDescEmpty:'Please describe this version with words (At most 20 words)',//Eway.locale.version.View.versionDescEmpty 请用文字描述此版本需求
-				otherConfigTitle:'Other settng',//Eway.locale.version.View.otherConfigTitle 其他配置
+				otherConfigTitle:'Other Setting',//Eway.locale.version.View.otherConfigTitle 其他配置
 				otherConfigAutoDown:'Allow update automatic (only while the ATM check new version from server ,the version which update automatic will be return to ATM )',//Eway.locale.version.View.otherConfigAutoDown 允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)
 				otherConfigUncompress:'Uzip automatic(when choose this option, the ATM will unzip automatic )&nbsp;<font color="red">attention:if the file is not zip file at first ,and then ziped to zip file ,please select this option!</font>',//Eway.locale.version.View.otherConfigUncompress 自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>
-				versionServerPath:'Path of file in server', //Eway.locale.version.View.versionServerPath 文件在服务器上的位置
-				versionName:'Version name',//Eway.locale.version.View.versionName 版本名称
+				versionServerPath:'File Path In Server', //Eway.locale.version.View.versionServerPath 文件在服务器上的位置
+				versionName:'Name',//Eway.locale.version.View.versionName 版本名称
 				downloadVersionName:'Version issued',//Eway.locale.version.View.downloadVersionName 下发的版本
 				downloadVersionNameEmpty:'Please choose a version which you want to issue',//Eway.locale.version.View.downloadVersionNameEmpty 下发的版本
 				distributionPic:'Chart of version distribute',//Eway.locale.version.View.distributionPic 版本分布图
@@ -724,7 +724,7 @@ Ext.override(Eway,{
 				unit: 'Unit:MB',//单位：MB
 				againTest: 'Test again',//重新测试
 				impressionName: 'Impression name',//印象名称
-				userName: 'User name',//用户名
+				userName: 'User Name',//用户名
 				memoryRate: 'Memory used',//内存使用
 				systemProgressInfo:'System process information',//系统进程信息
 				screenShotTime: 'Screen shot time',//截屏时间
@@ -822,8 +822,8 @@ Ext.override(Eway,{
 				unknow:'Unknow'//Eway.locale.commen.comboxGender.unknow 未知
 			},
 			remark:'Remark',//Eway.locale.commen.remark 备注
-			terminalId:'Terminal serialno',//Eway.locale.commen.terminalId 设备号
-			ip:'IP address',//Eway.locale.commen.ip 网络地址
+			terminalId:'Terminal Id',//Eway.locale.commen.terminalId 设备号
+			ip:'IP',//Eway.locale.commen.ip 网络地址
 			orgNameBelongs:'Organization belongs',//Eway.locale.commen.orgNameBelongs 所属机构
 			devTypeName:'Deivce type',//Eway.locale.commen.devTypeName 设备型号
 			devVendorName:'Deivce vendor',//Eway.locale.commen.devVendorName 设备品牌
@@ -970,20 +970,20 @@ Ext.override(Eway,{
 			},
 			user:{
 				title:'User',//Eway.locale.person.user.title 用户管理
-				code:'User name',//Eway.locale.person.user.code 用户名
-				clickToCheckLog:'Click to check',//Eway.locale.person.user.clickToCheckLog 单击即可查看用户
+				code:'Code',//Eway.locale.person.user.code 用户名
+				clickToCheckLog:'Click to Query Log',//Eway.locale.person.user.clickToCheckLog 单击即可查看用户
 				userLog:' s log',//Eway.locale.person.user.userLog  的操作日志
-				resetPasswd:'Reset password',//Eway.locale.person.user.resetPasswd 密码重置
+				resetPasswd:'Reset Password',//Eway.locale.person.user.resetPasswd 密码重置
 				clickToPasswdInit:'Click to set the password to initialize',//Eway.locale.person.user.clickToPasswdInit 单击即可密码重置为初始化密码
 				clickToRole:'Click to check all roles list',//Eway.locale.person.user.clickToRole 单击即可查看所有角色列表
 				addUserTitle:'Add user information',//Eway.locale.person.user.addUserTitle 增加用户信息
 				clickToUser:'Please click query ,choose a  person',//Eway.locale.person.user.clickToUser 请点击查询，选择人员
-				userType:'User type',//Eway.locale.person.user.userType 用户类型
+				userType:'User Type',//Eway.locale.person.user.userType 用户类型
 				role:'Role',//Eway.locale.person.user.role 角色
 				roleGiven:'Role given',//Eway.locale.person.user.roleGiven 角色赋予
-				roleName:'Role name',//Eway.locale.person.user.roleName 角色名称
-				roleDescription:'Role description',//Eway.locale.person.user.roleDescription 角色描述
-				userListTitle:'User list',//Eway.locale.person.user.userListTitle 人员列表
+				roleName:'Name',//Eway.locale.person.user.roleName 角色名称
+				roleDescription:'Description',//Eway.locale.person.user.roleDescription 角色描述
+				userListTitle:'userList',//Eway.locale.person.user.userListTitle 人员列表
 				updateUserTitle:'Modify user role(use drafting way)',//Eway.locale.person.user.updateUserTitle 更改用户角色（使用拖拽的方式）
 				roleCanBeAdd:'Role list can be added',//Eway.locale.person.user.roleCanBeAdd 可添加的角色列表
 				roleAlreadyBeAdd:'Role list already be added',//Eway.locale.person.user.roleAlreadyBeAdd 已添加的角色列表
@@ -1279,21 +1279,21 @@ Ext.override(Eway,{
 				}
 			},
 			atmCatalog:{
-				title:'ATM catalog',//Eway.locale.machine.title ATM分类
-				name:'Catalog name',//Eway.locale.machine.atmCatalog.name 分类名称
+				title:'Device Catalog',//Eway.locale.machine.title ATM分类
+				name:'Name',//Eway.locale.machine.atmCatalog.name 分类名称
 				note:'Remark',//备注
 				addTitle:'Add catalog',//增加ATM分类信息
-				updateTitle:'Modify catalog', //更改ATM型号信息
-				number:'code',//Eway.locale.machine.atmCatalog.number 编号
+				updateTitle:'Update Catalog', //更改ATM型号信息
+				number:'Code',//Eway.locale.machine.atmCatalog.number 编号
 			},
 			atmGroup : {
-				terminalId:'Terminal number', //设备号
-				ip: 'IP address',//设备IP地址
+				terminalId:'Terminal Id', //设备号
+				ip: 'IP',//设备IP地址
 				orgName:'Org belongs',//
-				devTypeName:'Device type',//设备型号
-				devVendorName:'Device vendor',//设备品牌
-				devCatalogName:'Device catalog',//设备类型
-				devGroupName: 'Device group',//设备分组
+				devTypeName:'Device Type',//设备型号
+				devVendorName:'Device Brand',//设备品牌
+				devCatalogName:'Device Catalog',//设备类型
+				devGroupName: 'Device Group',//设备分组
 				status:'Device status',//设备状态
 				comboxStatus:{
 					dredge:'Dredge',//开通
@@ -1313,7 +1313,7 @@ Ext.override(Eway,{
 				gourpDev:'Group<-->Device',//分组<-->设备
 				addTitle: 'Add info of machine-group ',//增加设备组信息
 				groupName:'Group name',//组名
-				note:'remark',//备注
+				note:'Remark',//备注
 				updateTitle:'Update info of machine-group '//更改设备组信息
 			},
 			atmModule:{
@@ -1327,7 +1327,7 @@ Ext.override(Eway,{
 				moveDevRec:'Move machine and generate the move record',//移动设备并产生移机记录
 				moveRecordInfo:'Move machine record',//移机记录信息
 				waitMove:'Wait for move machine',//待移动的机器
-				terminalId:'Terminal number',//设备号
+				terminalId:'Terminal Id',//设备号
 				address:'Source address',//源地址
 				orgName:'Source org',//源机构
 				targetAddress:'Target address',//目标地址
@@ -1345,26 +1345,25 @@ Ext.override(Eway,{
 			atmRuntimeInfo:{
 				exportName:'Export', //导出
 				exportDateRangeText:'Start time can not be later than end time',//开始时间不能大于结束时间
-				terminalId:'Terminal number',//终端号
+				terminalId:'Terminal Id',//终端号
 				terminalIp:'IP',//终端IP
 				startDate:'Begin time',//开始时间
 				endDate:'End time',//结束时间
 				exportLast30: 'Export last 30 days info',//导出最后30天汇总信息
-				terminalId:'number',//编号
-				netIp:'Net address',//网络地址
+				netIp:'Ip',//网络地址
 				msgCollect:'Collect info of customservice'//客服信息采集
 			},
 			atmType:{
 				title:'Device type',//设备型号
-				atmName:'ATM Type',//ATM型号
-				name:'Device type',//设备型号
+				atmName:'Device Type',//ATM型号
+				name:'Name',//设备型号
 				devVendorName:'Brand', //所属品牌
 				devCatalogName:'Catalog',//所属类型
 				devTerminalName:'Type',//所属型号
 				spec:'Gauge',//设备规格
 				weight:'Weight',//设备重量
 				watt:'Power',//平均功率
-				no:'code',//编号
+				no:'Code',//编号
 				cashtype:'Cash flag',//非现金标志
 				iscash:'Cash',//现金
 				nocash:'Not cash'//非现金
@@ -1779,7 +1778,7 @@ Ext.override(Eway,{
 
 		index:{
 			indexPage:'Home',//Eway.locale.index.indexPage 首页
-			dailyFaultPic:'日均故障趋势图',//Eway.locale.index.dailyFaultPic 日均故障趋势图
+			dailyFaultPic:'Faults Trend Chart',//Eway.locale.index.dailyFaultPic 日均故障趋势图
 			faultAmount:' 产生的故障数量: ',//Eway.locale.index.faultAmount
 			devStatusDisPic:'设备状态分布图',//Eway.locale.index.devStatusDisPic
 			normalDev:'Device normal',//Eway.locale.index.normalDev 正常设备
@@ -1787,7 +1786,7 @@ Ext.override(Eway,{
 			exceptionDev:'Device unusual',//Eway.locale.index.exceptionDev 异常设备
 			amount:'',//Eway.locale.index.amount 台
 			versionDistributePie:'Version Distribution',//Eway.locale.index.versionDistributePie
-			retainCardTrendTitle:'日均吞卡趋势图'//Eway.locale.index.retainCardTrendTitle
+			retainCardTrendTitle:'Retain Card Trend Chart'//Eway.locale.index.retainCardTrendTitle
 		},
 		//**********************************************************/
 		report:{

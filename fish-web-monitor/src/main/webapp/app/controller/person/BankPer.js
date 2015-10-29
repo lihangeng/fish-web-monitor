@@ -370,7 +370,9 @@ Ext.define('Eway.controller.person.BankPer', {
      * 增加人员信息：
      */
 	onAdd: function() {
-		var win = Ext.create('Eway.view.person.bankPer.Add');
+		var win = Ext.create('Eway.view.person.bankPer.Add',{
+			width:500
+		});
 		var code = win.down("form").getForm().findField("code");
 		this.win = win;
 		var selectedNode = this.getSelectionInTree();
