@@ -31,7 +31,20 @@ Ext.define('Eway.view.index.Index', {
 		    	xtype:'retainCardByDay'
 		    },{
 		    	xtype:'faultTrendByDay'
-		    }]
+		    }],
+		    listeners:{
+		    	activate:function(_this,eOpt){
+		    		_this.removeAll();
+		    		var chart1 = Ext.create("Eway.view.index.VersionDistributePie");
+		    		var chart2 = Ext.create("Eway.view.index.FaultTrendByDay");
+		    		var chart3 = Ext.create("Eway.view.index.RetainCardByDay");
+		    		var chart4 = Ext.create("Eway.view.index.FaultTrendByDay");
+		    		_this.add(chart1);
+		    		_this.add(chart2);
+		    		_this.add(chart3);
+		    		_this.add(chart4);
+		    	}
+		    }
 		});
 
 		this.callParent(arguments);

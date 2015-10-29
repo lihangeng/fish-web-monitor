@@ -18,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.fault.FaultCloseType;
@@ -165,6 +166,7 @@ public class CaseFault implements ICaseFault {
 
 	public void setFaultTime(Date faultTime) {
 		this.faultTime = faultTime;
+		this.faultDate = Long.parseLong(DateUtils.get(faultTime,DateUtils.STANDARD_DATE_SHORT));
 	}
 
 	public Date getClosedTime() {
