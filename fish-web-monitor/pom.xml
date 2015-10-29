@@ -75,7 +75,7 @@
 			<artifactId>jsp-api</artifactId>
 		</dependency>
 		
-		 <!-- 独立运行 -->
+		 <!-- 独立运行 
 		<dependency>
 			<groupId>org.eclipse.jetty.aggregate</groupId>
 			<artifactId>jetty-all</artifactId>
@@ -92,7 +92,7 @@
 		   <groupId>org.mortbay.jetty</groupId>
     	   <artifactId>jsp-2.1-glassfish</artifactId>
     	   <version>9.1.02.B04.p0</version>
- 		</dependency>
+ 		</dependency>-->
  		
 		<!-- POI扩展组件 -->
 		<dependency>

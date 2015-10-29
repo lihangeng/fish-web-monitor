@@ -1,14 +1,5 @@
 package com.yihuacomputer.fish.web;
 
-import java.io.File;
-
-import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.webapp.WebAppContext;
-import org.eclipse.jetty.xml.XmlConfiguration;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.yihuacomputer.fish.web.util.OsUtil;
 
 /**
  * ATMV控制台主程序
@@ -20,11 +11,11 @@ import com.yihuacomputer.fish.web.util.OsUtil;
  * 
  */
 public class FishConsole {
-	/** 日志输出 **/
+	/** 日志输出 **//*
 	private static Logger logger = LoggerFactory.getLogger(FishConsole.class);
-	/** WEB APP上下文 **/
+	*//** WEB APP上下文 **//*
 	private WebAppContext context = null;
-	/** 服务器 **/
+	*//** 服务器 **//*
 	private Server server = null;
 	
 	private String CONTEXT = "/atmv";
@@ -50,12 +41,12 @@ public class FishConsole {
 		runtime.startConsoleServer();
 	}
 
-	/**
+	*//**
 	 * 启动服务器
 	 * 
 	 * @param port 端口号 默认8080
 	 * 
-	 */
+	 *//*
 	public void startConsoleServer() {
 		try {
 			server = new Server();
@@ -73,7 +64,7 @@ public class FishConsole {
 		}
 	}
 	
-	/** 添加WEB应用 **/
+	*//** 添加WEB应用 **//*
 	public void initWebAppContext() throws Exception{
 		context = new WebAppContext();
 		context.setResourceBase(".");
@@ -90,7 +81,7 @@ public class FishConsole {
 		}
 	}
 	
-	/** 添加WEB应用 **/
+	*//** 添加WEB应用 **//*
 	public void initWebAppContextLocal() throws Exception{
 		context = new WebAppContext();
 		context.setContextPath(CONTEXT);
@@ -108,9 +99,9 @@ public class FishConsole {
 	}
 	
 
-	/**
+	*//**
 	 * 停止服务器
-	 */
+	 *//*
 	public void stopWebServer() {
 		try {
 			if (server != null){
@@ -120,5 +111,5 @@ public class FishConsole {
 			logger.error("Closing Atmp Console error:["+e+"]");
 		}
 	}
-
+*/
 }
