@@ -65,7 +65,7 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.2.2</version>
 		</dependency>
-		<!-- j2ee -->
+		<!-- j2ee
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -73,9 +73,9 @@
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
-		</dependency>
+		</dependency> -->
 		
-		 <!-- 独立运行 
+		 <!-- 独立运行 -->
 		<dependency>
 			<groupId>org.eclipse.jetty.aggregate</groupId>
 			<artifactId>jetty-all</artifactId>
@@ -91,8 +91,7 @@
 		<dependency>
 		   <groupId>org.mortbay.jetty</groupId>
     	   <artifactId>jsp-2.1-glassfish</artifactId>
-    	   <version>9.1.02.B04.p0</version>
- 		</dependency>-->
+ 		</dependency>
  		
 		<!-- POI扩展组件 -->
 		<dependency>
@@ -125,6 +124,23 @@
 	<build>
 		<finalName>ATMVS</finalName>
 		<plugins>
+		  <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>com.yihuacomputer.fish.web.FishConsole</mainClass>
+							<packageName>com.yihuacomputer.fish.web</packageName>
+							<addClasspath>true</addClasspath>
+							<useUniqueVersions>false</useUniqueVersions>
+						</manifest>
+						<manifestEntries>
+							<SCM-Revision>${buildNumber}</SCM-Revision>
+						</manifestEntries>
+					</archive>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.mortbay.jetty</groupId>
 				<artifactId>jetty-maven-plugin</artifactId>
@@ -155,7 +171,7 @@
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.3</version>
 				<configuration>
-					<finalName>${project.artifactId}-${project.version}</finalName>
+					<finalName>ATMVS-DB-${project.version}</finalName>
 					<descriptors>
 						<descriptor>src/assembly/dist.xml</descriptor>
 					</descriptors>
@@ -186,7 +202,7 @@
 					<ext>
 						<enabled>true</enabled>
 					</ext>
-					<attachClasses>true</attachClasses>
+					<archiveClasses>true</archiveClasses> 
 					<packagingExcludes>
 						compress.html,
 						app.jsb3,
@@ -197,6 +213,37 @@
 					</packagingExcludes>
 				</configuration>
 			</plugin>
+			<!-- <plugin>
+               <groupId>org.apache.maven.plugins</groupId>
+               <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>2.16</version>
+                <executions>
+                     <execution>
+                       <configuration>
+                            <configLocation>checkstyle.xml</configLocation>
+                            <encoding>UTF-8</encoding>
+                            <consoleOutput>true</consoleOutput>
+                            <failsOnError>true</failsOnError>
+                            <linkXRef>false</linkXRef>
+                       </configuration>
+                       <goals>
+                            <goal>check</goal>
+                       </goals>
+                     </execution>
+                </executions>
+              </plugin> -->
 		</plugins>
 	</build>
+	<reporting>
+		<plugins>
+			 <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-checkstyle-plugin</artifactId>
+                  <version>2.16</version>
+                  <configuration>
+                    	<configLocation>checkstyle.xml</configLocation>
+                  </configuration>
+             </plugin>
+         </plugins>
+	</reporting>
 </project>
