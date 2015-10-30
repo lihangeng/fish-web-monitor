@@ -1,4 +1,3 @@
-
 Ext.define('Eway.model.person.person.SelectPerson', {
 	extend: 'Ext.data.Model',
 	fields: [
@@ -13,10 +12,11 @@ Ext.define('Eway.model.person.person.SelectPerson', {
 
 		reader : {
 			type : 'json',
-			root : 'data'
+			rootProperty : 'data'
 		},
 		wirter : {
 			type : 'json'
 		}
 	}
+
 });

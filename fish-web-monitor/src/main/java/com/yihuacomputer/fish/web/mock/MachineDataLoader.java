@@ -70,8 +70,8 @@ public class MachineDataLoader {
 			} else {
 				device.setDevType(atmTypeService.get(0002));
 			}
-			device.setNetType(NetType.CABLE);
-			device.setSerial("serial");
+//			device.setNetType(NetType.CABLE);
+//			device.setSerial("serial");
 			device.setSetupType(SetupType.LOBBY);
 			device.setWorkType(WorkType.COOPERATION);
 			device.setOrganization(orgService.get("1"));

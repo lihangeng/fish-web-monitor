@@ -4,10 +4,10 @@ Ext.define("Eway.model.operatingPlan.TempOpenPlanForDevice",{
 				'planType', 'planState', 'openPlanDetailForms','deviceId','terminalId','planStateType'],
 	proxy : {
 		type : 'rest',
-		url : 'api/srcb/plan/tempdevopenplan',
+		url : 'api/plan/tempdevopenplan',
 		reader : {
 			type : 'json',
-			root : 'data'
+			rootProperty : 'data'
 		},writer : {
 			type : 'json'
 		}

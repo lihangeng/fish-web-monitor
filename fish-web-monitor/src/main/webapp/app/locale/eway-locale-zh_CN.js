@@ -29,12 +29,16 @@ Ext.override(Eway,{
 			createSuccess:"创建成功.",//Eway.locale.msg.createSuccess
 			mustHaveOneResource:'至少包含一个广告资源!',//Eway.locale.msg.mustHaveOneResource
 			saveFail:'保存失败',//Eway.locale.msg.saveFail
+			saveFailPleaseRefresh:'保存失败，请刷新重试',//Eway.locale.msg.saveFailPleaseRefresh
 			saveFileSizeMaxFail:'保存失败:超过最大单个文件大小限制（最大30M）',//Eway.locale.msg.saveFileSizeMaxFail
 			saveFileCommunicationFail:'保存失败:与服务器通讯失败',//Eway.locale.msg.saveFileCommunicationFail
-			chooseDevice:"请选择设备.",//Eway.locale.msg.chooseDevice
+			chooseDevice:'请选择设备.',//Eway.locale.msg.chooseDevice
 			downloadFailForNoVersion:"下发版本文件失败:还没有生成版本文件或者版本文件丢失,请先生成版本文件.",//Eway.locale.msg.downloadFailForNoVersion
 			saveSuccess:'保存成功！',//Eway.locale.msg.saveSuccess
-
+			
+			removeSuccess:'解除成功',//Eway.locale.msg.removeSuccess
+			removeFail:'解除失败',//Eway.locale.msg.removeFail
+			someStripRemoveFailePleaseRefresh:'条解除失败，请刷新后重试！',//Eway.locale.msg.Eway.locale.msg.someStripRemoveFailePleaseRefresh
 			versionDownloaded:'不能删除"等待下发"和"已下发"状态的版本.',//Eway.locale.msg.versionDownloaded
 			selectVersionToDelete:'请选择您要删除的版本.',//Eway.locale.msg.selectVersionToDelete
 			communicationFail:'增加失败:与服务器通讯失败.',//Eway.locale.msg.communicationFail
@@ -44,7 +48,8 @@ Ext.override(Eway,{
 			addFileFail:'增加失败:',//Eway.locale.msg.addFileFail
 			mustSelectDevice:'请至少选择一个设备.',//Eway.locale.msg.mustSelectDevice
 			selectVersionRecord:'请选择您要下发的版本.',//Eway.locale.msg.selectVersionRecord
-			missVersionFile:"版本文件丢失,暂不能对版本进行下发控制."//Eway.locale.msg.missVersionFile
+			missVersionFile:"版本文件丢失,暂不能对版本进行下发控制.",//Eway.locale.msg.missVersionFile
+			mustSelectPerson:"请必须选择人员"//Eway.locale.msg.mustSelectPerson
 		},
 		confirm:{
 			titleSure:'确认',//Eway.locale.confirm.titleSure

@@ -7,20 +7,9 @@
   <fmt:setLocale value="zh_CN" scope="session"/>
   <title><spring:message code="login.title" text=""/></title>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <link rel="shortcut icon" type="image/ico" href="resources/images/logo.ico" />
-  <link rel="stylesheet" type="text/css" href="resources/css/login.css" media="all" />
+   <link rel="shortcut icon" type="image/ico" href="resources/images/logo.ico" />
+   <link rel="stylesheet" type="text/css" href="resources/css/login.css" media="all" />
 
-  <style type="text/css">
-  	.registerInputText{
-  		border-color: #333333;
-  		border-style: solid;
-  		border-width: 1px;
-  		width: 80px;
-  		background-color: #666999;
-  		color: yellow;
-  		font-weight: bolder;
-  	}
-  </style>
 	<script type="text/javascript">
 		//添加键盘事件
 		onkeydown = function(event){
@@ -30,6 +19,15 @@
 		}
 
 		var xmlHttpReq = null;
+		function $(id){
+			return document.getElementById(id);
+		}
+		
+		function getValue(inputElement){
+			return inputElement.value;
+		}
+		
+		
 		function ajax() {
 
 		    if(window.ActiveXObject){
@@ -42,7 +40,7 @@
 		        //实例化一个 XMLHttpRequest 对象
 		        xmlHttpReq = new XMLHttpRequest();
 			}
-		    var contnet = "username="+form1.username.value+"&password="+form1.password.value+"&"+new Date();
+		    var contnet = "username="+getValue($('username'))+"&password="+getValue($('password'))+"&"+new Date();
 
 		    xmlHttpReq.open("POST","api/login?"+contnet,true);
 
@@ -77,41 +75,52 @@
 	    	form1.password.value="";
 	    }
 
-	    function imageOn(obj)
-	    {
-	    	obj.className="imageSelect";
-	    }
 
-	    function imageOut(obj)
-	    {
-	    	obj.className="";
-	    }
 
 	</script>
 </head>
-<form name="form1" method="post" action="api/login">
+<form name="form1">
 <body>
-<div id="wrap">
+ <div  class="container">
 	
-	<div id="main">
-		<div style="height:40px;top:254px;position:relative;width:500px;left:627px;" >
-				<div id="loginError" class="form-message error" style="display:none"></div>
-		</div>
-		<div style="position:relative;top:255px;left:758px;overflow:hidden;width:300px;height:230px">
-			<input id="username" type="text" style="width:275px;border:0;height:24px;font-size: 20px" />
-			<div id="distance" style="height:50px;overflow:hidden" ></div>
-			<input id="password" type="password" style="width:275px;border:0;height:24px;font-size: 20px"/>
-			<div style="position:relative;left:50px;top:50px">
-				<img id="loginBtn" src="resources/images/index/login.png" onclick="javascript:return ajax();" style="cursor: pointer;"></img>
-				<img id="cancelBtn" src="resources/images/index/cancel.png" onclick="resetValue();" style="cursor: pointer;"></img>
-			</div>
-		</div>
-	</div>
-	<div id="foot">
-		<center style="margin-top: 3px">&copy;深圳市怡化时代科技有限公司&nbsp;&nbsp;&nbsp;&nbsp;建议使用IE 9.0、FireFox、Google 浏览器&nbsp;&nbsp;&nbsp;&nbsp;</center>
+
+  
+		
+  <div  class="head">
+<img src="resources/images\logo.PNG">
+	
+  </div>
+
+<div class="left">
+	<div  class="left-content">
+		<img src="resources/images\left.PNG" >
 	</div>
 </div>
-<div style='display:none;'>
+<div class="right">
+	<div class="right-content">
+		<div  class="content">
+			<div  class="text" align="center">
+		
+
+						<p>监 控 系 统 登 录</p>
+						<div class="line">
+							
+						</div>
+						
+							<div id="loginError" class="form-message error" style="display:none"></div>
+					
+	                     <input  class="txt" id="username"  type="text" size="10"  style="margin-top:17px;" />
+                   
+						<input class="txt2" style="margin-top:25px;" id="password"  type="password" size="10" />
+				
+						 <input style="margin-top:30px;" class="login"  type="button" name="submit" value="登   录"  onclick="ajax()" > 
+						 <div class="finally"></div>
+				         		
+		</div>
+	</div>
+</div>
+   </div>
+   <div style='display:none;'>
 	<div id='updatePassword' style='padding:10px; background:#fff;position: relative;top: 0px' align="center">
 		<form name="registerForm">
 		<h3>密码修改</h3>
@@ -129,6 +138,6 @@
 		</div>
 	</div>
 </div>
-</body>
-</form>
+ </body>
+ </form>
 </html>
