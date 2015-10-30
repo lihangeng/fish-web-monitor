@@ -56,7 +56,7 @@ public class DeviceOpenPlan implements IDeviceOpenPlan {
     @Column(name = "ENDDATE", length = 10)
     private Date endDate;
 
-    @Column(name = "DESC", length = 80)
+    @Column(name = "REMARK", length = 180)
     private String desc;
 
     @Enumerated(EnumType.STRING)
