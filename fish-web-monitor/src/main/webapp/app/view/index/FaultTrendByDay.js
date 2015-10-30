@@ -54,12 +54,12 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
                 grid: true,
                 renderer: function (v) {
                     return v.substring(4);
-                },
+                }/*,
                 label: {
                     rotate: {
                         degrees: -45
                     }
-                }
+                }*/
             }],
             series: [{
                 type: 'line',

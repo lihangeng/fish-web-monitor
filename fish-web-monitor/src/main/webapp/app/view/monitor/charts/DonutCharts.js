@@ -26,29 +26,21 @@ Ext.define('Eway.view.monitor.charts.DonutCharts', {
             insetPadding: 50,
             innerPadding: 20,
             legend: {
-                docked: 'right'
+                docked: 'right',
+                lazy:true
             },
             interactions: ['rotate', 'itemhighlight'],
             series: [{
                 type: 'pie',
+                showInLegend:true,
                 angleField: this.getLabelField(),
                 donut: 50,
                 label: {
                     field: this.getAngleField(),
                     display: 'outside'
                 },
-                colors:['#8ca640',
-                        '#974144',
-                        '#4091ba',
-                        '#8e658e',
-                        '#3b8d8b',
-                        '#b86465',
-                        '#d2af69',
-                        '#6e8852',
-                        '#3dcc7e',
-                        '#a6bed1',
-                        '#cbaa4b',
-                        '#998baa'],
+                useDarkerStrokeColor:false,
+
                 highlight: true,
                 tooltip: {
                     trackMouse: true,

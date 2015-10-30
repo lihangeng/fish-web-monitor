@@ -95,6 +95,9 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			'monitor_device_view menuitem[action=boxPattern]' : {//打开"钱箱方式"
 				click : this._onBoxPatternBtnClick
 			},
+			'monitor_device_view menuitem[action=summaryPattern]' : {//打开"全局方式"
+				click : this._onSummaryPatternBtnClick
+			},
 			'monitor_device_view dataview[name=matrix]' : {
 				itemmouseenter : this._onDataViewItemMouseEnter2,
 				itemclick : this._onDataViewItemMouseClick,
@@ -713,6 +716,14 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		layout.setActiveItem('box');
 		var btn = view.down('button[action="query"]');
 	    this._onQueryBtnClick(btn);
+	},	
+	_onSummaryPatternBtnClick : function() {
+		var view = this.getEwayView();
+		var card = view.down('#card_itemId');
+		var layout = card.getLayout();
+		layout.setActiveItem('summary');
+//		var btn = view.down('button[action="query"]');
+//	    this._onQueryBtnClick(btn);
 	},
 	_onMatrixPatternBtnClick : function() {
 		var view = this.getEwayView();

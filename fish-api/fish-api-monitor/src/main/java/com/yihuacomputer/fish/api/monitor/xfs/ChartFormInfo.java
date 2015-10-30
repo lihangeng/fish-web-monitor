@@ -9,6 +9,12 @@ public class ChartFormInfo {
 	 * 点击查询条件
 	 */
 	private String filterStr;
+	
+	/**
+	 * 当前图所使用的颜色
+	 */
+	private String color;
+	
 	/**
 	 * 图表中的数据量
 	 */
@@ -31,6 +37,12 @@ public class ChartFormInfo {
 	}
 	public void setNumberInfo(int numberInfo) {
 		this.numberInfo = numberInfo;
+	}
+	public String getColor() {
+		return color;
+	}
+	public void setColor(String color) {
+		this.color = color;
 	}
 	
 	

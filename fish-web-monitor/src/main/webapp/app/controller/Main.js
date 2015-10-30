@@ -60,7 +60,7 @@ Ext.define('Eway.controller.Main', {
 
 	//主工作区tab切换时执行的动作，保存到hash到cookie中
     onTabChange : function(tabPanel, newItem) {
-    	if(undefined == tabPanel.getActiveTab() || null == tabPanel.getActiveTab() || newItem.xtype == 'appindex'){
+    	if(undefined == tabPanel.getActiveTab() || null == tabPanel.getActiveTab()/* || newItem.xtype == 'appindex'*/){
     		Ext.util.Cookies.set("lastEwayPage","");
     		return;
     	}

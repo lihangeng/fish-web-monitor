@@ -1065,6 +1065,7 @@ Ext.override(Eway,{
 				monitorState:'订阅条件',//Eway.locale.monitor.devMonitor.monitorState
 				showWay:'展示方式',//Eway.locale.monitor.devMonitor.showWay
 				comboxShowWay:{
+					summaryPattern:'全局模式',//Eway.locale.monitor.devMonitor.comboxShowWay.summaryPattern
 					matrixPattern:'矩形方式',//Eway.locale.monitor.devMonitor.comboxShowWay.matrixPattern
 					maxIconPattern:'超大图标',//Eway.locale.monitor.devMonitor.comboxShowWay.maxIconPattern
 					listPattern:'列表方式',//Eway.locale.monitor.devMonitor.comboxShowWay.listPattern
@@ -1758,9 +1759,7 @@ Ext.override(Eway,{
 					unableUpdate:'不可修改',
 					ableUpdate:'可以修改'
 				},
-				paramCount:' 个参数)',//Eway.locale.machine.param.paramCount
-				oneParam:'(1 个参数)',//Eway.locale.machine.param.oneParam
-				description:'参数信息描述',//Eway.locale.machine.param.description
+				description:'描述',//Eway.locale.machine.param.description
 				systemCon:'系统配置',//Eway.locale.machine.param.systemCon
 				updateSystemCon:'更改系统配置'//Eway.locale.machine.param.updateSystemCon
 			},

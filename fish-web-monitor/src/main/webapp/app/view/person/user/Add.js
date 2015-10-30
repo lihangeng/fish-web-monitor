@@ -27,7 +27,6 @@ Ext.define('Eway.view.person.user.Add', {
 				region: 'north',
         		height: 100,
 				defaults: {
-					labelWidth: 60,
 					labelAlign: 'right',
 					msgTarget : 'side'
 				},

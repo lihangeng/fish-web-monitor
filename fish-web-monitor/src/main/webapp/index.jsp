@@ -1,3 +1,4 @@
+<%@page import="com.yihuacomputer.common.FishCfg"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.yihuacomputer.fish.api.person.UserSession"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -54,9 +55,13 @@
 			}			
 		}
 	}
-
+	var locale='<%=FishCfg.locale%>';
 	<%if (session.getAttribute("SESSION_USER") == null) {%>
-		window.location.href="login.jsp";
+		var ewayUser={getName:function(){
+			return "";
+		},getId:function(){
+			return 1;
+		}};
 	<%} else {
 		UserSession userSession = (UserSession) session.getAttribute("SESSION_USER");%>
 		var ewayUser = new EwayUserObject(
@@ -64,9 +69,7 @@
 			'<%=userSession.getUserCode()%>',
 			'<%=userSession.getUserName()%>',
 			'<%=userSession.getOrgId()%>',
-			'<%=String.valueOf(userSession.getOrgType() == null
-							? ""
-							: userSession.getOrgType().getId())%>',
+			'<%=userSession.getOrgType() == null ? "" : String.valueOf(userSession.getOrgType().getId())%>',
 			'<%=userSession.getOrgName()%>',
 			'<%=userSession.getOrgCode()%>');
 		var test_userId = Math.random()+'';
@@ -85,7 +88,7 @@
 	  	Ext.cxtPath = '<%=request.getContextPath()%>';
 	  	var Eway = Eway || {};
 	  	
-		if(Ext.String.startsWith(Ext.global.navigator.language,"zh")){
+		if(Ext.String.startsWith(locale,"zh")){
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN.js");
 		}else{

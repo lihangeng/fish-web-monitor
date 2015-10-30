@@ -17,6 +17,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.monitor.business.CardRetainType;
 import com.yihuacomputer.fish.api.monitor.business.CardStatus;
 import com.yihuacomputer.fish.api.monitor.business.IDCardType;
@@ -70,6 +71,9 @@ public class Retaincard implements IRetaincard {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "CARD_RETAIN_TIME")
 	private Date cardRetainTime;
+	
+	@Column(name = "RETAIN_DATE")
+	private Long retainDate;
 
 	/**
 	 * 卡片所属银行
@@ -219,6 +223,7 @@ public class Retaincard implements IRetaincard {
 
 	public void setCardRetainTime(Date cardRetainTime) {
 		this.cardRetainTime = cardRetainTime;
+		this.retainDate = Long.parseLong(DateUtils.get(cardRetainTime,DateUtils.STANDARD_DATE_SHORT));
 	}
 
 	public Date getCardRetainTime() {
@@ -242,72 +247,83 @@ public class Retaincard implements IRetaincard {
 		return cardDistributionBank;
 	}
 
+	@Override
 	public CardStatus getStatus() {
 		return status;
 	}
 
+	@Override
 	public void setStatus(CardStatus status) {
 		this.status = status;
 	}
 
+	@Override
 	public void setTreatmentPeople(String treatmentPeople) {
 		this.treatmentPeople = treatmentPeople;
 	}
 
+	@Override
 	public String getTreatmentPeople() {
 		return treatmentPeople;
 	}
 
+	@Override
 	public void setTreatmentTime(Date treatmentTime) {
 		this.treatmentTime = treatmentTime;
 	}
 
+	@Override
 	public Date getTreatmentTime() {
 		return treatmentTime;
 	}
 
+	@Override
 	public void setCustomerName(String customerName) {
 		this.customerName = customerName;
-
 	}
 
+	@Override
 	public String getCustomerName() {
 		return customerName;
 	}
 
+	@Override
 	public void setCustomerPhone(String customerPhone) {
 		this.customerPhone = customerPhone;
-
 	}
 
+	@Override
 	public String getCustomerPhone() {
 		return customerPhone;
 	}
 
+	@Override
 	public void setCustomerPapers(String customerPapers) {
 		this.customerPapers = customerPapers;
-
 	}
 
+	@Override
 	public String getCustomerPapers() {
 		return customerPapers;
 	}
 
+	@Override
 	public void setCardType(IDCardType cardType) {
 		this.cardType = cardType;
-
 	}
-
+	
+	@Override
 	public IDCardType getCardType() {
-
 		return cardType;
 	}
-
+	
+	@Override
 	public void setTerminalId(String terminalId) {
 		this.terminalId = terminalId;
 
 	}
-
+	
+	@Override
 	public String getTerminalId() {
 		return this.terminalId;
 	}
@@ -322,10 +338,12 @@ public class Retaincard implements IRetaincard {
 		return handOverOrg;
 	}
 
+	@Override
 	public String getTreatmentAddress() {
 		return treatmentAddress;
 	}
 
+	@Override
 	public void setTreatmentAddress(String treatmentAddress) {
 		this.treatmentAddress = treatmentAddress;
 	}
@@ -338,6 +356,16 @@ public class Retaincard implements IRetaincard {
 	@Override
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	@Override
+	public Long getRetainDate() {
+		return retainDate;
+	}
+
+	@Override
+	public void setRetainDate(Long retainDate) {
+		this.retainDate = retainDate;
 	}
 
 }

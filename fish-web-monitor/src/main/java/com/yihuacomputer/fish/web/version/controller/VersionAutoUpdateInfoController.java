@@ -27,6 +27,10 @@ import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
+/**
+ * @author GQ
+ * 获取自动更新信息
+ */
 @Controller
 @RequestMapping(value="/version/versionAutoUpdate")
 public class VersionAutoUpdateInfoController {

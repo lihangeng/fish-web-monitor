@@ -16,6 +16,7 @@ import com.yihuacomputer.fish.api.monitor.business.IRunInfoService;
 import com.yihuacomputer.fish.api.monitor.business.ISettlementService;
 import com.yihuacomputer.fish.api.monitor.business.ITransTypeService;
 import com.yihuacomputer.fish.api.monitor.business.ITransactionService;
+import com.yihuacomputer.fish.api.monitor.business.ITransactionViewService;
 import com.yihuacomputer.fish.api.monitor.business.IUncommonTransService;
 import com.yihuacomputer.fish.api.monitor.filter.IFilterService;
 import com.yihuacomputer.fish.api.monitor.hardware.IHardwareService;
@@ -43,6 +44,7 @@ import com.yihuacomputer.fish.monitor.service.SettlementService;
 import com.yihuacomputer.fish.monitor.service.SoftwareService;
 import com.yihuacomputer.fish.monitor.service.TransTypeService;
 import com.yihuacomputer.fish.monitor.service.TransactionService;
+import com.yihuacomputer.fish.monitor.service.TransactionViewService;
 import com.yihuacomputer.fish.monitor.service.UncommonTransService;
 import com.yihuacomputer.fish.monitor.service.XfsChartService;
 import com.yihuacomputer.fish.monitor.service.XfsService;
@@ -149,15 +151,20 @@ public class MonitorModule {
 	public ICounterFeitMoneyService counterFeitMoneyService() {
 		return new CounterFeitMoneyService();
 	}
-	
+
 	@Bean
 	public IUncommonTransService uncommonTransService() {
 		return new UncommonTransService();
 	}
-	
+
 
 	@Bean
 	public IXfsChartService xfsChartService() {
 		return new XfsChartService();
+	}
+
+	@Bean
+	public ITransactionViewService transactionViewService() {
+		return new TransactionViewService();
 	}
 }
