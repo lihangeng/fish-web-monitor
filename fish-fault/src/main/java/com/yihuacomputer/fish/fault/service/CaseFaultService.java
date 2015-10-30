@@ -96,6 +96,7 @@ public class CaseFaultService implements ICaseFaultService {
 	@Override
 	public void createCaseFault(ICaseFault caseFault) {
 		caseFault.setFaultTime(new Date());
+		caseFault.setFaultDate(Long.parseLong(DateUtils.get(new Date(), DateUtils.STANDARD_DATE_SHORT)));
 		caseFault.setFaultStatus(FaultStatus.OPEN);
 		this.save(caseFault);
 	}
@@ -109,7 +110,7 @@ public class CaseFaultService implements ICaseFaultService {
 	@Override
 	public IPageResult<ICaseFault> page(int offset, int limit, IFilter filter,long orgId) {
 		StringBuffer hql = new StringBuffer();
-//		IOrganization org = orgService.get(String.valueOf(orgId));
+		IOrganization org = orgService.get(String.valueOf(orgId));
 		List<Object> valueObj = new ArrayList<Object>();
     	IFilterEntry terminalId = filter.getFilterEntry("terminalId");
     	IFilterEntry faultClassify = filter.getFilterEntry("faultClassify");
@@ -125,8 +126,7 @@ public class CaseFaultService implements ICaseFaultService {
     	IFilterEntry upgrade = filter.getFilterEntry("upgrade");
     	hql.append("select caseFault from CaseFault caseFault ,Device device ");
     	hql.append("where caseFault.terminalId = device.terminalId and device.organization.orgFlag like ? ");
-//		valueObj.add("%" + org.getOrgFlag());
-    	valueObj.add("%-1" );
+		valueObj.add("%" + org.getOrgFlag());
 		if(terminalId!=null){
 			hql.append(" and caseFault.terminalId like ?");
 			valueObj.add("%"+terminalId.getValue()+"%");
