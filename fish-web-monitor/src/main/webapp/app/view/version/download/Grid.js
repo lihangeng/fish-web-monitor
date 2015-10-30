@@ -50,7 +50,7 @@ Ext.define('Eway.view.version.download.Grid', {
 				text: '暂停',
 				action: 'pause'
 			}*/, {
-				text: Eway.locale.version.task.cancelJob,'撤销作业',
+				text: Eway.locale.version.task.cancelJob,//'撤销作业',
 				iconCls : 'removeBtn',
 				action: 'remove',
 				code : 'versionMonitorDel',

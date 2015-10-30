@@ -98,7 +98,7 @@ Ext.define('Eway.view.machine.quittingNotice.Update', {
 					allowBlank : false,
 					editable : false
 				},{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.quittingNotice.Eway.locale.machine.quittingNotice.,
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.quittingNotice.Eway.locale.machine.quittingNotice,
 					xtype : 'field_stopType',
 					allowBlank : false,
 					editable : false

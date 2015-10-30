@@ -1,7 +1,10 @@
 package com.yihuacomputer.fish.web.machine.controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +29,10 @@ import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.fish.api.atm.IAtmBrandService;
 import com.yihuacomputer.fish.api.atm.IAtmCatalog;
 import com.yihuacomputer.fish.api.atm.IAtmCatalogService;
+import com.yihuacomputer.fish.api.atm.IAtmModule;
+import com.yihuacomputer.fish.api.atm.IAtmModuleService;
 import com.yihuacomputer.fish.api.atm.IAtmType;
+import com.yihuacomputer.fish.api.atm.IAtmTypeAtmModuleRelationService;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
 import com.yihuacomputer.fish.api.atm.IAtmVendor;
 import com.yihuacomputer.fish.api.device.CashType;
@@ -49,6 +55,12 @@ public class AtmTypeController {
 
 	@Autowired
 	private IAtmCatalogService atmCatalogService;
+	
+	@Autowired
+	private IAtmTypeAtmModuleRelationService relationService;
+	
+	@Autowired
+	private IAtmModuleService moduleService;
 
 	@Autowired
 	private IDeviceService deviceService;
@@ -101,6 +113,12 @@ public class AtmTypeController {
 					result.addAttribute(FishConstant.SUCCESS, false);
 					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("commen.all", null, FishCfg.locale));
 				} else {
+					List<Long> relationedAtmModuleIdsInDB = relationService.findAtmModuleIds(id);
+					List<Long> relationedAtmModuleIdsInDBRemoved = new ArrayList<Long>(relationedAtmModuleIdsInDB);
+					for(Long removedId : relationedAtmModuleIdsInDBRemoved){
+						relationService.unlink(id, removedId);
+					}
+					
 					atmTypeService.remove(id);
 					result.addAttribute(FishConstant.SUCCESS, true);
 				}
@@ -132,10 +150,9 @@ public class AtmTypeController {
 				type.setDevVendor(vendor);
 				type.setCashtype("1".equals(form.getCashtype()) ? CashType.CASH : CashType.NOT_CASH);
 				type.setName(form.getName().trim());
-				type.setSpec(form.getSpec());
-				type.setWatt(form.getWatt());
-				type.setWeight(form.getWeight());
 				atmTypeService.add(type);
+				relationService.link(type.getId(), form.getAtmModules());
+				form.setId(type.getId());
 				result.put(FishConstant.SUCCESS, true);
 				result.addAttribute(FishConstant.DATA, new AtmTypeForm(type));
 			}
@@ -166,15 +183,22 @@ public class AtmTypeController {
 				} else {
 					type.setCashtype("1".equals(form.getCashtype()) ? CashType.CASH : CashType.NOT_CASH);
 					type.setName(form.getName().trim());
-					type.setSpec(form.getSpec());
-					type.setWatt(form.getWatt());
-					type.setWeight(form.getWeight());
 					IAtmVendor atmVendor = atmBrandService.get(form.getDevVendorId());
 					type.setDevVendor(atmVendor);
 					IAtmCatalog atmCatalog = atmCatalogService.get(form.getDevCatalogId());
 					type.setDevCatalog(atmCatalog);
 					atmTypeService.update(type);
-
+					List<Long> atmModules = form.getAtmModules();
+					List<Long> relationedAtmModuleIdsInDB = relationService.findAtmModuleIds(id);
+					List<Long> atmModulesNew = new ArrayList<Long>(atmModules);
+					List<Long> relationedAtmModuleIdsInDBRemoved = new ArrayList<Long>(relationedAtmModuleIdsInDB);
+					atmModulesNew.removeAll(relationedAtmModuleIdsInDB);
+					relationService.link(id, atmModulesNew);
+					relationedAtmModuleIdsInDBRemoved.removeAll(atmModules);
+					for(Long removedId : relationedAtmModuleIdsInDBRemoved){
+						relationService.unlink(id, removedId);
+					}
+					
 					form.setDevVendorName(atmVendor.getName());
 					form.setDevCatalogName(atmCatalog.getName());
 					result.addAttribute(FishConstant.SUCCESS, true);
@@ -218,6 +242,59 @@ public class AtmTypeController {
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, isExistCode(id, no));
 		return result;
+	}
+	/**
+	 * 加载atm模块信息
+	 * @param atmModule
+	 * @return
+	 */
+	@RequestMapping(method = RequestMethod.POST,value="/atmModule")
+	public @ResponseBody ModelMap findModules(@RequestParam int atmTypeId) {
+		logger.info(String.format("findModules : atmTypeId = %s", atmTypeId));
+		ModelMap result = new ModelMap();
+		String data = "";
+		List<IAtmModule> atmModules = moduleService.list();
+		if(atmTypeId == 0){
+			data = toModuleForm(atmModules,null);
+		}else{
+			data = toModuleForm(atmModules,relationService.findAtmModules(atmTypeId));
+		}
+		result.addAttribute(FishConstant.SUCCESS, true);
+		result.addAttribute("data", data);
+		return result;
+		
+	}
+	public String toModuleForm(List<IAtmModule> atmModules,List<IAtmModule> checkeds){
+		StringBuffer result = new StringBuffer("");
+		int length = atmModules.size();
+		Map<Long,IAtmModule> atmModuleMaps = new HashMap<Long,IAtmModule>();
+		if(checkeds != null){
+			for(IAtmModule atmModule : checkeds){
+				atmModuleMaps.put(atmModule.getId(), atmModule);
+			}
+		}
+		for(int i = 0 ; i < length;i++ ){
+			IAtmModule atmModule = atmModules.get(i);
+			result.append(",");
+			result.append("{boxLabel:'").append(atmModule.getNote()).append("',");
+			result.append("name:'atmModules',");
+			if(checkeds != null){
+				IAtmModule checked = atmModuleMaps.get(atmModule.getId());
+				if(checked != null){
+					result.append("checked:true,");
+				}
+			}
+			result.append("inputValue:").append(atmModule.getId()).append("}");
+		}
+		if (result.length() != 0) {
+			result.deleteCharAt(0);
+			result.insert(0, "[");
+			result.append("]");
+		}else{
+			result.append("[]");
+		}
+		return result.toString();
+		
 	}
 
 	/**

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+<Configure class="org.eclipse.jetty.webapp.WebAppContext">
+	<!-- MsSqlServer DataSource -->
+	<New id="atmp" class="org.eclipse.jetty.plus.jndi.Resource">
+		<Arg>java:comp/env/jdbc/fish</Arg>
+		<Arg>
+ 			<New class="org.apache.commons.dbcp.BasicDataSource">
+ 				<Set name="driverClassName">org.hibernate.dialect.MySQL5Dialect</Set>
+ 				<Set name="url">jdbc:mysql://127.0.0.1:3306/atmv</Set> 
+ 				<Set name="username">root</Set>
+				<Set name="password">root</Set>
+			</New>
+		</Arg>
+	</New>
+</Configure>

@@ -80,12 +80,13 @@ public class DeviceOpenRateService implements IReportDataETL {
 			String terminalId = entry.getKey(); // 设备号
 
 			IDevice device = deviceService.get(terminalId);
-			if(device==null||device.getDeviceExtend()==null){
+			if(device==null){
 				logger.warn(String.format("device [%s] not exist!cann't get OpenRate",terminalId));
 				continue;
 			}
-			String deviceOpenTime = device.getDeviceExtend().getOpenTime(); // 开机时间
-			String deviceCloseTime = device.getDeviceExtend().getCloseTime(); // 关机时间
+			//TODO 按照上海农商银行的开机方案调整
+			String deviceOpenTime = "";//device.getDeviceExtend().getOpenTime(); // 开机时间
+			String deviceCloseTime = "";//device.getDeviceExtend().getCloseTime(); // 关机时间
 
 			if (deviceOpenTime==null||deviceCloseTime==null||deviceOpenTime.isEmpty() || deviceCloseTime.isEmpty()) {
 				// 开机时间或者关机时间为空，则不统计此设备

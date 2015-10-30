@@ -4,7 +4,9 @@ Ext.define('Eway.view.version.distribute.VersionStatusDetailGrid', {
 	extend: 'Eway.view.base.Grid',
 	store: 'version.DistributeStatusDetail',
 	border : false,
-
+    width: 300,
+    height: 200,
+	scrollable:'both',
 	initComponent: function() {
 		var me =this;
 		var store = Ext.create('Eway.store.version.DistributeStatusDetail');

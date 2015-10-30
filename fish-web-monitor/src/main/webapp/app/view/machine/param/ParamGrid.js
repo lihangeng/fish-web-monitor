@@ -15,41 +15,20 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 		});
 		store.loadPage(1);
 
-	    var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
-	        clicksToEdit: 1
-	    });
 		Ext.apply(this,{
 	        width: 840,
 	        height: 450,
 	        frame: true,
-//	        title: 'Sponsored Projects',
-	        iconCls: 'icon-grid',
 	        renderTo: document.body,
 	        store: store,
-	        plugins: [cellEditing],
-//	        dockedItems: [{
-//	            dock: 'top',
-//	            xtype: 'toolbar',
-//	            items: [{
-//	                tooltip: 'Toggle the visibility of the summary row',
-//	                text: 'Toggle Summary',
-//	                enableToggle: true,
-//	                pressed: true,
-//	                handler: function() {
-//	                    grid.getView().getFeature('group').toggleSummaryRow();
-//	                }
-//	            }]
-//	        }],
-	        
 	        
 	        features: [{
-	            id: 'group',
 	            ftype: 'groupingsummary',
 	            groupHeaderTpl: '{name}',
 	            hideGroupedHeader: true,
-	            enableGroupingMenu: false
+	            enableGroupingMenu: false,
+	            showSummaryRow : false
 	        }],
-	        
 	        
 			initRegion : true,
 			store : store,
@@ -71,31 +50,22 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 				stripeRows : true
 			},
 			columns : [{
-	            text: '参数类型',
-	            flex: 1,
+	            text: Eway.locale.machine.param.paramType,
 	            tdCls: 'paramKey',
-	            sortable: true,
-	            dataIndex: 'paramKey',
-	            hideable: false,
-	            summaryType: 'count',
-	            summaryRenderer: function(value, summaryData, dataIndex) {
-	                return ((value === 0 || value > 1) ? '(' + value + ' Params)' : '(1 Param)');
-	            }
+	            sortable: true
 	        }, {
-	            header: 'paramType',
-	            width: 180,
+	            header: Eway.locale.machine.param.paramKey,
+	            width: 150,
 	            sortable: true,
-	            dataIndex: 'paramType',
-	            renderer: function(value){
-					if(value == 0){
-						return Eway.locale.machine.param.comboxClassify.unableUpdate;
-					}else if(value == 1){
-						return Eway.locale.machine.param.comboxClassify.ableUpdate;
-					}
-				}
+	            dataIndex: 'paramKey'
 	        }, {
-	            header: '是否可以修改',
-	            width: 136,
+	            header: Eway.locale.machine.param.paramValue,
+	            width: 280,
+	            sortable: true,
+	            dataIndex: 'paramValue',
+	        }, {
+	            header: Eway.locale.machine.param.modifyFlag,
+	            width: 120,
 	            sortable: true,
 	            dataIndex: 'classify',
 	            renderer: function(value){
@@ -105,24 +75,9 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 						return Eway.locale.machine.param.comboxClassify.ableUpdate;
 					}
 				}
-	            
-	        }
-	        , {
-	            header: '参数',
-	            width: 136,
-	            sortable: true,
-	            dataIndex: 'paramKey'
-	        }
-	        
-	        , {
-	            header: '参数值',
-	            width: 100,
-	            sortable: true,
-	            dataIndex: 'paramValue',
-	        }
-	        , {
-	            header: '备注',
-	            width: 100,
+	        },{
+	            header: Eway.locale.version.View.remark,
+	            flex: 1,
 	            sortable: true,
 	            dataIndex: 'description',
 	        }

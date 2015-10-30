@@ -3,8 +3,6 @@
 *  atm  basic tables
 *
 ******************************************************************************************/
-
-
 CREATE TABLE SM_ORG (
   ID BIGINT(20) NOT NULL AUTO_INCREMENT,
   ADDRESS VARCHAR(60) DEFAULT NULL,
@@ -1181,4 +1179,4 @@ SELECT
 		COST_TIME,
 		CARD_TYPE
 FROM
-    HIST_ATMC_TRANSACTION
+    HIST_ATMC_TRANSACTION ;

@@ -11,7 +11,7 @@ Ext.define('Eway.view.version.distribute.View', {
 	title : Eway.locale.version.View.distributionPic,
 	initComponent : function() {
 		Ext.apply(this, {
-			padding:'10 0 10 0',
+			padding:'5 0 0 0',
 			layout : {
 				type : 'border'
 			},

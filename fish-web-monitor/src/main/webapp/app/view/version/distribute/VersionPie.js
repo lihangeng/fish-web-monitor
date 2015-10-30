@@ -23,7 +23,7 @@ Ext.define('Eway.view.version.distribute.VersionPie', {
             xtype: 'polar',
             theme: 'default-gradients',
             width: '100%',
-            height: 200,
+            height: 320,
             store: me.myDataStore,
             insetPadding: 10,
             innerPadding: 20,

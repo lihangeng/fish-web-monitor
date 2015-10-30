@@ -86,4 +86,6 @@ public interface IRetaincardService {
 	public List<IRetaincard> listCardByOrgId(long orgId,IFilter filter);
 	
 	public IPageResult<IRetaincard> page(int offset, int limit, IFilter filter,long orgId,CardStatus status1,CardStatus status2);
+	
+	 public List<Object> statisticsReatainCardTrend(int days);
 }

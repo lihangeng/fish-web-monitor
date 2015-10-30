@@ -35,18 +35,27 @@ Ext.define('Eway.view.version.View', {
 					items : [
 					{
 						xtype : 'bar_3d',
-						 width : 600,
+						width : 600,
 						rowField : 'title',
 						columnField : 'value',
-							rowspan: 4
+						title:'',
+						rowspan: 5
 					} ,{
+						name: 'versionType',
+						fieldLabel : Eway.locale.version.View.versionTypeCode,//'版本路径',
+				        text: '',
+				        style: {
+				            fontSize: '20px'
+				        },
+				        margin: '0 0 0 100'
+				    },{
 						name: 'versionPath',
 						fieldLabel : Eway.locale.version.View.versionPath,//'版本路径',
 				        text: '',
 				        style: {
 				            fontSize: '20px'
 				        },
-				        margin: '0 0 0 120'
+				        margin: '0 0 0 100'
 				    },{
 				    	name: 'versionTime',
 						fieldLabel : Eway.locale.version.View.versionTime,//'创建时间',
@@ -54,7 +63,7 @@ Ext.define('Eway.view.version.View', {
 				        style: {
 				            fontSize: '20px'
 				        },
-				        margin: '0 0 0 120'
+				        margin: '0 0 0 100'
 				    },{
 				    	name: 'versionPerson',
 						fieldLabel : Eway.locale.version.View.versionPerson,//'创建人',
@@ -62,7 +71,7 @@ Ext.define('Eway.view.version.View', {
 				        style: {
 				            fontSize: '20px'
 				        },
-				        margin: '0 0 0 120'
+				        margin: '0 0 0 100'
 				    },{
 				    	name: 'desc',
 						fieldLabel : Eway.locale.version.View.remark,//'备注',
@@ -70,7 +79,7 @@ Ext.define('Eway.view.version.View', {
 				        style: {
 				            fontSize: '20px'
 				        },
-				        margin: '0 0 0 120'
+				        margin: '0 0 0 100'
 				    } ]
 				}, {// 当选择一个图形的内容时，现实对应的设备信息（Grid）
 					xtype : 'version_charts_grid',

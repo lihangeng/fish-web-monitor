@@ -9,7 +9,8 @@ Ext.define('Eway.controller.machine.atmType.AtmType', {
 	models: ['machine.atmType.AtmType',
 	         'Dict'],
 
-	views: ['Eway.view.machine.atmType.AtmTypeView'],
+	views: ['Eway.view.machine.atmType.AtmTypeView',
+	        'machine.atmType.Form'],
 
 	refs: [{
 		ref: 'ewayView',
@@ -35,7 +36,7 @@ Ext.define('Eway.controller.machine.atmType.AtmType', {
 	formConfig : {
 		form : 'Eway.view.machine.atmType.Form',
 		xtype : 'machine_atmType_form',
-		height: 300,
+		width:550,
 		title : Eway.locale.machine.device.devTypeInfo
 	},
 
@@ -55,6 +56,43 @@ Ext.define('Eway.controller.machine.atmType.AtmType', {
 				click : this.onRemove
 			}
 		});
+	},
+	//在打开增加页面之前
+	beforeShowAddWin: function(win,grid){
+		var checkGroup = win.down('form').down("checkboxgroup");
+		checkGroup.getLoader().load({
+			params:{
+				atmTypeId : 0
+			}
+		});
+	},
+	//在增加之前
+	beforeAddSave: function(win,grid){
+		var addForm = win.down('form').getForm();
+		data = addForm.getValues();
+		var atmModules = data.atmModules;
+		if(atmModules && !Ext.isArray(atmModules)){
+			data.atmModules = [atmModules];
+		}
+		return data;
+	},
+	//在打开修改页面之前
+	boforeShowUpdateWin : function(updateWin,grid,record){
+		var checkGroup = updateWin.down('form').down("checkboxgroup");
+		checkGroup.getLoader().load({
+			params:{
+				atmTypeId : record.getId()
+			}
+		});
+	},
+	//在修改之前
+	beforeUpdateSave : function(win,grid,record){
+		var values = win.down('form').getForm().getValues();
+		var atmTypes = values.atmTypes;
+		if(atmTypes && !Ext.isArray(atmModules)){
+			values.atmModules = [atmModules];
+		}
+		record.data.atmModules = values.atmModules;
 	}
 
 

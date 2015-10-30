@@ -11,9 +11,9 @@ Ext.define('Eway.controller.version.VersionDownload', {
 		autoCreate : true,
 		xtype : 'versionDownloadView',
 		id : 'versionDownload'
-	}, {
-		ref : 'grid',
-		selector : 'version_download_grid'
+//	}, {
+//		ref : 'grid',
+//		selector : 'version_download_grid'
 	},{
 		ref : 'filterForm',
 		selector: 'version_download_filterForm'
@@ -28,37 +28,37 @@ Ext.define('Eway.controller.version.VersionDownload', {
 //				activate : this.onViewActivate,
 				deactivate : this.onViewBeforeDeactivate
 			},
-			'#versionDownload button[action=query]' : {
-				click : this.onQuery
-			},
-			'#versionDownload button[action=start]' : {
-				click : this.onStart
-			},
-			'#versionDownload button[action=pause]' : {
-				click : this.onPause
-			},
-			'#versionDownload button[action=remove]' : {
-				click : this.onRemove
-			},
+//			'#versionDownload button[action=query]' : {
+//				click : this.onQuery
+//			},
+//			'#versionDownload button[action=start]' : {
+//				click : this.onStart
+//			},
+//			'#versionDownload button[action=pause]' : {
+//				click : this.onPause
+//			},
+//			'#versionDownload button[action=remove]' : {
+//				click : this.onRemove
+//			},
 			'#versionDownload version_download_grid' :{
 				afterrender : this.onSelectFirst,
 				select : this.onTask
 			},
 			'#versionDownload version_download_taskGrid pagingtoolbar':{
-				beforechange :this.onTaskFresh
-			},
-			'#versionDownload version_download_grid pagingtoolbar':{
 				beforechange :this.onJobFresh
 			},
+//			'#versionDownload version_download_grid pagingtoolbar':{
+//				beforechange :this.onJobFresh
+//			},
 			'#versionDownload version_download_taskGrid button[action=taskquery]':{
 				click :this.onTaskQuery
 			},
 			'#versionDownload version_download_taskGrid button[action=export]':{
 				click :this.onTaskExport
 			},
-			'#versionDownload version_download_taskGrid button[action=rebootAll]':{
-				click :this.onTaskRebootAll
-			},
+//			'#versionDownload version_download_taskGrid button[action=rebootAll]':{
+//				click :this.onTaskRebootAll
+//			},
 			'#versionDownload version_download_taskGrid button[action=autoRefresh]':{
 				click :this.onAutoRefresh
 			},
@@ -125,15 +125,15 @@ Ext.define('Eway.controller.version.VersionDownload', {
 	},
 
 	//查询
-	onQuery: function(){
-		 this.onJobFresh();
-
-		 var grid = this.getGrid();
-		 var store = grid.getStore();
-		 var data = this.getFilterForm().getForm().getValues();//得到所有的查询条件的值 {code='n',name='',....}
-		 store.setUrlParamsByObject(data);
-		 store.loadPage(1);
-	},
+//	onQuery: function(){
+//		 this.onJobFresh();
+//
+//		 var grid = this.getGrid();
+//		 var store = grid.getStore();
+//		 var data = this.getFilterForm().getForm().getValues();//得到所有的查询条件的值 {code='n',name='',....}
+//		 store.setUrlParamsByObject(data);
+//		 store.loadPage(1);
+//	},
 
 	//刷新任务列表
 	onTaskFresh : function(pagingtoolbar){
@@ -162,29 +162,29 @@ Ext.define('Eway.controller.version.VersionDownload', {
 	},
 
 	//开始运行一个作业
-	onStart : function(){
-	},
-
-	//暂停一个作业
-	onPause: function(){
-		var grid = this.getGrid();
-		var store = grid.getStore();
-		var sm = grid.getSelectionModel();
-		if (sm.getCount() == 1) {
-			var record = sm.getLastSelected();
-			Ext.Ajax.request({
-			    url: 'api/version/download/pause',
-			    params: {
-			        id: record.get('id')
-			    },
-			    success: function(response){
-			        var text = response.responseText;
-			    }
-			});
-		}else{
-			Eway.alert(Eway.locale.version.task.selectAJob);//"请选择一个作业.");
-		}
-	},
+//	onStart : function(){
+//	},
+//
+//	//暂停一个作业
+//	onPause: function(){
+//		var grid = this.getGrid();
+//		var store = grid.getStore();
+//		var sm = grid.getSelectionModel();
+//		if (sm.getCount() == 1) {
+//			var record = sm.getLastSelected();
+//			Ext.Ajax.request({
+//			    url: 'api/version/download/pause',
+//			    params: {
+//			        id: record.get('id')
+//			    },
+//			    success: function(response){
+//			        var text = response.responseText;
+//			    }
+//			});
+//		}else{
+//			Eway.alert(Eway.locale.version.task.selectAJob);//"请选择一个作业.");
+//		}
+//	},
 
 	hasSelectOne : function(){
 		var grid = this.getGrid();
@@ -196,49 +196,49 @@ Ext.define('Eway.controller.version.VersionDownload', {
 		return null;
 	},
 
-	//删除一个作业
-	onRemove: function(){
-		var grid = this.getGrid();
-		var store = grid.getStore();
-		var sm = grid.getSelectionModel();
-		if (sm.getCount() == 1) {
-			var record = sm.getLastSelected();
-			var status = record.get('jobStatus');
-			if(status == 'COMPLETE'){
-				Eway.alert(Eway.locale.version.task.cantCancelCompleteJob);//'不能撤销"完成"状态的作业.');
-			}else{
-//					Ext.MessageBox.confirm("提示", "是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)", function(button,text) {
-					Ext.MessageBox.confirm(Eway.locale.confirm.title, Eway.locale.version.task.doSureCancelTheJob, function(button,text) {
-						
-						if (button == "yes") {
-							var winEl = grid.getEl();
-							winEl.mask(Eway.locale.version.task.deleting);//'正在删除......');
-							record.erase({
-								success : function() {
-									winEl.unmask();
-									if(status  == 'RUN'){
-										Eway.alert(Eway.locale.version.task.cancelSuccessBut);//'已经成功撤销作业中还没有运行的任务,此时作业的状态仍然是"运行中",请稍等后刷新作业列表.');
-										//同时刷新任务列表页面
-										Ext.StoreManager.get("version.Task").load();
-									}else{
-										store.remove(record);
-										Eway.alert(Eway.locale.version.task.cancelJobSuccess);//"成功撤销作业.");
-										this.onQuery();
-									}
-								},
-								failure:  function(record,operation){
-									winEl.unmask();
-									Eway.alert(operation.getError());
-								},
-								scope : this
-							});
-						}
-					}, this);
-				}
-		} else {
-			Eway.alert(Eway.locale.version.task.selectAJob);//"请选择一个作业.");
-		}
-	},
+//	//删除一个作业
+//	onRemove: function(){
+//		var grid = this.getGrid();
+//		var store = grid.getStore();
+//		var sm = grid.getSelectionModel();
+//		if (sm.getCount() == 1) {
+//			var record = sm.getLastSelected();
+//			var status = record.get('jobStatus');
+//			if(status == 'COMPLETE'){
+//				Eway.alert(Eway.locale.version.task.cantCancelCompleteJob);//'不能撤销"完成"状态的作业.');
+//			}else{
+////					Ext.MessageBox.confirm("提示", "是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)", function(button,text) {
+//					Ext.MessageBox.confirm(Eway.locale.confirm.title, Eway.locale.version.task.doSureCancelTheJob, function(button,text) {
+//						
+//						if (button == "yes") {
+//							var winEl = grid.getEl();
+//							winEl.mask(Eway.locale.version.task.deleting);//'正在删除......');
+//							record.erase({
+//								success : function() {
+//									winEl.unmask();
+//									if(status  == 'RUN'){
+//										Eway.alert(Eway.locale.version.task.cancelSuccessBut);//'已经成功撤销作业中还没有运行的任务,此时作业的状态仍然是"运行中",请稍等后刷新作业列表.');
+//										//同时刷新任务列表页面
+//										Ext.StoreManager.get("version.Task").load();
+//									}else{
+//										store.remove(record);
+//										Eway.alert(Eway.locale.version.task.cancelJobSuccess);//"成功撤销作业.");
+//										this.onQuery();
+//									}
+//								},
+//								failure:  function(record,operation){
+//									winEl.unmask();
+//									Eway.alert(operation.getError());
+//								},
+//								scope : this
+//							});
+//						}
+//					}, this);
+//				}
+//		} else {
+//			Eway.alert(Eway.locale.version.task.selectAJob);//"请选择一个作业.");
+//		}
+//	},
 
 	setTaskSearchFilter  : function(jobId){
 		var extraParams = {};//{jobId : jobId};

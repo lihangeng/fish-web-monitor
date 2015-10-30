@@ -65,9 +65,6 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.Grid', {
 				header : Eway.locale.machine.atmGroup.cashboxLimit,
 				dataIndex : 'cashboxLimit'
 			}, {
-				header : Eway.locale.machine.atmGroup.installDate,
-				dataIndex : 'installDate'
-			}, {
 				header : Eway.locale.machine.atmGroup.address,
 				dataIndex : 'address',
 				flex : 1

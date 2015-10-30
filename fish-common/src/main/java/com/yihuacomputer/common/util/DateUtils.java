@@ -122,6 +122,18 @@ public class DateUtils {
 		date.add(Calendar.DAY_OF_MONTH, -1);
 		return new SimpleDateFormat(STANDARD_DATE).format(date.getTime());
 	}
+	
+	/**
+	 * 获取当天的前或者后多少天
+	 * -1前一天,1后一天,0当天
+	 *
+	 * @return
+	 */
+	public static Date getDate(int days) {
+		Calendar date = Calendar.getInstance();
+		date.add(Calendar.DAY_OF_MONTH, days);
+		return date.getTime();
+	}
 
 	/**
 	 * 获取上一日日期 格式:yyyyMMdd

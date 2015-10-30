@@ -6,6 +6,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -15,14 +20,15 @@ import com.yihuacomputer.domain.test.BindSessionInTest2;
 import com.yihuacomputer.fish.api.device.StopType;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNotice;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNoticeService;
+import com.yihuacomputer.fish.machine.H2TestConfig;
 
-//@RunWith(SpringJUnit4ClassRunner.class)
-//@ContextConfiguration(classes = H2TestConfig.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = H2TestConfig.class)
 public class QuittingNoticeServiceTest extends BindSessionInTest2{
-//	@Autowired
+	@Autowired
 	private IQuittingNoticeService quittingNoticeService;
 
-//	@Test
+	@Test
 	public void test(){
 
 		Date openTime = DateUtils.getTimestamp("2012-02-27 12:00:00");

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="retain_card_count" language="groovy" pageWidth="1400" pageHeight="1500" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="1360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="29812c6b-87a2-4250-a2fa-e142d6fdd668">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="346"/>
+	<property name="ireport.x" value="232"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<parameter name="reportDate" class="java.lang.String"/>
@@ -20,13 +20,13 @@
 	</background>
 	<title>
 		<band height="36" splitType="Stretch">
-			<staticText>
-				<reportElement uuid="fcf6ff99-80bf-469f-b8b9-12dbd4a33246" x="334" y="0" width="586" height="35"/>
+			<textField>
+				<reportElement uuid="a061a0db-718d-4ae7-816e-e707183cfbee" x="334" y="0" width="586" height="36"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="24" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+					<font size="24"/>
 				</textElement>
-				<text><![CDATA[$P{title}]]></text>
-			</staticText>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -53,7 +53,7 @@
 		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch">
+		<band height="124" splitType="Stretch">
 			<crosstab>
 				<reportElement uuid="8ebdd8d8-d8b0-4363-aabe-6c7d33da29b1" x="334" y="0" width="706" height="42"/>
 				<crosstabParameter name="total">

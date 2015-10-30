@@ -16,6 +16,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.fish.api.fault.IFaultStatisticsService;
+import com.yihuacomputer.fish.api.monitor.business.IRetaincardService;
 import com.yihuacomputer.fish.web.index.form.ChartForm;
 
 @Controller
@@ -26,11 +27,33 @@ public class IndexController {
 	@Autowired
 	private IFaultStatisticsService faultStatisticsService;
 	
+	@Autowired
+	private IRetaincardService retainCardService;
+	
 	@RequestMapping(value = "faultTrendByDay", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap faultTrendByDay(WebRequest wReq, HttpServletRequest req) {
 		logger.info("faultTrendByDay...");
 		List<Object> objects = faultStatisticsService.statisticsFaultTrend(7);
+		List<ChartForm> forms = new ArrayList<ChartForm>();
+		for(Object object : objects){
+			Object[]objs = (Object[])object;
+			ChartForm form = new ChartForm();
+			form.setMonth(objs[0].toString());
+			form.setData1(objs[1].toString());
+			forms.add(form);
+		}
+		ModelMap result = new ModelMap();
+		result.addAttribute(FishConstant.SUCCESS, true);
+		result.addAttribute("data", forms);
+		return result;
+	}
+	
+	@RequestMapping(value = "retainCardByDay", method = RequestMethod.GET)
+	@ResponseBody
+	public ModelMap retainCardByDay(WebRequest wReq, HttpServletRequest req) {
+		logger.info("retainCardByDay...");
+		List<Object> objects = retainCardService.statisticsReatainCardTrend(-7);
 		List<ChartForm> forms = new ArrayList<ChartForm>();
 		for(Object object : objects){
 			Object[]objs = (Object[])object;

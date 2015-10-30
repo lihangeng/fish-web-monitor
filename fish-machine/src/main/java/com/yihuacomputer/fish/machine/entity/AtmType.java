@@ -1,7 +1,6 @@
 package com.yihuacomputer.fish.machine.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,23 +16,21 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.atm.IAtmCatalog;
-import com.yihuacomputer.fish.api.atm.IAtmModule;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.atm.IAtmVendor;
 import com.yihuacomputer.fish.api.device.CashType;
 import com.yihuacomputer.fish.api.device.TypeStatus;
 
-/**e
+/**
+ * e
+ * 
  * @author wangchao
  *
  */
 @Entity
 @Table(name = "DEV_TYPE")
-public class AtmType implements IAtmType,Serializable {
+public class AtmType implements IAtmType, Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5649648438244601048L;
 
 	@Id
@@ -63,24 +60,6 @@ public class AtmType implements IAtmType,Serializable {
 	private IAtmCatalog devCatalog;
 
 	/**
-	 * 设备规格
-	 */
-	@Column(name = "SPEC", length = 20)
-	private String spec;
-
-	/**
-	 * 设备重量
-	 */
-	@Column(name = "WEIGHT", length = 20)
-	private String weight;
-
-	/**
-	 * 平均功率
-	 */
-	@Column(name = "WATT", length = 20)
-	private String watt;
-
-	/**
 	 * 非现金标志
 	 */
 	@Enumerated(EnumType.ORDINAL)
@@ -97,12 +76,12 @@ public class AtmType implements IAtmType,Serializable {
 	 * 状态（标识此类型号的推荐度）
 	 */
 	@Enumerated(EnumType.ORDINAL)
-	@Column(name = "TYPE_STATUS",length = 1)
+	@Column(name = "TYPE_STATUS", length = 1)
 	private TypeStatus typeStatus;
 
 	public AtmType() {
+		this.cashtype = CashType.CASH;
 	}
-
 
 	public long getId() {
 		return id;
@@ -136,30 +115,6 @@ public class AtmType implements IAtmType,Serializable {
 		this.devCatalog = devCatalog;
 	}
 
-	public String getSpec() {
-		return spec;
-	}
-
-	public void setSpec(String spec) {
-		this.spec = spec;
-	}
-
-	public String getWeight() {
-		return weight;
-	}
-
-	public void setWeight(String weight) {
-		this.weight = weight;
-	}
-
-	public String getWatt() {
-		return watt;
-	}
-
-	public void setWatt(String watt) {
-		this.watt = watt;
-	}
-
 	public CashType getCashtype() {
 		return cashtype;
 	}
@@ -168,55 +123,17 @@ public class AtmType implements IAtmType,Serializable {
 		this.cashtype = cashtype;
 	}
 
-	public void update(IAtmType type) {
-		setCashtype(type.getCashtype());
-		setDevCatalog(type.getDevCatalog());
-		setDevVendor(type.getDevVendor());
-		setName(type.getName());
-		setSpec(type.getSpec());
-		setWatt(type.getWatt());
-		setWeight(type.getWeight());
-	}
-
-	@Override
-	public List<IAtmModule> getAtmModules() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setAtmModules(List<IAtmModule> atmModules) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void addAtmModule(IAtmModule atmModule) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void removeAtmModule(IAtmModule atmModule) {
-		// TODO Auto-generated method stub
-
-	}
-
-
 	public String getRemark() {
 		return remark;
 	}
-
 
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
 
-
 	public TypeStatus getTypeStatus() {
 		return typeStatus;
 	}
-
 
 	public void setTypeStatus(TypeStatus typeStatus) {
 		this.typeStatus = typeStatus;

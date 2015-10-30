@@ -50,16 +50,19 @@ Ext.define('Eway.controller.version.Version', {
 				click : this.onUpdate
 			},
 			'versionView version_grid':{
-				   select : this.onSelect
+			    select : this.onSelect
 			},
 			'versionView button[action=down]' :{
 				click : this.onDown
-
 			}
 		});
 		 
 	},
 	onSelect:function( _this, record, index, eOpts ){
+		this.loadChartsInfo(record);
+	},
+	
+	loadChartsInfo:function(record){
 		var me = this;
 		if(undefined==record){
 			return;
@@ -71,22 +74,20 @@ Ext.define('Eway.controller.version.Version', {
 		        versionId:record.get("id")
 		    },
 		    callback: function(records, operation, success) {
-        		var grid = me.getEwayView().down("version_charts_grid")
-        		grid.getStore().load({
-        			 params: {
-        			        versionId:record.get("id"),
-        			        flag:0
-        			    }
-        		 });
+        		var grid = me.getEwayView().down("version_charts_grid");
+        		var gridStore = grid.getStore();
+        		gridStore.setBaseParam("versionId",record.get("id"));
+        		gridStore.setBaseParam("flag",0);
+        		gridStore.loadPage(1);
         		grid.setTitle(chartsStore.getAt(0).get("title")+Eway.locale.title.msg);//"信息");
 		    }
 		});
-		this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionType")+"-"+record.get("versionNo"));
+		this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionTypeDesc")+" - V"+record.get("versionNo"));
+		this.getEwayView().down("panel displayfield[name='versionType']").setValue(record.get("versionType"));
 		this.getEwayView().down("panel displayfield[name='versionPath']").setValue(record.get("versionPath"));
 		this.getEwayView().down("panel displayfield[name='versionTime']").setValue(record.get("createdTime"));
 		this.getEwayView().down("panel displayfield[name='versionPerson']").setValue(record.get("userName"));
 		this.getEwayView().down("panel displayfield[name='desc']").setValue(record.get("desc"));
-
 	},
 
 	//获得版本的Store
@@ -104,6 +105,13 @@ Ext.define('Eway.controller.version.Version', {
 		var data = this.getFilterForm().getForm().getValues();//得到所有的查询条件的值 {code='n',name='',....}
 		store.setUrlParamsByObject(data);
 		store.loadPage(1);
+
+		var grid = this.getGrid();
+		var sm = grid.getSelectionModel();
+		if(sm.getCount() == 1) {
+			var record  = sm.getLastSelected();
+			this.loadChartsInfo(record);
+		}
 	},
 
 	//下发

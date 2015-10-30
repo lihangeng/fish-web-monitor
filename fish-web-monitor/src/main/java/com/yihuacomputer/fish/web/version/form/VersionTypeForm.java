@@ -42,8 +42,6 @@ public class VersionTypeForm {
         this.autoDeploy = type.isAutoDeploy();
         this.versionCatalog = type.getVersionCatalog();
         this.desc = type.getDesc();
-//        this.cashType = type.getRestrictionValue(RestrictionColumn.CASH_TYPE) == null ? "" : type.getRestrictionValue(RestrictionColumn.CASH_TYPE);
-//        this.awayFlag = type.getRestrictionValue(RestrictionColumn.AWAY_FLAG) == null ? "" : type.getRestrictionValue(RestrictionColumn.AWAY_FLAG);
 	}
 
     public long getId() {

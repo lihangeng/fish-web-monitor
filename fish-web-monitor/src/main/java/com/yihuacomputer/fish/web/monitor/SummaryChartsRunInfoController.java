@@ -37,9 +37,11 @@ public class SummaryChartsRunInfoController {
 	
 	@Autowired
 	private IXfsChartService xfsChartService;
-	
+
 	@Autowired
 	private MessageSource messageSourceEnum;
+	@Autowired
+	private MessageSource messageSource;
     private String getEnumI18n(String enumText){
     	if(null==enumText){
     		return "";
@@ -59,7 +61,7 @@ public class SummaryChartsRunInfoController {
         filter = getFilterByRequest(request,filter);
         IPageResult<Object> result = xfsChartService.getXfsChartsDetailInfo(start,limit,filter);
         if(result.list().size()==0){
-            model.put(FishConstant.ERROR_MSG, "我的天啊数据无");
+            model.put(FishConstant.ERROR_MSG, messageSource.getMessage("monitor.summary.noDate=", null, FishCfg.locale));
             model.put(FishConstant.SUCCESS,false);
             return model;
         }
@@ -106,11 +108,13 @@ public class SummaryChartsRunInfoController {
         ChartFormInfo healthyCfi = new ChartFormInfo();
         healthyCfi.setDisplayName(getEnumI18n(DeviceStatus.Healthy.getText()));
         healthyCfi.setFilterStr(DeviceStatus.Healthy.name());
+        healthyCfi.setColor(DeviceStatus.Healthy.getColor());
         healthyCfi.setNumberInfo(healthyList.size());
         list.add(healthyCfi);
         ChartFormInfo otherCfi = new ChartFormInfo();
         otherCfi.setDisplayName(getEnumI18n(DeviceStatus.Fatal.getText()));
         otherCfi.setFilterStr(DeviceStatus.Fatal.name());
+        otherCfi.setColor(DeviceStatus.Fatal.getColor());
         otherCfi.setNumberInfo(allList.size()-healthyList.size());
         list.add(otherCfi);
         model.put(FishConstant.DATA, list);
@@ -135,6 +139,7 @@ public class SummaryChartsRunInfoController {
             RunStatus status = (RunStatus)result[1];
             cfi.setDisplayName(getEnumI18n(status.getText()));
             cfi.setFilterStr(RunStatus.class.getSimpleName()+"."+status.name());
+            cfi.setColor(status.getColor());
             cfi.setNumberInfo(number);
             list.add(cfi);
         }
@@ -161,6 +166,7 @@ public class SummaryChartsRunInfoController {
             NetStatus status = (NetStatus)result[1];
             cfi.setDisplayName(getEnumI18n(status.getText()));
             cfi.setFilterStr(NetStatus.class.getSimpleName()+"."+status.name());
+            cfi.setColor(status.getColor());
             cfi.setNumberInfo(number);
             list.add(cfi);
         }
@@ -186,6 +192,7 @@ public class SummaryChartsRunInfoController {
             int number = Integer.parseInt(String.valueOf(result[0]));
             DeviceStatus status = (DeviceStatus)result[1];
             cfi.setDisplayName(getEnumI18n(status.getText()));
+            cfi.setColor(status.getColor());
             cfi.setFilterStr(DeviceStatus.class.getSimpleName()+"."+status.name());
             cfi.setNumberInfo(number);
             list.add(cfi);
@@ -212,6 +219,7 @@ public class SummaryChartsRunInfoController {
             int number = Integer.parseInt(String.valueOf(result[0]));
             BoxStatus status = (BoxStatus)result[1];
             cfi.setDisplayName(getEnumI18n(status.getText()));
+            cfi.setColor(status.getColor());
             cfi.setFilterStr(BoxStatus.class.getSimpleName()+"."+status.name());
             cfi.setNumberInfo(number);
             list.add(cfi);
@@ -230,7 +238,7 @@ public class SummaryChartsRunInfoController {
     private IFilter getFilterByRequest(HttpServletRequest request, IFilter filter){
     	String args = request.getParameter("args");
     	String []argslipt =  args.split("\\.");
-    	if(args.startsWith(getEnumI18n(DeviceStatus.Healthy.getText()))){
+    	if(args.startsWith(getEnumI18n(DeviceStatus.Healthy.name()))){
     		filter.eq("netRunInfo", NetStatus.Healthy);
     		filter.eq("modRunInfo", DeviceStatus.Healthy);
     		filter.eq("boxRunInfo", BoxStatus.Healthy);

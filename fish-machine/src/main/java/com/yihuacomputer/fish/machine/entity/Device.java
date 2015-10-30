@@ -3,7 +3,6 @@ package com.yihuacomputer.fish.machine.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,7 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,18 +22,13 @@ import javax.persistence.Transient;
 import com.yihuacomputer.common.ITypeIP;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.device.AwayFlag;
-import com.yihuacomputer.fish.api.device.CareLevel;
-import com.yihuacomputer.fish.api.device.CashType;
 import com.yihuacomputer.fish.api.device.IDevice;
-import com.yihuacomputer.fish.api.device.IDeviceExtend;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.device.PlaceType;
+import com.yihuacomputer.fish.api.device.NetType;
 import com.yihuacomputer.fish.api.device.SetupType;
 import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.device.WorkType;
 import com.yihuacomputer.fish.api.person.IOrganization;
-import com.yihuacomputer.fish.api.person.IUser;
-import com.yihuacomputer.fish.system.entity.User;
 
 /**
  * 设备基本信息表
@@ -100,7 +93,7 @@ public class Device implements IDevice, Serializable {
 	/**
 	 * 设备地址
 	 */
-	@Column(name = "ADDRESS", length = 50)
+	@Column(name = "ADDRESS", length = 128)
 	private String address;
 
 	/**
@@ -110,30 +103,11 @@ public class Device implements IDevice, Serializable {
 	private int cashboxLimit;
 
 	/**
-	 * 非现金标志
-	 */
-	@Enumerated(EnumType.STRING)
-	@Column(name = "CASH_TYPE", length = 10)
-	private CashType cashType;
-
-	/**
 	 * 安装方式
 	 */
 	@Enumerated(EnumType.STRING)
 	@Column(name = "SETUP_TYPE", length = 10)
 	private SetupType setupType;
-
-	/**
-	 * atmc软件
-	 */
-	@Column(name = "ATMC_APP", length = 50)
-	private String atmcSoft;
-
-	/**
-	 * 厂商sp类型
-	 */
-	@Column(name = "ATM_SP", length = 50)
-	private String sp;
 
 	/**
 	 * 在行离行标志
@@ -148,20 +122,12 @@ public class Device implements IDevice, Serializable {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "WORK_TYPE", length = 16)
 	private WorkType workType;
-
+	
 	/**
-	 * 设备关注程度
+	 * 设备序列号
 	 */
-	@Enumerated(EnumType.STRING)
-	@Column(name = "CARE_LEVEL", length = 15)
-	private CareLevel careLevel;
-
-	/**
-	 * 设备扩展
-	 */
-	@OneToOne(targetEntity = DeviceExtend.class, cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinColumn(name = "DEVICE_EXTEND_ID", unique = true, nullable = false)
-	private IDeviceExtend deviceExtend;
+	@Column(name = "SERIAL", length = 40)
+	private String serial;
 
 	/**
 	 * 虚拟柜员号
@@ -174,70 +140,25 @@ public class Device implements IDevice, Serializable {
 	 */
 	@Column(name = "MAC", length = 50)
 	private String mac;
-
+	
 	/**
-	 * 是否支持视频播放
+	 * 网络类型
 	 */
-	@Column(name = "VIDEO_TYPE", length = 4)
-	private String videoType;
-
+	@Column(name = "NET_TYPE", length = 2)
+	private NetType netType;
+	
 	/**
-	 * 申请人
-	 */
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = User.class)
-	@JoinColumn(name = "APPLY_ID")
-	private IUser applyId;
-
-	/**
-	 * 申请时间
+	 * 设备安装日期 format(yyyy-MM-dd)
 	 */
 	@Temporal(TemporalType.DATE)
-	@Column(name = "APPLY_TIME", length = 10)
-	private Date applyTime;
-
-	/**
-	 * 审核人
-	 */
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = User.class)
-	@JoinColumn(name = "AUDITER_ID")
-	private IUser auditerId;
-
-	/**
-	 * 审核时间
-	 */
-	@Column(name = "AUD_TIME", length = 10)
-	private Date audTime;
-
-	/**
-	 * 布放位置类型
-	 */
-	@Enumerated(EnumType.STRING)
-	@Column(name = "PLACE_TYPE", length = 16)
-	private PlaceType placeType;
-
-	/**
-	 * 申请备注
-	 */
-	@Column(name = "APPLY_REMARK", length = 100)
-	private String applyRemark;
-
-	/**
-	 * 审核备注
-	 */
-	@Column(name = "AUDITER_REMARK", length = 100)
-	private String auditerRemark;
-
-	/**
-	 * 审核状态
-	 */
-	@Column(name = "CHECK_STATUS", length = 1)
-	private Status checkStatus;
+	@Column(name = "INSTALL_DATE", length = 10)
+	private Date installDate;
 
 	public Device() {
 		this.status = Status.OPENING;
-		this.cashType = CashType.CASH;
-		this.careLevel = CareLevel.GENERAL;
 		this.awayFlag = AwayFlag.LINE;
+		this.netType = NetType.CABLE;
+		this.installDate = new Date();
 	}
 
 	public Device(IDeviceService deviceService) {
@@ -317,18 +238,9 @@ public class Device implements IDevice, Serializable {
 		this.cashboxLimit = cashboxLimit;
 	}
 
-	public IDeviceExtend getDeviceExtend() {
-		return deviceExtend;
-	}
-
-	public void setDeviceExtend(IDeviceExtend deviceExtend) {
-		this.deviceExtend = deviceExtend;
-	}
-
 	public void update(IDevice device) {
 		setAddress(device.getAddress());
 		setCashboxLimit(device.getCashboxLimit());
-		setDeviceExtend(device.getDeviceExtend());
 		setDevType(device.getDevType());
 		setId(device.getId());
 		setIp(device.getIp());
@@ -346,13 +258,6 @@ public class Device implements IDevice, Serializable {
 		this.deviceService = deviceService;
 	}
 
-	public CashType getCashType() {
-		return cashType;
-	}
-
-	public void setCashType(CashType cashType) {
-		this.cashType = cashType;
-	}
 
 	public SetupType getSetupType() {
 		return setupType;
@@ -360,22 +265,6 @@ public class Device implements IDevice, Serializable {
 
 	public void setSetupType(SetupType setupType) {
 		this.setupType = setupType;
-	}
-
-	public String getAtmcSoft() {
-		return atmcSoft;
-	}
-
-	public void setAtmcSoft(String atmcSoft) {
-		this.atmcSoft = atmcSoft;
-	}
-
-	public String getSp() {
-		return sp;
-	}
-
-	public void setSp(String sp) {
-		this.sp = sp;
 	}
 
 	public AwayFlag getAwayFlag() {
@@ -394,14 +283,6 @@ public class Device implements IDevice, Serializable {
 		this.workType = workType;
 	}
 
-	public CareLevel getCareLevel() {
-		return careLevel;
-	}
-
-	public void setCareLevel(CareLevel careLevel) {
-		this.careLevel = careLevel;
-	}
-
 	public String getVirtual() {
 		return virtual;
 	}
@@ -409,14 +290,6 @@ public class Device implements IDevice, Serializable {
 	public void setVirtual(String virtual) {
 		this.virtual = virtual;
 	}
-
-	// public int getPatrolPeriod() {
-	// return patrolPeriod;
-	// }
-	//
-	// public void setPatrolPeriod(int patrolPeriod) {
-	// this.patrolPeriod = patrolPeriod;
-	// }
 
 	public String getMac() {
 		return mac;
@@ -426,92 +299,28 @@ public class Device implements IDevice, Serializable {
 		this.mac = mac;
 	}
 
-	public String getVideoType() {
-		return videoType;
+	public String getSerial() {
+		return serial;
 	}
 
-	public void setVideoType(String videoType) {
-		this.videoType = videoType;
+	public void setSerial(String serial) {
+		this.serial = serial;
 	}
 
-	@Override
-	public IUser getApplyId() {
-		return applyId;
+	public NetType getNetType() {
+		return netType;
 	}
 
-	@Override
-	public void setApplyId(IUser applyId) {
-		this.applyId = applyId;
+	public void setNetType(NetType netType) {
+		this.netType = netType;
 	}
 
-	@Override
-	public Date getApplyTime() {
-		return this.applyTime;
+	public Date getInstallDate() {
+		return installDate;
 	}
 
-	@Override
-	public void setApplyTime(Date applyTime) {
-		this.applyTime = applyTime;
-	}
-
-	@Override
-	public IUser getAuditerId() {
-		return this.auditerId;
-	}
-
-	@Override
-	public void setAuditerId(IUser auditerId) {
-		this.auditerId = auditerId;
-	}
-
-	@Override
-	public Date getAudTime() {
-		return this.audTime;
-	}
-
-	@Override
-	public void setAudTime(Date audTime) {
-		this.audTime = audTime;
-	}
-
-	@Override
-	public PlaceType getPlaceType() {
-		return this.placeType;
-	}
-
-	@Override
-	public void setPlaceType(PlaceType placeType) {
-		this.placeType = placeType;
-	}
-
-	@Override
-	public String getApplyRemark() {
-		return this.applyRemark;
-	}
-
-	@Override
-	public void setApplyRemark(String applyRemark) {
-		this.applyRemark = applyRemark;
-	}
-
-	@Override
-	public String getAuditerRemark() {
-		return this.auditerRemark;
-	}
-
-	@Override
-	public void setAuditerRemark(String auditerRemark) {
-		this.auditerRemark = auditerRemark;
-	}
-
-	@Override
-	public Status getCheckStatus() {
-		return this.checkStatus;
-	}
-
-	@Override
-	public void setCheckStatus(Status checkStatus) {
-		this.checkStatus = checkStatus;
+	public void setInstallDate(Date installDate) {
+		this.installDate = installDate;
 	}
 
 }

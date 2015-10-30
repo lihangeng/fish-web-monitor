@@ -26,17 +26,21 @@ Ext.define('Eway.view.monitor.charts.DonutCharts', {
             insetPadding: 50,
             innerPadding: 20,
             legend: {
-                docked: 'right'
+                docked: 'right',
+                lazy:true
             },
             interactions: ['rotate', 'itemhighlight'],
             series: [{
                 type: 'pie',
+                showInLegend:true,
                 angleField: this.getLabelField(),
                 donut: 50,
                 label: {
                     field: this.getAngleField(),
                     display: 'outside'
                 },
+                useDarkerStrokeColor:false,
+
                 highlight: true,
                 tooltip: {
                     trackMouse: true,
@@ -48,16 +52,11 @@ Ext.define('Eway.view.monitor.charts.DonutCharts', {
                 listeners:{
                 	//点击表格进行查看当前版本详情对应的设备信息
                 	itemclick:function( series, item, event, eOpts ){
-//                		Ext.scroll.Scroller.create({
-//                		    element: 'myElementId'
-//                		});
-                		var win = Ext.create('Eway.view.monitor.charts.MonitorDeviceDetailWindow', {
-                		    title: me.getTitle()+"-"+item.record.get(me.getAngleField())
-                		});
-                		win.show();
-                		var store = win.down("monitor_device_grid").getStore();
+                		var grid = me.up("panel").up("panel").down("monitor_device_grid");
+                		grid.setTitle(me.getTitle()+"-"+item.record.get(me.getAngleField()));
+                		var store = grid.getStore();
                 		store.setBaseParam("args",item.record.get("filterStr"));
-                		store.load();
+                		store.loadPage(1);
                 	}
                 }
             }]

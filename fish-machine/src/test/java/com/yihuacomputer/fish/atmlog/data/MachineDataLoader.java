@@ -3,8 +3,6 @@
  */
 package com.yihuacomputer.fish.atmlog.data;
 
-import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yihuacomputer.common.util.IP;
@@ -21,7 +19,6 @@ import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.device.NetType;
 import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
-import com.yihuacomputer.fish.machine.entity.DeviceExtend;
 
 /**
  * @author dell
@@ -72,41 +69,9 @@ public class MachineDataLoader {
 			int ip = (i == 1 ? 51 : i);
 			device.setIp(new IP("192.168.0." + ip));
 			device.setTerminalId("000" + i);
-//			if (i % 2 == 0) {
-//				device.setDevType(atmTypeService.get("01"));
-//			} else {
-//				device.setDevType(atmTypeService.get("02"));
-//			}
-			DeviceExtend de = new DeviceExtend();
-
-			de.setBuyDate(new Date());
-			de.setCarrier("carrier");
-			de.setCloseTime("10:10:10");
-			de.setCostInterest("costInterest");
-			de.setDecoration(1);
-			de.setDecorationCost(1);
-			de.setDepreciationLife(1);
-			de.setExpireDate(new Date());
-			de.setExpirePmDate(new Date());
-			de.setGovernanceCost(1);
-			de.setGovernanceRent(1);
-			de.setLastPmDate(new Date());
-			de.setMoneyCost(1);
-			de.setMoneyOrg("moneyOrg");
-			de.setNetCost(1);
-			de.setNetType(NetType.CABLE);
-			de.setOpenTime("10:10:10");
-			de.setPatrolPeriod(1);
-			de.setPowerCost(1);
-			de.setPrice(1);
-			de.setSerial("serial");
-			de.setStartDate(new Date());
-			de.setStopDate(new Date());
-			de.setTerminalId("000" + i);
-			de.setInstallDate(new Date());
-
+			device.setNetType(NetType.CABLE);
+			device.setSerial("serial");
 			device.setOrganization(orgService.get("1"));
-			device.setDeviceExtend(de);
 			device.setStatus(Status.OPENING);
 			device.setDevService(orgService.get("1"));
 			device.setAddress(String.format("nanjing-%d", i));
@@ -169,17 +134,12 @@ public class MachineDataLoader {
 		IAtmType type = atmTypeService.make();
 //		type.setNo("01");
 		type.setName("yh6040w");
-		type.setWeight("2000");
 		type.setDevCatalog(atmCatalogService.get("02"));
-//		type.setDevVendor(atmBrandService.get("YH"));
 		atmTypeService.add(type);
 
 		type = atmTypeService.make();
-//		type.setNo("02");
 		type.setName("yh6040t");
-		type.setWeight("2000");
 		type.setDevCatalog(atmCatalogService.get("03"));
-//		type.setDevVendor(atmBrandService.get("YH"));
 		atmTypeService.add(type);
 	}
 
