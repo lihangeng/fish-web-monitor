@@ -100,24 +100,25 @@ public class VersionDownloadController {
     @Autowired
     private MessageSource messageSourceVersion;
     
-    @RequestMapping(method = RequestMethod.GET)
-    public @ResponseBody
-    ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
-        logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
-        IFilter filter = getFilter(request);
-        filter.descOrder("createdTime");
-        ModelMap result = new ModelMap();
-        result.addAttribute(FishConstant.SUCCESS, true);
-       /* result.addAttribute("total", pageResult.getTotal());
-        result.addAttribute("data", toForm(pageResult.list()));*/
-        return result;
-    }
+//    @RequestMapping(method = RequestMethod.GET)
+//    public @ResponseBody
+//    ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
+//        logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
+//        IFilter filter = getFilter(request);
+//        filter.descOrder("createdTime");
+//        ModelMap result = new ModelMap();
+//        result.addAttribute(FishConstant.SUCCESS, true);
+//       /* result.addAttribute("total", pageResult.getTotal());
+//        result.addAttribute("data", toForm(pageResult.list()));*/
+//        return result;
+//    }
 
     /**
      * 创建批量任务
      * @param form
      * @param request
      * @return
+     * 可以全批量的下发所有设备 {@link JobForm.allDevice}
      */
     // 增加
     @RequestMapping(method = RequestMethod.POST)
@@ -131,57 +132,55 @@ public class VersionDownloadController {
         String deviceIds = form.getDeviceIds();
         UserSession session = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
         Object[] ids = null;
-//        if (StringUtils.isNotEmpty(deviceIds)) {
-        	Date createdTime = new Date();
-        	List<Object> lists = deviceSoftVersionService.findDeviceSoftVersions(versionTypeName);
-            Map<Long,String> maps = convertToMap(lists);
-            if(form.isAllDevice()){
-            	List<String> list = new ArrayList<String>();
-            	IFilter filter = new Filter();
-            	filter.eq("orgFlag", session.getOrgFlag());
-            	IPageResult<Object> pageResult = downloadService.getCanPushDevicePagesInfo(0, Integer.MAX_VALUE, version, filter);
-            	for(Object obj:pageResult.list()){
-            		IDevice device = (IDevice)obj;
-            		list.add(String.valueOf(device.getId()));
-            	}
-            	ids = list.toArray();
+    	Date createdTime = new Date();
+    	List<Object> lists = deviceSoftVersionService.findDeviceSoftVersions(versionTypeName);
+        Map<Long,String> maps = convertToMap(lists);
+        if(form.isAllDevice()){
+        	List<String> list = new ArrayList<String>();
+        	IFilter filter = new Filter();
+        	filter.eq("orgFlag", session.getOrgFlag());
+        	IPageResult<Object> pageResult = downloadService.getCanPushDevicePagesInfo(0, Integer.MAX_VALUE, version, filter);
+        	for(Object obj:pageResult.list()){
+        		IDevice device = (IDevice)obj;
+        		list.add(String.valueOf(device.getId()));
+        	}
+        	ids = list.toArray();
+        }
+        else{
+            ids = deviceIds.substring(1).split(",");
+        }
+        
+        for (Object id : ids) {
+            Long deviceId = Long.valueOf(String.valueOf(id));
+            ITask task = taskService.findTask(deviceId, form.getVersionId());
+            //如果存在相关的任务则要判断当前是否可以下发
+            if(null != task){
+            	 if(!TaskStatus.canRun(task.getStatus())){
+            		 continue;
+            	 }
+            	 else{
+            		 task.setStatus(TaskStatus.NEW);
+            		 task.setTaskType(TaskType.MANUAL);
+            		 task.setCreateTime(createdTime);
+            		 task.setTaskCount(task.getTaskCount()+1);
+            	 }
             }
             else{
-                ids = deviceIds.substring(1).split(",");
+            	task = taskService.make(createdTime);
             }
-            
-            for (Object id : ids) {
-                Long deviceId = Long.valueOf(String.valueOf(id));
-                ITask task = taskService.findTask(deviceId, form.getVersionId());
-                //如果存在相关的任务则要判断当前是否可以下发
-                if(null != task){
-                	 if(!TaskStatus.canRun(task.getStatus())){
-                		 continue;
-                	 }
-                	 else{
-                		 task.setStatus(TaskStatus.NEW);
-                		 task.setTaskType(TaskType.MANUAL);
-                		 task.setCreateTime(createdTime);
-                		 task.setTaskCount(task.getTaskCount()+1);
-                	 }
-                }
-                else{
-                	task = taskService.make(createdTime);
-                }
-                task.setTaskBatchName( messageSourceVersion.getMessage("version.download.batchNumber", new Object[]{form.getJobName(),version.getDownloadCounter()}, FishCfg.locale));
-                task.setDeviceId(deviceId);
-                String versionNo = maps.get(deviceId);
-                if(versionNo != null){
-                    task.setVersionBeforeUpdate(versionTypeName + "_" + versionNo);
-                }
-                task.setVersion(version);
-                task.setCreateTime(createdTime);
-                task.setPlanTime(form.getPlanTime() == null ? new Date() : form.getPlanTime());
-                task.setTaskType(TaskType.valueOf(form.getTaskType()));
-                task.setExcuteMachine(request.getLocalAddr());
-                tasks.add(task);
+            task.setTaskBatchName( messageSourceVersion.getMessage("version.download.batchNumber", new Object[]{form.getJobName(),version.getDownloadCounter()}, FishCfg.locale));
+            task.setDeviceId(deviceId);
+            String versionNo = maps.get(deviceId);
+            if(versionNo != null){
+                task.setVersionBeforeUpdate(versionTypeName + "_" + versionNo);
             }
-//        }
+            task.setVersion(version);
+            task.setCreateTime(createdTime);
+            task.setPlanTime(form.getPlanTime() == null ? new Date() : form.getPlanTime());
+            task.setTaskType(TaskType.valueOf(form.getTaskType()));
+            task.setExcuteMachine(request.getLocalAddr());
+            tasks.add(task);
+        }
         taskManager.createTasksByWeb(tasks);
 
         form.setVersionName(version.getFullName() + " [" + version.getServerPath() + "]");
@@ -235,51 +234,51 @@ public class VersionDownloadController {
     }*/
 
     // 获得查询条件
-    private IFilter getFilter(WebRequest request) {
-        IFilter filter = new Filter();
-        Iterator<String> iterator = request.getParameterNames();
-        while (iterator.hasNext()) {
-            String name = iterator.next();
-            if (FishWebUtils.isIgnoreRequestName(name)) {
-                continue;
-            }
-            String value = request.getParameter(name);
-            if (StringUtils.isEmpty(value)) {
-                continue;
-            }
-            if (name.equals("versionTypeId")) {
-                if (!value.equals("0")) {
-                    filter.eq("version.versionType.id", Long.valueOf(value));
-                }
-            } else if (name.equals("versionNo")) {
-                filter.like("version.versionNo", value);
-            } else if ("jobId".equals(name)) {
-                filter.eq("updateDeployDateHistory.jobId", Long.valueOf(value));
-            }
-        }
-        return filter;
-    }
+//    private IFilter getFilter(WebRequest request) {
+//        IFilter filter = new Filter();
+//        Iterator<String> iterator = request.getParameterNames();
+//        while (iterator.hasNext()) {
+//            String name = iterator.next();
+//            if (FishWebUtils.isIgnoreRequestName(name)) {
+//                continue;
+//            }
+//            String value = request.getParameter(name);
+//            if (StringUtils.isEmpty(value)) {
+//                continue;
+//            }
+//            if (name.equals("versionTypeId")) {
+//                if (!value.equals("0")) {
+//                    filter.eq("version.versionType.id", Long.valueOf(value));
+//                }
+//            } else if (name.equals("versionNo")) {
+//                filter.like("version.versionNo", value);
+//            } else if ("jobId".equals(name)) {
+//                filter.eq("updateDeployDateHistory.jobId", Long.valueOf(value));
+//            }
+//        }
+//        return filter;
+//    }
 
-    /**
-     * 已经关联到作业的设备列表
-     *
-     * @param start
-     * @param limit
-     * @param request
-     * @return
-     */
-    @RequestMapping(value = "/linked", method = RequestMethod.GET)
-    public @ResponseBody
-    ModelMap linked(@RequestParam int start, @RequestParam int limit, WebRequest request) {
-        logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
-//        IFilter filter = new Filter();// getFilter(request);
-//        IPageResult<IDevice> page = downloadService.pageLinkedDevices(start, limit, job, filter);
-        ModelMap result = new ModelMap();
-        result.addAttribute(FishConstant.SUCCESS, true);
-//        result.addAttribute("total", page.getTotal());
-        // result.addAttribute("data", toLinkedDeviceForm(page.list()));
-        return result;
-    }
+//    /**
+//     * 已经关联到作业的设备列表
+//     *
+//     * @param start
+//     * @param limit
+//     * @param request
+//     * @return
+//     */
+//    @RequestMapping(value = "/linked", method = RequestMethod.GET)
+//    public @ResponseBody
+//    ModelMap linked(@RequestParam int start, @RequestParam int limit, WebRequest request) {
+//        logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
+////        IFilter filter = new Filter();// getFilter(request);
+////        IPageResult<IDevice> page = downloadService.pageLinkedDevices(start, limit, job, filter);
+//        ModelMap result = new ModelMap();
+//        result.addAttribute(FishConstant.SUCCESS, true);
+////        result.addAttribute("total", page.getTotal());
+//        // result.addAttribute("data", toLinkedDeviceForm(page.list()));
+//        return result;
+//    }
 
     /**
      * 还可以关联到作业的设备列表，
@@ -477,36 +476,36 @@ public class VersionDownloadController {
         return result;
     }
 
-    @RequestMapping(value = "/task/deepCancel", method = RequestMethod.POST)
-    public @ResponseBody ModelMap deepCancelTask(@RequestParam long jobId,@RequestParam long taskId) {
-        logger.info(" deep cancel task: task.id = " + taskId);
-        ModelMap result = new ModelMap();
-        try {
-            taskService.deepCancelApp(taskId);
-            result.addAttribute(FishConstant.SUCCESS, true);
-        } catch (Exception ex) {
-            result.addAttribute(FishConstant.SUCCESS, false);
-            result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage() == null ? "" : ex.getMessage());
-        }
-        return result;
-     }
+//    @RequestMapping(value = "/task/deepCancel", method = RequestMethod.POST)
+//    public @ResponseBody ModelMap deepCancelTask(@RequestParam long jobId,@RequestParam long taskId) {
+//        logger.info(" deep cancel task: task.id = " + taskId);
+//        ModelMap result = new ModelMap();
+//        try {
+//            taskService.deepCancelApp(taskId);
+//            result.addAttribute(FishConstant.SUCCESS, true);
+//        } catch (Exception ex) {
+//            result.addAttribute(FishConstant.SUCCESS, false);
+//            result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage() == null ? "" : ex.getMessage());
+//        }
+//        return result;
+//     }
 
 
-    @RequestMapping(value = "/task/reDistribute", method = RequestMethod.POST)
-    public @ResponseBody
-    ModelMap reDistribute(@RequestParam long taskId) {
-        logger.info(" reDistribute task: task.id = " + taskId);
-        ModelMap result = new ModelMap();
-        try {
-            taskService.reDistribute(taskId);
-            result.addAttribute(FishConstant.SUCCESS, true);
-        }
-        catch (Exception ex) {
-            result.addAttribute(FishConstant.SUCCESS, false);
-            result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage() == null ? "" : ex.getMessage());
-        }
-        return result;
-    }
+//    @RequestMapping(value = "/task/reDistribute", method = RequestMethod.POST)
+//    public @ResponseBody
+//    ModelMap reDistribute(@RequestParam long taskId) {
+//        logger.info(" reDistribute task: task.id = " + taskId);
+//        ModelMap result = new ModelMap();
+//        try {
+//            taskService.reDistribute(taskId);
+//            result.addAttribute(FishConstant.SUCCESS, true);
+//        }
+//        catch (Exception ex) {
+//            result.addAttribute(FishConstant.SUCCESS, false);
+//            result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage() == null ? "" : ex.getMessage());
+//        }
+//        return result;
+//    }
 
     /**
      * 暂停一个作业
@@ -515,17 +514,17 @@ public class VersionDownloadController {
      *            作业ID
      * @return
      */
-    @RequestMapping(value = "/pause", method = RequestMethod.POST)
-    public @ResponseBody
-    String pauseJob(@RequestParam long id) {
-        try {
-//            jobManager.suspendJob(id);
-            return "{'success':true}";
-        }
-        catch (Exception ex) {
-            return "{'success':false,'errors':'" + ex.getMessage() + "'}";
-        }
-    }
+//    @RequestMapping(value = "/pause", method = RequestMethod.POST)
+//    public @ResponseBody
+//    String pauseJob(@RequestParam long id) {
+//        try {
+////            jobManager.suspendJob(id);
+//            return "{'success':true}";
+//        }
+//        catch (Exception ex) {
+//            return "{'success':false,'errors':'" + ex.getMessage() + "'}";
+//        }
+//    }
 
     private List<TaskForm> toTaskForm(List<ITask> tasks) {
         List<TaskForm> forms = new ArrayList<TaskForm>();
@@ -534,14 +533,13 @@ public class VersionDownloadController {
         }
         return forms;
     }
-    public TaskForm convertTaskToTaskForm(ITask task) {
+    private TaskForm convertTaskToTaskForm(ITask task) {
     	TaskForm taskForm = new TaskForm();
 		taskForm.setId(task.getId());
 		taskForm.setExcuteTime(task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime()));
 		taskForm.setSuccess(task.isSuccess());
 		taskForm.setReason(task.getReason());
 		taskForm.setTaskStatus(task.getStatus() == null ? "" : getEnumI18n(task.getStatus().getText()));
-		// taskForm.setjobId(task.getJob().getJobId();
 		taskForm.setVersion(task.getVersion().getVersionNo());
 		taskForm.setState(task.getState());
 		IDevice device = task.getDevice();
@@ -549,7 +547,6 @@ public class VersionDownloadController {
 		taskForm.setTerminalId(device.getTerminalId());
 		taskForm.setDeviceIp(device.getIp().toString());
 		
-//		IOrganization org = organizationService.get(device.getOrganization().getGuid());
 		taskForm.setOrgName(device.getOrganization().getName());
 		if (task.getVersionBeforeUpdate() != null) {
 			int index = task.getVersionBeforeUpdate().indexOf("_");
@@ -571,14 +568,14 @@ public class VersionDownloadController {
      *            作业ID
      * @return
      */
-    @RequestMapping(value = "/rebootAll", method = RequestMethod.POST)
-    public @ResponseBody
-    ModelMap rebootAll(@RequestParam long jobId) {
-        logger.info(" reboot all in job: job.id = " + jobId);
-        ModelMap result = new ModelMap();
-
-        return result;
-    }
+//    @RequestMapping(value = "/rebootAll", method = RequestMethod.POST)
+//    public @ResponseBody
+//    ModelMap rebootAll(@RequestParam long jobId) {
+//        logger.info(" reboot all in job: job.id = " + jobId);
+//        ModelMap result = new ModelMap();
+//
+//        return result;
+//    }
 
     /**
      * 重启某任务对应的设备
@@ -636,19 +633,19 @@ public class VersionDownloadController {
     }
 
 
-    @RequestMapping(value = "/queryUpdateDeployDateHist", method = RequestMethod.GET)
-    public @ResponseBody
-    ModelMap searchUpdateDeployDateHist(@RequestParam int start, @RequestParam int limit, WebRequest request) {
-        logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
-        IFilter filter = getFilter(request);
-        filter.descOrder("noticeTime");
-        IPageResult<IUpdateDeployDateHistory> pageResult = updateDeployDateHistoryService.page(start, limit, filter);
-        ModelMap result = new ModelMap();
-        result.addAttribute(FishConstant.SUCCESS, true);
-        result.addAttribute("total", pageResult.getTotal());
-        result.addAttribute("data", toUpdateDeployDateHistoryForm(pageResult.list(), start));
-        return result;
-    }
+//    @RequestMapping(value = "/queryUpdateDeployDateHist", method = RequestMethod.GET)
+//    public @ResponseBody
+//    ModelMap searchUpdateDeployDateHist(@RequestParam int start, @RequestParam int limit, WebRequest request) {
+//        logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
+//        IFilter filter = getFilter(request);
+//        filter.descOrder("noticeTime");
+//        IPageResult<IUpdateDeployDateHistory> pageResult = updateDeployDateHistoryService.page(start, limit, filter);
+//        ModelMap result = new ModelMap();
+//        result.addAttribute(FishConstant.SUCCESS, true);
+//        result.addAttribute("total", pageResult.getTotal());
+//        result.addAttribute("data", toUpdateDeployDateHistoryForm(pageResult.list(), start));
+//        return result;
+//    }
 
     public List<UpdateDeployDateHistoryForm> toUpdateDeployDateHistoryForm(List<IUpdateDeployDateHistory> list, int start) {
         List<UpdateDeployDateHistoryForm> result = new ArrayList<UpdateDeployDateHistoryForm>();
@@ -669,21 +666,21 @@ public class VersionDownloadController {
         return result;
     }
 
-    @RequestMapping(value = "/reNoticeApp", method = RequestMethod.GET)
-    public @ResponseBody
-    ModelMap reNoticeApp(@RequestParam long updateDeployDateHistoryId , WebRequest request) {
-        logger.info(String.format("reNoticeApp job : updateDeployDateHistoryId = %s  ", updateDeployDateHistoryId));
-        ModelMap result = new ModelMap();
-        try {
-            taskService.reNoticeApp(updateDeployDateHistoryId);
-            result.addAttribute(FishConstant.SUCCESS, true);
-        } catch (Exception e) {
-            result.addAttribute(FishConstant.SUCCESS, false);
-        }
-        return result;
-    }
+//    @RequestMapping(value = "/reNoticeApp", method = RequestMethod.GET)
+//    public @ResponseBody
+//    ModelMap reNoticeApp(@RequestParam long updateDeployDateHistoryId , WebRequest request) {
+//        logger.info(String.format("reNoticeApp job : updateDeployDateHistoryId = %s  ", updateDeployDateHistoryId));
+//        ModelMap result = new ModelMap();
+//        try {
+//            taskService.reNoticeApp(updateDeployDateHistoryId);
+//            result.addAttribute(FishConstant.SUCCESS, true);
+//        } catch (Exception e) {
+//            result.addAttribute(FishConstant.SUCCESS, false);
+//        }
+//        return result;
+//    }
     
-    public boolean canReset(TaskStatus status){
+    private boolean canReset(TaskStatus status){
 	    if((status.equals(TaskStatus.DEPLOYED))
                 || (status.equals(TaskStatus.DOWNLOADED))
                 || (status.equals(TaskStatus.NEW))

@@ -279,7 +279,7 @@ Ext.define('Eway.controller.advert.Advert', {
 			}
 		}
 		else {
-			Eway.alert(,Eway.locale.msg.chooseAdvertToDelete);
+			Eway.alert(Eway.locale.msg.chooseAdvertToDelete);
 		}
 	},
 
@@ -839,7 +839,8 @@ Ext.define('Eway.controller.advert.Advert', {
 				win.close();
 			 },
 			 failure: function(record,operation){
-				 Eway.alert(operation.request.scope.reader.jsonData.errors);
+//				 Eway.alert(operation.request.scope.reader.jsonData.errors);
+				 Eway.alert(operation.request._operation.error.statusText);
 			 },
 			 scope : this
 		});

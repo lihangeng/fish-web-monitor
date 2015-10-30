@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
+import com.yihuacomputer.common.util.StringUtils;
 import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.SetupType;
@@ -169,7 +170,7 @@ public class DeviceForm {
         device.setWorkType(nullObject(getWorkType(), WorkType.class));
         device.setSerial(getSerial());
         device.setNetType(device.getNetType());
-        device.setInstallDate(installDate == null ?  null : DateUtils.getDate(installDate));
+        device.setInstallDate(installDate == null||StringUtils.isEmpty(installDate) ?  null : DateUtils.getDate(installDate));
     }
 
     public static List<DeviceForm> convert(List<IDevice> list) {

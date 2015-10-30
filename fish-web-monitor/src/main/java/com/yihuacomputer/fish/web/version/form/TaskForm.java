@@ -1,9 +1,5 @@
 package com.yihuacomputer.fish.web.version.form;
 
-import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.fish.api.device.IDevice;
-import com.yihuacomputer.fish.api.version.job.task.ITask;
-
 public class TaskForm {
 	private long id;
 

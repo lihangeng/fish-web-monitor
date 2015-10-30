@@ -83,7 +83,7 @@ Ext.define('Eway.view.person.bankOrg.Update', {
 				}],
 				buttonAlign : 'center',
 				buttons: [{
-					text: Eway.locale.button.comfirm,
+					text: Eway.locale.button.confirm,
 					action: 'update'
 				}, {
 					text: Eway.locale.button.reset,

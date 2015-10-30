@@ -13,8 +13,7 @@ Ext.define('Eway.view.version.FilterForm', {
 					fieldLabel : Eway.locale.version.View.versionNo,//'版本号',
 					name : 'versionNo',
 					maxLength: 40,
-					vtype:'versionNo',
-					labelWidth:60
+					vtype:'versionNo'
 				}]},{
 				columnWidth : .3,
 				items : [{
@@ -26,8 +25,7 @@ Ext.define('Eway.view.version.FilterForm', {
 	                valueField : 'value',
 	                displayField: 'display',
 	                emptyText : Eway.locale.version.View.versionStatusEmptyText,
-	                editable : false,
-					labelWidth:60
+	                editable : false
 				}]},{
 				columnWidth : .4,
 				items : [{
@@ -39,8 +37,7 @@ Ext.define('Eway.view.version.FilterForm', {
 	                valueField : 'value',
 	                displayField: 'display',
 	                emptyText : Eway.locale.version.View.autoUpdateEmptyText,
-	                editable : false,
-					labelWidth:100
+	                editable : false
 				}]}
 			 ]
 		});

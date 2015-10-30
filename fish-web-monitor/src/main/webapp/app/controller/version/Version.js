@@ -50,7 +50,7 @@ Ext.define('Eway.controller.version.Version', {
 				click : this.onUpdate
 			},
 			'versionView version_grid':{
-				   select : this.onSelect
+			    select : this.onSelect
 			},
 			'versionView button[action=down]' :{
 				click : this.onDown
@@ -59,6 +59,10 @@ Ext.define('Eway.controller.version.Version', {
 		 
 	},
 	onSelect:function( _this, record, index, eOpts ){
+		this.loadChartsInfo(record);
+	},
+	
+	loadChartsInfo:function(record){
 		var me = this;
 		if(undefined==record){
 			return;
@@ -75,12 +79,6 @@ Ext.define('Eway.controller.version.Version', {
         		gridStore.setBaseParam("versionId",record.get("id"));
         		gridStore.setBaseParam("flag",0);
         		gridStore.loadPage(1);
-//        		grid.getStore().load({
-//        			 params: {
-//        			        versionId:record.get("id"),
-//        			        flag:0
-//        			    }
-//        		 });
         		grid.setTitle(chartsStore.getAt(0).get("title")+Eway.locale.title.msg);//"信息");
 		    }
 		});
@@ -90,7 +88,6 @@ Ext.define('Eway.controller.version.Version', {
 		this.getEwayView().down("panel displayfield[name='versionTime']").setValue(record.get("createdTime"));
 		this.getEwayView().down("panel displayfield[name='versionPerson']").setValue(record.get("userName"));
 		this.getEwayView().down("panel displayfield[name='desc']").setValue(record.get("desc"));
-
 	},
 
 	//获得版本的Store
@@ -108,6 +105,13 @@ Ext.define('Eway.controller.version.Version', {
 		var data = this.getFilterForm().getForm().getValues();//得到所有的查询条件的值 {code='n',name='',....}
 		store.setUrlParamsByObject(data);
 		store.loadPage(1);
+
+		var grid = this.getGrid();
+		var sm = grid.getSelectionModel();
+		if(sm.getCount() == 1) {
+			var record  = sm.getLastSelected();
+			this.loadChartsInfo(record);
+		}
 	},
 
 	//下发
