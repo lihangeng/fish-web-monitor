@@ -371,8 +371,8 @@ Ext.define('Eway.controller.machine.Device', {
 
 			maintain.on('render', this.renderMaintain, this);
 			tubeMachine.on('render', this.renderTubeMachine, this);
-			orgPerson.on('render', this.renderOrganization, this);
-			planInfo.on('render', this.renderPlanInfo, this);
+			//orgPerson.on('render', this.renderOrganization, this);
+			//planInfo.on('render', this.renderPlanInfo, this);
 
 			win.show();
 
