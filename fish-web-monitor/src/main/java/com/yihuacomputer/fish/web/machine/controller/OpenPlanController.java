@@ -61,7 +61,7 @@ import com.yihuacomputer.fish.web.machine.form.OpenPlanForm;
  *
  */
 @Controller
-@RequestMapping(value = "/srcb/plan")
+@RequestMapping(value = "/plan")
 public class OpenPlanController {
 
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(OpenPlanController.class);
@@ -81,7 +81,7 @@ public class OpenPlanController {
 	@Autowired
 	private IOpenPlanDeviceRelation relationService;
 
-	@Autowired
+//	@Autowired
 	//private ITempOpenPlanDevRelation tempOpenPlanDevRelation;
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -377,14 +377,14 @@ public class OpenPlanController {
 		filter.addFilterEntry(FilterFactory.eq("openPlanId", form.getId()));
 		ModelMap result = new ModelMap();
 		if (!relationService.isExistPlanLink(filter)) {
-			IDeviceOpenPlan openPlan = openPlanService.getDeviceOpenPlanById(form.getId());
+			IDeviceOpenPlan openPlan = openPlanService.getDeviceOpenPlanById(Long.valueOf(id));
 			if (openPlan == null) {
 				result.addAttribute("success", false);
 				result.addAttribute("type", 1);
 				result.addAttribute("errors", "该方案不存在，请刷新后查看！");
 				return result;
 			}
-			if (isExistCode(form.getId(), form.getName()) == true) {
+			if (isExistCode(Long.valueOf(id), form.getName()) == true) {
 				result.put("success", false);
 				result.put("errors", "该开机方案已存在，请重新输入！");
 				return result;

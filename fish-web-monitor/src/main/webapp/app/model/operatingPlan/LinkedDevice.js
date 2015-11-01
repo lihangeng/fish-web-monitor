@@ -19,7 +19,7 @@ Ext.define('Eway.model.operatingPlan.LinkedDevice', {
 		name : 'installDate'
 	}, 'address', 'status', 'devServiceName', {
 		name : 'cashboxLimit',
-		type : 'number'
+		
 	} ],
 	proxy : {
 		type : 'rest',
