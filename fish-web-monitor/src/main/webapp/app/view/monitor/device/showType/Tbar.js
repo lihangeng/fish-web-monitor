@@ -3,6 +3,13 @@ Ext.define('Eway.view.monitor.device.showType.Tbar', {
 	extend : 'Ext.toolbar.Toolbar',
 
 	initComponent : function() {
+		
+		var store = Ext.create('Eway.store.monitor.device.DeviceFilter');
+		store.setUrlParamsByObject({
+			userId : ewayUser.getId()
+		});
+		store.loadPage(1);
+		
 		Ext.apply(this, {
 			items : [
 				Eway.locale.commen.terminalId + ':',
@@ -18,8 +25,19 @@ Ext.define('Eway.view.monitor.device.showType.Tbar', {
 				                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.listPattern, action : 'listPattern'},
 				                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.boxPattern, action : 'boxPattern'}
 				                       ]},
-                {text : Eway.locale.monitor.devMonitor.monitorState, action : 'monitorState'}
-			]
+				{text : Eway.locale.monitor.devMonitor.monitorState, action : 'monitorState'},
+                {
+                	xtype : 'combobox',
+                	action : 'filterName',
+                	hideLabel : false,
+                	editable : false,
+                	emptyText : Eway.locale.combox.select,
+				    store: store,
+				    queryMode: 'local',
+				    displayField: 'filterName',
+				    valueField: 'id'
+                } 
+        	]
 		});
 
 		this.callParent(arguments);
