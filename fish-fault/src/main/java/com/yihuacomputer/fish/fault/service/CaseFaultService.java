@@ -179,7 +179,7 @@ public class CaseFaultService implements ICaseFaultService {
 			hql.append(" and device.devType.id = ?");
 			valueObj.add(Long.parseLong(devType.getValue().toString()));
 		}
-//		hql.append(" order by caseFault.faultTime desc");
+		hql.append(" order by caseFault.faultTime desc");
 		IPageResult<ICaseFault> result = (IPageResult<ICaseFault>)this.dao.page(offset,limit,hql.toString(), valueObj.toArray());
     	return result;
 	}
