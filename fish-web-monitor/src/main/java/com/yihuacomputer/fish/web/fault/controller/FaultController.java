@@ -104,11 +104,16 @@ public class FaultController
                 }
             }
         }
+        long time1 = System.currentTimeMillis() ;
         IPageResult<ICaseFault> pageResult = service.page(start, limit, filter, orgId);
+        long time2 = System.currentTimeMillis() ;
+        logger.info(String.format("query fault cost time [%s]ms", (time2-time1)));
         List<ICaseFault> list = pageResult.list();
         result.addAttribute(FishConstant.SUCCESS, true);
         result.addAttribute("total", pageResult.getTotal());
         result.addAttribute("data", CaseFaultForm.convert(list));
+        long time3 = System.currentTimeMillis() ;
+        logger.info(String.format("convert fault cost time [%s]ms", (time3-time2)));
         return result;
     }
 
