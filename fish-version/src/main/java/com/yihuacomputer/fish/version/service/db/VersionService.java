@@ -531,6 +531,8 @@ public class VersionService implements IDomainVersionService {
 			versionDistributeDetail.setOrgName(device.getOrganization().getName());
 			versionDistributeDetail.setStatusText(getEnumI18n(task.getStatus().getText()));
 			versionDistributeDetail.setUpdateType(getEnumI18n(task.getTaskType().getText()));
+			versionDistributeDetail.setTaskStatus(task.getStatus().name());
+			versionDistributeDetail.setVersionId(task.getVersion().getId());
 			versionDistributeDetail.setVendor(device.getDevType().getDevVendor().getName());
 			statusDistributeList.add(versionDistributeDetail);
 		}

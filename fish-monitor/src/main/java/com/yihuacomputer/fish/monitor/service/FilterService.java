@@ -1,9 +1,14 @@
 package com.yihuacomputer.fish.monitor.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.monitor.filter.IClassifyModStatusFilter;
 import com.yihuacomputer.fish.api.monitor.filter.IFilterService;
@@ -25,68 +30,114 @@ import com.yihuacomputer.fish.monitor.entity.filter.TransationFilter;
 @Transactional
 public class FilterService implements IFilterService {
 
-	@Autowired
-	private IGenericDao dao;
-	
-	@Override
-	public void updateStatusFilter(IStatusFilter filter) {
-		this.dao.update(filter);	
-	}
+    @Autowired
+    private IGenericDao dao;
 
-	@Override
-	public IStatusFilter loadStatusFilter(String userId) {		
-		return this.dao.get(userId, StatusFilter.class);
-	}
+    @Override
+    public void updateStatusFilter(IStatusFilter filter) {
+        this.dao.update(filter);
+    }
 
-	@Override
-	public IStatusFilter makeStatusFilter() {
-		IStatusFilter filter = new StatusFilter();
-		filter.setBoxStatusFilter(new BoxStatusFilter());
-		filter.setRunStattusFilter(new RunStatusFilter());
-		filter.setNetStatusFilter(new NetStatusFilter());
-		filter.setModStatusFilter(new ModStatusFilter());
-		return filter;
-	}
+    @Override
+    public IStatusFilter makeStatusFilter() {
+        IStatusFilter filter = new StatusFilter();
+        filter.setBoxStatusFilter(new BoxStatusFilter());
+        filter.setRunStattusFilter(new RunStatusFilter());
+        filter.setNetStatusFilter(new NetStatusFilter());
+        filter.setModStatusFilter(new ModStatusFilter());
+        return filter;
+    }
 
-	@Override
-	public IStatusFilter makeAndSaveStatusFilter(String userId) {
-		IStatusFilter filter = new StatusFilter();
-		filter.setUserId(userId);
-		filter.setBoxStatusFilter(new BoxStatusFilter());
-		filter.setRunStattusFilter(new RunStatusFilter());
-		filter.setNetStatusFilter(new NetStatusFilter());
-		filter.setModStatusFilter(new ModStatusFilter());
-		this.dao.save(filter);
-		return filter;
-	}
+    @Override
+    public IStatusFilter makeAndSaveStatusFilter(String userId) {
+        IStatusFilter filter = new StatusFilter();
+        filter.setUserId(userId);
+        filter.setBoxStatusFilter(new BoxStatusFilter());
+        filter.setRunStattusFilter(new RunStatusFilter());
+        filter.setNetStatusFilter(new NetStatusFilter());
+        filter.setModStatusFilter(new ModStatusFilter());
+        this.dao.save(filter);
+        return filter;
+    }
 
-	@Override
-	public ITransationFilter makeTransactionFilter() {
-		TransationFilter transationFilter = new TransationFilter();
-		return transationFilter;
-	}
+    @Override
+    public ITransationFilter makeTransactionFilter() {
+        TransationFilter transationFilter = new TransationFilter();
+        return transationFilter;
+    }
 
-	@Override
-	public IProcessFilter makeProcessFilter() {
-		ProcessFilter processFilter = new ProcessFilter();
-		return processFilter;
-	}
+    @Override
+    public IProcessFilter makeProcessFilter() {
+        ProcessFilter processFilter = new ProcessFilter();
+        return processFilter;
+    }
 
-	@Override
-	public IRetaincardFilter makeRetaincardFilter() {
-		return new RetaincardFilter();
-	}
+    @Override
+    public IRetaincardFilter makeRetaincardFilter() {
+        return new RetaincardFilter();
+    }
 
-	public IClassifyModStatusFilter makeClassifyModStatusFilter() {
-		return new ClassifyModStatusFilter();
-	}
+    public IClassifyModStatusFilter makeClassifyModStatusFilter() {
+        return new ClassifyModStatusFilter();
+    }
 
-//	public IClassifyBoxStatusFilter makeClassifyBoxStatusFilter() {
-//		return new ClassifyBoxStatusFilter();
-//	}
+    @Override
+    public void save(IStatusFilter statusFilter) {
+        dao.save(statusFilter);
+    }
 
-//	public IClassifyNetStatusFilter makeClassifyNetStatusFilter() {
-//		return new ClassifyNetStatusFilter();
-//	}
+    @Override
+    public void delete(IStatusFilter statusFilter) {
+        dao.delete(statusFilter);
+    }
+
+    @Override
+    public void delete(long id) {
+        dao.delete(id, StatusFilter.class);
+    }
+
+    @Override
+    public List<IStatusFilter> list() {
+        return list(new Filter());
+    }
+
+    @Override
+    public List<IStatusFilter> list(IFilter filter) {
+        return dao.findByFilter(filter, IStatusFilter.class);
+    }
+
+    @Override
+    public IStatusFilter get(long id) {
+        return dao.get(id, StatusFilter.class);
+    }
+
+    @Override
+    public List<IStatusFilter> loadUserStatusFilter(String userId) {
+        IFilter filter = new Filter();
+        filter.eq("userId", userId);
+
+        return list(filter);
+    }
+
+    @Override
+    public IPageResult<IStatusFilter> page(int offset, int limit, IFilter filter) {
+
+//        String hql = "select sf,o,at,ag from StatusFilter sf, Organization o, AtmType at, AtmGroup ag ";
+//        hql += " where sf.devType=at.id and sf.orgId=o.id and sf.atmGroup=ag.id ";
+//
+//        List<Object> arrayObj = new ArrayList<Object>();
+//
+//        return (IPageResult<Object>) dao.page(offset, limit, filter, hql, arrayObj.toArray());
+        
+        return dao.page(offset, limit, filter, StatusFilter.class);
+    }
+
+    // public IClassifyBoxStatusFilter makeClassifyBoxStatusFilter() {
+    // return new ClassifyBoxStatusFilter();
+    // }
+
+    // public IClassifyNetStatusFilter makeClassifyNetStatusFilter() {
+    // return new ClassifyNetStatusFilter();
+    // }
 
 }
