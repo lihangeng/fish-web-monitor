@@ -314,7 +314,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				}
 			})
 			if(flag){
-				var record = Ext.ModelManager.create(data, 'Eway.model.operatingPlan.OpenPlanDetail');
+				var record = Ext.create( 'Eway.model.operatingPlan.OpenPlanDetail',data);
 				infoWeekGrid.getStore().add(record);
 			}else{
 				if(alertMsg ==null){
@@ -373,7 +373,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			if(!flag){
 				return;
 			}
-			var record = Ext.ModelManager.create(data, 'Eway.model.operatingPlan.OpenPlanDetail');
+			var record = Ext.create('Eway.model.operatingPlan.OpenPlanDetail',data);
 			infoDateGrid.getStore().add(record);
 		});
 
@@ -431,7 +431,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			planDetails = planDetails.substring(1);
 			planDetails = "[" + planDetails + "]";
 		var data1 = new Object();
-		var record1 = Ext.ModelManager.create(data1,'Eway.model.operatingPlan.OpenPlan');
+		var record1 = Ext.create( 'Eway.model.operatingPlan.OpenPlan',data1);
     	record1.set('id',0);
     	record1.set('name',data.name);
     	record1.set('desc',data.desc);
@@ -449,9 +449,14 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				store.loadPage(1);
 				Ext.Msg.alert("提示", "添加成功！");
 			},
+//			failure: function(record,operation){
+//				Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors);
+//			}
 			failure: function(record,operation){
-				Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors);
-			}
+				Eway.alert("提示", operation.getError());
+				
+			 },
+			
 
 		});
 		}else{
@@ -473,7 +478,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		var grid = this.getGrid();
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
-			var detailWin = Ext.create('Eway.view.operatingPlan.PlanInfoWin');
+			var detailWin = Ext.create('Eway.view.operatingPlan.PlanInfoWin',data);
 			var record = sm.getLastSelected();
 			var store = detailWin.down('planInfo_grid').getStore();
 			store.load({
@@ -596,7 +601,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 							alertMsg = alertMsg +","+myCheckboxGroup.getChecked()[i].boxLabel;
 						}
 					}else{
-						var record = Ext.ModelManager.create(data, 'Eway.model.operatingPlan.OpenPlanDetail');
+						var record = Ext.create( 'Eway.model.operatingPlan.OpenPlanDetail',data);
 						infoWeekGrid.getStore().add(record);
 					}
 				}
@@ -731,12 +736,12 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			},
 			failure: function(record,operation){
 				if(operation.request.scope.reader.jsonData.type==null){
-					Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors,function(){
+					Ext.Msg.alert("提示", operation.getError(),function(){
 						//解决脏数据
 						store.rejectChanges();
 					});
 				}else{
-					Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors,function(){
+					Ext.Msg.alert("提示", operation.getError(),function(){
 						//解决脏数据
 						store.rejectChanges();
 						win.close();
@@ -744,7 +749,6 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					});
 				}
 			},
-
 
 		});
 		}else{
@@ -763,7 +767,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			var PlanDeviceWin = Ext.create('Eway.view.operatingPlan.PlanDevice');
-			var linkedPanel = PlanDeviceWin.down('operatingPlan_linkedDevicePanel');
+			/*var linkedPanel = PlanDeviceWin.down('operatingPlan_linkedDevicePanel');
 			linkedPanel.down("field[name='planId']").setValue(record.data.id);
 			var linkingPanel = PlanDeviceWin.down('operatingPlan_linkingDevicePanel');
 			linkingPanel.down("field[name='planId']").setValue(record.data.id);
@@ -798,7 +802,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				);
 			linkedDeviceGrid.on("destroy",Ext.bind(this.onQuery,this));
 			PlanDeviceWin.show();
-		}
+		*/}
 		else {
 			Ext.Msg.alert("提示", "请选择您应用的方案！");
 		}
@@ -939,7 +943,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
-							record.destroy({
+							record.erase({
 								success: function(){
 									Ext.Msg.alert("提示", "删除成功！");
 									var values = view.down('operatingPlan_filterForm').getForm().getValues();
@@ -948,7 +952,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 									store.loadPage(1);
 								},
 								failure: function(record,operation){
-									Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors);
+									Ext.Msg.alert("提示", operation.getError());
 									grid.getStore().load();
 								},
 								scope:this
