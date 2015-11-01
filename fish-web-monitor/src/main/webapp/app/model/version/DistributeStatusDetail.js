@@ -2,7 +2,7 @@
 Ext.define('Eway.model.version.DistributeStatusDetail', {
 	extend: 'Ext.data.Model',
 	fields: ['terminalId', 'orgName','deviceType','vendor','beforeUpdateVersionNo',
-             'afterUpdateVersionNo','statusText','ip','updateType' ],
+             'afterUpdateVersionNo','statusText','ip','updateType','versionId' ],
     proxy: {
         type: 'rest',
         url: 'api/version/version/distributeStatusDetail',

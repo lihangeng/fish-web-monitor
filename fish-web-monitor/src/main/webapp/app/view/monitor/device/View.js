@@ -16,7 +16,7 @@ Ext.define('Eway.view.monitor.device.View',{
 		'Eway.view.monitor.device.showType.BoxGrid',
 		'Eway.view.monitor.device.showType.DataViewGrid',
 		'Eway.view.monitor.device.showType.ListGrid',
-		'Eway.view.monitor.device.showType.Tbar'
+		'Eway.view.monitor.device.showType.Tbar','Eway.view.monitor.charts.View'
 	],
 
 	initComponent : function(){
@@ -32,10 +32,13 @@ Ext.define('Eway.view.monitor.device.View',{
 					region : 'center',
 					xtype : 'panel',
 					layout : 'card',
-					activeItem : 1,
+					activeItem : 3,
 					itemId : 'card_itemId',
 					tbar : [
-						'订阅条件:南京分行&nbsp;0000111&nbsp;运行状态[正常服务|客户交易]&nbsp;模块状态[故障]&nbsp;钞箱状态[正常|钞少]&nbsp;网络状态[网络正常]'
+						'订阅条件:', {
+							xtype : 'label',
+							text : '南京分行&nbsp;0000111&nbsp;运行状态[正常服务|客户交易]&nbsp;模块状态[故障]&nbsp;钞箱状态[正常|钞少]&nbsp;网络状态[网络正常]'	
+						}
 					],
 					dockedItems: [ {
 						
@@ -53,11 +56,12 @@ Ext.define('Eway.view.monitor.device.View',{
 					}, {
 						
 						// 矩形方式
-						name : 'matrix',
 						xtype : 'panel',
+						itemId : 'martrixPanel',
 						autoScroll : true,
-						itemId : 'dataview',
 						items : {
+							name : 'matrix',
+							itemId : 'dataview',
 							xtype : 'monitor_device_showtype_dataviewgrid',
 							store : 'dataViewStore'
 						},
@@ -72,6 +76,12 @@ Ext.define('Eway.view.monitor.device.View',{
 						itemId : 'box',
 						name : 'box',
 						xtype : 'monitor_device_showtype_boxgrid'
+					} , {
+						
+						//　全局模式
+						itemId : 'summary',
+						name : 'summary',
+						xtype : 'monitor_view'
 					} ]
 				} ]
 			} ],
@@ -132,13 +142,10 @@ Ext.define('Eway.view.monitor.device.View',{
 			return;
 		}
 		var cardp = this.down('panel[itemId="card_itemId"]');
-		//清空查询条件
-		this.resetFormFilter(cardp);
 
 		var p = cardp.getLayout().getActiveItem();
 		var store;
-		if (p.getItemId() == 'dataview') {
-			
+		if (p.getItemId() == 'martrixPanel') {
 			store = p.down('monitor_device_showtype_dataviewgrid').getStore();
 			
 		} else {
@@ -151,15 +158,17 @@ Ext.define('Eway.view.monitor.device.View',{
 		});
 		this.doCometd(store);
 	},
-
-	//激活页面的时候，清空查询条件
-	resetFormFilter : function(panel) {
-//		var numberField = panel.down('textfield[action="number"]');
-//		numberField.setValue(120);
-//		var deviceCodeField = panel.down('textfield[action="deviceNumber"]');
-//		deviceCodeField.setValue(null);
-//		var common_orgComboOrgTree = panel.down("common_orgComboOrgTree");
-//		common_orgComboOrgTree.clearValue();
+	
+	//订阅
+	publish : function(params, store){
+		var me = this;
+		var devices = "";
+		store.each(function(record) {
+			devices = devices+"/"+record.get('code');
+		});
+		var params = this.getParams();
+		params.devices = devices.slice(1);
+		Ext.Cometd.publish('/service/status/join', params);
 	},
 
 	//握手成功后加载数据，加载数据的时候订阅
@@ -175,20 +184,18 @@ Ext.define('Eway.view.monitor.device.View',{
 	},
 
 	//握手
-	_metaHandshake : function(message,store){
+	_metaHandshake : function(message, store){
 		if(message.successful){
 			var isDis = Ext.Cometd.isDisconnected();
 			if(!isDis){
 				this._connectionInitalized();
-				var numberField = this.down('textfield[action="number"]');
-				var limitP = this.getPageSize();
+				var filterNameField = this.down('combobox[action="filterName"]');
+				var filterId = filterNameField.getValue();
 				store.load({
 					params : {
-						startP : 0 ,
-						limitP : limitP,
-						userId : test_userId,
-						filterUserId : ewayUser.getId(),
-						orgId: ewayUser.getOrgId()
+						userId: ewayUser.getId(),
+						orgId: ewayUser.getOrgId(),
+						filterId: filterId
 					}
 				});
 			}
@@ -214,7 +221,7 @@ Ext.define('Eway.view.monitor.device.View',{
 		if(itemId == 'list' || itemId == 'box'){
 			this.doGridPanel(currentPanel,object);
 		}
-		else if(itemId == 'dataview'){
+		else if (p.getItemId() == 'martrixPanel') {
 			this.doDataViewPanel(currentPanel,object);
 		}/*
 		else if(itemId == 'mapview') {
@@ -281,70 +288,49 @@ Ext.define('Eway.view.monitor.device.View',{
 	},
 
 	changeFilterLoad : function(panel,params){
-//		var store = panel.getStore();
-
 		var store;
-		if (panel.getItemId() == 'dataview') {
-			
+		if (panel.getItemId() == 'martrixPanel') {
 			store = panel.down('monitor_device_showtype_dataviewgrid').getStore();
-			
 		} else {
 			store = panel.getStore();
 		}
-		
-		
-		
 		var me = this;
-		store.on('load',Ext.Function.pass(this.publish,[params],me),this,{
-			single : true
-		});
+		
 		var tempParams = this.getParams(params);
 		if (!tempParams) {
 			return;
 		}
+		
+		store.setUrlParamsByObject(tempParams);
 		store.load({
-			method : 'POST',
-			params : tempParams
+			method : 'POST'
+		});
+		
+		store.on('load',Ext.Function.pass(this.publish,[tempParams],me),this,{
+			single : true
 		});
 	},
 
 	getParams : function(params) {
 		var tempParams = {};
-		for(var i in params){
-			if((typeof params[i]) == 'object' ){
-				for(var j in params[i]){
-					tempParams[j] = params[i][j];
-				}
-			}
-			else {
-				tempParams[i] = params[i];
-			}
+		
+		tempParams.userId = ewayUser.getId();
+		tempParams.orgId = ewayUser.getOrgId();
+		
+		// 设备号
+		var deviceCodeField = this.down('textfield[action="deviceNumber"]');
+		var deviceCode = deviceCodeField.getValue();
+		if(deviceCode) {
+			tempParams.deviceCode = deviceCode;
 		}
-		tempParams.userId = test_userId;
-		tempParams.filterUserId = ewayUser.getId();
-
-		if(!tempParams.startP){
-			tempParams.startP = 0 ;
-			tempParams.limitP = this.getPageSize();
-		}
-		if(!tempParams.orgId){
-			tempParams.orgId = ewayUser.getOrgId();
+		
+		// 监控条件
+		var filterNameField = this.down('combobox[action="filterName"]');
+		var filterId = filterNameField.getValue();
+		if(filterId) {
+			tempParams.filterId = filterId;
 		}
 		return tempParams;
-	},
-
-	getPageSize : function(){
-//		var numberField = this.down('textfield[action="number"]');
-//		var limitP =numberField.getValue();
-//
-//		if(!Ext.isNumeric(limitP) || limitP<=0 || limitP>1000){
-//			limitP = 120;
-//			numberField.setValue(limitP);
-//		}
-//		return limitP;
-
-
-		return 120;
 	},
 
 	loadPanelData : function(panel,store){
@@ -369,48 +355,6 @@ Ext.define('Eway.view.monitor.device.View',{
 		Ext.Cometd.disconnect();
 	},
 
-	//订阅
-	publish : function(params,store){
-		var me = this;
-		if(((typeof params) == 'string') && (params == '')){
-			params = undefined;
-		}
-		var number = this.getPageSize();
-		var devices = "";
-		/**上一页，下一页**/
-//		var totalCount = store.totalCount;
-//		this.setTotal(totalCount);
-//		if(params && params.page){
-//			this.setCurrentPage(params.page);
-//		}else {
-//			this.setCurrentPage(1);
-//			this.down('button[action="previous"]').disable();
-//			if(this.getTotal() <= number){
-//				this.down('button[action="next"]').disable();
-//			}else {
-//				this.down('button[action="next"]').enable();
-//			}
-//		}
-
-		store.each(function(record){
-			devices = devices+"/"+record.get('code');
-		});
-
-		var params = params || {};
-		params.userId = test_userId;
-		params.devices = devices.slice(1);
-		if(!params.number){
-			params.number = number;
-		}
-		if(!params.orgId){
-			params.orgId = ewayUser.getOrgId();
-		}
-		if(!params.filterUserId){
-			params.filterUserId = ewayUser.getId();
-		}
-		Ext.Cometd.publish('/service/status/join',params);
-	},
-	
 	getRunPath : function(status) {
 		var path = "resources/images/monitor/";
 		if(status == 'Healthy') {//正常服务

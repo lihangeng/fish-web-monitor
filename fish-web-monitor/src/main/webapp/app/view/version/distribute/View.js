@@ -9,26 +9,31 @@ Ext.define('Eway.view.version.distribute.View', {
 			'Eway.view.version.distribute.VersionStatusDetailGrid'],
 
 	title : Eway.locale.version.View.distributionPic,
+	layout: {
+        type: 'table',
+        columns: 2
+    },
+    
+    scrollable : 'y',
+    bodyStyle : 'padding: 10px 5px 0px 5px',
+    defaults: {
+    	frame: true,
+    	margin: 10
+    },
 	initComponent : function() {
 		Ext.apply(this, {
-			padding:'5 0 0 0',
-			layout : {
-				type : 'border'
-			},
+//			
+			
 			items : [ {
-				region : 'west',
-				items : [ {
-					region : 'north',
-					xtype : 'distribute_filterForm'
-				}, {
-					region : 'center',
+		    		width: 550,
 					xtype : 'version_pie'
-				} ]
 				}, {
-					region : 'center',
+		    		width: 550,
+		            height: 345,
 					xtype : 'versionstatus_pie'
 				}, {
-					region : 'south',
+					colspan:2,
+			    	width: 1120,
 					xtype : 'version_distribute_grid'
 				} ]
 		});

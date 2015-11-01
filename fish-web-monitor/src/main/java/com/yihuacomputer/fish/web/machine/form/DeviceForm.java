@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
+import com.yihuacomputer.common.util.StringUtils;
 import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.ITempDevInfo;
@@ -216,6 +217,7 @@ public class DeviceForm {
         device.setSerial(getSerial());
         device.setNetType(nullObject(getNetType(), NetType.class));        
         device.setInstallDate((installDate == null || "".equals(installDate))?  null : DateUtils.getDate(installDate));
+
     }
     
     

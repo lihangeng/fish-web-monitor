@@ -53,8 +53,8 @@ Ext.define('Eway.view.version.Grid', {
 				}
 			}],
 			columns : [{
-				header : Eway.locale.version.View.versionTypeCode,//'软件分类编码',
-				dataIndex : 'versionType',
+				header : Eway.locale.version.View.versionTypeName,//'软件分类名称',
+				dataIndex : 'versionTypeDesc',
 				width: 200
 			},{
 				header: Eway.locale.version.View.versionNo,//'版本号',

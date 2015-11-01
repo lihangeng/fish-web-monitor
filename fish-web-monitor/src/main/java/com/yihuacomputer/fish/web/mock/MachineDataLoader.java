@@ -70,8 +70,8 @@ public class MachineDataLoader {
 			} else {
 				device.setDevType(atmTypeService.get(0002));
 			}
-			device.setNetType(NetType.CABLE);
-			device.setSerial("serial");
+//			device.setNetType(NetType.CABLE);
+//			device.setSerial("serial");
 			device.setSetupType(SetupType.LOBBY);
 			device.setWorkType(WorkType.COOPERATION);
 			device.setOrganization(orgService.get("1"));
@@ -147,7 +147,6 @@ public class MachineDataLoader {
 		IAtmType type = atmTypeService.make();
 		type.setId(0001);
 		type.setName("CSD6040w");
-		type.setWeight("2000");
 		type.setDevCatalog(atmCatalogService.get("02"));
 		type.setDevVendor(atmBrandService.get(001));
 		atmTypeService.add(type);
@@ -155,7 +154,6 @@ public class MachineDataLoader {
 		type = atmTypeService.make();
 		type.setId(0002);
 		type.setName("CSD6040t");
-		type.setWeight("2000");
 		type.setDevCatalog(atmCatalogService.get("03"));
 		type.setDevVendor(atmBrandService.get(002));
 		atmTypeService.add(type);
@@ -163,7 +161,6 @@ public class MachineDataLoader {
 		type = atmTypeService.make();
 		type.setId(0003);
 		type.setName("DB0001");
-		type.setWeight("2000");
 		type.setDevCatalog(atmCatalogService.get("01"));
 		type.setDevVendor(atmBrandService.get(003));
 		atmTypeService.add(type);
@@ -171,7 +168,6 @@ public class MachineDataLoader {
 		type = atmTypeService.make();
 		type.setId(0004);
 		type.setName("DB0002");
-		type.setWeight("2000");
 		type.setDevCatalog(atmCatalogService.get("04"));
 		type.setDevVendor(atmBrandService.get(001));
 		atmTypeService.add(type);
@@ -179,7 +175,6 @@ public class MachineDataLoader {
 		type = atmTypeService.make();
 		type.setId(0005);
 		type.setName("ZJ0007");
-		type.setWeight("2000");
 		type.setDevCatalog(atmCatalogService.get("05"));
 		type.setDevVendor(atmBrandService.get(002));
 		atmTypeService.add(type);
@@ -187,7 +182,6 @@ public class MachineDataLoader {
 		type = atmTypeService.make();
 		type.setId(0006);
 		type.setName("ZJ0008");
-		type.setWeight("2000");
 		type.setDevCatalog(atmCatalogService.get("06"));
 		type.setDevVendor(atmBrandService.get(003));
 		atmTypeService.add(type);

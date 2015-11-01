@@ -12,6 +12,31 @@ import com.yihuacomputer.fish.api.monitor.report.IDeviceReport;
  * @since 2012/2/8
  */
 public interface IStatusFilter {
+    
+    /**
+     * 主键
+     * @return
+     */
+    public long getId();
+    
+    /**
+     * 设置主键
+     * @param id
+     */
+    public void setId(long id);
+    
+    /**
+     * 订阅名称
+     * @return
+     */
+    public String getFilterName();
+    
+    /**
+     * 设置订阅名称
+     * @param filterName
+     */
+    public void setFilterName(String filterName);
+    
 
 	/**
 	 * 获取用户ID

@@ -134,17 +134,12 @@ public class MachineDataLoader {
 		IAtmType type = atmTypeService.make();
 //		type.setNo("01");
 		type.setName("yh6040w");
-		type.setWeight("2000");
 		type.setDevCatalog(atmCatalogService.get("02"));
-//		type.setDevVendor(atmBrandService.get("YH"));
 		atmTypeService.add(type);
 
 		type = atmTypeService.make();
-//		type.setNo("02");
 		type.setName("yh6040t");
-		type.setWeight("2000");
 		type.setDevCatalog(atmCatalogService.get("03"));
-//		type.setDevVendor(atmBrandService.get("YH"));
 		atmTypeService.add(type);
 	}
 

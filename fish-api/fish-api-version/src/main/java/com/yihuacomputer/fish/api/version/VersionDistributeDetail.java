@@ -10,7 +10,21 @@ public class VersionDistributeDetail {
 	private String statusText;
 	private String ip;
 	private String updateType;
+	private long versionId;
+	private String taskStatus;
 	
+	public long getVersionId() {
+		return versionId;
+	}
+	public void setVersionId(long versionId) {
+		this.versionId = versionId;
+	}
+	public String getTaskStatus() {
+		return taskStatus;
+	}
+	public void setTaskStatus(String taskStatus) {
+		this.taskStatus = taskStatus;
+	}
 	public String getTerminalId() {
 		return terminalId;
 	}

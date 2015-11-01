@@ -12,16 +12,17 @@ Ext.define('Eway.view.machine.device.person.TGrid', {
 			autoScroll: true,
 			height: 200,
 			columns : [ Ext.create('Ext.grid.RowNumberer'), {
-				header : Eway.locale.machine.device.name,
+				header : '姓名',
 				dataIndex : 'name'
 			}, {
-				header : Eway.locale.machine.device.mobile,
+				header : '手机',
 				dataIndex : 'mobile'
 			}, {
-				header : Eway.locale.machine.device.phone,
+				header : '固定电话',
 				dataIndex : 'phone'
 			}, {
-				header : Eway.locale.machine.device.email,
+				header : '邮件地址',
+				width : 200,
 				dataIndex : 'email'
 			} ]
 		});

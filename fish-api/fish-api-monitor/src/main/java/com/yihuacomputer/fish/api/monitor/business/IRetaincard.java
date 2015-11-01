@@ -188,4 +188,15 @@ public interface IRetaincard {
 	public String getPhone();
 
 	public void setPhone(String phone);
+	
+	/**
+	 * 吞卡创建日期，
+	 * 格式yyyymmdd 
+	 * 比如20150812
+	 * @since 2.0.0.3便于统计使用
+	 * @return
+	 */
+	public Long getRetainDate();
+	
+	public void setRetainDate(Long retainDate);
 }

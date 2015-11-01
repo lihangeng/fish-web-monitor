@@ -4,6 +4,7 @@ Ext.define('Eway.model.monitor.charts.DonutCharts',{
 	fields : [
 		{name : 'displayName'},
 		{name : 'filterStr'},
+		{name : 'color'},
 		{name : 'numberInfo'}
 	]
 	

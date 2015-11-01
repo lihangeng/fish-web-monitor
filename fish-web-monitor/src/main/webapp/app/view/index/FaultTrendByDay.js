@@ -4,6 +4,13 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
     requires:['Eway.store.index.FaultTrendByDay'],
 
     title :Eway.locale.index.dailyFaultPic,
+    
+	tools:[{
+	    type:'refresh',
+	    handler: function(event, toolEl, panelHeader) {
+	     	this.up('faultTrendByDay').down('cartesian').getStore().load();
+	    }
+	}],
 
     initComponent: function() {
         var me = this;
@@ -47,12 +54,12 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
                 grid: true,
                 renderer: function (v) {
                     return v.substring(4);
-                },
+                }/*,
                 label: {
                     rotate: {
                         degrees: -45
                     }
-                }
+                }*/
             }],
             series: [{
                 type: 'line',

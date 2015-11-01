@@ -81,6 +81,11 @@
     font-family: cursive;
     line-height: 16px;
 }
+/* 不可选的按钮颜色调整 */
+.x-btn.x-btn-disabled.x-btn-default-toolbar-small {
+    background-image: none;
+    background-color: gray;
+}
 #loading .title {
 	font-size:16px; 
 	position: absolute;

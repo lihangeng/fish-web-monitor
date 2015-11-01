@@ -37,6 +37,9 @@
 		<httpClient.version>4.2.5</httpClient.version>
 		<cometd.version>2.9.1</cometd.version>
 		<logback.version>1.0.9</logback.version>
+		<jetty.version>8.1.5.v20120716</jetty.version>
+		<jsp.glassfish.version>9.1.02.B04.p0</jsp.glassfish.version>
+		
 		<!-- Plugin的属性定义 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- maven编辑器的jdk版本设置 -->
@@ -625,9 +628,14 @@
 			<dependency>
 				<groupId>org.eclipse.jetty</groupId>
 				<artifactId>jetty-servlets</artifactId>
-				<version>7.6.15.v20140411</version>
+				<version>${jetty.version}</version>
 			</dependency>
-
+			<!-- 解决8.1.5及以下版本独立运行时需要jre或jdk的问题 -->
+			<dependency>
+			   <groupId>org.mortbay.jetty</groupId>
+	    	   <artifactId>jsp-2.1-glassfish</artifactId>
+	    	   <version>${jsp.glassfish.version}</version>
+	 		</dependency>
 			<!-- 发布到websphere时，xercesImpl,xml-apis冲突，故排除 -->
 			<dependency>
 				<groupId>xml-apis</groupId>

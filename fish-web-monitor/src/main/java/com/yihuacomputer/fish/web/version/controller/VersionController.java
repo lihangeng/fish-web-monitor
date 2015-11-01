@@ -91,6 +91,12 @@ public class VersionController {
 	@Autowired
 	private IVersionTypeAtmTypeRelationService versionTypeAtmTypeRelationService;
 
+	/**
+	 * 成功，失败，当前可下发设备[真的可以执行下发操作的设备], 总共符合下发条件的设备[条件为机型符合] 图表BAR
+	 * @param wReq
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value = "versionDetails", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap searchVersionDetails(WebRequest wReq, HttpServletRequest req) {
@@ -231,6 +237,7 @@ public class VersionController {
 			form.setId(v.getId());
 			form.setCreatedTime(DateUtils.getTimestamp(v.getCreatedTime()));
 			form.setVersionType(type != null ? type.getTypeName() : "");
+			form.setVersionTypeDesc(type != null ? type.getDesc() : "");
 			if (v.getDependVersion() != null) {
 				form.setDependVersionId(v.getDependVersion().getId());
 				form.setDependVersion(v.getDependVersion().getFullName());
@@ -421,13 +428,21 @@ public class VersionController {
 	 *            版本类型ID
 	 * @return 版本号
 	 */
-	@RequestMapping(value = "/getNextNo/{id}", method = RequestMethod.GET)
-	public @ResponseBody String getNextVersionNo(@PathVariable int id) {
-		logger.info(String.format("getNextVersionNo : versionType.id = %s", id));
-		String num = versionService.getNextVersionNo(id);
-		return num;
-	}
+//	@RequestMapping(value = "/getNextNo/{id}", method = RequestMethod.GET)
+//	public @ResponseBody String getNextVersionNo(@PathVariable int id) {
+//		logger.info(String.format("getNextVersionNo : versionType.id = %s", id));
+//		String num = versionService.getNextVersionNo(id);
+//		return num;
+//	}
 
+	/**
+	 * 成功，失败，当前可下发设备[真的可以执行下发操作的设备], 总共符合下发条件的设备[条件为机型符合] 明细信息
+	 * @param start
+	 * @param limit
+	 * @param wReq
+	 * @param req
+	 * @return
+	 */
 	@RequestMapping(value = "versionChartsDetails", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap versionChartsDetails(@RequestParam int start, @RequestParam int limit, WebRequest wReq, HttpServletRequest req) {
@@ -479,6 +494,13 @@ public class VersionController {
 		return result;
 	}
 
+	/**
+	 * @param displayNumber
+	 * @param versionTypeId
+	 * @param webRequest
+	 * @param request
+	 * @return 获取每个版本所占设备的数量(图表显示)
+	 */
 	@RequestMapping(value = "distribute", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap getVersionDistribute(@RequestParam int displayNumber, @RequestParam long versionTypeId, WebRequest webRequest, HttpServletRequest request) {
@@ -522,6 +544,12 @@ public class VersionController {
 		return result;
 	}
 
+	/**
+	 * @param versionId
+	 * @param webRequest
+	 * @param request
+	 * @return 每个版本在设备上下发的状态信息(taskStatus) 图表PIE
+	 */
 	@RequestMapping(value = "distributeStatus", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap getVersionDistributeStatus(@RequestParam long versionId, WebRequest webRequest, HttpServletRequest request) {
@@ -538,6 +566,15 @@ public class VersionController {
 		return result;
 	}
 	
+	/**
+	 * 某个版本设备各种状态的明细信息(列表)
+	 * @param versionId
+	 * @param start
+	 * @param limit
+	 * @param webRequest
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "distributeStatusDetail", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap getVersionDistributeStatusDetail(@RequestParam long versionId,@RequestParam int start,@RequestParam int limit, WebRequest webRequest, HttpServletRequest request) {

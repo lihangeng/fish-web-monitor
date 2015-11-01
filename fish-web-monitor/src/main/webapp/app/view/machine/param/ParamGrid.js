@@ -15,26 +15,20 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 		});
 		store.loadPage(1);
 
-	    var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
-	        clicksToEdit: 1
-	    });
 		Ext.apply(this,{
 	        width: 840,
 	        height: 450,
 	        frame: true,
 	        renderTo: document.body,
 	        store: store,
-	        plugins: [cellEditing],
-	        
 	        
 	        features: [{
-	            id: 'group',
 	            ftype: 'groupingsummary',
 	            groupHeaderTpl: '{name}',
 	            hideGroupedHeader: true,
-	            enableGroupingMenu: false
+	            enableGroupingMenu: false,
+	            showSummaryRow : false
 	        }],
-	        
 	        
 			initRegion : true,
 			store : store,
@@ -57,23 +51,14 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 			},
 			columns : [{
 	            text: Eway.locale.machine.param.paramType,
-	            width:150,
 	            tdCls: 'paramKey',
-	            sortable: true,
-	            hideable: false,
-	            summaryType: 'count',
-	            summaryRenderer: function(value, summaryData, dataIndex) {
-	                return ((value === 0 || value > 1) ? '(' + value + Eway.locale.machine.param.paramCount : Eway.locale.machine.param.oneParam);
-	            }
-	        }
-	        , {
+	            sortable: true
+	        }, {
 	            header: Eway.locale.machine.param.paramKey,
 	            width: 150,
 	            sortable: true,
 	            dataIndex: 'paramKey'
-	        }
-	        
-	        , {
+	        }, {
 	            header: Eway.locale.machine.param.paramValue,
 	            width: 280,
 	            sortable: true,
@@ -90,7 +75,6 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 						return Eway.locale.machine.param.comboxClassify.ableUpdate;
 					}
 				}
-	            
 	        },{
 	            header: Eway.locale.version.View.remark,
 	            flex: 1,

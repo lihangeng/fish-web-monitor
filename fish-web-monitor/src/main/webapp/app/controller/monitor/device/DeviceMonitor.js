@@ -11,13 +11,15 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 	],
 
 	stores : [
-		'monitor.device.DeviceMonitorList'
+		'monitor.device.DeviceMonitorList',
+		'monitor.device.DeviceFilter'
 	],
 
 	models : [
 		'monitor.device.DeviceMonitorList',
 		'monitor.device.FilterItem',
-		'monitor.device.DeviceBox'
+		'monitor.device.DeviceBox',
+		'monitor.device.DeviceFilter'
 	],
 
 	refs : [{
@@ -26,7 +28,13 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		autoCreate : true,
 		xtype : 'monitor_device_view',
 		id : 'monitor_device_view_id'
-	}],
+	}, {
+		ref : 'filterGrid',
+		selector : 'monitor_device_filtermanager_grid'
+	}, {
+		ref : 'filterWin',
+		selector : 'monitor_device_filtermanager_filterwin'
+	} ],
 
 	showSort :true,
 
@@ -78,11 +86,6 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				mouseout : this._onMouseOut,
 				click : this.test
 			},
-			'monitor_device_view button[action=pattern]' : {
-				mouseover : this._onMouseOver,
-				mouseout : this._onMouseOut,
-				click : this._onPatternBtnClick
-			},
 			'monitor_device_view menuitem[action=listPattern]' : {//打开"列表方式"
 				click : this._onListPatternBtnClick
 			},
@@ -94,6 +97,9 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			},
 			'monitor_device_view menuitem[action=boxPattern]' : {//打开"钱箱方式"
 				click : this._onBoxPatternBtnClick
+			},
+			'monitor_device_view menuitem[action=summaryPattern]' : {//打开"全局方式"
+				click : this._onSummaryPatternBtnClick
 			},
 			'monitor_device_view dataview[name=matrix]' : {
 				itemmouseenter : this._onDataViewItemMouseEnter2,
@@ -139,9 +145,226 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				mouseover : this._onMouseOver,
 				mouseout : this._onMouseOut,
 				click : this._onSort
+			},
+			
+			// 选择订阅条件
+			'monitor_device_view monitor_device_showtype_tbar combobox[action="filterName"]' : {
+				scope : this,
+				change : this._onFilterNameChange
+			},
+			
+			
+			// 订阅管理
+			'monitor_device_filtermanager_grid button[action=query]' : {
+				scope : this,
+				click : this._onFilterManagerQuery
+			},
+			'monitor_device_filtermanager_grid button[action=add]' : {
+				scope : this,
+				click : this._onFilterManagerAdd
+			},
+			'monitor_device_filtermanager_grid button[action=update]' : {
+				scope : this,
+				click : this._onFilterManagerUpdate
+			},
+			'monitor_device_filtermanager_grid button[action=remove]' : {
+				scope : this,
+				click : this._onFilterManagerRemove
+			},
+			'monitor_device_filtermanager_add button[action=confirm]' : {
+				scope : this,
+				click : this._onFilterManagerAddConfirm
+			},
+			'monitor_device_filtermanager_update button[action=confirm]' : {
+				scope : this,
+				click : this._onFilterManagerUpdateConfirm
 			}
 		});
 
+	},
+	
+	_onFilterNameChange : function( field, newValue, oldValue, eOpts ) {
+			
+	},
+	
+	// 订阅条件查询
+	_onFilterManagerQuery : function(btn) {
+		
+		var win = this.getFilterWin();
+		var form = win.down('form');
+		
+		var values = form.getValues();
+		values.userId = ewayUser.getId();
+		
+		var grid = this.getFilterGrid();
+		var store = grid.getStore();
+		
+		store.setUrlParamsByObject(values);
+		store.loadPage(1);
+	},
+	
+	//打开'订阅条件管理'页面
+	_onMonitorStateBtnClick : function(button) {
+		
+		var filterWin = Ext.create('Eway.view.monitor.device.filterManager.FilterWin');
+		var grid = filterWin.down('grid');
+		var store = grid.getStore();
+		
+		store.setUrlParamsByObject({
+			userId : ewayUser.getId()
+		});
+		store.loadPage(1);
+		
+		filterWin.show();
+	},
+	
+	_onFilterManagerAdd : function() {
+		var filterAddWin = Ext.create('Eway.view.monitor.device.filterManager.Add');
+		filterAddWin.show();
+	},
+	
+	_addOrUpdate : function(btn, url, succMsg) {
+		var me = this;
+		var win = btn.up('window');
+		var forms = win.query('form');
+		
+		if (!forms[0].isValid()) {
+			return;
+		}
+		
+		var val0 = forms[0].getValues();
+		var val1 = forms[1].getForm().getFieldValues();
+		
+		var values = {};
+		
+		for(var i in val0) {
+			values[i] = val0[i];
+		}
+		for(var i in val1) {
+			values[i] = val1[i];
+		}
+		values.userId = ewayUser.getId();
+		var winEl = win.getEl();
+		winEl.mask();
+		
+		Ext.Ajax.request({
+			method : 'POST',
+			url : url,
+			params : values,
+			success : function(response) {
+				var object = Ext.decode(response.responseText);
+				if (object.success == true) {
+					winEl.unmask();
+					Eway.alert(succMsg);
+					win.close();
+					me._onFilterManagerQuery();
+				}
+			},
+			failure : function() {
+				winEl.unmask();
+				Eway.alert(Eway.locale.tip.business.device.logFail);
+			}
+		});
+	},
+	
+	_onFilterManagerAddConfirm : function(btn) {
+		this._addOrUpdate(btn, 'api/monitor/device/monitorFilter/add', Eway.addSuccess);
+	},
+	_onFilterManagerUpdateConfirm : function(btn) {
+		this._addOrUpdate(btn, 'api/monitor/device/monitorFilter/update', Eway.updateSuccess);
+	},
+	
+	// 修改订阅条件
+	_onFilterManagerUpdate : function(btn) {
+		var me = this;
+		
+		var grid = this.getFilterGrid();
+		
+		var sm = grid.getSelectionModel();
+		if(sm.getCount() < 1) {
+			Eway.alert(Eway.choiceUpdateMsg);
+			return;
+		}
+		var record = sm.getLastSelected();
+		
+		var win = Ext.create('Eway.view.monitor.device.filterManager.Update');
+		
+		var forms = win.query('form');
+		
+		var form0 = forms[0].getForm();
+		var form1 = forms[1].getForm();
+		
+		var brand = form0.findField("brandItem");
+		brand.setValue(record.get('brandItem'));
+		var classify = form0.findField("classifyItem");
+		classify.setValue(record.get('classifyItem'));
+		var awayFlag = form0.findField("ingItem");
+		awayFlag.setValue(record.get('ingItem'));
+		var sellItem = form0.findField("sellItem");
+		sellItem.setValue(record.get('sellItem'));
+		var atmGroup = form0.findField("atmGroup");
+		atmGroup.setValue(record.get('atmGroup'));
+		var filterName = form0.findField("filterName");
+		filterName.setValue(record.get('filterName'));
+		var id = form0.findField("id");
+		id.setValue(record.get('id'));
+		var orgId = form0.findField("orgId");
+		orgId.setValue(record.get('orgId'));
+		var orgName = form0.findField("orgName");
+		orgName.setValue(record.get('orgName'));
+		
+		var run = record.get('runStatusFilterForm');
+		var mod = record.get('modStatusFilterForm');
+		var net = record.get('netStatusFilterForm');
+		var box = record.get('boxStatusFilterForm');
+		
+		var values = {};
+		for(var i in run) {
+			values[i] = run[i];
+		}
+		for(var i in mod) {
+			values[i] = mod[i];
+		}
+		for(var i in net) {
+			values[i] = net[i];
+		}
+		for(var i in box) {
+			values[i] = box[i];
+		}
+		form1.setValues(values);
+		
+		win.show();
+	},
+	
+	// 删除订阅条件
+	_onFilterManagerRemove : function(btn) {
+		var grid = this.getFilterGrid();
+		var sm = grid.getSelectionModel();
+		var count = sm.getCount();
+		
+		if(count == 0){
+			Eway.alert(Eway.locale.tip.remove.none);
+			return;
+		}
+		if(count > 1){
+			Eway.alert(Eway.locale.tip.remove.one);
+			return;
+		}
+		Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title, Eway.locale.tip.remove.confirm.info,function(button,text){
+			if(button == 'yes'){
+				var record = sm.getLastSelected();
+				record.erase({
+					success: function(record,operation) {
+						Eway.alert(Eway.deleteSuccess);
+						me._onFilterManagerQuery();
+					},
+					failure: function(record,operation) {
+						Eway.alert(Eway.locale.tip.remove.error+ operation.getError());
+					},
+					scope:this
+				});
+			}
+		});
 	},
 
 	//矩形显示时，鼠标进入事件
@@ -467,34 +690,220 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 	},
 
 	//执行‘查询’
-	_onQueryBtnClick : function(btn){
-		var orgField = btn.previousNode('hiddenfield[name="orgId"]');
-		var deviceCodeField = btn.previousNode('textfield[action="deviceNumber"]');
-
-		var ewayView = this.getEwayView();
-		var numberField = ewayView.down('numberfield[action="number"]');
-
-//		if(!Ext.isNumeric(numberField.getValue()) || numberField.getValue()<=0 || numberField.getValue()>1000){
-//			numberField.setValue(120);
+	_onQueryBtnClick : function(btn) {
+		
+		var params = {};
+		
+//		// 设备号
+//		var deviceCodeField = btn.previousNode('textfield[action="deviceNumber"]');
+//		var deviceCode = deviceCodeField.getValue();
+//		if(deviceCode) {
+//			params.deviceCode = deviceCode;
 //		}
-//		var orgId = orgField.getValue();
-		var orgId = '';
-//		var number = numberField.getValue();
-		var number = 120;
-		var deviceCode = deviceCodeField.getValue();
-		var params = {
-			number : number
-		};
-		if(orgId !== ''){
-			params.orgId = orgId;
-		}else{
-			params.orgId = ewayUser.getOrgId();
-		}
-		if(deviceCode){
-			params.deviceCode = deviceCode;
+//		
+//		debugger;
+		// 监控条件
+		var filterNameField = btn.nextNode('combobox[action="filterName"]');
+		var filterId = filterNameField.getValue();
+		
+		
+		if(filterId) {
+			var record = filterNameField.getStore().findRecord('id', filterId);
+			this._onFilterMessage(record);
 		}
 
 		this._reload(params);
+	},
+	
+	_onFilterMessage : function(record) {
+		var tLabel = this.getEwayView().down('label');
+		var msg = '';
+		
+		// 所属机构
+		if (record.get('orgId') && record.get('orgId') != 0) {
+			msg += ' ' + Eway.locale.machine.atmGroup.orgName + '[';
+			msg += record.get('orgName');
+			msg +=']';
+		}
+		
+		// 品牌
+		if (record.get('brandItem') && record.get('brandItem') != 0) {
+			msg += ' ' + Eway.locale.commen.devVendorName + '[';
+			msg += record.get('brandItemName');
+			msg +=']';
+		}
+		
+		// 型号
+		if (record.get('classifyItem') && record.get('classifyItem') != 0) {
+			msg += ' ' + Eway.locale.commen.devTypeName + '[';
+			msg += record.get('classifyItemName');
+			msg +=']';
+		}
+		
+		// 经营方式
+		if (record.get('sellItem') && record.get('sellItem') != 0) {
+			msg += ' ' + Eway.locale.commen.seviceMode + '[';
+			if (record.get('sellItem') == 1) {
+				msg += Eway.locale.machine.device.operationSelf;
+			} else if (record.get('sellItem') == 2) {
+				msg += Eway.locale.machine.device.cooperation;
+			} else if (record.get('sellItem') == 3) {
+				msg += Eway.locale.machine.device.epiboly;
+			}
+			msg +=']';
+		}
+		
+		// 经营方式
+		if (record.get('ingItem') && record.get('ingItem') != 0) {
+			msg += ' ' + Eway.locale.commen.insideOutside + '[';
+			if (record.get('ingItem') == 1) {
+				msg += Eway.locale.machine.atmGroup.comboxAwayFlag.inBank;
+			} else if (record.get('ingItem') == 2) {
+				msg += Eway.locale.machine.atmGroup.comboxAwayFlag.outBank;
+			} else if (record.get('ingItem') == 3) {
+				msg += Eway.locale.machine.atmGroup.comboxAwayFlag.clickBank;
+			}
+			msg +=']';
+		}
+			
+		// 分组
+		if (record.get('atmGroup') && record.get('atmGroup') != 0) {
+			msg += ' ' + Eway.locale.monitor.devMonitor.atmGroup + '[';
+			msg += record.get('atmGroupName');
+			msg +=']';
+		}	
+		
+		// 运行状态
+		if (!record.get('runStatusFilterForm').run_all) {
+			var value = record.get('runStatusFilterForm');
+			var str = '';
+			if (value.run_unknown) {
+				str += '|' + Eway.locale.commen.unknow;
+			}
+			if (value.run_initial) {
+				str += '|' + Eway.locale.monitor.devMonitor.init;
+			}
+			if (value.run_healthy) {
+				str += '|' + Eway.locale.monitor.devMonitor.remote.healthy;
+			}
+			if (value.run_subHealth) {
+				str += '|' + Eway.locale.monitor.devMonitor.remote.halfSer;
+			}
+			if (value.run_customer) {
+				str += '|' + Eway.locale.monitor.devMonitor.accTrans;
+			}
+			if (value.run_maintain) {
+				str += '|' + Eway.locale.monitor.devMonitor.remote.staff;
+			}
+			if (value.run_vdm) {
+				str += '|' + Eway.locale.monitor.devMonitor.factureStaff;
+			}
+			if (value.run_halt) {
+				str += '|' + Eway.locale.monitor.devMonitor.remote.powerOff;
+			}
+			if (value.run_reboot) {
+				str += '|' + Eway.locale.monitor.devMonitor.remote.restart;
+			}
+			if (value.run_stopAtmp) {
+				str += '|' + Eway.locale.monitor.devMonitor.remote.pFault;
+			}
+			if (value.run_stopManmade) {
+				str += '|' + Eway.locale.monitor.devMonitor.remote.stopCash;
+			}
+			if (value.run_stopMod) {
+				str += '|' + Eway.locale.monitor.devMonitor.remote.pauseSer;
+			}
+			if (value.run_stopUnCashIn) {
+				str += '|' + Eway.locale.monitor.devMonitor.remote.pauseCash;
+			}
+			if (value.run_stopunknown) {
+				str += '|' + Eway.locale.monitor.devMonitor.remote.pauseSerUnknow;
+			}
+			
+			msg += ' ' + Eway.locale.monitor.devMonitor.comboxStatus.runStatus + '[';
+			msg += str;
+			msg +=']';
+		} 
+		
+		// 模块状态
+		if (!record.get('modStatusFilterForm').mod_all) {
+			var value = record.get('modStatusFilterForm');
+			var str = '';
+			if (value.mod_healthy) {
+				str += '|' + Eway.locale.monitor.devMonitor.mod.healthy;
+			}
+			if (value.mod_waring) {
+				str += '|' + Eway.locale.commen.warn;
+			}
+			if (value.mod_fatal) {
+				str += '|' + Eway.locale.commen.fatal;
+			}
+			if (value.mod_unknown) {
+				str += '|' + Eway.locale.commen.unknow;
+			}
+			if (value.mod_noDevice) {
+				str += '|' + Eway.locale.monitor.devMonitor.noData;
+			}
+			
+			msg += ' ' + Eway.locale.monitor.devMonitor.comboxStatus.modStatus + '[';
+			msg += str;
+			msg +=']';
+		} 
+		
+		// 模块状态
+		if (!record.get('boxStatusFilterForm').box_all) {
+			var value = record.get('boxStatusFilterForm');
+			var str = '';
+			if (value.box_healthy) {
+				str += '|' + Eway.locale.commen.stateDict.normal;
+			}
+			if (value.box_low) {
+				str += '|' + Eway.locale.monitor.devMonitor.cash.low;
+			}
+			if (value.box_empty) {
+				str += '|' + Eway.locale.monitor.devMonitor.cash.empty;
+			}
+			if (value.box_high) {
+				str += '|' + Eway.locale.monitor.devMonitor.cash.cimAFull;
+			}
+			if (value.box_full) {
+				str += '|' + Eway.locale.monitor.devMonitor.cash.cimFull;
+			}
+			if (value.box_fatal) {
+				str += '|' + Eway.locale.monitor.devMonitor.cash.cashFault;
+			}
+			if (value.box_unknown) {
+				str += '|' + Eway.locale.monitor.devMonitor.cash.cashUnknow;
+			}
+			
+			msg += ' ' + Eway.locale.monitor.devMonitor.comboxStatus.boxStatus + '[';
+			msg += str;
+			msg +=']';
+		} 
+		
+		// 网络状态
+		if (!record.get('netStatusFilterForm').net_all) {
+			var value = record.get('netStatusFilterForm');
+			var str = '';
+			if (value.net_healthy) {
+				str += '|' + Eway.locale.monitor.devMonitor.netHealthy;
+			}
+			if (value.net_warning) {
+				str += '|' + Eway.locale.monitor.devMonitor.netUnStable;
+			}
+			if (value.net_fatal) {
+				str += '|' + Eway.locale.monitor.devMonitor.netFatal;
+			}
+			if (value.net_unknown) {
+				str += '|' + Eway.locale.commen.unknow;
+			}
+	
+			msg += ' ' + Eway.locale.monitor.devMonitor.comboxStatus.netStatus + '[';
+			msg += str;
+			msg +=']';
+		} 
+		
+		tLabel.setText(msg);
 	},
 
 	_onPreviousBtnClick : function(btn){
@@ -554,32 +963,44 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 
 	//打开'设置监控状态'页面
 	_onMonitorStateBtnClick : function(button){
-		var win = Ext.WindowManager.get('monitor_device_baseWindow');
-		if(!win){
-			win = Ext.widget('monitor_device_baseWindow');
-		}
-		win.setWidth(600);
-		win.setHeight(600);
-		var panel = win.down('panel[action="monitor_device_stateConfig"]');
-		if(!panel){
-			panel = Ext.widget('monitor_device_stateConfig');
-			Ext.Ajax.request({
-				method : 'GET',
-				url : 'api/monitor/device/getFilter',
-				params : {
-					userId : ewayUser.getId()
-				},
-				success : function(response){
-					var object = Ext.decode(response.responseText);
-					panel.getForm().setValues(object.filter);
-					panel.setMemoryRecord(object.filter);
-				},
-				failure : function(){
-				}
-			});
-		}
-		win.setTitle(Eway.locale.tip.business.device.stateSet);
-		win.display(panel,button);
+		
+		var filterWin = Ext.create('Eway.view.monitor.device.filterManager.FilterWin');
+		var grid = filterWin.down('grid');
+		var store = grid.getStore();
+		
+		store.setUrlParamsByObject({
+			userId : ewayUser.getId()
+		});
+		store.loadPage(1);
+		
+		filterWin.show();
+		
+//		var win = Ext.WindowManager.get('monitor_device_baseWindow');
+//		if(!win){
+//			win = Ext.widget('monitor_device_baseWindow');
+//		}
+//		win.setWidth(600);
+//		win.setHeight(600);
+//		var panel = win.down('panel[action="monitor_device_stateConfig"]');
+//		if(!panel){
+//			panel = Ext.widget('monitor_device_stateConfig');
+//			Ext.Ajax.request({
+//				method : 'GET',
+//				url : 'api/monitor/device/getFilter',
+//				params : {
+//					userId : ewayUser.getId()
+//				},
+//				success : function(response){
+//					var object = Ext.decode(response.responseText);
+//					panel.getForm().setValues(object.filter);
+//					panel.setMemoryRecord(object.filter);
+//				},
+//				failure : function(){
+//				}
+//			});
+//		}
+//		win.setTitle(Eway.locale.tip.business.device.stateSet);
+//		win.display(panel,button);
 	},
 
 	//打开'设置过滤条件'页面
@@ -624,12 +1045,12 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		var win = btn.up('window');
 		var panel = win.getLayout().getActiveItem();
 		var view = this.getEwayView();
-		var numberField = view.down('textfield[action="number"]');
-		var orgIdField = view.down('hiddenfield[name="orgId"]');
+//		var numberField = view.down('textfield[action="number"]');
+//		var orgIdField = view.down('hiddenfield[name="orgId"]');
 		var deviceCodeField = view.down('textfield[action="deviceNumber"]');
 		var params = {
-			number : numberField.getValue(),
-			orgId : orgIdField.getValue(),
+//			number : numberField.getValue(),
+//			orgId : orgIdField.getValue(),
 			deviceCode : deviceCodeField.getValue()
 		};
 
@@ -672,32 +1093,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		view.changeFilterLoad(currentPanel,params);
 	},
 
-	_onPatternBtnClick : function(button){
-		var panel = button.up('panel').ownerCt;
-		var card = panel.down('#card_itemId');
-		var layout = card.getLayout();
-		var currentPanel = layout.getActiveItem();
-		var currentStore = currentPanel.getStore();
-		var itemId = currentPanel.itemId;
-		if(itemId == 'list'){
-			layout.setActiveItem('dataview');
-		}
-		else if(itemId == 'dataview'){
-			layout.setActiveItem('list');
-		}
-		currentPanel = layout.getActiveItem();
-		itemId = currentPanel.itemId;
-		if(itemId == 'list'){
-			button.setText(Eway.locale.tip.business.device.matrixPattern);
-			button.setIconCls('matrixPattern');
-		}
-		else if(itemId == 'dataview'){
-			button.setText(Eway.locale.tip.business.device.listPattern);
-			button.setIconCls('listPattern');
-		}
-		var view = this.getEwayView();
-		view.loadPanelData(currentPanel,currentStore);
-	},
+	
 	_onListPatternBtnClick : function() {
 		var view = this.getEwayView();
 		var card = view.down('#card_itemId');
@@ -713,6 +1109,14 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		layout.setActiveItem('box');
 		var btn = view.down('button[action="query"]');
 	    this._onQueryBtnClick(btn);
+	},	
+	_onSummaryPatternBtnClick : function() {
+		var view = this.getEwayView();
+		var card = view.down('#card_itemId');
+		var layout = card.getLayout();
+		layout.setActiveItem('summary');
+//		var btn = view.down('button[action="query"]');
+//	    this._onQueryBtnClick(btn);
 	},
 	_onMatrixPatternBtnClick : function() {
 		var view = this.getEwayView();
@@ -722,7 +1126,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 
 		var card = view.down('#card_itemId');
 		var layout = card.getLayout();
-		layout.setActiveItem('dataview');
+		layout.setActiveItem('martrixPanel');
 		var btn = view.down('button[action="query"]');
 	    this._onQueryBtnClick(btn);
 	},

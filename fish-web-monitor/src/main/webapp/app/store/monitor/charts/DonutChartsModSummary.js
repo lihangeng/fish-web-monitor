@@ -10,5 +10,5 @@ Ext.define('Eway.store.monitor.charts.DonutChartsModSummary', {
 	        rootProperty: 'data'
 	    }
     },
-    autoLoad: true
+    autoLoad: false
 });

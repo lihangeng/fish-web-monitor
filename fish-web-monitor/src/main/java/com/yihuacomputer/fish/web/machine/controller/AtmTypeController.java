@@ -150,9 +150,6 @@ public class AtmTypeController {
 				type.setDevVendor(vendor);
 				type.setCashtype("1".equals(form.getCashtype()) ? CashType.CASH : CashType.NOT_CASH);
 				type.setName(form.getName().trim());
-				type.setSpec(form.getSpec());
-				type.setWatt(form.getWatt());
-				type.setWeight(form.getWeight());
 				atmTypeService.add(type);
 				relationService.link(type.getId(), form.getAtmModules());
 				form.setId(type.getId());
@@ -186,9 +183,6 @@ public class AtmTypeController {
 				} else {
 					type.setCashtype("1".equals(form.getCashtype()) ? CashType.CASH : CashType.NOT_CASH);
 					type.setName(form.getName().trim());
-					type.setSpec(form.getSpec());
-					type.setWatt(form.getWatt());
-					type.setWeight(form.getWeight());
 					IAtmVendor atmVendor = atmBrandService.get(form.getDevVendorId());
 					type.setDevVendor(atmVendor);
 					IAtmCatalog atmCatalog = atmCatalogService.get(form.getDevCatalogId());

@@ -6,7 +6,10 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -25,8 +28,16 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 @Entity
 @Table(name = "SM_STATUS_FILTER")
 public class StatusFilter implements IStatusFilter {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_SM_STATUS_FILTER")
+    @SequenceGenerator(name = "SEQ_SM_STATUS_FILTER", sequenceName = "SEQ_SM_STATUS_FILTER")
+    @Column(name = "ID")
+    private long id;
+    
+    @Column(name = "FILTER_NAME", length = 20)
+    private String filterName;
 
-	@Id
 	@Column(name = "USER_ID", length = 20, nullable = false)
 	private String userId;
 
@@ -508,4 +519,20 @@ public class StatusFilter implements IStatusFilter {
 	public void setDeviceStatus(Status deviceStatus) {
 		this.deviceStatus = deviceStatus;
 	}
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getFilterName() {
+        return filterName;
+    }
+
+    public void setFilterName(String filterName) {
+        this.filterName = filterName;
+    }
 }

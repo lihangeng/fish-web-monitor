@@ -24,8 +24,9 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.monitor.business.ITransTypeService;
-import com.yihuacomputer.fish.api.monitor.business.ITransaction;
 import com.yihuacomputer.fish.api.monitor.business.ITransactionService;
+import com.yihuacomputer.fish.api.monitor.business.ITransactionView;
+import com.yihuacomputer.fish.api.monitor.business.ITransactionViewService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.monitor.form.HostRetForm;
 import com.yihuacomputer.fish.web.monitor.form.TransTypeForm;
@@ -44,9 +45,12 @@ public class TransactionHisController {
 
     @Autowired
     private IDeviceService deviceService;
-    
+
 	@Autowired
 	private MessageSource messageSource;
+
+	@Autowired
+	public ITransactionViewService transactionViewService ;
 
     //获得交易类型
     @RequestMapping(value = "/queryTransType", method = RequestMethod.GET)
@@ -88,21 +92,21 @@ public class TransactionHisController {
         }
 
         if(device.getOrganization().getOrgFlag().contains(orgFlag)){
-            IPageResult<ITransaction> pageResultTransList = null;
-            IFilter filter = request2filter(webRequest,"transaction.");
+            IPageResult<ITransactionView> pageResultTransList = null;
+            IFilter filter = request2filter(webRequest,"transactionView.");
             if(request.getParameter("blacklist")==null || request.getParameter("blacklist").equals("0")){
             	filter.descOrder("dateTime");
-                pageResultTransList = transService.page(start,limit,filter);
+                pageResultTransList = transactionViewService.page(start,limit,filter);
             }else if(request.getParameter("blacklist").equals("1")){
             	filter.descOrder("transaction.dateTime");
-                pageResultTransList = transService.pageBlackList(start,limit, request2filter(webRequest,"transaction."),Long.valueOf(request.getParameter("organizationId")));
+                pageResultTransList = transactionViewService.pageBlackList(start,limit, request2filter(webRequest,"transaction."),Long.valueOf(request.getParameter("organizationId")));
             }else{
             	filter.descOrder("transaction.dateTime");
-                pageResultTransList = transService.pageNoBlackList(start,limit, request2filter(webRequest,"transaction."),Long.valueOf(request.getParameter("organizationId")));
+                pageResultTransList = transactionViewService.pageNoBlackList(start,limit, request2filter(webRequest,"transaction."),Long.valueOf(request.getParameter("organizationId")));
             }
             result.put(FishConstant.SUCCESS, true);
             result.put("total", pageResultTransList.getTotal());
-            result.put("data", TransactionForm.convert(pageResultTransList.list()));
+            result.put("data", TransactionForm.convertView(pageResultTransList.list()));
             return result;
         }else{
         	return makeErrorPage(result,String.format(messageSource.getMessage("transactionHis.termRight", null, FishCfg.locale),terminalId));

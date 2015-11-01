@@ -60,7 +60,7 @@ Ext.define('Eway.controller.Main', {
 
 	//主工作区tab切换时执行的动作，保存到hash到cookie中
     onTabChange : function(tabPanel, newItem) {
-    	if(undefined == tabPanel.getActiveTab() || null == tabPanel.getActiveTab() || newItem.xtype == 'appindex'){
+    	if(undefined == tabPanel.getActiveTab() || null == tabPanel.getActiveTab()/* || newItem.xtype == 'appindex'*/){
     		Ext.util.Cookies.set("lastEwayPage","");
     		return;
     	}
@@ -162,6 +162,9 @@ Ext.define('Eway.controller.Main', {
 //		}else if(code == "monitor_cardDestroy"){
 //			this.activeController('monitor.card.CardDestory');
 //		}
+		else if(code == "openPlan"){
+			this.activeController('operatingPlan.OpenPlan');
+		}
 		else if(code == "logBackup"){
 			this.activeController('atmLog.LogBackup');
 		}else if(code == "dayBackupJob"){
