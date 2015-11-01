@@ -16,7 +16,7 @@
                 <ref bean="monthReportTime" />
                 <ref bean="yearReportTime" />
                 <ref bean="updateDeviceInfoTaskTime"/>
-                <ref bean="updateQuittingDevInfoJob"/>
+                <ref bean="updateQuittingDevInfoTaskTime"/>
 
             </list>
         </property>

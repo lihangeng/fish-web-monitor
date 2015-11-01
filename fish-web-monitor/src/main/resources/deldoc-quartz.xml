@@ -12,7 +12,7 @@
 	
 	<bean id="updateDeviceInfoJob" class="com.yihuacomputer.fish.monitor.service.DeviceInfoUpdateTask"/>
 	
-	<bean id="updateQuittingDevInfoJob" class="com.yihuacomputer.fish.monitor.service。QuittingDevInfoUpdateTask"/>
+	<bean id="updateQuittingDevInfoJob" class="com.yihuacomputer.fish.monitor.service.QuittingDevInfoUpdateTask"/>
 	
     <!-- 定义调用对象和调用对象的方法 -->
     <bean id="deletetask"
