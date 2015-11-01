@@ -49,10 +49,6 @@ public interface IDevice {
 
 	public IOrganization getOrganization();
 
-/*	public CashType getCashType();
-
-	public void setCashType(CashType cashType);*/
-
 	public SetupType getSetupType();
 
 	public void setSetupType(SetupType setupType);
@@ -93,4 +89,8 @@ public interface IDevice {
 	public Date getInstallDate();
 
 	public void setInstallDate(Date installDate);
+	
+	
+	
+	
 }

@@ -12,6 +12,7 @@ import com.yihuacomputer.fish.api.atm.IAtmTypeService;
 import com.yihuacomputer.fish.api.atmMove.IAtmMoveService;
 import com.yihuacomputer.fish.api.device.IComplexDeviceService;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.device.ITempDevInfoService;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNoticeService;
 import com.yihuacomputer.fish.api.relation.IDeviceGroupRelation;
 import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
@@ -27,6 +28,7 @@ import com.yihuacomputer.fish.machine.service.ComplexDeviceService;
 import com.yihuacomputer.fish.machine.service.DeviceGroupRelation;
 import com.yihuacomputer.fish.machine.service.DevicePersonRelation;
 import com.yihuacomputer.fish.machine.service.DeviceService;
+import com.yihuacomputer.fish.machine.service.TempDevInfoService;
 
 @Configuration
 public class MachineModule {
@@ -88,6 +90,11 @@ public class MachineModule {
 	@Bean
 	public IAtmTypeAtmModuleRelationService atmTypeAtmModuleRelationService(){
 		return new AtmTypeAtmModuleRelationService();
+	}
+	
+	@Bean
+	public ITempDevInfoService tempDevInfoService(){
+		return new TempDevInfoService();
 	}
 
 }

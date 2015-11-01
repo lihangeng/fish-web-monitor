@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.machine.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.criterion.Restrictions;
@@ -154,4 +155,24 @@ public class AtmQuittingNoticeService implements IQuittingNoticeService
         IOrganization org = orgService.get(orgId);
         return (IPageResult<IQuittingNotice>)dao.page(offset, limit, filter, hql.toString(), "%" + org.getOrgFlag());
 	}
+	
+	
+	@Transactional(readOnly = true)
+	public IQuittingNotice get(String deviceCode, Date openTime){
+        StringBuffer hql = new StringBuffer();
+        hql.append("from QuittingNotice quittingNotice where quittingNotice.deviceCode = ? ");
+        hql.append(" and (quittingNotice.openTime > ?");
+        hql.append(" or quittingNotice.openTime = null )");
+    	List<Object> valueObj = new ArrayList<Object>();
+    	valueObj.add(deviceCode);
+    	valueObj.add(openTime);
+    	List<IQuittingNotice> quittingNoticeList = dao.findByHQL(hql.toString(), valueObj.toArray());
+    	IQuittingNotice quittingNotice  = null;
+    	if(quittingNoticeList.size() != 0)
+    	{
+    		quittingNotice = quittingNoticeList.get(0);
+    	}
+		return quittingNotice;
+	}
+
 }

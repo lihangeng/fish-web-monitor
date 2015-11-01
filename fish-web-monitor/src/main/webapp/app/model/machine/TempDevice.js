@@ -1,4 +1,4 @@
-Ext.define('Eway.model.machine.Device', {
+Ext.define('Eway.model.machine.TempDevice', {
 	extend : 'Ext.data.Model',
 	fields : ['id','terminalId', 'ip','orgId','orgName','devTypeId','devTypeName',
 	          'devVendorName','devCatalogName','address','status',
@@ -6,7 +6,7 @@ Ext.define('Eway.model.machine.Device', {
 	          'serial','setupType','netType','awayFlag','workType','installDate','effectiveDate'],
 	proxy : {
 		type : 'rest',
-		url : 'api/machine/device',
+		url : 'api/machine/tempdevice',
 		reader : {
 			type : 'json',
 			rootProperty : 'data'

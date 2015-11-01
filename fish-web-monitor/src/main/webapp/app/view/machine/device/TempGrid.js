@@ -1,56 +1,41 @@
-Ext.define('Eway.view.machine.device.Grid', {
-	alias : 'widget.device_grid',
-	extend : 'Eway.view.base.Grid',
-
+Ext.define('Eway.view.machine.device.TempGrid', {
+	alias : 'widget.device_tempGrid',
+	extend : 'Ext.grid.Panel',
+	border : true,
 	requires : [ 'Eway.lib.Util' ],
 
-	border : false,
-	autoFit : true,
-
 	initComponent : function() {
-		var store = Ext.create('Eway.store.machine.Device');
-		store.loadPage(1);
+		var store = Ext.create('Eway.store.machine.TempDevice');
+	    store.loadPage(1);
 		Ext.apply(this, {
 			initRegion : true,
-			store : store,
-			tbar : [ '->',{
-				text : Eway.locale.button.search,
-				glyph : 0xf002,
-				action : 'query'
+		store : store,
+		tbar : [ '->',{
+				text : '查询',
+				iconCls : 'queryBtn',
+				action : 'tempDevQuery'
 			}, {
-				text : Eway.locale.button.info,
-				glyph : 0xf129,
-				action : 'info'
-			}, {
-				text : Eway.locale.button.add,
-				glyph : 0xf067,
-				action : 'add',
-				code : 'deviceAdd',
-				listeners:{
+				text : '更改',
+				iconCls : 'updateBtn',
+				action : 'tempDevUpdate',
+		//		code : 'tempDevUpdate',
+			/*	listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-				}
+				}*/
 			}, {
-				text :Eway.locale.button.update,
-				glyph : 0xf040,
-				action : 'update',
-				code : 'deviceUpdate',
-				listeners:{
+				text : '删除',
+				iconCls : 'deleteBtn',
+				action : 'tempDevDelete',
+		//		code : 'tempDevDel',
+				/*listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-				}
-			}, {
-				text : Eway.locale.button.remove,
-				glyph : 0xf014,
-				action : 'remove',
-				code : 'deviceDel',
-				listeners:{
-					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-				}
-			}, {
-				text : Eway.locale.button.exported,
-				glyph : 0xf1c3,
-				action : 'export'
-			} ],
-			columns : [ {
+				}*/
+			},{
+			text : '开机方案',
+			iconCls : 'detailBtn',
+			action : 'tempDevOpenPlan'
+	    	}],		
+			columns : [  {
 				header : Eway.locale.machine.atmGroup.terminalId,
 				dataIndex : 'terminalId',
 				width : 100
@@ -129,11 +114,15 @@ Ext.define('Eway.view.machine.device.Grid', {
 				header : Eway.locale.machine.device.devAddress,
 				dataIndex : 'address',
 				width : 160
+			} ,{
+				header : '生效日期',
+				dataIndex : 'effectiveDate',
+
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : Eway.locale.tip.displayMessage
+				displayMsg : '总共：{2}条，显示{0}-{1}'
 			})
 		});
 

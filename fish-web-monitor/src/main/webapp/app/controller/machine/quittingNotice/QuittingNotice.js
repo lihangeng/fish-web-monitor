@@ -87,13 +87,15 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 		}
 	},
 
-	onAddConfirm : function() {
+	onAddConfirm : function() {		
 		var win = this.win;
 		var form = win.down('form');
 		var data = win.down('form').getForm().getValues();
 		var view = this.getEwayView();
 		var quaryData = view.down('form').getForm().getValues();
 		var record = Ext.create('Eway.model.machine.quittingNotice.QuittingNotice',data);
+		record.set('stopTime',data['stopTime'] + " 00:00:00");
+		record.set('openTime',data['openTime'] + " 00:00:00");
 		var store = this.getEwayView().down('gridpanel').getStore();
 		if(win.down('form').getForm().isValid()){//isValid对markInvalid不起作用
 			record.save({
@@ -116,15 +118,49 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 	onUpdate: function() {
 		var ewayView = this.getEwayView();
 		var grid = ewayView.down('gridpanel');
-		var sm = grid.getSelectionModel();
-		if(sm.getCount() == 1) {
+		var sm = grid.getSelectionModel();		
+		if(sm.getCount() == 1) {		
+
 			var win = Ext.create(this.updateView);
 			var record = sm.getLastSelected();
+			var stopTime = record.get('stopTime');
+			var openTime = record.get('openTime');
+			var date = Ext.Date.format(new Date(),'Y-m-d');
 			win.down('form').getForm().loadRecord(record);
-			var button = win.query('button[action=confirm]')[0];
-			this.win = win;
-			button.on('click', this.onUpdateConfirm, this);
-			win.show();
+			itemStopTime = win.down('form').getForm().findField("stopTime");
+			itemOpenTime = win.down('form').getForm().findField("openTime");
+			var OpenDate = null;
+			if(openTime != null)
+			{
+			   var openYear = openTime.substring(0,4);
+		       var openMonth = openTime.substring(5,7);
+		       var openDay = openTime.substring(8,10);
+	           OpenDate = new Date(openYear,openMonth,openDay);
+			}
+			   var nowYear = date.substring(0,4);
+	           var nowMonth = date.substring(5,7);
+	           var nowDay = date.substring(8,10);
+	           nowDate = new Date(nowYear,nowMonth,nowDay);
+			   if(OpenDate != null && OpenDate.getTime() <= nowDate.getTime())
+	            {
+	            	Ext.Msg.alert("提示", "不能对已执行完成的报停记录进行修改.");
+
+	            }
+	            else
+	            {
+	            	if(stopTime != null)
+	    			{
+	    				itemStopTime.setValue(stopTime.substring(0,10));
+	    			}
+	    			if(openTime != null)
+	    			{
+	    				itemOpenTime.setValue(openTime.substring(0,10));
+	    			}
+	    			var button = win.query('button[action=confirm]')[0];
+	    			this.win = win;
+	    			button.on('click', this.onUpdateConfirm, this);
+	    			win.show();
+	            }		
 		}
 		else {
 			Eway.alert(Eway.choiceUpdateMsg);
@@ -139,11 +175,12 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 		var view = this.getEwayView();
 		var quaryData = view.down('form').getForm().getValues();
 		var store = this.getEwayView().down('gridpanel').getStore();
+		var me = this;
 		if(win.down('form').getForm().isValid()){
 			var oldId = record.get("id");
 			record.set("deviceCode",data.deviceCode);
-			record.set("openTime",data.openTime);
-			record.set("stopTime",data.stopTime);
+			record.set("openTime",data.openTime + " 00:00:00");
+			record.set("stopTime",data.stopTime + " 00:00:00");
 			record.set("setTime",data.setTime);
 			record.set("stopType",data.stopType);
 			record.set("stopReason",data.stopReason);
@@ -155,6 +192,7 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 					record.set("id",oldId);
 					store.applyModel(record);
 					win.close();
+					me.onQuery();
 				},
 				failure: function(record,operation){
 					Eway.alert(operation.getError());

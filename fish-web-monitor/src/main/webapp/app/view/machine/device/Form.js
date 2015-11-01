@@ -35,20 +35,35 @@ Ext.define('Eway.view.machine.device.Form',{
 						allowBlank : false,
 						vtype :'ip'
 					}, {
-						fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.status,
+						fieldLabel : '<font color="red">*</font> 设备状态',
 						allowBlank : false,
+						disabled:true,
 						xtype : 'radiogroup',
+						hidden : true,
 						items : [ {
-							boxLabel : Eway.locale.machine.atmGroup.comboxStatus.open,
+							boxLabel : '开通',
 							name : 'status',
 							checked : true,
+							readOnly :true,
 							inputValue : 1
 						}, {
-							boxLabel : Eway.locale.machine.atmGroup.comboxStatus.close,
+							boxLabel : '停用',
 							name : 'status',
+							readOnly : true,
 							inputValue : 2
 						} ]
-					}, {
+					},{
+						xtype : 'datefield',
+						fieldLabel : '<font color="red">*</font> 生效日期',
+						name : 'effectiveDate',
+						displayField : 'display',
+						value : new Date(),
+			        	editable: false,
+			        	allowBlank:false,
+			        	startDateField :new Date(),
+			            format: 'Y-m-d',
+			            minValue:new Date()
+				},{
 						style : 'padding-top:0px',
 						xtype : 'hiddenfield',
 						name : 'devServiceId'
@@ -144,13 +159,13 @@ Ext.define('Eway.view.machine.device.Form',{
 							anchor : '59%',
 							items : [ {
 								boxLabel : Eway.locale.machine.device.crossWall,
-								name : 'setupType',
+								name : 'setupType',	
 								checked : true,
-								inputValue : 0
+								inputValue : 1
 							}, {
 								boxLabel : Eway.locale.machine.device.mainRoom,
-								name : 'setupType',
-								inputValue : 1
+								name : 'setupType',								
+								inputValue : 2
 							} ]
 						},{
 							fieldLabel : Eway.locale.machine.device.netType,
@@ -160,15 +175,15 @@ Ext.define('Eway.view.machine.device.Form',{
 								boxLabel : Eway.locale.machine.device.wired,
 								name : 'netType',
 								checked : true,
-								inputValue : 0
+								inputValue : 1
 							}, {
 								boxLabel : Eway.locale.machine.device.wireless,
 								name : 'netType',
-								inputValue : 1
+								inputValue : 2
 							}, {
 								boxLabel : Eway.locale.machine.device.wiredAndWireless,
 								name : 'netType',
-								inputValue : 2
+								inputValue : 3
 							}]}
 							,{
 								fieldLabel : Eway.locale.machine.device.onBankSignal,

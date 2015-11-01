@@ -2,15 +2,19 @@ package com.yihuacomputer.fish.web.machine.form;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.device.ITempDevInfo;
+import com.yihuacomputer.fish.api.device.NetType;
 import com.yihuacomputer.fish.api.device.SetupType;
 import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.device.WorkType;
+import com.yihuacomputer.fish.machine.entity.TempDevInfo;
 
 public class DeviceForm {
     private String id;
@@ -103,9 +107,21 @@ public class DeviceForm {
      * 设备安装日期 format(yyyy-MM-dd)
      */
     private String installDate;
+    
+    
+    
+   private String effectiveDate;
 
 
-    public DeviceForm() {
+   public String getEffectiveDate() {
+		return effectiveDate;
+	}
+
+	public void setEffectiveDate(String effectiveDate) {
+		this.effectiveDate = effectiveDate;
+	}
+
+	public DeviceForm() {
     }
 
     /**
@@ -125,7 +141,6 @@ public class DeviceForm {
         setVirtual(device.getVirtual());
         setSerial(device.getSerial());
         setNetType(String.valueOf(device.getNetType().getId()));
-
         if (device.getDevService() != null) {
             setDevServiceName(device.getDevService().getName());
             setDevServiceId(device.getDevService().getGuid());
@@ -143,14 +158,45 @@ public class DeviceForm {
             setOrgId(device.getOrganization().getGuid());
             setOrgName(device.getOrganization().getName());
         }
+        setStatus(device.getStatus() == null ? null : String.valueOf(device.getStatus().getId()));     
+        setTerminalId(device.getTerminalId());
+        this.installDate = device.getInstallDate() != null ? DateUtils.getDate(device.getInstallDate()):"";
+        
+    }   
+    
+    public DeviceForm(ITempDevInfo device) {
+        setAddress(device.getAddress());
+        setCashboxLimit(device.getCashboxLimit());
+        setAwayFlag(device.getAwayFlag() == null ? null : String.valueOf(device.getAwayFlag().getId()));
+        setSetupType(device.getSetupType() == null ? null : String.valueOf(device.getSetupType().getId()));
+        setWorkType(device.getWorkType() == null ? null : String.valueOf(device.getWorkType().getId()));
+        setVirtual(device.getVirtual());
+        setSerial(device.getSerial());
+        setNetType(String.valueOf(device.getNetType().getId()));
+        if (device.getDevService() != null) {
+            setDevServiceName(device.getDevService().getName());
+            setDevServiceId(device.getDevService().getGuid());
+        }
 
+        if (device.getDevType() != null) {
+            setDevTypeId(device.getDevType().getId());
+            setDevTypeName(device.getDevType().getName());
+            setDevCatalogName(device.getDevType().getDevCatalog().getName());
+            setDevVendorName(device.getDevType().getDevVendor().getName());
+        }
+        setId(String.valueOf(device.getId()));
+        setIp(device.getIp().toString());
+        if (device.getOrganization() != null) {
+            setOrgId(device.getOrganization().getGuid());
+            setOrgName(device.getOrganization().getName());
+        }
+        setEffectiveDate(String.valueOf(device.getEffectiveDate()));
         setStatus(device.getStatus() == null ? null : String.valueOf(device.getStatus().getId()));
-
+        setEffectiveDate(String.valueOf(device.getEffectiveDate()));
         setTerminalId(device.getTerminalId());
         this.installDate = device.getInstallDate() != null ? DateUtils.getDate(device.getInstallDate()):"";
 
     }
-
     /**
      * 本地数据保存至接口
      *
@@ -168,17 +214,51 @@ public class DeviceForm {
         device.setSetupType(nullObject(getSetupType(), SetupType.class));
         device.setWorkType(nullObject(getWorkType(), WorkType.class));
         device.setSerial(getSerial());
-        device.setNetType(device.getNetType());
-        device.setInstallDate(installDate == null ?  null : DateUtils.getDate(installDate));
+        device.setNetType(nullObject(getNetType(), NetType.class));        
+        device.setInstallDate((installDate == null || "".equals(installDate))?  null : DateUtils.getDate(installDate));
     }
-
+    
+    
+    public void translate(ITempDevInfo device) {
+        device.setAddress(getAddress());
+        device.setCashboxLimit(getCashboxLimit());
+        device.setIp(new IP(getIp()));
+        device.setTerminalId(getTerminalId());
+        device.setVirtual(getVirtual());
+        device.setStatus(nullObject(getStatus(), Status.class));
+        device.setAwayFlag(nullObject(getAwayFlag(), AwayFlag.class));
+        device.setSetupType(nullObject(getSetupType(), SetupType.class));
+        device.setWorkType(nullObject(getWorkType(), WorkType.class));
+        device.setSerial(getSerial());
+        device.setNetType(nullObject(getNetType(), NetType.class)); 
+        device.setEffectiveDate(nullDate(getEffectiveDate()));
+        device.setInstallDate((installDate == null || "".equals(installDate))?  null : DateUtils.getDate(installDate));
+    }
+    
+    private Date nullDate(String string) {
+        if (string == null || "".equals(string)) {
+            return null;
+        }
+        return DateUtils.getDate(string);
+    }
+    
     public static List<DeviceForm> convert(List<IDevice> list) {
         List<DeviceForm> result = new ArrayList<DeviceForm>();
         for (IDevice item : list) {
             result.add(new DeviceForm(item));
         }
         return result;
-    }
+    }  
+    
+    
+    public static List<DeviceForm> convertTempDev(List<ITempDevInfo> list) {
+        List<DeviceForm> result = new ArrayList<DeviceForm>();
+        for (ITempDevInfo item : list) {
+            result.add(new DeviceForm(item));
+        }
+        return result;
+    }   
+
 
     public String getId() {
         return id;
@@ -363,4 +443,6 @@ public class DeviceForm {
 		this.installDate = installDate;
 	}
 	
+  
+
 }
