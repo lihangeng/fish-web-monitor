@@ -118,7 +118,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		if (values.endDate) {
 			params += '&endDate=' + values.endDate;
 		}
-		window.location.href = 'api/srcb/plan/exportPlan?' + params;
+		window.location.href = 'api/plan/exportPlan?' + params;
 	},
 	onDeviceLinkOpenPlan : function(){
 		var grid = this.getGridForDevice();
@@ -132,7 +132,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			Ext.Ajax.request({
 				scope : this,
 				method : 'POST',
-				url : 'api/srcb/plan/link',
+				url : 'api/plan/link',
 				params : {planId :record.data.id,deviceId:cRecord.data.id},
 				success: function(response){
 					var object = Ext.decode(response.responseText);
@@ -162,7 +162,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		Ext.Ajax.request({
 			scope : this,
 			method : 'POST',
-			url : 'api/srcb/plan/unlink',
+			url : 'api/plan/unlink',
 			params : {
 				planId :record.data.id,
 				deviceId:record.data.deviceId
@@ -767,7 +767,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			var PlanDeviceWin = Ext.create('Eway.view.operatingPlan.PlanDevice');
-			/*var linkedPanel = PlanDeviceWin.down('operatingPlan_linkedDevicePanel');
+			var linkedPanel = PlanDeviceWin.down('operatingPlan_linkedDevicePanel');
 			linkedPanel.down("field[name='planId']").setValue(record.data.id);
 			var linkingPanel = PlanDeviceWin.down('operatingPlan_linkingDevicePanel');
 			linkingPanel.down("field[name='planId']").setValue(record.data.id);
@@ -802,7 +802,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				);
 			linkedDeviceGrid.on("destroy",Ext.bind(this.onQuery,this));
 			PlanDeviceWin.show();
-		*/}
+		}
 		else {
 			Ext.Msg.alert("提示", "请选择您应用的方案！");
 		}
@@ -843,7 +843,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			Ext.Ajax.request({
 				scope : this,
 				method : 'POST',
-				url : 'api/srcb/plan/unlink',
+				url : 'api/plan/unlink',
 				params : {planId :record.data.id,deviceId:info},
 				success: function(response){
 					var object = Ext.decode(response.responseText);
@@ -891,7 +891,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				scope : this,
 				method : 'POST',
 				timeout : 90000,
-				url : 'api/srcb/plan/link',
+				url : 'api/plan/link',
 				params : {planId :record.data.id,deviceId:info},
 				success: function(response){
 					var object = Ext.decode(response.responseText);
@@ -985,7 +985,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				   Ext.Msg.wait('正在判断设备号是否符合要求，请耐心等待...');
 				};
 			addForm.submit({
-				 	url: 'api/srcb/plan/uploadExcel',
+				 	url: 'api/plan/uploadExcel',
 				    success: function(grid, action) {
 			        if(action.result.success == true){
 					if(action.result.message == -1)
@@ -1028,13 +1028,13 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					var selectedGrid = linkingDeviceWin.down('operatingPlan_linkedDeviceGrid');
 					selectedGrid.onReload();
 					// 这行特别消耗时间  TODO
-						msg="<a class='link' href='api/srcb/plan/downloadFile'>共"
+						msg="<a class='link' href='api/plan/downloadFile'>共"
 						+ action.result.message + "条数据,成功导入" +action.result.total + "条,点击查看导入详情!</a>"
 					}
 					 Ext.Msg.alert('提示', msg,function callback(){
 			    		  Ext.Ajax.request({
 			    				method : 'POST',
-			    				url : 'api/srcb/plan/delFile',
+			    				url : 'api/plan/delFile',
 			    			});
 					    });
 
