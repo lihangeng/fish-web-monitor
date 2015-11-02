@@ -70,11 +70,11 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceGrid', {
 				text: '查询',
 				iconCls :'queryBtn',
 				action: 'query'
-			},{
+			}/*,{
 			   text :'导入要关联的设备',
 			   iconCls:'addBtn',
 			   action:'importMachineCode'
-			}, {
+			}*/, {
 				text: '关联',
 				iconCls :'connectBtn',
 				action: 'link'
