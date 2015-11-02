@@ -90,7 +90,7 @@
 	            if(xmlHttpReq.status == 200){
 	                var myObject = eval('(' + xmlHttpReq.responseText + ')');
 					if(myObject.success==true){
-						window.location.href='index.jsp';
+						window.location.href='login.jsp';
 					}else{
 						 document.getElementById("registerError").style.display='';
 						 document.getElementById("registerError").innerHTML = myObject.message;
