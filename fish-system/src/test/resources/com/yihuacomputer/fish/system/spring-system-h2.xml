@@ -24,10 +24,10 @@
 	<!--自身的配置(数据源的配置)-->
 	<jdbc:embedded-database id="hiberanteDataSource" type="H2"/>
 	
-	<!-- SIMPLE缓存配置
-	<import resource="classpath:/com/yihuacomputer/domain/fish-cache-simple.xml"/> -->
-	<!-- ehcache缓存配置 -->
-	<import resource="classpath:/com/yihuacomputer/domain/fish-cache-ehcache.xml"/>
+	<!-- SIMPLE缓存配置 -->
+	<import resource="classpath:/com/yihuacomputer/domain/fish-cache-simple.xml"/>
+	<!-- ehcache缓存配置 
+	<import resource="classpath:/com/yihuacomputer/domain/fish-cache-ehcache.xml"/>-->
 		
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
