@@ -36,8 +36,7 @@ Ext.define('Eway.view.monitor.device.View',{
 					itemId : 'card_itemId',
 					tbar : [
 						'订阅条件:', {
-							xtype : 'label',
-							text : '南京分行&nbsp;0000111&nbsp;运行状态[正常服务|客户交易]&nbsp;模块状态[故障]&nbsp;钞箱状态[正常|钞少]&nbsp;网络状态[网络正常]'	
+							xtype : 'label'
 						}
 					],
 					dockedItems: [ {
@@ -145,6 +144,11 @@ Ext.define('Eway.view.monitor.device.View',{
 
 		var p = cardp.getLayout().getActiveItem();
 		var store;
+		if(p.getItemId() == 'summary'){
+//			cardp.tbar.setHtml("123");
+			this.doCometd(store);
+			return;
+		}
 		if (p.getItemId() == 'martrixPanel') {
 			store = p.down('monitor_device_showtype_dataviewgrid').getStore();
 			
@@ -221,7 +225,7 @@ Ext.define('Eway.view.monitor.device.View',{
 		if(itemId == 'list' || itemId == 'box'){
 			this.doGridPanel(currentPanel,object);
 		}
-		else if (p.getItemId() == 'martrixPanel') {
+		else if (itemId == 'martrixPanel') {
 			this.doDataViewPanel(currentPanel,object);
 		}/*
 		else if(itemId == 'mapview') {
@@ -230,7 +234,10 @@ Ext.define('Eway.view.monitor.device.View',{
 	},
 
 	doDataViewPanel : function(view,object){
-		var store = view.getStore();
+		
+//		var store = view.getStore();
+		var store = view.down('monitor_device_showtype_dataviewgrid').getStore();
+		
 		var action = object.method;
 		if(action == 'ADD'){
 			var record = Ext.ModelManager.create(object,'Eway.model.monitor.device.DeviceMonitorList');
