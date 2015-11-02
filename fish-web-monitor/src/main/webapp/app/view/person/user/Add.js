@@ -66,7 +66,7 @@ Ext.define('Eway.view.person.user.Add', {
 				    xtype : 'field.userState',
 				    fieldLabel : '<font color="red">*</font> '+Eway.locale.person.bankPer.status,
 				    allowBlank : false,
-				    value : '0',
+				    value : '1',
 				    hidden : true,
 					editable : false
 				},{

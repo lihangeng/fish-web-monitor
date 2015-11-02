@@ -86,6 +86,9 @@
 		function css(element,name,value){
 			element.style[name]=value
 		}
+		function divHidden(){
+			show($("updatePasswordDiv"),false);
+		}
 	  	//密码修改
 	  	function _updatePassword(){
 
@@ -226,7 +229,7 @@
 			确认新密码：<input name="password2" type="password" class="registerInputText" style="width:155px"/><br/><br/>
 			<br/>
 			<input class="updatePasswordSubmitBtn" type="button" value="确定" onclick="updatePasswordSubmitFn()">
-			<input class="udpatePasswordCloseBtn" type="button" value="关闭">
+			<input class="udpatePasswordCloseBtn" type="button" value="关闭" onclick="divHidden()">
 			<pre style="color: blue;">密码中只能包含数字或字母，或者_@.符号，长度8-20位</pre>
 		</form>
 		<div style="height:40px;" >
