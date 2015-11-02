@@ -1868,6 +1868,7 @@ Ext.override(Eway,{
 			plan:{
 				addPlan:'增加方案',//Eway.locale.report.plan.addPlan
 				name:'名称',//Eway.locale.report.plan.name
+				type:'类型',//Eway.locale.report.plan.type
 				startDate:'有效开始时间',//Eway.locale.report.plan.startDate
 				endDate:'有效结束时间',//Eway.locale.report.plan.endDate
 				terminalId:'编号',//Eway.locale.report.plan.terminalId

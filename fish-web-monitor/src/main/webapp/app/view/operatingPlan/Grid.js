@@ -11,31 +11,31 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 			store : store,
 			initRegion : true,
 			tbar : [ '->', {
-				text : '应用',
+				text: Eway.locale.button.apply,
 				iconCls : 'connectBtn',
 				code : 'planLink',
 				action : 'link'
 			}, {
-				text : '详情',
+				text: Eway.locale.button.info,
 				iconCls : 'detailBtn',
 				action : 'queryDetail'
 			}, {
-				text : '查询',
-				iconCls : 'queryBtn',
+				text: Eway.locale.button.search,
+				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : '增加',
-				iconCls : 'addBtn',
+				text : Eway.locale.button.add,
+				glyph : 0xf067,
 				code : 'planAdd',
 				action : 'add'
 			}, {
-				text : '更改',
-				iconCls : 'updateBtn',
+				text: Eway.locale.button.update,
+				glyph : 0xf040,
 				code : 'planUpdate',
 				action : 'update'
 			}, {
-				text : '删除',
-				iconCls : 'deleteBtn',
+				text: Eway.locale.button.remove,
+				glyph : 0xf014,
 				code : 'planDel',
 				action : 'remove'
 			}/*,{
@@ -57,11 +57,11 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				}
 			},
 			columns : [ {
-				header : '名称',
+				header : Eway.locale.report.plan.name,
 				width : 180,
 				dataIndex : 'name'
 			}, {
-				header : '类型',
+				header : Eway.locale.report.plan.type,
 				width : 130,
 				dataIndex : 'planType',
 				renderer : function(value, metadata, record) {
