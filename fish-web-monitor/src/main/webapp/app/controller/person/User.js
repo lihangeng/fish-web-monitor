@@ -236,7 +236,7 @@ Ext.define('Eway.controller.person.User', {
 			addedRoleGrid.getView().on('drop', this.onAddedRole, this);
 			roleGrid.getView().on('drop', this.onAddingRole, this);
 			
-			win.down("field_userType").select(record.get("userType"));
+//			win.down("field_userType").select(record.get("userType"));
 
 			addedRoleGrid.getStore().load({
 				params : {
