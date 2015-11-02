@@ -4,7 +4,7 @@ Ext.define('Eway.view.index.Index', {
 	extend: 'Ext.panel.Panel',
 
 	requires: ['Eway.view.index.FaultTrendByDay','Eway.view.index.VersionDistributePie',
-	           'Eway.view.index.RetainCardByDay'],
+	           'Eway.view.index.RetainCardByDay','Eway.view.index.StatusDonutCharts'],
 	uses : [ 'Ext.XTemplate'],
 	layout: {
         type: 'table',
@@ -30,7 +30,7 @@ Ext.define('Eway.view.index.Index', {
 		    },{
 		    	xtype:'retainCardByDay'
 		    },{
-		    	xtype:'faultTrendByDay'
+		    	xtype:'statusDonutCharts'
 		    }],
 		    listeners:{
 		    	activate:function(_this,eOpt){
@@ -38,7 +38,7 @@ Ext.define('Eway.view.index.Index', {
 		    		var chart1 = Ext.create("Eway.view.index.VersionDistributePie");
 		    		var chart2 = Ext.create("Eway.view.index.FaultTrendByDay");
 		    		var chart3 = Ext.create("Eway.view.index.RetainCardByDay");
-		    		var chart4 = Ext.create("Eway.view.index.FaultTrendByDay");
+		    		var chart4 = Ext.create("Eway.view.index.StatusDonutCharts");
 		    		_this.add(chart1);
 		    		_this.add(chart2);
 		    		_this.add(chart3);

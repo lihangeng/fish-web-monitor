@@ -43,7 +43,7 @@ public class StartPlanController {
 
 	private Logger logger = LoggerFactory.getLogger(StartPlanController.class);
 
-	@Autowired
+//	@Autowired
 	private IStartPlanService startPlanService;
 
 	/**
@@ -52,7 +52,7 @@ public class StartPlanController {
     @Autowired
     private IDeviceService deviceService;
 
-    @Autowired
+//    @Autowired
     private IStartPlanDeviceRelation startPlanDeviceRelation;
 
 
