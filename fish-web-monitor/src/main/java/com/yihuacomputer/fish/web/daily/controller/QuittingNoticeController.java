@@ -86,8 +86,30 @@ public class QuittingNoticeController {
 				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.addFailDev", null, FishCfg.locale));
 				return result;
 			}
-
+			IQuittingNotice exit_quittingNotice = quittingNoticeService
+					.get(form.getDeviceCode(),new Date());
+			if (exit_quittingNotice != null && exit_quittingNotice.getDevStatus().equals(Status.DISABLED))
+			{
+				result.put(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("增加失败:已报停的设备不能重复添加报停记录.", null, FishCfg.locale));
+				return result;
+			}
+			if (exit_quittingNotice != null && exit_quittingNotice.getDevStatus().equals(Status.OPENING))
+			{
+				System.out.println(exit_quittingNotice.getDeviceCode());
+				result.put(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("增加失败:同一台设备只能添加一条未生效的报停记录.", null, FishCfg.locale));
+				return result;
+			}			
 			IQuittingNotice quittingNotice = quittingNoticeService.make();
+			Date quittingNoticeTime = form.getStopTime();
+			Date todayTime = new Date();
+			if (quittingNoticeTime.getTime() < todayTime.getTime()) {
+				quittingNotice.setDevStatus(Status.DISABLED);
+			} else {
+				quittingNotice.setDevStatus(Status.OPENING);
+			}
+			
 			quittingNotice.setDeviceCode(form.getDeviceCode());
 			quittingNotice.setId(form.getId());
 			quittingNotice.setOpenTime(form.getOpenTime());
@@ -96,7 +118,6 @@ public class QuittingNoticeController {
 			quittingNotice.setStopType(StopType.getById(Integer.parseInt(form.getStopType())));
 			quittingNotice.setStopReason(form.getStopReason());
 			quittingNotice.setResponsiblilityName(form.getResponsibilityName());
-			quittingNotice.setDevStatus(form.getDevStatus());
 			IQuittingNotice notice = quittingNoticeService.add(quittingNotice);
 
 			form.setSetTime(notice.getSetTime());
@@ -193,7 +214,7 @@ public class QuittingNoticeController {
 				result.addAttribute(FishConstant.SUCCESS, false);
 			} else {
 				/* 停机结束 */
-				if (form.getDevStatus() != null && form.getDevStatus().equals(Status.OPENING)
+				/*if (form.getDevStatus() != null && form.getDevStatus().equals(Status.OPENING)
 						&& !quittingNotice.getDevStatus().equals(Status.OPENING)) {
 					IXfsStatus status = xfsService.loadXfsStatus(quittingNotice.getDeviceCode());
 					status.setRunStatus(RunStatus.Unknown);
@@ -203,6 +224,13 @@ public class QuittingNoticeController {
 					IXfsStatus status = xfsService.loadXfsStatus(quittingNotice.getDeviceCode());
 					status.setRunStatus(RunStatus.StopManmade);
 					xfsService.updateXfsStatus(status);
+				}*/
+				Date quittingNoticeTime = form.getStopTime();
+				Date todayTime = new Date();
+				if (quittingNoticeTime.getTime() < todayTime.getTime()) {
+					quittingNotice.setDevStatus(Status.DISABLED);
+				} else {
+					quittingNotice.setDevStatus(Status.OPENING);
 				}
 				quittingNotice.setDeviceCode(quittingNotice.getDeviceCode());
 				quittingNotice.setOpenTime(form.getOpenTime());
@@ -210,7 +238,6 @@ public class QuittingNoticeController {
 				quittingNotice.setStopType(StopType.getById(Integer.parseInt(form.getStopType())));
 				quittingNotice.setStopReason(form.getStopReason());
 				quittingNotice.setResponsiblilityName(form.getResponsibilityName());
-				quittingNotice.setDevStatus(form.getDevStatus());
 				quittingNoticeService.update(quittingNotice);
 
 				if (form.getDevStatus() != null && !form.getDevStatus().equals(device.getStatus())) {

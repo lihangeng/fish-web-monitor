@@ -8,9 +8,6 @@ Ext.define('Eway.model.operatingPlan.OpenPlan', {
 		reader : {
 			type : 'json',
 			rootProperty : 'data'
-		},
-		wirter : {
-			type : 'json'
 		}
 	},
 	hasMany : 'OpenPlanDetail'

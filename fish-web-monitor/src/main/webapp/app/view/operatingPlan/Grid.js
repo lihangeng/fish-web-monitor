@@ -38,12 +38,12 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				iconCls : 'deleteBtn',
 				code : 'planDel',
 				action : 'remove'
-			},{
+			}/*,{
 				text : '导出',
 				iconCls : 'exportToExcel',
 				code : 'planExport',
 				action : 'exportPlan'
-				}],
+				}*/],
 			viewConfig : {
 				forceFit : true,
 				stripeRows : true,

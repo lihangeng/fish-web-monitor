@@ -162,7 +162,7 @@ Ext.define('Eway.controller.Main', {
 //		}else if(code == "monitor_cardDestroy"){
 //			this.activeController('monitor.card.CardDestory');
 //		}
-		else if(code == "openPlan"){
+		else if(code == "openDevPlan"){
 			this.activeController('operatingPlan.OpenPlan');
 		}
 		else if(code == "logBackup"){

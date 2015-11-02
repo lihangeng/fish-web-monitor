@@ -7,7 +7,7 @@ package com.yihuacomputer.fish.api.device;
  * @version 类说明
  */
 public enum NetType {
-    CABLE(0, "NetType.CABLE"), WIRELESS(1, "NetType.WIRELESS"), CW(2, "NetType.CW");
+    CABLE(1, "NetType.CABLE"), WIRELESS(2, "NetType.WIRELESS"), CW(3, "NetType.CW");
 
     public String getText(){
 		return text;

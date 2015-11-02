@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.api.quittingNotice;
 
+import java.util.Date;
+
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 /**
@@ -37,5 +39,7 @@ public interface IQuittingNoticeService
     public IPageResult<IQuittingNotice> page(int offset, int limit,IFilter filter,String orgId,boolean flag);
 
     public Iterable<IQuittingNotice> list(IFilter filter);
+    
+	public IQuittingNotice get(String deviceCode, Date openTime);
 
 }

@@ -2,7 +2,7 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceFilter',{
 
 	extend : 'Eway.view.base.FilterForm',
 	alias  : 'widget.operatingPlan_linkingDeviceFilter',
-	requires : [ 'Eway.lib.Util','Eway.model.version.SelectableDevice','Ext.ux.selection.CheckboxModel',
+	requires : [ 'Eway.lib.Util','Eway.model.version.SelectableDevice',
 				 'Eway.view.field.device.DeviceAtmType','Eway.view.common.OrgComboOrgTree', 'Eway.view.field.atmType.DeviceAtmCatalogComboBox' ],
 
 	layout : 'column',

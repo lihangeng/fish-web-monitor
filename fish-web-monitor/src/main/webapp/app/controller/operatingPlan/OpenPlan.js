@@ -118,7 +118,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		if (values.endDate) {
 			params += '&endDate=' + values.endDate;
 		}
-		window.location.href = 'api/srcb/plan/exportPlan?' + params;
+		window.location.href = 'api/plan/exportPlan?' + params;
 	},
 	onDeviceLinkOpenPlan : function(){
 		var grid = this.getGridForDevice();
@@ -132,7 +132,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			Ext.Ajax.request({
 				scope : this,
 				method : 'POST',
-				url : 'api/srcb/plan/link',
+				url : 'api/plan/link',
 				params : {planId :record.data.id,deviceId:cRecord.data.id},
 				success: function(response){
 					var object = Ext.decode(response.responseText);
@@ -162,7 +162,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		Ext.Ajax.request({
 			scope : this,
 			method : 'POST',
-			url : 'api/srcb/plan/unlink',
+			url : 'api/plan/unlink',
 			params : {
 				planId :record.data.id,
 				deviceId:record.data.deviceId
@@ -314,7 +314,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				}
 			})
 			if(flag){
-				var record = Ext.ModelManager.create(data, 'Eway.model.operatingPlan.OpenPlanDetail');
+				var record = Ext.create( 'Eway.model.operatingPlan.OpenPlanDetail',data);
 				infoWeekGrid.getStore().add(record);
 			}else{
 				if(alertMsg ==null){
@@ -373,7 +373,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			if(!flag){
 				return;
 			}
-			var record = Ext.ModelManager.create(data, 'Eway.model.operatingPlan.OpenPlanDetail');
+			var record = Ext.create('Eway.model.operatingPlan.OpenPlanDetail',data);
 			infoDateGrid.getStore().add(record);
 		});
 
@@ -431,7 +431,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			planDetails = planDetails.substring(1);
 			planDetails = "[" + planDetails + "]";
 		var data1 = new Object();
-		var record1 = Ext.ModelManager.create(data1,'Eway.model.operatingPlan.OpenPlan');
+		var record1 = Ext.create( 'Eway.model.operatingPlan.OpenPlan',data1);
     	record1.set('id',0);
     	record1.set('name',data.name);
     	record1.set('desc',data.desc);
@@ -449,9 +449,14 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				store.loadPage(1);
 				Ext.Msg.alert("提示", "添加成功！");
 			},
+//			failure: function(record,operation){
+//				Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors);
+//			}
 			failure: function(record,operation){
-				Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors);
-			}
+				Eway.alert("提示", operation.getError());
+				
+			 },
+			
 
 		});
 		}else{
@@ -473,7 +478,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		var grid = this.getGrid();
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
-			var detailWin = Ext.create('Eway.view.operatingPlan.PlanInfoWin');
+			var detailWin = Ext.create('Eway.view.operatingPlan.PlanInfoWin',data);
 			var record = sm.getLastSelected();
 			var store = detailWin.down('planInfo_grid').getStore();
 			store.load({
@@ -596,7 +601,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 							alertMsg = alertMsg +","+myCheckboxGroup.getChecked()[i].boxLabel;
 						}
 					}else{
-						var record = Ext.ModelManager.create(data, 'Eway.model.operatingPlan.OpenPlanDetail');
+						var record = Ext.create( 'Eway.model.operatingPlan.OpenPlanDetail',data);
 						infoWeekGrid.getStore().add(record);
 					}
 				}
@@ -731,12 +736,12 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			},
 			failure: function(record,operation){
 				if(operation.request.scope.reader.jsonData.type==null){
-					Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors,function(){
+					Ext.Msg.alert("提示", operation.getError(),function(){
 						//解决脏数据
 						store.rejectChanges();
 					});
 				}else{
-					Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors,function(){
+					Ext.Msg.alert("提示", operation.getError(),function(){
 						//解决脏数据
 						store.rejectChanges();
 						win.close();
@@ -744,7 +749,6 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					});
 				}
 			},
-
 
 		});
 		}else{
@@ -839,7 +843,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			Ext.Ajax.request({
 				scope : this,
 				method : 'POST',
-				url : 'api/srcb/plan/unlink',
+				url : 'api/plan/unlink',
 				params : {planId :record.data.id,deviceId:info},
 				success: function(response){
 					var object = Ext.decode(response.responseText);
@@ -887,7 +891,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				scope : this,
 				method : 'POST',
 				timeout : 90000,
-				url : 'api/srcb/plan/link',
+				url : 'api/plan/link',
 				params : {planId :record.data.id,deviceId:info},
 				success: function(response){
 					var object = Ext.decode(response.responseText);
@@ -939,7 +943,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
-							record.destroy({
+							record.erase({
 								success: function(){
 									Ext.Msg.alert("提示", "删除成功！");
 									var values = view.down('operatingPlan_filterForm').getForm().getValues();
@@ -948,7 +952,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 									store.loadPage(1);
 								},
 								failure: function(record,operation){
-									Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors);
+									Ext.Msg.alert("提示", operation.getError());
 									grid.getStore().load();
 								},
 								scope:this
@@ -981,7 +985,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				   Ext.Msg.wait('正在判断设备号是否符合要求，请耐心等待...');
 				};
 			addForm.submit({
-				 	url: 'api/srcb/plan/uploadExcel',
+				 	url: 'api/plan/uploadExcel',
 				    success: function(grid, action) {
 			        if(action.result.success == true){
 					if(action.result.message == -1)
@@ -1024,13 +1028,13 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					var selectedGrid = linkingDeviceWin.down('operatingPlan_linkedDeviceGrid');
 					selectedGrid.onReload();
 					// 这行特别消耗时间  TODO
-						msg="<a class='link' href='api/srcb/plan/downloadFile'>共"
+						msg="<a class='link' href='api/plan/downloadFile'>共"
 						+ action.result.message + "条数据,成功导入" +action.result.total + "条,点击查看导入详情!</a>"
 					}
 					 Ext.Msg.alert('提示', msg,function callback(){
 			    		  Ext.Ajax.request({
 			    				method : 'POST',
-			    				url : 'api/srcb/plan/delFile',
+			    				url : 'api/plan/delFile',
 			    			});
 					    });
 

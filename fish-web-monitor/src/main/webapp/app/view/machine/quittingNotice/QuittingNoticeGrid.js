@@ -50,11 +50,28 @@ Ext.define('Eway.view.machine.quittingNotice.QuittingNoticeGrid', {
 			}, {
 				header : Eway.locale.machine.quittingNotice.stopTime,
 				dataIndex : 'stopTime',
+				renderer:function(value) //将时间格式截取为日期格式
+				{
+					if(value != null)
+					{
+						return value.substring(0,10);
+					}
+
+				},
 				flex : 1/*,
+				
 				renderer:Ext.util.Format.dateRenderer('Y-m-d H:i:s')*/
 			}, {
 				header : Eway.locale.machine.quittingNotice.openTime,
 				dataIndex : 'openTime',
+				renderer:function(value) //将时间格式截取为日期格式
+				{
+					if(value != null)
+					{
+						return value.substring(0,10);
+					}
+
+				},
 				flex : 1/*,
 				renderer:Ext.util.Format.dateRenderer('Y-m-d H:i:s')*/
 			},{

@@ -1166,7 +1166,15 @@ Ext.override(Eway,{
 				factureStaff:'厂商模式维护',//Eway.locale.monitor.devMonitor.factureStaff
 				netHealthy:'网络正常',//Eway.locale.monitor.devMonitor.netHealthy
 				netUnStable:'网络不稳定',//Eway.locale.monitor.devMonitor.netUnStable
-				netFatal:'网络故障'//Eway.locale.monitor.devMonitor.netFatal
+				netFatal:'网络故障',//Eway.locale.monitor.devMonitor.netFatal
+				filterManager: {
+					title: '订阅条件管理',//Eway.locale.monitor.devMonitor.filterManager.title
+					add: '创建订阅条件',//Eway.locale.monitor.devMonitor.filterManager.add
+					update: '修改订阅条件',//Eway.locale.monitor.devMonitor.filterManager.update
+					filterForm: {
+						filterName: '订阅名称'//Eway.locale.monitor.devMonitor.filterManager.filterForm.filterName
+					}
+				}
 			},
 			business:{
 				transaction:{

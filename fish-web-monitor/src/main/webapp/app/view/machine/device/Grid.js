@@ -140,10 +140,10 @@ Ext.define('Eway.view.machine.device.Grid', {
 				header : Eway.locale.machine.device.installStyle,
 				dataIndex : 'setupType',
 				renderer:function(value, metadata, record){
-					if(value == 0){
+					if(value == 1){
 						return Eway.locale.machine.device.crossWall;
 					}
-					if(value == 1){
+					if(value == 2){
 						return Eway.locale.machine.device.mainRoom;
 					}
 				},
