@@ -1876,6 +1876,9 @@ Ext.override(Eway,{
 				perToDev:'人员<-->设备',//Eway.locale.report.plan.perToDev
 				changePlan:'更改方案',//Eway.locale.report.plan.changePlan
 				openPlan:'开机方案',//Eway.locale.report.plan.openPlan
+			},
+			openplan:{
+				name:'名称',//Eway.locale.report.openplan.name
 			}
 		},
 

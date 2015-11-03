@@ -66,33 +66,33 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				dataIndex : 'planType',
 				renderer : function(value, metadata, record) {
 					if (value == "DATE") {
-						return "日期";
+						return Eway.locale.report.plan.date;
 					} else if (value == "WEEK") {
-						return "星期";
+						return Eway.locale.report.plan.week;
 					}
 				}
 			}, {
-				header : '设备数量',
+				header : Eway.locale.report.plan.machineQuantity,
 				width : 130,
 				dataIndex : 'deviceCount',
 			}, {
-				header : '状态',
+				header : Eway.locale.report.plan.state,
 				width : 130,
 				dataIndex : 'planStateType'
 			}, {
-				header : '有效开始时间',
+				header : Eway.locale.report.plan.openDate,
 				width : 180,
 				dataIndex : 'startDate'
 			}, {
-				header : '有效结束时间',
+				header : Eway.locale.report.plan.closeDate,
 				width : 180,
 				dataIndex : 'endDate'
 			}, {
-				header : '备注',
+				header : Eway.locale.version.View.remark,
 				dataIndex : 'desc',
 				flex : 1
 			}, {
-				header : '创建时间',
+				header : Eway.locale.report.plan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 180,
 				fiex : 1
