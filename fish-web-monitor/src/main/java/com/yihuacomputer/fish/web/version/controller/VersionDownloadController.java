@@ -462,11 +462,12 @@ public class VersionDownloadController {
      */
     @RequestMapping(value = "/task/cancel", method = RequestMethod.POST)
     public @ResponseBody
-    ModelMap cancelTask(@RequestParam long jobId, @RequestParam long taskId) {
+    ModelMap cancelTask( @RequestParam long taskId) {
         logger.info(" cancle task: task.id = " + taskId);
         ModelMap result = new ModelMap();
         try {
-//            jobManager.cancelTask(jobId, taskId);
+        	ITask task = taskService.get(taskId);
+        	taskService.cancelTask(task);
             result.addAttribute(FishConstant.SUCCESS, true);
         }
         catch (Exception ex) {
@@ -514,17 +515,22 @@ public class VersionDownloadController {
      *            作业ID
      * @return
      */
-//    @RequestMapping(value = "/pause", method = RequestMethod.POST)
-//    public @ResponseBody
-//    String pauseJob(@RequestParam long id) {
-//        try {
-////            jobManager.suspendJob(id);
-//            return "{'success':true}";
-//        }
-//        catch (Exception ex) {
-//            return "{'success':false,'errors':'" + ex.getMessage() + "'}";
-//        }
-//    }
+    @RequestMapping(value = "/pause", method = RequestMethod.POST)
+    public @ResponseBody
+    String pauseJob(@RequestParam long id) {
+        try {
+            ITask task = taskService.get(id);
+            String batchName = task.getTaskBatchName();
+            IFilter filter = new Filter();
+            filter.eq("version", task.getVersion());
+            filter.eq("taskBatchName", batchName);
+            taskService.cancelTasks(taskService.list(filter));
+            return "{'success':true}";
+        }
+        catch (Exception ex) {
+            return "{'success':false,'errors':'" + ex.getMessage() + "'}";
+        }
+    }
 
     private List<TaskForm> toTaskForm(List<ITask> tasks) {
         List<TaskForm> forms = new ArrayList<TaskForm>();
