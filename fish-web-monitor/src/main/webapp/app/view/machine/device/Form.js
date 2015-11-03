@@ -35,26 +35,26 @@ Ext.define('Eway.view.machine.device.Form',{
 						allowBlank : false,
 						vtype :'ip'
 					}, {
-						fieldLabel : '<font color="red">*</font> 设备状态',
+						fieldLabel : '<font color="red">*</font>'+Eway.locale.commen.devStatus,
 						allowBlank : false,
 						disabled:true,
 						xtype : 'radiogroup',
 						hidden : true,
 						items : [ {
-							boxLabel : '开通',
+							boxLabel : Eway.locale.commen.comboxDevStatus.open,
 							name : 'status',
 							checked : true,
 							readOnly :true,
 							inputValue : 1
 						}, {
-							boxLabel : '停用',
+							boxLabel : Eway.locale.commen.comboxDevStatus.stop,
 							name : 'status',
 							readOnly : true,
 							inputValue : 2
 						} ]
 					},{
 						xtype : 'datefield',
-						fieldLabel : '<font color="red">*</font> 生效日期',
+						fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.device.effectiveDate,
 						name : 'effectiveDate',
 						displayField : 'display',
 						value : new Date(),

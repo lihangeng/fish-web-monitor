@@ -7,7 +7,7 @@ Ext.define('Eway.view.machine.device.View', {
 			'Eway.view.machine.device.TempGrid'
 			  ],
 
-	title : '设备管理',
+	title : Eway.locale.machine.device.devManage,
 	layout : 'border',
 	isLoad : true,
 
@@ -21,12 +21,12 @@ Ext.define('Eway.view.machine.device.View', {
 				xtype: 'tabpanel',
 				items : [{
 					xtype: 'device_grid',
-						title: '已生效设备信息',
+						title: Eway.locale.machine.device.efficientDev,
 						minHeight:240,
 				        flex : 1
 					},{
 						xtype: 'device_tempGrid',
-						title:'未生效设备信息',
+						title:Eway.locale.machine.device.unEfficientDev,
 						minHeight:240,
 				        flex : 1
 
