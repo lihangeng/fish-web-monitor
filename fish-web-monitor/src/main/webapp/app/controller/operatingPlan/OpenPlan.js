@@ -478,7 +478,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		var grid = this.getGrid();
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
-			var detailWin = Ext.create('Eway.view.operatingPlan.PlanInfoWin',data);
+			var detailWin = Ext.create('Eway.view.operatingPlan.PlanInfoWin');
 			var record = sm.getLastSelected();
 			var store = detailWin.down('planInfo_grid').getStore();
 			store.load({
