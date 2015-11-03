@@ -105,12 +105,11 @@ input:focus {
 			</table>
 			<div align="center">
 			
-				<div >
-						<div id="updatePwdError" class="form-message error" style="display:none;width:200px;"></div>
-						<div id="updatePwdSuccess" class="form-message success" style="display:none"></div>
-				</div>
 				<input class="sure" type="submit" value="确  定" style="margin-top: 20px;" onclick="updatePasswordSubmitFn()"/>
-				<p>单击即可修改密码，请牢记新密码!</p>
+				<div>
+					<div id="updatePwdError" class="form-message error" style="display:none;width:200px;"></div>
+					<div id="updatePwdSuccess" class="form-message success" style="display:none"></div>
+				</div>
 			</div>
 	
 <script type="text/javascript">
@@ -143,6 +142,11 @@ input:focus {
 		var oldPassword = getValue($Name('srcPw'))
 		var div = $('updatePwdError');
 		show(div,false);
+		if(oldPassword.trim().length==0){
+			setDivValue(div,'请输入原始密码!');
+			show(div,true);
+			return false;
+		}
 		if(password1.trim().length==0||password2.trim().length==0){
 			setDivValue(div,'请输入密码!');
 			show(div,true);
@@ -164,7 +168,7 @@ input:focus {
 			show(div,true);
 			return false;
 		}
-		if(password1.trim()==oldPassword){
+		if(password1.trim()==oldPassword.trim()){
 			setDivValue(div,'输入的新密码与旧密码相同，不可修改');
 			show(div,true);
 			return false;

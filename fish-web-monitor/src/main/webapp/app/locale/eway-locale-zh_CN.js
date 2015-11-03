@@ -90,7 +90,7 @@ Ext.override(Eway,{
 			massExport:'批量导入',
 			download:'下发',
 			downloadToolTip:'配置下发作业',
-			save:'保存',//Eway.locale.button.save
+			save:'保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存',//Eway.locale.button.save
 			detailBtn:'开机方案',//Eway.locale.button.detailBtn
 			adminBtn:'管理员',
 			personM:'厂商管理员',//Eway.locale.button.personM
