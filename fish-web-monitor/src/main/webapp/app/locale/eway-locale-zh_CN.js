@@ -6,7 +6,7 @@ Ext.override(Eway,{
 	choiceDeleteMsg :'请选择您要删除的记录.',//Eway.choiceDeleteMsg
 	locale:{
 		myTable:'我的工作台',//Eway.locale.myTable
-		ATMV:'自助设备监控系统(ATMV)',//Eway.locale.ATMV
+		ATMV:'自助设备监控系统',//Eway.locale.ATMV
 		welcome:'欢迎你,',//Eway.locale.welcome
 		personalConf:'个人设置',//Eway.locale.personalConf
 		systemHelp:'系统帮助',///Eway.locale.systemHelp
@@ -857,8 +857,10 @@ Ext.override(Eway,{
 			devCatalogName:'设备类型',//Eway.locale.commen.devCatalogName
 			devStatus:'设备状态',//Eway.locale.commen.devStatus
 			comboxDevStatus:{
+				upOpen:'未开通',//Eway.locale.commen.comboxDevStatus.upOpen
 				open:'开通',//Eway.locale.commen.comboxDevStatus.open
-				stop:'停用'//Eway.locale.commen.comboxDevStatus.stop
+				stop:'停用',//Eway.locale.commen.comboxDevStatus.stop
+				scrapped:'报废'//Eway.locale.commen.comboxDevStatus.Scrapped
 			},
 			setManager:'设置',//Eway.locale.commen.setManager
 			devServiceName:'设备维护商',//Eway.locale.commen.devServiceName

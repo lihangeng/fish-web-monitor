@@ -832,8 +832,10 @@ Ext.override(Eway,{
 			devCatalogName:'Device catalog',//Eway.locale.commen.devCatalogName 设备类型
 			devStatus:'Device status',//Eway.locale.commen.devStatus 设备状态
 			comboxDevStatus:{
-				open:'Open',//Eway.locale.commen.comboxDevStatus.open 开通
-				stop:'Stop'//Eway.locale.commen.comboxDevStatus.stop 停用
+				upOpen:'upOpen',//Eway.locale.commen.comboxDevStatus.upOpen
+				open:'Open',//Eway.locale.commen.comboxDevStatus.open
+				stop:'Stop',//Eway.locale.commen.comboxDevStatus.stop
+				scrapped:'Scrapped'//Eway.locale.commen.comboxDevStatus.Scrapped
 			},
 			setManager:'Setting',//Eway.locale.commen.setManager 设置
 			devServiceName:'Maintenance of device',//Eway.locale.commen.devServiceName 设备维护商

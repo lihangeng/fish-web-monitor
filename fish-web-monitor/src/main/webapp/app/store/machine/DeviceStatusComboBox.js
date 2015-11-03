@@ -4,10 +4,10 @@ Ext.define('Eway.store.machine.DeviceStatusComboBox', {
 	model : 'Eway.model.Dict',
 
 	data : [ {
-		value : '1',
+		value : '2',
 		display : '开通'
 	}, {
-		value : '2',
+		value : '3',
 		display : '停用'
 	}]
 });

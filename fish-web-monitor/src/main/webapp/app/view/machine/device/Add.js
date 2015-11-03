@@ -4,12 +4,11 @@ Ext.define('Eway.view.machine.device.Add', {
 
 	requires: ['Eway.view.machine.device.Form'],
 
-	title: '增加设备信息',
-
+	title: '增加设备信息1',
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
-    height : 600,
+    height : 450,
 	width : 750,
 	initComponent: function() {
 		Ext.apply(this, {
