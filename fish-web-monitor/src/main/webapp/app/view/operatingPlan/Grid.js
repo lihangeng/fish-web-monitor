@@ -72,19 +72,19 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 					}
 				}
 			}, {
-				header : Eway.locale.report.plan.machineQuantity,
+				header : Eway.locale.report.openplan.machineQuantity,
 				width : 130,
 				dataIndex : 'deviceCount',
 			}, {
-				header : Eway.locale.report.plan.state,
+				header : Eway.locale.report.openplan.state,
 				width : 130,
 				dataIndex : 'planStateType'
 			}, {
-				header : Eway.locale.report.plan.openDate,
+				header : Eway.locale.report.openplan.openDate,
 				width : 180,
 				dataIndex : 'startDate'
 			}, {
-				header : Eway.locale.report.plan.closeDate,
+				header : Eway.locale.report.openplan.closeDate,
 				width : 180,
 				dataIndex : 'endDate'
 			}, {
@@ -92,7 +92,7 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				dataIndex : 'desc',
 				flex : 1
 			}, {
-				header : Eway.locale.report.plan.createDateTime,
+				header : Eway.locale.report.openplan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 180,
 				fiex : 1
