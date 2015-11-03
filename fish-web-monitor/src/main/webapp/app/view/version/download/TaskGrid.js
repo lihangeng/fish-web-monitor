@@ -41,12 +41,14 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 			},{
 				text:Eway.locale.version.download.cancelBatch,//'批次取消',
 				action:'cancelBatch',
+				code : 'cancelBatch',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
 				text:Eway.locale.version.download.resetTaskStatus,//'重置任务状态',
 				action:'resetStatus',
+				code : 'resetStatus',
 				tooltip:Eway.locale.version.download.resetTaskStatus,
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender

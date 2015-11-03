@@ -5,28 +5,23 @@ Ext.define('Eway.view.advert.View', {
 	requires : [ 'Eway.view.advert.Grid','Eway.view.advert.AdvertResourceGrid', 'Eway.view.advert.FilterForm'/*,'Eway.view.advert.AdvertVersion'*/],
 
 	title : Eway.locale.advert.title,
-	layout : 'border',
+	layout : {
+		type:'table',
+		columns:1
+	},
+	scrollable : 'y',
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-					region : 'west',
-					width : '40%',
-					xtype:'container',
-					layout:'border',
-					items: [{
-							region : 'north',
 							xtype : 'advert_filterForm'
 						}, {
-							region : 'center',
 							xtype : 'advert_grid'
-						}],
-					split: true
-				},{
-					region: 'center',
-					/*title: '广告详细配置',*/
-					xtype:'advert_advertResourceGrid',
-					action:'advertConfig'
-				} ]
+						},{
+							xtype:'advert_advertResourceGrid',
+							action:'advertConfig'
+						} 
+					
+				]
 		});
 
 		this.callParent(arguments);
