@@ -667,6 +667,7 @@ Ext.override(Eway,{
 				autoUpdateInfo:'自动更新信息',//Eway.locale.version.task.autoUpdateInfo
 				selectAJob:'请选择一个作业.',//Eway.locale.version.task.selectAJob
 				versionDownHisStatusPic:'版本下发历史状态分布图',//Eway.locale.version.task.versionDownHisStatusPic
+				versionNoPic:'版本分布图',//Eway.locale.version.task.versionNoPic
 				cantCancelCompleteJob:'不能撤销"完成"状态的作业.',//Eway.locale.version.task.cantCancelCompleteJob
 				doSureCancelTheJob:'是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)',//Eway.locale.version.task.doSureCancelTheJob
 				deleting:'正在删除......',//Eway.locale.version.task.deleting
