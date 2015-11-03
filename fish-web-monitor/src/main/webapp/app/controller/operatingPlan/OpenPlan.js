@@ -791,9 +791,6 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			linkingDeviceGrid.down('button[action="link"]').on('click',
 					Ext.bind(this.onLinkConfirm,this,[linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid,record]),this
 				);
-			linkingDeviceGrid.down('button[action="importMachineCode"]').on('click',
-					Ext.bind(this.onImport,this,[linkedDeviceGrid,PlanDeviceWin]),this
-				);
 			linkingDeviceGrid.down('button[action="query"]').on('click',
 					Ext.bind(this.queryLinkDevice,this,[linkingPanel,linkingDeviceGrid]),this
 				);
