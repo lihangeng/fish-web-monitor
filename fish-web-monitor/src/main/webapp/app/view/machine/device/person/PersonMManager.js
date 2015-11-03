@@ -17,7 +17,7 @@ Ext.define('Eway.view.machine.device.person.PersonMManager', {
 	layout : 'fit',
 	initComponent: function() {
 		Ext.apply(this, {
-			title : '厂商管理员',
+			title : Eway.locale.button.personM,
 			items : [{
 				xtype : 'personM_manager_grid'
 			}]

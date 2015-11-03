@@ -5,9 +5,9 @@ Ext.define('Eway.store.machine.DeviceStatusComboBox', {
 
 	data : [ {
 		value : '2',
-		display : '开通'
+		display : Eway.locale.commen.comboxStatus.dredge
 	}, {
 		value : '3',
-		display : '停用'
+		display : Eway.locale.commen.comboxStatus.close
 	}]
 });

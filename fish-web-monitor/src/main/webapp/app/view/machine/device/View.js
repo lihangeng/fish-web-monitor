@@ -21,6 +21,7 @@ Ext.define('Eway.view.machine.device.View', {
 				region : 'center',
 				xtype : 'device_grid'
 			} ],
+
 			listeners : {
 				activate : function(panel) {
 					if (!panel.isLoad) {

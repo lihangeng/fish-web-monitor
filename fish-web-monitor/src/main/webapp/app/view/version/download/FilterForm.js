@@ -51,7 +51,7 @@ Ext.define('Eway.view.version.download.FilterForm', {
 					},{
 						xtype:'textfield',
 						maxLength:20,
-						fieldLabel:Eway.locale.version.batchTaskName,//'任务批次名称',
+						fieldLabel:Eway.locale.version.task.jobBatchName,//'任务批次名称',
 						name:'jobName'
 					}]
 				},

@@ -62,10 +62,10 @@ Ext.override(Eway,{
 		},
 		button:{
 			search:'查询',//Eway.locale.button.search
-			add : '增加',
-			update:'更改',
+			add : '增加',//Eway.locale.button.add
+			update:'更改',//Eway.locale.button.update
 			remove:'删除',//Eway.locale.button.remove
-			refresh:'刷新',
+			refresh:'刷新',//Eway.locale.button.refresh
 			reset:'重置',//Eway.locale.button.reset
 			back:'返回',//Eway.locale.button.back
 			apply:'应用',
@@ -90,11 +90,13 @@ Ext.override(Eway,{
 			massExport:'批量导入',
 			download:'下发',
 			downloadToolTip:'配置下发作业',
-			save:'保存',//Eway.locale.button.save
-			detailBtn:'开机方案',
+			save:'保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存',//Eway.locale.button.save
+			detailBtn:'开机方案',//Eway.locale.button.detailBtn
 			adminBtn:'管理员',
-			personM:'厂商管理员',
-			personTM:'管机员'
+			personM:'厂商管理员',//Eway.locale.button.personM
+			personTM:'管机员',//Eway.locale.button.personTM
+			orgAdmin:'机构管理员',//Eway.locale.button.orgAdmin
+			
 		},
 		//引用其他模块
 		refs:{
@@ -107,16 +109,16 @@ Ext.override(Eway,{
 		//**********************************************************/
 		tip:{
 			search :{
-				warn:'查询条件存在错误项.',
-				record:'请选择您要查看的记录.'
+				warn:'查询条件存在错误项.',//Eway.locale.tip.search.warn
+				record:'请选择您要查看的记录.',//Eway.locale.tip.search.record
 			},
 			update:{
-				one:'只能选择一条记录更改.',
-				two:'此条记录不能被更改.'
+				one:'只能选择一条记录更改.',//Eway.locale.tip.update.one
+				two:'此条记录不能被更改.'//Eway.locale.tip.update.two
 			},
 			remove :{
 				none:'请选择您要删除的记录.',
-				one:'只能选择一条记录删除',
+				one:'只能选择一条记录删除',//Eway.locale.tip.remove.one
 				confirm:{
 					title:'请确认',//Eway.locale.tip.remove.confirm.title
 					info:'是否删除该记录?'//Eway.locale.tip.remove.confirm.info
@@ -138,7 +140,7 @@ Ext.override(Eway,{
 			fail:'失败:',//Eway.locale.tip.fail
 			phone:'请输入正确的电话号码',
 			remind:'提示',//Eway.locale.tip.remind
-			displayMessage:'总共：{2}条，显示{0}-{1}',
+			displayMessage:'总共：{2}条，显示{0}-{1}',//Eway.locale.tip.displayMessage
 
 			unCertain:'未知',
 			searchOfNoLegal:'查询项中存在不合法的输入,不能提交.',
@@ -162,12 +164,21 @@ Ext.override(Eway,{
 			selectPlan:'请选择您应用的方案.',
 			removeFail:'解除失败.',
 			selectRemoveDev:'请选择要解除的设备.',
-			relatedFail:'关联失败.',
+			relatedFail:'关联失败.',//Eway.locale.tip.relatedFail
 			selectRelatedDev:'请选择要关联的设备.',
 			planNoUpdate:'该方案已经执行,不可修改.',
 			planNoRemove:'该方案已经执行,不可删除.',
 			exportFiles: '请选择导入文件,只支持.xls和.xlsx格式的文件',
-
+			noChange:'没有更改数据,请更改后再点击确定!',//Eway.locale.tip.noChange
+			operateSuc:'操作成功',//Eway.locale.tip.operateSuc
+			deleteOne:'一次只能删除一条记录.',//Eway.locale.tip.deleteOne
+			chooseRecord:'请选择您要关联的记录.',//Eway.locale.tip.chooseRecord
+			choosePlan:'请选择您要查看的方案',//Eway.locale.tip.choosePlan
+			planDate:'方案详情(日期)',//Eway.locale.tip.planDate
+			planWeek:'方案详情(星期)',//Eway.locale.tip.planWeek
+			planNoConf:'该方案无详细设置！',//Eway.locale.tip.planNoConf
+			chooseRelatedDev:'请选择您要关联的设备！',//Eway.locale.tip.chooseRelatedDev
+			devRelatedPlan:'设备已关联开机方案！',//Eway.locale.tip.devRelatedPlan
 			//add by panxin
 			tips:'提示',//Eway.locale.tip.tips
 			input:'请正确输入',//Eway.locale.tip.input
@@ -1453,7 +1464,7 @@ Ext.override(Eway,{
 				track3Write:'是否具有写三磁道数据能力',
 
 
-				JPRInfo:'日志打印机模块(JPR)属性信息',
+				JPRInfo:'日志打印机模块(JPR)属性信息',//Eway.locale.machine.device.JPRInfo
 				canEject:'是否具有退纸能力',
 				canCapture:'是否具有回收能力',
 				canStack:'是否具有暂存能力',
@@ -1563,16 +1574,16 @@ Ext.override(Eway,{
 
 				TTUStatus:'文本终端单元(TTU)状态信息',
 
-				devPerson:'设备人员信息',
+				devPerson:'设备人员信息',//Eway.locale.machine.device.devPerson
 				devModuleMsg:'设备模块属性信息',
 				devBasicMsg:'设备基本信息',
 				devTailMsg:'设备详细信息',
 				managePerson:'管机员',
-				maintainPerson:'维护员',
-				name:'姓名',
-				mobile:'手机',
-				phone:'固定电话',
-				email:'邮件地址',
+				maintainPerson:'维护员',//Eway.locale.machine.device.maintainPerson
+				name:'姓名',//Eway.locale.machine.device.name
+				mobile:'手机',//Eway.locale.machine.device.mobile
+				phone:'固定电话',//Eway.locale.machine.device.phone
+				email:'邮件地址',//Eway.locale.machine.device.email
 				deviceBasicInfo:'设备基本信息',
 				lineLogo:'在行标志',
 				alarmRateRMB:'钞箱报警金额(人民币)',
@@ -1750,7 +1761,7 @@ Ext.override(Eway,{
 
 
 
-				devices:'设备',
+				devices:'设备',//Eway.locale.machine.device.devices
 				configuration:'配置信息',
 				spVersion:'SP版本',
 				notSupport:'不支持',
@@ -1762,6 +1773,26 @@ Ext.override(Eway,{
 				devInfo:'设备信息',
 				unable:'不可以',
 				able:'能',
+				
+				addDevInfo:'增加设备信息',//Eway.locale.machine.device.addDevInfo
+				effectiveDate:'生效日期',//Eway.locale.machine.device.effectiveDate
+				changeDevInfo:'更改设备信息',//Eway.locale.machine.device.changeDevInfo
+				devManage:'设备管理',//Eway.locale.machine.device.devManage
+				efficientDev:'已生效设备信息',//Eway.locale.machine.device.efficientDev
+				unEfficientDev:'未生效设备信息',//Eway.locale.machine.device.unEfficientDev
+				person:{
+					week:'星期',//Eway.locale.machine.device.person.week
+					Mon:'星期一',//Eway.locale.machine.device.person.Mon
+					Tues:'星期二',//Eway.locale.machine.device.person.Tues
+					Wed:'星期三',//Eway.locale.machine.device.person.Wed
+					Thur:'星期四',//Eway.locale.machine.device.person.Thur
+					Fri:'星期五',//Eway.locale.machine.device.person.Fri
+					Sat:'星期六',//Eway.locale.machine.device.person.Sat
+					Sun:'星期日',//Eway.locale.machine.device.person.Sun
+					openClose:'开机/关机',//Eway.locale.machine.device.person.openClose
+					Open:'开机',//Eway.locale.machine.device.person.Open
+					Close:'关机',//Eway.locale.machine.device.person.Close
+				},
 
 			},
 			param:{
