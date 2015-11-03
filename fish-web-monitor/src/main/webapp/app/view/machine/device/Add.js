@@ -32,7 +32,7 @@ Ext.define('Eway.view.machine.device.Add', {
 				text: Eway.locale.button.confirm,
 				action: 'add'
 			}, {
-				text: Eway.locale.button.cancle,
+				text: Eway.locale.button.cancel,
 				handler: this.onOver
 			}]
 		});

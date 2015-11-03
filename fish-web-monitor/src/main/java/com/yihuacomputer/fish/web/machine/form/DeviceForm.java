@@ -7,7 +7,6 @@ import java.util.List;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.AwayFlag;
-import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.NetType;
 import com.yihuacomputer.fish.api.device.SetupType;
@@ -159,7 +158,6 @@ public class DeviceForm {
 		device.setIp(new IP(getIp()));
 		device.setTerminalId(getTerminalId());
 		device.setVirtual(getVirtual());
-		device.setStatus(nullObject(getStatus(), DevStatus.class));
 		device.setAwayFlag(nullObject(getAwayFlag(), AwayFlag.class));
 		device.setSetupType(nullObject(getSetupType(), SetupType.class));
 		device.setWorkType(nullObject(getWorkType(), WorkType.class));

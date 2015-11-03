@@ -14,7 +14,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -99,10 +98,6 @@ public class DeviceController {
 	@Autowired
 	private IDevicePersonRelation devicePersonRelation;
 
-	@PostConstruct
-	public void init() {
-	}
-
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap add(@RequestBody DeviceForm request) {
@@ -133,10 +128,13 @@ public class DeviceController {
 		device.setOrganization(org);
 		device.setDevService(serviceOrg);
 		device.setDevType(atmType);
+		logger.info(request.getInstallDate());
+		request.translate(device);
 		if (request.getInstallDate() != null  && !"".equals(request.getInstallDate())&& !request.getInstallDate().equals(DateUtils.getDate(new Date()))) {
 			device.setStatus(DevStatus.UNOPEN);
+		}else{
+			device.setStatus(DevStatus.OPEN);
 		}
-		request.translate(device);
 		Map<String, Object> result = validator(request, "add");
 		if ((Boolean) result.get("validator")) {
 			model.put(FishConstant.SUCCESS, false);
