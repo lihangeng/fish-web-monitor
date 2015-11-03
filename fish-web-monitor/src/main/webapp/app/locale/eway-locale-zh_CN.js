@@ -829,7 +829,7 @@ Ext.override(Eway,{
 				onVacation:'休假',//Eway.locale.commen.comboxStatus.onVacation
 				other:'其他',//Eway.locale.commen.comboxStatus.other
 				dredge:'开通',//Eway.locale.commen.comboxStatus.dredge
-				open:'启用',//Eway.locale.commen.comboxStatus.open
+				open:'开通',//Eway.locale.commen.comboxStatus.open
 				close:'停用',//Eway.locale.commen.comboxStatus.close
 			},
 			type:'类型',//Eway.locale.commen.type
@@ -1320,9 +1320,8 @@ Ext.override(Eway,{
 				devCatalogName:'设备类型',
 				devGroupName: '设备分组',
 				status:'设备状态',
-				comboxStatus:{
-					dredge:'开通',
-					open:'启用',
+				comboxStatus:{				
+					open:'开通',
 					close:'停用'
 				},
 				awayFlag:'离行标志',
