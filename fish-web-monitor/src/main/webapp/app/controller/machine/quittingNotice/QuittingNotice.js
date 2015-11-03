@@ -95,7 +95,10 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 		var quaryData = view.down('form').getForm().getValues();
 		var record = Ext.create('Eway.model.machine.quittingNotice.QuittingNotice',data);
 		record.set('stopTime',data['stopTime'] + " 00:00:00");
-		record.set('openTime',data['openTime'] + " 00:00:00");
+		if(data['openTime'] !='' && data['openTime'] != null)
+		{
+			record.set('openTime',data['openTime'] + " 00:00:00");
+		}		
 		var store = this.getEwayView().down('gridpanel').getStore();
 		if(win.down('form').getForm().isValid()){//isValid对markInvalid不起作用
 			record.save({
@@ -178,9 +181,12 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 		var me = this;
 		if(win.down('form').getForm().isValid()){
 			var oldId = record.get("id");
-			record.set("deviceCode",data.deviceCode);
-			record.set("openTime",data.openTime + " 00:00:00");
+			record.set("deviceCode",data.deviceCode);		
 			record.set("stopTime",data.stopTime + " 00:00:00");
+			if(data['openTime'] !='' && data['openTime'] != null)
+			{
+				record.set('openTime',data['openTime'] + " 00:00:00");
+			}		
 			record.set("setTime",data.setTime);
 			record.set("stopType",data.stopType);
 			record.set("stopReason",data.stopReason);

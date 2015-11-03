@@ -86,7 +86,7 @@
       maxLineLength: 大括号'{'所在行行最多容纳的字符数  
       tokens: 该属性适用的类型，例：CLASS_DEF,INTERFACE_DEF,METHOD_DEF,CTOR_DEF -->  
     <module name="LeftCurly"> 
-    	<property name="option" value="nl"/>
+    	<property name="option" value="eol"/>
     </module>
      
     <!-- NeedBraces 检查是否应该使用括号的地方没有加括号  

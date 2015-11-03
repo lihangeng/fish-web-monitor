@@ -32,7 +32,7 @@ Ext.define('Eway.view.monitor.device.View',{
 					region : 'center',
 					xtype : 'panel',
 					layout : 'card',
-					activeItem : 3,
+					activeItem : 1,
 					itemId : 'card_itemId',
 					tbar : [
 						'订阅条件:', {
@@ -75,12 +75,6 @@ Ext.define('Eway.view.monitor.device.View',{
 						itemId : 'box',
 						name : 'box',
 						xtype : 'monitor_device_showtype_boxgrid'
-					} , {
-						
-						//　全局模式
-						itemId : 'summary',
-						name : 'summary',
-						xtype : 'monitor_view'
 					} ]
 				} ]
 			} ],
@@ -144,7 +138,7 @@ Ext.define('Eway.view.monitor.device.View',{
 
 		var p = cardp.getLayout().getActiveItem();
 		var store;
-		if(p.getItemId() == 'summary'){
+		if(p.getItemId() == 'martrixPanel'){
 //			cardp.tbar.setHtml("123");
 			this.doCometd(store);
 			return;

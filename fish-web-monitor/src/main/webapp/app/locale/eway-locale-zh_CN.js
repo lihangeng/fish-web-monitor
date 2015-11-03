@@ -678,6 +678,7 @@ Ext.override(Eway,{
 				autoUpdateInfo:'自动更新信息',//Eway.locale.version.task.autoUpdateInfo
 				selectAJob:'请选择一个作业.',//Eway.locale.version.task.selectAJob
 				versionDownHisStatusPic:'版本下发历史状态分布图',//Eway.locale.version.task.versionDownHisStatusPic
+				versionNoPic:'版本分布图',//Eway.locale.version.task.versionNoPic
 				cantCancelCompleteJob:'不能撤销"完成"状态的作业.',//Eway.locale.version.task.cantCancelCompleteJob
 				doSureCancelTheJob:'是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)',//Eway.locale.version.task.doSureCancelTheJob
 				deleting:'正在删除......',//Eway.locale.version.task.deleting
@@ -840,7 +841,7 @@ Ext.override(Eway,{
 				onVacation:'休假',//Eway.locale.commen.comboxStatus.onVacation
 				other:'其他',//Eway.locale.commen.comboxStatus.other
 				dredge:'开通',//Eway.locale.commen.comboxStatus.dredge
-				open:'启用',//Eway.locale.commen.comboxStatus.open
+				open:'开通',//Eway.locale.commen.comboxStatus.open
 				close:'停用',//Eway.locale.commen.comboxStatus.close
 			},
 			type:'类型',//Eway.locale.commen.type
@@ -1339,9 +1340,8 @@ Ext.override(Eway,{
 				devCatalogName:'设备类型',
 				devGroupName: '设备分组',
 				status:'设备状态',
-				comboxStatus:{
-					dredge:'开通',
-					open:'启用',
+				comboxStatus:{				
+					open:'开通',
 					close:'停用'
 				},
 				awayFlag:'离行标志',
@@ -1899,6 +1899,7 @@ Ext.override(Eway,{
 			plan:{
 				addPlan:'增加方案',//Eway.locale.report.plan.addPlan
 				name:'名称',//Eway.locale.report.plan.name
+				type:'类型',//Eway.locale.report.plan.type
 				startDate:'有效开始时间',//Eway.locale.report.plan.startDate
 				endDate:'有效结束时间',//Eway.locale.report.plan.endDate
 				terminalId:'编号',//Eway.locale.report.plan.terminalId
@@ -1906,6 +1907,9 @@ Ext.override(Eway,{
 				perToDev:'人员<-->设备',//Eway.locale.report.plan.perToDev
 				changePlan:'更改方案',//Eway.locale.report.plan.changePlan
 				openPlan:'开机方案',//Eway.locale.report.plan.openPlan
+			},
+			openplan:{
+				name:'名称',//Eway.locale.report.openplan.name
 			}
 		},
 
