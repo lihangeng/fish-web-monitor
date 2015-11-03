@@ -5,12 +5,6 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
@@ -18,15 +12,14 @@ import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.domain.test.BindSessionInTest2;
 import com.yihuacomputer.fish.api.system.config.IParam;
 import com.yihuacomputer.fish.api.system.config.IParamService;
-import com.yihuacomputer.fish.system.H2TestConfig;
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = H2TestConfig.class)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = H2TestConfig.class)
 public class ParamServiceTest extends BindSessionInTest2 {
 
-	@Autowired
+//	@Autowired
 	private IParamService paramService;
 
-	@Test
+//	@Test
 	public void test(){
 		IParam fileParam = paramService.make();
 		fileParam.setParamKey("fish_home");
