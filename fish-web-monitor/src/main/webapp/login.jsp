@@ -52,7 +52,7 @@
 						 document.getElementById("loginError").style.display='';
 						 document.getElementById("loginError").innerHTML = myObject.message;
 					}else if(myObject.userState==1){
-						window.location.href='updatePwd.jsp';//_updatePassword();
+						window.location.href='updatePwd.jsp?userCode='+getValue($('username'));//_updatePassword();
 					}else{
 						 window.location.href='index.jsp';
 					}

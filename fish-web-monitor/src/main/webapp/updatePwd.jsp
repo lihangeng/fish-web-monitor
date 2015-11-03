@@ -71,14 +71,10 @@ input:focus {
 <body>
 	
 	<script type="text/javascript">
-	<%  UserSession userSession = null;
-		Object object = session.getAttribute(FishWebUtils.USER); 
-		if(null==object){%>
-		 	window.location.href='login.jsp';
-	<%	}else{
-			userSession =(UserSession)object;
-		} %>
-		</script>
+		<%if(request.getParameter("userCode")==null){%>
+			 	window.location.href='login.jsp';
+		<%}%>
+	</script>
 	<div class="container">
 		<div class="head">
 			<img src="./resources/images/logo.PNG">
@@ -92,11 +88,7 @@ input:focus {
 			<table align="center" border="0" cellpadding="0" cellspacing="10">
 				<tr>
 					<td align="right">当前登录账号：</td>
-					<td><input class="txtupdate" name="userCode" type="text" size="15" readonly=true value=<%=(userSession==null?"":userSession.getUserCode())%> /></td>
-				</tr>
-				<tr>
-					<td align="right">姓名：</td>
-					<td><input class="txtupdate" name="userName" type="text" size="15" readonly=true value=<%=(userSession==null?"":userSession.getUserName())%> /></td>
+					<td><input class="txtupdate" name="userCode" type="text" size="15" readonly=true value=<%=(request.getParameter("userCode")==null?"":request.getParameter("userCode"))%> /></td>
 				</tr>
 				<tr>
 					<td align="right"><span class="xinghao">*</span> 输入原始密码：</td>
@@ -201,7 +193,7 @@ input:focus {
             if(myObject.success){
 				 show($("updatePwdSuccess"),true);
 				 setDivValue($("updatePwdSuccess"), myObject.message);
-			  	 window.location.href='index.jsp';
+			  	 window.location.href='login.jsp';
 			}else{
 				 show($("updatePwdError"),true);
 				 setDivValue($("updatePwdError"), myObject.errorMsg);
