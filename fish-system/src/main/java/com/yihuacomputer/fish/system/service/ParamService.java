@@ -89,7 +89,7 @@ public class ParamService implements IParamService {
 	
 	@Override
 	public IParam make() {
-		return new Param(this);
+		return new Param();
 	}
 
 	@Override

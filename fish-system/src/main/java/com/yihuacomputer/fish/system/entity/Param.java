@@ -9,10 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.system.config.IParam;
-import com.yihuacomputer.fish.api.system.config.IParamService;
 
 @Entity
 @Table(name = "SM_PARAM")
@@ -62,9 +60,6 @@ public class Param implements IParam,Serializable {
 		this.paramType = paramType;
 	}
 
-	@Transient
-	private IParamService paramService;
-
 	public Param() {
 	}
 	
@@ -75,11 +70,6 @@ public class Param implements IParam,Serializable {
 
 	public void setClassify(int classify) {
 		this.classify = classify;
-	}
-
-
-	public Param(IParamService paramService) {
-		this.paramService = paramService;
 	}
 
 	public long getId() {
@@ -118,12 +108,6 @@ public class Param implements IParam,Serializable {
 	@Override
 	public String getParamValue() {
 		return paramValue;
-	}
-
-	public void update(IParam param) {
-		setDescription(param.getDescription());
-		setParamKey(param.getParamKey());
-		setParamValue(param.getParamValue());
 	}
 
 }

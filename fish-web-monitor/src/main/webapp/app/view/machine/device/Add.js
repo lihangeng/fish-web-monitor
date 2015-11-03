@@ -4,7 +4,7 @@ Ext.define('Eway.view.machine.device.Add', {
 
 	requires: ['Eway.view.machine.device.Form'],
 
-	title: '增加设备信息',
+	title: Eway.locale.machine.device.addDevInfo,
 
 	modal: true,
 	resizable: false,
@@ -29,10 +29,10 @@ Ext.define('Eway.view.machine.device.Add', {
 			}],
 			buttonAlign : 'center',
 			fbar: [{
-				text: '确认',
+				text: Eway.locale.button.confirm,
 				action: 'add'
 			}, {
-				text: '取消',
+				text: Eway.locale.button.cancle,
 				handler: this.onOver
 			}]
 		});

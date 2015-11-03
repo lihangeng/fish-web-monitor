@@ -11,11 +11,11 @@ Ext.define('Eway.view.machine.device.TempGrid', {
 			initRegion : true,
 		store : store,
 		tbar : [ '->',{
-				text : '查询',
+				text : Eway.locale.button.search,
 				iconCls : 'queryBtn',
 				action : 'tempDevQuery'
 			}, {
-				text : '更改',
+				text : Eway.locale.button.update,
 				iconCls : 'updateBtn',
 				action : 'tempDevUpdate',
 		//		code : 'tempDevUpdate',
@@ -23,7 +23,7 @@ Ext.define('Eway.view.machine.device.TempGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}*/
 			}, {
-				text : '删除',
+				text : Eway.locale.button.remove,
 				iconCls : 'deleteBtn',
 				action : 'tempDevDelete',
 		//		code : 'tempDevDel',
@@ -31,7 +31,7 @@ Ext.define('Eway.view.machine.device.TempGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}*/
 			},{
-			text : '开机方案',
+			text : Eway.locale.button.detailBtn,
 			iconCls : 'detailBtn',
 			action : 'tempDevOpenPlan'
 	    	}],		
@@ -115,14 +115,14 @@ Ext.define('Eway.view.machine.device.TempGrid', {
 				dataIndex : 'address',
 				width : 160
 			} ,{
-				header : '生效日期',
+				header : Eway.locale.machine.device.effectiveDate,
 				dataIndex : 'effectiveDate',
 
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : '总共：{2}条，显示{0}-{1}'
+				displayMsg : Eway.locale.tip.displayMessage
 			})
 		});
 
