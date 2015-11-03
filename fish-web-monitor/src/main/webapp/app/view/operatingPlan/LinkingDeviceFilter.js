@@ -48,10 +48,10 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceFilter',{
 				},
 				items : [  {
 					xtype : 'textfield',
-					fieldLabel : '设备号',
+					fieldLabel :Eway.locale.commen.terminalId,
 					name : 'terminalId',
 					regex : /^\w+[\w-_\.]*$/,
-					regexText : '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’，只能以字母、数字或下划线开头。',
+					regexText : Eway.locale.vtype.numberRule,
 					maxLength : 20
 				},{
 					style : 'padding-top:0px',
