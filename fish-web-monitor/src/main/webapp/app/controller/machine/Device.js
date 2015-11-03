@@ -245,7 +245,7 @@ Ext.define('Eway.controller.machine.Device', {
 				scope:this
 			});
 		}else{
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.selectPerson);
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.mustSelectPerson);
 		}
 	},
 
