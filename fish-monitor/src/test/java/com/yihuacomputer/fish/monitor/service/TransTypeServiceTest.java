@@ -17,14 +17,15 @@ import com.yihuacomputer.fish.api.monitor.business.ITransTypeService;
  * @author xuxigang
  *
  */
+//@DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(classes = {H2TestConfig.class})
 public class TransTypeServiceTest extends BindSessionInTest2 {
 
-//	@Autowired
+	//@Autowired
 	private ITransTypeService service;
 
-//	@Test
+	//@Test
 	public void testCRUD() {
 		ITransType type = service.make("CDN","存款");
 		service.add(type);

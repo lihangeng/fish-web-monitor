@@ -22,14 +22,12 @@ Ext.define('Eway.view.version.distribute.View', {
     },
 	initComponent : function() {
 		Ext.apply(this, {
-//			
-			
 			items : [ {
 		    		width: 550,
 					xtype : 'version_pie'
 				}, {
 		    		width: 550,
-		            height: 345,
+		            height: 350,
 					xtype : 'versionstatus_pie'
 				}, {
 					colspan:2,

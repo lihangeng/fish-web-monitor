@@ -93,7 +93,9 @@ public class LoginController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("id", session.getId());
 			result.addAttribute("userState", user.getState().getId());
-
+			if(user.getState().equals(UserState.NEW)){
+				return result;
+			}
 			// 保存会话信息
 			UserSession userSession = new UserSession();
 			userSession.setUserId(user.getId());

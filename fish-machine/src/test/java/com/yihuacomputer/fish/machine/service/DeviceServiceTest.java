@@ -8,6 +8,8 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -33,6 +35,7 @@ import com.yihuacomputer.fish.machine.H2TestConfig;
  * @date 2012-2-22 下午03:25:01
  * @version 类说明
  */
+@DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = H2TestConfig.class)
 public class DeviceServiceTest extends BindSessionInTest2
