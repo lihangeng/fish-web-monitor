@@ -402,7 +402,7 @@ Ext.override(Eway,{
 			remoteFailure:'远程浏览失败',
 			versionChart:'版本下发历史状态分布图',
 			openRefresh:'开启自动刷新',
-			choseTask:'请选择一个作业',
+			choseTask:'请选择一个任务',
 			cancelTask:'不能撤销"完成"状态的作业.',
 			cancelParticularTask:'是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)',
 			nowDelete:'正在删除......',
@@ -633,6 +633,7 @@ Ext.override(Eway,{
 				taskQueryTips:'根据条件查询选中作业下的详情信息',//Eway.locale.version.download.taskQueryTips
 				autoRefresh:'开启自动刷新',//Eway.locale.version.download.autoRefresh
 				stopAutoRefresh:'停止自动刷新',//Eway.locale.version.download.stopAutoRefresh
+				cancelBatch:'批次取消',//Eway.locale.version.download.cancelBatch
 				autoRefreshTips:'刷新周期60秒',//Eway.locale.version.download.autoRefreshTips
 				resetTaskStatus:'重置任务状态',//Eway.locale.version.download.resetTaskStatus
 				selectTask:'请选择一条任务记录！',//Eway.locale.version.download.selectTask
@@ -654,7 +655,7 @@ Ext.override(Eway,{
 				restartATM:'重启ATM',//Eway.locale.version.task.restartATM
 				restartATMTips:'执行重启命令可能存在风险,确认重启?',//Eway.locale.version.task.restartATMTips
 				sendRestartCmd:'已发送重启命令！',//Eway.locale.version.task.sendRestartCmd
-				cancelDownloadSuccess:'取消下发成功！',//Eway.locale.version.task.cancelDownloadSuccess
+				cancelDownloadSuccess:'取消下发通知成功！',//Eway.locale.version.task.cancelDownloadSuccess
 				cancelDownload:'取消下发',//Eway.locale.version.task.cancelDownload
 				jobName:'作业名称',//Eway.locale.version.task.jobName
 				jobStatus:'作业状态',//Eway.locale.version.task.jobStatus

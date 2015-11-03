@@ -19,4 +19,10 @@ public interface ITaskCollection {
 	 * @return
 	 */
 	public ITask get();
+	
+	/**
+	 * 将此队列中移除此任务
+	 * @param task
+	 */
+	public boolean cancelTask(ITask task);
 }

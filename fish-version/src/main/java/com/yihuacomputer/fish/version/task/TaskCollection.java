@@ -59,7 +59,11 @@ public class TaskCollection implements ITaskCollection{
 			e.printStackTrace();
 		}
 	}
-
+	
+	public boolean cancelTask(ITask task){
+		return this.getTaskQueue().remove(task);
+	}
+	
 	@Override
 	public ITask get() {
 		try {
