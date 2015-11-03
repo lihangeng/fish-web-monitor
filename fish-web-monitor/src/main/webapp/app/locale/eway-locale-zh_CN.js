@@ -1166,7 +1166,15 @@ Ext.override(Eway,{
 				factureStaff:'厂商模式维护',//Eway.locale.monitor.devMonitor.factureStaff
 				netHealthy:'网络正常',//Eway.locale.monitor.devMonitor.netHealthy
 				netUnStable:'网络不稳定',//Eway.locale.monitor.devMonitor.netUnStable
-				netFatal:'网络故障'//Eway.locale.monitor.devMonitor.netFatal
+				netFatal:'网络故障',//Eway.locale.monitor.devMonitor.netFatal
+				filterManager: {
+					title: '订阅条件管理',//Eway.locale.monitor.devMonitor.filterManager.title
+					add: '创建订阅条件',//Eway.locale.monitor.devMonitor.filterManager.add
+					update: '修改订阅条件',//Eway.locale.monitor.devMonitor.filterManager.update
+					filterForm: {
+						filterName: '订阅名称'//Eway.locale.monitor.devMonitor.filterManager.filterForm.filterName
+					}
+				}
 			},
 			business:{
 				transaction:{
@@ -1859,6 +1867,7 @@ Ext.override(Eway,{
 			plan:{
 				addPlan:'增加方案',//Eway.locale.report.plan.addPlan
 				name:'名称',//Eway.locale.report.plan.name
+				type:'类型',//Eway.locale.report.plan.type
 				startDate:'有效开始时间',//Eway.locale.report.plan.startDate
 				endDate:'有效结束时间',//Eway.locale.report.plan.endDate
 				terminalId:'编号',//Eway.locale.report.plan.terminalId
@@ -1866,6 +1875,9 @@ Ext.override(Eway,{
 				perToDev:'人员<-->设备',//Eway.locale.report.plan.perToDev
 				changePlan:'更改方案',//Eway.locale.report.plan.changePlan
 				openPlan:'开机方案',//Eway.locale.report.plan.openPlan
+			},
+			openplan:{
+				name:'名称',//Eway.locale.report.openplan.name
 			}
 		},
 

@@ -123,7 +123,7 @@ public class Person implements IPerson,Serializable {
     /**
      * 人员工作岗位
      */
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.system.entity.PersonJob.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = com.yihuacomputer.fish.system.entity.PersonJob.class)
     @JoinColumn(name = "PERSONJOB")
     private IPersonJob personJob;
 

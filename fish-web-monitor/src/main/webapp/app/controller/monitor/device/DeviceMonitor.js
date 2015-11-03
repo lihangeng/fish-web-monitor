@@ -178,9 +178,40 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			'monitor_device_filtermanager_update button[action=confirm]' : {
 				scope : this,
 				click : this._onFilterManagerUpdateConfirm
+			},
+			'monitor_device_filtermanager_filterwin' : {
+				scope : this,
+				close : this._onFilterWinClose
 			}
 		});
 
+	},
+	
+	// 关闭订阅管理窗口时，加载订阅条件选择项
+	_onFilterWinClose : function( panel, eOpts ) {
+		
+		var view = this.getEwayView();
+		var filterNameField = view.down('combobox[action="filterName"]');
+
+		var filterId = filterNameField.getValue();
+		var store = filterNameField.getStore();
+		store.load({
+			callback: function(records, operation, success) {
+				var del = true;
+				if (records && records.length > 0) {
+					for(var i=0; i<records.length; i++) {
+						var record = records[i];
+						if (record.get('id') == filterId) {
+							del = false;
+							break;	
+						}
+					}
+				}
+				if (del) {
+					filterNameField.setValue();
+				}
+    		}
+		});
 	},
 	
 	_onFilterNameChange : function( field, newValue, oldValue, eOpts ) {
@@ -338,6 +369,8 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 	
 	// 删除订阅条件
 	_onFilterManagerRemove : function(btn) {
+		var me = this;
+		
 		var grid = this.getFilterGrid();
 		var sm = grid.getSelectionModel();
 		var count = sm.getCount();
@@ -701,11 +734,9 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 //			params.deviceCode = deviceCode;
 //		}
 //		
-//		debugger;
 		// 监控条件
 		var filterNameField = btn.nextNode('combobox[action="filterName"]');
 		var filterId = filterNameField.getValue();
-		
 		
 		if(filterId) {
 			var record = filterNameField.getStore().findRecord('id', filterId);

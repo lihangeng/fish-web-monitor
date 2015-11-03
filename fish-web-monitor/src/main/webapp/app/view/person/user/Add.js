@@ -25,7 +25,7 @@ Ext.define('Eway.view.person.user.Add', {
 				trackResetOnLoad : true,
 				selectOnFocus : true,
 				region: 'north',
-        		height: 100,
+        		height: 70,
 				defaults: {
 					labelAlign: 'right',
 					msgTarget : 'side'
@@ -61,12 +61,13 @@ Ext.define('Eway.view.person.user.Add', {
 					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.user.userType,
 					xtype : 'field_userType',
 					name:'userType',
+					hidden:true,
 					allowBlank : false
 				},{
 				    xtype : 'field.userState',
 				    fieldLabel : '<font color="red">*</font> '+Eway.locale.person.bankPer.status,
 				    allowBlank : false,
-				    value : '0',
+				    value : '1',
 				    hidden : true,
 					editable : false
 				},{
