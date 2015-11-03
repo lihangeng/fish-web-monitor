@@ -5,7 +5,7 @@ Ext.define('Eway.view.machine.device.person.SelectPersonManager', {
 	alias: 'widget.select_person_manager.js',
 	extend: 'Ext.window.Window',
 	
-	title: '该机构人员信息',
+	title: Eway.locale.person.bankOrg.addOrgTitle,
 	modal: true,
 	resizable: false,
 	maximizable: true,
@@ -19,7 +19,7 @@ Ext.define('Eway.view.machine.device.person.SelectPersonManager', {
 	layout : 'border',
 	initComponent: function() {
 		Ext.apply(this, {
-			title : '人员列表',
+			title : Eway.locale.person.bankOrg.personList,
 			items: [{
 				region: 'north',
 				xtype: 'bank_person_filterform'

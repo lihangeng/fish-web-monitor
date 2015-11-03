@@ -4,7 +4,7 @@ Ext.define("Eway.view.machine.device.module.PropertyJPR", {
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-				title : '日志打印机模块(JPR)属性信息',
+				title : Eway.locale.machine.device.JPRInfo,
 				titleAlign:'center',
 				layout : 'column',
 				items : [ {
