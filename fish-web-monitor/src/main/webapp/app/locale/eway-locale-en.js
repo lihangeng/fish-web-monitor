@@ -641,7 +641,8 @@ Ext.override(Eway,{
 				deviceVersionHisTip:'View information of device history version',	//Eway.locale.version.task.deviceVersionHisTip 查看设备历史版本信息
 				autoUpdateInfo:'Information of auto update',//Eway.locale.version.task.autoUpdateInfo 自动更新信息
 				selectAJob:'Please choose a job.',//Eway.locale.version.task.selectAJob 请选择一个作业
-				versionDownHisStatusPic:'版本下发历史状态分布图',//Eway.locale.version.task.versionDownHisStatusPic 版本下发历史状态分布图
+				versionDownHisStatusPic:'StatusDistribute',//Eway.locale.version.task.versionDownHisStatusPic 版本下发历史状态分布图
+				versionNoPic:'VersionDistribute',//Eway.locale.version.task.versionNoPic
 				cantCancelCompleteJob:'Can not cancel job which status is ‘finish’.',//Eway.locale.version.task.cantCancelCompleteJob 不能撤销"完成"状态的作业
 				doSureCancelTheJob:'Cancel the selected job?(running job can only cancel the task which has not running)',//Eway.locale.version.task.doSureCancelTheJob 是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)
 				deleting:'Deleting......',//Eway.locale.version.task.deleting 正在删除
