@@ -52,7 +52,7 @@
 						 document.getElementById("loginError").style.display='';
 						 document.getElementById("loginError").innerHTML = myObject.message;
 					}else if(myObject.userState==1){
-						_updatePassword();
+						window.location.href='updatePwd.jsp?userCode='+getValue($('username'));//_updatePassword();
 					}else{
 						 window.location.href='index.jsp';
 					}
@@ -89,93 +89,31 @@
 		function divHidden(){
 			show($("updatePasswordDiv"),false);
 		}
-	  	//密码修改
-	  	function _updatePassword(){
+// 	  	//密码修改
+// 	  	function _updatePassword(){
 
-			var divError = $('updatePwdError');
-			setValue(divError,"");
-			show(divError,false);
-	  		var div = $("updatePasswordDiv");
-	  		show(div,true);
-	  		setValue($Name("currentUser"),getValue($("username")));
-	  		setValue($Name("password1"),"");
-	  		setValue($Name("password2"),"");
-	  		css(div,"padding","10px");
-	  		css(div,"background","fff");
-	  		css(div,"position","absolute");
-	  		css(div,"top","0px");
-	  		css(div,"margin-left","798px");
-	  		css(div,"margin-top","141px");
-	  		css(div,"width","282px");
-	  		css(div,"height","400px");
-	  	}
+// 			var divError = $('updatePwdError');
+// 			setValue(divError,"");
+// 			show(divError,false);
+// 	  		var div = $("updatePasswordDiv");
+// 	  		show(div,true);
+// 	  		setValue($Name("currentUser"),getValue($("username")));
+// 	  		setValue($Name("password1"),"");
+// 	  		setValue($Name("password2"),"");
+// 	  		css(div,"padding","10px");
+// 	  		css(div,"background","fff");
+// 	  		css(div,"position","absolute");
+// 	  		css(div,"top","0px");
+// 	  		css(div,"margin-left","798px");
+// 	  		css(div,"margin-top","141px");
+// 	  		css(div,"width","282px");
+// 	  		css(div,"height","400px");
+// 	  	}
 
 	    
 
 	  //密码修改提交
-		function updatePasswordSubmitFn(){
-			var currentUser = getValue($Name("currentUser"));
-			var password1 =  getValue($Name("password1"));
-			var password2 = getValue($Name("password2")); 
-			var oldPassword = getValue($('password'))
-			var div = $('updatePwdError');
-			if(password1.trim().length==0||password2.trim().length==0){
-				setDivValue(div,'请输入密码!');
-				show(div,true);
-				return;
-			}
-			var pattern = /[^\w-'=\\[\];,.?"`~!@#$%^&*()_+|{}:"<>/]/;
-			if(password1.length < 8 || password1.length>20){
-				setDivValue(div,'密码长度不符规则!');
-				show(div,true);
-				return;
-			}
-			if(pattern.test(password1)){
-				setDivValue(div,'密码不符规则!');
-				show(div,true);
-				return;
-			}
-			if(password1.trim()!= password2.trim()){
-				setDivValue(div,'两次密码不一样!');
-				show(div,true);
-				return;
-			}
-			if(password1.trim()==oldPassword){
-				setDivValue(div,'输入的新密码与旧密码相同，不可修改');
-				show(div,true);
-				return;
-			}
-			if(window.ActiveXObject){
-		        //IE5 以上是以 ActiveXObject 的方式
-		        //引入XMLHttpRequest对象的
-		        xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
-		    }else if(window.XMLHttpRequest){
-		        //除IE以外的浏览器
-		        //XMLHttpRequest是window的子对象
-		        //实例化一个 XMLHttpRequest 对象
-		        xmlHttpReq = new XMLHttpRequest();
-			}
-		    var contnet = "username="+currentUser+"&password="+oldPassword+"&newPassword="+password1;
-		    xmlHttpReq.open("POST","api/login/updatePassword?"+contnet,true);
-		    xmlHttpReq.onreadystatechange = RequestUpdateCallBack;
-		    xmlHttpReq.send(null);
-		}
-	  	function RequestUpdateCallBack(){
-	  	//一旦readyState值改变，将会调用该函数
-	        if(xmlHttpReq.readyState == 4){
-	            if(xmlHttpReq.status == 200){
-	                var myObject = eval('(' + xmlHttpReq.responseText + ')');
-	                if(myObject.success){
-						 show($("updatePwdSuccess"),true);
-						 setDivValue($("updatePwdSuccess"), myObject.message);
-					  	 window.location.href='index.jsp';
-					}else{
-						 show($("updatePwdError"),true);
-						 setDivValue($("updatePwdError"), myObject.message);
-					}
-	            }
-	        }
-	  	}
+		
 
 	</script>
 </head>

@@ -187,7 +187,7 @@ public class TaskService implements IDomainTaskService {
 	@Transactional(readOnly = true)
 	public IPageResult<ITask> page(int start, int limit, IFilter filter) {
 		StringBuffer hql = new StringBuffer();
-		hql.append("select task from Task task,Device device where task.deviceId = device.id ");
+		hql.append("select task from Task task,Device device where task.deviceId = device.id order by task.createTime desc ");
 		return (IPageResult<ITask>) dao.page(start, limit, filter, hql.toString());
 	}
 

@@ -497,25 +497,16 @@ Ext.define('Eway.controller.machine.Device', {
 			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title, Eway.locale.tip.remove.confirm.info,function(button,text){
 				if(button == 'yes'){
 					var record = sm.getLastSelected();
-					var params = store.getUrlParams();
-					var index = store.indexOf(record);
-					store.cleanUrlParam();
-					store.remove(record);
-					store.remove(record);
-					store.sync({
-						callback : function(batch,option){
-							var response = batch.operations[0].response;
-							var object = Ext.decode(response.responseText);
-							if(object.hasOwnProperty('errorMsg')){
-								store.insert(index,[record]);
-								store.commitChanges();
-								Ext.Msg.alert(Eway.locale.tip.remind,object.errorMsg);
-							}
-							else {
-								Ext.Msg.alert(Eway.locale.tip.remind,Eway.locale.tip.operateSuc);
-							}
+					record.erase({
+						success: function(record,operation){
+							Eway.alert(Eway.deleteSuccess);
+							me.onQuery();
+
 						},
-						scope : me
+						failure: function(record,operation){
+							Eway.alert(Eway.locale.tip.remove.error+ operation.getError());
+						},
+						scope:this
 					});
 
 				}
