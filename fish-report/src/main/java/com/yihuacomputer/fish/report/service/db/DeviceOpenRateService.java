@@ -16,22 +16,22 @@ import com.yihuacomputer.common.OrderBy;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.common.util.DateUtils;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.monitor.business.IRunInfo;
 import com.yihuacomputer.fish.api.monitor.business.IRunInfoService;
 import com.yihuacomputer.fish.api.monitor.business.RunStatus;
-import com.yihuacomputer.fish.api.report.IDayOpenRate;
-import com.yihuacomputer.fish.api.report.IDayOpenRateService;
-import com.yihuacomputer.fish.api.openplan.IOpenPlanDeviceRelation;
-import com.yihuacomputer.fish.api.openplan.IOpenPlanService;
 import com.yihuacomputer.fish.api.openplan.IDeviceOpenPlan;
 import com.yihuacomputer.fish.api.openplan.IDevicePlanRelation;
 import com.yihuacomputer.fish.api.openplan.IOpenPlanDetail;
+import com.yihuacomputer.fish.api.openplan.IOpenPlanDeviceRelation;
+import com.yihuacomputer.fish.api.openplan.IOpenPlanService;
 import com.yihuacomputer.fish.api.openplan.OpenClose;
 import com.yihuacomputer.fish.api.openplan.PlanType;
 import com.yihuacomputer.fish.api.openplan.Week;
+import com.yihuacomputer.fish.api.report.IDayOpenRate;
+import com.yihuacomputer.fish.api.report.IDayOpenRateService;
 import com.yihuacomputer.fish.report.service.base.DomainDeviceOpenRateService;
 
 @Service
@@ -87,7 +87,7 @@ public class DeviceOpenRateService extends DomainDeviceOpenRateService {
 				logger.warn("设备不存在");
 				continue;
 			}
-			if (device.getStatus().ordinal()==Status.DISABLED.ordinal()) {
+			if (device.getStatus().ordinal()==DevStatus.DISABLED.ordinal()) {
 				logger.warn("设备已停用");
 				continue;
 			}

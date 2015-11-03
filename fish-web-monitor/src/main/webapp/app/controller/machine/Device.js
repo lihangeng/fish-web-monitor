@@ -5,17 +5,11 @@ Ext.define('Eway.controller.machine.Device', {
 			'machine.PersonM', 'machine.PersonTM',
 			'machine.DeviceAwayFlagComboBox',
 			'machine.atmType.DeviceAtmVendor',
-			'machine.atmType.DeviceAtmCatalog',
-			'machine.DeviceStatusComboBox',
-			'machine.CarrierOrdeComboBox',
-			'operatingPlan.TempOpenPlanForDevice',
-			'person.person.PersonStateFilterDict'
-			
-			],
+			'machine.atmType.DeviceAtmCatalog' ],
 
 	models : [ 'machine.Device', 'machine.Person' ],
 
-	views : [ 'machine.device.View','operatingPlan.TempOpenPlanForDevGrid' ],
+	views : [ 'machine.device.View' ],
 	refs : [ {
 		ref : 'ewayView',
 		selector : '#device',
@@ -25,24 +19,15 @@ Ext.define('Eway.controller.machine.Device', {
 	}, {
 		ref : 'grid',
 		selector : 'device_grid'
-	},  {
-		ref : 'tempGrid',
-		selector : 'device_tempGrid'
-	},	{
-		ref : 'addWin',
-		selector : 'device_info_add'
 	}, {
-		ref : 'tempGrid',
-		selector : 'device_tempGrid'
-	},{
+		ref : 'addWin',
+		selector : 'device_add'
+	}, {
 		ref : 'updateWin',
-		selector : 'device_info_update'
-	},	{
+		selector : 'device_update'
+	}, {
 		ref : 'filterForm',
 		selector : 'device_filterform'
-	},	{
-		ref :'addWin',
-		selector:'device_info_add'
 	} ],
 
 	addView : 'Eway.view.machine.device.Add',
@@ -63,15 +48,6 @@ Ext.define('Eway.controller.machine.Device', {
 			'#device button[action=add]' : {
 				click : this.onAdd
 			},
-			'#device button[action=openPlan]' : {
-				click : this.onOpenPlan
-			},
-			'#device menuitem[action=personTM]' : {
-				click : this.onPersonTM
-			},
-			'#device menuitem[action=personM]' : {
-				click : this.onPersonM
-			},
 			'#device button[action=query]' : {
 				click : this.onQuery
 			},
@@ -86,21 +62,11 @@ Ext.define('Eway.controller.machine.Device', {
 			},
 			'#device button[action=export]' : {
 				click : this.onExport
-			},
-			'#device button[action=tempDevQuery]' : {
-				click : this.onTempDevQuery
-			},
-			'#device button[action=tempDevUpdate]' : {
-				click : this.onTempDevUpdate
-			},
-			'#device button[action=tempDevDelete]' : {
-				click : this.onTempDevDelete
-			},
-			'#device button[action=tempDevOpenPlan]' :{
-				click : this.onTempDevOpenPlan
 			}
 		});
 	},
+<<<<<<< HEAD
+=======
 	
 	onPersonTM : function(){
 		var grid = this.getGrid();
@@ -245,7 +211,7 @@ Ext.define('Eway.controller.machine.Device', {
 				scope:this
 			});
 		}else{
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.selectPerson);
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.mustSelectPerson);
 		}
 	},
 
@@ -300,6 +266,7 @@ Ext.define('Eway.controller.machine.Device', {
 		}
 	},
 	
+>>>>>>> refs/remotes/origin/master
 	onExport : function() {
 		var view = this.getEwayView();
 		var form = view.down('form').getForm();
@@ -362,17 +329,9 @@ Ext.define('Eway.controller.machine.Device', {
 
 			// 管机员
 			var tubeMachine = tabPanel.query('[itemid=tubeMachineItemID]')[0];
-			
-			// 机构管理员
-			var orgPerson = tabPanel.query('[itemid=organizationItemID]')[0];
-
-			// 开机方案
-			var planInfo = tabPanel.query('[itemid=devicePlanInfoID]')[0];
 
 			maintain.on('render', this.renderMaintain, this);
 			tubeMachine.on('render', this.renderTubeMachine, this);
-			//orgPerson.on('render', this.renderOrganization, this);
-			//planInfo.on('render', this.renderPlanInfo, this);
 
 			win.show();
 
@@ -380,17 +339,6 @@ Ext.define('Eway.controller.machine.Device', {
 			Eway.alert(Eway.locale.tip.search.record);
 		}
 	},
-	
-	//
-	renderPlanInfo : function(tab) {
-		var store = tab.getStore();
-		store.load({
-			params : {
-				terminalId : this.terminalId,
-			}
-		});
-	},
-	
 	// 加载维护员的数据
 	renderMaintain : function(tab) {
 		var params = {
@@ -407,6 +355,8 @@ Ext.define('Eway.controller.machine.Device', {
 		};
 		tab.onReload(params);
 	},
+<<<<<<< HEAD
+=======
 
 	
 	onAdd : function(){
@@ -766,6 +716,7 @@ Ext.define('Eway.controller.machine.Device', {
 				}
 			},
 		
+>>>>>>> refs/remotes/origin/master
 	_onAddOrUpdate : function(action){
 		var title = action=='add' ? Eway.locale.button.add+this.formConfig.title : Eway.locale.button.update+this.formConfig.title;
 		var me = this;
@@ -783,9 +734,15 @@ Ext.define('Eway.controller.machine.Device', {
 					return;
 				}
 			}
-		});
-	},
 
+<<<<<<< HEAD
+			var win = Ext.create('Eway.view.base.Window',{
+				title : title,
+				width : this.formConfig.width ? this.formConfig.width : 500,
+				items : [{
+					xtype : this.formConfig.xtype
+				}]
+=======
 	onAdd : function(){
 	var win = Ext.create('Eway.view.machine.device.Add');
 	this.win = win ;
@@ -1010,7 +967,15 @@ Ext.define('Eway.controller.machine.Device', {
 					});
 
 				}
+>>>>>>> refs/remotes/origin/master
 			});
+<<<<<<< HEAD
+			win.setAction(action);
+			if(action == 'add'){
+			    //将设备维护商默认选择怡化
+				win.down('field[name="devServiceId"]').setValue("2");
+				win.down('field[name="devServiceName"]').setValue(Eway.yihua);
+=======
 		},
 		onTempDevOpenPlan : function(){
 			var grid = this.getTempGrid();
@@ -1094,9 +1059,28 @@ Ext.define('Eway.controller.machine.Device', {
 						Ext.Msg.alert(Eway.locale.tip.remind, Eway.locale.tip.bankPer.link.unLinkDevFail);
 					},
 					scope:this
+>>>>>>> refs/remotes/origin/master
 
-				})
+                //如果是维护商用户或者是admin用户登陆时设置银行机构为空。
+				if(ewayUser.getOrgId() == 1 || ewayUser.getOrgType() == 1){
+					win.down('field[name="orgId"]').setValue(null);
+					win.down('field[name="orgName"]').setValue(null);
+				//如果是银行机构登陆则默认显示当前机构
+				}else{
+					win.down('field[name="orgId"]').setValue(ewayUser.getOrgId());
+					win.down('field[name="orgName"]').setValue(ewayUser.getOrgName());
+				}
 			}
+<<<<<<< HEAD
+			win.down('button[action="confirm"]').on('click',me._save,me);
+			if(action == 'update'){
+				grid = this.getGridPanel(),
+				sm = grid.getSelectionModel(),
+				form = win.down('form');
+				var record = sm.getLastSelected();
+				form.loadCusRecord(record);
+				this.boforeShowUpdateWin(win,grid,record);
+=======
 		},
 		
 		onTempDeviceLinkOpenPlan : function(viewWin,tempGrid,win){
@@ -1126,9 +1110,15 @@ Ext.define('Eway.controller.machine.Device', {
 					},
 					scope:this
 				});
+>>>>>>> refs/remotes/origin/master
 			}else{
+<<<<<<< HEAD
+				this.beforeShowAddWin(win,grid);
+=======
 				Ext.Msg.alert(Eway.locale.tip.remind, Eway.locale.tip.chooseRecord);
+>>>>>>> refs/remotes/origin/master
 			}
-		}
-
+			win.show();
+		},this);
+	}
 });

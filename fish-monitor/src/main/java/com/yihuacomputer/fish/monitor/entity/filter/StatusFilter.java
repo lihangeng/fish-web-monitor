@@ -13,8 +13,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
-import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.monitor.business.IRunInfo;
 import com.yihuacomputer.fish.api.monitor.filter.IBoxStatusFilter;
 import com.yihuacomputer.fish.api.monitor.filter.IModStatusFilter;
@@ -87,7 +87,7 @@ public class StatusFilter implements IStatusFilter {
 	private NetStatusFilter netStatusFilter;
 
 	@Transient
-	private Status deviceStatus = Status.OPENING;
+	private DevStatus deviceStatus = DevStatus.OPEN;
 
 	public String getUserId() {
 		return userId;
@@ -512,11 +512,11 @@ public class StatusFilter implements IStatusFilter {
 		this.atmGroup = atmGroupId;
 	}
 
-	public Status getDeviceStatus() {
+	public DevStatus getDeviceStatus() {
 		return deviceStatus;
 	}
 
-	public void setDeviceStatus(Status deviceStatus) {
+	public void setDeviceStatus(DevStatus deviceStatus) {
 		this.deviceStatus = deviceStatus;
 	}
 

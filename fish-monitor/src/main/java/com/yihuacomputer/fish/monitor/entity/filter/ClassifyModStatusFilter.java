@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.context.MessageSource;
 
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
-import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.monitor.filter.IClassifyModStatusFilter;
 import com.yihuacomputer.fish.api.monitor.filter.ReportMedthod;
 import com.yihuacomputer.fish.api.monitor.report.IClassifyReport;
@@ -156,7 +156,7 @@ public class ClassifyModStatusFilter implements IClassifyModStatusFilter{
 			return classifyReport;
 		}
 		//如果设备停用,则停止监控
-		if(device.getStatus().equals(Status.DISABLED)){
+		if(device.getStatus().equals(DevStatus.DISABLED)){
 			if(modDeviceList.contains(device.getTerminalId())){
 				classifyReport.setMethod( ReportMedthod.DELETE);
 			}

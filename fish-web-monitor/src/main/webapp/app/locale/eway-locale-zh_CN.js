@@ -6,7 +6,7 @@ Ext.override(Eway,{
 	choiceDeleteMsg :'请选择您要删除的记录.',//Eway.choiceDeleteMsg
 	locale:{
 		myTable:'我的工作台',//Eway.locale.myTable
-		ATMV:'自助设备监控系统(ATMV)',//Eway.locale.ATMV
+		ATMV:'自助设备监控系统',//Eway.locale.ATMV
 		welcome:'欢迎你,',//Eway.locale.welcome
 		personalConf:'个人设置',//Eway.locale.personalConf
 		systemHelp:'系统帮助',///Eway.locale.systemHelp
@@ -69,6 +69,8 @@ Ext.override(Eway,{
 			reset:'重置',//Eway.locale.button.reset
 			back:'返回',//Eway.locale.button.back
 			apply:'应用',
+			link:'关联',//Eway.locale.button.link
+			unlink:'解除',//Eway.locale.button.unlink
 			//bankOrg
 			deepQuery:'深度查询',
 			bankOrgMove:'组织迁移',
@@ -869,12 +871,14 @@ Ext.override(Eway,{
 			devCatalogName:'设备类型',//Eway.locale.commen.devCatalogName
 			devStatus:'设备状态',//Eway.locale.commen.devStatus
 			comboxDevStatus:{
+				upOpen:'未开通',//Eway.locale.commen.comboxDevStatus.upOpen
 				open:'开通',//Eway.locale.commen.comboxDevStatus.open
-				stop:'停用'//Eway.locale.commen.comboxDevStatus.stop
+				stop:'停用',//Eway.locale.commen.comboxDevStatus.stop
+				scrapped:'报废'//Eway.locale.commen.comboxDevStatus.Scrapped
 			},
 			setManager:'设置',//Eway.locale.commen.setManager
 			devServiceName:'设备维护商',//Eway.locale.commen.devServiceName
-			cashboxLimit:'钞箱报警金额',//Eway.locale.commen.cashboxLimit
+			cashboxLimit:'钱箱报警金额(单位：张数)',//Eway.locale.commen.cashboxLimit
 			installDate:'安装日期',//Eway.locale.commen.installDate
 			address:'地址',//Eway.locale.commen.address
 			areaCode:'区域编号',//Eway.locale.commen.areaCode
@@ -1909,8 +1913,26 @@ Ext.override(Eway,{
 				changePlan:'更改方案',//Eway.locale.report.plan.changePlan
 				openPlan:'开机方案',//Eway.locale.report.plan.openPlan
 			},
+
 			openplan:{
 				name:'名称',//Eway.locale.report.openplan.name
+				machineQuantity:'设备数量',//Eway.locale.report.openplan.machineQuantity
+				state:'状态',//Eway.locale.report.openplan.state
+				openDate:'有效开机时间',//Eway.locale.report.openplan.openDate
+				closeDate:'有效关机时间',//Eway.locale.report.openplan.closeDate
+				createDateTime:'创建时间',//Eway.locale.report.openplan.createDateTime
+				date:'日期',//Eway.locale.report.openplan.date
+				week:'星期',//Eway.locale.report.openplan.week
+				inportLinkedMachine:'导入关联设备',//Eway.locale.report.openplan.inportLinkedMachine
+				selectFile:'选择文件',//Eway.locale.report.openplan.selectFile
+				placeUploadingResource:'请上传资源',//Eway.locale.report.openplan.placeUploadingResource
+				fileNotSupport:'导入的文件格式不支持,请按模板导入设备信息',//Eway.locale.report.openplan.fileNotSupport
+				exportExplain:'导入说明',//Eway.locale.report.openplan.exportExplain
+				thisIsTooLong:'请在设备导入模板中连续添加要下发的设备号,最多一次性导入2000条数据(约耗时5分钟),最少导入1条数据',//Eway.locale.report.openplan.thisIsTooLong
+				thisHardToTranslate:'点击下载导入设备号模板',//Eway.locale.report.openplan.thisHardToTranslate
+				placeSelect:'---请选择---',//Eway.locale.report.openplan.placeSelect
+				planDevice:'方案<-->设备',//Eway.locale.report.openplan.planDevice
+				
 			}
 		},
 

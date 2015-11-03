@@ -478,7 +478,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		var grid = this.getGrid();
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
-			var detailWin = Ext.create('Eway.view.operatingPlan.PlanInfoWin',data);
+			var detailWin = Ext.create('Eway.view.operatingPlan.PlanInfoWin');
 			var record = sm.getLastSelected();
 			var store = detailWin.down('planInfo_grid').getStore();
 			store.load({
@@ -791,6 +791,11 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			linkingDeviceGrid.down('button[action="link"]').on('click',
 					Ext.bind(this.onLinkConfirm,this,[linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid,record]),this
 				);
+
+			/*linkingDeviceGrid.down('button[action="importMachineCode"]').on('click',
+					Ext.bind(this.onImport,this,[linkedDeviceGrid,PlanDeviceWin]),this
+				);*/
+
 			linkingDeviceGrid.down('button[action="query"]').on('click',
 					Ext.bind(this.queryLinkDevice,this,[linkingPanel,linkingDeviceGrid]),this
 				);
@@ -974,7 +979,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		var form = importWin.down('form').getForm();
 		importWin.down("button[action=import]").on("click",Ext.bind(this.onImportMachineCodeConfirm,this,[form,grid,win]),this);
 
-	},
+	}
 	onImportMachineCodeConfirm:function(addForm,linkingDeviceGrid,linkingDeviceWin){
 	       if(addForm.isValid( ) )
 			 if( addForm.findField("file").getValue()!='')
