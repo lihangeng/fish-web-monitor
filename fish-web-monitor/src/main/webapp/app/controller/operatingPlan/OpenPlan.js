@@ -979,7 +979,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		var form = importWin.down('form').getForm();
 		importWin.down("button[action=import]").on("click",Ext.bind(this.onImportMachineCodeConfirm,this,[form,grid,win]),this);
 
-	}
+	},
 	onImportMachineCodeConfirm:function(addForm,linkingDeviceGrid,linkingDeviceWin){
 	       if(addForm.isValid( ) )
 			 if( addForm.findField("file").getValue()!='')

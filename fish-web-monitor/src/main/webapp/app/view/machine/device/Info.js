@@ -121,11 +121,13 @@ Ext.define('Eway.view.machine.device.Info', {
 									boxLabel : Eway.locale.machine.device.crossWall,
 									name : 'setupType',
 									checked : true,
-									inputValue : 0
+									inputValue : 0,
+									readOnly : true
 								}, {
 									boxLabel : Eway.locale.machine.device.mainRoom,
 									name : 'setupType',
-									inputValue : 1
+									inputValue : 1,
+									readOnly : true
 								} ]
 							},{
 								fieldLabel : Eway.locale.machine.device.netType,
@@ -139,11 +141,13 @@ Ext.define('Eway.view.machine.device.Info', {
 								}, {
 									boxLabel : Eway.locale.machine.device.wireless,
 									name : 'netType',
-									inputValue : 1
+									inputValue : 1,
+									readOnly : true
 								}, {
 									boxLabel : Eway.locale.machine.device.wiredAndWireless,
 									name : 'netType',
-									inputValue : 2
+									inputValue : 2,
+									readOnly : true
 								}]}
 								,{
 									fieldLabel : Eway.locale.machine.device.onBankSignal,
@@ -156,11 +160,13 @@ Ext.define('Eway.view.machine.device.Info', {
 									}, {
 										boxLabel : Eway.locale.machine.device.outBank,
 										name : 'awayFlag',
-										inputValue : 2
+										inputValue : 2,
+										readOnly : true
 									}, {
 										boxLabel :  Eway.locale.machine.device.clickBank,
 										name : 'awayFlag',
-										inputValue : 3
+										inputValue : 3,
+										readOnly : true
 									} ]
 								}, {
 									fieldLabel : Eway.locale.machine.device.operation,
@@ -173,11 +179,13 @@ Ext.define('Eway.view.machine.device.Info', {
 									}, {
 										boxLabel : Eway.locale.machine.device.cooperation,
 										name : 'workType',
-										inputValue : 2
+										inputValue : 2,
+										readOnly : true
 									}, {
 										boxLabel :  Eway.locale.machine.device.epiboly,
 										name : 'workType',
-										inputValue : 3
+										inputValue : 3,
+										readOnly : true
 									} ]
 								},{
 								fieldLabel : Eway.locale.machine.device.installDate,
