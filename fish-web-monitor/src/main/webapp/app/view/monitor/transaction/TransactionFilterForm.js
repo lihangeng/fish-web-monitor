@@ -3,10 +3,11 @@ Ext.define('Eway.view.monitor.transaction.TransactionFilterForm', {
 	extend: 'Eway.view.base.FilterForm',
 	alias: 'widget.transactionFilterForm',
 
-	model : true,
 	bodyStyle : 'padding: 10px 10px 30px 10px',
 	border : false,
-
+	
+	height : 35,
+	
 	requires: ['Eway.view.field.monitor.BlackList'],
 
 	initComponent: function() {
@@ -24,78 +25,32 @@ Ext.define('Eway.view.monitor.transaction.TransactionFilterForm', {
 							labelAlign : 'right',
 							xtype : 'textfield',
 							name : 'terminalId',
-							listeners : {
-								focus : {
-						            fn: function(This,event, options){
-						            	view = this.up('transactionFilterForm').up('transactionMonitorView');
-						            	if(view.down('button[action="start"]').disabled){
-						            		Eway.alert(Eway.locale.tip.business.transaction.transactionMonitor.beginMonitor);
-						            	}
-						            }
-								}
-							},
 							msgTarget : 'side'
-						},{
-							fieldLabel : Eway.locale.monitor.business.transaction.creditAccount,
-							xtype : 'textfield',
-							name : 'creditAccount',
-							listeners : {
-								focus : {
-						            fn: function(This,event, options){
-						            	view = this.up('transactionFilterForm').up('transactionMonitorView');
-						            	if(view.down('button[action="start"]').disabled){
-						            		Eway.alert(Eway.locale.tip.business.transaction.transactionMonitor.beginMonitor);
-						            	}
-						            }
-								}
-							},
-							labelAlign : 'right'
 						} ]
 					}, {
-						columnWidth : .5,
-						items : [ {
-							fieldLabel : Eway.locale.monitor.business.transaction.debitAccount,
-							xtype : 'textfield',
-							name : 'debitAccount',
-							listeners : {
-								focus : {
-									fn: function(This,event, options){
-										view = this.up('transactionFilterForm').up('transactionMonitorView');
-										if(view.down('button[action="start"]').disabled){
-											Eway.alert(Eway.locale.tip.business.transaction.transactionMonitor.beginMonitor);
-										}
-									}
-								}
-							},
-							labelAlign : 'right'
-						},{
-							xtype : 'field_blackList',
-							listeners : {
-								focus : {
-						            fn: function(This,event, options){
-						            	view = this.up('transactionFilterForm').up('transactionMonitorView');
-						            	if(view.down('button[action="start"]').disabled){
-						            		Eway.alert(Eway.locale.tip.business.transaction.transactionMonitor.beginMonitor);
-						            	}
-						            }
-								}
-							},
-							editable : false,
-							labelAlign : 'right'
-						}]
-					},{
+                    	columnWidth : .25,
+                    	items : [ {
+	                        xtype: 'radiogroup',
+	                        fieldLabel: '滚屏方式',
+	                        labelAlign : 'right',
+	                        items: [
+	                            {boxLabel: '向上', name: 'rbAuto', inputValue: 'UP', checked: true},
+	                            {boxLabel: '向下', name: 'rbAuto', inputValue: 'DOWN'}
+	                        ]
+                    	} ]
+                	}, {
 						items : [ {
 							xtype : 'hidden',
 							name : 'transType',
 							labelAlign : 'right'
-						}]
-					},{
+						} ]
+					}, {
 						items : [ {
 							xtype : 'hidden',
 							name : 'hostRet',
 							labelAlign : 'right'
-						}]
-					}]
+						} ]
+					} ]
 				} ]
 		});
 

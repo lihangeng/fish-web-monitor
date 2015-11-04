@@ -1182,6 +1182,7 @@ Ext.override(Eway,{
 					manaAndstaff:'管机员'//Eway.locale.monitor.devMonitor.remote.manaAndstaff
 				},
 				atmGroup:'分组',//Eway.locale.monitor.devMonitor.atmGroup
+				atmGroupTip:'分组详情',//Eway.locale.monitor.devMonitor.atmGroupTip
 				solution:'建议解决方案',//Eway.locale.monitor.devMonitor.solution
 				faultDescription:'模块故障描述',//Eway.locale.monitor.devMonitor.faultDescription
 				fastChoose:'快捷选择',//Eway.locale.monitor.devMonitor.fastChoose
@@ -1225,7 +1226,8 @@ Ext.override(Eway,{
 					transactionMonitor:{
 						title:'实时交易监控',//Eway.locale.monitor.business.transaction.transactionMonitor.title
 						begin:'开始监控',//Eway.locale.monitor.business.transaction.transactionMonitor.begin
-						stop:'停止监控'//Eway.locale.monitor.business.transaction.transactionMonitor.stop
+						stop:'停止监控',//Eway.locale.monitor.business.transaction.transactionMonitor.stop
+						clear:'清屏'//Eway.locale.monitor.business.transaction.transactionMonitor.clear
 						}
 				},
 				blackList:{

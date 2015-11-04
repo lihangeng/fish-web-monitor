@@ -2,7 +2,10 @@ Ext.define('Eway.view.index.RetainCardByDay', {
     extend: 'Ext.Panel',
     xtype: 'retainCardByDay',
 
-    title :Eway.locale.index.retainCardTrendTitle,
+    title : {
+    	text: Eway.locale.index.retainCardTrendTitle,
+    	height:24
+    },
     
 	tools:[{
 	    type:'refresh',

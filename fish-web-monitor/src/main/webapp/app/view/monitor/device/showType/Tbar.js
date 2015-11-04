@@ -38,10 +38,10 @@ Ext.define('Eway.view.monitor.device.showType.Tbar', {
 				    valueField: 'id'
                 },
                 '->',
-                {text : Eway.locale.monitor.devMonitor.comboxShowWay.matrixPattern, action : 'matrixPattern'},
-                {text : Eway.locale.monitor.devMonitor.comboxShowWay.maxIconPattern, action : 'maxIconPattern'},
-                {text : Eway.locale.monitor.devMonitor.comboxShowWay.listPattern, action : 'listPattern'},
-                {text : Eway.locale.monitor.devMonitor.comboxShowWay.boxPattern, action : 'boxPattern'},
+                {text : Eway.locale.monitor.devMonitor.comboxShowWay.matrixPattern,glyph:0xf00a, action : 'matrixPattern'},
+                {text : Eway.locale.monitor.devMonitor.comboxShowWay.maxIconPattern,glyph:0xf009, action : 'maxIconPattern'},
+                {text : Eway.locale.monitor.devMonitor.comboxShowWay.listPattern,glyph:0xf0c9, action : 'listPattern'},
+                {text : Eway.locale.monitor.devMonitor.comboxShowWay.boxPattern,glyph:0xf022,action : 'boxPattern'},
         	]
 		});
 

@@ -16,8 +16,7 @@ Ext.define('Eway.view.index.Index', {
     defaults: {
     	frame: true,
     	width: 550,
-    	margin: 10/*,
-    	collapsible :true*/
+    	margin: 10
     },
     
 	initComponent: function() {
