@@ -182,6 +182,8 @@ public class StatusMonitorController {
     private IStatusFilter getStatusFilter(WebRequest webRequest, HttpServletRequest request) {
         String userId = request.getParameter("userId");
         String filterId = request.getParameter("filterId");
+        String terminalId = request.getParameter("deviceCode");
+        
         IStatusFilter statusFilter = null;
 
         if (StringUtils.isNotEmpty(filterId)) {
@@ -207,6 +209,10 @@ public class StatusMonitorController {
             statusFilter.setOrgId("" + userSession.getOrgId());
         }
 
+        if (StringUtils.isNotEmpty(terminalId)) {
+            statusFilter.setTerminalId(terminalId);
+        }
+        
         // 只监控开通的设备
         statusFilter.setDeviceStatus(DevStatus.OPEN);
 
