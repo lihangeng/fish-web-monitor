@@ -5,6 +5,7 @@ Ext.define('Eway.view.advert.AdvertResourceGrid', {
 	store : 'advert.AdvertResource',
 	border : false,
 
+	height:700,
 	initComponent : function() {
 		var groupingFeature = Ext.create('Ext.grid.feature.Grouping',{
 	        groupHeaderTpl: '{name}'

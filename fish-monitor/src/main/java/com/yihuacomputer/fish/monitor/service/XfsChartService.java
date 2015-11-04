@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
-import com.yihuacomputer.fish.api.device.Status;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.monitor.business.RunStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsChartService;
 import com.yihuacomputer.fish.api.monitor.xfs.status.BoxStatus;
@@ -33,7 +33,7 @@ public class XfsChartService implements IXfsChartService {
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");
 		argList.add("%"+orgFlagObject);
-		argList.add(Status.OPENING);
+		argList.add(DevStatus.OPEN);
 		StringBuffer sb = new StringBuffer(DEVICERUNINFOBASICHQL);
 		//监控概况 应用状态 明细
 		if(null!=filter.getFilterEntry("appRunInfo")){
@@ -74,7 +74,7 @@ public class XfsChartService implements IXfsChartService {
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");
 		argList.add("%"+orgFlagObject);
-		argList.add(Status.OPENING);
+		argList.add(DevStatus.OPEN);
 		List<Object> allDeviceList = dao.findByHQL(DEVICERUNINFOBASICHQL, argList.toArray());
 		return allDeviceList;
 	}
@@ -84,7 +84,7 @@ public class XfsChartService implements IXfsChartService {
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");
 		argList.add("%"+orgFlagObject);
-		argList.add(Status.OPENING);
+		argList.add(DevStatus.OPEN);
 		StringBuffer summaryHealthyBuf = new StringBuffer(DEVICERUNINFOBASICHQL);
 		summaryHealthyBuf.append(" and (xfs.runStatus=? or xfs.runStatus=?) and xfs.netStatus=?  ").
 		append(" and xfs.boxStatus=? and xfs.modStatus=?  ");
@@ -106,7 +106,7 @@ public class XfsChartService implements IXfsChartService {
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");
 		argList.add("%"+orgFlagObject);
-		argList.add(Status.OPENING);
+		argList.add(DevStatus.OPEN);
 		List<Object> appRunInfoList = dao.findByHQL(appBuf.toString(), argList.toArray());
 		return appRunInfoList;
 	}
@@ -120,7 +120,7 @@ public class XfsChartService implements IXfsChartService {
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");
 		argList.add("%"+orgFlagObject);
-		argList.add(Status.OPENING);
+		argList.add(DevStatus.OPEN);
 		List<Object> boxRunInfoList = dao.findByHQL(boxBuf.toString(), argList.toArray());
 		return boxRunInfoList;
 	}
@@ -134,7 +134,7 @@ public class XfsChartService implements IXfsChartService {
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");
 		argList.add("%"+orgFlagObject);
-		argList.add(Status.OPENING);
+		argList.add(DevStatus.OPEN);
 		List<Object> modRunInfoList = dao.findByHQL(modBuf.toString(), argList.toArray());
 		return modRunInfoList;
 	}
@@ -148,7 +148,7 @@ public class XfsChartService implements IXfsChartService {
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");
 		argList.add("%"+orgFlagObject);
-		argList.add(Status.OPENING);
+		argList.add(DevStatus.OPEN);
 		List<Object> netRunInfoList = dao.findByHQL(netBuf.toString(), argList.toArray());
 		return netRunInfoList;
 	}

@@ -141,16 +141,16 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 						viewWin.close();
 						this.onOpenPlan(this.getDrivceGridWin(),cRecord.data.id,cRecord.data.terminalId,1)
 					}else{
-						Ext.Msg.alert("提示", "关联失败！");
+						Ext.Msg.alert(Eway.locale.confirm.title, "关联失败！");
 					}
 				},
 				failure: function(response){
-					Ext.Msg.alert("提示", "关联失败！");
+					Ext.Msg.alert(Eway.locale.confirm.title, "关联失败！");
 				},
 				scope:this
 			});
 		}else{
-			Ext.Msg.alert("提示", "请选择您要关联的记录.");
+			Ext.Msg.alert(Eway.locale.confirm.title, "请选择您要关联的记录.");
 		}
 	},
 
@@ -172,16 +172,16 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				if(object.success == true){
 					this.onOpenPlan(this.getDrivceGridWin(),record.data.deviceId,record.data.terminalId,2);
 				}else{
-					Ext.Msg.alert("提示", "解除失败！");
+					Ext.Msg.alert(Eway.locale.confirm.title, "解除失败！");
 				}
 			},
 			failure: function(response){
-				Ext.Msg.alert("提示", "解除失败！");
+				Ext.Msg.alert(Eway.locale.confirm.title, "解除失败！");
 			},
 			scope:this
 		});
 	}else{
-		Ext.Msg.alert("提示", "请选择您要解除的记录！");
+		Ext.Msg.alert(Eway.locale.confirm.title, "请选择您要解除的记录！");
 	}
 	},
 
@@ -194,7 +194,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			//store.loadPage(1);
 			viewWin.show();
 		}else{
-			Ext.Msg.alert("提示", "设备已关联开机方案！");
+			Ext.Msg.alert(Eway.locale.confirm.title, "设备已关联开机方案！");
 		}
 	},
 
@@ -208,9 +208,9 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					detailWin.setTitle("设备"+terminalId+"开机方案");
 					detailWin.show();
 					if(type==2){
-						Ext.Msg.alert("提示", "解除成功！");
+						Ext.Msg.alert(Eway.locale.confirm.title, "解除成功！");
 					}else if(type == 1){
-						Ext.Msg.alert("提示", "关联成功！");
+						Ext.Msg.alert(Eway.locale.confirm.title, "关联成功！");
 					}
 		    }
 		});
@@ -231,7 +231,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				callback: function(records, operation, success) {
 			        if(Ext.isEmpty(records)){
 			        	detailWin.close();
-						Ext.Msg.alert("提示", "该方案无详细设置！");
+						Ext.Msg.alert(Eway.locale.confirm.title, "该方案无详细设置！");
 			        }else{
 			        	if(record.data.planType=="DATE"){
 							detailWin.down('planInfo_grid').columns[0].hidden=true;
@@ -245,7 +245,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			    }
 			});
 		}else {
-			Ext.Msg.alert("提示", "请选择您要查看的方案！");
+			Ext.Msg.alert(Eway.locale.confirm.title, "请选择您要查看的方案！");
 		}
 	},
 
@@ -285,7 +285,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			data.startTime = data.startTimeHour + ":" + data.startTimeMinute + ":" + data.startTimeSecond;
 			data.endTime = data.endTimeHour + ":" + data.endTimeMinute + ":" + data.endTimeSecond;
 			if(data.startTime>=data.endTime){
-				Ext.Msg.alert("提示", "输入时间段有误，请重新输入！");
+				Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
 				return;
 			}
 			var alertMsg = null;
@@ -294,7 +294,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			var flag = true;
 			infoWeekGrid.getStore().each(function(record){
 				if(data.openClose!=record.data.openClose){
-					Ext.Msg.alert("提示", "同个方案只能设置开机或关机的一种！");
+					Ext.Msg.alert(Eway.locale.confirm.title, "同个方案只能设置开机或关机的一种！");
 					flag=false;
 					return;
 				}
@@ -325,7 +325,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			}
 			}
 			if(alertMsg!=null){
-			Ext.Msg.alert("提示","星期"+alertMsg+"输入时间段有误，请重新输入！");
+			Ext.Msg.alert(Eway.locale.confirm.title,"星期"+alertMsg+"输入时间段有误，请重新输入！");
 			alertMsg = null;
 			}
 		});
@@ -339,33 +339,33 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			data.startTime = data.startTimeHour + ":" + data.startTimeMinute + ":" + data.startTimeSecond;
 			data.endTime = data.endTimeHour + ":" + data.endTimeMinute + ":" + data.endTimeSecond;
 			if(data.startTime>=data.endTime){
-				Ext.Msg.alert("提示", "输入时间段有误，请重新输入！");
+				Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
 				return;
 			}
 			var flag = true;
 			infoDateGrid.getStore().each(function(record){
 				if(data.openClose!=record.data.openClose){
-					Ext.Msg.alert("提示", "同方案只能设置开机或关机的一种！");
+					Ext.Msg.alert(Eway.locale.confirm.title, "同方案只能设置开机或关机的一种！");
 					flag=false;
 					return;
 				}
 				if(data.startTime>=data.endTime){
-					Ext.Msg.alert("提示", "输入时间段有误，请重新输入！");
+					Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
 					flag=false;
 					return;
 				}
 				if(record.data.startTime<=data.startTime&&data.startTime<=record.data.endTime){
-					Ext.Msg.alert("提示", "输入时间段有误，请重新输入！");
+					Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
 					flag=false;
 					return;
 				}
 				if(record.data.startTime<=data.endTime&&data.endTime<=record.data.endTime){
-					Ext.Msg.alert("提示", "输入时间段有误，请重新输入！");
+					Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
 					flag=false;
 					return;
 				}
 				if(data.startTime<=record.data.startTime&&data.endTime>=record.data.endTime){
-					Ext.Msg.alert("提示", "输入时间段有误，请重新输入！");
+					Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
 					flag=false;
 					return;
 				}
@@ -384,7 +384,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				infoWeekGrid.getStore().remove(record);
 			}
 			else {
-				Ext.Msg.alert("提示", "请选择您要删除的记录！");
+				Ext.Msg.alert(Eway.locale.confirm.title, "请选择您要删除的记录！");
 			}
 		});
 		detailDateForm.down('button[action="remove"]').on('click',function(){
@@ -394,7 +394,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				infoDateGrid.getStore().remove(record);
 			}
 			else {
-				Ext.Msg.alert("提示", "请选择您要删除的记录！");
+				Ext.Msg.alert(Eway.locale.confirm.title, "请选择您要删除的记录！");
 			}
 		});
 
@@ -447,20 +447,20 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				var store = view.down('operatingPlan_grid').getStore();
 				store.setUrlParamsByObject(values);
 				store.loadPage(1);
-				Ext.Msg.alert("提示", "添加成功！");
+				Ext.Msg.alert(Eway.locale.confirm.title, "添加成功！");
 			},
 //			failure: function(record,operation){
 //				Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors);
 //			}
 			failure: function(record,operation){
-				Eway.alert("提示", operation.getError());
+				Eway.alert(Eway.locale.confirm.title, operation.getError());
 				
 			 },
 			
 
 		});
 		}else{
-			Ext.Msg.alert("提示", "请设置详细时间！");
+			Ext.Msg.alert(Eway.locale.confirm.title, "请设置详细时间！");
     	}
 	},
 
@@ -478,7 +478,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		var grid = this.getGrid();
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
-			var detailWin = Ext.create('Eway.view.operatingPlan.PlanInfoWin',data);
+			var detailWin = Ext.create('Eway.view.operatingPlan.PlanInfoWin');
 			var record = sm.getLastSelected();
 			var store = detailWin.down('planInfo_grid').getStore();
 			store.load({
@@ -488,7 +488,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				callback: function(records, operation, success) {
 			        if(Ext.isEmpty(records)){
 			        	detailWin.close();
-						Ext.Msg.alert("提示", "该方案无详细设置！");
+						Ext.Msg.alert(Eway.locale.confirm.title, "该方案无详细设置！");
 			        }else{
 			        	if(record.data.planType=="DATE"){
 							detailWin.down('planInfo_grid').columns[0].hidden=true;
@@ -502,7 +502,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			    }
 			});
 		}else {
-			Ext.Msg.alert("提示", "请选择您要查看的方案！");
+			Ext.Msg.alert(Eway.locale.confirm.title, "请选择您要查看的方案！");
 		}
 	},
 
@@ -562,7 +562,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				data.startTime = data.startTimeHour + ":" + data.startTimeMinute + ":" + data.startTimeSecond;
 				data.endTime = data.endTimeHour + ":" + data.endTimeMinute + ":" + data.endTimeSecond;
 				if(data.startTime>=data.endTime){
-					Ext.Msg.alert("提示", "输入时间段有误，请重新输入！");
+					Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
 					return;
 				}
 				var alertMsg = null;
@@ -571,7 +571,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				var flag = true;
 				infoWeekGrid.getStore().each(function(record){
 					if(data.openClose!=record.data.openClose){
-						Ext.Msg.alert("提示", "同方案只能设置开机或关机的一种！");
+						Ext.Msg.alert(Eway.locale.confirm.title, "同方案只能设置开机或关机的一种！");
 						flag=false;
 						return;
 					}
@@ -606,7 +606,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					}
 				}
 				if(alertMsg!=null){
-					Ext.Msg.alert("提示","星期"+alertMsg+"输入时间段有误，请重新输入！");
+					Ext.Msg.alert(Eway.locale.confirm.title,"星期"+alertMsg+"输入时间段有误，请重新输入！");
 					alertMsg = null;
 				}
 			});
@@ -620,33 +620,33 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				data.startTime = data.startTimeHour + ":" + data.startTimeMinute + ":" + data.startTimeSecond;
 				data.endTime = data.endTimeHour + ":" + data.endTimeMinute + ":" + data.endTimeSecond;
 				if(data.startTime>=data.endTime){
-					Ext.Msg.alert("提示", "输入时间段有误，请重新输入！");
+					Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
 					return;
 				}
 				var flag = true;
 				infoDateGrid.getStore().each(function(record){
 					if(data.openClose!=record.data.openClose){
-						Ext.Msg.alert("提示", "同方案只能设置开机或关机的一种！");
+						Ext.Msg.alert(Eway.locale.confirm.title, "同方案只能设置开机或关机的一种！");
 						flag=false;
 						return;
 					}
 					if(data.startTime>=data.endTime){
-						Ext.Msg.alert("提示", "输入时间段有误，请重新输入！");
+						Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
 						flag=false;
 						return;
 					}
 					if(record.data.startTime<=data.startTime&&data.startTime<=record.data.endTime){
-						Ext.Msg.alert("提示", "输入时间段有误，请重新输入！");
+						Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
 						flag=false;
 						return;
 					}
 					if(record.data.startTime<=data.endTime&&data.endTime<=record.data.endTime){
-						Ext.Msg.alert("提示", "输入时间段有误，请重新输入！");
+						Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
 						flag=false;
 						return;
 					}
 					if(data.startTime<=record.data.startTime&&data.endTime>=record.data.endTime){
-						Ext.Msg.alert("提示", "输入时间段有误，请重新输入！");
+						Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
 						flag=false;
 						return;
 					}
@@ -665,7 +665,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					infoWeekGrid.getStore().remove(record);
 				}
 				else {
-					Ext.Msg.alert("提示", "请选择您要删除的记录！");
+					Ext.Msg.alert(Eway.locale.confirm.title, "请选择您要删除的记录！");
 				}
 			});
 			detailDateForm.down('button[action="remove"]').on('click',function(){
@@ -675,7 +675,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					infoDateGrid.getStore().remove(record);
 				}
 				else {
-					Ext.Msg.alert("提示", "请选择您要删除的记录！");
+					Ext.Msg.alert(Eway.locale.confirm.title, "请选择您要删除的记录！");
 				}
 			});
 
@@ -683,7 +683,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 
 		}
 		else {
-			Ext.Msg.alert("提示", "请选择您要更改的记录！");
+			Ext.Msg.alert(Eway.locale.confirm.title, "请选择您要更改的记录！");
 		}
 	},
 
@@ -727,7 +727,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
     	record1.set('openPlanDetailForms',planDetails);
     	record1.save({
     		success : function(record,operation){
-				Ext.Msg.alert("提示", "更新记录成功！");
+				Ext.Msg.alert(Eway.locale.confirm.title, "更新记录成功！");
 				var values = view.down('operatingPlan_filterForm').getForm().getValues();
 				var store = view.down('operatingPlan_grid').getStore();
 				store.setUrlParamsByObject(values);
@@ -736,12 +736,12 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			},
 			failure: function(record,operation){
 				if(operation.request.scope.reader.jsonData.type==null){
-					Ext.Msg.alert("提示", operation.getError(),function(){
+					Ext.Msg.alert(Eway.locale.confirm.title, operation.getError(),function(){
 						//解决脏数据
 						store.rejectChanges();
 					});
 				}else{
-					Ext.Msg.alert("提示", operation.getError(),function(){
+					Ext.Msg.alert(Eway.locale.confirm.title, operation.getError(),function(){
 						//解决脏数据
 						store.rejectChanges();
 						win.close();
@@ -752,7 +752,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 
 		});
 		}else{
-			Ext.Msg.alert("提示", "请设置详细时间！");
+			Ext.Msg.alert(Eway.locale.confirm.title, "请设置详细时间！");
     	}
 
 	},
@@ -791,9 +791,11 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			linkingDeviceGrid.down('button[action="link"]').on('click',
 					Ext.bind(this.onLinkConfirm,this,[linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid,record]),this
 				);
-			linkingDeviceGrid.down('button[action="importMachineCode"]').on('click',
+
+			/*linkingDeviceGrid.down('button[action="importMachineCode"]').on('click',
 					Ext.bind(this.onImport,this,[linkedDeviceGrid,PlanDeviceWin]),this
-				);
+				);*/
+
 			linkingDeviceGrid.down('button[action="query"]').on('click',
 					Ext.bind(this.queryLinkDevice,this,[linkingPanel,linkingDeviceGrid]),this
 				);
@@ -804,7 +806,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			PlanDeviceWin.show();
 		}
 		else {
-			Ext.Msg.alert("提示", "请选择您应用的方案！");
+			Ext.Msg.alert(Eway.locale.confirm.title, "请选择您应用的方案！");
 		}
 	},
 
@@ -848,19 +850,19 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				success: function(response){
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
-						Ext.Msg.alert("提示", "解除成功！",this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
+						Ext.Msg.alert(Eway.locale.confirm.title, "解除成功！",this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 					}else{
-						Ext.Msg.alert("提示", Ext.decode(response.responseText).errors+"条解除失败，请刷新后查看！",this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
+						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errors+"条解除失败，请刷新后查看！",this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 					}
 				},
 				failure: function(response){
-					Ext.Msg.alert("提示", "解除失败！");
+					Ext.Msg.alert(Eway.locale.confirm.title, "解除失败！");
 				},
 				scope:this
 			});
 
 		}else{
-			Ext.Msg.alert("提示", "请选择要解除的设备！");
+			Ext.Msg.alert(Eway.locale.confirm.title, "请选择要解除的设备！");
 		}
 	},
 	onlinkRefrece:function(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid){
@@ -896,13 +898,13 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				success: function(response){
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
-						Ext.Msg.alert("提示", "关联成功！",this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
+						Ext.Msg.alert(Eway.locale.confirm.title, "关联成功！",this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 						 var field = linkingDeviceForm.findField("deviceIds");
 		                 field.setValue("");
 		                 idArray = new Array();
 		             //    console.log(field.value);
 					}else{
-						Ext.Msg.alert("提示", Ext.decode(response.responseText).errors+"条关联失败，请刷新后查看！",this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
+						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errors+"条关联失败，请刷新后查看！",this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 						 var field = linkingDeviceForm.findField("deviceIds");
 		                 field.setValue("");
 		                 idArray = new Array();
@@ -912,7 +914,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					winEl.unmask();
 				},
 				failure: function(response){
-					Ext.Msg.alert("提示", Ext.decode(response.responseText).errors+"条关联失败，请刷新后查看！");
+					Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errors+"条关联失败，请刷新后查看！");
 					 var field = linkingDeviceForm.findField("deviceIds");
 	                 field.setValue("");
 	                 idArray = new Array();
@@ -923,7 +925,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				scope:this
 			});
 		}else{
-			Ext.Msg.alert("提示", "请选择要关联的设备！");
+			Ext.Msg.alert(Eway.locale.confirm.title, "请选择要关联的设备！");
 		}
 	},
 
@@ -945,14 +947,14 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Ext.Msg.alert("提示", "删除成功！");
+									Ext.Msg.alert(Eway.locale.confirm.title, "删除成功！");
 									var values = view.down('operatingPlan_filterForm').getForm().getValues();
 									var store = view.down('operatingPlan_grid').getStore();
 									store.setUrlParamsByObject(values);
 									store.loadPage(1);
 								},
 								failure: function(record,operation){
-									Ext.Msg.alert("提示", operation.getError());
+									Ext.Msg.alert(Eway.locale.confirm.title, operation.getError());
 									grid.getStore().load();
 								},
 								scope:this
@@ -977,7 +979,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		var form = importWin.down('form').getForm();
 		importWin.down("button[action=import]").on("click",Ext.bind(this.onImportMachineCodeConfirm,this,[form,grid,win]),this);
 
-	},
+	}
 	onImportMachineCodeConfirm:function(addForm,linkingDeviceGrid,linkingDeviceWin){
 	       if(addForm.isValid( ) )
 			 if( addForm.findField("file").getValue()!='')
@@ -1031,7 +1033,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 						msg="<a class='link' href='api/plan/downloadFile'>共"
 						+ action.result.message + "条数据,成功导入" +action.result.total + "条,点击查看导入详情!</a>"
 					}
-					 Ext.Msg.alert('提示', msg,function callback(){
+					 Ext.Msg.alert(Eway.locale.confirm.title, msg,function callback(){
 			    		  Ext.Ajax.request({
 			    				method : 'POST',
 			    				url : 'api/plan/delFile',
@@ -1041,7 +1043,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				  	}
 				    },
 				    failure: function(form, action) {
-				    	    Ext.Msg.alert('提示', '文件内容不符合要求');
+				    	    Ext.Msg.alert(Eway.locale.confirm.title, '文件内容不符合要求');
 				    },
 				   scope: this
 			});

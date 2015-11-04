@@ -1,7 +1,7 @@
 Ext.define('Eway.view.operatingPlan.ImportLinkedMachine',{
           extend :'Ext.window.Window',
           alias:'widget.operatingPlan_download_linkedMachine',
-          title:'导入关联设备',
+          title:Eway.locale.report.openplan.inportLinkedMachine,
           modal:true,
           resizable : false,
           constrainHeader : true,
@@ -26,30 +26,30 @@ Ext.define('Eway.view.operatingPlan.ImportLinkedMachine',{
       				items : [
       				{
       					xtype : 'filefield',
-      					fieldLabel : '选择文件',
+      					fieldLabel : Eway.locale.report.openplan.selectFile,
       					name : 'file',
       					allowBlank : false,
       					width:420,
-      					blankText : '请上传资源',
-      					waitMsg:'正在上传文件...',
+      					blankText : Eway.locale.report.openplan.placeUploadingResource,
+      					waitMsg:Eway.locale.version.View.versionFileUploadMsg,
       					msgTarget : 'side',
       					regex : /^([\w|\W]*)(\.xls)$/i,
-      					regexText : '导入的文件格式不支持,请按模板导入设备信息.'
+      					regexText : Eway.locale.report.openplan.fileNotSupport
       				}, {
       					xtype : 'displayfield',
-      					fieldLabel : '模板下载',
+      					fieldLabel : Eway.locale.cases.vendorCode.templateLoad,
       					width:420,
       					name : 'link',
-      					value :"<a class='link' href='api/dateImport/downloadFile'>点击下载导入设备号模板</a>"
+      					value :"<a class='link' href='api/dateImport/downloadFile'>"+Eway.locale.report.openplan.thisHardToTranslate+"</a>"
       				}, {
       					xtype : 'displayfield',
-      					fieldLabel : '导入说明',
+      					fieldLabel : Eway.locale.report.openplan.exportExplain,
       					width:420,
-      					value : '<font color="red">请在设备导入模板中连续添加要下发的设备号,最多一次性导入2000条数据(约耗时5分钟),最少导入1条数据</font>'
+      					value : '<font color="red">'+Eway.locale.report.openplan.thisIsTooLong+'</font>'
       				} ],
       				buttonAlign:'center',
       				buttons : [ {
-      					text : '确定',
+      					text : Eway.locale.button.sure,
       					iconCls : 'sureBtn',
       					action : 'import'
       				} ]

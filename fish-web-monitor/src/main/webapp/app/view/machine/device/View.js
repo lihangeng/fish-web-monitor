@@ -3,35 +3,25 @@ Ext.define('Eway.view.machine.device.View', {
 	alias : 'widget.device.view',
 
 	requires : [ 'Eway.view.machine.device.Grid',
-			'Eway.view.machine.device.FilterForm',
-			'Eway.view.machine.device.TempGrid'
-			  ],
+			'Eway.view.machine.device.FilterForm' ],
 
-	title : '设备管理',
+	title : Eway.locale.machine.device.title,
 	layout : 'border',
-	isLoad : true,
+
+	isLoad : false,
 
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
+				itemId : 'filterFormItemId',
 				region : 'north',
 				xtype : 'device_filterform'
-			},{
+			}, {
+				itemId : 'gridItemId',
 				region : 'center',
-				xtype: 'tabpanel',
-				items : [{
-					xtype: 'device_grid',
-						title: '已生效设备信息',
-						minHeight:240,
-				        flex : 1
-					},{
-						xtype: 'device_tempGrid',
-						title:'未生效设备信息',
-						minHeight:240,
-				        flex : 1
+				xtype : 'device_grid'
+			} ],
 
-					}]
-			}],
 			listeners : {
 				activate : function(panel) {
 					if (!panel.isLoad) {
@@ -41,7 +31,7 @@ Ext.define('Eway.view.machine.device.View', {
 						return;
 					}
 					// 刷新设备型号信息
-					panel.down('device_filterform').down('field_device_deviceatmtype').getStore().load();
+//					panel.down('device_filterform').down('field_device_deviceatmtype').getStore().load();
 					// 刷新设备类型信息
 					panel.down('device_filterform').down('field_atmType_DeviceAtmCatalogComboBox').getStore().load();
 					// 刷新设备品牌信息

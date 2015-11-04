@@ -8,6 +8,8 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -20,9 +22,9 @@ import com.yihuacomputer.fish.api.atm.IAtmCatalogService;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
 import com.yihuacomputer.fish.api.atm.IAtmVendor;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.machine.H2TestConfig;
@@ -33,6 +35,7 @@ import com.yihuacomputer.fish.machine.H2TestConfig;
  * @date 2012-2-22 下午03:25:01
  * @version 类说明
  */
+@DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = H2TestConfig.class)
 public class DeviceServiceTest extends BindSessionInTest2
@@ -101,7 +104,7 @@ public class DeviceServiceTest extends BindSessionInTest2
         deviceAdd1.setOrganization(organization1);
         deviceAdd1.setDevType(type);
         deviceService.add(deviceAdd1);
-        assertEquals(Status.OPENING,deviceAdd1.getStatus());
+        assertEquals(DevStatus.OPEN,deviceAdd1.getStatus());
 
         IDevice resultAdd1 = deviceService.get("20120222");
         assertEquals("Test5", resultAdd1.getOrganization().getName());
@@ -119,7 +122,7 @@ public class DeviceServiceTest extends BindSessionInTest2
         assertEquals("20120222", deviceGet1.getTerminalId());
 
         // ==============删除==================
-        deviceAdd2.setStatus(Status.DISABLED);
+        deviceAdd2.setStatus(DevStatus.DISABLED);
         deviceService.update(deviceAdd2);
         deviceService.remove(deviceAdd2.getId());
         List<IDevice> deviceList1 = deviceService.list();
@@ -194,7 +197,7 @@ public class DeviceServiceTest extends BindSessionInTest2
          System.out.println("@@@@@@@@@@@@@@@@@@@@");
          //update
          device.setAddress("xxxx");
-         device.setStatus(Status.DISABLED);
+         device.setStatus(DevStatus.DISABLED);
          IDevice cache = deviceService.get(deviceAdd1.getId());
          assertEquals("xxxx",cache.getAddress());
          System.out.println("33333333333333");

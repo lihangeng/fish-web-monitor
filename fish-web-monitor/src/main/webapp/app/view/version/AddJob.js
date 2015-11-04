@@ -46,7 +46,7 @@ Ext.define('Eway.view.version.AddJob', {
 				},
 				items : [{
 					xtype: 'textfield',
-					fieldLabel:Eway.locale.version.batchTaskName,//任务批次名称",
+					fieldLabel:Eway.locale.version.View.versionDesc,//版本描述",
 					name :'jobName',
 					maxLength: 128,
 					allowBlank:false,

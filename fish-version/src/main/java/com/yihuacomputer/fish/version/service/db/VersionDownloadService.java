@@ -15,9 +15,9 @@ import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.device.CashType;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IComplexDeviceService;
 import com.yihuacomputer.fish.api.device.IDevice;
-import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
@@ -126,7 +126,7 @@ public class VersionDownloadService implements IVersionDownloadService {
 			hqlDevice.append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ").
 	    	append(" where version.id=?  and device.status=?");
 			argList.add(version.getId());
-			argList.add(Status.OPENING);
+			argList.add(DevStatus.OPEN);
 			if(version.getVersionType().isDisplay()){
 				hqlDevice.append(" and device.devType.id=versionatmType.atmTypeId ").append(" and versionatmType.versionTypeId=version.versionType.id ");
 			}
@@ -163,7 +163,7 @@ public class VersionDownloadService implements IVersionDownloadService {
 		    	append(" and versionatmType1.versionTypeId=version1.versionType.id ");
 	    	}
 			argList.add(version.getId());
-			argList.add(Status.OPENING);
+			argList.add(DevStatus.OPEN);
 	    	if(terminalId!=null){
 	    		hqlDevice.append(" and device1.terminalId like ? ");
 	    		argList.add("%"+String.valueOf(terminalId)+"%");
@@ -189,7 +189,7 @@ public class VersionDownloadService implements IVersionDownloadService {
     		append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ").
     		append(" where version.id=?  and device.status=?");
     		argList.add(version.getId());
-			argList.add(Status.OPENING);
+			argList.add(DevStatus.OPEN);
 			hqlDevice.append(" and device.devType.id=versionatmType.atmTypeId ").
         	append(" and versionatmType.versionTypeId=version.versionType.id ").
     		append(" and version.dependVersion.versionStr>=deviceSoftVersion.versionStr").
@@ -223,7 +223,7 @@ public class VersionDownloadService implements IVersionDownloadService {
     		append(" version1.id=? and task1.status in('NEW','RUN','NOTICED','NOTICE_APP_OK','DOWNLOADED','DEPLOYED','DEPLOYED_WAIT') and device1.status=?").
     		append(" and device1.devType.id=versionatmType1.atmTypeId ");
 			argList.add(version.getId());
-			argList.add(Status.OPENING);
+			argList.add(DevStatus.OPEN);
         	if(terminalId!=null){
 	    		hqlDevice.append(" and device1.terminalId like ? ");
 	    		argList.add("%"+String.valueOf(terminalId)+"%");
@@ -293,7 +293,7 @@ public class VersionDownloadService implements IVersionDownloadService {
         List<IVersionTypeRestriction> vTypeRestrictions = vType.listVersionTypeRestrictions();
         List<Object> filters = new ArrayList<Object>();
         filters.add("%"+org.getOrgFlag());
-        filters.add(Status.OPENING);
+        filters.add(DevStatus.OPEN);
         for(IVersionTypeRestriction vTypeRestriction : vTypeRestrictions){
             if(vTypeRestriction.getRestrictionColumn().equals(RestrictionColumn.CASH_TYPE)){
 //                filter.addFilterEntry(FilterFactory.eq("device.cashType",CashType.valueOf(vTypeRestriction.getRestrictionValue())));

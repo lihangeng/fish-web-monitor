@@ -380,7 +380,7 @@ Ext.override(Eway,{
 			remoteFailure:'Remote browse failed',//远程浏览失败
 			versionChart:'Chart of version-issued histroy status',//版本下发历史状态分布图
 			openRefresh:'Start the automatic refresh',//开启自动刷新
-			choseTask:'Please choose a job',//请选择一个作业
+			choseTask:'Please choose a Task',//Eway.locale.vtype.choseTask 请选择一个任务
 			cancelTask:'Can not cancel the job which status is ‘finish’.',//不能撤销"完成"状态的作业
 			cancelParticularTask:'Cancel the job?(running job can only cancel the task which is not running)(正在运行的作业只会撤销还没有运行的任务.)',//是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)
 			nowDelete:'Deleting......', //正在删除......
@@ -598,6 +598,7 @@ Ext.override(Eway,{
 				taskQueryTips:'Query job detail by condition',//Eway.locale.version.download.taskQueryTips 根据条件查询选中作业下的详情信息
 				autoRefresh:'Start auto refresh',//Eway.locale.version.download.autoRefresh 开启自动刷新
 				stopAutoRefresh:'Stop auto refresh',//Eway.locale.version.download.stopAutoRefresh 停止自动刷新
+				cancelBatch:'cancelBatch',//Eway.locale.version.download.cancelBatch
 				autoRefreshTips:'Refresh periodic 60 second',//Eway.locale.version.download.autoRefreshTips 刷新周期60秒
 				resetTaskStatus:'Reset Status',//Eway.locale.version.download.resetTaskStatus
 				taskExportTips:'Export all issue result of job selected'//Eway.locale.version.download.taskExportTips 导出选中作业下的全部下发结果
@@ -641,7 +642,8 @@ Ext.override(Eway,{
 				deviceVersionHisTip:'View information of device history version',	//Eway.locale.version.task.deviceVersionHisTip 查看设备历史版本信息
 				autoUpdateInfo:'Information of auto update',//Eway.locale.version.task.autoUpdateInfo 自动更新信息
 				selectAJob:'Please choose a job.',//Eway.locale.version.task.selectAJob 请选择一个作业
-				versionDownHisStatusPic:'版本下发历史状态分布图',//Eway.locale.version.task.versionDownHisStatusPic 版本下发历史状态分布图
+				versionDownHisStatusPic:'StatusDistribute',//Eway.locale.version.task.versionDownHisStatusPic 版本下发历史状态分布图
+				versionNoPic:'VersionDistribute',//Eway.locale.version.task.versionNoPic
 				cantCancelCompleteJob:'Can not cancel job which status is ‘finish’.',//Eway.locale.version.task.cantCancelCompleteJob 不能撤销"完成"状态的作业
 				doSureCancelTheJob:'Cancel the selected job?(running job can only cancel the task which has not running)',//Eway.locale.version.task.doSureCancelTheJob 是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)
 				deleting:'Deleting......',//Eway.locale.version.task.deleting 正在删除
@@ -831,8 +833,10 @@ Ext.override(Eway,{
 			devCatalogName:'Device catalog',//Eway.locale.commen.devCatalogName 设备类型
 			devStatus:'Device status',//Eway.locale.commen.devStatus 设备状态
 			comboxDevStatus:{
-				open:'Open',//Eway.locale.commen.comboxDevStatus.open 开通
-				stop:'Stop'//Eway.locale.commen.comboxDevStatus.stop 停用
+				upOpen:'upOpen',//Eway.locale.commen.comboxDevStatus.upOpen
+				open:'Open',//Eway.locale.commen.comboxDevStatus.open
+				stop:'Stop',//Eway.locale.commen.comboxDevStatus.stop
+				scrapped:'Scrapped'//Eway.locale.commen.comboxDevStatus.Scrapped
 			},
 			setManager:'Setting',//Eway.locale.commen.setManager 设置
 			devServiceName:'Maintenance of device',//Eway.locale.commen.devServiceName 设备维护商

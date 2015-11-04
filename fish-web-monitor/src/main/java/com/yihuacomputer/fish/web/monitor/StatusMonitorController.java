@@ -23,7 +23,7 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.jackson.JsonUtils;
-import com.yihuacomputer.fish.api.device.Status;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.monitor.filter.IBoxStatusFilter;
 import com.yihuacomputer.fish.api.monitor.filter.IFilterService;
 import com.yihuacomputer.fish.api.monitor.filter.IModStatusFilter;
@@ -214,7 +214,7 @@ public class StatusMonitorController {
         }
         
         // 只监控开通的设备
-        statusFilter.setDeviceStatus(Status.OPENING);
+        statusFilter.setDeviceStatus(DevStatus.OPEN);
 
         return statusFilter;
     }

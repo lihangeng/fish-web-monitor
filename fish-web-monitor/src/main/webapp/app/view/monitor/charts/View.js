@@ -2,10 +2,10 @@
 Ext.define('Eway.view.monitor.charts.View', {
 	alias: 'widget.monitor_view',
 	extend: 'Ext.panel.Panel',
-	requires: ['Eway.view.monitor.charts.DonutCharts','Eway.view.monitor.charts.MonitorDeviceGrid'],
+	requires: ['Eway.view.monitor.charts.DonutCharts'],
 	layout: {
         type: 'table',
-        columns: 2
+        columns: 3
     },
     
     scrollable : 'y',
@@ -15,7 +15,7 @@ Ext.define('Eway.view.monitor.charts.View', {
 	initComponent: function() {
 		var me = this;
 		Ext.apply(this, {
-//		    title: Eway.locale.monitor.summary.title,//'监控总览',
+		    title: Eway.locale.monitor.summary.title,//'监控总览',
 			refresh:function(){
 				var _this = this;
 	    		var item1 = _this.getComponent("DonutChartsNetSummary");
@@ -98,7 +98,7 @@ Ext.define('Eway.view.monitor.charts.View', {
 			},
 		    defaults: { 
 		    	frame: true,
-		    	width: 550,
+		    	width: 350,
 		    	margin: 10,
 		    	xtype:'pie-donut',
 	            angleField:'displayName',
@@ -127,23 +127,23 @@ Ext.define('Eway.view.monitor.charts.View', {
 		    	title:Eway.locale.monitor.summary.appSummary,//'Run概况',
 		    	itemId:'DonutChartsRunSummary',
 	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsRunSummary")
-		    },{
-		    	xtype : 'monitor_device_grid',
-		    	tools:[{
-	                type:'maximize',
-	                handler: function(event, toolEl, panelHeader) {
-	                	var grid = this.up("monitor_device_grid");
-	                	if(grid.getStore().data.length==0){
-	                		Eway.alert("无数据");
-	                		return;
-	                	}
-                		var win = Ext.create('Eway.view.monitor.charts.MonitorDeviceDetailWindow', {
-                			title:grid.getTitle()
-                		});
-                		win.show();
-                		win.down("monitor_device_grid").getStore().load();
-	                }
-	            }]
+//		    },{
+//		    	xtype : 'monitor_device_grid',
+//		    	tools:[{
+//	                type:'maximize',
+//	                handler: function(event, toolEl, panelHeader) {
+//	                	var grid = this.up("monitor_device_grid");
+//	                	if(grid.getStore().data.length==0){
+//	                		Eway.alert("无数据");
+//	                		return;
+//	                	}
+//                		var win = Ext.create('Eway.view.monitor.charts.MonitorDeviceDetailWindow', {
+//                			title:grid.getTitle()
+//                		});
+//                		win.show();
+//                		win.down("monitor_device_grid").getStore().load();
+//	                }
+//	            }]
 		    },{
 		    	title:Eway.locale.monitor.summary.modSummary,//'Mod概况',
 		    	itemId:'DonutChartsModSummary',

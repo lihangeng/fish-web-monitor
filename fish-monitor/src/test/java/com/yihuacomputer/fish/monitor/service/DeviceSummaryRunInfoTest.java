@@ -2,25 +2,19 @@ package com.yihuacomputer.fish.monitor.service;
 
 import java.util.List;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsChartService;
-import com.yihuacomputer.fish.monitor.H2TestConfig;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {H2TestConfig.class})
+//@DirtiesContext(classMode = ClassMode.AFTER_CLASS)
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(classes = {H2TestConfig.class})
 public class DeviceSummaryRunInfoTest {
 	
-	@Autowired
+	//@Autowired
 	private IXfsChartService xfsChartService;
 	
-	@Test
+	//@Test
 	public void getSummaryInfo(){
 		IFilter filter = new Filter();
 		filter.eq("orgFlag", "-1");

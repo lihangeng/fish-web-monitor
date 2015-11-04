@@ -14,11 +14,10 @@ import com.yihuacomputer.fish.api.atm.IAtmModuleService;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
 import com.yihuacomputer.fish.api.atm.IAtmVendor;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.device.NetType;
 import com.yihuacomputer.fish.api.device.SetupType;
-import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.device.WorkType;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 
@@ -62,7 +61,7 @@ public class MachineDataLoader {
 	private void initDevice() {
 		for (int i = 1; i <= 1600; i++) {
 			IDevice device = deviceService.make();
-			device.setStatus(Status.OPENING);
+			device.setStatus(DevStatus.OPEN);
 			device.setIp(new IP("172.18.30.10" + i));
 			device.setTerminalId("ATM00" + i);
 			if (i % 2 == 0) {
@@ -75,7 +74,7 @@ public class MachineDataLoader {
 			device.setSetupType(SetupType.LOBBY);
 			device.setWorkType(WorkType.COOPERATION);
 			device.setOrganization(orgService.get("1"));
-			device.setStatus(Status.OPENING);
+			device.setStatus(DevStatus.OPEN);
 			device.setDevService(orgService.get("2"));
 			device.setAddress(String.format("nanjing-%d", i));
 
