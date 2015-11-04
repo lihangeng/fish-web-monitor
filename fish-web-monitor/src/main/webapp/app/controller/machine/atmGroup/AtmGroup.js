@@ -43,8 +43,8 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			'tabpanel':{
 				tabchange:this.onTabChange
 			},
-			'atmGroup_groupGrid' : {
-				rowdblclick : this.groupGridRowClick
+			'atmGroup_groupGrid button[action=showDetail]' : {
+				click : this.showDetail
 			},
 			'atmGroup_groupGrid button[action=update]' : {
 				click : this.onGroupUpdate
@@ -76,7 +76,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			deviceDetailPanel.setDisabled(true);
 		}
 	},
-	groupGridRowClick:function( _this, record, tr, rowIndex, e, eOpts ){
+	showDetail:function(){
 		var deviceDetailPanel = this.getEwayView().down("panel[name='atmGroupDeviceDetails']");
 		deviceDetailPanel.setDisabled(false);
 		deviceDetailPanel.setMasked(false);

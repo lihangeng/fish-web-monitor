@@ -41,6 +41,7 @@ Ext.define('Eway.view.machine.atmGroup.View', {
 						]},
 						{
 						name:'atmGroupDeviceDetails',
+						disabled:true,
 						title:Eway.locale.machine.device.title,
 						layout : 'border',
 						xtype:'panel',
