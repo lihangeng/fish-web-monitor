@@ -35,7 +35,7 @@ Ext.define('Eway.view.monitor.device.View',{
 					activeItem : 3,
 					itemId : 'card_itemId',
 					tbar : [
-						'订阅条件:', {
+						Eway.locale.monitor.devMonitor.monitorState+':', {
 							xtype : 'label'
 						}
 					],
@@ -62,12 +62,39 @@ Ext.define('Eway.view.monitor.device.View',{
 							name : 'matrix',
 							itemId : 'dataview',
 							xtype : 'monitor_device_showtype_dataviewgrid',
-							store : 'dataViewStore'
+							store : dataViewStore
 						},
 						bbar : Ext.create('Ext.PagingToolbar', {
 							store : dataViewStore,
 							displayInfo : true,
-							displayMsg : Eway.locale.tip.displayMessage
+							displayMsg : Eway.locale.tip.displayMessage,
+							items : ['-', Eway.locale.tip.formatPageBfMsg, {
+							    xtype : 'combobox',
+							    name: 'pagesize',
+						        hiddenName: 'pagesize',
+						        store: new Ext.data.ArrayStore({
+						            fields: ['text', 'value'],
+						            data: [['25', 25], ['50', 50],['100', 100], ['200', 200]]
+						        }),
+						        valueField : 'value',
+						        displayField : 'text',
+						        value : 25,
+						        width: 60,
+						        editable : false,
+						        listeners : {
+							        change : function( This, newValue, oldValue, eOpts ) {
+			        				    var pagingToolbar = This.up('pagingtoolbar');
+			
+			        				    var itemsPerPage = parseInt(newValue);//更改全局变量itemsPerPage
+			
+			        				    var store = pagingToolbar.getStore();
+			
+			        				    store.pageSize = itemsPerPage;//设置store的pageSize，可以将工具栏与查询的数据同步。
+			
+			        				    store.loadPage(1);//显示第一页
+							        }
+							    }
+							}, Eway.locale.tip.formatPageAfMsg]
 						})
 					}, {
 						
@@ -213,7 +240,9 @@ Ext.define('Eway.view.monitor.device.View',{
 		if(this.config._deviceMartixSub){
 			Ext.Cometd.removeListener(this.config._deviceMartixSub);
 		}
-		this.config._deviceMartixSub = Ext.Cometd.addListener('/service/status/join',Ext.bind(this._receive,this));
+//		this.config._deviceMartixSub = Ext.Cometd.addListener('/service/status/join',Ext.bind(this._receive,this));
+		
+		this.config._deviceMartixSub = Ext.Cometd.subscribe('/service/status/join', this, this._receive);
 	},
 
 	_receive : function(message){

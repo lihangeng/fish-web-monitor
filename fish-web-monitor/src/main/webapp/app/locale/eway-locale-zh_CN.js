@@ -139,6 +139,9 @@ Ext.override(Eway,{
 			phone:'请输入正确的电话号码',
 			remind:'提示',//Eway.locale.tip.remind
 			displayMessage:'总共：{2}条，显示{0}-{1}',
+			
+			formatPageBfMsg: '每页显示',// Eway.locale.tip.formatPageBfMsg
+			formatPageAfMsg: '条',// Eway.locale.tip.formatPageAfMsg
 
 			unCertain:'未知',
 			searchOfNoLegal:'查询项中存在不合法的输入,不能提交.',
