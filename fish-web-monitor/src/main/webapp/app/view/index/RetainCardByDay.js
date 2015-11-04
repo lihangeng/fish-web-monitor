@@ -28,8 +28,8 @@ Ext.define('Eway.view.index.RetainCardByDay', {
         me.items = [{
             xtype: 'cartesian',
             width: '100%',
-            height: 300,
-           interactions: {
+            height: 260,
+            interactions: {
                 type: 'itemhighlight',
                 zoomOnPanGesture: false
             },
