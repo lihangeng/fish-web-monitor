@@ -13,14 +13,17 @@ Ext.define('Eway.view.machine.atmGroup.DeviceGrid', {
 			tbar : [ '->', {
 				text : Eway.locale.button.info,
 				glyph : 0xf129,
+				maskOnDisable:true,
 				action : 'info'
 			}, {
 				text : Eway.locale.button.search,
 				glyph : 0xf002,
+				maskOnDisable:true,
 				action : 'query'
 			}, {
 				text : Eway.locale.button.add,
 				glyph : 0xf067,
+				maskOnDisable:true,
 				action : 'add',
 				code : 'atmGroupDeviceAdd',
 				listeners:{
@@ -29,6 +32,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceGrid', {
 			}, {
 				text : Eway.locale.button.remove,
 				glyph : 0xf014,
+				maskOnDisable:true,
 				action : 'remove',
 				code : 'atmGroupDeviceDel',
 				listeners:{

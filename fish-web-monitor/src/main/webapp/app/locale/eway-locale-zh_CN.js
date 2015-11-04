@@ -176,6 +176,7 @@ Ext.override(Eway,{
 			exportFiles: '请选择导入文件,只支持.xls和.xlsx格式的文件',
 			noChange:'没有更改数据,请更改后再点击确定!',//Eway.locale.tip.noChange
 			operateSuc:'操作成功',//Eway.locale.tip.operateSuc
+			operateWrong:'操作成功',//Eway.locale.tip.operateWrong
 			deleteOne:'一次只能删除一条记录.',//Eway.locale.tip.deleteOne
 			chooseRecord:'请选择您要关联的记录.',//Eway.locale.tip.chooseRecord
 			choosePlan:'请选择您要查看的方案',//Eway.locale.tip.choosePlan
@@ -819,7 +820,8 @@ Ext.override(Eway,{
 				specialLine:'专线',
 				bandWidth:'宽带',
 				handle:'正在处理......',
-				offServer:'与服务器断开连接.',
+				offServer:'与服务器断开连接.',//Eway.locale.agent.offServer
+				submitingWaiting:'正在提交,请稍等...',//Eway.locale.agent.submitingWaiting
 				ATMCheck:'正在ATM体检中...',
 				excellent:'优',
 				fine:'良',
@@ -849,6 +851,8 @@ Ext.override(Eway,{
 				dredge:'开通',//Eway.locale.commen.comboxStatus.dredge
 				open:'开通',//Eway.locale.commen.comboxStatus.open
 				close:'停用',//Eway.locale.commen.comboxStatus.close
+				pastDue:'过期',//Eway.locale.commen.comboxStatus.pastDue
+				pastDueSoon:'即将过期',//Eway.locale.commen.comboxStatus.pastDueSoon
 			},
 			type:'类型',//Eway.locale.commen.type
 			comboxType:{
@@ -1178,6 +1182,7 @@ Ext.override(Eway,{
 					manaAndstaff:'管机员'//Eway.locale.monitor.devMonitor.remote.manaAndstaff
 				},
 				atmGroup:'分组',//Eway.locale.monitor.devMonitor.atmGroup
+				atmGroupTip:'分组详情',//Eway.locale.monitor.devMonitor.atmGroupTip
 				solution:'建议解决方案',//Eway.locale.monitor.devMonitor.solution
 				faultDescription:'模块故障描述',//Eway.locale.monitor.devMonitor.faultDescription
 				fastChoose:'快捷选择',//Eway.locale.monitor.devMonitor.fastChoose
@@ -1221,7 +1226,8 @@ Ext.override(Eway,{
 					transactionMonitor:{
 						title:'实时交易监控',//Eway.locale.monitor.business.transaction.transactionMonitor.title
 						begin:'开始监控',//Eway.locale.monitor.business.transaction.transactionMonitor.begin
-						stop:'停止监控'//Eway.locale.monitor.business.transaction.transactionMonitor.stop
+						stop:'停止监控',//Eway.locale.monitor.business.transaction.transactionMonitor.stop
+						clear:'清屏'//Eway.locale.monitor.business.transaction.transactionMonitor.clear
 						}
 				},
 				blackList:{

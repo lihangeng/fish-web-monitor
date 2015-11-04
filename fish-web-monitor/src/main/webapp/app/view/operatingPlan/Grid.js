@@ -13,10 +13,12 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 			tbar : [ '->', {
 				text: Eway.locale.button.apply,
 				iconCls : 'connectBtn',
+				glyph : 0xf0c1,
 				code : 'planLink',
 				action : 'link'
 			}, {
 				text: Eway.locale.button.info,
+				glyph : 0xf129,
 				iconCls : 'detailBtn',
 				action : 'queryDetail'
 			}, {
@@ -49,9 +51,9 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				stripeRows : true,
 				getRowClass: function(record, index) {
 					var planStateType = record.get('planStateType');
-					if(planStateType == '停用'||planStateType == '过期'){
+					if(planStateType == Eway.locale.commen.comboxStatus.close||planStateType == Eway.locale.commen.comboxStatus.pastDue){
 						return 'user-online';
-					}else if(planStateType == '即将过期'){
+					}else if(planStateType == Eway.locale.commen.comboxStatus.pastDueSoon){
 						return 'user-yellow';
 					}
 				}
