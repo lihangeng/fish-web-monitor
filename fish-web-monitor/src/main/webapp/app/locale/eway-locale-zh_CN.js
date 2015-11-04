@@ -1336,7 +1336,7 @@ Ext.override(Eway,{
 				}
 			},
 			atmCatalog:{
-				title:'ATM分类',//Eway.locale.machine.title
+				title:'设备分类',//Eway.locale.machine.title
 				name:'分类名称',//Eway.locale.machine.atmCatalog.name
 				note:'备注',
 				addTitle:'增加ATM分类信息',
