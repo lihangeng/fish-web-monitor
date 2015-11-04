@@ -5,7 +5,9 @@ Ext.define('Eway.controller.machine.Device', {
 			'machine.PersonM', 'machine.PersonTM',
 			'machine.DeviceAwayFlagComboBox',
 			'machine.atmType.DeviceAtmVendor',
-			'machine.atmType.DeviceAtmCatalog' ],
+			'machine.atmType.DeviceAtmCatalog',
+			'person.person.PersonStateFilterDict',
+			'person.person.PersonJob'],
 
 	models : [ 'machine.Device', 'machine.Person' ],
 
@@ -182,7 +184,7 @@ Ext.define('Eway.controller.machine.Device', {
 		}
 	},
 	onSetPerson: function (personStore,terminalId,type){
-		var grid = this.getGrid();
+			var grid = this.getGrid();
 		var sm1 = grid.getSelectionModel();
 		if(sm1.getCount() == 1) {
 		var selectManagerWin = Ext.create('Eway.view.machine.device.person.SelectPersonManager');
@@ -190,7 +192,6 @@ Ext.define('Eway.controller.machine.Device', {
 		var selectForm = selectManagerWin.down('bank_person_filterform');
 		var record1 = sm1.getLastSelected();
 		var store = selectGrid.getStore();
-		//store.cleanUrlParam();
 		store.setBaseParam('deviceId',record1.data.id);
 		store.setBaseParam('type',type);
 		store.load();

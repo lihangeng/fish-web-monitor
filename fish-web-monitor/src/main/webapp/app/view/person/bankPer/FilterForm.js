@@ -17,11 +17,16 @@ Ext.define('Eway.view.person.bankPer.FilterForm', {
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-				columnWidth : .3,
+				columnWidth : .30,
+				defaults : {
+					labelAlign : 'right',
+					labelWidth : 50,
+					width:200
+				},
 				items : [ {
 					xtype : 'field.username',
 					labelWidth : 50,
-					maxLength : 20,
+					maxLength : 20,					
 					msgTarget : 'side'
 				}, {
 					xtype : 'field.mobile',
@@ -32,7 +37,12 @@ Ext.define('Eway.view.person.bankPer.FilterForm', {
 					msgTarget : 'side'
 				} ]
 			}, {
-				columnWidth : .3,
+				columnWidth : .30,
+				defaults : {
+					labelAlign : 'right',
+					labelWidth : 50,
+					width:200
+				},
 				items : [ {
 					fieldLabel : Eway.locale.commen.jobNum,
 					xtype : 'textfield',
@@ -49,7 +59,12 @@ Ext.define('Eway.view.person.bankPer.FilterForm', {
 
 				} ]
 			}, {
-				columnWidth : .4,
+				columnWidth : .40,
+				defaults : {
+					labelAlign : 'right',
+					width:200,
+					labelWidth : 50
+				},
 				items : [ {
 					labelWidth : 50,
 					xtype : 'field_person_personJobComboBox',
