@@ -165,11 +165,7 @@ Ext.define('Eway.view.monitor.device.View',{
 
 		var p = cardp.getLayout().getActiveItem();
 		var store;
-		if(p.getItemId() == 'martrixPanel'){
-//			cardp.tbar.setHtml("123");
-			this.doCometd(store);
-			return;
-		}
+
 		if (p.getItemId() == 'martrixPanel') {
 			store = p.down('monitor_device_showtype_dataviewgrid').getStore();
 			
@@ -192,6 +188,7 @@ Ext.define('Eway.view.monitor.device.View',{
 			devices = devices+"/"+record.get('code');
 		});
 		var params = this.getParams();
+		params.limit = store.pageSize;
 		params.devices = devices.slice(1);
 		Ext.Cometd.publish('/service/status/join', params);
 	},
@@ -257,13 +254,13 @@ Ext.define('Eway.view.monitor.device.View',{
 	},
 
 	doDataViewPanel : function(view,object){
-		
 //		var store = view.getStore();
 		var store = view.down('monitor_device_showtype_dataviewgrid').getStore();
 		
 		var action = object.method;
-		if(action == 'ADD'){
-			var record = Ext.ModelManager.create(object,'Eway.model.monitor.device.DeviceMonitorList');
+		if(action == 'ADD'){                             
+//			var record = Ext.ModelManager.create(object,'Eway.model.monitor.device.DeviceMonitorList');
+			var record = Ext.data.Record.create(object);
 			store.add(record);
 		}
 		else if(action == 'UPDATE'){
@@ -288,10 +285,13 @@ Ext.define('Eway.view.monitor.device.View',{
 	},
 
 	doGridPanel : function(gridpanel,object){
+		debugger;
 		var store = gridpanel.getStore();
 		var action = object.method;
 		if(action == 'ADD'){
-			var record = Ext.ModelManager.create(object,'Eway.model.monitor.device.DataView');
+			// Ext5.1没有Ext.ModelManager.create()API了，用下面方法实现
+//			var record = Ext.ModelManager.create(object,'Eway.model.monitor.device.DataView');
+			var record = Ext.data.Record.create(object);
 			store.add(record);
 		}
 		else if(action == 'UPDATE'){

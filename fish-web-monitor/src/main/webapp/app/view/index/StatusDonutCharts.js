@@ -48,7 +48,7 @@ Ext.define('Eway.view.index.StatusDonutCharts', {
         me.items = [{
             xtype: 'polar',
             width: '100%',
-            height: 300,
+            height: 260,
             plugins: {
                 ptype: 'chartitemevents',
                 moveEvents: true,

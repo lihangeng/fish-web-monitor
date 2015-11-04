@@ -13,8 +13,6 @@ import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
-import com.yihuacomputer.fish.api.device.AwayFlag;
-import com.yihuacomputer.fish.api.device.CashType;
 import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IComplexDeviceService;
 import com.yihuacomputer.fish.api.device.IDevice;
@@ -27,9 +25,7 @@ import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
 import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.IVersionType;
-import com.yihuacomputer.fish.api.version.IVersionTypeRestriction;
 import com.yihuacomputer.fish.api.version.LinkedDeviceForm;
-import com.yihuacomputer.fish.api.version.RestrictionColumn;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.machine.entity.Device;
@@ -286,26 +282,12 @@ public class VersionDownloadService implements IVersionDownloadService {
 	}
 
 	public long getMayBeDownDevice(IVersion version,IOrganization org){
-//	    IFilter filter =  new Filter();
         StringBuffer hql = new StringBuffer();
         hql.append("select count(*) from Device device where device.organization.orgFlag like ? and device.status = ?");
         IVersionType vType = version.getVersionType();
-        List<IVersionTypeRestriction> vTypeRestrictions = vType.listVersionTypeRestrictions();
         List<Object> filters = new ArrayList<Object>();
         filters.add("%"+org.getOrgFlag());
         filters.add(DevStatus.OPEN);
-        for(IVersionTypeRestriction vTypeRestriction : vTypeRestrictions){
-            if(vTypeRestriction.getRestrictionColumn().equals(RestrictionColumn.CASH_TYPE)){
-//                filter.addFilterEntry(FilterFactory.eq("device.cashType",CashType.valueOf(vTypeRestriction.getRestrictionValue())));
-                   hql.append(" and device.cashType = ?");
-                   filters.add(CashType.valueOf(vTypeRestriction.getRestrictionValue()));
-            }else if(vTypeRestriction.getRestrictionColumn().equals(RestrictionColumn.AWAY_FLAG)){
-//                filter.addFilterEntry(FilterFactory.eq("device.awayFlag",AwayFlag.valueOf(vTypeRestriction.getRestrictionValue())));
-                hql.append(" and device.awayFlag = ?");
-                filters.add(AwayFlag.valueOf(vTypeRestriction.getRestrictionValue()));
-            }
-        }
-
         Object object =  dao.findUniqueByHql(hql.toString(),filters.toArray());
         return Long.parseLong(object.toString());
 	}

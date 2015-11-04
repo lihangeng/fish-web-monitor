@@ -543,109 +543,109 @@ public class OpenPlanController {
 
 	}
 
-//	public  List<IDevice> importDevice(InputStream in, String path, String orgId, StringBuffer message) throws IOException
-//	{
-//		POIFSFileSystem fs = new POIFSFileSystem(in);
-//		HSSFWorkbook wb = new HSSFWorkbook(fs);
-//		HSSFWorkbook outWb =new HSSFWorkbook(fs);
-//		int sheetNum = wb.getNumberOfSheets();
-//		if(sheetNum < 1)
-//		{
-//			message.append("0");
-//			return null;
-//		}
-//		HSSFSheet sheet = wb.getSheetAt(0);
-//		int number = sheet.getLastRowNum();
-//		if(number < 1 )
-//		{
-//			message.append("-1");
-//			return null;
-//		}
-//		if(number > 2000)
-//		{
-//			message.append("-2");
-//			return null;
-//		}
-//		String msg = String.valueOf(number);
-//		message.append(msg);
-//		List<IDevice> linkDevice = importSheet(sheet,outWb,orgId);
-//		in.close();
-//		outExcel(path, outWb);
-//		return linkDevice;
-//	}
+/*	public  List<IDevice> importDevice(InputStream in, String path, String orgId, StringBuffer message) throws IOException
+	{
+		POIFSFileSystem fs = new POIFSFileSystem(in);
+		HSSFWorkbook wb = new HSSFWorkbook(fs);
+		HSSFWorkbook outWb =new HSSFWorkbook(fs);
+		int sheetNum = wb.getNumberOfSheets();
+		if(sheetNum < 1)
+		{
+			message.append("0");
+			return null;
+		}
+		HSSFSheet sheet = wb.getSheetAt(0);
+		int number = sheet.getLastRowNum();
+		if(number < 1 )
+		{
+			message.append("-1");
+			return null;
+		}
+		if(number > 2000)
+		{
+			message.append("-2");
+			return null;
+		}
+		String msg = String.valueOf(number);
+		message.append(msg);
+		List<IDevice> linkDevice = importSheet(sheet,outWb,orgId);
+		in.close();
+		outExcel(path, outWb);
+		return linkDevice;
+	}
+*/
+/*	private List<IDevice> importSheet(HSSFSheet st,HSSFWorkbook outWb,String orgId)
+	{
+		if( st == null)
+		{
+			return null;
+		}
+		String tip = null;
+		boolean isWrite = false;
+	    Map<String,String> devPlanRelation = new HashMap<String,String>();
+	    List<IDevicePlanRelation> devicePlanRelations = relationService.devicePlanRelations();
+	    List<IDevice> linkDevice = new ArrayList<IDevice>();
+	    for(IDevicePlanRelation  dpr : devicePlanRelations)
+	    {
+	    	devPlanRelation.put(String.valueOf(dpr.getDeviceId()), String.valueOf(dpr.getOpenPlanId()));
+	    }
+		for(int rowIndex = 1; rowIndex<=st.getLastRowNum(); rowIndex++)
+		{
+		    if(isWrite == true)
+		    {
+		    	updateExcel(outWb, rowIndex - 1, tip, 0, 1);
+		    }
+		    HSSFRow row = st.getRow(rowIndex);
+		    if(null == row)
+		    {
+		    	tip = "设备编号不能为空";
+		    	isWrite = true;
+		    	continue;
+		    }
+		    HSSFCell cell = row.getCell(0);
+		    if(null == cell)
+		    {
+		    	tip = "设备编号不能为空";
+		    	isWrite = true;
+		        continue;
+		    }
+		    String deviceCode = getValue(row.getCell(0));
+		    if(StringUtils.isBlank(deviceCode))
+		    {
+		    	tip ="设备编号不能为空";
+		    	isWrite = true;
+		    	continue;
+		    }
+		    List<IDevice> listDevice = relationService.getDevicebyCode(deviceCode, orgId);
+            if(listDevice.size() > 0)
+            {
+            	String devId = String.valueOf(listDevice.get(0).getId());
+            	if(devPlanRelation.get(devId) != null)
+            	{
+            		tip ="该设备不存在或不满足要求";
+            		isWrite = true;
+    		    	continue;
+            	}
+            	 else
+                 {
+                 	linkDevice.add(listDevice.get(0));
+                 	tip ="导入成功";
+                 	isWrite = true;
+                 }
+            }else
+            {
+            	tip ="该设备不存在或不满足要求";
+        		isWrite = true;
+		    	continue;
+            }
 
-//	private List<IDevice> importSheet(HSSFSheet st,HSSFWorkbook outWb,String orgId)
-//	{
-//		if( st == null)
-//		{
-//			return null;
-//		}
-//		String tip = null;
-//		boolean isWrite = false;
-//	    Map<String,String> devPlanRelation = new HashMap<String,String>();
-//	    List<IDevicePlanRelation> devicePlanRelations = relationService.devicePlanRelations();
-//	    List<IDevice> linkDevice = new ArrayList<IDevice>();
-//	    for(IDevicePlanRelation  dpr : devicePlanRelations)
-//	    {
-//	    	devPlanRelation.put(String.valueOf(dpr.getDeviceId()), String.valueOf(dpr.getOpenPlanId()));
-//	    }
-//		for(int rowIndex = 1; rowIndex<=st.getLastRowNum(); rowIndex++)
-//		{
-//		    if(isWrite == true)
-//		    {
-//		    	updateExcel(outWb, rowIndex - 1, tip, 0, 1);
-//		    }
-//		    HSSFRow row = st.getRow(rowIndex);
-//		    if(null == row)
-//		    {
-//		    	tip = "设备编号不能为空";
-//		    	isWrite = true;
-//		    	continue;
-//		    }
-//		    HSSFCell cell = row.getCell(0);
-//		    if(null == cell)
-//		    {
-//		    	tip = "设备编号不能为空";
-//		    	isWrite = true;
-//		        continue;
-//		    }
-//		    String deviceCode = getValue(row.getCell(0));
-//		    if(StringUtils.isBlank(deviceCode))
-//		    {
-//		    	tip ="设备编号不能为空";
-//		    	isWrite = true;
-//		    	continue;
-//		    }
-//		    List<IDevice> listDevice = relationService.getDevicebyCode(deviceCode, orgId);
-//            if(listDevice.size() > 0)
-//            {
-//            	String devId = String.valueOf(listDevice.get(0).getId());
-//            	if(devPlanRelation.get(devId) != null)
-//            	{
-//            		tip ="该设备不存在或不满足要求";
-//            		isWrite = true;
-//    		    	continue;
-//            	}
-//            	 else
-//                 {
-//                 	linkDevice.add(listDevice.get(0));
-//                 	tip ="导入成功";
-//                 	isWrite = true;
-//                 }
-//            }else
-//            {
-//            	tip ="该设备不存在或不满足要求";
-//        		isWrite = true;
-//		    	continue;
-//            }
-//
-//
-//          }
-//		   updateExcel(outWb, st.getLastRowNum(), tip, 0, 1);
-//		   return linkDevice;
-//
-//	}
 
+          }
+		   updateExcel(outWb, st.getLastRowNum(), tip, 0, 1);
+		   return linkDevice;
+
+	}
+*/
 	private String getValue(HSSFCell cell) {
 		if (cell != null) {
 			cell.setCellType(Cell.CELL_TYPE_STRING);

@@ -86,6 +86,12 @@ public class StatusMonitorCometd {
             Object terminalId = map.get("deviceCode");
             monitorUser.getStatusFilter().setTerminalId(terminalId != null ? String.valueOf(terminalId) : null);
 
+            // 每页显示条数,用来控制当设备符合监控条件时,是否需要在页面上进行显示
+            Object limit = map.get("limit");
+            if (limit != null) {
+                monitorUser.getStatusFilter().setLimit(Integer.valueOf(String.valueOf(limit)));
+            }
+           
             // 设备列表
             String devList = String.valueOf(map.get("devices"));
 
