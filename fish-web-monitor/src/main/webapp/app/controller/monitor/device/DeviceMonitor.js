@@ -40,34 +40,10 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 
 	init : function(){
 		this.control({
-			'monitor_device_view button[action=monitorOK]' : {//开始/暂停监控
-				mouseover : this._onMouseOver,
-				mouseout : this._onMouseOut,
-				click : this._onChangeMonitorState,
-				scope : this
-			},
-			'monitor_device_view button[action=region]' : {
-				mouseover : this._onMouseOver,
-				mouseout : this._onMouseOut,
-				click : this._onReginBtnClick,
-				scope : this
-			},
 			'monitor_device_view button[action=query]' : {//查询按钮
 				mouseover : this._onMouseOver,
 				mouseout : this._onMouseOut,
 				click : this._onQueryBtnClick,
-				scope : this
-			},
-			'monitor_device_view button[action="previous"]' : {//上一页
-				mouseover : this._onMouseOver,
-				mouseout : this._onMouseOut,
-				click : this._onPreviousBtnClick,
-				scope : this
-			},
-			'monitor_device_view button[action="next"]' : {//下一页
-				mouseover : this._onMouseOver,
-				mouseout : this._onMouseOut,
-				click : this._onNextBtnClick,
 				scope : this
 			},
 			'monitor_device_view button[action=monitorState]' : {//设置监控状态
@@ -76,26 +52,16 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				click : this._onMonitorStateBtnClick,
 				scope : this
 			},
-			'monitor_device_view button[action=filter]' : {//设置过滤条件
-				mouseover : this._onMouseOver,
-				mouseout : this._onMouseOut,
-				click : this._onFilterBtnClick
-			},
-			'monitor_device_view button[action=exportToExcel]' : {//导出为excel
-				mouseover : this._onMouseOver,
-				mouseout : this._onMouseOut,
-				click : this.test
-			},
-			'monitor_device_view menuitem[action=listPattern]' : {//打开"列表方式"
+			'monitor_device_view button[action=listPattern]' : {//打开"列表方式"
 				click : this._onListPatternBtnClick
 			},
-			'monitor_device_view menuitem[action=matrixPattern]' : {//打开"矩形方式"
+			'monitor_device_view button[action=matrixPattern]' : {//打开"矩形方式"
 				click : this._onMatrixPatternBtnClick
 			},
-			'monitor_device_view menuitem[action=maxIconPattern]' : {//打开"矩形方式"
+			'monitor_device_view button[action=maxIconPattern]' : {//打开"矩形方式"
 				click : this._onMaxIconPatternBtnClick
 			},
-			'monitor_device_view menuitem[action=boxPattern]' : {//打开"钱箱方式"
+			'monitor_device_view button[action=boxPattern]' : {//打开"钱箱方式"
 				click : this._onBoxPatternBtnClick
 			},
 			'monitor_device_view menuitem[action=summaryPattern]' : {//打开"全局方式"
@@ -127,24 +93,9 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				itemcontextmenu : this._onDataViewItemContextMenu,
 				scope : this
 			},
-			'monitor_device_baseWindow button[action=save]' : {
-				click : this._onBaseWindowOK,
-				mouseover : this._onMouseOver,
-				mouseout : this._onMouseOut
-			},
-			'monitor_device_view textfield[action="number"]' : {//监控台数enter事件
-				scope : this,
-				specialkey : this._addEnter
-			},
 			'monitor_device_view textfield[action="deviceNumber"]' : {//设备号enter事件
 				scope : this,
 				specialkey : this._addEnter
-			},
-			'monitor_device_view button[action="sort"]' : {
-				scope : this,
-				mouseover : this._onMouseOver,
-				mouseout : this._onMouseOut,
-				click : this._onSort
 			},
 			
 			// 选择订阅条件
@@ -215,7 +166,8 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 	},
 	
 	_onFilterNameChange : function( field, newValue, oldValue, eOpts ) {
-			
+		
+		this._onQueryBtnClick();
 	},
 	
 	// 订阅条件查询
@@ -649,43 +601,12 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		menu.showAt(e.getXY());
 	},
 
-	test : function() {
-		var controller = this.getController('agent.remote.RemoteBrowse') ;
-		controller.init();
-		controller.display();
-	},
-
 	_addEnter : function(field, e){
 		 if (e.getKey() == e.ENTER) {
-		 	var view = Ext.ComponentQuery.query('monitor_device_view')[0];
+		 	var view = this.getEwayView();
 		 	var btn = view.down('button[action="query"]');
-//		 	var btn = field.nextSibling('button[action="query"]');
             this._onQueryBtnClick(btn);
         }
-	},
-
-	_onChangeMonitorState : function(btn){
-		var view = this.getEwayView();
-		// 获得当前监视状态
-		monitor = view.config.monitor;
-		btn.setDisabled(true);
-		var text = "";
-		if (monitor) {
-			text = Eway.locale.monitor.business.transaction.transactionMonitor.begin;
-			btn.glyph = 0xf04b;
-			view.config.monitor = false;
-			this.getEwayView().closeMatrixMonitor();
-		} else {
-			text = Eway.locale.monitor.business.transaction.transactionMonitor.stop;
-			btn.glyph = 0xf04c;
-			view.config.monitor = true;
-			var ewayView = this.getEwayView();
-			ewayView.activatePanel();
-		}
-		Ext.defer(function(){
-				btn.setDisabled(false);
-				btn.setText(text);
-			},2000);
 	},
 
 	_closeMonitorDeviceWin : function(panel){
@@ -701,27 +622,6 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		button.setText(Ext.util.Format.stripTags(button.getText()));
 	},
 
-	//左侧树节点单击事件
-	_onReginBtnClick : function(button){
-		var win = Ext.WindowManager.get('monitor_device_baseWindow');
-		if(!win){
-			win = Ext.widget('monitor_device_baseWindow');
-		}
-
-		var treepanel = win.down('treepanel[action="monitor_decice_reginConfig"]');
-		if(!treepanel){
-			var store = Ext.create('Eway.store.OrganizationTree',{});
-			treepanel = Ext.create('Ext.tree.Panel',{
-				frame : true,
-				border : 0,
-				store : store,
-				action : 'monitor_decice_reginConfig'
-			});
-		}
-		win.setTitle(Eway.locale.tip.business.device.chooseOrg);
-		win.display(treepanel,button);
-	},
-
 	//执行‘查询’
 	_onQueryBtnClick : function(btn) {
 		
@@ -735,13 +635,12 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 //		}
 //		
 		// 监控条件
-		var filterNameField = btn.nextNode('combobox[action="filterName"]');
+		var view = this.getEwayView();
+		var filterNameField = view.down('combobox[action="filterName"]');
 		var filterId = filterNameField.getValue();
 		
-		if(filterId) {
-			var record = filterNameField.getStore().findRecord('id', filterId);
-			this._onFilterMessage(record);
-		}
+		var record = filterNameField.getStore().findRecord('id', filterId);
+		this._onFilterMessage(record);
 
 		this._reload(params);
 	},
@@ -749,6 +648,11 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 	_onFilterMessage : function(record) {
 		var tLabel = this.getEwayView().down('label');
 		var msg = '';
+		
+		if (!record) {
+			tLabel.setText(Eway.locale.commen.all);
+			return;
+		}
 		
 		// 所属机构
 		if (record.get('orgId') && record.get('orgId') != 0) {
@@ -934,62 +838,10 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			msg +=']';
 		} 
 		
+		if (msg.length == 0) {
+			msg = Eway.locale.commen.all;
+		}
 		tLabel.setText(msg);
-	},
-
-	_onPreviousBtnClick : function(btn){
-		var ewayView = this.getEwayView();
-		var nextBtn = ewayView.down('button[action="next"]');
-		var perBtn = ewayView.down('button[action="previous"]');
-		nextBtn.enable();
-
-		var numberField = ewayView.down('textfield[action="number"]');
-		var number = numberField.getValue();
-		var total = ewayView.getTotal();
-		var currentPage = ewayView.getCurrentPage();
-
-		currentPage--;
-		if(currentPage*number >= total ){
-			currentPage = 1;
-		}
-		if(currentPage == 1){
-			perBtn.disable();
-		}
-		ewayView.setCurrentPage(currentPage);
-		this._onChangePage(number,currentPage);
-	},
-
-	_onNextBtnClick : function(btn){
-		var ewayView = this.getEwayView();
-		var nextBtn = ewayView.down('button[action="next"]');
-		var perBtn = ewayView.down('button[action="previous"]');
-		perBtn.enable();
-		var numberField = ewayView.down('textfield[action="number"]');
-		var number = numberField.getValue();
-		var total = ewayView.getTotal();
-		var currentPage = ewayView.getCurrentPage();
-
-		currentPage++;
-		if(currentPage*number >= total ){
-			currentPage = parseInt(total / number);
-			if (total % number >= 1) {
-				currentPage++;
-			}
-			nextBtn.disable();
-		}
-		ewayView.setCurrentPage(currentPage);
-		this._onChangePage(number,currentPage);
-	},
-
-	_onChangePage : function(number,currentPage){
-		var start = number*(currentPage-1);
-		var limit = number;
-		this._reload({
-			number: number,
-			startP : start,
-			limitP : number,
-			page : currentPage
-		});
 	},
 
 	//打开'设置监控状态'页面
@@ -1005,98 +857,8 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		store.loadPage(1);
 		
 		filterWin.show();
-		
-//		var win = Ext.WindowManager.get('monitor_device_baseWindow');
-//		if(!win){
-//			win = Ext.widget('monitor_device_baseWindow');
-//		}
-//		win.setWidth(600);
-//		win.setHeight(600);
-//		var panel = win.down('panel[action="monitor_device_stateConfig"]');
-//		if(!panel){
-//			panel = Ext.widget('monitor_device_stateConfig');
-//			Ext.Ajax.request({
-//				method : 'GET',
-//				url : 'api/monitor/device/getFilter',
-//				params : {
-//					userId : ewayUser.getId()
-//				},
-//				success : function(response){
-//					var object = Ext.decode(response.responseText);
-//					panel.getForm().setValues(object.filter);
-//					panel.setMemoryRecord(object.filter);
-//				},
-//				failure : function(){
-//				}
-//			});
-//		}
-//		win.setTitle(Eway.locale.tip.business.device.stateSet);
-//		win.display(panel,button);
 	},
-
-	//打开'设置过滤条件'页面
-	_onFilterBtnClick : function(button){
-		var win = Ext.WindowManager.get('monitor_device_baseWindow');
-		if(!win){
-			win = Ext.widget('monitor_device_baseWindow');
-		}
-		var panel = win.down('panel[action="monitor_device_filterConfig"]');
-		if(!panel){
-			panel = Ext.widget('monitor_device_filterConfig');
-			Ext.Ajax.request({
-				method : 'GET',
-				url : 'api/monitor/device/getMonitorFilter',
-				params : {
-					userId : ewayUser.getId()
-				},
-				success : function(response){
-					var object = Ext.decode(response.responseText);
-					var form = panel.getForm();
-					var brand = form.findField("brandItem");
-					brand.setValue(object.filter.brandItem);
-					var classify = form.findField("classifyItem");
-					classify.setValue(object.filter.classifyItem);
-					var awayFlag = form.findField("ingItem");
-					awayFlag.setValue(object.filter.ingItem);
-					var sellItem = form.findField("sellItem");
-					sellItem.setValue(object.filter.sellItem);
-					var atmGroup = form.findField("atmGroup");
-					atmGroup.setValue(object.filter.atmGroup);
-				}
-			});
-		}
-		win.setTitle(Eway.locale.tip.business.device.filterSet);
-		win.height = 240;
-		win.width =400;
-		win.display(panel,button);
-
-	},
-
-	_onBaseWindowOK : function(btn){
-		var win = btn.up('window');
-		var panel = win.getLayout().getActiveItem();
-		var view = this.getEwayView();
-//		var numberField = view.down('textfield[action="number"]');
-//		var orgIdField = view.down('hiddenfield[name="orgId"]');
-		var deviceCodeField = view.down('textfield[action="deviceNumber"]');
-		var params = {
-//			number : numberField.getValue(),
-//			orgId : orgIdField.getValue(),
-			deviceCode : deviceCodeField.getValue()
-		};
-
-		if(panel.action == 'monitor_device_stateConfig'){
-			this._onMonitorStateWinOK(panel, params);
-		}
-		else if(panel.action == 'monitor_decice_orderConfig'){
-
-		}
-		else if(panel.action == 'monitor_device_filterConfig'){
-			this._onFilterWinOK(panel, params);
-		}
-		win.hide();
-	},
-
+ 
 	_onMonitorStateWinOK : function(panel,params){
 		var form = panel.getForm();
 		var values = form.getValues();
@@ -1113,11 +875,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 
 	_reload : function(params){
 		var view = this.getEwayView();
-		var button = view.down('button[action="monitorOK"]');
-		if(button.getText() == Eway.locale.commen.begin){
-			Eway.alert(Eway.locale.tip.business.device.connFirst);
-			return;
-		}
+
 		var card = view.down('#card_itemId');
 		var layout = card.getLayout();
 		var currentPanel = layout.getActiveItem();

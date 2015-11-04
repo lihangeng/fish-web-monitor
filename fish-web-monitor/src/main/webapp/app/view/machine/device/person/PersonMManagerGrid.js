@@ -17,14 +17,16 @@ Ext.define('Eway.view.machine.device.person.PersonMManagerGrid', {
 				text: Eway.locale.button.refresh,
 				iconCls: 'refreshBtn',
 				action: 'queryRe'
-				}, {
+				}/*, {
 				text: Eway.locale.button.add,
-				iconCls :'sureBtn',
+				//iconCls :'sureBtn',
+				glyph : 0xf067,
 				action: 'add'
 				}, {
 				text: Eway.locale.button.remove,
-				iconCls :'deleteBtn',
-				action: 'remove'}],
+				//iconCls :'removeBtn',
+				glyph : 0xf014,
+				action: 'remove'}*/],
 			columns : [{
 				header : Eway.locale.commen.jobNum,
 				dataIndex : 'jobNum'

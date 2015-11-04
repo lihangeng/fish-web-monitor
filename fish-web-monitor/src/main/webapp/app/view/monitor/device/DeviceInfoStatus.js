@@ -39,7 +39,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .5,
 						fieldLabel : Eway.locale.commen.terminalId,
 						name : 'code',
-						link : true
+						a_link : true
 					}, {
 						columnWidth : .49,
 						fieldLabel : Eway.locale.commen.orgNameBelongs,
@@ -56,7 +56,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .49,
 						fieldLabel : Eway.locale.commen.personnel,
 						name : 'personnel',
-						link : true
+						a_link : true
 					} ]
 				}, {
 					layout : 'column',
@@ -99,7 +99,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .5,
 						fieldLabel : Eway.locale.monitor.devMonitor.comboxStatus.runStatus,
 						name : 'runStatus',
-						link : true
+						a_link : true
 					}, {
 						columnWidth : .49,
 						fieldLabel : Eway.locale.monitor.devMonitor.cash.boxInitCount,
@@ -120,13 +120,13 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 							columnWidth : .5,
 							fieldLabel : Eway.locale.monitor.devMonitor.comboxStatus.modStatus,
 							name : 'modStatus',
-							link : true
+							a_link : true
 						}, {
 							hideLabel: true,
 							columnWidth : .49,
 							fieldLabel : Eway.locale.monitor.devMonitor.modStateGraphic,
 							name : 'modGraphic',
-							link : true,
+							a_link : true,
 							code : 'modStatusGraphic',
 							listeners:{
 								'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
@@ -145,7 +145,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .5,
 						fieldLabel : Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,
 						name : 'boxStatus',
-						link : true
+						a_link : true
 					}, {
 						columnWidth : .49,
 						fieldLabel : Eway.locale.monitor.devMonitor.retainCardCount,
@@ -158,7 +158,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .5,
 						fieldLabel : Eway.locale.monitor.devMonitor.comboxStatus.netStatus,
 						name : 'netStatus',
-						link : true
+						a_link : true
 					}, {
 						columnWidth : .49,
 						fieldLabel : Eway.locale.monitor.devMonitor.registerStatus,
@@ -179,17 +179,17 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .3,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.idc,
 						name : 'idcStatus',
-						link : true
+						a_link : true
 					},{
 						columnWidth : .3,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.jpr,
 						name : 'jprStatus',
-						link : true
+						a_link : true
 					},{
 						columnWidth : .3,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.cdm,
 						name : 'cdmStatus',
-						link : true
+						a_link : true
 					}]
 				},{
 					layout : 'column',
@@ -198,17 +198,17 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .3,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.cim,
 						name : 'cimStatus',
-						link : true
+						a_link : true
 					},{
 						columnWidth : .3,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.siu,
 						name : 'siuStatus',
-						link : true
+						a_link : true
 					},{
 						columnWidth : .3,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.rpr,
 						name : 'rprStatus',
-						link : true
+						a_link : true
 					}]
 				}, {
 					layout : 'column',
@@ -217,17 +217,17 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .3,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.pin,
 						name : 'pinStatus',
-						link : true
+						a_link : true
 					},{
 						columnWidth : .3,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.ttu,
 						name : 'ttuStatus',
-						link : true
+						a_link : true
 					}, {
 						columnWidth : .3,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.isc,
 						name : 'iscStatus',
-						link : true
+						a_link : true
 					} ]
 				}, {
 					layout : 'column',
@@ -236,12 +236,12 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .3,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.icc,
 						name : 'iccStatus',
-						link : true
+						a_link : true
 					}, {
 						columnWidth : .3,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.fgp,
 						name : 'fgpStatus',
-						link : true
+						a_link : true
 					} ]
 				} ]
 			}, {
@@ -370,7 +370,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 		fields.each(function(item){
 			var name = item.getName();
 			var value = record.get(name);
-			if(item.link){
+			if(item.a_link){
 				if(name=='idcStatus' || name=='jprStatus'
 					|| name=='cdmStatus' || name=='pinStatus'
 					|| name=='cimStatus' || name=='siuStatus'

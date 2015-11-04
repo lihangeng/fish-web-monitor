@@ -27,6 +27,7 @@ import com.yihuacomputer.fish.permission.service.db.PermissionEntityInjector;
 import com.yihuacomputer.fish.permission.service.db.PermissionService;
 import com.yihuacomputer.fish.permission.service.db.RoleService;
 import com.yihuacomputer.fish.person.interceptor.PersonCoreEntityInjector;
+import com.yihuacomputer.fish.person.service.db.SrcbDevicePersonRelation;
 import com.yihuacomputer.fish.person.service.db.OrganizationService;
 import com.yihuacomputer.fish.person.service.db.PersonJobService;
 import com.yihuacomputer.fish.person.service.db.PersonService;
@@ -133,6 +134,10 @@ public class SystemModule {
 	@Bean
 	public IUserGroupRelation userGroupRelation() {
 		return new UserGroupRelation();
+	}
+	@Bean
+	public SrcbDevicePersonRelation srcbDevicePersonRelation() {
+		return new SrcbDevicePersonRelation();
 	}
 
 }

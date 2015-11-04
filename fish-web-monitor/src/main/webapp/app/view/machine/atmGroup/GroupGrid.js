@@ -36,7 +36,16 @@ Ext.define('Eway.view.machine.atmGroup.GroupGrid', {
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
-			} ],
+			},{
+			    
+				action : 'showDetail',
+				code : 'showDetail',
+				glyph : 0xf129,
+				text: Eway.locale.monitor.devMonitor.atmGroupTip,
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
+		} ],
 			columns : [ {
 				header : Eway.locale.machine.atmGroup.groupName,
 				dataIndex : 'name'

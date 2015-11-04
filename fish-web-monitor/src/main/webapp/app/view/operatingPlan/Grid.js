@@ -13,10 +13,12 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 			tbar : [ '->', {
 				text: Eway.locale.button.apply,
 				iconCls : 'connectBtn',
+				glyph : 0xf0c1,
 				code : 'planLink',
 				action : 'link'
 			}, {
 				text: Eway.locale.button.info,
+				glyph : 0xf129,
 				iconCls : 'detailBtn',
 				action : 'queryDetail'
 			}, {
@@ -49,9 +51,9 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				stripeRows : true,
 				getRowClass: function(record, index) {
 					var planStateType = record.get('planStateType');
-					if(planStateType == '停用'||planStateType == '过期'){
+					if(planStateType == Eway.locale.commen.comboxStatus.close||planStateType == Eway.locale.commen.comboxStatus.pastDue){
 						return 'user-online';
-					}else if(planStateType == '即将过期'){
+					}else if(planStateType == Eway.locale.commen.comboxStatus.pastDueSoon){
 						return 'user-yellow';
 					}
 				}
@@ -72,19 +74,19 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 					}
 				}
 			}, {
-				header : Eway.locale.report.plan.machineQuantity,
+				header : Eway.locale.report.openplan.machineQuantity,
 				width : 130,
 				dataIndex : 'deviceCount',
 			}, {
-				header : Eway.locale.report.plan.state,
+				header : Eway.locale.report.openplan.state,
 				width : 130,
 				dataIndex : 'planStateType'
 			}, {
-				header : Eway.locale.report.plan.openDate,
+				header : Eway.locale.report.openplan.openDate,
 				width : 180,
 				dataIndex : 'startDate'
 			}, {
-				header : Eway.locale.report.plan.closeDate,
+				header : Eway.locale.report.openplan.closeDate,
 				width : 180,
 				dataIndex : 'endDate'
 			}, {
@@ -92,7 +94,7 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				dataIndex : 'desc',
 				flex : 1
 			}, {
-				header : Eway.locale.report.plan.createDateTime,
+				header : Eway.locale.report.openplan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 180,
 				fiex : 1

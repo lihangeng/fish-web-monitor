@@ -31,7 +31,7 @@ Ext.define('Eway.view.machine.device.Update', {
 				text: Eway.locale.button.confirm,
 				action: 'update'
 			}, {
-				text: Eway.locale.button.cancle,
+				text: Eway.locale.button.cancel,
 				handler: this.onOver
 			}]
 		});

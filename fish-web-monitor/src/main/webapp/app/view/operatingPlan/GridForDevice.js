@@ -12,11 +12,11 @@ Ext.define('Eway.view.operatingPlan.GridForDevice', {
 			store : store,
 			initRegion : true,
 			tbar : [ '->', {
-				text : '查询',
+				text : Eway.locale.button.search,
 				iconCls : 'queryBtn',
 				action : 'query'
 			}, {
-				text : '关联',
+				text : Eway.locale.button.link,
 				iconCls : 'connectBtn',
 				action : 'link'
 			} ],
@@ -33,42 +33,42 @@ Ext.define('Eway.view.operatingPlan.GridForDevice', {
 				}
 			},
 			columns : [ {
-				header : '名称',
+				header : Eway.locale.report.openplan.name,
 				width : 100,
 				dataIndex : 'name'
 			}, {
-				header : '类型',
+				header : Eway.locale.report.openplan.state,
 				width : 100,
 				dataIndex : 'planType',
 				renderer : function(value, metadata, record) {
 					if (value == "DATE") {
-						return "日期";
+						return Eway.locale.report.openplan.date;
 					} else if (value == "WEEK") {
-						return "星期";
+						return Eway.locale.report.openplan.week;
 					}
 				}
 			}, {
-				header : '设备数量',
+				header : Eway.locale.report.openplan.machineQuantity,
 				width : 130,
 				dataIndex : 'deviceCount',
 			}, {
-				header : '状态',
+				header : Eway.locale.report.openplan.state,
 				width : 130,
 				dataIndex : 'planStateType',
 			}, {
-				header : '有效开始时间',
+				header : Eway.locale.report.openplan.openDate,
 				width : 120,
 				dataIndex : 'startDate'
 			}, {
-				header : '有效结束时间',
+				header : Eway.locale.report.openplan.closeDate,
 				width : 120,
 				dataIndex : 'endDate'
 			}, {
-				header : '备注',
+				header : Eway.locale.version.View.remark,
 				dataIndex : 'desc',
 				flex : 1
 			}, {
-				header : '创建时间',
+				header : Eway.locale.report.openplan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 160,
 				fiex : 1

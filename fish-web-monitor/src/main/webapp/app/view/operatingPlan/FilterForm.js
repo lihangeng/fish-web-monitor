@@ -14,7 +14,7 @@ Ext.define('Eway.view.operatingPlan.FilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype : 'textfield',
-					fieldLabel : '名称',
+					fieldLabel : Eway.locale.report.openplan.name,
 					name : 'name'
 				}]
 			},{
@@ -22,7 +22,7 @@ Ext.define('Eway.view.operatingPlan.FilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype : 'datefield',
-					fieldLabel : '有效开始时间',
+					fieldLabel : Eway.locale.report.openplan.openDate,
 					editable : true,
 					name : 'startDate',
 					format : 'Y-m-d'
@@ -33,7 +33,7 @@ Ext.define('Eway.view.operatingPlan.FilterForm',{
 				items : [{
 					xtype : 'datefield',
 					editable : true,
-					fieldLabel : '有效结束时间',
+					fieldLabel : Eway.locale.report.openplan.closeDate,
 					name : 'endDate',
 					format : 'Y-m-d'
 				}]
