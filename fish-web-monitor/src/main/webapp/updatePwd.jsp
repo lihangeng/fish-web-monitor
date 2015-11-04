@@ -191,7 +191,6 @@ input:focus {
 	function RequestUpdateCallBack(){
 	//一旦readyState值改变，将会调用该函数
     if(xmlHttpReq.readyState == 4){
-    	debugger;
         if(xmlHttpReq.status == 200){
             var myObject = eval('(' + xmlHttpReq.responseText + ')');
             if(myObject.success){

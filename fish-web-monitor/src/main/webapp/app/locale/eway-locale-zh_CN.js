@@ -1936,7 +1936,7 @@ Ext.override(Eway,{
 				placeSelect:'---请选择---',//Eway.locale.report.openplan.placeSelect
 				planDevice:'方案<-->设备',//Eway.locale.report.openplan.planDevice
 				timeEare:'输入时间段有误，请重新输入！',//Eway.locale.report.openplan.timeEare
-				planOlonOne'同方案只能设置开机或关机的一种',//Eway.locale.report.openplan.planOlonOne
+				planOlonOne:'同方案只能设置开机或关机的一种',//Eway.locale.report.openplan.planOlonOne
 				addSuccess:'添加成功',//Eway.locale.report.openplan.addSuccess
 				setTime:'请设置详细时间',//Eway.locale.report.openplan.setTime
 				thisPlanStop:'(此方案已停用，不可应用！)',//Eway.locale.report.openplan.thisPlanStop
