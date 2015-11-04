@@ -7,44 +7,34 @@ Ext.define('Eway.view.machine.atmGroup.View', {
 			'Eway.view.machine.atmGroup.DeviceGrid' ],
 
 	title : Eway.locale.machine.atmGroup.devGroupName,
-	layout : 'border',
-
+	layout : {
+		type:'table',
+		columns:1
+	},
+	scrollable:'y',
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-				region : 'west',
-				layout : 'border',
-				width : '25%',
-				minWidth : 400,
-				padding : '0 2 0 0',
-				items : [ {
-					region : 'north',
+				
 					xtype : 'form',
-					height : 40,
 					items : [ {
 						labelAlign : 'right',
 						labelWidth : 50,
-						padding : '10px 0 0 20px',
 						xtype : 'textfield',
 						name : 'name',
 						maxLength : 30,
 						fieldLabel : Eway.locale.machine.atmGroup.groupName,
 						msgTarget : 'side'
 					} ]
-				}, {
-					region : 'center',
-					xtype : 'atmGroup_groupGrid'
-				} ]
-			}, {
-				region : 'center',
-				layout : 'border',
-				items : [ {
-					region : 'north',
-					xtype : 'atmGroup_deviceFilter'
-				}, {
-					region : 'center',
-					xtype : 'atmGroup_deviceGrid'
-				} ]
+					}, {
+						width:'100%',
+						height : 240,
+						xtype : 'atmGroup_groupGrid'
+					}, {
+						xtype : 'atmGroup_deviceFilter'
+					}, {
+						height : 640,
+						xtype : 'atmGroup_deviceGrid'
 			} ],
 			listeners : {
 				activate : function(panel){

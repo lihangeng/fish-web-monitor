@@ -7,7 +7,7 @@ Ext.define('Eway.view.monitor.charts.View', {
         type: 'table',
         columns: 3
     },
-    
+    closable:true,
     scrollable : 'y',
     bodyStyle : 'padding: 10px 10px 0px 10px',
  

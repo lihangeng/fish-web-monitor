@@ -141,16 +141,16 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 						viewWin.close();
 						this.onOpenPlan(this.getDrivceGridWin(),cRecord.data.id,cRecord.data.terminalId,1)
 					}else{
-						Ext.Msg.alert(Eway.locale.confirm.title, "关联失败！");
+						Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.relatedFail);
 					}
 				},
 				failure: function(response){
-					Ext.Msg.alert(Eway.locale.confirm.title, "关联失败！");
+					Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.relatedFail);
 				},
 				scope:this
 			});
 		}else{
-			Ext.Msg.alert(Eway.locale.confirm.title, "请选择您要关联的记录.");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.selectRelatedDev);
 		}
 	},
 
@@ -172,16 +172,16 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				if(object.success == true){
 					this.onOpenPlan(this.getDrivceGridWin(),record.data.deviceId,record.data.terminalId,2);
 				}else{
-					Ext.Msg.alert(Eway.locale.confirm.title, "解除失败！");
+					Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.removeFail);
 				}
 			},
 			failure: function(response){
-				Ext.Msg.alert(Eway.locale.confirm.title, "解除失败！");
+				Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.removeFail);
 			},
 			scope:this
 		});
 	}else{
-		Ext.Msg.alert(Eway.locale.confirm.title, "请选择您要解除的记录！");
+		Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.selectRemoveDev);
 	}
 	},
 
@@ -194,7 +194,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			//store.loadPage(1);
 			viewWin.show();
 		}else{
-			Ext.Msg.alert(Eway.locale.confirm.title, "设备已关联开机方案！");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.devRelatedPlan);
 		}
 	},
 
@@ -205,12 +205,12 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				deviceId:deviceId
 			},
 			callback: function(records, operation, success) {
-					detailWin.setTitle("设备"+terminalId+"开机方案");
+					detailWin.setTitle(Eway.locale.tip.business.device.term+terminalId+Eway.locale.report.plan.openPlan);
 					detailWin.show();
 					if(type==2){
-						Ext.Msg.alert(Eway.locale.confirm.title, "解除成功！");
+						Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.removeSuccess);
 					}else if(type == 1){
-						Ext.Msg.alert(Eway.locale.confirm.title, "关联成功！");
+						Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.saveSuccess);
 					}
 		    }
 		});
@@ -231,21 +231,21 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				callback: function(records, operation, success) {
 			        if(Ext.isEmpty(records)){
 			        	detailWin.close();
-						Ext.Msg.alert(Eway.locale.confirm.title, "该方案无详细设置！");
+						Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.planNoConf);
 			        }else{
 			        	if(record.data.planType=="DATE"){
 							detailWin.down('planInfo_grid').columns[0].hidden=true;
-							detailWin.setTitle("方案详情(日期)");
+							detailWin.setTitle(Eway.locale.tip.planDate);
 							detailWin.show();
 						}else{
-							detailWin.setTitle("方案详情(星期)");
+							detailWin.setTitle(Eway.locale.tip.planWeek);
 							detailWin.show();
 						}
 			        }
 			    }
 			});
 		}else {
-			Ext.Msg.alert(Eway.locale.confirm.title, "请选择您要查看的方案！");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.choosePlan);
 		}
 	},
 
@@ -285,7 +285,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			data.startTime = data.startTimeHour + ":" + data.startTimeMinute + ":" + data.startTimeSecond;
 			data.endTime = data.endTimeHour + ":" + data.endTimeMinute + ":" + data.endTimeSecond;
 			if(data.startTime>=data.endTime){
-				Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
+				Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.timeEare);
 				return;
 			}
 			var alertMsg = null;
@@ -294,7 +294,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			var flag = true;
 			infoWeekGrid.getStore().each(function(record){
 				if(data.openClose!=record.data.openClose){
-					Ext.Msg.alert(Eway.locale.confirm.title, "同个方案只能设置开机或关机的一种！");
+					Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.planOlonOne);
 					flag=false;
 					return;
 				}
@@ -325,7 +325,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			}
 			}
 			if(alertMsg!=null){
-			Ext.Msg.alert(Eway.locale.confirm.title,"星期"+alertMsg+"输入时间段有误，请重新输入！");
+			Ext.Msg.alert(Eway.locale.confirm.title,Eway.locale.report.openplan.week+alertMsg+Eway.locale.report.openplan.timeEare);
 			alertMsg = null;
 			}
 		});
@@ -339,33 +339,33 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			data.startTime = data.startTimeHour + ":" + data.startTimeMinute + ":" + data.startTimeSecond;
 			data.endTime = data.endTimeHour + ":" + data.endTimeMinute + ":" + data.endTimeSecond;
 			if(data.startTime>=data.endTime){
-				Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
+				Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.timeEare);
 				return;
 			}
 			var flag = true;
 			infoDateGrid.getStore().each(function(record){
 				if(data.openClose!=record.data.openClose){
-					Ext.Msg.alert(Eway.locale.confirm.title, "同方案只能设置开机或关机的一种！");
+					Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.planOlonOne);
 					flag=false;
 					return;
 				}
 				if(data.startTime>=data.endTime){
-					Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
+					Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.timeEare);
 					flag=false;
 					return;
 				}
 				if(record.data.startTime<=data.startTime&&data.startTime<=record.data.endTime){
-					Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
+					Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.timeEare);
 					flag=false;
 					return;
 				}
 				if(record.data.startTime<=data.endTime&&data.endTime<=record.data.endTime){
-					Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
+					Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.timeEare);
 					flag=false;
 					return;
 				}
 				if(data.startTime<=record.data.startTime&&data.endTime>=record.data.endTime){
-					Ext.Msg.alert(Eway.locale.confirm.title, "输入时间段有误，请重新输入！");
+					Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.timeEare);
 					flag=false;
 					return;
 				}
@@ -384,7 +384,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				infoWeekGrid.getStore().remove(record);
 			}
 			else {
-				Ext.Msg.alert(Eway.locale.confirm.title, "请选择您要删除的记录！");
+				Ext.Msg.alert(Eway.locale.confirm.title, Eway.choiceDeleteMsg);
 			}
 		});
 		detailDateForm.down('button[action="remove"]').on('click',function(){
@@ -394,7 +394,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				infoDateGrid.getStore().remove(record);
 			}
 			else {
-				Ext.Msg.alert(Eway.locale.confirm.title, "请选择您要删除的记录！");
+				Ext.Msg.alert(Eway.locale.confirm.title, Eway.choiceDeleteMsg);
 			}
 		});
 
@@ -447,7 +447,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				var store = view.down('operatingPlan_grid').getStore();
 				store.setUrlParamsByObject(values);
 				store.loadPage(1);
-				Ext.Msg.alert(Eway.locale.confirm.title, "添加成功！");
+				Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.addSuccess);
 			},
 //			failure: function(record,operation){
 //				Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors);
@@ -752,7 +752,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 
 		});
 		}else{
-			Ext.Msg.alert(Eway.locale.confirm.title, "请设置详细时间！");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.setTime);
     	}
 
 	},
@@ -773,13 +773,13 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			linkingPanel.down("field[name='planId']").setValue(record.data.id);
 			var linkedDeviceGrid = PlanDeviceWin.down('operatingPlan_linkedDeviceGrid');
 			var actionTip1 = linkedDeviceGrid.down("tbtext[action=tip]");
-			actionTip1.setText("已关联的设备");
+			actionTip1.setText(Eway.locale.commen.bindMachine);
 			var linkingDeviceGrid = PlanDeviceWin.down('operatingPlan_linkingDeviceGrid');
 			var actionTip2 = linkingDeviceGrid.down("tbtext[action=tip]");
-			actionTip2.setText("可关联的设备");
+			actionTip2.setText(Eway.locale.commen.canBindMachine);
 			if(record.data.planState=="Stoped"){
-				actionTip1.setText('已关联的设备'+'<font color="red">'+'(此方案已停用，不可应用！)'+'</font>');
-				actionTip2.setText('可关联的设备'+'<font color="red">'+'(此方案已停用，不可应用！)'+'</font>');
+				actionTip1.setText(Eway.locale.commen.bindMachine+'<font color="red">'+Eway.locale.report.openplan.thisPlanStop+'</font>');
+				actionTip2.setText(Eway.locale.commen.canBindMachine+'<font color="red">'+Eway.locale.report.openplan.thisPlanStop+'</font>');
 				linkedDeviceGrid.down('button[action="unlink"]').setDisabled(true);
 				linkingDeviceGrid.down('button[action="link"]').setDisabled(true);
 			}
@@ -806,7 +806,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			PlanDeviceWin.show();
 		}
 		else {
-			Ext.Msg.alert(Eway.locale.confirm.title, "请选择您应用的方案！");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.selectPlan);
 		}
 	},
 
@@ -850,19 +850,19 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				success: function(response){
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
-						Ext.Msg.alert(Eway.locale.confirm.title, "解除成功！",this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
+						Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.removeSuccess,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 					}else{
-						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errors+"条解除失败，请刷新后查看！",this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
+						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errors+Eway.locale.report.openplan.placeRefresh,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 					}
 				},
 				failure: function(response){
-					Ext.Msg.alert(Eway.locale.confirm.title, "解除失败！");
+					Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.removeSuccess);
 				},
 				scope:this
 			});
 
 		}else{
-			Ext.Msg.alert(Eway.locale.confirm.title, "请选择要解除的设备！");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.selectRemoveDev);
 		}
 	},
 	onlinkRefrece:function(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid){
@@ -888,7 +888,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		//	confirmButton.disabled  = true;
 			console.log(planWin);
 			var winEl = planWin.getEl();
-			winEl.mask('正在关联设备......');
+			winEl.mask(Eway.locale.report.openplan.linking);
 			Ext.Ajax.request({
 				scope : this,
 				method : 'POST',
@@ -925,7 +925,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				scope:this
 			});
 		}else{
-			Ext.Msg.alert(Eway.locale.confirm.title, "请选择要关联的设备！");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.selectRelatedDev);
 		}
 	},
 
@@ -940,14 +940,14 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
-			Ext.MessageBox.confirm("请确认",
-					"是否真的要删除指定方案？",
+			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
+					Eway.locale.tip.remove.confirm.info,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Ext.Msg.alert(Eway.locale.confirm.title, "删除成功！");
+									Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.remove.error);
 									var values = view.down('operatingPlan_filterForm').getForm().getValues();
 									var store = view.down('operatingPlan_grid').getStore();
 									store.setUrlParamsByObject(values);
@@ -963,7 +963,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					}, this);
 		}
 		else {
-			Ext.Msg.alert("提示", "请选择您要删除的记录！");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.remove.none);
 		}
 	},
 	queryLinkDevice:function(linkPanel,linkGrid){
@@ -979,12 +979,12 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		var form = importWin.down('form').getForm();
 		importWin.down("button[action=import]").on("click",Ext.bind(this.onImportMachineCodeConfirm,this,[form,grid,win]),this);
 
-	}
+	},
 	onImportMachineCodeConfirm:function(addForm,linkingDeviceGrid,linkingDeviceWin){
 	       if(addForm.isValid( ) )
 			 if( addForm.findField("file").getValue()!='')
 				{
-				   Ext.Msg.wait('正在判断设备号是否符合要求，请耐心等待...');
+				   Ext.Msg.wait(Eway.locale.report.openplan.testingPlaceWaiting);
 				};
 			addForm.submit({
 				 	url: 'api/plan/uploadExcel',
@@ -992,15 +992,15 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			        if(action.result.success == true){
 					if(action.result.message == -1)
 					  {
-						msg= "最少一次导入1条设备信息，请重新选择导入文件!";
+						msg= Eway.locale.report.openplan.leastOne;
 					  }
 					else if(action.result.message == -2)
 					  {
-						msg= "最多一次导入2000条设备信息，请重新选择导入文件!";
+						msg= Eway.locale.report.openplan.notMore;
 					  }
 					else if(action.result.message == 0)
 					  {
-						  msg= "请检查导入文件!";
+						  msg= Eway.locale.report.openplan.checkFile;
 					  }
 					else{
 						var records = action.result.data;
@@ -1031,7 +1031,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					selectedGrid.onReload();
 					// 这行特别消耗时间  TODO
 						msg="<a class='link' href='api/plan/downloadFile'>共"
-						+ action.result.message + "条数据,成功导入" +action.result.total + "条,点击查看导入详情!</a>"
+						+ action.result.message + Eway.locale.report.openplan.tipExportSuccess +action.result.total + Eway.locale.report.openplan.tipLookUp+"</a>"
 					}
 					 Ext.Msg.alert(Eway.locale.confirm.title, msg,function callback(){
 			    		  Ext.Ajax.request({
@@ -1043,7 +1043,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				  	}
 				    },
 				    failure: function(form, action) {
-				    	    Ext.Msg.alert(Eway.locale.confirm.title, '文件内容不符合要求');
+				    	    Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.fileNotAllowed);
 				    },
 				   scope: this
 			});
