@@ -189,17 +189,19 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 							record.erase({
 								success: function(){
 									Eway.alert(Eway.deleteSuccess);
-									if(grid.getStore().getCount()>0){
-										grid.getSelectionModel().select(0);
-										me.onDeviceQueryDevice();
-									}else{
-										var view2 = this.getEwayView();
-										var store2 = view2.down('atmGroup_deviceGrid').getStore();
-											store2.setUrlParam('groupId','0');
-											store2.loadPage(1);
-									}
 									store.setUrlParamsByObject(quarydata);
-									store.loadPage(1);
+									store.load( {scope: this,
+										callback: function(){
+											if(grid.getStore().getCount()>0){
+												grid.getSelectionModel().select(0);
+												me.onDeviceQueryDevice();
+											}else{
+												var view2 = this.getEwayView();
+												var store2 = view2.down('atmGroup_deviceGrid').getStore();
+													store2.setUrlParam('groupId','0');
+													store2.loadPage(1);
+											}
+									}});
 								},
 								failure: function(record,operation){
 									Eway.alert(operation.getError());
