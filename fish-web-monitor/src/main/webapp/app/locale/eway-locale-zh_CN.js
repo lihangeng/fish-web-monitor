@@ -1944,6 +1944,7 @@ Ext.override(Eway,{
 				timeEare:'输入时间段有误，请重新输入！',//Eway.locale.report.openplan.timeEare
 				planOlonOne:'同方案只能设置开机或关机的一种',//Eway.locale.report.openplan.planOlonOne
 				addSuccess:'添加成功',//Eway.locale.report.openplan.addSuccess
+				addFail:'添加失败',//Eway.locale.report.openplan.addFail
 				setTime:'请设置详细时间',//Eway.locale.report.openplan.setTime
 				thisPlanStop:'(此方案已停用，不可应用！)',//Eway.locale.report.openplan.thisPlanStop
 				placeRefresh:'条解除失败，请刷新后查看！',//Eway.locale.report.openplan.placeRefresh
@@ -1955,6 +1956,21 @@ Ext.override(Eway,{
 				fileNotAllowed:'文件不符合要求！',//Eway.locale.report.openplan.fileNotAllowed
 				tipExportSuccess:'条数据,成功导入',//Eway.locale.report.openplan.tipExportSuccess
 				tipLookUp:'条,点击查看导入详情!',//Eway.locale.report.openplan.tipLookUp
+
+				chooseOne:'请在组内至少选中一项',//Eway.locale.report.openplan.chooseOne
+				Mon:'一',//Eway.locale.report.openplan.Mon
+				Tues:'二',//Eway.locale.report.openplan.Tues
+				Wed:'三',//Eway.locale.report.openplan.Wed
+				Thur:'四',//Eway.locale.report.openplan.Thur
+				Fri:'五',//Eway.locale.report.openplan.Fri
+				Sat:'六',//Eway.locale.report.openplan.Sat
+				Sun:'日',//Eway.locale.report.openplan.Sun
+				weekPlanInfoID:'星期方案详细列表',//Eway.locale.report.openplan.weekPlanInfoID
+				datePlanInfoID:'日期方案详细列表',//Eway.locale.report.openplan.datePlanInfoID				
+				tochenkDervice:'请选择您要更改的设备',//Eway.locale.report.openplan.tochenkDervice
+				tochenckPeople:'请选择人员',//Eway.locale.report.openplan.tochenckPeople
+				tipAddError:'条添加失败,请刷新后查看',//Eway.locale.report.openplan.tipAddError
+
 			}
 		},
 

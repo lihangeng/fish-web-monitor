@@ -79,7 +79,6 @@
 			<groupId>org.eclipse.jetty.aggregate</groupId>
 			<artifactId>jetty-all</artifactId>
 			<version>${jetty.version}</version>
-			<scope>runtime</scope>
 			<exclusions>
 				<exclusion>
 					<artifactId>mail</artifactId>

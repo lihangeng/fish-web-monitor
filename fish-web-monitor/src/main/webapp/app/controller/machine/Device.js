@@ -131,7 +131,7 @@ Ext.define('Eway.controller.machine.Device', {
 			c.init();
 			c.onOpenPlan(detailWin,record.data.id,record.data.terminalId,0);
 		} else {
-			Ext.Msg.alert("提示", "请选择您要查看的记录！");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.search.record);
 		}
 	},
 	onPersonTM : function(){
@@ -157,7 +157,7 @@ Ext.define('Eway.controller.machine.Device', {
 			addManagerWin.show();
 		}
 		else {
-			Ext.Msg.alert("提示", "请选择您要更改的设备！");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.tochenkDervice);
 		}
 	},
 	onPersonM : function(){
@@ -180,7 +180,7 @@ Ext.define('Eway.controller.machine.Device', {
 			personGrid.down('button[action="queryRe"]').on('click',Ext.bind(this.onQuaryPerson,this,[personStore,terminalId,type]),this);			addManagerWin.show();
 		}
 		else {
-			Ext.Msg.alert("提示", "请选择您要更改的设备！");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.tochenkDervice);
 		}
 	},
 	onSetPerson: function (personStore,terminalId,type){
@@ -200,7 +200,7 @@ Ext.define('Eway.controller.machine.Device', {
 		selectManagerWin.on("destroy",Ext.bind(this.onQuaryPerson,this,[personStore,terminalId,type]));
 		selectManagerWin.show();
 		}else {
-			Ext.Msg.alert("提示", "请选择人员！");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.tochenckPeople);
 		}
 	},
 	
@@ -224,7 +224,7 @@ Ext.define('Eway.controller.machine.Device', {
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
 						//Ext.Msg.alert("提示", "添加成功.",this.onQueryPersonConfirm(selectGrid,selectForm,personType));
-						Ext.Msg.confirm('提示', '添加成功,是否继续添加？', function(result) {
+						Ext.Msg.confirm(Eway.locale.confirm.title, Eway.locale.report.openplan.addSuccess, function(result) {
 							if ("yes" == result) {
 								this.onQueryPersonConfirm(selectGrid,selectForm,personType);
 							}else{
@@ -232,16 +232,16 @@ Ext.define('Eway.controller.machine.Device', {
 							}
 						}, this);
 					}else{
-						Ext.Msg.alert("提示", Ext.decode(response.responseText).errors+"条添加失败,请刷新后查看.",this.onQueryPersonConfirm(selectGrid,selectForm,personType));
+						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errors+Eway.locale.report.openplan.tipAddError,this.onQueryPersonConfirm(selectGrid,selectForm,personType));
 					}
 				},
 				failure: function(response){
-					Ext.Msg.alert("提示", "添加失败.");
+					Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.addFail);
 				},
 				scope:this
 			});
 		}else{
-			Ext.Msg.alert("提示", "请选择人员.");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.tochenckPeople);
 		}
 	},
 	onQueryPersonConfirm:function(selectGrid,selectForm,type){
@@ -287,18 +287,18 @@ Ext.define('Eway.controller.machine.Device', {
 				success: function(response){
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
-						Ext.Msg.alert("提示", "解除成功.",this.onQuaryPerson(personStore,record1.data.terminalId,personType));
+						Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.removeSuccess,this.onQuaryPerson(personStore,record1.data.terminalId,personType));
 					}else{
-						Ext.Msg.alert("提示", Ext.decode(response.responseText).errors+"条解除失败,请刷新后查看.",this.onQuaryPerson(personStore,record1.data.terminalId,personType));
+						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errors+"条解除失败,请刷新后查看.",this.onQuaryPerson(personStore,record1.data.terminalId,personType));
 					}
 				},
 				failure: function(response){
-					Ext.Msg.alert("提示", "解除失败.");
+					Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.removeFail);
 				},
 				scope:this
 			});
 		}else{
-			Ext.Msg.alert("提示", "请选择人员.");
+			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.tochenckPeople);
 		}
 	},
 	onQuaryPerson: function(personStore,terminalId,type){

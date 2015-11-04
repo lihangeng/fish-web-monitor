@@ -167,6 +167,44 @@ Ext.override(Ext.form.field.Text, {
 	}
 });
 
+
+Ext.override(Ext.form.field.ComboBox, {
+    //支持所有的Text增加 clear功能
+    config : {
+    	hideTrigger: false,
+    	canClear: true,
+    	triggers :{
+    		clear:{
+    			cls:Ext.baseCSSPrefix + "form-clear-trigger",
+    			hidden:true,
+    			handler: 'onClearClick',
+                scope: 'this'
+    		}
+    	}
+    },
+	
+	listeners:{
+		change:function(text,newValue,oldValue){
+			var clearTip = text.getTrigger("clear");
+			if(undefined==clearTip){
+				return;
+			}
+			if(this.canClear && !this.readOnly){
+				if(newValue && newValue!== "" ){
+					text.getTrigger("clear").show();
+				}else{
+					text.getTrigger("clear").hide();
+				}
+			}
+		}
+	},
+	
+	//可重写此方式，实现具体的业务逻辑
+	onClearClick : function(){
+		this.setValue(null);
+	}
+});
+
 /**
  * 重写picker，增加clear
  */

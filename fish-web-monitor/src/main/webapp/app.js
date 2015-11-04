@@ -16,6 +16,7 @@ Ext.application({
 			try{
 				   	var sessionStatus = response.getResponseHeader("sessionStatus");
 				   	if(sessionStatus == "timeout"){
+				   			Ext.util.Cookies.set("lastEwayPage","");
 				  			Ext.Msg.show({
 								title:'提示',
 					            width: 350,
