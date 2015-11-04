@@ -1,9 +1,8 @@
 Ext.define('Eway.view.machine.device.Form',{
-
 	extend : 'Eway.view.base.Form',
 	alias : 'widget.machine_device_form',
 
-	requires : [ 'Eway.view.common.OrgComboOrgTree','Ext.form.field.VTypes', 'Eway.view.field.device.DeviceAtmType','Eway.lib.Util' ],
+	requires : [ 'Eway.view.common.OrgComboOrgTree', 'Eway.view.field.device.DeviceAtmType','Eway.lib.Util' ],
 
 	initComponent : function(){
 		Ext.apply(this,{
@@ -53,17 +52,6 @@ Ext.define('Eway.view.machine.device.Form',{
 							inputValue : 2
 						} ]
 					},{
-						xtype : 'datefield',
-						fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.device.effectiveDate,
-						name : 'effectiveDate',
-						displayField : 'display',
-						value : new Date(),
-			        	editable: false,
-			        	allowBlank:false,
-			        	startDateField :new Date(),
-			            format: 'Y-m-d',
-			            minValue:new Date()
-				},{
 						style : 'padding-top:0px',
 						xtype : 'hiddenfield',
 						name : 'devServiceId'
@@ -137,9 +125,7 @@ Ext.define('Eway.view.machine.device.Form',{
 					},
 					items : [ {
 						fieldLabel : Eway.locale.machine.device.devAddress,
-		                vtype : 'address',
 						maxLength : 100,
-						allowBlank : false,
 						name : 'address'
 					}]
 				}]
@@ -163,18 +149,12 @@ Ext.define('Eway.view.machine.device.Form',{
 							xtype : 'textfield',
 							style : 'padding-top:10px'
 						},
-				items : [{///////
-					     xtype : 'form',
-					     allowBlank : true,						
-						 layout: {
-						        type: 'hbox',
-						    },						    
-					 	items : [{
+				items : [{
 					 		 fieldLabel : Eway.locale.machine.device.installDate,
-		                        xtype : 'datefield',
-		                        format : 'Y-m-d',
-		                        name : 'installDate'
-		                        
+		                     xtype : 'datefield',
+		                     format : 'Y-m-d',
+		                     name : 'installDate',
+		                     value : new Date()
 						},{
 							fieldLabel : Eway.locale.machine.atmGroup.cashboxLimit,
 							xtype : 'numberfield',
@@ -182,9 +162,7 @@ Ext.define('Eway.view.machine.device.Form',{
 							hideTrigger:true,
 							maxLength : 6,
 							name : 'cashboxLimit'								
-						}]            
-                      
-				},{  			        
+						},{  			        
 							fieldLabel : Eway.locale.machine.device.installStyle,
 							xtype : 'radiogroup',
 							allowBlank : false,

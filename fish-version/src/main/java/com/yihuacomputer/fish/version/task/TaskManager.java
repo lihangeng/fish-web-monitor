@@ -129,9 +129,14 @@ public class TaskManager implements ITaskManager ,ITaskManagerStatus {
 	}
 
 	@Override
-	public void cancelTasks(Date planTime) {
-		// TODO Auto-generated method stub
-		
+	public void cancelTasks(List<ITask> list) {
+		for(ITask task:list){
+			//如果移除成功，则直接将任务状态置为已取消
+			if(taskCollection.cancelTask(task)){
+				task.setStatus(TaskStatus.CANCELED);
+				taskService.updateTask(task);
+			}
+		}
 	}
 
 	@Override

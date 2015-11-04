@@ -16,15 +16,15 @@ Ext.define('Eway.view.monitor.device.showType.Tbar', {
 				{xtype : 'textfield', width:100, action : 'deviceNumber'},
 				{xtype : 'button', text : Eway.locale.button.search, action : 'query', glyph : 0xf002},
 				'-',
-				{xtype : 'button', text : Eway.locale.button.pause, action : 'monitorOK', glyph : 0xf04c},
-				'-',
-				{text : Eway.locale.monitor.devMonitor.showWay, menu: [
-				                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.summaryPattern, action : 'summaryPattern'},
-				                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.matrixPattern, action : 'matrixPattern'},
-				                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.maxIconPattern, action : 'maxIconPattern'},
-				                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.listPattern, action : 'listPattern'},
-				                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.boxPattern, action : 'boxPattern'}
-				                       ]},
+				//{xtype : 'button', text : Eway.locale.button.pause, action : 'monitorOK', glyph : 0xf04c},
+				//'-',
+				//{text : Eway.locale.monitor.devMonitor.showWay, menu: [
+				//                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.summaryPattern, action : 'summaryPattern'},
+				//                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.matrixPattern, action : 'matrixPattern'},
+				//                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.maxIconPattern, action : 'maxIconPattern'},
+				//                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.listPattern, action : 'listPattern'},
+				//                       {text: Eway.locale.monitor.devMonitor.comboxShowWay.boxPattern, action : 'boxPattern'}
+				//                       ]},
 				{text : Eway.locale.monitor.devMonitor.monitorState, action : 'monitorState'},
                 {
                 	xtype : 'combobox',
@@ -36,7 +36,12 @@ Ext.define('Eway.view.monitor.device.showType.Tbar', {
 				    queryMode: 'local',
 				    displayField: 'filterName',
 				    valueField: 'id'
-                } 
+                },
+                '->',
+                {text : Eway.locale.monitor.devMonitor.comboxShowWay.matrixPattern, action : 'matrixPattern'},
+                {text : Eway.locale.monitor.devMonitor.comboxShowWay.maxIconPattern, action : 'maxIconPattern'},
+                {text : Eway.locale.monitor.devMonitor.comboxShowWay.listPattern, action : 'listPattern'},
+                {text : Eway.locale.monitor.devMonitor.comboxShowWay.boxPattern, action : 'boxPattern'},
         	]
 		});
 

@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.monitor.ICollectService;
 import com.yihuacomputer.fish.api.monitor.business.IRunInfo;
 import com.yihuacomputer.fish.api.monitor.business.IRunInfoService;
@@ -58,7 +58,7 @@ public class QuittingDevInfoUpdateTask {
 
 		for(IQuittingNotice quittingNotice : quittingNoticeList)
 		{
-			quittingNotice.setDevStatus(Status.DISABLED);
+			quittingNotice.setDevStatus(DevStatus.DISABLED);
 			quittingNoticeService.update(quittingNotice);
 			IDevice device = deviceService.get(quittingNotice.getDeviceCode());
 			if (quittingNotice.getDevStatus() != null) {
@@ -68,7 +68,7 @@ public class QuittingDevInfoUpdateTask {
 					deviceService.update(device);
 				}
 				/* 停机开始 */
-				if (quittingNotice.getDevStatus().equals(Status.DISABLED)) {
+				if (quittingNotice.getDevStatus().equals(DevStatus.DISABLED)) {
 					IRunInfo runInfo = runInfoService.make();
 					runInfo.setTerminalId(quittingNotice.getDeviceCode());
 					runInfo.setRunStatus(RunStatus.StopManmade);
@@ -83,12 +83,12 @@ public class QuittingDevInfoUpdateTask {
 		List<IQuittingNotice> nextQuittingNoticeList = dao.findByHQL(sql.toString(), objValues.toArray());
 		for(IQuittingNotice nextQuittingNotice : nextQuittingNoticeList)
 		{
-			nextQuittingNotice.setDevStatus(Status.OPENING);
+			nextQuittingNotice.setDevStatus(DevStatus.OPEN);
 			quittingNoticeService.update(nextQuittingNotice);
 
 			IDevice device = deviceService.get(nextQuittingNotice
 					.getDeviceCode());
-			device.setStatus(Status.OPENING);
+			device.setStatus(DevStatus.OPEN);
 			deviceService.update(device);		
 
 			IXfsStatus status = xfsService.loadXfsStatus(nextQuittingNotice

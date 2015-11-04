@@ -22,11 +22,11 @@ import javax.persistence.Transient;
 import com.yihuacomputer.common.ITypeIP;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.device.AwayFlag;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.device.NetType;
 import com.yihuacomputer.fish.api.device.SetupType;
-import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.device.WorkType;
 import com.yihuacomputer.fish.api.person.IOrganization;
 
@@ -81,7 +81,7 @@ public class Device implements IDevice, Serializable {
 	 * 设备状态
 	 */
 	@Column(name = "STATUS", length = 1)
-	private Status status;
+	private DevStatus status;
 
 	/**
 	 * 设备维护商
@@ -155,7 +155,7 @@ public class Device implements IDevice, Serializable {
 	private Date installDate;
 
 	public Device() {
-		this.status = Status.OPENING;
+		this.status = DevStatus.OPEN;
 		this.awayFlag = AwayFlag.LINE;
 		this.netType = NetType.CABLE;
 		this.installDate = new Date();
@@ -206,11 +206,11 @@ public class Device implements IDevice, Serializable {
 		this.devType = devType;
 	}
 
-	public Status getStatus() {
+	public DevStatus getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(DevStatus status) {
 		this.status = status;
 	}
 

@@ -1,6 +1,5 @@
 package com.yihuacomputer.fish.api.version.job.task;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,7 +34,7 @@ public interface ITaskManager {
     /**
 	 * 取消同一个批次的任务
 	 * */
-	public void cancelTasks(Date planTime);
+	public void cancelTasks(List<ITask> list);
 	
 	/**
 	 * 加载系统异常终止的任务

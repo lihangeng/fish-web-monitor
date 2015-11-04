@@ -9,7 +9,7 @@ Ext.define('Eway.view.machine.device.Add', {
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
-    height : 600,
+    height : 450,
 	width : 750,
 	initComponent: function() {
 		Ext.apply(this, {
@@ -32,7 +32,7 @@ Ext.define('Eway.view.machine.device.Add', {
 				text: Eway.locale.button.confirm,
 				action: 'add'
 			}, {
-				text: Eway.locale.button.cancle,
+				text: Eway.locale.button.cancel,
 				handler: this.onOver
 			}]
 		});

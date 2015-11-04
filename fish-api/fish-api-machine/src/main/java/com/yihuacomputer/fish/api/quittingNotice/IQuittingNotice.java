@@ -5,7 +5,7 @@ package com.yihuacomputer.fish.api.quittingNotice;
  */
 import java.util.Date;
 
-import com.yihuacomputer.fish.api.device.Status;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.StopType;
 
 public interface IQuittingNotice
@@ -70,8 +70,8 @@ public interface IQuittingNotice
      * 设置停机状态
      * @return
      */
-	public Status getDevStatus();
+	public DevStatus getDevStatus();
 
-	public void setDevStatus(Status devStatus);
+	public void setDevStatus(DevStatus devStatus);
 
 }

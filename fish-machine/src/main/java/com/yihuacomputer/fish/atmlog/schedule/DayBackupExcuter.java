@@ -22,9 +22,9 @@ import com.yihuacomputer.fish.api.atmlog.IAtmLogService;
 import com.yihuacomputer.fish.api.atmlog.IDayBackupExcuter;
 import com.yihuacomputer.fish.api.atmlog.IDayBackupLog;
 import com.yihuacomputer.fish.api.atmlog.IDayBackupService;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.system.quartz.IJobSynchService;
 import com.yihuacomputer.fish.atmlog.entity.AtmLog;
 import com.yihuacomputer.fish.atmlog.job.BackupManager;
@@ -169,7 +169,7 @@ public class DayBackupExcuter implements IDayBackupExcuter{
 		int diableCount = 0;
 		for(IDevice device:devices){
 			//设备状态不为正常时不备份日志,
-			if(!device.getStatus().equals(Status.OPENING)){
+			if(!device.getStatus().equals(DevStatus.OPEN)){
 				diableCount = diableCount+1;
 				continue;
 			}
