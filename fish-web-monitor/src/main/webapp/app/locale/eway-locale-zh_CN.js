@@ -125,7 +125,7 @@ Ext.override(Eway,{
 					title:'请确认',//Eway.locale.tip.remove.confirm.title
 					info:'是否删除该记录?'//Eway.locale.tip.remove.confirm.info
 				},
-				error:'删除失败:'
+				error:'删除失败:'//Eway.locale.tip.remove.error
 			},
 			own:{
 				have:'有',
@@ -166,11 +166,11 @@ Ext.override(Eway,{
 			selectMoveDev:'请选择要移动的设备.',
 			moveSuc:'移机成功.',
 			dateReSelect:'开始时间不能大于结束日期,请重新选择',
-			selectPlan:'请选择您应用的方案.',
-			removeFail:'解除失败.',
-			selectRemoveDev:'请选择要解除的设备.',
+			selectPlan:'请选择您应用的方案.',//Eway.locale.tip.selectPlan
+			removeFail:'解除失败.',//Eway.locale.tip.removeFail
+			selectRemoveDev:'请选择要解除的设备.',//Eway.locale.tip.selectRemoveDev
 			relatedFail:'关联失败.',//Eway.locale.tip.relatedFail
-			selectRelatedDev:'请选择要关联的设备.',
+			selectRelatedDev:'请选择要关联的设备.',//Eway.locale.tip.selectRelatedDev
 			planNoUpdate:'该方案已经执行,不可修改.',
 			planNoRemove:'该方案已经执行,不可删除.',
 			exportFiles: '请选择导入文件,只支持.xls和.xlsx格式的文件',
@@ -1935,7 +1935,20 @@ Ext.override(Eway,{
 				thisHardToTranslate:'点击下载导入设备号模板',//Eway.locale.report.openplan.thisHardToTranslate
 				placeSelect:'---请选择---',//Eway.locale.report.openplan.placeSelect
 				planDevice:'方案<-->设备',//Eway.locale.report.openplan.planDevice
-				
+				timeEare:'输入时间段有误，请重新输入！',//Eway.locale.report.openplan.timeEare
+				planOlonOne'同方案只能设置开机或关机的一种',//Eway.locale.report.openplan.planOlonOne
+				addSuccess:'添加成功',//Eway.locale.report.openplan.addSuccess
+				setTime:'请设置详细时间',//Eway.locale.report.openplan.setTime
+				thisPlanStop:'(此方案已停用，不可应用！)',//Eway.locale.report.openplan.thisPlanStop
+				placeRefresh:'条解除失败，请刷新后查看！',//Eway.locale.report.openplan.placeRefresh
+				linking:'正在关联设备....',//Eway.locale.report.openplan.linking
+				testingPlaceWaiting:'正在判断设备号是否符合要求，请耐心等待...',//Eway.locale.report.openplan.testingPlaceWaiting
+				leastOne:'最少一次导入1条设备信息，请重新选择导入文件!',//Eway.locale.report.openplan.leastOne
+				notMore:'最多一次导入2000条设备信息，请重新选择导入文件!',//Eway.locale.report.openplan.notMore
+				checkFile:'请检查导入文件',//Eway.locale.report.openplan.checkFile
+				fileNotAllowed:'文件不符合要求！',//Eway.locale.report.openplan.fileNotAllowed
+				tipExportSuccess:'条数据,成功导入',//Eway.locale.report.openplan.tipExportSuccess
+				tipLookUp:'条,点击查看导入详情!',//Eway.locale.report.openplan.tipLookUp
 			}
 		},
 
