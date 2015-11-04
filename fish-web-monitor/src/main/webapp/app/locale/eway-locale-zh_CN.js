@@ -1221,7 +1221,8 @@ Ext.override(Eway,{
 					transactionMonitor:{
 						title:'实时交易监控',//Eway.locale.monitor.business.transaction.transactionMonitor.title
 						begin:'开始监控',//Eway.locale.monitor.business.transaction.transactionMonitor.begin
-						stop:'停止监控'//Eway.locale.monitor.business.transaction.transactionMonitor.stop
+						stop:'停止监控',//Eway.locale.monitor.business.transaction.transactionMonitor.stop
+						clear:'清屏'//Eway.locale.monitor.business.transaction.transactionMonitor.clear
 						}
 				},
 				blackList:{
