@@ -79,7 +79,7 @@ public class SystemModule {
 	public @Bean IPermissionService permissionService() {
 		return new PermissionService();
 	}
-
+	
 	public @Bean IOrganizationService organizationService() {
 		return new OrganizationService();
 	}

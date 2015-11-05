@@ -1992,9 +1992,7 @@ Ext.override(Eway,{
 			endData:'吞卡截止日期',//Eway.locale.card.endData
 			startData:'吞卡起始日期',//Eway.locale.card.startData
 			add:'添加',//Eway.locale.card.add
-			dell:'删除',//Eway.locale.card.dell
-			
-			
+			dell:'删除'//Eway.locale.card.dell
 		},
 
 		//**********************************************************/
