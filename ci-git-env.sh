@@ -1,6 +1,6 @@
 LAYER_VERSION=0.0.9
 export LAYER_VERSION
-M2_HOME=/opt/tools/apache-maven-3.0.5
+M2_HOME=/opt/apache-maven-3.0.5
 MVNCMD="mvn --batch-mode"
 export MVNCMD
 PATH=$PATH:/usr/local/bin:$M2_HOME/bin
