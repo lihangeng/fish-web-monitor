@@ -585,6 +585,7 @@ Ext.override(Eway,{
 				deployedFail:'Install failed',//Eway.locale.version.taskStatus.deployedFail 部署失败
 				checked:'Confirmed to install',//Eway.locale.version.taskStatus.checked 部署已确认
 				noticeOk:'Noticed application',//Eway.locale.version.taskStatus.noticeOk 已通知应用
+				taskResetSuccessTips:'Success reset task!',//Eway.locale.version.taskStatus.taskResetSuccessTips
 				noticeFail:'Notic application failed'//Eway.locale.version.taskStatus.noticeFail 通知应用失败
 			},
 			versionCatalog:{

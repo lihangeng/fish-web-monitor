@@ -211,6 +211,35 @@ public class Task implements ITask {
 	public String toString() {
 		return this.getDevice().getTerminalId() + " ~ " + this.getDevice().getIp().toString();
 	}
+	
+	public boolean equals(Object obj){
+		if(obj instanceof Task){
+			Task task = (Task)obj;
+			return (this.getCreateTime().equals(task.getCreateTime())&&
+//				时间不一致	this.getDeployEndDate().equals(task.getDeployEndDate())&&
+//				时间不一致	this.getDeployStartDate().equals(task.getDeployStartDate())&&
+//				对象中含有对象不一致	this.getDevice().equals(task.getDevice())&&
+					this.getDeviceId()==(task.getDeviceId())&&
+//		null 下载源可能不一致			this.getDownSource().equals(task.getDownSource())&&
+//			null		this.getExceptVersion().equals(task.getExceptVersion())&&
+					this.getExcuteMachine().equals(task.getExcuteMachine())&&
+					this.getExcuteTime().equals(task.getExcuteTime())&&
+					this.getFirstTime().equals(task.getFirstTime())&&
+					this.getId()==(task.getId())&&
+					this.getPlanTime().equals(task.getPlanTime())&&
+					this.getReason().equals(task.getReason())&&
+					this.getState().equals(task.getState())&&
+					(this.getTaskCount()==task.getTaskCount())&&
+					this.getTaskBatchName().equals(task.getTaskBatchName())&&
+					this.getTaskType().equals(task.getTaskType())&&
+					this.getVersion().getId()==task.getVersion().getId()&&
+					this.getVersionBeforeUpdate().equals(task.getVersionBeforeUpdate()));
+			
+		}
+		else{
+			return false;
+		}
+	}
 
 	public long getDeviceId() {
 		return deviceId;
