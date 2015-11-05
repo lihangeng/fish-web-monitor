@@ -68,7 +68,7 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceGrid', {
 				xtype:'tbtext'
 			},'->', {
 				text: Eway.locale.button.search,
-				iconCls :'queryBtn',
+				glyph : 0xf002,
 				action: 'query'
 			}/*,{
 			   text :'导入要关联的设备',
@@ -76,7 +76,8 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceGrid', {
 			   action:'importMachineCode'
 			}*/, {
 				text: Eway.locale.button.link,
-				iconCls :'connectBtn',
+				glyph : 0xf0c1,
+//				iconCls :'connectBtn',
 				action: 'link'
 			}],
 			columns : [ {

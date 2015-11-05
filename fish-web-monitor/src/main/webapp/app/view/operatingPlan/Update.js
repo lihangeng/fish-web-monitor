@@ -303,11 +303,11 @@ Ext.define('Eway.view.operatingPlan.Update', {
 								} ],
 								fbar: [{
 									text: Eway.locale.card.add,
-									iconCls :'sureBtn',
+									glyph : 0xf067,
 									action: 'add'
 								},{
 									text: Eway.locale.card.dell,
-									iconCls :'deleteBtn',
+									glyph : 0xf014,
 									action: 'remove'
 								}]
 							} ,{
@@ -473,11 +473,11 @@ Ext.define('Eway.view.operatingPlan.Update', {
 								} ],
 								fbar: [{
 									text: Eway.locale.card.add,
-									iconCls :'sureBtn',
+									glyph : 0xf067,
 									action: 'add'
 								},{
 									text: Eway.locale.card.dell,
-									iconCls :'deleteBtn',
+									glyph : 0xf014,
 									action: 'remove'
 								}]
 							} ,{
