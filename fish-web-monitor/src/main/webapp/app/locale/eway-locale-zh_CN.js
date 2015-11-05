@@ -1944,6 +1944,7 @@ Ext.override(Eway,{
 				timeEare:'输入时间段有误，请重新输入！',//Eway.locale.report.openplan.timeEare
 				planOlonOne:'同方案只能设置开机或关机的一种',//Eway.locale.report.openplan.planOlonOne
 				addSuccess:'添加成功',//Eway.locale.report.openplan.addSuccess
+				addFail:'添加失败',//Eway.locale.report.openplan.addFail
 				setTime:'请设置详细时间',//Eway.locale.report.openplan.setTime
 				thisPlanStop:'(此方案已停用，不可应用！)',//Eway.locale.report.openplan.thisPlanStop
 				placeRefresh:'条解除失败，请刷新后查看！',//Eway.locale.report.openplan.placeRefresh
@@ -1955,6 +1956,9 @@ Ext.override(Eway,{
 				fileNotAllowed:'文件不符合要求！',//Eway.locale.report.openplan.fileNotAllowed
 				tipExportSuccess:'条数据,成功导入',//Eway.locale.report.openplan.tipExportSuccess
 				tipLookUp:'条,点击查看导入详情!',//Eway.locale.report.openplan.tipLookUp
+				tochenkDervice:'请选择您要更改的设备',//Eway.locale.report.openplan.tochenkDervice
+				tochenckPeople:'请选择人员',//Eway.locale.report.openplan.tochenckPeople
+				tipAddError:'条添加失败,请刷新后查看',//Eway.locale.report.openplan.tipAddError
 			}
 		},
 
