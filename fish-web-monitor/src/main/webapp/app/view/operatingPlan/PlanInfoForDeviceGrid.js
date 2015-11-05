@@ -57,11 +57,11 @@ Ext.define('Eway.view.operatingPlan.PlanInfoForDeviceGrid', {
 				header : Eway.locale.report.openplan.closeDate,
 				width : 100,
 				dataIndex : 'endDate'
-			}, {
+			}, /*{
 				header : Eway.locale.version.View.remark,
 				dataIndex : 'desc',
 				flex : 1
-			}, {
+			},*/ {
 				header :Eway.locale.report.openplan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 160,

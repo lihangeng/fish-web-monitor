@@ -13,11 +13,11 @@ Ext.define('Eway.view.operatingPlan.GridForDevice', {
 			initRegion : true,
 			tbar : [ '->', {
 				text : Eway.locale.button.search,
-				iconCls : 'queryBtn',
+				glyph : 0xf002,
 				action : 'query'
 			}, {
 				text : Eway.locale.button.link,
-				iconCls : 'connectBtn',
+				glyph : 0xf0c1,
 				action : 'link'
 			} ],
 			viewConfig : {

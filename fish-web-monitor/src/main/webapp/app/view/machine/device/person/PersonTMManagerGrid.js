@@ -20,7 +20,7 @@ Ext.define('Eway.view.machine.device.person.PersonTMManagerGrid', {
 			initRegion : true,
 			tbar: ['->',{
 				text: Eway.locale.button.refresh,
-				iconCls: 'refreshBtn',
+				glyph : 0xf021,
 				action: 'queryRe'
 				}, {
 				text: Eway.locale.button.add,
