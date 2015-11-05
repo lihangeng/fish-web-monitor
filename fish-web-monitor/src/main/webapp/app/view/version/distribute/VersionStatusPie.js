@@ -4,7 +4,7 @@ Ext.define('Eway.view.version.distribute.VersionStatusPie', {
     requires: ['Ext.chart.theme.Muted'],
     width: 550,
     title:{
-    	height :30
+    	height :24
     },
     tools:[{
 	    type:'refresh',
