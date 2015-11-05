@@ -68,9 +68,9 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				dataIndex : 'planType',
 				renderer : function(value, metadata, record) {
 					if (value == "DATE") {
-						return Eway.locale.report.plan.date;
+						return Eway.locale.report.openplan.date;
 					} else if (value == "WEEK") {
-						return Eway.locale.report.plan.week;
+						return Eway.locale.report.openplan.week;
 					}
 				}
 			}, {
