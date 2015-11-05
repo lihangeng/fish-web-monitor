@@ -93,7 +93,7 @@ Ext.override(Eway,{
 			download:'下发',
 			downloadToolTip:'配置下发作业',
 			save:'保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存',//Eway.locale.button.save
-			detailBtn:'开机方案',//Eway.locale.button.detailBtn
+			openPlan:'开机方案',//Eway.locale.button.openPlan
 			adminBtn:'管理员',
 			personM:'厂商管理员',//Eway.locale.button.personM
 			personTM:'管机员',//Eway.locale.button.personTM
