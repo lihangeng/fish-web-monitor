@@ -912,11 +912,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		                 idArray = new Array();
 		             //    console.log(field.value);
 					}else{
-<<<<<<< HEAD
 						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errors+Eway.locale.report.openplan.tipAddError,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
-=======
-						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errorMsg+"条关联失败，请刷新后查看！",this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
->>>>>>> refs/remotes/origin/master
 						 var field = linkingDeviceForm.findField("deviceIds");
 		                 field.setValue("");
 		                 idArray = new Array();

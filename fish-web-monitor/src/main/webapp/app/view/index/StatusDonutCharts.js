@@ -83,7 +83,6 @@ Ext.define('Eway.view.index.StatusDonutCharts', {
 		    		Ext.Array.forEach(records,function(item,index,allItems){
 		    			colors.push(item.data.color);
 		    			var temp = me.down("polar").legend.all.elements[index];
-		    			console.log(temp);
 		    			if(temp){
 		    				temp.childNodes[0].style.backgroundColor=item.data.color;
 		    			}
