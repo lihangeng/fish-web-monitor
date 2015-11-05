@@ -1955,6 +1955,18 @@ Ext.override(Eway,{
 				fileNotAllowed:'文件不符合要求！',//Eway.locale.report.openplan.fileNotAllowed
 				tipExportSuccess:'条数据,成功导入',//Eway.locale.report.openplan.tipExportSuccess
 				tipLookUp:'条,点击查看导入详情!',//Eway.locale.report.openplan.tipLookUp
+				chooseOne:'请在组内至少选中一项',//Eway.locale.report.openplan.chooseOne
+				Mon:'一',//Eway.locale.report.openplan.Mon
+				Tues:'二',//Eway.locale.report.openplan.Tues
+				Wed:'三',//Eway.locale.report.openplan.Wed
+				Thur:'四',//Eway.locale.report.openplan.Thur
+				Fri:'五',//Eway.locale.report.openplan.Fri
+				Sat:'六',//Eway.locale.report.openplan.Sat
+				Sun:'日',//Eway.locale.report.openplan.Sun
+				weekPlanInfoID:'星期方案详细列表',//Eway.locale.report.openplan.weekPlanInfoID
+				datePlanInfoID:'日期方案详细列表',//Eway.locale.report.openplan.datePlanInfoID
+				
+				
 			}
 		},
 
