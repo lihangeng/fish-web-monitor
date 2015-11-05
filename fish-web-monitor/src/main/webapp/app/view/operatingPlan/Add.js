@@ -122,8 +122,6 @@ Ext.define('Eway.view.operatingPlan.Add',{
 					itemId: 'cardPanelId',
 					items : [ {
 						title : Eway.locale.tip.planWeek,
-						layout : 'column',
-						border : false,
 						items : [ {
 							xtype : 'form',
 							height : 330,
@@ -141,7 +139,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 									layout : 'anchor',
 									defaultType : 'textfield',
 									defaults : {
-										anchor : '90%',
+										anchor : '100%',
 										style : 'padding-top:10px'
 									},
 									items : [ {
@@ -221,7 +219,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 									defaults : {
 										anchor : '90%',
 										xtype : 'textfield',
-										style : 'padding:10px 0px 0px 62px'
+										style : 'padding:10px 0px 0px 0px'
 									},
 									items : [ {
 										fieldLabel : '<font color="red">*</font>'+Eway.locale.report.openplan.week,
@@ -317,13 +315,11 @@ Ext.define('Eway.view.operatingPlan.Add',{
 						} ]
 					}, {
 						title : Eway.locale.tip.planDate,
-						layout : 'column',
-						border : false,
 						items : [ {
 							xtype : 'form',
 							height : 330,
 							itemId : 'dateFormId',
-							bodyStyle : 'padding:10px 10px 10px 10px',
+							/*bodyStyle : 'padding:10px 10px 10px 10px',*/
 							defaults : {
 								anchor : '100%'
 							},
@@ -331,7 +327,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 								layout : 'column',
 								border : false,
 								items : [ {
-									columnWidth : .5,
+									columnWidth : .4,
 									border : false,
 									layout : 'anchor',
 									defaultType : 'textfield',
@@ -356,7 +352,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 										}]
 									}]
 								}, {
-									columnWidth : .5,
+									columnWidth : .6,
 									border : false,
 									layout : 'anchor',
 									defaults : {
