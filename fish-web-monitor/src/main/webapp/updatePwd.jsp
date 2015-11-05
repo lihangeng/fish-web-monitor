@@ -80,32 +80,32 @@ input:focus {
 			<img src="./resources/images/logo.PNG">
 		</div>
 		<div class="headline">
-			<p class="xiugaimima">修 改 密 码</p>
+			<p class="xiugaimima"><spring:message code="login.updatePwd" /></p>
 		</div>
 	</div>
 	<div class="line"></div>
 	<div>
 			<table align="center" border="0" cellpadding="0" cellspacing="10">
 				<tr>
-					<td align="right">当前登录账号：</td>
+					<td align="right"><spring:message code="login.updatePwd.userCode" /></td>
 					<td><input class="txtupdate" name="userCode" type="text" size="15" readonly=true value=<%=(request.getParameter("userCode")==null?"":request.getParameter("userCode"))%> /></td>
 				</tr>
 				<tr>
-					<td align="right"><span class="xinghao">*</span> 输入原始密码：</td>
+					<td align="right"><span class="xinghao">*</span><spring:message code="login.updatePwd.oldPassWd" /></td>
 					<td><input class="txtupdate" name="srcPw" type="password" size="15" maxlength=20 /></td>
 				</tr>
 				<tr>
-					<td align="right"><span class="xinghao">*</span> 输入新密码：</td>
+					<td align="right"><span class="xinghao">*</span> <spring:message code="login.updatePwd.newPassWd" /></td>
 					<td><input class="txtupdate" name="newPw" type="password" size="15" maxlength=20 /></td>
 				</tr>
 				<tr>
-					<td align="right"><span class="xinghao">*</span> 再次输入新密码：</td>
+					<td align="right"><span class="xinghao">*</span> <spring:message code="login.updatePwd.newPassWdAgain" /></td>
 					<td><input class="txtupdate" name="newPwAgin" type="password" size="15" maxlength=20 /></td>
 				</tr>
 			</table>
 			<div align="center">
 			
-				<input class="sure" type="submit" value="确  定" style="margin-top: 20px;" onclick="updatePasswordSubmitFn()"/>
+				<input class="sure" type="submit" value="<spring:message code='login.updatePwd.confirm' />" style="margin-top: 20px;" onclick="updatePasswordSubmitFn()"/>
 				<div>
 					<div id="updatePwdError" class="form-message error" style="display:none;width:200px;"></div>
 					<div id="updatePwdSuccess" class="form-message success" style="display:none"></div>
@@ -142,34 +142,39 @@ input:focus {
 		var oldPassword = getValue($Name('srcPw'))
 		var div = $('updatePwdError');
 		show(div,false);
+// 		login.updatePwd.tips.oldPassWd=请输入原始密码！
+// 		login.updatePwd.tips.passWd=请输入密码！
+// 		login.updatePwd.tips.passWdLengthRule=密码长度不符规则！
+// 		login.updatePwd.tips.passWdRule=密码不符规则！
+// 		login.updatePwd.tips.passWdDiff=两次密码不一样！
 		if(oldPassword.trim().length==0){
-			setDivValue(div,'请输入原始密码!');
+			setDivValue(div,"<spring:message code='login.updatePwd.tips.oldPassWd' />");
 			show(div,true);
 			return false;
 		}
 		if(password1.trim().length==0||password2.trim().length==0){
-			setDivValue(div,'请输入密码!');
+			setDivValue(div,"<spring:message code='login.updatePwd.tips.passWd' />");
 			show(div,true);
 			return false;
 		}
 		var pattern = /[^\w-'=\\[\];,.?"`~!@#$%^&*()_+|{}:"<>/]/;
 		if(password1.length < 8 || password1.length>20){
-			setDivValue(div,'密码长度不符规则!');
+			setDivValue(div,"<spring:message code='login.updatePwd.tips.passWdLengthRule' />");
 			show(div,true);
 			return false;
 		}
 		if(pattern.test(password1)){
-			setDivValue(div,'密码不符规则!');
+			setDivValue(div,"<spring:message code='login.updatePwd.tips.passWdRule' />");
 			show(div,true);
 			return false;
 		}
 		if(password1.trim()!= password2.trim()){
-			setDivValue(div,'两次密码不一样!');
+			setDivValue(div,"<spring:message code='login.updatePwd.tips.passWdDiff' />");
 			show(div,true);
 			return false;
 		}
 		if(password1.trim()==oldPassword.trim()){
-			setDivValue(div,'输入的新密码与旧密码相同，不可修改');
+			setDivValue(div,"<spring:message code='login.updatePwd.tips.passWdSame' />");
 			show(div,true);
 			return false;
 		}
