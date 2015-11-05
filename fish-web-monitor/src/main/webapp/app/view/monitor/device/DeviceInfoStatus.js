@@ -386,21 +386,23 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 							item.setValue(text);
 						}
 				}else if(name == "runStatus"){
-					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getRunPath(record.get("run")) + '"/>&nbsp;&nbsp;</div>';
-
+					//var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getRunPath(record.get("run")) + '"/>&nbsp;&nbsp;</div>';
+					var div = '<div class="monitor_minicon monitor-div-run-'+record.get("run")+'">&nbsp;&nbsp;</div>';
+					
 					var runFatals= [Eway.locale.monitor.devMonitor.remote.halfSer,Eway.locale.monitor.devMonitor.remote.staff,
 					                Eway.locale.monitor.devMonitor.remote.powerOff,Eway.locale.monitor.devMonitor.remote.restart,
 					                Eway.locale.monitor.devMonitor.remote.pFault,
 					                Eway.locale.monitor.devMonitor.remote.stop,Eway.locale.monitor.devMonitor.remote.pauseFault,
 					                Eway.locale.monitor.devMonitor.remote.pauseCash,Eway.locale.monitor.devMonitor.remote.pauseSer];
 					if(Ext.Array.contains(runFatals,value)){
-						item.setValue(img + "<span class='fatalHighLight'>"+ value + "</span>");
+						item.setValue(div + "<span class='fatalHighLight'>"+ value + "</span>");
 					}else{
-						item.setValue(img + value);
+						item.setValue(div + value);
 					}
 				}else if(name == "modStatus"){
-					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getModulePath(record.get("mod")) + '"/>&nbsp;&nbsp;</div>';
-
+//					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getModulePath(record.get("mod")) + '"/>&nbsp;&nbsp;</div>';
+					var div = '<div class="monitor_minicon monitor-div-mod-'+record.get("mod")+'">&nbsp;&nbsp;</div>';
+					
 					var className = 'link ';
 
 					if(value == Eway.locale.commen.warn){
@@ -408,11 +410,11 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					}else if(value == Eway.locale.commen.fatal){
 						className += ' fatalHighLight ';
 					}
-					item.setValue(img + '<a href="#" class="'+className+'">' + value + '</a>');
+					item.setValue(div + '<a href="#" class="'+className+'">' + value + '</a>');
 
 				}else if(name == "boxStatus"){
-					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getBoxPath(record.get("box")) + '"/>&nbsp;&nbsp;</div>';
-
+//					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getBoxPath(record.get("box")) + '"/>&nbsp;&nbsp;</div>';
+					var div = '<div class="monitor_minicon monitor-div-box-'+record.get("box")+'">&nbsp;&nbsp;</div>';
 					var className = 'link';
 					var boxFatals= [Eway.locale.monitor.devMonitor.cash.cimFull,Eway.locale.monitor.devMonitor.cash.cdmEmpty,
 					                Eway.locale.monitor.devMonitor.cash.cimAFull,Eway.locale.monitor.devMonitor.cash.cashFault];
@@ -421,17 +423,17 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					} else if(value == Eway.locale.monitor.devMonitor.cash.cdmLow) {
 						className += ' warningHighLight ';
 					}
-					item.setValue(img + '<a href="#" class="'+className+'">'+value+'</a>');
+					item.setValue(div + '<a href="#" class="'+className+'">'+value+'</a>');
 
 				}else if(name == "netStatus"){
-					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getNetPath(record.get("net")) + '"/>&nbsp;&nbsp;</div>';
-
+//					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getNetPath(record.get("net")) + '"/>&nbsp;&nbsp;</div>';
+					var div = '<div class="monitor_minicon monitor-div-net-'+record.get("net")+'">&nbsp;&nbsp;</div>';
 					if(value ==Eway.locale.commen.fatal){
-						item.setValue(img + "<span class='fatalHighLight'>"+ value + "</span>");
+						item.setValue(div + "<span class='fatalHighLight'>"+ value + "</span>");
 					}else if(value ==Eway.locale.commen.unStable){
-						item.setValue(img + "<span class='warningHighLight'>"+ value + "</span>");
+						item.setValue(div + "<span class='warningHighLight'>"+ value + "</span>");
 					}else{
-						item.setValue(img + value);
+						item.setValue(div + value);
 					}
 				} else if (name == 'personnel') {
 					item.setValue('<a href="#" class="link">'+Eway.locale.monitor.devMonitor.remote.manaAndstaff+'</a>');
