@@ -180,6 +180,7 @@ Ext.override(Eway,{
 			deleteOne:'一次只能删除一条记录.',//Eway.locale.tip.deleteOne
 			chooseRecord:'请选择您要关联的记录.',//Eway.locale.tip.chooseRecord
 			choosePlan:'请选择您要查看的方案',//Eway.locale.tip.choosePlan
+			planDetail:'方案详情',//Eway.locale.tip.planDetail
 			planDate:'方案详情(日期)',//Eway.locale.tip.planDate
 			planWeek:'方案详情(星期)',//Eway.locale.tip.planWeek
 			planNoConf:'该方案无详细设置！',//Eway.locale.tip.planNoConf
@@ -730,7 +731,7 @@ Ext.override(Eway,{
 				sendByte: '发动的字节数',
 				loadData: '加载数据中，请稍候...',
 				refresh: '刷新',
-				name: '名称',
+				name: '名称',//Eway.locale.agent.remote.loading
 				format: '格式',
 				totalSize: '总大小',
 				freeSize: '可用空间',
@@ -1959,6 +1960,22 @@ Ext.override(Eway,{
 				tochenkDervice:'请选择您要更改的设备',//Eway.locale.report.openplan.tochenkDervice
 				tochenckPeople:'请选择人员',//Eway.locale.report.openplan.tochenckPeople
 				tipAddError:'条添加失败,请刷新后查看',//Eway.locale.report.openplan.tipAddError
+				planIsHaved:'',
+				linkSuccess:'关联成功',//Eway.locale.report.openplan.linkSuccess
+				Mon:'一',//Eway.locale.report.openplan.Mon
+				Tues:'二',//Eway.locale.report.openplan.Tues
+				Wed:'三',//Eway.locale.report.openplan.Wed
+				Thur:'四',//Eway.locale.report.openplan.Thur
+				Fri:'五',//Eway.locale.report.openplan.Fri
+				Sat:'六',//Eway.locale.report.openplan.Sat
+				Sun:'日',//Eway.locale.report.openplan.Sun
+				useSuccess:'正常启用',//Eway.locale.report.openplan.useSuccess
+				notSuccess:'未启用',//Eway.locale.report.openplan.notSuccess
+				lastOneGroup:'请在组内至少选中一项',//Eway.locale.report.openplan.lastOneGroup
+				lanDetailWeek:'星期方案详细列表',//Eway.locale.report.openplan.lanDetailWeek
+				planDetailDay:'日期方案详细列表',//Eway.locale.report.openplan.planDetailDay
+				selectPlan:'选择开机方案',//Eway.locale.report.openplan.selectPlan
+				weekSelect:'通知方式',//Eway.locale.report.openplan.weekSelect
 			}
 		},
 
@@ -1974,6 +1991,10 @@ Ext.override(Eway,{
 			customerPhone:'客户电话',//Eway.locale.card.customerPhone
 			endData:'吞卡截止日期',//Eway.locale.card.endData
 			startData:'吞卡起始日期',//Eway.locale.card.startData
+			add:'添加',//Eway.locale.card.add
+			dell:'删除',//Eway.locale.card.dell
+			
+			
 		},
 
 		//**********************************************************/
@@ -2021,7 +2042,7 @@ Ext.override(Eway,{
 			    createTime: '创建时间',
 			    informContent: '通知内容',
 			    messageContentDetail: '短信内容详情',
-			    informWay: '通知方式',
+			    informWay: '通知方式',//Eway.locale.cases.informWay
 			    mail:'邮件',
 			    messageAndMail:'短信和邮件',
 			    informMobile: '通知手机号',

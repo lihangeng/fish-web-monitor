@@ -83,7 +83,7 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceGrid', {
 				header : Eway.locale.refs.terminalId,
 				dataIndex : 'terminalId'
 			}, {
-				header : Eway.locale.atmRuntimeInfo.netIp,
+				header : Eway.locale.refs.ip,
 				dataIndex : 'ip'
 			}, {
 				header : Eway.locale.commen.orgNameBelongs,

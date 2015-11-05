@@ -5,11 +5,11 @@ Ext.define('Eway.store.operatingPlan.PlanStateType',{
 	
 	fields : ['value','display'],
 	data : [
-		{'value':'Enabled', 'display':'正常启用'},
-		{'value':'NotEnabled', 'display':'未启用'},
-		{'value':'WExpired', 'display':'即将过期'},
-		{'value':'Expired', 'display':'过期'},
-		{'value':'NotEnabled', 'display':'停用'}
+		{'value':'Enabled', 'display':Eway.locale.report.openplan.useSuccess},
+		{'value':'NotEnabled', 'display':Eway.locale.report.openplan.notSuccess},
+		{'value':'WExpired', 'display':Eway.locale.commen.comboxStatus.pastDueSoon},
+		{'value':'Expired', 'display':Eway.locale.commen.comboxStatus.pastDue},
+		{'value':'NotEnabled', 'display':Eway.locale.commen.comboxStatus.close}
 	]
 
 });
