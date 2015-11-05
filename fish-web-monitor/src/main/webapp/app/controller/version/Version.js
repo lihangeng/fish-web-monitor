@@ -450,9 +450,7 @@ Ext.define('Eway.controller.version.Version', {
 	//删除版本信息
 	onRemove: function() {
 		var grid = this.getGrid();
-		console.log(grid);
 		var sm = grid.getSelectionModel();
-		console.log(sm);
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			if(record.get("versionStatus") == "NEW"){
