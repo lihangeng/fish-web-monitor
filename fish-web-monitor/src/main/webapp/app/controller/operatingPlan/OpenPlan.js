@@ -860,7 +860,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					if(object.success == true){
 						Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.removeSuccess,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 					}else{
-						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errors+Eway.locale.report.openplan.placeRefresh,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
+						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errorMsg+Eway.locale.report.openplan.placeRefresh,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 					}
 				},
 				failure: function(response){
@@ -912,7 +912,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		                 idArray = new Array();
 		             //    console.log(field.value);
 					}else{
-						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errors+"条关联失败，请刷新后查看！",this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
+						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errorMsg+"条关联失败，请刷新后查看！",this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 						 var field = linkingDeviceForm.findField("deviceIds");
 		                 field.setValue("");
 		                 idArray = new Array();
@@ -922,7 +922,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					winEl.unmask();
 				},
 				failure: function(response){
-					Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errors+"条关联失败，请刷新后查看！");
+					Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errorMsg+"条关联失败，请刷新后查看！");
 					 var field = linkingDeviceForm.findField("deviceIds");
 	                 field.setValue("");
 	                 idArray = new Array();
@@ -955,7 +955,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.remove.error);
+									Ext.Msg.alert(Eway.locale.confirm.title, Eway.deleteSuccess);
 									var values = view.down('operatingPlan_filterForm').getForm().getValues();
 									var store = view.down('operatingPlan_grid').getStore();
 									store.setUrlParamsByObject(values);
