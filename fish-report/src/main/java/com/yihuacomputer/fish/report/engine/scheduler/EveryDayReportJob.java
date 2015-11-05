@@ -31,17 +31,21 @@ public class EveryDayReportJob {
 	private List<IReportDataETL> reportDataETLList = new ArrayList<IReportDataETL>();
 	
 	public void execute(){
-		
+		logger.info("-------------1--------------------");
 		logger.debug("day data ETL ....");
     	if(!jobSynchService.getJobRunPriviledge(jobId)){
+    		logger.info("-------------2--------------------");
     		logger.debug("day data ETL job is running");
     		return;
     	}
-		try{			
+		try{
+			logger.info("------------4--------------------");
 			for(IReportDataETL dataEtl:reportDataETLList){
+				logger.info("111111111111111111111111111");
 				dataEtl.reportETL(DateUtils.getLastDate());
 			}
 		}catch(Exception e){
+			logger.info("-----------5-------------------");
 			e.printStackTrace();
 //			logger.error(String.format("每日抽取数据异常[%s]", e));
 			logger.error(String.format("load data exception once every day[%s]", e));

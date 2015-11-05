@@ -17,13 +17,13 @@ import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
-import com.yihuacomputer.fish.api.report.IDayOpenRate;
+import com.yihuacomputer.fish.api.report.base.IDayOpenRate;
+import com.yihuacomputer.fish.api.report.base.IDayOpenRateService;
 import com.yihuacomputer.fish.report.entity.DayOpenRate;
-import com.yihuacomputer.fish.report.service.base.DomainDayOpenRateService;
 
 @Service
 @Transactional
-public class DayOpenRateService extends DomainDayOpenRateService {
+public class DayOpenRateService implements IDayOpenRateService  {
 
     private String DEV_DEVICE_HQL = "select rate.terminalId, rate.openTimes, rate.healthyTimeReal, rate.unknownTimeReal, rate.maintainTimeReal, "
     		+"rate.faultTimeReal, rate.atmpTimeReal, rate.stopTimeReal, info.devType.devCatalog.name, info.organization.name,info.organization.code "
@@ -60,6 +60,11 @@ public class DayOpenRateService extends DomainDayOpenRateService {
 
     @Autowired
 	private IDeviceService deviceService;
+    
+    @Override
+    public IDayOpenRate make() {
+        return new DayOpenRate();
+    }
 
     @Override
     public void save(IDayOpenRate dayOpenRate) {

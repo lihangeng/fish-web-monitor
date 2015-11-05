@@ -9,7 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.yihuacomputer.fish.api.report.IDayOpenRate;
+import com.yihuacomputer.fish.api.report.base.IDayOpenRate;
 
 @Entity
 @Table(name = "DEV_OPEN_RATE")

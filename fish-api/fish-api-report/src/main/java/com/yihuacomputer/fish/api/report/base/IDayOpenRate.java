@@ -34,63 +34,63 @@ public interface IDayOpenRate {
      *
      * @return
      */
-    public long getOpenTimes();
+    public int getOpenTimes();
 
-    public void setOpenTimes(long openTimes);
+    public void setOpenTimes(int openTimes);
 
     /**
      * 设备正常开机时长
      *
      * @return
      */
-    public long getHealthyTimeReal();
+    public int getHealthyTimeReal();
 
-    public void setHealthyTimeReal(long healthyTimeReal);
+    public void setHealthyTimeReal(int healthyTimeReal);
 
     /**
      * 设备未知时长
      *
      * @return
      */
-    public long getUnknownTimeReal();
+    public int getUnknownTimeReal();
 
-    public void setUnknownTimeReal(long unknownTimeReal);
+    public void setUnknownTimeReal(int unknownTimeReal);
 
     /**
      * 设备维护时长
      *
      * @return
      */
-    public long getMaintainTimeReal();
+    public int getMaintainTimeReal();
 
-    public void setMaintainTimeReal(long maintainTimeReal);
+    public void setMaintainTimeReal(int maintainTimeReal);
 
     /**
      * 设备故障时长
      *
      * @return
      */
-    public long getFaultTimeReal();
+    public int getFaultTimeReal();
 
-    public void setFaultTimeReal(long faultTimeReal);
+    public void setFaultTimeReal(int faultTimeReal);
 
     /**
      * ATMP故障时长
      *
      * @return
      */
-    public long getAtmpTimeReal();
+    public int getAtmpTimeReal();
 
-    public void setAtmpTimeReal(long atmpTimeReal);
+    public void setAtmpTimeReal(int atmpTimeReal);
 
     /**
      * 暂停时长
      *
      * @return
      */
-    public long getStopTimeReal();
+    public int getStopTimeReal();
 
-    public void setStopTimeReal(long stopTimeReal);
+    public void setStopTimeReal(int stopTimeReal);
 
     /**
      * 方案开机时间
@@ -115,23 +115,33 @@ public interface IDayOpenRate {
      *
      * @return
      */
-    public long getProgramTimes();
+    public int getProgramTimes();
 
-    public void setProgramTimes(long programTimes);
+    public void setProgramTimes(int programTimes);
 
     /**
      * 方案有效开机时长
      *
      * @return
      */
-    public long getProgramTimeReal();
+    public int getProgramTimeReal();
 
-    public void setProgramTimeReal(long programTimeReal);
+    public void setProgramTimeReal(int programTimeReal);
 
-    /**
-     * 无对外画面时长
-     */
-    public long getNoScreenReal();
 
-    public void setNoScreenReal(long noScreenReal);
+
+
+
+	public String getOrgName();
+
+	public void setOrgName(String orgName);
+
+	public String getDevCatalogName();
+
+	public void setDevCatalogName(String devCatalogName) ;
+
+
+
+
+
 }
