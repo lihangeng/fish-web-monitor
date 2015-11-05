@@ -3,6 +3,7 @@ package com.yihuacomputer.fish.report.base;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.yihuacomputer.fish.api.report.IDeviceOpenRateService;
 import com.yihuacomputer.fish.api.report.base.ICashInRptService;
 import com.yihuacomputer.fish.api.report.base.IDayOpenRateService;
 import com.yihuacomputer.fish.api.report.base.IDeviceBoxDetailRptService;
@@ -14,7 +15,11 @@ import com.yihuacomputer.fish.api.report.base.IRetainCardRptService;
 import com.yihuacomputer.fish.api.report.base.ISettlementCashInRptService;
 import com.yihuacomputer.fish.api.report.base.ISettlementRptService;
 import com.yihuacomputer.fish.api.report.base.ITransRptService;
+import com.yihuacomputer.fish.api.report.engine.IExportDataETLService;
 import com.yihuacomputer.fish.report.base.schedule.AtmcDayTransCount;
+import com.yihuacomputer.fish.report.engine.ExportDataETLService;
+import com.yihuacomputer.fish.report.scheduler.DayOpenRateExcuter;
+import com.yihuacomputer.fish.report.service.db.DeviceOpenRateService;
 
 /**
  * 报表基础模块配置
@@ -73,15 +78,25 @@ public class ReportBaseModule {
 	public AtmcDayTransCount atmcDayTransCount(){
 		return new AtmcDayTransCount();
 	}
-
 	@Bean
-	public IDayOpenRateService dayOpenRateService(){
-		return new DayOpenRateService();
+	public  IDayOpenRateService dayOpenRateService(){
+		 return new DayOpenRateService();
 	}
 
 	@Bean
-	public DeviceOpenRateService deviceOpenRateService() {
-		return new DeviceOpenRateService();
-	}
+	 public IDeviceOpenRateService deviceOpenRateService()
+	 {
+		  return new DeviceOpenRateService();
+	 }
+	
+	@Bean
+	public IExportDataETLService exportDataETLService()
+	{
+		return new ExportDataETLService();
+	}	
 
+	@Bean
+	public  DayOpenRateExcuter  dayOpenRateExcuter() {
+		return new DayOpenRateExcuter();
+	}
 }
