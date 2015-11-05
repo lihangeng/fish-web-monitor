@@ -1336,7 +1336,8 @@ Ext.override(Eway,{
 				comboxStatus:{
 					provider:'设备供应',
 					maintance:'设备服役'
-				}
+				},
+				devBrandInfo:'设备品牌信息'
 			},
 			atmCatalog:{
 				title:'设备分类',//Eway.locale.machine.title
