@@ -3,8 +3,10 @@ package com.yihuacomputer.fish.web.system.controller;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -47,6 +49,7 @@ import com.yihuacomputer.fish.api.person.PersonType;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
 import com.yihuacomputer.fish.api.relation.IUserRoleRelation;
+import com.yihuacomputer.fish.person.service.db.SrcbDevicePersonRelation;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.system.form.PersonDeviceForm;
 import com.yihuacomputer.fish.web.system.form.PersonForm;
@@ -69,6 +72,10 @@ public class PersonController {
 
     @Autowired
     private IOrganizationService organizationService;
+   
+    @Autowired
+    private SrcbDevicePersonRelation srcbDevicePersonRelation;
+    
 
     @Autowired
     private IUserService userService;
@@ -584,7 +591,54 @@ public class PersonController {
         result.addAttribute("data", PersonForm.convert(pageResult.list()));
         return result;
     }
+    /**
+	 * 根据条件得到人员列表
+	 *
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/selectPerson", method = RequestMethod.GET)
+	public @ResponseBody
+	ModelMap selectPerson(@RequestParam int start, @RequestParam int limit, WebRequest request, HttpServletRequest req) {
+		logger.info(String.format("search person : start = %s ,limt = %s ", start, limit));
+		ModelMap result = new ModelMap();
 
+		Map<String, String> map = new HashMap<String, String>();
+		Iterator<String> iterator = request.getParameterNames();
+		UserSession userSession = (UserSession) req.getSession().getAttribute("SESSION_USER");
+		map.put("orgFlag", userSession.getOrgFlag());
+		while (iterator.hasNext()) {
+			String name = iterator.next();
+			if (FishWebUtils.isIgnoreRequestName(name)) {
+				continue;
+			} else {
+				if (request.getParameter(name).isEmpty()) {
+					continue;
+				} else {
+					if ("deviceId".equals(name)) {
+						map.put("deviceId", request.getParameter(name));
+					} else if ("jobNum".equals(name)) {
+						map.put("jobNum", "%" + request.getParameter(name) + "%");
+					} else if ("state".equals(name)) {
+						map.put("state", PersonState.getById(Integer.parseInt(request.getParameter(name))).ordinal() + "");
+					} else if ("mobile".equals(name)) {
+						map.put("mobile", "%" + request.getParameter(name) + "%");
+					} else if ("name".equals(name)) {
+						map.put("name", "%" + request.getParameter(name) + "%");
+					} else if ("type".equals(name)) {
+						map.put("type", request.getParameter(name));
+					}
+				}
+			}
+		}
+		IPageResult<IPerson> page = srcbDevicePersonRelation.selectPage(start, limit, map);
+		result.addAttribute("success", true);
+		result.addAttribute("total", page.getTotal());
+		result.addAttribute("data", PersonForm.convert(page.list()));
+		return result;
+	}
     /**
      * 获取人员岗位信息
      *

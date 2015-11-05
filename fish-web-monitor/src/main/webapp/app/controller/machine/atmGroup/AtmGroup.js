@@ -40,6 +40,12 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			'atmGroup_groupGrid button[action=add]' : {
 				click : this.onGroupAdd
 			},
+			'tabpanel':{
+				tabchange:this.onTabChange
+			},
+			'atmGroup_groupGrid button[action=showDetail]' : {
+				click : this.showDetail
+			},
 			'atmGroup_groupGrid button[action=update]' : {
 				click : this.onGroupUpdate
 			},
@@ -64,7 +70,19 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		});
 
 	},
-
+	onTabChange:function( tabPanel, newCard, oldCard, eOpts ){
+		if(newCard.name=='groupPanel'){
+			var deviceDetailPanel = this.getEwayView().down("panel[name='atmGroupDeviceDetails']");
+			deviceDetailPanel.setDisabled(true);
+		}
+	},
+	showDetail:function(){
+		var deviceDetailPanel = this.getEwayView().down("panel[name='atmGroupDeviceDetails']");
+		deviceDetailPanel.setDisabled(false);
+		deviceDetailPanel.setMasked(false);
+		this.getEwayView().down("tabpanel").setActiveItem(deviceDetailPanel);
+		this.onDeviceQueryDevice();
+	},
 	onFirstSelect : function (){
 		// 选中第一条记录：
 		var grid = this.getEwayView().down('atmGroup_groupGrid');
@@ -273,7 +291,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		store.setUrlParamsByObject(values);
 		var groupRecord = view.down('atmGroup_groupGrid').getSelectionModel().getLastSelected();
 		if(groupRecord!=null){
-			store.setUrlParam('groupId',groupRecord.data.id);
+			store.setBaseParam('groupId',groupRecord.data.id);
 			store.loadPage(1);
 		}else {
 			Eway.alert(Eway.locale.tip.noGroupInfo);
@@ -379,6 +397,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 					}, this);
 
 					var store1 = deviceAddingGrid.getStore();
+					store1.setBaseParam("groupId",groupId);
 					store1.load({
 						params : {
 							groupId:groupId
@@ -388,11 +407,8 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 					var store2 = deviceGrid.getStore();
 					//点击增加成功后查询条件不带入重新查询。
 					store2.setUrlParamsByObject(null);
-					store2.load({
-						params : {
-							groupId:groupId
-						}
-					});
+					store2.setBaseParam("groupId",groupId);
+					store2.load();
 				},
 				failure: function(){
 					Eway.alert(Eway.locale.tip.addFail);

@@ -5,7 +5,7 @@ Ext.define('Eway.view.version.distribute.VersionPie', {
     width: 550,
 
     title:{
-    	height :30
+    	height :24
     },
     
     tools:[{

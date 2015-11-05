@@ -3,7 +3,10 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
     xtype: 'faultTrendByDay',
     requires:['Eway.store.index.FaultTrendByDay'],
 
-    title :Eway.locale.index.dailyFaultPic,
+    title : {
+    	text :Eway.locale.index.dailyFaultPic,
+    	height:24
+    },
     
 	tools:[{
 	    type:'refresh',

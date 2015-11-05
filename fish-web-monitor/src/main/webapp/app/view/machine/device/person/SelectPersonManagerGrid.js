@@ -10,11 +10,9 @@ Ext.define('Eway.view.machine.device.person.SelectPersonManagerGrid', {
 	selModel:{selType:'checkboxmodel'},
 	
 	initComponent: function() {
-		alert("1111111111111111111");
 		var store = Ext.create('Eway.store.person.person.SelectPerson',{
 			autoLoad : true
 		});
-		alert("111112222222222211111");
 		Ext.apply(this, {
 			store : store,
 			initRegion : true,
