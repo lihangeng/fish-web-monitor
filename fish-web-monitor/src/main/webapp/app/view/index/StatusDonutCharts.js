@@ -5,7 +5,10 @@ Ext.define('Eway.view.index.StatusDonutCharts', {
             angleField:'displayName',
             labelField:'numberInfo'
     },
-    title:'设备状态',
+    title : {
+    	text : Eway.locale.index.devStatusDisPic,
+    	height:24
+    },
     
     tools:[{
 	    type:'refresh',
@@ -31,24 +34,11 @@ Ext.define('Eway.view.index.StatusDonutCharts', {
         var me = this;
 
         me.myDataStore = Ext.create("Eway.store.monitor.charts.DonutChartsSummary");
-        me.myDataStore.load({
-		 	scope: this,
-		    callback: function(records, operation, success) {
-		    	if(success){
-		    		var colors = new Array();
-		    		Ext.Array.forEach(records,function(item,index,allItems){
-		    			colors.push(item.data.color);	
-		    			me.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
-		    		},this);
-		    		me.down("polar series[type='pie']").updateColors(colors);
-		    	}
-		    }
-		});
 
         me.items = [{
             xtype: 'polar',
             width: '100%',
-            height: 300,
+            height: 260,
             plugins: {
                 ptype: 'chartitemevents',
                 moveEvents: true,
@@ -84,6 +74,24 @@ Ext.define('Eway.view.index.StatusDonutCharts', {
                 }
             }]
         }];
+        
+        me.myDataStore.load({
+		 	scope: this,
+		    callback: function(records, operation, success) {
+		    	if(success){
+		    		var colors = new Array();
+		    		Ext.Array.forEach(records,function(item,index,allItems){
+		    			colors.push(item.data.color);
+		    			var temp = me.down("polar").legend.all.elements[index];
+		    			console.log(temp);
+		    			if(temp){
+		    				temp.childNodes[0].style.backgroundColor=item.data.color;
+		    			}
+		    		},this);
+		    		me.down("polar series[type='pie']").updateColors(colors);
+		    	}
+		    }
+		});
 
         this.callParent();
     }

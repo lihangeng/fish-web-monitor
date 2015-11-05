@@ -3,7 +3,10 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
     xtype: 'faultTrendByDay',
     requires:['Eway.store.index.FaultTrendByDay'],
 
-    title :Eway.locale.index.dailyFaultPic,
+    title : {
+    	text :Eway.locale.index.dailyFaultPic,
+    	height:24
+    },
     
 	tools:[{
 	    type:'refresh',
@@ -19,8 +22,8 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
         me.items = [{
             xtype: 'cartesian',
             width: '100%',
-            height: 300,
-           interactions: {
+            height: 260,
+            interactions: {
                 type: 'itemhighlight',
                 zoomOnPanGesture: false
             },

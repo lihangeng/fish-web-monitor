@@ -4,10 +4,7 @@
 package com.yihuacomputer.fish.version.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,14 +12,10 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.version.IVersionType;
-import com.yihuacomputer.fish.api.version.IVersionTypeRestriction;
-import com.yihuacomputer.fish.api.version.RestrictionColumn;
 import com.yihuacomputer.fish.api.version.VersionCatalog;
 
 /**
@@ -48,7 +41,6 @@ public class VersionType implements IVersionType, Serializable {
 
     @org.hibernate.annotations.Type(type = "com.yihuacomputer.domain.util.BooleanUserType")
     @Column(name = "AUTO_DEPLOY", columnDefinition = "CHAR", length = 1)
-    @Deprecated
     private boolean autoDeploy;
 
     @Column(name = "DEFAULT_INSTALL_PATH", nullable = true, length = 50)
@@ -68,10 +60,6 @@ public class VersionType implements IVersionType, Serializable {
 
     @Column(name = "REMARK", nullable = true, length = 128)
     private String desc;
-
-    @OneToMany(targetEntity = VersionTypeRestriction.class, orphanRemoval = true, cascade = CascadeType.ALL)
-    @JoinColumn(name = "VERSION_TYPE_ID")
-    private List<IVersionTypeRestriction> versionTypeRestrictions = new ArrayList<IVersionTypeRestriction>();
 
     @Enumerated(EnumType.STRING)
     @Column(name = "VERSION_CATALOG")
@@ -152,69 +140,6 @@ public class VersionType implements IVersionType, Serializable {
 
     public void setCustomVersion(boolean customVersion) {
         this.customVersion = customVersion;
-    }
-
-    @Override
-    public List<IVersionTypeRestriction> listVersionTypeRestrictions() {
-        return this.versionTypeRestrictions;
-    }
-
-    public void addVersionTypeRestriction(IVersionTypeRestriction versionTypeRestriction) {
-        this.versionTypeRestrictions.add(versionTypeRestriction);
-    }
-
-    @Override
-    public void addVersionTypeRestriction(RestrictionColumn rc, String value) {
-        IVersionTypeRestriction vtr = getVersionTypeRestriction(rc);
-        if (vtr == null) {
-            vtr = new VersionTypeRestriction();
-            vtr.setRestrictionColumn(rc);
-            vtr.setRestrictionValue(value);
-            this.addVersionTypeRestriction(vtr);
-        }
-        else {
-            vtr.setRestrictionValue(value);
-        }
-    }
-
-    public void removeVersionTypeRestriction(IVersionTypeRestriction versionTypeRestriction) {
-        this.versionTypeRestrictions.remove(versionTypeRestriction);
-    }
-
-    @Override
-    public void removeVersionTypeRestriction(RestrictionColumn rc, String value) {
-        IVersionTypeRestriction vtr = getVersionTypeRestriction(rc, value);
-        if (vtr != null) {
-            this.removeVersionTypeRestriction(vtr);
-        }
-    }
-
-    private IVersionTypeRestriction getVersionTypeRestriction(RestrictionColumn rc, String value) {
-        for (IVersionTypeRestriction vtr : this.versionTypeRestrictions) {
-            if (vtr.getRestrictionColumn().equals(rc) && vtr.getRestrictionValue().equalsIgnoreCase(value)) {
-                return vtr;
-            }
-        }
-        return null;
-    }
-
-    private IVersionTypeRestriction getVersionTypeRestriction(RestrictionColumn rc) {
-        for (IVersionTypeRestriction vtr : this.versionTypeRestrictions) {
-            if (vtr.getRestrictionColumn().equals(rc)) {
-                return vtr;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public String getRestrictionValue(RestrictionColumn rc) {
-        for (IVersionTypeRestriction vtr : this.versionTypeRestrictions) {
-            if (vtr.getRestrictionColumn().equals(rc)) {
-                return vtr.getRestrictionValue();
-            }
-        }
-        return null;
     }
 
     public VersionCatalog getVersionCatalog() {

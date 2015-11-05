@@ -6,7 +6,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 	title : '增加方案',
 	modal : true,
 	constrainHeader : true,
-	width : 800,
+	width : 810,
 	height : 620,
 	// maxHeight : 600,.
 	layout : 'fit',
@@ -35,18 +35,20 @@ Ext.define('Eway.view.operatingPlan.Add',{
 						border : false,
 						layout : 'anchor',
 						defaults : {
-							anchor : '90%',
+							anchor : '85%',
 							style : 'padding-top:10px'
 						},
 						items : [ {
 							fieldLabel : '<font color="red">*</font> 名称',
+							labelWidth: 60,
 							xtype : 'textfield',
 							name : 'name',
 							maxLength : 30,
 							allowBlank : false
 						},{
 							xtype : 'textarea',
-						    fieldLabel : '备注',
+							labelWidth: 60,
+						    fieldLabel : '&nbsp;&nbsp;&nbsp;备注',
 						    name : 'desc',
 						    autoScroll : true,
 							maxLength :30,
@@ -63,7 +65,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 						items : [ {
 							fieldLabel : '<font color="red">*</font>有效开始日期',
 							xtype : 'datefield',
-							name : 'startDate',
+							name : 'startDate',							
 							format : 'Y-m-d',
 							allowBlank : false,
 							editable : false,
@@ -129,6 +131,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 					layout : 'card',
 					activeItem: 1,
 					height : 350,
+					width :810,
 					itemId: 'cardPanelId',
 					items : [ {
 						title : '方案详情（星期）',
@@ -158,6 +161,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 										fieldLabel : '<font color="red">*</font> 开机/关机',
 										xtype : 'radiogroup',
 										name : 'openClose',
+										labelWidth: 70,
 										allowBlank : false,
 										columns: 1,
 										items : [ {
@@ -173,6 +177,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 									},{
 										xtype : 'fieldcontainer',
 										fieldLabel : '开始时间',
+										labelWidth: 70,
 										layout : 'hbox',
 										defaults : {
 											hideLabel : true
@@ -187,7 +192,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											value : '00',
 											editable : false,
 											name : 'startTimeHour',
-											width : 45
+											width :  75
 										}, {
 											xtype : 'displayfield',
 											value : '时'
@@ -202,7 +207,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											value : '00',
 											editable : false,
 											name : 'startTimeMinute',
-											width : 45
+											width :  75
 										}, {
 											xtype : 'displayfield',
 											value : '分'
@@ -216,7 +221,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											value : '00',
 											editable : false,
 											name : 'startTimeSecond',
-											width : 45
+											width :  75
 										}, {
 											xtype : 'displayfield',
 											value : '秒'
@@ -229,13 +234,14 @@ Ext.define('Eway.view.operatingPlan.Add',{
 									defaults : {
 										anchor : '90%',
 										xtype : 'textfield',
-										style : 'padding-top:10px'
+										style : 'padding:10px 0px 0px 62px'
 									},
 									items : [ {
 										fieldLabel : '<font color="red">*</font> 星期',
 										xtype : 'checkboxgroup',
 										allowBlank : false,
 										itemId: 'checkboxgroupId',
+										labelWidth:65,
 										columns: 4,
 										msgTarget:'qtip',
 										blankText :'请在组内至少选中一项',
@@ -250,8 +256,9 @@ Ext.define('Eway.view.operatingPlan.Add',{
 							              ]
 									}, {
 										xtype : 'fieldcontainer',
-										fieldLabel : '结束时间',
+										fieldLabel : '    结束时间',
 										layout : 'hbox',
+										labelWidth:65,
 										defaults : {
 											hideLabel : true
 										},
@@ -265,7 +272,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											value : '23',
 											editable : false,
 											name : 'endTimeHour',
-											width : 45
+											width : 75
 										}, {
 											xtype : 'displayfield',
 											value : '时'
@@ -279,7 +286,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											value : '59',
 											editable : false,
 											name : 'endTimeMinute',
-											width : 45
+											width : 75
 										}, {
 											xtype : 'displayfield',
 											value : '分'
@@ -293,7 +300,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											value : '59',
 											editable : false,
 											name : 'endTimeSecond',
-											width : 45
+											width : 75
 										}, {
 											xtype : 'displayfield',
 											value : '秒'
@@ -325,6 +332,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 						items : [ {
 							xtype : 'form',
 							height : 350,
+							width : 730,
 							itemId : 'dateFormId',
 							bodyStyle : 'padding:10px 10px 10px 10px',
 							defaults : {
@@ -339,8 +347,8 @@ Ext.define('Eway.view.operatingPlan.Add',{
 									layout : 'anchor',
 									defaultType : 'textfield',
 									defaults : {
-										anchor : '90%',
-										style : 'padding-top:10px'
+										anchor : '100%',
+										style : 'padding:10px 0px 0px 20px'
 									},
 									items : [ {
 										fieldLabel : '<font color="red">*</font> 开机/关机',
@@ -384,7 +392,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											value : '00',
 											editable : false,
 											name : 'startTimeHour',
-											width : 45
+											width : 75
 										}, {
 											xtype : 'displayfield',
 											value : '时'
@@ -399,7 +407,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											value : '00',
 											editable : false,
 											name : 'startTimeMinute',
-											width : 45
+											width : 75
 										}, {
 											xtype : 'displayfield',
 											value : '分'
@@ -413,7 +421,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											value : '00',
 											editable : false,
 											name : 'startTimeSecond',
-											width : 45
+											width : 75
 										}, {
 											xtype : 'displayfield',
 											value : '秒'
@@ -435,7 +443,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											value : '23',
 											editable : false,
 											name : 'endTimeHour',
-											width : 45
+											width : 75
 										}, {
 											xtype : 'displayfield',
 											value : '时'
@@ -449,7 +457,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											value : '59',
 											editable : false,
 											name : 'endTimeMinute',
-											width : 45
+											width : 75
 										}, {
 											xtype : 'displayfield',
 											value : '分'
@@ -463,7 +471,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											value : '59',
 											editable : false,
 											name : 'endTimeSecond',
-											width : 45
+											width : 75
 										}, {
 											xtype : 'displayfield',
 											value : '秒'

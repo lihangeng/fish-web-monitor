@@ -16,21 +16,20 @@ Ext.define('Eway.view.index.Index', {
     defaults: {
     	frame: true,
     	width: 550,
-    	margin: 10/*,
-    	collapsible :true*/
+    	margin: 10
     },
     
 	initComponent: function() {
 		Ext.apply(this, {
 		    title: Eway.locale.index.indexPage,
 		    items:[{
-		    	xtype:'versionDistributePie'
+		    	xtype:'statusDonutCharts'
 		    },{
 		    	xtype:'faultTrendByDay'
 		    },{
-		    	xtype:'retainCardByDay'
+		    	xtype:'versionDistributePie'
 		    },{
-		    	xtype:'statusDonutCharts'
+		    	xtype:'retainCardByDay'
 		    }],
 		    listeners:{
 		    	activate:function(_this,eOpt){
@@ -39,10 +38,10 @@ Ext.define('Eway.view.index.Index', {
 		    		var chart2 = Ext.create("Eway.view.index.FaultTrendByDay");
 		    		var chart3 = Ext.create("Eway.view.index.RetainCardByDay");
 		    		var chart4 = Ext.create("Eway.view.index.StatusDonutCharts");
-		    		_this.add(chart1);
-		    		_this.add(chart2);
-		    		_this.add(chart3);
 		    		_this.add(chart4);
+		    		_this.add(chart2);
+		    		_this.add(chart1);
+		    		_this.add(chart3);
 		    	}
 		    }
 		});

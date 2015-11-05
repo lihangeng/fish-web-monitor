@@ -1139,6 +1139,7 @@ Ext.override(Eway,{
 					manaAndstaff:'Machine manager'//Eway.locale.monitor.devMonitor.remote.manaAndstaff 管机员
 				},
 				atmGroup:'Group',//Eway.locale.monitor.devMonitor.atmGroup 分组
+				atmGroupTip:'GroupDetail',//Eway.locale.monitor.devMonitor.atmGroupTip
 				solution:'Solution suggest',//Eway.locale.monitor.devMonitor.solution 建议解决方案
 				faultDescription:'Module error description',//Eway.locale.monitor.devMonitor.faultDescription 模块故障描述
 				fastChoose:'Fast choose',//Eway.locale.monitor.devMonitor.fastChoose 快捷选择

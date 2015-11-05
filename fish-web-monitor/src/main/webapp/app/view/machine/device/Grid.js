@@ -39,7 +39,7 @@ Ext.define('Eway.view.machine.device.Grid', {
 //				}
 			},	{
 				text : Eway.locale.button.adminBtn,
-				//glyph : 0xf067,
+				glyph : 0xf007,
 				action : 'admin',
 				code : 'devicePerson',
 //				listeners:{
