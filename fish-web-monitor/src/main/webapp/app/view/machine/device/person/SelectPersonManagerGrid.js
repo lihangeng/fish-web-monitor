@@ -18,11 +18,11 @@ Ext.define('Eway.view.machine.device.person.SelectPersonManagerGrid', {
 			initRegion : true,
 			tbar: ['->',{
 				text: Eway.locale.button.search,
-				iconCls :'queryBtn',
+				glyph : 0xf002,
 				action: 'query'
 				}, {
 				text: Eway.locale.commen.setManager,
-				iconCls :'sureBtn',
+				glyph : 0xf0c1,
 				action: 'addselect'
 			}],
 			columns : [{
