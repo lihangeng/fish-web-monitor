@@ -35,12 +35,14 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 				}
 			},{
 				text:Eway.locale.version.download.autoRefresh,//'开启自动刷新',
+				glyph : 0xf021,
 				action:'autoRefresh',
 				tooltip:Eway.locale.version.download.autoRefreshTips,//'刷新周期60秒',
 				started:false
 			},{
 				text:Eway.locale.version.download.cancelBatch,//'批次取消',
 				action:'cancelBatch',
+				glyph : 0xf014,
 				code : 'cancelBatch',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender

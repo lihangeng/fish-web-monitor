@@ -660,7 +660,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				if(!flag){
 					return;
 				}
-				var record = Ext.ModelManager.create(data, 'Eway.model.operatingPlan.OpenPlanDetail');
+				var record = Ext.create('Eway.model.operatingPlan.OpenPlanDetail',data);
 				infoDateGrid.getStore().add(record);
 			});
 
