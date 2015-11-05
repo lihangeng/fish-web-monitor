@@ -23,30 +23,36 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 
 	init : function() {
 		this.control({
-			'version_distributeView field_versionTypeComboBoxAdd' : {
-				change : this.onQuery
+			'version_distributeView version_pie combo' : {
+				change : this.onChange
+			},
+			'version_distributeView version_pie tool[type="refresh"]' : {
+				click : this.versionPieRefresh
 			},
 			'version_distributeView version_pie polar' : {
 				itemclick : this.diplayVersionStatusPie
+			},
+			'version_distributeView versionstatus_pie tool[type="refresh"]' : {
+				click : this.versionStatusPieRefresh
 			},
 			'version_distributeView versionstatus_pie polar' : {
 				itemclick : this.diplayVersionStatusDetail
 			}
 		})
 	},
-	//初始化页面进行查询操作，下一图表默认加载当前图标第一项数据
-	onQuery : function(_this, newValue, oldValue, eOpts) {
+	versionPieRefresh:function(a,b,c){
 		var me = this;
 		var view = this.getEwayView();
-		var versionTypeCombo = view.down('field_versionTypeComboBoxAdd');
+		var versionTypeCombo = view.down('version_pie combo');
 		var record = versionTypeCombo.getSelectedRecord();
 		var selectedVersionName = record.get("desc");
+		var versionTypeId=record.get("id");
 		var panel = view.down('version_pie'); 
 		var polar = view.down('version_pie polar');
 		var pieStore = polar.getStore();
 		pieStore.load({
 			params : {
-				versionTypeId : newValue,
+				versionTypeId : versionTypeId,
 				displayNumber : 0
 			},
 			callback:function(records, operation, success){
@@ -55,34 +61,105 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 					me._statuspieClean();
 					return;
 				}
-
-				var statuspolar = view.down('versionstatus_pie polar');
-				var statuspieStore = statuspolar.getStore();
-				var detailGrid = view.down('version_distribute_grid');
-				var detailGridStore = detailGrid.getStore();
-				statuspolar.setTitle(records[0].get("versionNo")+Eway.locale.version.task.versionDownHisStatusPic);//"版本下发历史状态分布图");
-				statuspieStore.load({
-					params : {
-						versionId :records[0].get("versionId")
-					},	
-					callback:function(records, operation, success){
-						if(undefined==records||records.length==0){
-							return;
-						}
-						detailGrid.setTitle(records[0].get("taskStatusText"));
-						detailGridStore.setBaseParam("versionId",records[0].get("versionId"));
-						detailGridStore.setBaseParam("taskStatus",records[0].get("taskStatus"));
-						detailGridStore.loadPage(1);
-					}
-				});
+				me.versionStatusPieRefresh(a);
 			}
 		})
+	
+	},
+	/**
+	 * a 如果为undefined 则为selectChange
+	 * 否则为刷新
+	 * 刷新取数据规则,先取历史数据；如果历史数据没有了，则再去取version表中的第一条数据;如果还是无数据，则清空当前表
+	 */
+	versionStatusPieRefresh:function(a,b,c){
+		var me = this;
+		var view = this.getEwayView();
+		var statusPanel = view.down('versionstatus_pie');
+		var statuspolar = view.down('versionstatus_pie polar');
+		var statuspieStore = statuspolar.getStore();
+		var versionId = 0;
+		//如果是切换com导致的事件,加载默认加载第一项版本信息;
+		if(a==undefined){
+			var polar = view.down('version_pie polar');
+			var pieStore = polar.getStore();
+			var versionArray=pieStore.data.items;
+			if(undefined!=versionArray&&versionArray.length!=0){
+				versionId = versionArray[0].get("versionId")
+				statusPanel.setTitle(versionArray[0].get("versionNo")+Eway.locale.version.task.versionDownHisStatusPic);//"版本下发历史状态分布图");
+			}
+			else{
+				me._statuspieClean();
+				return;
+			}
+		}
+		//如果版本类型没有变更进行刷新操作，则直接执行历史记录的刷新操作
+		else{
+			var versionStatusArray = statuspieStore.data.items;
+			//如果状态信息中有数据,延续上次数据显示
+			if(undefined!=versionStatusArray&&versionStatusArray.length!=0){
+				versionId = versionStatusArray[0].get("versionId");
+			}
+			else{
+				var polar = view.down('version_pie polar');
+				var pieStore = polar.getStore();
+				var versionArray=pieStore.data.items;
+				if(undefined!=versionArray&&versionArray.length!=0){
+					versionId = versionArray[0].get("versionId")
+					statusPanel.setTitle(versionArray[0].get("versionNo")+Eway.locale.version.task.versionDownHisStatusPic);//"版本下发历史状态分布图");
+				}
+				else{
+					me._statuspieClean();
+					return;
+				}
+			}
+		}
+		
+		statuspieStore.load({
+			params : {
+				versionId :versionId
+			},	
+			callback:function(records, operation, success){
+				if(undefined==records||records.length==0){
+					me._statuspieClean();
+					return;
+				}
+				me.gridStoreRefresh(a);
+			}
+		});
+	},
+	gridStoreRefresh:function(a){
+		var me = this;
+		var view = this.getEwayView();
+		var detailGrid = view.down('version_distribute_grid');
+		var detailGridStore = detailGrid.getStore();
+		if(a==undefined){
+			var statuspolar = view.down('versionstatus_pie polar');
+			var statuspieStore = statuspolar.getStore();
+			var records = statuspieStore.data.items;
+			if(undefined==records||records.length==0){
+				return;
+			}
+			detailGrid.setTitle(records[0].get("taskStatusText"));
+			detailGridStore.setBaseParam("versionId",records[0].get("versionId"));
+			detailGridStore.setBaseParam("taskStatus",records[0].get("taskStatus"));
+			detailGridStore.loadPage(1);
+		}
+		else{
+			detailGridStore.loadPage(1);
+		}
+	},
+	//初始化页面进行查询操作，下一图表默认加载当前图标第一项数据
+	onChange : function(_this, newValue, oldValue, eOpts) {
+		var me = this;
+		me.getVersionPie().setTitle(_this.rawValue+Eway.locale.version.task.versionNoPic);
+		me.versionPieRefresh();
 	},
 	//状态分布饼图数据清理
 	_statuspieClean:function(){
 		var view = this.getEwayView();
+		var statusPanel = view.down('versionstatus_pie');
 		var statuspolar = view.down('versionstatus_pie polar');
-		statuspolar.setTitle("");
+		statusPanel.setTitle("");
 		var statuspieStore = statuspolar.getStore();
 		statuspieStore.load({
 			params : {
@@ -143,12 +220,6 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 				detailGridStore.setBaseParam("versionId",records[0].get("versionId"));
 				detailGridStore.setBaseParam("taskStatus",records[0].get("taskStatus"));
 				detailGridStore.loadPage(1);
-//				detailGridStore.load({
-//					params : {
-//						versionId :records[0].get("versionId"),
-//						taskStatus:records[0].get("taskStatus")
-//					}
-//				});
 			}
 		});
 	}

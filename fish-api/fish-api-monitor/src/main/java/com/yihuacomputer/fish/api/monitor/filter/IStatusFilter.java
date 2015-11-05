@@ -2,7 +2,7 @@ package com.yihuacomputer.fish.api.monitor.filter;
 
 import java.util.List;
 
-import com.yihuacomputer.fish.api.device.Status;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.monitor.report.IDeviceReport;
 
 /**
@@ -12,6 +12,31 @@ import com.yihuacomputer.fish.api.monitor.report.IDeviceReport;
  * @since 2012/2/8
  */
 public interface IStatusFilter {
+    
+    /**
+     * 主键
+     * @return
+     */
+    public long getId();
+    
+    /**
+     * 设置主键
+     * @param id
+     */
+    public void setId(long id);
+    
+    /**
+     * 订阅名称
+     * @return
+     */
+    public String getFilterName();
+    
+    /**
+     * 设置订阅名称
+     * @param filterName
+     */
+    public void setFilterName(String filterName);
+    
 
 	/**
 	 * 获取用户ID
@@ -251,17 +276,17 @@ public interface IStatusFilter {
 	public void setAtmGroup(long atmGroupId);
 
 	/**
-	 * 设备设备状态(默认状态为Status.OPENING)
+	 * 设备设备状态(默认状态为DevStatus.OPEN)
 	 *
 	 * @param status
 	 */
-	public void setDeviceStatus(Status status);
+	public void setDeviceStatus(DevStatus status);
 
 	/**
 	 * 获得设备状态
 	 *
 	 * @return
 	 */
-	public Status getDeviceStatus();
+	public DevStatus getDeviceStatus();
 
 }

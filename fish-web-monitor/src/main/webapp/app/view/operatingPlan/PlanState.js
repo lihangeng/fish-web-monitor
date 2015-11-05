@@ -3,7 +3,7 @@ Ext.define('Eway.view.operatingPlan.PlanState', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field_planState',
 	
-	fieldLabel : '通知方式',
+	fieldLabel : Eway.locale.cases.informWay,
 	name : 'planState',
 	hiddenName : 'planState',
 	msgTarget : 'side',

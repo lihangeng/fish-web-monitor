@@ -8,8 +8,7 @@ Ext.define('Eway.model.operatingPlan.LinkedDevice', {
 	}, {
 		name : 'orgName'
 	}, {
-		name : 'devTypeId',
-		type : 'long'
+		name : 'devTypeId'
 	}, {
 		name : 'devTypeName'
 	}, {
@@ -20,14 +19,14 @@ Ext.define('Eway.model.operatingPlan.LinkedDevice', {
 		name : 'installDate'
 	}, 'address', 'status', 'devServiceName', {
 		name : 'cashboxLimit',
-		type : 'number'
+		
 	} ],
 	proxy : {
 		type : 'rest',
-		url : 'api/srcb/plan/linkedDevice',
+		url : 'api/plan/linkedDevice',
 		reader : {
 			type : 'json',
-			root : 'data'
+			rootProperty : 'data'
 		}
 	}
 });

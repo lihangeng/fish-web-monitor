@@ -3,10 +3,10 @@ Ext.define('Eway.model.operatingPlan.OpenPlanDetailForDevice', {
 	fields : [ 'id', 'week', 'openClose', 'startTime', 'endTime'],
 	proxy : {
 		type : 'rest',
-		url : 'api/srcb/plan/detailsForDevice',
+		url : 'api/plan/detailsForDevice',
 		reader : {
 			type : 'json',
-			root : 'data'
+			rootProperty : 'data'
 		},
         wirter : {
         	type : 'json'

@@ -2,8 +2,6 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
 	extend : 'Ext.grid.Panel',
 	alias : 'widget.monitor_device_grid',
 
-    width: 300,
-    height: 380,
 	scrollable:'both',
 	initComponent : function() {
 		var store = Ext.create('Eway.store.monitor.charts.DonutChartsDetail', {});

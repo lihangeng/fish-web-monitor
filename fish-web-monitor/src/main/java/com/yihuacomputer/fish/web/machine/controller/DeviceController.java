@@ -14,7 +14,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -51,6 +50,7 @@ import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
 import com.yihuacomputer.fish.api.device.AwayFlag;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.device.NetType;
@@ -75,7 +75,7 @@ public class DeviceController {
 	 */
 	@Autowired
 	private IDeviceService deviceService;
-
+	
 	@Autowired
 	private IVersionTypeAtmTypeRelationService versionAtmTypeService;
 	
@@ -98,17 +98,12 @@ public class DeviceController {
 	@Autowired
 	private IDevicePersonRelation devicePersonRelation;
 
-	@PostConstruct
-	public void init() {
-	}
-
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap add(@RequestBody DeviceForm request) {
 		logger.info("add Device");
-		ModelMap model = new ModelMap();
-		IDevice device = deviceService.make();
-		IOrganization org = orgService.get(request.getOrgId());
+		ModelMap model = new ModelMap();	
+		IOrganization org = orgService.get(request.getOrgId());		
 		if (org == null) {
 			model.put(FishConstant.SUCCESS, false);
 			model.put("errorMsg", messageSource.getMessage("device.orgNotExist", null, FishCfg.locale));
@@ -127,23 +122,25 @@ public class DeviceController {
 			model.put(FishConstant.SUCCESS, false);
 			model.put("errorMsg", messageSource.getMessage("device.typeNotExist", null, FishCfg.locale));
 			return model;
-		}
-
+		}		  
+		
+		IDevice device = deviceService.make();
 		device.setOrganization(org);
 		device.setDevService(serviceOrg);
 		device.setDevType(atmType);
+		logger.info(request.getInstallDate());
 		request.translate(device);
-
+		if (request.getInstallDate() != null  && !"".equals(request.getInstallDate())&& !request.getInstallDate().equals(DateUtils.getDate(new Date()))) {
+			device.setStatus(DevStatus.UNOPEN);
+		}else{
+			device.setStatus(DevStatus.OPEN);
+		}
 		Map<String, Object> result = validator(request, "add");
-
 		if ((Boolean) result.get("validator")) {
-
 			model.put(FishConstant.SUCCESS, false);
 			model.put(FishConstant.ERROR_MSG, result.get("errorMsg"));
-
 			return model;
 		}
-
 		try {
 			deviceService.add(device);
 		} catch (Exception e) {
@@ -154,7 +151,6 @@ public class DeviceController {
 		}
 
 		model.addAttribute(FishConstant.DATA, new DeviceForm(device));
-
 		return model;
 	}
 
@@ -171,7 +167,6 @@ public class DeviceController {
 		logger.info(" delete device: device.id = " + id);
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, true);
-
 		try {
 			deviceService.remove(id);
 		} catch (ServiceException se) {
@@ -201,7 +196,7 @@ public class DeviceController {
 		logger.info("update Device: device.id = " + id);
 		ModelMap model = new ModelMap();
 
-		IDevice device = deviceService.get(id);
+		IDevice device = deviceService.get(id);		
 		if (device == null) {
 			model.put(FishConstant.SUCCESS, false);
 			model.put(FishConstant.ERROR_MSG, messageSource.getMessage("person.updateNotExist", null, FishCfg.locale));
@@ -210,8 +205,6 @@ public class DeviceController {
 			model.addAttribute(FishConstant.DATA, request);
 			return model;
 		}
-
-		device = deviceService.get(id);
 
 		IOrganization org = orgService.get(request.getOrgId());
 		if (org == null) {
@@ -233,13 +226,10 @@ public class DeviceController {
 			model.put("errorMsg", messageSource.getMessage("device.typeNotExist", null, FishCfg.locale));
 			return model;
 		}
-
 		device.setDevService(serviceOrg);
 		device.setOrganization(org);
 		device.setDevType(atmType);
-
 		request.translate(device);
-
 		try {
 			deviceService.update(device);
 		} catch(Exception e) {
@@ -248,7 +238,6 @@ public class DeviceController {
 			model.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
 			return model;
 		}
-
 		model.addAttribute(FishConstant.SUCCESS, true);
 		model.addAttribute(FishConstant.DATA, new DeviceForm(device));
 		return model;

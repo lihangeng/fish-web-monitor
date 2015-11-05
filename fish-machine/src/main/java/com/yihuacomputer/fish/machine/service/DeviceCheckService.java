@@ -10,10 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceCheckService;
 import com.yihuacomputer.fish.api.device.IDeviceListener;
-import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNoticeService;
@@ -53,10 +53,10 @@ public class DeviceCheckService implements IDeviceCheckService {
             IOrganization org = orgService.get(orgId);
             fixedFilters.add("%" + org.getOrgFlag());
         }
-        hql.append(" and device.status in (?,?,?)");
+        /*hql.append(" and device.status in (?,?,?)");
         fixedFilters.add(Status.OPE_WAI_CHE);
         fixedFilters.add(Status.SCR_WAI_CHE);
-        fixedFilters.add(Status.UPD_WAI_CHE);
+        fixedFilters.add(Status.UPD_WAI_CHE);*/
         hql.append(" and device.applyId <> "+userId);
         return (IPageResult<IDevice>) dao.page(offset, limit, filter, hql.toString(), fixedFilters.toArray());
 	}
@@ -76,8 +76,8 @@ public class DeviceCheckService implements IDeviceCheckService {
         }
 
         hql.append(" and device.status in (?,?)");
-        fixedFilters.add(Status.OPEN);
-        fixedFilters.add(Status.SCRAPPED);
+        fixedFilters.add(DevStatus.OPEN);
+        fixedFilters.add(DevStatus.SCRAPPED);
         return (IPageResult<IDevice>) dao.page(offset, limit,hql.toString(), fixedFilters.toArray());
 	}
 
@@ -95,10 +95,10 @@ public class DeviceCheckService implements IDeviceCheckService {
             fixedFilters.add("%" + org.getOrgFlag());
         }
 
-        hql.append(" and device.status in (?,?,?)");
+       /* hql.append(" and device.status in (?,?,?)");
         fixedFilters.add(Status.OPE_CHE_NO);
         fixedFilters.add(Status.SCR_CHE_NO);
-        fixedFilters.add(Status.UPD_CHE_NO);
+        fixedFilters.add(Status.UPD_CHE_NO);*/
         return (IPageResult<IDevice>) dao.page(offset, limit, hql.toString(), fixedFilters.toArray());
 	}
 

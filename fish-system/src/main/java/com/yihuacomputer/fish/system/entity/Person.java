@@ -106,7 +106,7 @@ public class Person implements IPerson,Serializable {
     /**
      * 所属机构
      */
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
     @JoinColumn(name = "ORGANIZATION_ID")
     private IOrganization organization;
 
@@ -123,7 +123,7 @@ public class Person implements IPerson,Serializable {
     /**
      * 人员工作岗位
      */
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.system.entity.PersonJob.class)
+    @ManyToOne(fetch = FetchType.EAGER, targetEntity = com.yihuacomputer.fish.system.entity.PersonJob.class)
     @JoinColumn(name = "PERSONJOB")
     private IPersonJob personJob;
 

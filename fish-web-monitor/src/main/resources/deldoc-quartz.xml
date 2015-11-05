@@ -10,6 +10,10 @@
 	
 	<bean id="FishServletContext" class="com.yihuacomputer.fish.web.util.FishServletContext"/>
 	
+	<bean id="updateDeviceInfoJob" class="com.yihuacomputer.fish.machine.service.DeviceInfoUpdateTask"/>
+	
+	<bean id="updateQuittingDevInfoJob" class="com.yihuacomputer.fish.monitor.service.QuittingDevInfoUpdateTask"/>
+	
     <!-- 定义调用对象和调用对象的方法 -->
     <bean id="deletetask"
         class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
@@ -21,7 +25,8 @@
         <property name="targetMethod">
             <value>clearFile</value>
         </property>
-    </bean>
+    </bean>    
+    
     <!-- 定义触发时间 -->
     <bean id="deleteTime"
         class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
@@ -35,5 +40,48 @@
         </property>
     </bean>
 
-
+<!--每天0点将当天未生效的设备信息更新到信息表中-->
+        <bean id="updateDeviceInfoTask"
+        class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <ref bean="updateDeviceInfoJob" />
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>deviceInfoUpdate</value>
+        </property>
+    </bean>
+    <!-- 定义触发时间 -->
+    <bean id="updateDeviceInfoTaskTime"
+        class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="updateDeviceInfoTask" />
+        </property>
+        <property name="cronExpression">
+             <value>${updateDeviceInfoTime}</value>
+        </property>
+    </bean>
+    
+    <!--每天0点将当天未生效的设备信息更新到信息表中-->
+     <bean id="updateQuittingDevInfoTaskTime"
+        class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="updateQuittingDevInfoTask" />
+        </property>
+        <property name="cronExpression">
+             <value>${updateQuittingDeviceInfoTime}</value>
+        </property>
+    </bean>
+     <bean id="updateQuittingDevInfoTask"
+        class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <ref bean="updateQuittingDevInfoJob" />
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>quittingDevInfoUpdate</value>
+        </property>
+    </bean>
 </beans>

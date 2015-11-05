@@ -76,13 +76,14 @@ Ext.define('Eway.controller.Main', {
 
 	//打开个人设置
 	onOpenPersonalSettings : function(btn){
-		var workspace = this.getEwayView();
-		var ps = Ext.ComponentQuery.query('personalSettings')[0];
-		if(!ps){
-			 ps = Ext.create('Eway.view.personal.PersonalSettings');
-			 workspace.add(ps);
-		}
-		workspace.setActiveTab(ps);
+//		var workspace = this.getEwayView();
+//		var ps = Ext.ComponentQuery.query('personalSettings')[0];
+//		if(!ps){
+//			 ps = Ext.create('Eway.view.personal.PersonalSettings');
+//			 workspace.add(ps);
+//		}
+//		workspace.setActiveTab(ps);
+		this.activeController('personal.Personal');
 	},
 	onItemDbClick:function(view, node, item, index, e){
 		if(!node.isLeaf()){
@@ -162,6 +163,9 @@ Ext.define('Eway.controller.Main', {
 //		}else if(code == "monitor_cardDestroy"){
 //			this.activeController('monitor.card.CardDestory');
 //		}
+		else if(code == "openDevPlan"){
+			this.activeController('operatingPlan.OpenPlan');
+		}
 		else if(code == "logBackup"){
 			this.activeController('atmLog.LogBackup');
 		}else if(code == "dayBackupJob"){
@@ -277,7 +281,7 @@ Ext.define('Eway.controller.Main', {
 		var records = tree.getChecked();
 		var editWin = tree.up('window');
 		var winEl = editWin.getEl();
-		winEl.mask("正在提交,请稍等...");
+		winEl.mask(Eway.locale.agent.submitingWaiting);
 		var permissions = '';
 		for(var i  in records){
 			var record = records[i];
@@ -295,19 +299,19 @@ Ext.define('Eway.controller.Main', {
 				var object = Ext.decode(response.responseText);
 				if(object.success == true){
 					winEl.unmask();
-					Eway.alert('操作成功.');
+					Eway.alert(Eway.locale.tip.operateSuc);
 					editWin.close();
 					var treepanel = Ext.ComponentQuery.query('appindex')[0].down('treepanel');
 					treepanel.getStore().load();
 				}else{
 					winEl.unmask();
-					Eway.alert('操作错误.');
+					Eway.alert(Eway.locale.tip.operateWrong);
 				}
 
 			},
 			faliure : function(response){
 				winEl.unmask();
-				Eway.alert('与服务器断开连接.');
+				Eway.alert(Eway.locale.agent.offServer);
 			}
 
 		});

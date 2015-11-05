@@ -14,7 +14,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.yihuacomputer.fish.api.device.Status;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.StopType;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNotice;
 
@@ -72,15 +72,15 @@ public class QuittingNotice implements IQuittingNotice {
 	 */
 	@Enumerated(EnumType.STRING)//存放枚举类型ID号
 	@Column(name = "DEV_STATUS", length = 10)
-	private Status devStatus;
+	private DevStatus devStatus;
 
 	public QuittingNotice(){}
 	
-	public Status getDevStatus() {
+	public DevStatus getDevStatus() {
 		return devStatus;
 	}
 
-	public void setDevStatus(Status devStatus) {
+	public void setDevStatus(DevStatus devStatus) {
 		this.devStatus = devStatus;
 	}
 

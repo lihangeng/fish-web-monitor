@@ -16,31 +16,31 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 
 	initComponent: function() {
 		Ext.apply(Ext.form.field.VTypes,{
-			dateRange : function(val, field){
-				var beginDate = null,//开始日期
-					beginDateCmp = null,//开始日期组件
-					endDate = null,//结束日期
-					enddateCmp = null,//结束日期组件
-					validStatus = true;//验证状态
-					if(field.dateRange){
-						//获取开始时间
-						if(!Ext.isEmpty(field.dateRange.begin)){
-							beginDateCmp = Ext.getCmp(field.dateRange.begin);
-							beginDate = beginDateCmp.getValue();
-						}
-						//获取结束时间
-						if(!Ext.isEmpty(field.dateRange.end)){
-							endDateCmp = Ext.getCmp(field.dateRange.end);
-							endDate = endDateCmp.getValue();
-						}
-					}
-					if(!Ext.isEmpty(beginDate) && !Ext.isEmpty(endDate)){
-						validStatus = beginDate < endDate;
-					}
-					return validStatus;
-			},
-			dateRangeText : Eway.locale.machine.quittingNotice.dateRangeText
-		});
+		    daterange: function(val, field) {
+		        var date = field.parseDate(val);
+		        if (!date) {
+		            return false;
+		        }
+		        if (field.startDateField && (!field.dateRangeMax || (date.getTime() != field.dateRangeMax.getTime()))) {
+		            var start = field.up('form').getForm().findField(field.startDateField);
+		            var newDate = new Date(date.getTime() - 24*60*60*1000);
+		            start.setMaxValue(newDate);
+		            field.dateRangeMax = newDate;
+		        }
+		        else if (field.endDateField && (!field.dateRangeMin || (date.getTime() != field.dateRangeMin.getTime()))) {
+		            var end = field.up('form').getForm().findField(field.endDateField);
+		            var newDate = new Date(date.getTime() + 24*60*60*1000);
+		            end.setMinValue(newDate);
+		            field.dateRangeMin = newDate;
+		        }
+		        /*
+		         * Always return true since we're only using this vtype to set the
+		         * min/max allowed values (these are tested for after the vtype test)
+		         */
+		        return true;
+		    },
+		    daterangeText: Eway.locale.machine.quittingNotice.dateRangeText
+        });
 		Ext.apply(this, {
 			items : {
 				xtype: 'form',
@@ -61,42 +61,60 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 					blankText:Eway.locale.machine.quittingNotice.click,
 					allowBlank : false
 				},{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.quittingNotice.stopTime,
-					xtype : 'datetimefield',
+					fieldLabel : '<font color="red">*</font>' + Eway.locale.machine.quittingNotice.stopTime,
+					displayField : 'display',
+					valueField : 'value',
+					xtype : 'datefield',
+					format : 'Y-m-d',
 					name : 'stopTime',
 					editable : false,
-					format : 'Y-m-d H:i:s',
-					dateRange : {begin : 'stopTimeId', end : 'openTimeId'},
-					vtype : 'dateRange',
-					id : 'stopTimeId',
-					allowBlank : false,
+					vtype : 'daterange',
+					minValue : new Date(),
+					width : 400,
+					editable:false,
+					endDateField : 'openTime',
 					listeners : {
-						change : function(){
-							var openTime = this.up('form').down('field[name="openTime"]');
-							openTime.clearInvalid();
+						blur : {
+				            fn: function(This, options){
+				            	var value = this.getValue();
+				            	if (!value) {
+				            		var endField = this.up('form').getForm().findField(this.endDateField);
+				            		endField.setMinValue(null);
+				            	}
+				            }
 						}
 					}
+
 				},{
-					fieldLabel : Eway.locale.machine.quittingNotice.openTime,
-					xtype : 'datetimefield',
-					name : 'openTime',
+					fieldLabel :  Eway.locale.machine.quittingNotice.openTime,
+					displayField : 'display',
+					valueField : 'value',
+					width : 400,
+					xtype : 'datefield',
 					editable : false,
-					format : 'Y-m-d H:i:s',
-					vtype : 'dateRange',
-					dateRange : {begin : 'stopTimeId', end : 'openTimeId'},
-					id : 'openTimeId',
+					format : 'Y-m-d',
+					name : 'openTime',
+					vtype : 'daterange',					
+					editable:false,
+					startDateField : 'stopTime',
 					listeners : {
-						change : function(){
-							var stopTime = this.up('form').down('field[name="stopTime"]');
-							stopTime.clearInvalid();
+						blur : {
+				            fn: function(This, options){
+				            	var value = this.getValue();
+				            	if (!value) {
+				            		var startField = this.up('form').getForm().findField(this.startDateField);
+				            	}
+				            }
 						}
 					}
-				},{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.quittingNotice.currentStatus,
+
+				},{fieldLabel : '<font color="red">*</font>' + Eway.locale.machine.quittingNotice.currentStatus,
 					xtype : 'field_devStatus',
-					allowBlank : false,
+					allowBlank : true,
 					value : 'DISABLED',
+					hidden: true,
 					editable : false
+					
 				},{
 					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.quittingNotice.closeType,
 					xtype : 'field_stopType',

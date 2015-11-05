@@ -27,9 +27,9 @@ import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.common.util.StringUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.person.IUserService;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
@@ -423,7 +423,7 @@ public class VersionService implements IDomainVersionService {
 		append(" and version.versionType.id=? ");
 		Object versionType = filter.getValue("versionType");
 		Object orgFlag = filter.getValue("orgFlag");
-		hqlArgList.add(Status.OPENING);
+		hqlArgList.add(DevStatus.OPEN);
 		hqlArgList.add("%"+orgFlag);
 		hqlArgList.add(versionType);
 		hqlSb.append(" group by version.id,version.versionNo order by version.versionStr desc");
@@ -457,7 +457,7 @@ public class VersionService implements IDomainVersionService {
 		long versionId = Long.parseLong(String.valueOf(filter.getValue("versionId")));
 		Object orgFlag = filter.getValue("orgFlag");
 		hqlArgList.add(versionId);
-		hqlArgList.add(Status.OPENING);
+		hqlArgList.add(DevStatus.OPEN);
 		hqlArgList.add("%"+orgFlag);
 		List<Object> hqlResultList =  dao.findByHQL(statusHql.toString(), hqlArgList.toArray());
 		List<VersionStatusDistribute> statusDistributeList = new ArrayList<VersionStatusDistribute>();
@@ -511,7 +511,7 @@ public class VersionService implements IDomainVersionService {
 		Object orgFlag = filter.getValue("orgFlag");
 		Object taskStatusObj = filter.getValue("taskStatus");
 		hqlArgList.add(versionId);
-		hqlArgList.add(Status.OPENING);
+		hqlArgList.add(DevStatus.OPEN);
 		hqlArgList.add("%"+orgFlag);
 		TaskStatus taskStatus = TaskStatus.valueOf(String.valueOf(taskStatusObj));
 		hqlArgList.add(taskStatus);
@@ -531,6 +531,8 @@ public class VersionService implements IDomainVersionService {
 			versionDistributeDetail.setOrgName(device.getOrganization().getName());
 			versionDistributeDetail.setStatusText(getEnumI18n(task.getStatus().getText()));
 			versionDistributeDetail.setUpdateType(getEnumI18n(task.getTaskType().getText()));
+			versionDistributeDetail.setTaskStatus(task.getStatus().name());
+			versionDistributeDetail.setVersionId(task.getVersion().getId());
 			versionDistributeDetail.setVendor(device.getDevType().getDevVendor().getName());
 			statusDistributeList.add(versionDistributeDetail);
 		}

@@ -32,10 +32,12 @@ Ext.define('Eway.view.monitor.device.View',{
 					region : 'center',
 					xtype : 'panel',
 					layout : 'card',
-					activeItem : 3,
+					activeItem : 1,
 					itemId : 'card_itemId',
 					tbar : [
-						'订阅条件:南京分行&nbsp;0000111&nbsp;运行状态[正常服务|客户交易]&nbsp;模块状态[故障]&nbsp;钞箱状态[正常|钞少]&nbsp;网络状态[网络正常]'
+						Eway.locale.monitor.devMonitor.monitorState+':', {
+							xtype : 'label'
+						}
 					],
 					dockedItems: [ {
 						
@@ -53,18 +55,46 @@ Ext.define('Eway.view.monitor.device.View',{
 					}, {
 						
 						// 矩形方式
-						name : 'matrix',
 						xtype : 'panel',
+						itemId : 'martrixPanel',
 						autoScroll : true,
-						itemId : 'dataview',
 						items : {
+							name : 'matrix',
+							itemId : 'dataview',
 							xtype : 'monitor_device_showtype_dataviewgrid',
-							store : 'dataViewStore'
+							store : dataViewStore
 						},
 						bbar : Ext.create('Ext.PagingToolbar', {
 							store : dataViewStore,
 							displayInfo : true,
-							displayMsg : Eway.locale.tip.displayMessage
+							displayMsg : Eway.locale.tip.displayMessage,
+							items : ['-', Eway.locale.tip.formatPageBfMsg, {
+							    xtype : 'combobox',
+							    name: 'pagesize',
+						        hiddenName: 'pagesize',
+						        store: new Ext.data.ArrayStore({
+						            fields: ['text', 'value'],
+						            data: [['25', 25], ['50', 50],['100', 100], ['200', 200]]
+						        }),
+						        valueField : 'value',
+						        displayField : 'text',
+						        value : 25,
+						        width: 60,
+						        editable : false,
+						        listeners : {
+							        change : function( This, newValue, oldValue, eOpts ) {
+			        				    var pagingToolbar = This.up('pagingtoolbar');
+			
+			        				    var itemsPerPage = parseInt(newValue);//更改全局变量itemsPerPage
+			
+			        				    var store = pagingToolbar.getStore();
+			
+			        				    store.pageSize = itemsPerPage;//设置store的pageSize，可以将工具栏与查询的数据同步。
+			
+			        				    store.loadPage(1);//显示第一页
+							        }
+							    }
+							}, Eway.locale.tip.formatPageAfMsg]
 						})
 					}, {
 						
@@ -72,12 +102,6 @@ Ext.define('Eway.view.monitor.device.View',{
 						itemId : 'box',
 						name : 'box',
 						xtype : 'monitor_device_showtype_boxgrid'
-					} , {
-						
-						//　全局模式
-						itemId : 'summary',
-						name : 'summary',
-						xtype : 'monitor_view'
 					} ]
 				} ]
 			} ],
@@ -138,18 +162,11 @@ Ext.define('Eway.view.monitor.device.View',{
 			return;
 		}
 		var cardp = this.down('panel[itemId="card_itemId"]');
-		//清空查询条件
-		this.resetFormFilter(cardp);
 
 		var p = cardp.getLayout().getActiveItem();
 		var store;
-		if(p.getItemId() == 'summary'){
-//			cardp.tbar.setHtml("123");
-			this.doCometd(store);
-			return;
-		}
-		else if (p.getItemId() == 'dataview') {
-			
+
+		if (p.getItemId() == 'martrixPanel') {
 			store = p.down('monitor_device_showtype_dataviewgrid').getStore();
 			
 		} else {
@@ -162,15 +179,18 @@ Ext.define('Eway.view.monitor.device.View',{
 		});
 		this.doCometd(store);
 	},
-
-	//激活页面的时候，清空查询条件
-	resetFormFilter : function(panel) {
-//		var numberField = panel.down('textfield[action="number"]');
-//		numberField.setValue(120);
-//		var deviceCodeField = panel.down('textfield[action="deviceNumber"]');
-//		deviceCodeField.setValue(null);
-//		var common_orgComboOrgTree = panel.down("common_orgComboOrgTree");
-//		common_orgComboOrgTree.clearValue();
+	
+	//订阅
+	publish : function(params, store){
+		var me = this;
+		var devices = "";
+		store.each(function(record) {
+			devices = devices+"/"+record.get('code');
+		});
+		var params = this.getParams();
+		params.limit = store.pageSize;
+		params.devices = devices.slice(1);
+		Ext.Cometd.publish('/service/status/join', params);
 	},
 
 	//握手成功后加载数据，加载数据的时候订阅
@@ -186,20 +206,18 @@ Ext.define('Eway.view.monitor.device.View',{
 	},
 
 	//握手
-	_metaHandshake : function(message,store){
+	_metaHandshake : function(message, store){
 		if(message.successful){
 			var isDis = Ext.Cometd.isDisconnected();
 			if(!isDis){
 				this._connectionInitalized();
-				var numberField = this.down('textfield[action="number"]');
-				var limitP = this.getPageSize();
+				var filterNameField = this.down('combobox[action="filterName"]');
+				var filterId = filterNameField.getValue();
 				store.load({
 					params : {
-						startP : 0 ,
-						limitP : limitP,
-						userId : test_userId,
-						filterUserId : ewayUser.getId(),
-						orgId: ewayUser.getOrgId()
+						userId: ewayUser.getId(),
+						orgId: ewayUser.getOrgId(),
+						filterId: filterId
 					}
 				});
 			}
@@ -213,7 +231,9 @@ Ext.define('Eway.view.monitor.device.View',{
 		if(this.config._deviceMartixSub){
 			Ext.Cometd.removeListener(this.config._deviceMartixSub);
 		}
-		this.config._deviceMartixSub = Ext.Cometd.addListener('/service/status/join',Ext.bind(this._receive,this));
+//		this.config._deviceMartixSub = Ext.Cometd.addListener('/service/status/join',Ext.bind(this._receive,this));
+		
+		this.config._deviceMartixSub = Ext.Cometd.subscribe('/service/status/join', this, this._receive);
 	},
 
 	_receive : function(message){
@@ -225,7 +245,7 @@ Ext.define('Eway.view.monitor.device.View',{
 		if(itemId == 'list' || itemId == 'box'){
 			this.doGridPanel(currentPanel,object);
 		}
-		else if(itemId == 'dataview'){
+		else if (itemId == 'martrixPanel') {
 			this.doDataViewPanel(currentPanel,object);
 		}/*
 		else if(itemId == 'mapview') {
@@ -234,10 +254,13 @@ Ext.define('Eway.view.monitor.device.View',{
 	},
 
 	doDataViewPanel : function(view,object){
-		var store = view.getStore();
+//		var store = view.getStore();
+		var store = view.down('monitor_device_showtype_dataviewgrid').getStore();
+		
 		var action = object.method;
-		if(action == 'ADD'){
-			var record = Ext.ModelManager.create(object,'Eway.model.monitor.device.DeviceMonitorList');
+		if(action == 'ADD'){                             
+//			var record = Ext.ModelManager.create(object,'Eway.model.monitor.device.DeviceMonitorList');
+			var record = Ext.data.Record.create(object);
 			store.add(record);
 		}
 		else if(action == 'UPDATE'){
@@ -262,10 +285,13 @@ Ext.define('Eway.view.monitor.device.View',{
 	},
 
 	doGridPanel : function(gridpanel,object){
+		debugger;
 		var store = gridpanel.getStore();
 		var action = object.method;
 		if(action == 'ADD'){
-			var record = Ext.ModelManager.create(object,'Eway.model.monitor.device.DataView');
+			// Ext5.1没有Ext.ModelManager.create()API了，用下面方法实现
+//			var record = Ext.ModelManager.create(object,'Eway.model.monitor.device.DataView');
+			var record = Ext.data.Record.create(object);
 			store.add(record);
 		}
 		else if(action == 'UPDATE'){
@@ -292,70 +318,49 @@ Ext.define('Eway.view.monitor.device.View',{
 	},
 
 	changeFilterLoad : function(panel,params){
-//		var store = panel.getStore();
-
 		var store;
-		if (panel.getItemId() == 'dataview') {
-			
+		if (panel.getItemId() == 'martrixPanel') {
 			store = panel.down('monitor_device_showtype_dataviewgrid').getStore();
-			
 		} else {
 			store = panel.getStore();
 		}
-		
-		
-		
 		var me = this;
-		store.on('load',Ext.Function.pass(this.publish,[params],me),this,{
-			single : true
-		});
+		
 		var tempParams = this.getParams(params);
 		if (!tempParams) {
 			return;
 		}
+		
+		store.setUrlParamsByObject(tempParams);
 		store.load({
-			method : 'POST',
-			params : tempParams
+			method : 'POST'
+		});
+		
+		store.on('load',Ext.Function.pass(this.publish,[tempParams],me),this,{
+			single : true
 		});
 	},
 
 	getParams : function(params) {
 		var tempParams = {};
-		for(var i in params){
-			if((typeof params[i]) == 'object' ){
-				for(var j in params[i]){
-					tempParams[j] = params[i][j];
-				}
-			}
-			else {
-				tempParams[i] = params[i];
-			}
+		
+		tempParams.userId = ewayUser.getId();
+		tempParams.orgId = ewayUser.getOrgId();
+		
+		// 设备号
+		var deviceCodeField = this.down('textfield[action="deviceNumber"]');
+		var deviceCode = deviceCodeField.getValue();
+		if(deviceCode) {
+			tempParams.deviceCode = deviceCode;
 		}
-		tempParams.userId = test_userId;
-		tempParams.filterUserId = ewayUser.getId();
-
-		if(!tempParams.startP){
-			tempParams.startP = 0 ;
-			tempParams.limitP = this.getPageSize();
-		}
-		if(!tempParams.orgId){
-			tempParams.orgId = ewayUser.getOrgId();
+		
+		// 监控条件
+		var filterNameField = this.down('combobox[action="filterName"]');
+		var filterId = filterNameField.getValue();
+		if(filterId) {
+			tempParams.filterId = filterId;
 		}
 		return tempParams;
-	},
-
-	getPageSize : function(){
-//		var numberField = this.down('textfield[action="number"]');
-//		var limitP =numberField.getValue();
-//
-//		if(!Ext.isNumeric(limitP) || limitP<=0 || limitP>1000){
-//			limitP = 120;
-//			numberField.setValue(limitP);
-//		}
-//		return limitP;
-
-
-		return 120;
 	},
 
 	loadPanelData : function(panel,store){
@@ -380,48 +385,6 @@ Ext.define('Eway.view.monitor.device.View',{
 		Ext.Cometd.disconnect();
 	},
 
-	//订阅
-	publish : function(params,store){
-		var me = this;
-		if(((typeof params) == 'string') && (params == '')){
-			params = undefined;
-		}
-		var number = this.getPageSize();
-		var devices = "";
-		/**上一页，下一页**/
-//		var totalCount = store.totalCount;
-//		this.setTotal(totalCount);
-//		if(params && params.page){
-//			this.setCurrentPage(params.page);
-//		}else {
-//			this.setCurrentPage(1);
-//			this.down('button[action="previous"]').disable();
-//			if(this.getTotal() <= number){
-//				this.down('button[action="next"]').disable();
-//			}else {
-//				this.down('button[action="next"]').enable();
-//			}
-//		}
-
-		store.each(function(record){
-			devices = devices+"/"+record.get('code');
-		});
-
-		var params = params || {};
-		params.userId = test_userId;
-		params.devices = devices.slice(1);
-		if(!params.number){
-			params.number = number;
-		}
-		if(!params.orgId){
-			params.orgId = ewayUser.getOrgId();
-		}
-		if(!params.filterUserId){
-			params.filterUserId = ewayUser.getId();
-		}
-		Ext.Cometd.publish('/service/status/join',params);
-	},
-	
 	getRunPath : function(status) {
 		var path = "resources/images/monitor/";
 		if(status == 'Healthy') {//正常服务

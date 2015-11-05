@@ -20,10 +20,10 @@ import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.atm.IAtmType;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceListener;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IPerson;
@@ -105,7 +105,7 @@ public class DeviceService implements IDeviceService {
 			each.beforeDelete(device);
 		}
 
-		if (device.getStatus() == com.yihuacomputer.fish.api.device.Status.OPENING) {
+		if (device.getStatus() == DevStatus.OPEN) {
 			// 设备启用时，不能删除
 			throw new ServiceException(messageSource.getMessage("exception.device.alreadyUsed", null, FishCfg.locale));
 		}
@@ -210,13 +210,13 @@ public class DeviceService implements IDeviceService {
 
 	@Override
 	public long getOpeningDeviceTotal() {
-		Object object = dao.findUniqueByHql("select count(t.id) from Device t where t.status = ?", Status.OPENING);
+		Object object = dao.findUniqueByHql("select count(t.id) from Device t where t.status = ?", DevStatus.OPEN);
 		return Long.parseLong(object.toString());
 	}
 
 	@Override
 	public long getOpeningDeviceTotal(IOrganization org) {
-		Object object = dao.findUniqueByHql("select count(t.id) from Device t where t.status = ? and t.organization.orgFlag like ?", Status.OPENING, "%" + org.getOrgFlag());
+		Object object = dao.findUniqueByHql("select count(t.id) from Device t where t.status = ? and t.organization.orgFlag like ?", DevStatus.OPEN, "%" + org.getOrgFlag());
 		return Long.parseLong(object.toString());
 	}
 

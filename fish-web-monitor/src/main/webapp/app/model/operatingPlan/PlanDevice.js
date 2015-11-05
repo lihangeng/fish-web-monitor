@@ -5,10 +5,10 @@ Ext.define('Eway.model.operatingPlan.PlanDevice', {
     proxy: {
         type: 'rest',
         timeout : 60000,
-        url : 'api/srcb/plan/link',
+        url : 'api/plan/link',
         reader: {
             type: 'json',
-            root: 'data'
+            rootProperty: 'data'
         }
     }
 });

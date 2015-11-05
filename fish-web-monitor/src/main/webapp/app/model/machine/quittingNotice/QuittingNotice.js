@@ -2,7 +2,7 @@
 Ext.define('Eway.model.machine.quittingNotice.QuittingNotice', {
 	extend: 'Ext.data.Model',
 	fields: ['id', 'deviceCode',
-		{name:'stopTime',type:'string'},{name:'openTime',type:'string'},{name:'setTime',type:'string'},
+		{name:'stopTime'},{name:'openTime'},{name:'setTime'},
 		'devStatus','stopType','stopReason','responsibilityName'],
 		
     idProperty : 'id',

@@ -7,6 +7,7 @@ Ext.define('Eway.view.advert.Grid', {
 	store: 'advert.Advert',
 	border : false,
 
+	height:400,
 	initComponent: function() {
 		var me = this;
 		Ext.apply(this, {

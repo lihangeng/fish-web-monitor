@@ -5,7 +5,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 
 	requires: ['Eway.lib.Util'],
 
-	title: '更改方案',
+	title: Eway.locale.report.plan.changePlan,
 	modal: true,
 	constrainHeader : true,
 	width : 800,
@@ -41,14 +41,14 @@ Ext.define('Eway.view.operatingPlan.Update', {
 							style : 'padding-top:10px'
 						},
 						items : [ {
-							fieldLabel : '<font color="red">*</font> 名称',
+							fieldLabel : '<font color="red">*</font> '+Eway.locale.agent.remote.loading,
 							xtype : 'textfield',
 							name : 'name',
 							maxLength : 30,
 							allowBlank : false
 						},{
 							xtype : 'textarea',
-						    fieldLabel : '备注',
+						    fieldLabel : Eway.locale.version.View.remark,
 						    name : 'desc',
 						    autoScroll : true,
 							maxLength :30,
@@ -63,7 +63,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 							style : 'padding-top:10px'
 						},
 						items : [ {
-							fieldLabel : '<font color="red">*</font>有效开始日期',
+							fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.startDate,
 							xtype : 'datefield',
 							name : 'startDate',
 							format : 'Y-m-d',
@@ -83,7 +83,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 								}
 							}
 						},{
-							fieldLabel : '<font color="red">*</font>有效结束日期',
+							fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.endDate,
 							xtype : 'datefield',
 							name : 'endDate',
 							format : 'Y-m-d',
@@ -103,21 +103,21 @@ Ext.define('Eway.view.operatingPlan.Update', {
 								}
 							}
 						},{
-							fieldLabel : '<font color="red">*</font> 类型',
+							fieldLabel : '<font color="red">*</font>'+Eway.locale.commen.type,
 							xtype : 'radiogroup',
 							allowBlank : false,
 							items : [ {
-								boxLabel : '星期',
+								boxLabel : Eway.locale.report.openplan.week,
 								name : 'planType',
 								checked : true,
 								inputValue : 'WEEK'
 							}, {
-								boxLabel : '日期',
+								boxLabel : Eway.locale.report.openplan.dates,
 								name : 'planType',
 								inputValue : 'DATE'
 							}]
 						},{
-							fieldLabel : '<font color="red">*</font> 状态',
+							fieldLabel : '<font color="red">*</font>'+Eway.locale.commen.type,
 							xtype : 'field_planState',
 							name : 'planState',
 							value :'Normal',
@@ -132,7 +132,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 					height : 350,
 					itemId: 'cardPanelId',
 					items : [ {
-						title : '方案详情（星期）',
+						title : Eway.locale.tip.planWeek,
 						layout : 'column',
 						border : false,
 						items : [ {
@@ -156,24 +156,24 @@ Ext.define('Eway.view.operatingPlan.Update', {
 										style : 'padding-top:10px'
 									},
 									items : [ {
-										fieldLabel : '<font color="red">*</font> 开机/关机',
+										fieldLabel : '<font color="red">*</font>'+ Eway.locale.machine.device.person.openClose,
 										xtype : 'radiogroup',
 										name : 'openClose',
 										allowBlank : false,
 										columns: 1,
 										items : [ {
-											boxLabel : '开机',
+											boxLabel : Eway.locale.machine.device.person.Open,
 											name : 'openClose',
 											checked : true,
 											inputValue : 'Open'
 										}, {
-											boxLabel : '关机',
+											boxLabel : Eway.locale.machine.device.person.Close,
 											name : 'openClose',
 											inputValue : 'Close'
 										}]
 									},{
 										xtype : 'fieldcontainer',
-										fieldLabel : '开始时间',
+										fieldLabel :Eway.locale.system.startDate,
 										layout : 'hbox',
 										defaults : {
 											hideLabel : true
@@ -191,7 +191,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 											width : 45
 										}, {
 											xtype : 'displayfield',
-											value : '时'
+											value : Eway.locale.advert.hourDisplay
 
 										}, {
 											xtype : 'combobox',
@@ -206,7 +206,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 											width : 45
 										}, {
 											xtype : 'displayfield',
-											value : '分'
+											value : Eway.locale.advert.minuteDisplay
 										}, {
 											xtype : 'combobox',
 											fieldLabel : 'second',
@@ -220,7 +220,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 											width : 45
 										}, {
 											xtype : 'displayfield',
-											value : '秒'
+											value : Eway.locale.advert.secondeDisplay
 										} ]
 									}]
 								}, {
@@ -233,25 +233,25 @@ Ext.define('Eway.view.operatingPlan.Update', {
 										style : 'padding-top:10px'
 									},
 									items : [ {
-										fieldLabel : '<font color="red">*</font> 星期',
+										fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.device.person.week,
 										xtype : 'checkboxgroup',
 										allowBlank : false,
 										itemId: 'checkboxgroupId',
 										msgTarget:'qtip',
-										blankText :'请在组内至少选中一项',
+										blankText :Eway.locale.report.openplan.lastOneGroup,
 										columns: 4,
 							            items: [
-						                    {boxLabel: '一', name: 'Mon', checked: true},
-						                    {boxLabel: '二', name: 'Tues'},
-						                    {boxLabel: '三', name: 'Wed'},
-						                    {boxLabel: '四', name: 'Thur'},
-						                    {boxLabel: '五', name: 'Fri'},
-						                    {boxLabel: '六', name: 'Sat'},
-						                    {boxLabel: '日', name: 'Sun'}
+						                    {boxLabel: Eway.locale.report.openplan.Mon, name: 'Mon', checked: true},
+						                    {boxLabel: Eway.locale.report.openplan.Tues, name: 'Tues'},
+						                    {boxLabel: Eway.locale.report.openplan.Wed, name: 'Wed'},
+						                    {boxLabel: Eway.locale.report.openplan.Thur, name: 'Thur'},
+						                    {boxLabel: Eway.locale.report.openplan.Fri, name: 'Fri'},
+						                    {boxLabel: Eway.locale.report.openplan.Sat, name: 'Sat'},
+						                    {boxLabel: Eway.locale.report.openplan.Sun, name: 'Sun'}
 							              ]
 									}, {
 										xtype : 'fieldcontainer',
-										fieldLabel : '结束时间',
+										fieldLabel : Eway.locale.advert.endTime,
 										layout : 'hbox',
 										defaults : {
 											hideLabel : true
@@ -269,7 +269,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 											width : 45
 										}, {
 											xtype : 'displayfield',
-											value : '时'
+											value : Eway.locale.advert.hourDisplay
 										}, {
 											xtype : 'combobox',
 											fieldLabel : 'minute',
@@ -283,7 +283,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 											width : 45
 										}, {
 											xtype : 'displayfield',
-											value : '分'
+											value : Eway.locale.advert.minuteDisplay
 										}, {
 											xtype : 'combobox',
 											fieldLabel : 'second',
@@ -297,21 +297,21 @@ Ext.define('Eway.view.operatingPlan.Update', {
 											width : 45
 										}, {
 											xtype : 'displayfield',
-											value : '秒'
+											value : Eway.locale.advert.secondeDisplay
 										} ]
 									} ]
 								} ],
 								fbar: [{
-									text: '添加',
+									text: Eway.locale.card.add,
 									iconCls :'sureBtn',
 									action: 'add'
 								},{
-									text: '删除',
+									text: Eway.locale.card.dell,
 									iconCls :'deleteBtn',
 									action: 'remove'
 								}]
 							} ,{
-								title : '星期方案详细列表',
+								title : Eway.locale.report.openplan.lanDetailWeek,
 								itemId : 'weekPlanInfoID',
 								height : 180,
 								width : 730,
@@ -320,7 +320,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 							}]
 						} ]
 					}, {
-						title : '方案详情（日期）',
+						title : Eway.locale.tip.planDate,
 						layout : 'column',
 						border : false,
 							items : [ {
@@ -344,17 +344,17 @@ Ext.define('Eway.view.operatingPlan.Update', {
 										style : 'padding-top:10px'
 									},
 									items : [ {
-										fieldLabel : '<font color="red">*</font> 开机/关机',
+										fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.device.person.openClose ,
 										xtype : 'radiogroup',
 										name : 'openClose',
 										allowBlank : false,
 										items : [ {
-											boxLabel : '开机',
+											boxLabel :Eway.locale.machine.device.person.Open,
 											name : 'openClose',
 											checked : true,
 											inputValue : 'Open'
 										}, {
-											boxLabel : '关机',
+											boxLabel : Eway.locale.machine.device.person.Close,
 											name : 'openClose',
 											inputValue : 'Close'
 										}]
@@ -370,7 +370,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 									},
 									items : [ {
 										xtype : 'fieldcontainer',
-										fieldLabel : '开始时间',
+										fieldLabel : Eway.locale.system.startDate,
 										layout : 'hbox',
 										defaults : {
 											hideLabel : true
@@ -388,7 +388,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 											width : 45
 										}, {
 											xtype : 'displayfield',
-											value : '时'
+											value : Eway.locale.advert.hourDisplay
 
 										}, {
 											xtype : 'combobox',
@@ -403,7 +403,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 											width : 45
 										}, {
 											xtype : 'displayfield',
-											value : '分'
+											value : Eway.locale.advert.minuteDisplay
 										}, {
 											xtype : 'combobox',
 											fieldLabel : 'second',
@@ -417,11 +417,11 @@ Ext.define('Eway.view.operatingPlan.Update', {
 											width : 45
 										}, {
 											xtype : 'displayfield',
-											value : '秒'
+											value : Eway.locale.advert.secondeDisplay
 										} ]
 									}, {
 										xtype : 'fieldcontainer',
-										fieldLabel : '结束时间',
+										fieldLabel : Eway.locale.commen.endDataTime,
 										layout : 'hbox',
 										defaults : {
 											hideLabel : true
@@ -439,7 +439,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 											width : 45
 										}, {
 											xtype : 'displayfield',
-											value : '时'
+											value : Eway.locale.advert.hourDisplay
 										}, {
 											xtype : 'combobox',
 											fieldLabel : 'minute',
@@ -453,7 +453,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 											width : 45
 										}, {
 											xtype : 'displayfield',
-											value : '分'
+											value : Eway.locale.advert.minuteDisplay
 										}, {
 											xtype : 'combobox',
 											fieldLabel : 'second',
@@ -467,21 +467,21 @@ Ext.define('Eway.view.operatingPlan.Update', {
 											width : 45
 										}, {
 											xtype : 'displayfield',
-											value : '秒'
+											value :Eway.locale.advert.secondeDisplay
 										} ]
 									} ]
 								} ],
 								fbar: [{
-									text: '添加',
+									text: Eway.locale.card.add,
 									iconCls :'sureBtn',
 									action: 'add'
 								},{
-									text: '删除',
+									text: Eway.locale.card.dell,
 									iconCls :'deleteBtn',
 									action: 'remove'
 								}]
 							} ,{
-								title : '日期方案详细列表',
+								title : Eway.locale.report.openplan.planDetailDay,
 								height : 180,
 								itemId : 'datePlanInfoID',
 								width : 730,

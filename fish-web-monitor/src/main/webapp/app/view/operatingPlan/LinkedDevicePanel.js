@@ -4,7 +4,7 @@ Ext.define('Eway.view.operatingPlan.LinkedDevicePanel', {
 	
 	modal: true,
 	resizable: false,
-	constrainHeader: true,
+//	constrainHeader: true,
 	
 	requires: ['Eway.view.operatingPlan.LinkedDeviceFilter',
 	           'Eway.view.operatingPlan.LinkedDeviceGrid'],

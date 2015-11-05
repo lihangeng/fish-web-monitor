@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
+import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.fault.FaultStatus;
 import com.yihuacomputer.fish.api.fault.ICaseFault;
 import com.yihuacomputer.fish.api.fault.ICaseFaultService;
@@ -35,6 +37,9 @@ public class DefaultHwFaultService {
 
 	@Autowired
 	private ICaseFaultService caseFaultService;
+
+	@Autowired
+	private IDeviceService deviceService;
 
 	public static final String F_MOD = "F_MOD" ;
 
@@ -129,6 +134,12 @@ public class DefaultHwFaultService {
 			caseFaultService.closeHealthyModCase(openCaseList,DeviceMod.CIM,F_MOD);
 		}else if(cim.getStatusCim().getStatus().equals(DeviceStatus.Fatal)
 				&& DeviceStatus.Fatal.equals(hisXfsStatus.getStatusCim().getStatus())){
+			IDevice device = deviceService.get(cim.getTerminalId()) ;
+			IFaultClassify faultClassify = faultClassifyService.getFaultClassifyById(F_MOD);
+			if(device.getDevType().getDevCatalog().getNo().equals("02") && caseFaultService.hasModCaseFault(openCaseList,DeviceMod.CDM,faultClassify)){
+				logger.info("设备为存取款机，且取款模块已有故障，存款模块不创建故障");
+				return ;
+			}
 			ICaseFault caseFault = caseFaultService.make();
 			caseFault.setDevMod(DeviceMod.CIM);
 			caseFault.setAppStatus(cim.getRunStatus());

@@ -27,6 +27,7 @@ public enum RunStatus {
 	/**厂商模式维护*/
 	Vdm("RunStatus.Vdm","#CC6633"),	
 	
+	
 	/**关机*/
 	Halt("RunStatus.Halt","#000000"),
 

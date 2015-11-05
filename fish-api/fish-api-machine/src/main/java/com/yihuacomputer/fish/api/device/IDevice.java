@@ -29,9 +29,9 @@ public interface IDevice {
 
 	public void setDevType(IAtmType devType);
 
-	public Status getStatus();
+	public DevStatus getStatus();
 
-	public void setStatus(Status status);
+	public void setStatus(DevStatus status);
 
 	public IOrganization getDevService();
 
@@ -48,10 +48,6 @@ public interface IDevice {
 	public void setOrganization(IOrganization organization);
 
 	public IOrganization getOrganization();
-
-/*	public CashType getCashType();
-
-	public void setCashType(CashType cashType);*/
 
 	public SetupType getSetupType();
 
@@ -93,4 +89,8 @@ public interface IDevice {
 	public Date getInstallDate();
 
 	public void setInstallDate(Date installDate);
+	
+	
+	
+	
 }
