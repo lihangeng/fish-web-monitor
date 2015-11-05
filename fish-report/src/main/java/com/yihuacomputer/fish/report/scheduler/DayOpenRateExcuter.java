@@ -19,25 +19,27 @@ import com.yihuacomputer.fish.api.report.engine.IReportDataETL;
 public class DayOpenRateExcuter implements IReportDataETL{
 
 	private final String etlName = "SRCB_OPEN_RATE";
-	
 	@Autowired
 	private IDeviceOpenRateService openRateService;
 
 	@Autowired
 	private IExportDataETLService exportDataETLService;
 	
+	private static Log logger = LogFactory.getLog(EveryDayReportJob.class);
 	/**
 	 * 定时任务调用执行每日备份工作
 	 * @throws Exception
 	 */
 	public void reportETL(String date){		
 		String yestoday = DateUtils.getLastDate();
+		logger.info( "-----------------DayOpenRateExcuter------------");
 		openRateService.dayOpenRate(yestoday);		
 	}
 
 	@Override
 	@PostConstruct
 	public void init() {
+		System.out.println("9999999999999999999999999999");
 		exportDataETLService.addEveryDayETL(this);
 	}
 
