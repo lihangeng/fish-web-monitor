@@ -50,6 +50,11 @@ public interface ITaskService {
 	 */
 //	public List<ITask> findFailTasks(long deviceId);
 
+	/**
+	 * 增加任务
+	 * @param task
+	 * @return
+	 */
 	public ITask addTask(ITask task);
 
 	public void updateTask(ITask task);
