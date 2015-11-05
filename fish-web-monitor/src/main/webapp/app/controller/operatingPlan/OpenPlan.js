@@ -321,8 +321,6 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				});
 				if(flag){
 					var record = Ext.create( 'Eway.model.operatingPlan.OpenPlanDetail',weekDate);
-					console.log("record");
-					console.log(record);
 					infoWeekGrid.getStore().add(record);
 				}else{
 					if(alertMsg ==null){
@@ -894,7 +892,6 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 		  {
 			var info = array;
 		//	confirmButton.disabled  = true;
-			console.log(planWin);
 			var winEl = planWin.getEl();
 			winEl.mask(Eway.locale.report.openplan.linking);
 			Ext.Ajax.request({
@@ -910,17 +907,14 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 						 var field = linkingDeviceForm.findField("deviceIds");
 		                 field.setValue("");
 		                 idArray = new Array();
-		             //    console.log(field.value);
 					}else{
-<<<<<<< HEAD
+
 						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errors+Eway.locale.report.openplan.tipAddError,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
-=======
-						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errorMsg+"条关联失败，请刷新后查看！",this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
->>>>>>> refs/remotes/origin/master
+
 						 var field = linkingDeviceForm.findField("deviceIds");
 		                 field.setValue("");
 		                 idArray = new Array();
-		             //    console.log(field.value);
+
 					}
 				//	confirmButton.disabled  = false;
 					winEl.unmask();
@@ -932,7 +926,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 	                 idArray = new Array();
 	            //     confirmButton.disabled  = false;
 	                 winEl.unmask();
-	             //    console.log(field.value);
+
 				},
 				scope:this
 			});
@@ -1016,7 +1010,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					  }
 					else{
 						var records = action.result.data;
-					//	console.log(records);
+
 			    	/*	var grid = linkingDeviceGrid;
 						var store = grid.getStore();*/
 						var deviceIds = '';
@@ -1027,14 +1021,12 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			    			//	 store.add(records[i]);
 								 deviceIds =deviceIds+","+records[i].id;
 								 idArray.push(records[i].id);
-						//		 console.log(idArray);
-						//		 console.log("----"+deviceIds);
+
 			    			}
 						}
 				    var form = linkingDeviceWin.down("form[name=LinkingDeviceFilter]").getForm();
 					var deviceIdsField = form.findField("deviceIds");
 					var deviceIds =deviceIdsField.value + deviceIds;
-					console.log(deviceIds);
 					form.setValues([{id:'deviceIds', value:deviceIds}]);
 					var selectGrid = linkingDeviceWin.down('operatingPlan_linkingDeviceGrid');
 					var selectStore = selectGrid.getStore();
