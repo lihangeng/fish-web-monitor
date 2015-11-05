@@ -30,9 +30,9 @@ import com.yihuacomputer.fish.api.openplan.IOpenPlanService;
 import com.yihuacomputer.fish.api.openplan.OpenClose;
 import com.yihuacomputer.fish.api.openplan.PlanType;
 import com.yihuacomputer.fish.api.openplan.Week;
-import com.yihuacomputer.fish.api.report.IDayOpenRate;
-import com.yihuacomputer.fish.api.report.IDayOpenRateService;
-import com.yihuacomputer.fish.api.report.IDeviceOpenRateService;
+import com.yihuacomputer.fish.api.report.base.IDayOpenRate;
+import com.yihuacomputer.fish.api.report.base.IDayOpenRateService;
+import com.yihuacomputer.fish.api.report.base.IDeviceOpenRateService;
 
 @Service
 public class DeviceOpenRateService implements IDeviceOpenRateService {

@@ -3,11 +3,11 @@ package com.yihuacomputer.fish.report.base;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.yihuacomputer.fish.api.report.IDayOpenRateService;
-import com.yihuacomputer.fish.api.report.IDeviceOpenRateService;
 import com.yihuacomputer.fish.api.report.base.ICashInRptService;
+import com.yihuacomputer.fish.api.report.base.IDayOpenRateService;
 import com.yihuacomputer.fish.api.report.base.IDeviceBoxDetailRptService;
 import com.yihuacomputer.fish.api.report.base.IDeviceHardwareRptService;
+import com.yihuacomputer.fish.api.report.base.IDeviceOpenRateService;
 import com.yihuacomputer.fish.api.report.base.IDeviceRptService;
 import com.yihuacomputer.fish.api.report.base.IDeviceTypeCountRptService;
 import com.yihuacomputer.fish.api.report.base.IDeviceUseCountRptService;

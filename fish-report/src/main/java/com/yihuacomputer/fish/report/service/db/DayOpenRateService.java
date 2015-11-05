@@ -17,8 +17,8 @@ import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
-import com.yihuacomputer.fish.api.report.IDayOpenRate;
-import com.yihuacomputer.fish.api.report.IDayOpenRateService;
+import com.yihuacomputer.fish.api.report.base.IDayOpenRate;
+import com.yihuacomputer.fish.api.report.base.IDayOpenRateService;
 import com.yihuacomputer.fish.report.entity.DayOpenRate;
 
 @Service

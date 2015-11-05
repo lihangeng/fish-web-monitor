@@ -5,9 +5,8 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.fish.api.report.IDeviceOpenRateService;
+import com.yihuacomputer.fish.api.report.base.IDeviceOpenRateService;
 import com.yihuacomputer.fish.api.report.engine.IExportDataETLService;
 import com.yihuacomputer.fish.api.report.engine.IReportDataETL;
 /**
@@ -25,14 +24,12 @@ public class DayOpenRateExcuter implements IReportDataETL{
 	@Autowired
 	private IExportDataETLService exportDataETLService;
 	
-	private static Log logger = LogFactory.getLog(EveryDayReportJob.class);
 	/**
 	 * 定时任务调用执行每日备份工作
 	 * @throws Exception
 	 */
 	public void reportETL(String date){		
 		String yestoday = DateUtils.getLastDate();
-		logger.info( "-----------------DayOpenRateExcuter------------");
 		openRateService.dayOpenRate(yestoday);		
 	}
 
