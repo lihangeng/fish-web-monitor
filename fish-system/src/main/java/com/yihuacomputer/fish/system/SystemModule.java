@@ -27,6 +27,7 @@ import com.yihuacomputer.fish.permission.service.db.PermissionEntityInjector;
 import com.yihuacomputer.fish.permission.service.db.PermissionService;
 import com.yihuacomputer.fish.permission.service.db.RoleService;
 import com.yihuacomputer.fish.person.interceptor.PersonCoreEntityInjector;
+import com.yihuacomputer.fish.person.service.api.IDomainUserService;
 import com.yihuacomputer.fish.person.service.db.SrcbDevicePersonRelation;
 import com.yihuacomputer.fish.person.service.db.OrganizationService;
 import com.yihuacomputer.fish.person.service.db.PersonJobService;
@@ -91,6 +92,10 @@ public class SystemModule {
 		return new UserService();
 	}
 
+	public @Bean IDomainUserService domainUserService() {
+		return new UserService();
+	}
+	
 	public @Bean IUserLogService userLogService() {
 		return new UserLogService();
 	}
