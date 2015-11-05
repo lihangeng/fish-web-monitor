@@ -64,10 +64,6 @@ Ext.define('Eway.view.operatingPlan.GridForDevice', {
 				width : 120,
 				dataIndex : 'endDate'
 			}, {
-				header : Eway.locale.version.View.remark,
-				dataIndex : 'desc',
-				flex : 1
-			}, {
 				header : Eway.locale.report.openplan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 160,
