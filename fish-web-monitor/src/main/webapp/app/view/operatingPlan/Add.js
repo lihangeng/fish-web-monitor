@@ -308,12 +308,12 @@ Ext.define('Eway.view.operatingPlan.Add',{
 									} ]
 								} ],
 								fbar: [{
-									text: Eway.locale.button.add,
-									iconCls :'sureBtn',
+									text: Eway.locale.card.add,
+									glyph : 0xf067,
 									action: 'add'
 								},{
-									text: Eway.locale.button.remove,
-									iconCls :'deleteBtn',
+									text: Eway.locale.card.dell,
+									glyph : 0xf014,
 									action: 'remove'
 								}]
 							} ,{
@@ -479,12 +479,12 @@ Ext.define('Eway.view.operatingPlan.Add',{
 									} ]
 								} ],
 								fbar: [{
-									text: Eway.locale.button.add,
-									iconCls :'sureBtn',
+									text: Eway.locale.card.add,
+									glyph : 0xf067,
 									action: 'add'
 								},{
-									text: Eway.locale.button.remove,
-									iconCls :'deleteBtn',
+									text: Eway.locale.card.dell,
+									glyph : 0xf014,
 									action: 'remove'
 								}]
 							} ,{

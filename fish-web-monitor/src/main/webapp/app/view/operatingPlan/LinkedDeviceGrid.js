@@ -25,11 +25,11 @@ Ext.define('Eway.view.operatingPlan.LinkedDeviceGrid', {
 				xtype:'tbtext'
 			},'->', {
 				text: Eway.locale.button.search,
-				iconCls :'queryBtn',
+				glyph : 0xf002,
 				action: 'query'
 			}, {
 				text: Eway.locale.button.unlink,
-				iconCls :'deleteBtn',
+				glyph : 0xf014,
 				action: 'unlink'
 			}],
 			columns : [ {

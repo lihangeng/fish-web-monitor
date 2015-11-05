@@ -13,12 +13,12 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceFilter',{
 				columnWidth : .5,
 				defaults : {
 					labelAlign : 'right',
-					labelWidth : 70
+					labelWidth : 60
 				},
 				items : [ {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '机构',
-					emptyText : '--请选择--',
+					fieldLabel : Eway.locale.refs.orgName,
+					emptyText : Eway.locale.combox.select,
 					name : 'orgName',
 					hiddenValue : 'orgId',
 					editable : true,
@@ -38,13 +38,13 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceFilter',{
 					fieldLabel : 'IP',
 					name : 'ip',
 				    regex:/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
-				    regexText : '请输入正确的IP地址'
+				    regexText : Eway.locale.vtype.ip
 				}]
 			}, {
 				columnWidth : .5,
 				defaults : {
 					labelAlign : 'right',
-					labelWidth : 80
+					labelWidth : 60
 				},
 				items : [  {
 					xtype : 'textfield',
