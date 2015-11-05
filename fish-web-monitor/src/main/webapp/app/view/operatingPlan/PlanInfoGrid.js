@@ -17,50 +17,50 @@ Ext.define('Eway.view.operatingPlan.PlanInfoGrid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '星期',
+				header : Eway.locale.machine.device.person.week,
 				flex : 1,
 				dataIndex : 'week',
 				renderer: function(value,metadata,record){
 					if(value=="Mon"){
-	                 	 return "星期一";
+	                 	 return Eway.locale.machine.device.person.Mon;
 	                }
 					else if(value=="Tues"){
-						 return "星期二";
+						 return Eway.locale.machine.device.person.Tues;
 	                }
 					else if(value=="Wed"){
-						return "星期三";
+						return Eway.locale.machine.device.person.Wed;
 					}
 					else if(value=="Thur"){
-						return "星期四";
+						return Eway.locale.machine.device.person.Thur;
 					}
 					else if(value=="Fri"){
-						return "星期五";
+						return Eway.locale.machine.device.person.Fri;
 					}
 					else if(value=="Sat"){
-						return "星期六";
+						return Eway.locale.machine.device.person.Sat;
 					}
 					else if(value=="Sun"){
-						return "星期日";
+						return Eway.locale.machine.device.person.Sun;
 					}
 				}
 			},{
-				header : '开机/关机',
+				header : Eway.locale.machine.device.person.openClose,
 				flex : 1,
 				dataIndex : 'openClose',
 				renderer: function(value,metadata,record){
 					if(value=="Open"){
-	                 	 return "开机";
+	                 	 return Eway.locale.machine.device.person.Open;
 	                }
 					else if(value=="Close"){
-						 return "关机";
+						 return Eway.locale.machine.device.person.Close;
 	                }
 				}
 			},{
-				header : '开始时间',
+				header : Eway.locale.report.plan.startDate,
 				flex : 1,
 				dataIndex : 'startTime'
 			},{
-				header : '结束时间',
+				header : Eway.locale.report.plan.endDate,
 				flex : 1,
 				dataIndex : 'endTime'
 			}]
