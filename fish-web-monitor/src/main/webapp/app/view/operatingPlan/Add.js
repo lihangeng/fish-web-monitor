@@ -69,6 +69,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 							format : 'Y-m-d',
 							allowBlank : false,
 							editable : false,
+							value:Ext.Date.format(Ext.Date.add(new Date(), Ext.Date.YEAR, 10),'Y-m-d'),
 							vtype : 'daterange',
 							startDateField : 'startDate',
 							listeners : {
