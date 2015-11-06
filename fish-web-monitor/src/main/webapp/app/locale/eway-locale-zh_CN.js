@@ -1037,7 +1037,7 @@ Ext.override(Eway,{
 				userListTitle:'人员列表',//Eway.locale.person.user.userListTitle
 				updateUserTitle:'更改用户角色（使用拖拽的方式）',//Eway.locale.person.user.updateUserTitle
 				roleCanBeAdd:'可添加的角色列表',//Eway.locale.person.user.roleCanBeAdd
-				roleAlreadyBeAdd:'可添加的角色列表',//Eway.locale.person.user.roleAlreadyBeAdd
+				roleAlreadyBeAdd:'已添加的角色列表',//Eway.locale.person.user.roleAlreadyBeAdd
 				operCode:'操作人编号',//Eway.locale.person.user.operCode
 				operName:'操作人姓名',//Eway.locale.person.user.operName
 				operTime:'操作时间',//Eway.locale.person.user.operTime
