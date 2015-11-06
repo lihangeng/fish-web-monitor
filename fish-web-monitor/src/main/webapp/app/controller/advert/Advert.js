@@ -385,7 +385,7 @@ Ext.define('Eway.controller.advert.Advert', {
 				form.findField("versionType").setValue(record.get("versionType"));
 				form.findField("versionNo").setValue(record.get("versionNo"));
 				form.findField("serverPath").setValue(record.get("versionFile"));
-
+				win.down("radiogroup").on({change:this.setCheckBoxModel, scope: this});
 			}else{
 				Eway.alert(Eway.locale.msg.downloadFailForNoVersion);
 			}
@@ -394,7 +394,20 @@ Ext.define('Eway.controller.advert.Advert', {
 			Eway.alert(Eway.locale.msg.chooseAdvert);
 		}
 	},
-
+	setCheckBoxModel:function( _this, newValue, oldValue, eOpts ){
+		var grid = this.getDownAdvert().down("version_download_multiselectableDeviceGrid");
+		if(newValue.allDevice=="true"){
+			grid.selModel.deselectAll();
+			var linkedGrid = this.getDownAdvert().down("version_download_linkedDeviceGrid");
+			linkedGrid.getStore().removeAll();
+			this.getDownAdvert().down("hidden[name='deviceIds']").setValue("");
+			linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo0 + linkedGrid.getStore().getCount() + Eway.locale.version.selectDeviceInfo1);
+			grid.selModel.setLocked(true);
+		}
+		else{
+			grid.selModel.setLocked(false);
+		}
+	},
 	//选择页面显示记录数
 	onPageSizeChange:function(combo,newValue){
 		var grid = combo.up("version_download_multiselectableDeviceGrid");
