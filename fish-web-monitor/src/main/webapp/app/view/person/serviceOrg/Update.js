@@ -67,7 +67,7 @@ Ext.define('Eway.view.person.serviceOrg.Update', {
 					name :'zip',
 					regex: /^[\d]{6}$/,
 					regexText:Eway.locale.vtype.zip,
-			        hideTrigger: true,
+			        hideTrigger: false,
 			        keyNavEnabled: false,
 			        mouseWheelEnabled: false
 				},{
