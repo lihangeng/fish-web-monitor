@@ -87,7 +87,7 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 				logger.warn("设备不存在");
 				continue;
 			}
-			if (device.getStatus().ordinal()==DevStatus.DISABLED.ordinal()) {
+			if (device.getStatus().equals(DevStatus.DISABLED) ||device.getStatus().equals(DevStatus.UNOPEN) || device.getStatus().equals(DevStatus.SCRAPPED)) {
 				logger.warn("设备已停用");
 				continue;
 			}

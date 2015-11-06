@@ -119,7 +119,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			var record = sm.getLastSelected();
 			var newFile = record.get("name");
 			Ext.Msg.confirm({
-			    title: Eway.locale.tip.remind.,
+			    title: Eway.locale.tip.remind,
 			    msg: Eway.locale.agent.remote.confirmDelete+'['+newFile+']?',
 			    width: 300,
 	            modal:true,
@@ -177,7 +177,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			var record = sm.getLastSelected();
 			var newFile = record.get("name");
 			Ext.Msg.confirm({
-			    title: Eway.locale.tip.remind.,
+			    title: Eway.locale.tip.remind,
 			    msg: Eway.locale.agent.remote.confirmExecute+'['+newFile+']?',
 			    width: 300,
 	            modal:true,
@@ -336,7 +336,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			  if(form.isValid()){
 		   		 if(i<store.getCount()){
 			  		 Ext.MessageBox.show({
-						title : Eway.locale.tip.remind.,
+						title : Eway.locale.tip.remind,
 						msg : Eway.locale.agent.remote.fileExist,
 						modal : true,
 						fn : function callBack(id){

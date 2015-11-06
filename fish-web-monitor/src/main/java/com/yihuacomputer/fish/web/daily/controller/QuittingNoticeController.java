@@ -83,7 +83,19 @@ public class QuittingNoticeController {
 
 			if (device == null) {
 				result.put(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.addFailDev", null, FishCfg.locale));
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.addFail.noDevice", null, FishCfg.locale));
+				return result;
+			}
+			if(device.getStatus().equals(DevStatus.UNOPEN))
+			{
+				result.put(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.addFail.noOPenDevice", null, FishCfg.locale));
+				return result;
+			}
+			if(device.getStatus().equals(DevStatus.SCRAPPED))
+			{
+				result.put(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.addFail.deviceScrappend", null, FishCfg.locale));
 				return result;
 			}
 			IQuittingNotice exit_quittingNotice = quittingNoticeService
@@ -91,14 +103,13 @@ public class QuittingNoticeController {
 			if (exit_quittingNotice != null && exit_quittingNotice.getDevStatus().equals(DevStatus.DISABLED))
 			{
 				result.put(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("增加失败:已报停的设备不能重复添加报停记录.", null, FishCfg.locale));
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.addFail.deviceHavedQuitted", null, FishCfg.locale));
 				return result;
 			}
 			if (exit_quittingNotice != null && exit_quittingNotice.getDevStatus().equals(DevStatus.OPEN))
 			{
-				System.out.println(exit_quittingNotice.getDeviceCode());
 				result.put(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("增加失败:同一台设备只能添加一条未生效的报停记录.", null, FishCfg.locale));
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.addFail.exitOneQuittingNotice", null, FishCfg.locale));
 				return result;
 			}			
 			IQuittingNotice quittingNotice = quittingNoticeService.make();
@@ -126,9 +137,13 @@ public class QuittingNoticeController {
 			if (quittingNotice.getDevStatus() != null) {
 
 				// 当设备报停时,更新设备表状态
-				if (!device.getStatus().equals(form.getDevStatus())) {
-					device.setStatus(form.getDevStatus());
-					deviceService.update(device);
+				if (!device.getStatus().equals(quittingNotice.getDevStatus())) {
+					if(device.getStatus().equals(DevStatus.DISABLED) || device.getStatus().equals(DevStatus.OPEN))
+					{
+						device.setStatus(quittingNotice.getDevStatus());
+						deviceService.update(device);
+					}
+				
 				}
 
 				/* 停机开始 */
@@ -173,13 +188,14 @@ public class QuittingNoticeController {
 			if (quittingNotice.getDevStatus() != null && quittingNotice.getDevStatus().equals(DevStatus.DISABLED)) {
 
 				IDevice device = deviceService.get(quittingNotice.getDeviceCode());
-				device.setStatus(DevStatus.OPEN);
-				deviceService.update(device);
-
-				IXfsStatus status = xfsService.loadXfsStatus(quittingNotice.getDeviceCode());
-				status.setRunStatus(RunStatus.Unknown);
-				xfsService.updateXfsStatus(status);
-
+				if(device != null)
+				{
+					device.setStatus(DevStatus.OPEN);
+					deviceService.update(device);
+					IXfsStatus status = xfsService.loadXfsStatus(quittingNotice.getDeviceCode());
+					status.setRunStatus(RunStatus.Unknown);
+					xfsService.updateXfsStatus(status);
+				}				
 			}
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
@@ -210,21 +226,9 @@ public class QuittingNoticeController {
 			}
 			IQuittingNotice quittingNotice = quittingNoticeService.get(id);
 			if (quittingNotice == null) {
-				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("person.updateNotExist", null, FishCfg.locale));
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.updateNotExist", null, FishCfg.locale));
 				result.addAttribute(FishConstant.SUCCESS, false);
-			} else {
-				/* 停机结束 */
-				/*if (form.getDevStatus() != null && form.getDevStatus().equals(Status.OPENING)
-						&& !quittingNotice.getDevStatus().equals(Status.OPENING)) {
-					IXfsStatus status = xfsService.loadXfsStatus(quittingNotice.getDeviceCode());
-					status.setRunStatus(RunStatus.Unknown);
-					xfsService.updateXfsStatus(status);
-				} else if (form.getDevStatus() != null && form.getDevStatus().equals(Status.DISABLED)
-						&& !quittingNotice.getDevStatus().equals(Status.DISABLED)) {
-					IXfsStatus status = xfsService.loadXfsStatus(quittingNotice.getDeviceCode());
-					status.setRunStatus(RunStatus.StopManmade);
-					xfsService.updateXfsStatus(status);
-				}*/
+			} else {		
 				Date quittingNoticeTime = form.getStopTime();
 				Date todayTime = new Date();
 				if (quittingNoticeTime.getTime() < todayTime.getTime()) {
@@ -240,9 +244,13 @@ public class QuittingNoticeController {
 				quittingNotice.setResponsiblilityName(form.getResponsibilityName());
 				quittingNoticeService.update(quittingNotice);
 
-				if (form.getDevStatus() != null && !form.getDevStatus().equals(device.getStatus())) {
-					device.setStatus(form.getDevStatus());
-					deviceService.update(device);
+				if (quittingNotice.getDevStatus() != null && !quittingNotice.getDevStatus().equals(device.getStatus())) {
+					if(device.getStatus().equals(DevStatus.DISABLED) || device.getStatus().equals(DevStatus.OPEN))
+					{
+						device.setStatus(quittingNotice.getDevStatus());
+						deviceService.update(device);
+					}
+					
 				}
 
 				result.addAttribute(FishConstant.SUCCESS, true);
@@ -250,7 +258,7 @@ public class QuittingNoticeController {
 			}
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.updateError", null, FishCfg.locale));
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quittingNotice.updateError", null, FishCfg.locale));
 		}
 		return result;
 	}
