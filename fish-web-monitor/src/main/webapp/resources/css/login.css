@@ -8,8 +8,7 @@ padding-left:20px;
 
 .container{
 width:1296px;
-background-color:#7f7e7e;
-
+align:center;
 }
 .left{
 
@@ -64,6 +63,7 @@ input{
 color:#000000;
 height:33px;
 width:200px;
+
 
 
 }

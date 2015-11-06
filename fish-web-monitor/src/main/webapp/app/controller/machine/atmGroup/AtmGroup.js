@@ -73,14 +73,17 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 	onTabChange:function( tabPanel, newCard, oldCard, eOpts ){
 		if(newCard.name=='groupPanel'){
 			var deviceDetailPanel = this.getEwayView().down("panel[name='atmGroupDeviceDetails']");
+			deviceDetailPanel.setTitle(Eway.locale.monitor.devMonitor.atmGroupTip);
 			deviceDetailPanel.setDisabled(true);
 		}
 	},
 	showDetail:function(){
 		var deviceDetailPanel = this.getEwayView().down("panel[name='atmGroupDeviceDetails']");
-		deviceDetailPanel.setDisabled(false);
-		deviceDetailPanel.setMasked(false);
+		var groupRecord = this.getEwayView().down('atmGroup_groupGrid').getSelectionModel().getLastSelected();
+		deviceDetailPanel.setTitle(groupRecord.get("name")+Eway.locale.monitor.devMonitor.atmGroupTip);
 		this.getEwayView().down("tabpanel").setActiveItem(deviceDetailPanel);
+		deviceDetailPanel.setDisabled(false);
+		deviceDetailPanel.down("pagingtoolbar").setDisabled(false);
 		this.onDeviceQueryDevice();
 	},
 	onFirstSelect : function (){
