@@ -61,7 +61,7 @@ Ext.define('Eway.view.version.AddJob', {
     					name: 'versionId'
     				},{
     					xtype: 'displayfield',
-    					fieldLabel : Eway.locale.version.View.versionType,//'软件分类',
+    					fieldLabel : Eway.locale.version.View.versionTypeName,//'软件分类',
     					name: 'versionType',
     					width : 350
     				},{
@@ -101,7 +101,7 @@ Ext.define('Eway.view.version.AddJob', {
 		                padding: '0 0 0 30',
 		                canClear : false,
 		                editable : false,
-		                width : 245
+		                width : 260
 		            }, {
 			        	xtype:'datetimefield',
 			        	fieldLabel:Eway.locale.version.planTime,//'计划执行时间',
