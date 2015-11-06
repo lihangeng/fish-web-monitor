@@ -57,13 +57,13 @@ Ext.define('Eway.controller.agent.remote.RemoteCheckInfo',{
    	   					win.down('form').down('displayfield[name="memoryIdle"]').setValue(object.data.memoryIdle);
    	   					win.down('form').down('displayfield[name="hardDiskIdle"]').setValue('<pre class="link">'+object.data.hardDiskIdle+'</pre>');
    	   					if(object.data.checkPoint>=85){
-   	   						htmlPanel.body.update('<p><font color="#45B97C" size = "3">'+Eway.locale.agent.remote.ATMExamination+':&nbsp;&nbsp;&nbsp<font size="4">'+Eway.locale.agent.remote.excellent+'（'+object.data.checkPoint+Eway.locale.agent.remote.point'）</p>'+'<br>'); 
+   	   						htmlPanel.body.update('<p><font color="#45B97C" size = "3">'+Eway.locale.agent.remote.ATMExamination+':&nbsp;&nbsp;&nbsp<font size="4">'+Eway.locale.agent.remote.excellent+'('+object.data.checkPoint+Eway.locale.agent.remote.point+')</p>'+'<br>');
    	   					}else if(object.data.checkPoint>=70){
-   	   						htmlPanel.body.update('<p><font color="#698B22" size = "3">'+Eway.locale.agent.remote.ATMExamination+':&nbsp;&nbsp;&nbsp<font size="4">'+Eway.locale.agent.remote.fine+'（'+object.data.checkPoint+Eway.locale.agent.remote.point'）</p>'+'<br>'); 
+   	   						htmlPanel.body.update('<p><font color="#698B22" size = "3">'+Eway.locale.agent.remote.ATMExamination+':&nbsp;&nbsp;&nbsp<font size="4">'+Eway.locale.agent.remote.fine+'('+object.data.checkPoint+Eway.locale.agent.remote.point+')</p>'+'<br>');
    	   					}else if(object.data.checkPoint>=50){
-   	   						htmlPanel.body.update('<p><font color="#FF8C00" size = "3">'+Eway.locale.agent.remote.ATMExamination+':&nbsp;&nbsp;&nbsp<font size="4">'+Eway.locale.agent.remote.middle+'（'+object.data.checkPoint+Eway.locale.agent.remote.point'）</p>'+'<br>'); 
+   	   						htmlPanel.body.update('<p><font color="#FF8C00" size = "3">'+Eway.locale.agent.remote.ATMExamination+':&nbsp;&nbsp;&nbsp<font size="4">'+Eway.locale.agent.remote.middle+'('+object.data.checkPoint+Eway.locale.agent.remote.point+')</p>'+'<br>');
    	   					}else{
-   	   						htmlPanel.body.update('<p><font color="#FF0000" size = "3">'+Eway.locale.agent.remote.ATMExamination+':&nbsp;&nbsp;&nbsp<font size="4">'+Eway.locale.agent.remote.bad+'（'+object.data.checkPoint+Eway.locale.agent.remote.point'）</p>'+'<br>'); 
+   	   						htmlPanel.body.update('<p><font color="#FF0000" size = "3">'+Eway.locale.agent.remote.ATMExamination+':&nbsp;&nbsp;&nbsp<font size="4">'+Eway.locale.agent.remote.bad+'('+object.data.checkPoint+Eway.locale.agent.remote.point+')</p>'+'<br>');
    	   					}
    	   					var hardDiskIdle = win.down('displayfield[name="hardDiskIdle"]');
 						var text = hardDiskIdle.getEl().down('pre.link');

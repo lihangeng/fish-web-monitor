@@ -20,7 +20,7 @@ Ext.define('Eway.view.machine.device.Form',{
 					defaultType : 'textfield',
 					defaults : {
 						anchor : '90%',
-						style : 'padding-top:10px'
+						style : 'padding-top:5px'
 					},
 					items : [ {
 						fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.terminalId,
@@ -56,12 +56,6 @@ Ext.define('Eway.view.machine.device.Form',{
 						xtype : 'hiddenfield',
 						name : 'devServiceId'
 					},{
-						fieldLabel : Eway.locale.machine.device.serial,
-						regex : /^\w+[\w-\.]*$/,
-						regexText : Eway.locale.vtype.numberRule,
-						maxLength : 40,
-						name : 'serial'
-					},{
 						fieldLabel : Eway.locale.machine.device.virtual,
 						regex : /^\w+[\w-\.]*$/,
 						regexText : Eway.locale.vtype.numberRule,
@@ -76,7 +70,7 @@ Ext.define('Eway.view.machine.device.Form',{
 					defaults : {
 						anchor : '90%',
 						xtype : 'textfield',
-						style : 'padding-top:10px'
+						style : 'padding-top:5px'
 					},
 					items : [ {
 						style : 'padding-top:0px',
@@ -118,10 +112,10 @@ Ext.define('Eway.view.machine.device.Form',{
 					columnWidth : 1,
 					border : false,
 					layout : 'anchor',
-					defaultType : 'textfield',
+					defaultType : 'textarea',
 					defaults : {
 						anchor : '95%',
-						style : 'padding-top:10px'
+						style : 'padding-top:5px'
 					},
 					items : [ {
 						fieldLabel : Eway.locale.machine.device.devAddress,
@@ -131,37 +125,58 @@ Ext.define('Eway.view.machine.device.Form',{
 				}]
 			},{
 				xtype : 'tabpanel',
-				frame: Ext.themeModel == "new" ? true : false,
 				defaults : {
-					style : 'padding:10px 0px 10px 5px'
+					style : 'padding:5px 0px 0px 10px'
 				},
-            
 				items : [ {
 					title : Eway.locale.machine.device.basicInfo,
-					layout : 'column',
-					border : false,
-					items : [{
+					layout : 'fit',
+					items:[{
+						layout : 'column',
+						border : false,
+						items:[{
+								columnWidth : 0.5,
+								border : false,
+								layout : 'anchor',
+								items:[{
+							 		fieldLabel : Eway.locale.machine.device.installDate,
+				                    xtype : 'datefield',
+				                    format : 'Y-m-d',
+				                    name : 'installDate',
+				                    value : new Date()
+								}]
+							},{
+								columnWidth : 0.5,
+								border : false,
+								layout : 'anchor',
+								items:[{
+									xtype:'textfield',
+									fieldLabel : Eway.locale.machine.device.serial,
+									regex : /^\w+[\w-\.]*$/,
+									regexText : Eway.locale.vtype.numberRule,
+									maxLength : 40,
+									name : 'serial'
+								}]
+							}]
+					
+					},{
 						columnWidth : 1,
 						border : false,
 						layout : 'anchor',
 						defaults : {
 							anchor : '95%',
 							xtype : 'textfield',
-							style : 'padding-top:10px'
+							style : 'padding-top:5px'
 						},
-				items : [{
-					 		 fieldLabel : Eway.locale.machine.device.installDate,
-		                     xtype : 'datefield',
-		                     format : 'Y-m-d',
-		                     name : 'installDate',
-		                     value : new Date()
-						},{
+						items : [{
 							fieldLabel : Eway.locale.machine.atmGroup.cashboxLimit,
 							xtype : 'numberfield',
 							regex : /^(0|[1-9]\d{0,5})$/,
 							hideTrigger:true,
 							maxLength : 6,
-							name : 'cashboxLimit'								
+							anchor : '41%',
+							name : 'cashboxLimit',
+							value:0
 						},{  			        
 							fieldLabel : Eway.locale.machine.device.installStyle,
 							xtype : 'radiogroup',

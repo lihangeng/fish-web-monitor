@@ -68,9 +68,9 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				dataIndex : 'planType',
 				renderer : function(value, metadata, record) {
 					if (value == "DATE") {
-						return Eway.locale.report.plan.date;
+						return Eway.locale.report.openplan.date;
 					} else if (value == "WEEK") {
-						return Eway.locale.report.plan.week;
+						return Eway.locale.report.openplan.week;
 					}
 				}
 			}, {
@@ -89,11 +89,11 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				header : Eway.locale.report.openplan.closeDate,
 				width : 180,
 				dataIndex : 'endDate'
-			}, {
+			},/* {
 				header : Eway.locale.version.View.remark,
 				dataIndex : 'desc',
 				flex : 1
-			}, {
+			},*/ {
 				header : Eway.locale.report.openplan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 180,

@@ -130,11 +130,11 @@ public class DeviceController {
 		device.setDevType(atmType);
 		logger.info(request.getInstallDate());
 		request.translate(device);
-		if (request.getInstallDate() != null  && !"".equals(request.getInstallDate())&& !request.getInstallDate().equals(DateUtils.getDate(new Date()))) {
+		/*if (request.getInstallDate() != null  && !"".equals(request.getInstallDate())&& !request.getInstallDate().equals(DateUtils.getDate(new Date()))) {
 			device.setStatus(DevStatus.UNOPEN);
-		}else{
+		}else{*/
 			device.setStatus(DevStatus.OPEN);
-		}
+		/*}*/
 		Map<String, Object> result = validator(request, "add");
 		if ((Boolean) result.get("validator")) {
 			model.put(FishConstant.SUCCESS, false);
