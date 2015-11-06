@@ -36,7 +36,6 @@ public class DayOpenRateExcuter implements IReportDataETL{
 	@Override
 	@PostConstruct
 	public void init() {
-		System.out.println("9999999999999999999999999999");
 		exportDataETLService.addEveryDayETL(this);
 	}
 
