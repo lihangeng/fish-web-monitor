@@ -127,7 +127,7 @@ Ext.define('Eway.view.version.Update', {
 					text: '重置',
 					handler: this.onReset
 				},*/ {
-					text: Eway.locale.button.cancel,//'取消',
+					text: Eway.locale.button.cancle,//'取消',
 				//	iconCls :'returnBtn',
 					handler: this.onOver
 				}]
