@@ -34,7 +34,6 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 				click : this.onGroupQuery
 			},
 			'atmGroup_groupGrid' : {
-				itemclick : this.onDeviceQueryDevice,
 				afterrender : this.onFirstSelect
 			},
 			'atmGroup_groupGrid button[action=add]' : {
@@ -72,18 +71,26 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 	},
 	onTabChange:function( tabPanel, newCard, oldCard, eOpts ){
 		if(newCard.name=='groupPanel'){
+			var tabpanel = this.getEwayView().down("tabpanel");
 			var deviceDetailPanel = this.getEwayView().down("panel[name='atmGroupDeviceDetails']");
 			deviceDetailPanel.setTitle(Eway.locale.monitor.devMonitor.atmGroupTip);
-			deviceDetailPanel.setDisabled(true);
+			tabpanel.remove(deviceDetailPanel,true);
 		}
 	},
 	showDetail:function(){
-		var deviceDetailPanel = this.getEwayView().down("panel[name='atmGroupDeviceDetails']");
+
 		var groupRecord = this.getEwayView().down('atmGroup_groupGrid').getSelectionModel().getLastSelected();
+		if(groupRecord==undefined){
+			Eway.alert(Eway.locale.tip.search.record);
+			return ;
+		}
+		var deviceDetailPanel = Ext.create("Eway.view.machine.atmGroup.DeviceView");
+		var tabpanel = this.getEwayView().down("tabpanel");
+		tabpanel.add(deviceDetailPanel);
 		deviceDetailPanel.setTitle(groupRecord.get("name")+Eway.locale.monitor.devMonitor.atmGroupTip);
-		this.getEwayView().down("tabpanel").setActiveItem(deviceDetailPanel);
-		deviceDetailPanel.setDisabled(false);
-		deviceDetailPanel.down("pagingtoolbar").setDisabled(false);
+		tabpanel.setActiveItem(deviceDetailPanel);
+//		deviceDetailPanel.setDisabled(false);
+//		deviceDetailPanel.down("pagingtoolbar").setDisabled(false);
 		this.onDeviceQueryDevice();
 	},
 	onFirstSelect : function (){
@@ -97,7 +104,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 	           fn: function() {
 	        	   if(store.getCount()>0) {
 	        		   grid.getSelectionModel().select(0);
-	        		   me.onDeviceQueryDevice();
+//	        		   me.onDeviceQueryDevice();
 	        	   } else {
 
 	        		   // 当没有查询到组信息时,清空设备列表中的信息
@@ -215,7 +222,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 										callback: function(){
 											if(grid.getStore().getCount()>0){
 												grid.getSelectionModel().select(0);
-												me.onDeviceQueryDevice();
+//												me.onDeviceQueryDevice();
 											}else{
 												var view2 = this.getEwayView();
 												var store2 = view2.down('atmGroup_deviceGrid').getStore();

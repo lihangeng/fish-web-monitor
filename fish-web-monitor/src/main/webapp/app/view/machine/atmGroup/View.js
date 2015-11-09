@@ -38,21 +38,7 @@ Ext.define('Eway.view.machine.atmGroup.View', {
 								region: 'center',
 								xtype : 'atmGroup_groupGrid'
 							}
-						]},
-						{
-						name:'atmGroupDeviceDetails',
-						disabled:true,
-						title:Eway.locale.monitor.devMonitor.atmGroupTip,
-						layout : 'border',
-						xtype:'panel',
-						items:[{
-								region: 'north',
-								xtype : 'atmGroup_deviceFilter'
-							}, {
-								region: 'center',
-								xtype : 'atmGroup_deviceGrid'
-							}
-						]} 
+						]}
 				]
 			}],
 			listeners : {
