@@ -12,7 +12,8 @@ Ext.define('Eway.view.machine.device.Info', {
 	autoScroll : true,
 	requires : [ 'Eway.view.common.OrgComboOrgTree',
 			'Eway.view.machine.device.person.TGrid',
-			'Eway.view.machine.device.person.TmGrid' ],
+			'Eway.view.machine.device.person.TmGrid',
+			'Eway.view.field.device.DeviceAtmType'],
 	defaults : {
 		border : false
 	},
