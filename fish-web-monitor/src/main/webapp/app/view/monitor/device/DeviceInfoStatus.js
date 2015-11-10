@@ -107,31 +107,13 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					} ]
 				}, {
 					layout : 'column',
-					defaults : {
-						border : false
-					},
+					defaultType : 'displayfield',
 					items : [ {
-						xtype: 'panel',
-				        combineErrors: true,
 				        columnWidth : .5,
-				        layout: 'column',
-				        defaultType : 'displayfield',
-				        items: [ {
-							columnWidth : .5,
-							fieldLabel : Eway.locale.monitor.devMonitor.comboxStatus.modStatus,
-							name : 'modStatus',
-							a_link : true
-						}, {
-							hideLabel: true,
-							columnWidth : .49,
-							fieldLabel : Eway.locale.monitor.devMonitor.modStateGraphic,
-							name : 'modGraphic',
-							a_link : true,
-							code : 'modStatusGraphic',
-							listeners:{
-								'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-							}
-						} ]
+				        fieldLabel : Eway.locale.monitor.devMonitor.comboxStatus.modStatus,
+						name : 'modStatus',
+						a_link : true
+
 					}, {
 						columnWidth : .49,
 						xtype: 'displayfield',
@@ -176,69 +158,65 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					layout : 'column',
 					defaultType : 'displayfield',
 					items : [ {
-						columnWidth : .3,
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.idc,
 						name : 'idcStatus',
 						a_link : true
 					},{
-						columnWidth : .3,
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.jpr,
 						name : 'jprStatus',
 						a_link : true
 					},{
-						columnWidth : .3,
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.cdm,
 						name : 'cdmStatus',
 						a_link : true
-					}]
-				},{
-					layout : 'column',
-					defaultType : 'displayfield',
-					items : [{
-						columnWidth : .3,
+					}, {
+						columnWidth : .24,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.cim,
 						name : 'cimStatus',
 						a_link : true
-					},{
-						columnWidth : .3,
+					} ]
+				},{
+					layout : 'column',
+					defaultType : 'displayfield',
+					items : [ {
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.siu,
 						name : 'siuStatus',
 						a_link : true
 					},{
-						columnWidth : .3,
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.rpr,
 						name : 'rprStatus',
 						a_link : true
-					}]
-				}, {
-					layout : 'column',
-					defaultType : 'displayfield',
-					items : [{
-						columnWidth : .3,
+					}, {
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.pin,
 						name : 'pinStatus',
 						a_link : true
 					},{
-						columnWidth : .3,
+						columnWidth : .24,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.ttu,
 						name : 'ttuStatus',
-						a_link : true
-					}, {
-						columnWidth : .3,
-						fieldLabel : Eway.locale.monitor.devMonitor.mod.isc,
-						name : 'iscStatus',
 						a_link : true
 					} ]
 				}, {
 					layout : 'column',
 					defaultType : 'displayfield',
 					items : [ {
-						columnWidth : .3,
+						columnWidth : .25,
+						fieldLabel : Eway.locale.monitor.devMonitor.mod.isc,
+						name : 'iscStatus',
+						a_link : true
+					}, {
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.icc,
 						name : 'iccStatus',
 						a_link : true
 					}, {
-						columnWidth : .3,
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.fgp,
 						name : 'fgpStatus',
 						a_link : true
