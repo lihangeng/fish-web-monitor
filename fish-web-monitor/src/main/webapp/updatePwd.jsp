@@ -18,6 +18,11 @@
 .container {
 	width: 1296px;
 }
+.content{
+width:1296px;
+float:left;
+border:0;
+}
 input {
 	color: #000000;
 	height: 25px;
@@ -84,7 +89,7 @@ input:focus {
 		</div>
 	</div>
 	<div class="line"></div>
-	<div>
+	<div class="content" align="center">
 			<table align="center" border="0" cellpadding="0" cellspacing="10">
 				<tr>
 					<td align="right"><spring:message code="login.updatePwd.userCode" /></td>
