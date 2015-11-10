@@ -1,8 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<title>金融自助设备监控系统</title>
+<fmt:setLocale value="zh_CN" scope="session" />
+	<title><spring:message code="login.title" /></title>
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -126,17 +130,17 @@
 <form name="form1">
 <div>
 	<div id='inline_content' style='padding:10px; background:#fff;position: relative;top: 30px' align="center">
-		<h3>系统注册</h3>
-			序列号：	<input name="key" id="keyId" class="registerInputText"  type="text" readonly="readonly" style="width:100px">
+		<h3><spring:message code="login.system.register" /></h3>
+			<spring:message code="login.system.serialNo" />	<input name="key" id="keyId" class="registerInputText"  type="text" readonly="readonly" style="width:100px">
 			<span name="registerWait" id ="regWait"><img src="resources/images/wait2.gif"></img><span>正在获取系统序列号...</span></span>
 			<br></br>
-			注册码：	<input name="serial1" class="registerInputText"  type="text" id="serial1">-
+			<spring:message code="login.system.registerNo" />	<input name="serial1" class="registerInputText"  type="text" id="serial1">-
 				    <input name="serial2" class="registerInputText"  type="text" id="serial2">-
 				    <input name="serial3" class="registerInputText"  type="text" id="serial3">-
 				    <input name="serial4" class="registerInputText"  type="text" id="serial4">-
 				    <input name="serial5" class="registerInputText"  type="text" id="serial5">
 			<br></br>
-			<input class="registerSubmitBtn" type="button" value="注册" onclick="javascript:return reg();">
+			<input class="registerSubmitBtn" type="button" value="<spring:message code="login.system.registerButton" />" onclick="javascript:return reg();">
 		</form>
 		<div style="height:40px;" >
 				<div id="registerError" class="form-message error" style="display:none"></div>
