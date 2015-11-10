@@ -39,7 +39,7 @@ public class DeviceHardwareRptService implements IDeviceHardwareRptService {
 //
 //        if (orgFlag != null) {
 //            hql.append("and device.organization.orgFlag like ? ");
-//            valueObj.add("%" + orgFlag.getValue());
+//            valueObj.add(orgFlag.getValue() + "%");
 //        }
 //        if (terminalId != null) {
 //            hql.append("and device.terminalId like ? ");
@@ -74,7 +74,7 @@ public class DeviceHardwareRptService implements IDeviceHardwareRptService {
 
         if (orgFlag != null) {
             hql.append("and device.organization.orgFlag like ? ");
-            valueObj.add("%" + orgFlag.getValue());
+            valueObj.add(orgFlag.getValue() + "%");
         }
         if (terminalId != null) {
             hql.append("and device.terminalId like ? ");

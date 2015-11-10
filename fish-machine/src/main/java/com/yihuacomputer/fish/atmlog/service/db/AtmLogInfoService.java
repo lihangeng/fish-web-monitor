@@ -94,7 +94,7 @@ public class AtmLogInfoService implements IAtmLogInfoService {
                 continue;
             }
             if(c.getKey().equals("device.organization.orgFlag")){
-            	f.append(" and org.ORG_FLAG like '%").append(c.getValue()).append("'");
+            	f.append(" and org.ORG_FLAG like '").append(c.getValue()).append("%'");
                 continue;
             }
         }

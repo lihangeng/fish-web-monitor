@@ -43,7 +43,7 @@ public class VersionChartsDetailTest {
 //		findDeviceType();
 //		leftJionDeviceSoftVersion();
 //		getVersionDetailsInfo();long versionId,String orgFlag,int start,int limit
-		versionStaticsStautsService.getMatchConditionDevicePush(3l,"%-1",0,25);
+		versionStaticsStautsService.getMatchConditionDevicePush(3l,"1-%",0,25);
 //		List<ChartsInfo> chartPage = versionStaticsStautsService.getVersionSummaryInfo(1,"%-1",0,25);
 //		System.out.println(JsonUtils.toJson(chartPage));
 	}
@@ -59,7 +59,7 @@ public class VersionChartsDetailTest {
 	
 	private void findDeviceType(){
 		IFilter filter = new Filter();
-		filter.eq("orgFlag", "-1");
+		filter.eq("orgFlag", "1-");
 		List<Long> list = versionTypeAtmTypeRelationService.findAtmTypeIds(2l);
 		list.add(1l);
 		list.add(2l);

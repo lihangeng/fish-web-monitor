@@ -169,7 +169,7 @@ public class DayOpenRateService implements IDayOpenRateService  {
         Object typeValue = filter.getValue("orgId");
         if (typeValue != null) {
             hql.append(" and org.orgFlag like ?");
-            values.add("%" + orgService.get(String.valueOf(typeValue)).getOrgFlag());
+            values.add(orgService.get(String.valueOf(typeValue)).getOrgFlag() + "%");
         }
         IFilterEntry entry = filter.getFilterEntry("rate.statDate");
         if (entry != null) {
@@ -236,7 +236,7 @@ public class DayOpenRateService implements IDayOpenRateService  {
             hql.append(" and ").append(entry.getKey());
             if (entry.getOperator() == Operator.LIKE) {
                 hql.append(" like ?");
-                values.add("%" + entry.getValue());
+                values.add(entry.getValue() + "%");
             } else if (entry.getOperator() == Operator.EQ) {
                 hql.append(" = ?");
                 values.add(entry.getValue());
@@ -260,7 +260,7 @@ public class DayOpenRateService implements IDayOpenRateService  {
             hql.append(" and ").append(entry.getKey());
             if (entry.getOperator() == Operator.LIKE) {
                 hql.append(" like ?");
-                values.add("%" + orgService.get(entry.getValue().toString()).getOrgFlag());
+                values.add(orgService.get(entry.getValue().toString()).getOrgFlag() + "%");
             } else if (entry.getOperator() == Operator.EQ) {
                 hql.append(" = ?");
                 values.add(entry.getValue());

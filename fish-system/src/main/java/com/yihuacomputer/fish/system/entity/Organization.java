@@ -87,14 +87,14 @@ public class Organization implements IOrganization,Serializable {
 	@Column(name = "ORG_FLAG", nullable = true, length = 100)
 	private String orgFlag;
 
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
 	@JoinColumn(name = "PARENT_ID")
 	private IOrganization parent;
 
 	@OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
 	private final List<Organization> children = new ArrayList<Organization>();
 
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
 	@JoinColumn(name = "SERVICE_OBJECT")
 	private IOrganization serviceObject;
 
@@ -116,7 +116,7 @@ public class Organization implements IOrganization,Serializable {
 
 	@Column(name = "APPLICATION_PER", nullable = true, length = 24)
 	private String applicationPer;
-
+	
 	public Organization() {}
 
 	public IDomainOrganizationService getService() {

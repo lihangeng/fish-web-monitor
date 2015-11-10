@@ -104,7 +104,7 @@ public class RuntimeParamService implements IRuntimeParamService {
             hql.append("select p.terminalId from DeviceParam p");
         } else {
             IOrganization org = orgService.get(orgId);
-            hql.append("select p.terminalId from Device d, Organization o, DeviceParam p where d.organization = o.id and d.terminalId = p.terminalId and o.orgFlag like '%").append(org.getOrgFlag()).append("' ");
+            hql.append("select p.terminalId from Device d, Organization o, DeviceParam p where d.organization = o.id and d.terminalId = p.terminalId and o.orgFlag like '").append(org.getOrgFlag()).append("%' ");
         }
 
         if (!(terminalId == null || terminalId.isEmpty())) {

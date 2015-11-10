@@ -38,7 +38,7 @@ public class CashInRptService implements ICashInRptService {
 
         if (orgFlag != null) {
             hql.append(" and o.orgFlag like ?");
-            valueObj.add("%" + orgFlag.getValue());
+            valueObj.add(orgFlag.getValue() + "%");
         }
         if (terminalId != null) {
             hql.append(" and c.terminalId like ?");

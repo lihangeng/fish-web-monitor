@@ -26,7 +26,7 @@ public class SrcbDevicePersonRelation {
 		long deviceId = Long.parseLong(map.get("deviceId"));
 		String type = map.get("type");
 		// "%" + org.getOrgFlag()
-		String orgFlag = "%" + map.get("orgFlag");
+		String orgFlag =map.get("orgFlag") +  "%";
 		if (map.get("name") != null) {
 			hql.append("and p.name like '").append(map.get("name")).append("' ");
 		}

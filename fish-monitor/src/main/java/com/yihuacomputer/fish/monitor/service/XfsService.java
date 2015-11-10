@@ -192,7 +192,7 @@ public class XfsService implements IXfsService {
 
         IOrganization org = orgService.get(statusFilter.getOrgId());
         devStatusHql.append("and d.organization.orgFlag like ? ");
-        valueObj.add("%" + org.getOrgFlag());
+        valueObj.add(org.getOrgFlag() + "%");
 
         // 设备状态
         devStatusHql.append(" and d.status=? ");
@@ -453,7 +453,7 @@ public class XfsService implements IXfsService {
         if (orgId != null && !orgId.isEmpty()) {
             IOrganization org = orgService.get(orgId);
             hql.append(" and o.orgFlag like ? ");
-            valueObj.add("%" + org.getOrgFlag());
+            valueObj.add(org.getOrgFlag()+ "%" );
         }
 
         List<IStatusMonitorMapOrg> statusMonitorList = new ArrayList<IStatusMonitorMapOrg>();

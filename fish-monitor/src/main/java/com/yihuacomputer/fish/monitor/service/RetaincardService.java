@@ -117,8 +117,8 @@ public class RetaincardService implements IRetaincardService{
 		sql1 = sql1.replace("${filter1}", filterStr);
 		SQLQuery query = dao.getSQLQuery(sql1);
 		query.addEntity(Retaincard.class);
-		query.setString(0, "%" + orgFlag);
-		query.setString(1, "%" + orgFlag);
+		query.setString(0, orgFlag + "%");
+		query.setString(1,  orgFlag + "%");
 		return query.list();
 	}
 
@@ -175,8 +175,8 @@ public class RetaincardService implements IRetaincardService{
 
 		SQLQuery query = dao.getSQLQuery(sql1);
 		query.addEntity(Retaincard.class);
-		query.setString(0, "%" + orgFlag);
-		query.setString(1, "%" + orgFlag);
+		query.setString(0,  orgFlag + "%");
+		query.setString(1,  orgFlag + "%");
 		query.setFirstResult(offset);
 		query.setMaxResults(limit);
 		List<IRetaincard> lists = query.list();
@@ -215,7 +215,7 @@ public class RetaincardService implements IRetaincardService{
 				continue;
 			}
 			if(c.getKey().equals("device.organization.orgFlag")){
-				f.append(" and org.ORG_FLAG like '%").append(c.getValue()).append("'");
+				f.append(" and org.ORG_FLAG like '").append(c.getValue()).append("%'");
 				continue;
 			}
 			if(c.getKey().equals("retaincard.status")){
@@ -246,8 +246,8 @@ public class RetaincardService implements IRetaincardService{
 		sql = sql.replace("${filter1}", filter);
 		SQLQuery query = dao.getSQLQuery(sql);
 		query.addScalar("total",  StandardBasicTypes.INTEGER);
-		query.setString(0, "%" + orgFlag);
-		query.setString(1, "%" + orgFlag);
+		query.setString(0,orgFlag +  "%");
+		query.setString(1,orgFlag +  "%");
 		List<Integer> lists = query.list();
 		return lists.get(0);
 	}
@@ -260,10 +260,10 @@ public class RetaincardService implements IRetaincardService{
 		sql = sql.replace("${filter1}", filter);
 		SQLQuery query = dao.getSQLQuery(sql);
 		query.addScalar("total", StandardBasicTypes.INTEGER);
-		query.setString(0, "%" + orgFlag);
+		query.setString(0, orgFlag +  "%");
 		query.setString(1, status1.name());
 		query.setString(2, status2.name());
-		query.setString(3, "%" + orgFlag);
+		query.setString(3, orgFlag +  "%");
 		query.setString(4, status1.name());
 		query.setString(5, status2.name());
 		List<Integer> lists = query.list();
@@ -294,10 +294,10 @@ public class RetaincardService implements IRetaincardService{
 		sql1 = sql1.replace("${filter1}", filterStr);
 		SQLQuery query = dao.getSQLQuery(sql1);
 		query.addEntity(Retaincard.class);
-		query.setString(0, "%" + orgFlag);
+		query.setString(0, orgFlag +  "%");
 		query.setString(1, status1.name());
 		query.setString(2, status2.name());
-		query.setString(3, "%" + orgFlag);
+		query.setString(3, orgFlag +  "%");
 		query.setString(4, status1.name());
 		query.setString(5, status2.name());
 		query.setFirstResult(offset);

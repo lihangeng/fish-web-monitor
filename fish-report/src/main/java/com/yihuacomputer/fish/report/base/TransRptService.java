@@ -45,7 +45,7 @@ public class TransRptService implements ITransRptService {
 
         if (orgFlag != null) {
             hql.append(" and o.orgFlag like ?");
-            valueObj.add("%" + orgFlag.getValue());
+            valueObj.add(orgFlag.getValue() + "%");
         }
         if (endData != null) {
             hql.append(" and tr.dateTime<=?");
@@ -133,7 +133,7 @@ public class TransRptService implements ITransRptService {
 
         if (orgFlag != null) {
             hql.append(" and o.orgFlag like ?");
-            valueObj.add("%" + orgFlag.getValue());
+            valueObj.add(orgFlag.getValue() + "%");
         }
         if (endData != null) {
             hql.append(" and tr.dateTime<=?");
@@ -224,7 +224,7 @@ public class TransRptService implements ITransRptService {
 
         if (orgFlag != null) {
             hql.append(" and d.organization.orgFlag like ?");
-            valueObj.add("%" + orgFlag.getValue());
+            valueObj.add(orgFlag.getValue() + "%");
         }
         if (endData != null) {
             hql.append(" and tr.dateTime<=?");

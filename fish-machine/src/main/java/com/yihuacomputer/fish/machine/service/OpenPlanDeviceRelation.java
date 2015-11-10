@@ -80,7 +80,7 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 		hql.append("(select distinct devicePlanRelation.deviceId from DevicePlanRelation devicePlanRelation ) ");
 	//	valueObj.add(openPlan.getId());
 		hql.append("and device.organization.orgFlag like ? ");
-		valueObj.add("%" + org.getOrgFlag());
+		valueObj.add(org.getOrgFlag() + "%");
 		hql.append(" and device.devType.devCatalog.no != '01' ");
 		hql.append(" and device.devType.devCatalog.no != '05' ");
 		hql.append(" and device.devType.devCatalog.no != '08' ");
@@ -115,12 +115,12 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 	/*	if (devServiceId != null) {
 			IOrganization devService = orgService.get(String.valueOf(devServiceId.getValue()));
 			hql.append("and device.devService.orgFlag like ? ");
-			valueObj.add("%" + devService.getOrgFlag());
+			valueObj.add(devService.getOrgFlag() + "%");
 		}*/
 		if (organizationId != null) {
 			IOrganization organization = orgService.get(String.valueOf(organizationId.getValue()));
 			hql.append("and device.organization.orgFlag like ? ");
-			valueObj.add("%" + organization.getOrgFlag());
+			valueObj.add(organization.getOrgFlag() + "%");
 		}
 		if (ip != null) {
 			hql.append("and device.ip=? ");
@@ -167,7 +167,7 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 		hql.append("select device from Device device ,DevicePlanRelation devicePlanRelation ");
 		hql.append("where device.id = devicePlanRelation.deviceId and devicePlanRelation.openPlanId = ? and device.organization.orgFlag like ? ");
 		valueObj.add(openPlan.getId());
-		valueObj.add("%" + org.getOrgFlag());
+		valueObj.add(org.getOrgFlag() + "%");
 		if (startCashboxLimit != null) {
 			hql.append(" and device.cashboxLimit>=?");
 			valueObj.add(startCashboxLimit.getValue());
@@ -199,12 +199,12 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 		if (devServiceId != null) {
 			IOrganization devService = orgService.get(String.valueOf(devServiceId.getValue()));
 			hql.append("and device.devService.orgFlag like ? ");
-			valueObj.add("%" + devService.getOrgFlag());
+			valueObj.add(devService.getOrgFlag() + "%");
 		}
 		if (organizationId != null) {
 			IOrganization organization = orgService.get(String.valueOf(organizationId.getValue()));
 			hql.append("and device.organization.orgFlag like ? ");
-			valueObj.add("%" + organization.getOrgFlag());
+			valueObj.add(organization.getOrgFlag() + "%");
 		}
 		if (ip != null) {
 			hql.append(" and device.ip=?");
@@ -269,7 +269,7 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 	   List<IDevice> device = new ArrayList<IDevice>();
 	   hql.append("select device from Device device where device.terminalId = ? and device.organization.orgFlag like ?  ");
 	   valueObj.add(deviceCode);
-	   valueObj.add("%" + org.getOrgFlag());
+	   valueObj.add( org.getOrgFlag() +"%");
 		hql.append(" and device.devType.devCatalog.no != '01' ");
 		hql.append(" and device.devType.devCatalog.no != '05' ");
 		hql.append(" and device.devType.devCatalog.no != '08' ");

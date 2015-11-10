@@ -32,7 +32,7 @@ public class XfsChartService implements IXfsChartService {
 	public IPageResult<Object> getXfsChartsDetailInfo(int start, int limit,IFilter filter){
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");
-		argList.add("%"+orgFlagObject);
+		argList.add(orgFlagObject+"%");
 		argList.add(DevStatus.OPEN);
 		StringBuffer sb = new StringBuffer(DEVICERUNINFOBASICHQL);
 		//监控概况 应用状态 明细
@@ -73,7 +73,7 @@ public class XfsChartService implements IXfsChartService {
 	public List<Object> getAllDeviceList(IFilter filter){
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");
-		argList.add("%"+orgFlagObject);
+		argList.add(orgFlagObject+"%");
 		argList.add(DevStatus.OPEN);
 		List<Object> allDeviceList = dao.findByHQL(DEVICERUNINFOBASICHQL, argList.toArray());
 		return allDeviceList;
@@ -83,7 +83,7 @@ public class XfsChartService implements IXfsChartService {
 	public List<Object> getDeviceSummaryRunInfo(IFilter filter) {
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");
-		argList.add("%"+orgFlagObject);
+		argList.add(orgFlagObject+"%");
 		argList.add(DevStatus.OPEN);
 		StringBuffer summaryHealthyBuf = new StringBuffer(DEVICERUNINFOBASICHQL);
 		summaryHealthyBuf.append(" and (xfs.runStatus=? or xfs.runStatus=?) and xfs.netStatus=?  ").
@@ -105,7 +105,7 @@ public class XfsChartService implements IXfsChartService {
 		append("where xfs.terminalId=device.terminalId and device.organization.orgFlag like ? and device.status=? group by xfs.runStatus");
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");
-		argList.add("%"+orgFlagObject);
+		argList.add(orgFlagObject+"%");
 		argList.add(DevStatus.OPEN);
 		List<Object> appRunInfoList = dao.findByHQL(appBuf.toString(), argList.toArray());
 		return appRunInfoList;
@@ -119,7 +119,7 @@ public class XfsChartService implements IXfsChartService {
 		append("where xfs.terminalId=device.terminalId and device.organization.orgFlag like ? and device.status=? group by xfs.boxStatus");
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");
-		argList.add("%"+orgFlagObject);
+		argList.add(orgFlagObject+"%");
 		argList.add(DevStatus.OPEN);
 		List<Object> boxRunInfoList = dao.findByHQL(boxBuf.toString(), argList.toArray());
 		return boxRunInfoList;
@@ -133,7 +133,7 @@ public class XfsChartService implements IXfsChartService {
 		append("where xfs.terminalId=device.terminalId and device.organization.orgFlag like ? and device.status=? group by xfs.modStatus");
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");
-		argList.add("%"+orgFlagObject);
+		argList.add(orgFlagObject+"%");
 		argList.add(DevStatus.OPEN);
 		List<Object> modRunInfoList = dao.findByHQL(modBuf.toString(), argList.toArray());
 		return modRunInfoList;
@@ -147,7 +147,7 @@ public class XfsChartService implements IXfsChartService {
 		append("where xfs.terminalId=device.terminalId and device.organization.orgFlag like ? and device.status=? group by xfs.netStatus");
 		List<Object> argList = new ArrayList<Object>();
 		Object orgFlagObject = filter.getValue("orgFlag");
-		argList.add("%"+orgFlagObject);
+		argList.add(orgFlagObject+"%");
 		argList.add(DevStatus.OPEN);
 		List<Object> netRunInfoList = dao.findByHQL(netBuf.toString(), argList.toArray());
 		return netRunInfoList;

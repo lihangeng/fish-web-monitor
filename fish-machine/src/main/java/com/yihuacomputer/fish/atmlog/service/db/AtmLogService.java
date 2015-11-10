@@ -92,7 +92,7 @@ public class AtmLogService implements IAtmLogService{
 		IFilterEntry lastDoDate = filter.getFilterEntry("lastDoDate");
 		IFilterEntry backupResult = filter.getFilterEntry("backupResult");
 
-		valueObj.add("%"+orgFlag.getValue().toString());
+		valueObj.add(orgFlag.getValue().toString()+"%");
 		if(terminalId!=null){
 			sql.append(" and a.terminalId like ? ");
 			valueObj.add("%" + terminalId.getValue() + "%");
