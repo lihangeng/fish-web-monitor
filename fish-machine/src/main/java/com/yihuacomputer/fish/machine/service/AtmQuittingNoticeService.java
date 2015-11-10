@@ -125,7 +125,7 @@ public class AtmQuittingNoticeService implements IQuittingNoticeService
     	}else{
     		hql.append("where t.deviceCode = t1.terminalId and t1.devService.orgFlag like ? ");
     	}
-    	List<IQuittingNotice> quittingNotices = dao.findByHQL(hql.toString(), "%" + org.getOrgFlag());
+    	List<IQuittingNotice> quittingNotices = dao.findByHQL(hql.toString(),org.getOrgFlag() + "%");
     	List<IQuittingNotice> result = new ArrayList<IQuittingNotice>();
     	for(IQuittingNotice quittingNotice : quittingNotices){
     		if(filter.isMatch(quittingNotice)){
@@ -153,7 +153,7 @@ public class AtmQuittingNoticeService implements IQuittingNoticeService
             hql.append("where quittingNotice.deviceCode = device.terminalId and device.devService.orgFlag like ? ");
         }
         IOrganization org = orgService.get(orgId);
-        return (IPageResult<IQuittingNotice>)dao.page(offset, limit, filter, hql.toString(), "%" + org.getOrgFlag());
+        return (IPageResult<IQuittingNotice>)dao.page(offset, limit, filter, hql.toString(),org.getOrgFlag() + "%");
 	}
 	
 	

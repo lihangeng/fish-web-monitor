@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.api.report;
+package com.yihuacomputer.fish.api.report.base;
 
 
 public interface IDeviceOpenRateService {

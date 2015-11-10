@@ -31,13 +31,12 @@ public class EveryDayReportJob {
 	private List<IReportDataETL> reportDataETLList = new ArrayList<IReportDataETL>();
 	
 	public void execute(){
-		
 		logger.debug("day data ETL ....");
     	if(!jobSynchService.getJobRunPriviledge(jobId)){
     		logger.debug("day data ETL job is running");
     		return;
     	}
-		try{			
+		try{
 			for(IReportDataETL dataEtl:reportDataETLList){
 				dataEtl.reportETL(DateUtils.getLastDate());
 			}

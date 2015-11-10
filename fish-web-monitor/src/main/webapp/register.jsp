@@ -123,7 +123,7 @@
 	</script>
 </head>
 <body  onload="ajax()" >
-<form name="form1" method="post" action="api/login">
+<form name="form1">
 <div>
 	<div id='inline_content' style='padding:10px; background:#fff;position: relative;top: 30px' align="center">
 		<h3>系统注册</h3>

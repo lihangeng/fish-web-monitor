@@ -16,7 +16,7 @@ Ext.define('Eway.view.person.organization.OrganizationManagerGrid', {
 			initRegion : true,
 			tbar: ['->', {
 				text: Eway.locale.commen.setManager,
-				iconCls :'sureBtn',
+				glyph : 0xf0c1,
 				action: 'set'
 			}],
 			columns : [{

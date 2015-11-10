@@ -16,18 +16,6 @@ Ext.define('Eway.view.version.distribute.VersionPie', {
 	    queryMode: 'local',
 	    editable : false,
 	    listeners : {
-			beforerender : function() {
-				this.store.load({
-					callback : function(records, operation, success) {
-						if (success) {
-							if (this.getValue()) {
-								this.isValid();
-							}
-						}
-					},
-					scope : this
-				});
-			},
 			afterrender:function(){
 				var me = this;
 				var store = this.getStore();

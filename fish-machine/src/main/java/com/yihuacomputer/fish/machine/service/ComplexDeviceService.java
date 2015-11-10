@@ -42,13 +42,13 @@ public class ComplexDeviceService implements IComplexDeviceService {
         List<Object> fixedFilters = new ArrayList<Object>();
         if (orgType != null) {
             hql.append("and device.organization.orgFlag like ? ");
-            fixedFilters.add("%" + org.getOrgFlag());
+            fixedFilters.add(org.getOrgFlag() + "%");
         }
 
         IOrganization belongsOrg = getBelongsOrg(filter);
         if (belongsOrg != null) {
             hql.append("and device.organization.orgFlag like ? ");
-            fixedFilters.add("%" + belongsOrg.getOrgFlag());
+            fixedFilters.add(belongsOrg.getOrgFlag() + "%");
         }
         hql.append(" order by device.id desc ");
 

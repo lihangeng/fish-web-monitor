@@ -134,7 +134,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     	append(" as versionatmType where device.devType.id=versionatmType.atmTypeId ").
     	append(" and versionatmType.versionTypeId=version.versionType.id ").
     	append(" and version.id=? and device.organization.orgFlag like ? and device.status=?");
-    	Object[] obj = {versionId,"%"+orgFlag,DevStatus.OPEN};
+    	Object[] obj = {versionId,orgFlag+"%",DevStatus.OPEN};
     	IVersion version = versionService.getById(versionId);
     	if(version==null){
     		return null;
@@ -236,7 +236,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
 		append(" and device.organization.orgFlag like ? ").
 		append(" and version.versionType.typeName=deviceSoftVersion.typeName ").
 		append(" and device.id=deviceSoftVersion.deviceId ");
-		Object[] obj = {versionId,TaskStatus.CHECKED,DevStatus.OPEN,"%"+orgFlag};
+		Object[] obj = {versionId,TaskStatus.CHECKED,DevStatus.OPEN,orgFlag+"%"};
     	@SuppressWarnings("unchecked")
 		IPageResult<Object> successResult = (IPageResult<Object>) dao.page(start, limit, hql.toString(), obj);
     	IPageResult<VersionChartsDetailForm> pageResult= convertResult(successResult);
@@ -285,7 +285,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
 		append(" and versionatmType.versionTypeId=version.versionType.id and device.devType.id=versionatmType.atmTypeId ").
 		append(" and version.versionType.typeName=deviceSoftVersion.typeName ").
 		append(" and device.id=deviceSoftVersion.deviceId ");
-		Object[] obj = {versionId,DevStatus.OPEN,"%"+orgFlag};
+		Object[] obj = {versionId,DevStatus.OPEN,orgFlag+"%"};
 		
     	@SuppressWarnings("unchecked")
 		IPageResult<Object> fatalResult = (IPageResult<Object>) dao.page(start, limit, hql.toString(), obj);

@@ -30,7 +30,7 @@ public class VersionDistributeTest {
 		IFilter filter = new Filter();
 		filter.eq("versionType", Long.parseLong("2"));
 		filter.eq("versionId",1l);
-		filter.eq("orgFlag","-1");
+		filter.eq("orgFlag","1-");
 		filter.eq("taskStatus","-1");
 //		Map<Long,VersionDistribute> list = versionService.getVersionDistribute(filter);
 		List<VersionStatusDistribute> list = getVersionStatusDistribute(filter);

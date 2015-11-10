@@ -57,7 +57,7 @@ public class DeviceRptService implements IDeviceRptService {
 
         if (orgFlag != null) {
             hql.append("and device.organization.orgFlag like ? ");
-            valueObj.add("%" + orgFlag.getValue());
+            valueObj.add(orgFlag.getValue() + "%");
         }
         List<Object> list = dao.findByHQL(hql.toString(), valueObj.toArray());
         List<IDeviceRpt> deviceList = new ArrayList<IDeviceRpt>();

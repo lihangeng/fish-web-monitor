@@ -30,12 +30,12 @@ import com.yihuacomputer.fish.api.openplan.IOpenPlanService;
 import com.yihuacomputer.fish.api.openplan.OpenClose;
 import com.yihuacomputer.fish.api.openplan.PlanType;
 import com.yihuacomputer.fish.api.openplan.Week;
-import com.yihuacomputer.fish.api.report.IDayOpenRate;
-import com.yihuacomputer.fish.api.report.IDayOpenRateService;
-import com.yihuacomputer.fish.report.service.base.DomainDeviceOpenRateService;
+import com.yihuacomputer.fish.api.report.base.IDayOpenRate;
+import com.yihuacomputer.fish.api.report.base.IDayOpenRateService;
+import com.yihuacomputer.fish.api.report.base.IDeviceOpenRateService;
 
 @Service
-public class DeviceOpenRateService extends DomainDeviceOpenRateService {
+public class DeviceOpenRateService implements IDeviceOpenRateService {
 
 	private Logger logger = LoggerFactory.getLogger(DeviceOpenRateService.class);
 
@@ -87,7 +87,7 @@ public class DeviceOpenRateService extends DomainDeviceOpenRateService {
 				logger.warn("设备不存在");
 				continue;
 			}
-			if (device.getStatus().ordinal()==DevStatus.DISABLED.ordinal()) {
+			if (device.getStatus().equals(DevStatus.DISABLED) ||device.getStatus().equals(DevStatus.UNOPEN) || device.getStatus().equals(DevStatus.SCRAPPED)) {
 				logger.warn("设备已停用");
 				continue;
 			}

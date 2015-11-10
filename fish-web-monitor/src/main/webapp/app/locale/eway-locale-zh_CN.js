@@ -93,7 +93,7 @@ Ext.override(Eway,{
 			download:'下发',
 			downloadToolTip:'配置下发作业',
 			save:'保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存',//Eway.locale.button.save
-			detailBtn:'开机方案',//Eway.locale.button.detailBtn
+			openPlan:'开机方案',//Eway.locale.button.openPlan
 			adminBtn:'管理员',
 			personM:'厂商管理员',//Eway.locale.button.personM
 			personTM:'管机员',//Eway.locale.button.personTM
@@ -1037,7 +1037,7 @@ Ext.override(Eway,{
 				userListTitle:'人员列表',//Eway.locale.person.user.userListTitle
 				updateUserTitle:'更改用户角色（使用拖拽的方式）',//Eway.locale.person.user.updateUserTitle
 				roleCanBeAdd:'可添加的角色列表',//Eway.locale.person.user.roleCanBeAdd
-				roleAlreadyBeAdd:'可添加的角色列表',//Eway.locale.person.user.roleAlreadyBeAdd
+				roleAlreadyBeAdd:'已添加的角色列表',//Eway.locale.person.user.roleAlreadyBeAdd
 				operCode:'操作人编号',//Eway.locale.person.user.operCode
 				operName:'操作人姓名',//Eway.locale.person.user.operName
 				operTime:'操作时间',//Eway.locale.person.user.operTime
@@ -1913,9 +1913,9 @@ Ext.override(Eway,{
 				},
 			},
 			plan:{
-				addPlan:'增加方案',//Eway.locale.report.plan.addPlan
-				name:'名称',//Eway.locale.report.plan.name
-				type:'类型',//Eway.locale.report.plan.type
+				addPlan:'增加开机方案',//Eway.locale.report.plan.addPlan
+				name:'方案名称',//Eway.locale.report.plan.name
+				type:'方案类型',//Eway.locale.report.plan.type
 				startDate:'有效开始时间',//Eway.locale.report.plan.startDate
 				endDate:'有效结束时间',//Eway.locale.report.plan.endDate
 				terminalId:'编号',//Eway.locale.report.plan.terminalId
@@ -1926,7 +1926,7 @@ Ext.override(Eway,{
 			},
 
 			openplan:{
-				name:'名称',//Eway.locale.report.openplan.name
+				name:'方案名称',//Eway.locale.report.openplan.name
 				machineQuantity:'设备数量',//Eway.locale.report.openplan.machineQuantity
 				state:'状态',//Eway.locale.report.openplan.state
 				openDate:'有效开机时间',//Eway.locale.report.openplan.openDate
@@ -1976,7 +1976,7 @@ Ext.override(Eway,{
 				lanDetailWeek:'星期方案详细列表',//Eway.locale.report.openplan.lanDetailWeek
 				planDetailDay:'日期方案详细列表',//Eway.locale.report.openplan.planDetailDay
 				selectPlan:'选择开机方案',//Eway.locale.report.openplan.selectPlan
-				weekSelect:'通知方式',//Eway.locale.report.openplan.weekSelect
+				weekSelect:'通知方式'//Eway.locale.report.openplan.weekSelect
 			}
 		},
 

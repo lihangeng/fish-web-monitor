@@ -331,7 +331,7 @@ public class OrganizationController {
 					} else if ("orgLevel".equals(name)) {
 						filter.eq("organizationLevel", OrganizationLevel.getById(Integer.parseInt(request.getParameter(name))));
 					} else if ("orgId".equals(name)) {
-						filter.like("orgFlag", "%" + service.get(request.getParameter(name)).getOrgFlag());
+						filter.like("orgFlag",service.get(request.getParameter(name)).getOrgFlag()+  "%" );
 
 					} else {
 						filter.like(name, request.getParameter(name));

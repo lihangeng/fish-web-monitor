@@ -15,6 +15,7 @@ Ext.define('Eway.view.machine.device.View', {
 			items : [ {
 				itemId : 'filterFormItemId',
 				region : 'north',
+				//height：40,
 				xtype : 'device_filterform'
 			}, {
 				itemId : 'gridItemId',

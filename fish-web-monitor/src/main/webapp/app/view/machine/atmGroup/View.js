@@ -20,7 +20,7 @@ Ext.define('Eway.view.machine.atmGroup.View', {
 				items : [{
 						name:'groupPanel',
 						xtype:'panel',
-						title: Eway.locale.machine.atmGroup.devGroupName,
+						title: Eway.locale.machine.atmGroup.groupName,
 						layout : 'border',
 						items:[{
 							xtype:'form',
@@ -38,21 +38,7 @@ Ext.define('Eway.view.machine.atmGroup.View', {
 								region: 'center',
 								xtype : 'atmGroup_groupGrid'
 							}
-						]},
-						{
-						name:'atmGroupDeviceDetails',
-						disabled:true,
-						title:Eway.locale.machine.device.title,
-						layout : 'border',
-						xtype:'panel',
-						items:[{
-								region: 'north',
-								xtype : 'atmGroup_deviceFilter'
-							}, {
-								region: 'center',
-								xtype : 'atmGroup_deviceGrid'
-							}
-						]} 
+						]}
 				]
 			}],
 			listeners : {

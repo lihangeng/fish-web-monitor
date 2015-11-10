@@ -49,7 +49,9 @@ import com.yihuacomputer.fish.api.person.PersonType;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
 import com.yihuacomputer.fish.api.relation.IUserRoleRelation;
+import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.person.service.db.SrcbDevicePersonRelation;
+import com.yihuacomputer.fish.system.entity.Person;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.system.form.PersonDeviceForm;
 import com.yihuacomputer.fish.web.system.form.PersonForm;
@@ -671,5 +673,41 @@ public class PersonController {
         model.put(FishConstant.SUCCESS, true);
         return model;
     }
+    
+	@RequestMapping(value = "/devicePerson", method = RequestMethod.POST)
+	public @ResponseBody
+	ModelMap devicePerson(@RequestParam String terminalId, @RequestParam String personId, @RequestParam String type, @RequestParam String personType) {
+		ModelMap result = new ModelMap();
+		String[] ids = personId.split(",");
+		int i = 0;
+		for (String pId : ids) {
+			IDevice device = deviceService.get(terminalId);
+			IPerson person = service.get(pId);
+			if (device == null) {
+				i++;
+				continue;
+			}
+			if (person == null) {
+				i++;
+				continue;
+			}
+			if (type.equals("add")) {
+				devicePersonRelation.link(person, device);
+			} else {
+				IPerson p = new Person();
+				IDevice d = new Device();
+				p.setGuid(pId);
+				d.setTerminalId(terminalId);
+				devicePersonRelation.unlink(person, device);
+			}
+		}
+		if (i > 0) {
+			result.put("success", false);
+			result.put("errors", i);
+		} else {
+			result.put("success", true);
+		}
+		return result;
+	}
 
 }

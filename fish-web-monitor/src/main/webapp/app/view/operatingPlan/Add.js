@@ -7,60 +7,38 @@ Ext.define('Eway.view.operatingPlan.Add',{
 	modal : true,
 	constrainHeader : true,
 	width : 810,
-	height : 620,
-	// maxHeight : 600,.
 	layout : 'fit',
 	maximizable : true,
 	resizable : false,
 	autoScroll : true,
-	bodyStyle : 'padding: 10px 10px 30px 10px',
 	requires : ['Eway.lib.Util','Eway.view.operatingPlan.PlanInfoGrid','Eway.view.operatingPlan.WeekSelect','Eway.view.operatingPlan.PlanState'],
-	defaults : {
-		border : false
-	},
 	initComponent : function() {
 		Ext.apply(this, {
 			items : {
 				xtype : 'form',
-				bodyStyle : 'padding:10px 10px 10px 10px',
-				height : 550,
+				bodyStyle : 'padding:10px 10px 0px 10px',
 				defaults : {
-					anchor : '100%'
+					anchor : '100%',
+					labelAlign:'right'
 				},
-				items : [ {
+				items : [  {
+					fieldLabel : '<font color="red">*</font>'+Eway.locale.report.openplan.name,
+					xtype : 'textfield',
+					name : 'name',
+					maxLength : 30,
+					anchor : '90%',
+					allowBlank : false
+				},{
 					layout : 'column',
-					border : 'false',
+					border : false,
 					items : [ {
 						columnWidth : .5,
 						border : false,
 						layout : 'anchor',
 						defaults : {
 							anchor : '85%',
-							style : 'padding-top:10px'
-						},
-						items : [ {
-							fieldLabel : '<font color="red">*</font>'+Eway.locale.report.openplan.name,
-							labelWidth: 60,
-							xtype : 'textfield',
-							name : 'name',
-							maxLength : 30,
-							allowBlank : false
-						},{
-							xtype : 'textarea',
-							labelWidth: 60,
-						    fieldLabel : '&nbsp;&nbsp;&nbsp;'+Eway.locale.commen.remark,
-						    name : 'desc',
-						    autoScroll : true,
-							maxLength :30,
-							allowBlank : true
-						} ]
-					}, {
-						columnWidth : .5,
-						border : false,
-						layout : 'anchor',
-						defaults : {
-							anchor : '90%',
-							style : 'padding-top:10px'
+							style : 'padding-top:10px',
+							labelAlign:'right'
 						},
 						items : [ {
 							fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.startDate,
@@ -70,6 +48,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 							allowBlank : false,
 							editable : false,
 							minValue : Ext.Date.format(new Date(), 'Y-m-d'),
+							value:Ext.Date.format(new Date(), 'Y-m-d'),
 							vtype : 'daterange',
 							endDateField : 'endDate',
 							listeners : {
@@ -90,6 +69,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 							format : 'Y-m-d',
 							allowBlank : false,
 							editable : false,
+							value:Ext.Date.format(Ext.Date.add(new Date(), Ext.Date.YEAR, 10),'Y-m-d'),
 							vtype : 'daterange',
 							startDateField : 'startDate',
 							listeners : {
@@ -103,7 +83,23 @@ Ext.define('Eway.view.operatingPlan.Add',{
 						            }
 								}
 							}
-						},{
+						} ]
+					}, {
+						columnWidth : .5,
+						border : false,
+						layout : 'anchor',
+						defaults : {
+							anchor : '80%',
+							style : 'padding-top:10px',
+							labelAlign:'right'
+						},
+						items : [{
+							fieldLabel : '<font color="red">*</font>'+Eway.locale.report.openplan.state,
+							xtype : 'field_planState',
+							name : 'planState',
+							value :'Normal',
+							allowBlank : false
+							} ,{
 							fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.type,
 							xtype : 'radiogroup',
 							allowBlank : false,
@@ -117,26 +113,16 @@ Ext.define('Eway.view.operatingPlan.Add',{
 								name : 'planType',
 								inputValue : 'DATE'
 							}]
-						},{
-							fieldLabel : '<font color="red">*</font>'+Eway.locale.report.openplan.state,
-							xtype : 'field_planState',
-							name : 'planState',
-							value :'Normal',
-							allowBlank : false
 						} ]
 					} ]
 				}, {
 					xtype : 'panel',
-					frame : true,
 					layout : 'card',
 					activeItem: 1,
 					height : 350,
-					width :810,
 					itemId: 'cardPanelId',
 					items : [ {
-						title : Eway.locale.tip.planDate,
-						layout : 'column',
-						border : false,
+						title : Eway.locale.tip.planWeek,
 						items : [ {
 							xtype : 'form',
 							height : 330,
@@ -147,37 +133,37 @@ Ext.define('Eway.view.operatingPlan.Add',{
 							},
 							items : [ {
 								layout : 'column',
-								border : 'false',
+								border : false,
 								items : [ {
 									columnWidth : .5,
 									border : false,
 									layout : 'anchor',
 									defaultType : 'textfield',
 									defaults : {
-										anchor : '90%',
+										anchor : '100%',
 										style : 'padding-top:10px'
 									},
 									items : [ {
 										fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.device.person.openClose,
 										xtype : 'radiogroup',
 										name : 'openClose',
-										labelWidth: 70,
 										allowBlank : false,
-										columns: 1,
+										columns: 3,
 										items : [ {
 											boxLabel : Eway.locale.machine.device.person.Open,
 											name : 'openClose',
 											checked : true,
+											width:50,
 											inputValue : 'Open'
 										}, {
 											boxLabel : Eway.locale.machine.device.person.Close,
+											width:50,
 											name : 'openClose',
 											inputValue : 'Close'
 										}]
 									},{
 										xtype : 'fieldcontainer',
 										fieldLabel : Eway.locale.system.startDate,
-										labelWidth: 70,
 										layout : 'hbox',
 										defaults : {
 											hideLabel : true
@@ -234,7 +220,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 									defaults : {
 										anchor : '90%',
 										xtype : 'textfield',
-										style : 'padding:10px 0px 0px 62px'
+										style : 'padding:10px 0px 0px 0px'
 									},
 									items : [ {
 										fieldLabel : '<font color="red">*</font>'+Eway.locale.report.openplan.week,
@@ -242,7 +228,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 										allowBlank : false,
 										itemId: 'checkboxgroupId',
 										labelWidth:65,
-										columns: 4,
+										columns: 7,
 										msgTarget:'qtip',
 										blankText :Eway.locale.report.openplan.chooseOne,
 							            items : [
@@ -308,6 +294,9 @@ Ext.define('Eway.view.operatingPlan.Add',{
 									} ]
 								} ],
 								fbar: [{
+									xtype:'displayfield',
+									value:'<b>'+Eway.locale.report.openplan.lanDetailWeek+'</b>'
+								},'->',{
 									text: Eway.locale.card.add,
 									glyph : 0xf067,
 									action: 'add'
@@ -317,38 +306,35 @@ Ext.define('Eway.view.operatingPlan.Add',{
 									action: 'remove'
 								}]
 							} ,{
-								title : Eway.locale.report.openplan.weekPlanInfoID,
+								header:false,
 								itemId : 'weekPlanInfoID',
 								height : 180,
-								width : 730,
+								width : 760,
 								autoScroll : true,
 								xtype : 'planInfo_grid'
 							}]
 						} ]
 					}, {
 						title : Eway.locale.tip.planDate,
-						layout : 'column',
-						border : false,
 						items : [ {
 							xtype : 'form',
-							height : 350,
-							width : 730,
+							height : 330,
 							itemId : 'dateFormId',
-							bodyStyle : 'padding:10px 10px 10px 10px',
+							/*bodyStyle : 'padding:10px 10px 10px 10px',*/
 							defaults : {
 								anchor : '100%'
 							},
 							items : [ {
 								layout : 'column',
-								border : 'false',
+								border : false,
 								items : [ {
-									columnWidth : .5,
+									columnWidth : .4,
 									border : false,
 									layout : 'anchor',
 									defaultType : 'textfield',
 									defaults : {
-										anchor : '100%',
-										style : 'padding:10px 0px 0px 20px'
+										anchor : '90%',
+										style : 'padding:10px 10px 0px 10px'
 									},
 									items : [ {
 										fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.device.person.openClose,
@@ -367,7 +353,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 										}]
 									}]
 								}, {
-									columnWidth : .5,
+									columnWidth : .6,
 									border : false,
 									layout : 'anchor',
 									defaults : {
@@ -396,7 +382,6 @@ Ext.define('Eway.view.operatingPlan.Add',{
 										}, {
 											xtype : 'displayfield',
 											value : Eway.locale.advert.hourDisplay
-
 										}, {
 											xtype : 'combobox',
 											fieldLabel : 'minute',
@@ -479,6 +464,9 @@ Ext.define('Eway.view.operatingPlan.Add',{
 									} ]
 								} ],
 								fbar: [{
+										xtype:'displayfield',
+										value:'<b>' + Eway.locale.report.openplan.planDetailDay + '</b>'
+									},'->',{
 									text: Eway.locale.card.add,
 									glyph : 0xf067,
 									action: 'add'
@@ -488,10 +476,9 @@ Ext.define('Eway.view.operatingPlan.Add',{
 									action: 'remove'
 								}]
 							} ,{
-								title : Eway.locale.report.openplan.datePlanInfoID,
 								itemId : 'datePlanInfoID',
 								height : 180,
-								width : 730,
+								width:760,
 								autoScroll : true,
 								xtype : 'planInfo_grid',
 								listeners : {
@@ -511,20 +498,6 @@ Ext.define('Eway.view.operatingPlan.Add',{
 					action: 'confirm',
 					iconCls:'db-save'
 				}]
-			/*	dockedItems : [{
-					width : 800,
-					xtype: 'toolbar',
-					dock: 'bottom',
-					items :[{
-				        	xtype: 'tbspacer',
-				       		width: 350
-				        },{
-				        	text: '确定',
-				        	xtype:'button',
-							iconCls:'db-save',
-							action: 'confirm'
-					}]
-				}]*/
 			}
 		});
 		this.callParent(arguments);

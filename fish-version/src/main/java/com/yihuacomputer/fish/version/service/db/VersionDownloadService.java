@@ -104,7 +104,7 @@ public class VersionDownloadService implements IVersionDownloadService {
 	public IPageResult<Object> getCanPushDevicePagesInfo(int start, int limit, IVersion version, IFilter outerFilter){
 		List<Object> argList=new ArrayList<Object>();
 		Object orgFlag = outerFilter.getValue("orgFlag");
-		String orgFlagStr = "%"+orgFlag;
+		String orgFlagStr =orgFlag+ "%";
 		Object terminalId = outerFilter.getValue("terminalId");
 		Object atmTypeId = outerFilter.getValue("atmTypeId");
 		Object ip = outerFilter.getValue("ip");
@@ -286,7 +286,7 @@ public class VersionDownloadService implements IVersionDownloadService {
         hql.append("select count(*) from Device device where device.organization.orgFlag like ? and device.status = ?");
         IVersionType vType = version.getVersionType();
         List<Object> filters = new ArrayList<Object>();
-        filters.add("%"+org.getOrgFlag());
+        filters.add(org.getOrgFlag()+"%");
         filters.add(DevStatus.OPEN);
         Object object =  dao.findUniqueByHql(hql.toString(),filters.toArray());
         return Long.parseLong(object.toString());

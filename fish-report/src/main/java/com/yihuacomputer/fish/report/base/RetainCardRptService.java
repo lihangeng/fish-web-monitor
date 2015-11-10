@@ -50,7 +50,7 @@ public class RetainCardRptService implements IRetainCardRptService {
 
 		if (orgFlag != null) {
 			hql.append(" and d.organization.orgFlag like ?");
-			valueObj.add("%" + orgFlag.getValue());
+			valueObj.add(orgFlag.getValue() + "%");
 		}
 		if (terminalId != null) {
 			hql.append(" and r.terminalId like ?");
@@ -127,7 +127,7 @@ public class RetainCardRptService implements IRetainCardRptService {
 
 		if (orgFlag != null) {
 			hql.append(" and o.orgFlag like ?");
-			valueObj.add("%" + orgFlag.getValue());
+			valueObj.add(orgFlag.getValue() + "%");
 		}
 		if (endData != null) {
 			hql.append(" and r.cardRetainTime<=?");

@@ -51,7 +51,7 @@ public class DeviceCheckService implements IDeviceCheckService {
         if (orgId != null && !"".equals(orgId)) {
             hql.append(" and device.organization.orgFlag like ? ");
             IOrganization org = orgService.get(orgId);
-            fixedFilters.add("%" + org.getOrgFlag());
+            fixedFilters.add(org.getOrgFlag() + "%");
         }
         /*hql.append(" and device.status in (?,?,?)");
         fixedFilters.add(Status.OPE_WAI_CHE);
@@ -72,7 +72,7 @@ public class DeviceCheckService implements IDeviceCheckService {
         if (orgId != null && !"".equals(orgId)) {
             hql.append(" and device.organization.orgFlag like ? ");
             IOrganization org = orgService.get(orgId);
-            fixedFilters.add("%" + org.getOrgFlag());
+            fixedFilters.add(org.getOrgFlag() + "%");
         }
 
         hql.append(" and device.status in (?,?)");
@@ -92,7 +92,7 @@ public class DeviceCheckService implements IDeviceCheckService {
         if (orgId != null && !"".equals(orgId)) {
             hql.append(" and device.organization.orgFlag like ? ");
             IOrganization org = orgService.get(orgId);
-            fixedFilters.add("%" + org.getOrgFlag());
+            fixedFilters.add(org.getOrgFlag() + "%");
         }
 
        /* hql.append(" and device.status in (?,?,?)");

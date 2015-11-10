@@ -14,15 +14,16 @@ Ext.define('Eway.view.operatingPlan.PlanInfoForDeviceGrid', {
 			initRegion : true,
 			tbar : [ '->',  {
 				text : Eway.locale.tip.business.device.detail,
+				glyph : 0xf129,
 				iconCls : 'detailBtn',
 				action : 'deviceQueryDetail'
 			}, {
 				text:Eway.locale.button.link,
-				iconCls :'connectBtn',
+				glyph : 0xf0c1,
 				action: 'deviceLink'
 			}, {
 				text:Eway.locale.button.unlink,
-				iconCls :'deleteBtn',
+				glyph : 0xf014,
 				action: 'deviceUnlink'
 			} ],
 			viewConfig : {
@@ -56,11 +57,11 @@ Ext.define('Eway.view.operatingPlan.PlanInfoForDeviceGrid', {
 				header : Eway.locale.report.openplan.closeDate,
 				width : 100,
 				dataIndex : 'endDate'
-			}, {
+			}, /*{
 				header : Eway.locale.version.View.remark,
 				dataIndex : 'desc',
 				flex : 1
-			}, {
+			},*/ {
 				header :Eway.locale.report.openplan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 160,

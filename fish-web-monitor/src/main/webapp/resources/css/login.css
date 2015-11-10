@@ -8,8 +8,7 @@ padding-left:20px;
 
 .container{
 width:1296px;
-background-color:#7f7e7e;
-
+align:center;
 }
 .left{
 
@@ -66,23 +65,29 @@ height:33px;
 width:200px;
 
 
+
 }
 .txt{
-
-border:1px solid #dedede;
-background:url("../images/text1.PNG") no-repeat 0% ;
-padding-left:40px;
-float:left;
-}
-.txt2{
-
-border:1px solid #dedede;
-background:url("../images/text2.png") no-repeat 0% ;
-padding-left:40px;
-
+width:198px;
+height:33px;
+border:0;
+padding-left:7px;
+float:left
 }
 
 
+.laber1{
+	width:35px;
+	height:35px;
+	background:url("../images/text1.PNG") no-repeat 0% ;
+	float:left;
+}
+.laber2{
+	width:35px;
+	height:35px;
+	background:url("../images/text2.png") no-repeat 0% ;
+	float:left;
+}
 p{
 
 font-weight:bold;

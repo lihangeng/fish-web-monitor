@@ -48,7 +48,7 @@ public class TransactionService implements ITransactionService {
         hql.append("where transaction.terminalId = device.terminalId and device.organization.orgFlag like ? ");
         hql.append(" order by transaction.dateTime desc");
         IPageResult<ITransaction> page = (IPageResult<ITransaction>) dao.page(offset, limit, filter, hql.toString(),
-                "%" + org.getOrgFlag());
+                org.getOrgFlag() + "%");
         return page;
     }
 
@@ -76,7 +76,7 @@ public class TransactionService implements ITransactionService {
         hql.append(" order by transaction.dateTime desc");
 
         IPageResult<ITransaction> page = (IPageResult<ITransaction>) dao.page(offset, limit, filter, hql.toString(),
-                "%" + org.getOrgFlag());
+        		org.getOrgFlag() + "%");
         return page;
     }
 
@@ -94,7 +94,7 @@ public class TransactionService implements ITransactionService {
         hql.append(" order by transaction.dateTime desc");
 
         IPageResult<ITransaction> page = (IPageResult<ITransaction>) dao.page(offset, limit, filter, hql.toString(),
-                "%" + org.getOrgFlag());
+        		org.getOrgFlag() + "%");
         return page;
     }
 

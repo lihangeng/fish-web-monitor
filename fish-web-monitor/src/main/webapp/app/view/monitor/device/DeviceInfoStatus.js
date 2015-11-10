@@ -3,7 +3,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 	alias : 'widget.monitor_device_DeviceInfoStatus',
 	requires:['Ext.ux.TransparentButton'],
 	width : 720,
-	height :570,
+	height :610,
 	maximizable : true,
 	modal : true,
 	border : false,
