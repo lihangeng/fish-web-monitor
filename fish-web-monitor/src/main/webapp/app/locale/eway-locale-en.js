@@ -1786,8 +1786,8 @@ Ext.override(Eway,{
 		index:{
 			indexPage:'Home',//Eway.locale.index.indexPage 首页
 			dailyFaultPic:'Faults Trend Chart',//Eway.locale.index.dailyFaultPic 日均故障趋势图
-			faultAmount:' 产生的故障数量: ',//Eway.locale.index.faultAmount
-			devStatusDisPic:'设备状态分布图',//Eway.locale.index.devStatusDisPic
+			faultAmount:' CaseFault number: ',//Eway.locale.index.faultAmount
+			devStatusDisPic:'Device status Pie',//Eway.locale.index.devStatusDisPic
 			normalDev:'Device normal',//Eway.locale.index.normalDev 正常设备
 			unknownDev:'Device-unknown',//Eway.locale.index.unknownDev
 			exceptionDev:'Device unusual',//Eway.locale.index.exceptionDev 异常设备

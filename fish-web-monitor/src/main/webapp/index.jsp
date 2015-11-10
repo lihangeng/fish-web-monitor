@@ -102,7 +102,7 @@
 
 <body>
 	<div id="loading">
-		<span class="title">努力加载中,请稍等...</span><span class="logo"></span>
+		<span class="title"><spring:message code="login.system.loading" /></span><span class="logo"></span>
 	</div>
 	<iframe id="downloadFileFromWeb" style="display: none"></iframe>
 </body>
