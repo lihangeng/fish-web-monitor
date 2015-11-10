@@ -21,11 +21,12 @@ import com.yihuacomputer.fish.api.person.IPersonService;
 import com.yihuacomputer.fish.api.person.OrganizationLevel;
 import com.yihuacomputer.fish.api.person.OrganizationState;
 import com.yihuacomputer.fish.api.person.OrganizationType;
-import com.yihuacomputer.fish.system.MySQLTestConfig;
+import com.yihuacomputer.fish.system.H2TestConfig;
+//import com.yihuacomputer.fish.system.MySQLTestConfig;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = MySQLTestConfig.class)
+@ContextConfiguration(classes = H2TestConfig.class)
 public class OrganizationServiceTest extends BindSessionInTest2{
 
 	@Autowired
@@ -33,6 +34,7 @@ public class OrganizationServiceTest extends BindSessionInTest2{
 
 	@Autowired
 	private IPersonService personService;
+	@Ignore
 	@Test
 	public void addTestData(){
 		IOrganization root = organizationService.get("1");
