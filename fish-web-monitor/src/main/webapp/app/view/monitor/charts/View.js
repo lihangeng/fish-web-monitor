@@ -27,7 +27,7 @@ Ext.define('Eway.view.monitor.charts.View', {
     			    		var colors = new Array();
     			    		Ext.Array.forEach(records,function(item,index,allItems){
     			    			colors.push(item.data.color);
-    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
+//    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
     			    		},this);
     			    		dount.down("polar series[type='pie']").updateColors(colors);
     			    	}
@@ -42,7 +42,7 @@ Ext.define('Eway.view.monitor.charts.View', {
     			    		var colors = new Array();
     			    		Ext.Array.forEach(records,function(item,index,allItems){
     			    			colors.push(item.data.color);	
-    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
+//    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
     			    		},this);
     			    		dount.down("polar series[type='pie']").updateColors(colors);
     			    	}
@@ -57,7 +57,7 @@ Ext.define('Eway.view.monitor.charts.View', {
     			    		var colors = new Array();
     			    		Ext.Array.forEach(records,function(item,index,allItems){
     			    			colors.push(item.data.color);	
-    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
+//    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
     			    		},this);
     			    		dount.down("polar series[type='pie']").updateColors(colors);
     			    	}
@@ -72,7 +72,7 @@ Ext.define('Eway.view.monitor.charts.View', {
     			    		var colors = new Array();
     			    		Ext.Array.forEach(records,function(item,index,allItems){
     			    			colors.push(item.data.color);
-    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
+//    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
     			    		},this);
     			    		dount.down("polar series[type='pie']").updateColors(colors);
     			    	}
@@ -87,7 +87,7 @@ Ext.define('Eway.view.monitor.charts.View', {
     			    		var colors = new Array();
     			    		Ext.Array.forEach(records,function(item,index,allItems){
     			    			colors.push(item.data.color);
-    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
+//    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
     			    		},this);
     			    		dount.down("polar series[type='pie']").updateColors(colors);
     			    	}
