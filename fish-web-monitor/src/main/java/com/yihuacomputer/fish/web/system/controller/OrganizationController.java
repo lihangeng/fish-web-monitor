@@ -465,12 +465,18 @@ public class OrganizationController {
 	}
 
 	private boolean isChild(String orgId, String newParentId) {
-		for (Long o : service.listSubOrgId(orgId)) {
-			if (o.toString().equals(newParentId)) {
-				return true;
-			}
+		IOrganization newParentOrg = service.get(newParentId);
+		IOrganization childOrg = service.get(orgId);
+		if(childOrg.getOrgFlag().startsWith(newParentOrg.getOrgFlag())){
+			return true;
 		}
 		return false;
+//		for (Long o : service.listSubOrgId(orgId)) {
+//			if (o.toString().equals(newParentId)) {
+//				return true;
+//			}
+//		}
+//		return false;
 	}
 
 	@RequestMapping(value = "/queryMatching", method = RequestMethod.GET)

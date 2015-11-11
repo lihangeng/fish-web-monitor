@@ -19,7 +19,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.exception.NotFoundException;
+import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IPerson;
@@ -91,8 +93,9 @@ public class Organization implements IOrganization,Serializable {
 	@JoinColumn(name = "PARENT_ID")
 	private IOrganization parent;
 
-	@OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
-	private final List<Organization> children = new ArrayList<Organization>();
+//	@OneToMany(mappedBy = "parent", fetch = FetchType.EAGER, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
+	@Transient
+	private List<Organization> children = new ArrayList<Organization>();
 
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = com.yihuacomputer.fish.system.entity.Organization.class)
 	@JoinColumn(name = "SERVICE_OBJECT")
@@ -115,7 +118,14 @@ public class Organization implements IOrganization,Serializable {
 	private String legalPerCode;
 
 	@Column(name = "APPLICATION_PER", nullable = true, length = 24)
-	private String applicationPer;
+	private String applicationPer; 
+	
+	/**
+	 * 是否为叶子机构（默认为叶子机构）;update之前判断上一级机构更改后是否为叶子机构；update之后判断上一级机构是否为叶子机构
+	 */
+	@org.hibernate.annotations.Type(type="com.yihuacomputer.domain.util.BooleanUserType")
+	@Column(name="IS_LEAF", nullable=false)
+	private boolean leaf;
 	
 	public Organization() {}
 
@@ -135,9 +145,9 @@ public class Organization implements IOrganization,Serializable {
 
 	@Override
 	public Organization getChild(String code) {
-		for (Organization item : children) {
+		for (IOrganization item : getChildren()) {
 			if (code.equals(item.getCode())) {
-				return item;
+				return (Organization)item;
 			}
 		}
 		throw new NotFoundException("child not found");
@@ -178,19 +188,19 @@ public class Organization implements IOrganization,Serializable {
 
 	@Override
 	public Iterable<IOrganization> listChildren() {
-		return EntityUtils.<IOrganization> convert(children);
+		return getChildren();
 	}
 
 	@Override
 	public Iterable<IOrganization> listChildren(OrganizationType organizationType) {
 
-		List<Organization> listChildren = new ArrayList<Organization>();
-		for (Organization item : children) {
+		List<IOrganization> listChildren = new ArrayList<IOrganization>();
+		for (IOrganization item : getChildren()) {
 			if (organizationType.equals(item.getOrganizationType())) {
 				listChildren.add(item);
 			}
 		}
-		return EntityUtils.<IOrganization> convert(listChildren);
+		return listChildren;
 	}
 
 	@Override
@@ -284,8 +294,11 @@ public class Organization implements IOrganization,Serializable {
 		this.zip = zip;
 	}
 
-	public List<Organization> getChildren() {
-		return children;
+	public List<IOrganization> getChildren() {
+		
+//		filter.eq("parent.id", );
+		return this.service.listSubOrg(this.getGuid());
+//		return children;
 	}
 
 	@Override
@@ -385,4 +398,13 @@ public class Organization implements IOrganization,Serializable {
 	public void setApplicationPer(String applicationPer) {
 		this.applicationPer = applicationPer;
 	}
+
+	public boolean isLeaf() {
+		return leaf;
+	}
+
+	public void setLeaf(boolean leaf) {
+		this.leaf = leaf;
+	}
+	
 }

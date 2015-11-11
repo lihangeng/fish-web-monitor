@@ -71,10 +71,18 @@ public class OrganizationService extends DomainOrganizationService {
      * 增加一条机构信息
      */
     @Override
+    @Transactional
     public Organization add(IOrganization entity) {
         if (entity instanceof Organization) {
             Organization org = (Organization) entity;
             dao.save(entity);
+            IOrganization parent = org.getParent();
+            if(parent!=null){
+	            if(parent.isLeaf()){
+	            	parent.setLeaf(false);
+	            	dao.save(parent);
+	            }
+            }
             autoSetOrgFlag(org);
             dao.update(entity);
             return org;
@@ -159,7 +167,17 @@ public class OrganizationService extends DomainOrganizationService {
     @Override
     @CacheEvict(value = "orgs",key = "#guid")
     public void remove(String guid) {
+    	IOrganization org = this.get(guid);
+    	if(org==null){
+    		return;
+    	}
+    	IOrganization parent = org.getParent();
+    	
     	 dao.delete(Long.valueOf(guid), Organization.class);
+ 		if(!parent.listChildren().iterator().hasNext()){
+ 			parent.setLeaf(true);
+ 			dao.update(parent);
+ 		}
     }
 
     /**
@@ -170,13 +188,30 @@ public class OrganizationService extends DomainOrganizationService {
         Organization entity = interface2Entity(organization, true);
         String oldOrgFlag = entity.getOrgFlag();
         autoSetOrgFlag(entity);
+        IOrganization newParent = entity.getParent();
+//        session.clear();
+        ArrayList<IOrganization> childrenList = (ArrayList<IOrganization>)newParent.listChildren();
+        if(childrenList.size()==1){
+        	newParent.setLeaf(false);
+        	dao.update(newParent);
+        }
         //因为在hibernate中同一个session里面有了两个相同标识
-        Session session = sessionFactory.getCurrentSession();
-        session.clear();
+//        else{
+//            Session session = sessionFactory.getCurrentSession();
+//	        session.clear();
+//        }
         dao.update(entity);
         String newOrgFlag = entity.getOrgFlag();
         // 级联修改子组织的orgFlag
         if (!oldOrgFlag.equalsIgnoreCase(newOrgFlag)) {
+        	String oldFlags[] = oldOrgFlag.split("-");
+        	if(oldFlags.length>2){
+        		IOrganization oldParentOrg = this.get(oldFlags[oldFlags.length-3]);
+        		if(!oldParentOrg.listChildren().iterator().hasNext()){
+        			oldParentOrg.setLeaf(true);
+        			dao.update(oldParentOrg);
+        		}
+        	}
             for (IOrganization child : entity.listChildren()) {
                 update(child);
             }
