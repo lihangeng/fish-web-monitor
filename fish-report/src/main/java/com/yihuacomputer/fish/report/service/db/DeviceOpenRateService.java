@@ -32,10 +32,10 @@ import com.yihuacomputer.fish.api.openplan.PlanType;
 import com.yihuacomputer.fish.api.openplan.Week;
 import com.yihuacomputer.fish.api.report.IDayOpenRate;
 import com.yihuacomputer.fish.api.report.IDayOpenRateService;
-import com.yihuacomputer.fish.report.service.base.DomainDeviceOpenRateService;
+import com.yihuacomputer.fish.api.report.IDeviceOpenRateService;
 
 @Service
-public class DeviceOpenRateService extends DomainDeviceOpenRateService {
+public class DeviceOpenRateService implements IDeviceOpenRateService {
 
 	private Logger logger = LoggerFactory.getLogger(DeviceOpenRateService.class);
 

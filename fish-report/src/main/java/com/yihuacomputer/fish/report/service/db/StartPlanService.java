@@ -16,15 +16,20 @@ import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.IStartPlan;
+import com.yihuacomputer.fish.api.report.IStartPlanService;
 import com.yihuacomputer.fish.report.base.entity.StartPlan;
-import com.yihuacomputer.fish.report.service.base.DomainStartPlanService;
 
 @Service
 @Transactional
-public class StartPlanService extends DomainStartPlanService {
+public class StartPlanService implements IStartPlanService {
 
 	@Autowired
 	private IGenericDao dao;
+	
+	@Override
+    public IStartPlan make() {
+        return new StartPlan();
+    }
 
 	@Override
 	public IStartPlan get(long id) {
