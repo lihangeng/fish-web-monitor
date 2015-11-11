@@ -377,7 +377,8 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 							}
 						},
 						failure : function(record, operation) {
-							if (operation.request.scope.reader.jsonData.flag) {
+//							if (operation.request.scope.reader.jsonData.flag) {
+							if (operation.request._operation.request._scope.reader.rawData.flag) {
 								Ext.MessageBox.show({
 									title : Eway.locale.tip.tips,
 									msg : operation.getError(),
