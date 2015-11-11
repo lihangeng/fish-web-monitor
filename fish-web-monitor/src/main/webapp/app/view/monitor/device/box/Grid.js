@@ -10,10 +10,10 @@ Ext.define('Eway.view.monitor.device.box.Grid', {
 				dataIndex : 'boxId'
 			}, {
 				header : Eway.locale.monitor.devMonitor.cash.type,
-				dataIndex : 'type'
+				dataIndex : 'typeName'
 			}, {
 				header : Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,
-				dataIndex : 'binStatus'
+				dataIndex : 'binStatusName'
 			}, {
 				header : Eway.locale.monitor.devMonitor.cash.initialCount,
 				dataIndex : 'initialCount'

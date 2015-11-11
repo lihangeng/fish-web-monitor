@@ -10,8 +10,7 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
 			columns : [  {
 				header : Eway.locale.commen.terminalId,
 				dataIndex : 'code',
-				width:80,
-				tdCls : 'pointerLink'
+				width:80
 			},  {
 				header : Eway.locale.monitor.devMonitor.comboxStatus.runStatus,
 				dataIndex : 'runStatus',

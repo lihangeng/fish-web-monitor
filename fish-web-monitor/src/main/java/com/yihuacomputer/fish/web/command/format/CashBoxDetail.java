@@ -12,9 +12,11 @@ public class CashBoxDetail {
 	
 	/**钞箱类型*/
 	private BoxType type;
+	private String typeName;
 	
 	/**钞箱状态*/
 	private BoxStatus binStatus;
+	private String binStatusName;
 	
 	/**初始化张数*/
 	private int initialCount;
@@ -93,5 +95,22 @@ public class CashBoxDetail {
 
 	public void setCurrency(String currency) {
 		this.currency = currency;
+	}
+
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
+	public String getBinStatusName() {
+		return binStatusName;
+	}
+
+	public void setBinStatusName(String binStatusName) {
+		this.binStatusName = binStatusName;
 	}	
+	
 }
