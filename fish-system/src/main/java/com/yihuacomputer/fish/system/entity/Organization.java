@@ -14,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -22,7 +21,6 @@ import javax.persistence.Transient;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.exception.NotFoundException;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.OrganizationLevel;
@@ -295,10 +293,9 @@ public class Organization implements IOrganization,Serializable {
 	}
 
 	public List<IOrganization> getChildren() {
-		
-//		filter.eq("parent.id", );
-		return this.service.listSubOrg(this.getGuid());
-//		return children;
+		IFilter filter = new Filter();
+		filter.eq("parent.id", this.id);
+		return (ArrayList<IOrganization>)this.service.list(filter);
 	}
 
 	@Override

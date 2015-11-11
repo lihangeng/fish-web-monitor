@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.person.service.db;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -43,6 +44,11 @@ public class OrganizationService extends DomainOrganizationService {
     private List<IOrganizationListener> orgListeners = new ArrayList<IOrganizationListener>();
 
     private final String SUB_ORG_HQL = "select o.id from Organization o where o.orgFlag like ? ";
+    
+    /**
+     * 如果为1则之前是根节点
+     */
+    private final static int ISLEAF=1;
 
     /**
      * 增加一条机构信息并初始化其编号和名称
@@ -188,26 +194,29 @@ public class OrganizationService extends DomainOrganizationService {
         Organization entity = interface2Entity(organization, true);
         String oldOrgFlag = entity.getOrgFlag();
         autoSetOrgFlag(entity);
+        //新的父节点
         IOrganization newParent = entity.getParent();
-//        session.clear();
-        ArrayList<IOrganization> childrenList = (ArrayList<IOrganization>)newParent.listChildren();
-        if(childrenList.size()==1){
-        	newParent.setLeaf(false);
-        	dao.update(newParent);
-        }
-        //因为在hibernate中同一个session里面有了两个相同标识
-//        else{
-//            Session session = sessionFactory.getCurrentSession();
-//	        session.clear();
-//        }
+    	Session session = sessionFactory.getCurrentSession();
+        session.clear();
         dao.update(entity);
+        //父节点的子节点包含新增的机构
+        List<IOrganization> childrenList = (ArrayList<IOrganization>)newParent.listChildren();
         String newOrgFlag = entity.getOrgFlag();
         // 级联修改子组织的orgFlag
         if (!oldOrgFlag.equalsIgnoreCase(newOrgFlag)) {
+        	//迁移后的机构数量为1，则要更改当前新父节点的leaf属性为false,非叶子节点
+            if(childrenList.size()==ISLEAF){
+                session.clear();
+            	newParent.setLeaf(false);
+            	dao.update(newParent);
+            }
         	String oldFlags[] = oldOrgFlag.split("-");
         	if(oldFlags.length>2){
-        		IOrganization oldParentOrg = this.get(oldFlags[oldFlags.length-3]);
-        		if(!oldParentOrg.listChildren().iterator().hasNext()){
+        		IOrganization oldParentOrg = this.get(oldFlags[oldFlags.length-2]);
+        		Iterator<IOrganization> orgIterable = oldParentOrg.listChildren().iterator();
+//        		orgIterable.next();
+        		if(!orgIterable.hasNext()){
+                    session.clear();
         			oldParentOrg.setLeaf(true);
         			dao.update(oldParentOrg);
         		}

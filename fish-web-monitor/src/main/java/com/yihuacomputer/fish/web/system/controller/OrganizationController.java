@@ -271,7 +271,9 @@ public class OrganizationController {
 		} catch (NotFoundException nfe) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, String.format("%s,"+messageSource.getMessage("organization.move.refresh", null, FishCfg.locale), nfe.getMessage()));
-		} catch (Exception ex) {
+		}
+		catch (Exception ex) {
+			logger.error(ex.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.processError", null, FishCfg.locale));
 		}
@@ -467,16 +469,11 @@ public class OrganizationController {
 	private boolean isChild(String orgId, String newParentId) {
 		IOrganization newParentOrg = service.get(newParentId);
 		IOrganization childOrg = service.get(orgId);
-		if(childOrg.getOrgFlag().startsWith(newParentOrg.getOrgFlag())){
+		String childOrgFlag = childOrg.getParent().getOrgFlag();
+		if(childOrgFlag.equals(newParentOrg.getOrgFlag())){
 			return true;
 		}
 		return false;
-//		for (Long o : service.listSubOrgId(orgId)) {
-//			if (o.toString().equals(newParentId)) {
-//				return true;
-//			}
-//		}
-//		return false;
 	}
 
 	@RequestMapping(value = "/queryMatching", method = RequestMethod.GET)
