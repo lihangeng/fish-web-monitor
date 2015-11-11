@@ -88,14 +88,14 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
 				dataIndex : 'type'
 			}, {
 				header : Eway.locale.commen.installAddr,
-				dataIndex : 'address',
-				flex : 1
+				dataIndex : 'address'
 			}, {
 				header : Eway.locale.commen.seviceMode,
 				dataIndex : 'seviceMode'
 			}, {
 				header : Eway.locale.commen.insideOutside,
-				dataIndex : 'insideOutside'
+				dataIndex : 'insideOutside',
+				flex : 1
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,
