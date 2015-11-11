@@ -218,66 +218,8 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					click : this.onRemoteBrowserAction
 				},
 				//远程查看ATMC应用版本和监控客户端版本
-				'monitor_device_DeviceInfoStatus displayfield[name="remoteLookAction"]' : {
-					scope : this,
-					afterrender : {
-						fn : function(comp) {
-							var text = comp.getEl().down('a.link');
-							if (text) {
-								text.on('click', function(e, htmlEl) {
-									var form = comp.up('form');
-									var ip = form.down('displayfield[name="ip"]').getValue();
-									var code = form.down('displayfield[name="code"]').getValue();
-									code = Ext.util.Format.stripTags(code);
-									var controller = this.getController('agent.remote.RemoteLookVesion');
-									controller.display(code, ip);
-
-									var win = controller.win;
-									var statusView = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
-									var winEl = statusView.getEl();
-									winEl.mask(Eway.locale.tip.business.device.operating);
-
-									Ext.Ajax.request({
-							   			method : 'POST',
-							   			url : 'api/agent/atmVersion/versioninfo',
-							   			params :{
-							   				terminalId: code,
-							   				ip: ip
-							   			},
-							   			success : function(response){
-							   				winEl.unmask();
-							   				var object = Ext.decode(response.responseText);
-							   				if(object.success == true){
-							   					if(object.data != null){
-							   						win.down('form').down('displayfield[name="atmcVersion"]').setValue(object.data.atmcVersion);
-							   	   					win.down('form').down('displayfield[name="agentVersion"]').setValue(object.data.agentVersion);
-							   	   					win.show();
-
-							   	   					statusView.record.set('appRelease', object.data.atmcVersion);
-							   	   					form.down('displayfield[name="appRelease"]').setValue(object.data.atmcVersion);
-
-							   					}else{
-							   						win.close();
-							   						Eway.alert(Eway.locale.tip.business.device.reviewFail);
-							   					}
-							   				}else{
-							   					win.close();
-							   					Eway.alert(Eway.locale.tip.business.device.reviewFail);
-							   				}
-							   			},
-							   			failure : function(){
-							   				winEl.unmask();
-							   				win.close();
-							   				Eway.alert(Eway.locale.tip.business.device.reviewFail);
-							   			}
-									});
-
-								}, this);
-							}
-						},
-//						single : true,
-						scope : this
-					}
+				'monitor_device_DeviceInfoStatus button[name="remoteLookAction"]' : {
+					click : this.onRemoteLookAction
 				},
 				//ATM体检
 				'monitor_device_DeviceInfoStatus button[name="remoteCheckATMAction"]' : {
@@ -1016,6 +958,56 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 		ip = Ext.util.Format.stripTags(ip);
 		var controller = this.getController('agent.remote.RemoteCheckInfo');
 		controller.display(ip,terminalId);
+	},
+
+	// 查看应用版本
+	onRemoteLookAction : function(btn) {
+		var form = btn.up('form');
+		var ip = form.down('displayfield[name="ip"]').getValue();
+		var code = form.down('displayfield[name="code"]').getValue();
+		code = Ext.util.Format.stripTags(code);
+		var controller = this.getController('agent.remote.RemoteLookVesion');
+		controller.display(code, ip);
+
+		var win = controller.win;
+		var statusView = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
+		var winEl = statusView.getEl();
+		winEl.mask(Eway.locale.tip.business.device.operating);
+
+		Ext.Ajax.request({
+   			method : 'POST',
+   			url : 'api/agent/atmVersion/versioninfo',
+   			params :{
+   				terminalId: code,
+   				ip: ip
+   			},
+   			success : function(response){
+   				winEl.unmask();
+   				var object = Ext.decode(response.responseText);
+   				if(object.success == true){
+   					if(object.data != null){
+   						win.down('form').down('displayfield[name="atmcVersion"]').setValue(object.data.atmcVersion);
+   	   					win.down('form').down('displayfield[name="agentVersion"]').setValue(object.data.agentVersion);
+   	   					win.show();
+
+   	   					statusView.record.set('appRelease', object.data.atmcVersion);
+   	   					form.down('displayfield[name="appRelease"]').setValue(object.data.atmcVersion);
+
+   					}else{
+   						win.close();
+   						Eway.alert(Eway.locale.tip.business.device.reviewFail);
+   					}
+   				}else{
+   					win.close();
+   					Eway.alert(Eway.locale.tip.business.device.reviewFail);
+   				}
+   			},
+   			failure : function(){
+   				winEl.unmask();
+   				win.close();
+   				Eway.alert(Eway.locale.tip.business.device.reviewFail);
+   			}
+		});
 	},
 
 	//显示设备详情页面

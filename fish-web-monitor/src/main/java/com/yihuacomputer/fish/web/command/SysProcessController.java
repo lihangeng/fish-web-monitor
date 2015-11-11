@@ -35,7 +35,7 @@ public class SysProcessController {
 		ModelMap result = new ModelMap();
 		try {
 			String url = MonitorCfg.getHttpUrl(request.getParameter("ip")) + "/ctr/listprocess";
-			ListProcessForm listProcessForm = (ListProcessForm) HttpProxy.httpGet(url, ListProcessForm.class);
+			ListProcessForm listProcessForm = (ListProcessForm) HttpProxy.httpGet(url, ListProcessForm.class, 5000);
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("data", ProcessForm.convert(listProcessForm.getProcessList()));
 		} catch (Exception e) {
