@@ -15,7 +15,7 @@ Ext.define('Eway.view.operatingPlan.PlanInfoWin', {
 	
 	initComponent: function() {
 		Ext.apply(this, {
-			title : '方案详情',
+			title : Eway.locale.tip.planDetail,
 			items : [{
 				padding : 1,
 				xtype : 'planInfo_grid'

@@ -61,6 +61,12 @@ Ext.define('Eway.view.machine.device.Form',{
 						regexText : Eway.locale.vtype.numberRule,
 						maxLength : 40,
 						name : 'serial'
+					},{
+						fieldLabel : Eway.locale.machine.device.virtual,
+						regex : /^\w+[\w-\.]*$/,
+						regexText : Eway.locale.vtype.numberRule,
+						maxLength : 25,
+						name : 'virtual'
 					}]					
 					
 				}, {
@@ -102,12 +108,6 @@ Ext.define('Eway.view.machine.device.Form',{
 						editable : false,
 						filters : '{"type" : "1"}',
 						rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '1' ? true : false
-					},{
-						fieldLabel : Eway.locale.machine.device.virtual,
-						regex : /^\w+[\w-\.]*$/,
-						regexText : Eway.locale.vtype.numberRule,
-						maxLength : 25,
-						name : 'virtual'
 					} ]
 				}]
 				
@@ -115,12 +115,12 @@ Ext.define('Eway.view.machine.device.Form',{
 				layout : 'column',
 				border : false,
 				items : [ {
-					columnWidth : .9,
+					columnWidth : 1,
 					border : false,
 					layout : 'anchor',
 					defaultType : 'textfield',
 					defaults : {
-						anchor : '90%',
+						anchor : '95%',
 						style : 'padding-top:10px'
 					},
 					items : [ {

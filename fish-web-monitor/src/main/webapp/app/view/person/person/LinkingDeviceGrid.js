@@ -26,7 +26,7 @@ Ext.define('Eway.view.person.person.LinkingDeviceGrid', {
 				action:'query'
 			},{
 				text: Eway.locale.commen.bind,
-				iconCls :'connectBtn',
+				glyph : 0xf0c1,
 				action: 'link'
 			}],
 			columns : [ {

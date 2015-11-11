@@ -103,7 +103,6 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 				            	var value = this.getValue();
 				            	if (!value) {
 				            		var startField = this.up('form').getForm().findField(this.startDateField);
-				            		console.log(this.startDateField);
 				            	}
 				            }
 						}

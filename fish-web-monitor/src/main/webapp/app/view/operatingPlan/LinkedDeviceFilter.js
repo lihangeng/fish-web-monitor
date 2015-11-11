@@ -14,7 +14,7 @@ Ext.define('Eway.view.operatingPlan.LinkedDeviceFilter',{
 				columnWidth : .5,
 				defaults : {
 					labelAlign : 'right',
-					labelWidth : 70
+					labelWidth : 60
 				},
 				items : [ {
 					xtype : 'common_orgComboOrgTree',
@@ -45,7 +45,7 @@ Ext.define('Eway.view.operatingPlan.LinkedDeviceFilter',{
 				columnWidth : .5,
 				defaults : {
 					labelAlign : 'right',
-					labelWidth : 80
+					labelWidth : 60
 				},
 				items : [  {
 					xtype : 'textfield',

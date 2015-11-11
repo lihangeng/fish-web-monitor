@@ -41,6 +41,7 @@ WORKDATE=`date +%Y%m%d`
 BKPATH=/home/atmv
 ATMVPATH=/home/atmv
 LOGPATH=/home/atmv/log
+BKFILEPATH=/home/atmv/bkfile
 
 if [ ! -d $BKPATH ]
 then
@@ -59,7 +60,7 @@ echo "当前时间 ：$WORKDATE"
 #连接数据库，取得需要备份的历史库表
 hostIp=localhost
 username=root
-password=admin
+password=root
 database=atmv
 while read Line
 do
@@ -72,12 +73,12 @@ do
     day=`echo "$Line"|awk -F"/" '{print $5}'`
     backupDay=`echo "$Line"|awk -F"/" '{print $6}'`
     echo `gettime` $srctab $baktab $note $sql $day  >>$LOGPATH/backup$WORKDATE.log
+    BACKUPWORKDATE=`olddate $WORKDATE $backupDay`
     TWORKDATE=`olddate $WORKDATE $day`
-    BACKUPWORKDATE = `olddate $WORKDATE $backupDay`
     echo `gettime` "开始备份的表?名:$srctab 备份的天数:$day  备份的日期:$TWORKDATE"  >>$LOGPATH/backup$WORKDATE.log
       datestart=`date +%s`
-      echo `gettime` "select * from $srctab where $note <= '$TWORKDATE' $sql into outfile curtohis_$srctab$WORKDATE.txt"  >>$LOGPATH/backup$WORKDATE.log
-      mysql -h $hostIp -u $username -p$password $database -e "select * from $srctab where $note <= '$TWORKDATE' $sql into outfile curtohis_$srctab$WORKDATE.txt"   >>$LOGPATH/backup$WORKDATE.log
+      echo `gettime` "select * from $srctab where $note <= '$TWORKDATE' $sql into outfile '$BKFILEPATH/curtohis_$srctab$WORKDATE.txt'"  >>$LOGPATH/backup$WORKDATE.log
+      mysql -h $hostIp -u $username -p$password $database -e "select * from $srctab where $note <= '$TWORKDATE' $sql into outfile '$BKFILEPATH/curtohis_$srctab$WORKDATE.txt'"   >>$LOGPATH/backup$WORKDATE.log
       if [ $? -ne 0 ]
       then
         echo `gettime` "表 $srctab 导出数据异常!"   >>$LOGPATH/backup$WORKDATE.log
@@ -87,8 +88,8 @@ do
       echo `gettime` 导出表  $srctab 耗时 $(expr $dateend - $datestart) 秒  >>$LOGPATH/backup$WORKDATE.log
 
       datestart=`date +%s`
-      echo `gettime` "load data local infile curtohis_$srctab$WORKDATE.txt into table $baktab" >>$LOGPATH/backup$WORKDATE.log
-      mysql -h $hostIp -u $username -p$password $database -e "load data local infile curtohis_$srctab$WORKDATE.txt into table $baktab"  >>$LOGPATH/backup$WORKDATE.log
+      echo `gettime` "load data local infile '$BKFILEPATH/curtohis_$srctab$WORKDATE.txt' into table $baktab" >>$LOGPATH/backup$WORKDATE.log
+      mysql -h $hostIp -u $username -p$password $database -e "load data local infile '$BKFILEPATH/curtohis_$srctab$WORKDATE.txt' into table $baktab"  >>$LOGPATH/backup$WORKDATE.log
       if [ $? -ne 0 ]
       then
         echo `gettime` " 表 $baktab 导入数据异常!"  >>$LOGPATH/backup$WORKDATE.log
@@ -102,15 +103,15 @@ do
       number_value=`echo $return_value | awk '{print $3}'`
       echo `gettime` "当前表名和需要删除的记录数"  $srctab  $number_value    >>$LOGPATH/backup$WORKDATE.log
       datestart=`date +%s`
-      echo `gettime` "delete  from ( select * from $srctab where $note <= '$TWORKDATE' $sql  )" >>$LOGPATH/backup$WORKDATE.log
-      mysql -h $hostIp -u $username -p$password $database -e "delete  from ( select * from $srctab where $note <= '$TWORKDATE' $sql)"  >>$LOGPATH/backup$WORKDATE.log
+      echo `gettime` "delete from $srctab where $note <= '$TWORKDATE' $sql " >>$LOGPATH/backup$WORKDATE.log
+      mysql -h $hostIp -u $username -p$password $database -e "delete from $srctab where $note <= '$TWORKDATE' $sql "  >>$LOGPATH/backup$WORKDATE.log
       dateend=`date +%s`
       echo `gettime` 清理 表  $srctab 耗时 $(expr $dateend - $datestart) 秒  >>$LOGPATH/backup$WORKDATE.log
       
       echo `gettime` "开始备份的历史表?名:$baktab 备份的天数:$backupDay  备份的日期:$BACKUPWORKDATE"  >>$LOGPATH/backup$WORKDATE.log
       datestart=`date +%s`
-      echo `gettime` "select * from $baktab where $note <= '$BACKUPWORKDATE' $sql into outfile backup_$baktab$BACKUPWORKDATE.txt"  >>$LOGPATH/backup$WORKDATE.log
-      mysql -h $hostIp -u $username -p$password $database -e "select * from $baktab where $note <= '$BACKUPWORKDATE' $sql into outfile backup_$baktab$BACKUPWORKDATE.txt"   >>$LOGPATH/backup$WORKDATE.log
+      echo `gettime` "select * from $baktab where $note <= '$BACKUPWORKDATE' $sql into outfile '$BKFILEPATH/backup_$baktab$BACKUPWORKDATE.txt'"  >>$LOGPATH/backup$WORKDATE.log
+      mysql -h $hostIp -u $username -p$password $database -e "select * from $baktab where $note <= '$BACKUPWORKDATE' $sql into outfile '$BKFILEPATH/backup_$baktab$BACKUPWORKDATE.txt'"   >>$LOGPATH/backup$WORKDATE.log
       if [ $? -ne 0 ]
       then
         echo `gettime` "历史表 $baktab 导出数据异常!"   >>$LOGPATH/backup$WORKDATE.log
@@ -124,8 +125,8 @@ do
       number_value=`echo $return_value | awk '{print $3}'`
       echo `gettime` "当前表名和需要删除的记录数"  $baktab  $number_value    >>$LOGPATH/backup$WORKDATE.log
       datestart=`date +%s`
-      echo `gettime` "delete  from ( select * from $baktab where $note <= '$BACKUPWORKDATE' $sql  )" >>$LOGPATH/backup$WORKDATE.log
-      mysql -h $hostIp -u $username -p$password $database -e "delete  from ( select * from $baktab where $note <= '$BACKUPWORKDATE' $sql)"  >>$LOGPATH/backup$WORKDATE.log
+      echo `gettime` "delete from $baktab where $note <= '$BACKUPWORKDATE' $sql " >>$LOGPATH/backup$WORKDATE.log
+      mysql -h $hostIp -u $username -p$password $database -e "delete from $baktab where $note <= '$BACKUPWORKDATE' $sql "  >>$LOGPATH/backup$WORKDATE.log
       dateend=`date +%s`
       echo `gettime` 清理 历史表  $baktab 耗时 $(expr $dateend - $datestart) 秒  >>$LOGPATH/backup$WORKDATE.log
       
