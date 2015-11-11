@@ -5,7 +5,7 @@ Ext.define('Eway.store.person.user.UserStateFilterDict', {
 	model: 'Eway.model.Dict',
 	
 	data: [
-		   {value:'0', display:Eway.locale.commen.stateDict.newCreate}, 
-	       {value:'1', display:Eway.locale.commen.stateDict.normal},
-	       {value:'2', display:Eway.locale.commen.stateDict.locked}]
+		   {value:'1', display:Eway.locale.commen.stateDict.newCreate}, 
+	       {value:'2', display:Eway.locale.commen.stateDict.normal},
+	       {value:'3', display:Eway.locale.commen.stateDict.locked}]
 });
