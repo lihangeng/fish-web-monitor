@@ -1032,8 +1032,8 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 			var el = win.getEl();
 			el.mask(Eway.locale.tip.business.device.refresh);
 			setTimeout(function() {
-				me.refreshView(win, win.record.get('code'));
 				el.unmask();
+				me.refreshView(win, win.record.get('code'));
 			}, 100);
 		} );
 
@@ -1056,7 +1056,13 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 		var card = view.down('#card_itemId');
 		var layout = card.getLayout();
 		var currentPanel = layout.getActiveItem();
-		var currentStore = currentPanel.getStore();
+		
+		var currentStore;
+		if (currentPanel.getItemId() == 'martrixPanel') {
+			currentStore = currentPanel.down('monitor_device_showtype_dataviewgrid').getStore();
+		} else {
+			currentStore = currentPanel.getStore();
+		}
 
 		// 获取最新store的数据
 		var newRecord = currentStore.findRecord('code', code);
