@@ -23,6 +23,10 @@ Ext.define('Eway.controller.agent.remote.RemoteCheckInfo',{
 	},
 
 	checkATM : function(win,ip,terminalId){
+		
+		var el = win.getEl();
+		el.mask(Eway.locale.tip.business.device.operating);
+		
 		if(!win.down('progressbar')){
 			var p = Ext.create('Ext.ProgressBar', {});
 		}
@@ -48,6 +52,7 @@ Ext.define('Eway.controller.agent.remote.RemoteCheckInfo',{
    				ip : ip
    			},
    			success : function(response){
+   				el.unmask();
    				var object = Ext.decode(response.responseText);
    				if(object.success == true){
    					if(object.data != null){
@@ -101,6 +106,7 @@ Ext.define('Eway.controller.agent.remote.RemoteCheckInfo',{
    				}
    			},
    			failure : function(){
+   				el.unmask();
    				Eway.alert(Eway.locale.agent.remote.checkFailure);
    				win.close();
    			}

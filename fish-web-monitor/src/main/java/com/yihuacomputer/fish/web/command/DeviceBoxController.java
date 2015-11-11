@@ -28,7 +28,7 @@ public class DeviceBoxController {
 
 		String url = MonitorCfg.getHttpUrl(request.getParameter("id"))+"/ctr/boxdetail";
 
-        DeviceBoxMsg msg = (DeviceBoxMsg)HttpProxy.httpGet(url,DeviceBoxMsg.class);
+        DeviceBoxMsg msg = (DeviceBoxMsg)HttpProxy.httpGet(url,DeviceBoxMsg.class, 5000);
         if(msg != null){
         	result.addAttribute(FishConstant.SUCCESS, true);
         	result.addAttribute("data", msg);

@@ -36,7 +36,7 @@ public class AtmVersionController {
 		try {
 			String url = MonitorCfg.getHttpUrl(ip) + "/ctr/versioninfo";
 			AtmVersionForm atmVersionForm = (AtmVersionForm) HttpProxy.httpGet(
-					url, AtmVersionForm.class);
+					url, AtmVersionForm.class, 5000);
 
 			// 当实时获取的ATM版本与数据库ATM版本不同时，以实时获取的为准，并修改数据库ATM版本
 			IDeviceRegister deviceRegister = registService.load(terminalId);

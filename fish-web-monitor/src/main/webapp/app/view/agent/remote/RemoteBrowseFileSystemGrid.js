@@ -102,7 +102,14 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 				dataIndex : 'name',
 				renderer: function (value, meta, record) {
 					meta.tdAttr = 'data-qtip="'+ value+ '"';
-					return value;
+					
+					if(record.data.type == "DIR") {
+						return '<span class="floder-name-blackground">&nbsp;&nbsp;&nbsp;&nbsp;</span>'+" "+value;
+					} else {
+						return '<span class="file-name-blackground">&nbsp;&nbsp;&nbsp;&nbsp;</span>'+" "+value;
+					}
+					
+//					return value;
 	            }
 
 			}, {
