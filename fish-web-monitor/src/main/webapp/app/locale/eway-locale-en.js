@@ -1149,7 +1149,15 @@ Ext.override(Eway,{
 				factureStaff:'Manufacturer model',//Eway.locale.monitor.devMonitor.factureStaff 厂商模式维护
 				netHealthy:'Net healthy',//Eway.locale.monitor.devMonitor.netHealthy 网络正常
 				netUnStable:'Net unstable',//Eway.locale.monitor.devMonitor.netUnStable 网络不稳定
-				netFatal:'Net error'//Eway.locale.monitor.devMonitor.netFatal 网络故障
+				netFatal:'Net error',//Eway.locale.monitor.devMonitor.netFatal 网络故障
+				filterManager: {
+					title: 'FilterManager',//Eway.locale.monitor.devMonitor.filterManager.title
+					add: 'CreateFilter',//Eway.locale.monitor.devMonitor.filterManager.add
+					update: 'UpdateFilter',//Eway.locale.monitor.devMonitor.filterManager.update
+					filterForm: {
+						filterName: 'FilterName'//Eway.locale.monitor.devMonitor.filterManager.filterForm.filterName
+					}
+				}
 			},
 			business:{
 				transaction:{
