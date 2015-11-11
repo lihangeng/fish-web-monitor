@@ -1,6 +1,7 @@
 Ext.define('Eway.view.index.StatusDonutCharts', {
     extend: 'Ext.Panel',
     alias: 'widget.statusDonutCharts',
+    requires:['Eway.store.monitor.charts.DonutChartsSummary'],
     config:{
             angleField:'displayName',
             labelField:'numberInfo'
