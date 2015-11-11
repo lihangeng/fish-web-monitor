@@ -68,7 +68,7 @@ Ext.override(Eway,{
 			refresh:'刷新',//Eway.locale.button.refresh
 			reset:'重置',//Eway.locale.button.reset
 			back:'返回',//Eway.locale.button.back
-			apply:'应用',
+			apply:'应用',//Eway.locale.button.apply
 			link:'关联',//Eway.locale.button.link
 			unlink:'解除',//Eway.locale.button.unlink
 			//bankOrg
@@ -1356,7 +1356,8 @@ Ext.override(Eway,{
 				devCatalogName:'设备类型',
 				devGroupName: '设备分组',
 				status:'设备状态',
-				comboxStatus:{				
+				comboxStatus:{	
+					dredge:'开通',//开通			
 					open:'开通',
 					close:'停用'
 				},
@@ -1805,7 +1806,7 @@ Ext.override(Eway,{
 					Sun:'星期日',//Eway.locale.machine.device.person.Sun
 					openClose:'开机/关机',//Eway.locale.machine.device.person.openClose
 					Open:'开机',//Eway.locale.machine.device.person.Open
-					Close:'关机',//Eway.locale.machine.device.person.Close
+					Close:'关机'//Eway.locale.machine.device.person.Close
 				},
 
 			},
@@ -2033,6 +2034,7 @@ Ext.override(Eway,{
 			    },
 			    closeByForce : '点击手工关闭故障',
 			    faultCloseType : '故障关闭方式',
+			    none : '没有',
 			    upgradeTimes: '升级次数',
 			    message: '短信',
 			    checkDetails: '查看详情',
