@@ -102,14 +102,13 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 				header : Eway.locale.commen.devTypeName,
 				dataIndex : 'type',
 				width : 100
-			}, {
+			}, /*{
 				header : Eway.locale.commen.orgNameBelongs,
 				dataIndex : 'org',
 				flex : 1
-			}, {
+			}, */{
 				header : Eway.locale.commen.installAddr,
-				dataIndex : 'address',
-				flex : 1
+				dataIndex : 'address'
 			}, {
 				header : Eway.locale.commen.seviceMode,
 				dataIndex : 'seviceMode',
@@ -117,12 +116,40 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 			}, {
 				header : Eway.locale.commen.insideOutside,
 				dataIndex : 'insideOutside',
-				width : 100
+				minWidth : 150,
+				flex : 1
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : Eway.locale.tip.displayMessage
+				displayMsg : Eway.locale.tip.displayMessage,
+				items : ['-', Eway.locale.tip.formatPageBfMsg, {
+				    xtype : 'combobox',
+				    name: 'pagesize',
+			        hiddenName: 'pagesize',
+			        store: new Ext.data.ArrayStore({
+			            fields: ['text', 'value'],
+			            data: [['25', 25], ['50', 50],['100', 100], ['200', 200]]
+			        }),
+			        valueField : 'value',
+			        displayField : 'text',
+			        value : 25,
+			        width: 60,
+			        editable : false,
+			        listeners : {
+				        change : function( This, newValue, oldValue, eOpts ) {
+        				    var pagingToolbar = This.up('pagingtoolbar');
+
+        				    var itemsPerPage = parseInt(newValue);//更改全局变量itemsPerPage
+
+        				    var store = pagingToolbar.getStore();
+
+        				    store.pageSize = itemsPerPage;//设置store的pageSize，可以将工具栏与查询的数据同步。
+
+        				    store.loadPage(1);//显示第一页
+				        }
+				    }
+				}, Eway.locale.tip.formatPageAfMsg]
 			})
 		});
 

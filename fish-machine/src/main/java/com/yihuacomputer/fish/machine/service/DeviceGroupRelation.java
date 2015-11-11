@@ -96,7 +96,7 @@ public class DeviceGroupRelation implements IDeviceGroupRelation
     	}else{
     		hql.append("and device.devService.orgFlag like ? ");
     	}
-		valueObj.add("%"+org.getOrgFlag());
+		valueObj.add(org.getOrgFlag()+"%");
 		if(startCashboxLimit!=null){
 			hql.append("and device.cashboxLimit>=? ");
 			valueObj.add(startCashboxLimit.getValue());
@@ -128,12 +128,12 @@ public class DeviceGroupRelation implements IDeviceGroupRelation
 		if(devServiceId!=null){
 			IOrganization devService = orgService.get(String.valueOf(devServiceId.getValue()));
 			hql.append("and device.devService.orgFlag like ? ");
-			valueObj.add("%"+devService.getOrgFlag());
+			valueObj.add(devService.getOrgFlag()+"%");
 		}
 		if(organizationId!=null){
 			IOrganization organization = orgService.get(String.valueOf(organizationId.getValue()));
 			hql.append("and device.organization.orgFlag like ? ");
-			valueObj.add("%"+organization.getOrgFlag());
+			valueObj.add(organization.getOrgFlag()+"%");
 		}
 		if(ip!=null){
 			hql.append("and device.ip=? ");
@@ -190,7 +190,7 @@ public class DeviceGroupRelation implements IDeviceGroupRelation
     		hql.append("where device.id = deviceGroupObj.deviceId and deviceGroupObj.groupId = ? and device.devService.orgFlag like ? ");
     	}
     	valueObj.add(atmGroup.getId());
-		valueObj.add("%" + org.getOrgFlag());
+		valueObj.add(org.getOrgFlag() + "%");
 		if(startCashboxLimit!=null){
 			hql.append(" and device.cashboxLimit>=?");
 			valueObj.add(startCashboxLimit.getValue());
@@ -222,12 +222,12 @@ public class DeviceGroupRelation implements IDeviceGroupRelation
 		if(devServiceId!=null){
 			IOrganization devService = orgService.get(String.valueOf(devServiceId.getValue()));
 			hql.append("and device.devService.orgFlag like ? ");
-			valueObj.add("%"+devService.getOrgFlag());
+			valueObj.add(devService.getOrgFlag()+"%");
 		}
 		if(organizationId!=null){
 			IOrganization organization = orgService.get(String.valueOf(organizationId.getValue()));
 			hql.append("and device.organization.orgFlag like ? ");
-			valueObj.add("%"+organization.getOrgFlag());
+			valueObj.add(organization.getOrgFlag()+"%");
 		}
 		if(ip!=null){
 			hql.append(" and device.ip=?");

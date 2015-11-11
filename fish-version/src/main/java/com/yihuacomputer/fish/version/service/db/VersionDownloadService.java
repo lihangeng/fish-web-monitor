@@ -13,11 +13,9 @@ import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
-import com.yihuacomputer.fish.api.device.AwayFlag;
-import com.yihuacomputer.fish.api.device.CashType;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IComplexDeviceService;
 import com.yihuacomputer.fish.api.device.IDevice;
-import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
@@ -27,9 +25,7 @@ import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
 import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.IVersionType;
-import com.yihuacomputer.fish.api.version.IVersionTypeRestriction;
 import com.yihuacomputer.fish.api.version.LinkedDeviceForm;
-import com.yihuacomputer.fish.api.version.RestrictionColumn;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.machine.entity.Device;
@@ -108,7 +104,7 @@ public class VersionDownloadService implements IVersionDownloadService {
 	public IPageResult<Object> getCanPushDevicePagesInfo(int start, int limit, IVersion version, IFilter outerFilter){
 		List<Object> argList=new ArrayList<Object>();
 		Object orgFlag = outerFilter.getValue("orgFlag");
-		String orgFlagStr = "%"+orgFlag;
+		String orgFlagStr =orgFlag+ "%";
 		Object terminalId = outerFilter.getValue("terminalId");
 		Object atmTypeId = outerFilter.getValue("atmTypeId");
 		Object ip = outerFilter.getValue("ip");
@@ -126,7 +122,7 @@ public class VersionDownloadService implements IVersionDownloadService {
 			hqlDevice.append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ").
 	    	append(" where version.id=?  and device.status=?");
 			argList.add(version.getId());
-			argList.add(Status.OPENING);
+			argList.add(DevStatus.OPEN);
 			if(version.getVersionType().isDisplay()){
 				hqlDevice.append(" and device.devType.id=versionatmType.atmTypeId ").append(" and versionatmType.versionTypeId=version.versionType.id ");
 			}
@@ -163,7 +159,7 @@ public class VersionDownloadService implements IVersionDownloadService {
 		    	append(" and versionatmType1.versionTypeId=version1.versionType.id ");
 	    	}
 			argList.add(version.getId());
-			argList.add(Status.OPENING);
+			argList.add(DevStatus.OPEN);
 	    	if(terminalId!=null){
 	    		hqlDevice.append(" and device1.terminalId like ? ");
 	    		argList.add("%"+String.valueOf(terminalId)+"%");
@@ -189,7 +185,7 @@ public class VersionDownloadService implements IVersionDownloadService {
     		append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ").
     		append(" where version.id=?  and device.status=?");
     		argList.add(version.getId());
-			argList.add(Status.OPENING);
+			argList.add(DevStatus.OPEN);
 			hqlDevice.append(" and device.devType.id=versionatmType.atmTypeId ").
         	append(" and versionatmType.versionTypeId=version.versionType.id ").
     		append(" and version.dependVersion.versionStr>=deviceSoftVersion.versionStr").
@@ -223,7 +219,7 @@ public class VersionDownloadService implements IVersionDownloadService {
     		append(" version1.id=? and task1.status in('NEW','RUN','NOTICED','NOTICE_APP_OK','DOWNLOADED','DEPLOYED','DEPLOYED_WAIT') and device1.status=?").
     		append(" and device1.devType.id=versionatmType1.atmTypeId ");
 			argList.add(version.getId());
-			argList.add(Status.OPENING);
+			argList.add(DevStatus.OPEN);
         	if(terminalId!=null){
 	    		hqlDevice.append(" and device1.terminalId like ? ");
 	    		argList.add("%"+String.valueOf(terminalId)+"%");
@@ -286,26 +282,12 @@ public class VersionDownloadService implements IVersionDownloadService {
 	}
 
 	public long getMayBeDownDevice(IVersion version,IOrganization org){
-//	    IFilter filter =  new Filter();
         StringBuffer hql = new StringBuffer();
         hql.append("select count(*) from Device device where device.organization.orgFlag like ? and device.status = ?");
         IVersionType vType = version.getVersionType();
-        List<IVersionTypeRestriction> vTypeRestrictions = vType.listVersionTypeRestrictions();
         List<Object> filters = new ArrayList<Object>();
-        filters.add("%"+org.getOrgFlag());
-        filters.add(Status.OPENING);
-        for(IVersionTypeRestriction vTypeRestriction : vTypeRestrictions){
-            if(vTypeRestriction.getRestrictionColumn().equals(RestrictionColumn.CASH_TYPE)){
-//                filter.addFilterEntry(FilterFactory.eq("device.cashType",CashType.valueOf(vTypeRestriction.getRestrictionValue())));
-                   hql.append(" and device.cashType = ?");
-                   filters.add(CashType.valueOf(vTypeRestriction.getRestrictionValue()));
-            }else if(vTypeRestriction.getRestrictionColumn().equals(RestrictionColumn.AWAY_FLAG)){
-//                filter.addFilterEntry(FilterFactory.eq("device.awayFlag",AwayFlag.valueOf(vTypeRestriction.getRestrictionValue())));
-                hql.append(" and device.awayFlag = ?");
-                filters.add(AwayFlag.valueOf(vTypeRestriction.getRestrictionValue()));
-            }
-        }
-
+        filters.add(org.getOrgFlag()+"%");
+        filters.add(DevStatus.OPEN);
         Object object =  dao.findUniqueByHql(hql.toString(),filters.toArray());
         return Long.parseLong(object.toString());
 	}

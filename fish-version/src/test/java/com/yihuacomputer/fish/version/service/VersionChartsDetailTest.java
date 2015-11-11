@@ -6,6 +6,8 @@ import java.util.List;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -22,6 +24,7 @@ import com.yihuacomputer.fish.api.version.IVersionTypeAtmTypeRelationService;
 import com.yihuacomputer.fish.api.version.VersionChartsDetailForm;
 import com.yihuacomputer.fish.version.H2TestConfig;
 
+@DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {H2TestConfig.class})
 public class VersionChartsDetailTest {
@@ -40,7 +43,7 @@ public class VersionChartsDetailTest {
 //		findDeviceType();
 //		leftJionDeviceSoftVersion();
 //		getVersionDetailsInfo();long versionId,String orgFlag,int start,int limit
-		versionStaticsStautsService.getMatchConditionDevicePush(3l,"%-1",0,25);
+		versionStaticsStautsService.getMatchConditionDevicePush(3l,"1-%",0,25);
 //		List<ChartsInfo> chartPage = versionStaticsStautsService.getVersionSummaryInfo(1,"%-1",0,25);
 //		System.out.println(JsonUtils.toJson(chartPage));
 	}
@@ -56,7 +59,7 @@ public class VersionChartsDetailTest {
 	
 	private void findDeviceType(){
 		IFilter filter = new Filter();
-		filter.eq("orgFlag", "-1");
+		filter.eq("orgFlag", "1-");
 		List<Long> list = versionTypeAtmTypeRelationService.findAtmTypeIds(2l);
 		list.add(1l);
 		list.add(2l);

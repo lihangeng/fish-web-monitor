@@ -14,7 +14,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -48,13 +47,13 @@ import com.yihuacomputer.common.exception.ServiceException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
+import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
 import com.yihuacomputer.fish.api.device.AwayFlag;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.device.ITempDevInfo;
-import com.yihuacomputer.fish.api.device.ITempDevInfoService;
 import com.yihuacomputer.fish.api.device.NetType;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
@@ -78,10 +77,6 @@ public class DeviceController {
 	@Autowired
 	private IDeviceService deviceService;
 	
-	
-	@Autowired
-	private ITempDevInfoService tempDevInfoService;
-
 	@Autowired
 	private IVersionTypeAtmTypeRelationService versionAtmTypeService;
 	
@@ -103,10 +98,6 @@ public class DeviceController {
 
 	@Autowired
 	private IDevicePersonRelation devicePersonRelation;
-
-	@PostConstruct
-	public void init() {
-	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
@@ -133,44 +124,34 @@ public class DeviceController {
 			model.put("errorMsg", messageSource.getMessage("device.typeNotExist", null, FishCfg.locale));
 			return model;
 		}		  
-		if (request.getEffectiveDate().equals(DateUtils.getDate(new Date()))) {
-			IDevice device = deviceService.make();
-			device.setOrganization(org);
-			device.setDevService(serviceOrg);
-			device.setDevType(atmType);
-			request.translate(device);
-			Map<String, Object> result = validator(request, "add");
-			if ((Boolean) result.get("validator")) {
-				model.put(FishConstant.SUCCESS, false);
-				model.put(FishConstant.ERROR_MSG, result.get("errorMsg"));
-				return model;
-			}
-			try {
-				deviceService.add(device);
-			} catch (Exception e) {
-				logger.error(String.format(messageSource.getMessage("device.addError", null, FishCfg.locale), e));
-				model.put(FishConstant.SUCCESS, false);
-				model.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
-				return model;
-			}
-
-			model.addAttribute(FishConstant.DATA, new DeviceForm(device));
-		}else
-		{
-			ITempDevInfo tempDev = tempDevInfoService.make();
-			tempDev.setOrganization(org);
-			tempDev.setDevService(serviceOrg);
-			tempDev.setDevType(atmType);
-			request.translate(tempDev);
-			try {
-				tempDevInfoService.add(tempDev);
-			} catch (Exception e) {
-				logger.error(String.format(messageSource.getMessage("device.addError", null, FishCfg.locale), e));
-				model.put(FishConstant.SUCCESS, false);
-				model.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
-				return model;
-			}			
+		
+		IDevice device = deviceService.make();
+		device.setOrganization(org);
+		device.setDevService(serviceOrg);
+		device.setDevType(atmType);
+		logger.info(request.getInstallDate());
+		request.translate(device);
+		/*if (request.getInstallDate() != null  && !"".equals(request.getInstallDate())&& !request.getInstallDate().equals(DateUtils.getDate(new Date()))) {
+			device.setStatus(DevStatus.UNOPEN);
+		}else{*/
+			device.setStatus(DevStatus.OPEN);
+		/*}*/
+		Map<String, Object> result = validator(request, "add");
+		if ((Boolean) result.get("validator")) {
+			model.put(FishConstant.SUCCESS, false);
+			model.put(FishConstant.ERROR_MSG, result.get("errorMsg"));
+			return model;
 		}
+		try {
+			deviceService.add(device);
+		} catch (Exception e) {
+			logger.error(String.format(messageSource.getMessage("device.addError", null, FishCfg.locale), e));
+			model.put(FishConstant.SUCCESS, false);
+			model.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
+			return model;
+		}
+
+		model.addAttribute(FishConstant.DATA, new DeviceForm(device));
 		return model;
 	}
 
@@ -246,49 +227,17 @@ public class DeviceController {
 			model.put("errorMsg", messageSource.getMessage("device.typeNotExist", null, FishCfg.locale));
 			return model;
 		}
-
-		
-		if (request.getEffectiveDate().equals(DateUtils.getDate(new Date()))) {			
-			device.setDevService(serviceOrg);
-			device.setOrganization(org);
-			device.setDevType(atmType);
-			request.translate(device);
-			try {
-				deviceService.update(device);
-			} catch(Exception e) {
-				logger.error(String.format("add error : %s",e.getMessage()));
-				model.put(FishConstant.SUCCESS, false);
-				model.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
-				return model;
-			}
-		}
-		else
-		{
-			device = deviceService.get(id);
-			ITempDevInfo dev = tempDevInfoService.get(device.getTerminalId());
-			if(dev == null)
-			{
-				ITempDevInfo tempDev = tempDevInfoService.make();
-				tempDev.setOrganization(org);
-				tempDev.setDevService(serviceOrg);
-				tempDev.setDevType(atmType);
-				request.translate(tempDev);
-				try {
-					tempDevInfoService.add(tempDev);
-				} catch (Exception e) {
-					logger.error(String.format(messageSource.getMessage("commen.error", null, FishCfg.locale), e));
-					model.put(FishConstant.SUCCESS, false);
-					model.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
-					return model;
-				}	
-				
-			}	
-			else
-			{
-				model.put(FishConstant.SUCCESS, false);
-				model.put("errorMsg", messageSource.getMessage("device.updateTempError", null, FishCfg.locale));
-				return model;
-			}
+		device.setDevService(serviceOrg);
+		device.setOrganization(org);
+		device.setDevType(atmType);
+		request.translate(device);
+		try {
+			deviceService.update(device);
+		} catch(Exception e) {
+			logger.error(String.format("add error : %s",e.getMessage()));
+			model.put(FishConstant.SUCCESS, false);
+			model.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
+			return model;
 		}
 		model.addAttribute(FishConstant.SUCCESS, true);
 		model.addAttribute(FishConstant.DATA, new DeviceForm(device));
@@ -646,7 +595,14 @@ public class DeviceController {
 		IFilter filter = request2filter(request);
 
 		ModelMap result = new ModelMap();
-
+		IOrganization org = orgService.get(organizationID);
+		if(null==org){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			IPageResult<IDevice> pageResult = new PageResult<IDevice>();
+			result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
+			result.addAttribute(FishConstant.DATA, DeviceForm.convert(pageResult.list()));
+			return result;
+		}
 		filter.like("organization.orgFlag", "%" + organizationID);
 
 		// 获得机构下所有的设备信息organizationID
@@ -667,7 +623,7 @@ public class DeviceController {
 
 		ModelMap result = new ModelMap();
 
-		filter.like("devService.orgFlag", "%" + organizationID);
+		filter.like("devService.orgFlag",organizationID +  "%");
 
 		// 获得机构下所有的设备信息organizationID
 		IPageResult<IDevice> pageResult = deviceService.page(start, limit, filter);
@@ -840,7 +796,7 @@ public class DeviceController {
 		List<Object> fixedFilters = new ArrayList<Object>();
 		hql.append("from Device device where 1=1 and device.organization.orgFlag like ? ");
 		IOrganization org = orgService.get(organization);
-		fixedFilters.add("%" + org.getOrgFlag());
+		fixedFilters.add(org.getOrgFlag() + "%");
 
 		Iterator<String> iterator = request.getParameterNames();
 		while (iterator.hasNext()) {
@@ -876,10 +832,10 @@ public class DeviceController {
 				fixedFilters.add(Long.valueOf(value));
 			} else if ("devService".equals(name)) {
 				hql.append(" and device.devService.orgFlag like ?");
-				fixedFilters.add("%" + orgService.get(value).getOrgFlag());
+				fixedFilters.add(orgService.get(value).getOrgFlag() + "%");
 			} else if ("organization".equals(name)) {
 				hql.append(" and device.organization.orgFlag like ?");
-				fixedFilters.add("%" + orgService.get(value).getOrgFlag());
+				fixedFilters.add(orgService.get(value).getOrgFlag() + "%");
 			} else if ("ip".equals(name)) {
 				ITypeIP ip = new IP(value);
 				hql.append(" and device.ip = ?");

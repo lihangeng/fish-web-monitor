@@ -30,21 +30,18 @@ Ext.define('Eway.view.machine.device.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},	{
-				text : Eway.locale.button.detailBtn,
-				//glyph : 0xf067,
-				action : 'openPlan',
-				code : 'deviceOpenPlan',
-//				listeners:{
-//					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-//				}
+				text :Eway.locale.button.update,
+				glyph : 0xf040,
+				action : 'update',
+				code : 'deviceUpdate',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			},	{
 				text : Eway.locale.button.adminBtn,
-				//glyph : 0xf067,
+				glyph : 0xf007,
 				action : 'admin',
 				code : 'devicePerson',
-//				listeners:{
-//					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-//				},
 				menu : [ {
 				text : Eway.locale.button.personTM,
 				action : 'personTM'
@@ -53,13 +50,13 @@ Ext.define('Eway.view.machine.device.Grid', {
 				action : 'personM'
 				} ]
 			},	{
-				text :Eway.locale.button.update,
-				glyph : 0xf040,
-				action : 'update',
-				code : 'deviceUpdate',
-				listeners:{
-					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-				}
+				text :Eway.locale.button.openPlan,
+				glyph : 0xf133,
+				action : 'openPlan',
+				code : 'deviceOpenPlan',
+//				listeners:{
+//					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+//				}
 			}, {
 				text : Eway.locale.button.remove,
 				glyph : 0xf014,
@@ -102,10 +99,16 @@ Ext.define('Eway.view.machine.device.Grid', {
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return Eway.locale.machine.atmGroup.comboxStatus.dredge;
+						return Eway.locale.commen.comboxDevStatus.upOpen;
 					}
 					if (value == 2) {
-						return Eway.locale.machine.atmGroup.comboxStatus.close;
+						return Eway.locale.commen.comboxDevStatus.open;
+					}
+					if (value == 3) {
+						return Eway.locale.commen.comboxDevStatus.stop;
+					}
+					if (value == 4) {
+						return Eway.locale.commen.comboxDevStatus.scrapped;
 					}
 				},
 				width : 80

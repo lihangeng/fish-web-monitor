@@ -27,9 +27,9 @@ import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.common.util.StringUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.device.Status;
 import com.yihuacomputer.fish.api.person.IUserService;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
@@ -423,8 +423,8 @@ public class VersionService implements IDomainVersionService {
 		append(" and version.versionType.id=? ");
 		Object versionType = filter.getValue("versionType");
 		Object orgFlag = filter.getValue("orgFlag");
-		hqlArgList.add(Status.OPENING);
-		hqlArgList.add("%"+orgFlag);
+		hqlArgList.add(DevStatus.OPEN);
+		hqlArgList.add(orgFlag+"%");
 		hqlArgList.add(versionType);
 		hqlSb.append(" group by version.id,version.versionNo order by version.versionStr desc");
 		List<Object> hqlResultList =  dao.findByHQL(hqlSb.toString(), hqlArgList.toArray());
@@ -457,8 +457,8 @@ public class VersionService implements IDomainVersionService {
 		long versionId = Long.parseLong(String.valueOf(filter.getValue("versionId")));
 		Object orgFlag = filter.getValue("orgFlag");
 		hqlArgList.add(versionId);
-		hqlArgList.add(Status.OPENING);
-		hqlArgList.add("%"+orgFlag);
+		hqlArgList.add(DevStatus.OPEN);
+		hqlArgList.add(orgFlag+"%");
 		List<Object> hqlResultList =  dao.findByHQL(statusHql.toString(), hqlArgList.toArray());
 		List<VersionStatusDistribute> statusDistributeList = new ArrayList<VersionStatusDistribute>();
 		//有状态设备计数器
@@ -484,7 +484,7 @@ public class VersionService implements IDomainVersionService {
 //		append(" device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId  ");
 //		List<Object> hqlArgList1 = new ArrayList<Object>();
 //		hqlArgList1.add(Status.OPENING);
-//		hqlArgList1.add("%"+orgFlag);
+//		hqlArgList1.add(orgFlag+"%");
 //		hqlArgList1.add(versionId);
 //		long allDevice = dao.findUniqueByHql(allDeviceHql.toString(), hqlArgList1.toArray());
 //		VersionStatusDistribute versionStatusDistribute = new VersionStatusDistribute();
@@ -511,8 +511,8 @@ public class VersionService implements IDomainVersionService {
 		Object orgFlag = filter.getValue("orgFlag");
 		Object taskStatusObj = filter.getValue("taskStatus");
 		hqlArgList.add(versionId);
-		hqlArgList.add(Status.OPENING);
-		hqlArgList.add("%"+orgFlag);
+		hqlArgList.add(DevStatus.OPEN);
+		hqlArgList.add(orgFlag+"%");
 		TaskStatus taskStatus = TaskStatus.valueOf(String.valueOf(taskStatusObj));
 		hqlArgList.add(taskStatus);
 		@SuppressWarnings("unchecked")

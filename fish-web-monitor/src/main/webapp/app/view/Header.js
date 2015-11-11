@@ -35,6 +35,7 @@ Ext.define('Eway.view.Header', {
 					method : 'POST',
 					url : 'api/logout',
 					success : function(response){
+						Ext.util.Cookies.set("lastEwayPage","");
 						window.location='login.jsp';
 					},
 					failure : function(response){

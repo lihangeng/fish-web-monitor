@@ -29,9 +29,9 @@ public interface IDevice {
 
 	public void setDevType(IAtmType devType);
 
-	public Status getStatus();
+	public DevStatus getStatus();
 
-	public void setStatus(Status status);
+	public void setStatus(DevStatus status);
 
 	public IOrganization getDevService();
 

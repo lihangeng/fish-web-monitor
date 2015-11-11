@@ -184,9 +184,9 @@ public class OrganizationService extends DomainOrganizationService {
     }
 
     private void autoSetOrgFlag(Organization entity) {
-        String orgFlag = "-" + entity.getGuid();
+        String orgFlag =  entity.getGuid() +"-";
         if (entity.getParent() != null) {
-            orgFlag = orgFlag + ((Organization) entity.getParent()).getOrgFlag();
+            orgFlag = ((Organization) entity.getParent()).getOrgFlag() +orgFlag ;
         }
         entity.setOrgFlag(orgFlag);
     }
@@ -232,14 +232,14 @@ public class OrganizationService extends DomainOrganizationService {
     @Override
     public Iterable<IOrganization> list(long orgId) {
         IOrganization org = get(String.valueOf(orgId));
-        return dao.getCriteria(Organization.class).add(Restrictions.like("orgFlag", org.getOrgFlag(), MatchMode.END))
+        return dao.getCriteria(Organization.class).add(Restrictions.like("orgFlag", org.getOrgFlag(), MatchMode.START))
                 .list();
     }
 
     @Override
     public List<Long> listSubOrgId(String orgId) {
         IOrganization org = this.get(orgId);
-        return this.dao.findByHQL(this.SUB_ORG_HQL, "%" + org.getOrgFlag());
+        return this.dao.findByHQL(this.SUB_ORG_HQL,  org.getOrgFlag() +"%");
     }
 
     @SuppressWarnings("unchecked")
@@ -247,7 +247,7 @@ public class OrganizationService extends DomainOrganizationService {
     public IPageResult<IOrganization> page(int offset, int limit, IFilter filter, String orgId) {
         IOrganization org = this.get(orgId);
         String hql = "select o from Organization o where o.orgFlag like ? ";
-        return (IPageResult<IOrganization>) this.dao.page(offset, limit, filter, hql, "%" + org.getOrgFlag());
+        return (IPageResult<IOrganization>) this.dao.page(offset, limit, filter, hql, org.getOrgFlag() + "%");
     }
 
     @Override
@@ -266,7 +266,7 @@ public class OrganizationService extends DomainOrganizationService {
         // 取得所有子机构
         IFilter filterOrg = new Filter();
         // 过滤所有子机构
-        filterOrg.like("orgFlag", "%" + org.getOrgFlag());
+        filterOrg.like("orgFlag",  org.getOrgFlag() +"%");
         Iterable<IOrganization> listOrg = this.list(filterOrg);
         List<IOrganization> list = new ArrayList<IOrganization>();
         for (IOrganization iorg : listOrg) {

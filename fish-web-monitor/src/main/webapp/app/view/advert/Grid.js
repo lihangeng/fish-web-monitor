@@ -7,6 +7,7 @@ Ext.define('Eway.view.advert.Grid', {
 	store: 'advert.Advert',
 	border : false,
 
+	height:400,
 	initComponent: function() {
 		var me = this;
 		Ext.apply(this, {
@@ -14,11 +15,11 @@ Ext.define('Eway.view.advert.Grid', {
 //			store:me.store,
 			tbar: ['->', {
 				text: Eway.locale.button.search,
-				iconCls :'queryBtn',
+				glyph : 0xf002,
 				action: 'query'
 			}, {
 				text : Eway.locale.advert.createAdvert,
-				iconCls : 'ad',
+				glyph : 0xf067,
 				menu : new Ext.menu.Menu({
 					items : [  {
 						text : Eway.locale.advert.idleAdvert,
@@ -56,7 +57,7 @@ Ext.define('Eway.view.advert.Grid', {
 				}
 			},{
 				text: Eway.locale.button.remove,
-				iconCls :'deleteBtn',
+				glyph : 0xf014,
 				action: 'remove',
 				code : 'advertDel',
 				listeners:{

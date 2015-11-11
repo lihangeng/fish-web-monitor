@@ -34,6 +34,7 @@ import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistoryService;
 import com.yihuacomputer.fish.api.version.job.NoticeStatus;
 import com.yihuacomputer.fish.api.version.job.task.AutoUpdateTaskForm;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
+import com.yihuacomputer.fish.api.version.job.task.ITaskManager;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.api.version.job.task.TaskType;
 import com.yihuacomputer.fish.version.entity.Task;
@@ -67,6 +68,9 @@ public class TaskService implements IDomainTaskService {
 	
 	@Autowired
 	private MessageSource messageSourceVersion;
+	
+	@Autowired
+	private ITaskManager taskManager;
 
 	@Override
 	public IDeviceService getDeviceService() {
@@ -145,9 +149,6 @@ public class TaskService implements IDomainTaskService {
 	 * 取消任务
 	 */
 	public void cancelTask(ITask task) {
-		task.setStatus(TaskStatus.REMOVED);
-		dao.update(task);
-
 		List<ITask> tasks = new ArrayList<ITask>();
 		tasks.add(task);
 		cancelTasks(tasks);
@@ -157,12 +158,7 @@ public class TaskService implements IDomainTaskService {
 	 * 取消前，任务的状态已经是removed 取消一批任务
 	 */
 	public void cancelTasks(List<ITask> tasks) {
-		/**/int size = tasks.size();
-		if (size > 0) {
-			for (ITask task : tasks) {// 修改设备版本表的任务状态为“删除”
-				task.setStatus(TaskStatus.CANCELED);
-			}
-		}
+		taskManager.cancelTasks(tasks);
 	}
 
 	@Override
@@ -187,7 +183,7 @@ public class TaskService implements IDomainTaskService {
 	@Transactional(readOnly = true)
 	public IPageResult<ITask> page(int start, int limit, IFilter filter) {
 		StringBuffer hql = new StringBuffer();
-		hql.append("select task from Task task,Device device where task.deviceId = device.id ");
+		hql.append("select task from Task task,Device device where task.deviceId = device.id order by task.createTime desc ");
 		return (IPageResult<ITask>) dao.page(start, limit, filter, hql.toString());
 	}
 
@@ -227,7 +223,7 @@ public class TaskService implements IDomainTaskService {
 	public ITask get(long taskId) {
 		return dao.get(taskId, Task.class);
 	}
-
+	
 	@Override
 	public void updateTaskStatus(ITask task) {
 		Task entity = this.interface2Entity(task, true);

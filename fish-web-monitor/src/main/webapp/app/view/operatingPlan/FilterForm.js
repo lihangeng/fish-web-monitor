@@ -10,44 +10,45 @@ Ext.define('Eway.view.operatingPlan.FilterForm',{
 	initComponent : function(){
 		Ext.apply(this,{
 			items : [{
-				columnWidth : .3,
+				defaults : {
+					labelAlign : 'left',
+					labelWidth : 60
+				},
+				columnWidth : .30,
 				xtype : 'form',
 				items : [{
 					xtype : 'textfield',
-					fieldLabel : '名称',
+					fieldLabel : Eway.locale.report.openplan.name,
 					name : 'name'
 				}]
-			},{
-				columnWidth : .3,
+			},{defaults : {
+				labelAlign : 'left',
+				labelWidth : 90
+			},
+				columnWidth : .35,
 				xtype : 'form',
 				items : [{
 					xtype : 'datefield',
-					fieldLabel : '有效开始时间',
+					fieldLabel : Eway.locale.report.openplan.openDate,
 					editable : true,
 					name : 'startDate',
 					format : 'Y-m-d'
 				}]
 			},{
-				columnWidth : .3,
+				defaults : {
+					labelAlign : 'left',
+					labelWidth : 90
+				},
+				columnWidth : .35,
 				xtype : 'form',
 				items : [{
 					xtype : 'datefield',
 					editable : true,
-					fieldLabel : '有效结束时间',
+					fieldLabel : Eway.locale.report.openplan.closeDate,
 					name : 'endDate',
 					format : 'Y-m-d'
 				}]
-			}
-//			,{
-//				labelWidth : .25,
-//				xtype : 'form',
-//				items : [{
-//					xtype : 'field_openPlan_planStateType',
-//					fieldLabel : '方案状态',
-//					name : 'planStateType'
-//				}]
-//			}
-			]
+			}]
 		});
 		this.callParent(arguments);	
 	}

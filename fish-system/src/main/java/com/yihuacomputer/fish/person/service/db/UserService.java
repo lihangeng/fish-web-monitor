@@ -227,7 +227,7 @@ public class UserService extends DomainUserService {
             hql.append(" and user.personId = person.id ");
         }
         hql.append(" and person.organization.orgFlag like ? order by user.id desc");
-        IPageResult<IUser> result = (IPageResult<IUser>) this.dao.page(offset, limit,filter, hql.toString(), "%" + org.getOrgFlag());
+        IPageResult<IUser> result = (IPageResult<IUser>) this.dao.page(offset, limit,filter, hql.toString(),org.getOrgFlag()  + "%");
         return result;
     }
 

@@ -1,18 +1,7 @@
 package com.yihuacomputer.domain.kafka;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
-import kafka.consumer.ConsumerConfig;
-import kafka.consumer.ConsumerIterator;
-import kafka.consumer.KafkaStream;
-import kafka.javaapi.consumer.ConsumerConnector;
 public class NativeConsumer {
-	private final ConsumerConnector consumer;
+	/*private final ConsumerConnector consumer;
 	private final String topic;
 	private ExecutorService executor;
 	public NativeConsumer(String a_zookeeper, String a_groupId, String a_topic) {
@@ -64,5 +53,5 @@ public class NativeConsumer {
 		} catch (InterruptedException ie) {
 		}
 		//example.shutdown();
-	}
+	}*/
 }

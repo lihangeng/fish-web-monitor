@@ -12,12 +12,12 @@ Ext.define('Eway.view.operatingPlan.GridForDevice', {
 			store : store,
 			initRegion : true,
 			tbar : [ '->', {
-				text : '查询',
-				iconCls : 'queryBtn',
+				text : Eway.locale.button.search,
+				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : '关联',
-				iconCls : 'connectBtn',
+				text : Eway.locale.button.link,
+				glyph : 0xf0c1,
 				action : 'link'
 			} ],
 			viewConfig : {
@@ -25,50 +25,46 @@ Ext.define('Eway.view.operatingPlan.GridForDevice', {
 				stripeRows : true,
 				getRowClass: function(record, index) {
 					var planStateType = record.get('planStateType');
-					if(planStateType == '停用'||planStateType == '过期'){
+					if(planStateType == Eway.locale.commen.comboxStatus.close||planStateType == Eway.locale.commen.comboxStatus.pastDue){
 						return 'user-online';
-					}else if(planStateType == '即将过期'){
+					}else if(planStateType == Eway.locale.commen.comboxStatus.pastDueSoon){
 						return 'user-yellow';
 					}
 				}
 			},
 			columns : [ {
-				header : '名称',
+				header : Eway.locale.report.openplan.name,
 				width : 100,
 				dataIndex : 'name'
 			}, {
-				header : '类型',
+				header : Eway.locale.report.openplan.state,
 				width : 100,
 				dataIndex : 'planType',
 				renderer : function(value, metadata, record) {
 					if (value == "DATE") {
-						return "日期";
+						return Eway.locale.report.openplan.date;
 					} else if (value == "WEEK") {
-						return "星期";
+						return Eway.locale.report.openplan.week;
 					}
 				}
 			}, {
-				header : '设备数量',
+				header : Eway.locale.report.openplan.machineQuantity,
 				width : 130,
 				dataIndex : 'deviceCount',
 			}, {
-				header : '状态',
+				header : Eway.locale.report.openplan.state,
 				width : 130,
 				dataIndex : 'planStateType',
 			}, {
-				header : '有效开始时间',
+				header : Eway.locale.report.openplan.openDate,
 				width : 120,
 				dataIndex : 'startDate'
 			}, {
-				header : '有效结束时间',
+				header : Eway.locale.report.openplan.closeDate,
 				width : 120,
 				dataIndex : 'endDate'
 			}, {
-				header : '备注',
-				dataIndex : 'desc',
-				flex : 1
-			}, {
-				header : '创建时间',
+				header : Eway.locale.report.openplan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 160,
 				fiex : 1

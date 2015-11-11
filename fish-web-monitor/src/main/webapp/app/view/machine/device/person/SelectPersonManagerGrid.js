@@ -10,54 +10,52 @@ Ext.define('Eway.view.machine.device.person.SelectPersonManagerGrid', {
 	selModel:{selType:'checkboxmodel'},
 	
 	initComponent: function() {
-		alert("1111111111111111111");
 		var store = Ext.create('Eway.store.person.person.SelectPerson',{
 			autoLoad : true
 		});
-		alert("111112222222222211111");
 		Ext.apply(this, {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-				text: '查询',
-				iconCls :'queryBtn',
+				text: Eway.locale.button.search,
+				glyph : 0xf002,
 				action: 'query'
 				}, {
-				text: '设置',
-				iconCls :'sureBtn',
+				text: Eway.locale.commen.setManager,
+				glyph : 0xf0c1,
 				action: 'addselect'
 			}],
 			columns : [{
-				header : '工号',
+				header : Eway.locale.commen.jobNum,
 				dataIndex : 'jobNum'
 			},{
-				header : '姓名',
+				header : Eway.locale.commen.name,
 				dataIndex : 'name'
 			}, {
-				header : '手机',
+				header : Eway.locale.commen.mobile,
 				dataIndex : 'mobile'
 			}, {
-				header : '固话',
+				header : Eway.locale.commen.phone,
 				dataIndex : 'phone'
 			},{
-				header : '状态',
+				header : Eway.locale.commen.state,
 				dataIndex : 'state',
 				renderer: function(value,metadata,record){
 					if(value==1){
-		                	 return "在岗";
+		                	 return Eway.locale.commen.comboxStatus.onJob;
 		             }else if(value==2){
-		                	   return "调休";
+		                	   return Eway.locale.commen.comboxStatus.onAdjust;
 		             }else if(value==3){
-		                	   return "休假";
+		                	   return Eway.locale.commen.comboxStatus.onVacation;
 		             }else if(value==0){
-		                	   return "其他";
+		                	   return Eway.locale.commen.comboxStatus.other;
 		             }
 				}
 			},{
-				header : '邮箱',
+				header : Eway.locale.commen.email,
 				dataIndex : 'email'
 			},{
-				header : '机构名称',
+				header : Eway.locale.person.bankOrg.name,
 				dataIndex : 'organizationName',
 				flex : 1
 			}],

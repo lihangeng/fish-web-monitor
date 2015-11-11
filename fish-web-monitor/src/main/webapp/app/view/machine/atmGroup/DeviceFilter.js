@@ -6,7 +6,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 	             'Eway.view.field.atmType.DeviceAtmVendorComboBox',
 	             'Eway.lib.Util',
 	             'Eway.view.field.atmType.DeviceAtmCatalogComboBox' ],
-	height : 100,
+	height : 70,
 	layout : 'column',
 	defaults : {
 		border : false
@@ -14,7 +14,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-				columnWidth : .5,
+				columnWidth : .3,
 				defaults : {
 					labelAlign : 'right',
 					labelWidth : 70
@@ -26,12 +26,38 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 					msgTarget : 'side',
 					maxLength : 20
 				}, {
+					xtype : 'field_atmType_DeviceAtmCatalogComboBox',
+					fieldLabel : Eway.locale.machine.atmGroup.devCatalogName
+				}]
+			},{
+
+				columnWidth : .3,
+				defaults : {
+					labelAlign : 'right',
+					labelWidth : 70
+				},
+				items : [  {
+					style : 'padding-top:0px',
+					xtype : 'hiddenfield',
+					name : 'organization'
+				},  {
+					style : 'padding-top:0px',
+					xtype : 'hiddenfield',
+					name : 'organizationID',
+					value : ewayUser.getOrgId()
+				}, {
+					xtype : 'common_orgComboOrgTree',
+					fieldLabel : Eway.locale.machine.atmGroup.orgName,
+					emptyText : Eway.locale.combox.select,
+					name : 'orgName',
+					hiddenValue : 'organization',
+					editable : false,
+					filters : '{"type" : "0"}',
+					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
+				}, {
 					style : 'padding-top:0px',
 					xtype : 'hiddenfield',
 					name : 'devService'
-				}, {
-					xtype : 'field_atmType_DeviceAtmVendorComboBox',
-					fieldLabel : Eway.locale.machine.atmGroup.devVendorName
 				}, {
 				xtype : 'common_orgComboOrgTree',
 				fieldLabel : Eway.locale.machine.atmGroup.devServiceName,
@@ -42,42 +68,21 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 				filters : '{"type" : "1"}',
 				rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '1' ? true : false
 				} ]
+			
 			}, {
-				columnWidth : .5,
+				columnWidth : .3,
 				defaults : {
 					labelWidth: 70,
 					labelAlign : 'right'
 				},
 				items : [ {
-					style : 'padding-top:0px',
-					xtype : 'hiddenfield',
-					name : 'devService'
-				}, {
+					xtype : 'field_atmType_DeviceAtmVendorComboBox',
+					fieldLabel : Eway.locale.machine.atmGroup.devVendorName
+				},{
 					xtype : 'field_device_deviceatmtype',
 					name : 'devType',
 					hiddenName : 'devType'
-				}, {
-					xtype : 'field_atmType_DeviceAtmCatalogComboBox',
-					fieldLabel : Eway.locale.machine.atmGroup.devCatalogName
-				}, {
-					style : 'padding-top:0px',
-					xtype : 'hiddenfield',
-					name : 'organizationID',
-					value : ewayUser.getOrgId()
-				}, {
-					style : 'padding-top:0px',
-					xtype : 'hiddenfield',
-					name : 'organization'
-				}, {
-					xtype : 'common_orgComboOrgTree',
-					fieldLabel : Eway.locale.machine.atmGroup.orgName,
-					emptyText : Eway.locale.combox.select,
-					name : 'orgName',
-					hiddenValue : 'organization',
-					editable : false,
-					filters : '{"type" : "0"}',
-					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
-				} ]
+				}  ]
 			} ]
 		});
 		this.callParent(arguments);

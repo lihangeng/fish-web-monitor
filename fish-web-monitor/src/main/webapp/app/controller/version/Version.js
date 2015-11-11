@@ -135,7 +135,7 @@ Ext.define('Eway.controller.version.Version', {
 
 				var form = win.down("form").getForm();
 				form.findField("versionId").setValue(record.get("id"));
-				form.findField("versionType").setValue(record.get("versionType"));
+				form.findField("versionType").setValue(record.get("versionTypeDesc"));
 				form.findField("versionNo").setValue(record.get("versionNo"));
 				form.findField("serverPath").setValue(record.get("serverPath"));
 				var atmTypeStore = win.down("field_device_deviceatmtype[name=atmTypeId]").getStore();
@@ -147,13 +147,27 @@ Ext.define('Eway.controller.version.Version', {
 				win.down("textfield[name=ip]").on({keydown:this.queryOnKeyDownEnter, scope: this });
 				win.down("textfield[name=terminalId]").on({keydown:this.queryOnKeyDownEnter, scope: this});
 				win.down("common_orgComboOrgTree[name=orgName]").on({keydown:this.queryOnKeyDownEnter, scope: this});
-				win.down("field_device_deviceatmtype[name=atmTypeId]").on({keydown:this.queryOnKeyDownEnter, scope: this});
+				win.down("radiogroup").on({change:this.setCheckBoxModel, scope: this});
 			}else{
 				Eway.alert(Eway.locale.msg.missVersionFile);//"版本文件丢失,暂不能对版本进行下发控制.");
 			}
 		}
 		else {
 			Eway.alert(Eway.locale.msg.selectVersionRecord);//"请选择您要下发的版本.");
+		}
+	},
+	setCheckBoxModel:function( _this, newValue, oldValue, eOpts ){
+		var grid = this.getAddJobWin().down("version_download_selectableDeviceGrid");
+		if(newValue.allDevice=="true"){
+			grid.selModel.deselectAll();
+			var linkedGrid = this.getAddJobWin().down("version_download_linkedDeviceGrid");
+			linkedGrid.getStore().removeAll();
+			this.getAddJobWin().down("hidden[name='deviceIds']").setValue("");
+			linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo0 + linkedGrid.getStore().getCount() + Eway.locale.version.selectDeviceInfo1);
+			grid.selModel.setLocked(true);
+		}
+		else{
+			grid.selModel.setLocked(false);
 		}
 	},
 	queryOnKeyDownEnter:function( e, t, eOpts ){
@@ -450,9 +464,7 @@ Ext.define('Eway.controller.version.Version', {
 	//删除版本信息
 	onRemove: function() {
 		var grid = this.getGrid();
-		console.log(grid);
 		var sm = grid.getSelectionModel();
-		console.log(sm);
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			if(record.get("versionStatus") == "NEW"){

@@ -29,12 +29,21 @@ public class HttpTransactionClientTest {
 	 */
 	public static void main(String[] args) {
 
+	 // 测试交易数据：0为无限次数,>0为指定次数
+        int count = 1000;
+        
+        // 设备号
+        String termId = "ooxx0001";
+
+        // 发送交易数据间隔
+        int sleep = 2;
+	    
 		try {
 			int i = 1;
-			while (true) {
+            while (count == 0 ? true : i <= count) {
 				HttpClient httpClient = new DefaultHttpClient();
 				TransactionMsg msg = new TransactionMsg();
-				msg.setTermId("test"); // 设备号
+				msg.setTermId(termId); // 设备号
 				msg.setTransId(String.format("%06d", i));// 流水号
 				msg.setAmt(1000);// 交易金额
 				msg.setCreditAccount("9559912345678901235");// 交易帐号
@@ -48,7 +57,8 @@ public class HttpTransactionClientTest {
 				String json = JsonUtils.toJson(msg);
 				System.out.println(json);
 
-				HttpPost httpPost = new HttpPost("http://172.18.30.38:8086/fish-web-monitor/atm/msg/transaction");
+//				HttpPost httpPost = new HttpPost("http://172.18.30.38:8086/fish-web-monitor/atm/msg/transaction");
+				HttpPost httpPost = new HttpPost("http://localhost:8080/atmv/atm/msg/transaction");
 
 				StringEntity entity = new StringEntity(json, "UTF-8");
 
@@ -71,7 +81,7 @@ public class HttpTransactionClientTest {
 
 				i++;
 
-				Thread.sleep(2);
+				Thread.sleep(sleep);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

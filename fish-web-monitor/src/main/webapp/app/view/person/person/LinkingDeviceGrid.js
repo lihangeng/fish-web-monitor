@@ -26,7 +26,7 @@ Ext.define('Eway.view.person.person.LinkingDeviceGrid', {
 				action:'query'
 			},{
 				text: Eway.locale.commen.bind,
-				iconCls :'connectBtn',
+				glyph : 0xf0c1,
 				action: 'link'
 			}],
 			columns : [ {
@@ -53,10 +53,16 @@ Ext.define('Eway.view.person.person.LinkingDeviceGrid', {
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return Eway.locale.commen.comboxDevStatus.open;
+						return Eway.locale.commen.comboxDevStatus.upOpen;
 					}
 					if (value == 2) {
+						return Eway.locale.commen.comboxDevStatus.open;
+					}
+					if (value == 3) {
 						return Eway.locale.commen.comboxDevStatus.stop;
+					}
+					if (value == 4) {
+						return Eway.locale.commen.comboxDevStatus.scrapped;
 					}
 				}
 			}, {

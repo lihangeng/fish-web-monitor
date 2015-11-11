@@ -263,7 +263,7 @@ body .ux-notification-light {
 	float: left;
 	margin: 5px;
 	padding: 3px;
-	border-color: black;
+	border-color: #D3D3D3;
 	border-style: solid;
 	border-width: 1px;
 	cursor: pointer;
@@ -336,7 +336,7 @@ body .ux-notification-light {
 	height: 80px;
 }
 
-#images-view.maxicon .thumb img {
+#images-view.maxicon .thumb div {
 	padding: 4px;
 	height: 64px;
 	width: 64px;
@@ -572,3 +572,420 @@ pre.link{
     text-align: center;
     width: 148px; 
 }
+               
+#images-view .thumb div{
+	padding: 4px;
+	height: 32px;
+	width: 32px;
+	*height: 25px;
+	*width: 25px;
+	_height: 25px;
+	_width: 25px;
+	float: left;
+}
+
+/*运行状态-未知*/
+.monitor-div-run-Unknown {
+	background: url(../images/monitor/monitor.png) left -96px no-repeat !important;
+}
+/*运行状态-客户交易*/
+.monitor-div-run-Customer {
+	background: url(../images/monitor/monitor.png) -32px -96px no-repeat !important;
+}
+/*运行状态-关机*/
+.monitor-div-run-Halt {
+	background: url(../images/monitor/monitor.png) -64px -96px no-repeat !important;
+}
+/*运行状态-正常*/
+.monitor-div-run-Healthy {
+	background: url(../images/monitor/monitor.png) -96px -96px no-repeat !important;
+}
+/*运行状态-初始化*/
+.monitor-div-run-Initial {
+	background: url(../images/monitor/monitor.png) -128px -96px no-repeat !important;
+}
+/*运行状态-维护*/
+.monitor-div-run-Maintain {
+	background: url(../images/monitor/monitor.png) -160px -96px no-repeat !important;
+}
+/*运行状态-重启*/
+.monitor-div-run-ReBoot {
+	background: url(../images/monitor/monitor.png) -192px -96px no-repeat !important;
+}
+/*运行状态-P端故障*/
+.monitor-div-run-StopAtmp {
+	background: url(../images/monitor/monitor.png) -224px -96px no-repeat !important;
+}
+/*运行状态-人工报停*/
+.monitor-div-run-StopManmade {
+	background: url(../images/monitor/monitor.png) -256px -96px no-repeat !important;
+}
+/*运行状态-故障*/
+.monitor-div-run-StopMod {
+	background: url(../images/monitor/monitor.png) -288px -96px no-repeat !important;
+}
+/*运行状态-暂停服务-未加钞*/
+.monitor-div-run-StopUnCashIn {
+	background: url(../images/monitor/monitor.png) -320px -96px no-repeat !important;
+}
+/*运行状态-未知原因暂停服务*/
+.monitor-div-run-StopUnKnown {
+	background: url(../images/monitor/monitor.png) -352px -96px no-repeat !important;
+}
+/*运行状态-厂商模式*/
+.monitor-div-run-Vdm {
+	background: url(../images/monitor/monitor.png) -384px -96px no-repeat !important;
+}
+/*运行状态-半功能服务*/
+.monitor-div-run-SubHealth {
+	background: url(../images/monitor/monitor.png) -416px -96px no-repeat !important;
+}
+
+
+
+/*模块状态-无模块*/
+.monitor-div-mod-Nodevice {
+	background: url(../images/monitor/monitor.png) left -32px no-repeat !important;
+}
+/*模块状态-未知*/
+.monitor-div-mod-Unknown {
+	background: url(../images/monitor/monitor.png) -32px -32px no-repeat !important;
+}
+/*模块状态-故障*/
+.monitor-div-mod-Warning {
+	background: url(../images/monitor/monitor.png) -64px -32px no-repeat !important;
+}
+/*模块状态-正常*/
+.monitor-div-mod-Fatal {
+	background: url(../images/monitor/monitor.png) -96px -32px no-repeat !important;
+}
+/*模块状态-正常*/
+.monitor-div-mod-Healthy {
+	background: url(../images/monitor/monitor.png) -128px -32px no-repeat !important;
+}
+
+
+
+
+/*钞箱状态-钞空*/
+.monitor-div-box-Empty {
+	background: url(../images/monitor/monitor.png) left 0px no-repeat !important;
+}
+/*钞箱状态-故障*/
+.monitor-div-box-Fatal {
+	background: url(../images/monitor/monitor.png) -32px 0px no-repeat !important;
+}
+/*钞箱状态-钞满*/
+.monitor-div-box-Full {
+	background: url(../images/monitor/monitor.png) -64px 0px no-repeat !important;
+}
+/*钞箱状态-正常*/
+.monitor-div-box-Healthy {
+	background: url(../images/monitor/monitor.png) -96px 0px no-repeat !important;
+}
+/*钞箱状态-正常*/
+.monitor-div-box-High {
+	background: url(../images/monitor/monitor.png) -128px 0px no-repeat !important;
+}
+/*钞箱状态-钞少*/
+.monitor-div-box-Low {
+	background: url(../images/monitor/monitor.png) -160px 0px no-repeat !important;
+}
+/*钞箱状态-未知*/
+.monitor-div-box-Unknown {
+	background: url(../images/monitor/monitor.png) -192px 0px no-repeat !important;
+}
+
+
+/*网络状态-未知*/
+.monitor-div-net-Unknown {
+	background: url(../images/monitor/monitor.png) left -64px no-repeat !important;
+}
+/*网络状态-不稳定*/
+.monitor-div-net-Warning {
+	background: url(../images/monitor/monitor.png) -32px -64px no-repeat !important;
+}
+/*网络状态-故障*/
+.monitor-div-net-Fatal {
+	background: url(../images/monitor/monitor.png) -64px -64px no-repeat !important;
+}
+/*网络状态-正常*/
+.monitor-div-net-Healthy {
+	background: url(../images/monitor/monitor.png) -96px -64px no-repeat !important;
+}
+
+
+
+
+
+/*******************************大图标方式**********************************************************/
+/*运行状态-未知*/
+#images-view.maxicon .monitor-div-run-Unknown {
+	background: url(../images/monitor/max_monitor.png) left -192px no-repeat !important;
+}
+/*运行状态-客户交易*/
+#images-view.maxicon .monitor-div-run-Customer {
+	background: url(../images/monitor/max_monitor.png) -64px -192px no-repeat !important;
+}
+/*运行状态-关机*/
+#images-view.maxicon .monitor-div-run-Halt {
+	background: url(../images/monitor/max_monitor.png) -128px -192px no-repeat !important;
+}
+/*运行状态-正常*/
+#images-view.maxicon .monitor-div-run-Healthy {
+	background: url(../images/monitor/max_monitor.png) -192px -192px no-repeat !important;
+}
+/*运行状态-初始化*/
+#images-view.maxicon .monitor-div-run-Initial {
+	background: url(../images/monitor/max_monitor.png) -256px -192px no-repeat !important;
+}
+/*运行状态-维护*/
+#images-view.maxicon .monitor-div-run-Maintain {
+	background: url(../images/monitor/max_monitor.png) -320px -192px no-repeat !important;
+}
+/*运行状态-重启*/
+#images-view.maxicon .monitor-div-run-ReBoot {
+	background: url(../images/monitor/max_monitor.png) -384px -192px no-repeat !important;
+}
+/*运行状态-P端故障*/
+#images-view.maxicon .monitor-div-run-StopAtmp {
+	background: url(../images/monitor/max_monitor.png) -448px -192px no-repeat !important;
+}
+/*运行状态-人工报停*/
+#images-view.maxicon .monitor-div-run-StopManmade {
+	background: url(../images/monitor/max_monitor.png) -512px -192px no-repeat !important;
+}
+/*运行状态-故障*/
+#images-view.maxicon .monitor-div-run-StopMod {
+	background: url(../images/monitor/max_monitor.png) -576px -192px no-repeat !important;
+}
+/*运行状态-暂停服务-未加钞*/
+#images-view.maxicon .monitor-div-run-StopUnCashIn {
+	background: url(../images/monitor/max_monitor.png) -640px -192px no-repeat !important;
+}
+/*运行状态-未知原因暂停服务*/
+#images-view.maxicon .monitor-div-run-StopUnKnown {
+	background: url(../images/monitor/max_monitor.png) -704px -192px no-repeat !important;
+}
+/*运行状态-厂商模式*/
+#images-view.maxicon .monitor-div-run-Vdm {
+	background: url(../images/monitor/max_monitor.png) -768px -192px no-repeat !important;
+}
+/*运行状态-半功能服务*/
+#images-view.maxicon .monitor-div-run-SubHealth {
+	background: url(../images/monitor/max_monitor.png) -832px -192px no-repeat !important;
+}
+
+
+
+/*模块状态-无模块*/
+#images-view.maxicon .monitor-div-mod-Nodevice {
+	background: url(../images/monitor/max_monitor.png) left -64px no-repeat !important;
+}
+/*模块状态-未知*/
+#images-view.maxicon .monitor-div-mod-Unknown {
+	background: url(../images/monitor/max_monitor.png) -64px -64px no-repeat !important;
+}
+/*模块状态-故障*/
+#images-view.maxicon .monitor-div-mod-Warning {
+	background: url(../images/monitor/max_monitor.png) -128px -64px no-repeat !important;
+}
+/*模块状态-正常*/
+#images-view.maxicon .monitor-div-mod-Fatal {
+	background: url(../images/monitor/max_monitor.png) -192px -64px no-repeat !important;
+}
+/*模块状态-正常*/
+#images-view.maxicon .monitor-div-mod-Healthy {
+	background: url(../images/monitor/max_monitor.png) -256px -64px no-repeat !important;
+}
+
+
+
+
+/*钞箱状态-钞空*/
+#images-view.maxicon .monitor-div-box-Empty {
+	background: url(../images/monitor/max_monitor.png) left 0px no-repeat !important;
+}
+/*钞箱状态-故障*/
+#images-view.maxicon .monitor-div-box-Fatal {
+	background: url(../images/monitor/max_monitor.png) -64px 0px no-repeat !important;
+}
+/*钞箱状态-钞满*/
+#images-view.maxicon .monitor-div-box-Full {
+	background: url(../images/monitor/max_monitor.png) -128px 0px no-repeat !important;
+}
+/*钞箱状态-正常*/
+#images-view.maxicon .monitor-div-box-Healthy {
+	background: url(../images/monitor/max_monitor.png) -192px 0px no-repeat !important;
+}
+/*钞箱状态-正常*/
+#images-view.maxicon .monitor-div-box-High {
+	background: url(../images/monitor/max_monitor.png) -256px 0px no-repeat !important;
+}
+/*钞箱状态-钞少*/
+#images-view.maxicon .monitor-div-box-Low {
+	background: url(../images/monitor/max_monitor.png) -320px 0px no-repeat !important;
+}
+/*钞箱状态-未知*/
+#images-view.maxicon .monitor-div-box-Unknown {
+	background: url(../images/monitor/max_monitor.png) -384px 0px no-repeat !important;
+}
+
+
+/*网络状态-未知*/
+#images-view.maxicon .monitor-div-net-Unknown {
+	background: url(../images/monitor/max_monitor.png) left -128px no-repeat !important;
+}
+/*网络状态-不稳定*/
+#images-view.maxicon .monitor-div-net-Warning {
+	background: url(../images/monitor/max_monitor.png) -64px -128px no-repeat !important;
+}
+/*网络状态-故障*/
+#images-view.maxicon .monitor-div-net-Fatal {
+	background: url(../images/monitor/max_monitor.png) -128px -128px no-repeat !important;
+}
+/*网络状态-正常*/
+#images-view.maxicon .monitor-div-net-Healthy {
+	background: url(../images/monitor/max_monitor.png) -192px -128px no-repeat !important;
+}
+/*******************************大图标方式**********************************************************/
+
+
+.monitor_minicon {
+	float: left;
+	width : 17px;
+	height : 17px;
+}
+
+/*******************************小图标方式**********************************************************/
+/*运行状态-未知*/
+.monitor_minicon.monitor-div-run-Unknown {
+	background: url(../images/monitor/min_monitor.png) left -51px no-repeat !important;
+}
+/*运行状态-客户交易*/
+.monitor_minicon.monitor-div-run-Customer {
+	background: url(../images/monitor/min_monitor.png) -17px -51px no-repeat !important;
+}
+/*运行状态-关机*/
+.monitor_minicon.monitor-div-run-Halt {
+	background: url(../images/monitor/min_monitor.png) -34px -51px no-repeat !important;
+}
+/*运行状态-正常*/
+.monitor_minicon.monitor-div-run-Healthy {
+	background: url(../images/monitor/min_monitor.png) -51px -51px no-repeat !important;
+}
+/*运行状态-初始化*/
+.monitor_minicon.monitor-div-run-Initial {
+	background: url(../images/monitor/min_monitor.png) -68px -51px no-repeat !important;
+}
+/*运行状态-维护*/
+.monitor_minicon.monitor-div-run-Maintain {
+	background: url(../images/monitor/min_monitor.png) -85px -51px no-repeat !important;
+}
+/*运行状态-重启*/
+.monitor_minicon.monitor-div-run-ReBoot {
+	background: url(../images/monitor/min_monitor.png) -102px -51px no-repeat !important;
+}
+/*运行状态-P端故障*/
+.monitor_minicon.monitor-div-run-StopAtmp {
+	background: url(../images/monitor/min_monitor.png) -119px -51px no-repeat !important;
+}
+/*运行状态-人工报停*/
+.monitor_minicon.monitor-div-run-StopManmade {
+	background: url(../images/monitor/min_monitor.png) -136px -51px no-repeat !important;
+}
+/*运行状态-故障*/
+.monitor_minicon.monitor-div-run-StopMod {
+	background: url(../images/monitor/min_monitor.png) -153px -51px no-repeat !important;
+}
+/*运行状态-暂停服务-未加钞*/
+.monitor_minicon.monitor-div-run-StopUnCashIn {
+	background: url(../images/monitor/min_monitor.png) -170px -51px no-repeat !important;
+}
+/*运行状态-未知原因暂停服务*/
+.monitor_minicon.monitor-div-run-StopUnKnown {
+	background: url(../images/monitor/min_monitor.png) -187px -51px no-repeat !important;
+}
+/*运行状态-厂商模式*/
+.monitor_minicon.monitor-div-run-Vdm {
+	background: url(../images/monitor/min_monitor.png) -204px -51px no-repeat !important;
+}
+/*运行状态-半功能服务*/
+.monitor_minicon.monitor-div-run-SubHealth {
+	background: url(../images/monitor/min_monitor.png) -221px -51px no-repeat !important;
+}
+
+
+
+/*模块状态-无模块*/
+.monitor_minicon.monitor-div-mod-Nodevice {
+	background: url(../images/monitor/min_monitor.png) left -17px no-repeat !important;
+}
+/*模块状态-未知*/
+.monitor_minicon.monitor-div-mod-Unknown {
+	background: url(../images/monitor/min_monitor.png) -17px -17px no-repeat !important;
+}
+/*模块状态-故障*/
+.monitor_minicon.monitor-div-mod-Warning {
+	background: url(../images/monitor/min_monitor.png) -34px -17px no-repeat !important;
+}
+/*模块状态-正常*/
+.monitor_minicon.monitor-div-mod-Fatal {
+	background: url(../images/monitor/min_monitor.png) -51px -17px no-repeat !important;
+}
+/*模块状态-正常*/
+.monitor_minicon.monitor-div-mod-Healthy {
+	background: url(../images/monitor/min_monitor.png) -68px -17px no-repeat !important;
+}
+
+
+
+
+/*钞箱状态-钞空*/
+.monitor_minicon.monitor-div-box-Empty {
+	background: url(../images/monitor/min_monitor.png) left 0px no-repeat !important;
+}
+/*钞箱状态-故障*/
+.monitor_minicon.monitor-div-box-Fatal {
+	background: url(../images/monitor/min_monitor.png) -17px 0px no-repeat !important;
+}
+/*钞箱状态-钞满*/
+.monitor_minicon.monitor-div-box-Full {
+	background: url(../images/monitor/min_monitor.png) -34px 0px no-repeat !important;
+}
+/*钞箱状态-正常*/
+.monitor_minicon.monitor-div-box-Healthy {
+	background: url(../images/monitor/min_monitor.png) -51px 0px no-repeat !important;
+}
+/*钞箱状态-正常*/
+.monitor_minicon.monitor-div-box-High {
+	background: url(../images/monitor/min_monitor.png) -68px 0px no-repeat !important;
+}
+/*钞箱状态-钞少*/
+.monitor_minicon.monitor-div-box-Low {
+	background: url(../images/monitor/min_monitor.png) -85px 0px no-repeat !important;
+}
+/*钞箱状态-未知*/
+.monitor_minicon.monitor-div-box-Unknown {
+	background: url(../images/monitor/min_monitor.png) -102px 0px no-repeat !important;
+}
+
+
+/*网络状态-未知*/
+.monitor_minicon.monitor-div-net-Unknown {
+	background: url(../images/monitor/min_monitor.png) left -34px no-repeat !important;
+}
+/*网络状态-不稳定*/
+.monitor_minicon.monitor-div-net-Warning {
+	background: url(../images/monitor/min_monitor.png) -17px -34px no-repeat !important;
+}
+/*网络状态-故障*/
+.monitor_minicon.monitor-div-net-Fatal {
+	background: url(../images/monitor/min_monitor.png) -34px -34px no-repeat !important;
+}
+/*网络状态-正常*/
+.monitor_minicon.monitor-div-net-Healthy {
+	background: url(../images/monitor/min_monitor.png) -51px -34px no-repeat !important;
+}
+/*******************************小图标方式**********************************************************/
+

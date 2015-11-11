@@ -21,6 +21,7 @@ import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +33,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.yihuacomputer.common.FishCfg;
+import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.OrderBy;
@@ -69,6 +72,10 @@ public class OpenPlanController {
 	@Autowired
 	private IOpenPlanService openPlanService;
 
+	@Autowired
+	protected MessageSource messageSource;
+	
+	
 	/**
 	 * 设备接口
 	 */
@@ -323,7 +330,8 @@ public class OpenPlanController {
 
 		if (isExistCode(form.getId(), form.getName()) == true) {
 			result.put("success", false);
-			result.put("errors", "该开机方案已存在，请重新输入！");
+			//该开机方案已存在，请重新输入！
+			result.put(FishConstant.ERROR_MSG, messageSource.getMessage("openPlan.planExsit", null,FishCfg.locale));
 		} else {
 			IDeviceOpenPlan openPlan = openPlanService.getDeviceOpenPlanByName(form.getName());
 			openPlan = new DeviceOpenPlan();
@@ -350,7 +358,8 @@ public class OpenPlanController {
 			IDeviceOpenPlan plan = openPlanService.saveOpenPlan(openPlan);
 			if (plan == null) {
 				result.addAttribute("success", false);
-				result.addAttribute("errors", "增加方案失败，请重新操作！");
+				//增加方案失败，请重新操作！
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("openPlan.addFail", null,FishCfg.locale));
 				return result;
 			}
 			form.setId(plan.getId());
@@ -381,12 +390,14 @@ public class OpenPlanController {
 			if (openPlan == null) {
 				result.addAttribute("success", false);
 				result.addAttribute("type", 1);
-				result.addAttribute("errors", "该方案不存在，请刷新后查看！");
+				//该方案不存在，请刷新后查看！
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("openPlan.planNoExsit", null,FishCfg.locale));
 				return result;
 			}
 			if (isExistCode(Long.valueOf(id), form.getName()) == true) {
 				result.put("success", false);
-				result.put("errors", "该开机方案已存在，请重新输入！");
+				//该开机方案已存在，请重新输入！
+				result.put(FishConstant.ERROR_MSG, messageSource.getMessage("openPlan.planExsit", null,FishCfg.locale));
 				return result;
 			}
 			openPlan.setDesc(form.getDesc());
@@ -409,7 +420,8 @@ public class OpenPlanController {
 			IDeviceOpenPlan plan = openPlanService.updatePlan(openPlan);
 			if (plan == null) {
 				result.addAttribute("success", false);
-				result.addAttribute("errors", "修改方案失败，请重新操作！");
+				//修改方案失败，请重新操作！
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("openPlan.updatePlanFail", null,FishCfg.locale));
 				return result;
 			}
 			form.setId(plan.getId());
@@ -417,7 +429,8 @@ public class OpenPlanController {
 			result.addAttribute("data", form);
 		} else {
 			result.addAttribute("success", false);
-			result.addAttribute("errors", "该方案已与设备关联，不能被更改！");
+			//该方案已与设备关联，不能被更改！
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("openPlan.cannotUpdate", null,FishCfg.locale));
 		}
 		return result;
 	}
@@ -439,7 +452,8 @@ public class OpenPlanController {
 			// 是否与人员有关联
 			if (pageResult != null && !pageResult.list().isEmpty()) {
 				result.addAttribute("success", false);
-				result.addAttribute("errors", "该方案已应用于设备,无法删除！");
+				//该方案已应用于设备,无法删除！
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("openPlan.cannotDelete", null, FishCfg.locale));
 				return result;
 			}
 
@@ -448,7 +462,8 @@ public class OpenPlanController {
 		} catch (Exception ex) {
 			result.addAttribute("success", false);
 			logger.error(ex.getMessage());
-			result.put("errors", "删除失败:" + ex.getMessage());
+			//删除失败
+			result.put(FishConstant.ERROR_MSG, messageSource.getMessage("openPlan.deleteFail", null,FishCfg.locale) + ex.getMessage());
 		}
 		return result;
 	}
@@ -506,24 +521,6 @@ public class OpenPlanController {
 		StringBuffer message = new StringBuffer();
 		List <IDevice> linkDeviceList = new ArrayList<IDevice>();
 		StringBuffer dataJson = new StringBuffer();
-//		try {
-//			linkDeviceList = importDevice(file.getInputStream(), request.getSession().
-//					getServletContext().getRealPath("/importResult.xls"), orgId, message);
-//			response.setContentType("text/html;charset=UTF-8");// 解决IE9 上传文件乱码问题
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return "{'success':false,'content':'文件类型不符合要求'}";
-//		}
-		if(null == linkDeviceList)
-		{
-			if ("-1".equals(message.toString())) {
-				return "{'success':true,'message':'-1'}";
-			}
-			if ("-2".equals(message.toString())) {
-				return "{'success':true,'message':'-2'}";
-			}
-			return "{'success':false,'content':'文件类型或文件内容不符合要求'}";
-		}
 		Iterator<IDevice> iterator = linkDeviceList.iterator();
 		dataJson.append("'data':[");
 		while (iterator.hasNext()){
@@ -543,109 +540,109 @@ public class OpenPlanController {
 
 	}
 
-//	public  List<IDevice> importDevice(InputStream in, String path, String orgId, StringBuffer message) throws IOException
-//	{
-//		POIFSFileSystem fs = new POIFSFileSystem(in);
-//		HSSFWorkbook wb = new HSSFWorkbook(fs);
-//		HSSFWorkbook outWb =new HSSFWorkbook(fs);
-//		int sheetNum = wb.getNumberOfSheets();
-//		if(sheetNum < 1)
-//		{
-//			message.append("0");
-//			return null;
-//		}
-//		HSSFSheet sheet = wb.getSheetAt(0);
-//		int number = sheet.getLastRowNum();
-//		if(number < 1 )
-//		{
-//			message.append("-1");
-//			return null;
-//		}
-//		if(number > 2000)
-//		{
-//			message.append("-2");
-//			return null;
-//		}
-//		String msg = String.valueOf(number);
-//		message.append(msg);
-//		List<IDevice> linkDevice = importSheet(sheet,outWb,orgId);
-//		in.close();
-//		outExcel(path, outWb);
-//		return linkDevice;
-//	}
+/*	public  List<IDevice> importDevice(InputStream in, String path, String orgId, StringBuffer message) throws IOException
+	{
+		POIFSFileSystem fs = new POIFSFileSystem(in);
+		HSSFWorkbook wb = new HSSFWorkbook(fs);
+		HSSFWorkbook outWb =new HSSFWorkbook(fs);
+		int sheetNum = wb.getNumberOfSheets();
+		if(sheetNum < 1)
+		{
+			message.append("0");
+			return null;
+		}
+		HSSFSheet sheet = wb.getSheetAt(0);
+		int number = sheet.getLastRowNum();
+		if(number < 1 )
+		{
+			message.append("-1");
+			return null;
+		}
+		if(number > 2000)
+		{
+			message.append("-2");
+			return null;
+		}
+		String msg = String.valueOf(number);
+		message.append(msg);
+		List<IDevice> linkDevice = importSheet(sheet,outWb,orgId);
+		in.close();
+		outExcel(path, outWb);
+		return linkDevice;
+	}
+*/
+/*	private List<IDevice> importSheet(HSSFSheet st,HSSFWorkbook outWb,String orgId)
+	{
+		if( st == null)
+		{
+			return null;
+		}
+		String tip = null;
+		boolean isWrite = false;
+	    Map<String,String> devPlanRelation = new HashMap<String,String>();
+	    List<IDevicePlanRelation> devicePlanRelations = relationService.devicePlanRelations();
+	    List<IDevice> linkDevice = new ArrayList<IDevice>();
+	    for(IDevicePlanRelation  dpr : devicePlanRelations)
+	    {
+	    	devPlanRelation.put(String.valueOf(dpr.getDeviceId()), String.valueOf(dpr.getOpenPlanId()));
+	    }
+		for(int rowIndex = 1; rowIndex<=st.getLastRowNum(); rowIndex++)
+		{
+		    if(isWrite == true)
+		    {
+		    	updateExcel(outWb, rowIndex - 1, tip, 0, 1);
+		    }
+		    HSSFRow row = st.getRow(rowIndex);
+		    if(null == row)
+		    {
+		    	tip = "设备编号不能为空";
+		    	isWrite = true;
+		    	continue;
+		    }
+		    HSSFCell cell = row.getCell(0);
+		    if(null == cell)
+		    {
+		    	tip = "设备编号不能为空";
+		    	isWrite = true;
+		        continue;
+		    }
+		    String deviceCode = getValue(row.getCell(0));
+		    if(StringUtils.isBlank(deviceCode))
+		    {
+		    	tip ="设备编号不能为空";
+		    	isWrite = true;
+		    	continue;
+		    }
+		    List<IDevice> listDevice = relationService.getDevicebyCode(deviceCode, orgId);
+            if(listDevice.size() > 0)
+            {
+            	String devId = String.valueOf(listDevice.get(0).getId());
+            	if(devPlanRelation.get(devId) != null)
+            	{
+            		tip ="该设备不存在或不满足要求";
+            		isWrite = true;
+    		    	continue;
+            	}
+            	 else
+                 {
+                 	linkDevice.add(listDevice.get(0));
+                 	tip ="导入成功";
+                 	isWrite = true;
+                 }
+            }else
+            {
+            	tip ="该设备不存在或不满足要求";
+        		isWrite = true;
+		    	continue;
+            }
 
-//	private List<IDevice> importSheet(HSSFSheet st,HSSFWorkbook outWb,String orgId)
-//	{
-//		if( st == null)
-//		{
-//			return null;
-//		}
-//		String tip = null;
-//		boolean isWrite = false;
-//	    Map<String,String> devPlanRelation = new HashMap<String,String>();
-//	    List<IDevicePlanRelation> devicePlanRelations = relationService.devicePlanRelations();
-//	    List<IDevice> linkDevice = new ArrayList<IDevice>();
-//	    for(IDevicePlanRelation  dpr : devicePlanRelations)
-//	    {
-//	    	devPlanRelation.put(String.valueOf(dpr.getDeviceId()), String.valueOf(dpr.getOpenPlanId()));
-//	    }
-//		for(int rowIndex = 1; rowIndex<=st.getLastRowNum(); rowIndex++)
-//		{
-//		    if(isWrite == true)
-//		    {
-//		    	updateExcel(outWb, rowIndex - 1, tip, 0, 1);
-//		    }
-//		    HSSFRow row = st.getRow(rowIndex);
-//		    if(null == row)
-//		    {
-//		    	tip = "设备编号不能为空";
-//		    	isWrite = true;
-//		    	continue;
-//		    }
-//		    HSSFCell cell = row.getCell(0);
-//		    if(null == cell)
-//		    {
-//		    	tip = "设备编号不能为空";
-//		    	isWrite = true;
-//		        continue;
-//		    }
-//		    String deviceCode = getValue(row.getCell(0));
-//		    if(StringUtils.isBlank(deviceCode))
-//		    {
-//		    	tip ="设备编号不能为空";
-//		    	isWrite = true;
-//		    	continue;
-//		    }
-//		    List<IDevice> listDevice = relationService.getDevicebyCode(deviceCode, orgId);
-//            if(listDevice.size() > 0)
-//            {
-//            	String devId = String.valueOf(listDevice.get(0).getId());
-//            	if(devPlanRelation.get(devId) != null)
-//            	{
-//            		tip ="该设备不存在或不满足要求";
-//            		isWrite = true;
-//    		    	continue;
-//            	}
-//            	 else
-//                 {
-//                 	linkDevice.add(listDevice.get(0));
-//                 	tip ="导入成功";
-//                 	isWrite = true;
-//                 }
-//            }else
-//            {
-//            	tip ="该设备不存在或不满足要求";
-//        		isWrite = true;
-//		    	continue;
-//            }
-//
-//
-//          }
-//		   updateExcel(outWb, st.getLastRowNum(), tip, 0, 1);
-//		   return linkDevice;
-//
-//	}
 
+          }
+		   updateExcel(outWb, st.getLastRowNum(), tip, 0, 1);
+		   return linkDevice;
+
+	}
+*/
 	private String getValue(HSSFCell cell) {
 		if (cell != null) {
 			cell.setCellType(Cell.CELL_TYPE_STRING);

@@ -14,12 +14,12 @@ Ext.define('Eway.view.operatingPlan.LinkedDeviceFilter',{
 				columnWidth : .5,
 				defaults : {
 					labelAlign : 'right',
-					labelWidth : 70
+					labelWidth : 60
 				},
 				items : [ {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '机构',
-					emptyText : '--请选择--',
+					fieldLabel : Eway.locale.refs.orgName,
+					emptyText : Eway.locale.report.openplan.placeSelect,
 					name : 'orgName',
 					hiddenValue : 'orgId',
 					editable : true,
@@ -39,20 +39,20 @@ Ext.define('Eway.view.operatingPlan.LinkedDeviceFilter',{
 					fieldLabel : 'IP',
 					name : 'ip',
 					regex : /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/,
-					regexText : '请输入正确的IP地址'
+					regexText : Eway.locale.vtype.ip
 				}]
 			}, {
 				columnWidth : .5,
 				defaults : {
 					labelAlign : 'right',
-					labelWidth : 80
+					labelWidth : 60
 				},
 				items : [  {
 					xtype : 'textfield',
-					fieldLabel : '设备号',
+					fieldLabel :Eway.locale.commen.terminalId,
 					name : 'terminalId',
 					regex : /^\w+[\w-_\.]*$/,
-					regexText : '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’，只能以字母、数字或下划线开头。',
+					regexText :Eway.locale.vtype.terminalId,
 					maxLength : 20
 				},{
 					style : 'padding-top:0px',

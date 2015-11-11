@@ -19,48 +19,48 @@ Ext.define('Eway.view.machine.device.person.PersonTMManagerGrid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-				text: '刷新',
-				iconCls: 'refreshBtn',
+				text: Eway.locale.button.refresh,
+				glyph : 0xf021,
 				action: 'queryRe'
 				}, {
-				text: '添加',
-				iconCls :'sureBtn',
+				text: Eway.locale.button.add,
+				glyph : 0xf067,
 				action: 'add'
 				}, {
-				text: '删除',
-				iconCls :'deleteBtn',
+				text: Eway.locale.button.remove,
+				glyph : 0xf014,
 				action: 'remove'}],
 			columns : [{
-				header : '工号',
+				header : Eway.locale.commen.jobNum,
 				dataIndex : 'jobNum'
 			},{
-				header : '姓名',
+				header : Eway.locale.commen.name,
 				dataIndex : 'name'
 			}, {
-				header : '手机',
+				header : Eway.locale.commen.mobile,
 				dataIndex : 'mobile'
 			}, {
-				header : '固话',
+				header : Eway.locale.commen.phone,
 				dataIndex : 'phone'
 			},{
-				header : '状态',
+				header : Eway.locale.commen.state,
 				dataIndex : 'state',
 				renderer: function(value,metadata,record){
 					if(value==1){
-		                	 return "在岗";
+		                	 return Eway.locale.commen.comboxStatus.onJob;
 		             }else if(value==2){
-		                	   return "调休";
+		                	   return Eway.locale.commen.comboxStatus.onAdjust;
 		             }else if(value==3){
-		                	   return "休假";
+		                	   return Eway.locale.commen.comboxStatus.onVacation;
 		             }else if(value==0){
-		                	   return "其他";
+		                	   return Eway.locale.commen.comboxStatus.other;
 		             }
 				}
 			},{
-				header : '邮箱',
+				header : Eway.locale.commen.email,
 				dataIndex : 'email'
 			},{
-				header : '机构名称',
+				header : Eway.locale.person.bankOrg.name,
 				dataIndex : 'organizationName',
 				flex : 1
 			}]

@@ -50,7 +50,7 @@ public class ClassifyMonitorService implements IClassifyMonitorService {
         devStatusHql.append(this.DEVICE_STATUS_HQL);
         IOrganization org = organizationService.get(statusFilter.getOrgId());
         devStatusHql.append("and d.organization.orgFlag like ? ");
-        valueObj.add("%" + org.getOrgFlag());
+        valueObj.add(org.getOrgFlag() + "%");
 
         if (statusFilter.getTerminalId() != null && !statusFilter.getTerminalId().isEmpty()) {
             devStatusHql.append("and d.terminalId like ? ");

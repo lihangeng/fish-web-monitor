@@ -35,13 +35,26 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 				}
 			},{
 				text:Eway.locale.version.download.autoRefresh,//'开启自动刷新',
+				glyph : 0xf021,
 				action:'autoRefresh',
 				tooltip:Eway.locale.version.download.autoRefreshTips,//'刷新周期60秒',
 				started:false
 			},{
+				text:Eway.locale.version.download.cancelBatch,//'批次取消',
+				action:'cancelBatch',
+				glyph : 0xf014,
+				code : 'cancelBatch',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
+			},{
 				text:Eway.locale.version.download.resetTaskStatus,//'重置任务状态',
 				action:'resetStatus',
-				tooltip:Eway.locale.version.download.resetTaskStatus
+				code : 'resetStatus',
+				tooltip:Eway.locale.version.download.resetTaskStatus,
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}/*,{
 				text: '全部重启',
 				iconCls : 'exportToExcel',
@@ -175,12 +188,10 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 					handler : function(grid,rowIndex,colIndex){
 						var record = grid.getStore().getAt(rowIndex);
 						var taskId = record.get('id');
-						var jobId = record.get('jobId');
 						Ext.Ajax.request({
 							method : 'POST',
 							url : 'api/version/download/task/cancel' ,
 							params : {
-								'jobId' : jobId,
 								'taskId' : taskId
 							},
 							success : function(response){

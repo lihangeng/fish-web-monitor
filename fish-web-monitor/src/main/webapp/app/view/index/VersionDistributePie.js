@@ -13,18 +13,6 @@ Ext.define('Eway.view.index.VersionDistributePie', {
 	    queryMode: 'local',
 	    editable : false,
 	    listeners : {
-			beforerender : function() {
-				this.store.load({
-					callback : function(records, operation, success) {
-						if (success) {
-							if (this.getValue()) {
-								this.isValid();
-							}
-						}
-					},
-					scope : this
-				});
-			},
 			afterrender:function(){
 				var me = this;
 				var store = this.getStore();
@@ -50,7 +38,6 @@ Ext.define('Eway.view.index.VersionDistributePie', {
 					}
 				});
 			}
-			
 		}
 	},{
 	    type:'refresh',
@@ -85,7 +72,7 @@ Ext.define('Eway.view.index.VersionDistributePie', {
             xtype: 'polar',
             theme: 'default-gradients',
             width: '100%',
-            height: 300,
+            height: 260,
             store: me.myDataStore,
             insetPadding: 30,
             innerPadding: 10,

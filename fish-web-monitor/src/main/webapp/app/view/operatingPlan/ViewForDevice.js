@@ -6,10 +6,10 @@ Ext.define('Eway.view.operatingPlan.ViewForDevice', {
 	requires: ['Eway.view.operatingPlan.FilterForm',
 	           'Eway.view.operatingPlan.GridForDevice'],
 	
-	title: '选择开机方案',
+	title: Eway.locale.report.openplan.selectPlan,
 	
 	width: 900,
-	height: 600,
+	height: 560,
 	layout: 'border',
 	modal: true,
 	resizable: false,
@@ -19,7 +19,9 @@ Ext.define('Eway.view.operatingPlan.ViewForDevice', {
 	initComponent: function() {
 		Ext.apply(this, {
 			items: [{
+				
 					region: 'north',
+					height: 40,
 					xtype: 'operatingPlan_filterForm'
 				}, {
 					region: 'center',

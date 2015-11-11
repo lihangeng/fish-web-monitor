@@ -3,7 +3,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 	alias : 'widget.monitor_device_DeviceInfoStatus',
 	requires:['Ext.ux.TransparentButton'],
 	width : 720,
-	height :570,
+	height :610,
 	maximizable : true,
 	modal : true,
 	border : false,
@@ -39,7 +39,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .5,
 						fieldLabel : Eway.locale.commen.terminalId,
 						name : 'code',
-						link : true
+						a_link : true
 					}, {
 						columnWidth : .49,
 						fieldLabel : Eway.locale.commen.orgNameBelongs,
@@ -56,7 +56,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .49,
 						fieldLabel : Eway.locale.commen.personnel,
 						name : 'personnel',
-						link : true
+						a_link : true
 					} ]
 				}, {
 					layout : 'column',
@@ -99,7 +99,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .5,
 						fieldLabel : Eway.locale.monitor.devMonitor.comboxStatus.runStatus,
 						name : 'runStatus',
-						link : true
+						a_link : true
 					}, {
 						columnWidth : .49,
 						fieldLabel : Eway.locale.monitor.devMonitor.cash.boxInitCount,
@@ -107,31 +107,13 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					} ]
 				}, {
 					layout : 'column',
-					defaults : {
-						border : false
-					},
+					defaultType : 'displayfield',
 					items : [ {
-						xtype: 'panel',
-				        combineErrors: true,
 				        columnWidth : .5,
-				        layout: 'column',
-				        defaultType : 'displayfield',
-				        items: [ {
-							columnWidth : .5,
-							fieldLabel : Eway.locale.monitor.devMonitor.comboxStatus.modStatus,
-							name : 'modStatus',
-							link : true
-						}, {
-							hideLabel: true,
-							columnWidth : .49,
-							fieldLabel : Eway.locale.monitor.devMonitor.modStateGraphic,
-							name : 'modGraphic',
-							link : true,
-							code : 'modStatusGraphic',
-							listeners:{
-								'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-							}
-						} ]
+				        fieldLabel : Eway.locale.monitor.devMonitor.comboxStatus.modStatus,
+						name : 'modStatus',
+						a_link : true
+
 					}, {
 						columnWidth : .49,
 						xtype: 'displayfield',
@@ -145,7 +127,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .5,
 						fieldLabel : Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,
 						name : 'boxStatus',
-						link : true
+						a_link : true
 					}, {
 						columnWidth : .49,
 						fieldLabel : Eway.locale.monitor.devMonitor.retainCardCount,
@@ -158,7 +140,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .5,
 						fieldLabel : Eway.locale.monitor.devMonitor.comboxStatus.netStatus,
 						name : 'netStatus',
-						link : true
+						a_link : true
 					}, {
 						columnWidth : .49,
 						fieldLabel : Eway.locale.monitor.devMonitor.registerStatus,
@@ -176,72 +158,68 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					layout : 'column',
 					defaultType : 'displayfield',
 					items : [ {
-						columnWidth : .3,
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.idc,
 						name : 'idcStatus',
-						link : true
+						a_link : true
 					},{
-						columnWidth : .3,
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.jpr,
 						name : 'jprStatus',
-						link : true
+						a_link : true
 					},{
-						columnWidth : .3,
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.cdm,
 						name : 'cdmStatus',
-						link : true
-					}]
+						a_link : true
+					}, {
+						columnWidth : .24,
+						fieldLabel : Eway.locale.monitor.devMonitor.mod.cim,
+						name : 'cimStatus',
+						a_link : true
+					} ]
 				},{
 					layout : 'column',
 					defaultType : 'displayfield',
-					items : [{
-						columnWidth : .3,
-						fieldLabel : Eway.locale.monitor.devMonitor.mod.cim,
-						name : 'cimStatus',
-						link : true
-					},{
-						columnWidth : .3,
+					items : [ {
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.siu,
 						name : 'siuStatus',
-						link : true
+						a_link : true
 					},{
-						columnWidth : .3,
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.rpr,
 						name : 'rprStatus',
-						link : true
-					}]
-				}, {
-					layout : 'column',
-					defaultType : 'displayfield',
-					items : [{
-						columnWidth : .3,
+						a_link : true
+					}, {
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.pin,
 						name : 'pinStatus',
-						link : true
+						a_link : true
 					},{
-						columnWidth : .3,
+						columnWidth : .24,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.ttu,
 						name : 'ttuStatus',
-						link : true
-					}, {
-						columnWidth : .3,
-						fieldLabel : Eway.locale.monitor.devMonitor.mod.isc,
-						name : 'iscStatus',
-						link : true
+						a_link : true
 					} ]
 				}, {
 					layout : 'column',
 					defaultType : 'displayfield',
 					items : [ {
-						columnWidth : .3,
+						columnWidth : .25,
+						fieldLabel : Eway.locale.monitor.devMonitor.mod.isc,
+						name : 'iscStatus',
+						a_link : true
+					}, {
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.icc,
 						name : 'iccStatus',
-						link : true
+						a_link : true
 					}, {
-						columnWidth : .3,
+						columnWidth : .25,
 						fieldLabel : Eway.locale.monitor.devMonitor.mod.fgp,
 						name : 'fgpStatus',
-						link : true
+						a_link : true
 					} ]
 				} ]
 			}, {
@@ -370,7 +348,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 		fields.each(function(item){
 			var name = item.getName();
 			var value = record.get(name);
-			if(item.link){
+			if(item.a_link){
 				if(name=='idcStatus' || name=='jprStatus'
 					|| name=='cdmStatus' || name=='pinStatus'
 					|| name=='cimStatus' || name=='siuStatus'
@@ -386,21 +364,23 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 							item.setValue(text);
 						}
 				}else if(name == "runStatus"){
-					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getRunPath(record.get("run")) + '"/>&nbsp;&nbsp;</div>';
-
+					//var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getRunPath(record.get("run")) + '"/>&nbsp;&nbsp;</div>';
+					var div = '<div class="monitor_minicon monitor-div-run-'+record.get("run")+'">&nbsp;&nbsp;</div>';
+					
 					var runFatals= [Eway.locale.monitor.devMonitor.remote.halfSer,Eway.locale.monitor.devMonitor.remote.staff,
 					                Eway.locale.monitor.devMonitor.remote.powerOff,Eway.locale.monitor.devMonitor.remote.restart,
 					                Eway.locale.monitor.devMonitor.remote.pFault,
 					                Eway.locale.monitor.devMonitor.remote.stop,Eway.locale.monitor.devMonitor.remote.pauseFault,
 					                Eway.locale.monitor.devMonitor.remote.pauseCash,Eway.locale.monitor.devMonitor.remote.pauseSer];
 					if(Ext.Array.contains(runFatals,value)){
-						item.setValue(img + "<span class='fatalHighLight'>"+ value + "</span>");
+						item.setValue(div + "<span class='fatalHighLight'>"+ value + "</span>");
 					}else{
-						item.setValue(img + value);
+						item.setValue(div + value);
 					}
 				}else if(name == "modStatus"){
-					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getModulePath(record.get("mod")) + '"/>&nbsp;&nbsp;</div>';
-
+//					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getModulePath(record.get("mod")) + '"/>&nbsp;&nbsp;</div>';
+					var div = '<div class="monitor_minicon monitor-div-mod-'+record.get("mod")+'">&nbsp;&nbsp;</div>';
+					
 					var className = 'link ';
 
 					if(value == Eway.locale.commen.warn){
@@ -408,11 +388,11 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					}else if(value == Eway.locale.commen.fatal){
 						className += ' fatalHighLight ';
 					}
-					item.setValue(img + '<a href="#" class="'+className+'">' + value + '</a>');
+					item.setValue(div + '<a href="#" class="'+className+'">' + value + '</a>');
 
 				}else if(name == "boxStatus"){
-					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getBoxPath(record.get("box")) + '"/>&nbsp;&nbsp;</div>';
-
+//					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getBoxPath(record.get("box")) + '"/>&nbsp;&nbsp;</div>';
+					var div = '<div class="monitor_minicon monitor-div-box-'+record.get("box")+'">&nbsp;&nbsp;</div>';
 					var className = 'link';
 					var boxFatals= [Eway.locale.monitor.devMonitor.cash.cimFull,Eway.locale.monitor.devMonitor.cash.cdmEmpty,
 					                Eway.locale.monitor.devMonitor.cash.cimAFull,Eway.locale.monitor.devMonitor.cash.cashFault];
@@ -421,17 +401,17 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					} else if(value == Eway.locale.monitor.devMonitor.cash.cdmLow) {
 						className += ' warningHighLight ';
 					}
-					item.setValue(img + '<a href="#" class="'+className+'">'+value+'</a>');
+					item.setValue(div + '<a href="#" class="'+className+'">'+value+'</a>');
 
 				}else if(name == "netStatus"){
-					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getNetPath(record.get("net")) + '"/>&nbsp;&nbsp;</div>';
-
+//					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getNetPath(record.get("net")) + '"/>&nbsp;&nbsp;</div>';
+					var div = '<div class="monitor_minicon monitor-div-net-'+record.get("net")+'">&nbsp;&nbsp;</div>';
 					if(value ==Eway.locale.commen.fatal){
-						item.setValue(img + "<span class='fatalHighLight'>"+ value + "</span>");
+						item.setValue(div + "<span class='fatalHighLight'>"+ value + "</span>");
 					}else if(value ==Eway.locale.commen.unStable){
-						item.setValue(img + "<span class='warningHighLight'>"+ value + "</span>");
+						item.setValue(div + "<span class='warningHighLight'>"+ value + "</span>");
 					}else{
-						item.setValue(img + value);
+						item.setValue(div + value);
 					}
 				} else if (name == 'personnel') {
 					item.setValue('<a href="#" class="link">'+Eway.locale.monitor.devMonitor.remote.manaAndstaff+'</a>');

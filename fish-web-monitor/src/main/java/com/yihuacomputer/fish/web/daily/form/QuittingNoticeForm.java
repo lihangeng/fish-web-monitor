@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.yihuacomputer.fish.api.device.Status;
+import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.StopType;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNotice;
 
@@ -18,7 +18,7 @@ public class QuittingNoticeForm
     private String stopReason; 
     private Date setTime;
     private String responsibilityName;
-    private Status devStatus;
+    private DevStatus devStatus;
     
     public QuittingNoticeForm(){};
     
@@ -54,11 +54,11 @@ public class QuittingNoticeForm
     }
     
 
-    public Status getDevStatus() {
+    public DevStatus getDevStatus() {
 		return devStatus;
 	}
 
-	public void setDevStatus(Status devStatus) {
+	public void setDevStatus(DevStatus devStatus) {
 		this.devStatus = devStatus;
 	}
 

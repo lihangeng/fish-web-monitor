@@ -80,7 +80,7 @@ Ext.define('Eway.view.machine.quittingNotice.QuittingNoticeGrid', {
 				renderer: function(value,metadata,record){  
                    if(value=='DISABLED'){
                 	   return Eway.locale.machine.atmGroup.comboxStatus.close;
-                   }else if(value=='OPENING'){
+                   }else if(value=='OPEN'){
                 	   return Eway.locale.machine.atmGroup.comboxStatus.open;
                    }
 				},

@@ -480,7 +480,7 @@ public class VersionController {
 		// TODO 如果版本类型没有选取设备型号，可以下发所有设备型号，在此处添加
 		UserSession userSession = (UserSession) req.getSession().getAttribute("SESSION_USER");
 		String orgFlag = userSession.getOrgFlag();
-		filter.eq("orgFlag", "%" + orgFlag);
+		filter.eq("orgFlag",orgFlag +  "%");
 		// 获取要查看版本内容标识(下发成功、失败....)
 		String flag = req.getParameter("flag");
 		if (null != flag && !"".equals(flag)) {

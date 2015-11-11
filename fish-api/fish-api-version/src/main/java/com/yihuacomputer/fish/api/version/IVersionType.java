@@ -1,6 +1,5 @@
 package com.yihuacomputer.fish.api.version;
 
-import java.util.List;
 
 /**
  * 版本类型（软件名）
@@ -67,35 +66,6 @@ public interface IVersionType {
 
     public String getDefaultInstallPath();
 
-    /*  *//**
-     * 设置软件版本号除了里程碑之外的连接符
-     * 
-     * @param link1
-     */
-    /*
-     * public void setLink1(String link1);
-     * 
-     * public String getLink1();
-     *//**
-     * 设置里程碑之前的连接符
-     * 
-     * @param link2
-     */
-    /*
-     * public void setLink2(String link2);
-     * 
-     * public String getLink2();
-     *//**
-     * 设置软件版本号的格式
-     * 
-     * @param versionFormat
-     */
-    /*
-     * public void setVersionFormat(String versionFormat);
-     * 
-     * public String getVersionFormat();
-     */
-
     /**
      * 设置备注
      * 
@@ -105,34 +75,7 @@ public interface IVersionType {
 
     public String getDesc();
 
-    /**
-     * 列出限制条件
-     * 
-     * @since 0.15
-     * @return
-     */
-    public List<IVersionTypeRestriction> listVersionTypeRestrictions();
-
-    /**
-     * 增加一个限制条件
-     * 
-     * @since 0.15
-     */
-    public void addVersionTypeRestriction(RestrictionColumn rc,String value);
-
-    /**
-     * 删除一个限制条件
-     * 
-     * @since 0.15
-     */
-    public void removeVersionTypeRestriction(RestrictionColumn rc,String value);
-    /**
-     * 得到限制的值，没有返回null
-     * @param rc
-     * @return
-     */
-    public String getRestrictionValue(RestrictionColumn rc);
-    /**
+     /**
      * 软件分类
      * @param versionCatalog
      * @since 0.20

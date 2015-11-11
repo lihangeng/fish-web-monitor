@@ -6,15 +6,14 @@ Ext.define('Eway.view.machine.device.Info', {
 	constrainHeader : true,
 	width : 700,
 	height : 450,
-	// maxHeight : 600,.
 	layout : 'fit',
 	maximizable : true,
 	resizable : false,
 	autoScroll : true,
-//	bodyStyle : 'padding: 10px 10px 30px 10px',
 	requires : [ 'Eway.view.common.OrgComboOrgTree',
 			'Eway.view.machine.device.person.TGrid',
-			'Eway.view.machine.device.person.TmGrid' ],
+			'Eway.view.machine.device.person.TmGrid',
+			'Eway.view.field.device.DeviceAtmType'],
 	defaults : {
 		border : false
 	},
@@ -37,38 +36,50 @@ Ext.define('Eway.view.machine.device.Info', {
 						defaultType : 'textfield',
 						defaults : {
 							anchor : '90%',
-							style : 'padding-top:10px',
-							readOnly : true
+							style : 'padding-top:5px',
+							readOnly:true
 						},
 						items : [ {
-							name : 'id',
-							style : 'padding : 0px',
-							xtype : 'hiddenfield'
-						}, {
 							fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.terminalId,
-							name : 'terminalId'
+							name : 'terminalId',
+							allowBlank : false,
+							maxLength:20,
+							vtype : "terminalId"
 						}, {
 							fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.ip,
-							name : 'ip'
+							name : 'ip',
+							allowBlank : false,
+							vtype :'ip'
 						}, {
-							fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.status,
+							fieldLabel : '<font color="red">*</font>'+Eway.locale.commen.devStatus,
+							allowBlank : false,
+							disabled:true,
 							xtype : 'radiogroup',
-							defaults : {
-								readOnly : true
-							},
+							hidden : true,
 							items : [ {
-								boxLabel : Eway.locale.machine.atmGroup.comboxStatus.open,
+								boxLabel : Eway.locale.commen.comboxDevStatus.open,
 								name : 'status',
+								checked : true,
+								readOnly :true,
 								inputValue : 1
 							}, {
-								boxLabel : Eway.locale.machine.atmGroup.comboxStatus.close,
+								boxLabel : Eway.locale.commen.comboxDevStatus.stop,
 								name : 'status',
+								readOnly : true,
 								inputValue : 2
 							} ]
-						}, {
-							fieldLabel : Eway.locale.machine.atmGroup.devServiceName,
-							name : 'devServiceName'
-						} ]
+						},{
+							style : 'padding-top:0px',
+							xtype : 'hiddenfield',
+							name : 'devServiceId'
+						},{
+							fieldLabel : Eway.locale.machine.device.virtual,
+							regex : /^\w+[\w-\.]*$/,
+							regexText : Eway.locale.vtype.numberRule,
+							maxLength : 25,
+							name : 'virtual'
+						}]					
+						
 					}, {
 						columnWidth : .5,
 						border : false,
@@ -76,56 +87,117 @@ Ext.define('Eway.view.machine.device.Info', {
 						defaults : {
 							anchor : '90%',
 							xtype : 'textfield',
-							style : 'padding-top:10px',
-							readOnly : true
+							style : 'padding-top:5px',
+							readOnly:true
 						},
 						items : [ {
+							style : 'padding-top:0px',
+							xtype : 'hiddenfield',
+							name : 'orgId'
+						}, {
+							xtype : 'common_orgComboOrgTree',
 							fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.orgName,
-							name : 'orgName'
+							name : 'orgName',
 						}, {
-							fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.devTypeName,
-							name : 'devTypeName'
-						}, {
-							fieldLabel : Eway.locale.machine.atmGroup.cashboxLimit,
-							xtype : 'numberfield',
-							hideTrigger : true,
-							name : 'cashboxLimit'
-						}, {
-							fieldLabel : Eway.locale.machine.device.devAddress,
-							name : 'address'
+							xtype : 'field_device_deviceatmtype',
+							fieldLabel : '<font color="red">*</font> '+Eway.locale.machine.atmGroup.devTypeName,
+							value: 1,
+							allowBlank : false
+						},{
+							xtype : 'common_orgComboOrgTree',
+							fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.devServiceName,
+							name : 'devServiceName',
 						} ]
-					} ]
-				}, {
+					}]
+					
+				},{				
+					layout : 'column',
+					border : false,
+					items : [ {
+						columnWidth : 1,
+						border : false,
+						layout : 'anchor',
+						defaultType : 'textarea',
+						defaults : {
+							anchor : '95%',
+							style : 'padding-top:5px',
+							readOnly:true
+						},
+						items : [ {
+							fieldLabel : Eway.locale.machine.device.devAddress,
+							maxLength : 100,
+							name : 'address'
+						}]
+					}]
+				},{
 					xtype : 'tabpanel',
 					frame : true,
 					items : [ {
 						title : Eway.locale.machine.device.basicInfo,
-						layout : 'column',
-						border : false,
-						items : [{
+						items:[{
+							layout : 'column',
+							border : false,
+							items:[{
+									columnWidth : 0.5,
+									border : false,
+									layout : 'anchor',
+									items:[{
+								 		fieldLabel : Eway.locale.machine.device.installDate,
+					                    xtype : 'datefield',
+					                    format : 'Y-m-d',
+					                    name : 'installDate',
+					                    readOnly:true
+									}]
+								},{
+									columnWidth : 0.5,
+									border : false,
+									layout : 'anchor',
+									items:[{
+										xtype:'textfield',
+										fieldLabel : Eway.locale.machine.device.serial,
+										regex : /^\w+[\w-\.]*$/,
+										regexText : Eway.locale.vtype.numberRule,
+										maxLength : 40,
+										name : 'serial',
+										readOnly:true
+									}]
+								}]
+						
+						},{
 							columnWidth : 1,
 							border : false,
 							layout : 'anchor',
 							defaults : {
-								anchor : '80%',
+								anchor : '95%',
 								xtype : 'textfield',
-								style : 'padding-top:10px',
-								readOnly : true
+								style : 'padding-top:5px'
 							},
 							items : [{
+								fieldLabel : Eway.locale.machine.atmGroup.cashboxLimit,
+								xtype : 'numberfield',
+								regex : /^(0|[1-9]\d{0,5})$/,
+								hideTrigger:true,
+								maxLength : 6,
+								anchor : '41%',
+								name : 'cashboxLimit',
+								readOnly:true,
+								value:0
+							},{  			        
 								fieldLabel : Eway.locale.machine.device.installStyle,
 								xtype : 'radiogroup',
 								allowBlank : false,
-								anchor : '59%',
+								anchor : '69%',
 								items : [ {
 									boxLabel : Eway.locale.machine.device.crossWall,
-									name : 'setupType',
+									name : 'setupType',	
 									checked : true,
-									inputValue : 0
+									readOnly:true,
+									inputValue : 1
 								}, {
 									boxLabel : Eway.locale.machine.device.mainRoom,
-									name : 'setupType',
-									inputValue : 1
+									name : 'setupType',								
+									readOnly:true,
+									inputValue : 2
 								} ]
 							},{
 								fieldLabel : Eway.locale.machine.device.netType,
@@ -135,15 +207,18 @@ Ext.define('Eway.view.machine.device.Info', {
 									boxLabel : Eway.locale.machine.device.wired,
 									name : 'netType',
 									checked : true,
-									inputValue : 0
+									readOnly:true,
+									inputValue : 1
 								}, {
 									boxLabel : Eway.locale.machine.device.wireless,
 									name : 'netType',
-									inputValue : 1
+									readOnly:true,
+									inputValue : 2
 								}, {
 									boxLabel : Eway.locale.machine.device.wiredAndWireless,
 									name : 'netType',
-									inputValue : 2
+									readOnly:true,
+									inputValue : 3
 								}]}
 								,{
 									fieldLabel : Eway.locale.machine.device.onBankSignal,
@@ -152,14 +227,17 @@ Ext.define('Eway.view.machine.device.Info', {
 										boxLabel : Eway.locale.machine.device.inBank,
 										name : 'awayFlag',
 										checked : true,
+										readOnly:true,
 										inputValue : 1
 									}, {
 										boxLabel : Eway.locale.machine.device.outBank,
 										name : 'awayFlag',
+										readOnly:true,
 										inputValue : 2
 									}, {
 										boxLabel :  Eway.locale.machine.device.clickBank,
 										name : 'awayFlag',
+										readOnly:true,
 										inputValue : 3
 									} ]
 								}, {
@@ -169,24 +247,21 @@ Ext.define('Eway.view.machine.device.Info', {
 										boxLabel : Eway.locale.machine.device.operationSelf,
 										name : 'workType',
 										checked : true,
+										readOnly:true,
 										inputValue : 1
 									}, {
 										boxLabel : Eway.locale.machine.device.cooperation,
 										name : 'workType',
+										readOnly:true,
 										inputValue : 2
 									}, {
 										boxLabel :  Eway.locale.machine.device.epiboly,
 										name : 'workType',
+										readOnly:true,
 										inputValue : 3
-									} ]
-								},{
-								fieldLabel : Eway.locale.machine.device.installDate,
-								xtype : 'datefield',
-								format : 'Y-m-d',
-								name : 'installDate',
-								anchor : '50%',
-								}]
-						} ]
+									}  ]
+							} ]
+						}]
 					},{
 						title : Eway.locale.machine.device.managePerson,
 						itemid : 'tubeMachineItemID',

@@ -15,7 +15,7 @@ Ext.define('Eway.view.monitor.cashinit.Grid', {
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : Eway.locale.commen.description,
+				text : Eway.locale.commen.info,
 				glyph : 0xf129,
 				action : 'info'
 			} ],

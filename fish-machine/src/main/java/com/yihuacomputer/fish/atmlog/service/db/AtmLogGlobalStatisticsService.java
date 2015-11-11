@@ -96,7 +96,7 @@ public class AtmLogGlobalStatisticsService implements IAtmLogGlobalStatisticsSer
 				}
 			}
 			if (c.getKey().equals("device.organization.orgFlag")) {
-				f.append(" and org.org_flag like '%").append(c.getValue()).append("'");
+				f.append(" and org.org_flag like '").append(c.getValue()).append("%'");
 				continue;
 			}
 		}

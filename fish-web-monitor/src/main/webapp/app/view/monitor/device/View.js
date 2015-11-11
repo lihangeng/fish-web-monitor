@@ -32,10 +32,10 @@ Ext.define('Eway.view.monitor.device.View',{
 					region : 'center',
 					xtype : 'panel',
 					layout : 'card',
-					activeItem : 3,
+					activeItem : 1,
 					itemId : 'card_itemId',
 					tbar : [
-						'订阅条件:', {
+						Eway.locale.monitor.devMonitor.monitorState+':', {
 							xtype : 'label'
 						}
 					],
@@ -62,12 +62,39 @@ Ext.define('Eway.view.monitor.device.View',{
 							name : 'matrix',
 							itemId : 'dataview',
 							xtype : 'monitor_device_showtype_dataviewgrid',
-							store : 'dataViewStore'
+							store : dataViewStore
 						},
 						bbar : Ext.create('Ext.PagingToolbar', {
 							store : dataViewStore,
 							displayInfo : true,
-							displayMsg : Eway.locale.tip.displayMessage
+							displayMsg : Eway.locale.tip.displayMessage,
+							items : ['-', Eway.locale.tip.formatPageBfMsg, {
+							    xtype : 'combobox',
+							    name: 'pagesize',
+						        hiddenName: 'pagesize',
+						        store: new Ext.data.ArrayStore({
+						            fields: ['text', 'value'],
+						            data: [['25', 25], ['50', 50],['100', 100], ['200', 200]]
+						        }),
+						        valueField : 'value',
+						        displayField : 'text',
+						        value : 25,
+						        width: 60,
+						        editable : false,
+						        listeners : {
+							        change : function( This, newValue, oldValue, eOpts ) {
+			        				    var pagingToolbar = This.up('pagingtoolbar');
+			
+			        				    var itemsPerPage = parseInt(newValue);//更改全局变量itemsPerPage
+			
+			        				    var store = pagingToolbar.getStore();
+			
+			        				    store.pageSize = itemsPerPage;//设置store的pageSize，可以将工具栏与查询的数据同步。
+			
+			        				    store.loadPage(1);//显示第一页
+							        }
+							    }
+							}, Eway.locale.tip.formatPageAfMsg]
 						})
 					}, {
 						
@@ -75,12 +102,6 @@ Ext.define('Eway.view.monitor.device.View',{
 						itemId : 'box',
 						name : 'box',
 						xtype : 'monitor_device_showtype_boxgrid'
-					} , {
-						
-						//　全局模式
-						itemId : 'summary',
-						name : 'summary',
-						xtype : 'monitor_view'
 					} ]
 				} ]
 			} ],
@@ -144,11 +165,7 @@ Ext.define('Eway.view.monitor.device.View',{
 
 		var p = cardp.getLayout().getActiveItem();
 		var store;
-		if(p.getItemId() == 'summary'){
-//			cardp.tbar.setHtml("123");
-			this.doCometd(store);
-			return;
-		}
+
 		if (p.getItemId() == 'martrixPanel') {
 			store = p.down('monitor_device_showtype_dataviewgrid').getStore();
 			
@@ -171,6 +188,7 @@ Ext.define('Eway.view.monitor.device.View',{
 			devices = devices+"/"+record.get('code');
 		});
 		var params = this.getParams();
+		params.limit = store.pageSize;
 		params.devices = devices.slice(1);
 		Ext.Cometd.publish('/service/status/join', params);
 	},
@@ -213,7 +231,9 @@ Ext.define('Eway.view.monitor.device.View',{
 		if(this.config._deviceMartixSub){
 			Ext.Cometd.removeListener(this.config._deviceMartixSub);
 		}
-		this.config._deviceMartixSub = Ext.Cometd.addListener('/service/status/join',Ext.bind(this._receive,this));
+//		this.config._deviceMartixSub = Ext.Cometd.addListener('/service/status/join',Ext.bind(this._receive,this));
+		
+		this.config._deviceMartixSub = Ext.Cometd.subscribe('/service/status/join', this, this._receive);
 	},
 
 	_receive : function(message){
@@ -234,13 +254,13 @@ Ext.define('Eway.view.monitor.device.View',{
 	},
 
 	doDataViewPanel : function(view,object){
-		
 //		var store = view.getStore();
 		var store = view.down('monitor_device_showtype_dataviewgrid').getStore();
 		
 		var action = object.method;
-		if(action == 'ADD'){
-			var record = Ext.ModelManager.create(object,'Eway.model.monitor.device.DeviceMonitorList');
+		if(action == 'ADD'){                             
+//			var record = Ext.ModelManager.create(object,'Eway.model.monitor.device.DeviceMonitorList');
+			var record = Ext.data.Record.create(object);
 			store.add(record);
 		}
 		else if(action == 'UPDATE'){
@@ -265,10 +285,13 @@ Ext.define('Eway.view.monitor.device.View',{
 	},
 
 	doGridPanel : function(gridpanel,object){
+		debugger;
 		var store = gridpanel.getStore();
 		var action = object.method;
 		if(action == 'ADD'){
-			var record = Ext.ModelManager.create(object,'Eway.model.monitor.device.DataView');
+			// Ext5.1没有Ext.ModelManager.create()API了，用下面方法实现
+//			var record = Ext.ModelManager.create(object,'Eway.model.monitor.device.DataView');
+			var record = Ext.data.Record.create(object);
 			store.add(record);
 		}
 		else if(action == 'UPDATE'){

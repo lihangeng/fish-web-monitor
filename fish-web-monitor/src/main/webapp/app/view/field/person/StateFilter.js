@@ -9,7 +9,6 @@ Ext.define('Eway.view.field.person.StateFilter', {
 	valueField : 'value',
 	displayField : 'display',
 	queryMode : 'local',
-	queryMode : 'local',
 	editable : false,
 	emptyText : Eway.locale.combox.select
 });

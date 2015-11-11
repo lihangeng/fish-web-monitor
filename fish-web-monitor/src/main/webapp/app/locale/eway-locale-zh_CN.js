@@ -6,7 +6,7 @@ Ext.override(Eway,{
 	choiceDeleteMsg :'请选择您要删除的记录.',//Eway.choiceDeleteMsg
 	locale:{
 		myTable:'我的工作台',//Eway.locale.myTable
-		ATMV:'自助设备监控系统(ATMV)',//Eway.locale.ATMV
+		ATMV:'自助设备监控系统',//Eway.locale.ATMV
 		welcome:'欢迎你,',//Eway.locale.welcome
 		personalConf:'个人设置',//Eway.locale.personalConf
 		systemHelp:'系统帮助',///Eway.locale.systemHelp
@@ -62,13 +62,15 @@ Ext.override(Eway,{
 		},
 		button:{
 			search:'查询',//Eway.locale.button.search
-			add : '增加',
-			update:'更改',
+			add : '增加',//Eway.locale.button.add
+			update:'更改',//Eway.locale.button.update
 			remove:'删除',//Eway.locale.button.remove
-			refresh:'刷新',
+			refresh:'刷新',//Eway.locale.button.refresh
 			reset:'重置',//Eway.locale.button.reset
 			back:'返回',//Eway.locale.button.back
 			apply:'应用',
+			link:'关联',//Eway.locale.button.link
+			unlink:'解除',//Eway.locale.button.unlink
 			//bankOrg
 			deepQuery:'深度查询',
 			bankOrgMove:'组织迁移',
@@ -90,11 +92,13 @@ Ext.override(Eway,{
 			massExport:'批量导入',
 			download:'下发',
 			downloadToolTip:'配置下发作业',
-			save:'保存',//Eway.locale.button.save
-			detailBtn:'开机方案',
+			save:'保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存',//Eway.locale.button.save
+			openPlan:'开机方案',//Eway.locale.button.openPlan
 			adminBtn:'管理员',
-			personM:'厂商管理员',
-			personTM:'管机员'
+			personM:'厂商管理员',//Eway.locale.button.personM
+			personTM:'管机员',//Eway.locale.button.personTM
+			orgAdmin:'机构管理员',//Eway.locale.button.orgAdmin
+			
 		},
 		//引用其他模块
 		refs:{
@@ -107,21 +111,21 @@ Ext.override(Eway,{
 		//**********************************************************/
 		tip:{
 			search :{
-				warn:'查询条件存在错误项.',
-				record:'请选择您要查看的记录.'
+				warn:'查询条件存在错误项.',//Eway.locale.tip.search.warn
+				record:'请选择您要查看的记录.',//Eway.locale.tip.search.record
 			},
 			update:{
-				one:'只能选择一条记录更改.',
-				two:'此条记录不能被更改.'
+				one:'只能选择一条记录更改.',//Eway.locale.tip.update.one
+				two:'此条记录不能被更改.'//Eway.locale.tip.update.two
 			},
 			remove :{
 				none:'请选择您要删除的记录.',
-				one:'只能选择一条记录删除',
+				one:'只能选择一条记录删除',//Eway.locale.tip.remove.one
 				confirm:{
 					title:'请确认',//Eway.locale.tip.remove.confirm.title
 					info:'是否删除该记录?'//Eway.locale.tip.remove.confirm.info
 				},
-				error:'删除失败:'
+				error:'删除失败:'//Eway.locale.tip.remove.error
 			},
 			own:{
 				have:'有',
@@ -139,6 +143,9 @@ Ext.override(Eway,{
 			phone:'请输入正确的电话号码',
 			remind:'提示',//Eway.locale.tip.remind
 			displayMessage:'总共：{2}条，显示{0}-{1}',
+			
+			formatPageBfMsg: '每页显示',// Eway.locale.tip.formatPageBfMsg
+			formatPageAfMsg: '条',// Eway.locale.tip.formatPageAfMsg
 
 			unCertain:'未知',
 			searchOfNoLegal:'查询项中存在不合法的输入,不能提交.',
@@ -159,15 +166,26 @@ Ext.override(Eway,{
 			selectMoveDev:'请选择要移动的设备.',
 			moveSuc:'移机成功.',
 			dateReSelect:'开始时间不能大于结束日期,请重新选择',
-			selectPlan:'请选择您应用的方案.',
-			removeFail:'解除失败.',
-			selectRemoveDev:'请选择要解除的设备.',
-			relatedFail:'关联失败.',
-			selectRelatedDev:'请选择要关联的设备.',
+			selectPlan:'请选择您应用的方案.',//Eway.locale.tip.selectPlan
+			removeFail:'解除失败.',//Eway.locale.tip.removeFail
+			selectRemoveDev:'请选择要解除的设备.',//Eway.locale.tip.selectRemoveDev
+			relatedFail:'关联失败.',//Eway.locale.tip.relatedFail
+			selectRelatedDev:'请选择要关联的设备.',//Eway.locale.tip.selectRelatedDev
 			planNoUpdate:'该方案已经执行,不可修改.',
 			planNoRemove:'该方案已经执行,不可删除.',
 			exportFiles: '请选择导入文件,只支持.xls和.xlsx格式的文件',
-
+			noChange:'没有更改数据,请更改后再点击确定!',//Eway.locale.tip.noChange
+			operateSuc:'操作成功',//Eway.locale.tip.operateSuc
+			operateWrong:'操作成功',//Eway.locale.tip.operateWrong
+			deleteOne:'一次只能删除一条记录.',//Eway.locale.tip.deleteOne
+			chooseRecord:'请选择您要关联的记录.',//Eway.locale.tip.chooseRecord
+			choosePlan:'请选择您要查看的方案',//Eway.locale.tip.choosePlan
+			planDetail:'方案详情',//Eway.locale.tip.planDetail
+			planDate:'方案详情(日期)',//Eway.locale.tip.planDate
+			planWeek:'方案详情(星期)',//Eway.locale.tip.planWeek
+			planNoConf:'该方案无详细设置！',//Eway.locale.tip.planNoConf
+			chooseRelatedDev:'请选择您要关联的设备！',//Eway.locale.tip.chooseRelatedDev
+			devRelatedPlan:'设备已关联开机方案！',//Eway.locale.tip.devRelatedPlan
 			//add by panxin
 			tips:'提示',//Eway.locale.tip.tips
 			input:'请正确输入',//Eway.locale.tip.input
@@ -348,7 +366,7 @@ Ext.override(Eway,{
 
 
 		vtype:{
-			ip:'请输入正确的IP地址',
+			ip:'请输入正确的IP地址',//Eway.locale.vtype.ip
 			zip:'请输入正确的邮编格式，6位的数字',
 			versionNo:'不是正确的版本号格式,格式说明：1.版本号由4个部分组成 A.B.C.D ;2.只有A部分是必须的 ；3. A、B、C、D必须为大于等于0的整数 ,每个部分最大长度为8位； 4.ABCD部分必须用.分隔',
 			terminalId:'输入错误,设备号由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’点号‘.’组成,只能以字母或数字开头,长度1到20位。',
@@ -389,7 +407,7 @@ Ext.override(Eway,{
 			remoteFailure:'远程浏览失败',
 			versionChart:'版本下发历史状态分布图',
 			openRefresh:'开启自动刷新',
-			choseTask:'请选择一个作业',
+			choseTask:'请选择一个任务',
 			cancelTask:'不能撤销"完成"状态的作业.',
 			cancelParticularTask:'是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)',
 			nowDelete:'正在删除......',
@@ -620,6 +638,7 @@ Ext.override(Eway,{
 				taskQueryTips:'根据条件查询选中作业下的详情信息',//Eway.locale.version.download.taskQueryTips
 				autoRefresh:'开启自动刷新',//Eway.locale.version.download.autoRefresh
 				stopAutoRefresh:'停止自动刷新',//Eway.locale.version.download.stopAutoRefresh
+				cancelBatch:'批次取消',//Eway.locale.version.download.cancelBatch
 				autoRefreshTips:'刷新周期60秒',//Eway.locale.version.download.autoRefreshTips
 				resetTaskStatus:'重置任务状态',//Eway.locale.version.download.resetTaskStatus
 				selectTask:'请选择一条任务记录！',//Eway.locale.version.download.selectTask
@@ -641,7 +660,7 @@ Ext.override(Eway,{
 				restartATM:'重启ATM',//Eway.locale.version.task.restartATM
 				restartATMTips:'执行重启命令可能存在风险,确认重启?',//Eway.locale.version.task.restartATMTips
 				sendRestartCmd:'已发送重启命令！',//Eway.locale.version.task.sendRestartCmd
-				cancelDownloadSuccess:'取消下发成功！',//Eway.locale.version.task.cancelDownloadSuccess
+				cancelDownloadSuccess:'取消下发通知成功！',//Eway.locale.version.task.cancelDownloadSuccess
 				cancelDownload:'取消下发',//Eway.locale.version.task.cancelDownload
 				jobName:'作业名称',//Eway.locale.version.task.jobName
 				jobStatus:'作业状态',//Eway.locale.version.task.jobStatus
@@ -667,6 +686,7 @@ Ext.override(Eway,{
 				autoUpdateInfo:'自动更新信息',//Eway.locale.version.task.autoUpdateInfo
 				selectAJob:'请选择一个作业.',//Eway.locale.version.task.selectAJob
 				versionDownHisStatusPic:'版本下发历史状态分布图',//Eway.locale.version.task.versionDownHisStatusPic
+				versionNoPic:'版本分布图',//Eway.locale.version.task.versionNoPic
 				cantCancelCompleteJob:'不能撤销"完成"状态的作业.',//Eway.locale.version.task.cantCancelCompleteJob
 				doSureCancelTheJob:'是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)',//Eway.locale.version.task.doSureCancelTheJob
 				deleting:'正在删除......',//Eway.locale.version.task.deleting
@@ -711,7 +731,7 @@ Ext.override(Eway,{
 				sendByte: '发动的字节数',
 				loadData: '加载数据中，请稍候...',
 				refresh: '刷新',
-				name: '名称',
+				name: '名称',//Eway.locale.agent.remote.loading
 				format: '格式',
 				totalSize: '总大小',
 				freeSize: '可用空间',
@@ -801,7 +821,8 @@ Ext.override(Eway,{
 				specialLine:'专线',
 				bandWidth:'宽带',
 				handle:'正在处理......',
-				offServer:'与服务器断开连接.',
+				offServer:'与服务器断开连接.',//Eway.locale.agent.offServer
+				submitingWaiting:'正在提交,请稍等...',//Eway.locale.agent.submitingWaiting
 				ATMCheck:'正在ATM体检中...',
 				excellent:'优',
 				fine:'良',
@@ -829,8 +850,10 @@ Ext.override(Eway,{
 				onVacation:'休假',//Eway.locale.commen.comboxStatus.onVacation
 				other:'其他',//Eway.locale.commen.comboxStatus.other
 				dredge:'开通',//Eway.locale.commen.comboxStatus.dredge
-				open:'启用',//Eway.locale.commen.comboxStatus.open
+				open:'开通',//Eway.locale.commen.comboxStatus.open
 				close:'停用',//Eway.locale.commen.comboxStatus.close
+				pastDue:'过期',//Eway.locale.commen.comboxStatus.pastDue
+				pastDueSoon:'即将过期',//Eway.locale.commen.comboxStatus.pastDueSoon
 			},
 			type:'类型',//Eway.locale.commen.type
 			comboxType:{
@@ -856,12 +879,14 @@ Ext.override(Eway,{
 			devCatalogName:'设备类型',//Eway.locale.commen.devCatalogName
 			devStatus:'设备状态',//Eway.locale.commen.devStatus
 			comboxDevStatus:{
+				upOpen:'未开通',//Eway.locale.commen.comboxDevStatus.upOpen
 				open:'开通',//Eway.locale.commen.comboxDevStatus.open
-				stop:'停用'//Eway.locale.commen.comboxDevStatus.stop
+				stop:'停用',//Eway.locale.commen.comboxDevStatus.stop
+				scrapped:'报废'//Eway.locale.commen.comboxDevStatus.Scrapped
 			},
 			setManager:'设置',//Eway.locale.commen.setManager
 			devServiceName:'设备维护商',//Eway.locale.commen.devServiceName
-			cashboxLimit:'钞箱报警金额',//Eway.locale.commen.cashboxLimit
+			cashboxLimit:'钱箱报警金额(单位：张数)',//Eway.locale.commen.cashboxLimit
 			installDate:'安装日期',//Eway.locale.commen.installDate
 			address:'地址',//Eway.locale.commen.address
 			areaCode:'区域编号',//Eway.locale.commen.areaCode
@@ -1012,7 +1037,7 @@ Ext.override(Eway,{
 				userListTitle:'人员列表',//Eway.locale.person.user.userListTitle
 				updateUserTitle:'更改用户角色（使用拖拽的方式）',//Eway.locale.person.user.updateUserTitle
 				roleCanBeAdd:'可添加的角色列表',//Eway.locale.person.user.roleCanBeAdd
-				roleAlreadyBeAdd:'可添加的角色列表',//Eway.locale.person.user.roleAlreadyBeAdd
+				roleAlreadyBeAdd:'已添加的角色列表',//Eway.locale.person.user.roleAlreadyBeAdd
 				operCode:'操作人编号',//Eway.locale.person.user.operCode
 				operName:'操作人姓名',//Eway.locale.person.user.operName
 				operTime:'操作时间',//Eway.locale.person.user.operTime
@@ -1158,6 +1183,7 @@ Ext.override(Eway,{
 					manaAndstaff:'管机员'//Eway.locale.monitor.devMonitor.remote.manaAndstaff
 				},
 				atmGroup:'分组',//Eway.locale.monitor.devMonitor.atmGroup
+				atmGroupTip:'分组详情',//Eway.locale.monitor.devMonitor.atmGroupTip
 				solution:'建议解决方案',//Eway.locale.monitor.devMonitor.solution
 				faultDescription:'模块故障描述',//Eway.locale.monitor.devMonitor.faultDescription
 				fastChoose:'快捷选择',//Eway.locale.monitor.devMonitor.fastChoose
@@ -1201,7 +1227,8 @@ Ext.override(Eway,{
 					transactionMonitor:{
 						title:'实时交易监控',//Eway.locale.monitor.business.transaction.transactionMonitor.title
 						begin:'开始监控',//Eway.locale.monitor.business.transaction.transactionMonitor.begin
-						stop:'停止监控'//Eway.locale.monitor.business.transaction.transactionMonitor.stop
+						stop:'停止监控',//Eway.locale.monitor.business.transaction.transactionMonitor.stop
+						clear:'清屏'//Eway.locale.monitor.business.transaction.transactionMonitor.clear
 						}
 				},
 				blackList:{
@@ -1309,10 +1336,11 @@ Ext.override(Eway,{
 				comboxStatus:{
 					provider:'设备供应',
 					maintance:'设备服役'
-				}
+				},
+				devBrandInfo:'设备品牌信息'
 			},
 			atmCatalog:{
-				title:'ATM分类',//Eway.locale.machine.title
+				title:'设备分类',//Eway.locale.machine.title
 				name:'分类名称',//Eway.locale.machine.atmCatalog.name
 				note:'备注',
 				addTitle:'增加ATM分类信息',
@@ -1328,9 +1356,8 @@ Ext.override(Eway,{
 				devCatalogName:'设备类型',
 				devGroupName: '设备分组',
 				status:'设备状态',
-				comboxStatus:{
-					dredge:'开通',
-					open:'启用',
+				comboxStatus:{				
+					open:'开通',
 					close:'停用'
 				},
 				awayFlag:'离行标志',
@@ -1451,7 +1478,7 @@ Ext.override(Eway,{
 				track3Write:'是否具有写三磁道数据能力',
 
 
-				JPRInfo:'日志打印机模块(JPR)属性信息',
+				JPRInfo:'日志打印机模块(JPR)属性信息',//Eway.locale.machine.device.JPRInfo
 				canEject:'是否具有退纸能力',
 				canCapture:'是否具有回收能力',
 				canStack:'是否具有暂存能力',
@@ -1561,16 +1588,16 @@ Ext.override(Eway,{
 
 				TTUStatus:'文本终端单元(TTU)状态信息',
 
-				devPerson:'设备人员信息',
+				devPerson:'设备人员信息',//Eway.locale.machine.device.devPerson
 				devModuleMsg:'设备模块属性信息',
 				devBasicMsg:'设备基本信息',
 				devTailMsg:'设备详细信息',
 				managePerson:'管机员',
-				maintainPerson:'维护员',
-				name:'姓名',
-				mobile:'手机',
-				phone:'固定电话',
-				email:'邮件地址',
+				maintainPerson:'维护员',//Eway.locale.machine.device.maintainPerson
+				name:'姓名',//Eway.locale.machine.device.name
+				mobile:'手机',//Eway.locale.machine.device.mobile
+				phone:'固定电话',//Eway.locale.machine.device.phone
+				email:'邮件地址',//Eway.locale.machine.device.email
 				deviceBasicInfo:'设备基本信息',
 				lineLogo:'在行标志',
 				alarmRateRMB:'钞箱报警金额(人民币)',
@@ -1748,7 +1775,7 @@ Ext.override(Eway,{
 
 
 
-				devices:'设备',
+				devices:'设备',//Eway.locale.machine.device.devices
 				configuration:'配置信息',
 				spVersion:'SP版本',
 				notSupport:'不支持',
@@ -1760,6 +1787,26 @@ Ext.override(Eway,{
 				devInfo:'设备信息',
 				unable:'不可以',
 				able:'能',
+				
+				addDevInfo:'增加设备信息',//Eway.locale.machine.device.addDevInfo
+				effectiveDate:'生效日期',//Eway.locale.machine.device.effectiveDate
+				changeDevInfo:'更改设备信息',//Eway.locale.machine.device.changeDevInfo
+				devManage:'设备管理',//Eway.locale.machine.device.devManage
+				efficientDev:'已生效设备信息',//Eway.locale.machine.device.efficientDev
+				unEfficientDev:'未生效设备信息',//Eway.locale.machine.device.unEfficientDev
+				person:{
+					week:'星期',//Eway.locale.machine.device.person.week
+					Mon:'星期一',//Eway.locale.machine.device.person.Mon
+					Tues:'星期二',//Eway.locale.machine.device.person.Tues
+					Wed:'星期三',//Eway.locale.machine.device.person.Wed
+					Thur:'星期四',//Eway.locale.machine.device.person.Thur
+					Fri:'星期五',//Eway.locale.machine.device.person.Fri
+					Sat:'星期六',//Eway.locale.machine.device.person.Sat
+					Sun:'星期日',//Eway.locale.machine.device.person.Sun
+					openClose:'开机/关机',//Eway.locale.machine.device.person.openClose
+					Open:'开机',//Eway.locale.machine.device.person.Open
+					Close:'关机',//Eway.locale.machine.device.person.Close
+				},
 
 			},
 			param:{
@@ -1869,8 +1916,9 @@ Ext.override(Eway,{
 				},
 			},
 			plan:{
-				addPlan:'增加方案',//Eway.locale.report.plan.addPlan
-				name:'名称',//Eway.locale.report.plan.name
+				addPlan:'增加开机方案',//Eway.locale.report.plan.addPlan
+				name:'方案名称',//Eway.locale.report.plan.name
+				type:'方案类型',//Eway.locale.report.plan.type
 				startDate:'有效开始时间',//Eway.locale.report.plan.startDate
 				endDate:'有效结束时间',//Eway.locale.report.plan.endDate
 				terminalId:'编号',//Eway.locale.report.plan.terminalId
@@ -1878,6 +1926,60 @@ Ext.override(Eway,{
 				perToDev:'人员<-->设备',//Eway.locale.report.plan.perToDev
 				changePlan:'更改方案',//Eway.locale.report.plan.changePlan
 				openPlan:'开机方案',//Eway.locale.report.plan.openPlan
+			},
+
+			openplan:{
+				name:'方案名称',//Eway.locale.report.openplan.name
+				machineQuantity:'设备数量',//Eway.locale.report.openplan.machineQuantity
+				state:'状态',//Eway.locale.report.openplan.state
+				openDate:'有效开机时间',//Eway.locale.report.openplan.openDate
+				closeDate:'有效关机时间',//Eway.locale.report.openplan.closeDate
+				createDateTime:'创建时间',//Eway.locale.report.openplan.createDateTime
+				date:'日期',//Eway.locale.report.openplan.date
+				week:'星期',//Eway.locale.report.openplan.week
+				inportLinkedMachine:'导入关联设备',//Eway.locale.report.openplan.inportLinkedMachine
+				selectFile:'选择文件',//Eway.locale.report.openplan.selectFile
+				placeUploadingResource:'请上传资源',//Eway.locale.report.openplan.placeUploadingResource
+				fileNotSupport:'导入的文件格式不支持,请按模板导入设备信息',//Eway.locale.report.openplan.fileNotSupport
+				exportExplain:'导入说明',//Eway.locale.report.openplan.exportExplain
+				thisIsTooLong:'请在设备导入模板中连续添加要下发的设备号,最多一次性导入2000条数据(约耗时5分钟),最少导入1条数据',//Eway.locale.report.openplan.thisIsTooLong
+				thisHardToTranslate:'点击下载导入设备号模板',//Eway.locale.report.openplan.thisHardToTranslate
+				placeSelect:'---请选择---',//Eway.locale.report.openplan.placeSelect
+				planDevice:'方案<-->设备',//Eway.locale.report.openplan.planDevice
+				timeEare:'输入时间段有误，请重新输入！',//Eway.locale.report.openplan.timeEare
+				planOlonOne:'同方案只能设置开机或关机的一种',//Eway.locale.report.openplan.planOlonOne
+				addSuccess:'添加成功',//Eway.locale.report.openplan.addSuccess
+				addFail:'添加失败',//Eway.locale.report.openplan.addFail
+				setTime:'请设置详细时间',//Eway.locale.report.openplan.setTime
+				thisPlanStop:'(此方案已停用，不可应用！)',//Eway.locale.report.openplan.thisPlanStop
+				placeRefresh:'条解除失败，请刷新后查看！',//Eway.locale.report.openplan.placeRefresh
+				linking:'正在关联设备....',//Eway.locale.report.openplan.linking
+				testingPlaceWaiting:'正在判断设备号是否符合要求，请耐心等待...',//Eway.locale.report.openplan.testingPlaceWaiting
+				leastOne:'最少一次导入1条设备信息，请重新选择导入文件!',//Eway.locale.report.openplan.leastOne
+				notMore:'最多一次导入2000条设备信息，请重新选择导入文件!',//Eway.locale.report.openplan.notMore
+				checkFile:'请检查导入文件',//Eway.locale.report.openplan.checkFile
+				fileNotAllowed:'文件不符合要求！',//Eway.locale.report.openplan.fileNotAllowed
+				tipExportSuccess:'条数据,成功导入',//Eway.locale.report.openplan.tipExportSuccess
+				tipLookUp:'条,点击查看导入详情!',//Eway.locale.report.openplan.tipLookUp
+				tochenkDervice:'请选择您要更改的设备',//Eway.locale.report.openplan.tochenkDervice
+				tochenckPeople:'请选择人员',//Eway.locale.report.openplan.tochenckPeople
+				tipAddError:'条添加失败,请刷新后查看',//Eway.locale.report.openplan.tipAddError
+				planIsHaved:'',
+				linkSuccess:'关联成功',//Eway.locale.report.openplan.linkSuccess
+				Mon:'一',//Eway.locale.report.openplan.Mon
+				Tues:'二',//Eway.locale.report.openplan.Tues
+				Wed:'三',//Eway.locale.report.openplan.Wed
+				Thur:'四',//Eway.locale.report.openplan.Thur
+				Fri:'五',//Eway.locale.report.openplan.Fri
+				Sat:'六',//Eway.locale.report.openplan.Sat
+				Sun:'日',//Eway.locale.report.openplan.Sun
+				useSuccess:'正常启用',//Eway.locale.report.openplan.useSuccess
+				notSuccess:'未启用',//Eway.locale.report.openplan.notSuccess
+				lastOneGroup:'请在组内至少选中一项',//Eway.locale.report.openplan.lastOneGroup
+				lanDetailWeek:'星期方案详细列表',//Eway.locale.report.openplan.lanDetailWeek
+				planDetailDay:'日期方案详细列表',//Eway.locale.report.openplan.planDetailDay
+				selectPlan:'选择开机方案',//Eway.locale.report.openplan.selectPlan
+				weekSelect:'通知方式'//Eway.locale.report.openplan.weekSelect
 			}
 		},
 
@@ -1893,6 +1995,8 @@ Ext.override(Eway,{
 			customerPhone:'客户电话',//Eway.locale.card.customerPhone
 			endData:'吞卡截止日期',//Eway.locale.card.endData
 			startData:'吞卡起始日期',//Eway.locale.card.startData
+			add:'添加',//Eway.locale.card.add
+			dell:'删除'//Eway.locale.card.dell
 		},
 
 		//**********************************************************/
@@ -1940,7 +2044,7 @@ Ext.override(Eway,{
 			    createTime: '创建时间',
 			    informContent: '通知内容',
 			    messageContentDetail: '短信内容详情',
-			    informWay: '通知方式',
+			    informWay: '通知方式',//Eway.locale.cases.informWay
 			    mail:'邮件',
 			    messageAndMail:'短信和邮件',
 			    informMobile: '通知手机号',

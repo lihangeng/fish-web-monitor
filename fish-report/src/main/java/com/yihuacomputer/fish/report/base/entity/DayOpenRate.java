@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.report.base.IDayOpenRate;
 
@@ -31,31 +32,31 @@ public class DayOpenRate implements IDayOpenRate {
 
     /** 设备应开机时长 */
     @Column(name = "OPENTIMES")
-    private long openTimes;
+    private int openTimes;
 
     /** 设备正常时间段内实际开机时长 */
     @Column(name = "HEALTHY_TIMEREAL")
-    private long healthyTimeReal;
+    private int healthyTimeReal;
 
     /** 设备未知时长 */
     @Column(name = "UNKNOWN_TIMEREAL")
-    private long unknownTimeReal;
+    private int unknownTimeReal;
 
     /** 设备维护时长 */
     @Column(name = "MAINTAIN_TIMEREAL")
-    private long maintainTimeReal;
+    private int maintainTimeReal;
 
     /** 设备故障时长 */
     @Column(name = "FAULT_TIMEREAL")
-    private long faultTimeReal;
+    private int faultTimeReal;
 
     /** 设备atmp故障时长 */
     @Column(name = "ATMP_TIMEREAL")
-    private long atmpTimeReal;
+    private int atmpTimeReal;
 
     /** 设备暂停时长 */
     @Column(name = "STOP_TIMEREAL")
-    private long stopTimeReal;
+    private int stopTimeReal;
 
     /**
      * 方案开机时间
@@ -73,17 +74,19 @@ public class DayOpenRate implements IDayOpenRate {
      * 方案应开机时长
      */
     @Column(name = "PROGRAM_TIMES")
-    private long programTimes;
+    private int programTimes;
 
     /**
      * 方案有效开机时长
      */
     @Column(name = "PROGRAM_TIMEREAL")
-    private long programTimeReal;
+    private int programTimeReal;
 
-    /** 无对外交易画面时长 */
-    @Column(name = "NO_SCREENREAL")
-    private long noScreenReal;
+    @Transient
+    private String orgName;
+
+    @Transient
+    private String devCatalogName;
 
     public long getId() {
         return id;
@@ -109,59 +112,59 @@ public class DayOpenRate implements IDayOpenRate {
         this.statDate = statDate;
     }
 
-    public long getOpenTimes() {
+    public int getOpenTimes() {
         return openTimes;
     }
 
-    public void setOpenTimes(long openTimes) {
+    public void setOpenTimes(int openTimes) {
         this.openTimes = openTimes;
     }
 
-    public long getHealthyTimeReal() {
+    public int getHealthyTimeReal() {
         return healthyTimeReal;
     }
 
-    public void setHealthyTimeReal(long healthyTimeReal) {
+    public void setHealthyTimeReal(int healthyTimeReal) {
         this.healthyTimeReal = healthyTimeReal;
     }
 
-    public long getUnknownTimeReal() {
+    public int getUnknownTimeReal() {
         return unknownTimeReal;
     }
 
-    public void setUnknownTimeReal(long unknownTimeReal) {
+    public void setUnknownTimeReal(int unknownTimeReal) {
         this.unknownTimeReal = unknownTimeReal;
     }
 
-    public long getMaintainTimeReal() {
+    public int getMaintainTimeReal() {
         return maintainTimeReal;
     }
 
-    public void setMaintainTimeReal(long maintainTimeReal) {
+    public void setMaintainTimeReal(int maintainTimeReal) {
         this.maintainTimeReal = maintainTimeReal;
     }
 
-    public long getFaultTimeReal() {
+    public int getFaultTimeReal() {
         return faultTimeReal;
     }
 
-    public void setFaultTimeReal(long faultTimeReal) {
+    public void setFaultTimeReal(int faultTimeReal) {
         this.faultTimeReal = faultTimeReal;
     }
 
-    public long getAtmpTimeReal() {
+    public int getAtmpTimeReal() {
         return atmpTimeReal;
     }
 
-    public void setAtmpTimeReal(long atmpTimeReal) {
+    public void setAtmpTimeReal(int atmpTimeReal) {
         this.atmpTimeReal = atmpTimeReal;
     }
 
-    public long getStopTimeReal() {
+    public int getStopTimeReal() {
         return stopTimeReal;
     }
 
-    public void setStopTimeReal(long stopTimeReal) {
+    public void setStopTimeReal(int stopTimeReal) {
         this.stopTimeReal = stopTimeReal;
     }
 
@@ -181,28 +184,39 @@ public class DayOpenRate implements IDayOpenRate {
         this.programCloseTime = programCloseTime;
     }
 
-    public long getProgramTimes() {
+    public int getProgramTimes() {
         return programTimes;
     }
 
-    public void setProgramTimes(long programTimes) {
+    public void setProgramTimes(int programTimes) {
         this.programTimes = programTimes;
     }
 
-    public long getProgramTimeReal() {
+    public int getProgramTimeReal() {
         return programTimeReal;
     }
 
-    public void setProgramTimeReal(long programTimeReal) {
+    public void setProgramTimeReal(int programTimeReal) {
         this.programTimeReal = programTimeReal;
     }
 
-	public long getNoScreenReal() {
-		return noScreenReal;
+	public String getOrgName() {
+		return orgName;
 	}
 
-	public void setNoScreenReal(long noScreenReal) {
-		this.noScreenReal = noScreenReal;
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
 	}
+
+	public String getDevCatalogName() {
+		return devCatalogName;
+	}
+
+	public void setDevCatalogName(String devCatalogName) {
+		this.devCatalogName = devCatalogName;
+	}
+
+
+
 
 }

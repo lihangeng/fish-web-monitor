@@ -28,10 +28,10 @@ public class HttpStatusClientTest {
 		HttpClient httpClient = new DefaultHttpClient();
 		//for(int i = 0 ;i<1000;i++){
 			StatusMsg status = new StatusMsg();
-			status.setTermId("0003");
-			status.setModStatus(DeviceStatus.Warning);
-			status.setBoxStatus(BoxStatus.Low);
-			status.setRunStatus(RunStatus.Customer);
+			status.setTermId("ooxx0002");
+			status.setModStatus(DeviceStatus.Healthy);
+			status.setBoxStatus(BoxStatus.Healthy);
+			status.setRunStatus(RunStatus.Healthy);
 			status.setBoxInitCount(10300);
 			status.setIdc(DeviceStatus.Healthy);
 			status.setIdcCode("00300000000");
