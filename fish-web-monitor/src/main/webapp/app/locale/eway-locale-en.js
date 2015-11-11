@@ -51,8 +51,8 @@ Ext.override(Eway,{
 			title:'Tip',//Eway.locale.confirm.title 提示
 			withoutNumTaskConfirmInfo:'Job save successful,skip to the "Distribute monitor" page?',//Eway.locale.confirm.withoutNumTaskConfirmInfo 作业保存成功,是否跳转到"分发监控"页面?
 			//TODO *为数字需要替换
-			taskConfirmInfo0:'第',//Eway.locale.confirm.taskConfirmInfo0 第
-			taskConfirmInfo1:'次作业保存成功,是否跳转到"分发监控"页面?'//Eway.locale.confirm.taskConfirmInfo1 次作业保存成功,是否跳转到"分发监控"页面?
+			taskConfirmInfo0:'the',//Eway.locale.confirm.taskConfirmInfo0 第
+			taskConfirmInfo1:'times job save successful,do you want turn to"Distribute monitor"page?'//Eway.locale.confirm.taskConfirmInfo1 次作业保存成功,是否跳转到"分发监控"页面?
 		},
 		button:{
 			search:'Search',//Eway.locale.button.search 查询
@@ -208,7 +208,7 @@ Ext.override(Eway,{
 				},
 				personEligible:'People which accordwith the conditions',//Eway.locale.tip.bankPer.personEligible 符合条件的人员
 				downGradePer:'and its lower organizastion personnel',//Eway.locale.tip.bankPer.downGradePer 以及其下属机构下的人员信息
-				personBelongs:'下的人员信息'//Eway.locale.tip.bankPer.personBelongs
+				personBelongs:'personnel information belongs to'//Eway.locale.tip.bankPer.personBelongs
 			},
 			serviceOrg:{
 				chooseOrg:'Please choose the service which you want to set.',//Eway.locale.tip.serviceOrg.chooseOrg 请选择您要设置的维护商.
