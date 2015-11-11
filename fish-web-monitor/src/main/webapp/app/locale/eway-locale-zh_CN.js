@@ -35,7 +35,7 @@ Ext.override(Eway,{
 			chooseDevice:'请选择设备.',//Eway.locale.msg.chooseDevice
 			downloadFailForNoVersion:"下发版本文件失败:还没有生成版本文件或者版本文件丢失,请先生成版本文件.",//Eway.locale.msg.downloadFailForNoVersion
 			saveSuccess:'保存成功！',//Eway.locale.msg.saveSuccess
-			
+
 			removeSuccess:'解除成功',//Eway.locale.msg.removeSuccess
 			removeFail:'解除失败',//Eway.locale.msg.removeFail
 			someStripRemoveFailePleaseRefresh:'条解除失败，请刷新后重试！',//Eway.locale.msg.Eway.locale.msg.someStripRemoveFailePleaseRefresh
@@ -1839,6 +1839,9 @@ Ext.override(Eway,{
 				dependDev:'按设备',//Eway.locale.report.baseReport.dependDev
 				tradeRep:'交易统计报表',//Eway.locale.report.baseReport.tradeRep
 				tradeResultRep:'交易结果统计报表',//Eway.locale.report.baseReport.tradeResultRep
+				tradeDaysCountRep:'日均交易笔数趋势图',//Eway.locale.report.baseReport.tradeDaysCountRep
+				tradeHoursCountRep:'一日内时均交易笔数趋势图',//Eway.locale.report.baseReport.tradeHoursCountRep
+				tradeCount:'交易笔数',//Eway.locale.report.baseReport.tradeCount
 			},
 			openrate:{
 				device:{

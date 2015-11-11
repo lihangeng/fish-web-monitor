@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.monitor.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.monitor.business.IHostRet;
@@ -103,5 +105,51 @@ public class TransactionService implements ITransactionService {
     public List<IHostRet> listHostRet() {
         return dao.loadAll(IHostRet.class);
     }
+
+	@Override
+	public List<Object> statisticsTransTrend(IFilter filter) {
+		IFilterEntry startDate = filter.getFilterEntry("startDate") ;
+		IFilterEntry endDate = filter.getFilterEntry("endDate") ;
+		IFilterEntry orgFlag = filter.getFilterEntry("orgFlag") ;
+		List<Object> paramList = new ArrayList<Object>() ;
+		paramList.add(Integer.parseInt(startDate.getValue().toString())) ;
+		paramList.add(Integer.parseInt(endDate.getValue().toString())) ;
+		StringBuffer hql = new StringBuffer();
+		hql.append("select transaction.transDate,count(transaction.id) as transCount from TransactionView transaction");
+		if(orgFlag!=null){
+			hql.append(",Organization org,Device device ") ;
+		}
+		hql.append(" where transaction.transDate >= ? and transaction.transDate <= ?");
+		if(orgFlag!=null){
+			hql.append(" and transaction.terminalId=device.terminalId and device.organization.id=org.id and org.orgFlag like ?") ;
+			paramList.add("%"+orgFlag.getValue().toString()) ;
+		}
+		hql.append(" group by transaction.transDate");
+		hql.append(" order by transaction.transDate");
+		return dao.findByHQL(hql.toString(), paramList.toArray());
+	}
+
+	@Override
+	public List<Object> statisticsTransHourTrend(IFilter filter) {
+		IFilterEntry startDate = filter.getFilterEntry("startDate") ;
+		IFilterEntry endDate = filter.getFilterEntry("endDate") ;
+		IFilterEntry orgFlag = filter.getFilterEntry("orgFlag") ;
+		List<Object> paramList = new ArrayList<Object>() ;
+		paramList.add(Integer.parseInt(startDate.getValue().toString())) ;
+		paramList.add(Integer.parseInt(endDate.getValue().toString())) ;
+		StringBuffer hql = new StringBuffer();
+		hql.append("select date_format(transaction.dateTime,'%H'),count(transaction.id) as transCount from TransactionView transaction");
+		if(orgFlag!=null){
+			hql.append(",Organization org,Device device ") ;
+		}
+		hql.append(" where transaction.transDate >= ? and transaction.transDate <= ?");
+		if(orgFlag!=null){
+			hql.append(" and transaction.terminalId=device.terminalId and device.organization.id=org.id and org.orgFlag like ?") ;
+			paramList.add("%"+orgFlag.getValue().toString()) ;
+		}
+		hql.append(" group by date_format(transaction.dateTime,'%H')");
+		hql.append(" order by date_format(transaction.dateTime,'%H')");
+		return dao.findByHQL(hql.toString(), paramList.toArray());
+	}
 
 }

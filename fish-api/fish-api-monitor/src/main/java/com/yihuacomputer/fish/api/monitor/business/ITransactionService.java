@@ -64,4 +64,19 @@ public interface ITransactionService
      * @return
      */
     public IPageResult<ITransaction> page(int offset, int limit, IFilter filter);
+
+
+    /**
+     *查询日均交易统计
+     * @param filter
+     * @return
+     */
+    public List<Object> statisticsTransTrend(IFilter filter);
+
+    /**
+     *查询时均交易统计
+     * @param filter
+     * @return
+     */
+    public List<Object> statisticsTransHourTrend(IFilter filter);
 }

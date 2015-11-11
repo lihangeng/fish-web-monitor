@@ -35,6 +35,8 @@ public class DateUtils {
 
 	public static final String STANDARD_TIMESTAMP3 = "yyyy-MM-dd HH:mm";
 
+	public static final String STANDARD_MONTH_FULL = "yyyy-MM" ;
+
 	public static Date get(String strDate, String format) {
 		if (format == null) {
 			throw new AppException("Date format can not be null");
@@ -122,7 +124,7 @@ public class DateUtils {
 		date.add(Calendar.DAY_OF_MONTH, -1);
 		return new SimpleDateFormat(STANDARD_DATE).format(date.getTime());
 	}
-	
+
 	/**
 	 * 获取当天的前或者后多少天
 	 * -1前一天,1后一天,0当天
@@ -242,5 +244,20 @@ public class DateUtils {
 		long between_days = (time2 - time1) / (1000 * 3600 * 24);
 
 		return Integer.parseInt(String.valueOf(between_days));
+	}
+
+	/**
+	 * 根据输入的月份查询该月天数
+	 * @param month yyyy-MM
+	 * @return int
+	 * @throws ParseException
+	 */
+	public static int daysOfMonth(String month) throws ParseException{
+		SimpleDateFormat sdf = new SimpleDateFormat(STANDARD_MONTH_FULL) ;
+		Date d = sdf.parse(month) ;
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(d);
+		int days = cal.getActualMaximum(Calendar.DAY_OF_MONTH) ;
+		return days ;
 	}
 }

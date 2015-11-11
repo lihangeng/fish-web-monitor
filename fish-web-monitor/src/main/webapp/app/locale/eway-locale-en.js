@@ -1259,7 +1259,7 @@ Ext.override(Eway,{
 					cimAmt:'Deposit amount',//Eway.locale.monitor.business.settlement.cimAmt 存款金额
 					cdmAmt:'Draw amount',//Eway.locale.monitor.business.settlement.cdmAmt 取款金额
 					tranAmt:'Total amount'//Eway.locale.monitor.business.settlement.tranAmt 交易总金额
-				}		
+				}
 			/*}*/
 			}
 		},
@@ -1271,7 +1271,7 @@ Ext.override(Eway,{
 				name: 'Brand name', //品牌名称
 				country:'Country or area of prduction',//生产商国家或地区
 				hotline1:'Producer hotline',//生产商热线1
-				hotline2:'Producer hotline2',//生产商热线2 
+				hotline2:'Producer hotline2',//生产商热线2
 				address:'Producer address',//生产商地址
 				status:'Producer hotline',//生产商状态
 				comboxStatus:{
@@ -1392,7 +1392,7 @@ Ext.override(Eway,{
 				currency:'Currency supported count',//支持的币种类别总个数
 				currencies:'Currency category supported ',//支持的币种类别
 				exponents:'index',//指数
-				 
+
 				CIMInfo:'Deposit module (CIM)property',//存款模块
 				canEscrow:'是否具有暂存器X',
 
@@ -1401,8 +1401,8 @@ Ext.override(Eway,{
 				canDetectCashInserted:'Check if cash bringed',//是否能探测钞票放入
 				canDetectCashTaken:'Check if cash taked',//是否能探测钞票被取走
 				retractAreas:'Recovery position',//回收位置
-				 
-				 
+
+
 				IDCInfo:'Card reader(IDC) property',//读卡器模块(IDC)属性信息
 				variant:'Card reader type',//读卡器类型
 				canEjectCard:'Ability of quit card',//是否具有退卡能力
@@ -1418,7 +1418,7 @@ Ext.override(Eway,{
 				track2Write:'Ability of write first track',//是否具有写二磁道数据能力
 				track3Write:'Ability of write first track',//是否具有写三磁道数据能力
 
-				 
+
 				JPRInfo:'Log printer(JPR) property',
 				canEject:'Ability of quit paper',//是否具有退纸能力
 				canCapture:'Ability of recovery',//是否具有回收能力
@@ -1436,7 +1436,7 @@ Ext.override(Eway,{
 				canTripleCBC:'Multi CBC support',
 				canTripleMAC:'Multi MAC support',
 				canTripleCFB:'Multi CFB support',
-				canVerifyECB:'Inspect ECB', 
+				canVerifyECB:'Inspect ECB',
 				canDESOffset:'DeS shifting',
 
 				RPRInfo:'Voucher printer(RPR) property',
@@ -1530,7 +1530,7 @@ Ext.override(Eway,{
 				cimGuidelight:'Guide CIM light',//CIM导引灯状态
 
 				TTUStatus:'Text terminal(TTU) status',//文本终端单元(TTU)状态信息
-				
+
 				devPerson:'Deivce person',//设备人员信息
 				devModuleMsg:'Device module property',//设备模块属性信息
 				devBasicMsg:'Basic info',//设备基本信息
@@ -1562,7 +1562,7 @@ Ext.override(Eway,{
 				moduleVersionInfo:'Hardware-module version(actual)',//模块硬件版本信息（实时）
 				devModuleStatusInfo: 'Module status(actual)',//设备模块状态（实时）
 				devModuleAttributeInfo: 'Module property(actual)',//设备模块属性信息（实时）
-				
+
 				remoteControl: 'Control',//远程控制
 				collectJPR:'Logs getting',//提取日志
 				remoteScreen:'Screenshot',//远程抓屏
@@ -1570,44 +1570,44 @@ Ext.override(Eway,{
 				remoteExplorer:'Browse',//远程浏览
 				netWorkLink:'Connect',//网络连接
 				remoteRestart:'Reboot',//远程重启
-				
+
 				progressTip:'Progress tip',//进度提示
 				updateProBar:'This is generate with dynamic update',//这是通过动态更新内容形成的进度条
 				currentProcess:'Progress currently',//当前进度
-				
-				
+
+
 				restartApply: 'Restar app',//重启应用
 				confirmRestartApply:'Restar app?',//确定要重启应用？
 				nowRestartApply:'Restarting',//正在重启应用
 				restartApplySuc:'Restarting app successful!',//成功重启该设备应用
 				restartApplyFail:'Restarting app failed!',//重启应用失败
-				
-				
+
+
 				restartDrive:'Restar drivers',//重启硬件驱动
 				confirmRestartDrive:'Restar drivers?',//确定要重启硬件驱动？
 				nowRestartDrive:'Restarting',//正在重启硬件驱动
 				restartDriveSuc:'Restarting drivers successful!',//成功重启该设备硬件驱动
 				restartDriveFail:'Restarting drivers failed!',//重启硬件驱动失败！
-				
+
 				restartOS:'Restar os',//重启操作系统
 				confirmRestartOS:'Restar os?',//确定要重启操作系统
 				nowRestartOS:'Restarting',//正在重启操作系统
 				restartOSSuc:'Restarting os successful!',//成功重启该设备操作系统
 				restartOSFail:'Restarting os failed!',//重启操作系统失败
-				
+
 				remoteShutdown:'Shutdown',//关机
 				shutdownApply:'Shutdown app',//关闭应用
 				confirmShutdownApply:'Shutdown app?',//确定要关闭应用？
 				nowShutdownApply:'Shutting down',//
 				shutdownApplySuc:'Shutdown app successful!',//成功关闭该设备应用
 				shutdownApplyFail:'Shutdown app failed!',//关闭该设备应用失败
-				
+
 				shutdownDrive:'Shutdown drivers',//关闭硬件驱动
 				confirmShutdownDrive:'Shutdown drivers?',//确定要关闭硬件驱动？
 				nowShutdownDrive:'Shutting down',//正在关闭硬件驱动
 				shutdownDriveSuc:'Shutdown drivers successful!',//成功关闭硬件驱动
 				shutdownDriveFail:'Shutdown drivers failed!',//关闭硬件驱动失败！
-				
+
 				shutdownOS:'Shutdown os',//关闭操作系统
 				confirmShutdownOS:'Shutdown os?',//确定要关闭操作系统？
 				nowShutdownOS:'Shutting down',//正在关闭操作系统
@@ -1618,9 +1618,9 @@ Ext.override(Eway,{
 				openService:'Open service',//开启服务
 				pauseService:'Pause service',//暂停服务
 				checkStatus:'Test status',//状态检测
-				
+
 				remoteBrowseDisk:'Browse',//远程浏览
-				
+
 				sysHardwareInfo:'Hardware info',//系统硬件信息
 				diskMem:'Disk size',//硬盘大小
 				biosVersion:'Bios version',//Bios版本
@@ -1717,8 +1717,8 @@ Ext.override(Eway,{
 				roleDescription:'Role description',//角色描述
 				roleName:'Role name',//角色名称
 
-				
-					
+
+
 				devices:'Device',//设备
 				configuration:'Setting',//配置信息
 				spVersion:'SP',//SP 版本
@@ -1727,11 +1727,11 @@ Ext.override(Eway,{
 				firmway: 'Firmware',//固件
 				noDevice:'No device',//无设备
 				devTypeInfo: 'Device type',//设备型号信息
-				
+
 				devInfo:'Device info',//设备信息
 				unable:'Can not',//不可以
 				able:'Can',//能
-				
+
 			},
 			param:{
 				paramKey:'Parameter',//Eway.locale.machine.param.paramKey 参数
@@ -1794,7 +1794,7 @@ Ext.override(Eway,{
 			baseReport:{
 				date:'Cash date',//Eway.locale.report.baseReport.date 加钞日期
 				amt:'Cash amount',//Eway.locale.report.baseReport.amt 加钞金额
-				boxId:'Cashbox ID',//Eway.locale.report.baseReport.boxId 钞箱ID 
+				boxId:'Cashbox ID',//Eway.locale.report.baseReport.boxId 钞箱ID
 				boxCurrency:'Currency',//Eway.locale.report.baseReport.boxCurrency 币种
 				boxInitAmt:'InitAmt',//Eway.locale.report.baseReport.boxInitAmt 初始金额
 				lastAmt:'LeftAmt',//Eway.locale.report.baseReport.lastAmt
@@ -1811,6 +1811,9 @@ Ext.override(Eway,{
 				dependDev:'Depend on Dev',//Eway.locale.report.baseReport.dependDev 按设备
 				tradeRep:'Transation report',//Eway.locale.report.baseReport.tradeRep 交易统计报表
 				tradeResultRep:'Transation result report',//Eway.locale.report.baseReport.tradeResultRep 交易结果统计报表
+				tradeDaysCountRep:'Transaction day count report',//Eway.locale.report.baseReport.tradeDaysCountRep
+				tradeHoursCountRep:'Transaction hour count report',//Eway.locale.report.baseReport.tradeHoursCountRep
+				tradeCount:'Transaction count',//Eway.locale.report.baseReport.tradeCount
 			},
 			openrate:{
 				device:{
