@@ -108,9 +108,9 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 	        	   } else {
 
 	        		   // 当没有查询到组信息时,清空设备列表中的信息
-	        		   var deviceGrid = this.getEwayView().down('atmGroup_deviceGrid');
-	        		   var deviceStore = deviceGrid.getStore();
-	        		   deviceStore.removeAll();
+//	        		   var deviceGrid = this.getEwayView().down('atmGroup_deviceGrid');
+//	        		   var deviceStore = deviceGrid.getStore();
+//	        		   deviceStore.removeAll();
 	        	   }
 	           }
 	       },
