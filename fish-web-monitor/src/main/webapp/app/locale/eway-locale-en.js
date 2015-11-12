@@ -18,6 +18,7 @@ Ext.override(Eway,{
 			perviewFailForText:'Preview failed:the charater and rolling advertisement is supported to preview',//Eway.locale.msg.perviewFailForText 预览失败:不支持文字滚动广告和公告的预览.
 			perviewFailNoResource:'Preview failed:no resource found in this advertisement.',//Eway.locale.msg.perviewFailNoResource 预览失败:此广告没有配置广告资源.
 			choseResToPerview:'Please select the advertisement which you want to preview.',//Eway.locale.msg.choseResToPerview 请选择您要预览的广告.
+			noAdvertResAtTheResolution:'No allocation of advertising resources under Resolution.',//Eway.locale.msg.noAdvertResAtTheResolution
 			chooseAdvert:'Please select an advertisement.',//Eway.locale.msg.chooseAdvert 请选择一条广告.
 			chooseOneDevice:'Please select a machine.',//Eway.locale.msg.chooseOneDevice 请选择一台设备.
 			downLoadedAdvertCantDelete:'Delete failed:can not delete the advertisement which status is "issued" or "wait for issue".',//Eway.locale.msg.downLoadedAdvertCantDelete 删除失败:不能删除"已下发"和"等待下发"状态的广告.
@@ -28,12 +29,16 @@ Ext.override(Eway,{
 			createSuccess:"Create successful.",//Eway.locale.msg.createSuccess 创建成功.
 			mustHaveOneResource:'At least has one resource of advertisement!',//Eway.locale.msg.mustHaveOneResource 至少包含一个广告资源!
 			saveFail:'Save failed',//Eway.locale.msg.saveFail 保存失败
+			saveFailPleaseRefresh:'Save failed, please refresh retry',//Eway.locale.msg.saveFailPleaseRefresh
 			saveFileSizeMaxFail:'Save failed:the max size of each single file is 30M',//Eway.locale.msg.saveFileSizeMaxFail 保存失败:超过最大单个文件大小限制（最大30M）
 			saveFileCommunicationFail:'Save failed:connection refused',//Eway.locale.msg.saveFileCommunicationFail 保存失败:与服务器通讯失败
 			chooseDevice:"Please select a machine",//Eway.locale.msg.chooseDevice 请选择设备.
 			downloadFailForNoVersion:"Version file issue failed :no generated version-file found or version-file lost,please generate version file first.",//Eway.locale.msg.downloadFailForNoVersion 下发版本文件失败:还没有生成版本文件或者版本文件丢失,请先生成版本文件.
 			saveSuccess:'Save successful',//Eway.locale.msg.saveSuccess 保存成功！
 
+			removeSuccess:'Relieve success',//Eway.locale.msg.removeSuccess
+			removeFail:'Relieve failure',//Eway.locale.msg.removeFail
+			someStripRemoveFailePleaseRefresh:'Article lift failed. Please refresh retry！',//Eway.locale.msg.Eway.locale.msg.someStripRemoveFailePleaseRefresh
 			versionDownloaded:'Can not delete the advertisement which status is "issued" or "wait for issue',//Eway.locale.msg.versionDownloaded 不能删除"等待下发"和"已下发"状态的版本.
 			selectVersionToDelete:'Please choose the version which you want to delete',//Eway.locale.msg.selectVersionToDelete 请选择您要删除的版本.
 			communicationFail:'Add failed : connction refused.',//Eway.locale.msg.communicationFail 增加失败:与服务器通讯失败.
@@ -43,7 +48,8 @@ Ext.override(Eway,{
 			addFileFail:'Add failed :',//Eway.locale.msg.addFileFail 增加失败:
 			mustSelectDevice:'please choose at least one machine.',//Eway.locale.msg.mustSelectDevice 请至少选择一个设备.
 			selectVersionRecord:'Please choose the version which you want to issue',//Eway.locale.msg.selectVersionRecord 请选择您要下发的版本.
-			missVersionFile:"Version files lost,can not execute"//Eway.locale.msg.missVersionFile 版本文件丢失,暂不能对版本进行下发控制.
+			missVersionFile:"Version files lost,can not execute",//Eway.locale.msg.missVersionFile 版本文件丢失,暂不能对版本进行下发控制.
+			mustSelectPerson:"Please select personnel must"//Eway.locale.msg.mustSelectPerson
 		},
 		confirm:{
 			titleSure:'Confirm',//Eway.locale.confirm.titleSure 确认
@@ -63,6 +69,8 @@ Ext.override(Eway,{
 			reset:'Reset',//Eway.locale.button.reset 重置
 			back:'Back',//Eway.locale.button.back 返回
 			apply:'Apply',//Eway.locale.button.apply 应用
+			link:'Associate',//Eway.locale.button.link
+			unlink:'Remove',//Eway.locale.button.unlink
 			//bankOrg
 			deepQuery:'Deep search', //深度查询
 			bankOrgMove:'Move',  //组织迁移
@@ -86,6 +94,11 @@ Ext.override(Eway,{
 			download:'download', //下发
 			downloadToolTip:'Issue job settings', //配置下发作业
 			save:'Save',//Eway.locale.button.save 保存
+			openPlan:'Power Scheme',//Eway.locale.button.openPlan 开机方案
+			adminBtn:'Administrator',//管理员
+			personM:'Manufacturer Administrator',//Eway.locale.button.personM 厂商管理员
+			personTM:'Pipe crew',//Eway.locale.button.personTM管机员
+			orgAdmin:'Organization Administrator',//Eway.locale.button.orgAdmin机构管理员
 		},
 		//引用其他模块
 		refs:{
@@ -130,6 +143,8 @@ Ext.override(Eway,{
 			phone:'Please enter the right telephone number', //请输入正确的电话号码
 			remind:'Tip',//Eway.locale.tip.remind 提示
 			displayMessage:'Total:{2} items,display{0}-{1}',//总共：{2}条，显示{0}-{1}
+			formatPageBfMsg: 'Per page',// Eway.locale.tip.formatPageBfMsg
+			formatPageAfMsg: 'items',// Eway.locale.tip.formatPageAfMsg
 
 			unCertain:'Unknown',//未知
 			searchOfNoLegal:'There are some illegal parameters in the query condition,can not commit ',//查询项中存在不合法的输入,不能提交.
@@ -158,7 +173,18 @@ Ext.override(Eway,{
 			planNoUpdate:'This program has been executed ,can not be modified ',//该方案已经执行,不可修改.
 			planNoRemove:'This program has been executed ,can not be deleted ',///该方案已经执行,不可删除.
 			exportFiles: 'Please choose a file to import,only support .xls or .xlxs files ',//请选择导入文件,只支持.xls和.xlsx格式的文件
-
+			noChange:'Did not change the data, change and then click OK!',//Eway.locale.tip.noChange没有更改数据,请更改后再点击确定
+			operateSuc:'Successful operation',//Eway.locale.tip.operateSuc操作成功
+			operateWrong:'Successful operation',//Eway.locale.tip.operateWrong操作成功
+			deleteOne:'You can only delete a record.',//Eway.locale.tip.deleteOne一次只能删除一条记录
+			chooseRecord:'Please select the records that you want to associate.',//Eway.locale.tip.chooseRecord请选择您要关联的记录
+			choosePlan:'Please select the program you want to view',//Eway.locale.tip.choosePlan请选择您要查看的方案
+			planDetail:'Programme details',//Eway.locale.tip.planDetail方案详情
+			planDate:'Programme details (date)',//Eway.locale.tip.planDate方案详情(日期)
+			planWeek:'Programme details (Week)',//Eway.locale.tip.planWeek方案详情(星期)
+			planNoConf:'The program no detailed settings！',//Eway.locale.tip.planNoConf该方案无详细设置
+			chooseRelatedDev:'Please select the device you want to associate！',//Eway.locale.tip.chooseRelatedDev请选择您要关联的设备
+			devRelatedPlan:'Device is associated with the boot program！',//Eway.locale.tip.devRelatedPlan设备已关联开机方案
 			//add by panxin
 			tips:'Tips',//Eway.locale.tip.tips 提示
 			input:'Please enter the right item',//Eway.locale.tip.input//请正确输入
@@ -208,7 +234,7 @@ Ext.override(Eway,{
 				},
 				personEligible:'People which accordwith the conditions',//Eway.locale.tip.bankPer.personEligible 符合条件的人员
 				downGradePer:'and its lower organizastion personnel',//Eway.locale.tip.bankPer.downGradePer 以及其下属机构下的人员信息
-				personBelongs:'下的人员信息'//Eway.locale.tip.bankPer.personBelongs
+				personBelongs:'personnel information belongs to'//Eway.locale.tip.bankPer.personBelongs
 			},
 			serviceOrg:{
 				chooseOrg:'Please choose the service which you want to set.',//Eway.locale.tip.serviceOrg.chooseOrg 请选择您要设置的维护商.
@@ -410,6 +436,9 @@ Ext.override(Eway,{
 			updateTitle:'Modify advertisement information',//Eway.locale.advert.updateTitle 更改广告信息
 			downloadButton:'Download',//Eway.locale.advert.downloadButton 下发广告
 			preview:'Preview',//Eway.locale.advert.preview 广告预览
+			preview1024:'Preview 1024 resolution',//Eway.locale.advert.preview1024预览1024分辨率
+			preview800:'Preview 800 resolution',//Eway.locale.advert.preview800预览800分辨率
+			preview600:'Preview 600 resolution',//Eway.locale.advert.preview600预览600分辨率
 			id:'ID',//Eway.locale.advert.id 广告ID
 			type:'Advert Type',//Eway.locale.advert.type 广告类型
 			downType:'Issuing way',//Eway.locale.advert.downType 广告下发方式
@@ -477,6 +506,7 @@ Ext.override(Eway,{
 			chooseMediaFile:'Please choose media file',//Eway.locale.advert.chooseMediaFile 请选择媒体文件
 			uploadResource:'Upload resource...',//Eway.locale.advert.uploadResource 上传资源
 			uploadResourceBlank:'Please upload resource',//Eway.locale.advert.uploadResourceBlank 请上传资源
+			addMorePic:'Add pictures',//Eway.locale.advert.addMorePic添加图片
 			uploadRegText:'Unsupported resource uploaded ,only .jpg,.aiv file can be uploaded',//Eway.locale.advert.uploadRegText 上传的资源格式不支持,只能上传.jpg、.avi格式的文件
 			resourceFormatTips:'Only .jpg,.aiv file is supported',//Eway.locale.advert.resourceFormatTips (仅支持.jpg、.avi格式的文件)
 			resourceAlias:'File name after modified',//Eway.locale.advert.resourceAlias 修改后的文件名
@@ -486,7 +516,14 @@ Ext.override(Eway,{
 			advertPreviewTitle1:'resources,play the no. ',//Eway.locale.advert.advertPreviewTitle1 个资源,当前播放第
 			advertPreviewTitle2:'at the present) ',//Eway.locale.advert.advertPreviewTitle2 //个
 			choosedAdvertRes:'You have choosed',//Eway.locale.advert.choosedAdvertRes 您已经选择了
+			limitNumberTenForEveryResolution:'Only upload up to 10 pictures at each resolution.',//Eway.locale.advert.limitNumberTenForEveryResolution每种分辨率下最多只能上传10张图片
+			mustContainerOnePicAt1024:'1024 image resolution comprises at least one',//Eway.locale.advert.mustContainerOnePicAt10241024分辨率下至少包含一个图片
+			deleteAdvertResource:'Delete the picture',//Eway.locale.advert.deleteAdvertResource删除该图片
+			fileName:'file name',//Eway.locale.advert.fileName文件名
+			resourceName:'Resource Name',//Eway.locale.advert.resourceName资源名称
 			perviewAdertWithIEBrowse:'Unsupported preview the video without IE explorer.',//Eway.locale.advert.perviewAdertWithIEBrowse 非IE浏览器不支持视频广告的预览
+			fileFormatTipsInfo:"<font color='red'>Upload picture format is not supported, only upload .jpg format images</font>",//Eway.locale.advert.fileFormatTipsInfo上传的图片格式不支持,只能上传.jpg格式的图片
+			idleAdvertUpTipsInfo:'<font color="red">Only supports .jpg and .gif format images; each resolution upload up to 10 pictures; each picture maximum 5M</font>',//Eway.locale.advert.idleAdvertUpTipsInfo仅支持.jpg和.gif格式的图片;每种分辨率最多上传10张图片;每张图片最大5M
 			configTitle:'Detail setting'//Eway.locale.advert.configTitle 广告详细配置
 		},
 		//版本管理模块
@@ -602,6 +639,9 @@ Ext.override(Eway,{
 				cancelBatch:'cancelBatch',//Eway.locale.version.download.cancelBatch
 				autoRefreshTips:'Refresh periodic 60 second',//Eway.locale.version.download.autoRefreshTips 刷新周期60秒
 				resetTaskStatus:'Reset Status',//Eway.locale.version.download.resetTaskStatus
+				selectTask:'Please select a task record！',//Eway.locale.version.download.selectTask请选择一条任务记录
+				selectAllDevice:'All equipment',//Eway.locale.version.download.selectAllDevice全部设备
+				checkedTaskCantResetTips:'Non-running task can not be reset！',//Eway.locale.version.download.checkedTaskCantResetTips非运行中的任务无法重置
 				taskExportTips:'Export all issue result of job selected'//Eway.locale.version.download.taskExportTips 导出选中作业下的全部下发结果
 			},
 			task:{
@@ -715,7 +755,7 @@ Ext.override(Eway,{
 				number: 'Serial number',//编号
 				programName: 'Application name',//程序名称
 				version: 'Version number',//版本号
-				publisher: '发布商',
+				publisher: 'Publishers',//发布商
 				diskUsed: 'Disk useage',//磁盘使用
 				softwayList: 'List of software installed',//软件安装列表
 				networkInfo: 'Network info',//网络信息
@@ -743,7 +783,7 @@ Ext.override(Eway,{
 				uploadFile: 'Upload file',//上传文件
 				rules:'Can not contain:\/?*":<>|',//不能包含一下字符
 				nowCreat:'Creating...',//正在新建
-				nowPath: '当前路径',//当前路径
+				nowPath: 'Current path',//当前路径
 				confirm: 'Save', //保存
 				reset: 'Reset',//重置
 				back: 'Back',//返回
@@ -780,6 +820,7 @@ Ext.override(Eway,{
 				bandWidth:'Broadband',//宽带
 				handle:'Processing......',//正在处理......
 				offServer:'Lost connection from server.',//与服务器断开连接
+				submitingWaiting:'Being submitted, please wait...',//Eway.locale.agent.submitingWaiting正在提交,请稍等
 				ATMCheck:'Executing physical of ATM...',//正在ATM体检中
 				excellent:'excellent',//优
 				fine:'good',//良
@@ -809,6 +850,8 @@ Ext.override(Eway,{
 				dredge:'Dredge',//Eway.locale.commen.comboxStatus.dredge 开通
 				open:'Open',//Eway.locale.commen.comboxStatus.open 启用
 				close:'Close',//Eway.locale.commen.comboxStatus.close 停用
+				pastDue:'Expired',//Eway.locale.commen.comboxStatus.pastDue过期
+				pastDueSoon:'About to expire',//Eway.locale.commen.comboxStatus.pastDueSoon即将过期
 			},
 			type:'Type',//Eway.locale.commen.type 类型
 			comboxType:{
@@ -1149,7 +1192,15 @@ Ext.override(Eway,{
 				factureStaff:'Manufacturer model',//Eway.locale.monitor.devMonitor.factureStaff 厂商模式维护
 				netHealthy:'Net healthy',//Eway.locale.monitor.devMonitor.netHealthy 网络正常
 				netUnStable:'Net unstable',//Eway.locale.monitor.devMonitor.netUnStable 网络不稳定
-				netFatal:'Net error'//Eway.locale.monitor.devMonitor.netFatal 网络故障
+				netFatal:'Net error',//Eway.locale.monitor.devMonitor.netFatal 网络故障
+				filterManager: {
+					title: 'FilterManager',//Eway.locale.monitor.devMonitor.filterManager.title
+					add: 'CreateFilter',//Eway.locale.monitor.devMonitor.filterManager.add
+					update: 'UpdateFilter',//Eway.locale.monitor.devMonitor.filterManager.update
+					filterForm: {
+						filterName: 'FilterName'//Eway.locale.monitor.devMonitor.filterManager.filterForm.filterName
+					}
+				}
 			},
 			business:{
 				transaction:{
@@ -1175,7 +1226,8 @@ Ext.override(Eway,{
 					transactionMonitor:{
 						title:'Transaction monitoring',//Eway.locale.monitor.business.transaction.transactionMonitor.title 实时交易监控
 						begin:'Start',//Eway.locale.monitor.business.transaction.transactionMonitor.begin 开始监控
-						stop:'Stop'//Eway.locale.monitor.business.transaction.transactionMonitor.stop 停止监控
+						stop:'Stop',//Eway.locale.monitor.business.transaction.transactionMonitor.stop 停止监控
+						clear:'Clear screen'//Eway.locale.monitor.business.transaction.transactionMonitor.clear清屏
 						}
 				},
 				blackList:{
@@ -1357,6 +1409,7 @@ Ext.override(Eway,{
 				startDate:'Begin time',//开始时间
 				endDate:'End time',//结束时间
 				exportLast30: 'Export last 30 days info',//导出最后30天汇总信息
+				terminalId:'terminalId',//编号
 				netIp:'Ip',//网络地址
 				msgCollect:'Collect info of customservice'//客服信息采集
 			},
@@ -1398,7 +1451,7 @@ Ext.override(Eway,{
 				currency:'Currency supported count',//支持的币种类别总个数
 				currencies:'Currency category supported ',//支持的币种类别
 				exponents:'index',//指数
-
+				
 				CIMInfo:'Deposit module (CIM)property',//存款模块
 				canEscrow:'是否具有暂存器X',
 
@@ -1423,7 +1476,7 @@ Ext.override(Eway,{
 				track1Write:'Ability of write first track',//是否具有写一磁道数据能力
 				track2Write:'Ability of write first track',//是否具有写二磁道数据能力
 				track3Write:'Ability of write first track',//是否具有写三磁道数据能力
-
+				
 
 				JPRInfo:'Log printer(JPR) property',
 				canEject:'Ability of quit paper',//是否具有退纸能力
@@ -1738,6 +1791,25 @@ Ext.override(Eway,{
 				unable:'Can not',//不可以
 				able:'Can',//能
 
+				addDevInfo:'Additional equipment information',//Eway.locale.machine.device.addDevInfo增加设备信息
+				effectiveDate:'effective date',//Eway.locale.machine.device.effectiveDate生效日期
+				changeDevInfo:'Changing the Device Information',//Eway.locale.machine.device.changeDevInfo更改设备信息
+				devManage:'Device Management',//Eway.locale.machine.device.devManage设备管理
+				efficientDev:'Device Information in force',//Eway.locale.machine.device.efficientDev已生效设备信息
+				unEfficientDev:'Device information not active',//Eway.locale.machine.device.unEfficientDev未生效设备信息
+				person:{
+					week:'Week',//Eway.locale.machine.device.person.week星期
+					Mon:'Monday',//Eway.locale.machine.device.person.Mon星期一
+					Tues:'Tuesday',//Eway.locale.machine.device.person.Tues星期二
+					Wed:'Wednesday',//Eway.locale.machine.device.person.Wed星期三
+					Thur:'Thursday',//Eway.locale.machine.device.person.Thur星期四
+					Fri:'Friday',//Eway.locale.machine.device.person.Fri星期五
+					Sat:'Saturday',//Eway.locale.machine.device.person.Sat星期六
+					Sun:'Sunday',//Eway.locale.machine.device.person.Sun星期日
+					openClose:'Power On / Off',//Eway.locale.machine.device.person.openClose开机/关机
+					Open:'Power',//Eway.locale.machine.device.person.Open开机
+					Close:'Shutdown'//Eway.locale.machine.device.person.Close关机
+				},
 			},
 			param:{
 				paramKey:'Parameter',//Eway.locale.machine.param.paramKey 参数
@@ -1856,6 +1928,59 @@ Ext.override(Eway,{
 				perToDev:'Person<-->Device',//Eway.locale.report.plan.perToDev 人员<-->设备
 				changePlan:'Modify plan',//Eway.locale.report.plan.changePlan 更改方案
 				openPlan:'Start up plan',//Eway.locale.report.plan.openPlan 开机方案
+			},
+			openplan:{
+				name:'Programme Name',//Eway.locale.report.openplan.name方案名称
+				machineQuantity:'Number of devices',//Eway.locale.report.openplan.machineQuantity设备数量
+				state:'Status',//Eway.locale.report.openplan.state状态
+				openDate:'Effective boot time',//Eway.locale.report.openplan.openDate有效开机时间
+				closeDate:'Effective shutdown time',//Eway.locale.report.openplan.closeDate有效关机时间
+				createDateTime:'Created',//Eway.locale.report.openplan.createDateTime创建时间
+				date:'Date',//Eway.locale.report.openplan.date日期
+				week:'Week',//Eway.locale.report.openplan.week星期
+				inportLinkedMachine:'Import related equipment',//Eway.locale.report.openplan.inportLinkedMachine导入关联设备
+				selectFile:'Select the file',//Eway.locale.report.openplan.selectFile选择文件
+				placeUploadingResource:'Please upload resources',//Eway.locale.report.openplan.placeUploadingResource请上传资源
+				fileNotSupport:'Import file format is not supported, according to the template import device information',//Eway.locale.report.openplan.fileNotSupport导入的文件格式不支持,请按模板导入设备信息
+				exportExplain:'Import instructions',//Eway.locale.report.openplan.exportExplain导入说明
+				thisIsTooLong:'Please add the device continuously import template device number to be issued, up to a one-time import 2000 data (takes about 5 minutes), a minimum import data',//Eway.locale.report.openplan.thisIsTooLong请在设备导入模板中连续添加要下发的设备号,最多一次性导入2000条数据(约耗时5分钟),最少导入1条数据
+				thisHardToTranslate:'Click to download introducing device ID template',//Eway.locale.report.openplan.thisHardToTranslate点击下载导入设备号模板
+				placeSelect:'---Please select---',//Eway.locale.report.openplan.placeSelect请选择
+				planDevice:'Program <--> Device',//Eway.locale.report.openplan.planDevice方案<-->设备
+				timeEare:'Enter the time is incorrect, please re-enter！',//Eway.locale.report.openplan.timeEare输入时间段有误，请重新输入
+				planOlonOne:'The same program can only set a startup or shutdown',//Eway.locale.report.openplan.planOlonOne同方案只能设置开机或关机的一种
+				addSuccess:'Added successfully',//Eway.locale.report.openplan.addSuccess添加成功
+				addFail:'Add Failed',//Eway.locale.report.openplan.addFail添加失败
+				setTime:'Please set the detailed time',//Eway.locale.report.openplan.setTime请设置详细时间
+				thisPlanStop:'(This program is disabled, can not apply!)',//Eway.locale.report.openplan.thisPlanStop(此方案已停用，不可应用！)
+				placeRefresh:'Article lift failed. Please refresh view！',//Eway.locale.report.openplan.placeRefresh条解除失败，请刷新后查看
+				linking:'Being associated equipment....',//Eway.locale.report.openplan.linking正在关联设备
+				testingPlaceWaiting:'Device number is judged to meet the requirements, please wait...',//Eway.locale.report.openplan.testingPlaceWaiting正在判断设备号是否符合要求，请耐心等待
+				leastOne:'Importing a device at least once information, please re-select the import file!',//Eway.locale.report.openplan.leastOne最少一次导入1条设备信息，请重新选择导入文件
+				notMore:'Up to 2000 the first import device information, please re-select the import file!',//Eway.locale.report.openplan.notMore最多一次导入2000条设备信息，请重新选择导入文件
+				checkFile:'Please check the import file',//Eway.locale.report.openplan.checkFile请检查导入文件
+				fileNotAllowed:'Documents do not meet requirements！',//Eway.locale.report.openplan.fileNotAllowed文件不符合要求
+				tipExportSuccess:'Article data successfully imported',//Eway.locale.report.openplan.tipExportSuccess条数据,成功导入
+				tipLookUp:'Bar, click View import details!',//Eway.locale.report.openplan.tipLookUp条,点击查看导入详情!
+				tochenkDervice:'Please select the device you want to change',//Eway.locale.report.openplan.tochenkDervice请选择您要更改的设备
+				tochenckPeople:'Please select personnel',//Eway.locale.report.openplan.tochenckPeople请选择人员
+				tipAddError:'Article Adding failed. Please refresh view',//Eway.locale.report.openplan.tipAddError条添加失败,请刷新后查看
+				planIsHaved:'',
+				linkSuccess:'Associate success',//Eway.locale.report.openplan.linkSuccess关联成功
+				Mon:'one',//Eway.locale.report.openplan.Mon一
+				Tues:'Two',//Eway.locale.report.openplan.Tues二
+				Wed:'three',//Eway.locale.report.openplan.Wed三
+				Thur:'Four',//Eway.locale.report.openplan.Thur四
+				Fri:'Fives',//Eway.locale.report.openplan.Fri五
+				Sat:'Six',//Eway.locale.report.openplan.Sat六
+				Sun:'Day',//Eway.locale.report.openplan.Sun日
+				useSuccess:'Normal start',//Eway.locale.report.openplan.useSuccess正常启用
+				notSuccess:'Not Enabled',//Eway.locale.report.openplan.notSuccess未启用
+				lastOneGroup:'Please select at least one in the group',//Eway.locale.report.openplan.lastOneGroup请在组内至少选中一项
+				lanDetailWeek:'Week program detailed list',//Eway.locale.report.openplan.lanDetailWeek星期方案详细列表
+				planDetailDay:'Date program detailed list',//Eway.locale.report.openplan.planDetailDay日期方案详细列表
+				selectPlan:'To select a startup program',//Eway.locale.report.openplan.selectPlan选择开机方案
+				weekSelect:'Notify way'//Eway.locale.report.openplan.weekSelect通知方式
 			}
 		},
 
@@ -1871,6 +1996,8 @@ Ext.override(Eway,{
 			customerPhone:'CustomerPhone',//Eway.locale.card.customerPhone 客户电话
 			endData:'EndData',//Eway.locale.card.endData 吞卡截止日期
 			startData:'StartData',//Eway.locale.card.startData 吞卡起始日期
+			add:'Add',//Eway.locale.card.add增加
+			dell:'Delete'//Eway.locale.card.dell删除
 		},
 
 		//**********************************************************/
@@ -1929,7 +2056,8 @@ Ext.override(Eway,{
 			    sendTimes: 'Send times',//发送次数
 			    sendInterval: 'Intervals between each send',//发送时间间隔
 			    sendTime: 'Send time',//发送时间
-			    faultSearch:'Fault search'//故障查询
+			    faultSearch:'Fault search',//故障查询
+			    none : 'Do not send'//不发送
 
 			},
 			caseNotify:{
@@ -2068,7 +2196,7 @@ Ext.override(Eway,{
 		},
 		thread:{
 
-		},
+		}
 
 
 

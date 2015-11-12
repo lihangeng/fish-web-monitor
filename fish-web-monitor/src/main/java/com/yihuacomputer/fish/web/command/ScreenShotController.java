@@ -88,7 +88,7 @@ public class ScreenShotController {
 		ModelMap result = new ModelMap();
 		String url = MonitorCfg.getHttpUrl(ip) + CAPTURE_PATH;
 		try {
-			ScreenForm screen = (ScreenForm) HttpProxy.httpGet(url, ScreenForm.class);
+			ScreenForm screen = (ScreenForm) HttpProxy.httpGet(url, ScreenForm.class, 5000);
 			String path = FishCfg.getTempDir();
 			//String[] fileNames = screen.getNames();
 			ScreenSaveForm saveForm = null;
@@ -151,7 +151,7 @@ public class ScreenShotController {
 
 		String url = MonitorCfg.getHttpUrl(ip) + CAPTURE_PATH;
 		try {
-			ScreenForm screen = (ScreenForm) HttpProxy.httpGet(url, ScreenForm.class);
+			ScreenForm screen = (ScreenForm) HttpProxy.httpGet(url, ScreenForm.class, 5000);
 			ScreenSaveForm saveForm = null;
 			HttpFileCfg httpFileCfg = new HttpFileCfg();
 			httpFileCfg.setCompress(true);
@@ -178,6 +178,7 @@ public class ScreenShotController {
 			result.addAttribute("data", list);
 			return result;
 		} catch (Exception e) {
+		    logger.error(String.format("远程截屏失败,错误信息[%s]", e.getMessage()));
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("screenShot.getScreenFail", null, FishCfg.locale));
 			return result;
@@ -248,7 +249,7 @@ public class ScreenShotController {
 		String code = String.valueOf(new Date().getTime());
 		screenForm.setUserId(userId);
 		screenForm.setMonitorType(monitorType);
-		ScreenForm screenFormResult = (ScreenForm) HttpProxy.httpPost(url, screenForm, ScreenForm.class);
+		ScreenForm screenFormResult = (ScreenForm) HttpProxy.httpPost(url, screenForm, ScreenForm.class, 5000);
 
 		// 设备开始录制时间
 		screenFormResult.setStartCameraDate(DateUtils.getTimestamp(new Date()));
@@ -293,7 +294,7 @@ public class ScreenShotController {
 
 		String url = MonitorCfg.getHttpUrl(request.getParameter("ip")) + STOP_CAMERA_PATH;
 
-		ScreenForm screenFormResult = (ScreenForm) HttpProxy.httpPost(url, screenForm, ScreenForm.class);
+		ScreenForm screenFormResult = (ScreenForm) HttpProxy.httpPost(url, screenForm, ScreenForm.class, 5000);
 
 		screenFormResult.setStartCameraDate(screenForm.getStartCameraDate());
 		screenFormResult.setStopCameraDate(DateUtils.getTimestamp(new Date()));

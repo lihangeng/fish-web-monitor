@@ -505,6 +505,7 @@ Ext.define('Eway.controller.person.BankPer', {
 	 * 删除人员信息：
 	 */
 	onRemove: function() {
+		var me=this;
 		var grid = this.getGrid();
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
@@ -516,6 +517,7 @@ Ext.define('Eway.controller.person.BankPer', {
 							record.erase({
 								success: function(){
 									Eway.alert(Eway.deleteSuccess);
+									me.onQuery();
 									grid.getStore().remove(record);
 								},
 								failure: function(record,operation){

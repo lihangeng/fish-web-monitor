@@ -4,7 +4,7 @@ Ext.define('Eway.model.person.organization.BankOrganization', {
 
 	fields : [ 'guid', 'code', 'name', 'manager', 'parent', 'parentId',
 			'orgLevel', 'userGuid', 'address', 'zip', 'organizationState',
-			'organizationType', 'description',
+			'organizationType', 'description','displayName',
 			'serviceObjectId', 'serviceObjectName', 'manager', 'userGuid' ],
 	proxy : {
 		type : 'rest',

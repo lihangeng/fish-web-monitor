@@ -59,7 +59,7 @@ public class ShutdownController {
         	String url = MonitorCfg.getHttpUrl(ip) + "/ctr/shutdown";
             ShutdownParamForm shutdownParamForm = new ShutdownParamForm();
             shutdownParamForm.setShutdownType(shutdownType);
-            ShutdownForm shutdownForm = (ShutdownForm) HttpProxy.httpPost(url, shutdownParamForm, ShutdownForm.class);
+            ShutdownForm shutdownForm = (ShutdownForm) HttpProxy.httpPost(url, shutdownParamForm, ShutdownForm.class, 5000);
             String appRet = shutdownForm.getAppRet();
             result.put(FishConstant.SUCCESS, true);
             result.addAttribute("appRet", appRet);
@@ -98,7 +98,7 @@ public class ShutdownController {
         	String url = MonitorCfg.getHttpUrl(ip) + "/ctr/normalShutdown";
             ShutdownParamForm shutdownParamForm = new ShutdownParamForm();
             shutdownParamForm.setShutdownType(shutdownType);
-            ShutdownForm shutdownForm = (ShutdownForm) HttpProxy.httpPost(url, shutdownParamForm, ShutdownForm.class);
+            ShutdownForm shutdownForm = (ShutdownForm) HttpProxy.httpPost(url, shutdownParamForm, ShutdownForm.class, 5000);
             String appRet = shutdownForm.getAppRet();
             result.put(FishConstant.SUCCESS, true);
             result.addAttribute("appRet", appRet);

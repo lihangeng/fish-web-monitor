@@ -251,4 +251,12 @@ public interface IOrganization extends Comparable<IOrganization> {
      * 返回机构申请提交人
      */
     public void setApplicationPer(String applicationPer);
+    /**
+	 * 是否为叶子机构（默认为叶子机构）;update之前判断上一级机构更改后是否为叶子机构；update之后判断上一级机构是否为叶子机构
+	 */
+	public boolean isLeaf();
+	/**
+	 * 是否为叶子机构（默认为叶子机构）;update之前判断上一级机构更改后是否为叶子机构；update之后判断上一级机构是否为叶子机构
+	 */
+	public void setLeaf(boolean leaf);
 }

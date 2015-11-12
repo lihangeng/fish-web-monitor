@@ -26,7 +26,7 @@ public class LogicController {
         try {
             String url = MonitorCfg.getHttpUrl(request.getParameter("ip")) + "/ctr/logicopen";
 
-            LogicForm logicForm = (LogicForm) HttpProxy.httpGet(url, LogicForm.class);
+            LogicForm logicForm = (LogicForm) HttpProxy.httpGet(url, LogicForm.class, 5000);
             String appRet = logicForm.getAppRet();
             result.put(FishConstant.SUCCESS, true);
             result.addAttribute("appRet", appRet);
@@ -45,7 +45,7 @@ public class LogicController {
         ModelMap result = new ModelMap();
         try {
             String url = MonitorCfg.getHttpUrl(request.getParameter("ip")) + "/ctr/logicclose";
-            LogicForm logicForm = (LogicForm) HttpProxy.httpGet(url, LogicForm.class);
+            LogicForm logicForm = (LogicForm) HttpProxy.httpGet(url, LogicForm.class, 5000);
             String appRet = logicForm.getAppRet();
             result.put(FishConstant.SUCCESS, true);
             result.addAttribute("appRet", appRet);
@@ -63,7 +63,7 @@ public class LogicController {
         ModelMap result = new ModelMap();
         try {
             String url = MonitorCfg.getHttpUrl(request.getParameter("ip")) + "/ctr/reset";
-            ResetForm resetForm = (ResetForm) HttpProxy.httpGet(url, ResetForm.class);
+            ResetForm resetForm = (ResetForm) HttpProxy.httpGet(url, ResetForm.class, 5000);
             String appRet = resetForm.getAppRet();
             result.put(FishConstant.SUCCESS, true);
             result.addAttribute("appRet", appRet);

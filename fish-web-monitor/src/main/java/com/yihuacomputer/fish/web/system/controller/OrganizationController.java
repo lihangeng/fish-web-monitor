@@ -271,7 +271,9 @@ public class OrganizationController {
 		} catch (NotFoundException nfe) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, String.format("%s,"+messageSource.getMessage("organization.move.refresh", null, FishCfg.locale), nfe.getMessage()));
-		} catch (Exception ex) {
+		}
+		catch (Exception ex) {
+			logger.error(ex.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.processError", null, FishCfg.locale));
 		}
@@ -465,10 +467,11 @@ public class OrganizationController {
 	}
 
 	private boolean isChild(String orgId, String newParentId) {
-		for (Long o : service.listSubOrgId(orgId)) {
-			if (o.toString().equals(newParentId)) {
-				return true;
-			}
+		IOrganization newParentOrg = service.get(newParentId);
+		IOrganization childOrg = service.get(orgId);
+		String childOrgFlag = childOrg.getParent().getOrgFlag();
+		if(newParentOrg.getOrgFlag().startsWith(childOrg.getOrgFlag())||childOrgFlag.equals(newParentOrg.getOrgFlag())){
+			return true;
 		}
 		return false;
 	}
@@ -505,7 +508,9 @@ public class OrganizationController {
 			result.addAttribute("data", new OrganizationForm());
 			return result;
 		}
-
+		UserSession usersession = (UserSession)req.getSession().getAttribute(FishWebUtils.USER);
+		//只能匹配子机构,上级机构不能匹配
+		filter.like("orgFlag", usersession.getOrgFlag()+"%");
 		List<IOrganization> list = service.listMatching(filter);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("total", list.size());

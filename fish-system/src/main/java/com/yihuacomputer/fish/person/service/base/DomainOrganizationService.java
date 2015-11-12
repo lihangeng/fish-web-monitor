@@ -26,6 +26,7 @@ public abstract class DomainOrganizationService implements IDomainOrganizationSe
 	@Override
 	public Organization make() {
 		Organization organization = new Organization();
+		organization.setLeaf(true);
 		organization.setService(this);
 		return organization;
 	}
