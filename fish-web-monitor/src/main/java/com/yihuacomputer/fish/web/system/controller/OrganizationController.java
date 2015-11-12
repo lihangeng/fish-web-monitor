@@ -470,7 +470,7 @@ public class OrganizationController {
 		IOrganization newParentOrg = service.get(newParentId);
 		IOrganization childOrg = service.get(orgId);
 		String childOrgFlag = childOrg.getParent().getOrgFlag();
-		if(newParentOrg.getOrgFlag().startsWith(childOrgFlag)||childOrgFlag.equals(newParentOrg.getOrgFlag())){
+		if(newParentOrg.getOrgFlag().startsWith(childOrg.getOrgFlag())||childOrgFlag.equals(newParentOrg.getOrgFlag())){
 			return true;
 		}
 		return false;

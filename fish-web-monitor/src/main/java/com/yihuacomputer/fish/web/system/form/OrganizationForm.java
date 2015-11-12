@@ -13,6 +13,8 @@ public class OrganizationForm {
     private String code;
 
     private String name;
+    
+    private String displayName;
 
     private String userGuid;
 
@@ -53,7 +55,7 @@ public class OrganizationForm {
 	        guid = organization.getGuid();
 	        code = organization.getCode();
 	        name = organization.getName();
-//	        name = getDisplayName(organization);
+	        displayName = reDoDisplayName(organization);
 	        address = organization.getAddress();
 	        if(organization.getZip()!=null){
 	        	zip = organization.getZip().trim();
@@ -83,12 +85,23 @@ public class OrganizationForm {
 	        }
     	}
     }
-    /**
+    
+    
+    
+    public String getDisplayName() {
+		return displayName;
+	}
+
+	public void setDisplayName(String displayName) {
+		this.displayName = displayName;
+	}
+
+	/**
      * 将机构名称按层级进行显示
      * @param organization
      * @return
      */
-    private String getDisplayName(IOrganization organization){
+    private String reDoDisplayName(IOrganization organization){
 		String displayName = "";
 		if(null==organization){
 			return displayName;
