@@ -1,0 +1,5 @@
+Ext.apply(EwayLocale,{
+	system:{
+		
+	}
+});
