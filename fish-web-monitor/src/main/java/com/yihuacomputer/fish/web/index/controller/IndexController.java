@@ -23,18 +23,18 @@ import com.yihuacomputer.fish.web.index.form.ChartForm;
 @RequestMapping("/index")
 public class IndexController {
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(IndexController.class);
-	
+
 	@Autowired
 	private IFaultStatisticsService faultStatisticsService;
-	
+
 	@Autowired
 	private IRetaincardService retainCardService;
-	
+
 	@RequestMapping(value = "faultTrendByDay", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap faultTrendByDay(WebRequest wReq, HttpServletRequest req) {
 		logger.info("faultTrendByDay...");
-		List<Object> objects = faultStatisticsService.statisticsFaultTrend(7);
+		List<Object> objects = faultStatisticsService.statisticsFaultTrend(90);
 		List<ChartForm> forms = new ArrayList<ChartForm>();
 		for(Object object : objects){
 			Object[]objs = (Object[])object;
@@ -48,7 +48,7 @@ public class IndexController {
 		result.addAttribute("data", forms);
 		return result;
 	}
-	
+
 	@RequestMapping(value = "retainCardByDay", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap retainCardByDay(WebRequest wReq, HttpServletRequest req) {

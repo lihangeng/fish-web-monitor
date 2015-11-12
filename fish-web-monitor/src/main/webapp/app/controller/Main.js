@@ -196,7 +196,7 @@ Ext.define('Eway.controller.Main', {
 		}else if(code =="monitorSummaryInfo"){
 			this.activeController('monitor.MonitorSummaryInfo');
 		}
-		
+
 	},
 
 	//打开“软件管理”下子菜单
@@ -216,7 +216,7 @@ Ext.define('Eway.controller.Main', {
 		}else if(code=="versionDistribute"){
 			this.activeController('version.VersionDistribute');
 		}
-		
+
 	},
 
 	//打开“故障管理”下子菜单
@@ -266,6 +266,10 @@ Ext.define('Eway.controller.Main', {
 			this.activeController('report.openrate.TypeOpenRate');
 		}else if(code =="orgOpenRate"){
 			this.activeController('report.openrate.OrgOpenRate');
+		}else if(code =="reportDayTrans"){
+			this.activeController('report.baseReport.TransactionDaysCountReport');
+		}else if(code =="reportDayHourTrans"){
+			this.activeController('report.baseReport.TransactionHoursCountReport');
 		}
 	},
 
