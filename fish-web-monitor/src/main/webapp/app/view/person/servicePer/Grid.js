@@ -64,7 +64,7 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 				header : Eway.locale.commen.name,
 				dataIndex : 'name'
 			},{
-				header : Eway.locale.person.servicePer.serviceName,
+				header : Eway.locale.commen.devServiceName,
 				dataIndex : 'organizationName'
 			},{
 				header : Eway.locale.commen.state,

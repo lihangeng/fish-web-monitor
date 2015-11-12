@@ -42,11 +42,20 @@ Ext.define('Eway.view.machine.device.Grid', {
 				glyph : 0xf007,
 				action : 'admin',
 				code : 'devicePerson',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				},
 				menu : [ {
 				text : Eway.locale.button.personTM,
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				},
 				action : 'personTM'
 				}, {
 				text : Eway.locale.button.personM,
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				},
 				action : 'personM'
 				} ]
 			},	{
@@ -54,9 +63,9 @@ Ext.define('Eway.view.machine.device.Grid', {
 				glyph : 0xf133,
 				action : 'openPlan',
 				code : 'deviceOpenPlan',
-//				listeners:{
-//					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-//				}
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}, {
 				text : Eway.locale.button.remove,
 				glyph : 0xf014,
