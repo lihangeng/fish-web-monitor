@@ -122,7 +122,7 @@ public class TransactionService implements ITransactionService {
 		hql.append(" where transaction.transDate >= ? and transaction.transDate <= ?");
 		if(orgFlag!=null){
 			hql.append(" and transaction.terminalId=device.terminalId and device.organization.id=org.id and org.orgFlag like ?") ;
-			paramList.add("%"+orgFlag.getValue().toString()) ;
+			paramList.add(orgFlag.getValue().toString()+"%") ;
 		}
 		hql.append(" group by transaction.transDate");
 		hql.append(" order by transaction.transDate");
@@ -145,7 +145,7 @@ public class TransactionService implements ITransactionService {
 		hql.append(" where transaction.transDate >= ? and transaction.transDate <= ?");
 		if(orgFlag!=null){
 			hql.append(" and transaction.terminalId=device.terminalId and device.organization.id=org.id and org.orgFlag like ?") ;
-			paramList.add("%"+orgFlag.getValue().toString()) ;
+			paramList.add(orgFlag.getValue().toString()+"%") ;
 		}
 		hql.append(" group by date_format(transaction.dateTime,'%H')");
 		hql.append(" order by date_format(transaction.dateTime,'%H')");
