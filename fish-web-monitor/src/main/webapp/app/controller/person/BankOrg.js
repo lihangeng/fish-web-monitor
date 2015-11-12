@@ -263,14 +263,13 @@ Ext.define('Eway.controller.person.BankOrg', {
 						ewayView.down('treepanel').getStore().load();
 				    	ewayView.down('treepanel').getSelectionModel().select(0,true);//选择根节点
 				    	//增加成功后查询条件不带入后台查询
-				    	store.setUrlParamsByObject(null);
-						//增加机构后立即跳转到所增加的机构父机构下
-						store.load({
-							params:{
+				    	store.setUrlParamsByObject({
 								selectedNode:data.parentId,
 								type : '0'
 							}
-						});
+						);
+						//增加机构后立即跳转到所增加的机构父机构下
+						store.load();
 						var actionTip = ewayView.down("tbtext[action=tip]");
 	    				actionTip.setText('<font color="red">'+record.data.parent+'</font>'+Eway.locale.tip.bankOrg.downGradeOrg);
 						win.close();
@@ -366,12 +365,18 @@ Ext.define('Eway.controller.person.BankOrg', {
 					treePanel.getSelectionModel().select(0,true);//选择根节点
 
 					//增加机构后立即跳转到所增加的机构父机构下
-					store.load({
-						params:{
+//					store.load({
+//						params:{
+//							selectedNode:record.data.parentId,
+//							type : '0'
+//						}
+//					});
+					//防止翻页后数据总量变化，所以把参数带入，翻页的逻辑不会变更
+					store.setUrlParamsByObject({
 							selectedNode:record.data.parentId,
 							type : '0'
-						}
 					});
+					store.load();
 					var actionTip = ewayView.down("tbtext[action=tip]");
 	    			actionTip.setText('<font color="red">'+record.data.parent+'</font>'+Eway.locale.tip.bankOrg.downGradeOrg);
 					win.close();
@@ -442,12 +447,18 @@ Ext.define('Eway.controller.person.BankOrg', {
 					}
 					treePanel.getSelectionModel().select(0,true);//选择根节点
 					//增加机构后立即跳转到所增加的机构父机构下
-					store.load({
-						params:{
+//					store.load({
+//						params:{
+//							selectedNode:record.data.parentId,
+//							type : '0'
+//						}
+//					});
+					//防止翻页后数据总量变化，所以把参数带入，翻页的逻辑不会变更
+					store.setUrlParamsByObject({
 							selectedNode:record.data.parentId,
 							type : '0'
-						}
 					});
+					store.load();
 					var actionTip = ewayView.down("tbtext[action=tip]");
 	    			actionTip.setText('<font color="red">'+record.data.parent+'</font>'+Eway.locale.tip.bankOrg.downGradeOrg);
 					win.close();
@@ -475,13 +486,26 @@ Ext.define('Eway.controller.person.BankOrg', {
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
+							var parentId = record.data.parentId;
 							record.erase({
 								success: function(){
 									Eway.alert(Eway.deleteSuccess);
-									this.getGrid().getStore().remove(record);
+//					数据没有刷新[pagetoolbar]				this.getGrid().getStore().remove(record);
+//									treePanel.getSelectionModel().select(0,true);//选择根节点
+									//增加机构后立即跳转到所增加的机构父机构下
+									var store = this.getGrid().getStore();
+									//防止翻页后数据变化，所以把参数带入，翻页的逻辑不会变更
+									store.setUrlParamsByObject({
+											selectedNode:parentId,
+											type : '0'
+									});
+								//增加机构后立即跳转到所增加的机构父机构下
+									store.load();
+									
 									var selections = this.getEwayView().down('treepanel').getSelectionModel().getSelection();
 					            	if(!Ext.isEmpty(selections)){
-					            		this.getEwayView().down('treepanel').getStore().load({node:selections[0]});//刷新当前节点
+					            		this.getEwayView().down('treepanel').getStore().load();
+//					            		this.getEwayView().down('treepanel').getStore().load({node:selections[0]});//刷新当前节点
 					            		if(!selections[0].isExpanded()){
 					            			selections[0].expand(true);//如果没有展开，则展开选中节点
 					            		}
