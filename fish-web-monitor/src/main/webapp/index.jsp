@@ -22,7 +22,7 @@
 	<script type="text/javascript" src="ext/ux/cometd/cometd.js"></script>
 	<script type="text/javascript" src="ext/ux/cometd/ext-cometd.js"></script>
 	<script type="text/javascript">
-		var EwayUserObject = function(id,code,name,orgId,orgType,orgName,orgCode){
+		var EwayUserObject = function(id,code,name,orgId,orgType,orgName,orgCode,personId){
 		var me = this;
 		this.id = id;
 		this.code = code;
@@ -31,6 +31,7 @@
 		this.orgType = orgType;
 		this.orgName = orgName;
 		this.orgCode = orgCode;
+		this.personId = personId;
 		return {
 			getId : function(){
 				return me.id;
@@ -52,6 +53,9 @@
 			},
 			getOrgCode : function(){
 				return me.orgCode;
+			},
+			getPersonId : function(){
+				return me.personId;
 			}			
 		}
 	}
@@ -71,7 +75,8 @@
 			'<%=userSession.getOrgId()%>',
 			'<%=userSession.getOrgType() == null ? "" : String.valueOf(userSession.getOrgType().getId())%>',
 			'<%=userSession.getOrgName()%>',
-			'<%=userSession.getOrgCode()%>');
+			'<%=userSession.getOrgCode()%>',
+			'<%=userSession.getPersonId()%>');
 		var test_userId = Math.random()+'';
 	<%} %>
 

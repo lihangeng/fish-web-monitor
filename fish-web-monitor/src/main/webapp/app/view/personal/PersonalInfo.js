@@ -37,7 +37,7 @@ Ext.define('Eway.view.personal.PersonalInfo', {
 					name : 'phone'
 				},{
 					fieldLabel : Eway.locale.commen.email,
-					name : 'mail'
+					name : 'email'
 				},{
 					fieldLabel : Eway.locale.commen.jobNum,
 					name : 'jobNum'
