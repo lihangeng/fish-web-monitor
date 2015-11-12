@@ -53,6 +53,7 @@ public class OrganizationForm {
 	        guid = organization.getGuid();
 	        code = organization.getCode();
 	        name = organization.getName();
+//	        name = getDisplayName(organization);
 	        address = organization.getAddress();
 	        if(organization.getZip()!=null){
 	        	zip = organization.getZip().trim();
@@ -82,7 +83,27 @@ public class OrganizationForm {
 	        }
     	}
     }
-
+    /**
+     * 将机构名称按层级进行显示
+     * @param organization
+     * @return
+     */
+    private String getDisplayName(IOrganization organization){
+		String displayName = "";
+		if(null==organization){
+			return displayName;
+		}
+		while(null!=organization.getParent()){
+			if("".equals(displayName)){
+				displayName = organization.getName();
+			}
+			else{
+				displayName = organization.getName()+"/"+displayName;
+			}
+			organization = organization.getParent();
+		}
+		return displayName;
+	}
     public void translate(IOrganization organization) {
         organization.setGuid(getGuid());
         organization.setName(getName());
