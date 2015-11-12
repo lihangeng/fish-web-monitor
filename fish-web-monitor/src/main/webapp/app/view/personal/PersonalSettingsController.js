@@ -5,7 +5,7 @@ Ext.define('Eway.view.personal.PersonalSettingsController', {
 	requires : ['Eway.model.person.person.BankPerson'],
 	
 	onBeforeRender : function(form){
-		Eway.model.person.person.BankPerson.load(ewayUser.getId(),{
+		Eway.model.person.person.BankPerson.load(ewayUser.getPersonId(),{
 			success: function(record) {
 				form.loadRecord(record);
 		    }

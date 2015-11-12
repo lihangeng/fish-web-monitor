@@ -1451,7 +1451,7 @@ Ext.override(Eway,{
 				currency:'Currency supported count',//支持的币种类别总个数
 				currencies:'Currency category supported ',//支持的币种类别
 				exponents:'index',//指数
-
+				
 				CIMInfo:'Deposit module (CIM)property',//存款模块
 				canEscrow:'是否具有暂存器X',
 
@@ -1476,7 +1476,7 @@ Ext.override(Eway,{
 				track1Write:'Ability of write first track',//是否具有写一磁道数据能力
 				track2Write:'Ability of write first track',//是否具有写二磁道数据能力
 				track3Write:'Ability of write first track',//是否具有写三磁道数据能力
-
+				
 
 				JPRInfo:'Log printer(JPR) property',
 				canEject:'Ability of quit paper',//是否具有退纸能力
@@ -1889,6 +1889,9 @@ Ext.override(Eway,{
 				dependDev:'Depend on Dev',//Eway.locale.report.baseReport.dependDev 按设备
 				tradeRep:'Transation report',//Eway.locale.report.baseReport.tradeRep 交易统计报表
 				tradeResultRep:'Transation result report',//Eway.locale.report.baseReport.tradeResultRep 交易结果统计报表
+				tradeDaysCountRep:'Transaction day count report',//Eway.locale.report.baseReport.tradeDaysCountRep
+				tradeHoursCountRep:'Transaction hour count report',//Eway.locale.report.baseReport.tradeHoursCountRep
+				tradeCount:'Transaction count',//Eway.locale.report.baseReport.tradeCount
 			},
 			openrate:{
 				device:{
