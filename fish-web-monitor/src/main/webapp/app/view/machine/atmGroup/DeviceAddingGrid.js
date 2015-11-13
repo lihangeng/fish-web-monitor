@@ -48,10 +48,16 @@ Ext.define('Eway.view.machine.atmGroup.DeviceAddingGrid', {
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return Eway.locale.machine.atmGroup.comboxStatus.open;
+						return Eway.locale.commen.comboxDevStatus.upOpen;
 					}
 					if (value == 2) {
-						return Eway.locale.machine.atmGroup.comboxStatus.close;
+						return Eway.locale.commen.comboxDevStatus.open;
+					}
+					if (value == 3) {
+						return Eway.locale.commen.comboxDevStatus.stop;
+					}
+					if (value == 4) {
+						return Eway.locale.commen.comboxDevStatus.scrapped;
 					}
 				}
 			}, {
