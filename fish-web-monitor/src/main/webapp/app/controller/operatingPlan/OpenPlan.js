@@ -453,7 +453,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				var store = view.down('operatingPlan_grid').getStore();
 				store.setUrlParamsByObject(values);
 				store.loadPage(1);
-				Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.addSuccess);
+				Eway.alert(Eway.locale.report.openplan.addSuccess);
 			},
 //			failure: function(record,operation){
 //				Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors);
@@ -508,7 +508,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			    }
 			});
 		}else {
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.choosePlan);
+			Eway.alert(Eway.locale.tip.choosePlan);
 		}
 	},
 
@@ -689,7 +689,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 
 		}
 		else {
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.choiceUpdateMsg);
+			Eway.alert(Eway.choiceUpdateMsg);
 		}
 	},
 
@@ -733,7 +733,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
     	record1.set('openPlanDetailForms',planDetails);
     	record1.save({
     		success : function(record,operation){
-				Ext.Msg.alert(Eway.locale.confirm.title, Eway.updateSuccess);
+				Eway.alert(Eway.updateSuccess);
 				var values = view.down('operatingPlan_filterForm').getForm().getValues();
 				var store = view.down('operatingPlan_grid').getStore();
 				store.setUrlParamsByObject(values);
@@ -812,7 +812,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			PlanDeviceWin.show();
 		}
 		else {
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.selectPlan);
+			Eway.alert(Eway.locale.tip.selectPlan);
 		}
 	},
 
@@ -952,7 +952,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Ext.Msg.alert(Eway.locale.confirm.title, Eway.deleteSuccess);
+									Eway.alert(Eway.deleteSuccess);
 									var values = view.down('operatingPlan_filterForm').getForm().getValues();
 									var store = view.down('operatingPlan_grid').getStore();
 									store.setUrlParamsByObject(values);
@@ -968,7 +968,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					}, this);
 		}
 		else {
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.remove.none);
+			Eway.alert(Eway.locale.tip.remove.none);
 		}
 	},
 	queryLinkDevice:function(linkPanel,linkGrid){
