@@ -107,7 +107,11 @@ public class ParamController {
 				} else if (name.equals("sort")) {
 					continue;
 				}
+				
 				String value = request.getParameter(name);
+				if(value.indexOf("\\")>=0){
+					value = value.replace("\\", "\\\\");
+				}
 				filter.like(name, value);
 			}
 		}
@@ -128,4 +132,7 @@ public class ParamController {
 		}
 		return result;
 	}
+	
+	
+	
 }
