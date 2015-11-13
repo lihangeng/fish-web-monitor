@@ -240,27 +240,7 @@ Ext.define('Eway.view.machine.device.Info', {
 										readOnly:true,
 										inputValue : 3
 									} ]
-								}, {
-									fieldLabel : Eway.locale.machine.device.operation,
-									xtype : 'radiogroup',
-									items : [ {
-										boxLabel : Eway.locale.machine.device.operationSelf,
-										name : 'workType',
-										checked : true,
-										readOnly:true,
-										inputValue : 1
-									}, {
-										boxLabel : Eway.locale.machine.device.cooperation,
-										name : 'workType',
-										readOnly:true,
-										inputValue : 2
-									}, {
-										boxLabel :  Eway.locale.machine.device.epiboly,
-										name : 'workType',
-										readOnly:true,
-										inputValue : 3
-									}  ]
-							} ]
+								} ]
 						}]
 					},{
 						title : Eway.locale.machine.device.managePerson,
