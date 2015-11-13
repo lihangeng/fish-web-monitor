@@ -439,7 +439,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		if(sm.getCount() == 1) {
 			if(groupRecord!=null){
 				Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
-						Eway.locale.tip.removeFail.isRemoveDev,
+						Eway.locale.tip.isRemoveDev,
 						function(button,text) {
 							if(button=="yes"){
 								var record = sm.getLastSelected();

@@ -485,7 +485,7 @@ Ext.define('Eway.controller.person.ServicePer', {
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
-					Eway.locale.tip.remove.confirm.title,
+					Eway.locale.tip.remove.confirm.info,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
