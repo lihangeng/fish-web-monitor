@@ -7,47 +7,47 @@ package com.yihuacomputer.fish.api.monitor.business;
 public enum RunStatus {
 
 	/**未知*/
-	Unknown("RunStatus.Unknown","#ccccff"),
+	Unknown("RunStatus.Unknown","#a9a89d"),//gray
 	
 	/**初始化*/
-	Initial("RunStatus.Initial","#006600"),
+	Initial("RunStatus.Initial","#4A65B5"),//blue
 	
 	/**正常服务*/
-	Healthy("RunStatus.Healthy","#33ff00"),
+	Healthy("RunStatus.Healthy","#56cf3e"),//green
 	
 	/**半功能服务*/
-	SubHealth("RunStatus.SubHealth","#33CC99"),
+	SubHealth("RunStatus.SubHealth","#F7F188"),//米黄色
 	
 	/**客户交易*/
-	Customer("RunStatus.Customer","#66FF66"),
+	Customer("RunStatus.Customer","#0DBC03"),//深绿色
 	
 	/**维护*/
-	Maintain("RunStatus.Maintain","#CCCC66"),
+	Maintain("RunStatus.Maintain","#e4d603"),//orange
 	
 	/**厂商模式维护*/
-	Vdm("RunStatus.Vdm","#CC6633"),	
+	Vdm("RunStatus.Vdm","#F2BA8C"),	//淡褐色
 	
 	
 	/**关机*/
-	Halt("RunStatus.Halt","#000000"),
+	Halt("RunStatus.Halt","#AA0900"),//朱红色
 
 	/**重启*/
-	ReBoot("RunStatus.ReBoot","#330066"),	
+	ReBoot("RunStatus.ReBoot","#436567"),	
 	
 	/**P端通讯故障*/
-	StopAtmp("RunStatus.StopAtmp","#FF0066"),
+	StopAtmp("RunStatus.StopAtmp","#717832"),
 	
 	/**人工报停*/
-	StopManmade("RunStatus.StopManmade","#FF00FF"),
+	StopManmade("RunStatus.StopManmade","#585253"),
 	
 	/**模块故障暂停服务*/
-	StopMod("RunStatus.StopMod","#FF0033"),
+	StopMod("RunStatus.StopMod","#da0404"),//red
 	
 	/**未加钞暂停服务*/
-	StopUnCashIn("RunStatus.StopUnCashIn","#FF6600"),
+	StopUnCashIn("RunStatus.StopUnCashIn","#F2680D"),
 	
 	/**未知原因暂停服务*/
-	StopUnKnown("RunStatus.StopUnKnown","#FF0000");
+	StopUnKnown("RunStatus.StopUnKnown","#665144");
 
 	private String text;
 	private String color;
