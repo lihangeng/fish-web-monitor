@@ -60,18 +60,6 @@ Ext.define('Eway.view.person.user.Grid', {
 			},{
 				header : Eway.locale.commen.name,
 				dataIndex : 'name'
-//			},{
-//				header : '用户类型',
-//				dataIndex : 'userType',
-//				renderer: function(value,metadata,record){
-//					if(value=="0"){
-//	                	   return "超级用户";
-//	                   }else if(value=="1"){
-//	                	   return "普通用户";
-//	                   }else{
-//	                	   return "未知";
-//	                   }
-//					}
 			},{
 				header : Eway.locale.commen.gender,
 				dataIndex : 'gender',
@@ -134,7 +122,7 @@ Ext.define('Eway.view.person.user.Grid', {
 					   Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.passwd.confirmPasswd,callBack);
 					    function callBack(button){
 					    	if(button=='yes'){
-					    		gridEl.mask(Eway.locale.tip.tips.passwd.resetPasswding);
+					    		gridEl.mask(Eway.locale.tip.resetPasswding);
 					    		Ext.Ajax.request({
 			               			method : 'POST',
 			               			url : 'api/person/user/resetPassword',
@@ -146,6 +134,8 @@ Ext.define('Eway.view.person.user.Grid', {
 			               				var object = Ext.decode(response.responseText);
 			               				if(object.success == true){
 			               					gridEl.unmask();
+			               					//修改成功置为新建状态
+			                                rec.set('userState',1);
 			               					Eway.alert(object.message);
 			               				}else{
 			               					gridEl.unmask();
@@ -154,7 +144,7 @@ Ext.define('Eway.view.person.user.Grid', {
 			               			},
 			               			failure : function(){
 			               				gridEl.unmask();
-			               				Eway.alert(Eway.locale.tip.tips.passwd.resetPasswdFail);
+			               				Eway.alert(Eway.locale.tip.resetPasswdFail);
 			               			}
 		               			});
 					    	}
