@@ -495,6 +495,7 @@ Ext.define('Eway.controller.person.ServicePer', {
 									grid.getStore().remove(record);
 								},
 								failure: function(record,operation){
+									record.dropped = false;
 									Eway.alert(operation.getError());
 								},
 								scope:this

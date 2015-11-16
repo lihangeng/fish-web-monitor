@@ -521,6 +521,7 @@ Ext.define('Eway.controller.person.BankPer', {
 									grid.getStore().remove(record);
 								},
 								failure: function(record,operation){
+									record.dropped = false;
 									Eway.alert(Eway.locale.tip.remove.error + operation.getError());
 								},
 								scope:this
