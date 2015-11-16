@@ -6,7 +6,7 @@ Ext.define('Eway.view.base.Window',{
 	constrainHeader : true,
 //	height : 400,
 	width : 500,
-	maximizable : true,
+//	maximizable : true,
 	config : {
 		action : undefined
 	},
