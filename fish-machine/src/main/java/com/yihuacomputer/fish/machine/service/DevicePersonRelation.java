@@ -124,9 +124,9 @@ public class DevicePersonRelation implements IDevicePersonRelation {
         IOrganization org = orgService.get(orgId);
 
         if (flag) {
-            fi.llike("d.organization.orgFlag", org.getOrgFlag());
+            fi.rlike("d.organization.orgFlag", org.getOrgFlag());
         } else {
-            fi.llike("d.devService.orgFlag", org.getOrgFlag());
+            fi.rlike("d.devService.orgFlag", org.getOrgFlag());
         }
 
         fi.eq("o.personId", Long.valueOf(person.getGuid()));
