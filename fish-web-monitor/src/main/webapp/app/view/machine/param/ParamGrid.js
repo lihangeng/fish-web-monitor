@@ -18,16 +18,10 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 		Ext.apply(this,{
 	        width: 840,
 	        height: 450,
-	        frame: true,
-	        renderTo: document.body,
 	        store: store,
 	        
 	        features: [{
-	            ftype: 'groupingsummary',
-	            groupHeaderTpl: '{name}',
-	            hideGroupedHeader: true,
-	            enableGroupingMenu: false,
-	            showSummaryRow : false
+	            ftype: 'grouping'
 	        }],
 	        
 			initRegion : true,
@@ -50,10 +44,6 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 				stripeRows : true
 			},
 			columns : [{
-	            text: Eway.locale.machine.param.paramType,
-	            tdCls: 'paramKey',
-	            sortable: true
-	        }, {
 	            header: Eway.locale.machine.param.paramKey,
 	            width: 150,
 	            sortable: true,
@@ -87,11 +77,6 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 				displayInfo : true
 			})
 		});
-		
 		this.callParent(arguments);
-	},
-	
-	onReload: function() {
-		this.getStore().load();
 	}
 });

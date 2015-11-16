@@ -82,7 +82,6 @@ Ext.define('Eway.controller.machine.param.Param', {
 			record.set('description', data.description);
 			record.save({
 				success : function(record, operation) {
-					record.set("id",data.id)
 					Eway.alert(Eway.updateSuccess);
 					win.close();
 					store.applyModel(record);

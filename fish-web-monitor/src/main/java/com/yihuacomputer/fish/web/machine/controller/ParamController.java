@@ -63,6 +63,7 @@ public class ParamController {
 		try {
 			request.translate(param);
 			paramService.update(param);
+			request.setId(id);
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("data", request);
 		} catch (Exception e) {
