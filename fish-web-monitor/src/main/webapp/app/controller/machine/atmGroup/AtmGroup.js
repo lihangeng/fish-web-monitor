@@ -410,11 +410,9 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 
 					var store1 = deviceAddingGrid.getStore();
 					store1.setBaseParam("groupId",groupId);
-					store1.load({
-						params : {
-							groupId:groupId
-						}
-					});
+					//多页加载数据，最后一页数据加载完了，再次加载最后一页数据返回的信息为空，所以此处更改为加载页面一
+					store1.loadPage(1);
+					
 
 					var store2 = deviceGrid.getStore();
 					//点击增加成功后查询条件不带入重新查询。
@@ -434,6 +432,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 	},
 
 	onDeviceRemove : function(){
+		var me = this;
 		var view = this.getEwayView();
 		var grid = view.down('atmGroup_deviceGrid');
 		var groupRecord = view.down('atmGroup_groupGrid').getSelectionModel().getLastSelected();
@@ -451,7 +450,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 									params : {groupId :groupRecord.data.id,deviceId:record.data.id},
 									success: function(){
 										Eway.alert(Eway.deleteSuccess);
-										grid.getStore().remove(record);
+										me.onDeviceQueryDevice();
 									},
 									failure: function(){
 										Eway.alert(Eway.locale.tip.removeFail);
