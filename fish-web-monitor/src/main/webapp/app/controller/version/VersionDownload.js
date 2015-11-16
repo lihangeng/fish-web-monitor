@@ -230,6 +230,8 @@ Ext.define('Eway.controller.version.VersionDownload', {
 //									}
 //								},
 //								failure:  function(record,operation){
+	//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
+//	record.dropped = false;
 //									winEl.unmask();
 //									Eway.alert(operation.getError());
 //								},
