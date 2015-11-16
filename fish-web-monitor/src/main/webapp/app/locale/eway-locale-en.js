@@ -6,11 +6,11 @@ Ext.override(Eway,{
 	choiceDeleteMsg :'Please select the record which you want to delete.',//Eway.choiceDeleteMsg 请选择您要删除的记录.
 	locale:{
 		myTable:'Workbench',//Eway.locale.myTable 我的工作台
-		ATMV:'Auto Machine Monitor View(ATMV)',//Eway.locale.ATMV 自助设备监控系统(ATMV)
+		ATMV:'ATM View',//Eway.locale.ATMV 自助设备监控系统(ATMV)
 		welcome:'Welcome,',//Eway.locale.welcome 欢迎你,
 		personalConf:'Personal Settings',//Eway.locale.personalConf 个人设置
-		systemHelp:'System Help',///Eway.locale.systemHelp 系统帮助
-		exitSystem:'Quit',//Eway.locale.exitSystem 退出系统
+		systemHelp:'Help',///Eway.locale.systemHelp 系统帮助
+		exitSystem:'Log Out',//Eway.locale.exitSystem 退出系统
 		title:{
 			msg:'Message'//Eway.locale.title.msg 信息
 		},
@@ -69,11 +69,11 @@ Ext.override(Eway,{
 			reset:'Reset',//Eway.locale.button.reset 重置
 			back:'Back',//Eway.locale.button.back 返回
 			apply:'Apply',//Eway.locale.button.apply 应用
-			link:'Associate',//Eway.locale.button.link
+			link:'Binding',//Eway.locale.button.link
 			unlink:'Remove',//Eway.locale.button.unlink
 			//bankOrg
-			deepQuery:'Deep search', //深度查询
-			bankOrgMove:'Move',  //组织迁移
+			deepQuery:'Deep Search', //深度查询
+			bankOrgMove:'Migrate',  //组织迁移
 			bankOrgAdmin:'Manager', //管理员
 			//bankPerson
 			bankPerlink:'Binding Devices', //绑定设备
@@ -91,22 +91,22 @@ Ext.override(Eway,{
 			exportPDF:'Export as PDF', //导出PDF
 //			massExport:'批量导入',
 			massExport:'Batch Import', //批量导入
-			download:'download', //下发
-			downloadToolTip:'Issue job settings', //配置下发作业
+			download:'Deploy', //下发
+			downloadToolTip:'Deploy Settings', //配置下发作业
 			save:'Save',//Eway.locale.button.save 保存
-			openPlan:'Power Scheme',//Eway.locale.button.openPlan 开机方案
-			adminBtn:'Administrator',//管理员
-			personM:'Manufacturer Administrator',//Eway.locale.button.personM 厂商管理员
-			personTM:'Pipe crew',//Eway.locale.button.personTM管机员
-			orgAdmin:'Organization Administrator',//Eway.locale.button.orgAdmin机构管理员
+			openPlan:'Open Plan',//Eway.locale.button.openPlan 开机方案
+			adminBtn:'Manager',//管理员
+			personM:'Maintencer',//Eway.locale.button.personM 厂商管理员
+			personTM:'Banker',//Eway.locale.button.personTM管机员
+			orgAdmin:'Bank Administrator',//Eway.locale.button.orgAdmin机构管理员
 		},
 		//引用其他模块
 		refs:{
 			selectAll:'All',//Eway.locale.refs.selectAll 全部
-			orgName:'Organization',//Eway.locale.refs.orgName 机构
+			orgName:'Bank',//Eway.locale.refs.orgName 机构
 			terminalId:'Terminal ID',//Eway.locale.refs.terminalId 设备编号
-			ip:'IP Address',//Eway.locale.refs.ip IP地址
-			devType:"Atm Type"//Eway.locale.refs.devType 设备型号
+			ip:'IP',//Eway.locale.refs.ip IP地址
+			devType:"Device Type"//Eway.locale.refs.devType 设备型号
 		},
 		//**********************************************************/
 		tip:{
@@ -432,9 +432,9 @@ Ext.override(Eway,{
 			idleAdvert:'Idle Advert',//Eway.locale.advert.idleAdvert 创建等待插卡广告
 			transAdvert:'Transaction Advert',//Eway.locale.advert.transAdvert 创建交易页面广告
 			textAdvert:'Text Advert',//Eway.locale.advert.textAdvert 创建文字滚动广告
-			annoucementAdvert:'Create announcement',//Eway.locale.advert.annoucementAdvert 创建公告
-			updateTitle:'Modify advertisement information',//Eway.locale.advert.updateTitle 更改广告信息
-			downloadButton:'Download',//Eway.locale.advert.downloadButton 下发广告
+			annoucementAdvert:'Create',//Eway.locale.advert.annoucementAdvert 创建公告
+			updateTitle:'Modify',//Eway.locale.advert.updateTitle 更改广告信息
+			downloadButton:'Deploy',//Eway.locale.advert.downloadButton 下发广告
 			preview:'Preview',//Eway.locale.advert.preview 广告预览
 			preview1024:'Preview 1024 resolution',//Eway.locale.advert.preview1024预览1024分辨率
 			preview800:'Preview 800 resolution',//Eway.locale.advert.preview800预览800分辨率
@@ -449,16 +449,16 @@ Ext.override(Eway,{
 			advertVersionFile:'Version file',//Eway.locale.advert.advertVersionFile 版本文件
 			createdTimeStart:'Create time begin with',//Eway.locale.advert.createdTimeStart 制作时间开始于
 			createdTimeStop:'End time end with',//Eway.locale.advert.createdTimeStop 制作时间结束于
-			downloadAdvertConfig:'Issue settings',//Eway.locale.advert.downloadAdvertConfig 下发广告配置
-			versionType:'Software type',//Eway.locale.advert.versionType 软件分类
+			downloadAdvertConfig:'Deploy Settings',//Eway.locale.advert.downloadAdvertConfig 下发广告配置
+			versionType:'Version type',//Eway.locale.advert.versionType 软件分类
 			jobPriority:'Job priority',//Eway.locale.advert.jobPriority //作业优先级
 			jobType:'Job type',//Eway.locale.advert.jobType 作业类型
 			toVersionButton:'Has not generate version information,click button to [generate version]。',//Eway.locale.advert.toVersionButton 还没有生成版本信息，可以单击按钮[生成版本]。
 			playTime:'Play Time',//Eway.locale.advert.playTime 广告播放时长
-			beginDate:'Start date',//Eway.locale.advert.beginDate 开始日期
-			endDate:'End date',//Eway.locale.advert.endDate 结束日期
-			beginTime:'Start time',//Eway.locale.advert.beginTime 开始时间
-			endTime:'End time',//Eway.locale.advert.endTime 结束时间
+			beginDate:'Start Date',//Eway.locale.advert.beginDate 开始日期
+			endDate:'End Date',//Eway.locale.advert.endDate 结束日期
+			beginTime:'Start Time',//Eway.locale.advert.beginTime 开始时间
+			endTime:'End Time',//Eway.locale.advert.endTime 结束时间
 			fileSize:'Resource size',//Eway.locale.advert.fileSize 资源大小
 			content:'Comment of play resource ',//Eway.locale.advert.content 播放资源内容
 			advertConfig:'Settings',//Eway.locale.advert.advertConfig 广告配置
@@ -519,12 +519,12 @@ Ext.override(Eway,{
 			limitNumberTenForEveryResolution:'Only upload up to 10 pictures at each resolution.',//Eway.locale.advert.limitNumberTenForEveryResolution每种分辨率下最多只能上传10张图片
 			mustContainerOnePicAt1024:'1024 image resolution comprises at least one',//Eway.locale.advert.mustContainerOnePicAt10241024分辨率下至少包含一个图片
 			deleteAdvertResource:'Delete the picture',//Eway.locale.advert.deleteAdvertResource删除该图片
-			fileName:'file name',//Eway.locale.advert.fileName文件名
+			fileName:'File Name',//Eway.locale.advert.fileName文件名
 			resourceName:'Resource Name',//Eway.locale.advert.resourceName资源名称
 			perviewAdertWithIEBrowse:'Unsupported preview the video without IE explorer.',//Eway.locale.advert.perviewAdertWithIEBrowse 非IE浏览器不支持视频广告的预览
 			fileFormatTipsInfo:"<font color='red'>Upload picture format is not supported, only upload .jpg format images</font>",//Eway.locale.advert.fileFormatTipsInfo上传的图片格式不支持,只能上传.jpg格式的图片
 			idleAdvertUpTipsInfo:'<font color="red">Only supports .jpg and .gif format images; each resolution upload up to 10 pictures; each picture maximum 5M</font>',//Eway.locale.advert.idleAdvertUpTipsInfo仅支持.jpg和.gif格式的图片;每种分辨率最多上传10张图片;每张图片最大5M
-			configTitle:'Detail setting'//Eway.locale.advert.configTitle 广告详细配置
+			configTitle:'Detail Settings'//Eway.locale.advert.configTitle 广告详细配置
 		},
 		//版本管理模块
 		version:{
@@ -547,7 +547,7 @@ Ext.override(Eway,{
 			View:{
 				title:'Version', //版本管理
 				versionDetail:'Version Detail',//Eway.locale.version.View.versionDetail 版本详情
-				remark:'remark', //Eway.locale.version.View.remark 备注
+				remark:'description', //Eway.locale.version.View.remark 备注
 				newCreate:'Create',//Eway.locale.version.View.newCreate 新建
 				downLoaded:'DownLoaded',//Eway.locale.version.View.downLoaded 已下发
 				waitting:'Waitting',//Eway.locale.version.View.waitting 等待下发
@@ -946,7 +946,7 @@ Ext.override(Eway,{
 		//**********************************************************/
 		person:{
 			bankOrg :{
-				title:'Organization',//Eway.locale.person.bankOrg.title 银行机构管理
+				title:'Banks',//Eway.locale.person.bankOrg.title 银行机构管理
 				moveBankTitle:'Migrate organization',//Eway.locale.person.bankOrg.moveBankTitle 组织迁移
 				updateBankTitle:'Modify organization info',//Eway.locale.person.bankOrg.updateBankTitle 更改银行机构信息
 				addBankOrgTitle:'Add organization info',//Eway.locale.person.bankOrg.addBankOrgTitle 增加银行机构信息
@@ -955,7 +955,7 @@ Ext.override(Eway,{
 				name:'Name',//Eway.locale.person.bankOrg.name 机构名称
 				orgLevel:'Level',//Eway.locale.person.bankOrg.orgLevel 机构级别
 				orgNavi:'Navigator',//Eway.locale.person.bankOrg.orgNavi 机构导航
-				zip:'Zipcode',//Eway.locale.person.bankOrg.zip 邮政编码
+				zip:'Zip',//Eway.locale.person.bankOrg.zip 邮政编码
 				removeManager:'Remove',//Eway.locale.person.bankOrg.removeManager 删除
 				manager:'Manager',//Eway.locale.person.bankOrg.manager 管理员
 				address:'Address',//Eway.locale.person.bankOrg.address 机构地址
@@ -967,7 +967,7 @@ Ext.override(Eway,{
 					serviceOrg:'Maintenance'//Eway.locale.person.bankOrg.organizationType.serviceOrg 维护商
 				},
 				organizationLevelDict:{
-					rootBank:'Root bank',//Eway.locale.person.bankOrg.organizationLevelDict.rootBank 总行
+					rootBank:'center',//Eway.locale.person.bankOrg.organizationLevelDict.rootBank 总行
 					branchBank:'branch',//Eway.locale.person.bankOrg.organizationLevelDict.branchBank 分行
 					tagBranchBank:'subbranch',//Eway.locale.person.bankOrg.organizationLevelDict.tagBranchBank 支行
 					netBank:'netBank'//Eway.locale.person.bankOrg.organizationLevelDict.netBank 网点
@@ -981,7 +981,7 @@ Ext.override(Eway,{
 
 			},
 			bankPer :{
-				title:'Bank person',//Eway.locale.person.bankPer.title 银行人员管理
+				title:'Bankers',//Eway.locale.person.bankPer.title 银行人员管理
 				organizationName:'Organization',//Eway.locale.person.bankPer.organizationName 机构
 				orgNavi:'Organization Navigator',//Eway.locale.person.bankPer.orgNavi 机构导航
 				addBankPerTitle:'Add information of bank person ',//Eway.locale.person.bankPer.addBankPerTitle 增加银行人员信息
@@ -1010,15 +1010,15 @@ Ext.override(Eway,{
 				directOrganization:'的直接下级机构'
 			},
 			servicePer:{
-				title:'Maintenance person',//Eway.locale.person.servicePer.title 维护人员管理
-				servicePerlink:'Link device',//Eway.locale.person.servicePer.servicePerlink 关联设备
-				addServicePerTitle:'Add maintenance person',//Eway.locale.person.servicePer.addServicePerTitle 增加维护人员信息
-				updateServicePerTitle:'Modify maintenance person',//Eway.locale.person.servicePer.updateServicePerTitle 更改维护人员信息
+				title:'Maintenancers',//Eway.locale.person.servicePer.title 维护人员管理
+				servicePerlink:'Binding Device',//Eway.locale.person.servicePer.servicePerlink 关联设备
+				addServicePerTitle:'Add maintenancer',//Eway.locale.person.servicePer.addServicePerTitle 增加维护人员信息
+				updateServicePerTitle:'Update maintenancer',//Eway.locale.person.servicePer.updateServicePerTitle 更改维护人员信息
 
-				maintainInfo:'All information of maintenance person'//所有维护商人员信息
+				maintainInfo:'All Maintenancers'//所有维护商人员信息
 			},
 			user:{
-				title:'User',//Eway.locale.person.user.title 用户管理
+				title:'Users',//Eway.locale.person.user.title 用户管理
 				code:'Code',//Eway.locale.person.user.code 用户名
 				clickToCheckLog:'Click to Query Log',//Eway.locale.person.user.clickToCheckLog 单击即可查看用户
 				userLog:' s log',//Eway.locale.person.user.userLog  的操作日志
@@ -1056,7 +1056,7 @@ Ext.override(Eway,{
 		permission:{
 			systemMenu:'System', //系统菜单
 			role:{
-				title:'Role',//Eway.locale.permission.role.title 角色管理
+				title:'Roles',//Eway.locale.permission.role.title 角色管理
 				update:'Update role',//Eway.locale.permission.role.update 更改角色
 				name:'Role name',//Eway.locale.permission.role.name 角色名称
 				type:'Role type',//Eway.locale.permission.role.type 角色类型
@@ -1075,29 +1075,29 @@ Ext.override(Eway,{
 		//**********************************************************/
 		monitor:{
 			summary:{
-				title:'MonitorSummary',//Eway.locale.monitor.summary.title
-				allSummary:'AllSummary',//Eway.locale.monitor.summary.allSummary
-				appSummary:'AppSummary',//Eway.locale.monitor.summary.appSummary
-				modSummary:'ModSummary',//Eway.locale.monitor.summary.modSummary
-				boxSummary:'BoxSummary',//Eway.locale.monitor.summary.boxSummary
-				netSummary:'NetSummary'//Eway.locale.monitor.summary.netSummary
+				title:'Status Overview',//Eway.locale.monitor.summary.title
+				allSummary:'All',//Eway.locale.monitor.summary.allSummary
+				appSummary:'ATMC',//Eway.locale.monitor.summary.appSummary
+				modSummary:'Module',//Eway.locale.monitor.summary.modSummary
+				boxSummary:'Cashbox',//Eway.locale.monitor.summary.boxSummary
+				netSummary:'Net'//Eway.locale.monitor.summary.netSummary
 			},
 			devMonitor:{
-				title:'Status',//Eway.locale.monitor.devMonitor.title 状态监控
+				title:'Status Monitor',//Eway.locale.monitor.devMonitor.title 状态监控
 				comboxStatus:{
-					runStatus:'Run status',//Eway.locale.monitor.devMonitor.comboxStatus.runStatus 运行状态
-					modStatus:'Module status',//Eway.locale.monitor.devMonitor.comboxStatus.modStatus 模块状态
-					boxStatus:'Cashbin status',//Eway.locale.monitor.devMonitor.comboxStatus.boxStatus 钞箱状态
-					netStatus:'Net status'//Eway.locale.monitor.devMonitor.comboxStatus.netStatus 网络状态
+					runStatus:'ATMC Status',//Eway.locale.monitor.devMonitor.comboxStatus.runStatus 运行状态
+					modStatus:'Module Status',//Eway.locale.monitor.devMonitor.comboxStatus.modStatus 模块状态
+					boxStatus:'Cashbox Status',//Eway.locale.monitor.devMonitor.comboxStatus.boxStatus 钞箱状态
+					netStatus:'Net Status'//Eway.locale.monitor.devMonitor.comboxStatus.netStatus 网络状态
 				},
-				monitorState:'Monitor status',//Eway.locale.monitor.devMonitor.monitorState 监控状态
+				monitorState:'Monitor Status',//Eway.locale.monitor.devMonitor.monitorState 监控状态
 				showWay:'Show way',//Eway.locale.monitor.devMonitor.showWay 展示方式
 				comboxShowWay:{
-					summaryPattern:'Summary pattern',//Eway.locale.monitor.devMonitor.comboxShowWay.summaryPattern
-					matrixPattern:'Matrix pattern',//Eway.locale.monitor.devMonitor.comboxShowWay.matrixPattern 矩形方式
-					maxIconPattern:'MaxIcon pattern',//Eway.locale.monitor.devMonitor.comboxShowWay.maxIconPattern 超大图标
-					listPattern:'List pattern',//Eway.locale.monitor.devMonitor.comboxShowWay.listPattern 列表方式
-					boxPattern:'Cashbin pattern'//Eway.locale.monitor.devMonitor.comboxShowWay.boxPattern 钞箱方式
+					summaryPattern:'Overview',//Eway.locale.monitor.devMonitor.comboxShowWay.summaryPattern
+					matrixPattern:'Matrix',//Eway.locale.monitor.devMonitor.comboxShowWay.matrixPattern 矩形方式
+					maxIconPattern:'Large Matrix',//Eway.locale.monitor.devMonitor.comboxShowWay.maxIconPattern 超大图标
+					listPattern:'List',//Eway.locale.monitor.devMonitor.comboxShowWay.listPattern 列表方式
+					boxPattern:'Cashbox'//Eway.locale.monitor.devMonitor.comboxShowWay.boxPattern 钞箱方式
 				},
 				numberfield:'Number of monitor machine',//Eway.locale.monitor.devMonitor.numberfield 监控台数
 				noData:'No data',//Eway.locale.monitor.devMonitor.noData 无记录
@@ -1135,7 +1135,7 @@ Ext.override(Eway,{
 				registerStatus:'Register status',//Eway.locale.monitor.devMonitor.registerStatus 注册状态
 				devModStatus:'Status of module',//Eway.locale.monitor.devMonitor.devModStatus 设备模块状态
 				mod:{
-					idc:'Card reader',//Eway.locale.monitor.devMonitor.mod.idc 读卡器
+					idc:'CardReader',//Eway.locale.monitor.devMonitor.mod.idc 读卡器
 					jpr:'Log printer',//Eway.locale.monitor.devMonitor.mod.jpr 日志打印机
 					cdm:'Draw module',//Eway.locale.monitor.devMonitor.mod.cdm 取款模块
 					cim:'Deposit module',//Eway.locale.monitor.devMonitor.mod.cim 存款模块
@@ -1153,7 +1153,7 @@ Ext.override(Eway,{
 					control:'Remote control',//Eway.locale.monitor.devMonitor.remote.control 远程控制
 					screen:'Remote screenshot',//Eway.locale.monitor.devMonitor.remote.screen 远程抓拍
 					log:'Get logs',//Eway.locale.monitor.devMonitor.remote.log 提取电子日志
-					net:'Check network',//Eway.locale.monitor.devMonitor.remote.net 查看网络连接
+					net:'Check Network',//Eway.locale.monitor.devMonitor.remote.net 查看网络连接
 					softwareList:'Get software list',//Eway.locale.monitor.devMonitor.remote.softwareList 获取软件列表
 					powerOff:'PowerOff',//Eway.locale.monitor.devMonitor.remote.powerOff 关机
 					closeWays:'Choose way of poweroff',//Eway.locale.monitor.devMonitor.remote.closeWays 请选择关机方式
@@ -1246,7 +1246,7 @@ Ext.override(Eway,{
 					updateTitle:'Modify'//Eway.locale.monitor.business.blackList.updateTitle 更改黑名单卡信息
 				},
 				card:{
-					title:'RetainCard',//Eway.locale.monitor.business.card.title 吞卡管理
+					title:'Retained Card',//Eway.locale.monitor.business.card.title 吞卡管理
 					addTitle:'Add',//Eway.locale.monitor.business.card.addTitle 增加吞卡信息
 					time:'Time',//Eway.locale.monitor.business.card.time 吞卡时间
 					reason:'Reason',//Eway.locale.monitor.business.card.reason  吞卡原因
@@ -1293,7 +1293,7 @@ Ext.override(Eway,{
 
 
 				cashInit:{
-					titile:'Cash initiation',//Eway.locale.monitor.business.cashInit.titile 加钞信息查询
+					titile:'Load Cash',//Eway.locale.monitor.business.cashInit.titile 加钞信息查询
 					uuId:'CashID',//Eway.locale.monitor.business.cashInit.uuId 加钞ID
 					date:'Date',//Eway.locale.monitor.business.cashInit.date 加钞日期
 					amt:'Amount',//Eway.locale.monitor.business.cashInit.amt 金额
@@ -1304,7 +1304,7 @@ Ext.override(Eway,{
 					lastAmt:'Amount left'//Eway.locale.monitor.business.cashInit.lastAmt 剩余金额
 				},
 				settlement:{
-					title:'Settlement information',//Eway.locale.monitor.business.settlement.title 清机信息查询
+					title:'Settlement',//Eway.locale.monitor.business.settlement.title 清机信息查询
 					deTitle:'Information',//Eway.locale.monitor.business.settlement.deTitle 清机详细信息
 					settleId:'SettleID',//Eway.locale.monitor.business.settlement.settleId
 					uuId:'CycleID',//Eway.locale.monitor.business.settlement.uuId 周期ID
@@ -1325,11 +1325,11 @@ Ext.override(Eway,{
 		//**********************************************************/
 		machine:{
 			atmBrand : {
-				title:'Brand',//品牌管理
-				name: 'Brand name', //品牌名称
-				country:'Country or area of prduction',//生产商国家或地区
-				hotline1:'Producer hotline',//生产商热线1
-				hotline2:'Producer hotline2',//生产商热线2
+				title:'Device Brand',//品牌管理
+				name: 'Name', //品牌名称
+				country:'Country',//生产商国家或地区
+				hotline1:'Hotline',//生产商热线1
+				hotline2:'Hotline2',//生产商热线2
 				address:'Producer address',//生产商地址
 				status:'Producer hotline',//生产商状态
 				comboxStatus:{
@@ -1340,20 +1340,20 @@ Ext.override(Eway,{
 			atmCatalog:{
 				title:'Device Catalog',//Eway.locale.machine.title ATM分类
 				name:'Name',//Eway.locale.machine.atmCatalog.name 分类名称
-				note:'Remark',//备注
+				note:'Description',//备注
 				addTitle:'Add catalog',//增加ATM分类信息
 				updateTitle:'Update Catalog', //更改ATM型号信息
 				number:'Code',//Eway.locale.machine.atmCatalog.number 编号
 			},
 			atmGroup : {
-				terminalId:'Terminal Id', //设备号
+				terminalId:'Terminal ID', //设备号
 				ip: 'IP',//设备IP地址
 				orgName:'Org belongs',//
 				devTypeName:'Device Type',//设备型号
 				devVendorName:'Device Brand',//设备品牌
 				devCatalogName:'Device Catalog',//设备类型
 				devGroupName: 'Device Group',//设备分组
-				status:'Device status',//设备状态
+				status:'Device Status',//设备状态
 				comboxStatus:{
 					dredge:'Dredge',//开通
 					open:'Open',//启用
@@ -1420,16 +1420,13 @@ Ext.override(Eway,{
 				devVendorName:'Brand', //所属品牌
 				devCatalogName:'Catalog',//所属类型
 				devTerminalName:'Type',//所属型号
-				spec:'Gauge',//设备规格
-				weight:'Weight',//设备重量
-				watt:'Power',//平均功率
 				no:'Code',//编号
 				cashtype:'Cash flag',//非现金标志
 				iscash:'Cash',//现金
 				nocash:'Not cash'//非现金
 			},
 			device:{
-				title:'Deivce',//设备信息管理
+				title:'Deivce Info',//设备信息管理
 				devDetailInfo:'Module information',//设备模块详细信息
 			    IDC:'Card reader(IDC)',
 				JPR:'Log printer(JPR)',
@@ -1813,21 +1810,21 @@ Ext.override(Eway,{
 			},
 			param:{
 				paramKey:'Parameter',//Eway.locale.machine.param.paramKey 参数
-				paramValue:'Parameter value',//Eway.locale.machine.param.paramValue参数值
+				paramValue:'Value',//Eway.locale.machine.param.paramValue参数值
 				classify:'Type',//Eway.locale.machine.param.classify 类型
-				paramType:'ParamType',//Eway.locale.machine.param.paramType 参数类型
-				modifyFlag:'ModifyFlag',//Eway.locale.machine.param.ModifyFlag 是否可以修改
+				paramType:'Type',//Eway.locale.machine.param.paramType 参数类型
+				modifyFlag:'Can be Modify?',//Eway.locale.machine.param.ModifyFlag 是否可以修改
 				comboxClassify:{
-					unableUpdate:'Unable modify',//不可修改
-					ableUpdate:'Can modify'//可以修改
+					unableUpdate:'Yes',//不可修改
+					ableUpdate:'No'//可以修改
 				},
 				description:'Description',//Eway.locale.machine.param.description 参数信息描述
 				systemCon:'System Setting',//Eway.locale.machine.param.systemCon 系统配置
-				updateSystemCon:'Modify system setting'//Eway.locale.machine.param.updateSystemCon 更改系统配置
+				updateSystemCon:'Update system Setting'//Eway.locale.machine.param.updateSystemCon 更改系统配置
 			},
 			quittingNotice:{
-				addCloseMsg:'Add stop',//增加报停信息
-				updateCloseMsg:'Modify stop',//
+				addCloseMsg:'Add Report Stop',//增加报停信息
+				updateCloseMsg:'Udpate stop',//
 				dateRangeText:'Recover date can not be earlier than stop date,please choose again',//恢复日期不能小于等于停止日期,请重新选择
 				click:'Click query to choose device',//请点击查询，选择设备
 				stopTime:'Stop time',//停机时间
@@ -1919,7 +1916,7 @@ Ext.override(Eway,{
 				},
 			},
 			plan:{
-				addPlan:'AddPlan',//Eway.locale.report.plan.addPlan 增加方案
+				addPlan:'Add Plan',//Eway.locale.report.plan.addPlan 增加方案
 				name:'Name',//Eway.locale.report.plan.name 名称
 				startDate:'Start time',//Eway.locale.report.plan.startDate 有效开始时间
 				endDate:'End time',//Eway.locale.report.plan.endDate 有效结束时间
@@ -1967,13 +1964,13 @@ Ext.override(Eway,{
 				tipAddError:'Article Adding failed. Please refresh view',//Eway.locale.report.openplan.tipAddError条添加失败,请刷新后查看
 				planIsHaved:'',
 				linkSuccess:'Associate success',//Eway.locale.report.openplan.linkSuccess关联成功
-				Mon:'one',//Eway.locale.report.openplan.Mon一
-				Tues:'Two',//Eway.locale.report.openplan.Tues二
-				Wed:'three',//Eway.locale.report.openplan.Wed三
-				Thur:'Four',//Eway.locale.report.openplan.Thur四
-				Fri:'Fives',//Eway.locale.report.openplan.Fri五
-				Sat:'Six',//Eway.locale.report.openplan.Sat六
-				Sun:'Day',//Eway.locale.report.openplan.Sun日
+				Mon:'Mon',//Eway.locale.report.openplan.Mon一
+				Tues:'Tues',//Eway.locale.report.openplan.Tues二
+				Wed:'Wed',//Eway.locale.report.openplan.Wed三
+				Thur:'Thur',//Eway.locale.report.openplan.Thur四
+				Fri:'Fri',//Eway.locale.report.openplan.Fri五
+				Sat:'Sat',//Eway.locale.report.openplan.Sat六
+				Sun:'Sun',//Eway.locale.report.openplan.Sun日
 				useSuccess:'Normal start',//Eway.locale.report.openplan.useSuccess正常启用
 				notSuccess:'Not Enabled',//Eway.locale.report.openplan.notSuccess未启用
 				lastOneGroup:'Please select at least one in the group',//Eway.locale.report.openplan.lastOneGroup请在组内至少选中一项
@@ -2109,9 +2106,9 @@ Ext.override(Eway,{
 		//**********************************************************/
 		personal:{
 			baseInfo:'Basic info',//Eway.locale.personal.baseInfo 基本信息
-			accountNum:'Account',//Eway.locale.personal.accountNum 账号
-			personalInfo:'Personal info',//Eway.locale.personal.personalInfo 个人信息
-			changePwd:'Change passwd',//Eway.locale.personal.changePwd 修改密码
+			accountNum:'User Code',//Eway.locale.personal.accountNum 账号
+			personalInfo:'Profile',//Eway.locale.personal.personalInfo 个人信息
+			changePwd:'Udpate password',//Eway.locale.personal.changePwd 修改密码
 			nowLogin:'Current Account',//Eway.locale.personal.nowLogin 当前登录账号
 			inputOldPwd:'Input initial passwd',//Eway.locale.personal.inputOldPwd 输入原始密码
 			inputNewPwd:'Input new passwd',//Eway.locale.personal.inputNewPwd 输入新密码
@@ -2119,7 +2116,7 @@ Ext.override(Eway,{
 			inputAgain:'Input again',//Eway.locale.personal.inputAgain 再次输入新密码
 			pwdNotSame:'Passwds not same',//Eway.locale.personal.pwdNotSame 两次密码不一致！
 			rememberPwd:'Click confirm to update passwd ,please remember it',//Eway.locale.personal.rememberPwd 单击确定即可修改密码，请牢记新密码！
-			pwdSameNoChange:'New passwd is same with the old one,can not commit',//Eway.locale.personal.pwdSameNoChange 输入的新密码与旧密码相同,不可修改.
+			pwdSameNoChange:'New password is same with the old one,can not commit',//Eway.locale.personal.pwdSameNoChange 输入的新密码与旧密码相同,不可修改.
 			reOperate:'Can not modify passwd,please try again',//Eway.locale.personal.reOperate 无法修改密码,请重新操作.
 		},
 
