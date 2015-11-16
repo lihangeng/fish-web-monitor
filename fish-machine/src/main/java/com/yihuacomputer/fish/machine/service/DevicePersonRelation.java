@@ -170,8 +170,8 @@ public class DevicePersonRelation implements IDevicePersonRelation {
         // 添加条件
         IOrganization bankOrg = orgService.get(bankOrgId);
         IOrganization serOrg = orgService.get(serOrgId);
-        fi.llike("d.organization.orgFlag", bankOrg.getOrgFlag());
-        fi.llike("d.devService.orgFlag", serOrg.getOrgFlag());
+        fi.rlike("d.organization.orgFlag", bankOrg.getOrgFlag());
+        fi.rlike("d.devService.orgFlag", serOrg.getOrgFlag());
 
         // hql拼写
         StringBuffer hqls = new StringBuffer();
