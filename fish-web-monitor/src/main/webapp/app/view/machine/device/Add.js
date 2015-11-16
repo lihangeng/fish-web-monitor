@@ -7,7 +7,7 @@ Ext.define('Eway.view.machine.device.Add', {
 	title: Eway.locale.machine.device.addDevInfo,
 
 	modal: true,
-	resizable: false,
+//	resizable: false,
 	constrainHeader: true,
     height : 450,
 	width : 750,
