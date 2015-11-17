@@ -417,7 +417,7 @@ public class FaultController
         }
         else if (obj instanceof Date)
         {
-            return DateUtils.getDate((Date) obj);
+            return DateUtils.getTimestamp((Date) obj);
         }
         else if (obj instanceof Integer || obj instanceof Long || obj instanceof Double)
         {
