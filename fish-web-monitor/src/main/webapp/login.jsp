@@ -137,7 +137,7 @@
 
 <table align="center" border="0" cellpadding="0" spacpadding="0">
 <tr >
-	<td ><font style="font-size: 14px;" >©深圳市怡化电脑股份有限公司&nbsp;【建议使用IE9.0+、FireFox、Google浏览器】</font>
+	<td ><font style="font-size: 14px; color:#5e5e5f" >©深圳市怡化电脑股份有限公司&nbsp;【建议使用IE9.0+、FireFox、Google浏览器】</font>
 
 </td>
 </tr>
