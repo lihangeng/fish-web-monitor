@@ -20,10 +20,10 @@ Ext.define('Eway.view.monitor.device.showType.DataViewGrid', {
 				'<div class="thumb-wrap" >',
 						'<div class="thumb">',
 							'<ul>',
-								'<li><div class="monitor-div-run-{run}" onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.comboxStatus.runStatus,\'{runStatus}\');"/></li>',
-								'<li><div class="monitor-div-mod-{mod}" onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.comboxStatus.modStatus,\'{modStatus}\');"/></li>',
-								'<li><div class="monitor-div-box-{box}" onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,\'{boxStatus}\');"/></li>',
-								'<li><div class="monitor-div-net-{net}" onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,Eway.locale.monitor.devMonitor.comboxStatus.netStatus,\'{netStatus}\');"/></li>',
+								'<li><div class="monitor-div-run-{run}" onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,EwayLocale.monitor.devMonitor.comboxStatus.runStatus,\'{runStatus}\');"/></li>',
+								'<li><div class="monitor-div-mod-{mod}" onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,EwayLocale.monitor.devMonitor.comboxStatus.modStatus,\'{modStatus}\');"/></li>',
+								'<li><div class="monitor-div-box-{box}" onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,EwayLocale.monitor.devMonitor.comboxStatus.boxStatus,\'{boxStatus}\');"/></li>',
+								'<li><div class="monitor-div-net-{net}" onmouseover="javascript:Eway.lib.FunctionUtils.toolTip(this,EwayLocale.monitor.devMonitor.comboxStatus.netStatus,\'{netStatus}\');"/></li>',
 							'</ul>',
 						'</div>',
 					'<span class="x-editable">{code}({org})</span>',
@@ -46,7 +46,7 @@ Ext.define('Eway.view.monitor.device.showType.DataViewGrid', {
 			trackOver : true,
 			overItemCls : 'x-item-over',
 			itemSelector : 'div.thumb-wrap',
-			emptyText : Eway.locale.monitor.devMonitor.noData,
+			emptyText : EwayLocale.monitor.devMonitor.noData,
 			loadData : function(store){
 				var myStore = this.getStore();
 				myStore.removeAll();

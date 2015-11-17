@@ -36,7 +36,7 @@ Ext.define('Eway.view.machine.quittingNotice.FilterForm', {
 					labelAlign : 'right',
 					name : 'responsibilityName',
 					maxLength:20,
-					fieldLabel : Eway.locale.machine.quittingNotice.responsibilityName
+					fieldLabel : EwayLocale.machine.quittingNotice.responsibilityName
 				}]
 			},{
 				columnWidth : .3,
@@ -57,7 +57,7 @@ Ext.define('Eway.view.machine.quittingNotice.FilterForm', {
 				},
 				items : [ {
 							xtype : 'fieldcontainer',
-							fieldLabel : Eway.locale.machine.quittingNotice.stopTime,
+							fieldLabel : EwayLocale.machine.quittingNotice.stopTime,
 							layout : 'hbox',
 							defaults : {
 								hideLabel : true
@@ -87,7 +87,7 @@ Ext.define('Eway.view.machine.quittingNotice.FilterForm', {
 								}
 							}, {
 								xtype : 'displayfield',
-								value : Eway.locale.machine.quittingNotice.to
+								value : EwayLocale.machine.quittingNotice.to
 							}, {
 								fieldLabel : 'minute',
 								displayField : 'display',

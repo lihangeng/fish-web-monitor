@@ -7,7 +7,7 @@ Ext.define('Eway.view.machine.device.module.PropertyIDC', {
 				anchor : '100%'
 			},
 			items : [ {
-				title : Eway.locale.machine.device.IDCInfo,
+				title : EwayLocale.machine.device.IDCInfo,
 				titleAlign: 'center',
 				layout : 'column',
 				items : [ {
@@ -22,26 +22,26 @@ Ext.define('Eway.view.machine.device.module.PropertyIDC', {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.variant,
+						fieldLabel : EwayLocale.machine.device.variant,
 						name : 'variant',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.canEjectCard,
+						fieldLabel : EwayLocale.machine.device.canEjectCard,
 						name : 'canEject'
 					}, {
-						fieldLabel : Eway.locale.machine.device.trackJisiiRead,
+						fieldLabel : EwayLocale.machine.device.trackJisiiRead,
 						name : 'trackJisiiRead'
 					}, {
-						fieldLabel : Eway.locale.machine.device.track1Read,
+						fieldLabel : EwayLocale.machine.device.track1Read,
 						name : 'track1Read'
 					}, {
-						fieldLabel : Eway.locale.machine.device.track2Read,
+						fieldLabel : EwayLocale.machine.device.track2Read,
 						name : 'track2Read'
 					}, {
-						fieldLabel : Eway.locale.machine.device.track3Read,
+						fieldLabel : EwayLocale.machine.device.track3Read,
 						name : 'track3Read'
 					}, {
-						fieldLabel : Eway.locale.machine.device.canCapture,
+						fieldLabel : EwayLocale.machine.device.canCapture,
 						name : 'canCapture'
 					} ]
 				}, {
@@ -56,23 +56,23 @@ Ext.define('Eway.view.machine.device.module.PropertyIDC', {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel :  Eway.locale.machine.device.binCapacity,
+						fieldLabel :  EwayLocale.machine.device.binCapacity,
 						name : 'binCapacity',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.security,
+						fieldLabel : EwayLocale.machine.device.security,
 						name : 'security'
 					}, {
-						fieldLabel : Eway.locale.machine.device.trackJisiiWrite,
+						fieldLabel : EwayLocale.machine.device.trackJisiiWrite,
 						name : 'trackJisiiWrite'
 					}, {
-						fieldLabel :  Eway.locale.machine.device.track1Write,
+						fieldLabel :  EwayLocale.machine.device.track1Write,
 						name : 'track1Write'
 					}, {
-						fieldLabel :  Eway.locale.machine.device.track2Write,
+						fieldLabel :  EwayLocale.machine.device.track2Write,
 						name : 'track2Write'
 					}, {
-						fieldLabel : Eway.locale.machine.device.track3Write,
+						fieldLabel : EwayLocale.machine.device.track3Write,
 						name : 'track3Write'
 					} ]
 				} ]

@@ -5,7 +5,7 @@ Ext.define('Eway.view.report.baseReport.RetainCardCountReportView', {
 	requires : [ 'Eway.view.report.baseReport.RetainCardCountReportFilter',
 			'Eway.view.report.baseReport.ReportDownload' ],
 
-	title : Eway.locale.report.baseReport.eatCardRep,
+	title : EwayLocale.report.baseReport.eatCardRep,
 	layout : 'border',
 
 	initComponent : function() {

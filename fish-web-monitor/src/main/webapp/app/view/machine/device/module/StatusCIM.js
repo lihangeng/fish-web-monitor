@@ -7,7 +7,7 @@ Ext.define('Eway.view.machine.device.module.StatusCIM', {
 				anchor : '100%'
 			},
 			items : [ {
-				title : Eway.locale.machine.device.comStatus,
+				title : EwayLocale.machine.device.comStatus,
 				titleAlign:'center',
 				layout : 'column',
 				border : 'false',
@@ -23,13 +23,13 @@ Ext.define('Eway.view.machine.device.module.StatusCIM', {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.hwCode,
+						fieldLabel : EwayLocale.machine.device.hwCode,
 						name : 'hwCode',
 						style : 'margin-top:2px'
 					} ]
 				} ]
 			}, {
-				title : Eway.locale.machine.device.CIMStatus,
+				title : EwayLocale.machine.device.CIMStatus,
 				titleAlign:'center',
 				layout : 'column',
 				border : 'false',
@@ -45,11 +45,11 @@ Ext.define('Eway.view.machine.device.module.StatusCIM', {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.baffle,
+						fieldLabel : EwayLocale.machine.device.baffle,
 						name : 'safeDoor',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.inOutPositionStatus,
+						fieldLabel : EwayLocale.machine.device.inOutPositionStatus,
 						name : 'inOutPositionStatus'
 					} ]
 				}, {
@@ -64,13 +64,13 @@ Ext.define('Eway.view.machine.device.module.StatusCIM', {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.intermediateStacker,
+						fieldLabel : EwayLocale.machine.device.intermediateStacker,
 						name : 'intermediateStacker',
 						style : 'margin-top:2px'
 					} ]
 				} ]
 			}, {
-				title :  Eway.locale.machine.device.inBox,
+				title :  EwayLocale.machine.device.inBox,
 				titleAlign:'center',
 				layout : 'column',
 				border : 'false',
@@ -87,23 +87,23 @@ Ext.define('Eway.view.machine.device.module.StatusCIM', {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.puId,
+						fieldLabel : EwayLocale.machine.device.puId,
 						name : 'puId',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.puPosName,
+						fieldLabel : EwayLocale.machine.device.puPosName,
 						name : 'puPosName'
 					}, {
-						fieldLabel : Eway.locale.machine.device.puBinStatus,
+						fieldLabel : EwayLocale.machine.device.puBinStatus,
 						name : 'puBinStatus'
 					}, {
-						fieldLabel : Eway.locale.machine.device.puCurrentCount,
+						fieldLabel : EwayLocale.machine.device.puCurrentCount,
 						name : 'puCurrentCount'
 					}, {
-						fieldLabel : Eway.locale.machine.device.puCashInCount,
+						fieldLabel : EwayLocale.machine.device.puCashInCount,
 						name : 'puCashInCount'
 					}, {
-						fieldLabel :Eway.locale.machine.device.pcuId,
+						fieldLabel :EwayLocale.machine.device.pcuId,
 						name : 'pcuId'
 					} ]
 				}, {
@@ -118,23 +118,23 @@ Ext.define('Eway.view.machine.device.module.StatusCIM', {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.cuId,
+						fieldLabel : EwayLocale.machine.device.cuId,
 						name : 'cuId',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.cuType,
+						fieldLabel : EwayLocale.machine.device.cuType,
 						name : 'cuType'
 					}, {
-						fieldLabel : Eway.locale.machine.device.cuBinStatus,
+						fieldLabel : EwayLocale.machine.device.cuBinStatus,
 						name : 'cuBinStatus'
 					}, {
-						fieldLabel :Eway.locale.machine.device.cuCurrentCount,
+						fieldLabel :EwayLocale.machine.device.cuCurrentCount,
 						name : 'cuCurrentCount'
 					}, {
-						fieldLabel : Eway.locale.machine.device.cuCurrency,
+						fieldLabel : EwayLocale.machine.device.cuCurrency,
 						name : 'cuCurrency'
 					}, {
-						fieldLabel : Eway.locale.machine.device.cuNoteValue,
+						fieldLabel : EwayLocale.machine.device.cuNoteValue,
 						name : 'cuNoteValue'
 					} ]
 				} ]

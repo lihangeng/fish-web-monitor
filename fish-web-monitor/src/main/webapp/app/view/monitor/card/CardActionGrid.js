@@ -36,11 +36,11 @@ Ext.define('Eway.view.monitor.card.CardActionGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->',{
-				text:Eway.locale.button.search,
+				text:EwayLocale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			},{
-				text: Eway.locale.monitor.business.card.accGetCard,
+				text: EwayLocale.monitor.business.card.accGetCard,
 				iconCls :'cardReceiveBtn',
 				action: 'receive',
 				code : 'cardReceive',
@@ -48,7 +48,7 @@ Ext.define('Eway.view.monitor.card.CardActionGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: Eway.locale.monitor.business.card.transferCard,
+				text: EwayLocale.monitor.business.card.transferCard,
 				iconCls :'cardHandoverBtn',
 				action: 'handover',
 				code : 'cardHandOver',
@@ -57,77 +57,77 @@ Ext.define('Eway.view.monitor.card.CardActionGrid', {
 				}
 			}],
 			columns : [{
-				header : Eway.locale.commen.terminalId,
+				header : EwayLocale.commen.terminalId,
 				dataIndex : 'terminalId',
 				flex : 1
 			}, {
-				header : Eway.locale.commen.orgNameBelongs,
+				header : EwayLocale.commen.orgNameBelongs,
 				dataIndex : 'subsidiaryorganName',
 				flex : 1
 			}, {
-				header : Eway.locale.monitor.business.card.processOrg,
+				header : EwayLocale.monitor.business.card.processOrg,
 				dataIndex : 'handOverOrgName',
 				flex : 1
 			}, {
-				header : Eway.locale.monitor.business.transaction.card,
+				header : EwayLocale.monitor.business.transaction.card,
 				dataIndex : 'accountNo',
 				flex : 1
 			},{
-				header : Eway.locale.monitor.business.card.type,
+				header : EwayLocale.monitor.business.card.type,
 				dataIndex : 'cardRetainType',
 				flex : 1,
 				renderer : function(value){
 					if(value == 1){
-						return Eway.locale.monitor.business.card.manual;
+						return EwayLocale.monitor.business.card.manual;
 					}else if(value == 2){
-						return Eway.locale.monitor.business.card.auto;
+						return EwayLocale.monitor.business.card.auto;
 					}
 				}
 			},{
-				header : Eway.locale.monitor.business.card.time,
+				header : EwayLocale.monitor.business.card.time,
 				dataIndex : 'cardRetainTime',
 				flex : 1
 			},{
-				header : Eway.locale.monitor.business.card.cardHolder,
+				header : EwayLocale.monitor.business.card.cardHolder,
 				dataIndex : 'cardDistributionBank',
 				flex : 1
 			},{
-				header : Eway.locale.commen.state,
+				header : EwayLocale.commen.state,
 				dataIndex : 'status',
 				renderer : function(value){
 					if(value == 0){
-						return Eway.locale.monitor.business.card.comboxStatus.wait;
+						return EwayLocale.monitor.business.card.comboxStatus.wait;
 					}else if(value == 1){
-						return Eway.locale.monitor.business.card.comboxStatus.received;
+						return EwayLocale.monitor.business.card.comboxStatus.received;
 					}else if(value == 2){
-						return Eway.locale.monitor.business.card.comboxStatus.destroy;
+						return EwayLocale.monitor.business.card.comboxStatus.destroy;
 					}else if(value == 3){
-						return Eway.locale.monitor.business.card.comboxStatus.bringed;
+						return EwayLocale.monitor.business.card.comboxStatus.bringed;
 					}
 				} ,
 				flex : 1
 			},{
-				header : Eway.locale.monitor.business.card.reason,
+				header : EwayLocale.monitor.business.card.reason,
 				dataIndex : 'reason',
 				flex : 1
 			},{
-				header : Eway.locale.monitor.business.card.treatmentPeople,
+				header : EwayLocale.monitor.business.card.treatmentPeople,
 				dataIndex : 'treatmentPeople',
 				flex : 1
 			},{
-				header : Eway.locale.monitor.business.card.treatmentTime,
+				header : EwayLocale.monitor.business.card.treatmentTime,
 				dataIndex : 'treatmentTime',
 				flex : 1
 			},{
-				header : Eway.locale.monitor.business.card.customerName,
+				header : EwayLocale.monitor.business.card.customerName,
 				dataIndex : 'customerName',
 				flex : 1
 			},{
-				header : Eway.locale.monitor.business.card.customerPhone,
+				header : EwayLocale.monitor.business.card.customerPhone,
 				dataIndex : 'customerPhone',
 				flex : 1
 			},{
-				header : Eway.locale.monitor.business.card.customerPapers,
+				header : EwayLocale.monitor.business.card.customerPapers,
 				dataIndex : 'customerPapers',
 				flex : 1
 			}],

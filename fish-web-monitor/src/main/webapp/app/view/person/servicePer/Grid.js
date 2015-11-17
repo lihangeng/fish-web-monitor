@@ -17,11 +17,11 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 				action:'tip',
 				xtype:'tbtext'
 			},'->', {
-				text: Eway.locale.button.search,
+				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			}, {
-				text: Eway.locale.button.add,
+				text: EwayLocale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'servicePerAdd',
@@ -29,7 +29,7 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: Eway.locale.button.update,
+				text: EwayLocale.button.update,
 				glyph : 0xf040,
 				action: 'update',
 				code : 'servicePerUpdate',
@@ -37,7 +37,7 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: Eway.locale.button.remove,
+				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'servicePerDel',
@@ -45,7 +45,7 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: Eway.locale.person.servicePer.servicePerlink,
+				text: EwayLocale.person.servicePer.servicePerlink,
 				glyph : 0xf0c1,
 				action: 'link',
 				code : 'servicePerlink',
@@ -58,49 +58,49 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : Eway.locale.commen.jobNum,
+				header : EwayLocale.commen.jobNum,
 				dataIndex : 'jobNum'
 			},{
-				header : Eway.locale.commen.name,
+				header : EwayLocale.commen.name,
 				dataIndex : 'name'
 			},{
-				header : Eway.locale.commen.devServiceName,
+				header : EwayLocale.commen.devServiceName,
 				dataIndex : 'organizationName'
 			},{
-				header : Eway.locale.commen.state,
+				header : EwayLocale.commen.state,
 				dataIndex : 'state',
 				renderer: function(value,metadata,record){
 					if(value==1){
-		                	 return Eway.locale.commen.comboxStatus.onJob;
+		                	 return EwayLocale.commen.comboxStatus.onJob;
 		             }else if(value==2){
-		                	   return Eway.locale.commen.comboxStatus.onAdjust;
+		                	   return EwayLocale.commen.comboxStatus.onAdjust;
 		             }else if(value==3){
-		                	   return Eway.locale.commen.comboxStatus.onVacation;
+		                	   return EwayLocale.commen.comboxStatus.onVacation;
 		             }else if(value==0){
-		                	   return Eway.locale.commen.comboxStatus.other;
+		                	   return EwayLocale.commen.comboxStatus.other;
 		             }
 				}
 			},{
-				header : Eway.locale.commen.type,
+				header : EwayLocale.commen.type,
 				dataIndex : 'type',
 				renderer: function(value,metadata,record){
 					if(value==0){
-		                	 return Eway.locale.commen.comboxType.machineManager;
+		                	 return EwayLocale.commen.comboxType.machineManager;
 		             }else if(value==1){
-		                	   return Eway.locale.commen.comboxType.machineRepairer;
+		                	   return EwayLocale.commen.comboxType.machineRepairer;
 		             }
 				}
 			}, {
-				header : Eway.locale.commen.mobile,
+				header : EwayLocale.commen.mobile,
 				dataIndex : 'mobile'
 			},{
-				header : Eway.locale.commen.email,
+				header : EwayLocale.commen.email,
 				dataIndex : 'email'
 			}, {
-				header : Eway.locale.commen.phone,
+				header : EwayLocale.commen.phone,
 				dataIndex : 'phone'
 			},{
-				header : Eway.locale.commen.remark,
+				header : EwayLocale.commen.remark,
 				dataIndex : 'remark',
 				flex :1
 			}],

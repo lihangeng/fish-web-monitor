@@ -13,23 +13,23 @@ Ext.define('Eway.view.report.plan.Grid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-				text: Eway.locale.button.apply,
+				text: EwayLocale.button.apply,
 				iconCls :'connectBtn',
 				action: 'link'
 			}, {
-				text: Eway.locale.button.search,
+				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			}, {
-				text: Eway.locale.button.add,
+				text: EwayLocale.button.add,
 				glyph : 0xf067,
 				action: 'add'
 			}, {
-				text: Eway.locale.button.update,
+				text: EwayLocale.button.update,
 				glyph : 0xf040,
 				action: 'update'
 			}, {
-				text: Eway.locale.button.remove,
+				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				action: 'remove'
 			}],
@@ -38,19 +38,19 @@ Ext.define('Eway.view.report.plan.Grid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : Eway.locale.report.plan.name,
+				header : EwayLocale.report.plan.name,
 				width : 180,
 				dataIndex : 'name'
 			},{
-				header : Eway.locale.report.plan.startDate,
+				header : EwayLocale.report.plan.startDate,
 				width : 180,
 				dataIndex : 'startDate'
 			},{
-				header : Eway.locale.report.plan.endDate,
+				header : EwayLocale.report.plan.endDate,
 				width : 180,
 				dataIndex : 'endDate'
 			},{
-				header : Eway.locale.commen.remark,
+				header : EwayLocale.commen.remark,
 				dataIndex : 'note',
 				flex : 1
 			}],

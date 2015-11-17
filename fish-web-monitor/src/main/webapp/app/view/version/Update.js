@@ -4,7 +4,7 @@ Ext.define('Eway.view.version.Update', {
 
 	requires : ['Eway.view.version.field.Desc',
 	            'Eway.view.version.field.VersionComboBox'],
-	title: Eway.locale.version.UpdateTitle,//'更改版本信息'
+	title: EwayLocale.version.UpdateTitle,//'更改版本信息'
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -37,9 +37,9 @@ Ext.define('Eway.view.version.Update', {
 				},
 				items: [{
 						xtype:'combobox',
-						fieldLabel : '<font color="red">*</font>'+ Eway.locale.version.View.versionType,//版本类型',
+						fieldLabel : '<font color="red">*</font>'+ EwayLocale.version.View.versionType,//版本类型',
 						name: 'versionTypeId',
-						emptyText :  Eway.locale.version.View.versionTypeEmpty,//'请选择版本类型',
+						emptyText :  EwayLocale.version.View.versionTypeEmpty,//'请选择版本类型',
 						mode : 'remote',
 						triggerAction: 'all',
 						valueField : 'id',
@@ -58,18 +58,18 @@ Ext.define('Eway.view.version.Update', {
 						disabled : true
 				},{
 				   xtype: 'textfield',
-			       fieldLabel : '<font color="red">*</font>'+Eway.locale.version.View.versionNo,//版本号',
+			       fieldLabel : '<font color="red">*</font>'+EwayLocale.version.View.versionNo,//版本号',
 				   name : 'versionNo',
 				   allowBlank: false,
 				   maxLength: 40,
 				   disabled: true
 				}, {
 					xtype:'combobox',
-					fieldLabel : Eway.locale.version.View.dependVersion,//'依赖版本',
+					fieldLabel : EwayLocale.version.View.dependVersion,//'依赖版本',
 					name: 'dependVersion',
 					editable  : false,
 					store: comboVersioncStore,
-					emptyText : Eway.locale.version.View.dependVersionEmptyText,//'请选择依赖类型',
+					emptyText : EwayLocale.version.View.dependVersionEmptyText,//'请选择依赖类型',
 					mode : 'remote',
 					triggerAction: 'all',
 					valueField : 'id',
@@ -83,13 +83,13 @@ Ext.define('Eway.view.version.Update', {
 					pageSize : 15*/
 				},{
 					   xtype: 'textfield',
-				       fieldLabel : Eway.locale.version.View.execBefore,//'升级前执行脚本',
+				       fieldLabel : EwayLocale.version.View.execBefore,//'升级前执行脚本',
 					   name : 'execBefore',
 					   allowBlank: false,
 					   maxLength: 50,
-					   emptyText: Eway.locale.version.View.execBeforeEmptyText,//'请输入升级包中的以bat或cmd结尾的文件',
+					   emptyText: EwayLocale.version.View.execBeforeEmptyText,//'请输入升级包中的以bat或cmd结尾的文件',
 					   regex : /^([\w|\W]*)(\.bat|cmd)$/i,
-					   regexText:Eway.locale.version.View.execBeforeRegexText//'只能输入bat或cmd结尾的文件'
+					   regexText:EwayLocale.version.View.execBeforeRegexText//'只能输入bat或cmd结尾的文件'
 				},{
 					xtype:'hidden',
 					name:'dependVersionId'
@@ -98,11 +98,11 @@ Ext.define('Eway.view.version.Update', {
 					maxLength : 100
 				},{
 		            xtype: 'fieldcontainer',
-		            fieldLabel: Eway.locale.version.View.otherConfigTitle,//'其他配置',
+		            fieldLabel: EwayLocale.version.View.otherConfigTitle,//'其他配置',
 		            defaultType: 'checkboxfield',
 		            items: [
 		                {
-		                    boxLabel  : Eway.locale.version.View.otherConfigAutoDown,//'允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)',
+		                    boxLabel  : EwayLocale.version.View.otherConfigAutoDown,//'允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)',
 		                    name      : 'autoDown',
 		                    inputValue: 'true'
 		                }/*, {
@@ -111,7 +111,7 @@ Ext.define('Eway.view.version.Update', {
 		                    checked : false,
 		                    inputValue: 'true'
 		                }*/, {
-		                    boxLabel  :  Eway.locale.version.View.otherConfigUncompress,//'自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>',
+		                    boxLabel  :  EwayLocale.version.View.otherConfigUncompress,//'自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>',
 		                    name      : 'uncompress',
 		                    checked : false,
 		                    inputValue: 'true'
@@ -120,14 +120,14 @@ Ext.define('Eway.view.version.Update', {
 		        }],
 		        buttonAlign : 'center',
 				fbar: [{
-					text: Eway.locale.button.confirm,//'确认',
+					text: EwayLocale.button.confirm,//'确认',
 				//	iconCls:'db-save',
 					action:'confirm'
 				},/* {
 					text: '重置',
 					handler: this.onReset
 				},*/ {
-					text: Eway.locale.button.cancle,//'取消',
+					text: EwayLocale.button.cancle,//'取消',
 				//	iconCls :'returnBtn',
 					handler: this.onOver
 				}]

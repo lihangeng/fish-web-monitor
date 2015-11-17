@@ -19,30 +19,30 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 				xtype : 'panel',
 				items : [ {
 					xtype : 'fieldset',
-					title : Eway.locale.monitor.devMonitor.fastChoose,
+					title : EwayLocale.monitor.devMonitor.fastChoose,
 					items : {
-						fieldLabel : Eway.locale.monitor.devMonitor.fastChoose,
+						fieldLabel : EwayLocale.monitor.devMonitor.fastChoose,
 						hideLabel : true,
 						xtype : 'radiogroup',
 						defaultType : 'radiofield',
 						items : [ {
-							boxLabel : Eway.locale.commen.all,
+							boxLabel : EwayLocale.commen.all,
 							name : 'shortcusStatus',
 							inputValue : 'all'
 						}, {
-							boxLabel : Eway.locale.commen.stateDict.normal,
+							boxLabel : EwayLocale.commen.stateDict.normal,
 							name : 'shortcusStatus',
 							inputValue : 'healthy'
 						}, {
-							boxLabel : Eway.locale.commen.warn,
+							boxLabel : EwayLocale.commen.warn,
 							name : 'shortcusStatus',
 							inputValue : 'waring'
 						}, {
-							boxLabel : Eway.locale.commen.fatal,
+							boxLabel : EwayLocale.commen.fatal,
 							name : 'shortcusStatus',
 							inputValue : 'fatal'
 						}, {
-							boxLabel : Eway.locale.commen.unknow,
+							boxLabel : EwayLocale.commen.unknow,
 							name : 'shortcusStatus',
 							inputValue : 'unknown'
 						} ],
@@ -64,11 +64,11 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 					},
 					items : [ {
 						xtype : 'component',
-						html : Eway.locale.monitor.devMonitor.comboxStatus.runStatus,
+						html : EwayLocale.monitor.devMonitor.comboxStatus.runStatus,
 						cls : 'x-form-check-group-label',
 						action : 'title'
 					}, {
-						boxLabel : Eway.locale.commen.all,
+						boxLabel : EwayLocale.commen.all,
 						name : 'run_all',
 						action : 'run',
 						listeners : {
@@ -83,7 +83,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 					},
 
 					{
-						boxLabel : Eway.locale.commen.unknow,
+						boxLabel : EwayLocale.commen.unknow,
 						name : 'run_unknown',
 						statusGroup : 'unknown',
 						action : 'run',
@@ -95,7 +95,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.init,
+						boxLabel : EwayLocale.monitor.devMonitor.init,
 						name : 'run_initial',
 						statusGroup : 'waring',
 						action : 'run',
@@ -107,7 +107,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.remote.healthy,
+						boxLabel : EwayLocale.monitor.devMonitor.remote.healthy,
 						name : 'run_healthy',
 						statusGroup : 'healthy',
 						action : 'run',
@@ -119,7 +119,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.remote.halfSer,
+						boxLabel : EwayLocale.monitor.devMonitor.remote.halfSer,
 						name : 'run_subHealth',
 						statusGroup : 'waring',
 						action : 'run',
@@ -131,7 +131,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.accTrans,
+						boxLabel : EwayLocale.monitor.devMonitor.accTrans,
 						name : 'run_customer',
 						statusGroup : 'healthy',
 						action : 'run',
@@ -143,7 +143,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.remote.staff,
+						boxLabel : EwayLocale.monitor.devMonitor.remote.staff,
 						name : 'run_maintain',
 						statusGroup : 'waring',
 						action : 'run',
@@ -155,7 +155,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.factureStaff,
+						boxLabel : EwayLocale.monitor.devMonitor.factureStaff,
 						name : 'run_vdm',
 						statusGroup : 'waring',
 						action : 'run',
@@ -167,7 +167,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.remote.powerOff,
+						boxLabel : EwayLocale.monitor.devMonitor.remote.powerOff,
 						name : 'run_halt',
 						statusGroup : 'waring',
 						action : 'run',
@@ -179,7 +179,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.remote.restart,
+						boxLabel : EwayLocale.monitor.devMonitor.remote.restart,
 						name : 'run_reboot',
 						statusGroup : 'waring',
 						action : 'run',
@@ -191,7 +191,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.remote.pFault,
+						boxLabel : EwayLocale.monitor.devMonitor.remote.pFault,
 						name : 'run_stopAtmp',
 						statusGroup : 'fatal',
 						action : 'run',
@@ -203,7 +203,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.remote.stopCash,
+						boxLabel : EwayLocale.monitor.devMonitor.remote.stopCash,
 						name : 'run_stopManmade',
 						statusGroup : 'waring',
 						action : 'run',
@@ -215,7 +215,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.remote.pauseSer,
+						boxLabel : EwayLocale.monitor.devMonitor.remote.pauseSer,
 						name : 'run_stopMod',
 						statusGroup : 'fatal',
 						action : 'run',
@@ -227,7 +227,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.remote.pauseCash,
+						boxLabel : EwayLocale.monitor.devMonitor.remote.pauseCash,
 						name : 'run_stopUnCashIn',
 						statusGroup : 'waring',
 						action : 'run',
@@ -239,7 +239,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.remote.pauseSerUnknow,
+						boxLabel : EwayLocale.monitor.devMonitor.remote.pauseSerUnknow,
 						name : 'run_stopunknown',
 						statusGroup : 'unknown',
 						action : 'run',
@@ -259,10 +259,10 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 					},
 					items : [ {
 						xtype : 'component',
-						html : Eway.locale.monitor.devMonitor.comboxStatus.modStatus,
+						html : EwayLocale.monitor.devMonitor.comboxStatus.modStatus,
 						cls : 'x-form-check-group-label'
 					}, {
-						boxLabel : Eway.locale.commen.all,
+						boxLabel : EwayLocale.commen.all,
 						name : 'mod_all',
 						action : 'module',
 						listeners : {
@@ -275,7 +275,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 					},
 
 					{
-						boxLabel : Eway.locale.monitor.devMonitor.mod.healthy,
+						boxLabel : EwayLocale.monitor.devMonitor.mod.healthy,
 						name : 'mod_healthy',
 						statusGroup : 'healthy',
 						action : 'module',
@@ -287,7 +287,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.commen.warn,
+						boxLabel : EwayLocale.commen.warn,
 						name : 'mod_waring',
 						statusGroup : 'waring',
 						action : 'module',
@@ -299,7 +299,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.commen.fatal,
+						boxLabel : EwayLocale.commen.fatal,
 						name : 'mod_fatal',
 						statusGroup : 'fatal',
 						action : 'module',
@@ -311,7 +311,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.commen.unknow,
+						boxLabel : EwayLocale.commen.unknow,
 						name : 'mod_unknown',
 						statusGroup : 'unknown',
 						action : 'module',
@@ -323,7 +323,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.noData,
+						boxLabel : EwayLocale.monitor.devMonitor.noData,
 						name : 'module_noDevice',
 						statusGroup : 'unknown',
 						action : 'module',
@@ -343,10 +343,10 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 					},
 					items : [ {
 						xtype : 'component',
-						html : Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,
+						html : EwayLocale.monitor.devMonitor.comboxStatus.boxStatus,
 						cls : 'x-form-check-group-label'
 					}, {
-						boxLabel : Eway.locale.commen.all,
+						boxLabel : EwayLocale.commen.all,
 						name : 'box_all',
 						action : 'box',
 						listeners : {
@@ -357,7 +357,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.commen.stateDict.normal,
+						boxLabel : EwayLocale.commen.stateDict.normal,
 						name : 'box_healthy',
 						statusGroup : 'healthy',
 						action : 'box',
@@ -369,7 +369,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.cash.low,
+						boxLabel : EwayLocale.monitor.devMonitor.cash.low,
 						name : 'box_low',
 						statusGroup : 'waring',
 						action : 'box',
@@ -381,7 +381,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.cash.empty,
+						boxLabel : EwayLocale.monitor.devMonitor.cash.empty,
 						name : 'box_empty',
 						statusGroup : 'waring',
 						action : 'box',
@@ -393,7 +393,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.cash.cimAFull,
+						boxLabel : EwayLocale.monitor.devMonitor.cash.cimAFull,
 						name : 'box_high',
 						statusGroup : 'waring',
 						action : 'box',
@@ -405,7 +405,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.cash.cimFull,
+						boxLabel : EwayLocale.monitor.devMonitor.cash.cimFull,
 						name : 'box_full',
 						statusGroup : 'waring',
 						action : 'box',
@@ -417,7 +417,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.cash.cashFault,
+						boxLabel : EwayLocale.monitor.devMonitor.cash.cashFault,
 						name : 'box_fatal',
 						statusGroup : 'fatal',
 						action : 'box',
@@ -429,7 +429,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.cash.cashUnknow,
+						boxLabel : EwayLocale.monitor.devMonitor.cash.cashUnknow,
 						name : 'box_unknown',
 						statusGroup : 'unknown',
 						action : 'box',
@@ -449,10 +449,10 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 					},
 					items : [ {
 						xtype : 'component',
-						html : Eway.locale.monitor.devMonitor.comboxStatus.netStatus,
+						html : EwayLocale.monitor.devMonitor.comboxStatus.netStatus,
 						cls : 'x-form-check-group-label'
 					}, {
-						boxLabel : Eway.locale.commen.all,
+						boxLabel : EwayLocale.commen.all,
 						name : 'net_all',
 						action : 'net',
 						listeners : {
@@ -463,7 +463,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.netHealthy,
+						boxLabel : EwayLocale.monitor.devMonitor.netHealthy,
 						name : 'net_healthy',
 						statusGroup : 'healthy',
 						action : 'net',
@@ -475,7 +475,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.netUnStable,
+						boxLabel : EwayLocale.monitor.devMonitor.netUnStable,
 						name : 'net_warning',
 						statusGroup : 'waring',
 						action : 'net',
@@ -487,7 +487,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.monitor.devMonitor.netFatal,
+						boxLabel : EwayLocale.monitor.devMonitor.netFatal,
 						name : 'net_fatal',
 						statusGroup : 'fatal',
 						action : 'net',
@@ -499,7 +499,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 							}
 						}
 					}, {
-						boxLabel : Eway.locale.commen.unknow,
+						boxLabel : EwayLocale.commen.unknow,
 						name : 'net_unknown',
 						statusGroup : 'unknown',
 						action : 'net',

@@ -5,7 +5,7 @@ Ext.define('Eway.view.case.faultClassify.FaultClassifyView', {
 	
 	requires: ['Eway.view.case.faultClassify.FaultClassifyGrid'],
 	
-	title: Eway.locale.cases.faultClassify.faultTypeConfiguration,
+	title: EwayLocale.cases.faultClassify.faultTypeConfiguration,
 	layout: 'border',
 	
 	initComponent: function() {

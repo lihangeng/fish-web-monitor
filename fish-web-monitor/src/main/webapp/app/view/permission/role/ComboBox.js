@@ -6,10 +6,10 @@ Ext.define('Eway.view.permission.role.ComboBox',{
 	
 	store:'permission.ComboBox',
 	queryMode: 'local',
-	fieldLabel:Eway.locale.permission.role.type,
+	fieldLabel:EwayLocale.permission.role.type,
 	name:'type',
 	 valueField: 'abbr',
 	 displayField: 'name',
 	msgTarget : 'side',
-	emptyText: Eway.locale.combox.select
+	emptyText: EwayLocale.combox.select
 });

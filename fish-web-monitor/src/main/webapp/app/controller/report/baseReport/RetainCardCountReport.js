@@ -70,7 +70,7 @@ Ext.define('Eway.controller.report.baseReport.RetainCardCountReport', {
 			    }
 			});
 		}else{
-			Eway.alert(Eway.locale.vtype.inputCorrect);
+			Eway.alert(EwayLocale.vtype.inputCorrect);
 		}
 	},
 
@@ -108,13 +108,13 @@ Ext.define('Eway.controller.report.baseReport.RetainCardCountReport', {
 						var iframe = document.getElementById('downloadFileFromWeb');
 						iframe.src = url;
 			        }else{
-			        	Eway.alert(Eway.locale.vtype.exportRepError);
+			        	Eway.alert(EwayLocale.vtype.exportRepError);
 			        }
 
 			    }
 			});
 		}else{
-			Eway.alert(Eway.locale.vtype.inputCorrect);
+			Eway.alert(EwayLocale.vtype.inputCorrect);
 		}
 	}
 });

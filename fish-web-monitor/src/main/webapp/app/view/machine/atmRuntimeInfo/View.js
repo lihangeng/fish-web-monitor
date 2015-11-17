@@ -7,7 +7,7 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.View', {
 				'Eway.view.machine.device.FilterForm'
 	           ],
 	
-	title: Eway.locale.machine.atmRuntimeInfo.msgCollect,
+	title: EwayLocale.machine.atmRuntimeInfo.msgCollect,
 	layout: 'border',
 	
 	initComponent: function() {

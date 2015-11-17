@@ -49,7 +49,7 @@ Ext.define('Eway.controller.machine.param.Param', {
 				success : function(response) {
 					var object = Ext.decode(response.responseText);
 					if (object.success == false) {
-						Eway.alert(Eway.locale.tip.update.two);
+						Eway.alert(EwayLocale.tip.update.two);
 
 					} else {
 						var win = Ext.create(this.updateView);
@@ -63,7 +63,7 @@ Ext.define('Eway.controller.machine.param.Param', {
 				scope : this
 			});
 		} else {
-			Eway.alert(Eway.choiceUpdateMsg);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 		}
 	},
 
@@ -82,7 +82,7 @@ Ext.define('Eway.controller.machine.param.Param', {
 			record.set('description', data.description);
 			record.save({
 				success : function(record, operation) {
-					Eway.alert(Eway.updateSuccess);
+					Eway.alert(EwayLocale.updateSuccess);
 					win.close();
 					store.applyModel(record);
 				},

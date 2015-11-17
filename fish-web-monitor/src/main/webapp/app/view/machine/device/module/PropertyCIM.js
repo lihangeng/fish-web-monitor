@@ -7,7 +7,7 @@ Ext.define("Eway.view.machine.device.module.PropertyCIM", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : Eway.locale.machine.device.CIMInfo,
+				title : EwayLocale.machine.device.CIMInfo,
 				titleAlign: 'center',
 				layout : 'column',
 				items : [ {
@@ -22,14 +22,14 @@ Ext.define("Eway.view.machine.device.module.PropertyCIM", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.canEscrow,
+						fieldLabel : EwayLocale.machine.device.canEscrow,
 						name : 'canEscrow',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.shutterControlSupported,
+						fieldLabel : EwayLocale.machine.device.shutterControlSupported,
 						name : 'shutterControlSupported'
 					}, {
-						fieldLabel : Eway.locale.machine.device.maxAcceptItems,
+						fieldLabel : EwayLocale.machine.device.maxAcceptItems,
 						name : 'maxAcceptItems'
 					} ]
 				}, {
@@ -44,14 +44,14 @@ Ext.define("Eway.view.machine.device.module.PropertyCIM", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.canDetectCashInserted,
+						fieldLabel : EwayLocale.machine.device.canDetectCashInserted,
 						name : 'canDetectCashInserted',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.canDetectCashTaken,
+						fieldLabel : EwayLocale.machine.device.canDetectCashTaken,
 						name : 'canDetectCashTaken'
 					}, {
-						fieldLabel : Eway.locale.machine.device.retractAreas,
+						fieldLabel : EwayLocale.machine.device.retractAreas,
 						name : 'retractAreas'
 					} ]
 				} ]

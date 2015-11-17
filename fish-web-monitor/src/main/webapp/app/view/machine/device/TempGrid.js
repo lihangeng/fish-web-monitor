@@ -11,11 +11,11 @@ Ext.define('Eway.view.machine.device.TempGrid', {
 			initRegion : true,
 		store : store,
 		tbar : [ '->',{
-				text : Eway.locale.button.search,
+				text : EwayLocale.button.search,
 				iconCls : 'queryBtn',
 				action : 'tempDevQuery'
 			}, {
-				text : Eway.locale.button.update,
+				text : EwayLocale.button.update,
 				iconCls : 'updateBtn',
 				action : 'tempDevUpdate',
 		//		code : 'tempDevUpdate',
@@ -23,7 +23,7 @@ Ext.define('Eway.view.machine.device.TempGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}*/
 			}, {
-				text : Eway.locale.button.remove,
+				text : EwayLocale.button.remove,
 				iconCls : 'deleteBtn',
 				action : 'tempDevDelete',
 		//		code : 'tempDevDel',
@@ -31,98 +31,98 @@ Ext.define('Eway.view.machine.device.TempGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}*/
 			},{
-			text : Eway.locale.button.detailBtn,
+			text : EwayLocale.button.detailBtn,
 			iconCls : 'detailBtn',
 			action : 'tempDevOpenPlan'
 	    	}],		
 			columns : [  {
-				header : Eway.locale.machine.atmGroup.terminalId,
+				header : EwayLocale.machine.atmGroup.terminalId,
 				dataIndex : 'terminalId',
 				width : 100
 			}, {
-				header : Eway.locale.machine.atmGroup.ip,
+				header : EwayLocale.machine.atmGroup.ip,
 				dataIndex : 'ip',
 				width : 120
 			}, {
-				header : Eway.locale.machine.atmGroup.orgName,
+				header : EwayLocale.machine.atmGroup.orgName,
 				dataIndex : 'orgName',
 				width : 140
 			}, {
-				header : Eway.locale.machine.atmGroup.devTypeName,
+				header : EwayLocale.machine.atmGroup.devTypeName,
 				dataIndex : 'devTypeName',
 				width : 90
 			}, {
-				header : Eway.locale.machine.atmGroup.devVendorName,
+				header : EwayLocale.machine.atmGroup.devVendorName,
 				dataIndex : 'devVendorName',
 				width : 80
 			}, {
-				header : Eway.locale.machine.atmGroup.devCatalogName,
+				header : EwayLocale.machine.atmGroup.devCatalogName,
 				dataIndex : 'devCatalogName',
 				width : 80
 			}, {
-				header : Eway.locale.machine.atmGroup.status,
+				header : EwayLocale.machine.atmGroup.status,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return Eway.locale.machine.atmGroup.comboxStatus.dredge;
+						return EwayLocale.machine.atmGroup.comboxStatus.dredge;
 					}
 					if (value == 2) {
-						return Eway.locale.machine.atmGroup.comboxStatus.close;
+						return EwayLocale.machine.atmGroup.comboxStatus.close;
 					}
 				},
 				width : 80
 			}, {
-				header : Eway.locale.machine.device.onBankSignal,
+				header : EwayLocale.machine.device.onBankSignal,
 				dataIndex : 'awayFlag',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return Eway.locale.machine.device.inBank;
+						return EwayLocale.machine.device.inBank;
 					}
 					if (value == 2) {
-						return Eway.locale.machine.device.outBank;
+						return EwayLocale.machine.device.outBank;
 					}
 					if (value == 3) {
-						return Eway.locale.machine.device.clickBank;
+						return EwayLocale.machine.device.clickBank;
 					}
 				},
 				width : 120
 			}, {
-				header : Eway.locale.machine.atmGroup.devServiceName,
+				header : EwayLocale.machine.atmGroup.devServiceName,
 				dataIndex : 'devServiceName',
 				width : 100
 			}, {
-				header :  Eway.locale.machine.atmGroup.cashboxLimit,
+				header :  EwayLocale.machine.atmGroup.cashboxLimit,
 				dataIndex : 'cashboxLimit',
 				width : 100
 			}, {
-				header :  Eway.locale.machine.atmGroup.installDate,
+				header :  EwayLocale.machine.atmGroup.installDate,
 				dataIndex : 'installDate',
 				width : 90
 			}, {
-				header : Eway.locale.machine.device.installStyle,
+				header : EwayLocale.machine.device.installStyle,
 				dataIndex : 'setupType',
 				renderer:function(value, metadata, record){
 					if(value == 1){
-						return Eway.locale.machine.device.crossWall;
+						return EwayLocale.machine.device.crossWall;
 					}
 					if(value == 2){
-						return Eway.locale.machine.device.mainRoom;
+						return EwayLocale.machine.device.mainRoom;
 					}
 				},
 				width : 80
 			}, {
-				header : Eway.locale.machine.device.devAddress,
+				header : EwayLocale.machine.device.devAddress,
 				dataIndex : 'address',
 				width : 160
 			} ,{
-				header : Eway.locale.machine.device.effectiveDate,
+				header : EwayLocale.machine.device.effectiveDate,
 				dataIndex : 'effectiveDate',
 
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : Eway.locale.tip.displayMessage
+				displayMsg : EwayLocale.tip.displayMessage
 			})
 		});
 

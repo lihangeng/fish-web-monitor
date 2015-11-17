@@ -6,7 +6,7 @@ Ext.define('Eway.view.machine.quittingNotice.QuittingNoticeView', {
 	requires: ['Eway.view.machine.quittingNotice.FilterForm',
 	           'Eway.view.machine.quittingNotice.QuittingNoticeGrid'],
 
-	title: Eway.locale.machine.quittingNotice.closeManage,
+	title: EwayLocale.machine.quittingNotice.closeManage,
 	layout: 'border',
 
 	initComponent: function() {

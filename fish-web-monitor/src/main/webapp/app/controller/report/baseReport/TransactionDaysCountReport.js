@@ -40,7 +40,7 @@ Ext.define('Eway.controller.report.baseReport.TransactionDaysCountReport', {
 			store.setUrlParamsByObject(values) ;
 			store.load() ;
 		} else {
-			Eway.alert(Eway.locale.vtype.inputCorrect);
+			Eway.alert(EwayLocale.vtype.inputCorrect);
 		}
 	},
 
@@ -80,12 +80,12 @@ Ext.define('Eway.controller.report.baseReport.TransactionDaysCountReport', {
 								.getElementById('downloadFileFromWeb');
 						iframe.src = url;
 					} else {
-						Eway.alert(Eway.locale.vtype.exportRepError);
+						Eway.alert(EwayLocale.vtype.exportRepError);
 					}
 				}
 			});
 		} else {
-			Eway.alert(Eway.locale.vtype.inputCorrect);
+			Eway.alert(EwayLocale.vtype.inputCorrect);
 		}
 	}
 });

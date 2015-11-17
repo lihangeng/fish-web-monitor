@@ -6,10 +6,10 @@ Ext.define('Eway.view.field.card.OrganizationComboBox',{
 	
 	name : 'orgId',
 	hiddenName : 'orgId',
-	fieldLabel : Eway.locale.commen.orgNameBelongs,
+	fieldLabel : EwayLocale.commen.orgNameBelongs,
 	store : 'monitor.card.OrganizationComboBox',
 	queryMode: 'local',
 	displayField: 'name',
 	valueField: 'id',
-	emptyText: Eway.locale.combox.select
+	emptyText: EwayLocale.combox.select
 });

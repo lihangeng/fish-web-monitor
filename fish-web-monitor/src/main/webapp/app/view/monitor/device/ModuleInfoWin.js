@@ -6,7 +6,7 @@ Ext.define('Eway.view.monitor.device.ModuleInfoWin',{
 	width : 400,
 	height : 260,
 	modal : true,
-	title:Eway.locale.monitor.devMonitor.faultDescription,
+	title:EwayLocale.monitor.devMonitor.faultDescription,
 	requires : ['Eway.view.monitor.device.ModuleInfoForm'],
 	bodyStyle: {
 	    padding: '10px'

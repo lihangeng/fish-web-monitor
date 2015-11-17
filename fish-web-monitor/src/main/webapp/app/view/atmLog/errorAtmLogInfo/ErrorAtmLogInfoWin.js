@@ -6,7 +6,7 @@ Ext.define('Eway.view.atmLog.errorAtmLogInfo.ErrorAtmLogInfoWin', {
 	requires: [
 	           'Eway.view.atmLog.errorAtmLogInfo.ErrorAtmLogInfoGrid'],
 	           
-	title: Eway.locale.atmLog.checkFailInfo,
+	title: EwayLocale.atmLog.checkFailInfo,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,

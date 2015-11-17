@@ -2,7 +2,7 @@ Ext.define('Eway.view.case.vendorCode.RemoveWin', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.vendorCode_RemoveWin',
 
-	title : Eway.locale.cases.vendorCode.deleteFaultInfo,
+	title : EwayLocale.cases.vendorCode.deleteFaultInfo,
 	modal : true,
 	initComponent : function() {
 		Ext.apply(this, {
@@ -25,8 +25,8 @@ Ext.define('Eway.view.case.vendorCode.RemoveWin', {
                   {
                     xtype : 'common_orgComboOrgTree',
                     labelAlign : 'right',
-                    fieldLabel :  Eway.locale.cases.vendorCode.provider,
-                    emptyText : Eway.locale.combox.select,
+                    fieldLabel :  EwayLocale.cases.vendorCode.provider,
+                    emptyText : EwayLocale.combox.select,
                     name : 'name',
                     hiddenValue : 'vendor',
                     editable : false,
@@ -35,11 +35,11 @@ Ext.define('Eway.view.case.vendorCode.RemoveWin', {
                   }],
 				buttonAlign : 'center',
 				buttons : [ {
-					text : Eway.locale.cases.confirm,
+					text : EwayLocale.cases.confirm,
 //					glyph : 0xf014,
 					action : 'delete'
 				}, {
-					text : Eway.locale.cases.cancel,
+					text : EwayLocale.cases.cancel,
 //					iconCls : 'returnBtn',
 					handler : this.onOver
 				} ]

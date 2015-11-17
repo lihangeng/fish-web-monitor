@@ -10,7 +10,7 @@ Ext.define("Eway.view.machine.device.module.StatusRPR", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : '<center>'+Eway.locale.machine.device.comStatus+'</center>',
+				title : '<center>'+EwayLocale.machine.device.comStatus+'</center>',
 				layout : 'column',
 				border : 'false',
 				items : [ {
@@ -25,13 +25,13 @@ Ext.define("Eway.view.machine.device.module.StatusRPR", {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.hwCode,
+						fieldLabel : EwayLocale.machine.device.hwCode,
 						name : 'hwCode',
 						style : 'margin-top:2px'
 					} ]
 				} ]
 			}, {
-				title : '<center>'+Eway.locale.machine.device.RPRStatus+'</center>',
+				title : '<center>'+EwayLocale.machine.device.RPRStatus+'</center>',
 				layout : 'column',
 				border : 'false',
 				items : [ {
@@ -44,14 +44,14 @@ Ext.define("Eway.view.machine.device.module.StatusRPR", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.media,
+						fieldLabel : EwayLocale.machine.device.media,
 						name : 'media',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.bin,
+						fieldLabel : EwayLocale.machine.device.bin,
 						name : 'bin'
 					}, {
-						fieldLabel : Eway.locale.machine.device.supplyLevel,
+						fieldLabel : EwayLocale.machine.device.supplyLevel,
 						name : 'supplyLevel'
 					} ]
 				}, {
@@ -64,11 +64,11 @@ Ext.define("Eway.view.machine.device.module.StatusRPR", {
 						height: 40
 					},
 					items : [ {
-						fieldLabel :  Eway.locale.machine.device.ink,
+						fieldLabel :  EwayLocale.machine.device.ink,
 						name : 'ink',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.toner,
+						fieldLabel : EwayLocale.machine.device.toner,
 						name : 'toner'
 					} ]
 				} ]

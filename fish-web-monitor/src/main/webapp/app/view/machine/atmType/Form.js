@@ -24,26 +24,26 @@ Ext.define('Eway.view.machine.atmType.Form',{
 				msgTarget : 'side'
 			},
 	 		items: [{
-				fieldLabel: '<font color="red">*</font> '+Eway.locale.machine.atmType.name,
+				fieldLabel: '<font color="red">*</font> '+EwayLocale.machine.atmType.name,
 				xtype : 'field_atmType_name',
 				maxLength : 20,
-				maxLengthText : Eway.locale.vtype.maxLength20,
+				maxLengthText : EwayLocale.vtype.maxLength20,
 				msgTarget : 'side',
 				allowBlank : false
 			},{
-				fieldLabel: '<font color="red">*</font> '+Eway.locale.machine.atmType.devVendorName,
+				fieldLabel: '<font color="red">*</font> '+EwayLocale.machine.atmType.devVendorName,
 				xtype : 'field_atmType_DeviceAtmVendorForTypeComboBox',
 				value : 1,
 				allowBlank : false,
 				editable : false
 			},{
-				fieldLabel: '<font color="red">*</font> '+Eway.locale.machine.atmType.devCatalogName,
+				fieldLabel: '<font color="red">*</font> '+EwayLocale.machine.atmType.devCatalogName,
 				xtype : 'field_atmType_DeviceAtmCatalogComboBox',
 				value : 2,
 				allowBlank : false,
 				editable : false
 			},{
-				fieldLabel: Eway.locale.machine.atmType.cashtype,
+				fieldLabel: EwayLocale.machine.atmType.cashtype,
 				xtype : 'field_atmType_cashtypeComboBox',
 				value: '1',
 				allowBlank : false,

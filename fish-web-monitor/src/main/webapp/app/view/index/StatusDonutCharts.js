@@ -7,7 +7,7 @@ Ext.define('Eway.view.index.StatusDonutCharts', {
             labelField:'numberInfo'
     },
     title : {
-    	text : Eway.locale.index.devStatusDisPic,
+    	text : EwayLocale.index.devStatusDisPic,
     	height:24
     },
     

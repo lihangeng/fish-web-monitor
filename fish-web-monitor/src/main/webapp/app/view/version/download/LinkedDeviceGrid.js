@@ -21,21 +21,21 @@ Ext.define('Eway.view.version.download.LinkedDeviceGrid', {
 	            sortable: false
         	},
 			{
-				header : Eway.locale.refs.terminalId,//'设备编号',
+				header : EwayLocale.refs.terminalId,//'设备编号',
 				dataIndex: 'code',
 				width:100
 			}, {
-				header : Eway.locale.refs.ip,//'IP地址',
+				header : EwayLocale.refs.ip,//'IP地址',
 				dataIndex : 'ip',
 				width: 110
 			},{
-				header : Eway.locale.refs.orgName,
+				header : EwayLocale.refs.orgName,
 				dataIndex : 'orgName'
 			}, {
-				header: Eway.locale.refs.devType,
+				header: EwayLocale.refs.devType,
 				dataIndex : 'deviceType'
 			},{
-				header: Eway.locale.version.View.nowVersionNo,//'当前版本',
+				header: EwayLocale.version.View.nowVersionNo,//'当前版本',
 				dataIndex : 'deviceVersion',
 				flex : true
 			}/*,{

@@ -5,12 +5,12 @@ Ext.define('Eway.store.monitor.card.ActionStatus', {
 
 			data : [{
 						value : '',
-						display : Eway.locale.commen.all
+						display : EwayLocale.commen.all
 					}, {
 						value : '0',
-						display : Eway.locale.monitor.business.card.comboxStatus.wait
+						display : EwayLocale.monitor.business.card.comboxStatus.wait
 					}, {
 						value : '3',
-						display : Eway.locale.monitor.business.card.comboxStatus.bringed
+						display : EwayLocale.monitor.business.card.comboxStatus.bringed
 					}]
 		});

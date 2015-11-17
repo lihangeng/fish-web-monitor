@@ -14,7 +14,7 @@ Ext.define('Eway.view.advert.AdvertResourceGrid', {
 			initRegion : true,
 			features: [groupingFeature],
 			tbar: [{
-				text:Eway.locale.advert.downloadButton,
+				text:EwayLocale.advert.downloadButton,
 				iconCls : 'versionDown',
 				action :'downAdvert',
 				code : 'advertDownAdvert',
@@ -22,7 +22,7 @@ Ext.define('Eway.view.advert.AdvertResourceGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text :Eway.locale.advert.preview,
+				text :EwayLocale.advert.preview,
 				iconCls : 'adPreview',
 				code : 'advertPreview',
 				disabled : true,
@@ -31,38 +31,38 @@ Ext.define('Eway.view.advert.AdvertResourceGrid', {
 				},
 				menu : new Ext.menu.Menu({
 					items : [  {
-						text : Eway.locale.advert.preview1024,
+						text : EwayLocale.advert.preview1024,
 						action:'preview1024'
 					},{
-						text : Eway.locale.advert.preview800,
+						text : EwayLocale.advert.preview800,
 						action:'preview800'
 					},{
-						text : Eway.locale.advert.preview600,
+						text : EwayLocale.advert.preview600,
 						action:'preview600'
 					}]
 				})
 			}],
 			columns : [{
-				header: Eway.locale.advert.content,
+				header: EwayLocale.advert.content,
 				dataIndex : 'content'
 			},{
-				header : Eway.locale.advert.playTime,
+				header : EwayLocale.advert.playTime,
 				dataIndex : 'playTime',
 				width: 100
 			},{
-				header: Eway.locale.advert.beginDate,
+				header: EwayLocale.advert.beginDate,
 				dataIndex : 'beginDate'
 			},{
-				header: Eway.locale.advert.endDate,
+				header: EwayLocale.advert.endDate,
 				dataIndex : 'endDate'
 			},{
-				header: Eway.locale.advert.beginTime,
+				header: EwayLocale.advert.beginTime,
 				dataIndex : 'beginTime'
 			},{
-				header: Eway.locale.advert.endTime,
+				header: EwayLocale.advert.endTime,
 				dataIndex : 'endTime'
 			},{
-				header: Eway.locale.advert.fileSize,
+				header: EwayLocale.advert.fileSize,
 				dataIndex : 'fileSize',
 				flex : 1
 			}]/*,

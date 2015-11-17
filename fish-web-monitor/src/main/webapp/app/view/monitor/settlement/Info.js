@@ -1,7 +1,7 @@
 Ext.define('Eway.view.monitor.settlement.Info', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.monitor_settlement_info',
-	title : Eway.locale.monitor.business.settlement.deTitle,
+	title : EwayLocale.monitor.business.settlement.deTitle,
 	modal : true,
 	constrainHeader : true,
 	width : 700,
@@ -37,19 +37,19 @@ Ext.define('Eway.view.monitor.settlement.Info', {
 							readOnly : true
 						},
 						items : [ {
-							fieldLabel : Eway.locale.commen.terminalId,
+							fieldLabel : EwayLocale.commen.terminalId,
 							name : 'termId'
 						}, {
-							fieldLabel : Eway.locale.monitor.business.settlement.settleId,
+							fieldLabel : EwayLocale.monitor.business.settlement.settleId,
 							name : 'uuId'
 						}, {
-							fieldLabel : Eway.locale.monitor.business.settlement.cimNum,
+							fieldLabel : EwayLocale.monitor.business.settlement.cimNum,
 							name : 'deposit'
 						}, {
-							fieldLabel : Eway.locale.monitor.business.settlement.cdmNum,
+							fieldLabel : EwayLocale.monitor.business.settlement.cdmNum,
 							name : 'withdrawal'
 						}, {
-							fieldLabel : Eway.locale.monitor.business.settlement.totalNum,
+							fieldLabel : EwayLocale.monitor.business.settlement.totalNum,
 							name : 'transaction'
 						} ]
 					}, {
@@ -64,36 +64,36 @@ Ext.define('Eway.view.monitor.settlement.Info', {
 							readOnly : true
 						},
 						items : [ {
-							fieldLabel : Eway.locale.monitor.business.settlement.endAmt,
+							fieldLabel : EwayLocale.monitor.business.settlement.endAmt,
 							name : 'leftAmt'
 						}, {
-							fieldLabel : Eway.locale.monitor.business.settlement.leftDate,
+							fieldLabel : EwayLocale.monitor.business.settlement.leftDate,
 							name : 'date'
 						}, {
-							fieldLabel : Eway.locale.monitor.business.settlement.cimAmt,
+							fieldLabel : EwayLocale.monitor.business.settlement.cimAmt,
 							name : 'depositAmt'
 						}, {
-							fieldLabel : Eway.locale.monitor.business.settlement.cdmAmt,
+							fieldLabel : EwayLocale.monitor.business.settlement.cdmAmt,
 							name : 'withdrawalAmt'
 						}, {
-							fieldLabel : Eway.locale.monitor.business.settlement.tranAmt,
+							fieldLabel : EwayLocale.monitor.business.settlement.tranAmt,
 							name : 'transactionAmt'
 						} ]
 					} ]
 				}, {
-					title : Eway.locale.commen.info,
+					title : EwayLocale.commen.info,
 					itemid : 'detailItemId',
 					xtype : 'grid',
 					store : 'monitor.settlement.SettlementDetail',
 					border : true,
 					columns : [ Ext.create('Ext.grid.RowNumberer'), {
-						header : Eway.locale.monitor.business.cashInit.boxId,
+						header : EwayLocale.monitor.business.cashInit.boxId,
 						dataIndex : 'boxId'
 					}, {
-						header : Eway.locale.monitor.business.cashInit.boxCurrency,
+						header : EwayLocale.monitor.business.cashInit.boxCurrency,
 						dataIndex : 'boxCurrency'
 					}, {
-						header : Eway.locale.monitor.business.cashInit.lastAmt,
+						header : EwayLocale.monitor.business.cashInit.lastAmt,
 						dataIndex : 'boxLeftAmt',
 						flex:1
 					} ]

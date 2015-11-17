@@ -14,7 +14,7 @@ Ext.define('Eway.view.machine.atmMove.MoveDeviceFilterForm', {
 				columnWidth : .45,
 				items : [{
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.machine.atmMove.terminalId,
+					fieldLabel : EwayLocale.machine.atmMove.terminalId,
 					labelAlign : 'right',
 					vtype : 'terminalId',
 					labelWidth : 60,
@@ -25,7 +25,7 @@ Ext.define('Eway.view.machine.atmMove.MoveDeviceFilterForm', {
 				},{
 					xtype : 'textfield',
 					labelAlign : 'right',
-					fieldLabel : Eway.locale.machine.atmMove.address,
+					fieldLabel : EwayLocale.machine.atmMove.address,
 					labelWidth : 60,
 					maxLength:50,
 					width: 200,
@@ -38,8 +38,8 @@ Ext.define('Eway.view.machine.atmMove.MoveDeviceFilterForm', {
 					labelWidth : 60,
 					labelAlign : 'right',
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : Eway.locale.machine.atmMove.organization,
-					emptyText : Eway.locale.combox.select,
+					fieldLabel : EwayLocale.machine.atmMove.organization,
+					emptyText : EwayLocale.combox.select,
 					name : 'orgName',
 					hiddenValue : 'organization',
 					editable : false,

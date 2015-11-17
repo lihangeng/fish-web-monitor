@@ -37,7 +37,7 @@ Ext.define('Eway.view.version.download.Grid', {
 			initRegion : true,
 			store: gridStore,
 			tbar: ['->',{
-				text: Eway.locale.button.search,//'查询',
+				text: EwayLocale.button.search,//'查询',
 				glyph : 0xf002,
 				action: 'query'
 			}/*, {
@@ -50,7 +50,7 @@ Ext.define('Eway.view.version.download.Grid', {
 				text: '暂停',
 				action: 'pause'
 			}*/, {
-				text: Eway.locale.version.task.cancelJob,//'撤销作业',
+				text: EwayLocale.version.task.cancelJob,//'撤销作业',
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'versionMonitorDel',
@@ -60,11 +60,11 @@ Ext.define('Eway.view.version.download.Grid', {
 			}],
 			columns : [
 			{
-				header: Eway.locale.version.task.jobId,//'作业ID',
+				header: EwayLocale.version.task.jobId,//'作业ID',
 				dataIndex: 'id',
 				width: 50
 			},{
-				header: Eway.locale.version.View.downloadVersionName,//'下发的版本',
+				header: EwayLocale.version.View.downloadVersionName,//'下发的版本',
 				dataIndex: 'versionName',
 				sortable: true,
 				width: 180
@@ -95,20 +95,20 @@ Ext.define('Eway.view.version.download.Grid', {
 				renderer: Eway.lib.Util.dictRenderer('version.JobPriority'),
 				sortable: true
 			}*/,{
-				header : Eway.locale.version.planTime,//'计划执行时间',
+				header : EwayLocale.version.planTime,//'计划执行时间',
 				dataIndex : 'planTime',
 			/*	xtype:'datecolumn',
 				format:'Y-m-d H:i:s',*/
 				sortable : true,
 				width: 140
 			},{
-				header: Eway.locale.version.task.jobStatus,//'作业状态',
+				header: EwayLocale.version.task.jobStatus,//'作业状态',
 				dataIndex: 'jobStatus',
 				renderer: Eway.lib.Util.dictRenderer('version.JobStatus'),
 				sortable: true,
 				width: 60
 			},{
-				header : Eway.locale.version.View.remark,
+				header : EwayLocale.version.View.remark,
 				dataIndex : 'desc',
 				flex : 1,
 				sortable : true

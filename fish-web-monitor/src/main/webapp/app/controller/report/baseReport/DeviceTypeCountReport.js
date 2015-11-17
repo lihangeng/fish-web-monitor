@@ -72,7 +72,7 @@ Ext.define('Eway.controller.report.baseReport.DeviceTypeCountReport', {
 			    }
 			});
 		}else{
-			Eway.alert(Eway.locale.vtype.inputCorrect);
+			Eway.alert(EwayLocale.vtype.inputCorrect);
 		}
 	},
 

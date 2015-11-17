@@ -6,7 +6,7 @@ Ext.define('Eway.store.person.organization.SerOrganizationTree', {
 	requires : 'Eway.model.common.OrganizationTree',
 	model : 'Eway.model.common.OrganizationTree',
 	root: {
-		text: Eway.locale.person.bankOrg.serOrganization,
+		text: EwayLocale.person.bankOrg.serOrganization,
 		expanded: true
 	},
 	defaultRootId : 1,

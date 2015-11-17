@@ -28,7 +28,7 @@ Ext.define('Eway.controller.version.VersionType', {
 		form : 'Eway.view.version.versionType.Form',
 		xtype:'versionType_form',
 		width: 500,
-		title : Eway.locale.versionType.winTitle//'软件分类'
+		title : EwayLocale.versionType.winTitle//'软件分类'
 	},
 
 	init : function() {

@@ -5,7 +5,7 @@ Ext.define('Eway.view.advert.AddAnnoucement', {
 
 	requires : [ 'Eway.view.advert.field.AnnoucementFieldSet'],
 
-	title : Eway.locale.advert.addAnnoucementTitle,//'增加公告信息',
+	title : EwayLocale.advert.addAnnoucementTitle,//'增加公告信息',
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -21,7 +21,7 @@ Ext.define('Eway.view.advert.AddAnnoucement', {
 		        dock: 'top',
 //		        ui: 'footer',
 		        items: [{
-					text : Eway.locale.button.save,//'保存',
+					text : EwayLocale.button.save,//'保存',
 					action : 'confirm',
 					id : "savaAdvert",
 					iconCls:'db-save'
@@ -48,7 +48,7 @@ Ext.define('Eway.view.advert.AddAnnoucement', {
 				items : [{
 					 	xtype:'fieldset',
 			            checkboxToggle:false,
-			            title: Eway.locale.advert.annoucementBasicInfo,//'公告基本信息',
+			            title: EwayLocale.advert.annoucementBasicInfo,//'公告基本信息',
 			            defaultType: 'combobox',
 			            collapsed: false,
 			            height:80,
@@ -58,16 +58,16 @@ Ext.define('Eway.view.advert.AddAnnoucement', {
 			            },
 			            items :[{
 			            	xtype: 'displayfield',
-			            	fieldLabel:  Eway.locale.advert.type,//'广告类型',
+			            	fieldLabel:  EwayLocale.advert.type,//'广告类型',
 			            	name : 'advertType',
-			            	value: Eway.locale.advert.annoucementInfoAdvert//'公告'
+			            	value: EwayLocale.advert.annoucementInfoAdvert//'公告'
 			            },{
 					    	xtype: 'container',
 					        msgTarget: 'under',
 					        layout:'hbox',
 					        defaultType: 'combobox',
 					        items:[{
-				                fieldLabel: Eway.locale.advert.downType,//'下发方式',
+				                fieldLabel: EwayLocale.advert.downType,//'下发方式',
 				                displayField: 'display',
 				                store: Ext.StoreMgr.lookup("advert.AdvertDownMethod"),
 				                queryMode: 'local',
@@ -78,7 +78,7 @@ Ext.define('Eway.view.advert.AddAnnoucement', {
 				                forceSelection: true,//强制选择一个,不起作用
 				                width:250
 				            },{
-				                fieldLabel:  Eway.locale.advert.advertValidity,//'广告有效期',
+				                fieldLabel:  EwayLocale.advert.advertValidity,//'广告有效期',
 				                displayField: 'display',
 				                store: Ext.StoreMgr.lookup("advert.AdvertValidity"),
 				                queryMode: 'local',
@@ -91,7 +91,7 @@ Ext.define('Eway.view.advert.AddAnnoucement', {
 			            }]
 				},{
 					xtype:'field_annoucementFieldSet',
-					title: Eway.locale.advert.annoucementAdvertResConfig//'公告资源配置'
+					title: EwayLocale.advert.annoucementAdvertResConfig//'公告资源配置'
 				}]
 			}
 		});

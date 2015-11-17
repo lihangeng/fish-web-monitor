@@ -15,7 +15,7 @@ Ext.define('Eway.view.monitor.card.ReceiveCardWin', {
 	           'Eway.view.field.card.CardStatusComboBox',
 	           'Ext.ux.form.DateTimeField'],
 	
-	title: Eway.locale.monitor.business.card.accGetCard,
+	title: EwayLocale.monitor.business.card.accGetCard,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -54,40 +54,40 @@ Ext.define('Eway.view.monitor.card.ReceiveCardWin', {
 					disabled : true
 				},{
 					xtype: 'datetimefield',
-					fieldLabel: Eway.locale.monitor.business.card.time,
+					fieldLabel: EwayLocale.monitor.business.card.time,
 					format : 'Y-m-d H:i:s',
 					name: 'cardRetainTime',
 					allowBlank : false,
 					disabled : true
 				},{
-					fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.reason,
+					fieldLabel: '<font color="red">*</font> '+EwayLocale.monitor.business.card.reason,
 					xtype : 'textarea',
 					name : 'reason',
 					allowBlank : false,
 					disabled : true
 				},{
-					fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.cardHolder,
+					fieldLabel: '<font color="red">*</font> '+EwayLocale.monitor.business.card.cardHolder,
 					name : 'cardDistributionBank',
 					xtype:'field',
 					allowBlank : false,
 					disabled : true
 				},
 				{
-					fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.customerName,
+					fieldLabel: '<font color="red">*</font> '+EwayLocale.monitor.business.card.customerName,
 					xtype : 'card_CustomerName',
 					allowBlank : false,
 //					regex: /^[\u4E00-\u9FA5\a-zA-Z][\u4E00-\u9FA5\.\a-zA-Z]{0,10}$/,
 //					regexText: '输入姓名，英文，.,汉字，0到10位'
 					maxLength : 10,
-					maxLengthText : Eway.locale.monitor.business.card.cardRegex+'10'
+					maxLengthText : EwayLocale.monitor.business.card.cardRegex+'10'
 				},{
-					fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.customerPhone,
+					fieldLabel: '<font color="red">*</font> '+EwayLocale.monitor.business.card.customerPhone,
 					xtype : 'card_CustomerPhone',
 					allowBlank : false,
 					regex:/(^[0-9]{3,4}[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^[0-9]{3,4}\-[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^\([0-9]{3,4}\)[0-9]{3,8}$)|(^0{0,1}13[0-9]{9}$)/,
-					regexText: Eway.locale.tip.phone
+					regexText: EwayLocale.tip.phone
 				},{
-					fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.paperType,
+					fieldLabel: '<font color="red">*</font> '+EwayLocale.monitor.business.card.paperType,
 					xtype : 'card_CardTypeComboBox',
 					allowBlank : false,
 					editable : false,
@@ -96,36 +96,36 @@ Ext.define('Eway.view.monitor.card.ReceiveCardWin', {
 							var customerPapers = this.up('form').down('field[name="customerPapers"]');
 							if(this.value == 1){
 								customerPapers.regex = /(^(\d{15}|\d{17}[\dxX])$)/;
-								customerPapers.regexText = Eway.locale.tip.business.card.idCardRegex;
+								customerPapers.regexText = EwayLocale.tip.business.card.idCardRegex;
 							}else if(this.value == 2){
 								customerPapers.regex = /(^(\d{15}|\d{17}[\dxX])$)/;
-								customerPapers.regexText = Eway.locale.tip.business.card.accountRegex;
+								customerPapers.regexText = EwayLocale.tip.business.card.accountRegex;
 							}else if(this.value == 3){
 								customerPapers.regex = /(^(\d{15}|\d{17}[\dxX])$)/;
-								customerPapers.regexText = Eway.locale.tip.business.card.driveCardRegex;
+								customerPapers.regexText = EwayLocale.tip.business.card.driveCardRegex;
 							}else if(this.value == 4){
 								customerPapers.regex = /(^(\d{15}|\d{17}[\dxX])$)/;
-								customerPapers.regexText = Eway.locale.tip.business.card.passportRegex;
+								customerPapers.regexText = EwayLocale.tip.business.card.passportRegex;
 							}else if(this.value == 5){
 								customerPapers.regex = /^[\u4E00-\u9FA5]{0,5}[0-9]{0,10}$/;
-								customerPapers.regexText = Eway.locale.tip.business.card.soldierRegex;
+								customerPapers.regexText = EwayLocale.tip.business.card.soldierRegex;
 							}else if(this.value == 6){
 								customerPapers.regex = /(^(\d{7}|\d{8})$)/;
-								customerPapers.regexText = Eway.locale.tip.business.card.soldierCard;
+								customerPapers.regexText = EwayLocale.tip.business.card.soldierCard;
 							}else if(this.value == 7){
 								customerPapers.regex = /^\d{12,15}$/;
-								customerPapers.regexText = Eway.locale.tip.business.card.busnessPaper;
+								customerPapers.regexText = EwayLocale.tip.business.card.busnessPaper;
 							}else if(this.value == 8){
 								customerPapers.regex = /^\d{15}$/;
-								customerPapers.regexText = Eway.locale.tip.business.card.busnessCode;
+								customerPapers.regexText = EwayLocale.tip.business.card.busnessCode;
 							}else if(this.value == 9){
 								customerPapers.regex = /^\d{15}$/;
-								customerPapers.regexText = Eway.locale.tip.business.card.taxPaper;
+								customerPapers.regexText = EwayLocale.tip.business.card.taxPaper;
 							}
 						}
 					}
 				},{
-					fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.paperCode,
+					fieldLabel: '<font color="red">*</font> '+EwayLocale.monitor.business.card.paperCode,
 					xtype : 'card_CustomerPapers',
 					allowBlank : false,
 					regex:/^$/,
@@ -133,10 +133,10 @@ Ext.define('Eway.view.monitor.card.ReceiveCardWin', {
 				}],
 				buttonAlign : 'center',
 				buttons: [{
-					text: Eway.locale.button.confirm,
+					text: EwayLocale.button.confirm,
 					action: 'confirm'
 				},{
-					text: Eway.locale.button.back,
+					text: EwayLocale.button.back,
 					handler: this.onOver
 				}]
 			}

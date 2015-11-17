@@ -4,6 +4,6 @@ Ext.define('Eway.store.machine.quittingNotice.DevStatusDict', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'OPENING', display:Eway.locale.machine.quittingNotice.on}, 
-	       {value:'DISABLED', display:Eway.locale.machine.quittingNotice.off}]
+	data: [{value:'OPENING', display:EwayLocale.machine.quittingNotice.on}, 
+	       {value:'DISABLED', display:EwayLocale.machine.quittingNotice.off}]
 });

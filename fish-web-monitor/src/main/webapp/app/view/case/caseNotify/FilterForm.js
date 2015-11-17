@@ -18,13 +18,13 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 					xtype : 'textfield',
 					vtype : 'terminalId',
 					maxLength:20,
-					regexText:Eway.locale.vtype.terminalId,
-					fieldLabel : Eway.locale.commen.terminalId,
+					regexText:EwayLocale.vtype.terminalId,
+					fieldLabel : EwayLocale.commen.terminalId,
 					msgTarget:'side',
 					name : 'terminalId'
 				},{
 					xtype : 'field_notifyWay',
-					fieldLabel : Eway.locale.cases.caseFault.informWay,
+					fieldLabel : EwayLocale.cases.caseFault.informWay,
 					name : 'notifyWay'
 				}]
 			},{
@@ -33,15 +33,15 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 				items : [{
 					xtype : 'textfield',
 					vtype : 'mobile',
-					fieldLabel : Eway.locale.cases.caseFault.informMobile,
-					regexText : Eway.locale.vtype.mobileRules,
+					fieldLabel : EwayLocale.cases.caseFault.informMobile,
+					regexText : EwayLocale.vtype.mobileRules,
 					msgTarget : 'side',
 					name : 'mobile'
 				},{
 					xtype : 'textfield',
 					fieldLabel : 'E-Mail',
 					vtype : 'email',
-					regexText : Eway.locale.vtype.emailRules,
+					regexText : EwayLocale.vtype.emailRules,
 					msgTarget : 'side',
 					maxLength:50,
 					name : 'mail'
@@ -51,7 +51,7 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype : 'datefield',
-					fieldLabel : Eway.locale.cases.caseFault.createTime,
+					fieldLabel : EwayLocale.cases.caseFault.createTime,
 					name : 'createTime',
 					value : new Date(),
 		        	editable: false,
@@ -79,7 +79,7 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 					}
 				},{
 					xtype : 'datefield',
-					fieldLabel : Eway.locale.cases.caseFault.sendTime,
+					fieldLabel : EwayLocale.cases.caseFault.sendTime,
 					name : 'sendTime',
 					editable: false,
 					format : 'Y-m-d',
@@ -110,19 +110,19 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype:'numberfield',
-					fieldLabel : Eway.locale.cases.caseFault.notifyTimes,
+					fieldLabel : EwayLocale.cases.caseFault.notifyTimes,
 					hideTrigger: true,
 					name : 'notifyTimes',
-					regexText : Eway.locale.vtype.notifyTimesRules,
+					regexText : EwayLocale.vtype.notifyTimesRules,
 					msgTarget : 'side',
 			        minValue: 0,
 			        maxValue: 100
 				},{
 					xtype : 'numberfield',
-					fieldLabel : Eway.locale.cases.caseFault.sendTimes,
+					fieldLabel : EwayLocale.cases.caseFault.sendTimes,
 					hideTrigger: true,
 					name : 'sendTimes',
-					regexText : Eway.locale.vtype.sendTimesRules,
+					regexText : EwayLocale.vtype.sendTimesRules,
 					msgTarget : 'side',
 			        minValue: 0,
 			        maxValue: 100

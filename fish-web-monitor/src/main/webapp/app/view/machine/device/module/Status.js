@@ -18,42 +18,42 @@ Ext.define("Eway.view.machine.device.module.Status", {
 			},
 			items : [ {
 				columnWidth : .5,
-				fieldLabel : Eway.locale.monitor.devMonitor.mod.idc,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.idc,
 				name : 'statusIdc',
 				minHeight : 20
 			}, {
 				columnWidth : .5,
-				fieldLabel : Eway.locale.monitor.devMonitor.mod.jpr,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.jpr,
 				name : 'statusJpr',
 				minHeight : 20
 			}, {
 				columnWidth : .5,
-				fieldLabel : Eway.locale.monitor.devMonitor.mod.cdm,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.cdm,
 				name : 'statusCdm',
 				minHeight : 20
 			}, {
 				columnWidth : .5,
-				fieldLabel : Eway.locale.monitor.devMonitor.mod.siu,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.siu,
 				name : 'statusSiu',
 				minHeight : 20
 			}, {
 				columnWidth : .5,
-				fieldLabel : Eway.locale.monitor.devMonitor.mod.cim,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.cim,
 				name : 'statusCim',
 				minHeight : 20
 			}, {
 				columnWidth : .5,
-				fieldLabel : Eway.locale.monitor.devMonitor.mod.ttu,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.ttu,
 				name : 'statusTtu',
 				minHeight : 20
 			}, {
 				columnWidth : .5,
-				fieldLabel : Eway.locale.monitor.devMonitor.mod.rpr,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.rpr,
 				name : 'statusRpr',
 				minHeight : 20
 			}, {
 				columnWidth : .5,
-				fieldLabel : Eway.locale.monitor.devMonitor.mod.pin,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.pin,
 				name : 'statusPin',
 				minHeight : 20
 			} ]

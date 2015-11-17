@@ -6,7 +6,7 @@ Ext.define('Eway.view.person.organization.LinkedPersonGrid', {
 	requires: ['Eway.lib.Util'],
 	border : false,
 	
-	title: Eway.locale.person.bankOrg.linkPeronTitle,
+	title: EwayLocale.person.bankOrg.linkPeronTitle,
 	
 	initComponent: function() {
 		var store = Ext.create('Eway.store.person.organization.LinkedPerson');
@@ -18,59 +18,59 @@ Ext.define('Eway.view.person.organization.LinkedPersonGrid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : Eway.locale.commen.name,
+				header : EwayLocale.commen.name,
 				dataIndex : 'name'
 			},{
-				header : Eway.locale.commen.gender,
+				header : EwayLocale.commen.gender,
 				dataIndex : 'gender',
 				renderer: function(value,metadata,record){
 					if(value=="MALE"){
-	                	   return Eway.locale.commen.comboxGender.male;
+	                	   return EwayLocale.commen.comboxGender.male;
 	                   }else if(value=="FEMALE"){
-	                	   return Eway.locale.commen.comboxGender.female;
+	                	   return EwayLocale.commen.comboxGender.female;
 	                   }else{
-	                	   return Eway.locale.commen.comboxGender.unkown;
+	                	   return EwayLocale.commen.comboxGender.unkown;
 	                   }
 				}
 			},{
-				header : Eway.locale.commen.birthday,
+				header : EwayLocale.commen.birthday,
 				dataIndex : 'birthday',
 				xtype : 'datecolumn',
 				format : 'Y-m-d'
 			}, {
-				header : Eway.locale.commen.mobile,
+				header : EwayLocale.commen.mobile,
 				dataIndex : 'mobile'
 			}, {
-				header : Eway.locale.commen.phone,
+				header : EwayLocale.commen.phone,
 				dataIndex : 'phone'
 			},{
-				header : Eway.locale.commen.email,
+				header : EwayLocale.commen.email,
 				dataIndex : 'email'
 			},{
-				header : Eway.locale.commen.type,
+				header : EwayLocale.commen.type,
 				dataIndex : 'type',
 				renderer: function(value,metadata,record){
 					if(value==0){
-		                	 return Eway.locale.commen.comboxType.machineManager;
+		                	 return EwayLocale.commen.comboxType.machineManager;
 		             }else if(value==1){
-		                	   return Eway.locale.commen.comboxType.machineRepairer;
+		                	   return EwayLocale.commen.comboxType.machineRepairer;
 		             }
 				}
 			},{
-				header : Eway.locale.person.bankPer.organizationName,
+				header : EwayLocale.person.bankPer.organizationName,
 				dataIndex : 'organizationName'
 			},{
-				header : Eway.locale.commen.state,
+				header : EwayLocale.commen.state,
 				dataIndex : 'state',
 				renderer: function(value,metadata,record){
 					if(value==1){
-		                	 return Eway.locale.commen.comboxStatus.onJob;
+		                	 return EwayLocale.commen.comboxStatus.onJob;
 		             }else if(value==2){
-		                	   return Eway.locale.commen.comboxStatus.onAdjust;
+		                	   return EwayLocale.commen.comboxStatus.onAdjust;
 		             }else if(value==3){
-		                	   return Eway.locale.commen.comboxStatus.onVacation;
+		                	   return EwayLocale.commen.comboxStatus.onVacation;
 		             }else if(value==0){
-		                	   return Eway.locale.commen.comboxStatus.other;
+		                	   return EwayLocale.commen.comboxStatus.other;
 		             }
 				}
 			}],

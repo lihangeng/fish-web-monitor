@@ -9,34 +9,34 @@ Ext.define('Eway.view.version.deviceVersion.Grid', {
 	initComponent: function() {
 		Ext.apply(this, {
 			tbar: ['->', {
-				text: Eway.locale.button.search,//'查询',
+				text: EwayLocale.button.search,//'查询',
 				glyph : 0xf002,
 				action: 'query'
 			},{
-				text: Eway.locale.version.task.deviceVersionHis,//'查看设备历史版本',
-				tooltip:Eway.locale.version.task.deviceVersionHisTip,//'查看设备历史版本信息',
+				text: EwayLocale.version.task.deviceVersionHis,//'查看设备历史版本',
+				tooltip:EwayLocale.version.task.deviceVersionHisTip,//'查看设备历史版本信息',
 				glyph : 0xf129,
 				action:'history'
 			}],
 			columns : [{
-				header:Eway.locale.refs.terminalId,
+				header:EwayLocale.refs.terminalId,
 				dataIndex:'terminalId'
 			},{
-				header : Eway.locale.refs.ip,//'设备IP地址',
+				header : EwayLocale.refs.ip,//'设备IP地址',
 				dataIndex : 'ip',
 				width : 120
 			},{
-				header : Eway.locale.refs.orgName,
+				header : EwayLocale.refs.orgName,
 				dataIndex : 'orgName',
 				width : 200
 			},{
-				header : Eway.locale.machine.atmGroup.devVendorName,
+				header : EwayLocale.machine.atmGroup.devVendorName,
 				dataIndex : 'devBrand'
 			},{
-				header : Eway.locale.refs.devType,
+				header : EwayLocale.refs.devType,
 				dataIndex : 'devType'
 			},{
-				header: Eway.locale.machine.atmGroup.devCatalogName,
+				header: EwayLocale.machine.atmGroup.devCatalogName,
 				dataIndex : 'devCatalog',
 				flex:1
 			}/*,{

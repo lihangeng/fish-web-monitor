@@ -10,7 +10,7 @@ Ext.define("Eway.view.machine.device.module.StatusIDC", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : '<center>'+ Eway.locale.machine.device.comStatus+'</center>',
+				title : '<center>'+ EwayLocale.machine.device.comStatus+'</center>',
 				layout : 'column',
 				border : 'false',
 				items : [ {
@@ -25,13 +25,13 @@ Ext.define("Eway.view.machine.device.module.StatusIDC", {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.hwCode,
+						fieldLabel : EwayLocale.machine.device.hwCode,
 						name : 'hwCode',
 						style : 'margin-top:2px'
 					} ]
 				} ]
 			}, {
-				title : Eway.locale.machine.device.IDCStatus,
+				title : EwayLocale.machine.device.IDCStatus,
 				titleAlign:'center',
 				layout : 'column',
 				border : 'false',
@@ -45,11 +45,11 @@ Ext.define("Eway.view.machine.device.module.StatusIDC", {
 						height : 40
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.media,
+						fieldLabel : EwayLocale.machine.device.media,
 						name : 'media',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.retainBin,
+						fieldLabel : EwayLocale.machine.device.retainBin,
 						name : 'retainBin'
 					} ]
 				}, {
@@ -62,7 +62,7 @@ Ext.define("Eway.view.machine.device.module.StatusIDC", {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.cards,
+						fieldLabel : EwayLocale.machine.device.cards,
 						name : 'cards',
 						style : 'margin-top:2px'
 					} ]

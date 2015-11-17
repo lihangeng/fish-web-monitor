@@ -4,7 +4,7 @@ Ext.define('Eway.view.machine.device.Update', {
 
 	requires: ['Eway.view.machine.device.Form'],
 
-	title: Eway.locale.machine.device.changeDevInfo,
+	title: EwayLocale.machine.device.changeDevInfo,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -28,10 +28,10 @@ Ext.define('Eway.view.machine.device.Update', {
 			}],
 			buttonAlign : 'center',
 			fbar: [{
-				text: Eway.locale.button.confirm,
+				text: EwayLocale.button.confirm,
 				action: 'update'
 			}, {
-				text: Eway.locale.button.cancel,
+				text: EwayLocale.button.cancel,
 				handler: this.onOver
 			}]
 		});

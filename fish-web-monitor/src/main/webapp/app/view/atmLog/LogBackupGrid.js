@@ -14,19 +14,19 @@ Ext.define('Eway.view.atmLog.LogBackupGrid',{
 				flex : 1,
 				hidden : true
 			},{
-				header : Eway.locale.commen.terminalId,
+				header : EwayLocale.commen.terminalId,
 				dataIndex : 'terminalId',
 				flex : 1
 			},{
-				header : Eway.locale.atmLog.logDate,
+				header : EwayLocale.atmLog.logDate,
 				dataIndex : 'dateTime',
 				flex : 1
 			},{
-				header : Eway.locale.atmLog.lastBackupTime,
+				header : EwayLocale.atmLog.lastBackupTime,
 				dataIndex : 'lastDoDate',
 				flex : 1
 			},{
-				header : Eway.locale.atmLog.fileSize,
+				header : EwayLocale.atmLog.fileSize,
 				dataIndex : 'size',
 				renderer: function(value,metadata,record){
                    	if(value>1024*1024*1024){
@@ -41,34 +41,34 @@ Ext.define('Eway.view.atmLog.LogBackupGrid',{
 				},
 				flex : 1
 			},{
-				header : Eway.locale.atmLog.backupResult,
+				header : EwayLocale.atmLog.backupResult,
 				dataIndex : 'backupResult',
 				width : 100,
 				renderer : function(value,metaData,record,rowIndex,colIndex,store,view){
 					if(value == 'SUCCESS'){
-						return Eway.locale.tip.success;
+						return EwayLocale.tip.success;
 					}
 					else if(value == 'UNDO'){
-						return Eway.locale.atmLog.noBegin;
+						return EwayLocale.atmLog.noBegin;
 					}
 					else if(value == 'ERROR_CONNECT'){
-						return Eway.locale.atmLog.connectFail;
+						return EwayLocale.atmLog.connectFail;
 					}
 					else if(value == 'ERROR_NOLOG'){
-						return Eway.locale.atmLog.noLog;
+						return EwayLocale.atmLog.noLog;
 					}
 					else if(value == 'ERROR'){
-						return Eway.locale.atmLog.unKnownFail;
+						return EwayLocale.atmLog.unKnownFail;
 					}
 				}
 			},{
 				xtype:'actioncolumn',
 				flex : .5,
 				dataIndex : 'backupResult',
-				header: Eway.locale.agent.remote.screen.loading,
+				header: EwayLocale.agent.remote.screen.loading,
 				items : [{
 					icon : 'resources/images/down.gif',
-					tooltip: Eway.locale.agent.remote.screen.loading,
+					tooltip: EwayLocale.agent.remote.screen.loading,
 					getClass : function(value,metadata,record,ronwIndex,colindex,store){
 						var result = record.get('backupResult'); 
 						if(result == 'SUCCESS'){
@@ -104,7 +104,7 @@ Ext.define('Eway.view.atmLog.LogBackupGrid',{
 			}),
 			tbar : ['->',{
 				xtype : 'button',
-				text : Eway.locale.button.search,
+				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}]

@@ -16,20 +16,20 @@ Ext.define('Eway.view.report.openrate.device.Grid', {
 			initRegion : true,
 			store : store,
 			tbar : [ '->', {
-				text : Eway.locale.report.openrate.device.statistics,
+				text : EwayLocale.report.openrate.device.statistics,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : Eway.locale.report.openrate.device.importStat,
+				text : EwayLocale.report.openrate.device.importStat,
 				glyph : 0xf1c3,
 				action : 'importStat'
 			} ],
 			columns : [ {
-				header : Eway.locale.commen.terminalId,
+				header : EwayLocale.commen.terminalId,
 				dataIndex : 'terminalId',
 				width:80
 			}, {
-				header : Eway.locale.report.openrate.device.statDate,
+				header : EwayLocale.report.openrate.device.statDate,
 				dataIndex : 'statDate',
 				width:100
 			}/*, {
@@ -45,35 +45,35 @@ Ext.define('Eway.view.report.openrate.device.Grid', {
 				header : '方案有效开机时长',
 				dataIndex : 'programTimeReal'
 			}*/, {
-				header : Eway.locale.report.openrate.device.openTimes,
+				header : EwayLocale.report.openrate.device.openTimes,
 				dataIndex : 'openTimes',
 				width:140
 			}, {
-				header : Eway.locale.report.openrate.device.healthyTimeReal,
+				header : EwayLocale.report.openrate.device.healthyTimeReal,
 				dataIndex : 'healthyTimeReal',
 				width:120
 			}, {
-				header : Eway.locale.report.openrate.device.maintainTimeReal,
+				header : EwayLocale.report.openrate.device.maintainTimeReal,
 				dataIndex : 'maintainTimeReal',
 				width:130
 			}, {
-				header : Eway.locale.report.openrate.device.unknownTimeReal,
+				header : EwayLocale.report.openrate.device.unknownTimeReal,
 				dataIndex : 'unknownTimeReal',
 				width:120
 			}, {
-				header : Eway.locale.report.openrate.device.faultTimeReal,
+				header : EwayLocale.report.openrate.device.faultTimeReal,
 				dataIndex : 'faultTimeReal',
 				width:140
 			}, {
-				header : Eway.locale.report.openrate.device.atmpTimeReal,
+				header : EwayLocale.report.openrate.device.atmpTimeReal,
 				dataIndex : 'atmpTimeReal',
 				width:130
 			}, {
-				header : Eway.locale.report.openrate.device.stopTimeReal,
+				header : EwayLocale.report.openrate.device.stopTimeReal,
 				dataIndex : 'stopTimeReal',
 				width:180
 			}, {
-				header : Eway.locale.report.openrate.device.openRate,
+				header : EwayLocale.report.openrate.device.openRate,
 				sortable : true,
 				renderer : this.pctChange,
 				dataIndex : 'openRate',
@@ -88,7 +88,7 @@ Ext.define('Eway.view.report.openrate.device.Grid', {
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : Eway.locale.commen.toolbar
+				displayMsg : EwayLocale.commen.toolbar
 			})
 		});
 

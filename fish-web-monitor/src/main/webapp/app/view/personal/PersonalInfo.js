@@ -12,7 +12,7 @@ Ext.define('Eway.view.personal.PersonalInfo', {
 		Ext.apply(this,{
 			items : [ {
 				xtype : 'fieldset',
-				title : Eway.locale.personal.baseInfo,
+				title : EwayLocale.personal.baseInfo,
 				collapsible : true,
 				defaults : {
 					border : false,
@@ -24,25 +24,25 @@ Ext.define('Eway.view.personal.PersonalInfo', {
 					readOnly: true
 				},
 				items: [{
-					fieldLabel : Eway.locale.personal.accountNum,
+					fieldLabel : EwayLocale.personal.accountNum,
 					value:ewayUser.getCode()
 				},{
-					fieldLabel : Eway.locale.commen.name,
+					fieldLabel : EwayLocale.commen.name,
 					value:ewayUser.getName()
 				},{
-					fieldLabel : Eway.locale.commen.orgNameBelongs,
+					fieldLabel : EwayLocale.commen.orgNameBelongs,
 					name : 'organizationName'
 				},{
-					fieldLabel : Eway.locale.commen.mobile,
+					fieldLabel : EwayLocale.commen.mobile,
 					name : 'phone'
 				},{
-					fieldLabel : Eway.locale.commen.email,
+					fieldLabel : EwayLocale.commen.email,
 					name : 'email'
 				},{
-					fieldLabel : Eway.locale.commen.jobNum,
+					fieldLabel : EwayLocale.commen.jobNum,
 					name : 'jobNum'
 				},{
-					fieldLabel : Eway.locale.commen.remark,
+					fieldLabel : EwayLocale.commen.remark,
 					name : 'remark'
 				}]
 			}/*,{

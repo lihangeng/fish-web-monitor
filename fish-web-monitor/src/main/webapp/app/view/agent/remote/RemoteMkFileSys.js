@@ -3,7 +3,7 @@ Ext.define('Eway.view.agent.remote.RemoteMkFileSys', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.remote_mkFileSys',
 
-	title : Eway.locale.agent.remote.uploadFile,
+	title : EwayLocale.agent.remote.uploadFile,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -27,24 +27,24 @@ Ext.define('Eway.view.agent.remote.RemoteMkFileSys', {
 					fieldLabel:'',
 //					regex:/^[a-zA-Z]:?\\(?:[^\\\?\/\*\|<>:"]+\\)*[^\\\?\/\*\|<>:"]*?\.*[^.\\\?\/\*\|<>:"]*$/,
 					regex:/^[^\\\/\:\*\?\"\<\>\|\,]+(\,[^\\\/\:\*\?\"\<\>\|\,]+)*$/,
-					regexText:Eway.locale.agent.remote.rules,
+					regexText:EwayLocale.agent.remote.rules,
 					name: 'file',
-					waitMsg:Eway.locale.agent.remote.nowCreat,
+					waitMsg:EwayLocale.agent.remote.nowCreat,
 					allowBlank : false
 				},{
 					xtype:'hidden',
 					hideLabel : true,
-					fieldLabel: Eway.locale.agent.remote.nowPath,
+					fieldLabel: EwayLocale.agent.remote.nowPath,
 					name:'nowPath'
 				} ],
 				buttons : [ {
-					text : Eway.locale.agent.remote.confirm,
+					text : EwayLocale.agent.remote.confirm,
 					action : 'confirm'
 				}, {
-					text : Eway.locale.agent.remote.reset,
+					text : EwayLocale.agent.remote.reset,
 					handler : this.onReset
 				}, {
-					text : Eway.locale.agent.remote.back,
+					text : EwayLocale.agent.remote.back,
 					handler : this.onOver
 				} ]
 			}

@@ -3,7 +3,7 @@ Ext.define('Eway.store.advert.AdvertDownMethodSearch', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'', display:Eway.locale.refs.selectAll}, 
+	data: [{value:'', display:EwayLocale.refs.selectAll}, 
 		   /*{value:'APPEND', display:'追加'},*/ 
-	       {value:'COVER', display:Eway.locale.advert.advertDownMethodCover}]//'覆盖'}]
+	       {value:'COVER', display:EwayLocale.advert.advertDownMethodCover}]//'覆盖'}]
 });

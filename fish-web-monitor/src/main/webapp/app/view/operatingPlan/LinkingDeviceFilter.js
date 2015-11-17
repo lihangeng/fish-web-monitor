@@ -17,8 +17,8 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceFilter',{
 				},
 				items : [ {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : Eway.locale.refs.orgName,
-					emptyText : Eway.locale.combox.select,
+					fieldLabel : EwayLocale.refs.orgName,
+					emptyText : EwayLocale.combox.select,
 					name : 'orgName',
 					hiddenValue : 'orgId',
 					editable : true,
@@ -38,7 +38,7 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceFilter',{
 					fieldLabel : 'IP',
 					name : 'ip',
 				    regex:/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
-				    regexText : Eway.locale.vtype.ip
+				    regexText : EwayLocale.vtype.ip
 				}]
 			}, {
 				columnWidth : .5,
@@ -48,10 +48,10 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceFilter',{
 				},
 				items : [  {
 					xtype : 'textfield',
-					fieldLabel :Eway.locale.commen.terminalId,
+					fieldLabel :EwayLocale.commen.terminalId,
 					name : 'terminalId',
 					regex : /^\w+[\w-_\.]*$/,
-					regexText : Eway.locale.vtype.numberRule,
+					regexText : EwayLocale.vtype.numberRule,
 					maxLength : 20
 				},{
 					style : 'padding-top:0px',

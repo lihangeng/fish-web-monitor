@@ -83,7 +83,7 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 			this.win.down('field[name="deviceCode"]').setValue(sm.getLastSelected().data.terminalId);
 			win.close();
 		}else{
-			Eway.alert(Eway.locale.vtype.choseDev);
+			Eway.alert(EwayLocale.vtype.choseDev);
 		}
 	},
 
@@ -105,7 +105,7 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 				success : function(record,operation){
 					store.add(record);
 					win.close();
-					Eway.alert(Eway.addSuccess);
+					Eway.alert(EwayLocale.addSuccess);
 					//点击增加成功后查询条件不带入重新查询。
 					store.setUrlParamsByObject(null);
 					store.setBaseParam('organizationID',ewayUser.getOrgId());
@@ -166,7 +166,7 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 	            }		
 		}
 		else {
-			Eway.alert(Eway.choiceUpdateMsg);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 		}
 	},
 
@@ -194,7 +194,7 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 			record.set("responsibilityName",data.responsibilityName);
 			record.save({
 				success : function(record,operation){
-					Eway.alert(Eway.updateSuccess);
+					Eway.alert(EwayLocale.updateSuccess);
 					record.set("id",oldId);
 					store.applyModel(record);
 					win.close();
@@ -217,14 +217,14 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 		var quaryData = view.down('form').getForm().getValues();
 		var store = this.getEwayView().down('gridpanel').getStore();
 		if(sm.getCount() == 1) {
-			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
-					Eway.locale.tip.remove.confirm.info,
+			Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,
+					EwayLocale.tip.remove.confirm.info,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Eway.alert(Eway.deleteSuccess);
+									Eway.alert(EwayLocale.updateSuccess);
 									grid.getStore().remove(record);
 									store.setUrlParamsByObject(quaryData);
 									store.setBaseParam('organizationID',ewayUser.getOrgId());
@@ -241,7 +241,7 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 					}, this);
 		}
 		else {
-			Eway.alert(Eway.choiceDeleteMsg);
+			Eway.alert(EwayLocale.choiceDeleteMsg);
 		}
 	}
 });

@@ -67,7 +67,7 @@ Ext.define('Eway.controller.machine.atmCatalog.AtmCatalog', {
 			this.addRecord(data);
 			this.getAddWin().close();
 		} else {
-			Eway.alert(Eway.locale.tip.inputError);
+			Eway.alert(EwayLocale.tip.inputError);
 		}
 	},
 
@@ -94,7 +94,7 @@ Ext.define('Eway.controller.machine.atmCatalog.AtmCatalog', {
 			win.show();
 		}
 		else {
-			Eway.alert(Eway.choiceUpdateMsg);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 		}
 	},
 
@@ -117,7 +117,7 @@ Ext.define('Eway.controller.machine.atmCatalog.AtmCatalog', {
 					success : function(response) {
 						var object = Ext.decode(response.responseText);
 						if (object.success == true) {
-							no.markInvalid(Eway.locale.tip.numberExist);
+							no.markInvalid(EwayLocale.tip.numberExist);
 						}
 					}
 				});
@@ -127,8 +127,8 @@ Ext.define('Eway.controller.machine.atmCatalog.AtmCatalog', {
 		var grid = this.getAtmCatalogGrid();
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
-			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
-					Eway.locale.tip.remove.confirm.info,
+			Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,
+					EwayLocale.tip.remove.confirm.info,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
@@ -137,7 +137,7 @@ Ext.define('Eway.controller.machine.atmCatalog.AtmCatalog', {
 					}, this);
 		}
 		else {
-			Eway.alert(Eway.choiceDeleteMsg);
+			Eway.alert(EwayLocale.choiceDeleteMsg);
 		}
 	},
 

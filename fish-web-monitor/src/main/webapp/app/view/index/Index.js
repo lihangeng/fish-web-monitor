@@ -21,7 +21,7 @@ Ext.define('Eway.view.index.Index', {
     
 	initComponent: function() {
 		Ext.apply(this, {
-		    title: Eway.locale.index.indexPage,
+		    title: EwayLocale.index.indexPage,
 		    items:[{
 		    	xtype:'statusDonutCharts'
 		    },{

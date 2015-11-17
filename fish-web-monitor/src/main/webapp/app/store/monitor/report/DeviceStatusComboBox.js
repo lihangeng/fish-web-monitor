@@ -4,7 +4,7 @@ Ext.define('Eway.store.monitor.report.DeviceStatusComboBox', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value: '', display:Eway.locale.commen.all},
-			{value:'2', display:Eway.locale.commen.comboxDevStatus.open}, 
-	       {value:'3', display:Eway.locale.commen.comboxDevStatus.stop}]
+	data: [{value: '', display:EwayLocale.commen.all},
+			{value:'2', display:EwayLocale.commen.comboxDevStatus.open}, 
+	       {value:'3', display:EwayLocale.commen.comboxDevStatus.stop}]
 });

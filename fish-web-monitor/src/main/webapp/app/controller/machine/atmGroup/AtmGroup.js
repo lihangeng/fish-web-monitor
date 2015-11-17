@@ -73,7 +73,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		if(newCard.name=='groupPanel'){
 			var tabpanel = this.getEwayView().down("tabpanel");
 			var deviceDetailPanel = this.getEwayView().down("panel[name='atmGroupDeviceDetails']");
-			deviceDetailPanel.setTitle(Eway.locale.monitor.devMonitor.atmGroupTip);
+			deviceDetailPanel.setTitle(EwayLocale.monitor.devMonitor.atmGroupTip);
 			tabpanel.remove(deviceDetailPanel,true);
 		}
 	},
@@ -81,13 +81,13 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 
 		var groupRecord = this.getEwayView().down('atmGroup_groupGrid').getSelectionModel().getLastSelected();
 		if(groupRecord==undefined){
-			Eway.alert(Eway.locale.tip.search.record);
+			Eway.alert(EwayLocale.tip.search.record);
 			return ;
 		}
 		var deviceDetailPanel = Ext.create("Eway.view.machine.atmGroup.DeviceView");
 		var tabpanel = this.getEwayView().down("tabpanel");
 		tabpanel.add(deviceDetailPanel);
-		deviceDetailPanel.setTitle(groupRecord.get("name")+Eway.locale.monitor.devMonitor.atmGroupTip);
+		deviceDetailPanel.setTitle(groupRecord.get("name")+EwayLocale.monitor.devMonitor.atmGroupTip);
 		tabpanel.setActiveItem(deviceDetailPanel);
 //		deviceDetailPanel.setDisabled(false);
 //		deviceDetailPanel.down("pagingtoolbar").setDisabled(false);
@@ -147,7 +147,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 					//点击增加成功后查询条件不带入重新查询。
 					store.setUrlParamsByObject(null);
 					store.loadPage(1);
-					Eway.alert(Eway.addSuccess);
+					Eway.alert(EwayLocale.addSuccess);
 			    },
 			    failure: function(record,operation){
 			    	Eway.alert(operation.getError());
@@ -167,7 +167,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			win.show();
 		}
 		else {
-			Eway.alert(Eway.choiceUpdateMsg);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 		}
 	},
 
@@ -184,7 +184,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			record.set("note",data.note);
 			record.save({
 				success : function(recordResult,operation){
-					Eway.alert(Eway.updateSuccess);
+					Eway.alert(EwayLocale.updateSuccess);
 //					store.setUrlParamsByObject(quarydata);
 //					store.loadPage(1);
 					if(undefined==recordResult.get("id")||""==recordResult.get("id")||0==recordResult.get("id")){
@@ -209,14 +209,14 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		var quarydata = this.getEwayView().down('form').getForm().getValues();// 得到所有的查询条件的值
 		var store = this.getEwayView().down('atmGroup_groupGrid').getStore();
 		if(sm.getCount() == 1) {
-			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
-					Eway.locale.tip.isConfirmRemove,
+			Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,
+					EwayLocale.tip.isConfirmRemove,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Eway.alert(Eway.deleteSuccess);
+									Eway.alert(EwayLocale.updateSuccess);
 									store.setUrlParamsByObject(quarydata);
 									store.load( {scope: this,
 										callback: function(){
@@ -242,7 +242,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 					}, this);
 		}
 		else {
-			Eway.alert(Eway.choiceDeleteMsg);
+			Eway.alert(EwayLocale.choiceDeleteMsg);
 		}
 
 	},
@@ -264,7 +264,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			tubeMachine.on('render', this.renderTubeMachine, this);
 			win.show();
 		} else {
-			Eway.alert(Eway.locale.tip.search.record);
+			Eway.alert(EwayLocale.tip.search.record);
 		}
 	},
 
@@ -295,7 +295,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		var bool = form.isValid();
 		// 查询输入验证
 		if (bool == false) {
-			Eway.alert(Eway.locale.tip.searchOfNoLegal);
+			Eway.alert(EwayLocale.tip.searchOfNoLegal);
 			return
 		}
 		var values = form.getValues();
@@ -306,7 +306,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			store.setBaseParam('groupId',groupRecord.data.id);
 			store.loadPage(1);
 		}else {
-			Eway.alert(Eway.locale.tip.noGroupInfo);
+			Eway.alert(EwayLocale.tip.noGroupInfo);
 		}
 
 	},
@@ -338,7 +338,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 				}
 			});
 		}else {
-			Eway.alert(Eway.locale.tip.selectAdd);
+			Eway.alert(EwayLocale.tip.selectAdd);
 		}
 	},
 
@@ -351,7 +351,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		var bool = form.isValid();
 		// 查询输入验证
 		if (bool == false) {
-			Eway.alert(Eway.locale.tip.searchOfNoLegal);
+			Eway.alert(EwayLocale.tip.searchOfNoLegal);
 			return
 		}
 		var values = form.getValues();
@@ -402,7 +402,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			record.save({
 				success: function() {
 
-					Ext.Msg.confirm(Eway.locale.tip.remind, Eway.locale.tip.continueAdd, function(result) {
+					Ext.Msg.confirm(EwayLocale.tip.remind, EwayLocale.tip.continueAdd, function(result) {
 						if ("yes" != result) {
 							win.close();
 						}
@@ -421,12 +421,12 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 					store2.load();
 				},
 				failure: function(){
-					Eway.alert(Eway.locale.tip.addFail);
+					Eway.alert(EwayLocale.tip.addFail);
 				},
 				scope:this
 			});
 		}else{
-			Eway.alert(Eway.locale.tip.selectAdd);
+			Eway.alert(EwayLocale.tip.selectAdd);
 		}
 
 	},
@@ -439,8 +439,8 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			if(groupRecord!=null){
-				Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
-						Eway.locale.tip.isRemoveDev,
+				Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,
+						EwayLocale.tip.isRemoveDev,
 						function(button,text) {
 							if(button=="yes"){
 								var record = sm.getLastSelected();
@@ -449,23 +449,23 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 									url : 'api/machine/atmGroup/unlink',
 									params : {groupId :groupRecord.data.id,deviceId:record.data.id},
 									success: function(){
-										Eway.alert(Eway.deleteSuccess);
+										Eway.alert(EwayLocale.updateSuccess);
 										me.onDeviceQueryDevice();
 									},
 									failure: function(){
-										Eway.alert(Eway.locale.tip.removeFail);
+										Eway.alert(EwayLocale.tip.removeFail);
 									},
 									scope:this
 								});
 							}
 						}, this);
 			}else {
-				Eway.alert(Eway.locale.tip.selectRemoveGroup);
+				Eway.alert(EwayLocale.tip.selectRemoveGroup);
 			}
 
 		}
 		else {
-			Eway.alert(Eway.locale.tip.selectRemoveDev);
+			Eway.alert(EwayLocale.tip.selectRemoveDev);
 		}
 	}
 });

@@ -7,7 +7,7 @@ Ext.define('Eway.view.monitor.card.CardDestoryView', {
 	           'Eway.view.monitor.card.CardDestoryFilterForm'
 	           ],
 	
-	title: Eway.locale.monitor.business.card.destory,
+	title: EwayLocale.monitor.business.card.destory,
 	layout: 'border',
 	
 	initComponent: function() {

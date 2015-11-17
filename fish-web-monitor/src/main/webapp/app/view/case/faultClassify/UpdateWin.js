@@ -3,7 +3,7 @@ Ext.define('Eway.view.case.faultClassify.UpdateWin', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.faultClassify_UpdateWin',
 
-	title: Eway.locale.cases.faultClassify.updateFaultTypeConfiguration,
+	title: EwayLocale.cases.faultClassify.updateFaultTypeConfiguration,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -27,11 +27,11 @@ Ext.define('Eway.view.case.faultClassify.UpdateWin', {
 				items: [{
 					xtype: 'displayfield',
 					name : 'classifyName',
-					fieldLabel: Eway.locale.cases.faultClassify.faultClassifyName
+					fieldLabel: EwayLocale.cases.faultClassify.faultClassifyName
 				},{
 					xtype : 'combobox',
 					name : 'responsorType',
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.cases.faultClassify.faultresponsorType,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.cases.faultClassify.faultresponsorType,
 					store : response,
 					queryMode: 'local',
     				displayField: 'name',
@@ -41,27 +41,27 @@ Ext.define('Eway.view.case.faultClassify.UpdateWin', {
 				},{
 					xtype : 'textfield',
 					name : 'resolveHour',
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.cases.faultClassify.faultCloseInterval,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.cases.faultClassify.faultCloseInterval,
 					regex : /^\d{0,9}(\.\d*)?$/,
-					regexText: Eway.locale.cases.faultClassify.number,
+					regexText: EwayLocale.cases.faultClassify.number,
 					allowBlank : false
 				},{
 					xtype : 'textfield',
 					name : 'upgrade',
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.cases.faultClassify.upGradeTimes,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.cases.faultClassify.upGradeTimes,
 					regex : /^[\d]{0,5}$/,
-					regexText: Eway.locale.cases.faultClassify.number,
+					regexText: EwayLocale.cases.faultClassify.number,
 					allowBlank : false
 				},{
 					xtype : 'textfield',
 					name : 'notifyTimes',
-					fieldLabel : Eway.locale.cases.caseFault.notifyRepeatTimes,
+					fieldLabel : EwayLocale.cases.caseFault.notifyRepeatTimes,
 					regex : /^[1-9][\d]{0,4}$/,
-					regexText: Eway.locale.cases.faultClassify.informNumber
+					regexText: EwayLocale.cases.faultClassify.informNumber
 				},{
 					xtype : 'combobox',
 					name : 'notifyWay',
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.cases.faultClassify.faultInformWay,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.cases.faultClassify.faultInformWay,
 					store : notifyway,
 					queryMode: 'local',
     				displayField: 'display',
@@ -72,11 +72,11 @@ Ext.define('Eway.view.case.faultClassify.UpdateWin', {
 				buttonAlign : 'center',
 				buttons : [ {
 					xtype : 'button',
-					text : Eway.locale.cases.confirm,
+					text : EwayLocale.cases.confirm,
 					action : 'confirm'
 				}, {
 					xtype : 'button',
-					text : Eway.locale.cases.cancel,
+					text : EwayLocale.cases.cancel,
 					handler : this.onOver
 				} ]
 			}

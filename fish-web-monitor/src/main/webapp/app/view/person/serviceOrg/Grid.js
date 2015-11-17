@@ -17,11 +17,11 @@ Ext.define('Eway.view.person.serviceOrg.Grid', {
 				action : 'tip',
 				xtype : 'tbtext'
 			}, '->', {
-				text : Eway.locale.button.search,
+				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : Eway.locale.button.add,
+				text : EwayLocale.button.add,
 				glyph : 0xf067,
 				action : 'add',
 				code : 'serviceOrgAdd',
@@ -29,7 +29,7 @@ Ext.define('Eway.view.person.serviceOrg.Grid', {
 					'beforerender' : Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : Eway.locale.button.update,
+				text : EwayLocale.button.update,
 				glyph : 0xf040,
 				action : 'update',
 				code : 'serviceOrgUpdate',
@@ -37,7 +37,7 @@ Ext.define('Eway.view.person.serviceOrg.Grid', {
 					'beforerender' : Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : Eway.locale.button.remove,
+				text : EwayLocale.button.remove,
 				glyph : 0xf014,
 				action : 'remove',
 				code : 'serviceOrgDel',
@@ -45,42 +45,42 @@ Ext.define('Eway.view.person.serviceOrg.Grid', {
 					'beforerender' : Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : Eway.locale.person.serviceOrg.serviceOrgAdmin,
+				text : EwayLocale.person.serviceOrg.serviceOrgAdmin,
 				glyph : 0xf007,
 				code : 'serviceOrgAdmin',
 				listeners : {
 					'beforerender' : Eway.lib.ButtonUtils.onButtonBeforeRender
 				},
 				menu : [ {
-					text : Eway.locale.person.serviceOrg.setManager,
+					text : EwayLocale.person.serviceOrg.setManager,
 					action : 'setManager'
 				}, {
-					text : Eway.locale.person.serviceOrg.removeManager,
+					text : EwayLocale.person.serviceOrg.removeManager,
 					action : 'removeManager'
 				} ]
 			} ],
 			columns : [ {
-				header : Eway.locale.person.serviceOrg.code,
+				header : EwayLocale.person.serviceOrg.code,
 				dataIndex : 'code',
 				sortable : true
 			}, {
-				header : Eway.locale.person.serviceOrg.name,
+				header : EwayLocale.person.serviceOrg.name,
 				dataIndex : 'displayName',
 				sortable : true
 			}, {
-				header : Eway.locale.person.serviceOrg.zip,
+				header : EwayLocale.person.serviceOrg.zip,
 				dataIndex : 'zip',
 				sortable : true
 			}, {
-				header : Eway.locale.person.serviceOrg.serviceOrgAdmin,
+				header : EwayLocale.person.serviceOrg.serviceOrgAdmin,
 				dataIndex : 'manager'
 			}, {
-				header : Eway.locale.person.serviceOrg.address,
+				header : EwayLocale.person.serviceOrg.address,
 				dataIndex : 'address',
 				sortable : true,
 				width : 250
 			}, {
-				header : Eway.locale.person.serviceOrg.description,
+				header : EwayLocale.person.serviceOrg.description,
 				dataIndex : 'description',
 				sortable : true,
 				flex : 1

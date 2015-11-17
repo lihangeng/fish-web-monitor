@@ -14,35 +14,35 @@ Ext.define('Eway.view.machine.device.DeviceBox', {
 		Ext.apply(this, {
 			
 			columns : [{
-				header :Eway.locale.machine.device.log,
+				header :EwayLocale.machine.device.log,
 				sortable : true,
 				dataIndex : 'log'
 			}, {
-				header : Eway.locale.machine.device.style,
+				header : EwayLocale.machine.device.style,
 				dataIndex : 'style',
 				sortable : true
 			}, {
-				header : Eway.locale.machine.device.status,
+				header : EwayLocale.machine.device.status,
 				dataIndex : 'status',
 				sortable : true
 			},{
-				header : Eway.locale.machine.device.initailnumber,
+				header : EwayLocale.machine.device.initailnumber,
 				dataIndex : 'initailnumber',
 				sortable :true
 			},{
-				header : Eway.locale.machine.device.postnumber,
+				header : EwayLocale.machine.device.postnumber,
 				dataIndex : 'postnumber',
 				sortable : true
 			},{
-				header : Eway.locale.machine.device.currentnumber,
+				header : EwayLocale.machine.device.currentnumber,
 				dataIndex : 'currentnumber',
 				sortable : true
 			},{
-				header : Eway.locale.machine.device.facevalue,
+				header : EwayLocale.machine.device.facevalue,
 				dataIndex : 'facevalue',
 				sortable : true
 			},{
-				header : Eway.locale.machine.device.currency,
+				header : EwayLocale.machine.device.currency,
 				dataIndex : 'currency',
 				sortable : true
 			}]

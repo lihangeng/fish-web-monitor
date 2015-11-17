@@ -8,7 +8,7 @@ Ext.define('Eway.view.monitor.device.filterManager.FilterWin',{
 	height : 600,
 	modal : true,
 	
-	title : Eway.locale.monitor.devMonitor.filterManager.title,
+	title : EwayLocale.monitor.devMonitor.filterManager.title,
 	
 	requires : [ 'Eway.view.monitor.device.filterManager.Grid',
 				  'Eway.view.monitor.device.filterManager.FilterForm' ],

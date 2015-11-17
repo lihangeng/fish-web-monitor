@@ -5,7 +5,7 @@ Ext.define('Eway.view.machine.atmGroup.GroupUpdate', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.atmGroup_groupUpdate',
 
-	title: Eway.locale.machine.atmGroup.updateTitle,
+	title: EwayLocale.machine.atmGroup.updateTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -26,14 +26,14 @@ Ext.define('Eway.view.machine.atmGroup.GroupUpdate', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.groupName,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.atmGroup.groupName,
 					xtype : 'textfield',
 					name : 'name',
 					maxLength : 30,
 					allowBlank : false
 				},{
 				    xtype : 'textarea',
-				    fieldLabel : Eway.locale.machine.atmGroup.note,
+				    fieldLabel : EwayLocale.machine.atmGroup.note,
 				    name : 'note',
 				    autoScroll : true,
 					maxLength :30,
@@ -41,14 +41,14 @@ Ext.define('Eway.view.machine.atmGroup.GroupUpdate', {
 				}],
 				buttonAlign : 'center',
 				buttons: [{
-					text: Eway.locale.button.confirm,
+					text: EwayLocale.button.confirm,
 					action: 'update'
 				}, {
-					text: Eway.locale.button.reset,
+					text: EwayLocale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: Eway.locale.button.cancle,
+					text: EwayLocale.button.cancle,
 					handler: this.onOver
 				}]
 			}

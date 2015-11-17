@@ -16,30 +16,30 @@ Ext.define('Eway.view.atmLog.errorAtmLogInfo.ErrorAtmLogInfoGrid',{
 				width : 100,
 				hidden : true
 			},{
-				header : Eway.locale.commen.terminalId,
+				header : EwayLocale.commen.terminalId,
 				dataIndex : 'terminalId',
 				width : 100
 			},{
-				header : Eway.locale.atmLog.logDate,
+				header : EwayLocale.atmLog.logDate,
 				dataIndex : 'dateTime',
 				width : 100
 			},{
-				header : Eway.locale.atmLog.backupResult,
+				header : EwayLocale.atmLog.backupResult,
 				dataIndex : 'backupResult',
 				width : 100,
 				renderer : function(value,metaData,record,rowIndex,colIndex,store,view){
 					if(value == 'SUCCESS'){
-						return Eway.locale.tip.success;
+						return EwayLocale.tip.success;
 					}else{
-						return Eway.locale.tip.fail;
+						return EwayLocale.tip.fail;
 					}
 				}
 			},{
-				header : Eway.locale.atmLog.lastDoDate,
+				header : EwayLocale.atmLog.lastDoDate,
 				dataIndex : 'lastDoDate',
 				width : 160
 			},{
-				header : Eway.locale.atmLog.getLog,
+				header : EwayLocale.atmLog.getLog,
 				flex: 1,
 				xtype:'actioncolumn',
 				items:[{
@@ -50,7 +50,7 @@ Ext.define('Eway.view.atmLog.errorAtmLogInfo.ErrorAtmLogInfoGrid',{
 						if(rec.data.type=="DIR"){
 							return "actioncolumn-hidden";
 	                       }else{
-	                       		metadata.tdAttr ='data-qtip="'+Eway.locale.agent.remote.clickLoadFile+'"';
+	                       		metadata.tdAttr ='data-qtip="'+EwayLocale.agent.remote.clickLoadFile+'"';
 	                       }
 					},
 					scope : me,
@@ -60,14 +60,14 @@ Ext.define('Eway.view.atmLog.errorAtmLogInfo.ErrorAtmLogInfoGrid',{
 						var terminalId = rec.get('terminalId');
 						var dateTime = rec.get('dateTime');
 						if (rec.get('size') > 209715200) {
-							Eway.alert(Eway.locale.agent.remote.loadFileSize);
+							Eway.alert(EwayLocale.agent.remote.loadFileSize);
 						} else {
 							var win = grid.up('window');
 							var gridEl = grid.getEl();
-							var mask = new Ext.LoadMask(grid, {msg : Eway.locale.agent.remote.nowLoadFile});
+							var mask = new Ext.LoadMask(grid, {msg : EwayLocale.agent.remote.nowLoadFile});
 							Ext.MessageBox.show({
-								title : Eway.locale.tip.remind,
-								msg : Eway.locale.agent.remote.judgeLoad,
+								title : EwayLocale.tip.remind,
+								msg : EwayLocale.agent.remote.judgeLoad,
 								modal : true,
 								fn : function(id) {
 									mask.show();
@@ -99,7 +99,7 @@ Ext.define('Eway.view.atmLog.errorAtmLogInfo.ErrorAtmLogInfoGrid',{
 			}),
 			tbar : ['->',{
 				xtype : 'button',
-				text : Eway.locale.button.exported,
+				text : EwayLocale.button.exported,
 				glyph : 0xf1c3,
 				action : 'export'
 			}]
@@ -141,7 +141,7 @@ download : function(flag, terminalId, dateTime, mask, gridEl) {
 		},
 		failure : function() {
 			mask.hide();
-			Eway.alert(Eway.locale.agent.remote.loadFailure);
+			Eway.alert(EwayLocale.agent.remote.loadFailure);
 		}
 	});
 }	

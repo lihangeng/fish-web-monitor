@@ -9,7 +9,7 @@ Ext.define('Eway.view.machine.quittingNotice.DeviceWin', {
 
 	requires : [ 'Eway.view.machine.quittingNotice.DeviceFilterForm',
 			'Eway.view.machine.quittingNotice.DeviceGrid' ],
-	title : Eway.locale.machine.quittingNotice.selectDev,
+	title : EwayLocale.machine.quittingNotice.selectDev,
 	width : 750,
 	height : 400,
 	layout : 'border',

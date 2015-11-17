@@ -10,7 +10,7 @@ Ext.define("Eway.view.machine.device.module.StatusPIN", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : '<center>'+Eway.locale.machine.device.comStatus+'</center>',
+				title : '<center>'+EwayLocale.machine.device.comStatus+'</center>',
 				layout : 'column',
 				border : 'false',
 				items : [ {
@@ -25,13 +25,13 @@ Ext.define("Eway.view.machine.device.module.StatusPIN", {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.hwCode,
+						fieldLabel : EwayLocale.machine.device.hwCode,
 						name : 'hwCode',
 						style : 'margin-top:2px'
 					} ]
 				} ]
 			}, {
-				title : '<center>'+Eway.locale.machine.device.PINStatus+'</center>',
+				title : '<center>'+EwayLocale.machine.device.PINStatus+'</center>',
 				layout : 'column',
 				border : 'false',
 				items : [ {

@@ -15,54 +15,54 @@ Ext.define('Eway.view.report.openrate.org.TreeGrid', {
 			store : store,
 			multiSelect : true,
 			tbar : [ '->', {
-				text : Eway.locale.report.openrate.device.statistics,
+				text : EwayLocale.report.openrate.device.statistics,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : Eway.locale.report.openrate.device.importStat,
+				text : EwayLocale.report.openrate.device.importStat,
 				glyph : 0xf1c3,
 				action : 'importStat'
 			} ],
 			columns : [ {
 				xtype : 'treecolumn',
-				text : Eway.locale.report.openrate.device.organizationName,
+				text : EwayLocale.report.openrate.device.organizationName,
 				width : 200,
 				sortable : true,
 				dataIndex : 'terminalId'
 			}, {
-				header : Eway.locale.report.openrate.device.statDate,
+				header : EwayLocale.report.openrate.device.statDate,
 				dataIndex : 'statDate',
 				width : 100
 			}, {
-				header : Eway.locale.report.openrate.device.openTimes,
+				header : EwayLocale.report.openrate.device.openTimes,
 				dataIndex : 'openTimes',
 				width : 140
 			}, {
-				header : Eway.locale.report.openrate.device.healthyTimeReal,
+				header : EwayLocale.report.openrate.device.healthyTimeReal,
 				dataIndex : 'healthyTimeReal',
 				width : 120
 			}, {
-				header : Eway.locale.report.openrate.device.maintainTimeReal,
+				header : EwayLocale.report.openrate.device.maintainTimeReal,
 				dataIndex : 'maintainTimeReal',
 				width : 130
 			}, {
-				header : Eway.locale.report.openrate.device.unknownTimeReal,
+				header : EwayLocale.report.openrate.device.unknownTimeReal,
 				dataIndex : 'unknownTimeReal',
 				width : 120
 			}, {
-				header : Eway.locale.report.openrate.device.faultTimeReal,
+				header : EwayLocale.report.openrate.device.faultTimeReal,
 				dataIndex : 'faultTimeReal',
 				width : 140
 			}, {
-				header : Eway.locale.report.openrate.device.atmpTimeReal,
+				header : EwayLocale.report.openrate.device.atmpTimeReal,
 				dataIndex : 'atmpTimeReal',
 				width : 130
 			}, {
-				header : Eway.locale.report.openrate.device.stopTimeReal,
+				header : EwayLocale.report.openrate.device.stopTimeReal,
 				dataIndex : 'stopTimeReal',
 				width : 180
 			}, {
-				header : Eway.locale.report.openrate.device.openRate,
+				header : EwayLocale.report.openrate.device.openRate,
 				sortable : true,
 				renderer : this.pctChange,
 				dataIndex : 'openRate'

@@ -12,14 +12,14 @@ Ext.define('Eway.view.permission.role.Tree', {
 		        xtype: 'toolbar',
 		        dock: 'top',
 		        items: [{
-		        	text:Eway.locale.permission.role.chooseRight,
+		        	text:EwayLocale.permission.role.chooseRight,
 		        	xtype:'tbtext'
 		        },{
-		            	text: Eway.locale.commen.selectAll,
+		            	text: EwayLocale.commen.selectAll,
 		            	action :'checkAll',
 		            	disabled: true
 		            },{
-		            	text: Eway.locale.commen.selectNon,
+		            	text: EwayLocale.commen.selectNon,
 		            	action:'checkNone',
 		            	disabled: true
 		            }/*,{

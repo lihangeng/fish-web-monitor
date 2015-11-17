@@ -15,11 +15,11 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->',{
-				text:Eway.locale.button.search,
+				text:EwayLocale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			},{
-				text: Eway.locale.button.add,
+				text: EwayLocale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'atmBrandAdd',
@@ -27,7 +27,7 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: Eway.locale.button.update,
+				text: EwayLocale.button.update,
 				glyph : 0xf040,
 				action:'update',
 				code : 'atmBrandUpdate',
@@ -35,7 +35,7 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: Eway.locale.button.remove,
+				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'atmBrandDel',
@@ -48,34 +48,34 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandGrid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : Eway.locale.machine.atmBrand.name,
+				header : EwayLocale.machine.atmBrand.name,
 				dataIndex : 'name',
 				flex : 1
 			},{
-				header : Eway.locale.machine.atmBrand.country,
+				header : EwayLocale.machine.atmBrand.country,
 				dataIndex : 'country',
 				flex : 2
 			},{
-				header : Eway.locale.machine.atmBrand.hotline1,
+				header : EwayLocale.machine.atmBrand.hotline1,
 				dataIndex : 'hotline1',
 				flex : 1
 			},{
-				header : Eway.locale.machine.atmBrand.hotline2,
+				header : EwayLocale.machine.atmBrand.hotline2,
 				dataIndex : 'hotline2',
 				flex : 1
 			},{
-				header : Eway.locale.machine.atmBrand.address,
+				header : EwayLocale.machine.atmBrand.address,
 				dataIndex : 'address',
 				flex : 3
 			},{
-				header : Eway.locale.machine.atmBrand.status,
+				header : EwayLocale.machine.atmBrand.status,
 				dataIndex : 'status',
 				sortable : true,
 				renderer: function(value){
 	                   if(value==1){
-	                	   return Eway.locale.machine.atmBrand.comboxStatus.provider;
+	                	   return EwayLocale.machine.atmBrand.comboxStatus.provider;
 	                   }else if(value==3){
-	                	   return Eway.locale.machine.atmBrand.comboxStatus.maintance;
+	                	   return EwayLocale.machine.atmBrand.comboxStatus.maintance;
 	                   }
 					},
 				flex : 1

@@ -6,11 +6,11 @@ Ext.define('Eway.view.field.card.CardStatusComboBox',{
 	
 	store:'monitor.card.CardStatusComboBox',
 	queryMode: 'local',
-	fieldLabel:Eway.locale.card.cardStatus,
+	fieldLabel:EwayLocale.card.cardStatus,
 	name:'status',
 	valueField: 'value',
 	displayField: 'display',
 	msgTarget : 'side',
 	hiddenName : 'status',
-	emptyText: Eway.locale.combox.select
+	emptyText: EwayLocale.combox.select
 });

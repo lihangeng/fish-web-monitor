@@ -14,85 +14,85 @@ Ext.define('Eway.view.agent.remote.screen.CameraGrid', {
 
 	initComponent : function() {
 		var groupingFeature = Ext.create('Ext.grid.feature.Grouping', {
-			groupHeaderTpl: '{name}'+Eway.locale.agent.remote.screen.message
+			groupHeaderTpl: '{name}'+EwayLocale.agent.remote.screen.message
 		});
 		Ext.apply(this, {
 			initRegion : true,
 			tbar : [ {
-				text : Eway.locale.agent.remote.screen.startcustom,
+				text : EwayLocale.agent.remote.screen.startcustom,
 				action : 'startcustom',
 				xtype : 'button'
 			}, {
-				text : Eway.locale.agent.remote.screen.stopcustom,
+				text : EwayLocale.agent.remote.screen.stopcustom,
 				action : 'stopcustom',
 				xtype : 'button'
 			}, {
-				text : Eway.locale.agent.remote.screen.startadmin,
+				text : EwayLocale.agent.remote.screen.startadmin,
 				action : 'startadmin',
 				xtype : 'button'
 			}, {
-				text : Eway.locale.agent.remote.screen.stopadmin,
+				text : EwayLocale.agent.remote.screen.stopadmin,
 				action : 'stopadmin',
 				xtype : 'button'
 			}, {
-				text : Eway.locale.agent.remote.screen.startadvertise,
+				text : EwayLocale.agent.remote.screen.startadvertise,
 				action : 'startadvertise',
 				xtype : 'button'
 			}, {
-				text : Eway.locale.agent.remote.screen.stopadvertise,
+				text : EwayLocale.agent.remote.screen.stopadvertise,
 				action : 'stopadvertise',
 				xtype : 'button'
 			} ],
 			features: [groupingFeature],
 			columns : [ {
-				header : Eway.locale.commen.terminalId,
+				header : EwayLocale.commen.terminalId,
 				sortable : true,
 				width : 131,
 				dataIndex : 'terminalId'
 			},{
-				header : Eway.locale.agent.remote.screen.startCameraDate,
+				header : EwayLocale.agent.remote.screen.startCameraDate,
 				sortable : true,
 				width : 131,
 				dataIndex : 'startCameraDate'
 			}, {
-				header :Eway.locale.agent.remote.screen.stopCameraDate,
+				header :EwayLocale.agent.remote.screen.stopCameraDate,
 				sortable : true,
 				width : 131,
 				dataIndex : 'stopCameraDate'
 			}, {
-				header :Eway.locale.agent.remote.screen.monitorType,
+				header :EwayLocale.agent.remote.screen.monitorType,
 				sortable : true,
 				dataIndex : 'monitorType'
 			}, {
-				header : Eway.locale.agent.remote.screen.fileNameClient,
+				header : EwayLocale.agent.remote.screen.fileNameClient,
 				sortable : true,
 				width : 172,
 				dataIndex : 'fileNameClient'
 			}, {
-				header : Eway.locale.commen.state,
+				header : EwayLocale.commen.state,
 				sortable : true,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return "<font color='red'>"+Eway.locale.agent.remote.screen.nowCamera+"</font>";
+						return "<font color='red'>"+EwayLocale.agent.remote.screen.nowCamera+"</font>";
 					}
 					if (value == 4) {
-						return Eway.locale.agent.remote.screen.finishCamera;
+						return EwayLocale.agent.remote.screen.finishCamera;
 					}
 					if (value == 0) {
-						return "<font color='red'>"+Eway.locale.agent.remote.screen.videoLoad+"</font>";
+						return "<font color='red'>"+EwayLocale.agent.remote.screen.videoLoad+"</font>";
 					}
 					if (value == 3) {
-						return "<font color='red'>"+Eway.locale.agent.remote.screen.stopManage+"</font>";
+						return "<font color='red'>"+EwayLocale.agent.remote.screen.stopManage+"</font>";
 					}
 				}
 			}, {
-				header : Eway.locale.agent.remote.screen.manage,
+				header : EwayLocale.agent.remote.screen.manage,
 				sortable : true,
 				dataIndex : 'status',
 				renderer : function(value, p, record) {
 					if (value == 4) {
-						return "<a class='link' href='javascript:void(0);'>"+Eway.locale.agent.remote.screen.loading+"</a>";
+						return "<a class='link' href='javascript:void(0);'>"+EwayLocale.agent.remote.screen.loading+"</a>";
 					}
 				}
 			} ]

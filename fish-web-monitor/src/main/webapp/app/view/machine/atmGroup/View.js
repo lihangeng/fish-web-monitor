@@ -6,7 +6,7 @@ Ext.define('Eway.view.machine.atmGroup.View', {
 	             'Eway.view.machine.atmGroup.DeviceFilter',
 			'Eway.view.machine.atmGroup.DeviceGrid' ],
 
-	title : Eway.locale.machine.atmGroup.devGroupName,
+	title : EwayLocale.machine.atmGroup.devGroupName,
 	layout : 'border',
 	initComponent : function() {
 		Ext.apply(this, {
@@ -20,7 +20,7 @@ Ext.define('Eway.view.machine.atmGroup.View', {
 				items : [{
 						name:'groupPanel',
 						xtype:'panel',
-						title: Eway.locale.machine.atmGroup.groupName,
+						title: EwayLocale.machine.atmGroup.groupName,
 						layout : 'border',
 						items:[{
 							xtype:'form',
@@ -32,7 +32,7 @@ Ext.define('Eway.view.machine.atmGroup.View', {
 								xtype : 'textfield',
 								name : 'name',
 								maxLength : 30,
-								fieldLabel : Eway.locale.machine.atmGroup.groupName,
+								fieldLabel : EwayLocale.machine.atmGroup.groupName,
 								msgTarget : 'side'
 							}]}, {
 								region: 'center',

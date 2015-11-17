@@ -55,7 +55,7 @@ Ext.define('Eway.controller.case.NotifyMould', {
 			button.on('click', this.onUpdateConfirm, this);
 			win.show();
 		} else {
-			Eway.alert(Eway.choiceUpdateMsg);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 		}
 	},
 
@@ -66,8 +66,8 @@ Ext.define('Eway.controller.case.NotifyMould', {
 		var record = sm.getLastSelected();
 		var updateForm = this.getUpdateWin().down('form').getForm();
 		var data = updateForm.getValues();
-		var start = Eway.locale.cases.concern;
-		var end = Eway.locale.cases.SRCBView;
+		var start = EwayLocale.cases.concern;
+		var end = EwayLocale.cases.SRCBView;
 		var checkboxgroup = win.down('checkboxgroup');
 		var checked = checkboxgroup.getChecked();
 		for ( var i = 0; i < checked.length; i++) {
@@ -85,7 +85,7 @@ Ext.define('Eway.controller.case.NotifyMould', {
 			record.set('notifySet', result);
 			record.save({
 				success : function(record, operation) {
-					Eway.alert(Eway.updateSuccess);
+					Eway.alert(EwayLocale.updateSuccess);
 					win.close();
 					grid.onReload();
 				},

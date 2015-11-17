@@ -16,15 +16,15 @@ Ext.define('Eway.view.person.organization.OrglinkWin', {
 	
 	initComponent: function() {
 		Ext.apply(this, {
-			title : Eway.locale.person.bankOrg.orgLinkTitle,
+			title : EwayLocale.person.bankOrg.orgLinkTitle,
 			items : [{
-				title : Eway.locale.person.bankOrg.machineOrg,
+				title : EwayLocale.person.bankOrg.machineOrg,
 				region: 'west',
 				width:'50%',
 				padding : 1,
 				xtype : 'linkedDeviceGrid'
 			},{
-				title : Eway.locale.person.bankOrg.personOrg,
+				title : EwayLocale.person.bankOrg.personOrg,
 				region: 'center',
 				padding : 1,
 				xtype : 'linkedPersonGrid'

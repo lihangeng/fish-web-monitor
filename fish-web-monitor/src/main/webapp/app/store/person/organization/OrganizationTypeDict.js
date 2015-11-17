@@ -4,6 +4,6 @@ Ext.define('Eway.store.person.organization.OrganizationTypeDict', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'0', display:Eway.locale.person.bankOrg.bank}, 
-	       {value:'1', display:Eway.locale.person.bankOrg.serviceOrg}]
+	data: [{value:'0', display:EwayLocale.person.bankOrg.bank}, 
+	       {value:'1', display:EwayLocale.person.bankOrg.serviceOrg}]
 });

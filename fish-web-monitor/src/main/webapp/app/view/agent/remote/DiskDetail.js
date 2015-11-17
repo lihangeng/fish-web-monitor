@@ -16,23 +16,23 @@ Ext.define('Eway.view.agent.remote.DiskDetail', {
 	initComponent : function() {
 		var me = this;
 		this.items = [{
-			title : Eway.locale.agent.remote.discInfo,
+			title : EwayLocale.agent.remote.discInfo,
 			xtype : 'grid',
 			store : 'machine.atmHardSoft.Disk',
 			columns : [{
-				header : Eway.locale.agent.remote.discName,
+				header : EwayLocale.agent.remote.discName,
 				dataIndex : 'name'
 			}, {
-				header : Eway.locale.agent.remote.fileSys,
+				header : EwayLocale.agent.remote.fileSys,
 				dataIndex : 'fileSys'
 			}, {
-				header : Eway.locale.agent.remote.totalSize,
+				header : EwayLocale.agent.remote.totalSize,
 				renderer : function(value, metadata, record) {
 					return (value / (1024 * 1024)).toFixed(1) + "GB";
 				},
 				dataIndex : 'totalSize'
 			}, {
-				header : Eway.locale.agent.remote.freeSize,
+				header : EwayLocale.agent.remote.freeSize,
 				renderer : function(value, metadata, record) {
 					return (value / (1024 * 1024)).toFixed(1) + "GB";
 				},

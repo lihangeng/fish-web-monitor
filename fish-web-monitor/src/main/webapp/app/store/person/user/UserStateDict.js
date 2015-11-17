@@ -4,9 +4,9 @@ Ext.define('Eway.store.person.user.UserStateDict', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'0', display:Eway.locale.commen.stateDict.newCreate}, 
-	       {value:'1', display:Eway.locale.commen.stateDict.normal}, 
-	       {value:'2', display:Eway.locale.commen.stateDict.locked}, 
-	       {value:'4', display:Eway.locale.commen.stateDict.frozen},
-	       {value:'3', display:Eway.locale.commen.stateDict.deleted}]
+	data: [{value:'0', display:EwayLocale.commen.stateDict.newCreate}, 
+	       {value:'1', display:EwayLocale.commen.stateDict.normal}, 
+	       {value:'2', display:EwayLocale.commen.stateDict.locked}, 
+	       {value:'4', display:EwayLocale.commen.stateDict.frozen},
+	       {value:'3', display:EwayLocale.commen.stateDict.deleted}]
 });

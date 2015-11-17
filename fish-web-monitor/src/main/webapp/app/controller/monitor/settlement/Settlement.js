@@ -39,7 +39,7 @@ Ext.define('Eway.controller.monitor.settlement.Settlement', {
 			win.down('grid').getStore().loadData(record.get('boxDetail'));
 			win.show();
 		} else {
-			Eway.alert(Eway.locale.tip.search.record);
+			Eway.alert(EwayLocale.tip.search.record);
 		}
 	}
 });

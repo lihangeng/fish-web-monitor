@@ -30,10 +30,10 @@ Ext.define('Eway.view.person.bankPer.FilterForm', {
 					msgTarget : 'side'
 				}, {
 					xtype : 'field.mobile',
-					fieldLabel : Eway.locale.commen.mobile,
+					fieldLabel : EwayLocale.commen.mobile,
 					labelWidth : 50,
 					regex : /^\d{8,11}$/,
-					regexText : Eway.locale.vtype.mobile,
+					regexText : EwayLocale.vtype.mobile,
 					msgTarget : 'side'
 				} ]
 			}, {
@@ -44,7 +44,7 @@ Ext.define('Eway.view.person.bankPer.FilterForm', {
 					width:200
 				},
 				items : [ {
-					fieldLabel : Eway.locale.commen.jobNum,
+					fieldLabel : EwayLocale.commen.jobNum,
 					xtype : 'textfield',
 					labelWidth : 50,
 					editable : true,
@@ -68,7 +68,7 @@ Ext.define('Eway.view.person.bankPer.FilterForm', {
 				items : [ {
 					labelWidth : 50,
 					xtype : 'field_person_personJobComboBox',
-					fieldLabel : Eway.locale.commen.personJobName,
+					fieldLabel : EwayLocale.commen.personJobName,
 					msgTarget : 'side'
 				} ]
 			} ]

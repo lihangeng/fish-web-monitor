@@ -74,12 +74,12 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 					}
 				},
 				failure: function(response){
-					Eway.alert(Eway.locale.tip.business.card.returnFail);
+					Eway.alert(EwayLocale.tip.business.card.returnFail);
 				}
 
 			});
 		} else {
-			Eway.alert(Eway.locale.tip.business.card.choose);
+			Eway.alert(EwayLocale.tip.business.card.choose);
 		}
 	},
 
@@ -107,7 +107,7 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 				success : function(response) {
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
-						Eway.alert(Eway.locale.tip.business.card.returnSucess);
+						Eway.alert(EwayLocale.tip.business.card.returnSucess);
 						var win = Ext.ComponentQuery.query('card_CardHandoverWin')[0];
 						win.close();
 						store.setUrlParamsByObject(viewValues);
@@ -161,7 +161,7 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 //			button.on('click', this.onReceiveConfirm, this);
 //			win.show();
 		} else {
-			Eway.alert(Eway.locale.tip.business.card.chooseBack);
+			Eway.alert(EwayLocale.tip.business.card.chooseBack);
 		}
 	},
 
@@ -192,7 +192,7 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 				success : function(response) {
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
-						Eway.alert(Eway.locale.tip.business.card.getSuccess);
+						Eway.alert(EwayLocale.tip.business.card.getSuccess);
 						var win = Ext.ComponentQuery.query('card_ReceiveCardWin')[0];
 						win.close();
 						store.remove(record);
@@ -225,7 +225,7 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 			store.setBaseParam('organizationId',ewayUser.getOrgId());
 			store.loadPage(1);
 		}else{
-			Eway.alert(Eway.locale.tip.input);
+			Eway.alert(EwayLocale.tip.input);
 		}
 
 	}

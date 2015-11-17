@@ -32,8 +32,8 @@ Ext.define('Eway.controller.version.VersionAutoUpdate', {
 		var view = this.getEwayView();
 		var form = view.down('form').getForm();
 		var bool = form.isValid();
-		if (bool == false) {// 查询输入验证 Eway.locale.tip.search.warn
-			Eway.alert( Eway.locale.tip.search.warn);//"查询条件存在错误项.");
+		if (bool == false) {// 查询输入验证 EwayLocale.tip.search.warn
+			Eway.alert( EwayLocale.tip.search.warn);//"查询条件存在错误项.");
 			return;
 		}
 		var store = this.getGrid().getStore();

@@ -13,7 +13,7 @@ Ext.define('Eway.view.atmLog.DayBackup',{
 	initComponent : function(){
 		
 		Ext.apply(this,{
-			title : Eway.locale.atmLog.dailyBackup,
+			title : EwayLocale.atmLog.dailyBackup,
 			items : [{
 				region : 'north',
 				xtype : 'atmLog_DayBackupFilterForm',

@@ -48,7 +48,7 @@ Ext.define('Eway.controller.case.VendorCode',{
 		var importForm = this.getImportWin().down("form").getForm();
 		var vendor = win.down('common_orgComboOrgTree').getValue();
 		if(importForm.isValid()){
-			Ext.Msg.wait(Eway.locale.cases.nowExportFile);
+			Ext.Msg.wait(EwayLocale.cases.nowExportFile);
 			importForm.submit({
 				url : 'api/case/vendorCode/import',
 				params : {
@@ -59,7 +59,7 @@ Ext.define('Eway.controller.case.VendorCode',{
 					win.close();
 					var store = this.getVendorCodeGrid().getStore();
 					store.load();
-					Eway.alert(Eway.locale.cases.exportFaultInfo);
+					Eway.alert(EwayLocale.cases.exportFaultInfo);
 				},
 				failure :function(form, action){
 					Eway.alert(action.result.content);
@@ -91,7 +91,7 @@ Ext.define('Eway.controller.case.VendorCode',{
 					rmWin.close();
 					var store = this.getVendorCodeGrid().getStore();
 					store.load();
-					Eway.alert(Eway.deleteSuccess);
+					Eway.alert(EwayLocale.updateSuccess);
 				},
 				failure : function(form, action){
 					Eway.alert(action.result.content);
