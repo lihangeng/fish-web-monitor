@@ -15,7 +15,9 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		'agent.RemoteBrowseDisk',
 		'agent.RemoteBrowseFileSystem'
 	],
+	
 	init : function(){
+		
 	},
 
 	display : function(ip){
@@ -24,7 +26,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			height : 450
 		});
 		win.show();
-		var grid = win.down('remote_remoteBrowseDiskGrid');
+		var grid = win.down('remote_remoteBrowseDiskGrid');		
 		grid.getStore().load({
 			params : {
 				ip : ip
@@ -41,6 +43,8 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 					win.down('button[action="remoteMkFile"]').on('click',Ext.bind(me.onRemoteMkDir,this,[false]),this);;
 					win.down('button[action="remoteDel"]').on('click',me.onRemoteDel,this);;
 					win.down('button[action="remoteExec"]').on('click',me.onRemoteExec,this);
+					win.down('button[action="mergeLoad"]').on('click',Ext.bind(me.onMergeLoad,this,[win]),this);
+					
 				}else{
 					Eway.alert(Eway.locale.vtype.remoteFailure);
 				}
@@ -496,6 +500,94 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		//刷新按钮刷新：
 		var refleshbutton = grid.down('button[action="reflesh"]');
 		refleshbutton.on('click',me.reflesh,this);
+	},
+	onMergeLoad : function(topwin){
+		var me = this;
+		var fileListGrid = topwin.down('remote_remoteBrowseFileSystemGrid');
+		var win = Ext.create('Eway.view.agent.remote.RemoteBrowseShowMergeFile');
+		var grid = win.down('remote_mergeDownLoadFileGrid');		
+		var store = grid.getStore();
+		for(var i=0 ;i<fileListGrid.mergeDownLoadStore.getCount();i++)
+			{
+			   var record = Ext.create( 'Eway.model.agent.MergeDownLoadFileList',fileListGrid.mergeDownLoadStore.getAt(i).data);
+			   store.add(record);
+			}		
+		win.down('button[action="removeFile"]').on('click',Ext.bind(me.onRemoveFile,this,[win]),this);
+		var ip = topwin.down('textfield[name="ip"]').getValue();
+		var gridEl = grid.getEl();
+		var mask = new Ext.LoadMask(grid, {msg : Eway.locale.agent.remote.nowLoadFile});
+		win.down('button[action="mergeDownLoad"]').on('click',Ext.bind(me.mergeDownloadFile,this,[win,ip,mask,gridEl]),this);
+		win.on("close",function(){
+			fileListGrid.mergeDownLoadStore = Ext.create('Eway.store.agent.MergeDownLoadFileList',{});
+			fileListGrid.mergeDownFileSize = 0;
+		})
+		win.show();	
+	},	
+	onRemoveFile : function(win){
+		var grid = win.down('remote_mergeDownLoadFileGrid');	
+		var sm = grid.getSelectionModel();
+		var store = grid.getStore();
+		if(sm.getCount() == 1)
+		{
+			var record = sm.getLastSelected();
+			store.remove(record);
+			Eway.alert(Eway.locale.agent.remote.removeSuccess);
+		}
+		else
+		{
+			Eway.alert(Eway.locale.agent.remote.mustSelection);
+		}
+	},
+	
+	mergeDownloadFile : function(win,ip,mask,gridEl) {
+		var grid = win.down('remote_mergeDownLoadFileGrid');
+		var store = grid.getStore();
+		var allFielPath ='';
+		for(var i=0; i<store.getCount(); i++)
+		{
+			allFielPath = allFielPath + store.getAt(i).data.path +'|';
+		}	
+		console.log(allFielPath);
+		Ext.Ajax.request({
+			method : 'POST',
+			url : 'api/agent/remoteBrowse/mergerDownload?date=' + new Date(),
+			timeout : 120000,
+			params : {		
+				ip : ip,			
+				requestPath : allFielPath
+			},
+			success : function(response) {
+				mask.show();
+				var object = Ext.decode(response.responseText);				
+				if (object.success == true) {
+					mask.hide();
+					var iframe = gridEl.prev();
+					var fileName = object.fileName.replace("&", "%26");// 将文件名含有&符号的用URL编码“%26”替换
+					console.log("2222222222222");
+					if (iframe) {
+						Ext.core.Element.get(iframe).destroy();
+						console.log("33333333333333");
+					}
+					iframe = Ext.core.DomHelper.createDom({
+								tag : 'iframe',
+								src : 'api/agent/remoteBrowse/downloadFile?path='
+										+ object.path + '&fileName=' + fileName,
+								style : "display:none"
+							});
+					console.log("44444444444444444");
+					gridEl.insertSibling(iframe);
+				} else {
+					console.log("11111111111111111111111");
+					mask.hide();
+					Eway.alert(object.errors);
+				}
+			},
+			failure : function() {
+				mask.hide();
+				Eway.alert(Eway.locale.agent.remote.loadFailure);
+			}
+		});
 	}
+		
 
 });

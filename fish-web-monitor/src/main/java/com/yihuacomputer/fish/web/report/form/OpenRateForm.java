@@ -49,31 +49,74 @@ public class OpenRateForm {
 	 */
 	private double openRate;
 
+	private String orgName;
+
+	private String devCatalogName;
+
 	public OpenRateForm() {
 	}
 
-	public OpenRateForm(IDayOpenRate iOpenRate) {
+//	public OpenRateForm(IDayOpenRate iOpenRate) {
+//
+//		setAtmpTimeReal(timeFormat(iOpenRate.getAtmpTimeReal()));
+//		setFaultTimeReal(timeFormat(iOpenRate.getFaultTimeReal()));
+//		setHealthyTimeReal(timeFormat(iOpenRate.getHealthyTimeReal()));
+//		setId(iOpenRate.getId());
+//		setMaintainTimeReal(timeFormat(iOpenRate.getMaintainTimeReal()));
+//		setOpenTimes(timeFormat(iOpenRate.getOpenTimes()));
+//		setStatDate(iOpenRate.getStatDate());
+//		setStopTimeReal(timeFormat(iOpenRate.getStopTimeReal()));
+//		setTerminalId(iOpenRate.getTerminalId());
+//		setUnknownTimeReal(timeFormat(iOpenRate.getUnknownTimeReal()));
+//		setDevCatalogName(iOpenRate.getDevCatalogName());
+//        setOrgName(iOpenRate.getOrgName());
+//		if (iOpenRate.getHealthyTimeReal() == 0
+//				|| iOpenRate.getOpenTimes() == 0) {
+//			setOpenRate(0.00);
+//		} else {
+//			String value = doubleFormat.format(iOpenRate.getHealthyTimeReal()
+//					* 1.0 / iOpenRate.getOpenTimes() * 100);
+//			setOpenRate(Double.valueOf(value));
+//		}
+//	
+//	}
+	
+	   public OpenRateForm(IDayOpenRate iOpenRate) {
 
-		setAtmpTimeReal(timeFormat(iOpenRate.getAtmpTimeReal()));
-		setFaultTimeReal(timeFormat(iOpenRate.getFaultTimeReal()));
-		setHealthyTimeReal(timeFormat(iOpenRate.getHealthyTimeReal()));
-		setId(iOpenRate.getId());
-		setMaintainTimeReal(timeFormat(iOpenRate.getMaintainTimeReal()));
-		setOpenTimes(timeFormat(iOpenRate.getOpenTimes()));
-		setStatDate(iOpenRate.getStatDate());
-		setStopTimeReal(timeFormat(iOpenRate.getStopTimeReal()));
-		setTerminalId(iOpenRate.getTerminalId());
-		setUnknownTimeReal(timeFormat(iOpenRate.getUnknownTimeReal()));
+	        setAtmpTimeReal(getTimes(iOpenRate.getAtmpTimeReal()));
+	        setFaultTimeReal(getTimes(iOpenRate.getFaultTimeReal()));
+	        setHealthyTimeReal(getTimes(iOpenRate.getHealthyTimeReal()));
+	        setId(iOpenRate.getId());
+	        setMaintainTimeReal(getTimes(iOpenRate.getMaintainTimeReal()));
+	        setOpenTimes(getTimes(iOpenRate.getOpenTimes()));
+	        setStatDate(iOpenRate.getStatDate());
+	        setStopTimeReal(getTimes(iOpenRate.getStopTimeReal()));
+	        setTerminalId(iOpenRate.getTerminalId());
+	        setUnknownTimeReal(getTimes(iOpenRate.getUnknownTimeReal()));
+	        setDevCatalogName(iOpenRate.getDevCatalogName());
+	        setOrgName(iOpenRate.getOrgName());
 
-		if (iOpenRate.getHealthyTimeReal() == 0
-				|| iOpenRate.getOpenTimes() == 0) {
-			setOpenRate(0.00);
-		} else {
-			String value = doubleFormat.format(iOpenRate.getHealthyTimeReal()
-					* 1.0 / iOpenRate.getOpenTimes() * 100);
-			setOpenRate(Double.valueOf(value));
-		}
-	}
+	        if (iOpenRate.getHealthyTimeReal() == 0
+	                || iOpenRate.getOpenTimes() == 0) {
+	            setOpenRate(0.00);
+	        } else {
+	            String value = doubleFormat.format(iOpenRate.getHealthyTimeReal()
+	                    * 1.0 / iOpenRate.getOpenTimes() * 100);
+	            setOpenRate(Double.valueOf(value));
+	        }
+
+	    }
+
+	    private String getTimes(int times){
+	    	StringBuffer sb = new StringBuffer("");
+	    	String t1=(times/60/60)+"";
+	    	String t2=(times/60%60)+"";
+	    	String t3=(times%60)+"";
+	    	sb.append(t1.length()==1?"0"+t1:t1).append(":");
+	    	sb.append(t2.length()==1?"0"+t2:t2).append(":");
+	    	sb.append(t3.length()==1?"0"+t3:t3);
+	    	return sb.toString();
+	    }
 
 	public static List<OpenRateForm> convert(List<IDayOpenRate> target) {
 		List<OpenRateForm> result = new ArrayList<OpenRateForm>();
@@ -84,16 +127,6 @@ public class OpenRateForm {
 		return result;
 	}
 
-	@SuppressWarnings("deprecation")
-	private String timeFormat(long times) {
-
-	    int day = (int) (times / (60 * 1000 * 60 * 24));
-
-		Date d = new Date(times);
-		d.setHours(d.getHours() - 8);
-
-		return day + "day:" + formatter.format(d);
-	}
 
 	public long getId() {
 		return id;
@@ -181,5 +214,21 @@ public class OpenRateForm {
 
 	public void setOpenRate(double openRate) {
 		this.openRate = openRate;
+	}
+
+	public String getOrgName() {
+		return orgName;
+	}
+
+	public void setOrgName(String orgName) {
+		this.orgName = orgName;
+	}
+
+	public String getDevCatalogName() {
+		return devCatalogName;
+	}
+
+	public void setDevCatalogName(String devCatalogName) {
+		this.devCatalogName = devCatalogName;
 	}
 }

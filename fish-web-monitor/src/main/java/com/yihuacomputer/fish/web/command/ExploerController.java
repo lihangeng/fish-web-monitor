@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.net.URLEncoder;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,6 +27,7 @@ import com.yihuacomputer.common.http.HttpFileCfg;
 import com.yihuacomputer.common.http.HttpFileClient;
 import com.yihuacomputer.common.http.HttpFileRet;
 import com.yihuacomputer.common.http.HttpProxy;
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.web.command.format.AgentRet;
 import com.yihuacomputer.fish.web.command.format.DiskForm;
@@ -67,6 +69,7 @@ public class ExploerController
     {
         ModelMap result = new ModelMap();
 		String url = MonitorCfg.getHttpUrl(request.getParameter("ip"))+"/ctr/computer";
+		System.out.println("url="+url);
         MyComputerForm myComputerForm = (MyComputerForm) HttpProxy.httpGet(url,MyComputerForm.class);
         result.addAttribute(FishConstant.SUCCESS, true);
         result.addAttribute("data", DiskForm.convert(myComputerForm.getMyComputerList()));
@@ -113,6 +116,54 @@ public class ExploerController
      * @param request
      * @return
      */
+    @RequestMapping(value = "/mergerDownload",method = RequestMethod.POST)
+    public @ResponseBody
+    ModelMap fileDown( @RequestParam String requestPath,@RequestParam String ip){
+    	System.out.println("------------------------");
+    	ModelMap result = new ModelMap();
+    	HttpFileCfg httpFileCfg = new HttpFileCfg();
+    	String localPath = FishCfg.getTempDir() + System.getProperty("file.separator") + "remoteDown";
+    	httpFileCfg.setLocalPath(localPath);
+        httpFileCfg.setRequestPath(requestPath);
+        String [] path = requestPath.split("\\|");
+        for(String str : path)
+        {
+        	System.out.println(str);
+        }
+        httpFileCfg.setRequestName("1111");
+        httpFileCfg.setCompress(true);
+        httpFileCfg.setIpAdd(ip);
+        httpFileCfg.setPort(MonitorCfg.getRemotePort());
+        String localName =  DateUtils.get(new Date(),"yyyyMMddHHmmss");
+        httpFileCfg.setLocalName(localName+".zip");
+    //    File file = new File(localPath+System.getProperty("file.separator")+localName+".zip");        
+        httpFileCfg.setRetry(true);
+        System.out.println("------------------------");
+        HttpFileRet ret = HttpFileClient.mergeDownloadFile(httpFileCfg);
+        if(ret.equals(HttpFileRet.SUCCESS)){
+            result.addAttribute("path", localPath);
+     //       result.addAttribute("fileName", localName);
+            result.addAttribute(FishConstant.SUCCESS, true);
+        }else if(ret.equals(HttpFileRet.CFG_ERROR)){
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failParam", null, FishCfg.locale));
+            result.addAttribute(FishConstant.SUCCESS, false);
+        }else if(ret.equals(HttpFileRet.REQ_FILE_NOTEXIT)){
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failNotExist", null, FishCfg.locale));
+            result.addAttribute(FishConstant.SUCCESS, false);
+        }else if(ret.equals(HttpFileRet.CONN_ERROR)){
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failConn", null, FishCfg.locale));
+            result.addAttribute(FishConstant.SUCCESS, false);
+        }else if(ret.equals(HttpFileRet.URL_ERROR)){
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failURL", null, FishCfg.locale));
+            result.addAttribute(FishConstant.SUCCESS, false);
+        }else if(ret.equals(HttpFileRet.ERROR)){
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.error", null, FishCfg.locale));
+            result.addAttribute(FishConstant.SUCCESS, false);
+        }
+        return result;
+    }
+    
+    
     @RequestMapping(value = "/download",method = RequestMethod.POST)
     public @ResponseBody
     ModelMap fileDown(@RequestParam String requestName, @RequestParam String requestPath,@RequestParam String ip,@RequestParam String flag,
@@ -123,7 +174,7 @@ public class ExploerController
         }else{
         	requestPath = requestPath.substring(0, requestPath.lastIndexOf("/"));
         }
-        
+        System.out.println("-------------------"+requestPath);
         HttpFileCfg httpFileCfg = new HttpFileCfg();
         String localName = requestName;
         String localPath = FishCfg.getTempDir() + System.getProperty("file.separator") + "remoteDown";
@@ -131,6 +182,7 @@ public class ExploerController
         httpFileCfg.setLocalPath(localPath);
         httpFileCfg.setRequestName(requestName);
         httpFileCfg.setRequestPath(requestPath);
+        System.out.println("requestName="+requestName);
         httpFileCfg.setCompress(true);
         httpFileCfg.setIpAdd(ip);
         httpFileCfg.setPort(MonitorCfg.getRemotePort());
@@ -168,6 +220,8 @@ public class ExploerController
         }
         return result;
     }
+    
+    
 
     /**
      * 下载文件到浏览器端：

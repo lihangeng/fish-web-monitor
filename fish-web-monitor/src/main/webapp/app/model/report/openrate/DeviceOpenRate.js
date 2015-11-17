@@ -3,7 +3,7 @@ Ext.define('Eway.model.report.openrate.DeviceOpenRate', {
 	fields : [ 'id', 'terminalId', 'statDate', 'openTimes', 'healthyTimeReal',
 			'unknownTimeReal', 'maintainTimeReal', 'faultTimeReal',
 			'atmpTimeReal', 'stopTimeReal', 'programOpenTime',
-			'programCloseTime', 'programTimes', 'programTimeReal', {
+			'programCloseTime', 'programTimes','orgName','devCatalogName','programTimeReal', {
 				name : 'programOpenRate'
 			}, {
 				name : 'openRate'
