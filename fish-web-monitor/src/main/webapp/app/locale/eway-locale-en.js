@@ -967,9 +967,9 @@ Ext.override(Eway,{
 					serviceOrg:'Maintenance'//Eway.locale.person.bankOrg.organizationType.serviceOrg 维护商
 				},
 				organizationLevelDict:{
-					rootBank:'center',//Eway.locale.person.bankOrg.organizationLevelDict.rootBank 总行
-					branchBank:'branch',//Eway.locale.person.bankOrg.organizationLevelDict.branchBank 分行
-					tagBranchBank:'subbranch',//Eway.locale.person.bankOrg.organizationLevelDict.tagBranchBank 支行
+					rootBank:'Head Office',//Eway.locale.person.bankOrg.organizationLevelDict.rootBank 总行
+					branchBank:'Branch',//Eway.locale.person.bankOrg.organizationLevelDict.branchBank 分行
+					tagBranchBank:'SubBranch',//Eway.locale.person.bankOrg.organizationLevelDict.tagBranchBank 支行
 					netBank:'netBank'//Eway.locale.person.bankOrg.organizationLevelDict.netBank 网点
 				},
 				addOrgTitle:'Person under this organization',//Eway.locale.person.bankOrg.addOrgTitle 该机构人员信息
