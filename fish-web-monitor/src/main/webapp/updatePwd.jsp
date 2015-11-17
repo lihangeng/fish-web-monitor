@@ -15,7 +15,7 @@
 	media="all" />
 </head>
 <style type="text/css">
-.container {
+.container1 {
 	width: 1296px;
 }
 .content{
@@ -80,7 +80,7 @@ input:focus {
 			 	window.location.href='login.jsp';
 		<%}%>
 	</script>
-	<div class="container">
+	<div class="container1">
 		<div class="head">
 			<img src="./resources/images/logo.PNG">
 		</div>
