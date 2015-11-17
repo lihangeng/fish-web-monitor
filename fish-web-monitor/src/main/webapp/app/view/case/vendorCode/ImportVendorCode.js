@@ -32,6 +32,7 @@ Ext.define('Eway.view.case.vendorCode.ImportVendorCode', {
                     emptyText : Eway.locale.combox.combox,
                     name : 'name',
                     hiddenValue : 'vendor',
+                    allowBlank:false,
                     editable : false,
                     filters : '{"type" : "1"}',
                     rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '1' ? true : false

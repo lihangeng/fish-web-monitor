@@ -63,6 +63,7 @@ Ext.define('Eway.controller.case.VendorCode',{
 				},
 				failure :function(form, action){
 					Eway.alert(action.result.content);
+					Ext.Msg.hide();
 				},
 				scope :this
 			});
