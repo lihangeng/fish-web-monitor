@@ -4,16 +4,16 @@ Ext.define('Eway.store.monitor.device.FilterIngItem',{
 	model : 'Eway.model.monitor.device.FilterItem',
 	
 	data : [{
-			name : Eway.locale.commen.all,
+			name : EwayLocale.commen.all,
 			value : '0'
 		},{
-			name : Eway.locale.machine.atmGroup.comboxAwayFlag.inBank,
+			name : EwayLocale.machine.atmGroup.comboxAwayFlag.inBank,
 			value : '1'
 		},{
-			name : Eway.locale.machine.atmGroup.comboxAwayFlag.outBank,
+			name : EwayLocale.machine.atmGroup.comboxAwayFlag.outBank,
 			value : '2'
 		},{
-			name : Eway.locale.machine.atmGroup.comboxAwayFlag.clickBank,
+			name : EwayLocale.machine.atmGroup.comboxAwayFlag.clickBank,
 			value : '3'
 		}]
 });

@@ -20,16 +20,16 @@ Ext.define('Eway.view.monitor.device.showType.BoxGrid', {
 			columns : [ {
 				xtype : 'rownumberer'
 			}, {
-				header : Eway.locale.person.bankOrg.name,
+				header : EwayLocale.person.bankOrg.name,
 				dataIndex : 'org',
 				flex : 1
 			}, {
-				header : Eway.locale.commen.terminalId,
+				header : EwayLocale.commen.terminalId,
 				dataIndex : 'code',
 				flex : 1,
 				tdCls : 'pointerLink'
 			}, {
-				header : Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,
+				header : EwayLocale.monitor.devMonitor.comboxStatus.boxStatus,
 				dataIndex : 'boxStatus',
 				renderer : function(value, meta, record) {
 			    	var boxFatals = [ 'Full', 'Empty', 'High', 'Fatal' ]; 
@@ -45,19 +45,19 @@ Ext.define('Eway.view.monitor.device.showType.BoxGrid', {
 				flex : 1,
 				tdCls : 'pointerLink'
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.boxInitCount,
+				header : EwayLocale.monitor.devMonitor.cash.boxInitCount,
 				dataIndex : 'boxInitCount',
 				flex : 1
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.boxCurrentCount,
+				header : EwayLocale.monitor.devMonitor.cash.boxCurrentCount,
 				dataIndex : 'boxCurrentCount',
 				flex : 1
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.cashboxLimit,
+				header : EwayLocale.monitor.devMonitor.cash.cashboxLimit,
 				dataIndex : 'cashboxLimit',
 				flex : 1
 			}, {
-				header : Eway.locale.monitor.devMonitor.retainCardCount,
+				header : EwayLocale.monitor.devMonitor.retainCardCount,
 				dataIndex : 'retainCardCount',
 			 	renderer : function(value, meta, record) { 
 			 		if(value >= 20) { 
@@ -71,8 +71,8 @@ Ext.define('Eway.view.monitor.device.showType.BoxGrid', {
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : Eway.locale.tip.displayMessage,
-				items : ['-', Eway.locale.tip.formatPageBfMsg, {
+				displayMsg : EwayLocale.tip.displayMessage,
+				items : ['-', EwayLocale.tip.formatPageBfMsg, {
 				    xtype : 'combobox',
 				    name: 'pagesize',
 			        hiddenName: 'pagesize',
@@ -98,7 +98,7 @@ Ext.define('Eway.view.monitor.device.showType.BoxGrid', {
         				    store.loadPage(1);//显示第一页
 				        }
 				    }
-				}, Eway.locale.tip.formatPageAfMsg]
+				}, EwayLocale.tip.formatPageAfMsg]
 			})
 		});
 

@@ -9,7 +9,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 	},
 	width :280,
 	height:'100%',
-	title: Eway.locale.advert.configTitle,
+	title: EwayLocale.advert.configTitle,
 
 	initComponent : function() {
 		var me = this;
@@ -17,18 +17,18 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 			items : [{
 					xtype:'displayfield',
 					name:'fileName',
-					fieldLabel:Eway.locale.advert.fileName,
+					fieldLabel:EwayLocale.advert.fileName,
 					labelWidth: 60,
 					hidden: true,
 					value:''
 				},{
 					xtype:'displayfield',
 					name:'originalFileName',
-					fieldLabel:Eway.locale.advert.resourceName,
+					fieldLabel:EwayLocale.advert.resourceName,
 					labelWidth: 60
 		        },{
 			    	xtype: 'fieldcontainer',
-			        fieldLabel: Eway.locale.advert.playTime,
+			        fieldLabel: EwayLocale.advert.playTime,
 			        labelWidth: 60,
 			        combineErrors: true,
 			        msgTarget: 'under',
@@ -37,7 +37,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 			        },
 			        items:[{
 			        	xtype:'numberfield',
-			        	fieldLabel: Eway.locale.advert.times,
+			        	fieldLabel: EwayLocale.advert.times,
 			        	hideTrigger:true,
 			        	value: 10,
 			            minValue: 1,
@@ -46,11 +46,11 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 			            width:50
 			        },{
 			        	xtype: 'displayfield',
-			        	value :Eway.locale.advert.secondeDisplay
+			        	value :EwayLocale.advert.secondeDisplay
 			        }]
 		    	}, {
 		    	xtype:'datefield',
-		    	fieldLabel: Eway.locale.advert.beginDate,
+		    	fieldLabel: EwayLocale.advert.beginDate,
 		    	name:'beginDate',
 		    	disabled: false,
 		    	editable: false,
@@ -62,7 +62,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		        minValue : new Date()
 		    },{
 		    	xtype:'datefield',
-		    	fieldLabel: Eway.locale.advert.endDate,
+		    	fieldLabel: EwayLocale.advert.endDate,
 		    	labelAlign :'right',
 		    	name:'endDate',
 		    	disabled: false,
@@ -75,7 +75,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		        minValue : new Date()
 		     },{
 		        xtype: 'fieldcontainer',
-		        fieldLabel: Eway.locale.advert.beginTime,
+		        fieldLabel: EwayLocale.advert.beginTime,
 		        combineErrors: true,
 		        labelWidth: 60,
 		        defaults: {
@@ -92,7 +92,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		                name: 'beginHour',
 		                width:50
 		            },
-		            {xtype: 'displayfield', value: Eway.locale.advert.hourDisplay},
+		            {xtype: 'displayfield', value: EwayLocale.advert.hourDisplay},
 		            {
 		            	xtype: 'combobox',
 		            	fieldLabel: 'minute',
@@ -103,7 +103,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		                value:'00',
 		                name:'beginMinute',
 		                width:50
-		            }, {xtype: 'displayfield', value: Eway.locale.advert.minuteDisplay},
+		            }, {xtype: 'displayfield', value: EwayLocale.advert.minuteDisplay},
 		            {
 		            	xtype: 'combobox',
 		            	fieldLabel: 'second',
@@ -115,12 +115,12 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		                name:'beginSecond',
 		                width:50
 		            },
-		            {xtype: 'displayfield', value: Eway.locale.advert.secondeDisplay}
+		            {xtype: 'displayfield', value: EwayLocale.advert.secondeDisplay}
 
 		        ]
 		    },{
 		        xtype: 'fieldcontainer',
-		        fieldLabel: Eway.locale.advert.endTime,
+		        fieldLabel: EwayLocale.advert.endTime,
 		        combineErrors: true,
 		        labelWidth: 60,
 		        defaults: {
@@ -139,7 +139,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		                name:'endHour',
 		                width:50
 		            },
-		            {xtype: 'displayfield', value: Eway.locale.advert.hourDisplay},
+		            {xtype: 'displayfield', value: EwayLocale.advert.hourDisplay},
 		            {
 		            	xtype: 'combobox',
 		            	fieldLabel: 'minute',
@@ -150,7 +150,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		                value:'59',
 		                name:'endMinute',
 		                width:50
-		            }, {xtype: 'displayfield', value: Eway.locale.advert.minuteDisplay},
+		            }, {xtype: 'displayfield', value: EwayLocale.advert.minuteDisplay},
 		            {
 		            	xtype: 'combobox',
 		            	fieldLabel: 'second',
@@ -162,7 +162,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		                name:'endSecond',
 		                width:50
 		            },
-		            {xtype: 'displayfield', value: Eway.locale.advert.secondeDisplay}
+		            {xtype: 'displayfield', value: EwayLocale.advert.secondeDisplay}
 		           ]
 		       }]
 		});

@@ -10,7 +10,7 @@ Ext.define('Eway.view.person.user.Add', {
 	           'Eway.view.field.person.UserType',
 	           'Eway.view.person.user.Role'],
 
-	title: Eway.locale.person.user.addUserTitle,
+	title: EwayLocale.person.user.addUserTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -32,7 +32,7 @@ Ext.define('Eway.view.person.user.Add', {
 				},
 				items: [{
 			        xtype: 'fieldcontainer',
-			        fieldLabel: '<font color="red">*</font>'+Eway.locale.commen.name,
+			        fieldLabel: '<font color="red">*</font>'+EwayLocale.commen.name,
 			        combineErrors: true,
 			        layout: 'hbox',
 			        defaults: {
@@ -40,8 +40,8 @@ Ext.define('Eway.view.person.user.Add', {
 			        },
 			        items: [{
 						xtype : 'field.username',
-						fieldLabel : '<font color="red">*</font> '+Eway.locale.commen.name,
-						emptyText:Eway.locale.person.bankPer.clickToUser,
+						fieldLabel : '<font color="red">*</font> '+EwayLocale.commen.name,
+						emptyText:EwayLocale.person.bankPer.clickToUser,
 						allowBlank : false,
 						readOnly : true
 					},{
@@ -52,20 +52,20 @@ Ext.define('Eway.view.person.user.Add', {
 				        margin: '0 0 0 5'
 					}]
 				},{
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.user.code,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.person.user.code,
 					xtype : 'field.code',
 					regex: /^[a-zA-Z0-9][a-zA-Z0-9-_\.]{0,19}$/,
-					regexText: Eway.locale.vtype.bankOrgCode,
+					regexText: EwayLocale.vtype.bankOrgCode,
 					allowBlank : false
 				},{
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.user.userType,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.person.user.userType,
 					xtype : 'field_userType',
 					name:'userType',
 					hidden:true,
 					allowBlank : false
 				},{
 				    xtype : 'field.userState',
-				    fieldLabel : '<font color="red">*</font> '+Eway.locale.person.bankPer.status,
+				    fieldLabel : '<font color="red">*</font> '+EwayLocale.person.bankPer.status,
 				    allowBlank : false,
 				    value : '1',
 				    hidden : true,
@@ -82,17 +82,17 @@ Ext.define('Eway.view.person.user.Add', {
 					hidden : true
 				}]
 			},{
-				title:Eway.locale.person.user.roleGiven,
+				title:EwayLocale.person.user.roleGiven,
 				xtype: 'user_role',
 				region: 'center',
 				autoLoadStore : false
 			}],
 			buttonAlign : 'center',
 			buttons: [{
-					text: Eway.locale.button.confirm,
+					text: EwayLocale.button.confirm,
 					action: 'confirm'
 				}, {
-					text: Eway.locale.button.cancle,
+					text: EwayLocale.button.cancle,
 					handler: this.onOver
 			}]
 		});

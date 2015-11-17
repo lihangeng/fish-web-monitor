@@ -41,7 +41,7 @@ Ext.define('Eway.controller.case.FaultClassify', {
 			button.on('click', this.onUpdateConfirm, this);
 			win.show();
 		} else {
-			Eway.alert(Eway.choiceUpdateMsg);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 		}
 	},
 
@@ -65,7 +65,7 @@ Ext.define('Eway.controller.case.FaultClassify', {
 			record.set('upgrade', data.upgrade);
 			record.save({
 				success : function(record, operation) {
-					Eway.alert(Eway.updateSuccess);
+					Eway.alert(EwayLocale.updateSuccess);
 					win.close();
 					grid.onReload();
 				},

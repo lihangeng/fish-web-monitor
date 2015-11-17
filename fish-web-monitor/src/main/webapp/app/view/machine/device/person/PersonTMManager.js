@@ -5,7 +5,7 @@ Ext.define('Eway.view.machine.device.person.PersonTMManager', {
 	alias: 'widget.personTM_manager',
 	extend: 'Ext.window.Window',
 	
-	title: Eway.locale.person.bankOrg.addOrgTitle,
+	title: EwayLocale.person.bankOrg.addOrgTitle,
 	modal: true,
 	resizable: false,
 	maximizable: true,
@@ -18,7 +18,7 @@ Ext.define('Eway.view.machine.device.person.PersonTMManager', {
 	layout : 'fit',
 	initComponent: function() {
 		Ext.apply(this, {
-			title : Eway.locale.button.personTM,
+			title : EwayLocale.button.personTM,
 			items : [{
 				xtype : 'personTM_manager_grid'
 			}]

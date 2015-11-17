@@ -6,7 +6,7 @@ Ext.define('Eway.view.person.user.View', {
 	requires: ['Eway.view.person.user.Grid',
 	           'Eway.view.person.user.FilterForm'],
 	
-	title: Eway.locale.person.user.title,
+	title: EwayLocale.person.user.title,
 	layout: 'border',
 	
 	initComponent: function() {

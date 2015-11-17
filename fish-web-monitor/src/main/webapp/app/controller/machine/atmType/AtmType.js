@@ -37,7 +37,7 @@ Ext.define('Eway.controller.machine.atmType.AtmType', {
 		form : 'Eway.view.machine.atmType.Form',
 		xtype : 'machine_atmType_form',
 		width:550,
-		title : Eway.locale.machine.device.devTypeInfo
+		title : EwayLocale.machine.device.devTypeInfo
 	},
 
 	init: function() {

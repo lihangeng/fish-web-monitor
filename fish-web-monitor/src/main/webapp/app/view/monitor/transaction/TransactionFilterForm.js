@@ -21,7 +21,7 @@ Ext.define('Eway.view.monitor.transaction.TransactionFilterForm', {
 				items : [ {
 						columnWidth : .5,
 						items : [ {
-							fieldLabel : Eway.locale.commen.terminalId,
+							fieldLabel : EwayLocale.commen.terminalId,
 							labelAlign : 'right',
 							xtype : 'textfield',
 							name : 'terminalId',

@@ -15,7 +15,7 @@ Ext.define('Eway.view.monitor.charts.View', {
 	initComponent: function() {
 		var me = this;
 		Ext.apply(this, {
-		    title: Eway.locale.monitor.summary.title,//'监控总览',
+		    title: EwayLocale.monitor.summary.title,//'监控总览',
 			refresh:function(){
 				var _this = this;
 	    		var item1 = _this.getComponent("DonutChartsNetSummary");
@@ -120,11 +120,11 @@ Ext.define('Eway.view.monitor.charts.View', {
 	            }]
 		    },
 		    items:[{
-		    	title:Eway.locale.monitor.summary.allSummary,//'概况',
+		    	title:EwayLocale.monitor.summary.allSummary,//'概况',
 		    	itemId:'DonutChartsSummary',
 	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsSummary")
 		    },{
-		    	title:Eway.locale.monitor.summary.appSummary,//'Run概况',
+		    	title:EwayLocale.monitor.summary.appSummary,//'Run概况',
 		    	itemId:'DonutChartsRunSummary',
 	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsRunSummary")
 //		    },{
@@ -145,15 +145,15 @@ Ext.define('Eway.view.monitor.charts.View', {
 //	                }
 //	            }]
 		    },{
-		    	title:Eway.locale.monitor.summary.modSummary,//'Mod概况',
+		    	title:EwayLocale.monitor.summary.modSummary,//'Mod概况',
 		    	itemId:'DonutChartsModSummary',
 	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsModSummary")
 		    },{
-		    	title:Eway.locale.monitor.summary.boxSummary,//'Box概况',
+		    	title:EwayLocale.monitor.summary.boxSummary,//'Box概况',
 		    	itemId:'DonutChartsBoxSummary',
 	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsBoxSummary")
 		    },{
-		    	title:Eway.locale.monitor.summary.netSummary,//'网络概况',
+		    	title:EwayLocale.monitor.summary.netSummary,//'网络概况',
 		    	itemId:'DonutChartsNetSummary',
 	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsNetSummary")
 		    }],

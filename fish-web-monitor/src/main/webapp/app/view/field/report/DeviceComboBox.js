@@ -2,7 +2,7 @@ Ext.define('Eway.view.field.report.DeviceComboBox', {
 	extend : 'Ext.form.field.ComboBox',
 	alias : 'widget.report_DevicComboBox',
 
-	fieldLabel : Eway.locale.report.baseReport.dependDev,
+	fieldLabel : EwayLocale.report.baseReport.dependDev,
 	name : 'isDevice',
 	hiddenName : 'isDevice',
 	msgTarget : 'side',
@@ -11,5 +11,5 @@ Ext.define('Eway.view.field.report.DeviceComboBox', {
 	displayField : 'display',
 	queryMode : 'local',
 	editable : false,
-	emptyText : Eway.locale.combox.select
+	emptyText : EwayLocale.combox.select
 });

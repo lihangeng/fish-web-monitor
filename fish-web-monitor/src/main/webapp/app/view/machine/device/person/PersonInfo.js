@@ -1,7 +1,7 @@
 Ext.define('Eway.view.machine.device.person.PersonInfo', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.machine_device_person_personInfo',
-	title : Eway.locale.machine.device.devPerson,
+	title : EwayLocale.machine.device.devPerson,
 	modal : true,
 	constrainHeader : true,
 	width : 700,
@@ -25,19 +25,19 @@ Ext.define('Eway.view.machine.device.person.PersonInfo', {
 				xtype : 'tabpanel',
 				frame : true,
 				items : [{
-					title : Eway.locale.button.orgAdmin,
+					title : EwayLocale.button.orgAdmin,
 					itemid : 'organizationItemID',
 					xtype : 'machine_device_person_oGrid'
 				},{
-					title : Eway.locale.button.personTM,
+					title : EwayLocale.button.personTM,
 					itemid : 'tubeMachineItemID',
 					xtype : 'machine_device_person_tmGrid'
 				}, {
-					title : Eway.locale.machine.device.maintainPerson,
+					title : EwayLocale.machine.device.maintainPerson,
 					itemid : 'maintainItemID',
 					xtype : 'machine_device_person_tGrid'
 				} , {
-					title : Eway.locale.report.plan.openPlan,
+					title : EwayLocale.report.plan.openPlan,
 					itemid : 'devicePlanInfoID',
 					xtype : 'device_planInfo_grid'
 				} ]

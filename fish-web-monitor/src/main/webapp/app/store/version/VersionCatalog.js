@@ -3,7 +3,7 @@ Ext.define('Eway.store.version.VersionCatalog', {
 	
 	model: 'Eway.model.Dict',
 
-	data: [{value:'APP', display:Eway.locale.version.versionCatalog.app},//'应用程序'}, 
-	       {value:'V_AGENT', display:Eway.locale.version.versionCatalog.agent},//'监控代理'}, 
-	       {value:'ATM_PARAM', display:Eway.locale.version.versionCatalog.param}]//'应用配置'}]
+	data: [{value:'APP', display:EwayLocale.version.versionCatalog.app},//'应用程序'}, 
+	       {value:'V_AGENT', display:EwayLocale.version.versionCatalog.agent},//'监控代理'}, 
+	       {value:'ATM_PARAM', display:EwayLocale.version.versionCatalog.param}]//'应用配置'}]
 });

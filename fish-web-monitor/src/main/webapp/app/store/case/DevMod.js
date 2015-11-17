@@ -4,13 +4,13 @@ Ext.define('Eway.store.case.DevMod', {
 
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'IDC', display:Eway.locale.cases.caseFault.cardReaderModule}, 
-	       {value:'CIM', display:Eway.locale.cases.caseFault.depoistModule},
-		   {value:'CDM', display:Eway.locale.cases.caseFault.drawModule},
-		   {value:'RPR', display:Eway.locale.cases.caseFault.rprModule},
-		   {value:'JPR', display:Eway.locale.cases.caseFault.jprModule},
-		   {value:'PIN', display:Eway.locale.cases.caseFault.pinModule},
-		   {value:'TTU', display:Eway.locale.cases.caseFault.textTerminalUnit},
-		   {value:'SIU', display:Eway.locale.cases.caseFault.sensoModule}]
+	data: [{value:'IDC', display:EwayLocale.cases.caseFault.cardReaderModule}, 
+	       {value:'CIM', display:EwayLocale.cases.caseFault.depoistModule},
+		   {value:'CDM', display:EwayLocale.cases.caseFault.drawModule},
+		   {value:'RPR', display:EwayLocale.cases.caseFault.rprModule},
+		   {value:'JPR', display:EwayLocale.cases.caseFault.jprModule},
+		   {value:'PIN', display:EwayLocale.cases.caseFault.pinModule},
+		   {value:'TTU', display:EwayLocale.cases.caseFault.textTerminalUnit},
+		   {value:'SIU', display:EwayLocale.cases.caseFault.sensoModule}]
 
 });

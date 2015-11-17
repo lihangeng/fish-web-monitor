@@ -15,11 +15,11 @@ Ext.define('Eway.view.machine.quittingNotice.QuittingNoticeGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->',{
-				text: Eway.locale.button.search,
+				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			}, {
-				text: Eway.locale.button.add,
+				text: EwayLocale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'quittingNoticeAdd',
@@ -27,7 +27,7 @@ Ext.define('Eway.view.machine.quittingNotice.QuittingNoticeGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: Eway.locale.button.update,
+				text: EwayLocale.button.update,
 				glyph : 0xf040,
 				action: 'update',
 				code : 'quittingNoticeUpdate',
@@ -35,7 +35,7 @@ Ext.define('Eway.view.machine.quittingNotice.QuittingNoticeGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: Eway.locale.button.remove,
+				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'quittingNoticeDel',
@@ -44,11 +44,11 @@ Ext.define('Eway.view.machine.quittingNotice.QuittingNoticeGrid', {
 				}
 			}],
 			columns : [{
-				header : Eway.locale.machine.atmGroup.terminalId,
+				header : EwayLocale.machine.atmGroup.terminalId,
 				dataIndex : 'deviceCode',
 				flex : 1
 			}, {
-				header : Eway.locale.machine.quittingNotice.stopTime,
+				header : EwayLocale.machine.quittingNotice.stopTime,
 				dataIndex : 'stopTime',
 				renderer:function(value) //将时间格式截取为日期格式
 				{
@@ -62,7 +62,7 @@ Ext.define('Eway.view.machine.quittingNotice.QuittingNoticeGrid', {
 				
 				renderer:Ext.util.Format.dateRenderer('Y-m-d H:i:s')*/
 			}, {
-				header : Eway.locale.machine.quittingNotice.openTime,
+				header : EwayLocale.machine.quittingNotice.openTime,
 				dataIndex : 'openTime',
 				renderer:function(value) //将时间格式截取为日期格式
 				{
@@ -75,45 +75,45 @@ Ext.define('Eway.view.machine.quittingNotice.QuittingNoticeGrid', {
 				flex : 1/*,
 				renderer:Ext.util.Format.dateRenderer('Y-m-d H:i:s')*/
 			},{
-				header : Eway.locale.machine.quittingNotice.currentStatus,
+				header : EwayLocale.machine.quittingNotice.currentStatus,
 				dataIndex : 'devStatus',
 				renderer: function(value,metadata,record){  
                    if(value=='DISABLED'){
-                	   return Eway.locale.machine.atmGroup.comboxStatus.close;
+                	   return EwayLocale.machine.atmGroup.comboxStatus.close;
                    }else if(value=='OPEN'){
-                	   return Eway.locale.machine.atmGroup.comboxStatus.open;
+                	   return EwayLocale.machine.atmGroup.comboxStatus.open;
                    }
 				},
 				flex : 1
 			},{
-				header : Eway.locale.machine.quittingNotice.stopType,
+				header : EwayLocale.machine.quittingNotice.stopType,
 				dataIndex : 'stopType',
 				renderer: function(value,metadata,record){  
                    if(value==0){
-                	   return Eway.locale.machine.quittingNotice.comboxStopType.recess;
+                	   return EwayLocale.machine.quittingNotice.comboxStopType.recess;
                    }else if(value==1){
-                	   return Eway.locale.machine.quittingNotice.comboxStopType.fit;
+                	   return EwayLocale.machine.quittingNotice.comboxStopType.fit;
                    }else if(value==2){
-                	   return Eway.locale.machine.quittingNotice.comboxStopType.power;
+                	   return EwayLocale.machine.quittingNotice.comboxStopType.power;
                    }else if(value==3){
-                	   return Eway.locale.machine.quittingNotice.comboxStopType.devFailue;
+                	   return EwayLocale.machine.quittingNotice.comboxStopType.devFailue;
                    }else{
-                	   return Eway.locale.machine.quittingNotice.comboxStopType.other;
+                	   return EwayLocale.machine.quittingNotice.comboxStopType.other;
                    }
 				},
 				flex : 1
 			},{
-				header : Eway.locale.machine.quittingNotice.stopReason,
+				header : EwayLocale.machine.quittingNotice.stopReason,
 				dataIndex : 'stopReason',
 				flex : 1
 			},{
-				header : Eway.locale.machine.quittingNotice.setTime,
+				header : EwayLocale.machine.quittingNotice.setTime,
 				dataIndex : 'setTime',
 				flex : 1/*,
 				renderer:Ext.util.Format.dateRenderer('Y-m-d H:i:s')*/
 			//	format : 'Y-m-d H:i:s'
 			},{
-				header : Eway.locale.machine.quittingNotice.responsibilityName,
+				header : EwayLocale.machine.quittingNotice.responsibilityName,
 				dataIndex : 'responsibilityName',
 				flex : 1
 			}],

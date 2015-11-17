@@ -12,7 +12,7 @@ Ext.define('Eway.view.machine.atmCatalog.AtmCatalogFilterForm', {
 				items : [{
 					xtype : 'textfield',
 					name : 'name',
-					fieldLabel : Eway.locale.machine.atmCatalog.name
+					fieldLabel : EwayLocale.machine.atmCatalog.name
 				}]
 			}]
 		});

@@ -4,7 +4,7 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
     requires:['Eway.store.index.FaultTrendByDay'],
 
     title : {
-    	text :Eway.locale.index.dailyFaultPic,
+    	text :EwayLocale.index.dailyFaultPic,
     	height:24
     },
     
@@ -35,7 +35,7 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
             },
             sprites: [{
                 type: 'text',
-                text: Eway.locale.index.dailyFaultPic,
+                text: EwayLocale.index.dailyFaultPic,
                 fontSize: 10,
                 x: 230,
                 y: 485
@@ -91,7 +91,7 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                        this.setHtml(storeItem.get('month') + Eway.locale.index.faultAmount + storeItem.get('data1'));
+                        this.setHtml(storeItem.get('month') + EwayLocale.index.faultAmount + storeItem.get('data1'));
                     }
                 }
             }]

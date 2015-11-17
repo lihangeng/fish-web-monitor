@@ -15,41 +15,41 @@ Ext.define('Eway.view.person.organization.OrganizationManagerGrid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->', {
-				text: Eway.locale.commen.setManager,
+				text: EwayLocale.commen.setManager,
 				glyph : 0xf0c1,
 				action: 'set'
 			}],
 			columns : [{
-				header : Eway.locale.commen.name,
+				header : EwayLocale.commen.name,
 				dataIndex : 'name'
 			},{
-				header : Eway.locale.commen.gender,
+				header : EwayLocale.commen.gender,
 				dataIndex : 'gender',
 				renderer: function(value,metadata,record){
 					if(value=="MALE"){
-	                	   return Eway.locale.commen.comboxGender.male;
+	                	   return EwayLocale.commen.comboxGender.male;
 	                   }else if(value=="FEMALE"){
-	                	   return Eway.locale.commen.comboxGender.female;
+	                	   return EwayLocale.commen.comboxGender.female;
 	                   }else{
-	                	   return Eway.locale.commen.comboxGender.unknow;
+	                	   return EwayLocale.commen.comboxGender.unknow;
 	                   }
 				}
 			},{
-				header : Eway.locale.commen.birthday,
+				header : EwayLocale.commen.birthday,
 				dataIndex : 'birthday',
 				xtype : 'datecolumn',
 				format : 'Y-m-d'
 			}, {
-				header : Eway.locale.commen.mobile,
+				header : EwayLocale.commen.mobile,
 				dataIndex : 'mobile'
 			}, {
-				header : Eway.locale.commen.phone,
+				header : EwayLocale.commen.phone,
 				dataIndex : 'phone'
 			},{
-				header : Eway.locale.commen.email,
+				header : EwayLocale.commen.email,
 				dataIndex : 'email'
 			},{
-				header : Eway.locale.person.bankPer.organizationName,
+				header : EwayLocale.person.bankPer.organizationName,
 				dataIndex : 'organizationName',
 				flex : 1
 			}],

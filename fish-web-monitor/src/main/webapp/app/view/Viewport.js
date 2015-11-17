@@ -24,7 +24,7 @@ Ext.define('Eway.view.Viewport', {
 			}, {
 				region : 'west',
 				width : 205,
-				title : Eway.locale.myTable,
+				title : EwayLocale.myTable,
 				id:'appmenu',
 				header : true,
 				bodyStyle: 'opacity:0.8',

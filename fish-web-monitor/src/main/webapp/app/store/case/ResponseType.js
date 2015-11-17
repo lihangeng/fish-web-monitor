@@ -5,9 +5,9 @@ Ext.define('Eway.store.case.ResponseType',{
 	
 	fields : ['value','name'],
 	data : [
-		{'value':'1', 'name':Eway.locale.commen.comboxType.machineManager},
-		{'value':'2', 'name':Eway.locale.cases.faultClassify.maintain},
-		{'value':'3', 'name':Eway.locale.cases.faultClassify.manageAndMaintain}
+		{'value':'1', 'name':EwayLocale.commen.comboxType.machineManager},
+		{'value':'2', 'name':EwayLocale.cases.faultClassify.maintain},
+		{'value':'3', 'name':EwayLocale.cases.faultClassify.manageAndMaintain}
 	]
 
 });

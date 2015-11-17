@@ -6,10 +6,10 @@ Ext.define('Eway.view.field.card.ActionStatus',{
 
 	store:'monitor.card.ActionStatus',
 	queryMode: 'local',
-	fieldLabel:Eway.locale.card.cardStatus,
+	fieldLabel:EwayLocale.card.cardStatus,
 	name:'status',
 	valueField: 'value',
 	displayField: 'display',
 	msgTarget : 'side',
-	emptyText: Eway.locale.combox.select
+	emptyText: EwayLocale.combox.select
 });

@@ -13,7 +13,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 	},
 	initComponent : function() {
 		Ext.apply(this, {
-			title: Eway.locale.machine.device.addDevInfo,
+			title: EwayLocale.machine.device.addDevInfo,
 			items : [ {
 				columnWidth : .3,
 				defaults : {
@@ -22,13 +22,13 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.machine.atmGroup.terminalId,
+					fieldLabel : EwayLocale.machine.atmGroup.terminalId,
 					name : 'terminalId',
 					msgTarget : 'side',
 					maxLength : 20
 				}, {
 					xtype : 'field_atmType_DeviceAtmCatalogComboBox',
-					fieldLabel : Eway.locale.machine.atmGroup.devCatalogName
+					fieldLabel : EwayLocale.machine.atmGroup.devCatalogName
 				}]
 			},{
 
@@ -48,8 +48,8 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 					value : ewayUser.getOrgId()
 				}, {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : Eway.locale.machine.atmGroup.orgName,
-					emptyText : Eway.locale.combox.select,
+					fieldLabel : EwayLocale.machine.atmGroup.orgName,
+					emptyText : EwayLocale.combox.select,
 					name : 'orgName',
 					hiddenValue : 'organization',
 					editable : false,
@@ -61,8 +61,8 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 					name : 'devService'
 				}, {
 				xtype : 'common_orgComboOrgTree',
-				fieldLabel : Eway.locale.machine.atmGroup.devServiceName,
-				emptyText : Eway.locale.combox.select,
+				fieldLabel : EwayLocale.machine.atmGroup.devServiceName,
+				emptyText : EwayLocale.combox.select,
 				name : 'devServiceName',
 				hiddenValue : 'devService',
 				editable : false,
@@ -78,7 +78,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 				},
 				items : [ {
 					xtype : 'field_atmType_DeviceAtmVendorComboBox',
-					fieldLabel : Eway.locale.machine.atmGroup.devVendorName
+					fieldLabel : EwayLocale.machine.atmGroup.devVendorName
 				},{
 					xtype : 'field_device_deviceatmtype',
 					name : 'devType',

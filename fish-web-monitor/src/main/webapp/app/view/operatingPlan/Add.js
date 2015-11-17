@@ -3,7 +3,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 	extend: 'Ext.window.Window',
 	alias : 'widget.operatingPlan_form',
 
-	title : Eway.locale.report.plan.addPlan,
+	title : EwayLocale.report.plan.addPlan,
 	modal : true,
 	constrainHeader : true,
 	width : 810,
@@ -22,7 +22,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 					labelAlign:'right'
 				},
 				items : [  {
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.report.openplan.name,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.report.openplan.name,
 					xtype : 'textfield',
 					name : 'name',
 					maxLength : 30,
@@ -41,7 +41,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 							labelAlign:'right'
 						},
 						items : [ {
-							fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.startDate,
+							fieldLabel : '<font color="red">*</font>'+EwayLocale.report.plan.startDate,
 							xtype : 'datefield',
 							name : 'startDate',							
 							format : 'Y-m-d',
@@ -63,7 +63,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 								}
 							}
 						},{
-							fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.endDate,
+							fieldLabel : '<font color="red">*</font>'+EwayLocale.report.plan.endDate,
 							xtype : 'datefield',
 							name : 'endDate',
 							format : 'Y-m-d',
@@ -94,22 +94,22 @@ Ext.define('Eway.view.operatingPlan.Add',{
 							labelAlign:'right'
 						},
 						items : [{
-							fieldLabel : '<font color="red">*</font>'+Eway.locale.report.openplan.state,
+							fieldLabel : '<font color="red">*</font>'+EwayLocale.report.openplan.state,
 							xtype : 'field_planState',
 							name : 'planState',
 							value :'Normal',
 							allowBlank : false
 							} ,{
-							fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.type,
+							fieldLabel : '<font color="red">*</font>'+EwayLocale.report.plan.type,
 							xtype : 'radiogroup',
 							allowBlank : false,
 							items : [ {
-								boxLabel : Eway.locale.report.openplan.week,
+								boxLabel : EwayLocale.report.openplan.week,
 								name : 'planType',
 								checked : true,
 								inputValue : 'WEEK'
 							}, {
-								boxLabel : Eway.locale.report.openplan.date,
+								boxLabel : EwayLocale.report.openplan.date,
 								name : 'planType',
 								inputValue : 'DATE'
 							}]
@@ -122,7 +122,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 					height : 350,
 					itemId: 'cardPanelId',
 					items : [ {
-						title : Eway.locale.tip.planWeek,
+						title : EwayLocale.tip.planWeek,
 						items : [ {
 							xtype : 'form',
 							height : 330,
@@ -144,26 +144,26 @@ Ext.define('Eway.view.operatingPlan.Add',{
 										style : 'padding-top:10px'
 									},
 									items : [ {
-										fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.device.person.openClose,
+										fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.device.person.openClose,
 										xtype : 'radiogroup',
 										name : 'openClose',
 										allowBlank : false,
 										columns: 3,
 										items : [ {
-											boxLabel : Eway.locale.machine.device.person.Open,
+											boxLabel : EwayLocale.machine.device.person.Open,
 											name : 'openClose',
 											checked : true,
 											width:50,
 											inputValue : 'Open'
 										}, {
-											boxLabel : Eway.locale.machine.device.person.Close,
+											boxLabel : EwayLocale.machine.device.person.Close,
 											width:50,
 											name : 'openClose',
 											inputValue : 'Close'
 										}]
 									},{
 										xtype : 'fieldcontainer',
-										fieldLabel : Eway.locale.system.startDate,
+										fieldLabel : EwayLocale.system.startDate,
 										layout : 'hbox',
 										defaults : {
 											hideLabel : true
@@ -181,7 +181,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											width :  75
 										}, {
 											xtype : 'displayfield',
-											value : Eway.locale.advert.hourDisplay
+											value : EwayLocale.advert.hourDisplay
 
 										}, {
 											xtype : 'combobox',
@@ -196,7 +196,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											width :  75
 										}, {
 											xtype : 'displayfield',
-											value : Eway.locale.advert.minuteDisplay
+											value : EwayLocale.advert.minuteDisplay
 										}, {
 											xtype : 'combobox',
 											fieldLabel : 'second',
@@ -210,7 +210,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											width :  75
 										}, {
 											xtype : 'displayfield',
-											value : Eway.locale.advert.secondeDisplay
+											value : EwayLocale.advert.secondeDisplay
 										} ]
 									}]
 								}, {
@@ -223,26 +223,26 @@ Ext.define('Eway.view.operatingPlan.Add',{
 										style : 'padding:10px 0px 0px 0px'
 									},
 									items : [ {
-										fieldLabel : '<font color="red">*</font>'+Eway.locale.report.openplan.week,
+										fieldLabel : '<font color="red">*</font>'+EwayLocale.report.openplan.week,
 										xtype : 'checkboxgroup',
 										allowBlank : false,
 										itemId: 'checkboxgroupId',
 										labelWidth:65,
 										columns: 7,
 										msgTarget:'qtip',
-										blankText :Eway.locale.report.openplan.chooseOne,
+										blankText :EwayLocale.report.openplan.chooseOne,
 							            items : [
-						                    {boxLabel: Eway.locale.report.openplan.Mon, name: 'Mon', checked: true},
-						                    {boxLabel: Eway.locale.report.openplan.Tues, name: 'Tues'},
-						                    {boxLabel: Eway.locale.report.openplan.Wed, name: 'Wed'},
-						                    {boxLabel: Eway.locale.report.openplan.Thur, name: 'Thur'},
-						                    {boxLabel: Eway.locale.report.openplan.Fri, name: 'Fri'},
-						                    {boxLabel: Eway.locale.report.openplan.Sat, name: 'Sat'},
-						                    {boxLabel: Eway.locale.report.openplan.Sun, name: 'Sun'}
+						                    {boxLabel: EwayLocale.report.openplan.Mon, name: 'Mon', checked: true},
+						                    {boxLabel: EwayLocale.report.openplan.Tues, name: 'Tues'},
+						                    {boxLabel: EwayLocale.report.openplan.Wed, name: 'Wed'},
+						                    {boxLabel: EwayLocale.report.openplan.Thur, name: 'Thur'},
+						                    {boxLabel: EwayLocale.report.openplan.Fri, name: 'Fri'},
+						                    {boxLabel: EwayLocale.report.openplan.Sat, name: 'Sat'},
+						                    {boxLabel: EwayLocale.report.openplan.Sun, name: 'Sun'}
 							              ]
 									}, {
 										xtype : 'fieldcontainer',
-										fieldLabel : Eway.locale.advert.endTime,
+										fieldLabel : EwayLocale.advert.endTime,
 										layout : 'hbox',
 										labelWidth:65,
 										defaults : {
@@ -261,7 +261,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											width : 75
 										}, {
 											xtype : 'displayfield',
-											value : Eway.locale.advert.hourDisplay
+											value : EwayLocale.advert.hourDisplay
 										}, {
 											xtype : 'combobox',
 											fieldLabel : 'minute',
@@ -275,7 +275,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											width : 75
 										}, {
 											xtype : 'displayfield',
-											value : Eway.locale.advert.minuteDisplay
+											value : EwayLocale.advert.minuteDisplay
 										}, {
 											xtype : 'combobox',
 											fieldLabel : 'second',
@@ -289,19 +289,19 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											width : 75
 										}, {
 											xtype : 'displayfield',
-											value : Eway.locale.advert.secondeDisplay
+											value : EwayLocale.advert.secondeDisplay
 										} ]
 									} ]
 								} ],
 								fbar: [{
 									xtype:'displayfield',
-									value:'<b>'+Eway.locale.report.openplan.lanDetailWeek+'</b>'
+									value:'<b>'+EwayLocale.report.openplan.lanDetailWeek+'</b>'
 								},'->',{
-									text: Eway.locale.card.add,
+									text: EwayLocale.card.add,
 									glyph : 0xf067,
 									action: 'add'
 								},{
-									text: Eway.locale.card.dell,
+									text: EwayLocale.card.dell,
 									glyph : 0xf014,
 									action: 'remove'
 								}]
@@ -315,7 +315,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 							}]
 						} ]
 					}, {
-						title : Eway.locale.tip.planDate,
+						title : EwayLocale.tip.planDate,
 						items : [ {
 							xtype : 'form',
 							height : 330,
@@ -337,17 +337,17 @@ Ext.define('Eway.view.operatingPlan.Add',{
 										style : 'padding:10px 10px 0px 10px'
 									},
 									items : [ {
-										fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.device.person.openClose,
+										fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.device.person.openClose,
 										xtype : 'radiogroup',
 										name : 'openClose',
 										allowBlank : false,
 										items : [ {
-											boxLabel : Eway.locale.machine.device.person.Open,
+											boxLabel : EwayLocale.machine.device.person.Open,
 											name : 'openClose',
 											checked : true,
 											inputValue : 'Open'
 										}, {
-											boxLabel : Eway.locale.machine.device.person.Close,
+											boxLabel : EwayLocale.machine.device.person.Close,
 											name : 'openClose',
 											inputValue : 'Close'
 										}]
@@ -363,7 +363,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 									},
 									items : [ {
 										xtype : 'fieldcontainer',
-										fieldLabel : Eway.locale.system.startDate,
+										fieldLabel : EwayLocale.system.startDate,
 										layout : 'hbox',
 										defaults : {
 											hideLabel : true
@@ -381,7 +381,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											width : 75
 										}, {
 											xtype : 'displayfield',
-											value : Eway.locale.advert.hourDisplay
+											value : EwayLocale.advert.hourDisplay
 										}, {
 											xtype : 'combobox',
 											fieldLabel : 'minute',
@@ -395,7 +395,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											width : 75
 										}, {
 											xtype : 'displayfield',
-											value : Eway.locale.advert.minuteDisplay
+											value : EwayLocale.advert.minuteDisplay
 										}, {
 											xtype : 'combobox',
 											fieldLabel : 'second',
@@ -409,11 +409,11 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											width : 75
 										}, {
 											xtype : 'displayfield',
-											value : Eway.locale.advert.secondeDisplay
+											value : EwayLocale.advert.secondeDisplay
 										} ]
 									}, {
 										xtype : 'fieldcontainer',
-										fieldLabel : Eway.locale.commen.endDataTime,
+										fieldLabel : EwayLocale.commen.endDataTime,
 										layout : 'hbox',
 										defaults : {
 											hideLabel : true
@@ -431,7 +431,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											width : 75
 										}, {
 											xtype : 'displayfield',
-											value : Eway.locale.advert.hourDisplay
+											value : EwayLocale.advert.hourDisplay
 										}, {
 											xtype : 'combobox',
 											fieldLabel : 'minute',
@@ -445,7 +445,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											width : 75
 										}, {
 											xtype : 'displayfield',
-											value : Eway.locale.advert.minuteDisplay
+											value : EwayLocale.advert.minuteDisplay
 										}, {
 											xtype : 'combobox',
 											fieldLabel : 'second',
@@ -459,19 +459,19 @@ Ext.define('Eway.view.operatingPlan.Add',{
 											width : 75
 										}, {
 											xtype : 'displayfield',
-											value : Eway.locale.advert.secondeDisplay
+											value : EwayLocale.advert.secondeDisplay
 										} ]
 									} ]
 								} ],
 								fbar: [{
 										xtype:'displayfield',
-										value:'<b>' + Eway.locale.report.openplan.planDetailDay + '</b>'
+										value:'<b>' + EwayLocale.report.openplan.planDetailDay + '</b>'
 									},'->',{
-									text: Eway.locale.card.add,
+									text: EwayLocale.card.add,
 									glyph : 0xf067,
 									action: 'add'
 								},{
-									text: Eway.locale.card.dell,
+									text: EwayLocale.card.dell,
 									glyph : 0xf014,
 									action: 'remove'
 								}]
@@ -494,7 +494,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 				} ],
 				buttonAlign : 'center',
 				fbar: [{
-					text: Eway.locale.button.confirm,
+					text: EwayLocale.button.confirm,
 					action: 'confirm',
 					iconCls:'db-save'
 				}]

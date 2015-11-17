@@ -6,7 +6,7 @@ Ext.define('Eway.view.atmLog.successAtmLogInfo.SuccessAtmLogInfoWin', {
 	requires: [
 	           'Eway.view.atmLog.successAtmLogInfo.SuccessAtmLogInfoGrid'],
 	           
-	title: Eway.locale.atmLog.checkSucInfo,
+	title: EwayLocale.atmLog.checkSucInfo,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,

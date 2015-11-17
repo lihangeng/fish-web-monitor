@@ -25,16 +25,16 @@ Ext.define('Eway.view.permission.role.Form',{
 					autoScroll : true,
 					height: 360,
 					tbar : [{
-			        	text:Eway.locale.permission.role.chooseRight,
+			        	text:EwayLocale.permission.role.chooseRight,
 			        	xtype:'tbtext'
 			        },{
 						xtype : 'button',
-						text : Eway.locale.commen.selectAll,
+						text : EwayLocale.commen.selectAll,
 						handler : this.onCheckAll,
 						scope : this
 					},{
 						xtype : 'button',
-						text : Eway.locale.commen.selectNon,
+						text : EwayLocale.commen.selectNon,
 						handler : this.onCheckNone,
 						scope : this
 					}],

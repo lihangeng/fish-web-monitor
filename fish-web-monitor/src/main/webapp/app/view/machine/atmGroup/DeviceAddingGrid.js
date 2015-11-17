@@ -14,11 +14,11 @@ Ext.define('Eway.view.machine.atmGroup.DeviceAddingGrid', {
 			initRegion : true,
 			store : store,
 			tbar : [ '->', {
-				text : Eway.locale.button.search,
+				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			},{
-				text : Eway.locale.button.confirm,
+				text : EwayLocale.button.confirm,
 				action : 'confirm'
 			} ],
 			viewConfig : {
@@ -26,62 +26,62 @@ Ext.define('Eway.view.machine.atmGroup.DeviceAddingGrid', {
 				stripeRows : true
 			},
 			columns : [ {
-				header : Eway.locale.machine.atmGroup.terminalId,
+				header : EwayLocale.machine.atmGroup.terminalId,
 				dataIndex : 'terminalId'
 			}, {
-				header : Eway.locale.machine.atmGroup.ip,
+				header : EwayLocale.machine.atmGroup.ip,
 				dataIndex : 'ip'
 			}, {
-				header : Eway.locale.machine.atmGroup.orgName,
+				header : EwayLocale.machine.atmGroup.orgName,
 				dataIndex : 'orgName'
 			}, {
-				header : Eway.locale.machine.atmGroup.devTypeName,
+				header : EwayLocale.machine.atmGroup.devTypeName,
 				dataIndex : 'devTypeName'
 			}, {
-				header : Eway.locale.machine.atmGroup.devVendorName,
+				header : EwayLocale.machine.atmGroup.devVendorName,
 				dataIndex : 'devVendorName'
 			}, {
-				header : Eway.locale.machine.atmGroup.devCatalogName,
+				header : EwayLocale.machine.atmGroup.devCatalogName,
 				dataIndex : 'devCatalogName'
 			}, {
-				header : Eway.locale.machine.atmGroup.status,
+				header : EwayLocale.machine.atmGroup.status,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return Eway.locale.commen.comboxDevStatus.upOpen;
+						return EwayLocale.commen.comboxDevStatus.upOpen;
 					}
 					if (value == 2) {
-						return Eway.locale.commen.comboxDevStatus.open;
+						return EwayLocale.commen.comboxDevStatus.open;
 					}
 					if (value == 3) {
-						return Eway.locale.commen.comboxDevStatus.stop;
+						return EwayLocale.commen.comboxDevStatus.stop;
 					}
 					if (value == 4) {
-						return Eway.locale.commen.comboxDevStatus.scrapped;
+						return EwayLocale.commen.comboxDevStatus.scrapped;
 					}
 				}
 			}, {
-				header : Eway.locale.machine.atmGroup.awayFlag,
+				header : EwayLocale.machine.atmGroup.awayFlag,
 				dataIndex : 'awayFlag',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return Eway.locale.machine.atmGroup.comboxAwayFlag.inBank;
+						return EwayLocale.machine.atmGroup.comboxAwayFlag.inBank;
 					}
 					if (value == 2) {
-						return Eway.locale.machine.atmGroup.comboxAwayFlag.outBank;
+						return EwayLocale.machine.atmGroup.comboxAwayFlag.outBank;
 					}
 					if (value == 3) {
-						return Eway.locale.machine.atmGroup.comboxAwayFlag.clickBank;
+						return EwayLocale.machine.atmGroup.comboxAwayFlag.clickBank;
 					}
 				}
 			}, {
-				header : Eway.locale.machine.atmGroup.devServiceName,
+				header : EwayLocale.machine.atmGroup.devServiceName,
 				dataIndex : 'devServiceName'
 			}, {
-				header : Eway.locale.machine.atmGroup.cashboxLimit,
+				header : EwayLocale.machine.atmGroup.cashboxLimit,
 				dataIndex : 'cashboxLimit'
 			}, {
-				header : Eway.locale.machine.atmGroup.address,
+				header : EwayLocale.machine.atmGroup.address,
 				dataIndex : 'address',
 				flex : 1
 			} ],

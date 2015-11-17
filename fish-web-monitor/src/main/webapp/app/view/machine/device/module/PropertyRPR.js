@@ -11,7 +11,7 @@ Ext.define("Eway.view.machine.device.module.PropertyRPR", {
 			},
 			border : false,
 			items : [ {
-				title : Eway.locale.machine.device.RPRInfo,
+				title : EwayLocale.machine.device.RPRInfo,
 				titleAlign:'center',
 				layout : 'column',
 				items : [ {
@@ -26,11 +26,11 @@ Ext.define("Eway.view.machine.device.module.PropertyRPR", {
 						labelWidth : 150
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.canEject,
+						fieldLabel : EwayLocale.machine.device.canEject,
 						name : 'canEject',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.canCapture,
+						fieldLabel : EwayLocale.machine.device.canCapture,
 						name : 'canCapture'
 					} ]
 				}, {
@@ -45,11 +45,11 @@ Ext.define("Eway.view.machine.device.module.PropertyRPR", {
 						labelWidth : 150
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.canStack,
+						fieldLabel : EwayLocale.machine.device.canStack,
 						name : 'canStack',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.maxRetract,
+						fieldLabel : EwayLocale.machine.device.maxRetract,
 						name : 'maxRetract'
 					} ]
 				} ]

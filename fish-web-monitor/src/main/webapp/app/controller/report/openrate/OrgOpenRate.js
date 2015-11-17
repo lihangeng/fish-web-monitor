@@ -31,7 +31,7 @@ Ext.define('Eway.controller.report.openrate.OrgOpenRate', {
 
 		// 查询输入验证
 		if (bool == false) {
-			Eway.alert(Eway.locale.tip.searchOfNoLegal);
+			Eway.alert(EwayLocale.tip.searchOfNoLegal);
 			return
 		}
 		var values = form.getValues();

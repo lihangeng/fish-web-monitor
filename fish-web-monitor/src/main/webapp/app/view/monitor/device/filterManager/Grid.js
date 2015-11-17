@@ -9,19 +9,19 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 			initRegion : true,
 			store : store,
 			tbar : [ '->',{
-				text : Eway.locale.button.search,
+				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : Eway.locale.button.add,
+				text : EwayLocale.button.add,
 				glyph : 0xf067,
 				action : 'add'
 			}, {
-				text :Eway.locale.button.update,
+				text :EwayLocale.button.update,
 				glyph : 0xf040,
 				action : 'update'
 			}, {
-				text : Eway.locale.button.remove,
+				text : EwayLocale.button.remove,
 				glyph : 0xf014,
 				action : 'remove'/*,
 				code : 'deviceDel',
@@ -30,222 +30,222 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 				}*/
 			} ],
 			columns : [ {
-				header : Eway.locale.monitor.devMonitor.filterManager.filterForm.filterName,
+				header : EwayLocale.monitor.devMonitor.filterManager.filterForm.filterName,
 				dataIndex : 'filterName'
 			}, {
-				header : Eway.locale.machine.atmGroup.orgName,
+				header : EwayLocale.machine.atmGroup.orgName,
 				dataIndex : 'orgId',
 				renderer : function(value, metaData, record) {
 					
 					if (value == null) {
-						return Eway.locale.commen.all;
+						return EwayLocale.commen.all;
 					}
 					return record.get('orgName');
 				}
 			}, {
-				header : Eway.locale.commen.devVendorName,
+				header : EwayLocale.commen.devVendorName,
 				dataIndex : 'brandItem',
 				renderer : function(value, metaData, record) {
 					
 					if (value == 0) {
-						return Eway.locale.commen.all;
+						return EwayLocale.commen.all;
 					}
 					return record.get('brandItemName');
 				}
 			}, {
-				header : Eway.locale.commen.devTypeName,
+				header : EwayLocale.commen.devTypeName,
 				dataIndex : 'classifyItem',
 				renderer : function(value, metaData, record) {
 					
 					if (value == 0) {
-						return Eway.locale.commen.all;
+						return EwayLocale.commen.all;
 					}
 					return record.get('classifyItemName');
 				}
 			}, {
-				header : Eway.locale.commen.insideOutside,
+				header : EwayLocale.commen.insideOutside,
 				dataIndex : 'ingItem',
 				renderer : function(value) {
 					
 					if (value == 0) {
-						return Eway.locale.commen.all;
+						return EwayLocale.commen.all;
 					}
 					if (value == 1) {
-						return Eway.locale.machine.atmGroup.comboxAwayFlag.inBank;
+						return EwayLocale.machine.atmGroup.comboxAwayFlag.inBank;
 					}
 					if (value == 2) {
-						return Eway.locale.machine.atmGroup.comboxAwayFlag.outBank;
+						return EwayLocale.machine.atmGroup.comboxAwayFlag.outBank;
 					}
 					if (value == 3) {
-						return Eway.locale.machine.atmGroup.comboxAwayFlag.clickBank;
+						return EwayLocale.machine.atmGroup.comboxAwayFlag.clickBank;
 					}
 				}
 			}, {
-				header : Eway.locale.commen.seviceMode,
+				header : EwayLocale.commen.seviceMode,
 				dataIndex : 'sellItem',
 				renderer : function(value) {
 					
 					if (value == 0) {
-						return Eway.locale.commen.all;
+						return EwayLocale.commen.all;
 					}
 					if (value == 1) {
-						return Eway.locale.machine.device.operationSelf;
+						return EwayLocale.machine.device.operationSelf;
 					}
 					if (value == 2) {
-						return Eway.locale.machine.device.cooperation;
+						return EwayLocale.machine.device.cooperation;
 					}
 					if (value == 3) {
-						return Eway.locale.machine.device.epiboly;
+						return EwayLocale.machine.device.epiboly;
 					}
 				}
 			}, {
-				header : Eway.locale.monitor.devMonitor.atmGroup,
+				header : EwayLocale.monitor.devMonitor.atmGroup,
 				dataIndex : 'atmGroup',
 				renderer : function(value, metaData, record) {
 					
 					if (value == 0) {
-						return Eway.locale.commen.all;
+						return EwayLocale.commen.all;
 					}
 					return record.get('atmGroupName');
 				}
 			}, {
-				header : Eway.locale.monitor.devMonitor.comboxStatus.runStatus,
+				header : EwayLocale.monitor.devMonitor.comboxStatus.runStatus,
 				dataIndex : 'runStatusFilterForm',
 				minWidth : 200,
 				renderer : function(value) {
 					if (value.run_all) {
-						return Eway.locale.commen.all;
+						return EwayLocale.commen.all;
 					}
 					
 					var str = '';
 					if (value.run_unknown) {
-						str += '|' + Eway.locale.commen.unknow;
+						str += '|' + EwayLocale.commen.unknow;
 					}
 					if (value.run_initial) {
-						str += '|' + Eway.locale.monitor.devMonitor.init;
+						str += '|' + EwayLocale.monitor.devMonitor.init;
 					}
 					if (value.run_healthy) {
-						str += '|' + Eway.locale.monitor.devMonitor.remote.healthy;
+						str += '|' + EwayLocale.monitor.devMonitor.remote.healthy;
 					}
 					if (value.run_subHealth) {
-						str += '|' + Eway.locale.monitor.devMonitor.remote.halfSer;
+						str += '|' + EwayLocale.monitor.devMonitor.remote.halfSer;
 					}
 					if (value.run_customer) {
-						str += '|' + Eway.locale.monitor.devMonitor.accTrans;
+						str += '|' + EwayLocale.monitor.devMonitor.accTrans;
 					}
 					if (value.run_maintain) {
-						str += '|' + Eway.locale.monitor.devMonitor.remote.staff;
+						str += '|' + EwayLocale.monitor.devMonitor.remote.staff;
 					}
 					if (value.run_vdm) {
-						str += '|' + Eway.locale.monitor.devMonitor.factureStaff;
+						str += '|' + EwayLocale.monitor.devMonitor.factureStaff;
 					}
 					if (value.run_halt) {
-						str += '|' + Eway.locale.monitor.devMonitor.remote.powerOff;
+						str += '|' + EwayLocale.monitor.devMonitor.remote.powerOff;
 					}
 					if (value.run_reboot) {
-						str += '|' + Eway.locale.monitor.devMonitor.remote.restart;
+						str += '|' + EwayLocale.monitor.devMonitor.remote.restart;
 					}
 					if (value.run_stopAtmp) {
-						str += '|' + Eway.locale.monitor.devMonitor.remote.pFault;
+						str += '|' + EwayLocale.monitor.devMonitor.remote.pFault;
 					}
 					if (value.run_stopManmade) {
-						str += '|' + Eway.locale.monitor.devMonitor.remote.stopCash;
+						str += '|' + EwayLocale.monitor.devMonitor.remote.stopCash;
 					}
 					if (value.run_stopMod) {
-						str += '|' + Eway.locale.monitor.devMonitor.remote.pauseSer;
+						str += '|' + EwayLocale.monitor.devMonitor.remote.pauseSer;
 					}
 					if (value.run_stopUnCashIn) {
-						str += '|' + Eway.locale.monitor.devMonitor.remote.pauseCash;
+						str += '|' + EwayLocale.monitor.devMonitor.remote.pauseCash;
 					}
 					if (value.run_stopunknown) {
-						str += '|' + Eway.locale.monitor.devMonitor.remote.pauseSerUnknow;
+						str += '|' + EwayLocale.monitor.devMonitor.remote.pauseSerUnknow;
 					}
 					
 					return str;
 				}
 			}, {
-				header : Eway.locale.monitor.devMonitor.comboxStatus.modStatus,
+				header : EwayLocale.monitor.devMonitor.comboxStatus.modStatus,
 				dataIndex : 'modStatusFilterForm',
 				minWidth : 200,
 				renderer : function(value) {
 					if (value.mod_all) {
-						return Eway.locale.commen.all;
+						return EwayLocale.commen.all;
 					}
 					
 					var str = '';
 					if (value.mod_healthy) {
-						str += '|' + Eway.locale.monitor.devMonitor.mod.healthy;
+						str += '|' + EwayLocale.monitor.devMonitor.mod.healthy;
 					}
 					if (value.mod_waring) {
-						str += '|' + Eway.locale.commen.warn;
+						str += '|' + EwayLocale.commen.warn;
 					}
 					if (value.mod_fatal) {
-						str += '|' + Eway.locale.commen.fatal;
+						str += '|' + EwayLocale.commen.fatal;
 					}
 					if (value.mod_unknown) {
-						str += '|' + Eway.locale.commen.unknow;
+						str += '|' + EwayLocale.commen.unknow;
 					}
 					if (value.mod_noDevice) {
-						str += '|' + Eway.locale.monitor.devMonitor.noData;
+						str += '|' + EwayLocale.monitor.devMonitor.noData;
 					}
 
 					return str;
 				}
 			}, {
-				header : Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,
+				header : EwayLocale.monitor.devMonitor.comboxStatus.boxStatus,
 				dataIndex : 'boxStatusFilterForm',
 				minWidth : 200,
 				renderer : function(value) {
 					if (value.box_all) {
-						return Eway.locale.commen.all;
+						return EwayLocale.commen.all;
 					}
 					
 					var str = '';
 					if (value.box_healthy) {
-						str += '|' + Eway.locale.commen.stateDict.normal;
+						str += '|' + EwayLocale.commen.stateDict.normal;
 					}
 					if (value.box_low) {
-						str += '|' + Eway.locale.monitor.devMonitor.cash.low;
+						str += '|' + EwayLocale.monitor.devMonitor.cash.low;
 					}
 					if (value.box_empty) {
-						str += '|' + Eway.locale.monitor.devMonitor.cash.empty;
+						str += '|' + EwayLocale.monitor.devMonitor.cash.empty;
 					}
 					if (value.box_high) {
-						str += '|' + Eway.locale.monitor.devMonitor.cash.cimAFull;
+						str += '|' + EwayLocale.monitor.devMonitor.cash.cimAFull;
 					}
 					if (value.box_full) {
-						str += '|' + Eway.locale.monitor.devMonitor.cash.cimFull;
+						str += '|' + EwayLocale.monitor.devMonitor.cash.cimFull;
 					}
 					if (value.box_fatal) {
-						str += '|' + Eway.locale.monitor.devMonitor.cash.cashFault;
+						str += '|' + EwayLocale.monitor.devMonitor.cash.cashFault;
 					}
 					if (value.box_unknown) {
-						str += '|' + Eway.locale.monitor.devMonitor.cash.cashUnknow;
+						str += '|' + EwayLocale.monitor.devMonitor.cash.cashUnknow;
 					}
 					
 					return str;
 				}
 			}, {
-				header : Eway.locale.monitor.devMonitor.comboxStatus.netStatus,
+				header : EwayLocale.monitor.devMonitor.comboxStatus.netStatus,
 				dataIndex : 'netStatusFilterForm',
 				minWidth : 200,
 				renderer : function(value) {
 					if (value.net_all) {
-						return Eway.locale.commen.all;
+						return EwayLocale.commen.all;
 					}
 					
 					var str = '';
 					if (value.net_healthy) {
-						str += '|' + Eway.locale.monitor.devMonitor.netHealthy;
+						str += '|' + EwayLocale.monitor.devMonitor.netHealthy;
 					}
 					if (value.net_warning) {
-						str += '|' + Eway.locale.monitor.devMonitor.netUnStable;
+						str += '|' + EwayLocale.monitor.devMonitor.netUnStable;
 					}
 					if (value.net_fatal) {
-						str += '|' + Eway.locale.monitor.devMonitor.netFatal;
+						str += '|' + EwayLocale.monitor.devMonitor.netFatal;
 					}
 					if (value.net_unknown) {
-						str += '|' + Eway.locale.commen.unknow;
+						str += '|' + EwayLocale.commen.unknow;
 					}
 					
 					return str;

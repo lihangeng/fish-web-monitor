@@ -7,7 +7,7 @@ Ext.define("Eway.view.machine.device.module.PropertyTTU", {
 	extend : 'Ext.form.Panel',
 	alias : 'widget.machine_device_module_propertyttu',
 	items : [ {
-		title : Eway.locale.machine.device.TTUInfo,
+		title : EwayLocale.machine.device.TTUInfo,
 		titleAlign: 'center',
 		layout : 'column',
 		items : [ {
@@ -21,20 +21,20 @@ Ext.define("Eway.view.machine.device.module.PropertyTTU", {
 				labelWidth: 150
 			},
 			items : [ {
-				fieldLabel : Eway.locale.machine.device.alphanumericKeysPresent,
+				fieldLabel : EwayLocale.machine.device.alphanumericKeysPresent,
 				name : 'alphanumericKeysPresent',
 				style : 'margin-top:2px'
 			}, {
-				fieldLabel : Eway.locale.machine.device.numericKeysPresent,
+				fieldLabel : EwayLocale.machine.device.numericKeysPresent,
 				name : 'numericKeysPresent'
 			}, {
-				fieldLabel : Eway.locale.machine.device.displayLightPresent,
+				fieldLabel : EwayLocale.machine.device.displayLightPresent,
 				name : 'displayLightPresent'
 			}, {
-				fieldLabel : Eway.locale.machine.device.cursorSupported,
+				fieldLabel : EwayLocale.machine.device.cursorSupported,
 				name : 'cursorSupported'
 			}, {
-				fieldLabel : Eway.locale.machine.device.resolutionX,
+				fieldLabel : EwayLocale.machine.device.resolutionX,
 				name : 'resolutionX'
 			} ]
 		}, {
@@ -48,17 +48,17 @@ Ext.define("Eway.view.machine.device.module.PropertyTTU", {
 				labelWidth : 150
 			},
 			items : [ {
-				fieldLabel : Eway.locale.machine.device.hexadecimalKeysPresent,
+				fieldLabel : EwayLocale.machine.device.hexadecimalKeysPresent,
 				name : 'hexadecimalKeysPresent',
 				style : 'margin-top:2px'
 			}, {
-				fieldLabel : Eway.locale.machine.device.keyboardLockPresent,
+				fieldLabel : EwayLocale.machine.device.keyboardLockPresent,
 				name : 'keyboardLockPresent'
 			}, {
-				fieldLabel : Eway.locale.machine.device.formsSupported,
+				fieldLabel : EwayLocale.machine.device.formsSupported,
 				name : 'formsSupported'
 			}, {
-				fieldLabel : Eway.locale.machine.device.resolutionY,
+				fieldLabel : EwayLocale.machine.device.resolutionY,
 				name : 'resolutionY'
 			} ]
 		} ]

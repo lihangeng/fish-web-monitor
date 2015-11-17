@@ -11,12 +11,12 @@ Ext.define('Eway.view.report.baseReport.TransactionHoursCountGrid', {
 //        store.load() ;
         Ext.apply(this, {
         tbar : [ '->', {
-			text : Eway.locale.button.search,
+			text : EwayLocale.button.search,
 			glyph : 0xf002,
 			action : 'query'
 		}
 		/*, {
-			text : Eway.locale.report.openrate.device.importStat,
+			text : EwayLocale.report.openrate.device.importStat,
 			glyph : 0xf1c3,
 			action : 'importStat'
 		}*/
@@ -37,7 +37,7 @@ Ext.define('Eway.view.report.baseReport.TransactionHoursCountGrid', {
             },
             sprites: [{
                 type: 'text',
-                text: Eway.locale.index.dailyFaultPic,
+                text: EwayLocale.index.dailyFaultPic,
                 fontSize: 10,
                 x: 230,
                 y: 485
@@ -93,7 +93,7 @@ Ext.define('Eway.view.report.baseReport.TransactionHoursCountGrid', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                        this.setHtml(storeItem.get('month') + Eway.locale.report.baseReport.tradeCount + storeItem.get('data1'));
+                        this.setHtml(storeItem.get('month') + EwayLocale.report.baseReport.tradeCount + storeItem.get('data1'));
                     }
                 }
             }]

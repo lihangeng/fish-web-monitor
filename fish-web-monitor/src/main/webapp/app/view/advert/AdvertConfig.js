@@ -4,7 +4,7 @@ Ext.define('Eway.view.advert.AdvertConfig', {
 
 	requires : [ 'Eway.view.advert.AdvertResourceGrid' ],
 
-	title : Eway.locale.advert.advertConfig,//'广告配置',
+	title : EwayLocale.advert.advertConfig,//'广告配置',
 	layout : 'border',
 
 	initComponent : function() {

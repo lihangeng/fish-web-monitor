@@ -3,7 +3,7 @@ Ext.define('Eway.view.system.register.RegisterView',{
 	extend : 'Eway.view.base.Panel',
 	requires: ['Eway.view.system.register.RegisterForm'],
 	layout: 'border',
-	title :Eway.locale.system.sysRegist,
+	title :EwayLocale.system.sysRegist,
 	layout: {
         type: 'vbox',
         align:'center'

@@ -8,15 +8,15 @@ Ext.define('Eway.view.atmLog.AtmLogInfoGrid', {
 		Ext.apply(this, {
 			store : store,
 			columns : [{
-						header : Eway.locale.person.bankOrg.name,
+						header : EwayLocale.person.bankOrg.name,
 						dataIndex : 'orgName',
 						flex : 1
 					}, {
-						header : Eway.locale.atmLog.logDate,
+						header : EwayLocale.atmLog.logDate,
 						dataIndex : 'backupDate',
 						flex : 1
 					}, {
-						header : Eway.locale.atmLog.backupSucAmount,
+						header : EwayLocale.atmLog.backupSucAmount,
 						dataIndex : 'backupSuccessNumber',
 						flex : 1,
 						renderer:function(value,meta,record){
@@ -27,7 +27,7 @@ Ext.define('Eway.view.atmLog.AtmLogInfoGrid', {
 							}
 						}
 					}, {
-						header : Eway.locale.atmLog.backupFailAmount,
+						header : EwayLocale.atmLog.backupFailAmount,
 						dataIndex : 'backupErrorNumber',
 						flex : 1,
 						renderer:function(value,meta,record){
@@ -38,7 +38,7 @@ Ext.define('Eway.view.atmLog.AtmLogInfoGrid', {
 							}
 						}
 					}, {
-						header : Eway.locale.atmLog.backupAllAmount,
+						header : EwayLocale.atmLog.backupAllAmount,
 						dataIndex : 'totalBackupNumber',
 						flex : 1
 					}],
@@ -48,12 +48,12 @@ Ext.define('Eway.view.atmLog.AtmLogInfoGrid', {
 					}),
 			tbar : ['->', {
 						xtype : 'button',
-						text : Eway.locale.button.search,
+						text : EwayLocale.button.search,
 						glyph : 0xf002,
 						action : 'query'
 					},{
 						xtype : 'button',
-						text : Eway.locale.button.exported,
+						text : EwayLocale.button.exported,
 						glyph : 0xf1c3,
 						action : 'export'
 					}]

@@ -18,15 +18,15 @@ Ext.define('Eway.view.person.bankOrg.Grid', {
 				action:'tip',
 				xtype:'tbtext'
 			},'->',{
-				text: Eway.locale.button.search,
+				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			},{
-				text: Eway.locale.button.deepQuery,
+				text: EwayLocale.button.deepQuery,
 				glyph : 0xf002,
 				action: 'deepQuery'
 			}, {
-				text: Eway.locale.button.add,
+				text: EwayLocale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'bankOrgAdd',
@@ -34,7 +34,7 @@ Ext.define('Eway.view.person.bankOrg.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: Eway.locale.button.update,
+				text: EwayLocale.button.update,
 				glyph : 0xf040,
 				action: 'update',
 				code : 'bankOrgUpdate',
@@ -42,7 +42,7 @@ Ext.define('Eway.view.person.bankOrg.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : Eway.locale.button.bankOrgMove,
+				text : EwayLocale.button.bankOrgMove,
 				glyph : 0xf0ec,
 				action : 'move',
 				code : 'bankOrgMove',
@@ -50,7 +50,7 @@ Ext.define('Eway.view.person.bankOrg.Grid', {
 					'beforerender' : Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: Eway.locale.button.remove,
+				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'bankOrgDel',
@@ -58,59 +58,59 @@ Ext.define('Eway.view.person.bankOrg.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: Eway.locale.button.bankOrgAdmin,
+				text: EwayLocale.button.bankOrgAdmin,
 				glyph : 0xf007,
 				code : 'bankOrgAdmin',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				},
 				menu: [{
-					text: Eway.locale.commen.setManager,
+					text: EwayLocale.commen.setManager,
 					action: 'setManager'
 				}, {
-					text: Eway.locale.person.bankOrg.removeManager,
+					text: EwayLocale.person.bankOrg.removeManager,
 					action: 'removeManager'
 				}]
 			}],
 			columns : [{
-				header : Eway.locale.person.bankOrg.code,
+				header : EwayLocale.person.bankOrg.code,
 				dataIndex : 'code',
 				sortable : true
 			},{
-				header : Eway.locale.person.bankOrg.name,
+				header : EwayLocale.person.bankOrg.name,
 				dataIndex : 'displayName',
 				sortable : true
 			},{
-				header : Eway.locale.person.bankOrg.orgLevel,
+				header : EwayLocale.person.bankOrg.orgLevel,
 				dataIndex : 'orgLevel',
 				sortable : true,
 				renderer: Eway.lib.Util.dictRenderer('person.organization.OrganizationLevelDict')
 			},{
-				header : Eway.locale.person.bankOrg.zip,
+				header : EwayLocale.person.bankOrg.zip,
 				dataIndex : 'zip',
 				sortable : true
 			},{
-				header : Eway.locale.person.bankOrg.organizationType,
+				header : EwayLocale.person.bankOrg.organizationType,
 				dataIndex : 'organizationType',
 				renderer: function(value,metadata,record){
 					if(value==0){
-	                	   return Eway.locale.person.bankOrg.bank;
+	                	   return EwayLocale.person.bankOrg.bank;
 	                   }else if(value==1){
-	                	   return Eway.locale.person.bank.bankOrg.serviceOrg;
+	                	   return EwayLocale.person.bank.bankOrg.serviceOrg;
 	                   }
 				},
 				hidden: true,
 				sortable : true
 			},{
-				header : Eway.locale.person.bankOrg.manager,
+				header : EwayLocale.person.bankOrg.manager,
 				dataIndex : 'manager'
 			},{
-				header : Eway.locale.person.bankOrg.address,
+				header : EwayLocale.person.bankOrg.address,
 				dataIndex : 'address',
 				sortable : true,
 				width : 200
 			},{
-				header : Eway.locale.person.bankOrg.description,
+				header : EwayLocale.person.bankOrg.description,
 				dataIndex : 'description',
 				sortable : true,
 				flex : 1

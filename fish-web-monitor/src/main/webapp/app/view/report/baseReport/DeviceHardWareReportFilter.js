@@ -18,9 +18,9 @@ Ext.define('Eway.view.report.baseReport.DeviceHardWareReportFilter', {
 								}, {
 									//只带出银行机构
 									xtype : 'common_orgComboOrgTree',
-									fieldLabel : Eway.locale.commen.orgNameBelongs,
+									fieldLabel : EwayLocale.commen.orgNameBelongs,
 									labelAlign : 'right',
-									emptyText : Eway.locale.combox.select,
+									emptyText : EwayLocale.combox.select,
 									name : 'orgName',
 									hiddenValue : 'orgId',
 									editable : false,
@@ -32,7 +32,7 @@ Ext.define('Eway.view.report.baseReport.DeviceHardWareReportFilter', {
 						items : [{
 									xtype : 'textfield',
 									name : 'terminalId',
-									fieldLabel : Eway.locale.commen.terminalId,
+									fieldLabel : EwayLocale.commen.terminalId,
 									labelAlign : 'right'
 						}]
 					

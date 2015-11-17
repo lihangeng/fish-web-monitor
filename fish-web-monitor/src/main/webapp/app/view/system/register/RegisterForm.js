@@ -7,7 +7,7 @@
 			height : 400,
 			width : 800,
 			layout : 'card',
-			title : Eway.locale.system.sysRegist,
+			title : EwayLocale.system.sysRegist,
 			header:false,
 			activeItem : 0,
 			items : [{
@@ -21,20 +21,20 @@
 				},
 				items : [{
 							xtype : 'textfield',
-							fieldLabel : Eway.locale.system.registCode,
+							fieldLabel : EwayLocale.system.registCode,
 							name : 'serial',
 							width: 450
 						}, {
 							xtype : 'textfield',
-							fieldLabel : Eway.locale.system.startDate,
+							fieldLabel : EwayLocale.system.startDate,
 							name : 'startDate'
 						}, {
 							xtype : 'textfield',
-							fieldLabel : Eway.locale.system.endDate,
+							fieldLabel : EwayLocale.system.endDate,
 							name : 'endDate'
 						}, {
 							xtype : 'textfield',
-							fieldLabel : Eway.locale.system.registType,
+							fieldLabel : EwayLocale.system.registType,
 							name : 'type'
 						}],
 				listeners : {
@@ -48,7 +48,7 @@
 										me._fillDisplayForm(panel, object);
 									},
 									failure : function() {
-										Eway.alert(Eway.locale.cases.caseNotify.innerFault);
+										Eway.alert(EwayLocale.cases.caseNotify.innerFault);
 									}
 								});
 					}
@@ -64,7 +64,7 @@
 				},
 				items : [{
 					xtype : 'fieldcontainer',
-					fieldLabel : Eway.locale.system.serialNum,
+					fieldLabel : EwayLocale.system.serialNum,
 					layout : 'column',
 					defaults : {
 						hideLabel : true
@@ -79,7 +79,7 @@
 						name : 'getKey',
 						xtype : 'displayfield',
 						columnWidth: .5,
-						value : '<font color="blue">'+Eway.locale.system.getSerialNum+'</font>'
+						value : '<font color="blue">'+EwayLocale.system.getSerialNum+'</font>'
 					}]
 				},{
 					xtype : 'textfield',
@@ -87,7 +87,7 @@
 					hidden : true
 				},{
 					xtype : 'fieldcontainer',
-					fieldLabel : Eway.locale.system.checkCode,
+					fieldLabel : EwayLocale.system.checkCode,
 					layout : 'column',
 					defaults : {
 						hideLabel : true
@@ -107,7 +107,7 @@
 				buttonAlign : 'center',
 				fbar : [{
 					xtype : 'button',
-					text : Eway.locale.button.sure,
+					text : EwayLocale.button.sure,
 					name : 'ok',
 					disabled : true,
 					iconCls :'sureBtn',
@@ -121,7 +121,7 @@
 			}],
 			tbar : ['->',{
 				xtype : 'button',
-				text : Eway.locale.system.regist,
+				text : EwayLocale.system.regist,
 				iconCls :'sureBtn',
 				pressed : true,
 				action : 'register',
@@ -134,7 +134,7 @@
 				}
 			},{
 				xtype : 'button',
-				text : Eway.locale.button.back,
+				text : EwayLocale.button.back,
 				hidden : true,
 				action : 'return',
 				iconCls :'returnBtn',
@@ -155,13 +155,13 @@
 		var endDate = object.endDate;
 		var type = '';
 		if(object.type=='0'){
-			type = Eway.locale.system.tryOut;
+			type = EwayLocale.system.tryOut;
 			var endDateField = panel.down('textfield[name="endDate"]');
 			endDateField.show();
 			endDateField.setValue(endDate);
 		}
 		else if(object.type=='1') {
-			type = Eway.locale.system.noLimit;
+			type = EwayLocale.system.noLimit;
 			panel.down('textfield[name="endDate"]').hide();
 		}
 		panel.down('textfield[name="serial"]').setValue(serial);
@@ -185,7 +185,7 @@
 					button.enable();
 				},
 				failure : function(){
-					getKeyField.setValue('<font color="red">'+Eway.locale.system.getSerialNumFail+'</font>');
+					getKeyField.setValue('<font color="red">'+EwayLocale.system.getSerialNumFail+'</font>');
 				}
 			});
 		}
@@ -218,7 +218,7 @@
 			success : function(response){
 				var object = Ext.decode(response.responseText);
 				if(object.success){
-					Eway.alert(Eway.locale.system.registSuc);
+					Eway.alert(EwayLocale.system.registSuc);
 					var win = btn.up('form');
 					var form = win.down('form[action="displayInfo"]');
 					win.getLayout().setActiveItem(form);
@@ -227,12 +227,12 @@
 					win.down('button[action="return"]').hide();
 				}
 				else {
-					Eway.alert(Eway.locale.system.registFail);
+					Eway.alert(EwayLocale.system.registFail);
 				}
 
 			},
 			failure : function(){
-				Eway.alert(Eway.locale.system.appearInnerFalse);
+				Eway.alert(EwayLocale.system.appearInnerFalse);
 			}
 		});
 	}

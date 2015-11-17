@@ -7,8 +7,8 @@ Ext.define('Eway.controller.base.TreeController', {
 	filterConfig : {xtype : '', height : 90},
 	gridConfig : {xtype : ''},
 	detailConfig : {xtype : '', height : 100},
-	addFormConfig : {xtype : '', title : Eway.locale.button.add},
-	updateFormConfig : {xtype : '', title : Eway.locale.button.update},
+	addFormConfig : {xtype : '', title : EwayLocale.button.add},
+	updateFormConfig : {xtype : '', title : EwayLocale.button.update},
 	treeConfig : {xtype : '', width : 200},
 
 	makeEwayView : function() {
@@ -63,7 +63,7 @@ Ext.define('Eway.controller.base.TreeController', {
 					},*/'->', {
 					xtype : 'buttongroup',
 					items : [{
-						text : Eway.locale.button.refresh,
+						text : EwayLocale.button.refresh,
 						listeners : {
 							click : this.onRefresh,
 							scope : this
@@ -167,8 +167,8 @@ Ext.define('Eway.controller.base.TreeController', {
 		var selectModel = this.getGrid().getSelectionModel();
 		var selectedRecord = selectModel.getSelected();
 		if(selectModel.getCount()==1){
-		Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
-			Eway.locale.tip.remove.confirm.info,
+		Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,
+			EwayLocale.tip.remove.confirm.info,
 			function(button,text) {
 				if(button=="yes"){
 					this.getStore().remove(this.selectedRecord);
@@ -176,7 +176,7 @@ Ext.define('Eway.controller.base.TreeController', {
 				}
 			}, this);
 		}else{
-			Eway.alert(Eway.choiceDeleteMsg);
+			Eway.alert(EwayLocale.choiceDeleteMsg);
 		}
 	},
 

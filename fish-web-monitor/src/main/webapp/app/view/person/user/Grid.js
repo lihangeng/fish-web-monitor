@@ -14,11 +14,11 @@ Ext.define('Eway.view.person.user.Grid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-				text: Eway.locale.button.search,
+				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			}, {
-				text: Eway.locale.button.add,
+				text: EwayLocale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'userAdd',
@@ -26,7 +26,7 @@ Ext.define('Eway.view.person.user.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: Eway.locale.button.update,
+				text: EwayLocale.button.update,
 				glyph : 0xf040,
 				action: 'update',
 				code : 'userUpdate',
@@ -34,7 +34,7 @@ Ext.define('Eway.view.person.user.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: Eway.locale.button.remove,
+				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'userDel',
@@ -47,10 +47,10 @@ Ext.define('Eway.view.person.user.Grid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : Eway.locale.person.user.code,
+				header : EwayLocale.person.user.code,
 				dataIndex : 'code',
 				renderer:function(value,meta,record){
-					meta.tdAttr ='data-qtip="'+Eway.locale.person.user.clickToCheckLog + value+Eway.locale.person.user.userLog+'"';
+					meta.tdAttr ='data-qtip="'+EwayLocale.person.user.clickToCheckLog + value+EwayLocale.person.user.userLog+'"';
 					if(value != null){
 						return "<a class='link' href='#'>"+ value + "</a>";
 					}else{
@@ -58,52 +58,52 @@ Ext.define('Eway.view.person.user.Grid', {
 					}
 				}
 			},{
-				header : Eway.locale.commen.name,
+				header : EwayLocale.commen.name,
 				dataIndex : 'name'
 			},{
-				header : Eway.locale.commen.gender,
+				header : EwayLocale.commen.gender,
 				dataIndex : 'gender',
 				renderer: function(value,metadata,record){
 					if(value=="MALE"){
-	                	   return Eway.locale.commen.comboxGender.male;
+	                	   return EwayLocale.commen.comboxGender.male;
 	                   }else if(value=="FEMALE"){
-	                	   return Eway.locale.commen.comboxGender.female;
+	                	   return EwayLocale.commen.comboxGender.female;
 	                   }else{
-	                	   return Eway.locale.commen.comboxGender.unknow;
+	                	   return EwayLocale.commen.comboxGender.unknow;
 	                   }
 					}
 			}, {
-				header : Eway.locale.commen.mobile,
+				header : EwayLocale.commen.mobile,
 				dataIndex : 'mobile'
 			}, {
-				header : Eway.locale.commen.phone,
+				header : EwayLocale.commen.phone,
 				dataIndex : 'phone'
 			}, {
-				header : Eway.locale.person.bankPer.organizationName,
+				header : EwayLocale.person.bankPer.organizationName,
 				dataIndex : 'organizationName'
 			},{
-				header : Eway.locale.commen.email,
+				header : EwayLocale.commen.email,
 				dataIndex : 'email'
 			},{
-				header : Eway.locale.commen.state,
+				header : EwayLocale.commen.state,
 				dataIndex : 'userState',
 				renderer: function(value,metadata,record){
 						if(value==0){
-	                	   return Eway.locale.commen.stateDict.newCreate;
+	                	   return EwayLocale.commen.stateDict.newCreate;
 	                   }else if(value==1){
-	                	   return Eway.locale.commen.stateDict.newCreate;
+	                	   return EwayLocale.commen.stateDict.newCreate;
 	                   }else if(value==2){
-	                	   return Eway.locale.commen.stateDict.normal;
+	                	   return EwayLocale.commen.stateDict.normal;
 	                   }else if(value==3){
-	                	   return Eway.locale.commen.stateDict.locked;
+	                	   return EwayLocale.commen.stateDict.locked;
 	                   }else if(value==4){
-	                	   return Eway.locale.commen.stateDict.deleted;
+	                	   return EwayLocale.commen.stateDict.deleted;
 	                   }else{
-	                	   return Eway.locale.commen.stateDict.frozen;
+	                	   return EwayLocale.commen.stateDict.frozen;
 	                   }
 					}
 			},{
-				header : Eway.locale.person.user.resetPasswd,
+				header : EwayLocale.person.user.resetPasswd,
 				xtype:'actioncolumn',
 				items:[{
                     icon:"././././resources/images/update.png",
@@ -112,17 +112,17 @@ Ext.define('Eway.view.person.user.Grid', {
 						if(rec.data.code==ewayUser.getCode()){
 							return "actioncolumn-hidden";
 	                    }else{
-	                        metadata.tdAttr ='data-qtip="'+Eway.locale.person.user.clickToPasswdInit+'"';
+	                        metadata.tdAttr ='data-qtip="'+EwayLocale.person.user.clickToPasswdInit+'"';
 	                    }
 					},
                     handler:function(grid,rowIndex,colIndex){
                        var rec=grid.getStore().getAt(rowIndex);
                        var username = rec.get('code');
 	                   var gridEl = grid.getEl();
-					   Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.passwd.confirmPasswd,callBack);
+					   Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.passwd.confirmPasswd,callBack);
 					    function callBack(button){
 					    	if(button=='yes'){
-					    		gridEl.mask(Eway.locale.tip.resetPasswding);
+					    		gridEl.mask(EwayLocale.tip.resetPasswding);
 					    		Ext.Ajax.request({
 			               			method : 'POST',
 			               			url : 'api/person/user/resetPassword',
@@ -144,7 +144,7 @@ Ext.define('Eway.view.person.user.Grid', {
 			               			},
 			               			failure : function(){
 			               				gridEl.unmask();
-			               				Eway.alert(Eway.locale.tip.resetPasswdFail);
+			               				Eway.alert(EwayLocale.tip.resetPasswdFail);
 			               			}
 		               			});
 					    	}
@@ -152,11 +152,11 @@ Ext.define('Eway.view.person.user.Grid', {
 					}
 				}]
 			},{
-				header : Eway.locale.person.user.role,
+				header : EwayLocale.person.user.role,
 				dataIndex : 'roles',
 				flex :1,
 				renderer:function(value,meta,record){
-					meta.tdAttr ='data-qtip="'+Eway.locale.person.user.clickToRole+'"';
+					meta.tdAttr ='data-qtip="'+EwayLocale.person.user.clickToRole+'"';
 					if(value != null){
 						return "<a class='link' href='#'>"+ value + "</a>";
 					}else{

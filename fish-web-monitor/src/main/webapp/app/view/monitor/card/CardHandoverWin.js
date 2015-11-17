@@ -17,7 +17,7 @@ Ext.define('Eway.view.monitor.card.CardHandoverWin', {
 			'Ext.ux.form.DateTimeField'
 			],
 
-	title : Eway.locale.monitor.business.card.transferCard,
+	title : EwayLocale.monitor.business.card.transferCard,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -55,7 +55,7 @@ Ext.define('Eway.view.monitor.card.CardHandoverWin', {
 									disabled : true
 								}, {
 									xtype: 'datetimefield',
-									fieldLabel: Eway.locale.monitor.business.card.time,
+									fieldLabel: EwayLocale.monitor.business.card.time,
 									format : 'Y-m-d H:i:s',
 									name: 'cardRetainTime',
 									allowBlank : false,
@@ -63,14 +63,14 @@ Ext.define('Eway.view.monitor.card.CardHandoverWin', {
 									
 									
 								}, {
-									fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.reason,
+									fieldLabel: '<font color="red">*</font> '+EwayLocale.monitor.business.card.reason,
 									xtype : 'textarea',
 									grow:true,
 									name : 'reason',
 									allowBlank : false,
 									disabled : true
 								}, {
-									fieldLabel: '<font color="red">*</font> '+Eway.locale.monitor.business.card.cardHolder,
+									fieldLabel: '<font color="red">*</font> '+EwayLocale.monitor.business.card.cardHolder,
 									name : 'cardDistributionBank',
 									xtype:'field',
 									allowBlank : false,
@@ -81,9 +81,9 @@ Ext.define('Eway.view.monitor.card.CardHandoverWin', {
 									name : 'orgGuid'
 								}, {
 									xtype : 'common_orgComboOrgTree',
-									fieldLabel : '<font color="red">*</font> '+Eway.locale.monitor.business.card.processOrg,
+									fieldLabel : '<font color="red">*</font> '+EwayLocale.monitor.business.card.processOrg,
 									allowBlank : false,
-									emptyText : Eway.locale.combox.select,
+									emptyText : EwayLocale.combox.select,
 									name : 'orgName',
 									hiddenValue : 'orgGuid',
 									editable : false,
@@ -92,10 +92,10 @@ Ext.define('Eway.view.monitor.card.CardHandoverWin', {
 								}],
 						buttonAlign : 'center',
 						buttons : [{
-									text : Eway.locale.button.confirm,
+									text : EwayLocale.button.confirm,
 									action : 'confirm'
 								}, {
-									text : Eway.locale.button.cancle,
+									text : EwayLocale.button.cancle,
 									handler : this.onOver
 								}]
 					}

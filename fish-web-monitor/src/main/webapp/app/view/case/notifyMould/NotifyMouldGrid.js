@@ -12,7 +12,7 @@ Ext.define('Eway.view.case.notifyMould.NotifyMouldGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->', {
-				text: Eway.locale.button.update,
+				text: EwayLocale.button.update,
 				glyph : 0xf040,
 				action:'update'
 //				code : 'atmBrandUpdate',
@@ -21,37 +21,37 @@ Ext.define('Eway.view.case.notifyMould.NotifyMouldGrid', {
 //				}
 			}],
 			columns : [{
-				header : Eway.locale.cases.caseFault.faultClassify,
+				header : EwayLocale.cases.caseFault.faultClassify,
 				dataIndex : 'classifyName',
 				width : 150
 			}, {
-				header : Eway.locale.cases.notifyMould.noticeType,
+				header : EwayLocale.cases.notifyMould.noticeType,
 				dataIndex : 'notifyType',
 				width : 80,
 				renderer : function(value){
 					if(value == 1){
-						return Eway.locale.cases.notifyMould.createNotice;
+						return EwayLocale.cases.notifyMould.createNotice;
 					}else if(value == 2){
-						return Eway.locale.cases.notifyMould.upgradeNotice;
+						return EwayLocale.cases.notifyMould.upgradeNotice;
 					}else if(value == 3){
-						return Eway.locale.cases.notifyMould.closeNotice;
+						return EwayLocale.cases.notifyMould.closeNotice;
 					}
 				}
 			}, {
-				header : Eway.locale.cases.caseFault.informWay,
+				header : EwayLocale.cases.caseFault.informWay,
 				dataIndex : 'notifyWay',
 				width : 80,
 				renderer : function(value){
 					if(value == 'SMS'){
-						return Eway.locale.cases.caseFault.message;
+						return EwayLocale.cases.caseFault.message;
 					}else if(value == 'MAIL'){
-						return Eway.locale.cases.caseFault.mail;
+						return EwayLocale.cases.caseFault.mail;
 					}else if(value == 'BOTH'){
-						return Eway.locale.cases.caseFault.messageAndMail;
+						return EwayLocale.cases.caseFault.messageAndMail;
 					}
 				}
 			}, {
-				header : Eway.locale.cases.notifyMould.noticeValue,
+				header : EwayLocale.cases.notifyMould.noticeValue,
 				dataIndex : 'notifySet',
 				flex : 1
 			}],

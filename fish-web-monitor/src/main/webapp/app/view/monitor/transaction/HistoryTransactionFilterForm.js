@@ -25,12 +25,12 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 				items : [ {
 					columnWidth : .28,
 					items : [ {
-						fieldLabel : Eway.locale.commen.terminalId,
+						fieldLabel : EwayLocale.commen.terminalId,
 						labelAlign : 'right',
 						xtype : 'textfield',
 						name : 'terminalId',
 						regex : /^\w[\w-_\.]{0,19}$/,
-						regexText : Eway.locale.vtype.terminalId,
+						regexText : EwayLocale.vtype.terminalId,
 						msgTarget : 'side'
 					}, /*{
 						xtype : 'field_blackList',
@@ -42,17 +42,17 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 				}, {
 					columnWidth : .28,
 					items : [ {
-						fieldLabel : Eway.locale.monitor.business.transaction.transId,
+						fieldLabel : EwayLocale.monitor.business.transaction.transId,
 						xtype : 'textfield',
 						name : 'transId',
 						labelAlign : 'right'
 					}, {
-						fieldLabel : Eway.locale.monitor.business.transaction.debitAccount,
+						fieldLabel : EwayLocale.monitor.business.transaction.debitAccount,
 						xtype : 'textfield',
 						name : 'debitAccount',
 						labelAlign : 'right'
 					}, {
-						fieldLabel : Eway.locale.monitor.business.transaction.currency,
+						fieldLabel : EwayLocale.monitor.business.transaction.currency,
 						xtype : 'textfield',
 						name : 'currency',
 						labelAlign : 'right',
@@ -68,7 +68,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 					items : [ {
 						xtype : 'fieldcontainer',
 						labelWidth : 70,
-						fieldLabel : Eway.locale.monitor.business.transaction.amtfield,
+						fieldLabel : EwayLocale.monitor.business.transaction.amtfield,
 						layout : 'hbox',
 						defaults : {
 							hideLabel : true
@@ -94,7 +94,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 							}
 						}, {
 							xtype : 'displayfield',
-							value : Eway.locale.monitor.business.transaction.toNum
+							value : EwayLocale.monitor.business.transaction.toNum
 						}, {
 							fieldLabel : 'endAmt',
 							displayField : 'display',
@@ -117,7 +117,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 						}]
 					}, {
 						xtype : 'fieldcontainer',
-						fieldLabel : Eway.locale.monitor.business.transaction.transContainer,
+						fieldLabel : EwayLocale.monitor.business.transaction.transContainer,
 						labelWidth : 70,
 						layout : 'hbox',
 						defaults : {
@@ -148,12 +148,12 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 						}
 						}, {
 							xtype : 'displayfield',
-							value : Eway.locale.monitor.business.transaction.toNum
+							value : EwayLocale.monitor.business.transaction.toNum
 						}, {
 							fieldLabel : 'minute',
 							displayField : 'display',
 							valueField : 'value',
-							fieldLabel : Eway.locale.monitor.business.transaction.amt,
+							fieldLabel : EwayLocale.monitor.business.transaction.amt,
 							width : 100,
 							xtype : 'datefield',
 							format : 'Y-m-d',

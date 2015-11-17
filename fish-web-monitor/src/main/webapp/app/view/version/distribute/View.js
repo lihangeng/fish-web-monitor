@@ -8,7 +8,7 @@ Ext.define('Eway.view.version.distribute.View', {
 			'Eway.view.version.distribute.VersionStatusPie',
 			'Eway.view.version.distribute.VersionStatusDetailGrid'],
 
-	title : Eway.locale.version.View.distributionPic,
+	title : EwayLocale.version.View.distributionPic,
 	layout: {
         type: 'table',
         columns: 2

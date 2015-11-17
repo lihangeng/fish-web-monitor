@@ -10,28 +10,28 @@ Ext.define('Eway.view.person.user.UserLogGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->',{
-				text:Eway.locale.button.search,
+				text:EwayLocale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			}],
 			columns : [{
-				header : Eway.locale.person.user.operCode,
+				header : EwayLocale.person.user.operCode,
 				dataIndex : 'operCode',
 				width : 100
 			}, {
-				header : Eway.locale.person.user.operName,
+				header : EwayLocale.person.user.operName,
 				dataIndex : 'operName',
 				width : 100
 			}, {
-				header : Eway.locale.person.user.operTime,
+				header : EwayLocale.person.user.operTime,
 				dataIndex : 'operTime',
 				width : 150
 			},	{
-				header : Eway.locale.person.user.operResult,
+				header : EwayLocale.person.user.operResult,
 				dataIndex : 'operResult',
 				width : 100
 			},{
-				header : Eway.locale.person.user.operContent,
+				header : EwayLocale.person.user.operContent,
 				dataIndex : 'operContent',
 				flex : 1
 			}],

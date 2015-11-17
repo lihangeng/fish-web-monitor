@@ -4,9 +4,9 @@ Ext.define('Eway.view.field.PersonRemark', {
 	alias: 'widget.field_personRemark',
 
 	name : 'remark',
-	fieldLabel: '<font color="red"></font> '+Eway.locale.commen.remark,
+	fieldLabel: '<font color="red"></font> '+EwayLocale.commen.remark,
 	xtype:'field_personRemark',
-	regexText: Eway.locale.vtype.personRemark,
+	regexText: EwayLocale.vtype.personRemark,
 	width:600,
 	height:60,
 	msgTarget : 'side',

@@ -14,7 +14,7 @@ Ext.define('Eway.store.monitor.device.FilterClassifyItem',{
 	}
 	/*
 	data : [{
-			name : Eway.locale.commen.all,
+			name : EwayLocale.commen.all,
 			value : '1'
 		},{
 			name : 'ATM',

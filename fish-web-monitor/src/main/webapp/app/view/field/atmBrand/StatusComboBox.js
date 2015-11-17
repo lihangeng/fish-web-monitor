@@ -4,7 +4,7 @@ Ext.define('Eway.view.field.atmBrand.StatusComboBox', {
 	alias: 'widget.field_atmBrand_statusComboBox',
 
 	
-	fieldLabel : Eway.locale.machine.atmBrand.status,
+	fieldLabel : EwayLocale.machine.atmBrand.status,
 	name : 'status',
 	hiddenName : 'status',
 	msgTarget : 'side',
@@ -12,6 +12,6 @@ Ext.define('Eway.view.field.atmBrand.StatusComboBox', {
 	valueField : 'value',
 	displayField : 'display',
 	queryMode : 'local',
-	emptyText: Eway.locale.combox.select
+	emptyText: EwayLocale.combox.select
 	
 });

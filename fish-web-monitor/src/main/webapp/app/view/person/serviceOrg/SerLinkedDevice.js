@@ -16,15 +16,15 @@ Ext.define('Eway.view.person.serviceOrg.SerLinkedDevice', {
 	
 	initComponent: function() {
 		Ext.apply(this, {
-			title : Eway.locale.person.serviceOrg.personDevSerLink,
+			title : EwayLocale.person.serviceOrg.personDevSerLink,
 			items : [{
-				title : Eway.locale.person.serviceOrg.devSerLink,
+				title : EwayLocale.person.serviceOrg.devSerLink,
 				region: 'west',
 				width:'50%',
 				padding : 1,
 				xtype : 'linkedDeviceSerGrid'
 			},{
-				title : Eway.locale.person.serviceOrg.personSerLink,
+				title : EwayLocale.person.serviceOrg.personSerLink,
 				region: 'center',
 				padding : 1,
 				xtype : 'linkedPersonGrid'

@@ -3,7 +3,7 @@ Ext.define('Eway.view.field.person.State', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field.state',
 
-	fieldLabel : Eway.locale.commen.state,
+	fieldLabel : EwayLocale.commen.state,
 	name : 'state',
 	hiddenName : 'state',
 	msgTarget : 'side',

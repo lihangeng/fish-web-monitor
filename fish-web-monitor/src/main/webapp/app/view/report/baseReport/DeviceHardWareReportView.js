@@ -5,7 +5,7 @@ Ext.define('Eway.view.report.baseReport.DeviceHardWareReportView', {
 	requires : [ 'Eway.view.report.baseReport.ReportDownload',
 			'Eway.view.report.baseReport.DeviceHardWareReportFilter' ],
 
-	title : Eway.locale.report.baseReport.sysConfRep,
+	title : EwayLocale.report.baseReport.sysConfRep,
 	layout : 'border',
 
 	initComponent : function() {

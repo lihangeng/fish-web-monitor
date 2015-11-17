@@ -6,7 +6,7 @@ Ext.define('Eway.view.report.openrate.org.View', {
 			'Eway.view.report.openrate.FilterForm',
 			'Eway.view.report.openrate.org.TreeGrid' ],
 
-	title : Eway.locale.report.openrate.org.orgOpenRate,
+	title : EwayLocale.report.openrate.org.orgOpenRate,
 	layout : 'border',
 
 	isLoad : false,

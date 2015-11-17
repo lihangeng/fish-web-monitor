@@ -4,6 +4,6 @@ Ext.define('Eway.store.case.FaultStatus', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'OPEN', display:Eway.locale.cases.caseFault.status.open}, 
-	       {value:'CLOSED', display:Eway.locale.cases.caseFault.status.close}]
+	data: [{value:'OPEN', display:EwayLocale.cases.caseFault.status.open}, 
+	       {value:'CLOSED', display:EwayLocale.cases.caseFault.status.close}]
 });

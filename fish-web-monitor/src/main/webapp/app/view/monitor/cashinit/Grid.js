@@ -11,11 +11,11 @@ Ext.define('Eway.view.monitor.cashinit.Grid', {
 			initRegion : true,
 			store : store,
 			tbar : [ '->', {
-				text : Eway.locale.button.search,
+				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : Eway.locale.commen.info,
+				text : EwayLocale.commen.info,
 				glyph : 0xf129,
 				action : 'info'
 			} ],
@@ -24,24 +24,24 @@ Ext.define('Eway.view.monitor.cashinit.Grid', {
 				stripeRows : true
 			},
 			columns : [ Ext.create('Ext.grid.RowNumberer'), {
-				header : Eway.locale.commen.terminalId,
+				header : EwayLocale.commen.terminalId,
 				dataIndex : 'termId'
 			}, {
-				header : Eway.locale.monitor.business.cashInit.uuId,
+				header : EwayLocale.monitor.business.cashInit.uuId,
 				dataIndex : 'uuId'
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.initAmount,
+				header : EwayLocale.monitor.devMonitor.cash.initAmount,
 				dataIndex : 'amt',
 				renderer: this.cnMoney
 			}, {
-				header : Eway.locale.monitor.business.cashInit.date,
+				header : EwayLocale.monitor.business.cashInit.date,
 				dataIndex : 'date',
 				flex : 1
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : Eway.locale.commen.toolbar
+				displayMsg : EwayLocale.commen.toolbar
 			})
 		});
 

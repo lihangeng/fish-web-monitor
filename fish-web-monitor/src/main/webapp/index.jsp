@@ -98,6 +98,11 @@
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/system-locale-zh_CN.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/device-locale-zh_CN.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/monitor-locale-zh_CN.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/version-locale-zh_CN.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/fault-locale-zh_CN.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/report-locale-zh_CN.js");
 		}else{
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-en.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-en.js");

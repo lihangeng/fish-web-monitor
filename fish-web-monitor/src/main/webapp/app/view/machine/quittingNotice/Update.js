@@ -9,7 +9,7 @@ Ext.define('Eway.view.machine.quittingNotice.Update', {
 	           'Eway.view.field.quittingNotice.DeviceCode',
 	             'Eway.lib.Util'],
 
-	title: Eway.locale.machine.quittingNotice.updateCloseMsg,
+	title: EwayLocale.machine.quittingNotice.updateCloseMsg,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -54,10 +54,10 @@ Ext.define('Eway.view.machine.quittingNotice.Update', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.terminalId,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.atmGroup.terminalId,
 					xtype : 'field_deviceCode',
 					regex : /^\w+[\w-\.]*$/,
-					regexText : Eway.locale.vtype.bankOrgCode,
+					regexText : EwayLocale.vtype.bankOrgCode,
 					maxLength : 20,
 					readOnly : true,
 					allowBlank : false
@@ -111,12 +111,12 @@ Ext.define('Eway.view.machine.quittingNotice.Update', {
 					}
 
 				},{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.quittingNotice.stopType,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.quittingNotice.stopType,
 					xtype : 'field_stopType',
 					allowBlank : false,
 					editable : false
 				},{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.quittingNotice.responsibilityName,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.quittingNotice.responsibilityName,
 					xtype : 'textfield',
 					maxLength :20,
 					name : 'responsibilityName',
@@ -124,11 +124,11 @@ Ext.define('Eway.view.machine.quittingNotice.Update', {
 				},{
 					xtype : 'textarea',
 					name : 'stopReason',
-					fieldLabel : Eway.locale.machine.quittingNotice.stopReason,
+					fieldLabel : EwayLocale.machine.quittingNotice.stopReason,
 					maxLength :60,
 					autoScroll : true
 				},{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.quittingNotice.setTime,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.quittingNotice.setTime,
 					xtype : 'datetimefield',
 					name : 'setTime',
 					editable : false,
@@ -138,14 +138,14 @@ Ext.define('Eway.view.machine.quittingNotice.Update', {
 				}],
 				buttonAlign : 'center',
 				buttons: [{
-					text: Eway.locale.button.confirm,
+					text: EwayLocale.button.confirm,
 					action: 'confirm'
 				}, {
-					text: Eway.locale.button.reset,
+					text: EwayLocale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: Eway.locale.button.cancle,
+					text: EwayLocale.button.cancle,
 					handler: this.onOver
 				}]
 			}

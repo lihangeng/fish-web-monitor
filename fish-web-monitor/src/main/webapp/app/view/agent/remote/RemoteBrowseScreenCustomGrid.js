@@ -53,23 +53,23 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseScreenCustomGrid', {
 					}
 				}
 			},*/{
-				header: Eway.locale.agent.remote.screen.fileNameClient,
+				header: EwayLocale.agent.remote.screen.fileNameClient,
 				sortable: true,
 				dataIndex: 'fileNameClient',
 				flex: 3
 			},{
-				header: Eway.locale.agent.remote.screenShotTime,
+				header: EwayLocale.agent.remote.screenShotTime,
 				sortable: true,
 				dataIndex: 'screenShotTime',
 				flex: 2
 			},{
-				header: Eway.locale.agent.remote.screen.manage,
+				header: EwayLocale.agent.remote.screen.manage,
 				xtype:'actioncolumn',
 				flex : 1,
 				dataIndex : 'backupResult',
 				items : [{
 					icon : 'resources/images/down.gif',
-					tooltip: Eway.locale.agent.remote.screen.loading,
+					tooltip: EwayLocale.agent.remote.screen.loading,
 					handler : function(grid,rowIndex,colIndex){
 						var record = grid.getStore().getAt(rowIndex);
 						var value = record.data.allPath;

@@ -12,7 +12,7 @@ Ext.define('Eway.view.advert.FilterForm', {
 				columnWidth : .3,
 				items : [ {
 					xtype : 'combobox',
-					fieldLabel : Eway.locale.advert.type,
+					fieldLabel : EwayLocale.advert.type,
 					displayField : 'display',
 					store : Ext.StoreMgr.lookup("advert.AdvertType"),
 					queryMode : 'local',
@@ -24,7 +24,7 @@ Ext.define('Eway.view.advert.FilterForm', {
 			}, {
 				columnWidth : .3,
 				items : [ {
-					fieldLabel : Eway.locale.advert.createdTimeStart,
+					fieldLabel : EwayLocale.advert.createdTimeStart,
 					xtype : 'datetimefield',
 					name : 'createdTimeStart',
 					editable : false,
@@ -34,7 +34,7 @@ Ext.define('Eway.view.advert.FilterForm', {
 			}, {
 				columnWidth : .3,
 				items : [ {
-					fieldLabel : Eway.locale.advert.createdTimeStop,
+					fieldLabel : EwayLocale.advert.createdTimeStop,
 					xtype : 'datetimefield',
 					name : 'createdTimeEnd',
 					editable : false,

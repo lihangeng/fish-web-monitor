@@ -27,16 +27,16 @@ Ext.define('Eway.view.person.servicePer.FilterForm', {
 					msgTarget : 'side'
 				}, {
 					xtype : 'field.mobile',
-					fieldLabel: Eway.locale.commen.mobile,
+					fieldLabel: EwayLocale.commen.mobile,
 					labelWidth: 50,
 					regex: /^\d{8,11}$/,
-					regexText:Eway.locale.vtype.mobile,
+					regexText:EwayLocale.vtype.mobile,
 					msgTarget : 'side'
 				}]
 			}, {
 				columnWidth : .5,
 				items : [{
-					fieldLabel : Eway.locale.commen.jobNum,
+					fieldLabel : EwayLocale.commen.jobNum,
 					xtype : 'textfield',
 					labelWidth: 50,
 					maxLength : 20,

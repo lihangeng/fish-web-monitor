@@ -6,7 +6,7 @@ Ext.define('Eway.view.report.baseReport.TransactionDaysCountView', {
 			'Eway.view.report.baseReport.TransactionDaysCountFilterForm',
 			'Eway.view.report.baseReport.TransactionDaysCountGrid'],
 
-	title : Eway.locale.report.baseReport.tradeDaysCountRep,
+	title : EwayLocale.report.baseReport.tradeDaysCountRep,
 	layout : 'border',
 
 	isLoad : false,

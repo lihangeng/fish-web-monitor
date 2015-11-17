@@ -10,7 +10,7 @@ Ext.define("Eway.view.machine.device.module.StatusSIU", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : Eway.locale.machine.device.SIUStatus,
+				title : EwayLocale.machine.device.SIUStatus,
 				titleAlign:'center',
 				layout : 'column',
 				border : 'false',
@@ -26,20 +26,20 @@ Ext.define("Eway.view.machine.device.module.StatusSIU", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.vandalShield,
+						fieldLabel : EwayLocale.machine.device.vandalShield,
 						name : 'vandalShield',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.operatorSwitch,
+						fieldLabel : EwayLocale.machine.device.operatorSwitch,
 						name : 'operatorSwitch'
 					}, {
-						fieldLabel : Eway.locale.machine.device.ambientLight,
+						fieldLabel : EwayLocale.machine.device.ambientLight,
 						name : 'ambientLight'
 					}, {
-						fieldLabel : Eway.locale.machine.device.cabinet,
+						fieldLabel : EwayLocale.machine.device.cabinet,
 						name : 'cabinet'
 					}, {
-						fieldLabel : Eway.locale.machine.device.safe,
+						fieldLabel : EwayLocale.machine.device.safe,
 						name : 'safe'
 					} ]
 				}, {
@@ -55,17 +55,17 @@ Ext.define("Eway.view.machine.device.module.StatusSIU", {
 						height : 40
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.idcGuidelight,
+						fieldLabel : EwayLocale.machine.device.idcGuidelight,
 						name : 'idcGuidelight',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel :Eway.locale.machine.device.cdmGuidelight,
+						fieldLabel :EwayLocale.machine.device.cdmGuidelight,
 						name : 'cdmGuidelight'
 					}, {
-						fieldLabel : Eway.locale.machine.device.receiptGuidelight,
+						fieldLabel : EwayLocale.machine.device.receiptGuidelight,
 						name : 'receiptGuidelight'
 					}, {
-						fieldLabel : Eway.locale.machine.device.cimGuidelight,
+						fieldLabel : EwayLocale.machine.device.cimGuidelight,
 						name : 'cimGuidelight'
 					} ]
 				} ]

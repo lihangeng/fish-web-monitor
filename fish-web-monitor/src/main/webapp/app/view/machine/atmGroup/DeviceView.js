@@ -6,7 +6,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceView', {
 	             'Eway.view.machine.atmGroup.DeviceFilter',
 			'Eway.view.machine.atmGroup.DeviceGrid' ],
 
-	title : Eway.locale.machine.atmGroup.devGroupName,
+	title : EwayLocale.machine.atmGroup.devGroupName,
 	layout : 'border',
 	name:'atmGroupDeviceDetails',
 	initComponent : function() {

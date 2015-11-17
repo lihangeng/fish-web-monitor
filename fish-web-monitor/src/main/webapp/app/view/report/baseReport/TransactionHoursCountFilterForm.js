@@ -15,20 +15,20 @@ Ext.define('Eway.view.report.baseReport.TransactionHoursCountFilterForm', {
 					labelAlign : 'right'
 				},
 				items : [{
-					fieldLabel : Eway.locale.report.openrate.device.statisticsMethod,
+					fieldLabel : EwayLocale.report.openrate.device.statisticsMethod,
 					hidden : true,
 					xtype : 'radiogroup',
 					width : 280,
 					items : [ {
-						boxLabel : Eway.locale.commen.year,
+						boxLabel : EwayLocale.commen.year,
 						name : 'statType',
 						inputValue : 1
 					}, {
-						boxLabel : Eway.locale.commen.month,
+						boxLabel : EwayLocale.commen.month,
 						name : 'statType',
 						inputValue : 2
 					}, {
-						boxLabel : Eway.locale.commen.day,
+						boxLabel : EwayLocale.commen.day,
 						name : 'statType',
 						checked : true,
 						inputValue : 3
@@ -40,7 +40,7 @@ Ext.define('Eway.view.report.baseReport.TransactionHoursCountFilterForm', {
 					width : 280,
 					name : 'year',
 					xtype : 'datefield',
-					fieldLabel : Eway.locale.commen.yearTime,
+					fieldLabel : EwayLocale.commen.yearTime,
 					hidden : true,
 					value : new Date(),
 					editable : false,
@@ -49,7 +49,7 @@ Ext.define('Eway.view.report.baseReport.TransactionHoursCountFilterForm', {
 					width : 280,
 					name : 'month',
 					xtype : 'datefield',
-					fieldLabel : Eway.locale.commen.monthTime,
+					fieldLabel : EwayLocale.commen.monthTime,
 					hidden : true,
 					editable : false,
 					value : new Date(),
@@ -58,7 +58,7 @@ Ext.define('Eway.view.report.baseReport.TransactionHoursCountFilterForm', {
 					width : 280,
 					name : 'day',
 					xtype : 'datefield',
-					fieldLabel : Eway.locale.commen.dayTime,
+					fieldLabel : EwayLocale.commen.dayTime,
 					editable : false,
 					value : new Date(),
 					format : 'Y-m-d'
@@ -72,9 +72,9 @@ Ext.define('Eway.view.report.baseReport.TransactionHoursCountFilterForm', {
 				}, {
 					//只带出银行机构
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : Eway.locale.commen.orgNameBelongs,
+					fieldLabel : EwayLocale.commen.orgNameBelongs,
 					labelAlign : 'right',
-					emptyText : Eway.locale.combox.select,
+					emptyText : EwayLocale.combox.select,
 					name : 'orgName',
 					hiddenValue : 'orgId',
 					editable : false,

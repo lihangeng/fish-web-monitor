@@ -85,7 +85,7 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 			var versionArray=pieStore.data.items;
 			if(undefined!=versionArray&&versionArray.length!=0){
 				versionId = versionArray[0].get("versionId")
-				statusPanel.setTitle(versionArray[0].get("versionNo")+Eway.locale.version.task.versionDownHisStatusPic);//"版本下发历史状态分布图");
+				statusPanel.setTitle(versionArray[0].get("versionNo")+EwayLocale.version.task.versionDownHisStatusPic);//"版本下发历史状态分布图");
 			}
 			else{
 				me._statuspieClean();
@@ -105,7 +105,7 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 				var versionArray=pieStore.data.items;
 				if(undefined!=versionArray&&versionArray.length!=0){
 					versionId = versionArray[0].get("versionId")
-					statusPanel.setTitle(versionArray[0].get("versionNo")+Eway.locale.version.task.versionDownHisStatusPic);//"版本下发历史状态分布图");
+					statusPanel.setTitle(versionArray[0].get("versionNo")+EwayLocale.version.task.versionDownHisStatusPic);//"版本下发历史状态分布图");
 				}
 				else{
 					me._statuspieClean();
@@ -151,7 +151,7 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 	//初始化页面进行查询操作，下一图表默认加载当前图标第一项数据
 	onChange : function(_this, newValue, oldValue, eOpts) {
 		var me = this;
-		me.getVersionPie().setTitle(_this.rawValue+Eway.locale.version.task.versionNoPic);
+		me.getVersionPie().setTitle(_this.rawValue+EwayLocale.version.task.versionNoPic);
 		me.versionPieRefresh();
 	},
 	//状态分布饼图数据清理
@@ -202,7 +202,7 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 		var me = this;
 		var view = this.getEwayView();
 		var statuspolar = view.down('versionstatus_pie polar');
-		statuspolar.setTitle(item.record.data.versionNo+Eway.locale.version.task.versionDownHisStatusPic);//"版本下发历史状态分布图");
+		statuspolar.setTitle(item.record.data.versionNo+EwayLocale.version.task.versionDownHisStatusPic);//"版本下发历史状态分布图");
 		var statuspieStore = statuspolar.getStore();
 		statuspieStore.load({
 			params : {

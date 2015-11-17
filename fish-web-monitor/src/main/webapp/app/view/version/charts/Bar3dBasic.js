@@ -37,7 +37,7 @@ Ext.define('Eway.view.version.charts.Bar3dBasic', {
                 store: me.myDataStore,
                 sprites: [{
                     type  : 'text',
-                    text  : Eway.locale.version.View.versionDetail,//'版本详情',
+                    text  : EwayLocale.version.View.versionDetail,//'版本详情',
                     font  : '14px Helvetica',
                     fontStyle:'oblique',
                     width : 100,
@@ -105,7 +105,7 @@ Ext.define('Eway.view.version.charts.Bar3dBasic', {
 //                    			        flag:gridFlag
 //                    			    }
 //                    		 });
-                    		grid.setTitle(item.record.data.title+Eway.locale.title.msg);//"信息")
+                    		grid.setTitle(item.record.data.title+EwayLocale.title.msg);//"信息")
                     	}
                     },
                     renderer: (function () {

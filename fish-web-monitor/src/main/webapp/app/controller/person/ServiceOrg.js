@@ -92,7 +92,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 		store.loadPage(1);
 		var actionTip = this.getGrid().down("tbtext[action=tip]");
 		actionTip.setText('<font color="red">' + selectedNode.data.text
-				+ '</font>' + Eway.locale.person.serviceOrg.directOrganization);
+				+ '</font>' + EwayLocale.person.serviceOrg.directOrganization);
 	},
 
 	/**
@@ -124,7 +124,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 				}
 			});
 		} else {
-			Eway.alert(Eway.locale.tip.serviceOrg.chooseOrg);
+			Eway.alert(EwayLocale.tip.serviceOrg.chooseOrg);
 		}
 	},
 
@@ -147,11 +147,11 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 			record.save({
 						success : function(record, operation) {
 							store.load();
-							Eway.alert(Eway.locale.tip.bankOrg.manager.set.managerSuccess);
+							Eway.alert(EwayLocale.tip.bankOrg.manager.set.managerSuccess);
 							addManagerwin.close();
 						},
 						failure : function(record, operation) {
-							Eway.alert(Eway.locale.tip.bankOrg.manager.set.managerFail);
+							Eway.alert(EwayLocale.tip.bankOrg.manager.set.managerFail);
 						}
 					});
 		}
@@ -165,14 +165,14 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 		var sm = grid.getSelectionModel();
 		if (sm.getCount() == 1 && sm.getLastSelected().get('userGuid') != null
 				&& sm.getLastSelected().get('userGuid') != 0) {
-			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title, Eway.locale.tip.remove.confirm.info,
+			Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title, EwayLocale.tip.remove.confirm.info,
 					function(button, text) {
 						if (button == "yes") {
 							this.onRemoveManagerConfirm(sm);
 						}
 					}, this);
 		} else {
-			Eway.alert(Eway.locale.tip.serviceOrg.remove.reChoose);
+			Eway.alert(EwayLocale.tip.serviceOrg.remove.reChoose);
 		}
 	},
 
@@ -183,10 +183,10 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 		record.save({
 					success : function(record, operation) {
 						store.load();
-						Eway.alert(Eway.locale.tip.bankOrg.manager.remove.delSuccess);
+						Eway.alert(EwayLocale.tip.bankOrg.manager.remove.delSuccess);
 					},
 					failure : function(record, operation) {
-						Eway.alert(Eway.locale.tip.bankOrg.manager.remove.delFail);
+						Eway.alert(EwayLocale.tip.bankOrg.manager.remove.delFail);
 					}
 				});
 	},
@@ -204,7 +204,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 			store.setUrlParam(i, data[i])
 		}
 		var actionTip = ewayView.down("tbtext[action=tip]");
-		actionTip.setText(Eway.locale.tip.bankOrg.orgEligible);
+		actionTip.setText(EwayLocale.tip.bankOrg.orgEligible);
 		store.loadPage(1);
 		ewayView.down('treepanel').getSelectionModel().select(0, true);// 选择根节点
 	},
@@ -221,7 +221,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 				.findField("organizationType");
 		//维护商机构的上级机构默认显示机构。
 		win.down('field[name="parentId"]').setValue(1);
-		win.down('field[name="parent"]').setValue(Eway.locale.person.bankPer.organizationName);
+		win.down('field[name="parent"]').setValue(EwayLocale.person.bankPer.organizationName);
 		win.show();
 	},
 
@@ -237,7 +237,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 			record.set("organizationState", '1');
 			record.save({
 						success : function(record, operation) {
-							Eway.alert(Eway.addSuccess);
+							Eway.alert(EwayLocale.addSuccess);
 							// 组织树的刷新:
 							ewayView.down('treepanel').getStore().load();
 							ewayView.down('treepanel').getSelectionModel()
@@ -252,7 +252,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 										}
 									});
 							var actionTip = ewayView.down("tbtext[action=tip]");
-							actionTip.setText('<font color="red">' + record.data.parent + '</font>' + Eway.locale.tip.bankOrg.downGradeOrg);
+							actionTip.setText('<font color="red">' + record.data.parent + '</font>' + EwayLocale.tip.bankOrg.downGradeOrg);
 							win.close();
 						},
 						failure : function(record, operation) {
@@ -278,7 +278,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 			win.down('button[action="update"]').on('click',this.onUpdateConfirm, this);
 			win.show();
 		} else {
-			Eway.alert(Eway.choiceUpdateMsg);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 		}
 	},
 
@@ -311,7 +311,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 			record.set("serviceObjectId", data.serviceObjectId);
 			record.save({
 						success : function(record, operation) {
-							Eway.alert(Eway.updateSuccess);
+							Eway.alert(EwayLocale.updateSuccess);
 							// 组织树的刷新:
 							var treePanel = ewayView.down('treepanel');
 							if (data.code == ewayUser.getOrgCode()) {
@@ -335,7 +335,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 							var actionTip = ewayView.down("tbtext[action=tip]");
 							actionTip.setText('<font color="red">'
 									+ record.data.parent + '</font>'
-									+ Eway.locale.tip.bankOrg.downGradeOrg);
+									+ EwayLocale.tip.bankOrg.downGradeOrg);
 							win.close();
 						},
 						failure : function(record, operation) {
@@ -355,13 +355,13 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 		var grid = this.getGrid();
 		var sm = grid.getSelectionModel();
 		if (sm.getCount() == 1) {
-			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title, Eway.locale.tip.remove.confirm.info, function(button,
+			Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title, EwayLocale.tip.remove.confirm.info, function(button,
 					text) {
 				if (button == "yes") {
 					var record = sm.getLastSelected();
 					record.erase({
 						success : function() {
-							Eway.alert(Eway.deleteSuccess);
+							Eway.alert(EwayLocale.updateSuccess);
 							this.getGrid().getStore().remove(record);
 							var selections = this.getEwayView()
 									.down('treepanel').getSelectionModel()
@@ -382,7 +382,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 //							if (operation.request.scope.reader.jsonData.flag) {
 							if (operation.request._operation.request._scope.reader.rawData.flag) {
 								Ext.MessageBox.show({
-									title : Eway.locale.tip.tips,
+									title : EwayLocale.tip.tips,
 									msg : operation.getError(),
 									modal : true,
 									fn : function callBack(id) {
@@ -418,7 +418,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 				}
 			}, this);
 		} else {
-			Eway.alert(Eway.choiceDeleteMsg);
+			Eway.alert(EwayLocale.choiceDeleteMsg);
 		}
 	},
 
@@ -449,7 +449,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 		store.setBaseParam('selectedNode', node.data.id);
 		store.loadPage(1);
 		var actionTip = this.getEwayView().down("tbtext[action=tip]");
-		actionTip.setText('<font color="red">' + node.data.text + '</font>'+ Eway.locale.tip.bankOrg.downGradeOrg);
+		actionTip.setText('<font color="red">' + node.data.text + '</font>'+ EwayLocale.tip.bankOrg.downGradeOrg);
 	},
 
 	onOrganizationTypeChange : function(field, newValue) {

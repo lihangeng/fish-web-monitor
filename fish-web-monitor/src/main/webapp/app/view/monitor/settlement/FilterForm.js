@@ -17,14 +17,14 @@ Ext.define('Eway.view.monitor.settlement.FilterForm', {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.commen.terminalId,
+					fieldLabel : EwayLocale.commen.terminalId,
 					name : 'terminalId',
 					regex : /^\w+[\w-\.]*$/,
-					regexText : Eway.locale.vtype.terminalId,
+					regexText : EwayLocale.vtype.terminalId,
 					maxLength : 20
 				}, {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.monitor.business.settlement.uuId,
+					fieldLabel : EwayLocale.monitor.business.settlement.uuId,
 					name : 'uuId',
 					maxLength : 20
 				} ]
@@ -35,7 +35,7 @@ Ext.define('Eway.view.monitor.settlement.FilterForm', {
 				},
 				items : [ {
 					xtype : 'fieldcontainer',
-					fieldLabel : Eway.locale.monitor.business.settlement.endAmt,
+					fieldLabel : EwayLocale.monitor.business.settlement.endAmt,
 					layout : 'hbox',
 					defaults : {
 						hideLabel : true
@@ -63,7 +63,7 @@ Ext.define('Eway.view.monitor.settlement.FilterForm', {
 						}
 					}, {
 						xtype : 'displayfield',
-						value : Eway.locale.monitor.business.transaction.toNum
+						value : EwayLocale.monitor.business.transaction.toNum
 					}, {
 						fieldLabel : 'endAmt',
 						displayField : 'display',
@@ -87,7 +87,7 @@ Ext.define('Eway.view.monitor.settlement.FilterForm', {
 					} ]
 				}, {
 					xtype : 'fieldcontainer',
-					fieldLabel : Eway.locale.monitor.business.settlement.endDate,
+					fieldLabel : EwayLocale.monitor.business.settlement.endDate,
 					layout : 'hbox',
 					defaults : {
 						hideLabel : true
@@ -116,7 +116,7 @@ Ext.define('Eway.view.monitor.settlement.FilterForm', {
 						}
 					}, {
 						xtype : 'displayfield',
-						value : Eway.locale.monitor.business.transaction.toNum
+						value : EwayLocale.monitor.business.transaction.toNum
 					}, {
 						fieldLabel : 'minute',
 						displayField : 'display',

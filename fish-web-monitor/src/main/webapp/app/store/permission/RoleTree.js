@@ -3,7 +3,7 @@ Ext.define('Eway.store.permission.RoleTree', {
 	extend: 'Ext.data.TreeStore',
 	model: 'Eway.model.permission.Permission',
 	root: {
-		text: Eway.locale.permission.systemMenu,
+		text: EwayLocale.permission.systemMenu,
 		expanded: false
 
 	},

@@ -82,8 +82,8 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowseNetWork', {
 
 				tab.query('button')[0].setDisabled(false);
 				if (!object.success || 'false' == object.success) {
-					Eway.alert(Eway.locale.agent.remote.testBandWidth);
-					tab.query('displayfield')[0].setValue('<font color="red">'+Eway.locale.agent.remote.testBandWidth+'</font>');
+					Eway.alert(EwayLocale.agent.remote.testBandWidth);
+					tab.query('displayfield')[0].setValue('<font color="red">'+EwayLocale.agent.remote.testBandWidth+'</font>');
 					return;
 				}
 
@@ -98,11 +98,11 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowseNetWork', {
 				});
 				store.loadData(data);
 
-				var text = Eway.locale.agent.remote.networkMaxSpeed+'<font color="red">' + value
-						+ 'MB</font>/'+Eway.locale.agent.remote.minutes;
+				var text = EwayLocale.agent.remote.networkMaxSpeed+'<font color="red">' + value
+						+ 'MB</font>/'+EwayLocale.agent.remote.minutes;
 
 				if (value >= 2) {
-					text += '，'+Eway.locale.agent.remote.amount+' <font color="red">'+Eway.locale.agent.remote.specialLine+'</font>  '+Eway.locale.agent.remote.bandWidth
+					text += '，'+EwayLocale.agent.remote.amount+' <font color="red">'+EwayLocale.agent.remote.specialLine+'</font>  '+EwayLocale.agent.remote.bandWidth
 				}
 				tab.query('displayfield')[0].setValue(text);
 			}

@@ -45,7 +45,7 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportFilter', {
 								}
 								return validStatus;
 							},
-							cardInfoDateRangeText : Eway.locale.tip.dateReSelect
+							cardInfoDateRangeText : EwayLocale.tip.dateReSelect
 						});
 				Ext.apply(this, {
 							items : [{
@@ -57,9 +57,9 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportFilter', {
 										}, {
 											// 只带出银行机构
 											xtype : 'common_orgComboOrgTree',
-											fieldLabel : Eway.locale.commen.orgNameBelongs,
+											fieldLabel : EwayLocale.commen.orgNameBelongs,
 											labelAlign : 'right',
-											emptyText : Eway.locale.combox.select,
+											emptyText : EwayLocale.combox.select,
 											name : 'orgName',
 											hiddenValue : 'orgId',
 											editable : false,
@@ -69,12 +69,12 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportFilter', {
 													? true
 													: false
 										}, {
-											fieldLabel : Eway.locale.commen.terminalId,
+											fieldLabel : EwayLocale.commen.terminalId,
 											labelAlign : 'right',
 											xtype : 'textfield',
 											name : 'terminalId',
 											regex : /^\w[\w-_\.]{0,19}$/,
-											regexText : Eway.locale.vtype.numberRule,
+											regexText : EwayLocale.vtype.numberRule,
 											msgTarget : 'side',
 											hidden:true
 										}, {
@@ -86,7 +86,7 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportFilter', {
 								columnWidth : .3,
 								items : [{
 									xtype : 'datefield',
-									fieldLabel : Eway.locale.commen.startDataTime,
+									fieldLabel : EwayLocale.commen.startDataTime,
 									name : 'startData',
 									format : 'Y-m-d',
 									editable : false,
@@ -112,7 +112,7 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportFilter', {
 								columnWidth : .4,
 								items : [{
 									xtype : 'datefield',
-									fieldLabel : Eway.locale.commen.endDataTime,
+									fieldLabel : EwayLocale.commen.endDataTime,
 									name : 'endData',
 									format : 'Y-m-d',
 									editable : false,

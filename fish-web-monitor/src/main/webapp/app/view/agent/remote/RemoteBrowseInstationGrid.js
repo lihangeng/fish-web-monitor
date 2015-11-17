@@ -17,34 +17,34 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseInstationGrid', {
 			initRegion : true,
 			columns : [
 			           {
-						header: Eway.locale.agent.remote.number,
+						header: EwayLocale.agent.remote.number,
 						renderer: function(value, cellmeta, record, rowIndex){
 						return rowIndex+1;
 						},
 						flex: 1
 			},
 			{
-				header: Eway.locale.agent.remote.programName,
+				header: EwayLocale.agent.remote.programName,
 				sortable : true,
 				dataIndex: 'programName',
 				flex: 2
 			},{
-				header: Eway.locale.agent.remote.version,
+				header: EwayLocale.agent.remote.version,
 				sortable: true,
 				dataIndex: 'version',
 				flex: 1
 			},{
-				header: Eway.locale.agent.remote.publisher,
+				header: EwayLocale.agent.remote.publisher,
 				sortable: true,
 				dataIndex: 'publisher',
 				flex: 2
 			},{
-				header: Eway.locale.commen.installDate,
+				header: EwayLocale.commen.installDate,
 				sortable: true,
 				dataIndex: 'installDate',
 				flex: 1
 			},{
-				header: Eway.locale.agent.remote.diskUsed,
+				header: EwayLocale.agent.remote.diskUsed,
 				sortable: true,
 				dataIndex: 'diskUsed',
 				flex: 1

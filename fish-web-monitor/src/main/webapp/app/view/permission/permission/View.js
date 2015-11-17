@@ -5,7 +5,7 @@ Ext.define('Eway.view.permission.permission.View', {
 	
 	requires: ['Eway.view.permission.permission.Tree'],
 	
-	title: Eway.locale.permission.permission.menuPermission,
+	title: EwayLocale.permission.permission.menuPermission,
 	layout: 'border',
 	
 	initComponent: function() {

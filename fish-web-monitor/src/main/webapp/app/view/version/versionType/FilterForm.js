@@ -11,7 +11,7 @@ Ext.define('Eway.view.version.versionType.FilterForm',{
 				columnWidth:.3,
 				items : [{
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.version.View.versionTypeCode,
+					fieldLabel : EwayLocale.version.View.versionTypeCode,
 					maxLength: 64,
 					regex : /^[a-zA-Z0-9_-]{1,30}$/,//'软件分类编码',
 					name : 'typeName'
@@ -20,7 +20,7 @@ Ext.define('Eway.view.version.versionType.FilterForm',{
 				columnWidth:.3,
 				items : [{
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.version.View.versionTypeName,//'软件分类名称',
+					fieldLabel : EwayLocale.version.View.versionTypeName,//'软件分类名称',
 					maxLength: 42,
 					name : 'desc'
 				}]

@@ -1,7 +1,7 @@
 Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.agent_remote_remoteBrowseNetWorkView',
-	title : Eway.locale.agent.remote.networkInfo,
+	title : EwayLocale.agent.remote.networkInfo,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -20,7 +20,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 			items : {
 				xtype : 'tabpanel',
 				items : [ {
-					title : Eway.locale.agent.remote.networkLinkStatus,
+					title : EwayLocale.agent.remote.networkLinkStatus,
 					xtype : 'draw',
 					x : 10,
 					y : 10,
@@ -30,7 +30,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 					sprites : [ {
 						type : 'text',
 						stroke : 'black',
-						text : Eway.locale.agent.remote.send,
+						text : EwayLocale.agent.remote.send,
 						x : 90,
 						y : 30
 					}, {
@@ -41,7 +41,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 					}, {
 						type : 'text',
 						stroke : 'black',
-						text : Eway.locale.agent.remote.receive,
+						text : EwayLocale.agent.remote.receive,
 						x : 285,
 						y : 30
 					}, {
@@ -57,13 +57,13 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 					}, {
 						type : 'text',
 						stroke : 'black',
-						text : Eway.locale.agent.remote.bite,
+						text : EwayLocale.agent.remote.bite,
 						x : 30,
 						y : 78
 					}, {
 						type : 'text',
 						stroke : 'black',
-						text : Eway.locale.agent.remote.speed,
+						text : EwayLocale.agent.remote.speed,
 						x : 15,
 						y : 120
 					}, {
@@ -75,7 +75,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 						x : 180
 					} ]
 				}, {
-					title : Eway.locale.agent.remote.bandWidth,
+					title : EwayLocale.agent.remote.bandWidth,
 					itemId : 'bandWidth',
 					xtype : 'panel',
 					layout : 'border',
@@ -98,7 +98,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 							minimum : 0,
 							maximum : 10,
 							steps : 10,
-							title : Eway.locale.agent.remote.unit,
+							title : EwayLocale.agent.remote.unit,
 							margin : 7
 						} ],
 						series : [ {
@@ -114,7 +114,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 						fieldCls : ''
 					} ],
 					buttons : [ {
-						text : Eway.locale.agent.remote.againTest,
+						text : EwayLocale.agent.remote.againTest,
 						action : 'againTest'
 					} ]
 				} ]

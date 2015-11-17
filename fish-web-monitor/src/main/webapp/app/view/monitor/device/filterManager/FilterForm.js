@@ -7,7 +7,7 @@ Ext.define('Eway.view.monitor.device.filterManager.FilterForm', {
 		Ext.apply(this, {
 			items : [ {
 				xtype : 'textfield',
-				fieldLabel : Eway.locale.monitor.devMonitor.filterManager.filterForm.filterName,
+				fieldLabel : EwayLocale.monitor.devMonitor.filterManager.filterForm.filterName,
 				name : 'filterName',
 				maxLength : 20
 			} ]

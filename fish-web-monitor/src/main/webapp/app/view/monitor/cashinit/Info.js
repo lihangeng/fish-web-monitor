@@ -1,7 +1,7 @@
 Ext.define('Eway.view.monitor.cashinit.Info', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.monitor_cashinit_info',
-	title : Eway.locale.monitor.business.cashInit.info,
+	title : EwayLocale.monitor.business.cashInit.info,
 	modal : true,
 	constrainHeader : true,
 	resizable : false,
@@ -38,10 +38,10 @@ Ext.define('Eway.view.monitor.cashinit.Info', {
 							readOnly : true
 						},
 						items : [ {
-							fieldLabel : Eway.locale.commen.terminalId,
+							fieldLabel : EwayLocale.commen.terminalId,
 							name : 'termId'
 						}, {
-							fieldLabel : Eway.locale.monitor.business.cashInit.uuId,
+							fieldLabel : EwayLocale.monitor.business.cashInit.uuId,
 							name : 'uuId'
 						} ]
 					}, {
@@ -56,27 +56,27 @@ Ext.define('Eway.view.monitor.cashinit.Info', {
 							readOnly : true
 						},
 						items : [ {
-							fieldLabel : Eway.locale.monitor.devMonitor.cash.initAmount,
+							fieldLabel : EwayLocale.monitor.devMonitor.cash.initAmount,
 							name : 'amt'
 						}, {
-							fieldLabel : Eway.locale.monitor.business.cashInit.date,
+							fieldLabel : EwayLocale.monitor.business.cashInit.date,
 							name : 'date'
 						} ]
 					} ]
 				}, {
-					title : Eway.locale.commen.info,
+					title : EwayLocale.commen.info,
 					itemid : 'detailItemId',
 					xtype : 'grid',
 					store : 'monitor.cashinit.CashInitDetail',
 					border:true,
 					columns : [ Ext.create('Ext.grid.RowNumberer'), {
-						header : Eway.locale.monitor.business.cashInit.boxId,
+						header : EwayLocale.monitor.business.cashInit.boxId,
 						dataIndex : 'boxId'
 					}, {
-						header : Eway.locale.monitor.business.cashInit.boxCurrency,
+						header : EwayLocale.monitor.business.cashInit.boxCurrency,
 						dataIndex : 'boxCurrency'
 					}, {
-						header : Eway.locale.monitor.business.cashInit.boxInitAmt,
+						header : EwayLocale.monitor.business.cashInit.boxInitAmt,
 						dataIndex : 'boxInitAmt',
 						flex:1
 					} ]

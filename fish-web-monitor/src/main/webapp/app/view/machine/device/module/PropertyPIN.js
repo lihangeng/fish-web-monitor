@@ -7,7 +7,7 @@ Ext.define("Eway.view.machine.device.module.PropertyPIN", {
 				anchor : '100%'
 			},
 			items : [ {
-				title :  Eway.locale.machine.device.PINInfo,
+				title :  EwayLocale.machine.device.PINInfo,
 				titleAlign:'center',
 				layout : 'column',
 				items : [ {
@@ -21,26 +21,26 @@ Ext.define("Eway.view.machine.device.module.PropertyPIN", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel :  Eway.locale.machine.device.canEBC,
+						fieldLabel :  EwayLocale.machine.device.canEBC,
 						name : 'canEBC',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel :  Eway.locale.machine.device.canCBC,
+						fieldLabel :  EwayLocale.machine.device.canCBC,
 						name : 'canCBC'
 					}, {
-						fieldLabel : Eway.locale.machine.device.canMAC,
+						fieldLabel : EwayLocale.machine.device.canMAC,
 						name : 'canMAC'
 					}, {
-						fieldLabel : Eway.locale.machine.device.canRSA,
+						fieldLabel : EwayLocale.machine.device.canRSA,
 						name : 'canRSA'
 					}, {
-						fieldLabel : Eway.locale.machine.device.canVerifyVISA,
+						fieldLabel : EwayLocale.machine.device.canVerifyVISA,
 						name : 'canVerifyVISA'
 					}, {
-						fieldLabel :  Eway.locale.machine.device.canVerifyDES,
+						fieldLabel :  EwayLocale.machine.device.canVerifyDES,
 						name : 'canVerifyDES'
 					}, {
-						fieldLabel : Eway.locale.machine.device.functionKeys,
+						fieldLabel : EwayLocale.machine.device.functionKeys,
 						xtype : 'textareafield',
 						name : 'functionKeys'
 					} ]
@@ -56,23 +56,23 @@ Ext.define("Eway.view.machine.device.module.PropertyPIN", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel :Eway.locale.machine.device.canTripleEBC,
+						fieldLabel :EwayLocale.machine.device.canTripleEBC,
 						name : 'canTripleEBC',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.canTripleCBC,
+						fieldLabel : EwayLocale.machine.device.canTripleCBC,
 						name : 'canTripleCBC'
 					}, {
-						fieldLabel : Eway.locale.machine.device.canTripleMAC,
+						fieldLabel : EwayLocale.machine.device.canTripleMAC,
 						name : 'canTripleMAC'
 					}, {
-						fieldLabel : Eway.locale.machine.device.canTripleCFB,
+						fieldLabel : EwayLocale.machine.device.canTripleCFB,
 						name : 'canTripleCFB'
 					}, {
-						fieldLabel : Eway.locale.machine.device.canVerifyECB,
+						fieldLabel : EwayLocale.machine.device.canVerifyECB,
 						name : 'canVerifyECB'
 					}, {
-						fieldLabel :Eway.locale.machine.device.canDESOffset,
+						fieldLabel :EwayLocale.machine.device.canDESOffset,
 						name : 'canDESOffset'
 					} ]
 				} ]

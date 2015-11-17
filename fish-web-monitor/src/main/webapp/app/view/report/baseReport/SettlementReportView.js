@@ -5,7 +5,7 @@ Ext.define('Eway.view.report.baseReport.SettlementReportView', {
 	requires : [ 'Eway.view.report.baseReport.SettlementReportFilter',
 			'Eway.view.report.baseReport.ReportDownload' ],
 
-	title : Eway.locale.report.baseReport.clearTable,
+	title : EwayLocale.report.baseReport.clearTable,
 	layout : 'border',
 
 	initComponent : function() {

@@ -5,7 +5,7 @@ Ext.define('Eway.view.field.card.CardTypeComboBox',{
 	alias:'widget.card_CardTypeComboBox',
 	
 	name : 'cardType',
-	fieldLabel : Eway.locale.card.IDType,
+	fieldLabel : EwayLocale.card.IDType,
 	store : 'monitor.card.CardTypeComboBox',
 	queryMode: 'local',
 	displayField: 'display',

@@ -16,11 +16,11 @@ Ext.define('Eway.view.machine.atmMove.MoveDeviceGrid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-				text: Eway.locale.button.search,
+				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			}, {
-				text: Eway.locale.machine.atmMove.moveDev,
+				text: EwayLocale.machine.atmMove.moveDev,
 				iconCls :'moveBtn',
 				action: 'move',
 				code : 'deviceMove',
@@ -29,14 +29,14 @@ Ext.define('Eway.view.machine.atmMove.MoveDeviceGrid', {
 				}
 			}],
 			columns : [{
-				header : Eway.locale.machine.atmMove.terminalId,
+				header : EwayLocale.machine.atmMove.terminalId,
 				dataIndex : 'terminalId'
 			}, {
-				header : Eway.locale.machine.atmMove.sOrgName,
+				header : EwayLocale.machine.atmMove.sOrgName,
 				dataIndex : 'orgName',
 				flex : 1
 			}, {
-				header : Eway.locale.machine.atmMove.sAddress,
+				header : EwayLocale.machine.atmMove.sAddress,
 				dataIndex : 'address',
 				flex : 1
 			}],

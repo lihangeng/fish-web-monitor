@@ -9,7 +9,7 @@ Ext.define('Eway.view.agent.remote.RemoteCheckInfoWin', {
 	//maximizable : true,
 	modal : true,
 	border : false,
-	title:Eway.locale.agent.remote.ATMExamination,
+	title:EwayLocale.agent.remote.ATMExamination,
 	layout : 'border',
 	constrain : true,
 	constrainHeader : true,
@@ -37,7 +37,7 @@ Ext.define('Eway.view.agent.remote.RemoteCheckInfoWin', {
 	    		iconCls:'checkATM-btn-custom',
 	    		xtype: 'button',
 	    		action : 'checkATM',
-	    		text: Eway.locale.agent.remote.checkATM 
+	    		text: EwayLocale.agent.remote.checkATM 
 	    	}],
 	    	html:'<br>'
 		},{
@@ -61,7 +61,7 @@ Ext.define('Eway.view.agent.remote.RemoteCheckInfoWin', {
 				},
 				items : [ {
 					xtype : 'fieldset',
-					title : Eway.locale.agent.remote.ATMExamInfo,
+					title : EwayLocale.agent.remote.ATMExamInfo,
 					collapsible : true,
 					defaults : {
 						border : false,
@@ -72,19 +72,19 @@ Ext.define('Eway.view.agent.remote.RemoteCheckInfoWin', {
 					items : [ {
 						defaultType : 'displayfield',
 						items : [ {
-							fieldLabel : Eway.locale.agent.remote.cpuIdle,
+							fieldLabel : EwayLocale.agent.remote.cpuIdle,
 							name : 'cpuIdle'
 						} ]
 					}, {
 						defaultType : 'displayfield',
 						items : [ {
-							fieldLabel : Eway.locale.agent.remote.memoryIdle,
+							fieldLabel : EwayLocale.agent.remote.memoryIdle,
 							name : 'memoryIdle'
 						} ]
 					}, {
 						defaultType : 'displayfield',
 						items : [ {
-							fieldLabel : Eway.locale.agent.remote.hardDiskIdle,
+							fieldLabel : EwayLocale.agent.remote.hardDiskIdle,
 							name : 'hardDiskIdle'
 						} ]
 					} ]

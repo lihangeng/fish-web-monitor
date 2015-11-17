@@ -68,7 +68,7 @@ Ext.define('Eway.controller.report.baseReport.SettlementReport', {
 			    }
 			});
 		}else{
-			Eway.alert(Eway.locale.vtype.inputCorrect);
+			Eway.alert(EwayLocale.vtype.inputCorrect);
 		}
 	},
 
@@ -112,7 +112,7 @@ Ext.define('Eway.controller.report.baseReport.SettlementReport', {
 			    }
 			});
 		}else{
-			Eway.alert(Eway.locale.vtype.inputCorrect);
+			Eway.alert(EwayLocale.vtype.inputCorrect);
 		}
 	}
 });

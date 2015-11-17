@@ -4,6 +4,6 @@ Ext.define('Eway.store.machine.atmType.CashtypeComboBox', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'1', display:Eway.locale.machine.atmType.iscash}, 
-	       {value:'2', display:Eway.locale.machine.atmType.nocash}]
+	data: [{value:'1', display:EwayLocale.machine.atmType.iscash}, 
+	       {value:'2', display:EwayLocale.machine.atmType.nocash}]
 });

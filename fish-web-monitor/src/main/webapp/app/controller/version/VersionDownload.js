@@ -73,14 +73,14 @@ Ext.define('Eway.controller.version.VersionDownload', {
 		var sm = grid.getSelectionModel();
 		if (sm.getCount() == 1) {
 			var record = sm.getLastSelected();
-			if(record.get("taskStatus")==Eway.locale.version.taskStatus.checked||
-					record.get("taskStatus")==Eway.locale.version.taskStatus.noticedFail||
-					record.get("taskStatus")==Eway.locale.version.taskStatus.downloadedFail||
-					record.get("taskStatus")==Eway.locale.version.taskStatus.deployedFail||
-					record.get("taskStatus")==Eway.locale.version.taskStatus.noticeFail||
-					record.get("taskStatus")==Eway.locale.version.taskStatus.checked||
-					record.get("taskStatus")==Eway.locale.version.taskStatus.checked){
-				Eway.alert(Eway.locale.version.download.checkedTaskCantResetTips);
+			if(record.get("taskStatus")==EwayLocale.version.taskStatus.checked||
+					record.get("taskStatus")==EwayLocale.version.taskStatus.noticedFail||
+					record.get("taskStatus")==EwayLocale.version.taskStatus.downloadedFail||
+					record.get("taskStatus")==EwayLocale.version.taskStatus.deployedFail||
+					record.get("taskStatus")==EwayLocale.version.taskStatus.noticeFail||
+					record.get("taskStatus")==EwayLocale.version.taskStatus.checked||
+					record.get("taskStatus")==EwayLocale.version.taskStatus.checked){
+				Eway.alert(EwayLocale.version.download.checkedTaskCantResetTips);
 				return;
 			}
 			Ext.Ajax.request({
@@ -91,13 +91,13 @@ Ext.define('Eway.controller.version.VersionDownload', {
 			    },
 			    success: function(response){
 			        var text = response.responseText;
-			        Eway.alert(Eway.locale.version.taskStatus.taskResetSuccessTips);
+			        Eway.alert(EwayLocale.version.taskStatus.taskResetSuccessTips);
 			        grid.getStore().load();
 			    }
 			});
 		}
 		else{
-			Eway.alert(Eway.locale.version.download.selectTask);
+			Eway.alert(EwayLocale.version.download.selectTask);
 		}
 	},
 	//选中第一条记录
@@ -118,7 +118,7 @@ Ext.define('Eway.controller.version.VersionDownload', {
 		if(this.currentTask != null){
 			Ext.TaskManager.stop(this.currentTask);
 			var btn = this.getTaskGrid().down("button[action=autoRefresh]");
-			btn.setText(Eway.locale.version.download.autoRefresh);//"开启自动刷新");
+			btn.setText(EwayLocale.version.download.autoRefresh);//"开启自动刷新");
 			btn.started = false;
 			this.currentTask = null;
 		}
@@ -180,12 +180,12 @@ Ext.define('Eway.controller.version.VersionDownload', {
 			    success: function(response){
 			        var result = Ext.decode(response.responseText);
 			        if(result.success){
-			        	Eway.alert(Eway.locale.version.task.cancelDownloadSuccess);
+			        	Eway.alert(EwayLocale.version.task.cancelDownloadSuccess);
 			        }
 			    }
 			});
 		}else{
-			Eway.alert(Eway.locale.vtype.choseTask);//"请选择一个作业.");
+			Eway.alert(EwayLocale.vtype.choseTask);//"请选择一个作业.");
 		}
 	},
 
@@ -208,24 +208,24 @@ Ext.define('Eway.controller.version.VersionDownload', {
 //			var record = sm.getLastSelected();
 //			var status = record.get('jobStatus');
 //			if(status == 'COMPLETE'){
-//				Eway.alert(Eway.locale.version.task.cantCancelCompleteJob);//'不能撤销"完成"状态的作业.');
+//				Eway.alert(EwayLocale.version.task.cantCancelCompleteJob);//'不能撤销"完成"状态的作业.');
 //			}else{
 ////					Ext.MessageBox.confirm("提示", "是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)", function(button,text) {
-//					Ext.MessageBox.confirm(Eway.locale.confirm.title, Eway.locale.version.task.doSureCancelTheJob, function(button,text) {
+//					Ext.MessageBox.confirm(EwayLocale.confirm.title, EwayLocale.version.task.doSureCancelTheJob, function(button,text) {
 //						
 //						if (button == "yes") {
 //							var winEl = grid.getEl();
-//							winEl.mask(Eway.locale.version.task.deleting);//'正在删除......');
+//							winEl.mask(EwayLocale.version.task.deleting);//'正在删除......');
 //							record.erase({
 //								success : function() {
 //									winEl.unmask();
 //									if(status  == 'RUN'){
-//										Eway.alert(Eway.locale.version.task.cancelSuccessBut);//'已经成功撤销作业中还没有运行的任务,此时作业的状态仍然是"运行中",请稍等后刷新作业列表.');
+//										Eway.alert(EwayLocale.version.task.cancelSuccessBut);//'已经成功撤销作业中还没有运行的任务,此时作业的状态仍然是"运行中",请稍等后刷新作业列表.');
 //										//同时刷新任务列表页面
 //										Ext.StoreManager.get("version.Task").load();
 //									}else{
 //										store.remove(record);
-//										Eway.alert(Eway.locale.version.task.cancelJobSuccess);//"成功撤销作业.");
+//										Eway.alert(EwayLocale.version.task.cancelJobSuccess);//"成功撤销作业.");
 //										this.onQuery();
 //									}
 //								},
@@ -241,7 +241,7 @@ Ext.define('Eway.controller.version.VersionDownload', {
 //					}, this);
 //				}
 //		} else {
-//			Eway.alert(Eway.locale.version.task.selectAJob);//"请选择一个作业.");
+//			Eway.alert(EwayLocale.version.task.selectAJob);//"请选择一个作业.");
 //		}
 //	},
 
@@ -282,12 +282,12 @@ Ext.define('Eway.controller.version.VersionDownload', {
 				   };
 //			}
 			if(btn.started){
-				btn.setText(Eway.locale.version.download.autoRefresh);//"开启自动刷新");
+				btn.setText(EwayLocale.version.download.autoRefresh);//"开启自动刷新");
 				btn.started = false;
 				Ext.TaskManager.stop(this.currentTask);
 				this.currentTask = null;
 			}else{
-				btn.setText(Eway.locale.version.download.stopAutoRefresh);//"停止自动刷新");
+				btn.setText(EwayLocale.version.download.stopAutoRefresh);//"停止自动刷新");
 				btn.started = true;
 				Ext.TaskManager.start(this.currentTask);
 			}
@@ -324,7 +324,7 @@ Ext.define('Eway.controller.version.VersionDownload', {
 					if(text.success){
 						this.setTaskSearchFilter(record.get('id'));
 						this.getTaskGrid().getStore().loadPage(1);
-						Eway.alert(Eway.locale.version.task.sendRestartCmd);//"已发送重启命令.");
+						Eway.alert(EwayLocale.version.task.sendRestartCmd);//"已发送重启命令.");
 					}else{
 						Eway.alert(text.errors);
 					}
@@ -338,7 +338,7 @@ Ext.define('Eway.controller.version.VersionDownload', {
 	setTaskTip : function(tip){
 		var actionTip = this.getEwayView().down("tbtext[action=tip]");
 		if(Ext.isEmpty(tip)){
-	    	actionTip.setText('<font color="red">'+Eway.locale.version.task.selectAJob+'</font>');
+	    	actionTip.setText('<font color="red">'+EwayLocale.version.task.selectAJob+'</font>');
 		}else{
 			actionTip.setText('<font color="red">'+tip+'</font>');
 		}

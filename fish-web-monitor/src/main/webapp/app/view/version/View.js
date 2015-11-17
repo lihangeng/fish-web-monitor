@@ -7,7 +7,7 @@ Ext.define('Eway.view.version.View', {
 			'Eway.view.version.FilterForm',
 			'Eway.view.version.VersionInstallInfo' ],
 
-	title : Eway.locale.version.View.title,//'版本管理'
+	title : EwayLocale.version.View.title,//'版本管理'
 	scrollable : true,
 	autoScroll : true,
 	initComponent : function() {
@@ -42,7 +42,7 @@ Ext.define('Eway.view.version.View', {
 						rowspan: 5
 					} ,{
 						name: 'versionType',
-						fieldLabel : Eway.locale.version.View.versionTypeCode,//'版本路径',
+						fieldLabel : EwayLocale.version.View.versionTypeCode,//'版本路径',
 				        text: '',
 				        style: {
 				            fontSize: '20px'
@@ -50,7 +50,7 @@ Ext.define('Eway.view.version.View', {
 				        margin: '0 0 0 100'
 				    },{
 						name: 'versionPath',
-						fieldLabel : Eway.locale.version.View.versionPath,//'版本路径',
+						fieldLabel : EwayLocale.version.View.versionPath,//'版本路径',
 				        text: '',
 				        style: {
 				            fontSize: '20px'
@@ -58,7 +58,7 @@ Ext.define('Eway.view.version.View', {
 				        margin: '0 0 0 100'
 				    },{
 				    	name: 'versionTime',
-						fieldLabel : Eway.locale.version.View.versionTime,//'创建时间',
+						fieldLabel : EwayLocale.version.View.versionTime,//'创建时间',
 				        text: '',
 				        style: {
 				            fontSize: '20px'
@@ -66,7 +66,7 @@ Ext.define('Eway.view.version.View', {
 				        margin: '0 0 0 100'
 				    },{
 				    	name: 'versionPerson',
-						fieldLabel : Eway.locale.version.View.versionPerson,//'创建人',
+						fieldLabel : EwayLocale.version.View.versionPerson,//'创建人',
 				        text: '',
 				        style: {
 				            fontSize: '20px'
@@ -74,7 +74,7 @@ Ext.define('Eway.view.version.View', {
 				        margin: '0 0 0 100'
 				    },{
 				    	name: 'desc',
-						fieldLabel : Eway.locale.version.View.remark,//'备注',
+						fieldLabel : EwayLocale.version.View.remark,//'备注',
 				        text: '',
 				        style: {
 				            fontSize: '20px'
