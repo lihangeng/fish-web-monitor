@@ -11,11 +11,11 @@ Ext.define('Eway.view.case.vendorCode.VendorCodeGrid', {
 			initRegion : true,
 			store : store,
 			tbar : ['->',{
-				text : Eway.locale.button.search,
+				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			},{
-				text : Eway.locale.button.massExport,
+				text : EwayLocale.button.massExport,
 				iconCls : 'importBtn',
 				action : 'import',
 				code : 'vendorCodeImport',
@@ -24,7 +24,7 @@ Ext.define('Eway.view.case.vendorCode.VendorCodeGrid', {
 				}
 			},
 			{
-				  text:Eway.locale.cases.vendorCode.templateLoad,
+				  text:EwayLocale.cases.vendorCode.templateLoad,
 				  glyph : 0xf1c3,
 				  code : 'vendorCodeDownLoad',
 				  handler:function(){
@@ -34,7 +34,7 @@ Ext.define('Eway.view.case.vendorCode.VendorCodeGrid', {
                    }
 			},
 			{
-				text : Eway.locale.cases.vendorCode.massRemove,
+				text : EwayLocale.cases.vendorCode.massRemove,
 				glyph : 0xf014,
 				action : 'remove',
 				code : 'vendorCodeDelete',
@@ -43,19 +43,19 @@ Ext.define('Eway.view.case.vendorCode.VendorCodeGrid', {
 			}
 			}],
 			columns : [{
-				header : Eway.locale.cases.vendorCode.provider,
+				header : EwayLocale.cases.vendorCode.provider,
 				dataIndex : 'vendorName',
 				flex : 2
 			},{
-				header : Eway.locale.cases.caseFault.providerFaultCode,
+				header : EwayLocale.cases.caseFault.providerFaultCode,
 				dataIndex : 'code',
 				flex : 2
 			},{
-				header : Eway.locale.cases.vendorCode.providerDescription,
+				header : EwayLocale.cases.vendorCode.providerDescription,
 				dataIndex : 'description',
 				flex : 4
 			},{
-				header : Eway.locale.cases.vendorCode.solveProject,
+				header : EwayLocale.cases.vendorCode.solveProject,
 				dataIndex : 'solution',
 				flex : 4
 			}],

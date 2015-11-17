@@ -34,7 +34,6 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 				click : this.onGroupQuery
 			},
 			'atmGroup_groupGrid' : {
-				itemclick : this.onDeviceQueryDevice,
 				afterrender : this.onFirstSelect
 			},
 			'atmGroup_groupGrid button[action=add]' : {
@@ -72,18 +71,26 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 	},
 	onTabChange:function( tabPanel, newCard, oldCard, eOpts ){
 		if(newCard.name=='groupPanel'){
+			var tabpanel = this.getEwayView().down("tabpanel");
 			var deviceDetailPanel = this.getEwayView().down("panel[name='atmGroupDeviceDetails']");
-			deviceDetailPanel.setTitle(Eway.locale.monitor.devMonitor.atmGroupTip);
-			deviceDetailPanel.setDisabled(true);
+			deviceDetailPanel.setTitle(EwayLocale.monitor.devMonitor.atmGroupTip);
+			tabpanel.remove(deviceDetailPanel,true);
 		}
 	},
 	showDetail:function(){
-		var deviceDetailPanel = this.getEwayView().down("panel[name='atmGroupDeviceDetails']");
+
 		var groupRecord = this.getEwayView().down('atmGroup_groupGrid').getSelectionModel().getLastSelected();
-		deviceDetailPanel.setTitle(groupRecord.get("name")+Eway.locale.monitor.devMonitor.atmGroupTip);
-		this.getEwayView().down("tabpanel").setActiveItem(deviceDetailPanel);
-		deviceDetailPanel.setDisabled(false);
-		deviceDetailPanel.down("pagingtoolbar").setDisabled(false);
+		if(groupRecord==undefined){
+			Eway.alert(EwayLocale.tip.search.record);
+			return ;
+		}
+		var deviceDetailPanel = Ext.create("Eway.view.machine.atmGroup.DeviceView");
+		var tabpanel = this.getEwayView().down("tabpanel");
+		tabpanel.add(deviceDetailPanel);
+		deviceDetailPanel.setTitle(groupRecord.get("name")+EwayLocale.monitor.devMonitor.atmGroupTip);
+		tabpanel.setActiveItem(deviceDetailPanel);
+//		deviceDetailPanel.setDisabled(false);
+//		deviceDetailPanel.down("pagingtoolbar").setDisabled(false);
 		this.onDeviceQueryDevice();
 	},
 	onFirstSelect : function (){
@@ -97,13 +104,13 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 	           fn: function() {
 	        	   if(store.getCount()>0) {
 	        		   grid.getSelectionModel().select(0);
-	        		   me.onDeviceQueryDevice();
+//	        		   me.onDeviceQueryDevice();
 	        	   } else {
 
 	        		   // 当没有查询到组信息时,清空设备列表中的信息
-	        		   var deviceGrid = this.getEwayView().down('atmGroup_deviceGrid');
-	        		   var deviceStore = deviceGrid.getStore();
-	        		   deviceStore.removeAll();
+//	        		   var deviceGrid = this.getEwayView().down('atmGroup_deviceGrid');
+//	        		   var deviceStore = deviceGrid.getStore();
+//	        		   deviceStore.removeAll();
 	        	   }
 	           }
 	       },
@@ -140,7 +147,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 					//点击增加成功后查询条件不带入重新查询。
 					store.setUrlParamsByObject(null);
 					store.loadPage(1);
-					Eway.alert(Eway.addSuccess);
+					Eway.alert(EwayLocale.addSuccess);
 			    },
 			    failure: function(record,operation){
 			    	Eway.alert(operation.getError());
@@ -160,7 +167,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			win.show();
 		}
 		else {
-			Eway.alert(Eway.choiceUpdateMsg);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 		}
 	},
 
@@ -177,7 +184,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			record.set("note",data.note);
 			record.save({
 				success : function(recordResult,operation){
-					Eway.alert(Eway.updateSuccess);
+					Eway.alert(EwayLocale.updateSuccess);
 //					store.setUrlParamsByObject(quarydata);
 //					store.loadPage(1);
 					if(undefined==recordResult.get("id")||""==recordResult.get("id")||0==recordResult.get("id")){
@@ -202,20 +209,20 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		var quarydata = this.getEwayView().down('form').getForm().getValues();// 得到所有的查询条件的值
 		var store = this.getEwayView().down('atmGroup_groupGrid').getStore();
 		if(sm.getCount() == 1) {
-			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
-					Eway.locale.tip.isConfirmRemove,
+			Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,
+					EwayLocale.tip.isConfirmRemove,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Eway.alert(Eway.deleteSuccess);
+									Eway.alert(EwayLocale.updateSuccess);
 									store.setUrlParamsByObject(quarydata);
 									store.load( {scope: this,
 										callback: function(){
 											if(grid.getStore().getCount()>0){
 												grid.getSelectionModel().select(0);
-												me.onDeviceQueryDevice();
+//												me.onDeviceQueryDevice();
 											}else{
 												var view2 = this.getEwayView();
 												var store2 = view2.down('atmGroup_deviceGrid').getStore();
@@ -225,6 +232,8 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 									}});
 								},
 								failure: function(record,operation){
+									//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
+									record.dropped = false;
 									Eway.alert(operation.getError());
 								},
 								scope:this
@@ -233,7 +242,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 					}, this);
 		}
 		else {
-			Eway.alert(Eway.choiceDeleteMsg);
+			Eway.alert(EwayLocale.choiceDeleteMsg);
 		}
 
 	},
@@ -255,7 +264,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			tubeMachine.on('render', this.renderTubeMachine, this);
 			win.show();
 		} else {
-			Eway.alert(Eway.locale.tip.search.record);
+			Eway.alert(EwayLocale.tip.search.record);
 		}
 	},
 
@@ -286,7 +295,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		var bool = form.isValid();
 		// 查询输入验证
 		if (bool == false) {
-			Eway.alert(Eway.locale.tip.searchOfNoLegal);
+			Eway.alert(EwayLocale.tip.searchOfNoLegal);
 			return
 		}
 		var values = form.getValues();
@@ -297,7 +306,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			store.setBaseParam('groupId',groupRecord.data.id);
 			store.loadPage(1);
 		}else {
-			Eway.alert(Eway.locale.tip.noGroupInfo);
+			Eway.alert(EwayLocale.tip.noGroupInfo);
 		}
 
 	},
@@ -329,7 +338,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 				}
 			});
 		}else {
-			Eway.alert(Eway.locale.tip.selectAdd);
+			Eway.alert(EwayLocale.tip.selectAdd);
 		}
 	},
 
@@ -342,7 +351,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		var bool = form.isValid();
 		// 查询输入验证
 		if (bool == false) {
-			Eway.alert(Eway.locale.tip.searchOfNoLegal);
+			Eway.alert(EwayLocale.tip.searchOfNoLegal);
 			return
 		}
 		var values = form.getValues();
@@ -393,7 +402,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			record.save({
 				success: function() {
 
-					Ext.Msg.confirm(Eway.locale.tip.remind, Eway.locale.tip.continueAdd, function(result) {
+					Ext.Msg.confirm(EwayLocale.tip.remind, EwayLocale.tip.continueAdd, function(result) {
 						if ("yes" != result) {
 							win.close();
 						}
@@ -401,11 +410,9 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 
 					var store1 = deviceAddingGrid.getStore();
 					store1.setBaseParam("groupId",groupId);
-					store1.load({
-						params : {
-							groupId:groupId
-						}
-					});
+					//多页加载数据，最后一页数据加载完了，再次加载最后一页数据返回的信息为空，所以此处更改为加载页面一
+					store1.loadPage(1);
+					
 
 					var store2 = deviceGrid.getStore();
 					//点击增加成功后查询条件不带入重新查询。
@@ -414,25 +421,26 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 					store2.load();
 				},
 				failure: function(){
-					Eway.alert(Eway.locale.tip.addFail);
+					Eway.alert(EwayLocale.tip.addFail);
 				},
 				scope:this
 			});
 		}else{
-			Eway.alert(Eway.locale.tip.selectAdd);
+			Eway.alert(EwayLocale.tip.selectAdd);
 		}
 
 	},
 
 	onDeviceRemove : function(){
+		var me = this;
 		var view = this.getEwayView();
 		var grid = view.down('atmGroup_deviceGrid');
 		var groupRecord = view.down('atmGroup_groupGrid').getSelectionModel().getLastSelected();
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			if(groupRecord!=null){
-				Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
-						Eway.locale.tip.removeFail.isRemoveDev,
+				Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,
+						EwayLocale.tip.isRemoveDev,
 						function(button,text) {
 							if(button=="yes"){
 								var record = sm.getLastSelected();
@@ -441,23 +449,23 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 									url : 'api/machine/atmGroup/unlink',
 									params : {groupId :groupRecord.data.id,deviceId:record.data.id},
 									success: function(){
-										Eway.alert(Eway.deleteSuccess);
-										grid.getStore().remove(record);
+										Eway.alert(EwayLocale.updateSuccess);
+										me.onDeviceQueryDevice();
 									},
 									failure: function(){
-										Eway.alert(Eway.locale.tip.removeFail);
+										Eway.alert(EwayLocale.tip.removeFail);
 									},
 									scope:this
 								});
 							}
 						}, this);
 			}else {
-				Eway.alert(Eway.locale.tip.selectRemoveGroup);
+				Eway.alert(EwayLocale.tip.selectRemoveGroup);
 			}
 
 		}
 		else {
-			Eway.alert(Eway.locale.tip.selectRemoveDev);
+			Eway.alert(EwayLocale.tip.selectRemoveDev);
 		}
 	}
 });

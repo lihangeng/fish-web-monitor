@@ -15,7 +15,7 @@ Ext.define('Eway.controller.agent.remote.RemoteLookVesion',{
 		var win = Ext.create('Ext.window.Window',{
 			width : 400,
 			height : 200,
-			title : Eway.locale.agent.remote.checkVersionInfo,
+			title : EwayLocale.agent.remote.checkVersionInfo,
 			modal : true,
 		    layout: 'border',
 		    items: [{
@@ -23,18 +23,18 @@ Ext.define('Eway.controller.agent.remote.RemoteLookVesion',{
 			    	height: 50,
 			    	border:false,
 			    	xtype:'panel',
-			    	html:'<br><font size="2" face="Times"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+Eway.locale.agent.remote.versionInfo+'</b></font>'
+			    	html:'<br><font size="2" face="Times"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+EwayLocale.agent.remote.versionInfo+'</b></font>'
 				},{
 			    	xtype : 'form',
 			    	border : 0 ,
 			    	region:'center',
 			    	items : [{
 					    xtype : 'displayfield',
-					    fieldLabel: Eway.locale.agent.remote.ATMCVersion,
+					    fieldLabel: EwayLocale.agent.remote.ATMCVersion,
 					    name : 'atmcVersion'
 					},{
 						xtype : 'displayfield',
-						fieldLabel: Eway.locale.agent.remote.monitorVersion,
+						fieldLabel: EwayLocale.agent.remote.monitorVersion,
 						name : 'agentVersion'
 					}]
 				}]

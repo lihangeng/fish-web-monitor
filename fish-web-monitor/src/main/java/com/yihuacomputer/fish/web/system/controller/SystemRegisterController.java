@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -32,6 +34,8 @@ public class SystemRegisterController {
 	
 	@Autowired
 	private MessageSource messageSource;
+	
+	private Logger logger = LoggerFactory.getLogger(SystemRegisterController.class);
 
 	@RequestMapping(method=RequestMethod.POST)
 	public @ResponseBody ModelMap register(WebRequest request){
@@ -76,6 +80,7 @@ public class SystemRegisterController {
 			}
 
 		}else{
+			logger.error(result.getMessage());
 			map.addAttribute("message", messageSource.getMessage("system.register.registerFail", null, FishCfg.locale));
 		}
 		//注册成功就直接跳转到index（成功登陆系统）页面。

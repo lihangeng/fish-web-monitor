@@ -17,11 +17,11 @@ Ext.define('Eway.view.person.user.UserRoleGrid', {
 			initRegion : true,
 			store : store,
 			columns : [{
-					header : Eway.locale.person.user.roleName,
+					header : EwayLocale.person.user.roleName,
 					width : 200,
 					dataIndex : 'name'
 				},{
-					header : Eway.locale.person.user.roleDescription,
+					header : EwayLocale.person.user.roleDescription,
 					dataIndex : 'description',
 					flex:1,
 					storable: true

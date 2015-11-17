@@ -5,7 +5,7 @@ Ext.define('Eway.view.person.organization.AddOrganizationManager', {
 	alias: 'widget.person_organization_addOrganizationManager',
 	extend: 'Ext.window.Window',
 	
-	title: Eway.locale.person.bankOrg.addOrgTitle,
+	title: EwayLocale.person.bankOrg.addOrgTitle,
 	modal: true,
 	resizable: false,
 	maximizable: true,
@@ -18,7 +18,7 @@ Ext.define('Eway.view.person.organization.AddOrganizationManager', {
 	layout : 'fit',
 	initComponent: function() {
 		Ext.apply(this, {
-			title : Eway.locale.person.bankOrg.personList,
+			title : EwayLocale.person.bankOrg.personList,
 			items : [{
 				xtype : 'Organization_organizationManagerGrid',
 				autoLoadStore : true

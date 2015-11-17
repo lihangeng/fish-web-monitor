@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -111,10 +112,19 @@
 							<p><spring:message code="login.sign" /></p>
 							<div class="line"></div>
 							<div id="loginError" class="form-message error" style="display: none"></div>
-							<input class="txt" id="username" type="text" size="10"
-								style="margin-top: 17px;" /> <input class="txt2"
-								style="margin-top: 25px;" id="password" type="password"
-								size="10" /> <input style="margin-top: 30px;" class="login"
+							<div style="width:241px;height:35px;border:1px solid #dedede;margin-top:15px;">
+								<label class="laber1" ></label>
+								<input onblur="if(this.value==''){this.value='用户名'; this.style.color='#999'}" onfocus="if(this.value=='用户名')this.value=''; this.style.color='black'" value="用户名" class ="txt" id="username" type="text"  maxlength=20 size="10" style="color:#999"
+								/>
+							</div>
+							
+							 <div style="width:241px;height:35px;border:1px solid #dedede;margin-top:25px;">
+								<label class="laber2" ></label>
+								<input onblur="if(this.value==''){ this.style.color='#999';this.value='密码';type='';}" onfocus="if(this.value=='密码')this.value=''; this.style.color='black';type='password';" value="密码"
+						style="color:#999" class="txt" id="password"  maxlength=20 size="10" />
+							</div>
+							 
+								 <input style="margin-top: 30px;" class="login"
 								type="button" name="submit" value="<spring:message code='login.submit' />" onclick="ajax()">
 							<div class="finally"></div>
 
@@ -122,6 +132,19 @@
 					</div>
 				</div>
 			</div>
+			</div>
+			    <div   class="bottom" >
+
+<table align="center" border="0" cellpadding="0" spacpadding="0">
+<tr >
+	<td ><font style="font-size: 14px; color:#5e5e5f" >©深圳市怡化电脑股份有限公司&nbsp;【建议使用IE9.0+、FireFox、Google浏览器】</font>
+
+</td>
+</tr>
+</table>
+
+</div>
+
 	</body>
 </form>
 </html>

@@ -25,7 +25,7 @@ Ext.define('Eway.model.monitor.device.DeviceBox', {
 Ext.define('CashBox', {
 	extend : 'Ext.data.Model',
 	idProperty : 'boxId',
-	fields : [ 'boxId', 'deviceBox_id', 'type', 'binStatus', 'initialCount',
+	fields : [ 'boxId', 'deviceBox_id', 'type','typeName', 'binStatus','binStatusName', 'initialCount',
 			'currentCount', 'noteValue', 'currency', 'cashInCount' ],
 	belongsTo : 'Eway.model.monitor.device.DeviceBox'
 });

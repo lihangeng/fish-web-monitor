@@ -85,7 +85,7 @@ public class UserLogService implements IUserLogService {
             hql.append(" and user.personId = person.id ");
         }
         hql.append(" and person.organization.orgFlag like ? ");
-        valueObj.add("%" + org.getOrgFlag());
+        valueObj.add(org.getOrgFlag() + "%");
         if(operTimeStart!=null){
             hql.append(" and userLog.operTime >= ? ");
             valueObj.add(DateUtils.getTimestamp(operTimeStart.getValue().toString()));
@@ -153,7 +153,7 @@ public class UserLogService implements IUserLogService {
         hql.append(" where userLog.operCode = user.code");
         hql.append(" and user.personId = person.id ");
         hql.append(" and person.organization.orgFlag like ? ");
-        objvalue.add("%" + orgFlag);
+        objvalue.add(orgFlag + "%");
         hql.append(" and person.organization.orgFlag  <> ?");
         objvalue.add(orgFlag);
         IPageResult<IUserLog> result = (IPageResult<IUserLog>) dao.page(offset, limit, filter, hql.toString(),

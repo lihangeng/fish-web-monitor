@@ -8,7 +8,7 @@ Ext.define('Eway.view.person.bankOrg.View', {
 	requires: ['Eway.view.person.bankOrg.Grid',
 	           'Eway.view.person.bankOrg.FilterForm'],
 
-	title: Eway.locale.person.bankOrg.title,
+	title: EwayLocale.person.bankOrg.title,
 	layout: 'border',
 
 	initComponent: function() {

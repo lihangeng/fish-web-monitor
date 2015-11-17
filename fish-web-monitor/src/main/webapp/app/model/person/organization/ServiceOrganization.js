@@ -2,7 +2,7 @@ Ext.define('Eway.model.person.organization.ServiceOrganization', {
 	extend : 'Ext.data.Model',
 	idProperty : 'guid',
 	fields : [ 'guid', 'code', 'name', 'manager', 'parent', 'parentId',
-			'orgLevel', 'userGuid', 'address', 'zip', 'organizationState',
+			'orgLevel', 'userGuid', 'address', 'zip', 'organizationState','displayName',
 			'organizationType', 'description', 'serviceObjectId','serviceObjectName', 'manager', 'userGuid' ],
 	proxy : {
 		type : 'rest',

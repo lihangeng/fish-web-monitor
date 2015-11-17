@@ -126,7 +126,7 @@ public class CaseFaultService implements ICaseFaultService {
     	IFilterEntry upgrade = filter.getFilterEntry("upgrade");
     	hql.append("select caseFault from CaseFault caseFault ,Device device ");
     	hql.append("where caseFault.terminalId = device.terminalId and device.organization.orgFlag like ? ");
-		valueObj.add("%" + org.getOrgFlag());
+		valueObj.add(org.getOrgFlag() + "%" );
 		if(terminalId!=null){
 			hql.append(" and caseFault.terminalId like ?");
 			valueObj.add("%"+terminalId.getValue()+"%");
@@ -261,7 +261,7 @@ public class CaseFaultService implements ICaseFaultService {
         IFilterEntry upgrade = filter.getFilterEntry("upgrade");
         hql.append("select caseFault from CaseFault caseFault ,Device device ");
         hql.append("where caseFault.terminalId = device.terminalId and device.organization.orgFlag like ? ");
-        valueObj.add("%" + org.getOrgFlag());
+        valueObj.add(org.getOrgFlag() + "%");
         if(terminalId!=null){
             hql.append(" and caseFault.terminalId like ?");
             valueObj.add("%"+terminalId.getValue()+"%");

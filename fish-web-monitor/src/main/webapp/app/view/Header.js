@@ -12,22 +12,22 @@ Ext.define('Eway.view.Header', {
     items: [
         {
             xtype : 'label',
-            text : Eway.locale.ATMV,
+            text : EwayLocale.ATMV,
             style : 'font-size : 18px; color : white;'
         },"->",{
         	xtype:'tbtext',
-        	text: Eway.locale.welcome+ewayUser.getName(),
+        	text: EwayLocale.welcome+ewayUser.getName(),
         	style : 'font-size : 14px; color : white;'
         },{
-        	tooltip:Eway.locale.personalConf,
+        	tooltip:EwayLocale.personalConf,
         	glyph : 0xf013,
         	action:'personalSettings'
         },{
             glyph : 0xf059,
-            tooltip:Eway.locale.systemHelp,
+            tooltip:EwayLocale.systemHelp,
         	action:'systemHelp'
         },{
-        	tooltip : Eway.locale.exitSystem,
+        	tooltip : EwayLocale.exitSystem,
             glyph : 0xf011,
             handler : function(){
 				Ext.Cometd.disconnect();//关闭订阅连接

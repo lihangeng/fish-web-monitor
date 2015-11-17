@@ -26,12 +26,12 @@ public class HttpStatusClientTest {
 	 */
 	public static void main(String[] args) {
 		HttpClient httpClient = new DefaultHttpClient();
-		//for(int i = 0 ;i<1000;i++){
+		for(int i = 0 ;i<15;i++){
 			StatusMsg status = new StatusMsg();
-			status.setTermId("ooxx0002");
-			status.setModStatus(DeviceStatus.Healthy);
-			status.setBoxStatus(BoxStatus.Healthy);
-			status.setRunStatus(RunStatus.Healthy);
+			status.setTermId(String.valueOf(i));
+			status.setModStatus(DeviceStatus.values()[i%DeviceStatus.values().length]);
+			status.setBoxStatus(BoxStatus.values()[i%BoxStatus.values().length]);
+			status.setRunStatus(RunStatus.values()[i%RunStatus.values().length]);
 			status.setBoxInitCount(10300);
 			status.setIdc(DeviceStatus.Healthy);
 			status.setIdcCode("00300000000");
@@ -87,6 +87,6 @@ public class HttpStatusClientTest {
 				e.printStackTrace();
 			}
 		}
-	//}
+	}
 
 }

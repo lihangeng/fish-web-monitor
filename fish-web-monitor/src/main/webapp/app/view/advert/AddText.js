@@ -5,7 +5,7 @@ Ext.define('Eway.view.advert.AddText', {
 
 	requires : [ 'Eway.view.advert.field.TextResourceFieldSet'],
 
-	title : Eway.locale.advert.addTextTitle,
+	title : EwayLocale.advert.addTextTitle,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -28,7 +28,7 @@ Ext.define('Eway.view.advert.AddText', {
 				items : [{
 					 	xtype:'fieldset',
 			            checkboxToggle:false,
-			            title: Eway.locale.advert.advertBasicInfo,
+			            title: EwayLocale.advert.advertBasicInfo,
 			            defaultType: 'combobox',
 			            collapsed: false,
 			            layout: 'anchor',
@@ -38,16 +38,16 @@ Ext.define('Eway.view.advert.AddText', {
 			            },
 			            items :[{
 			            	xtype: 'displayfield',
-			            	fieldLabel: Eway.locale.advert.type,
+			            	fieldLabel: EwayLocale.advert.type,
 			            	name : 'advertType',
-			            	value: Eway.locale.advert.advertTypeText
+			            	value: EwayLocale.advert.advertTypeText
 			            },{
 					    	xtype: 'container',
 					        msgTarget: 'under',
 					        layout:'hbox',
 					        defaultType: 'combobox',
 					        items:[{
-				                fieldLabel: Eway.locale.advert.downType,
+				                fieldLabel: EwayLocale.advert.downType,
 				                displayField: 'display',
 				                store: Ext.StoreMgr.lookup("advert.AdvertDownMethod"),
 				                queryMode: 'local',
@@ -58,7 +58,7 @@ Ext.define('Eway.view.advert.AddText', {
 				                forceSelection: true,//强制选择一个,不起作用
 				                width:250
 				            },{
-				                fieldLabel: Eway.locale.advert.validity,
+				                fieldLabel: EwayLocale.advert.validity,
 				                displayField: 'display',
 				                store: Ext.StoreMgr.lookup("advert.AdvertValidity"),
 				                queryMode: 'local',
@@ -71,16 +71,16 @@ Ext.define('Eway.view.advert.AddText', {
 			            }]
 				},{
 					xtype:'field_textResourceFieldSet',
-					title: Eway.locale.advert.textAdvertResConfig,
+					title: EwayLocale.advert.textAdvertResConfig,
 					height:218
 				}],
 				buttonAlign : 'center',
 				buttons : [ {
-					text : Eway.locale.cases.confirm,
+					text : EwayLocale.cases.confirm,
 					id:'savaAdvert',
 					action : 'confirm'
 				}, {
-					text : Eway.locale.cases.cancel,
+					text : EwayLocale.cases.cancel,
 					handler : this.onOver
 				}]
 			}

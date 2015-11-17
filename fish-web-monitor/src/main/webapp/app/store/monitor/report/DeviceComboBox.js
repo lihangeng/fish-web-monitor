@@ -3,6 +3,6 @@ Ext.define('Eway.store.monitor.report.DeviceComboBox', {
 	model : 'Eway.model.Dict',
 	data : [ {
 		value : '0',
-		display : Eway.locale.monitor.business.card.withDev
+		display : EwayLocale.monitor.business.card.withDev
 	} ]
 });

@@ -3,7 +3,7 @@ Ext.define('Eway.view.field.person.Type', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field.type',
 	
-	fieldLabel : Eway.locale.commen.type,
+	fieldLabel : EwayLocale.commen.type,
 	name : 'type',
 	hiddenName : 'type',
 	msgTarget : 'side',

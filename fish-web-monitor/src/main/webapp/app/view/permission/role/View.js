@@ -6,7 +6,7 @@ Ext.define('Eway.view.permission.role.View', {
 	requires: ['Eway.view.permission.role.Grid',
 	           'Eway.view.permission.role.FilterForm'],
 	
-	title: Eway.locale.permission.role.title,
+	title: EwayLocale.permission.role.title,
 	layout: 'border',
 	
 	initComponent: function() {

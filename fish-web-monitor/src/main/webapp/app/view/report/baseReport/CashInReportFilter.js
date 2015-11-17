@@ -19,9 +19,9 @@ Ext.define('Eway.view.report.baseReport.CashInReportFilter', {
 								}, {
 									//只带出银行机构
 									xtype : 'common_orgComboOrgTree',
-									fieldLabel : Eway.locale.commen.orgNameBelongs,
+									fieldLabel : EwayLocale.commen.orgNameBelongs,
 									labelAlign : 'right',
-									emptyText : Eway.locale.combox.select,
+									emptyText : EwayLocale.combox.select,
 									name : 'orgName',
 									hiddenValue : 'orgId',
 									editable : false,
@@ -29,11 +29,11 @@ Ext.define('Eway.view.report.baseReport.CashInReportFilter', {
 									rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
 								},{
 									xtype : 'textfield',
-									fieldLabel : Eway.locale.commen.terminalId,
+									fieldLabel : EwayLocale.commen.terminalId,
 									name : 'terminalId',
 									labelAlign : 'right',
 									regex : /^\w+[\w-\.]*$/,
-									regexText : Eway.locale.vtype.numberRule,
+									regexText : EwayLocale.vtype.numberRule,
 									maxLength : 20
 								}]
 					}, {
@@ -44,7 +44,7 @@ Ext.define('Eway.view.report.baseReport.CashInReportFilter', {
 						},
 						items : [{
 							xtype : 'fieldcontainer',
-							fieldLabel : Eway.locale.report.baseReport.amt,
+							fieldLabel : EwayLocale.report.baseReport.amt,
 							layout : 'hbox',
 							defaults : {
 								hideLabel : true
@@ -71,7 +71,7 @@ Ext.define('Eway.view.report.baseReport.CashInReportFilter', {
 								}
 							}, {
 								xtype : 'displayfield',
-								value : Eway.locale.machine.device.to
+								value : EwayLocale.machine.device.to
 							}, {
 								fieldLabel : 'endAmt',
 								displayField : 'display',
@@ -95,7 +95,7 @@ Ext.define('Eway.view.report.baseReport.CashInReportFilter', {
 							} ]
 						}, {
 							xtype : 'fieldcontainer',
-							fieldLabel : Eway.locale.report.baseReport.date,
+							fieldLabel : EwayLocale.report.baseReport.date,
 							layout : 'hbox',
 							defaults : {
 								hideLabel : true
@@ -124,7 +124,7 @@ Ext.define('Eway.view.report.baseReport.CashInReportFilter', {
 								}
 							}, {
 								xtype : 'displayfield',
-								value : Eway.locale.machine.device.to
+								value : EwayLocale.machine.device.to
 							}, {
 								fieldLabel : 'minute',
 								displayField : 'display',

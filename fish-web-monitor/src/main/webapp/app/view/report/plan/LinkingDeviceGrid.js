@@ -24,47 +24,53 @@ Ext.define('Eway.view.report.plan.LinkingDeviceGrid', {
 				action:'tip',
 				xtype:'tbtext'
 			},'->', {
-				text: Eway.locale.commen.bind,
+				text: EwayLocale.commen.bind,
 				iconCls :'connectBtn',
 				action: 'link'
 			}],
 			columns : [ {
-				header : Eway.locale.report.plan.terminalId,
+				header : EwayLocale.report.plan.terminalId,
 				dataIndex : 'terminalId'
 			}, {
-				header : Eway.locale.commen.ip,
+				header : EwayLocale.commen.ip,
 				dataIndex : 'ip'
 			}, {
-				header : Eway.locale.commen.orgNameBelongs,
+				header : EwayLocale.commen.orgNameBelongs,
 				dataIndex : 'orgName'
 			}, {
-				header : Eway.locale.commen.devTypeName,
+				header : EwayLocale.commen.devTypeName,
 				dataIndex : 'devTypeName'
 			}, {
-				header : Eway.locale.commen.devVendorName,
+				header : EwayLocale.commen.devVendorName,
 				dataIndex : 'devVendorName'
 			}, {
-				header : Eway.locale.commen.devCatalogName,
+				header : EwayLocale.commen.devCatalogName,
 				dataIndex : 'devCatalogName'
 			}, {
-				header : Eway.locale.commen.devStatus,
+				header : EwayLocale.commen.devStatus,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return Eway.locale.commen.comboxStatus.dredge;
+						return EwayLocale.commen.comboxDevStatus.upOpen;
 					}
 					if (value == 2) {
-						return Eway.locale.commen.comboxStatus.close;
+						return EwayLocale.commen.comboxDevStatus.open;
+					}
+					if (value == 3) {
+						return EwayLocale.commen.comboxDevStatus.stop;
+					}
+					if (value == 4) {
+						return EwayLocale.commen.comboxDevStatus.scrapped;
 					}
 				}
 			}, {
-				header : Eway.locale.commen.devServiceName,
+				header : EwayLocale.commen.devServiceName,
 				dataIndex : 'devServiceName'
 			}, {
-				header : Eway.locale.report.plan.cashboxLimit,
+				header : EwayLocale.report.plan.cashboxLimit,
 				dataIndex : 'cashboxLimit'
 			}, {
-				header : Eway.locale.commen.address,
+				header : EwayLocale.commen.address,
 				dataIndex : 'address',
 				flex : 1
 			} ],

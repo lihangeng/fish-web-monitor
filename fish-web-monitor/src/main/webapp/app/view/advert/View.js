@@ -4,7 +4,7 @@ Ext.define('Eway.view.advert.View', {
 
 	requires : [ 'Eway.view.advert.Grid','Eway.view.advert.AdvertResourceGrid', 'Eway.view.advert.FilterForm'/*,'Eway.view.advert.AdvertVersion'*/],
 
-	title : Eway.locale.advert.title,
+	title : EwayLocale.advert.title,
 	layout : {
 		type:'table',
 		columns:1

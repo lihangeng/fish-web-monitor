@@ -94,7 +94,7 @@ Ext.define('Eway.controller.person.BankPer', {
 		store.setBaseParam('type','0');
 	  	store.loadPage(1);
 	    var actionTip = grid.down("tbtext[action=tip]");
-	    actionTip.setText(Eway.locale.tip.bankPer.allPersonInfo);
+	    actionTip.setText(EwayLocale.tip.bankPer.allPersonInfo);
 	},
 
 	/*关联设备管理*/
@@ -146,7 +146,7 @@ Ext.define('Eway.controller.person.BankPer', {
 			});
 		}
 		else {
-			Eway.alert(Eway.locale.tip.bankPer.link.linkPerson);
+			Eway.alert(EwayLocale.tip.bankPer.link.linkPerson);
 		}
 	},
 	//刷新“已/可关联的设备”列表
@@ -226,12 +226,12 @@ Ext.define('Eway.controller.person.BankPer', {
 					});
 				},
 				failure: function(){
-					Eway.alert(Eway.locale.tip.bankPer.link.unLinkDevFail);
+					Eway.alert(EwayLocale.tip.bankPer.link.unLinkDevFail);
 				},
 				scope:this
 			});
 		}else{
-			Eway.alert(Eway.locale.tip.bankPer.link.unlinkDev);
+			Eway.alert(EwayLocale.tip.bankPer.link.unlinkDev);
 		}
 	},
 
@@ -275,12 +275,12 @@ Ext.define('Eway.controller.person.BankPer', {
 					});
 				},
 				failure: function(){
-					Eway.alert(Eway.locale.tip.bankPer.link.unLinkPersonFail);
+					Eway.alert(EwayLocale.tip.bankPer.link.unLinkPersonFail);
 				},
 				scope:this
 			});
 		}else{
-			Eway.alert(Eway.locale.tip.bankPer.link.linkDev);
+			Eway.alert(EwayLocale.tip.bankPer.link.linkDev);
 		}
 	},
 
@@ -296,7 +296,7 @@ Ext.define('Eway.controller.person.BankPer', {
 		 	store.setUrlParam(i,data[i])
 		 }
 		 var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	     actionTip.setText(Eway.locale.tip.bankPer.personEligible);
+	     actionTip.setText(EwayLocale.tip.bankPer.personEligible);
 		 store.loadPage(1);
 		 this.getEwayView().down('treepanel').getSelectionModel().select(0,true);//选择根节点
 	},
@@ -313,7 +313,7 @@ Ext.define('Eway.controller.person.BankPer', {
 		 	store.setUrlParam(i,null)
 		 }
 		 var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	     actionTip.setText(Eway.locale.tip.bankPer.personEligible);
+	     actionTip.setText(EwayLocale.tip.bankPer.personEligible);
 		 store.loadPage(1);
 		 this.getEwayView().down('treepanel').getSelectionModel().select(0,true);//选择根节点
 	},
@@ -348,13 +348,13 @@ Ext.define('Eway.controller.person.BankPer', {
 				store.setBaseParam('selectedNode',node.data.id);
 				store.loadPage(1);
             	var actionTip = this.getEwayView().down("tbtext[action=tip]");
-		     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+Eway.locale.tip.bankPer.downGradePer);
+		     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+EwayLocale.tip.bankPer.downGradePer);
 
 			}else{
 				store.setBaseParam('type','0');
 				store.loadPage(1);
             	var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	    		actionTip.setText(Eway.locale.tip.bankPer.allPersonInfo);
+	    		actionTip.setText(EwayLocale.tip.bankPer.allPersonInfo);
 			}
         }else{
         	var store = this.getEwayView().down('bank_person_grid').getStore();
@@ -362,7 +362,7 @@ Ext.define('Eway.controller.person.BankPer', {
 			store.setBaseParam('selectedNode',node.data.id);
 			store.loadPage(1);
        		var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+Eway.locale.tip.bankPer.downGradePer);
+	     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+EwayLocale.tip.bankPer.downGradePer);
 	    }
     },
 
@@ -407,14 +407,14 @@ Ext.define('Eway.controller.person.BankPer', {
 						}
 					});
 					var actionTip = ewayView.down("tbtext[action=tip]");
-	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+Eway.locale.tip.bankPer.downGradePer);
+	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+EwayLocale.tip.bankPer.downGradePer);
 					win.close();
-					Eway.alert(Eway.addSuccess);
+					Eway.alert(EwayLocale.addSuccess);
                     me.onQueryAfterAdd();
 
 			    },
 			    failure: function(record,operation){
-					Eway.alert(Eway.locale.tip.add.error + operation.getError());
+					Eway.alert(EwayLocale.tip.add.error + operation.getError());
 				}
 			});
 		}
@@ -440,7 +440,7 @@ Ext.define('Eway.controller.person.BankPer', {
 			win.show();
 		}
 		else {
-			Eway.alert(Eway.choiceUpdateMsg);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 		}
 	},
 
@@ -476,7 +476,7 @@ Ext.define('Eway.controller.person.BankPer', {
 			record.set('personJobCode',data.personJobCode);
 			record.save({
 				success : function(record,operation){
-					Eway.alert(Eway.updateSuccess);
+					Eway.alert(EwayLocale.updateSuccess);
 					ewayView.down('treepanel').getSelectionModel().select(0,true);//选择根节点
 					store.cleanUrlParam();
 					store.setBaseParam('organizationId',data.organizationId);
@@ -486,7 +486,7 @@ Ext.define('Eway.controller.person.BankPer', {
 						}
 					});
 					var actionTip = ewayView.down("tbtext[action=tip]");
-	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+Eway.locale.tip.bankPer.personBelongs);
+	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+EwayLocale.tip.bankPer.personBelongs);
 					win.close();
 				},
 				failure: function(record,operation){
@@ -505,21 +505,24 @@ Ext.define('Eway.controller.person.BankPer', {
 	 * 删除人员信息：
 	 */
 	onRemove: function() {
+		var me=this;
 		var grid = this.getGrid();
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
-			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
-					Eway.locale.tip.remove.confirm.info,
+			Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,
+					EwayLocale.tip.remove.confirm.info,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Eway.alert(Eway.deleteSuccess);
+									Eway.alert(EwayLocale.updateSuccess);
+									me.onQuery();
 									grid.getStore().remove(record);
 								},
 								failure: function(record,operation){
-									Eway.alert(Eway.locale.tip.remove.error + operation.getError());
+									record.dropped = false;
+									Eway.alert(EwayLocale.tip.remove.error + operation.getError());
 								},
 								scope:this
 							});
@@ -527,7 +530,7 @@ Ext.define('Eway.controller.person.BankPer', {
 					}, this);
 		}
 		else {
-			Eway.alert(Eway.choiceDeleteMsg);
+			Eway.alert(EwayLocale.choiceDeleteMsg);
 		}
 	}
 

@@ -15,8 +15,13 @@
 	media="all" />
 </head>
 <style type="text/css">
-.container {
+.container1 {
 	width: 1296px;
+}
+.content{
+width:1296px;
+float:left;
+border:0;
 }
 input {
 	color: #000000;
@@ -75,7 +80,7 @@ input:focus {
 			 	window.location.href='login.jsp';
 		<%}%>
 	</script>
-	<div class="container">
+	<div class="container1">
 		<div class="head">
 			<img src="./resources/images/logo.PNG">
 		</div>
@@ -84,7 +89,7 @@ input:focus {
 		</div>
 	</div>
 	<div class="line"></div>
-	<div>
+	<div class="content" align="center">
 			<table align="center" border="0" cellpadding="0" cellspacing="10">
 				<tr>
 					<td align="right"><spring:message code="login.updatePwd.userCode" /></td>

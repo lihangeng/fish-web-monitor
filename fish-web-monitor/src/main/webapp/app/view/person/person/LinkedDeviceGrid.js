@@ -21,56 +21,56 @@ Ext.define('Eway.view.person.person.LinkedDeviceGrid', {
 				forceFit : true,
 				stripeRows : true
 			},
-			tbar: [{text:Eway.locale.commen.bindMachine,xtype:'tbtext'},'->', {
-				text:Eway.locale.button.search,
+			tbar: [{text:EwayLocale.commen.bindMachine,xtype:'tbtext'},'->', {
+				text:EwayLocale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			},{
-				text: Eway.locale.commen.lift,
+				text: EwayLocale.commen.lift,
 				glyph : 0xf014,
 				action: 'unlink'
 			}],
 			columns : [ {
-				header : Eway.locale.commen.terminalId,
+				header : EwayLocale.commen.terminalId,
 				dataIndex : 'terminalId',
 				width:80
 			}, {
-				header : Eway.locale.commen.ip,
+				header : EwayLocale.commen.ip,
 				dataIndex : 'ip'
 			}, {
-				header : Eway.locale.commen.orgNameBelongs,
+				header : EwayLocale.commen.orgNameBelongs,
 				dataIndex : 'orgName'
 			}, {
-				header : Eway.locale.commen.devTypeName,
+				header : EwayLocale.commen.devTypeName,
 				dataIndex : 'devTypeName'
 			}, {
-				header : Eway.locale.commen.devVendorName,
+				header : EwayLocale.commen.devVendorName,
 				dataIndex : 'devVendorName'
 			}, {
-				header : Eway.locale.commen.devCatalogName,
+				header : EwayLocale.commen.devCatalogName,
 				dataIndex : 'devCatalogName'
 			}, {
-				header : Eway.locale.commen.devStatus,
+				header : EwayLocale.commen.devStatus,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return Eway.locale.commen.comboxDevStatus.upOpen;
+						return EwayLocale.commen.comboxDevStatus.upOpen;
 					}
 					if (value == 2) {
-						return Eway.locale.commen.comboxDevStatus.open;
+						return EwayLocale.commen.comboxDevStatus.open;
 					}
 					if (value == 3) {
-						return Eway.locale.commen.comboxDevStatus.stop;
+						return EwayLocale.commen.comboxDevStatus.stop;
 					}
 					if (value == 4) {
-						return Eway.locale.commen.comboxDevStatus.scrapped;
+						return EwayLocale.commen.comboxDevStatus.scrapped;
 					}
 				}
 			}, {
-				header : Eway.locale.commen.devServiceName,
+				header : EwayLocale.commen.devServiceName,
 				dataIndex : 'devServiceName'
 			},{
-				header : Eway.locale.commen.address,
+				header : EwayLocale.commen.address,
 				dataIndex : 'address',
 				minWidth:120,
 				flex:1

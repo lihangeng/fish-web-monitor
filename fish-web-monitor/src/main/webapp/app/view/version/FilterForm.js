@@ -10,7 +10,7 @@ Ext.define('Eway.view.version.FilterForm', {
 				columnWidth : .3,
 				items : [{
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.version.View.versionNo,//'版本号',
+					fieldLabel : EwayLocale.version.View.versionNo,//'版本号',
 					name : 'versionNo',
 					maxLength: 40,
 					vtype:'versionNo'
@@ -18,25 +18,25 @@ Ext.define('Eway.view.version.FilterForm', {
 				columnWidth : .3,
 				items : [{
 					xtype : 'combo',
-					fieldLabel : Eway.locale.version.View.versionStatus,//'版本状态',
+					fieldLabel : EwayLocale.version.View.versionStatus,//'版本状态',
 					name : 'versionStatus',
 	                store: Ext.StoreMgr.lookup("version.VersionStatus"),
 	                queryMode: 'local',
 	                valueField : 'value',
 	                displayField: 'display',
-	                emptyText : Eway.locale.version.View.versionStatusEmptyText,
+	                emptyText : EwayLocale.version.View.versionStatusEmptyText,
 	                editable : false
 				}]},{
 				columnWidth : .4,
 				items : [{
 					xtype : 'combo',
-					fieldLabel : Eway.locale.version.View.autoUpdate,//'允许自动更新',
+					fieldLabel : EwayLocale.version.View.autoUpdate,//'允许自动更新',
 					name : 'autoUpdate',
 					store: Ext.StoreMgr.lookup("version.AutoUpdate"),
 	                queryMode: 'local',
 	                valueField : 'value',
 	                displayField: 'display',
-	                emptyText : Eway.locale.version.View.autoUpdateEmptyText,
+	                emptyText : EwayLocale.version.View.autoUpdateEmptyText,
 	                editable : false
 				}]}
 			 ]

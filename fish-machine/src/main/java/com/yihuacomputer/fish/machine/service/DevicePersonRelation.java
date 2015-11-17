@@ -124,9 +124,9 @@ public class DevicePersonRelation implements IDevicePersonRelation {
         IOrganization org = orgService.get(orgId);
 
         if (flag) {
-            fi.llike("d.organization.orgFlag", org.getOrgFlag());
+            fi.rlike("d.organization.orgFlag", org.getOrgFlag());
         } else {
-            fi.llike("d.devService.orgFlag", org.getOrgFlag());
+            fi.rlike("d.devService.orgFlag", org.getOrgFlag());
         }
 
         fi.eq("o.personId", Long.valueOf(person.getGuid()));
@@ -170,8 +170,8 @@ public class DevicePersonRelation implements IDevicePersonRelation {
         // 添加条件
         IOrganization bankOrg = orgService.get(bankOrgId);
         IOrganization serOrg = orgService.get(serOrgId);
-        fi.llike("d.organization.orgFlag", bankOrg.getOrgFlag());
-        fi.llike("d.devService.orgFlag", serOrg.getOrgFlag());
+        fi.rlike("d.organization.orgFlag", bankOrg.getOrgFlag());
+        fi.rlike("d.devService.orgFlag", serOrg.getOrgFlag());
 
         // hql拼写
         StringBuffer hqls = new StringBuffer();

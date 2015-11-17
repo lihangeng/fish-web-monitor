@@ -15,7 +15,7 @@ Ext.define('Eway.controller.base.FishController', {
 		var form = view.down('form').getForm();
 		var bool = form.isValid();
 		if (bool == false) {// 查询输入验证
-			Eway.alert(Eway.locale.tip.search.warn);
+			Eway.alert(EwayLocale.tip.search.warn);
 			return;
 		}
 		var values = form.getValues();
@@ -39,23 +39,25 @@ Ext.define('Eway.controller.base.FishController', {
 			sm = grid.getSelectionModel(),
 			count = sm.getCount();
 		if(count == 0){
-			Eway.alert(Eway.locale.tip.remove.none);
+			Eway.alert(EwayLocale.tip.remove.none);
 			return;
 		}
 		else if(count > 1){
-			Eway.alert(Eway.locale.tip.remove.one);
+			Eway.alert(EwayLocale.tip.remove.one);
 			return;
 		}
-		Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title, Eway.locale.tip.remove.confirm.info,function(button,text){
+		Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title, EwayLocale.tip.remove.confirm.info,function(button,text){
 			if(button == 'yes'){
 				var record = sm.getLastSelected();
 				record.erase({
 					success: function(record,operation){
-						Eway.alert(Eway.deleteSuccess);
+						Eway.alert(EwayLocale.updateSuccess);
 						me.onQuery();
 					},
 					failure: function(record,operation){
-						Eway.alert(Eway.locale.tip.remove.error+ operation.getError());
+						//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
+						record.dropped = false;
+						Eway.alert(EwayLocale.tip.remove.error+ operation.getError());
 					},
 					scope:this
 				});
@@ -65,7 +67,7 @@ Ext.define('Eway.controller.base.FishController', {
 
 
 	_onAddOrUpdate : function(action){
-		var title = action=='add' ? Eway.locale.button.add+this.formConfig.title : Eway.locale.button.update+this.formConfig.title;
+		var title = action=='add' ? EwayLocale.button.add+this.formConfig.title : EwayLocale.button.update+this.formConfig.title;
 		var me = this;
 		Ext.require([this.formConfig.form],function(){
 			if(action=='update'){
@@ -73,11 +75,11 @@ Ext.define('Eway.controller.base.FishController', {
 					sm = grid.getSelectionModel(),
 					count = sm.getCount();
 				if(count == 0){
-					Eway.alert(Eway.choiceUpdateMsg);
+					Eway.alert(EwayLocale.choiceUpdateMsg);
 					return;
 				}
 				else if(count > 1){
-					Eway.alert(Eway.locale.tip.update.one);
+					Eway.alert(EwayLocale.tip.update.one);
 					return;
 				}
 			}
@@ -127,7 +129,7 @@ Ext.define('Eway.controller.base.FishController', {
 				store.cleanUrlParam();
 				
 				if(action == 'add') {
-					actionName = Eway.locale.button.add;
+					actionName = EwayLocale.button.add;
 					var values = form.getCusValues();
 					record = this.beforeAddSave(win,grid);
 					if(undefined==record){
@@ -138,7 +140,7 @@ Ext.define('Eway.controller.base.FishController', {
 					}
 				}
 				else if(action == 'update') {
-					actionName = Eway.locale.button.update;
+					actionName = EwayLocale.button.update;
 					record = grid.getSelectionModel().getLastSelected();
 					form.updateCusRecord(record);
 					this.beforeUpdateSave(win,grid,record);
@@ -146,7 +148,7 @@ Ext.define('Eway.controller.base.FishController', {
 				var id = record.get("id");
 				record.save({
 					 success: function(recordInDB) {
-						Eway.alert(actionName + Eway.locale.tip.success);
+						Eway.alert(actionName + EwayLocale.tip.success);
 						win.close();
 						if(action == 'add'){
 							this.onQueryAfterAdd();
@@ -160,7 +162,7 @@ Ext.define('Eway.controller.base.FishController', {
 					 },
 					 failure: function(record,operation){
 						store.setUrlParamsByObject(oldParams);
-						Eway.alert(actionName + Eway.locale.tip.fail + operation.getError());
+						Eway.alert(actionName + EwayLocale.tip.fail + operation.getError());
 						store.rejectChanges();
 						button.enable();
 					 },

@@ -166,7 +166,7 @@ public class PersonService implements IPersonService {
         IOrganization org = orgService.get(orgId);
         sql.append("from Person p ");
         sql.append("where p.organization.orgFlag like ?");
-        IPageResult<IPerson> result = (IPageResult<IPerson>) this.dao.page(offset, limit, sql.toString(), "%" + org.getOrgFlag());
+        IPageResult<IPerson> result = (IPageResult<IPerson>) this.dao.page(offset, limit, sql.toString(),org.getOrgFlag() + "%");
         return result;
     }
 
@@ -178,7 +178,7 @@ public class PersonService implements IPersonService {
         IOrganization org = orgService.get(orgId);
         sql.append("from Person p ");
         sql.append("where p.organization.orgFlag like ?");
-        IPageResult<IPerson> result = (IPageResult<IPerson>) this.dao.page(offset, limit,filter, sql.toString(), "%" + org.getOrgFlag());
+        IPageResult<IPerson> result = (IPageResult<IPerson>) this.dao.page(offset, limit,filter, sql.toString(), org.getOrgFlag() + "%");
         return result;
     }
 

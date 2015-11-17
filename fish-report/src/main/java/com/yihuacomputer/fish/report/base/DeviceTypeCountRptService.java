@@ -45,7 +45,7 @@ public class DeviceTypeCountRptService implements IDeviceTypeCountRptService {
 
         if (orgFlag != null) {
             hql.append("and device.organization.orgFlag like ? ");
-            valueObj.add("%" + orgFlag.getValue());
+            valueObj.add(orgFlag.getValue() + "%");
         }
         if (devVendorId != null) {
             hql.append("and vendor.id = ? ");

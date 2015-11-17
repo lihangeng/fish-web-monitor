@@ -6,7 +6,7 @@ Ext.define('Eway.view.person.bankPer.View', {
 	requires: ['Eway.view.person.bankPer.Grid',
 	           'Eway.view.person.bankPer.FilterForm'],
 	
-	title: Eway.locale.person.bankPer.title,
+	title: EwayLocale.person.bankPer.title,
 	layout: 'border',
 	
 	initComponent: function() {
@@ -14,7 +14,7 @@ Ext.define('Eway.view.person.bankPer.View', {
 		Ext.apply(this, {
 			items: [{
 				region: 'east',
-				title : Eway.locale.person.bankPer.orgNavi,
+				title : EwayLocale.person.bankPer.orgNavi,
 				header: false,
 				xtype : 'treepanel',
 				width : 200,

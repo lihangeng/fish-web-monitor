@@ -5,7 +5,7 @@ Ext.define('Eway.view.person.user.ViewUserLogWin', {
 	alias: 'widget.person_user_viewUserLogWin',
 	extend: 'Ext.window.Window',
 	
-	title: Eway.locale.person.user.operDetailTitle,
+	title: EwayLocale.person.user.operDetailTitle,
 	modal: true,
 	resizable: false,
 	maximizable: true,
@@ -19,7 +19,7 @@ Ext.define('Eway.view.person.user.ViewUserLogWin', {
 	layout : 'border',
 	initComponent: function() {
 		Ext.apply(this, {
-			title : Eway.locale.person.user.operLogList,
+			title : EwayLocale.person.user.operLogList,
 			items : [{
 				region: 'north',
 				xtype: 'userLogFilterForm',

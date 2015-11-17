@@ -5,12 +5,12 @@ Ext.define('Eway.store.machine.DeviceAwayFlagComboBox', {
 
 	data : [ {
 		value : '1',
-		display : Eway.locale.machine.device.inBank,
+		display : EwayLocale.machine.device.inBank,
 	}, {
 		value : '2',
-		display : Eway.locale.machine.device.outBank,
+		display : EwayLocale.machine.device.outBank,
 	}, {
 		value : '3',
-		display : Eway.locale.machine.device.clickBank,
+		display : EwayLocale.machine.device.clickBank,
 	} ]
 });

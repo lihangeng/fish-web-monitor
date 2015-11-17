@@ -22,7 +22,7 @@ Ext.define('Eway.view.person.serviceOrg.FilterForm', {
 				items : [{
 					xtype : 'field.code',
 					labelAlign : 'right',
-					fieldLabel : Eway.locale.person.serviceOrg.code,
+					fieldLabel : EwayLocale.person.serviceOrg.code,
 					maxLength : 20,
 					msgTarget : 'side'
 				}]
@@ -31,7 +31,7 @@ Ext.define('Eway.view.person.serviceOrg.FilterForm', {
 				items : [{
 					xtype : 'field.name',
 					labelAlign : 'right',
-					fieldLabel: Eway.locale.person.serviceOrg.name,
+					fieldLabel: EwayLocale.person.serviceOrg.name,
 					maxLength : 40,
 					msgTarget : 'side'
 				}]

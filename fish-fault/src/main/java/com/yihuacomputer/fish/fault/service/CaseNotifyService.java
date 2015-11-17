@@ -173,7 +173,7 @@ public class CaseNotifyService implements ICaseNotifyService {
 		IFilterEntry sendTime = filter.getFilterEntry("sendTime");
 		hql.append("select caseNotify from CaseNotify caseNotify ,Device device ");
 		hql.append("where (caseNotify.terminalId = device.terminalId) and device.organization.orgFlag like ? ");
-		valueObj.add("%" + org.getOrgFlag());
+		valueObj.add(org.getOrgFlag() + "%");
 		if (faultId != null) {
 			hql.append(" and caseNotify.faultId = ?");
 			valueObj.add(Long.parseLong(faultId.getValue().toString()));
@@ -311,7 +311,7 @@ public class CaseNotifyService implements ICaseNotifyService {
 		IFilterEntry sendTime = filter.getFilterEntry("sendTime");
 		hql.append("select caseNotify from CaseNotify caseNotify ,Device device ");
 		hql.append("where (caseNotify.terminalId = device.terminalId) and device.organization.orgFlag like ? ");
-		valueObj.add("%" + org.getOrgFlag());
+		valueObj.add(org.getOrgFlag() + "%");
 		if (faultId != null) {
 			hql.append(" and caseNotify.faultId = ?");
 			valueObj.add(Long.parseLong(faultId.getValue().toString()));

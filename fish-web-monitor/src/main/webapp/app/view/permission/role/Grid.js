@@ -14,11 +14,11 @@ Ext.define('Eway.view.permission.role.Grid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->',{
-				text:Eway.locale.button.search,
+				text:EwayLocale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			},{
-				text: Eway.locale.button.add,
+				text: EwayLocale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'roleAdd',
@@ -26,7 +26,7 @@ Ext.define('Eway.view.permission.role.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: Eway.locale.button.update,
+				text: EwayLocale.button.update,
 				glyph : 0xf040,
 				action:'update',
 				code : 'roleUpdate',
@@ -35,7 +35,7 @@ Ext.define('Eway.view.permission.role.Grid', {
 				},
 				scope: this
 			}, {
-				text: Eway.locale.button.remove,
+				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'roleDel',
@@ -44,16 +44,16 @@ Ext.define('Eway.view.permission.role.Grid', {
 				}
 			}],
 			columns : [{
-				header : Eway.locale.permission.role.name,
+				header : EwayLocale.permission.role.name,
 				dataIndex : 'name'
 			}, {
-				header: Eway.locale.permission.role.isSysRole,
+				header: EwayLocale.permission.role.isSysRole,
 				dataIndex: 'system',
 				renderer: function(value){
 					if(value == false){
-						return Eway.locale.commen.no;
+						return EwayLocale.commen.no;
 					}else if(value == true){
-						return Eway.locale.commen.yes;
+						return EwayLocale.commen.yes;
 					}
 				},
 				width: 160
@@ -65,7 +65,7 @@ Ext.define('Eway.view.permission.role.Grid', {
 //				renderer: Eway.lib.Util.typeRenderer('permission.ComboBox')//进行转换，时期显示角色类型 的‘name’字段，而不是abbr字段
 //			}, 
 			{
-				header : Eway.locale.permission.role.description,
+				header : EwayLocale.permission.role.description,
 				dataIndex : 'description',
 				storable: true,
 				flex : 1

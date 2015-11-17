@@ -6,7 +6,7 @@ Ext.define('Eway.view.machine.atmGroup.View', {
 	             'Eway.view.machine.atmGroup.DeviceFilter',
 			'Eway.view.machine.atmGroup.DeviceGrid' ],
 
-	title : Eway.locale.machine.atmGroup.devGroupName,
+	title : EwayLocale.machine.atmGroup.devGroupName,
 	layout : 'border',
 	initComponent : function() {
 		Ext.apply(this, {
@@ -20,7 +20,7 @@ Ext.define('Eway.view.machine.atmGroup.View', {
 				items : [{
 						name:'groupPanel',
 						xtype:'panel',
-						title: Eway.locale.machine.atmGroup.groupName,
+						title: EwayLocale.machine.atmGroup.groupName,
 						layout : 'border',
 						items:[{
 							xtype:'form',
@@ -32,47 +32,15 @@ Ext.define('Eway.view.machine.atmGroup.View', {
 								xtype : 'textfield',
 								name : 'name',
 								maxLength : 30,
-								fieldLabel : Eway.locale.machine.atmGroup.groupName,
+								fieldLabel : EwayLocale.machine.atmGroup.groupName,
 								msgTarget : 'side'
 							}]}, {
 								region: 'center',
 								xtype : 'atmGroup_groupGrid'
 							}
-						]},
-						{
-						name:'atmGroupDeviceDetails',
-						disabled:true,
-						title:Eway.locale.monitor.devMonitor.atmGroupTip,
-						layout : 'border',
-						xtype:'panel',
-						items:[{
-								region: 'north',
-								xtype : 'atmGroup_deviceFilter'
-							}, {
-								region: 'center',
-								xtype : 'atmGroup_deviceGrid'
-							}
-						]} 
+						]}
 				]
-			}],
-			listeners : {
-				activate : function(panel){
-					if (!panel.isLoad) {
-						// 第一次进来不需要重新加载信息
-						panel.isLoad = true;
-						return;
-					}
-					panel.down('atmGroup_deviceFilter').down('field_device_deviceatmtype').getStore().load();
-					panel.down('atmGroup_deviceFilter').down('field_atmType_DeviceAtmCatalogComboBox').getStore().load();
-					panel.down('atmGroup_deviceFilter').down('field_atmType_DeviceAtmVendorComboBox').getStore().load();
-					//刷新组织机构
-					var orgTrees = panel.down('atmGroup_deviceFilter').query('common_orgComboOrgTree');
-					Ext.Array.each(orgTrees, function() {
-						// 刷新维护商和所属机构信息
-						this.reflesh();
-					});
-				}
-			}
+			}]
 		});
 
 		this.callParent(arguments);

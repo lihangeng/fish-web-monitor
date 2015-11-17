@@ -5,7 +5,7 @@ Ext.define('Eway.view.version.versionType.View', {
 	requires : [ 'Eway.view.version.versionType.Grid',
 			'Eway.view.version.versionType.FilterForm' ],
 
-	title : Eway.locale.versionType.title,//'软件分类管理',
+	title : EwayLocale.versionType.title,//'软件分类管理',
 	layout : 'border',
 
 	initComponent : function() {

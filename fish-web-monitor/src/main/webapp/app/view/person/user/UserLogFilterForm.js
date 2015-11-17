@@ -39,14 +39,14 @@ Ext.define('Eway.view.person.user.UserLogFilterForm', {
 				}
 				return validStatus;
 			},
-			userLogDateRangeText : Eway.locale.vtype.endDateGtBenginDate
+			userLogDateRangeText : EwayLocale.vtype.endDateGtBenginDate
 		});
 
 		Ext.apply(this, {
 			items : [{
 				columnWidth : .5,
 				items : [{
-					fieldLabel: Eway.locale.tip.operateDate.operateDateBegin,
+					fieldLabel: EwayLocale.tip.operateDate.operateDateBegin,
 		        	xtype : 'datetimefield',
 					name : 'operTimeStart',
 					format : 'Y-m-d H:i:s',
@@ -71,7 +71,7 @@ Ext.define('Eway.view.person.user.UserLogFilterForm', {
 			{
 				columnWidth : .5,
 				items : [{
-					fieldLabel: Eway.locale.tip.operateDate.operateDateEnd,
+					fieldLabel: EwayLocale.tip.operateDate.operateDateEnd,
 		        	xtype : 'datetimefield',
 					name : 'operTimeEnd',
 					format : 'Y-m-d H:i:s',

@@ -4,10 +4,10 @@ Ext.define('Eway.view.machine.device.Add', {
 
 	requires: ['Eway.view.machine.device.Form'],
 
-	title: Eway.locale.machine.device.addDevInfo,
+	title: EwayLocale.machine.device.addDevInfo,
 
 	modal: true,
-	resizable: false,
+//	resizable: false,
 	constrainHeader: true,
     height : 450,
 	width : 750,
@@ -29,10 +29,10 @@ Ext.define('Eway.view.machine.device.Add', {
 			}],
 			buttonAlign : 'center',
 			fbar: [{
-				text: Eway.locale.button.confirm,
+				text: EwayLocale.button.confirm,
 				action: 'add'
 			}, {
-				text: Eway.locale.button.cancel,
+				text: EwayLocale.button.cancel,
 				handler: this.onOver
 			}]
 		});

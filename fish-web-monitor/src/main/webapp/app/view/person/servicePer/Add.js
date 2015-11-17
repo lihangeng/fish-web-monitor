@@ -13,7 +13,7 @@ Ext.define('Eway.view.person.servicePer.Add', {
 	           'Eway.view.field.person.State',
 	           'Eway.view.field.PersonRemark'],
 
-	title: Eway.locale.person.servicePer.addServicePerTitle,
+	title: EwayLocale.person.servicePer.addServicePerTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -32,13 +32,13 @@ Ext.define('Eway.view.person.servicePer.Add', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.commen.name,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.commen.name,
 					xtype : 'field.username',
 					maxLength : 20,
 					allowBlank : false
 				},{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.serviceOrg.shortName,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.person.serviceOrg.shortName,
 					allowBlank: false,
 					name : 'organizationName',
 					filters : '{"type" : "1"}',
@@ -46,26 +46,26 @@ Ext.define('Eway.view.person.servicePer.Add', {
 					hiddenValue : 'organizationId',
 					editable : false
 			 	},{
-					fieldLabel: '<font color="red">*</font> '+Eway.locale.commen.mobile,
+					fieldLabel: '<font color="red">*</font> '+EwayLocale.commen.mobile,
 					xtype : 'field.mobile',
 					vtype:'mobile',
 					allowBlank : false
 				},{
-					fieldLabel : Eway.locale.commen.jobNum,
+					fieldLabel : EwayLocale.commen.jobNum,
 					xtype : 'textfield',
 					name:'jobNum',
 					maxLength : 20,
 					allowBlank : true
 				},{
 					xtype : 'field.state',
-					fieldLabel : Eway.locale.commen.state,
+					fieldLabel : EwayLocale.commen.state,
 					value : '1',
 					allowBlank : false,
 					editable : false
 				},{
 				    xtype : 'field.gender',
-				    fieldLabel : Eway.locale.commen.gender,
-				    emptyText: Eway.locale.combox.select,
+				    fieldLabel : EwayLocale.commen.gender,
+				    emptyText: EwayLocale.combox.select,
 				    allowBlank : false,
 				    value : 'MALE',
 					editable : false
@@ -78,7 +78,7 @@ Ext.define('Eway.view.person.servicePer.Add', {
 					editable : false
 				},{
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.commen.phone,
+					fieldLabel : EwayLocale.commen.phone,
 					allowBlank: true,
 					name :'phone',
 					vtype:'telephone'
@@ -90,14 +90,14 @@ Ext.define('Eway.view.person.servicePer.Add', {
 				}],
 				buttonAlign:'center',
 				buttons: [{
-					text: Eway.locale.button.confirm,
+					text: EwayLocale.button.confirm,
 					action: 'add'
 				}, {
-					text: Eway.locale.button.reset,
+					text: EwayLocale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: Eway.locale.button.cancle,
+					text: EwayLocale.button.cancle,
 					handler: this.onOver
 				}]
 			}

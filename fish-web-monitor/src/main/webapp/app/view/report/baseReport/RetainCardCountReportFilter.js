@@ -39,7 +39,7 @@ Ext.define('Eway.view.report.baseReport.RetainCardCountReportFilter', {
 				}
 				return validStatus;
 			},
-			cardInfoDateRangeText : Eway.locale.tip.dateReSelect
+			cardInfoDateRangeText : EwayLocale.tip.dateReSelect
 		});
 		Ext.apply(this, {
 			items : [{
@@ -51,9 +51,9 @@ Ext.define('Eway.view.report.baseReport.RetainCardCountReportFilter', {
 								}, {
 									//只带出银行机构
 									xtype : 'common_orgComboOrgTree',
-									fieldLabel : Eway.locale.commen.orgNameBelongs,
+									fieldLabel : EwayLocale.commen.orgNameBelongs,
 									labelAlign : 'right',
-									emptyText : Eway.locale.combox.select,
+									emptyText : EwayLocale.combox.select,
 									name : 'orgName',
 									hiddenValue : 'orgId',
 									editable : false,
@@ -64,7 +64,7 @@ Ext.define('Eway.view.report.baseReport.RetainCardCountReportFilter', {
 						columnWidth : .3,
 						items : [{
 									xtype: 'datetimefield',
-									fieldLabel : Eway.locale.commen.startDataTime,
+									fieldLabel : EwayLocale.commen.startDataTime,
 									name: 'startDataTime',
 									format: 'Y-m-d H:i:s',
 									editable : false,
@@ -88,7 +88,7 @@ Ext.define('Eway.view.report.baseReport.RetainCardCountReportFilter', {
 						columnWidth : .4,
 						items : [{
 									xtype: 'datetimefield',
-									fieldLabel : Eway.locale.commen.endDataTime,
+									fieldLabel : EwayLocale.commen.endDataTime,
 									name: 'endDataTime',
 									editable : false,
 									format: 'Y-m-d H:i:s',

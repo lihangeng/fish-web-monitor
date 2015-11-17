@@ -67,7 +67,7 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceGrid', {
 				action:'tip',
 				xtype:'tbtext'
 			},'->', {
-				text: Eway.locale.button.search,
+				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			}/*,{
@@ -75,51 +75,57 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceGrid', {
 			   iconCls:'addBtn',
 			   action:'importMachineCode'
 			}*/, {
-				text: Eway.locale.button.link,
+				text: EwayLocale.button.link,
 				glyph : 0xf0c1,
 //				iconCls :'connectBtn',
 				action: 'link'
 			}],
 			columns : [ {
-				header : Eway.locale.refs.terminalId,
+				header : EwayLocale.refs.terminalId,
 				dataIndex : 'terminalId'
 			}, {
-				header : Eway.locale.refs.ip,
+				header : EwayLocale.refs.ip,
 				dataIndex : 'ip'
 			}, {
-				header : Eway.locale.commen.orgNameBelongs,
+				header : EwayLocale.commen.orgNameBelongs,
 				dataIndex : 'orgName'
 			}, {
-				header : Eway.locale.commen.devTypeName,
+				header : EwayLocale.commen.devTypeName,
 				dataIndex : 'devTypeName'
 			}, {
-				header : Eway.locale.commen.devVendorName,
+				header : EwayLocale.commen.devVendorName,
 				dataIndex : 'devVendorName'
 			}, {
-				header : Eway.locale.commen.devCatalogName,
+				header : EwayLocale.commen.devCatalogName,
 				dataIndex : 'devCatalogName'
 			}, {
-				header : Eway.locale.commen.devStatus,
+				header : EwayLocale.commen.devStatus,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return Eway.locale.commen.comboxDevStatus.open;
+						return EwayLocale.commen.comboxDevStatus.upOpen;
 					}
 					if (value == 2) {
-						return Eway.locale.commen.comboxDevStatus.st;
+						return EwayLocale.commen.comboxDevStatus.open;
+					}
+					if (value == 3) {
+						return EwayLocale.commen.comboxDevStatus.stop;
+					}
+					if (value == 4) {
+						return EwayLocale.commen.comboxDevStatus.scrapped;
 					}
 				}
 			}, {
-				header : Eway.locale.commen.devServi,
+				header : EwayLocale.commen.devServi,
 				dataIndex : 'devServiceName'
 			}, {
-				header : Eway.locale.commen.cashboxLimit,
+				header : EwayLocale.commen.cashboxLimit,
 				dataIndex : 'cashboxLimit'
 			}, {
-				header : Eway.locale.commen.installDate,
+				header : EwayLocale.commen.installDate,
 				dataIndex : 'installDate'
 			}, {
-				header : Eway.locale.commen.address,
+				header : EwayLocale.commen.address,
 				dataIndex : 'address',
 				flex : 1
 			} ],

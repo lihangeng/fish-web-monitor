@@ -2,7 +2,7 @@ Ext.define('Eway.view.case.notifyMould.UpdateWin', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.notifyMould_UpdateWin',
 
-	title : Eway.locale.cases.notifyMould.updateMessageContentConfiguration,
+	title : EwayLocale.cases.notifyMould.updateMessageContentConfiguration,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -26,11 +26,11 @@ Ext.define('Eway.view.case.notifyMould.UpdateWin', {
 				items : [ {
 					xtype : 'displayfield',
 					name : 'classifyName',
-					fieldLabel : Eway.locale.cases.faultClassify.faultClassifyName
+					fieldLabel : EwayLocale.cases.faultClassify.faultClassifyName
 				}, {
 					xtype : 'combobox',
 					name : 'notifyType',
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.cases.notifyMould.noticeType,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.cases.notifyMould.noticeType,
 					store : notifyType,
 					queryMode : 'local',
 					displayField : 'name',
@@ -40,7 +40,7 @@ Ext.define('Eway.view.case.notifyMould.UpdateWin', {
 				}, {
 					xtype : 'combobox',
 					name : 'notifyWay',
-					fieldLabel : '<font color="red">*</font>' +Eway.locale.cases.faultClassify.faultInformWay,
+					fieldLabel : '<font color="red">*</font>' +EwayLocale.cases.faultClassify.faultInformWay,
 					store : notifyway,
 					queryMode : 'local',
 					displayField : 'display',
@@ -49,25 +49,25 @@ Ext.define('Eway.view.case.notifyMould.UpdateWin', {
 					allowBlank : false
 				}, {
 					xtype : 'checkboxgroup',
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.cases.notifyMould.noticeValue,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.cases.notifyMould.noticeValue,
 					columns : 2,
 					vertical : true,
 					allowBlank : false,
-					blankText : Eway.locale.cases.notifyMould.necessaryOption,
+					blankText : EwayLocale.cases.notifyMould.necessaryOption,
 					items : [ {
-						boxLabel : Eway.locale.commen.terminalId,
+						boxLabel : EwayLocale.commen.terminalId,
 						name : 'notifySet',
 						inputValue : 'terminalId'
 					}, {
-						boxLabel : Eway.locale.cases.notifyMould.faultType,
+						boxLabel : EwayLocale.cases.notifyMould.faultType,
 						name : 'notifySet',
 						inputValue : 'faultClassify'
 					}, {
-						boxLabel : Eway.locale.cases.caseFault.faultModule,
+						boxLabel : EwayLocale.cases.caseFault.faultModule,
 						name : 'notifySet',
 						inputValue : 'faultMod'
 					}, {
-						boxLabel : Eway.locale.cases.notifyMould.applyStatus,
+						boxLabel : EwayLocale.cases.notifyMould.applyStatus,
 						name : 'notifySet',
 						inputValue : 'appStatus'
 					} ]
@@ -75,11 +75,11 @@ Ext.define('Eway.view.case.notifyMould.UpdateWin', {
 				buttonAlign : 'center',
 				buttons : [ {
 					xtype : 'button',
-					text : Eway.locale.cases.confirm,
+					text : EwayLocale.cases.confirm,
 					action : 'confirm'
 				}, {
 					xtype : 'button',
-					text : Eway.locale.cases.cancel,
+					text : EwayLocale.cases.cancel,
 					handler : this.onOver
 				} ]
 			}

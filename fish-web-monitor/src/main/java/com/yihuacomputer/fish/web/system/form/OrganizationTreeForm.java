@@ -17,7 +17,7 @@ public class OrganizationTreeForm {
 		id = organization.getGuid();
 		cls = organization.getCode();
 		text = organization.getName();
-		leaf = !(organization.listChildren().iterator().hasNext());
+		leaf = organization.isLeaf();
 		//orgLevel = organization.getOrganizationLevel().getId();
 	}
 

@@ -1,7 +1,7 @@
 Ext.define('Eway.view.field.device.DeviceAtmType', {
 	extend : 'Ext.form.field.ComboBox',
 	alias : 'widget.field_device_deviceatmtype',
-	fieldLabel : Eway.locale.machine.atmType.title,
+	fieldLabel : EwayLocale.machine.atmType.title,
 	name : 'devTypeId',
 	hiddenName : 'devTypeId',
 	store : 'machine.DeviceAtmType',
@@ -9,7 +9,7 @@ Ext.define('Eway.view.field.device.DeviceAtmType', {
 	displayField : 'name',
 	queryMode : 'local',
 	editable : false,
-	emptyText : Eway.locale.combox.select,
+	emptyText : EwayLocale.combox.select,
 	listeners : {
 		beforerender : function() {
 			this.store.load({

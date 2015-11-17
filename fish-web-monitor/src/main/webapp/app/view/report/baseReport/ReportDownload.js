@@ -15,7 +15,7 @@ Ext.define('Eway.view.report.baseReport.ReportDownload', {
 			} ],
 			tbar : [ '->', {
 				xtype : 'button',
-				text : Eway.locale.button.search,
+				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}/*
@@ -23,12 +23,12 @@ Ext.define('Eway.view.report.baseReport.ReportDownload', {
 				 * action : 'exportHtml' }
 				 */, {
 				xtype : 'button',
-				text : Eway.locale.button.exportXLS,
+				text : EwayLocale.button.exportXLS,
 				glyph : 0xf1c3,
 				action : 'exportXls'
 			}, {
 				xtype : 'button',
-				text : Eway.locale.button.exportPDF,
+				text : EwayLocale.button.exportPDF,
 				glyph : 0xf1c1,
 				action : 'exportPdf'
 			} ]

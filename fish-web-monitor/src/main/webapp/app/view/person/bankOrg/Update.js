@@ -5,7 +5,7 @@ Ext.define('Eway.view.person.bankOrg.Update', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.bank_organization_update',
 
-	title: Eway.locale.person.bankOrg.updateBankTitle,
+	title: EwayLocale.person.bankOrg.updateBankTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -29,20 +29,20 @@ Ext.define('Eway.view.person.bankOrg.Update', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.bankOrg.code,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.person.bankOrg.code,
 					xtype: 'field.code',
 					allowBlank: false,
 					regex: /^[a-zA-Z0-9][a-zA-Z0-9-_\.]{0,19}$/,
-					regexText:Eway.locale.vtype.bankOrgCode
+					regexText:EwayLocale.vtype.bankOrgCode
 				}, {
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.bankOrg.name,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.person.bankOrg.name,
 					xtype: 'field.name',
 					maxLength : 40,
 					allowBlank: false
 				},{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.person.bankOrg.upgradeOrg,
-					emptyText: Eway.locale.combox.select,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.person.bankOrg.upgradeOrg,
+					emptyText: EwayLocale.combox.select,
 					allowBlank: false,
 					editable : false,
 					name : 'parent',
@@ -56,41 +56,41 @@ Ext.define('Eway.view.person.bankOrg.Update', {
 				},{
 					xtype : 'field.organizationLevel',
 					name:'orgLevel',
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.person.bankOrg.orgLevel,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.person.bankOrg.orgLevel,
 					editable : false,
 					store:'person.organization.OrganizationLevelDict',
 					allowBlank:false
 				},{
 					xtype:'textfield',
-					fieldLabel : Eway.locale.person.bankOrg.address,
+					fieldLabel : EwayLocale.person.bankOrg.address,
 					maxLength : 60,
 					allowBlank: true,
 					name :'address'
 				},{
 					xtype:'textfield',
-					fieldLabel:Eway.locale.person.bankOrg.zip,
+					fieldLabel:EwayLocale.person.bankOrg.zip,
 					allowBlank: true,
 					name :'zip',
 					regex: /^[0-9]{6}$/,
-					regexText:Eway.locale.vtype.zip
+					regexText:EwayLocale.vtype.zip
 				},{
 					xtype : 'textarea',
 					name : 'description',
-					fieldLabel : Eway.locale.person.bankOrg.description,
+					fieldLabel : EwayLocale.person.bankOrg.description,
 					maxLength :40,
 					autoScroll : true,
 					allowBlank : true
 				}],
 				buttonAlign : 'center',
 				buttons: [{
-					text: Eway.locale.button.confirm,
+					text: EwayLocale.button.confirm,
 					action: 'update'
 				}, {
-					text: Eway.locale.button.reset,
+					text: EwayLocale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: Eway.locale.button.cancle,
+					text: EwayLocale.button.cancle,
 					handler: this.onOver
 				}]
 			}

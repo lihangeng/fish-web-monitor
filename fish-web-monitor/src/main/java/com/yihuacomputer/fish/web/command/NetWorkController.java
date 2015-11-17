@@ -44,7 +44,7 @@ public class NetWorkController {
         ModelMap result = new ModelMap();
         try {
             String url = MonitorCfg.getHttpUrl(ip) + "/ctr/network";
-            NetWorkForm netWork = (NetWorkForm) HttpProxy.httpGet(url, NetWorkForm.class);
+            NetWorkForm netWork = (NetWorkForm) HttpProxy.httpGet(url, NetWorkForm.class, 5000);
             result.addAttribute(FishConstant.SUCCESS, true);
             String conenctRate = String.format("%,d", netWork.getConenctRate() / 1000000);
             String receivedByte = String.format("%,d", netWork.getReceivedByte());
@@ -82,7 +82,7 @@ public class NetWorkController {
             bwf.setDesPath(null); // 设置为null,默认选择ATM的临时文件夹
             bwf.setSrcPath(FishCfg.getTempDir());
 
-            BandWidthForm responseBwf = (BandWidthForm) HttpProxy.httpPost(url, bwf, BandWidthForm.class);
+            BandWidthForm responseBwf = (BandWidthForm) HttpProxy.httpPost(url, bwf, BandWidthForm.class, 5000);
 
 
             double d = testFile.length() * 1.0 / 1024;

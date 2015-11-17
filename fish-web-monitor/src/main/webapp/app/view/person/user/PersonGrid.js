@@ -12,11 +12,11 @@ Ext.define('Eway.view.person.user.PersonGrid', {
 			store : store,
 			initRegion : true,
 			tbar : [ '->', {
-				text : Eway.locale.button.search,
+				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'queryPerson'
 			}, {
-				text : Eway.locale.button.choose,
+				text : EwayLocale.button.choose,
 				action : 'select'
 			} ],
 			viewConfig : {
@@ -24,43 +24,43 @@ Ext.define('Eway.view.person.user.PersonGrid', {
 				stripeRows : true
 			},
 			columns : [ {
-				header : Eway.locale.commen.name,
+				header : EwayLocale.commen.name,
 				dataIndex : 'name',
 				width : 80
 			}, {
-				header : Eway.locale.commen.personJobName,
+				header : EwayLocale.commen.personJobName,
 				dataIndex : 'personJobName',
 				width : 100
 			}, {
-				header : Eway.locale.commen.gender,
+				header : EwayLocale.commen.gender,
 				dataIndex : 'gender',
 				width : 80,
 				renderer : function(value, metadata, record) {
 					if (value == "MALE") {
-						return Eway.locale.commen.comboxGender.male;
+						return EwayLocale.commen.comboxGender.male;
 					} else if (value == "FEMALE") {
-						return Eway.locale.commen.comboxGender.female;
+						return EwayLocale.commen.comboxGender.female;
 					} else {
-						return Eway.locale.commen.comboxGender.know;
+						return EwayLocale.commen.comboxGender.know;
 					}
 				}
 			}, {
-				header : Eway.locale.commen.birthday,
+				header : EwayLocale.commen.birthday,
 				dataIndex : 'birthday',
 				xtype : 'datecolumn',
 				format : 'Y-m-d'
 			}, {
-				header : Eway.locale.commen.mobile,
+				header : EwayLocale.commen.mobile,
 				dataIndex : 'mobile'
 			}, {
-				header : Eway.locale.commen.phone,
+				header : EwayLocale.commen.phone,
 				dataIndex : 'phone'
 			}, {
-				header : Eway.locale.commen.email,
+				header : EwayLocale.commen.email,
 				dataIndex : 'email',
 				width : 130
 			}, {
-				header : Eway.locale.person.bankPer.organizationName,
+				header : EwayLocale.person.bankPer.organizationName,
 				dataIndex : 'organizationName',
 				width : 130
 			}, {
@@ -68,18 +68,18 @@ Ext.define('Eway.view.person.user.PersonGrid', {
 				dataIndex : 'ID',
 				hidden : true
 			}, {
-				header : Eway.locale.commen.state,
+				header : EwayLocale.commen.state,
 				dataIndex : 'state',
 				width : 60,
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return Eway.locale.commen.comboxStatus.onJob;
+						return EwayLocale.commen.comboxStatus.onJob;
 					} else if (value == 2) {
-						return Eway.locale.commen.comboxStatus.onAdjust;
+						return EwayLocale.commen.comboxStatus.onAdjust;
 					} else if (value == 3) {
-						return Eway.locale.commen.comboxStatus.onVacation;
+						return EwayLocale.commen.comboxStatus.onVacation;
 					} else if (value == 0) {
-						return Eway.locale.commen.comboxStatus.other;
+						return EwayLocale.commen.comboxStatus.other;
 					}
 				}
 			} ],

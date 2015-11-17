@@ -20,16 +20,16 @@ Ext.define('Eway.view.monitor.business.BlackListCardFilterForm', {
 	        				items : [{
 	        					xtype : 'field.monitor.CardNo',
 	        					labelAlign : 'right',
-	        					fieldLabel : Eway.locale.monitor.business.transaction.card,
+	        					fieldLabel : EwayLocale.monitor.business.transaction.card,
 	        					regex: /^[0-9]{13,19}$/,
-								regexText:Eway.locale.tip.cardNo
+								regexText:EwayLocale.tip.cardNo
 	        				}]
 	        			}, {
 	        				columnWidth : .3,
 	        				items : [{
 	        					xtype : 'field.monitor.UserName',
 	        					labelAlign : 'right',
-	        					fieldLabel : Eway.locale.monitor.business.transaction.userName,
+	        					fieldLabel : EwayLocale.monitor.business.transaction.userName,
 	        					maxLength : 20
 	        				}]
 	        			}, {
@@ -38,7 +38,7 @@ Ext.define('Eway.view.monitor.business.BlackListCardFilterForm', {
 	        					xtype : 'textfield',
 	        					name :'organization',
 	        					labelAlign : 'right',
-	        					fieldLabel : Eway.locale.monitor.business.blackList.cardBank,
+	        					fieldLabel : EwayLocale.monitor.business.blackList.cardBank,
 	        					maxLength : 60
 	        				}]
 	        			}]

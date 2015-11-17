@@ -5,7 +5,7 @@ Ext.define('Eway.view.person.bankOrg.Add', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.bank_organization_add',
 
-	title: Eway.locale.person.bankOrg.addBankOrgTitle,
+	title: EwayLocale.person.bankOrg.addBankOrgTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -29,20 +29,20 @@ Ext.define('Eway.view.person.bankOrg.Add', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.bankOrg.code,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.person.bankOrg.code,
 					xtype: 'field.code',
 					regex: /^[a-zA-Z0-9][a-zA-Z0-9-_\.]{0,19}$/,
-					regexText: Eway.locale.vtype.bankOrgCode,
+					regexText: EwayLocale.vtype.bankOrgCode,
 					allowBlank: false
 				}, {
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.bankOrg.name,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.person.bankOrg.name,
 					xtype: 'field.name',
 					maxLength : 40,
 					allowBlank: false
 				},{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.bankOrg.upgradeOrg,
-					emptyText: Eway.locale.combox.select,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.person.bankOrg.upgradeOrg,
+					emptyText: EwayLocale.combox.select,
 					editable : false,
 					allowBlank: false,
 					name : 'parent',
@@ -58,29 +58,29 @@ Ext.define('Eway.view.person.bankOrg.Add', {
 					name:'orgLevel',
 					store:'person.organization.OrganizationLevelDict',
 					editable : false,
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.person.bankOrg.orgLevel,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.person.bankOrg.orgLevel,
 					allowBlank:false,
 					value:0
 				},{
 					xtype:'textfield',
-					fieldLabel : Eway.locale.person.bankOrg.address,
+					fieldLabel : EwayLocale.person.bankOrg.address,
 					maxLength : 60,
 					allowBlank: true,
 					name :'address'
 				},{
 					xtype:'textfield',
-					fieldLabel: Eway.locale.person.bankOrg.zip,
+					fieldLabel: EwayLocale.person.bankOrg.zip,
 					allowBlank: true,
 					name :'zip',
 					regex: /^[\d]{6}$/,
-					regexText: Eway.locale.vtype.zip,
-			        hideTrigger: true,
+					regexText: EwayLocale.vtype.zip,
+			        hideTrigger: false,
 			        keyNavEnabled: false,
 			        mouseWheelEnabled: false
 				},{
 					xtype : 'textarea',
 					name : 'description',
-					fieldLabel : Eway.locale.person.bankOrg.description,
+					fieldLabel : EwayLocale.person.bankOrg.description,
 					autoScroll : true,
 					maxLength :40,
 					allowBlank : true
@@ -88,14 +88,14 @@ Ext.define('Eway.view.person.bankOrg.Add', {
 				buttonAlign : 'center',
 				buttons: [{
 					xtype : 'button',
-					text: Eway.locale.button.confirm,
+					text: EwayLocale.button.confirm,
 					action: 'add'
 				}, {
-					text: Eway.locale.button.reset,
+					text: EwayLocale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: Eway.locale.button.cancle,
+					text: EwayLocale.button.cancle,
 					handler: this.onOver
 				}]
 			}

@@ -15,7 +15,7 @@ Ext.define('Eway.view.atmLog.AtmLogInfoFilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype : 'datefield',
-					fieldLabel : Eway.locale.atmLog.logDate,
+					fieldLabel : EwayLocale.atmLog.logDate,
 					name : 'backupDate',
 					editable : false,
 					format : 'Y-m-d'
@@ -29,9 +29,9 @@ Ext.define('Eway.view.atmLog.AtmLogInfoFilterForm',{
 					name : 'orgId'
 				},{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : Eway.locale.commen.orgNameBelongs,
+					fieldLabel : EwayLocale.commen.orgNameBelongs,
 					labelAlign : 'right',
-					emptyText : Eway.locale.combox.select,
+					emptyText : EwayLocale.combox.select,
 					name : 'orgName',
 					hiddenValue : 'orgId',
 					editable : false,

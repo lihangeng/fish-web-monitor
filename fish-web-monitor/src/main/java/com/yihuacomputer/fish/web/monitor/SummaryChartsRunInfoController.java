@@ -106,16 +106,16 @@ public class SummaryChartsRunInfoController {
         List<Object> allList = xfsChartService.getAllDeviceList(filter);
         List<Object> healthyList = xfsChartService.getDeviceSummaryRunInfo(filter);
         ChartFormInfo healthyCfi = new ChartFormInfo();
-        healthyCfi.setDisplayName(getEnumI18n(DeviceStatus.Healthy.getText()));
+        healthyCfi.setDisplayName(getEnumI18n(DeviceStatus.Healthy.getText())+":"+healthyList.size());
         healthyCfi.setFilterStr(DeviceStatus.Healthy.name());
         healthyCfi.setColor(DeviceStatus.Healthy.getColor());
         healthyCfi.setNumberInfo(healthyList.size());
         list.add(healthyCfi);
         ChartFormInfo otherCfi = new ChartFormInfo();
-        otherCfi.setDisplayName(getEnumI18n(DeviceStatus.Fatal.getText()));
         otherCfi.setFilterStr(DeviceStatus.Fatal.name());
         otherCfi.setColor(DeviceStatus.Fatal.getColor());
         otherCfi.setNumberInfo(allList.size()-healthyList.size());
+        otherCfi.setDisplayName(getEnumI18n(DeviceStatus.Fatal.getText())+":"+otherCfi.getNumberInfo());
         list.add(otherCfi);
         model.put(FishConstant.DATA, list);
         model.put(FishConstant.SUCCESS, true);
@@ -137,7 +137,7 @@ public class SummaryChartsRunInfoController {
             ChartFormInfo cfi = new ChartFormInfo();
             int number = Integer.parseInt(String.valueOf(result[0]));
             RunStatus status = (RunStatus)result[1];
-            cfi.setDisplayName(getEnumI18n(status.getText()));
+            cfi.setDisplayName(getEnumI18n(status.getText())+":"+number);
             cfi.setFilterStr(RunStatus.class.getSimpleName()+"."+status.name());
             cfi.setColor(status.getColor());
             cfi.setNumberInfo(number);
@@ -164,7 +164,7 @@ public class SummaryChartsRunInfoController {
             ChartFormInfo cfi = new ChartFormInfo();
             int number = Integer.parseInt(String.valueOf(result[0]));
             NetStatus status = (NetStatus)result[1];
-            cfi.setDisplayName(getEnumI18n(status.getText()));
+            cfi.setDisplayName(getEnumI18n(status.getText())+":"+number);
             cfi.setFilterStr(NetStatus.class.getSimpleName()+"."+status.name());
             cfi.setColor(status.getColor());
             cfi.setNumberInfo(number);
@@ -191,7 +191,7 @@ public class SummaryChartsRunInfoController {
             ChartFormInfo cfi = new ChartFormInfo();
             int number = Integer.parseInt(String.valueOf(result[0]));
             DeviceStatus status = (DeviceStatus)result[1];
-            cfi.setDisplayName(getEnumI18n(status.getText()));
+            cfi.setDisplayName(getEnumI18n(status.getText())+":"+number);
             cfi.setColor(status.getColor());
             cfi.setFilterStr(DeviceStatus.class.getSimpleName()+"."+status.name());
             cfi.setNumberInfo(number);
@@ -218,7 +218,7 @@ public class SummaryChartsRunInfoController {
             ChartFormInfo cfi = new ChartFormInfo();
             int number = Integer.parseInt(String.valueOf(result[0]));
             BoxStatus status = (BoxStatus)result[1];
-            cfi.setDisplayName(getEnumI18n(status.getText()));
+            cfi.setDisplayName(getEnumI18n(status.getText())+":"+number);
             cfi.setColor(status.getColor());
             cfi.setFilterStr(BoxStatus.class.getSimpleName()+"."+status.name());
             cfi.setNumberInfo(number);

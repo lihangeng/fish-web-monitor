@@ -15,25 +15,25 @@ Ext.define('Eway.view.atmLog.successAtmLogInfo.SuccessAtmLogInfoGrid',{
 				flex : 1,
 				hidden : true
 			},{
-				header : Eway.locale.commen.terminalId,
+				header : EwayLocale.commen.terminalId,
 				dataIndex : 'terminalId',
 				flex : 1
 			},{
-				header : Eway.locale.atmLog.logDate,
+				header : EwayLocale.atmLog.logDate,
 				dataIndex : 'dateTime',
 				flex : 1
 			},{
-				header : Eway.locale.atmLog.lastDoDate,
+				header : EwayLocale.atmLog.lastDoDate,
 				dataIndex : 'lastDoDate',
 				width : 160
 			},{
 				xtype:'actioncolumn',
 				flex : .5,
 				dataIndex : 'backupResult',
-				header: Eway.locale.agent.remote.screen.loading,
+				header: EwayLocale.agent.remote.screen.loading,
 				items : [{
 					icon : 'resources/images/down.gif',
-					tooltip: Eway.locale.agent.remote.screen.loading,
+					tooltip: EwayLocale.agent.remote.screen.loading,
 					getClass :'changeCursor',
 					handler : function(grid,rowIndex,colIndex){
 						var record = grid.getStore().getAt(rowIndex);
@@ -44,14 +44,14 @@ Ext.define('Eway.view.atmLog.successAtmLogInfo.SuccessAtmLogInfoGrid',{
 					scope : this
 				}]
 			},{
-				header : Eway.locale.atmLog.backupResult,
+				header : EwayLocale.atmLog.backupResult,
 				dataIndex : 'backupResult',
 				width : 100,
 				renderer : function(value,metaData,record,rowIndex,colIndex,store,view){
 					if(value == 'SUCCESS'){
-						return Eway.locale.tip.success;
+						return EwayLocale.tip.success;
 					}else{
-						return Eway.locale.tip.fail;
+						return EwayLocale.tip.fail;
 					}
 				}
 			}],
@@ -61,7 +61,7 @@ Ext.define('Eway.view.atmLog.successAtmLogInfo.SuccessAtmLogInfoGrid',{
 			}),
 			tbar : ['->',{
 				xtype : 'button',
-				text : Eway.locale.button.exported,
+				text : EwayLocale.button.exported,
 				glyph : 0xf1c3,
 				action : 'export'
 			}]

@@ -25,25 +25,25 @@ Ext.define('Eway.view.machine.atmBrand.Form',{
 				msgTarget : 'side'
 			},
 			items: [{
-					fieldLabel: '<font color="red">*</font> '+Eway.locale.machine.atmBrand.name,
+					fieldLabel: '<font color="red">*</font> '+EwayLocale.machine.atmBrand.name,
 					xtype : 'field_atmBrand_name',
 					maxLength : 20,
 					allowBlank: false
 			},{
-					fieldLabel: '<font color="red">*</font>'+ Eway.locale.machine.atmBrand.country,
+					fieldLabel: '<font color="red">*</font>'+ EwayLocale.machine.atmBrand.country,
 					xtype : 'field_atmBrand_country',
 					maxLength : 30,
 					allowBlank: false
 			},{
-					fieldLabel: '<font color="red">*</font>'+Eway.locale.machine.atmBrand.hotline1,
+					fieldLabel: '<font color="red">*</font>'+EwayLocale.machine.atmBrand.hotline1,
 					xtype : 'field_atmBrand_hotline1',
 					allowBlank: false,
 					regex:/(^[0-9]{3,4}[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^[0-9]{3,4}\-[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^\([0-9]{3,4}\)[0-9]{3,8}$)|(^0{0,1}13[0-9]{9}$)/,
-					regexText: Eway.locale.tip.phone
+					regexText: EwayLocale.tip.phone
 			},{
 					xtype : 'field_atmBrand_hotline2',
 					regex:/(^[0-9]{3,4}[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^[0-9]{3,4}\-[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^\([0-9]{3,4}\)[0-9]{3,8}$)|(^0{0,1}13[0-9]{9}$)/,
-					regexText: Eway.locale.tip.phone
+					regexText: EwayLocale.tip.phone
 			},{
 					xtype : 'field_atmBrand_address',
 					maxLength : 60,

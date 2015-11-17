@@ -3,14 +3,14 @@ Ext.define('Eway.view.version.statics.StaticsView', {
 			alias : 'widget.version_statics',
 
 			requires : ['Eway.view.version.statics.Downed'],
-			title : Eway.locale.statics.title,//'下发结果统计',
+			title : EwayLocale.statics.title,//'下发结果统计',
 			layout : 'border',
 
 			initComponent : function() {
 				Ext.apply(this, {
 							items : [{
 										region : 'west',
-										html : Eway.locale.statics.versionInfo//'版本信息'
+										html : EwayLocale.statics.versionInfo//'版本信息'
 									}, {
 										region : 'center',
 										xtype : 'tabpanel',

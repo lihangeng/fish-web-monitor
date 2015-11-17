@@ -3,7 +3,7 @@ Ext.define('Eway.view.index.RetainCardByDay', {
     xtype: 'retainCardByDay',
 
     title : {
-    	text: Eway.locale.index.retainCardTrendTitle,
+    	text: EwayLocale.index.retainCardTrendTitle,
     	height:24
     },
     
@@ -44,7 +44,7 @@ Ext.define('Eway.view.index.RetainCardByDay', {
             },
             sprites: [{
                 type: 'text',
-                text: Eway.locale.index.dailyFaultPic,
+                text: EwayLocale.index.dailyFaultPic,
                 fontSize: 10,
                 x: 230,
                 y: 485

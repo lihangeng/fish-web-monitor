@@ -12,11 +12,11 @@ Ext.define('Eway.view.operatingPlan.GridForDevice', {
 			store : store,
 			initRegion : true,
 			tbar : [ '->', {
-				text : Eway.locale.button.search,
+				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : Eway.locale.button.link,
+				text : EwayLocale.button.link,
 				glyph : 0xf0c1,
 				action : 'link'
 			} ],
@@ -25,46 +25,46 @@ Ext.define('Eway.view.operatingPlan.GridForDevice', {
 				stripeRows : true,
 				getRowClass: function(record, index) {
 					var planStateType = record.get('planStateType');
-					if(planStateType == Eway.locale.commen.comboxStatus.close||planStateType == Eway.locale.commen.comboxStatus.pastDue){
+					if(planStateType == EwayLocale.commen.comboxStatus.close||planStateType == EwayLocale.commen.comboxStatus.pastDue){
 						return 'user-online';
-					}else if(planStateType == Eway.locale.commen.comboxStatus.pastDueSoon){
+					}else if(planStateType == EwayLocale.commen.comboxStatus.pastDueSoon){
 						return 'user-yellow';
 					}
 				}
 			},
 			columns : [ {
-				header : Eway.locale.report.openplan.name,
+				header : EwayLocale.report.openplan.name,
 				width : 100,
 				dataIndex : 'name'
 			}, {
-				header : Eway.locale.report.openplan.state,
+				header : EwayLocale.report.openplan.state,
 				width : 100,
 				dataIndex : 'planType',
 				renderer : function(value, metadata, record) {
 					if (value == "DATE") {
-						return Eway.locale.report.openplan.date;
+						return EwayLocale.report.openplan.date;
 					} else if (value == "WEEK") {
-						return Eway.locale.report.openplan.week;
+						return EwayLocale.report.openplan.week;
 					}
 				}
 			}, {
-				header : Eway.locale.report.openplan.machineQuantity,
+				header : EwayLocale.report.openplan.machineQuantity,
 				width : 130,
 				dataIndex : 'deviceCount',
 			}, {
-				header : Eway.locale.report.openplan.state,
+				header : EwayLocale.report.openplan.state,
 				width : 130,
 				dataIndex : 'planStateType',
 			}, {
-				header : Eway.locale.report.openplan.openDate,
+				header : EwayLocale.report.openplan.openDate,
 				width : 120,
 				dataIndex : 'startDate'
 			}, {
-				header : Eway.locale.report.openplan.closeDate,
+				header : EwayLocale.report.openplan.closeDate,
 				width : 120,
 				dataIndex : 'endDate'
 			}, {
-				header : Eway.locale.report.openplan.createDateTime,
+				header : EwayLocale.report.openplan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 160,
 				fiex : 1

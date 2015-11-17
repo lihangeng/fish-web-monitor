@@ -12,16 +12,16 @@ Ext.define('Eway.view.machine.device.person.TmGrid', {
 			autoScroll: true,
 			height: 200,
 			columns : [ Ext.create('Ext.grid.RowNumberer'), {
-				header : Eway.locale.machine.device.name,
+				header : EwayLocale.machine.device.name,
 				dataIndex : 'name'
 			}, {
-				header : Eway.locale.machine.device.mobile,
+				header : EwayLocale.machine.device.mobile,
 				dataIndex : 'mobile'
 			}, {
-				header : Eway.locale.machine.device.phone,
+				header : EwayLocale.machine.device.phone,
 				dataIndex : 'phone'
 			}, {
-				header : Eway.locale.machine.device.email,
+				header : EwayLocale.machine.device.email,
 				width : 200,
 				dataIndex : 'email'
 			} ]

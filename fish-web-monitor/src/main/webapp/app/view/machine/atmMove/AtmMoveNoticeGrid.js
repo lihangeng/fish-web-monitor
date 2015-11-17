@@ -14,11 +14,11 @@ Ext.define('Eway.view.machine.atmMove.AtmMoveNoticeGrid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-				text: Eway.locale.button.search,
+				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			}, {
-				text: Eway.locale.button.remove,
+				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'moveDel',
@@ -27,43 +27,43 @@ Ext.define('Eway.view.machine.atmMove.AtmMoveNoticeGrid', {
 				}
 			}],
 			columns : [{
-				header : Eway.locale.machine.atmMove.terminalId,
+				header : EwayLocale.machine.atmMove.terminalId,
 				dataIndex : 'terminalId',
 				width : 100
 			}, {
-				header : Eway.locale.machine.atmMove.address,
+				header : EwayLocale.machine.atmMove.address,
 				dataIndex : 'address',
 				width : 150
 			}, {
-				header : Eway.locale.machine.atmMove.targetAddress,
+				header : EwayLocale.machine.atmMove.targetAddress,
 				dataIndex : 'targetAddress',
 				width : 150
 			}, {
-				header : Eway.locale.machine.atmMove.orgName,
+				header : EwayLocale.machine.atmMove.orgName,
 				dataIndex : 'orgName',
 				width : 100
 			}, {
-				header : Eway.locale.machine.atmMove.destPerson,
+				header : EwayLocale.machine.atmMove.destPerson,
 				dataIndex : 'destPerson',
 				width : 100
 			}, {
-				header : Eway.locale.machine.atmMove.targetOrganization,
+				header : EwayLocale.machine.atmMove.targetOrganization,
 				dataIndex : 'targetOrganization',
 				width : 100
 			}, {
-				header : Eway.locale.machine.atmMove.targetPerson,
+				header : EwayLocale.machine.atmMove.targetPerson,
 				dataIndex : 'targetPerson',
 				width : 100
 			}, {
-				header : Eway.locale.machine.atmMove.responsibility,
+				header : EwayLocale.machine.atmMove.responsibility,
 				dataIndex : 'responsibility',
 				width : 100
 			}, {
-				header : Eway.locale.machine.atmMove.date,
+				header : EwayLocale.machine.atmMove.date,
 				dataIndex : 'date',
 				width : 100
 			}, {
-				header : Eway.locale.machine.atmMove.notice,
+				header : EwayLocale.machine.atmMove.notice,
 				dataIndex : 'notice',
 				width : 150
 			}],

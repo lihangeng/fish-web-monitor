@@ -13,34 +13,34 @@ Ext.define('Eway.view.version.distribute.VersionStatusDetailGrid', {
 		Ext.apply(this, {
 			store : store,
 			columns : [{
-				header : Eway.locale.refs.orgName,
+				header : EwayLocale.refs.orgName,
 				dataIndex : 'orgName'
 			},{
-				header : Eway.locale.refs.terminalId,//'设备编号',
+				header : EwayLocale.refs.terminalId,//'设备编号',
 				dataIndex : 'terminalId',
 				width: 100
 			},{
-				header:Eway.locale.refs.ip,//'IP地址',
+				header:EwayLocale.refs.ip,//'IP地址',
 				dataIndex:'ip',
 				width: 100
 			},{
-				header : Eway.locale.refs.devType,
+				header : EwayLocale.refs.devType,
 				dataIndex : 'deviceType',
 				width: 100
 			},{
-				header : Eway.locale.person.bankOrg.organizationType.serviceOrg,//'维护商', 
+				header : EwayLocale.person.bankOrg.organizationType.serviceOrg,//'维护商', 
 				dataIndex : 'vendor',
 				width: 100
 			},{
-				header : Eway.locale.version.task.versionNoBeforeUpdate,//'升级前版本号',
+				header : EwayLocale.version.task.versionNoBeforeUpdate,//'升级前版本号',
 				dataIndex : 'beforeUpdateVersionNo',
 				width: 200
 			},{
-				header : Eway.locale.version.task.versionNoAfterUpdate,//'目标版本号',
+				header : EwayLocale.version.task.versionNoAfterUpdate,//'目标版本号',
 				dataIndex : 'afterUpdateVersionNo',
 				width: 200
 			},{
-				header : Eway.locale.version.taskType,//'任务类型',
+				header : EwayLocale.version.taskType,//'任务类型',
 				dataIndex : 'updateType',
 				flex:1
 			}],

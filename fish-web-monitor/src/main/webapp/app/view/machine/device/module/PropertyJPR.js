@@ -4,7 +4,7 @@ Ext.define("Eway.view.machine.device.module.PropertyJPR", {
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-				title : Eway.locale.machine.device.JPRInfo,
+				title : EwayLocale.machine.device.JPRInfo,
 				titleAlign:'center',
 				layout : 'column',
 				items : [ {
@@ -18,14 +18,14 @@ Ext.define("Eway.view.machine.device.module.PropertyJPR", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.canEject,
+						fieldLabel : EwayLocale.machine.device.canEject,
 						name : 'canEject',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel :  Eway.locale.machine.device.canCapture,
+						fieldLabel :  EwayLocale.machine.device.canCapture,
 						name : 'canCapture'
 					}, {
-						fieldLabel : Eway.locale.machine.device.canStack,
+						fieldLabel : EwayLocale.machine.device.canStack,
 						name : 'canStack'
 					} ]
 				}]

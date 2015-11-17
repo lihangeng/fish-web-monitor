@@ -4,7 +4,7 @@ Ext.define('Eway.view.advert.field.TransResourceFieldSet', {
 
 	requires : [ 'Eway.store.Hour', 'Eway.store.Minute' ],
 	checkboxToggle : false,
-	title : Eway.locale.advert.transMoreTitle,//'添加交易页面广告',
+	title : EwayLocale.advert.transMoreTitle,//'添加交易页面广告',
 	collapsed : false,
 	collapsible : true,
 	defaults : {
@@ -43,7 +43,7 @@ Ext.define('Eway.view.advert.field.TransResourceFieldSet', {
 		   		border:false,
 		    	items:[{
 		    		xtype: 'fieldcontainer',
-			        fieldLabel: Eway.locale.advert.chooseMediaFile,//'请选择媒体文件',
+			        fieldLabel: EwayLocale.advert.chooseMediaFile,//'请选择媒体文件',
 			        combineErrors: true,
 			        msgTarget: 'under',
 			        defaults: {
@@ -54,23 +54,23 @@ Ext.define('Eway.view.advert.field.TransResourceFieldSet', {
 						buttonOnly:true,
 						name: 'file',
 				    	allowBlank: false,
-				    	blankText :Eway.locale.advert.uploadResourceBlank,//'请上传资源',
-						buttonText: Eway.locale.advert.uploadResource,//'上传资源...',
+				    	blankText :EwayLocale.advert.uploadResourceBlank,//'请上传资源',
+						buttonText: EwayLocale.advert.uploadResource,//'上传资源...',
 						regex : /\.(jpg|gif)$/i,
-						regexText:Eway.locale.advert.uploadRegText//'上传的资源格式不支持,只能上传.jpg、.avi格式的文件'
+						regexText:EwayLocale.advert.uploadRegText//'上传的资源格式不支持,只能上传.jpg、.avi格式的文件'
 			    	},{
 			        	xtype: 'displayfield',
 			        	name:'oFileName',
-			        	value :Eway.locale.advert.resourceFormatTips//'(仅支持.jpg、.avi格式的文件)'
+			        	value :EwayLocale.advert.resourceFormatTips//'(仅支持.jpg、.avi格式的文件)'
 		       	    },{
 				    	xtype:'hidden',
-				    	fieldLabel:Eway.locale.advert.resourceAlias,//'修改后的文件名',
+				    	fieldLabel:EwayLocale.advert.resourceAlias,//'修改后的文件名',
 				    	name:'content'
 				    }]
 		   	     }]
 		    },{
 		    	xtype: 'fieldcontainer',
-		        fieldLabel: Eway.locale.advert.playTime,//'广告播放时长',
+		        fieldLabel: EwayLocale.advert.playTime,//'广告播放时长',
 		        combineErrors: true,
 		        msgTarget: 'under',
 		        defaults: {
@@ -78,7 +78,7 @@ Ext.define('Eway.view.advert.field.TransResourceFieldSet', {
 		        },
 		        items:[{
 		        	xtype:'numberfield',
-		        	fieldLabel: Eway.locale.advert.times,//'时长',
+		        	fieldLabel: EwayLocale.advert.times,//'时长',
 		        	hideTrigger:true,
 		        	value: 10,
 		            minValue: 1,
@@ -87,14 +87,14 @@ Ext.define('Eway.view.advert.field.TransResourceFieldSet', {
 		            width:50
 		        },{
 		        	xtype: 'displayfield',
-		        	value :Eway.locale.advert.timesTips//'单位:秒，提示：广告播放时长请控制在60秒内'
+		        	value :EwayLocale.advert.timesTips//'单位:秒，提示：广告播放时长请控制在60秒内'
 		        }]
 		    }, {
 		    	xtype: 'container',
 		        msgTarget: 'under',
 		        items:[{
 			    	xtype:'datefield',
-			    	fieldLabel: Eway.locale.advert.beginDate,//'开始日期',
+			    	fieldLabel: EwayLocale.advert.beginDate,//'开始日期',
 			    	name:'beginDate',
 			    	disabled: false,
 			    	editable: true,
@@ -104,7 +104,7 @@ Ext.define('Eway.view.advert.field.TransResourceFieldSet', {
 			        width:250
 			    },{
 			    	xtype:'datefield',
-			    	fieldLabel: Eway.locale.advert.endDate,//'结束日期',
+			    	fieldLabel: EwayLocale.advert.endDate,//'结束日期',
 			    	labelAlign :'right',
 			    	name:'endDate',
 			    	disabled: false,
@@ -116,7 +116,7 @@ Ext.define('Eway.view.advert.field.TransResourceFieldSet', {
 			    }]
 		     },{
 		        xtype: 'fieldcontainer',
-		        fieldLabel: Eway.locale.advert.beginTime,//'开始时间',
+		        fieldLabel: EwayLocale.advert.beginTime,//'开始时间',
 		        combineErrors: true,
 		        defaults: {
 		            hideLabel: true
@@ -134,7 +134,7 @@ Ext.define('Eway.view.advert.field.TransResourceFieldSet', {
 		                name: 'hour',
 		                width:50
 		            },
-		            {xtype: 'displayfield', value: Eway.locale.advert.hourDisplay},//'时'},
+		            {xtype: 'displayfield', value: EwayLocale.advert.hourDisplay},//'时'},
 		            {
 		            	xtype: 'combobox',
 		            	fieldLabel: 'minute',
@@ -145,7 +145,7 @@ Ext.define('Eway.view.advert.field.TransResourceFieldSet', {
 		                value:'00',
 		                name:'minute',
 		                width:50
-		            }, {xtype: 'displayfield', value: Eway.locale.advert.minuteDisplay},//'分'},
+		            }, {xtype: 'displayfield', value: EwayLocale.advert.minuteDisplay},//'分'},
 		            {
 		            	xtype: 'combobox',
 		            	fieldLabel: 'second',
@@ -157,12 +157,12 @@ Ext.define('Eway.view.advert.field.TransResourceFieldSet', {
 		                name:'second',
 		                width:50
 		            },
-		            {xtype: 'displayfield', value: Eway.locale.advert.secondDisplay},//'秒'}
+		            {xtype: 'displayfield', value: EwayLocale.advert.secondDisplay},//'秒'}
 
 		        ]
 		    },{
 		        xtype: 'fieldcontainer',
-		        fieldLabel: Eway.locale.advert.endTime,//'结束时间',
+		        fieldLabel: EwayLocale.advert.endTime,//'结束时间',
 		        combineErrors: true,
 		        msgTarget: 'under',
 		        defaults: {
@@ -181,7 +181,7 @@ Ext.define('Eway.view.advert.field.TransResourceFieldSet', {
 		                name:'hour',
 		                width:50
 		            },
-		            {xtype: 'displayfield', value: Eway.locale.advert.hourDisplay},//'时'},
+		            {xtype: 'displayfield', value: EwayLocale.advert.hourDisplay},//'时'},
 		            {
 		            	xtype: 'combobox',
 		            	fieldLabel: 'minute',
@@ -192,7 +192,7 @@ Ext.define('Eway.view.advert.field.TransResourceFieldSet', {
 		                value:'59',
 		                name:'minute',
 		                width:50
-		            }, {xtype: 'displayfield', value: Eway.locale.advert.minuteDisplay},//'分'},
+		            }, {xtype: 'displayfield', value: EwayLocale.advert.minuteDisplay},//'分'},
 		            {
 		            	xtype: 'combobox',
 		            	fieldLabel: 'second',
@@ -204,7 +204,7 @@ Ext.define('Eway.view.advert.field.TransResourceFieldSet', {
 		                name:'second',
 		                width:50
 		            },
-		            {xtype: 'displayfield', value: Eway.locale.advert.secondDisplay},//'秒'}
+		            {xtype: 'displayfield', value: EwayLocale.advert.secondDisplay},//'秒'}
 		           ]
 		       }]
 		});

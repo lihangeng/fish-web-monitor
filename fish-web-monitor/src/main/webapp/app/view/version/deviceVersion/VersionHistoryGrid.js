@@ -12,31 +12,31 @@ Ext.define('Eway.view.version.deviceVersion.VersionHistoryGrid', {
 			store : store,
 			features: [groupingFeature],
 			columns : [{
-				header:Eway.locale.refs.terminalId,
+				header:EwayLocale.refs.terminalId,
 				dataIndex:'terminalId'
 			},{
-				header : Eway.locale.refs.ip,//'设备IP',
+				header : EwayLocale.refs.ip,//'设备IP',
 				dataIndex : 'ip'
 			},/*{
 				header : '软件分类',
 				dataIndex : 'versionType'
 			},*/{
-				header : Eway.locale.version.View.versionNo,//'版本号',
+				header : EwayLocale.version.View.versionNo,//'版本号',
 				dataIndex : 'versionNo'
 			},{
-				header: Eway.locale.version.View.versionFile,//'版本文件',
+				header: EwayLocale.version.View.versionFile,//'版本文件',
 				dataIndex:'fullName'
 			},{
-				header : Eway.locale.version.task.downloadUser,//'下发人',
+				header : EwayLocale.version.task.downloadUser,//'下发人',
 				dataIndex : 'userName'
 			},{
-				header : Eway.locale.version.task.downloadTime,//'下发时间',
+				header : EwayLocale.version.task.downloadTime,//'下发时间',
 				dataIndex : 'downTime'
 			},{
-				header: Eway.locale.version.task.downloadResult,//'下发结果',
+				header: EwayLocale.version.task.downloadResult,//'下发结果',
 				dataIndex : 'status'
 			},{
-				header: Eway.locale.version.View.remark,
+				header: EwayLocale.version.View.remark,
 				dataIndex : 'remark',
 				flex:1
 			}],

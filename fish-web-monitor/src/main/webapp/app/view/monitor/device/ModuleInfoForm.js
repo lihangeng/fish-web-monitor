@@ -10,12 +10,12 @@ Ext.define('Eway.view.monitor.device.ModuleInfoForm',{
 	initComponent : function(){
 		this.items = [{
 			xtype : 'textareafield',
-			fieldLabel : Eway.locale.commen.description,
+			fieldLabel : EwayLocale.commen.description,
 			anchor : '100%',
 			name : 'description'
 		},{
 			xtype : 'textareafield',
-			fieldLabel : Eway.locale.monitor.devMonitor.solution,
+			fieldLabel : EwayLocale.monitor.devMonitor.solution,
 			anchor : '100%',
 			name : 'solution'
 		}];

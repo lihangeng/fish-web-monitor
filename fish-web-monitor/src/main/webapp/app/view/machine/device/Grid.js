@@ -14,15 +14,15 @@ Ext.define('Eway.view.machine.device.Grid', {
 			initRegion : true,
 			store : store,
 			tbar : [ '->',{
-				text : Eway.locale.button.search,
+				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : Eway.locale.button.info,
+				text : EwayLocale.button.info,
 				glyph : 0xf129,
 				action : 'info'
 			}, {
-				text : Eway.locale.button.add,
+				text : EwayLocale.button.add,
 				glyph : 0xf067,
 				action : 'add',
 				code : 'deviceAdd',
@@ -30,7 +30,7 @@ Ext.define('Eway.view.machine.device.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},	{
-				text :Eway.locale.button.update,
+				text :EwayLocale.button.update,
 				glyph : 0xf040,
 				action : 'update',
 				code : 'deviceUpdate',
@@ -38,27 +38,36 @@ Ext.define('Eway.view.machine.device.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},	{
-				text : Eway.locale.button.adminBtn,
+				text : EwayLocale.button.adminBtn,
 				glyph : 0xf007,
 				action : 'admin',
 				code : 'devicePerson',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				},
 				menu : [ {
-				text : Eway.locale.button.personTM,
+				text : EwayLocale.button.personTM,
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				},
 				action : 'personTM'
 				}, {
-				text : Eway.locale.button.personM,
+				text : EwayLocale.button.personM,
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				},
 				action : 'personM'
 				} ]
 			},	{
-				text :Eway.locale.button.openPlan,
+				text :EwayLocale.button.openPlan,
 				glyph : 0xf133,
 				action : 'openPlan',
 				code : 'deviceOpenPlan',
-//				listeners:{
-//					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-//				}
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}, {
-				text : Eway.locale.button.remove,
+				text : EwayLocale.button.remove,
 				glyph : 0xf014,
 				action : 'remove',
 				code : 'deviceDel',
@@ -66,100 +75,100 @@ Ext.define('Eway.view.machine.device.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : Eway.locale.button.exported,
+				text : EwayLocale.button.exported,
 				glyph : 0xf1c3,
 				action : 'export'
 			} ],
 			columns : [ {
-				header : Eway.locale.machine.atmGroup.terminalId,
+				header : EwayLocale.machine.atmGroup.terminalId,
 				dataIndex : 'terminalId',
 				width : 100
 			}, {
-				header : Eway.locale.machine.atmGroup.ip,
+				header : EwayLocale.machine.atmGroup.ip,
 				dataIndex : 'ip',
 				width : 120
 			}, {
-				header : Eway.locale.machine.atmGroup.orgName,
+				header : EwayLocale.machine.atmGroup.orgName,
 				dataIndex : 'orgName',
 				width : 140
 			}, {
-				header : Eway.locale.machine.atmGroup.devTypeName,
+				header : EwayLocale.machine.atmGroup.devTypeName,
 				dataIndex : 'devTypeName',
 				width : 90
 			}, {
-				header : Eway.locale.machine.atmGroup.devVendorName,
+				header : EwayLocale.machine.atmGroup.devVendorName,
 				dataIndex : 'devVendorName',
 				width : 80
 			}, {
-				header : Eway.locale.machine.atmGroup.devCatalogName,
+				header : EwayLocale.machine.atmGroup.devCatalogName,
 				dataIndex : 'devCatalogName',
 				width : 80
 			}, {
-				header : Eway.locale.machine.atmGroup.status,
+				header : EwayLocale.machine.atmGroup.status,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return Eway.locale.commen.comboxDevStatus.upOpen;
+						return EwayLocale.commen.comboxDevStatus.upOpen;
 					}
 					if (value == 2) {
-						return Eway.locale.commen.comboxDevStatus.open;
+						return EwayLocale.commen.comboxDevStatus.open;
 					}
 					if (value == 3) {
-						return Eway.locale.commen.comboxDevStatus.stop;
+						return EwayLocale.commen.comboxDevStatus.stop;
 					}
 					if (value == 4) {
-						return Eway.locale.commen.comboxDevStatus.scrapped;
+						return EwayLocale.commen.comboxDevStatus.scrapped;
 					}
 				},
 				width : 80
 			}, {
-				header : Eway.locale.machine.device.onBankSignal,
+				header : EwayLocale.machine.device.onBankSignal,
 				dataIndex : 'awayFlag',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return Eway.locale.machine.device.inBank;
+						return EwayLocale.machine.device.inBank;
 					}
 					if (value == 2) {
-						return Eway.locale.machine.device.outBank;
+						return EwayLocale.machine.device.outBank;
 					}
 					if (value == 3) {
-						return Eway.locale.machine.device.clickBank;
+						return EwayLocale.machine.device.clickBank;
 					}
 				},
 				width : 120
 			}, {
-				header : Eway.locale.machine.atmGroup.devServiceName,
+				header : EwayLocale.machine.atmGroup.devServiceName,
 				dataIndex : 'devServiceName',
 				width : 100
 			}, {
-				header :  Eway.locale.machine.atmGroup.cashboxLimit,
+				header :  EwayLocale.machine.atmGroup.cashboxLimit,
 				dataIndex : 'cashboxLimit',
 				width : 100
 			}, {
-				header :  Eway.locale.machine.atmGroup.installDate,
+				header :  EwayLocale.machine.atmGroup.installDate,
 				dataIndex : 'installDate',
 				width : 90
 			}, {
-				header : Eway.locale.machine.device.installStyle,
+				header : EwayLocale.machine.device.installStyle,
 				dataIndex : 'setupType',
 				renderer:function(value, metadata, record){
 					if(value == 1){
-						return Eway.locale.machine.device.crossWall;
+						return EwayLocale.machine.device.crossWall;
 					}
 					if(value == 2){
-						return Eway.locale.machine.device.mainRoom;
+						return EwayLocale.machine.device.mainRoom;
 					}
 				},
 				width : 80
 			}, {
-				header : Eway.locale.machine.device.devAddress,
+				header : EwayLocale.machine.device.devAddress,
 				dataIndex : 'address',
 				width : 160
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : Eway.locale.tip.displayMessage
+				displayMsg : EwayLocale.tip.displayMessage
 			})
 		});
 

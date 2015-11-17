@@ -5,7 +5,7 @@ Ext.define('Eway.view.report.plan.Add', {
 	
 	requires: ['Eway.lib.Util'],
 	           
-	title: Eway.locale.report.plan.addPlan,
+	title: EwayLocale.report.plan.addPlan,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -23,13 +23,13 @@ Ext.define('Eway.view.report.plan.Add', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.name,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.report.plan.name,
 					xtype : 'textfield',
 					name : 'name',
 					maxLength : 30,
 					allowBlank : false
 				},{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.startDate,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.report.plan.startDate,
 					xtype : 'datefield',
 					name : 'startDate',
 					format : 'Y-m-d',
@@ -49,7 +49,7 @@ Ext.define('Eway.view.report.plan.Add', {
 						}
 					}
 				},{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.endDate,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.report.plan.endDate,
 					xtype : 'datefield',
 					name : 'endDate',
 					format : 'Y-m-d',
@@ -69,7 +69,7 @@ Ext.define('Eway.view.report.plan.Add', {
 					}
 				},{
 					xtype : 'textarea',
-				    fieldLabel : Eway.locale.commen.remark,
+				    fieldLabel : EwayLocale.commen.remark,
 				    name : 'note',
 				    autoScroll : true,
 					maxLength :30,
@@ -77,15 +77,15 @@ Ext.define('Eway.view.report.plan.Add', {
 				}],
 				buttons: [{
 					xtype : 'button',
-					text: Eway.locale.button.add,
+					text: EwayLocale.button.add,
 					iconCls :'sureBtn',
 					action: 'add'
 				}, {
-					text: Eway.locale.button.reset,
+					text: EwayLocale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: Eway.locale.button.back,
+					text: EwayLocale.button.back,
 					iconCls :'returnBtn',
 					handler: this.onOver
 				}]

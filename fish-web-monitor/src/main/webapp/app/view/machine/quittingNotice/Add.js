@@ -9,7 +9,7 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 	           'Eway.view.field.quittingNotice.DeviceCode',
 	           'Eway.lib.Util'],
 
-	title: Eway.locale.machine.quittingNotice.addCloseMsg,
+	title: EwayLocale.machine.quittingNotice.addCloseMsg,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -39,7 +39,7 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 		         */
 		        return true;
 		    },
-		    daterangeText: Eway.locale.machine.quittingNotice.dateRangeText
+		    daterangeText: EwayLocale.machine.quittingNotice.dateRangeText
         });
 		Ext.apply(this, {
 			items : {
@@ -54,14 +54,14 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.terminalId,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.atmGroup.terminalId,
 					xtype : 'field_deviceCode',
-					regexText : Eway.locale.vtype.bankOrgCode,
+					regexText : EwayLocale.vtype.bankOrgCode,
 					maxLength : 20,
-					blankText:Eway.locale.machine.quittingNotice.click,
+					blankText:EwayLocale.machine.quittingNotice.click,
 					allowBlank : false
 				},{
-					fieldLabel : '<font color="red">*</font>' + Eway.locale.machine.quittingNotice.stopTime,
+					fieldLabel : '<font color="red">*</font>' + EwayLocale.machine.quittingNotice.stopTime,
 					displayField : 'display',
 					valueField : 'value',
 					xtype : 'datefield',
@@ -86,7 +86,7 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 					}
 
 				},{
-					fieldLabel :  Eway.locale.machine.quittingNotice.openTime,
+					fieldLabel :  EwayLocale.machine.quittingNotice.openTime,
 					displayField : 'display',
 					valueField : 'value',
 					width : 400,
@@ -108,7 +108,7 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 						}
 					}
 
-				},{fieldLabel : '<font color="red">*</font>' + Eway.locale.machine.quittingNotice.currentStatus,
+				},{fieldLabel : '<font color="red">*</font>' + EwayLocale.machine.quittingNotice.currentStatus,
 					xtype : 'field_devStatus',
 					allowBlank : true,
 					value : 'DISABLED',
@@ -116,19 +116,19 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 					editable : false
 					
 				},{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.quittingNotice.closeType,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.quittingNotice.closeType,
 					xtype : 'field_stopType',
 					allowBlank : false,
 					value : '1',
 					editable : false
 				},{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.quittingNotice.responsibilityName,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.quittingNotice.responsibilityName,
 					xtype : 'textfield',
 					maxLength :20,
 					name : 'responsibilityName',
 					allowBlank : false
 				},{
-					fieldLabel : Eway.locale.machine.quittingNotice.stopReason,
+					fieldLabel : EwayLocale.machine.quittingNotice.stopReason,
 					xtype : 'textarea',
 					name : 'stopReason',
 					maxLength :60,
@@ -142,14 +142,14 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 				}],
 				buttonAlign : 'center',
 				buttons: [{
-					text: Eway.locale.button.confirm,
+					text: EwayLocale.button.confirm,
 					action: 'confirm'
 				}, {
-					text: Eway.locale.button.reset,
+					text: EwayLocale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: Eway.locale.button.back,
+					text: EwayLocale.button.back,
 					handler: this.onOver
 				}]
 			}

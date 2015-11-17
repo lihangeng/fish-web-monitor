@@ -166,7 +166,7 @@ public class DeviceService implements IDeviceService {
 	public List<IDevice> orgList(IFilter filter, long id) {
 
 		IOrganization org = orgService.get(String.valueOf(id));
-		filter.like("organization.orgFlag", "%" + org.getOrgFlag());
+		filter.like("organization.orgFlag",org.getOrgFlag()  + "%");
 
 		return list(filter);
 	}
@@ -182,7 +182,7 @@ public class DeviceService implements IDeviceService {
 		if (orgId != null && !"".equals(orgId)) {
 			hql.append(" and device.organization.orgFlag like ? ");
 			IOrganization org = orgService.get(orgId);
-			fixedFilters.add("%" + org.getOrgFlag());
+			fixedFilters.add(org.getOrgFlag() + "%");
 		}
 		hql.append(" order by device.id desc ");
 		return (IPageResult<IDevice>) dao.page(offset, limit, filter, hql.toString(), fixedFilters.toArray());
@@ -216,7 +216,7 @@ public class DeviceService implements IDeviceService {
 
 	@Override
 	public long getOpeningDeviceTotal(IOrganization org) {
-		Object object = dao.findUniqueByHql("select count(t.id) from Device t where t.status = ? and t.organization.orgFlag like ?", DevStatus.OPEN, "%" + org.getOrgFlag());
+		Object object = dao.findUniqueByHql("select count(t.id) from Device t where t.status = ? and t.organization.orgFlag like ?", DevStatus.OPEN,org.getOrgFlag()+  "%" );
 		return Long.parseLong(object.toString());
 	}
 

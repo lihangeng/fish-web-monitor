@@ -175,7 +175,7 @@ Ext.define('Eway.controller.permission.RoleEdit', {
 		record.set('description',data.description);
 		record.save({//save操作自动识别是增加还是修改操作，根据主键是否有值来判断的。
 	 		success: function(ed) {
-	 			Eway.alert(Eway.updateSuccess);
+	 			Eway.alert(EwayLocale.updateSuccess);
 	    		win.close();
 
 	    		this.queryRoleGrid();
@@ -219,7 +219,7 @@ Ext.define('Eway.controller.permission.RoleEdit', {
 		record.set('id', 0);
 		record.save({
 			 success: function(record,operation) {
-				 Eway.alert(Eway.addSuccess);
+				 Eway.alert(EwayLocale.addSuccess);
 				  win.close();
 				  this.queryRoleAdd();
 			 	},

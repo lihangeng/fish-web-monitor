@@ -5,8 +5,8 @@ Ext.define('Eway.store.operatingPlan.PlanState',{
 	
 	fields : ['value','display'],
 	data : [
-		{'value':'Normal', 'display':Eway.locale.commen.stateDict.normal},
-		{'value':'Stoped', 'display':Eway.locale.commen.comboxStatus.close}
+		{'value':'Normal', 'display':EwayLocale.commen.stateDict.normal},
+		{'value':'Stoped', 'display':EwayLocale.commen.comboxStatus.close}
 	]
 
 });

@@ -4,7 +4,7 @@ Ext.define('Eway.view.monitor.cashinit.View', {
 	requires : [ 'Eway.view.monitor.cashinit.Grid',
 			'Eway.view.monitor.cashinit.FilterForm' ],
 
-	title : Eway.locale.monitor.business.cashInit.titile,
+	title : EwayLocale.monitor.business.cashInit.titile,
 	layout : 'border',
 
 	initComponent : function() {

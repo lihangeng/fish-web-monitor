@@ -51,7 +51,7 @@ public class RestartController {
         RestartParamForm restartParamForm = new RestartParamForm();
         restartParamForm.setRestartType(restartType);
         try {
-            RestartForm restartForm = (RestartForm) HttpProxy.httpPost(url, restartParamForm, RestartForm.class);
+            RestartForm restartForm = (RestartForm) HttpProxy.httpPost(url, restartParamForm, RestartForm.class, 5000);
             String appRet = restartForm.getAppRet();
             result.put(FishConstant.SUCCESS, true);
             result.addAttribute("appRet", appRet);
@@ -83,7 +83,7 @@ public class RestartController {
         RestartParamForm restartParamForm = new RestartParamForm();
         restartParamForm.setRestartType(restartType);
         try {
-            RestartForm restartForm = (RestartForm) HttpProxy.httpPost(url, restartParamForm, RestartForm.class);
+            RestartForm restartForm = (RestartForm) HttpProxy.httpPost(url, restartParamForm, RestartForm.class, 5000);
             String appRet = restartForm.getAppRet();
             result.put(FishConstant.SUCCESS, true);
             result.addAttribute("appRet", appRet);

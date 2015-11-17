@@ -61,7 +61,7 @@ Ext.define('Eway.controller.machine.atmMove.AtmMove', {
 			store.setBaseParam('organizationID',ewayUser.getOrgId());
 			store.loadPage(1);
 		}else{
-			Eway.alert(Eway.locale.tip.searchOfNoLegal);
+			Eway.alert(EwayLocale.tip.searchOfNoLegal);
 		}
 	},
 
@@ -72,7 +72,7 @@ Ext.define('Eway.controller.machine.atmMove.AtmMove', {
 			store.setUrlParamsByObject(data);
 			store.loadPage(1);
 		}else{
-			Eway.alert(Eway.locale.tip.searchOfNoLegal);
+			Eway.alert(EwayLocale.tip.searchOfNoLegal);
 		}
 
 	},
@@ -89,7 +89,7 @@ Ext.define('Eway.controller.machine.atmMove.AtmMove', {
 			win.show();
 		}
 		else {
-			Eway.alert(Eway.locale.tip.selectMoveDev);
+			Eway.alert(EwayLocale.tip.selectMoveDev);
 		}
 
 	},
@@ -110,7 +110,7 @@ Ext.define('Eway.controller.machine.atmMove.AtmMove', {
 					moveDeviceGrid.getSelectionModel().clearSelections();
 					win.close();
 
-					Eway.alert(Eway.locale.tip.moveSuc);
+					Eway.alert(EwayLocale.tip.moveSuc);
 
 					me.getMoveDeviceGrid().getStore().loadPage(1);
 			    },
@@ -127,14 +127,14 @@ Ext.define('Eway.controller.machine.atmMove.AtmMove', {
 		var store = this.getAtmMoveNoticeGrid().getStore();
 		var quaryData = this.getNoticeFilterForm().getForm().getValues();//得到所有的查询条件的值 {code='n',name='',....}
 		if(sm.getCount() == 1) {
-			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
-					Eway.locale.tip.remove.confirm.info,
+			Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,
+					EwayLocale.tip.remove.confirm.info,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
 							record.destroy({
 								success: function(){
-									Eway.alert(Eway.deleteSuccess);
+									Eway.alert(EwayLocale.updateSuccess);
 									store.loadPage(1);
 									store.load();
 								},
@@ -147,7 +147,7 @@ Ext.define('Eway.controller.machine.atmMove.AtmMove', {
 					}, this);
 		}
 		else {
-			Eway.alert(Eway.choiceDeleteMsg);
+			Eway.alert(EwayLocale.choiceDeleteMsg);
 		}
 	}
 });

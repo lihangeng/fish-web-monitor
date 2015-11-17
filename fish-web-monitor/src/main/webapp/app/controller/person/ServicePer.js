@@ -103,7 +103,7 @@ Ext.define('Eway.controller.person.ServicePer', {
 		store.setBaseParam('type','1');
 	  	store.loadPage(1);
 	    var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	    actionTip.setText(Eway.locale.tip.servicePer.allSerPer);
+	    actionTip.setText(EwayLocale.tip.servicePer.allSerPer);
 	},
 
 
@@ -157,7 +157,7 @@ Ext.define('Eway.controller.person.ServicePer', {
 			});
 		}
 		else {
-			Eway.alert(Eway.locale.tip.bankPer.link.linkPerson);
+			Eway.alert(EwayLocale.tip.bankPer.link.linkPerson);
 		}
 	},
 
@@ -238,12 +238,12 @@ Ext.define('Eway.controller.person.ServicePer', {
 					});
 				},
 				failure: function(){
-					Eway.alert(Eway.locale.tip.bankPer.link.unLinkDevFail);
+					Eway.alert(EwayLocale.tip.bankPer.link.unLinkDevFail);
 				},
 				scope:this
 			});
 		}else{
-			Eway.alert(Eway.locale.tip.bankPer.link.unlinkDev);
+			Eway.alert(EwayLocale.tip.bankPer.link.unlinkDev);
 		}
 	},
 
@@ -286,12 +286,12 @@ Ext.define('Eway.controller.person.ServicePer', {
 					});
 				},
 				failure: function(){
-					Eway.alert(Eway.locale.tip.bankPer.link.unLinkPersonFail);
+					Eway.alert(EwayLocale.tip.bankPer.link.unLinkPersonFail);
 				},
 				scope:this
 			});
 		}else{
-			Eway.alert(Eway.locale.tip.bankPer.link.linkDev);
+			Eway.alert(EwayLocale.tip.bankPer.link.linkDev);
 		}
 	},
 
@@ -307,7 +307,7 @@ Ext.define('Eway.controller.person.ServicePer', {
 		 	store.setUrlParam(i,data[i])
 		 }
 		 var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	     actionTip.setText(Eway.locale.tip.bankPer.personEligible);
+	     actionTip.setText(EwayLocale.tip.bankPer.personEligible);
 		 store.loadPage(1);
 		 this.getEwayView().down('treepanel').getSelectionModel().select(0,true);//选择根节点
 	},
@@ -341,13 +341,13 @@ Ext.define('Eway.controller.person.ServicePer', {
 				store.setBaseParam('selectedNode',node.data.id);
 				store.loadPage(1);
             	var actionTip = this.getEwayView().down("tbtext[action=tip]");
-		     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+Eway.locale.tip.bankPer.downGradePer);
+		     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+EwayLocale.tip.bankPer.downGradePer);
 
 			}else{
 				store.setBaseParam('type','1');
 				store.loadPage(1);
             	var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	    		actionTip.setText(Eway.locale.person.servicePer.maintainInfo);
+	    		actionTip.setText(EwayLocale.person.servicePer.maintainInfo);
 			}
         }else{
         	var store = this.getEwayView().down('ser_person_grid').getStore();
@@ -355,7 +355,7 @@ Ext.define('Eway.controller.person.ServicePer', {
 			store.setBaseParam('selectedNode',node.data.id);
 			store.loadPage(1);
        		var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+Eway.locale.tip.bankPer.downGradePer);
+	     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+EwayLocale.tip.bankPer.downGradePer);
 	    }
     },
 
@@ -395,12 +395,12 @@ Ext.define('Eway.controller.person.ServicePer', {
 						}
 					});
 					var actionTip = ewayView.down("tbtext[action=tip]");
-	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+Eway.locale.tip.bankPer.downGradePer);
+	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+EwayLocale.tip.bankPer.downGradePer);
 					win.close();
-					Eway.alert(Eway.addSuccess);
+					Eway.alert(EwayLocale.addSuccess);
 			    },
 			    failure: function(record,operation){
-					Eway.alert(Eway.locale.tip.add.error + operation.getError());
+					Eway.alert(EwayLocale.tip.add.error + operation.getError());
 				}
 			});
 		}
@@ -420,7 +420,7 @@ Ext.define('Eway.controller.person.ServicePer', {
 			win.show();
 		}
 		else {
-			Eway.alert(Eway.choiceUpdateMsg);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 		}
 	},
 
@@ -455,7 +455,7 @@ Ext.define('Eway.controller.person.ServicePer', {
 			record.set("jobNum",data.jobNum);
 			record.save({
 				success : function(record,operation){
-					Eway.alert(Eway.updateSuccess);
+					Eway.alert(EwayLocale.updateSuccess);
 					ewayView.down('treepanel').getSelectionModel().select(0,true);//选择根节点
 					store.cleanUrlParam();
 					store.setBaseParam('organizationId',data.organizationId);
@@ -465,7 +465,7 @@ Ext.define('Eway.controller.person.ServicePer', {
 						}
 					});
 					var actionTip = ewayView.down("tbtext[action=tip]");
-	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+Eway.locale.tip.bankPer.personBelongs);
+	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+EwayLocale.tip.bankPer.personBelongs);
 					win.close();
 				},
 				failure: function(record,operation){
@@ -484,17 +484,18 @@ Ext.define('Eway.controller.person.ServicePer', {
 		var grid = this.getGrid();
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
-			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
-					Eway.locale.tip.remove.confirm.title,
+			Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,
+					EwayLocale.tip.remove.confirm.info,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Eway.alert(Eway.deleteSuccess);
+									Eway.alert(EwayLocale.updateSuccess);
 									grid.getStore().remove(record);
 								},
 								failure: function(record,operation){
+									record.dropped = false;
 									Eway.alert(operation.getError());
 								},
 								scope:this
@@ -503,7 +504,7 @@ Ext.define('Eway.controller.person.ServicePer', {
 					}, this);
 		}
 		else {
-			Eway.alert(Eway.choiceDeleteMsg);
+			Eway.alert(EwayLocale.choiceDeleteMsg);
 		}
 	}
 

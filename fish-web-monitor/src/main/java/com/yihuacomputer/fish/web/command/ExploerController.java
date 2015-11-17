@@ -69,8 +69,7 @@ public class ExploerController
     {
         ModelMap result = new ModelMap();
 		String url = MonitorCfg.getHttpUrl(request.getParameter("ip"))+"/ctr/computer";
-		System.out.println("url="+url);
-        MyComputerForm myComputerForm = (MyComputerForm) HttpProxy.httpGet(url,MyComputerForm.class);
+        MyComputerForm myComputerForm = (MyComputerForm) HttpProxy.httpGet(url,MyComputerForm.class, 5000);
         result.addAttribute(FishConstant.SUCCESS, true);
         result.addAttribute("data", DiskForm.convert(myComputerForm.getMyComputerList()));
         return result;
@@ -99,7 +98,7 @@ public class ExploerController
         }
         explorerParamForm.setPath(path);
 		String url = MonitorCfg.getHttpUrl(request.getParameter("ip"))+"/ctr/explorer";
-        ExplorerForm explorerForm = (ExplorerForm) HttpProxy.httpPost(url,explorerParamForm,ExplorerForm.class);
+        ExplorerForm explorerForm = (ExplorerForm) HttpProxy.httpPost(url,explorerParamForm,ExplorerForm.class, 5000);
         if(explorerForm.getRet().equals(AgentRet.RET00)){
             result.addAttribute(FishConstant.SUCCESS, true);
             result.addAttribute("data", FileSystemForm.convert(explorerForm.getFileSystemList()));
@@ -174,7 +173,6 @@ public class ExploerController
         }else{
         	requestPath = requestPath.substring(0, requestPath.lastIndexOf("/"));
         }
-        System.out.println("-------------------"+requestPath);
         HttpFileCfg httpFileCfg = new HttpFileCfg();
         String localName = requestName;
         String localPath = FishCfg.getTempDir() + System.getProperty("file.separator") + "remoteDown";

@@ -19,7 +19,7 @@ Ext.define('Eway.view.report.plan.PlanDevice', {
 	
 	initComponent: function() {
 		Ext.apply(this, {
-			title : Eway.locale.report.plan.perToDev,
+			title : EwayLocale.report.plan.perToDev,
 			items : [{
 				region: 'west',
 				width:'50%',

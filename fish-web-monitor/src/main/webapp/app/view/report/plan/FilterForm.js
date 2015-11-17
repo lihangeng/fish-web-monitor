@@ -12,7 +12,7 @@ Ext.define('Eway.view.report.plan.FilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.report.plan.name,
+					fieldLabel : EwayLocale.report.plan.name,
 					name : 'name'
 				}]
 			},{
@@ -20,7 +20,7 @@ Ext.define('Eway.view.report.plan.FilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype : 'datefield',
-					fieldLabel : Eway.locale.report.plan.startDate,
+					fieldLabel : EwayLocale.report.plan.startDate,
 					name : 'startDate',
 					format : 'Y-m-d'
 				}]
@@ -29,7 +29,7 @@ Ext.define('Eway.view.report.plan.FilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype : 'datefield',
-					fieldLabel : Eway.locale.report.plan.endDate,
+					fieldLabel : EwayLocale.report.plan.endDate,
 					name : 'endDate',
 					format : 'Y-m-d'
 				}]

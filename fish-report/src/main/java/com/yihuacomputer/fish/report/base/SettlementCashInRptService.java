@@ -59,7 +59,7 @@ public class SettlementCashInRptService implements ISettlementCashInRptService {
 
         if (orgFlag != null) {
             hql.append(" and o.orgFlag like ?");
-            valueObj.add("%" + orgFlag.getValue());
+            valueObj.add(orgFlag.getValue() + "%");
 
 //            upHql.append(" and o.orgFlag like ?");
 //            upValueObj.add("%" + orgFlag.getValue());

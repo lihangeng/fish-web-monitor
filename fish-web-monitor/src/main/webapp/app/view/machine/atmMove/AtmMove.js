@@ -27,19 +27,19 @@ Ext.define('Eway.view.machine.atmMove.AtmMove', {
 				items: [{
 					xtype : 'textfield',
 					name : 'terminalId',
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmMove.terminalId,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.atmMove.terminalId,
 					readOnly: true,
 					allowBlank : false
 				},{
 					xtype : 'textfield',
 					name : 'address',
-					fieldLabel : Eway.locale.machine.atmMove.address,
+					fieldLabel : EwayLocale.machine.atmMove.address,
 					readOnly: true,
 					allowBlank : true
 				},{
 					xtype : 'textfield',
 					name : 'targetAddress',
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmMove.targetAddress,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.atmMove.targetAddress,
 					maxLength : 50,
 					allowBlank : false
 				},{
@@ -49,9 +49,9 @@ Ext.define('Eway.view.machine.atmMove.AtmMove', {
 //					readOnly: true,
 //					allowBlank : false
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmMove.orgName,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.atmMove.orgName,
 					allowBlank : false,
-					emptyText : Eway.locale.combox.select,
+					emptyText : EwayLocale.combox.select,
 					name : 'orgName',
 					hiddenValue : 'orgId',
 					readOnly: true,
@@ -65,9 +65,9 @@ Ext.define('Eway.view.machine.atmMove.AtmMove', {
 					name : 'orgId'
 				}, {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.machine.atmMove.targetOrganization,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.machine.atmMove.targetOrganization,
 					allowBlank : false,
-					emptyText : Eway.locale.combox.select,
+					emptyText : EwayLocale.combox.select,
 					name : 'targetOrganization',
 					hiddenValue : 'targetOrganizationId',
 					editable : false,
@@ -82,13 +82,13 @@ Ext.define('Eway.view.machine.atmMove.AtmMove', {
 				}, {
 					xtype : 'textfield',
 					name : 'responsibility',
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmMove.responsibility,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.atmMove.responsibility,
 					maxLength :20,
 					msgTarget : 'side',
 					allowBlank : false
 				},{
 					xtype : 'field_date',
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmMove.date,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.atmMove.date,
 					allowBlank : false,
 					editable : false,
 					value : new Date(),
@@ -96,17 +96,17 @@ Ext.define('Eway.view.machine.atmMove.AtmMove', {
 				},{
 					xtype : 'textarea',
 					name : 'notice',
-					fieldLabel : Eway.locale.machine.atmMove.notice,
+					fieldLabel : EwayLocale.machine.atmMove.notice,
 					autoScroll : true,
 					maxLength : 50,
 					msgTarget : 'side'
 				}],
 				buttonAlign : 'center',
 				buttons: [{
-					text: Eway.locale.button.confirm,
+					text: EwayLocale.button.confirm,
 					action: 'confirm'
 				}, {
-					text: Eway.locale.button.cancle,
+					text: EwayLocale.button.cancle,
 					handler: this.onOver
 				}]
 			}

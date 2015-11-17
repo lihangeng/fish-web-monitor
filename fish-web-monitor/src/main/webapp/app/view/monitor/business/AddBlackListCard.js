@@ -2,7 +2,7 @@ Ext.define('Eway.view.monitor.business.AddBlackListCard', {
 			extend : 'Ext.window.Window',
 			alias : 'widget.business_AddBlackListCard',
 
-			title : Eway.locale.monitor.business.blackList.addBlack,
+			title : EwayLocale.monitor.business.blackList.addBlack,
 			modal : true,
 			resizable : false,
 			constrainHeader : true,
@@ -22,37 +22,37 @@ Ext.define('Eway.view.monitor.business.AddBlackListCard', {
 								},
 								items : [{
 											xtype:'textfield',
-											fieldLabel : '<font color="red">*</font> '+Eway.locale.monitor.business.transaction.card,
+											fieldLabel : '<font color="red">*</font> '+EwayLocale.monitor.business.transaction.card,
 											width : 300,
 											allowBlank: false, 
 											name :'cardNo',
 											regex: /^[0-9]{13,19}$/,
-											regexText:Eway.locale.tip.cardNo
+											regexText:EwayLocale.tip.cardNo
 										},{
 											xtype:'textfield',
-											fieldLabel : '<font color="red">*</font> '+Eway.locale.monitor.business.transaction.userName,
+											fieldLabel : '<font color="red">*</font> '+EwayLocale.monitor.business.transaction.userName,
 											width : 300,
 											allowBlank: false, 
 											regex : /^[^\s]+.*$/, // 不能以空格开头和全是空格
 											name :'userName',
 											maxLength : 20,
-											regexText:Eway.locale.tip.blankBegin
+											regexText:EwayLocale.tip.blankBegin
 										},{
 											xtype:'textfield',
-											fieldLabel : '<font color="red">*</font> '+Eway.locale.monitor.business.blackList.cardBank,
+											fieldLabel : '<font color="red">*</font> '+EwayLocale.monitor.business.blackList.cardBank,
 											width : 300,
 											allowBlank: false,
 											regex : /^[^\s]+.*$/, // 不能以空格开头和全是空格
 											name :'organization',
 											maxLength : 60,
-											regexText:Eway.locale.tip.blankBegin
+											regexText:EwayLocale.tip.blankBegin
 										}],
 										buttonAlign : 'center',
 										buttons : [{
-													text : Eway.locale.button.confirm,
+													text : EwayLocale.button.confirm,
 													action : 'add'
 												}, {
-													text : Eway.locale.button.cancle,
+													text : EwayLocale.button.cancle,
 													handler : this.onOver
 												}]
 							}

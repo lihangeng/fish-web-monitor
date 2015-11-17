@@ -9,11 +9,11 @@ Ext.define('Eway.view.machine.atmGroup.GroupGrid', {
 			initRegion : true,
 			store : store,
 			tbar : [ '->', {
-				text : Eway.locale.button.search,
+				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : Eway.locale.button.add,
+				text : EwayLocale.button.add,
 				glyph : 0xf067,
 				action : 'add',
 				code : 'atmGroupAdd',
@@ -21,7 +21,7 @@ Ext.define('Eway.view.machine.atmGroup.GroupGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : Eway.locale.button.update,
+				text : EwayLocale.button.update,
 				glyph : 0xf040,
 				action : 'update',
 				code : 'atmGroupUpdate',
@@ -29,7 +29,7 @@ Ext.define('Eway.view.machine.atmGroup.GroupGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : Eway.locale.button.remove,
+				text : EwayLocale.button.remove,
 				glyph : 0xf014,
 				action : 'remove',
 				code : 'atmGroupDel',
@@ -41,16 +41,16 @@ Ext.define('Eway.view.machine.atmGroup.GroupGrid', {
 				action : 'showDetail',
 				code : 'showDetail',
 				glyph : 0xf129,
-				text: Eway.locale.monitor.devMonitor.atmGroupTip,
+				text: EwayLocale.monitor.devMonitor.atmGroupTip,
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 		} ],
 			columns : [ {
-				header : Eway.locale.machine.atmGroup.groupName,
+				header : EwayLocale.machine.atmGroup.groupName,
 				dataIndex : 'name'
 			}, {
-				header : Eway.locale.machine.atmGroup.note,
+				header : EwayLocale.machine.atmGroup.note,
 				dataIndex : 'note',
 				flex : 1
 			} ],

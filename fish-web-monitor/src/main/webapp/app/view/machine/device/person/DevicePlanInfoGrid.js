@@ -15,50 +15,50 @@ Ext.define('Eway.view.machine.device.person.DevicePlanInfoGrid', {
 			autoScroll: true,
 			height: 200,
 			columns : [{
-				header : Eway.locale.machine.device.person.week,
+				header : EwayLocale.machine.device.person.week,
 				flex : 1,
 				dataIndex : 'week',
 				renderer: function(value,metadata,record){
 					if(value=="Mon"){
-	                 	 return Eway.locale.machine.device.person.Mon;
+	                 	 return EwayLocale.machine.device.person.Mon;
 	                }
 					else if(value=="Tues"){
-						 return Eway.locale.machine.device.person.Tues;
+						 return EwayLocale.machine.device.person.Tues;
 	                }
 					else if(value=="Wed"){
-						return Eway.locale.machine.device.person.Wed;
+						return EwayLocale.machine.device.person.Wed;
 					}
 					else if(value=="Thur"){
-						return Eway.locale.machine.device.person.Thur;
+						return EwayLocale.machine.device.person.Thur;
 					}
 					else if(value=="Fri"){
-						return Eway.locale.machine.device.person.Fri;
+						return EwayLocale.machine.device.person.Fri;
 					}
 					else if(value=="Sat"){
-						return Eway.locale.machine.device.person.Sat;
+						return EwayLocale.machine.device.person.Sat;
 					}
 					else if(value=="Sun"){
-						return Eway.locale.machine.device.person.Sun;
+						return EwayLocale.machine.device.person.Sun;
 					}
 				}
 			},{
-				header : Eway.locale.machine.device.person.openClose,
+				header : EwayLocale.machine.device.person.openClose,
 				flex : 1,
 				dataIndex : 'openClose',
 				renderer: function(value,metadata,record){
 					if(value=="Open"){
-	                 	 return Eway.locale.machine.device.person.Open;
+	                 	 return EwayLocale.machine.device.person.Open;
 	                }
 					else if(value=="Close"){
-						 return Eway.locale.machine.device.person.Close;
+						 return EwayLocale.machine.device.person.Close;
 	                }
 				}
 			},{
-				header :Eway.locale.commen.startDataTime,
+				header :EwayLocale.commen.startDataTime,
 				flex : 1,
 				dataIndex : 'startTime'
 			},{
-				header : Eway.locale.commen.endDataTime,
+				header : EwayLocale.commen.endDataTime,
 				flex : 1,
 				dataIndex : 'endTime'
 			}]

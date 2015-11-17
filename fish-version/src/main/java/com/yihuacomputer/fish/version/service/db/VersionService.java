@@ -424,7 +424,7 @@ public class VersionService implements IDomainVersionService {
 		Object versionType = filter.getValue("versionType");
 		Object orgFlag = filter.getValue("orgFlag");
 		hqlArgList.add(DevStatus.OPEN);
-		hqlArgList.add("%"+orgFlag);
+		hqlArgList.add(orgFlag+"%");
 		hqlArgList.add(versionType);
 		hqlSb.append(" group by version.id,version.versionNo order by version.versionStr desc");
 		List<Object> hqlResultList =  dao.findByHQL(hqlSb.toString(), hqlArgList.toArray());
@@ -458,7 +458,7 @@ public class VersionService implements IDomainVersionService {
 		Object orgFlag = filter.getValue("orgFlag");
 		hqlArgList.add(versionId);
 		hqlArgList.add(DevStatus.OPEN);
-		hqlArgList.add("%"+orgFlag);
+		hqlArgList.add(orgFlag+"%");
 		List<Object> hqlResultList =  dao.findByHQL(statusHql.toString(), hqlArgList.toArray());
 		List<VersionStatusDistribute> statusDistributeList = new ArrayList<VersionStatusDistribute>();
 		//有状态设备计数器
@@ -484,7 +484,7 @@ public class VersionService implements IDomainVersionService {
 //		append(" device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId  ");
 //		List<Object> hqlArgList1 = new ArrayList<Object>();
 //		hqlArgList1.add(Status.OPENING);
-//		hqlArgList1.add("%"+orgFlag);
+//		hqlArgList1.add(orgFlag+"%");
 //		hqlArgList1.add(versionId);
 //		long allDevice = dao.findUniqueByHql(allDeviceHql.toString(), hqlArgList1.toArray());
 //		VersionStatusDistribute versionStatusDistribute = new VersionStatusDistribute();
@@ -512,7 +512,7 @@ public class VersionService implements IDomainVersionService {
 		Object taskStatusObj = filter.getValue("taskStatus");
 		hqlArgList.add(versionId);
 		hqlArgList.add(DevStatus.OPEN);
-		hqlArgList.add("%"+orgFlag);
+		hqlArgList.add(orgFlag+"%");
 		TaskStatus taskStatus = TaskStatus.valueOf(String.valueOf(taskStatusObj));
 		hqlArgList.add(taskStatus);
 		@SuppressWarnings("unchecked")

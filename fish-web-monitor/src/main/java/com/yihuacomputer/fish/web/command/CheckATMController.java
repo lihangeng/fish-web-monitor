@@ -40,7 +40,7 @@ public class CheckATMController {
 			String url = MonitorCfg.getHttpUrl(request.getParameter("ip"))
 					+ "/ctr/check";
 			CheckInfoForm checkInfoForm = (CheckInfoForm) HttpProxy.httpGet(
-					url, CheckInfoForm.class);
+					url, CheckInfoForm.class, 5000);
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("data", checkInfoForm);
 		} catch (Exception e) {

@@ -43,7 +43,7 @@ public class DeviceUseCountRptService implements IDeviceUseCountRptService {
         
         if (orgFlag != null) {
             hql.append("and org.orgFlag like ? ");
-            valueObj.add("%" + orgFlag.getValue());
+            valueObj.add(orgFlag.getValue() + "%");
         }
         if (devTypeId != null) {
             hql.append("and device.devType.id = ? ");

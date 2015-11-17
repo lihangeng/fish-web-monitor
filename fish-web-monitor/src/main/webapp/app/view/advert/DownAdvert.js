@@ -6,7 +6,7 @@ Ext.define('Eway.view.advert.DownAdvert', {
 	            'Eway.view.version.download.MultiSelectableDeviceGrid',
 	            'Eway.view.version.download.LinkedDeviceGrid'],
 
-	title : Eway.locale.advert.downloadAdvertConfig,//'下发广告配置',
+	title : EwayLocale.advert.downloadAdvertConfig,//'下发广告配置',
 	modal : true,
 	resizable : true,
 	constrainHeader : true,
@@ -23,7 +23,7 @@ Ext.define('Eway.view.advert.DownAdvert', {
 				region : 'south',
 				buttonAlign:'center',
 				buttons :[{
-					text : Eway.locale.button.save,//'保存',
+					text : EwayLocale.button.save,//'保存',
 					action : 'confirm',
 					iconCls:'db-save'
 				}]
@@ -45,7 +45,7 @@ Ext.define('Eway.view.advert.DownAdvert', {
 				},
 				items : [{
 					xtype: 'textfield',
-					fieldLabel:Eway.locale.version.View.remark,
+					fieldLabel:EwayLocale.version.View.remark,
 					readOnly:true,
 					name :'jobName',
 					height : 40,
@@ -56,21 +56,21 @@ Ext.define('Eway.view.advert.DownAdvert', {
                     layout: 'hbox',
                     items: [{
     					xtype: 'hidden',
-    					fieldLabel : Eway.locale.version.downloadVersionId,//'下发版本ID',
+    					fieldLabel : EwayLocale.version.downloadVersionId,//'下发版本ID',
     					name: 'versionId'
     				},{
     					xtype: 'displayfield',
-    					fieldLabel : Eway.locale.advert.versionType,//'软件分类',
+    					fieldLabel : EwayLocale.advert.versionType,//'软件分类',
     					name: 'versionType',
     					width : 200
     				},{
     					xtype: 'displayfield',
-    					fieldLabel : Eway.locale.version.View.versionNo,//'版本号',
+    					fieldLabel : EwayLocale.version.View.versionNo,//'版本号',
     					name: 'versionNo',
     					width : 260
     				},{
     					xtype: 'displayfield',
-    					fieldLabel : Eway.locale.advert.advertVersionFile,//'版本文件',
+    					fieldLabel : EwayLocale.advert.advertVersionFile,//'版本文件',
     					name: 'serverPath'
     				}]
 				},{
@@ -81,7 +81,7 @@ Ext.define('Eway.view.advert.DownAdvert', {
                     layout: 'hbox',
                     items: [{
 //                    	xtype: 'combobox',
-//                    	fieldLabel: Eway.locale.advert.jobPriority,//'作业优先级',
+//                    	fieldLabel: EwayLocale.advert.jobPriority,//'作业优先级',
 //		                store: Ext.StoreMgr.lookup("version.JobPriority"),
 //		                queryMode: 'local',
 //		                valueField : 'value',
@@ -92,7 +92,7 @@ Ext.define('Eway.view.advert.DownAdvert', {
 //		                width : 200
 //		            },{
                     	xtype: 'combobox',
-                    	fieldLabel: Eway.locale.advert.jobType,//'作业类型',
+                    	fieldLabel: EwayLocale.advert.jobType,//'作业类型',
 		                store: Ext.StoreMgr.lookup("version.JobType"),
 		                queryMode: 'local',
 		                valueField : 'value',
@@ -103,7 +103,7 @@ Ext.define('Eway.view.advert.DownAdvert', {
 		                width : 245
 		            }, {
 			        	xtype:'datetimefield',
-			        	fieldLabel:Eway.locale.version.planTime,//'计划执行时间',
+			        	fieldLabel:EwayLocale.version.planTime,//'计划执行时间',
 			        	name:'planTime',
 			        	disabled: true,
 			        	editable: false,
@@ -114,13 +114,13 @@ Ext.define('Eway.view.advert.DownAdvert', {
 			            maxValue:Ext.Date.add(Ext.Date.parse(Ext.Date.format(new Date(), 'Y-m-d') + " 23:59:59","Y-m-d H:i:s"), Ext.Date.DAY, 7)
 					},{
 						 xtype: 'radiogroup',
-						 fieldLabel: Eway.locale.version.download.selectAllDevice,
+						 fieldLabel: EwayLocale.version.download.selectAllDevice,
 					        // Arrange radio buttons into two columns, distributed vertically
 					        columns: 2,
 					        vertical: true,
 					        items: [
-					            { boxLabel: Eway.locale.commen.yes, name: 'allDevice', inputValue: 'true' },
-					            { boxLabel: Eway.locale.commen.no, name: 'allDevice', inputValue: 'false', checked: true}
+					            { boxLabel: EwayLocale.commen.yes, name: 'allDevice', inputValue: 'true' },
+					            { boxLabel: EwayLocale.commen.no, name: 'allDevice', inputValue: 'false', checked: true}
 					        ]
 					}]
 				},{
@@ -134,12 +134,12 @@ Ext.define('Eway.view.advert.DownAdvert', {
 				padding: '1px 0px 0px 0px',
 				items : [{
 						xtype:'version_download_multiselectableDeviceGrid',
-						title: Eway.locale.version.selectableDevice,//'可以下发的设备',
+						title: EwayLocale.version.selectableDevice,//'可以下发的设备',
 						minHeight:260,
 				        flex : 1
 					},{
 						xtype: 'version_download_linkedDeviceGrid',
-						title: Eway.locale.version.linkedDevice,//'已选择的设备',
+						title: EwayLocale.version.linkedDevice,//'已选择的设备',
 						minHeight:260,
 				        flex : 1
 					}

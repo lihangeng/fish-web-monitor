@@ -4,7 +4,7 @@ Ext.define('Eway.view.version.download.Update', {
 	alias: 'widget.version_download_update',
 	
 	requires : ['Eway.view.version.field.VersionName', 'Eway.view.version.field.Desc'],
-	title: Eway.locale.version.download.updateTitle,//'修改版本下发信息',
+	title: EwayLocale.version.download.updateTitle,//'修改版本下发信息',
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -29,13 +29,13 @@ Ext.define('Eway.view.version.download.Update', {
 					xtype: 'field.desc'
 				}],
 				fbar: [{
-					text: Eway.locale.button.update,//'更改',
+					text: EwayLocale.button.update,//'更改',
 					action:'confirm'
 				}, {
-					text: Eway.locale.button.reset,//'重置',
+					text: EwayLocale.button.reset,//'重置',
 					handler: this.onReset
 				}, {
-					text: Eway.locale.button.back,//'返回',
+					text: EwayLocale.button.back,//'返回',
 					handler: this.onOver
 				}]
 			}

@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,11 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.IPersonService;
+import com.yihuacomputer.fish.api.person.OrganizationLevel;
 import com.yihuacomputer.fish.api.person.OrganizationState;
+import com.yihuacomputer.fish.api.person.OrganizationType;
 import com.yihuacomputer.fish.system.H2TestConfig;
+//import com.yihuacomputer.fish.system.MySQLTestConfig;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,7 +34,26 @@ public class OrganizationServiceTest extends BindSessionInTest2{
 
 	@Autowired
 	private IPersonService personService;
-
+	@Ignore
+	@Test
+	public void addTestData(){
+		IOrganization root = organizationService.get("1");
+		if(null==root){
+			return;
+		}
+		for(int i=39;i<=2000;i++){
+			IOrganization org = organizationService.make();
+			org.setAddress("地址"+i);
+			org.setCode("code"+i);
+			org.setName("name"+i);
+			org.setParent(root);
+			org.setOrganizationLevel(OrganizationLevel.BRANCH);
+			org.setOrganizationType(OrganizationType.BANK);
+			organizationService.add(org);
+		}
+	}
+	
+	@Ignore
 	@Test
 	public void testC(){
 
@@ -119,7 +142,7 @@ public class OrganizationServiceTest extends BindSessionInTest2{
 //		assertEquals(1,page.getTotal());
 
 	}
-	
+	@Ignore
 	@Test
 	public void testOrgCache(){
 		IOrganization root = organizationService.add("cache","cacheTest");

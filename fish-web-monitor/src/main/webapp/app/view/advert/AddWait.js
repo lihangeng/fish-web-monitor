@@ -5,7 +5,7 @@ Ext.define('Eway.view.advert.AddWait', {
 
 	requires : ['Eway.view.advert.WaitTab','Eway.view.advert.AdvertResourceConfigForm'],
 
-	title : Eway.locale.advert.addIdleTitle,
+	title : EwayLocale.advert.addIdleTitle,
 	modal : true,
 	resizable :  true,
 	constrainHeader : true,
@@ -25,13 +25,13 @@ Ext.define('Eway.view.advert.AddWait', {
 						dockedItems : [{
 						buttonAlign : 'center',
 						buttons : [{
-								text : Eway.locale.cases.confirm,
+								text : EwayLocale.cases.confirm,
 								action : 'confirm'
 							},{
-								text : Eway.locale.cases.cancel,
+								text : EwayLocale.cases.cancel,
 								handler : this.onOver
 							}, {
-					        	text : Eway.locale.advert.idleAdvertUpTipsInfo,
+					        	text : EwayLocale.advert.idleAdvertUpTipsInfo,
 					        	xtype:'tbtext'
 					        }]
 					}]
@@ -48,7 +48,7 @@ Ext.define('Eway.view.advert.AddWait', {
 						items : [{
 						 	xtype:'fieldset',
 				            checkboxToggle:false,
-				            title: Eway.locale.advert.advertBasicInfo,
+				            title: EwayLocale.advert.advertBasicInfo,
 				            defaultType: 'combobox',
 				            collapsed: false,
 				            layout: 'anchor',
@@ -58,16 +58,16 @@ Ext.define('Eway.view.advert.AddWait', {
 				            },
 				            items :[{
 				            	xtype: 'displayfield',
-				            	fieldLabel: Eway.locale.advert.type,
+				            	fieldLabel: EwayLocale.advert.type,
 				            	name : 'advertType',
-				            	value: Eway.locale.advert.idleAdvertInfo
+				            	value: EwayLocale.advert.idleAdvertInfo
 				            },{
 						    	xtype: 'container',
 						        msgTarget: 'under',
 						        layout:'hbox',
 						        defaultType: 'combobox',
 						        items:[{
-					                fieldLabel: Eway.locale.advert.downType,
+					                fieldLabel: EwayLocale.advert.downType,
 					                displayField: 'display',
 					                store: Ext.StoreMgr.lookup("advert.AdvertDownMethod"),
 					                queryMode: 'local',
@@ -77,7 +77,7 @@ Ext.define('Eway.view.advert.AddWait', {
 					                editable : false,
 					                forceSelection: true//强制选择一个,不起作用
 					            },{
-					                fieldLabel: Eway.locale.advert.validity,
+					                fieldLabel: EwayLocale.advert.validity,
 					                displayField: 'display',
 					                store: Ext.StoreMgr.lookup("advert.AdvertValidity"),
 					                queryMode: 'local',

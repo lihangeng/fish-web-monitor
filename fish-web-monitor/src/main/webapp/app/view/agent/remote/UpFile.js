@@ -3,7 +3,7 @@ Ext.define('Eway.view.agent.remote.UpFile', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.remote_upFile',
 
-	title : Eway.locale.agent.remote.uploadFile,
+	title : EwayLocale.agent.remote.uploadFile,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -24,26 +24,26 @@ Ext.define('Eway.view.agent.remote.UpFile', {
 				},
 				items : [{
 					xtype: 'filefield',
-					fieldLabel:Eway.locale.agent.remote.prepareFile,
-					emptyText:Eway.locale.agent.remote.choseUploadFile,
+					fieldLabel:EwayLocale.agent.remote.prepareFile,
+					emptyText:EwayLocale.agent.remote.choseUploadFile,
 					name: 'file',
-					waitMsg:Eway.locale.agent.remote.nowUploadFile,
+					waitMsg:EwayLocale.agent.remote.nowUploadFile,
 					allowBlank : false,
-					buttonText: Eway.locale.agent.remote.explorer
+					buttonText: EwayLocale.agent.remote.explorer
 				},{
 					xtype:'hidden',
 					hideLabel : true,
-					fieldLabel: Eway.locale.agent.remote.serverPath,
+					fieldLabel: EwayLocale.agent.remote.serverPath,
 					name:'serverPath'
 				} ],
 				buttons : [ {
-					text : Eway.locale.agent.remote.confirm,
+					text : EwayLocale.agent.remote.confirm,
 					action : 'confirm'
 				}, {
-					text : Eway.locale.agent.remote.reset,
+					text : EwayLocale.agent.remote.reset,
 					handler : this.onReset
 				}, {
-					text : Eway.locale.agent.remote.back,
+					text : EwayLocale.agent.remote.back,
 					handler : this.onOver
 				} ]
 			}

@@ -51,7 +51,7 @@ public class VersionAutoUpdateInfoController {
 		IFilter filter = getFilterByRequest(webRequest);
 		if(null==filter.getValue("orgFlag")){
 			UserSession usersession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
-			filter.eq("orgFlag", "%"+usersession.getOrgFlag());
+			filter.eq("orgFlag",usersession.getOrgFlag()+ "%");
 		}
 		IPageResult<AutoUpdateTaskForm> pageResult = taskService.pageAutoUpdateTask(start,limit,filter);
 		result.addAttribute(FishConstant.SUCCESS, true);
@@ -75,7 +75,7 @@ public class VersionAutoUpdateInfoController {
             if("orgId".equals(name)){
             	IOrganization org = orgService.get(value);
             	if(null!=org){
-            		filter.like("orgFlag", "%"+org.getOrgFlag());
+            		filter.like("orgFlag", org.getOrgFlag()+"%");
             	}
             }
             else if("versionType".equals(name)){

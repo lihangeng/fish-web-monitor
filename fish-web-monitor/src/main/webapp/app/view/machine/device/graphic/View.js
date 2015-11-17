@@ -2,7 +2,7 @@ Ext.define('Eway.view.machine.device.graphic.View', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.machine_device_graphic_view',
 
-	title : Eway.locale.machine.device.devDetailInfo,
+	title : EwayLocale.machine.device.devDetailInfo,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,

@@ -65,7 +65,7 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 							var linkedGrid =  this.up('window').down('version_download_linkedDeviceGrid');
 							var linkedStore = linkedGrid.getStore();
 							linkedStore.add(record);
-							linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo0 + linkedStore.getCount() + Eway.locale.version.selectDeviceInfo1);
+							linkedGrid.setTitle(EwayLocale.version.selectDeviceInfo0 + linkedStore.getCount() + EwayLocale.version.selectDeviceInfo1);
 							
 //							linkedGrid.setTitle("已选择的设备(<font color='red'>" + linkedStore.getCount() + "</font>)台");
 						}
@@ -81,7 +81,7 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 					var linkedGrid =  this.up('window').down('version_download_linkedDeviceGrid');
 					var linkedStore = linkedGrid.getStore();
 					linkedStore.remove(linkedStore.getById(deviceId));
-					linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo0 + linkedStore.getCount() + Eway.locale.version.selectDeviceInfo1);
+					linkedGrid.setTitle(EwayLocale.version.selectDeviceInfo0 + linkedStore.getCount() + EwayLocale.version.selectDeviceInfo1);
 //					linkedGrid.setTitle("已选择的设备(<font color='red'>" + linkedStore.getCount() + "</font>)台");
 					//
 					return true;
@@ -106,7 +106,7 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 				xtype:'textfield',
 				vtype : 'terminalId',
 				maxLength:20,
-				fieldLabel:Eway.locale.refs.terminalId,//'设备编号',
+				fieldLabel:EwayLocale.refs.terminalId,//'设备编号',
 				name:'terminalId',
 				labelSeparator:'',
 				labelWidth : 60,
@@ -117,8 +117,8 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 				name : 'orgId'
 			}, {
 				xtype : 'common_orgComboOrgTree',
-				fieldLabel : Eway.locale.refs.orgName,
-				emptyText : Eway.locale.combox.select,//'--请选择--',
+				fieldLabel : EwayLocale.refs.orgName,
+				emptyText : EwayLocale.combox.select,//'--请选择--',
 				name : 'orgName',
 				hiddenValue : 'orgId',
 				editable : false,
@@ -139,11 +139,11 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 				}
 			},{
 				xtype:'field_device_deviceatmtype',
-				fieldLabel :  Eway.locale.refs.devType,
+				fieldLabel :  EwayLocale.refs.devType,
 				name: 'atmTypeId',
 				editable  : false,
 				store: 'machine.DeviceAtmType',
-				emptyText : Eway.locale.combox.select,//'--请选择--',
+				emptyText : EwayLocale.combox.select,//'--请选择--',
 				mode : 'local',
 				triggerAction: 'all',
 				valueField : 'id',
@@ -154,12 +154,12 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 			},{
 				action :'queryDownDevice',
 				glyph : 0xf002,
-				tooltip:Eway.locale.version.task.queryByFilter//'根据条件查找'
+				tooltip:EwayLocale.version.task.queryByFilter//'根据条件查找'
 			},
 			"->",
 			{
 				xtype:"combobox",
-				fieldLabel: Eway.locale.version.task.displayNumPerPage,//'每页显示条数',
+				fieldLabel: EwayLocale.version.task.displayNumPerPage,//'每页显示条数',
 				store:Ext.create('Ext.data.Store', {
 				    fields: ['value', 'name'],
 				    data : [
@@ -185,37 +185,37 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 				dataIndex : 'id',
 				width:50
 			}, */{
-				header : Eway.locale.refs.terminalId,//'设备编号',
+				header : EwayLocale.refs.terminalId,//'设备编号',
 				sortable : true,
 				dataIndex : 'code',
 				width:80
 			}, {
-				header : Eway.locale.refs.ip,//'IP地址',
+				header : EwayLocale.refs.ip,//'IP地址',
 				dataIndex : 'ip',
 				sortable : true,
 				width: 110
 			},{
-				header : Eway.locale.refs.orgName,
+				header : EwayLocale.refs.orgName,
 				dataIndex : 'orgName',
 				sortable : true
 			}, {
-				header: Eway.locale.refs.devType,
+				header: EwayLocale.refs.devType,
 				dataIndex : 'deviceType',
 				sortable : true
 			},{
-				header: Eway.locale.version.View.nowVersionNo,//'当前版本',
+				header: EwayLocale.version.View.nowVersionNo,//'当前版本',
 				dataIndex : 'deviceVersion',
 				sortable: true
 			} ,{
-				header: Eway.locale.version.task.targetVersionNo,//'目标版本',
+				header: EwayLocale.version.task.targetVersionNo,//'目标版本',
 				dataIndex : 'targetVersion',
 				sortable: true
 			} ,{
-				header: Eway.locale.version.task.downloadStatus,//'下发状态',
+				header: EwayLocale.version.task.downloadStatus,//'下发状态',
 				dataIndex : 'taskStatus',
 				sortable: true
 			} ,{
-				header: Eway.locale.version.task.downloadResult,//'下发结果',
+				header: EwayLocale.version.task.downloadResult,//'下发结果',
 				dataIndex : 'reason',
 				flex : 1
 			}],

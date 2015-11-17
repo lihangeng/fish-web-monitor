@@ -33,7 +33,7 @@ Ext.define('Eway.view.monitor.charts.DonutCharts', {
             interactions: ['rotate', 'itemhighlight'],
             series: [{
                 type: 'pie',
-                showInLegend:true,
+                showInLegend:false,
                 angleField: this.getLabelField(),
                 donut: 50,
                 label: {
@@ -47,7 +47,7 @@ Ext.define('Eway.view.monitor.charts.DonutCharts', {
                     trackMouse: true,
                     style: 'background: #fff',
                     renderer: function(storeItem, item) {
-                        this.setHtml(storeItem.get(me.getLabelField()) + ': ' + storeItem.get(me.getAngleField()));
+                        this.setHtml(storeItem.get(me.getAngleField()));
                     }
                 }
             }],
@@ -59,7 +59,7 @@ Ext.define('Eway.view.monitor.charts.DonutCharts', {
             			width:500,
             			height:300,
             			modal : true,
-//            			maximized:true,
+            			maximized:true,
             			layout:'border',
             		    items: { 
             		    	region:'center',

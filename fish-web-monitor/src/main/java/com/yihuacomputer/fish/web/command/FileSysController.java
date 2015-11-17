@@ -50,7 +50,7 @@ public class FileSysController {
             fsof.setFileSysOperatorType(FileSysOperatorType.MKFILE);
         }
 		String url = MonitorCfg.getHttpUrl(ip)+"/ctr/remoteMkFileSys";
-		FileSysOperaterForm explorerForm = (FileSysOperaterForm) HttpProxy.httpPost(url,fsof,FileSysOperaterForm.class);
+		FileSysOperaterForm explorerForm = (FileSysOperaterForm) HttpProxy.httpPost(url,fsof,FileSysOperaterForm.class, 5000);
         if(explorerForm.isSuccess()){
             result.addAttribute(FishConstant.SUCCESS, true);
             result.addAttribute(FishConstant.DATA, messageSource.getMessage("filesys.operator.createSuccess", null, FishCfg.locale));
@@ -72,7 +72,7 @@ public class FileSysController {
         fsof.setFileName(file);
         fsof.setFileSysOperatorType(FileSysOperatorType.DELFILE);
 		String url = MonitorCfg.getHttpUrl(ip)+"/ctr/remoteMkFileSys";
-		FileSysOperaterForm explorerForm = (FileSysOperaterForm) HttpProxy.httpPost(url,fsof,FileSysOperaterForm.class);
+		FileSysOperaterForm explorerForm = (FileSysOperaterForm) HttpProxy.httpPost(url,fsof,FileSysOperaterForm.class, 5000);
         if(explorerForm.isSuccess()){
             result.addAttribute(FishConstant.SUCCESS, true);
             result.addAttribute(FishConstant.DATA, messageSource.getMessage("filesys.operator.deleteSuccess", null, FishCfg.locale));
@@ -94,7 +94,7 @@ public class FileSysController {
         fsof.setFileName(file);
         fsof.setFileSysOperatorType(FileSysOperatorType.FILEEXEC);
 		String url = MonitorCfg.getHttpUrl(ip)+"/ctr/remoteMkFileSys";
-		FileSysOperaterForm explorerForm = (FileSysOperaterForm) HttpProxy.httpPost(url,fsof,FileSysOperaterForm.class);
+		FileSysOperaterForm explorerForm = (FileSysOperaterForm) HttpProxy.httpPost(url,fsof,FileSysOperaterForm.class, 5000);
         if(explorerForm.isSuccess()){
             result.addAttribute(FishConstant.SUCCESS, true);
             result.addAttribute(FishConstant.DATA, messageSource.getMessage("filesys.operator.success", null, FishCfg.locale));

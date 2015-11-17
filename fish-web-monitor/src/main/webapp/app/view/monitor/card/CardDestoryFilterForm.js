@@ -44,7 +44,7 @@ Ext.define('Eway.view.monitor.card.CardDestoryFilterForm', {
 					}
 					return validStatus;
 			},
-			cardDestoryDateRangeText : Eway.locale.monitor.business.card.beginEndDate
+			cardDestoryDateRangeText : EwayLocale.monitor.business.card.beginEndDate
 		});
 		Ext.apply(this, {
 			items : [{
@@ -55,7 +55,7 @@ Ext.define('Eway.view.monitor.card.CardDestoryFilterForm', {
 								name : 'orgId'
 							}, {
 /*								xtype : 'common_orgComboOrgTree',
-								fieldLabel : Eway.locale.commen.orgNameBelongs,
+								fieldLabel : EwayLocale.commen.orgNameBelongs,
 								emptyText : '--请选择--',
 								name : 'orgName',
 								hiddenValue : 'orgId',
@@ -64,9 +64,9 @@ Ext.define('Eway.view.monitor.card.CardDestoryFilterForm', {
 
 								//只带出银行机构
 								xtype : 'common_orgComboOrgTree',
-								fieldLabel : Eway.locale.monitor.business.card.orgBelongs,
+								fieldLabel : EwayLocale.monitor.business.card.orgBelongs,
 								labelAlign : 'right',
-								emptyText : Eway.locale.combox.select,
+								emptyText : EwayLocale.combox.select,
 								name : 'orgName',
 								hiddenValue : 'orgId',
 								editable : false,
@@ -88,7 +88,7 @@ Ext.define('Eway.view.monitor.card.CardDestoryFilterForm', {
 								labelAlign : 'right'
 							}, {
 								xtype: 'datetimefield',
-								fieldLabel : Eway.locale.monitor.business.card.beginTime,
+								fieldLabel : EwayLocale.monitor.business.card.beginTime,
 								name: 'startData',
 								editable : false,
 								format: 'Y-m-d H:i:s',
@@ -117,7 +117,7 @@ Ext.define('Eway.view.monitor.card.CardDestoryFilterForm', {
 								labelAlign : 'right'
 							}, {
 								xtype: 'datetimefield',
-								fieldLabel : Eway.locale.monitor.business.card.endTime,
+								fieldLabel : EwayLocale.monitor.business.card.endTime,
 								editable : false,
 								format: 'Y-m-d H:i:s',
 								name: 'endData',

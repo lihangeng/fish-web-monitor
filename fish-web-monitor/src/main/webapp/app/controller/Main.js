@@ -196,7 +196,7 @@ Ext.define('Eway.controller.Main', {
 		}else if(code =="monitorSummaryInfo"){
 			this.activeController('monitor.MonitorSummaryInfo');
 		}
-		
+
 	},
 
 	//打开“软件管理”下子菜单
@@ -216,7 +216,7 @@ Ext.define('Eway.controller.Main', {
 		}else if(code=="versionDistribute"){
 			this.activeController('version.VersionDistribute');
 		}
-		
+
 	},
 
 	//打开“故障管理”下子菜单
@@ -266,6 +266,10 @@ Ext.define('Eway.controller.Main', {
 			this.activeController('report.openrate.TypeOpenRate');
 		}else if(code =="orgOpenRate"){
 			this.activeController('report.openrate.OrgOpenRate');
+		}else if(code =="reportDayTrans"){
+			this.activeController('report.baseReport.TransactionDaysCountReport');
+		}else if(code =="reportDayHourTrans"){
+			this.activeController('report.baseReport.TransactionHoursCountReport');
 		}
 	},
 
@@ -281,7 +285,7 @@ Ext.define('Eway.controller.Main', {
 		var records = tree.getChecked();
 		var editWin = tree.up('window');
 		var winEl = editWin.getEl();
-		winEl.mask(Eway.locale.agent.submitingWaiting);
+		winEl.mask(EwayLocale.agent.submitingWaiting);
 		var permissions = '';
 		for(var i  in records){
 			var record = records[i];
@@ -299,19 +303,19 @@ Ext.define('Eway.controller.Main', {
 				var object = Ext.decode(response.responseText);
 				if(object.success == true){
 					winEl.unmask();
-					Eway.alert(Eway.locale.tip.operateSuc);
+					Eway.alert(EwayLocale.tip.operateSuc);
 					editWin.close();
 					var treepanel = Ext.ComponentQuery.query('appindex')[0].down('treepanel');
 					treepanel.getStore().load();
 				}else{
 					winEl.unmask();
-					Eway.alert(Eway.locale.tip.operateWrong);
+					Eway.alert(EwayLocale.tip.operateWrong);
 				}
 
 			},
 			faliure : function(response){
 				winEl.unmask();
-				Eway.alert(Eway.locale.agent.offServer);
+				Eway.alert(EwayLocale.agent.offServer);
 			}
 
 		});

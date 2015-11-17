@@ -91,7 +91,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 		store.setBaseParam('type','0');
 	  	store.loadPage(1);
 	    var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	    actionTip.setText('<font color="red">'+selectedNode.data.text+'</font>'+Eway.locale.tip.bankOrg.downGradeOrg);
+	    actionTip.setText('<font color="red">'+selectedNode.data.text+'</font>'+EwayLocale.tip.bankOrg.downGradeOrg);
 	},
 
 	/**
@@ -109,7 +109,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 		store.setBaseParam('selectedNode',node.data.id);
 		store.loadPage(1);
         var actionTip = this.getGrid().down("tbtext[action=tip]");
-    	actionTip.setText('<font color="red">'+node.data.text+'</font>'+Eway.locale.tip.bankOrg.downGradeOrg);
+    	actionTip.setText('<font color="red">'+node.data.text+'</font>'+EwayLocale.tip.bankOrg.downGradeOrg);
     },
 
 	/**
@@ -134,7 +134,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 			});
 		}
 		else {
-			Eway.alert(Eway.locale.tip.bankOrg.manager.set.chooseOrg);
+			Eway.alert(EwayLocale.tip.bankOrg.manager.set.chooseOrg);
 		}
 	},
 
@@ -154,11 +154,11 @@ Ext.define('Eway.controller.person.BankOrg', {
 			record.save({
 				success : function(record,operation){
 					store.load();
-					Eway.alert(Eway.locale.tip.bankOrg.manager.set.managerSuccess);
+					Eway.alert(EwayLocale.tip.bankOrg.manager.set.managerSuccess);
 					addManagerwin.close();
 			    },
 			    failure: function(record,operation){
-					Eway.alert(Eway.locale.tip.bankOrg.manager.set.managerFail);
+					Eway.alert(EwayLocale.tip.bankOrg.manager.set.managerFail);
 				}
 			});
 		}
@@ -172,14 +172,14 @@ Ext.define('Eway.controller.person.BankOrg', {
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1&&sm.getLastSelected().get('userGuid')!=null
 				&&sm.getLastSelected().get('userGuid')!=0) {
-			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,Eway.locale.tip.bankOrg.manager.remove.confirm,
+			Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,EwayLocale.tip.bankOrg.manager.remove.confirm,
 									function(button,text){
 										if(button=="yes"){
 											this.onRemoveManagerConfirm(sm);
 										}
 									},this);
 		}else {
-			Eway.alert(Eway.locale.tip.bankOrg.manager.remove.reChoose);
+			Eway.alert(EwayLocale.tip.bankOrg.manager.remove.reChoose);
 		}
 	},
 
@@ -190,10 +190,10 @@ Ext.define('Eway.controller.person.BankOrg', {
 		record.save({
 			success : function(record,operation){
 				store.load();
-				Eway.alert(Eway.locale.tip.bankOrg.manager.remove.delSuccess);
+				Eway.alert(EwayLocale.tip.bankOrg.manager.remove.delSuccess);
 			},
 			failure: function(record,operation){
-				Eway.alert(Eway.locale.tip.bankOrg.manager.remove.delFail);
+				Eway.alert(EwayLocale.tip.bankOrg.manager.remove.delFail);
 			}
 		});
 	},
@@ -211,7 +211,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 			store.setUrlParam(i,data[i])
 		}
 		var actionTip = grid.down("tbtext[action=tip]");
-		actionTip.setText(Eway.locale.tip.bankOrg.orgEligible);
+		actionTip.setText(EwayLocale.tip.bankOrg.orgEligible);
 		store.loadPage(1);
 	},
 
@@ -226,7 +226,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 			store.setUrlParam(i,data[i])
 		}
 		var actionTip = ewayView.down("tbtext[action=tip]");
-		actionTip.setText(Eway.locale.tip.bankOrg.orgEligible);
+		actionTip.setText(EwayLocale.tip.bankOrg.orgEligible);
 		store.loadPage(1);
 		ewayView.down('treepanel').getSelectionModel().select(0,true);
 	},
@@ -258,21 +258,20 @@ Ext.define('Eway.controller.person.BankOrg', {
 			record.set("organizationState",'1');
 			record.save({
 				success : function(record,operation){
-						Eway.alert(Eway.addSuccess);
+						Eway.alert(EwayLocale.addSuccess);
 						//组织树的刷新:
 						ewayView.down('treepanel').getStore().load();
 				    	ewayView.down('treepanel').getSelectionModel().select(0,true);//选择根节点
 				    	//增加成功后查询条件不带入后台查询
-				    	store.setUrlParamsByObject(null);
-						//增加机构后立即跳转到所增加的机构父机构下
-						store.load({
-							params:{
+				    	store.setUrlParamsByObject({
 								selectedNode:data.parentId,
 								type : '0'
 							}
-						});
+						);
+						//增加机构后立即跳转到所增加的机构父机构下
+						store.load();
 						var actionTip = ewayView.down("tbtext[action=tip]");
-	    				actionTip.setText('<font color="red">'+record.data.parent+'</font>'+Eway.locale.tip.bankOrg.downGradeOrg);
+	    				actionTip.setText('<font color="red">'+record.data.parent+'</font>'+EwayLocale.tip.bankOrg.downGradeOrg);
 						win.close();
 			    },
 			    failure: function(record,operation){
@@ -316,7 +315,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 			win.show();
 		}
 		else {
-			Eway.alert(Eway.choiceUpdateMsg);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 		}
 	},
 
@@ -350,7 +349,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 			record.set("orgLevel",data.orgLevel);
 			record.save({
 				success : function(record,operation){
-					Eway.alert(Eway.updateSuccess);
+					Eway.alert(EwayLocale.updateSuccess);
 					//组织树的刷新:
 					var treePanel = ewayView.down('treepanel');
 					if(data.code==ewayUser.getOrgCode()){
@@ -366,14 +365,20 @@ Ext.define('Eway.controller.person.BankOrg', {
 					treePanel.getSelectionModel().select(0,true);//选择根节点
 
 					//增加机构后立即跳转到所增加的机构父机构下
-					store.load({
-						params:{
+//					store.load({
+//						params:{
+//							selectedNode:record.data.parentId,
+//							type : '0'
+//						}
+//					});
+					//防止翻页后数据总量变化，所以把参数带入，翻页的逻辑不会变更
+					store.setUrlParamsByObject({
 							selectedNode:record.data.parentId,
 							type : '0'
-						}
 					});
+					store.load();
 					var actionTip = ewayView.down("tbtext[action=tip]");
-	    			actionTip.setText('<font color="red">'+record.data.parent+'</font>'+Eway.locale.tip.bankOrg.downGradeOrg);
+	    			actionTip.setText('<font color="red">'+record.data.parent+'</font>'+EwayLocale.tip.bankOrg.downGradeOrg);
 					win.close();
 				},
 				failure: function(record,operation){
@@ -402,7 +407,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 			win.down('button[action="move"]').on('click',this.onMoveConfirm, this);
 			win.show();
 		} else {
-			Eway.alert(Eway.locale.tip.bankOrg.move.chooseOrg);
+			Eway.alert(EwayLocale.tip.bankOrg.move.chooseOrg);
 		}
 	},
 
@@ -427,7 +432,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 			success : function(response) {
 				var object = Ext.decode(response.responseText);
 				if (object.success == true) {
-					Eway.alert(Eway.locale.tip.bankOrg.move.moveSuccess);
+					Eway.alert(EwayLocale.tip.bankOrg.move.moveSuccess);
 					//组织树的刷新:
 					var treePanel = ewayView.down('treepanel');
 					if(data.code==ewayUser.getOrgCode()){
@@ -442,14 +447,20 @@ Ext.define('Eway.controller.person.BankOrg', {
 					}
 					treePanel.getSelectionModel().select(0,true);//选择根节点
 					//增加机构后立即跳转到所增加的机构父机构下
-					store.load({
-						params:{
+//					store.load({
+//						params:{
+//							selectedNode:record.data.parentId,
+//							type : '0'
+//						}
+//					});
+					//防止翻页后数据总量变化，所以把参数带入，翻页的逻辑不会变更
+					store.setUrlParamsByObject({
 							selectedNode:record.data.parentId,
 							type : '0'
-						}
 					});
+					store.load();
 					var actionTip = ewayView.down("tbtext[action=tip]");
-	    			actionTip.setText('<font color="red">'+record.data.parent+'</font>'+Eway.locale.tip.bankOrg.downGradeOrg);
+	    			actionTip.setText('<font color="red">'+record.data.parent+'</font>'+EwayLocale.tip.bankOrg.downGradeOrg);
 					win.close();
 				} else {
 					Eway.alert(object.errorMsg);
@@ -470,26 +481,41 @@ Ext.define('Eway.controller.person.BankOrg', {
 		var grid = this.getGrid();
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
-			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,
-					Eway.locale.tip.remove.confirm.info,
+			Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,
+					EwayLocale.tip.remove.confirm.info,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
+							var parentId = record.data.parentId;
 							record.erase({
 								success: function(){
-									Eway.alert(Eway.deleteSuccess);
-									this.getGrid().getStore().remove(record);
+									Eway.alert(EwayLocale.updateSuccess);
+//					数据没有刷新[pagetoolbar]				this.getGrid().getStore().remove(record);
+//									treePanel.getSelectionModel().select(0,true);//选择根节点
+									//增加机构后立即跳转到所增加的机构父机构下
+									var store = this.getGrid().getStore();
+									//防止翻页后数据变化，所以把参数带入，翻页的逻辑不会变更
+									store.setUrlParamsByObject({
+											selectedNode:parentId,
+											type : '0'
+									});
+								//增加机构后立即跳转到所增加的机构父机构下
+									store.load();
+									
 									var selections = this.getEwayView().down('treepanel').getSelectionModel().getSelection();
 					            	if(!Ext.isEmpty(selections)){
-					            		this.getEwayView().down('treepanel').getStore().load({node:selections[0]});//刷新当前节点
+					            		this.getEwayView().down('treepanel').getStore().load();
+//					            		this.getEwayView().down('treepanel').getStore().load({node:selections[0]});//刷新当前节点
 					            		if(!selections[0].isExpanded()){
 					            			selections[0].expand(true);//如果没有展开，则展开选中节点
 					            		}
 					            	}
 								},
 								failure: function(record,operation){
+									//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
+									record.dropped = false;
 									Ext.MessageBox.show({
-										title : Eway.locale.tip.tips,
+										title : EwayLocale.tip.tips,
 										msg : operation.getError(),
 										modal : true,
 										fn : function callBack(id){
@@ -513,7 +539,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 					}, this);
 		}
 		else {
-			Eway.alert(Eway.choiceDeleteMsg);
+			Eway.alert(EwayLocale.choiceDeleteMsg);
 		}
 	},
 

@@ -47,6 +47,7 @@ import com.yihuacomputer.common.exception.ServiceException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
+import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
 import com.yihuacomputer.fish.api.device.AwayFlag;
@@ -335,115 +336,49 @@ public class DeviceController {
 		cell.setCellValue(messageSource.getMessage("device.terminalId", null, FishCfg.locale));
 
 		cell = row.createCell(2);
+		cell.setCellValue(messageSource.getMessage("device.virtual", null,FishCfg.locale));
+		
+		cell = row.createCell(3);
 		cell.setCellValue(messageSource.getMessage("device.devIp", null, FishCfg.locale));
 
-		cell = row.createCell(3);
+		cell = row.createCell(4);
 		cell.setCellValue(messageSource.getMessage("device.devStatus", null, FishCfg.locale));
 
-		cell = row.createCell(4);
+		cell = row.createCell(5);
 		cell.setCellValue(messageSource.getMessage("device.devSer", null, FishCfg.locale));
 
-		cell = row.createCell(5);
+		cell = row.createCell(6);
 		cell.setCellValue(messageSource.getMessage("device.devOrg", null, FishCfg.locale));
 
-		cell = row.createCell(6);
+		cell = row.createCell(7);
 		cell.setCellValue(messageSource.getMessage("device.devType", null, FishCfg.locale));
 
-		cell = row.createCell(7);
+		cell = row.createCell(8);
 		cell.setCellValue(messageSource.getMessage("device.devCashWarn", null, FishCfg.locale));
 
-		cell = row.createCell(8);
+		cell = row.createCell(9);
 		cell.setCellValue(messageSource.getMessage("device.devAddress", null, FishCfg.locale));
 
-		cell = row.createCell(9);
+		cell = row.createCell(10);
 		cell.setCellValue(messageSource.getMessage("device.devSerialNo", null, FishCfg.locale));
 
-		cell = row.createCell(10);
-		cell.setCellValue(messageSource.getMessage("device.devOperators", null, FishCfg.locale));
-
 		cell = row.createCell(11);
-		cell.setCellValue(messageSource.getMessage("device.devCashOrg", null, FishCfg.locale));
-
+		cell.setCellValue(messageSource.getMessage("device.devVender", null,FishCfg.locale));
+		
 		cell = row.createCell(12);
-		cell.setCellValue(messageSource.getMessage("device.devCapitalRate", null, FishCfg.locale));
+		cell.setCellValue(messageSource.getMessage("device.devCatalog", null,FishCfg.locale));
 
 		cell = row.createCell(13);
-		cell.setCellValue(messageSource.getMessage("device.devAtmcSoftWare", null, FishCfg.locale));
-
-		cell = row.createCell(14);
-		cell.setCellValue(messageSource.getMessage("device.devSP", null, FishCfg.locale));
-
-		cell = row.createCell(15);
-		cell.setCellValue(messageSource.getMessage("device.devPurchaseDate", null, FishCfg.locale));
-
-		cell = row.createCell(16);
 		cell.setCellValue(messageSource.getMessage("device.devInstallDate", null, FishCfg.locale));
 
-		cell = row.createCell(17);
-		cell.setCellValue(messageSource.getMessage("device.devStartDate", null, FishCfg.locale));
-
-		cell = row.createCell(18);
-		cell.setCellValue(messageSource.getMessage("device.devStopDate", null, FishCfg.locale));
-
-		cell = row.createCell(19);
-		cell.setCellValue(messageSource.getMessage("device.devOverDate", null, FishCfg.locale));
-
-		cell = row.createCell(20);
-		cell.setCellValue(messageSource.getMessage("device.devOpenTime", null, FishCfg.locale));
-
-		cell = row.createCell(21);
-		cell.setCellValue(messageSource.getMessage("device.devCloseTime", null, FishCfg.locale));
-
-		cell = row.createCell(22);
-		cell.setCellValue(messageSource.getMessage("device.devLastCheckDate", null, FishCfg.locale));
-
-		cell = row.createCell(23);
-		cell.setCellValue(messageSource.getMessage("device.devCheckDate", null, FishCfg.locale));
-
-		cell = row.createCell(24);
-		cell.setCellValue(messageSource.getMessage("device.devCost", null, FishCfg.locale));
-
-		cell = row.createCell(25);
-		cell.setCellValue(messageSource.getMessage("device.devDepre", null, FishCfg.locale));
-
-		cell = row.createCell(26);
-		cell.setCellValue(messageSource.getMessage("device.devDecorateCost", null, FishCfg.locale));
-
-		cell = row.createCell(27);
-		cell.setCellValue(messageSource.getMessage("device.devDecorateYear", null, FishCfg.locale));
-
-		cell = row.createCell(28);
-		cell.setCellValue(messageSource.getMessage("device.devRentCost", null, FishCfg.locale));
-
-		cell = row.createCell(29);
-		cell.setCellValue(messageSource.getMessage("device.devPropertyCost", null, FishCfg.locale));
-
-		cell = row.createCell(30);
-		cell.setCellValue(messageSource.getMessage("device.devCommFee", null, FishCfg.locale));
-
-		cell = row.createCell(31);
-		cell.setCellValue(messageSource.getMessage("device.devElecFee", null, FishCfg.locale));
-
-		cell = row.createCell(32);
-		cell.setCellValue(messageSource.getMessage("device.devCashFee", null, FishCfg.locale));
-
-		cell = row.createCell(33);
-		cell.setCellValue(messageSource.getMessage("device.devAttentionDegree", null, FishCfg.locale));
-
-		cell = row.createCell(34);
-		cell.setCellValue(messageSource.getMessage("device.devCashFlag", null, FishCfg.locale));
-
-		cell = row.createCell(35);
+		cell = row.createCell(14);
 		cell.setCellValue(messageSource.getMessage("device.devInstallWay", null, FishCfg.locale));
 
-		cell = row.createCell(36);
+		cell = row.createCell(15);
 		cell.setCellValue(messageSource.getMessage("device.devNetType", null, FishCfg.locale));
 
-		cell = row.createCell(37);
+		cell = row.createCell(16);
 		cell.setCellValue(messageSource.getMessage("device.devInsideOutside", null, FishCfg.locale));
-
-		cell = row.createCell(38);
-		cell.setCellValue(messageSource.getMessage("device.devMangeWay", null, FishCfg.locale));
 
 		HSSFCellStyle cellStyle = workBook.createCellStyle();
 		HSSFDataFormat format = workBook.createDataFormat();
@@ -462,46 +397,51 @@ public class DeviceController {
 			cell.setCellStyle(cellStyle);
 			cell.setCellValue(cellValue(device.getTerminalId()));
 
-			cell = row.createCell(2);
+			cell = row.createCell(2); 
+			cell.setCellValue(cellValue(device.getVirtual()==null? "":device.getVirtual()));
+			
+			cell = row.createCell(3);
 			cell.setCellValue(cellValue(device.getIp() == null ? "" : device.getIp().toString()));
 
-			cell = row.createCell(3);
+			cell = row.createCell(4);
 			cell.setCellValue(cellValue(device.getStatus() == null ? "" : getEnumI18n(device.getStatus().getText())));
 
-			cell = row.createCell(4);
+			cell = row.createCell(5);
 			cell.setCellValue(cellValue(device.getDevService() == null ? "" : device.getDevService().getName()));
 
-			cell = row.createCell(5);
+			cell = row.createCell(6);
 			cell.setCellValue(cellValue(device.getOrganization() == null ? "" : device.getOrganization().getName()));
 
-			cell = row.createCell(6);
+			cell = row.createCell(7);
 			cell.setCellValue(cellValue(device.getDevType() == null ? "" : device.getDevType().getName()));
 
-			cell = row.createCell(7);
+			cell = row.createCell(8);
 			cell.setCellValue(cellValue(device.getCashboxLimit()));
 
-			cell = row.createCell(8);
+			cell = row.createCell(9);
 			cell.setCellValue(cellValue(device.getAddress()));
 
-			cell = row.createCell(9);
-			cell.setCellValue(cellValue(device.getSerial()));
-
-			NetType netType = device.getNetType();
 			cell = row.createCell(10);
-			cell.setCellValue(cellValue(getEnumI18n(netType.getText())));
-
-			/*cell = row.createCell(11);
-			cell.setCellValue(cellValue(device.getCashType() == null ? "" : getEnumI18n(device.getCashType().getText())));
-*/
+			cell.setCellValue(cellValue(device.getSerial()));
+			
+			cell = row.createCell(11);
+			cell.setCellValue(cellValue(device.getDevType().getDevVendor().getName()));
+			
 			cell = row.createCell(12);
+			cell.setCellValue(cellValue(device.getDevType().getDevCatalog().getName()));
+			
+			cell = row.createCell(13);
+			cell.setCellValue(cellValue(device.getInstallDate()==null? "" :device.getInstallDate().toString()));
+			
+			cell = row.createCell(14);
 			cell.setCellValue(cellValue(device.getSetupType() == null ? "" : getEnumI18n(device.getSetupType().getText())));
 
-			cell = row.createCell(13);
+			NetType netType = device.getNetType();
+			cell = row.createCell(15);
+			cell.setCellValue(cellValue(getEnumI18n(netType.getText())));
+
+			cell = row.createCell(16);
 			cell.setCellValue(cellValue(device.getAwayFlag() == null ? "" : getEnumI18n(device.getAwayFlag().getText())));
-
-			cell = row.createCell(14);
-			cell.setCellValue(cellValue(device.getWorkType() == null ? "" : getEnumI18n(device.getWorkType().getText())));
-
 		}
 
 		FileOutputStream fos = null;
@@ -594,7 +534,14 @@ public class DeviceController {
 		IFilter filter = request2filter(request);
 
 		ModelMap result = new ModelMap();
-
+		IOrganization org = orgService.get(organizationID);
+		if(null==org){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			IPageResult<IDevice> pageResult = new PageResult<IDevice>();
+			result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
+			result.addAttribute(FishConstant.DATA, DeviceForm.convert(pageResult.list()));
+			return result;
+		}
 		filter.like("organization.orgFlag", "%" + organizationID);
 
 		// 获得机构下所有的设备信息organizationID
@@ -615,7 +562,7 @@ public class DeviceController {
 
 		ModelMap result = new ModelMap();
 
-		filter.like("devService.orgFlag", "%" + organizationID);
+		filter.like("devService.orgFlag",organizationID +  "%");
 
 		// 获得机构下所有的设备信息organizationID
 		IPageResult<IDevice> pageResult = deviceService.page(start, limit, filter);
@@ -788,7 +735,7 @@ public class DeviceController {
 		List<Object> fixedFilters = new ArrayList<Object>();
 		hql.append("from Device device where 1=1 and device.organization.orgFlag like ? ");
 		IOrganization org = orgService.get(organization);
-		fixedFilters.add("%" + org.getOrgFlag());
+		fixedFilters.add(org.getOrgFlag() + "%");
 
 		Iterator<String> iterator = request.getParameterNames();
 		while (iterator.hasNext()) {
@@ -824,10 +771,10 @@ public class DeviceController {
 				fixedFilters.add(Long.valueOf(value));
 			} else if ("devService".equals(name)) {
 				hql.append(" and device.devService.orgFlag like ?");
-				fixedFilters.add("%" + orgService.get(value).getOrgFlag());
+				fixedFilters.add(orgService.get(value).getOrgFlag() + "%");
 			} else if ("organization".equals(name)) {
 				hql.append(" and device.organization.orgFlag like ?");
-				fixedFilters.add("%" + orgService.get(value).getOrgFlag());
+				fixedFilters.add(orgService.get(value).getOrgFlag() + "%");
 			} else if ("ip".equals(name)) {
 				ITypeIP ip = new IP(value);
 				hql.append(" and device.ip = ?");

@@ -39,7 +39,7 @@ public class InstationController {
 		ModelMap result = new ModelMap();
 		try {
 			String url = MonitorCfg.getHttpUrl(request.getParameter("ip")) + "/ctr/listinstation";
-			ListInstationForm listInstationForm = (ListInstationForm) HttpProxy.httpGet(url, ListInstationForm.class);
+			ListInstationForm listInstationForm = (ListInstationForm) HttpProxy.httpGet(url, ListInstationForm.class, 5000);
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("data", InstationForm.convert(listInstationForm.getInstationList()));
 		} catch (Exception e) {

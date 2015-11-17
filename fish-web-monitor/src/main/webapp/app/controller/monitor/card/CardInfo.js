@@ -49,7 +49,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 				var bool = form.isValid();
 				// 查询输入验证
 				if (bool == false) {
-					Eway.alert(Eway.locale.tip.searchOfNoLegal);
+					Eway.alert(EwayLocale.tip.searchOfNoLegal);
 					return
 				}
 
@@ -89,12 +89,12 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 				var store = this.getCardInfoGrid().getStore();
 				if(data.cardRetainTime == ''){
 					var field = form.down('datetimefield');
-					field.setActiveError(Eway.locale.tip.notNull);
+					field.setActiveError(EwayLocale.tip.notNull);
 				}
 				if (bool == true && data.cardRetainTime != '') {
 					record.save({
 						success : function(record,operation){
-							Eway.alert(Eway.addSuccess);
+							Eway.alert(EwayLocale.addSuccess);
 							win.close();
 							    //点击增加成功后查询条件不带入重新查询。
 								store.setUrlParamsByObject(null);
@@ -123,7 +123,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 					store.setBaseParam('organizationId',ewayUser.getOrgId());
 					store.loadPage(1);
 				}else{
-					Eway.alert(Eway.locale.tip.input);
+					Eway.alert(EwayLocale.tip.input);
 				}
 
 			},
@@ -147,7 +147,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 						success: function(response){
 							var object = Ext.decode(response.responseText);
 							if(object.success == true){
-								Ext.MessageBox.confirm(Eway.locale.tip.confirm.title, Eway.locale.tip.confirm.info, function(
+								Ext.MessageBox.confirm(EwayLocale.tip.confirm.title, EwayLocale.tip.confirm.info, function(
 									button, text) {
 								if (button == 'yes') {
 									var record = sm.getLastSelected();
@@ -164,7 +164,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 					});
 
 				} else {
-					Eway.alert(Eway.choiceDeleteMsg);
+					Eway.alert(EwayLocale.choiceDeleteMsg);
 				}
 			},
 
@@ -174,10 +174,12 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 				var record = sm.getLastSelected();
 				record.erase({
 					success: function(record,operation){
-						Eway.alert(Eway.deleteSuccess);
+						Eway.alert(EwayLocale.updateSuccess);
 						grid.getStore().remove(record);
 					},
 					failure: function(record,operation){
+						//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
+						record.dropped = false;
 						Eway.alert(operation.getError());
 					},
 					scope:this

@@ -16,7 +16,7 @@ Ext.define('Eway.view.personal.UpdatePwdController', {
 		var newPassword = form.down('field[name="newPassword"]').getValue();
 		if(form.getForm().isValid()){
 			if(password==newPassword){
-				Eway.alert(Eway.locale.personal.pwdSameNoChange);
+				Eway.alert(EwayLocale.personal.pwdSameNoChange);
 				form.getForm().reset();
 				form.down('field[name="code"]').setValue(ewayUser.getCode());
 				form.down('field[name="name"]').setValue(ewayUser.getName());
@@ -32,15 +32,19 @@ Ext.define('Eway.view.personal.UpdatePwdController', {
 					success : function(response){
 						var object = Ext.decode(response.responseText);
 						if(object.success == true){
-							Ext.MessageBox.alert('提示',object.message,function callback(){
+							Eway.alert(object.message);
+							Ext.Function.defer(
+							function(){
 								me.onExit();
-							});
+							},3000		
+							);
+								
 						}else{
 							Eway.alert(object.errorMsg);
 						}
 					},
 					failure: function(){
-						Eway.alert(Eway.locale.personal.reOperate);
+						Eway.alert(EwayLocale.personal.reOperate);
 					},
 					scope:this
 				});

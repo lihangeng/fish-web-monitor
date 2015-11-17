@@ -17,7 +17,7 @@ public class DeviceSummaryRunInfoTest {
 	//@Test
 	public void getSummaryInfo(){
 		IFilter filter = new Filter();
-		filter.eq("orgFlag", "-1");
+		filter.eq("orgFlag", "1-");
 //		List<Object> list = xfsChartService.getAllDeviceList(filter);
 //		System.out.println(list.size());
 		List<Object> summarylist = xfsChartService.getDeviceSummaryRunInfo(filter);

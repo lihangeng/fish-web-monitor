@@ -20,7 +20,7 @@ Ext.apply(Ext.form.field.VTypes,{
 	zip :function(v){
 		return  /^\d{6}$/.test(v);
 	},
-	zipText : Eway.locale.vtype.zip,
+	zipText : EwayLocale.vtype.zip,
 	zipMask : /[\d]/
 });
 //custom Vtype : ip地址
@@ -28,7 +28,7 @@ Ext.apply(Ext.form.field.VTypes,{
 	ip :function(v){
 		return /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/.test(v);
 	},
-	ipText : Eway.locale.vtype.ip,
+	ipText : EwayLocale.vtype.ip,
 	ipMask : /[\d\.]/i
 });
 //custom Vtype : 版本号
@@ -36,7 +36,7 @@ Ext.apply(Ext.form.field.VTypes,{/*(-{1}\w+){0,1}*/
 	versionNo :function(v){
 		return /^(\d{1,8})(\.{1}\d{1,8}){0,3}$/.test(v);
 	},
-	versionNoText : Eway.locale.vtype.versionNo,
+	versionNoText : EwayLocale.vtype.versionNo,
 	versionNoMask : /[\d\.]/i
 });
 //自定义验证类型设备号
@@ -44,7 +44,7 @@ Ext.apply(Ext.form.field.VTypes,{
 	terminalId :function(v){
 		return /^([a-zA-Z0-9]+[a-zA-Z0-9-\.]*){1,20}$/.test(v);
 	},
-	terminalIdText : Eway.locale.vtype.terminalId,
+	terminalIdText : EwayLocale.vtype.terminalId,
 	terminalIdMask : /[\d\w-_\.]/i
 });
 //自定义手机号码的验证
@@ -52,7 +52,7 @@ Ext.apply(Ext.form.field.VTypes,{
 	mobile :function(v){
 		return /^\d{8,11}$/.test(v);
 	},
-	mobileText : Eway.locale.vtype.mobile,
+	mobileText : EwayLocale.vtype.mobile,
 	mobileMask : /[\d]/i
 });
 //自定义银行卡号的验证
@@ -60,7 +60,7 @@ Ext.apply(Ext.form.field.VTypes,{
 	cardNo :function(v){
 		return /^\d{16,19}$/.test(v);
 	},
-	cardNoText : Eway.locale.vtype.cardNo,
+	cardNoText : EwayLocale.vtype.cardNo,
 	cardNoMask : /[\d]/i
 });
 //自定义固定号码的验证
@@ -68,7 +68,7 @@ Ext.apply(Ext.form.field.VTypes,{
 	telephone :function(v){
 		return /^(\d{3}-?|\d{4}-?)?(\d{8}|\d{7})$/.test(v);
 	},
-	telephoneText : Eway.locale.vtype.telephone,
+	telephoneText : EwayLocale.vtype.telephone,
 	telephoneMask : /[\d-]/i
 });
 
@@ -94,7 +94,7 @@ Ext.apply(Ext.form.field.VTypes, {
          */
         return true;
     },
-    daterangeText: Eway.locale.vtype.daterange
+    daterangeText: EwayLocale.vtype.daterange
 });
 
 //冠字号历史查询时时间段为30天
@@ -122,7 +122,7 @@ Ext.apply(Ext.form.field.VTypes, {
          */
         return true;
     },
-    crowndaterangeText: Eway.locale.vtype.daterange
+    crowndaterangeText: EwayLocale.vtype.daterange
 });
 
 Ext.apply(Ext.form.field.VTypes, {
@@ -137,6 +137,6 @@ Ext.apply(Ext.form.field.VTypes, {
     	}
     	return true;
     },
-    numberrangeText : Eway.locale.vtype.numberrange
+    numberrangeText : EwayLocale.vtype.numberrange
 });
 

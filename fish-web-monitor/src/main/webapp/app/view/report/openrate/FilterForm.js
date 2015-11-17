@@ -14,19 +14,19 @@ Ext.define('Eway.view.report.openrate.FilterForm', {
 					labelAlign : 'right'
 				},
 				items : [ {
-					fieldLabel : Eway.locale.report.openrate.device.statisticsMethod,
+					fieldLabel : EwayLocale.report.openrate.device.statisticsMethod,
 					xtype : 'radiogroup',
 					width : 280,
 					items : [ {
-						boxLabel : Eway.locale.commen.year,
+						boxLabel : EwayLocale.commen.year,
 						name : 'statType',
 						inputValue : 1
 					}, {
-						boxLabel : Eway.locale.commen.month,
+						boxLabel : EwayLocale.commen.month,
 						name : 'statType',
 						inputValue : 2
 					}, {
-						boxLabel :Eway.locale.commen.day,
+						boxLabel :EwayLocale.commen.day,
 						name : 'statType',
 						checked : true,
 						inputValue : 3
@@ -38,7 +38,7 @@ Ext.define('Eway.view.report.openrate.FilterForm', {
 					width : 280,
 					name : 'year',
 					xtype : 'datefield',
-					fieldLabel : Eway.locale.commen.yearTime,
+					fieldLabel : EwayLocale.commen.yearTime,
 					hidden : true,
 					value : new Date(),
 					editable : false,
@@ -47,7 +47,7 @@ Ext.define('Eway.view.report.openrate.FilterForm', {
 					width : 280,
 					name : 'month',
 					xtype : 'datefield',
-					fieldLabel : Eway.locale.commen.monthTime,
+					fieldLabel : EwayLocale.commen.monthTime,
 					editable : false,
 					hidden : true,
 					value : new Date(),
@@ -56,7 +56,7 @@ Ext.define('Eway.view.report.openrate.FilterForm', {
 					width : 280,
 					name : 'day',
 					xtype : 'datefield',
-					fieldLabel : Eway.locale.commen.dayTime,
+					fieldLabel : EwayLocale.commen.dayTime,
 					editable : false,
 					value : new Date(),
 					format : 'Y-m-d'

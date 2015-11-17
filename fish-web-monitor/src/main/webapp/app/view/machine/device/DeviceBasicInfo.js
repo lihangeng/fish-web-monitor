@@ -3,7 +3,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 	alias : 'widget.device.deviceBasicInfo',
 
 //	id : 'deviceBasicInfoId',
-	title : Eway.locale.machine.device.deviceBasicInfo,
+	title : EwayLocale.machine.device.deviceBasicInfo,
 	bodyStyle : 'padding: 10px 10px 30px 10px',
 
 	layout : 'column',
@@ -24,7 +24,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.machine.atmGroup.terminalId,
+					fieldLabel : EwayLocale.machine.atmGroup.terminalId,
 					name : 'number',
 					msgTarget : 'side'
 				} ]
@@ -39,7 +39,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.machine.atmGroup.orgName,
+					fieldLabel : EwayLocale.machine.atmGroup.orgName,
 					name : 'affiliation'
 				}
 			}, {
@@ -53,7 +53,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.machine.atmGroup.address,
+					fieldLabel : EwayLocale.machine.atmGroup.address,
 					maxLength : 24,
 					name : 'address',
 					msgTarget : 'side'
@@ -69,19 +69,19 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.machine.atmGroup.devTypeName,
+					fieldLabel : EwayLocale.machine.atmGroup.devTypeName,
 					name : 'model'
 				}, {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.machine.device.lineLogo,
+					fieldLabel : EwayLocale.machine.device.lineLogo,
 					name : 'lineLogo'
 				}, {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.machine.atmGroup.devServiceName,
+					fieldLabel : EwayLocale.machine.atmGroup.devServiceName,
 					name : 'maintainer'
 				}, {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.machine.device.alarmRateRMB,
+					fieldLabel : EwayLocale.machine.device.alarmRateRMB,
 					name : 'alarmRateRMB'
 				} ]
 			}, {
@@ -95,19 +95,19 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : [ {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.machine.device.operation,
+					fieldLabel : EwayLocale.machine.device.operation,
 					name : 'operation'
 				}, {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.machine.device.ipAddress,
+					fieldLabel : EwayLocale.machine.device.ipAddress,
 					name : 'ipAddress'
 				}, {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.machine.device.swallowCard,
+					fieldLabel : EwayLocale.machine.device.swallowCard,
 					name : 'swallowCard'
 				}, {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.machine.device.alarmRateHKD,
+					fieldLabel : EwayLocale.machine.device.alarmRateHKD,
 					name : 'alarmRateHKD'
 				} ]
 			}, {
@@ -121,7 +121,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.machine.device.adminPhone,
+					fieldLabel : EwayLocale.machine.device.adminPhone,
 					name : 'adminPhone'
 				}
 			}, {
@@ -135,7 +135,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 				},
 				items : {
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.machine.device.maintainPhone,
+					fieldLabel : EwayLocale.machine.device.maintainPhone,
 					name : 'maintainPhone'
 				}
 			} ]

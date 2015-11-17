@@ -5,7 +5,7 @@ Ext.define('Eway.view.system.AboutSystemForm', {
 		Ext.apply(this, {
 			width :'75%',
 			height:500,
-			title :Eway.locale.system.aboutSystem,
+			title :EwayLocale.system.aboutSystem,
 			header: false,
 			layout:'fit',
 			items : [{
@@ -25,17 +25,17 @@ Ext.define('Eway.view.system.AboutSystemForm', {
 					region : 'center',
 					xtype : 'panel',
 					border : false,
-					html : '<p>'+Eway.locale.system.softwareName+'：<font size="5" face="Times"><b>'+Eway.locale.system.ATMV+'</b></font></p>'
+					html : '<p>'+EwayLocale.system.softwareName+'：<font size="5" face="Times"><b>'+EwayLocale.system.ATMV+'</b></font></p>'
 
-							+ '<p>'+Eway.locale.system.softwareVersion+'：<font size="3" face="Times"><b>fish-web-base-1.1.0</b></font></p>'
+							+ '<p>'+EwayLocale.system.softwareVersion+'：<font size="3" face="Times"><b>fish-web-base-1.1.0</b></font></p>'
 
-							+ '<p>'+Eway.locale.system.innerVersion+'：<font size="3" face="Times"><b>fish-web-base-1.1.0 build $Rev: 19698 $</b></font></p>'
+							+ '<p>'+EwayLocale.system.innerVersion+'：<font size="3" face="Times"><b>fish-web-base-1.1.0 build $Rev: 19698 $</b></font></p>'
 
-							+ '<p>'+Eway.locale.system.copyRight+'</p>'
+							+ '<p>'+EwayLocale.system.copyRight+'</p>'
 
-							+ '<p>'+Eway.locale.system.introduction+'<font size="2" face="Times">'+Eway.locale.system.introductionA
-							+ Eway.locale.system.introductionB
-							+ Eway.locale.system.introductionC+'</font></p>'
+							+ '<p>'+EwayLocale.system.introduction+'<font size="2" face="Times">'+EwayLocale.system.introductionA
+							+ EwayLocale.system.introductionB
+							+ EwayLocale.system.introductionC+'</font></p>'
 				}]
 			}]
 
