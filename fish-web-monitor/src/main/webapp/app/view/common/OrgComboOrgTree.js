@@ -3,7 +3,6 @@
 Ext.define('Eway.view.common.OrgComboOrgTree',{
 	extend : 'Ext.form.field.Picker',
 	alias : 'widget.common_orgComboOrgTree',
-
 	fieldLabel : Eway.locale.commen.orgFramework,
 	readOnly:false,
 	editable:true,
@@ -12,6 +11,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	treePanel:'',
 	orgGridPanel:'',
 	matchFieldWidth:true,
+	matching:true,
 	config : {
 		hiddenValue : '',
 		filters : '',
@@ -23,13 +23,43 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 		isFilterOrgStatus:true,
 		parentXtype:'form'
 	},
-
 	onClearClick : function(){
 		this.getOtherCompement();
 		this.setValue('');
 		this.hiddenField.setValue('');
 	},
-
+	listeners:{
+		collapse:function(field,opts){
+			var me = this;
+			me.matching = false;
+			var gridpanel = field.getPicker();
+			if(gridpanel.$className == 'Ext.tree.Panel'){
+				return;
+			}
+			var value = field.getValue();
+			var store = undefined;
+			if(gridpanel&&null!=gridpanel){
+				store=gridpanel.getStore();
+			}
+			else{
+				return;
+			}
+			var setEmpty=true;
+			if(undefined!=store){
+				store.each(function(item,index){
+					if(item.data.name==value){
+						me.hiddenField.setValue(item.data.guid);
+						setEmpty = false;
+					}
+				},this);
+			}
+			if(setEmpty){
+				field.hiddenField.setValue("");
+				field.setValue("");
+			}
+			
+		}
+	},
 	reflesh : function(){
 		var data = this.getFilterData();
 		if(this.getTreeExist()){
@@ -85,6 +115,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 			this.expand();
 		}
 		else if("orgGridPanel"==type){
+			this.matching = true;
 			if(gridpanel&&null!=gridpanel&&gridpanel.isVisible()){
 				return;
 			}
@@ -92,7 +123,6 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 			this.setEditable(true);
 			this.picker=this.createPanel();
 			this.picker.ownerCmp = this;
-			this.picker.setVisible(true);
 			this.expand();
 			this.focus();
 		}
@@ -116,27 +146,6 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 		}
 		var orgorg = this.getHiddenValue();
 		this.blur();
-		var value = me.getValue();
-		var store = undefined;
-		if(gridpanel&&null!=gridpanel){
-			store=gridpanel.getStore();
-		}
-		else{
-			return;
-		}
-		var setEmpty=true;
-		if(undefined!=store){
-			store.each(function(item,index){
-				if(item.data.name==value){
-					me.hiddenField.setValue(item.data.guid);
-					setEmpty = false;
-				}
-			},this);
-		}
-		if(setEmpty){
-			me.hiddenField.setValue("");
-			me.setValue("");
-		}
 	},
 	createPanel:function(){
 		var me = this;
@@ -156,6 +165,8 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 		    height: 100,
 			minHeight : 100,
 		    maxHeight : 280,
+		    bufferedRenderer:false,
+			deferRowRender:true,
 		    width:width,
 		    autoScroll: true,
 		    floating : true,
@@ -168,6 +179,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	},
 	//点击确认数据
 	onCellClick:function(_this, td, cellIndex, record, tr, rowIndex, e, eOpts ){
+		this.matching = false;
 		this.setValue(record.get('name'));
 		this.setEditable(false);
 		var orgorg = this.getHiddenValue();
@@ -227,20 +239,32 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	},
 	
 	onChange:function(newVal,oldVal){
-		if(this.editable&&!this.readOnly)
+		var clearTip = this.getTrigger("clear");
+		if(undefined==clearTip){
+			return;
+		}
+		if(this.canClear&&!this.readOnly){
+			if(newVal && newVal!== "" ){
+				this.getTrigger("clear").show();
+			}else{
+				this.getTrigger("clear").hide();
+			}
+		}
+		if(this.editable&&!this.readOnly&&this.matching)
 			this.queryMsg(newVal);
+		
 	},
 	//到后台进行模糊查询
 	queryMsg:function(newVal){
+		var gridpanel=this.getPicker( );
+		var store =  gridpanel.getStore();
+		store.removeAll();
+		gridpanel.scrollTo(0,0,true);
 		if(newVal==""||newVal==this.emptyText){
 			return ;
 		}
 		else{
-
-//		  	 var gridpanel = Ext.get(Ext.DomQuery.selectNode('table.x-datepicker-eventEl',me.getEl().dom));
-			var gridpanel=this.getPicker( );
 			if(gridpanel&&null!=gridpanel&&gridpanel.isVisible()){
-				var store =  gridpanel.getStore();
 				var object = this.getFilterData();
 				object.name=newVal;
 				store.setUrlParamsByObject(object);
