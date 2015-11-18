@@ -6,7 +6,7 @@ Ext.define('Eway.view.operatingPlan.ViewForDevice', {
 	requires: ['Eway.view.operatingPlan.FilterForm',
 	           'Eway.view.operatingPlan.GridForDevice'],
 	
-	title: EwayLocale.report.openplan.selectPlan,
+	title: EwayLocale.report.serviceplan.selectPlan,
 	
 	width: 900,
 	height: 560,

@@ -42,7 +42,7 @@ Ext.define('Eway.view.operatingPlan.TempOpenPlanForDevGrid',{
     				}
     			}
     		},{
-    			header :EwayLocale.report.openplan.state,
+    			header :EwayLocale.report.serviceplan.state,
     			width:80,
     			dataIndex :'palnStateType',
     		},{

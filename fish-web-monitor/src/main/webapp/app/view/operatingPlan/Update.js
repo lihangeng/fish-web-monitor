@@ -24,7 +24,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 					labelAlign:'right'
 				},
 				items : [  {
-					fieldLabel : '<font color="red">*</font>'+EwayLocale.report.openplan.name,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.report.serviceplan.name,
 					xtype : 'textfield',
 					name : 'name',
 					maxLength : 30,
@@ -95,7 +95,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 							labelAlign:'right'
 						},
 						items : [{
-							fieldLabel : '<font color="red">*</font>'+EwayLocale.report.openplan.state,
+							fieldLabel : '<font color="red">*</font>'+EwayLocale.report.serviceplan.state,
 							xtype : 'field_planState',
 							name : 'planState',
 							value :'Normal',
@@ -105,12 +105,12 @@ Ext.define('Eway.view.operatingPlan.Update', {
 							xtype : 'radiogroup',
 							allowBlank : false,
 							items : [ {
-								boxLabel : EwayLocale.report.openplan.week,
+								boxLabel : EwayLocale.report.serviceplan.week,
 								name : 'planType',
 								checked : true,
 								inputValue : 'WEEK'
 							}, {
-								boxLabel : EwayLocale.report.openplan.date,
+								boxLabel : EwayLocale.report.serviceplan.date,
 								name : 'planType',
 								inputValue : 'DATE'
 							}]
@@ -224,22 +224,22 @@ Ext.define('Eway.view.operatingPlan.Update', {
 										style : 'padding:10px 0px 0px 0px'
 									},
 									items : [ {
-										fieldLabel : '<font color="red">*</font>'+EwayLocale.report.openplan.week,
+										fieldLabel : '<font color="red">*</font>'+EwayLocale.report.serviceplan.week,
 										xtype : 'checkboxgroup',
 										allowBlank : false,
 										itemId: 'checkboxgroupId',
 										labelWidth:65,
 										columns: 7,
 										msgTarget:'qtip',
-										blankText :EwayLocale.report.openplan.chooseOne,
+										blankText :EwayLocale.report.serviceplan.chooseOne,
 							            items : [
-						                    {boxLabel: EwayLocale.report.openplan.Mon, name: 'Mon', checked: true},
-						                    {boxLabel: EwayLocale.report.openplan.Tues, name: 'Tues'},
-						                    {boxLabel: EwayLocale.report.openplan.Wed, name: 'Wed'},
-						                    {boxLabel: EwayLocale.report.openplan.Thur, name: 'Thur'},
-						                    {boxLabel: EwayLocale.report.openplan.Fri, name: 'Fri'},
-						                    {boxLabel: EwayLocale.report.openplan.Sat, name: 'Sat'},
-						                    {boxLabel: EwayLocale.report.openplan.Sun, name: 'Sun'}
+						                    {boxLabel: EwayLocale.report.serviceplan.Mon, name: 'Mon', checked: true},
+						                    {boxLabel: EwayLocale.report.serviceplan.Tues, name: 'Tues'},
+						                    {boxLabel: EwayLocale.report.serviceplan.Wed, name: 'Wed'},
+						                    {boxLabel: EwayLocale.report.serviceplan.Thur, name: 'Thur'},
+						                    {boxLabel: EwayLocale.report.serviceplan.Fri, name: 'Fri'},
+						                    {boxLabel: EwayLocale.report.serviceplan.Sat, name: 'Sat'},
+						                    {boxLabel: EwayLocale.report.serviceplan.Sun, name: 'Sun'}
 							              ]
 									}, {
 										xtype : 'fieldcontainer',
@@ -296,7 +296,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 								} ],
 								fbar: [{
 									xtype:'displayfield',
-									value:'<b>'+EwayLocale.report.openplan.lanDetailWeek+'</b>'
+									value:'<b>'+EwayLocale.report.serviceplan.lanDetailWeek+'</b>'
 								},'->',{
 									text: EwayLocale.card.add,
 									glyph : 0xf067,
@@ -466,7 +466,7 @@ Ext.define('Eway.view.operatingPlan.Update', {
 								} ],
 								fbar: [{
 										xtype:'displayfield',
-										value:'<b>' + EwayLocale.report.openplan.planDetailDay + '</b>'
+										value:'<b>' + EwayLocale.report.serviceplan.planDetailDay + '</b>'
 									},'->',{
 									text: EwayLocale.card.add,
 									glyph : 0xf067,
