@@ -31,30 +31,30 @@ Ext.define('Eway.view.operatingPlan.PlanInfoForDeviceGrid', {
 				stripeRows : true
 			},
 			columns : [ {
-				header : EwayLocale.report.plan.name,
+				header : EwayLocale.machine.plan.name,
 				width : 100,
 				dataIndex : 'name'
 			}, {
-				header : EwayLocale.report.plan.type,
+				header : EwayLocale.machine.plan.type,
 				width : 80,
 				dataIndex : 'planType',
 				renderer : function(value, metadata, record) {
 					if (value == "DATE") {
-						return EwayLocale.report.serviceplan.date;
+						return EwayLocale.machine.serviceplan.date;
 					} else if (value == "WEEK") {
-						return EwayLocale.report.serviceplan.week;
+						return EwayLocale.machine.serviceplan.week;
 					}
 				}
 			}, {
-				header : EwayLocale.report.serviceplan.state,
+				header : EwayLocale.machine.serviceplan.state,
 				width : 80,
 				dataIndex : 'planStateType',
 			}, {
-				header : EwayLocale.report.serviceplan.openDate,
+				header : EwayLocale.machine.serviceplan.openDate,
 				width : 100,
 				dataIndex : 'startDate'
 			}, {
-				header : EwayLocale.report.serviceplan.closeDate,
+				header : EwayLocale.machine.serviceplan.closeDate,
 				width : 100,
 				dataIndex : 'endDate'
 			}, /*{
@@ -62,7 +62,7 @@ Ext.define('Eway.view.operatingPlan.PlanInfoForDeviceGrid', {
 				dataIndex : 'desc',
 				flex : 1
 			},*/ {
-				header :EwayLocale.report.serviceplan.createDateTime,
+				header :EwayLocale.machine.serviceplan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 160,
 				fiex : 1

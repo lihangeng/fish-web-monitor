@@ -575,6 +575,70 @@ Ext.apply(EwayLocale,{
 		startData:'StartData',//EwayLocale.card.startData 吞卡起始日期
 		add:'Add',//EwayLocale.card.add增加
 		dell:'Delete'//EwayLocale.card.dell删除
+	},
+	plan:{
+		addPlan:'Add Plan',//EwayLocale.machine.plan.addPlan 增加方案
+		name:'Name',//EwayLocale.machine.plan.name 名称
+		startDate:'Start time',//EwayLocale.machine.plan.startDate 有效开始时间
+		endDate:'End time',//EwayLocale.machine.plan.endDate 有效结束时间
+		terminalId:'Code',//EwayLocale.machine.plan.terminalId 编号
+		cashboxLimit:'Alarm cashbox(unit:piece)',//EwayLocale.machine.plan.cashboxLimit 钞箱报警金额(单位：张数)
+		perToDev:'Person<-->Device',//EwayLocale.machine.plan.perToDev 人员<-->设备
+		changePlan:'Modify plan',//EwayLocale.machine.plan.changePlan 更改方案
+		servicePlan:'Start up plan',//EwayLocale.machine.plan.servicePlan 开机方案
+	},
+	serviceplan:{
+		name:'Programme Name',//EwayLocale.machine.serviceplan.name方案名称
+		machineQuantity:'Number of devices',//EwayLocale.machine.serviceplan.machineQuantity设备数量
+		state:'Status',//EwayLocale.machine.serviceplan.state状态
+		openDate:'Effective boot time',//EwayLocale.machine.serviceplan.openDate有效开机时间
+		closeDate:'Effective shutdown time',//EwayLocale.machine.serviceplan.closeDate有效关机时间
+		createDateTime:'Created',//EwayLocale.machine.serviceplan.createDateTime创建时间
+		date:'Date',//EwayLocale.machine.serviceplan.date日期
+		week:'Week',//EwayLocale.machine.serviceplan.week星期
+		inportLinkedMachine:'Import related equipment',//EwayLocale.machine.serviceplan.inportLinkedMachine导入关联设备
+		selectFile:'Select the file',//EwayLocale.machine.serviceplan.selectFile选择文件
+		placeUploadingResource:'Please upload resources',//EwayLocale.machine.serviceplan.placeUploadingResource请上传资源
+		fileNotSupport:'Import file format is not supported, according to the template import device information',//EwayLocale.machine.serviceplan.fileNotSupport导入的文件格式不支持,请按模板导入设备信息
+		exportExplain:'Import instructions',//EwayLocale.machine.serviceplan.exportExplain导入说明
+		thisIsTooLong:'Please add the device continuously import template device number to be issued, up to a one-time import 2000 data (takes about 5 minutes), a minimum import data',//EwayLocale.machine.serviceplan.thisIsTooLong请在设备导入模板中连续添加要下发的设备号,最多一次性导入2000条数据(约耗时5分钟),最少导入1条数据
+		thisHardToTranslate:'Click to download introducing device ID template',//EwayLocale.machine.serviceplan.thisHardToTranslate点击下载导入设备号模板
+		placeSelect:'---Please select---',//EwayLocale.machine.serviceplan.placeSelect请选择
+		planDevice:'Program <--> Device',//EwayLocale.machine.serviceplan.planDevice方案<-->设备
+		timeEare:'Enter the time is incorrect, please re-enter！',//EwayLocale.machine.serviceplan.timeEare输入时间段有误，请重新输入
+		planOlonOne:'The same program can only set a startup or shutdown',//EwayLocale.machine.serviceplan.planOlonOne同方案只能设置开机或关机的一种
+		addSuccess:'Added successfully',//EwayLocale.machine.serviceplan.addSuccess添加成功
+		addFail:'Add Failed',//EwayLocale.machine.serviceplan.addFail添加失败
+		setTime:'Please set the detailed time',//EwayLocale.machine.serviceplan.setTime请设置详细时间
+		thisPlanStop:'(This program is disabled, can not apply!)',//EwayLocale.machine.serviceplan.thisPlanStop(此方案已停用，不可应用！)
+		placeRefresh:'Article lift failed. Please refresh view！',//EwayLocale.machine.serviceplan.placeRefresh条解除失败，请刷新后查看
+		linking:'Being associated equipment....',//EwayLocale.machine.serviceplan.linking正在关联设备
+		testingPlaceWaiting:'Device number is judged to meet the requirements, please wait...',//EwayLocale.machine.serviceplan.testingPlaceWaiting正在判断设备号是否符合要求，请耐心等待
+		leastOne:'Importing a device at least once information, please re-select the import file!',//EwayLocale.machine.serviceplan.leastOne最少一次导入1条设备信息，请重新选择导入文件
+		notMore:'Up to 2000 the first import device information, please re-select the import file!',//EwayLocale.machine.serviceplan.notMore最多一次导入2000条设备信息，请重新选择导入文件
+		checkFile:'Please check the import file',//EwayLocale.machine.serviceplan.checkFile请检查导入文件
+		fileNotAllowed:'Documents do not meet requirements！',//EwayLocale.machine.serviceplan.fileNotAllowed文件不符合要求
+		tipExportSuccess:'Article data successfully imported',//EwayLocale.machine.serviceplan.tipExportSuccess条数据,成功导入
+		tipLookUp:'Bar, click View import details!',//EwayLocale.machine.serviceplan.tipLookUp条,点击查看导入详情!
+		tochenkDervice:'Please select the device you want to change',//EwayLocale.machine.serviceplan.tochenkDervice请选择您要更改的设备
+		tochenckPeople:'Please select personnel',//EwayLocale.machine.serviceplan.tochenckPeople请选择人员
+		tipAddError:'Article Adding failed. Please refresh view',//EwayLocale.machine.serviceplan.tipAddError条添加失败,请刷新后查看
+		planIsHaved:'',
+		linkSuccess:'Associate success',//EwayLocale.machine.serviceplan.linkSuccess关联成功
+		Mon:'Mon',//EwayLocale.machine.serviceplan.Mon一
+		Tues:'Tues',//EwayLocale.machine.serviceplan.Tues二
+		Wed:'Wed',//EwayLocale.machine.serviceplan.Wed三
+		Thur:'Thur',//EwayLocale.machine.serviceplan.Thur四
+		Fri:'Fri',//EwayLocale.machine.serviceplan.Fri五
+		Sat:'Sat',//EwayLocale.machine.serviceplan.Sat六
+		Sun:'Sun',//EwayLocale.machine.serviceplan.Sun日
+		useSuccess:'Normal start',//EwayLocale.machine.serviceplan.useSuccess正常启用
+		notSuccess:'Not Enabled',//EwayLocale.machine.serviceplan.notSuccess未启用
+		lastOneGroup:'Please select at least one in the group',//EwayLocale.machine.serviceplan.lastOneGroup请在组内至少选中一项
+		lanDetailWeek:'Week program detailed list',//EwayLocale.machine.serviceplan.lanDetailWeek星期方案详细列表
+		planDetailDay:'Date program detailed list',//EwayLocale.machine.serviceplan.planDetailDay日期方案详细列表
+		selectPlan:'To select a startup program',//EwayLocale.machine.serviceplan.selectPlan选择开机方案
+		weekSelect:'Notify way'//EwayLocale.machine.serviceplan.weekSelect通知方式
 	}
 
 
