@@ -122,7 +122,6 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : EwayLocale.tip.displayMessage,
 				items : ['-', EwayLocale.tip.formatPageBfMsg, {
 				    xtype : 'combobox',
 				    name: 'pagesize',

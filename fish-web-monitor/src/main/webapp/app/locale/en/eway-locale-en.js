@@ -11,9 +11,6 @@ Ext.apply(EwayLocale,{
 	personalConf:'Personal Settings',//EwayLocale.personalConf 个人设置
 	systemHelp:'Help',///EwayLocale.systemHelp 系统帮助
 	exitSystem:'Log Out',//EwayLocale.exitSystem 退出系统
-	title:{
-		msg:'Message'//EwayLocale.title.msg 信息
-	},
 	msg:{
 		perviewFailForText:'Preview failed:the charater and rolling advertisement is supported to preview',//EwayLocale.msg.perviewFailForText 预览失败:不支持文字滚动广告和公告的预览.
 		perviewFailNoResource:'Preview failed:no resource found in this advertisement.',//EwayLocale.msg.perviewFailNoResource 预览失败:此广告没有配置广告资源.
@@ -112,10 +109,10 @@ Ext.apply(EwayLocale,{
 	tip:{
 		search :{
 			warn:'Error input for query.',//查询条件存在错误项.
-			record:'Please choose the record which you want to check'//请选择您要查看的记录.
+			record:'Please choose one record'//请选择您要查看的记录.
 		},
 		update:{
-			one:'Only one record can be choose to modify',//只能选择一条记录更改.
+			one:'Only choose one record',//只能选择一条记录更改.
 			two:'This record can not be modified'//此条记录不能被更改.
 		},
 		remove :{
@@ -128,11 +125,11 @@ Ext.apply(EwayLocale,{
 			error:'Delete failed:'//删除失败
 		},
 		own:{
-			have:'yes',//有
+			have:'yes',//有 EwayLocale.tip.own.have
 			nothing:'no'//无
 		},
 		right:{
-			yes:'yes', //是
+			yes:'yes', //是 EwayLocale.tip.right.yes
 			no:'no' //否
 		},
 		add:{
@@ -142,14 +139,13 @@ Ext.apply(EwayLocale,{
 		fail:'Failed:',//EwayLocale.tip.fail 失败
 		phone:'Please enter the right telephone number', //请输入正确的电话号码
 		remind:'Tip',//EwayLocale.tip.remind 提示
-		displayMessage:'Total:{2} items,display{0}-{1}',//总共：{2}条，显示{0}-{1}
 		formatPageBfMsg: 'Per page',// EwayLocale.tip.formatPageBfMsg
 		formatPageAfMsg: 'items',// EwayLocale.tip.formatPageAfMsg
 
 		unCertain:'Unknown',//未知
 		searchOfNoLegal:'There are some illegal parameters in the query condition,can not commit ',//查询项中存在不合法的输入,不能提交.
 		choseExportDevInfo:'Please select the machine which you want to export for detail ',//请选择要导出信息的设备
-		nowLink:'Connecting',//正在连接......
+		nowLink:'Connecting...',//正在连接......
 		linkFailure:'Connecting failed.',//EwayLocale.tip.linkFailure 连接失败
 		inputError:'Illegal input',//输入有误
 		numberExist:'Exist ID, please enter again',//此编号已经存在,请重新输入.
@@ -189,7 +185,6 @@ Ext.apply(EwayLocale,{
 		tips:'Tips',//EwayLocale.tip.tips 提示
 		input:'Please enter the right item',//EwayLocale.tip.input//请正确输入
 		roleName:'Just for character ‘a-z’ or ‘A-Z’ or numbers ‘0-9’ ,max length is 40',//EwayLocale.tip.roleName 由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位
-		roleDescription:'Just for character ‘a-z’ or ‘A-Z’、number‘0-9’、minussign‘-’、underline‘_’ or point‘.’,only start with Chinesecharacter,character or number,max length is 100',//EwayLocale.tip.roleDescription
 		notNull:'Can not be null',//EwayLocale.tip.notNull 不能为空
 		cardNo:'Just for 13 to 19 numbers',//EwayLocale.tip.cardNo 只能输入13到19个数字
 		blankBegin:'Can not start with blank',//EwayLocale.tip.blankBegin 不能以空格开头
@@ -482,8 +477,8 @@ Ext.apply(EwayLocale,{
 		},
 		yes:'yes',//EwayLocale.commen.yes 是
 		no:'no',//EwayLocale.commen.no 否
-		selectAll:'Select all',//EwayLocale.commen.selectAll 全部选择
-		selectNon:'select non',//EwayLocale.commen.selectNon 全部不选
+		selectAll:'Select All',//EwayLocale.commen.selectAll 全部选择
+		selectNon:'Select None',//EwayLocale.commen.selectNon 全部不选
 		content:'Content',//EwayLocale.commen.content 消息
 		upgrade:'Upgrade',//EwayLocale.commen.upgrade 上级
 		port:'port',//EwayLocale.commen.port 网络Port

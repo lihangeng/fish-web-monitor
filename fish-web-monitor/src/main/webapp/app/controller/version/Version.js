@@ -79,7 +79,7 @@ Ext.define('Eway.controller.version.Version', {
         		gridStore.setBaseParam("versionId",record.get("id"));
         		gridStore.setBaseParam("flag",0);
         		gridStore.loadPage(1);
-        		grid.setTitle(chartsStore.getAt(0).get("title")+EwayLocale.title.msg);//"信息");
+        		grid.setTitle(chartsStore.getAt(0).get("title")+EwayLocale.statics.msg);//"信息");
 		    }
 		});
 		this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionTypeDesc")+" - V"+record.get("versionNo"));

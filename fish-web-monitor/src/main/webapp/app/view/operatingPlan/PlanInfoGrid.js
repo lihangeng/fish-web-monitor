@@ -56,11 +56,11 @@ Ext.define('Eway.view.operatingPlan.PlanInfoGrid', {
 	                }
 				}
 			},{
-				header : EwayLocale.report.plan.startDate,
+				header : EwayLocale.machine.plan.startDate,
 				flex : 1,
 				dataIndex : 'startTime'
 			},{
-				header : EwayLocale.report.plan.endDate,
+				header : EwayLocale.machine.plan.endDate,
 				flex : 1,
 				dataIndex : 'endTime'
 			}]

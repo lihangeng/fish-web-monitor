@@ -205,7 +205,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				deviceId:deviceId
 			},
 			callback: function(records, operation, success) {
-					detailWin.setTitle(EwayLocale.tip.business.device.term+terminalId+EwayLocale.report.plan.openPlan);
+					detailWin.setTitle(EwayLocale.tip.business.device.term+terminalId+EwayLocale.machine.plan.servicePlan);
 					detailWin.show();
 					if(type==2){
 						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.msg.removeSuccess);
@@ -296,7 +296,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				infoWeekGrid.getStore().each(function(record){
 					if(weekDate.openClose != record.data.openClose){
 
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.planOlonOne);
+					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.planOlonOne);
 					flag=false;
 					return;
 				}				
@@ -331,7 +331,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				}
 			}
 			if(alertMsg!=null){
-			Ext.Msg.alert(EwayLocale.confirm.title,EwayLocale.report.openplan.week+alertMsg+EwayLocale.report.openplan.timeEare);
+			Ext.Msg.alert(EwayLocale.confirm.title,EwayLocale.machine.serviceplan.week+alertMsg+EwayLocale.machine.serviceplan.timeEare);
 			alertMsg = null;
 			}
 		});
@@ -345,33 +345,33 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			data.startTime = data.startTimeHour + ":" + data.startTimeMinute + ":" + data.startTimeSecond;
 			data.endTime = data.endTimeHour + ":" + data.endTimeMinute + ":" + data.endTimeSecond;
 			if(data.startTime>=data.endTime){
-				Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.timeEare);
+				Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
 				return;
 			}
 			var flag = true;
 			infoDateGrid.getStore().each(function(record){
 				if(data.openClose!=record.data.openClose){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.planOlonOne);
+					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.planOlonOne);
 					flag=false;
 					return;
 				}
 				if(data.startTime>=data.endTime){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.timeEare);
+					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
 					flag=false;
 					return;
 				}
 				if(record.data.startTime<=data.startTime&&data.startTime<=record.data.endTime){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.timeEare);
+					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
 					flag=false;
 					return;
 				}
 				if(record.data.startTime<=data.endTime&&data.endTime<=record.data.endTime){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.timeEare);
+					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
 					flag=false;
 					return;
 				}
 				if(data.startTime<=record.data.startTime&&data.endTime>=record.data.endTime){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.timeEare);
+					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
 					flag=false;
 					return;
 				}
@@ -453,7 +453,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				var store = view.down('operatingPlan_grid').getStore();
 				store.setUrlParamsByObject(values);
 				store.loadPage(1);
-				Eway.alert(EwayLocale.report.openplan.addSuccess);
+				Eway.alert(EwayLocale.machine.serviceplan.addSuccess);
 			},
 //			failure: function(record,operation){
 //				Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors);
@@ -466,7 +466,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 
 		});
 		}else{
-			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.setTime);
+			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.setTime);
     	}
 	},
 
@@ -568,7 +568,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				data.startTime = data.startTimeHour + ":" + data.startTimeMinute + ":" + data.startTimeSecond;
 				data.endTime = data.endTimeHour + ":" + data.endTimeMinute + ":" + data.endTimeSecond;
 				if(data.startTime>=data.endTime){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.timeEare);
+					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
 					return;
 				}
 				var alertMsg = null;
@@ -577,7 +577,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				var flag = true;
 				infoWeekGrid.getStore().each(function(record){
 					if(data.openClose!=record.data.openClose){
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.planOlonOne);
+						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.planOlonOne);
 						flag=false;
 						return;
 					}
@@ -612,7 +612,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					}
 				}
 				if(alertMsg!=null){
-					Ext.Msg.alert(EwayLocale.confirm.title,EwayLocale.machine.device.person.week+alertMsg+EwayLocale.report.openplan.timeEare);
+					Ext.Msg.alert(EwayLocale.confirm.title,EwayLocale.machine.device.person.week+alertMsg+EwayLocale.machine.serviceplan.timeEare);
 					alertMsg = null;
 				}
 			});
@@ -626,33 +626,33 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				data.startTime = data.startTimeHour + ":" + data.startTimeMinute + ":" + data.startTimeSecond;
 				data.endTime = data.endTimeHour + ":" + data.endTimeMinute + ":" + data.endTimeSecond;
 				if(data.startTime>=data.endTime){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.timeEare);
+					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
 					return;
 				}
 				var flag = true;
 				infoDateGrid.getStore().each(function(record){
 					if(data.openClose!=record.data.openClose){
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.planOlonOne);
+						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.planOlonOne);
 						flag=false;
 						return;
 					}
 					if(data.startTime>=data.endTime){
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.timeEare);
+						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
 						flag=false;
 						return;
 					}
 					if(record.data.startTime<=data.startTime&&data.startTime<=record.data.endTime){
-						Ext.Msg.alert(EwayLocale.confirm.title,EwayLocale.report.openplan.timeEare);
+						Ext.Msg.alert(EwayLocale.confirm.title,EwayLocale.machine.serviceplan.timeEare);
 						flag=false;
 						return;
 					}
 					if(record.data.startTime<=data.endTime&&data.endTime<=record.data.endTime){
-						Ext.Msg.alert(EwayLocale.confirm.title,EwayLocale.report.openplan.timeEare);
+						Ext.Msg.alert(EwayLocale.confirm.title,EwayLocale.machine.serviceplan.timeEare);
 						flag=false;
 						return;
 					}
 					if(data.startTime<=record.data.startTime&&data.endTime>=record.data.endTime){
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.timeEare);
+						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
 						flag=false;
 						return;
 					}
@@ -758,7 +758,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 
 		});
 		}else{
-			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.setTime);
+			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.setTime);
     	}
 
 	},
@@ -784,8 +784,8 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			var actionTip2 = linkingDeviceGrid.down("tbtext[action=tip]");
 			actionTip2.setText(EwayLocale.commen.canBindMachine);
 			if(record.data.planState=="Stoped"){
-				actionTip1.setText(EwayLocale.commen.bindMachine+'<font color="red">'+EwayLocale.report.openplan.thisPlanStop+'</font>');
-				actionTip2.setText(EwayLocale.commen.canBindMachine+'<font color="red">'+EwayLocale.report.openplan.thisPlanStop+'</font>');
+				actionTip1.setText(EwayLocale.commen.bindMachine+'<font color="red">'+EwayLocale.machine.serviceplan.thisPlanStop+'</font>');
+				actionTip2.setText(EwayLocale.commen.canBindMachine+'<font color="red">'+EwayLocale.machine.serviceplan.thisPlanStop+'</font>');
 				linkedDeviceGrid.down('button[action="unlink"]').setDisabled(true);
 				linkingDeviceGrid.down('button[action="link"]').setDisabled(true);
 			}
@@ -858,7 +858,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					if(object.success == true){
 						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.msg.removeSuccess,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 					}else{
-						Ext.Msg.alert(EwayLocale.confirm.title, Ext.decode(response.responseText).errorMsg+EwayLocale.report.openplan.placeRefresh,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
+						Ext.Msg.alert(EwayLocale.confirm.title, Ext.decode(response.responseText).errorMsg+EwayLocale.machine.serviceplan.placeRefresh,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 					}
 				},
 				failure: function(response){
@@ -893,7 +893,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			var info = array;
 		//	confirmButton.disabled  = true;
 			var winEl = planWin.getEl();
-			winEl.mask(EwayLocale.report.openplan.linking);
+			winEl.mask(EwayLocale.machine.serviceplan.linking);
 			Ext.Ajax.request({
 				scope : this,
 				method : 'POST',
@@ -903,13 +903,13 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				success: function(response){
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.linkSuccess,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
+						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.linkSuccess,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 						 var field = linkingDeviceForm.findField("deviceIds");
 		                 field.setValue("");
 		                 idArray = new Array();
 
 					}else{
-						Ext.Msg.alert(EwayLocale.confirm.title, Ext.decode(response.responseText).errors+EwayLocale.report.openplan.tipAddError,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
+						Ext.Msg.alert(EwayLocale.confirm.title, Ext.decode(response.responseText).errors+EwayLocale.machine.serviceplan.tipAddError,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 						 var field = linkingDeviceForm.findField("deviceIds");
 		                 field.setValue("");
 		                 idArray = new Array();
@@ -991,7 +991,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 	       if(addForm.isValid( ) )
 			 if( addForm.findField("file").getValue()!='')
 				{
-				   Ext.Msg.wait(EwayLocale.report.openplan.testingPlaceWaiting);
+				   Ext.Msg.wait(EwayLocale.machine.serviceplan.testingPlaceWaiting);
 				};
 			addForm.submit({
 				 	url: 'api/plan/uploadExcel',
@@ -999,15 +999,15 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			        if(action.result.success == true){
 					if(action.result.message == -1)
 					  {
-						msg= EwayLocale.report.openplan.leastOne;
+						msg= EwayLocale.machine.serviceplan.leastOne;
 					  }
 					else if(action.result.message == -2)
 					  {
-						msg= EwayLocale.report.openplan.notMore;
+						msg= EwayLocale.machine.serviceplan.notMore;
 					  }
 					else if(action.result.message == 0)
 					  {
-						  msg= EwayLocale.report.openplan.checkFile;
+						  msg= EwayLocale.machine.serviceplan.checkFile;
 					  }
 					else{
 						var records = action.result.data;
@@ -1036,7 +1036,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					selectedGrid.onReload();
 					// 这行特别消耗时间  TODO
 						msg="<a class='link' href='api/plan/downloadFile'>"
-						+ action.result.message + EwayLocale.report.openplan.tipExportSuccess +action.result.total + EwayLocale.report.openplan.tipLookUp+"</a>"
+						+ action.result.message + EwayLocale.machine.serviceplan.tipExportSuccess +action.result.total + EwayLocale.machine.serviceplan.tipLookUp+"</a>"
 					}
 					 Ext.Msg.alert(EwayLocale.confirm.title, msg,function callback(){
 			    		  Ext.Ajax.request({
@@ -1048,7 +1048,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				  	}
 				    },
 				    failure: function(form, action) {
-				    	    Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.fileNotAllowed);
+				    	    Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.fileNotAllowed);
 				    },
 				   scope: this
 			});
