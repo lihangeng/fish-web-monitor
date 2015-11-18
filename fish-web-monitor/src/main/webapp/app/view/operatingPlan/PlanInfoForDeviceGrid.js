@@ -40,21 +40,21 @@ Ext.define('Eway.view.operatingPlan.PlanInfoForDeviceGrid', {
 				dataIndex : 'planType',
 				renderer : function(value, metadata, record) {
 					if (value == "DATE") {
-						return EwayLocale.report.openplan.date;
+						return EwayLocale.report.serviceplan.date;
 					} else if (value == "WEEK") {
-						return EwayLocale.report.openplan.week;
+						return EwayLocale.report.serviceplan.week;
 					}
 				}
 			}, {
-				header : EwayLocale.report.openplan.state,
+				header : EwayLocale.report.serviceplan.state,
 				width : 80,
 				dataIndex : 'planStateType',
 			}, {
-				header : EwayLocale.report.openplan.openDate,
+				header : EwayLocale.report.serviceplan.openDate,
 				width : 100,
 				dataIndex : 'startDate'
 			}, {
-				header : EwayLocale.report.openplan.closeDate,
+				header : EwayLocale.report.serviceplan.closeDate,
 				width : 100,
 				dataIndex : 'endDate'
 			}, /*{
@@ -62,7 +62,7 @@ Ext.define('Eway.view.operatingPlan.PlanInfoForDeviceGrid', {
 				dataIndex : 'desc',
 				flex : 1
 			},*/ {
-				header :EwayLocale.report.openplan.createDateTime,
+				header :EwayLocale.report.serviceplan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 160,
 				fiex : 1

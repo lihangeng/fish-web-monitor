@@ -32,21 +32,18 @@ Ext.define('Eway.controller.base.Controller', {
 
 	},
 
-	activeController: function(controller) {
+	activeController: function(controller,title) {
 		this.active();
 		var childView = undefined;
 		var child = this.getController(controller);
 		var childView = child.getEwayView();
+		if(title){
+			childView.setTitle(title);
+		}
 		childView.controllers=controller;
 		this.activeControllerView(childView);
 		this.actived = child;
 		child.parent = this;
-		//在extjs4.2.1版本中会导致init两次
-//		if(!this.children.get(controller)) {
-//			this.children.add(controller, child);
-//			child.init();
-//		}
-
 	},
 
 	activeControllerView : function(childView) {

@@ -33,38 +33,38 @@ Ext.define('Eway.view.operatingPlan.GridForDevice', {
 				}
 			},
 			columns : [ {
-				header : EwayLocale.report.openplan.name,
+				header : EwayLocale.report.serviceplan.name,
 				width : 100,
 				dataIndex : 'name'
 			}, {
-				header : EwayLocale.report.openplan.state,
+				header : EwayLocale.report.serviceplan.state,
 				width : 100,
 				dataIndex : 'planType',
 				renderer : function(value, metadata, record) {
 					if (value == "DATE") {
-						return EwayLocale.report.openplan.date;
+						return EwayLocale.report.serviceplan.date;
 					} else if (value == "WEEK") {
-						return EwayLocale.report.openplan.week;
+						return EwayLocale.report.serviceplan.week;
 					}
 				}
 			}, {
-				header : EwayLocale.report.openplan.machineQuantity,
+				header : EwayLocale.report.serviceplan.machineQuantity,
 				width : 130,
 				dataIndex : 'deviceCount',
 			}, {
-				header : EwayLocale.report.openplan.state,
+				header : EwayLocale.report.serviceplan.state,
 				width : 130,
 				dataIndex : 'planStateType',
 			}, {
-				header : EwayLocale.report.openplan.openDate,
+				header : EwayLocale.report.serviceplan.openDate,
 				width : 120,
 				dataIndex : 'startDate'
 			}, {
-				header : EwayLocale.report.openplan.closeDate,
+				header : EwayLocale.report.serviceplan.closeDate,
 				width : 120,
 				dataIndex : 'endDate'
 			}, {
-				header : EwayLocale.report.openplan.createDateTime,
+				header : EwayLocale.report.serviceplan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 160,
 				fiex : 1
