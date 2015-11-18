@@ -74,7 +74,7 @@ public class DeviceModuleStatusController {
 
         ModStatus modStatus = null;
         try {
-            modStatus = (ModStatus) HttpProxy.httpGet(url, ModStatus.class);
+            modStatus = (ModStatus) HttpProxy.httpGet(url, ModStatus.class, 5000);
         }
         catch (Exception e) {
             logger.info("remote get status details error！" + e.toString());
