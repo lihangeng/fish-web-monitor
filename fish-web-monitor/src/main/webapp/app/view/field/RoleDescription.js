@@ -4,15 +4,12 @@ Ext.define('Eway.view.field.RoleDescription', {
 	alias: 'widget.field_roleDescription',
 
 	name : 'description',
-	fieldLabel: '<font color="red">*</font> '+EwayLocale.permission.role.description,
-	xtype:'field_roleDescription',
-	regex: /^[a-zA-Z0-9\u4E00-\u9FA5][a-zA-Z0-9-_\.\u4E00-\u9FA5]{0,99}$/,
-	regexText: EwayLocale.tip.roleDescription,
+	fieldLabel: EwayLocale.permission.role.description,
 	width:600,
 	height:60,
 	allowBlank:false,
 	msgTarget : 'side',
+	maxLength:100,
 	grow:true,
 	anchor    : '100%'
-
 });

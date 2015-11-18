@@ -82,7 +82,7 @@ public class StatusMonitorController {
 
         String url = MonitorCfg.getHttpUrl(ip) + "/ctr/propertisedetail";
         try {
-            ModProperty modProperty = (ModProperty) HttpProxy.httpGet(url, ModProperty.class);
+            ModProperty modProperty = (ModProperty) HttpProxy.httpGet(url, ModProperty.class, 5000);
             System.out.println(JsonUtils.toJson(modProperty));
             result.put(FishConstant.SUCCESS, true);
             result.put("data", modProperty);

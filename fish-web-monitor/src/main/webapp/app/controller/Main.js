@@ -76,13 +76,6 @@ Ext.define('Eway.controller.Main', {
 
 	//打开个人设置
 	onOpenPersonalSettings : function(btn){
-//		var workspace = this.getEwayView();
-//		var ps = Ext.ComponentQuery.query('personalSettings')[0];
-//		if(!ps){
-//			 ps = Ext.create('Eway.view.personal.PersonalSettings');
-//			 workspace.add(ps);
-//		}
-//		workspace.setActiveTab(ps);
 		this.activeController('personal.Personal');
 	},
 	onItemDbClick:function(view, node, item, index, e){
@@ -99,64 +92,65 @@ Ext.define('Eway.controller.Main', {
 			return;
 		}else{
 			var code = node.data.id;
-			this.openSystemMenu(code);
-			this.openDeviceMenu(code);
-			this.openMonitorMenu(code);
-			this.openSoftMenu(code);
-			this.openCaseMenu(code);
-			this.openReportMenu(code);
+			var text = node.data.text;
+			this.openSystemMenu(code,text);
+			this.openDeviceMenu(code,text);
+			this.openMonitorMenu(code,text);
+			this.openSoftMenu(code,text);
+			this.openCaseMenu(code,text);
+			this.openReportMenu(code,text);
 		}
 	},
 
 	// 打开“系统管理”下子菜单
-	openSystemMenu : function(code){
+	openSystemMenu : function(code,text){
 		if(code == "serviceOrg"){
-			this.activeController('person.ServiceOrg');
+			this.activeController('person.ServiceOrg',text);
 		}else if(code == "bankOrg"){
-			this.activeController('person.BankOrg');
+			this.activeController('person.BankOrg',text);
 		}else if(code =="servicePer"){
-			this.activeController('person.ServicePer');
+			this.activeController('person.ServicePer',text);
 		}else if(code == "bankPer"){
-			this.activeController('person.BankPer');
+			this.activeController('person.BankPer',text);
 		}else if(code == "user"){
-			this.activeController('person.User');
+			this.activeController('person.User',text);
 		}else if(code == "role"){
-			this.activeController('permission.Role');
+			this.activeController('permission.Role',text);
 		}else if(code == "permission"){
-			this.activeController('permission.Permission');
+			this.activeController('permission.Permission',text);
 		}else if(code == "userLog"){
-			this.activeController('person.UserLog');
+			this.activeController('person.UserLog',text);
 		}else if(code == "serviceThread"){
 			this.onServiceThreadInfo();
 		}else if(code == "configuration"){
-			this.activeController('machine.param.Param');
+			this.activeController('machine.param.Param',text);
 		}
 	},
 
 	// 打开“设备管理”下子菜单
-	openDeviceMenu : function(code){
+	openDeviceMenu : function(code,text){
 		if(code == "device"){
-			this.activeController('machine.Device');
+			this.activeController('machine.Device',text);
 		}else if(code == "atmModule"){
-			this.activeController('machine.atmModule.AtmModule');
+			this.activeController('machine.atmModule.AtmModule',text);
 		}else if(code == "atmBrand"){
-			this.activeController('machine.atmBrand.AtmBrand');
+			this.activeController('machine.atmBrand.AtmBrand',text);
 		}else if(code == 'atmCatalog'){
-			this.activeController('machine.atmCatalog.AtmCatalog');
+			this.activeController('machine.atmCatalog.AtmCatalog',text);
 		}else if(code == 'atmType'){
-			this.activeController('machine.atmType.AtmType');
+			this.activeController('machine.atmType.AtmType',text);
 		}else if(code == 'atmGroup'){
-			this.activeController('machine.atmGroup.AtmGroup');
+			this.activeController('machine.atmGroup.AtmGroup',text);
 		}else if(code == "device_quittingNotice"){
-			this.activeController('machine.quittingNotice.QuittingNotice');
+			this.activeController('machine.quittingNotice.QuittingNotice',text);
 		}else if(code == "device_move"){
-			this.activeController('machine.atmMove.AtmMove');
+			this.activeController('machine.atmMove.AtmMove',text);
 		}else if(code == "device_runtimeParams"){
-			this.activeController('monitor.atmRunParams.DeviceRuntimeParams');
+			this.activeController('monitor.atmRunParams.DeviceRuntimeParams',text);
 		}else if(code == "device_runtimeInfo"){
-			this.activeController('machine.atmRuntimeInfo.RuntimeInfo');
+			this.activeController('machine.atmRuntimeInfo.RuntimeInfo',text);
 		}else if(code == "retainCard"){
-			this.activeController('monitor.card.CardInfo');
+			this.activeController('monitor.card.CardInfo',text);
 		}
 //		else if(code == "monitor_cardAction"){
 //			this.activeController('monitor.card.CardAction');
@@ -164,112 +158,111 @@ Ext.define('Eway.controller.Main', {
 //			this.activeController('monitor.card.CardDestory');
 //		}
 		else if(code == "servicePlan"){
-			this.activeController('operatingPlan.OpenPlan');
-		}
-		else if(code == "logBackup"){
-			this.activeController('atmLog.LogBackup');
+			this.activeController('operatingPlan.OpenPlan',text);
+		}else if(code == "logBackup"){
+			this.activeController('atmLog.LogBackup',text);
 		}else if(code == "dayBackupJob"){
-			this.activeController('atmLog.DayBackup');
+			this.activeController('atmLog.DayBackup',text);
 		}else if(code == "atmLogInfo"){
-			this.activeController('atmLog.AtmLogInfo');
+			this.activeController('atmLog.AtmLogInfo',text);
 		}
 	},
 
 	//打开“监控管理”下子菜单
-	openMonitorMenu : function(code){
+	openMonitorMenu : function(code,text){
 		if(code == "monitor_trans"){
-			this.activeController('monitor.transaction.TransactionMonitor');
+			this.activeController('monitor.transaction.TransactionMonitor',text);
 		}else if(code =="hits_trans"){
-			this.activeController('monitor.transaction.HistoryTransaction');
+			this.activeController('monitor.transaction.HistoryTransaction',text);
 		}else if(code =="cash_init"){
-			this.activeController('monitor.cashinit.CashInit');
+			this.activeController('monitor.cashinit.CashInit',text);
 		}else if(code =="settlement"){
-			this.activeController('monitor.settlement.Settlement');
+			this.activeController('monitor.settlement.Settlement',text);
 		}else if(code =="monitor_device"){
-			this.activeController('monitor.device.DeviceMonitor');
+			this.activeController('monitor.device.DeviceMonitor',text);
 		}else if(code =="maintainService"){
-			this.activeController('service.MaintainService');
+			this.activeController('service.MaintainService',text);
 		}else if(code =="moneyService"){
-			this.activeController('service.MoneyService');
+			this.activeController('service.MoneyService',text);
 		}else if(code =="openPlan"){
-			this.activeController('report.openPlan.OpenPlan');
+			this.activeController('report.openPlan.OpenPlan',text);
 		}else if(code =="monitorSummaryInfo"){
-			this.activeController('monitor.MonitorSummaryInfo');
+			this.activeController('monitor.MonitorSummaryInfo',text);
 		}
 
 	},
 
 	//打开“软件管理”下子菜单
-	openSoftMenu : function(code){
+	openSoftMenu : function(code,text){
 		if(code =="version"){
-			this.activeController('version.Version');
+			this.activeController('version.Version',text);
 		}else if(code == "versionMonitor"){
-			this.activeController('version.VersionDownload');
+			this.activeController('version.VersionDownload',text);
 		}else if(code == "advert"){
-			this.activeController('advert.Advert');
+			this.activeController('advert.Advert',text);
 		}else if(code == "deviceVersion"){
-			this.activeController('version.DeviceVersion');
+			this.activeController('version.DeviceVersion',text);
 		}else if(code == "versionType"){
-			this.activeController('version.VersionType');
+			this.activeController('version.VersionType',text);
 		}else if(code=="versionAutoUpdate"){
-			this.activeController('version.VersionAutoUpdate');
+			this.activeController('version.VersionAutoUpdate',text);
 		}else if(code=="versionDistribute"){
-			this.activeController('version.VersionDistribute');
+			this.activeController('version.VersionDistribute',text);
 		}
 
 	},
 
 	//打开“故障管理”下子菜单
-	openCaseMenu : function(code){
+	openCaseMenu : function(code,text){
 		if(code =="notifyMould"){
-			this.activeController('case.NotifyMould');
+			this.activeController('case.NotifyMould',text);
 		}else if(code == "notifyMould"){
-			this.activeController('case.NotifyMould');
+			this.activeController('case.NotifyMould',text);
 		}else if(code == "faultConfig"){
-			this.activeController('case.FaultClassify');
+			this.activeController('case.FaultClassify',text);
 		}else if(code == "casefault"){
-			this.activeController('case.CaseFault');
+			this.activeController('case.CaseFault',text);
 		}else if(code == "casenotify"){
-			this.activeController('case.CaseNotify');
+			this.activeController('case.CaseNotify',text);
 		}else if(code == "vendorCode"){
-			this.activeController('case.VendorCode');
+			this.activeController('case.VendorCode',text);
 		}
 	},
 
 	//打开“报表管理”下子菜单
-	openReportMenu : function(code){
+	openReportMenu : function(code,text){
 		if(code =="reportRetainCardDetail"){
-			this.activeController('report.baseReport.RetainCardReport');
+			this.activeController('report.baseReport.RetainCardReport',text);
 		}else if(code =="reportRetainCardCount"){
-			this.activeController('report.baseReport.RetainCardCountReport');
+			this.activeController('report.baseReport.RetainCardCountReport',text);
 		}else if(code =="reportTransactionCount"){
-			this.activeController('report.baseReport.TransactionCountReport');
+			this.activeController('report.baseReport.TransactionCountReport',text);
 		}else if(code =="reportTransactionResult"){
-			this.activeController('report.baseReport.TransactionResultCountReport');
+			this.activeController('report.baseReport.TransactionResultCountReport',text);
 		}else if(code =="reportCashIn"){
-			this.activeController('report.baseReport.CashInReport');
+			this.activeController('report.baseReport.CashInReport',text);
 		}else if(code =="reportSettlement"){
-			this.activeController('report.baseReport.SettlementReport');
+			this.activeController('report.baseReport.SettlementReport',text);
 		}else if(code =="reportVendor"){
-			this.activeController('report.baseReport.DeviceTypeCountReport');
+			this.activeController('report.baseReport.DeviceTypeCountReport',text);
 		}else if(code =="reporDeviceHardWare"){
-			this.activeController('report.baseReport.DeviceHardWareReport');
+			this.activeController('report.baseReport.DeviceHardWareReport',text);
 		}else if(code =="reportDeviceUseCount"){
-			this.activeController('report.baseReport.DeviceUseCountReport');
+			this.activeController('report.baseReport.DeviceUseCountReport',text);
 		}else if(code =="reportDeviceInfo"){
-			this.activeController('report.baseReport.DeviceReport');
+			this.activeController('report.baseReport.DeviceReport',text);
 		}else if(code =="reportDeviceBoxDetail"){
-			this.activeController('report.baseReport.DeviceBoxDetailReport');
+			this.activeController('report.baseReport.DeviceBoxDetailReport',text);
 		}else if(code =="deviceOpenRate"){
-			this.activeController('report.openrate.DeviceOpenRate');
+			this.activeController('report.openrate.DeviceOpenRate',text);
 		}else if(code =="typeOpenRate"){
-			this.activeController('report.openrate.TypeOpenRate');
+			this.activeController('report.openrate.TypeOpenRate',text);
 		}else if(code =="orgOpenRate"){
-			this.activeController('report.openrate.OrgOpenRate');
+			this.activeController('report.openrate.OrgOpenRate',text);
 		}else if(code =="reportDayTrans"){
-			this.activeController('report.baseReport.TransactionDaysCountReport');
+			this.activeController('report.baseReport.TransactionDaysCountReport',text);
 		}else if(code =="reportDayHourTrans"){
-			this.activeController('report.baseReport.TransactionHoursCountReport');
+			this.activeController('report.baseReport.TransactionHoursCountReport',text);
 		}
 	},
 
