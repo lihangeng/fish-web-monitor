@@ -93,7 +93,7 @@ Ext.apply(EwayLocale,{
 		download:'下发',
 		downloadToolTip:'配置下发作业',
 		save:'保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存',//EwayLocale.button.save
-		openPlan:'开机方案',//EwayLocale.button.openPlan
+		servicePlan:'开机方案',//EwayLocale.button.servicePlan
 		adminBtn:'管理员',
 		personM:'厂商管理员',//EwayLocale.button.personM
 		personTM:'管机员',//EwayLocale.button.personTM

@@ -6,7 +6,7 @@ Ext.define('Eway.view.operatingPlan.View', {
 	requires: ['Eway.view.operatingPlan.FilterForm',
 	           'Eway.view.operatingPlan.Grid'],
 	
-	title: EwayLocale.button.openPlan,
+	title: EwayLocale.button.servicePlan,
 	layout: 'border',
 	
 	initComponent: function() {

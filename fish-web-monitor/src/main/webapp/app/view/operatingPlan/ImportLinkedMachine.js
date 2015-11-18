@@ -1,7 +1,7 @@
 Ext.define('Eway.view.operatingPlan.ImportLinkedMachine',{
           extend :'Ext.window.Window',
           alias:'widget.operatingPlan_download_linkedMachine',
-          title:EwayLocale.report.openplan.inportLinkedMachine,
+          title:EwayLocale.report.serviceplan.inportLinkedMachine,
           modal:true,
           resizable : false,
           constrainHeader : true,
@@ -26,26 +26,26 @@ Ext.define('Eway.view.operatingPlan.ImportLinkedMachine',{
       				items : [
       				{
       					xtype : 'filefield',
-      					fieldLabel : EwayLocale.report.openplan.selectFile,
+      					fieldLabel : EwayLocale.report.serviceplan.selectFile,
       					name : 'file',
       					allowBlank : false,
       					width:420,
-      					blankText : EwayLocale.report.openplan.placeUploadingResource,
+      					blankText : EwayLocale.report.serviceplan.placeUploadingResource,
       					waitMsg:EwayLocale.version.View.versionFileUploadMsg,
       					msgTarget : 'side',
       					regex : /^([\w|\W]*)(\.xls)$/i,
-      					regexText : EwayLocale.report.openplan.fileNotSupport
+      					regexText : EwayLocale.report.serviceplan.fileNotSupport
       				}, {
       					xtype : 'displayfield',
       					fieldLabel : EwayLocale.cases.vendorCode.templateLoad,
       					width:420,
       					name : 'link',
-      					value :"<a class='link' href='api/dateImport/downloadFile'>"+EwayLocale.report.openplan.thisHardToTranslate+"</a>"
+      					value :"<a class='link' href='api/dateImport/downloadFile'>"+EwayLocale.report.serviceplan.thisHardToTranslate+"</a>"
       				}, {
       					xtype : 'displayfield',
-      					fieldLabel : EwayLocale.report.openplan.exportExplain,
+      					fieldLabel : EwayLocale.report.serviceplan.exportExplain,
       					width:420,
-      					value : '<font color="red">'+EwayLocale.report.openplan.thisIsTooLong+'</font>'
+      					value : '<font color="red">'+EwayLocale.report.serviceplan.thisIsTooLong+'</font>'
       				} ],
       				buttonAlign:'center',
       				buttons : [ {
