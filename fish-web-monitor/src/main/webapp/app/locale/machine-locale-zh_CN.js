@@ -576,5 +576,71 @@ Ext.apply(EwayLocale,{
 		startData:'吞卡起始日期',//EwayLocale.card.startData
 		add:'添加',//EwayLocale.card.add
 		dell:'删除'//EwayLocale.card.dell
+	},
+	plan:{
+		addPlan:'增加开机方案',//EwayLocale.machine.plan.addPlan
+		name:'方案名称',//EwayLocale.machine.plan.name
+		type:'方案类型',//EwayLocale.machine.plan.type
+		startDate:'有效开始时间',//EwayLocale.machine.plan.startDate
+		endDate:'有效结束时间',//EwayLocale.machine.plan.endDate
+		terminalId:'编号',//EwayLocale.machine.plan.terminalId
+		cashboxLimit:'钞箱报警金额(单位：张数)',//EwayLocale.machine.plan.cashboxLimit
+		perToDev:'人员<-->设备',//EwayLocale.machine.plan.perToDev
+		changePlan:'更改方案',//EwayLocale.machine.plan.changePlan
+		servicePlan:'开机方案',//EwayLocale.machine.plan.servicePlan
+	},
+
+	serviceplan:{
+		name:'方案名称',//EwayLocale.machine.serviceplan.name
+		machineQuantity:'设备数量',//EwayLocale.machine.serviceplan.machineQuantity
+		state:'状态',//EwayLocale.machine.serviceplan.state
+		openDate:'有效开机时间',//EwayLocale.machine.serviceplan.openDate
+		closeDate:'有效关机时间',//EwayLocale.machine.serviceplan.closeDate
+		createDateTime:'创建时间',//EwayLocale.machine.serviceplan.createDateTime
+		date:'日期',//EwayLocale.machine.serviceplan.date
+		week:'星期',//EwayLocale.machine.serviceplan.week
+		inportLinkedMachine:'导入关联设备',//EwayLocale.machine.serviceplan.inportLinkedMachine
+		selectFile:'选择文件',//EwayLocale.machine.serviceplan.selectFile
+		placeUploadingResource:'请上传资源',//EwayLocale.machine.serviceplan.placeUploadingResource
+		fileNotSupport:'导入的文件格式不支持,请按模板导入设备信息',//EwayLocale.machine.serviceplan.fileNotSupport
+		exportExplain:'导入说明',//EwayLocale.machine.serviceplan.exportExplain
+		thisIsTooLong:'请在设备导入模板中连续添加要下发的设备号,最多一次性导入2000条数据(约耗时5分钟),最少导入1条数据',//EwayLocale.machine.serviceplan.thisIsTooLong
+		thisHardToTranslate:'点击下载导入设备号模板',//EwayLocale.machine.serviceplan.thisHardToTranslate
+		placeSelect:'---请选择---',//EwayLocale.machine.serviceplan.placeSelect
+		planDevice:'方案<-->设备',//EwayLocale.machine.serviceplan.planDevice
+		timeEare:'输入时间段有误，请重新输入！',//EwayLocale.machine.serviceplan.timeEare
+		planOlonOne:'同方案只能设置开机或关机的一种',//EwayLocale.machine.serviceplan.planOlonOne
+		addSuccess:'添加成功',//EwayLocale.machine.serviceplan.addSuccess
+		addFail:'添加失败',//EwayLocale.machine.serviceplan.addFail
+		setTime:'请设置详细时间',//EwayLocale.machine.serviceplan.setTime
+		thisPlanStop:'(此方案已停用，不可应用！)',//EwayLocale.machine.serviceplan.thisPlanStop
+		placeRefresh:'条解除失败，请刷新后查看！',//EwayLocale.machine.serviceplan.placeRefresh
+		linking:'正在关联设备....',//EwayLocale.machine.serviceplan.linking
+		testingPlaceWaiting:'正在判断设备号是否符合要求，请耐心等待...',//EwayLocale.machine.serviceplan.testingPlaceWaiting
+		leastOne:'最少一次导入1条设备信息，请重新选择导入文件!',//EwayLocale.machine.serviceplan.leastOne
+		notMore:'最多一次导入2000条设备信息，请重新选择导入文件!',//EwayLocale.machine.serviceplan.notMore
+		checkFile:'请检查导入文件',//EwayLocale.machine.serviceplan.checkFile
+		fileNotAllowed:'文件不符合要求！',//EwayLocale.machine.serviceplan.fileNotAllowed
+		tipExportSuccess:'条数据,成功导入',//EwayLocale.machine.serviceplan.tipExportSuccess
+		tipLookUp:'条,点击查看导入详情!',//EwayLocale.machine.serviceplan.tipLookUp
+		tochenkDervice:'请选择您要更改的设备',//EwayLocale.machine.serviceplan.tochenkDervice
+		tochenckPeople:'请选择人员',//EwayLocale.machine.serviceplan.tochenckPeople
+		tipAddError:'条添加失败,请刷新后查看',//EwayLocale.machine.serviceplan.tipAddError
+		planIsHaved:'',
+		linkSuccess:'关联成功',//EwayLocale.machine.serviceplan.linkSuccess
+		Mon:'一',//EwayLocale.machine.serviceplan.Mon
+		Tues:'二',//EwayLocale.machine.serviceplan.Tues
+		Wed:'三',//EwayLocale.machine.serviceplan.Wed
+		Thur:'四',//EwayLocale.machine.serviceplan.Thur
+		Fri:'五',//EwayLocale.machine.serviceplan.Fri
+		Sat:'六',//EwayLocale.machine.serviceplan.Sat
+		Sun:'日',//EwayLocale.machine.serviceplan.Sun
+		useSuccess:'正常启用',//EwayLocale.machine.serviceplan.useSuccess
+		notSuccess:'未启用',//EwayLocale.machine.serviceplan.notSuccess
+		lastOneGroup:'请在组内至少选中一项',//EwayLocale.machine.serviceplan.lastOneGroup
+		lanDetailWeek:'星期方案详细列表',//EwayLocale.machine.serviceplan.lanDetailWeek
+		planDetailDay:'日期方案详细列表',//EwayLocale.machine.serviceplan.planDetailDay
+		selectPlan:'选择开机方案',//EwayLocale.machine.serviceplan.selectPlan
+		weekSelect:'通知方式'//EwayLocale.machine.serviceplan.weekSelect
 	}
 });

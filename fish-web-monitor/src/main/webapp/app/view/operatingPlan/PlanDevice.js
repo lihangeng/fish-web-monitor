@@ -19,7 +19,7 @@ Ext.define('Eway.view.operatingPlan.PlanDevice', {
 
 	initComponent: function() {
 		Ext.apply(this, {
-			title : EwayLocale.report.serviceplan.planDevice,
+			title : EwayLocale.machine.serviceplan.planDevice,
 			items : [{
 				region: 'west',
 				width:'50%',
