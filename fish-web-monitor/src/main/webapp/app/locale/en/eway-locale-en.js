@@ -11,9 +11,6 @@ Ext.apply(EwayLocale,{
 	personalConf:'Personal Settings',//EwayLocale.personalConf 个人设置
 	systemHelp:'Help',///EwayLocale.systemHelp 系统帮助
 	exitSystem:'Log Out',//EwayLocale.exitSystem 退出系统
-	title:{
-		msg:'Message'//EwayLocale.title.msg 信息
-	},
 	msg:{
 		perviewFailForText:'Preview failed:the charater and rolling advertisement is supported to preview',//EwayLocale.msg.perviewFailForText 预览失败:不支持文字滚动广告和公告的预览.
 		perviewFailNoResource:'Preview failed:no resource found in this advertisement.',//EwayLocale.msg.perviewFailNoResource 预览失败:此广告没有配置广告资源.
