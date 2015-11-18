@@ -387,6 +387,10 @@ Ext.apply(EwayLocale,{
 			versionInfo:'The version information :',//您要查看的版本信息如下:
 			ATMCVersion:'Version of ATMC application',//ATMC应用版本
 			monitorVersion: 'Version of monintor client',//监控客户端版本
+			mergeload:'Check the list of download',//查看下载列表
+			mergeDownLoad:'Execute the task of download',//执行下载任务
+			clickAddLoadFile:'Add the list of download on click',//单击添加到下载列表
+			removeFile:'Remove the file from list',//删除
 
 		}
 	}
