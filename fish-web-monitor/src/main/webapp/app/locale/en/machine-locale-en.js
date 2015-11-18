@@ -7,11 +7,11 @@ Ext.apply(EwayLocale,{
 			country:'Country',//生产商国家或地区
 			hotline1:'Hotline',//生产商热线1
 			hotline2:'Hotline2',//生产商热线2
-			address:'Producer address',//生产商地址
-			status:'Producer hotline',//生产商状态
+			address:'Address',//生产商地址
+			status:'Type',//生产商状态
 			comboxStatus:{
-				provider:'Device supply',//设备供应
-				maintance:'Device use'//设备服役
+				provider:'Supplier',//设备供应
+				maintance:'Service Provider'//设备服役
 			}
 		},
 		atmCatalog:{

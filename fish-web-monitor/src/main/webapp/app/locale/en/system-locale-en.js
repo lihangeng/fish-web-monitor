@@ -85,7 +85,7 @@ Ext.apply(EwayLocale,{
 			clickToUser:'Please click query ,choose a  person',//EwayLocale.person.user.clickToUser 请点击查询，选择人员
 			userType:'User Type',//EwayLocale.person.user.userType 用户类型
 			role:'Role',//EwayLocale.person.user.role 角色
-			roleGiven:'Role given',//EwayLocale.person.user.roleGiven 角色赋予
+			roleGiven:'Optional Roles',//EwayLocale.person.user.roleGiven 角色赋予
 			roleName:'Name',//EwayLocale.person.user.roleName 角色名称
 			roleDescription:'Description',//EwayLocale.person.user.roleDescription 角色描述
 			userListTitle:'userList',//EwayLocale.person.user.userListTitle 人员列表

@@ -11,7 +11,7 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandFilterForm', {
 	initComponent: function() {
 		Ext.apply(this, {
 			items : [{
-				columnWidth : .3,
+				columnWidth : .45,
 				items : [{
 					xtype : 'textfield',
 					labelAlign : 'right',
@@ -20,15 +20,15 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandFilterForm', {
 					maxLength : 20,
 					msgTarget : 'side'
 				}]
-			},{
+			},/*{
 				columnWidth : .3,
 				items : [{
 					xtype : 'field_atmBrand_statusComboBox',
 					labelAlign : 'right',
 					editable:false
 				}]
-			},{
-				columnWidth : .3,
+			},*/{
+				columnWidth : .45,
 				items : [{
 					xtype : 'field_atmBrand_country',
 					labelWidth: 110,
