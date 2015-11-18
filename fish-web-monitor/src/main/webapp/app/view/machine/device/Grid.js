@@ -167,8 +167,7 @@ Ext.define('Eway.view.machine.device.Grid', {
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
-				displayInfo : true,
-				displayMsg : EwayLocale.tip.displayMessage
+				displayInfo : true
 			})
 		});
 

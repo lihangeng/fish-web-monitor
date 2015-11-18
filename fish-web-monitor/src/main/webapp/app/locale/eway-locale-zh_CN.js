@@ -139,8 +139,6 @@ Ext.apply(EwayLocale,{
 		fail:'失败:',//EwayLocale.tip.fail
 		phone:'请输入正确的电话号码',
 		remind:'提示',//EwayLocale.tip.remind
-		displayMessage:'总共：{2}条，显示{0}-{1}',
-		
 		formatPageBfMsg: '每页显示',// EwayLocale.tip.formatPageBfMsg
 		formatPageAfMsg: '条',// EwayLocale.tip.formatPageAfMsg
 

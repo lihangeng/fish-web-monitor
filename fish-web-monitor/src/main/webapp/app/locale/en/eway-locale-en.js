@@ -109,10 +109,10 @@ Ext.apply(EwayLocale,{
 	tip:{
 		search :{
 			warn:'Error input for query.',//查询条件存在错误项.
-			record:'Please choose the record which you want to check'//请选择您要查看的记录.
+			record:'Please choose one record'//请选择您要查看的记录.
 		},
 		update:{
-			one:'Only one record can be choose to modify',//只能选择一条记录更改.
+			one:'Only choose one record',//只能选择一条记录更改.
 			two:'This record can not be modified'//此条记录不能被更改.
 		},
 		remove :{
@@ -125,11 +125,11 @@ Ext.apply(EwayLocale,{
 			error:'Delete failed:'//删除失败
 		},
 		own:{
-			have:'yes',//有
+			have:'yes',//有 EwayLocale.tip.own.have
 			nothing:'no'//无
 		},
 		right:{
-			yes:'yes', //是
+			yes:'yes', //是 EwayLocale.tip.right.yes
 			no:'no' //否
 		},
 		add:{
@@ -139,7 +139,6 @@ Ext.apply(EwayLocale,{
 		fail:'Failed:',//EwayLocale.tip.fail 失败
 		phone:'Please enter the right telephone number', //请输入正确的电话号码
 		remind:'Tip',//EwayLocale.tip.remind 提示
-		displayMessage:'Total:{2} items,display{0}-{1}',//总共：{2}条，显示{0}-{1}
 		formatPageBfMsg: 'Per page',// EwayLocale.tip.formatPageBfMsg
 		formatPageAfMsg: 'items',// EwayLocale.tip.formatPageAfMsg
 

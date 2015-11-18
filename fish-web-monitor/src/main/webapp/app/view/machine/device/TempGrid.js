@@ -121,8 +121,7 @@ Ext.define('Eway.view.machine.device.TempGrid', {
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
-				displayInfo : true,
-				displayMsg : EwayLocale.tip.displayMessage
+				displayInfo : true
 			})
 		});
 
