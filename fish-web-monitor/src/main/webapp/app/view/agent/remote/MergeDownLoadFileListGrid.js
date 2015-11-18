@@ -20,18 +20,18 @@ Ext.define('Eway.view.agent.remote.MergeDownLoadFileListGrid', {
 			autoScroll: true,
 			store: gridStore,
 			tbar: [{
-				text: Eway.locale.agent.remote.removeFile,
+				text: EwayLocale.agent.remote.removeFile,
 				iconCls:'refresh-btn-custom',
 				action:'removeFile',
 				xtype : 'button'
 			},{
-				text:Eway.locale.agent.remote.mergeDownLoad,
+				text:EwayLocale.agent.remote.mergeDownLoad,
 				iconCls:'up-btn-custom',
 				action:'mergeDownLoad',
 				xtype : 'button'
 			}],			
 			columns : [{
-				header : Eway.locale.agent.remote.name,
+				header : EwayLocale.agent.remote.name,
 				sortable : true,
 				renderer: this.iconBackground,
 				width : 260,
@@ -42,23 +42,23 @@ Ext.define('Eway.view.agent.remote.MergeDownLoadFileListGrid', {
 	            }
 
 			}, {
-				header : Eway.locale.commen.type,
+				header : EwayLocale.commen.type,
 				dataIndex : 'type',
 				hidden: true,
 				sortable : true
 			},{
-				header : Eway.locale.agent.remote.path,
+				header : EwayLocale.agent.remote.path,
 				dataIndex : 'path',
 				width : 180,			
 				sortable : true
 			},{
-				header : Eway.locale.agent.remote.size,
+				header : EwayLocale.agent.remote.size,
 				dataIndex : 'size',
 				renderer: function(value,metadata,record){
 					if(record.data.type=="DIR"){
 	                 	   return "";;
 	                   }else{
-	                   	metadata.tdAttr ='data-qtip="'+Eway.locale.agent.remote.fileSize + value+" B"+'"';
+	                   	metadata.tdAttr ='data-qtip="'+EwayLocale.agent.remote.fileSize + value+" B"+'"';
 	                   	if(value>1024*1024*1024){
 	                   		return (value/(1024*1024*1024)).toFixed(2)+" GB";
 	                   	}else if(value>1024*1024){
@@ -71,7 +71,7 @@ Ext.define('Eway.view.agent.remote.MergeDownLoadFileListGrid', {
 				},
 				sortable : true
 			},{
-				header : Eway.locale.agent.remote.lastTime,
+				header : EwayLocale.agent.remote.lastTime,
 				dataIndex : 'lastTime',
 				width : 160,
 				sortable : true

@@ -515,7 +515,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		win.down('button[action="removeFile"]').on('click',Ext.bind(me.onRemoveFile,this,[win]),this);
 		var ip = topwin.down('textfield[name="ip"]').getValue();
 		var gridEl = grid.getEl();
-		var mask = new Ext.LoadMask(grid, {msg : Eway.locale.agent.remote.nowLoadFile});
+		var mask = new Ext.LoadMask(grid, {msg : EwayLocale.agent.remote.nowLoadFile});
 		win.down('button[action="mergeDownLoad"]').on('click',Ext.bind(me.mergeDownloadFile,this,[win,ip,mask,gridEl]),this);
 		win.on("close",function(){
 			fileListGrid.mergeDownLoadStore = Ext.create('Eway.store.agent.MergeDownLoadFileList',{});
@@ -531,11 +531,11 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		{
 			var record = sm.getLastSelected();
 			store.remove(record);
-			Eway.alert(Eway.locale.agent.remote.removeSuccess);
+			Eway.alert(EwayLocale.agent.remote.removeSuccess);
 		}
 		else
 		{
-			Eway.alert(Eway.locale.agent.remote.mustSelection);
+			Eway.alert(EwayLocale.agent.remote.mustSelection);
 		}
 	},
 	
@@ -584,7 +584,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			},
 			failure : function() {
 				mask.hide();
-				Eway.alert(Eway.locale.agent.remote.loadFailure);
+				Eway.alert(EwayLocale.agent.remote.loadFailure);
 			}
 		});
 	}
