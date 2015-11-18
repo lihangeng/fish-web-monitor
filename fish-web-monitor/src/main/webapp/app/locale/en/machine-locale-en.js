@@ -8,7 +8,7 @@ Ext.apply(EwayLocale,{
 			hotline1:'Hotline',//生产商热线1
 			hotline2:'Hotline2',//生产商热线2
 			address:'Address',//生产商地址
-			status:'Type',//生产商状态
+			status:'Status',//生产商状态
 			comboxStatus:{
 				provider:'Supplier',//设备供应
 				maintance:'Service Provider'//设备服役
@@ -25,7 +25,7 @@ Ext.apply(EwayLocale,{
 		atmGroup : {
 			terminalId:'Terminal ID', //设备号
 			ip: 'IP',//设备IP地址
-			orgName:'Org belongs',//
+			orgName:'Bank',//
 			devTypeName:'Device Type',//设备型号
 			devVendorName:'Device Brand',//设备品牌
 			devCatalogName:'Device Catalog',//设备类型
@@ -42,23 +42,23 @@ Ext.apply(EwayLocale,{
 				outBank:'Outside bank',//离行自助银行
 				clickBank:'Alone out-bank self-service'//单机离行自助服务点
 			},
-			devServiceName:'Manufacturer',//设备维护商
-			cashboxLimit:'Alarm cashbox',//钞箱报警金额
-			installDate:'Install date',//安装日期
+			devServiceName:'Maintenance Provider',//设备维护商
+			cashboxLimit:'Cashbox Alarm Limit',//钞箱报警金额
+			installDate:'Install Date',//安装日期
 			address:'Address',//地址
 			gourpDev:'Group<-->Device',//分组<-->设备
-			addTitle: 'Add info of machine-group ',//增加设备组信息
-			groupName:'Group name',//组名
-			note:'Remark',//备注
-			updateTitle:'Update info of machine-group '//更改设备组信息
+			addTitle: 'Add Group Info',//增加设备组信息
+			groupName:'Group Name',//组名
+			note:'Description',//备注
+			updateTitle:'Update Group Info'//更改设备组信息
 		},
 		atmModule:{
-			moduleName:'Module name',//模块名称
-			note:'remark',//备注
+			moduleName:'Module Name',//模块名称
+			note:'Description',//备注
 			atmModules:'ATM module'	//ATM模块
 		},
 		atmMove:{
-			title:'Move manager',//移机管理
+			title:'Move Manager',//移机管理
 			moveDev:'Move machine',//移机
 			moveDevRec:'Move machine and generate the move record',//移动设备并产生移机记录
 			moveRecordInfo:'Move machine record',//移机记录信息

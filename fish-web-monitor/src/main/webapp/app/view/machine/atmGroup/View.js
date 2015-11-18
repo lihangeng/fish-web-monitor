@@ -28,8 +28,8 @@ Ext.define('Eway.view.machine.atmGroup.View', {
 							height : 40,
 							items:[{
 								labelAlign : 'right',
-								labelWidth : 50,
 								xtype : 'textfield',
+								style :'padding-top:10px',
 								name : 'name',
 								maxLength : 30,
 								fieldLabel : EwayLocale.machine.atmGroup.groupName,
