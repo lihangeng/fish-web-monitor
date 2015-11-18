@@ -18,7 +18,7 @@ Ext.define('Eway.view.person.bankPer.Add', {
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
-
+	width:500,
 	initComponent: function() {
 		Ext.apply(this, {
 			items : {

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.yihuacomputer.common.http.HttpFileCfg;
 import com.yihuacomputer.common.http.HttpFileRet;
 import com.yihuacomputer.common.jackson.JsonUtils;
+import com.yihuacomputer.fish.api.system.config.IParam;
 import com.yihuacomputer.fish.api.system.config.IParamService;
 
 /**
@@ -44,9 +45,12 @@ public class HttpFileController {
 	@RequestMapping(method = RequestMethod.POST)
 	public void downloadFile(HttpServletRequest req, HttpServletResponse resp) {
 		int maxConnect = 80;
-		String masCon = paramService.getParam(paramKey).getParamValue();
-		if(masCon!=null){
-			maxConnect = Integer.valueOf(masCon);
+		IParam param = paramService.getParam(paramKey);
+		if(null!=param){
+			String masCon = param.getParamValue();
+			if(masCon!=null){
+				maxConnect = Integer.valueOf(masCon);
+			}
 		}
 			
 		logger.info(String.format("now connecter number is:[%s]",currentConnect));

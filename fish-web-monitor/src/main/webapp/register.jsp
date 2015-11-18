@@ -132,7 +132,7 @@
 	<div id='inline_content' style='padding:10px; background:#fff;position: relative;top: 30px' align="center">
 		<h3><spring:message code="login.system.register" /></h3>
 			<spring:message code="login.system.serialNo" />	<input name="key" id="keyId" class="registerInputText"  type="text" readonly="readonly" style="width:100px">
-			<span name="registerWait" id ="regWait"><img src="resources/images/wait2.gif"></img><span>正在获取系统序列号...</span></span>
+			<span name="registerWait" id ="regWait"><img src="resources/images/wait2.gif"></img><span><spring:message code="login.system.gainRegisterNo" /></span></span>
 			<br></br>
 			<spring:message code="login.system.registerNo" />	<input name="serial1" class="registerInputText"  type="text" id="serial1">-
 				    <input name="serial2" class="registerInputText"  type="text" id="serial2">-

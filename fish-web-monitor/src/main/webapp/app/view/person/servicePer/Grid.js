@@ -65,7 +65,8 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 				dataIndex : 'name'
 			},{
 				header : EwayLocale.commen.devServiceName,
-				dataIndex : 'organizationName'
+				dataIndex : 'organizationName',
+				width:160,
 			},{
 				header : EwayLocale.commen.state,
 				dataIndex : 'state',
@@ -80,7 +81,7 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 		                	   return EwayLocale.commen.comboxStatus.other;
 		             }
 				}
-			},{
+			},/*{
 				header : EwayLocale.commen.type,
 				dataIndex : 'type',
 				renderer: function(value,metadata,record){
@@ -90,7 +91,7 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 		                	   return EwayLocale.commen.comboxType.machineRepairer;
 		             }
 				}
-			}, {
+			},*/ {
 				header : EwayLocale.commen.mobile,
 				dataIndex : 'mobile'
 			},{

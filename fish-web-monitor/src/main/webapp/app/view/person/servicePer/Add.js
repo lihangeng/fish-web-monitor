@@ -17,6 +17,7 @@ Ext.define('Eway.view.person.servicePer.Add', {
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
+	width:500,
 
 	initComponent: function() {
 		Ext.apply(this, {
@@ -26,10 +27,10 @@ Ext.define('Eway.view.person.servicePer.Add', {
 				trackResetOnLoad : true,
 				selectOnFocus : true,
 				defaults: {
-					width: 350,
-					labelWidth: 60,
 					labelAlign: 'right',
-					msgTarget : 'side'
+					msgTarget : 'side',
+					labelWidth: 150,
+					anchor : '90%'
 				},
 				items: [{
 					fieldLabel : '<font color="red">*</font> '+EwayLocale.commen.name,
