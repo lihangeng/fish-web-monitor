@@ -74,7 +74,7 @@ public class SoftAndHardwareInfoController {
 		String url = MonitorCfg.getHttpUrl(ip) + "/ctr/modharverinfo";
 
          try {
-        	ModHalVersion modHalVersion = (ModHalVersion) HttpProxy.httpGet(url, ModHalVersion.class);
+        	ModHalVersion modHalVersion = (ModHalVersion) HttpProxy.httpGet(url, ModHalVersion.class, 5000);
             result.put(FishConstant.SUCCESS, true);
             result.put("data", modHalVersion);
         }catch (Exception e) {
