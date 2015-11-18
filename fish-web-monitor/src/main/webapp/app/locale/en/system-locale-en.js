@@ -17,7 +17,7 @@ Ext.apply(EwayLocale,{
 			address:'Address',//EwayLocale.person.bankOrg.address 机构地址
 			upgradeOrg:'Upper',//EwayLocale.person.bankOrg.upgradeOrg 上级机构
 			description:'Description',//EwayLocale.person.bankOrg.description 机构描述
-			serOrganization:'Maintenance description',//EwayLocale.person.bankOrg.serOrganization
+			serOrganization:'All',//EwayLocale.person.bankOrg.serOrganization
 			organizationType:{
 				bank:'Bank',//EwayLocale.person.bankOrg.organizationType.bank 银行
 				serviceOrg:'Maintenance'//EwayLocale.person.bankOrg.organizationType.serviceOrg 维护商
@@ -38,10 +38,10 @@ Ext.apply(EwayLocale,{
 		},
 		bankPer :{
 			title:'Bankers',//EwayLocale.person.bankPer.title 银行人员管理
-			organizationName:'Organization',//EwayLocale.person.bankPer.organizationName 机构
-			orgNavi:'Organization Navigator',//EwayLocale.person.bankPer.orgNavi 机构导航
-			addBankPerTitle:'Add information of bank person ',//EwayLocale.person.bankPer.addBankPerTitle 增加银行人员信息
-			updateBankPerTitle:'Modify information of bank person '//EwayLocale.person.bankPer.updateBankPerTitle 更改银行人员信息
+			organizationName:'Bank',//EwayLocale.person.bankPer.organizationName 机构
+			orgNavi:'All',//EwayLocale.person.bankPer.orgNavi 机构导航
+			addBankPerTitle:'Add Banker Info',//EwayLocale.person.bankPer.addBankPerTitle 增加银行人员信息
+			updateBankPerTitle:'Update Banker Info '//EwayLocale.person.bankPer.updateBankPerTitle 更改银行人员信息
 
 		},
 		serviceOrg:{
@@ -53,7 +53,7 @@ Ext.apply(EwayLocale,{
 			code:'Code',//EwayLocale.person.serviceOrg.code 厂商编号
 			name:'Name',//EwayLocale.person.serviceOrg.name 厂商名称
 			zip:'Zip',//EwayLocale.person.serviceOrg.zip 邮政编码
-			shortName:'Manufacturer',//EwayLocale.person.serviceOrg.shortName 厂商
+			shortName:'Maintenance Provider',//EwayLocale.person.serviceOrg.shortName 厂商
 			address:'Address',//EwayLocale.person.serviceOrg.address 厂商地址
 			description:'Description',//EwayLocale.person.serviceOrg.description 厂商描述
 			addServiceTitle:'Add Maintenance Provider',//EwayLocale.person.serviceOrg.addServiceTitle 增加维护商信息
@@ -66,7 +66,7 @@ Ext.apply(EwayLocale,{
 			directOrganization:' Maintenance Providers'
 		},
 		servicePer:{
-			title:'Maintenancers',//EwayLocale.person.servicePer.title 维护人员管理
+			title:'Maintenance Staff',//EwayLocale.person.servicePer.title 维护人员管理
 			servicePerlink:'Binding Device',//EwayLocale.person.servicePer.servicePerlink 关联设备
 			addServicePerTitle:'Add maintenancer',//EwayLocale.person.servicePer.addServicePerTitle 增加维护人员信息
 			updateServicePerTitle:'Update maintenancer',//EwayLocale.person.servicePer.updateServicePerTitle 更改维护人员信息

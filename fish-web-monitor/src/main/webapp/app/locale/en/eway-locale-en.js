@@ -408,8 +408,7 @@ Ext.apply(EwayLocale,{
 	},
 
 	commen:{
-
-		jobNum:'JobNo',//EwayLocale.commen.jobNum 工号
+		jobNum:'Job Number',//EwayLocale.commen.jobNum 工号
 		name:'Name',//EwayLocale.commen.name 姓名
 		personJobName:'Quarters',//EwayLocale.commen.personJobName 岗位
 		state:'Status',//EwayLocale.commen.state 状态
@@ -431,7 +430,7 @@ Ext.apply(EwayLocale,{
 			machineRepairer:'Machine repairer'//EwayLocale.commen.comboxType.machineRepairer 维修人员
 		},
 		mobile:'Mobile',//EwayLocale.commen.mobile 手机
-		email:'Email',//EwayLocale.commen.email 邮箱
+		email:'E-Mail',//EwayLocale.commen.email 邮箱
 		phone:'Phone',//EwayLocale.commen.phone 固话
 		gender:'Gender',//EwayLocale.commen.gender 性别
 		all:'All',//EwayLocale.commen.all 全部
@@ -440,22 +439,22 @@ Ext.apply(EwayLocale,{
 			female:'Female',//EwayLocale.commen.comboxGender.female 女
 			unknow:'Unknow'//EwayLocale.commen.comboxGender.unknow 未知
 		},
-		remark:'Remark',//EwayLocale.commen.remark 备注
-		terminalId:'Terminal Id',//EwayLocale.commen.terminalId 设备号
+		remark:'Description',//EwayLocale.commen.remark 备注
+		terminalId:'Terminal ID',//EwayLocale.commen.terminalId 设备号
 		ip:'IP',//EwayLocale.commen.ip 网络地址
-		orgNameBelongs:'Organization belongs',//EwayLocale.commen.orgNameBelongs 所属机构
-		devTypeName:'Deivce type',//EwayLocale.commen.devTypeName 设备型号
-		devVendorName:'Deivce vendor',//EwayLocale.commen.devVendorName 设备品牌
-		devCatalogName:'Device catalog',//EwayLocale.commen.devCatalogName 设备类型
-		devStatus:'Device status',//EwayLocale.commen.devStatus 设备状态
+		orgNameBelongs:'Bank',//EwayLocale.commen.orgNameBelongs 所属机构
+		devTypeName:'Deivce Type',//EwayLocale.commen.devTypeName 设备型号
+		devVendorName:'Deivce Brand',//EwayLocale.commen.devVendorName 设备品牌
+		devCatalogName:'Device Catalog',//EwayLocale.commen.devCatalogName 设备类型
+		devStatus:'Status',//EwayLocale.commen.devStatus 设备状态
 		comboxDevStatus:{
 			upOpen:'upOpen',//EwayLocale.commen.comboxDevStatus.upOpen
 			open:'Open',//EwayLocale.commen.comboxDevStatus.open
 			stop:'Stop',//EwayLocale.commen.comboxDevStatus.stop
 			scrapped:'Scrapped'//EwayLocale.commen.comboxDevStatus.Scrapped
 		},
-		setManager:'Setting',//EwayLocale.commen.setManager 设置
-		devServiceName:'Maintenance of device',//EwayLocale.commen.devServiceName 设备维护商
+		setManager:'Settings',//EwayLocale.commen.setManager 设置
+		devServiceName:'Maintenance Provider',//EwayLocale.commen.devServiceName 设备维护商
 		cashboxLimit:'Alarm of money in cashbox',//EwayLocale.commen.cashboxLimit 钞箱报警金额
 		installDate:'Install Date',//EwayLocale.commen.installDate 安装日期
 		address:'Address',//EwayLocale.commen.address 地址
