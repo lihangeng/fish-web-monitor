@@ -76,13 +76,6 @@ Ext.define('Eway.controller.Main', {
 
 	//打开个人设置
 	onOpenPersonalSettings : function(btn){
-//		var workspace = this.getEwayView();
-//		var ps = Ext.ComponentQuery.query('personalSettings')[0];
-//		if(!ps){
-//			 ps = Ext.create('Eway.view.personal.PersonalSettings');
-//			 workspace.add(ps);
-//		}
-//		workspace.setActiveTab(ps);
 		this.activeController('personal.Personal');
 	},
 	onItemDbClick:function(view, node, item, index, e){
