@@ -1,5 +1,5 @@
 /**
- *  运营方案--controller
+ *  开机方案--controller
  */
 
 Ext.define('Eway.controller.operatingPlan.OpenPlan', {
