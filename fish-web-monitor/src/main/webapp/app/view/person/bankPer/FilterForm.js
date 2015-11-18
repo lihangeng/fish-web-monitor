@@ -17,59 +17,29 @@ Ext.define('Eway.view.person.bankPer.FilterForm', {
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-				columnWidth : .30,
+				columnWidth : .45,
 				defaults : {
-					labelAlign : 'right',
-					labelWidth : 50,
-					width:200
+					labelAlign : 'right'
 				},
 				items : [ {
 					xtype : 'field.username',
-					labelWidth : 50,
-					maxLength : 20,					
-					msgTarget : 'side'
+					maxLength : 20
 				}, {
 					xtype : 'field.mobile',
-					fieldLabel : EwayLocale.commen.mobile,
-					labelWidth : 50,
-					regex : /^\d{8,11}$/,
-					regexText : EwayLocale.vtype.mobile,
-					msgTarget : 'side'
+					fieldLabel : EwayLocale.commen.mobile
 				} ]
 			}, {
-				columnWidth : .30,
+				columnWidth : .45,
 				defaults : {
 					labelAlign : 'right',
-					labelWidth : 50,
-					width:200
 				},
 				items : [ {
 					fieldLabel : EwayLocale.commen.jobNum,
 					xtype : 'textfield',
-					labelWidth : 50,
-					editable : true,
-					maxLength : 20,
-					name : 'jobNum',
-					value : '',
-					msgTarget : 'side'
+					name : 'jobNum'
 				}, {
-					labelWidth : 50,
-					xtype : 'field.stateFilter',
-					editable : false
-
-				} ]
-			}, {
-				columnWidth : .40,
-				defaults : {
-					labelAlign : 'right',
-					width:200,
-					labelWidth : 50
-				},
-				items : [ {
-					labelWidth : 50,
 					xtype : 'field_person_personJobComboBox',
-					fieldLabel : EwayLocale.commen.personJobName,
-					msgTarget : 'side'
+					fieldLabel : EwayLocale.commen.personJobName
 				} ]
 			} ]
 		});

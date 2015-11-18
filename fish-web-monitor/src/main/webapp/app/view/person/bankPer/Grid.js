@@ -83,7 +83,7 @@ Ext.define('Eway.view.person.bankPer.Grid', {
 		                	   return EwayLocale.commen.comboxStatus.other;
 		             }
 				}
-			},{
+			},/*{
 				header : EwayLocale.commen.type,
 				dataIndex : 'type',
 				renderer: function(value,metadata,record){
@@ -93,7 +93,7 @@ Ext.define('Eway.view.person.bankPer.Grid', {
 		                	   return EwayLocale.commen.comboxType.machineRepairer;
 		             }
 				}
-			}, {
+			},*/ {
 				header : EwayLocale.commen.mobile,
 				dataIndex : 'mobile'
 			},{
