@@ -210,6 +210,8 @@ Ext.override(Ext.form.field.ComboBox, {
  */
 Ext.override(Ext.form.field.Picker, {
 	config: {
+    	hideTrigger: false,
+    	canClear: true,
         triggers: {
     		picker: {
                 handler: 'onTriggerClick',

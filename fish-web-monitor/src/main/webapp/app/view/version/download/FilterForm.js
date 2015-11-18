@@ -13,45 +13,45 @@ Ext.define('Eway.view.version.download.FilterForm', {
 					xtype:'textfield',
 					vtype : 'terminalId',
 					maxLength:20,
-					fieldLabel:Eway.locale.refs.terminalId,//'设备编号',
+					fieldLabel:EwayLocale.refs.terminalId,//'设备编号',
 					name:'terminalId'
 				},{
 					xtype : 'combo',
-					fieldLabel : Eway.locale.version.task.updateResult,//'升级结果',
+					fieldLabel : EwayLocale.version.task.updateResult,//'升级结果',
 					name : 'updateResult',
 					store : Ext.create('Ext.data.Store',{
 						fields : ['value','name'],
 						data : [
-							{'value':'1','name':Eway.locale.tip.success},//'成功'},
-							{'value':'0','name':Eway.locale.tip.fail}//'失败'}
+							{'value':'1','name':EwayLocale.tip.success},//'成功'},
+							{'value':'0','name':EwayLocale.tip.fail}//'失败'}
 						]
 					}),
 					queryMode : 'local',
 					valueField : 'value',
 					displayField : 'name',
-					emptyText:Eway.locale.commen.all
+					emptyText:EwayLocale.commen.all
 				}]},{
 					columnWidth: 0.3,
 					items:[{
 						xtype : 'combo',
-						fieldLabel : Eway.locale.version.taskType,//'任务类型',
+						fieldLabel : EwayLocale.version.taskType,//'任务类型',
 						name : 'taskType',
 						store : Ext.create('Ext.data.Store',{
 							fields : ['value','name'],
 							data : [
-								{'value':'0','name':Eway.locale.version.taskTypeAuto},//'自动升级'},
-								{'value':'1','name':Eway.locale.version.taskTypeManual},//'手动升级'},
-								{'value':'2','name':Eway.locale.version.taskTypeScheduler}//'计划作业'}
+								{'value':'0','name':EwayLocale.version.taskTypeAuto},//'自动升级'},
+								{'value':'1','name':EwayLocale.version.taskTypeManual},//'手动升级'},
+								{'value':'2','name':EwayLocale.version.taskTypeScheduler}//'计划作业'}
 							]
 						}),
 						queryMode : 'local',
 						valueField : 'value',
 						displayField : 'name',
-						emptyText:Eway.locale.commen.all
+						emptyText:EwayLocale.commen.all
 					},{
 						xtype:'textfield',
 						maxLength:20,
-						fieldLabel:Eway.locale.version.task.jobBatchName,//'任务批次名称',
+						fieldLabel:EwayLocale.version.task.jobBatchName,//'任务批次名称',
 						name:'jobName'
 					}]
 				},
@@ -73,7 +73,7 @@ Ext.define('Eway.view.version.download.FilterForm', {
 						})
 					},{
 						xtype : 'textfield',
-						fieldLabel : Eway.locale.version.View.versionNo,//'版本号',
+						fieldLabel : EwayLocale.version.View.versionNo,//'版本号',
 						name : 'versionNo',
 					   maxLength: 40,
 					   vtype:'versionNo',

@@ -158,6 +158,121 @@ public class HttpFileClient {
 		return HttpFileRet.SUCCESS;
 	}
 
+	
+	
+	public static HttpFileRet mergeDownloadFile(HttpFileCfg fileCfg) {
+
+		if (fileCfg.getLocalPath() == null || fileCfg.getPort() == null
+				|| fileCfg.getRequestPath() == null
+				|| fileCfg.getRequestName() == null) {
+			return HttpFileRet.CFG_ERROR;
+		}
+
+		HttpClient httpClient = new DefaultHttpClient();
+
+		HttpPost httpPost = new HttpPost();
+
+		URI uri = null;
+		try {
+			uri = new URI("http://" + fileCfg.getIpAdd() + ":" + fileCfg.getPort() + "/ctr/mergeDownload");
+			System.out.println("uri======="+uri);
+		} catch (URISyntaxException e) {
+			//e.printStackTrace();
+			return HttpFileRet.URL_ERROR;
+		}
+
+		httpPost.setURI(uri);
+
+		HttpConnectionParams.setConnectionTimeout(httpPost.getParams(), HttpFileClient.CONNECTION_TIMEOUT);
+
+		HttpConnectionParams.setSoTimeout(httpPost.getParams(), HttpFileClient.SO_TIMEOUT);
+
+		httpPost.setHeader("Content-Type", HttpFileClient.CONTENT_TYPE);
+
+		// 本地文件名未设置，将请求的文件名作为本地文件名
+		if (fileCfg.getLocalName() == null) {
+			fileCfg.setLocalName(fileCfg.getRequestName());
+		}
+
+		// 是否压缩
+		if (fileCfg.isCompress()) {
+			httpPost.setHeader("Accept-Encoding", HttpFileClient.ACCEPT_ENCODING);
+		}
+
+		// 客户端的文件夹是否存在
+		File fileDirs = new File(fileCfg.getLocalPath());
+		if (!fileDirs.exists()) {
+			fileDirs.mkdirs();
+		}
+
+		File loaclFile = new File(fileCfg.getLocalPath() + System.getProperty("file.separator") + fileCfg.getLocalName());
+
+		// 设置断点
+		if (fileCfg.isRetry()) {
+			fileCfg.setBreakPoints(HttpFileClient.available(loaclFile));
+		} else {
+			fileCfg.setBreakPoints(0);
+		}
+
+		StringEntity se = null;
+		try {
+
+			// 设置HTTP POST请求参数, 及编码方式
+			se = new StringEntity(JsonUtils.toJson(fileCfg), HttpFileClient.ENCODING_DEFAULT);
+			httpPost.setEntity(se);
+		} catch (UnsupportedEncodingException e) {
+			return HttpFileRet.ERROR;
+		}
+
+		InputStream is = null;
+		RandomAccessFile randomFile = null;
+		try {
+			HttpResponse httpResponse = httpClient.execute(httpPost);
+
+			HttpFileRet ret = HttpFileRet.get(httpResponse.getFirstHeader("Content-Ret").getValue());
+
+			if(ret.equals(HttpFileRet.SUCCESS)){
+				// 输出返回值
+				is = httpResponse.getEntity().getContent();
+
+				randomFile = new RandomAccessFile(loaclFile, "rw");
+
+				if(fileCfg.isRetry()){
+					randomFile.seek(fileCfg.getBreakPoints());
+				}
+
+				int len;
+
+				byte[] by = new byte[4096];
+				while ((len = is.read(by)) != -1) {
+					randomFile.write(by, 0, len);
+				}
+			}else{
+				return ret;
+			}
+		}catch(HttpHostConnectException e){
+			return HttpFileRet.CONN_ERROR;
+		}
+		catch (Exception e) {
+			return HttpFileRet.ERROR;
+		} finally {
+			if (randomFile != null) {
+				try {
+					randomFile.close();
+				} catch (IOException e) {
+					return HttpFileRet.ERROR;
+				}
+			}
+			if (is != null) {
+				try {
+					is.close();
+				} catch (IOException e) {
+					return HttpFileRet.ERROR;
+				}
+			}
+		}
+		return HttpFileRet.SUCCESS;
+	}
 	/**
 	 * 获得文件的大小
 	 *

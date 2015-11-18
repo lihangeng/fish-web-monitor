@@ -64,7 +64,7 @@ Ext.define('Eway.controller.monitor.business.BlackListCard', {
 					record.save({
 						success : function(record,operation){
 								store.load();
-								Eway.alert(Eway.addSuccess);
+								Eway.alert(EwayLocale.addSuccess);
 								win.close();
 								store.setUrlParamsByObject(viewValues);
 								store.loadPage(1);
@@ -88,7 +88,7 @@ Ext.define('Eway.controller.monitor.business.BlackListCard', {
 					win.show();
 				}
 				else {
-					Eway.alert(Eway.choiceUpdateMsg);
+					Eway.alert(EwayLocale.choiceUpdateMsg);
 				}
 			},
 
@@ -106,7 +106,7 @@ Ext.define('Eway.controller.monitor.business.BlackListCard', {
 					record.set('addDate',data.addDate);
 					record.save({
 						success : function(record,operation){
-							Eway.alert(Eway.updateSuccess);
+							Eway.alert(EwayLocale.updateSuccess);
 							win.close();
 							store.setUrlParamsByObject(viewValues);
 							store.loadPage(1);
@@ -126,19 +126,21 @@ Ext.define('Eway.controller.monitor.business.BlackListCard', {
 				var view = this.getEwayView();
 				var viewValues = view.down('form').getForm().getValues();
 				if(sm.getCount() == 1) {
-					Ext.MessageBox.confirm(Eway.locale.tip.confirm.title,
-							Eway.locale.tip.confirm.info,
+					Ext.MessageBox.confirm(EwayLocale.tip.confirm.title,
+							EwayLocale.tip.confirm.info,
 							function(button,text) {
 								if(button=="yes"){
 									var record = sm.getLastSelected();
 									record.erase({
 										success: function(){
-											Eway.alert(Eway.deleteSuccess);
+											Eway.alert(EwayLocale.updateSuccess);
 											grid.down('pagingtoolbar').doRefresh();
 											store.setUrlParamsByObject(viewValues);
 											store.loadPage(1);
 										},
 										failure: function(record,operation){
+											//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
+											record.dropped = false;
 											Eway.alert(operation.getError());
 										},
 										scope:this
@@ -147,7 +149,7 @@ Ext.define('Eway.controller.monitor.business.BlackListCard', {
 							}, this);
 				}
 				else {
-					Eway.alert(Eway.choiceDeleteMsg);
+					Eway.alert(EwayLocale.choiceDeleteMsg);
 				}
 			},
 
@@ -163,7 +165,7 @@ Ext.define('Eway.controller.monitor.business.BlackListCard', {
 				var win = this.win;
 				var importForm = this.getImportWin().down("form").getForm();
 				if(importForm.isValid()){
-					Ext.Msg.wait(Eway.locale.tip.business.blackList.importing);
+					Ext.Msg.wait(EwayLocale.tip.business.blackList.importing);
 					importForm.submit({
 					 	url: 'api/monitor/blacklistcard/import',
 					    success: function(form, action) {
@@ -171,7 +173,7 @@ Ext.define('Eway.controller.monitor.business.BlackListCard', {
 							win.close();
 							var store = this.getGrid().getStore();
 							store.load();
-							Eway.alert(Eway.locale.tip.business.blackList.importSuccess);
+							Eway.alert(EwayLocale.tip.business.blackList.importSuccess);
 
 					    },
 					    failure: function(form, action) {

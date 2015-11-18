@@ -10,7 +10,7 @@ Ext.define('Eway.view.person.user.UserRoleWin', {
 	
 	requires: ['Eway.view.person.user.UserRoleGrid'],
 				
-	title: Eway.locale.person.user.roleListTitle,
+	title: EwayLocale.person.user.roleListTitle,
 	width: 750,
 	height: 400,
 	layout : 'border',

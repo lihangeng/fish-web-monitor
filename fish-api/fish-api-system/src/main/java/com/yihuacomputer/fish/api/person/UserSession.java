@@ -36,6 +36,8 @@ public class UserSession {
      * 机构编码
      */
     private String orgCode;
+    
+    private String personId;
 
 
     public String getOrgCode() {
@@ -155,4 +157,13 @@ public class UserSession {
     public void setMapUrl(String mapUrl) {
         this.mapUrl = mapUrl;
     }
+
+	public String getPersonId() {
+		return personId;
+	}
+
+	public void setPersonId(String personId) {
+		this.personId = personId;
+	}
+    
 }

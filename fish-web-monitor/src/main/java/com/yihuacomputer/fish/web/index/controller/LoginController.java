@@ -99,6 +99,7 @@ public class LoginController {
 			// 保存会话信息
 			UserSession userSession = new UserSession();
 			userSession.setUserId(user.getId());
+			userSession.setPersonId(user.getPerson().getGuid());
 			userSession.setUserName(user.getName());
 			userSession.setUserCode(user.getCode());
 			userSession.setUserState(user.getState());

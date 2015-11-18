@@ -22,9 +22,9 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportFilter', {
 								}, {
 									//只带出银行机构
 									xtype : 'common_orgComboOrgTree',
-									fieldLabel : Eway.locale.commen.orgNameBelongs,
+									fieldLabel : EwayLocale.commen.orgNameBelongs,
 									labelAlign : 'right',
-									emptyText : Eway.locale.combox.select,
+									emptyText : EwayLocale.combox.select,
 									name : 'orgName',
 									hiddenValue : 'orgId',
 									editable : false,
@@ -34,7 +34,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportFilter', {
 									xtype : 'field.organizationLevel',
 									name : 'orgLevel',
 									store : levelStore,
-									emptyText : Eway.locale.combox.select
+									emptyText : EwayLocale.combox.select
 								}]
 					},{
 						columnWidth : .3,

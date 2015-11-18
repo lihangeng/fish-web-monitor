@@ -39,7 +39,7 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.ExportWin',{
 					}
 					return validStatus;
 			},
-			exportDateRangeText : Eway.locale.machine.atmRuntimeInfo.exportDateRangeText
+			exportDateRangeText : EwayLocale.machine.atmRuntimeInfo.exportDateRangeText
 		});
 		Ext.apply(this,{
 			items : {
@@ -54,16 +54,16 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.ExportWin',{
 				items : [{
 					xtype : 'displayfield',
 					name : 'terminalId',
-					fieldLabel : Eway.locale.machine.atmRuntimeInfo.terminalId
+					fieldLabel : EwayLocale.machine.atmRuntimeInfo.terminalId
 				},{
 					xtype : 'displayfield',
 					name : 'ip',
-					fieldLabel : Eway.locale.machine.atmRuntimeInfo.terminalIp
+					fieldLabel : EwayLocale.machine.atmRuntimeInfo.terminalIp
 				},{
 					xtype : 'datefield',
 					format : 'Y-m-d',
 					name : 'startDate',
-					fieldLabel : Eway.locale.machine.atmRuntimeInfo.startDate,
+					fieldLabel : EwayLocale.machine.atmRuntimeInfo.startDate,
 					allowBlank : false,
 					eidtable:false,
 					dateRange : {
@@ -83,7 +83,7 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.ExportWin',{
 					xtype : 'datefield',
 					format : 'Y-m-d',
 					name : 'endDate',
-					fieldLabel : Eway.locale.machine.atmRuntimeInfo.endDate,
+					fieldLabel : EwayLocale.machine.atmRuntimeInfo.endDate,
 					allowBlank : false,
 					editable : false,
 					dateRange : {
@@ -105,11 +105,11 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.ExportWin',{
 				}*/
 				],
 				buttons : [{
-					text : Eway.locale.button.exported,
+					text : EwayLocale.button.exported,
 					iconCls :'exportToExcel',
 					action : 'exportFromDate'
 				},{
-					text : Eway.locale.back,
+					text : EwayLocale.back,
 					iconCls :'returnBtn',
 					handler : this.onOver
 				}]

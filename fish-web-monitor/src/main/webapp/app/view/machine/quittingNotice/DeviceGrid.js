@@ -14,22 +14,22 @@ Ext.define('Eway.view.machine.quittingNotice.DeviceGrid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-				text: Eway.locale.button.search,
+				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action: 'queryDevice'	
 			},{
-				text: Eway.locale.button.select,
+				text: EwayLocale.button.select,
 				action: 'select'
 			}],
 			columns : [{
-				header : Eway.locale.machine.atmGroup.terminalId,
+				header : EwayLocale.machine.atmGroup.terminalId,
 				dataIndex : 'terminalId'
 			}, {
-				header : Eway.locale.machine.atmGroup.orgName,
+				header : EwayLocale.machine.atmGroup.orgName,
 				dataIndex : 'orgName',
 				flex : 1
 			}, {
-				header : Eway.locale.machine.quittingNotice.address,
+				header : EwayLocale.machine.quittingNotice.address,
 				dataIndex : 'address',
 				flex : 1
 			}],

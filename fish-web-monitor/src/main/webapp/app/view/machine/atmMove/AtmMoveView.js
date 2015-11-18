@@ -8,12 +8,12 @@ Ext.define('Eway.view.machine.atmMove.AtmMoveView', {
 				'Eway.view.machine.atmMove.NoticeFilterForm',
 	           'Eway.view.machine.atmMove.AtmMoveNoticeGrid'],
 
-	title: Eway.locale.machine.atmMove.title,
+	title: EwayLocale.machine.atmMove.title,
 	layout: 'border',
 	initComponent: function() {
 		Ext.apply(this, {
 			items: [{
-				title : Eway.locale.machine.atmMove.moveRecordInfo,
+				title : EwayLocale.machine.atmMove.moveRecordInfo,
 			    region: 'center',
 			    margins: '5 0 0 5',
 			    split: true,
@@ -27,7 +27,7 @@ Ext.define('Eway.view.machine.atmMove.AtmMoveView', {
 					xtype: 'atmMove_atmMoveNoticeGrid'
 				}]
 			},{
-				title :Eway.locale.machine.atmMove.waitMove,
+				title :EwayLocale.machine.atmMove.waitMove,
 				region: 'west',
 				width: 500,
 				margins: '5 0 0 5',

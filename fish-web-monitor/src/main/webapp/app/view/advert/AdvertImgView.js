@@ -6,7 +6,7 @@ Ext.define('Eway.view.advert.AdvertImgView', {
     tpl: [
         '<tpl for=".">',
             '<div class="thumb-wrap">',
-             	'<div class="remove_adevert_res"><img src="resources/images/delete.gif" title="'+Eway.locale.advert.deleteAdvertResource+'"></div>',
+             	'<div class="remove_adevert_res"><img src="resources/images/delete.gif" title="'+EwayLocale.advert.deleteAdvertResource+'"></div>',
                 '<div class="thumb">',
                     '<img src="{path}" title="{displayName}">',
                 '</div>',

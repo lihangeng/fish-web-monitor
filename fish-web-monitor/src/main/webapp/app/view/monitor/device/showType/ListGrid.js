@@ -21,19 +21,19 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 				xtype : 'rownumberer',
 				resizable : true
 			}, {
-				header : Eway.locale.person.bankOrg.name,
+				header : EwayLocale.person.bankOrg.name,
 				dataIndex : 'org'
 			}, {
-				header : Eway.locale.commen.terminalId,
+				header : EwayLocale.commen.terminalId,
 				dataIndex : 'code',
 				width : 100,
 				tdCls : 'pointerLink'
 			}, {
-				header : Eway.locale.commen.ip,
+				header : EwayLocale.commen.ip,
 				dataIndex : 'ip',
 				width : 100
 			}, {
-				header : Eway.locale.monitor.devMonitor.comboxStatus.runStatus,
+				header : EwayLocale.monitor.devMonitor.comboxStatus.runStatus,
 				dataIndex : 'runStatus',
 				renderer : function(value, meta, record) {
 				 	var runFatals = ['SubHealth', 'Maintain', 'Halt', 'ReBoot', 'StopAtmp', 'StopManmade', 'StopMod', 'StopUnCashIn', 'StopUnKnown'];
@@ -46,7 +46,7 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 		 	 	},
 				width : 100
 			}, {
-				header : Eway.locale.monitor.devMonitor.comboxStatus.modStatus,
+				header : EwayLocale.monitor.devMonitor.comboxStatus.modStatus,
 				dataIndex : 'modStatus',
 				renderer : function(value, meta, record) { 
 					var mod = record.get('mod'); 
@@ -60,7 +60,7 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 				},
 				width : 100
 			}, {
-				header : Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,
+				header : EwayLocale.monitor.devMonitor.comboxStatus.boxStatus,
 				dataIndex : 'boxStatus',
 			  	renderer : function(value, meta, record) { 
 			  		var boxFatals = ['Full', 'Low', 'Empty', 'High', 'Fatal']; 
@@ -73,7 +73,7 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 	  			},
 				width : 100
 			}, {
-				header : Eway.locale.monitor.devMonitor.comboxStatus.netStatus,
+				header : EwayLocale.monitor.devMonitor.comboxStatus.netStatus,
 				dataIndex : 'netStatus',
 			  	renderer : function(value, meta, record) { 
 			  		var net = record.get('net'); 
@@ -87,34 +87,34 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 				},
 				width : 100
 			}, {
-				header : Eway.locale.monitor.devMonitor.retainCardCount,
+				header : EwayLocale.monitor.devMonitor.retainCardCount,
 				dataIndex : 'retainCardCount',
 				width : 100
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.boxInitCount,
+				header : EwayLocale.monitor.devMonitor.cash.boxInitCount,
 				dataIndex : 'boxInitCount',
 				width : 100
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.boxCurrentCount,
+				header : EwayLocale.monitor.devMonitor.cash.boxCurrentCount,
 				dataIndex : 'boxCurrentCount',
 				width : 100
 			}, {
-				header : Eway.locale.commen.devTypeName,
+				header : EwayLocale.commen.devTypeName,
 				dataIndex : 'type',
 				width : 100
 			}, /*{
-				header : Eway.locale.commen.orgNameBelongs,
+				header : EwayLocale.commen.orgNameBelongs,
 				dataIndex : 'org',
 				flex : 1
 			}, */{
-				header : Eway.locale.commen.installAddr,
+				header : EwayLocale.commen.installAddr,
 				dataIndex : 'address'
 			}, {
-				header : Eway.locale.commen.seviceMode,
+				header : EwayLocale.commen.seviceMode,
 				dataIndex : 'seviceMode',
 				width : 100
 			}, {
-				header : Eway.locale.commen.insideOutside,
+				header : EwayLocale.commen.insideOutside,
 				dataIndex : 'insideOutside',
 				minWidth : 150,
 				flex : 1
@@ -122,8 +122,8 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : Eway.locale.tip.displayMessage,
-				items : ['-', Eway.locale.tip.formatPageBfMsg, {
+				displayMsg : EwayLocale.tip.displayMessage,
+				items : ['-', EwayLocale.tip.formatPageBfMsg, {
 				    xtype : 'combobox',
 				    name: 'pagesize',
 			        hiddenName: 'pagesize',
@@ -149,7 +149,7 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
         				    store.loadPage(1);//显示第一页
 				        }
 				    }
-				}, Eway.locale.tip.formatPageAfMsg]
+				}, EwayLocale.tip.formatPageAfMsg]
 			})
 		});
 

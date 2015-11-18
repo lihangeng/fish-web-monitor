@@ -39,7 +39,7 @@ Ext.define('Eway.controller.machine.Device', {
 	formConfig : {
 		form : 'Eway.view.machine.device.Form',
 		xtype : 'machine_device_form',
-		title : Eway.locale.machine.device.devInfo,
+		title : EwayLocale.machine.device.devInfo,
 		width : 700,
 		height : 450
 	},
@@ -131,7 +131,7 @@ Ext.define('Eway.controller.machine.Device', {
 			c.init();
 			c.onOpenPlan(detailWin,record.data.id,record.data.terminalId,0);
 		} else {
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.tip.search.record);
+			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.tip.search.record);
 		}
 	},
 	onPersonTM : function(){
@@ -157,7 +157,7 @@ Ext.define('Eway.controller.machine.Device', {
 			addManagerWin.show();
 		}
 		else {
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.tochenkDervice);
+			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.tochenkDervice);
 		}
 	},
 	onPersonM : function(){
@@ -180,7 +180,7 @@ Ext.define('Eway.controller.machine.Device', {
 			personGrid.down('button[action="queryRe"]').on('click',Ext.bind(this.onQuaryPerson,this,[personStore,terminalId,type]),this);			addManagerWin.show();
 		}
 		else {
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.tochenkDervice);
+			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.tochenkDervice);
 		}
 	},
 	onSetPerson: function (personStore,terminalId,type){
@@ -200,7 +200,7 @@ Ext.define('Eway.controller.machine.Device', {
 		selectManagerWin.on("destroy",Ext.bind(this.onQuaryPerson,this,[personStore,terminalId,type]));
 		selectManagerWin.show();
 		}else {
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.tochenckPeople);
+			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.tochenckPeople);
 		}
 	},
 	
@@ -224,7 +224,7 @@ Ext.define('Eway.controller.machine.Device', {
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
 						//Ext.Msg.alert("提示", "添加成功.",this.onQueryPersonConfirm(selectGrid,selectForm,personType));
-						Ext.Msg.confirm(Eway.locale.confirm.title, Eway.locale.report.openplan.addSuccess, function(result) {
+						Ext.Msg.confirm(EwayLocale.confirm.title, EwayLocale.report.openplan.addSuccess, function(result) {
 							if ("yes" == result) {
 								this.onQueryPersonConfirm(selectGrid,selectForm,personType);
 							}else{
@@ -232,16 +232,16 @@ Ext.define('Eway.controller.machine.Device', {
 							}
 						}, this);
 					}else{
-						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errors+Eway.locale.report.openplan.tipAddError,this.onQueryPersonConfirm(selectGrid,selectForm,personType));
+						Ext.Msg.alert(EwayLocale.confirm.title, Ext.decode(response.responseText).errors+EwayLocale.report.openplan.tipAddError,this.onQueryPersonConfirm(selectGrid,selectForm,personType));
 					}
 				},
 				failure: function(response){
-					Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.addFail);
+					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.addFail);
 				},
 				scope:this
 			});
 		}else{
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.tochenckPeople);
+			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.tochenckPeople);
 		}
 	},
 	onQueryPersonConfirm:function(selectGrid,selectForm,type){
@@ -287,18 +287,18 @@ Ext.define('Eway.controller.machine.Device', {
 				success: function(response){
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
-						Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.removeSuccess,this.onQuaryPerson(personStore,record1.data.terminalId,personType));
+						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.msg.removeSuccess,this.onQuaryPerson(personStore,record1.data.terminalId,personType));
 					}else{
-						Ext.Msg.alert(Eway.locale.confirm.title, Ext.decode(response.responseText).errors+"条解除失败,请刷新后查看.",this.onQuaryPerson(personStore,record1.data.terminalId,personType));
+						Ext.Msg.alert(EwayLocale.confirm.title, Ext.decode(response.responseText).errors+"条解除失败,请刷新后查看.",this.onQuaryPerson(personStore,record1.data.terminalId,personType));
 					}
 				},
 				failure: function(response){
-					Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.msg.removeFail);
+					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.msg.removeFail);
 				},
 				scope:this
 			});
 		}else{
-			Ext.Msg.alert(Eway.locale.confirm.title, Eway.locale.report.openplan.tochenckPeople);
+			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.report.openplan.tochenckPeople);
 		}
 	},
 	onQuaryPerson: function(personStore,terminalId,type){
@@ -335,7 +335,7 @@ Ext.define('Eway.controller.machine.Device', {
 			win.show();
 
 		} else {
-			Eway.alert(Eway.locale.tip.search.record);
+			Eway.alert(EwayLocale.tip.search.record);
 		}
 	},
 	// 加载维护员的数据
@@ -355,7 +355,7 @@ Ext.define('Eway.controller.machine.Device', {
 		tab.onReload(params);
 	},
 	_onAddOrUpdate : function(action){
-		var title = action=='add' ? Eway.locale.button.add+this.formConfig.title : Eway.locale.button.update+this.formConfig.title;
+		var title = action=='add' ? EwayLocale.button.add+this.formConfig.title : EwayLocale.button.update+this.formConfig.title;
 		var me = this;
 		Ext.require([this.formConfig.form],function(){
 			if(action=='update'){
@@ -363,11 +363,11 @@ Ext.define('Eway.controller.machine.Device', {
 					sm = grid.getSelectionModel(),
 					count = sm.getCount();
 				if(count == 0){
-					Eway.alert(Eway.choiceUpdateMsg);
+					Eway.alert(EwayLocale.choiceUpdateMsg);
 					return;
 				}
 				else if(count > 1){
-					Eway.alert(Eway.locale.tip.update.one);
+					Eway.alert(EwayLocale.tip.update.one);
 					return;
 				}
 			}

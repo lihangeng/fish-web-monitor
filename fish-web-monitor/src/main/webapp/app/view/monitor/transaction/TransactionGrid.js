@@ -28,57 +28,57 @@ Ext.define('Eway.view.monitor.transaction.TransactionGrid', {
 			initRegion : true,
 			tbar : [ '->', {
 				xtype : 'button',
-				text : Eway.locale.monitor.business.transaction.transactionMonitor.begin,
+				text : EwayLocale.monitor.business.transaction.transactionMonitor.begin,
 				action : 'start',
 				glyph : 0xf144
 			}, {
 				xtype : 'button',
-				text : Eway.locale.monitor.business.transaction.transactionMonitor.stop,
+				text : EwayLocale.monitor.business.transaction.transactionMonitor.stop,
 				glyph : 0xf04c,
 				action : 'stop',
 				disabled : true
 			}, {
                 xtype : 'button',
-                text : Eway.locale.monitor.business.transaction.transactionMonitor.clear,
+                text : EwayLocale.monitor.business.transaction.transactionMonitor.clear,
                 glyph : 0xf014,
                 action : 'clear'
             } ],
 			columns : [ {
-				header : Eway.locale.monitor.business.transaction.dateTime,
+				header : EwayLocale.monitor.business.transaction.dateTime,
 				width : 150,
 				dataIndex : 'dateTime'
 			}, {
-				header : Eway.locale.monitor.business.transaction.transCode,
+				header : EwayLocale.monitor.business.transaction.transCode,
 				width : 80,
 				dataIndex : 'transCode'
 			}, {
-				header : Eway.locale.monitor.business.transaction.amt,
+				header : EwayLocale.monitor.business.transaction.amt,
 				dataIndex : 'amt'
 			}, {
-				header : Eway.locale.monitor.business.transaction.currency,
+				header : EwayLocale.monitor.business.transaction.currency,
 				width : 80,
 				hidden : true,
 				dataIndex : 'currency'
 			}, {
-				header : Eway.locale.commen.terminalId,
+				header : EwayLocale.commen.terminalId,
 				width : 80,
 				dataIndex : 'termId'
 			}, {
-				header : Eway.locale.monitor.business.transaction.transId,
+				header : EwayLocale.monitor.business.transaction.transId,
 				dataIndex : 'transId'
 			}, {
-				header : Eway.locale.monitor.business.transaction.debitAccount,
+				header : EwayLocale.monitor.business.transaction.debitAccount,
 				width : 180,
 				dataIndex : 'debitAccount'
 			}, {
-				header : Eway.locale.monitor.business.transaction.creditAccount,
+				header : EwayLocale.monitor.business.transaction.creditAccount,
 				dataIndex : 'creditAccount',
 				minWidth : 180
 			}, {
-				header : Eway.locale.monitor.business.transaction.localRet,
+				header : EwayLocale.monitor.business.transaction.localRet,
 				dataIndex : 'localRet'
 			}, {
-				header : Eway.locale.monitor.business.transaction.hostRet,
+				header : EwayLocale.monitor.business.transaction.hostRet,
 				dataIndex : 'hostRet',/*
 				renderer : function(value){
 					var box = Ext.create('Eway.view.field.monitor.HostRetComboBox',{});

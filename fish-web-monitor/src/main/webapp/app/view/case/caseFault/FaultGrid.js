@@ -13,50 +13,50 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->', {
-				text: Eway.locale.button.search,
+				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			},{
-				text : Eway.locale.button.exported,
+				text : EwayLocale.button.exported,
 				glyph : 0xf1c3,
 				action : 'export'
 			}],
 			columns : [{
-				header : Eway.locale.commen.orgNameBelongs,
+				header : EwayLocale.commen.orgNameBelongs,
 				dataIndex : 'org',
 				width : 100
 			},{
-				header : Eway.locale.commen.terminalId,
+				header : EwayLocale.commen.terminalId,
 				dataIndex : 'terminalId',
 				width : 80
 			}, {
-				header : Eway.locale.cases.caseFault.faultModule,
+				header : EwayLocale.cases.caseFault.faultModule,
 				dataIndex : 'devMod',
 				width : 120,
 				renderer: function(value,metadata,record){
 					if(value=="IDC"){
-	                 	 return Eway.locale.cases.caseFault.cardReaderModule;
+	                 	 return EwayLocale.cases.caseFault.cardReaderModule;
 	                }
 					else if(value=="CIM"){
-						 return Eway.locale.cases.caseFault.depoistModule;
+						 return EwayLocale.cases.caseFault.depoistModule;
 	                }
 					else if(value=="CDM"){
-						return Eway.locale.cases.caseFault.drawModule;
+						return EwayLocale.cases.caseFault.drawModule;
 					}
 					else if(value=="RPR"){
-						return Eway.locale.cases.caseFault.rprModule;
+						return EwayLocale.cases.caseFault.rprModule;
 					}
 					else if(value=="JPR"){
-						return Eway.locale.cases.caseFault.jprModule;
+						return EwayLocale.cases.caseFault.jprModule;
 					}
 					else if(value=="PIN"){
-						return Eway.locale.cases.caseFault.pinModule;
+						return EwayLocale.cases.caseFault.pinModule;
 					}
 					else if(value=="TTU"){
-						return Eway.locale.cases.caseFault.textTerminalUnit;
+						return EwayLocale.cases.caseFault.textTerminalUnit;
 					}
 					else if(value=="SIU"){
-						return Eway.locale.cases.caseFault.sensoModule;
+						return EwayLocale.cases.caseFault.sensoModule;
 					}
 					else if(value=="ISC"){
 						return "身份证扫描仪模块";
@@ -69,66 +69,66 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 					}
 				}
 			}, {
-				header : Eway.locale.cases.caseFault.faultClassify,
+				header : EwayLocale.cases.caseFault.faultClassify,
 				dataIndex : 'faultClassify',
 				width : 120
 			}, {
-				header : Eway.locale.cases.caseFault.faultCode,
+				header : EwayLocale.cases.caseFault.faultCode,
 				dataIndex : 'faultCode',
 				hidden : true,
 				width : 60
 			}, {
-				header : Eway.locale.cases.caseFault.providerFaultCode,
+				header : EwayLocale.cases.caseFault.providerFaultCode,
 				dataIndex : 'vendorHwCode',
 				width : 80
 			}, {
-				header : Eway.locale.cases.caseFault.faultStartTime,
+				header : EwayLocale.cases.caseFault.faultStartTime,
 				dataIndex : 'faultTime',
 				width : 120
 			}, {
-				header : Eway.locale.cases.caseFault.faultCloseTime,
+				header : EwayLocale.cases.caseFault.faultCloseTime,
 				dataIndex : 'closedTime',
 				width : 120
 			}, {
-				header : Eway.locale.cases.caseFault.faultContinueTime,
+				header : EwayLocale.cases.caseFault.faultContinueTime,
 				dataIndex : 'duration',
 				width : 60
 			}, {
-				header : Eway.locale.cases.caseFault.faultState,
+				header : EwayLocale.cases.caseFault.faultState,
 				dataIndex : 'faultStatus',
 				width : 80,
 				renderer: function(value,metadata,record){
 					if(value=="OPEN"){
-						 metadata.tdAttr ='data-qtip="'+Eway.locale.cases.caseFault.closeByForce+'"';
-	                 	 return '<a class="link" href="#">'+Eway.locale.cases.caseFault.status.open+'</a>';
+						 metadata.tdAttr ='data-qtip="'+EwayLocale.cases.caseFault.closeByForce+'"';
+	                 	 return '<a class="link" href="#">'+EwayLocale.cases.caseFault.status.open+'</a>';
 	                }
 					else if(value=="CLOSED"){
-						 return Eway.locale.cases.caseFault.status.close;
+						 return EwayLocale.cases.caseFault.status.close;
 	                }
 				}
 			}, {
-				header : Eway.locale.cases.caseFault.upgradeTimes,
+				header : EwayLocale.cases.caseFault.upgradeTimes,
 				dataIndex : 'upgrade',
 				width : 60
 			},{
-				header : Eway.locale.cases.caseFault.faultCloseType,
+				header : EwayLocale.cases.caseFault.faultCloseType,
 				dataIndex : 'faultCloseType',
 				width : 80,
 				renderer: function(value,metadata,record){
 				if(value=="FORCE"){
-                 	 return Eway.locale.cases.caseFault.closeType.force;
+                 	 return EwayLocale.cases.caseFault.closeType.force;
                 }
 				else if(value=="NORMAL"){
-					 return Eway.locale.cases.caseFault.closeType.normal;
+					 return EwayLocale.cases.caseFault.closeType.normal;
                 }
 			}
 			}, {
 				xtype:'actioncolumn',
-				header : Eway.locale.cases.caseFault.message,
+				header : EwayLocale.cases.caseFault.message,
 				dataIndex : 'id',
 				items : [{
 					icon : 'resources/images/icon_email.gif',
-					tooltip: Eway.locale.cases.caseFault.checkDetails,
+					tooltip: EwayLocale.cases.caseFault.checkDetails,
 					getClass : function(value,metadata,record,ronwIndex,colindex,store){
 						var result = record.get('id');
 						if(result != null){
@@ -151,10 +151,10 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 					}
 				}]
 			}, {
-				header : Eway.locale.cases.caseFault.bankPer,
+				header : EwayLocale.cases.caseFault.bankPer,
 				dataIndex : 'bankPer'
 			}, {
-				header : Eway.locale.cases.caseFault.serPer,
+				header : EwayLocale.cases.caseFault.serPer,
 				dataIndex : 'serPer',
 				width : 100
 			}],

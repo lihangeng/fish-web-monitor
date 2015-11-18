@@ -4,6 +4,6 @@ Ext.define('Eway.store.person.person.PersonTypeDict', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'0', display:Eway.locale.commen.comboxType.machineManager}, 
-	       {value:'1', display:Eway.locale.commen.comboxType.machineRepairer}]
+	data: [{value:'0', display:EwayLocale.commen.comboxType.machineManager}, 
+	       {value:'1', display:EwayLocale.commen.comboxType.machineRepairer}]
 });

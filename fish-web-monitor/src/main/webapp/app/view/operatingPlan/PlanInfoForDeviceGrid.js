@@ -13,16 +13,16 @@ Ext.define('Eway.view.operatingPlan.PlanInfoForDeviceGrid', {
 			store : store,
 			initRegion : true,
 			tbar : [ '->',  {
-				text : Eway.locale.tip.business.device.detail,
+				text : EwayLocale.tip.business.device.detail,
 				glyph : 0xf129,
 				iconCls : 'detailBtn',
 				action : 'deviceQueryDetail'
 			}, {
-				text:Eway.locale.button.link,
+				text:EwayLocale.button.link,
 				glyph : 0xf0c1,
 				action: 'deviceLink'
 			}, {
-				text:Eway.locale.button.unlink,
+				text:EwayLocale.button.unlink,
 				glyph : 0xf014,
 				action: 'deviceUnlink'
 			} ],
@@ -31,38 +31,38 @@ Ext.define('Eway.view.operatingPlan.PlanInfoForDeviceGrid', {
 				stripeRows : true
 			},
 			columns : [ {
-				header : Eway.locale.report.plan.name,
+				header : EwayLocale.report.plan.name,
 				width : 100,
 				dataIndex : 'name'
 			}, {
-				header : Eway.locale.report.plan.type,
+				header : EwayLocale.report.plan.type,
 				width : 80,
 				dataIndex : 'planType',
 				renderer : function(value, metadata, record) {
 					if (value == "DATE") {
-						return Eway.locale.report.openplan.date;
+						return EwayLocale.report.serviceplan.date;
 					} else if (value == "WEEK") {
-						return Eway.locale.report.openplan.week;
+						return EwayLocale.report.serviceplan.week;
 					}
 				}
 			}, {
-				header : Eway.locale.report.openplan.state,
+				header : EwayLocale.report.serviceplan.state,
 				width : 80,
 				dataIndex : 'planStateType',
 			}, {
-				header : Eway.locale.report.openplan.openDate,
+				header : EwayLocale.report.serviceplan.openDate,
 				width : 100,
 				dataIndex : 'startDate'
 			}, {
-				header : Eway.locale.report.openplan.closeDate,
+				header : EwayLocale.report.serviceplan.closeDate,
 				width : 100,
 				dataIndex : 'endDate'
 			}, /*{
-				header : Eway.locale.version.View.remark,
+				header : EwayLocale.version.View.remark,
 				dataIndex : 'desc',
 				flex : 1
 			},*/ {
-				header :Eway.locale.report.openplan.createDateTime,
+				header :EwayLocale.report.serviceplan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 160,
 				fiex : 1

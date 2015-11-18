@@ -12,11 +12,11 @@ Ext.define('Eway.view.monitor.business.BlackListCardGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->',{
-				text:Eway.locale.button.search,
+				text:EwayLocale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			},{
-				text: Eway.locale.button.add,
+				text: EwayLocale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'blackCardAdd',
@@ -24,7 +24,7 @@ Ext.define('Eway.view.monitor.business.BlackListCardGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: Eway.locale.button.update,
+				text: EwayLocale.button.update,
 				glyph : 0xf040,
 				action: 'update',
 				code : 'blackCardUpdate',
@@ -32,7 +32,7 @@ Ext.define('Eway.view.monitor.business.BlackListCardGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: Eway.locale.button.remove,
+				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'blackCardDel',
@@ -40,7 +40,7 @@ Ext.define('Eway.view.monitor.business.BlackListCardGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: Eway.locale.monitor.business.blackList.importData,
+				text: EwayLocale.monitor.business.blackList.importData,
 				iconCls :'importBtn',
 				action: 'import',
 				code : 'blackCardImportBtn',
@@ -49,24 +49,24 @@ Ext.define('Eway.view.monitor.business.BlackListCardGrid', {
 				}
 			}],
 			columns : [{
-				header : Eway.locale.monitor.business.transaction.card,
+				header : EwayLocale.monitor.business.transaction.card,
 				dataIndex : 'cardNo',
 				width : 200
 			}, {
-				header : Eway.locale.monitor.business.transaction.userName,
+				header : EwayLocale.monitor.business.transaction.userName,
 				dataIndex : 'userName'
 			}, {
-				header : Eway.locale.monitor.business.blackList.cardBank,
+				header : EwayLocale.monitor.business.blackList.cardBank,
 				dataIndex : 'organization'
 			}, {
-				header : Eway.locale.monitor.business.blackList.addDate,
+				header : EwayLocale.monitor.business.blackList.addDate,
 				dataIndex : 'addDate',
 				flex : 1
 			}],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,
 				displayInfo : true,
-				displayMsg : Eway.locale.commen.toolbar
+				displayMsg : EwayLocale.commen.toolbar
 			})
 		});
 		

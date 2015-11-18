@@ -8,7 +8,7 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 		Ext.apply(this, {
 			items : [ {
 				xtype : 'fieldset',
-				title : Eway.locale.machine.device.sysHardwareInfo,
+				title : EwayLocale.machine.device.sysHardwareInfo,
 				collapsible : true,
 				defaults : {
 					border : false
@@ -26,20 +26,20 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 							anchor : '90%'
 						},
 						items : [ {
-							fieldLabel : Eway.locale.machine.atmGroup.terminalId,
+							fieldLabel : EwayLocale.machine.atmGroup.terminalId,
 							name : 'termId',
 							style : 'margin-top:2px'
 						}, {
-							fieldLabel : Eway.locale.machine.device.diskMem,
+							fieldLabel : EwayLocale.machine.device.diskMem,
 							name : 'diskMem'
 						}, {
-							fieldLabel : Eway.locale.machine.device.biosVersion,
+							fieldLabel : EwayLocale.machine.device.biosVersion,
 							name : 'biosVersion'
 						}, {
-							fieldLabel : Eway.locale.machine.device.biosVendor,
+							fieldLabel : EwayLocale.machine.device.biosVendor,
 							name : 'biosVendor'
 						}, {
-							fieldLabel : Eway.locale.machine.device.biosReleaseDate,
+							fieldLabel : EwayLocale.machine.device.biosReleaseDate,
 							name : 'biosReleaseDate'
 						} ]
 					}, {
@@ -52,17 +52,17 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 							anchor : '90%'
 						},
 						items : [ {
-							fieldLabel :Eway.locale.machine.device.memorySize,
+							fieldLabel :EwayLocale.machine.device.memorySize,
 							name : 'memorySize',
 							style : 'margin-top:2px'
 						}, {
-							fieldLabel : Eway.locale.machine.device.memoryUsed,
+							fieldLabel : EwayLocale.machine.device.memoryUsed,
 							name : 'used'
 						}, {
-							fieldLabel : Eway.locale.machine.device.memoryFree,
+							fieldLabel : EwayLocale.machine.device.memoryFree,
 							name : 'free'
 						}, {
-							fieldLabel : Eway.locale.machine.device.memoryPercent,
+							fieldLabel : EwayLocale.machine.device.memoryPercent,
 							name : 'usedPercent'
 						} ]
 					} ]
@@ -70,64 +70,64 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 					xtype : 'tabpanel',
 					padding : '1 0 0 0',
 					items : [ {
-						title : Eway.locale.machine.device.cpuItemID,
+						title : EwayLocale.machine.device.cpuItemID,
 						itemid : 'cpuItemID',
 						xtype : 'grid',
 						store : 'machine.atmHardSoft.Cpu',
 						columns : [ Ext.create('Ext.grid.RowNumberer'), {
-							header : Eway.locale.machine.device.cpuFrequency,
+							header : EwayLocale.machine.device.cpuFrequency,
 							dataIndex : 'frequency'
 						}, {
-							header : Eway.locale.machine.device.cpuVendor,
+							header : EwayLocale.machine.device.cpuVendor,
 							dataIndex : 'vendor'
 						}, {
-							header : Eway.locale.machine.device.cpuModel,
+							header : EwayLocale.machine.device.cpuModel,
 							dataIndex : 'model',
 							flex : 1
 						}, {
-							header : Eway.locale.machine.device.cacheSize,
+							header : EwayLocale.machine.device.cacheSize,
 							dataIndex : 'cacheSize',
 							hidden:true
 						}, {
-							header : Eway.locale.machine.device.totalCores,
+							header : EwayLocale.machine.device.totalCores,
 							dataIndex : 'totalCores',
 							hidden:true
 						}, {
-							header : Eway.locale.machine.device.userUsePercent,
+							header : EwayLocale.machine.device.userUsePercent,
 							dataIndex : 'user',
 							width : 90
 						}, {
-							header : Eway.locale.machine.device.sysUsePercent,
+							header : EwayLocale.machine.device.sysUsePercent,
 							dataIndex : 'sys',
 							width : 90
 						}, {
-							header : Eway.locale.machine.device.idlePercent,
+							header : EwayLocale.machine.device.idlePercent,
 							dataIndex : 'idle',
 							width : 90
 						}, {
-							header : Eway.locale.machine.device.combinedPercent,
+							header : EwayLocale.machine.device.combinedPercent,
 							dataIndex : 'combined',
 							width : 90
 						} ]
 					}, {
-						title : Eway.locale.machine.device.diskItemID,
+						title : EwayLocale.machine.device.diskItemID,
 						itemid : 'diskItemID',
 						xtype : 'grid',
 						store : 'machine.atmHardSoft.Disk',
 						columns : [ Ext.create('Ext.grid.RowNumberer'), {
-							header : Eway.locale.machine.device.diskName,
+							header : EwayLocale.machine.device.diskName,
 							dataIndex : 'name'
 						}, {
-							header : Eway.locale.machine.device.diskFileSys,
+							header : EwayLocale.machine.device.diskFileSys,
 							dataIndex : 'fileSys'
 						}, {
-							header : Eway.locale.machine.device.diskTotalSize,
+							header : EwayLocale.machine.device.diskTotalSize,
 							renderer : function(value, metadata, record) {
 								return (value / (1024 * 1024)).toFixed(1) + "GB";
 							},
 							dataIndex : 'totalSize'
 						}, {
-							header : Eway.locale.machine.device.diskFreeSize,
+							header : EwayLocale.machine.device.diskFreeSize,
 							renderer : function(value, metadata, record) {
 								return (value / (1024 * 1024)).toFixed(1) + "GB";
 							},
@@ -138,7 +138,7 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 				} ]
 			}, {
 				xtype : 'fieldset',
-				title : Eway.locale.machine.device.sysSoftInfo,
+				title : EwayLocale.machine.device.sysSoftInfo,
 				collapsible : true,
 				border : false,
 				defaults : {
@@ -157,17 +157,17 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 							readOnly : true
 						},
 						items : [ {
-							fieldLabel : Eway.locale.machine.device.OSID,
+							fieldLabel : EwayLocale.machine.device.OSID,
 							name : 'arch',
 							style : 'margin-top:2px'
 						}, {
-							fieldLabel : Eway.locale.machine.device.OSDescription,
+							fieldLabel : EwayLocale.machine.device.OSDescription,
 							name : 'description'
 						}, {
-							fieldLabel : Eway.locale.machine.device.OSType,
+							fieldLabel : EwayLocale.machine.device.OSType,
 							name : 'type'
 						}, {
-							fieldLabel : Eway.locale.machine.device.sysPatchLevel,
+							fieldLabel : EwayLocale.machine.device.sysPatchLevel,
 							name : 'patchLevel'
 						} ]
 					}, {
@@ -180,17 +180,17 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 							xtype : 'textfield'
 						},
 						items : [ {
-							fieldLabel : Eway.locale.machine.device.chkCashData,
+							fieldLabel : EwayLocale.machine.device.chkCashData,
 							name : 'chkCashData',
 							style : 'margin-top:2px'
 						}, {
-							fieldLabel : Eway.locale.machine.device.OSVendor,
+							fieldLabel : EwayLocale.machine.device.OSVendor,
 							name : 'vendor'
 						}, {
-							fieldLabel : Eway.locale.machine.device.OSVendorName,
+							fieldLabel : EwayLocale.machine.device.OSVendorName,
 							name : 'vendorName'
 						}, {
-							fieldLabel : Eway.locale.machine.device.sysVersion,
+							fieldLabel : EwayLocale.machine.device.sysVersion,
 							name : 'version'
 						} ]
 					} ]

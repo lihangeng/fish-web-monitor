@@ -2,7 +2,7 @@ Ext.define('Eway.view.version.field.VersionComboBox', {
 	extend : 'Ext.form.field.ComboBox',
 	alias : 'widget.field_versionComboBox',
 
-	fieldLabel : Eway.locale.version.View.downloadVersionName,//'下发的版本',
+	fieldLabel : EwayLocale.version.View.downloadVersionName,//'下发的版本',
 	name: 'versionId',
 	editable  : false,
 	store: Ext.create('Ext.data.Store',{
@@ -17,7 +17,7 @@ Ext.define('Eway.view.version.field.VersionComboBox', {
 	    },
 	    autoLoad : false						
 	}),
-	emptyText : Eway.locale.version.View.downloadVersionNameEmpty,//'请选择下发的版本',
+	emptyText : EwayLocale.version.View.downloadVersionNameEmpty,//'请选择下发的版本',
 	mode : 'remote',
 	triggerAction: 'all',
 	valueField : 'id',

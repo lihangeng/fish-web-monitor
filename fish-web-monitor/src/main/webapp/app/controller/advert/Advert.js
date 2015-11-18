@@ -121,7 +121,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			if(record.get("advertType") == "TEXT" || record.get('advertType') == 'ANNOUNCEMENT'){
-				Eway.alert(Eway.locale.msg.perviewFailForText);
+				Eway.alert(EwayLocale.msg.perviewFailForText);
 			}else{
 				var advertId = record.get('id');
 				Ext.Ajax.request({
@@ -133,7 +133,7 @@ Ext.define('Eway.controller.advert.Advert', {
 					success: function(response){
 						 var images = Ext.decode(response.responseText);
 						 if(Ext.isEmpty(images)){
-						 	Eway.alert("["+screen+"]"+Eway.locale.msg.noAdvertResAtTheResolution);
+						 	Eway.alert("["+screen+"]"+EwayLocale.msg.noAdvertResAtTheResolution);
 						 }else{
 							 var vedioCfg = '<OBJECT id=WindowsMediaPlayer1 name="player" height=490 width=700 classid=clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6>'+
 												'<PARAM NAME="URL" VALUE="">'+
@@ -169,7 +169,7 @@ Ext.define('Eway.controller.advert.Advert', {
 							 var len = images.length;
 							 var stoped = false;
 							 var win = Ext.create('Ext.window.Window',{
-								title:Eway.locale.advert.advertPreviewTitle0+ len +Eway.locale.advert.advertPreviewTitle1,
+								title:EwayLocale.advert.advertPreviewTitle0+ len +EwayLocale.advert.advertPreviewTitle1,
 								width: 705,
 								height: document.body.clientHeight < 525 ? document.body.clientHeight: 525,
 								layout : 'fit',
@@ -206,7 +206,7 @@ Ext.define('Eway.controller.advert.Advert', {
 											if(Ext.isIE){
 												v.URL = currentPic.picName;
 											}else{
-												divVedio.innerHTML = '<font color="red">'+Eway.locale.advert.perviewAdertWithIEBrowse+'</font>';
+												divVedio.innerHTML = '<font color="red">'+EwayLocale.advert.perviewAdertWithIEBrowse+'</font>';
 											}
 										}else{
 											divVedio.style.display = "none";
@@ -214,7 +214,7 @@ Ext.define('Eway.controller.advert.Advert', {
 											img.src = currentPic.picName;
 										}
 
-									   	win.setTitle(title + (i+1) +Eway.locale.advert.advertPreviewTitle2);
+									   	win.setTitle(title + (i+1) +EwayLocale.advert.advertPreviewTitle2);
 									   	time = currentPic.playTime * 1000;
 										i ++
 									}
@@ -235,7 +235,7 @@ Ext.define('Eway.controller.advert.Advert', {
 				});
 			}
 		}else{
-			Eway.alert(Eway.locale.msg.choseResToPerview);
+			Eway.alert(EwayLocale.msg.choseResToPerview);
 		}
 	},
 	//作业详情
@@ -246,7 +246,7 @@ Ext.define('Eway.controller.advert.Advert', {
 			var record = sm.getLastSelected();
 
 		}else{
-			Eway.alert(Eway.locale.msg.chooseAdvert);
+			Eway.alert(EwayLocale.msg.chooseAdvert);
 		}
 	},
 	//删除广告
@@ -255,21 +255,23 @@ Ext.define('Eway.controller.advert.Advert', {
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
-			if(record.get("versionStatus") == Eway.locale.version.View.downLoaded || record.get("versionStatus") == Eway.locale.version.View.waitting ){
-				Eway.alert(Eway.locale.msg.downLoadedAdvertCantDelete);
+			if(record.get("versionStatus") == EwayLocale.version.View.downLoaded || record.get("versionStatus") == EwayLocale.version.View.waitting ){
+				Eway.alert(EwayLocale.msg.downLoadedAdvertCantDelete);
 			}else{
-				Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title,Eway.locale.tip.remove.confirm.info,
+				Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,EwayLocale.tip.remove.confirm.info,
 						function(button,text) {
 							if(button=="yes"){
 								record.erase({
 									success: function(){
 										grid.getStore().remove(record);
-										Eway.alert(Eway.deleteSuccess);
+										Eway.alert(EwayLocale.updateSuccess);
 										//刷新详细配置列表
 										var resourceGrid = this.getAdvertResourceGrid();
 										resourceGrid.getStore().load({params:{advertId:0}});
 									},
 									failure: function(record,operation){
+										//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
+										record.dropped = false;
 										Eway.alert(operation.request.scope.reader.jsonData.errors);
 									},
 									scope:this
@@ -279,7 +281,7 @@ Ext.define('Eway.controller.advert.Advert', {
 			}
 		}
 		else {
-			Eway.alert(Eway.locale.msg.chooseAdvertToDelete);
+			Eway.alert(EwayLocale.msg.chooseAdvertToDelete);
 		}
 	},
 
@@ -289,21 +291,21 @@ Ext.define('Eway.controller.advert.Advert', {
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
-			if(record.get('versionStatus') == Eway.locale.version.taskStatus.downloaded){
-				Eway.alert(Eway.locale.msg.generalVersionFailForDownloaded);
+			if(record.get('versionStatus') == EwayLocale.version.taskStatus.downloaded){
+				Eway.alert(EwayLocale.msg.generalVersionFailForDownloaded);
 			}else{
 				Ext.Ajax.request({
 				    url: 'api/advert/' + record.get("id") + "/generateVersion",
 				    success: function(response){
 				        var text = response.responseText;
-				        Eway.alert(Eway.locale.msg.generalVersionSuccess);
+				        Eway.alert(EwayLocale.msg.generalVersionSuccess);
 				     	grid.getStore().load();//刷新列表页面
 				    }
 				});
 			}
 		}
 		else {
-			Eway.alert(Eway.locale.msg.chooseAdvert);
+			Eway.alert(EwayLocale.msg.chooseAdvert);
 		}
 	},
 
@@ -387,11 +389,11 @@ Ext.define('Eway.controller.advert.Advert', {
 				form.findField("serverPath").setValue(record.get("versionFile"));
 				win.down("radiogroup").on({change:this.setCheckBoxModel, scope: this});
 			}else{
-				Eway.alert(Eway.locale.msg.downloadFailForNoVersion);
+				Eway.alert(EwayLocale.msg.downloadFailForNoVersion);
 			}
 		}
 		else {
-			Eway.alert(Eway.locale.msg.chooseAdvert);
+			Eway.alert(EwayLocale.msg.chooseAdvert);
 		}
 	},
 	setCheckBoxModel:function( _this, newValue, oldValue, eOpts ){
@@ -401,7 +403,7 @@ Ext.define('Eway.controller.advert.Advert', {
 			var linkedGrid = this.getDownAdvert().down("version_download_linkedDeviceGrid");
 			linkedGrid.getStore().removeAll();
 			this.getDownAdvert().down("hidden[name='deviceIds']").setValue("");
-			linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo0 + linkedGrid.getStore().getCount() + Eway.locale.version.selectDeviceInfo1);
+			linkedGrid.setTitle(EwayLocale.version.selectDeviceInfo0 + linkedGrid.getStore().getCount() + EwayLocale.version.selectDeviceInfo1);
 			grid.selModel.setLocked(true);
 		}
 		else{
@@ -465,10 +467,10 @@ Ext.define('Eway.controller.advert.Advert', {
 			var deviceIdsField = addForm.findField("deviceIds");
 			var allDeviceField = addForm.findField("allDevice");
 			if(Ext.isEmpty(deviceIdsField.value)&&!allDeviceField.value){
-				Ext.MessageBox.alert(Eway.locale.confirm.title,Eway.locale.msg.chooseOneDevice);
+				Ext.MessageBox.alert(EwayLocale.confirm.title,EwayLocale.msg.chooseOneDevice);
 				btn.enable();
 			}else if(allDeviceField.value&&linkGrid.getStore().getCount()==0){
-				Eway.alert(Eway.locale.msg.mustSelectDevice);
+				Eway.alert(EwayLocale.msg.mustSelectDevice);
 			}else{
 				record.set("deviceIds",deviceIdsField.value);
 				record.save({
@@ -476,13 +478,13 @@ Ext.define('Eway.controller.advert.Advert', {
 					 	deviceIdsField.setValue("");
 					 	var linkedGrid = win.down('version_download_linkedDeviceGrid');
 						linkedGrid.getStore().removeAll();//清空已选择的设备列表
-						linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo0+0+Eway.locale.version.selectDeviceInfo1);
+						linkedGrid.setTitle(EwayLocale.version.selectDeviceInfo0+0+EwayLocale.version.selectDeviceInfo1);
 					 	//保存成功后刷新下发设备列表
 //					 	 Eway.alert('保存成功！');
 //						//win.down("version_download_multiselectableDeviceGrid").getStore().load();
 						win.close();
-						Ext.MessageBox.confirm(Eway.locale.confirm.title,
-								Eway.locale.confirm.withoutNumTaskConfirmInfo,this.goToVersionDownloadPage,this);
+						Ext.MessageBox.confirm(EwayLocale.confirm.title,
+								EwayLocale.confirm.withoutNumTaskConfirmInfo,this.goToVersionDownloadPage,this);
 					 },
 					 failure: function(ed){
 						 btn.enable();
@@ -601,13 +603,13 @@ Ext.define('Eway.controller.advert.Advert', {
 		var tab = win.down('advert_waitTab').getActiveTab();
 		var count = tab.down('advertimgview').getStore().getCount();
 		if(count == 10){
-			 Eway.alert(Eway.locale.advert.limitNumberTenForEveryResolution);
+			 Eway.alert(EwayLocale.advert.limitNumberTenForEveryResolution);
 			return;
 		}else{
 			if(!Ext.isEmpty(value)){
 				if(!form.isValid()){
 					var tip = form.findField("tip");
-					tip.setValue(Eway.locale.advert.fileFormatTipsInfo);
+					tip.setValue(EwayLocale.advert.fileFormatTipsInfo);
 					setTimeout(function(){
 								tip.setValue("");
 							},3000);
@@ -621,7 +623,7 @@ Ext.define('Eway.controller.advert.Advert', {
 					 	params: {
 					 		screen: title
 					 	},
-					 	waitMsg: Eway.locale.advert.uploading,
+					 	waitMsg: EwayLocale.advert.uploading,
 					    success: function(form, action) {
 					    	var record = Ext.create("Eway.model.advert.UploadResource",{
 					    		fileName:action.result.fileName,
@@ -644,7 +646,7 @@ Ext.define('Eway.controller.advert.Advert', {
 					    failure: function(form, action) {
 				       	   switch (action.failureType) {
 					            case Ext.form.action.Action.CONNECT_FAILURE:
-					                Eway.alert(Eway.locale.msg.saveFileCommunicationFail);
+					                Eway.alert(EwayLocale.msg.saveFileCommunicationFail);
 					                break;
 					            case Ext.form.action.Action.SERVER_INVALID:
 					               Eway.alert(action.result.errors);
@@ -684,7 +686,7 @@ Ext.define('Eway.controller.advert.Advert', {
 	onAddTransMore: function(){
 		var form = this.getAddTransWin().down('form');
 		var fs = Ext.create('Eway.view.advert.field.TransResourceFieldSet',{
-			title:Eway.locale.advert.transAdvertResConfig
+			title:EwayLocale.advert.transAdvertResConfig
 		});
 		this.onAddMore(form,fs);
 	},
@@ -693,7 +695,7 @@ Ext.define('Eway.controller.advert.Advert', {
 	onAddWaitMore: function(){
 		var form = this.getAddWaitWin().down('form');
 		var fs = Ext.create('Eway.view.advert.field.WaitResourceFieldSet',{
-			title:Eway.locale.advert.idleAdvertResConfig
+			title:EwayLocale.advert.idleAdvertResConfig
 		});
 		this.onAddMore(form,fs);
 	},
@@ -701,7 +703,7 @@ Ext.define('Eway.controller.advert.Advert', {
 	onAddTextMore: function(){
 		var form = this.getAddTextWin().down('form');
 		var fs = Ext.create('Eway.view.advert.field.TextResourceFieldSet',{
-			title:Eway.locale.advert.textAdvertResConfig
+			title:EwayLocale.advert.textAdvertResConfig
 		});
 		this.onAddMore(form,fs);
 	},
@@ -725,17 +727,17 @@ Ext.define('Eway.controller.advert.Advert', {
 		if(!Ext.isEmpty(value)){
 			form.submit({
 				 	url: 'api/advert/uploadRes',
-				 	waitMsg: Eway.locale.advert.uploading,
+				 	waitMsg: EwayLocale.advert.uploading,
 				    success: function(form, action) {
 				    	var oFileName = action.result.oFileName;
-				    	form.findField("oFileName").setValue(Eway.locale.advert.choosedAdvertRes+" <b>"+ oFileName + "</b>");
+				    	form.findField("oFileName").setValue(EwayLocale.advert.choosedAdvertRes+" <b>"+ oFileName + "</b>");
 				    	form.findField("content").setValue(oFileName);
 				    	file.allowBlank = true;
 				    },
 				    failure: function(form, action) {
 			       	   switch (action.failureType) {
 				            case Ext.form.action.Action.CONNECT_FAILURE:
-				            	 Eway.alert(Eway.locale.msg.saveFileCommunicationFail);
+				            	 Eway.alert(EwayLocale.msg.saveFileCommunicationFail);
 				                break;
 				            case Ext.form.action.Action.SERVER_INVALID:
 				               Eway.alert(action.result.errors);
@@ -779,7 +781,7 @@ Ext.define('Eway.controller.advert.Advert', {
 			var s1024 = tab.down('advertimgview[name=1024]');
 			var s1024Store = s1024.getStore();
 			if(s1024Store.getCount() == 0){
-				Ext.MessageBox.alert(Eway.locale.confirm.title,Eway.locale.advert.mustContainerOnePicAt1024);
+				Ext.MessageBox.alert(EwayLocale.confirm.title,EwayLocale.advert.mustContainerOnePicAt1024);
 				btn.enable();
 				return;
 			}
@@ -787,19 +789,19 @@ Ext.define('Eway.controller.advert.Advert', {
 			var s800 = tab.down('advertimgview[name=800]');
 			var s800Store = s800.getStore();
 			/*if(s800Store.getCount() == 0){
-				Ext.MessageBox.alert(Eway.locale.confirm.title,"800分辨率至少包含一个图片!");
+				Ext.MessageBox.alert(EwayLocale.confirm.title,"800分辨率至少包含一个图片!");
 				return;
 			}*/
 
 			var s600 = tab.down('advertimgview[name=600]');
 			var s600Store = s600.getStore();
 			/*if(s600Store.getCount() == 0){
-				Ext.MessageBox.alert(Eway.locale.confirm.title,"600分辨率下至少包含一个图片!");
+				Ext.MessageBox.alert(EwayLocale.confirm.title,"600分辨率下至少包含一个图片!");
 				return;
 			}*/
 
 			/*if((s1024Store.getCount() !== s800Store.getCount()) || (s800Store.getCount()!== s600Store.getCount())){
-				Ext.MessageBox.alert(Eway.locale.confirm.title,"每种分辨率下的图片数量必须相等!");
+				Ext.MessageBox.alert(EwayLocale.confirm.title,"每种分辨率下的图片数量必须相等!");
 				return;
 			}*/
 
@@ -848,7 +850,7 @@ Ext.define('Eway.controller.advert.Advert', {
     	adv.save({
 			 success: function(ed) {
 				 me.onQuery();
-			 	Ext.MessageBox.alert(Eway.locale.confirm.title,Eway.locale.msg.createSuccess);
+			 	Ext.MessageBox.alert(EwayLocale.confirm.title,EwayLocale.msg.createSuccess);
 				win.close();
 			 },
 			 failure: function(record,operation){
@@ -866,7 +868,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		if(addForm.isValid()){
 			var data = addForm.getValues();
 			if(Ext.isEmpty(fss)){//如果没有一个广告资源
-				Ext.MessageBox.alert(Eway.locale.confirm.title,Eway.locale.msg.mustHaveOneResource);
+				Ext.MessageBox.alert(EwayLocale.confirm.title,EwayLocale.msg.mustHaveOneResource);
 			}else {
 				this.doSave(win,fss,data,store,advertType);
 				Ext.getCmp('savaAdvert').setDisabled(true)
@@ -936,7 +938,7 @@ Ext.define('Eway.controller.advert.Advert', {
     	adv.save({
 			 success: function(ed) {
 				 me.onQuery();
-			 	Ext.MessageBox.alert(Eway.locale.confirm.title,Eway.locale.msg.createSuccess);
+			 	Ext.MessageBox.alert(EwayLocale.confirm.title,EwayLocale.msg.createSuccess);
 				win.close();
 			 },
 			 failure: function(record,operation){

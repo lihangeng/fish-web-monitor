@@ -5,7 +5,7 @@ Ext.define('Eway.view.machine.atmGroup.GroupAdd', {
 	
 	requires: [],
 	
-	title: Eway.locale.machine.atmGroup.addTitle,
+	title: EwayLocale.machine.atmGroup.addTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -24,7 +24,7 @@ Ext.define('Eway.view.machine.atmGroup.GroupAdd', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.machine.atmGroup.groupName,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.atmGroup.groupName,
 					xtype : 'textfield',
 					name : 'name',
 					maxLength : 30,
@@ -32,7 +32,7 @@ Ext.define('Eway.view.machine.atmGroup.GroupAdd', {
 					allowBlank : false
 				},{
 				    xtype : 'textarea',
-				    fieldLabel : Eway.locale.machine.atmGroup.note,
+				    fieldLabel : EwayLocale.machine.atmGroup.note,
 				    name : 'note',
 				    autoScroll : true,
 					maxLength :30,
@@ -41,14 +41,14 @@ Ext.define('Eway.view.machine.atmGroup.GroupAdd', {
 				}],
 				buttonAlign : 'center',
 				buttons: [{
-					text: Eway.locale.button.confirm,
+					text: EwayLocale.button.confirm,
 					action: 'add'
 				}, {
-					text: Eway.locale.button.reset,
+					text: EwayLocale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: Eway.locale.button.cancle,
+					text: EwayLocale.button.cancle,
 					handler: this.onOver
 				}]
 			}

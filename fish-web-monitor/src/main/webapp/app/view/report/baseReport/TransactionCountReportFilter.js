@@ -45,7 +45,7 @@ Ext.define('Eway.view.report.baseReport.TransactionCountReportFilter', {
 				}
 				return validStatus;
 			},
-			cardInfoDateRangeText : Eway.locale.tip.dateReSelect,
+			cardInfoDateRangeText : EwayLocale.tip.dateReSelect,
 		});
 		var levelStore = Ext.create('Eway.store.person.organization.OrganizationLevelDict');
 		Ext.apply(this, {
@@ -65,9 +65,9 @@ Ext.define('Eway.view.report.baseReport.TransactionCountReportFilter', {
 					},
 					items : [ {
 						xtype : 'common_orgComboOrgTree',
-						fieldLabel : Eway.locale.commen.orgNameBelongs,
+						fieldLabel : EwayLocale.commen.orgNameBelongs,
 						labelAlign : 'right',
-						emptyText : Eway.locale.combox.select,
+						emptyText : EwayLocale.combox.select,
 						name : 'orgName',
 						hiddenValue : 'orgId',
 						editable : false,
@@ -80,7 +80,7 @@ Ext.define('Eway.view.report.baseReport.TransactionCountReportFilter', {
 					}, {
 						columnWidth : .29,
 						xtype : 'checkboxfield',
-						fieldLabel : Eway.locale.report.baseReport.dependDev,
+						fieldLabel : EwayLocale.report.baseReport.dependDev,
 						labelWidth : 44,
 						name : 'isDevice',
 						value : true,
@@ -90,7 +90,7 @@ Ext.define('Eway.view.report.baseReport.TransactionCountReportFilter', {
 				},{
 					xtype : 'datefield',
 					labelWidth : 80,
-					fieldLabel : Eway.locale.commen.startDataTime,
+					fieldLabel : EwayLocale.commen.startDataTime,
 					name : 'startData',
 					format : 'Y-m-d',
 					editable : false,
@@ -117,11 +117,11 @@ Ext.define('Eway.view.report.baseReport.TransactionCountReportFilter', {
 					xtype : 'field.organizationLevel',
 					name : 'orgLevel',
 					store : levelStore,
-					emptyText : Eway.locale.combox.select,
+					emptyText : EwayLocale.combox.select,
 					labelWidth : 80
 				},{
 					xtype : 'datefield',
-					fieldLabel : Eway.locale.commen.endDataTime,
+					fieldLabel : EwayLocale.commen.endDataTime,
 					labelWidth : 80,
 					name : 'endData',
 					format : 'Y-m-d',
@@ -154,7 +154,7 @@ Ext.define('Eway.view.report.baseReport.TransactionCountReportFilter', {
 					xtype : 'report_DevicComboBox',
 					labelAlign : 'right',
 					labelWidth : 80,
-					emptyText : Eway.locale.combox.select,
+					emptyText : EwayLocale.combox.select,
 					labelWidth : 80
 				}]
 			}]

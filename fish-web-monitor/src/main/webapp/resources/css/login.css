@@ -8,6 +8,9 @@ padding-left:20px;
 
 .container{
 width:1296px;
+height:80%;
+min-height:510px;
+
 }
 .left{
 
@@ -130,4 +133,11 @@ font-weight:bold;
 	height:50px;
 	
 	
+}
+.bottom{
+height:20%;
+
+float:center;
+padding-top:130px;
+
 }

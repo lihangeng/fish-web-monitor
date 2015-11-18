@@ -14,36 +14,36 @@ Ext.define('Eway.view.advert.Grid', {
 			initRegion : true,
 //			store:me.store,
 			tbar: ['->', {
-				text: Eway.locale.button.search,
+				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 			}, {
-				text : Eway.locale.advert.createAdvert,
+				text : EwayLocale.advert.createAdvert,
 				glyph : 0xf067,
 				menu : new Ext.menu.Menu({
 					items : [  {
-						text : Eway.locale.advert.idleAdvert,
+						text : EwayLocale.advert.idleAdvert,
 						action:'wait',
 						code : 'advertWait',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					}, {
-						text : Eway.locale.advert.transAdvert,
+						text : EwayLocale.advert.transAdvert,
 						action:'trans',
 						code : 'advertTrans',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					},{
-						text : Eway.locale.advert.textAdvert,
+						text : EwayLocale.advert.textAdvert,
 						action:'text',
 						code : 'advertText',
 						listeners:{
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					},{
-						text: Eway.locale.advert.annoucementAdvert,
+						text: EwayLocale.advert.annoucementAdvert,
 						action:'annoucement',
 						code : 'advertAnnoucement',
 						listeners:{
@@ -56,7 +56,7 @@ Ext.define('Eway.view.advert.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: Eway.locale.button.remove,
+				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'advertDel',
@@ -69,7 +69,7 @@ Ext.define('Eway.view.advert.Grid', {
 				dataIndex: 'id',
 				width: 45
 			},{
-				header : Eway.locale.advert.type,
+				header : EwayLocale.advert.type,
 				dataIndex : 'advertType',
 				renderer: Eway.lib.Util.dictRenderer('advert.AdvertType')
 			},/*{
@@ -77,22 +77,22 @@ Ext.define('Eway.view.advert.Grid', {
 				dataIndex : 'advertDownMethod',
 				renderer: Eway.lib.Util.dictRenderer('advert.AdvertDownMethod')
 			},*/{
-				header : Eway.locale.advert.validity,
+				header : EwayLocale.advert.validity,
 				dataIndex : 'advertValidity',
 				renderer: Eway.lib.Util.dictRenderer('advert.AdvertValidity'),
 				hidden:true
 			},{
-				header : Eway.locale.advert.createdTime,
+				header : EwayLocale.advert.createdTime,
 				dataIndex : 'createdTime',
 				width: 130
 			},{
-				header:Eway.locale.advert.userName,
+				header:EwayLocale.advert.userName,
 				dataIndex:'userName'
 			},{
-				header : Eway.locale.advert.versionStatus,
+				header : EwayLocale.advert.versionStatus,
 				dataIndex:'versionStatus'
 			},{
-				header: Eway.locale.advert.advertVersionFile,
+				header: EwayLocale.advert.advertVersionFile,
 				dataIndex:'versionFile',
 				renderer:function(value,meta,record){
 					if(value != null){

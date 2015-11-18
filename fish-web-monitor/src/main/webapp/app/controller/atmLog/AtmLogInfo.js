@@ -105,7 +105,7 @@ Ext.define('Eway.controller.atmLog.AtmLogInfo',{
 			var bool = form.isValid();
 			// 查询输入验证
 			if (bool == false) {
-				Eway.alert(Eway.locale.atmLog.searchIllegal);
+				Eway.alert(EwayLocale.atmLog.searchIllegal);
 				return
 			}
 

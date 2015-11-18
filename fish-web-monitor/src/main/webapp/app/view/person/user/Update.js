@@ -6,7 +6,7 @@ Ext.define('Eway.view.person.user.Update', {
 		           'Eway.view.field.person.UserType',
 			'Eway.view.person.user.AddedRoleGrid' ],
 
-	title : Eway.locale.person.user.updateUserTitle,
+	title : EwayLocale.person.user.updateUserTitle,
 	modal : true,
 	resizable : true,
 	constrainHeader : true,
@@ -29,14 +29,14 @@ Ext.define('Eway.view.person.user.Update', {
 				region : 'center',
 				layout : 'border',
 				items : [ {
-					title : Eway.locale.person.user.roleCanBeAdd,
+					title : EwayLocale.person.user.roleCanBeAdd,
 					region : 'west',
 					width : 400,
 					xtype : 'user_roleGrid',
 					margin : '0 5px 0 0',
 					autoLoadStore : true
 				}, {
-					title : Eway.locale.person.user.roleAlreadyBeAdd,
+					title : EwayLocale.person.user.roleAlreadyBeAdd,
 					region : 'center',
 					xtype : 'user_addedRoleGrid',
 					autoLoadStore : true
@@ -44,7 +44,7 @@ Ext.define('Eway.view.person.user.Update', {
 			} ],
 			buttonAlign : 'center',
 			fbar : [ {
-				text : Eway.locale.button.back,
+				text : EwayLocale.button.back,
 				// iconCls :'returnBtn',
 				handler : this.onOver
 			} ]

@@ -136,7 +136,7 @@ Ext.define('Eway.controller.person.User', {
 			this.addWin.down('field[name="gender"]').setValue(sm.getLastSelected().data.gender);
 			win.close();
 		}else{
-			Eway.alert(Eway.locale.tip.user.add.createAcc);
+			Eway.alert(EwayLocale.tip.user.add.createAcc);
 		}
 	},
 
@@ -171,7 +171,7 @@ Ext.define('Eway.controller.person.User', {
 			record.save({
 				success : function(record,operation){
 					ewayView.down('user_grid').getStore()
-					Eway.alert(Eway.locale.tip.user.add.createSuccess+data.code+Eway.locale.tip.user.add.initPasswd);
+					Eway.alert(EwayLocale.tip.user.add.createSuccess+data.code+EwayLocale.tip.user.add.initPasswd);
 					var store = ewayView.down('user_grid').getStore();
 					store.cleanUrlParam();
 					store.load();
@@ -192,20 +192,22 @@ Ext.define('Eway.controller.person.User', {
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			if(sm.getLastSelected().data.code=='admin'){
-				Eway.alert(Eway.locale.tip.user.remove.failRoot);
+				Eway.alert(EwayLocale.tip.user.remove.failRoot);
 				return;
 			}
-			Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.info,
-					Eway.locale.tip.user.remove.confirm,
+			Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.info,
+					EwayLocale.tip.user.remove.confirm,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Eway.alert(Eway.deleteSuccess);
+									Eway.alert(EwayLocale.updateSuccess);
 									grid.getStore().remove(record);
 								},
 								failure: function(record,operation){
+									//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
+									record.dropped = false;
 									Eway.alert(operation.getError());
 								},
 								scope:this
@@ -214,7 +216,7 @@ Ext.define('Eway.controller.person.User', {
 					}, this);
 		}
 		else {
-			Eway.alert(Eway.choiceDeleteMsg);
+			Eway.alert(EwayLocale.choiceDeleteMsg);
 		}
 	},
 
@@ -244,7 +246,7 @@ Ext.define('Eway.controller.person.User', {
 				},
 				callback: function(records, operation, success) {
 					if(success==false){
-						Eway.alert(Eway.locale.tip.user.update.fail);
+						Eway.alert(EwayLocale.tip.user.update.fail);
 						win.close();
 					}
 			    }
@@ -256,7 +258,7 @@ Ext.define('Eway.controller.person.User', {
 				},
 				callback: function(records, operation, success) {
 					if(success==false){
-						Eway.alert(Eway.locale.tip.user.update.fail);
+						Eway.alert(EwayLocale.tip.user.update.fail);
 						win.close();
 					}
 			    }
@@ -264,7 +266,7 @@ Ext.define('Eway.controller.person.User', {
 
 			win.show();
 		}else {
-			Eway.alert(Eway.choiceUpdateMsg);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 		}
 	},
 
@@ -287,10 +289,10 @@ Ext.define('Eway.controller.person.User', {
 
 		record.save({
 			success : function(record, operation) {
-				Eway.alert(Eway.addSuccess);
+				Eway.alert(EwayLocale.addSuccess);
 			},
 			failure : function(record, operation) {
-				Eway.alert(Eway.locale.tip.add.error + operation.getError());
+				Eway.alert(EwayLocale.tip.add.error + operation.getError());
 
 				this.getRoleGrid().getStore().reload();
 				this.getAddedRoleGrid().getStore().reload();
@@ -302,7 +304,7 @@ Ext.define('Eway.controller.person.User', {
 	onAddingRole: function(node, record, overModel, dropPosition){
 		var addingRoleRecord = this.getRoleGrid().getSelectionModel().getLastSelected();
 		if(addingRoleRecord == null){
-			Eway.alert(Eway.locale.tip.user.add.choose);
+			Eway.alert(EwayLocale.tip.user.add.choose);
 			this.getRoleGrid().getStore().load();
 			return;
 		}
@@ -322,13 +324,13 @@ Ext.define('Eway.controller.person.User', {
 			success : function(response) {
 				var object = Ext.decode(response.responseText);
 				if(object.success == true){
-					Eway.alert(Eway.deleteSuccess);
+					Eway.alert(EwayLocale.updateSuccess);
 				} else {
-					Eway.alert(Eway.locale.tip.remove.error);
+					Eway.alert(EwayLocale.tip.remove.error);
 				}
 			},
 			failure : function() {
-				Eway.alert(Eway.locale.tip.user.remove.fail);
+				Eway.alert(EwayLocale.tip.user.remove.fail);
 			},
 			scope : this
 		});

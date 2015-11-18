@@ -17,7 +17,7 @@ Ext.define('Eway.view.machine.atmModule.AtmModuleGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->',{
-				text:Eway.locale.button.search,
+				text:EwayLocale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			}],
@@ -25,10 +25,10 @@ Ext.define('Eway.view.machine.atmModule.AtmModuleGrid', {
 				header : '模块编号',
 				dataIndex : 'no'
 			}, */{
-				header : Eway.locale.machine.atmModule.moduleName,
+				header : EwayLocale.machine.atmModule.moduleName,
 				dataIndex : 'name'
 			}, {
-				header : Eway.locale.machine.atmModule.note,
+				header : EwayLocale.machine.atmModule.note,
 				dataIndex : 'note',
 				flex : 1
 			}],

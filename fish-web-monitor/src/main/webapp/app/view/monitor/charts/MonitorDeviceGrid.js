@@ -8,11 +8,11 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
 		Ext.apply(this, {
 			store : store,
 			columns : [  {
-				header : Eway.locale.commen.terminalId,
+				header : EwayLocale.commen.terminalId,
 				dataIndex : 'code',
 				width:80
 			},  {
-				header : Eway.locale.monitor.devMonitor.comboxStatus.runStatus,
+				header : EwayLocale.monitor.devMonitor.comboxStatus.runStatus,
 				dataIndex : 'runStatus',
 				width:80,
 				renderer : function(value, meta, record) {
@@ -25,7 +25,7 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
 			 		} 
 		 	 	}
 			}, {
-				header : Eway.locale.monitor.devMonitor.comboxStatus.modStatus,
+				header : EwayLocale.monitor.devMonitor.comboxStatus.modStatus,
 				dataIndex : 'modStatus',
 				width:80,
 //				locked:true,
@@ -40,7 +40,7 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
 					} 
 				}
 			}, {
-				header : Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,
+				header : EwayLocale.monitor.devMonitor.comboxStatus.boxStatus,
 				dataIndex : 'boxStatus',
 				width:80,
 //				locked:true,
@@ -54,7 +54,7 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
 		  			} 
 	  			}
 			}, {
-				header : Eway.locale.monitor.devMonitor.comboxStatus.netStatus,
+				header : EwayLocale.monitor.devMonitor.comboxStatus.netStatus,
 				dataIndex : 'netStatus',
 				width:80,
 //				locked:true,
@@ -69,38 +69,38 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
   					} 
 				}
 			},{
-				header : Eway.locale.commen.ip,
+				header : EwayLocale.commen.ip,
 				dataIndex : 'ip'
 			}, {
-				header : Eway.locale.person.bankOrg.name,
+				header : EwayLocale.person.bankOrg.name,
 				dataIndex : 'org'
 			}, {
-				header : Eway.locale.monitor.devMonitor.retainCardCount,
+				header : EwayLocale.monitor.devMonitor.retainCardCount,
 				dataIndex : 'retainCardCount'
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.boxInitCount,
+				header : EwayLocale.monitor.devMonitor.cash.boxInitCount,
 				dataIndex : 'boxInitCount'
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.boxCurrentCount,
+				header : EwayLocale.monitor.devMonitor.cash.boxCurrentCount,
 				dataIndex : 'boxCurrentCount'
 			}, {
-				header : Eway.locale.commen.devTypeName,
+				header : EwayLocale.commen.devTypeName,
 				dataIndex : 'type'
 			}, {
-				header : Eway.locale.commen.installAddr,
+				header : EwayLocale.commen.installAddr,
 				dataIndex : 'address'
 			}, {
-				header : Eway.locale.commen.seviceMode,
+				header : EwayLocale.commen.seviceMode,
 				dataIndex : 'seviceMode'
 			}, {
-				header : Eway.locale.commen.insideOutside,
+				header : EwayLocale.commen.insideOutside,
 				dataIndex : 'insideOutside',
 				flex : 1
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,
 				displayInfo : true,
-				displayMsg : Eway.locale.commen.toolbar
+				displayMsg : EwayLocale.commen.toolbar
 			})
 		});
 

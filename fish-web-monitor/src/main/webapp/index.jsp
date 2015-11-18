@@ -22,7 +22,7 @@
 	<script type="text/javascript" src="ext/ux/cometd/cometd.js"></script>
 	<script type="text/javascript" src="ext/ux/cometd/ext-cometd.js"></script>
 	<script type="text/javascript">
-		var EwayUserObject = function(id,code,name,orgId,orgType,orgName,orgCode){
+		var EwayUserObject = function(id,code,name,orgId,orgType,orgName,orgCode,personId){
 		var me = this;
 		this.id = id;
 		this.code = code;
@@ -31,6 +31,7 @@
 		this.orgType = orgType;
 		this.orgName = orgName;
 		this.orgCode = orgCode;
+		this.personId = personId;
 		return {
 			getId : function(){
 				return me.id;
@@ -52,6 +53,9 @@
 			},
 			getOrgCode : function(){
 				return me.orgCode;
+			},
+			getPersonId : function(){
+				return me.personId;
 			}			
 		}
 	}
@@ -71,7 +75,8 @@
 			'<%=userSession.getOrgId()%>',
 			'<%=userSession.getOrgType() == null ? "" : String.valueOf(userSession.getOrgType().getId())%>',
 			'<%=userSession.getOrgName()%>',
-			'<%=userSession.getOrgCode()%>');
+			'<%=userSession.getOrgCode()%>',
+			'<%=userSession.getPersonId()%>');
 		var test_userId = Math.random()+'';
 	<%} %>
 
@@ -87,13 +92,26 @@
 	      });
 	  	Ext.cxtPath = '<%=request.getContextPath()%>';
 	  	var Eway = Eway || {};
+	  	var EwayLocale = {};
 	  	
 		if(Ext.String.startsWith(locale,"zh")){
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/system-locale-zh_CN.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/machine-locale-zh_CN.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/monitor-locale-zh_CN.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/version-locale-zh_CN.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/fault-locale-zh_CN.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/report-locale-zh_CN.js");
 		}else{
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-en.js");
-			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-en.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/eway-locale-en.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/system-locale-en.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/machine-locale-en.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/monitor-locale-en.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/version-locale-en.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/fault-locale-en.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/report-locale-en.js");
 		}
 	</script>
 	<script type="text/javascript" src="app.js"></script>

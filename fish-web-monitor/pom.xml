@@ -217,7 +217,8 @@
 						all-classes.js,
 						mapapi.js,
 						WEB-INF/lib/*-classes.jar,
-						WEB-INF/classes/logback-test.xml
+						WEB-INF/classes/logback-test.xml,
+						conf/*
 					</packagingExcludes>
 				</configuration>
 			</plugin> 

@@ -8,7 +8,7 @@ Ext.define('Eway.view.system.HelpView',{
 		var store = new Ext.create('Ext.data.Store', {
 	    	fields:['name', 'describe'],
 		    data:{'items':[
-		        {"name":"The user manual.doc", "describe":Eway.locale.system.guideUsers}
+		        {"name":"The user manual.doc", "describe":EwayLocale.system.guideUsers}
 		    ]},
 		    proxy: {
 		        type: 'memory',
@@ -21,19 +21,19 @@ Ext.define('Eway.view.system.HelpView',{
 
 		Ext.apply(this,{
 			layout : 'fit',
-			title : Eway.locale.system.systemHelp,
+			title : EwayLocale.system.systemHelp,
 			items : [{
 				xtype : 'grid',
 			    store: store,
 			    columns: [
-			        {header: Eway.locale.system.helpName,  dataIndex: 'name',width:150},
-			        {header: Eway.locale.system.helpExpain, dataIndex: 'describe',width:400},
+			        {header: EwayLocale.system.helpName,  dataIndex: 'name',width:150},
+			        {header: EwayLocale.system.helpExpain, dataIndex: 'describe',width:400},
 			        {
-			        	header: Eway.locale.system.helpDownload,
+			        	header: EwayLocale.system.helpDownload,
 						xtype:'actioncolumn',
 						flex : 1,
 						renderer: function(value,metadata,record){
-			                   	metadata.tdAttr ='data-qtip="'+Eway.locale.system.clickDownload+'"';
+			                   	metadata.tdAttr ='data-qtip="'+EwayLocale.system.clickDownload+'"';
 						},
 						items:[{
 		                    icon:"./././resources/images/downfile.png",

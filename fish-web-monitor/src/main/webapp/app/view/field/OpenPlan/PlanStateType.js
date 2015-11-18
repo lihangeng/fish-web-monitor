@@ -8,7 +8,7 @@ Ext.define('Eway.view.field.OpenPlan.PlanStateType', {
 	valueField : 'value',
 	displayField : 'display',
 	editable : false,
-	emptyText: Eway.locale.combox.select,
+	emptyText: EwayLocale.combox.select,
 	listeners: {
 		beforerender: function(){
 			this.store.load();

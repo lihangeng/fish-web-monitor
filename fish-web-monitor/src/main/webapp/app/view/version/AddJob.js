@@ -6,7 +6,7 @@ Ext.define('Eway.view.version.AddJob', {
 	            'Eway.view.version.download.SelectableDeviceGrid',
 	            'Eway.view.version.download.LinkedDeviceGrid'],
 
-	title : Eway.locale.version.addJobTitle,//'配置作业信息',
+	title : EwayLocale.version.addJobTitle,//'配置作业信息',
 	modal : true,
 	resizable : true,
 	constrainHeader : true,
@@ -23,7 +23,7 @@ Ext.define('Eway.view.version.AddJob', {
 				region : 'south',
 				buttonAlign:'center',
 				buttons :[{
-					text : Eway.locale.button.save,//'保存',
+					text : EwayLocale.button.save,//'保存',
 					action : 'confirm',
 					iconCls:'db-save'
 				}]
@@ -46,32 +46,32 @@ Ext.define('Eway.view.version.AddJob', {
 				},
 				items : [{
 					xtype: 'textfield',
-					fieldLabel:Eway.locale.version.View.versionDesc,//版本描述",
+					fieldLabel:EwayLocale.version.View.versionDesc,//版本描述",
 					name :'jobName',
 					maxLength: 128,
 					allowBlank:false,
 					readOnly:true,
-					emptyText:Eway.locale.version.batchTaskNameEmpty//'例如:****需求第1批次升级'
+					emptyText:EwayLocale.version.batchTaskNameEmpty//'例如:****需求第1批次升级'
 			 },{
 					xtype: 'container',
                     layout: 'hbox',
                     items: [{
     					xtype: 'hidden',
-    					fieldLabel : Eway.locale.version.downloadVersionId,//'下发版本ID',
+    					fieldLabel : EwayLocale.version.downloadVersionId,//'下发版本ID',
     					name: 'versionId'
     				},{
     					xtype: 'displayfield',
-    					fieldLabel : Eway.locale.version.View.versionTypeName,//'软件分类',
+    					fieldLabel : EwayLocale.version.View.versionTypeName,//'软件分类',
     					name: 'versionType',
     					width : 350
     				},{
     					xtype: 'displayfield',
-    					fieldLabel : Eway.locale.version.View.versionNo,//'版本号',
+    					fieldLabel : EwayLocale.version.View.versionNo,//'版本号',
     					name: 'versionNo',
     					width : 200
     				},{
     					xtype: 'displayfield',
-    					fieldLabel : Eway.locale.version.View.versionFile,//'版本文件',
+    					fieldLabel : EwayLocale.version.View.versionFile,//'版本文件',
     					name: 'serverPath'
     				}]
 				},{
@@ -91,7 +91,7 @@ Ext.define('Eway.view.version.AddJob', {
 		                width : 200
 		            },*/{
                     	xtype: 'combobox',
-                    	fieldLabel: Eway.locale.version.taskType,//'任务类型',
+                    	fieldLabel: EwayLocale.version.taskType,//'任务类型',
 		                store: Ext.StoreMgr.lookup("version.JobType"),
 		                queryMode: 'local',
 		                valueField : 'value',
@@ -104,7 +104,7 @@ Ext.define('Eway.view.version.AddJob', {
 		                width : 260
 		            }, {
 			        	xtype:'datetimefield',
-			        	fieldLabel:Eway.locale.version.planTime,//'计划执行时间',
+			        	fieldLabel:EwayLocale.version.planTime,//'计划执行时间',
 			        	name:'planTime',
 			        	disabled: true,
 			        	editable: false,
@@ -115,13 +115,13 @@ Ext.define('Eway.view.version.AddJob', {
 			            maxValue:Ext.Date.add(Ext.Date.parse(Ext.Date.format(new Date(), 'Y-m-d') + " 23:59:59","Y-m-d H:i:s"), Ext.Date.DAY, 7)
 					},{
 						 xtype: 'radiogroup',
-						 fieldLabel: Eway.locale.version.download.selectAllDevice,
+						 fieldLabel: EwayLocale.version.download.selectAllDevice,
 					        // Arrange radio buttons into two columns, distributed vertically
 					        columns: 2,
 					        vertical: true,
 					        items: [
-					            { boxLabel: Eway.locale.commen.yes, name: 'allDevice', inputValue: 'true' },
-					            { boxLabel: Eway.locale.commen.no, name: 'allDevice', inputValue: 'false', checked: true}
+					            { boxLabel: EwayLocale.commen.yes, name: 'allDevice', inputValue: 'true' },
+					            { boxLabel: EwayLocale.commen.no, name: 'allDevice', inputValue: 'false', checked: true}
 					        ]
 					}]
 				}/*,{
@@ -162,12 +162,12 @@ Ext.define('Eway.view.version.AddJob', {
 				padding: '1px 0px 0px 0px',
 				items : [{
 						xtype:'version_download_selectableDeviceGrid',
-						title: Eway.locale.version.selectableDevice,//'可以下发的设备',
+						title: EwayLocale.version.selectableDevice,//'可以下发的设备',
 						minHeight:260,
 				        flex : 1
 					},{
 						xtype: 'version_download_linkedDeviceGrid',
-						title: Eway.locale.version.linkedDevice,//'已选择的设备',
+						title: EwayLocale.version.linkedDevice,//'已选择的设备',
 						minHeight:260,
 				        flex : 1
 					}

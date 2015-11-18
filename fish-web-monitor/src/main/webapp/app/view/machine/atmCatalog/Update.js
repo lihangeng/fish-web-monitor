@@ -7,7 +7,7 @@ Ext.define('Eway.view.machine.atmCatalog.Update', {
 	           'Eway.view.field.atmCatalog.No',
 	           'Eway.view.field.atmCatalog.Note'],
 	
-	title: Eway.locale.machine.atmCatalog.updateTitle,
+	title: EwayLocale.machine.atmCatalog.updateTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -36,13 +36,13 @@ Ext.define('Eway.view.machine.atmCatalog.Update', {
 					allowBlank : false
 				}],
 				fbar: [{
-					text: Eway.locale.button.update,
+					text: EwayLocale.button.update,
 					action: 'confirm'
 				}, {
-					text: Eway.locale.button.reset,
+					text: EwayLocale.button.reset,
 					handler: this.onReset
 				}, {
-					text: Eway.locale.button.back,
+					text: EwayLocale.button.back,
 					handler: this.onOver
 				}]
 			}

@@ -23,7 +23,7 @@ Ext.define("Eway.view.agent.remote.NetWork", {
 			    	layout:'column',
 			    	border :'false',
 			    	items:[{
-			    		title:Eway.locale.agent.remote.networkInfo,
+			    		title:EwayLocale.agent.remote.networkInfo,
 			    		columnWidth:.5,
 		                border:false,
 		                layout: 'anchor',
@@ -34,13 +34,13 @@ Ext.define("Eway.view.agent.remote.NetWork", {
 		                	style : 'padding-top:10px'
 		                },
 		                items:[{
-							fieldLabel : Eway.locale.agent.remote.conenctRate,
+							fieldLabel : EwayLocale.agent.remote.conenctRate,
 							name : 'conenctRate'
 						}, {
-							fieldLabel : Eway.locale.agent.remote.receivedByte,
+							fieldLabel : EwayLocale.agent.remote.receivedByte,
 							name : 'receivedByte'
 						} , {
-							fieldLabel : Eway.locale.agent.remote.sendByte,
+							fieldLabel : EwayLocale.agent.remote.sendByte,
 							name : 'sendByte'
 						}]
 			    	}]

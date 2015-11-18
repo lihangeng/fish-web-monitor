@@ -6,7 +6,7 @@ Ext.define('Eway.view.case.caseNotify.NotifyView', {
 	requires: ['Eway.view.case.caseNotify.NotifyGrid',
 	           'Eway.view.case.caseNotify.FilterForm'],
 	
-	title: Eway.locale.cases.caseNotify.messageCheck,
+	title: EwayLocale.cases.caseNotify.messageCheck,
 	layout: 'border',
 	
 	initComponent: function() {

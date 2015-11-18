@@ -33,7 +33,7 @@ public class Param implements IParam,Serializable {
     /**
      * 参数值
      */
-    @Column(name = "PARAM_VALUE",length = 60)
+    @Column(name = "PARAM_VALUE",length = 128)
 	private String paramValue;
     /**
      * 参数类型:0-不可修改，1-可以修改
@@ -43,7 +43,7 @@ public class Param implements IParam,Serializable {
     /**
      * 参数信息描述
      */
-    @Column(name = "DESCIPTION",length = 128)
+    @Column(name = "DESCIPTION",length = 60)
 	private String description;
     
     /**

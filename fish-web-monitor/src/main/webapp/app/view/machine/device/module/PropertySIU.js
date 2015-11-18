@@ -5,7 +5,7 @@ Ext.define("Eway.view.machine.device.module.PropertySIU", {
 		anchor : '100%' //
 	},
 	items : [ {
-		title : Eway.locale.machine.device.SIUInfo,
+		title : EwayLocale.machine.device.SIUInfo,
 		titleAlign:'center',
 		layout : 'column',
 		items : [ {
@@ -19,17 +19,17 @@ Ext.define("Eway.view.machine.device.module.PropertySIU", {
 				labelWidth: 180
 			},
 			items : [ {
-				fieldLabel : Eway.locale.machine.device.operatorSwitchSupported,
+				fieldLabel : EwayLocale.machine.device.operatorSwitchSupported,
 				name : 'operatorSwitchSupported',
 				style : 'margin-top:2px'
 			}, {
-				fieldLabel : Eway.locale.machine.device.cabinetSupported,
+				fieldLabel : EwayLocale.machine.device.cabinetSupported,
 				name : 'cabinetSupported'
 			}, {
-				fieldLabel : Eway.locale.machine.device.safeSupported,
+				fieldLabel : EwayLocale.machine.device.safeSupported,
 				name : 'safeSupported'
 			}, {
-				fieldLabel : Eway.locale.machine.device.indicatorSupported,
+				fieldLabel : EwayLocale.machine.device.indicatorSupported,
 				name : 'indicatorSupported'
 			} ]
 		}, {
@@ -43,17 +43,17 @@ Ext.define("Eway.view.machine.device.module.PropertySIU", {
 				labelWidth: 180
 			},
 			items : [ {
-				fieldLabel : Eway.locale.machine.device.guidelightIdcSupported,
+				fieldLabel : EwayLocale.machine.device.guidelightIdcSupported,
 				name : 'guidelightIdcSupported',
 				style : 'margin-top:2px'
 			}, {
-				fieldLabel : Eway.locale.machine.device.guidelightCdmSupported,
+				fieldLabel : EwayLocale.machine.device.guidelightCdmSupported,
 				name : 'guidelightCdmSupported'
 			}, {
-				fieldLabel : Eway.locale.machine.device.guidelightReceiptSupported,
+				fieldLabel : EwayLocale.machine.device.guidelightReceiptSupported,
 				name : 'guidelightReceiptSupported'
 			}, {
-				fieldLabel : Eway.locale.machine.device.guidelightCimSupported,
+				fieldLabel : EwayLocale.machine.device.guidelightCimSupported,
 				name : 'guidelightCimSupported'
 			} ]
 		} ]

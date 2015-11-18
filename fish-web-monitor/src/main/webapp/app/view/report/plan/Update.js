@@ -5,7 +5,7 @@ Ext.define('Eway.view.report.plan.Update', {
 	
 	requires: ['Eway.lib.Util'],
 	
-	title: Eway.locale.report.plan.changePlan,
+	title: EwayLocale.report.plan.changePlan,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -24,13 +24,13 @@ Ext.define('Eway.view.report.plan.Update', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.name,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.report.plan.name,
 					xtype : 'textfield',
 					name : 'name',
 					maxLength : 30,
 					allowBlank : false
 				},{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.startDate,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.report.plan.startDate,
 					xtype : 'datefield',
 					name : 'startDate',
 					format : 'Y-m-d',
@@ -50,7 +50,7 @@ Ext.define('Eway.view.report.plan.Update', {
 						}
 					}
 				},{
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.report.plan.endDate,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.report.plan.endDate,
 					xtype : 'datefield',
 					name : 'endDate',
 					format : 'Y-m-d',
@@ -70,18 +70,18 @@ Ext.define('Eway.view.report.plan.Update', {
 					}
 				},{
 					xtype : 'textarea',
-				    fieldLabel : Eway.locale.commen.remark,
+				    fieldLabel : EwayLocale.commen.remark,
 				    name : 'note',
 				    autoScroll : true,
 					maxLength :30,
 					allowBlank : true
 				}],
 				fbar: [{
-					text: Eway.locale.button.update,
+					text: EwayLocale.button.update,
 					iconCls :'sureBtn',
 					action: 'update'
 				},{
-					text: Eway.locale.button.back,
+					text: EwayLocale.button.back,
 					iconCls :'returnBtn',
 					handler: this.onOver
 				}]

@@ -13,26 +13,26 @@ Ext.define('Eway.view.version.versionType.Form', {
 		Ext.apply(this, {
 				items: [{
 					xtype: 'textfield',
-					fieldLabel:'<font color="red">*</font>'+Eway.locale.version.View.versionTypeCode,//软件分类编码',
+					fieldLabel:'<font color="red">*</font>'+EwayLocale.version.View.versionTypeCode,//软件分类编码',
 					allowBlank: false,
 					name:'typeName',
 					maxLength: 64,
 					regex : /^[a-zA-Z0-9_-]{1,30}$/,
-					regexText :Eway.locale.versionType.versionTypeNameRegText//'只能输入字母(a-z或A-Z)、数字(0-9)、下划线(_)、横线(-)'
+					regexText :EwayLocale.versionType.versionTypeNameRegText//'只能输入字母(a-z或A-Z)、数字(0-9)、下划线(_)、横线(-)'
 				},{
 					xtype: 'textfield',
-					fieldLabel:'<font color="red">*</font>'+Eway.locale.version.View.versionTypeName,//软件分类名称',
+					fieldLabel:'<font color="red">*</font>'+EwayLocale.version.View.versionTypeName,//软件分类名称',
 					allowBlank: false,
 					name :'desc',
 					maxLength: 42
 				},{
 					xtype:'textfield',
-					fieldLabel: '<font color="red">*</font>'+Eway.locale.versionType.defaultInstallPath,//默认安装路径',
+					fieldLabel: '<font color="red">*</font>'+EwayLocale.versionType.defaultInstallPath,//默认安装路径',
 					allowBlank: false,
 					name : 'defaultInstallPath',
 					maxLength: 50,
 					regex:/^[a-zA-z]{1}:([/][\w-]+)*$/i,
-					regexText:Eway.locale.version.View.versionPathRegText//'不符合文件路径规则，规则如下：1.文件名只能包含英文字母(a-z A-Z)、数字(0-9)、下划线(_)、横线(-) ； 2.路径统一用正斜杠(/)作为分隔符 ；3.不区分大小 ; 示例 E: E:/yihua'
+					regexText:EwayLocale.version.View.versionPathRegText//'不符合文件路径规则，规则如下：1.文件名只能包含英文字母(a-z A-Z)、数字(0-9)、下划线(_)、横线(-) ； 2.路径统一用正斜杠(/)作为分隔符 ；3.不区分大小 ; 示例 E: E:/yihua'
 				},{
 					xtype:'hidden',
 					name : 'versionCatalog',
@@ -40,7 +40,7 @@ Ext.define('Eway.view.version.versionType.Form', {
 				},
 				{
 		            xtype: 'fieldcontainer',
-		            fieldLabel: Eway.locale.versionType.needRestart,//'需要重启设备完成升级',
+		            fieldLabel: EwayLocale.versionType.needRestart,//'需要重启设备完成升级',
 		            defaultType: 'checkboxfield',
 		            items: [
 		                {
@@ -52,7 +52,7 @@ Ext.define('Eway.view.version.versionType.Form', {
 		        },
 		        {
 		            xtype: 'checkboxgroup',
-		            fieldLabel: Eway.locale.versionType.devTypeOfUser,//'适用的设备型号',
+		            fieldLabel: EwayLocale.versionType.devTypeOfUser,//'适用的设备型号',
 		            columns: 3,
 		            loader : {//使用自定义的加载方式
 						autoLoad: false,

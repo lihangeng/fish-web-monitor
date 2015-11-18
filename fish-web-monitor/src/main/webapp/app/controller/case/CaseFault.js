@@ -69,7 +69,7 @@ Ext.define('Eway.controller.case.CaseFault', {
 				record.set('faultStatus', 'CLOSED');
 				record.save({
 					success : function(record, operation) {
-						Eway.alert(Eway.updateSuccess);
+						Eway.alert(EwayLocale.updateSuccess);
 						me.onQuery() ;
 					},
 					failure : function(record, operation) {

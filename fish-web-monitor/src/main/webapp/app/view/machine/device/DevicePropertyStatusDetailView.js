@@ -7,7 +7,7 @@ Ext.define('Eway.view.machine.device.DevicePropertyStatusDetailView', {
 			'Eway.view.machine.device.SoftAndHardwareInfo',
 			'Eway.view.machine.device.DeviceModuleConfig' ],
 
-	title : Eway.locale.machine.device.devTailMsg,
+	title : EwayLocale.machine.device.devTailMsg,
 	maximizable : true,
 	modal : true,
 	resizable : false,
@@ -23,17 +23,17 @@ Ext.define('Eway.view.machine.device.DevicePropertyStatusDetailView', {
 				split : true,
 				border : true,
 				items : [ {
-					title : Eway.locale.machine.device.systemHardwareInfo,
+					title : EwayLocale.machine.device.systemHardwareInfo,
 					xtype : 'machine_device_softAndHardwareInfo'
 				}, {
-					title : Eway.locale.machine.device.moduleVersionInfo,
+					title : EwayLocale.machine.device.moduleVersionInfo,
 					xtype : 'machine_device_spinfo'
 				}, {
-					title : Eway.locale.machine.device.devModuleStatusInfo,
+					title : EwayLocale.machine.device.devModuleStatusInfo,
 					xtype : 'machine_device_devicemodulestatus'
 				}, {
 					xtype : 'machine_device_deviceModuleConfig',
-					title : Eway.locale.machine.device.devModuleAttributeInfo
+					title : EwayLocale.machine.device.devModuleAttributeInfo
 				} ]
 			}
 		});

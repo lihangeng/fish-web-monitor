@@ -9,15 +9,15 @@ Ext.define('Eway.view.operatingPlan.TempOpenPlanForDevGrid',{
     		store : store,
     		initRegion : true,
     		tbar : ['->',{
-    			text : Eway.locale.tip.business.device.detail,
+    			text : EwayLocale.tip.business.device.detail,
     			iconCls : 'detailBtn',
     			action:'tempDevQueryDetail'
     		},{
-    			text : Eway.locale.button.link,
+    			text : EwayLocale.button.link,
     			iconCls : 'connectBtn',
     			action : 'tempDevLink'
     		},{
-    			text : Eway.locale.button.unlink,
+    			text : EwayLocale.button.unlink,
     			iconCls:'deleteBtn',
     			action :'tempDevUnlink'
     		}],
@@ -26,39 +26,39 @@ Ext.define('Eway.view.operatingPlan.TempOpenPlanForDevGrid',{
     			stripeRows : true
     		},
     		columns : [{
-    			header :Eway.locale.agent.remote.loading,
+    			header :EwayLocale.agent.remote.loading,
     			width :100,
     			dataIndex :'name'
     		},{
-    			header:Eway.locale.commen.type,
+    			header:EwayLocale.commen.type,
     			width : 100,
     			dataIndex : 'planType',
     			renderer: function( value, metadata, record){
     				if(value == "DATE"){
-    					return Eway.locale.commen.dayTime;
+    					return EwayLocale.commen.dayTime;
     				}else if(value == "WEEK")
     				{
-    					return Eway.locale.machine.device.person.week;
+    					return EwayLocale.machine.device.person.week;
     				}
     			}
     		},{
-    			header :Eway.locale.report.openplan.state,
+    			header :EwayLocale.report.serviceplan.state,
     			width:80,
     			dataIndex :'palnStateType',
     		},{
-    			header :Eway.locale.report.plan.startDate,
+    			header :EwayLocale.report.plan.startDate,
     			width : 100,
     			dataIndex : 'startDate'
     		},{
-    			header : Eway.locale.report.plan.endDate,
+    			header : EwayLocale.report.plan.endDate,
     			width : 100,
     			dataIndex :'endDate'
     		},{
-				header : Eway.locale.version.View.remark,
+				header : EwayLocale.version.View.remark,
 				dataIndex : 'desc',
 				flex : 1
 			}, {
-				header : Eway.locale.version.View.versionTime,
+				header : EwayLocale.version.View.versionTime,
 				dataIndex : 'createDateTime',
 				width : 160,
 				fiex : 1

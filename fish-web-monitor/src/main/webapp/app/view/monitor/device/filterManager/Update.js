@@ -8,7 +8,7 @@ Ext.define('Eway.view.monitor.device.filterManager.Update',{
 	height : 600,
 	modal : true,
 	
-	title : Eway.locale.monitor.devMonitor.filterManager.update,
+	title : EwayLocale.monitor.devMonitor.filterManager.update,
 	
 	requires : [ 'Eway.view.monitor.device.filterManager.FilterConfig',
 				  'Eway.view.monitor.device.filterManager.MonitorStateConfig' ],
@@ -26,11 +26,11 @@ Ext.define('Eway.view.monitor.device.filterManager.Update',{
 			buttonAlign : 'center',
 			buttons : [ {
 				xtype : 'button',
-				text : Eway.locale.button.confirm,
+				text : EwayLocale.button.confirm,
 				action : 'confirm'
 			}, {
 				xtype : 'button',
-				text : Eway.locale.button.cancle,
+				text : EwayLocale.button.cancle,
 				handler : this.onOver,
 				scope : this
 			} ],

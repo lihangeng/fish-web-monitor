@@ -79,7 +79,7 @@ Ext.define('Eway.controller.version.Version', {
         		gridStore.setBaseParam("versionId",record.get("id"));
         		gridStore.setBaseParam("flag",0);
         		gridStore.loadPage(1);
-        		grid.setTitle(chartsStore.getAt(0).get("title")+Eway.locale.title.msg);//"信息");
+        		grid.setTitle(chartsStore.getAt(0).get("title")+EwayLocale.title.msg);//"信息");
 		    }
 		});
 		this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionTypeDesc")+" - V"+record.get("versionNo"));
@@ -149,11 +149,11 @@ Ext.define('Eway.controller.version.Version', {
 				win.down("common_orgComboOrgTree[name=orgName]").on({keydown:this.queryOnKeyDownEnter, scope: this});
 				win.down("radiogroup").on({change:this.setCheckBoxModel, scope: this});
 			}else{
-				Eway.alert(Eway.locale.msg.missVersionFile);//"版本文件丢失,暂不能对版本进行下发控制.");
+				Eway.alert(EwayLocale.msg.missVersionFile);//"版本文件丢失,暂不能对版本进行下发控制.");
 			}
 		}
 		else {
-			Eway.alert(Eway.locale.msg.selectVersionRecord);//"请选择您要下发的版本.");
+			Eway.alert(EwayLocale.msg.selectVersionRecord);//"请选择您要下发的版本.");
 		}
 	},
 	setCheckBoxModel:function( _this, newValue, oldValue, eOpts ){
@@ -163,7 +163,7 @@ Ext.define('Eway.controller.version.Version', {
 			var linkedGrid = this.getAddJobWin().down("version_download_linkedDeviceGrid");
 			linkedGrid.getStore().removeAll();
 			this.getAddJobWin().down("hidden[name='deviceIds']").setValue("");
-			linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo0 + linkedGrid.getStore().getCount() + Eway.locale.version.selectDeviceInfo1);
+			linkedGrid.setTitle(EwayLocale.version.selectDeviceInfo0 + linkedGrid.getStore().getCount() + EwayLocale.version.selectDeviceInfo1);
 			grid.selModel.setLocked(true);
 		}
 		else{
@@ -244,10 +244,10 @@ Ext.define('Eway.controller.version.Version', {
 			var allDeviceField = addForm.findField("allDevice");
 			//allDeviceField
 			if(Ext.isEmpty(deviceIdsField.value)&&!allDeviceField.value){
-				Eway.alert(Eway.locale.msg.mustSelectDevice);//"请至少选择一个设备.");
+				Eway.alert(EwayLocale.msg.mustSelectDevice);//"请至少选择一个设备.");
 			}
 			else if(allDeviceField.value&&linkGrid.getStore().getCount()==0){
-				Eway.alert(Eway.locale.msg.mustSelectDevice);
+				Eway.alert(EwayLocale.msg.mustSelectDevice);
 			}else{
 				record.set("deviceIds",deviceIdsField.value);
 				record.save({
@@ -255,11 +255,11 @@ Ext.define('Eway.controller.version.Version', {
 					 	deviceIdsField.setValue("");//清空隐藏字段的值
 					 	var linkedGrid = win.down('version_download_linkedDeviceGrid');
 						linkedGrid.getStore().removeAll();//清空已选择的设备列表
-						linkedGrid.setTitle(Eway.locale.version.selectDeviceInfo0+0+Eway.locale.version.selectDeviceInfo1);//"已选择的设备(<font color='red'>0</font>)台");
+						linkedGrid.setTitle(EwayLocale.version.selectDeviceInfo0+0+EwayLocale.version.selectDeviceInfo1);//"已选择的设备(<font color='red'>0</font>)台");
 					 	//保存成功后让用户选择是否跳转到分发监控页面
 					 	win.close();
-					 	Ext.MessageBox.confirm(Eway.locale.confirm.title,//'提示',
-					 			record.get("jobName")+Eway.locale.confirm.taskConfirmInfo0+ed.data.downLoadCounter+Eway.locale.confirm.taskConfirmInfo1,this.goToVersionDownloadPage,this);
+					 	Ext.MessageBox.confirm(EwayLocale.confirm.title,//'提示',
+					 			record.get("jobName")+EwayLocale.confirm.taskConfirmInfo0+ed.data.downLoadCounter+EwayLocale.confirm.taskConfirmInfo1,this.goToVersionDownloadPage,this);
 //					 			record.get("jobName")+"第"+ed.data.downLoadCounter+'次作业保存成功,是否跳转到"分发监控"页面?',this.goToVersionDownloadPage,this);
 
 					 },
@@ -356,7 +356,7 @@ Ext.define('Eway.controller.version.Version', {
 		if(addForm.isValid()){//isValid对markInvalid不起作用
 			//1.上传文件返回保存在服务器上的位置，并填充到隐藏字段中
 			var winEl = win.getEl();
-			winEl.mask(Eway.locale.version.View.versionFileUploadMsg);//'正在上传文件......');
+			winEl.mask(EwayLocale.version.View.versionFileUploadMsg);//'正在上传文件......');
 			addForm.submit({
 				 	url: 'api/version/version/upload',
 //				 	waitMsg: '正在上传文件...',
@@ -368,7 +368,7 @@ Ext.define('Eway.controller.version.Version', {
 						record.save({
 							 success: function(ed) {
 							 	winEl.unmask();
-							 	Eway.alert(Eway.addSuccess);
+							 	Eway.alert(EwayLocale.addSuccess);
 //								store.insert(0,ed);
 								win.close();
 								me.onQuery();
@@ -385,17 +385,17 @@ Ext.define('Eway.controller.version.Version', {
 				    	winEl.unmask();
 				        switch (action.failureType) {
 				            case Ext.form.action.Action.CONNECT_FAILURE:
-				                Eway.alert(Eway.locale.msg.communicationFail);//'增加失败:与服务器通讯失败.');
+				                Eway.alert(EwayLocale.msg.communicationFail);//'增加失败:与服务器通讯失败.');
 				                break;
 				            case Ext.form.action.Action.SERVER_INVALID:
 				            	if(action.result.msg==0){
-				            		Eway.alert(Eway.locale.msg.sameVersionNoFail);//'增加失败:已经存在相同的版本号.');
+				            		Eway.alert(EwayLocale.msg.sameVersionNoFail);//'增加失败:已经存在相同的版本号.');
 				            	}else if(action.result.msg==1){
-				            		Eway.alert(Eway.locale.msg.fileSizeMaxFail);//'增加失败:超过最大文件大小限制（最大300M）');
+				            		Eway.alert(EwayLocale.msg.fileSizeMaxFail);//'增加失败:超过最大文件大小限制（最大300M）');
 				            	}else if(action.result.msg==2){
-				            		Eway.alert(Eway.locale.msg.fileUnzipFail);//'增加失败:上传的压缩包不能正常解压');
+				            		Eway.alert(EwayLocale.msg.fileUnzipFail);//'增加失败:上传的压缩包不能正常解压');
 				            	}else{
-				            		Eway.alert(Eway.locale.msg.addFileFail+//"增加失败:" + 
+				            		Eway.alert(EwayLocale.msg.addFileFail+//"增加失败:" + 
 				            				action.result.msg);
 				            	}
 				       }
@@ -433,7 +433,7 @@ Ext.define('Eway.controller.version.Version', {
 			win.show();
 		}
 		else {
-			Eway.alert(Eway.choiceUpdateMsg);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 		}
 	},
 
@@ -447,7 +447,7 @@ Ext.define('Eway.controller.version.Version', {
 			updateForm.updateRecord(record);//把form中的值写回到store中
 			record.save({
 				 success: function(ed) {
-					Eway.alert(Eway.updateSuccess);
+					Eway.alert(EwayLocale.updateSuccess);
 					win.close();
 					this.onQuery();
 				 },
@@ -468,17 +468,19 @@ Ext.define('Eway.controller.version.Version', {
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			if(record.get("versionStatus") == "NEW"){
-				Ext.MessageBox.confirm(Eway.locale.confirm.titleSure,//"请确认",
-						Eway.locale.confirm.todoDelete,//"是否删除该记录?",
+				Ext.MessageBox.confirm(EwayLocale.confirm.titleSure,//"请确认",
+						EwayLocale.confirm.todoDelete,//"是否删除该记录?",
 				function(button,text) {
 					if(button=="yes"){
 						record.erase({
 							success: function(){
 								this.getVersionStore().remove(record);
-								Eway.alert(Eway.deleteSuccess);
+								Eway.alert(EwayLocale.updateSuccess);
 								this.onQuery();
 							},
 							failure:  function(record,operation){
+								//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
+								record.dropped = false;
 								Eway.alert(operation.getError());
 							},
 							scope:this
@@ -486,11 +488,11 @@ Ext.define('Eway.controller.version.Version', {
 					}
 				}, this);
 			}else{
-				Eway.alert(Eway.locale.msg.versionDownloaded);//'不能删除"等待下发"和"已下发"状态的版本.');
+				Eway.alert(EwayLocale.msg.versionDownloaded);//'不能删除"等待下发"和"已下发"状态的版本.');
 			}
 		}
 		else {
-			Eway.alert(Eway.locale.msg.selectVersionToDelete);//"请选择您要删除的版本.");
+			Eway.alert(EwayLocale.msg.selectVersionToDelete);//"请选择您要删除的版本.");
 		}
 	}
 

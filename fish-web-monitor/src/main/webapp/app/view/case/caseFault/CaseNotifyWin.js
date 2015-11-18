@@ -15,7 +15,7 @@ Ext.define('Eway.view.case.caseFault.CaseNotifyWin', {
 	
 	initComponent: function() {
 		Ext.apply(this, {
-			title : Eway.locale.cases.caseFault.faultRelevantInfo,
+			title : EwayLocale.cases.caseFault.faultRelevantInfo,
 			items : [{
 				padding : 1,
 				xtype : 'caseFault_faultNotifyGrid'

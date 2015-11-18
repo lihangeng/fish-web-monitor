@@ -6,7 +6,7 @@ Ext.define('Eway.view.machine.param.Update', {
 			'Eway.view.field.param.ParamValue',
 			'Eway.view.field.param.Description' ],
 
-	title : Eway.locale.machine.param.updateSystemCon,
+	title : EwayLocale.machine.param.updateSystemCon,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -38,11 +38,11 @@ Ext.define('Eway.view.machine.param.Update', {
 				buttonAlign : 'center',
 				buttons : [ {
 					xtype : 'button',
-					text : Eway.locale.button.confirm,
+					text : EwayLocale.button.confirm,
 					action : 'confirm'
 				}, {
 					xtype : 'button',
-					text : Eway.locale.button.back,
+					text : EwayLocale.button.back,
 					handler : this.onOver
 				} ]
 			}

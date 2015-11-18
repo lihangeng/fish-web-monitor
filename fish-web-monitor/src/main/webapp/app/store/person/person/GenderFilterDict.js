@@ -4,7 +4,7 @@ Ext.define('Eway.store.person.person.GenderFilterDict', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'', display:Eway.locale.commen.all}, 
-		   {value:'MALE', display:Eway.locale.commen.comboxGender.male}, 
-	       {value:'FEMALE', display:Eway.locale.commen.comboxGender.female}]
+	data: [{value:'', display:EwayLocale.commen.all}, 
+		   {value:'MALE', display:EwayLocale.commen.comboxGender.male}, 
+	       {value:'FEMALE', display:EwayLocale.commen.comboxGender.female}]
 });

@@ -7,16 +7,16 @@ package com.yihuacomputer.fish.api.monitor.xfs.status;
  */
 public enum NetStatus {
 	/**网络正常*/
-	Healthy("NetStatus.Healthy","#33ff00"),//green
+	Healthy("NetStatus.Healthy","#56cf3e"),//green
 	
 	/**网络不稳定*/
-	Warning("NetStatus.Warning","#FFFF33"),//orange
+	Warning("NetStatus.Warning","#e4d603"),//orange
 	
 	/**网络故障*/
-	Fatal("NetStatus.Fatal","#FF0000"), //red
+	Fatal("NetStatus.Fatal","#da0404"), //red
 	
 	/**未知*/
-	Unknown("NetStatus.Unknown","#ccccff");//grey
+	Unknown("NetStatus.Unknown","#a9a89d");//grey
 	
 	private String text;
 	

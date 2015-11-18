@@ -3,7 +3,7 @@ Ext.define('Eway.view.field.person.OrganizationType', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field_organizationType',
 
-	fieldLabel : Eway.locale.person.bankOrg.orgType,
+	fieldLabel : EwayLocale.person.bankOrg.orgType,
 	name : 'organizationType',
 	hiddenName : 'organizationType',
 	msgTarget : 'side',
@@ -11,5 +11,5 @@ Ext.define('Eway.view.field.person.OrganizationType', {
 	valueField : 'value',
 	displayField : 'display',
 	queryMode : 'local',
-	emptyText: Eway.locale.combox.select
+	emptyText: EwayLocale.combox.select
 });

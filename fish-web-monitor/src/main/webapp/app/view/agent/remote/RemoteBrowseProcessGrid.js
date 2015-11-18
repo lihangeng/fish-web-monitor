@@ -18,19 +18,19 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseProcessGrid', {
 			initRegion : true,
 			store : store,
 			columns : [{
-				header: Eway.locale.agent.remote.number,
+				header: EwayLocale.agent.remote.number,
 				renderer: function(value, cellmeta, record, rowIndex){
 					return rowIndex+1;
 				},
 				flex: 1
 			},
 			{
-				header: Eway.locale.agent.remote.impressionName,
+				header: EwayLocale.agent.remote.impressionName,
 				sortable : true,
 				dataIndex: 'name',
 				flex: 1
 			},{
-				header: Eway.locale.agent.remote.userName,
+				header: EwayLocale.agent.remote.userName,
 				sortable: true,
 				dataIndex: 'user',
 				flex: 1
@@ -40,12 +40,12 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseProcessGrid', {
 				dataIndex: 'cpuRate',
 				flex: 1
 			}*/,{
-				header: Eway.locale.agent.remote.memoryRate,
+				header: EwayLocale.agent.remote.memoryRate,
 				sortable: true,
 				dataIndex: 'memoryRate',
 				flex: 1
 			},{
-				header: Eway.locale.commen.description,
+				header: EwayLocale.commen.description,
 				sortable: true,
 				dataIndex: 'description',
 				flex: 4

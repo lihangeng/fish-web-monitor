@@ -1,7 +1,7 @@
 Ext.define('Eway.view.monitor.device.View',{
 	extend : 'Eway.view.base.Panel',
 	alias :'widget.monitor_device_view',
-	title : Eway.locale.monitor.devMonitor.title,
+	title : EwayLocale.monitor.devMonitor.title,
 
 	layout : 'border',
 	config : {
@@ -35,7 +35,7 @@ Ext.define('Eway.view.monitor.device.View',{
 					activeItem : 1,
 					itemId : 'card_itemId',
 					tbar : [
-						Eway.locale.monitor.devMonitor.monitorState+':', {
+						EwayLocale.monitor.devMonitor.monitorState+':', {
 							xtype : 'label'
 						}
 					],
@@ -67,8 +67,8 @@ Ext.define('Eway.view.monitor.device.View',{
 						bbar : Ext.create('Ext.PagingToolbar', {
 							store : dataViewStore,
 							displayInfo : true,
-							displayMsg : Eway.locale.tip.displayMessage,
-							items : ['-', Eway.locale.tip.formatPageBfMsg, {
+							displayMsg : EwayLocale.tip.displayMessage,
+							items : ['-', EwayLocale.tip.formatPageBfMsg, {
 							    xtype : 'combobox',
 							    name: 'pagesize',
 						        hiddenName: 'pagesize',
@@ -94,7 +94,7 @@ Ext.define('Eway.view.monitor.device.View',{
 			        				    store.loadPage(1);//显示第一页
 							        }
 							    }
-							}, Eway.locale.tip.formatPageAfMsg]
+							}, EwayLocale.tip.formatPageAfMsg]
 						})
 					}, {
 						

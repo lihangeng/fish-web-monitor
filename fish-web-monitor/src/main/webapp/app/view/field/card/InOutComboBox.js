@@ -5,10 +5,10 @@ Ext.define('Eway.view.field.card.InOutComboBox',{
 	alias:'widget.card_InOutComboBox',
 	
 	name : 'inOut',
-	fieldLabel : Eway.locale.commen.insideOutside,
+	fieldLabel : EwayLocale.commen.insideOutside,
 	store : 'monitor.card.InoutComboBox',
 	queryMode: 'local',
 	displayField: 'display',
 	valueField: 'value',
-	emptyText: Eway.locale.combox.select
+	emptyText: EwayLocale.combox.select
 });

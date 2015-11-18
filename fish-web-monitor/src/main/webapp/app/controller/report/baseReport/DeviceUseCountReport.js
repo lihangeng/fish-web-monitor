@@ -70,7 +70,7 @@ Ext.define('Eway.controller.report.baseReport.DeviceUseCountReport', {
 			    }
 			});
 		}else{
-			Eway.alert(Eway.locale.vtype.inputCorrect);
+			Eway.alert(EwayLocale.vtype.inputCorrect);
 		}
 	},
 

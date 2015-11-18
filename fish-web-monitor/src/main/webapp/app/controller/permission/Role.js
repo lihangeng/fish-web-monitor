@@ -24,7 +24,7 @@ Ext.define('Eway.controller.permission.Role', {
 	formConfig : {
 		form : 'Eway.view.permission.role.Form',
 		xtype : 'permission_role_form',
-		title : Eway.locale.permission.role.title
+		title : EwayLocale.permission.role.title
 	},
 
 	init : function() {
@@ -74,7 +74,7 @@ Ext.define('Eway.controller.permission.Role', {
 				Ext.require([me.formConfig.form],function(){
 					var win = Ext.create('Eway.view.base.Window',{
 					layout : 'fit',
-					title : Eway.locale.permission.role.title.update,
+					title : EwayLocale.permission.role.title.update,
 					width :700,
 					height :540,
 					maximizable : false,
@@ -92,7 +92,7 @@ Ext.define('Eway.controller.permission.Role', {
 				form.loadCusRecord(sm.getLastSelected());
 				},this);
 		}else{
-			Eway.alert(Eway.choiceUpdateMsg);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 		}
 	},
 
@@ -135,7 +135,7 @@ Ext.define('Eway.controller.permission.Role', {
 
 			//如果form中的数据没有改动，则关闭窗口
 			if (store.getModifiedRecords().length == 0){
-				Eway.alert(Eway.updateSuccess);
+				Eway.alert(EwayLocale.updateSuccess);
 				button.up('window').close();
 			}else{
 				store.sync({
@@ -156,7 +156,7 @@ Ext.define('Eway.controller.permission.Role', {
 						Eway.alert(object.updateMsg);
 					}
 					else {
-						Eway.alert(Eway.updateSuccess);
+						Eway.alert(EwayLocale.updateSuccess);
 						button.up('window').close();
 						this.onQuery();
 					}

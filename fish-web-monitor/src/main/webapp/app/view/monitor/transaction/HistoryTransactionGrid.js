@@ -12,16 +12,16 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionGrid', {
 			initRegion : true,
 			tbar : ['->', {
 				xtype : 'button',
-				text:Eway.locale.button.search,
+				text:EwayLocale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			} ],
 			columns : [ {
-				header : Eway.locale.monitor.business.transaction.dateTime,
+				header : EwayLocale.monitor.business.transaction.dateTime,
 				width : 150,
 				dataIndex : 'dateTime'
 			}, {
-				header : Eway.locale.monitor.business.transaction.transCode,
+				header : EwayLocale.monitor.business.transaction.transCode,
 				width : 100,
 				dataIndex : 'transCode',
 				renderer : function(value){
@@ -30,33 +30,33 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionGrid', {
 					return box.getDisplayValue();
 				}
 			}, {
-				header : Eway.locale.monitor.business.transaction.amt,
+				header : EwayLocale.monitor.business.transaction.amt,
 				dataIndex : 'amt'
 			}, {
-				header : Eway.locale.monitor.business.transaction.currency,
+				header : EwayLocale.monitor.business.transaction.currency,
 				width : 80,
 				hidden : true,
 				dataIndex : 'currency'
 			}, {
-				header : Eway.locale.commen.terminalId,
+				header : EwayLocale.commen.terminalId,
 				width : 80,
 				dataIndex : 'termId'
 			}, {
-				header : Eway.locale.monitor.business.transaction.transId,
+				header : EwayLocale.monitor.business.transaction.transId,
 				dataIndex : 'transId'
 			}, {
-				header : Eway.locale.monitor.business.transaction.debitAccountOrCard,
+				header : EwayLocale.monitor.business.transaction.debitAccountOrCard,
 				width : 180,
 				dataIndex : 'debitAccount'
 			}, {
-				header : Eway.locale.monitor.business.transaction.creditAccountOrCard,
+				header : EwayLocale.monitor.business.transaction.creditAccountOrCard,
 				dataIndex : 'creditAccount',
 				width : 180
 			}, {
-				header : Eway.locale.monitor.business.transaction.localRet,
+				header : EwayLocale.monitor.business.transaction.localRet,
 				dataIndex : 'localRet'
 			}, {
-				header : Eway.locale.monitor.business.transaction.hostRet,
+				header : EwayLocale.monitor.business.transaction.hostRet,
 				dataIndex : 'hostRet',
 				renderer : function(value){
 					var box = Ext.create('Eway.view.field.monitor.HostRetComboBox',{});

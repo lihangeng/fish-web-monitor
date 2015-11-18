@@ -10,7 +10,7 @@ Ext.define("Eway.view.machine.device.module.StatusJPR", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : Eway.locale.machine.device.comStatus,
+				title : EwayLocale.machine.device.comStatus,
 				titleAlign: 'center',
 				layout : 'column',
 				border : 'false',
@@ -26,13 +26,13 @@ Ext.define("Eway.view.machine.device.module.StatusJPR", {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.hwCode,
+						fieldLabel : EwayLocale.machine.device.hwCode,
 						name : 'hwCode',
 						style : 'margin-top:2px'
 					} ]
 				} ]
 			}, {
-				title : '<center>'+Eway.locale.machine.device.JRPStatus+'</center>',
+				title : '<center>'+EwayLocale.machine.device.JRPStatus+'</center>',
 				layout : 'column',
 				border : 'false',
 				items : [ {
@@ -47,11 +47,11 @@ Ext.define("Eway.view.machine.device.module.StatusJPR", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.supplyLevel,
+						fieldLabel : EwayLocale.machine.device.supplyLevel,
 						name : 'supplyLevel',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.ink,
+						fieldLabel : EwayLocale.machine.device.ink,
 						name : 'ink'
 					} ]
 				}, {
@@ -66,11 +66,11 @@ Ext.define("Eway.view.machine.device.module.StatusJPR", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.media,
+						fieldLabel : EwayLocale.machine.device.media,
 						name : 'media',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.toner,
+						fieldLabel : EwayLocale.machine.device.toner,
 						name : 'toner'
 					} ]
 				} ]

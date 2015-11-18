@@ -29,7 +29,7 @@ Ext.define('Eway.view.person.user.PersonUserFilterForm', {
 					xtype : 'field.mobile',
 					labelWidth : 40,
 					regex : /^\d{8,11}$/,
-					regexText : Eway.locale.vtype.mobile,
+					regexText : EwayLocale.vtype.mobile,
 					msgTarget : 'side'
 				} ]
 			}, {
@@ -48,7 +48,7 @@ Ext.define('Eway.view.person.user.PersonUserFilterForm', {
 				columnWidth : .3,
 				items : [ {
 					xtype : 'field_person_personJobComboBox',
-					fieldLabel : Eway.locale.commen.personJobName,
+					fieldLabel : EwayLocale.commen.personJobName,
 					labelWidth : 40,
 					msgTarget : 'side'
 				} ]

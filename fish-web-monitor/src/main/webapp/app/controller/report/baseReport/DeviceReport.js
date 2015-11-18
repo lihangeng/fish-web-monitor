@@ -68,7 +68,7 @@ Ext.define('Eway.controller.report.baseReport.DeviceReport', {
 			    }
 			});
 		}else{
-			Eway.alert(Eway.locale.vtype.inputCorrect);
+			Eway.alert(EwayLocale.vtype.inputCorrect);
 		}
 	},
 

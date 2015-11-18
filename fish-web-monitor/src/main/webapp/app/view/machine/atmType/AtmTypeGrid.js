@@ -15,11 +15,11 @@ Ext.define('Eway.view.machine.atmType.AtmTypeGrid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-					text: Eway.locale.button.search,
+					text: EwayLocale.button.search,
 					glyph : 0xf002,
 					action:'query'
 				},{
-					text: Eway.locale.button.add,
+					text: EwayLocale.button.add,
 					glyph : 0xf067,
 					action: 'add',
 					code : 'atmTypeAdd',
@@ -27,7 +27,7 @@ Ext.define('Eway.view.machine.atmType.AtmTypeGrid', {
 						'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 					}
 				},{
-					text: Eway.locale.button.update,
+					text: EwayLocale.button.update,
 					glyph : 0xf040,
 					action:'update',
 					code : 'atmTypeUpdate',
@@ -35,7 +35,7 @@ Ext.define('Eway.view.machine.atmType.AtmTypeGrid', {
 						'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 					}
 				},{
-					text: Eway.locale.button.remove,
+					text: EwayLocale.button.remove,
 					glyph : 0xf014,
 					action: 'remove',
 					code : 'atmTypeDel',
@@ -44,26 +44,26 @@ Ext.define('Eway.view.machine.atmType.AtmTypeGrid', {
 					}
 				}],
 			columns : [{
-				header : Eway.locale.machine.atmType.name,
+				header : EwayLocale.machine.atmType.name,
 				dataIndex : 'name',
 				flex : 1
 			}, {
-				header : Eway.locale.machine.atmType.devVendorName,
+				header : EwayLocale.machine.atmType.devVendorName,
 				dataIndex : 'devVendorName',
 				flex : 1
 			},{
-				header : Eway.locale.machine.atmType.devCatalogName,
+				header : EwayLocale.machine.atmType.devCatalogName,
 				dataIndex : 'devCatalogName',
 				flex : 1
 			},{
-				header : Eway.locale.machine.atmType.cashtype,
+				header : EwayLocale.machine.atmType.cashtype,
 				dataIndex : 'cashtype',
 				flex : 1,
 				renderer: function(value,metadata,record){
 	                   if(value==1){
-	                	   return Eway.locale.machine.atmType.iscash;
+	                	   return EwayLocale.machine.atmType.iscash;
 	                   }else if(value==2){
-	                	   return Eway.locale.machine.atmType.nocash;
+	                	   return EwayLocale.machine.atmType.nocash;
 	                   }
 					}
 			}],

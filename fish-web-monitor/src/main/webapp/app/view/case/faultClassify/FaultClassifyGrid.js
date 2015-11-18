@@ -12,7 +12,7 @@ Ext.define('Eway.view.case.faultClassify.FaultClassifyGrid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->', {
-				text: Eway.locale.button.update,
+				text: EwayLocale.button.update,
 				glyph : 0xf040,
 				action:'update'
 //				code : 'atmBrandUpdate',
@@ -21,47 +21,47 @@ Ext.define('Eway.view.case.faultClassify.FaultClassifyGrid', {
 //				}
 			}],
 			columns : [{
-				header : Eway.locale.cases.faultClassify.faultClassifyName,
+				header : EwayLocale.cases.faultClassify.faultClassifyName,
 				dataIndex : 'classifyName',
 				width : 140
 			}, {
-				header : Eway.locale.cases.faultClassify.faultresponsorType,
+				header : EwayLocale.cases.faultClassify.faultresponsorType,
 				dataIndex : 'responsorType',
 				width : 110,
 				renderer : function(value){
 					if(value == 1){
-						return Eway.locale.commen.comboxType.machineManager;
+						return EwayLocale.commen.comboxType.machineManager;
 					}else if(value == 2){
-						return Eway.locale.cases.faultClassify.maintain;
+						return EwayLocale.cases.faultClassify.maintain;
 					}else if(value == 3){
-						return Eway.locale.cases.faultClassify.manageAndMaintain;
+						return EwayLocale.cases.faultClassify.manageAndMaintain;
 					}
 				}
 			}, {
-				header : Eway.locale.cases.faultClassify.upGradeTimes,
+				header : EwayLocale.cases.faultClassify.upGradeTimes,
 				dataIndex : 'upgrade',
 				width : 90
 			},{
-				header : Eway.locale.cases.caseFault.notifyRepeatTimes,
+				header : EwayLocale.cases.caseFault.notifyRepeatTimes,
 				dataIndex : 'notifyTimes',
 				width : 90
 			},{
-				header : Eway.locale.cases.faultClassify.faultInformWay,
+				header : EwayLocale.cases.faultClassify.faultInformWay,
 				dataIndex : 'notifyWay',
 				width : 90,
 				renderer : function(value){
 					if(value == 'SMS'){
-						return Eway.locale.cases.caseFault.message;
+						return EwayLocale.cases.caseFault.message;
 					}else if(value == 'MAIL'){
-						return Eway.locale.cases.caseFault.mail;
+						return EwayLocale.cases.caseFault.mail;
 					}else if(value == 'BOTH'){
-						return Eway.locale.cases.caseFault.messageAndMail;
+						return EwayLocale.cases.caseFault.messageAndMail;
 					}else if(value == 'NONE'){
-						return Eway.locale.cases.caseFault.none;
+						return EwayLocale.cases.caseFault.none;
 					}
 				}
 			}, {
-				header : Eway.locale.cases.faultClassify.faultCloseInterval,
+				header : EwayLocale.cases.faultClassify.faultCloseInterval,
 				dataIndex : 'resolveHour',
 				flex : 1
 			}],

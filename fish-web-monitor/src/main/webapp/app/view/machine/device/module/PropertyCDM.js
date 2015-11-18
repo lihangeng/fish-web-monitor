@@ -7,7 +7,7 @@ Ext.define("Eway.view.machine.device.module.PropertyCDM", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : Eway.locale.machine.device.CDMInfo,
+				title : EwayLocale.machine.device.CDMInfo,
 				titleAlign: 'center',
 				layout : 'column',
 				items : [ {
@@ -22,23 +22,23 @@ Ext.define("Eway.view.machine.device.module.PropertyCDM", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel :Eway.locale.machine.device.hasStack,
+						fieldLabel :EwayLocale.machine.device.hasStack,
 						name : 'hasStack',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.hasShutter,
+						fieldLabel : EwayLocale.machine.device.hasShutter,
 						name : 'hasShutter'
 					}, {
-						fieldLabel : Eway.locale.machine.device.canRetract,
+						fieldLabel : EwayLocale.machine.device.canRetract,
 						name : 'canRetract'
 					}, {
-						fieldLabel :Eway.locale.machine.device.canDetectCashTaken,
+						fieldLabel :EwayLocale.machine.device.canDetectCashTaken,
 						name : 'canDetectCashTaken'
 					}, {
-						fieldLabel : Eway.locale.machine.device.canTestPhysicalUnits,
+						fieldLabel : EwayLocale.machine.device.canTestPhysicalUnits,
 						name : 'canTestPhysicalUnits'
 					}, {
-						fieldLabel : Eway.locale.machine.device.maxDispensBills,
+						fieldLabel : EwayLocale.machine.device.maxDispensBills,
 						name : 'maxDispensBills'
 					} ]
 				}, {
@@ -53,20 +53,20 @@ Ext.define("Eway.view.machine.device.module.PropertyCDM", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : Eway.locale.machine.device.logicalUnits,
+						fieldLabel : EwayLocale.machine.device.logicalUnits,
 						name : 'logicalUnits',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : Eway.locale.machine.device.physicalUnits,
+						fieldLabel : EwayLocale.machine.device.physicalUnits,
 						name : 'physicalUnits'
 					}, {
-						fieldLabel : Eway.locale.machine.device.currency,
+						fieldLabel : EwayLocale.machine.device.currency,
 						name : 'currency'
 					}, {
-						fieldLabel : Eway.locale.machine.device.currencies,
+						fieldLabel : EwayLocale.machine.device.currencies,
 						name : 'currencies'
 					}, {
-						fieldLabel : Eway.locale.machine.device.exponents,
+						fieldLabel : EwayLocale.machine.device.exponents,
 						name : 'exponents'
 					} ]
 				} ]

@@ -117,7 +117,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									var store = this.getMonitorDeviceDeviceStatusStore();
 									var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 									var winEl = win.getEl();
-									winEl.mask(Eway.locale.vtype.dataLoad);
+									winEl.mask(EwayLocale.vtype.dataLoad);
 									store.load({
 										params : {
 											deviceId : code,
@@ -132,11 +132,11 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 										callback : function(records, operation, success) {// 回调函数
 											winEl.unmask();
 											if (!success) {
-												Eway.alert(Eway.locale.vtype.devLinkNormal);
+												Eway.alert(EwayLocale.vtype.devLinkNormal);
 												return;
 											}
 											if(records.length == 0){
-												Eway.alert(Eway.locale.vtype.hardwayInitialize);
+												Eway.alert(EwayLocale.vtype.hardwayInitialize);
 												return ;
 											}
 											if (records && records.length > 0) { // 判断是否有数据
@@ -164,7 +164,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 									var winEl = win.getEl();
 									//var deviceBoxModel = this.getMonitorDeviceDeviceBoxModel();
-									winEl.mask(Eway.locale.tip.nowLink);
+									winEl.mask(EwayLocale.tip.nowLink);
 									Eway.model.monitor.device.DeviceBox.load(ip,{
 										scope:this,
 										success : function(record, operation) {
@@ -175,7 +175,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 										},
 										failure: function(record, operation){
 											winEl.unmask();
-											Eway.alert(Eway.locale.tip.business.device.getCashInfoFail);
+											Eway.alert(EwayLocale.tip.business.device.getCashInfoFail);
 										}
 									});
 								}, this);
@@ -500,7 +500,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					modal: true,
 					height: 520,
 				    width: 700,
-				    title : Eway.locale.monitor.devMonitor.remote.screen,
+				    title : EwayLocale.monitor.devMonitor.remote.screen,
 				    autoScroll : true,
 				    maximizable: true,
 				    items:[{
@@ -526,7 +526,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 		ip = Ext.util.Format.stripTags(ip);
 		var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 		var winEl = win.getEl();
-		winEl.mask(Eway.locale.tip.nowLink);
+		winEl.mask(EwayLocale.tip.nowLink);
 		Ext.Ajax.request({
 			method : 'POST',
 			url : 'api/agent/downLogs/download',
@@ -538,7 +538,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				var object = Ext.decode(response.responseText);
 				if (object.success == true) {
 					winEl.unmask();
-					Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.logLoadConfirm,
+					Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.logLoadConfirm,
 							 function(button, text) {
 								if (button == "yes") {
 									var url = 'api/agent/downLogs/downloadFile?path=' + object.path + '&fileName=' + object.fileName
@@ -549,16 +549,16 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				} else {
 					winEl.unmask();
 					if(undefined==object.errors||''==object.errors){
-						Eway.alert(Eway.locale.tip.business.device.logPullFail);
+						Eway.alert(EwayLocale.tip.business.device.logPullFail);
 					}
 					else{
-						Eway.alert(Eway.locale.tip.business.device.logPullFail + object.errors);
+						Eway.alert(EwayLocale.tip.business.device.logPullFail + object.errors);
 					}
 				}
 			},
 			failure : function() {
 				winEl.unmask();
-				Eway.alert(Eway.locale.tip.business.device.logFail);
+				Eway.alert(EwayLocale.tip.business.device.logFail);
 			}
 		});
 	},
@@ -571,7 +571,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 		ip = Ext.util.Format.stripTags(ip);
 		var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 		var winEl = win.getEl();
-		winEl.mask(Eway.locale.tip.nowLink);
+		winEl.mask(EwayLocale.tip.nowLink);
 		Ext.Ajax.request({
 			method: 'POST',
 			url: 'api/agent/netWork/getNetWork',
@@ -587,7 +587,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 			},
 			failure: function(form, action) {
 					winEl.unmask();
-					Eway.alert(Eway.locale.tip.business.device.linkServerFail);
+					Eway.alert(EwayLocale.tip.business.device.linkServerFail);
 			}
 		});
 	},
@@ -604,7 +604,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 
 	//逻辑开
 	onLogicOpenAction : function(btn){
-		Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.logicOpen,
+		Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.logicOpen,
 			function(button,text){
 				if(button == 'yes'){
 					var form = btn.up('form');
@@ -612,7 +612,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					ip = Ext.util.Format.stripTags(ip);
 					var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 					var winEl = win.getEl();
-					winEl.mask(Eway.locale.tip.business.device.operating);
+					winEl.mask(EwayLocale.tip.business.device.operating);
 					Ext.Ajax.request({
 						method : 'POST',
 						url : 'api/agent/logic/open',
@@ -623,15 +623,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 							var object = Ext.decode(response.responseText);
 							if (object.appRet == 00) {
 								winEl.unmask();
-								Eway.alert(Eway.locale.tip.business.device.openSuccess);
+								Eway.alert(EwayLocale.tip.business.device.openSuccess);
 							} else {
 								winEl.unmask();
-								 Eway.alert(Eway.locale.tip.business.device.openFail);
+								 Eway.alert(EwayLocale.tip.business.device.openFail);
 							}
 						},
 						failure: function(){
 							winEl.unmask();
-							Eway.alert(Eway.locale.tip.business.device.openFail);
+							Eway.alert(EwayLocale.tip.business.device.openFail);
 						}
 					});
 			}
@@ -640,7 +640,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 
 	//逻辑关
 	onLogicCloseAction : function(btn){
-		Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.closeConfirm,
+		Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.closeConfirm,
 			function(button,text){
 				if(button == 'yes'){
 					var form = btn.up('form');
@@ -648,7 +648,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					ip = Ext.util.Format.stripTags(ip);
 					var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 					var winEl = win.getEl();
-					winEl.mask(Eway.locale.tip.business.device.operating);
+					winEl.mask(EwayLocale.tip.business.device.operating);
 					Ext.Ajax.request({
 						method : 'POST',
 						url : 'api/agent/logic/close',
@@ -659,15 +659,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 							var object = Ext.decode(response.responseText);
 							if (object.appRet == 00) {
 								winEl.unmask();
-								Eway.alert(Eway.locale.tip.business.device.openSuccess);
+								Eway.alert(EwayLocale.tip.business.device.openSuccess);
 							} else {
 								winEl.unmask();
-								Eway.alert(Eway.locale.tip.business.device.openFail);
+								Eway.alert(EwayLocale.tip.business.device.openFail);
 							}
 						},
 						failure: function(){
 							winEl.unmask();
-							Eway.alert(Eway.locale.tip.business.device.openFail);
+							Eway.alert(EwayLocale.tip.business.device.openFail);
 						}
 					});
 				}
@@ -696,9 +696,9 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	onCloseAction : function(btn){
 		var dialog = Ext.create('Ext.window.MessageBox', {
             buttons: [{
-                text: Eway.locale.tip.business.device.closeNormal,
+                text: EwayLocale.tip.business.device.closeNormal,
                 handler: function() {
-            		Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.closeNorml,callBack);
+            		Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.closeNorml,callBack);
             		function callBack(id){
             			if(id == 'yes'){
             				dialog.close();
@@ -709,7 +709,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 		            		terminalId = Ext.util.Format.stripTags(terminalId);
 		            		var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 		            		var winEl = win.getEl();
-							winEl.mask(Eway.locale.tip.business.device.closing);
+							winEl.mask(EwayLocale.tip.business.device.closing);
 							Ext.Ajax.request({
 								method : 'POST',
 								url : 'api/agent/normalShutdown',
@@ -722,25 +722,25 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									var object = Ext.decode(response.responseText);
 									if (object.appRet == 00) {
 										winEl.unmask();
-										Eway.alert(Eway.locale.tip.business.device.closeSucess);
+										Eway.alert(EwayLocale.tip.business.device.closeSucess);
 									} else {
 										winEl.unmask();
-										Eway.alert(Eway.locale.tip.business.device.closeFail);
+										Eway.alert(EwayLocale.tip.business.device.closeFail);
 									}
 								},
 								failure: function(){
 									winEl.unmask();
-									Eway.alert(Eway.locale.tip.business.device.closeSentFail);
+									Eway.alert(EwayLocale.tip.business.device.closeSentFail);
 								}
 							})
             			}
             		}
             	}
             },{
-            	text: Eway.locale.tip.business.device.forceClose,
+            	text: EwayLocale.tip.business.device.forceClose,
             	iconCls: 'icon-add',
             	handler: function(){
-            		Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.forceCloseComfirm,callBack);
+            		Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.forceCloseComfirm,callBack);
             		function callBack(id){
             			if(id == 'yes'){
             				dialog.close();
@@ -751,7 +751,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 		            		ip = Ext.util.Format.stripTags(ip);
 		            		var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 		            		var winEl = win.getEl();
-							winEl.mask(Eway.locale.tip.business.device.forceClosing);
+							winEl.mask(EwayLocale.tip.business.device.forceClosing);
 							Ext.Ajax.request({
 								method : 'POST',
 								url : 'api/agent/shutdown',
@@ -764,22 +764,22 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									var object = Ext.decode(response.responseText);
 									if (object.appRet == 00) {
 										winEl.unmask();
-										Eway.alert(Eway.locale.tip.business.device.forceCloseSucess);
+										Eway.alert(EwayLocale.tip.business.device.forceCloseSucess);
 									} else {
 										winEl.unmask();
-										Eway.alert(Eway.locale.tip.business.device.forceCloseFail);
+										Eway.alert(EwayLocale.tip.business.device.forceCloseFail);
 									}
 								},
 								failure: function(){
 									winEl.unmask();
-									Eway.alert(Eway.locale.tip.business.device.ForceCloseSentFail);
+									Eway.alert(EwayLocale.tip.business.device.ForceCloseSentFail);
 								}
 							})
             			}
             		}
             	}
             },{
-            	text: Eway.locale.button.back,
+            	text: EwayLocale.button.back,
             	iconCls: 'icon-add',
             	handler: function(){
             		dialog.close();
@@ -787,8 +787,8 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
             }]
         });
         dialog.show({
-            title: Eway.locale.monitor.devMonitor.remote.powerOff,
-            msg: Eway.locale.monitor.devMonitor.remote.closeWays,
+            title: EwayLocale.monitor.devMonitor.remote.powerOff,
+            msg: EwayLocale.monitor.devMonitor.remote.closeWays,
             icon: Ext.MessageBox.WARNING
         });
 
@@ -798,10 +798,10 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	onRestartAction : function(btn){
 		var dialog = Ext.create('Ext.window.MessageBox', {
             buttons: [{
-                text: Eway.locale.tip.business.device.reboot,
+                text: EwayLocale.tip.business.device.reboot,
                 iconCls: 'icon-add',
                 handler: function() {
-                	Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.rebootConfirm,callBack);
+                	Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.rebootConfirm,callBack);
                 	function callBack(id){
                 		if(id == 'yes'){
 		            		dialog.close();
@@ -812,7 +812,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 							ip = Ext.util.Format.stripTags(ip);
 							var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 							var winEl = win.getEl();
-							winEl.mask(Eway.locale.tip.business.device.rebooting);
+							winEl.mask(EwayLocale.tip.business.device.rebooting);
 							Ext.Ajax.request({
 								method : 'POST',
 								url : 'api/agent/normalReboot',
@@ -825,25 +825,25 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									var object = Ext.decode(response.responseText);
 									if (object.appRet == 00) {
 										winEl.unmask();
-										Eway.alert(Eway.locale.tip.business.device.rebootSucess);
+										Eway.alert(EwayLocale.tip.business.device.rebootSucess);
 									} else {
 										winEl.unmask();
-										Eway.alert(Eway.locale.tip.business.device.rebootFail);
+										Eway.alert(EwayLocale.tip.business.device.rebootFail);
 									}
 								},
 								failure: function(){
 									winEl.unmask();
-									Eway.alert(Eway.locale.tip.business.device.rebootSendFail);
+									Eway.alert(EwayLocale.tip.business.device.rebootSendFail);
 								}
 							})
                 		}
                 	}
             	}
             },{
-            	text: Eway.locale.tip.business.device.forceReboot,
+            	text: EwayLocale.tip.business.device.forceReboot,
             	iconCls: 'icon-add',
             	handler: function(){
-            		Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.rebootConfirm,callBack);
+            		Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.rebootConfirm,callBack);
             		function callBack(id){
             			if(id == 'yes'){
             				dialog.close();
@@ -854,7 +854,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 							ip = Ext.util.Format.stripTags(ip);
 							var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 							var winEl = win.getEl();
-							winEl.mask(Eway.locale.tip.business.device.forceReboot);
+							winEl.mask(EwayLocale.tip.business.device.forceReboot);
 							Ext.Ajax.request({
 								method : 'POST',
 								url : 'api/agent/reboot',
@@ -867,22 +867,22 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									var object = Ext.decode(response.responseText);
 									if (object.appRet == 00) {
 										winEl.unmask();
-										Eway.alert(Eway.locale.tip.business.device.forceRebootSuccess);
+										Eway.alert(EwayLocale.tip.business.device.forceRebootSuccess);
 									} else {
 										winEl.unmask();
-										Eway.alert(Eway.locale.tip.business.device.forceRebootFail);
+										Eway.alert(EwayLocale.tip.business.device.forceRebootFail);
 									}
 								},
 								failure: function(){
 									winEl.unmask();
-									Eway.alert(Eway.locale.tip.business.device.forceRebootSendFail);
+									Eway.alert(EwayLocale.tip.business.device.forceRebootSendFail);
 								}
 							})
             			}
             		}
             	}
             },{
-            	text: Eway.locale.button.back,
+            	text: EwayLocale.button.back,
             	iconCls: 'icon-add',
             	handler: function(){
             		dialog.close();
@@ -891,15 +891,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
         });
 
         dialog.show({
-            title: Eway.locale.monitor.devMonitor.remote.restart,
-            msg: Eway.locale.monitor.devMonitor.remote.restartWay,
+            title: EwayLocale.monitor.devMonitor.remote.restart,
+            msg: EwayLocale.monitor.devMonitor.remote.restartWay,
             icon: Ext.MessageBox.WARNING
         });
 	},
 
 	//复位命令，需要C端配合
 	onResetAction : function(btn){
-		Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.resetConfirm,callBack);
+		Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.resetConfirm,callBack);
 		function callBack(id){
 			if(id == 'yes'){
 				var form = btn.up('form');
@@ -907,7 +907,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				ip = Ext.util.Format.stripTags(ip);
 				var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 				var winEl = win.getEl();
-				winEl.mask(Eway.locale.tip.business.device.operating);
+				winEl.mask(EwayLocale.tip.business.device.operating);
 				Ext.Ajax.timeout = 120000;
 				Ext.Ajax.request({
 					method : 'POST',
@@ -919,15 +919,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 						var object = Ext.decode(response.responseText);
 						if (object.appRet == 00) {
 							winEl.unmask();
-							Eway.alert(Eway.locale.tip.business.device.resetSuccess);
+							Eway.alert(EwayLocale.tip.business.device.resetSuccess);
 						} else {
 							winEl.unmask();
-							Eway.alert(Eway.locale.tip.business.device.resetFail);
+							Eway.alert(EwayLocale.tip.business.device.resetFail);
 						}
 					},
 					failure: function(){
 						winEl.unmask();
-						Eway.alert(Eway.locale.tip.business.device.resetSendFail);
+						Eway.alert(EwayLocale.tip.business.device.resetSendFail);
 					}
 				});
 			}
@@ -972,7 +972,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 		var win = controller.win;
 		var statusView = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
 		var winEl = statusView.getEl();
-		winEl.mask(Eway.locale.tip.business.device.operating);
+		winEl.mask(EwayLocale.tip.business.device.operating);
 
 		Ext.Ajax.request({
    			method : 'POST',
@@ -995,17 +995,17 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 
    					}else{
    						win.close();
-   						Eway.alert(Eway.locale.tip.business.device.reviewFail);
+   						Eway.alert(EwayLocale.tip.business.device.reviewFail);
    					}
    				}else{
    					win.close();
-   					Eway.alert(Eway.locale.tip.business.device.reviewFail);
+   					Eway.alert(EwayLocale.tip.business.device.reviewFail);
    				}
    			},
    			failure : function(){
    				winEl.unmask();
    				win.close();
-   				Eway.alert(Eway.locale.tip.business.device.reviewFail);
+   				Eway.alert(EwayLocale.tip.business.device.reviewFail);
    			}
 		});
 	},
@@ -1013,7 +1013,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	//显示设备详情页面
 	displayWin : function(record) {
 		var win = Ext.widget('monitor_device_DeviceInfoStatus');
-		win.setTitle(Eway.locale.tip.business.device.term + record.data.code + Eway.locale.tip.business.device.detail);
+		win.setTitle(EwayLocale.tip.business.device.term + record.data.code + EwayLocale.tip.business.device.detail);
 		win.on('afterrender',function(){
 			win.fillForm(record);
 		},this)
@@ -1022,7 +1022,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 		var me = this; // 保留当前对象的作用域/
 		win.query('tool[action="refresh"]')[0].on('click', function() {
 			var el = win.getEl();
-			el.mask(Eway.locale.tip.business.device.refresh);
+			el.mask(EwayLocale.tip.business.device.refresh);
 			setTimeout(function() {
 				el.unmask();
 				me.refreshView(win, win.record.get('code'));

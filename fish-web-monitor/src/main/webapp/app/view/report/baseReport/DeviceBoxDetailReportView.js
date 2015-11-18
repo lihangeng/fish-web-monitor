@@ -5,7 +5,7 @@ Ext.define('Eway.view.report.baseReport.DeviceBoxDetailReportView', {
 	requires : [ 'Eway.view.report.baseReport.ReportDownload',
 			'Eway.view.report.baseReport.DeviceBoxDetailReportFilter' ],
 
-	title : Eway.locale.report.baseReport.boxBalanceRep,
+	title : EwayLocale.report.baseReport.boxBalanceRep,
 	layout : 'border',
 
 	initComponent : function() {

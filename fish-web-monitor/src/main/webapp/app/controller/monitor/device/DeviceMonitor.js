@@ -245,16 +245,16 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			},
 			failure : function() {
 				winEl.unmask();
-				Eway.alert(Eway.locale.tip.business.device.logFail);
+				Eway.alert(EwayLocale.tip.business.device.logFail);
 			}
 		});
 	},
 	
 	_onFilterManagerAddConfirm : function(btn) {
-		this._addOrUpdate(btn, 'api/monitor/device/monitorFilter/add', Eway.addSuccess);
+		this._addOrUpdate(btn, 'api/monitor/device/monitorFilter/add', EwayLocale.addSuccess);
 	},
 	_onFilterManagerUpdateConfirm : function(btn) {
-		this._addOrUpdate(btn, 'api/monitor/device/monitorFilter/update', Eway.updateSuccess);
+		this._addOrUpdate(btn, 'api/monitor/device/monitorFilter/update', EwayLocale.updateSuccess);
 	},
 	
 	// 修改订阅条件
@@ -265,7 +265,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() < 1) {
-			Eway.alert(Eway.choiceUpdateMsg);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 			return;
 		}
 		var record = sm.getLastSelected();
@@ -328,23 +328,25 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		var count = sm.getCount();
 		
 		if(count == 0){
-			Eway.alert(Eway.locale.tip.remove.none);
+			Eway.alert(EwayLocale.tip.remove.none);
 			return;
 		}
 		if(count > 1){
-			Eway.alert(Eway.locale.tip.remove.one);
+			Eway.alert(EwayLocale.tip.remove.one);
 			return;
 		}
-		Ext.MessageBox.confirm(Eway.locale.tip.remove.confirm.title, Eway.locale.tip.remove.confirm.info,function(button,text){
+		Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title, EwayLocale.tip.remove.confirm.info,function(button,text){
 			if(button == 'yes'){
 				var record = sm.getLastSelected();
 				record.erase({
 					success: function(record,operation) {
-						Eway.alert(Eway.deleteSuccess);
+						Eway.alert(EwayLocale.updateSuccess);
 						me._onFilterManagerQuery();
 					},
 					failure: function(record,operation) {
-						Eway.alert(Eway.locale.tip.remove.error+ operation.getError());
+						//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
+						record.dropped = false;
+						Eway.alert(EwayLocale.tip.remove.error+ operation.getError());
 					},
 					scope:this
 				});
@@ -360,11 +362,11 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			target:codeHtml,
 			dismissDelay:10000,
 			trackMouse :false,
-			html: '<li style="list-style-type :none">'+Eway.locale.commen.devTypeName+':'+record.data.type+'</li>'+
-				  '<li style="list-style-type :none">'+Eway.locale.commen.orgNameBelongs+':'+record.data.org+'</li>'+
-				  '<li style="list-style-type :none">'+Eway.locale.commen.appVersion+':'+record.data.appRelease+'</li>'+
-				  '<li style="list-style-type :none">'+Eway.locale.monitor.devMonitor.boxCurrentCount+':'+record.data.boxCurrentCount+'</li>'+
-				  '<li style="list-style-type :none">'+Eway.locale.monitor.devMonitor.retainCardCount+':'+record.data.retainCardCount+'</li>'
+			html: '<li style="list-style-type :none">'+EwayLocale.commen.devTypeName+':'+record.data.type+'</li>'+
+				  '<li style="list-style-type :none">'+EwayLocale.commen.orgNameBelongs+':'+record.data.org+'</li>'+
+				  '<li style="list-style-type :none">'+EwayLocale.commen.appVersion+':'+record.data.appRelease+'</li>'+
+				  '<li style="list-style-type :none">'+EwayLocale.monitor.devMonitor.boxCurrentCount+':'+record.data.boxCurrentCount+'</li>'+
+				  '<li style="list-style-type :none">'+EwayLocale.monitor.devMonitor.retainCardCount+':'+record.data.retainCardCount+'</li>'
 		});
 	},
 
@@ -379,7 +381,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		var menu = Ext.create("Ext.menu.Menu",{
 			 		floating : true,
                     items : [{
-                    		text:Eway.locale.monitor.devMonitor.remote.screen,
+                    		text:EwayLocale.monitor.devMonitor.remote.screen,
                     		code : 'remoteScreen',
 							listeners:{
 								'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender,
@@ -406,7 +408,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 											modal: true,
 											height: 450,
 										    width: 500,
-										    title : Eway.locale.monitor.devMonitor.remote.screen,
+										    title : EwayLocale.monitor.devMonitor.remote.screen,
 										    autoScroll : true,
 										    maximizable: true,
 										    items:[{
@@ -432,12 +434,12 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
                         		scope : this
                         	}
                     	},{
-                    		text:Eway.locale.monitor.devMonitor.remote.log,
+                    		text:EwayLocale.monitor.devMonitor.remote.log,
                     		code : 'takeLog',
 							listeners:{
 								'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender,
                         		'click' : function(){
-									winEl.mask(Eway.locale.tip.nowLink);
+									winEl.mask(EwayLocale.tip.nowLink);
 									Ext.Ajax.request({
 										method : 'POST',
 										url : 'api/agent/downLogs/download',
@@ -449,8 +451,8 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 											var object = Ext.decode(response.responseText);
 											if (object.success == true) {
 												winEl.unmask();
-												Ext.MessageBox.confirm(Eway.locale.tip.tips,
-														Eway.locale.tip.business.device.logLoadConfirm, function(button, text) {
+												Ext.MessageBox.confirm(EwayLocale.tip.tips,
+														EwayLocale.tip.business.device.logLoadConfirm, function(button, text) {
 														if (button == "yes") {
 															var url = 'api/agent/downLogs/downloadFile?path=' + object.path + '&fileName=' + object.fileName;
 															var iframe = document.getElementById('downloadFileFromWeb');
@@ -460,16 +462,16 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 											} else {
 												winEl.unmask();
 												if(undefined==object.errors||''==object.errors){
-													Eway.alert(Eway.locale.tip.business.device.logFail);
+													Eway.alert(EwayLocale.tip.business.device.logFail);
 												}
 												else{
-													Eway.alert(Eway.locale.tip.business.device.logFail + object.errors);
+													Eway.alert(EwayLocale.tip.business.device.logFail + object.errors);
 												}
 											}
 										},
 										failure : function() {
 											winEl.unmask();
-											Eway.alert(Eway.locale.tip.business.device.logFail);
+											Eway.alert(EwayLocale.tip.business.device.logFail);
 										}
 									});
                         		},
@@ -477,7 +479,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
                         		scope : this
                         	}
                     	},{
-                        	text : Eway.locale.monitor.devMonitor.remote.remoteBrowser,
+                        	text : EwayLocale.monitor.devMonitor.remote.remoteBrowser,
                         	code : 'remoteBrowser',
 							listeners:{
 								'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender,
@@ -489,21 +491,21 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
                         		scope : this
                         	}
                     	},{
-                    		text :Eway.locale.monitor.devMonitor.remote.restart,
+                    		text :EwayLocale.monitor.devMonitor.remote.restart,
                     		code : 'restart',
                     		listeners:{
                     			'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender,
                     			'click' : function(){
 	                    			var dialog = Ext.create('Ext.window.MessageBox', {
 						            buttons: [{
-						                text: Eway.locale.tip.business.device.reboot,
+						                text: EwayLocale.tip.business.device.reboot,
 						                iconCls: 'icon-add',
 						                handler: function() {
-						                	Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.rebootConfirm,callBack);
+						                	Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.rebootConfirm,callBack);
 						                	function callBack(id){
 						                		if(id == 'yes'){
 								            		dialog.close();
-													winEl.mask(Eway.locale.tip.business.device.rebooting);
+													winEl.mask(EwayLocale.tip.business.device.rebooting);
 													Ext.Ajax.request({
 														method : 'POST',
 														url : 'api/agent/normalReboot',
@@ -516,29 +518,29 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 															var object = Ext.decode(response.responseText);
 															if (object.appRet == 00) {
 																winEl.unmask();
-																Eway.alert(Eway.locale.tip.business.device.rebootSucess);
+																Eway.alert(EwayLocale.tip.business.device.rebootSucess);
 															} else {
 																winEl.unmask();
-																Eway.alert(Eway.locale.tip.business.device.rebootFail);
+																Eway.alert(EwayLocale.tip.business.device.rebootFail);
 															}
 														},
 														failure: function(){
 															winEl.unmask();
-															Eway.alert(Eway.locale.tip.business.device.rebootSendFail);
+															Eway.alert(EwayLocale.tip.business.device.rebootSendFail);
 														}
 													})
 						                		}
 						                	}
 						            	}
 						            },{
-						            	text: Eway.locale.tip.business.device.forceReboot,
+						            	text: EwayLocale.tip.business.device.forceReboot,
 						            	iconCls: 'icon-add',
 						            	handler: function(){
-						            		Ext.MessageBox.confirm(Eway.locale.tip.tips,Eway.locale.tip.business.device.forceRebootConfirm,callBack);
+						            		Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.forceRebootConfirm,callBack);
 						            		function callBack(id){
 						            			if(id == 'yes'){
 						            				dialog.close();
-													winEl.mask(Eway.locale.tip.business.device.forceRebooting);
+													winEl.mask(EwayLocale.tip.business.device.forceRebooting);
 													Ext.Ajax.request({
 														method : 'POST',
 														url : 'api/agent/reboot',
@@ -551,22 +553,22 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 															var object = Ext.decode(response.responseText);
 															if (object.appRet == 00) {
 																winEl.unmask();
-																Eway.alert(Eway.locale.tip.business.device.forceRebootSuccess);
+																Eway.alert(EwayLocale.tip.business.device.forceRebootSuccess);
 															} else {
 																winEl.unmask();
-																Eway.alert(Eway.locale.tip.business.device.forceRebootFail);
+																Eway.alert(EwayLocale.tip.business.device.forceRebootFail);
 															}
 														},
 														failure: function(){
 															winEl.unmask();
-															Eway.alert(Eway.locale.tip.business.device.forceRebootSendFail);
+															Eway.alert(EwayLocale.tip.business.device.forceRebootSendFail);
 														}
 													})
 						            			}
 						            		}
 						            	}
 						            },{
-						            	text: Eway.locale.button.back,
+						            	text: EwayLocale.button.back,
 						            	iconCls: 'icon-add',
 						            	handler: function(){
 						            		dialog.close();
@@ -575,8 +577,8 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 						        });
 
 						        dialog.show({
-						            title: Eway.locale.monitor.devMonitor.remote.restart,
-						            msg: Eway.locale.monitor.devMonitor.remote.restartWay,
+						            title: EwayLocale.monitor.devMonitor.remote.restart,
+						            msg: EwayLocale.monitor.devMonitor.remote.restartWay,
 						            icon: Ext.MessageBox.WARNING
 						        });
 
@@ -586,7 +588,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 
                     		}
                     	},{
-                    		text: Eway.locale.monitor.devMonitor.remote.processList,
+                    		text: EwayLocale.monitor.devMonitor.remote.processList,
                     		listeners:{
                         		click : function(){
 									var controller = this.getController('agent.remote.RemoteBrowseProcess');
@@ -650,60 +652,60 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		var msg = '';
 		
 		if (!record) {
-			tLabel.setText(Eway.locale.commen.all);
+			tLabel.setText(EwayLocale.commen.all);
 			return;
 		}
 		
 		// 所属机构
 		if (record.get('orgId') && record.get('orgId') != 0) {
-			msg += ' ' + Eway.locale.machine.atmGroup.orgName + '[';
+			msg += ' ' + EwayLocale.machine.atmGroup.orgName + '[';
 			msg += record.get('orgName');
 			msg +=']';
 		}
 		
 		// 品牌
 		if (record.get('brandItem') && record.get('brandItem') != 0) {
-			msg += ' ' + Eway.locale.commen.devVendorName + '[';
+			msg += ' ' + EwayLocale.commen.devVendorName + '[';
 			msg += record.get('brandItemName');
 			msg +=']';
 		}
 		
 		// 型号
 		if (record.get('classifyItem') && record.get('classifyItem') != 0) {
-			msg += ' ' + Eway.locale.commen.devTypeName + '[';
+			msg += ' ' + EwayLocale.commen.devTypeName + '[';
 			msg += record.get('classifyItemName');
 			msg +=']';
 		}
 		
 		// 经营方式
 		if (record.get('sellItem') && record.get('sellItem') != 0) {
-			msg += ' ' + Eway.locale.commen.seviceMode + '[';
+			msg += ' ' + EwayLocale.commen.seviceMode + '[';
 			if (record.get('sellItem') == 1) {
-				msg += Eway.locale.machine.device.operationSelf;
+				msg += EwayLocale.machine.device.operationSelf;
 			} else if (record.get('sellItem') == 2) {
-				msg += Eway.locale.machine.device.cooperation;
+				msg += EwayLocale.machine.device.cooperation;
 			} else if (record.get('sellItem') == 3) {
-				msg += Eway.locale.machine.device.epiboly;
+				msg += EwayLocale.machine.device.epiboly;
 			}
 			msg +=']';
 		}
 		
 		// 经营方式
 		if (record.get('ingItem') && record.get('ingItem') != 0) {
-			msg += ' ' + Eway.locale.commen.insideOutside + '[';
+			msg += ' ' + EwayLocale.commen.insideOutside + '[';
 			if (record.get('ingItem') == 1) {
-				msg += Eway.locale.machine.atmGroup.comboxAwayFlag.inBank;
+				msg += EwayLocale.machine.atmGroup.comboxAwayFlag.inBank;
 			} else if (record.get('ingItem') == 2) {
-				msg += Eway.locale.machine.atmGroup.comboxAwayFlag.outBank;
+				msg += EwayLocale.machine.atmGroup.comboxAwayFlag.outBank;
 			} else if (record.get('ingItem') == 3) {
-				msg += Eway.locale.machine.atmGroup.comboxAwayFlag.clickBank;
+				msg += EwayLocale.machine.atmGroup.comboxAwayFlag.clickBank;
 			}
 			msg +=']';
 		}
 			
 		// 分组
 		if (record.get('atmGroup') && record.get('atmGroup') != 0) {
-			msg += ' ' + Eway.locale.monitor.devMonitor.atmGroup + '[';
+			msg += ' ' + EwayLocale.monitor.devMonitor.atmGroup + '[';
 			msg += record.get('atmGroupName');
 			msg +=']';
 		}	
@@ -713,49 +715,49 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			var value = record.get('runStatusFilterForm');
 			var str = '';
 			if (value.run_unknown) {
-				str += '|' + Eway.locale.commen.unknow;
+				str += '|' + EwayLocale.commen.unknow;
 			}
 			if (value.run_initial) {
-				str += '|' + Eway.locale.monitor.devMonitor.init;
+				str += '|' + EwayLocale.monitor.devMonitor.init;
 			}
 			if (value.run_healthy) {
-				str += '|' + Eway.locale.monitor.devMonitor.remote.healthy;
+				str += '|' + EwayLocale.monitor.devMonitor.remote.healthy;
 			}
 			if (value.run_subHealth) {
-				str += '|' + Eway.locale.monitor.devMonitor.remote.halfSer;
+				str += '|' + EwayLocale.monitor.devMonitor.remote.halfSer;
 			}
 			if (value.run_customer) {
-				str += '|' + Eway.locale.monitor.devMonitor.accTrans;
+				str += '|' + EwayLocale.monitor.devMonitor.accTrans;
 			}
 			if (value.run_maintain) {
-				str += '|' + Eway.locale.monitor.devMonitor.remote.staff;
+				str += '|' + EwayLocale.monitor.devMonitor.remote.staff;
 			}
 			if (value.run_vdm) {
-				str += '|' + Eway.locale.monitor.devMonitor.factureStaff;
+				str += '|' + EwayLocale.monitor.devMonitor.factureStaff;
 			}
 			if (value.run_halt) {
-				str += '|' + Eway.locale.monitor.devMonitor.remote.powerOff;
+				str += '|' + EwayLocale.monitor.devMonitor.remote.powerOff;
 			}
 			if (value.run_reboot) {
-				str += '|' + Eway.locale.monitor.devMonitor.remote.restart;
+				str += '|' + EwayLocale.monitor.devMonitor.remote.restart;
 			}
 			if (value.run_stopAtmp) {
-				str += '|' + Eway.locale.monitor.devMonitor.remote.pFault;
+				str += '|' + EwayLocale.monitor.devMonitor.remote.pFault;
 			}
 			if (value.run_stopManmade) {
-				str += '|' + Eway.locale.monitor.devMonitor.remote.stopCash;
+				str += '|' + EwayLocale.monitor.devMonitor.remote.stopCash;
 			}
 			if (value.run_stopMod) {
-				str += '|' + Eway.locale.monitor.devMonitor.remote.pauseSer;
+				str += '|' + EwayLocale.monitor.devMonitor.remote.pauseSer;
 			}
 			if (value.run_stopUnCashIn) {
-				str += '|' + Eway.locale.monitor.devMonitor.remote.pauseCash;
+				str += '|' + EwayLocale.monitor.devMonitor.remote.pauseCash;
 			}
 			if (value.run_stopunknown) {
-				str += '|' + Eway.locale.monitor.devMonitor.remote.pauseSerUnknow;
+				str += '|' + EwayLocale.monitor.devMonitor.remote.pauseSerUnknow;
 			}
 			
-			msg += ' ' + Eway.locale.monitor.devMonitor.comboxStatus.runStatus + '[';
+			msg += ' ' + EwayLocale.monitor.devMonitor.comboxStatus.runStatus + '[';
 			msg += str;
 			msg +=']';
 		} 
@@ -765,22 +767,22 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			var value = record.get('modStatusFilterForm');
 			var str = '';
 			if (value.mod_healthy) {
-				str += '|' + Eway.locale.monitor.devMonitor.mod.healthy;
+				str += '|' + EwayLocale.monitor.devMonitor.mod.healthy;
 			}
 			if (value.mod_waring) {
-				str += '|' + Eway.locale.commen.warn;
+				str += '|' + EwayLocale.commen.warn;
 			}
 			if (value.mod_fatal) {
-				str += '|' + Eway.locale.commen.fatal;
+				str += '|' + EwayLocale.commen.fatal;
 			}
 			if (value.mod_unknown) {
-				str += '|' + Eway.locale.commen.unknow;
+				str += '|' + EwayLocale.commen.unknow;
 			}
 			if (value.mod_noDevice) {
-				str += '|' + Eway.locale.monitor.devMonitor.noData;
+				str += '|' + EwayLocale.monitor.devMonitor.noData;
 			}
 			
-			msg += ' ' + Eway.locale.monitor.devMonitor.comboxStatus.modStatus + '[';
+			msg += ' ' + EwayLocale.monitor.devMonitor.comboxStatus.modStatus + '[';
 			msg += str;
 			msg +=']';
 		} 
@@ -790,28 +792,28 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			var value = record.get('boxStatusFilterForm');
 			var str = '';
 			if (value.box_healthy) {
-				str += '|' + Eway.locale.commen.stateDict.normal;
+				str += '|' + EwayLocale.commen.stateDict.normal;
 			}
 			if (value.box_low) {
-				str += '|' + Eway.locale.monitor.devMonitor.cash.low;
+				str += '|' + EwayLocale.monitor.devMonitor.cash.low;
 			}
 			if (value.box_empty) {
-				str += '|' + Eway.locale.monitor.devMonitor.cash.empty;
+				str += '|' + EwayLocale.monitor.devMonitor.cash.empty;
 			}
 			if (value.box_high) {
-				str += '|' + Eway.locale.monitor.devMonitor.cash.cimAFull;
+				str += '|' + EwayLocale.monitor.devMonitor.cash.cimAFull;
 			}
 			if (value.box_full) {
-				str += '|' + Eway.locale.monitor.devMonitor.cash.cimFull;
+				str += '|' + EwayLocale.monitor.devMonitor.cash.cimFull;
 			}
 			if (value.box_fatal) {
-				str += '|' + Eway.locale.monitor.devMonitor.cash.cashFault;
+				str += '|' + EwayLocale.monitor.devMonitor.cash.cashFault;
 			}
 			if (value.box_unknown) {
-				str += '|' + Eway.locale.monitor.devMonitor.cash.cashUnknow;
+				str += '|' + EwayLocale.monitor.devMonitor.cash.cashUnknow;
 			}
 			
-			msg += ' ' + Eway.locale.monitor.devMonitor.comboxStatus.boxStatus + '[';
+			msg += ' ' + EwayLocale.monitor.devMonitor.comboxStatus.boxStatus + '[';
 			msg += str;
 			msg +=']';
 		} 
@@ -821,25 +823,25 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			var value = record.get('netStatusFilterForm');
 			var str = '';
 			if (value.net_healthy) {
-				str += '|' + Eway.locale.monitor.devMonitor.netHealthy;
+				str += '|' + EwayLocale.monitor.devMonitor.netHealthy;
 			}
 			if (value.net_warning) {
-				str += '|' + Eway.locale.monitor.devMonitor.netUnStable;
+				str += '|' + EwayLocale.monitor.devMonitor.netUnStable;
 			}
 			if (value.net_fatal) {
-				str += '|' + Eway.locale.monitor.devMonitor.netFatal;
+				str += '|' + EwayLocale.monitor.devMonitor.netFatal;
 			}
 			if (value.net_unknown) {
-				str += '|' + Eway.locale.commen.unknow;
+				str += '|' + EwayLocale.commen.unknow;
 			}
 	
-			msg += ' ' + Eway.locale.monitor.devMonitor.comboxStatus.netStatus + '[';
+			msg += ' ' + EwayLocale.monitor.devMonitor.comboxStatus.netStatus + '[';
 			msg += str;
 			msg +=']';
 		} 
 		
 		if (msg.length == 0) {
-			msg = Eway.locale.commen.all;
+			msg = EwayLocale.commen.all;
 		}
 		tLabel.setText(msg);
 	},
@@ -941,7 +943,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		var controller = this.getController('monitor.device.DeviceBox');
 		var view = this.getEwayView();
 		var winEl = view.getEl();
-		winEl.mask(Eway.locale.tip.nowLink);
+		winEl.mask(EwayLocale.tip.nowLink);
 		deviceBoxModel.load(ip, {
 			success : function(record) {
 				winEl.unmask();
@@ -950,7 +952,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			},
 			failure: function(){
 				winEl.unmask();
-				Eway.alert(Eway.locale.tip.business.device.getCashInfoFail);
+				Eway.alert(EwayLocale.tip.business.device.getCashInfoFail);
 			}
 		});
 	}

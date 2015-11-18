@@ -21,13 +21,13 @@ Ext.define('Eway.view.monitor.device.box.FilterForm', {
 					readOnly:true
 				},
 				items : [ {
-					fieldLabel : Eway.locale.monitor.devMonitor.cash.initAmount,
+					fieldLabel : EwayLocale.monitor.devMonitor.cash.initAmount,
 					name : 'initAmount'
 				}, {
-					fieldLabel : Eway.locale.monitor.devMonitor.cash.amount,
+					fieldLabel : EwayLocale.monitor.devMonitor.cash.amount,
 					name : 'amount'
 				}, {
-					fieldLabel : Eway.locale.monitor.devMonitor.cash.dispenseAmount,
+					fieldLabel : EwayLocale.monitor.devMonitor.cash.dispenseAmount,
 					name : 'dispenseAmount',
 					hidden : true
 				} ]
@@ -38,14 +38,14 @@ Ext.define('Eway.view.monitor.device.box.FilterForm', {
 					readOnly:true
 				},
 				items : [ {
-					fieldLabel : Eway.locale.monitor.devMonitor.cash.rejectAmount,
+					fieldLabel : EwayLocale.monitor.devMonitor.cash.rejectAmount,
 					name : 'rejectAmount'
 				}, {
-					fieldLabel : Eway.locale.monitor.devMonitor.cash.retractCount,
+					fieldLabel : EwayLocale.monitor.devMonitor.cash.retractCount,
 					name : 'retractCount',
 					hidden : true
 				}, {
-					fieldLabel : Eway.locale.monitor.devMonitor.cash.minAmount,
+					fieldLabel : EwayLocale.monitor.devMonitor.cash.minAmount,
 					name : 'minAmount'
 				} ]
 			} ]

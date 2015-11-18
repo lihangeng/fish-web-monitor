@@ -11,32 +11,32 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 			store : store,
 			initRegion : true,
 			tbar : [ '->', {
-				text: Eway.locale.button.apply,
+				text: EwayLocale.button.apply,
 				iconCls : 'connectBtn',
 				glyph : 0xf0c1,
 				code : 'planLink',
 				action : 'link'
 			}, {
-				text: Eway.locale.button.info,
+				text: EwayLocale.button.info,
 				glyph : 0xf129,
 				iconCls : 'detailBtn',
 				action : 'queryDetail'
 			}, {
-				text: Eway.locale.button.search,
+				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : Eway.locale.button.add,
+				text : EwayLocale.button.add,
 				glyph : 0xf067,
 				code : 'planAdd',
 				action : 'add'
 			}, {
-				text: Eway.locale.button.update,
+				text: EwayLocale.button.update,
 				glyph : 0xf040,
 				code : 'planUpdate',
 				action : 'update'
 			}, {
-				text: Eway.locale.button.remove,
+				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				code : 'planDel',
 				action : 'remove'
@@ -51,50 +51,50 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				stripeRows : true,
 				getRowClass: function(record, index) {
 					var planStateType = record.get('planStateType');
-					if(planStateType == Eway.locale.commen.comboxStatus.close||planStateType == Eway.locale.commen.comboxStatus.pastDue){
+					if(planStateType == EwayLocale.commen.comboxStatus.close||planStateType == EwayLocale.commen.comboxStatus.pastDue){
 						return 'user-online';
-					}else if(planStateType == Eway.locale.commen.comboxStatus.pastDueSoon){
+					}else if(planStateType == EwayLocale.commen.comboxStatus.pastDueSoon){
 						return 'user-yellow';
 					}
 				}
 			},
 			columns : [ {
-				header : Eway.locale.report.plan.name,
+				header : EwayLocale.report.plan.name,
 				width : 180,
 				dataIndex : 'name'
 			}, {
-				header : Eway.locale.report.plan.type,
+				header : EwayLocale.report.plan.type,
 				width : 130,
 				dataIndex : 'planType',
 				renderer : function(value, metadata, record) {
 					if (value == "DATE") {
-						return Eway.locale.report.openplan.date;
+						return EwayLocale.report.serviceplan.date;
 					} else if (value == "WEEK") {
-						return Eway.locale.report.openplan.week;
+						return EwayLocale.report.serviceplan.week;
 					}
 				}
 			}, {
-				header : Eway.locale.report.openplan.machineQuantity,
+				header : EwayLocale.report.serviceplan.machineQuantity,
 				width : 130,
 				dataIndex : 'deviceCount',
 			}, {
-				header : Eway.locale.report.openplan.state,
+				header : EwayLocale.report.serviceplan.state,
 				width : 130,
 				dataIndex : 'planStateType'
 			}, {
-				header : Eway.locale.report.openplan.openDate,
+				header : EwayLocale.report.serviceplan.openDate,
 				width : 180,
 				dataIndex : 'startDate'
 			}, {
-				header : Eway.locale.report.openplan.closeDate,
+				header : EwayLocale.report.serviceplan.closeDate,
 				width : 180,
 				dataIndex : 'endDate'
 			},/* {
-				header : Eway.locale.version.View.remark,
+				header : EwayLocale.version.View.remark,
 				dataIndex : 'desc',
 				flex : 1
 			},*/ {
-				header : Eway.locale.report.openplan.createDateTime,
+				header : EwayLocale.report.serviceplan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 180,
 				fiex : 1

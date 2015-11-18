@@ -3,7 +3,7 @@ Ext.define('Eway.view.index.VersionDistributePie', {
     xtype: 'versionDistributePie',
     requires:['Eway.store.version.ComboVersionType'],
 
-    title :Eway.locale.index.versionDistributePie,
+    title :EwayLocale.index.versionDistributePie,
     
 	tools:[{
 		xtype:'combo',
@@ -95,7 +95,7 @@ Ext.define('Eway.view.index.VersionDistributePie', {
                 tooltip: {
                     trackMouse: true,
                     renderer: function(storeItem, item) {
-                    	 this.setHtml(storeItem.get('versionNo') + ' : ' + storeItem.get('versionNoNumber') + " " + Eway.locale.index.amount);
+                    	 this.setHtml(storeItem.get('versionNo') + ' : ' + storeItem.get('versionNoNumber') + " " + EwayLocale.index.amount);
                     }
                 }
             }]

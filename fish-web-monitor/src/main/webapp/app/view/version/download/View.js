@@ -4,7 +4,7 @@ Ext.define('Eway.view.version.download.View', {
 
 	requires : ['Eway.view.version.download.TaskGrid','Eway.view.version.download.FilterForm'],
 
-	title : Eway.locale.version.download.title,//'分发监控',
+	title : EwayLocale.version.download.title,//'分发监控',
 	layout : 'border',
 	initComponent : function() {
 		Ext.apply(this, {

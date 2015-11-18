@@ -3,7 +3,7 @@ Ext.define('Eway.view.operatingPlan.WeekSelect', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field_weekSelect',
 	
-	fieldLabel : Eway.locale.report.openplan.weekSelect,
+	fieldLabel : EwayLocale.report.serviceplan.weekSelect,
 	name : 'week',
 	hiddenName : 'week',
 	msgTarget : 'side',

@@ -12,7 +12,7 @@ Ext.define('Eway.view.machine.device.DeviceModuleConfig', {
 			'Eway.view.machine.device.module.PropertyPIN',
 			'Eway.view.machine.device.module.PropertyTTU' ],
 
-	title : Eway.locale.machine.device.devModuleMsg,
+	title : EwayLocale.machine.device.devModuleMsg,
 	layout : 'border',
 	initComponent : function() {
 		Ext.apply(this, {

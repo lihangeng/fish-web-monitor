@@ -1,7 +1,7 @@
 Ext.define('Eway.view.operatingPlan.ImportLinkedMachine',{
           extend :'Ext.window.Window',
           alias:'widget.operatingPlan_download_linkedMachine',
-          title:Eway.locale.report.openplan.inportLinkedMachine,
+          title:EwayLocale.report.serviceplan.inportLinkedMachine,
           modal:true,
           resizable : false,
           constrainHeader : true,
@@ -26,30 +26,30 @@ Ext.define('Eway.view.operatingPlan.ImportLinkedMachine',{
       				items : [
       				{
       					xtype : 'filefield',
-      					fieldLabel : Eway.locale.report.openplan.selectFile,
+      					fieldLabel : EwayLocale.report.serviceplan.selectFile,
       					name : 'file',
       					allowBlank : false,
       					width:420,
-      					blankText : Eway.locale.report.openplan.placeUploadingResource,
-      					waitMsg:Eway.locale.version.View.versionFileUploadMsg,
+      					blankText : EwayLocale.report.serviceplan.placeUploadingResource,
+      					waitMsg:EwayLocale.version.View.versionFileUploadMsg,
       					msgTarget : 'side',
       					regex : /^([\w|\W]*)(\.xls)$/i,
-      					regexText : Eway.locale.report.openplan.fileNotSupport
+      					regexText : EwayLocale.report.serviceplan.fileNotSupport
       				}, {
       					xtype : 'displayfield',
-      					fieldLabel : Eway.locale.cases.vendorCode.templateLoad,
+      					fieldLabel : EwayLocale.cases.vendorCode.templateLoad,
       					width:420,
       					name : 'link',
-      					value :"<a class='link' href='api/dateImport/downloadFile'>"+Eway.locale.report.openplan.thisHardToTranslate+"</a>"
+      					value :"<a class='link' href='api/dateImport/downloadFile'>"+EwayLocale.report.serviceplan.thisHardToTranslate+"</a>"
       				}, {
       					xtype : 'displayfield',
-      					fieldLabel : Eway.locale.report.openplan.exportExplain,
+      					fieldLabel : EwayLocale.report.serviceplan.exportExplain,
       					width:420,
-      					value : '<font color="red">'+Eway.locale.report.openplan.thisIsTooLong+'</font>'
+      					value : '<font color="red">'+EwayLocale.report.serviceplan.thisIsTooLong+'</font>'
       				} ],
       				buttonAlign:'center',
       				buttons : [ {
-      					text : Eway.locale.button.sure,
+      					text : EwayLocale.button.sure,
       					iconCls : 'sureBtn',
       					action : 'import'
       				} ]

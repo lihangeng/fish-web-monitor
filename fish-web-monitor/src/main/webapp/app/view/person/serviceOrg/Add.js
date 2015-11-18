@@ -5,7 +5,7 @@ Ext.define('Eway.view.person.serviceOrg.Add', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.ser_organization_add',
 
-	title: Eway.locale.person.serviceOrg.addServiceTitle,
+	title: EwayLocale.person.serviceOrg.addServiceTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -27,20 +27,20 @@ Ext.define('Eway.view.person.serviceOrg.Add', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.serviceOrg.code,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.person.serviceOrg.code,
 					xtype: 'field.code',
 					regex: /^[a-zA-Z0-9][a-zA-Z0-9-_\.]{0,19}$/,
-					regexText:Eway.locale.vtype.bankOrgCode,
+					regexText:EwayLocale.vtype.bankOrgCode,
 					allowBlank: false
 				}, {
-					fieldLabel : '<font color="red">*</font> '+Eway.locale.person.serviceOrg.name,
+					fieldLabel : '<font color="red">*</font> '+EwayLocale.person.serviceOrg.name,
 					xtype: 'field.name',
 					maxLength : 40,
 					allowBlank: false
 				},{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font>'+Eway.locale.person.serviceOrg.upgradeService,
-					emptyText: Eway.locale.combox.select,
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.person.serviceOrg.upgradeService,
+					emptyText: EwayLocale.combox.select,
 					allowBlank: false,
 					editable : false,
 					name : 'parent',
@@ -52,24 +52,24 @@ Ext.define('Eway.view.person.serviceOrg.Add', {
 					name :'parentId'
 				},{
 					xtype:'textfield',
-					fieldLabel : Eway.locale.person.serviceOrg.address,
+					fieldLabel : EwayLocale.person.serviceOrg.address,
 					maxLength : 60,
 					allowBlank: true,
 					name :'address'
 				},{
 					xtype:'textfield',
-					fieldLabel:Eway.locale.person.serviceOrg.zip,
+					fieldLabel:EwayLocale.person.serviceOrg.zip,
 					allowBlank: true,
 					name :'zip',
 					regex: /^[\d]{6}$/,
-					regexText:Eway.locale.vtype.zip,
+					regexText:EwayLocale.vtype.zip,
 			        hideTrigger: false,
 			        keyNavEnabled: false,
 			        mouseWheelEnabled: false
 				},{
 					xtype : 'textarea',
 					name : 'description',
-					fieldLabel : Eway.locale.person.serviceOrg.description,
+					fieldLabel : EwayLocale.person.serviceOrg.description,
 					autoScroll : true,
 					maxLength :40,
 					allowBlank : true
@@ -77,14 +77,14 @@ Ext.define('Eway.view.person.serviceOrg.Add', {
 				buttonAlign:'center',
 				buttons: [{
 					xtype : 'button',
-					text: Eway.locale.button.confirm,
+					text: EwayLocale.button.confirm,
 					action: 'add'
 				}, {
-					text: Eway.locale.button.reset,
+					text: EwayLocale.button.reset,
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: Eway.locale.button.cancle,
+					text: EwayLocale.button.cancle,
 					handler: this.onOver
 				}]
 			}

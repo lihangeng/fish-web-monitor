@@ -15,7 +15,9 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		'agent.RemoteBrowseDisk',
 		'agent.RemoteBrowseFileSystem'
 	],
+	
 	init : function(){
+		
 	},
 
 	display : function(ip){
@@ -24,7 +26,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			height : 450
 		});
 		win.show();
-		var grid = win.down('remote_remoteBrowseDiskGrid');
+		var grid = win.down('remote_remoteBrowseDiskGrid');		
 		grid.getStore().load({
 			params : {
 				ip : ip
@@ -41,8 +43,10 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 					win.down('button[action="remoteMkFile"]').on('click',Ext.bind(me.onRemoteMkDir,this,[false]),this);;
 					win.down('button[action="remoteDel"]').on('click',me.onRemoteDel,this);;
 					win.down('button[action="remoteExec"]').on('click',me.onRemoteExec,this);
+					win.down('button[action="mergeLoad"]').on('click',Ext.bind(me.onMergeLoad,this,[win]),this);
+					
 				}else{
-					Eway.alert(Eway.locale.vtype.remoteFailure);
+					Eway.alert(EwayLocale.vtype.remoteFailure);
 				}
 			}
 		});
@@ -57,12 +61,12 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		var path = me.win.down('textfield[name="path"]').getValue();
 
 		if(isDirectory){
-			mkFileWin.setTitle(Eway.locale.agent.remote.MKcatalog);
-			mkFileWin.down('textfield[name="file"]').setFieldLabel(Eway.locale.agent.remote.catalogName);
+			mkFileWin.setTitle(EwayLocale.agent.remote.MKcatalog);
+			mkFileWin.down('textfield[name="file"]').setFieldLabel(EwayLocale.agent.remote.catalogName);
 		}
 		else{
-			mkFileWin.setTitle(Eway.locale.agent.remote.MkFile);
-			mkFileWin.down('textfield[name="file"]').setFieldLabel(Eway.locale.agent.remote.screen.fileNameClient);
+			mkFileWin.setTitle(EwayLocale.agent.remote.MkFile);
+			mkFileWin.down('textfield[name="file"]').setFieldLabel(EwayLocale.agent.remote.screen.fileNameClient);
 		}
 		mkFileWin.down('[name="nowPath"]').setValue(path);
 		mkFileWin.down('button[action="confirm"]').on('click',Ext.bind(this.onMkDirConfirm,this,[path,mkFileWin,isDirectory]),this);
@@ -91,17 +95,17 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		    success: function(response){
 		        var obj = Ext.decode(response.responseText);
 		        if(obj.success==true){
-					Eway.alert(Eway.locale.agent.remote.distanceSuccess);
+					Eway.alert(EwayLocale.agent.remote.distanceSuccess);
 		        }
 		        else{
-					Eway.alert(Eway.locale.agent.remote.distanceFailure);
+					Eway.alert(EwayLocale.agent.remote.distanceFailure);
 		        }
 		        me.onQuery();
 		        mkFileWin.close();
 		    },
 		    failure:function(){
 
-				Eway.alert(Eway.locale.agent.remote.distanceFailure);
+				Eway.alert(EwayLocale.agent.remote.distanceFailure);
 		    }
 		});
 	},
@@ -119,8 +123,8 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			var record = sm.getLastSelected();
 			var newFile = record.get("name");
 			Ext.Msg.confirm({
-			    title: Eway.locale.tip.remind,
-			    msg: Eway.locale.agent.remote.confirmDelete+'['+newFile+']?',
+			    title: EwayLocale.tip.remind,
+			    msg: EwayLocale.agent.remote.confirmDelete+'['+newFile+']?',
 			    width: 300,
 	            modal:true,
 	            closable:true,
@@ -138,16 +142,16 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 						    success: function(response){
 						        var obj = Ext.decode(response.responseText);
 						        if(obj.success==true){
-									Eway.alert(Eway.locale.agent.remote.distanceSuccess);
+									Eway.alert(EwayLocale.agent.remote.distanceSuccess);
 						        }
 						        else{
-									Eway.alert(Eway.locale.agent.remote.distanceFailure);
+									Eway.alert(EwayLocale.agent.remote.distanceFailure);
 						        }
 						        me.onQuery();
 						    },
 						    failure:function(){
 
-								Eway.alert(Eway.locale.agent.remote.distanceFailure);
+								Eway.alert(EwayLocale.agent.remote.distanceFailure);
 						    }
 						});
 						sm.deselect(record);
@@ -158,7 +162,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 
 		}
 		else{
-			Eway.alert(Eway.locale.agent.remote.choseDeleteFile);
+			Eway.alert(EwayLocale.agent.remote.choseDeleteFile);
 		}
 	},
 
@@ -177,8 +181,8 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			var record = sm.getLastSelected();
 			var newFile = record.get("name");
 			Ext.Msg.confirm({
-			    title: Eway.locale.tip.remind,
-			    msg: Eway.locale.agent.remote.confirmExecute+'['+newFile+']?',
+			    title: EwayLocale.tip.remind,
+			    msg: EwayLocale.agent.remote.confirmExecute+'['+newFile+']?',
 			    width: 300,
 	            modal:true,
 	            closable:true,
@@ -196,16 +200,16 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 						    success: function(response){
 						        var obj = Ext.decode(response.responseText);
 						        if(obj.success==true){
-									Eway.alert(Eway.locale.agent.remote.distanceExecuteSuccess);
+									Eway.alert(EwayLocale.agent.remote.distanceExecuteSuccess);
 						        }
 						        else{
-									Eway.alert(Eway.locale.agent.remote.distanceExecuteFailure);
+									Eway.alert(EwayLocale.agent.remote.distanceExecuteFailure);
 						        }
 						        me.onQuery();
 						    },
 						    failure:function(){
 
-								Eway.alert(Eway.locale.agent.remote.distanceExecuteFailure);
+								Eway.alert(EwayLocale.agent.remote.distanceExecuteFailure);
 						    }
 						});
 						sm.deselect(record);
@@ -215,7 +219,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			});
 		}
 		else{
-			Eway.alert(Eway.locale.agent.remote.choseExecuteFile);
+			Eway.alert(EwayLocale.agent.remote.choseExecuteFile);
 		}
 	},
 
@@ -236,12 +240,12 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		    callback: function(records, operation, success) {
 				this.store = store;
 		        if(success==true){
-		        	this.win.setTitle(Eway.locale.agent.remote.distanceExplorer+path);
+		        	this.win.setTitle(EwayLocale.agent.remote.distanceExplorer+path);
 					this.win.down('textfield[name="path"]').setValue(path);
 					this.win.down('textfield[name="queryPath"]').setValue(path);
 					panel.on('itemdblclick',me.onRemoteBrowseFileSystem2,this);
 				}else{
-					Eway.alert(Eway.locale.agent.remote.distanceExplorerFailure);
+					Eway.alert(EwayLocale.agent.remote.distanceExplorerFailure);
 				}
 			}
 		});
@@ -277,12 +281,12 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		    	scope   : this,
 			    callback: function(records, operation, success) {
 			        if(success==true){
-			        	this.win.setTitle(Eway.locale.agent.remote.distanceExplorer+path);
+			        	this.win.setTitle(EwayLocale.agent.remote.distanceExplorer+path);
 					    this.win.down('textfield[name="path"]').setValue(path);
 					    this.win.down('textfield[name="queryPath"]').setValue(path);
 						grid.on('itemdblclick',me.onRemoteBrowseFileSystem2,this);
 					}else{
-						Eway.alert(Eway.locale.agent.remote.distanceExplorerFailure);
+						Eway.alert(EwayLocale.agent.remote.distanceExplorerFailure);
 					}
 				}
 		    });
@@ -336,12 +340,12 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			  if(form.isValid()){
 		   		 if(i<store.getCount()){
 			  		 Ext.MessageBox.show({
-						title : Eway.locale.tip.remind,
-						msg : Eway.locale.agent.remote.fileExist,
+						title : EwayLocale.tip.remind,
+						msg : EwayLocale.agent.remote.fileExist,
 						modal : true,
 						fn : function callBack(id){
 							var winEl = upFileWin.getEl();
-							winEl.mask(Eway.locale.agent.remote.nowUploadFile);
+							winEl.mask(EwayLocale.agent.remote.nowUploadFile);
 					     	if(id=='yes'){
 							     form.submit({
 					                  url: 'api/agent/remoteBrowse/upload',
@@ -352,7 +356,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 					                  },
 					                  success: function(form, action) {
 					                  	  winEl.unmask();
-					                	  Eway.alert(Eway.locale.agent.remote.uploadSuccess);
+					                	  Eway.alert(EwayLocale.agent.remote.uploadSuccess);
 					                	  upFileWin.close();
 					                	  me.reflesh();
 					                  },
@@ -371,7 +375,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 					                  },
 					                  success: function(form, action) {
 					                  	  winEl.unmask();
-					                  	  Eway.alert(Eway.locale.agent.remote.uploadSuccess);
+					                  	  Eway.alert(EwayLocale.agent.remote.uploadSuccess);
 					                	  upFileWin.close();
 					                	  me.reflesh();
 					                  },
@@ -385,11 +389,11 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 						   }
 				  	 	},
 						buttons : Ext.Msg.YESNOCANCEL,
-						buttonText: {yes: Eway.locale.agent.remote.yes,no: Eway.locale.agent.remote.cancel,cancel: Eway.locale.agent.remote.cancel}
+						buttonText: {yes: EwayLocale.agent.remote.yes,no: EwayLocale.agent.remote.cancel,cancel: EwayLocale.agent.remote.cancel}
 				     });
 				  }else{
 				  	var winEl = upFileWin.getEl();
-					winEl.mask(Eway.locale.agent.remote.nowUploadFile);
+					winEl.mask(EwayLocale.agent.remote.nowUploadFile);
 				  	form.submit({
 	                  url: 'api/agent/remoteBrowse/upload',
 	                  params: {
@@ -399,7 +403,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 	                  },
 	                  success: function(form, action) {
 	                  	  winEl.unmask();
-	                	  Eway.alert(Eway.locale.agent.remote.uploadSuccess);
+	                	  Eway.alert(EwayLocale.agent.remote.uploadSuccess);
 	                	  upFileWin.close();
 	                	  me.reflesh();
 	                  },
@@ -411,7 +415,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 				  }
 			   }
 		}else{
-			Eway.alert(Eway.locale.agent.remote.choseFile);
+			Eway.alert(EwayLocale.agent.remote.choseFile);
 		}
 
 	},
@@ -430,7 +434,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		if(parentPath==""){
 			var layout = win.getLayout();
 			layout.setActiveItem(0);
-			this.win.setTitle(Eway.locale.agent.remote.distanceExplorer);
+			this.win.setTitle(EwayLocale.agent.remote.distanceExplorer);
 			store.removeAll();
 		}else{
 			this.store.load({
@@ -438,11 +442,11 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 				scope   : this,
 			    callback: function(records, operation, success) {
 			        if(success==true){
-			        	this.win.setTitle(Eway.locale.agent.remote.distanceExplorer+parentPath);
+			        	this.win.setTitle(EwayLocale.agent.remote.distanceExplorer+parentPath);
 						this.win.down('textfield[name="path"]').setValue(parentPath);
 						this.win.down('textfield[name="queryPath"]').setValue(parentPath);
 					}else{
-						Eway.alert(Eway.locale.agent.remote.returnFailure);
+						Eway.alert(EwayLocale.agent.remote.returnFailure);
 					}
 				}
 			});
@@ -460,9 +464,9 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			scope   : this,
 		    callback: function(records, operation, success) {
 		        if(success==true){
-		        	this.win.setTitle(Eway.locale.agent.remote.distanceExplore+currentPath);
+		        	this.win.setTitle(EwayLocale.agent.remote.distanceExplore+currentPath);
 				}else{
-					Eway.alert(Eway.locale.agent.remote.refreshFailure);
+					Eway.alert(EwayLocale.agent.remote.refreshFailure);
 				}
 			}
 		});
@@ -479,13 +483,13 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 	    	scope   : this,
 		    callback: function(records, operation, success) {
 		        if(success==true){
-		        	this.win.setTitle(Eway.locale.agent.remote.distanceExplore+path);
+		        	this.win.setTitle(EwayLocale.agent.remote.distanceExplore+path);
 				    this.win.down('textfield[name="path"]').setValue(path);
 				    this.win.down('textfield[name="queryPath"]').setValue(path);
 					grid.on('itemdblclick',me.onRemoteBrowseFileSystem2,this);
 					grid.on()
 				}else{
-					Eway.alert(Eway.locale.agent.remote.catalogExist);
+					Eway.alert(EwayLocale.agent.remote.catalogExist);
 				}
 			}
 	    });
@@ -496,6 +500,94 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		//刷新按钮刷新：
 		var refleshbutton = grid.down('button[action="reflesh"]');
 		refleshbutton.on('click',me.reflesh,this);
+	},
+	onMergeLoad : function(topwin){
+		var me = this;
+		var fileListGrid = topwin.down('remote_remoteBrowseFileSystemGrid');
+		var win = Ext.create('Eway.view.agent.remote.RemoteBrowseShowMergeFile');
+		var grid = win.down('remote_mergeDownLoadFileGrid');		
+		var store = grid.getStore();
+		for(var i=0 ;i<fileListGrid.mergeDownLoadStore.getCount();i++)
+			{
+			   var record = Ext.create( 'Eway.model.agent.MergeDownLoadFileList',fileListGrid.mergeDownLoadStore.getAt(i).data);
+			   store.add(record);
+			}		
+		win.down('button[action="removeFile"]').on('click',Ext.bind(me.onRemoveFile,this,[win]),this);
+		var ip = topwin.down('textfield[name="ip"]').getValue();
+		var gridEl = grid.getEl();
+		var mask = new Ext.LoadMask(grid, {msg : EwayLocale.agent.remote.nowLoadFile});
+		win.down('button[action="mergeDownLoad"]').on('click',Ext.bind(me.mergeDownloadFile,this,[win,ip,mask,gridEl]),this);
+		win.on("close",function(){
+			fileListGrid.mergeDownLoadStore = Ext.create('Eway.store.agent.MergeDownLoadFileList',{});
+			fileListGrid.mergeDownFileSize = 0;
+		})
+		win.show();	
+	},	
+	onRemoveFile : function(win){
+		var grid = win.down('remote_mergeDownLoadFileGrid');	
+		var sm = grid.getSelectionModel();
+		var store = grid.getStore();
+		if(sm.getCount() == 1)
+		{
+			var record = sm.getLastSelected();
+			store.remove(record);
+			Eway.alert(EwayLocale.agent.remote.removeSuccess);
+		}
+		else
+		{
+			Eway.alert(EwayLocale.agent.remote.mustSelection);
+		}
+	},
+	
+	mergeDownloadFile : function(win,ip,mask,gridEl) {
+		var grid = win.down('remote_mergeDownLoadFileGrid');
+		var store = grid.getStore();
+		var allFielPath ='';
+		for(var i=0; i<store.getCount(); i++)
+		{
+			allFielPath = allFielPath + store.getAt(i).data.path +'|';
+		}	
+		console.log(allFielPath);
+		Ext.Ajax.request({
+			method : 'POST',
+			url : 'api/agent/remoteBrowse/mergerDownload?date=' + new Date(),
+			timeout : 120000,
+			params : {		
+				ip : ip,			
+				requestPath : allFielPath
+			},
+			success : function(response) {
+				mask.show();
+				var object = Ext.decode(response.responseText);				
+				if (object.success == true) {
+					mask.hide();
+					var iframe = gridEl.prev();
+					var fileName = object.fileName.replace("&", "%26");// 将文件名含有&符号的用URL编码“%26”替换
+					console.log("2222222222222");
+					if (iframe) {
+						Ext.core.Element.get(iframe).destroy();
+						console.log("33333333333333");
+					}
+					iframe = Ext.core.DomHelper.createDom({
+								tag : 'iframe',
+								src : 'api/agent/remoteBrowse/downloadFile?path='
+										+ object.path + '&fileName=' + fileName,
+								style : "display:none"
+							});
+					console.log("44444444444444444");
+					gridEl.insertSibling(iframe);
+				} else {
+					console.log("11111111111111111111111");
+					mask.hide();
+					Eway.alert(object.errors);
+				}
+			},
+			failure : function() {
+				mask.hide();
+				Eway.alert(EwayLocale.agent.remote.loadFailure);
+			}
+		});
 	}
+		
 
 });

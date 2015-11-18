@@ -6,29 +6,29 @@ Ext.define('Eway.view.monitor.device.box.Grid', {
 	initComponent : function() {
 		Ext.apply(this, {
 			columns : [ {
-				header : Eway.locale.monitor.devMonitor.cash.boxId,
+				header : EwayLocale.monitor.devMonitor.cash.boxId,
 				dataIndex : 'boxId'
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.type,
+				header : EwayLocale.monitor.devMonitor.cash.type,
 				dataIndex : 'typeName'
 			}, {
-				header : Eway.locale.monitor.devMonitor.comboxStatus.boxStatus,
+				header : EwayLocale.monitor.devMonitor.comboxStatus.boxStatus,
 				dataIndex : 'binStatusName'
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.initialCount,
+				header : EwayLocale.monitor.devMonitor.cash.initialCount,
 				dataIndex : 'initialCount'
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.cashInCount,
+				header : EwayLocale.monitor.devMonitor.cash.cashInCount,
 				dataIndex : 'cashInCount'
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.currentCount,
+				header : EwayLocale.monitor.devMonitor.cash.currentCount,
 				dataIndex : 'currentCount',
 				width:120
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.noteValue,
+				header : EwayLocale.monitor.devMonitor.cash.noteValue,
 				dataIndex : 'noteValue'
 			}, {
-				header : Eway.locale.monitor.devMonitor.cash.currency,
+				header : EwayLocale.monitor.devMonitor.cash.currency,
 				dataIndex : 'currency',
 				flex:1
 			} ]

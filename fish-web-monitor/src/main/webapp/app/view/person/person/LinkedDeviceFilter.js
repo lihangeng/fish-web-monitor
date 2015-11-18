@@ -13,10 +13,10 @@ Ext.define('Eway.view.person.person.LinkedDeviceFilter', {
 			items : [ {
 				columnWidth : .5,
 				xtype : 'textfield',
-				fieldLabel : Eway.locale.commen.terminalId,
+				fieldLabel : EwayLocale.commen.terminalId,
 				name : 'terminalId',
 				regex : /^\w+[\w-\.]*$/,
-				regexText : Eway.locale.vtype.bankOrgCode,
+				regexText : EwayLocale.vtype.bankOrgCode,
 				maxLength : 20
 			} ]
 		});

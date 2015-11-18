@@ -13,15 +13,15 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.Grid', {
 			initRegion : true,
 			store : store,
 			tbar : [ '->',  {
-				text : Eway.locale.button.search,
+				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : Eway.locale.button.exported,
+				text : EwayLocale.button.exported,
 				glyph : 0xf1c3,
 				action : 'export'
 			},{
-				text :Eway.locale.machine.atmRuntimeInfo.exportLast30,
+				text :EwayLocale.machine.atmRuntimeInfo.exportLast30,
 				glyph : 0xf1c3,
 				action : 'exportLast30'
 			}],
@@ -30,42 +30,42 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.Grid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : Eway.locale.machine.atmRuntimeInfo.terminalId,
+				header : EwayLocale.machine.atmRuntimeInfo.terminalId,
 				dataIndex : 'terminalId'
 			}, {
-				header : Eway.locale.machine.atmRuntimeInfo.netIp,
+				header : EwayLocale.machine.atmRuntimeInfo.netIp,
 				dataIndex : 'ip'
 			}, {
-				header : Eway.locale.machine.atmGroup.orgName,
+				header : EwayLocale.machine.atmGroup.orgName,
 				dataIndex : 'orgName'
 			}, {
-				header : Eway.locale.machine.atmGroup.devTypeName,
+				header : EwayLocale.machine.atmGroup.devTypeName,
 				dataIndex : 'devTypeName'
 			}, {
-				header : Eway.locale.machine.atmGroup.devVendorName,
+				header : EwayLocale.machine.atmGroup.devVendorName,
 				dataIndex : 'devVendorName'
 			}, {
-				header : Eway.locale.machine.atmGroup.devCatalogName,
+				header : EwayLocale.machine.atmGroup.devCatalogName,
 				dataIndex : 'devCatalogName'
 			}, {
-				header : Eway.locale.machine.atmGroup.status,
+				header : EwayLocale.machine.atmGroup.status,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return Eway.locale.machine.atmGroup.open;
+						return EwayLocale.machine.atmGroup.open;
 					}
 					if (value == 2) {
-						return Eway.locale.machine.atmGroup.close;
+						return EwayLocale.machine.atmGroup.close;
 					}
 				}
 			}, {
-				header : Eway.locale.machine.atmGroup.devServiceName,
+				header : EwayLocale.machine.atmGroup.devServiceName,
 				dataIndex : 'devServiceName'
 			}, {
-				header : Eway.locale.machine.atmGroup.cashboxLimit,
+				header : EwayLocale.machine.atmGroup.cashboxLimit,
 				dataIndex : 'cashboxLimit'
 			}, {
-				header : Eway.locale.machine.atmGroup.address,
+				header : EwayLocale.machine.atmGroup.address,
 				dataIndex : 'address',
 				flex : 1
 			} ],

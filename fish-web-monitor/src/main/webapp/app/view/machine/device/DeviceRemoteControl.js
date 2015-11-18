@@ -12,7 +12,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 	            ],
 
 	id : 'DeviceRemoteControlId',
-	title : Eway.locale.machine.device.remoteControl,
+	title : EwayLocale.machine.device.remoteControl,
 
 	initComponent : function() {
 		Ext.apply(this, {
@@ -26,26 +26,26 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 				border : true,
 
 				items:[{
-						 title:Eway.locale.machine.device.collectJPR,
+						 title:EwayLocale.machine.device.collectJPR,
 						 id:'log'
 					 },{
-						 title:Eway.locale.machine.device.remoteScreen,
+						 title:EwayLocale.machine.device.remoteScreen,
 						 id:'screen',
 						 xtype : 'remote_remoteBrowseScreenCustomGrid'
 					 },{
-						 title:Eway.locale.machine.device.processCheck,
+						 title:EwayLocale.machine.device.processCheck,
 						 id:'process',
 						 xtype : 'remote_remoteBrowseProcessGrid'
 					 },{
-						 title:Eway.locale.machine.device.remoteExplorer,
+						 title:EwayLocale.machine.device.remoteExplorer,
 						 id:'deviceRemoteControlPanelId',
 						 xtype : 'device.deviceRemoteControlPanel'
 					 },{
-						 title:Eway.locale.machine.device.netWorkLink,
+						 title:EwayLocale.machine.device.netWorkLink,
 						 id:'netWorkId',
 						 xtype : 'remote.NetWork'
 					 },{
-						 title:Eway.locale.machine.device.remoteRestart,
+						 title:EwayLocale.machine.device.remoteRestart,
 						 layout: {
                              type: 'hbox',
                              padding:'5',
@@ -54,10 +54,10 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 						 defaults : {margins:'0 5 0 0'},
 						 items : [{
 							 xtype : 'button',
-							 text : Eway.locale.machine.device.restartApply,
+							 text : EwayLocale.machine.device.restartApply,
 							 scale : 'large',
 							 handler : function(){
-								 Ext.MessageBox.confirm(Eway.locale.tip.remind,Eway.locale.machine.device.confirmRestartApply,callback);
+								 Ext.MessageBox.confirm(EwayLocale.tip.remind,EwayLocale.machine.device.confirmRestartApply,callback);
 								 function callback(id){
 									 if(id == 'yes'){
 
@@ -72,7 +72,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 													var appRet = object.appRet;
 													if(appRet = '00'){
 												           var msgBox = Ext.MessageBox.show({
-												                title:Eway.locale.machine.device.progressTip,
+												                title:EwayLocale.machine.device.progressTip,
 												                modal:true,
 												                msg : '',
 												                progress:true,
@@ -86,12 +86,12 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 												        		   count++;
 												        		   percentage = count/10;
 //												        		   processText = '当前进度：'+percentage*100+'%';
-												        		   processText =Eway.locale.machine.device.nowRestartApply;
-												        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+Eway.locale.machine.device.updateProBar+'</font>');
+												        		   processText =EwayLocale.machine.device.nowRestartApply;
+												        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+EwayLocale.machine.device.updateProBar+'</font>');
 												        		   if(count>10){
 												        			   Ext.TaskManager.stop(task);
 												                        msgBox.hide();
-												                        Eway.alert(Eway.locale.machine.device.restartApplySuc);
+												                        Eway.alert(EwayLocale.machine.device.restartApplySuc);
 												                    }
 												        	   } ,
 												        	   interval:1000
@@ -99,7 +99,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 												           Ext.TaskManager.start(task);
 
 													}else if(appRet = '01'){
-														Eway.alert(Eway.locale.machine.device.restartApplyFail);
+														Eway.alert(EwayLocale.machine.device.restartApplyFail);
 													}
 												}
 											});
@@ -108,10 +108,10 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 								}
 						 },{
 							 xtype : 'button',
-							 text : Eway.locale.machine.device.restartDrive,
+							 text : EwayLocale.machine.device.restartDrive,
 							 scale : 'large',
 							 handler : function(){
-								 Ext.MessageBox.confirm(Eway.locale.tip.remind,Eway.locale.machine.device.confirmRestartDrive,callback);
+								 Ext.MessageBox.confirm(EwayLocale.tip.remind,EwayLocale.machine.device.confirmRestartDrive,callback);
 								 function callback(id){
 									 if(id == 'yes'){
 										 Ext.Ajax.request({
@@ -125,7 +125,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 													var appRet = object.appRet;
 													if(appRet = '00'){
 												           var msgBox = Ext.MessageBox.show({
-												                title:Eway.locale.machine.device.progressTip,
+												                title:EwayLocale.machine.device.progressTip,
 												                modal:true,
 												                msg : '',
 												                progress:true,
@@ -139,19 +139,19 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 												        		   count++;
 												        		   percentage = count/10;
 //												        		   processText = '当前进度：'+percentage*100+'%';
-												        		   processText =Eway.locale.machine.device.nowRestartDrive;
-												        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+Eway.locale.machine.device.updateProBar+'</font>');
+												        		   processText =EwayLocale.machine.device.nowRestartDrive;
+												        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+EwayLocale.machine.device.updateProBar+'</font>');
 												        		   if(count>10){
 												        			   Ext.TaskManager.stop(task);
 												                        msgBox.hide();
-												                        Eway.alert(Eway.locale.machine.device.restartDriveSuc);
+												                        Eway.alert(EwayLocale.machine.device.restartDriveSuc);
 												                    }
 												        	   } ,
 												        	   interval:1000
 												           }
 												           Ext.TaskManager.start(task);
 													}else if(appRet = '01'){
-														Eway.alert(Eway.locale.machine.device.restartDriveFail);
+														Eway.alert(EwayLocale.machine.device.restartDriveFail);
 													}
 												}
 											});
@@ -161,10 +161,10 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 								}
 						 },{
 							 xtype : 'button',
-							 text : Eway.locale.machine.device.restartOS,
+							 text : EwayLocale.machine.device.restartOS,
 							 scale : 'large',
 							 handler : function(){
-								 Ext.MessageBox.confirm(Eway.locale.tip.remind,Eway.locale.machine.device.confirmRestartOS,callback);
+								 Ext.MessageBox.confirm(EwayLocale.tip.remind,EwayLocale.machine.device.confirmRestartOS,callback);
 								 function callback(id){
 									 if(id == 'yes'){
 										 Ext.Ajax.request({
@@ -179,7 +179,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 													if(appRet = '00'){
 
 												           var msgBox = Ext.MessageBox.show({
-												                title:Eway.locale.machine.device.progressTip,
+												                title:EwayLocale.machine.device.progressTip,
 												                modal:true,
 												                msg : '',
 												                progress:true,
@@ -193,19 +193,19 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 												        		   count++;
 												        		   percentage = count/10;
 //												        		   processText = '当前进度：'+percentage*100+'%';
-												        		   processText =Eway.locale.machine.device.nowRestartOS;
-												        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+Eway.locale.machine.device.updateProBar+'</font>');
+												        		   processText =EwayLocale.machine.device.nowRestartOS;
+												        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+EwayLocale.machine.device.updateProBar+'</font>');
 												        		   if(count>10){
 												        			   Ext.TaskManager.stop(task);
 												                        msgBox.hide();
-												                        Eway.alert(Eway.locale.machine.device.restartOSSuc);
+												                        Eway.alert(EwayLocale.machine.device.restartOSSuc);
 												                    }
 												        	   } ,
 												        	   interval:1000
 												           }
 												           Ext.TaskManager.start(task);
 													}else if(appRet = '01'){
-														Eway.alert(Eway.locale.machine.device.restartOSFail);
+														Eway.alert(EwayLocale.machine.device.restartOSFail);
 													}
 												}
 											});
@@ -215,7 +215,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 								}
 						 }]
 					 },{
-						 title:Eway.locale.machine.device.remoteShutdown,
+						 title:EwayLocale.machine.device.remoteShutdown,
 						 layout: {
                              type: 'hbox',
                              padding:'5',
@@ -224,10 +224,10 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 						 defaults : {margins:'0 5 0 0'},
 						 items : [{
 							 xtype : 'button',
-							 text : Eway.locale.machine.device.shutdownApply,
+							 text : EwayLocale.machine.device.shutdownApply,
 							 scale : 'large',
 							 handler : function(){
-								 Ext.MessageBox.confirm(Eway.locale.tip.remind,Eway.locale.machine.device.confirmShutdownApply,callback);
+								 Ext.MessageBox.confirm(EwayLocale.tip.remind,EwayLocale.machine.device.confirmShutdownApply,callback);
 								 function callback(id){
 									 if(id == 'yes'){
 										 Ext.Ajax.request({
@@ -242,7 +242,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 													if(appRet = '00'){
 
 														var msgBox = Ext.MessageBox.show({
-											                title:Eway.locale.machine.device.progressTip,
+											                title:EwayLocale.machine.device.progressTip,
 											                modal:true,
 											                msg : '',
 											                progress:true,
@@ -256,12 +256,12 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 											        		   count++;
 											        		   percentage = count/10;
 //											        		   processText = '当前进度：'+percentage*100+'%';
-											        		   processText =Eway.locale.machine.device.nowShutdownApply;
-											        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+Eway.locale.machine.device.updateProBar+'</font>');
+											        		   processText =EwayLocale.machine.device.nowShutdownApply;
+											        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+EwayLocale.machine.device.updateProBar+'</font>');
 											        		   if(count>10){
 											        			   Ext.TaskManager.stop(task);
 											                        msgBox.hide();
-											                        Eway.alert(Eway.locale.machine.device.shutdownApplySuc);
+											                        Eway.alert(EwayLocale.machine.device.shutdownApplySuc);
 											                    }
 											        	   } ,
 											        	   interval:1000
@@ -269,7 +269,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 											           Ext.TaskManager.start(task);
 
 													}else if(appRet = '01'){
-														Eway.alert(Eway.locale.machine.device.shutdownApplyFail);
+														Eway.alert(EwayLocale.machine.device.shutdownApplyFail);
 													}
 												}
 											});
@@ -279,10 +279,10 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 							 }
 						 },{
 							 xtype : 'button',
-							 text : Eway.locale.machine.device.shutdownDrive,
+							 text : EwayLocale.machine.device.shutdownDrive,
 							 scale : 'large',
 							 handler : function(){
-								 Ext.MessageBox.confirm(Eway.locale.tip.remind,Eway.locale.machine.device.confirmShutdownDrive,callback);
+								 Ext.MessageBox.confirm(EwayLocale.tip.remind,EwayLocale.machine.device.confirmShutdownDrive,callback);
 								 function callback(id){
 									 if(id == 'yes'){
 										 Ext.Ajax.request({
@@ -297,7 +297,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 													if(appRet = '00'){
 
 														var msgBox = Ext.MessageBox.show({
-											                title:Eway.locale.machine.device.progressTip,
+											                title:EwayLocale.machine.device.progressTip,
 											                modal:true,
 											                msg : '',
 											                progress:true,
@@ -311,19 +311,19 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 											        		   count++;
 											        		   percentage = count/10;
 //											        		   processText = '当前进度：'+percentage*100+'%';
-											        		   processText =Eway.locale.machine.device.nowShutdownDrive;
-											        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+Eway.locale.machine.device.updateProBar+'</font>');
+											        		   processText =EwayLocale.machine.device.nowShutdownDrive;
+											        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+EwayLocale.machine.device.updateProBar+'</font>');
 											        		   if(count>10){
 											        			   Ext.TaskManager.stop(task);
 											                        msgBox.hide();
-											                        Eway.alert(Eway.locale.machine.device.shutdownDriveSuc);
+											                        Eway.alert(EwayLocale.machine.device.shutdownDriveSuc);
 											                    }
 											        	   } ,
 											        	   interval:1000
 											           }
 											           Ext.TaskManager.start(task);
 													}else if(appRet = '01'){
-														Eway.alert(Eway.locale.machine.device.shutdownDriveFail);
+														Eway.alert(EwayLocale.machine.device.shutdownDriveFail);
 													}
 												}
 											});
@@ -335,10 +335,10 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 
 						 },{
 							 xtype : 'button',
-							 text : Eway.locale.machine.device.shutdownOS,
+							 text : EwayLocale.machine.device.shutdownOS,
 							 scale : 'large',
 							 handler : function(){
-								 Ext.MessageBox.confirm(Eway.locale.tip.remind,Eway.locale.machine.device.confirmShutdownOS,callback);
+								 Ext.MessageBox.confirm(EwayLocale.tip.remind,EwayLocale.machine.device.confirmShutdownOS,callback);
 								 function callback(id){
 									 if(id == 'yes'){
 										 Ext.Ajax.request({
@@ -353,7 +353,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 													if(appRet == '00'){
 
 														var msgBox = Ext.MessageBox.show({
-											                title:Eway.locale.machine.device.progressTip,
+											                title:EwayLocale.machine.device.progressTip,
 											                modal:true,
 											                msg : '',
 											                progress:true,
@@ -367,12 +367,12 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 											        		   count++;
 											        		   percentage = count/10;
 //											        		   processText = '当前进度：'+percentage*100+'%';
-											        		   processText =Eway.locale.machine.device.nowShutdownOS;
-											        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+Eway.locale.machine.device.updateProBar+'</font>');
+											        		   processText =EwayLocale.machine.device.nowShutdownOS;
+											        		   msgBox.updateProgress(percentage,processText,'<font color="red">'+EwayLocale.machine.device.updateProBar+'</font>');
 											        		   if(count>10){
 											        			   Ext.TaskManager.stop(task);
 											                        msgBox.hide();
-											                        Eway.alert(Eway.locale.machine.device.shutdownOSSuc);
+											                        Eway.alert(EwayLocale.machine.device.shutdownOSSuc);
 											                    }
 											        	   } ,
 											        	   interval:1000
@@ -380,7 +380,7 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 											           Ext.TaskManager.start(task);
 
 													}else if(appRet == '01'){
-														Eway.alert(Eway.locale.machine.device.shutdownOSFail);
+														Eway.alert(EwayLocale.machine.device.shutdownOSFail);
 													}
 												}
 											});
@@ -391,20 +391,20 @@ Ext.define('Eway.view.machine.device.DeviceRemoteControl', {
 							 }
 						 }]
 					 },{
-						 title:Eway.locale.machine.device.getSoftwareList,
+						 title:EwayLocale.machine.device.getSoftwareList,
 						 id:'software',
 						 xtype : 'remote_remoteBrowseInstationGrid'
 					 },{
-						 title:Eway.locale.machine.device.forceReset,
+						 title:EwayLocale.machine.device.forceReset,
 						 id:'reset'
 					 },{
-						 title:Eway.locale.machine.device.openService,
+						 title:EwayLocale.machine.device.openService,
 						 id:'openservice'
 					 },{
-						 title:Eway.locale.machine.device.pauseService,
+						 title:EwayLocale.machine.device.pauseService,
 						 id:'pause'
 					 },{
-						 title:Eway.locale.machine.device.checkStatus,
+						 title:EwayLocale.machine.device.checkStatus,
 						 id:'check'
 					 }]
 			}

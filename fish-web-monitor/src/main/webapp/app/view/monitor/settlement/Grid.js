@@ -11,11 +11,11 @@ Ext.define('Eway.view.monitor.settlement.Grid', {
 			initRegion : true,
 			store : store,
 			tbar : [ '->', {
-				text : Eway.locale.button.search,
+				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			}, {
-				text : Eway.locale.commen.info,
+				text : EwayLocale.commen.info,
 				glyph : 0xf129,
 				action : 'info'
 			} ],
@@ -24,37 +24,37 @@ Ext.define('Eway.view.monitor.settlement.Grid', {
 				stripeRows : true
 			},
 			columns : [ Ext.create('Ext.grid.RowNumberer'), {
-				header : Eway.locale.commen.terminalId,
+				header : EwayLocale.commen.terminalId,
 				dataIndex : 'termId'
 			}, {
-				header : Eway.locale.monitor.business.settlement.uuId,
+				header : EwayLocale.monitor.business.settlement.uuId,
 				dataIndex : 'uuId'
 			}, {
-				header : Eway.locale.monitor.business.settlement.endAmt,
+				header : EwayLocale.monitor.business.settlement.endAmt,
 				dataIndex : 'leftAmt',
 				renderer: this.cnMoney
 			}, {
-				header : Eway.locale.monitor.business.settlement.leftDate,
+				header : EwayLocale.monitor.business.settlement.leftDate,
 				dataIndex : 'date'
 			}, {
-				header : Eway.locale.monitor.business.settlement.cimNum,
+				header : EwayLocale.monitor.business.settlement.cimNum,
 				dataIndex : 'deposit'
 			}, {
-				header : Eway.locale.monitor.business.settlement.cimAmt,
+				header : EwayLocale.monitor.business.settlement.cimAmt,
 				dataIndex : 'depositAmt',
 				renderer: this.cnMoney
 			}, {
-				header : Eway.locale.monitor.business.settlement.cdmNum,
+				header : EwayLocale.monitor.business.settlement.cdmNum,
 				dataIndex : 'withdrawal'
 			}, {
-				header : Eway.locale.monitor.business.settlement.cdmAmt,
+				header : EwayLocale.monitor.business.settlement.cdmAmt,
 				dataIndex : 'withdrawalAmt',
 				renderer: this.cnMoney
 			}, {
-				header : Eway.locale.monitor.business.settlement.totalNum,
+				header : EwayLocale.monitor.business.settlement.totalNum,
 				dataIndex : 'transaction'
 			}, {
-				header : Eway.locale.monitor.business.settlement.tranAmt,
+				header : EwayLocale.monitor.business.settlement.tranAmt,
 				dataIndex : 'transactionAmt',
 				renderer: this.cnMoney,
 				flex : 1
@@ -62,7 +62,7 @@ Ext.define('Eway.view.monitor.settlement.Grid', {
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : Eway.locale.commen.toolbar
+				displayMsg : EwayLocale.commen.toolbar
 			})
 		});
 

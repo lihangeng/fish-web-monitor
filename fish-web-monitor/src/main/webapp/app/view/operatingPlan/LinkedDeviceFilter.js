@@ -18,8 +18,8 @@ Ext.define('Eway.view.operatingPlan.LinkedDeviceFilter',{
 				},
 				items : [ {
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : Eway.locale.refs.orgName,
-					emptyText : Eway.locale.report.openplan.placeSelect,
+					fieldLabel : EwayLocale.refs.orgName,
+					emptyText : EwayLocale.report.serviceplan.placeSelect,
 					name : 'orgName',
 					hiddenValue : 'orgId',
 					editable : true,
@@ -39,7 +39,7 @@ Ext.define('Eway.view.operatingPlan.LinkedDeviceFilter',{
 					fieldLabel : 'IP',
 					name : 'ip',
 					regex : /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/,
-					regexText : Eway.locale.vtype.ip
+					regexText : EwayLocale.vtype.ip
 				}]
 			}, {
 				columnWidth : .5,
@@ -49,10 +49,10 @@ Ext.define('Eway.view.operatingPlan.LinkedDeviceFilter',{
 				},
 				items : [  {
 					xtype : 'textfield',
-					fieldLabel :Eway.locale.commen.terminalId,
+					fieldLabel :EwayLocale.commen.terminalId,
 					name : 'terminalId',
 					regex : /^\w+[\w-_\.]*$/,
-					regexText :Eway.locale.vtype.terminalId,
+					regexText :EwayLocale.vtype.terminalId,
 					maxLength : 20
 				},{
 					style : 'padding-top:0px',

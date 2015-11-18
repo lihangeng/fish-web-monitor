@@ -5,7 +5,7 @@ Ext.define('Eway.view.report.baseReport.DeviceUseCountReportView', {
 	requires : [ 'Eway.view.report.baseReport.ReportDownload',
 			'Eway.view.report.baseReport.DeviceUseCountReportFilter' ],
 
-	title : Eway.locale.report.baseReport.devRunInfoRep,
+	title : EwayLocale.report.baseReport.devRunInfoRep,
 	layout : 'border',
 
 	initComponent : function() {

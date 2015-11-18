@@ -20,16 +20,16 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 				items : [{
 					labelWidth : 60,
 					xtype : 'textfield',
-					fieldLabel : Eway.locale.commen.terminalId,
+					fieldLabel : EwayLocale.commen.terminalId,
 					maxLength:20,
-					regexText:Eway.locale.vtype.terminalId,
+					regexText:EwayLocale.vtype.terminalId,
 					name : 'terminalId',
 					msgTarget:'side',
 					vtype : 'terminalId'
 				},{
 					labelWidth : 60,
 					xtype : 'field_faultStatus',
-					fieldLabel :Eway.locale.cases.caseFault.faultState,
+					fieldLabel :EwayLocale.cases.caseFault.faultState,
 					name : 'faultStatus'
 				}]
 			},{
@@ -38,12 +38,12 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 				items : [{
 					labelWidth : 60,
 					xtype : 'field_devMod',
-					fieldLabel : Eway.locale.cases.caseFault.faultModule,
+					fieldLabel : EwayLocale.cases.caseFault.faultModule,
 					name : 'devMod'
 				},{
 					labelWidth : 60,
 					xtype : 'field_case_faultClassify',
-					fieldLabel : Eway.locale.cases.caseFault.faultClassify,
+					fieldLabel : EwayLocale.cases.caseFault.faultClassify,
 					name : 'faultClassify'
 				}]
 			},{
@@ -51,7 +51,7 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype:'datefield',
-					fieldLabel : Eway.locale.cases.caseFault.faultStartTime,
+					fieldLabel : EwayLocale.cases.caseFault.faultStartTime,
 					name : 'faultTime',
 					value : new Date(),
 					editable : false,
@@ -79,7 +79,7 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 					}
 				},{
 					xtype : 'datefield',
-					fieldLabel : Eway.locale.cases.caseFault.faultCloseTime,
+					fieldLabel : EwayLocale.cases.caseFault.faultCloseTime,
 					name : 'closedTime',
 					editable : false,
 					format : 'Y-m-d',

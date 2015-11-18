@@ -13,7 +13,7 @@ Ext.define('Eway.view.personal.PersonalSettings', {
 		// MVVM架构的viewModel的类型，会在当前路径中根据‘personalSettings’ + Model 来确定文件名
 	},
 
-	title : Eway.locale.personalConf,
+	title : EwayLocale.personalConf,
 	layout : 'border',
 	closable:true,
 	initComponent : function() {
@@ -27,14 +27,14 @@ Ext.define('Eway.view.personal.PersonalSettings', {
 					headerPosition: 'bottom',
 					split: true,
 					items:	[{
-						title: Eway.locale.personal.personalInfo,
+						title: EwayLocale.personal.personalInfo,
 						xtype:'personalInfo',
 						listeners: {
 							beforerender : 'onBeforeRender',
 							scope : 'controller'
 						}
 					},{
-						title: Eway.locale.personal.changePwd,
+						title: EwayLocale.personal.changePwd,
 						xtype:'updatePwd'
 					}]
 				} ]

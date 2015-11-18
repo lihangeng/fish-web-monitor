@@ -17,45 +17,45 @@ Ext.define('Eway.view.machine.device.person.SelectPersonManagerGrid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-				text: Eway.locale.button.search,
+				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action: 'query'
 				}, {
-				text: Eway.locale.commen.setManager,
+				text: EwayLocale.commen.setManager,
 				glyph : 0xf0c1,
 				action: 'addselect'
 			}],
 			columns : [{
-				header : Eway.locale.commen.jobNum,
+				header : EwayLocale.commen.jobNum,
 				dataIndex : 'jobNum'
 			},{
-				header : Eway.locale.commen.name,
+				header : EwayLocale.commen.name,
 				dataIndex : 'name'
 			}, {
-				header : Eway.locale.commen.mobile,
+				header : EwayLocale.commen.mobile,
 				dataIndex : 'mobile'
 			}, {
-				header : Eway.locale.commen.phone,
+				header : EwayLocale.commen.phone,
 				dataIndex : 'phone'
 			},{
-				header : Eway.locale.commen.state,
+				header : EwayLocale.commen.state,
 				dataIndex : 'state',
 				renderer: function(value,metadata,record){
 					if(value==1){
-		                	 return Eway.locale.commen.comboxStatus.onJob;
+		                	 return EwayLocale.commen.comboxStatus.onJob;
 		             }else if(value==2){
-		                	   return Eway.locale.commen.comboxStatus.onAdjust;
+		                	   return EwayLocale.commen.comboxStatus.onAdjust;
 		             }else if(value==3){
-		                	   return Eway.locale.commen.comboxStatus.onVacation;
+		                	   return EwayLocale.commen.comboxStatus.onVacation;
 		             }else if(value==0){
-		                	   return Eway.locale.commen.comboxStatus.other;
+		                	   return EwayLocale.commen.comboxStatus.other;
 		             }
 				}
 			},{
-				header : Eway.locale.commen.email,
+				header : EwayLocale.commen.email,
 				dataIndex : 'email'
 			},{
-				header : Eway.locale.person.bankOrg.name,
+				header : EwayLocale.person.bankOrg.name,
 				dataIndex : 'organizationName',
 				flex : 1
 			}],

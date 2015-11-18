@@ -15,7 +15,7 @@ Ext.define('Eway.view.machine.atmCatalog.AtmCatalogGrid', {
 			store : store,
 			initRegion : true,
 			tbar: ['->',{
-				text:Eway.locale.button.search,
+				text:EwayLocale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			}
@@ -36,10 +36,10 @@ Ext.define('Eway.view.machine.atmCatalog.AtmCatalogGrid', {
 //			},
 			],
 			columns : [{
-				header : Eway.locale.machine.atmCatalog.name,
+				header : EwayLocale.machine.atmCatalog.name,
 				dataIndex : 'name'
 			},{
-				header : Eway.locale.machine.atmCatalog.note,
+				header : EwayLocale.machine.atmCatalog.note,
 				dataIndex : 'note',
 				flex : 1
 			}],
