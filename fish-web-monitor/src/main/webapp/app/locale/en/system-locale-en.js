@@ -110,21 +110,21 @@ Ext.apply(EwayLocale,{
 
 	//**********************************************************/
 	permission:{
-		systemMenu:'System', //系统菜单
+		systemMenu:'Menus', //系统菜单permission.systemMenu
 		role:{
 			title:'Roles',//EwayLocale.permission.role.title 角色管理
-			update:'Update role',//EwayLocale.permission.role.update 更改角色
-			name:'Role name',//EwayLocale.permission.role.name 角色名称
-			type:'Role type',//EwayLocale.permission.role.type 角色类型
-			description:'Role description',//EwayLocale.permission.role.description 角色描述
-			isSysRole:'Is system role',//EwayLocale.permission.role.isSysRole 是否是系统内置角色
-			chooseRight:'Please choose permission of menu',//EwayLocale.permission.role.chooseRight 请选择菜单权限
-			add:'Add role'//EwayLocale.permission.role.add 增加角色
+			update:'Update Role',//EwayLocale.permission.role.update 更改角色
+			name:'Name',//EwayLocale.permission.role.name 角色名称
+			type:'Type',//EwayLocale.permission.role.type 角色类型
+			description:'Description',//EwayLocale.permission.role.description 角色描述
+			isSysRole:'Is Default Role',//EwayLocale.permission.role.isSysRole 是否是系统内置角色
+			chooseRight:'Please choose permissions.',//EwayLocale.permission.role.chooseRight 请选择菜单权限
+			add:'Add Role'//EwayLocale.permission.role.add 增加角色
 		},
 		permission:{
-			menuName:'Menu name',//EwayLocale.permission.permission.menuName 菜单名称
-			menuDescription:'Menu description',//EwayLocale.permission.permission.menuDescription 菜单描述
-			menuPermission:'Menu permission'//EwayLocale.permission.permission.menuPermission 菜单权限
+			menuName:'Name',//EwayLocale.permission.permission.menuName 菜单名称
+			menuDescription:'Description',//EwayLocale.permission.permission.menuDescription 菜单描述
+			menuPermission:'Permission'//EwayLocale.permission.permission.menuPermission 菜单权限
 		}
 	}
 });

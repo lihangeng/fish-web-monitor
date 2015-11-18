@@ -145,7 +145,7 @@ Ext.apply(EwayLocale,{
 		unCertain:'Unknown',//未知
 		searchOfNoLegal:'There are some illegal parameters in the query condition,can not commit ',//查询项中存在不合法的输入,不能提交.
 		choseExportDevInfo:'Please select the machine which you want to export for detail ',//请选择要导出信息的设备
-		nowLink:'Connecting',//正在连接......
+		nowLink:'Connecting...',//正在连接......
 		linkFailure:'Connecting failed.',//EwayLocale.tip.linkFailure 连接失败
 		inputError:'Illegal input',//输入有误
 		numberExist:'Exist ID, please enter again',//此编号已经存在,请重新输入.
@@ -185,7 +185,6 @@ Ext.apply(EwayLocale,{
 		tips:'Tips',//EwayLocale.tip.tips 提示
 		input:'Please enter the right item',//EwayLocale.tip.input//请正确输入
 		roleName:'Just for character ‘a-z’ or ‘A-Z’ or numbers ‘0-9’ ,max length is 40',//EwayLocale.tip.roleName 由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位
-		roleDescription:'Just for character ‘a-z’ or ‘A-Z’、number‘0-9’、minussign‘-’、underline‘_’ or point‘.’,only start with Chinesecharacter,character or number,max length is 100',//EwayLocale.tip.roleDescription
 		notNull:'Can not be null',//EwayLocale.tip.notNull 不能为空
 		cardNo:'Just for 13 to 19 numbers',//EwayLocale.tip.cardNo 只能输入13到19个数字
 		blankBegin:'Can not start with blank',//EwayLocale.tip.blankBegin 不能以空格开头
@@ -478,8 +477,8 @@ Ext.apply(EwayLocale,{
 		},
 		yes:'yes',//EwayLocale.commen.yes 是
 		no:'no',//EwayLocale.commen.no 否
-		selectAll:'Select all',//EwayLocale.commen.selectAll 全部选择
-		selectNon:'select non',//EwayLocale.commen.selectNon 全部不选
+		selectAll:'Select All',//EwayLocale.commen.selectAll 全部选择
+		selectNon:'Select None',//EwayLocale.commen.selectNon 全部不选
 		content:'Content',//EwayLocale.commen.content 消息
 		upgrade:'Upgrade',//EwayLocale.commen.upgrade 上级
 		port:'port',//EwayLocale.commen.port 网络Port
