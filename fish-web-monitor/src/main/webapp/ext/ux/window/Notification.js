@@ -321,7 +321,7 @@ Ext.define('Ext.ux.window.Notification', {
 		if (me.stickOnClick) {
 			if (me.body && me.body.dom) {
 				Ext.fly(me.body.dom).on('click', function () {
-					me.cancelAutoClose();
+//					me.cancelAutoClose();
 					me.addCls('notification-fixed');
 				}, me);
 			}
