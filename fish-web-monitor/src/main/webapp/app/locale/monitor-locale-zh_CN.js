@@ -383,6 +383,10 @@ Ext.apply(EwayLocale,{
 			versionInfo:'您要查看的版本信息如下:',
 			ATMCVersion:'ATMC应用版本',
 			monitorVersion: '监控客户端版本',
+			mergeload:'查看下载列表',
+			mergeDownLoad:'执行下载任务',
+			clickAddLoadFile:'单击添加到下载列表',
+			removeFile:'删除',
 
 		}
 	}

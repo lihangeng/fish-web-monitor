@@ -29,16 +29,16 @@ Ext.define('Eway.view.report.openrate.device.Grid', {
 				dataIndex : 'terminalId',
 				width:80
 			}, {
-				header : Eway.locale.commen.orgNameBelongs,
+				header : EwayLocale.commen.orgNameBelongs,
 				dataIndex : 'orgName',
 				width:150,
 				align:'center'
 			},{
-				header : Eway.locale.commen.devCatalogName,
+				header : EwayLocale.commen.devCatalogName,
 				dataIndex : 'devCatalogName',
 				align:'center'
 			},{
-				header : Eway.locale.report.openrate.device.statDate,
+				header : EwayLocale.report.openrate.device.statDate,
 				dataIndex : 'statDate',
 				width:100
 			}/*, {

@@ -4,7 +4,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseShowMergeFile', {
 
 	requires: ['Eway.view.agent.remote.MergeDownLoadFileListGrid'],
 
-	title: Eway.locale.agent.remote.distanceExplorer,
+	title: EwayLocale.agent.remote.distanceExplorer,
 	modal: true,
 	defaults: {
 	        border: false,

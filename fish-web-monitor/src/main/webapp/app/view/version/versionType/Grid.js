@@ -57,7 +57,7 @@ Ext.define('Eway.view.version.versionType.Grid', {
 				header:EwayLocale.versionType.needRestart,//'需要重启设备完成升级',
 				dataIndex:'autoDeploy',
 				renderer: function(value){
-					if(value == 'true'){
+					if(value == '1'){
 						return EwayLocale.tip.right.yes;//"是";
 					}else{
 						return EwayLocale.tip.right.no//"否"
