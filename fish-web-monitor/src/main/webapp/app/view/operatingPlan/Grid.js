@@ -59,34 +59,34 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				}
 			},
 			columns : [ {
-				header : EwayLocale.report.plan.name,
+				header : EwayLocale.machine.plan.name,
 				width : 180,
 				dataIndex : 'name'
 			}, {
-				header : EwayLocale.report.plan.type,
+				header : EwayLocale.machine.plan.type,
 				width : 130,
 				dataIndex : 'planType',
 				renderer : function(value, metadata, record) {
 					if (value == "DATE") {
-						return EwayLocale.report.openplan.date;
+						return EwayLocale.machine.serviceplan.date;
 					} else if (value == "WEEK") {
-						return EwayLocale.report.openplan.week;
+						return EwayLocale.machine.serviceplan.week;
 					}
 				}
 			}, {
-				header : EwayLocale.report.openplan.machineQuantity,
+				header : EwayLocale.machine.serviceplan.machineQuantity,
 				width : 130,
 				dataIndex : 'deviceCount',
 			}, {
-				header : EwayLocale.report.openplan.state,
+				header : EwayLocale.machine.serviceplan.state,
 				width : 130,
 				dataIndex : 'planStateType'
 			}, {
-				header : EwayLocale.report.openplan.openDate,
+				header : EwayLocale.machine.serviceplan.openDate,
 				width : 180,
 				dataIndex : 'startDate'
 			}, {
-				header : EwayLocale.report.openplan.closeDate,
+				header : EwayLocale.machine.serviceplan.closeDate,
 				width : 180,
 				dataIndex : 'endDate'
 			},/* {
@@ -94,7 +94,7 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				dataIndex : 'desc',
 				flex : 1
 			},*/ {
-				header : EwayLocale.report.openplan.createDateTime,
+				header : EwayLocale.machine.serviceplan.createDateTime,
 				dataIndex : 'createDateTime',
 				width : 180,
 				fiex : 1

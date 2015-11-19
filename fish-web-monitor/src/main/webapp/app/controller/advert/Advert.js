@@ -597,6 +597,9 @@ Ext.define('Eway.controller.advert.Advert', {
 
 	//选择一个新文件的时候,立即上传到服务器
 	onFileChangedScreen :function(file,value){
+		if(value==""){
+			return;
+		}
 		var form = file.up('form').getForm();
 		var title = file.up('form').up('panel').title;
 		var win = this.getAddWaitWin();
@@ -642,6 +645,7 @@ Ext.define('Eway.controller.advert.Advert', {
 					    		endSecond: action.result.endSecond
 					    	});
 					    	tab.down('advertimgview').updateStoreData(record);
+					    	file.lastValue="";
 					    },
 					    failure: function(form, action) {
 				       	   switch (action.failureType) {

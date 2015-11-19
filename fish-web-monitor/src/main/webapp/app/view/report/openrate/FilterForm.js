@@ -58,7 +58,7 @@ Ext.define('Eway.view.report.openrate.FilterForm', {
 					xtype : 'datefield',
 					fieldLabel : EwayLocale.commen.dayTime,
 					editable : false,
-					value : new Date(),
+					value : Ext.Date.format(Ext.Date.add(new Date(), Ext.Date.DAY, -1),'Y-m-d'),
 					format : 'Y-m-d'
 				} ]
 			} ]

@@ -468,15 +468,15 @@ public class OpenRateController {
             cell.setCellValue(form.getTerminalId());
             cell.setCellStyle(bodyCellStyle);
 
-//			if (isProg) {
-//				cell = row.createCell(columnIndex++);
-//				cell.setCellValue(form.getOrgName());
-//				cell.setCellStyle(bodyCellStyle);
-//
-//				cell = row.createCell(columnIndex++);
-//				cell.setCellValue(form.getDevCatalogName());
-//				cell.setCellStyle(bodyCellStyle);
-//			}
+			if (isProg) {
+				cell = row.createCell(columnIndex++);
+				cell.setCellValue(form.getOrgName());
+				cell.setCellStyle(bodyCellStyle);
+
+				cell = row.createCell(columnIndex++);
+				cell.setCellValue(form.getDevCatalogName());
+				cell.setCellStyle(bodyCellStyle);
+			}
             cell = row.createCell(columnIndex++);
             cell.setCellValue(form.getStatDate());
             cell.setCellStyle(bodyCellStyle);

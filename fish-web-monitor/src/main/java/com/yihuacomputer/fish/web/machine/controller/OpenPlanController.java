@@ -331,7 +331,7 @@ public class OpenPlanController {
 		if (isExistCode(form.getId(), form.getName()) == true) {
 			result.put("success", false);
 			//该开机方案已存在，请重新输入！
-			result.put(FishConstant.ERROR_MSG, messageSource.getMessage("openPlan.planExsit", null,FishCfg.locale));
+			result.put(FishConstant.ERROR_MSG, messageSource.getMessage("servicePlan.planExsit", null,FishCfg.locale));
 		} else {
 			IDeviceOpenPlan openPlan = openPlanService.getDeviceOpenPlanByName(form.getName());
 			openPlan = new DeviceOpenPlan();
@@ -391,13 +391,13 @@ public class OpenPlanController {
 				result.addAttribute("success", false);
 				result.addAttribute("type", 1);
 				//该方案不存在，请刷新后查看！
-				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("openPlan.planNoExsit", null,FishCfg.locale));
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("servicePlan.planNoExsit", null,FishCfg.locale));
 				return result;
 			}
 			if (isExistCode(Long.valueOf(id), form.getName()) == true) {
 				result.put("success", false);
 				//该开机方案已存在，请重新输入！
-				result.put(FishConstant.ERROR_MSG, messageSource.getMessage("openPlan.planExsit", null,FishCfg.locale));
+				result.put(FishConstant.ERROR_MSG, messageSource.getMessage("servicePlan.planExsit", null,FishCfg.locale));
 				return result;
 			}
 			openPlan.setDesc(form.getDesc());
@@ -421,7 +421,7 @@ public class OpenPlanController {
 			if (plan == null) {
 				result.addAttribute("success", false);
 				//修改方案失败，请重新操作！
-				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("openPlan.updatePlanFail", null,FishCfg.locale));
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("servicePlan.updatePlanFail", null,FishCfg.locale));
 				return result;
 			}
 			form.setId(plan.getId());
@@ -430,7 +430,7 @@ public class OpenPlanController {
 		} else {
 			result.addAttribute("success", false);
 			//该方案已与设备关联，不能被更改！
-			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("openPlan.cannotUpdate", null,FishCfg.locale));
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("servicePlan.cannotUpdate", null,FishCfg.locale));
 		}
 		return result;
 	}
@@ -453,7 +453,7 @@ public class OpenPlanController {
 			if (pageResult != null && !pageResult.list().isEmpty()) {
 				result.addAttribute("success", false);
 				//该方案已应用于设备,无法删除！
-				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("openPlan.cannotDelete", null, FishCfg.locale));
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("servicePlan.cannotDelete", null, FishCfg.locale));
 				return result;
 			}
 
@@ -463,7 +463,7 @@ public class OpenPlanController {
 			result.addAttribute("success", false);
 			logger.error(ex.getMessage());
 			//删除失败
-			result.put(FishConstant.ERROR_MSG, messageSource.getMessage("openPlan.deleteFail", null,FishCfg.locale) + ex.getMessage());
+			result.put(FishConstant.ERROR_MSG, messageSource.getMessage("servicePlan.deleteFail", null,FishCfg.locale) + ex.getMessage());
 		}
 		return result;
 	}

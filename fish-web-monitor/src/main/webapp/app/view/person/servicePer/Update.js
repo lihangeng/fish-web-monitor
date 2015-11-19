@@ -17,7 +17,7 @@ Ext.define('Eway.view.person.servicePer.Update', {
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
-
+	width:500,
 	initComponent: function() {
 		Ext.apply(this, {
 			items : {
@@ -26,8 +26,8 @@ Ext.define('Eway.view.person.servicePer.Update', {
 				trackResetOnLoad : true,
 				selectOnFocus : true,
 				defaults: {
-					width: 350,
-					labelWidth: 80,
+					labelWidth: 150,
+					anchor : '90%',
 					labelAlign: 'right',
 					msgTarget : 'side'
 				},
@@ -55,8 +55,7 @@ Ext.define('Eway.view.person.servicePer.Update', {
 					xtype : 'textfield',
 					name:'jobNum',
 					maxLength : 20,
-					allowBlank : true,
-					readOnly:true
+					allowBlank : true
 				},{
 					xtype : 'hiddenfield',
 					name :'organizationId'

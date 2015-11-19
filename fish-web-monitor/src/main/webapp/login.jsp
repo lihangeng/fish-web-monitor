@@ -114,14 +114,14 @@
 							<div id="loginError" class="form-message error" style="display: none"></div>
 							<div style="width:241px;height:35px;border:1px solid #dedede;margin-top:15px;">
 								<label class="laber1" ></label>
-								<input onblur="if(this.value==''){this.value='用户名'; this.style.color='#999'}" onfocus="if(this.value=='用户名')this.value=''; this.style.color='black'" value="用户名" class ="txt" id="username" type="text"  maxlength=20 size="10" style="color:#999"
+								<input  placeholder="<spring:message code='login.username' />" class ="txt" id="username" type="text"  maxlength=20 size="10" "
 								/>
 							</div>
 							
 							 <div style="width:241px;height:35px;border:1px solid #dedede;margin-top:25px;">
 								<label class="laber2" ></label>
-								<input onblur="if(this.value==''){ this.style.color='#999';this.value='密码';type='';}" onfocus="if(this.value=='密码')this.value=''; this.style.color='black';type='password';" value="密码"
-						style="color:#999" class="txt" id="password"  maxlength=20 size="10" />
+								 <input ;" placeholder="<spring:message code='login.password' />"
+						 class="txt" id="password" type="password" maxlength=20 size="10" />
 							</div>
 							 
 								 <input style="margin-top: 30px;" class="login"
@@ -137,7 +137,7 @@
 
 <table align="center" border="0" cellpadding="0" spacpadding="0">
 <tr >
-	<td ><font style="font-size: 14px; color:#5e5e5f" >©深圳市怡化电脑股份有限公司&nbsp;【建议使用IE9.0+、FireFox、Google浏览器】</font>
+	<td ><font style="font-size: 14px; color:#5e5e5f" ><spring:message code='login.footer' /></font>
 
 </td>
 </tr>
