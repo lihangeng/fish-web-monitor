@@ -481,9 +481,6 @@ Ext.apply(EwayLocale,{
 		content:'Content',//EwayLocale.commen.content 消息
 		upgrade:'Upgrade',//EwayLocale.commen.upgrade 上级
 		port:'port',//EwayLocale.commen.port 网络Port
-		previous:'Previous',//EwayLocale.commen.previous 上一页
-		next:'next',//EwayLocale.commen.next 下一页
-		installAddr:'Install address',//EwayLocale.commen.installAddr 装机地址
 		seviceMode:'Service mode',//EwayLocale.commen.seviceMode 经营方式
 		insideOutside:'In bank flag',//EwayLocale.commen.insideOutside 在行标志
 		appVersion:'Application version',//EwayLocale.commen.appVersion 应用版本号

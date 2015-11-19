@@ -2,9 +2,9 @@
 Ext.define('Eway.view.case.caseFault.FaultNotifyGrid', {
 	alias: 'widget.caseFault_faultNotifyGrid',
 	extend: 'Eway.view.base.Grid',
-	
+
 	border : false,
-	
+
 	initComponent: function() {
 		var store = Ext.create('Eway.store.case.Notify');
 		Ext.apply(this,{
@@ -19,10 +19,10 @@ Ext.define('Eway.view.case.caseFault.FaultNotifyGrid', {
 				header : EwayLocale.cases.caseFault.informContent,
 				dataIndex : 'id',
 				items : [{
-					icon : 'resources/images/detail.png',
+					icon : 'resources/images/icon_email.gif',
 					tooltip: EwayLocale.cases.caseFault.checkDetails,
 					getClass : function(value,metadata,record,ronwIndex,colindex,store){
-						var result = record.get('id'); 
+						var result = record.get('id');
 						if(result != null){
 							return 'changeCursor';
 						}
@@ -32,8 +32,8 @@ Ext.define('Eway.view.case.caseFault.FaultNotifyGrid', {
 					},
 					handler : function(grid,rowIndex,colIndex){
 						var record = grid.getStore().getAt(rowIndex);
-						var content = record.get('content'); 
-						
+						var content = record.get('content');
+
 						var aboutInfoWin = Ext.create('Ext.window.Window', {
 						    height:150,
 						    width: 500,
@@ -111,7 +111,7 @@ Ext.define('Eway.view.case.caseFault.FaultNotifyGrid', {
 				displayInfo : true
 			})
 		});
-		
+
 		this.callParent(arguments);
 	}
 });

@@ -104,7 +104,8 @@ Ext.apply(EwayLocale,{
 			no:'编号',
 			cashtype:'非现金标志',
 			iscash:'现金',
-			nocash:'非现金'
+			nocash:'非现金',//非现金
+			modules:'包含的设备模块'
 		},
 		device:{
 			title:'设备信息管理',

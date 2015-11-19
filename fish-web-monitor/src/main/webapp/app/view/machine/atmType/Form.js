@@ -51,7 +51,7 @@ Ext.define('Eway.view.machine.atmType.Form',{
 			},
 			{
 				xtype: 'checkboxgroup',
-	            fieldLabel: '包含的设备模块',//'该类型包含的设备模块',
+	            fieldLabel: EwayLocale.machine.atmType.modules,//'该类型包含的设备模块',
 	            labelWith:120,
 	            columns: 3,
 	            loader : {//使用自定义的加载方式
