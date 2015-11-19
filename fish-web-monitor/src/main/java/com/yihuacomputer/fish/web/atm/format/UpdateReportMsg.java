@@ -32,7 +32,7 @@ public class UpdateReportMsg {
      */
     private int fileDownTimes;
 
-    private String ip;
+    private String downUrl;
     /**
      * 响应码
      */
@@ -86,12 +86,12 @@ public class UpdateReportMsg {
         this.taskId = taskId;
     }
 
-	public String getIp() {
-		return ip;
+	public String getDownUrl() {
+		return downUrl;
 	}
 
-	public void setIp(String ip) {
-		this.ip = ip;
+	public void setDownUrl(String downUrl) {
+		this.downUrl = downUrl;
 	}
 
 }
