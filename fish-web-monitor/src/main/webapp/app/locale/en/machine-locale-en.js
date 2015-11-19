@@ -91,7 +91,7 @@ Ext.apply(EwayLocale,{
 			msgCollect:'Collect info of customservice'//客服信息采集
 		},
 		atmType:{
-			title:'Device type',//设备型号
+			title:'Device Type',//设备型号
 			atmName:'Device Type',//ATM型号
 			name:'Name',//设备型号
 			devVendorName:'Brand', //所属品牌
@@ -459,7 +459,7 @@ Ext.apply(EwayLocale,{
 			drive:'Driver',//驱动
 			firmway: 'Firmware',//固件
 			noDevice:'No device',//无设备
-			devTypeInfo: 'Device type',//设备型号信息
+			devTypeInfo: 'Device Type',//设备型号信息
 
 			devInfo:'Device info',//设备信息
 			unable:'Can not',//不可以
