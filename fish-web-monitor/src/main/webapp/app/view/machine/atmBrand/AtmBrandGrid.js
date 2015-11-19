@@ -67,7 +67,7 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandGrid', {
 				header : EwayLocale.machine.atmBrand.address,
 				dataIndex : 'address',
 				flex : 3
-			},{
+			}/*,{
 				header : EwayLocale.machine.atmBrand.status,
 				dataIndex : 'status',
 				sortable : true,
@@ -79,7 +79,7 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandGrid', {
 	                   }
 					},
 				flex : 1
-			}],
+			}*/],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,
 				displayInfo : true

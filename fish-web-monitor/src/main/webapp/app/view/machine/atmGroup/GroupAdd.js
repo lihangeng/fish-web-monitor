@@ -14,12 +14,11 @@ Ext.define('Eway.view.machine.atmGroup.GroupAdd', {
 		Ext.apply(this, {
 			items : {
 				xtype: 'form',
-				bodyStyle : 'padding: 10px 10px 30px 10px',
+				bodyStyle : 'padding: 10px 30px 10px 10px',
 				trackResetOnLoad : true,
 				selectOnFocus : true,
 				defaults: {
 					width: 350,
-					labelWidth: 60,
 					labelAlign: 'right',
 					msgTarget : 'side'
 				},

@@ -531,11 +531,11 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		{
 			var record = sm.getLastSelected();
 			store.remove(record);
-			Eway.alert(EwayLocale.agent.remote.removeSuccess);
+			Eway.alert(EwayLocale.deleteSuccess);
 		}
 		else
 		{
-			Eway.alert(EwayLocale.agent.remote.mustSelection);
+			Eway.alert(EwayLocale.tip.remove.none);
 		}
 	},
 	
@@ -561,7 +561,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 				var object = Ext.decode(response.responseText);				
 				if (object.success == true) {
 					mask.hide();
-					var iframe = gridEl.prev();
+				
 					var fileName = object.fileName.replace("&", "%26");// 将文件名含有&符号的用URL编码“%26”替换
 					console.log("2222222222222");
 					if (iframe) {
@@ -574,10 +574,8 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 										+ object.path + '&fileName=' + fileName,
 								style : "display:none"
 							});
-					console.log("44444444444444444");
 					gridEl.insertSibling(iframe);
 				} else {
-					console.log("11111111111111111111111");
 					mask.hide();
 					Eway.alert(object.errors);
 				}

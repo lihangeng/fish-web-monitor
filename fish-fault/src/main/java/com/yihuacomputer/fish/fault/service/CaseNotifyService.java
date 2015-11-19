@@ -13,6 +13,7 @@ import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.fault.FaultStatus;
 import com.yihuacomputer.fish.api.fault.ICaseFault;
 import com.yihuacomputer.fish.api.fault.ICaseNotify;
 import com.yihuacomputer.fish.api.fault.ICaseNotifyService;
@@ -222,6 +223,10 @@ public class CaseNotifyService implements ICaseNotifyService {
 	@Override
 	public void createCaseNotify(IFaultClassify faultClassify, ICaseFault caseFault, List<IPerson> personList) {
 		if (caseFault == null || faultClassify == null) {
+			return;
+		}
+		//如果故障状态为关闭，则不创建短信
+		if(caseFault.getFaultStatus().equals(FaultStatus.CLOSED)){
 			return;
 		}
 
