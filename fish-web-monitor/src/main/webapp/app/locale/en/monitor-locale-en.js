@@ -66,7 +66,7 @@ Ext.apply(EwayLocale,{
 				jpr:'Journal Printer',//EwayLocale.monitor.devMonitor.mod.jpr 日志打印机
 				cdm:'Dispenser',//EwayLocale.monitor.devMonitor.mod.cdm 取款模块
 				cim:'Deposit',//EwayLocale.monitor.devMonitor.mod.cim 存款模块
-				siu:'Sensor',//EwayLocale.monitor.devMonitor.mod.siu 传感器
+				siu:'Sensors',//EwayLocale.monitor.devMonitor.mod.siu 传感器
 				rpr:'Receipt Printer',//EwayLocale.monitor.devMonitor.mod.rpr 凭条打印机
 				pin:'PIN Keypads',//EwayLocale.monitor.devMonitor.mod.pin 密码键盘
 				ttu:'TTU',//EwayLocale.monitor.devMonitor.mod.ttu 文本终端

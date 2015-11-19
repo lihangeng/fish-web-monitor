@@ -43,8 +43,8 @@ Ext.apply(EwayLocale,{
 				clickBank:'Alone out-bank self-service'//单机离行自助服务点
 			},
 			devServiceName:'Maintenance Provider',//设备维护商
-			cashboxLimit:'Cashbox Alarm Limit',//钞箱报警金额
-			installDate:'Install Date',//安装日期
+			cashboxLimit:'Cashbox Alarm Amount',//钞箱报警金额
+			installDate:'Installation Time',//安装日期
 			address:'Address',//地址
 			gourpDev:'Group<-->Device',//分组<-->设备
 			addTitle: 'Add Group Info',//增加设备组信息
@@ -471,7 +471,7 @@ Ext.apply(EwayLocale,{
 			},
 		},
 		param:{
-			paramKey:'Parameter',//EwayLocale.machine.param.paramKey 参数
+			paramKey:'Name',//EwayLocale.machine.param.paramKey 参数
 			paramValue:'Value',//EwayLocale.machine.param.paramValue参数值
 			classify:'Type',//EwayLocale.machine.param.classify 类型
 			paramType:'Type',//EwayLocale.machine.param.paramType 参数类型

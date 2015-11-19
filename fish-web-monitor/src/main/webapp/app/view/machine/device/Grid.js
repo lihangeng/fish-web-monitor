@@ -94,15 +94,15 @@ Ext.define('Eway.view.machine.device.Grid', {
 			}, {
 				header : EwayLocale.machine.atmGroup.devTypeName,
 				dataIndex : 'devTypeName',
-				width : 90
+				width : 100
 			}, {
 				header : EwayLocale.machine.atmGroup.devVendorName,
 				dataIndex : 'devVendorName',
-				width : 80
+				width : 100
 			}, {
 				header : EwayLocale.machine.atmGroup.devCatalogName,
 				dataIndex : 'devCatalogName',
-				width : 80
+				width : 100
 			}, {
 				header : EwayLocale.machine.atmGroup.status,
 				dataIndex : 'status',
@@ -120,7 +120,7 @@ Ext.define('Eway.view.machine.device.Grid', {
 						return EwayLocale.commen.comboxDevStatus.scrapped;
 					}
 				},
-				width : 80
+				width : 100
 			}, {
 				header : EwayLocale.machine.device.onBankSignal,
 				dataIndex : 'awayFlag',
@@ -135,19 +135,19 @@ Ext.define('Eway.view.machine.device.Grid', {
 						return EwayLocale.machine.device.clickBank;
 					}
 				},
-				width : 120
+				width : 130
 			}, {
 				header : EwayLocale.machine.atmGroup.devServiceName,
 				dataIndex : 'devServiceName',
-				width : 100
+				width : 140
 			}, {
-				header :  EwayLocale.machine.atmGroup.cashboxLimit,
-				dataIndex : 'cashboxLimit',
-				width : 100
+				header : EwayLocale.machine.device.devAddress,
+				dataIndex : 'address',
+				width : 160
 			}, {
 				header :  EwayLocale.machine.atmGroup.installDate,
 				dataIndex : 'installDate',
-				width : 90
+				width : 120
 			}, {
 				header : EwayLocale.machine.device.installStyle,
 				dataIndex : 'setupType',
@@ -159,10 +159,10 @@ Ext.define('Eway.view.machine.device.Grid', {
 						return EwayLocale.machine.device.mainRoom;
 					}
 				},
-				width : 80
+				width : 120
 			}, {
-				header : EwayLocale.machine.device.devAddress,
-				dataIndex : 'address',
+				header :  EwayLocale.machine.atmGroup.cashboxLimit,
+				dataIndex : 'cashboxLimit',
 				width : 160
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {
