@@ -17,21 +17,21 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 			initRegion : true,
 			viewConfig : {
 				loadMask   : {
-       			 	msg : .agent.remote.loadData
+       			 	msg :EwayLocale.agent.remote.loadData
         		}
 			},
 			tbar: [{
-				text:.agent.remote.back,
+				text:EwayLocale.agent.remote.back,
 				iconCls:'up-btn-custom',
 				action:'returnMenu',
 				xtype : 'button'
 			},{
-				text: .agent.remote.refresh,
+				text: EwayLocale.agent.remote.refresh,
 				iconCls:'refresh-btn-custom',
 				action:'reflesh',
 				xtype : 'button'
 			},{
-				text: .agent.remote.upload,
+				text: EwayLocale.agent.remote.upload,
 				iconCls:'upfile-btn-custom',
 				action:'upFile',
 				xtype : 'button',
@@ -49,7 +49,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: .agent.remote.Mkdir,
+				text: EwayLocale.agent.remote.Mkdir,
 				iconCls:'remoteMkdirBtn',
 				action:'remoteMkDir',
 				xtype : 'button',
@@ -58,7 +58,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: .agent.remote.MkFile,
+				text: EwayLocale.agent.remote.MkFile,
 				iconCls:'remoteFileBtn',
 				action:'remoteMkFile',
 				xtype : 'button',
@@ -67,7 +67,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: .agent.remote.remove,
+				text: EwayLocale.agent.remote.remove,
 				iconCls:'remoteDeleteBtn',
 				action:'remoteDel',
 				xtype : 'button',
@@ -76,7 +76,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: .agent.remote.execute,
+				text: EwayLocale.agent.remote.execute,
 				iconCls:'remoteExecBtn',
 				action:'remoteExec',
 				xtype : 'button',
@@ -94,19 +94,19 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 				name : 'path',
 				hidden: true
 			},{
-				fieldLabel : .agent.remote.path,
+				fieldLabel : EwayLocale.agent.remote.path,
 				width: 400,
 				labelAlign: 'right',
 				xtype : 'textfield',
 				enableKeyEvents:true,
 				name : 'queryPath'
 			}, {
-				text: .agent.remote.search,
+				text: EwayLocale.agent.remote.search,
 				glyph : 0xf002,
 				action: 'query'
 			}],
 			columns : [{
-				header : .agent.remote.name,
+				header : EwayLocale.agent.remote.name,
 				sortable : true,
 				renderer: this.iconBackground,
 				width : 260,
@@ -124,18 +124,18 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 	            }
 
 			}, {
-				header : .commen.type,
+				header : EwayLocale.commen.type,
 				dataIndex : 'type',
 				hidden: true,
 				sortable : true
 			}, {
-				header : .agent.remote.size,
+				header : EwayLocale.agent.remote.size,
 				dataIndex : 'size',
 				renderer: function(value,metadata,record){
 					if(record.data.type=="DIR"){
 	                 	   return "";;
 	                   }else{
-	                   	metadata.tdAttr ='data-qtip="'+.agent.remote.fileSize + value+" B"+'"';
+	                   	metadata.tdAttr ='data-qtip="'+EwayLocale.agent.remote.fileSize + value+" B"+'"';
 	                   	if(value>1024*1024*1024){
 	                   		return (value/(1024*1024*1024)).toFixed(2)+" GB";
 	                   	}else if(value>1024*1024){
@@ -148,18 +148,18 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 				},
 				sortable : true
 			},{
-				header : .agent.remote.path,
+				header : EwayLocale.agent.remote.path,
 				dataIndex : 'path',
 				width : 150,
 				hidden: true,
 				sortable : true
 			},{
-				header : .agent.remote.lastTime,
+				header : EwayLocale.agent.remote.lastTime,
 				dataIndex : 'lastTime',
 				width : 160,
 				sortable : true
 			},{
-				header : .agent.remote.screen.loading,
+				header : EwayLocale.agent.remote.screen.loading,
 				flex: 1,
 
 				xtype:'actioncolumn',
@@ -182,14 +182,14 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 						var requestPath = rec.get('path');
 						var ip = grid.up('remote_remoteBrowseView').down('textfield[name="ip"]').getValue();
 						if (rec.get('size') > 209715200) {
-							Eway.alert(.agent.remote.loadFileSize);
+							Eway.alert(EwayLocale.agent.remote.loadFileSize);
 						} else {
 							var win = grid.up('window');
-							var gridEl = grid.getEl();
-							var mask = new Ext.LoadMask(grid, {msg : .agent.remote.nowLoadFile});
+							var gridEl = grid.getEl();							
+							var mask = new Ext.LoadMask(grid, {msg : EwayLocale.agent.remote.nowLoadFile});
 							Ext.MessageBox.show({
-								title : .tip.remind,
-								msg : .agent.remote.judgeLoad,
+								title : EwayLocale.tip.remind,
+								msg : EwayLocale.agent.remote.judgeLoad,
 								modal : true,
 								fn : function(id) {
 									mask.show();
@@ -307,7 +307,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 			},
 			failure : function() {
 				mask.hide();
-				Eway.alert(.agent.remote.loadFailure);
+				Eway.alert(EwayLocale.agent.remote.loadFailure);
 			}
 		});
 	}
