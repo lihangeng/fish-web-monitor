@@ -75,7 +75,7 @@
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement>
-								<font size="13"/>
+								<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$P{orgName}]]></textFieldExpression>
 						</textField>
@@ -85,14 +85,14 @@
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement>
-								<font size="13"/>
+								<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$P{devTypeName}]]></textFieldExpression>
 						</textField>
 						<textField>
 							<reportElement uuid="4df2969e-54ab-444f-a8a3-2e3c32d1d7d6" style="Crosstab Data Text" x="317" y="0" width="203" height="30"/>
 							<textElement>
-								<font size="13"/>
+								<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$P{devStatus}]]></textFieldExpression>
 						</textField>

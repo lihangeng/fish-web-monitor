@@ -32,6 +32,7 @@ public class UpdateReportMsg {
      */
     private int fileDownTimes;
 
+    private String ip;
     /**
      * 响应码
      */
@@ -84,5 +85,13 @@ public class UpdateReportMsg {
     public void setTaskId(long taskId) {
         this.taskId = taskId;
     }
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
 
 }
