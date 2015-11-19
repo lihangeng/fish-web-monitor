@@ -237,7 +237,7 @@ public class VersionService implements IDomainVersionService {
 	 *            处理结果
 	 */
 	@Override
-	public void collectUpdateReport(long taskId, String ret) {
+	public void collectUpdateReport(long taskId, String ret,String ip) {
 		ITask task = taskService.get(taskId);
 		if (task == null) {
 			return;
@@ -265,6 +265,7 @@ public class VersionService implements IDomainVersionService {
 		} else {
 			task.setStatus(TaskStatus.OTHER);
 		}
+		task.setDownSource(ip);
 		taskService.updateTask(task);
 	}
 
