@@ -1886,10 +1886,10 @@ Ext.apply(EwayLocale,{
 			dependDev:'Depend on Dev',//EwayLocale.report.baseReport.dependDev 按设备
 			tradeRep:'Transation report',//EwayLocale.report.baseReport.tradeRep 交易统计报表
 			tradeResultRep:'Transation result report',//EwayLocale.report.baseReport.tradeResultRep 交易结果统计报表
-			tradeDaysCountRep:'Transaction day count report',//EwayLocale.report.baseReport.tradeDaysCountRep
-			tradeHoursCountRep:'Transaction hour count report',//EwayLocale.report.baseReport.tradeHoursCountRep
+			tradeDaysCountRep:'Transaction count trend',//EwayLocale.report.baseReport.tradeDaysCountRep
+			tradeHoursCountRep:'Average daily transactions',//EwayLocale.report.baseReport.tradeHoursCountRep
 			tradeCount:'Transaction count',//EwayLocale.report.baseReport.tradeCount
-			caseStatisticsRep:'Fault statistics report',//EwayLocale.report.baseReport.caseStatisticsRep
+			caseStatisticsRep:'Fault trend chart',//EwayLocale.report.baseReport.caseStatisticsRep
 			angle : 'angle',//EwayLocale.report.baseReport.angle
 			device : 'device',//EwayLocale.report.baseReport.device
 			vendor : 'vendor',//EwayLocale.report.baseReport.vendor
