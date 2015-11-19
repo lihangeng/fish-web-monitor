@@ -62,7 +62,7 @@ public interface IVersionService {
      * @param ret
      *            下发结果
      */
-    public void collectUpdateReport(long taskId, String ret);
+    public void collectUpdateReport(long taskId, String ret,String ip);
 
     /**
      * 计算需要自动下发的版本

@@ -61,30 +61,18 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 				}, {
 					layout : 'column',
 					defaultType : 'displayfield',
-					items : [ {
+					items : [{
 						columnWidth : .5,
-						fieldLabel : EwayLocale.commen.insideOutside,
-						name : 'insideOutside'
-					}, {
-						columnWidth : .49,
 						fieldLabel : EwayLocale.commen.ip,
 						name : 'ip'
-					} ]
-				}, {
-					layout : 'column',
-					defaultType : 'displayfield',
-					items : [ {
-						columnWidth : .5,
-						fieldLabel : EwayLocale.commen.installAddr,
+					}, {
+						columnWidth : .49,
+						fieldLabel : EwayLocale.machine.device.devAddress,
 						name : 'address',
 						tips : true,
 						fieldCls : 'text_ellipsis'
-					}, {
-						columnWidth : .49,
-						fieldLabel : EwayLocale.commen.appVersion,
-						name : 'appRelease'
 					} ]
-				} ]
+				}]
 			}, {
 				xtype : 'fieldset',
 				title : EwayLocale.commen.devStatus,
@@ -99,11 +87,13 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .5,
 						fieldLabel : EwayLocale.monitor.devMonitor.comboxStatus.runStatus,
 						name : 'runStatus',
+						labelWidth:120,
 						a_link : true
 					}, {
 						columnWidth : .49,
 						fieldLabel : EwayLocale.monitor.devMonitor.cash.boxInitCount,
-						name : 'boxInitCount'
+						name : 'boxInitCount',
+						labelWidth:180
 					} ]
 				}, {
 					layout : 'column',
@@ -112,13 +102,15 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 				        columnWidth : .5,
 				        fieldLabel : EwayLocale.monitor.devMonitor.comboxStatus.modStatus,
 						name : 'modStatus',
+						labelWidth:120,
 						a_link : true
 
 					}, {
 						columnWidth : .49,
 						xtype: 'displayfield',
 						fieldLabel : EwayLocale.monitor.devMonitor.cash.boxCurrentCount,
-						name : 'boxCurrentCount'
+						name : 'boxCurrentCount',
+						labelWidth:180
 					} ]
 				}, {
 					layout : 'column',
@@ -127,11 +119,13 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .5,
 						fieldLabel : EwayLocale.monitor.devMonitor.comboxStatus.boxStatus,
 						name : 'boxStatus',
+						labelWidth:120,
 						a_link : true
 					}, {
 						columnWidth : .49,
 						fieldLabel : EwayLocale.monitor.devMonitor.retainCardCount,
-						name : 'retainCardCount'
+						name : 'retainCardCount',
+						labelWidth:180
 					} ]
 				}, {
 					layout : 'column',
@@ -140,11 +134,13 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .5,
 						fieldLabel : EwayLocale.monitor.devMonitor.comboxStatus.netStatus,
 						name : 'netStatus',
+						labelWidth:120,
 						a_link : true
 					}, {
 						columnWidth : .49,
 						fieldLabel : EwayLocale.monitor.devMonitor.registerStatus,
-						name : 'registerStatus'
+						name : 'registerStatus',
+						labelWidth:180
 					} ]
 				} ]
 			}, {
