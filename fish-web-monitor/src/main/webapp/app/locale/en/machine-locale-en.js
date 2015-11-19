@@ -98,13 +98,14 @@ Ext.apply(EwayLocale,{
 			devCatalogName:'Catalog',//所属类型
 			devTerminalName:'Type',//所属型号
 			no:'Code',//编号
-			cashtype:'Cash flag',//非现金标志
+			cashtype:'Cash Flag',//非现金标志
 			iscash:'Cash',//现金
-			nocash:'Not cash'//非现金
+			nocash:'Not Cash',//非现金
+			modules:'Module contains'
 		},
 		device:{
 			title:'Deivce Info',//设备信息管理
-			devDetailInfo:'Module information',//设备模块详细信息
+			devDetailInfo:'Module Info',//设备模块详细信息
 		    IDC:'Card reader(IDC)',
 			JPR:'Log printer(JPR)',
 			CDM:'Draw module(CDM)',
@@ -274,7 +275,7 @@ Ext.apply(EwayLocale,{
 			mobile:'Mobile',//手机
 			phone:'Phone',//固定电话
 			email:'Email',//邮件地址
-			deviceBasicInfo:'Basic info',//设备基本信息
+			deviceBasicInfo:'Additional info',//设备基本信息
 			lineLogo:'AwayFlag',//
 			alarmRateRMB:'Alarm cashbox(RMB)',//钞箱报警金额
 			operation:'Service mode',//经营方式
@@ -291,10 +292,10 @@ Ext.apply(EwayLocale,{
 			currentnumber: 'Current count',//当前钞箱张数
 			facevalue: 'Denomination',//钞箱面值
 			currency: 'Currency',//钞箱币种
-			systemHardwareInfo: 'Soft/hard ware info',//系统软硬件信息
-			moduleVersionInfo:'Hardware-module version(actual)',//模块硬件版本信息（实时）
-			devModuleStatusInfo: 'Module status(actual)',//设备模块状态（实时）
-			devModuleAttributeInfo: 'Module property(actual)',//设备模块属性信息（实时）
+			systemHardwareInfo: 'Hardware & Software',//系统软硬件信息
+			moduleVersionInfo:'Versions of Module(Real-time)',//模块硬件版本信息（实时）
+			devModuleStatusInfo: 'Module Status(Real-time)',//设备模块状态（实时）
+			devModuleAttributeInfo: 'Module Property(Real-time)',//设备模块属性信息（实时）
 
 			remoteControl: 'Control',//远程控制
 			collectJPR:'Logs getting',//提取日志
@@ -379,8 +380,8 @@ Ext.apply(EwayLocale,{
 			diskTotalSize:'Total size',//磁盘总大小
 			diskFreeSize:'Total free size',//磁盘可用空间大小
 			sysSoftInfo:'Software info',//系统软件信息
-			OSID:'OS-ID',//操作系统ID
-			OSDescription:'OS describe',//OS描述
+			OSID:'OS ID',//操作系统ID
+			OSDescription:'OS Description',//OS描述
 			OSType:'OS type',//OS类型
 			sysPatchLevel:'OS patch level',//系统补丁级别
 			chkCashData:'BV-version',//验钞数据版本
@@ -388,9 +389,9 @@ Ext.apply(EwayLocale,{
 			OSVendorName:'OS supplier',//OS供应商名
 			sysVersion:'OS version',//系统版本号
 			devAddress:'Address',//设备地址
-			basicInfo:'Basic info',//基本信息
-			virtual:'Virtual devCode',//虚拟设备号
-			serial:'Serial',//设备序列号
+			basicInfo:'Additional Info',//基本信息
+			virtual:'Virtual teller No.',//虚拟设备号
+			serial:'Serial number',//设备序列号
 			carrier:'Carrieroperator',//运营商
 			moneyOrg:'Cash org',//加钞机构
 			costInterest:'Rate of fund cost',//资金成本利率
@@ -398,7 +399,7 @@ Ext.apply(EwayLocale,{
 			spType:'sp type',//厂商sp类型
 			column:'Date',//日期信息
 			buyDate:'Buy date',//设备购买日期
-			installDate:'Install date',//设备安装日期
+			installDate:'Installation Time',//设备安装日期
 			startDate:'Start date',//设备启用日期
 			stopDate:'Stop date',//设备停用日期
 			expireDate:'Guaranteed date',//保修到期日期
@@ -412,43 +413,27 @@ Ext.apply(EwayLocale,{
 			costInfo:'Expenses',//费用信息
 			price:'Cost',//入账成本(元)
 
-			depreciationLife:'折旧年限(年)',
-			decoration:'Decorate charge',//装修费用
-			decorationCost:'Decorate charge(year)',//装修摊销年限(年)
-			governanceRent:'Property charge(RMB/mon)',//物业租赁费(元/月)
-			governanceCost:'Property charge(RMB/mon)',//物业管理费用(元/月)
-			netCost:'Net charge(元/月)',//通讯线路费用(元/月)
-			powerCost:'Electriccharge(RMB/mon)',
-			moneyCost:'Cash charge(Rmb/time)',//加钞维护费用(元/次)
-			statusInfo:'Status',//状态信息
-			deviceAttention:'follow with ',//设备关注程序
-			stress:'Important',//重要
-			medium:'Medium',//中等
-			ordinary:'Ordinary',//一般
-			notCashSignal:'Cash flag',//非现金标志
+			
+			notCashSignal:'Cash Flag',//非现金标志
 			cash: 'Cash',//现金
-			notCash:'Not cash',//非现金
-			installStyle: 'Insatall way',//安装方式
-			crossWall: 'CrossWall',//穿墙
-			mainRoom: 'MainRoom',//mainRoom
+			notCash:'Not Cash',//非现金
+			installStyle: 'Installation Choice',//安装方式
+			crossWall: 'Through the wall',//穿墙
+			mainRoom: 'Lobby',//mainRoom
 			netType: 'Net type',//网络类型
 			wired: 'Wired',//有线
 			wireless: 'Wireless',//wireless
-			wiredAndWireless: 'Wired flag',//wiredAndWireless
-			onBankSignal:'Inbank flag',//在行离行标志
-			inBank:'In-bank self-servce area',//在行自助服务区
-			outBank:'Out-bank self-servce',//离行自助银行
-			clickBank:'Alone out-bank self-service',//单机离行自助服务点
-			operation:'Service mode',//经营方式
-			operationSelf: 'Self-business',//自营
-			cooperation: 'Cooperation',//合作
-			epiboly: 'Outsource',//外包
+			wiredAndWireless: 'Wired & Wireless',//wiredAndWireless
+			onBankSignal:'Installation Location',//在行离行标志
+			inBank:'Line',//在行自助服务区
+			outBank:'Off-line',//离行自助银行
+			clickBank:'Half Off-line',//单机离行自助服务点
 			managePerson:'Manager',//管机员
-			maintainPerson:'Maintainer',
+			maintainPerson:'Maintence Staff',
 			to:'至',//to
 			range: 'Range 1-100 years',//范围1－－100年
-			roleDescription:'Role description',//角色描述
-			roleName:'Role name',//角色名称
+			roleDescription:'Description',//角色描述
+			roleName:'Name',//角色名称
 
 
 

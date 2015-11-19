@@ -81,17 +81,16 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 			}, {
 				columnWidth : .33,
 				defaults : {
-					labelAlign : 'right'
+					labelAlign : 'right',
+					labelWidth:160
 				},
 				items : [{
 						xtype : 'field_atmType_DeviceAtmCatalogComboBox',
 						fieldLabel : EwayLocale.machine.atmGroup.devCatalogName,
-						labelWidth: 100
 					},{
 						xtype : 'combobox',
 						fieldLabel : EwayLocale.machine.device.onBankSignal,
 						emptyText :  EwayLocale.combox.select,
-						labelWidth: 100,
 						name : 'awayFlag',
 						hiddenName : 'awayFlag',
 						editable : false,
