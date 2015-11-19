@@ -20,12 +20,12 @@ import com.yihuacomputer.fish.api.report.base.IDeviceUseCountRptService;
 @Transactional(readOnly = true)
 public class DeviceUseCountRptService implements IDeviceUseCountRptService {
     private Logger logger = org.slf4j.LoggerFactory.getLogger(DeviceUseCountRptService.class);
-    
+
     @Autowired
     private IGenericDao dao;
 
     private String countName ;
-    
+
 	@Autowired
 	private MessageSource messageSource;
 
@@ -40,7 +40,7 @@ public class DeviceUseCountRptService implements IDeviceUseCountRptService {
         IFilterEntry orgFlag = filter.getFilterEntry("orgFlag");
         IFilterEntry devTypeId = filter.getFilterEntry("devTypeId");
         IFilterEntry devVendorId = filter.getFilterEntry("devVendorId");
-        
+
         if (orgFlag != null) {
             hql.append("and org.orgFlag like ? ");
             valueObj.add(orgFlag.getValue() + "%");
@@ -49,16 +49,16 @@ public class DeviceUseCountRptService implements IDeviceUseCountRptService {
             hql.append("and device.devType.id = ? ");
             valueObj.add(devTypeId.getValue());
         }
-        
+
         if (devVendorId != null) {
             hql.append(" and type.devVendor.id = ? ");
             valueObj.add(devVendorId.getValue());
         }
-        
+
         hql.append("group by org.name, device.status, type.name ");
-        
+
         logger.info(hql.toString());
-        
+
         countName = messageSource.getMessage("report.device.line", null, FishCfg.locale);
         List<Object> list = dao.findByHQL(hql.toString(), valueObj.toArray());
         List<IDeviceUseCountRpt> deviceUseCountList = new ArrayList<IDeviceUseCountRpt>();
@@ -68,19 +68,24 @@ public class DeviceUseCountRptService implements IDeviceUseCountRptService {
             deviceUseCount.setCouneName(countName);
             deviceUseCount.setOrgName(objectToString(o[0]));
             deviceUseCount.setDevTypeName(objectToString(o[1]));
-            if (objectToString(o[2]).equals("OPENING")) {
-                deviceUseCount.setDevUseState(messageSource.getMessage("report.deviceBoxDetail.opening", null, FishCfg.locale));
+            if (objectToString(o[2]).equals("OPEN")) {
+            	deviceUseCount.setDevUseState(messageSource.getMessage("report.deviceBoxDetail.opening", null, FishCfg.locale));
             }
             if (objectToString(o[2]).equals("DISABLED")) {
-                deviceUseCount.setDevUseState(messageSource.getMessage("report.deviceBoxDetail.disabled", null, FishCfg.locale));
+            	deviceUseCount.setDevUseState(messageSource.getMessage("report.deviceBoxDetail.disabled", null, FishCfg.locale));
             }
-            
+            if (objectToString(o[2]).equals("UNOPEN")) {
+            	deviceUseCount.setDevUseState(messageSource.getMessage("report.deviceBoxDetail.unopen", null, FishCfg.locale));
+            }
+            if (objectToString(o[2]).equals("SCRAPPED")) {
+            	deviceUseCount.setDevUseState(messageSource.getMessage("report.deviceBoxDetail.scrapped", null, FishCfg.locale));
+            }
             deviceUseCount.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
             deviceUseCount.setDevTypeNameColumn(messageSource.getMessage("report.devTypeCount.type", null, FishCfg.locale));
             deviceUseCount.setDevStatusColumn(messageSource.getMessage("report.devUseCount.devRunStatus", null, FishCfg.locale));
             deviceUseCount.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
             deviceUseCount.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
-            
+
             deviceUseCount.setDeviceCount(Integer.valueOf(objectToString(o[3])));
             deviceUseCountList.add(deviceUseCount);
         }
@@ -89,7 +94,7 @@ public class DeviceUseCountRptService implements IDeviceUseCountRptService {
 
     /**
      * 对象转换为字符串，null转为""
-     * 
+     *
      * @param obj
      *            目标对象
      * @return 返回字符串
