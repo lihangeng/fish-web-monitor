@@ -26,7 +26,7 @@ Ext.apply(EwayLocale,{
 				rootBank:'Head Office',//EwayLocale.person.bankOrg.organizationLevelDict.rootBank 总行
 				branchBank:'Branch',//EwayLocale.person.bankOrg.organizationLevelDict.branchBank 分行
 				tagBranchBank:'SubBranch',//EwayLocale.person.bankOrg.organizationLevelDict.tagBranchBank 支行
-				netBank:'netBank'//EwayLocale.person.bankOrg.organizationLevelDict.netBank 网点
+				netBank:'Location'//EwayLocale.person.bankOrg.organizationLevelDict.netBank 网点
 			},
 			addOrgTitle:'Person under this organization',//EwayLocale.person.bankOrg.addOrgTitle 该机构人员信息
 			linkPeronTitle:'Person under the organization:',//EwayLocale.person.bankOrg.linkPeronTitle 当前机构下人员

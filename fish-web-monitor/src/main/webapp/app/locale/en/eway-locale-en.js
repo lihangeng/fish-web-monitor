@@ -414,9 +414,9 @@ Ext.apply(EwayLocale,{
 		state:'Status',//EwayLocale.commen.state 状态
 		birthday:'Birthday',//EwayLocale.commen.birthday 生日
 		comboxStatus:{
-			onJob:'On job',//EwayLocale.commen.comboxStatus.onJob 在岗
-			onAdjust:'On adjust',//EwayLocale.commen.comboxStatus.onAdjust 调休
-			onVacation:'On vacation',//EwayLocale.commen.comboxStatus.onVacation 休假
+			onJob:'Incumbency',//EwayLocale.commen.comboxStatus.onJob 在岗
+			onAdjust:'Leaving',//EwayLocale.commen.comboxStatus.onAdjust 离职
+			onVacation:'Vacation',//EwayLocale.commen.comboxStatus.onVacation 休假
 			other:'other',//EwayLocale.commen.comboxStatus.other 其他
 			dredge:'Dredge',//EwayLocale.commen.comboxStatus.dredge 开通
 			open:'Open',//EwayLocale.commen.comboxStatus.open 启用

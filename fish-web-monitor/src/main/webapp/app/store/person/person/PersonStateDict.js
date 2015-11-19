@@ -6,6 +6,5 @@ Ext.define('Eway.store.person.person.PersonStateDict', {
 	
 	data: [{value:'1', display:EwayLocale.commen.comboxStatus.onJob}, 
 	       {value:'2', display:EwayLocale.commen.comboxStatus.onAdjust}, 
-	       {value:'3', display:EwayLocale.commen.comboxStatus.onVacation}, 
-	       {value:'0', display:EwayLocale.commen.comboxStatus.other}]
+	       {value:'3', display:EwayLocale.commen.comboxStatus.onVacation}]
 });
