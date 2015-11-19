@@ -62,19 +62,18 @@ Ext.apply(EwayLocale,{
 			registerStatus:'Register Status',//EwayLocale.monitor.devMonitor.registerStatus 注册状态
 			devModStatus:'Status of module',//EwayLocale.monitor.devMonitor.devModStatus 设备模块状态
 			mod:{
-				idc:'CardReader',//EwayLocale.monitor.devMonitor.mod.idc 读卡器
-				jpr:'Log printer',//EwayLocale.monitor.devMonitor.mod.jpr 日志打印机
-				cdm:'Draw module',//EwayLocale.monitor.devMonitor.mod.cdm 取款模块
-				cim:'Deposit module',//EwayLocale.monitor.devMonitor.mod.cim 存款模块
+				idc:'Card Reader',//EwayLocale.monitor.devMonitor.mod.idc 读卡器
+				jpr:'Journal Printer',//EwayLocale.monitor.devMonitor.mod.jpr 日志打印机
+				cdm:'Dispenser',//EwayLocale.monitor.devMonitor.mod.cdm 取款模块
+				cim:'Deposit',//EwayLocale.monitor.devMonitor.mod.cim 存款模块
 				siu:'Sensor',//EwayLocale.monitor.devMonitor.mod.siu 传感器
-				rpr:'Voucher printer',//EwayLocale.monitor.devMonitor.mod.rpr 凭条打印机
-				pin:'Pin keyboard',//EwayLocale.monitor.devMonitor.mod.pin 密码键盘
-				ttu:'Text terminal',//EwayLocale.monitor.devMonitor.mod.ttu 文本终端
-				isc:'I.D.card scanner',//EwayLocale.monitor.devMonitor.mod.isc 身份证扫描仪
-				icc:'Issue card module',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
-				fgp:'Fingerprints',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
+				rpr:'Receipt Printer',//EwayLocale.monitor.devMonitor.mod.rpr 凭条打印机
+				pin:'PIN Keypads',//EwayLocale.monitor.devMonitor.mod.pin 密码键盘
+				ttu:'TTU',//EwayLocale.monitor.devMonitor.mod.ttu 文本终端
+				isc:'ID Scanner',//EwayLocale.monitor.devMonitor.mod.isc 身份证扫描仪
+				icc:'Issue Card',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
+				fgp:'Finger Printer',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
 				healthy:'Healthy'//EwayLocale.monitor.devMonitor.mod.healthy 模块正常
-
 			},
 			remote:{
 				control:'Remote control',//EwayLocale.monitor.devMonitor.remote.control 远程控制
