@@ -1448,7 +1448,7 @@ Ext.apply(EwayLocale,{
 			currency:'Currency supported count',//支持的币种类别总个数
 			currencies:'Currency category supported ',//支持的币种类别
 			exponents:'index',//指数
-			
+
 			CIMInfo:'Deposit module (CIM)property',//存款模块
 			canEscrow:'是否具有暂存器X',
 
@@ -1473,7 +1473,7 @@ Ext.apply(EwayLocale,{
 			track1Write:'Ability of write first track',//是否具有写一磁道数据能力
 			track2Write:'Ability of write first track',//是否具有写二磁道数据能力
 			track3Write:'Ability of write first track',//是否具有写三磁道数据能力
-			
+
 
 			JPRInfo:'Log printer(JPR) property',
 			canEject:'Ability of quit paper',//是否具有退纸能力
@@ -1889,6 +1889,13 @@ Ext.apply(EwayLocale,{
 			tradeDaysCountRep:'Transaction day count report',//EwayLocale.report.baseReport.tradeDaysCountRep
 			tradeHoursCountRep:'Transaction hour count report',//EwayLocale.report.baseReport.tradeHoursCountRep
 			tradeCount:'Transaction count',//EwayLocale.report.baseReport.tradeCount
+			caseStatisticsRep:'Fault statistics report',//EwayLocale.report.baseReport.caseStatisticsRep
+			angle : 'angle',//EwayLocale.report.baseReport.angle
+			device : 'device',//EwayLocale.report.baseReport.device
+			vendor : 'vendor',//EwayLocale.report.baseReport.vendor
+			devType : 'type',//EwayLocale.report.baseReport.devType
+			mod : 'module',//EwayLocale.report.baseReport.mod
+			rank : 'rank',//EwayLocale.report.baseReport.rank
 		},
 		openrate:{
 			device:{

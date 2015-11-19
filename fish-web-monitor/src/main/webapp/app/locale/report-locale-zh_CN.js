@@ -24,6 +24,13 @@ Ext.apply(EwayLocale,{
 			tradeDaysCountRep:'日均交易笔数趋势图',//EwayLocale.report.baseReport.tradeDaysCountRep
 			tradeHoursCountRep:'一日内时均交易笔数趋势图',//EwayLocale.report.baseReport.tradeHoursCountRep
 			tradeCount:'交易笔数',//EwayLocale.report.baseReport.tradeCount
+			caseStatisticsRep:'故障统计图',//EwayLocale.report.baseReport.caseStatisticsRep
+			angle : '统计维度',//EwayLocale.report.baseReport.angle
+			device : '设备',//EwayLocale.report.baseReport.device
+			vendor : '设备品牌',//EwayLocale.report.baseReport.vendor
+			devType : '设备型号',//EwayLocale.report.baseReport.devType
+			mod : '设备模块',//EwayLocale.report.baseReport.mod
+			rank : '排名数',//EwayLocale.report.baseReport.rank
 		},
 		openrate:{
 			device:{
