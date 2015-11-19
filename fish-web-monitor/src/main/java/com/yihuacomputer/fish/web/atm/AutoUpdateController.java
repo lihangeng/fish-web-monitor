@@ -77,7 +77,6 @@ public class AutoUpdateController {
 				    }
 				}
 			}
-
 	        //修改任务的状态
 			for(TaskMsg taskMsg : msg.getTasks()){
 			    if(taskMsg.getTaskId() == 0){
@@ -89,6 +88,7 @@ public class AutoUpdateController {
 			        task.setExceptVersion(taskMsg.getDownTypeName()+"_" + taskMsg.getDownVersionNo());
 			        task.setStatus(TaskStatus.CHECKED);
 			        task.setReason(null);
+			        task.setDownSource(taskMsg.getDownUrl());
 			        taskService.updateTask(task);
 			        taskMsg.setDeployStatus(DeployStatus.COMMITED);
 			    }
