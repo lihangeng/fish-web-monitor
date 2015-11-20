@@ -1,12 +1,12 @@
 Ext.apply(EwayLocale,{
 	//**********************************************************/
 	versionType:{
-		title:'Version Type',//EwayLocale.versionType.title 软件分类管理
+		title:'Application Type',//EwayLocale.versionType.title 软件分类管理
 		treeRoot:'All Types',//EwayLocale.versionType.treeRoot 所有软件分类
 		defaultInstallPath:'Default Install Path',//EwayLocale.versionType.defaultInstallPath 默认安装路径
-		needRestart:'Need Reboot For Update',//EwayLocale.versionType.needRestart 需要重启设备完成升级
+		needRestart:'Need Reboot For Upgrade',//EwayLocale.versionType.needRestart 需要重启设备完成升级
 		devTypeOfUser:'Suitable Device Type',//EwayLocale.versionType.devTypeOfUser //适用的设备型号
-		winTitle:'Version Type',//EwayLocale.versionType.winTitle 软件分类
+		winTitle:'Application Type',//EwayLocale.versionType.winTitle 软件分类
 		versionTypeNameRegText:'Just for character ‘a-z’ or ‘A-Z’、number‘0-9’、minussign‘-’、underline‘_’'//EwayLocale.versionType.versionTypeNameRegText 只能输入字母(a-z或A-Z)、数字(0-9)、下划线(_)、横线(-)
 	},
 	statics:{
@@ -16,7 +16,7 @@ Ext.apply(EwayLocale,{
 	},
 	//广告模块
 	advert:{
-		title:'Advert',//EwayLocale.advert.title //广告管理
+		title:'Advertisement',//EwayLocale.advert.title //广告管理
 		createAdvert:'Create Advert',//EwayLocale.advert.createAdvert 创建广告
 		idleAdvert:'Idle Advert',//EwayLocale.advert.idleAdvert 创建等待插卡广告
 		transAdvert:'Transaction Advert',//EwayLocale.advert.transAdvert 创建交易页面广告
@@ -117,7 +117,7 @@ Ext.apply(EwayLocale,{
 	},
 	//版本管理模块
 	version:{
-		selectDeviceInfo0:"Device selected(<font color='red'>",//EwayLocale.version.selectDeviceInfo0 //已选择的设备 (<font color='red'>
+		selectDeviceInfo0:"Selected Devices (<font color='red'>",//EwayLocale.version.selectDeviceInfo0 //已选择的设备 (<font color='red'>
 		selectDeviceInfo1:"</font>)",//EwayLocale.version.selectDeviceInfo1 </font>)台
 		addVersionTitle:'Add version information',//EwayLocale.version.addVersionTitle 增加版本信息
 		batchTaskName:'Batch task name',//EwayLocale.version.batchTaskName 任务批次名称

@@ -539,6 +539,7 @@ Ext.apply(EwayLocale,{
 			servicePlan:'开机方案',//EwayLocale.machine.plan.servicePlan
 		},
 		serviceplan:{
+			title:'开机方案',//EwayLocale.machine.serviceplan.title
 			name:'方案名称',//EwayLocale.machine.serviceplan.name
 			machineQuantity:'设备数量',//EwayLocale.machine.serviceplan.machineQuantity
 			state:'状态',//EwayLocale.machine.serviceplan.state

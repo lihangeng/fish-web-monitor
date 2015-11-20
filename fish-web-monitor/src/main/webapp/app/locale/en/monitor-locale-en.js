@@ -60,7 +60,7 @@ Ext.apply(EwayLocale,{
 			modStateGraphic:'Module status graphic',//EwayLocale.monitor.devMonitor.modStateGraphic 模块状态图示
 			modGraphic:'Module graphic',//EwayLocale.monitor.devMonitor.modGraphic
 			registerStatus:'Register Status',//EwayLocale.monitor.devMonitor.registerStatus 注册状态
-			devModStatus:'Status of module',//EwayLocale.monitor.devMonitor.devModStatus 设备模块状态
+			devModStatus:'Status of Modules',//EwayLocale.monitor.devMonitor.devModStatus 设备模块状态
 			mod:{
 				idc:'Card Reader',//EwayLocale.monitor.devMonitor.mod.idc 读卡器
 				jpr:'Journal Printer',//EwayLocale.monitor.devMonitor.mod.jpr 日志打印机
@@ -68,30 +68,30 @@ Ext.apply(EwayLocale,{
 				cim:'Deposit',//EwayLocale.monitor.devMonitor.mod.cim 存款模块
 				siu:'Sensors',//EwayLocale.monitor.devMonitor.mod.siu 传感器
 				rpr:'Receipt Printer',//EwayLocale.monitor.devMonitor.mod.rpr 凭条打印机
-				pin:'PIN Keypads',//EwayLocale.monitor.devMonitor.mod.pin 密码键盘
+				pin:'PIN',//EwayLocale.monitor.devMonitor.mod.pin 密码键盘
 				ttu:'TTU',//EwayLocale.monitor.devMonitor.mod.ttu 文本终端
 				isc:'ID Scanner',//EwayLocale.monitor.devMonitor.mod.isc 身份证扫描仪
-				icc:'Issue Card',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
+				icc:'Card Dispenser',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
 				fgp:'Finger Printer',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
 				healthy:'Healthy'//EwayLocale.monitor.devMonitor.mod.healthy 模块正常
 			},
 			remote:{
-				control:'Remote control',//EwayLocale.monitor.devMonitor.remote.control 远程控制
-				screen:'Remote screenshot',//EwayLocale.monitor.devMonitor.remote.screen 远程抓拍
-				log:'Get logs',//EwayLocale.monitor.devMonitor.remote.log 提取电子日志
+				control:'Remote Control',//EwayLocale.monitor.devMonitor.remote.control 远程控制
+				screen:'Screenshot',//EwayLocale.monitor.devMonitor.remote.screen 远程抓拍
+				log:'Fetch Journal Logs',//EwayLocale.monitor.devMonitor.remote.log 提取电子日志
 				net:'Check Network',//EwayLocale.monitor.devMonitor.remote.net 查看网络连接
-				softwareList:'Get software list',//EwayLocale.monitor.devMonitor.remote.softwareList 获取软件列表
+				softwareList:'Fetch Software List',//EwayLocale.monitor.devMonitor.remote.softwareList 获取软件列表
 				powerOff:'PowerOff',//EwayLocale.monitor.devMonitor.remote.powerOff 关机
 				closeWays:'Choose way of poweroff',//EwayLocale.monitor.devMonitor.remote.closeWays 请选择关机方式
 				restart:'Reboot',//EwayLocale.monitor.devMonitor.remote.restart 重启
 				restartWay:'Choose way of reboot',//EwayLocale.monitor.devMonitor.remote.restartWay 请选择重启方式
-				logicOpen:'Open service',//EwayLocale.monitor.devMonitor.remote.logicOpen 开启服务
-				logicClose:'Pause service',//EwayLocale.monitor.devMonitor.remote.logicClose 暂停服务
-				remoteBrowser:'Browse',//EwayLocale.monitor.devMonitor.remote.remoteBrowser 远程浏览
-				processList:'Check process',//EwayLocale.monitor.devMonitor.remote.processList 查看进程信息
+				logicOpen:'Start Service',//EwayLocale.monitor.devMonitor.remote.logicOpen 开启服务
+				logicClose:'Stop Service',//EwayLocale.monitor.devMonitor.remote.logicClose 暂停服务
+				remoteBrowser:'File Browse',//EwayLocale.monitor.devMonitor.remote.remoteBrowser 远程浏览
+				processList:'Fetch Process',//EwayLocale.monitor.devMonitor.remote.processList 查看进程信息
 				screenCamera:'Screen recording',//EwayLocale.monitor.devMonitor.remote.screenCamera 屏幕录制
-				reset:'Force reset',//EwayLocale.monitor.devMonitor.remote.reset 强制复位
-				remoteLook:'Check version application',//EwayLocale.monitor.devMonitor.remote.remoteLook 查看应用版本
+				reset:'Reset Modules',//EwayLocale.monitor.devMonitor.remote.reset 强制复位
+				remoteLook:'Fetch Application Info',//EwayLocale.monitor.devMonitor.remote.remoteLook 查看应用版本
 				remoteCheckATM:'Physical of ATM',//EwayLocale.monitor.devMonitor.remote.remoteCheckATM ATM体检
 				halfSer:'Half service',//EwayLocale.monitor.devMonitor.remote.halfSer 半功能
 				healthy:'Healthy',//EwayLocale.monitor.devMonitor.remote.healthy 正常服务
@@ -219,7 +219,7 @@ Ext.apply(EwayLocale,{
 
 
 			cashInit:{
-				titile:'Load Cash',//EwayLocale.monitor.business.cashInit.titile 加钞信息查询
+				titile:'Load Cash Info',//EwayLocale.monitor.business.cashInit.titile 加钞信息查询
 				uuId:'CashID',//EwayLocale.monitor.business.cashInit.uuId 加钞ID
 				date:'Date',//EwayLocale.monitor.business.cashInit.date 加钞日期
 				amt:'Amount',//EwayLocale.monitor.business.cashInit.amt 金额
@@ -230,7 +230,7 @@ Ext.apply(EwayLocale,{
 				lastAmt:'Amount left'//EwayLocale.monitor.business.cashInit.lastAmt 剩余金额
 			},
 			settlement:{
-				title:'Settlement',//EwayLocale.monitor.business.settlement.title 清机信息查询
+				title:'Settlement Info',//EwayLocale.monitor.business.settlement.title 清机信息查询
 				deTitle:'Information',//EwayLocale.monitor.business.settlement.deTitle 清机详细信息
 				settleId:'SettleID',//EwayLocale.monitor.business.settlement.settleId
 				uuId:'CycleID',//EwayLocale.monitor.business.settlement.uuId 周期ID

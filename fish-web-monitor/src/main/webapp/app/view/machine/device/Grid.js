@@ -102,7 +102,7 @@ Ext.define('Eway.view.machine.device.Grid', {
 			}, {
 				header : EwayLocale.machine.atmGroup.devCatalogName,
 				dataIndex : 'devCatalogName',
-				width : 100
+				width : 120
 			}, {
 				header : EwayLocale.machine.atmGroup.status,
 				dataIndex : 'status',
@@ -135,11 +135,11 @@ Ext.define('Eway.view.machine.device.Grid', {
 						return EwayLocale.machine.device.clickBank;
 					}
 				},
-				width : 130
+				width : 80
 			}, {
 				header : EwayLocale.machine.atmGroup.devServiceName,
 				dataIndex : 'devServiceName',
-				width : 140
+				width : 160
 			}, {
 				header : EwayLocale.machine.device.devAddress,
 				dataIndex : 'address',
