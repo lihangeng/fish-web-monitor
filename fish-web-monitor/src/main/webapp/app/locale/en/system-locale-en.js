@@ -66,12 +66,12 @@ Ext.apply(EwayLocale,{
 			directOrganization:' Maintenance Providers'
 		},
 		servicePer:{
-			title:'Maintenance Staff',//EwayLocale.person.servicePer.title 维护人员管理
+			title:'Maintenance Engineers',//EwayLocale.person.servicePer.title 维护人员管理
 			servicePerlink:'Binding Device',//EwayLocale.person.servicePer.servicePerlink 关联设备
 			addServicePerTitle:'Add maintenancer',//EwayLocale.person.servicePer.addServicePerTitle 增加维护人员信息
 			updateServicePerTitle:'Update maintenancer',//EwayLocale.person.servicePer.updateServicePerTitle 更改维护人员信息
 
-			maintainInfo:'All Maintenance Staff'//所有维护商人员信息
+			maintainInfo:'All Maintenance Engineers'//所有维护商人员信息
 		},
 		user:{
 			title:'Users',//EwayLocale.person.user.title 用户管理

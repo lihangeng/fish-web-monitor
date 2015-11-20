@@ -456,7 +456,7 @@ Ext.apply(EwayLocale,{
 		setManager:'Settings',//EwayLocale.commen.setManager 设置
 		devServiceName:'Maintenance Provider',//EwayLocale.commen.devServiceName 设备维护商
 		cashboxLimit:'Alarm of money in cashbox',//EwayLocale.commen.cashboxLimit 钞箱报警金额
-		installDate:'Install Date',//EwayLocale.commen.installDate 安装日期
+		installDate:'Installation Time',//EwayLocale.commen.installDate 安装日期
 		address:'Address',//EwayLocale.commen.address 地址
 		areaCode:'Area code',//EwayLocale.commen.areaCode 区域编号
 		areaName:'Area name',//EwayLocale.commen.areaName 区域名称
@@ -483,10 +483,10 @@ Ext.apply(EwayLocale,{
 		port:'port',//EwayLocale.commen.port 网络Port
 		seviceMode:'Service mode',//EwayLocale.commen.seviceMode 经营方式
 		insideOutside:'In bank flag',//EwayLocale.commen.insideOutside 在行标志
-		appVersion:'Application version',//EwayLocale.commen.appVersion 应用版本号
-		devInfo:'Device basic info',//EwayLocale.commen.devInfo 设备基本信息
+		appVersion:'Atmc Version',//EwayLocale.commen.appVersion 应用版本号
+		devInfo:'Device Basic Info',//EwayLocale.commen.devInfo 设备基本信息
 		//check end
-		personnel:'Contacter',//EwayLocale.commen.personnel 联系人
+		personnel:'Contacts',//EwayLocale.commen.personnel 联系人
 		warn:'Warn',//EwayLocale.commen.warn 警告
 		fatal:'Fatal',//EwayLocale.commen.fatal 故障
 		unStable:'UnStable',//EwayLocale.commen.unStable 不稳定

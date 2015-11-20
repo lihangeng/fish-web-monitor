@@ -81,7 +81,7 @@ Ext.apply(EwayLocale,{
 		atmRuntimeInfo:{
 			exportName:'Export', //导出
 			exportDateRangeText:'Start time can not be later than end time',//开始时间不能大于结束时间
-			terminalId:'Terminal Id',//终端号
+			terminalId:'Terminal ID',//终端号
 			terminalIp:'IP',//终端IP
 			startDate:'Begin time',//开始时间
 			endDate:'End time',//结束时间
@@ -391,7 +391,7 @@ Ext.apply(EwayLocale,{
 			devAddress:'Address',//设备地址
 			basicInfo:'Additional Info',//基本信息
 			virtual:'Virtual teller No.',//虚拟设备号
-			serial:'Serial number',//设备序列号
+			serial:'Serial Number',//设备序列号
 			carrier:'Carrieroperator',//运营商
 			moneyOrg:'Cash org',//加钞机构
 			costInterest:'Rate of fund cost',//资金成本利率
@@ -417,19 +417,19 @@ Ext.apply(EwayLocale,{
 			notCashSignal:'Cash Flag',//非现金标志
 			cash: 'Cash',//现金
 			notCash:'Not Cash',//非现金
-			installStyle: 'Installation Choice',//安装方式
+			installStyle: 'Installation Way',//安装方式
 			crossWall: 'Through the wall',//穿墙
 			mainRoom: 'Lobby',//mainRoom
-			netType: 'Net type',//网络类型
+			netType: 'Network Type',//网络类型
 			wired: 'Wired',//有线
 			wireless: 'Wireless',//wireless
 			wiredAndWireless: 'Wired & Wireless',//wiredAndWireless
-			onBankSignal:'Installation Location',//在行离行标志
-			inBank:'Line',//在行自助服务区
-			outBank:'Off-line',//离行自助银行
-			clickBank:'Half Off-line',//单机离行自助服务点
+			onBankSignal:'Location',//在行离行标志
+			inBank:'Bank',//在行自助服务区
+			outBank:'Non-Bank',//离行自助银行
+			clickBank:'Half Non-Bank',//单机离行自助服务点
 			managePerson:'Manager',//管机员
-			maintainPerson:'Maintence Staff',
+			maintainPerson:'Maintence Engineers',
 			to:'至',//to
 			range: 'Range 1-100 years',//范围1－－100年
 			roleDescription:'Description',//角色描述
@@ -511,27 +511,28 @@ Ext.apply(EwayLocale,{
 			closeManage:'Stop manager'//报停管理
 		},
 		plan:{
-			addPlan:'Add Plan',//EwayLocale.machine.plan.addPlan 增加方案
-			name:'Name',//EwayLocale.machine.plan.name 名称
+			addPlan:'Add Service Plan',//EwayLocale.machine.plan.addPlan 增加方案
+			name:'Plan Name',//EwayLocale.machine.plan.name 名称
 			type:'Type',//EwayLocale.machine.plan.name 名称
-			startDate:'Start time',//EwayLocale.machine.plan.startDate 有效开始时间
-			endDate:'End time',//EwayLocale.machine.plan.endDate 有效结束时间
-			terminalId:'Code',//EwayLocale.machine.plan.terminalId 编号
+			startDate:'Start Time',//EwayLocale.machine.plan.startDate 有效开始时间
+			endDate:'End Time',//EwayLocale.machine.plan.endDate 有效结束时间
+			terminalId:'Terminal ID',//EwayLocale.machine.plan.terminalId 编号
 			cashboxLimit:'Alarm cashbox(unit:piece)',//EwayLocale.machine.plan.cashboxLimit 钞箱报警金额(单位：张数)
 			perToDev:'Person<-->Device',//EwayLocale.machine.plan.perToDev 人员<-->设备
-			changePlan:'Modify plan',//EwayLocale.machine.plan.changePlan 更改方案
-			servicePlan:'Start up plan',//EwayLocale.machine.plan.servicePlan 开机方案
+			changePlan:'Update Service Plan',//EwayLocale.machine.plan.changePlan 更改方案
+			servicePlan:'Service Plan',//EwayLocale.machine.plan.servicePlan 开机方案
 		},
 		serviceplan:{
-			name:'Programme Name',//EwayLocale.machine.serviceplan.name方案名称
-			machineQuantity:'Number of devices',//EwayLocale.machine.serviceplan.machineQuantity设备数量
+			title:'Service Plan',//EwayLocale.machine.serviceplan.title
+			name:'Plan Name',//EwayLocale.machine.serviceplan.name方案名称
+			machineQuantity:'Number of devices Used',//EwayLocale.machine.serviceplan.machineQuantity设备数量
 			state:'Status',//EwayLocale.machine.serviceplan.state状态
-			openDate:'Effective boot time',//EwayLocale.machine.serviceplan.openDate有效开机时间
-			closeDate:'Effective shutdown time',//EwayLocale.machine.serviceplan.closeDate有效关机时间
-			createDateTime:'Created',//EwayLocale.machine.serviceplan.createDateTime创建时间
+			openDate:'Start Time',//EwayLocale.machine.serviceplan.openDate有效开机时间
+			closeDate:'End Time',//EwayLocale.machine.serviceplan.closeDate有效关机时间
+			createDateTime:'Created Time',//EwayLocale.machine.serviceplan.createDateTime创建时间
 			date:'Date',//EwayLocale.machine.serviceplan.date日期
 			week:'Week',//EwayLocale.machine.serviceplan.week星期
-			inportLinkedMachine:'Import related equipment',//EwayLocale.machine.serviceplan.inportLinkedMachine导入关联设备
+			inportLinkedMachine:'Import related devices',//EwayLocale.machine.serviceplan.inportLinkedMachine导入关联设备
 			selectFile:'Select the file',//EwayLocale.machine.serviceplan.selectFile选择文件
 			placeUploadingResource:'Please upload resources',//EwayLocale.machine.serviceplan.placeUploadingResource请上传资源
 			fileNotSupport:'Import file format is not supported, according to the template import device information',//EwayLocale.machine.serviceplan.fileNotSupport导入的文件格式不支持,请按模板导入设备信息
@@ -539,15 +540,15 @@ Ext.apply(EwayLocale,{
 			thisIsTooLong:'Please add the device continuously import template device number to be issued, up to a one-time import 2000 data (takes about 5 minutes), a minimum import data',//EwayLocale.machine.serviceplan.thisIsTooLong请在设备导入模板中连续添加要下发的设备号,最多一次性导入2000条数据(约耗时5分钟),最少导入1条数据
 			thisHardToTranslate:'Click to download introducing device ID template',//EwayLocale.machine.serviceplan.thisHardToTranslate点击下载导入设备号模板
 			placeSelect:'---Please select---',//EwayLocale.machine.serviceplan.placeSelect请选择
-			planDevice:'Program <--> Device',//EwayLocale.machine.serviceplan.planDevice方案<-->设备
+			planDevice:'Plan <--> Device',//EwayLocale.machine.serviceplan.planDevice方案<-->设备
 			timeEare:'Enter the time is incorrect, please re-enter！',//EwayLocale.machine.serviceplan.timeEare输入时间段有误，请重新输入
-			planOlonOne:'The same program can only set a startup or shutdown',//EwayLocale.machine.serviceplan.planOlonOne同方案只能设置开机或关机的一种
-			addSuccess:'Added successfully',//EwayLocale.machine.serviceplan.addSuccess添加成功
+			planOlonOne:'The same plan can only set a startup or shutdown',//EwayLocale.machine.serviceplan.planOlonOne同方案只能设置开机或关机的一种
+			addSuccess:'Added Successfully',//EwayLocale.machine.serviceplan.addSuccess添加成功
 			addFail:'Add Failed',//EwayLocale.machine.serviceplan.addFail添加失败
 			setTime:'Please set the detailed time',//EwayLocale.machine.serviceplan.setTime请设置详细时间
-			thisPlanStop:'(This program is disabled, can not apply!)',//EwayLocale.machine.serviceplan.thisPlanStop(此方案已停用，不可应用！)
+			thisPlanStop:'(This plan is disabled, can not apply!)',//EwayLocale.machine.serviceplan.thisPlanStop(此方案已停用，不可应用！)
 			placeRefresh:'Article lift failed. Please refresh view！',//EwayLocale.machine.serviceplan.placeRefresh条解除失败，请刷新后查看
-			linking:'Being associated equipment....',//EwayLocale.machine.serviceplan.linking正在关联设备
+			linking:'Being associated devices....',//EwayLocale.machine.serviceplan.linking正在关联设备
 			testingPlaceWaiting:'Device number is judged to meet the requirements, please wait...',//EwayLocale.machine.serviceplan.testingPlaceWaiting正在判断设备号是否符合要求，请耐心等待
 			leastOne:'Importing a device at least once information, please re-select the import file!',//EwayLocale.machine.serviceplan.leastOne最少一次导入1条设备信息，请重新选择导入文件
 			notMore:'Up to 2000 the first import device information, please re-select the import file!',//EwayLocale.machine.serviceplan.notMore最多一次导入2000条设备信息，请重新选择导入文件
@@ -567,12 +568,12 @@ Ext.apply(EwayLocale,{
 			Fri:'Fri',//EwayLocale.machine.serviceplan.Fri五
 			Sat:'Sat',//EwayLocale.machine.serviceplan.Sat六
 			Sun:'Sun',//EwayLocale.machine.serviceplan.Sun日
-			useSuccess:'Normal start',//EwayLocale.machine.serviceplan.useSuccess正常启用
+			useSuccess:'Normal',//EwayLocale.machine.serviceplan.useSuccess正常启用
 			notSuccess:'Not Enabled',//EwayLocale.machine.serviceplan.notSuccess未启用
 			lastOneGroup:'Please select at least one in the group',//EwayLocale.machine.serviceplan.lastOneGroup请在组内至少选中一项
-			lanDetailWeek:'Week program detailed list',//EwayLocale.machine.serviceplan.lanDetailWeek星期方案详细列表
-			planDetailDay:'Date program detailed list',//EwayLocale.machine.serviceplan.planDetailDay日期方案详细列表
-			selectPlan:'To select a startup program',//EwayLocale.machine.serviceplan.selectPlan选择开机方案
+			lanDetailWeek:'Week detailed list',//EwayLocale.machine.serviceplan.lanDetailWeek星期方案详细列表
+			planDetailDay:'Date detailed list',//EwayLocale.machine.serviceplan.planDetailDay日期方案详细列表
+			selectPlan:'Select a service plan',//EwayLocale.machine.serviceplan.selectPlan选择开机方案
 			weekSelect:'Notify way'//EwayLocale.machine.serviceplan.weekSelect通知方式
 		}
 
