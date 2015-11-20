@@ -62,32 +62,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									code = Ext.util.Format.stripTags(code);
 
 									var win = Ext.create('Eway.view.machine.device.person.PersonInfo');
-
-									var tabPanel = win.down('tabpanel');
-
-									// 维护员
-									var maintain = tabPanel.query('[itemid=maintainItemID]')[0];
-
-									// 管机员
-									var tubeMachine = tabPanel.query('[itemid=tubeMachineItemID]')[0];
-
-									maintain.on('render', function(tab) {
-										// 加载维护员的数据
-										var params = {
-											terminalId : code,
-											type : 1
-										};
-										tab.onReload(params);
-									}, this);
-									tubeMachine.on('render', function(tab) {
-										// 加载管机员的数据
-										var params = {
-											terminalId : code,
-											type : 0
-										};
-										tab.onReload(params);
-									}, this);
-
+									win.setTerminalId(code);
 									win.show();
 
 								}, this);
@@ -186,61 +161,206 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					}
 				},
 				//远程抓屏
-				'monitor_device_DeviceInfoStatus button[name="remoteScreenAction"]' : {
-					click : this.onRemoteScreenAction
+				'monitor_device_DeviceInfoStatus displayfield[name="remoteScreenAction"]' : {
+					afterrender : {
+						fn : function(field) {
+							var text = field.getEl().down('a.link');
+							if (text) {
+								text.on('click', this.onRemoteScreenAction, this, field);
+							}
+						},
+						scope : this
+					},
+					scope : this
 				},
+				
 				//提取日志
-				'monitor_device_DeviceInfoStatus button[name="logAction"]' : {
-					click : this.onLogAction
+				'monitor_device_DeviceInfoStatus displayfield[name="logAction"]' : {
+//					click : this.onLogAction
+					afterrender : {
+						fn : function(field) {
+							var text = field.getEl().down('a.link');
+							if (text) {
+								text.on('click', this.onLogAction, this, field);
+							}
+						},
+						scope : this
+					},
+					scope : this
 				},
 				//网络连接
-				'monitor_device_DeviceInfoStatus button[name="netAction"]' : {
-					click : this.onNetAction
+				'monitor_device_DeviceInfoStatus displayfield[name="netAction"]' : {
+//					click : this.onNetAction
+					afterrender : {
+						fn : function(field) {
+							var text = field.getEl().down('a.link');
+							if (text) {
+								text.on('click', this.onNetAction, this, field);
+							}
+						},
+						scope : this
+					},
+					scope : this
 				},
 				//获取软件列表
-				'monitor_device_DeviceInfoStatus button[name="softwareListAction"]' : {
-					click : this.onSoftwareListAction
+				'monitor_device_DeviceInfoStatus displayfield[name="softwareListAction"]' : {
+//					click : this.onSoftwareListAction
+					afterrender : {
+						fn : function(field) {
+							var text = field.getEl().down('a.link');
+							if (text) {
+								text.on('click', this.onSoftwareListAction, this, field);
+							}
+						},
+						scope : this
+					},
+					scope : this
 				},
 				//逻辑开
-				'monitor_device_DeviceInfoStatus button[name="logicOpenAction"]' : {
-					click: this.onLogicOpenAction
+				'monitor_device_DeviceInfoStatus displayfield[name="logicOpenAction"]' : {
+//					click: this.onLogicOpenAction
+					afterrender : {
+						fn : function(field) {
+							var text = field.getEl().down('a.link');
+							if (text) {
+								text.on('click', this.onLogicOpenAction, this, field);
+							}
+						},
+						scope : this
+					},
+					scope : this
 				},
 				// 逻辑关
-				'monitor_device_DeviceInfoStatus button[name="logicCloseAction"]' : {
-					click : this.onLogicCloseAction
+				'monitor_device_DeviceInfoStatus displayfield[name="logicCloseAction"]' : {
+//					click : this.onLogicCloseAction
+					afterrender : {
+						fn : function(field) {
+							var text = field.getEl().down('a.link');
+							if (text) {
+								text.on('click', this.onLogicCloseAction, this, field);
+							}
+						},
+						scope : this
+					},
+					scope : this
 				},
 				//获取进程列表
-				'monitor_device_DeviceInfoStatus button[name="processListAction"]' : {
-					click : this.onProcessListAction
+				'monitor_device_DeviceInfoStatus displayfield[name="processListAction"]' : {
+//					click : this.onProcessListAction
+					afterrender : {
+						fn : function(field) {
+							var text = field.getEl().down('a.link');
+							if (text) {
+								text.on('click', this.onProcessListAction, this, field);
+							}
+						},
+						scope : this
+					},
+					scope : this
 				},
 				//远程浏览
-				'monitor_device_DeviceInfoStatus button[name="remoteBrowserAction"]' : {
-					click : this.onRemoteBrowserAction
+				'monitor_device_DeviceInfoStatus displayfield[name="remoteBrowserAction"]' : {
+//					click : this.onRemoteBrowserAction
+					afterrender : {
+						fn : function(field) {
+							var text = field.getEl().down('a.link');
+							if (text) {
+								text.on('click', this.onRemoteBrowserAction, this, field);
+							}
+						},
+						scope : this
+					},
+					scope : this
 				},
 				//远程查看ATMC应用版本和监控客户端版本
-				'monitor_device_DeviceInfoStatus button[name="remoteLookAction"]' : {
-					click : this.onRemoteLookAction
+				'monitor_device_DeviceInfoStatus displayfield[name="remoteLookAction"]' : {
+//					click : this.onRemoteLookAction
+					afterrender : {
+						fn : function(field) {
+							var text = field.getEl().down('a.link');
+							if (text) {
+								text.on('click', this.onRemoteLookAction, this, field);
+							}
+						},
+						scope : this
+					},
+					scope : this
 				},
 				//ATM体检
-				'monitor_device_DeviceInfoStatus button[name="remoteCheckATMAction"]' : {
-					click : this.onRemoteCheckATMAction
+				'monitor_device_DeviceInfoStatus displayfield[name="remoteCheckATMAction"]' : {
+//					click : this.onRemoteCheckATMAction
+					afterrender : {
+						fn : function(field) {
+							var text = field.getEl().down('a.link');
+							if (text) {
+								text.on('click', this.onRemoteCheckATMAction, this, field);
+							}
+						},
+						scope : this
+					},
+					scope : this
 				},
 				//屏幕录制
-				'monitor_device_DeviceInfoStatus button[name="screenCameraAction"]' : {
-					click : this.onScreenCameraAction
+				'monitor_device_DeviceInfoStatus displayfield[name="screenCameraAction"]' : {
+//					click : this.onScreenCameraAction
+					afterrender : {
+						fn : function(field) {
+							var text = field.getEl().down('a.link');
+							if (text) {
+								text.on('click', this.onScreenCameraAction, this, field);
+							}
+						},
+						scope : this
+					},
+					scope : this
 				},
 				// 复位命令
-				'monitor_device_DeviceInfoStatus button[name="resetAction"]' : {
-					click : this.onResetAction
+				'monitor_device_DeviceInfoStatus displayfield[name="resetAction"]' : {
+//					click : this.onResetAction
+					afterrender : {
+						fn : function(field) {
+							var text = field.getEl().down('a.link');
+							if (text) {
+								text.on('click', this.onResetAction, this, field);
+							}
+						},
+						scope : this
+					},
+					scope : this
 				},
 				//关机命令
-				'monitor_device_DeviceInfoStatus button[name="closeAction"]' : {
-					click : this.onCloseAction
+				'monitor_device_DeviceInfoStatus displayfield[name="closeAction"]' : {
+//					click : this.onCloseAction
+					
+					afterrender : {
+						fn : function(field) {
+							var text = field.getEl().down('a.link');
+							if (text) {
+								text.on('click', this.onCloseAction, this, field);
+							}
+						},
+						scope : this
+					},
+					scope : this
 				},
 				//重启设备命令
-				'monitor_device_DeviceInfoStatus button[name="restartAction"]' : {
-					click : this.onRestartAction
+				'monitor_device_DeviceInfoStatus displayfield[name="restartAction"]' : {
+//					click : this.onRestartAction
+					afterrender : {
+						fn : function(field) {
+							var text = field.getEl().down('a.link');
+							if (text) {
+								text.on('click', this.onRestartAction, this, field);
+							}
+						},
+						scope : this
+					},
+					scope : this
 				},
+				
+				
+				
+				
 				'monitor_device_DeviceInfoStatus displayfield[name="idcStatus"]' : {
 					change : {
 						fn : function(field) {
@@ -473,8 +593,8 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	},
 
 	//打开远程抓屏
-	onRemoteScreenAction : function(btn){
-		var form = btn.up('form');
+	onRemoteScreenAction : function(ev, target, field){
+		var form = field.up('form');
 		var ip = form.down('displayfield[name="ip"]').getValue();
 		ip = Ext.util.Format.stripTags(ip);
 		var codes = form.down('displayfield[name="code"]').getValue();
@@ -518,8 +638,8 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	},
 
 	//提取电子日志
-	onLogAction : function(btn){
-		var form = btn.up('form');
+	onLogAction : function(ev, target, field){
+		var form = field.up('form');
 		var ip = form.down('displayfield[name="ip"]').getValue();
 		var code = form .down('displayfield[name="code"]').getValue();
 		code = Ext.util.Format.stripTags(code);
@@ -564,9 +684,9 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	},
 
 	//查看网络连接
-	onNetAction : function(btn){
+	onNetAction : function(ev, target, field){
 		var me = this;
-		var form = btn.up('form');
+		var form = field.up('form');
 		var ip = form.down('displayfield[name="ip"]').getValue();
 		ip = Ext.util.Format.stripTags(ip);
 		var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
@@ -580,21 +700,26 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 			},
 			success: function(response) {
 				winEl.unmask();
-				var controller = me.getController('agent.remote.RemoteBrowseNetWork');
-				var netInfoObj = Ext.decode(response.responseText);
-				controller.init();
-				controller.display(ip,netInfoObj.sendByte,netInfoObj.receivedByte,netInfoObj.conenctRate);
+				var object = Ext.decode(response.responseText);
+				if (object.success && object.success == true) {
+					var controller = me.getController('agent.remote.RemoteBrowseNetWork');
+					var netInfoObj = Ext.decode(response.responseText);
+					controller.init();
+					controller.display(ip,netInfoObj.sendByte,netInfoObj.receivedByte,netInfoObj.conenctRate);
+				} else {
+					Eway.alert(EwayLocale.tip.business.device.linkServerFail);
+				}
 			},
 			failure: function(form, action) {
-					winEl.unmask();
-					Eway.alert(EwayLocale.tip.business.device.linkServerFail);
+				winEl.unmask();
+				Eway.alert(EwayLocale.tip.business.device.linkServerFail);
 			}
 		});
 	},
 
 	//获取软件列表
-	onSoftwareListAction : function(btn){
-		var form = btn.up('form');
+	onSoftwareListAction : function(ev, target, field){
+		var form = field.up('form');
 		var ip = form.down('displayfield[name="ip"]').getValue();
 		ip = Ext.util.Format.stripTags(ip);
 		var controller = this.getController('agent.remote.RemoteBrowseInstation');
@@ -603,11 +728,11 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	},
 
 	//逻辑开
-	onLogicOpenAction : function(btn){
+	onLogicOpenAction : function(ev, target, field){
 		Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.logicOpen,
 			function(button,text){
 				if(button == 'yes'){
-					var form = btn.up('form');
+					var form = field.up('form');
 					var ip = form.down('displayfield[name="ip"]').getValue();
 					ip = Ext.util.Format.stripTags(ip);
 					var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
@@ -639,11 +764,11 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	},
 
 	//逻辑关
-	onLogicCloseAction : function(btn){
+	onLogicCloseAction : function(ev, target, field){
 		Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.closeConfirm,
 			function(button,text){
 				if(button == 'yes'){
-					var form = btn.up('form');
+					var form = field.up('form');
 					var ip = form.down('displayfield[name="ip"]').getValue();
 					ip = Ext.util.Format.stripTags(ip);
 					var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
@@ -675,8 +800,8 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	},
 
 	//获取进程列表
-	onProcessListAction : function(btn){
-		var form = btn.up('form');
+	onProcessListAction : function(ev, target, field){
+		var form = field.up('form');
 		var ip = form.down('displayfield[name="ip"]').getValue();
 		ip = Ext.util.Format.stripTags(ip);
 		var controller = this.getController('agent.remote.RemoteBrowseProcess');
@@ -684,8 +809,8 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	},
 
 	//打开远程浏览功能
-	onRemoteBrowserAction : function(btn){
-		var form = btn.up('form');
+	onRemoteBrowserAction : function(ev, target, field){
+		var form = field.up('form');
 		var ip = form.down('displayfield[name="ip"]').getValue();
 		ip = Ext.util.Format.stripTags(ip);
 		var controller = this.getController('agent.remote.RemoteBrowse');
@@ -693,7 +818,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	},
 
 	//执行关机命令
-	onCloseAction : function(btn){
+	onCloseAction : function(ev, target, field){
 		var dialog = Ext.create('Ext.window.MessageBox', {
             buttons: [{
                 text: EwayLocale.tip.business.device.closeNormal,
@@ -702,7 +827,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
             		function callBack(id){
             			if(id == 'yes'){
             				dialog.close();
-            				var form = btn.up('form');
+            				var form = field.up('form');
 		            		var ip = form.down('displayfield[name="ip"]').getValue();
 		            		var terminalId = form.down('displayfield[name="code"]').getValue();
 		            		ip = Ext.util.Format.stripTags(ip);
@@ -744,7 +869,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
             		function callBack(id){
             			if(id == 'yes'){
             				dialog.close();
-		            		var form = btn.up('form');
+		            		var form = field.up('form');
 		            		var ip = form.down('displayfield[name="ip"]').getValue();
 		            		var terminalId = form.down('displayfield[name="code"]').getValue();
 		            		terminalId = Ext.util.Format.stripTags(terminalId);
@@ -795,7 +920,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	},
 
 	//重启命令
-	onRestartAction : function(btn){
+	onRestartAction : function(ev, target, field){
 		var dialog = Ext.create('Ext.window.MessageBox', {
             buttons: [{
                 text: EwayLocale.tip.business.device.reboot,
@@ -805,7 +930,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
                 	function callBack(id){
                 		if(id == 'yes'){
 		            		dialog.close();
-		            		var form = btn.up('form');
+		            		var form = field.up('form');
 							var ip = form.down('displayfield[name="ip"]').getValue();
 							var terminalId = form.down('displayfield[name="code"]').getValue();
 							terminalId = Ext.util.Format.stripTags(terminalId);
@@ -847,7 +972,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
             		function callBack(id){
             			if(id == 'yes'){
             				dialog.close();
-		            		var form = btn.up('form');
+		            		var form = field.up('form');
 							var ip = form.down('displayfield[name="ip"]').getValue();
 							var terminalId = form.down('displayfield[name="code"]').getValue();
 							terminalId = Ext.util.Format.stripTags(terminalId);
@@ -898,11 +1023,11 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	},
 
 	//复位命令，需要C端配合
-	onResetAction : function(btn){
+	onResetAction : function(ev, target, field){
 		Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.resetConfirm,callBack);
 		function callBack(id){
 			if(id == 'yes'){
-				var form = btn.up('form');
+				var form = field.up('form');
 				var ip = form.down('displayfield[name="ip"]').getValue();
 				ip = Ext.util.Format.stripTags(ip);
 				var win = Ext.ComponentQuery.query('monitor_device_DeviceInfoStatus')[0];
@@ -935,8 +1060,8 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	},
 
 	//屏幕录像功能
-	onScreenCameraAction : function(btn){
-		var form = btn.up('form');
+	onScreenCameraAction : function(ev, target, field){
+		var form = field.up('form');
 		var terminalId = form.down('displayfield[name="code"]').getValue();
 		var ip = form.down('displayfield[name="ip"]').getValue();
 		terminalId = Ext.util.Format.stripTags(terminalId);
@@ -950,8 +1075,8 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	},
 
 	//设备体检功能
-	onRemoteCheckATMAction : function(btn){
-		var form = btn.up('form');
+	onRemoteCheckATMAction : function(ev, target, field){
+		var form = field.up('form');
 		var terminalId = form.down('displayfield[name="code"]').getValue();
 		var ip = form.down('displayfield[name="ip"]').getValue();
 		terminalId = Ext.util.Format.stripTags(terminalId);
@@ -961,8 +1086,8 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	},
 
 	// 查看应用版本
-	onRemoteLookAction : function(btn) {
-		var form = btn.up('form');
+	onRemoteLookAction : function(ev, target, field) {
+		var form = field.up('form');
 		var ip = form.down('displayfield[name="ip"]').getValue();
 		var code = form.down('displayfield[name="code"]').getValue();
 		code = Ext.util.Format.stripTags(code);

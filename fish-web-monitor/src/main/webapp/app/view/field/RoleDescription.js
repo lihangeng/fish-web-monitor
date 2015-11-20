@@ -7,7 +7,7 @@ Ext.define('Eway.view.field.RoleDescription', {
 	fieldLabel: EwayLocale.permission.role.description,
 	width:600,
 	height:60,
-	allowBlank:false,
+//	allowBlank:false,
 	msgTarget : 'side',
 	maxLength:100,
 	grow:true,

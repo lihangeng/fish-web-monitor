@@ -79,6 +79,10 @@ public class OpenPlanController {
 	/**
 	 * 设备接口
 	 */
+	
+	@Autowired
+	private MessageSource messageSourceEnum;
+	
 	@Autowired
 	private IDeviceService deviceService;
 
@@ -135,11 +139,18 @@ public class OpenPlanController {
 			int deviceCount = openPlanService.deviceCount(plan.getId());
 			plan.setDeviceCount(deviceCount);
 			OpenPlanForm form = new OpenPlanForm(plan);
+			form.setPlanStateType(getEnumI18n(form.getPlanStateType()));
 			forms.add(form);
 		}
 		return forms;
 	}
-
+	private String getEnumI18n(String enumText){
+//		 System.out.println(enumText);
+	    	if(null==enumText){
+	    		return "";
+	    	}
+	    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+	    }
 	private List<OpenPlanForm> toPlanForm(List<IDeviceOpenPlan> plans, String deviceId, String terminalId) {
 		List<OpenPlanForm> forms = new ArrayList<OpenPlanForm>();
 		for (IDeviceOpenPlan plan : plans) {

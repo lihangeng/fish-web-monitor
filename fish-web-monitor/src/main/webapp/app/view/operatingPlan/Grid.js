@@ -60,7 +60,7 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 			},
 			columns : [ {
 				header : EwayLocale.machine.plan.name,
-				width : 180,
+				flex:1,
 				dataIndex : 'name'
 			}, {
 				header : EwayLocale.machine.plan.type,
@@ -75,7 +75,7 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				}
 			}, {
 				header : EwayLocale.machine.serviceplan.machineQuantity,
-				width : 130,
+				width : 180,
 				dataIndex : 'deviceCount',
 			}, {
 				header : EwayLocale.machine.serviceplan.state,
@@ -83,21 +83,16 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				dataIndex : 'planStateType'
 			}, {
 				header : EwayLocale.machine.serviceplan.openDate,
-				width : 180,
+				width : 120,
 				dataIndex : 'startDate'
 			}, {
 				header : EwayLocale.machine.serviceplan.closeDate,
-				width : 180,
+				width : 120,
 				dataIndex : 'endDate'
-			},/* {
-				header : EwayLocale.version.View.remark,
-				dataIndex : 'desc',
-				flex : 1
-			},*/ {
+			}, {
 				header : EwayLocale.machine.serviceplan.createDateTime,
 				dataIndex : 'createDateTime',
-				width : 180,
-				fiex : 1
+				width : 150
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,

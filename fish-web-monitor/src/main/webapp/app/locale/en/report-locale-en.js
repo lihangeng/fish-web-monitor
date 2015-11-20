@@ -24,6 +24,13 @@ Ext.apply(EwayLocale,{
 			tradeDaysCountRep:'Transaction day count report',//EwayLocale.report.baseReport.tradeDaysCountRep
 			tradeHoursCountRep:'Transaction hour count report',//EwayLocale.report.baseReport.tradeHoursCountRep
 			tradeCount:'Transaction count',//EwayLocale.report.baseReport.tradeCount
+			angle : 'angle',//EwayLocale.report.baseReport.angle
+			device : 'device',//EwayLocale.report.baseReport.device
+			vendor : 'brand',//EwayLocale.report.baseReport.vendor
+			devType : 'type',//EwayLocale.report.baseReport.devType
+			mod : 'module',//EwayLocale.report.baseReport.mod
+			rank : 'rank',//EwayLocale.report.baseReport.rank
+			caseStatisticsRep:'Fault Statistic Chart',//EwayLocale.report.baseReport.caseStatisticsRep
 		},
 		openrate:{
 			device:{
