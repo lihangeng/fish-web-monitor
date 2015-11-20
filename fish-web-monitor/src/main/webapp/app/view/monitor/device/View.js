@@ -67,7 +67,6 @@ Ext.define('Eway.view.monitor.device.View',{
 						bbar : Ext.create('Ext.PagingToolbar', {
 							store : dataViewStore,
 							displayInfo : true,
-							displayMsg : EwayLocale.tip.displayMessage,
 							items : ['-', EwayLocale.tip.formatPageBfMsg, {
 							    xtype : 'combobox',
 							    name: 'pagesize',

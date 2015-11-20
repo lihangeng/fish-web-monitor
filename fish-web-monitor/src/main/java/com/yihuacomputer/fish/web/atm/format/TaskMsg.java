@@ -9,15 +9,26 @@ public class TaskMsg {
 
     private DeployStatus deployStatus;
     
+    private String downUrl;
+    
     public TaskMsg(){
         this.deployStatus = DeployStatus.UNCHECK;
     }
     
-    public TaskMsg(long taskId,String downTypeName,String downVersionNo){
+    public String getDownUrl() {
+		return downUrl;
+	}
+
+	public void setDownUrl(String downUrl) {
+		this.downUrl = downUrl;
+	}
+
+	public TaskMsg(long taskId,String downTypeName,String downVersionNo,String downUrl){
         this();
         this.taskId = taskId;
         this.downTypeName = downTypeName;
         this.downVersionNo = downVersionNo;
+        this.downUrl = downUrl;
     }
     
 

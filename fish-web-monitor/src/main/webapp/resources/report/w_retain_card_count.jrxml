@@ -83,14 +83,14 @@
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement>
-								<font size="13"/>
+								<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$P{orgName}]]></textFieldExpression>
 						</textField>
 						<textField>
 							<reportElement uuid="08e7a8b9-d719-4c37-a34c-a02c6a47e7e7" style="Crosstab Data Text" x="202" y="0" width="193" height="30"/>
 							<textElement>
-								<font size="13"/>
+								<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$P{devTypeName}]]></textFieldExpression>
 						</textField>

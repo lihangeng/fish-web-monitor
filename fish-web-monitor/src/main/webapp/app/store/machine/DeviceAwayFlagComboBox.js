@@ -9,8 +9,8 @@ Ext.define('Eway.store.machine.DeviceAwayFlagComboBox', {
 	}, {
 		value : '2',
 		display : EwayLocale.machine.device.outBank,
-	}, {
+	}/*, {
 		value : '3',
 		display : EwayLocale.machine.device.clickBank,
-	} ]
+	}*/ ]
 });

@@ -3,6 +3,7 @@ package com.yihuacomputer.fish.report.base;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.yihuacomputer.fish.api.report.base.ICaseStatisticsRptService;
 import com.yihuacomputer.fish.api.report.base.ICashInRptService;
 import com.yihuacomputer.fish.api.report.base.IDayOpenRateService;
 import com.yihuacomputer.fish.api.report.base.IDeviceBoxDetailRptService;
@@ -78,7 +79,7 @@ public class ReportBaseModule {
 	public AtmcDayTransCount atmcDayTransCount(){
 		return new AtmcDayTransCount();
 	}
-	
+
 	@Bean
 	public  IDayOpenRateService dayOpenRateService(){
 	       return new DayOpenRateService();
@@ -89,15 +90,21 @@ public class ReportBaseModule {
 	 {
 		  return new DeviceOpenRateService();
 	 }
-	
+
 	@Bean
 	public IExportDataETLService exportDataETLService()
 	{
 		return new ExportDataETLService();
-	}	
+	}
 
 	@Bean
 	public  DayOpenRateExcuter  dayOpenRateExcuter() {
 		return new DayOpenRateExcuter();
+	}
+
+	@Bean
+	public ICaseStatisticsRptService caseStatisticsRptService()
+	{
+		return new CaseStatisticsRptService();
 	}
 }

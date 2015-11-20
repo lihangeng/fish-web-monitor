@@ -7,11 +7,11 @@ Ext.apply(EwayLocale,{
 			country:'Country',//生产商国家或地区
 			hotline1:'Hotline',//生产商热线1
 			hotline2:'Hotline2',//生产商热线2
-			address:'Producer address',//生产商地址
-			status:'Producer hotline',//生产商状态
+			address:'Address',//生产商地址
+			status:'Status',//生产商状态
 			comboxStatus:{
-				provider:'Device supply',//设备供应
-				maintance:'Device use'//设备服役
+				provider:'Supplier',//设备供应
+				maintance:'Service Provider'//设备服役
 			}
 		},
 		atmCatalog:{
@@ -25,7 +25,7 @@ Ext.apply(EwayLocale,{
 		atmGroup : {
 			terminalId:'Terminal ID', //设备号
 			ip: 'IP',//设备IP地址
-			orgName:'Org belongs',//
+			orgName:'Bank',//
 			devTypeName:'Device Type',//设备型号
 			devVendorName:'Device Brand',//设备品牌
 			devCatalogName:'Device Catalog',//设备类型
@@ -42,23 +42,23 @@ Ext.apply(EwayLocale,{
 				outBank:'Outside bank',//离行自助银行
 				clickBank:'Alone out-bank self-service'//单机离行自助服务点
 			},
-			devServiceName:'Manufacturer',//设备维护商
-			cashboxLimit:'Alarm cashbox',//钞箱报警金额
-			installDate:'Install date',//安装日期
+			devServiceName:'Maintenance Provider',//设备维护商
+			cashboxLimit:'Cashbox Alarm Amount',//钞箱报警金额
+			installDate:'Installation Time',//安装日期
 			address:'Address',//地址
 			gourpDev:'Group<-->Device',//分组<-->设备
-			addTitle: 'Add info of machine-group ',//增加设备组信息
-			groupName:'Group name',//组名
-			note:'Remark',//备注
-			updateTitle:'Update info of machine-group '//更改设备组信息
+			addTitle: 'Add Group Info',//增加设备组信息
+			groupName:'Group Name',//组名
+			note:'Description',//备注
+			updateTitle:'Update Group Info'//更改设备组信息
 		},
 		atmModule:{
-			moduleName:'Module name',//模块名称
-			note:'remark',//备注
+			moduleName:'Module Name',//模块名称
+			note:'Description',//备注
 			atmModules:'ATM module'	//ATM模块
 		},
 		atmMove:{
-			title:'Move manager',//移机管理
+			title:'Move Manager',//移机管理
 			moveDev:'Move machine',//移机
 			moveDevRec:'Move machine and generate the move record',//移动设备并产生移机记录
 			moveRecordInfo:'Move machine record',//移机记录信息
@@ -91,20 +91,21 @@ Ext.apply(EwayLocale,{
 			msgCollect:'Collect info of customservice'//客服信息采集
 		},
 		atmType:{
-			title:'Device type',//设备型号
+			title:'Device Type',//设备型号
 			atmName:'Device Type',//ATM型号
 			name:'Name',//设备型号
 			devVendorName:'Brand', //所属品牌
 			devCatalogName:'Catalog',//所属类型
 			devTerminalName:'Type',//所属型号
 			no:'Code',//编号
-			cashtype:'Cash flag',//非现金标志
+			cashtype:'Cash Flag',//非现金标志
 			iscash:'Cash',//现金
-			nocash:'Not cash'//非现金
+			nocash:'Not Cash',//非现金
+			modules:'Module contains'
 		},
 		device:{
 			title:'Deivce Info',//设备信息管理
-			devDetailInfo:'Module information',//设备模块详细信息
+			devDetailInfo:'Module Info',//设备模块详细信息
 		    IDC:'Card reader(IDC)',
 			JPR:'Log printer(JPR)',
 			CDM:'Draw module(CDM)',
@@ -274,7 +275,7 @@ Ext.apply(EwayLocale,{
 			mobile:'Mobile',//手机
 			phone:'Phone',//固定电话
 			email:'Email',//邮件地址
-			deviceBasicInfo:'Basic info',//设备基本信息
+			deviceBasicInfo:'Additional info',//设备基本信息
 			lineLogo:'AwayFlag',//
 			alarmRateRMB:'Alarm cashbox(RMB)',//钞箱报警金额
 			operation:'Service mode',//经营方式
@@ -291,10 +292,10 @@ Ext.apply(EwayLocale,{
 			currentnumber: 'Current count',//当前钞箱张数
 			facevalue: 'Denomination',//钞箱面值
 			currency: 'Currency',//钞箱币种
-			systemHardwareInfo: 'Soft/hard ware info',//系统软硬件信息
-			moduleVersionInfo:'Hardware-module version(actual)',//模块硬件版本信息（实时）
-			devModuleStatusInfo: 'Module status(actual)',//设备模块状态（实时）
-			devModuleAttributeInfo: 'Module property(actual)',//设备模块属性信息（实时）
+			systemHardwareInfo: 'Hardware & Software',//系统软硬件信息
+			moduleVersionInfo:'Versions of Module(Real-time)',//模块硬件版本信息（实时）
+			devModuleStatusInfo: 'Module Status(Real-time)',//设备模块状态（实时）
+			devModuleAttributeInfo: 'Module Property(Real-time)',//设备模块属性信息（实时）
 
 			remoteControl: 'Control',//远程控制
 			collectJPR:'Logs getting',//提取日志
@@ -379,8 +380,8 @@ Ext.apply(EwayLocale,{
 			diskTotalSize:'Total size',//磁盘总大小
 			diskFreeSize:'Total free size',//磁盘可用空间大小
 			sysSoftInfo:'Software info',//系统软件信息
-			OSID:'OS-ID',//操作系统ID
-			OSDescription:'OS describe',//OS描述
+			OSID:'OS ID',//操作系统ID
+			OSDescription:'OS Description',//OS描述
 			OSType:'OS type',//OS类型
 			sysPatchLevel:'OS patch level',//系统补丁级别
 			chkCashData:'BV-version',//验钞数据版本
@@ -388,9 +389,9 @@ Ext.apply(EwayLocale,{
 			OSVendorName:'OS supplier',//OS供应商名
 			sysVersion:'OS version',//系统版本号
 			devAddress:'Address',//设备地址
-			basicInfo:'Basic info',//基本信息
-			virtual:'Virtual devCode',//虚拟设备号
-			serial:'Serial',//设备序列号
+			basicInfo:'Additional Info',//基本信息
+			virtual:'Virtual teller No.',//虚拟设备号
+			serial:'Serial number',//设备序列号
 			carrier:'Carrieroperator',//运营商
 			moneyOrg:'Cash org',//加钞机构
 			costInterest:'Rate of fund cost',//资金成本利率
@@ -398,7 +399,7 @@ Ext.apply(EwayLocale,{
 			spType:'sp type',//厂商sp类型
 			column:'Date',//日期信息
 			buyDate:'Buy date',//设备购买日期
-			installDate:'Install date',//设备安装日期
+			installDate:'Installation Time',//设备安装日期
 			startDate:'Start date',//设备启用日期
 			stopDate:'Stop date',//设备停用日期
 			expireDate:'Guaranteed date',//保修到期日期
@@ -412,43 +413,27 @@ Ext.apply(EwayLocale,{
 			costInfo:'Expenses',//费用信息
 			price:'Cost',//入账成本(元)
 
-			depreciationLife:'折旧年限(年)',
-			decoration:'Decorate charge',//装修费用
-			decorationCost:'Decorate charge(year)',//装修摊销年限(年)
-			governanceRent:'Property charge(RMB/mon)',//物业租赁费(元/月)
-			governanceCost:'Property charge(RMB/mon)',//物业管理费用(元/月)
-			netCost:'Net charge(元/月)',//通讯线路费用(元/月)
-			powerCost:'Electriccharge(RMB/mon)',
-			moneyCost:'Cash charge(Rmb/time)',//加钞维护费用(元/次)
-			statusInfo:'Status',//状态信息
-			deviceAttention:'follow with ',//设备关注程序
-			stress:'Important',//重要
-			medium:'Medium',//中等
-			ordinary:'Ordinary',//一般
-			notCashSignal:'Cash flag',//非现金标志
+			
+			notCashSignal:'Cash Flag',//非现金标志
 			cash: 'Cash',//现金
-			notCash:'Not cash',//非现金
-			installStyle: 'Insatall way',//安装方式
-			crossWall: 'CrossWall',//穿墙
-			mainRoom: 'MainRoom',//mainRoom
+			notCash:'Not Cash',//非现金
+			installStyle: 'Installation Choice',//安装方式
+			crossWall: 'Through the wall',//穿墙
+			mainRoom: 'Lobby',//mainRoom
 			netType: 'Net type',//网络类型
 			wired: 'Wired',//有线
 			wireless: 'Wireless',//wireless
-			wiredAndWireless: 'Wired flag',//wiredAndWireless
-			onBankSignal:'Inbank flag',//在行离行标志
-			inBank:'In-bank self-servce area',//在行自助服务区
-			outBank:'Out-bank self-servce',//离行自助银行
-			clickBank:'Alone out-bank self-service',//单机离行自助服务点
-			operation:'Service mode',//经营方式
-			operationSelf: 'Self-business',//自营
-			cooperation: 'Cooperation',//合作
-			epiboly: 'Outsource',//外包
+			wiredAndWireless: 'Wired & Wireless',//wiredAndWireless
+			onBankSignal:'Installation Location',//在行离行标志
+			inBank:'Line',//在行自助服务区
+			outBank:'Off-line',//离行自助银行
+			clickBank:'Half Off-line',//单机离行自助服务点
 			managePerson:'Manager',//管机员
-			maintainPerson:'Maintainer',
+			maintainPerson:'Maintence Staff',
 			to:'至',//to
 			range: 'Range 1-100 years',//范围1－－100年
-			roleDescription:'Role description',//角色描述
-			roleName:'Role name',//角色名称
+			roleDescription:'Description',//角色描述
+			roleName:'Name',//角色名称
 
 
 
@@ -459,7 +444,7 @@ Ext.apply(EwayLocale,{
 			drive:'Driver',//驱动
 			firmway: 'Firmware',//固件
 			noDevice:'No device',//无设备
-			devTypeInfo: 'Device type',//设备型号信息
+			devTypeInfo: 'Device Type',//设备型号信息
 
 			devInfo:'Device info',//设备信息
 			unable:'Can not',//不可以
@@ -486,7 +471,7 @@ Ext.apply(EwayLocale,{
 			},
 		},
 		param:{
-			paramKey:'Parameter',//EwayLocale.machine.param.paramKey 参数
+			paramKey:'Name',//EwayLocale.machine.param.paramKey 参数
 			paramValue:'Value',//EwayLocale.machine.param.paramValue参数值
 			classify:'Type',//EwayLocale.machine.param.classify 类型
 			paramType:'Type',//EwayLocale.machine.param.paramType 参数类型
@@ -524,8 +509,75 @@ Ext.apply(EwayLocale,{
 			},
 			setTime:'Set time',//
 			closeManage:'Stop manager'//报停管理
+		},
+		plan:{
+			addPlan:'Add Plan',//EwayLocale.machine.plan.addPlan 增加方案
+			name:'Name',//EwayLocale.machine.plan.name 名称
+			type:'Type',//EwayLocale.machine.plan.name 名称
+			startDate:'Start time',//EwayLocale.machine.plan.startDate 有效开始时间
+			endDate:'End time',//EwayLocale.machine.plan.endDate 有效结束时间
+			terminalId:'Code',//EwayLocale.machine.plan.terminalId 编号
+			cashboxLimit:'Alarm cashbox(unit:piece)',//EwayLocale.machine.plan.cashboxLimit 钞箱报警金额(单位：张数)
+			perToDev:'Person<-->Device',//EwayLocale.machine.plan.perToDev 人员<-->设备
+			changePlan:'Modify plan',//EwayLocale.machine.plan.changePlan 更改方案
+			servicePlan:'Start up plan',//EwayLocale.machine.plan.servicePlan 开机方案
+		},
+		serviceplan:{
+			name:'Programme Name',//EwayLocale.machine.serviceplan.name方案名称
+			machineQuantity:'Number of devices',//EwayLocale.machine.serviceplan.machineQuantity设备数量
+			state:'Status',//EwayLocale.machine.serviceplan.state状态
+			openDate:'Effective boot time',//EwayLocale.machine.serviceplan.openDate有效开机时间
+			closeDate:'Effective shutdown time',//EwayLocale.machine.serviceplan.closeDate有效关机时间
+			createDateTime:'Created',//EwayLocale.machine.serviceplan.createDateTime创建时间
+			date:'Date',//EwayLocale.machine.serviceplan.date日期
+			week:'Week',//EwayLocale.machine.serviceplan.week星期
+			inportLinkedMachine:'Import related equipment',//EwayLocale.machine.serviceplan.inportLinkedMachine导入关联设备
+			selectFile:'Select the file',//EwayLocale.machine.serviceplan.selectFile选择文件
+			placeUploadingResource:'Please upload resources',//EwayLocale.machine.serviceplan.placeUploadingResource请上传资源
+			fileNotSupport:'Import file format is not supported, according to the template import device information',//EwayLocale.machine.serviceplan.fileNotSupport导入的文件格式不支持,请按模板导入设备信息
+			exportExplain:'Import instructions',//EwayLocale.machine.serviceplan.exportExplain导入说明
+			thisIsTooLong:'Please add the device continuously import template device number to be issued, up to a one-time import 2000 data (takes about 5 minutes), a minimum import data',//EwayLocale.machine.serviceplan.thisIsTooLong请在设备导入模板中连续添加要下发的设备号,最多一次性导入2000条数据(约耗时5分钟),最少导入1条数据
+			thisHardToTranslate:'Click to download introducing device ID template',//EwayLocale.machine.serviceplan.thisHardToTranslate点击下载导入设备号模板
+			placeSelect:'---Please select---',//EwayLocale.machine.serviceplan.placeSelect请选择
+			planDevice:'Program <--> Device',//EwayLocale.machine.serviceplan.planDevice方案<-->设备
+			timeEare:'Enter the time is incorrect, please re-enter！',//EwayLocale.machine.serviceplan.timeEare输入时间段有误，请重新输入
+			planOlonOne:'The same program can only set a startup or shutdown',//EwayLocale.machine.serviceplan.planOlonOne同方案只能设置开机或关机的一种
+			addSuccess:'Added successfully',//EwayLocale.machine.serviceplan.addSuccess添加成功
+			addFail:'Add Failed',//EwayLocale.machine.serviceplan.addFail添加失败
+			setTime:'Please set the detailed time',//EwayLocale.machine.serviceplan.setTime请设置详细时间
+			thisPlanStop:'(This program is disabled, can not apply!)',//EwayLocale.machine.serviceplan.thisPlanStop(此方案已停用，不可应用！)
+			placeRefresh:'Article lift failed. Please refresh view！',//EwayLocale.machine.serviceplan.placeRefresh条解除失败，请刷新后查看
+			linking:'Being associated equipment....',//EwayLocale.machine.serviceplan.linking正在关联设备
+			testingPlaceWaiting:'Device number is judged to meet the requirements, please wait...',//EwayLocale.machine.serviceplan.testingPlaceWaiting正在判断设备号是否符合要求，请耐心等待
+			leastOne:'Importing a device at least once information, please re-select the import file!',//EwayLocale.machine.serviceplan.leastOne最少一次导入1条设备信息，请重新选择导入文件
+			notMore:'Up to 2000 the first import device information, please re-select the import file!',//EwayLocale.machine.serviceplan.notMore最多一次导入2000条设备信息，请重新选择导入文件
+			checkFile:'Please check the import file',//EwayLocale.machine.serviceplan.checkFile请检查导入文件
+			fileNotAllowed:'Documents do not meet requirements！',//EwayLocale.machine.serviceplan.fileNotAllowed文件不符合要求
+			tipExportSuccess:'Article data successfully imported',//EwayLocale.machine.serviceplan.tipExportSuccess条数据,成功导入
+			tipLookUp:'Bar, click View import details!',//EwayLocale.machine.serviceplan.tipLookUp条,点击查看导入详情!
+			tochenkDervice:'Please select the device you want to change',//EwayLocale.machine.serviceplan.tochenkDervice请选择您要更改的设备
+			tochenckPeople:'Please select personnel',//EwayLocale.machine.serviceplan.tochenckPeople请选择人员
+			tipAddError:'Article Adding failed. Please refresh view',//EwayLocale.machine.serviceplan.tipAddError条添加失败,请刷新后查看
+			planIsHaved:'',
+			linkSuccess:'Associate success',//EwayLocale.machine.serviceplan.linkSuccess关联成功
+			Mon:'Mon',//EwayLocale.machine.serviceplan.Mon一
+			Tues:'Tues',//EwayLocale.machine.serviceplan.Tues二
+			Wed:'Wed',//EwayLocale.machine.serviceplan.Wed三
+			Thur:'Thur',//EwayLocale.machine.serviceplan.Thur四
+			Fri:'Fri',//EwayLocale.machine.serviceplan.Fri五
+			Sat:'Sat',//EwayLocale.machine.serviceplan.Sat六
+			Sun:'Sun',//EwayLocale.machine.serviceplan.Sun日
+			useSuccess:'Normal start',//EwayLocale.machine.serviceplan.useSuccess正常启用
+			notSuccess:'Not Enabled',//EwayLocale.machine.serviceplan.notSuccess未启用
+			lastOneGroup:'Please select at least one in the group',//EwayLocale.machine.serviceplan.lastOneGroup请在组内至少选中一项
+			lanDetailWeek:'Week program detailed list',//EwayLocale.machine.serviceplan.lanDetailWeek星期方案详细列表
+			planDetailDay:'Date program detailed list',//EwayLocale.machine.serviceplan.planDetailDay日期方案详细列表
+			selectPlan:'To select a startup program',//EwayLocale.machine.serviceplan.selectPlan选择开机方案
+			weekSelect:'Notify way'//EwayLocale.machine.serviceplan.weekSelect通知方式
 		}
+
 	},
+	
 	atmLog:{
 		dayBackup:'Back-up log result today',//EwayLocale.atmLog.dayBackup 当日备份结果
 		whole:'All',//EwayLocale.atmLog.whole 所有
@@ -576,6 +628,6 @@ Ext.apply(EwayLocale,{
 		add:'Add',//EwayLocale.card.add增加
 		dell:'Delete'//EwayLocale.card.dell删除
 	}
-
+	
 
 });

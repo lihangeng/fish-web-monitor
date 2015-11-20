@@ -1,7 +1,7 @@
 Ext.define('Eway.view.operatingPlan.ImportLinkedMachine',{
           extend :'Ext.window.Window',
           alias:'widget.operatingPlan_download_linkedMachine',
-          title:EwayLocale.report.serviceplan.inportLinkedMachine,
+          title:EwayLocale.machine.serviceplan.inportLinkedMachine,
           modal:true,
           resizable : false,
           constrainHeader : true,
@@ -26,26 +26,26 @@ Ext.define('Eway.view.operatingPlan.ImportLinkedMachine',{
       				items : [
       				{
       					xtype : 'filefield',
-      					fieldLabel : EwayLocale.report.serviceplan.selectFile,
+      					fieldLabel : EwayLocale.machine.serviceplan.selectFile,
       					name : 'file',
       					allowBlank : false,
       					width:420,
-      					blankText : EwayLocale.report.serviceplan.placeUploadingResource,
+      					blankText : EwayLocale.machine.serviceplan.placeUploadingResource,
       					waitMsg:EwayLocale.version.View.versionFileUploadMsg,
       					msgTarget : 'side',
       					regex : /^([\w|\W]*)(\.xls)$/i,
-      					regexText : EwayLocale.report.serviceplan.fileNotSupport
+      					regexText : EwayLocale.machine.serviceplan.fileNotSupport
       				}, {
       					xtype : 'displayfield',
       					fieldLabel : EwayLocale.cases.vendorCode.templateLoad,
       					width:420,
       					name : 'link',
-      					value :"<a class='link' href='api/dateImport/downloadFile'>"+EwayLocale.report.serviceplan.thisHardToTranslate+"</a>"
+      					value :"<a class='link' href='api/dateImport/downloadFile'>"+EwayLocale.machine.serviceplan.thisHardToTranslate+"</a>"
       				}, {
       					xtype : 'displayfield',
-      					fieldLabel : EwayLocale.report.serviceplan.exportExplain,
+      					fieldLabel : EwayLocale.machine.serviceplan.exportExplain,
       					width:420,
-      					value : '<font color="red">'+EwayLocale.report.serviceplan.thisIsTooLong+'</font>'
+      					value : '<font color="red">'+EwayLocale.machine.serviceplan.thisIsTooLong+'</font>'
       				} ],
       				buttonAlign:'center',
       				buttons : [ {

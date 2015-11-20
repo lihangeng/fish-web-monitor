@@ -11,9 +11,6 @@ Ext.apply(EwayLocale,{
 	personalConf:'个人设置',//EwayLocale.personalConf
 	systemHelp:'系统帮助',///EwayLocale.systemHelp
 	exitSystem:'退出系统',//EwayLocale.exitSystem
-	title:{
-		msg:'信息'//EwayLocale.title.msg
-	},
 	msg:{
 		perviewFailForText:'预览失败:不支持文字滚动广告和公告的预览.',//EwayLocale.msg.perviewFailForText
 		perviewFailNoResource:'预览失败:此广告没有配置广告资源.',//EwayLocale.msg.perviewFailNoResource
@@ -142,8 +139,6 @@ Ext.apply(EwayLocale,{
 		fail:'失败:',//EwayLocale.tip.fail
 		phone:'请输入正确的电话号码',
 		remind:'提示',//EwayLocale.tip.remind
-		displayMessage:'总共：{2}条，显示{0}-{1}',
-		
 		formatPageBfMsg: '每页显示',// EwayLocale.tip.formatPageBfMsg
 		formatPageAfMsg: '条',// EwayLocale.tip.formatPageAfMsg
 
@@ -190,7 +185,6 @@ Ext.apply(EwayLocale,{
 		tips:'提示',//EwayLocale.tip.tips
 		input:'请正确输入',//EwayLocale.tip.input
 		roleName:'由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位',//EwayLocale.tip.roleName
-		roleDescription:'由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入100位',//EwayLocale.tip.roleDescription
 		notNull:'不能为空',//EwayLocale.tip.notNull
 		cardNo:'只能输入13到19个数字',//EwayLocale.tip.cardNo
 		blankBegin:'不能以空格开头',//EwayLocale.tip.blankBegin
@@ -488,9 +482,6 @@ Ext.apply(EwayLocale,{
 		content:'消息',//EwayLocale.commen.content
 		upgrade:'上级',//EwayLocale.commen.upgrade
 		port:'网络Port',//EwayLocale.commen.port
-		previous:'上一页',//EwayLocale.commen.previous
-		next:'下一页',//EwayLocale.commen.next
-		installAddr:'装机地址',//EwayLocale.commen.installAddr
 		seviceMode:'经营方式',//EwayLocale.commen.seviceMode
 		insideOutside:'在行标志',//EwayLocale.commen.insideOutside
 		appVersion:'应用版本号',//EwayLocale.commen.appVersion

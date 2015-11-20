@@ -107,7 +107,7 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 				dataIndex : 'org',
 				flex : 1
 			}, */{
-				header : EwayLocale.commen.installAddr,
+				header : EwayLocale.machine.device.devAddress,
 				dataIndex : 'address'
 			}, {
 				header : EwayLocale.commen.seviceMode,
@@ -122,7 +122,6 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,
-				displayMsg : EwayLocale.tip.displayMessage,
 				items : ['-', EwayLocale.tip.formatPageBfMsg, {
 				    xtype : 'combobox',
 				    name: 'pagesize',

@@ -3,7 +3,7 @@
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0000000000000009"/>
-	<property name="ireport.x" value="643"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -38,7 +38,7 @@
 	<pageHeader>
 		<band height="80" splitType="Stretch">
 			<textField isStretchWithOverflow="true" pattern="yyyy.MM.dd" isBlankWhenNull="false">
-				<reportElement uuid="79c7a757-b687-4b5c-8750-2e15b1310438" key="textField-34" style="song" stretchType="RelativeToTallestObject" mode="Transparent" x="102" y="30" width="1196" height="25" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement uuid="79c7a757-b687-4b5c-8750-2e15b1310438" key="textField-34" style="song" stretchType="RelativeToTallestObject" mode="Transparent" x="86" y="30" width="1212" height="25" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -52,7 +52,7 @@
 				<textFieldExpression><![CDATA[$P{reportDate}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
-				<reportElement uuid="a31f6209-5f2d-4ebf-93fc-a6dface08f49" key="textField-36" style="宋体14" stretchType="RelativeToTallestObject" mode="Transparent" x="102" y="0" width="1196" height="30" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement uuid="a31f6209-5f2d-4ebf-93fc-a6dface08f49" key="textField-36" style="宋体14" stretchType="RelativeToTallestObject" mode="Transparent" x="86" y="0" width="1212" height="30" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#FFFFFF"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
@@ -66,26 +66,26 @@
 				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="0af1b224-87be-40f6-a44d-6d417cbdf934" mode="Opaque" x="102" y="55" width="148" height="25" backcolor="#CCCCCC"/>
+				<reportElement uuid="0af1b224-87be-40f6-a44d-6d417cbdf934" mode="Opaque" x="86" y="55" width="148" height="25" backcolor="#CCCCCC"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font size="13"/>
+					<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{orgName}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="964fbb6d-e8a8-4483-8fa5-971e68bc6744" mode="Opaque" x="250" y="55" width="147" height="25" backcolor="#CCCCCC"/>
+				<reportElement uuid="964fbb6d-e8a8-4483-8fa5-971e68bc6744" mode="Opaque" x="234" y="55" width="163" height="25" backcolor="#CCCCCC"/>
 				<box>
 					<topPen lineWidth="0.5"/>
 					<leftPen lineWidth="0.5"/>
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font size="13"/>
+					<font size="13" pdfEncoding="Cp1250" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{terminalId}]]></textFieldExpression>
 			</textField>
@@ -97,7 +97,7 @@
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font size="13"/>
+					<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{vendorName}]]></textFieldExpression>
 			</textField>
@@ -109,7 +109,7 @@
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font size="13"/>
+					<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{typeName}]]></textFieldExpression>
 			</textField>
@@ -121,7 +121,7 @@
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font size="13"/>
+					<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{setupType}]]></textFieldExpression>
 			</textField>
@@ -133,7 +133,7 @@
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font size="13"/>
+					<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{termStatus}]]></textFieldExpression>
 			</textField>
@@ -145,7 +145,7 @@
 					<bottomPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center">
-					<font size="13"/>
+					<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{boxLeft}]]></textFieldExpression>
 			</textField>
@@ -157,7 +157,7 @@
 	<detail>
 		<band height="20" splitType="Stretch">
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
-				<reportElement uuid="d2afa1aa-774e-4b66-9a3a-54ee253a2d4e" key="textField-25" style="song" stretchType="RelativeToTallestObject" x="250" y="0" width="147" height="20" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#F3F4F4"/>
+				<reportElement uuid="d2afa1aa-774e-4b66-9a3a-54ee253a2d4e" key="textField-25" style="song" stretchType="RelativeToTallestObject" x="234" y="0" width="163" height="20" isPrintWhenDetailOverflows="true" forecolor="#000000" backcolor="#F3F4F4"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.5" lineStyle="Solid"/>
@@ -213,7 +213,7 @@
 				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="false">
-				<reportElement uuid="11466e70-f98f-437e-96ed-4d50032dfe16" key="textField" style="song" x="102" y="0" width="148" height="20" forecolor="#000000" backcolor="#F3F4F4"/>
+				<reportElement uuid="11466e70-f98f-437e-96ed-4d50032dfe16" key="textField" style="song" x="86" y="0" width="148" height="20" forecolor="#000000" backcolor="#F3F4F4"/>
 				<box>
 					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 					<leftPen lineWidth="0.5" lineStyle="Solid"/>

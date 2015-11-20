@@ -7,10 +7,9 @@ Ext.define('Eway.view.field.PersonRemark', {
 	fieldLabel: '<font color="red"></font> '+EwayLocale.commen.remark,
 	xtype:'field_personRemark',
 	regexText: EwayLocale.vtype.personRemark,
-	width:600,
 	height:60,
 	msgTarget : 'side',
 	grow:true,
-	anchor    : '100%'
+	anchor : '100%'
 
 });

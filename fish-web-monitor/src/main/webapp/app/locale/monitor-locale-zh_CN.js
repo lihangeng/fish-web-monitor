@@ -26,7 +26,6 @@ Ext.apply(EwayLocale,{
 				listPattern:'列表方式',//EwayLocale.monitor.devMonitor.comboxShowWay.listPattern
 				boxPattern:'钞箱方式'//EwayLocale.monitor.devMonitor.comboxShowWay.boxPattern
 			},
-			numberfield:'监控台数',//EwayLocale.monitor.devMonitor.numberfield
 			noData:'无记录',//EwayLocale.monitor.devMonitor.noData
 			retainCardCount:'当前吞卡数量',//EwayLocale.monitor.devMonitor.retainCardCount
 			cash:{
@@ -386,7 +385,11 @@ Ext.apply(EwayLocale,{
 			mergeload:'查看下载列表',
 			mergeDownLoad:'执行下载任务',
 			clickAddLoadFile:'单击添加到下载列表',
-			removeFile:'删除',
+			removeFile:'删除文件',
+			addFileSuccess:'成功添加到下载列表!',
+            maxDownLoadFileSize:'添加失败,下载列表中文件总大小不能超过200M.',
+            exitDownLoadFile:'添加失败,该文件已添加到下载列表中.',
+            removeSuccess:'删除成功.',
 
 		}
 	}

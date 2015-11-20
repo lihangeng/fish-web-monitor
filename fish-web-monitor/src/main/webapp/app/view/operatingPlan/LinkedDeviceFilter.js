@@ -19,7 +19,7 @@ Ext.define('Eway.view.operatingPlan.LinkedDeviceFilter',{
 				items : [ {
 					xtype : 'common_orgComboOrgTree',
 					fieldLabel : EwayLocale.refs.orgName,
-					emptyText : EwayLocale.report.serviceplan.placeSelect,
+					emptyText : EwayLocale.machine.serviceplan.placeSelect,
 					name : 'orgName',
 					hiddenValue : 'orgId',
 					editable : true,

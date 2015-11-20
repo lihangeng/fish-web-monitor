@@ -38,7 +38,7 @@ public class UpdateReportController {
 	public @ResponseBody UpdateReportMsg reciveMsg(@RequestBody UpdateReportMsg msg) {
 		if(msg.getTaskId() > 0){
 			try{
-				versionServic.collectUpdateReport(msg.getTaskId(),msg.getRet());
+				versionServic.collectUpdateReport(msg.getTaskId(),msg.getRet(),msg.getDownUrl());
 			}catch(TaskCanceledException cancelException){
 				msg.setRet("CANCEL");
 				logger.error(String.format("collection UpdateReport is cancel :[%s]",JsonUtils.toJson(msg)));

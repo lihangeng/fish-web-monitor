@@ -32,6 +32,7 @@ public class UpdateReportMsg {
      */
     private int fileDownTimes;
 
+    private String downUrl;
     /**
      * 响应码
      */
@@ -84,5 +85,13 @@ public class UpdateReportMsg {
     public void setTaskId(long taskId) {
         this.taskId = taskId;
     }
+
+	public String getDownUrl() {
+		return downUrl;
+	}
+
+	public void setDownUrl(String downUrl) {
+		this.downUrl = downUrl;
+	}
 
 }

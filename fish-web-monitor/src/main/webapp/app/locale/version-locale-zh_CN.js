@@ -11,7 +11,8 @@ Ext.apply(EwayLocale,{
 	},
 	statics : {
 		title : '下发结果统计',// EwayLocale.statics.title
-		versionInfo : '版本信息'// EwayLocale.statics.versionInfo
+		versionInfo : '版本信息',// EwayLocale.statics.versionInfo
+		msg:'信息'	//EwayLocale.statics.msg
 	},
 	// 广告模块
 	advert : {

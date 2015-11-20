@@ -21,7 +21,7 @@ public class DeviceBoxDetailRptService implements IDeviceBoxDetailRptService {
 
     @Autowired
     private IGenericDao dao;
-    
+
 	@Autowired
 	private MessageSource messageSource;
 
@@ -80,13 +80,19 @@ public class DeviceBoxDetailRptService implements IDeviceBoxDetailRptService {
             if (objectToString(o[4]).equals("LOBBY")) {
                 deviceBoxDetail.setSetupType(messageSource.getMessage("report.deviceBoxDetail.lobby", null, FishCfg.locale));
             }
-            if (objectToString(o[5]).equals("OPENING")) {
+            if (objectToString(o[5]).equals("OPEN")) {
                 deviceBoxDetail.setStatus(messageSource.getMessage("report.deviceBoxDetail.opening", null, FishCfg.locale));
             }
             if (objectToString(o[5]).equals("DISABLED")) {
                 deviceBoxDetail.setStatus(messageSource.getMessage("report.deviceBoxDetail.disabled", null, FishCfg.locale));
             }
-            deviceBoxDetail.setBoxLeft(objectToString(o[6]));
+            if (objectToString(o[5]).equals("UNOPEN")) {
+                deviceBoxDetail.setStatus(messageSource.getMessage("report.deviceBoxDetail.unopen", null, FishCfg.locale));
+            }
+            if (objectToString(o[5]).equals("SCRAPPED")) {
+                deviceBoxDetail.setStatus(messageSource.getMessage("report.deviceBoxDetail.scrapped", null, FishCfg.locale));
+            }
+            deviceBoxDetail.setBoxLeft("-1".equals(objectToString(o[6]))?"":objectToString(o[6]));
             deviceBoxDetailList.add(deviceBoxDetail);
         }
         return deviceBoxDetailList;

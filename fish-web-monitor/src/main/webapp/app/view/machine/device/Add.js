@@ -7,25 +7,16 @@ Ext.define('Eway.view.machine.device.Add', {
 	title: EwayLocale.machine.device.addDevInfo,
 
 	modal: true,
-//	resizable: false,
+	resizable: false,
 	constrainHeader: true,
-    height : 450,
-	width : 750,
+	width : 800,
 	initComponent: function() {
 		Ext.apply(this, {
-			bodyStyle : 'padding: 10px 10px 30px 10px',
+			bodyStyle : 'padding: 10px 10px 10px 10px',
 			trackResetOnLoad : true,
 			selectOnFocus : true,
-			defaults: {
-				width: 350,
-				labelWidth: 80,
-				labelAlign: 'right',
-				msgTarget : 'side'
-			},
 			items:[{
-				xtype:'machine_device_form',
-				width : 700,
-				height : 450
+				xtype:'machine_device_form'
 			}],
 			buttonAlign : 'center',
 			fbar: [{

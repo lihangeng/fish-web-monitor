@@ -19,7 +19,7 @@ Ext.define('Eway.view.machine.atmBrand.Form',{
 	initComponent : function(){
 		Ext.apply(this,{
 			defaults: {
-				anchor : '100%',
+				anchor : '90%',
 				labelWidth: 120,
 				labelAlign: 'right',
 				msgTarget : 'side'
@@ -51,7 +51,7 @@ Ext.define('Eway.view.machine.atmBrand.Form',{
 					xtype : 'field_atmBrand_statusComboBox',
 					editable : false,
 					value: 1,
-					allowBlank: false
+					hidden:true
 			}]
 		});
 		this.callParent(arguments);

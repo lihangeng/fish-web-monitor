@@ -8,7 +8,7 @@ Ext.apply(EwayLocale,{
 			appSummary:'ATMC',//EwayLocale.monitor.summary.appSummary
 			modSummary:'Module',//EwayLocale.monitor.summary.modSummary
 			boxSummary:'Cashbox',//EwayLocale.monitor.summary.boxSummary
-			netSummary:'Net'//EwayLocale.monitor.summary.netSummary
+			netSummary:'Network'//EwayLocale.monitor.summary.netSummary
 		},
 		devMonitor:{
 			title:'Status Monitor',//EwayLocale.monitor.devMonitor.title 状态监控
@@ -16,7 +16,7 @@ Ext.apply(EwayLocale,{
 				runStatus:'ATMC Status',//EwayLocale.monitor.devMonitor.comboxStatus.runStatus 运行状态
 				modStatus:'Module Status',//EwayLocale.monitor.devMonitor.comboxStatus.modStatus 模块状态
 				boxStatus:'Cashbox Status',//EwayLocale.monitor.devMonitor.comboxStatus.boxStatus 钞箱状态
-				netStatus:'Net Status'//EwayLocale.monitor.devMonitor.comboxStatus.netStatus 网络状态
+				netStatus:'Network Status'//EwayLocale.monitor.devMonitor.comboxStatus.netStatus 网络状态
 			},
 			monitorState:'Filters',//EwayLocale.monitor.devMonitor.monitorState 监控状态
 			showWay:'Show way',//EwayLocale.monitor.devMonitor.showWay 展示方式
@@ -27,21 +27,20 @@ Ext.apply(EwayLocale,{
 				listPattern:'List',//EwayLocale.monitor.devMonitor.comboxShowWay.listPattern 列表方式
 				boxPattern:'Cashbox'//EwayLocale.monitor.devMonitor.comboxShowWay.boxPattern 钞箱方式
 			},
-			numberfield:'Number of monitor machine',//EwayLocale.monitor.devMonitor.numberfield 监控台数
 			noData:'No data',//EwayLocale.monitor.devMonitor.noData 无记录
-			retainCardCount:'Retain card count',//EwayLocale.monitor.devMonitor.retainCardCount 当前吞卡数量
+			retainCardCount:'Retained Card Amount',//EwayLocale.monitor.devMonitor.retainCardCount 当前吞卡数量
 			cash:{
-				boxInitCount:'Initial amount in cashbox',//EwayLocale.monitor.devMonitor.cash.boxInitCount 钞箱初始金额
-				boxCurrentCount:'Current amount in cashbox',//EwayLocale.monitor.devMonitor.cash.boxCurrentCount 钞箱当前金额
-				cashboxLimit:'Value of cash limit alarm',//EwayLocale.monitor.devMonitor.cash.cashboxLimit 钞箱报警金额阈值
-				initAmount:'Total initial amount',//EwayLocale.monitor.devMonitor.cash.initAmount 加钞总金额
+				boxInitCount:'Initial Amount of Cashbox',//EwayLocale.monitor.devMonitor.cash.boxInitCount 钞箱初始金额
+				boxCurrentCount:'Current Amount of Cashbox',//EwayLocale.monitor.devMonitor.cash.boxCurrentCount 钞箱当前金额
+				cashboxLimit:'Cashbox Alarm Amount',//EwayLocale.monitor.devMonitor.cash.cashboxLimit 钞箱报警金额阈值
+				initAmount:'Initial Amount',//EwayLocale.monitor.devMonitor.cash.initAmount 加钞总金额
 				amount:'Amount left',//EwayLocale.monitor.devMonitor.cash.amount
 				dispenseAmount:'Amount paid',//EwayLocale.monitor.devMonitor.cash.dispenseAmount 出钞总金额
 				rejectAmount:'Amount invalid',//EwayLocale.monitor.devMonitor.cash.rejectAmount 废钞金额
 				retractCount:'Time of cash retrieve',//EwayLocale.monitor.devMonitor.cash.retractCount 钞票回收次数
 				minAmount:'Amount mini draw',//EwayLocale.monitor.devMonitor.cash.minAmount 最小取款金额
 				boxId:'Cashbox ID',//EwayLocale.monitor.devMonitor.cash.boxId 钞箱标识
-				type:'Cashbox type',//EwayLocale.monitor.devMonitor.cash.type 钞箱类型
+				type:'Cashbox Type',//EwayLocale.monitor.devMonitor.cash.type 钞箱类型
 				initialCount:'Initial count',//EwayLocale.monitor.devMonitor.cash.initialCount 初始张数
 				cashInCount:'Deposit count',//EwayLocale.monitor.devMonitor.cash.cashInCount 存款张数
 				currentCount:'Count',//EwayLocale.monitor.devMonitor.cash.currentCount 当前计数
@@ -60,22 +59,21 @@ Ext.apply(EwayLocale,{
 			},
 			modStateGraphic:'Module status graphic',//EwayLocale.monitor.devMonitor.modStateGraphic 模块状态图示
 			modGraphic:'Module graphic',//EwayLocale.monitor.devMonitor.modGraphic
-			registerStatus:'Register status',//EwayLocale.monitor.devMonitor.registerStatus 注册状态
+			registerStatus:'Register Status',//EwayLocale.monitor.devMonitor.registerStatus 注册状态
 			devModStatus:'Status of module',//EwayLocale.monitor.devMonitor.devModStatus 设备模块状态
 			mod:{
-				idc:'CardReader',//EwayLocale.monitor.devMonitor.mod.idc 读卡器
-				jpr:'Log printer',//EwayLocale.monitor.devMonitor.mod.jpr 日志打印机
-				cdm:'Draw module',//EwayLocale.monitor.devMonitor.mod.cdm 取款模块
-				cim:'Deposit module',//EwayLocale.monitor.devMonitor.mod.cim 存款模块
-				siu:'Sensor',//EwayLocale.monitor.devMonitor.mod.siu 传感器
-				rpr:'Voucher printer',//EwayLocale.monitor.devMonitor.mod.rpr 凭条打印机
-				pin:'Pin keyboard',//EwayLocale.monitor.devMonitor.mod.pin 密码键盘
-				ttu:'Text terminal',//EwayLocale.monitor.devMonitor.mod.ttu 文本终端
-				isc:'I.D.card scanner',//EwayLocale.monitor.devMonitor.mod.isc 身份证扫描仪
-				icc:'Issue card module',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
-				fgp:'Fingerprints',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
+				idc:'Card Reader',//EwayLocale.monitor.devMonitor.mod.idc 读卡器
+				jpr:'Journal Printer',//EwayLocale.monitor.devMonitor.mod.jpr 日志打印机
+				cdm:'Dispenser',//EwayLocale.monitor.devMonitor.mod.cdm 取款模块
+				cim:'Deposit',//EwayLocale.monitor.devMonitor.mod.cim 存款模块
+				siu:'Sensors',//EwayLocale.monitor.devMonitor.mod.siu 传感器
+				rpr:'Receipt Printer',//EwayLocale.monitor.devMonitor.mod.rpr 凭条打印机
+				pin:'PIN Keypads',//EwayLocale.monitor.devMonitor.mod.pin 密码键盘
+				ttu:'TTU',//EwayLocale.monitor.devMonitor.mod.ttu 文本终端
+				isc:'ID Scanner',//EwayLocale.monitor.devMonitor.mod.isc 身份证扫描仪
+				icc:'Issue Card',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
+				fgp:'Finger Printer',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
 				healthy:'Healthy'//EwayLocale.monitor.devMonitor.mod.healthy 模块正常
-
 			},
 			remote:{
 				control:'Remote control',//EwayLocale.monitor.devMonitor.remote.control 远程控制

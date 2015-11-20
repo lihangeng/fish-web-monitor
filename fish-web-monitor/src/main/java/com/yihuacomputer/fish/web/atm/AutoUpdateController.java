@@ -77,7 +77,6 @@ public class AutoUpdateController {
 				    }
 				}
 			}
-
 	        //修改任务的状态
 			for(TaskMsg taskMsg : msg.getTasks()){
 			    if(taskMsg.getTaskId() == 0){
@@ -88,7 +87,12 @@ public class AutoUpdateController {
 			        ITask task = taskService.get(taskMsg.getTaskId());
 			        task.setExceptVersion(taskMsg.getDownTypeName()+"_" + taskMsg.getDownVersionNo());
 			        task.setStatus(TaskStatus.CHECKED);
+			        //任务通过检查时候;将最新的版本号存入设备软件信息中
+			        IDeviceSoftVersion dsv = deviceSoftVersionService.get(task.getDeviceId(), task.getVersion().getVersionType().getTypeName());
+			        dsv.setVersionStr(task.getVersion().getVersionStr());
+			        deviceSoftVersionService.update(dsv);
 			        task.setReason(null);
+			        task.setDownSource(taskMsg.getDownUrl());
 			        taskService.updateTask(task);
 			        taskMsg.setDeployStatus(DeployStatus.COMMITED);
 			    }
