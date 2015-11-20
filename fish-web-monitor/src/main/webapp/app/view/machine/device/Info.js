@@ -74,13 +74,15 @@ Ext.define('Eway.view.machine.device.Info', {
 							xtype : 'hiddenfield',
 							name : 'devServiceId'
 						},{
-							fieldLabel : EwayLocale.machine.device.virtual,
+							xtype:'textfield',
+							fieldLabel : EwayLocale.machine.device.serial,
 							regex : /^\w+[\w-\.]*$/,
 							regexText : EwayLocale.vtype.numberRule,
-							maxLength : 25,
-							name : 'virtual'
+							maxLength : 40,
+							name : 'serial',
+							readOnly:true,
+							labelAlign:'right'
 						}]					
-						
 					}, {
 						columnWidth : .55,
 						border : false,
@@ -151,7 +153,7 @@ Ext.define('Eway.view.machine.device.Info', {
 					                    format : 'Y-m-d',
 					                    name : 'installDate',
 					                    readOnly:true,
-					                    labelWidth:140,
+					                    labelWidth:150,
 										labelAlign:'right'
 									}]
 								},{
@@ -160,13 +162,11 @@ Ext.define('Eway.view.machine.device.Info', {
 									layout : 'anchor',
 									items:[{
 										xtype:'textfield',
-										fieldLabel : EwayLocale.machine.device.serial,
+										fieldLabel : EwayLocale.machine.device.virtual,
 										regex : /^\w+[\w-\.]*$/,
 										regexText : EwayLocale.vtype.numberRule,
-										maxLength : 40,
-										name : 'serial',
-										readOnly:true,
-										labelAlign:'right'
+										maxLength : 25,
+										name : 'virtual'
 									}]
 								}]
 						
@@ -178,7 +178,7 @@ Ext.define('Eway.view.machine.device.Info', {
 								anchor : '95%',
 								xtype : 'textfield',
 								style : 'padding-top:5px',
-								labelWidth:140,
+								labelWidth:150,
 								labelAlign:'right'
 							},
 							items : [{
@@ -187,7 +187,7 @@ Ext.define('Eway.view.machine.device.Info', {
 								regex : /^(0|[1-9]\d{0,5})$/,
 								hideTrigger:true,
 								maxLength : 6,
-								anchor : '47%',
+								anchor : '48%',
 								name : 'cashboxLimit',
 								readOnly:true,
 								value:0

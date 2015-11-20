@@ -64,8 +64,16 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .5,
 						fieldLabel : EwayLocale.commen.ip,
 						name : 'ip'
-					}, {
+					},{
 						columnWidth : .49,
+						fieldLabel : EwayLocale.commen.appVersion,
+						name : 'appRelease'
+					}]
+				},{
+					layout : 'column',
+					defaultType : 'displayfield',
+					items : [{
+						columnWidth : .99,
 						fieldLabel : EwayLocale.machine.device.devAddress,
 						name : 'address',
 						tips : true,
@@ -161,6 +169,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.jpr,
 						name : 'jprStatus',
+						labelWidth:100,
 						a_link : true
 					},{
 						columnWidth : .25,
@@ -185,6 +194,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.rpr,
 						name : 'rprStatus',
+						labelWidth:100,
 						a_link : true
 					}, {
 						columnWidth : .25,
@@ -209,6 +219,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.icc,
 						name : 'iccStatus',
+						labelWidth:100,
 						a_link : true
 					}, {
 						columnWidth : .25,
