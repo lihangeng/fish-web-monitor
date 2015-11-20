@@ -140,13 +140,12 @@ public class OpenPlanController {
 			plan.setDeviceCount(deviceCount);
 			OpenPlanForm form = new OpenPlanForm(plan);
 			form.setPlanStateType(getEnumI18n(form.getPlanStateType()));
-			System.out.println("-----------"+form.getPlanStateType());
 			forms.add(form);
 		}
 		return forms;
 	}
 	private String getEnumI18n(String enumText){
-		 System.out.println(enumText);
+//		 System.out.println(enumText);
 	    	if(null==enumText){
 	    		return "";
 	    	}

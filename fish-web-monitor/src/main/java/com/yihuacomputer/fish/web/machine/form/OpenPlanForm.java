@@ -52,9 +52,9 @@ public class OpenPlanForm {
 	public OpenPlanForm(IDeviceOpenPlan deviceOpenPlan) {
 		this.id = deviceOpenPlan.getId();
 		this.name = deviceOpenPlan.getName();
-		this.planStateType = PlanStateType.Enabled.getId();
+		this.planStateType = PlanStateType.Enabled.getText();
 		if (deviceOpenPlan.getDeviceCount() == 0) {
-			this.planStateType = PlanStateType.NotEnabled.getId();
+			this.planStateType = PlanStateType.NotEnabled.getText();
 		}
 		if (deviceOpenPlan.getStartDate() != null) {
 			this.startDate = DateUtils.getDate(deviceOpenPlan.getStartDate());
@@ -68,10 +68,10 @@ public class OpenPlanForm {
 				long diff = d1.getTime() - d2.getTime();
 				int days = (int) (diff / (1000 * 60 * 60 * 24));
 				if (diff <= 0) {
-					this.planStateType = PlanStateType.Expired.getId();
+					this.planStateType = PlanStateType.Expired.getText();
 				}
 				if (days > 0 && days <= 10) {
-					this.planStateType = PlanStateType.WExpired.getId();
+					this.planStateType = PlanStateType.WExpired.getText();
 				}
 			}
 			catch (Exception e){
@@ -84,7 +84,7 @@ public class OpenPlanForm {
 		this.createDateTime = deviceOpenPlan.getCreateDateTime();
 		this.deviceCount = deviceOpenPlan.getDeviceCount();
 		if (deviceOpenPlan.getPlanState().ordinal() == PlanState.Stoped.ordinal()) {
-			this.planStateType = PlanStateType.Stoped.getId();
+			this.planStateType = PlanStateType.Stoped.getText();
 		}
 	}
 
