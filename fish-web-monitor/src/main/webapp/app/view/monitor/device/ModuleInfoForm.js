@@ -12,11 +12,13 @@ Ext.define('Eway.view.monitor.device.ModuleInfoForm',{
 			xtype : 'textareafield',
 			fieldLabel : EwayLocale.commen.description,
 			anchor : '100%',
+			readOnly : true,
 			name : 'description'
 		},{
 			xtype : 'textareafield',
 			fieldLabel : EwayLocale.monitor.devMonitor.solution,
 			anchor : '100%',
+			readOnly : true,
 			name : 'solution'
 		}];
 		this.callParent(arguments);
