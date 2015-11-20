@@ -14,8 +14,8 @@ Ext.define('Eway.view.person.person.PersonDevice', {
 	           'Eway.view.person.person.LinkingDeviceFilter',
 	           'Eway.view.person.person.LinkingDeviceGrid'],
 	
-	width: 890,
-	height: 350,
+	width: 1200,
+	height: 550,
 	maximizable: true,
 	layout: 'border',
 	

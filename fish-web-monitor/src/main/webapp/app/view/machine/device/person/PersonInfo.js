@@ -19,6 +19,10 @@ Ext.define('Eway.view.machine.device.person.PersonInfo', {
 	defaults : {
 		border : false
 	},
+	
+	// 设备号,用来查看哪能设备的人员信息
+	_terminalId : '',
+	
 	initComponent : function() {
 		Ext.apply(this, {
 			items : {
@@ -27,15 +31,47 @@ Ext.define('Eway.view.machine.device.person.PersonInfo', {
 				items : [{
 					title : EwayLocale.button.orgAdmin,
 					itemid : 'organizationItemID',
-					xtype : 'machine_device_person_oGrid'
-				},{
+					xtype : 'machine_device_person_oGrid',
+					listeners : {
+						render : function( tab ) {
+							// 加载维护员的数据
+							var params = {
+								terminalId : this._terminalId
+							};
+							tab.onReload(params);
+						},
+						scope : this
+					}
+				}, {
 					title : EwayLocale.button.personTM,
 					itemid : 'tubeMachineItemID',
-					xtype : 'machine_device_person_tmGrid'
+					xtype : 'machine_device_person_tmGrid',
+					listeners : {
+						render : function( tab ) {
+							// 加载维护员的数据
+							var params = {
+								terminalId : this._terminalId,
+								type : 0
+							};
+							tab.onReload(params);
+						},
+						scope : this
+					}
 				}, {
 					title : EwayLocale.machine.device.maintainPerson,
 					itemid : 'maintainItemID',
-					xtype : 'machine_device_person_tGrid'
+					xtype : 'machine_device_person_tGrid',
+					listeners : {
+						render : function( tab ) {
+							// 加载维护员的数据
+							var params = {
+								terminalId : this._terminalId,
+								type : 1
+							};
+							tab.onReload(params);
+						},
+						scope : this
+					}
 				} , {
 					title : EwayLocale.report.plan.openPlan,
 					itemid : 'devicePlanInfoID',
@@ -45,7 +81,12 @@ Ext.define('Eway.view.machine.device.person.PersonInfo', {
 		});
 		this.callParent(arguments);
 	},
+	
 	onOver : function() {
 		this.up('window').close();
+	},
+	
+	setTerminalId : function(terminalId) {
+		this._terminalId = terminalId;
 	}
 });

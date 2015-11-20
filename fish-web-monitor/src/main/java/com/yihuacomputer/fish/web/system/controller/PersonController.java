@@ -194,6 +194,26 @@ public class PersonController {
         }
         return result;
     }
+    
+    
+    @RequestMapping(value = "/showOrgManger", method = RequestMethod.GET)
+    public @ResponseBody
+    ModelMap showOrgManger(@RequestParam String terminalId) {
+        ModelMap result = new ModelMap();
+        try {
+            IDevice device = deviceService.get(terminalId);
+            
+            IPerson person = device.getOrganization().getManager();
+            
+            result.addAttribute(FishConstant.SUCCESS, true);
+            result.addAttribute("data", new PersonForm(person));
+        }
+        catch (Exception ex) {
+            logger.info(ex.getMessage());
+            result.addAttribute(FishConstant.SUCCESS, false);
+        }
+        return result;
+    }
 
     /**
      * 建立关联关系：

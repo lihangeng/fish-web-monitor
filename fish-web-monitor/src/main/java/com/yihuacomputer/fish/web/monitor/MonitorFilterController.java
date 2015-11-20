@@ -327,12 +327,35 @@ public class MonitorFilterController {
         netStatusFilter.setUnknown(getValue(request, "net_unknown"));
         statusFilter.setNetStatusFilter(netStatusFilter);
 
-        statusFilter.setAwayFlag(Integer.parseInt(request.getParameter("ingItem")));
-        statusFilter.setDevType(Long.parseLong(request.getParameter("classifyItem")));
-        statusFilter.setDevVendor(Long.parseLong(request.getParameter("brandItem")));
-        statusFilter.setWorkType(Integer.parseInt(request.getParameter("sellItem")));
-        statusFilter.setAtmGroup(Long.parseLong(request.getParameter("atmGroup")));
-
+        if (StringUtils.isNotEmpty(request.getParameter("ingItem"))) {
+            statusFilter.setAwayFlag(Integer.parseInt(request.getParameter("ingItem")));
+        } else {
+            statusFilter.setAwayFlag(0);
+        }
+        
+        if (StringUtils.isNotEmpty(request.getParameter("classifyItem"))) {
+            statusFilter.setDevType(Long.parseLong(request.getParameter("classifyItem")));
+        } else {
+            statusFilter.setDevType(0);
+        }
+        
+        if (StringUtils.isNotEmpty(request.getParameter("brandItem"))) {
+            statusFilter.setDevVendor(Long.parseLong(request.getParameter("brandItem")));
+        } else {
+            statusFilter.setDevVendor(0);
+        }
+        
+        if (StringUtils.isNotEmpty(request.getParameter("sellItem"))) {
+            statusFilter.setWorkType(Integer.parseInt(request.getParameter("sellItem")));
+        } else {
+            statusFilter.setWorkType(0);
+        }
+        
+        if (StringUtils.isNotEmpty(request.getParameter("atmGroup"))) {
+            statusFilter.setAtmGroup(Long.parseLong(request.getParameter("atmGroup")));
+        } else {
+            statusFilter.setAtmGroup(0);
+        }
     }
 
     private boolean getValue(WebRequest request, String name) {
