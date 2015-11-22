@@ -249,6 +249,13 @@ public class QuittingNoticeController {
 					{
 						device.setStatus(quittingNotice.getDevStatus());
 						deviceService.update(device);
+						if(device.getStatus().equals(DevStatus.OPEN))
+						{
+							IXfsStatus status = xfsService.loadXfsStatus(quittingNotice
+									.getDeviceCode());
+							status.setRunStatus(RunStatus.Unknown);
+							xfsService.updateXfsStatus(status);
+						}
 					}
 					
 				}

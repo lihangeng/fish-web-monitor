@@ -391,6 +391,7 @@ Ext.apply(EwayLocale,{
             maxDownLoadFileSize:'添加失败,下载列表中文件总大小不能超过200M.',
             exitDownLoadFile:'添加失败,该文件已添加到下载列表中.',
             removeSuccess:'删除成功.',
+            mustIncludeOneFile:'请至少添加一个要下载的文件.',
 
 		}
 	}

@@ -39,7 +39,7 @@ Ext.define('Eway.view.machine.quittingNotice.Update', {
 		         */
 		        return true;
 		    },
-		    daterangeText: '日期段不正确.'
+		    daterangeText: EwayLocale.machine.quittingNotice.dateRangeText
         });
 		Ext.apply(this, {
 			items : {
@@ -62,7 +62,7 @@ Ext.define('Eway.view.machine.quittingNotice.Update', {
 					readOnly : true,
 					allowBlank : false
 				},{
-					fieldLabel : '<font color="red">*</font> 停机日期',
+					fieldLabel : '<font color="red">*</font>' + EwayLocale.machine.quittingNotice.stopTime,
 					displayField : 'display',
 					valueField : 'value',
 					xtype : 'datefield',
@@ -70,10 +70,11 @@ Ext.define('Eway.view.machine.quittingNotice.Update', {
 					name : 'stopTime',
 					editable : false,
 					vtype : 'daterange',
-					minValue : new Date(),
+			//		minValue : new Date(),
+			//		minText：null,					
 					width : 400,
 					editable:false,
-					endDateField : 'openTime',
+					endDateField : 'openTime',					
 					listeners : {
 						blur : {
 				            fn: function(This, options){
@@ -87,7 +88,7 @@ Ext.define('Eway.view.machine.quittingNotice.Update', {
 					}
 
 				},{
-					fieldLabel : '恢复日期',
+					fieldLabel :  EwayLocale.machine.quittingNotice.openTime,
 					displayField : 'display',
 					valueField : 'value',
 					width : 400,

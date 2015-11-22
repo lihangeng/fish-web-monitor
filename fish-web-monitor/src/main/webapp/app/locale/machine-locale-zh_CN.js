@@ -513,6 +513,7 @@ Ext.apply(EwayLocale,{
 			stopReason:'停机原因',
 			address:'所属地址',
 			selectDev:'选择需要报停的设备',
+			updateUnable:'不能对已执行完成的报停记录进行修改.',
 			to:'至',
 			stopType:'停机类型',
 			comboxStopType:{

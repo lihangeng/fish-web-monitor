@@ -391,6 +391,7 @@ Ext.apply(EwayLocale,{
 			mergeDownLoad:'Execute the task of download',//执行下载任务
 			clickAddLoadFile:'Add the list of download on click',//单击添加到下载列表
 			removeFile:'Remove the file from list',//删除
+			mustIncludeOneFile:'Must exit File to downLoad.',
 
 		}
 	}

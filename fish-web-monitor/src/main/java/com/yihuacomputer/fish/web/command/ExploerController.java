@@ -124,24 +124,17 @@ public class ExploerController
     	String localPath = FishCfg.getTempDir() + System.getProperty("file.separator") + "remoteDown";
     	httpFileCfg.setLocalPath(localPath);
         httpFileCfg.setRequestPath(requestPath);
-        String [] path = requestPath.split("\\|");
-        for(String str : path)
-        {
-        	System.out.println(str);
-        }
         httpFileCfg.setRequestName("1111");
         httpFileCfg.setCompress(true);
         httpFileCfg.setIpAdd(ip);
         httpFileCfg.setPort(MonitorCfg.getRemotePort());
         String localName =  DateUtils.get(new Date(),"yyyyMMddHHmmss");
         httpFileCfg.setLocalName(localName+".zip");
-    //    File file = new File(localPath+System.getProperty("file.separator")+localName+".zip");        
         httpFileCfg.setRetry(true);
-        System.out.println("------------------------");
         HttpFileRet ret = HttpFileClient.mergeDownloadFile(httpFileCfg);
         if(ret.equals(HttpFileRet.SUCCESS)){
             result.addAttribute("path", localPath);
-     //       result.addAttribute("fileName", localName);
+            result.addAttribute("fileName", httpFileCfg.getLocalName());
             result.addAttribute(FishConstant.SUCCESS, true);
         }else if(ret.equals(HttpFileRet.CFG_ERROR)){
             result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failParam", null, FishCfg.locale));

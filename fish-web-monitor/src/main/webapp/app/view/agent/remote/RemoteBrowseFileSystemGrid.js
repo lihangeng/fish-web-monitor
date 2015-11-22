@@ -238,7 +238,6 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
   							return;
   						}
   						me.mergeDownFileSize = me.mergeDownFileSize + data.size;
-  						console.log(me.mergeDownFileSize);
   						if(me.mergeDownFileSize > 209715200)
   						{
   							Eway.alert(EwayLocale.agent.remote.maxDownLoadFileSize);    							
