@@ -4,7 +4,7 @@ Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 
 //	id : 'deviceBasicInfoId',
 	title : EwayLocale.machine.device.deviceBasicInfo,
-	bodyStyle : 'padding: 10px 10px 30px 10px',
+	bodyStyle : 'padding: 10px 10px 10px 10px',
 
 	layout : 'column',
 

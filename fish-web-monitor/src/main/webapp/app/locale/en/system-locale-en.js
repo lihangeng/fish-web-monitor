@@ -26,7 +26,7 @@ Ext.apply(EwayLocale,{
 				rootBank:'Head Office',//EwayLocale.person.bankOrg.organizationLevelDict.rootBank 总行
 				branchBank:'Branch',//EwayLocale.person.bankOrg.organizationLevelDict.branchBank 分行
 				tagBranchBank:'SubBranch',//EwayLocale.person.bankOrg.organizationLevelDict.tagBranchBank 支行
-				netBank:'netBank'//EwayLocale.person.bankOrg.organizationLevelDict.netBank 网点
+				netBank:'Location'//EwayLocale.person.bankOrg.organizationLevelDict.netBank 网点
 			},
 			addOrgTitle:'Person under this organization',//EwayLocale.person.bankOrg.addOrgTitle 该机构人员信息
 			linkPeronTitle:'Person under the organization:',//EwayLocale.person.bankOrg.linkPeronTitle 当前机构下人员
@@ -66,12 +66,12 @@ Ext.apply(EwayLocale,{
 			directOrganization:' Maintenance Providers'
 		},
 		servicePer:{
-			title:'Maintenance Staff',//EwayLocale.person.servicePer.title 维护人员管理
+			title:'Maintenance Engineers',//EwayLocale.person.servicePer.title 维护人员管理
 			servicePerlink:'Binding Device',//EwayLocale.person.servicePer.servicePerlink 关联设备
 			addServicePerTitle:'Add maintenancer',//EwayLocale.person.servicePer.addServicePerTitle 增加维护人员信息
 			updateServicePerTitle:'Update maintenancer',//EwayLocale.person.servicePer.updateServicePerTitle 更改维护人员信息
 
-			maintainInfo:'All Maintenance Staff'//所有维护商人员信息
+			maintainInfo:'All Maintenance Engineers'//所有维护商人员信息
 		},
 		user:{
 			title:'Users',//EwayLocale.person.user.title 用户管理
@@ -85,7 +85,7 @@ Ext.apply(EwayLocale,{
 			clickToUser:'Please click query ,choose a  person',//EwayLocale.person.user.clickToUser 请点击查询，选择人员
 			userType:'User Type',//EwayLocale.person.user.userType 用户类型
 			role:'Role',//EwayLocale.person.user.role 角色
-			roleGiven:'Role given',//EwayLocale.person.user.roleGiven 角色赋予
+			roleGiven:'Optional Roles',//EwayLocale.person.user.roleGiven 角色赋予
 			roleName:'Name',//EwayLocale.person.user.roleName 角色名称
 			roleDescription:'Description',//EwayLocale.person.user.roleDescription 角色描述
 			userListTitle:'userList',//EwayLocale.person.user.userListTitle 人员列表

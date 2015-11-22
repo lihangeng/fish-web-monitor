@@ -6,7 +6,7 @@ Ext.define('Eway.view.index.RetainCardByDay', {
     	text: EwayLocale.index.retainCardTrendTitle,
     	height:24
     },
-    
+
 	tools:[{
 	    type:'refresh',
 	    handler: function(event, toolEl, panelHeader) {
@@ -40,7 +40,8 @@ Ext.define('Eway.view.index.RetainCardByDay', {
             insetPadding: 40,
             innerPadding: {
                 left: 40,
-                right: 40
+                right: 40,
+                top : 30
             },
             sprites: [{
                 type: 'text',

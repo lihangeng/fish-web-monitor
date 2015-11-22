@@ -52,8 +52,6 @@ Ext.define('Eway.view.machine.device.person.PersonTMManagerGrid', {
 		                	   return EwayLocale.commen.comboxStatus.onAdjust;
 		             }else if(value==3){
 		                	   return EwayLocale.commen.comboxStatus.onVacation;
-		             }else if(value==0){
-		                	   return EwayLocale.commen.comboxStatus.other;
 		             }
 				}
 			},{

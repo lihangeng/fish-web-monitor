@@ -11,8 +11,7 @@ Ext.define('Eway.view.operatingPlan.FilterForm',{
 		Ext.apply(this,{
 			items : [{
 				defaults : {
-					labelAlign : 'left',
-					labelWidth : 60
+					labelAlign : 'left'
 				},
 				columnWidth : .30,
 				xtype : 'form',
@@ -22,8 +21,7 @@ Ext.define('Eway.view.operatingPlan.FilterForm',{
 					name : 'name'
 				}]
 			},{defaults : {
-				labelAlign : 'left',
-				labelWidth : 90
+				labelAlign : 'left'
 			},
 				columnWidth : .35,
 				xtype : 'form',
@@ -36,8 +34,7 @@ Ext.define('Eway.view.operatingPlan.FilterForm',{
 				}]
 			},{
 				defaults : {
-					labelAlign : 'left',
-					labelWidth : 90
+					labelAlign : 'left'
 				},
 				columnWidth : .35,
 				xtype : 'form',

@@ -11,7 +11,7 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 	             ],
 
 	layout : 'column',
-
+	height : 80,
 	initComponent : function(){
 		Ext.apply(this,{
 			items : [{

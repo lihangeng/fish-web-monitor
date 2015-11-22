@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.web.monitor;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -9,12 +10,14 @@ import org.cometd.bayeux.server.ServerSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.monitor.IMonitorService;
 import com.yihuacomputer.fish.api.monitor.filter.IFilterService;
 import com.yihuacomputer.fish.api.monitor.filter.IStatusFilter;
 import com.yihuacomputer.fish.api.monitor.report.IMonitorUser;
 import com.yihuacomputer.fish.api.monitor.report.MonitorUserType;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
+import com.yihuacomputer.fish.api.relation.IDeviceGroupRelation;
 
 /**
  * 设备状态监控服务端订阅 监控页面上送状态条件，筛选条件 当服务有满足条件的信息时，主动推向订阅的客户端
@@ -37,6 +40,9 @@ public class StatusMonitorCometd {
 
     @Autowired
     private IFilterService filterService;
+
+    @Autowired
+    private IDeviceGroupRelation deviceGroupRelation;
 
     /**
      * 开始监控，将监控条件保存
@@ -91,7 +97,21 @@ public class StatusMonitorCometd {
             if (limit != null) {
                 monitorUser.getStatusFilter().setLimit(Integer.valueOf(String.valueOf(limit)));
             }
-           
+
+            // 设备分组条件设置
+            if (statuFilterInDB.getAtmGroup() > 0) {
+                List<IDevice> listDevice = deviceGroupRelation.listByDevice(statuFilterInDB.getAtmGroup(),
+                        statuFilterInDB.getOrgId().toString());
+
+                Map<String, String> atmGroupMap = new HashMap<String, String>();
+
+                for (IDevice device : listDevice) {
+                    atmGroupMap.put(device.getTerminalId(), device.getTerminalId());
+                }
+
+                monitorUser.getStatusFilter().setAtmGroupMap(atmGroupMap);
+            }
+
             // 设备列表
             String devList = String.valueOf(map.get("devices"));
 

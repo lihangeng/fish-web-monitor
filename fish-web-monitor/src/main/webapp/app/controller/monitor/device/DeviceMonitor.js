@@ -236,11 +236,13 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			params : values,
 			success : function(response) {
 				var object = Ext.decode(response.responseText);
+				winEl.unmask();
 				if (object.success == true) {
-					winEl.unmask();
 					Eway.alert(succMsg);
 					win.close();
 					me._onFilterManagerQuery();
+				} else {
+					Eway.alert(EwayLocale.tip.business.device.logFail);
 				}
 			},
 			failure : function() {
@@ -885,21 +887,28 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 	},
 
 	
-	_onListPatternBtnClick : function() {
+	_onListPatternBtnClick : function(btn) {
+		
 		var view = this.getEwayView();
 		var card = view.down('#card_itemId');
 		var layout = card.getLayout();
 		layout.setActiveItem('list');
-		var btn = view.down('button[action="query"]');
-	    this._onQueryBtnClick(btn);
+		var queryBtn = view.down('button[action="query"]');
+	    this._onQueryBtnClick(queryBtn);
+	    
+	    this.setFocusCls(view, btn, 'monitor_focus_color');
 	},
-	_onBoxPatternBtnClick : function() {
+	_onBoxPatternBtnClick : function(btn) {
+		
 		var view = this.getEwayView();
 		var card = view.down('#card_itemId');
 		var layout = card.getLayout();
 		layout.setActiveItem('box');
-		var btn = view.down('button[action="query"]');
-	    this._onQueryBtnClick(btn);
+		var queryBtn = view.down('button[action="query"]');
+	    this._onQueryBtnClick(queryBtn);
+	    
+	    this.setFocusCls(view, btn, 'monitor_focus_color');
+	    
 	},	
 	_onSummaryPatternBtnClick : function() {
 		var view = this.getEwayView();
@@ -909,7 +918,8 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 //		var btn = view.down('button[action="query"]');
 //	    this._onQueryBtnClick(btn);
 	},
-	_onMatrixPatternBtnClick : function() {
+	_onMatrixPatternBtnClick : function(btn) {
+		
 		var view = this.getEwayView();
 		view.screen = "";
 		// ExtJs4.2删除class样式的接口变更,由removeClass更新为removeCls
@@ -918,14 +928,25 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		var card = view.down('#card_itemId');
 		var layout = card.getLayout();
 		layout.setActiveItem('martrixPanel');
-		var btn = view.down('button[action="query"]');
-	    this._onQueryBtnClick(btn);
+		var queryBtn = view.down('button[action="query"]');
+	    this._onQueryBtnClick(queryBtn);
+	    
+	    this.setFocusCls(view, btn, 'monitor_focus_color');
 	},
-	_onMaxIconPatternBtnClick : function() {
-		this._onMatrixPatternBtnClick();
+	
+	_onMaxIconPatternBtnClick : function(btn) {
+		this._onMatrixPatternBtnClick(btn);
 		var view = this.getEwayView();
 		view.screen = 64;
 		view.down('#images-view').addCls('maxicon');
+	},
+	
+	setFocusCls : function(view, btn, cls) {
+		var btns = view.down('monitor_device_showtype_tbar').query('button');
+		Ext.each(btns, function(b) {
+			b.removeCls(cls);
+		}) ;
+		btn.addCls(cls);
 	},
 
 	//矩形显示时，鼠标左键单击事件

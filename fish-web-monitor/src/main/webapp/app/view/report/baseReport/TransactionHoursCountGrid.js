@@ -33,7 +33,8 @@ Ext.define('Eway.view.report.baseReport.TransactionHoursCountGrid', {
             insetPadding: 40,
             innerPadding: {
                 left: 40,
-                right: 40
+                right: 40,
+                top : 30
             },
             sprites: [{
                 type: 'text',

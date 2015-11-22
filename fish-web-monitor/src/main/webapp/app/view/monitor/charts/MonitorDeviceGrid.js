@@ -87,7 +87,7 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
 				header : EwayLocale.commen.devTypeName,
 				dataIndex : 'type'
 			}, {
-				header : EwayLocale.commen.installAddr,
+				header : EwayLocale.machine.device.devAddress,
 				dataIndex : 'address'
 			}, {
 				header : EwayLocale.commen.seviceMode,

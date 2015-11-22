@@ -100,7 +100,8 @@ Ext.apply(EwayLocale,{
 			massRemove: '批量删除',
 			providerDescription:'厂商故障描述',
 			solveProject: '解决方案',
-			providerFaultInfo:'厂商故障信息管理'
+			providerFaultInfo:'厂商故障信息管理',
+			formwork:'fault_message_ch.xls'//模板下载
 		}
 	}
 

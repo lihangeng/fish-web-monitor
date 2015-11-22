@@ -414,9 +414,9 @@ Ext.apply(EwayLocale,{
 		state:'Status',//EwayLocale.commen.state 状态
 		birthday:'Birthday',//EwayLocale.commen.birthday 生日
 		comboxStatus:{
-			onJob:'On job',//EwayLocale.commen.comboxStatus.onJob 在岗
-			onAdjust:'On adjust',//EwayLocale.commen.comboxStatus.onAdjust 调休
-			onVacation:'On vacation',//EwayLocale.commen.comboxStatus.onVacation 休假
+			onJob:'Incumbency',//EwayLocale.commen.comboxStatus.onJob 在岗
+			onAdjust:'Leaving',//EwayLocale.commen.comboxStatus.onAdjust 离职
+			onVacation:'Vacation',//EwayLocale.commen.comboxStatus.onVacation 休假
 			other:'other',//EwayLocale.commen.comboxStatus.other 其他
 			dredge:'Dredge',//EwayLocale.commen.comboxStatus.dredge 开通
 			open:'Open',//EwayLocale.commen.comboxStatus.open 启用
@@ -456,7 +456,7 @@ Ext.apply(EwayLocale,{
 		setManager:'Settings',//EwayLocale.commen.setManager 设置
 		devServiceName:'Maintenance Provider',//EwayLocale.commen.devServiceName 设备维护商
 		cashboxLimit:'Alarm of money in cashbox',//EwayLocale.commen.cashboxLimit 钞箱报警金额
-		installDate:'Install Date',//EwayLocale.commen.installDate 安装日期
+		installDate:'Installation Time',//EwayLocale.commen.installDate 安装日期
 		address:'Address',//EwayLocale.commen.address 地址
 		areaCode:'Area code',//EwayLocale.commen.areaCode 区域编号
 		areaName:'Area name',//EwayLocale.commen.areaName 区域名称
@@ -481,15 +481,12 @@ Ext.apply(EwayLocale,{
 		content:'Content',//EwayLocale.commen.content 消息
 		upgrade:'Upgrade',//EwayLocale.commen.upgrade 上级
 		port:'port',//EwayLocale.commen.port 网络Port
-		previous:'Previous',//EwayLocale.commen.previous 上一页
-		next:'next',//EwayLocale.commen.next 下一页
-		installAddr:'Install address',//EwayLocale.commen.installAddr 装机地址
 		seviceMode:'Service mode',//EwayLocale.commen.seviceMode 经营方式
 		insideOutside:'In bank flag',//EwayLocale.commen.insideOutside 在行标志
-		appVersion:'Application version',//EwayLocale.commen.appVersion 应用版本号
-		devInfo:'Device basic info',//EwayLocale.commen.devInfo 设备基本信息
+		appVersion:'Atmc Version',//EwayLocale.commen.appVersion 应用版本号
+		devInfo:'Device Basic Info',//EwayLocale.commen.devInfo 设备基本信息
 		//check end
-		personnel:'Contacter',//EwayLocale.commen.personnel 联系人
+		personnel:'Contacts',//EwayLocale.commen.personnel 联系人
 		warn:'Warn',//EwayLocale.commen.warn 警告
 		fatal:'Fatal',//EwayLocale.commen.fatal 故障
 		unStable:'UnStable',//EwayLocale.commen.unStable 不稳定

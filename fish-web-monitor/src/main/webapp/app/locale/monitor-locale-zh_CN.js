@@ -26,7 +26,6 @@ Ext.apply(EwayLocale,{
 				listPattern:'列表方式',//EwayLocale.monitor.devMonitor.comboxShowWay.listPattern
 				boxPattern:'钞箱方式'//EwayLocale.monitor.devMonitor.comboxShowWay.boxPattern
 			},
-			numberfield:'监控台数',//EwayLocale.monitor.devMonitor.numberfield
 			noData:'无记录',//EwayLocale.monitor.devMonitor.noData
 			retainCardCount:'当前吞卡数量',//EwayLocale.monitor.devMonitor.retainCardCount
 			cash:{

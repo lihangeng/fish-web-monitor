@@ -30,14 +30,15 @@ Ext.define('Eway.view.machine.device.Info', {
 					layout : 'column',
 					border : false,
 					items : [ {
-						columnWidth : .5,
+						columnWidth : .45,
 						border : false,
 						layout : 'anchor',
 						defaultType : 'textfield',
 						defaults : {
-							anchor : '90%',
+							anchor : '95%',
 							style : 'padding-top:5px',
-							readOnly:true
+							labelAlign : 'right',
+							readOnly:true,
 						},
 						items : [ {
 							fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.atmGroup.terminalId,
@@ -73,20 +74,24 @@ Ext.define('Eway.view.machine.device.Info', {
 							xtype : 'hiddenfield',
 							name : 'devServiceId'
 						},{
-							fieldLabel : EwayLocale.machine.device.virtual,
+							xtype:'textfield',
+							fieldLabel : EwayLocale.machine.device.serial,
 							regex : /^\w+[\w-\.]*$/,
 							regexText : EwayLocale.vtype.numberRule,
-							maxLength : 25,
-							name : 'virtual'
+							maxLength : 40,
+							name : 'serial',
+							readOnly:true,
+							labelAlign:'right'
 						}]					
-						
 					}, {
-						columnWidth : .5,
+						columnWidth : .55,
 						border : false,
 						layout : 'anchor',
 						defaults : {
-							anchor : '90%',
+							anchor : '95%',
+							labelAlign : 'right',
 							xtype : 'textfield',
+							labelWidth: 150,
 							style : 'padding-top:5px',
 							readOnly:true
 						},
@@ -119,9 +124,10 @@ Ext.define('Eway.view.machine.device.Info', {
 						layout : 'anchor',
 						defaultType : 'textarea',
 						defaults : {
-							anchor : '95%',
+							anchor : '97%',
 							style : 'padding-top:5px',
-							readOnly:true
+							readOnly:true,
+							labelAlign:'right'
 						},
 						items : [ {
 							fieldLabel : EwayLocale.machine.device.devAddress,
@@ -138,7 +144,7 @@ Ext.define('Eway.view.machine.device.Info', {
 							layout : 'column',
 							border : false,
 							items:[{
-									columnWidth : 0.5,
+									columnWidth : 0.55,
 									border : false,
 									layout : 'anchor',
 									items:[{
@@ -146,20 +152,21 @@ Ext.define('Eway.view.machine.device.Info', {
 					                    xtype : 'datefield',
 					                    format : 'Y-m-d',
 					                    name : 'installDate',
-					                    readOnly:true
+					                    readOnly:true,
+					                    labelWidth:150,
+										labelAlign:'right'
 									}]
 								},{
-									columnWidth : 0.5,
+									columnWidth : 0.45,
 									border : false,
 									layout : 'anchor',
 									items:[{
 										xtype:'textfield',
-										fieldLabel : EwayLocale.machine.device.serial,
+										fieldLabel : EwayLocale.machine.device.virtual,
 										regex : /^\w+[\w-\.]*$/,
 										regexText : EwayLocale.vtype.numberRule,
-										maxLength : 40,
-										name : 'serial',
-										readOnly:true
+										maxLength : 25,
+										name : 'virtual'
 									}]
 								}]
 						
@@ -170,7 +177,9 @@ Ext.define('Eway.view.machine.device.Info', {
 							defaults : {
 								anchor : '95%',
 								xtype : 'textfield',
-								style : 'padding-top:5px'
+								style : 'padding-top:5px',
+								labelWidth:150,
+								labelAlign:'right'
 							},
 							items : [{
 								fieldLabel : EwayLocale.machine.atmGroup.cashboxLimit,
@@ -178,7 +187,7 @@ Ext.define('Eway.view.machine.device.Info', {
 								regex : /^(0|[1-9]\d{0,5})$/,
 								hideTrigger:true,
 								maxLength : 6,
-								anchor : '41%',
+								anchor : '48%',
 								name : 'cashboxLimit',
 								readOnly:true,
 								value:0
@@ -203,6 +212,7 @@ Ext.define('Eway.view.machine.device.Info', {
 								fieldLabel : EwayLocale.machine.device.netType,
 								xtype : 'radiogroup',
 								allowBlank : false,
+								anchor : '92%',
 								items : [ {
 									boxLabel : EwayLocale.machine.device.wired,
 									name : 'netType',
@@ -223,6 +233,7 @@ Ext.define('Eway.view.machine.device.Info', {
 								,{
 									fieldLabel : EwayLocale.machine.device.onBankSignal,
 									xtype : 'radiogroup',
+									anchor : '69%',
 									items : [ {
 										boxLabel : EwayLocale.machine.device.inBank,
 										name : 'awayFlag',
@@ -234,12 +245,12 @@ Ext.define('Eway.view.machine.device.Info', {
 										name : 'awayFlag',
 										readOnly:true,
 										inputValue : 2
-									}, {
+									}/*, {
 										boxLabel :  EwayLocale.machine.device.clickBank,
 										name : 'awayFlag',
 										readOnly:true,
 										inputValue : 3
-									} ]
+									} */]
 								} ]
 						}]
 					},{

@@ -104,7 +104,8 @@ Ext.apply(EwayLocale,{
 			no:'编号',
 			cashtype:'非现金标志',
 			iscash:'现金',
-			nocash:'非现金'
+			nocash:'非现金',//非现金
+			modules:'包含的设备模块'
 		},
 		device:{
 			title:'设备信息管理',
@@ -539,6 +540,7 @@ Ext.apply(EwayLocale,{
 			servicePlan:'开机方案',//EwayLocale.machine.plan.servicePlan
 		},
 		serviceplan:{
+			title:'开机方案',//EwayLocale.machine.serviceplan.title
 			name:'方案名称',//EwayLocale.machine.serviceplan.name
 			machineQuantity:'设备数量',//EwayLocale.machine.serviceplan.machineQuantity
 			state:'状态',//EwayLocale.machine.serviceplan.state

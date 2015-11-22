@@ -107,7 +107,7 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 				dataIndex : 'org',
 				flex : 1
 			}, */{
-				header : EwayLocale.commen.installAddr,
+				header : EwayLocale.machine.device.devAddress,
 				dataIndex : 'address'
 			}, {
 				header : EwayLocale.commen.seviceMode,

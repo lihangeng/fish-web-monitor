@@ -17,7 +17,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 			initRegion : true,
 			viewConfig : {
 				loadMask   : {
-       			 	msg :EwayLocale.agent.remote.loadData
+       			 	msg : EwayLocale.agent.remote.loadData
         		}
 			},
 			tbar: [{
@@ -185,7 +185,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 							Eway.alert(EwayLocale.agent.remote.loadFileSize);
 						} else {
 							var win = grid.up('window');
-							var gridEl = grid.getEl();							
+							var gridEl = grid.getEl();
 							var mask = new Ext.LoadMask(grid, {msg : EwayLocale.agent.remote.nowLoadFile});
 							Ext.MessageBox.show({
 								title : EwayLocale.tip.remind,
@@ -290,7 +290,9 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 					var iframe = gridEl.prev();
 					var fileName = object.fileName.replace("&", "%26");// 将文件名含有&符号的用URL编码“%26”替换
 					if (iframe) {
-						Ext.core.Element.get(iframe).destroy();
+						// 2015-11-19,该js方法在5.1版本不存在
+//						Ext.core.Element.get(iframe).destroy();
+						iframe.destroy();
 					}
 					iframe = Ext.core.DomHelper.createDom({
 								tag : 'iframe',

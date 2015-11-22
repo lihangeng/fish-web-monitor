@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="w_trans_count_device" language="groovy" pageWidth="1400" pageHeight="1500" whenNoDataType="AllSectionsNoDetail" columnWidth="1360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="377d6c5d-3e8b-4b6d-8641-9e651b561646">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="255"/>
-	<property name="ireport.y" value="14"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<parameter name="title" class="java.lang.String"/>
 	<parameter name="startReportDate" class="java.lang.String"/>
@@ -84,7 +84,7 @@
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement>
-								<font size="13"/>
+								<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$P{orgName}]]></textFieldExpression>
 						</textField>
@@ -94,7 +94,7 @@
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement>
-								<font size="13"/>
+								<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$P{terminalId}]]></textFieldExpression>
 						</textField>
@@ -104,7 +104,7 @@
 								<rightPen lineWidth="0.5"/>
 							</box>
 							<textElement>
-								<font size="13"/>
+								<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$P{transType}]]></textFieldExpression>
 						</textField>

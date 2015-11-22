@@ -2,8 +2,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.monitor_device_DeviceInfoStatus',
 	requires:['Ext.ux.TransparentButton'],
-	width : 720,
-	height :610,
+	width : 800,
 	maximizable : true,
 	modal : true,
 	border : false,
@@ -61,30 +60,26 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 				}, {
 					layout : 'column',
 					defaultType : 'displayfield',
-					items : [ {
+					items : [{
 						columnWidth : .5,
-						fieldLabel : EwayLocale.commen.insideOutside,
-						name : 'insideOutside'
-					}, {
-						columnWidth : .49,
 						fieldLabel : EwayLocale.commen.ip,
 						name : 'ip'
-					} ]
-				}, {
-					layout : 'column',
-					defaultType : 'displayfield',
-					items : [ {
-						columnWidth : .5,
-						fieldLabel : EwayLocale.commen.installAddr,
-						name : 'address',
-						tips : true,
-						fieldCls : 'text_ellipsis'
-					}, {
+					},{
 						columnWidth : .49,
 						fieldLabel : EwayLocale.commen.appVersion,
 						name : 'appRelease'
+					}]
+				},{
+					layout : 'column',
+					defaultType : 'displayfield',
+					items : [{
+						columnWidth : .99,
+						fieldLabel : EwayLocale.machine.device.devAddress,
+						name : 'address',
+						tips : true,
+						fieldCls : 'text_ellipsis'
 					} ]
-				} ]
+				}]
 			}, {
 				xtype : 'fieldset',
 				title : EwayLocale.commen.devStatus,
@@ -99,11 +94,13 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .5,
 						fieldLabel : EwayLocale.monitor.devMonitor.comboxStatus.runStatus,
 						name : 'runStatus',
+						labelWidth:120,
 						a_link : true
 					}, {
 						columnWidth : .49,
 						fieldLabel : EwayLocale.monitor.devMonitor.cash.boxInitCount,
-						name : 'boxInitCount'
+						name : 'boxInitCount',
+						labelWidth:180
 					} ]
 				}, {
 					layout : 'column',
@@ -112,13 +109,15 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 				        columnWidth : .5,
 				        fieldLabel : EwayLocale.monitor.devMonitor.comboxStatus.modStatus,
 						name : 'modStatus',
+						labelWidth:120,
 						a_link : true
 
 					}, {
 						columnWidth : .49,
 						xtype: 'displayfield',
 						fieldLabel : EwayLocale.monitor.devMonitor.cash.boxCurrentCount,
-						name : 'boxCurrentCount'
+						name : 'boxCurrentCount',
+						labelWidth:180
 					} ]
 				}, {
 					layout : 'column',
@@ -127,11 +126,13 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .5,
 						fieldLabel : EwayLocale.monitor.devMonitor.comboxStatus.boxStatus,
 						name : 'boxStatus',
+						labelWidth:120,
 						a_link : true
 					}, {
 						columnWidth : .49,
 						fieldLabel : EwayLocale.monitor.devMonitor.retainCardCount,
-						name : 'retainCardCount'
+						name : 'retainCardCount',
+						labelWidth:180
 					} ]
 				}, {
 					layout : 'column',
@@ -140,11 +141,13 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .5,
 						fieldLabel : EwayLocale.monitor.devMonitor.comboxStatus.netStatus,
 						name : 'netStatus',
+						labelWidth:120,
 						a_link : true
 					}, {
 						columnWidth : .49,
 						fieldLabel : EwayLocale.monitor.devMonitor.registerStatus,
-						name : 'registerStatus'
+						name : 'registerStatus',
+						labelWidth:180
 					} ]
 				} ]
 			}, {
@@ -166,6 +169,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.jpr,
 						name : 'jprStatus',
+						labelWidth:100,
 						a_link : true
 					},{
 						columnWidth : .25,
@@ -190,6 +194,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.rpr,
 						name : 'rprStatus',
+						labelWidth:100,
 						a_link : true
 					}, {
 						columnWidth : .25,
@@ -214,6 +219,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.icc,
 						name : 'iccStatus',
+						labelWidth:100,
 						a_link : true
 					}, {
 						columnWidth : .25,
@@ -231,103 +237,121 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 				},
 				items : [ {
 					layout : 'column',
-					xtype:'toolbar',
+					xtype:'panel',
 //					defaultType : 'transparentbutton',
+					defaultType : 'displayfield',
 					minHeight : 90,
+					defaults : {
+//						hideLabel : true
+					},
 					items : [ {
 						columnWidth : .24,
 						name : 'remoteScreenAction',
-						text : EwayLocale.monitor.devMonitor.remote.screen,
 						code : 'remoteScreen',
-						listeners:{
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.screen+'</a>',
+						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					}, {
 						columnWidth : .24,
 						name : 'logAction',
-						text : EwayLocale.monitor.devMonitor.remote.log,
 						code : 'takeLog',
-						listeners:{
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.log+'</a>',
+						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					}, {
 						columnWidth : .24,
-						text : EwayLocale.monitor.devMonitor.remote.net+'</a>',
-						name : 'netAction'
+						name : 'netAction',
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.net+'</a>'
 					}, {
 						columnWidth : .24,
-						text : EwayLocale.monitor.devMonitor.remote.softwareList+'</a>',
-						name : 'softwareListAction'
+						name : 'softwareListAction',
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.softwareList+'</a>'
 					}, {
 						columnWidth : .24,
 						name: 'closeAction',
-						text : EwayLocale.monitor.devMonitor.remote.powerOff+'</a>',
 						code : 'close',
-						listeners:{
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.powerOff+'</a>',
+						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					}, {
 						columnWidth : .24,
 						name : 'restartAction',
-						text : EwayLocale.monitor.devMonitor.remote.restart,
 						code : 'restart',
-						listeners:{
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.restart+'</a>',
+						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					}, {
 						columnWidth : .24,
 						name : 'logicOpenAction',
-						text : EwayLocale.monitor.devMonitor.remote.logicOpen,
 						code : 'logicOpen',
-						listeners:{
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.logicOpen+'</a>',
+						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					}, {
 						columnWidth : .24,
 						name : 'logicCloseAction',
-						text : EwayLocale.monitor.devMonitor.remote.logicClose,
 						code : 'logicClose',
-						listeners:{
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.logicClose+'</a>',
+						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					}, {
 						columnWidth : .24,
 						name : 'remoteBrowserAction',
-						text : EwayLocale.monitor.devMonitor.remote.remoteBrowser,
 						code : 'remoteBrowser',
-						listeners:{
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.remoteBrowser+'</a>',
+						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					}, {
 						columnWidth : .24,
-						text : EwayLocale.monitor.devMonitor.remote.processList,
-						name : 'processListAction'
+						name : 'processListAction',
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.processList+'</a>'
 					}, {
 						columnWidth : .24,
 						name : 'screenCameraAction',
-						text : EwayLocale.monitor.devMonitor.remote.screenCamera,
 						code : 'screenCamera',
-						listeners:{
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.screenCamera+'</a>',
+						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					}, {
 						columnWidth : .24,
 						name : 'resetAction',
-						text : EwayLocale.monitor.devMonitor.remote.reset,
 						code : 'reset',
-						listeners:{
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.reset+'</a>',
+						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					}, {
 						columnWidth : .24,
 						name : 'remoteLookAction',
-						text : EwayLocale.monitor.devMonitor.remote.remoteLook
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.remoteLook+'</a>'
 					}, {
 						columnWidth : .24,
 						name : 'remoteCheckATMAction',
-						text : EwayLocale.monitor.devMonitor.remote.remoteCheckATM,
 						code : 'remoteCheckATM',
-						listeners:{
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.remoteCheckATM+'</a>',
+						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
 					} ]

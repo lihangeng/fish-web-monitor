@@ -263,6 +263,8 @@ Ext.define('Eway.controller.Main', {
 			this.activeController('report.baseReport.TransactionDaysCountReport',text);
 		}else if(code =="reportDayHourTrans"){
 			this.activeController('report.baseReport.TransactionHoursCountReport',text);
+		}else if(code =="caseStatisticsReport"){
+			this.activeController('report.baseReport.CaseStatisticsReport',text);
 		}
 	},
 

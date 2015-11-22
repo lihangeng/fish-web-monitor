@@ -66,7 +66,8 @@ Ext.define('Eway.view.person.serviceOrg.Grid', {
 			}, {
 				header : EwayLocale.person.serviceOrg.name,
 				dataIndex : 'displayName',
-				sortable : true
+				sortable : true,
+				width : 200
 			}, {
 				header : EwayLocale.person.serviceOrg.zip,
 				dataIndex : 'zip',
@@ -78,7 +79,7 @@ Ext.define('Eway.view.person.serviceOrg.Grid', {
 				header : EwayLocale.person.serviceOrg.address,
 				dataIndex : 'address',
 				sortable : true,
-				width : 250
+				width : 200
 			}, {
 				header : EwayLocale.person.serviceOrg.description,
 				dataIndex : 'description',

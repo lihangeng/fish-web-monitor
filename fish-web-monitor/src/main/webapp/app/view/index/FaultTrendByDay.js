@@ -7,7 +7,7 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
     	text :EwayLocale.index.dailyFaultPic,
     	height:24
     },
-    
+
 	tools:[{
 	    type:'refresh',
 	    handler: function(event, toolEl, panelHeader) {
@@ -31,7 +31,8 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
             insetPadding: 40,
             innerPadding: {
                 left: 40,
-                right: 40
+                right: 40,
+                top : 30
             },
             sprites: [{
                 type: 'text',

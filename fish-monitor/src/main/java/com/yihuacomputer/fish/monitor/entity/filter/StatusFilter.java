@@ -2,6 +2,7 @@ package com.yihuacomputer.fish.monitor.entity.filter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -88,6 +89,9 @@ public class StatusFilter implements IStatusFilter {
 
     @Transient
     private DevStatus deviceStatus = DevStatus.OPEN;
+    
+    @Transient
+    private Map<String, String> atmGroupMap;
 
     public String getUserId() {
         return userId;
@@ -234,6 +238,10 @@ public class StatusFilter implements IStatusFilter {
         }
 
         if (this.getDevVendor() != 0 && this.getDevVendor() != device.getDevType().getDevVendor().getId()) {
+            return ReportMedthod.BEFILTERED;
+        }
+        
+        if (this.getAtmGroup() != 0 && !this.getAtmGroupMap().containsKey(device.getTerminalId())) {
             return ReportMedthod.BEFILTERED;
         }
 
@@ -528,5 +536,15 @@ public class StatusFilter implements IStatusFilter {
 
     public void setFilterName(String filterName) {
         this.filterName = filterName;
+    }
+
+    @Override
+    public void setAtmGroupMap(Map<String, String> atmGroupMap) {
+        this.atmGroupMap = atmGroupMap;
+    }
+
+    @Override
+    public Map<String, String> getAtmGroupMap() {
+        return this.atmGroupMap;
     }
 }
