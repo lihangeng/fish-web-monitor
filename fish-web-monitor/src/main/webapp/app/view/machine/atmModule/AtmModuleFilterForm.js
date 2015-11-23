@@ -23,8 +23,6 @@ Ext.define('Eway.view.machine.atmModule.AtmModuleFilterForm', {
 					xtype : 'textfield',
 					name : 'name',
 					fieldLabel : EwayLocale.machine.atmModule.moduleName,
-					regex: /^[a-zA-Z0-9\u4E00-\u9FA5][a-zA-Z0-9-_\.\u4E00-\u9FA5]{0,19}$/,
-					regexText: EwayLocale.vtype.bankOrgCode,
 					msgTarget : 'side',
 					labelAlign : 'right'
 				}]

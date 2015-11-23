@@ -24,8 +24,6 @@ Ext.define('Eway.view.person.user.FilterForm', {
 					labelWidth: 50,
 					xtype : 'field.code',
 					labelAlign : 'right',
-					regex: /^[a-zA-Z0-9][a-zA-Z0-9-_\.]{0,19}$/,
-					regexText:EwayLocale.vtype.bankOrgCode,
 					fieldLabel : EwayLocale.person.user.code,
 					msgTarget : 'side'
 				}]
@@ -43,7 +41,6 @@ Ext.define('Eway.view.person.user.FilterForm', {
 				items : [{
 					xtype : 'field.username',
 					labelWidth: 50,
-					maxLength : 20,
 					msgTarget : 'side'
 				}]
 			}]

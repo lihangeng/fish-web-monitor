@@ -107,7 +107,6 @@ Ext.define('Eway.view.monitor.card.CardDestoryFilterForm', {
 							 	}
 							},{
 								xtype : 'card_TerminalId',
-								maxLength:20,
 								labelAlign : 'right'
 							}]
 					}, {

@@ -14,7 +14,6 @@ Ext.define('Eway.view.permission.role.FilterForm', {
 				fieldLabel :EwayLocale.permission.role.name,
 				xtype:'field_roleName',
 				width: 300,
-				maxLength : 40,
 				allowBlank : true
 			}]
 		});
