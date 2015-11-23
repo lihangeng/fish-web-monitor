@@ -784,15 +784,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 							var object = Ext.decode(response.responseText);
 							if (object.appRet == 00) {
 								winEl.unmask();
-								Eway.alert(EwayLocale.tip.business.device.openSuccess);
+								Eway.alert(EwayLocale.tip.business.device.closeServiceSuccess);
 							} else {
 								winEl.unmask();
-								Eway.alert(EwayLocale.tip.business.device.openFail);
+								Eway.alert(EwayLocale.tip.business.device.closeServiceFail);
 							}
 						},
 						failure: function(){
 							winEl.unmask();
-							Eway.alert(EwayLocale.tip.business.device.openFail);
+							Eway.alert(EwayLocale.tip.business.device.closeServiceFail);
 						}
 					});
 				}
