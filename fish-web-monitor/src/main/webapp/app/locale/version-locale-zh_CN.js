@@ -1,12 +1,12 @@
 Ext.apply(EwayLocale,{
 	// **********************************************************/
 	versionType : {
-		title : '软件分类管理',// EwayLocale.versionType.title
-		treeRoot : '所有软件分类',// EwayLocale.versionType.treeRoot
+		title : '应用类型管理',// EwayLocale.versionType.title
+		treeRoot : '所有应用类型',// EwayLocale.versionType.treeRoot
 		defaultInstallPath : '默认安装路径',// EwayLocale.versionType.defaultInstallPath
 		needRestart : '需要重启设备完成升级',// EwayLocale.versionType.needRestart
 		devTypeOfUser : '适用的设备型号',// EwayLocale.versionType.devTypeOfUser
-		winTitle : '软件分类',// EwayLocale.versionType.winTitle
+		winTitle : '应用类型',// EwayLocale.versionType.winTitle
 		versionTypeNameRegText : '只能输入字母(a-z或A-Z)、数字(0-9)、下划线(_)、横线(-)'// EwayLocale.versionType.versionTypeNameRegText
 	},
 	statics : {
@@ -40,7 +40,7 @@ Ext.apply(EwayLocale,{
 		createdTimeStart : '制作时间开始于',// EwayLocale.advert.createdTimeStart
 		createdTimeStop : '制作时间结束于',// EwayLocale.advert.createdTimeStop
 		downloadAdvertConfig : '下发广告配置',// EwayLocale.advert.downloadAdvertConfig
-		versionType : '软件分类',// EwayLocale.advert.versionType
+		versionType : '应用类型',// EwayLocale.advert.versionType
 		jobPriority : '作业优先级',// EwayLocale.advert.jobPriority
 		jobType : '作业类型',// EwayLocale.advert.jobType
 		toVersionButton : '还没有生成版本信息，可以单击按钮[生成版本]。',// EwayLocale.advert.toVersionButton
@@ -134,9 +134,10 @@ Ext.apply(EwayLocale,{
 		selectableDevice : '可以下发的设备',// EwayLocale.version.selectableDevice
 		linkedDevice : '已选择的设备',// EwayLocale.version.linkedDevice
 		downloadVerFile : '下载版本文件',// EwayLocale.version.downloadVerFile
+		installPath:'安装路径',
 		View : {
 			title : '版本管理',
-			versionDetail : '版本详情',// EwayLocale.version.View.versionDetail
+			versionDetail : '',// EwayLocale.version.View.versionDetail
 			remark : '备注', // EwayLocale.version.View.remark
 			newCreate : '新建',// EwayLocale.version.View.newCreate
 			downLoaded : '已下发',// EwayLocale.version.View.downLoaded
@@ -151,8 +152,8 @@ Ext.apply(EwayLocale,{
 			versionFileRegexText : '只能上传zip或rar格式的文件',// EwayLocale.version.View.versionFileRegexText
 			versionFileUploadMsg : '正在上传文件...',// EwayLocale.version.View.versionFileUploadMsg
 			versionFileEmpty : '请将要下发的版本文件(或者文件夹)打包zip或rar格式',// EwayLocale.version.View.versionFileEmpty
-			versionTypeCode : '软件分类编码',// EwayLocale.version.View.versionTypeCode
-			versionTypeName : '软件分类名称',// EwayLocale.version.View.versionTypeName
+			versionTypeCode : '应用类型编码',// EwayLocale.version.View.versionTypeCode
+			versionTypeName : '应用类型名称',// EwayLocale.version.View.versionTypeName
 			versionTypeId : '版本类型ID',// EwayLocale.version.View.versionTypeId
 			versionTypeEmpty : '-请选择版本类型-',// EwayLocale.version.View.versionTypeEmpty
 			versionTime : '创建时间',// EwayLocale.version.View.versionTime
