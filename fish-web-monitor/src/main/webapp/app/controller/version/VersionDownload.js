@@ -91,9 +91,19 @@ Ext.define('Eway.controller.version.VersionDownload', {
 			    },
 			    success: function(response){
 			        var text = response.responseText;
-			        Eway.alert(EwayLocale.version.taskStatus.taskResetSuccessTips);
-			        grid.getStore().load();
+			        var object = Ext.decode(text);
+			        if(object.success){
+				        Eway.alert(EwayLocale.version.taskStatus.taskResetSuccessTips);
+				        grid.getStore().load();
+			        }
+			        else{
+			        	Eway.alert(object.errorMsg);
+			        }
+			    },
+			    failure:function(){
+					Eway.alert(wayLocale.version.taskStatus.taskResetFailTips);
 			    }
+			    
 			});
 		}
 		else{

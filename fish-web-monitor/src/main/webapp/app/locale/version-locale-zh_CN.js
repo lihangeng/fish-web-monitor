@@ -213,6 +213,7 @@ Ext.apply(EwayLocale,{
 			checked : '部署已确认',// EwayLocale.version.taskStatus.checked
 			noticeOk : '已通知应用',// EwayLocale.version.taskStatus.noticeOk
 			taskResetSuccessTips : '任务重置成功！',// EwayLocale.version.taskStatus.taskResetSuccessTips
+			taskResetFailTips : '任务重置失败！',// EwayLocale.version.taskStatus.taskResetFailTips
 			noticeFail : '通知应用失败'// EwayLocale.version.taskStatus.noticeFail
 		},
 		versionCatalog : {

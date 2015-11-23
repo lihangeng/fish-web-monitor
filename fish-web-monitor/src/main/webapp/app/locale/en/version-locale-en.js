@@ -212,6 +212,7 @@ Ext.apply(EwayLocale,{
 			checked:'Confirmed to install',//EwayLocale.version.taskStatus.checked 部署已确认
 			noticeOk:'Noticed application',//EwayLocale.version.taskStatus.noticeOk 已通知应用
 			taskResetSuccessTips:'Success reset task!',//EwayLocale.version.taskStatus.taskResetSuccessTips
+			taskResetFailTips : 'Fail reset task！',// EwayLocale.version.taskStatus.taskResetFailTips
 			noticeFail:'Notic application failed'//EwayLocale.version.taskStatus.noticeFail 通知应用失败
 		},
 		versionCatalog:{
