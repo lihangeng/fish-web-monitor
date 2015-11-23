@@ -122,8 +122,7 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 		var ewayView = this.getEwayView();
 		var grid = ewayView.down('gridpanel');
 		var sm = grid.getSelectionModel();		
-		if(sm.getCount() == 1) {		
-
+		if(sm.getCount() == 1) {
 			var win = Ext.create(this.updateView);
 			var record = sm.getLastSelected();
 			var stopTime = record.get('stopTime');
@@ -146,7 +145,7 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 	           nowDate = new Date(nowYear,nowMonth,nowDay);
 			   if(OpenDate != null && OpenDate.getTime() <= nowDate.getTime())
 	            {
-	            	Ext.Msg.alert("提示", "不能对已执行完成的报停记录进行修改.");
+	            	Eway.alert(EwayLocale.machine.quittingNotice.updateUnable)
 
 	            }
 	            else

@@ -80,7 +80,7 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 						return EwayLocale.machine.atmGroup.comboxAwayFlag.clickBank;
 					}
 				}
-			}, {
+			}/*, {
 				header : EwayLocale.commen.seviceMode,
 				dataIndex : 'sellItem',
 				renderer : function(value) {
@@ -98,7 +98,7 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 						return EwayLocale.machine.device.epiboly;
 					}
 				}
-			}, {
+			}*/, {
 				header : EwayLocale.monitor.devMonitor.atmGroup,
 				dataIndex : 'atmGroup',
 				renderer : function(value, metaData, record) {

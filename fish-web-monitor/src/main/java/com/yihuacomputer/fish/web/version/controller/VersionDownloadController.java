@@ -712,6 +712,7 @@ public class VersionDownloadController {
         	}
         	else{
         		result.addAttribute(FishConstant.SUCCESS, false);
+        		result.addAttribute(FishConstant.ERROR_MSG,messageSourceVersion.getMessage("exception.task.cantResetTask",null,FishCfg.locale));
         	}
         } catch (Exception e) {
             result.addAttribute(FishConstant.SUCCESS, false);

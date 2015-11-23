@@ -61,9 +61,7 @@ Ext.define('Eway.view.version.autoUpdate.FilterForm', {
 					xtype : 'textfield',
 					fieldLabel : EwayLocale.refs.terminalId,
 					name : 'terminalId',
-					vtype : 'terminalId',
 					allowBlank : true,
-					maxLength:20,
 					msgTarget : 'side'
 				},{
 					xtype : 'textfield',

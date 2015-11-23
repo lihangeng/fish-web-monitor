@@ -34,7 +34,7 @@ Ext.define('Eway.view.machine.device.person.PersonInfo', {
 					xtype : 'machine_device_person_oGrid',
 					listeners : {
 						render : function( tab ) {
-							// 加载维护员的数据
+							// 加载机构管理员的数据
 							var params = {
 								terminalId : this._terminalId
 							};
@@ -48,7 +48,7 @@ Ext.define('Eway.view.machine.device.person.PersonInfo', {
 					xtype : 'machine_device_person_tmGrid',
 					listeners : {
 						render : function( tab ) {
-							// 加载维护员的数据
+							// 加载管机员的数据
 							var params = {
 								terminalId : this._terminalId,
 								type : 0
@@ -73,9 +73,19 @@ Ext.define('Eway.view.machine.device.person.PersonInfo', {
 						scope : this
 					}
 				} , {
-					title : EwayLocale.report.plan.openPlan,
+					title : EwayLocale.report.plan.name,
 					itemid : 'devicePlanInfoID',
-					xtype : 'device_planInfo_grid'
+					xtype : 'device_planInfo_grid',
+					listeners : {
+						render : function( tab ) {
+							// 加载开机方案的数据
+							var params = {
+								terminalId : this._terminalId
+							};
+							tab.onReload(params);
+						},
+						scope : this
+					}
 				} ]
 			}
 		});

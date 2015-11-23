@@ -17,15 +17,11 @@ Ext.define('Eway.view.monitor.cashinit.FilterForm', {
 				items : [{
 					xtype : 'textfield',
 					fieldLabel : EwayLocale.commen.terminalId,
-					name : 'terminalId',
-					regex : /^\w+[\w-\.]*$/,
-					regexText : EwayLocale.vtype.terminalId,
-					maxLength : 20
+					name : 'terminalId'
 				}, {
 					xtype : 'textfield',
 					fieldLabel : EwayLocale.monitor.business.cashInit.uuId,
-					name : 'uuId',
-					maxLength : 20
+					name : 'uuId'
 				} ]
 			}, {
 				columnWidth : .5,

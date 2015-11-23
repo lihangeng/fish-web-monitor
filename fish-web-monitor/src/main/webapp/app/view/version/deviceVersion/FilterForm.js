@@ -19,8 +19,7 @@ Ext.define('Eway.view.version.deviceVersion.FilterForm', {
 				items : [ {
 					xtype : 'textfield',
 					fieldLabel : EwayLocale.refs.terminalId,
-					name : 'terminalId',
-					maxLength : 20
+					name : 'terminalId'
 				},{
 					xtype : 'field_card_DeviceAtmVendorComboBox',
 					name: 'devBrandId'

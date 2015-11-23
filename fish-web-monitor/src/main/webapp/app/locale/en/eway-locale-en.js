@@ -308,6 +308,8 @@ Ext.apply(EwayLocale,{
 				openSuccess:'Execute open-service command successful.',//EwayLocale.tip.business.device.openSuccess 执行开启服务命令成功.
 				openFail:'Execute open-service command failed.',//EwayLocale.tip.business.device.openFail 执行开启服务命令失败.
 				closeConfirm:'Confirm execute pause-service command?',//EwayLocale.tip.business.device.closeConfirm 确认要执行暂停服务命令?
+				closeServiceSuccess:'Execute pause-service command successful.',//EwayLocale.tip.business.device.closeServiceSuccess 执行暂停服务成功
+				closeServiceFail:'Execute pause-service command failed.',//EwayLocale.tip.business.device.closeServiceFail 执行暂停服务失败
 				closeNormal:'Shut down normally.',//EwayLocale.tip.business.device.closeNormal 正常关机
 				closeComfirm:'Confirm execute normal shut-down command,it may brings some risk?',//EwayLocale.tip.business.device.closeComfirm 确认要执行正常关机命令么,可能会存在风险?
 				closing:'Shutting down normally.',//EwayLocale.tip.business.device.closing 正在执行正常关机
@@ -516,14 +518,14 @@ Ext.apply(EwayLocale,{
 	index:{
 		indexPage:'Home',//EwayLocale.index.indexPage 首页
 		dailyFaultPic:'Faults Trend Chart',//EwayLocale.index.dailyFaultPic 日均故障趋势图
-		faultAmount:' CaseFault number: ',//EwayLocale.index.faultAmount
-		devStatusDisPic:'Device status Pie',//EwayLocale.index.devStatusDisPic
-		normalDev:'Device normal',//EwayLocale.index.normalDev 正常设备
-		unknownDev:'Device-unknown',//EwayLocale.index.unknownDev
-		exceptionDev:'Device unusual',//EwayLocale.index.exceptionDev 异常设备
+		faultAmount:' Amount of Faults: ',//EwayLocale.index.faultAmount
+		devStatusDisPic:'Device Status Pie',//EwayLocale.index.devStatusDisPic
+		normalDev:'Healthy',//EwayLocale.index.normalDev 正常设备
+		unknownDev:'Unknow',//EwayLocale.index.unknownDev
+		exceptionDev:'Fatal',//EwayLocale.index.exceptionDev 异常设备
 		amount:'',//EwayLocale.index.amount 台
-		versionDistributePie:'Version Distribution',//EwayLocale.index.versionDistributePie
-		retainCardTrendTitle:'Retain Card Trend Chart'//EwayLocale.index.retainCardTrendTitle
+		versionDistributePie:'Patch Distribution',//EwayLocale.index.versionDistributePie
+		retainCardTrendTitle:'Retained Card Trend Chart'//EwayLocale.index.retainCardTrendTitle
 	},
 
 	//**********************************************************/

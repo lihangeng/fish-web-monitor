@@ -23,13 +23,10 @@ Ext.define('Eway.view.person.user.PersonUserFilterForm', {
 				items : [ {
 					xtype : 'field.username',
 					labelWidth : 40,
-					maxLength : 20,
 					msgTarget : 'side'
 				}, {
 					xtype : 'field.mobile',
 					labelWidth : 40,
-					regex : /^\d{8,11}$/,
-					regexText : EwayLocale.vtype.mobile,
 					msgTarget : 'side'
 				} ]
 			}, {

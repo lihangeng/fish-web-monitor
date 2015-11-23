@@ -21,11 +21,8 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 					labelWidth : 70,
 					xtype : 'textfield',
 					fieldLabel : EwayLocale.commen.terminalId,
-					maxLength:20,
-					regexText:EwayLocale.vtype.terminalId,
 					name : 'terminalId',
-					msgTarget:'side',
-					vtype : 'terminalId'
+					msgTarget:'side'
 				},{
 					labelWidth : 70,
 					xtype : 'field_faultStatus',

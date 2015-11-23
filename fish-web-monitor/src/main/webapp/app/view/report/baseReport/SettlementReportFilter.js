@@ -31,10 +31,7 @@ Ext.define('Eway.view.report.baseReport.SettlementReportFilter', {
 									xtype : 'textfield',
 									fieldLabel : EwayLocale.commen.terminalId,
 									labelAlign : 'right',
-									name : 'terminalId',
-									regex : /^\w+[\w-\.]*$/,
-									regexText : EwayLocale.vtype.numberRule,
-									maxLength : 20
+									name : 'terminalId'
 								}]
 					}, {
 						columnWidth : .4,

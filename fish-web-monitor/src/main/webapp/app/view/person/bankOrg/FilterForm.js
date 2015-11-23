@@ -6,7 +6,7 @@ Ext.define('Eway.view.person.bankOrg.FilterForm', {
 	alias: 'widget.bank_organization_filterform',
 
 	requires: ['Eway.view.field.person.Code',
-	           'Eway.view.field.person.Name',
+	           'Eway.view.field.person.Name','Eway.view.common.OrgComboOrgTree',
 	           'Eway.view.field.person.OrganizationLevel'],
 
 	/*title: '输入您的查询条件',*/
@@ -22,21 +22,34 @@ Ext.define('Eway.view.person.bankOrg.FilterForm', {
 			items : [{
 				columnWidth : .3,
 				items : [{
+					xtype : 'common_orgComboOrgTree',
+					fieldLabel : EwayLocale.person.bankOrg.name,
+					emptyText: EwayLocale.combox.select,
+					editable : false,
+					name : 'org',
+					filters : '{"type" : "0"}',
+					rootVisible : true,
+					hiddenValue : 'orgId'
+				},{
+					xtype : 'hiddenfield',
+					name :'orgId'
+				}]
+			},{
+				columnWidth : .3,
+				items : [{
 					xtype : 'field.code',
 					labelAlign : 'right',
 					fieldLabel : EwayLocale.person.bankOrg.code,
-					maxLength:20,
 					msgTarget : 'side'
 				}]
-			}, {
-				columnWidth : .3,
-				items : [{
-					xtype : 'field.name',
-					labelAlign : 'right',
-					fieldLabel: EwayLocale.person.bankOrg.name,
-					maxLength:40,
-					msgTarget : 'side'
-				}]
+//			}, {
+//				columnWidth : .25,
+//				items : [{
+//					xtype : 'field.name',
+//					labelAlign : 'right',
+//					fieldLabel: EwayLocale.person.bankOrg.name,
+//					msgTarget : 'side'
+//				}]
 			}, {
 				columnWidth : .3,
 				items : [{
