@@ -35,7 +35,6 @@ Ext.define('Eway.view.machine.quittingNotice.FilterForm', {
 					xtype : 'textfield',
 					labelAlign : 'right',
 					name : 'responsibilityName',
-					maxLength:20,
 					fieldLabel : EwayLocale.machine.quittingNotice.responsibilityName
 				}]
 			},{

@@ -12,7 +12,7 @@ Ext.apply(EwayLocale,{
 	statics:{
 		title:'Distribution Statitics',//EwayLocale.statics.title
 		versionInfo:'Version Info',//EwayLocale.statics.versionInfo //版本信息
-		msg:'信息'	//EwayLocale.statics.msg
+		msg:'Info'	//EwayLocale.statics.msg
 	},
 	//广告模块
 	advert:{
@@ -32,7 +32,7 @@ Ext.apply(EwayLocale,{
 		type:'Advert Type',//EwayLocale.advert.type 广告类型
 		downType:'Issuing way',//EwayLocale.advert.downType 广告下发方式
 		validity:'Expiry date',//EwayLocale.advert.validity 广告有效期
-		createdTime:'Created time',//EwayLocale.advert.createdTime 制作时间
+		createdTime:'Created Time',//EwayLocale.advert.createdTime 制作时间
 		userName:'Creater',//EwayLocale.advert.userName 制作人
 		versionStatus:'Version status',//EwayLocale.advert.versionStatus 广告版本状态
 		advertVersionFile:'Version file',//EwayLocale.advert.advertVersionFile 版本文件
@@ -119,31 +119,32 @@ Ext.apply(EwayLocale,{
 	version:{
 		selectDeviceInfo0:"Selected Devices (<font color='red'>",//EwayLocale.version.selectDeviceInfo0 //已选择的设备 (<font color='red'>
 		selectDeviceInfo1:"</font>)",//EwayLocale.version.selectDeviceInfo1 </font>)台
-		addVersionTitle:'Add version information',//EwayLocale.version.addVersionTitle 增加版本信息
+		addVersionTitle:'Add Version information',//EwayLocale.version.addVersionTitle 增加版本信息
 		batchTaskName:'Batch task name',//EwayLocale.version.batchTaskName 任务批次名称
 		batchTaskNameEmpty:'Example:****first requirement update',//EwayLocale.version.batchTaskNameEmpty 例如:****需求第1批次升级
 		UpdateTitle:'Change version information',//EwayLocale.version.UpdateTitle 更改版本信息
 		addJobTitle:'Set version information',//EwayLocale.version.addJobTitle 配置作业信息
 		downloadVersionId:'Issue version ID',//EwayLocale.version.downloadVersionId 下发版本ID
 		taskType:'Task type',//EwayLocale.version.taskType 任务类型
-		taskTypeManual:'Manual update',//EwayLocale.version.taskTypeManual 手动升级
-		taskTypeAuto:'Auto update',//EwayLocale.version.taskTypeAuto 自动升级
+		taskTypeManual:'Manual Update',//EwayLocale.version.taskTypeManual 手动升级
+		taskTypeAuto:'Auto Update',//EwayLocale.version.taskTypeAuto 自动升级
 		taskTypeScheduler:'Job plan',//EwayLocale.version.taskTypeScheduler 计划作业
 		planTime:'Plan to execute time',//EwayLocale.version.planTime 计划执行时间
 		selectableDevice:'Deivice can be issue',//EwayLocale.version.selectableDevice 可以下发的设备
-		linkedDevice:'Selected device',//EwayLocale.version.linkedDevice 已选择的设备
+		linkedDevice:'Selected Devices',//EwayLocale.version.linkedDevice 已选择的设备
 		downloadVerFile:'Download version file',//EwayLocale.version.downloadVerFile 下载版本文件
+		installPath:'Install Path',
 		View:{
-			title:'Version', //版本管理
-			versionDetail:'Version Detail',//EwayLocale.version.View.versionDetail 版本详情
-			remark:'description', //EwayLocale.version.View.remark 备注
-			newCreate:'Create',//EwayLocale.version.View.newCreate 新建
+			title:'Patch', //版本管理
+			versionDetail:'',//EwayLocale.version.View.versionDetail 版本详情
+			remark:'Description', //EwayLocale.version.View.remark 备注
+			newCreate:'New',//EwayLocale.version.View.newCreate 新建
 			downLoaded:'DownLoaded',//EwayLocale.version.View.downLoaded 已下发
 			waitting:'Waitting',//EwayLocale.version.View.waitting 等待下发
-			versionPath:'Version path',//EwayLocale.version.View.versionPath 版本路径
+			versionPath:'Version Path',//EwayLocale.version.View.versionPath 版本路径
 			versionPathRegText:'不符合文件路径规则，规则如下：1.文件名只能包含英文字母(a-z A-Z)、数字(0-9)、下划线(_)、横线(-) ； 2.路径统一用正斜杠(/)作为分隔符 ；3.不区分大小 ; 示例 E: E:/yihua',//EwayLocale.version.View.versionPathRegText
 			versionPathDesc:'(path of version file be installed)',//EwayLocale.version.View.versionPathDesc (版本文件在自助设备上的安装路径)
-			versionPerson:'Version Creater',//EwayLocale.version.View.versionPerson 创建人
+			versionPerson:'Creater',//EwayLocale.version.View.versionPerson 创建人
 			versionType:'Version Type',//EwayLocale.version.View.versionType 版本类型
 			versionFile:'Version File',//EwayLocale.version.View.versionFile 版本文件
 			versionFileButton:'Choose...',//EwayLocale.version.View.versionFileButton 浏览...
@@ -153,8 +154,8 @@ Ext.apply(EwayLocale,{
 			versionTypeCode:'Code',//EwayLocale.version.View.versionTypeCode 软件分类编码
 			versionTypeName:'Name',//EwayLocale.version.View.versionTypeName 软件分类名称
 			versionTypeId:'ID',//EwayLocale.version.View.versionTypeId 版本类型ID
-			versionTypeEmpty:'-select versionType-',//EwayLocale.version.View.versionTypeEmpty -请选择版本类型-
-			versionTime:'Create time',//EwayLocale.version.View.versionTime 创建时间
+			versionTypeEmpty:'-Select Application Type-',//EwayLocale.version.View.versionTypeEmpty -请选择版本类型-
+			versionTime:'Created Time',//EwayLocale.version.View.versionTime 创建时间
 			versionNo:'Version No.',//EwayLocale.version.View.versionNo 版本号
 			nowVersionNo:'Current Version No.',//EwayLocale.version.View.nowVersionNo 当前版本号
 			versionStatus:'Version Status',//EwayLocale.version.View.versionStatus 版本状态
@@ -170,19 +171,19 @@ Ext.apply(EwayLocale,{
 			execBeforeRegexText:'Only the file which name end with ‘bat’ or ‘cmd’ can be inputed',//EwayLocale.version.View.execBeforeRegexText 只能输入bat或cmd结尾的文件
 			versionDesc:'Description',//EwayLocale.version.View.versionDesc 版本描述
 			versionDescEmpty:'Please describe this version with words (At most 20 words)',//EwayLocale.version.View.versionDescEmpty 请用文字描述此版本需求
-			otherConfigTitle:'Other Setting',//EwayLocale.version.View.otherConfigTitle 其他配置
+			otherConfigTitle:'Additional Settings',//EwayLocale.version.View.otherConfigTitle 其他配置
 			otherConfigAutoDown:'Allow update automatic (only while the ATM check new version from server ,the version which update automatic will be return to ATM )',//EwayLocale.version.View.otherConfigAutoDown 允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)
 			otherConfigUncompress:'Uzip automatic(when choose this option, the ATM will unzip automatic )&nbsp;<font color="red">attention:if the file is not zip file at first ,and then ziped to zip file ,please select this option!</font>',//EwayLocale.version.View.otherConfigUncompress 自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>
 			versionServerPath:'File Path In Server', //EwayLocale.version.View.versionServerPath 文件在服务器上的位置
 			versionName:'Name',//EwayLocale.version.View.versionName 版本名称
 			downloadVersionName:'Version issued',//EwayLocale.version.View.downloadVersionName 下发的版本
 			downloadVersionNameEmpty:'Please choose a version which you want to issue',//EwayLocale.version.View.downloadVersionNameEmpty 下发的版本
-			distributionPic:'Chart of version distribute',//EwayLocale.version.View.distributionPic 版本分布图
+			distributionPic:'Patch Distribution',//EwayLocale.version.View.distributionPic 版本分布图
 			job:{
 				newCreate:'New', //新建
 				running:'Running', //运行中
-				scheduler:'In plan',//计划中
-				ready:'Prepare running',//准备运行
+				scheduler:'In Plan',//计划中
+				ready:'Prepare Running',//准备运行
 				pause:'Pause',//暂停
 				complete:'Finish' //完成
 			}
@@ -192,16 +193,16 @@ Ext.apply(EwayLocale,{
 		},
 		jobPriority:{
 			hight:'Hight',//EwayLocale.version.jobPriority.hight 高
-			middle:'middle',//EwayLocale.version.jobPriority.middle 中等
-			general:'general'//EwayLocale.version.jobPriority.general 普通
+			middle:'Middle',//EwayLocale.version.jobPriority.middle 中等
+			general:'Low'//EwayLocale.version.jobPriority.general 普通
 		},
 		jobType:{
-			float:'Manual job(issue immediately)',//EwayLocale.version.jobType.float 手工作业(立即下发)
-			fix:'Plan job (issue timer)'//EwayLocale.version.jobType.fix 计划作业(定时下发)
+			float:'Manual',//EwayLocale.version.jobType.float 手工作业(立即下发)
+			fix:'Plan'//EwayLocale.version.jobType.fix 计划作业(定时下发)
 		},
 		taskStatus:{
 			news:'New',//EwayLocale.version.taskStatus.news 新建
-			running:'running',//EwayLocale.version.taskStatus.running 运行中
+			running:'Running',//EwayLocale.version.taskStatus.running 运行中
 			noticed:'Notice successful',//EwayLocale.version.taskStatus.noticed 通知成功
 			noticedFail:'Notice failed',//EwayLocale.version.taskStatus.noticedFail 通知失败
 			downloaded:'Issued',//EwayLocale.version.taskStatus.downloaded 已下发
@@ -209,19 +210,20 @@ Ext.apply(EwayLocale,{
 			deployed:'Installing',//EwayLocale.version.taskStatus.deployed 正在部署
 			deployedWait:'Wait for install',//EwayLocale.version.taskStatus.deployedWait 等待部署
 			deployedFail:'Install failed',//EwayLocale.version.taskStatus.deployedFail 部署失败
-			checked:'Confirmed to install',//EwayLocale.version.taskStatus.checked 部署已确认
-			noticeOk:'Noticed application',//EwayLocale.version.taskStatus.noticeOk 已通知应用
+			checked:'Finish',//EwayLocale.version.taskStatus.checked 部署已确认
+			noticeOk:'Noticed',//EwayLocale.version.taskStatus.noticeOk 已通知应用
 			taskResetSuccessTips:'Success reset task!',//EwayLocale.version.taskStatus.taskResetSuccessTips
-			noticeFail:'Notic application failed'//EwayLocale.version.taskStatus.noticeFail 通知应用失败
+			taskResetFailTips : 'Fail reset task！',// EwayLocale.version.taskStatus.taskResetFailTips
+			noticeFail:'Noticed Fail'//EwayLocale.version.taskStatus.noticeFail 通知应用失败
 		},
 		versionCatalog:{
 			app:'Application',//EwayLocale.version.versionCatalog.app 应用程序
-			agent:'Monitor agent',//EwayLocale.version.versionCatalog.agent 监控代理
-			param:'Application settings'//EwayLocale.version.versionCatalog.param 应用配置
+			agent:'Monitor Agent',//EwayLocale.version.versionCatalog.agent 监控代理
+			param:'Application Settings'//EwayLocale.version.versionCatalog.param 应用配置
 		},
 		download:{
-			title:'Distribute minitor',//EwayLocale.version.download.title 分发监控
-			updateTitle:'Modify version information',//EwayLocale.version.download.updateTitle 修改版本下发信息
+			title:'Deployment Monitor',//EwayLocale.version.download.title 分发监控
+			updateTitle:'Update Version Info',//EwayLocale.version.download.updateTitle 修改版本下发信息
 			taskQueryTips:'Query job detail by condition',//EwayLocale.version.download.taskQueryTips 根据条件查询选中作业下的详情信息
 			autoRefresh:'Start auto refresh',//EwayLocale.version.download.autoRefresh 开启自动刷新
 			stopAutoRefresh:'Stop auto refresh',//EwayLocale.version.download.stopAutoRefresh 停止自动刷新

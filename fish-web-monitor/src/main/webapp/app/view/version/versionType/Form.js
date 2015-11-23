@@ -7,7 +7,7 @@ Ext.define('Eway.view.version.versionType.Form', {
 		anchor : '100%',
 		labelAlign : 'right',
 		msgTarget : 'side',
-		labelWidth:150
+		labelWidth:160
 	},
 	initComponent : function() {
 		Ext.apply(this, {

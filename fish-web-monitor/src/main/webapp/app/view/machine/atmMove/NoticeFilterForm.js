@@ -16,7 +16,6 @@ Ext.define('Eway.view.machine.atmMove.NoticeFilterForm', {
 					labelAlign : 'right',
 					fieldLabel : EwayLocale.machine.atmMove.terminalId,
 					vtype : 'terminalId',
-					maxLength:20,
 					width : 300,
 					name : 'terminalId',
 					msgTarget : 'side'

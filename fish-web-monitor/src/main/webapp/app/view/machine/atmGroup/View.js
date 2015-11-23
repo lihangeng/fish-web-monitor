@@ -31,7 +31,6 @@ Ext.define('Eway.view.machine.atmGroup.View', {
 								xtype : 'textfield',
 								style :'padding-top:10px',
 								name : 'name',
-								maxLength : 30,
 								fieldLabel : EwayLocale.machine.atmGroup.groupName,
 								msgTarget : 'side'
 							}]}, {

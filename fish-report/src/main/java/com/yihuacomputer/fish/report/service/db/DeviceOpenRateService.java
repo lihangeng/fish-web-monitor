@@ -264,6 +264,10 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 					if (null != yestodayRunInfo) {
 						status = yestodayRunInfo.getRunStatus();
 					}
+					if(null == yestodayRunInfo)
+					{
+						status = RunStatus.Unknown;
+					}
 					long constant = distanceTimes(openDateTime, closeDateTime);
 					dayOpenRate = sumAllTimes(dayOpenRate, status, (int) constant);
 				} else {

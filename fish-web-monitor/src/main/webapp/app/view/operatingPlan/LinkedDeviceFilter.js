@@ -50,10 +50,7 @@ Ext.define('Eway.view.operatingPlan.LinkedDeviceFilter',{
 				items : [  {
 					xtype : 'textfield',
 					fieldLabel :EwayLocale.commen.terminalId,
-					name : 'terminalId',
-					regex : /^\w+[\w-_\.]*$/,
-					regexText :EwayLocale.vtype.terminalId,
-					maxLength : 20
+					name : 'terminalId'
 				},{
 					style : 'padding-top:0px',
 					xtype : 'hiddenfield',

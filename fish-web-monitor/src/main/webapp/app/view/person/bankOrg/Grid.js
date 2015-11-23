@@ -21,10 +21,10 @@ Ext.define('Eway.view.person.bankOrg.Grid', {
 				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action: 'query'
-			},{
-				text: EwayLocale.button.deepQuery,
-				glyph : 0xf002,
-				action: 'deepQuery'
+//			},{
+//				text: EwayLocale.button.deepQuery,
+//				glyph : 0xf002,
+//				action: 'deepQuery'
 			}, {
 				text: EwayLocale.button.add,
 				glyph : 0xf067,
