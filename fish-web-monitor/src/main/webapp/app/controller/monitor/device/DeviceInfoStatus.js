@@ -1111,8 +1111,27 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
    				var object = Ext.decode(response.responseText);
    				if(object.success == true){
    					if(object.data != null){
-   						win.down('form').down('displayfield[name="atmcVersion"]').setValue(object.data.atmcVersion);
-   	   					win.down('form').down('displayfield[name="agentVersion"]').setValue(object.data.agentVersion);
+//   						win.down('form').down('displayfield[name="atmcVersion"]').setValue(object.data.atmcVersion);
+//   	   					win.down('form').down('displayfield[name="agentVersion"]').setValue(object.data.agentVersion);
+   	   					
+   	   					if (object.data.currentPatches.length > 0) {
+   	   						var formVersion = win.down('form');
+   	   						
+	   	   					for(var index=0; index<object.data.currentPatches.length; index++) {
+	   	   						var data = object.data.currentPatches[index];
+	   	   						
+	   	   						formVersion.add({
+	   	   							xtype : 'displayfield',
+									fieldLabel: data.typeName,
+									value : data.versionNo,
+									margin : '0 0 0 10',
+									style : {
+										'text-align' : 'center'
+									}
+	   	   						});
+	   	   					}
+   	   					}
+   	   					
    	   					win.show();
 
    	   					statusView.record.set('appRelease', object.data.atmcVersion);

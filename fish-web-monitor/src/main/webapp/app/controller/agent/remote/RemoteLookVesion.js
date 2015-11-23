@@ -12,32 +12,37 @@ Ext.define('Eway.controller.agent.remote.RemoteLookVesion',{
 	},
 	
 	display : function(code, ip){
-		var win = Ext.create('Ext.window.Window',{
+		var win = Ext.create('Ext.window.Window', {
 			width : 400,
-			height : 200,
+			height : 350,
 			title : EwayLocale.agent.remote.checkVersionInfo,
 			modal : true,
 		    layout: 'border',
-		    items: [{
-			    	region:'north',
-			    	height: 50,
-			    	border:false,
-			    	xtype:'panel',
-			    	html:'<br><font size="2" face="Times"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+EwayLocale.agent.remote.versionInfo+'</b></font>'
-				},{
-			    	xtype : 'form',
-			    	border : 0 ,
-			    	region:'center',
-			    	items : [{
-					    xtype : 'displayfield',
-					    fieldLabel: EwayLocale.agent.remote.ATMCVersion,
-					    name : 'atmcVersion'
-					},{
-						xtype : 'displayfield',
-						fieldLabel: EwayLocale.agent.remote.monitorVersion,
-						name : 'agentVersion'
-					}]
-				}]
+		    items: [ {
+		    	region:'north',
+		    	height: 50,
+		    	border:false,
+		    	xtype:'panel',
+		    	html:'<br><font size="2" face="Times"><b>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp'+EwayLocale.agent.remote.versionInfo+'</b></font>'
+			}, {
+		    	xtype : 'form',
+		    	border : 0 ,
+		    	region:'center',
+	    	 	autoScroll : true,
+	    	 	defaults: {
+					anchor : '90%',
+					labelWidth: '50%'
+				},/*,
+		    	items : [ {
+				    xtype : 'displayfield',
+				    fieldLabel: EwayLocale.agent.remote.ATMCVersion,
+				    name : 'atmcVersion'
+				}, {
+					xtype : 'displayfield',
+					fieldLabel: EwayLocale.agent.remote.monitorVersion,
+					name : 'agentVersion'
+				} ]*/
+			} ]
 		});
 		
 		this.win = win;
