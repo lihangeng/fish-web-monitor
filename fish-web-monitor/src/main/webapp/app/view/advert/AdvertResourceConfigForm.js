@@ -7,7 +7,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 			type : 'hbox'
 		}
 	},
-	width :280,
+	width :400,
 	height:'100%',
 	title: EwayLocale.advert.configTitle,
 
@@ -55,7 +55,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		    	disabled: false,
 		    	editable: false,
 		        format: 'Y-m-d',
-		        width: 180,
+		        width: 200,
 		        hidden:false,
 		        labelWidth: 60,
 		        value:new Date(),
@@ -70,7 +70,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		        format: 'Y-m-d',
 		        hidden: false,
 		        labelWidth: 60,
-		        width: 180,
+		        width: 200,
 		        bodyStyle:'margin-right:-20px',
 		        minValue : new Date()
 		     },{
@@ -90,7 +90,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		                valueField : 'value',
 		                value:'00',
 		                name: 'beginHour',
-		                width:50
+		                width:75
 		            },
 		            {xtype: 'displayfield', value: EwayLocale.advert.hourDisplay},
 		            {
@@ -102,7 +102,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		                valueField : 'value',
 		                value:'00',
 		                name:'beginMinute',
-		                width:50
+		                width:75
 		            }, {xtype: 'displayfield', value: EwayLocale.advert.minuteDisplay},
 		            {
 		            	xtype: 'combobox',
@@ -113,7 +113,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		                valueField : 'value',
 		                value:'00',
 		                name:'beginSecond',
-		                width:50
+		                width:75
 		            },
 		            {xtype: 'displayfield', value: EwayLocale.advert.secondeDisplay}
 
@@ -137,7 +137,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		                valueField : 'value',
 		                value:'23',
 		                name:'endHour',
-		                width:50
+		                width:75
 		            },
 		            {xtype: 'displayfield', value: EwayLocale.advert.hourDisplay},
 		            {
@@ -149,7 +149,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		                valueField : 'value',
 		                value:'59',
 		                name:'endMinute',
-		                width:50
+		                width:75
 		            }, {xtype: 'displayfield', value: EwayLocale.advert.minuteDisplay},
 		            {
 		            	xtype: 'combobox',
@@ -160,7 +160,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		                valueField : 'value',
 		                value:'59',
 		                name:'endSecond',
-		                width:50
+		                width:75
 		            },
 		            {xtype: 'displayfield', value: EwayLocale.advert.secondeDisplay}
 		           ]
