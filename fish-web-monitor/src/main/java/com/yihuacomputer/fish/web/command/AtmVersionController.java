@@ -12,12 +12,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yihuacomputer.common.FishConstant;
+import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.jackson.JsonUtils;
+import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.monitor.business.IDeviceRegister;
 import com.yihuacomputer.fish.api.monitor.business.IRegistService;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
+import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
+import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersionType;
 import com.yihuacomputer.fish.api.version.IVersionTypeService;
 import com.yihuacomputer.fish.web.atm.format.SimpleVersion;
@@ -34,6 +39,12 @@ public class AtmVersionController {
     
     @Autowired
     private IVersionTypeService versionTypeService;
+    
+    @Autowired
+    private IDeviceSoftVersionService deviceSoftVersionService;
+    
+    @Autowired
+    private IDeviceService deviceService;
 
     @RequestMapping(value = "/versioninfo", method = RequestMethod.POST)
     public @ResponseBody ModelMap searchInstation(@RequestParam String terminalId, @RequestParam String ip) {
@@ -51,6 +62,23 @@ public class AtmVersionController {
                 deviceRegister.setAtmcVersion(atmVersionForm.getAtmcVersion());
                 registService.update(deviceRegister);
             }  
+            
+            
+            // 将版本号在监控系统中保持一致
+            IDevice device = deviceService.get(terminalId);
+            IFilter filter = new Filter();
+            filter.eq("deviceId", device.getId());
+            List<IDeviceSoftVersion> listSoft = deviceSoftVersionService.list(filter); 
+            for (IDeviceSoftVersion soft : listSoft) {
+                for (SimpleVersion version : atmVersionForm.getCurrentPatches()) {
+                    if (soft.getTypeName().equals(version.getTypeName()) && !soft.getVersionNo().equals(version.getVersionNo())) {
+                        soft.setVersionNo(version.getVersionNo());
+                        deviceSoftVersionService.update(soft);
+                        break;
+                    }
+                }
+            }
+            
         
             // 将类型翻译成名称
             List<IVersionType> listVersionType = versionTypeService.list(new Filter()); 
