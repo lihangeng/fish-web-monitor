@@ -19,6 +19,11 @@ Ext.define('Eway.view.agent.remote.MergeDownLoadFileListGrid', {
 	        initRegion : true,
 			autoScroll: true,
 			store: gridStore,
+			viewConfig : {
+				loadMask   : {
+       			 	msg : EwayLocale.agent.remote.loadData
+        		}
+			},
 			tbar: [{
 				text: EwayLocale.agent.remote.removeFile,
 				iconCls:'refresh-btn-custom',

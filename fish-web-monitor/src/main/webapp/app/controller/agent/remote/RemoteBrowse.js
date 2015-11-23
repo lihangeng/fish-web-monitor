@@ -513,15 +513,16 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			   store.add(record);
 			}		
 		win.down('button[action="removeFile"]').on('click',Ext.bind(me.onRemoveFile,this,[win]),this);
-		var ip = topwin.down('textfield[name="ip"]').getValue();
-		var gridEl = grid.getEl();
-		var mask = new Ext.LoadMask(grid, {msg : EwayLocale.agent.remote.nowLoadFile});
-		win.down('button[action="mergeDownLoad"]').on('click',Ext.bind(me.mergeDownloadFile,this,[win,ip,mask,gridEl]),this);
+		var ip = topwin.down('textfield[name="ip"]').getValue();				
+		var mask = new Ext.LoadMask(grid, {msg : EwayLocale.agent.remote.nowLoadFile});		
 		win.on("close",function(){
 			fileListGrid.mergeDownLoadStore = Ext.create('Eway.store.agent.MergeDownLoadFileList',{});
 			fileListGrid.mergeDownFileSize = 0;
 		})
 		win.show();	
+		var gridEl = grid.getEl();
+		win.down('button[action="mergeDownLoad"]').on('click',Ext.bind(me.mergeDownloadFile,this,[win,ip,mask,gridEl]),this);
+		
 	},	
 	onRemoveFile : function(win){
 		var grid = win.down('remote_mergeDownLoadFileGrid');	
@@ -539,15 +540,20 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		}
 	},
 	
-	mergeDownloadFile : function(win,ip,mask,gridEl) {
+	mergeDownloadFile : function(win,ip,mask,gridEl) {	
 		var grid = win.down('remote_mergeDownLoadFileGrid');
 		var store = grid.getStore();
 		var allFielPath ='';
+		if(store.getCount() == 0)
+		{
+			Eway.alert(EwayLocale.agent.remote.mustIncludeOneFile);
+			return;
+		}
 		for(var i=0; i<store.getCount(); i++)
 		{
 			allFielPath = allFielPath + store.getAt(i).data.path +'|';
 		}	
-		console.log(allFielPath);
+		mask.show();
 		Ext.Ajax.request({
 			method : 'POST',
 			url : 'api/agent/remoteBrowse/mergerDownload?date=' + new Date(),
@@ -557,17 +563,11 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 				requestPath : allFielPath
 			},
 			success : function(response) {
-				mask.show();
+				
 				var object = Ext.decode(response.responseText);				
 				if (object.success == true) {
-					mask.hide();
-				
-					var fileName = object.fileName.replace("&", "%26");// 将文件名含有&符号的用URL编码“%26”替换
-					console.log("2222222222222");
-					if (iframe) {
-						Ext.core.Element.get(iframe).destroy();
-						console.log("33333333333333");
-					}
+					var iframe = gridEl.prev();
+					var fileName = object.fileName.replace("&", "%26");// 将文件名含有&符号的用URL编码“%26”替换				
 					iframe = Ext.core.DomHelper.createDom({
 								tag : 'iframe',
 								src : 'api/agent/remoteBrowse/downloadFile?path='
@@ -575,6 +575,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 								style : "display:none"
 							});
 					gridEl.insertSibling(iframe);
+					mask.hide();
 				} else {
 					mask.hide();
 					Eway.alert(object.errors);
