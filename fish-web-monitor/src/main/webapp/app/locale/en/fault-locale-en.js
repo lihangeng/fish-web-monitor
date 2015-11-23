@@ -10,7 +10,7 @@ Ext.apply(EwayLocale,{
 		exportFaultInfo:'Import fault code successful',//导入厂商故障信息成功.
 		caseFault:{
 			faultRelevantInfo:'SMS about fault',//故障相关短信
-			faultModule:'Fault module ',
+			faultModule:'Fault Module ',
 			cardReaderModule:'Card reader',//读卡器模块
 			depoistModule:'Deposit module',//存款模块
 			drawModule:'Draw module',//取款模块
@@ -19,12 +19,12 @@ Ext.apply(EwayLocale,{
 			pinModule:'Pin keyboard',//密码键盘模块
 			textTerminalUnit:'Text terminal',//文本终端单元
 			sensoModule:'Sensor',//传感器模块
-			faultClassify: 'Fault catalog',//故障分类
-			faultCode : 'Fault code',//故障码
-			providerFaultCode: 'Fault code manufacturer',//厂商故障码
-			faultStartTime : 'Open time',//故障开始时间
-			faultCloseTime : 'Close time',//故障关闭时间
-			faultContinueTime : 'Time last',//持续时长
+			faultClassify: 'Fault Catalog',//故障分类
+			faultCode : 'Fault Code',//故障码
+			providerFaultCode: 'Fault Code Manufacturer',//厂商故障码
+			faultStartTime : 'Open Time',//故障开始时间
+			faultCloseTime : 'Close Time',//故障关闭时间
+			faultContinueTime : 'Time Last',//持续时长
 		    faultState : 'Status',//故障状态
 		    status:{
 		    	open:'Opening',//未关闭
@@ -35,28 +35,28 @@ Ext.apply(EwayLocale,{
 		    	normal : 'closeNormal'
 		    },
 		    closeByForce : 'click to close fault by hand',
-		    faultCloseType : 'fault close type',
+		    faultCloseType : 'Fault Close Type',
 		    none : 'none',
 
-		    upgradeTimes: 'Upgrade times',//升级次数
+		    upgradeTimes: 'Upgrade Times',//升级次数
 		    message: 'SMS',//短信
 		    checkDetails: 'Detail',//查看详情
-		    bankPer: 'Bnak contact',//银行联系人
-		    serPer: 'SUppliers contact',//供应商联系人
-		    createTime: 'Create time',//创建时间
-		    informContent: 'Notify content',//通知内容
-		    messageContentDetail: 'SMS content',//短信内容详情
-		    informWay: 'Notify way',//通知方式
+		    bankPer: 'Bank Contact',//银行联系人
+		    serPer: 'Suppliers Contact',//供应商联系人
+		    createTime: 'Create Time',//创建时间
+		    informContent: 'Notify Content',//通知内容
+		    messageContentDetail: 'SMS Content',//短信内容详情
+		    informWay: 'Notify Way',//通知方式
 		    mail:'Email',//邮件
-		    messageAndMail:'SMS and email',//短信和邮件
-		    informMobile: 'Notify mobile',//通知手机号
-		    notifyTimes: 'Notify times',//通知次数
-		    notifyRepeatTimes: 'Repeat notify times',//重复通知次数
-		    sendTimes: 'Send times',//发送次数
-		    sendInterval: 'Intervals between each send',//发送时间间隔
-		    sendTime: 'Send time',//发送时间
-		    faultSearch:'Fault search',//故障查询
-		    none : 'Do not send'//不发送
+		    messageAndMail:'SMS And Email',//短信和邮件
+		    informMobile: 'Notify Mobile',//通知手机号
+		    notifyTimes: 'Notify Times',//通知次数
+		    notifyRepeatTimes: 'Repeat Notify Times',//重复通知次数
+		    sendTimes: 'Send Times',//发送次数
+		    sendInterval: 'Intervals Between Each Send',//发送时间间隔
+		    sendTime: 'Send Time',//发送时间
+		    faultSearch:'Fault Search',//故障查询
+		    none : 'Do Not Send'//不发送
 
 		},
 		caseNotify:{
