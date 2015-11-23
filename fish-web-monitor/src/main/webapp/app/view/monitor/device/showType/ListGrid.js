@@ -109,11 +109,11 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 			}, */{
 				header : EwayLocale.machine.device.devAddress,
 				dataIndex : 'address'
-			}, {
+			}/*, {
 				header : EwayLocale.commen.seviceMode,
 				dataIndex : 'seviceMode',
 				width : 100
-			}, {
+			}*/, {
 				header : EwayLocale.commen.insideOutside,
 				dataIndex : 'insideOutside',
 				minWidth : 150,
