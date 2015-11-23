@@ -477,8 +477,8 @@ Ext.apply(EwayLocale,{
 			paramType:'Type',//EwayLocale.machine.param.paramType 参数类型
 			modifyFlag:'Can be Modify?',//EwayLocale.machine.param.ModifyFlag 是否可以修改
 			comboxClassify:{
-				unableUpdate:'Yes',//不可修改
-				ableUpdate:'No'//可以修改
+				unableUpdate:'No',//不可修改
+				ableUpdate:'Yes'//可以修改
 			},
 			description:'Description',//EwayLocale.machine.param.description 参数信息描述
 			systemCon:'System Setting',//EwayLocale.machine.param.systemCon 系统配置

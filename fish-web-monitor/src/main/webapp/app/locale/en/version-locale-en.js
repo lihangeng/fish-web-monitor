@@ -95,7 +95,7 @@ Ext.apply(EwayLocale,{
 		chooseMediaFile:'Please choose media file',//EwayLocale.advert.chooseMediaFile 请选择媒体文件
 		uploadResource:'Upload resource...',//EwayLocale.advert.uploadResource 上传资源
 		uploadResourceBlank:'Please upload resource',//EwayLocale.advert.uploadResourceBlank 请上传资源
-		addMorePic:'Add pictures',//EwayLocale.advert.addMorePic添加图片
+		addMorePic:'Add a Picture',//EwayLocale.advert.addMorePic添加图片
 		uploadRegText:'Unsupported resource uploaded ,only .jpg,.aiv file can be uploaded',//EwayLocale.advert.uploadRegText 上传的资源格式不支持,只能上传.jpg、.avi格式的文件
 		resourceFormatTips:'Only .jpg,.aiv file is supported',//EwayLocale.advert.resourceFormatTips (仅支持.jpg、.avi格式的文件)
 		resourceAlias:'File name after modified',//EwayLocale.advert.resourceAlias 修改后的文件名
