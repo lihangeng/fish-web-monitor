@@ -82,6 +82,7 @@ public class NoticeForm {
 		this.deployStartDate = task.getDeployStartDate() == null ? "" : DateUtils.getDate(task.getDeployStartDate());
 		this.deployEndDate = task.getDeployEndDate() == null ? "" : DateUtils.getDate(task.getDeployEndDate());
 		this.fileSize = getVersionFileSize();
+		this.execBefore = version.getExecBefore();
 	}
 
 	private String getVersionFileSize() {
