@@ -85,7 +85,6 @@ Ext.define('Eway.view.version.Update', {
 					   xtype: 'textfield',
 				       fieldLabel : EwayLocale.version.View.execBefore,//'升级前执行脚本',
 					   name : 'execBefore',
-					   allowBlank: false,
 					   maxLength: 50,
 					   emptyText: EwayLocale.version.View.execBeforeEmptyText,//'请输入升级包中的以bat或cmd结尾的文件',
 					   regex : /^([\w|\W]*)(\.bat|cmd)$/i,
