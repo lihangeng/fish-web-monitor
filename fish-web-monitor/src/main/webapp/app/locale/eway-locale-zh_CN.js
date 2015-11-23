@@ -308,6 +308,8 @@ Ext.apply(EwayLocale,{
 				openSuccess:'执行开启服务命令成功.',//EwayLocale.tip.business.device.openSuccess
 				openFail:'执行开启服务命令失败.',//EwayLocale.tip.business.device.openFail
 				closeConfirm:'确认要执行暂停服务命令?',//EwayLocale.tip.business.device.closeConfirm
+				closeServiceSuccess:'执行暂停服务命令成功.',//EwayLocale.tip.business.device.closeServiceSuccess
+				closeServiceFail:'执行暂停服务命令失败.',//EwayLocale.tip.business.device.closeServiceFail
 				closeNormal:'正常关机',//EwayLocale.tip.business.device.closeNormal
 				closeComfirm:'确认要执行正常关机命令么,可能会存在风险?',//EwayLocale.tip.business.device.closeComfirm
 				closing:'正在执行正常关机',//EwayLocale.tip.business.device.closing
