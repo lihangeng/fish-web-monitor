@@ -51,6 +51,7 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 		});
 		var sm = Ext.create('Ext.selection.CheckboxModel',{
 			checkOnly: true,//只保留checkbox的选择能力，row选择失效
+			mode:'SIMPLE',
 			listeners:{
 				beforeselect : function(me,record,rowIndex){
 					if(!this.isRowOK(record)){

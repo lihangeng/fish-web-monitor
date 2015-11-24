@@ -32,9 +32,6 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 			}, {
 				ref : 'filterForm',
 				selector : 'ser_organization_filterform'
-//			}, {
-//				ref : 'organizationTree',
-//				selector : 'treepanel'
 			}],
 	//
 	init : function() {
@@ -56,44 +53,11 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 			},
 			'ser_organization_grid menuitem[action=removeManager]' : {
 				click : this.onRemoveManager
-//			},
-//			'ser_organization_view treepanel' : {
-//					beforerender : this.onBeforeRender,
-//					afterrender: this.onTreePanelAfterRender,
-//					itemclick: this.onItemClick,
-//					beforeitemdblclick : this.onBeforeitemdblclick
 				}
 			});
 		},
 
-	//机构树渲染之前设置根节点
-//	onBeforeRender : function(){
-//		var treePanel = this.getOrganizationTree();
-//		if (ewayUser.getOrgType() == '1') {
-//			treePanel.setRootNode({
-//						id : ewayUser.getOrgId(),
-//						text : ewayUser.getOrgName(),
-//						expanded : true
-//					});
-//		}
-//	},
-
-//	onBeforeitemdblclick : function(){
-//		return false;
-//	},
-//
-//	onTreePanelAfterRender : function(treepanel) {
-//		// 加载Grid的store：
-//		var selectedNode = this.getSelectionInTree();
-//		var nodeId = selectedNode.data.id;
-//		var store = this.getGrid().getStore();
-//		store.setBaseParam('selectedNode', nodeId);
-//		store.setBaseParam('type', '1');
-//		store.loadPage(1);
-//		var actionTip = this.getGrid().down("tbtext[action=tip]");
-//		actionTip.setText('<font color="red">' + selectedNode.data.text
-//				+ '</font>' + EwayLocale.person.serviceOrg.directOrganization);
-//	},
+	
 
 	/**
 	 * 设置机构管理员：
@@ -203,10 +167,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 		for (var i in data) {
 			store.setUrlParam(i, data[i])
 		}
-//		var actionTip = ewayView.down("tbtext[action=tip]");
-//		actionTip.setText(EwayLocale.tip.bankOrg.orgEligible);
 		store.loadPage(1);
-//		ewayView.down('treepanel').getSelectionModel().select(0, true);// 选择根节点
 	},
 
 	/**
@@ -238,21 +199,10 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 			record.save({
 						success : function(record, operation) {
 							Eway.alert(EwayLocale.addSuccess);
-							// 组织树的刷新:
-//							ewayView.down('treepanel').getStore().load();
-//							ewayView.down('treepanel').getSelectionModel()
-//									.select(0, true);// 选择根节点
-							//增加成功后查询条件不带入后台查询
-							store.setUrlParamsByObject(null);
-							// 增加机构后立即跳转到所增加的机构父机构下
-							store.load({
-										params : {
-											selectedNode : data.parentId,
-											type : '1'
-										}
-									});
-//							var actionTip = ewayView.down("tbtext[action=tip]");
-//							actionTip.setText('<font color="red">' + record.data.parent + '</font>' + EwayLocale.tip.bankOrg.downGradeOrg);
+							store.setUrlParamsByObject({
+								type : '1'
+							});
+							store.load();
 							win.close();
 						},
 						failure : function(record, operation) {
@@ -312,31 +262,13 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 			record.save({
 						success : function(record, operation) {
 							Eway.alert(EwayLocale.updateSuccess);
-							// 组织树的刷新:
-//							var treePanel = ewayView.down('treepanel');
 							if (data.code == ewayUser.getOrgCode()) {
 								ewayUser.setOrgName(data.name);
-//								treePanel.setRootNode({
-//											id : ewayUser.getOrgId(),
-//											text : ewayUser.getOrgName(),
-//											expanded : true
-//										});
 							} 
-//							else {
-//								treePanel.getStore().load();
-//							}
-//							treePanel.getSelectionModel().select(0, true);// 选择根节点
-							// 增加机构后立即跳转到所增加的机构父机构下
-							store.load({
-										params : {
-											selectedNode : record.data.parentId,
-											type : '1'
-										}
-									});
-//							var actionTip = ewayView.down("tbtext[action=tip]");
-//							actionTip.setText('<font color="red">'
-//									+ record.data.parent + '</font>'
-//									+ EwayLocale.tip.bankOrg.downGradeOrg);
+							store.setUrlParamsByObject({
+								type : '1'
+							});
+							store.load();
 							win.close();
 						},
 						failure : function(record, operation) {
@@ -363,19 +295,11 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 					record.erase({
 						success : function() {
 							Eway.alert(EwayLocale.updateSuccess);
-							this.getGrid().getStore().remove(record);
-//							var selections = this.getEwayView()
-//									.down('treepanel').getSelectionModel()
-//									.getSelection();
-//							if (!Ext.isEmpty(selections)) {
-//								this.getEwayView().down('treepanel').getStore()
-//										.load({
-//													node : selections[0]
-//												});// 刷新当前节点
-//								if (!selections[0].isExpanded()) {
-//									selections[0].expand(true);// 如果没有展开，则展开选中节点
-//								}
-//							}
+							var store = this.getGrid().getStore();
+							store.setUrlParamsByObject({
+								type : '1'
+							});
+							store.load();
 						},
 						failure : function(record, operation) {
 							//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
@@ -422,36 +346,6 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 			Eway.alert(EwayLocale.choiceDeleteMsg);
 		}
 	},
-
-	// 得到组织树中选中的节点
-//	getSelectionInTree : function() {
-//		var treePanel = this.getEwayView().down('treepanel');
-//		var selections = treePanel.getSelectionModel().getSelection();
-//		var selectedNode = null;
-//		if (Ext.isEmpty(selections)) {// 如果当前没有选中任何节点
-//			treePanel.getSelectionModel().select(0, true);// 默认选择根节点
-//			selectedNode = treePanel.getRootNode();
-//		} else {
-//			selectedNode = selections[0];
-//		}
-//		return selectedNode;
-//	},
-
-//	/**
-//	 * 单击机构树节点 显示下级树节点，同时刷新机构列表
-//	 */
-//	onItemClick : function(view, node, item, index, e) {
-//		/** 取消双击展开折叠菜单行为 */
-//		view.toggleOnDblClick = false;
-//		view.expand(node);
-//		var store = this.getGrid().getStore();
-//		store.cleanUrlParam();
-//		store.setBaseParam('type', '1');
-//		store.setBaseParam('selectedNode', node.data.id);
-//		store.loadPage(1);
-//		var actionTip = this.getEwayView().down("tbtext[action=tip]");
-//		actionTip.setText('<font color="red">' + node.data.text + '</font>'+ EwayLocale.tip.bankOrg.downGradeOrg);
-//	},
 
 	onOrganizationTypeChange : function(field, newValue) {
 		if (newValue == '0') {

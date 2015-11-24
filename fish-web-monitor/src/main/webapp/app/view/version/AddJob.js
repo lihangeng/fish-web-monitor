@@ -108,6 +108,8 @@ Ext.define('Eway.view.version.AddJob', {
 			        	name:'planTime',
 			        	disabled: true,
 			        	editable: false,
+			            labelWidth:130,
+		                width : 325,
 			        	canClear : false,
 		                padding: '0 0 0 30',
 			            format: 'Y-m-d H:i:s',

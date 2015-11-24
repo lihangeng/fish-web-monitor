@@ -361,7 +361,12 @@ Ext.define('Eway.controller.advert.Advert', {
 			}
 		}
 	},
-
+	//激活面板时候进行刷新Store操作
+	refreshLinkedDeviceGridData:function(){
+		var win = this.getDownAdvert();
+		var linkedGrid = win.down('version_download_linkedDeviceGrid');
+		linkedGrid.setStore(linkedGrid.getStore());
+	},
 	//下发广告
 	onDownAdvert : function(){
 		var grid = this.getGrid();
@@ -374,9 +379,10 @@ Ext.define('Eway.controller.advert.Advert', {
 				win.down("button[action=confirm]").on("click",this.onDownConfirm,this);
 				win.down("textfield[name=jobName]").setValue(record.get("versionDesc"));
 				win.on("destroy",this.onCloseDownWin,this);
-				//win.down("form combobox[name=jobType]").on('change',this.onJobTypeChange,this);
+				win.down("form combobox[name=taskType]").on('change',this.onJobTypeChange,this);
 				win.down("version_download_multiselectableDeviceGrid pagingtoolbar").on("beforechange",this.onSelectalbeDeviceFresh,this);
 				var pagingtoolbar = win.down("pagingtoolbar");
+				win.down("version_download_linkedDeviceGrid").on("activate",this.refreshLinkedDeviceGridData,this)
 				//增加请求参数
 				pagingtoolbar.store.proxy.extraParams = {versionId :record.get("versionId")};
 				var grid = win.down("version_download_multiselectableDeviceGrid");
