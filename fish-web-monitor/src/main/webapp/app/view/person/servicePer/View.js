@@ -13,16 +13,16 @@ Ext.define('Eway.view.person.servicePer.View', {
 		var store = Ext.create('Eway.store.person.organization.SerOrganizationTree');
 		Ext.apply(this, {
 			items: [{
-				region: 'east',
-				title : EwayLocale.person.serviceOrg.serviceNavi,
-				header: false,
-				xtype : 'treepanel',
-				width : 200,
-				border : false,
-				padding : '0 2 0 0',
-				lines : true,
-				store : store
-			}, {
+//				region: 'east',
+//				title : EwayLocale.person.serviceOrg.serviceNavi,
+//				header: false,
+//				xtype : 'treepanel',
+//				width : 200,
+//				border : false,
+//				padding : '0 2 0 0',
+//				lines : true,
+//				store : store
+//			}, {
 				region: 'center',
 				xtype: 'panel',
 				layout: 'border',
@@ -37,20 +37,16 @@ Ext.define('Eway.view.person.servicePer.View', {
 			listeners : {
 				activate : function(panel) {
 					if (!panel.isLoad) {
-
-						// 第一次进来不需要重新加载信息
+						// 第一次进来主动加载信息
 						panel.isLoad = true;
+						var store = panel.down('ser_person_grid').getStore();
+						store.setUrlParamsByObject({
+							type : '1'
+						});
+						store.load();
+//						panel.down('ser_person_grid').getStore().load();
 						return;
 					}
-					// 刷新维护商信息
-					if(ewayUser.getOrgType()=='1'){
-						panel.down('treepanel').setRootNode({
-							id: ewayUser.getOrgId(),
-							text: ewayUser.getOrgName(),
-							expanded: true
-						});
-					}
-					panel.down('treepanel').getStore().load();
 				}
 			}
 		});

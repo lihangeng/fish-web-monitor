@@ -34,9 +34,9 @@ Ext.define('Eway.controller.person.ServicePer', {
 	}, {
 		ref: 'addWin',
 		selector: 'ser_person_add'
-	},{
-		ref :'organizationTree',
-		selector:'treepanel'
+//	},{
+//		ref :'organizationTree',
+//		selector:'treepanel'
 	},{
 		ref :'filterForm',
 		selector:'ser_person_filterform'
@@ -67,44 +67,44 @@ Ext.define('Eway.controller.person.ServicePer', {
 			},
 			'#ser_person menuitem[action=linkDevice]': {
 				click: this.onLinkDevice
-			},
-			'#ser_person treepanel': {
-				beforerender : this.onBeforeRender,
-				afterrender: this.onTreePanelAfterRender,
-				itemclick: this.onItemClick,
-				beforeitemdblclick : this.onBeforeitemdblclick
+//			},
+//			'#ser_person treepanel': {
+//				beforerender : this.onBeforeRender,
+//				afterrender: this.onTreePanelAfterRender,
+//				itemclick: this.onItemClick,
+//				beforeitemdblclick : this.onBeforeitemdblclick
 			}
 		});
 	},
 
 	//机构树渲染之前设置根节点
-	onBeforeRender : function(){
-		var treePanel = this.getEwayView().down('treepanel');
-		if (ewayUser.getOrgType() == '1') {
-			treePanel.setRootNode({
-					id : ewayUser.getOrgId(),
-					text : ewayUser.getOrgName(),
-					expanded : true
-				});
-		}
-	},
+//	onBeforeRender : function(){
+//		var treePanel = this.getEwayView().down('treepanel');
+//		if (ewayUser.getOrgType() == '1') {
+//			treePanel.setRootNode({
+//					id : ewayUser.getOrgId(),
+//					text : ewayUser.getOrgName(),
+//					expanded : true
+//				});
+//		}
+//	},
 
-	onBeforeitemdblclick : function(){
-		return false;
-	},
+//	onBeforeitemdblclick : function(){
+//		return false;
+//	},
 
-	onTreePanelAfterRender : function(treepanel){
-	    var selectedNode = this.getSelectionInTree();
-	    var nodeId = selectedNode.data.id;
-		var store = this.getGrid().getStore();
-		if(ewayUser.getOrgType()=='1'){
-			store.setBaseParam('selectedNode',nodeId);
-		}
-		store.setBaseParam('type','1');
-	  	store.loadPage(1);
-	    var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	    actionTip.setText(EwayLocale.tip.servicePer.allSerPer);
-	},
+//	onTreePanelAfterRender : function(treepanel){
+//	    var selectedNode = this.getSelectionInTree();
+//	    var nodeId = selectedNode.data.id;
+//		var store = this.getGrid().getStore();
+//		if(ewayUser.getOrgType()=='1'){
+//			store.setBaseParam('selectedNode',nodeId);
+//		}
+//		store.setBaseParam('type','1');
+//	  	store.loadPage(1);
+//	    var actionTip = this.getEwayView().down("tbtext[action=tip]");
+//	    actionTip.setText(EwayLocale.tip.servicePer.allSerPer);
+//	},
 
 
 	/**
@@ -306,25 +306,25 @@ Ext.define('Eway.controller.person.ServicePer', {
 		 for(var i in data){
 		 	store.setUrlParam(i,data[i])
 		 }
-		 var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	     actionTip.setText(EwayLocale.tip.bankPer.personEligible);
+//		 var actionTip = this.getEwayView().down("tbtext[action=tip]");
+//	     actionTip.setText(EwayLocale.tip.bankPer.personEligible);
 		 store.loadPage(1);
-		 this.getEwayView().down('treepanel').getSelectionModel().select(0,true);//选择根节点
+//		 this.getEwayView().down('treepanel').getSelectionModel().select(0,true);//选择根节点
 	},
 
 	//得到组织树中选中的节点
-	getSelectionInTree : function(){
-		 var treePanel = this.getEwayView().down('treepanel');
-		 var selections = treePanel.getSelectionModel().getSelection();
-		 var selectedNode = null;
-	     if(Ext.isEmpty(selections)){//如果当前没有选中任何节点
-	    	treePanel.getSelectionModel().select(0,true);//默认选择根节点
-	    	selectedNode = treePanel.getRootNode();
-	     }else{
-	    	selectedNode = selections[0];
-	     }
-	     return selectedNode;
-	},
+//	getSelectionInTree : function(){
+//		 var treePanel = this.getEwayView().down('treepanel');
+//		 var selections = treePanel.getSelectionModel().getSelection();
+//		 var selectedNode = null;
+//	     if(Ext.isEmpty(selections)){//如果当前没有选中任何节点
+//	    	treePanel.getSelectionModel().select(0,true);//默认选择根节点
+//	    	selectedNode = treePanel.getRootNode();
+//	     }else{
+//	    	selectedNode = selections[0];
+//	     }
+//	     return selectedNode;
+//	},
 
 	/**
 	 * 单击机构树节点
@@ -340,22 +340,22 @@ Ext.define('Eway.controller.person.ServicePer', {
 			if(node.data.id != '1'){
 				store.setBaseParam('selectedNode',node.data.id);
 				store.loadPage(1);
-            	var actionTip = this.getEwayView().down("tbtext[action=tip]");
-		     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+EwayLocale.tip.bankPer.downGradePer);
+//            	var actionTip = this.getEwayView().down("tbtext[action=tip]");
+//		     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+EwayLocale.tip.bankPer.downGradePer);
 
 			}else{
 				store.setBaseParam('type','1');
 				store.loadPage(1);
-            	var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	    		actionTip.setText(EwayLocale.person.servicePer.maintainInfo);
+//            	var actionTip = this.getEwayView().down("tbtext[action=tip]");
+//	    		actionTip.setText(EwayLocale.person.servicePer.maintainInfo);
 			}
         }else{
         	var store = this.getEwayView().down('ser_person_grid').getStore();
 			store.cleanUrlParam();
 			store.setBaseParam('selectedNode',node.data.id);
 			store.loadPage(1);
-       		var actionTip = this.getEwayView().down("tbtext[action=tip]");
-	     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+EwayLocale.tip.bankPer.downGradePer);
+//       		var actionTip = this.getEwayView().down("tbtext[action=tip]");
+//	     	actionTip.setText('<font color="red">'+this.getSelectionInTree().data.text+'</font>'+EwayLocale.tip.bankPer.downGradePer);
 	    }
     },
 
@@ -366,17 +366,17 @@ Ext.define('Eway.controller.person.ServicePer', {
 		var win = Ext.create('Eway.view.person.servicePer.Add');
 		var code = win.down("form").getForm().findField("code");
 		this.win = win;
-		var selectedNode = this.getSelectionInTree();
-		var nodeId = selectedNode.data.id;
-		if(nodeId != "1"){
-			win.down('field[name="organizationName"]').setValue(selectedNode.data.text);
-			win.down('field[name="organizationId"]').setValue(nodeId);
-		}
-		win.down('button[action="add"]').on('click',Ext.bind(this.onAddConfirm,this,[nodeId]),this);
+//		var selectedNode = this.getSelectionInTree();
+//		var nodeId = selectedNode.data.id;
+//		if(nodeId != "1"){
+//			win.down('field[name="organizationName"]').setValue(selectedNode.data.text);
+//			win.down('field[name="organizationId"]').setValue(nodeId);
+//		}
+		win.down('button[action="add"]').on('click',Ext.bind(this.onAddConfirm,this),this);
 		win.show();
 	},
 
-	onAddConfirm: function(nodeId) {
+	onAddConfirm: function() {
 		var ewayView = this.getEwayView();
 		var win = this.win;
 		data = win.down('form').getForm().getValues();
@@ -386,16 +386,17 @@ Ext.define('Eway.controller.person.ServicePer', {
 			record.set("type",'1');
 			record.save({
 				success : function(record,operation){
-					ewayView.down('treepanel').getSelectionModel().select(0,true);//选择根节点
-					store.cleanUrlParam();
-					store.setBaseParam('organizationId',data.organizationId);
-					store.load({
-						params:{
-							organizationId : data.organizationId
-						}
-					});
-					var actionTip = ewayView.down("tbtext[action=tip]");
-	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+EwayLocale.tip.bankPer.downGradePer);
+//					ewayView.down('treepanel').getSelectionModel().select(0,true);//选择根节点
+//					store.cleanUrlParam();
+//					store.setBaseParam('organizationId',data.organizationId);
+//					store.load({
+//						params:{
+//							organizationId : data.organizationId
+//						}
+//					});
+					store.load();
+//					var actionTip = ewayView.down("tbtext[action=tip]");
+//	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+EwayLocale.tip.bankPer.downGradePer);
 					win.close();
 					Eway.alert(EwayLocale.addSuccess);
 			    },
@@ -456,16 +457,17 @@ Ext.define('Eway.controller.person.ServicePer', {
 			record.save({
 				success : function(record,operation){
 					Eway.alert(EwayLocale.updateSuccess);
-					ewayView.down('treepanel').getSelectionModel().select(0,true);//选择根节点
-					store.cleanUrlParam();
-					store.setBaseParam('organizationId',data.organizationId);
-					store.load({
-						params:{
-							organizationId : data.organizationId
-						}
-					});
-					var actionTip = ewayView.down("tbtext[action=tip]");
-	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+EwayLocale.tip.bankPer.personBelongs);
+//					ewayView.down('treepanel').getSelectionModel().select(0,true);//选择根节点
+//					store.cleanUrlParam();
+//					store.setBaseParam('organizationId',data.organizationId);
+//					store.load({
+//						params:{
+//							organizationId : data.organizationId
+//						}
+//					});
+					store.load();
+//					var actionTip = ewayView.down("tbtext[action=tip]");
+//	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+EwayLocale.tip.bankPer.personBelongs);
 					win.close();
 				},
 				failure: function(record,operation){
@@ -492,7 +494,8 @@ Ext.define('Eway.controller.person.ServicePer', {
 							record.erase({
 								success: function(){
 									Eway.alert(EwayLocale.updateSuccess);
-									grid.getStore().remove(record);
+//									grid.getStore().remove(record);
+									grid.getStore().load();
 								},
 								failure: function(record,operation){
 									record.dropped = false;
