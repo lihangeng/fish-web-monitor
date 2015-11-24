@@ -7,7 +7,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 			type : 'hbox'
 		}
 	},
-	width :450,
+	width :470,
 	height:'100%',
 	title: EwayLocale.advert.configTitle,
 

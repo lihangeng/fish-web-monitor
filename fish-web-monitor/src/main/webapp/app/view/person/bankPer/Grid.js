@@ -118,7 +118,7 @@ Ext.define('Eway.view.person.bankPer.Grid', {
 			},{
 				header : EwayLocale.commen.remark,
 				dataIndex : 'remark',
-				width : 150
+				flex:1
 			}],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,

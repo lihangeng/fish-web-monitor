@@ -23,7 +23,7 @@ public class StatusCdm implements IStatusCdm {
     private String cdmHwCode;
 
     public StatusCdm() {
-        this.cdm = DeviceStatus.Unknown;
+        this.cdm = DeviceStatus.NoDevice;
     }
 
     /**

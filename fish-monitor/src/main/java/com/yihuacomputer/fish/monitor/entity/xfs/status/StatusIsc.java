@@ -23,7 +23,7 @@ public class StatusIsc implements IStatusIsc {
     private String iscHwCode;
 
     public StatusIsc() {
-        this.isc = DeviceStatus.Unknown;
+        this.isc = DeviceStatus.NoDevice;
     }
 
     /**
