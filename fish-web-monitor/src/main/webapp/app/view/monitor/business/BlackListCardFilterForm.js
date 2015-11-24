@@ -29,8 +29,7 @@ Ext.define('Eway.view.monitor.business.BlackListCardFilterForm', {
 	        				items : [{
 	        					xtype : 'field.monitor.UserName',
 	        					labelAlign : 'right',
-	        					fieldLabel : EwayLocale.monitor.business.transaction.userName,
-	        					maxLength : 20
+	        					fieldLabel : EwayLocale.monitor.business.transaction.userName
 	        				}]
 	        			}, {
 	        				columnWidth : .3,
@@ -38,8 +37,7 @@ Ext.define('Eway.view.monitor.business.BlackListCardFilterForm', {
 	        					xtype : 'textfield',
 	        					name :'organization',
 	        					labelAlign : 'right',
-	        					fieldLabel : EwayLocale.monitor.business.blackList.cardBank,
-	        					maxLength : 60
+	        					fieldLabel : EwayLocale.monitor.business.blackList.cardBank
 	        				}]
 	        			}]
 	        		});

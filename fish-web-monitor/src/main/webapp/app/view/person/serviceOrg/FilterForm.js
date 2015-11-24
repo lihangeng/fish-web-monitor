@@ -5,7 +5,7 @@ Ext.define('Eway.view.person.serviceOrg.FilterForm', {
 	extend: 'Eway.view.base.FilterForm',
 	alias: 'widget.ser_organization_filterform',
 	
-	requires: ['Eway.view.field.person.Code',
+	requires: ['Eway.view.field.person.Code','Eway.view.common.OrgComboOrgTree',
 	           'Eway.view.field.person.Name'],
 	
 	/*title: '输入您的查询条件',*/
@@ -18,21 +18,36 @@ Ext.define('Eway.view.person.serviceOrg.FilterForm', {
 	initComponent: function() {
 		Ext.apply(this, {
 			items : [{
-				columnWidth : .5,
+
+				columnWidth : .3,
+				items : [{
+					xtype : 'common_orgComboOrgTree',
+					fieldLabel : EwayLocale.machine.atmGroup.orgName,
+					emptyText: EwayLocale.combox.select,
+					editable : false,
+					name : 'org',
+					filters : '{"type" : "0"}',
+					rootVisible : true,
+					hiddenValue : 'selectedNode'
+				},{
+					xtype : 'hiddenfield',
+					name :'selectedNode'
+				}]
+			
+			},{
+				columnWidth : .3,
 				items : [{
 					xtype : 'field.code',
 					labelAlign : 'right',
 					fieldLabel : EwayLocale.person.serviceOrg.code,
-					maxLength : 20,
 					msgTarget : 'side'
 				}]
 			}, {
-				columnWidth : .5,
+				columnWidth : .3,
 				items : [{
 					xtype : 'field.name',
 					labelAlign : 'right',
 					fieldLabel: EwayLocale.person.serviceOrg.name,
-					maxLength : 40,
 					msgTarget : 'side'
 				}]
 			}]

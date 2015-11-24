@@ -17,7 +17,6 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandFilterForm', {
 					labelAlign : 'right',
 					name : 'name',
 					fieldLabel : EwayLocale.machine.atmBrand.name,
-					maxLength : 20,
 					msgTarget : 'side'
 				}]
 			},/*{
@@ -33,7 +32,6 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandFilterForm', {
 					xtype : 'field_atmBrand_country',
 					labelWidth: 110,
 					msgTarget : 'side',
-					maxLength : 30,
 					labelAlign : 'right'
 				}]
 			}]

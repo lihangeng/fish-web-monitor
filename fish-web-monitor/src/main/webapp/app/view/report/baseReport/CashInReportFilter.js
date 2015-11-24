@@ -31,10 +31,7 @@ Ext.define('Eway.view.report.baseReport.CashInReportFilter', {
 									xtype : 'textfield',
 									fieldLabel : EwayLocale.commen.terminalId,
 									name : 'terminalId',
-									labelAlign : 'right',
-									regex : /^\w+[\w-\.]*$/,
-									regexText : EwayLocale.vtype.numberRule,
-									maxLength : 20
+									labelAlign : 'right'
 								}]
 					}, {
 						columnWidth : .5,

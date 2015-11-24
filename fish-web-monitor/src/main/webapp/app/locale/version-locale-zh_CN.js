@@ -275,8 +275,8 @@ Ext.apply(EwayLocale,{
 			deviceVersionHisTip : '查看设备历史版本信息', // EwayLocale.version.task.deviceVersionHisTip
 			autoUpdateInfo : '自动更新信息',// EwayLocale.version.task.autoUpdateInfo
 			selectAJob : '请选择一个作业.',// EwayLocale.version.task.selectAJob
-			versionDownHisStatusPic : '版本下发历史状态分布图',// EwayLocale.version.task.versionDownHisStatusPic
-			versionNoPic : '版本分布图',// EwayLocale.version.task.versionNoPic
+			versionDownHisStatusPic : '&nbsp;&nbsp;版本下发历史状态分布图',// EwayLocale.version.task.versionDownHisStatusPic
+			versionNoPic : '&nbsp;&nbsp;版本分布图',// EwayLocale.version.task.versionNoPic
 			cantCancelCompleteJob : '不能撤销"完成"状态的作业.',// EwayLocale.version.task.cantCancelCompleteJob
 			doSureCancelTheJob : '是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)',// EwayLocale.version.task.doSureCancelTheJob
 			deleting : '正在删除......',// EwayLocale.version.task.deleting

@@ -31,6 +31,7 @@ Ext.apply(EwayLocale,{
 			devType : '设备型号',//EwayLocale.report.baseReport.devType
 			mod : '设备模块',//EwayLocale.report.baseReport.mod
 			rank : '排名数',//EwayLocale.report.baseReport.rank
+			statisticsDays : '统计时间段',//EwayLocale.report.baseReport.statisticsDays
 		},
 		openrate:{
 			device:{

@@ -95,7 +95,7 @@ Ext.apply(EwayLocale,{
 		chooseMediaFile:'Please choose media file',//EwayLocale.advert.chooseMediaFile 请选择媒体文件
 		uploadResource:'Upload resource...',//EwayLocale.advert.uploadResource 上传资源
 		uploadResourceBlank:'Please upload resource',//EwayLocale.advert.uploadResourceBlank 请上传资源
-		addMorePic:'Add pictures',//EwayLocale.advert.addMorePic添加图片
+		addMorePic:'Add a Picture',//EwayLocale.advert.addMorePic添加图片
 		uploadRegText:'Unsupported resource uploaded ,only .jpg,.aiv file can be uploaded',//EwayLocale.advert.uploadRegText 上传的资源格式不支持,只能上传.jpg、.avi格式的文件
 		resourceFormatTips:'Only .jpg,.aiv file is supported',//EwayLocale.advert.resourceFormatTips (仅支持.jpg、.avi格式的文件)
 		resourceAlias:'File name after modified',//EwayLocale.advert.resourceAlias 修改后的文件名
@@ -274,8 +274,8 @@ Ext.apply(EwayLocale,{
 			deviceVersionHisTip:'View information of device history version',	//EwayLocale.version.task.deviceVersionHisTip 查看设备历史版本信息
 			autoUpdateInfo:'Information of auto update',//EwayLocale.version.task.autoUpdateInfo 自动更新信息
 			selectAJob:'Please choose a job.',//EwayLocale.version.task.selectAJob 请选择一个作业
-			versionDownHisStatusPic:'StatusDistribute',//EwayLocale.version.task.versionDownHisStatusPic 版本下发历史状态分布图
-			versionNoPic:'VersionDistribute',//EwayLocale.version.task.versionNoPic
+			versionDownHisStatusPic:'&nbsp;&nbsp;StatusDistribute',//EwayLocale.version.task.versionDownHisStatusPic 版本下发历史状态分布图
+			versionNoPic:'&nbsp;&nbsp;VersionDistribute',//EwayLocale.version.task.versionNoPic
 			cantCancelCompleteJob:'Can not cancel job which status is ‘finish’.',//EwayLocale.version.task.cantCancelCompleteJob 不能撤销"完成"状态的作业
 			doSureCancelTheJob:'Cancel the selected job?(running job can only cancel the task which has not running)',//EwayLocale.version.task.doSureCancelTheJob 是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)
 			deleting:'Deleting......',//EwayLocale.version.task.deleting 正在删除

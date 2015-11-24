@@ -14,10 +14,7 @@ Ext.define('Eway.view.person.person.LinkingDeviceFilter', {
 				columnWidth : .5,
 				xtype : 'textfield',
 				fieldLabel : EwayLocale.commen.terminalId,
-				name : 'terminalId',
-				regex : /^\w+[\w-\.]*$/,
-				regexText : EwayLocale.vtype.bankOrgCode.terminalId,
-				maxLength : 20
+				name : 'terminalId'
 			} ]
 		});
 		this.callParent(arguments);

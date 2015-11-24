@@ -71,6 +71,7 @@ Ext.define('Eway.view.advert.Grid', {
 			},{
 				header : EwayLocale.advert.type,
 				dataIndex : 'advertType',
+				width: 200,
 				renderer: Eway.lib.Util.dictRenderer('advert.AdvertType')
 			},/*{
 				header : '广告下发方式',
@@ -79,18 +80,21 @@ Ext.define('Eway.view.advert.Grid', {
 			},*/{
 				header : EwayLocale.advert.validity,
 				dataIndex : 'advertValidity',
+				width: 145,
 				renderer: Eway.lib.Util.dictRenderer('advert.AdvertValidity'),
 				hidden:true
 			},{
 				header : EwayLocale.advert.createdTime,
 				dataIndex : 'createdTime',
-				width: 130
+				width: 200
 			},{
 				header:EwayLocale.advert.userName,
-				dataIndex:'userName'
+				dataIndex:'userName',
+				width: 200
 			},{
 				header : EwayLocale.advert.versionStatus,
-				dataIndex:'versionStatus'
+				dataIndex:'versionStatus',
+				width: 200
 			},{
 				header: EwayLocale.advert.advertVersionFile,
 				dataIndex:'versionFile',

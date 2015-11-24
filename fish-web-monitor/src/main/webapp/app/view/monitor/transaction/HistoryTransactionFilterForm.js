@@ -21,12 +21,14 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 				border : false,
 				defaults : {
 					border : false
+
 				},
 				items : [ {
-					columnWidth : .28,
+					columnWidth : .30,
 					items : [ {
 						fieldLabel : EwayLocale.commen.terminalId,
 						labelAlign : 'right',
+						labelWidth : 150,
 						xtype : 'textfield',
 						name : 'terminalId',
 						regex : /^\w[\w-_\.]{0,19}$/,
@@ -37,7 +39,8 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 						labelAlign : 'right'
 					}, */{
 						xtype : 'monitor_TransTypeComboBox',
-						labelAlign : 'right'
+						labelAlign : 'right',
+						labelWidth : 150
 					} ]
 				}, {
 					columnWidth : .28,
@@ -63,13 +66,13 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 						hidden : true
 					} ]
 				}, {
-					columnWidth : .44,
+					columnWidth : .42,
 					layout : 'anchor',
 					items : [ {
 						xtype : 'fieldcontainer',
-						labelWidth : 70,
 						fieldLabel : EwayLocale.monitor.business.transaction.amtfield,
 						layout : 'hbox',
+						labelWidth : 100,
 						defaults : {
 							hideLabel : true
 						},
@@ -118,7 +121,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 					}, {
 						xtype : 'fieldcontainer',
 						fieldLabel : EwayLocale.monitor.business.transaction.transContainer,
-						labelWidth : 70,
+						labelWidth : 100,
 						layout : 'hbox',
 						defaults : {
 							hideLabel : true

@@ -18,16 +18,13 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 				columnWidth : .3,
 				xtype : 'form',
 				items : [{
-					labelWidth : 60,
+					labelWidth : 70,
 					xtype : 'textfield',
 					fieldLabel : EwayLocale.commen.terminalId,
-					maxLength:20,
-					regexText:EwayLocale.vtype.terminalId,
 					name : 'terminalId',
-					msgTarget:'side',
-					vtype : 'terminalId'
+					msgTarget:'side'
 				},{
-					labelWidth : 60,
+					labelWidth : 70,
 					xtype : 'field_faultStatus',
 					fieldLabel :EwayLocale.cases.caseFault.faultState,
 					name : 'faultStatus'
@@ -36,12 +33,12 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 				columnWidth : .3,
 				xtype : 'form',
 				items : [{
-					labelWidth : 60,
+					labelWidth : 90,
 					xtype : 'field_devMod',
 					fieldLabel : EwayLocale.cases.caseFault.faultModule,
 					name : 'devMod'
 				},{
-					labelWidth : 60,
+					labelWidth : 90,
 					xtype : 'field_case_faultClassify',
 					fieldLabel : EwayLocale.cases.caseFault.faultClassify,
 					name : 'faultClassify'

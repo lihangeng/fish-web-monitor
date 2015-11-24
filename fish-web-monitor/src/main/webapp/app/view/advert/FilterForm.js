@@ -18,18 +18,20 @@ Ext.define('Eway.view.advert.FilterForm', {
 					queryMode : 'local',
 					valueField : 'value',
 					name : 'advertType',
+					labelWidth:80,
 					editable : false,
-					width : 280
+					width : 320
 				} ]
 			}, {
-				columnWidth : .3,
+				columnWidth : .33,
 				items : [ {
 					fieldLabel : EwayLocale.advert.createdTimeStart,
+					labelWidth:150,
 					xtype : 'datetimefield',
 					name : 'createdTimeStart',
 					editable : false,
 					format : 'Y-m-d H:i:s',
-					width : 280
+					width : 335
 				} ]
 			}, {
 				columnWidth : .3,
@@ -37,9 +39,10 @@ Ext.define('Eway.view.advert.FilterForm', {
 					fieldLabel : EwayLocale.advert.createdTimeStop,
 					xtype : 'datetimefield',
 					name : 'createdTimeEnd',
+					labelWidth:130,
 					editable : false,
 					format : 'Y-m-d H:i:s',
-					width : 280
+					width : 310
 				} ]
 			} ]
 		});

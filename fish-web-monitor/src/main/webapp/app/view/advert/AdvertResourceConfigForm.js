@@ -7,7 +7,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 			type : 'hbox'
 		}
 	},
-	width :400,
+	width :450,
 	height:'100%',
 	title: EwayLocale.advert.configTitle,
 
@@ -25,11 +25,13 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 					xtype:'displayfield',
 					name:'originalFileName',
 					fieldLabel:EwayLocale.advert.resourceName,
-					labelWidth: 60
+			    	labelAlign :'right',
+					labelWidth: 100
 		        },{
 			    	xtype: 'fieldcontainer',
 			        fieldLabel: EwayLocale.advert.playTime,
-			        labelWidth: 60,
+			        labelWidth: 100,
+			    	labelAlign :'right',
 			        combineErrors: true,
 			        msgTarget: 'under',
 			        defaults: {
@@ -51,13 +53,14 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		    	}, {
 		    	xtype:'datefield',
 		    	fieldLabel: EwayLocale.advert.beginDate,
+		        labelWidth: 100,
+		    	labelAlign :'right',
 		    	name:'beginDate',
 		    	disabled: false,
 		    	editable: false,
 		        format: 'Y-m-d',
-		        width: 200,
+		        width: 240,
 		        hidden:false,
-		        labelWidth: 60,
 		        value:new Date(),
 		        minValue : new Date()
 		    },{
@@ -69,15 +72,16 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		    	editable: false,
 		        format: 'Y-m-d',
 		        hidden: false,
-		        labelWidth: 60,
-		        width: 200,
+		        labelWidth: 100,
+		        width: 240,
 		        bodyStyle:'margin-right:-20px',
 		        minValue : new Date()
 		     },{
 		        xtype: 'fieldcontainer',
 		        fieldLabel: EwayLocale.advert.beginTime,
 		        combineErrors: true,
-		        labelWidth: 60,
+		        labelWidth: 100,
+		    	labelAlign :'right',
 		        defaults: {
 		            hideLabel: true
 		        },
@@ -122,7 +126,8 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		        xtype: 'fieldcontainer',
 		        fieldLabel: EwayLocale.advert.endTime,
 		        combineErrors: true,
-		        labelWidth: 60,
+		        labelWidth: 100,
+		    	labelAlign :'right',
 		        defaults: {
 		            hideLabel: true
 		        },

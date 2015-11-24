@@ -79,6 +79,7 @@ Ext.define('Eway.view.person.bankOrg.Grid', {
 			},{
 				header : EwayLocale.person.bankOrg.name,
 				dataIndex : 'displayName',
+				width:350,
 				sortable : true
 			},{
 				header : EwayLocale.person.bankOrg.orgLevel,

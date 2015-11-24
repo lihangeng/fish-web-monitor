@@ -40,7 +40,6 @@ Ext.define('Eway.view.person.bankOrg.FilterForm', {
 					xtype : 'field.code',
 					labelAlign : 'right',
 					fieldLabel : EwayLocale.person.bankOrg.code,
-					maxLength:20,
 					msgTarget : 'side'
 				}]
 //			}, {
@@ -49,7 +48,6 @@ Ext.define('Eway.view.person.bankOrg.FilterForm', {
 //					xtype : 'field.name',
 //					labelAlign : 'right',
 //					fieldLabel: EwayLocale.person.bankOrg.name,
-//					maxLength:40,
 //					msgTarget : 'side'
 //				}]
 			}, {
