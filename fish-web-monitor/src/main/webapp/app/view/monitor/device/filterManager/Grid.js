@@ -160,7 +160,7 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					if (value.run_stopunknown) {
 						str += '|' + EwayLocale.monitor.devMonitor.remote.pauseSerUnknow;
 					}
-					
+					str = str.startsWith('|') ? str.substr(1) : str;
 					return str;
 				}
 			}, {
@@ -188,7 +188,7 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					if (value.mod_noDevice) {
 						str += '|' + EwayLocale.monitor.devMonitor.noData;
 					}
-
+					str = str.startsWith('|') ? str.substr(1) : str;
 					return str;
 				}
 			}, {
@@ -222,7 +222,7 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					if (value.box_unknown) {
 						str += '|' + EwayLocale.monitor.devMonitor.cash.cashUnknow;
 					}
-					
+					str = str.startsWith('|') ? str.substr(1) : str;
 					return str;
 				}
 			}, {
@@ -247,7 +247,7 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					if (value.net_unknown) {
 						str += '|' + EwayLocale.commen.unknow;
 					}
-					
+					str = str.startsWith('|') ? str.substr(1) : str;
 					return str;
 				},
 				flex : 1

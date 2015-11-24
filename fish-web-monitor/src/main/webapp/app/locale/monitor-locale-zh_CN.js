@@ -152,8 +152,11 @@ Ext.apply(EwayLocale,{
 					title:'实时交易监控',//EwayLocale.monitor.business.transaction.transactionMonitor.title
 					begin:'开始监控',//EwayLocale.monitor.business.transaction.transactionMonitor.begin
 					stop:'停止监控',//EwayLocale.monitor.business.transaction.transactionMonitor.stop
-					clear:'清屏'//EwayLocale.monitor.business.transaction.transactionMonitor.clear
-					}
+					clear:'清屏',//EwayLocale.monitor.business.transaction.transactionMonitor.clear
+					scroll:'滚屏方式',//EwayLocale.monitor.business.transaction.transactionMonitor.scroll
+					up:'向上',//EwayLocale.monitor.business.transaction.transactionMonitor.up
+					down:'向下'//EwayLocale.monitor.business.transaction.transactionMonitor.down
+				}
 			},
 			blackList:{
 				title:'黑名单卡管理',//EwayLocale.monitor.business.blackList.title

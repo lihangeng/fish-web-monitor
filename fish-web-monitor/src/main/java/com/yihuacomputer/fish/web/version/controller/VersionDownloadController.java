@@ -564,6 +564,9 @@ public class VersionDownloadController {
 		taskForm.setPlanTime(DateUtils.getTimestamp(task.getPlanTime()));
 		taskForm.setDownSource(task.getDownSource());
 		taskForm.setExcuteMachine(task.getExcuteMachine());
+		
+		taskForm.setProcess(task.getProcess());
+		
 		return taskForm;
 	}
     

@@ -31,12 +31,18 @@ Ext.define('Eway.view.monitor.transaction.TransactionFilterForm', {
                     	columnWidth : .25,
                     	items : [ {
 	                        xtype: 'radiogroup',
-	                        fieldLabel: '滚屏方式',
+	                        fieldLabel: EwayLocale.monitor.business.transaction.transactionMonitor.scroll,
 	                        labelAlign : 'right',
-	                        items: [
-	                            {boxLabel: '向上', name: 'rbAuto', inputValue: 'UP', checked: true},
-	                            {boxLabel: '向下', name: 'rbAuto', inputValue: 'DOWN'}
-	                        ]
+	                        items: [ {
+	                        	boxLabel: EwayLocale.monitor.business.transaction.transactionMonitor.up, 
+	                        	name: 'rbAuto', 
+	                        	inputValue: 'UP', 
+	                        	checked: true
+                        	}, {
+                        		boxLabel: EwayLocale.monitor.business.transaction.transactionMonitor.down, 
+                        		name: 'rbAuto', 
+                        		inputValue: 'DOWN'
+                    		} ]
                     	} ]
                 	}, {
 						items : [ {
