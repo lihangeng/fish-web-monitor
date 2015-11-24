@@ -34,8 +34,11 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 	},
 
 
-	display : function(deviceId, ip) {
+	display : function(deviceId, ip, record) {
+		
 		var win = Ext.widget('machine_device_devicepropertystatusdetailview');
+		win.setRecord(record);
+		
 		var me = this;
 		this.win = win;
 		this.deviceId = deviceId;
