@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="w_trans_count" language="groovy" pageWidth="1400" pageHeight="1500" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="1360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="29812c6b-87a2-4250-a2fa-e142d6fdd668">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="185"/>
+	<property name="ireport.x" value="92"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<parameter name="startReportDate" class="java.lang.String"/>
@@ -100,7 +100,7 @@
 						<bucketExpression><![CDATA[$F{orgName}]]></bucketExpression>
 					</bucket>
 					<crosstabRowHeader>
-						<cellContents backcolor="#F0F8FF" mode="Opaque">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
 							<box>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
@@ -116,7 +116,7 @@
 						</cellContents>
 					</crosstabRowHeader>
 					<crosstabTotalRowHeader>
-						<cellContents backcolor="#005FB3" mode="Opaque">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
 							<box>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
@@ -135,7 +135,7 @@
 						<bucketExpression><![CDATA[$F{transType}]]></bucketExpression>
 					</bucket>
 					<crosstabRowHeader>
-						<cellContents backcolor="#F0F8FF" mode="Opaque">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
 							<box>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
@@ -149,7 +149,7 @@
 						</cellContents>
 					</crosstabRowHeader>
 					<crosstabTotalRowHeader>
-						<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
 							<box>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
@@ -207,12 +207,12 @@
 					</cellContents>
 				</crosstabCell>
 				<crosstabCell width="215" height="25" rowTotalGroup="orgName">
-					<cellContents backcolor="#005FB3" mode="Opaque">
+					<cellContents backcolor="#FFFFFF" mode="Opaque">
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textField pattern="###0.00">
-							<reportElement uuid="a8b5fdff-a801-40c6-9d5d-8bd684e3e6c2" style="Crosstab Data Text" x="0" y="0" width="215" height="25" forecolor="#FFFFFF"/>
+							<reportElement uuid="a8b5fdff-a801-40c6-9d5d-8bd684e3e6c2" style="Crosstab Data Text" x="0" y="0" width="215" height="25" forecolor="#000000"/>
 							<textElement verticalAlignment="Middle">
 								<font size="13"/>
 							</textElement>
@@ -235,7 +235,7 @@
 					</cellContents>
 				</crosstabCell>
 				<crosstabCell width="215" height="25" rowTotalGroup="transType">
-					<cellContents backcolor="#BFE1FF" mode="Opaque">
+					<cellContents backcolor="#FFFFFF" mode="Opaque">
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
