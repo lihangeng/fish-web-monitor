@@ -36,7 +36,22 @@ public class IndexController {
 	@ResponseBody
 	public ModelMap faultTrendByDay(WebRequest wReq, HttpServletRequest req) {
 		logger.info("faultTrendByDay...");
-		List<Object> objects = faultStatisticsService.statisticsFaultTrend(90);
+		String startDateTime = req.getParameter("startDateTime");
+		Date start = null;
+		if(startDateTime != null && !"".equals(startDateTime)){
+			start = DateUtils.get(startDateTime,DateUtils.STANDARD_DATE);
+		}else{
+			start = DateUtils.getDate(-7);
+		}
+		
+		String endDateTime = req.getParameter("endDateTime");
+		Date end = null;
+		if(endDateTime != null && !"".equals(endDateTime)){
+			end = DateUtils.get(endDateTime,DateUtils.STANDARD_DATE);
+		}else{
+			end = new Date();
+		}
+		List<Object> objects = faultStatisticsService.statisticsFaultTrend(start,end);
 		List<ChartForm> forms = new ArrayList<ChartForm>();
 		for(Object object : objects){
 			Object[]objs = (Object[])object;

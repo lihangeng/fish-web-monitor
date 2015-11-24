@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.api.fault;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,6 +11,6 @@ import java.util.List;
  */
 public interface IFaultStatisticsService {
 
-	public List<Object> statisticsFaultTrend(int days);
+	public List<Object> statisticsFaultTrend(Date start, Date end);
 
 }
