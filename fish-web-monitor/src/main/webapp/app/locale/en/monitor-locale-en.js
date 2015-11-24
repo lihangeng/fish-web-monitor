@@ -10,6 +10,13 @@ Ext.apply(EwayLocale,{
 			boxSummary:'Cashbox',//EwayLocale.monitor.summary.boxSummary
 			netSummary:'Network'//EwayLocale.monitor.summary.netSummary
 		},
+		deviceStatus:{
+			Healthy:'Healthy',
+			Warning:'Warning',
+			Fatal:'Fatal',
+			Unknown:'Unknown',
+			NoDevice:'No Device'
+		},
 		devMonitor:{
 			title:'Status Monitor',//EwayLocale.monitor.devMonitor.title 状态监控
 			comboxStatus:{

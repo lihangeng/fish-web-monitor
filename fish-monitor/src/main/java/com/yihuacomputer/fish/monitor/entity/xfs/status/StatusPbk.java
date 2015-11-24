@@ -23,7 +23,7 @@ public class StatusPbk implements IStatusPbk {
     private String pbkHwCode;
 
     public StatusPbk() {
-        this.pbk = DeviceStatus.Unknown;
+        this.pbk = DeviceStatus.NoDevice;
     }
 
     /**

@@ -58,6 +58,7 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 					xtype : 'datefield',
 					fieldLabel : EwayLocale.commen.dayTime,
 					editable : false,
+					value : Ext.Date.format(Ext.Date.add(new Date(), Ext.Date.DAY, -1),'Y-m-d'),
 					maxValue : Ext.Date.format(Ext.Date.add(new Date(), Ext.Date.DAY, -1),'Y-m-d'),
 					format : 'Y-m-d'
 				}]

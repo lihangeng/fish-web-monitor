@@ -23,7 +23,7 @@ public class StatusSiu implements IStatusSiu {
     private String siuHwCode;
 
     public StatusSiu() {
-        this.siu = DeviceStatus.Unknown;
+        this.siu = DeviceStatus.NoDevice;
     }
 
     /**

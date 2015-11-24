@@ -28,7 +28,7 @@ public class StatusIcc implements IStatusIcc {
     private int iccCurrCards;
 
     public StatusIcc() {
-        this.icc = DeviceStatus.Unknown;
+        this.icc = DeviceStatus.NoDevice;
         this.cards = -1;
         this.iccCurrCards = -1;
     }

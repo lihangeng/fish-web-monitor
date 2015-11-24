@@ -9,6 +9,13 @@ Ext.apply(EwayLocale,{
 			boxSummary:'钞箱状态概况',//EwayLocale.monitor.summary.boxSummary
 			netSummary:'网络状态概况'//EwayLocale.monitor.summary.netSummary
 		},
+		deviceStatus:{
+			Healthy:'正常',
+			Warning:'警告',
+			Fatal:'故障',
+			Unknown:'未知',
+			NoDevice:'无设备'
+		},
 		devMonitor:{
 			title:'状态监控',//EwayLocale.monitor.devMonitor.title
 			comboxStatus:{

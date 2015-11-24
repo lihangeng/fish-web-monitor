@@ -25,7 +25,10 @@ public enum BoxStatus {
 	Fatal("BoxStatus.Fatal","#da0404"),//red
 	
 	/**钞箱未知*/
-	Unknown("BoxStatus.Unknown","#a9a89d");//gray
+	Unknown("BoxStatus.Unknown","#a9a89d"),//gray
+	
+	/**无设备*/
+	NoDevice("DeviceStatus.NoDevice","#A6BDB8");
 
 	private String text;
 	private String color;
