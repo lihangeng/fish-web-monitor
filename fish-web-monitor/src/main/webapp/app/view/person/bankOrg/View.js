@@ -44,14 +44,16 @@ Ext.define('Eway.view.person.bankOrg.View', {
 			}],
 			listeners : {
 				activate : function(panel) {
-//					if (!panel.isLoad) {
-//
-//						// 第一次进来不需要重新加载信息
-//						panel.isLoad = true;
-//						return;
-//					}
-
-					panel.down('bank_organization_grid').getStore().load();
+					if (!panel.isLoad) {
+						// 第一次进来主动加载信息
+						panel.isLoad = true;
+						var store = panel.down('bank_organization_grid').getStore();
+						store.setUrlParamsByObject({
+							type : '0'
+						});
+						store.load();
+						return;
+					}
 				}
 			}
 		});
