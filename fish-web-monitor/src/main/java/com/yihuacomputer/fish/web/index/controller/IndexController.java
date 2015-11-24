@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.web.index.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishConstant;
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.fault.IFaultStatisticsService;
 import com.yihuacomputer.fish.api.monitor.business.IRetaincardService;
 import com.yihuacomputer.fish.web.index.form.ChartForm;
@@ -39,7 +41,9 @@ public class IndexController {
 		for(Object object : objects){
 			Object[]objs = (Object[])object;
 			ChartForm form = new ChartForm();
-			form.setMonth(objs[0].toString());
+			String month = objs[0].toString().trim();
+			Date date = DateUtils.get(month, DateUtils.STANDARD_DATE_SHORT);
+			form.setMonth(DateUtils.get(date, DateUtils.STANDARD_DATE));
 			form.setData1(objs[1].toString());
 			forms.add(form);
 		}

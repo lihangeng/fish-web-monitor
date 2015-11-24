@@ -1,31 +1,25 @@
-Ext.define('Eway.controller.report.baseReport.CaseStatisticsReport', {
+Ext.define('Eway.controller.report.baseReport.CaseTrendReport', {
 	extend : 'Eway.controller.base.FishController',
 
-	stores : [ 'report.baseReport.CaseStatisticsReport' ],
+	stores : [ 'report.baseReport.CaseTrendReport' ],
 
-	models : [ 'report.baseReport.CaseStatisticsReport' ],
+	models : [ 'report.baseReport.CaseTrendReport' ],
 
-	views : [ 'report.baseReport.CaseStatisticsReportView' ],
+	views : [ 'report.baseReport.CaseTrendReportView' ],
 
 	refs : [ {
 		ref : 'ewayView',
 		selector : 'baseReport_CaseStatisticsReportView',
 		autoCreate : true,
 		xtype : 'baseReport_CaseStatisticsReportView'
-	},{
-		ref : 'grid',
-		selector : 'baseReport_CaseStatisticsReportGrid',
-		autoCreate : true,
-		xtype : 'baseReport_CaseStatisticsReportGrid'
 	} ],
 
 	init : function() {
 		this.control({
-			'baseReport_CaseStatisticsReportView button[action=query]' : {
+			'baseReport_CaseTrendReportView button[action=query]' : {
 				click : this.onShowHtml
 			}
 		});
-		this.onShowHtml();
 	},
 
 	onShowHtml : function() {

@@ -42,16 +42,20 @@ Ext.define('Eway.view.version.View', {
 						rowspan: 5
 					} ,{
 						name: 'versionType',
-						fieldLabel : EwayLocale.version.View.versionTypeCode,//'版本路径',
+						fieldLabel : EwayLocale.versionType.title + " " + EwayLocale.version.View.versionTypeCode,//'版本路径',
 				        text: '',
+				        labelWidth: 150,
+				        labelAlign:'right',
 				        style: {
 				            fontSize: '20px'
 				        },
 				        margin: '0 0 0 100'
 				    },{
 						name: 'versionPath',
-						fieldLabel : EwayLocale.version.View.versionPath,//'版本路径',
+						fieldLabel : EwayLocale.version.installPath,//'版本路径',
 				        text: '',
+				        labelWidth: 150,
+				        labelAlign:'right',
 				        style: {
 				            fontSize: '20px'
 				        },
@@ -60,6 +64,8 @@ Ext.define('Eway.view.version.View', {
 				    	name: 'versionTime',
 						fieldLabel : EwayLocale.version.View.versionTime,//'创建时间',
 				        text: '',
+				        labelWidth: 150,
+				        labelAlign:'right',
 				        style: {
 				            fontSize: '20px'
 				        },
@@ -68,6 +74,8 @@ Ext.define('Eway.view.version.View', {
 				    	name: 'versionPerson',
 						fieldLabel : EwayLocale.version.View.versionPerson,//'创建人',
 				        text: '',
+				        labelWidth: 150,
+				        labelAlign:'right',
 				        style: {
 				            fontSize: '20px'
 				        },
@@ -76,6 +84,8 @@ Ext.define('Eway.view.version.View', {
 				    	name: 'desc',
 						fieldLabel : EwayLocale.version.View.remark,//'备注',
 				        text: '',
+				        labelWidth: 150,
+				        labelAlign:'right',
 				        style: {
 				            fontSize: '20px'
 				        },

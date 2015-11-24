@@ -24,8 +24,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 					xtype : 'textfield',
 					fieldLabel : EwayLocale.machine.atmGroup.terminalId,
 					name : 'terminalId',
-					msgTarget : 'side',
-					maxLength : 20
+					msgTarget : 'side'
 				}, {
 					xtype : 'field_atmType_DeviceAtmCatalogComboBox',
 					fieldLabel : EwayLocale.machine.atmGroup.devCatalogName

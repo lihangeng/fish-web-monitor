@@ -11,8 +11,6 @@ Ext.define('Eway.view.version.download.FilterForm', {
 				columnWidth : 0.3,
 				items : [{
 					xtype:'textfield',
-					vtype : 'terminalId',
-					maxLength:20,
 					fieldLabel:EwayLocale.refs.terminalId,//'设备编号',
 					name:'terminalId'
 				},{
@@ -50,7 +48,6 @@ Ext.define('Eway.view.version.download.FilterForm', {
 						emptyText:EwayLocale.commen.all
 					},{
 						xtype:'textfield',
-						maxLength:20,
 						fieldLabel:EwayLocale.version.task.jobBatchName,//'任务批次名称',
 						name:'jobName'
 					}]
@@ -76,8 +73,7 @@ Ext.define('Eway.view.version.download.FilterForm', {
 						fieldLabel : EwayLocale.version.View.versionNo,//'版本号',
 						name : 'versionNo',
 					   maxLength: 40,
-					   vtype:'versionNo',
-						maxLength: 20
+					   vtype:'versionNo'
 					}]
 				}
 			]

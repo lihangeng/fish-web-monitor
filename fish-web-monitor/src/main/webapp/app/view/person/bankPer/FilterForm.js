@@ -22,8 +22,7 @@ Ext.define('Eway.view.person.bankPer.FilterForm', {
 					labelAlign : 'right'
 				},
 				items : [ {
-					xtype : 'field.username',
-					maxLength : 20
+					xtype : 'field.username'
 				}, {
 					xtype : 'field.mobile',
 					fieldLabel : EwayLocale.commen.mobile

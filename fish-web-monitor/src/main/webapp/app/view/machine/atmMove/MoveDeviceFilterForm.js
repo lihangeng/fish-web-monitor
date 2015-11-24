@@ -16,9 +16,7 @@ Ext.define('Eway.view.machine.atmMove.MoveDeviceFilterForm', {
 					xtype : 'textfield',
 					fieldLabel : EwayLocale.machine.atmMove.terminalId,
 					labelAlign : 'right',
-					vtype : 'terminalId',
 					labelWidth : 60,
-					maxLength:20,
 					width: 200,
 					name : 'terminalId',
 					msgTarget : 'side'
@@ -27,7 +25,6 @@ Ext.define('Eway.view.machine.atmMove.MoveDeviceFilterForm', {
 					labelAlign : 'right',
 					fieldLabel : EwayLocale.machine.atmMove.address,
 					labelWidth : 60,
-					maxLength:50,
 					width: 200,
 					name : 'address',
 					msgTarget : 'side'

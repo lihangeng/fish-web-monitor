@@ -44,23 +44,28 @@ Ext.define('Eway.view.advert.AdvertResourceGrid', {
 			}],
 			columns : [{
 				header: EwayLocale.advert.content,
-				dataIndex : 'content'
+				dataIndex : 'content',
+				width: 200
 			},{
 				header : EwayLocale.advert.playTime,
 				dataIndex : 'playTime',
 				width: 100
 			},{
 				header: EwayLocale.advert.beginDate,
-				dataIndex : 'beginDate'
+				dataIndex : 'beginDate',
+				width: 150
 			},{
 				header: EwayLocale.advert.endDate,
-				dataIndex : 'endDate'
+				dataIndex : 'endDate',
+				width: 150
 			},{
 				header: EwayLocale.advert.beginTime,
-				dataIndex : 'beginTime'
+				dataIndex : 'beginTime',
+				width: 150
 			},{
 				header: EwayLocale.advert.endTime,
-				dataIndex : 'endTime'
+				dataIndex : 'endTime',
+				width: 150
 			},{
 				header: EwayLocale.advert.fileSize,
 				dataIndex : 'fileSize',

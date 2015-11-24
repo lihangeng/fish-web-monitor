@@ -86,7 +86,7 @@ public class OrganizationService extends DomainOrganizationService {
             if(parent!=null){
 	            if(parent.isLeaf()){
 	            	parent.setLeaf(false);
-	            	dao.save(parent);
+	            	dao.update(parent);
 	            }
             }
             autoSetOrgFlag(org);

@@ -21,9 +21,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					xtype : 'textfield',
 					fieldLabel : EwayLocale.machine.atmGroup.terminalId,
 					name : 'terminalId',
-					vtype : 'terminalId',
 					allowBlank : true,
-					maxLength:20,
 					msgTarget : 'side'
 				}, {
 

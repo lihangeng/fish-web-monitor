@@ -16,7 +16,8 @@ Ext.define('Eway.view.report.baseReport.CaseStatisticsReportView', {
 			items : [ {
 				itemId : 'filterFormItemId',
 				region : 'north',
-				xtype : 'baseReport_CaseStatisticsReportFilterForm'
+				xtype : 'baseReport_CaseStatisticsReportFilterForm',
+				height : 80
 			}, {
 				itemId : 'gridItemId',
 				region : 'center',

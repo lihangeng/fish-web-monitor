@@ -1,88 +1,105 @@
 package com.yihuacomputer.fish.web.command.format;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.yihuacomputer.fish.web.atm.format.SimpleVersion;
+
 /**
  * atmc应用版本和客户端版本信息
+ * 
  * @author huxiaobao
  *
  */
 public class AtmVersionForm {
-	
-	/**
-	 * ATMC应用版本
-	 */
-	private String atmcVersion;
-	/**
-	 * 客户端版本
-	 */
-	private String agentVersion;
-	
-	private String url;
 
-	private String cmdKey;
+    private List<SimpleVersion> currentPatches = new ArrayList<SimpleVersion>();
 
-	private String appRet;
+    /**
+     * ATMC应用版本
+     */
+    private String atmcVersion;
 
-	private String httpStatusCode;
+    /**
+     * 客户端版本
+     */
+    private String agentVersion;
 
-	public AtmVersionForm() {
+    private String url;
 
-	}
+    private String cmdKey;
 
-	public AtmVersionForm(AtmVersionForm atmVersionForm) {
-		setAtmcVersion(atmVersionForm.getAtmcVersion());
-		setAgentVersion(atmVersionForm.getAgentVersion());
-		setAppRet(atmVersionForm.getAppRet());
-		setCmdKey(atmVersionForm.getCmdKey());
-		setHttpStatusCode(atmVersionForm.getHttpStatusCode());
-		setUrl(atmVersionForm.getUrl());
-	}
+    private String appRet;
 
-	public String getAtmcVersion() {
-		return atmcVersion;
-	}
+    private String httpStatusCode;
 
-	public void setAtmcVersion(String atmcVersion) {
-		this.atmcVersion = atmcVersion;
-	}
+    public AtmVersionForm() {
 
-	public String getAgentVersion() {
-		return agentVersion;
-	}
+    }
 
-	public void setAgentVersion(String agentVersion) {
-		this.agentVersion = agentVersion;
-	}
+    public AtmVersionForm(AtmVersionForm atmVersionForm) {
+        setAtmcVersion(atmVersionForm.getAtmcVersion());
+        setAgentVersion(atmVersionForm.getAgentVersion());
+        setAppRet(atmVersionForm.getAppRet());
+        setCmdKey(atmVersionForm.getCmdKey());
+        setHttpStatusCode(atmVersionForm.getHttpStatusCode());
+        setUrl(atmVersionForm.getUrl());
+    }
 
-	public String getUrl() {
-		return url;
-	}
+    public String getAtmcVersion() {
+        return atmcVersion;
+    }
 
-	public void setUrl(String url) {
-		this.url = url;
-	}
+    public void setAtmcVersion(String atmcVersion) {
+        this.atmcVersion = atmcVersion;
+    }
 
-	public String getCmdKey() {
-		return cmdKey;
-	}
+    public String getAgentVersion() {
+        return agentVersion;
+    }
 
-	public void setCmdKey(String cmdKey) {
-		this.cmdKey = cmdKey;
-	}
+    public void setAgentVersion(String agentVersion) {
+        this.agentVersion = agentVersion;
+    }
 
-	public String getAppRet() {
-		return appRet;
-	}
+    public String getUrl() {
+        return url;
+    }
 
-	public void setAppRet(String appRet) {
-		this.appRet = appRet;
-	}
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
-	public String getHttpStatusCode() {
-		return httpStatusCode;
-	}
+    public String getCmdKey() {
+        return cmdKey;
+    }
 
-	public void setHttpStatusCode(String httpStatusCode) {
-		this.httpStatusCode = httpStatusCode;
-	}
+    public void setCmdKey(String cmdKey) {
+        this.cmdKey = cmdKey;
+    }
+
+    public String getAppRet() {
+        return appRet;
+    }
+
+    public void setAppRet(String appRet) {
+        this.appRet = appRet;
+    }
+
+    public String getHttpStatusCode() {
+        return httpStatusCode;
+    }
+
+    public void setHttpStatusCode(String httpStatusCode) {
+        this.httpStatusCode = httpStatusCode;
+    }
+
+    public List<SimpleVersion> getCurrentPatches() {
+        return currentPatches;
+    }
+
+    public void setCurrentPatches(List<SimpleVersion> currentPatches) {
+        this.currentPatches = currentPatches;
+    }
 
 }

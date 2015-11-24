@@ -57,7 +57,7 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
                 position: 'bottom',
                 grid: true,
                 renderer: function (v) {
-                    return v.substring(4);
+                    return v.substring(5);
                 }/*,
                 label: {
                     rotate: {

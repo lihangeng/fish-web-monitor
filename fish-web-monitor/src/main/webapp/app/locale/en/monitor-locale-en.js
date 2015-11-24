@@ -132,20 +132,20 @@ Ext.apply(EwayLocale,{
 			transaction:{
 				card:'Card',//EwayLocale.monitor.business.transaction.card 交易卡号
 				dateTime:'Time',//EwayLocale.monitor.business.transaction.dateTime 交易时间
-				transCode:'Type',//EwayLocale.monitor.business.transaction.transCode 交易类型
+				transCode:'Transaction Type',//EwayLocale.monitor.business.transaction.transCode 交易类型
 				amt:'Amt',//EwayLocale.monitor.business.transaction.amt 交易金额
 				currency:'currency',//EwayLocale.monitor.business.transaction.currency 交易币种
 				transId:'Serialno',//EwayLocale.monitor.business.transaction.transId 交易流水号
-				amtfield:'Amount scope',//EwayLocale.monitor.business.transaction.amtfield 金额范围
+				amtfield:'Amount Scope',//EwayLocale.monitor.business.transaction.amtfield 金额范围
 				toNum:'to',//EwayLocale.monitor.business.transaction.toNum 至
-				transContainer:'Time scope',//EwayLocale.monitor.business.transaction.transContainer 交易时间段
+				transContainer:'Time Scope',//EwayLocale.monitor.business.transaction.transContainer 交易时间段
 				debitAccountOrCard:'Debit/Card',//EwayLocale.monitor.business.transaction.debitAccountOrCard 客户账号或者卡号
 				creditAccountOrCard:'Credit/Card',//EwayLocale.monitor.business.transaction.creditAccountOrCard 对方账号或者卡号
 				debitAccount:'Debit',//EwayLocale.monitor.business.transaction.debitAccount 客户帐号
 				creditAccount:'Credit',//EwayLocale.monitor.business.transaction.creditAccount 对方账号
-				localRet:'Local code',//EwayLocale.monitor.business.transaction.localRet ATMC本地代码
-				hostRet:'Host code',//EwayLocale.monitor.business.transaction.hostRet 主机返回码
-				userName:'User name',//EwayLocale.monitor.business.transaction.userName 用户姓名
+				localRet:'Local Code',//EwayLocale.monitor.business.transaction.localRet ATMC本地代码
+				hostRet:'Host Code',//EwayLocale.monitor.business.transaction.hostRet 主机返回码
+				userName:'User Name',//EwayLocale.monitor.business.transaction.userName 用户姓名
 				historyTransaction:{
 					title:'Query histroy transaction '//EwayLocale.monitor.business.transaction.historyTransaction.title //历史交易查询
 				},
@@ -153,7 +153,7 @@ Ext.apply(EwayLocale,{
 					title:'Transaction monitoring',//EwayLocale.monitor.business.transaction.transactionMonitor.title 实时交易监控
 					begin:'Start',//EwayLocale.monitor.business.transaction.transactionMonitor.begin 开始监控
 					stop:'Stop',//EwayLocale.monitor.business.transaction.transactionMonitor.stop 停止监控
-					clear:'Clear screen'//EwayLocale.monitor.business.transaction.transactionMonitor.clear清屏
+					clear:'Clear Screen'//EwayLocale.monitor.business.transaction.transactionMonitor.clear清屏
 					}
 			},
 			blackList:{

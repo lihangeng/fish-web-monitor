@@ -19,7 +19,6 @@ Ext.define('Eway.view.machine.atmType.AtmTypeFilterForm', {
 					name : 'name',
 					fieldLabel : EwayLocale.machine.atmType.name,
 					msgTarget : 'side',
-					maxLength : 20,
 					labelAlign : 'right'
 				} ]
 			}, {
