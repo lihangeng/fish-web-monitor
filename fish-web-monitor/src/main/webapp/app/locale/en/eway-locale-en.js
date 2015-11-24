@@ -489,10 +489,10 @@ Ext.apply(EwayLocale,{
 		devInfo:'Device Basic Info',//EwayLocale.commen.devInfo 设备基本信息
 		//check end
 		personnel:'Contacts',//EwayLocale.commen.personnel 联系人
-		warn:'Warn',//EwayLocale.commen.warn 警告
+		warn:'Warning',//EwayLocale.commen.warn 警告
 		fatal:'Fatal',//EwayLocale.commen.fatal 故障
 		unStable:'UnStable',//EwayLocale.commen.unStable 不稳定
-		unknow:'Unknow',//EwayLocale.commen.unknow 未知
+		unknow:'Unknown',//EwayLocale.commen.unknow 未知
 		description:'Description',//EwayLocale.commen.description 描述
 		info:'Detail',//EwayLocale.commen.info 详细信息
 		startDataTime:'Start time',//EwayLocale.commen.startDataTime 开始时间

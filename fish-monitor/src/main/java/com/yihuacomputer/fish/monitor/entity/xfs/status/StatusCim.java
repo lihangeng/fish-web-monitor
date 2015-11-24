@@ -29,7 +29,7 @@ public class StatusCim implements IStatusCim {
     private String cimHwCode;
 
     public StatusCim() {
-        this.cim = DeviceStatus.Unknown;
+        this.cim = DeviceStatus.NoDevice;
     }
 
     /**

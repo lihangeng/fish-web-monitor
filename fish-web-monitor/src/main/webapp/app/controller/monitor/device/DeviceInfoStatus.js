@@ -1138,7 +1138,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	//显示设备详情页面
 	displayWin : function(record) {
 		var win = Ext.widget('monitor_device_DeviceInfoStatus');
-		win.setTitle(EwayLocale.tip.business.device.term + record.data.code + EwayLocale.tip.business.device.detail);
+		win.setTitle(EwayLocale.tip.business.device.term + "(" + record.data.code + ")" +EwayLocale.tip.business.device.detail);
 		win.on('afterrender',function(){
 			win.fillForm(record);
 		},this)

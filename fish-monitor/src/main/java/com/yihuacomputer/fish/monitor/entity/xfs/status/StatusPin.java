@@ -29,7 +29,7 @@ public class StatusPin implements IStatusPin {
     private String pinHwCode;
 
     public StatusPin() {
-        this.pin = DeviceStatus.Unknown;
+        this.pin = DeviceStatus.NoDevice;
     }
 
     /**
