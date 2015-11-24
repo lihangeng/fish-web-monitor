@@ -214,7 +214,8 @@ Ext.apply(EwayLocale,{
 			noticeOk:'Noticed',//EwayLocale.version.taskStatus.noticeOk 已通知应用
 			taskResetSuccessTips:'Success reset task!',//EwayLocale.version.taskStatus.taskResetSuccessTips
 			taskResetFailTips : 'Fail reset task！',// EwayLocale.version.taskStatus.taskResetFailTips
-			noticeFail:'Noticed Fail'//EwayLocale.version.taskStatus.noticeFail 通知应用失败
+			noticeFail:'Noticed Fail',//EwayLocale.version.taskStatus.noticeFail 通知应用失败
+			downloading:'Issueing'// EwayLocale.version.taskStatus.downloading
 		},
 		versionCatalog:{
 			app:'Application',//EwayLocale.version.versionCatalog.app 应用程序

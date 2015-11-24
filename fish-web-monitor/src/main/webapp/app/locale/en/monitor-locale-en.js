@@ -160,8 +160,11 @@ Ext.apply(EwayLocale,{
 					title:'Transaction monitoring',//EwayLocale.monitor.business.transaction.transactionMonitor.title 实时交易监控
 					begin:'Start',//EwayLocale.monitor.business.transaction.transactionMonitor.begin 开始监控
 					stop:'Stop',//EwayLocale.monitor.business.transaction.transactionMonitor.stop 停止监控
-					clear:'Clear Screen'//EwayLocale.monitor.business.transaction.transactionMonitor.clear清屏
-					}
+					clear:'Clear screen',//EwayLocale.monitor.business.transaction.transactionMonitor.clear清屏
+					scroll:'scroll',//EwayLocale.monitor.business.transaction.transactionMonitor.scroll滚屏方式
+					up:'up',//EwayLocale.monitor.business.transaction.transactionMonitor.up向上
+					down:'down'//EwayLocale.monitor.business.transaction.transactionMonitor.down向下
+				}
 			},
 			blackList:{
 				title:'BlackCard',//EwayLocale.monitor.business.blackList.title 黑名单卡管理

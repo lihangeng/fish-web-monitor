@@ -46,6 +46,7 @@ import com.yihuacomputer.fish.api.version.VersionStatusDistribute;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
+import com.yihuacomputer.fish.api.version.job.task.TaskType;
 import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.version.entity.DeviceSoftVersion;
 import com.yihuacomputer.fish.version.entity.Task;
@@ -62,585 +63,642 @@ import com.yihuacomputer.fish.version.service.api.IDomainVersionService;
 @Transactional
 public class VersionService implements IDomainVersionService {
 
-	private Logger logger = LoggerFactory.getLogger(VersionService.class);
+    private Logger logger = LoggerFactory.getLogger(VersionService.class);
 
-	@Autowired
-	private IGenericDao dao;
-	@Autowired(required = false)
-	private IUserService userService;
-	@Autowired
-	private IDeviceSoftVersionService deviceVersionService;
-	@Autowired
-	private IDeviceService deviceService;
-	@Autowired
-	private ITaskService taskService;
-	@Autowired
-	private IVersionTypeService typeService;
-	@Autowired
-	private MessageSource messageSourceVersion;
+    @Autowired
+    private IGenericDao dao;
 
+    @Autowired(required = false)
+    private IUserService userService;
 
-	@Override
-	public IVersion make() {
-		return new Version();
-	}
+    @Autowired
+    private IDeviceSoftVersionService deviceVersionService;
 
-	@Override
-	public IVersion getById(long id) {
-		return dao.get(id, Version.class);
-	}
-	
-	public synchronized IVersion updateDownLoadCounter(IVersion version) {
-		int counter = version.getDownloadCounter();
-		version.setDownloadCounter(++counter);
-		return dao.save(version);
-	}
-	@Override
-	public IVersion add(IVersion version) {
-		Version entity = this.interface2Entity(version, false);
-		String serverPath = VersionCfg.getVersionDir() + File.separator + version.getVersionType().getTypeName();
-		entity.setMd5CheckNum(getMD5CheckNum(serverPath, entity.getServerPath()));
-		if (version.getReleaseDate() == null) {
-			version.setReleaseDate(new Date());
-		}
-		VersionNo versionNo = new VersionNo(version.getVersionNo());
-		StringBuffer versionNoSb = new StringBuffer();
-		versionNoSb.append(StringUtils.preZeroStr(String.valueOf(versionNo.getMajor()), 8)).
-		append(StringUtils.preZeroStr(String.valueOf(versionNo.getMinor()), 8)).
-		append(StringUtils.preZeroStr(String.valueOf(versionNo.getIncremental()), 8)).
-		append(StringUtils.preZeroStr(String.valueOf(versionNo.getRevision()), 8));
-		entity.setVersionStr(versionNoSb.toString());
-		dao.save(entity);
-		return entity;
-	}
-	
-	private String getMD5CheckNum(String serverPath, String fileName) {
-		File file = new File(serverPath, fileName);
-		if (file.exists()) {
-			return FileMD5.getFileMD5(file);
-		}
-		return "0";
-	}
+    @Autowired
+    private IDeviceService deviceService;
 
-	/**
-	 * 如果更新之前，压缩包有调整，需要自行修改压缩包的MD5
-	 */
-	@Override
-	public void update(IVersion version) {
-		dao.update(this.interface2Entity(version, true));
-	}
+    @Autowired
+    private ITaskService taskService;
 
-	@Override
-	public void delete(IVersion version) {
-		delete(version.getId());
-	}
+    @Autowired
+    private IVersionTypeService typeService;
 
-	@Override
-	public void delete(long id) {
-		IVersion version = getById(id);
-		if (version == null) {
-			// throw new AppException("删除失败：删除的记录不存在，请刷新列表。");
-			return;
-		}
-		if (findByDependVersion(id).size() > 0) {
-			String exceptionMsg = messageSourceVersion.getMessage("exception.delete.exsitDepend", null, FishCfg.locale);
-//			throw new DependException("删除失败:该版本被其它版本依赖,无法删除.");
-			throw new DependException(exceptionMsg);
-		}
-		IVersionType type = version.getVersionType();
-		String fileName = version.getServerPath();
-		dao.delete(id, Version.class);
+    @Autowired
+    private MessageSource messageSourceVersion;
 
-		String file = VersionCfg.getVersionDir() + File.separator + type.getTypeName() + File.separator + fileName;
-		File f = new File(file);
-		if (f.exists() && f.isFile()) {
-			f.delete();
-		}
-	}
-
-	private List<Version> findByDependVersion(long id) {
-		return dao.findByHQL("from Version v where v.dependVersion.id = ?", id);
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public List<IVersion> list(IFilter filter) {
-		return dao.findByFilter(filter, IVersion.class);
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public IPageResult<IVersion> page(int offset, int limit, IFilter filter) {
-		return dao.page(offset, limit, filter, Version.class);
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public IPageResult<IVersion> pageCardTable(int offset, int limit, IFilter outerFilter) {
-		IFilter filter = null;
-		if (outerFilter == null) {
-			filter = new Filter();
-		} else {
-			filter = outerFilter;
-		}
-		filter.eq("versionType.typeName", "cardTable");
-		return dao.page(offset, limit, filter, Version.class);
-	}
-
-	private Version interface2Entity(IVersion version, boolean load) {
-		if (version instanceof Version) {
-			return (Version) version;
-		}
-		return null;
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public Version getVersion(String typeName, String versionNo) {
-		Version v = findVersion(typeName, versionNo);
-		if (v != null) {
-			return v;
-		} else {
-			throw new NotFoundException(String.format("not found entity [Version.typeName = %s,versioNo = %s]", typeName, versionNo));
-		}
-	}
-
-	@Override
-	@Transactional(readOnly = true)
-	public Version findVersion(String typeName, String versionNo) {
-		StringBuffer hql = new StringBuffer();
-		hql.append("from Version t  where t.versionType.typeName = ? and t.versionNo = ?");
-		List<Version> lists = dao.findByHQL(hql.toString(), typeName, versionNo);
-		if (lists.size() > 0) {
-			return lists.get(0);
-		}
-		return null;
-	}
-
-	public IUserService getUserService() {
-		return this.userService;
-	}
-	@Autowired
-	private MessageSource messageSourceEnum;
-    private String getEnumI18n(String enumText){
-    	if(null==enumText){
-    		return "";
-    	}
-    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    @Override
+    public IVersion make() {
+        return new Version();
     }
-	/**
-	 * 收集版本下发后的更新报告结果
-	 * 
-	 * @param taskId
-	 *            任务编号
-	 * @param ret
-	 *            处理结果
-	 */
-	@Override
-	public void collectUpdateReport(long taskId, String ret,String ip) {
-		ITask task = taskService.get(taskId);
-		if (task == null) {
-			return;
-		}
-		if (TaskStatus.isCancel(task.getStatus())) {
-			String exceptionMsg = messageSourceVersion.getMessage("exception.task.canceled", null, FishCfg.locale);
-//			throw new TaskCanceledException("任务已取消");
-			throw new TaskCanceledException(exceptionMsg);
-		}
-		AgentRet agentRet = AgentRet.valueOf(ret);
-		if (agentRet.equals(AgentRet.RET40)) {
-			task.setStatus(TaskStatus.DOWNLOADED);
-		} else if (AgentRet.isDownFail(agentRet)) {
-			task.setStatus(TaskStatus.DOWNLOADED_FAIL);
-			task.setReason(getEnumI18n(agentRet.getText()));
-		} else if (agentRet.equals(AgentRet.RET50)) {
-			task.setStatus(TaskStatus.DEPLOYED);
-			task.setReason(null);
-		} else if (agentRet.equals(AgentRet.RET51)) {
-			task.setStatus(TaskStatus.DEPLOYED_WAIT);
-			task.setReason(null);
-		} else if (AgentRet.isDeployFail(agentRet)) {
-			task.setStatus(TaskStatus.DEPLOYED_FAIL);
-			task.setReason(getEnumI18n(agentRet.getText()));
-		} else {
-			task.setStatus(TaskStatus.OTHER);
-		}
-		task.setDownSource(ip);
-		taskService.updateTask(task);
-	}
 
-	/**
-	 * 根据软件分类和版本号计算出可以自动更新的最合适的版本
-	 */
-	@Override
-	public IVersion autoUpdate(String typeName, String versionNo) {
-		IVersionType type = typeService.getByName(typeName);
-		if (type == null) {
-//			logger.error(String.format("在数据库中没有找到对应的软件分类:typeName = %s", typeName));
-			logger.error(String.format("Don't find versionType in the database:typeName = %s", typeName));
-			return null;
-		}
-		IVersion currentVersion = this.findVersion(typeName, versionNo);
-		if (currentVersion == null) {// 虚拟一个对象出来，这样就不需要通过页面配置一个初始化版本
-//			logger.warn(String.format("在数据库中没有找到版本:typeName = %s ,versionNo = %s", typeName, versionNo));
-			logger.warn(String.format("Don't find version in the database:typeName = %s ,versionNo = %s", typeName, versionNo));
-			currentVersion = this.make();
-			currentVersion.setVersionNo(versionNo);
-			currentVersion.setVersionType(type);
-		}
-		// 更新本版状态
-		if (currentVersion.getId() > 0 && !currentVersion.getVersionStatus().equals(VersionStatus.DOWNLOADED)) {
-			currentVersion.setVersionStatus(VersionStatus.DOWNLOADED);
-			this.update(currentVersion);
-		}
-		// 获取可以下发的最高版本
-		IVersion targetVersion = null;
-		Filter filter = new Filter();
-		filter.addFilterEntry(FilterFactory.eq("autoDown", Boolean.TRUE));// 自动下发
-		filter.addFilterEntry(FilterFactory.eq("versionType.typeName", typeName));// 版本类型匹配
-		/*
-		 * filter.addFilterEntry(FilterFactory.gt("versionNo", versionNo));//
-		 * 大于versionNo的版本，会出错的，
-		 * 比如存在0.4和0.14，按照我们的版本规则0.14大于0.4。当我们根据0.4去获得可下发的版本的版本时
-		 * ，在数据库中就找不到0.14，因为数据库中的比较式基于字符串的
-		 */
-		filter.addOrder(new OrderBy("id", OrderBy.DESC));
-		List<IVersion> versions = list(filter);
-		targetVersion = getMaxVersion(versions, currentVersion);
-		if (targetVersion == null) {
-//			logger.info(String.format("没有找到合适的自动更新版本:typeName = %s ,versionNo = %s", typeName, versionNo));
-			logger.info(String.format("Don't find version to autoUpdate:typeName = %s ,versionNo = %s", typeName, versionNo));
-		}
-		return targetVersion;
-	}
+    @Override
+    public IVersion getById(long id) {
+        return dao.get(id, Version.class);
+    }
 
-	private IVersion getMaxVersion(List<IVersion> maybeVersions, IVersion currentVersion) {
-		IVersion version = currentVersion;
-		for (IVersion each : maybeVersions) {
-			if (each.isAfter(version)) {
-				version = each;
-			}
-		}
+    public synchronized IVersion updateDownLoadCounter(IVersion version) {
+        int counter = version.getDownloadCounter();
+        version.setDownloadCounter(++counter);
+        return dao.save(version);
+    }
 
-		if (version.getVersionNo().equals(currentVersion.getVersionNo())) {
-			return null;
-		}
-		return version;
-	}
+    @Override
+    public IVersion add(IVersion version) {
+        Version entity = this.interface2Entity(version, false);
+        String serverPath = VersionCfg.getVersionDir() + File.separator + version.getVersionType().getTypeName();
+        entity.setMd5CheckNum(getMD5CheckNum(serverPath, entity.getServerPath()));
+        if (version.getReleaseDate() == null) {
+            version.setReleaseDate(new Date());
+        }
+        VersionNo versionNo = new VersionNo(version.getVersionNo());
+        StringBuffer versionNoSb = new StringBuffer();
+        versionNoSb.append(StringUtils.preZeroStr(String.valueOf(versionNo.getMajor()), 8))
+                .append(StringUtils.preZeroStr(String.valueOf(versionNo.getMinor()), 8))
+                .append(StringUtils.preZeroStr(String.valueOf(versionNo.getIncremental()), 8))
+                .append(StringUtils.preZeroStr(String.valueOf(versionNo.getRevision()), 8));
+        entity.setVersionStr(versionNoSb.toString());
+        dao.save(entity);
+        return entity;
+    }
 
-	/**
-	 * 登记软件版本信息
-	 */
-	@Override
-	public void collectCurrentVersionInfo(String terminalId, String typeName, String versionNo) {
-		try {
-			IDevice device = deviceService.get(terminalId);
+    private String getMD5CheckNum(String serverPath, String fileName) {
+        File file = new File(serverPath, fileName);
+        if (file.exists()) {
+            return FileMD5.getFileMD5(file);
+        }
+        return "0";
+    }
 
-			if(null==device){
-				String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.deviceNotExist", null, FishCfg.locale);
-				throw new AppException(exceptionMsg);
-			}
-			if (typeName == null || "".equals(typeName)) {
-				String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.versionTypeIsEmpty", null, FishCfg.locale);
-				throw new AppException(exceptionMsg);
-			}
-			if (versionNo == null || "".equals(versionNo)) {
-				String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.versionNoIsEmpty", null, FishCfg.locale);
-				throw new AppException(exceptionMsg);
-			}
-			IDeviceSoftVersion dsv = deviceVersionService.get(device.getId(), typeName);
-			IVersion version = this.autoUpdate(typeName, versionNo);
-			if (dsv != null) {
-				if (!versionNo.equals(dsv.getVersionNo())) {
-					dsv.setVersionNo(versionNo);
-					deviceVersionService.update(dsv);
-				}
-			} else {
-				dsv = deviceVersionService.make();
-				dsv.setDeviceId(device.getId());
-				dsv.setTypeName(typeName);
-				dsv.setVersionNo(versionNo);
-				dsv.setVersionNo(versionNo);
-				dsv.setVersionStr(version.getVersionStr());
-				deviceVersionService.add(dsv);
-			}
-		} catch (Exception ex) {
-//			logger.error(String.format("登记软件版本信息失败[%s]", ex.getMessage()));
-			logger.error(String.format("save version fail[%s]", ex.getMessage()));
-		}
-	}
+    /**
+     * 如果更新之前，压缩包有调整，需要自行修改压缩包的MD5
+     */
+    @Override
+    public void update(IVersion version) {
+        dao.update(this.interface2Entity(version, true));
+    }
 
-	@SuppressWarnings("deprecation")
-	@Override
-	public String getNextVersionNo(long versionTypeId) {
-		IFilter filter = new Filter();
-		filter.addFilterEntry(FilterFactory.eq("versionType.id", versionTypeId));
-		filter.addOrder(new OrderBy("id", OrderBy.DESC));
-		List<IVersion> versions = this.list(filter);
-		IVersion result = null;
-		if (versions.size() > 0) {
-			result = versions.get(0);
-		}
-		if (result == null) {
-			return "0001";
-		} else {
-			String no = result.getVersionNo();
-			Long v = Long.valueOf(no) + 1;
-			return getStandNo(v);
-		}
-	}
+    @Override
+    public void delete(IVersion version) {
+        delete(version.getId());
+    }
 
-	private String getStandNo(Long v) {
-		if (v.intValue() < 10) {
-			return "000" + v;
-		}
-		if (v.intValue() < 100) {
-			return "00" + v;
-		}
-		if (v.intValue() < 1000) {
-			return "0" + v;
-		}
-		return String.valueOf(v);
-	}
-	
+    @Override
+    public void delete(long id) {
+        IVersion version = getById(id);
+        if (version == null) {
+            // throw new AppException("删除失败：删除的记录不存在，请刷新列表。");
+            return;
+        }
+        if (findByDependVersion(id).size() > 0) {
+            String exceptionMsg = messageSourceVersion.getMessage("exception.delete.exsitDepend", null, FishCfg.locale);
+            // throw new DependException("删除失败:该版本被其它版本依赖,无法删除.");
+            throw new DependException(exceptionMsg);
+        }
+        IVersionType type = version.getVersionType();
+        String fileName = version.getServerPath();
+        dao.delete(id, Version.class);
 
-	/**
-	 * versionType,orgId
-	 * @param filter
-	 * @return
-	 */
-	public Map<Long,VersionDistribute> getVersionDistribute(IFilter filter){
-		StringBuffer hqlSb = new StringBuffer();
-		List<Object> hqlArgList = new ArrayList<Object>();
-		hqlSb.append("select version.id,version.versionNo,count(devicesoftVersion) from ").
-		append(DeviceSoftVersion.class.getSimpleName()).append(" devicesoftVersion,").
-		append(Version.class.getSimpleName()).append(" version, ").
-		append(Device.class.getSimpleName()).append(" device, ").
-		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionTypeAtmType ").
-		append("where version.versionNo= devicesoftVersion.versionNo and version.versionType.typeName=devicesoftVersion.typeName ").
-		append("and device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId ").
-		append(" and device.status= ? ").append(" and device.organization.orgFlag like ? ").
-		append(" and device.id= devicesoftVersion.deviceId ").
-		append(" and version.versionType.id=? ");
-		Object versionType = filter.getValue("versionType");
-		Object orgFlag = filter.getValue("orgFlag");
-		hqlArgList.add(DevStatus.OPEN);
-		hqlArgList.add(orgFlag+"%");
-		hqlArgList.add(versionType);
-		hqlSb.append(" group by version.id,version.versionNo order by version.versionStr desc");
-		List<Object> hqlResultList =  dao.findByHQL(hqlSb.toString(), hqlArgList.toArray());
-		Map<Long,VersionDistribute> map = new HashMap<Long,VersionDistribute>();
-		for(int index=0;index<hqlResultList.size();index++){
-			Object hqlResult = hqlResultList.get(index);
-			Object obj[] = (Object[])hqlResult;
-			VersionDistribute versionDistribute = new VersionDistribute();
-			versionDistribute.setVersionTypeId(Long.parseLong(String.valueOf(versionType)));
-			versionDistribute.setVersionId(Long.parseLong(String.valueOf(obj[0]==null?0:obj[0])));
-			versionDistribute.setVersionNo(String.valueOf(obj[1]==null?"":obj[1]));
-			versionDistribute.setVersionNoNumber(Integer.parseInt(String.valueOf(obj[2]==null?0:obj[2])));
-			map.put(versionDistribute.getVersionId(),versionDistribute);
-		}
-		return map;
-	}
-	
-	public List<VersionStatusDistribute> getVersionStatusDistribute(IFilter filter){
-		StringBuffer statusHql = new StringBuffer();
-		List<Object> hqlArgList = new ArrayList<Object>();
-		statusHql.append("select task.status,count(task) from ").
-		append(Device.class.getSimpleName()).append(" device, ").
-		append(Task.class.getSimpleName()).append(" task, ").
-		append(Version.class.getSimpleName()).append(" version, ").
-		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionTypeAtmType ").
-		append(" where device.id=task.deviceId  and version.id = task.version.id and ").
-		append(" device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId and ").
-		append(" version.id=? and device.status=? and device.organization.orgFlag like ? ").
-		append(" group by task.status order by task.status ");
-		long versionId = Long.parseLong(String.valueOf(filter.getValue("versionId")));
-		Object orgFlag = filter.getValue("orgFlag");
-		hqlArgList.add(versionId);
-		hqlArgList.add(DevStatus.OPEN);
-		hqlArgList.add(orgFlag+"%");
-		List<Object> hqlResultList =  dao.findByHQL(statusHql.toString(), hqlArgList.toArray());
-		List<VersionStatusDistribute> statusDistributeList = new ArrayList<VersionStatusDistribute>();
-		//有状态设备计数器
-//		int hasStatusCounter = 0;
-		for(int index=0;index<hqlResultList.size();index++){
-			Object hqlResult = hqlResultList.get(index);
-			Object obj[] = (Object[])hqlResult;
-			VersionStatusDistribute versionStatusDistribute = new VersionStatusDistribute();
-			versionStatusDistribute.setTaskStatus(String.valueOf(obj[0]));
-			versionStatusDistribute.setVersionId(versionId);
-			versionStatusDistribute.setTaskStatusNumber(Integer.parseInt(String.valueOf(obj[1])));
-			TaskStatus status = TaskStatus.valueOf(versionStatusDistribute.getTaskStatus());
-			versionStatusDistribute.setTaskStatusText(getEnumI18n(status.getText()));
-			statusDistributeList.add(versionStatusDistribute);
-//			hasStatusCounter+=versionStatusDistribute.getTaskStatusNumber();
-		}
-//		StringBuffer allDeviceHql = new StringBuffer();
-//		allDeviceHql.append("select count(device) from ").
-//		append(Version.class.getSimpleName()).append(" version ,").
-//		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionTypeAtmType, ").
-//		append(Device.class.getSimpleName()).
-//		append(" device where device.status=? and device.organization.orgFlag like ?  and  version.id=? and ").
-//		append(" device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId  ");
-//		List<Object> hqlArgList1 = new ArrayList<Object>();
-//		hqlArgList1.add(Status.OPENING);
-//		hqlArgList1.add(orgFlag+"%");
-//		hqlArgList1.add(versionId);
-//		long allDevice = dao.findUniqueByHql(allDeviceHql.toString(), hqlArgList1.toArray());
-//		VersionStatusDistribute versionStatusDistribute = new VersionStatusDistribute();
-//		versionStatusDistribute.setTaskStatus(TaskStatus.OTHER.name());
-//		versionStatusDistribute.setTaskStatusText(TaskStatus.OTHER.getText());
-//		versionStatusDistribute.setVersionId(Integer.parseInt(String.valueOf(versionId)));
-//		versionStatusDistribute.setTaskStatusNumber((int)allDevice-hasStatusCounter);
-//		statusDistributeList.add(versionStatusDistribute);
-		return statusDistributeList;
-	}
-	
-	public IPageResult<VersionDistributeDetail> getVersionStatusDistributeDetail(int start, int limit , IFilter filter){
-		StringBuffer statusDetailHql = new StringBuffer();
-		List<Object> hqlArgList = new ArrayList<Object>();
-		statusDetailHql.append("select task,device from ").
-		append(Device.class.getSimpleName()).append(" device, ").
-		append(Task.class.getSimpleName()).append(" task, ").
-		append(Version.class.getSimpleName()).append(" version, ").
-		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionTypeAtmType ").
-		append(" where device.id=task.deviceId  and version.id = task.version.id and ").
-		append(" device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId and ").
-		append(" version.id=? and device.status=? and device.organization.orgFlag like ? and task.status=? ");
-		long versionId = Long.parseLong(String.valueOf(filter.getValue("versionId")));
-		Object orgFlag = filter.getValue("orgFlag");
-		Object taskStatusObj = filter.getValue("taskStatus");
-		hqlArgList.add(versionId);
-		hqlArgList.add(DevStatus.OPEN);
-		hqlArgList.add(orgFlag+"%");
-		TaskStatus taskStatus = TaskStatus.valueOf(String.valueOf(taskStatusObj));
-		hqlArgList.add(taskStatus);
-		@SuppressWarnings("unchecked")
-		IPageResult<Object> hqlResultList =  (IPageResult<Object>) dao.page(start, limit,statusDetailHql.toString(), hqlArgList.toArray());
-		List<VersionDistributeDetail> statusDistributeList = new ArrayList<VersionDistributeDetail>();
-		for(Object result:hqlResultList.list()){
-			Object[] objs = (Object[])result;
-			ITask task = (Task)objs[0];
-			IDevice device = (Device)objs[1];
-			VersionDistributeDetail versionDistributeDetail = new VersionDistributeDetail();
-			versionDistributeDetail.setTerminalId(device.getTerminalId());
-			versionDistributeDetail.setAfterUpdateVersionNo(task.getExceptVersion());
-			versionDistributeDetail.setBeforeUpdateVersionNo(task.getVersionBeforeUpdate());
-			versionDistributeDetail.setDeviceType(device.getDevType().getName());
-			versionDistributeDetail.setIp(device.getIp().toString());
-			versionDistributeDetail.setOrgName(device.getOrganization().getName());
-			versionDistributeDetail.setStatusText(getEnumI18n(task.getStatus().getText()));
-			versionDistributeDetail.setUpdateType(getEnumI18n(task.getTaskType().getText()));
-			versionDistributeDetail.setTaskStatus(task.getStatus().name());
-			versionDistributeDetail.setVersionId(task.getVersion().getId());
-			versionDistributeDetail.setVendor(device.getDevType().getDevVendor().getName());
-			statusDistributeList.add(versionDistributeDetail);
-		}
-		return new PageResult<VersionDistributeDetail>(hqlResultList.getTotal(), statusDistributeList);
-	}
+        String file = VersionCfg.getVersionDir() + File.separator + type.getTypeName() + File.separator + fileName;
+        File f = new File(file);
+        if (f.exists() && f.isFile()) {
+            f.delete();
+        }
+    }
+
+    private List<Version> findByDependVersion(long id) {
+        return dao.findByHQL("from Version v where v.dependVersion.id = ?", id);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<IVersion> list(IFilter filter) {
+        return dao.findByFilter(filter, IVersion.class);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public IPageResult<IVersion> page(int offset, int limit, IFilter filter) {
+        return dao.page(offset, limit, filter, Version.class);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public IPageResult<IVersion> pageCardTable(int offset, int limit, IFilter outerFilter) {
+        IFilter filter = null;
+        if (outerFilter == null) {
+            filter = new Filter();
+        } else {
+            filter = outerFilter;
+        }
+        filter.eq("versionType.typeName", "cardTable");
+        return dao.page(offset, limit, filter, Version.class);
+    }
+
+    private Version interface2Entity(IVersion version, boolean load) {
+        if (version instanceof Version) {
+            return (Version) version;
+        }
+        return null;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Version getVersion(String typeName, String versionNo) {
+        Version v = findVersion(typeName, versionNo);
+        if (v != null) {
+            return v;
+        } else {
+            throw new NotFoundException(String.format("not found entity [Version.typeName = %s,versioNo = %s]",
+                    typeName, versionNo));
+        }
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Version findVersion(String typeName, String versionNo) {
+        StringBuffer hql = new StringBuffer();
+        hql.append("from Version t  where t.versionType.typeName = ? and t.versionNo = ?");
+        List<Version> lists = dao.findByHQL(hql.toString(), typeName, versionNo);
+        if (lists.size() > 0) {
+            return lists.get(0);
+        }
+        return null;
+    }
+
+    public IUserService getUserService() {
+        return this.userService;
+    }
+
+    @Autowired
+    private MessageSource messageSourceEnum;
+
+    private String getEnumI18n(String enumText) {
+        if (null == enumText) {
+            return "";
+        }
+        return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
+
+    /**
+     * 收集版本下发后的更新报告结果
+     * 
+     * @param taskId
+     *            任务编号
+     * @param ret
+     *            处理结果
+     */
+    @Override
+    public void collectUpdateReport(long taskId, String ret, String ip) {
+        ITask task = taskService.get(taskId);
+        if (task == null) {
+            return;
+        }
+        if (TaskStatus.isCancel(task.getStatus())) {
+            String exceptionMsg = messageSourceVersion.getMessage("exception.task.canceled", null, FishCfg.locale);
+            // throw new TaskCanceledException("任务已取消");
+            throw new TaskCanceledException(exceptionMsg);
+        }
+        AgentRet agentRet = AgentRet.valueOf(ret);
+        if (agentRet.equals(AgentRet.RET40)) {
+            task.setStatus(TaskStatus.DOWNLOADED);
+        } else if (AgentRet.isDownFail(agentRet)) {
+            task.setStatus(TaskStatus.DOWNLOADED_FAIL);
+            task.setReason(getEnumI18n(agentRet.getText()));
+        } else if (agentRet.equals(AgentRet.RET50)) {
+            task.setStatus(TaskStatus.DEPLOYED);
+            task.setReason(null);
+        } else if (agentRet.equals(AgentRet.RET51)) {
+            task.setStatus(TaskStatus.DEPLOYED_WAIT);
+            task.setReason(null);
+        } else if (AgentRet.isDeployFail(agentRet)) {
+            task.setStatus(TaskStatus.DEPLOYED_FAIL);
+            task.setReason(getEnumI18n(agentRet.getText()));
+        } else {
+            task.setStatus(TaskStatus.OTHER);
+        }
+        task.setDownSource(ip);
+        taskService.updateTask(task);
+    }
+
+    @Override
+    public ITask collectUpdateReport(long taskId, String ret, double size, String startTime, String endTime) {
+        ITask task = taskService.get(taskId);
+
+        if (task == null) {
+            return null;
+        }
+        if (TaskStatus.isCancel(task.getStatus())) {
+            throw new TaskCanceledException("任务已取消");
+        }
+
+        if ((TaskType.AUTO_UPDATE.equals(task.getTaskType()) && TaskStatus.NEW.equals(task.getStatus()))
+                || (TaskType.MANUAL.equals(task.getTaskType()) && TaskStatus.NOTICED.equals(task.getStatus()))
+                || TaskStatus.DOWNLOADING.equals(task.getStatus())) {
+            task.setStatus(TaskStatus.DOWNLOADING);
+            task.setProcess(size);
+            
+            taskService.updateTask(task);
+        }
+        return task;
+    }
+
+    /**
+     * 根据软件分类和版本号计算出可以自动更新的最合适的版本
+     */
+    @Override
+    public IVersion autoUpdate(String typeName, String versionNo) {
+        IVersionType type = typeService.getByName(typeName);
+        if (type == null) {
+            // logger.error(String.format("在数据库中没有找到对应的软件分类:typeName = %s",
+            // typeName));
+            logger.error(String.format("Don't find versionType in the database:typeName = %s", typeName));
+            return null;
+        }
+        IVersion currentVersion = this.findVersion(typeName, versionNo);
+        if (currentVersion == null) {// 虚拟一个对象出来，这样就不需要通过页面配置一个初始化版本
+            // logger.warn(String.format("在数据库中没有找到版本:typeName = %s ,versionNo = %s",
+            // typeName, versionNo));
+            logger.warn(String.format("Don't find version in the database:typeName = %s ,versionNo = %s", typeName,
+                    versionNo));
+            currentVersion = this.make();
+            currentVersion.setVersionNo(versionNo);
+            currentVersion.setVersionType(type);
+        }
+        // 更新本版状态
+        if (currentVersion.getId() > 0 && !currentVersion.getVersionStatus().equals(VersionStatus.DOWNLOADED)) {
+            currentVersion.setVersionStatus(VersionStatus.DOWNLOADED);
+            this.update(currentVersion);
+        }
+        // 获取可以下发的最高版本
+        IVersion targetVersion = null;
+        Filter filter = new Filter();
+        filter.addFilterEntry(FilterFactory.eq("autoDown", Boolean.TRUE));// 自动下发
+        filter.addFilterEntry(FilterFactory.eq("versionType.typeName", typeName));// 版本类型匹配
+        /*
+         * filter.addFilterEntry(FilterFactory.gt("versionNo", versionNo));//
+         * 大于versionNo的版本，会出错的，
+         * 比如存在0.4和0.14，按照我们的版本规则0.14大于0.4。当我们根据0.4去获得可下发的版本的版本时
+         * ，在数据库中就找不到0.14，因为数据库中的比较式基于字符串的
+         */
+        filter.addOrder(new OrderBy("id", OrderBy.DESC));
+        List<IVersion> versions = list(filter);
+        targetVersion = getMaxVersion(versions, currentVersion);
+        if (targetVersion == null) {
+            // logger.info(String.format("没有找到合适的自动更新版本:typeName = %s ,versionNo = %s",
+            // typeName, versionNo));
+            logger.info(String.format("Don't find version to autoUpdate:typeName = %s ,versionNo = %s", typeName,
+                    versionNo));
+        }
+        return targetVersion;
+    }
+
+    private IVersion getMaxVersion(List<IVersion> maybeVersions, IVersion currentVersion) {
+        IVersion version = currentVersion;
+        for (IVersion each : maybeVersions) {
+            if (each.isAfter(version)) {
+                version = each;
+            }
+        }
+
+        if (version.getVersionNo().equals(currentVersion.getVersionNo())) {
+            return null;
+        }
+        return version;
+    }
+
+    /**
+     * 登记软件版本信息
+     */
+    @Override
+    public void collectCurrentVersionInfo(String terminalId, String typeName, String versionNo) {
+        try {
+            IDevice device = deviceService.get(terminalId);
+
+            if (null == device) {
+                String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.deviceNotExist",
+                        null, FishCfg.locale);
+                throw new AppException(exceptionMsg);
+            }
+            if (typeName == null || "".equals(typeName)) {
+                String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.versionTypeIsEmpty",
+                        null, FishCfg.locale);
+                throw new AppException(exceptionMsg);
+            }
+            if (versionNo == null || "".equals(versionNo)) {
+                String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.versionNoIsEmpty",
+                        null, FishCfg.locale);
+                throw new AppException(exceptionMsg);
+            }
+            IDeviceSoftVersion dsv = deviceVersionService.get(device.getId(), typeName);
+            IVersion version = this.autoUpdate(typeName, versionNo);
+            if (dsv != null) {
+                if (!versionNo.equals(dsv.getVersionNo())) {
+                    dsv.setVersionNo(versionNo);
+                    deviceVersionService.update(dsv);
+                }
+            } else {
+                dsv = deviceVersionService.make();
+                dsv.setDeviceId(device.getId());
+                dsv.setTypeName(typeName);
+                dsv.setVersionNo(versionNo);
+                dsv.setVersionNo(versionNo);
+                dsv.setVersionStr(version.getVersionStr());
+                deviceVersionService.add(dsv);
+            }
+        }
+        catch (Exception ex) {
+            // logger.error(String.format("登记软件版本信息失败[%s]", ex.getMessage()));
+            logger.error(String.format("save version fail[%s]", ex.getMessage()));
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public String getNextVersionNo(long versionTypeId) {
+        IFilter filter = new Filter();
+        filter.addFilterEntry(FilterFactory.eq("versionType.id", versionTypeId));
+        filter.addOrder(new OrderBy("id", OrderBy.DESC));
+        List<IVersion> versions = this.list(filter);
+        IVersion result = null;
+        if (versions.size() > 0) {
+            result = versions.get(0);
+        }
+        if (result == null) {
+            return "0001";
+        } else {
+            String no = result.getVersionNo();
+            Long v = Long.valueOf(no) + 1;
+            return getStandNo(v);
+        }
+    }
+
+    private String getStandNo(Long v) {
+        if (v.intValue() < 10) {
+            return "000" + v;
+        }
+        if (v.intValue() < 100) {
+            return "00" + v;
+        }
+        if (v.intValue() < 1000) {
+            return "0" + v;
+        }
+        return String.valueOf(v);
+    }
+
+    /**
+     * versionType,orgId
+     * 
+     * @param filter
+     * @return
+     */
+    public Map<Long, VersionDistribute> getVersionDistribute(IFilter filter) {
+        StringBuffer hqlSb = new StringBuffer();
+        List<Object> hqlArgList = new ArrayList<Object>();
+        hqlSb.append("select version.id,version.versionNo,count(devicesoftVersion) from ")
+                .append(DeviceSoftVersion.class.getSimpleName())
+                .append(" devicesoftVersion,")
+                .append(Version.class.getSimpleName())
+                .append(" version, ")
+                .append(Device.class.getSimpleName())
+                .append(" device, ")
+                .append(VersionTypeAtmTypeRelation.class.getSimpleName())
+                .append(" versionTypeAtmType ")
+                .append("where version.versionNo= devicesoftVersion.versionNo and version.versionType.typeName=devicesoftVersion.typeName ")
+                .append("and device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId ")
+                .append(" and device.status= ? ").append(" and device.organization.orgFlag like ? ")
+                .append(" and device.id= devicesoftVersion.deviceId ").append(" and version.versionType.id=? ");
+        Object versionType = filter.getValue("versionType");
+        Object orgFlag = filter.getValue("orgFlag");
+        hqlArgList.add(DevStatus.OPEN);
+        hqlArgList.add(orgFlag + "%");
+        hqlArgList.add(versionType);
+        hqlSb.append(" group by version.id,version.versionNo order by version.versionStr desc");
+        List<Object> hqlResultList = dao.findByHQL(hqlSb.toString(), hqlArgList.toArray());
+        Map<Long, VersionDistribute> map = new HashMap<Long, VersionDistribute>();
+        for (int index = 0; index < hqlResultList.size(); index++) {
+            Object hqlResult = hqlResultList.get(index);
+            Object obj[] = (Object[]) hqlResult;
+            VersionDistribute versionDistribute = new VersionDistribute();
+            versionDistribute.setVersionTypeId(Long.parseLong(String.valueOf(versionType)));
+            versionDistribute.setVersionId(Long.parseLong(String.valueOf(obj[0] == null ? 0 : obj[0])));
+            versionDistribute.setVersionNo(String.valueOf(obj[1] == null ? "" : obj[1]));
+            versionDistribute.setVersionNoNumber(Integer.parseInt(String.valueOf(obj[2] == null ? 0 : obj[2])));
+            map.put(versionDistribute.getVersionId(), versionDistribute);
+        }
+        return map;
+    }
+
+    public List<VersionStatusDistribute> getVersionStatusDistribute(IFilter filter) {
+        StringBuffer statusHql = new StringBuffer();
+        List<Object> hqlArgList = new ArrayList<Object>();
+        statusHql
+                .append("select task.status,count(task) from ")
+                .append(Device.class.getSimpleName())
+                .append(" device, ")
+                .append(Task.class.getSimpleName())
+                .append(" task, ")
+                .append(Version.class.getSimpleName())
+                .append(" version, ")
+                .append(VersionTypeAtmTypeRelation.class.getSimpleName())
+                .append(" versionTypeAtmType ")
+                .append(" where device.id=task.deviceId  and version.id = task.version.id and ")
+                .append(" device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId and ")
+                .append(" version.id=? and device.status=? and device.organization.orgFlag like ? ")
+                .append(" group by task.status order by task.status ");
+        long versionId = Long.parseLong(String.valueOf(filter.getValue("versionId")));
+        Object orgFlag = filter.getValue("orgFlag");
+        hqlArgList.add(versionId);
+        hqlArgList.add(DevStatus.OPEN);
+        hqlArgList.add(orgFlag + "%");
+        List<Object> hqlResultList = dao.findByHQL(statusHql.toString(), hqlArgList.toArray());
+        List<VersionStatusDistribute> statusDistributeList = new ArrayList<VersionStatusDistribute>();
+        // 有状态设备计数器
+        // int hasStatusCounter = 0;
+        for (int index = 0; index < hqlResultList.size(); index++) {
+            Object hqlResult = hqlResultList.get(index);
+            Object obj[] = (Object[]) hqlResult;
+            VersionStatusDistribute versionStatusDistribute = new VersionStatusDistribute();
+            versionStatusDistribute.setTaskStatus(String.valueOf(obj[0]));
+            versionStatusDistribute.setVersionId(versionId);
+            versionStatusDistribute.setTaskStatusNumber(Integer.parseInt(String.valueOf(obj[1])));
+            TaskStatus status = TaskStatus.valueOf(versionStatusDistribute.getTaskStatus());
+            versionStatusDistribute.setTaskStatusText(getEnumI18n(status.getText()));
+            statusDistributeList.add(versionStatusDistribute);
+            // hasStatusCounter+=versionStatusDistribute.getTaskStatusNumber();
+        }
+        // StringBuffer allDeviceHql = new StringBuffer();
+        // allDeviceHql.append("select count(device) from ").
+        // append(Version.class.getSimpleName()).append(" version ,").
+        // append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionTypeAtmType, ").
+        // append(Device.class.getSimpleName()).
+        // append(" device where device.status=? and device.organization.orgFlag like ?  and  version.id=? and ").
+        // append(" device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId  ");
+        // List<Object> hqlArgList1 = new ArrayList<Object>();
+        // hqlArgList1.add(Status.OPENING);
+        // hqlArgList1.add(orgFlag+"%");
+        // hqlArgList1.add(versionId);
+        // long allDevice = dao.findUniqueByHql(allDeviceHql.toString(),
+        // hqlArgList1.toArray());
+        // VersionStatusDistribute versionStatusDistribute = new
+        // VersionStatusDistribute();
+        // versionStatusDistribute.setTaskStatus(TaskStatus.OTHER.name());
+        // versionStatusDistribute.setTaskStatusText(TaskStatus.OTHER.getText());
+        // versionStatusDistribute.setVersionId(Integer.parseInt(String.valueOf(versionId)));
+        // versionStatusDistribute.setTaskStatusNumber((int)allDevice-hasStatusCounter);
+        // statusDistributeList.add(versionStatusDistribute);
+        return statusDistributeList;
+    }
+
+    public IPageResult<VersionDistributeDetail> getVersionStatusDistributeDetail(int start, int limit, IFilter filter) {
+        StringBuffer statusDetailHql = new StringBuffer();
+        List<Object> hqlArgList = new ArrayList<Object>();
+        statusDetailHql
+                .append("select task,device from ")
+                .append(Device.class.getSimpleName())
+                .append(" device, ")
+                .append(Task.class.getSimpleName())
+                .append(" task, ")
+                .append(Version.class.getSimpleName())
+                .append(" version, ")
+                .append(VersionTypeAtmTypeRelation.class.getSimpleName())
+                .append(" versionTypeAtmType ")
+                .append(" where device.id=task.deviceId  and version.id = task.version.id and ")
+                .append(" device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId and ")
+                .append(" version.id=? and device.status=? and device.organization.orgFlag like ? and task.status=? ");
+        long versionId = Long.parseLong(String.valueOf(filter.getValue("versionId")));
+        Object orgFlag = filter.getValue("orgFlag");
+        Object taskStatusObj = filter.getValue("taskStatus");
+        hqlArgList.add(versionId);
+        hqlArgList.add(DevStatus.OPEN);
+        hqlArgList.add(orgFlag + "%");
+        TaskStatus taskStatus = TaskStatus.valueOf(String.valueOf(taskStatusObj));
+        hqlArgList.add(taskStatus);
+        @SuppressWarnings("unchecked")
+        IPageResult<Object> hqlResultList = (IPageResult<Object>) dao.page(start, limit, statusDetailHql.toString(),
+                hqlArgList.toArray());
+        List<VersionDistributeDetail> statusDistributeList = new ArrayList<VersionDistributeDetail>();
+        for (Object result : hqlResultList.list()) {
+            Object[] objs = (Object[]) result;
+            ITask task = (Task) objs[0];
+            IDevice device = (Device) objs[1];
+            VersionDistributeDetail versionDistributeDetail = new VersionDistributeDetail();
+            versionDistributeDetail.setTerminalId(device.getTerminalId());
+            versionDistributeDetail.setAfterUpdateVersionNo(task.getExceptVersion());
+            versionDistributeDetail.setBeforeUpdateVersionNo(task.getVersionBeforeUpdate());
+            versionDistributeDetail.setDeviceType(device.getDevType().getName());
+            versionDistributeDetail.setIp(device.getIp().toString());
+            versionDistributeDetail.setOrgName(device.getOrganization().getName());
+            versionDistributeDetail.setStatusText(getEnumI18n(task.getStatus().getText()));
+            versionDistributeDetail.setUpdateType(getEnumI18n(task.getTaskType().getText()));
+            versionDistributeDetail.setTaskStatus(task.getStatus().name());
+            versionDistributeDetail.setVersionId(task.getVersion().getId());
+            versionDistributeDetail.setVendor(device.getDevType().getDevVendor().getName());
+            statusDistributeList.add(versionDistributeDetail);
+        }
+        return new PageResult<VersionDistributeDetail>(hqlResultList.getTotal(), statusDistributeList);
+    }
 }
 
 enum AgentRet {
-	/**
-	 * 成功
-	 */
-	RET00("AgentRet.RET00"), // 成功
-	/**
-	 * 失败
-	 */
-	RET01("AgentRet.RET01"), // 失败
-	/**
-	 * 相同的软件分类正在升级
-	 */
-	RET0100("AgentRet.RET0100"), 
-	/**
-	 * ATC应用忙
-	 */
-	RET02("AgentRet.RET02"), // ATMC应用忙
-	/**
-	 * Agent异常
-	 */
-	RET03("AgentRet.RET03"), // Agent异常
-	/**
-	 * 升级包下载成功
-	 */
-	RET40("AgentRet.RET40"),
-	/**
-	 * 升级包下载失败
-	 */
-	RET41("AgentRet.RET41"), 
-	/**
-	 * D盘磁盘空间不足
-	 */
-	RET4100("AgentRet.RET4100"), 
-	/**
-	 * 部署路径所在盘磁盘空间不足
-	 */
-	RET4101("AgentRet.RET4101"), 
-	/**
-	 * 部署路径所在盘不存在
-	 */
-	RET4102("AgentRet.RET4102"), 
-	/**
-	 * 部署路径没有配置
-	 */
-	RET4103("AgentRet.RET4103"), 
-	/**
-	 * 服务器中断
-	 */
-	RET4104("AgentRet.RET4104"), 
-	/**
-	 * 下发文件MD5值校验失败
-	 */
-	RET4105("AgentRet.RET4105"), 
-	/**
-	 * 分发的版本号比ATM上已有的版本号低,无需分发
-	 */
-	RET4106("AgentRet.RET4106"), 
-	/**
-	 * 正在部署
-	 */
-	RET50("AgentRet.RET50"), 
-	/**
-	 * 等待部署
-	 */
-	RET51("AgentRet.RET51"),
-	/**
-	 * 部署失败
-	 */
-	RET52("AgentRet.RET52"),
-	/**
-	 * 其它
-	 */
-	RET99("AgentRet.RET99");
+    /**
+     * 成功
+     */
+    RET00("AgentRet.RET00"), // 成功
+    /**
+     * 失败
+     */
+    RET01("AgentRet.RET01"), // 失败
+    /**
+     * 相同的软件分类正在升级
+     */
+    RET0100("AgentRet.RET0100"),
+    /**
+     * ATC应用忙
+     */
+    RET02("AgentRet.RET02"), // ATMC应用忙
+    /**
+     * Agent异常
+     */
+    RET03("AgentRet.RET03"), // Agent异常
+    /**
+     * 升级包下载成功
+     */
+    RET40("AgentRet.RET40"),
+    /**
+     * 升级包下载失败
+     */
+    RET41("AgentRet.RET41"),
+    /**
+     * D盘磁盘空间不足
+     */
+    RET4100("AgentRet.RET4100"),
+    /**
+     * 部署路径所在盘磁盘空间不足
+     */
+    RET4101("AgentRet.RET4101"),
+    /**
+     * 部署路径所在盘不存在
+     */
+    RET4102("AgentRet.RET4102"),
+    /**
+     * 部署路径没有配置
+     */
+    RET4103("AgentRet.RET4103"),
+    /**
+     * 服务器中断
+     */
+    RET4104("AgentRet.RET4104"),
+    /**
+     * 下发文件MD5值校验失败
+     */
+    RET4105("AgentRet.RET4105"),
+    /**
+     * 分发的版本号比ATM上已有的版本号低,无需分发
+     */
+    RET4106("AgentRet.RET4106"),
+    /**
+     * 正在部署
+     */
+    RET50("AgentRet.RET50"),
+    /**
+     * 等待部署
+     */
+    RET51("AgentRet.RET51"),
+    /**
+     * 部署失败
+     */
+    RET52("AgentRet.RET52"),
+    /**
+     * 其它
+     */
+    RET99("AgentRet.RET99");
 
-	private String text;
+    private String text;
 
-	private AgentRet(String text) {
-		this.text = text;
-	}
+    private AgentRet(String text) {
+        this.text = text;
+    }
 
-	public String getText() {
-		return text;
-	}
+    public String getText() {
+        return text;
+    }
 
-	public void setText(String text) {
-		this.text = text;
-	}
+    public void setText(String text) {
+        this.text = text;
+    }
 
-	public static boolean isDownFail(AgentRet agentRet) {
-		if (agentRet.name().startsWith("RET41")) {
-			return true;
-		}
-		return false;
-	}
+    public static boolean isDownFail(AgentRet agentRet) {
+        if (agentRet.name().startsWith("RET41")) {
+            return true;
+        }
+        return false;
+    }
 
-	public static boolean isDeployFail(AgentRet agentRet) {
-		if (agentRet.name().startsWith("RET52")) {
-			return true;
-		}
-		return false;
-	}
+    public static boolean isDeployFail(AgentRet agentRet) {
+        if (agentRet.name().startsWith("RET52")) {
+            return true;
+        }
+        return false;
+    }
 
 }

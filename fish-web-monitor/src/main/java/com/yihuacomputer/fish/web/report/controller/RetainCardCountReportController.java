@@ -64,6 +64,9 @@ public class RetainCardCountReportController {
     	}
     	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
     }
+
+	@Autowired
+	private MessageSource messageSource;
 	/**
 	 * 吞卡统计报表
 	 *
@@ -84,7 +87,7 @@ public class RetainCardCountReportController {
 				.getRealPath("/resources/report/w_retain_card_count.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("title", getEnumI18n(ReportTitle.RetainCardCount.getText()));
-		parameters.put("reportDate", DateUtils.getTimestamp(new Date()));
+		parameters.put("reportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + ":" + DateUtils.getDate(new Date()));
 
 		List<IRetainCardCountRpt> data = retainCardRptService.listRetainCardCount(filter);
 

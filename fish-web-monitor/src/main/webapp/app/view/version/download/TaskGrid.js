@@ -88,10 +88,13 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 				header :EwayLocale.version.task.taskStatus,//'任务状态',
 //	            locked: true,
 				dataIndex:'taskStatus',
-				renderer:function(value,meta,record){
-					if(value == EwayLocale.version.taskStatus.checked){//'部署已确认'){
+				renderer: function(value,meta,record) {
+					if (value == EwayLocale.version.taskStatus.downloading) {
+						 var process = record.get('process');
+			            return value + '('+ process + '%)';
+					} else if(value == EwayLocale.version.taskStatus.checked){//'部署已确认'){
 						return value + "&nbsp;<img src='resources/images/accept.png'>";
-					}else{
+					} else {
 						return value;
 					}
 				},
