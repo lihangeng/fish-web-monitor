@@ -98,7 +98,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		var view = this.getEwayView();
 		var form = view.down('advert_filterForm').getForm();
 		if(!form.isValid()){
-			Eway.alert(EwayLocale.tip.input);
+			Eway.alert(EwayLocale.tip.search.warn);
 			return ;
 		}
 		var values = view.down('advert_filterForm').getForm().getValues();
