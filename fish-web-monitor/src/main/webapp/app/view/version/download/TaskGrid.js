@@ -73,15 +73,16 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 				hidden: true
 			},{
 				header: EwayLocale.version.task.jobBatchName,//'作业批次名称',
-//	            locked: true,
+				width:180,
 				dataIndex:'jobName'
+			
 			},{
 				header: EwayLocale.refs.terminalId,//'设备编号',
-//	            locked: true,
+				width:100,
 				dataIndex:'terminalId'
 			},{
 				header:EwayLocale.version.task.patchVersion,//'分发版本',
-//	            locked: true,
+				width:140,
 				dataIndex:'version'
 			},{
 				header :EwayLocale.version.task.taskStatus,//'任务状态',
@@ -98,16 +99,20 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 			},{
 				header: EwayLocale.refs.ip,//'设备IP',
 				dataIndex:'deviceIp',
+				width: 120,
 				sortable: true
 			},{
 				header: EwayLocale.refs.orgName,
 				dataIndex:'orgName',
+				width: 170,
 				sortable: true
 			},{
 				header:EwayLocale.version.task.beforeUpdate,//'分发前的版本',
+				width: 170,
 				dataIndex:'versionBeforeUpdate'
 			},{
 				header:EwayLocale.version.task.exceptVersion,//'预期版本',
+				width: 120,
 				dataIndex:'exceptVersion'
 			},{
 				header :EwayLocale.version.task.actionTime,//'执行时间',
@@ -115,20 +120,23 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 				width: 140
 			},{
 				header :EwayLocale.version.task.downSource,//'下载源',
-				dataIndex:'downSource',
+				width: 120,
+				dataIndex:'downSource'
 			},{
 				header :EwayLocale.version.task.planTime,//'计划时间',
 				dataIndex:'planTime',
+				width: 140
 			},{
 				header :EwayLocale.version.task.excuteMachine,//'执行服务器',
 				dataIndex:'excuteMachine',
+				width: 120
 			},{
 				header: EwayLocale.version.View.remark,
 				dataIndex:'reason',
-				flex:1
+				width: 250
 			},{
 				xtype:'actioncolumn',
-				width: 80,
+				width: 100,
 				header: EwayLocale.version.task.restartATM,//'重启ATM',
 				items : [{
 					icon : 'resources/images/version/reboot.png',
@@ -172,7 +180,7 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 				}]
 			},{
 				xtype:'actioncolumn',
-				width: 80,
+				width: 100,
 				header: EwayLocale.version.task.cancelDownload,//'取消下发',
 				items : [{
 					icon : 'resources/images/remove.png',

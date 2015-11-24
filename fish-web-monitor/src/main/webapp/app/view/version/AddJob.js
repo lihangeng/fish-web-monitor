@@ -11,9 +11,9 @@ Ext.define('Eway.view.version.AddJob', {
 	resizable : true,
 	constrainHeader : true,
     maximizable: true,
-    minWidth: 600,
+    minWidth: 1100,
     minHeight: 400,
-    width: 930,
+    width: 1100,
     height: 500,
 	layout : 'border',
 
