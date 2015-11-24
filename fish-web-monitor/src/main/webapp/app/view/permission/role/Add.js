@@ -29,7 +29,7 @@ Ext.define('Eway.view.permission.role.Add', {
 				},{
 					xtype:'permission_role_tree',
 					header : false,
-					height:400
+					height:380
 				}],
 				buttonAlign : 'center',
 				buttons: [{

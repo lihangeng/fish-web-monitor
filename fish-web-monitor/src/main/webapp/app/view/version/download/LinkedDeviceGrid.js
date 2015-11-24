@@ -23,17 +23,19 @@ Ext.define('Eway.view.version.download.LinkedDeviceGrid', {
 			{
 				header : EwayLocale.refs.terminalId,//'设备编号',
 				dataIndex: 'code',
-				width:100
+				width:200
 			}, {
 				header : EwayLocale.refs.ip,//'IP地址',
 				dataIndex : 'ip',
-				width: 110
+				width: 150
 			},{
 				header : EwayLocale.refs.orgName,
-				dataIndex : 'orgName'
+				dataIndex : 'orgName',
+				width: 250
 			}, {
 				header: EwayLocale.refs.devType,
-				dataIndex : 'deviceType'
+				dataIndex : 'deviceType',
+				width: 180
 			},{
 				header: EwayLocale.version.View.nowVersionNo,//'当前版本',
 				dataIndex : 'deviceVersion',

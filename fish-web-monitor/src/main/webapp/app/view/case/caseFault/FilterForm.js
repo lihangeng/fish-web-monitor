@@ -54,26 +54,7 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 					editable : false,
 		            format: 'Y-m-d',
 		            vtype : 'daterange',
-					onClearClick : function() {
-						this.setValue("");
-						var value = this.getValue();
-		            	if (!value) {
-		            		var endField = this.up('form').getForm().findField(this.endDateField);
-		            		endField.setMinValue(null);
-		            	}
-					},
-					endDateField : 'closedTime',
-					listeners : {
-						blur : {
-				            fn: function(This, options){
-				            	var value = this.getValue();
-				            	if (!value) {
-				            		var endField = this.up('form').getForm().findField(this.endDateField);
-				            		endField.setMinValue(null);
-				            	}
-				            }
-						}
-					}
+					endDateField : 'closedTime'
 				},{
 					xtype : 'datefield',
 					fieldLabel : EwayLocale.cases.caseFault.faultCloseTime,
@@ -81,26 +62,7 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 					editable : false,
 					format : 'Y-m-d',
 					vtype : 'daterange',
-					startDateField : 'faultTime',
-					onClearClick : function() {
-						this.setValue("");
-						var value = this.getValue();
-		            	if (!value) {
-		            		var startField = this.up('form').getForm().findField(this.startDateField);
-		            		startField.setMaxValue(null);
-		            	}
-					},
-					listeners : {
-						blur : {
-				            fn: function(This, options){
-				            	var value = this.getValue();
-				            	if (!value) {
-				            		var startField = this.up('form').getForm().findField(this.startDateField);
-				            		startField.setMaxValue(null);
-				            	}
-				            }
-						}
-					}
+					startDateField : 'faultTime'
 				}]
 //			},{
 //				columnWidth : .2,
