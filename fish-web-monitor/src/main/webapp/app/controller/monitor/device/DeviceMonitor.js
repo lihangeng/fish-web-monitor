@@ -367,7 +367,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			html: '<li style="list-style-type :none">'+EwayLocale.commen.devTypeName+':'+record.data.type+'</li>'+
 				  '<li style="list-style-type :none">'+EwayLocale.commen.orgNameBelongs+':'+record.data.org+'</li>'+
 				  '<li style="list-style-type :none">'+EwayLocale.commen.appVersion+':'+record.data.appRelease+'</li>'+
-				  '<li style="list-style-type :none">'+EwayLocale.monitor.devMonitor.boxCurrentCount+':'+record.data.boxCurrentCount+'</li>'+
+				  '<li style="list-style-type :none">'+EwayLocale.monitor.devMonitor.cash.boxCurrentCount+':'+record.data.boxCurrentCount+'</li>'+
 				  '<li style="list-style-type :none">'+EwayLocale.monitor.devMonitor.retainCardCount+':'+record.data.retainCardCount+'</li>'
 		});
 	},
