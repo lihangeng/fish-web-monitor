@@ -77,11 +77,6 @@ Ext.define('Eway.view.report.baseReport.CaseStatisticsReportGrid', {
                     type: 'category',
                     position: 'bottom',
                     fields: [me.getRowField()],
-                    label: {
-                        rotate: {
-                            degrees: -45
-                        }
-                    },
                     grid: true
                 }],
                 series: [{

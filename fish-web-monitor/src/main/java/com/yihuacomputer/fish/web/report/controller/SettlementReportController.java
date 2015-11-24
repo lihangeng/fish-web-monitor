@@ -55,7 +55,7 @@ public class SettlementReportController {
 
 	@Autowired
 	private ISettlementCashInRptService settlementCashInRptService;
-	
+
     @Autowired
 	private MessageSource messageSource;
 
@@ -85,8 +85,8 @@ public class SettlementReportController {
 		String resourcePath = rq.getSession().getServletContext().getRealPath("/resources/report/w_sett_cash.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("title",getEnumI18n(ReportTitle.Settlement.getText()));
-		parameters.put("reportDate", DateUtils.getTimestamp(new Date()));
-		
+		parameters.put("reportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + ":" + DateUtils.getDate(new Date()));
+
 		parameters.put("orgNo", messageSource.getMessage("report.device.orgNo", null, FishCfg.locale));
 		parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
 		parameters.put("terminalId", messageSource.getMessage("device.terminalId", null, FishCfg.locale));
@@ -97,7 +97,7 @@ public class SettlementReportController {
 		parameters.put("cashDate", messageSource.getMessage("report.settlement.cashDate", null, FishCfg.locale));
 		parameters.put("cashAmt", messageSource.getMessage("report.settlement.cashAmt", null, FishCfg.locale));
 		parameters.put("leftAmt", messageSource.getMessage("report.settlement.leftAmt", null, FishCfg.locale));
-		
+
 		List<ISettlementCashInRpt> data = settlementCashInRptService.listSettlementCashInRpt(filter);
 		String path = this.getReport(parameters, resourcePath, request.getParameter("exportType"),
 				data == null ? new ArrayList<List<ISettlementCashInRpt>>() : data);

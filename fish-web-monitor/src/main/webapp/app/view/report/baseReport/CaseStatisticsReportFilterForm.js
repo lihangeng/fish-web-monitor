@@ -1,67 +1,131 @@
 Ext.define('Eway.view.report.baseReport.CaseStatisticsReportFilterForm', {
 	extend : 'Eway.view.base.FilterForm',
 	alias : 'widget.baseReport_CaseStatisticsReportFilterForm',
-	requires : ['Eway.view.field.report.AngleComboBox',
-				'Eway.view.field.report.CountChooseComboBox'],
+	requires : [],
 	height : 70,
 	layout : 'column',
 	defaults : {
 		border : false
 	},
 	initComponent : function() {
+
+
+
 		Ext.apply(this, {
 			items : [ {
-				columnWidth : .5,
+				columnWidth : .35,
 				defaults : {
 					labelAlign : 'right'
 				},
 				items : [{
-					fieldLabel : EwayLocale.report.openrate.device.statisticsMethod,
-					xtype : 'radiogroup',
-					width : 280,
+					xtype : 'fieldcontainer',
+					fieldLabel : EwayLocale.report.baseReport.statisticsDays,
+					labelWidth : 100,
+					layout : 'hbox',
+					defaults : {
+						hideLabel : true
+					},
 					items : [ {
-						boxLabel : EwayLocale.commen.month,
-						name : 'statType',
-						inputValue : 2
+						fieldLabel : 'endDateTime',
+						displayField : 'display',
+						valueField : 'value',
+						xtype : 'datefield',
+						format : 'Y-m-d',
+						editable : false,
+						name : 'startDateTime',
+						value : Ext.Date.add(new Date(), Ext.Date.DAY, -7),
+						vtype : 'daterange',
+						width : 100,
+						endDateField : 'endDateTime',
+						listeners : {
+						blur : {
+				            fn: function(This, options){
+				            	var value = this.getValue();
+				            	if (!value) {
+				            		var endField = this.up('form').getForm().findField(this.endDateField);
+				            		endField.setMinValue(null);
+				            	}
+				            }
+						}
+					}
 					}, {
-						boxLabel : EwayLocale.commen.day,
-						name : 'statType',
-						checked : true,
-						inputValue : 3
+						xtype : 'displayfield',
+						value : EwayLocale.monitor.business.transaction.toNum
+					}, {
+						fieldLabel : 'minute',
+						displayField : 'display',
+						valueField : 'value',
+						fieldLabel : EwayLocale.monitor.business.transaction.amt,
+						width : 100,
+						xtype : 'datefield',
+						format : 'Y-m-d',
+						editable : false,
+						name : 'endDateTime',
+						value : new Date(),
+						vtype : 'daterange',
+						startDateField : 'startDateTime',
+						listeners : {
+						blur : {
+				            fn: function(This, options){
+				            	var value = this.getValue();
+				            	if (!value) {
+				            		var startField = this.up('form').getForm().findField(this.startDateField);
+				            		startField.setMaxValue(null);
+				            	}
+				            }
+						}
 					}
-					],
-					listeners : {
-						change : this.changeImport
-					}
-				}, {
-					width : 280,
-					name : 'month',
-					xtype : 'datefield',
-					fieldLabel : EwayLocale.commen.monthTime,
-					editable : false,
-					hidden : true,
-					value : new Date(),
-					format : 'Y-m'
-				}, {
-					width : 280,
-					name : 'day',
-					xtype : 'datefield',
-					fieldLabel : EwayLocale.commen.dayTime,
-					editable : false,
-					value : new Date(),
-					format : 'Y-m-d'
-				}
-				]
+					} ]
+
+				}]
 			},{
-				columnWidth : .5,
+				columnWidth : .65,
 				items : [{
-					xtype : 'report_AngleComboBox',
-					emptyText :  EwayLocale.combox.select,
-					allowBlank : false
-				},{
-					xtype : 'report_CountChooseComboBox',
-					emptyText :  EwayLocale.combox.select,
-					allowBlank : false
+							fieldLabel : '<font color="red">*</font>'+EwayLocale.report.baseReport.angle,
+							xtype : 'radiogroup',
+							allowBlank : false,
+							anchor : '100%',
+							width : 600,
+							labelWidth : 150,
+							items : [ {
+								boxLabel : EwayLocale.report.baseReport.device,
+								name : 'angle',
+								checked : true,
+								inputValue : 1
+							}, {
+								boxLabel : EwayLocale.report.baseReport.vendor,
+								name : 'angle',
+								inputValue : 2
+							}, {
+								boxLabel : EwayLocale.report.baseReport.devType,
+								name : 'angle',
+								inputValue : 3
+							}, {
+								boxLabel : EwayLocale.report.baseReport.mod,
+								name : 'angle',
+								inputValue : 4
+							}]
+						},{
+							fieldLabel : EwayLocale.report.baseReport.rank,
+							xtype : 'radiogroup',
+							allowBlank : false,
+							anchor : '100%',
+							width : 300,
+							labelWidth : 150,
+							items : [ {
+								boxLabel : '5',
+								name : 'rank',
+								inputValue : 5
+							}, {
+								boxLabel : '10',
+								name : 'rank',
+								checked : true,
+								inputValue : 10
+							}, {
+								boxLabel : '20',
+								name : 'rank',
+								inputValue : 20
+							}]
 				}]
 			} ]
 		});

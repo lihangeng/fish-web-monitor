@@ -29,7 +29,7 @@ public class StatusTtu implements IStatusTtu {
     private String ttuHwCode;
 
     public StatusTtu() {
-        this.ttu = DeviceStatus.Unknown;
+        this.ttu = DeviceStatus.NoDevice;
     }
 
     /**

@@ -64,79 +64,99 @@ public class StatusController {
         xfsStatus.setRunStatus(msg.getRunStatus());
         xfsStatus.setNetStatus(NetStatus.Healthy);
         IStatusIdc idc = xfsStatus.makeStatusIdc();
-        idc.setStatus(msg.getIdc());
-        idc.setCode(msg.getIdcCode());
-        idc.setCards(msg.getIdcReatianCard());
-        idc.setHwCode(msg.getIdcHwCode());
+        if(msg.getIdc() != null){
+	        idc.setStatus(msg.getIdc());
+	        idc.setCode(msg.getIdcCode());
+	        idc.setCards(msg.getIdcReatianCard());
+	        idc.setHwCode(msg.getIdcHwCode());
+        }
 
         IStatusJpr jpr = xfsStatus.makeStatusJpr();
-        jpr.setStatus(msg.getJpr());
-        jpr.setCode(msg.getJprCode());
-        jpr.setHwCode(msg.getJprHwCode());
-
+        if(msg.getJpr() != null){
+	        jpr.setStatus(msg.getJpr());
+	        jpr.setCode(msg.getJprCode());
+	        jpr.setHwCode(msg.getJprHwCode());
+        }
         IStatusRpr rpr = xfsStatus.makeStatusRpr();
-        rpr.setStatus(msg.getRpr());
-        rpr.setCode(msg.getRprCode());
-        rpr.setHwCode(msg.getRprHwCode());
+        if(msg.getRpr() != null){
+	        rpr.setStatus(msg.getRpr());
+	        rpr.setCode(msg.getRprCode());
+	        rpr.setHwCode(msg.getRprHwCode());
+        }
 
         IStatusCdm cdm = xfsStatus.makeStatusCdm();
-        cdm.setStatus(msg.getCdm());
-        cdm.setCode(msg.getCdmCode());
-        cdm.setHwCode(msg.getCdmHwCode());
+        if(msg.getCdm() != null){
+	        cdm.setStatus(msg.getCdm());
+	        cdm.setCode(msg.getCdmCode());
+	        cdm.setHwCode(msg.getCdmHwCode());
+        }
 
         IStatusCim cim = xfsStatus.makeStatusCim();
-        cim.setStatus(msg.getCim());
-        cim.setCode(msg.getCimCode());
-        cim.setHwCode(msg.getCimHwCode());
+        if(msg.getCim() != null){
+	        cim.setStatus(msg.getCim());
+	        cim.setCode(msg.getCimCode());
+	        cim.setHwCode(msg.getCimHwCode());
+        }
 
         IStatusSiu siu = xfsStatus.makeStatusSiu();
-        siu.setStatus(msg.getSiu());
-        siu.setCode(msg.getSiuCode());
-        siu.setHwCode(msg.getSiuHwCode());
+        if(msg.getSiu() != null){
+	        siu.setStatus(msg.getSiu());
+	        siu.setCode(msg.getSiuCode());
+	        siu.setHwCode(msg.getSiuHwCode());
+        }
 
         IStatusPin pin = xfsStatus.makeStatusPin();
-        pin.setStatus(msg.getPin());
-        pin.setCode(msg.getPinCode());
-        pin.setHwCode(msg.getPinHwCode());
+        if(msg.getPin() != null){
+	        pin.setStatus(msg.getPin());
+	        pin.setCode(msg.getPinCode());
+	        pin.setHwCode(msg.getPinHwCode());
+        }
 
         IStatusTtu ttu = xfsStatus.makeStatusTtu();
-        ttu.setStatus(msg.getTtu());
-        ttu.setCode(msg.getTtuCode());
-        ttu.setHwCode(msg.getTtuHwCode());
-
+        if(msg.getTtu() != null){
+	        ttu.setStatus(msg.getTtu());
+	        ttu.setCode(msg.getTtuCode());
+	        ttu.setHwCode(msg.getTtuHwCode());
+        }
         IStatusNfc nfc = xfsStatus.makeStatusNfc();
-        nfc.setStatus(msg.getNfc());
-        nfc.setCode(msg.getNfcCode());
-        nfc.setHwCode(msg.getNfcHwCode());
-
+        if(msg.getNfc() != null){
+	        nfc.setStatus(msg.getNfc());
+	        nfc.setCode(msg.getNfcCode());
+	        nfc.setHwCode(msg.getNfcHwCode());
+        }
         IStatusPbk pbk = xfsStatus.makeStatusPbk();
-        pbk.setStatus(msg.getPbk());
-        pbk.setCode(msg.getPbkCode());
-        pbk.setHwCode(msg.getPbkHwCode());
-
+        if(msg.getPbk() != null){
+        	pbk.setStatus(msg.getPbk());
+        	pbk.setCode(msg.getPbkCode());
+        	pbk.setHwCode(msg.getPbkHwCode());
+        }
         xfsStatus.setModStatus(msg.getModStatus());
+        
         xfsStatus.setBoxStatus(msg.getBoxStatus());
 
         xfsStatus.setBoxInitCount(msg.getBoxInitCount());
         xfsStatus.setBoxCurrentCount(msg.getBoxCurrentCount());
 
         IStatusIcc icc = xfsStatus.makeStatusIcc();
-        icc.setStatus(msg.getIcc());
-        icc.setCode(msg.getIccCode());
-        icc.setCards(msg.getIccReatianCard());
-        icc.setHwCode(msg.getIccHwCode());
-        icc.setIccCurrCards(msg.getIccCurrentCount()) ;
-
+        if(msg.getIcc() != null){
+	        icc.setStatus(msg.getIcc());
+	        icc.setCode(msg.getIccCode());
+	        icc.setCards(msg.getIccReatianCard());
+	        icc.setHwCode(msg.getIccHwCode());
+	        icc.setIccCurrCards(msg.getIccCurrentCount()) ;
+        }
         IStatusFgp  fgp = xfsStatus.makeStatusFgp() ;
-        fgp.setStatus(msg.getFgp()) ;
-        fgp.setCode(msg.getFgpCode()) ;
-        fgp.setHwCode(msg.getFgpHwCode()) ;
-
+        if(msg.getFgp() != null){
+	        fgp.setStatus(msg.getFgp()) ;
+	        fgp.setCode(msg.getFgpCode()) ;
+	        fgp.setHwCode(msg.getFgpHwCode()) ;
+        }
         IStatusIsc  isc = xfsStatus.makeStatusIsc() ;
-        isc.setStatus(msg.getIsc()) ;
-        isc.setCode(msg.getIscCode()) ;
-        isc.setHwCode(msg.getIscHwCode()) ;
-
+        if(msg.getIsc() != null){
+	        isc.setStatus(msg.getIsc()) ;
+	        isc.setCode(msg.getIscCode()) ;
+	        isc.setHwCode(msg.getIscHwCode()) ;
+        }
 
         xfsStatus.setStatusIdc(idc);
         xfsStatus.setStatusJpr(jpr);

@@ -455,19 +455,19 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 
 	_getText : function(value){
 		if(value=='Healthy'){
-			return EwayLocale.commen.stateDict.normal;
+			return EwayLocale.monitor.deviceStatus.Healthy;
 		}
 		if(value=='Warning'){
-			return EwayLocale.commen.warn;
+			return EwayLocale.monitor.deviceStatus.Warning;
 		}
 		if(value=='Fatal'){
-			return EwayLocale.commen.fatal;
+			return EwayLocale.monitor.deviceStatus.Fatal;
 		}
 		if(value=='Unknown'){
-			return EwayLocale.commen.unknow;
+			return EwayLocale.monitor.deviceStatus.Unknown;
 		}
 		if(value=='NoDevice'){
-			return EwayLocale.monitor.devMonitor.noData;
+			return EwayLocale.monitor.deviceStatus.NoDevice;
 		}
 	}
 });

@@ -13,16 +13,16 @@ Ext.define('Eway.view.person.bankPer.View', {
 		var store = Ext.create('Eway.store.person.organization.BankOrganizationTree');     
 		Ext.apply(this, {
 			items: [{
-				region: 'east',
-				title : EwayLocale.person.bankPer.orgNavi,
-				header: false,
-				xtype : 'treepanel',
-				width : 200,
-				border : false,
-				padding : '0 2 0 0',
-				lines : true,
-				store : store
-			}, {
+//				region: 'east',
+//				title : EwayLocale.person.bankPer.orgNavi,
+//				header: false,
+//				xtype : 'treepanel',
+//				width : 200,
+//				border : false,
+//				padding : '0 2 0 0',
+//				lines : true,
+//				store : store
+//			}, {
 				region: 'center',
 				xtype: 'panel',
 				layout: 'border',
@@ -37,20 +37,15 @@ Ext.define('Eway.view.person.bankPer.View', {
 			listeners : {
 				activate : function(panel) {
 					if (!panel.isLoad) {
-						
-						// 第一次进来不需要重新加载信息
+						// 第一次进来主动加载信息
 						panel.isLoad = true;
+						var store = panel.down('bank_person_grid').getStore();
+						store.setUrlParamsByObject({
+							type : '0'
+						});
+						store.load();
 						return;
 					}
-					// 刷新所属机构信息
-//					if(ewayUser.getOrgType()=='0'){
-//						panel.down('treepanel').setRootNode({
-//							id: ewayUser.getOrgId(),
-//							text: ewayUser.getOrgName(),
-//							expanded: true
-//						});
-//					}
-					panel.down('treepanel').getStore().load();
 				}
 			}
 		});

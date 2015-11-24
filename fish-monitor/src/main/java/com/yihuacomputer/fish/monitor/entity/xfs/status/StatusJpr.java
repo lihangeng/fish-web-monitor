@@ -23,7 +23,7 @@ public class StatusJpr implements IStatusJpr {
     private String jprHwCode;
 
     public StatusJpr() {
-        this.jpr = DeviceStatus.Unknown;
+        this.jpr = DeviceStatus.NoDevice;
     }
 
     /**
