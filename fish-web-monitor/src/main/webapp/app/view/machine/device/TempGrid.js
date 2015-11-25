@@ -17,7 +17,7 @@ Ext.define('Eway.view.machine.device.TempGrid', {
 			}, {
 				text : EwayLocale.button.update,
 				iconCls : 'updateBtn',
-				action : 'tempDevUpdate',
+				action : 'tempDevUpdate'
 		//		code : 'tempDevUpdate',
 			/*	listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
@@ -25,7 +25,7 @@ Ext.define('Eway.view.machine.device.TempGrid', {
 			}, {
 				text : EwayLocale.button.remove,
 				iconCls : 'deleteBtn',
-				action : 'tempDevDelete',
+				action : 'tempDevDelete'
 		//		code : 'tempDevDel',
 				/*listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
@@ -34,7 +34,7 @@ Ext.define('Eway.view.machine.device.TempGrid', {
 			text : EwayLocale.button.detailBtn,
 			iconCls : 'detailBtn',
 			action : 'tempDevOpenPlan'
-	    	}],		
+	    	}],
 			columns : [  {
 				header : EwayLocale.machine.atmGroup.terminalId,
 				dataIndex : 'terminalId',
@@ -116,7 +116,7 @@ Ext.define('Eway.view.machine.device.TempGrid', {
 				width : 160
 			} ,{
 				header : EwayLocale.machine.device.effectiveDate,
-				dataIndex : 'effectiveDate',
+				dataIndex : 'effectiveDate'
 
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {

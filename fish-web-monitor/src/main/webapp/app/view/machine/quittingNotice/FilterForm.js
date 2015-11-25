@@ -52,7 +52,7 @@ Ext.define('Eway.view.machine.quittingNotice.FilterForm', {
 					anchor : '90%',
 					xtype : 'textfield',
 					labelAlign : 'right',
-					labelWidth : 70,
+					labelWidth : 70
 				},
 				items : [ {
 							xtype : 'fieldcontainer',

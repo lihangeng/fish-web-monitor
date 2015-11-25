@@ -61,7 +61,7 @@ Ext.define('Eway.view.case.caseFault.FaultNotifyGrid', {
 						aboutInfoWin.show();
 					},
 					scope : this
-				}],
+				}]
 			}, {
 				header : EwayLocale.cases.caseFault.informWay,
 				dataIndex : 'notifyWay',
