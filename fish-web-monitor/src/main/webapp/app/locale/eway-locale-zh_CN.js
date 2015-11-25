@@ -94,8 +94,8 @@ Ext.apply(EwayLocale,{
 		adminBtn:'管理员',
 		personM:'厂商管理员',//EwayLocale.button.personM
 		personTM:'管机员',//EwayLocale.button.personTM
-		orgAdmin:'机构管理员',//EwayLocale.button.orgAdmin
-		
+		orgAdmin:'机构管理员'//EwayLocale.button.orgAdmin
+
 	},
 	//引用其他模块
 	refs:{
@@ -109,7 +109,7 @@ Ext.apply(EwayLocale,{
 	tip:{
 		search :{
 			warn:'查询条件存在错误项.',//EwayLocale.tip.search.warn
-			record:'请选择您要查看的记录.',//EwayLocale.tip.search.record
+			record:'请选择您要查看的记录.'//EwayLocale.tip.search.record
 		},
 		update:{
 			one:'只能选择一条记录更改.',//EwayLocale.tip.update.one
@@ -252,7 +252,7 @@ Ext.apply(EwayLocale,{
 				fail:'删除失败:无法删除角色,请重新操作.'//EwayLocale.tip.user.remove.fail
 			},
 			update:{
-				fail:'更改失败:记录不存在,请刷新后操作.',//EwayLocale.tip.user.update.fail
+				fail:'更改失败:记录不存在,请刷新后操作.'//EwayLocale.tip.user.update.fail
 			},
 			move:{
 				choose:'请选择需要移动的记录.'//EwayLocale.tip.user.move.choose
@@ -264,7 +264,7 @@ Ext.apply(EwayLocale,{
 				transactionMonitor:{
 					beginMonitor:'请先停止监控后再输入条件，按开始监控按钮即可进行条件监控！',//EwayLocale.tip.business.transaction.transactionMonitor.beginMonitor
 					input:'设备号、对方账号、客户账号至少输入一个.',//EwayLocale.tip.business.transaction.transactionMonitor.input
-					left:'离开',//EwayLocale.tip.business.transaction.transactionMonitor.left
+					left:'离开'//EwayLocale.tip.business.transaction.transactionMonitor.left
 				},
 				historyTransaction:{
 					input:'查询必须输入设备号.'//EwayLocale.tip.business.transaction.historyTransaction.input
@@ -347,8 +347,8 @@ Ext.apply(EwayLocale,{
 				connFirst:'当前已经暂停了与服务器的监控连接,请先与服务器建立连接,即"开始监控"',//EwayLocale.tip.business.device.connFirst
 				matrixPattern:'矩阵方式',//EwayLocale.tip.business.device.matrixPattern
 				listPattern:'列表方式'//EwayLocale.tip.business.device.listPattern
-			},
-		},
+			}
+		}
 
 	},
 
@@ -356,7 +356,7 @@ Ext.apply(EwayLocale,{
 
 	combox:{
 		select:'--请选择--',//EwayLocale.combox.select
-		explorer: '浏览...',//EwayLocale.combox.explorer
+		explorer: '浏览...'//EwayLocale.combox.explorer
 	},
 
 
@@ -406,7 +406,7 @@ Ext.apply(EwayLocale,{
 		choseTask:'请选择一个任务',
 		cancelTask:'不能撤销"完成"状态的作业.',
 		cancelParticularTask:'是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)',
-		nowDelete:'正在删除......',
+		nowDelete:'正在删除......'
 	},
 
 	commen:{
@@ -425,7 +425,7 @@ Ext.apply(EwayLocale,{
 			open:'开通',//EwayLocale.commen.comboxStatus.open
 			close:'停用',//EwayLocale.commen.comboxStatus.close
 			pastDue:'过期',//EwayLocale.commen.comboxStatus.pastDue
-			pastDueSoon:'即将过期',//EwayLocale.commen.comboxStatus.pastDueSoon
+			pastDueSoon:'即将过期'//EwayLocale.commen.comboxStatus.pastDueSoon
 		},
 		type:'类型',//EwayLocale.commen.type
 		comboxType:{
@@ -510,7 +510,7 @@ Ext.apply(EwayLocale,{
 		orgID:'机构ID',//EwayLocale.commen.orgID
 		endValidty:'截止有效期',//EwayLocale.commen.endValidty
 		publishDate:'发布日期',//EwayLocale.commen.publishDate
-		announceTheme:'公告主题',//EwayLocale.commen.announceTheme
+		announceTheme:'公告主题'//EwayLocale.commen.announceTheme
 
 
 
@@ -545,7 +545,7 @@ Ext.apply(EwayLocale,{
 		pwdNotSame:'两次密码不一致！',//EwayLocale.personal.pwdNotSame
 		rememberPwd:'单击确定即可修改密码，请牢记新密码！',//EwayLocale.personal.rememberPwd
 		pwdSameNoChange:'输入的新密码与旧密码相同,不可修改.',//EwayLocale.personal.pwdSameNoChange
-		reOperate:'无法修改密码,请重新操作.',//EwayLocale.personal.reOperate
+		reOperate:'无法修改密码,请重新操作.'//EwayLocale.personal.reOperate
 	},
 
 	//**********************************************************/
@@ -580,7 +580,7 @@ Ext.apply(EwayLocale,{
 		helpName:'名称',//EwayLocale.system.helpName
 		helpExpain:'说明',//EwayLocale.system.helpExpain
 		helpDownload:'下载',//EwayLocale.system.helpDownload
-		clickDownload:'单击此处即可下载该文档',//EwayLocale.system.clickDownload
+		clickDownload:'单击此处即可下载该文档'//EwayLocale.system.clickDownload
 	}
 
 });

@@ -280,7 +280,7 @@ Ext.apply(EwayLocale,{
 				stopManage:'Automatic stopped ,please contact the manager!',//自动停止.如需取得视频文件,请联系管理员!
 				manage: 'Operater',	//操作
 				loading:'DownLoad',//EwayLocale.agent.remote.screen.loading 下载
-				screenCamera: 'Screen recording',//屏幕录制
+				screenCamera: 'Screen recording'//屏幕录制
 			},
 			discInfo: 'Disk info', //磁盘信息
 			discName: 'Disk Pattern name',//磁盘分区名称
@@ -405,7 +405,7 @@ Ext.apply(EwayLocale,{
 			backupAppLogsSuccess:'backup atmc logs success.',
 			backupAppLogsFail:'backup atmc logs faile.',
 			backupLogSucList:' backup atmc logs list success.',
-			backupLogFailList:'backup atmc logs list fail.',
+			backupLogFailList:'backup atmc logs list fail.'
 		}
 	}
 });

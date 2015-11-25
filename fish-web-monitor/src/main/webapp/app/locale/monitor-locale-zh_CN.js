@@ -276,7 +276,7 @@ Ext.apply(EwayLocale,{
 				stopManage:'自动停止.如需取得视频文件,请联系管理员!',
 				manage: '操作',
 				loading:'下载',//EwayLocale.agent.remote.screen.loading
-				screenCamera: '屏幕录制',
+				screenCamera: '屏幕录制'
 			},
 			discInfo: '磁盘信息',
 			discName: '磁盘分区名称',
@@ -405,7 +405,7 @@ Ext.apply(EwayLocale,{
             backupAppLogsSuccess:'日志备份成功.',
             backupAppLogsFail:'日志备份失败.',
             backupLogSucList:'日备份日志成功设备列表.',
-            backupLogFailList:'日备份日志失败设备列表.',
+            backupLogFailList:'日备份日志失败设备列表.'
 
 		}
 	}
