@@ -78,10 +78,10 @@ Ext.apply(EwayLocale,{
 				pin:'PIN',//EwayLocale.monitor.devMonitor.mod.pin 密码键盘
 				ttu:'TTU',//EwayLocale.monitor.devMonitor.mod.ttu 文本终端
 				isc:'ID Scanner',//EwayLocale.monitor.devMonitor.mod.isc 身份证扫描仪
-				icc:'Card Dispenser',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
+				icc:'Dispenser Card',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
 				fgp:'Finger Printer',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
 				healthy:'Healthy',//EwayLocale.monitor.devMonitor.mod.healthy 模块正常
-				pbk:'Passbook Printer'//EwayLocale.monitor.devMonitor.mod.pbk 存折打印机
+				pbk:'Passbk Printer'//EwayLocale.monitor.devMonitor.mod.pbk 存折打印机
 			},
 			remote:{
 				control:'Remote Control',//EwayLocale.monitor.devMonitor.remote.control 远程控制
