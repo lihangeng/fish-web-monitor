@@ -12,9 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yihuacomputer.common.IFilter;
-import com.yihuacomputer.common.OrderBy;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
@@ -61,8 +59,8 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 		long start = System.currentTimeMillis();
 		// 开机方案根据方案来计算统计，查找方案为第一步
 		IFilter dfilter = new Filter();
-		dfilter.addFilterEntry(FilterFactory.le("startDate", DateUtils.getDate(date)));
-		dfilter.addFilterEntry(FilterFactory.ge("endDate", DateUtils.getDate(date)));
+		dfilter.le("startDate", DateUtils.getDate(date));
+		dfilter.ge("endDate", DateUtils.getDate(date));
 		String currDate = date;
 		// 查找所有当前可以用来计算的方案的设备
 		List<IDevicePlanRelation> allDevice = openPlanService.page(dfilter);
@@ -71,10 +69,10 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 		String startDateTime = currDate + " 00:00:00";
 		String endDateTime = currDate + " 23:59:59";
 		IFilter filter = new Filter();
-		filter.addFilterEntry(FilterFactory.ge("statusTime", startDateTime));
-		filter.addFilterEntry(FilterFactory.le("statusTime", endDateTime));
-		filter.addOrder(new OrderBy("terminalId"));
-		filter.addOrder(new OrderBy("statusTime"));
+		filter.ge("statusTime", startDateTime);
+		filter.le("statusTime", endDateTime);
+		filter.order("terminalId");
+		filter.order("statusTime");
 		List<IRunInfo> runInfoList = runInfoService.list(filter);
 
 		// 将list转换成map
@@ -95,10 +93,10 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 			IRunInfo yestodayRunInfo = null;
 			// 最近一天最后一次记录
 			IFilter yestodayFilter = new Filter();
-			yestodayFilter.addFilterEntry(FilterFactory.le("statusTime", startDateTime));
-			yestodayFilter.addOrder(new OrderBy("statusTime", OrderBy.DESC));
-			yestodayFilter.addOrder(new OrderBy("id", OrderBy.DESC));
-			yestodayFilter.addFilterEntry(FilterFactory.eq("terminalId", device.getTerminalId()));
+			yestodayFilter.le("statusTime", startDateTime);
+			yestodayFilter.descOrder("statusTime");
+			yestodayFilter.descOrder("id");
+			yestodayFilter.eq("terminalId", device.getTerminalId());
 			List<IRunInfo> yestodayRunInfoList = runInfoService.list(yestodayFilter);
 			if (null != yestodayRunInfoList && yestodayRunInfoList.size() > 0) {
 				yestodayRunInfo = yestodayRunInfoList.get(0);

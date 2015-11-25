@@ -24,7 +24,6 @@ import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
 import com.yihuacomputer.fish.api.version.IVersionService;
-import com.yihuacomputer.fish.api.version.IVersionType;
 import com.yihuacomputer.fish.api.version.LinkedDeviceForm;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
@@ -284,7 +283,6 @@ public class VersionDownloadService implements IVersionDownloadService {
 	public long getMayBeDownDevice(IVersion version,IOrganization org){
         StringBuffer hql = new StringBuffer();
         hql.append("select count(*) from Device device where device.organization.orgFlag like ? and device.status = ?");
-        IVersionType vType = version.getVersionType();
         List<Object> filters = new ArrayList<Object>();
         filters.add(org.getOrgFlag()+"%");
         filters.add(DevStatus.OPEN);

@@ -1,8 +1,6 @@
 package com.yihuacomputer.fish.web.machine.controller;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
@@ -14,11 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -37,9 +30,7 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
-import com.yihuacomputer.common.OrderBy;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.FishWebUtils;
 import com.yihuacomputer.common.util.IP;
@@ -53,7 +44,6 @@ import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.machine.entity.DeviceOpenPlan;
 import com.yihuacomputer.fish.machine.entity.OpenPlanDetail;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
-import com.yihuacomputer.fish.web.machine.form.ExportOpenPlanForm;
 import com.yihuacomputer.fish.web.machine.form.OpenPlanDetailForm;
 import com.yihuacomputer.fish.web.machine.form.OpenPlanForm;
 
@@ -112,18 +102,18 @@ public class OpenPlanController {
 					if ("sort".equals(name)) { // 去掉前端页面传来的sort排序字段
 						continue;
 					} else if ("name".equals(name)) {
-						filter.addFilterEntry(FilterFactory.like("name", request.getParameter(name)));
+						filter.like("name", request.getParameter(name));
 					} else if ("startDate".equals(name)) {
-						filter.addFilterEntry(FilterFactory.eq("startDate", DateUtils.getDate(request.getParameter(name))));
+						filter.eq("startDate", DateUtils.getDate(request.getParameter(name)));
 					} else if ("endDate".equals(name)) {
-						filter.addFilterEntry(FilterFactory.eq("endDate", DateUtils.getDate(request.getParameter(name))));
+						filter.eq("endDate", DateUtils.getDate(request.getParameter(name)));
 					}
 				}
 			}
 		}
 
 		// 根据创建时间降序排列
-		filter.addOrder(new OrderBy("createDateTime", OrderBy.DESC));
+		filter.order("createDateTime");
 		//filter.addOrder(new OrderBy("endDate", OrderBy.ASC));
 		IPageResult<IDeviceOpenPlan> pageResult = openPlanService.page(start, limit, filter);
 		ModelMap result = new ModelMap();
@@ -161,7 +151,7 @@ public class OpenPlanController {
 		return forms;
 	}
 
-	@RequestMapping(value = "/exportPlan", method = RequestMethod.GET)
+/*	@RequestMapping(value = "/exportPlan", method = RequestMethod.GET)
 	public @ResponseBody
 	void orgImportStat(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) {
 
@@ -178,28 +168,28 @@ public class OpenPlanController {
 					if ("sort".equals(name)) { // 去掉前端页面传来的sort排序字段
 						continue;
 					} else if ("name".equals(name)) {
-						filter.addFilterEntry(FilterFactory.like("name", request.getParameter(name)));
+						filter.like("name", request.getParameter(name));
 					} else if ("startDate".equals(name)) {
-						filter.addFilterEntry(FilterFactory.eq("startDate", DateUtils.getDate(request.getParameter(name))));
+						filter.eq("startDate", DateUtils.getDate(request.getParameter(name)));
 					} else if ("endDate".equals(name)) {
-						filter.addFilterEntry(FilterFactory.eq("endDate", DateUtils.getDate(request.getParameter(name))));
+						filter.eq("endDate", DateUtils.getDate(request.getParameter(name)));
 					}
 				}
 			}
 		}
 
 		// 根据创建时间降序排列
-		filter.addOrder(new OrderBy("planState", OrderBy.DESC));
-		filter.addOrder(new OrderBy("endDate", OrderBy.ASC));
+		filter.descOrder("planState");
+		filter.order("endDate");
 		List<IDeviceOpenPlan> deviceOpenPlanList = openPlanService.list(filter);
 		List<Long> plan_Dev = new ArrayList<Long>();
 		List<ExportOpenPlanForm> data = toExportPlanForm(deviceOpenPlanList, plan_Dev);
 
-//		ExportOpenPlan excelExport = new ExportOpenPlan();
+		ExportOpenPlan excelExport = new ExportOpenPlan();
 //		excelExport.exportOpenPlan(data, plan_Dev, response);
 	}
-
-	private List<ExportOpenPlanForm> toExportPlanForm(List<IDeviceOpenPlan> plans, List<Long> plan_Dev) {
+*/
+/*	private List<ExportOpenPlanForm> toExportPlanForm(List<IDeviceOpenPlan> plans, List<Long> plan_Dev) {
 		List<ExportOpenPlanForm> forms = new ArrayList<ExportOpenPlanForm>();
 		for (IDeviceOpenPlan plan : plans) {
 			long planDev_number = 0;
@@ -229,7 +219,7 @@ public class OpenPlanController {
 
 		return forms;
 
-	}
+	}*/
 
 	@RequestMapping(value = "/device", method = RequestMethod.GET)
 	public @ResponseBody
@@ -267,26 +257,6 @@ public class OpenPlanController {
 		result.addAttribute("total", pageResult.size());
 		result.addAttribute("data", toPlanForm(pageResult, deviceId, terminalId));
 		return result;
-	}
-
-	@RequestMapping(value = "/tempdevopenplan", method = RequestMethod.GET)
-	public @ResponseBody ModelMap searchTempDevPlan(@RequestParam int start, @RequestParam int limit, WebRequest request){
-		ModelMap result = new ModelMap();
-		logger.info(String.format("search searchTempDevPlan : start = %s ,limit = %s ", start, limit));
-		Long deviceId = Long.valueOf(request.getParameter("deviceId"));
-		List<IDeviceOpenPlan> pageResult  = new ArrayList<IDeviceOpenPlan>();
-		IDevice device = deviceService.get(deviceId);
-		String terminalId = null;
-		String strDeviceId = null;
-		if (device != null) {//TODO ....pageResult = tempOpenPlanDevRelation.listPlanByDevice(deviceId);
-//			pageResult = tempOpenPlanDevRelation.listPlanByDevice(deviceId);
-		    strDeviceId = deviceId + "";
-			terminalId = device.getTerminalId();
-		}
-        result.addAttribute("success",true);
-        result.addAttribute("total",pageResult.size());
-    	result.addAttribute("data", toPlanForm(pageResult, strDeviceId, terminalId));
-        return result;
 	}
 
 	@RequestMapping(value = "/details", method = RequestMethod.GET)
@@ -394,7 +364,7 @@ public class OpenPlanController {
 	ModelMap update(@PathVariable String id, @RequestBody OpenPlanForm form) {
 		logger.info(" update plan : plan.id = " + id);
 		IFilter filter = new Filter();
-		filter.addFilterEntry(FilterFactory.eq("openPlanId", form.getId()));
+		filter.eq("openPlanId", form.getId());
 		ModelMap result = new ModelMap();
 		if (!relationService.isExistPlanLink(filter)) {
 			IDeviceOpenPlan openPlan = openPlanService.getDeviceOpenPlanById(Long.valueOf(id));
@@ -527,8 +497,6 @@ public class OpenPlanController {
 	public @ResponseBody
 	String upload(WebRequest webRequest, @RequestParam(value = "file") MultipartFile file,
 			HttpServletResponse response,HttpServletRequest request){
-		UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
-		String orgId =String.valueOf(userSession.getOrgId());
 		StringBuffer message = new StringBuffer();
 		List <IDevice> linkDeviceList = new ArrayList<IDevice>();
 		StringBuffer dataJson = new StringBuffer();
@@ -549,135 +517,6 @@ public class OpenPlanController {
 					+ "','message':" + message.toString() + "}";
 		}
 
-	}
-
-/*	public  List<IDevice> importDevice(InputStream in, String path, String orgId, StringBuffer message) throws IOException
-	{
-		POIFSFileSystem fs = new POIFSFileSystem(in);
-		HSSFWorkbook wb = new HSSFWorkbook(fs);
-		HSSFWorkbook outWb =new HSSFWorkbook(fs);
-		int sheetNum = wb.getNumberOfSheets();
-		if(sheetNum < 1)
-		{
-			message.append("0");
-			return null;
-		}
-		HSSFSheet sheet = wb.getSheetAt(0);
-		int number = sheet.getLastRowNum();
-		if(number < 1 )
-		{
-			message.append("-1");
-			return null;
-		}
-		if(number > 2000)
-		{
-			message.append("-2");
-			return null;
-		}
-		String msg = String.valueOf(number);
-		message.append(msg);
-		List<IDevice> linkDevice = importSheet(sheet,outWb,orgId);
-		in.close();
-		outExcel(path, outWb);
-		return linkDevice;
-	}
-*/
-/*	private List<IDevice> importSheet(HSSFSheet st,HSSFWorkbook outWb,String orgId)
-	{
-		if( st == null)
-		{
-			return null;
-		}
-		String tip = null;
-		boolean isWrite = false;
-	    Map<String,String> devPlanRelation = new HashMap<String,String>();
-	    List<IDevicePlanRelation> devicePlanRelations = relationService.devicePlanRelations();
-	    List<IDevice> linkDevice = new ArrayList<IDevice>();
-	    for(IDevicePlanRelation  dpr : devicePlanRelations)
-	    {
-	    	devPlanRelation.put(String.valueOf(dpr.getDeviceId()), String.valueOf(dpr.getOpenPlanId()));
-	    }
-		for(int rowIndex = 1; rowIndex<=st.getLastRowNum(); rowIndex++)
-		{
-		    if(isWrite == true)
-		    {
-		    	updateExcel(outWb, rowIndex - 1, tip, 0, 1);
-		    }
-		    HSSFRow row = st.getRow(rowIndex);
-		    if(null == row)
-		    {
-		    	tip = "设备编号不能为空";
-		    	isWrite = true;
-		    	continue;
-		    }
-		    HSSFCell cell = row.getCell(0);
-		    if(null == cell)
-		    {
-		    	tip = "设备编号不能为空";
-		    	isWrite = true;
-		        continue;
-		    }
-		    String deviceCode = getValue(row.getCell(0));
-		    if(StringUtils.isBlank(deviceCode))
-		    {
-		    	tip ="设备编号不能为空";
-		    	isWrite = true;
-		    	continue;
-		    }
-		    List<IDevice> listDevice = relationService.getDevicebyCode(deviceCode, orgId);
-            if(listDevice.size() > 0)
-            {
-            	String devId = String.valueOf(listDevice.get(0).getId());
-            	if(devPlanRelation.get(devId) != null)
-            	{
-            		tip ="该设备不存在或不满足要求";
-            		isWrite = true;
-    		    	continue;
-            	}
-            	 else
-                 {
-                 	linkDevice.add(listDevice.get(0));
-                 	tip ="导入成功";
-                 	isWrite = true;
-                 }
-            }else
-            {
-            	tip ="该设备不存在或不满足要求";
-        		isWrite = true;
-		    	continue;
-            }
-
-
-          }
-		   updateExcel(outWb, st.getLastRowNum(), tip, 0, 1);
-		   return linkDevice;
-
-	}
-*/
-	private String getValue(HSSFCell cell) {
-		if (cell != null) {
-			cell.setCellType(Cell.CELL_TYPE_STRING);
-			return cell.toString().trim();
-		}
-		return null;
-	}
-
-	private void outExcel(String path, HSSFWorkbook wb) throws IOException {
-		FileOutputStream os = new FileOutputStream(path);
-		wb.write(os);
-		os.flush();
-		os.close();
-	}
-
-	private void updateExcel(HSSFWorkbook wb, int rowIndex, String tip,
-			int sheetNum, int cellNum) {
-		HSSFSheet sheet = wb.getSheetAt(sheetNum);
-		HSSFRow row = sheet.getRow(rowIndex);
-		if (row == null) {
-			row = sheet.createRow(rowIndex);
-		}
-		HSSFCell cell = row.createCell(cellNum);
-		cell.setCellValue(tip);
 	}
 
 	@RequestMapping(value = "delFile", method = RequestMethod.POST)
@@ -880,12 +719,12 @@ public class OpenPlanController {
 			}
 
 			if ("devType".equals(name)) {
-				filter.addFilterEntry(FilterFactory.eq("devType", Long.valueOf(value)));
+				filter.eq("devType", Long.valueOf(value));
 			} else if ("terminalId".equals(name)) { // 类型
-				filter.addFilterEntry(FilterFactory.like("terminalId", value + "%"));
+				filter.like("terminalId", value + "%");
 			} else if ("ip".equals(name)) {// 品牌
 				try {
-					filter.addFilterEntry(FilterFactory.eq("ip", new IP(value)));
+					filter.eq("ip", new IP(value));
 				} catch (Exception e) {
 					logger.error(e.getMessage());
 				}
@@ -902,7 +741,7 @@ public class OpenPlanController {
 
 	private boolean isExistCode(long id, String name) {
 		IFilter filter = new Filter();
-		filter.addFilterEntry(FilterFactory.eq("name", name));
+		filter.eq("name", name);
 		for (IDeviceOpenPlan open : openPlanService.list(filter)) {
 			if (open.getId() != id) {
 				return true;
