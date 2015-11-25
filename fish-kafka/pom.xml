@@ -6,75 +6,44 @@
 		<version>2.0.0.5-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
-	<artifactId>fish-domain</artifactId>
-	<name>Fish Domain Base</name>
-	<description>数据库底层支持</description>
-	<properties>
-		<fish-common.version>2.0.0.5-SNAPSHOT</fish-common.version>
-	</properties>
+	<artifactId>fish-kafka</artifactId>
+	<name>Fish Kafka</name>
+	<description>分布式是消息队列实现</description>
 	<dependencies>
 		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka_2.10</artifactId>
+			<version>0.8.2.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>log4j</artifactId>
+					<groupId>log4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
-			<artifactId>fish-common</artifactId>
-			<version>${fish-common.version}</version>
-		</dependency>
-		<!--数据库驱动 -->
-		<dependency>
-			<groupId>com.h2database</groupId>
-			<artifactId>h2</artifactId>
+			<artifactId>fish-api-system</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
+			<groupId>com.yihuacomputer.fish</groupId>
+			<artifactId>fish-domain</artifactId>
+			<version>${project.version}</version>
 		</dependency>
-		<!-- Hibernate -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-dbcp</groupId>
-			<artifactId>commons-dbcp</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>commons-beanutils</groupId>
-			<artifactId>commons-beanutils</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.geronimo.specs</groupId>
-			<artifactId>geronimo-annotation_1.0_spec</artifactId>
-		</dependency>
-
-		<!-- Spring -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-orm</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.aspectj</groupId>
-			<artifactId>aspectjweaver</artifactId>
-		</dependency>
+		
 		<!-- logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>ch.qos.logback</groupId>
-			<artifactId>logback-classic</artifactId>
-			<scope>runtime</scope>
 		</dependency>
 		<!-- Test -->
 		<dependency>
