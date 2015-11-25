@@ -99,6 +99,7 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 				xtype:'textfield',
 				fieldLabel:'IP',
 				name:'ip',
+				 enableKeyEvents:true,
 				labelSeparator:'',
 				labelWidth : 10,
 				width: 150,
@@ -106,6 +107,7 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 			}, {
 				xtype:'textfield',
 				vtype : 'terminalId',
+				 enableKeyEvents:true,
 				maxLength:20,
 				fieldLabel:EwayLocale.refs.terminalId,//'设备编号',
 				name:'terminalId',
@@ -119,6 +121,7 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 			}, {
 				xtype : 'common_orgComboOrgTree',
 				fieldLabel : EwayLocale.refs.orgName,
+				 enableKeyEvents:true,
 				emptyText : EwayLocale.combox.select,//'--请选择--',
 				name : 'orgName',
 				hiddenValue : 'orgId',

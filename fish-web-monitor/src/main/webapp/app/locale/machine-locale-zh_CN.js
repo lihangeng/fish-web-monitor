@@ -21,7 +21,7 @@ Ext.apply(EwayLocale,{
 			note:'备注',
 			addTitle:'增加ATM分类信息',
 			updateTitle:'更改ATM型号信息',
-			number:'编号',//EwayLocale.machine.atmCatalog.number
+			number:'编号'//EwayLocale.machine.atmCatalog.number
 		},
 		atmGroup : {
 			terminalId:'设备号',
@@ -32,8 +32,8 @@ Ext.apply(EwayLocale,{
 			devCatalogName:'设备类型',
 			devGroupName: '设备分组',
 			status:'设备状态',
-			comboxStatus:{	
-				dredge:'开通',//开通			
+			comboxStatus:{
+				dredge:'开通',//开通
 				open:'开通',
 				close:'停用'
 			},
@@ -465,7 +465,7 @@ Ext.apply(EwayLocale,{
 			devInfo:'设备信息',
 			unable:'不可以',
 			able:'能',
-			
+
 			addDevInfo:'增加设备信息',//EwayLocale.machine.device.addDevInfo
 			effectiveDate:'生效日期',//EwayLocale.machine.device.effectiveDate
 			changeDevInfo:'更改设备信息',//EwayLocale.machine.device.changeDevInfo
@@ -484,7 +484,7 @@ Ext.apply(EwayLocale,{
 				openClose:'开机/关机',//EwayLocale.machine.device.person.openClose
 				Open:'开机',//EwayLocale.machine.device.person.Open
 				Close:'关机'//EwayLocale.machine.device.person.Close
-			},
+			}
 
 		},
 		param:{
@@ -537,7 +537,7 @@ Ext.apply(EwayLocale,{
 			cashboxLimit:'钞箱报警金额(单位：张数)',//EwayLocale.machine.plan.cashboxLimit
 			perToDev:'人员<-->设备',//EwayLocale.machine.plan.perToDev
 			changePlan:'更改方案',//EwayLocale.machine.plan.changePlan
-			servicePlan:'开机方案',//EwayLocale.machine.plan.servicePlan
+			servicePlan:'开机方案'//EwayLocale.machine.plan.servicePlan
 		},
 		serviceplan:{
 			title:'开机方案',//EwayLocale.machine.serviceplan.title

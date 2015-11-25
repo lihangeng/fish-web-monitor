@@ -20,7 +20,7 @@ Ext.apply(EwayLocale,{
 			note:'Description',//备注
 			addTitle:'Add catalog',//增加ATM分类信息
 			updateTitle:'Update Catalog', //更改ATM型号信息
-			number:'Code',//EwayLocale.machine.atmCatalog.number 编号
+			number:'Code'//EwayLocale.machine.atmCatalog.number 编号
 		},
 		atmGroup : {
 			terminalId:'Terminal ID', //设备号
@@ -468,7 +468,7 @@ Ext.apply(EwayLocale,{
 				openClose:'Power / Shutdown',//EwayLocale.machine.device.person.openClose开机/关机
 				Open:'Power',//EwayLocale.machine.device.person.Open开机
 				Close:'Shutdown'//EwayLocale.machine.device.person.Close关机
-			},
+			}
 		},
 		param:{
 			paramKey:'Name',//EwayLocale.machine.param.paramKey 参数
@@ -520,7 +520,7 @@ Ext.apply(EwayLocale,{
 			cashboxLimit:'Alarm cashbox(unit:piece)',//EwayLocale.machine.plan.cashboxLimit 钞箱报警金额(单位：张数)
 			perToDev:'Person<-->Device',//EwayLocale.machine.plan.perToDev 人员<-->设备
 			changePlan:'Update Service Plan',//EwayLocale.machine.plan.changePlan 更改方案
-			servicePlan:'Service Plan',//EwayLocale.machine.plan.servicePlan 开机方案
+			servicePlan:'Service Plan'//EwayLocale.machine.plan.servicePlan 开机方案
 		},
 		serviceplan:{
 			title:'Service Plan',//EwayLocale.machine.serviceplan.title

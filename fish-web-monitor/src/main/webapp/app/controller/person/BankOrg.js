@@ -444,6 +444,6 @@ Ext.define('Eway.controller.person.BankOrg', {
 		else {
 			Eway.alert(EwayLocale.choiceDeleteMsg);
 		}
-	},
+	}
 
 });

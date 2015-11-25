@@ -113,7 +113,7 @@ Ext.define('Eway.view.report.baseReport.CaseStatisticsReportGrid', {
 
                                   return function (sprite, config, data, index) {
                                       return {
-                                          fillStyle: colors[index % 12],
+                                          fillStyle: colors[index % 12]
 //                                          strokeStyle: index % 2 ? 'none' : 'black',
 //                                          opacity: index % 2 ? 1 : 0.5
                                       };

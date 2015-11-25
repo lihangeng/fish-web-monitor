@@ -138,7 +138,6 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 			},{
 				xtype:'field_device_deviceatmtype',
 				fieldLabel : EwayLocale.refs.devType,
-				 enableKeyEvents:true,
 				name: 'atmTypeId',
 				editable  : false,
 				store: 'machine.DeviceAtmType',
