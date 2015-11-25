@@ -40,7 +40,6 @@ public class DayBackupLogForm {
 			form.setResult(log.getResult());
 			form.setDoTime(log.getDoTime());
 			form.setEndTime(log.getEndTime());
-			System.out.println("getBackUpInfo.size()" + getBackUpInfo.size());
 			if(getBackUpInfo.get(log.getDate()) != null)
 			{
 				form.setDeviceSucCount(getBackUpInfo.get(log.getDate()).getBackupSuccessNumber());
