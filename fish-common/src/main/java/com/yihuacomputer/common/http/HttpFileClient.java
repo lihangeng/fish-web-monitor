@@ -163,8 +163,7 @@ public class HttpFileClient {
 	public static HttpFileRet mergeDownloadFile(HttpFileCfg fileCfg) {
 
 		if (fileCfg.getLocalPath() == null || fileCfg.getPort() == null
-				|| fileCfg.getRequestPath() == null
-				|| fileCfg.getRequestName() == null) {
+				|| fileCfg.getRequestPath() == null) {
 			return HttpFileRet.CFG_ERROR;
 		}
 
@@ -175,7 +174,6 @@ public class HttpFileClient {
 		URI uri = null;
 		try {
 			uri = new URI("http://" + fileCfg.getIpAdd() + ":" + fileCfg.getPort() + "/ctr/mergeDownload");
-			System.out.println("uri======="+uri);
 		} catch (URISyntaxException e) {
 			//e.printStackTrace();
 			return HttpFileRet.URL_ERROR;

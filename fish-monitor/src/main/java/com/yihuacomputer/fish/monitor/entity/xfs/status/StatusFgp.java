@@ -22,7 +22,7 @@ public class StatusFgp implements IStatusFgp {
     private String fgpHwCode;
 
     public StatusFgp() {
-        this.fgp = DeviceStatus.NoDevice;
+        this.fgp = DeviceStatus.Unknown;
     }
 
     /**

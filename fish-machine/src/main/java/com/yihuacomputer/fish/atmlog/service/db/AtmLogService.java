@@ -80,45 +80,8 @@ public class AtmLogService implements IAtmLogService{
 	@Override
     @Transactional(readOnly=true)
 	public IPageResult<IAtmLog> pageList(int start, int limit, IFilter filter) {
-		StringBuffer sql = new StringBuffer();
-		List<Object> valueObj = new ArrayList<Object>();
-		sql.append("select a from AtmLog a,Device d ");
-		sql.append("where a.terminalId = d.terminalId and d.organization.orgFlag like ?");
-
-		IFilterEntry orgFlag = filter.getFilterEntry("orgFlag");
-
-		IFilterEntry terminalId = filter.getFilterEntry("terminalId");
-		IFilterEntry dateTime = filter.getFilterEntry("dateTime");
-		IFilterEntry lastDoDate = filter.getFilterEntry("lastDoDate");
-		IFilterEntry backupResult = filter.getFilterEntry("backupResult");
-
-		valueObj.add(orgFlag.getValue().toString()+"%");
-		if(terminalId!=null){
-			sql.append(" and a.terminalId like ? ");
-			valueObj.add("%" + terminalId.getValue() + "%");
-		}
-		if(dateTime!=null){
-			sql.append(" and a.dateTime=?");
-			valueObj.add(dateTime.getValue());
-		}
-		if(lastDoDate!=null){
-			sql.append(" and a.lastDoDate like ?");
-			valueObj.add(lastDoDate.getValue()+"%");
-		}
-		if(backupResult!=null){
-			sql.append(" and a.backupResult=?");
-			valueObj.add(backupResult.getValue());
-		}
-		sql.append(" order by a.dateTime desc");
-
-		@SuppressWarnings("unchecked")
-		IPageResult<IAtmLog> result = (IPageResult<IAtmLog>)this.dao.page(start, limit, sql.toString(), valueObj.toArray());
-
+		IPageResult<IAtmLog> result = this.dao.page(start, limit, filter, AtmLog.class);
 		return result;
-
-//		List<IAtmLog> atmLogs = dao.findByFilter(filter, IAtmLog.class);
-//		IPageResult<IAtmLog> pageResult = new PageResult<IAtmLog>(atmLogs, start, limit);
-//		return pageResult;
 	}
 
     @Transactional(readOnly=true)

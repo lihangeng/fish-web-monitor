@@ -1,6 +1,5 @@
 package com.yihuacomputer.fish.web.report.controller;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -8,7 +7,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -23,7 +21,6 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
@@ -33,7 +30,6 @@ import com.yihuacomputer.fish.web.report.form.CaseStatisticsForm;
 @Controller
 @RequestMapping("/report/caseStatisticsReport")
 public class CaseStatisticsReportController {
-	private Logger logger = org.slf4j.LoggerFactory.getLogger(CaseStatisticsReportController.class);
 
 	@Autowired
 	private ICaseStatisticsRptService caseStatisticsRptService;

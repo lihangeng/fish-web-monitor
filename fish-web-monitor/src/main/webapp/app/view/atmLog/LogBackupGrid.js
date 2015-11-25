@@ -95,19 +95,63 @@ Ext.define('Eway.view.atmLog.LogBackupGrid',{
 						iframe.src = url;
 					},
 					scope : this
+				},{
+					icon : 'resources/images/create.gif',
+					tooltip: EwayLocale.agent.remote.resetBackUp,
+					getClass : function(value,metadata,record,ronwIndex,colindex,store){
+						var result = record.get('backupResult'); 
+						if(result == 'SUCCESS'){
+							return 'hiddenComp';
+						}
+						else if(result == 'UNDO'){
+							return 'changeCursor';
+//							return 'changeCursor';
+						}
+						else if(result == 'ERROR_CONNECT'){
+							return 'changeCursor';
+						}
+						else if(result == 'ERROR_NOLOG'){
+							return 'changeCursor';
+						}
+						else if(result == 'ERROR'){
+							return 'changeCursor';
+						}
+					},
+					handler : function(grid,rowIndex,colIndex){
+						var record = grid.getStore().getAt(rowIndex);
+						var terminalId = record.get('terminalId');
+						var dateTime = record.get('dateTime');
+						var flag = true;
+						Ext.Ajax.request({
+							method : 'POST',
+							url : 'api/machine/atmLog/fileDownError?date=' + new Date(),
+							timeout : 120000,
+							params : {
+								flag : flag,
+								terminalId : terminalId,
+								dateTime : dateTime
+							},
+							success : function(response) {
+								var object = Ext.decode(response.responseText);
+								if (object.success == true) {
+									Eway.alert(EwayLocale.agent.remote.backupAppLogsSuccess);
+								} else {
+									Eway.alert(EwayLocale.agent.remote.backupAppLogsFail);
+								}
+							},
+							failure : function() {
+								Eway.alert(EwayLocale.agent.remote.backupAppLogsFail);
+							}
+						});
+					},
+					scope : this
+				
 				}]
 			}],
-			bbar : Ext.create('Ext.PagingToolbar',{
-			
+			bbar : Ext.create('Ext.PagingToolbar',{			
 				store : store,
 				displayInfo : true
-			}),
-			tbar : ['->',{
-				xtype : 'button',
-				text : EwayLocale.button.search,
-				glyph : 0xf002,
-				action : 'query'
-			}]
+			})
 		});
 		this.callParent(arguments);
 	}

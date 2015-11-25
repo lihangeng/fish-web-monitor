@@ -54,11 +54,9 @@ import com.yihuacomputer.fish.api.atmlog.ICustomerCycle;
 import com.yihuacomputer.fish.api.atmlog.IJournalFileService;
 import com.yihuacomputer.fish.api.atmlog.ITransCycle;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.web.daily.form.AtmLogForm;
 import com.yihuacomputer.fish.web.daily.form.AtmLogTotal;
-import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
 @RequestMapping("/machine/atmLog")
@@ -76,19 +74,20 @@ public class AtmLogController {
 	
 	
 	@Autowired
-	protected MessageSource messageSource;
+	protected MessageSource messageSource;	
+	
+	@Autowired
+	private IAtmLogService logService;
+
+
 
 	@RequestMapping(value = "/getBackup", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap getBackup(@RequestParam int start, @RequestParam int limit, WebRequest request, HttpSession session) {
 		ModelMap map = new ModelMap();
-		UserSession user = (UserSession) session.getAttribute(FishWebUtils.USER);
-
 		IFilter filter = new Filter();
-
 		String terminalId = request.getParameter("terminalId");
 		String dateTime = request.getParameter("dateTime");
-		String lastDoDate = request.getParameter("lastDoDate");
 		String backupResult = request.getParameter("backupResult");
 		if (terminalId != null && !terminalId.isEmpty()) {
 			filter.like("terminalId", terminalId);
@@ -96,17 +95,17 @@ public class AtmLogController {
 		if (dateTime != null && !dateTime.isEmpty()) {
 			filter.eq("dateTime", dateTime);
 		}
-		if (lastDoDate != null && !lastDoDate.isEmpty()) {
-			filter.eq("lastDoDate", lastDoDate);
-		}
 		if (backupResult != null && !backupResult.isEmpty()) {
-			filter.eq("backupResult", BackupResult.valueOf(backupResult));
-		}
-
-		filter.eq("orgId", user.getOrgId());
-
-		filter.eq("orgFlag", user.getOrgFlag());
-
+			if(backupResult.equals("SUCCESS"))
+			{
+				filter.eq("backupResult", BackupResult.SUCCESS);
+			}
+			if(backupResult.equals("BackUpError"))
+			{
+				filter.ne("backupResult", BackupResult.SUCCESS);
+			}
+			
+		}		
 		IPageResult<IAtmLog> atmLogResult = atmLogService.pageList(start, limit, filter);
 		map.addAttribute(FishConstant.SUCCESS, true);
 		map.addAttribute("total", atmLogResult.getTotal());
@@ -439,20 +438,13 @@ public class AtmLogController {
     public @ResponseBody
     ModelMap fileDownError(@RequestParam String terminalId, @RequestParam String dateTime,@RequestParam String flag,
             WebRequest request){
-		String requestPath = AtmLogCfg.getAtmLogDoc();
-		
+		String ip = deviceService.get(terminalId).getIp().toString();			
+		String requestPath = AtmLogCfg.getAtmLogDoc();		
 		String requestName   = AtmLogCfg.getAtmLogFileCfg();
-
 		requestName = StringUtils.replaceLogRule(requestName, "\\{terminalId\\}", terminalId);
 		requestName = StringUtils.replaceLogRule(requestName, "\\{YYYYMMDD\\}", StringUtils.replaceLogRule(dateTime,"-",""));
-		requestName = StringUtils.replaceLogRule(requestName, "\\{YYYY-MM-DD\\}", dateTime);
-		
-		String ip = deviceService.get(terminalId).getIp().toString();
-		
-		
-		
-		ModelMap result = new ModelMap();
-        
+		requestName = StringUtils.replaceLogRule(requestName, "\\{YYYY-MM-DD\\}", dateTime);		
+		ModelMap result = new ModelMap();        
         HttpFileCfg httpFileCfg = new HttpFileCfg();
         String localName = requestName;
         String localPath = AtmLogCfg.getAtmAppLogDir() + FishCfg.fileSep
@@ -477,27 +469,62 @@ public class AtmLogController {
             //续传下载：
             httpFileCfg.setRetry(true);
         }
-        HttpFileRet ret = HttpFileClient.downloadFile(httpFileCfg);
-        if(ret.equals(HttpFileRet.SUCCESS)){
+        BackupResult ret = BackupResult.ERROR;
+         ret = this.getBackupResult(HttpFileClient.downloadFile(httpFileCfg)); 
+        if(ret.equals(BackupResult.SUCCESS)){
             result.addAttribute("path", localPath);
             result.addAttribute("fileName", localName);
+            IAtmLog log = logService.getAtmLog(terminalId, dateTime);
+    		log.setDoTimes(log.getDoTimes()+1);
+    		log.setLastDoDate(DateUtils.getTimestamp(new Date()));
+    		if(ret.equals(BackupResult.SUCCESS)){
+    			log.setLogSize(getLogSize(httpFileCfg));
+    		}
+    		log.setBackupResult(ret);
+    		logService.updateAtmLog(log);    	
             result.addAttribute(FishConstant.SUCCESS, true);
-        }else if(ret.equals(HttpFileRet.CFG_ERROR)){
-            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failParam", null, FishCfg.locale));
-            result.addAttribute(FishConstant.SUCCESS, false);
-        }else if(ret.equals(HttpFileRet.REQ_FILE_NOTEXIT)){
-            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failNotExist", null, FishCfg.locale));
-            result.addAttribute(FishConstant.SUCCESS, false);
-        }else if(ret.equals(HttpFileRet.CONN_ERROR)){
-            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failConn", null, FishCfg.locale));
-            result.addAttribute(FishConstant.SUCCESS, false);
-        }else if(ret.equals(HttpFileRet.URL_ERROR)){
-            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failURL", null, FishCfg.locale));
-            result.addAttribute(FishConstant.SUCCESS, false);
         }else if(ret.equals(HttpFileRet.ERROR)){
             result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.error", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
         }
         return result;
     }
+	
+	
+	/**
+	 * 获取日志文件大小
+	 * @return
+	 */
+	private long getLogSize(HttpFileCfg cfg){
+		File logFile = new File(cfg.getLocalPath()+FishCfg.fileSep+cfg.getLocalName());
+
+		if(logFile.exists()){
+			return logFile.length();
+		}else{
+			return 0;
+		}
+	}
+	
+	/**
+	 * 判断获取文件返回码
+	 * @param fileRet
+	 * @return
+	 */
+	private BackupResult getBackupResult(HttpFileRet fileRet){
+
+		switch(fileRet){
+			case SUCCESS:{
+				return BackupResult.SUCCESS;
+			}
+			case REQ_FILE_NOTEXIT:{
+				return BackupResult.ERROR_NOLOG;
+			}
+			case CONN_ERROR:{
+				return BackupResult.ERROR_CONNECT;
+			}
+			default:{
+				return BackupResult.ERROR;
+			}
+		}
+	}
 }

@@ -23,7 +23,7 @@ public class StatusNfc implements IStatusNfc {
     private String nfcHwCode;
 
     public StatusNfc() {
-        this.nfc = DeviceStatus.NoDevice;
+        this.nfc = DeviceStatus.Unknown;
     }
 
     /**

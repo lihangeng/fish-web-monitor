@@ -118,18 +118,16 @@ public class ExploerController
     @RequestMapping(value = "/mergerDownload",method = RequestMethod.POST)
     public @ResponseBody
     ModelMap fileDown( @RequestParam String requestPath,@RequestParam String ip){
-    	System.out.println("------------------------");
     	ModelMap result = new ModelMap();
     	HttpFileCfg httpFileCfg = new HttpFileCfg();
     	String localPath = FishCfg.getTempDir() + System.getProperty("file.separator") + "remoteDown";
     	httpFileCfg.setLocalPath(localPath);
         httpFileCfg.setRequestPath(requestPath);
-        httpFileCfg.setRequestName("1111");
         httpFileCfg.setCompress(true);
         httpFileCfg.setIpAdd(ip);
         httpFileCfg.setPort(MonitorCfg.getRemotePort());
-        String localName =  DateUtils.get(new Date(),"yyyyMMddHHmmss");
-        httpFileCfg.setLocalName(localName+".zip");
+        String localName =  DateUtils.get(new Date(),"yyyyMMddHHmmss") + ".zip";
+        httpFileCfg.setLocalName(localName);
         httpFileCfg.setRetry(true);
         HttpFileRet ret = HttpFileClient.mergeDownloadFile(httpFileCfg);
         if(ret.equals(HttpFileRet.SUCCESS)){
@@ -173,7 +171,6 @@ public class ExploerController
         httpFileCfg.setLocalPath(localPath);
         httpFileCfg.setRequestName(requestName);
         httpFileCfg.setRequestPath(requestPath);
-        System.out.println("requestName="+requestName);
         httpFileCfg.setCompress(true);
         httpFileCfg.setIpAdd(ip);
         httpFileCfg.setPort(MonitorCfg.getRemotePort());

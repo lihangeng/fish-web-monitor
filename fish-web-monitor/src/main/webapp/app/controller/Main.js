@@ -159,13 +159,13 @@ Ext.define('Eway.controller.Main', {
 //		}
 		else if(code == "servicePlan"){
 			this.activeController('operatingPlan.OpenPlan',text);
-		}else if(code == "logBackup"){
+		}/*else if(code == "atmLog"){
 			this.activeController('atmLog.LogBackup',text);
-		}else if(code == "dayBackupJob"){
+		}*/else if(code == "atmLog"){
 			this.activeController('atmLog.DayBackup',text);
-		}else if(code == "atmLogInfo"){
+		}/*else if(code == "atmLog"){
 			this.activeController('atmLog.AtmLogInfo',text);
-		}
+		}*/
 	},
 
 	//打开“监控管理”下子菜单
