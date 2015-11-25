@@ -80,6 +80,7 @@ Ext.apply(EwayLocale,{
 				isc:'ID Scanner',//EwayLocale.monitor.devMonitor.mod.isc 身份证扫描仪
 				icc:'Card Dispenser',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
 				fgp:'Finger Printer',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
+				pbk:'Passbook Printer',//EwayLocale.monitor.devMonitor.mod.pbk存折打印机
 				healthy:'Healthy'//EwayLocale.monitor.devMonitor.mod.healthy 模块正常
 			},
 			remote:{
