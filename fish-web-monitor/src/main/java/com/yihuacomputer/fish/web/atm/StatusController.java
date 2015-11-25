@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.monitor.ICollectService;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
+import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusCdm;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusCim;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusFgp;
@@ -69,6 +70,8 @@ public class StatusController {
 	        idc.setCode(msg.getIdcCode());
 	        idc.setCards(msg.getIdcReatianCard());
 	        idc.setHwCode(msg.getIdcHwCode());
+        }else{
+        	idc.setStatus(DeviceStatus.NoDevice);
         }
 
         IStatusJpr jpr = xfsStatus.makeStatusJpr();
@@ -76,12 +79,16 @@ public class StatusController {
 	        jpr.setStatus(msg.getJpr());
 	        jpr.setCode(msg.getJprCode());
 	        jpr.setHwCode(msg.getJprHwCode());
+        }else{
+        	jpr.setStatus(DeviceStatus.NoDevice);
         }
         IStatusRpr rpr = xfsStatus.makeStatusRpr();
         if(msg.getRpr() != null){
 	        rpr.setStatus(msg.getRpr());
 	        rpr.setCode(msg.getRprCode());
 	        rpr.setHwCode(msg.getRprHwCode());
+        }else{
+        	rpr.setStatus(DeviceStatus.NoDevice);
         }
 
         IStatusCdm cdm = xfsStatus.makeStatusCdm();
@@ -89,6 +96,8 @@ public class StatusController {
 	        cdm.setStatus(msg.getCdm());
 	        cdm.setCode(msg.getCdmCode());
 	        cdm.setHwCode(msg.getCdmHwCode());
+        }else{
+        	cdm.setStatus(DeviceStatus.NoDevice);
         }
 
         IStatusCim cim = xfsStatus.makeStatusCim();
@@ -96,6 +105,8 @@ public class StatusController {
 	        cim.setStatus(msg.getCim());
 	        cim.setCode(msg.getCimCode());
 	        cim.setHwCode(msg.getCimHwCode());
+        }else{
+        	cim.setStatus(DeviceStatus.NoDevice);
         }
 
         IStatusSiu siu = xfsStatus.makeStatusSiu();
@@ -103,6 +114,8 @@ public class StatusController {
 	        siu.setStatus(msg.getSiu());
 	        siu.setCode(msg.getSiuCode());
 	        siu.setHwCode(msg.getSiuHwCode());
+        }else{
+        	siu.setStatus(DeviceStatus.NoDevice);
         }
 
         IStatusPin pin = xfsStatus.makeStatusPin();
@@ -110,6 +123,8 @@ public class StatusController {
 	        pin.setStatus(msg.getPin());
 	        pin.setCode(msg.getPinCode());
 	        pin.setHwCode(msg.getPinHwCode());
+        }else{
+        	pin.setStatus(DeviceStatus.NoDevice);
         }
 
         IStatusTtu ttu = xfsStatus.makeStatusTtu();
@@ -117,18 +132,24 @@ public class StatusController {
 	        ttu.setStatus(msg.getTtu());
 	        ttu.setCode(msg.getTtuCode());
 	        ttu.setHwCode(msg.getTtuHwCode());
+        }else{
+        	ttu.setStatus(DeviceStatus.NoDevice);
         }
         IStatusNfc nfc = xfsStatus.makeStatusNfc();
         if(msg.getNfc() != null){
 	        nfc.setStatus(msg.getNfc());
 	        nfc.setCode(msg.getNfcCode());
 	        nfc.setHwCode(msg.getNfcHwCode());
+        }else{
+        	nfc.setStatus(DeviceStatus.NoDevice);
         }
         IStatusPbk pbk = xfsStatus.makeStatusPbk();
         if(msg.getPbk() != null){
         	pbk.setStatus(msg.getPbk());
         	pbk.setCode(msg.getPbkCode());
         	pbk.setHwCode(msg.getPbkHwCode());
+        }else{
+        	pbk.setStatus(DeviceStatus.NoDevice);
         }
         xfsStatus.setModStatus(msg.getModStatus());
         
@@ -144,18 +165,24 @@ public class StatusController {
 	        icc.setCards(msg.getIccReatianCard());
 	        icc.setHwCode(msg.getIccHwCode());
 	        icc.setIccCurrCards(msg.getIccCurrentCount()) ;
+        }else{
+        	icc.setStatus(DeviceStatus.NoDevice);
         }
-        IStatusFgp  fgp = xfsStatus.makeStatusFgp() ;
+        IStatusFgp fgp = xfsStatus.makeStatusFgp() ;
         if(msg.getFgp() != null){
 	        fgp.setStatus(msg.getFgp()) ;
 	        fgp.setCode(msg.getFgpCode()) ;
 	        fgp.setHwCode(msg.getFgpHwCode()) ;
+        }else{
+        	fgp.setStatus(DeviceStatus.NoDevice);
         }
-        IStatusIsc  isc = xfsStatus.makeStatusIsc() ;
+        IStatusIsc isc = xfsStatus.makeStatusIsc() ;
         if(msg.getIsc() != null){
 	        isc.setStatus(msg.getIsc()) ;
 	        isc.setCode(msg.getIscCode()) ;
 	        isc.setHwCode(msg.getIscHwCode()) ;
+        }else{
+        	isc.setStatus(DeviceStatus.NoDevice);
         }
 
         xfsStatus.setStatusIdc(idc);
