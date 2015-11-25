@@ -47,10 +47,7 @@ public class DayBackupService implements IDayBackupService {
     @Transactional(readOnly=true)
     public IPageResult<IDayBackupLog> pageList(int start, int limit, IFilter filter) {
     	StringBuffer hql = new StringBuffer();
-    	hql.append(" from DayBackupLog dayBackupLog where 1=1 order by dayBackupLog.date desc ");
-    	
-//        List<IDayBackupLog> dayBackupLogs = dao.findByFilter(filter, IDayBackupLog.class);
-//        return new PageResult<IDayBackupLog>(dayBackupLogs, start, limit);
+    	hql.append(" from DayBackupLog dayBackupLog where 1=1 order by dayBackupLog.date desc ");    	
     	return (IPageResult<IDayBackupLog>)dao.page(start, limit, filter, hql.toString());
     }
 

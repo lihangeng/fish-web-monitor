@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -85,28 +86,24 @@ public class DaybackupInfoController {
 		ModelMap map = new ModelMap();
 		IFilter filter = new Filter();
 
-		String date = request.getParameter("date");
-		String doTime = request.getParameter("doTime");
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
 		String result = request.getParameter("dayBackupResult");
-		String endTime = request.getParameter("endTime");
 
-		if (date != null && !date.isEmpty()) {
-			filter.eq("date", date);
+		if (startDate != null && !startDate.isEmpty()) {
+			filter.ge("date", startDate);
 		}
-		if (doTime != null && !doTime.isEmpty()) {
-			filter.ge("doTime", doTime);
-			filter.le("doTime", doTime + " 23:59:59");
+		if (endDate != null && !endDate.isEmpty()) {
+			filter.le("date", endDate + " 23:59:59");
 		}
 		if (result != null && !result.isEmpty()) {
 			filter.eq("result", DayBackupResult.valueOf(result));
 		}
-		if (endTime != null && !endTime.isEmpty()) {
-			filter.ge("endTime", endTime);
-			filter.le("endTime", endTime + " 23:59:59");
-		}
 		IPageResult<IDayBackupLog> pageResult = dayBackupService.pageList(start, limit, filter);
+		Map<String,IAtmLogInfo> getBackUpInfo = atmLogInfoService.getBackUpInfo(startDate, endDate);
+		
 		map.addAttribute("total", pageResult.getTotal());
-		map.addAttribute("data", DayBackupLogForm.toForms(pageResult.list()));
+		map.addAttribute("data", DayBackupLogForm.toForms(pageResult.list(),getBackUpInfo));
 		map.addAttribute(FishConstant.SUCCESS, true);
 		return map;
 	}
@@ -126,7 +123,7 @@ public class DaybackupInfoController {
 		return map;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+/*	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request, HttpSession session) {
 		logger.info(String.format("search atmLogInfo : start = %s ,limt = %s ", start, limit));
@@ -138,14 +135,13 @@ public class DaybackupInfoController {
 
 		ModelMap result = new ModelMap();
 
-		IPageResult<IAtmLogInfo> page = atmLogInfoService.pageList(start, limit, filter, orgId);
 
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("total", page.getTotal());
 		result.addAttribute("data", getAtmLogInfoForms(page.list()));
 
 		return result;
-	}
+	}*/
 
 	private List<AtmLogInfoForm> getAtmLogInfoForms(List<IAtmLogInfo> lists) {
 		List<AtmLogInfoForm> forms = new ArrayList<AtmLogInfoForm>();

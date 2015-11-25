@@ -1,7 +1,9 @@
 package com.yihuacomputer.fish.atmlog.service.db;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.SQLQuery;
 import org.hibernate.type.StandardBasicTypes;
@@ -32,58 +34,38 @@ public class AtmLogInfoService implements IAtmLogInfoService {
 
 	@SuppressWarnings("unchecked")
     @Transactional(readOnly=true)
-	public IPageResult<IAtmLogInfo> pageList(int start, int limit, IFilter filter, long orgId) {
-	    IOrganization org = orgService.get(String.valueOf(orgId));
+	public Map<String,IAtmLogInfo> getBackUpInfo(String backupStartDay , String backupEndDay) {
 	    StringBuffer sql = new StringBuffer();
-	    sql.append("select org.ID id,org.NAME orgName,appLogs.DATE_TIME backupDate, ");
-	    sql.append("SUM(case appLogs.BACKUP_RESULT ");
-	    sql.append("when 'SUCCESS' then 1 ");
-	    sql.append("else 0 ");
-	    sql.append("end) backupSuccessNumber, ");
-	    sql.append("SUM(case appLogs.BACKUP_RESULT ");
+	    sql.append("select appLogs.DATE_TIME backupDate, ");
+	    sql.append(" SUM(case appLogs.BACKUP_RESULT ");
+	    sql.append(" when 'SUCCESS' then 1 ");
+	    sql.append(" else 0 ");
+	    sql.append(" end) backupSuccessNumber, ");
+	    sql.append(" SUM(case appLogs.BACKUP_RESULT ");
 	    sql.append(" when 'ERROR_CONNECT' then 1 ");
 	    sql.append(" when 'ERROR_NOLOG' then 1 ");
 	    sql.append(" when 'UNDO' then 1 ");
 	    sql.append(" when 'ERROR' then 1 ");
-	    sql.append("else 0 ");
-	    sql.append("end) backupErrorNumber  ");
-	    sql.append("from ATMC_APP_LOGS appLogs,DEV_INFO device,SM_ORG org ");
-	    sql.append("where appLogs.TERMINAL_ID = device.TERMINAL_ID and device.ORG_ID = org.ID ");
-	    sql.append(" and org.ORG_FLAG like '%").append(org.getOrgFlag()).append("' ").append(" ${filters}");
-	    sql.append(" group by org.ID,org.NAME,appLogs.DATE_TIME order by appLogs.DATE_TIME desc");
-
-	    String filterStr = getFilter(filter);
-	    String realSql = sql.toString().replace("${filters}",filterStr);
-
-	    int total = getTotal(realSql);
-
-	    SQLQuery query = dao.getSQLQuery(realSql.toString());
-	  /*  query.setResultTransformer(Transformers.aliasToBean(AtmLogInfo.class));*/
-	    query.addScalar("id",StandardBasicTypes.INTEGER);
-	    query.addScalar("orgName",StandardBasicTypes.STRING);
+	    sql.append(" else 0 ");
+	    sql.append(" end) backupErrorNumber ");
+	    sql.append(" from ATMC_APP_LOGS appLogs ");
+	    sql.append(" where appLogs.DATE_TIME >= ").append("'"+backupStartDay+"'");
+	    sql.append(" and appLogs.DATE_TIME <= ").append("'"+backupEndDay+"'");
+        sql.append(" group by appLogs.DATE_TIME order by appLogs.DATE_TIME desc");
+	    SQLQuery query = dao.getSQLQuery(sql.toString());
 	    query.addScalar("backupDate",StandardBasicTypes.STRING);
 	    query.addScalar("backupSuccessNumber",StandardBasicTypes.INTEGER);
 	    query.addScalar("backupErrorNumber",StandardBasicTypes.INTEGER);
-        query.setFirstResult(start);
-        query.setMaxResults(limit);
         List<Object> infos = query.list();
-        List<IAtmLogInfo> lists = new ArrayList<IAtmLogInfo>();
+        Map<String,IAtmLogInfo> atmLogMap = new HashMap<String,IAtmLogInfo>();
         for(Object item : infos){
             IAtmLogInfo info = new AtmLogInfo();
-            Object [] objs = (Object[])item;
-            info.setId(Long.parseLong(objs[0].toString()));
-            info.setOrgName(objs[1].toString());
-            info.setBackupDate(DateUtils.getDate(objs[2].toString()));
-            info.setBackupSuccessNumber(Integer.parseInt(objs[3].toString()));
-            info.setBackupErrorNumber(Integer.parseInt(objs[4].toString()));
-            info.setTotalBackupNumber(info.getBackupErrorNumber() + info.getBackupSuccessNumber());
-            lists.add(info);
+            Object [] objs = (Object[])item;           
+            info.setBackupSuccessNumber(Integer.parseInt(objs[1].toString()));
+            info.setBackupErrorNumber(Integer.parseInt(objs[2].toString()));
+            atmLogMap.put(objs[0].toString(), info);
         }
-
-        PageResult<IAtmLogInfo> page = new PageResult<IAtmLogInfo>();
-        page.setData(lists);
-        page.setTotal(total);
-		return page;
+        return atmLogMap;		
 	}
 
 	private String getFilter(IFilter filter) {

@@ -37,12 +37,32 @@ Ext.define('Eway.view.atmLog.DayBackupGrid',{
 				dataIndex : 'endTime',
 				flex : 1
 			},{
-				header : EwayLocale.atmLog.logDevAccount,
-				dataIndex : 'deviceCount',
-				flex : 1
+				header : EwayLocale.atmLog.logDevSucAccount,
+				dataIndex : 'deviceSucCount',
+				flex : .8,
+				align:'center',
+				renderer:function(value,meta,record){
+					if(value >0){
+						return "<a class='link' href='#'>"+ value.toString() + "</a>";
+					}else{
+						return value;
+					}
+				}
+			},{
+				header : EwayLocale.atmLog.logDevFailAccount,
+				dataIndex : 'deviceFailCount',
+				align:'center',
+				flex : .8,
+				renderer:function(value,meta,record){
+					if(value >0){
+						return "<a class='link' href='#'>"+ value.toString() + "</a>";
+					}else{
+						return value;
+					}
+				}
 			},{
 				xtype:'actioncolumn',
-				flex : .5,
+				flex : .7,
 				header: EwayLocale.atmLog.reform,
 				dataIndex : 'backupResult',
 				items : [{
