@@ -695,7 +695,10 @@ pre.link{
 .monitor-div-box-Unknown {
 	background: url(../images/monitor/monitor.png) -192px 0px no-repeat !important;
 }
-
+/*钞箱状态-无设备*/
+.monitor-div-box-NoDevice {
+	background: url(../images/monitor/monitor.png) -224px 0px no-repeat !important;
+}
 
 /*网络状态-未知*/
 .monitor-div-net-Unknown {
@@ -830,7 +833,10 @@ pre.link{
 #images-view.maxicon .monitor-div-box-Unknown {
 	background: url(../images/monitor/max_monitor.png) -384px 0px no-repeat !important;
 }
-
+/*钞箱状态-无设备*/
+#images-view.maxicon .monitor-div-box-NoDevice {
+	background: url(../images/monitor/max_monitor.png) -448px 0px no-repeat !important;
+}
 
 /*网络状态-未知*/
 #images-view.maxicon .monitor-div-net-Unknown {
@@ -969,7 +975,10 @@ pre.link{
 .monitor_minicon.monitor-div-box-Unknown {
 	background: url(../images/monitor/min_monitor.png) -102px 0px no-repeat !important;
 }
-
+/*钞箱状态-无设备*/
+.monitor_minicon.monitor-div-box-NoDevice {
+	background: url(../images/monitor/min_monitor.png) -119px 0px no-repeat !important;
+}
 
 /*网络状态-未知*/
 .monitor_minicon.monitor-div-net-Unknown {

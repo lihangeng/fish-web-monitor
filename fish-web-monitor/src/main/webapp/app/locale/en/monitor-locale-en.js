@@ -78,10 +78,10 @@ Ext.apply(EwayLocale,{
 				pin:'PIN',//EwayLocale.monitor.devMonitor.mod.pin 密码键盘
 				ttu:'TTU',//EwayLocale.monitor.devMonitor.mod.ttu 文本终端
 				isc:'ID Scanner',//EwayLocale.monitor.devMonitor.mod.isc 身份证扫描仪
-				icc:'Card Dispenser',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
+				icc:'Dispenser Card',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
 				fgp:'Finger Printer',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
 				healthy:'Healthy',//EwayLocale.monitor.devMonitor.mod.healthy 模块正常
-				pbk:'Passbook Printer'//EwayLocale.monitor.devMonitor.mod.pbk 存折打印机
+				pbk:'Passbk Printer'//EwayLocale.monitor.devMonitor.mod.pbk 存折打印机
 			},
 			remote:{
 				control:'Remote Control',//EwayLocale.monitor.devMonitor.remote.control 远程控制
@@ -401,7 +401,7 @@ Ext.apply(EwayLocale,{
 			clickAddLoadFile:'Add the list of download on click',//单击添加到下载列表
 			removeFile:'Remove the file from list',//删除
 			mustIncludeOneFile:'Must exit File to downLoad.',
-			resetBackUp：'Click to backup the logs of this day.',
+			resetBackUp:'Click to backup the logs of this day.',
 			backupAppLogsSuccess:'backup atmc logs success.',
 			backupAppLogsFail:'backup atmc logs faile.',
 			backupLogSucList:' backup atmc logs list success.',
