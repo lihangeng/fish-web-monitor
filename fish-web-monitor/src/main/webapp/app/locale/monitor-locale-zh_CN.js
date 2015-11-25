@@ -79,8 +79,8 @@ Ext.apply(EwayLocale,{
 				isc:'身份证扫描仪',//EwayLocale.monitor.devMonitor.mod.isc
 				icc:'发卡器',//EwayLocale.monitor.devMonitor.mod.icc
 				fgp:'指纹仪',//EwayLocale.monitor.devMonitor.mod.fgp
-				healthy:'模块正常'//EwayLocale.monitor.devMonitor.mod.healthy
-
+				healthy:'模块正常',//EwayLocale.monitor.devMonitor.mod.healthy
+				pbk:'存折打印机'//EwayLocale.monitor.devMonitor.mod.pbk
 			},
 			remote:{
 				control:'远程控制',//EwayLocale.monitor.devMonitor.remote.control

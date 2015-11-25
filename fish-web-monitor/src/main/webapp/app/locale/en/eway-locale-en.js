@@ -493,6 +493,7 @@ Ext.apply(EwayLocale,{
 		fatal:'Fatal',//EwayLocale.commen.fatal 故障
 		unStable:'UnStable',//EwayLocale.commen.unStable 不稳定
 		unknow:'Unknown',//EwayLocale.commen.unknow 未知
+		noDevice:'NoDevice',//EwayLocale.commen.noDevice 无设备
 		description:'Description',//EwayLocale.commen.description 描述
 		info:'Detail',//EwayLocale.commen.info 详细信息
 		startDataTime:'Start time',//EwayLocale.commen.startDataTime 开始时间

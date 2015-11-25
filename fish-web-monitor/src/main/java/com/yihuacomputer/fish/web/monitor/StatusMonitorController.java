@@ -273,6 +273,10 @@ public class StatusMonitorController {
                 stateCode = status.getStatusFgp().getCode();
                 break;
             }
+            case PBK: {
+                stateCode = status.getStatusPbk().getCode();
+                break;
+            }
         }
 
         IStateAnalysis analysis = this.getStateCode(stateCode, deviceMod);

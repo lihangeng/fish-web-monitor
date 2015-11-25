@@ -494,6 +494,7 @@ Ext.apply(EwayLocale,{
 		fatal:'故障',//EwayLocale.commen.fatal
 		unStable:'不稳定',//EwayLocale.commen.unStable
 		unknow:'未知',//EwayLocale.commen.unknow
+		noDevice:'无设备',//EwayLocale.commen.noDevice
 		description:'描述',//EwayLocale.commen.description
 		info:'详细信息',//EwayLocale.commen.info
 		startDataTime:'开始时间',//EwayLocale.commen.startDataTime

@@ -644,7 +644,7 @@ pre.link{
 
 
 /*模块状态-无模块*/
-.monitor-div-mod-Nodevice {
+.monitor-div-mod-NoDevice {
 	background: url(../images/monitor/monitor.png) left -32px no-repeat !important;
 }
 /*模块状态-未知*/
@@ -779,7 +779,7 @@ pre.link{
 
 
 /*模块状态-无模块*/
-#images-view.maxicon .monitor-div-mod-Nodevice {
+#images-view.maxicon .monitor-div-mod-NoDevice {
 	background: url(../images/monitor/max_monitor.png) left -64px no-repeat !important;
 }
 /*模块状态-未知*/
@@ -918,7 +918,7 @@ pre.link{
 
 
 /*模块状态-无模块*/
-.monitor_minicon.monitor-div-mod-Nodevice {
+.monitor_minicon.monitor-div-mod-NoDevice {
 	background: url(../images/monitor/min_monitor.png) left -17px no-repeat !important;
 }
 /*模块状态-未知*/
