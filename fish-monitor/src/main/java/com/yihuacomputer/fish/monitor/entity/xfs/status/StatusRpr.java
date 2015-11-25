@@ -23,7 +23,7 @@ public class StatusRpr implements IStatusRpr {
     private String rprHwCode;
 
     public StatusRpr() {
-        this.rpr = DeviceStatus.NoDevice;
+        this.rpr = DeviceStatus.Unknown;
     }
 
     /**

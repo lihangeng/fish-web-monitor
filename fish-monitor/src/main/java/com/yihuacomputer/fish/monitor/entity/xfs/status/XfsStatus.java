@@ -105,7 +105,7 @@ public class XfsStatus implements IXfsStatus {
     public XfsStatus() {
         this.boxCurrentCount = -1;
         this.boxInitCount = -1;
-        this.boxStatus = BoxStatus.NoDevice;
+        this.boxStatus = BoxStatus.Unknown;
         this.runStatus = RunStatus.Unknown;
         this.netStatus = NetStatus.Unknown;
         this.modStatus = DeviceStatus.Unknown;

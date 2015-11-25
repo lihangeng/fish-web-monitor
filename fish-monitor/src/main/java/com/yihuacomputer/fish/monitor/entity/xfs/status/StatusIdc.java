@@ -26,7 +26,7 @@ public class StatusIdc implements IStatusIdc {
     private String idcHwCode;
 
     public StatusIdc() {
-        this.idc = DeviceStatus.NoDevice;
+        this.idc = DeviceStatus.Unknown;
         this.cards = -1;
     }
 
