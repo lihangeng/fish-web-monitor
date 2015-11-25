@@ -50,17 +50,13 @@ import com.yihuacomputer.fish.api.atmlog.BackupResult;
 import com.yihuacomputer.fish.api.atmlog.IAtmCycle;
 import com.yihuacomputer.fish.api.atmlog.IAtmLog;
 import com.yihuacomputer.fish.api.atmlog.IAtmLogService;
-import com.yihuacomputer.fish.api.atmlog.IBackupFileCfg;
 import com.yihuacomputer.fish.api.atmlog.ICustomerCycle;
 import com.yihuacomputer.fish.api.atmlog.IJournalFileService;
 import com.yihuacomputer.fish.api.atmlog.ITransCycle;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
-import com.yihuacomputer.fish.atmlog.rule.BackupRule;
 import com.yihuacomputer.fish.web.daily.form.AtmLogForm;
 import com.yihuacomputer.fish.web.daily.form.AtmLogTotal;
-import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
 @RequestMapping("/machine/atmLog")
@@ -83,20 +79,13 @@ public class AtmLogController {
 	@Autowired
 	private IAtmLogService logService;
 
-	@Autowired
-	private IBackupFileCfg backupFileCfg;
 
-	@Autowired
-	private BackupRule rule;
 
 	@RequestMapping(value = "/getBackup", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap getBackup(@RequestParam int start, @RequestParam int limit, WebRequest request, HttpSession session) {
 		ModelMap map = new ModelMap();
-		UserSession user = (UserSession) session.getAttribute(FishWebUtils.USER);
-
 		IFilter filter = new Filter();
-
 		String terminalId = request.getParameter("terminalId");
 		String dateTime = request.getParameter("dateTime");
 		String backupResult = request.getParameter("backupResult");
@@ -481,11 +470,11 @@ public class AtmLogController {
             httpFileCfg.setRetry(true);
         }
         BackupResult ret = BackupResult.ERROR;
-         ret = this.getBackupResult(HttpFileClient.downloadFile(httpFileCfg));       
-        if(ret.equals(HttpFileRet.SUCCESS)){
+         ret = this.getBackupResult(HttpFileClient.downloadFile(httpFileCfg)); 
+        if(ret.equals(BackupResult.SUCCESS)){
             result.addAttribute("path", localPath);
             result.addAttribute("fileName", localName);
-            IAtmLog log = logService.getAtmLog(rule.getTerminalId(), rule.getBackupDate());
+            IAtmLog log = logService.getAtmLog(terminalId, dateTime);
     		log.setDoTimes(log.getDoTimes()+1);
     		log.setLastDoDate(DateUtils.getTimestamp(new Date()));
     		if(ret.equals(BackupResult.SUCCESS)){
@@ -494,18 +483,6 @@ public class AtmLogController {
     		log.setBackupResult(ret);
     		logService.updateAtmLog(log);    	
             result.addAttribute(FishConstant.SUCCESS, true);
-        }else if(ret.equals(HttpFileRet.CFG_ERROR)){
-            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failParam", null, FishCfg.locale));
-            result.addAttribute(FishConstant.SUCCESS, false);
-        }else if(ret.equals(HttpFileRet.REQ_FILE_NOTEXIT)){
-            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failNotExist", null, FishCfg.locale));
-            result.addAttribute(FishConstant.SUCCESS, false);
-        }else if(ret.equals(HttpFileRet.CONN_ERROR)){
-            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failConn", null, FishCfg.locale));
-            result.addAttribute(FishConstant.SUCCESS, false);
-        }else if(ret.equals(HttpFileRet.URL_ERROR)){
-            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.failURL", null, FishCfg.locale));
-            result.addAttribute(FishConstant.SUCCESS, false);
         }else if(ret.equals(HttpFileRet.ERROR)){
             result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.error", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
