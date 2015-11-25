@@ -45,7 +45,7 @@ Ext.define('Eway.view.report.baseReport.TransactionCountReportFilter', {
 				}
 				return validStatus;
 			},
-			cardInfoDateRangeText : EwayLocale.tip.dateReSelect,
+			cardInfoDateRangeText : EwayLocale.tip.dateReSelect
 		});
 		var levelStore = Ext.create('Eway.store.person.organization.OrganizationLevelDict');
 		Ext.apply(this, {

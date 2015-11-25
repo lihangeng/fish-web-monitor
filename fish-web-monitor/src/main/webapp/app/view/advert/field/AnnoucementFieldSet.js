@@ -135,7 +135,7 @@ Ext.define('Eway.view.advert.field.AnnoucementFieldSet', {
 		                name:'second',
 		                width:50
 		            },
-		            {xtype: 'displayfield', value: EwayLocale.advert.secondDisplay},//'秒'}
+		            {xtype: 'displayfield', value: EwayLocale.advert.secondDisplay}//'秒'}
 
 		        ]
 		    },{
@@ -181,7 +181,7 @@ Ext.define('Eway.view.advert.field.AnnoucementFieldSet', {
 		                name:'second',
 		                width:50
 		            },
-		            {xtype: 'displayfield', value: EwayLocale.advert.secondDisplay},//'秒'}
+		            {xtype: 'displayfield', value: EwayLocale.advert.secondDisplay}//'秒'}
 		           ]
 		       }]
 		});

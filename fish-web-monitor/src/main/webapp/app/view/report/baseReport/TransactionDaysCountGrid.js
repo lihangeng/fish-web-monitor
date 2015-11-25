@@ -57,7 +57,7 @@ Ext.define('Eway.view.report.baseReport.TransactionDaysCountGrid', {
                 type: 'category',
                 fields: 'month',
                 position: 'bottom',
-                grid: true,
+                grid: true
                 /*renderer: function (v) {
                     return v.substring(4);
                 },

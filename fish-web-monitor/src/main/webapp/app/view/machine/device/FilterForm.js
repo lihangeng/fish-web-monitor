@@ -44,7 +44,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
 				}, {
 					xtype : 'field_atmType_DeviceAtmVendorComboBox',
-					fieldLabel : EwayLocale.machine.atmGroup.devVendorName,
+					fieldLabel : EwayLocale.machine.atmGroup.devVendorName
 				}]
 			}, {
 				columnWidth : .38,
@@ -84,7 +84,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 				},
 				items : [{
 						xtype : 'field_atmType_DeviceAtmCatalogComboBox',
-						fieldLabel : EwayLocale.machine.atmGroup.devCatalogName,
+						fieldLabel : EwayLocale.machine.atmGroup.devCatalogName
 					},{
 						xtype : 'combobox',
 						fieldLabel : EwayLocale.machine.device.onBankSignal,

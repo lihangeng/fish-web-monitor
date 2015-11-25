@@ -23,7 +23,7 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 				text: EwayLocale.button.search,//'查询',
 				glyph : 0xf002,
 				action: 'taskquery',
-				tooltip:EwayLocale.version.download.taskQueryTips,//'根据条件查询选中作业下的详情信息'
+				tooltip:EwayLocale.version.download.taskQueryTips//'根据条件查询选中作业下的详情信息'
 			},{
 				text: EwayLocale.button.exported,//'导出',
 				glyph : 0xf1c3,
@@ -75,7 +75,7 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 				header: EwayLocale.version.task.jobBatchName,//'作业批次名称',
 				width:180,
 				dataIndex:'jobName'
-			
+
 			},{
 				header: EwayLocale.refs.terminalId,//'设备编号',
 				width:100,
@@ -157,7 +157,7 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 						var taskId = record.get('id');
 //						Ext.MessageBox.confirm('提示','执行重启命令可能存在风险,确认重启?',callBack);
 						Ext.MessageBox.confirm(EwayLocale.confirm.title,EwayLocale.version.task.restartATMTips,callBack);
-						
+
 	            		function callBack(id){
 	            			if(id == 'yes'){
 								Ext.Ajax.request({

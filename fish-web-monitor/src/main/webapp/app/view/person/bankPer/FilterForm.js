@@ -48,7 +48,7 @@ Ext.define('Eway.view.person.bankPer.FilterForm', {
 			}, {
 				columnWidth : .3,
 				defaults : {
-					labelAlign : 'right',
+					labelAlign : 'right'
 				},
 				items : [ {
 					fieldLabel : EwayLocale.commen.jobNum,

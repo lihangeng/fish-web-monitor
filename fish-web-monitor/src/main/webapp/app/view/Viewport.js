@@ -20,7 +20,7 @@ Ext.define('Eway.view.Viewport', {
 		Ext.apply(this, {
 			items : [ {
 				region : 'north',
-				xtype : 'appheader',
+				xtype : 'appheader'
 			}, {
 				region : 'west',
 				width : 205,
