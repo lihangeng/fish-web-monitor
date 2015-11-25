@@ -26,12 +26,13 @@ Ext.apply(EwayLocale,{
 			tradeCount:'Transaction count',//EwayLocale.report.baseReport.tradeCount
 			angle : 'Statistical dimension',//EwayLocale.report.baseReport.angle
 			device : 'Device',//EwayLocale.report.baseReport.device
-			vendor : 'Device brand',//EwayLocale.report.baseReport.vendor
-			devType : 'Device type',//EwayLocale.report.baseReport.devType
-			mod : 'Device module',//EwayLocale.report.baseReport.mod
+			vendor : 'Device Brand',//EwayLocale.report.baseReport.vendor
+			devType : 'Device Type',//EwayLocale.report.baseReport.devType
+			mod : 'Device Modules',//EwayLocale.report.baseReport.mod
 			rank : 'Top',//EwayLocale.report.baseReport.rank
 			caseStatisticsRep:'Fault Statistic Chart',//EwayLocale.report.baseReport.caseStatisticsRep
-			statisticsDays : 'Time scope',//EwayLocale.report.baseReport.statisticsDays
+			statisticsDays : 'Time Scope',//EwayLocale.report.baseReport.statisticsDays
+			caseTrendReportTitle: 'Fault Trend Chart'//EwayLocale.report.baseReport.caseTrendReportTitle
 		},
 		openrate:{
 			device:{

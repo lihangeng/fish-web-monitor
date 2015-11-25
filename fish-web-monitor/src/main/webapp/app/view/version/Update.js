@@ -8,7 +8,7 @@ Ext.define('Eway.view.version.Update', {
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
-	width: 600,
+	width: 700,
 
 	initComponent: function() {
 		var comboVersioncStore = Ext.create('Ext.data.Store',{
@@ -30,8 +30,8 @@ Ext.define('Eway.view.version.Update', {
 				bodyStyle : 'padding: 10px 10px 30px 10px',
 				selectOnFocus : true,
 				defaults: {
-					anchor: '100%',
-					labelWidth: 100,
+					anchor: '90%',
+					labelWidth: 180,
 					labelAlign: 'right',
 					msgTarget : 'side'
 				},

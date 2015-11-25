@@ -64,7 +64,7 @@ Ext.define('Eway.controller.version.Version', {
 	
 	loadChartsInfo:function(record){
 		var me = this;
-		if(undefined==record){
+		if(undefined==record||record.get("id")==0){
 			return;
 		}
 		var chartsStore = this.getEwayView().down("bar_3d cartesian").getStore();
@@ -354,6 +354,7 @@ Ext.define('Eway.controller.version.Version', {
 	onAddConfirm : function(){
 		var me = this;
 		var win = this.getAddWin();
+		var grid = this.getGrid();
 		var addForm = win.down('form').getForm();
 		var data = addForm.getValues();
 		var record = Ext.create('Eway.model.version.Version',data);
@@ -377,7 +378,7 @@ Ext.define('Eway.controller.version.Version', {
 							 	Eway.alert(EwayLocale.addSuccess);
 //								store.insert(0,ed);
 								win.close();
-								me.onQuery();
+								grid.getStore().load();
 							 },
 							 failure: function(record,operation){
 							 	winEl.unmask();
@@ -445,17 +446,20 @@ Ext.define('Eway.controller.version.Version', {
 
 	//保存 “修改后的版本信息”
 	onUpdateConfirm: function() {
-		var record = this.getGrid().getSelectionModel().getLastSelected();
+		var grid = this.getGrid();
+		var record = grid.getSelectionModel().getLastSelected();
 		var win = this.getUpdateWin();
+		var id = record.get("id");
 		var updateForm = win.down("form").getForm();
 		var store = this.getVersionStore();
 		if(updateForm.isValid() && updateForm.isDirty()){
 			updateForm.updateRecord(record);//把form中的值写回到store中
+//			record.set("id",id);
 			record.save({
 				 success: function(ed) {
 					Eway.alert(EwayLocale.updateSuccess);
 					win.close();
-					this.onQuery();
+					grid.getStore().load();
 				 },
 				 failure: function(ed,operation){
 						Eway.alert(operation.getError());
@@ -482,7 +486,7 @@ Ext.define('Eway.controller.version.Version', {
 							success: function(){
 								this.getVersionStore().remove(record);
 								Eway.alert(EwayLocale.updateSuccess);
-								this.onQuery();
+								grid.getStore().load();
 							},
 							failure:  function(record,operation){
 								//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update

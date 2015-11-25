@@ -35,6 +35,8 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 							var text = field.getEl().down('a.link');
 							if (text) {
 								text.on('click', function(e, htmlEl) {
+									var win = field.up('window');
+									
 									var form = field.up('form');
 									var code = form.down('displayfield[name="code"]').getValue();
 									var ip = form.down('displayfield[name="ip"]').getValue();
@@ -42,7 +44,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									ip = Ext.util.Format.stripTags(ip);
 
 									var controller = this.getController('machine.device.DevicePropertyStatusDetail');
-									controller.display(code, ip);
+									controller.display(code, ip, win.record);
 								}, this);
 							}
 						},
@@ -362,7 +364,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				
 				
 				'monitor_device_DeviceInfoStatus displayfield[name="idcStatus"]' : {
-					change : {
+					afterrender : {
 						fn : function(field) {
 							var text = field.getEl().down('a.link');
 							if (text) {
@@ -380,7 +382,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				},
 
 				'monitor_device_DeviceInfoStatus displayfield[name="jprStatus"]' : {
-					change : {
+					afterrender : {
 						fn : function(field) {
 							var text = field.getEl().down('a.link');
 							if (text) {
@@ -401,7 +403,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					scope : this
 				},
 				'monitor_device_DeviceInfoStatus displayfield[name="cdmStatus"]' : {
-					change : {
+					afterrender : {
 						fn : function(field) {
 							var text = field.getEl().down('a.link');
 							if (text) {
@@ -422,7 +424,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					scope : this
 				},
 				'monitor_device_DeviceInfoStatus displayfield[name="pinStatus"]' : {
-					change : {
+					afterrender : {
 						fn : function(field) {
 							var text = field.getEl().down('a.link');
 							if (text) {
@@ -443,7 +445,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					scope : this
 				},
 				'monitor_device_DeviceInfoStatus displayfield[name="cimStatus"]' : {
-					change : {
+					afterrender : {
 						fn : function(field) {
 							var text = field.getEl().down('a.link');
 							if (text) {
@@ -464,7 +466,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					scope : this
 				},
 				'monitor_device_DeviceInfoStatus displayfield[name="siuStatus"]' : {
-					change : {
+					afterrender : {
 						fn : function(field) {
 							var text = field.getEl().down('a.link');
 							if (text) {
@@ -485,7 +487,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					scope : this
 				},
 				'monitor_device_DeviceInfoStatus displayfield[name="rprStatus"]' : {
-					change : {
+					afterrender : {
 						fn : function(field) {
 							var text = field.getEl().down('a.link');
 							if (text) {
@@ -506,7 +508,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					scope : this
 				},
 				'monitor_device_DeviceInfoStatus displayfield[name="ttuStatus"]' : {
-					change : {
+					afterrender : {
 						fn : function(field) {
 							var text = field.getEl().down('a.link');
 							if (text) {
@@ -527,7 +529,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					scope : this
 				},
 				'monitor_device_DeviceInfoStatus displayfield[name="iscStatus"]' : {
-					change : {
+					afterrender : {
 						fn : function(field) {
 							var text = field.getEl().down('a.link');
 							if (text) {
@@ -548,7 +550,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					scope : this
 				},
 				'monitor_device_DeviceInfoStatus displayfield[name="iccStatus"]' : {
-					change : {
+					afterrender : {
 						fn : function(field) {
 							var text = field.getEl().down('a.link');
 							if (text) {
@@ -569,7 +571,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					scope : this
 				},
 				'monitor_device_DeviceInfoStatus displayfield[name="fgpStatus"]' : {
-					change : {
+					afterrender : {
 						fn : function(field) {
 							var text = field.getEl().down('a.link');
 							if (text) {
@@ -1157,6 +1159,9 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	//显示设备详情页面
 	displayWin : function(record) {
 		var win = Ext.widget('monitor_device_DeviceInfoStatus');
+		
+		win.setRecord(record);
+		
 		win.setTitle(EwayLocale.tip.business.device.term + "(" + record.data.code + ")" +EwayLocale.tip.business.device.detail);
 		win.on('afterrender',function(){
 			win.fillForm(record);

@@ -12,7 +12,7 @@ Ext.apply(EwayLocale,{
 			orgLevel:'Level',//EwayLocale.person.bankOrg.orgLevel 机构级别
 			orgNavi:'Navigator',//EwayLocale.person.bankOrg.orgNavi 机构导航
 			zip:'Zip',//EwayLocale.person.bankOrg.zip 邮政编码
-			removeManager:'Remove',//EwayLocale.person.bankOrg.removeManager 删除
+			removeManager:'Delete',//EwayLocale.person.bankOrg.removeManager 删除
 			manager:'Manager',//EwayLocale.person.bankOrg.manager 管理员
 			address:'Address',//EwayLocale.person.bankOrg.address 机构地址
 			upgradeOrg:'Upper',//EwayLocale.person.bankOrg.upgradeOrg 上级机构

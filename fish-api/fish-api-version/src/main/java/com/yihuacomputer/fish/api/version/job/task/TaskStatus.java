@@ -16,6 +16,7 @@ public enum TaskStatus {
 	NOTICED(30, "TaskStatus.NOTICED"),
 	NOTICED_FAIL(31,"TaskStatus.NOTICED_FAIL"),
 
+	DOWNLOADING(42, "TaskStatus.DOWNLOADING"), // 版本文件正在下载中
 	DOWNLOADED(40, "TaskStatus.DOWNLOADED"), //下发到客户端的临时目录
 	DOWNLOADED_FAIL(41, "TaskStatus.DOWNLOADED_FAIL"),
 

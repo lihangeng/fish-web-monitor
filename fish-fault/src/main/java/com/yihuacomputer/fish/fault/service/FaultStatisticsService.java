@@ -25,14 +25,15 @@ public class FaultStatisticsService implements IFaultStatisticsService{
 	private IGenericDao dao;
 	
 	@Override
-	public List<Object> statisticsFaultTrend(int days) {
+	public List<Object> statisticsFaultTrend(Date start, Date end) {
 		StringBuffer hql = new StringBuffer();
 		hql.append("select caseFault.faultDate,count(*) as faultCount from ").append(CaseFault.class.getName());
-		hql.append(" caseFault where faultDate > ?");
+		hql.append(" caseFault where faultDate >= ? and faultDate <= ? ");
 		hql.append(" group by caseFault.faultDate");
 		hql.append(" order by caseFault.faultDate");
-		Long date = Long.parseLong(DateUtils.get(new Date(), DateUtils.STANDARD_DATE_SHORT));
-		return dao.findByHQL(hql.toString(), Long.valueOf(date.intValue() - days));
+		Long startDate = Long.parseLong(DateUtils.get(start, DateUtils.STANDARD_DATE_SHORT));
+		Long endDate = Long.parseLong(DateUtils.get(end, DateUtils.STANDARD_DATE_SHORT));
+		return dao.findByHQL(hql.toString(), startDate,endDate);
 	}
 
 }

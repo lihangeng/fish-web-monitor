@@ -226,12 +226,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.fgp,
 						name : 'fgpStatus',
 						a_link : true
-					}, {
-						columnWidth : .24,
-						fieldLabel : EwayLocale.monitor.devMonitor.mod.pbk,
-						name : 'pbkStatus',
-						a_link : true
-					}  ]
+					} ]
 				} ]
 			}, {
 				xtype : 'fieldset',
@@ -383,7 +378,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					|| name=='cimStatus' || name=='siuStatus'
 					|| name=='rprStatus' || name=='ttuStatus'
 					|| name=='iccStatus' || name=='iscStatus'
-					|| name=='fgpStatus'||name=='pbkStatus'){
+					|| name=='fgpStatus'){
 						var text = me._getText(value);
 						if(value == 'Warning'){
 							item.setValue('<a href="#" class="link warningHighLight">'+text+'</a>');

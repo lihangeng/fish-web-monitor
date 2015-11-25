@@ -4,7 +4,7 @@ Ext.define('Eway.model.version.Task', {
 	fields: ['id', 'deviceId','terminalId','deviceIp',{name:'taskStatus',defaultValue: 'NEW'},
 	         'jobId','version','excuteTime','success','reason','desc','state','orgName'
 	         ,'jobName','planTime','excuteMachine','downSource',
-	         'versionBeforeUpdate','currentVersion','exceptVersion'],
+	         'versionBeforeUpdate','currentVersion','exceptVersion','process'],
     proxy: {
         type: 'rest',
         url : 'api/version/download/task',

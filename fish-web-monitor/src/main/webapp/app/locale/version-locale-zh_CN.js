@@ -215,7 +215,8 @@ Ext.apply(EwayLocale,{
 			noticeOk : '已通知应用',// EwayLocale.version.taskStatus.noticeOk
 			taskResetSuccessTips : '任务重置成功！',// EwayLocale.version.taskStatus.taskResetSuccessTips
 			taskResetFailTips : '任务重置失败！',// EwayLocale.version.taskStatus.taskResetFailTips
-			noticeFail : '通知应用失败'// EwayLocale.version.taskStatus.noticeFail
+			noticeFail : '通知应用失败',// EwayLocale.version.taskStatus.noticeFail
+			downloading : '正在下载'// EwayLocale.version.taskStatus.downloading
 		},
 		versionCatalog : {
 			app : '应用程序',// EwayLocale.version.versionCatalog.app

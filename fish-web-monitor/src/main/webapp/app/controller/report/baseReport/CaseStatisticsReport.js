@@ -14,9 +14,7 @@ Ext.define('Eway.controller.report.baseReport.CaseStatisticsReport', {
 		xtype : 'baseReport_CaseStatisticsReportView'
 	},{
 		ref : 'grid',
-		selector : 'baseReport_CaseStatisticsReportGrid',
-		autoCreate : true,
-		xtype : 'baseReport_CaseStatisticsReportGrid'
+		selector : 'baseReport_CaseStatisticsReportGrid'
 	} ],
 
 	init : function() {

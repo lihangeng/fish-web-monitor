@@ -96,7 +96,7 @@ Ext.define('Eway.view.report.baseReport.TransactionCountReportFilter', {
 					editable : false,
 					value : Ext.Date.add(new Date(), Ext.Date.DAY, -2),
 					dateRange : {
-						begin : 'beginDate',
+						begin : 'startData',
 						end : 'endDate'
 					},
 					vtype : 'cardInfoDateRange',
@@ -128,8 +128,8 @@ Ext.define('Eway.view.report.baseReport.TransactionCountReportFilter', {
 					editable : false,
 					value : new Date(),
 					dateRange : {
-						begin : 'beginDate',
-						end : 'endDate'
+						begin : 'startData',
+						end : 'endData'
 					},
 					vtype : 'cardInfoDateRange',
 					msgTarget : 'side',

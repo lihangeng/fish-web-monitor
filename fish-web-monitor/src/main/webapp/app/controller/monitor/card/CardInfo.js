@@ -123,7 +123,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 					store.setBaseParam('organizationId',ewayUser.getOrgId());
 					store.loadPage(1);
 				}else{
-					Eway.alert(EwayLocale.tip.input);
+					Eway.alert(EwayLocale.tip.search.warn);
 				}
 
 			},

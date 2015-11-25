@@ -96,6 +96,11 @@ Ext.define('Eway.controller.advert.Advert', {
 	//查询
 	onQuery : function(){
 		var view = this.getEwayView();
+		var form = view.down('advert_filterForm').getForm();
+		if(!form.isValid()){
+			Eway.alert(EwayLocale.tip.search.warn);
+			return ;
+		}
 		var values = view.down('advert_filterForm').getForm().getValues();
 		var store = view.down('advert_grid').getStore();
 		store.setUrlParamsByObject(values);

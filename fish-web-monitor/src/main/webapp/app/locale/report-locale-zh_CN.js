@@ -30,8 +30,9 @@ Ext.apply(EwayLocale,{
 			vendor : '设备品牌',//EwayLocale.report.baseReport.vendor
 			devType : '设备型号',//EwayLocale.report.baseReport.devType
 			mod : '设备模块',//EwayLocale.report.baseReport.mod
-			rank : '排名数',//EwayLocale.report.baseReport.rank
+			rank : 'Top',//EwayLocale.report.baseReport.rank
 			statisticsDays : '统计时间段',//EwayLocale.report.baseReport.statisticsDays
+			caseTrendReportTitle: '故障趋势图'
 		},
 		openrate:{
 			device:{

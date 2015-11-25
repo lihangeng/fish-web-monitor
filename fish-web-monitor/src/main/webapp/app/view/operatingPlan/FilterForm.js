@@ -24,26 +24,28 @@ Ext.define('Eway.view.operatingPlan.FilterForm',{
 				labelAlign : 'left'
 			},
 				columnWidth : .35,
-				xtype : 'form',
 				items : [{
 					xtype : 'datefield',
 					fieldLabel : EwayLocale.machine.serviceplan.openDate,
-					editable : true,
+					editable : false,
 					name : 'startDate',
-					format : 'Y-m-d'
+					format : 'Y-m-d',
+					vtype : 'daterange',
+					endDateField : 'endDate'
 				}]
 			},{
 				defaults : {
 					labelAlign : 'left'
 				},
 				columnWidth : .35,
-				xtype : 'form',
 				items : [{
 					xtype : 'datefield',
-					editable : true,
+					editable : false,
 					fieldLabel : EwayLocale.machine.serviceplan.closeDate,
 					name : 'endDate',
-					format : 'Y-m-d'
+					format : 'Y-m-d',
+					vtype : 'daterange',
+					startDateField : 'startDate'
 				}]
 			}]
 		});

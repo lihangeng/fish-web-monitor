@@ -22,11 +22,11 @@ Ext.define('Eway.view.person.serviceOrg.FilterForm', {
 				columnWidth : .3,
 				items : [{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : EwayLocale.machine.atmGroup.orgName,
+					fieldLabel : EwayLocale.person.serviceOrg.name,
 					emptyText: EwayLocale.combox.select,
 					editable : false,
 					name : 'org',
-					filters : '{"type" : "0"}',
+					filters : '{"type" : "1"}',
 					rootVisible : true,
 					hiddenValue : 'selectedNode'
 				},{
