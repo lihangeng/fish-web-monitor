@@ -6,21 +6,26 @@ Ext.define('Eway.view.atmLog.DayBackup',{
 	requires : [
 		'Eway.view.atmLog.DayBackupGrid',
 		'Eway.view.atmLog.DayBackupFilterForm'
-	],
-	
-	layout : 'border',
-	
-	initComponent : function(){
-		
-		Ext.apply(this,{
-			title : EwayLocale.atmLog.dailyBackup,
+	],	
+	scrollable : true,
+	autoScroll : true,
+	title : EwayLocale.atmLog.title,
+	initComponent : function(){		
+		Ext.apply(this,{			
+			xtype : 'panel',
 			items : [{
 				region : 'north',
 				xtype : 'atmLog_DayBackupFilterForm',
-				height : 70
+				height : 46
 			},{
 				region : 'center',
-				xtype : 'atmLog_DayBackupGrid'
+				xtype : 'atmLog_DayBackupGrid',
+				height : 300
+			},{
+				xtype:'panel',
+				region : 'south',
+				name :'backupDetail',
+				height : 620
 			}]
 		});
 		this.callParent(arguments);

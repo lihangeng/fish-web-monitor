@@ -2,6 +2,7 @@ package com.yihuacomputer.fish.api.atmlog;
 
 
 import java.util.List;
+import java.util.Map;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -14,10 +15,11 @@ public interface IAtmLogInfoService {
 	 * @param filter
 	 * @return
 	 */
-	public IPageResult<IAtmLogInfo> pageList(int start , int limit , IFilter filter,long orgId);
 	
 	
 	public List<IAtmLogInfo> list(long orgId);
 	
 	public List<IAtmLogInfo> listByFilter(long orgId, IFilter filter);
+	
+	public Map<String,IAtmLogInfo> getBackUpInfo(String backupStartDay , String backupEndDay);
 }

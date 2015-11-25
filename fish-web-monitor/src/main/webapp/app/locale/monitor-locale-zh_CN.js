@@ -402,6 +402,11 @@ Ext.apply(EwayLocale,{
             exitDownLoadFile:'添加失败,该文件已添加到下载列表中.',
             removeSuccess:'删除成功.',
             mustIncludeOneFile:'请至少添加一个要下载的文件.',
+            resetBackUp:'点击重新备份当天日志.',
+            backupAppLogsSuccess:'日志备份成功.',
+            backupAppLogsFail:'日志备份失败.',
+            backupLogSucList:'日备份日志成功设备列表.',
+            backupLogFailList:'日备份日志失败设备列表.',
 
 		}
 	}

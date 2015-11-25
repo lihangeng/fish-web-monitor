@@ -578,7 +578,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 					mask.hide();
 				} else {
 					mask.hide();
-					Eway.alert(object.errors);
+					Eway.alert(EwayLocale.agent.remote.loadFailure);
 				}
 			},
 			failure : function() {

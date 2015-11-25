@@ -2,8 +2,10 @@ package com.yihuacomputer.fish.web.daily.form;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.yihuacomputer.fish.api.atmlog.DayBackupResult;
+import com.yihuacomputer.fish.api.atmlog.IAtmLogInfo;
 import com.yihuacomputer.fish.api.atmlog.IDayBackupLog;
 
 public class DayBackupLogForm {
@@ -13,8 +15,10 @@ public class DayBackupLogForm {
 	private String doTime;
 	private String endTime;
 	private int deviceCount;
-	
-	
+	private int deviceSucCount;
+	private int deviceFailCount;
+
+
 	public DayBackupLogForm() {
 	}
 
@@ -28,7 +32,7 @@ public class DayBackupLogForm {
 		this.deviceCount = deviceCount;
 	}
 
-	public static List<DayBackupLogForm> toForms(List<IDayBackupLog> dayBackupLogs){
+	public static List<DayBackupLogForm> toForms(List<IDayBackupLog> dayBackupLogs, Map<String,IAtmLogInfo>getBackUpInfo){
 		List<DayBackupLogForm> forms = new ArrayList<DayBackupLogForm>();
 		for(IDayBackupLog log : dayBackupLogs){
 			DayBackupLogForm form = new DayBackupLogForm();
@@ -36,7 +40,17 @@ public class DayBackupLogForm {
 			form.setResult(log.getResult());
 			form.setDoTime(log.getDoTime());
 			form.setEndTime(log.getEndTime());
-			form.setDeviceCount(log.getDeviceCount());
+			System.out.println("getBackUpInfo.size()" + getBackUpInfo.size());
+			if(getBackUpInfo.get(log.getDate()) != null)
+			{
+				form.setDeviceSucCount(getBackUpInfo.get(log.getDate()).getBackupSuccessNumber());
+				form.setDeviceFailCount(getBackUpInfo.get(log.getDate()).getBackupErrorNumber());
+			}
+			else
+			{
+				form.setDeviceSucCount(0);
+				form.setDeviceFailCount(0);				
+			}
 			forms.add(form);
 		}
 		return forms;
@@ -91,7 +105,24 @@ public class DayBackupLogForm {
 	public void setDeviceCount(int deviceCount) {
 		this.deviceCount = deviceCount;
 	}
-	
+	public int getDeviceSucCount() {
+		return deviceSucCount;
+	}
+
+
+	public void setDeviceSucCount(int deviceSucCount) {
+		this.deviceSucCount = deviceSucCount;
+	}
+
+
+	public int getDeviceFailCount() {
+		return deviceFailCount;
+	}
+
+
+	public void setDeviceFailCount(int deviceFailCount) {
+		this.deviceFailCount = deviceFailCount;
+	}
 	
 	
 	

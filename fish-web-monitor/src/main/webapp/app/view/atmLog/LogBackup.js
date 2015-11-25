@@ -6,22 +6,28 @@ Ext.define('Eway.view.atmLog.LogBackup',{
 	requires : [
 		'Eway.view.atmLog.LogBackupGrid',
 		'Eway.view.atmLog.LogBackupFilterForm'
-	],
-	
-	layout : 'border',
-	
-	initComponent : function(){
-		
+	],	
+	title:{
+	    	height :30
+	      },
+	    tools:[{			
+		    	xtype : 'textfield',
+				fieldLabel : EwayLocale.commen.terminalId,
+				labelWidth : 60,
+				name : 'terminalId'		    	
+			},{				
+					xtype : 'button',
+					text : EwayLocale.button.search,
+					glyph : 0xf002,
+					action : 'query'
+			}],
+	    
+	initComponent : function(){		
 		Ext.apply(this,{
-			title : EwayLocale.atmLog.appLogDownload,
-			
 			items : [{
-				region : 'north',
-				xtype : 'atmLog_LogBackupFilterForm',
-				height : 70
-			},{
 				region : 'center',
-				xtype : 'atmLog_LogBackupGrid'
+				xtype : 'atmLog_LogBackupGrid',
+				height :572
 			}]
 		});
 		this.callParent(arguments);

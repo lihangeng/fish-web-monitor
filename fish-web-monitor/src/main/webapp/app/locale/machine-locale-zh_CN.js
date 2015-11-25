@@ -616,13 +616,14 @@ Ext.apply(EwayLocale,{
 		backupProcess:'正在备份',//EwayLocale.atmLog.backupProcess
 		backupSuccess:'备份成功',//EwayLocale.atmLog.backupSuccess
 		backupError:'备份错误',//EwayLocale.atmLog.backupError
-		logDevAccount:'日志设备数量累计',//EwayLocale.atmLog.logDevAccount
+		logDevSucAccount:'日志备份成功设备数',//EwayLocale.atmLog.logDevSucAccount
+		logDevFailAccount:'日志备份失败设备数',//EwayLocale.atmLog.logDevFailAccount
 		reform:'重做',//EwayLocale.atmLog.reform
 		busLogAnalysis:'业务日志分析',//EwayLocale.atmLog.busLogAnalysis
 		selectAnalysis:'请选择需要分析的日志文件，分析的结果将以Excel表格文件导出',//EwayLocale.atmLog.selectAnalysis
 		selectLog:'选择日志',//EwayLocale.atmLog.selectLog
 		pleaseDownload:'请下载',//EwayLocale.atmLog.pleaseDownload
-		appLogDownload:'应用日志下载',//EwayLocale.atmLog.appLogDownload
+		title:'应用日志',//EwayLocale.atmLog.appLogDownload
 		lastBackupTime:'最后一次备份时间',//EwayLocale.atmLog.lastBackupTime
 		noBegin:'未开始',//EwayLocale.atmLog.noBegin
 		noLog:'无日志',//EwayLocale.atmLog.noLog
