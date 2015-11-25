@@ -2,11 +2,11 @@
 Ext.define('Eway.view.operatingPlan.PlanInfoForDeviceGrid', {
 	alias: 'widget.planInfo_device_grid',
 	extend: 'Eway.view.base.Grid',
-	
+
 	requires: ['Eway.lib.Util'],
-	
+
 	border : false,
-	
+
 	initComponent: function() {
 		var store = Ext.create('Eway.store.operatingPlan.OpenPlanForDevice');
 		Ext.apply(this, {
@@ -48,7 +48,7 @@ Ext.define('Eway.view.operatingPlan.PlanInfoForDeviceGrid', {
 			}, {
 				header : EwayLocale.machine.serviceplan.state,
 				width : 80,
-				dataIndex : 'planStateType',
+				dataIndex : 'planStateType'
 			}, {
 				header : EwayLocale.machine.serviceplan.openDate,
 				width : 100,

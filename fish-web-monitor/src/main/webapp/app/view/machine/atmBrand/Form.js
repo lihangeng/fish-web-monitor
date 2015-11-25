@@ -2,7 +2,7 @@ Ext.define('Eway.view.machine.atmBrand.Form',{
 
 	extend : 'Eway.view.base.Form',
 	alias : 'widget.machine_atmBrand_form',
-	
+
 	requires: ['Eway.view.field.atmBrand.Address',
 	           'Eway.view.field.atmBrand.Country',
 	           'Eway.view.field.atmBrand.Hotline1',
@@ -46,7 +46,7 @@ Ext.define('Eway.view.machine.atmBrand.Form',{
 					regexText: EwayLocale.tip.phone
 			},{
 					xtype : 'field_atmBrand_address',
-					maxLength : 60,
+					maxLength : 60
 			},{
 					xtype : 'field_atmBrand_statusComboBox',
 					editable : false,
@@ -56,5 +56,5 @@ Ext.define('Eway.view.machine.atmBrand.Form',{
 		});
 		this.callParent(arguments);
 	}
-	
+
 });

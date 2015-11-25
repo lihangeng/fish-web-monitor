@@ -207,7 +207,7 @@ Ext.define('Eway.view.case.caseNotify.NotifyGrid', {
 						})
 					},
 					scope : this
-				}],
+				}]
 			}, {
 				header : EwayLocale.cases.caseFault.bankPer,
 				dataIndex : 'bankPer'

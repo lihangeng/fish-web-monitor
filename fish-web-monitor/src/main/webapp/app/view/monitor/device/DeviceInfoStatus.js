@@ -163,6 +163,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					layout : 'column',
 					defaults : {
 						xtype : 'displayfield',
+						labelWidth : 100,
 						width : '25%'
 					},
 					items : [ {

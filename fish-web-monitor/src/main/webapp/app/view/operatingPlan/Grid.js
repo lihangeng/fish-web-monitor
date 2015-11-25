@@ -76,7 +76,7 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 			}, {
 				header : EwayLocale.machine.serviceplan.machineQuantity,
 				width : 180,
-				dataIndex : 'deviceCount',
+				dataIndex : 'deviceCount'
 			}, {
 				header : EwayLocale.machine.serviceplan.state,
 				width : 130,
