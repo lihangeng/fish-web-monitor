@@ -367,7 +367,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			html: '<li style="list-style-type :none">'+EwayLocale.commen.devTypeName+':'+record.data.type+'</li>'+
 				  '<li style="list-style-type :none">'+EwayLocale.commen.orgNameBelongs+':'+record.data.org+'</li>'+
 				  '<li style="list-style-type :none">'+EwayLocale.commen.appVersion+':'+record.data.appRelease+'</li>'+
-				  '<li style="list-style-type :none">'+EwayLocale.monitor.devMonitor.boxCurrentCount+':'+record.data.boxCurrentCount+'</li>'+
+				  '<li style="list-style-type :none">'+EwayLocale.monitor.devMonitor.cash.boxCurrentCount+':'+record.data.boxCurrentCount+'</li>'+
 				  '<li style="list-style-type :none">'+EwayLocale.monitor.devMonitor.retainCardCount+':'+record.data.retainCardCount+'</li>'
 		});
 	},
@@ -759,6 +759,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				str += '|' + EwayLocale.monitor.devMonitor.remote.pauseSerUnknow;
 			}
 			
+			str = str.startsWith('|') ? str.substr(1) : str;
 			msg += ' ' + EwayLocale.monitor.devMonitor.comboxStatus.runStatus + '[';
 			msg += str;
 			msg +=']';
@@ -784,6 +785,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				str += '|' + EwayLocale.monitor.devMonitor.noData;
 			}
 			
+			str = str.startsWith('|') ? str.substr(1) : str;
 			msg += ' ' + EwayLocale.monitor.devMonitor.comboxStatus.modStatus + '[';
 			msg += str;
 			msg +=']';
@@ -815,6 +817,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				str += '|' + EwayLocale.monitor.devMonitor.cash.cashUnknow;
 			}
 			
+			str = str.startsWith('|') ? str.substr(1) : str;
 			msg += ' ' + EwayLocale.monitor.devMonitor.comboxStatus.boxStatus + '[';
 			msg += str;
 			msg +=']';
@@ -837,6 +840,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				str += '|' + EwayLocale.commen.unknow;
 			}
 	
+			str = str.startsWith('|') ? str.substr(1) : str;
 			msg += ' ' + EwayLocale.monitor.devMonitor.comboxStatus.netStatus + '[';
 			msg += str;
 			msg +=']';

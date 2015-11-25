@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="w_trans_count_device" language="groovy" pageWidth="1400" pageHeight="1500" whenNoDataType="AllSectionsNoDetail" columnWidth="1360" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="377d6c5d-3e8b-4b6d-8641-9e651b561646">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="w_trans_count_device" language="groovy" pageWidth="1200" pageHeight="1500" whenNoDataType="AllSectionsNoDetail" columnWidth="1160" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="377d6c5d-3e8b-4b6d-8641-9e651b561646">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="255"/>
+	<property name="ireport.x" value="32"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<parameter name="title" class="java.lang.String"/>
@@ -24,7 +24,7 @@
 	<title>
 		<band height="48" splitType="Stretch">
 			<textField>
-				<reportElement uuid="04d10f9a-dabb-4385-9632-ea336666b9b2" x="295" y="0" width="808" height="47"/>
+				<reportElement uuid="04d10f9a-dabb-4385-9632-ea336666b9b2" x="152" y="1" width="808" height="47"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="24"/>
 				</textElement>
@@ -35,14 +35,14 @@
 	<pageHeader>
 		<band height="39" splitType="Stretch">
 			<textField>
-				<reportElement uuid="6924355c-1e60-437e-bbd7-a96af5efe81f" x="295" y="0" width="361" height="35"/>
+				<reportElement uuid="6924355c-1e60-437e-bbd7-a96af5efe81f" x="152" y="1" width="361" height="35"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="14"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{startReportDate} + " - " + $P{endReportDate}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="23ccf511-a4cf-4257-bbb2-ec8a29ff8a37" x="819" y="0" width="284" height="35"/>
+				<reportElement uuid="23ccf511-a4cf-4257-bbb2-ec8a29ff8a37" x="676" y="1" width="284" height="35"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="14" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
@@ -53,7 +53,7 @@
 	<summary>
 		<band height="191" splitType="Stretch">
 			<crosstab>
-				<reportElement uuid="e1c5a6e0-77a8-4b8d-8273-efe164207038" x="295" y="0" width="830" height="149"/>
+				<reportElement uuid="e1c5a6e0-77a8-4b8d-8273-efe164207038" x="152" y="1" width="830" height="149"/>
 				<crosstabParameter name="total">
 					<parameterValueExpression><![CDATA[$F{totalColumn}]]></parameterValueExpression>
 				</crosstabParameter>
@@ -115,7 +115,7 @@
 						<bucketExpression><![CDATA[$F{orgName}]]></bucketExpression>
 					</bucket>
 					<crosstabRowHeader>
-						<cellContents backcolor="#F0F8FF" mode="Opaque">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
 							<box>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
@@ -136,14 +136,14 @@
 						</cellContents>
 					</crosstabRowHeader>
 					<crosstabTotalRowHeader>
-						<cellContents backcolor="#005FB3" mode="Opaque">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
 							<box>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textField>
 								<reportElement uuid="b21e4db0-b670-4be8-83fe-fed8d0ec2ee1" style="Crosstab Data Text" x="0" y="0" width="487" height="25"/>
 								<textElement>
-									<font size="13"/>
+									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
 							</textField>
@@ -155,7 +155,7 @@
 						<bucketExpression><![CDATA[$F{terminalId}]]></bucketExpression>
 					</bucket>
 					<crosstabRowHeader>
-						<cellContents backcolor="#F0F8FF" mode="Opaque">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
 							<box>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
@@ -176,14 +176,14 @@
 						</cellContents>
 					</crosstabRowHeader>
 					<crosstabTotalRowHeader>
-						<cellContents backcolor="#BFE1FF" mode="Opaque">
+						<cellContents backcolor="#FFFFFF" mode="Opaque">
 							<box>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
 							<textField>
 								<reportElement uuid="c8404f90-1fe9-4815-b754-54febac2482b" style="Crosstab Data Text" x="0" y="0" width="313" height="25"/>
 								<textElement>
-									<font size="13"/>
+									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$P{subtotal}]]></textFieldExpression>
 							</textField>
@@ -224,7 +224,7 @@
 							<textField>
 								<reportElement uuid="43661f7a-84d1-4f70-8240-f45b17816e2e" style="Crosstab Data Text" x="0" y="0" width="160" height="25"/>
 								<textElement>
-									<font size="13"/>
+									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
 							</textField>
@@ -236,7 +236,7 @@
 						<bucketExpression><![CDATA[$F{countName}]]></bucketExpression>
 					</bucket>
 					<crosstabColumnHeader>
-						<cellContents backcolor="#CCCCCC" mode="Opaque">
+						<cellContents backcolor="#C0C0C0" mode="Opaque">
 							<box>
 								<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 							</box>
@@ -247,8 +247,8 @@
 									<bottomPen lineWidth="0.0"/>
 									<rightPen lineWidth="0.0"/>
 								</box>
-								<textElement verticalAlignment="Middle">
-									<font size="12" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+								<textElement verticalAlignment="Top">
+									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$V{countName}]]></textFieldExpression>
 							</textField>
@@ -311,7 +311,7 @@
 					<cellContents/>
 				</crosstabCell>
 				<crosstabCell width="163" height="25" rowTotalGroup="terminalId">
-					<cellContents backcolor="#BFE1FF" mode="Opaque">
+					<cellContents backcolor="#FFFFFF" mode="Opaque">
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
@@ -332,12 +332,12 @@
 					</cellContents>
 				</crosstabCell>
 				<crosstabCell width="163" height="25" rowTotalGroup="orgName">
-					<cellContents backcolor="#005FB3" mode="Opaque">
+					<cellContents backcolor="#FFFFFF" mode="Opaque">
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
 						</box>
 						<textField pattern="###0.00">
-							<reportElement uuid="cb283cf4-06d6-4d84-9002-f221f5c72132" style="Crosstab Data Text" x="0" y="0" width="163" height="25" forecolor="#FFFFFF"/>
+							<reportElement uuid="cb283cf4-06d6-4d84-9002-f221f5c72132" style="Crosstab Data Text" x="0" y="0" width="163" height="25" forecolor="#000000"/>
 							<box>
 								<pen lineWidth="0.0"/>
 								<topPen lineWidth="0.0"/>

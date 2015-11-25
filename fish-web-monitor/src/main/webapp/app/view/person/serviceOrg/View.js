@@ -15,17 +15,17 @@ Ext.define('Eway.view.person.serviceOrg.View', {
 		var store = Ext.create('Eway.store.person.organization.SerOrganizationTree');
 		Ext.apply(this, {
 			items: [{
-				region: 'east',
-				title : EwayLocale.person.serviceOrg.serviceNavi,
-				header: false,
-				xtype : 'treepanel',
-				width : 200,
-				border : false,
-				padding : '0 2 0 0',
-				rootVisible : true,
-				lines : true,
-				store : store
-			}, {
+//				region: 'east',
+//				title : EwayLocale.person.serviceOrg.serviceNavi,
+//				header: false,
+//				xtype : 'treepanel',
+//				width : 200,
+//				border : false,
+//				padding : '0 2 0 0',
+//				rootVisible : true,
+//				lines : true,
+//				store : store
+//			}, {
 				region: 'center',
 				xtype: 'panel',
 				layout: 'border',
@@ -36,7 +36,21 @@ Ext.define('Eway.view.person.serviceOrg.View', {
 					region: 'center',
 					xtype: 'ser_organization_grid'
 				}]
-			}]
+			}],
+			listeners : {
+				activate : function(panel) {
+					if (!panel.isLoad) {
+						// 第一次进来主动加载信息
+						panel.isLoad = true;
+						var store = panel.down('ser_organization_grid').getStore();
+						store.setUrlParamsByObject({
+							type : '1'
+						});
+						store.load();
+						return;
+					}
+				}
+			}
 		});
 		this.callParent(arguments);
 	}

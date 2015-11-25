@@ -1,0 +1,93 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.yihuacomputer.fish</groupId>
+		<artifactId>atmvs</artifactId>
+		<version>2.0.0.5-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>fish-kafka</artifactId>
+	<name>Fish Kafka</name>
+	<description>分布式是消息队列实现</description>
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.kafka</groupId>
+			<artifactId>kafka_2.10</artifactId>
+			<version>0.8.2.1</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>log4j</artifactId>
+					<groupId>log4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.yihuacomputer.fish</groupId>
+			<artifactId>fish-api-system</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.yihuacomputer.fish</groupId>
+			<artifactId>fish-domain</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		
+		<!-- logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<!-- Test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+	<scm>
+		<connection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</connection>
+		<developerConnection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</developerConnection>
+		<url>http://git.nj.yihuacomputer.com/gitweb/?p=atmvs.git</url>
+		<tag>HEAD</tag>
+	</scm>
+	<build>
+		<plugins>
+			<!-- hibernate插件 -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>hibernate3-maven-plugin</artifactId>
+				<version>2.2</version>
+				<configuration>
+					<componentProperties>
+						<configurationfile>src/test/resources/hibernate-hsqldb.cfg.xml</configurationfile>
+						<outputfilename>sic-hsqldb.sql</outputfilename>
+						<!-- configurationfile>src/test/resources/hibernate.cfg.xml</configurationfile> 
+							<outputfilename>sic-oracle.sql</outputfilename> -->
+						<drop>true</drop>
+					</componentProperties>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>com.h2database</groupId>
+						<artifactId>h2</artifactId>
+						<version>1.2.138</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

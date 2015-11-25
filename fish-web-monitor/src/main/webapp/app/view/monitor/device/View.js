@@ -11,7 +11,7 @@ Ext.define('Eway.view.monitor.device.View',{
 		currentPage : 1,
 		total : 0
 	},
-
+	
 	requires : [
 		'Eway.view.monitor.device.showType.BoxGrid',
 		'Eway.view.monitor.device.showType.DataViewGrid',
@@ -19,7 +19,7 @@ Ext.define('Eway.view.monitor.device.View',{
 		'Eway.view.monitor.device.showType.Tbar','Eway.view.monitor.charts.View'
 	],
 
-	initComponent : function(){
+	initComponent : function() {
 		var me = this;
 		var dataViewStore = Ext.create('Eway.store.monitor.device.DataView',{});
 		Ext.apply(this,{
@@ -156,8 +156,8 @@ Ext.define('Eway.view.monitor.device.View',{
 	},
 
 	//激活本页面
-	activatePanel : function(){
-		if(!this.config.monitor){
+	activatePanel : function() {
+		if(!this.config.monitor) {
 			return;
 		}
 		var cardp = this.down('panel[itemId="card_itemId"]');
@@ -177,7 +177,30 @@ Ext.define('Eway.view.monitor.device.View',{
 			single : true
 		});
 		this.doCometd(store);
+		
+		
+		
+		
+		// 获取所有型号关联的模板
+		this.getAtmTypeLinkModule();		
 	},
+	
+	// 获取所有型号关联的模板
+	getAtmTypeLinkModule : function() {
+		
+		var me = this;
+		Ext.Ajax.request({
+			method : 'GET',
+			url : 'api/machine/atmType/atmLinkModule',
+			success : function(response) {
+				var object = Ext.decode(response.responseText);
+				if (object.success == true) {
+					Ext.typeLinkModData = object.data.typeLink;
+				}
+			}
+		});
+	},
+	
 	
 	//订阅
 	publish : function(params, store){

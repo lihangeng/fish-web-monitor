@@ -57,7 +57,7 @@ public class VersionChartsDetailTest {
 		System.out.println(JsonUtils.toJson(chartPage));
 	}
 	
-	private void findDeviceType(){
+	public void findDeviceType(){
 		IFilter filter = new Filter();
 		filter.eq("orgFlag", "1-");
 		List<Long> list = versionTypeAtmTypeRelationService.findAtmTypeIds(2l);

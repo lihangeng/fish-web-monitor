@@ -4,7 +4,7 @@ Ext.define('Eway.view.person.bankPer.FilterForm', {
 
 	requires : [ 'Eway.view.field.person.UserName',
 			'Eway.view.field.person.GenderFilter',
-			'Eway.view.field.person.Mobile',
+			'Eway.view.field.person.Mobile','Eway.view.common.OrgComboOrgTree',
 			'Eway.view.field.person.StateFilter',
 			'Eway.view.field.person.PersonJobComboBox' ],
 
@@ -15,21 +15,38 @@ Ext.define('Eway.view.person.bankPer.FilterForm', {
 	},
 
 	initComponent : function() {
-		Ext.apply(this, {
+		Ext.apply(this,{
 			items : [ {
-				columnWidth : .45,
+				columnWidth : .3,
+				items : [{
+					xtype : 'common_orgComboOrgTree',
+					fieldLabel : EwayLocale.machine.atmGroup.orgName,
+					emptyText: EwayLocale.combox.select,
+					editable : false,
+					name : 'org',
+					filters : '{"type" : "0"}',
+					rootVisible : true,
+					hiddenValue : 'selectedNode'
+				},{
+					xtype : 'hiddenfield',
+					name :'selectedNode'
+				}, {
+					xtype : 'field_person_personJobComboBox',
+					fieldLabel : EwayLocale.commen.personJobName
+				}]
+			},{
+				columnWidth : .3,
 				defaults : {
 					labelAlign : 'right'
 				},
 				items : [ {
-					xtype : 'field.username',
-					maxLength : 20
+					xtype : 'field.username'
 				}, {
 					xtype : 'field.mobile',
 					fieldLabel : EwayLocale.commen.mobile
 				} ]
 			}, {
-				columnWidth : .45,
+				columnWidth : .3,
 				defaults : {
 					labelAlign : 'right',
 				},
@@ -37,9 +54,6 @@ Ext.define('Eway.view.person.bankPer.FilterForm', {
 					fieldLabel : EwayLocale.commen.jobNum,
 					xtype : 'textfield',
 					name : 'jobNum'
-				}, {
-					xtype : 'field_person_personJobComboBox',
-					fieldLabel : EwayLocale.commen.personJobName
 				} ]
 			} ]
 		});

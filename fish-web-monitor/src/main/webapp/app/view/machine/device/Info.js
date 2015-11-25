@@ -137,6 +137,9 @@ Ext.define('Eway.view.machine.device.Info', {
 					}]
 				},{
 					xtype : 'tabpanel',
+					defaults : {
+						style : 'padding:5px 0px 0px 10px'
+					},
 					frame : true,
 					items : [ {
 						title : EwayLocale.machine.device.basicInfo,

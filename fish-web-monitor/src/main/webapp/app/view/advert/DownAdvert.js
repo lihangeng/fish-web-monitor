@@ -11,9 +11,9 @@ Ext.define('Eway.view.advert.DownAdvert', {
 	resizable : true,
 	constrainHeader : true,
     maximizable: true,
-    minWidth: 600,
+    minWidth: 1100,
     minHeight: 400,
-	width: 930,
+	width: 1100,
     height: 500,
 	layout: 'border',
 
@@ -31,6 +31,7 @@ Ext.define('Eway.view.advert.DownAdvert', {
 				region : 'north',
 				xtype:'form',
 				bodyStyle : 'padding: 5px 0px 0px 5px',
+			    height: 110,
 				trackResetOnLoad : true,
 				layout: {
 		            type: 'vbox',
@@ -109,12 +110,14 @@ Ext.define('Eway.view.advert.DownAdvert', {
 			        	editable: false,
 			            format: 'Y-m-d H:i:s',
 			            padding: '0 0 0 30',
-			            labelWidth:100,
+			            labelWidth:130,
+		                width : 325,
 			            minValue: new Date(),
 			            maxValue:Ext.Date.add(Ext.Date.parse(Ext.Date.format(new Date(), 'Y-m-d') + " 23:59:59","Y-m-d H:i:s"), Ext.Date.DAY, 7)
 					},{
 						 xtype: 'radiogroup',
 						 fieldLabel: EwayLocale.version.download.selectAllDevice,
+				            labelWidth:100,
 					        // Arrange radio buttons into two columns, distributed vertically
 					        columns: 2,
 					        vertical: true,

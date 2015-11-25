@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.machine.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,6 +70,22 @@ public class AtmTypeAtmModuleRelationService implements IAtmTypeAtmModuleRelatio
 		
 		return null;
 	}
-	
+
+    @Override
+    public List<Object> list() {
+        
+        
+        StringBuffer hql = new StringBuffer();
+        
+        hql.append("select at,am,ar ");
+        hql.append(" from AtmType at, AtmModule am, AtmTypeAtmModuleRelation ar ");
+        hql.append(" where at.id = ar.atmTypeId and am.id = ar.atmModuleId ");
+        
+        List<Object> param = new ArrayList<Object>();
+        List<Object> result = dao.findByHQL(hql.toString(), param.toArray());
+        
+        
+        return result;
+    }
 	
 }

@@ -14,7 +14,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
         	return "";
    		}
 	},
-
+	
 	initComponent : function() {
 		var gridStore = Ext.create('Eway.store.version.SelectableDevice',{
 			listeners: {
@@ -51,6 +51,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 		});
 		var sm = Ext.create('Ext.selection.CheckboxModel',{
 			checkOnly: true,//只保留checkbox的选择能力，row选择失效
+			mode:'SIMPLE',
 			listeners:{
 				beforeselect : function(me,record,rowIndex){
 					var form = this.up('window').down('form').getForm();
@@ -96,7 +97,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				name:'ip',
 				labelSeparator:'',
 				labelWidth : 10,
-				width: 120,
+				width: 150,
 				vtype:'ip'
 			}, {
 				xtype:'textfield',
@@ -104,10 +105,9 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				 enableKeyEvents:true,
 				name:'terminalId',
 				labelSeparator:'',
-				maxLength:20,
-				labelWidth : 60,
+				labelWidth : 75,
 				vtype : "terminalId",
-				width: 140
+				width: 190
 			},{
 				style : 'padding-top:0px',
 				xtype : 'hiddenfield',
@@ -120,7 +120,7 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				name : 'orgName',
 				hiddenValue : 'orgId',
 				editable : false,
-				labelWidth : 60,
+				labelWidth : 35,
 				labelSeparator:'',
 				width: 200,
 				filters : '{"type" : "0"}',
@@ -147,9 +147,9 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				triggerAction: 'all',
 				valueField : 'id',
 				displayField : 'name',
-				labelWidth : 60,
+				labelWidth : 75,
 				labelSeparator:'',
-				width: 200
+				width: 210
 			},{
 				action :'queryDownDevice',
 				glyph : 0xf002,
@@ -176,7 +176,8 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
                 valueField : 'value',
                 displayField: 'name',
                 editable : false,
-                width: 165,
+                width: 250,
+                labelWidth: 130,
                 labelSeparator :''
 			}],
 			columns : [/* Ext.create('Ext.grid.RowNumberer'),
@@ -188,31 +189,36 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				header : EwayLocale.refs.terminalId,//'设备编号',
 				sortable : true,
 				dataIndex : 'code',
-				width:80
+				width:100
 			}, {
 				header : EwayLocale.refs.ip,//'IP地址',
 				dataIndex : 'ip',
 				sortable : true,
-				width: 110
+				width: 120
 			},{
 				header : EwayLocale.refs.orgName,
 				dataIndex : 'orgName',
+				width: 170,
 				sortable : true
 			}, {
 				header: EwayLocale.refs.devType,
 				dataIndex : 'deviceType',
+				width: 150,
 				sortable : true
 			},{
 				header: EwayLocale.version.View.nowVersionNo,//'当前版本',
 				dataIndex : 'deviceVersion',
+				width: 150,
 				sortable: true
 			} ,{
 				header: EwayLocale.version.task.targetVersionNo,//'目标版本',
 				dataIndex : 'targetVersion',
+				width: 120,
 				sortable: true
 			} ,{
 				header: EwayLocale.version.task.downloadStatus,//'下发状态',
 				dataIndex : 'taskStatus',
+				width: 110,
 				sortable: true
 			} ,{
 				header: EwayLocale.version.task.downloadResult,//'下发结果',

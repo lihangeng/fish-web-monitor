@@ -1,6 +1,5 @@
 package com.yihuacomputer.fish.web.report.controller;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -8,7 +7,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang.StringUtils;
-import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -18,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
@@ -32,7 +30,6 @@ import com.yihuacomputer.fish.web.report.form.CaseStatisticsForm;
 @Controller
 @RequestMapping("/report/caseStatisticsReport")
 public class CaseStatisticsReportController {
-	private Logger logger = org.slf4j.LoggerFactory.getLogger(CaseStatisticsReportController.class);
 
 	@Autowired
 	private ICaseStatisticsRptService caseStatisticsRptService;
@@ -60,7 +57,7 @@ public class CaseStatisticsReportController {
 			Object[]objs = (Object[])object;
 			CaseStatisticsForm form = new CaseStatisticsForm();
 			if(objs[0] instanceof DeviceMod){
-				form.setAngle(messageSource.getMessage(((DeviceMod)objs[0]).getText(), null, wReq.getLocale()));
+				form.setAngle(messageSource.getMessage(((DeviceMod)objs[0]).getText(), null, FishCfg.locale));
 			}else{
 				form.setAngle(objs[0].toString());
 			}
@@ -91,22 +88,13 @@ public class CaseStatisticsReportController {
 				continue;
 			}
 
-			if (name.equals("statType")) {
-				if("2".equals(value)){
-					filter.eq("startDate", Integer.parseInt((request.getParameter("month") + "-01").replaceAll("-", "")));
-			        int days = 31 ;
-			        try {
-						days = DateUtils.daysOfMonth(request.getParameter("month")) ;
-					} catch (ParseException e) {
-						e.printStackTrace();
-					}
-			        filter.eq("endDate", Integer.parseInt((request.getParameter("month") +"-" + days).replaceAll("-", "")));
-				}else{
-					filter.eq("startDate", Integer.parseInt((request.getParameter("day")).replaceAll("-", ""))) ;
-					filter.eq("endDate", Integer.parseInt((request.getParameter("day")).replaceAll("-", ""))) ;
-				}
+			if (name.equals("startDateTime")) {
+				filter.eq("startDate", Integer.parseInt((request.getParameter("startDateTime")).replaceAll("-", ""))) ;
 
-			} else if (name.equals("angle")) {
+			}else if (name.equals("endDateTime")) {
+				filter.eq("endDate", Integer.parseInt((request.getParameter("endDateTime")).replaceAll("-", ""))) ;
+
+			}else if (name.equals("angle")) {
 				filter.eq("angle", value);
 
 			} else if (name.equals("rank")) {

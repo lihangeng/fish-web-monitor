@@ -33,10 +33,26 @@ public class UpdateReportMsg {
     private int fileDownTimes;
 
     private String downUrl;
+
     /**
      * 响应码
      */
     private String ret;
+
+    /**
+     * 已下载大小
+     */
+    private double downloadingSize;
+
+    /**
+     * 文件下载开始时间
+     */
+    private String downloadStartTime;
+
+    /**
+     * 文件下载结束时间
+     */
+    private String downloadFinishTime;
 
     public String getTermId() {
         return termId;
@@ -86,12 +102,35 @@ public class UpdateReportMsg {
         this.taskId = taskId;
     }
 
-	public String getDownUrl() {
-		return downUrl;
-	}
+    public String getDownUrl() {
+        return downUrl;
+    }
 
-	public void setDownUrl(String downUrl) {
-		this.downUrl = downUrl;
-	}
+    public void setDownUrl(String downUrl) {
+        this.downUrl = downUrl;
+    }
 
+    public double getDownloadingSize() {
+        return downloadingSize;
+    }
+
+    public void setDownloadingSize(double downloadingSize) {
+        this.downloadingSize = downloadingSize;
+    }
+
+    public String getDownloadStartTime() {
+        return downloadStartTime;
+    }
+
+    public void setDownloadStartTime(String downloadStartTime) {
+        this.downloadStartTime = downloadStartTime;
+    }
+
+    public String getDownloadFinishTime() {
+        return downloadFinishTime;
+    }
+
+    public void setDownloadFinishTime(String downloadFinishTime) {
+        this.downloadFinishTime = downloadFinishTime;
+    }
 }

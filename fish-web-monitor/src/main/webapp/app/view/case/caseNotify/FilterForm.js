@@ -16,9 +16,6 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype : 'textfield',
-					vtype : 'terminalId',
-					maxLength:20,
-					regexText:EwayLocale.vtype.terminalId,
 					fieldLabel : EwayLocale.commen.terminalId,
 					msgTarget:'side',
 					name : 'terminalId'
@@ -32,9 +29,7 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 				xtype : 'form',
 				items : [{
 					xtype : 'textfield',
-					vtype : 'mobile',
 					fieldLabel : EwayLocale.cases.caseFault.informMobile,
-					regexText : EwayLocale.vtype.mobileRules,
 					msgTarget : 'side',
 					name : 'mobile'
 				},{

@@ -17,8 +17,6 @@ Ext.define('Eway.view.machine.quittingNotice.DeviceFilterForm', {
 					labelWidth : 50,
 					width: 200,
 					name : 'terminalId',
-					vtype : 'terminalId',
-					maxLength:20,
 					msgTarget : 'side'
 				},{
 					columnWidth : .3,

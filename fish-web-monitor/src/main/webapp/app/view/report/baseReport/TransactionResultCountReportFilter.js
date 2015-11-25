@@ -73,8 +73,6 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportFilter', {
 											labelAlign : 'right',
 											xtype : 'textfield',
 											name : 'terminalId',
-											regex : /^\w[\w-_\.]{0,19}$/,
-											regexText : EwayLocale.vtype.numberRule,
 											msgTarget : 'side',
 											hidden:true
 										}, {

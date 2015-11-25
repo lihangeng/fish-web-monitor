@@ -4,7 +4,7 @@ Ext.define('Eway.view.person.servicePer.FilterForm', {
 	alias: 'widget.ser_person_filterform',
 
 	requires: ['Eway.view.field.person.UserName',
-	           'Eway.view.field.person.GenderFilter',
+	           'Eway.view.field.person.GenderFilter','Eway.view.common.OrgComboOrgTree',
 	           'Eway.view.field.person.Mobile',
 	           'Eway.view.field.person.StateFilter'
 	           ],
@@ -19,7 +19,26 @@ Ext.define('Eway.view.person.servicePer.FilterForm', {
 	initComponent: function() {
 		Ext.apply(this, {
 			items : [{
-				columnWidth : .5,
+				columnWidth : .33,
+				items : [{
+					xtype : 'common_orgComboOrgTree',
+					fieldLabel :EwayLocale.commen.devServiceName,
+					emptyText: EwayLocale.combox.select,
+					labelWidth:140,
+					editable : false,
+					name : 'org',
+					filters : '{"type" : "1"}',
+					rootVisible : true,
+					hiddenValue : 'selectedNode'
+				},{
+					xtype : 'hiddenfield',
+					name :'selectedNode'
+				},  {
+					labelWidth:140,
+					xtype : 'field.stateFilter'
+				}]
+			},{
+				columnWidth : .3,
 				items : [{
 					xtype : 'field.username',
 					msgTarget : 'side'
@@ -28,13 +47,11 @@ Ext.define('Eway.view.person.servicePer.FilterForm', {
 					fieldLabel: EwayLocale.commen.mobile
 				}]
 			}, {
-				columnWidth : .5,
+				columnWidth : .3,
 				items : [{
 					fieldLabel : EwayLocale.commen.jobNum,
 					xtype : 'textfield',
 					name:'jobNum',
-				},  {
-					xtype : 'field.stateFilter'
 				}]
 			}]
 		});

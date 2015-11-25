@@ -15,22 +15,22 @@ Ext.define('Eway.view.person.bankOrg.View', {
 		var store = Ext.create('Eway.store.person.organization.BankOrganizationTree');
 		Ext.apply(this, {
 			items: [{
-				region: 'east',
-				title : Eway.view.person.bankOrg.orgNavi,
-				header: false,
-				xtype : 'treepanel',
-				width : 200,
-				minWidth:200,
-				maxWidth:300,
-				border : true,
-				//padding : '10 0 10 0',
-				rootVisible : true,
-				lines : true,
-				store : store,
-				collapsible: false,
-             	//collapseMode: 'mini',
-             	split:false
-			}, {
+//				region: 'east',
+//				title : Eway.view.person.bankOrg.orgNavi,
+//				header: false,
+//				xtype : 'treepanel',
+//				width : 200,
+//				minWidth:200,
+//				maxWidth:300,
+//				border : true,
+//				//padding : '10 0 10 0',
+//				rootVisible : true,
+//				lines : true,
+//				store : store,
+//				collapsible: false,
+//             	//collapseMode: 'mini',
+//             	split:false
+//			}, {
 				region: 'center',
 				xtype: 'panel',
 				layout: 'border',
@@ -45,13 +45,15 @@ Ext.define('Eway.view.person.bankOrg.View', {
 			listeners : {
 				activate : function(panel) {
 					if (!panel.isLoad) {
-
-						// 第一次进来不需要重新加载信息
+						// 第一次进来主动加载信息
 						panel.isLoad = true;
+						var store = panel.down('bank_organization_grid').getStore();
+						store.setUrlParamsByObject({
+							type : '0'
+						});
+						store.load();
 						return;
 					}
-
-					panel.down('treepanel').getStore().load();
 				}
 			}
 		});

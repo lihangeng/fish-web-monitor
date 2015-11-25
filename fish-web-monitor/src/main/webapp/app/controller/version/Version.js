@@ -64,7 +64,7 @@ Ext.define('Eway.controller.version.Version', {
 	
 	loadChartsInfo:function(record){
 		var me = this;
-		if(undefined==record){
+		if(undefined==record||record.get("id")==0){
 			return;
 		}
 		var chartsStore = this.getEwayView().down("bar_3d cartesian").getStore();
@@ -79,7 +79,7 @@ Ext.define('Eway.controller.version.Version', {
         		gridStore.setBaseParam("versionId",record.get("id"));
         		gridStore.setBaseParam("flag",0);
         		gridStore.loadPage(1);
-        		grid.setTitle(chartsStore.getAt(0).get("title")+EwayLocale.statics.msg);//"信息");
+        		grid.setTitle(chartsStore.getAt(0).get("title")+"&nbsp;&nbsp;"+EwayLocale.statics.msg);//"信息");
 		    }
 		});
 		this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionTypeDesc")+" - V"+record.get("versionNo"));
@@ -113,7 +113,12 @@ Ext.define('Eway.controller.version.Version', {
 			this.loadChartsInfo(record);
 		}
 	},
-
+	//激活面板时候进行刷新Store操作
+	refreshLinkedDeviceGridData:function(){
+		var win = this.getAddJobWin();
+		var linkedGrid = win.down('version_download_linkedDeviceGrid');
+		linkedGrid.setStore(linkedGrid.getStore());
+	},
 	//下发
 	onDown : function(){
 		var grid = this.getGrid();
@@ -127,6 +132,7 @@ Ext.define('Eway.controller.version.Version', {
 				win.down("form combobox[name=taskType]").on('change',this.onJobTypeChange,this);
 				win.down("version_download_selectableDeviceGrid pagingtoolbar").on("beforechange",this.onSelectalbeDeviceFresh,this);
 				var pagingtoolbar = win.down("pagingtoolbar");
+				win.down("version_download_linkedDeviceGrid").on("activate",this.refreshLinkedDeviceGridData,this)
 				//增加请求参数
 				pagingtoolbar.store.proxy.extraParams = {versionId :record.get("id")};
 				var grid = win.down("version_download_selectableDeviceGrid");
@@ -348,6 +354,7 @@ Ext.define('Eway.controller.version.Version', {
 	onAddConfirm : function(){
 		var me = this;
 		var win = this.getAddWin();
+		var grid = this.getGrid();
 		var addForm = win.down('form').getForm();
 		var data = addForm.getValues();
 		var record = Ext.create('Eway.model.version.Version',data);
@@ -371,7 +378,7 @@ Ext.define('Eway.controller.version.Version', {
 							 	Eway.alert(EwayLocale.addSuccess);
 //								store.insert(0,ed);
 								win.close();
-								me.onQuery();
+								grid.getStore().load();
 							 },
 							 failure: function(record,operation){
 							 	winEl.unmask();
@@ -439,17 +446,20 @@ Ext.define('Eway.controller.version.Version', {
 
 	//保存 “修改后的版本信息”
 	onUpdateConfirm: function() {
-		var record = this.getGrid().getSelectionModel().getLastSelected();
+		var grid = this.getGrid();
+		var record = grid.getSelectionModel().getLastSelected();
 		var win = this.getUpdateWin();
+		var id = record.get("id");
 		var updateForm = win.down("form").getForm();
 		var store = this.getVersionStore();
 		if(updateForm.isValid() && updateForm.isDirty()){
 			updateForm.updateRecord(record);//把form中的值写回到store中
+//			record.set("id",id);
 			record.save({
 				 success: function(ed) {
 					Eway.alert(EwayLocale.updateSuccess);
 					win.close();
-					this.onQuery();
+					grid.getStore().load();
 				 },
 				 failure: function(ed,operation){
 						Eway.alert(operation.getError());
@@ -476,7 +486,7 @@ Ext.define('Eway.controller.version.Version', {
 							success: function(){
 								this.getVersionStore().remove(record);
 								Eway.alert(EwayLocale.updateSuccess);
-								this.onQuery();
+								grid.getStore().load();
 							},
 							failure:  function(record,operation){
 								//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
