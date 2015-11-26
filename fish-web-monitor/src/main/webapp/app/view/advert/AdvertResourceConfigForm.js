@@ -19,7 +19,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 					name:'fileName',
 					fieldLabel:EwayLocale.advert.fileName,
 					labelWidth: 60,
-//					hidden: true,
+					hidden: true,
 					value:''
 				},{
 					xtype:'displayfield',
