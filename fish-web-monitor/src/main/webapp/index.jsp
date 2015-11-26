@@ -79,7 +79,7 @@
 			'<%=userSession.getPersonId()%>');
 		var test_userId = Math.random()+'';
 	<%} %>
-
+	ewayUser.language=locale;
   	</script>
 	<script type="text/javascript">
 		Ext.BLANK_IMAGE_URL = 'resources/images/s.gif';

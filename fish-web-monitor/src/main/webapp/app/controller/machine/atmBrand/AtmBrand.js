@@ -31,7 +31,7 @@ Ext.define('Eway.controller.machine.atmBrand.AtmBrand', {
 				xtype : 'machine_atmBrand_form',
 				width: 500,
 				height:280,
-				title : EwayLocale.machine.atmBrand.devBrandInfo
+				title : EwayLocale.machine.atmBrand.title
 			},
 
 			init : function() {

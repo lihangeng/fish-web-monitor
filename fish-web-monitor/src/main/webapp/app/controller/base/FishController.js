@@ -67,7 +67,12 @@ Ext.define('Eway.controller.base.FishController', {
 
 
 	_onAddOrUpdate : function(action){
-		var title = action=='add' ? EwayLocale.button.add+this.formConfig.title : EwayLocale.button.update+this.formConfig.title;
+		//英文增加空格
+		var innerHtml="";
+		if(!Ext.String.startsWith(ewayUser.language,"zh")){
+			innerHtml="&nbsp;"
+		}
+		var title = action=='add' ? EwayLocale.button.add+innerHtml+this.formConfig.title : EwayLocale.button.update+innerHtml+this.formConfig.title;
 		var me = this;
 		Ext.require([this.formConfig.form],function(){
 			if(action=='update'){
