@@ -31,11 +31,11 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	listeners:{
 		collapse:function(field,opts){
 			var me = this;
-			me.matching = false;
 			var gridpanel = field.getPicker();
 			if(gridpanel.$className == 'Ext.tree.Panel'){
 				return;
 			}
+			me.matching = false;
 			var value = field.getValue();
 			var store = undefined;
 			if(gridpanel&&null!=gridpanel){
