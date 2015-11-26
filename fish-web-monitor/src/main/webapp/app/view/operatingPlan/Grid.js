@@ -64,7 +64,7 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				dataIndex : 'name'
 			}, {
 				header : EwayLocale.machine.plan.type,
-				width : 130,
+				width : 100,
 				dataIndex : 'planType',
 				renderer : function(value, metadata, record) {
 					if (value == "DATE") {
@@ -79,15 +79,15 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				dataIndex : 'deviceCount'
 			}, {
 				header : EwayLocale.machine.serviceplan.state,
-				width : 130,
+				width : 120,
 				dataIndex : 'planStateType'
 			}, {
 				header : EwayLocale.machine.serviceplan.openDate,
-				width : 120,
+				width : 130,
 				dataIndex : 'startDate'
 			}, {
 				header : EwayLocale.machine.serviceplan.closeDate,
-				width : 120,
+				width : 130,
 				dataIndex : 'endDate'
 			}, {
 				header : EwayLocale.machine.serviceplan.createDateTime,

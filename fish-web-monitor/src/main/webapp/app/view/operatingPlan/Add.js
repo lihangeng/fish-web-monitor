@@ -6,7 +6,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 	title : EwayLocale.machine.plan.addPlan,
 	modal : true,
 	constrainHeader : true,
-	width : 810,
+	width : 1000,
 	layout : 'fit',
 	maximizable : true,
 	resizable : false,
@@ -145,6 +145,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 									},
 									items : [ {
 										fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.device.person.openClose,
+										labelWidth :120,
 										xtype : 'radiogroup',
 										name : 'openClose',
 										allowBlank : false,
