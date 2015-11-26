@@ -465,7 +465,7 @@ Ext.apply(EwayLocale,{
 				Fri:'Friday',//EwayLocale.machine.device.person.Fri星期五
 				Sat:'Saturday',//EwayLocale.machine.device.person.Sat星期六
 				Sun:'Sunday',//EwayLocale.machine.device.person.Sun星期日
-				openClose:'Power On / Off',//EwayLocale.machine.device.person.openClose开机/关机
+				openClose:'Power / Shutdown',//EwayLocale.machine.device.person.openClose开机/关机
 				Open:'Power',//EwayLocale.machine.device.person.Open开机
 				Close:'Shutdown'//EwayLocale.machine.device.person.Close关机
 			}
