@@ -100,12 +100,12 @@
 			<div class="head">
 				<img src="resources/images/logo.PNG">
 			</div>
-			<span class="left">
+			<div class="left">
 				<div class="left-content">
 					<img src="resources/images/left.PNG">
 				</div>
-			</span>
-			<span class="right">
+			</div>
+			<div class="right">
 				<div class="right-content">
 					<div class="content">
 						<div class="text" align="center">
@@ -131,7 +131,7 @@
 						</div>
 					</div>
 				</div>
-			</span>
+			</div>
 			</div>
 			    <div   class="bottom" >
 

@@ -364,10 +364,6 @@ Ext.define('Eway.controller.person.User', {
 
 	onQueryLog: function (viewUserLogWin,code){
 		var form = viewUserLogWin.down('form').getForm();
-		if(!form.isValid()){
-			Eway.alert(EwayLocale.tip.search.warn);
-			return;
-		}
 		var values = form.getValues();
 		var grid = viewUserLogWin.down('userLog_grid')
 		var store = grid.getStore();

@@ -3,25 +3,27 @@
 width:100%;
 background-color:#ffffff;
 padding-top:0px;
-/* padding-left:20px; */
+padding-left:20px;
 }
 
 .container{
-width:100%;
+width:1296px;
 height:80%;
 min-height:510px;
 
 }
 .left{
-width:60%;
+
+width:647px;
+
 float:left;
 }
 
 .right{
 
-width:40%;
+width:647px;
 
-float:right;
+float:left;
 
 }
 .right-content{
@@ -31,7 +33,7 @@ width:430px;
 
 
 padding-top:50px;
- padding-left:20%; 
+padding-left:150px;
 }
 .content{
 

@@ -878,10 +878,7 @@ Ext.define('Eway.controller.advert.Advert', {
 
     	adv.save({
 			 success: function(ed) {
-				var view = me.getEwayView();
-				var store = view.down('advert_grid').getStore();
-				store.setUrlParamsByObject(null);
-				store.loadPage(1);
+				 me.onQuery();
 			 	Ext.MessageBox.alert(EwayLocale.confirm.title,EwayLocale.msg.createSuccess);
 				win.close();
 			 },
