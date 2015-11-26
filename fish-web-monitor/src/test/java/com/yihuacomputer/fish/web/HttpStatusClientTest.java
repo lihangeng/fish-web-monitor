@@ -14,8 +14,10 @@ import com.yihuacomputer.fish.api.monitor.business.RunStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.BoxStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.web.atm.format.StatusMsg;
+
 /**
  * 状态信息测试
+ * 
  * @author YiHua
  *
  */
@@ -26,66 +28,64 @@ public class HttpStatusClientTest {
 	 */
 	public static void main(String[] args) {
 		HttpClient httpClient = new DefaultHttpClient();
-		for(int i = 0 ;i<15;i++){
-			StatusMsg status = new StatusMsg();
-			status.setTermId(String.valueOf(i));
-			status.setModStatus(DeviceStatus.values()[i%DeviceStatus.values().length]);
-			status.setBoxStatus(BoxStatus.values()[i%BoxStatus.values().length]);
-			status.setRunStatus(RunStatus.values()[i%RunStatus.values().length]);
-			status.setBoxInitCount(10300);
-			status.setIdc(DeviceStatus.Healthy);
-			status.setIdcCode("00300000000");
-			status.setIdcHwCode("0000000000");
-			status.setBoxCurrentCount(144077);
-			status.setCdm(DeviceStatus.Unknown);
-			status.setCdmCode("unknown");
-			status.setCdmHwCode("00-122");
-			status.setCim(DeviceStatus.Unknown);
-			status.setCimCode("unknown");
-			status.setJpr(DeviceStatus.Unknown);
-			status.setJprCode("01110000440");
-			status.setJprHwCode("unknown");
-			status.setRpr(DeviceStatus.Healthy);
-			status.setRprCode("0103300000");
-			status.setRprHwCode("0000000000");
-			status.setTtu(DeviceStatus.Healthy);
-			status.setPin(DeviceStatus.Healthy);
-			status.setSiu(DeviceStatus.Unknown);
-			status.setIdcReatianCard(0);
+		StatusMsg status = new StatusMsg();
+		status.setTermId("0002");
+		status.setModStatus(DeviceStatus.Healthy);
+		status.setBoxStatus(BoxStatus.Full);
+		status.setRunStatus(RunStatus.Healthy);
+		status.setBoxInitCount(10300);
+		status.setIdc(DeviceStatus.Healthy);
+		status.setIdcCode("00300000000");
+		status.setIdcHwCode("0000000000");
+		status.setBoxCurrentCount(144077);
+		status.setCdm(DeviceStatus.Unknown);
+		status.setCdmCode("unknown");
+		status.setCdmHwCode("00-122");
+		status.setCim(DeviceStatus.Unknown);
+		status.setCimCode("unknown");
+		status.setJpr(DeviceStatus.Unknown);
+		status.setJprCode("01110000440");
+		status.setJprHwCode("unknown");
+		status.setRpr(DeviceStatus.Healthy);
+		status.setRprCode("0103300000");
+		status.setRprHwCode("0000000000");
+		status.setTtu(DeviceStatus.Healthy);
+		status.setPin(DeviceStatus.Healthy);
+		status.setSiu(DeviceStatus.Unknown);
+		status.setIdcReatianCard(0);
 
-			status.setIcc(DeviceStatus.Unknown);
-			status.setIccCode("121111");
-			status.setIccHwCode("44-555");
-			status.setIccCurrentCount(0) ;
-			status.setIccReatianCard(20) ;
+		status.setIcc(DeviceStatus.Unknown);
+		status.setIccCode("121111");
+		status.setIccHwCode("44-555");
+		status.setIccCurrentCount(0);
+		status.setIccReatianCard(20);
 
-			status.setIsc(DeviceStatus.Fatal) ;
-			status.setIscCode("11111") ;
-			status.setIscHwCode("00-1111") ;
+		status.setIsc(DeviceStatus.Fatal);
+		status.setIscCode("11111");
+		status.setIscHwCode("00-1111");
 
-			status.setFgp(DeviceStatus.Fatal) ;
-			status.setFgpCode("9999") ;
-			status.setFgpHwCode("444444") ;
+		status.setFgp(DeviceStatus.Fatal);
+		status.setFgpCode("9999");
+		status.setFgpHwCode("444444");
 
-			String json = JsonUtils.toJson(status);
-			System.out.println(json);
-			try {
-				HttpPost httpPost = new HttpPost("http://127.0.0.1:8080/atmv/atm/msg/status");
-				StringEntity entity = new StringEntity(json, "UTF-8");
-				 // 设置请求头信息
-		        Header header = new BasicHeader("Content-Type","application/json;charset=UTF-8");
-		        entity.setContentType(header);
-		        httpPost.setEntity(entity);
+		String json = JsonUtils.toJson(status);
+		System.out.println(json);
+		try {
+			HttpPost httpPost = new HttpPost("http://127.0.0.1:8080/atmv/atm/msg/status");
+			StringEntity entity = new StringEntity(json, "UTF-8");
+			// 设置请求头信息
+			Header header = new BasicHeader("Content-Type", "application/json;charset=UTF-8");
+			entity.setContentType(header);
+			httpPost.setEntity(entity);
 
-				ResponseHandler<String> responseHandler = new BasicResponseHandler();
-				System.out.println(httpPost.getURI());
-				String responseBody = httpClient.execute(httpPost,responseHandler);
-				System.out.println("responseBody");
-				System.out.println(responseBody);
+			ResponseHandler<String> responseHandler = new BasicResponseHandler();
+			System.out.println(httpPost.getURI());
+			String responseBody = httpClient.execute(httpPost, responseHandler);
+			System.out.println("responseBody");
+			System.out.println(responseBody);
 
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

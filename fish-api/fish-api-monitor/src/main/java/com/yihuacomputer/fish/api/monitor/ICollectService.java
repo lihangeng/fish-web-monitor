@@ -18,7 +18,6 @@ import com.yihuacomputer.fish.api.monitor.business.IUncommonTrans;
 import com.yihuacomputer.fish.api.monitor.hardware.IHardware;
 import com.yihuacomputer.fish.api.monitor.report.IDeviceReport;
 import com.yihuacomputer.fish.api.monitor.report.IRuntimeInfo;
-import com.yihuacomputer.fish.api.monitor.report.IWorkUnit;
 import com.yihuacomputer.fish.api.monitor.software.ISoftware;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IXfsPropertise;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
@@ -160,12 +159,6 @@ public interface ICollectService {
 	public void collectATMCTransaction(String terminalId,ITransaction transaction);
 
 	/**
-	 * 添加数据加工单元
-	 * @param unit 数据加工单元
-	 */
-	public void addWorkUnit(IWorkUnit unit);
-	
-	/**
 	 * 获取设备动态信息
 	 * @param terminalId 设备ID
 	 * @return 设备监控信息
@@ -177,13 +170,7 @@ public interface ICollectService {
 	 * @param terminalId
 	 */
 	public void initDeviceCollect(IDevice device);
-	
-	/**
-	 * 删除设备时删除添加的数据
-	 * @param device
-	 */
-	public void deleteDevice(IDevice device);
-	
+		
 	/**
 	 * 收集ATM运行信息
 	 * @param terminalId
