@@ -176,8 +176,8 @@ Ext.apply(EwayLocale,{
 		chooseRecord:'Please select the records that you want to associate.',//EwayLocale.tip.chooseRecord请选择您要关联的记录
 		choosePlan:'Please select the program you want to view',//EwayLocale.tip.choosePlan请选择您要查看的方案
 		planDetail:'Programme details',//EwayLocale.tip.planDetail方案详情
-		planDate:'Programme details (date)',//EwayLocale.tip.planDate方案详情(日期)
-		planWeek:'Programme details (Week)',//EwayLocale.tip.planWeek方案详情(星期)
+		planDate:'Service plan details (date)',//EwayLocale.tip.planDate方案详情(日期)
+		planWeek:'Service plan details (Week)',//EwayLocale.tip.planWeek方案详情(星期)
 		planNoConf:'The program no detailed settings！',//EwayLocale.tip.planNoConf该方案无详细设置
 		chooseRelatedDev:'Please select the device you want to associate！',//EwayLocale.tip.chooseRelatedDev请选择您要关联的设备
 		devRelatedPlan:'Device is associated with the boot program！',//EwayLocale.tip.devRelatedPlan设备已关联开机方案
