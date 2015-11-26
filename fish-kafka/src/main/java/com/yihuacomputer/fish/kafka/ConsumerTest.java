@@ -4,8 +4,10 @@ import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
 
 
+@SuppressWarnings("rawtypes")
 class ConsumerTest implements Runnable {
-    private KafkaStream m_stream;
+    
+	private KafkaStream m_stream;
     private int m_threadNumber;
  
     public ConsumerTest(KafkaStream a_stream, int a_threadNumber) {
@@ -13,7 +15,8 @@ class ConsumerTest implements Runnable {
         m_stream = a_stream;
     }
  
-    public void run() {
+    @SuppressWarnings("unchecked")
+	public void run() {
     	System.out.println("xxxx");
         ConsumerIterator<byte[], byte[]> it = m_stream.iterator();
         while (it.hasNext()){

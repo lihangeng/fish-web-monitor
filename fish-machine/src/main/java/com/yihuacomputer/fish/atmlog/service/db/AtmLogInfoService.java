@@ -13,9 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
-import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.atmlog.IAtmLogInfo;
 import com.yihuacomputer.fish.api.atmlog.IAtmLogInfoService;
