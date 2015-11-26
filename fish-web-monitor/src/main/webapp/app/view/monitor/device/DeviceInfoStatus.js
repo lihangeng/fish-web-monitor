@@ -15,7 +15,9 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 		tooltip: EwayLocale.button.refresh,
 		action : 'refresh'
 	} ],
-
+	
+	record : '',
+	
 	initComponent : function() {
 		this.items = [ {
 			xtype : 'form',
@@ -159,73 +161,119 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 				},
 				items : [ {
 					layout : 'column',
-					defaultType : 'displayfield',
+					defaults : {
+						xtype : 'displayfield',
+						labelWidth : 100,
+						width : '25%'
+					},
 					items : [ {
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.idc,
 						name : 'idcStatus',
-						a_link : true
-					},{
+						a_link : true,
+						code : 'IDC',
+						listeners : {
+							'beforerender': this.isHidden
+						}
+					}, {
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.jpr,
 						name : 'jprStatus',
-						labelWidth:100,
-						a_link : true
-					},{
+						a_link : true,
+						code : 'JPR',
+						listeners : {
+							'beforerender': this.isHidden
+						}
+					}, {
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.cdm,
 						name : 'cdmStatus',
-						a_link : true
+						a_link : true,
+						code : 'CDM',
+						listeners : {
+							'beforerender': this.isHidden
+						}
 					}, {
-						columnWidth : .24,
+						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.cim,
 						name : 'cimStatus',
-						a_link : true
-					} ]
-				},{
-					layout : 'column',
-					defaultType : 'displayfield',
-					items : [ {
+						a_link : true,
+						code : 'CIM',
+						listeners : {
+							'beforerender': this.isHidden
+						}
+					}, {
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.siu,
 						name : 'siuStatus',
-						a_link : true
-					},{
+						a_link : true,
+						code : 'SIU',
+						listeners : {
+							'beforerender': this.isHidden
+						}
+					}, {
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.rpr,
 						name : 'rprStatus',
-						labelWidth:100,
-						a_link : true
+						a_link : true,
+						code : 'RPR',
+						listeners : {
+							'beforerender': this.isHidden
+						}
 					}, {
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.pin,
 						name : 'pinStatus',
-						a_link : true
-					},{
-						columnWidth : .24,
+						a_link : true,
+						code : 'PIN',
+						listeners : {
+							'beforerender': this.isHidden
+						}
+					}, {
+						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.ttu,
 						name : 'ttuStatus',
-						a_link : true
-					} ]
-				}, {
-					layout : 'column',
-					defaultType : 'displayfield',
-					items : [ {
+						a_link : true,
+						code : 'TTU',
+						listeners : {
+							'beforerender': this.isHidden
+						}
+					}, {
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.isc,
 						name : 'iscStatus',
-						a_link : true
+						a_link : true,
+						code : 'ISC',
+						listeners : {
+							'beforerender': this.isHidden
+						}
 					}, {
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.icc,
 						name : 'iccStatus',
-						labelWidth:100,
-						a_link : true
+						a_link : true,
+						code : 'ICC',
+						listeners : {
+							'beforerender': this.isHidden
+						}
 					}, {
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.fgp,
 						name : 'fgpStatus',
-						a_link : true
+						a_link : true,
+						code : 'FGP',
+						listeners : {
+							'beforerender': this.isHidden
+						}
+					}, {
+						columnWidth : .25,
+						fieldLabel : EwayLocale.monitor.devMonitor.mod.pbk,
+						name : 'pbkStatus',
+						a_link : true,
+						code : 'PBK',
+						listeners : {
+							'beforerender': this.isHidden
+						}
 					} ]
 				} ]
 			}, {
@@ -378,7 +426,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					|| name=='cimStatus' || name=='siuStatus'
 					|| name=='rprStatus' || name=='ttuStatus'
 					|| name=='iccStatus' || name=='iscStatus'
-					|| name=='fgpStatus'){
+					|| name=='fgpStatus' || name=='pbkStatus'){
 						var text = me._getText(value);
 						if(value == 'Warning'){
 							item.setValue('<a href="#" class="link warningHighLight">'+text+'</a>');
@@ -407,12 +455,17 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					
 					var className = 'link ';
 
-					if(value == EwayLocale.commen.warn){
-						className += ' warningHighLight ';
-					}else if(value == EwayLocale.commen.fatal){
-						className += ' fatalHighLight ';
+
+					if (value == EwayLocale.commen.noDevice) {
+						item.setValue(div + ' ' + value);
+					} else {
+						if(value == EwayLocale.commen.warn) {
+							className += ' warningHighLight ';
+						} else if(value == EwayLocale.commen.fatal) {
+							className += ' fatalHighLight ';
+						}
+						item.setValue(div + '<a href="#" class="'+className+'">' + value + '</a>');
 					}
-					item.setValue(div + '<a href="#" class="'+className+'">' + value + '</a>');
 
 				}else if(name == "boxStatus"){
 //					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getBoxPath(record.get("box")) + '"/>&nbsp;&nbsp;</div>';
@@ -420,12 +473,16 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					var className = 'link';
 					var boxFatals= [EwayLocale.monitor.devMonitor.cash.cimFull,EwayLocale.monitor.devMonitor.cash.cdmEmpty,
 					                EwayLocale.monitor.devMonitor.cash.cimAFull,EwayLocale.monitor.devMonitor.cash.cashFault];
-					if(Ext.Array.contains(boxFatals,value)){
-						className += ' fatalHighLight ';
-					} else if(value == EwayLocale.monitor.devMonitor.cash.cdmLow) {
-						className += ' warningHighLight ';
+					if (value == EwayLocale.commen.noDevice) {
+						item.setValue(div + ' ' + value);
+					} else {
+						if(Ext.Array.contains(boxFatals,value)){
+							className += ' fatalHighLight ';
+						} else if(value == EwayLocale.monitor.devMonitor.cash.cdmLow) {
+							className += ' warningHighLight ';
+						}
+						item.setValue(div + '<a href="#" class="'+className+'">'+value+'</a>');
 					}
-					item.setValue(div + '<a href="#" class="'+className+'">'+value+'</a>');
 
 				}else if(name == "netStatus"){
 //					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getNetPath(record.get("net")) + '"/>&nbsp;&nbsp;</div>';
@@ -469,5 +526,25 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 		if(value=='NoDevice'){
 			return EwayLocale.monitor.deviceStatus.NoDevice;
 		}
+	},
+	
+	isHidden : function(field) {
+		
+		var record = field.up('window').record;
+		var type = record.get('type');
+		var typeData = Ext.typeLinkModData
+		var strs = typeData[type];
+		var has = false;
+		Ext.each(strs, function(item) {
+			if(item == field.code) {
+				has = true;
+				return false;
+			}
+		});
+		return has;
+	},
+	
+	setRecord : function(record) {
+		this.record = record;
 	}
 });

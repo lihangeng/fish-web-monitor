@@ -53,6 +53,9 @@ Ext.define('Eway.controller.monitor.transaction.HistoryTransaction', {
 				Eway.alert(EwayLocale.tip.business.transaction.historyTransaction.input);
 			}
 		}
+		else{
+			Eway.alert(EwayLocale.tip.search.warn);
+		}
 
 	}
 

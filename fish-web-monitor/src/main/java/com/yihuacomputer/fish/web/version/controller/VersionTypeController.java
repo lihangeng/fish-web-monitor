@@ -158,6 +158,7 @@ public class VersionTypeController {
 				result.addAttribute(FishConstant.ERROR_MSG,tips);
 				return result;
 			}
+			type.setTypeName(form.getTypeName());
 			type.setDesc(form.getDesc());
 			type.setAutoDeploy(form.isAutoDeploy());
 			type.setDefaultInstallPath(form.getDefaultInstallPath());

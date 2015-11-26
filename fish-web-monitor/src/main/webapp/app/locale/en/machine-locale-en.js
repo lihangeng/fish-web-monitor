@@ -20,7 +20,7 @@ Ext.apply(EwayLocale,{
 			note:'Description',//备注
 			addTitle:'Add catalog',//增加ATM分类信息
 			updateTitle:'Update Catalog', //更改ATM型号信息
-			number:'Code',//EwayLocale.machine.atmCatalog.number 编号
+			number:'Code'//EwayLocale.machine.atmCatalog.number 编号
 		},
 		atmGroup : {
 			terminalId:'Terminal ID', //设备号
@@ -465,10 +465,10 @@ Ext.apply(EwayLocale,{
 				Fri:'Friday',//EwayLocale.machine.device.person.Fri星期五
 				Sat:'Saturday',//EwayLocale.machine.device.person.Sat星期六
 				Sun:'Sunday',//EwayLocale.machine.device.person.Sun星期日
-				openClose:'Power On / Off',//EwayLocale.machine.device.person.openClose开机/关机
+				openClose:'Power / Shutdown',//EwayLocale.machine.device.person.openClose开机/关机
 				Open:'Power',//EwayLocale.machine.device.person.Open开机
 				Close:'Shutdown'//EwayLocale.machine.device.person.Close关机
-			},
+			}
 		},
 		param:{
 			paramKey:'Name',//EwayLocale.machine.param.paramKey 参数
@@ -520,7 +520,7 @@ Ext.apply(EwayLocale,{
 			cashboxLimit:'Alarm cashbox(unit:piece)',//EwayLocale.machine.plan.cashboxLimit 钞箱报警金额(单位：张数)
 			perToDev:'Person<-->Device',//EwayLocale.machine.plan.perToDev 人员<-->设备
 			changePlan:'Update Service Plan',//EwayLocale.machine.plan.changePlan 更改方案
-			servicePlan:'Service Plan',//EwayLocale.machine.plan.servicePlan 开机方案
+			servicePlan:'Service Plan'//EwayLocale.machine.plan.servicePlan 开机方案
 		},
 		serviceplan:{
 			title:'Service Plan',//EwayLocale.machine.serviceplan.title
@@ -601,12 +601,14 @@ Ext.apply(EwayLocale,{
 		backupSuccess:'Back-up successful',//EwayLocale.atmLog.backupSuccess 备份成功
 		backupError:'Back-up error',//EwayLocale.atmLog.backupError 备份错误
 		logDevAccount:'Log back-up machine count total',//EwayLocale.atmLog.logDevAccount 日志设备数量累计
+		logDevSucAccount:'Log back-up success machine count total',//EwayLocale.atmLog.logDevSucAccount
+		logDevFailAccount:'Log back-up faile machine count total',//EwayLocale.atmLog.logDevFailAccount
 		reform:'Reform',//EwayLocale.atmLog.reform 重做
 		busLogAnalysis:'Business log analysis',//EwayLocale.atmLog.busLogAnalysis 业务日志分析
 		selectAnalysis:'Please choose the log file which you want to analyse, the result will show in Excel file',//EwayLocale.atmLog.selectAnalysis 请选择需要分析的日志文件，分析的结果将以Excel表格文件导出
 		selectLog:'Choose log',//EwayLocale.atmLog.selectLog 选择日志
 		pleaseDownload:'Please download',//EwayLocale.atmLog.pleaseDownload 请下载
-		appLogDownload:'Download app logs',//EwayLocale.atmLog.appLogDownload 应用日志下载
+		title:'ATMC Logs',//EwayLocale.atmLog.appLogDownload 应用日志下载
 		lastBackupTime:'Last back-up time',//EwayLocale.atmLog.lastBackupTime 最后一次备份时间
 		noBegin:'noBegin',//EwayLocale.atmLog.noBegin 未开始
 		noLog:'No log',//EwayLocale.atmLog.noLog 无日志

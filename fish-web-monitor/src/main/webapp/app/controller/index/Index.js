@@ -12,11 +12,11 @@ Ext.define('Eway.controller.index.Index', {
 	},{
 		ref : 'versionDistributePie',
 		selector : 'versionDistributePie'
-	},],
+	}],
 
 	init: function() {
 		this.control({
-			
+
 		});
 	}
 });

@@ -79,6 +79,7 @@ Ext.apply(EwayLocale,{
 				isc:'身份证扫描仪',//EwayLocale.monitor.devMonitor.mod.isc
 				icc:'发卡器',//EwayLocale.monitor.devMonitor.mod.icc
 				fgp:'指纹仪',//EwayLocale.monitor.devMonitor.mod.fgp
+				pbk:'存折打印机',//EwayLocale.monitor.devMonitor.mod.pbk
 				healthy:'模块正常'//EwayLocale.monitor.devMonitor.mod.healthy
 
 			},
@@ -159,8 +160,11 @@ Ext.apply(EwayLocale,{
 					title:'实时交易监控',//EwayLocale.monitor.business.transaction.transactionMonitor.title
 					begin:'开始监控',//EwayLocale.monitor.business.transaction.transactionMonitor.begin
 					stop:'停止监控',//EwayLocale.monitor.business.transaction.transactionMonitor.stop
-					clear:'清屏'//EwayLocale.monitor.business.transaction.transactionMonitor.clear
-					}
+					clear:'清屏',//EwayLocale.monitor.business.transaction.transactionMonitor.clear
+					scroll:'滚屏方式',//EwayLocale.monitor.business.transaction.transactionMonitor.scroll
+					up:'向上',//EwayLocale.monitor.business.transaction.transactionMonitor.up
+					down:'向下'//EwayLocale.monitor.business.transaction.transactionMonitor.down
+				}
 			},
 			blackList:{
 				title:'黑名单卡管理',//EwayLocale.monitor.business.blackList.title
@@ -398,6 +402,11 @@ Ext.apply(EwayLocale,{
             exitDownLoadFile:'添加失败,该文件已添加到下载列表中.',
             removeSuccess:'删除成功.',
             mustIncludeOneFile:'请至少添加一个要下载的文件.',
+            resetBackUp:'点击重新备份当天日志.',
+            backupAppLogsSuccess:'日志备份成功.',
+            backupAppLogsFail:'日志备份失败.',
+            backupLogSucList:'日备份日志成功设备列表.',
+            backupLogFailList:'日备份日志失败设备列表.',
 
 		}
 	}

@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.fish.api.version.job.task.ITask;
 
 /**
  * 版本相关操作的服务
@@ -62,7 +63,7 @@ public interface IVersionService {
      * @param ret
      *            下发结果
      */
-    public void collectUpdateReport(long taskId, String ret,String ip);
+    public void collectUpdateReport(long taskId, String ret, String ip);
 
     /**
      * 计算需要自动下发的版本
@@ -99,36 +100,48 @@ public interface IVersionService {
      * @return 没有找到返回返回null
      */
     public IVersion findVersion(String typeName, String versionNo);
-    
+
     /**
      * 根据版本类型IDversionType[long]获取版本分布信息
+     * 
      * @param filter
      * @return
      */
-    public Map<Long,VersionDistribute> getVersionDistribute(IFilter filter);
-	
-	/**
-	 * 根据版本号，查看当前版本下发状态情况
-	 * @param filter
-	 * @return
-	 */
-	public List<VersionStatusDistribute> getVersionStatusDistribute(IFilter filter);
-	
-	
-	/**
-	 * 查看某个版本的历史状态详情
-	 * @param start
-	 * @param limit
-	 * @param filter
-	 * @return
-	 */
-	public IPageResult<VersionDistributeDetail> getVersionStatusDistributeDetail(int start, int limit , IFilter filter);
-	
-	/**
-	 * 更新版本下发次数
-	 * @param versionId
-	 * @return
-	 */
-	public  IVersion updateDownLoadCounter(IVersion version) ;
+    public Map<Long, VersionDistribute> getVersionDistribute(IFilter filter);
 
+    /**
+     * 根据版本号，查看当前版本下发状态情况
+     * 
+     * @param filter
+     * @return
+     */
+    public List<VersionStatusDistribute> getVersionStatusDistribute(IFilter filter);
+
+    /**
+     * 查看某个版本的历史状态详情
+     * 
+     * @param start
+     * @param limit
+     * @param filter
+     * @return
+     */
+    public IPageResult<VersionDistributeDetail> getVersionStatusDistributeDetail(int start, int limit, IFilter filter);
+
+    /**
+     * 更新版本下发次数
+     * 
+     * @param versionId
+     * @return
+     */
+    public IVersion updateDownLoadCounter(IVersion version);
+
+    /**
+     * 收集版本下发后的更新报告结果
+     * 
+     * @param taskId
+     * @param ret
+     * @param size
+     * @return
+     */
+    public ITask collectUpdateReport(long taskId, String ret, double size, String startTime, String endTime);
 }

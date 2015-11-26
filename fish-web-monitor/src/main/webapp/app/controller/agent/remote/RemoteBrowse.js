@@ -464,7 +464,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 			scope   : this,
 		    callback: function(records, operation, success) {
 		        if(success==true){
-		        	this.win.setTitle(EwayLocale.agent.remote.distanceExplore+currentPath);
+		        	this.win.setTitle(EwayLocale.agent.remote.distanceExplorer+currentPath);
 				}else{
 					Eway.alert(EwayLocale.agent.remote.refreshFailure);
 				}
@@ -483,7 +483,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 	    	scope   : this,
 		    callback: function(records, operation, success) {
 		        if(success==true){
-		        	this.win.setTitle(EwayLocale.agent.remote.distanceExplore+path);
+		        	this.win.setTitle(EwayLocale.agent.remote.distanceExplorer+path);
 				    this.win.down('textfield[name="path"]').setValue(path);
 				    this.win.down('textfield[name="queryPath"]').setValue(path);
 					grid.on('itemdblclick',me.onRemoteBrowseFileSystem2,this);
@@ -578,7 +578,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 					mask.hide();
 				} else {
 					mask.hide();
-					Eway.alert(object.errors);
+					Eway.alert(EwayLocale.agent.remote.loadFailure);
 				}
 			},
 			failure : function() {

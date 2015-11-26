@@ -8,10 +8,10 @@ Ext.define('Eway.view.version.Add', {
 	            'Eway.view.version.field.VersionComboBox','Eway.view.version.field.VersionTypeComboBoxAdd'],
 
 	title : EwayLocale.version.addVersionTitle,//'增加版本信息',
-	modal : true,
+//	modal : true,
 	resizable : false,
 	constrainHeader : true,
-	width : 600,
+	width : 700,
 
 	initComponent : function() {
 		Ext.apply(this, {
@@ -20,15 +20,15 @@ Ext.define('Eway.view.version.Add', {
 				bodyStyle : 'padding: 10px 10px 10px 10px',
 				trackResetOnLoad : true,
 				defaults : {
-					labelWidth : 100,
-					anchor: '100%',
+					labelWidth : 180,
+					anchor: '90%',
 					labelAlign : 'right',
 					msgTarget : 'side',
 					grow : true
 				},
 				items : [{
 					xtype:'field_versionTypeComboBoxAdd',
-					fieldLabel : '<font color="red">*</font>'+EwayLocale.version.View.versionType,//版本类型'
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.version.View.versionType//版本类型'
 				},{
 				   xtype: 'textfield',
 			       fieldLabel : '<font color="red">*</font>'+EwayLocale.version.View.versionNo,//版本号',

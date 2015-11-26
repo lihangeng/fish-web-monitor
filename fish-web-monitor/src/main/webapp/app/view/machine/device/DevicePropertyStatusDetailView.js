@@ -15,6 +15,7 @@ Ext.define('Eway.view.machine.device.DevicePropertyStatusDetailView', {
 	layout : 'fit',
 	width : 800,
 	height : 590,
+	record : '',
 	initComponent : function() {
 		Ext.apply(this, {
 			items : {
@@ -38,5 +39,8 @@ Ext.define('Eway.view.machine.device.DevicePropertyStatusDetailView', {
 			}
 		});
 		this.callParent(arguments);
+	},
+	setRecord : function(record) {
+		this.record = record;
 	}
 });

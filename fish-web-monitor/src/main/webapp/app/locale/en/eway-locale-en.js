@@ -95,7 +95,7 @@ Ext.apply(EwayLocale,{
 		adminBtn:'Manager',//管理员
 		personM:'Maintencer',//EwayLocale.button.personM 厂商管理员
 		personTM:'Banker',//EwayLocale.button.personTM管机员
-		orgAdmin:'Bank Administrator',//EwayLocale.button.orgAdmin机构管理员
+		orgAdmin:'Bank Administrator'//EwayLocale.button.orgAdmin机构管理员
 	},
 	//引用其他模块
 	refs:{
@@ -176,8 +176,8 @@ Ext.apply(EwayLocale,{
 		chooseRecord:'Please select the records that you want to associate.',//EwayLocale.tip.chooseRecord请选择您要关联的记录
 		choosePlan:'Please select the program you want to view',//EwayLocale.tip.choosePlan请选择您要查看的方案
 		planDetail:'Programme details',//EwayLocale.tip.planDetail方案详情
-		planDate:'Programme details (date)',//EwayLocale.tip.planDate方案详情(日期)
-		planWeek:'Programme details (Week)',//EwayLocale.tip.planWeek方案详情(星期)
+		planDate:'Service plan details (date)',//EwayLocale.tip.planDate方案详情(日期)
+		planWeek:'Service plan details (Week)',//EwayLocale.tip.planWeek方案详情(星期)
 		planNoConf:'The program no detailed settings！',//EwayLocale.tip.planNoConf该方案无详细设置
 		chooseRelatedDev:'Please select the device you want to associate！',//EwayLocale.tip.chooseRelatedDev请选择您要关联的设备
 		devRelatedPlan:'Device is associated with the boot program！',//EwayLocale.tip.devRelatedPlan设备已关联开机方案
@@ -252,7 +252,7 @@ Ext.apply(EwayLocale,{
 				fail:'Delete failed: can not delete the role,please try again'//EwayLocale.tip.user.remove.fail //删除失败:无法删除角色,请重新操作.
 			},
 			update:{
-				fail:'Update failed:the record dose not exist,please refresh.',//EwayLocale.tip.user.update.fail 更改失败:记录不存在,请刷新后操作
+				fail:'Update failed:the record dose not exist,please refresh.'//EwayLocale.tip.user.update.fail 更改失败:记录不存在,请刷新后操作
 			},
 			move:{
 				choose:'Please choose the record which you want to move.'//EwayLocale.tip.user.move.choose 请选择需要移动的记录.
@@ -264,7 +264,7 @@ Ext.apply(EwayLocale,{
 				transactionMonitor:{
 					beginMonitor:'Please stop monitoring before input item,click start-monitor button to monitor!',//EwayLocale.tip.business.transaction.transactionMonitor.beginMonitor 请先停止监控后再输入条件，按开始监控按钮即可进行条件监控！
 					input:'At least one of terminal no,creditAccount,debitAccount is necessary.',//EwayLocale.tip.business.transaction.transactionMonitor.input 设备号、对方账号、客户账号至少输入一个.
-					left:'leave',//EwayLocale.tip.business.transaction.transactionMonitor.left 离开
+					left:'leave'//EwayLocale.tip.business.transaction.transactionMonitor.left 离开
 				},
 				historyTransaction:{
 					input:'Terminal ID is necessary for the query.'//EwayLocale.tip.business.transaction.historyTransaction.input 查询必须输入设备号
@@ -347,8 +347,8 @@ Ext.apply(EwayLocale,{
 				connFirst:'Monitor connection has been paused at the present,please connect the server first as ‘start monitor’"',//EwayLocale.tip.business.device.connFirst 当前已经暂停了与服务器的监控连接,请先与服务器建立连接,即"开始监控"
 				matrixPattern:'Matrix Pattern',//EwayLocale.tip.business.device.matrixPattern 矩阵方式
 				listPattern:'List Pattern'//EwayLocale.tip.business.device.listPattern 列表方式
-			},
-		},
+			}
+		}
 
 	},
 
@@ -356,7 +356,7 @@ Ext.apply(EwayLocale,{
 
 	combox:{
 		select:'Please select',//EwayLocale.combox.select --请选择--
-		explorer: 'Browse...',//EwayLocale.combox.explorer 浏览...
+		explorer: 'Browse...'//EwayLocale.combox.explorer 浏览...
 	},
 
 
@@ -406,7 +406,7 @@ Ext.apply(EwayLocale,{
 		choseTask:'Please choose a Task',//EwayLocale.vtype.choseTask 请选择一个任务
 		cancelTask:'Can not cancel the job which status is ‘finish’.',//不能撤销"完成"状态的作业
 		cancelParticularTask:'Cancel the job?(running job can only cancel the task which is not running)(正在运行的作业只会撤销还没有运行的任务.)',//是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)
-		nowDelete:'Deleting......', //正在删除......
+		nowDelete:'Deleting......' //正在删除......
 	},
 
 	commen:{
@@ -424,7 +424,7 @@ Ext.apply(EwayLocale,{
 			open:'Open',//EwayLocale.commen.comboxStatus.open 启用
 			close:'Close',//EwayLocale.commen.comboxStatus.close 停用
 			pastDue:'Expired',//EwayLocale.commen.comboxStatus.pastDue过期
-			pastDueSoon:'About to expire',//EwayLocale.commen.comboxStatus.pastDueSoon即将过期
+			pastDueSoon:'About to expire'//EwayLocale.commen.comboxStatus.pastDueSoon即将过期
 		},
 		type:'Type',//EwayLocale.commen.type 类型
 		comboxType:{
@@ -493,6 +493,7 @@ Ext.apply(EwayLocale,{
 		fatal:'Fatal',//EwayLocale.commen.fatal 故障
 		unStable:'UnStable',//EwayLocale.commen.unStable 不稳定
 		unknow:'Unknown',//EwayLocale.commen.unknow 未知
+		noDevice:'NoDevice',//EwayLocale.commen.noDevice 无设备
 		description:'Description',//EwayLocale.commen.description 描述
 		info:'Detail',//EwayLocale.commen.info 详细信息
 		startDataTime:'Start time',//EwayLocale.commen.startDataTime 开始时间
@@ -508,7 +509,7 @@ Ext.apply(EwayLocale,{
 		orgID:'Organization ID',//EwayLocale.commen.orgID 机构ID
 		endValidty:'Valid date until',//EwayLocale.commen.endValidty 截止有效期
 		publishDate:'Issue date',//EwayLocale.commen.publishDate 发布日期
-		announceTheme:'Announce theme',//EwayLocale.commen.announceTheme 公告主题
+		announceTheme:'Announce theme'//EwayLocale.commen.announceTheme 公告主题
 
 
 
@@ -542,7 +543,7 @@ Ext.apply(EwayLocale,{
 		pwdNotSame:'Passwds not same',//EwayLocale.personal.pwdNotSame 两次密码不一致！
 		rememberPwd:'Click confirm to update passwd ,please remember it',//EwayLocale.personal.rememberPwd 单击确定即可修改密码，请牢记新密码！
 		pwdSameNoChange:'New password is same with the old one,can not commit',//EwayLocale.personal.pwdSameNoChange 输入的新密码与旧密码相同,不可修改.
-		reOperate:'Can not modify passwd,please try again',//EwayLocale.personal.reOperate 无法修改密码,请重新操作.
+		reOperate:'Can not modify passwd,please try again'//EwayLocale.personal.reOperate 无法修改密码,请重新操作.
 	},
 
 	//**********************************************************/
@@ -578,6 +579,6 @@ Ext.apply(EwayLocale,{
 		helpName:'Name',//EwayLocale.system.helpName 名称
 		helpExpain:'Instructions',//EwayLocale.system.helpExpain 说明
 		helpDownload:'Download',//EwayLocale.system.helpDownload 下载
-		clickDownload:'Click to download',//EwayLocale.system.clickDownload 单击此处即可下载该文档
+		clickDownload:'Click to download'//EwayLocale.system.clickDownload 单击此处即可下载该文档
 	}
 });

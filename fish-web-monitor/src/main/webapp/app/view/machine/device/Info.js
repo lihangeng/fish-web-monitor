@@ -38,7 +38,7 @@ Ext.define('Eway.view.machine.device.Info', {
 							anchor : '95%',
 							style : 'padding-top:5px',
 							labelAlign : 'right',
-							readOnly:true,
+							readOnly:true
 						},
 						items : [ {
 							fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.atmGroup.terminalId,
@@ -82,7 +82,7 @@ Ext.define('Eway.view.machine.device.Info', {
 							name : 'serial',
 							readOnly:true,
 							labelAlign:'right'
-						}]					
+						}]
 					}, {
 						columnWidth : .55,
 						border : false,
@@ -102,7 +102,7 @@ Ext.define('Eway.view.machine.device.Info', {
 						}, {
 							xtype : 'common_orgComboOrgTree',
 							fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.atmGroup.orgName,
-							name : 'orgName',
+							name : 'orgName'
 						}, {
 							xtype : 'field_device_deviceatmtype',
 							fieldLabel : '<font color="red">*</font> '+EwayLocale.machine.atmGroup.devTypeName,
@@ -111,11 +111,11 @@ Ext.define('Eway.view.machine.device.Info', {
 						},{
 							xtype : 'common_orgComboOrgTree',
 							fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.atmGroup.devServiceName,
-							name : 'devServiceName',
+							name : 'devServiceName'
 						} ]
 					}]
-					
-				},{				
+
+				},{
 					layout : 'column',
 					border : false,
 					items : [ {
@@ -172,7 +172,7 @@ Ext.define('Eway.view.machine.device.Info', {
 										name : 'virtual'
 									}]
 								}]
-						
+
 						},{
 							columnWidth : 1,
 							border : false,
@@ -194,20 +194,20 @@ Ext.define('Eway.view.machine.device.Info', {
 								name : 'cashboxLimit',
 								readOnly:true,
 								value:0
-							},{  			        
+							},{
 								fieldLabel : EwayLocale.machine.device.installStyle,
 								xtype : 'radiogroup',
 								allowBlank : false,
 								anchor : '69%',
 								items : [ {
 									boxLabel : EwayLocale.machine.device.crossWall,
-									name : 'setupType',	
+									name : 'setupType',
 									checked : true,
 									readOnly:true,
 									inputValue : 1
 								}, {
 									boxLabel : EwayLocale.machine.device.mainRoom,
-									name : 'setupType',								
+									name : 'setupType',
 									readOnly:true,
 									inputValue : 2
 								} ]

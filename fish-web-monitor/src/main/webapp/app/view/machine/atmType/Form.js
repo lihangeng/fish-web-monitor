@@ -84,8 +84,8 @@ Ext.define('Eway.view.machine.atmType.Form',{
 		                return success;
 					}
 				}
-			
-			},
+
+			}
 		]
 	 	});
 	 	this.callParent(arguments);

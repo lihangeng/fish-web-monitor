@@ -24,13 +24,13 @@ Ext.define('Eway.view.operatingPlan.PlanDevice', {
 				region: 'west',
 				width:'50%',
 				padding : 1,
-				xtype : 'operatingPlan_linkedDevicePanel',
+				xtype : 'operatingPlan_linkedDevicePanel'
 				//autoLoadStore : true
 			},{
 				region: 'center',
 				width:'50%',
 				padding : 1,
-				xtype : 'operatingPlan_linkingDevicePanel',
+				xtype : 'operatingPlan_linkingDevicePanel'
 				//autoLoadStore : true
 			}]
 		});

@@ -80,7 +80,8 @@ Ext.apply(EwayLocale,{
 				isc:'ID Scanner',//EwayLocale.monitor.devMonitor.mod.isc 身份证扫描仪
 				icc:'Card Dispenser',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
 				fgp:'Finger Printer',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
-				healthy:'Healthy'//EwayLocale.monitor.devMonitor.mod.healthy 模块正常
+				healthy:'Healthy',//EwayLocale.monitor.devMonitor.mod.healthy 模块正常
+				pbk:'Passbook Printer'//EwayLocale.monitor.devMonitor.mod.pbk 存折打印机
 			},
 			remote:{
 				control:'Remote Control',//EwayLocale.monitor.devMonitor.remote.control 远程控制
@@ -160,8 +161,11 @@ Ext.apply(EwayLocale,{
 					title:'Transaction monitoring',//EwayLocale.monitor.business.transaction.transactionMonitor.title 实时交易监控
 					begin:'Start',//EwayLocale.monitor.business.transaction.transactionMonitor.begin 开始监控
 					stop:'Stop',//EwayLocale.monitor.business.transaction.transactionMonitor.stop 停止监控
-					clear:'Clear Screen'//EwayLocale.monitor.business.transaction.transactionMonitor.clear清屏
-					}
+					clear:'Clear screen',//EwayLocale.monitor.business.transaction.transactionMonitor.clear清屏
+					scroll:'scroll',//EwayLocale.monitor.business.transaction.transactionMonitor.scroll滚屏方式
+					up:'up',//EwayLocale.monitor.business.transaction.transactionMonitor.up向上
+					down:'down'//EwayLocale.monitor.business.transaction.transactionMonitor.down向下
+				}
 			},
 			blackList:{
 				title:'BlackCard',//EwayLocale.monitor.business.blackList.title 黑名单卡管理
@@ -276,7 +280,7 @@ Ext.apply(EwayLocale,{
 				stopManage:'Automatic stopped ,please contact the manager!',//自动停止.如需取得视频文件,请联系管理员!
 				manage: 'Operater',	//操作
 				loading:'DownLoad',//EwayLocale.agent.remote.screen.loading 下载
-				screenCamera: 'Screen recording',//屏幕录制
+				screenCamera: 'Screen recording'//屏幕录制
 			},
 			discInfo: 'Disk info', //磁盘信息
 			discName: 'Disk Pattern name',//磁盘分区名称
@@ -397,7 +401,11 @@ Ext.apply(EwayLocale,{
 			clickAddLoadFile:'Add the list of download on click',//单击添加到下载列表
 			removeFile:'Remove the file from list',//删除
 			mustIncludeOneFile:'Must exit File to downLoad.',
-
+			resetBackUp:'Click to backup the logs of this day.',
+			backupAppLogsSuccess:'backup atmc logs success.',
+			backupAppLogsFail:'backup atmc logs faile.',
+			backupLogSucList:' backup atmc logs list success.',
+			backupLogFailList:'backup atmc logs list fail.'
 		}
 	}
 });

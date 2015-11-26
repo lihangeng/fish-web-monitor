@@ -1,6 +1,6 @@
 Ext.define('Eway.model.operatingPlan.LinkDevice', {
 	extend : 'Ext.data.Model',
-	
+
 	fields : [ {
 		name : 'id'
 	}, 'terminalId', 'ip', {
@@ -18,8 +18,8 @@ Ext.define('Eway.model.operatingPlan.LinkDevice', {
 	}, {
 		name : 'installDate'
 	}, 'address', 'status', 'devServiceName', {
-		name : 'cashboxLimit',
-		
+		name : 'cashboxLimit'
+
 	} ],
 	proxy : {
 		type : 'rest',

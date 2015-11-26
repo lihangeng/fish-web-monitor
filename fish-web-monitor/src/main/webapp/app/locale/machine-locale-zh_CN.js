@@ -21,7 +21,7 @@ Ext.apply(EwayLocale,{
 			note:'备注',
 			addTitle:'增加ATM分类信息',
 			updateTitle:'更改ATM型号信息',
-			number:'编号',//EwayLocale.machine.atmCatalog.number
+			number:'编号'//EwayLocale.machine.atmCatalog.number
 		},
 		atmGroup : {
 			terminalId:'设备号',
@@ -32,8 +32,8 @@ Ext.apply(EwayLocale,{
 			devCatalogName:'设备类型',
 			devGroupName: '设备分组',
 			status:'设备状态',
-			comboxStatus:{	
-				dredge:'开通',//开通			
+			comboxStatus:{
+				dredge:'开通',//开通
 				open:'开通',
 				close:'停用'
 			},
@@ -465,7 +465,7 @@ Ext.apply(EwayLocale,{
 			devInfo:'设备信息',
 			unable:'不可以',
 			able:'能',
-			
+
 			addDevInfo:'增加设备信息',//EwayLocale.machine.device.addDevInfo
 			effectiveDate:'生效日期',//EwayLocale.machine.device.effectiveDate
 			changeDevInfo:'更改设备信息',//EwayLocale.machine.device.changeDevInfo
@@ -484,7 +484,7 @@ Ext.apply(EwayLocale,{
 				openClose:'开机/关机',//EwayLocale.machine.device.person.openClose
 				Open:'开机',//EwayLocale.machine.device.person.Open
 				Close:'关机'//EwayLocale.machine.device.person.Close
-			},
+			}
 
 		},
 		param:{
@@ -537,7 +537,7 @@ Ext.apply(EwayLocale,{
 			cashboxLimit:'钞箱报警金额(单位：张数)',//EwayLocale.machine.plan.cashboxLimit
 			perToDev:'人员<-->设备',//EwayLocale.machine.plan.perToDev
 			changePlan:'更改方案',//EwayLocale.machine.plan.changePlan
-			servicePlan:'开机方案',//EwayLocale.machine.plan.servicePlan
+			servicePlan:'开机方案'//EwayLocale.machine.plan.servicePlan
 		},
 		serviceplan:{
 			title:'开机方案',//EwayLocale.machine.serviceplan.title
@@ -616,13 +616,14 @@ Ext.apply(EwayLocale,{
 		backupProcess:'正在备份',//EwayLocale.atmLog.backupProcess
 		backupSuccess:'备份成功',//EwayLocale.atmLog.backupSuccess
 		backupError:'备份错误',//EwayLocale.atmLog.backupError
-		logDevAccount:'日志设备数量累计',//EwayLocale.atmLog.logDevAccount
+		logDevSucAccount:'日志备份成功设备数',//EwayLocale.atmLog.logDevSucAccount
+		logDevFailAccount:'日志备份失败设备数',//EwayLocale.atmLog.logDevFailAccount
 		reform:'重做',//EwayLocale.atmLog.reform
 		busLogAnalysis:'业务日志分析',//EwayLocale.atmLog.busLogAnalysis
 		selectAnalysis:'请选择需要分析的日志文件，分析的结果将以Excel表格文件导出',//EwayLocale.atmLog.selectAnalysis
 		selectLog:'选择日志',//EwayLocale.atmLog.selectLog
 		pleaseDownload:'请下载',//EwayLocale.atmLog.pleaseDownload
-		appLogDownload:'应用日志下载',//EwayLocale.atmLog.appLogDownload
+		title:'应用日志',//EwayLocale.atmLog.appLogDownload
 		lastBackupTime:'最后一次备份时间',//EwayLocale.atmLog.lastBackupTime
 		noBegin:'未开始',//EwayLocale.atmLog.noBegin
 		noLog:'无日志',//EwayLocale.atmLog.noLog

@@ -42,7 +42,7 @@ Ext.define('Eway.view.person.user.UserLogGrid', {
 		});
 
 		this.callParent(arguments);
-	},
+	}
 
 //	onReload: function() {
 //		this.getStore().load();

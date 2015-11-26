@@ -644,7 +644,7 @@ pre.link{
 
 
 /*模块状态-无模块*/
-.monitor-div-mod-Nodevice {
+.monitor-div-mod-NoDevice {
 	background: url(../images/monitor/monitor.png) left -32px no-repeat !important;
 }
 /*模块状态-未知*/
@@ -695,7 +695,10 @@ pre.link{
 .monitor-div-box-Unknown {
 	background: url(../images/monitor/monitor.png) -192px 0px no-repeat !important;
 }
-
+/*钞箱状态-无设备*/
+.monitor-div-box-NoDevice {
+	background: url(../images/monitor/monitor.png) -224px 0px no-repeat !important;
+}
 
 /*网络状态-未知*/
 .monitor-div-net-Unknown {
@@ -779,7 +782,7 @@ pre.link{
 
 
 /*模块状态-无模块*/
-#images-view.maxicon .monitor-div-mod-Nodevice {
+#images-view.maxicon .monitor-div-mod-NoDevice {
 	background: url(../images/monitor/max_monitor.png) left -64px no-repeat !important;
 }
 /*模块状态-未知*/
@@ -830,7 +833,10 @@ pre.link{
 #images-view.maxicon .monitor-div-box-Unknown {
 	background: url(../images/monitor/max_monitor.png) -384px 0px no-repeat !important;
 }
-
+/*钞箱状态-无设备*/
+#images-view.maxicon .monitor-div-box-NoDevice {
+	background: url(../images/monitor/max_monitor.png) -448px 0px no-repeat !important;
+}
 
 /*网络状态-未知*/
 #images-view.maxicon .monitor-div-net-Unknown {
@@ -918,7 +924,7 @@ pre.link{
 
 
 /*模块状态-无模块*/
-.monitor_minicon.monitor-div-mod-Nodevice {
+.monitor_minicon.monitor-div-mod-NoDevice {
 	background: url(../images/monitor/min_monitor.png) left -17px no-repeat !important;
 }
 /*模块状态-未知*/
@@ -969,7 +975,10 @@ pre.link{
 .monitor_minicon.monitor-div-box-Unknown {
 	background: url(../images/monitor/min_monitor.png) -102px 0px no-repeat !important;
 }
-
+/*钞箱状态-无设备*/
+.monitor_minicon.monitor-div-box-NoDevice {
+	background: url(../images/monitor/min_monitor.png) -119px 0px no-repeat !important;
+}
 
 /*网络状态-未知*/
 .monitor_minicon.monitor-div-net-Unknown {

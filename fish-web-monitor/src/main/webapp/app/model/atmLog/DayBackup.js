@@ -5,7 +5,8 @@ Ext.define('Eway.model.atmLog.DayBackup',{
 		'result',
 		'doTime',
 		'endTime',
-		'deviceCount'
+		'deviceSucCount',
+		'deviceFailCount'
 	],
 	proxy : {
 		type : 'rest',

@@ -35,6 +35,8 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 							var text = field.getEl().down('a.link');
 							if (text) {
 								text.on('click', function(e, htmlEl) {
+									var win = field.up('window');
+									
 									var form = field.up('form');
 									var code = form.down('displayfield[name="code"]').getValue();
 									var ip = form.down('displayfield[name="ip"]').getValue();
@@ -42,7 +44,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 									ip = Ext.util.Format.stripTags(ip);
 
 									var controller = this.getController('machine.device.DevicePropertyStatusDetail');
-									controller.display(code, ip);
+									controller.display(code, ip, win.record);
 								}, this);
 							}
 						},
@@ -364,13 +366,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				'monitor_device_DeviceInfoStatus displayfield[name="idcStatus"]' : {
 					change : {
 						fn : function(field) {
-							var text = field.getEl().down('a.link');
-							if (text) {
-								text.on('click', function(e, htmlEl) {
-									var code = Ext.util.Format.stripTags(field.up('form').down('displayfield[name="code"]').getValue());
-									var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
-									win.display(code, 'IDC');
-								}, this);
+							if (field.getEl()) {
+								var text = field.getEl().down('a.link');
+								if (text) {
+									text.on('click', function(e, htmlEl) {
+										var code = Ext.util.Format.stripTags(field.up('form').down('displayfield[name="code"]').getValue());
+										var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
+										win.display(code, 'IDC');
+									}, this);
+								}
 							}
 						},
 //						single : true,
@@ -382,17 +386,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				'monitor_device_DeviceInfoStatus displayfield[name="jprStatus"]' : {
 					change : {
 						fn : function(field) {
-							var text = field.getEl().down('a.link');
-							if (text) {
-								text.on('click', function(e, htmlEl) {
-									var code = Ext.util.Format.stripTags(field
-											.up('form')
-											.down('displayfield[name="code"]')
-											.getValue());
-									var win = Ext
-											.create('Eway.view.monitor.device.ModuleInfoWin');
-									win.display(code, 'JPR');
-								}, this);
+							if (field.getEl()) {
+								var text = field.getEl().down('a.link');
+								if (text) {
+									text.on('click', function(e, htmlEl) {
+										var code = Ext.util.Format.stripTags(field.up('form').down('displayfield[name="code"]').getValue());
+										var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
+										win.display(code, 'JPR');
+									}, this);
+								}
 							}
 						},
 //						single : true,
@@ -403,17 +405,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				'monitor_device_DeviceInfoStatus displayfield[name="cdmStatus"]' : {
 					change : {
 						fn : function(field) {
-							var text = field.getEl().down('a.link');
-							if (text) {
-								text.on('click', function(e, htmlEl) {
-									var code = Ext.util.Format.stripTags(field
-											.up('form')
-											.down('displayfield[name="code"]')
-											.getValue());
-									var win = Ext
-											.create('Eway.view.monitor.device.ModuleInfoWin');
-									win.display(code, 'CDM');
-								}, this);
+							if (field.getEl()) {
+								var text = field.getEl().down('a.link');
+								if (text) {
+									text.on('click', function(e, htmlEl) {
+										var code = Ext.util.Format.stripTags(field.up('form').down('displayfield[name="code"]').getValue());
+										var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
+										win.display(code, 'CDM');
+									}, this);
+								}
 							}
 						},
 //						single : true,
@@ -424,17 +424,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				'monitor_device_DeviceInfoStatus displayfield[name="pinStatus"]' : {
 					change : {
 						fn : function(field) {
-							var text = field.getEl().down('a.link');
-							if (text) {
-								text.on('click', function(e, htmlEl) {
-									var code = Ext.util.Format.stripTags(field
-											.up('form')
-											.down('displayfield[name="code"]')
-											.getValue());
-									var win = Ext
-											.create('Eway.view.monitor.device.ModuleInfoWin');
-									win.display(code, 'PIN');
-								}, this);
+							if (field.getEl()) {
+								var text = field.getEl().down('a.link');
+								if (text) {
+									text.on('click', function(e, htmlEl) {
+										var code = Ext.util.Format.stripTags(field.up('form').down('displayfield[name="code"]').getValue());
+										var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
+										win.display(code, 'PIN');
+									}, this);
+								}
 							}
 						},
 //						single : true,
@@ -445,17 +443,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				'monitor_device_DeviceInfoStatus displayfield[name="cimStatus"]' : {
 					change : {
 						fn : function(field) {
-							var text = field.getEl().down('a.link');
-							if (text) {
-								text.on('click', function(e, htmlEl) {
-									var code = Ext.util.Format.stripTags(field
-											.up('form')
-											.down('displayfield[name="code"]')
-											.getValue());
-									var win = Ext
-											.create('Eway.view.monitor.device.ModuleInfoWin');
-									win.display(code, 'CIM');
-								}, this);
+							if (field.getEl()) {
+								var text = field.getEl().down('a.link');
+								if (text) {
+									text.on('click', function(e, htmlEl) {
+										var code = Ext.util.Format.stripTags(field.up('form').down('displayfield[name="code"]').getValue());
+										var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
+										win.display(code, 'CIM');
+									}, this);
+								}
 							}
 						},
 //						single : true,
@@ -466,17 +462,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				'monitor_device_DeviceInfoStatus displayfield[name="siuStatus"]' : {
 					change : {
 						fn : function(field) {
-							var text = field.getEl().down('a.link');
-							if (text) {
-								text.on('click', function(e, htmlEl) {
-									var code = Ext.util.Format.stripTags(field
-											.up('form')
-											.down('displayfield[name="code"]')
-											.getValue());
-									var win = Ext
-											.create('Eway.view.monitor.device.ModuleInfoWin');
-									win.display(code, 'SIU');
-								}, this);
+							if (field.getEl()) {
+								var text = field.getEl().down('a.link');
+								if (text) {
+									text.on('click', function(e, htmlEl) {
+										var code = Ext.util.Format.stripTags(field.up('form').down('displayfield[name="code"]').getValue());
+										var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
+										win.display(code, 'SIU');
+									}, this);
+								}
 							}
 						},
 //						single : true,
@@ -487,17 +481,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				'monitor_device_DeviceInfoStatus displayfield[name="rprStatus"]' : {
 					change : {
 						fn : function(field) {
-							var text = field.getEl().down('a.link');
-							if (text) {
-								text.on('click', function(e, htmlEl) {
-									var code = Ext.util.Format.stripTags(field
-											.up('form')
-											.down('displayfield[name="code"]')
-											.getValue());
-									var win = Ext
-											.create('Eway.view.monitor.device.ModuleInfoWin');
-									win.display(code, 'RPR');
-								}, this);
+							if (field.getEl()) {
+								var text = field.getEl().down('a.link');
+								if (text) {
+									text.on('click', function(e, htmlEl) {
+										var code = Ext.util.Format.stripTags(field.up('form').down('displayfield[name="code"]').getValue());
+										var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
+										win.display(code, 'RPR');
+									}, this);
+								}
 							}
 						},
 //						single : true,
@@ -508,17 +500,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				'monitor_device_DeviceInfoStatus displayfield[name="ttuStatus"]' : {
 					change : {
 						fn : function(field) {
-							var text = field.getEl().down('a.link');
-							if (text) {
-								text.on('click', function(e, htmlEl) {
-									var code = Ext.util.Format.stripTags(field
-											.up('form')
-											.down('displayfield[name="code"]')
-											.getValue());
-									var win = Ext
-											.create('Eway.view.monitor.device.ModuleInfoWin');
-									win.display(code, 'TTU');
-								}, this);
+							if (field.getEl()) {
+								var text = field.getEl().down('a.link');
+								if (text) {
+									text.on('click', function(e, htmlEl) {
+										var code = Ext.util.Format.stripTags(field.up('form').down('displayfield[name="code"]').getValue());
+										var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
+										win.display(code, 'TTU');
+									}, this);
+								}
 							}
 						},
 //						single : true,
@@ -529,17 +519,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				'monitor_device_DeviceInfoStatus displayfield[name="iscStatus"]' : {
 					change : {
 						fn : function(field) {
-							var text = field.getEl().down('a.link');
-							if (text) {
-								text.on('click', function(e, htmlEl) {
-									var code = Ext.util.Format.stripTags(field
-											.up('form')
-											.down('displayfield[name="code"]')
-											.getValue());
-									var win = Ext
-											.create('Eway.view.monitor.device.ModuleInfoWin');
-									win.display(code, 'ISC');
-								}, this);
+							if (field.getEl()) {
+								var text = field.getEl().down('a.link');
+								if (text) {
+									text.on('click', function(e, htmlEl) {
+										var code = Ext.util.Format.stripTags(field.up('form').down('displayfield[name="code"]').getValue());
+										var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
+										win.display(code, 'ISC');
+									}, this);
+								}
 							}
 						},
 //						single : true,
@@ -550,17 +538,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				'monitor_device_DeviceInfoStatus displayfield[name="iccStatus"]' : {
 					change : {
 						fn : function(field) {
-							var text = field.getEl().down('a.link');
-							if (text) {
-								text.on('click', function(e, htmlEl) {
-									var code = Ext.util.Format.stripTags(field
-											.up('form')
-											.down('displayfield[name="code"]')
-											.getValue());
-									var win = Ext
-											.create('Eway.view.monitor.device.ModuleInfoWin');
-									win.display(code, 'ICC');
-								}, this);
+							if (field.getEl()) {
+								var text = field.getEl().down('a.link');
+								if (text) {
+									text.on('click', function(e, htmlEl) {
+										var code = Ext.util.Format.stripTags(field.up('form').down('displayfield[name="code"]').getValue());
+										var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
+										win.display(code, 'ICC');
+									}, this);
+								}
 							}
 						},
 //						single : true,
@@ -571,17 +557,34 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 				'monitor_device_DeviceInfoStatus displayfield[name="fgpStatus"]' : {
 					change : {
 						fn : function(field) {
-							var text = field.getEl().down('a.link');
-							if (text) {
-								text.on('click', function(e, htmlEl) {
-									var code = Ext.util.Format.stripTags(field
-											.up('form')
-											.down('displayfield[name="code"]')
-											.getValue());
-									var win = Ext
-											.create('Eway.view.monitor.device.ModuleInfoWin');
-									win.display(code, 'FGP');
-								}, this);
+							if (field.getEl()) {
+								var text = field.getEl().down('a.link');
+								if (text) {
+									text.on('click', function(e, htmlEl) {
+										var code = Ext.util.Format.stripTags(field.up('form').down('displayfield[name="code"]').getValue());
+										var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
+										win.display(code, 'FGP');
+									}, this);
+								}
+							}
+						},
+//						single : true,
+						scope : this
+					},
+					scope : this
+				},
+				'monitor_device_DeviceInfoStatus displayfield[name="pbkStatus"]' : {
+					change : {
+						fn : function(field) {
+							if (field.getEl()) {
+								var text = field.getEl().down('a.link');
+								if (text) {
+									text.on('click', function(e, htmlEl) {
+										var code = Ext.util.Format.stripTags(field.up('form').down('displayfield[name="code"]').getValue());
+										var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
+										win.display(code, 'PBK');
+									}, this);
+								}
 							}
 						},
 //						single : true,
@@ -1157,6 +1160,9 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	//显示设备详情页面
 	displayWin : function(record) {
 		var win = Ext.widget('monitor_device_DeviceInfoStatus');
+		
+		win.setRecord(record);
+		
 		win.setTitle(EwayLocale.tip.business.device.term + "(" + record.data.code + ")" +EwayLocale.tip.business.device.detail);
 		win.on('afterrender',function(){
 			win.fillForm(record);

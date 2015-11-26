@@ -19,20 +19,22 @@ Ext.define('Eway.view.person.servicePer.FilterForm', {
 	initComponent: function() {
 		Ext.apply(this, {
 			items : [{
-				columnWidth : .3,
+				columnWidth : .33,
 				items : [{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel : EwayLocale.machine.atmGroup.orgName,
+					fieldLabel :EwayLocale.commen.devServiceName,
 					emptyText: EwayLocale.combox.select,
+					labelWidth:140,
 					editable : false,
 					name : 'org',
-					filters : '{"type" : "0"}',
+					filters : '{"type" : "1"}',
 					rootVisible : true,
 					hiddenValue : 'selectedNode'
 				},{
 					xtype : 'hiddenfield',
 					name :'selectedNode'
 				},  {
+					labelWidth:140,
 					xtype : 'field.stateFilter'
 				}]
 			},{
@@ -49,7 +51,7 @@ Ext.define('Eway.view.person.servicePer.FilterForm', {
 				items : [{
 					fieldLabel : EwayLocale.commen.jobNum,
 					xtype : 'textfield',
-					name:'jobNum',
+					name:'jobNum'
 				}]
 			}]
 		});

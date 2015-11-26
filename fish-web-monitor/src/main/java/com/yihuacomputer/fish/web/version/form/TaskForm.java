@@ -34,6 +34,8 @@ public class TaskForm {
 	private String planTime;
 	private String excuteMachine;
 	private String downSource;
+	
+    private double process;
 
 	public TaskForm() {
 	}
@@ -184,6 +186,14 @@ public class TaskForm {
 
 	public void setJobName(String jobName) {
 		this.jobName = jobName;
-	}
+    }
+
+    public double getProcess() {
+        return process;
+    }
+
+    public void setProcess(double process) {
+        this.process = process;
+    }
 
 }
