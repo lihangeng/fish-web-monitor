@@ -25,7 +25,7 @@
 			<textField>
 				<reportElement uuid="2d982a06-3119-4949-83f0-b4064d44d43d" x="263" y="14" width="647" height="34"/>
 				<textElement textAlignment="Center">
-					<font size="24"/>
+					<font size="24" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
 			</textField>
@@ -36,7 +36,7 @@
 			<textField>
 				<reportElement uuid="6924355c-1e60-437e-bbd7-a96af5efe81f" x="263" y="0" width="647" height="26"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="14"/>
+					<font fontName="SansSerif" size="14" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{reportDate}]]></textFieldExpression>
 			</textField>

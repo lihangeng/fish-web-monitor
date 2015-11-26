@@ -3,7 +3,7 @@
 	<property name="ireport.scriptlethandling" value="0"/>
 	<property name="ireport.encoding" value="UTF-8"/>
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="678"/>
+	<property name="ireport.x" value="299"/>
 	<property name="ireport.y" value="0"/>
 	<import value="net.sf.jasperreports.engine.*"/>
 	<import value="java.util.*"/>
@@ -40,7 +40,7 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None">
-					<font fontName="SansSerif" size="13"/>
+					<font fontName="SansSerif" size="13" pdfFontName="STSong-Light"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{reportDate}]]></textFieldExpression>
@@ -54,7 +54,7 @@
 					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
-					<font fontName="SansSerif"/>
+					<font fontName="SansSerif" pdfFontName="STSong-Light"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
@@ -130,7 +130,7 @@
 					<rightPen lineWidth="0.5" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
-					<font fontName="SansSerif" size="13"/>
+					<font fontName="SansSerif" size="13" pdfFontName="STSong-Light"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{terminalId}]]></textFieldExpression>
@@ -144,7 +144,7 @@
 					<rightPen lineWidth="0.5" lineStyle="Solid"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
-					<font fontName="SansSerif" size="13"/>
+					<font fontName="SansSerif" size="13" pdfFontName="STSong-Light"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{orgName}]]></textFieldExpression>
@@ -159,7 +159,7 @@
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="13"/>
+					<font fontName="SansSerif" size="13" pdfFontName="STSong-Light"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cashInAmt}]]></textFieldExpression>
 			</textField>
@@ -171,7 +171,7 @@
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="SansSerif" size="13"/>
+					<font fontName="SansSerif" size="13" pdfFontName="STSong-Light"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{date}]]></textFieldExpression>
 			</textField>
