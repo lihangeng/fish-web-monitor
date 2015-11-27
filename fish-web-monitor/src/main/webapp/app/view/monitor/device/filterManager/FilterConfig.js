@@ -59,10 +59,7 @@ Ext.define('Eway.view.monitor.device.filterManager.FilterConfig',{
 					typeAhead : false,
 					valueField : 'value',
 					value : '0',
-					editable : false,
-					listeners : {
-//						change : this.cascade
-					}
+					editable : false
 				} ]
 			}, {
 				columnWidth : .5,
