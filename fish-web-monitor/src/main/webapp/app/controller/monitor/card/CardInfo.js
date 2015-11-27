@@ -174,7 +174,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 				var record = sm.getLastSelected();
 				record.erase({
 					success: function(record,operation){
-						Eway.alert(EwayLocale.updateSuccess);
+						Eway.alert(EwayLocale.deleteSuccess);
 						grid.getStore().remove(record);
 					},
 					failure: function(record,operation){

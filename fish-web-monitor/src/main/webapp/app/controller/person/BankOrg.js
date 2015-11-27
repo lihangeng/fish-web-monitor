@@ -405,7 +405,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 							var parentId = record.data.parentId;
 							record.erase({
 								success: function(){
-									Eway.alert(EwayLocale.updateSuccess);
+									Eway.alert(EwayLocale.deleteSuccess);
 									var store = this.getGrid().getStore();
 									//防止翻页后数据变化，所以把参数带入，翻页的逻辑不会变更
 									store.setUrlParamsByObject({

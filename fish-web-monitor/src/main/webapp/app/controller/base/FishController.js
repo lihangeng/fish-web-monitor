@@ -51,7 +51,7 @@ Ext.define('Eway.controller.base.FishController', {
 				var record = sm.getLastSelected();
 				record.erase({
 					success: function(record,operation){
-						Eway.alert(EwayLocale.updateSuccess);
+						Eway.alert(EwayLocale.deleteSuccess);
 						me.onQuery();
 					},
 					failure: function(record,operation){

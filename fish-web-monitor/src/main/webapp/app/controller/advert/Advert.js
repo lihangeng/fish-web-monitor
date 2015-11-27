@@ -269,7 +269,7 @@ Ext.define('Eway.controller.advert.Advert', {
 								record.erase({
 									success: function(){
 										grid.getStore().remove(record);
-										Eway.alert(EwayLocale.updateSuccess);
+										Eway.alert(EwayLocale.deleteSuccess);
 										//刷新详细配置列表
 										var resourceGrid = this.getAdvertResourceGrid();
 										resourceGrid.getStore().load({params:{advertId:0}});

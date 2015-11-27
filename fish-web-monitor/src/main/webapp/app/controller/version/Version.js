@@ -489,7 +489,7 @@ Ext.define('Eway.controller.version.Version', {
 						record.erase({
 							success: function(){
 								this.getVersionStore().remove(record);
-								Eway.alert(EwayLocale.updateSuccess);
+								Eway.alert(EwayLocale.deleteSuccess);
 								grid.getStore().load();
 							},
 							failure:  function(record,operation){
