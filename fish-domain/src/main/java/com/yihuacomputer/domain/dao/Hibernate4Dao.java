@@ -233,7 +233,11 @@ public class Hibernate4Dao implements IGenericDao {
 				criteria.add(Restrictions.eq(propertyName, c.getValue()));
 			} else if (Operator.LIKE.equals(c.getOperator())) {
 				criteria.add(Restrictions.like(propertyName, (String) c.getValue(), MatchMode.ANYWHERE));
-			} else if (Operator.NE.equals(c.getOperator())) {
+			} else if (Operator.RLIKE.equals(c.getOperator())) {
+                criteria.add(Restrictions.like(propertyName, (String) c.getValue(), MatchMode.START));
+            } else if (Operator.LLIKE.equals(c.getOperator())) {
+                criteria.add(Restrictions.like(propertyName, (String) c.getValue(), MatchMode.END));
+            } else if (Operator.NE.equals(c.getOperator())) {
 				criteria.add(Restrictions.or(Restrictions.ne(propertyName, c.getValue()),
 						Restrictions.isNull(propertyName)));
 			} else if (Operator.LT.equals(c.getOperator())) {
