@@ -518,7 +518,7 @@ Ext.define('Eway.controller.person.BankPer', {
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Eway.alert(EwayLocale.updateSuccess);
+									Eway.alert(EwayLocale.deleteSuccess);
 									me.onQuery();
 									grid.getStore().remove(record);
 								},
