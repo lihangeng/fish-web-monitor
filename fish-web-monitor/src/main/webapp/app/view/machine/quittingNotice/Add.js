@@ -49,7 +49,7 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 				selectOnFocus : true,
 				defaults: {
 					width: 400,
-					labelWidth: 80,
+					labelWidth: 110,
 					labelAlign: 'right',
 					msgTarget : 'side'
 				},
