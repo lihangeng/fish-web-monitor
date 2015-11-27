@@ -406,7 +406,8 @@ Ext.apply(EwayLocale,{
 			backupAppLogsSuccess:'backup atmc logs success.',
 			backupAppLogsFail:'backup atmc logs faile.',
 			backupLogSucList:' backup atmc logs list success.',
-			backupLogFailList:'backup atmc logs list fail.'
+			backupLogFailList:' backup atmc logs list failed.',
+
 		}
 	}
 });
