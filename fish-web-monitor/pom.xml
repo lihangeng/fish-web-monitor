@@ -74,7 +74,7 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.2.2</version>
 		</dependency>
-		<!-- j2ee -->
+		<!-- j2ee
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -82,8 +82,8 @@
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
-		</dependency>
-		 <!-- 独立运行 
+		</dependency> -->
+		 <!-- 独立运行 -->
 		<dependency>
 			<groupId>org.eclipse.jetty.aggregate</groupId>
 			<artifactId>jetty-all</artifactId>
@@ -98,7 +98,7 @@
 		<dependency>
 		   <groupId>org.mortbay.jetty</groupId>
     	   <artifactId>jsp-2.1-glassfish</artifactId>
- 		</dependency>-->
+ 		</dependency>
 		<!-- POI扩展组件 -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
