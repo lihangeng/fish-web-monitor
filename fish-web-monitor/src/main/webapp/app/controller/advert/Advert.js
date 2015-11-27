@@ -269,7 +269,7 @@ Ext.define('Eway.controller.advert.Advert', {
 								record.erase({
 									success: function(){
 										grid.getStore().remove(record);
-										Eway.alert(EwayLocale.updateSuccess);
+										Eway.alert(EwayLocale.deleteSuccess);
 										//刷新详细配置列表
 										var resourceGrid = this.getAdvertResourceGrid();
 										resourceGrid.getStore().load({params:{advertId:0}});
@@ -393,6 +393,9 @@ Ext.define('Eway.controller.advert.Advert', {
 				var grid = win.down("version_download_multiselectableDeviceGrid");
 				grid.down("combobox[name=pageSize]").on("change",this.onPageSizeChange,this);
 				grid.down('button[action=queryDownDevice]').on('click',this.onQueryDownDevice,this);
+				win.down("textfield[name=ip]").on({keydown:this.queryOnKeyDownEnter, scope: this });
+				win.down("textfield[name=terminalId]").on({keydown:this.queryOnKeyDownEnter, scope: this});
+				win.down("common_orgComboOrgTree[name=orgName]").on({keydown:this.queryOnKeyDownEnter, scope: this});
 				var form = win.down("form").getForm();
 				form.findField("versionId").setValue(record.get("versionId"));
 				form.findField("versionType").setValue(record.get("versionType"));
@@ -405,6 +408,16 @@ Ext.define('Eway.controller.advert.Advert', {
 		}
 		else {
 			Eway.alert(EwayLocale.msg.chooseAdvert);
+		}
+	},
+	queryOnKeyDownEnter:function( e, t, eOpts ){
+		if(t.keyCode==13){
+			var grid = this.getDownAdvert().down("version_download_multiselectableDeviceGrid");
+			var form = grid.up('window').down('form').getForm();
+			if(form.isValid()){
+				this.setSearchFilter(grid,form)
+				grid.getStore().loadPage(1);
+			}
 		}
 	},
 	setCheckBoxModel:function( _this, newValue, oldValue, eOpts ){
@@ -595,9 +608,10 @@ Ext.define('Eway.controller.advert.Advert', {
 		var win = this.getAddWaitWin();
 		var advertView = win.down('advertimgview');
 		var lastSeletedItem = advertView.selectedItem;
-		if(lastSeletedItem != null){
-			lastSeletedItem.removeCls('advert-item-selected');
-		}
+		
+//		if(lastSeletedItem != null){
+//			lastSeletedItem.removeCls('advert-item-selected');
+//		}
 		var currentEle = Ext.get(itemHtml);
 		currentEle.addCls('advert-item-selected');
 		advertView.selectedItem = currentEle;
@@ -843,8 +857,8 @@ Ext.define('Eway.controller.advert.Advert', {
     		var res = advRess[i];
 			var advRes_str = "{'playTime':" + res.data.playTime + ",'beginTime':'" + res.data.beginTime
 			+ "','endTime':'"+res.data.endTime
-			+"','beginDate':'"+res.data.beginDate
-			+"','endDate':'"+res.data.endDate
+			+"','beginDate':'"+Ext.Date.format(res.data.beginDate, "Y-m-d")
+			+"','endDate':'"+Ext.Date.format(res.data.endDate, "Y-m-d")
 			+"','screen':'"+res.data.screen
 			+ "','content':'" + res.data.content +"'}";
 			if(resources == '['){
@@ -864,7 +878,10 @@ Ext.define('Eway.controller.advert.Advert', {
 
     	adv.save({
 			 success: function(ed) {
-				 me.onQuery();
+				var view = me.getEwayView();
+				var store = view.down('advert_grid').getStore();
+				store.setUrlParamsByObject(null);
+				store.loadPage(1);
 			 	Ext.MessageBox.alert(EwayLocale.confirm.title,EwayLocale.msg.createSuccess);
 				win.close();
 			 },

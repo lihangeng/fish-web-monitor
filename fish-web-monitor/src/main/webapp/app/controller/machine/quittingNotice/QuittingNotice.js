@@ -223,7 +223,7 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Eway.alert(EwayLocale.updateSuccess);
+									Eway.alert(EwayLocale.deleteSuccess);
 									grid.getStore().remove(record);
 									store.setUrlParamsByObject(quaryData);
 									store.setBaseParam('organizationID',ewayUser.getOrgId());

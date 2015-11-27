@@ -28,7 +28,7 @@ Ext.define('Eway.view.version.Add', {
 				},
 				items : [{
 					xtype:'field_versionTypeComboBoxAdd',
-					fieldLabel : '<font color="red">*</font>'+EwayLocale.version.View.versionType,//版本类型'
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.version.View.versionType//版本类型'
 				},{
 				   xtype: 'textfield',
 			       fieldLabel : '<font color="red">*</font>'+EwayLocale.version.View.versionNo,//版本号',

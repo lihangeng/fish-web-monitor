@@ -493,7 +493,7 @@ Ext.define('Eway.controller.person.ServicePer', {
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Eway.alert(EwayLocale.updateSuccess);
+									Eway.alert(EwayLocale.deleteSuccess);
 //									grid.getStore().remove(record);
 									grid.getStore().load();
 								},

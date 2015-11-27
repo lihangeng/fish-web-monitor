@@ -4,7 +4,7 @@ Ext.define('Eway.view.Header', {
     uses : ['Ext.ux.TransparentButton'],
     id : 'appheader',
     defaults :{
-    	xtype: 'transparentbutton',
+    	xtype: 'transparentbutton'
     },
     style:{
     	backgroundColor: '#1c396f'//'#3892d3'

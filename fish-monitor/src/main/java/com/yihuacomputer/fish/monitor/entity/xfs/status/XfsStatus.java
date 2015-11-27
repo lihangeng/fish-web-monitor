@@ -7,6 +7,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.monitor.business.RunStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.BoxStatus;
@@ -31,6 +32,8 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.NetStatus;
 @Table(name = "DEV_XFS_STATUS")
 public class XfsStatus implements IXfsStatus {
 
+	@Transient
+	private String mqType = "STATUS";
     @Id
     @Column(name = "TERMINAL_ID", nullable = false)
     private String terminalId;
@@ -544,4 +547,13 @@ public class XfsStatus implements IXfsStatus {
 	public void setHisXfsStatus(IXfsStatus hisXfsStatus) {
 		this.hisXfsStatus = hisXfsStatus ;
 	}
+
+	public String getMqType() {
+		return mqType;
+	}
+
+	public void setMqType(String mqType) {
+		this.mqType = mqType;
+	}
+	
 }

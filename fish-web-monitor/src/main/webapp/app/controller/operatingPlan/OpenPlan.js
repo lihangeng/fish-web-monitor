@@ -952,7 +952,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Eway.alert(EwayLocale.updateSuccess);
+									Eway.alert(EwayLocale.deleteSuccess);
 									var values = view.down('operatingPlan_filterForm').getForm().getValues();
 									var store = view.down('operatingPlan_grid').getStore();
 									store.setUrlParamsByObject(values);

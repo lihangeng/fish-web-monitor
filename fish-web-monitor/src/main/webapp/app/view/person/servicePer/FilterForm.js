@@ -51,7 +51,7 @@ Ext.define('Eway.view.person.servicePer.FilterForm', {
 				items : [{
 					fieldLabel : EwayLocale.commen.jobNum,
 					xtype : 'textfield',
-					name:'jobNum',
+					name:'jobNum'
 				}]
 			}]
 		});

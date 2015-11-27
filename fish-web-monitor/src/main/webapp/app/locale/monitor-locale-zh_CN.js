@@ -79,8 +79,9 @@ Ext.apply(EwayLocale,{
 				isc:'身份证扫描仪',//EwayLocale.monitor.devMonitor.mod.isc
 				icc:'发卡器',//EwayLocale.monitor.devMonitor.mod.icc
 				fgp:'指纹仪',//EwayLocale.monitor.devMonitor.mod.fgp
-				healthy:'模块正常',//EwayLocale.monitor.devMonitor.mod.healthy
-				pbk:'存折打印机'//EwayLocale.monitor.devMonitor.mod.pbk
+				pbk:'存折打印机',//EwayLocale.monitor.devMonitor.mod.pbk
+				healthy:'模块正常'//EwayLocale.monitor.devMonitor.mod.healthy
+
 			},
 			remote:{
 				control:'远程控制',//EwayLocale.monitor.devMonitor.remote.control
@@ -288,7 +289,7 @@ Ext.apply(EwayLocale,{
 				stopManage:'自动停止.如需取得视频文件,请联系管理员!',
 				manage: '操作',
 				loading:'下载',//EwayLocale.agent.remote.screen.loading
-				screenCamera: '屏幕录制'
+				screenCamera: '屏幕录制',
 			},
 			discInfo: '磁盘信息',
 			discName: '磁盘分区名称',
@@ -417,7 +418,7 @@ Ext.apply(EwayLocale,{
             backupAppLogsSuccess:'日志备份成功.',
             backupAppLogsFail:'日志备份失败.',
             backupLogSucList:'日备份日志成功设备列表.',
-            backupLogFailList:'日备份日志失败设备列表.'
+            backupLogFailList:'日备份日志失败设备列表.',
 
 		}
 	}

@@ -133,7 +133,7 @@ Ext.define('Eway.controller.monitor.business.BlackListCard', {
 									var record = sm.getLastSelected();
 									record.erase({
 										success: function(){
-											Eway.alert(EwayLocale.updateSuccess);
+											Eway.alert(EwayLocale.deleteSuccess);
 											grid.down('pagingtoolbar').doRefresh();
 											store.setUrlParamsByObject(viewValues);
 											store.loadPage(1);

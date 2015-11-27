@@ -9,12 +9,16 @@
 			<source>src/test/resources/db/mysql/fish_mysql_db.sql</source>
 			<outputDirectory>/mysqlscript</outputDirectory>
 		</file>
-	<!-- 	<file>
-			<source>src/test/resources/db/mysql/fish_mysql_base_db.sql</source>
-			<outputDirectory>/mysqlscript</outputDirectory>
-		</file> -->
 		<file>
-			<source>src/test/resources/db/mysql/fish_mysql_init.sql</source>
+			<source>src/test/resources/db/mysql/fish_mysql_idx.sql</source>
+			<outputDirectory>/mysqlscript</outputDirectory>
+		</file>
+		<file>
+			<source>src/test/resources/db/mysql/fish_mysql_init_en.sql</source>
+			<outputDirectory>/mysqlscript</outputDirectory>
+		</file>
+		<file>
+			<source>src/test/resources/db/mysql/fish_mysql_source.sql</source>
 			<outputDirectory>/mysqlscript</outputDirectory>
 		</file>
 <!-- 		<file> -->
