@@ -71,7 +71,7 @@ Ext.define('Eway.controller.base.FishController', {
 		if(!ewayUser.language.startsWith("zh")){
 			midStr="&nbsp;";
 		}
-		var title = action=='add' ? EwayLocale.button.add+midStr+this.formConfig.title : EwayLocale.button.update+"midStr"+this.formConfig.title;
+		var title = action=='add' ? EwayLocale.button.add+midStr+this.formConfig.title : EwayLocale.button.update+midStr+this.formConfig.title;
 		var me = this;
 		Ext.require([this.formConfig.form],function(){
 			if(action=='update'){

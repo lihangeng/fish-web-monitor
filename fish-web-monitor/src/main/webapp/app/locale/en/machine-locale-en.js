@@ -452,7 +452,7 @@ Ext.apply(EwayLocale,{
 
 			addDevInfo:'Additional equipment information',//EwayLocale.machine.device.addDevInfo增加设备信息
 			effectiveDate:'effective date',//EwayLocale.machine.device.effectiveDate生效日期
-			changeDevInfo:'Changing the Device Information',//EwayLocale.machine.device.changeDevInfo更改设备信息
+			changeDevInfo:'Update the Device Information',//EwayLocale.machine.device.changeDevInfo更改设备信息
 			devManage:'Device Management',//EwayLocale.machine.device.devManage设备管理
 			efficientDev:'Device Information in force',//EwayLocale.machine.device.efficientDev已生效设备信息
 			unEfficientDev:'Device information not active',//EwayLocale.machine.device.unEfficientDev未生效设备信息
