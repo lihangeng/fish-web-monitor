@@ -8,7 +8,7 @@
 	<appender name="file"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<Append>true</Append>
-		<File>fish.log</File>
+		<File>logs/fish.log</File>
 		<encoder>
 			<pattern>%-5p [%t] %d{yyyy-MM-dd HH:mm:ss SSS} [%c] %m%n</pattern>
 		</encoder>
