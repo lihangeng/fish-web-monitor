@@ -39,7 +39,7 @@ Ext.define('Eway.view.atmLog.DayBackupGrid',{
 			},{
 				header : EwayLocale.atmLog.logDevSucAccount,
 				dataIndex : 'deviceSucCount',
-				flex : .8,
+				flex : 1,
 				align:'center',
 				renderer:function(value,meta,record){
 					if(value >0){
@@ -52,7 +52,7 @@ Ext.define('Eway.view.atmLog.DayBackupGrid',{
 				header : EwayLocale.atmLog.logDevFailAccount,
 				dataIndex : 'deviceFailCount',
 				align:'center',
-				flex : .8,
+				flex : 1,
 				renderer:function(value,meta,record){
 					if(value >0){
 						return "<a class='link' href='#'>"+ value.toString() + "</a>";
