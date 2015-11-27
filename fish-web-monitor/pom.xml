@@ -109,16 +109,11 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-		</dependency>
-		<!-- 发布到websphere时，xercesImpl,xml-apis冲突，故排除 -->
-		<dependency>
-			<groupId>xml-apis</groupId>
-			<artifactId>xml-apis</artifactId>
-			<scope>test</scope>
 		</dependency>
 	</dependencies>
 	<scm>
@@ -131,36 +126,43 @@
 		<finalName>ATMVS</finalName>
 		<plugins>
 			<plugin>
-				<groupId>org.mortbay.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>8.1.5.v20120716</version>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
 				<configuration>
-					<webAppConfig>
-						<contextPath>/atmv</contextPath>
-						<jettyEnvXml>src/test/resources/jetty-mysql.xml</jettyEnvXml>
-					</webAppConfig>
-					<scanIntervalSeconds>0</scanIntervalSeconds>
-					<stopPort>9900</stopPort>
-					<stopKey>jetty</stopKey>
-					<connectors>
-						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-							<port>8080</port>
-							<maxIdleTime>60000</maxIdleTime>
-							<useDirectBuffers>false</useDirectBuffers><!-- 默认值是true，true时会导致在jetty运行时js文件不能修改 -->
-						</connector>
-					</connectors>
+					<archive>
+						<manifest>
+							<mainClass>com.yihuacomputer.fish.web.FishConsole</mainClass>
+							<packageName>com.yihuacomputer.fish.web</packageName>
+							<addClasspath>true</addClasspath>
+							<useUniqueVersions>false</useUniqueVersions>
+						</manifest>
+						<manifestEntries>
+							<SCM-Revision>${buildNumber}</SCM-Revision>
+						</manifestEntries>
+					</archive>
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>org.zeroturnaround</groupId>
-				<artifactId>javarebel-maven-plugin</artifactId>
-				<version>1.0.5</version>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration> 
+					<archiveClasses>true</archiveClasses>  
+				</configuration>
+				<executions>
+					<execution>
+						<id>default-war</id>
+						<phase>package</phase>
+						<goals>
+							<goal>war</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<version>2.3</version>
 				<configuration>
-					<finalName>${project.artifactId}-${project.version}</finalName>
+					<finalName>ATMVS-${project.version}</finalName>
 					<descriptors>
 						<descriptor>src/assembly/dist.xml</descriptor>
 					</descriptors>
@@ -175,64 +177,7 @@
 					</execution>
 				</executions>
 			</plugin>
-			<plugin>
-               <groupId>org.apache.maven.plugins</groupId>
-               <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>2.9.1</version>
-                <executions>
-                     <execution>
-                       <configuration>
-                            <configLocation>checkstyle.xml</configLocation>
-                            <encoding>UTF-8</encoding>
-                            <consoleOutput>true</consoleOutput>
-                            <failsOnError>true</failsOnError>
-                            <linkXRef>false</linkXRef>
-                       </configuration>
-                       <goals>
-                            <goal>check</goal>
-                       </goals>
-                     </execution>
-                </executions>
-              </plugin>
-              <plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.3.3</version>
-				<executions>
-					<execution>
-						<id>default-war</id>
-						<phase>package</phase>
-						<goals>
-							<goal>war</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<ext>
-						<enabled>true</enabled>
-					</ext>
-					<attachClasses>true</attachClasses>
-					<packagingExcludes>
-						compress.html,
-						app.jsb3,
-						all-classes.js,
-						mapapi.js,
-						WEB-INF/lib/*-classes.jar,
-						WEB-INF/classes/logback-test.xml
-					</packagingExcludes>
-				</configuration>
-			</plugin> 
 		</plugins>
 	</build>
-	<reporting>
-		<plugins>
-			 <plugin>
-                  <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-checkstyle-plugin</artifactId>
-                  <version>2.9.1</version>
-                  <configuration>
-                    	<configLocation>checkstyle.xml</configLocation>
-                  </configuration>
-             </plugin>
-         </plugins>
-	</reporting>
+	
 </project>
