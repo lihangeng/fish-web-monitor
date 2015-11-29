@@ -15,6 +15,7 @@ Ext.define('Eway.controller.report.openrate.TypeOpenRate', {
 	} ],
 
 	init : function() {
+		this.onQuery();
 		this.control({
 			'report_openrate_type_view button[action=query]' : {
 				click : this.onQuery

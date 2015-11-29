@@ -8,8 +8,7 @@ Ext.define('Eway.view.report.openrate.type.Grid', {
 	autoFit : true,
 
 	initComponent : function() {
-		var store = Ext.create('Eway.store.report.openrate.TypeOpenRate');
-		store.loadPage(1);
+		var store = Ext.create('Eway.store.report.openrate.TypeOpenRate');		
 		Ext.apply(this, {
 			initRegion : true,
 			store : store,
