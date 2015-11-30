@@ -346,7 +346,8 @@ Ext.apply(EwayLocale,{
 				filterSet:'Filter setting',//EwayLocale.tip.business.device.filterSet 过滤条件项配置
 				connFirst:'Monitor connection has been paused at the present,please connect the server first as ‘start monitor’"',//EwayLocale.tip.business.device.connFirst 当前已经暂停了与服务器的监控连接,请先与服务器建立连接,即"开始监控"
 				matrixPattern:'Matrix Pattern',//EwayLocale.tip.business.device.matrixPattern 矩阵方式
-				listPattern:'List Pattern'//EwayLocale.tip.business.device.listPattern 列表方式
+				listPattern:'List Pattern',//EwayLocale.tip.business.device.listPattern 列表方式
+				remoteCommandMsg:'Remote Command send Successful'//EwayLocale.tip.business.device.remoteCommandMsg 命令发送成功
 			}
 		}
 

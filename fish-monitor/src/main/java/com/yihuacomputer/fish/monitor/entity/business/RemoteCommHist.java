@@ -4,20 +4,15 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.monitor.business.CommandResult;
 import com.yihuacomputer.fish.api.monitor.business.CommandType;
 import com.yihuacomputer.fish.api.monitor.business.IRemoteCommHist;
-import com.yihuacomputer.fish.machine.entity.Device;
 
 /**
  * 远程命令历史表
@@ -44,12 +39,12 @@ public class RemoteCommHist implements IRemoteCommHist {
     /**
      * 设备号
      */
-//    @Column(name = "TERMINAL_ID", length = 20, nullable = false)
-//    private String terminalId;
+    @Column(name = "TERMINAL_ID", length = 20, nullable = false)
+    private String terminalId;
     
-    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Device.class)
-    @JoinColumn(name = "DEVICE_ID")
-    private IDevice device;
+//    @ManyToOne(fetch = FetchType.LAZY, targetEntity = Device.class)
+//    @JoinColumn(name = "DEVICE_ID")
+//    private IDevice device;
 
     /**
      * 远程命令类型(重启(正常),重启(强制),开启服务，暂停服务，强制复位)
@@ -87,13 +82,13 @@ public class RemoteCommHist implements IRemoteCommHist {
         this.datetime = datetime;
     }
 
-//    public String getTerminalId() {
-//        return terminalId;
-//    }
-//
-//    public void setTerminalId(String terminalId) {
-//        this.terminalId = terminalId;
-//    }
+    public String getTerminalId() {
+        return terminalId;
+    }
+
+    public void setTerminalId(String terminalId) {
+        this.terminalId = terminalId;
+    }
 
     public CommandType getCommandType() {
         return commandType;
@@ -119,14 +114,12 @@ public class RemoteCommHist implements IRemoteCommHist {
         this.handlePerson = handlePerson;
     }
 
-    public IDevice getDevice() {
-        return device;
-    }
-
-    public void setDevice(IDevice device) {
-        this.device = device;
-    }
-    
-    
+//    public IDevice getDevice() {
+//        return device;
+//    }
+//
+//    public void setDevice(IDevice device) {
+//        this.device = device;
+//    }
 
 }

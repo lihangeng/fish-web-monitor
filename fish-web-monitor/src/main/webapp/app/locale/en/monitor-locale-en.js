@@ -257,6 +257,18 @@ Ext.apply(EwayLocale,{
 				tranAmt:'Total amount'//EwayLocale.monitor.business.settlement.tranAmt 交易总金额
 			}
 		/*}*/
+		},
+		remoteCommand:{
+			titile:'Remote Command Info',//EwayLocale.monitor.remoteCommand.titile 远程命令查询
+			form:{
+				date:'date'//EwayLocale.monitor.remoteCommand.form.date 执行日期
+			},
+			grid:{
+				commandType:'type',//EwayLocale.monitor.remoteCommand.commandType 命令类型
+				commandResult:'result',//EwayLocale.monitor.remoteCommand.commandResult 执行结果
+				datetime:'date',//EwayLocale.monitor.remoteCommand.datetime 执行日期
+				handlePerson:'personnel'//EwayLocale.monitor.remoteCommand.handlePerson 操作人
+			}
 		}
 	},
 
