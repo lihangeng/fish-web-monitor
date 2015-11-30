@@ -55,6 +55,7 @@ import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IXfsPropertise;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.NetStatus;
+import com.yihuacomputer.fish.api.mq.IMessagePusher;
 import com.yihuacomputer.fish.api.mq.IMqProducer;
 import com.yihuacomputer.fish.monitor.entity.business.DeviceRegister;
 import com.yihuacomputer.fish.monitor.entity.business.RunInfo;
@@ -62,7 +63,7 @@ import com.yihuacomputer.fish.monitor.entity.report.DeviceReport;
 
 @Service
 @Transactional
-public class CollectService implements ICollectService, IDeviceListener {
+public class CollectService implements ICollectService, IDeviceListener,IMessagePusher{
 
 	private Logger logger = LoggerFactory.getLogger(CollectService.class);
 
