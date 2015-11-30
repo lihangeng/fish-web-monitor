@@ -75,8 +75,11 @@ public class RemoteCommandController {
 
         IFilter filter = request2filter(webRequest, request);
         
-        IPageResult<IRemoteCommHist> pageResult = remoteCommHistService.page(start, limit, filter);
-
+//        IPageResult<IRemoteCommHist> pageResult = remoteCommHistService.page(start, limit, filter);
+        
+        IPageResult<Object> pageResult = remoteCommHistService.pageObj(start, limit, filter);
+        
+        
         ModelMap map = new ModelMap();
         map.addAttribute(FishConstant.SUCCESS, true);
         map.addAttribute("total", pageResult.getTotal());
@@ -84,12 +87,16 @@ public class RemoteCommandController {
         return map;
     }
 
-    private List<RemoteCommandForm> convert(List<IRemoteCommHist> listHist) {
+    private List<RemoteCommandForm> convert(List<Object> listHist) {
         List<RemoteCommandForm> result = new ArrayList<RemoteCommandForm>();
 
         RemoteCommandForm form = null;
-        for (IRemoteCommHist hist : listHist) {
-
+        for (Object obj : listHist) {
+            Object[] objs = (Object[]) obj;
+            
+            IDevice device = (IDevice) objs[0];
+            IRemoteCommHist hist = (IRemoteCommHist) objs[1];
+            
             form = new RemoteCommandForm();
 
             form.setId(hist.getId());
@@ -98,7 +105,6 @@ public class RemoteCommandController {
             form.setDatetime(hist.getDatetime());
             form.setHandlePerson(hist.getHandlePerson());
 
-            IDevice device = hist.getDevice();
             if (device != null) {
                 form.setTerminalId(device.getTerminalId());
                 IOrganization org = device.getOrganization();
@@ -129,15 +135,15 @@ public class RemoteCommandController {
             }
             
             if ("endDate".equals(name)) {
-                filter.le("datetime", value);
+                filter.le("r.datetime", value);
                 continue;
             }
             if ("startDate".equals(name)) {
-                filter.ge("datetime", value);
+                filter.ge("r.datetime", value);
                 continue;
             }
             if ("terminalId".equals(name)) {
-                filter.like("device.terminalId", value);
+                filter.like("r.terminalId", value);
                 continue;
             }
             if ("organization".equals(name)) {
@@ -147,7 +153,7 @@ public class RemoteCommandController {
         }
         
         IOrganization organization = organizationService.get(orgId);
-        filter.rlike("device.organization.orgFlag", organization.getOrgFlag());
+        filter.rlike("d.organization.orgFlag", organization.getOrgFlag());
         
         return filter;
     }

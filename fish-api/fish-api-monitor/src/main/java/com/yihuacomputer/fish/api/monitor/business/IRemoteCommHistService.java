@@ -61,4 +61,13 @@ public interface IRemoteCommHistService {
      */
     public IPageResult<IRemoteCommHist> page(int start, int limit, IFilter filter);
 
+    /**
+     * 
+     * @param start
+     * @param limit
+     * @param filter
+     * @return
+     */
+    public IPageResult<Object> pageObj(int start, int limit, IFilter filter);
+
 }

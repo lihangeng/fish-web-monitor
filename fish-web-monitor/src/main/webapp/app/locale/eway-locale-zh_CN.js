@@ -346,7 +346,8 @@ Ext.apply(EwayLocale,{
 				filterSet:'过滤条件项配置',//EwayLocale.tip.business.device.filterSet
 				connFirst:'当前已经暂停了与服务器的监控连接,请先与服务器建立连接,即"开始监控"',//EwayLocale.tip.business.device.connFirst
 				matrixPattern:'矩阵方式',//EwayLocale.tip.business.device.matrixPattern
-				listPattern:'列表方式'//EwayLocale.tip.business.device.listPattern
+				listPattern:'列表方式',//EwayLocale.tip.business.device.listPattern
+				remoteCommandMsg:'命令发送成功'//EwayLocale.tip.business.device.remoteCommandMsg
 			}
 		}
 

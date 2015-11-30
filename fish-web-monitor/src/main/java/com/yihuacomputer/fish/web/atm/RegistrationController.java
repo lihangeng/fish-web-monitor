@@ -27,7 +27,6 @@ import com.yihuacomputer.fish.web.atm.format.RegistrationMsg;
 
 @Controller
 @RequestMapping("/msg/registration")
-
 public class RegistrationController {
 
 	private Logger logger = LoggerFactory.getLogger(RegistrationController.class);
