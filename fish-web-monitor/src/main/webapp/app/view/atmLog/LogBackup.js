@@ -13,7 +13,7 @@ Ext.define('Eway.view.atmLog.LogBackup',{
 	    tools:[{			
 		    	xtype : 'textfield',
 				fieldLabel : EwayLocale.commen.terminalId,
-				labelWidth : 60,
+				labelWidth : 70,
 				name : 'terminalId'		    	
 			},{				
 					xtype : 'button',
