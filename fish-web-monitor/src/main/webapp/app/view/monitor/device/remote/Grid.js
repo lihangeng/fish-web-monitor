@@ -6,7 +6,7 @@ Ext.define('Eway.view.monitor.device.remote.Grid', {
 	autoFit : true,
 	initComponent : function() {
 		var store = Ext.create('Eway.store.monitor.device.RemoteCommand');
-		store.loadPage(1);
+//		store.loadPage(1);
 		Ext.apply(this, {
 			initRegion : true,
 			store : store,

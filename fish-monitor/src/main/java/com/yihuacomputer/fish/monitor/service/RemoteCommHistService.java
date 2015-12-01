@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.monitor.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,4 +68,11 @@ public class RemoteCommHistService implements IRemoteCommHistService {
         return dao.page(start, limit, filter, RemoteCommHist.class);
     }
 
+    @Override
+    public IPageResult<Object> pageObj(int start, int limit, IFilter filter) {
+
+        String hql = "select d,r from Device d, RemoteCommHist r where d.terminalId=r.terminalId order by r.id desc ";
+
+        return (IPageResult<Object>) dao.page(start, limit, filter, hql, (new ArrayList<Object>()).toArray());
+    }
 }

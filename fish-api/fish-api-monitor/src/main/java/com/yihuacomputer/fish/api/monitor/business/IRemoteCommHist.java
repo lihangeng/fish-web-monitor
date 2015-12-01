@@ -1,6 +1,5 @@
 package com.yihuacomputer.fish.api.monitor.business;
 
-import com.yihuacomputer.fish.api.device.IDevice;
 
 public interface IRemoteCommHist {
 
@@ -22,14 +21,14 @@ public interface IRemoteCommHist {
 
     public void setDatetime(String datetime);
 
-    // /**
-    // * 设备号
-    // *
-    // * @return
-    // */
-    // public String getTerminalId();
-    //
-    // public void setTerminalId(String terminalId);
+     /**
+     * 设备号
+     *
+     * @return
+     */
+     public String getTerminalId();
+    
+     public void setTerminalId(String terminalId);
 
     /**
      * 命令类型
@@ -63,7 +62,7 @@ public interface IRemoteCommHist {
      * 
      * @return
      */
-    public IDevice getDevice();
-
-    public void setDevice(IDevice device);
+//    public IDevice getDevice();
+//
+//    public void setDevice(IDevice device);
 }
