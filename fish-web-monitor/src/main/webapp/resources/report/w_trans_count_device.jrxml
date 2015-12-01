@@ -83,7 +83,7 @@
 							<box>
 								<rightPen lineWidth="0.5"/>
 							</box>
-							<textElement>
+							<textElement verticalAlignment="Middle">
 								<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$P{orgName}]]></textFieldExpression>
@@ -93,7 +93,7 @@
 							<box>
 								<rightPen lineWidth="0.5"/>
 							</box>
-							<textElement>
+							<textElement verticalAlignment="Middle">
 								<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$P{terminalId}]]></textFieldExpression>
@@ -103,7 +103,7 @@
 							<box>
 								<rightPen lineWidth="0.5"/>
 							</box>
-							<textElement>
+							<textElement verticalAlignment="Middle">
 								<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$P{transType}]]></textFieldExpression>
@@ -142,7 +142,7 @@
 							</box>
 							<textField>
 								<reportElement uuid="b21e4db0-b670-4be8-83fe-fed8d0ec2ee1" style="Crosstab Data Text" x="0" y="0" width="487" height="25"/>
-								<textElement>
+								<textElement verticalAlignment="Middle">
 									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
@@ -182,7 +182,7 @@
 							</box>
 							<textField>
 								<reportElement uuid="c8404f90-1fe9-4815-b754-54febac2482b" style="Crosstab Data Text" x="0" y="0" width="313" height="25"/>
-								<textElement>
+								<textElement verticalAlignment="Middle">
 									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$P{subtotal}]]></textFieldExpression>
@@ -223,7 +223,7 @@
 							</box>
 							<textField>
 								<reportElement uuid="43661f7a-84d1-4f70-8240-f45b17816e2e" style="Crosstab Data Text" x="0" y="0" width="160" height="25"/>
-								<textElement>
+								<textElement verticalAlignment="Middle">
 									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
@@ -247,7 +247,7 @@
 									<bottomPen lineWidth="0.0"/>
 									<rightPen lineWidth="0.0"/>
 								</box>
-								<textElement verticalAlignment="Top">
+								<textElement verticalAlignment="Middle">
 									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$V{countName}]]></textFieldExpression>

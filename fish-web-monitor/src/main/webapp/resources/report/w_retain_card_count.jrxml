@@ -82,14 +82,14 @@
 							<box>
 								<rightPen lineWidth="0.5"/>
 							</box>
-							<textElement>
+							<textElement verticalAlignment="Middle">
 								<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$P{orgName}]]></textFieldExpression>
 						</textField>
 						<textField>
 							<reportElement uuid="08e7a8b9-d719-4c37-a34c-a02c6a47e7e7" style="Crosstab Data Text" x="202" y="0" width="193" height="30"/>
-							<textElement>
+							<textElement verticalAlignment="Middle">
 								<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 							</textElement>
 							<textFieldExpression><![CDATA[$P{devTypeName}]]></textFieldExpression>
@@ -121,7 +121,7 @@
 							</box>
 							<textField>
 								<reportElement uuid="b9667948-0076-4d0c-ae0a-3a2bf10c0057" style="Crosstab Data Text" x="0" y="0" width="395" height="25"/>
-								<textElement>
+								<textElement verticalAlignment="Middle">
 									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$P{total}]]></textFieldExpression>
@@ -154,7 +154,7 @@
 							</box>
 							<textField>
 								<reportElement uuid="5e031b0e-ae5c-400d-aa6c-20770f9a904e" style="Crosstab Data Text" x="0" y="0" width="193" height="25"/>
-								<textElement>
+								<textElement verticalAlignment="Middle">
 									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$P{subtotal}]]></textFieldExpression>
@@ -226,7 +226,7 @@
 						</box>
 					</cellContents>
 				</crosstabCell>
-				<crosstabCell width="0" rowTotalGroup="orgName" columnTotalGroup="countName">
+				<crosstabCell width="0" height="25" rowTotalGroup="orgName" columnTotalGroup="countName">
 					<cellContents backcolor="#005FB3" mode="Opaque">
 						<box>
 							<pen lineWidth="0.5" lineStyle="Solid" lineColor="#000000"/>
