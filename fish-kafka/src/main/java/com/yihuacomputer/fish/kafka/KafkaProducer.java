@@ -44,7 +44,8 @@ public class KafkaProducer implements IMqProducer {
 
 	@Override
 	public void put(String message) {
-		KeyedMessage<String, String> data = new KeyedMessage<String, String>(topic, message);
+		System.out.println("put msg is : " + message);
+		KeyedMessage<String, String> data = new KeyedMessage<String, String>(topic,"" ,message);
 		producer.send(data);
 	}
 

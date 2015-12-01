@@ -6,6 +6,9 @@ package com.yihuacomputer.fish.kafka;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,10 +28,12 @@ public class KafkaConsumerManager {
 
 	@Autowired
 	private IMessagePusher messagePusher;
+	private KafkaConsumer kafkaConsumer = null;
 
+	@PostConstruct
 	public void init() {
 		threadPool = Executors.newFixedThreadPool(1);
-		KafkaConsumer kafkaConsumer = new KafkaConsumer(this);
+		kafkaConsumer = new KafkaConsumer(this);
 		threadPool.submit(kafkaConsumer);
 	}
 
@@ -46,6 +51,13 @@ public class KafkaConsumerManager {
 
 	public void setMessagePusher(IMessagePusher messagePusher) {
 		this.messagePusher = messagePusher;
+	}
+	
+	@PreDestroy
+	public void close(){
+		if(kafkaConsumer != null){
+			kafkaConsumer.shutdown();
+		}
 	}
 
 }

@@ -99,6 +99,7 @@ public class JsonUtils {
 			om.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
 			return om.readValue(json, classOfT);
 		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

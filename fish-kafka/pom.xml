@@ -31,12 +31,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
-			<artifactId>fish-api-monitor</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.yihuacomputer.fish</groupId>
-			<artifactId>fish-domain</artifactId>
+			<artifactId>fish-monitor</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		

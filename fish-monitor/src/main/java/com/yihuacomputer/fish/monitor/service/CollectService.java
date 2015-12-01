@@ -60,6 +60,7 @@ import com.yihuacomputer.fish.api.mq.IMqProducer;
 import com.yihuacomputer.fish.monitor.entity.business.DeviceRegister;
 import com.yihuacomputer.fish.monitor.entity.business.RunInfo;
 import com.yihuacomputer.fish.monitor.entity.report.DeviceReport;
+import com.yihuacomputer.fish.monitor.mq.MqXfsStatus;
 
 @Service
 @Transactional
@@ -193,7 +194,9 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 		if (mqProducer == null) {
 			this.pushStatusToWeb(histXfsStatus);
 		} else {
-			mqProducer.put(JsonUtils.toJson(histXfsStatus));
+			MqXfsStatus mqXfsStatus = new MqXfsStatus();
+			mqXfsStatus.setXfsStatus(histXfsStatus);
+			mqProducer.put(JsonUtils.toJson(mqXfsStatus));
 		}
 
 		// 4.模块故障处理（异步处理）
@@ -229,8 +232,14 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	 * @param message
 	 */
 	public void pushStatusToWeb(String message) {
-		IXfsStatus histXfsStatus = JsonUtils.fromJson(message, IXfsStatus.class);
-		this.pushStatusToWeb(histXfsStatus);
+		System.out.println("collect " + message);
+		try{
+			MqXfsStatus mqXfsStatus = JsonUtils.fromJson(message, MqXfsStatus.class);
+			IXfsStatus histXfsStatus = mqXfsStatus.makeXfsStatus();
+			this.pushStatusToWeb(histXfsStatus);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**

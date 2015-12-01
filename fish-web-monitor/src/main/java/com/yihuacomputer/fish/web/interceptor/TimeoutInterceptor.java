@@ -33,7 +33,6 @@ public class TimeoutInterceptor extends HandlerInterceptorAdapter {
 		HttpSession session = httpServletRequest.getSession(false);
 		// 用户超时或没有登陆时跳转到登陆页面
 		String uri = httpServletRequest.getRequestURI();
-		System.out.print("uri" + uri);
 		if (isIgnoreUrl(uri)) {//在忽略列表中
 		    return true;
 		}

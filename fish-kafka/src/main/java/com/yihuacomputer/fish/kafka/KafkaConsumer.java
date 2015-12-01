@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import javax.annotation.PreDestroy;
-
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
@@ -25,30 +23,32 @@ public class KafkaConsumer implements Runnable{
 		return kafkaConsumerManager.getKafkaConfig();
 	}
 	
-	@PreDestroy
 	public void shutdown() {
 		if (consumer != null){
 			consumer.shutdown();
 		}
 	}
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void run() {
 		String topic = getKafkaConfig().getTopic();
 		Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
 		topicCountMap.put(topic, new Integer(1));
 		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
-		while(true){
-			List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(topic);
-			for (final KafkaStream stream : streams) {
-				ConsumerIterator<byte[], byte[]> it = stream.iterator();
-		        while (it.hasNext()){
-		            String message = new String(it.next().message());
-		            System.out.println(message);
-		            if(message != null && !"".equals(message.trim())){
-		            	kafkaConsumerManager.getMessagePusher().pushStatusToWeb(message);
-		            }
-		        }
-			}
+		List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(topic);
+		for (final KafkaStream stream : streams) {
+			System.out.println("inner start");
+			ConsumerIterator<byte[], byte[]> it = stream.iterator();
+	        while (it.hasNext()){
+	        	byte[] bytes = it.next().message();
+	            String message = new String(bytes);
+	            System.out.println("iiiii2 " + message);
+	            if(message != null && !"".equals(message.trim())){
+	            	kafkaConsumerManager.getMessagePusher().pushStatusToWeb(message);
+	            }
+	            System.out.println("bbbbb " + message);
+	        }
+	        System.out.println("inner end");
 		}
 	}
 	private static ConsumerConfig createConsumerConfig(String a_zookeeper, String a_groupId) {
