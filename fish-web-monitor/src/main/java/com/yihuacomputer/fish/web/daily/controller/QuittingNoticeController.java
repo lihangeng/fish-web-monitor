@@ -5,6 +5,7 @@ import java.util.Iterator;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -236,6 +237,16 @@ public class QuittingNoticeController {
 				} else {
 					quittingNotice.setDevStatus(DevStatus.OPEN);
 				}
+				String strDay = DateUtils.getDate(new Date());
+				Date todayStart = DateUtils.getTimestamp(strDay + " 00:00:00");
+				if( form.getOpenTime() != null && !form.getOpenTime().equals(""))
+				{
+					Date openTime = form.getOpenTime();
+					if( openTime.getTime() == todayStart.getTime())
+					{
+						quittingNotice.setDevStatus(DevStatus.OPEN);
+					}
+				}				
 				quittingNotice.setDeviceCode(quittingNotice.getDeviceCode());
 				quittingNotice.setOpenTime(form.getOpenTime());
 				quittingNotice.setStopTime(form.getStopTime());

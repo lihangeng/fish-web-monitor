@@ -27,12 +27,13 @@ Ext.define('Eway.view.machine.quittingNotice.FilterForm', {
 					labelWidth : 70
 				},
 				items : [{
-					labelWidth:70,
+					labelWidth:100,
 					xtype : 'field_deviceCode',
 					maxLength:20,
 					labelAlign : 'right'
 				},{
 					xtype : 'textfield',
+					labelWidth:100,
 					labelAlign : 'right',
 					name : 'responsibilityName',
 					fieldLabel : EwayLocale.machine.quittingNotice.responsibilityName

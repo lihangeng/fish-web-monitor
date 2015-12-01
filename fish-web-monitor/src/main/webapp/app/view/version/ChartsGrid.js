@@ -16,10 +16,11 @@ Ext.define('Eway.view.version.ChartsGrid', {
 			},{
 				header:EwayLocale.refs.ip,//'IP地址',
 				dataIndex:'ip',
-				width: 100
+				width: 200
 			},{
 				header : EwayLocale.refs.orgName,//机构
-				dataIndex : 'orgName'
+				dataIndex : 'orgName',
+				width: 200
 			},{
 				header : EwayLocale.refs.devType,
 				dataIndex : 'devType',
@@ -27,7 +28,6 @@ Ext.define('Eway.view.version.ChartsGrid', {
 			},{
 				header : EwayLocale.version.View.nowVersionNo,//'当前版本号',
 				dataIndex : 'versionNo',
-				width: 140,
 				flex : 1
 			}],
 			dockedItems: [{  //分页栏

@@ -13,7 +13,7 @@
 			<pattern>%-5p [%t] %d{yyyy-MM-dd HH:mm:ss SSS} [%c] %m%n</pattern>
 		</encoder>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>fish.log.%d.zip</fileNamePattern>
+			<fileNamePattern>logs/fish.log.%d.zip</fileNamePattern>
 			<maxHistory>30</maxHistory>
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">

@@ -54,7 +54,6 @@ Ext.define('Eway.view.person.bankPer.Add', {
 				},{
 					xtype : 'field_person_personJobComboBox',
 					fieldLabel : '<font color="red">*</font> '+EwayLocale.commen.personJobName,
-					value : '0005',
 					allowBlank: false
 			 	},{
 					fieldLabel : EwayLocale.commen.jobNum,

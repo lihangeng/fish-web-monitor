@@ -86,6 +86,7 @@ Ext.apply(EwayLocale,{
 			remote:{
 				control:'远程控制',//EwayLocale.monitor.devMonitor.remote.control
 				screen:'远程抓屏',//EwayLocale.monitor.devMonitor.remote.screen
+				commandRet:'远程命令结果',//EwayLocale.monitor.devMonitor.remote.commandRet 远程命令执行结果
 				log:'提取电子日志',//EwayLocale.monitor.devMonitor.remote.log
 				net:'查看网络连接',//EwayLocale.monitor.devMonitor.remote.net
 				softwareList:'获取软件列表',//EwayLocale.monitor.devMonitor.remote.softwareList
