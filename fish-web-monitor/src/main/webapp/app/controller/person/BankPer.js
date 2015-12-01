@@ -312,10 +312,7 @@ Ext.define('Eway.controller.person.BankPer', {
 		 for(var i in data){
 		 	store.setUrlParam(i,null)
 		 }
-//		 var actionTip = this.getEwayView().down("tbtext[action=tip]");
-//	     actionTip.setText(EwayLocale.tip.bankPer.personEligible);
 		 store.loadPage(1);
-//		 this.getEwayView().down('treepanel').getSelectionModel().select(0,true);//选择根节点
 	},
 
 
@@ -519,8 +516,8 @@ Ext.define('Eway.controller.person.BankPer', {
 							record.erase({
 								success: function(){
 									Eway.alert(EwayLocale.deleteSuccess);
-									me.onQuery();
-									grid.getStore().remove(record);
+									me.onQueryAfterAdd();
+//									grid.getStore().remove(record);
 								},
 								failure: function(record,operation){
 									record.dropped = false;
