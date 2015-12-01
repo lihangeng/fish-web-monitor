@@ -86,6 +86,7 @@ Ext.apply(EwayLocale,{
 			remote:{
 				control:'Remote Control',//EwayLocale.monitor.devMonitor.remote.control 远程控制
 				screen:'Screenshot',//EwayLocale.monitor.devMonitor.remote.screen 远程抓拍
+				commandRet:'Command Ret',//EwayLocale.monitor.devMonitor.remote.commandRet 远程命令执行结果
 				log:'Fetch Journal Logs',//EwayLocale.monitor.devMonitor.remote.log 提取电子日志
 				net:'Check Network',//EwayLocale.monitor.devMonitor.remote.net 查看网络连接
 				softwareList:'Fetch Software List',//EwayLocale.monitor.devMonitor.remote.softwareList 获取软件列表
@@ -256,6 +257,18 @@ Ext.apply(EwayLocale,{
 				tranAmt:'Total amount'//EwayLocale.monitor.business.settlement.tranAmt 交易总金额
 			}
 		/*}*/
+		},
+		remoteCommand:{
+			titile:'Remote Command Info',//EwayLocale.monitor.remoteCommand.titile 远程命令查询
+			form:{
+				date:'date'//EwayLocale.monitor.remoteCommand.form.date 执行日期
+			},
+			grid:{
+				commandType:'type',//EwayLocale.monitor.remoteCommand.commandType 命令类型
+				commandResult:'result',//EwayLocale.monitor.remoteCommand.commandResult 执行结果
+				datetime:'date',//EwayLocale.monitor.remoteCommand.datetime 执行日期
+				handlePerson:'personnel'//EwayLocale.monitor.remoteCommand.handlePerson 操作人
+			}
 		}
 	},
 
@@ -405,7 +418,8 @@ Ext.apply(EwayLocale,{
 			backupAppLogsSuccess:'backup atmc logs success.',
 			backupAppLogsFail:'backup atmc logs faile.',
 			backupLogSucList:' backup atmc logs list success.',
-			backupLogFailList:'backup atmc logs list fail.'
+			backupLogFailList:' backup atmc logs list failed.',
+
 		}
 	}
 });

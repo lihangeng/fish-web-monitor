@@ -269,7 +269,7 @@ Ext.define('Eway.controller.advert.Advert', {
 								record.erase({
 									success: function(){
 										grid.getStore().remove(record);
-										Eway.alert(EwayLocale.updateSuccess);
+										Eway.alert(EwayLocale.deleteSuccess);
 										//刷新详细配置列表
 										var resourceGrid = this.getAdvertResourceGrid();
 										resourceGrid.getStore().load({params:{advertId:0}});
@@ -608,9 +608,10 @@ Ext.define('Eway.controller.advert.Advert', {
 		var win = this.getAddWaitWin();
 		var advertView = win.down('advertimgview');
 		var lastSeletedItem = advertView.selectedItem;
-		if(lastSeletedItem != null){
-			lastSeletedItem.removeCls('advert-item-selected');
-		}
+		
+//		if(lastSeletedItem != null){
+//			lastSeletedItem.removeCls('advert-item-selected');
+//		}
 		var currentEle = Ext.get(itemHtml);
 		currentEle.addCls('advert-item-selected');
 		advertView.selectedItem = currentEle;
@@ -856,8 +857,8 @@ Ext.define('Eway.controller.advert.Advert', {
     		var res = advRess[i];
 			var advRes_str = "{'playTime':" + res.data.playTime + ",'beginTime':'" + res.data.beginTime
 			+ "','endTime':'"+res.data.endTime
-			+"','beginDate':'"+res.data.beginDate
-			+"','endDate':'"+res.data.endDate
+			+"','beginDate':'"+Ext.Date.format(res.data.beginDate, "Y-m-d")
+			+"','endDate':'"+Ext.Date.format(res.data.endDate, "Y-m-d")
 			+"','screen':'"+res.data.screen
 			+ "','content':'" + res.data.content +"'}";
 			if(resources == '['){

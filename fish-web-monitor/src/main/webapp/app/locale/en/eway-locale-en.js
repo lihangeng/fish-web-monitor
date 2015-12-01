@@ -176,8 +176,8 @@ Ext.apply(EwayLocale,{
 		chooseRecord:'Please select the records that you want to associate.',//EwayLocale.tip.chooseRecord请选择您要关联的记录
 		choosePlan:'Please select the program you want to view',//EwayLocale.tip.choosePlan请选择您要查看的方案
 		planDetail:'Programme details',//EwayLocale.tip.planDetail方案详情
-		planDate:'Service plan details (date)',//EwayLocale.tip.planDate方案详情(日期)
-		planWeek:'Service plan details (Week)',//EwayLocale.tip.planWeek方案详情(星期)
+		planDate:'Programme details (date)',//EwayLocale.tip.planDate方案详情(日期)
+		planWeek:'Programme details (Week)',//EwayLocale.tip.planWeek方案详情(星期)
 		planNoConf:'The program no detailed settings！',//EwayLocale.tip.planNoConf该方案无详细设置
 		chooseRelatedDev:'Please select the device you want to associate！',//EwayLocale.tip.chooseRelatedDev请选择您要关联的设备
 		devRelatedPlan:'Device is associated with the boot program！',//EwayLocale.tip.devRelatedPlan设备已关联开机方案
@@ -346,7 +346,8 @@ Ext.apply(EwayLocale,{
 				filterSet:'Filter setting',//EwayLocale.tip.business.device.filterSet 过滤条件项配置
 				connFirst:'Monitor connection has been paused at the present,please connect the server first as ‘start monitor’"',//EwayLocale.tip.business.device.connFirst 当前已经暂停了与服务器的监控连接,请先与服务器建立连接,即"开始监控"
 				matrixPattern:'Matrix Pattern',//EwayLocale.tip.business.device.matrixPattern 矩阵方式
-				listPattern:'List Pattern'//EwayLocale.tip.business.device.listPattern 列表方式
+				listPattern:'List Pattern',//EwayLocale.tip.business.device.listPattern 列表方式
+				remoteCommandMsg:'Remote Command send Successful'//EwayLocale.tip.business.device.remoteCommandMsg 命令发送成功
 			}
 		}
 

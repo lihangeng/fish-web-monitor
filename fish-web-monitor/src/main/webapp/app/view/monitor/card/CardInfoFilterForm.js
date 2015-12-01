@@ -78,7 +78,7 @@ Ext.define('Eway.view.monitor.card.CardInfoFilterForm', {
 									editable:false
 								},{
 									xtype : 'card_AccountNo',
-									regex: /^\d{13,19}$/,
+									regex: '',
 									regexText: EwayLocale.tip.cardNo,
 									msgTarget : 'side',
 									labelAlign : 'right'
@@ -109,7 +109,8 @@ Ext.define('Eway.view.monitor.card.CardInfoFilterForm', {
 									 }
 								},{
 									xtype : 'card_TerminalId',
-									labelAlign : 'right'
+									labelAlign : 'right',
+									maxLength:'MAX_VALUE'
 								}]
 
 					}, {

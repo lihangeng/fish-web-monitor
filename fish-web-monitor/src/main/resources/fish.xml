@@ -19,7 +19,17 @@
 
 	<bean id="propertiesConfigurer"
 			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-  		<property name="location" value="classpath:fish.properties" />
+  		<!-- <property name="location" value="classpath:fish.properties" /> -->
+  		<property name="locations">
+			<list>
+			<value>classpath:fish.properties</value>
+			<value>classpath:kafka.properties</value>
+			<value>file:///${FISH_HOME}/kafka.properties</value>
+			</list>
+		</property>
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="ignoreUnresolvablePlaceholders" value="false" />
+		<property name="searchSystemEnvironment" value="true" />
 	</bean>
 	
 	<!-- Spring 国际化配置 -->
@@ -37,7 +47,7 @@
 		<property name="useCodeAsDefaultMessage" value="true" /> 
 	</bean>		
 	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.FixedLocaleResolver"> 
-    	<property name="defaultLocale" value="zh_CN" /> <!-- en_US  -->
+    	<property name="defaultLocale" value="en_US" /> <!-- en_US  -->
 	</bean>
 	<!-- ehcache缓存配置 -->
 	<!-- 缓存配置 -->
@@ -49,7 +59,10 @@
    	<bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
    		<property name="configLocation" value="classpath:ehcache.xml"/>
     </bean>
-
+    
+    <!-- 分布式队列kafka的配置
+    <import resource="classpath:/com/yihuacomputer/fish/kafka/fish-kafka.xml" /> -->
+    
 	<!--内嵌数据库版本
 	<import resource="classpath:fish-h2.xml" />-->
 	<!--msyql数据库版本-->

@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.yihuacomputer.common.IFilter;
-import com.yihuacomputer.common.IPageResult;
 
 public interface IAtmLogInfoService {	
 	/**

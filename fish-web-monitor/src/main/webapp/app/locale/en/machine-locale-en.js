@@ -452,7 +452,7 @@ Ext.apply(EwayLocale,{
 
 			addDevInfo:'Additional equipment information',//EwayLocale.machine.device.addDevInfo增加设备信息
 			effectiveDate:'effective date',//EwayLocale.machine.device.effectiveDate生效日期
-			changeDevInfo:'Changing the Device Information',//EwayLocale.machine.device.changeDevInfo更改设备信息
+			changeDevInfo:'Update the Device Information',//EwayLocale.machine.device.changeDevInfo更改设备信息
 			devManage:'Device Management',//EwayLocale.machine.device.devManage设备管理
 			efficientDev:'Device Information in force',//EwayLocale.machine.device.efficientDev已生效设备信息
 			unEfficientDev:'Device information not active',//EwayLocale.machine.device.unEfficientDev未生效设备信息
@@ -580,7 +580,7 @@ Ext.apply(EwayLocale,{
 	},
 	
 	atmLog:{
-		dayBackup:'Back-up log result today',//EwayLocale.atmLog.dayBackup 当日备份结果
+		dayBackup:'back-up results',//EwayLocale.atmLog.dayBackup 当日备份结果
 		whole:'All',//EwayLocale.atmLog.whole 所有
 		execute:'Executing',//EwayLocale.atmLog.execute 执行中
 		unKnownFail:'Failed with unknown reason',//EwayLocale.atmLog.unKnownFail 未知原因失败
@@ -596,13 +596,13 @@ Ext.apply(EwayLocale,{
 		lastDoDate:'LastExecute Date',//EwayLocale.atmLog.lastDoDate
 		getLog:'GetLog',//EwayLocale.atmLog.getLog
 		backupDate:'Back-up date',//EwayLocale.atmLog.backupDate 备份日期
-		dayBackupResult:'Back-up result today',//EwayLocale.atmLog.dayBackupResult 当日备份结果
+		dayBackupResult:'Back-up result',//EwayLocale.atmLog.dayBackupResult 当日备份结果
 		backupProcess:'Backing-up',//EwayLocale.atmLog.backupProcess 正在备份
 		backupSuccess:'Back-up successful',//EwayLocale.atmLog.backupSuccess 备份成功
 		backupError:'Back-up error',//EwayLocale.atmLog.backupError 备份错误
 		logDevAccount:'Log back-up machine count total',//EwayLocale.atmLog.logDevAccount 日志设备数量累计
-		logDevSucAccount:'Log back-up success machine count total',//EwayLocale.atmLog.logDevSucAccount
-		logDevFailAccount:'Log back-up faile machine count total',//EwayLocale.atmLog.logDevFailAccount
+		logDevSucAccount:'Number of backup success',//EwayLocale.atmLog.logDevSucAccount
+		logDevFailAccount:'Number of backup failed',//EwayLocale.atmLog.logDevFailAccount
 		reform:'Reform',//EwayLocale.atmLog.reform 重做
 		busLogAnalysis:'Business log analysis',//EwayLocale.atmLog.busLogAnalysis 业务日志分析
 		selectAnalysis:'Please choose the log file which you want to analyse, the result will show in Excel file',//EwayLocale.atmLog.selectAnalysis 请选择需要分析的日志文件，分析的结果将以Excel表格文件导出

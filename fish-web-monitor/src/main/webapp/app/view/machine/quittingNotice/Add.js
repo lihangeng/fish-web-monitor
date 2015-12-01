@@ -49,7 +49,7 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 				selectOnFocus : true,
 				defaults: {
 					width: 400,
-					labelWidth: 80,
+					labelWidth: 110,
 					labelAlign: 'right',
 					msgTarget : 'side'
 				},
@@ -71,7 +71,7 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 					vtype : 'daterange',
 					minValue : new Date(),
 					width : 400,
-					editable:false,
+					allowBlank : false,
 					endDateField : 'openTime',
 					listeners : {
 						blur : {

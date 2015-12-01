@@ -265,7 +265,7 @@
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+					<font size="13"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{upCashDate}]]></textFieldExpression>
 			</textField>
@@ -279,7 +279,7 @@
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+					<font size="13"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{upCashAmt}]]></textFieldExpression>
 			</textField>
@@ -293,7 +293,7 @@
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+					<font size="13"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{settleDate}]]></textFieldExpression>
 			</textField>
@@ -307,7 +307,7 @@
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+					<font size="13"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cashDate}]]></textFieldExpression>
 			</textField>
@@ -321,7 +321,7 @@
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+					<font size="13"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{cashAmt}]]></textFieldExpression>
 			</textField>
@@ -335,7 +335,7 @@
 					<rightPen lineWidth="0.5"/>
 				</box>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H"/>
+					<font size="13"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{leftAmt}]]></textFieldExpression>
 			</textField>

@@ -1,8 +1,8 @@
 ﻿Ext.define('Ext.ux.form.DateTimePicker', {
 	extend: 'Ext.picker.Date',
       alias: 'widget.datetimepicker',
-      todayText: '确定',
-      timeLabel: '时间',
+      todayText: 'Confirm',
+      timeLabel: 'Time',
       requires: ['Ext.ux.form.TimePickerField'],
       timefield:"",
       readOnly:false,

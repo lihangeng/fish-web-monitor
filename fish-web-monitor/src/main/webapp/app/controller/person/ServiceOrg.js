@@ -294,7 +294,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 					var record = sm.getLastSelected();
 					record.erase({
 						success : function() {
-							Eway.alert(EwayLocale.updateSuccess);
+							Eway.alert(EwayLocale.deleteSuccess);
 							var store = this.getGrid().getStore();
 							store.setUrlParamsByObject({
 								type : '1'

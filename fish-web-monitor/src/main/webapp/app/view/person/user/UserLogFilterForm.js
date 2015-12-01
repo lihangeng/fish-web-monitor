@@ -47,11 +47,11 @@ Ext.define('Eway.view.person.user.UserLogFilterForm', {
 				columnWidth : .5,
 				items : [{
 					fieldLabel: EwayLocale.tip.operateDate.operateDateBegin,
-					labelWidth:150,
 		        	xtype : 'datetimefield',
 					name : 'operTimeStart',
 					format : 'Y-m-d H:i:s',
 					msgTarget : 'side',
+					labelWidth:140,
 					editable: false,
 					value:Ext.Date.parse(Ext.Date.format(new Date(), 'Y-m-d') + " 00:00:00","Y-m-d H:i:s"),
 					dateRange : {
@@ -75,7 +75,7 @@ Ext.define('Eway.view.person.user.UserLogFilterForm', {
 					fieldLabel: EwayLocale.tip.operateDate.operateDateEnd,
 		        	xtype : 'datetimefield',
 					name : 'operTimeEnd',
-					labelWidth:150,
+					labelWidth:140,
 					format : 'Y-m-d H:i:s',
 					editable: false,
 					value:Ext.Date.parse(Ext.Date.format(new Date(), 'Y-m-d') + " 23:59:59","Y-m-d H:i:s"),

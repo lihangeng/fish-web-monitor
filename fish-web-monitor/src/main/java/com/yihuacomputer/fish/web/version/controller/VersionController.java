@@ -529,7 +529,14 @@ public class VersionController {
 			IVersion version = versionList.get(index);
 			if (null != map.get(version.getId())) {
 				diplayList.add(map.get(version.getId()));
-			} 
+			} else {
+				VersionDistribute versionDistributeNew = new VersionDistribute();
+				versionDistributeNew.setVersionId(version.getId());
+				versionDistributeNew.setVersionNo(version.getVersionNo());
+				versionDistributeNew.setVersionNoNumber(0);
+				versionDistributeNew.setVersionTypeId(versionTypeId);
+				diplayList.add(versionDistributeNew);
+			}
 		}
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, diplayList.size());

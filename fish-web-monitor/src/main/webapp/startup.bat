@@ -16,6 +16,6 @@ goto :eof
 
 SET CLASSPATH=%CLASSPATH%;
 SET CLASSPATH
-java -server -Xms512m -Xmx1024m -verbosegc -Xloggc:logs/atmvs_gc_log.log -Dfile.encoding=UTF-8 com.yihuacomputer.fish.web.FishConsole
+java -Xms512m -Xmx1024m -verbosegc -Xloggc:logs/atmvs_gc_log.log -Dfile.encoding=UTF-8 com.yihuacomputer.fish.web.FishConsole
 
 pause 

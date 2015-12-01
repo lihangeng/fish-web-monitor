@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.monitor.entity.xfs.status;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -7,6 +9,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.yihuacomputer.fish.api.monitor.business.RunStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.BoxStatus;
@@ -29,7 +32,9 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.NetStatus;
 
 @Entity
 @Table(name = "DEV_XFS_STATUS")
-public class XfsStatus implements IXfsStatus {
+public class XfsStatus implements IXfsStatus,Serializable{
+
+	private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "TERMINAL_ID", nullable = false)
@@ -99,7 +104,7 @@ public class XfsStatus implements IXfsStatus {
     @Embedded
     private StatusIsc isc;
 
-    @Embedded
+    @Transient
     private IXfsStatus hisXfsStatus ;
 
     public XfsStatus() {
@@ -544,4 +549,5 @@ public class XfsStatus implements IXfsStatus {
 	public void setHisXfsStatus(IXfsStatus hisXfsStatus) {
 		this.hisXfsStatus = hisXfsStatus ;
 	}
+	
 }

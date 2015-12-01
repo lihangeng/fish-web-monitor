@@ -294,10 +294,29 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					},
 					items : [ {
 						columnWidth : .24,
+						name : 'remoteCommHist',
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.commandRet+'</a>'
+					}, {
+						columnWidth : .24,
 						name : 'remoteScreenAction',
 						code : 'remoteScreen',
 						onlyText : true,
 						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.screen+'</a>',
+						listeners : {
+							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+						}
+					}, {
+						columnWidth : .24,
+						name : 'netAction',
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.net+'</a>'
+					}, {
+						columnWidth : .24,
+						name : 'remoteBrowserAction',
+						code : 'remoteBrowser',
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.remoteBrowser+'</a>',
 						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
@@ -310,16 +329,6 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
-					}, {
-						columnWidth : .24,
-						name : 'netAction',
-						onlyText : true,
-						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.net+'</a>'
-					}, {
-						columnWidth : .24,
-						name : 'softwareListAction',
-						onlyText : true,
-						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.softwareList+'</a>'
 					}, {
 						columnWidth : .24,
 						name: 'closeAction',
@@ -358,13 +367,18 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						}
 					}, {
 						columnWidth : .24,
-						name : 'remoteBrowserAction',
-						code : 'remoteBrowser',
+						name : 'resetAction',
+						code : 'reset',
 						onlyText : true,
-						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.remoteBrowser+'</a>',
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.reset+'</a>',
 						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
+					}, {
+						columnWidth : .24,
+						name : 'softwareListAction',
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.softwareList+'</a>'
 					}, {
 						columnWidth : .24,
 						name : 'processListAction',
@@ -376,15 +390,6 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						code : 'screenCamera',
 						onlyText : true,
 						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.screenCamera+'</a>',
-						listeners : {
-							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-						}
-					}, {
-						columnWidth : .24,
-						name : 'resetAction',
-						code : 'reset',
-						onlyText : true,
-						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.reset+'</a>',
 						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}

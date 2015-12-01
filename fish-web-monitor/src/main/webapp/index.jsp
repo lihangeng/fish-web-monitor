@@ -79,7 +79,7 @@
 			'<%=userSession.getPersonId()%>');
 		var test_userId = Math.random()+'';
 	<%} %>
-	ewayUser.language=locale;
+
   	</script>
 	<script type="text/javascript">
 		Ext.BLANK_IMAGE_URL = 'resources/images/s.gif';
@@ -93,7 +93,7 @@
 	  	Ext.cxtPath = '<%=request.getContextPath()%>';
 	  	var Eway = Eway || {};
 	  	var EwayLocale = {};
-	  	
+	  	ewayUser.language =locale;
 		if(Ext.String.startsWith(locale,"zh")){
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN.js");

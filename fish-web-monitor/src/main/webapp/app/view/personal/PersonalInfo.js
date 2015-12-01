@@ -28,13 +28,13 @@ Ext.define('Eway.view.personal.PersonalInfo', {
 					value:ewayUser.getCode()
 				},{
 					fieldLabel : EwayLocale.commen.name,
-					value:ewayUser.getName()
+					name : 'name'
 				},{
 					fieldLabel : EwayLocale.commen.orgNameBelongs,
 					name : 'organizationName'
 				},{
 					fieldLabel : EwayLocale.commen.mobile,
-					name : 'phone'
+					name : 'mobile'
 				},{
 					fieldLabel : EwayLocale.commen.email,
 					name : 'email'

@@ -310,7 +310,7 @@ Ext.define('Eway.controller.report.openPlan.OpenPlan', {
 								var record = sm.getLastSelected();
 								record.erase({
 									success: function(){
-										Eway.alert(EwayLocale.updateSuccess);
+										Eway.alert(EwayLocale.deleteSuccess);
 										grid.getStore().remove(record);
 									},
 									failure: function(record,operation){

@@ -202,7 +202,7 @@ Ext.define('Eway.controller.person.User', {
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Eway.alert(EwayLocale.updateSuccess);
+									Eway.alert(EwayLocale.deleteSuccess);
 									grid.getStore().remove(record);
 								},
 								failure: function(record,operation){
@@ -364,10 +364,6 @@ Ext.define('Eway.controller.person.User', {
 
 	onQueryLog: function (viewUserLogWin,code){
 		var form = viewUserLogWin.down('form').getForm();
-		if(!form.isValid()){
-			Eway.alert(EwayLocale.tip.search.warn);
-			return;
-		}
 		var values = form.getValues();
 		var grid = viewUserLogWin.down('userLog_grid')
 		var store = grid.getStore();

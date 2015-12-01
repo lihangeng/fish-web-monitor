@@ -51,7 +51,7 @@ Ext.define('Eway.controller.base.FishController', {
 				var record = sm.getLastSelected();
 				record.erase({
 					success: function(record,operation){
-						Eway.alert(EwayLocale.updateSuccess);
+						Eway.alert(EwayLocale.deleteSuccess);
 						me.onQuery();
 					},
 					failure: function(record,operation){
@@ -67,12 +67,11 @@ Ext.define('Eway.controller.base.FishController', {
 
 
 	_onAddOrUpdate : function(action){
-		//英文增加空格
-		var innerHtml="";
-		if(!Ext.String.startsWith(ewayUser.language,"zh")){
-			innerHtml="&nbsp;"
+		var midStr ="";
+		if(!ewayUser.language.startsWith("zh")){
+			midStr="&nbsp;";
 		}
-		var title = action=='add' ? EwayLocale.button.add+innerHtml+this.formConfig.title : EwayLocale.button.update+innerHtml+this.formConfig.title;
+		var title = action=='add' ? EwayLocale.button.add+midStr+this.formConfig.title : EwayLocale.button.update+midStr+this.formConfig.title;
 		var me = this;
 		Ext.require([this.formConfig.form],function(){
 			if(action=='update'){

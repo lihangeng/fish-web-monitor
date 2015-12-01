@@ -14,7 +14,7 @@ Ext.define('Eway.view.atmLog.DayBackupFilterForm',{
 					columnWidth : .4,
 					layout : 'hbox',
 					fieldLabel : EwayLocale.atmLog.backupDate,
-					labelWidth : 70,
+					labelWidth : 81,
 					defaults :{
 						hideLabel:true
 					},
