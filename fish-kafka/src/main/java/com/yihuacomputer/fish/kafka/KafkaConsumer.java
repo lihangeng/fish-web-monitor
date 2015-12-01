@@ -10,13 +10,23 @@ import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+/**
+ * kafka消费者的实现
+ * @author xuxiang
+ *
+ */
 public class KafkaConsumer implements Runnable{
+	private Logger logger = LoggerFactory.getLogger(KafkaConsumer.class);
+	private final String STATUS = "STATUS";
+    private final String TRANS = "TRANS";
 	private ConsumerConnector consumer;
 	private KafkaConsumerManager kafkaConsumerManager;
 	
 	public KafkaConsumer(KafkaConsumerManager kafkaConsumerManager){
 		this.kafkaConsumerManager = kafkaConsumerManager;
-		consumer = kafka.consumer.Consumer.createJavaConsumerConnector(createConsumerConfig(getKafkaConfig().getZooKeeper(), getKafkaConfig().getGroupId()));
+		consumer = kafka.consumer.Consumer.createJavaConsumerConnector(createConsumerConfig());
 	}
 	
 	public KafkaConfig getKafkaConfig() {
@@ -37,27 +47,39 @@ public class KafkaConsumer implements Runnable{
 		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
 		List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(topic);
 		for (final KafkaStream stream : streams) {
-			System.out.println("inner start");
+			logger.info("start waiting for messages ...");
 			ConsumerIterator<byte[], byte[]> it = stream.iterator();
 	        while (it.hasNext()){
 	        	byte[] bytes = it.next().message();
 	            String message = new String(bytes);
-	            System.out.println("iiiii2 " + message);
 	            if(message != null && !"".equals(message.trim())){
-	            	kafkaConsumerManager.getMessagePusher().pushStatusToWeb(message);
+	            	post(message);
 	            }
-	            System.out.println("bbbbb " + message);
 	        }
-	        System.out.println("inner end");
 		}
 	}
-	private static ConsumerConfig createConsumerConfig(String a_zookeeper, String a_groupId) {
+	private void post(String msg) {
+		 try {
+            if (msg.contains(STATUS)) {
+            	kafkaConsumerManager.getMessagePusher().pushStatusToWeb(msg);
+            } else if (msg.contains(TRANS)) {
+            	kafkaConsumerManager.getMessagePusher().pushTransToWeb(msg);
+            }else{
+            	logger.warn("ignore message [%s]",msg);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            logger.error("mq handle error [%s]", e);
+        }
+	}
+
+	private ConsumerConfig createConsumerConfig() {
 		Properties props = new Properties();
-		props.put("zookeeper.connect", a_zookeeper);
-		props.put("group.id", a_groupId);
-		props.put("zookeeper.session.timeout.ms", "3000");
-		props.put("zookeeper.sync.time.ms", "200");
-		props.put("auto.commit.interval.ms", "1000");
+		props.put("zookeeper.connect", getKafkaConfig().getZooKeeper());
+		props.put("group.id", getKafkaConfig().getGroupId());
+		props.put("zookeeper.session.timeout.ms", getKafkaConfig().getZookeeperSessionTimeoutMs());
+		props.put("zookeeper.sync.time.ms", getKafkaConfig().getZookeeperSyncTimeMs());
+		props.put("auto.commit.interval.ms", getKafkaConfig().getAutoCommitIntervalMs());
 		return new ConsumerConfig(props);
 	}
 

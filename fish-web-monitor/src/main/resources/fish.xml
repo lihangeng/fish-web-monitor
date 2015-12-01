@@ -19,7 +19,17 @@
 
 	<bean id="propertiesConfigurer"
 			class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-  		<property name="location" value="classpath:fish.properties" />
+  		<!-- <property name="location" value="classpath:fish.properties" /> -->
+  		<property name="locations">
+			<list>
+			<value>classpath:fish.properties</value>
+			<value>classpath:kafka.properties</value>
+			<value>file:///${FISH_HOME}/kafka.properties</value>
+			</list>
+		</property>
+		<property name="ignoreResourceNotFound" value="true" />
+		<property name="ignoreUnresolvablePlaceholders" value="false" />
+		<property name="searchSystemEnvironment" value="true" />
 	</bean>
 	
 	<!-- Spring 国际化配置 -->

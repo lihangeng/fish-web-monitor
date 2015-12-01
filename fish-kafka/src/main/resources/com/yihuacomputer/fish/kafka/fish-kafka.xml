@@ -10,4 +10,16 @@
 	<context:component-scan base-package="com.yihuacomputer.fish.kafka">
 	</context:component-scan>
 	
+	<bean name="kafkaConfig" class="com.yihuacomputer.fish.kafka.KafkaConfig">
+		<property name="topic" value="${topic}" />
+		<property name="metadataBrokerList" value="${metadataBrokerList}" />
+		<property name="serializerClass" value="${serializerClass}" />
+		<property name="requestRequiredAcks" value="${requestRequiredAcks}" />
+		<property name="zooKeeper" value="${zooKeeper}" />
+		<property name="groupId" value="${groupId}" />
+		<property name="zookeeperSessionTimeoutMs" value="${zookeeperSessionTimeoutMs}" />
+		<property name="zookeeperSyncTimeMs" value="${zookeeperSyncTimeMs}" />
+		<property name="autoCommitIntervalMs" value="${autoCommitIntervalMs}" />
+	</bean>
+	
 </beans>
