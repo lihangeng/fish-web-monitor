@@ -35,6 +35,11 @@
 			<artifactId>fish-report</artifactId>
 			<version>${fish.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.yihuacomputer.fish</groupId>
+			<artifactId>fish-kafka</artifactId>
+			<version>${fish.version}</version>
+		</dependency>
 		<!-- cometd config -->
 		<dependency>
 			<groupId>org.cometd.java</groupId>
