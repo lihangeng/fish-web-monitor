@@ -79,7 +79,7 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.2.2</version>
 		</dependency>
-		<!-- j2ee
+		<!-- j2ee -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -87,23 +87,7 @@
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
-		</dependency> -->
-		 <!-- 独立运行 -->
-		<dependency>
-			<groupId>org.eclipse.jetty.aggregate</groupId>
-			<artifactId>jetty-all</artifactId>
-			<version>${jetty.version}</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>mail</artifactId>
-					<groupId>javax.mail</groupId>
-				</exclusion>
-			</exclusions>
 		</dependency>
-		<dependency>
-		   <groupId>org.mortbay.jetty</groupId>
-    	   <artifactId>jsp-2.1-glassfish</artifactId>
- 		</dependency>
 		<!-- POI扩展组件 -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
@@ -151,7 +135,8 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration> 
-					<archiveClasses>true</archiveClasses>  
+					<!-- <archiveClasses>true</archiveClasses> -->
+					<attachClasses>true</attachClasses>
 					<packagingExcludes>
 						compress.html,
 						WEB-INF\lib\h2-1.3.173.jar,
