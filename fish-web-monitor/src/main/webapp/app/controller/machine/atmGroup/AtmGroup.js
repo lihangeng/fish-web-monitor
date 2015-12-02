@@ -216,7 +216,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Eway.alert(EwayLocale.updateSuccess);
+									Eway.alert(EwayLocale.deleteSuccess);
 									store.setUrlParamsByObject(quarydata);
 									store.load( {scope: this,
 										callback: function(){

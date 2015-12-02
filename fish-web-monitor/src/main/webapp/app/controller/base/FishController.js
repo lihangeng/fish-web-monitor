@@ -51,7 +51,7 @@ Ext.define('Eway.controller.base.FishController', {
 				var record = sm.getLastSelected();
 				record.erase({
 					success: function(record,operation){
-						Eway.alert(EwayLocale.updateSuccess);
+						Eway.alert(EwayLocale.deleteSuccess);
 						me.onQuery();
 					},
 					failure: function(record,operation){
@@ -127,7 +127,7 @@ Ext.define('Eway.controller.base.FishController', {
 				actionName,
 				record;
 				store.cleanUrlParam();
-				
+
 				if(action == 'add') {
 					actionName = EwayLocale.button.add;
 					var values = form.getCusValues();
@@ -170,32 +170,32 @@ Ext.define('Eway.controller.base.FishController', {
 				});
 	 	}
 	},
-	
+
 	//在显示增加页面之前
 	beforeShowAddWin : function(win,grid){
 	},
-	
+
 	//抽象方法，留给子类扩展
 	//在增加之前处理逻辑
 	beforeAddSave : function(win,grid){
 	},
-	
+
 	//抽象方法，留给子类扩展
 	//在显示更改页面之前
 	boforeShowUpdateWin : function(updateWin,grid,record){
 	},
-	
+
 	//抽象方法，留给子类扩展
 	//在更新之前处理逻辑
 	beforeUpdateSave : function(win,grid,record){
 	},
-	
+
 	//增加后调用的查询，过滤条件不带入查询，且页面的查询不清除
 	onQueryAfterAdd : function(){
 		var store = this.getGridPanel().getStore();
 		store.setUrlParamsByObject();
 		store.loadPage(1);
-	},
-	
+	}
+
 
 });

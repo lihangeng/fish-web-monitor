@@ -17,9 +17,8 @@ import com.yihuacomputer.fish.api.monitor.report.IDeviceReport;
 import com.yihuacomputer.fish.api.monitor.software.ISoftware;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 import com.yihuacomputer.fish.monitor.entity.business.DeviceRegister;
-import com.yihuacomputer.fish.monitor.entity.xfs.status.XfsStatus;
 
-public class DeviceReport implements IDeviceReport{
+public class DeviceReport implements IDeviceReport {
 	private String deviceId;
 	private IDevice device;
 	private IDeviceRegister deviceRegister;
@@ -33,11 +32,12 @@ public class DeviceReport implements IDeviceReport{
 	private List<CounterFeitMoneyForms> forms;
 
 	private IRetaincard retaincard;
+
 	public String getDeviceId() {
 		return this.deviceId;
 	}
 
-	public void setDeviceId(String deviceId){
+	public void setDeviceId(String deviceId) {
 		this.deviceId = deviceId;
 	}
 
@@ -45,13 +45,15 @@ public class DeviceReport implements IDeviceReport{
 		return this.device;
 	}
 
-	public void setDevice(IDevice device){
+	public void setDevice(IDevice device) {
 		this.device = device;
 	}
-	public void setTransaction(ITransaction transInfo){
+
+	public void setTransaction(ITransaction transInfo) {
 		this.transInfo = transInfo;
 	}
-	public ITransaction getTransaction(){
+
+	public ITransaction getTransaction() {
 		return this.transInfo;
 	}
 
@@ -88,21 +90,27 @@ public class DeviceReport implements IDeviceReport{
 	public IXfsStatus getXfsStatus() {
 		return this.xfsStatus;
 	}
-	public void setXfsStatus(XfsStatus xfsStatus){
+
+	public void setXfsStatus(IXfsStatus xfsStatus) {
 		this.xfsStatus = xfsStatus;
 	}
+
 	public IDeviceRegister getDeviceRegister() {
 		return this.deviceRegister;
 	}
-	public void setDeviceRegister(DeviceRegister deviceRegister){
+
+	public void setDeviceRegister(DeviceRegister deviceRegister) {
 		this.deviceRegister = deviceRegister;
 	}
-	public void setHardware(IHardware hardware){
+
+	public void setHardware(IHardware hardware) {
 		this.hardware = hardware;
 	}
-	public void setSofteare(ISoftware software){
+
+	public void setSofteare(ISoftware software) {
 		this.software = software;
 	}
+
 	public void setRunInfo(IRunInfo runInfo) {
 		this.runInfo = runInfo;
 	}
@@ -112,10 +120,9 @@ public class DeviceReport implements IDeviceReport{
 		return this.counterFeitMoney;
 	}
 
-	public void setCounterFeitMoney(ICounterFeitMoney counterFeitMoney){
+	public void setCounterFeitMoney(ICounterFeitMoney counterFeitMoney) {
 		this.counterFeitMoney = counterFeitMoney;
 	}
-
 
 	@Override
 	public IRetaincard getRetaincard() {
@@ -125,8 +132,8 @@ public class DeviceReport implements IDeviceReport{
 	public void setRetaincard(IRetaincard retaincard) {
 		this.retaincard = retaincard;
 	}
-	
-	//后台转换疑问币假币信息
+
+	// 后台转换疑问币假币信息
 	public List<CounterFeitMoneyForms> getForms() {
 		return forms;
 	}

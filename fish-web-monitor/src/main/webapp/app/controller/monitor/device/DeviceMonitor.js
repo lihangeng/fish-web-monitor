@@ -342,7 +342,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				var record = sm.getLastSelected();
 				record.erase({
 					success: function(record,operation) {
-						Eway.alert(EwayLocale.updateSuccess);
+						Eway.alert(EwayLocale.deleteSuccess);
 						me._onFilterManagerQuery();
 					},
 					failure: function(record,operation) {

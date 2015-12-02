@@ -2,11 +2,11 @@
 Ext.define('Eway.view.person.servicePer.Grid', {
 	extend: 'Eway.view.base.Grid',
 	alias: 'widget.ser_person_grid',
-	
+
 	requires: ['Eway.lib.Util'],
-	
+
 	border : false,
-	
+
 	initComponent: function() {
 		var store = Ext.create('Eway.store.person.person.SerPerson');
 		Ext.apply(this, {
@@ -66,7 +66,7 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 			},{
 				header : EwayLocale.commen.devServiceName,
 				dataIndex : 'organizationName',
-				width:160,
+				width:160
 			},{
 				header : EwayLocale.commen.state,
 				dataIndex : 'state',
@@ -110,7 +110,7 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 				displayInfo : true
 			})
 		});
-		
+
 		this.callParent(arguments);
 	}
 });

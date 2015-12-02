@@ -146,7 +146,11 @@ Ext.define('Eway.controller.version.Version', {
 				form.findField("serverPath").setValue(record.get("serverPath"));
 				var atmTypeStore = win.down("field_device_deviceatmtype[name=atmTypeId]").getStore();
 				atmTypeStore.proxy.extraParams={versionId:record.get("id")};
-				atmTypeStore.load();
+				atmTypeStore.load({
+					callback: function(records, operation, success) {
+						atmTypeStore.proxy.extraParams={};
+					}
+				});
 				win.show();
 				
 				win.down("textfield[name=jobName]").setValue(record.get("desc"));
@@ -485,7 +489,7 @@ Ext.define('Eway.controller.version.Version', {
 						record.erase({
 							success: function(){
 								this.getVersionStore().remove(record);
-								Eway.alert(EwayLocale.updateSuccess);
+								Eway.alert(EwayLocale.deleteSuccess);
 								grid.getStore().load();
 							},
 							failure:  function(record,operation){

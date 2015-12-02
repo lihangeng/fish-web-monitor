@@ -49,15 +49,15 @@ Ext.apply(EwayLocale,{
 				stopTimeReal:'其它暂停服务状态时长',//EwayLocale.report.openrate.device.stopTimeReal
 				openRate:'实际工作开机率',//EwayLocale.report.openrate.device.openRate
 				devOpenRate:'设备开机率',//EwayLocale.report.openrate.device.devOpenRate
-				organizationName:'机构',//EwayLocale.report.openrate.device.organizationName
+				organizationName:'机构'//EwayLocale.report.openrate.device.organizationName
 			},
 			org:{
-				orgOpenRate:'机构开机率',//EwayLocale.report.openrate.org.orgOpenRate
+				orgOpenRate:'机构开机率'//EwayLocale.report.openrate.org.orgOpenRate
 			},
 			type:{
 				terminalId:'型号',//EwayLocale.report.openrate.type.terminalId
-				typeOpenRate:'型号开机率',//EwayLocale.report.openrate.type.typeOpenRate
-			},
+				typeOpenRate:'型号开机率'//EwayLocale.report.openrate.type.typeOpenRate
+			}
 		},
 		plan:{
 			addPlan:'增加开机方案',//EwayLocale.report.plan.addPlan
@@ -69,7 +69,7 @@ Ext.apply(EwayLocale,{
 			cashboxLimit:'钞箱报警金额(单位：张数)',//EwayLocale.report.plan.cashboxLimit
 			perToDev:'人员<-->设备',//EwayLocale.report.plan.perToDev
 			changePlan:'更改方案',//EwayLocale.report.plan.changePlan
-			servicePlan:'开机方案',//EwayLocale.report.plan.servicePlan
+			servicePlan:'开机方案'//EwayLocale.report.plan.servicePlan
 		},
 
 		serviceplan:{

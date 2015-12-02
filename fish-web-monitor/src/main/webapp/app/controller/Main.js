@@ -188,6 +188,8 @@ Ext.define('Eway.controller.Main', {
 			this.activeController('report.openPlan.OpenPlan',text);
 		}else if(code =="monitorSummaryInfo"){
 			this.activeController('monitor.MonitorSummaryInfo',text);
+		}else if(code == 'remoteCommand') {
+			this.activeController('monitor.device.RemoteCommand', text);
 		}
 
 	},

@@ -80,7 +80,8 @@ Ext.apply(EwayLocale,{
 				isc:'ID Scanner',//EwayLocale.monitor.devMonitor.mod.isc 身份证扫描仪
 				icc:'Card Dispenser',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
 				fgp:'Finger Printer',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
-				healthy:'Healthy'//EwayLocale.monitor.devMonitor.mod.healthy 模块正常
+				healthy:'Healthy',//EwayLocale.monitor.devMonitor.mod.healthy 模块正常
+				pbk:'Passbook Printer'//EwayLocale.monitor.devMonitor.mod.pbk 存折打印机
 			},
 			remote:{
 				control:'Remote Control',//EwayLocale.monitor.devMonitor.remote.control 远程控制
@@ -279,7 +280,7 @@ Ext.apply(EwayLocale,{
 				stopManage:'Automatic stopped ,please contact the manager!',//自动停止.如需取得视频文件,请联系管理员!
 				manage: 'Operater',	//操作
 				loading:'DownLoad',//EwayLocale.agent.remote.screen.loading 下载
-				screenCamera: 'Screen recording',//屏幕录制
+				screenCamera: 'Screen recording'//屏幕录制
 			},
 			discInfo: 'Disk info', //磁盘信息
 			discName: 'Disk Pattern name',//磁盘分区名称
@@ -405,6 +406,7 @@ Ext.apply(EwayLocale,{
 			backupAppLogsFail:'backup atmc logs faile.',
 			backupLogSucList:' backup atmc logs list success.',
 			backupLogFailList:' backup atmc logs list failed.',
+
 		}
 	}
 });

@@ -1,16 +1,16 @@
 Ext.define('Eway.controller.agent.remote.RemoteLookVesion',{
 
 	extend : 'Ext.app.Controller',
-	
+
 	views : [],
 	stores : [],
 	models : [],
-	
+
 	init : function(){
 		this.control({
 		});
 	},
-	
+
 	display : function(code, ip){
 		var win = Ext.create('Ext.window.Window', {
 			width : 400,
@@ -32,7 +32,7 @@ Ext.define('Eway.controller.agent.remote.RemoteLookVesion',{
 	    	 	defaults: {
 					anchor : '90%',
 					labelWidth: '50%'
-				},/*,
+				}/*,
 		    	items : [ {
 				    xtype : 'displayfield',
 				    fieldLabel: EwayLocale.agent.remote.ATMCVersion,
@@ -44,9 +44,9 @@ Ext.define('Eway.controller.agent.remote.RemoteLookVesion',{
 				} ]*/
 			} ]
 		});
-		
+
 		this.win = win;
-		
+
 //		Ext.Ajax.request({
 //   			method : 'POST',
 //   			url : 'api/agent/atmVersion/versioninfo',
@@ -75,7 +75,7 @@ Ext.define('Eway.controller.agent.remote.RemoteLookVesion',{
 //   				Ext.Msg.alert("提示", "查看失败！");
 //   			}
 //		});
-		
+
 	}
-	
+
 });

@@ -163,6 +163,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					layout : 'column',
 					defaults : {
 						xtype : 'displayfield',
+						labelWidth : 100,
 						width : '25%'
 					},
 					items : [ {
@@ -264,6 +265,15 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						listeners : {
 							'beforerender': this.isHidden
 						}
+					}, {
+						columnWidth : .25,
+						fieldLabel : EwayLocale.monitor.devMonitor.mod.pbk,
+						name : 'pbkStatus',
+						a_link : true,
+						code : 'PBK',
+						listeners : {
+							'beforerender': this.isHidden
+						}
 					} ]
 				} ]
 			}, {
@@ -284,10 +294,29 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					},
 					items : [ {
 						columnWidth : .24,
+						name : 'remoteCommHist',
+						onlyText : true,
+						value : '<a href="#" class="link">命令执行结果</a>'
+					}, {
+						columnWidth : .24,
 						name : 'remoteScreenAction',
 						code : 'remoteScreen',
 						onlyText : true,
 						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.screen+'</a>',
+						listeners : {
+							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+						}
+					}, {
+						columnWidth : .24,
+						name : 'netAction',
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.net+'</a>'
+					}, {
+						columnWidth : .24,
+						name : 'remoteBrowserAction',
+						code : 'remoteBrowser',
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.remoteBrowser+'</a>',
 						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
@@ -300,16 +329,6 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
-					}, {
-						columnWidth : .24,
-						name : 'netAction',
-						onlyText : true,
-						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.net+'</a>'
-					}, {
-						columnWidth : .24,
-						name : 'softwareListAction',
-						onlyText : true,
-						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.softwareList+'</a>'
 					}, {
 						columnWidth : .24,
 						name: 'closeAction',
@@ -348,13 +367,18 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						}
 					}, {
 						columnWidth : .24,
-						name : 'remoteBrowserAction',
-						code : 'remoteBrowser',
+						name : 'resetAction',
+						code : 'reset',
 						onlyText : true,
-						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.remoteBrowser+'</a>',
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.reset+'</a>',
 						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
+					}, {
+						columnWidth : .24,
+						name : 'softwareListAction',
+						onlyText : true,
+						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.softwareList+'</a>'
 					}, {
 						columnWidth : .24,
 						name : 'processListAction',
@@ -366,15 +390,6 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						code : 'screenCamera',
 						onlyText : true,
 						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.screenCamera+'</a>',
-						listeners : {
-							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-						}
-					}, {
-						columnWidth : .24,
-						name : 'resetAction',
-						code : 'reset',
-						onlyText : true,
-						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.reset+'</a>',
 						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
@@ -416,7 +431,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					|| name=='cimStatus' || name=='siuStatus'
 					|| name=='rprStatus' || name=='ttuStatus'
 					|| name=='iccStatus' || name=='iscStatus'
-					|| name=='fgpStatus'){
+					|| name=='fgpStatus' || name=='pbkStatus'){
 						var text = me._getText(value);
 						if(value == 'Warning'){
 							item.setValue('<a href="#" class="link warningHighLight">'+text+'</a>');
@@ -445,12 +460,17 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					
 					var className = 'link ';
 
-					if(value == EwayLocale.commen.warn){
-						className += ' warningHighLight ';
-					}else if(value == EwayLocale.commen.fatal){
-						className += ' fatalHighLight ';
+
+					if (value == EwayLocale.commen.noDevice) {
+						item.setValue(div + ' ' + value);
+					} else {
+						if(value == EwayLocale.commen.warn) {
+							className += ' warningHighLight ';
+						} else if(value == EwayLocale.commen.fatal) {
+							className += ' fatalHighLight ';
+						}
+						item.setValue(div + '<a href="#" class="'+className+'">' + value + '</a>');
 					}
-					item.setValue(div + '<a href="#" class="'+className+'">' + value + '</a>');
 
 				}else if(name == "boxStatus"){
 //					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getBoxPath(record.get("box")) + '"/>&nbsp;&nbsp;</div>';
@@ -458,12 +478,16 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					var className = 'link';
 					var boxFatals= [EwayLocale.monitor.devMonitor.cash.cimFull,EwayLocale.monitor.devMonitor.cash.cdmEmpty,
 					                EwayLocale.monitor.devMonitor.cash.cimAFull,EwayLocale.monitor.devMonitor.cash.cashFault];
-					if(Ext.Array.contains(boxFatals,value)){
-						className += ' fatalHighLight ';
-					} else if(value == EwayLocale.monitor.devMonitor.cash.cdmLow) {
-						className += ' warningHighLight ';
+					if (value == EwayLocale.commen.noDevice) {
+						item.setValue(div + ' ' + value);
+					} else {
+						if(Ext.Array.contains(boxFatals,value)){
+							className += ' fatalHighLight ';
+						} else if(value == EwayLocale.monitor.devMonitor.cash.cdmLow) {
+							className += ' warningHighLight ';
+						}
+						item.setValue(div + '<a href="#" class="'+className+'">'+value+'</a>');
 					}
-					item.setValue(div + '<a href="#" class="'+className+'">'+value+'</a>');
 
 				}else if(name == "netStatus"){
 //					var img = '<div style="float:left"><img class="left" height="17px" src="' + view.getNetPath(record.get("net")) + '"/>&nbsp;&nbsp;</div>';

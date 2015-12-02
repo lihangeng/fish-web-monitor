@@ -79,6 +79,7 @@ Ext.apply(EwayLocale,{
 				isc:'身份证扫描仪',//EwayLocale.monitor.devMonitor.mod.isc
 				icc:'发卡器',//EwayLocale.monitor.devMonitor.mod.icc
 				fgp:'指纹仪',//EwayLocale.monitor.devMonitor.mod.fgp
+				pbk:'存折打印机',//EwayLocale.monitor.devMonitor.mod.pbk
 				healthy:'模块正常'//EwayLocale.monitor.devMonitor.mod.healthy
 
 			},
@@ -252,6 +253,18 @@ Ext.apply(EwayLocale,{
 				cimAmt:'存款金额',//EwayLocale.monitor.business.settlement.cimAmt
 				cdmAmt:'取款金额',//EwayLocale.monitor.business.settlement.cdmAmt
 				tranAmt:'交易总金额'//EwayLocale.monitor.business.settlement.tranAmt
+			}
+		},
+		remoteCommand:{
+			titile:'远程命令查询',//EwayLocale.monitor.remoteCommand.titile
+			form:{
+				date:'执行日期'//EwayLocale.monitor.remoteCommand.form.date
+			},
+			grid:{
+				commandType:'命令类型',//EwayLocale.monitor.remoteCommand.commandType
+				commandResult:'执行结果',//EwayLocale.monitor.remoteCommand.commandResult
+				datetime:'执行日期',//EwayLocale.monitor.remoteCommand.datetime
+				handlePerson:'操作人'//EwayLocale.monitor.remoteCommand.handlePerson
 			}
 		}
 	},

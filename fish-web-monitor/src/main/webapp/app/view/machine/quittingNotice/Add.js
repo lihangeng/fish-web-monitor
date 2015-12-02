@@ -71,7 +71,7 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 					vtype : 'daterange',
 					minValue : new Date(),
 					width : 400,
-					editable:false,
+					allowBlank : false,
 					endDateField : 'openTime',
 					listeners : {
 						blur : {

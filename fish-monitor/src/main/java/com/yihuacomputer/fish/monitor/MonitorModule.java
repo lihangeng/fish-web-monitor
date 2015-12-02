@@ -11,6 +11,7 @@ import com.yihuacomputer.fish.api.monitor.business.ICashInitService;
 import com.yihuacomputer.fish.api.monitor.business.ICounterFeitMoneyService;
 import com.yihuacomputer.fish.api.monitor.business.IHostRetService;
 import com.yihuacomputer.fish.api.monitor.business.IRegistService;
+import com.yihuacomputer.fish.api.monitor.business.IRemoteCommHistService;
 import com.yihuacomputer.fish.api.monitor.business.IRetaincardService;
 import com.yihuacomputer.fish.api.monitor.business.IRunInfoService;
 import com.yihuacomputer.fish.api.monitor.business.ISettlementService;
@@ -37,6 +38,7 @@ import com.yihuacomputer.fish.monitor.service.MonitorService;
 //import com.yihuacomputer.fish.monitor.service.StateCodeService;
 import com.yihuacomputer.fish.monitor.service.ProcessService;
 import com.yihuacomputer.fish.monitor.service.RegistService;
+import com.yihuacomputer.fish.monitor.service.RemoteCommHistService;
 import com.yihuacomputer.fish.monitor.service.RetaincardService;
 import com.yihuacomputer.fish.monitor.service.RunInfoService;
 import com.yihuacomputer.fish.monitor.service.RuntimeParamService;
@@ -167,4 +169,9 @@ public class MonitorModule {
 	public ITransactionViewService transactionViewService() {
 		return new TransactionViewService();
 	}
+	
+	@Bean
+    public IRemoteCommHistService remoteCommHistService() {
+        return new RemoteCommHistService();
+    }
 }

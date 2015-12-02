@@ -20,7 +20,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 
 	models : ['operatingPlan.OpenPlan','operatingPlan.OpenPlanDetail','operatingPlan.LinkDevice','operatingPlan.PlanDevice'],
 
-	views : ['Eway.view.operatingPlan.View',],
+	views : ['Eway.view.operatingPlan.View'],
 
 	refs : [ {
 		ref : 'ewayView',
@@ -281,25 +281,25 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				return;
 			}
 
-			var data = detailWeekForm.getForm().getValues();	
+			var data = detailWeekForm.getForm().getValues();
 
 			var alertMsg = null;
 
-			var myCheckboxGroup = detailWeekForm.down('#checkboxgroupId');		
-			for (var i = 0; i < myCheckboxGroup.getChecked().length; i++) {	
+			var myCheckboxGroup = detailWeekForm.down('#checkboxgroupId');
+			for (var i = 0; i < myCheckboxGroup.getChecked().length; i++) {
 				var weekDate = {};
 				weekDate.startTime = data.startTimeHour + ":" + data.startTimeMinute + ":" + data.startTimeSecond;
 				weekDate.endTime = data.endTimeHour + ":" + data.endTimeMinute + ":" + data.endTimeSecond;
-				weekDate.week = myCheckboxGroup.getChecked()[i].name;				
+				weekDate.week = myCheckboxGroup.getChecked()[i].name;
 				weekDate.openClose = data.openClose;
-			    var flag = true;		
+			    var flag = true;
 				infoWeekGrid.getStore().each(function(record){
 					if(weekDate.openClose != record.data.openClose){
 
 					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.planOlonOne);
 					flag=false;
 					return;
-				}				
+				}
 					if(weekDate.week==record.data.week){
 						if(weekDate.startTime>=weekDate.endTime){
 							flag=false;
@@ -460,9 +460,9 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 //			}
 			failure: function(record,operation){
 				Eway.alert(EwayLocale.confirm.title, operation.getError());
-				
-			 },
-			
+
+			 }
+
 
 		});
 		}else{
@@ -754,7 +754,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 						store.load();
 					});
 				}
-			},
+			}
 
 		});
 		}else{
@@ -952,7 +952,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 							var record = sm.getLastSelected();
 							record.erase({
 								success: function(){
-									Eway.alert(EwayLocale.updateSuccess);
+									Eway.alert(EwayLocale.deleteSuccess);
 									var values = view.down('operatingPlan_filterForm').getForm().getValues();
 									var store = view.down('operatingPlan_grid').getStore();
 									store.setUrlParamsByObject(values);
@@ -1041,7 +1041,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					 Ext.Msg.alert(EwayLocale.confirm.title, msg,function callback(){
 			    		  Ext.Ajax.request({
 			    				method : 'POST',
-			    				url : 'api/plan/delFile',
+			    				url : 'api/plan/delFile'
 			    			});
 					    });
 

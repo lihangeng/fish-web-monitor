@@ -21,37 +21,38 @@ import com.yihuacomputer.fish.monitor.entity.report.MonitorUser;
 import com.yihuacomputer.fish.monitor.entity.report.WorkUnit;
 
 @Service
-public class MonitorService implements IMonitorService{
+public class MonitorService implements IMonitorService {
 
-	private Map<String,MonitorUser> monitorUserMap = new HashMap<String,MonitorUser>();
+	private Map<String, MonitorUser> monitorUserMap = new HashMap<String, MonitorUser>();
 
 	@Autowired
 	private ICollectService collectService;
 
-    @Autowired
-    private IFilterService filterService;
-    
+	@Autowired
+	private IFilterService filterService;
 
 	private IMonitorListener monitorListener;
 
 	private IWorkUnit workUnit;
+
 	public void setMonitorListener(IMonitorListener listener) {
 		this.monitorListener = listener;
 	}
-	public IMonitorListener getMonitorListener(){
+
+	public IMonitorListener getMonitorListener() {
 		return this.monitorListener;
 	}
-    @PostConstruct
+
+	@PostConstruct
 	public void init() {
 		MonitorListener monitorListener = new MonitorListener();
 		CollectListener collectListener = new CollectListener();
 
-		WorkUnit workUnit= new WorkUnit();
+		WorkUnit workUnit = new WorkUnit();
 		this.setMonitorListener(monitorListener);
 		this.addWorkUnit(workUnit);
+		collectListener.setWorkUnit(workUnit);
 		collectService.setClollectListener(collectListener);
-		collectService.addWorkUnit(workUnit);
-
 	}
 
 	@PreDestroy
@@ -70,7 +71,7 @@ public class MonitorService implements IMonitorService{
 
 	public IMonitorUser makeMonitorUser(String userId) {
 		IMonitorUser monitorUser = this.getMonitoruser(userId);
-		if(monitorUser==null){
+		if (monitorUser == null) {
 			monitorUser = new MonitorUser();
 			monitorUser.setUserId(userId);
 			monitorUser.setStatusFilter(filterService.makeStatusFilter());
@@ -78,40 +79,40 @@ public class MonitorService implements IMonitorService{
 		return monitorUser;
 	}
 
-	public void addMonitorUser(IMonitorUser user,MonitorUserType type) {
-		MonitorUser monitorUser = (MonitorUser)user;
+	public void addMonitorUser(IMonitorUser user, MonitorUserType type) {
+		MonitorUser monitorUser = (MonitorUser) user;
 		monitorUser.setMonitorService(this);
-		this.workUnit.link(monitorUser,type);
+		this.workUnit.link(monitorUser, type);
 		monitorUserMap.put(monitorUser.getUserId(), monitorUser);
-		//this.monitorUserList.add(monitorUser);
+		// this.monitorUserList.add(monitorUser);
 	}
 
 	public IMonitorUser getMonitoruser(String userId) {
 		return this.monitorUserMap.get(userId);
 
-//		for(MonitorUser user:this.monitorUserList){
-//			if(user.getUserId().equals(userId)){
-//				return user;
-//			}
-//		}
-//		return null;
+		// for(MonitorUser user:this.monitorUserList){
+		// if(user.getUserId().equals(userId)){
+		// return user;
+		// }
+		// }
+		// return null;
 	}
 
-	public void removeMonitorUser(String userId,MonitorUserType type) {
+	public void removeMonitorUser(String userId, MonitorUserType type) {
 		MonitorUser user = this.monitorUserMap.get(userId);
-		if(user!=null){
+		if (user != null) {
 			this.monitorUserMap.remove(userId);
-			this.workUnit.unlink(user,type);
+			this.workUnit.unlink(user, type);
 		}
 
-//		for(int userIdx=0;userIdx<this.monitorUserList.size();userIdx++){
-//			MonitorUser user = this.monitorUserList.get(userIdx);
-//			if(user.getUserId().equals(userId)){
-//				this.monitorUserList.remove(userIdx);
-//				this.workUnit.unlink(user);
-//				break;
-//			}
-//		}
+		// for(int userIdx=0;userIdx<this.monitorUserList.size();userIdx++){
+		// MonitorUser user = this.monitorUserList.get(userIdx);
+		// if(user.getUserId().equals(userId)){
+		// this.monitorUserList.remove(userIdx);
+		// this.workUnit.unlink(user);
+		// break;
+		// }
+		// }
 	}
 
 }

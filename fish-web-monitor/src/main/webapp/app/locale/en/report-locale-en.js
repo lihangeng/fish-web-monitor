@@ -49,15 +49,15 @@ Ext.apply(EwayLocale,{
 				stopTimeReal:'Time other reason stop-service',//EwayLocale.report.openrate.device.stopTimeReal 其它暂停服务状态时长
 				openRate:'OpenRate',//EwayLocale.report.openrate.device.openRate 实际工作开机率
 				devOpenRate:'OpenRate',//EwayLocale.report.openrate.device.devOpenRate 设备开机率
-				organizationName:'Org',//EwayLocale.report.openrate.device.organizationName 机构
+				organizationName:'Org'//EwayLocale.report.openrate.device.organizationName 机构
 			},
 			org:{
-				orgOpenRate:'OpenRate-org',//EwayLocale.report.openrate.org.orgOpenRate 机构开机率
+				orgOpenRate:'OpenRate-org'//EwayLocale.report.openrate.org.orgOpenRate 机构开机率
 			},
 			type:{
 				terminalId:'Type',//EwayLocale.report.openrate.type.terminalId 型号
-				typeOpenRate:'OpenRate of device type',//EwayLocale.report.openrate.type.typeOpenRate 型号开机率
-			},
+				typeOpenRate:'OpenRate of device type'//EwayLocale.report.openrate.type.typeOpenRate 型号开机率
+			}
 		},
 		plan:{
 			addPlan:'Add Plan',//EwayLocale.report.plan.addPlan 增加方案
@@ -68,7 +68,7 @@ Ext.apply(EwayLocale,{
 			cashboxLimit:'Alarm cashbox(unit:piece)',//EwayLocale.report.plan.cashboxLimit 钞箱报警金额(单位：张数)
 			perToDev:'Person<-->Device',//EwayLocale.report.plan.perToDev 人员<-->设备
 			changePlan:'Modify plan',//EwayLocale.report.plan.changePlan 更改方案
-			servicePlan:'Start up plan',//EwayLocale.report.plan.servicePlan 开机方案
+			servicePlan:'Start up plan'//EwayLocale.report.plan.servicePlan 开机方案
 		},
 		serviceplan:{
 			name:'Programme Name',//EwayLocale.report.serviceplan.name方案名称

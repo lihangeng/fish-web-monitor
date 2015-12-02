@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -14,7 +13,6 @@ import java.util.Map;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -23,8 +21,6 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -51,15 +47,12 @@ import com.yihuacomputer.fish.api.atmlog.IDayBackupLog;
 import com.yihuacomputer.fish.api.atmlog.IDayBackupService;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
-import com.yihuacomputer.fish.web.daily.form.AtmLogInfoForm;
 import com.yihuacomputer.fish.web.daily.form.DayBackupLogForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
 @RequestMapping("/machine/atmLogInfo")
 public class DaybackupInfoController {
-	// 日志
-	private Logger logger = LoggerFactory.getLogger(DaybackupInfoController.class);
 
 	@Autowired
 	private IAtmLogInfoService atmLogInfoService;
@@ -141,7 +134,7 @@ public class DaybackupInfoController {
 		result.addAttribute("data", getAtmLogInfoForms(page.list()));
 
 		return result;
-	}*/
+	}
 
 	private List<AtmLogInfoForm> getAtmLogInfoForms(List<IAtmLogInfo> lists) {
 		List<AtmLogInfoForm> forms = new ArrayList<AtmLogInfoForm>();
@@ -152,7 +145,7 @@ public class DaybackupInfoController {
 			forms.add(form);
 		}
 		return forms;
-	}
+	}*/
 
 	@RequestMapping(value = "/poiExcel", method = RequestMethod.GET)
 	public @ResponseBody
