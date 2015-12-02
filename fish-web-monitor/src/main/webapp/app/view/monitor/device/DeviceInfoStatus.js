@@ -292,12 +292,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					defaults : {
 //						hideLabel : true
 					},
-					items : [ {
-						columnWidth : .24,
-						name : 'remoteCommHist',
-						onlyText : true,
-						value : '<a href="#" class="link">命令执行结果</a>'
-					}, {
+					items : [  {
 						columnWidth : .24,
 						name : 'remoteScreenAction',
 						code : 'remoteScreen',
@@ -407,7 +402,12 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						listeners : {
 							'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 						}
-					} ]
+//					}, {
+//						columnWidth : .24,
+//						name : 'remoteCommHist',
+//						onlyText : true,
+//						value : '<a href="#" class="link">'+EwayLocale.monitor.devMonitor.remote.commandRet+'</a>'
+					}]
 				} ]
 			} ]
 		} ];
