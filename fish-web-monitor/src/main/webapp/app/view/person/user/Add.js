@@ -35,13 +35,13 @@ Ext.define('Eway.view.person.user.Add', {
 			        fieldLabel: '<font color="red">*</font>'+EwayLocale.commen.name,
 			        combineErrors: true,
 			        layout: 'hbox',
+			        width:338,
 			        defaults: {
 			            hideLabel: true
 			        },
 			        items: [{
 						xtype : 'field.username',
 						fieldLabel : '<font color="red">*</font> '+EwayLocale.commen.name,
-						emptyText:EwayLocale.person.bankPer.clickToUser,
 						allowBlank : false,
 						readOnly : true
 					},{
