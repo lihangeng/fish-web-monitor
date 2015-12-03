@@ -19,8 +19,8 @@ Ext.define('Eway.view.case.faultClassify.UpdateWin', {
 				selectOnFocus : true,
 				maximizable: true,
 				defaults: {
-					width: 400,
-					labelWidth: 120,
+					width: 500,
+					labelWidth: 250,
 					labelAlign: 'right',
 					msgTarget : 'side'
 				},

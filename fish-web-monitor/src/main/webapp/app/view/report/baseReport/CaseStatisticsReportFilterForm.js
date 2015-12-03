@@ -85,7 +85,7 @@ Ext.define('Eway.view.report.baseReport.CaseStatisticsReportFilterForm', {
 							xtype : 'radiogroup',
 							allowBlank : false,
 							anchor : '100%',
-							width : 600,
+							width : 700,
 							labelWidth : 150,
 							items : [ {
 								boxLabel : EwayLocale.report.baseReport.device,

@@ -18,13 +18,13 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 				columnWidth : .3,
 				xtype : 'form',
 				items : [{
-					labelWidth : 70,
+					labelWidth : 90,
 					xtype : 'textfield',
 					fieldLabel : EwayLocale.commen.terminalId,
 					name : 'terminalId',
 					msgTarget:'side'
 				},{
-					labelWidth : 70,
+					labelWidth : 90,
 					xtype : 'field_faultStatus',
 					fieldLabel :EwayLocale.cases.caseFault.faultState,
 					name : 'faultStatus'

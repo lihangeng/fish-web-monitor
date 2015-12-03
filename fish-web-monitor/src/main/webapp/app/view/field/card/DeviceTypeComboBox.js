@@ -1,7 +1,7 @@
 Ext.define('Eway.view.field.card.DeviceTypeComboBox', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field_card_DeviceTypeComboBox',
-	
+
 	fieldLabel : EwayLocale.machine.atmType.devTerminalName,
 	name : 'devTypeId',
 	hiddenName : 'devTypeId',
@@ -25,7 +25,14 @@ Ext.define('Eway.view.field.card.DeviceTypeComboBox', {
 	listeners : {
 		beforerender : function() {
 			this.store.load();
+		},
+		change:function(text,newValue,oldValue){
+			if(newValue && newValue!== "" ){
+				text.getTrigger("clear").show();
+			}else{
+				text.getTrigger("clear").hide();
+			}
 		}
 	}
-	
+
 });

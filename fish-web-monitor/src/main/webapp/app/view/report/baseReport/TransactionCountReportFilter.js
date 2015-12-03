@@ -149,13 +149,12 @@ Ext.define('Eway.view.report.baseReport.TransactionCountReportFilter', {
 				items : [ {
 					xtype : 'monitor_TransTypeComboBox',
 					labelAlign : 'right',
-					labelWidth : 80
+					labelWidth : 120
 				},{
 					xtype : 'report_DevicComboBox',
 					labelAlign : 'right',
-					labelWidth : 80,
-					emptyText : EwayLocale.combox.select,
-					labelWidth : 80
+					labelWidth : 120,
+					emptyText : EwayLocale.combox.select
 				}]
 			}]
 		});

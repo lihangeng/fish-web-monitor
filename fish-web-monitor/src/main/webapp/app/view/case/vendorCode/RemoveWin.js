@@ -13,7 +13,7 @@ Ext.define('Eway.view.case.vendorCode.RemoveWin', {
 				selectOnFocus : true,
 				defaults : {
 					width : 400,
-					labelWidth : 60,
+					labelWidth : 80,
 					labelAlign : 'right',
 					msgTarget : 'side'
 				},

@@ -27,13 +27,14 @@ Ext.define('Eway.view.case.vendorCode.VendorCodeFilterForm', {
                       }]
 			        },
 			{
-				columnWidth : .4,
+				columnWidth : .6,
 				items : [ {
 					xtype : 'textfield',
 					labelAlign : 'right',
 					name : 'code',
 					fieldLabel : EwayLocale.cases.caseFault.providerFaultCode,
-					msgTarget : 'side'
+					msgTarget : 'side',
+					labelWidth : 200
 				} ]
 			} ]
 		});

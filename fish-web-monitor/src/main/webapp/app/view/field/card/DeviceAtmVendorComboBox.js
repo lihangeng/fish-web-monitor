@@ -34,6 +34,13 @@ Ext.define('Eway.view.field.card.DeviceAtmVendorComboBox', {
 				type.store.load();
 				type.clearValue();
 			}
+		},
+		change:function(text,newValue,oldValue){
+			if(newValue && newValue!== "" ){
+				text.getTrigger("clear").show();
+			}else{
+				text.getTrigger("clear").hide();
+			}
 		}
 	},
 	triggerAction : 'all',

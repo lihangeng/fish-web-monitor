@@ -25,13 +25,14 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 					name : 'notifyWay'
 				}]
 			},{
-				columnWidth : .25,
+				columnWidth : .23,
 				xtype : 'form',
 				items : [{
 					xtype : 'textfield',
 					fieldLabel : EwayLocale.cases.caseFault.informMobile,
 					msgTarget : 'side',
-					name : 'mobile'
+					name : 'mobile',
+					width : 250
 				},{
 					xtype : 'textfield',
 					fieldLabel : 'E-Mail',
@@ -39,7 +40,8 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 					regexText : EwayLocale.vtype.emailRules,
 					msgTarget : 'side',
 					maxLength:50,
-					name : 'mail'
+					name : 'mail',
+					width : 250
 				}]
 			},{
 				columnWidth : .25,
@@ -101,7 +103,7 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 					}
 				}]
 			},{
-				columnWidth : .25,
+				columnWidth : .27,
 				xtype : 'form',
 				items : [{
 					xtype:'numberfield',
