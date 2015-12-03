@@ -12,10 +12,12 @@ Ext.define('Eway.view.atmLog.DayBackupGrid',{
 			columns : [{
 				header : EwayLocale.atmLog.backupDate,
 				dataIndex : 'date',
+				align : 'center',
 				flex : 1
 			},{
 				header : EwayLocale.atmLog.dayBackupResult,
 				dataIndex : 'result',
+				align : 'center',
 				flex : 1,
 				renderer : function(value){
 					if(value == 'SUCCESS'){

@@ -598,7 +598,7 @@ Ext.apply(EwayLocale,{
 		backupDate:'Back-up date',//EwayLocale.atmLog.backupDate 备份日期
 		dayBackupResult:'Back-up result',//EwayLocale.atmLog.dayBackupResult 当日备份结果
 		backupProcess:'Backing-up',//EwayLocale.atmLog.backupProcess 正在备份
-		backupSuccess:'Back-up successful',//EwayLocale.atmLog.backupSuccess 备份成功
+		backupSuccess:'successful',//EwayLocale.atmLog.backupSuccess 备份成功
 		backupError:'Back-up error',//EwayLocale.atmLog.backupError 备份错误
 		logDevAccount:'Log back-up machine count total',//EwayLocale.atmLog.logDevAccount 日志设备数量累计
 		logDevSucAccount:'Number of backup success',//EwayLocale.atmLog.logDevSucAccount

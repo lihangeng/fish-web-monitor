@@ -65,6 +65,7 @@ Ext.define('Eway.view.atmLog.LogBackupGrid',{
 				xtype:'actioncolumn',
 				flex : .5,
 				dataIndex : 'backupResult',
+				align:'center',
 				header: EwayLocale.agent.remote.screen.loading,
 				items : [{
 					icon : 'resources/images/down.gif',
@@ -96,7 +97,7 @@ Ext.define('Eway.view.atmLog.LogBackupGrid',{
 					},
 					scope : this
 				},{
-					icon : 'resources/images/create.gif',
+					icon : 'resources/images/arrow_undo.png',
 					tooltip: EwayLocale.agent.remote.resetBackUp,
 					getClass : function(value,metadata,record,ronwIndex,colindex,store){
 						var result = record.get('backupResult'); 
