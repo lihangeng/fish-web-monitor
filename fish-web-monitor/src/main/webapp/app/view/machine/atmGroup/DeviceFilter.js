@@ -6,7 +6,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 	             'Eway.view.field.atmType.DeviceAtmVendorComboBox',
 	             'Eway.lib.Util',
 	             'Eway.view.field.atmType.DeviceAtmCatalogComboBox' ],
-	height : 70,
+	height : 100,
 	layout : 'column',
 	defaults : {
 		border : false
@@ -18,7 +18,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 				columnWidth : .3,
 				defaults : {
 					labelAlign : 'right',
-					labelWidth : 70
+					labelWidth : 120
 				},
 				items : [ {
 					xtype : 'textfield',
@@ -31,10 +31,10 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 				}]
 			},{
 
-				columnWidth : .3,
+				columnWidth : .36,
 				defaults : {
 					labelAlign : 'right',
-					labelWidth : 70
+					labelWidth : 140
 				},
 				items : [  {
 					style : 'padding-top:0px',
@@ -72,7 +72,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 			}, {
 				columnWidth : .3,
 				defaults : {
-					labelWidth: 70,
+					labelWidth: 120,
 					labelAlign : 'right'
 				},
 				items : [ {

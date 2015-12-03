@@ -226,7 +226,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 							}
 						);
 						//增加机构后立即跳转到所增加的机构父机构下
-						store.load();
+						store.loadPage(1);
 						win.close();
 			    },
 			    failure: function(record,operation){
@@ -412,7 +412,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 											type : '0'
 									});
 									//增加机构后立即跳转到所增加的机构父机构下
-									store.load();
+									store.loadPage(1);
 								},
 								failure: function(record,operation){
 									//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update

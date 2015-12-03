@@ -2,8 +2,9 @@ Ext.define('Eway.view.version.deviceVersion.FilterForm', {
 	extend : 'Eway.view.base.FilterForm',
 	alias : 'widget.deviceVersion_filterForm',
 
-	requires : [ 'Eway.view.common.OrgComboOrgTree','Eway.view.field.card.DeviceAtmVendorComboBox'
-	             ,'Eway.view.field.card.DeviceTypeComboBox'],
+	requires : [ 'Eway.view.common.OrgComboOrgTree','Eway.view.field.device.DeviceAtmType',
+	             'Eway.view.field.atmType.DeviceAtmVendorComboBox',
+	             'Eway.view.field.atmType.DeviceAtmCatalogComboBox'],
 	height : 80,
 	layout : 'column',
 	defaults : {
@@ -20,9 +21,10 @@ Ext.define('Eway.view.version.deviceVersion.FilterForm', {
 					xtype : 'textfield',
 					fieldLabel : EwayLocale.refs.terminalId,
 					name : 'terminalId'
-				},{
-					xtype : 'field_card_DeviceAtmVendorComboBox',
-					name: 'devBrandId'
+				}, {
+					xtype : 'field_atmType_DeviceAtmVendorComboBox',
+					name: 'devBrandId',
+					fieldLabel : EwayLocale.machine.atmGroup.devVendorName
 				}]
 			}, {
 				columnWidth : .3,
@@ -36,7 +38,7 @@ Ext.define('Eway.view.version.deviceVersion.FilterForm', {
 					regex : /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/,
 					regexText : EwayLocale.vtype.ip//'请输入正确的IP地址'
 				},{
-					xtype : 'field_card_DeviceTypeComboBox',
+					xtype : 'field_device_deviceatmtype',
 					name:'devTypeId'
 				}]
 			},{

@@ -11,7 +11,7 @@ Ext.define('Eway.view.person.user.PersonWin', {
 			'Eway.view.person.user.PersonUserFilterForm' ],
 
 	title : EwayLocale.person.user.userListTitle,
-	width : 750,
+	width : 770,
 	height : 400,
 	// layout : 'fit',
 	layout : 'border',

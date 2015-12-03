@@ -1,7 +1,9 @@
 Ext.define('Eway.controller.version.DeviceVersion', {
 	extend : 'Ext.app.Controller',
 
-	stores : [ 'version.DeviceVersion','monitor.card.DeviceAtmVendor','monitor.card.DeviceType' ],
+	stores : [ 'version.DeviceVersion'
+	           , 'machine.DeviceAtmType',
+				'machine.atmType.DeviceAtmVendor'],
 	models : [ 'version.DeviceVersion'],
 	views : [ 'version.deviceVersion.View'],
 

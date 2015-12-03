@@ -181,8 +181,8 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 		var organizationType = win.down('form').getForm()
 				.findField("organizationType");
 		//维护商机构的上级机构默认显示机构。
-		win.down('field[name="parentId"]').setValue(1);
-		win.down('field[name="parent"]').setValue(EwayLocale.person.bankPer.organizationName);
+//		win.down('field[name="parentId"]').setValue(1);
+//		win.down('field[name="parent"]').setValue(EwayLocale.person.bankPer.organizationName);
 		win.show();
 	},
 
@@ -202,7 +202,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 							store.setUrlParamsByObject({
 								type : '1'
 							});
-							store.load();
+							store.loadPage(1);
 							win.close();
 						},
 						failure : function(record, operation) {
@@ -299,7 +299,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 							store.setUrlParamsByObject({
 								type : '1'
 							});
-							store.load();
+							store.loadPage(1);
 						},
 						failure : function(record, operation) {
 							//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update

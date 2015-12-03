@@ -116,7 +116,7 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceGrid', {
 					}
 				}
 			}, {
-				header : EwayLocale.commen.devServi,
+				header : EwayLocale.commen.devServiceName,
 				dataIndex : 'devServiceName'
 			}, {
 				header : EwayLocale.commen.cashboxLimit,
