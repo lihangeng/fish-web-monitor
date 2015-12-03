@@ -13,7 +13,7 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceFilter',{
 				columnWidth : .5,
 				defaults : {
 					labelAlign : 'right',
-					labelWidth : 60
+					labelWidth : 40
 				},
 				items : [ {
 					xtype : 'common_orgComboOrgTree',
@@ -21,6 +21,7 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceFilter',{
 					emptyText : EwayLocale.combox.select,
 					name : 'orgName',
 					hiddenValue : 'orgId',
+					width:200,
 					editable : true,
 					filters : '{"type" : "0"}',
 					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
@@ -36,6 +37,7 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceFilter',{
 				},  {
 					xtype : 'textfield',
 					fieldLabel : 'IP',
+					width:200,
 					name : 'ip',
 				    regex:/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/,
 				    regexText : EwayLocale.vtype.ip
@@ -44,11 +46,12 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceFilter',{
 				columnWidth : .5,
 				defaults : {
 					labelAlign : 'right',
-					labelWidth : 60
+					labelWidth : 80
 				},
 				items : [  {
 					xtype : 'textfield',
 					fieldLabel :EwayLocale.commen.terminalId,
+					width:240,
 					name : 'terminalId'
 				},{
 					style : 'padding-top:0px',
@@ -57,6 +60,7 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceFilter',{
 				},{
 					xtype : 'field_device_deviceatmtype',
 					name : 'devType',
+					width:240,
 					hiddenName : 'devType'
 				},{
 					xtype: 'hidden',
