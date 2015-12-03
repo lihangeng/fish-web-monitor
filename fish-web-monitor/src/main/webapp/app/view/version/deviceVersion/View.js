@@ -19,8 +19,8 @@ Ext.define('Eway.view.version.deviceVersion.View', {
 			],
 			listeners : {
 				activate : function(panel){
-					panel.down('deviceVersion_filterForm').down('field_card_DeviceAtmVendorComboBox').getStore().load();
-					panel.down('deviceVersion_filterForm').down('field_card_DeviceTypeComboBox').getStore().load();
+					panel.down('deviceVersion_filterForm').down('field_atmType_DeviceAtmVendorComboBox').getStore().load();
+					panel.down('deviceVersion_filterForm').down('field_device_deviceatmtype').getStore().load();
 				}
 			}
 		});
