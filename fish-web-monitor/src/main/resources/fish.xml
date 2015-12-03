@@ -60,8 +60,8 @@
    		<property name="configLocation" value="classpath:ehcache.xml"/>
     </bean>
     
-    <!-- 分布式队列kafka的配置
-    <import resource="classpath:/com/yihuacomputer/fish/kafka/fish-kafka.xml" /> -->
+    <!-- 分布式队列kafka的配置 -->
+    <import resource="classpath:/com/yihuacomputer/fish/kafka/fish-kafka.xml" />
     
 	<!--内嵌数据库版本
 	<import resource="classpath:fish-h2.xml" />-->

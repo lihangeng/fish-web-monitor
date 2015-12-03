@@ -83,7 +83,11 @@
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
-		</dependency>
+		</dependency>		
+		<dependency>
+		   <groupId>org.mortbay.jetty</groupId>
+    	   <artifactId>jsp-2.1-glassfish</artifactId>
+ 		</dependency>
 		<!-- POI扩展组件 -->
 		<dependency>
 			<groupId>org.apache.poi</groupId>
