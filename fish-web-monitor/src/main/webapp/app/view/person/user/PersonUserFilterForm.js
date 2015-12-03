@@ -33,11 +33,11 @@ Ext.define('Eway.view.person.user.PersonUserFilterForm', {
 				columnWidth : .3,
 				items : [ {
 					xtype : 'field.genderFilter',
-					labelWidth : 40,
+					labelWidth : 42,
 					editable : false,
 					msgTarget : 'side'
 				}, {
-					labelWidth : 40,
+					labelWidth : 42,
 					xtype : 'field.stateFilter',
 					editable : false
 				} ]
@@ -46,7 +46,7 @@ Ext.define('Eway.view.person.user.PersonUserFilterForm', {
 				items : [ {
 					xtype : 'field_person_personJobComboBox',
 					fieldLabel : EwayLocale.commen.personJobName,
-					labelWidth : 40,
+					labelWidth : 49,
 					msgTarget : 'side'
 				} ]
 			} ]
