@@ -67,7 +67,7 @@ Ext.apply(EwayLocale,{
 		back:'Back',//EwayLocale.button.back 返回
 		apply:'Apply',//EwayLocale.button.apply 应用
 		link:'Binding',//EwayLocale.button.link
-		unlink:'Remove',//EwayLocale.button.unlink
+		unlink:'Delete',//EwayLocale.button.unlink
 		//bankOrg
 		deepQuery:'Deep Search', //深度查询
 		bankOrgMove:'Migrate',  //组织迁移
