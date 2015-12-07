@@ -113,6 +113,10 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 						Eway.alert(EwayLocale.vtype.hardwayInitialize);
 						return ;
 					}
+					if (!records[0].data.listHal) {
+						Eway.alert(EwayLocale.vtype.hardwayInitialize);
+						return ;
+					}
 					for(var i = 0; i<records[0].data.listHal.length; i++) {
 						var obj = records[0].data.listHal[i];
 						tab.add({
