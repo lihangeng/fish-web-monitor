@@ -389,7 +389,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 						   }
 				  	 	},
 						buttons : Ext.Msg.YESNOCANCEL,
-						buttonText: {yes: EwayLocale.agent.remote.yes,no: EwayLocale.agent.remote.cancel,cancel: EwayLocale.agent.remote.cancel}
+						buttonText: {yes: EwayLocale.agent.remote.yes,no: EwayLocale.agent.remote.no,cancel: EwayLocale.agent.remote.cancel}
 				     });
 				  }else{
 				  	var winEl = upFileWin.getEl();
