@@ -291,7 +291,7 @@ public class ExploerController
 
             String url = MonitorCfg.getHttpUrl(request.getParameter("ip"))+"/ctr/downfile";
             form = (DownFileForm) HttpProxy.httpPost(url,form,DownFileForm.class);
-            if(!form.getRet().equals(FishConstant.SUCCESS)){
+            if(!form.getRet().equalsIgnoreCase(FishConstant.SUCCESS)){
             	String tips = messageSource.getMessage("exploer.fileUpload.fail", null, FishCfg.locale);
                 return "{'success':false,'errors':'"+tips+"'}";
             }
