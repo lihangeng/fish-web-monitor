@@ -49,7 +49,7 @@ Ext.define('Eway.view.person.person.LinkingDeviceGrid', {
 				header : EwayLocale.commen.devCatalogName,
 				dataIndex : 'devCatalogName'
 			}, {
-				header : EwayLocale.commen.status,
+				header : EwayLocale.commen.devStatus,
 				dataIndex : 'status',
 				renderer : function(value, metadata, record) {
 					if (value == 1) {

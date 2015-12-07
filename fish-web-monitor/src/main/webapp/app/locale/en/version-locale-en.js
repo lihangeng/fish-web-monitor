@@ -282,7 +282,9 @@ Ext.apply(EwayLocale,{
 			deleting:'Deleting......',//EwayLocale.version.task.deleting 正在删除
 			cancelSuccessBut:'Cancel the task in the job which has not run yet successful,the status is "running" at the present,please refresh the list',//EwayLocale.version.task.cancelSuccessBut
 			cancelJobSuccess:'Cancel job successful',//EwayLocale.version.task.cancelJobSuccess 成功撤销作业
-			updateResult:'Update result'	//EwayLocale.version.task.updateResult 升级结果
+			updateResult:'Update result',	//EwayLocale.version.task.updateResult 升级结果
+			updateResultSuccess:'Successful',	//EwayLocale.version.task.updateResultSuccess 升级结果
+			updateResultFailed:'Failed'	//EwayLocale.version.task.updateResultFailed 升级结果
 		}
 	}
 });

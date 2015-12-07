@@ -620,9 +620,9 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 			modal: true,
 			height: 520,
 		    width: 850,
-		    title : EwayLocale.monitor.devMonitor.remote.screen,
-		    autoScroll : true,
-		    maximizable: true,
+		    title : EwayLocale.monitor.remoteCommand.titile,
+//		    autoScroll : true,
+//		    maximizable: true,
 		    layout : 'border',
 		    items:[ {
 		    	region : 'center',
