@@ -76,13 +76,34 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
 				dataIndex : 'org'
 			}, {
 				header : EwayLocale.monitor.devMonitor.retainCardCount,
-				dataIndex : 'retainCardCount'
+				dataIndex : 'retainCardCount',
+				renderer : function(value, meta, record) { 
+			  		if (value >=0) { 
+			  			return value; 
+		  			} else { 
+	  					return 0; 
+  					} 
+				}
 			}, {
 				header : EwayLocale.monitor.devMonitor.cash.boxInitCount,
-				dataIndex : 'boxInitCount'
+				dataIndex : 'boxInitCount',
+				renderer : function(value, meta, record) { 
+			  		if (value >=0) { 
+			  			return value; 
+		  			} else { 
+	  					return 0; 
+  					} 
+				}
 			}, {
 				header : EwayLocale.monitor.devMonitor.cash.boxCurrentCount,
-				dataIndex : 'boxCurrentCount'
+				dataIndex : 'boxCurrentCount',
+				renderer : function(value, meta, record) { 
+			  		if (value >=0) { 
+			  			return value; 
+		  			} else { 
+	  					return 0; 
+  					} 
+				}
 			}, {
 				header : EwayLocale.commen.devTypeName,
 				dataIndex : 'type'

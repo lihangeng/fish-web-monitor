@@ -8,6 +8,7 @@ Ext.define('Eway.view.personal.PersonalSettingsController', {
 		Eway.model.person.person.BankPerson.load(ewayUser.getPersonId(),{
 			success: function(record) {
 				form.loadRecord(record);
+				form.up("tabpanel").down("updatePwd [name=name]").setValue(record.get("name"));;
 		    }
 		});
 	}

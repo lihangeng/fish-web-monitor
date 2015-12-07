@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.monitor.entity.xfs.status;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
@@ -10,8 +12,10 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusPbk;
 
 @Embeddable
-public class StatusPbk implements IStatusPbk {
+public class StatusPbk implements IStatusPbk ,Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
     @Enumerated(EnumType.STRING)
     @Column(name = "PBK_STATUS")
     private DeviceStatus pbk;

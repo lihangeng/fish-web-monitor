@@ -31,7 +31,8 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 						labelWidth : 150,
 						xtype : 'textfield',
 						name : 'terminalId',
-						regex : /^\w[\w-_\.]{0,19}$/,
+						maxLength:'MAX_VALUE',
+						regex : '',
 						regexText : EwayLocale.vtype.terminalId,
 						msgTarget : 'side'
 					}, /*{

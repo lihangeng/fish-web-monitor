@@ -78,7 +78,7 @@ Ext.define('Eway.view.monitor.card.CardInfoFilterForm', {
 										hideLabel : true
 									},
 									items : [{
-										fieldLabel : 'endDateTime',
+										fieldLabel : 'startDateTime',
 										displayField : 'display',
 										valueField : 'value',
 										xtype : 'datefield',
@@ -104,7 +104,7 @@ Ext.define('Eway.view.monitor.card.CardInfoFilterForm', {
 										xtype : 'displayfield',
 										value : EwayLocale.machine.quittingNotice.to
 									}, {
-										fieldLabel : 'minute',
+										fieldLabel : 'endDateTime',
 										displayField : 'display',
 										valueField : 'value',
 										width : 108,

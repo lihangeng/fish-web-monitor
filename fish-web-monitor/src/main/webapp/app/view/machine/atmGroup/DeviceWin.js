@@ -12,7 +12,7 @@ Ext.define('Eway.view.machine.atmGroup.DeviceWin', {
 	requires: ['Eway.view.machine.atmGroup.DeviceAddingGrid',
 	           	'Eway.view.machine.atmGroup.DeviceFilter'],
 	
-	width: 940,
+	width: 1040,
 	height: 600,
 	maximizable: true,
 	layout : 'border',

@@ -16,12 +16,14 @@ Ext.define('Eway.view.machine.param.ParamFilterForm', {
 				columnWidth : .4,
 				items : [{
 					xtype : 'field_param_ParamKey',
+					maxLength :'MAX_VALUE',
 					labelAlign : 'right'
 				}]
 			},{
 				columnWidth : .4,
 				items : [{
 					xtype : 'field_param_ParamValue',
+					maxLength :'MAX_VALUE',
 					labelAlign : 'right'
 				}]
 			}]

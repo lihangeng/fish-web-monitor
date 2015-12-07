@@ -16,7 +16,7 @@ Ext.define('Eway.view.case.vendorCode.ImportVendorCode', {
 				selectOnFocus : true,
 				defaults : {
 					width : 400,
-					labelWidth : 60,
+					labelWidth : 100,
 					labelAlign : 'right',
 					msgTarget : 'side'
 				},

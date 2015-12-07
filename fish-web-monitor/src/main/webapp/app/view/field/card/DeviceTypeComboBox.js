@@ -35,9 +35,5 @@ Ext.define('Eway.view.field.card.DeviceTypeComboBox', {
 				text.getTrigger("clear").hide();
 			}
 		}
-	}
-	
-	
-
-	
+	}	
 });

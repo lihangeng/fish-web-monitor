@@ -10,6 +10,7 @@ Ext.define('Eway.view.field.person.GenderFilter', {
 	store: 'person.person.GenderFilterDict',
 	valueField : 'value',
 	displayField : 'display',
-	queryMode : 'local'
+	queryMode : 'local',
+	emptyText : EwayLocale.combox.select
 	
 });

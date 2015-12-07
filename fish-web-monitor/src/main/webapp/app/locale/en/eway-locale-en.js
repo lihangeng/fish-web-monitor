@@ -1,7 +1,7 @@
 Ext.apply(EwayLocale,{
-	addSuccess : 'Add successful.',//EwayLocale.addSuccess 增加成功.
-	updateSuccess : 'Update successful.',//EwayLocale.updateSuccess 更改成功.
-	deleteSuccess : 'Delete successful.',//EwayLocale.updateSuccess 删除成功.
+	addSuccess : 'Add successfully.',//EwayLocale.addSuccess 增加成功.
+	updateSuccess : 'Update successfully.',//EwayLocale.updateSuccess 更改成功.
+	deleteSuccess : 'Delete successfully.',//EwayLocale.updateSuccess 删除成功.
 	choiceUpdateMsg :'Please select the record which you want to update.',//EwayLocale.choiceUpdateMsg 请选择您要更改的记录.
 	choiceDeleteMsg :'Please select the record which you want to delete.',//EwayLocale.choiceDeleteMsg 请选择您要删除的记录.
 
@@ -67,7 +67,7 @@ Ext.apply(EwayLocale,{
 		back:'Back',//EwayLocale.button.back 返回
 		apply:'Apply',//EwayLocale.button.apply 应用
 		link:'Binding',//EwayLocale.button.link
-		unlink:'Remove',//EwayLocale.button.unlink
+		unlink:'Delete',//EwayLocale.button.unlink
 		//bankOrg
 		deepQuery:'Deep Search', //深度查询
 		bankOrgMove:'Migrate',  //组织迁移

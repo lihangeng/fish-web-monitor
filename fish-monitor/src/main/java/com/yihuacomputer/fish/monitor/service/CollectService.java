@@ -55,14 +55,17 @@ import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IXfsPropertise;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.NetStatus;
+import com.yihuacomputer.fish.api.mq.IMessagePusher;
 import com.yihuacomputer.fish.api.mq.IMqProducer;
 import com.yihuacomputer.fish.monitor.entity.business.DeviceRegister;
 import com.yihuacomputer.fish.monitor.entity.business.RunInfo;
 import com.yihuacomputer.fish.monitor.entity.report.DeviceReport;
+import com.yihuacomputer.fish.monitor.mq.MqTransaction;
+import com.yihuacomputer.fish.monitor.mq.MqXfsStatus;
 
 @Service
 @Transactional
-public class CollectService implements ICollectService, IDeviceListener {
+public class CollectService implements ICollectService, IDeviceListener,IMessagePusher{
 
 	private Logger logger = LoggerFactory.getLogger(CollectService.class);
 
@@ -188,11 +191,10 @@ public class CollectService implements ICollectService, IDeviceListener {
 		}
 
 		// 3.发送到消息队列
-		// this.collectListener.receivedStatus(terminalId,deviceReport,messageSourceEnum);
 		if (mqProducer == null) {
 			this.pushStatusToWeb(histXfsStatus);
 		} else {
-			mqProducer.put(JsonUtils.toJson(histXfsStatus));
+			putToMq(histXfsStatus);
 		}
 
 		// 4.模块故障处理（异步处理）
@@ -211,6 +213,16 @@ public class CollectService implements ICollectService, IDeviceListener {
 			logger.info("don't handle device case fault!");
 		}
 	}
+	
+	/**
+	 * 放入消息队列
+	 * @param histXfsStatus
+	 */
+	private void putToMq(IXfsStatus histXfsStatus){
+		MqXfsStatus mqXfsStatus = new MqXfsStatus();
+		mqXfsStatus.setXfsStatus(histXfsStatus);
+		mqProducer.put(JsonUtils.toJson(mqXfsStatus));
+	}
 
 	/**
 	 * 推送状态类信息到WEB页面
@@ -228,8 +240,13 @@ public class CollectService implements ICollectService, IDeviceListener {
 	 * @param message
 	 */
 	public void pushStatusToWeb(String message) {
-		IXfsStatus histXfsStatus = JsonUtils.fromJson(message, IXfsStatus.class);
-		this.pushStatusToWeb(histXfsStatus);
+		try{
+			MqXfsStatus mqXfsStatus = JsonUtils.fromJson(message, MqXfsStatus.class);
+			IXfsStatus histXfsStatus = mqXfsStatus.makeXfsStatus();
+			this.pushStatusToWeb(histXfsStatus);
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 
 	/**
@@ -243,11 +260,10 @@ public class CollectService implements ICollectService, IDeviceListener {
 		xfsService.updateXfsStatus(xfsStatus);
 
 		// 2.发送到消息队列
-		// this.collectListener.receivedStatus(terminalId, deviceReport,messageSourceEnum);
 		if (mqProducer == null) {
 			this.pushStatusToWeb(xfsStatus);
 		} else {
-			mqProducer.put(JsonUtils.toJson(xfsStatus));
+			this.putToMq(xfsStatus);
 		}
 	}
 
@@ -357,20 +373,10 @@ public class CollectService implements ICollectService, IDeviceListener {
 		this.xfsService.updateXfsStatus(xfsStatus);
 
 		// 2.发送到消息队列
-		/*
-		 * DeviceReport deviceReport =
-		 * this.getDeviceReport(xfsStatus.getTerminalId());
-		 * deviceReport.setRunInfo(runInfo);
-		 * deviceReport.setXfsStatus(xfsStatus);
-		 * deviceReport.setDevice(this.deviceService.get(terminalId));
-		 * deviceReport.setDeviceRegister((DeviceRegister)
-		 * this.registSerivce.load(terminalId));
-		 */
-		// this.collectListener.receivedStatus(terminalId,deviceReport,messageSourceEnum);
 		if (mqProducer == null) {
 			this.pushStatusToWeb(xfsStatus);
 		} else {
-			mqProducer.put(JsonUtils.toJson(xfsStatus));
+			this.putToMq(xfsStatus);
 		}
 
 		// 4.处理状态切换通知
@@ -404,8 +410,13 @@ public class CollectService implements ICollectService, IDeviceListener {
 	 * @param message
 	 */
     public void pushTransToWeb(String message){
-  	  ITransaction transaction = JsonUtils.fromJson(message, ITransaction.class);
-  	  this.pushTransToWeb(transaction);
+    	try{
+	    	MqTransaction mqTransaction = JsonUtils.fromJson(message, MqTransaction.class);
+	  	  	ITransaction transaction = mqTransaction.makeTrans();
+	  	  	this.pushTransToWeb(transaction);
+    	}catch(Exception ex){
+    		ex.printStackTrace();
+    	}
     }
     
     /**
@@ -416,6 +427,7 @@ public class CollectService implements ICollectService, IDeviceListener {
     	String terminalId = transaction.getTerminalId();
     	DeviceReport deviceReport = this.getDeviceReport(terminalId);
         deviceReport.setTransaction(transaction);
+        deviceReport.setDevice(this.deviceService.get(terminalId));
         this.collectListener.receivedBusiness(terminalId,BusinessInfo.TRANSACTION, deviceReport);
     }
     
@@ -433,13 +445,12 @@ public class CollectService implements ICollectService, IDeviceListener {
 			deviceCaseService.handleRetainCard(retainCard);
 		}
 
-		DeviceReport deviceReport = this.getDeviceReport(terminalId);
-
+		// 删除推送从v2.0.0.6
+		/*DeviceReport deviceReport = this.getDeviceReport(terminalId);
 		retainCard.setTerminalId(terminalId);
 		deviceReport.setRetaincard(retainCard);
 		deviceReport.setDevice(this.deviceService.get(terminalId));
-		// TODO ...
-		this.collectListener.receivedBusiness(terminalId, BusinessInfo.RETAIN_CARD, deviceReport);
+		this.collectListener.receivedBusiness(terminalId, BusinessInfo.RETAIN_CARD, deviceReport);*/
 	}
 
 	/**
@@ -477,16 +488,12 @@ public class CollectService implements ICollectService, IDeviceListener {
 		//1.保存交易信息
 		transaction.setTerminalId(terminalId);
 		transactionService.save(transaction);
-		
-		/*DeviceReport deviceReport = this.getDeviceReport(terminalId);
-		deviceReport.setTransaction(transaction);
-		deviceReport.setDevice(this.deviceService.get(terminalId));
-		this.collectListener.receivedBusiness(terminalId, BusinessInfo.TRANSACTION, deviceReport);*/
 		//2.发送到消息队列
 		if (mqProducer == null) {
 			this.pushTransToWeb(transaction);
 		} else {
-			mqProducer.put(JsonUtils.toJson(transaction));
+			MqTransaction mqTransaction = new MqTransaction(transaction);
+			mqProducer.put(JsonUtils.toJson(mqTransaction));
 		}
 	}
 	
@@ -498,19 +505,10 @@ public class CollectService implements ICollectService, IDeviceListener {
 		this.xfsService.initXfsProp(device.getTerminalId());
 		this.registSerivce.init(device.getTerminalId());
 
-		/*DeviceReport deviceReport = this.getDeviceReport(device.getTerminalId());
-		deviceReport.setXfsStatus((XfsStatus) xfsStatus);
-		IRunInfo runInfo = new RunInfo();
-		runInfo.setRunStatus(xfsStatus.getRunStatus());
-		deviceReport.setRunInfo(runInfo);
-		deviceReport.setDevice(device);
-		deviceReport.setDeviceRegister((DeviceRegister) reg);
-		this.collectListener.receivedStatus(device.getTerminalId(), deviceReport, messageSourceEnum);
-		*/
 		if (mqProducer == null) {
 			this.pushStatusToWeb(xfsStatus);
 		} else {
-			mqProducer.put(JsonUtils.toJson(xfsStatus));
+			this.putToMq(xfsStatus);
 		}
 	}
 
@@ -582,7 +580,6 @@ public class CollectService implements ICollectService, IDeviceListener {
 
 	@Override
 	public void collectATMCCounterFeitMoney(String terminalId, ICounterFeitMoney counterFeitMoney) {
-		DeviceReport deviceReport = this.getDeviceReport(terminalId);
 		counterFeitMoney.setTerminalId(terminalId);
 		counterFeitMoneyService.save(counterFeitMoney);
 
@@ -610,9 +607,11 @@ public class CollectService implements ICollectService, IDeviceListener {
 			forms.setOrgName(device.getOrganization().getName());
 			result.add(forms);
 		}
+		
+		//需要增加一个监控页面（江苏农信特有的功能）
+		DeviceReport deviceReport = this.getDeviceReport(terminalId);
 		deviceReport.setCounterFeitMoneyForms(result);
 		deviceReport.setDevice(this.deviceService.get(terminalId));
-		//TODO ...
 		this.collectListener.receivedBusiness(terminalId, BusinessInfo.COUNTERFEITMONEY, deviceReport);
 
 	}

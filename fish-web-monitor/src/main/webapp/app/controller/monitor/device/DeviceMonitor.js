@@ -759,7 +759,8 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				str += '|' + EwayLocale.monitor.devMonitor.remote.pauseSerUnknow;
 			}
 			
-			str = str.startsWith('|') ? str.substr(1) : str;
+//			str = str.startsWith('|') ? str.substr(1) : str;
+			str = Ext.String.startsWith(str, '|') ? str.substr(1) : str;
 			msg += ' ' + EwayLocale.monitor.devMonitor.comboxStatus.runStatus + '[';
 			msg += str;
 			msg +=']';
@@ -785,7 +786,8 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				str += '|' + EwayLocale.monitor.devMonitor.noData;
 			}
 			
-			str = str.startsWith('|') ? str.substr(1) : str;
+//			str = str.startsWith('|') ? str.substr(1) : str;
+			str = Ext.String.startsWith(str, '|') ? str.substr(1) : str;
 			msg += ' ' + EwayLocale.monitor.devMonitor.comboxStatus.modStatus + '[';
 			msg += str;
 			msg +=']';
@@ -817,7 +819,8 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				str += '|' + EwayLocale.monitor.devMonitor.cash.cashUnknow;
 			}
 			
-			str = str.startsWith('|') ? str.substr(1) : str;
+//			str = str.startsWith('|') ? str.substr(1) : str;
+			str = Ext.String.startsWith(str, '|') ? str.substr(1) : str;
 			msg += ' ' + EwayLocale.monitor.devMonitor.comboxStatus.boxStatus + '[';
 			msg += str;
 			msg +=']';
@@ -840,7 +843,8 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				str += '|' + EwayLocale.commen.unknow;
 			}
 	
-			str = str.startsWith('|') ? str.substr(1) : str;
+//			str = str.startsWith('|') ? str.substr(1) : str;
+			str = Ext.String.startsWith(str, '|') ? str.substr(1) : str;
 			msg += ' ' + EwayLocale.monitor.devMonitor.comboxStatus.netStatus + '[';
 			msg += str;
 			msg +=']';

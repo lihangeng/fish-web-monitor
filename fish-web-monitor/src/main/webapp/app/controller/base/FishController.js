@@ -68,7 +68,7 @@ Ext.define('Eway.controller.base.FishController', {
 
 	_onAddOrUpdate : function(action){
 		var midStr ="";
-		if(!ewayUser.language.startsWith("zh")){
+		if(!Ext.String.startsWith(ewayUser.language,"zh")){
 			midStr="&nbsp;";
 		}
 		var title = action=='add' ? EwayLocale.button.add+midStr+this.formConfig.title : EwayLocale.button.update+midStr+this.formConfig.title;

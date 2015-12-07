@@ -29,7 +29,8 @@ Ext.define('Eway.view.machine.quittingNotice.FilterForm', {
 				items : [{
 					labelWidth:100,
 					xtype : 'field_deviceCode',
-					maxLength:20,
+					maxLength :'MAX_VALUE',
+					regex :'',
 					labelAlign : 'right'
 				},{
 					xtype : 'textfield',

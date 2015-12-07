@@ -99,7 +99,7 @@ public class VersionService implements IDomainVersionService {
     public synchronized IVersion updateDownLoadCounter(IVersion version) {
         int counter = version.getDownloadCounter();
         version.setDownloadCounter(++counter);
-        return dao.save(version);
+        return dao.update(version);
     }
 
     @Override

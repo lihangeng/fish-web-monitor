@@ -540,7 +540,7 @@ Ext.apply(EwayLocale,{
 			thisIsTooLong:'Please add the device continuously import template device number to be issued, up to a one-time import 2000 data (takes about 5 minutes), a minimum import data',//EwayLocale.machine.serviceplan.thisIsTooLong请在设备导入模板中连续添加要下发的设备号,最多一次性导入2000条数据(约耗时5分钟),最少导入1条数据
 			thisHardToTranslate:'Click to download introducing device ID template',//EwayLocale.machine.serviceplan.thisHardToTranslate点击下载导入设备号模板
 			placeSelect:'---Please select---',//EwayLocale.machine.serviceplan.placeSelect请选择
-			planDevice:'Plan <--> Device',//EwayLocale.machine.serviceplan.planDevice方案<-->设备
+			planDevice:'Service Plan <--> Device',//EwayLocale.machine.serviceplan.planDevice方案<-->设备
 			timeEare:'Enter the time is incorrect, please re-enter！',//EwayLocale.machine.serviceplan.timeEare输入时间段有误，请重新输入
 			planOlonOne:'The same plan can only set a startup or shutdown',//EwayLocale.machine.serviceplan.planOlonOne同方案只能设置开机或关机的一种
 			addSuccess:'Added Successfully',//EwayLocale.machine.serviceplan.addSuccess添加成功

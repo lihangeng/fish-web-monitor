@@ -45,11 +45,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						columnWidth : .49,
 						fieldLabel : EwayLocale.commen.orgNameBelongs,
 						name : 'org'
-					} ]
-				}, {
-					layout : 'column',
-					defaultType : 'displayfield',
-					items : [ {
+					}, {
 						columnWidth : .5,
 						fieldLabel : EwayLocale.commen.devTypeName,
 						name : 'type'
@@ -58,30 +54,34 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						fieldLabel : EwayLocale.commen.personnel,
 						name : 'personnel',
 						a_link : true
-					} ]
-				}, {
-					layout : 'column',
-					defaultType : 'displayfield',
-					items : [{
+					}, {
 						columnWidth : .5,
 						fieldLabel : EwayLocale.commen.ip,
 						name : 'ip'
-					},{
+					}, {
 						columnWidth : .49,
 						fieldLabel : EwayLocale.commen.appVersion,
 						name : 'appRelease'
-					}]
+					}, {
+						columnWidth : .99,
+						fieldLabel : EwayLocale.machine.device.devAddress,
+						name : 'address'/*,
+						tips : true,
+						fieldCls : 'text_ellipsis'*/
+					}   ]
+				}/*, {
+					layout : 'column',
+					defaultType : 'displayfield',
+					items : [ ]
+				}, {
+					layout : 'column',
+					defaultType : 'displayfield',
+					items : []
 				},{
 					layout : 'column',
 					defaultType : 'displayfield',
-					items : [{
-						columnWidth : .99,
-						fieldLabel : EwayLocale.machine.device.devAddress,
-						name : 'address',
-						tips : true,
-						fieldCls : 'text_ellipsis'
-					} ]
-				}]
+					items : []
+				}*/]
 			}, {
 				xtype : 'fieldset',
 				title : EwayLocale.commen.devStatus,
@@ -163,7 +163,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					layout : 'column',
 					defaults : {
 						xtype : 'displayfield',
-						labelWidth : 100,
+						labelWidth : 105,
 						width : '25%'
 					},
 					items : [ {

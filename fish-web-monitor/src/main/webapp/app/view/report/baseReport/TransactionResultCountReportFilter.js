@@ -59,6 +59,7 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportFilter', {
 											xtype : 'common_orgComboOrgTree',
 											fieldLabel : EwayLocale.commen.orgNameBelongs,
 											labelAlign : 'right',
+											labelWidth : 120,
 											emptyText : EwayLocale.combox.select,
 											name : 'orgName',
 											hiddenValue : 'orgId',
@@ -78,7 +79,8 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportFilter', {
 										}, {
 											xtype : 'monitor_TransTypeComboBox',
 											//	value : 'DEP',
-												labelAlign : 'right'
+												labelAlign : 'right',
+												labelWidth : 120
 											}]
 							}, {
 								columnWidth : .3,

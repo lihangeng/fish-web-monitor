@@ -208,7 +208,7 @@ Ext.apply(EwayLocale,{
 			downloaded:'Issued',//EwayLocale.version.taskStatus.downloaded 已下发
 			downloadedFail:'Issue failed',//EwayLocale.version.taskStatus.downloadedFail 下发失败
 			deployed:'Installing',//EwayLocale.version.taskStatus.deployed 正在部署
-			deployedWait:'Wait for install',//EwayLocale.version.taskStatus.deployedWait 等待部署
+			deployedWait:'WaitInstall',//EwayLocale.version.taskStatus.deployedWait 等待部署
 			deployedFail:'Install failed',//EwayLocale.version.taskStatus.deployedFail 部署失败
 			checked:'Finish',//EwayLocale.version.taskStatus.checked 部署已确认
 			noticeOk:'Noticed',//EwayLocale.version.taskStatus.noticeOk 已通知应用
