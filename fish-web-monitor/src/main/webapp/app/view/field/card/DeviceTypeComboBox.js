@@ -14,18 +14,30 @@ Ext.define('Eway.view.field.card.DeviceTypeComboBox', {
 	triggerAction:'all',
 	anchor:'100%',
 	remote:true,
-	editable : false,
-	onClearClick : function() {
-		var me = this;
-		me.clearValue();
-	},
-	clearClick: function(){
-		this.setValue("");
-	},
+	editable : false,	
 	listeners : {
 		beforerender : function() {
-			this.store.load();
+			this.store.load({
+				callback : function(records, operation, success) {
+					if (success) {
+						if (this.getValue()) {
+							this.isValid();
+						}
+					}
+				},
+				scope : this
+			});
+		},
+		change:function(text,newValue,oldValue){
+			if(newValue && newValue!== "" ){
+				text.getTrigger("clear").show();
+			}else{
+				text.getTrigger("clear").hide();
+			}
 		}
 	}
+	
+	
+
 	
 });

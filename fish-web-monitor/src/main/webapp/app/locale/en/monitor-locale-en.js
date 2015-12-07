@@ -185,7 +185,7 @@ Ext.apply(EwayLocale,{
 			},
 			card:{
 				title:'Retained Card',//EwayLocale.monitor.business.card.title 吞卡管理
-				addTitle:'Add',//EwayLocale.monitor.business.card.addTitle 增加吞卡信息
+				addTitle:'Add Retained Card Information',//EwayLocale.monitor.business.card.addTitle 增加吞卡信息
 				time:'Time',//EwayLocale.monitor.business.card.time 吞卡时间
 				reason:'Reason',//EwayLocale.monitor.business.card.reason  吞卡原因
 				destroy:'Destroy',//EwayLocale.monitor.business.card.destory 吞卡销毁
