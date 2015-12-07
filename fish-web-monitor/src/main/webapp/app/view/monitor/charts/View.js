@@ -29,7 +29,7 @@ Ext.define('Eway.view.monitor.charts.View', {
     			    			colors.push(item.data.color);
 //    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
     			    		},this);
-    			    		dount.down("polar series[type='pie']").updateColors(colors);
+    			    		dount.down("polar series[type='pie']").setColors(colors);
     			    	}
     			    }
         		});
@@ -44,7 +44,7 @@ Ext.define('Eway.view.monitor.charts.View', {
     			    			colors.push(item.data.color);	
 //    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
     			    		},this);
-    			    		dount.down("polar series[type='pie']").updateColors(colors);
+    			    		dount.down("polar series[type='pie']").setColors(colors);
     			    	}
     			    }
         		});
@@ -59,7 +59,7 @@ Ext.define('Eway.view.monitor.charts.View', {
     			    			colors.push(item.data.color);	
 //    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
     			    		},this);
-    			    		dount.down("polar series[type='pie']").updateColors(colors);
+    			    		dount.down("polar series[type='pie']").setColors(colors);
     			    	}
     			    }
         		});
@@ -74,7 +74,7 @@ Ext.define('Eway.view.monitor.charts.View', {
     			    			colors.push(item.data.color);
 //    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
     			    		},this);
-    			    		dount.down("polar series[type='pie']").updateColors(colors);
+    			    		dount.down("polar series[type='pie']").setColors(colors);
     			    	}
     			    }
         		});
@@ -89,7 +89,7 @@ Ext.define('Eway.view.monitor.charts.View', {
     			    			colors.push(item.data.color);
 //    			    			dount.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
     			    		},this);
-    			    		dount.down("polar series[type='pie']").updateColors(colors);
+    			    		dount.down("polar series[type='pie']").setColors(colors);
     			    	}
     			    }
         		});

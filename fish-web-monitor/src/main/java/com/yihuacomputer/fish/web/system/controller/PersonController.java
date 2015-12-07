@@ -384,7 +384,7 @@ public class PersonController {
     				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("org.notExist", null, FishCfg.locale));
                     return result;
                 }
-                if (!oldOrganization.equals(newOrganization)) {
+                if (oldOrganization.getId()!=newOrganization.getId()) {
                     IFilter filter = new Filter();
                     filter.eq("personId",  Long.valueOf(id));
                     if (organizationService.list(filter).iterator().hasNext()) {
