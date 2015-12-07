@@ -49,7 +49,7 @@ Ext.define('Eway.view.person.organization.OrganizationPersonGrid', {
 				header : EwayLocale.commen.email,
 				dataIndex : 'email'
 			},{
-				header : EwayLocale.commen.organizationName,
+				header : EwayLocale.person.serviceOrg.shortName,
 				dataIndex : 'organizationName',
 				flex : 1
 			}],

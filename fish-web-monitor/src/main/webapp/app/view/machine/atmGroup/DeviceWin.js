@@ -11,15 +11,14 @@ Ext.define('Eway.view.machine.atmGroup.DeviceWin', {
 	
 	requires: ['Eway.view.machine.atmGroup.DeviceAddingGrid',
 	           	'Eway.view.machine.atmGroup.DeviceFilter'],
-	
+
+	title: EwayLocale.machine.device.addDevInfo,
 	width: 1040,
 	height: 600,
-	maximizable: true,
 	layout : 'border',
 	
 	initComponent: function() {
 		Ext.apply(this, {
-			title : EwayLocale.machine.atmGroup.groupDev,
 			items : [{
 				region: 'north',
 				xtype: 'atmGroup_deviceFilter'

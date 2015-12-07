@@ -17,6 +17,7 @@ Ext.define('Eway.view.version.download.FilterForm', {
 					xtype : 'combo',
 					fieldLabel : EwayLocale.version.task.updateResult,//'升级结果',
 					name : 'updateResult',
+					editable:false,
 					store : Ext.create('Ext.data.Store',{
 						fields : ['value','name'],
 						data : [
@@ -34,6 +35,7 @@ Ext.define('Eway.view.version.download.FilterForm', {
 						xtype : 'combo',
 						fieldLabel : EwayLocale.version.taskType,//'任务类型',
 						name : 'taskType',
+						editable:false,
 						store : Ext.create('Ext.data.Store',{
 							fields : ['value','name'],
 							data : [
