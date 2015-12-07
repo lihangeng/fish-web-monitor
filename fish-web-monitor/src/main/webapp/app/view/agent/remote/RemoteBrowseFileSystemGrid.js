@@ -84,7 +84,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
-			},'->',
+			},
 			{
 				xtype : 'textfield',
 				name : 'ip',
@@ -95,9 +95,11 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 				hidden: true
 			},{
 				fieldLabel : EwayLocale.agent.remote.path,
-				width: 400,
-				labelAlign: 'right',
+				labelWidth :50,
+				width: 248,
+				labelAlign: 'left',
 				xtype : 'textfield',
+				align:'left',
 				enableKeyEvents:true,
 				name : 'queryPath'
 			}, {
@@ -213,7 +215,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
                 	  width:100
                   },{
                 	  name:'downFile',
-                      icon:"././././resources/images/create.gif",
+                      icon:"././././resources/images/addFile.png",
                       iconCls:'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="floder-name-blackground">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>',
                       tooltip: EwayLocale.agent.remote.clickAddLoadFile,
                       getClass:function(v,metadata,r,rowIndex,colIndex,store){
