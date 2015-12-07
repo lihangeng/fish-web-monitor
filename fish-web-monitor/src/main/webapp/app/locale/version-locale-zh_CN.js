@@ -283,7 +283,9 @@ Ext.apply(EwayLocale,{
 			deleting : '正在删除......',// EwayLocale.version.task.deleting
 			cancelSuccessBut : '已经成功撤销作业中还没有运行的任务,此时作业的状态仍然是"运行中",请稍等后刷新作业列表.',// EwayLocale.version.task.cancelSuccessBut
 			cancelJobSuccess : '成功撤销作业',// EwayLocale.version.task.cancelJobSuccess
-			updateResult : '升级结果' // EwayLocale.version.task.updateResult
+			updateResult : '升级结果', // EwayLocale.version.task.updateResult
+			updateResultSuccess:'成功',	//EwayLocale.version.task.updateResultSuccess 升级结果
+			updateResultFailed:'失败'	//EwayLocale.version.task.updateResultFailed 升级结果
 		}
 	}
 });
