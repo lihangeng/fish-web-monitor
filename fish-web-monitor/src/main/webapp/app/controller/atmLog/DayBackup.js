@@ -34,8 +34,11 @@ Ext.define('Eway.controller.atmLog.DayBackup',{
 			if(e && e.getTarget().innerHTML === deviceSucCount && deviceSucCount > 0){ //当单击超链接的时候
 				var logBackupPanel = Ext.create('Eway.view.atmLog.LogBackup');
 				var logBackupGrid = logBackupPanel.down('atmLog_LogBackupGrid');
-				logBackupStore = logBackupGrid.getStore();			
-				logBackupStore.load({params:{dateTime:record.get('date'),backupResult:'SUCCESS'}})
+				logBackupStore = logBackupGrid.getStore();		
+				var currentDay = Ext.util.Format.date(record.get('date'), 'Y-m-d');
+				var dt = new Date(currentDay);
+			    var lastDay = Ext.Date.format(Ext.Date.add(dt, Ext.Date.DAY, -1),'Y-m-d');
+				logBackupStore.load({params:{dateTime:lastDay,backupResult:'SUCCESS'}})
 				var view = this.getEwayView();
 				var gridPanel = view.query('panel[name=backupDetail]')[0];
 				logBackupPanel.setTitle(record.get('date')+EwayLocale.agent.remote.backupLogSucList);
@@ -47,7 +50,7 @@ Ext.define('Eway.controller.atmLog.DayBackup',{
 				gridPanel.add(logBackupPanel);		
 				var backupResult = "SUCCESS";
 				logBackupPanel.down("button[action='query']").on('click',Ext.bind(this.onQuerybackUp,this,[record,logBackupPanel,logBackupStore,backupResult]),this);
-				logBackupPanel.down("atmLog_LogBackupGrid pagingtoolbar").on("beforechange",Ext.bind(this.searchBackupLog,this,[record.get('date'),logBackupStore,backupResult]),this);
+				logBackupPanel.down("atmLog_LogBackupGrid pagingtoolbar").on("beforechange",Ext.bind(this.searchBackupLog,this,[lastDay,logBackupStore,backupResult]),this);
 			}
 		}
 		else if(cellIndex == 5){
@@ -57,7 +60,10 @@ Ext.define('Eway.controller.atmLog.DayBackup',{
 				var logBackupPanel = Ext.create('Eway.view.atmLog.LogBackup');
 				var logBackupGrid = logBackupPanel.down('atmLog_LogBackupGrid');
 				logBackupStore = logBackupGrid.getStore();		
-				logBackupStore.load({params:{dateTime:record.get('date'),backupResult:'BackUpError'}})
+				var currentDay = Ext.util.Format.date(record.get('date'), 'Y-m-d');
+				var dt = new Date(currentDay);
+			    var lastDay = Ext.Date.format(Ext.Date.add(dt, Ext.Date.DAY, -1),'Y-m-d');
+				logBackupStore.load({params:{dateTime:lastDay,backupResult:'BackUpError'}})
 				var view = this.getEwayView();
 				var gridPanel = view.query('panel[name=backupDetail]')[0];
 				logBackupPanel.setTitle(record.get('date')+EwayLocale.agent.remote.backupLogFailList);
@@ -69,7 +75,7 @@ Ext.define('Eway.controller.atmLog.DayBackup',{
 				gridPanel.add(logBackupPanel);	
 				var backupResult = "BackUpError";
 				logBackupPanel.down("button[action='query']").on('click',Ext.bind(this.onQuerybackUp,this,[record,logBackupPanel,logBackupStore,backupResult]),this);
-				logBackupPanel.down("atmLog_LogBackupGrid pagingtoolbar").on("beforechange",Ext.bind(this.searchBackupLog,this,[record.get('date'),logBackupStore,backupResult]),this);
+				logBackupPanel.down("atmLog_LogBackupGrid pagingtoolbar").on("beforechange",Ext.bind(this.searchBackupLog,this,[lastDay,logBackupStore,backupResult]),this);
 			}
 
 		}

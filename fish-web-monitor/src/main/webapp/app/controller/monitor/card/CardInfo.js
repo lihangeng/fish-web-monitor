@@ -5,7 +5,8 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 						'monitor.card.CardStatusComboBox',
 						'monitor.card.DeviceAtmVendor',
 						'monitor.card.DeviceType',
-						'monitor.card.InoutComboBox'],
+						'monitor.card.InoutComboBox',
+						'machine.DeviceAwayFlagComboBox'],
 
 			models : [	'monitor.card.CardInfo', 'Dict'],
 			views : ['Eway.view.monitor.card.CardInfoView'],

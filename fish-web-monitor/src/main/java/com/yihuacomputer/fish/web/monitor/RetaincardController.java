@@ -765,12 +765,12 @@ public class RetaincardController {
 				if (name.equals("sort")) {
 					continue;
 				}
-				if (name.equals("endData")) {
+				if (name.equals("endDate")) {
 					filter.le("retaincard.cardRetainTime",
-							DateUtils.getTimestamp(value));
-				} else if (name.equals("startData")) {
+							DateUtils.getTimestamp(value +" 23:5:59"));
+				} else if (name.equals("startDate")) {
 					filter.ge("retaincard.cardRetainTime",
-							DateUtils.getTimestamp(value));
+							DateUtils.getTimestamp(value + " 00:00:00"));
 				} else if (name.equals("devVendorId")) {
 					filter.eq("device.devType.devVendor.id",
 							Long.valueOf(value));

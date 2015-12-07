@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -81,8 +83,7 @@ public class DaybackupInfoController {
 
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
-		String result = request.getParameter("dayBackupResult");
-
+		String result = request.getParameter("dayBackupResult");   
 		if (startDate != null && !startDate.isEmpty()) {
 			filter.ge("date", startDate);
 		}

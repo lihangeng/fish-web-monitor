@@ -58,7 +58,7 @@ Ext.define('Eway.view.machine.quittingNotice.FilterForm', {
 				},
 				items : [ {
 							xtype : 'fieldcontainer',
-							fieldLabel : EwayLocale.machine.quittingNotice.stopTime,
+							fieldLabel : EwayLocale.monitor.business.card.endTime,
 							layout : 'hbox',
 							defaults : {
 								hideLabel : true

@@ -1,9 +1,13 @@
 package com.yihuacomputer.fish.web.daily.form;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.atmlog.DayBackupResult;
 import com.yihuacomputer.fish.api.atmlog.IAtmLogInfo;
 import com.yihuacomputer.fish.api.atmlog.IDayBackupLog;
@@ -17,6 +21,7 @@ public class DayBackupLogForm {
 	private int deviceCount;
 	private int deviceSucCount;
 	private int deviceFailCount;
+	private static String lastDay;
 
 
 	public DayBackupLogForm() {
@@ -32,7 +37,7 @@ public class DayBackupLogForm {
 		this.deviceCount = deviceCount;
 	}
 
-	public static List<DayBackupLogForm> toForms(List<IDayBackupLog> dayBackupLogs, Map<String,IAtmLogInfo>getBackUpInfo){
+	public static  List<DayBackupLogForm> toForms(List<IDayBackupLog> dayBackupLogs, Map<String,IAtmLogInfo>getBackUpInfo){
 		List<DayBackupLogForm> forms = new ArrayList<DayBackupLogForm>();
 		for(IDayBackupLog log : dayBackupLogs){
 			DayBackupLogForm form = new DayBackupLogForm();
@@ -40,10 +45,11 @@ public class DayBackupLogForm {
 			form.setResult(log.getResult());
 			form.setDoTime(log.getDoTime());
 			form.setEndTime(log.getEndTime());
-			if(getBackUpInfo.get(log.getDate()) != null)
+			if(getBackUpInfo.get(getLastDay(log.getDate())) != null)
 			{
-				form.setDeviceSucCount(getBackUpInfo.get(log.getDate()).getBackupSuccessNumber());
-				form.setDeviceFailCount(getBackUpInfo.get(log.getDate()).getBackupErrorNumber());
+				System.out.println("-----------------"+getLastDay(log.getDate()));
+				form.setDeviceSucCount(getBackUpInfo.get(getLastDay(log.getDate())).getBackupSuccessNumber());
+				form.setDeviceFailCount(getBackUpInfo.get(getLastDay(log.getDate())).getBackupErrorNumber());
 			}
 			else
 			{
@@ -53,6 +59,16 @@ public class DayBackupLogForm {
 			forms.add(form);
 		}
 		return forms;
+	}
+	
+	public static String getLastDay(String strDate)
+	{
+		Date date = DateUtils.getDate(strDate);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.DAY_OF_MONTH, -1);		
+		lastDay = new  SimpleDateFormat("yyyy-MM-dd").format(cal.getTime());	
+		return lastDay;
 	}
 	
 

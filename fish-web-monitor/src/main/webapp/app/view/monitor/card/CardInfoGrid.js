@@ -101,7 +101,7 @@ Ext.define('Eway.view.monitor.card.CardInfoGrid', {
 				header : EwayLocale.monitor.business.card.cardHolder,
 				dataIndex : 'cardDistributionBank',
 				flex : 1
-			},{
+			}/*,{
 				header : EwayLocale.commen.state,
 				dataIndex : 'status',
 				renderer : function(value){
@@ -116,7 +116,7 @@ Ext.define('Eway.view.monitor.card.CardInfoGrid', {
 					}
 				},
 				flex : 1
-			},{
+			}*/,{
 				header : EwayLocale.monitor.business.card.reason,
 				dataIndex : 'reason',
 				flex : 1
