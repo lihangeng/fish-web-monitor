@@ -7,7 +7,7 @@
 		<Arg>
  			<New class="org.apache.commons.dbcp.BasicDataSource">
  				<Set name="driverClassName">org.hibernate.dialect.MySQL5Dialect</Set>
- 				<Set name="url">jdbc:mysql://127.0.0.1:3306/atmv</Set> 
+ 				<Set name="url">jdbc:mysql://127.0.0.1:3306/atmv?autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF8</Set> 
  				<Set name="username">root</Set>
 				<Set name="password">root</Set>
 			</New>
