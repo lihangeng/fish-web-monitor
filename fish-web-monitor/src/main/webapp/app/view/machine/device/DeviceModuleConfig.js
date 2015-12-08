@@ -10,7 +10,11 @@ Ext.define('Eway.view.machine.device.DeviceModuleConfig', {
 			'Eway.view.machine.device.module.PropertyCIM',
 			'Eway.view.machine.device.module.PropertyJPR',
 			'Eway.view.machine.device.module.PropertyPIN',
-			'Eway.view.machine.device.module.PropertyTTU' ],
+			'Eway.view.machine.device.module.PropertyTTU',
+			'Eway.view.machine.device.module.PropertyISC',
+			'Eway.view.machine.device.module.PropertyICC',
+			'Eway.view.machine.device.module.PropertyFGP',
+			'Eway.view.machine.device.module.PropertyPBK' ],
 
 	title : EwayLocale.machine.device.devModuleMsg,
 	layout : 'border',
@@ -51,7 +55,19 @@ Ext.define('Eway.view.machine.device.DeviceModuleConfig', {
 				}, {
 					itemId : 'siuid',
 					xtype : 'machine_device_module_propertysiu'
-				} ]
+				}, {
+					itemId : 'iccid',
+					xtype : 'machine_device_module_propertyicc'
+				}, {
+					itemId : 'iscid',
+					xtype : 'machine_device_module_propertyisc'
+				}, {
+					itemId : 'fgpid',
+					xtype : 'machine_device_module_propertyfgp'
+				}, {
+					itemId : 'pbkid',
+					xtype : 'machine_device_module_propertypbk'
+				}  ]
 			} ]
 		});
 

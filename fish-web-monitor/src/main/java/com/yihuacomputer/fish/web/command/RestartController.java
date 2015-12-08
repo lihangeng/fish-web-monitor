@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishConstant;
+import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.FishWebUtils;
 import com.yihuacomputer.fish.api.monitor.ICollectService;
@@ -70,17 +71,22 @@ public class RestartController {
         hist.setTerminalId(terminalId);
         remoteCommHistService.save(hist);
 
-        restartParamForm.setId(hist.getId());
-        Runnable runnable = new RemoteCommandRunnable(url, restartParamForm, "POST", hist.getId(),
-                remoteCommHistService);
-        Thread thread = new Thread(runnable);
-        thread.start();
+        try {
+            HttpProxy.httpPost(url, restartParamForm, null, 5000);
+            
+            // 设置运行状态为重启
+            runInfo.setRunStatus(RunStatus.ReBoot);
+            collectService.collectATMCRunInfo(terminalId, runInfo);
 
-        // 设置运行状态为重启
-        runInfo.setRunStatus(RunStatus.ReBoot);
-        collectService.collectATMCRunInfo(terminalId, runInfo);
-
-        result.put(FishConstant.SUCCESS, true);
+            result.put(FishConstant.SUCCESS, true);
+        }
+        catch (Exception e) {
+            
+            result.put(FishConstant.SUCCESS, false);
+            
+            hist.setCommandResult(CommandResult.CONNECT_FAIL);
+            remoteCommHistService.update(hist);
+        }
 
         return result;
     }
@@ -176,18 +182,29 @@ public class RestartController {
         hist.setTerminalId(terminalId);
         remoteCommHistService.save(hist);
 
-        restartParamForm.setId(hist.getId());
-        Runnable runnable = new RemoteCommandRunnable(url, restartParamForm, "POST", hist.getId(),
-                remoteCommHistService);
-        Thread thread = new Thread(runnable);
-        thread.start();
+//        restartParamForm.setId(hist.getId());
+//        Runnable runnable = new RemoteCommandRunnable(url, restartParamForm, "POST", hist.getId(),
+//                remoteCommHistService);
+//        Thread thread = new Thread(runnable);
+//        thread.start();
         
-        // 设置运行状态为重启
-        runInfo.setRunStatus(RunStatus.ReBoot);
-        collectService.collectATMCRunInfo(terminalId, runInfo);
-
-        result.put(FishConstant.SUCCESS, true);
-
+        
+        try {
+            // 设置运行状态为重启
+            runInfo.setRunStatus(RunStatus.ReBoot);
+            collectService.collectATMCRunInfo(terminalId, runInfo);
+            HttpProxy.httpPost(url, restartParamForm, null, 5000);
+            
+            result.put(FishConstant.SUCCESS, true);
+        }
+        catch (Exception e) {
+            result.put(FishConstant.SUCCESS, false);
+            
+            hist.setCommandResult(CommandResult.CONNECT_FAIL);
+            remoteCommHistService.update(hist);
+            
+        }
+        
         return result;
     }
 

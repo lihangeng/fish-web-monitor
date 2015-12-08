@@ -92,10 +92,16 @@
 	function divHidden() {
 		show($("updatePasswordDiv"), false);
 	}
+	
+	
+	function textFocus() {
+		$('username').focus();
+	}
+	
 </script>
 </head>
 <form name="form1">
-	<body>
+	<body onLoad="textFocus()">
 		<div class="container">
 			<div class="head">
 				<img src="resources/images/logo.PNG">

@@ -1,4 +1,5 @@
 package com.yihuacomputer.fish.web.monitor.form;
+
 public class ModStatus {
     private StatusCdm cdm;
 
@@ -13,8 +14,16 @@ public class ModStatus {
     private StatusRpr rpr;
 
     private StatusTtu ttu;
-    
+
     private StatusSiu siu;
+
+    private StatusIcc icc;
+
+    private StatusIsc isc;
+
+    private StatusFgp fgp;
+
+    private StatusPbk pbk;
 
     private Boolean success;
 
@@ -89,4 +98,37 @@ public class ModStatus {
     public void setSiu(StatusSiu siu) {
         this.siu = siu;
     }
+
+    public StatusIcc getIcc() {
+        return icc;
+    }
+
+    public void setIcc(StatusIcc icc) {
+        this.icc = icc;
+    }
+
+    public StatusIsc getIsc() {
+        return isc;
+    }
+
+    public void setIsc(StatusIsc isc) {
+        this.isc = isc;
+    }
+
+    public StatusFgp getFgp() {
+        return fgp;
+    }
+
+    public void setFgp(StatusFgp fgp) {
+        this.fgp = fgp;
+    }
+
+    public StatusPbk getPbk() {
+        return pbk;
+    }
+
+    public void setPbk(StatusPbk pbk) {
+        this.pbk = pbk;
+    }
+
 }

@@ -1,4 +1,5 @@
 package com.yihuacomputer.fish.web.monitor.form;
+
 import com.yihuacomputer.fish.web.atm.format.PropertiseMsg;
 
 public class ModProperty {
@@ -17,6 +18,14 @@ public class ModProperty {
     private PropertyTtu ttu;
 
     private PropertySiu siu;
+
+    private PropertyIcc icc;
+
+    private PropertyIsc isc;
+
+    private PropertyFgp fgp;
+
+    private PropertyPbk pbk;
 
     private PropertiseMsg properties;
 
@@ -100,5 +109,37 @@ public class ModProperty {
 
     public void setProperties(PropertiseMsg properties) {
         this.properties = properties;
+    }
+
+    public PropertyIcc getIcc() {
+        return icc;
+    }
+
+    public void setIcc(PropertyIcc icc) {
+        this.icc = icc;
+    }
+
+    public PropertyIsc getIsc() {
+        return isc;
+    }
+
+    public void setIsc(PropertyIsc isc) {
+        this.isc = isc;
+    }
+
+    public PropertyFgp getFgp() {
+        return fgp;
+    }
+
+    public void setFgp(PropertyFgp fgp) {
+        this.fgp = fgp;
+    }
+
+    public PropertyPbk getPbk() {
+        return pbk;
+    }
+
+    public void setPbk(PropertyPbk pbk) {
+        this.pbk = pbk;
     }
 }
