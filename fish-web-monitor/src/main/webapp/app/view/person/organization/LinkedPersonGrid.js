@@ -57,7 +57,7 @@ Ext.define('Eway.view.person.organization.LinkedPersonGrid', {
 		             }
 				}
 			},{
-				header : EwayLocale.person.bankPer.organizationName,
+				header : EwayLocale.person.serviceOrg.shortName,
 				dataIndex : 'organizationName'
 			},{
 				header : EwayLocale.commen.state,

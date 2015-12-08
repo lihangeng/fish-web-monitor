@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<fmt:setLocale value="en_US" scope="session" />
+<fmt:setLocale value="zh_CN" scope="session" />
 <title><spring:message code="login.title" text="" /></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" type="image/ico"
@@ -35,8 +35,8 @@
 			//实例化一个 XMLHttpRequest 对象
 			xmlHttpReq = new XMLHttpRequest();
 		}
-		var contnet = "username=" + getValue($('username')) + "&password="
-				+ getValue($('password')) + "&" + new Date();
+		var contnet = "username=" + encodeURIComponent(getValue($('username'))) + "&password="
+				+ encodeURIComponent(getValue($('password'))) + "&" + new Date();
 
 		xmlHttpReq.open("POST", "api/login?" + contnet, true);
 

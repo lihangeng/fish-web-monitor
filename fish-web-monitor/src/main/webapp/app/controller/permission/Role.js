@@ -74,7 +74,7 @@ Ext.define('Eway.controller.permission.Role', {
 				Ext.require([me.formConfig.form],function(){
 					var win = Ext.create('Eway.view.base.Window',{
 					layout : 'fit',
-					title : EwayLocale.permission.role.title.update,
+					title : EwayLocale.permission.role.update,
 					width :700,
 					height :540,
 					maximizable : false,

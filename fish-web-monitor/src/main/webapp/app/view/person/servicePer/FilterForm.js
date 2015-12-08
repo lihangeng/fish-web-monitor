@@ -28,7 +28,7 @@ Ext.define('Eway.view.person.servicePer.FilterForm', {
 					editable : false,
 					name : 'org',
 					filters : '{"type" : "1"}',
-					rootVisible : true,
+					rootVisible : false,
 					hiddenValue : 'selectedNode'
 				},{
 					xtype : 'hiddenfield',

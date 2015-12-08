@@ -19,7 +19,7 @@ Ext.define('Eway.view.person.serviceOrg.FilterForm', {
 		Ext.apply(this, {
 			items : [{
 
-				columnWidth : .3,
+				columnWidth : .5,
 				items : [{
 					xtype : 'common_orgComboOrgTree',
 					fieldLabel : EwayLocale.person.serviceOrg.name,
@@ -35,19 +35,11 @@ Ext.define('Eway.view.person.serviceOrg.FilterForm', {
 				}]
 			
 			},{
-				columnWidth : .3,
+				columnWidth : .5,
 				items : [{
 					xtype : 'field.code',
 					labelAlign : 'right',
 					fieldLabel : EwayLocale.person.serviceOrg.code,
-					msgTarget : 'side'
-				}]
-			}, {
-				columnWidth : .3,
-				items : [{
-					xtype : 'field.name',
-					labelAlign : 'right',
-					fieldLabel: EwayLocale.person.serviceOrg.name,
 					msgTarget : 'side'
 				}]
 			}]

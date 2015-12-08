@@ -12,8 +12,8 @@ Ext.define('Eway.store.monitor.device.FilterIngItem',{
 		},{
 			name : EwayLocale.machine.atmGroup.comboxAwayFlag.outBank,
 			value : '2'
-		},{
+		}/*,{
 			name : EwayLocale.machine.atmGroup.comboxAwayFlag.clickBank,
 			value : '3'
-		}]
+		}*/]
 });
