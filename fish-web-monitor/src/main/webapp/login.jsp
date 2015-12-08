@@ -35,8 +35,8 @@
 			//实例化一个 XMLHttpRequest 对象
 			xmlHttpReq = new XMLHttpRequest();
 		}
-		var contnet = "username=" + getValue($('username')) + "&password="
-				+ getValue($('password')) + "&" + new Date();
+		var contnet = "username=" + encodeURIComponent(getValue($('username'))) + "&password="
+				+ encodeURIComponent(getValue($('password'))) + "&" + new Date();
 
 		xmlHttpReq.open("POST", "api/login?" + contnet, true);
 
