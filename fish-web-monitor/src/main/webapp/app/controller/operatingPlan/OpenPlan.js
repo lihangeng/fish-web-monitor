@@ -245,7 +245,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			    }
 			});
 		}else {
-			Eway.alert(EwayLocale.confirm.title, EwayLocale.tip.choosePlan);
+			Eway.alert(EwayLocale.tip.choosePlan);
 		}
 	},
 
