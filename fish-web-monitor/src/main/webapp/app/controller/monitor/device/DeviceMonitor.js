@@ -853,7 +853,14 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		if (msg.length == 0) {
 			msg = EwayLocale.commen.all;
 		}
-		tLabel.setText(msg);
+		if(msg.length>100){
+			tLabel.setText(msg.substring(0,100)+"...");
+		}
+		else{
+			tLabel.setText(msg);
+		}
+		
+		tLabel.value = msg;
 	},
 
 	//打开'设置监控状态'页面
