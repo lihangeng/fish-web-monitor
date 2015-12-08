@@ -482,8 +482,9 @@ public class PersonController {
                 } else {
                     if ("sort".equals(name)) { // 去掉前端页面传来的sort排序字段
                         continue;
-//                    } else if ("selectedNode".equals(name)) {
-//                        continue;
+                    }
+                    else if ("organizationId".equals(name)) {
+                    	filter.eq("organization", organizationService.get(value));
                     } else if ("selectedNode".equals(name)) {
                     	filter.like("organization.orgFlag", organizationService.get(value).getOrgFlag()+'%');
                     } else if ("gender".equals(name)) {
