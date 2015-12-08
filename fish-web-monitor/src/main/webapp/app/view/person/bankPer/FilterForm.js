@@ -25,7 +25,7 @@ Ext.define('Eway.view.person.bankPer.FilterForm', {
 					editable : false,
 					name : 'org',
 					filters : '{"type" : "0"}',
-					rootVisible : true,
+					rootVisible : false,
 					hiddenValue : 'selectedNode'
 				},{
 					xtype : 'hiddenfield',
