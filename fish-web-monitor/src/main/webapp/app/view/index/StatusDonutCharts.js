@@ -24,7 +24,7 @@ Ext.define('Eway.view.index.StatusDonutCharts', {
 			    			colors.push(item.data.color);	
 			    			panel.down("polar").legend.all.elements[index].childNodes[0].style.backgroundColor=item.data.color;
 			    		},this);
-			    		panel.down("polar series[type='pie']").updateColors(colors);
+			    		panel.down("polar series[type='pie']").setColors(colors);
 			    	}
 			    }
     		});

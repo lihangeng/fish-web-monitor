@@ -110,14 +110,17 @@ Ext.apply(EwayLocale,{
 		device:{
 			title:'设备信息管理',
 			devDetailInfo:'设备模块详细信息',
-		    IDC:'读卡器模块(IDC)',
-			JPR:'日志打印机模块(JPR)',
-			CDM:'取款模块(CDM)',
-			SIU:'传感器模块(SIU)',
-			CIM:'存款模块(CIM)',
-			TTU:'文本终端单元(TTU)',
-			RPR:'凭条打印机模块(RPR)',
-			PIN:'密码键盘模块(PIN)',
+		    idc:'读卡器',//读卡器模块(IDC)
+			jpr:'日志打印机',// 日志打印机模块(JPR)
+			cdm:'取款模块',// 取款模块(CDM)
+			siu:'传感器',// 传感器模块(SIU)
+			cim:'存款模块',// 存款模块(CIM)
+			ttu:'文本终端',// 文本终端单元(TTU)
+			rpr:'凭条打印机',// 凭条打印机模块(RPR)
+			pin:'密码键盘',// 密码键盘模块(PIN)
+			icc:'发卡器',
+			fgp:'指纹仪',
+			pbk:'存折打印机',
 			CDMInfo:'取款模块（CDM）属性信息',
 			hasStack:'是否具有暂存器',
 			hasShutter:'是否具有shutter门',
@@ -202,7 +205,18 @@ Ext.apply(EwayLocale,{
 			keyboardLockPresent:'是否支持键盘锁定',
 			formsSupported:'是否支持表格',
 			resolutionY:'纵轴分辨率',
-
+			
+			ISCInfo:'身份证扫描仪(ISC)属性信息',
+			
+			ICCInfo:'发卡器(ICC)属性信息',
+			dispenseCard:'是否具有发卡读能力',
+			
+			FGPInfo:'指纹仪(FGP)属性信息',
+			fgp_variant:'指纹仪类型',
+			canCompare:'是否具有比较特值功能',
+			
+			PBKInfo:'存折打印机(PBK)属性信息',
+			
 			comStatus:'厂商状态信息',
 			hwCode:'厂商故障码',
 			CDMStatus:'取款模块(CDM)状态信息',
@@ -265,6 +279,14 @@ Ext.apply(EwayLocale,{
 			cimGuidelight:'CIM导引灯状态',
 
 			TTUStatus:'文本终端单元(TTU)状态信息',
+			
+			ISCStatus:'身份证扫描仪(ISC)状态信息',
+			
+			ICCStatus:'发卡器(ICC)状态信息',
+			
+			FGPStatus:'指纹仪(FGP)状态信息',
+			
+			PBKStatus:'存折打印机(PBK)状态信息',
 
 			devPerson:'设备人员信息',//EwayLocale.machine.device.devPerson
 			devModuleMsg:'设备模块属性信息',

@@ -1,11 +1,13 @@
 <%@page import="com.yihuacomputer.common.util.FishWebUtils"%>
 <%@page import="com.yihuacomputer.fish.api.person.UserSession"%>
-<%@ page language="java" contentType="text/html; charset=utf-8"
+<%@page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<fmt:setLocale value="zh_CN" scope="session" />
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title><spring:message code="login.title" text="" /></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

@@ -195,7 +195,12 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 						propertyCdm : this.getDeviceModulePropertyValue(records[0].data.properties.cdm),
 						propertyCim : this.getDeviceModulePropertyValue(records[0].data.properties.cim),
 						propertyIdc : this.getDeviceModulePropertyValue(records[0].data.properties.idc),
-						propertyRpr : this.getDeviceModulePropertyValue(records[0].data.properties.rpr)
+						propertyRpr : this.getDeviceModulePropertyValue(records[0].data.properties.rpr),
+						
+						propertyIsc : this.getDeviceModulePropertyValue(records[0].data.properties.isc),
+						propertyIcc : this.getDeviceModulePropertyValue(records[0].data.properties.icc),
+						propertyFgp : this.getDeviceModulePropertyValue(records[0].data.properties.fgp),
+						propertyPbk : this.getDeviceModulePropertyValue(records[0].data.properties.pbk)
 					});
 				}
 				this.propertyBindClick(tab);
@@ -235,14 +240,19 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 				if (records && records.length > 0) { // 判断是否有数据
 					var form = tab.down('form').getForm();
 					form.setValues({
-						statusJpr : this.getDeviceModuleStatusValue(records[0].data.jpr.statusName),
-						statusSiu : this.getDeviceModuleStatusValue(records[0].data.siu.statusName),
-						statusTtu : this.getDeviceModuleStatusValue(records[0].data.ttu.statusName),
-						statusPin : this.getDeviceModuleStatusValue(records[0].data.pin.statusName),
-						statusCdm : this.getDeviceModuleStatusValue(records[0].data.cdm.statusName),
-						statusCim : this.getDeviceModuleStatusValue(records[0].data.cim.statusName),
-						statusIdc : this.getDeviceModuleStatusValue(records[0].data.idc.statusName),
-						statusRpr : this.getDeviceModuleStatusValue(records[0].data.rpr.statusName)
+						statusJpr : this.getDeviceModuleStatusValue(records[0].data.jpr),
+						statusSiu : this.getDeviceModuleStatusValue(records[0].data.siu),
+						statusTtu : this.getDeviceModuleStatusValue(records[0].data.ttu),
+						statusPin : this.getDeviceModuleStatusValue(records[0].data.pin),
+						statusCdm : this.getDeviceModuleStatusValue(records[0].data.cdm),
+						statusCim : this.getDeviceModuleStatusValue(records[0].data.cim),
+						statusIdc : this.getDeviceModuleStatusValue(records[0].data.idc),
+						statusRpr : this.getDeviceModuleStatusValue(records[0].data.rpr),
+						
+						statusIsc : this.getDeviceModuleStatusValue(records[0].data.isc),
+						statusIcc : this.getDeviceModuleStatusValue(records[0].data.icc),
+						statusFgp : this.getDeviceModuleStatusValue(records[0].data.fgp),
+						statusPbk : this.getDeviceModuleStatusValue(records[0].data.pbk)
 					});
 					this.statusBindClick(tab);
 				}
@@ -250,11 +260,17 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 		});
 	},
 
-	getDeviceModuleStatusValue : function(statusName){
-		if(statusName == EwayLocale.tip.unCertain || statusName == EwayLocale.machine.device.noDevice){
-			return statusName;
-		}else{
-			return '<a href="#" class="link">' + statusName + '</a>';
+	getDeviceModuleStatusValue : function(mod) {
+		if (mod) {
+			var statusName = mod.statusName;
+			
+			if(statusName == EwayLocale.tip.unCertain || statusName == EwayLocale.machine.device.noDevice){
+				return statusName;
+			}else{
+				return '<a href="#" class="link">' + statusName + '</a>';
+			}
+		} else {
+			return EwayLocale.machine.device.noDevice;
 		}
 	},
 
@@ -267,8 +283,8 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 		var fields = form.getFields();
 		fields.each(function(item) {
 			var name = item.name;
-			var el = item.getEl().down('a.link');
-			if (el) {
+			if (item && item.getEl() && item.getEl().down('a.link')) {
+				var el = item.getEl().down('a.link');
 				el.on('click', function(e, htmlEl) {
 					var itemid = '';
 					var module = '';
@@ -296,6 +312,18 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 					} else if ('statusRpr' == name) {
 						itemid = 'rprid';
 						module = 'rpr';
+					} else if ('statusIcc' == name) {
+						itemid = 'iccid';
+						module = 'icc';
+					} else if ('statusFgp' == name) {
+						itemid = 'fgpid';
+						module = 'fgp';
+					} else if ('statusPbk' == name) {
+						itemid = 'pbkid';
+						module = 'pbk';
+					} else if ('statusIsc' == name) {
+						itemid = 'iscid';
+						module = 'isc';
 					}
 					layout.setActiveItem(itemid);
 					this.setStatus(layout.getActiveItem(), module);
@@ -313,8 +341,8 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 		var fields = form.getFields();
 		fields.each(function(item) {
 			var name = item.name;
-			var el = item.getEl().down('a.link');
-			if (el) {
+			if (item && item.getEl() && item.getEl().down('a.link')) {
+				var el = item.getEl().down('a.link');
 				el.on('click', function(e, htmlEl) {
 					var itemid = '';
 					var module = '';
@@ -342,6 +370,18 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 					} else if ('propertyRpr' == name) {
 						itemid = 'rprid';
 						module = 'rpr';
+					} else if ('propertyIcc' == name) {
+						itemid = 'iccid';
+						module = 'icc';
+					} else if ('propertyFgp' == name) {
+						itemid = 'fgpid';
+						module = 'fgp';
+					} else if ('propertyPbk' == name) {
+						itemid = 'pbkid';
+						module = 'pbk';
+					} else if ('propertyIsc' == name) {
+						itemid = 'iscid';
+						module = 'isc';
 					}
 					layout.setActiveItem(itemid);
 					this.setProperty(layout.getActiveItem(), module);

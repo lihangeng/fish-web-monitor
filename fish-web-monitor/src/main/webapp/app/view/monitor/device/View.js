@@ -36,7 +36,9 @@ Ext.define('Eway.view.monitor.device.View',{
 					itemId : 'card_itemId',
 					tbar : [
 						EwayLocale.monitor.devMonitor.monitorState+':', {
-							xtype : 'label'
+							xtype : 'label',
+							id:'filterLabelInfo',
+							value:''
 						}
 					],
 					dockedItems: [ {
@@ -107,7 +109,20 @@ Ext.define('Eway.view.monitor.device.View',{
 			listeners : {
 				scope : this,
 				deactivate : this.closeMatrixMonitor,
-				activate : this.activatePanel
+				activate : this.activatePanel,
+				afterrender:function(_this,opt){
+					var view =  _this.down("panel[itemId=card_itemId] toolbar label");
+					var tip = Ext.create('Ext.tip.ToolTip', {
+					    target: view.el,
+					    trackMouse: true,
+					    renderTo: Ext.getBody(),
+					    listeners: {
+					        beforeshow: function updateTipBody(tip) {
+					            tip.update(view.value);
+					        }
+					    }
+					});
+				}
 			}
 		});
 		this.callParent(arguments);
