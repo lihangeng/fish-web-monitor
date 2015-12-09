@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>com.yihuacomputer.fish</groupId>
 		<artifactId>atmvs</artifactId>
-		<version>2.0.0.6</version>
+		<version>2.0.0.7-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>fish-kafka</artifactId>
@@ -56,7 +56,7 @@
 		<connection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</connection>
 		<developerConnection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</developerConnection>
 		<url>http://git.nj.yihuacomputer.com/gitweb/?p=atmvs.git</url>
-		<tag>atmvs-2.0.0.6</tag>
+		<tag>HEAD</tag>
 	</scm>
 	<build>
 		<plugins>
