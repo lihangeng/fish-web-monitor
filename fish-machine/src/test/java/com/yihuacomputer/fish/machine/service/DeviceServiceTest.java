@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNull;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -69,7 +70,7 @@ public class DeviceServiceTest extends BindSessionInTest2
      */
     @Autowired
     private IAtmTypeService typeService;
-
+    @Ignore
     @Test
     public void testDevice()
     {
@@ -153,7 +154,8 @@ public class DeviceServiceTest extends BindSessionInTest2
         deviceService.page(0, 10, new Filter());
     }
     
-    
+
+    @Ignore
     @Test
     public void testCache(){
     	 IOrganization organization1 = orgService.make();

@@ -3,6 +3,7 @@ package com.yihuacomputer.fish.machine.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,7 @@ public class AtmTypeServiceTest extends BindSessionInTest2{
 	@Autowired
 	private IAtmTypeService atmTypeService;
 
+    @Ignore
 	@Test
 	public void test(){
 		IAtmType type1 = atmTypeService.make();
