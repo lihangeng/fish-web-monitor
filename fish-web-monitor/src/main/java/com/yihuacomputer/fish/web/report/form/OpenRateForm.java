@@ -1,9 +1,7 @@
 package com.yihuacomputer.fish.web.report.form;
 
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.yihuacomputer.fish.api.report.base.IDayOpenRate;
@@ -11,8 +9,6 @@ import com.yihuacomputer.fish.api.report.base.IDayOpenRate;
 public class OpenRateForm {
 
 	private DecimalFormat doubleFormat = new DecimalFormat("0.00");
-
-	private SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
 
 	private long id;
 
