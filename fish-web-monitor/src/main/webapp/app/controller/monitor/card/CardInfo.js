@@ -148,7 +148,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 						success: function(response){
 							var object = Ext.decode(response.responseText);
 							if(object.success == true){
-								Ext.MessageBox.confirm(EwayLocale.tip.confirm.title, EwayLocale.tip.confirm.info, function(
+								Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title, EwayLocale.tip.remove.confirm.info, function(
 									button, text) {
 								if (button == 'yes') {
 									var record = sm.getLastSelected();
