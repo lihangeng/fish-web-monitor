@@ -22,7 +22,7 @@ Ext.define('Eway.view.person.servicePer.FilterForm', {
 				columnWidth : .33,
 				items : [{
 					xtype : 'common_orgComboOrgTree',
-					fieldLabel :EwayLocale.commen.devServiceName,
+					fieldLabel :EwayLocale.person.serviceOrg.shortName,
 					emptyText: EwayLocale.combox.select,
 					labelWidth:140,
 					editable : false,
