@@ -56,7 +56,7 @@ Ext.define('Eway.view.monitor.card.AddCardInfo', {
 											format: 'Y-m-d H:i:s',
 											editable : false,
 											value : Ext.Date.add(new Date(), Ext.Date.DAY, 0),
-											maxValue : Ext.Date.add(Ext.Date.parse(Ext.Date.format(new Date(), 'Y-m-d') + " 23:59:59","Y-m-d H:i:s")),
+											maxValue : Ext.Date.parse(Ext.Date.format(new Date(), 'Y-m-d H:i:s'),"Y-m-d H:i:s"),
 											allowBlank : false
 										}, {
 											fieldLabel: '<font color="red">*</font> '+EwayLocale.monitor.business.card.reason,

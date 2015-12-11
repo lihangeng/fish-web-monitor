@@ -126,12 +126,16 @@ Ext.define('Eway.controller.person.BankOrg', {
 		var store = this.getGrid().getStore();
 		var sm2 = personGrid.getSelectionModel();
 		var record = sm1.getLastSelected();
+		if(sm2.getCount()!=1){
+			Eway.alert('memeda');
+			return;
+		}
 		if(sm2.getCount() == 1) {
 			record.set('userGuid',sm2.getLastSelected().data.guid);
 			record.save({
 				success : function(record,operation){
 					store.load();
-					Eway.alert(EwayLocale.tip.bankOrg.manager.set.managerSuccess);
+					Eway.alert('heheda');
 					addManagerwin.close();
 			    },
 			    failure: function(record,operation){

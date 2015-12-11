@@ -27,7 +27,8 @@ Ext.define('Eway.view.person.serviceOrg.SerLinkedDevice', {
 				title : EwayLocale.person.serviceOrg.personSerLink,
 				region: 'center',
 				padding : 1,
-				xtype : 'linkedPersonGrid'
+				xtype : 'linkedPersonGrid',
+				orgTypeName:EwayLocale.person.serviceOrg.shortName
 			}]
 		});
 		this.callParent(arguments);

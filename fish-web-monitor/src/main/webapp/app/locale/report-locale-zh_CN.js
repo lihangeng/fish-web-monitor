@@ -21,8 +21,8 @@ Ext.apply(EwayLocale,{
 			dependDev:'按设备',//EwayLocale.report.baseReport.dependDev
 			tradeRep:'交易统计报表',//EwayLocale.report.baseReport.tradeRep
 			tradeResultRep:'交易结果统计报表',//EwayLocale.report.baseReport.tradeResultRep
-			tradeDaysCountRep:'日均交易笔数趋势图',//EwayLocale.report.baseReport.tradeDaysCountRep
-			tradeHoursCountRep:'一日内时均交易笔数趋势图',//EwayLocale.report.baseReport.tradeHoursCountRep
+			tradeDaysCountRep:'日均交易笔数统计',//EwayLocale.report.baseReport.tradeDaysCountRep
+			tradeHoursCountRep:'时均交易笔数统计',//EwayLocale.report.baseReport.tradeHoursCountRep
 			tradeCount:'交易笔数',//EwayLocale.report.baseReport.tradeCount
 			caseStatisticsRep:'故障统计图',//EwayLocale.report.baseReport.caseStatisticsRep
 			angle : '统计维度',//EwayLocale.report.baseReport.angle

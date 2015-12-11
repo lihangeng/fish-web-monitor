@@ -55,7 +55,14 @@ Ext.define('Eway.view.report.baseReport.TransactionDaysCountFilterForm', {
 					fieldLabel : EwayLocale.commen.monthTime,
 					editable : false,
 					value : new Date(),
-					format : 'Y-m'
+					format : 'Y-m',
+					listeners : {
+						blur : {
+				            fn: function(This, options){
+				            	return;
+				            }
+						}
+					}
 				}
 				/*, {
 					width : 280,

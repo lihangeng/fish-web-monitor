@@ -47,7 +47,6 @@ public class DayBackupLogForm {
 			form.setEndTime(log.getEndTime());
 			if(getBackUpInfo.get(getLastDay(log.getDate())) != null)
 			{
-				System.out.println("-----------------"+getLastDay(log.getDate()));
 				form.setDeviceSucCount(getBackUpInfo.get(getLastDay(log.getDate())).getBackupSuccessNumber());
 				form.setDeviceFailCount(getBackUpInfo.get(getLastDay(log.getDate())).getBackupErrorNumber());
 			}

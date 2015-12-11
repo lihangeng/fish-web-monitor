@@ -242,12 +242,12 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 					win.close();
 					me._onFilterManagerQuery();
 				} else {
-					Eway.alert(EwayLocale.tip.business.device.logFail);
+					Eway.alert(object.errorMsg);
 				}
 			},
 			failure : function() {
 				winEl.unmask();
-				Eway.alert(EwayLocale.tip.business.device.logFail);
+				Eway.alert("memeda");
 			}
 		});
 	},

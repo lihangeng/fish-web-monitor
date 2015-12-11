@@ -5,6 +5,77 @@ Ext.define("Ext.ux.form.DateTimeField",{
 	requires:['Ext.ux.form.DateTimePicker'],
 //	value:Ext.util.Format.date(Ext.Date.add(new Date(),Ext.Date.MONTH+1,0),"Y-m-d")
 	_picker:"",
+	
+	
+	getErrors: function(value) {
+        value = arguments.length > 0 ? value : this.formatDate(this.processRawValue(this.getRawValue()));
+
+        var me = this;
+        var   format = Ext.String.format;
+        var   clearTime = Ext.Date.clearTime;
+        var   errors = [];
+        var   disabledDays = me.disabledDays;
+        var    disabledDatesRE = me.disabledDatesRE;
+        var    minValue = me.minValue;
+        var    maxValue = me.maxValue;
+        var    len = disabledDays ? disabledDays.length : 0;
+        var    i = 0;
+        var     svalue;
+        var    fvalue;
+        var    day;
+        var    time;
+
+        
+
+        if (value === null || value.length < 1) { // if it's blank and textfield didn't flag it then it's valid
+             return errors;
+        }
+
+        svalue = value;
+        value = me.parseDate(value);
+        if (!value) {
+            errors.push(format(me.invalidText, svalue, Ext.Date.unescapeFormat(me.format)));
+            return errors;
+        }
+
+        time = value.getTime();
+        if (minValue && time < minValue.getTime()) {
+            errors.push(format(me.minText, me.formatDate(minValue)));
+        }
+
+        if (maxValue && time > maxValue.getTime()) {
+            errors.push(format(me.maxText, me.formatDate(maxValue)));
+        }
+
+        if (disabledDays) {
+            day = value.getDay();
+
+            for(; i < len; i++) {
+                if (day === disabledDays[i]) {
+                    errors.push(me.disabledDaysText);
+                    break;
+                }
+            }
+        }
+
+        fvalue = me.formatDate(value);
+        if (disabledDatesRE && disabledDatesRE.test(fvalue)) {
+            errors.push(format(me.disabledDatesText, fvalue));
+        }
+
+        return errors;
+    },
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	expand: function() {
         var me = this,
             bodyEl, picker, collapseIf;
@@ -102,6 +173,10 @@ Ext.define("Ext.ux.form.DateTimeField",{
 	            disabledDaysText: me.disabledDaysText,
 	            format: me.format,
 	            oldTime:me.getValue(),
+	            minDate: me.minValue,
+	            maxDate: me.maxValue,
+	            minText: format(me.minText, me.formatDate(me.minValue)),
+	            maxText: format(me.maxText, me.formatDate(me.maxValue)),
 	            showToday: me.showToday,
 	            width:250,
 	            listeners: {
@@ -112,7 +187,18 @@ Ext.define("Ext.ux.form.DateTimeField",{
 	                esc: function() {
 	                    me.collapse();
 	                }
-	            },
+	            },    
+	            setMaxValue : function(value){
+	                var me = this,
+	                picker = me.picker,
+	                maxValue = (Ext.isString(value) ? me.parseDate(value) : value);
+
+		            me.maxValue = maxValue;
+		            if (picker) {
+		                picker.maxText = Ext.String.format(me.maxText, me.formatDate(me.maxValue));
+		                picker.setMaxDate(maxValue);
+		            }
+		        },
 	            onSelect: function() {
 //	            	Ext.Date.format(this.getValue(),'Y-m-d')+" "+Ext.Date.format(this.timefield.getValue(),'H:i:s')
 	            	me.setValue(Ext.Date.format(this.getValue(),'Y-m-d H:i:s'));

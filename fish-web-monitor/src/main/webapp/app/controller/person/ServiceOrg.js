@@ -165,6 +165,9 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 		store.setBaseParam('type', '1');
 		var data = this.getFilterForm().getForm().getValues();
 		for (var i in data) {
+			if(i=="org"){
+				continue;
+			}
 			store.setUrlParam(i, data[i])
 		}
 		store.loadPage(1);

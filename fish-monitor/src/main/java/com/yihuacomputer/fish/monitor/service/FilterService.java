@@ -132,6 +132,17 @@ public class FilterService implements IFilterService {
         return dao.page(offset, limit, filter, StatusFilter.class);
     }
 
+	@Override
+	public boolean isDuplicateName(String name) {
+		String hql = "select s from StatusFilter s where filterName = ?";
+		Object o = dao.findByHQL(hql, name);
+		if(o != null){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
     // public IClassifyBoxStatusFilter makeClassifyBoxStatusFilter() {
     // return new ClassifyBoxStatusFilter();
     // }
