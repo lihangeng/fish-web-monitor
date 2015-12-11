@@ -115,8 +115,10 @@ public class MonitorFilterController {
                     filterForm.setOrgName(orgMap.get(orgId).getName());
                 } else {
                     IOrganization org = organizationService.get(orgId);
-                    orgMap.put(orgId, org);
-                    filterForm.setOrgName(org.getName());
+                    if (org != null) {
+                        orgMap.put(orgId, org);
+                        filterForm.setOrgName(org.getName());
+                    }
                 }
             }
             

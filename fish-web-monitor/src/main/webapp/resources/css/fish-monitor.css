@@ -256,7 +256,15 @@ body .ux-notification-light {
 
 #images-view .x-panel-body {
 	background: white;
-	font: 11px Arial, Helvetica, sans-serif;
+	font: 12px Arial, Helvetica, sans-serif;
+}
+
+#images-view .labelText {
+	word-break:keep-all;           /* 不换行 */
+	white-space:nowrap;          /* 不换行 */
+	overflow:hidden;               /* 内容超出宽度时隐藏超出部分的内容 */
+	text-overflow:ellipsis;    /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+	width : 90%;
 }
 
 #images-view .thumb-wrap {

@@ -283,6 +283,9 @@ public class OrganizationService extends DomainOrganizationService {
     @Override
     public List<Long> listSubOrgId(String orgId) {
         IOrganization org = this.get(orgId);
+        if (org == null) {
+            return new ArrayList<Long>();
+        }
         return this.dao.findByHQL(this.SUB_ORG_HQL,  org.getOrgFlag() +"%");
     }
 

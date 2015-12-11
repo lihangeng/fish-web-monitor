@@ -40,7 +40,14 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					if (value == null) {
 						return EwayLocale.commen.all;
 					}
-					return record.get('orgName');
+					
+					var name = record.get('orgName');
+					
+					if (name == null) {
+						metaData.style = 'color:#BBBBBB;';
+						return value + '(已删除)';
+					}
+					return name;
 				}
 			}, {
 				header : EwayLocale.commen.devVendorName,
@@ -50,7 +57,13 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					if (value == 0) {
 						return EwayLocale.commen.all;
 					}
-					return record.get('brandItemName');
+					var name = record.get('brandItemName');
+					
+					if (name == null) {
+						metaData.style = 'color:#BBBBBB;';
+						return value + '(已删除)';
+					}
+					return name;
 				}
 			}, {
 				header : EwayLocale.commen.devTypeName,
@@ -60,7 +73,13 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					if (value == 0) {
 						return EwayLocale.commen.all;
 					}
-					return record.get('classifyItemName');
+					var name = record.get('classifyItemName');
+					
+					if (name == null) {
+						metaData.style = 'color:#BBBBBB;';
+						return value + '(已删除)';
+					}
+					return name;
 				}
 			}, {
 				header : EwayLocale.commen.insideOutside,
@@ -106,7 +125,13 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					if (value == 0) {
 						return EwayLocale.commen.all;
 					}
-					return record.get('atmGroupName');
+					var name = record.get('atmGroupName');
+					
+					if (name == null) {
+						metaData.style = 'color:#BBBBBB;';
+						return value + '(已删除)';
+					}
+					return name;
 				}
 			}, {
 				header : EwayLocale.monitor.devMonitor.comboxStatus.runStatus,

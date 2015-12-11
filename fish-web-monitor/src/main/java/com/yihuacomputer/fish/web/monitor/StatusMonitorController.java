@@ -37,6 +37,8 @@ import com.yihuacomputer.fish.api.monitor.xfs.IStateAnalysis;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
+import com.yihuacomputer.fish.api.person.IOrganization;
+import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.monitor.entity.xfs.StateAnalysis;
@@ -71,6 +73,9 @@ public class StatusMonitorController {
 
     @Autowired
     private MessageSource messageSource;
+    
+    @Autowired
+    private IOrganizationService organizationService;
 
     /**
      * 初始化设备属性信息
@@ -206,9 +211,14 @@ public class StatusMonitorController {
         }
 
         /* 机构信息 */
+        UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
         if (StringUtils.isEmpty(statusFilter.getOrgId())) {
-            UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
             statusFilter.setOrgId("" + userSession.getOrgId());
+        } else {
+            IOrganization org = organizationService.get(statusFilter.getOrgId());
+            if (org == null) {
+                statusFilter.setOrgId("" + userSession.getOrgId());
+            }
         }
 
         if (StringUtils.isNotEmpty(terminalId)) {
