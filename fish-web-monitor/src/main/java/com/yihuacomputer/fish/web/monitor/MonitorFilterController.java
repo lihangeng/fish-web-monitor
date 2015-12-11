@@ -189,8 +189,13 @@ public class MonitorFilterController {
             }
 
             statusFilter.setUserId(userId);
-            statusFilter.setFilterName(request.getParameter("filterName"));
-
+            String filterName = request.getParameter("filterName");
+            statusFilter.setFilterName(filterName);
+            if(filterService.isDuplicateName(filterName)){
+            	result.addAttribute(FishConstant.SUCCESS, false);
+            	result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("monitorFilter.duplicateName", null, FishCfg.locale));
+            	return result;
+            }
             filterService.save(statusFilter);
 
             result.addAttribute(FishConstant.SUCCESS, true);
@@ -225,9 +230,20 @@ public class MonitorFilterController {
             /* 机构信息 */
             if (StringUtils.isNotEmpty(request.getParameter("orgId"))) {
                 statusFilter.setOrgId(request.getParameter("orgId"));
+            }else{
+            	statusFilter.setOrgId(null);
+            	
             }
-
-            statusFilter.setFilterName(request.getParameter("filterName"));
+            
+            String filterName = request.getParameter("filterName");
+            String oldName = statusFilter.getFilterName();
+            
+            statusFilter.setFilterName(filterName);
+            if(!oldName.equals(filterName) && filterService.isDuplicateName(filterName)){
+            	result.addAttribute(FishConstant.SUCCESS, false);
+            	result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("monitorFilter.duplicateName", null, FishCfg.locale));
+            	return result;
+            }
 
             filterService.updateStatusFilter(statusFilter);
 

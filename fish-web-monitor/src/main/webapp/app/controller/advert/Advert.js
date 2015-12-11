@@ -970,7 +970,7 @@ Ext.define('Eway.controller.advert.Advert', {
     	adv.save({
 			 success: function(ed) {
 				 me.onQuery();
-			 	Ext.MessageBox.alert(EwayLocale.confirm.title,EwayLocale.msg.createSuccess);
+				 Eway.alert(EwayLocale.msg.createSuccess);
 				win.close();
 			 },
 			 failure: function(record,operation){

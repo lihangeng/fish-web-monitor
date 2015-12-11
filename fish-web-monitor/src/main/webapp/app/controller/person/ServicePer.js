@@ -329,7 +329,7 @@ Ext.define('Eway.controller.person.ServicePer', {
 					Eway.alert(EwayLocale.addSuccess);
 			    },
 			    failure: function(record,operation){
-					Eway.alert(EwayLocale.tip.add.error + operation.getError());
+					Eway.alert(EwayLocale.tip.add.error);
 				}
 			});
 		}
@@ -389,7 +389,7 @@ Ext.define('Eway.controller.person.ServicePer', {
 					win.close();
 				},
 				failure: function(record,operation){
-					Eway.alert(operation.getError());
+					Eway.alert(EwayLocale.msg.saveFail);
 					//解决脏数据
 					store.rejectChanges();
 				}

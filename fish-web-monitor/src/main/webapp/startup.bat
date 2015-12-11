@@ -14,7 +14,7 @@ goto :eof
 :extlibe
 
 
-SET CLASSPATH=%CLASSPATH%;
+SET CLASSPATH=%CLASSPATH%;WEB-INF\classes
 SET CLASSPATH
 java -Xms512m -Xmx1024m -verbosegc -Xloggc:logs/atmvs_gc_log.log -Dfile.encoding=UTF-8 com.yihuacomputer.fish.web.FishConsole
 

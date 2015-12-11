@@ -81,9 +81,9 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 	//	valueObj.add(openPlan.getId());
 		hql.append("and device.organization.orgFlag like ? ");
 		valueObj.add(org.getOrgFlag() + "%");
-		hql.append(" and device.devType.devCatalog.no != '01' ");
-		hql.append(" and device.devType.devCatalog.no != '05' ");
-		hql.append(" and device.devType.devCatalog.no != '08' ");
+//		hql.append(" and device.devType.devCatalog.no != '01' ");
+//		hql.append(" and device.devType.devCatalog.no != '05' ");
+//		hql.append(" and device.devType.devCatalog.no != '08' ");
 	/*	if (startCashboxLimit != null) {
 			hql.append("and device.cashboxLimit>=? ");
 			valueObj.add(startCashboxLimit.getValue());
