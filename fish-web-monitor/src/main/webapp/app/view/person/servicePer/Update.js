@@ -82,7 +82,8 @@ Ext.define('Eway.view.person.servicePer.Update', {
 				},{
 					xtype : 'field.email'
 				},{
-					xtype:'field_personRemark'
+					xtype:'field_personRemark',
+					maxLength : 200
 				}],
 				buttonAlign:'center',
 				fbar: [{
