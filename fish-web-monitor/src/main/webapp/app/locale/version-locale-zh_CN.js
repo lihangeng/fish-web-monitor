@@ -7,7 +7,7 @@ Ext.apply(EwayLocale,{
 		needRestart : '需要重启设备完成升级',// EwayLocale.versionType.needRestart
 		devTypeOfUser : '适用的设备型号',// EwayLocale.versionType.devTypeOfUser
 		winTitle : '应用类型',// EwayLocale.versionType.winTitle
-		versionTypeNameRegText : '只能输入字母(a-z或A-Z)、数字(0-9)、下划线(_)、横线(-)'// EwayLocale.versionType.versionTypeNameRegText
+		versionTypeNameRegText : '只能输入1-30个字符,字符为:字母(a-z或A-Z)、数字(0-9)、下划线(_)、横线(-)'// EwayLocale.versionType.versionTypeNameRegText
 	},
 	statics : {
 		title : '下发结果统计',// EwayLocale.statics.title
