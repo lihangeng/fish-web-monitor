@@ -9,7 +9,7 @@ PATH_SEPARATOR=:
 
 CP=`ls $APP_LIB_PATH/*.jar | paste -s -d"$PATH_SEPARATOR" - `
 
-CLASSPATH=$CP:$APP_CLASSES_PATH
+CLASSPATH=$CP:$APP_CLASSES_PATH:$APP_PATH/WEB-INF/classes
 export CLASSPATH
 
 JAVA_OPTS="-Xms1024m -Xmx1024m -verbosegc -Xloggc:logs/gc_log.log"
