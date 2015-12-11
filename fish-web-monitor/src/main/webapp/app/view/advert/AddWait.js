@@ -82,6 +82,7 @@ Ext.define('Eway.view.advert.AddWait', {
 					                store: Ext.StoreMgr.lookup("advert.AdvertValidity"),
 					                queryMode: 'local',
 					                valueField : 'value',
+					                hidden:true,
 					                name:'advertValidity',
 					                editable : false,
 					                value:'ALWAYS'

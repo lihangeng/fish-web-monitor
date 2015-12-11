@@ -64,6 +64,7 @@ Ext.define('Eway.view.advert.AddText', {
 				                queryMode: 'local',
 				                valueField : 'value',
 				                name:'advertValidity',
+				                hidden:true,
 				                editable : false,
 				                value:'ALWAYS',
 				                width:250
