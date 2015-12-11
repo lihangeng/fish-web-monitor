@@ -36,6 +36,9 @@
 			getId : function(){
 				return me.id;
 			},
+			setOrgName : function(orgName){
+				me.orgName = orgName;
+			},
 			getCode : function(){
 				return me.code;
 			},
