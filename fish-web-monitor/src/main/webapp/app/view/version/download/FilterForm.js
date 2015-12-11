@@ -17,11 +17,12 @@ Ext.define('Eway.view.version.download.FilterForm', {
 					xtype : 'combo',
 					fieldLabel : EwayLocale.version.task.updateResult,//'升级结果',
 					name : 'updateResult',
+					editable:false,
 					store : Ext.create('Ext.data.Store',{
 						fields : ['value','name'],
 						data : [
-							{'value':'1','name':EwayLocale.tip.success},//'成功'},
-							{'value':'0','name':EwayLocale.tip.fail}//'失败'}
+							{'value':'1','name':EwayLocale.version.task.updateResultSuccess},//'成功'},
+							{'value':'0','name':EwayLocale.version.task.updateResultFailed}//'失败'}
 						]
 					}),
 					queryMode : 'local',
@@ -34,6 +35,7 @@ Ext.define('Eway.view.version.download.FilterForm', {
 						xtype : 'combo',
 						fieldLabel : EwayLocale.version.taskType,//'任务类型',
 						name : 'taskType',
+						editable:false,
 						store : Ext.create('Ext.data.Store',{
 							fields : ['value','name'],
 							data : [

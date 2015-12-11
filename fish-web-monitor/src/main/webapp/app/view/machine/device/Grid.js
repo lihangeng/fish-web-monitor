@@ -59,7 +59,7 @@ Ext.define('Eway.view.machine.device.Grid', {
 				action : 'personM'
 				} ]
 			},	{
-				text :EwayLocale.button.openPlan,
+				text :EwayLocale.machine.plan.servicePlan,
 				glyph : 0xf133,
 				action : 'openPlan',
 				code : 'deviceOpenPlan',

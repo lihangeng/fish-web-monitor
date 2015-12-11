@@ -27,7 +27,6 @@ Ext.define('Eway.view.monitor.card.CardInfoView', {
 						return;
 					}
 					panel.down('card_CardInfoGrid').onReload();
-					panel.down('card_cardInfoFilterForm').down('field_card_DeviceAtmVendorComboBox').getStore().load();
 					panel.down('card_cardInfoFilterForm').down('field_card_DeviceTypeComboBox').getStore().load();
 					//刷新组织机构
 					panel.down('card_cardInfoFilterForm').down('common_orgComboOrgTree').reflesh();

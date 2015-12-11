@@ -42,7 +42,7 @@ Ext.define('Eway.view.version.View', {
 						rowspan: 5
 					} ,{
 						name: 'versionType',
-						fieldLabel : EwayLocale.versionType.title + " " + EwayLocale.version.View.versionTypeCode,//'版本路径',
+						fieldLabel : EwayLocale.version.View.versionTypeCode,//'版本路径',
 				        text: '',
 				        labelWidth: 150,
 				        labelAlign:'right',

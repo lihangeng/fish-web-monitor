@@ -26,12 +26,11 @@ Ext.define('Eway.view.agent.remote.MergeDownLoadFileListGrid', {
 			},
 			tbar: [{
 				text: EwayLocale.agent.remote.removeFile,
-				iconCls:'refresh-btn-custom',
+				glyph : 0xf014,
 				action:'removeFile',
 				xtype : 'button'
 			},{
 				text:EwayLocale.agent.remote.mergeDownLoad,
-				iconCls:'up-btn-custom',
 				action:'mergeDownLoad',
 				xtype : 'button'
 			}],			

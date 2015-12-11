@@ -10,7 +10,6 @@ Ext.define('Eway.view.version.deviceVersion.VersionHistoryWin', {
 	constrainHeader : true,
 	width : 820,
 	height: 500,
-	autoScroll : true,
 	layout: 'border',
 	
 	initComponent : function() {

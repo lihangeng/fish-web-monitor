@@ -92,7 +92,7 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 			}, {
 				header : EwayLocale.machine.serviceplan.createDateTime,
 				dataIndex : 'createDateTime',
-				width : 150
+				flex:1
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,

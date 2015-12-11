@@ -1,7 +1,7 @@
 Ext.define("Eway.view.machine.device.module.Property", {
 	extend : 'Eway.view.base.FilterForm',
 	alias : 'widget.machine_device_module_property',
-	height : 140,
+	height : 180,
 	layout : 'column',
 	defaults : {
 		border : false
@@ -18,7 +18,7 @@ Ext.define("Eway.view.machine.device.module.Property", {
 			},
 			items : [ {
 				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.device.IDC,
+				fieldLabel : EwayLocale.machine.device.idc,
 				name : 'propertyIdc',
 				minHeight : 20,
 				code : 'IDC',
@@ -27,7 +27,7 @@ Ext.define("Eway.view.machine.device.module.Property", {
 				}
 			}, {
 				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.device.JPR,
+				fieldLabel : EwayLocale.machine.device.jpr,
 				name : 'propertyJpr',
 				minHeight : 20,
 				code : 'JPR',
@@ -36,7 +36,7 @@ Ext.define("Eway.view.machine.device.module.Property", {
 				}
 			}, {
 				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.device.CDM,
+				fieldLabel : EwayLocale.machine.device.cdm,
 				name : 'propertyCdm',
 				minHeight : 20,
 				code : 'CDM',
@@ -45,7 +45,7 @@ Ext.define("Eway.view.machine.device.module.Property", {
 				}
 			}, {
 				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.device.SIU,
+				fieldLabel : EwayLocale.machine.device.siu,
 				name : 'propertySiu',
 				minHeight : 20,
 				code : 'SIU',
@@ -54,7 +54,7 @@ Ext.define("Eway.view.machine.device.module.Property", {
 				}
 			}, {
 				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.device.CIM,
+				fieldLabel : EwayLocale.machine.device.cim,
 				name : 'propertyCim',
 				minHeight : 20,
 				code : 'CIM',
@@ -63,7 +63,7 @@ Ext.define("Eway.view.machine.device.module.Property", {
 				}
 			}, {
 				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.device.TTU,
+				fieldLabel : EwayLocale.machine.device.ttu,
 				name : 'propertyTtu',
 				minHeight : 20,
 				code : 'TTU',
@@ -72,7 +72,7 @@ Ext.define("Eway.view.machine.device.module.Property", {
 				}
 			}, {
 				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.device.RPR,
+				fieldLabel : EwayLocale.machine.device.rpr,
 				name : 'propertyRpr',
 				minHeight : 20,
 				code : 'RPR',
@@ -81,10 +81,46 @@ Ext.define("Eway.view.machine.device.module.Property", {
 				}
 			}, {
 				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.device.PIN,
+				fieldLabel : EwayLocale.machine.device.pin,
 				name : 'propertyPin',
 				minHeight : 20,
 				code : 'PIN',
+				listeners : {
+					'beforerender': this.isHidden
+				}
+			}, {
+				columnWidth : .5,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.icc,
+				name : 'propertyIcc',
+				minHeight : 20,
+				code : 'ICC',
+				listeners : {
+					'beforerender': this.isHidden
+				}
+			}, {
+				columnWidth : .5,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.isc,
+				name : 'propertyIsc',
+				minHeight : 20,
+				code : 'ISC',
+				listeners : {
+					'beforerender': this.isHidden
+				}
+			}, {
+				columnWidth : .5,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.fgp,
+				name : 'propertyFgp',
+				minHeight : 20,
+				code : 'FGP',
+				listeners : {
+					'beforerender': this.isHidden
+				}
+			}, {
+				columnWidth : .5,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.pbk,
+				name : 'propertyPbk',
+				minHeight : 20,
+				code : 'PBK',
 				listeners : {
 					'beforerender': this.isHidden
 				}

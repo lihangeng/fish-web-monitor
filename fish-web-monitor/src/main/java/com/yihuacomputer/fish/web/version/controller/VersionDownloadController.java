@@ -615,7 +615,8 @@ public class VersionDownloadController {
         }
         catch (Exception e) {
             result.put(FishConstant.SUCCESS, false);
-            result.addAttribute(FishConstant.ERROR_MSG, e.getMessage());
+            logger.error(e.getMessage());
+            result.addAttribute(FishConstant.ERROR_MSG, messageSourceVersion.getMessage("task.restart.fail", null, FishCfg.locale));
         }
         return result;
     }

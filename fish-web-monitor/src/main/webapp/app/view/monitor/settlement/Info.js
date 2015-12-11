@@ -9,7 +9,7 @@ Ext.define('Eway.view.monitor.settlement.Info', {
 	height : 450,
 	layout : 'fit',
 	autoScroll : true,
-	bodyStyle : 'padding: 10px 10px 30px 10px',
+	bodyStyle : 'padding: 0px 10px 10px 10px',
 	defaults : {
 		border : false
 	},
@@ -17,8 +17,9 @@ Ext.define('Eway.view.monitor.settlement.Info', {
 		Ext.apply(this, {
 			items : {
 				xtype : 'form',
-				bodyStyle : 'padding:10px 10px 10px 10px',
-				height : 440,
+				bodyStyle : 'padding:0px 10px 0px 10px',
+				scrollable:true ,
+				height : 450,
 				defaults : {
 					anchor : '100%'
 				},
@@ -86,6 +87,7 @@ Ext.define('Eway.view.monitor.settlement.Info', {
 					xtype : 'grid',
 					store : 'monitor.settlement.SettlementDetail',
 					border : true,
+					scrollable:true ,
 					columns : [ Ext.create('Ext.grid.RowNumberer'), {
 						header : EwayLocale.monitor.business.cashInit.boxId,
 						dataIndex : 'boxId'

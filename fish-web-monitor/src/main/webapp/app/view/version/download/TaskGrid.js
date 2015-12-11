@@ -171,7 +171,7 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 										if(text.success){
 											Eway.alert(EwayLocale.version.task.sendRestartCmd);//"已发送重启命令！");
 										}else{
-											Eway.alert(text.errors);
+											Eway.alert(text.errorMsg);
 										}
 										grid.getStore().load();
 									}
@@ -210,8 +210,8 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 								if(text.success){
 									Eway.alert(EwayLocale.version.task.cancelDownloadSuccess);//"取消下发 成功！");
 								}else{
-									if(text.errors !== ""){
-										Eway.alert(text.errors);
+									if(text.errorMsg !== ""){
+										Eway.alert(text.errorMsg);
 									}
 								}
 								grid.getStore().load();

@@ -135,11 +135,11 @@ public class RemoteCommandController {
             }
             
             if ("endDate".equals(name)) {
-                filter.le("r.datetime", value);
+                filter.le("r.datetime", value+" 23:59:59");
                 continue;
             }
             if ("startDate".equals(name)) {
-                filter.ge("r.datetime", value);
+                filter.ge("r.datetime", value+" 00:00:00");
                 continue;
             }
             if ("terminalId".equals(name)) {

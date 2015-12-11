@@ -41,7 +41,6 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
@@ -236,16 +235,14 @@ public class RetaincardController {
 		logger.info("check guid: Retaincard.id = " + id);
 		try {
 			IRetaincard card = retaincardService.get(id);
-			Iterable<IOrganization> orgList = orgService.list(Long
-					.parseLong(organizationId));
-			List<IOrganization> orgs = EntityUtils.convert(orgList);
+			List<Long> orgIdList = orgService.listSubOrgId(organizationId);
+//			List<IOrganization> orgs = EntityUtils.convert(orgList);
 			if (card != null) {
 				if (card.getTreatmentOrganization() == null) {
 					result.addAttribute(FishConstant.SUCCESS, true);
 				} else {
-					IOrganization org = orgService.get(card
-							.getTreatmentOrganization().getGuid());
-					if (orgs.contains(org)) {
+//					IOrganization org = orgService.get(card.getTreatmentOrganization().getGuid());
+					if (orgIdList.contains(card.getTreatmentOrganization().getId())) {
 						result.addAttribute(FishConstant.SUCCESS, true);
 					} else {
 						result.addAttribute(FishConstant.SUCCESS, false);
@@ -765,12 +762,12 @@ public class RetaincardController {
 				if (name.equals("sort")) {
 					continue;
 				}
-				if (name.equals("endData")) {
+				if (name.equals("endDate")) {
 					filter.le("retaincard.cardRetainTime",
-							DateUtils.getTimestamp(value));
-				} else if (name.equals("startData")) {
+							DateUtils.getTimestamp(value +" 23:5:59"));
+				} else if (name.equals("startDate")) {
 					filter.ge("retaincard.cardRetainTime",
-							DateUtils.getTimestamp(value));
+							DateUtils.getTimestamp(value + " 00:00:00"));
 				} else if (name.equals("devVendorId")) {
 					filter.eq("device.devType.devVendor.id",
 							Long.valueOf(value));

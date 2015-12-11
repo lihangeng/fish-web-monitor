@@ -1,7 +1,7 @@
 Ext.define("Eway.view.machine.device.module.Status", {
 	extend : 'Eway.view.base.FilterForm',
 	alias : 'widget.machine_device_module_status',
-	height : 140,
+	height : 180,
 	layout : 'column',
 	defaults : {
 		border : false
@@ -86,6 +86,42 @@ Ext.define("Eway.view.machine.device.module.Status", {
 				name : 'statusPin',
 				minHeight : 20,
 				code : 'PIN',
+				listeners : {
+					'beforerender': this.isHidden
+				}
+			}, {
+				columnWidth : .5,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.icc,
+				name : 'statusIcc',
+				minHeight : 20,
+				code : 'ICC',
+				listeners : {
+					'beforerender': this.isHidden
+				}
+			}, {
+				columnWidth : .5,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.isc,
+				name : 'statusIsc',
+				minHeight : 20,
+				code : 'ISC',
+				listeners : {
+					'beforerender': this.isHidden
+				}
+			}, {
+				columnWidth : .5,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.fgp,
+				name : 'statusFgp',
+				minHeight : 20,
+				code : 'FGP',
+				listeners : {
+					'beforerender': this.isHidden
+				}
+			}, {
+				columnWidth : .5,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.pbk,
+				name : 'statusPbk',
+				minHeight : 20,
+				code : 'PBK',
 				listeners : {
 					'beforerender': this.isHidden
 				}

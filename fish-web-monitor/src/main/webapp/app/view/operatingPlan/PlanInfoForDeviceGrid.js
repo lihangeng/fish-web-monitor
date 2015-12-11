@@ -6,7 +6,6 @@ Ext.define('Eway.view.operatingPlan.PlanInfoForDeviceGrid', {
 	requires: ['Eway.lib.Util'],
 
 	border : false,
-
 	initComponent: function() {
 		var store = Ext.create('Eway.store.operatingPlan.OpenPlanForDevice');
 		Ext.apply(this, {
@@ -64,8 +63,7 @@ Ext.define('Eway.view.operatingPlan.PlanInfoForDeviceGrid', {
 			},*/ {
 				header :EwayLocale.machine.serviceplan.createDateTime,
 				dataIndex : 'createDateTime',
-				width : 160,
-				fiex : 1
+				flex : 1
 			}]
 		});
 

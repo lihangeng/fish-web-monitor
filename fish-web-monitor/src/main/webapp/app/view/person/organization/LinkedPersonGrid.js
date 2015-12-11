@@ -2,7 +2,9 @@
 Ext.define('Eway.view.person.organization.LinkedPersonGrid', {
 	alias: 'widget.linkedPersonGrid',
 	extend: 'Eway.view.base.Grid',
-	
+	config:{
+		orgTypeName:''
+	},
 	requires: ['Eway.lib.Util'],
 	border : false,
 	
@@ -57,7 +59,7 @@ Ext.define('Eway.view.person.organization.LinkedPersonGrid', {
 		             }
 				}
 			},{
-				header : EwayLocale.person.bankPer.organizationName,
+				header : this.getOrgTypeName(),
 				dataIndex : 'organizationName'
 			},{
 				header : EwayLocale.commen.state,

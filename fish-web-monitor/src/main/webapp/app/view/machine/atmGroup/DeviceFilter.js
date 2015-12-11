@@ -13,7 +13,6 @@ Ext.define('Eway.view.machine.atmGroup.DeviceFilter', {
 	},
 	initComponent : function() {
 		Ext.apply(this, {
-			title: EwayLocale.machine.device.addDevInfo,
 			items : [ {
 				columnWidth : .3,
 				defaults : {

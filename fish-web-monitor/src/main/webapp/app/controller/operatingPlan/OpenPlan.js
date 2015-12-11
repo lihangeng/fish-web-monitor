@@ -141,16 +141,16 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 						viewWin.close();
 						this.onOpenPlan(this.getDrivceGridWin(),cRecord.data.id,cRecord.data.terminalId,1)
 					}else{
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.tip.relatedFail);
+						Eway.alert( EwayLocale.tip.relatedFail);
 					}
 				},
 				failure: function(response){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.tip.relatedFail);
+					Eway.alert( EwayLocale.tip.relatedFail);
 				},
 				scope:this
 			});
 		}else{
-			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.tip.selectRelatedDev);
+			Eway.alert( EwayLocale.tip.selectRelatedDev);
 		}
 	},
 
@@ -172,16 +172,16 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				if(object.success == true){
 					this.onOpenPlan(this.getDrivceGridWin(),record.data.deviceId,record.data.terminalId,2);
 				}else{
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.tip.removeFail);
+					Eway.alert( EwayLocale.tip.removeFail);
 				}
 			},
 			failure: function(response){
-				Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.tip.removeFail);
+				Eway.alert( EwayLocale.tip.removeFail);
 			},
 			scope:this
 		});
 	}else{
-		Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.tip.selectRemoveDev);
+		Eway.alert( EwayLocale.tip.selectRemoveDev);
 	}
 	},
 
@@ -194,7 +194,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			//store.loadPage(1);
 			viewWin.show();
 		}else{
-			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.tip.devRelatedPlan);
+			Eway.alert( EwayLocale.tip.devRelatedPlan);
 		}
 	},
 
@@ -208,9 +208,9 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					detailWin.setTitle(EwayLocale.tip.business.device.term+terminalId+EwayLocale.machine.plan.servicePlan);
 					detailWin.show();
 					if(type==2){
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.msg.removeSuccess);
+						Eway.alert( EwayLocale.msg.removeSuccess);
 					}else if(type == 1){
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.msg.saveSuccess);
+						Eway.alert( EwayLocale.msg.saveSuccess);
 					}
 		    }
 		});
@@ -231,7 +231,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				callback: function(records, operation, success) {
 			        if(Ext.isEmpty(records)){
 			        	detailWin.close();
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.tip.planNoConf);
+			        	Eway.alert( EwayLocale.tip.planNoConf);
 			        }else{
 			        	if(record.data.planType=="DATE"){
 							detailWin.down('planInfo_grid').columns[0].hidden=true;
@@ -245,7 +245,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			    }
 			});
 		}else {
-			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.tip.choosePlan);
+			Eway.alert(EwayLocale.tip.choosePlan);
 		}
 	},
 
@@ -296,7 +296,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				infoWeekGrid.getStore().each(function(record){
 					if(weekDate.openClose != record.data.openClose){
 
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.planOlonOne);
+						Eway.alert( EwayLocale.machine.serviceplan.planOlonOne);
 					flag=false;
 					return;
 				}
@@ -331,7 +331,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				}
 			}
 			if(alertMsg!=null){
-			Ext.Msg.alert(EwayLocale.confirm.title,EwayLocale.machine.serviceplan.week+alertMsg+EwayLocale.machine.serviceplan.timeEare);
+				Eway.alert(EwayLocale.machine.serviceplan.week+alertMsg+EwayLocale.machine.serviceplan.timeEare);
 			alertMsg = null;
 			}
 		});
@@ -345,33 +345,33 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			data.startTime = data.startTimeHour + ":" + data.startTimeMinute + ":" + data.startTimeSecond;
 			data.endTime = data.endTimeHour + ":" + data.endTimeMinute + ":" + data.endTimeSecond;
 			if(data.startTime>=data.endTime){
-				Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
+				Eway.alert( EwayLocale.machine.serviceplan.timeEare);
 				return;
 			}
 			var flag = true;
 			infoDateGrid.getStore().each(function(record){
 				if(data.openClose!=record.data.openClose){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.planOlonOne);
+					Eway.alert( EwayLocale.machine.serviceplan.planOlonOne);
 					flag=false;
 					return;
 				}
 				if(data.startTime>=data.endTime){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
+					Eway.alert( EwayLocale.machine.serviceplan.timeEare);
 					flag=false;
 					return;
 				}
 				if(record.data.startTime<=data.startTime&&data.startTime<=record.data.endTime){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
+					Eway.alert( EwayLocale.machine.serviceplan.timeEare);
 					flag=false;
 					return;
 				}
 				if(record.data.startTime<=data.endTime&&data.endTime<=record.data.endTime){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
+					Eway.alert( EwayLocale.machine.serviceplan.timeEare);
 					flag=false;
 					return;
 				}
 				if(data.startTime<=record.data.startTime&&data.endTime>=record.data.endTime){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
+					Eway.alert( EwayLocale.machine.serviceplan.timeEare);
 					flag=false;
 					return;
 				}
@@ -390,7 +390,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				infoWeekGrid.getStore().remove(record);
 			}
 			else {
-				Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.choiceDeleteMsg);
+				Eway.alert( EwayLocale.choiceDeleteMsg);
 			}
 		});
 		detailDateForm.down('button[action="remove"]').on('click',function(){
@@ -400,7 +400,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				infoDateGrid.getStore().remove(record);
 			}
 			else {
-				Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.choiceDeleteMsg);
+				Eway.alert( EwayLocale.choiceDeleteMsg);
 			}
 		});
 
@@ -459,14 +459,14 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 //				Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors);
 //			}
 			failure: function(record,operation){
-				Eway.alert(EwayLocale.confirm.title, operation.getError());
+				Eway.alert( operation.getError());
 
 			 }
 
 
 		});
 		}else{
-			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.setTime);
+			Eway.alert( EwayLocale.machine.serviceplan.setTime);
     	}
 	},
 
@@ -494,7 +494,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				callback: function(records, operation, success) {
 			        if(Ext.isEmpty(records)){
 			        	detailWin.close();
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.tip.planNoConf);
+			        	Eway.alert( EwayLocale.tip.planNoConf);
 			        }else{
 			        	if(record.data.planType=="DATE"){
 							detailWin.down('planInfo_grid').columns[0].hidden=true;
@@ -568,7 +568,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				data.startTime = data.startTimeHour + ":" + data.startTimeMinute + ":" + data.startTimeSecond;
 				data.endTime = data.endTimeHour + ":" + data.endTimeMinute + ":" + data.endTimeSecond;
 				if(data.startTime>=data.endTime){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
+					Eway.alert( EwayLocale.machine.serviceplan.timeEare);
 					return;
 				}
 				var alertMsg = null;
@@ -577,7 +577,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				var flag = true;
 				infoWeekGrid.getStore().each(function(record){
 					if(data.openClose!=record.data.openClose){
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.planOlonOne);
+						Eway.alert( EwayLocale.machine.serviceplan.planOlonOne);
 						flag=false;
 						return;
 					}
@@ -612,7 +612,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					}
 				}
 				if(alertMsg!=null){
-					Ext.Msg.alert(EwayLocale.confirm.title,EwayLocale.machine.device.person.week+alertMsg+EwayLocale.machine.serviceplan.timeEare);
+					Eway.alert(EwayLocale.machine.device.person.week+alertMsg+EwayLocale.machine.serviceplan.timeEare);
 					alertMsg = null;
 				}
 			});
@@ -626,33 +626,33 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				data.startTime = data.startTimeHour + ":" + data.startTimeMinute + ":" + data.startTimeSecond;
 				data.endTime = data.endTimeHour + ":" + data.endTimeMinute + ":" + data.endTimeSecond;
 				if(data.startTime>=data.endTime){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
+					Eway.alert( EwayLocale.machine.serviceplan.timeEare);
 					return;
 				}
 				var flag = true;
 				infoDateGrid.getStore().each(function(record){
 					if(data.openClose!=record.data.openClose){
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.planOlonOne);
+						Eway.alert( EwayLocale.machine.serviceplan.planOlonOne);
 						flag=false;
 						return;
 					}
 					if(data.startTime>=data.endTime){
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
+						Eway.alert( EwayLocale.machine.serviceplan.timeEare);
 						flag=false;
 						return;
 					}
 					if(record.data.startTime<=data.startTime&&data.startTime<=record.data.endTime){
-						Ext.Msg.alert(EwayLocale.confirm.title,EwayLocale.machine.serviceplan.timeEare);
+						Eway.alert(EwayLocale.machine.serviceplan.timeEare);
 						flag=false;
 						return;
 					}
 					if(record.data.startTime<=data.endTime&&data.endTime<=record.data.endTime){
-						Ext.Msg.alert(EwayLocale.confirm.title,EwayLocale.machine.serviceplan.timeEare);
+						Eway.alert(EwayLocale.machine.serviceplan.timeEare);
 						flag=false;
 						return;
 					}
 					if(data.startTime<=record.data.startTime&&data.endTime>=record.data.endTime){
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.timeEare);
+						Eway.alert( EwayLocale.machine.serviceplan.timeEare);
 						flag=false;
 						return;
 					}
@@ -671,7 +671,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					infoWeekGrid.getStore().remove(record);
 				}
 				else {
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.choiceDeleteMsg);
+					Eway.alert( EwayLocale.choiceDeleteMsg);
 				}
 			});
 			detailDateForm.down('button[action="remove"]').on('click',function(){
@@ -681,7 +681,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					infoDateGrid.getStore().remove(record);
 				}
 				else {
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.choiceDeleteMsg);
+					Eway.alert( EwayLocale.choiceDeleteMsg);
 				}
 			});
 
@@ -742,12 +742,12 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			},
 			failure: function(record,operation){
 				if(operation.request.scope.reader.jsonData.type==null){
-					Ext.Msg.alert(EwayLocale.confirm.title, operation.getError(),function(){
+					Eway.alert( operation.getError(),function(){
 						//解决脏数据
 						store.rejectChanges();
 					});
 				}else{
-					Ext.Msg.alert(EwayLocale.confirm.title, operation.getError(),function(){
+					Eway.alert( operation.getError(),function(){
 						//解决脏数据
 						store.rejectChanges();
 						win.close();
@@ -758,7 +758,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 
 		});
 		}else{
-			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.setTime);
+			Eway.alert( EwayLocale.machine.serviceplan.setTime);
     	}
 
 	},
@@ -856,19 +856,19 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				success: function(response){
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.msg.removeSuccess,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
+						Eway.alert( EwayLocale.msg.removeSuccess,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 					}else{
-						Ext.Msg.alert(EwayLocale.confirm.title, Ext.decode(response.responseText).errorMsg+EwayLocale.machine.serviceplan.placeRefresh,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
+						Eway.alert( Ext.decode(response.responseText).errorMsg+EwayLocale.machine.serviceplan.placeRefresh,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 					}
 				},
 				failure: function(response){
-					Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.msg.removeSuccess);
+					Eway.alert( EwayLocale.msg.removeSuccess);
 				},
 				scope:this
 			});
 
 		}else{
-			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.tip.selectRemoveDev);
+			Eway.alert( EwayLocale.tip.selectRemoveDev);
 		}
 	},
 	onlinkRefrece:function(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid){
@@ -903,13 +903,13 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				success: function(response){
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
-						Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.linkSuccess,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
+						Eway.alert( EwayLocale.machine.serviceplan.linkSuccess,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 						 var field = linkingDeviceForm.findField("deviceIds");
 		                 field.setValue("");
 		                 idArray = new Array();
 
 					}else{
-						Ext.Msg.alert(EwayLocale.confirm.title, Ext.decode(response.responseText).errors+EwayLocale.machine.serviceplan.tipAddError,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
+						Eway.alert( Ext.decode(response.responseText).errors+EwayLocale.machine.serviceplan.tipAddError,this.onlinkRefrece(linkedPanel,linkingPanel,linkedDeviceGrid,linkingDeviceGrid));
 						 var field = linkingDeviceForm.findField("deviceIds");
 		                 field.setValue("");
 		                 idArray = new Array();
@@ -919,7 +919,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					winEl.unmask();
 				},
 				failure: function(response){
-					Ext.Msg.alert(EwayLocale.confirm.title, Ext.decode(response.responseText).errorMsg+"条关联失败，请刷新后查看！");
+					Eway.alert( Ext.decode(response.responseText).errorMsg+"条关联失败，请刷新后查看！");
 					 var field = linkingDeviceForm.findField("deviceIds");
 	                 field.setValue("");
 	                 idArray = new Array();
@@ -930,7 +930,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				scope:this
 			});
 		}else{
-			Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.tip.selectRelatedDev);
+			Eway.alert( EwayLocale.tip.selectRelatedDev);
 		}
 	},
 
@@ -961,7 +961,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 								failure: function(record,operation){
 									//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
 									record.dropped = false;
-									Ext.Msg.alert(EwayLocale.confirm.title, operation.getError());
+									Eway.alert( operation.getError());
 									grid.getStore().load();
 								},
 								scope:this
@@ -1038,7 +1038,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 						msg="<a class='link' href='api/plan/downloadFile'>"
 						+ action.result.message + EwayLocale.machine.serviceplan.tipExportSuccess +action.result.total + EwayLocale.machine.serviceplan.tipLookUp+"</a>"
 					}
-					 Ext.Msg.alert(EwayLocale.confirm.title, msg,function callback(){
+					Eway.alert( msg,function callback(){
 			    		  Ext.Ajax.request({
 			    				method : 'POST',
 			    				url : 'api/plan/delFile'
@@ -1048,7 +1048,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				  	}
 				    },
 				    failure: function(form, action) {
-				    	    Ext.Msg.alert(EwayLocale.confirm.title, EwayLocale.machine.serviceplan.fileNotAllowed);
+				    	Eway.alert( EwayLocale.machine.serviceplan.fileNotAllowed);
 				    },
 				   scope: this
 			});

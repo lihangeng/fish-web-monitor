@@ -63,7 +63,7 @@ Ext.define('Eway.view.advert.field.TextResourceFieldSet', {
 		            minValue: 1,
 		            maxValue: 60,
 		            name:'playTime',
-		            width:50
+		            width:75
 		        },{
 		        	xtype: 'displayfield',
 		        	value :EwayLocale.advert.timesTips//'单位:秒，提示：广告播放时长请控制在60秒内'
@@ -109,9 +109,10 @@ Ext.define('Eway.view.advert.field.TextResourceFieldSet', {
 		                store: Ext.StoreMgr.lookup("Hour"),
 		                queryMode: 'local',
 		                valueField : 'value',
+		                editable:false,
 		                value:'00',
 		                name: 'hour',
-		                width:50
+		                width:75
 		            },
 		            {xtype: 'displayfield', value: EwayLocale.advert.hourDisplay},//'时'},
 		            {
@@ -121,20 +122,22 @@ Ext.define('Eway.view.advert.field.TextResourceFieldSet', {
 		                store: Ext.StoreMgr.lookup("Minute"),
 		                queryMode: 'local',
 		                valueField : 'value',
+		                editable:false,
 		                value:'00',
 		                name:'minute',
-		                width:50
+		                width:75
 		            }, {xtype: 'displayfield', value: EwayLocale.advert.minuteDisplay},//'分'},
 		            {
 		            	xtype: 'combobox',
 		            	fieldLabel: 'second',
 		                displayField: 'display',
 		                store: Ext.StoreMgr.lookup("Minute"),
+		                editable:false,
 		                queryMode: 'local',
 		                valueField : 'value',
 		                value:'00',
 		                name:'second',
-		                width:50
+		                width:75
 		            },
 		            {xtype: 'displayfield', value: EwayLocale.advert.secondDisplay}//'秒'}
 
@@ -154,10 +157,11 @@ Ext.define('Eway.view.advert.field.TextResourceFieldSet', {
 		                displayField: 'display',
 		                store: Ext.StoreMgr.lookup("Hour"),
 		                queryMode: 'local',
+		                editable:false,
 		                valueField : 'value',
 		                value:'23',
 		                name:'hour',
-		                width:50
+		                width:75
 		            },
 		            {xtype: 'displayfield', value: EwayLocale.advert.hourDisplay},//'时'},
 		            {
@@ -168,8 +172,9 @@ Ext.define('Eway.view.advert.field.TextResourceFieldSet', {
 		                queryMode: 'local',
 		                valueField : 'value',
 		                value:'59',
+		                editable:false,
 		                name:'minute',
-		                width:50
+		                width:75
 		            }, {xtype: 'displayfield', value: EwayLocale.advert.minuteDisplay},//'分'},
 		            {
 		            	xtype: 'combobox',
@@ -179,8 +184,9 @@ Ext.define('Eway.view.advert.field.TextResourceFieldSet', {
 		                queryMode: 'local',
 		                valueField : 'value',
 		                value:'59',
+		                editable:false,
 		                name:'second',
-		                width:50
+		                width:75
 		            },
 		            {xtype: 'displayfield', value: EwayLocale.advert.secondDisplay}//'秒'}
 		           ]

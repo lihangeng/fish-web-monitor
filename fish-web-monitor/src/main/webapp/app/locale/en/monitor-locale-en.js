@@ -185,7 +185,7 @@ Ext.apply(EwayLocale,{
 			},
 			card:{
 				title:'Retained Card',//EwayLocale.monitor.business.card.title 吞卡管理
-				addTitle:'Add',//EwayLocale.monitor.business.card.addTitle 增加吞卡信息
+				addTitle:'Add Retained Card Information',//EwayLocale.monitor.business.card.addTitle 增加吞卡信息
 				time:'Time',//EwayLocale.monitor.business.card.time 吞卡时间
 				reason:'Reason',//EwayLocale.monitor.business.card.reason  吞卡原因
 				destroy:'Destroy',//EwayLocale.monitor.business.card.destory 吞卡销毁
@@ -409,7 +409,7 @@ Ext.apply(EwayLocale,{
 			versionInfo:'The version information :',//您要查看的版本信息如下:
 			ATMCVersion:'Version of ATMC application',//ATMC应用版本
 			monitorVersion: 'Version of monintor client',//监控客户端版本
-			mergeload:'Check the list of download',//查看下载列表
+			mergeload:'list of download',//查看下载列表
 			mergeDownLoad:'Execute the task of download',//执行下载任务
 			clickAddLoadFile:'Add the list of download on click',//单击添加到下载列表
 			removeFile:'Remove the file from list',//删除
@@ -419,7 +419,10 @@ Ext.apply(EwayLocale,{
 			backupAppLogsFail:'backup atmc logs faile.',
 			backupLogSucList:' backup atmc logs list success.',
 			backupLogFailList:' backup atmc logs list failed.',
-
+			exitDownLoadFile:'add failed,the file have exited in the list of download.',
+			maxDownLoadFileSize:'add failed ,all the fileSize must less than 200M.',
+            removeSuccess:'delete success.',
+			addFileSuccess:'add file to list success.',
 		}
 	}
 });

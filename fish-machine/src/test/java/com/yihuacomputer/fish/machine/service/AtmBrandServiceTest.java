@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,7 @@ public class AtmBrandServiceTest extends BindSessionInTest2{
 	@Autowired
 	private IAtmBrandService atmBrandService;
 
+    @Ignore
 	@Test
 	public void test(){
 		IAtmVendor vendor = atmBrandService.make();

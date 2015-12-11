@@ -12,7 +12,11 @@ Ext.define("Eway.view.machine.device.DeviceModuleStatus", {
 			'Eway.view.machine.device.module.StatusJPR',
 			'Eway.view.machine.device.module.StatusPIN',
 			'Eway.view.machine.device.module.StatusRPR',
-			'Eway.view.machine.device.module.StatusTTU' ],
+			'Eway.view.machine.device.module.StatusTTU',
+			'Eway.view.machine.device.module.StatusISC',
+			'Eway.view.machine.device.module.StatusICC',
+			'Eway.view.machine.device.module.StatusFGP',
+			'Eway.view.machine.device.module.StatusPBK' ],
 
 	layout : 'border',
 	autoScroll: false,
@@ -54,6 +58,18 @@ Ext.define("Eway.view.machine.device.DeviceModuleStatus", {
 				}, {
 					itemId : 'siuid',
 					xtype : 'machine_device_module_statussiu'
+				}, {
+					itemId : 'iccid',
+					xtype : 'machine_device_module_statusicc'
+				}, {
+					itemId : 'iscid',
+					xtype : 'machine_device_module_statusisc'
+				}, {
+					itemId : 'fgpid',
+					xtype : 'machine_device_module_statusfgp'
+				}, {
+					itemId : 'pbkid',
+					xtype : 'machine_device_module_statuspbk'
 				} ]
 			} ]
 		});

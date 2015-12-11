@@ -81,8 +81,7 @@ public class DaybackupInfoController {
 
 		String startDate = request.getParameter("startDate");
 		String endDate = request.getParameter("endDate");
-		String result = request.getParameter("dayBackupResult");
-
+		String result = request.getParameter("dayBackupResult");   
 		if (startDate != null && !startDate.isEmpty()) {
 			filter.ge("date", startDate);
 		}

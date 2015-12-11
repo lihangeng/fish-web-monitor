@@ -620,9 +620,9 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 			modal: true,
 			height: 520,
 		    width: 850,
-		    title : EwayLocale.monitor.devMonitor.remote.screen,
-		    autoScroll : true,
-		    maximizable: true,
+		    title : EwayLocale.monitor.remoteCommand.titile,
+//		    autoScroll : true,
+//		    maximizable: true,
 		    layout : 'border',
 		    items:[ {
 		    	region : 'center',
@@ -800,15 +800,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 						},
 						success : function(response) {
 							winEl.unmask();
-							Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
-//							var object = Ext.decode(response.responseText);
-//							if (object.appRet == 00) {
-//								winEl.unmask();
-//								Eway.alert(EwayLocale.tip.business.device.openSuccess);
-//							} else {
-//								winEl.unmask();
-//								 Eway.alert(EwayLocale.tip.business.device.openFail);
-//							}
+//							Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
+							var object = Ext.decode(response.responseText);
+							if (object.success && object.success == true) {
+								winEl.unmask();
+								Eway.alert(EwayLocale.tip.business.device.openSuccess);
+							} else {
+								winEl.unmask();
+								 Eway.alert(EwayLocale.tip.business.device.openFail);
+							}
 						},
 						failure: function(){
 							winEl.unmask();
@@ -841,15 +841,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 						},
 						success : function(response) {
 							winEl.unmask();
-							Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
-//							var object = Ext.decode(response.responseText);
-//							if (object.appRet == 00) {
-//								winEl.unmask();
-//								Eway.alert(EwayLocale.tip.business.device.closeServiceSuccess);
-//							} else {
-//								winEl.unmask();
-//								Eway.alert(EwayLocale.tip.business.device.closeServiceFail);
-//							}
+//							Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
+							var object = Ext.decode(response.responseText);
+							if (object.success && object.success == true) {
+								winEl.unmask();
+								Eway.alert(EwayLocale.tip.business.device.closeServiceSuccess);
+							} else {
+								winEl.unmask();
+								Eway.alert(EwayLocale.tip.business.device.closeServiceFail);
+							}
 						},
 						failure: function(){
 							winEl.unmask();
@@ -1009,15 +1009,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 								},
 								success : function(response) {
 									winEl.unmask();
-									Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
-//									var object = Ext.decode(response.responseText);
-//									if (object.appRet == 00) {
-//										winEl.unmask();
-//										Eway.alert(EwayLocale.tip.business.device.rebootSucess);
-//									} else {
-//										winEl.unmask();
-//										Eway.alert(EwayLocale.tip.business.device.rebootFail);
-//									}
+//									Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
+									var object = Ext.decode(response.responseText);
+									if (object.success && object.success == true) {
+										winEl.unmask();
+										Eway.alert(EwayLocale.tip.business.device.rebootSucess);
+									} else {
+										winEl.unmask();
+										Eway.alert(EwayLocale.tip.business.device.rebootFail);
+									}
 								},
 								failure: function(){
 									winEl.unmask();
@@ -1053,15 +1053,15 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 								},
 								success : function(response) {
 									winEl.unmask();
-									Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
-//									var object = Ext.decode(response.responseText);
-//									if (object.appRet == 00) {
-//										winEl.unmask();
-//										Eway.alert(EwayLocale.tip.business.device.forceRebootSuccess);
-//									} else {
-//										winEl.unmask();
-//										Eway.alert(EwayLocale.tip.business.device.forceRebootFail);
-//									}
+//									Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
+									var object = Ext.decode(response.responseText);
+									if (object.success && object.success == true) {
+										winEl.unmask();
+										Eway.alert(EwayLocale.tip.business.device.forceRebootSuccess);
+									} else {
+										winEl.unmask();
+										Eway.alert(EwayLocale.tip.business.device.forceRebootFail);
+									}
 								},
 								failure: function(){
 									winEl.unmask();
@@ -1110,17 +1110,16 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					},
 					success : function(response) {
 						winEl.unmask();
-						Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
+//						Eway.alert(EwayLocale.tip.business.device.remoteCommandMsg);
 						
-						
-//						var object = Ext.decode(response.responseText);
-//						if (object.appRet == 00) {
-//							winEl.unmask();
-//							Eway.alert(EwayLocale.tip.business.device.resetSuccess);
-//						} else {
-//							winEl.unmask();
-//							Eway.alert(EwayLocale.tip.business.device.resetFail);
-//						}
+						var object = Ext.decode(response.responseText);
+						if (object.success && object.success == true) {
+							winEl.unmask();
+							Eway.alert(EwayLocale.tip.business.device.resetSuccess);
+						} else {
+							winEl.unmask();
+							Eway.alert(EwayLocale.tip.business.device.resetFail);
+						}
 					},
 					failure: function(){
 						winEl.unmask();

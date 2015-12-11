@@ -106,14 +106,17 @@ Ext.apply(EwayLocale,{
 		device:{
 			title:'Deivce Info',//设备信息管理
 			devDetailInfo:'Module Info',//设备模块详细信息
-		    IDC:'Card reader(IDC)',
-			JPR:'Log printer(JPR)',
-			CDM:'Draw module(CDM)',
-			SIU:'Sensor module(SIU)',
-			CIM:'Deposit module(CIM)',
-			TTU:'Text terminal(TTU)',
-			RPR:'Voucher printer(RPR)',
-			PIN:'Pin keyboard(PIN)',
+		    idc:'Card reader',
+			jpr:'Log printer',
+			cdm:'Draw module',
+			siu:'Sensor module',
+			cim:'Deposit module',
+			ttu:'Text terminal',
+			rpr:'Voucher printer',
+			pin:'Pin keyboard',
+			icc:'Card Dispenser',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
+			fgp:'Finger Printer',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
+			pbk:'Passbook Printer',//EwayLocale.monitor.devMonitor.mod.pbk 存折打印机
 			CDMInfo:'Draw module（CDM）property',
 			hasStack:'是否具有暂存器',
 			hasShutter:'Shutter door exist',//是否具有shutter门
@@ -156,7 +159,18 @@ Ext.apply(EwayLocale,{
 			JPRInfo:'Log printer(JPR) property',
 			canEject:'Ability of quit paper',//是否具有退纸能力
 			canCapture:'Ability of recovery',//是否具有回收能力
-			canStack:'是否具有暂存能力',//是否具有暂存能力
+			canStack:'Ability of deposit',//是否具有暂存能力
+			
+			ISCInfo:'ID Scanner(ISC) property',
+			
+			ICCInfo:'Card dispenser(ICC) property',
+			dispenseCard:'Ability of read',//是否具有发卡读能力
+			
+			FGPInfo:'Finger Printer(FGP) property',
+			fgp_variant:'Finger type',//指纹仪类型
+			canCompare:'Ability of compare',//是否具有比较特值功能
+			
+			PBKInfo:'Passbook printer(PBK) property',
 
 			PINInfo:'Pin keyboard(PIN) property',
 			canEBC:'EBC',//能否EBC
@@ -177,7 +191,6 @@ Ext.apply(EwayLocale,{
 			canEject:'Ability of quit paper',//是否具有退纸能力
 			canCapture:'Ability of recovery',//是否具有回收能力
 
-			canStack:'是否具有暂存能力',
 			maxRetract:'Max count of recovery paper',//最大回收张数
 
 			SIUInfo:'SIU property',//SIU能力属性信息
@@ -264,7 +277,15 @@ Ext.apply(EwayLocale,{
 			cimGuidelight:'Guide CIM light',//CIM导引灯状态
 
 			TTUStatus:'Text terminal(TTU) status',//文本终端单元(TTU)状态信息
-
+			
+			ISCStatus:'ID Scanner(ISC) status',//身份证扫描仪(ISC)状态信息
+			
+			ICCStatus:'Card dispenser(ICC) status',//发卡器(ICC)状态信息
+			
+			FGPStatus:'Finger Printer(FGP) status',//指纹仪(FGP)状态信息
+			
+			PBKStatus:'Passbook printer(PBK) status',//存折打印机(PBK)状态信息
+			
 			devPerson:'Deivce person',//设备人员信息
 			devModuleMsg:'Device module property',//设备模块属性信息
 			devBasicMsg:'Basic info',//设备基本信息
@@ -443,7 +464,7 @@ Ext.apply(EwayLocale,{
 			notSupport:'Unsupport',//不支持
 			drive:'Driver',//驱动
 			firmway: 'Firmware',//固件
-			noDevice:'No device',//无设备
+			noDevice:'NoDevice',//无设备
 			devTypeInfo: 'Device Type',//设备型号信息
 
 			devInfo:'Device info',//设备信息
@@ -598,7 +619,7 @@ Ext.apply(EwayLocale,{
 		backupDate:'Back-up date',//EwayLocale.atmLog.backupDate 备份日期
 		dayBackupResult:'Back-up result',//EwayLocale.atmLog.dayBackupResult 当日备份结果
 		backupProcess:'Backing-up',//EwayLocale.atmLog.backupProcess 正在备份
-		backupSuccess:'Back-up successful',//EwayLocale.atmLog.backupSuccess 备份成功
+		backupSuccess:'successful',//EwayLocale.atmLog.backupSuccess 备份成功
 		backupError:'Back-up error',//EwayLocale.atmLog.backupError 备份错误
 		logDevAccount:'Log back-up machine count total',//EwayLocale.atmLog.logDevAccount 日志设备数量累计
 		logDevSucAccount:'Number of backup success',//EwayLocale.atmLog.logDevSucAccount

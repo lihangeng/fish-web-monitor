@@ -2,6 +2,7 @@ package com.yihuacomputer.fish.machine.service;
 
 import java.util.Date;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import com.yihuacomputer.fish.machine.H2TestConfig;
 public class AtmMoveServiceTest extends BindSessionInTest2 {
 	@Autowired
 	private IAtmMoveService atmMoveService;
-
+	@Ignore
 	@Test
 	public void test() {
 

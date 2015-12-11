@@ -208,7 +208,7 @@ Ext.apply(EwayLocale,{
 			downloaded:'Issued',//EwayLocale.version.taskStatus.downloaded 已下发
 			downloadedFail:'Issue failed',//EwayLocale.version.taskStatus.downloadedFail 下发失败
 			deployed:'Installing',//EwayLocale.version.taskStatus.deployed 正在部署
-			deployedWait:'Wait for install',//EwayLocale.version.taskStatus.deployedWait 等待部署
+			deployedWait:'WaitInstall',//EwayLocale.version.taskStatus.deployedWait 等待部署
 			deployedFail:'Install failed',//EwayLocale.version.taskStatus.deployedFail 部署失败
 			checked:'Finish',//EwayLocale.version.taskStatus.checked 部署已确认
 			noticeOk:'Noticed',//EwayLocale.version.taskStatus.noticeOk 已通知应用
@@ -282,7 +282,9 @@ Ext.apply(EwayLocale,{
 			deleting:'Deleting......',//EwayLocale.version.task.deleting 正在删除
 			cancelSuccessBut:'Cancel the task in the job which has not run yet successful,the status is "running" at the present,please refresh the list',//EwayLocale.version.task.cancelSuccessBut
 			cancelJobSuccess:'Cancel job successful',//EwayLocale.version.task.cancelJobSuccess 成功撤销作业
-			updateResult:'Update result'	//EwayLocale.version.task.updateResult 升级结果
+			updateResult:'Update result',	//EwayLocale.version.task.updateResult 升级结果
+			updateResultSuccess:'Successful',	//EwayLocale.version.task.updateResultSuccess 升级结果
+			updateResultFailed:'Failed'	//EwayLocale.version.task.updateResultFailed 升级结果
 		}
 	}
 });

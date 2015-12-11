@@ -26,9 +26,9 @@ Ext.define('Eway.view.version.deviceVersion.VersionHistoryGrid', {
 			},{
 				header: EwayLocale.version.View.versionFile,//'版本文件',
 				dataIndex:'fullName'
-			},{
-				header : EwayLocale.version.task.downloadUser,//'下发人',
-				dataIndex : 'userName'
+//			},{
+//				header : EwayLocale.version.task.downloadUser,//'下发人',
+//				dataIndex : 'userName'
 			},{
 				header : EwayLocale.version.task.downloadTime,//'下发时间',
 				dataIndex : 'downTime'

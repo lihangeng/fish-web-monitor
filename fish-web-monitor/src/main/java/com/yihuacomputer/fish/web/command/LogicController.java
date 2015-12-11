@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishConstant;
+import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.FishWebUtils;
 import com.yihuacomputer.fish.api.monitor.business.CommandResult;
@@ -52,11 +53,25 @@ public class LogicController {
         RemoteCommand rc = new RemoteCommand();
         rc.setId(hist.getId());
 
-        Runnable runnable = new RemoteCommandRunnable(url, null, "POST", hist.getId(), remoteCommHistService);
-        Thread thread = new Thread(runnable);
-        thread.start();
+//        Runnable runnable = new RemoteCommandRunnable(url, null, "POST", hist.getId(), remoteCommHistService);
+//        Thread thread = new Thread(runnable);
+//        thread.start();
 
-        result.put(FishConstant.SUCCESS, true);
+        try {
+
+            HttpProxy.httpPost(url, rc, null, 5000);
+            
+            result.put(FishConstant.SUCCESS, true);
+        }
+        catch (Exception e) {
+            
+            result.put(FishConstant.SUCCESS, false);
+            
+            hist.setCommandResult(CommandResult.CONNECT_FAIL);
+            remoteCommHistService.update(hist);
+        }
+        
+        
         return result;
     }
 
@@ -80,11 +95,26 @@ public class LogicController {
         RemoteCommand rc = new RemoteCommand();
         rc.setId(hist.getId());
 
-        Runnable runnable = new RemoteCommandRunnable(url, null, "POST", hist.getId(), remoteCommHistService);
-        Thread thread = new Thread(runnable);
-        thread.start();
+//        Runnable runnable = new RemoteCommandRunnable(url, null, "POST", hist.getId(), remoteCommHistService);
+//        Thread thread = new Thread(runnable);
+//        thread.start();
+//
+//        result.put(FishConstant.SUCCESS, true);
+        
+        try {
 
-        result.put(FishConstant.SUCCESS, true);
+            HttpProxy.httpPost(url, rc, null, 5000);
+            
+            result.put(FishConstant.SUCCESS, true);
+        }
+        catch (Exception e) {
+            
+            result.put(FishConstant.SUCCESS, false);
+            
+            hist.setCommandResult(CommandResult.CONNECT_FAIL);
+            remoteCommHistService.update(hist);
+        }
+        
         return result;
 
     }
@@ -109,11 +139,26 @@ public class LogicController {
         RemoteCommand rc = new RemoteCommand();
         rc.setId(hist.getId());
 
-        Runnable runnable = new RemoteCommandRunnable(url, rc, "POST", hist.getId(), remoteCommHistService);
-        Thread thread = new Thread(runnable);
-        thread.start();
+//        Runnable runnable = new RemoteCommandRunnable(url, rc, "POST", hist.getId(), remoteCommHistService);
+//        Thread thread = new Thread(runnable);
+//        thread.start();
+//
+//        result.put(FishConstant.SUCCESS, true);
+        
+        try {
 
-        result.put(FishConstant.SUCCESS, true);
+            HttpProxy.httpPost(url, rc, null, 5000);
+            
+            result.put(FishConstant.SUCCESS, true);
+        }
+        catch (Exception e) {
+            
+            result.put(FishConstant.SUCCESS, false);
+            
+            hist.setCommandResult(CommandResult.CONNECT_FAIL);
+            remoteCommHistService.update(hist);
+        }
+        
         return result;
     }
 }
