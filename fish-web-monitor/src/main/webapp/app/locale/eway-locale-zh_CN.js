@@ -202,7 +202,8 @@ Ext.apply(EwayLocale,{
 				set:{
 					chooseOrg:'请选择您要设置的机构.',//EwayLocale.tip.bankOrg.manager.set.chooseOrg
 					managerSuccess:'设置管理员成功.',//EwayLocale.tip.bankOrg.manager.set.managerSuccess
-					managerFail:'设置管理员失败.'//EwayLocale.tip.bankOrg.manager.set.managerFail
+					managerFail:'设置管理员失败.',//EwayLocale.tip.bankOrg.manager.set.managerFail
+					chooseOneManager:'请至少选择一条记录'//EwayLocale.tip.bankOrg.manager.set.chooseOneManager
 				},
 				remove:{
 					confirm:'是否删除该机构管理员?',//EwayLocale.tip.bankOrg.manager.remove.confirm

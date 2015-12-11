@@ -42,7 +42,14 @@ Ext.define('Eway.view.report.openrate.FilterForm', {
 					hidden : true,
 					value : new Date(),
 					editable : false,
-					format : 'Y'
+					format : 'Y',
+					listeners : {
+						blur : {
+				            fn: function(This, options){
+				            	return;
+				            }
+						}
+					}
 				}, {
 					width : 280,
 					name : 'month',
@@ -51,7 +58,14 @@ Ext.define('Eway.view.report.openrate.FilterForm', {
 					editable : false,
 					hidden : true,
 					value : new Date(),
-					format : 'Y-m'
+					format : 'Y-m',
+					listeners : {
+						blur : {
+				            fn: function(This, options){
+				            	return;
+				            }
+						}
+					}
 				}, {
 					width : 280,
 					name : 'day',
@@ -60,7 +74,14 @@ Ext.define('Eway.view.report.openrate.FilterForm', {
 					editable : false,
 					value : Ext.Date.format(Ext.Date.add(new Date(), Ext.Date.DAY, -1),'Y-m-d'),
 					maxValue : Ext.Date.format(Ext.Date.add(new Date(), Ext.Date.DAY, -1),'Y-m-d'),
-					format : 'Y-m-d'
+					format : 'Y-m-d',
+					listeners : {
+						blur : {
+				            fn: function(This, options){
+				            	return;
+				            }
+						}
+					}
 				} ]
 			} ]
 		});
