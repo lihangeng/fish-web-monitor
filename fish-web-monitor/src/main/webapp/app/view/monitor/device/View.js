@@ -38,7 +38,7 @@ Ext.define('Eway.view.monitor.device.View',{
 						EwayLocale.monitor.devMonitor.monitorState+':', {
 							xtype : 'label',
 							id:'filterLabelInfo',
-							value:''
+							cls : 'labelText'
 						}
 					],
 					dockedItems: [ {

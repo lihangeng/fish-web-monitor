@@ -268,12 +268,24 @@ public class DeviceGroupRelation implements IDeviceGroupRelation {
 
         StringBuffer hql = new StringBuffer();
         IOrganization org = orgService.get(orgId);
+        
+        if (org == null) {
+            return new ArrayList<IDevice>();
+        }
 
         hql.append("select device from Device device ,DeviceGroupObj deviceGroupObj ");
         hql.append("where device.id = deviceGroupObj.deviceId and deviceGroupObj.groupId = ? and device.organization.orgFlag like ? ");
 
         List<IDevice> listDevice = dao.findByHQL(hql.toString(), atmGroupId, org.getOrgFlag() + "%");
         return listDevice;
+    }
+
+    @Override
+    public void remoteGroupById(long groupId) {
+        
+        String hql = "delete from DeviceGroupObj where groupId = ? ";
+        dao.batchUpdate(hql, groupId);
+        
     }
 
 }

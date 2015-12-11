@@ -60,4 +60,11 @@ public interface IDeviceGroupRelation {
      * @return
      */
     public List<IDevice> listByDevice(long atmGroupId, String orgId);
+
+    /**
+     * 根据分组ID,删除与该ID相关联的设备
+     * 
+     * @param groupId
+     */
+    public void remoteGroupById(long groupId);
 }

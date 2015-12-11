@@ -661,21 +661,33 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		// 所属机构
 		if (record.get('orgId') && record.get('orgId') != 0) {
 			msg += ' ' + EwayLocale.machine.atmGroup.orgName + '[';
-			msg += record.get('orgName');
+			if (record.get('orgName')) {
+				msg += record.get('orgName');
+			} else {
+				msg += '<font color="#BBBBBB">'+ record.get('orgId') + '</font>';
+			}
 			msg +=']';
 		}
 		
 		// 品牌
 		if (record.get('brandItem') && record.get('brandItem') != 0) {
 			msg += ' ' + EwayLocale.commen.devVendorName + '[';
-			msg += record.get('brandItemName');
+			if (record.get('brandItemName')) {
+				msg += record.get('brandItemName');
+			} else {
+				msg += '<font color="#BBBBBB">'+ record.get('brandItem') + '</font>';
+			}
 			msg +=']';
 		}
 		
 		// 型号
 		if (record.get('classifyItem') && record.get('classifyItem') != 0) {
 			msg += ' ' + EwayLocale.commen.devTypeName + '[';
-			msg += record.get('classifyItemName');
+			if (record.get('classifyItemName')) {
+				msg += record.get('classifyItemName');
+			} else {
+				msg += '<font color="#BBBBBB">'+ record.get('classifyItem') + '</font>';
+			}
 			msg +=']';
 		}
 		
@@ -708,7 +720,11 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		// 分组
 		if (record.get('atmGroup') && record.get('atmGroup') != 0) {
 			msg += ' ' + EwayLocale.monitor.devMonitor.atmGroup + '[';
-			msg += record.get('atmGroupName');
+			if (record.get('atmGroupName')) {
+				msg += record.get('atmGroupName');
+			} else {
+				msg += '<font color="#BBBBBB">'+ record.get('atmGroup') + '</font>';
+			}
 			msg +=']';
 		}	
 		
@@ -853,13 +869,8 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		if (msg.length == 0) {
 			msg = EwayLocale.commen.all;
 		}
-		if(msg.length>100){
-			tLabel.setText(msg.substring(0,100)+"...");
-		}
-		else{
-			tLabel.setText(msg);
-		}
 		
+		tLabel.setHtml(msg);
 		tLabel.value = msg;
 	},
 
