@@ -86,7 +86,7 @@ Ext.define('Eway.view.advert.FilterForm', {
 					editable : false,
 					format : 'Y-m-d H:i:s',
 					width : 310,
-					value : new Date(),
+					value:Ext.Date.parse(Ext.Date.format(new Date(), 'Y-m-d') + " 23:59:59","Y-m-d H:i:s"),
 					dateRange : {
 						begin : 'createdTimeStart',
 						end : 'createdTimeEnd'
