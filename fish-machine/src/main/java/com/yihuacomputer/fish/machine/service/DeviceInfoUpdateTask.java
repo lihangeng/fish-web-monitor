@@ -38,7 +38,8 @@ public class DeviceInfoUpdateTask {
 		try {
 			StringBuffer hql = new StringBuffer();
 			List<Object> valueObj = new ArrayList<Object>();
-			hql.append("select t from Device t where t.effectiveDate = ?");
+			hql.append("select t from Device t,QuittingNotice q where q.deviceCode = t.terminalId and t.status=? and  q.openTime = ?");
+			valueObj.add(DevStatus.DISABLED);
 			String date = DateUtils.getDate(new Date());
 			valueObj.add(DateUtils.getDate(date));
 			List<IDevice> devices = deviceService.list(hql.toString(), valueObj);
