@@ -202,7 +202,7 @@ Ext.apply(EwayLocale,{
 				set:{
 					chooseOrg:'Please choose the organization which you want to set',//EwayLocale.tip.bankOrg.manager.set.chooseOrg 请选择您要设置的机构.
 					managerSuccess:'Manager setting successful.',//EwayLocale.tip.bankOrg.manager.set.managerSuccess 设置管理员成功.
-					managerFail:'Manager setting failed.'//EwayLocale.tip.bankOrg.manager.set.managerFail 设置管理员失败.
+					managerFail:'Manager setting failed.',//EwayLocale.tip.bankOrg.manager.set.managerFail 设置管理员失败.
 					chooseOneManager:'Please choose at least one record'//EwayLocale.tip.bankOrg.manager.set.chooseOneManager 请至少选择一条记录
 				},
 				remove:{
@@ -222,7 +222,7 @@ Ext.apply(EwayLocale,{
 		bankPer:{
 			allPersonInfo:'ALL info of bank employeers',//EwayLocale.tip.bankPer.allPersonInfo 所有银行人员信息
 			link:{
-				linkPerson:'Please choose a employeer which you want to link.',//EwayLocale.tip.bankPer.link.linkPerson 请选择您关联的人员
+				linkPerson:'Please choose a maintenaner which you want to bind with.',//EwayLocale.tip.bankPer.link.linkPerson 请选择您关联的人员
 				unLinkPersonFail:'Link failed.',//EwayLocale.tip.bankPer.link.unLinkPersonFail 关联失败
 				unlinkDev:'Please choose a machine which you want to lift.',//EwayLocale.tip.bankPer.link.unlinkDev 请选择要解除的设备
 				linkDev:'Please choose a machine which you want to link.',//EwayLocale.tip.bankPer.link.linkDev 请选择要关联的设备
