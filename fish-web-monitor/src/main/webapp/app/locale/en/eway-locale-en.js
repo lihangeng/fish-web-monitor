@@ -540,7 +540,7 @@ Ext.apply(EwayLocale,{
 		nowLogin:'Current Account',//EwayLocale.personal.nowLogin 当前登录账号
 		inputOldPwd:'Input initial passwd',//EwayLocale.personal.inputOldPwd 输入原始密码
 		inputNewPwd:'Input new passwd',//EwayLocale.personal.inputNewPwd 输入新密码
-		inputVali:'Just for 8-20 characters ‘a-z’ or ‘A-Z’、number‘0-9’、minussign‘-’、underline‘_’',//EwayLocale.personal.inputVali 只能输入8到20位字母‘a-z’或‘A-Z’、数字‘0-9’、特殊字符！
+		inputVali:"Just for 1-20 characters 'a-z'or 'A-Z'or number '0-9' or '-' or '_' or special characters",//EwayLocale.personal.inputVali 只能输入8到20位字母‘a-z’或‘A-Z’、数字‘0-9’、特殊字符！
 		inputAgain:'Input again',//EwayLocale.personal.inputAgain 再次输入新密码
 		pwdNotSame:'Passwds not same',//EwayLocale.personal.pwdNotSame 两次密码不一致！
 		rememberPwd:'Click confirm to update passwd ,please remember it',//EwayLocale.personal.rememberPwd 单击确定即可修改密码，请牢记新密码！
