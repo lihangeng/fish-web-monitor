@@ -14,6 +14,10 @@ Ext.define('Eway.controller.monitor.device.RemoteCommand', {
 			'monitor_device_remote_view button[action=query]' : {
 				click : this.onQuery,
 				scope : this
+			},
+			'monitor_device_remote_view' : {
+				afterrender : this.onQuery,
+				scope : this
 			}
 		});
 	}

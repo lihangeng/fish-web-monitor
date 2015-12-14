@@ -210,7 +210,11 @@ public class StatusFilter implements IStatusFilter {
         IDevice device = deviceReport.getDevice();
 
         if (this.terminalId != null && !"".equals(this.terminalId)) {
-            if (device.getTerminalId().equals(this.terminalId)) {
+//            if (device.getTerminalId().equals(this.terminalId)) {
+//                return ReportMedthod.UPDATE;
+//            }
+            // 因为状态监控查询,设备号是模糊匹配的,所以此处也需要进行模糊匹配
+            if (device.getTerminalId().indexOf(this.terminalId) != -1) {
                 return ReportMedthod.UPDATE;
             }
             return ReportMedthod.BEFILTERED;
