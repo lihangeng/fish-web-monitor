@@ -246,7 +246,7 @@ Ext.define('Eway.controller.person.User', {
 				},
 				callback: function(records, operation, success) {
 					if(success==false){
-						Eway.alert(EwayLocale.tip.user.update.fail);
+						//Eway.alert(EwayLocale.tip.user.update.fail);
 						win.close();
 					}
 			    }
