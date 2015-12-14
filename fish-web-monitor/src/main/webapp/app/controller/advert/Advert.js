@@ -810,7 +810,7 @@ Ext.define('Eway.controller.advert.Advert', {
 			var s1024 = tab.down('advertimgview[name=1024]');
 			var s1024Store = s1024.getStore();
 			if(s1024Store.getCount() == 0){
-				Ext.MessageBox.alert(EwayLocale.confirm.title,EwayLocale.advert.mustContainerOnePicAt1024);
+				Eway.alert(EwayLocale.advert.mustContainerOnePicAt1024);
 				btn.enable();
 				return;
 			}
@@ -882,7 +882,7 @@ Ext.define('Eway.controller.advert.Advert', {
 				var store = view.down('advert_grid').getStore();
 				store.setUrlParamsByObject(null);
 				store.loadPage(1);
-			 	Ext.MessageBox.alert(EwayLocale.confirm.title,EwayLocale.msg.createSuccess);
+				Eway.alert(EwayLocale.msg.createSuccess);
 				win.close();
 			 },
 			 failure: function(record,operation){

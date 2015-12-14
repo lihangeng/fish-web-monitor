@@ -92,6 +92,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		                store: Ext.StoreMgr.lookup("Hour"),
 		                queryMode: 'local',
 		                valueField : 'value',
+				    	editable: false,
 		                value:'00',
 		                name: 'beginHour',
 		                width:75
@@ -100,6 +101,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		            {
 		            	xtype: 'combobox',
 		            	fieldLabel: 'minute',
+				    	editable: false,
 		                displayField: 'display',
 		                store: Ext.StoreMgr.lookup("Minute"),
 		                queryMode: 'local',
@@ -111,6 +113,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		            {
 		            	xtype: 'combobox',
 		            	fieldLabel: 'second',
+				    	editable: false,
 		                displayField: 'display',
 		                store: Ext.StoreMgr.lookup("Minute"),
 		                queryMode: 'local',
@@ -136,6 +139,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		            },*/{
 		            	xtype: 'combobox',
 		            	fieldLabel: 'hour',
+				    	editable: false,
 		                displayField: 'display',
 		                store: Ext.StoreMgr.lookup("Hour"),
 		                queryMode: 'local',
@@ -147,6 +151,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		            {xtype: 'displayfield', value: EwayLocale.advert.hourDisplay},
 		            {
 		            	xtype: 'combobox',
+				    	editable: false,
 		            	fieldLabel: 'minute',
 		                displayField: 'display',
 		                store: Ext.StoreMgr.lookup("Minute"),
@@ -158,6 +163,7 @@ Ext.define('Eway.view.advert.AdvertResourceConfigForm', {
 		            }, {xtype: 'displayfield', value: EwayLocale.advert.minuteDisplay},
 		            {
 		            	xtype: 'combobox',
+				    	editable: false,
 		            	fieldLabel: 'second',
 		                displayField: 'display',
 		                store: Ext.StoreMgr.lookup("Minute"),

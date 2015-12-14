@@ -40,6 +40,7 @@ public class TransactionDaysCountController {
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap search(WebRequest wReq, HttpServletRequest req) {
+		logger.debug("TransactionDaysCount search");
 		IFilter filter = new Filter() ;
 		String month = req.getParameter("month") ;
 		filter.eq("startDate", Integer.parseInt((month + "-01").replaceAll("-", "")));

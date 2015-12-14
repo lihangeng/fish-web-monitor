@@ -28,10 +28,10 @@ Ext.define('Eway.view.person.serviceOrg.FilterForm', {
 					name : 'org',
 					filters : '{"type" : "1"}',
 					rootVisible : true,
-					hiddenValue : 'selectedNode'
+					hiddenValue : 'orgId'
 				},{
 					xtype : 'hiddenfield',
-					name :'selectedNode'
+					name :'orgId'
 				}]
 			
 			},{

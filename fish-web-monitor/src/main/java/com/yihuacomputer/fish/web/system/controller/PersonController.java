@@ -460,20 +460,20 @@ public class PersonController {
         OrganizationType orgType = userSession.getOrgType();
         String perType = null;
         // 如果单击机构树节点，深度查询该机构树节点机构以及下属机构下的人员信息
-        if (request.getParameter("selectedNode") != null && !request.getParameter("selectedNode").isEmpty()) {
-            IPageResult<IPerson> pageResult = service.page(start, limit, request.getParameter("selectedNode"));
-            result.addAttribute(FishConstant.SUCCESS, true);
-            result.addAttribute("total", pageResult.getTotal());
-            result.addAttribute("data", PersonForm.convert(pageResult.list()));
-            return result;
-        }
+//        if (request.getParameter("selectedNode") != null && !request.getParameter("selectedNode").isEmpty()) {
+//            IPageResult<IPerson> pageResult = service.page(start, limit, request.getParameter("selectedNode"));
+//            result.addAttribute(FishConstant.SUCCESS, true);
+//            result.addAttribute("total", pageResult.getTotal());
+//            result.addAttribute("data", PersonForm.convert(pageResult.list()));
+//            return result;
+//        }
 
         // 单击查询按钮，带入查询条件：
         IFilter filter = new Filter();
         Iterator<String> iterator = request.getParameterNames();
         while (iterator.hasNext()) {
             String name = iterator.next();
-            if (FishWebUtils.isIgnoreRequestName(name)) {
+            if (FishWebUtils.isIgnoreRequestName(name)||"org".equals(name)) {
                 continue;
             } else {
                 String value = request.getParameter(name);
@@ -482,10 +482,11 @@ public class PersonController {
                 } else {
                     if ("sort".equals(name)) { // 去掉前端页面传来的sort排序字段
                         continue;
-                    } else if ("selectedNode".equals(name)) {
-                        continue;
-                    } else if ("organizationId".equals(name)) {
+                    }
+                    else if ("organizationId".equals(name)) {
                     	filter.eq("organization", organizationService.get(value));
+                    } else if ("selectedNode".equals(name)) {
+                    	filter.like("organization.orgFlag", organizationService.get(value).getOrgFlag()+'%');
                     } else if ("gender".equals(name)) {
                     	filter.eq("gender",  Gender.valueOf(value));
                     } else if ("jobNum".equals(name)) {

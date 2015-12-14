@@ -110,7 +110,7 @@ public class AtmTypeController {
                 if (deviceList.size() > 0) {
                     result.addAttribute(FishConstant.SUCCESS, false);
                     result.addAttribute(FishConstant.ERROR_MSG,
-                            messageSource.getMessage("commen.all", null, FishCfg.locale));
+                            messageSource.getMessage("atmType.bindAlready", null, FishCfg.locale));
                 } else {
                     List<Long> relationedAtmModuleIdsInDB = relationService.findAtmModuleIds(id);
                     List<Long> relationedAtmModuleIdsInDBRemoved = new ArrayList<Long>(relationedAtmModuleIdsInDB);

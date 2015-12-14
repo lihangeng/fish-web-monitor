@@ -27,7 +27,8 @@ Ext.define('Eway.view.person.organization.OrglinkWin', {
 				title : EwayLocale.person.bankOrg.personOrg,
 				region: 'center',
 				padding : 1,
-				xtype : 'linkedPersonGrid'
+				xtype : 'linkedPersonGrid',
+				orgTypeName:EwayLocale.person.bankPer.organizationName
 			}]
 		});
 		this.callParent(arguments);

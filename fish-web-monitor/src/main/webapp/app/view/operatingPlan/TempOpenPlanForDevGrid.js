@@ -61,7 +61,7 @@ Ext.define('Eway.view.operatingPlan.TempOpenPlanForDevGrid',{
 				header : EwayLocale.version.View.versionTime,
 				dataIndex : 'createDateTime',
 				width : 160,
-				fiex : 1
+				flex : 1
 			}]
     	});
     	this.callParent(arguments);
