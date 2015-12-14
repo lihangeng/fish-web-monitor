@@ -49,7 +49,7 @@ Ext.define('Eway.controller.atmLog.DayBackup',{
 				}	
 				gridPanel.add(logBackupPanel);		
 				var backupResult = "SUCCESS";
-				logBackupPanel.down("button[action='query']").on('click',Ext.bind(this.onQuerybackUp,this,[record,logBackupPanel,logBackupStore,backupResult]),this);
+				logBackupPanel.down("button[action='query']").on('click',Ext.bind(this.onQuerybackUp,this,[lastDay,logBackupPanel,logBackupStore,backupResult]),this);
 				logBackupPanel.down("atmLog_LogBackupGrid pagingtoolbar").on("beforechange",Ext.bind(this.searchBackupLog,this,[lastDay,logBackupStore,backupResult]),this);
 			}
 		}
@@ -74,19 +74,19 @@ Ext.define('Eway.controller.atmLog.DayBackup',{
 				}	
 				gridPanel.add(logBackupPanel);	
 				var backupResult = "BackUpError";
-				logBackupPanel.down("button[action='query']").on('click',Ext.bind(this.onQuerybackUp,this,[record,logBackupPanel,logBackupStore,backupResult]),this);
+				logBackupPanel.down("button[action='query']").on('click',Ext.bind(this.onQuerybackUp,this,[lastDay,logBackupPanel,logBackupStore,backupResult]),this);
 				logBackupPanel.down("atmLog_LogBackupGrid pagingtoolbar").on("beforechange",Ext.bind(this.searchBackupLog,this,[lastDay,logBackupStore,backupResult]),this);
 			}
 
 		}
 
 	},
-	onQuerybackUp: function(record,logBackupPanel,logBackupStore,backupResult){		
+	onQuerybackUp: function(lastDay,logBackupPanel,logBackupStore,backupResult){		
 		var terminalId = logBackupPanel.down('textfield[name=terminalId]').value;
 		console.log(terminalId);
 		logBackupStore.load({
 			params:{
-				dateTime:record.get('date'),
+				dateTime:lastDay,
 				backupResult:backupResult,
 				terminalId:terminalId
 			}
