@@ -73,6 +73,7 @@ Ext.define('Eway.controller.version.VersionType', {
 	//在打开修改页面之前
 	boforeShowUpdateWin : function(updateWin,grid,record){
 		var checkGroup = updateWin.down('form').down("checkboxgroup");
+		updateWin.down("textfield[name='typeName']").setReadOnly( true );
 		checkGroup.getLoader().load({
 			params:{
 				versionTypeId : record.getId()
