@@ -330,55 +330,46 @@ public class DeviceController {
 		HSSFRow row = sheet.createRow(0);
 
 		HSSFCell cell = row.createCell(0);
-		cell.setCellValue(messageSource.getMessage("device.id", null, FishCfg.locale));
-
-		cell = row.createCell(1);
 		cell.setCellValue(messageSource.getMessage("device.terminalId", null, FishCfg.locale));
-
+		
+		cell = row.createCell(1);
+		cell.setCellValue(messageSource.getMessage("device.devIp", null, FishCfg.locale));
+		
 		cell = row.createCell(2);
-		cell.setCellValue(messageSource.getMessage("device.virtual", null,FishCfg.locale));
+		cell.setCellValue(messageSource.getMessage("device.devOrg", null, FishCfg.locale));
 		
 		cell = row.createCell(3);
-		cell.setCellValue(messageSource.getMessage("device.devIp", null, FishCfg.locale));
-
-		cell = row.createCell(4);
-		cell.setCellValue(messageSource.getMessage("device.devStatus", null, FishCfg.locale));
-
-		cell = row.createCell(5);
-		cell.setCellValue(messageSource.getMessage("device.devSer", null, FishCfg.locale));
-
-		cell = row.createCell(6);
-		cell.setCellValue(messageSource.getMessage("device.devOrg", null, FishCfg.locale));
-
-		cell = row.createCell(7);
 		cell.setCellValue(messageSource.getMessage("device.devType", null, FishCfg.locale));
-
+		
+		cell = row.createCell(4);
+		cell.setCellValue(messageSource.getMessage("device.devVender", null,FishCfg.locale));
+		
+		
+		cell = row.createCell(5);
+		cell.setCellValue(messageSource.getMessage("device.devCatalog", null,FishCfg.locale));
+		
+		cell = row.createCell(6);
+		cell.setCellValue(messageSource.getMessage("device.devStatus", null, FishCfg.locale));
+		
+		cell = row.createCell(7);
+		cell.setCellValue(messageSource.getMessage("device.devInsideOutside", null, FishCfg.locale));
+		
 		cell = row.createCell(8);
-		cell.setCellValue(messageSource.getMessage("device.devCashWarn", null, FishCfg.locale));
+		cell.setCellValue(messageSource.getMessage("device.devSer", null, FishCfg.locale));
+		
 
 		cell = row.createCell(9);
 		cell.setCellValue(messageSource.getMessage("device.devAddress", null, FishCfg.locale));
 
 		cell = row.createCell(10);
-		cell.setCellValue(messageSource.getMessage("device.devSerialNo", null, FishCfg.locale));
-
-		cell = row.createCell(11);
-		cell.setCellValue(messageSource.getMessage("device.devVender", null,FishCfg.locale));
-		
-		cell = row.createCell(12);
-		cell.setCellValue(messageSource.getMessage("device.devCatalog", null,FishCfg.locale));
-
-		cell = row.createCell(13);
 		cell.setCellValue(messageSource.getMessage("device.devInstallDate", null, FishCfg.locale));
 
-		cell = row.createCell(14);
+		cell = row.createCell(11);
 		cell.setCellValue(messageSource.getMessage("device.devInstallWay", null, FishCfg.locale));
+		
+		cell = row.createCell(12);
+		cell.setCellValue(messageSource.getMessage("device.devCashWarn", null, FishCfg.locale));
 
-		cell = row.createCell(15);
-		cell.setCellValue(messageSource.getMessage("device.devNetType", null, FishCfg.locale));
-
-		cell = row.createCell(16);
-		cell.setCellValue(messageSource.getMessage("device.devInsideOutside", null, FishCfg.locale));
 
 		HSSFCellStyle cellStyle = workBook.createCellStyle();
 		HSSFDataFormat format = workBook.createDataFormat();

@@ -91,7 +91,7 @@ Ext.define('Eway.controller.case.VendorCode',{
 					rmWin.close();
 					var store = this.getVendorCodeGrid().getStore();
 					store.load();
-					Eway.alert(EwayLocale.updateSuccess);
+					Eway.alert(EwayLocale.deleteSuccess);
 				},
 				failure : function(form, action){
 					Eway.alert(action.result.content);

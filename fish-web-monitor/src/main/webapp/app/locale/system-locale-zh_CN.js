@@ -119,7 +119,8 @@ Ext.apply(EwayLocale,{
 			description:'角色描述',//EwayLocale.permission.role.description
 			isSysRole:'是否是系统内置角色',//EwayLocale.permission.role.isSysRole
 			chooseRight:'请选择菜单权限',//EwayLocale.permission.role.chooseRight
-			add:'增加角色'//EwayLocale.permission.role.add
+			add:'增加角色',//EwayLocale.permission.role.add
+			wrongRoleParam:'存在不合法的输入项.'//EwayLocale.permission.role.wrongRoleParam 
 		},
 		permission:{
 			menuName:'菜单名称',//EwayLocale.permission.permission.menuName

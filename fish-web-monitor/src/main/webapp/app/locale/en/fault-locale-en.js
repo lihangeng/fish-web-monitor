@@ -99,7 +99,7 @@ Ext.apply(EwayLocale,{
 			deleteFaultInfo:'Delete manufacturer faultCode',//删除厂商故障信息
 			templateLoad:'Example download',//模板下载
 			massRemove: 'Batch delete',//批量删除
-			providerDescription:'DaultCode describe',//厂商故障描述
+			providerDescription:'FaultCode describe',//厂商故障描述
 			solveProject: 'Solution',//解决方案
 			providerFaultInfo:'Manufacturer faultCode',//厂商故障信息管理
 			formwork:'fault_message_en.xls'//模板下载
