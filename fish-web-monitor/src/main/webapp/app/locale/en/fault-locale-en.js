@@ -5,7 +5,7 @@ Ext.apply(EwayLocale,{
 		confirm:'Confirm',//确认
 		cancel:'Cancel',//取消
 		concern:'Attention please',//请关注
-		SRCBView:'',//上海农商行新监控发送
+		SRCBView:',Send by monitor system',//上海农商行新监控发送
 		nowExportFile:'File Importing',//正在导入文件
 		exportFaultInfo:'Import fault code successful',//导入厂商故障信息成功.
 		caseFault:{

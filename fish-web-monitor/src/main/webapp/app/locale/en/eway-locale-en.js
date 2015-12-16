@@ -23,7 +23,7 @@ Ext.apply(EwayLocale,{
 		chooseAdvertToDownload:'Please select the advertisement which you want to issue.',//EwayLocale.msg.chooseAdvertToDownload 请选择您要下发的广告.
 		generalVersionFailForDownloaded:'Generate  the version-file failed:the status "issued" advertisement can not generate version-information any more',//EwayLocale.msg.generalVersionFailForDownloaded 生成版本文件失败:"已下发"状态的广告不能再生成版本信息.
 		generalVersionSuccess:"Generate the version file successful",//EwayLocale.msg.generalVersionSuccess 生成版本文件成功.
-		createSuccess:"Create successful.",//EwayLocale.msg.createSuccess 创建成功.
+		createSuccess:"Create Successfully.",//EwayLocale.msg.createSuccess 创建成功.
 		mustHaveOneResource:'At least has one resource of advertisement!',//EwayLocale.msg.mustHaveOneResource 至少包含一个广告资源!
 		saveFail:'Save failed',//EwayLocale.msg.saveFail 保存失败
 		saveFailPleaseRefresh:'Save failed, please refresh retry',//EwayLocale.msg.saveFailPleaseRefresh
@@ -135,7 +135,7 @@ Ext.apply(EwayLocale,{
 		add:{
 			error:'Add failed'//EwayLocale.tip.add.error 新增失败
 		},
-		success:'Successful.',//EwayLocale.tip.success 成功
+		success:'Successfully.',//EwayLocale.tip.success 成功
 		fail:'Failed:',//EwayLocale.tip.fail 失败
 		phone:'Please enter the right telephone number', //请输入正确的电话号码
 		remind:'Tip',//EwayLocale.tip.remind 提示
@@ -168,7 +168,7 @@ Ext.apply(EwayLocale,{
 		selectRelatedDev:'Please choose machines which you want to bind.',//请选择要关联的设备
 		planNoUpdate:'This program has been executed ,can not be modified ',//该方案已经执行,不可修改.
 		planNoRemove:'This program has been executed ,can not be deleted ',///该方案已经执行,不可删除.
-		exportFiles: 'Please choose a file to import,only support .xls or .xlxs files ',//请选择导入文件,只支持.xls和.xlsx格式的文件
+		exportFiles: 'Please choose a file to import,only support .xls or .xlsx files ',//请选择导入文件,只支持.xls和.xlsx格式的文件
 		noChange:'Did not change the data, change and then click OK!',//EwayLocale.tip.noChange没有更改数据,请更改后再点击确定
 		operateSuc:'Successful operation',//EwayLocale.tip.operateSuc操作成功
 		operateWrong:'Successful operation',//EwayLocale.tip.operateWrong操作成功
@@ -216,7 +216,7 @@ Ext.apply(EwayLocale,{
 			downGradeOrg:'direct lower organization',//EwayLocale.tip.bankOrg.downGradeOrg 的直接下级机构
 			move:{
 				chooseOrg:'Please choose organization which you want to move.',//EwayLocale.tip.bankOrg.move.chooseOrg 请选择您要迁移的组织
-				moveSuccess:'Move the organization successful.'//EwayLocale.tip.bankOrg.move.moveSuccess 组织迁移成功
+				moveSuccess:'Move the organization successfully.'//EwayLocale.tip.bankOrg.move.moveSuccess 组织迁移成功
 			}
 		},
 		bankPer:{
@@ -280,9 +280,9 @@ Ext.apply(EwayLocale,{
 			card:{
 				returnFail:'Turnover failed:system error.',//EwayLocale.tip.business.card.returnFail 移交失败 后台处理出错
 				choose:'Please choose the card which you want to turnover.',//EwayLocale.tip.business.card.choose 请选择您移交的卡片
-				returnSucess:'Turnover successful.',//EwayLocale.tip.business.card.returnSucess 移交成功
+				returnSucess:'Turnover successfully.',//EwayLocale.tip.business.card.returnSucess 移交成功
 				chooseBack:'Please choose the card which you want to draw.',//EwayLocale.tip.business.card.chooseBack 请选择要领取的卡片
-				getSuccess:'Draw successful.',//EwayLocale.tip.business.card.getSuccess 领取成功
+				getSuccess:'Draw successfully.',//EwayLocale.tip.business.card.getSuccess 领取成功
 				destroyConfirm:'Destroy this card?',//EwayLocale.tip.business.card.destroyConfirm 是否销毁这张卡片
 				destroySuccess:'Destroy successful',//EwayLocale.tip.business.card.destroySuccess 销毁成功
 				chooseDestroy:'Please choose the card which you want to destroy.',//EwayLocale.tip.business.card.chooseDestroy 请选择要销毁的卡片
@@ -306,33 +306,33 @@ Ext.apply(EwayLocale,{
 				logFail:'Log process failed.',//EwayLocale.tip.business.device.logFail log 处理失败
 				linkServerFail:'Connecting refused.',//EwayLocale.tip.business.device.linkServerFail 服务器连接失败
 				logicOpen:'Confirm execute open-service command.',//EwayLocale.tip.business.device.logicOpen 确认要执行开启服务命令
-				openSuccess:'Execute open-service command successful.',//EwayLocale.tip.business.device.openSuccess 执行开启服务命令成功.
+				openSuccess:'Execute open-service command successfully.',//EwayLocale.tip.business.device.openSuccess 执行开启服务命令成功.
 				openFail:'Execute open-service command failed.',//EwayLocale.tip.business.device.openFail 执行开启服务命令失败.
 				closeConfirm:'Confirm execute pause-service command?',//EwayLocale.tip.business.device.closeConfirm 确认要执行暂停服务命令?
-				closeServiceSuccess:'Execute pause-service command successful.',//EwayLocale.tip.business.device.closeServiceSuccess 执行暂停服务成功
+				closeServiceSuccess:'Execute pause-service command successfully.',//EwayLocale.tip.business.device.closeServiceSuccess 执行暂停服务成功
 				closeServiceFail:'Execute pause-service command failed.',//EwayLocale.tip.business.device.closeServiceFail 执行暂停服务失败
 				closeNormal:'Shut down normally.',//EwayLocale.tip.business.device.closeNormal 正常关机
 				closeComfirm:'Confirm execute normal shut-down command,it may brings some risk?',//EwayLocale.tip.business.device.closeComfirm 确认要执行正常关机命令么,可能会存在风险?
 				closing:'Shutting down normally.',//EwayLocale.tip.business.device.closing 正在执行正常关机
-				closeSucess:'Shut down normally successful.',//EwayLocale.tip.business.device.closeSucess 正常关机成功
+				closeSucess:'Shut down normally successfully.',//EwayLocale.tip.business.device.closeSucess 正常关机成功
 				closeFail:'Shut down normally failed.',//EwayLocale.tip.business.device.closeFail 正常关机失败
 				closeSentFail:'Send the normal shut-down command failed ',//EwayLocale.tip.business.device.closeSentFail 正常关机命令发送失败.
 				forceClose:'Force shut down',//EwayLocale.tip.business.device.forceClose 强制关机
 				forceCloseComfirm:'Confirm execute force shut-down command,it may brings some risk?',//EwayLocale.tip.business.device.forceCloseComfirm 确认要执行强制关机命令么,可能会存在严重风险?
 				forceClosing:'Shutting down force.',//EwayLocale.tip.business.device.forceClosing 正在执行强制关机
-				forceCloseSucess:'Force-shut-down successful.',//EwayLocale.tip.business.device.forceCloseSucess 强制关机成功.
+				forceCloseSucess:'Force-shut-down successfully.',//EwayLocale.tip.business.device.forceCloseSucess 强制关机成功.
 				forceCloseFail:'Force-shut-down failed.',//EwayLocale.tip.business.device.forceCloseFail 强制关机失败.
 				ForceCloseSentFail:'Send the force-shut-down command failed ',//EwayLocale.tip.business.device.ForceCloseSentFail 强制关机命令发送失败.
 				reboot:'Reboot normally.',//EwayLocale.tip.business.device.reboot 正常重启
 				rebootConfirm:'Confirm execute normal-reboot command,it may brings some risk?',//EwayLocale.tip.business.device.rebootConfirm 确认要执行正常重启命令么,可能会存在风险?
 				rebooting:'Normally rebooting',//EwayLocale.tip.business.device.rebooting 正在执行正常重启
-				rebootSucess:'Normal-reboot successful.',//EwayLocale.tip.business.device.rebootSucess 正常重启成功
+				rebootSucess:'Normal-reboot successfully.',//EwayLocale.tip.business.device.rebootSucess 正常重启成功
 				rebootFail:'Normal-reboot failed.',//EwayLocale.tip.business.device.rebootFail 正常重启失败.
 				rebootSendFail:'Send the  normal-reboot command failed ',//EwayLocale.tip.business.device.rebootSendFail 正常重启命令发送失败.
 				forceReboot:'Force reboot',//EwayLocale.tip.business.device.forceReboot 强制重启
 				forceRebootConfirm:'Confirm execute force-reboot command,it may brings some risk?',//EwayLocale.tip.business.device.forceRebootConfirm 确认要执行强制重启命令么,可能会存在严重风险
 				forceRebooting:'Executing force-reboot command',//EwayLocale.tip.business.device.forceRebooting 正在执行强制重启
-				forceRebootSuccess:'Force-reboot successful.',//EwayLocale.tip.business.device.forceRebootSuccess 强制重启成功
+				forceRebootSuccess:'Force-reboot successfully.',//EwayLocale.tip.business.device.forceRebootSuccess 强制重启成功
 				forceRebootFail:'Force-reboot failed.',//EwayLocale.tip.business.device.forceRebootFail 强制重启失败.
 				forceRebootSendFail:'Send the normal force-reboot command failed ',//EwayLocale.tip.business.device.forceRebootSendFail 强制重启命令发送失败.
 				resetConfirm:'Confirm execute force-reset command?',//EwayLocale.tip.business.device.resetConfirm 确认要执行强制复位

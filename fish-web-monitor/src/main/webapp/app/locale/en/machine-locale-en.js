@@ -506,7 +506,7 @@ Ext.apply(EwayLocale,{
 			updateSystemCon:'Update system Setting'//EwayLocale.machine.param.updateSystemCon 更改系统配置
 		},
 		quittingNotice:{
-			addCloseMsg:'Add Report Stop',//增加报停信息
+			addCloseMsg:'Add Service Stop',//增加报停信息
 			updateCloseMsg:'Udpate stop',//
 			dateRangeText:'Recover date can not be earlier than stop date,please choose again',//恢复日期不能小于等于停止日期,请重新选择
 			click:'Click query to choose device',//请点击查询，选择设备
@@ -514,7 +514,7 @@ Ext.apply(EwayLocale,{
 			openTime:'Recover time',//恢复时间
 			currentStatus:'Current status',//当前状态
 			closeType:'Type',//停机类型
-			responsibilityName:'Personincharge',//停机负责人
+			responsibilityName:'Person in charge',//停机负责人
 			stopReason:'Reason',//停机原因
 			address:'Address',//所属地址
 			selectDev:'Please select the device which you want to stop',//选择需要报停的设备

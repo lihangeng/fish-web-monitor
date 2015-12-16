@@ -369,19 +369,19 @@ Ext.apply(EwayLocale,{
 			nowUploadFile:'File uploading',//正在上传文件...
 			explorer: 'Browse...',//浏览...
 			serverPath: 'Path of file in server',//文件在服务器上的位置
-			distanceSuccess:'Remote create successful.',//远程创建成功
+			distanceSuccess:'Remote create successfully.',//远程创建成功
 			distanceFailure:'Remote create failed.',//远程创建失败
 			confirmDelete:'Confirm delete',//确定删除
 			confirmExecute:'Confirm execute',//确定执行
 			choseDeleteFile:'Please choose file which you want to delete.',//请选择要删除的文件
-			distanceExecuteSuccess:'Remote execute successful.',//远程执行成功
+			distanceExecuteSuccess:'Remote execute successfully.',//远程执行成功
 			distanceExecuteFailure:'Remote execute failed.',//远程执行失败
 			choseExecuteFile:'Please choose file which you want to execute.',//请选择要执行的文件
 			distanceExplorer:'Remote browse:',//远程浏览
 			distanceExplorerFailure:'Remote browse failed.',//远程浏览失败
 			fileExist:'File already exist!',//该文件已存在！
 			nowUploadFile:'File uploading......',//正在上传文件......
-			uploadSuccess:'Upload successful.',//上传成功
+			uploadSuccess:'Upload successfully.',//上传成功
 			yes: "Continue transfer",//续传
 			no: "Override",//覆盖
 			cancel: "Cancel", //取消

@@ -355,7 +355,12 @@ Ext.define('Eway.controller.machine.Device', {
 		tab.onReload(params);
 	},
 	_onAddOrUpdate : function(action){
-		var title = action=='add' ? EwayLocale.button.add+this.formConfig.title : EwayLocale.button.update+this.formConfig.title;
+		
+		var midStr ="";
+		if(!Ext.String.startsWith(ewayUser.language,"zh")){
+			midStr="&nbsp;";
+		}
+		var title = action=='add' ? EwayLocale.button.add+midStr+this.formConfig.title : EwayLocale.button.update+midStr+this.formConfig.title;
 		var me = this;
 		Ext.require([this.formConfig.form],function(){
 			if(action=='update'){

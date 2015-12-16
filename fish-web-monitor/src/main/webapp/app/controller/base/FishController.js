@@ -118,6 +118,10 @@ Ext.define('Eway.controller.base.FishController', {
 	},
 
 	_save : function(button){
+		var midStr ="";
+		if(!Ext.String.startsWith(ewayUser.language,"zh")){
+			midStr="&nbsp;";
+		}
 		var me = this,
 			view = this.getEwayView(),
 			win = button.up('window'),
@@ -152,7 +156,7 @@ Ext.define('Eway.controller.base.FishController', {
 				var id = record.get("id");
 				record.save({
 					 success: function(recordInDB) {
-						Eway.alert(actionName + EwayLocale.tip.success);
+						Eway.alert(actionName + midStr +EwayLocale.tip.success);
 						win.close();
 						if(action == 'add'){
 							this.onQueryAfterAdd();
