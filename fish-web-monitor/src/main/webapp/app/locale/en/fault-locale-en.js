@@ -11,13 +11,13 @@ Ext.apply(EwayLocale,{
 		caseFault:{
 			faultRelevantInfo:'SMS about fault',//故障相关短信
 			faultModule:'Fault Module ',
-			cardReaderModule:'Card reader',//读卡器模块
-			depoistModule:'Deposit module',//存款模块
-			drawModule:'Draw module',//取款模块
-			rprModule:'Voucher printer',//凭条打印模块
-			jprModule:'Log printer',//日志打印模块
-			pinModule:'Pin keyboard',//密码键盘模块
-			textTerminalUnit:'Text terminal',//文本终端单元
+			cardReaderModule:'Card Reader',//读卡器模块
+			depoistModule:'Deposit Module',//存款模块
+			drawModule:'Withdrawal Module',//取款模块
+			rprModule:'Receipt Printer',//凭条打印模块
+			jprModule:'Journal Printer',//日志打印模块
+			pinModule:'Encryption Pinpad',//密码键盘模块
+			textTerminalUnit:'Text Terminal',//文本终端单元
 			sensoModule:'Sensor',//传感器模块
 			faultClassify: 'Fault Catalog',//故障分类
 			faultCode : 'Fault Code',//故障码
@@ -41,8 +41,8 @@ Ext.apply(EwayLocale,{
 		    upgradeTimes: 'Upgrade Times',//升级次数
 		    message: 'SMS',//短信
 		    checkDetails: 'Detail',//查看详情
-		    bankPer: 'Bank Contact',//银行联系人
-		    serPer: 'Suppliers Contact',//供应商联系人
+		    bankPer: 'Bank Contacts',//银行联系人
+		    serPer: 'Suppliers Contacts',//供应商联系人
 		    createTime: 'Create Time',//创建时间
 		    informContent: 'Notify Content',//通知内容
 		    messageContentDetail: 'SMS Content',//短信内容详情

@@ -54,7 +54,6 @@ import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.device.NetType;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IPerson;
@@ -381,58 +380,46 @@ public class DeviceController {
 			row = sheet.createRow(count);
 
 			cell = row.createCell(0);
-			cell.setCellValue(count++);
-
-			cell = row.createCell(1);
 			cell.setCellType(Cell.CELL_TYPE_STRING);
 			cell.setCellStyle(cellStyle);
 			cell.setCellValue(cellValue(device.getTerminalId()));
 
-			cell = row.createCell(2); 
-			cell.setCellValue(cellValue(device.getVirtual()==null? "":device.getVirtual()));
-			
-			cell = row.createCell(3);
+			cell = row.createCell(1);
 			cell.setCellValue(cellValue(device.getIp() == null ? "" : device.getIp().toString()));
 
-			cell = row.createCell(4);
-			cell.setCellValue(cellValue(device.getStatus() == null ? "" : getEnumI18n(device.getStatus().getText())));
-
-			cell = row.createCell(5);
-			cell.setCellValue(cellValue(device.getDevService() == null ? "" : device.getDevService().getName()));
-
-			cell = row.createCell(6);
+			cell = row.createCell(2);
 			cell.setCellValue(cellValue(device.getOrganization() == null ? "" : device.getOrganization().getName()));
 
-			cell = row.createCell(7);
+			cell = row.createCell(3);
 			cell.setCellValue(cellValue(device.getDevType() == null ? "" : device.getDevType().getName()));
 
+			cell = row.createCell(4);
+			cell.setCellValue(cellValue(device.getDevType() == null ? "" : device.getDevType().getDevVendor().getName()));
+
+			cell = row.createCell(5);
+			cell.setCellValue(cellValue(device.getDevType() == null ? "" : device.getDevType().getDevCatalog().getName()));
+
+			cell = row.createCell(6);
+			cell.setCellValue(cellValue(device.getStatus()==null ? "" : getEnumI18n(device.getStatus().getText())));
+
+			cell = row.createCell(7);
+			cell.setCellValue(cellValue(device.getSetupType()==null ? "" : getEnumI18n(device.getAwayFlag().getText())));
+			
 			cell = row.createCell(8);
-			cell.setCellValue(cellValue(device.getCashboxLimit()));
-
+			cell.setCellValue(cellValue(device.getDevService().getName()==null?"":device.getDevService().getName()));
+			
 			cell = row.createCell(9);
-			cell.setCellValue(cellValue(device.getAddress()));
-
+			cell.setCellValue(cellValue(device.getAddress()==null?"":device.getAddress()));
+			
 			cell = row.createCell(10);
-			cell.setCellValue(cellValue(device.getSerial()));
+			cell.setCellValue(cellValue(device.getInstallDate()==null?"":device.getInstallDate()));
 			
 			cell = row.createCell(11);
-			cell.setCellValue(cellValue(device.getDevType().getDevVendor().getName()));
-			
+			cell.setCellValue(cellValue(device.getSetupType()==null?"":getEnumI18n(device.getSetupType().getText())));
+
 			cell = row.createCell(12);
-			cell.setCellValue(cellValue(device.getDevType().getDevCatalog().getName()));
-			
-			cell = row.createCell(13);
-			cell.setCellValue(cellValue(device.getInstallDate()==null? "" :device.getInstallDate().toString()));
-			
-			cell = row.createCell(14);
-			cell.setCellValue(cellValue(device.getSetupType() == null ? "" : getEnumI18n(device.getSetupType().getText())));
+			cell.setCellValue(cellValue(device.getCashboxLimit()));
 
-			NetType netType = device.getNetType();
-			cell = row.createCell(15);
-			cell.setCellValue(cellValue(getEnumI18n(netType.getText())));
-
-			cell = row.createCell(16);
-			cell.setCellValue(cellValue(device.getAwayFlag() == null ? "" : getEnumI18n(device.getAwayFlag().getText())));
 		}
 
 		FileOutputStream fos = null;

@@ -93,7 +93,7 @@ Ext.apply(EwayLocale,{
 		save:'Save',//EwayLocale.button.save 保存
 		openPlan:'Open Plan',//EwayLocale.button.openPlan 开机方案
 		adminBtn:'Manager',//管理员
-		personM:'Maintencer',//EwayLocale.button.personM 厂商管理员
+		personM:'Maintenancer',//EwayLocale.button.personM 厂商管理员
 		personTM:'Banker',//EwayLocale.button.personTM管机员
 		orgAdmin:'Bank Administrator'//EwayLocale.button.orgAdmin机构管理员
 	},

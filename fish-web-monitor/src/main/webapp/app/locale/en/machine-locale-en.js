@@ -106,18 +106,18 @@ Ext.apply(EwayLocale,{
 		device:{
 			title:'Deivce Info',//设备信息管理
 			devDetailInfo:'Module Info',//设备模块详细信息
-		    idc:'Card reader',
-			jpr:'Log printer',
-			cdm:'Draw module',
-			siu:'Sensor module',
-			cim:'Deposit module',
-			ttu:'Text terminal',
-			rpr:'Voucher printer',
-			pin:'Pin keyboard',
+		    idc:'Card Reader',
+			jpr:'Journal Printer',
+			cdm:'Withdrawal Module',
+			siu:'Sensor Module',
+			cim:'Deposit Module',
+			ttu:'Text Terminal',
+			rpr:'Receipt Printer',
+			pin:'Encryption Pinpad',
 			icc:'Card Dispenser',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
 			fgp:'Finger Printer',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
 			pbk:'Passbook Printer',//EwayLocale.monitor.devMonitor.mod.pbk 存折打印机
-			CDMInfo:'Draw module（CDM）property',
+			CDMInfo:'Withdrawal module（CDM）property',
 			hasStack:'是否具有暂存器',
 			hasShutter:'Shutter door exist',//是否具有shutter门
 			canRetract:'Ability of recovery', //是否具有回收能力
@@ -130,7 +130,7 @@ Ext.apply(EwayLocale,{
 			currencies:'Currency category supported ',//支持的币种类别
 			exponents:'index',//指数
 			
-			CIMInfo:'Deposit module (CIM)property',//存款模块
+			CIMInfo:'Deposit Module (CIM)property',//存款模块
 			canEscrow:'是否具有暂存器X',
 
 			shutterControlSupported:'Support shutter door',//是否支持控制shutter门
@@ -140,8 +140,8 @@ Ext.apply(EwayLocale,{
 			retractAreas:'Recovery position',//回收位置
 
 
-			IDCInfo:'Card reader(IDC) property',//读卡器模块(IDC)属性信息
-			variant:'Card reader type',//读卡器类型
+			IDCInfo:'Card Reader(IDC) property',//读卡器模块(IDC)属性信息
+			variant:'Card Reader type',//读卡器类型
 			canEjectCard:'Ability of quit card',//是否具有退卡能力
 			trackJisiiRead:'Ability of read TrackJisii',//是否具有TrackJisii读能力
 			track1Read:'Ability of read first track',//是否具有读一磁道数据能力
@@ -156,7 +156,7 @@ Ext.apply(EwayLocale,{
 			track3Write:'Ability of write first track',//是否具有写三磁道数据能力
 			
 
-			JPRInfo:'Log printer(JPR) property',
+			JPRInfo:'Journal Printer(JPR) property',
 			canEject:'Ability of quit paper',//是否具有退纸能力
 			canCapture:'Ability of recovery',//是否具有回收能力
 			canStack:'Ability of deposit',//是否具有暂存能力
@@ -172,7 +172,7 @@ Ext.apply(EwayLocale,{
 			
 			PBKInfo:'Passbook printer(PBK) property',
 
-			PINInfo:'Pin keyboard(PIN) property',
+			PINInfo:'Encryption Pinpad(PIN) property',
 			canEBC:'EBC',//能否EBC
 			canCBC:'CBC',//能否CBC
 			canMAC:'MAC',//能否MAC
@@ -187,7 +187,7 @@ Ext.apply(EwayLocale,{
 			canVerifyECB:'Inspect ECB',
 			canDESOffset:'DeS shifting',
 
-			RPRInfo:'Voucher printer(RPR) property',
+			RPRInfo:'Receipt Printer(RPR) property',
 			canEject:'Ability of quit paper',//是否具有退纸能力
 			canCapture:'Ability of recovery',//是否具有回收能力
 
@@ -204,7 +204,7 @@ Ext.apply(EwayLocale,{
 			guidelightCimSupported:'Ability of deposit light support',//是否支持存款指示灯能力
 
 
-			TTUInfo:'Text terminal (TTU) property',
+			TTUInfo:'Text Terminal (TTU) property',
 			alphanumericKeysPresent:'Ability of character/number input support',//是否支持字母数字键输入
 			numericKeysPresent:'Ability of number input support',//是否支持数字键输入
 			displayLightPresent:'Ability of number adjust screen-brightness support',//是否支持屏幕亮度调节
@@ -217,7 +217,7 @@ Ext.apply(EwayLocale,{
 
 			comStatus:'Manufacturer',//厂商状态信息
 			hwCode:'Fault code',//厂商故障码
-			CDMStatus:'Draw module(CDM) status',//取款模块(CDM)状态信息
+			CDMStatus:'Withdrawal module(CDM) status',//取款模块(CDM)状态信息
 			cashUnits:'Cashbox',//钞箱状态
 			safeDoor:'SafeDoor',//安全门状态
 			intermediateStacker:'暂存器状态',
@@ -238,7 +238,7 @@ Ext.apply(EwayLocale,{
 			puRejectCount:'Count of physical cashbox rejected',//物理钞箱Reject张数
 			cuBinType:'Logic cashbox status',//逻辑钞箱类型
 
-			CIMStatus:'Deposit module(CIM) status',
+			CIMStatus:'Deposit Module(CIM) status',
 			baffle:'Baffle',//挡板状态
 			inOutPositionStatus:'Transfer status',//传输状态
 			inBox:'Deposit cashbox',//存款钞箱
@@ -250,19 +250,19 @@ Ext.apply(EwayLocale,{
 			cuCurrency:'Currency of logic cashbox',//逻辑钞箱币种
 			cuNoteValue:'Denomination of logic cashbox',//逻辑钞箱面值
 
-			IDCStatus:'Card reader (IDC) status',
+			IDCStatus:'Card Reader (IDC) status',
 			media:'Media',//媒体状态
 			retainBin:'Recovery box status',//回收盒状态
 			cards:'Recovery box count',//回收盒数量
 
-			JRPStatus:'Log printer (JPR) status',
-			supplyLevel:'Log printer status',
+			JRPStatus:'Journal Printer(JPR) status',
+			supplyLevel:'Journal Printer status',
 			ink:'Ink',//墨水
 			toner:'Ribbon',//色带
 
-			PINStatus:'Pin keyboard(PIN) status',
+			PINStatus:'Encryption Pinpad(PIN) status',
 
-			RPRStatus:'Voucher printer(RPR)status',//凭条打印机模块(RPR)状态信息
+			RPRStatus:'Receipt Printer(RPR)status',//凭条打印机模块(RPR)状态信息
 			bin:'Recovery unit status',//回收单元状态
 
 			SIUStatus:'SIU status',//SIU能力状态信息
@@ -276,7 +276,7 @@ Ext.apply(EwayLocale,{
 			receiptGuidelight:'Guide voucher light',//凭条导引灯状态
 			cimGuidelight:'Guide CIM light',//CIM导引灯状态
 
-			TTUStatus:'Text terminal(TTU) status',//文本终端单元(TTU)状态信息
+			TTUStatus:'Text Terminal(TTU) status',//文本终端单元(TTU)状态信息
 			
 			ISCStatus:'ID Scanner(ISC) status',//身份证扫描仪(ISC)状态信息
 			
@@ -450,7 +450,7 @@ Ext.apply(EwayLocale,{
 			outBank:'Non-Bank',//离行自助银行
 			clickBank:'Half Non-Bank',//单机离行自助服务点
 			managePerson:'Manager',//管机员
-			maintainPerson:'Maintence Engineers',
+			maintainPerson:'Maintenance Engineers',
 			to:'至',//to
 			range: 'Range 1-100 years',//范围1－－100年
 			roleDescription:'Description',//角色描述

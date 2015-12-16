@@ -191,45 +191,57 @@ public class FaultController
         // 创建单元格，并设置值表头 设置表头居中
         HSSFCellStyle style = wb.createCellStyle();
         style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
-
+        
+        
         HSSFCell cell = row.createCell(0);
+        cell.setCellValue(messageSource.getMessage("device.devOrg", null, FishCfg.locale));
+
+        cell = row.createCell(1);
         cell.setCellValue(messageSource.getMessage("device.terminalId", null, FishCfg.locale));
         cell.setCellStyle(style);
 
-        cell = row.createCell(1);
+        cell = row.createCell(2);
         cell.setCellValue(messageSource.getMessage("fault.faultMod", null, FishCfg.locale));
         cell.setCellStyle(style);
 
-        cell = row.createCell(2);
+        cell = row.createCell(3);
         cell.setCellValue(messageSource.getMessage("fault.type", null, FishCfg.locale));
         cell.setCellStyle(style);
 
-        cell = row.createCell(3);
+        cell = row.createCell(4);
         cell.setCellValue(messageSource.getMessage("fault.faultCode", null, FishCfg.locale));
         cell.setCellStyle(style);
 
-        cell = row.createCell(4);
+        cell = row.createCell(5);
         cell.setCellValue(messageSource.getMessage("fault.beginTime", null, FishCfg.locale));
         cell.setCellStyle(style);
 
-        cell = row.createCell(5);
+        cell = row.createCell(6);
         cell.setCellValue(messageSource.getMessage("fault.endTime", null, FishCfg.locale));
         cell.setCellStyle(style);
 
-        cell = row.createCell(6);
+        cell = row.createCell(7);
         cell.setCellValue(messageSource.getMessage("fault.lastTime", null, FishCfg.locale));
         cell.setCellStyle(style);
 
-        cell = row.createCell(7);
+        cell = row.createCell(8);
         cell.setCellValue(messageSource.getMessage("fault.status", null, FishCfg.locale));
         cell.setCellStyle(style);
 
-        cell = row.createCell(8);
+        cell = row.createCell(9);
         cell.setCellValue(messageSource.getMessage("fault.updateTimes", null, FishCfg.locale));
         cell.setCellStyle(style);
 
-        cell = row.createCell(9);
+        cell = row.createCell(10);
         cell.setCellValue(messageSource.getMessage("fault.closeType", null, FishCfg.locale));
+        cell.setCellStyle(style);
+        
+        cell = row.createCell(11);
+        cell.setCellValue(messageSource.getMessage("fault.bankPer", null, FishCfg.locale));
+        cell.setCellStyle(style);
+        
+        cell = row.createCell(12);
+        cell.setCellValue(messageSource.getMessage("fault.serPer", null, FishCfg.locale));
         cell.setCellStyle(style);
 
         HSSFCellStyle cellStyle = wb.createCellStyle();
@@ -241,13 +253,19 @@ public class FaultController
         {
             row = sheet.createRow(i + 1);
             ICaseFault fault = list.get(i);
-
+            
             cell = row.createCell(0);
             cell.setCellType(Cell.CELL_TYPE_STRING);
             cell.setCellStyle(cellStyle);
-            cell.setCellValue(cellValue(fault.getTerminalId()));
+            cell.setCellValue(cellValue(fault.getOrg()));
+            
+            
 
             cell = row.createCell(1);
+            cell.setCellStyle(cellStyle);
+            cell.setCellValue(cellValue(fault.getTerminalId()));
+
+            cell = row.createCell(2);
             cell.setCellStyle(cellStyle);
             if (null == fault.getDevMod())
             {
@@ -258,7 +276,7 @@ public class FaultController
                 cell.setCellValue(cellValue(getEnumI18n(fault.getDevMod().getText())));
             }
 
-            cell = row.createCell(2);
+            cell = row.createCell(3);
             cell.setCellStyle(cellStyle);
             if (null == fault.getFaultClassify())
             {
@@ -269,23 +287,23 @@ public class FaultController
                 cell.setCellValue(cellValue(fault.getFaultClassify().getClassifyName()));
             }
 
-            cell = row.createCell(3);
+            cell = row.createCell(4);
             cell.setCellStyle(cellStyle);
             cell.setCellValue(cellValue(fault.getVendorHwCode()));
 
-            cell = row.createCell(4);
+            cell = row.createCell(5);
             cell.setCellStyle(cellStyle);
             cell.setCellValue(cellValue(fault.getFaultTime()));
 
-            cell = row.createCell(5);
+            cell = row.createCell(6);
             cell.setCellStyle(cellStyle);
             cell.setCellValue(cellValue(fault.getClosedTime()));
 
-            cell = row.createCell(6);
+            cell = row.createCell(7);
             cell.setCellStyle(cellStyle);
             cell.setCellValue(cellValue(fault.getDuration()));
 
-            cell = row.createCell(7);
+            cell = row.createCell(8);
             cell.setCellStyle(cellStyle);
             if (fault.getFaultStatus().equals(FaultStatus.OPEN))
             {
@@ -296,11 +314,11 @@ public class FaultController
                 cell.setCellValue(messageSource.getMessage("fault.closed", null, FishCfg.locale));
             }
 
-            cell = row.createCell(8);
+            cell = row.createCell(9);
             cell.setCellStyle(cellStyle);
             cell.setCellValue(cellValue(fault.getUpgrade()));
 
-            cell = row.createCell(9);
+            cell = row.createCell(10);
             cell.setCellStyle(cellStyle);
             if (FaultCloseType.FORCE.equals(fault.getCloseType()))
             {
@@ -314,6 +332,15 @@ public class FaultController
             {
             	cell.setCellValue("") ;
             }
+            
+            
+            cell = row.createCell(11);
+            cell.setCellStyle(cellStyle);
+            cell.setCellValue(cellValue(fault.getBankPerson()));
+            
+            cell = row.createCell(12);
+            cell.setCellStyle(cellStyle);
+            cell.setCellValue(cellValue(fault.getServicePerson()));
         }
 
         String date = DateUtils.getDate(new Date());

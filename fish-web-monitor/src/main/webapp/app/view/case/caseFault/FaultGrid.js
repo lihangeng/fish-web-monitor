@@ -80,7 +80,7 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 			}, {
 				header : EwayLocale.cases.caseFault.providerFaultCode,
 				dataIndex : 'vendorHwCode',
-				width : 80
+				width : 160
 			}, {
 				header : EwayLocale.cases.caseFault.faultStartTime,
 				dataIndex : 'faultTime',
@@ -92,7 +92,7 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 			}, {
 				header : EwayLocale.cases.caseFault.faultContinueTime,
 				dataIndex : 'duration',
-				width : 60
+				width : 85
 			}, {
 				header : EwayLocale.cases.caseFault.faultState,
 				dataIndex : 'faultStatus',
@@ -109,11 +109,11 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 			}, {
 				header : EwayLocale.cases.caseFault.upgradeTimes,
 				dataIndex : 'upgrade',
-				width : 60
+				width : 120
 			},{
 				header : EwayLocale.cases.caseFault.faultCloseType,
 				dataIndex : 'faultCloseType',
-				width : 80,
+				width : 130,
 				renderer: function(value,metadata,record){
 				if(value=="FORCE"){
                  	 return EwayLocale.cases.caseFault.closeType.force;
@@ -156,7 +156,7 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 			}, {
 				header : EwayLocale.cases.caseFault.serPer,
 				dataIndex : 'serPer',
-				width : 100
+				width : 120
 			}],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,
