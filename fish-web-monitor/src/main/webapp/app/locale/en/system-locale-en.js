@@ -11,7 +11,7 @@ Ext.apply(EwayLocale,{
 			name:'Name',//EwayLocale.person.bankOrg.name 机构名称
 			orgLevel:'Level',//EwayLocale.person.bankOrg.orgLevel 机构级别
 			orgNavi:'Navigator',//EwayLocale.person.bankOrg.orgNavi 机构导航
-			zip:'Zip',//EwayLocale.person.bankOrg.zip 邮政编码
+			zip:'Z.C',//EwayLocale.person.bankOrg.zip 邮政编码
 			removeManager:'Delete',//EwayLocale.person.bankOrg.removeManager 删除
 			manager:'Manager',//EwayLocale.person.bankOrg.manager 管理员
 			address:'Address',//EwayLocale.person.bankOrg.address 机构地址
@@ -52,7 +52,7 @@ Ext.apply(EwayLocale,{
 			removeManager:'Delete',//EwayLocale.person.serviceOrg.removeManager 删除
 			code:'Code',//EwayLocale.person.serviceOrg.code 厂商编号
 			name:'Name',//EwayLocale.person.serviceOrg.name 厂商名称
-			zip:'Zip',//EwayLocale.person.serviceOrg.zip 邮政编码
+			zip:'Z.C',//EwayLocale.person.serviceOrg.zip 邮政编码
 			shortName:'Maintenance Provider',//EwayLocale.person.serviceOrg.shortName 厂商
 			address:'Address',//EwayLocale.person.serviceOrg.address 厂商地址
 			description:'Description',//EwayLocale.person.serviceOrg.description 厂商描述
@@ -119,7 +119,8 @@ Ext.apply(EwayLocale,{
 			description:'Description',//EwayLocale.permission.role.description 角色描述
 			isSysRole:'Is Default Role',//EwayLocale.permission.role.isSysRole 是否是系统内置角色
 			chooseRight:'Please choose permissions.',//EwayLocale.permission.role.chooseRight 请选择菜单权限
-			add:'Add Role'//EwayLocale.permission.role.add 增加角色
+			add:'Add Role',//EwayLocale.permission.role.add 增加角色
+			wrongRoleParam:'Invalid input exists,please try again.'//EwayLocale.permission.role.wrongRoleParam 存在不合法的输入项.
 		},
 		permission:{
 			menuName:'Name',//EwayLocale.permission.permission.menuName 菜单名称

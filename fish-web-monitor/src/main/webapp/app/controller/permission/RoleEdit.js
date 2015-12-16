@@ -160,7 +160,7 @@ Ext.define('Eway.controller.permission.RoleEdit', {
 				this.updateRecord(form);
 			}
 		}else{
-			Eway.alert('存在不合法的输入项.');
+			Eway.alert(EwayLocale.permission.role.wrongRoleParam);
 		}
 	},
 	updateRecord : function(updateForm){

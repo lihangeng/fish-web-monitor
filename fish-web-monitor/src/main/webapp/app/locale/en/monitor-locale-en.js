@@ -139,7 +139,7 @@ Ext.apply(EwayLocale,{
 		},
 		business:{
 			transaction:{
-				card:'Card',//EwayLocale.monitor.business.transaction.card 交易卡号
+				card:'CardNo',//EwayLocale.monitor.business.transaction.card 交易卡号
 				dateTime:'Time',//EwayLocale.monitor.business.transaction.dateTime 交易时间
 				transCode:'Transaction Type',//EwayLocale.monitor.business.transaction.transCode 交易类型
 				amt:'Amt',//EwayLocale.monitor.business.transaction.amt 交易金额
@@ -189,7 +189,7 @@ Ext.apply(EwayLocale,{
 				time:'Time',//EwayLocale.monitor.business.card.time 吞卡时间
 				reason:'Reason',//EwayLocale.monitor.business.card.reason  吞卡原因
 				destroy:'Destroy',//EwayLocale.monitor.business.card.destory 吞卡销毁
-				cardHolder:'Bank holder',//EwayLocale.monitor.business.card.cardHolder 发卡行
+				cardHolder:'Issuing Bank',//EwayLocale.monitor.business.card.cardHolder 发卡行
 				cardRegex:'Max length is ',//EwayLocale.monitor.business.card.cardRegex 允许的最大长度为
 				beginEndDate:'Begin date can not be later than end date,please choose again',//EwayLocale.monitor.business.card.beginEndDate 吞卡起始日期不能大于吞卡截止日期,请重新选择
 				orgBelongs:'Org belongs(Include process org)',//EwayLocale.monitor.business.card.orgBelongs 所属机构 (包含处理机构)
@@ -198,11 +198,11 @@ Ext.apply(EwayLocale,{
 				accGetCard:'Customer get card',//EwayLocale.monitor.business.card.accGetCard 客户领卡
 				transferCard:'Turnover',//EwayLocale.monitor.business.card.transferCard 卡片移交
 				processOrg:'Process org',//EwayLocale.monitor.business.card.processOrg 处理机构
-				type:'Type',//EwayLocale.monitor.business.card.type 吞卡类型
+				type:'Retain Type',//EwayLocale.monitor.business.card.type 吞卡类型
 				manual:'Add manually',//EwayLocale.monitor.business.card.manual 手动添加
 				auto:'Add automatically',//EwayLocale.monitor.business.card.auto 自动添加
 				comboxStatus:{
-					wait:'Wait',//EwayLocale.monitor.business.card.comboxStatus.wait 待领
+					wait:'Wait for claimant',//EwayLocale.monitor.business.card.comboxStatus.wait 待领
 					received:'Received',//EwayLocale.monitor.business.card.comboxStatus.received 已领
 					destroy:'Destroy',//EwayLocale.monitor.business.card.comboxStatus.destroy 销毁
 					bringed:'Bringed'//EwayLocale.monitor.business.card.comboxStatus.bringed 调出

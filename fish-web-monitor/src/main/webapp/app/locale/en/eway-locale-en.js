@@ -1,7 +1,7 @@
 Ext.apply(EwayLocale,{
 	addSuccess : 'Add successfully.',//EwayLocale.addSuccess 增加成功.
 	updateSuccess : 'Update successfully.',//EwayLocale.updateSuccess 更改成功.
-	deleteSuccess : 'Delete successfully.',//EwayLocale.updateSuccess 删除成功.
+	deleteSuccess : 'Delete successfully.',//EwayLocale.deleteSuccess 删除成功.
 	choiceUpdateMsg :'Please select the record which you want to update.',//EwayLocale.choiceUpdateMsg 请选择您要更改的记录.
 	choiceDeleteMsg :'Please select the record which you want to delete.',//EwayLocale.choiceDeleteMsg 请选择您要删除的记录.
 
@@ -164,7 +164,7 @@ Ext.apply(EwayLocale,{
 		selectPlan:'Please select the program which you want to execute',//请选择您应用的方案.
 		removeFail:'Relieve failed',//解除失败.
 		selectRemoveDev:'Please select the machine which you want to relieve.',//请选择要解除的设备.
-		relatedFail:'Binding machine.',//关联失败.
+		relatedFail:'Binding machine failed.',//关联失败.
 		selectRelatedDev:'Please choose machines which you want to bind.',//请选择要关联的设备
 		planNoUpdate:'This program has been executed ,can not be modified ',//该方案已经执行,不可修改.
 		planNoRemove:'This program has been executed ,can not be deleted ',///该方案已经执行,不可删除.
@@ -180,13 +180,13 @@ Ext.apply(EwayLocale,{
 		planWeek:'Programme details (Week)',//EwayLocale.tip.planWeek方案详情(星期)
 		planNoConf:'The program no detailed settings！',//EwayLocale.tip.planNoConf该方案无详细设置
 		chooseRelatedDev:'Please select the device you want to associate！',//EwayLocale.tip.chooseRelatedDev请选择您要关联的设备
-		devRelatedPlan:'Device is associated with the boot program！',//EwayLocale.tip.devRelatedPlan设备已关联开机方案
+		devRelatedPlan:'Device has been bound with the service plan!',//EwayLocale.tip.devRelatedPlan设备已关联开机方案
 		//add by panxin
 		tips:'Tips',//EwayLocale.tip.tips 提示
 		input:'Please enter the right item',//EwayLocale.tip.input//请正确输入
 		roleName:'Just for character ‘a-z’ or ‘A-Z’ or numbers ‘0-9’ ,max length is 40',//EwayLocale.tip.roleName 由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位
 		notNull:'Can not be null',//EwayLocale.tip.notNull 不能为空
-		cardNo:'Just for 13 to 19 numbers',//EwayLocale.tip.cardNo 只能输入13到19个数字
+		cardNo:'Just for 13-19 numbers ‘0-9’',//EwayLocale.tip.cardNo 只能输入13到19个数字
 		blankBegin:'Can not start with blank',//EwayLocale.tip.blankBegin 不能以空格开头
 		passwd:{
 			confirmPasswd:'Reset the password ,confirm?',//EwayLocale.tip.confirmPasswd 是否确认密码重置？
@@ -201,8 +201,8 @@ Ext.apply(EwayLocale,{
 			manager:{
 				set:{
 					chooseOrg:'Please choose the organization which you want to set',//EwayLocale.tip.bankOrg.manager.set.chooseOrg 请选择您要设置的机构.
-					managerSuccess:'Manager setting successful.',//EwayLocale.tip.bankOrg.manager.set.managerSuccess 设置管理员成功.
-					managerFail:'Manager setting failed.',//EwayLocale.tip.bankOrg.manager.set.managerFail 设置管理员失败.
+					managerSuccess:'Set manager successfully.',//EwayLocale.tip.bankOrg.manager.set.managerSuccess 设置管理员成功.
+					managerFail:'Set manager failed.',//EwayLocale.tip.bankOrg.manager.set.managerFail 设置管理员失败.
 					chooseOneManager:'Please choose at least one record'//EwayLocale.tip.bankOrg.manager.set.chooseOneManager 请至少选择一条记录
 				},
 				remove:{
@@ -365,9 +365,9 @@ Ext.apply(EwayLocale,{
 
 	vtype:{
 		ip:'Please enter the correct IP address',//请输入正确的IP地址
-		zip:'Please enter the correct ZIP ,6 numbers', //请输入正确的邮编格式，6位的数字
+		zip:'Please enter the correct Z.C ,6 numbers', //请输入正确的邮编格式，6位的数字
 		versionNo:'不是正确的版本号格式,格式说明：1.版本号由4个部分组成 A.B.C.D ;2.只有A部分是必须的 ；3. A、B、C、D必须为大于等于0的整数 ,每个部分最大长度为8位； 4.ABCD部分必须用.分隔',
-		terminalId:'Input error,The terminal serialno can only be ‘a-z’ or ‘A-Z’ or number ‘0-9’ or‘-’ or‘_’ or ‘.’ and must be start with character or number and length 1-20',//输入错误,设备号由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’点号‘.’组成,只能以字母或数字开头,长度1到20位。
+		terminalId:'Just for 1-20 characters ‘a-z’ or ‘A-Z’ or numbers ‘0-9’ or‘-’ or‘_’ or ‘.’,and must be start with character or number.',//输入错误,设备号由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’点号‘.’组成,只能以字母或数字开头,长度1到20位。
 		mobile:'Input error,mobile number can only be 8-11 numbers',//输入错误,手机号码只能输入8到11位数字。
 		cardNo:'Input error,bankcard number can only be 16-19 numbers',//输入错误,银行卡号只能输入16到19位数字。
 		telephone:'Input error,phone number can only be 8-11 numbers',//输入错误,固定电话号码只能输入8到11位数字。
@@ -376,7 +376,7 @@ Ext.apply(EwayLocale,{
 
 		bankOrgCode:'Just for 1-20 characters ‘a-z’ or ‘A-Z’ or number ‘0-9’ or‘-’ or‘_’ or ‘.’,and must be start with character or number',//只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！
 		zip:'Just for 6 ‘0-9’ numbers',//只能输入6个‘0-9’的数字！
-		maxLength20:'Max length is 20',//允许的最大长度为20
+		maxLength20:'The maximum length for this field is 20.',//允许的最大长度为20
 		numberRule: 'Just for character ‘a-z’ or ‘A-Z’、number‘0-9’、minussign‘-’、underline‘_’ or point‘.’,only start with character or number',//由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’和点号‘.’，只能以字母或数字开头。
 		numberRulesOne: 'Just for character ‘a-z’ or ‘A-Z’、number‘0-9’、minussign‘-’、underline‘_’ or point‘.’,only start with Chinesecharacter,character or number,max length is 100',//由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入100位
 		numberRulesFour	: 'Just for character ‘a-z’ or ‘A-Z’、number‘0-9’,max length is 40',//由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位
@@ -408,7 +408,8 @@ Ext.apply(EwayLocale,{
 		choseTask:'Please choose a Task',//EwayLocale.vtype.choseTask 请选择一个任务
 		cancelTask:'Can not cancel the job which status is ‘finish’.',//不能撤销"完成"状态的作业
 		cancelParticularTask:'Cancel the job?(running job can only cancel the task which is not running)(正在运行的作业只会撤销还没有运行的任务.)',//是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)
-		nowDelete:'Deleting......' //正在删除......
+		nowDelete:'Deleting......', //正在删除......
+		endDateGtBenginDate:' Operate date start with can not be later than Operate date end with'//其实时间不能大于开始时间......
 	},
 
 	commen:{
@@ -542,9 +543,9 @@ Ext.apply(EwayLocale,{
 		inputNewPwd:'Input new passwd',//EwayLocale.personal.inputNewPwd 输入新密码
 		inputVali:"Just for 1-20 characters 'a-z'or 'A-Z'or number '0-9' or '-' or '_' or special characters",//EwayLocale.personal.inputVali 只能输入8到20位字母‘a-z’或‘A-Z’、数字‘0-9’、特殊字符！
 		inputAgain:'Input again',//EwayLocale.personal.inputAgain 再次输入新密码
-		pwdNotSame:'Passwds not same',//EwayLocale.personal.pwdNotSame 两次密码不一致！
+		pwdNotSame:'New password is not match',//EwayLocale.personal.pwdNotSame 两次密码不一致！
 		rememberPwd:'Click confirm to update passwd ,please remember it',//EwayLocale.personal.rememberPwd 单击确定即可修改密码，请牢记新密码！
-		pwdSameNoChange:'New password is same with the old one,can not commit',//EwayLocale.personal.pwdSameNoChange 输入的新密码与旧密码相同,不可修改.
+		pwdSameNoChange:'New password is the same with the old one,can not commit',//EwayLocale.personal.pwdSameNoChange 输入的新密码与旧密码相同,不可修改.
 		reOperate:'Can not modify passwd,please try again'//EwayLocale.personal.reOperate 无法修改密码,请重新操作.
 	},
 

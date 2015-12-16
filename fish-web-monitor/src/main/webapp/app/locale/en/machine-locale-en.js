@@ -639,7 +639,7 @@ Ext.apply(EwayLocale,{
 	},
 	//**********************************************************/
 	card:{
-		cardNum:'Card num',//EwayLocale.card.cardNum 卡号
+		cardNum:'CardNo',//EwayLocale.card.cardNum 卡号
 		onlyNumber:'Just for numbers,13-19 numbers',//EwayLocale.card.onlyNumber 只能输入数字,13-19位
 		cardStatus:'Status',//EwayLocale.card.cardStatus 卡片状态
 		eatCardTime:'Time',//EwayLocale.card.eatCardTime 吞卡时间
