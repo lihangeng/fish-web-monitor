@@ -52,12 +52,14 @@ Ext.define('Eway.view.monitor.card.CardInfoFilterForm', {
 						columnWidth : .3,
 						items : [
 						         {
-							xtype : 'card_TerminalId',
-							labelAlign : 'right'
+						        	fieldLabel : EwayLocale.commen.terminalId,
+									xtype : 'textfield',
+									name : 'terminalId',
+									labelAlign : 'right'
 					        	},{
-									xtype : 'card_AccountNo',
-									regex: /^\d{13,19}$/,
-									regexText: EwayLocale.tip.cardNo,
+					        		fieldLabel : EwayLocale.card.cardNum,
+					        		name : 'accountNo',
+									xtype : 'textfield',
 									msgTarget : 'side',
 									labelAlign : 'right'
 								}]
@@ -79,12 +81,9 @@ Ext.define('Eway.view.monitor.card.CardInfoFilterForm', {
 									},
 									items : [{
 										fieldLabel : 'startDateTime',
-										displayField : 'display',
-										valueField : 'value',
 										xtype : 'datefield',
 										format : 'Y-m-d',
 										name : 'startDate',
-										editable : false,
 										vtype : 'daterange',
 										width : 108,
 										editable:false,
@@ -105,11 +104,8 @@ Ext.define('Eway.view.monitor.card.CardInfoFilterForm', {
 										value : EwayLocale.machine.quittingNotice.to
 									}, {
 										fieldLabel : 'endDateTime',
-										displayField : 'display',
-										valueField : 'value',
 										width : 108,
 										xtype : 'datefield',
-										editable : false,
 										format : 'Y-m-d',
 										name : 'endDate',
 										vtype : 'daterange',
