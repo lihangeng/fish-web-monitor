@@ -2,6 +2,7 @@ package com.yihuacomputer.fish.monitor.service;
 
 import java.util.List;
 
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -133,14 +134,9 @@ public class FilterService implements IFilterService {
     }
 
 	@Override
-	public boolean isDuplicateName(String name) {
-		String hql = "select s from StatusFilter s where filterName = ?";
-		Object o = dao.findByHQL(hql, name);
-		if(o != null){
-			return true;
-		}else{
-			return false;
-		}
+	public IStatusFilter getByFilterName(String filterName) {
+		IStatusFilter statusFilter = (IStatusFilter) dao.getCriteria(StatusFilter.class).add(Restrictions.eq("filterName", filterName)).uniqueResult();
+		return statusFilter;
 	}
 
     // public IClassifyBoxStatusFilter makeClassifyBoxStatusFilter() {
