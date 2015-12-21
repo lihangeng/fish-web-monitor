@@ -1182,8 +1182,6 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
    				var object = Ext.decode(response.responseText);
    				if(object.success == true){
    					if(object.data != null){
-//   						win.down('form').down('displayfield[name="atmcVersion"]').setValue(object.data.atmcVersion);
-//   	   					win.down('form').down('displayfield[name="agentVersion"]').setValue(object.data.agentVersion);
    	   					
    	   					if (object.data.currentPatches.length > 0) {
    	   						var formVersion = win.down('form');
@@ -1194,10 +1192,14 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 	   	   						formVersion.add({
 	   	   							xtype : 'displayfield',
 									fieldLabel: data.typeName,
+									labelWidth: 150,
+									width: 380,
+									
 									value : data.versionNo,
 									margin : '0 0 0 10',
 									style : {
-										'text-align' : 'center'
+										'text-align': 'center',
+										 'word-wrap': 'break-word'
 									}
 	   	   						});
 	   	   					}

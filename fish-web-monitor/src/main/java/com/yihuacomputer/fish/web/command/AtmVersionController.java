@@ -81,7 +81,7 @@ public class AtmVersionController {
             
         
             // 将类型翻译成名称
-            List<IVersionType> listVersionType = versionTypeService.list(new Filter()); 
+            List<IVersionType> listVersionType = versionTypeService.listAll(); 
             for (SimpleVersion version : atmVersionForm.getCurrentPatches()) {
                 for (IVersionType type : listVersionType) {
                     if (version.getTypeName().equals(type.getTypeName())) {

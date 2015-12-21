@@ -28,20 +28,11 @@ Ext.define('Eway.controller.agent.remote.RemoteLookVesion',{
 		    	xtype : 'form',
 		    	border : 0 ,
 		    	region:'center',
-	    	 	autoScroll : true,
+//	    	 	autoScroll : true,
 	    	 	defaults: {
-					anchor : '90%',
-					labelWidth: '50%'
-				}/*,
-		    	items : [ {
-				    xtype : 'displayfield',
-				    fieldLabel: EwayLocale.agent.remote.ATMCVersion,
-				    name : 'atmcVersion'
-				}, {
-					xtype : 'displayfield',
-					fieldLabel: EwayLocale.agent.remote.monitorVersion,
-					name : 'agentVersion'
-				} ]*/
+//					anchor : '90%',
+//					labelWidth: '50%'
+				}
 			} ]
 		});
 
