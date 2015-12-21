@@ -71,6 +71,8 @@ public class RestartController {
         hist.setTerminalId(terminalId);
         remoteCommHistService.save(hist);
 
+        restartParamForm.setId(hist.getId());
+        
         try {
             HttpProxy.httpPost(url, restartParamForm, null, 5000);
             
@@ -188,7 +190,7 @@ public class RestartController {
 //        Thread thread = new Thread(runnable);
 //        thread.start();
         
-        
+        restartParamForm.setId(hist.getId());
         try {
             // 设置运行状态为重启
             runInfo.setRunStatus(RunStatus.ReBoot);
