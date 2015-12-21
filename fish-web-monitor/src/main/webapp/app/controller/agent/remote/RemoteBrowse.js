@@ -486,7 +486,6 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 				    this.win.down('textfield[name="path"]').setValue(path);
 				    this.win.down('textfield[name="queryPath"]').setValue(path);
 					grid.on('itemdblclick',me.onRemoteBrowseFileSystem2,this);
-					grid.on()
 				}else{
 					Eway.alert(EwayLocale.agent.remote.catalogExist);
 				}
