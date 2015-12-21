@@ -118,7 +118,11 @@ public interface IFilterService {
      */
     public IPageResult<IStatusFilter> page(int offset, int limit, IFilter filter);
     
-    
-    public boolean isDuplicateName(String name);
+    /**
+     * 过滤器名称是否重复
+     * @param filterName
+     * @return
+     */
+    public IStatusFilter getByFilterName(String filterName);
 
 }

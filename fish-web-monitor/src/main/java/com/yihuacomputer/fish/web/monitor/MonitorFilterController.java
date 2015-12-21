@@ -191,11 +191,16 @@ public class MonitorFilterController {
             statusFilter.setUserId(userId);
             String filterName = request.getParameter("filterName");
             statusFilter.setFilterName(filterName);
-            if(filterService.isDuplicateName(filterName)){
+            
+            IStatusFilter sf = filterService.getByFilterName(filterName);
+            
+            if(sf!=null){
             	result.addAttribute(FishConstant.SUCCESS, false);
             	result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("monitorFilter.duplicateName", null, FishCfg.locale));
             	return result;
             }
+            
+            
             filterService.save(statusFilter);
 
             result.addAttribute(FishConstant.SUCCESS, true);
@@ -234,24 +239,28 @@ public class MonitorFilterController {
             	statusFilter.setOrgId(null);
             	
             }
-            
             String filterName = request.getParameter("filterName");
-            String oldName = statusFilter.getFilterName();
             
-            statusFilter.setFilterName(filterName);
-            if(!oldName.equals(filterName) && filterService.isDuplicateName(filterName)){
+            IStatusFilter sf = filterService.getByFilterName(filterName);
+            
+            //如果修改的名称存在，并且不是该条记录
+            if(sf!=null && (sf.getId()!= id)){
             	result.addAttribute(FishConstant.SUCCESS, false);
             	result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("monitorFilter.duplicateName", null, FishCfg.locale));
             	return result;
             }
-
+            	
+            
+            
             filterService.updateStatusFilter(statusFilter);
 
+           
             result.addAttribute(FishConstant.SUCCESS, true);
 
         }
         catch (Exception ex) {
             logger.error(String.format("修改监控状态失败!失败信息[%s]", ex.getMessage()));
+            result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage());
             result.addAttribute(FishConstant.SUCCESS, false);
         }
 
