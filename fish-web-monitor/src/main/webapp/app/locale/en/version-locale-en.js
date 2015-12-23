@@ -238,7 +238,7 @@ Ext.apply(EwayLocale,{
 		},
 		task:{
 			selectJobStartRefresh:'Please choose a job,and then start automatic refresh',//EwayLocale.version.task.selectJobStartRefresh 请选择一个作业,再开启定时刷新！
-			jobBatchName:'Job bacth name',//EwayLocale.version.task.jobBatchName 作业批次名称
+			jobBatchName:'Job batch name',//EwayLocale.version.task.jobBatchName 作业批次名称
 			patchVersion:'Distribute version',//EwayLocale.version.task.patchVersion 分发版本
 			taskStatus:'Task status',//EwayLocale.version.task.taskStatus 任务状态
 			beforeUpdate:'Version before distribute',//EwayLocale.version.task.beforeUpdate 分发前的版本

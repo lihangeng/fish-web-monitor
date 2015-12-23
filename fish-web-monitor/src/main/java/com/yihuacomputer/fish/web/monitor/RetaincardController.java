@@ -537,10 +537,10 @@ public class RetaincardController {
 		cell.setCellValue(messageSource.getMessage("retaincard.cardHoldBank", null, FishCfg.locale));
 		cell.setCellStyle(style);
 		cell = row.createCell(6);
-		cell.setCellValue(messageSource.getMessage("retaincard.cardStatus", null, FishCfg.locale));
+		cell.setCellValue(messageSource.getMessage("retaincard.retainReason", null, FishCfg.locale));
 		cell.setCellStyle(style);
 		cell = row.createCell(7);
-		cell.setCellValue(messageSource.getMessage("retaincard.retainReason", null, FishCfg.locale));
+		cell.setCellValue(messageSource.getMessage("retaincard.cardStatus", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
 		/**
