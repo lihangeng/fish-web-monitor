@@ -20,7 +20,7 @@ public class TransRptService implements ITransRptService {
 
     @Autowired
     private IGenericDao dao;
-    
+
 	@Autowired
 	private MessageSource messageSource;
 
@@ -63,15 +63,15 @@ public class TransRptService implements ITransRptService {
             hql.append(" and r.terminalId like ?");
             valueObj.add("%" + terminalId.getValue() + "%");
         }
-        
+
         if (orgLevel != null) {
             hql.append(" and o.organizationLevel <= ? ");
             valueObj.add(orgLevel.getValue());
         }
 //        hql.append(" group by d.organization,tr.transCode order by tr.dateTime desc");
-        
+
         hql.append(" group by o.name,tt.codeDesc ");
-        
+
         List<Object> list = dao.findByHQL(hql.toString(), valueObj.toArray());
 
         List<ITransCountRpt> countList = new ArrayList<ITransCountRpt>();
@@ -86,18 +86,18 @@ public class TransRptService implements ITransRptService {
             transCountRpt.setTransType(objectToString(o[3]));
             transCountRpt.setCountName(messageSource.getMessage("report.trans.transCountName", null, FishCfg.locale));
             transCountRpt.setTransCount(Long.valueOf(objectToString(o[0])));
-            
+
             transCountRpt.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
             transCountRpt.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
             transCountRpt.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
             transCountRpt.setTransTypeColumn(messageSource.getMessage("atmLog.transType", null, FishCfg.locale));
-            
+
 
             transAmtRpt.setOrgName(objectToString(o[1]));
             transAmtRpt.setTransType(objectToString(o[3]));
             transAmtRpt.setCountName(messageSource.getMessage("report.trans.transAmtName", null, FishCfg.locale));
             transAmtRpt.setTransCount(Double.valueOf(objectToString(o[2])));
-            
+
             transAmtRpt.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
             transAmtRpt.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
             transAmtRpt.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
@@ -151,15 +151,15 @@ public class TransRptService implements ITransRptService {
             hql.append(" and r.terminalId like ?");
             valueObj.add(terminalId.getValue() + "%");
         }
-        
+
         if (orgLevel != null) {
             hql.append(" and o.organizationLevel <= ? ");
             valueObj.add(orgLevel.getValue());
         }
 //        hql.append(" group by d.organization,tr.transCode order by tr.dateTime desc");
-        
+
         hql.append(" group by o.name,d.terminalId,tt.codeDesc ");
-        
+
         List<Object> list = dao.findByHQL(hql.toString(), valueObj.toArray());
 
         List<ITransCountRpt> countList = new ArrayList<ITransCountRpt>();
@@ -175,8 +175,8 @@ public class TransRptService implements ITransRptService {
             transCountRpt.setTransType(objectToString(o[2]));
             transCountRpt.setCountName(messageSource.getMessage("report.trans.transCountName", null, FishCfg.locale));
             transCountRpt.setTransCount(Long.valueOf(objectToString(o[3])));
-            
-            
+
+
             transCountRpt.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
             transCountRpt.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
             transCountRpt.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
@@ -188,8 +188,8 @@ public class TransRptService implements ITransRptService {
             transAmtRpt.setTransType(objectToString(o[2]));
             transAmtRpt.setCountName(messageSource.getMessage("report.trans.transAmtName", null, FishCfg.locale));
             transAmtRpt.setTransCount(Double.valueOf(objectToString(o[4])));
-            
-            
+
+
             transAmtRpt.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
             transAmtRpt.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
             transAmtRpt.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
@@ -208,8 +208,8 @@ public class TransRptService implements ITransRptService {
 
         return countList;
     }
-    
-    
+
+
     @Override
     public List<ITransResultCountRpt> listTransResultCount(IFilter filter) {
         StringBuffer hql = new StringBuffer();
@@ -219,8 +219,8 @@ public class TransRptService implements ITransRptService {
         IFilterEntry startData = filter.getFilterEntry("startData");
         IFilterEntry transCode = filter.getFilterEntry("transCode");
 
-        hql.append("select count(tr.transId),o.name,sum(tr.amt),hr.name from Transaction tr,Device d,Organization o,HostRet hr,TransType tt ");
-        hql.append("where tr.terminalId = d.terminalId and d.organization.id = o.id and tr.hostRet = hr.code and tr.transCode = tt.transCode");
+        hql.append("select count(tr.transId),o.name,sum(tr.amt),tr.hostRet from TransactionView tr,Device d,Organization o,TransType tt ");
+        hql.append("where tr.terminalId = d.terminalId and d.organization.id = o.id and tr.transCode = tt.transCode");
 
         if (orgFlag != null) {
             hql.append(" and d.organization.orgFlag like ?");
@@ -238,10 +238,10 @@ public class TransRptService implements ITransRptService {
             hql.append(" and tt.transCode=?");
             valueObj.add(transCode.getValue());
         }
-        
+
 //        hql.append(" group by d.organization,hr.code order by tr.dateTime desc");
-        hql.append(" group by o.name, hr.name ");
-        
+        hql.append(" group by o.name, tr.hostRet ");
+
         List<Object> list = dao.findByHQL(hql.toString(), valueObj.toArray());
 
         List<ITransResultCountRpt> countList = new ArrayList<ITransResultCountRpt>();
@@ -255,20 +255,20 @@ public class TransRptService implements ITransRptService {
             transResultCountRpt.setResult(objectToString(o[3]));
             transResultCountRpt.setCountName(messageSource.getMessage("report.trans.transCountName", null, FishCfg.locale));
             transResultCountRpt.setTransCount(Long.valueOf(objectToString(o[0])));
-            
-            
+
+
             transResultCountRpt.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
             transResultCountRpt.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
             transResultCountRpt.setTransResultColumn(messageSource.getMessage("report.trans.transResult", null, FishCfg.locale));
             transResultCountRpt.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
-            
+
 
             transResultAmtRpt.setOrgName(objectToString(o[1]));
             transResultAmtRpt.setResult(objectToString(o[3]));
             transResultAmtRpt.setCountName(messageSource.getMessage("report.trans.transAmtName", null, FishCfg.locale));
             transResultAmtRpt.setTransCount(Double.valueOf(objectToString(o[2])));
-            
-            
+
+
             transResultAmtRpt.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
             transResultAmtRpt.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
             transResultAmtRpt.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
@@ -283,7 +283,7 @@ public class TransRptService implements ITransRptService {
 
     /**
      * 对象转换为字符串，null转为""
-     * 
+     *
      * @param obj
      *            目标对象
      * @return 返回字符串
