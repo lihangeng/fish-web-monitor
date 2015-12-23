@@ -11,6 +11,7 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.monitor.business.IHostRet;
 import com.yihuacomputer.fish.api.report.base.ITransCountRpt;
 import com.yihuacomputer.fish.api.report.base.ITransResultCountRpt;
 import com.yihuacomputer.fish.api.report.base.ITransRptService;
@@ -294,4 +295,11 @@ public class TransRptService implements ITransRptService {
         }
         return obj.toString();
     }
+
+	@Override
+	public List<IHostRet> listHostRetCode() {
+		String hql = "from HostRet";
+		List<IHostRet> hostRet = dao.findByHQL(hql);
+		return hostRet;
+	}
 }

@@ -30,6 +30,14 @@ public interface ITransResultCountRpt {
      * @return
      */
     public double getTransCount();
+    
+    
+    
+    /**
+     *  设置结果
+     * @return
+     */
+    public void setResult(String result);
 	
 
 }
