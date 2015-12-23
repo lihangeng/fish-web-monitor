@@ -53,6 +53,7 @@ Ext.apply(EwayLocale,{
 		todoDelete:'Delete this record?',//EwayLocale.confirm.todoDelete 是否删除该记录?
 		title:'Tip',//EwayLocale.confirm.title 提示
 		withoutNumTaskConfirmInfo:'Job save successful,skip to the "Distribute monitor" page?',//EwayLocale.confirm.withoutNumTaskConfirmInfo 作业保存成功,是否跳转到"分发监控"页面?
+		timeout:'Session timeout, 3 seconds after the automatic jump to the system login page',//EwayLocale.confirm.timeout
 		//TODO *为数字需要替换
 		taskConfirmInfo0:'第',//EwayLocale.confirm.taskConfirmInfo0 第
 		taskConfirmInfo1:'次作业保存成功,是否跳转到"分发监控"页面?'//EwayLocale.confirm.taskConfirmInfo1 次作业保存成功,是否跳转到"分发监控"页面?

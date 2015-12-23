@@ -227,7 +227,7 @@ public class TransRptService implements ITransRptService {
             valueObj.add(orgFlag.getValue() + "%");
         }
         if (endData != null) {
-            hql.append(" and tr.dateTime<=?");
+            hql.append(" and tr.dateTime<?");
             valueObj.add(endData.getValue());
         }
         if (startData != null) {

@@ -112,7 +112,8 @@ Ext.define('Eway.view.monitor.charts.MonitorDeviceGrid',{
 				dataIndex : 'address'
 			}, {
 				header : EwayLocale.commen.seviceMode,
-				dataIndex : 'seviceMode'
+				dataIndex : 'seviceMode',
+				hidden:true
 			}, {
 				header : EwayLocale.commen.insideOutside,
 				dataIndex : 'insideOutside',

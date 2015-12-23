@@ -230,7 +230,7 @@ public class TransactionResultCountReportController {
 				filter.eq("orgLevel", OrganizationLevel.getById(Integer.valueOf(value)));
 
 			} else if (name.equals("endData")) {
-				filter.eq("endData", DateUtils.getDate(value));
+				filter.eq("endData", DateUtils.getNexDate(value));
 
 			} else if (name.equals("startData")) {
 				filter.eq("startData", DateUtils.getDate(value));
