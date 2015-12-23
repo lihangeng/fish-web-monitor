@@ -175,6 +175,13 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 		if (histXfsStatus.getRunStatus().equals(RunStatus.StopManmade)) {
 			xfsStatus.setRunStatus(RunStatus.StopManmade);
 		}
+		//该段代码必须要放在状态数据库更新前
+		IXfsStatus handleStatus = xfsService.makeXfsStatus();
+		handleStatus.setXfsStatus(xfsStatus);
+		IXfsStatus handleHistStatus = xfsService.makeXfsStatus();
+		handleHistStatus.setXfsStatus(histXfsStatus);
+		handleStatus.setHisXfsStatus(handleHistStatus);
+
 		histXfsStatus.setDateTime(DateUtils.getTimestamp(new Date()));
 		histXfsStatus.setXfsStatus(xfsStatus);
 		xfsService.updateXfsStatus(histXfsStatus);
@@ -200,11 +207,6 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 		// 4.模块故障处理（异步处理）
 		if (faultManager != null) {
 			try {
-				IXfsStatus handleStatus = xfsService.makeXfsStatus();
-				handleStatus.setXfsStatus(xfsStatus);
-				IXfsStatus handleHistStatus = xfsService.makeXfsStatus();
-				handleHistStatus.setXfsStatus(histXfsStatus);
-				handleStatus.setHisXfsStatus(handleHistStatus);
 				faultManager.handleFault(handleStatus);
 			} catch (Exception e) {
 				logger.error(String.format("handle device caseFault exception[%s]", e));
@@ -213,7 +215,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 			logger.info("don't handle device case fault!");
 		}
 	}
-	
+
 	/**
 	 * 放入消息队列
 	 * @param histXfsStatus
@@ -233,7 +235,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 		DeviceReport deviceReport = this.getFullDeviceReport(histXfsStatus);
 		this.collectListener.receivedStatus(terminalId, deviceReport, messageSourceEnum);
 	}
-	
+
 
 	/**
 	 * 推送状态类信息到WEB页面
@@ -280,7 +282,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 		deviceReport.setDeviceRegister((DeviceRegister) this.registSerivce.load(terminalId));
 		return deviceReport;
 	}
-	
+
 
 	/**
 	 * 根据terminalId获取内存中的DeviceReport对象 获取失败创建新对象
@@ -418,7 +420,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
     		ex.printStackTrace();
     	}
     }
-    
+
     /**
 	 * 推送交易类信息到WEB页面
 	 * @param message
@@ -430,7 +432,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
         deviceReport.setDevice(this.deviceService.get(terminalId));
         this.collectListener.receivedBusiness(terminalId,BusinessInfo.TRANSACTION, deviceReport);
     }
-    
+
 	/**
 	 * 收集ATMC吞卡信息
 	 *
@@ -440,7 +442,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	public void collectATMCRetainCard(String terminalId, IRetaincard retainCard) {
 		retainCard.setTerminalId(terminalId);
 		retaincardService.add(retainCard);
-		
+
 		if (deviceCaseService != null) {
 			deviceCaseService.handleRetainCard(retainCard);
 		}
@@ -496,7 +498,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 			mqProducer.put(JsonUtils.toJson(mqTransaction));
 		}
 	}
-	
+
 	@Override
 	public void initDeviceCollect(IDevice device) {
 		this.hardwareService.init(device.getTerminalId());
@@ -607,7 +609,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 			forms.setOrgName(device.getOrganization().getName());
 			result.add(forms);
 		}
-		
+
 		//需要增加一个监控页面（江苏农信特有的功能）
 		DeviceReport deviceReport = this.getDeviceReport(terminalId);
 		deviceReport.setCounterFeitMoneyForms(result);
