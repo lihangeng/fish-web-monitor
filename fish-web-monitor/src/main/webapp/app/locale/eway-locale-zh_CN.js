@@ -514,8 +514,8 @@ Ext.apply(EwayLocale,{
 		orgID:'机构ID',//EwayLocale.commen.orgID
 		endValidty:'截止有效期',//EwayLocale.commen.endValidty
 		publishDate:'发布日期',//EwayLocale.commen.publishDate
-		announceTheme:'公告主题'//EwayLocale.commen.announceTheme
-
+		announceTheme:'公告主题',//EwayLocale.commen.announceTheme
+		filterDelete: '已删除'//EwayLocale.commen.filterDelete
 
 
 	},

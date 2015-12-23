@@ -17,7 +17,11 @@ Ext.define('Eway.view.monitor.settlement.Grid', {
 			}, {
 				text : EwayLocale.commen.info,
 				glyph : 0xf129,
-				action : 'info'
+				action : 'info',
+				code : 'settlementDetail',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			} ],
 			viewConfig : {
 				forceFit : true,

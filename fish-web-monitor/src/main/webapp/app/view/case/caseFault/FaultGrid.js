@@ -19,7 +19,11 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 			},{
 				text : EwayLocale.button.exported,
 				glyph : 0xf1c3,
-				action : 'export'
+				action : 'export',
+				code : 'casefaultExport',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}],
 			columns : [{
 				header : EwayLocale.commen.orgNameBelongs,

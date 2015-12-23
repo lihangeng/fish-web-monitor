@@ -23,11 +23,7 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 			}, {
 				text : EwayLocale.button.remove,
 				glyph : 0xf014,
-				action : 'remove'/*,
-				code : 'deviceDel',
-				listeners:{
-					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-				}*/
+				action : 'remove'
 			} ],
 			columns : [ {
 				header : EwayLocale.monitor.devMonitor.filterManager.filterForm.filterName,
@@ -45,7 +41,7 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					
 					if (name == null) {
 						metaData.style = 'color:#BBBBBB;';
-						return value + '(已删除)';
+						return value + '(' + EwayLocale.commen.filterDelete + ')';
 					}
 					return name;
 				}
@@ -61,7 +57,7 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					
 					if (name == null) {
 						metaData.style = 'color:#BBBBBB;';
-						return value + '(已删除)';
+						return value + '(' + EwayLocale.commen.filterDelete + ')';
 					}
 					return name;
 				}
@@ -77,7 +73,7 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					
 					if (name == null) {
 						metaData.style = 'color:#BBBBBB;';
-						return value + '(已删除)';
+						return value + '(' + EwayLocale.commen.filterDelete + ')';
 					}
 					return name;
 				}
@@ -99,25 +95,7 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 						return EwayLocale.machine.atmGroup.comboxAwayFlag.clickBank;
 					}
 				}
-			}/*, {
-				header : EwayLocale.commen.seviceMode,
-				dataIndex : 'sellItem',
-				renderer : function(value) {
-					
-					if (value == 0) {
-						return EwayLocale.commen.all;
-					}
-					if (value == 1) {
-						return EwayLocale.machine.device.operationSelf;
-					}
-					if (value == 2) {
-						return EwayLocale.machine.device.cooperation;
-					}
-					if (value == 3) {
-						return EwayLocale.machine.device.epiboly;
-					}
-				}
-			}*/, {
+			}, {
 				header : EwayLocale.monitor.devMonitor.atmGroup,
 				dataIndex : 'atmGroup',
 				renderer : function(value, metaData, record) {
@@ -129,7 +107,7 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					
 					if (name == null) {
 						metaData.style = 'color:#BBBBBB;';
-						return value + '(已删除)';
+						return value + '(' + EwayLocale.commen.filterDelete + ')';
 					}
 					return name;
 				}
@@ -185,7 +163,6 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					if (value.run_stopunknown) {
 						str += '|' + EwayLocale.monitor.devMonitor.remote.pauseSerUnknow;
 					}
-//					str = str.startsWith('|') ? str.substr(1) : str;
 					str = Ext.String.startsWith(str, '|') ? str.substr(1) : str;
 					return str;
 				}
@@ -212,9 +189,8 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 						str += '|' + EwayLocale.commen.unknow;
 					}
 					if (value.mod_noDevice) {
-						str += '|' + EwayLocale.monitor.devMonitor.noData;
+						str += '|' + EwayLocale.commen.noDevice;
 					}
-//					str = str.startsWith('|') ? str.substr(1) : str;
 					str = Ext.String.startsWith(str, '|') ? str.substr(1) : str;
 					return str;
 				}
@@ -249,7 +225,6 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					if (value.box_unknown) {
 						str += '|' + EwayLocale.monitor.devMonitor.cash.cashUnknow;
 					}
-//					str = str.startsWith('|') ? str.substr(1) : str;
 					str = Ext.String.startsWith(str, '|') ? str.substr(1) : str;
 					return str;
 				}
@@ -275,7 +250,6 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					if (value.net_unknown) {
 						str += '|' + EwayLocale.commen.unknow;
 					}
-//					str = str.startsWith('|') ? str.substr(1) : str;
 					str = Ext.String.startsWith(str, '|') ? str.substr(1) : str;
 					return str;
 				},

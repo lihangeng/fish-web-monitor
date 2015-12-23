@@ -123,21 +123,26 @@ public class FilterService implements IFilterService {
     @Override
     public IPageResult<IStatusFilter> page(int offset, int limit, IFilter filter) {
 
-//        String hql = "select sf,o,at,ag from StatusFilter sf, Organization o, AtmType at, AtmGroup ag ";
-//        hql += " where sf.devType=at.id and sf.orgId=o.id and sf.atmGroup=ag.id ";
-//
-//        List<Object> arrayObj = new ArrayList<Object>();
-//
-//        return (IPageResult<Object>) dao.page(offset, limit, filter, hql, arrayObj.toArray());
-        
+        // String hql =
+        // "select sf,o,at,ag from StatusFilter sf, Organization o, AtmType at, AtmGroup ag ";
+        // hql +=
+        // " where sf.devType=at.id and sf.orgId=o.id and sf.atmGroup=ag.id ";
+        //
+        // List<Object> arrayObj = new ArrayList<Object>();
+        //
+        // return (IPageResult<Object>) dao.page(offset, limit, filter, hql,
+        // arrayObj.toArray());
+
         return dao.page(offset, limit, filter, StatusFilter.class);
     }
 
-	@Override
-	public IStatusFilter getByFilterName(String filterName) {
-		IStatusFilter statusFilter = (IStatusFilter) dao.getCriteria(StatusFilter.class).add(Restrictions.eq("filterName", filterName)).uniqueResult();
-		return statusFilter;
-	}
+    @Override
+    public IStatusFilter getByFilterName(String userId, String filterName) {
+
+        IStatusFilter statusFilter = (IStatusFilter) dao.getCriteria(StatusFilter.class)
+                .add(Restrictions.eq("userId", userId)).add(Restrictions.eq("filterName", filterName)).uniqueResult();
+        return statusFilter;
+    }
 
     // public IClassifyBoxStatusFilter makeClassifyBoxStatusFilter() {
     // return new ClassifyBoxStatusFilter();

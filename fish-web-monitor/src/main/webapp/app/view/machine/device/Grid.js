@@ -20,7 +20,11 @@ Ext.define('Eway.view.machine.device.Grid', {
 			}, {
 				text : EwayLocale.button.info,
 				glyph : 0xf129,
-				action : 'info'
+				action : 'info',
+				code : 'deviceInfo',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}, {
 				text : EwayLocale.button.add,
 				glyph : 0xf067,
@@ -77,7 +81,11 @@ Ext.define('Eway.view.machine.device.Grid', {
 			}, {
 				text : EwayLocale.button.exported,
 				glyph : 0xf1c3,
-				action : 'export'
+				action : 'export',
+				code : 'deviceExport',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			} ],
 			columns : [ {
 				header : EwayLocale.machine.atmGroup.terminalId,

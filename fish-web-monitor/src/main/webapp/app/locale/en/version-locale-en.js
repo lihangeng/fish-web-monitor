@@ -263,7 +263,7 @@ Ext.apply(EwayLocale,{
 			downloadResult:'Issue result',//EwayLocale.version.task.downloadResult 下发结果
 			cancelJob:'Cancel job',//EwayLocale.version.task.cancelJob 撤销作业
 			jobId:'Job ID',	//EwayLocale.version.task.jobId 作业ID
-			selectDownloadDevice:'Choose deivce to issue',	//EwayLocale.version.task.selectDownloadDevice 选择下发的设备
+			selectDownloadDevice:'Choose device to issue',	//EwayLocale.version.task.selectDownloadDevice 选择下发的设备
 			versionNoBeforeUpdate:'Version before update',	//EwayLocale.version.task.versionNoBeforeUpdate 升级前版本号
 			versionNoAfterUpdate:'Target version no.',	//EwayLocale.version.task.versionNoAfterUpdate 目标版本号
 			deviceVersionHis:'View device history version',	//EwayLocale.version.task.deviceVersionHis 查看设备历史版本
