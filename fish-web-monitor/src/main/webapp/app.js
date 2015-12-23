@@ -18,7 +18,7 @@ Ext.application({
 				   	if(sessionStatus == "timeout"){
 				   			Ext.util.Cookies.set("lastEwayPage","");
 				  			Ext.Msg.show({
-								title:'提示',
+								title:EwayLocale.confirm.title,
 					            width: 350,
 					            modal:true,
 					            closable:true,
@@ -28,7 +28,7 @@ Ext.application({
 						   				window.location='login.jsp';
 						   			}
 						   		},
-								msg : '会话超时，3秒后自动跳转到登录页面',
+								msg : EwayLocale.confirm.timeout,
 								icon : Ext.MessageBox.INFO
 							});
 
