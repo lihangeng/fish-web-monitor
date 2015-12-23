@@ -59,13 +59,13 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 						return EwayLocale.cases.caseFault.sensoModule;
 					}
 					else if(value=="ISC"){
-						return "身份证扫描仪模块";
+						return EwayLocale.cases.caseFault.iscModule;
 					}
 					else if(value=="ICC"){
-						return "发卡器模块";
+						return EwayLocale.cases.caseFault.iccModule;
 					}
 					else if(value=="FGP"){
-						return "指纹仪模块";
+						return EwayLocale.cases.caseFault.fgpModule;
 					}
 				}
 			}, {
