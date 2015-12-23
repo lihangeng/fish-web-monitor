@@ -122,7 +122,7 @@ Ext.apply(EwayLocale,{
 		addVersionTitle:'Add Version information',//EwayLocale.version.addVersionTitle 增加版本信息
 		batchTaskName:'Batch task name',//EwayLocale.version.batchTaskName 任务批次名称
 		batchTaskNameEmpty:'Example:****first requirement update',//EwayLocale.version.batchTaskNameEmpty 例如:****需求第1批次升级
-		UpdateTitle:'Change version information',//EwayLocale.version.UpdateTitle 更改版本信息
+		UpdateTitle:'Update version information',//EwayLocale.version.UpdateTitle 更改版本信息
 		addJobTitle:'Set version information',//EwayLocale.version.addJobTitle 配置作业信息
 		downloadVersionId:'Issue version ID',//EwayLocale.version.downloadVersionId 下发版本ID
 		taskType:'Task type',//EwayLocale.version.taskType 任务类型
@@ -130,7 +130,7 @@ Ext.apply(EwayLocale,{
 		taskTypeAuto:'Auto Update',//EwayLocale.version.taskTypeAuto 自动升级
 		taskTypeScheduler:'Job plan',//EwayLocale.version.taskTypeScheduler 计划作业
 		planTime:'Plan to execute time',//EwayLocale.version.planTime 计划执行时间
-		selectableDevice:'Deivice can be issue',//EwayLocale.version.selectableDevice 可以下发的设备
+		selectableDevice:'Device can be issue',//EwayLocale.version.selectableDevice 可以下发的设备
 		linkedDevice:'Selected Devices',//EwayLocale.version.linkedDevice 已选择的设备
 		downloadVerFile:'Download version file',//EwayLocale.version.downloadVerFile 下载版本文件
 		installPath:'Install Path',
@@ -173,7 +173,7 @@ Ext.apply(EwayLocale,{
 			versionDescEmpty:'Please describe this version with words (At most 20 words)',//EwayLocale.version.View.versionDescEmpty 请用文字描述此版本需求
 			otherConfigTitle:'Additional Settings',//EwayLocale.version.View.otherConfigTitle 其他配置
 			otherConfigAutoDown:'Allow update automatic (only while the ATM check new version from server ,the version which update automatic will be return to ATM )',//EwayLocale.version.View.otherConfigAutoDown 允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)
-			otherConfigUncompress:'Uzip automatic(when choose this option, the ATM will unzip automatic )&nbsp;<font color="red">attention:if the file is not zip file at first ,and then ziped to zip file ,please select this option!</font>',//EwayLocale.version.View.otherConfigUncompress 自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>
+			otherConfigUncompress:'Uzip automatic(when choose this option, the ATM will unzip automatic )&nbsp;<font color="red">attention:if the file is not zip file at first ,and then zipped to zip file ,please select this option!</font>',//EwayLocale.version.View.otherConfigUncompress 自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>
 			versionServerPath:'File Path In Server', //EwayLocale.version.View.versionServerPath 文件在服务器上的位置
 			versionName:'Name',//EwayLocale.version.View.versionName 版本名称
 			downloadVersionName:'Version issued',//EwayLocale.version.View.downloadVersionName 下发的版本
