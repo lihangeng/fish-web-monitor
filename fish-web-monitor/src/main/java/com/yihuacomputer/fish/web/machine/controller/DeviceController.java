@@ -369,6 +369,11 @@ public class DeviceController {
 		cell = row.createCell(12);
 		cell.setCellValue(messageSource.getMessage("device.devCashWarn", null, FishCfg.locale));
 
+		cell = row.createCell(13);
+		cell.setCellValue(messageSource.getMessage("device.virtual", null, FishCfg.locale));
+		
+		cell = row.createCell(14);
+		cell.setCellValue(messageSource.getMessage("device.devSerialNo", null, FishCfg.locale));
 
 		HSSFCellStyle cellStyle = workBook.createCellStyle();
 		HSSFDataFormat format = workBook.createDataFormat();

@@ -93,7 +93,7 @@ public class TransactionResultCountReportController {
 			parameters.put("startReportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + ":" + startReportDateValue);
 
 			// 交易是带时分秒的，而页面是不需要时分秒的
-			filter.entrySet().remove(filter.getFilterEntry("startData"));
+//			filter.entrySet().remove(filter.getFilterEntry("startData"));
 		} else {
 			parameters.put("startReportDate", "");
 		}
@@ -105,7 +105,7 @@ public class TransactionResultCountReportController {
 			parameters.put("endReportDate", endReportDateValue);
 
 			// 交易是带时分秒的，而页面是不需要时分秒的
-			filter.entrySet().remove(filter.getFilterEntry("endData"));
+//			filter.entrySet().remove(filter.getFilterEntry("endData"));
 		} else {
 			parameters.put("endReportDate", "");
 		}
@@ -230,7 +230,7 @@ public class TransactionResultCountReportController {
 				filter.eq("orgLevel", OrganizationLevel.getById(Integer.valueOf(value)));
 
 			} else if (name.equals("endData")) {
-				filter.eq("endData", DateUtils.getDate(value));
+				filter.eq("endData", DateUtils.getNexDate(value));
 
 			} else if (name.equals("startData")) {
 				filter.eq("startData", DateUtils.getDate(value));

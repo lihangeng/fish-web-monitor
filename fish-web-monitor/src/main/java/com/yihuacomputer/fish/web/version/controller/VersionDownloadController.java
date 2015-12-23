@@ -408,14 +408,18 @@ public class VersionDownloadController {
 
         Excel excel = new Excel();
 
-        String[] headers = new String[]{messageSourceVersion.getMessage("version.export.terminalId", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.ip", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.orgName", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.versionNoBeforeUpdate", null, FishCfg.locale),
+        String[] headers = new String[]{messageSourceVersion.getMessage("version.export.jobBatchName", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.devId", null, FishCfg.locale),
         		messageSourceVersion.getMessage("version.export.updateVersionNo", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.taskStatus", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.ipAddress", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.org", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.versionNoBeforeUpdate", null, FishCfg.locale),
         		messageSourceVersion.getMessage("version.export.exceptVersionNo", null, FishCfg.locale),
         		messageSourceVersion.getMessage("version.export.executeTime", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.executeResult", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.downSource", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.planTime", null, FishCfg.locale),
+        		messageSourceVersion.getMessage("version.export.excuteMachine", null, FishCfg.locale),
         		messageSourceVersion.getMessage("version.export.remark", null, FishCfg.locale)};
         excel.setHeaders(headers);
 

@@ -367,7 +367,7 @@ Ext.apply(EwayLocale,{
 	vtype:{
 		ip:'Please enter the correct IP address',//请输入正确的IP地址
 		zip:'Please enter the correct Z.C ,6 numbers', //请输入正确的邮编格式，6位的数字
-		versionNo:'不是正确的版本号格式,格式说明：1.版本号由4个部分组成 A.B.C.D ;2.只有A部分是必须的 ；3. A、B、C、D必须为大于等于0的整数 ,每个部分最大长度为8位； 4.ABCD部分必须用.分隔',
+		versionNo:'Incorrect Version No,format explain：1.Version No make up with 4 part:A.B.C.D ;2.Only part A is necessary ;3. A、B、C、D must be an integer which greater than 0,max length of each part is 8;4.Part ABCD must split with `.`',
 		terminalId:'Just for 1-20 characters ‘a-z’ or ‘A-Z’ or numbers ‘0-9’ or‘-’ or‘_’ or ‘.’,and must be start with character or number.',//输入错误,设备号由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’点号‘.’组成,只能以字母或数字开头,长度1到20位。
 		mobile:'Input error,mobile number can only be 8-11 numbers',//输入错误,手机号码只能输入8到11位数字。
 		cardNo:'Input error,bankcard number can only be 16-19 numbers',//输入错误,银行卡号只能输入16到19位数字。
