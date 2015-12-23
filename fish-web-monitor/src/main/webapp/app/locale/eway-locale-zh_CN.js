@@ -53,9 +53,11 @@ Ext.apply(EwayLocale,{
 		todoDelete:'是否删除该记录?',//EwayLocale.confirm.todoDelete
 		title:'提示',//EwayLocale.confirm.title
 		withoutNumTaskConfirmInfo:'作业保存成功,是否跳转到"分发监控"页面?',//EwayLocale.confirm.withoutNumTaskConfirmInfo
+		timeout:'会话超时，3秒后自动跳转到登录页面',//EwayLocale.confirm.timeout
 		//TODO *为数字需要替换
 		taskConfirmInfo0:'第',//EwayLocale.confirm.taskConfirmInfo0
 		taskConfirmInfo1:'次作业保存成功,是否跳转到"分发监控"页面?'//EwayLocale.confirm.taskConfirmInfo1
+		
 	},
 	button:{
 		search:'查询',//EwayLocale.button.search
