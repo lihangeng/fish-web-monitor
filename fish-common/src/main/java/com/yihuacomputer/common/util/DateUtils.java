@@ -97,6 +97,10 @@ public class DateUtils {
 	public static String get(Date date, String format) {
 		return new SimpleDateFormat(format).format(date);
 	}
+	
+	public static Date getTimestamp4(String strDate) {
+		return get(strDate, STANDARD_DATE);
+	}
 
 	/**
 	 * 获取当前日期与参数间隔（分钟）的历史日期
@@ -197,6 +201,21 @@ public class DateUtils {
 		cal.setTime(date);
 		cal.add(Calendar.DAY_OF_MONTH, 1);
 		return new SimpleDateFormat(STANDARD_DATE_SHORT).format(cal.getTime());
+	}
+	
+	
+	
+	/**
+	 * 获取下一日日期 格式:yyyy-MM-dd
+	 *
+	 * @return
+	 */
+	public static Date getNexDate(String dates) {
+		Date date = getTimestamp4(dates);
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.add(Calendar.DAY_OF_MONTH, 1);
+		return cal.getTime();
 	}
 
 	/**
