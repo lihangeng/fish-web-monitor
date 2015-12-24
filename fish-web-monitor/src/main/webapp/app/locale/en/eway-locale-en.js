@@ -2,8 +2,8 @@ Ext.apply(EwayLocale,{
 	addSuccess : 'Add successfully.',//EwayLocale.addSuccess 增加成功.
 	updateSuccess : 'Update successfully.',//EwayLocale.updateSuccess 更改成功.
 	deleteSuccess : 'Delete successfully.',//EwayLocale.deleteSuccess 删除成功.
-	choiceUpdateMsg :'Please select the record which you want to update.',//EwayLocale.choiceUpdateMsg 请选择您要更改的记录.
-	choiceDeleteMsg :'Please select the record which you want to delete.',//EwayLocale.choiceDeleteMsg 请选择您要删除的记录.
+	choiceUpdateMsg :'Please choose the record which you want to update.',//EwayLocale.choiceUpdateMsg 请选择您要更改的记录.
+	choiceDeleteMsg :'Please choose the record which you want to delete.',//EwayLocale.choiceDeleteMsg 请选择您要删除的记录.
 
 	myTable:'Workbench',//EwayLocale.myTable 我的工作台
 	ATMV:'ATM View',//EwayLocale.ATMV 自助设备监控系统(ATMV)
@@ -14,13 +14,13 @@ Ext.apply(EwayLocale,{
 	msg:{
 		perviewFailForText:'Preview failed:the charater and rolling advertisement is supported to preview',//EwayLocale.msg.perviewFailForText 预览失败:不支持文字滚动广告和公告的预览.
 		perviewFailNoResource:'Preview failed:no resource found in this advertisement.',//EwayLocale.msg.perviewFailNoResource 预览失败:此广告没有配置广告资源.
-		choseResToPerview:'Please select the advertisement which you want to preview.',//EwayLocale.msg.choseResToPerview 请选择您要预览的广告.
+		choseResToPerview:'Please choose the advertisement which you want to preview.',//EwayLocale.msg.choseResToPerview 请选择您要预览的广告.
 		noAdvertResAtTheResolution:'No allocation of advertising resources under Resolution.',//EwayLocale.msg.noAdvertResAtTheResolution
-		chooseAdvert:'Please select an advertisement.',//EwayLocale.msg.chooseAdvert 请选择一条广告.
-		chooseOneDevice:'Please select a machine.',//EwayLocale.msg.chooseOneDevice 请选择一台设备.
+		chooseAdvert:'Please choose an advertisement.',//EwayLocale.msg.chooseAdvert 请选择一条广告.
+		chooseOneDevice:'Please choose a machine.',//EwayLocale.msg.chooseOneDevice 请选择一台设备.
 		downLoadedAdvertCantDelete:'Delete failed:can not delete the advertisement which status is "issued" or "wait for issue".',//EwayLocale.msg.downLoadedAdvertCantDelete 删除失败:不能删除"已下发"和"等待下发"状态的广告.
-		chooseAdvertToDelete:'Please select the advertisement which you want to delete.',//EwayLocale.msg.chooseAdvertToDelete 请选择您要删除的广告.
-		chooseAdvertToDownload:'Please select the advertisement which you want to issue.',//EwayLocale.msg.chooseAdvertToDownload 请选择您要下发的广告.
+		chooseAdvertToDelete:'Please choose the advertisement which you want to delete.',//EwayLocale.msg.chooseAdvertToDelete 请选择您要删除的广告.
+		chooseAdvertToDownload:'Please choose the advertisement which you want to issue.',//EwayLocale.msg.chooseAdvertToDownload 请选择您要下发的广告.
 		generalVersionFailForDownloaded:'Generate  the version-file failed:the status "issued" advertisement can not generate version-information any more',//EwayLocale.msg.generalVersionFailForDownloaded 生成版本文件失败:"已下发"状态的广告不能再生成版本信息.
 		generalVersionSuccess:"Generate the version file successfully",//EwayLocale.msg.generalVersionSuccess 生成版本文件成功.
 		createSuccess:"Create Successfully.",//EwayLocale.msg.createSuccess 创建成功.
@@ -29,7 +29,7 @@ Ext.apply(EwayLocale,{
 		saveFailPleaseRefresh:'Save failed, please refresh retry',//EwayLocale.msg.saveFailPleaseRefresh
 		saveFileSizeMaxFail:'Save failed:the max size of each single file is 30M',//EwayLocale.msg.saveFileSizeMaxFail 保存失败:超过最大单个文件大小限制（最大30M）
 		saveFileCommunicationFail:'Save failed:connection refused',//EwayLocale.msg.saveFileCommunicationFail 保存失败:与服务器通讯失败
-		chooseDevice:"Please select a machine",//EwayLocale.msg.chooseDevice 请选择设备.
+		chooseDevice:"Please choose a machine",//EwayLocale.msg.chooseDevice 请选择设备.
 		downloadFailForNoVersion:"Version file issue failed :no generated version-file found or version-file lost,please generate version file first.",//EwayLocale.msg.downloadFailForNoVersion 下发版本文件失败:还没有生成版本文件或者版本文件丢失,请先生成版本文件.
 		saveSuccess:'Save successfully',//EwayLocale.msg.saveSuccess 保存成功！
 
@@ -46,7 +46,7 @@ Ext.apply(EwayLocale,{
 		mustSelectDevice:'please choose at least one machine.',//EwayLocale.msg.mustSelectDevice 请至少选择一个设备.
 		selectVersionRecord:'Please choose the version which you want to issue',//EwayLocale.msg.selectVersionRecord 请选择您要下发的版本.
 		missVersionFile:"Version files lost,can not execute",//EwayLocale.msg.missVersionFile 版本文件丢失,暂不能对版本进行下发控制.
-		mustSelectPerson:"Please select personnel must"//EwayLocale.msg.mustSelectPerson
+		mustSelectPerson:"Please choose personnel must"//EwayLocale.msg.mustSelectPerson
 	},
 	confirm:{
 		titleSure:'Confirm',//EwayLocale.confirm.titleSure 确认
@@ -145,26 +145,26 @@ Ext.apply(EwayLocale,{
 
 		unCertain:'Unknown',//未知
 		searchOfNoLegal:'There are some illegal parameters in the query condition,can not commit ',//查询项中存在不合法的输入,不能提交.
-		choseExportDevInfo:'Please select the machine which you want to export for detail ',//请选择要导出信息的设备
+		choseExportDevInfo:'Please choose the machine which you want to export for detail ',//请选择要导出信息的设备
 		nowLink:'Connecting...',//正在连接......
 		linkFailure:'Connecting failed.',//EwayLocale.tip.linkFailure 连接失败
 		inputError:'Illegal input',//输入有误
 		numberExist:'Exist ID, please enter again',//此编号已经存在,请重新输入.
 		isConfirmRemove:'The relationship of the group will be deleted with this delete operation , make sure you want to delete?',//删除分组,关联关系也被删除,是否真的要删除指定分组?
 		noGroupInfo:'No data of the group ,can not execute query',//没有组信息,无法查询.
-		selectAdd:'Please select the record which you want to add',//请选择您要增加的记录.
+		selectAdd:'Please choose the record which you want to add',//请选择您要增加的记录.
 		continueAdd:'Add successfully,continue add machine to this group?',//添加成功,是否继续向组内添加设备?
 		addFail:'Add failed.',//添加失败.
 		isRemoveDev:'Remove this machine from this group?',//是否从该组移除该设备?
 		removeFail:'Remove failed',//移除失败.
-		selectRemoveGroup:'Please select the group which the machine you want to remove belongs.',//请选择您要移除的设备所在组.
-		selectRemoveDev:'Please select the machine which you want to remove.',//请选择您要移除的设备.
-		selectMoveDev:'Please select the machine which you want to move.',//请选择要移动的设备.
+		selectRemoveGroup:'Please choose the group which the machine you want to remove belongs.',//请选择您要移除的设备所在组.
+		selectRemoveDev:'Please choose the machine which you want to remove.',//请选择您要移除的设备.
+		selectMoveDev:'Please choose the machine which you want to move.',//请选择要移动的设备.
 		moveSuc:'Move the machine successfully',//移机成功.
 		dateReSelect:'The begin date can not be later than end date,please select again',//开始时间不能大于结束日期,请重新选择
-		selectPlan:'Please select the program which you want to execute',//请选择您应用的方案.
+		selectPlan:'Please choose the program which you want to execute',//请选择您应用的方案.
 		removeFail:'Relieve failed',//解除失败.
-		selectRemoveDev:'Please select the machine which you want to relieve.',//请选择要解除的设备.
+		selectRemoveDev:'Please choose the machine which you want to relieve.',//请选择要解除的设备.
 		relatedFail:'Binding machine failed.',//关联失败.
 		selectRelatedDev:'Please choose machines which you want to bind.',//请选择要关联的设备
 		planNoUpdate:'This program has been executed ,can not be modified ',//该方案已经执行,不可修改.
@@ -174,13 +174,13 @@ Ext.apply(EwayLocale,{
 		operateSuc:'Successful operation',//EwayLocale.tip.operateSuc操作成功
 		operateWrong:'Successful operation',//EwayLocale.tip.operateWrong操作成功
 		deleteOne:'You can only delete a record.',//EwayLocale.tip.deleteOne一次只能删除一条记录
-		chooseRecord:'Please select the records that you want to associate.',//EwayLocale.tip.chooseRecord请选择您要关联的记录
-		choosePlan:'Please select the program you want to view',//EwayLocale.tip.choosePlan请选择您要查看的方案
+		chooseRecord:'Please choose the records that you want to associate.',//EwayLocale.tip.chooseRecord请选择您要关联的记录
+		choosePlan:'Please choose the program you want to view',//EwayLocale.tip.choosePlan请选择您要查看的方案
 		planDetail:'Programme details',//EwayLocale.tip.planDetail方案详情
 		planDate:'Programme details (date)',//EwayLocale.tip.planDate方案详情(日期)
 		planWeek:'Programme details (Week)',//EwayLocale.tip.planWeek方案详情(星期)
 		planNoConf:'The program no detailed settings！',//EwayLocale.tip.planNoConf该方案无详细设置
-		chooseRelatedDev:'Please select the device you want to associate！',//EwayLocale.tip.chooseRelatedDev请选择您要关联的设备
+		chooseRelatedDev:'Please choose the device you want to associate！',//EwayLocale.tip.chooseRelatedDev请选择您要关联的设备
 		devRelatedPlan:'Device has been bound with the service plan!',//EwayLocale.tip.devRelatedPlan设备已关联开机方案
 		//add by panxin
 		tips:'Tips',//EwayLocale.tip.tips 提示

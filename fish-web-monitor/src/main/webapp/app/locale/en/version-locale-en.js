@@ -231,7 +231,7 @@ Ext.apply(EwayLocale,{
 			cancelBatch:'cancelBatch',//EwayLocale.version.download.cancelBatch
 			autoRefreshTips:'Refresh periodic 60 second',//EwayLocale.version.download.autoRefreshTips 刷新周期60秒
 			resetTaskStatus:'Reset Status',//EwayLocale.version.download.resetTaskStatus
-			selectTask:'Please select a task record！',//EwayLocale.version.download.selectTask请选择一条任务记录
+			selectTask:'Please choose a task record！',//EwayLocale.version.download.selectTask请选择一条任务记录
 			selectAllDevice:'All equipment',//EwayLocale.version.download.selectAllDevice全部设备
 			checkedTaskCantResetTips:'Non-running task can not be reset！',//EwayLocale.version.download.checkedTaskCantResetTips非运行中的任务无法重置
 			taskExportTips:'Export all issue result of job selected'//EwayLocale.version.download.taskExportTips 导出选中作业下的全部下发结果

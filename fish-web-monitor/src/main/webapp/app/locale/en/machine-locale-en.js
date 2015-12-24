@@ -517,7 +517,7 @@ Ext.apply(EwayLocale,{
 			responsibilityName:'Person in charge',//停机负责人
 			stopReason:'Reason',//停机原因
 			address:'Address',//所属地址
-			selectDev:'Please select the device which you want to stop',//选择需要报停的设备
+			selectDev:'Please choose the device which you want to stop',//选择需要报停的设备
 			to:'to',//至
 			stopType:'Type',//停机类型
 			comboxStopType:{
@@ -577,8 +577,8 @@ Ext.apply(EwayLocale,{
 			fileNotAllowed:'Documents do not meet requirements！',//EwayLocale.machine.serviceplan.fileNotAllowed文件不符合要求
 			tipExportSuccess:'Article data successfully imported',//EwayLocale.machine.serviceplan.tipExportSuccess条数据,成功导入
 			tipLookUp:'Bar, click View import details!',//EwayLocale.machine.serviceplan.tipLookUp条,点击查看导入详情!
-			tochenkDervice:'Please select the device you want to change',//EwayLocale.machine.serviceplan.tochenkDervice请选择您要更改的设备
-			tochenckPeople:'Please select personnel',//EwayLocale.machine.serviceplan.tochenckPeople请选择人员
+			tochenkDervice:'Please choose the device you want to change',//EwayLocale.machine.serviceplan.tochenkDervice请选择您要更改的设备
+			tochenckPeople:'Please choose personnel',//EwayLocale.machine.serviceplan.tochenckPeople请选择人员
 			tipAddError:'Article Adding failed. Please refresh view',//EwayLocale.machine.serviceplan.tipAddError条添加失败,请刷新后查看
 			planIsHaved:'',
 			linkSuccess:'Associate successfully',//EwayLocale.machine.serviceplan.linkSuccess关联成功
