@@ -569,9 +569,7 @@ public class RetaincardController {
 							.getCardRetainTime())));
 			row.createCell(5).setCellValue(
 					cellValue(retaincard.getCardDistributionBank()));
-			row.createCell(6).setCellValue(
-					cellValue(getEnumI18n(retaincard.getStatus().getText())));
-			row.createCell(7).setCellValue(cellValue(retaincard.getReason()));
+			row.createCell(6).setCellValue(cellValue(retaincard.getReason()));
 		}
 
 		String date = DateUtils.getDate(new Date());
