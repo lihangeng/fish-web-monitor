@@ -175,6 +175,7 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 		if (histXfsStatus.getRunStatus().equals(RunStatus.StopManmade)) {
 			xfsStatus.setRunStatus(RunStatus.StopManmade);
 		}
+		String nowDate = DateUtils.getTimestamp(new Date());
 		//该段代码必须要放在状态数据库更新前
 		IXfsStatus handleStatus = xfsService.makeXfsStatus();
 		handleStatus.setXfsStatus(xfsStatus);
@@ -182,18 +183,18 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 		handleHistStatus.setXfsStatus(histXfsStatus);
 		handleStatus.setHisXfsStatus(handleHistStatus);
 
-		histXfsStatus.setDateTime(DateUtils.getTimestamp(new Date()));
+		histXfsStatus.setDateTime(nowDate);
 		histXfsStatus.setXfsStatus(xfsStatus);
 		xfsService.updateXfsStatus(histXfsStatus);
 
 		// 2.update atmc run info
-		IRunInfo runInfo = new RunInfo();
-		runInfo.setRunStatus(histXfsStatus.getRunStatus());
 		// 如果状态不一致想设备运行状态表中插入数据
-		if (!runInfo.getRunStatus().equals(xfsStatus.getRunStatus())) {
+		if (!histXfsStatus.getRunStatus().equals(xfsStatus.getRunStatus())) {
+			IRunInfo runInfo = new RunInfo();
+			runInfo.setRunStatus(histXfsStatus.getRunStatus());
 			runInfo.setTerminalId(terminalId);
 			runInfo.setRunStatus(xfsStatus.getRunStatus());
-			runInfo.setStatusTime(DateUtils.getTimestamp(new Date()));
+			runInfo.setStatusTime(nowDate);
 			this.runInfoService.save(runInfo);
 		}
 
@@ -203,17 +204,16 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 		} else {
 			putToMq(histXfsStatus);
 		}
+		// 4.模块故障处理
+        if (deviceCaseService != null) {
+        	try{
+        		deviceCaseService.handleModStatus(xfsStatus,histXfsStatus);
+        	}catch(Exception e){
+        		logger.error(String.format("处理设备故障工单异常[%s]", e));
+        		return ;
+        	}
+        }
 
-		// 4.模块故障处理（异步处理）
-		if (faultManager != null) {
-			try {
-				faultManager.handleFault(handleStatus);
-			} catch (Exception e) {
-				logger.error(String.format("handle device caseFault exception[%s]", e));
-			}
-		} else {
-			logger.info("don't handle device case fault!");
-		}
 	}
 
 	/**
@@ -488,7 +488,6 @@ public class CollectService implements ICollectService, IDeviceListener,IMessage
 	@Override
 	public void collectATMCTransaction(String terminalId, ITransaction transaction) {
 		//1.保存交易信息
-		transaction.setTerminalId(terminalId);
 		transactionService.save(transaction);
 		//2.发送到消息队列
 		if (mqProducer == null) {

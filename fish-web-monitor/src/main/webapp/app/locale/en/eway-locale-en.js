@@ -2,8 +2,8 @@ Ext.apply(EwayLocale,{
 	addSuccess : 'Add successfully.',//EwayLocale.addSuccess 增加成功.
 	updateSuccess : 'Update successfully.',//EwayLocale.updateSuccess 更改成功.
 	deleteSuccess : 'Delete successfully.',//EwayLocale.deleteSuccess 删除成功.
-	choiceUpdateMsg :'Please select the record which you want to update.',//EwayLocale.choiceUpdateMsg 请选择您要更改的记录.
-	choiceDeleteMsg :'Please select the record which you want to delete.',//EwayLocale.choiceDeleteMsg 请选择您要删除的记录.
+	choiceUpdateMsg :'Please choose the record which you want to update.',//EwayLocale.choiceUpdateMsg 请选择您要更改的记录.
+	choiceDeleteMsg :'Please choose the record which you want to delete.',//EwayLocale.choiceDeleteMsg 请选择您要删除的记录.
 
 	myTable:'Workbench',//EwayLocale.myTable 我的工作台
 	ATMV:'ATM View',//EwayLocale.ATMV 自助设备监控系统(ATMV)
@@ -14,26 +14,26 @@ Ext.apply(EwayLocale,{
 	msg:{
 		perviewFailForText:'Preview failed:the charater and rolling advertisement is supported to preview',//EwayLocale.msg.perviewFailForText 预览失败:不支持文字滚动广告和公告的预览.
 		perviewFailNoResource:'Preview failed:no resource found in this advertisement.',//EwayLocale.msg.perviewFailNoResource 预览失败:此广告没有配置广告资源.
-		choseResToPerview:'Please select the advertisement which you want to preview.',//EwayLocale.msg.choseResToPerview 请选择您要预览的广告.
+		choseResToPerview:'Please choose the advertisement which you want to preview.',//EwayLocale.msg.choseResToPerview 请选择您要预览的广告.
 		noAdvertResAtTheResolution:'No allocation of advertising resources under Resolution.',//EwayLocale.msg.noAdvertResAtTheResolution
-		chooseAdvert:'Please select an advertisement.',//EwayLocale.msg.chooseAdvert 请选择一条广告.
-		chooseOneDevice:'Please select a machine.',//EwayLocale.msg.chooseOneDevice 请选择一台设备.
+		chooseAdvert:'Please choose an advertisement.',//EwayLocale.msg.chooseAdvert 请选择一条广告.
+		chooseOneDevice:'Please choose a machine.',//EwayLocale.msg.chooseOneDevice 请选择一台设备.
 		downLoadedAdvertCantDelete:'Delete failed:can not delete the advertisement which status is "issued" or "wait for issue".',//EwayLocale.msg.downLoadedAdvertCantDelete 删除失败:不能删除"已下发"和"等待下发"状态的广告.
-		chooseAdvertToDelete:'Please select the advertisement which you want to delete.',//EwayLocale.msg.chooseAdvertToDelete 请选择您要删除的广告.
-		chooseAdvertToDownload:'Please select the advertisement which you want to issue.',//EwayLocale.msg.chooseAdvertToDownload 请选择您要下发的广告.
+		chooseAdvertToDelete:'Please choose the advertisement which you want to delete.',//EwayLocale.msg.chooseAdvertToDelete 请选择您要删除的广告.
+		chooseAdvertToDownload:'Please choose the advertisement which you want to issue.',//EwayLocale.msg.chooseAdvertToDownload 请选择您要下发的广告.
 		generalVersionFailForDownloaded:'Generate  the version-file failed:the status "issued" advertisement can not generate version-information any more',//EwayLocale.msg.generalVersionFailForDownloaded 生成版本文件失败:"已下发"状态的广告不能再生成版本信息.
-		generalVersionSuccess:"Generate the version file successful",//EwayLocale.msg.generalVersionSuccess 生成版本文件成功.
+		generalVersionSuccess:"Generate the version file successfully",//EwayLocale.msg.generalVersionSuccess 生成版本文件成功.
 		createSuccess:"Create Successfully.",//EwayLocale.msg.createSuccess 创建成功.
 		mustHaveOneResource:'At least has one resource of advertisement!',//EwayLocale.msg.mustHaveOneResource 至少包含一个广告资源!
 		saveFail:'Save failed',//EwayLocale.msg.saveFail 保存失败
 		saveFailPleaseRefresh:'Save failed, please refresh retry',//EwayLocale.msg.saveFailPleaseRefresh
 		saveFileSizeMaxFail:'Save failed:the max size of each single file is 30M',//EwayLocale.msg.saveFileSizeMaxFail 保存失败:超过最大单个文件大小限制（最大30M）
 		saveFileCommunicationFail:'Save failed:connection refused',//EwayLocale.msg.saveFileCommunicationFail 保存失败:与服务器通讯失败
-		chooseDevice:"Please select a machine",//EwayLocale.msg.chooseDevice 请选择设备.
+		chooseDevice:"Please choose a machine",//EwayLocale.msg.chooseDevice 请选择设备.
 		downloadFailForNoVersion:"Version file issue failed :no generated version-file found or version-file lost,please generate version file first.",//EwayLocale.msg.downloadFailForNoVersion 下发版本文件失败:还没有生成版本文件或者版本文件丢失,请先生成版本文件.
-		saveSuccess:'Save successful',//EwayLocale.msg.saveSuccess 保存成功！
+		saveSuccess:'Save successfully',//EwayLocale.msg.saveSuccess 保存成功！
 
-		removeSuccess:'Relieve success',//EwayLocale.msg.removeSuccess
+		removeSuccess:'Relieve successfully',//EwayLocale.msg.removeSuccess
 		removeFail:'Relieve failure',//EwayLocale.msg.removeFail
 		someStripRemoveFailePleaseRefresh:'Article lift failed. Please refresh retry！',//EwayLocale.msg.EwayLocale.msg.someStripRemoveFailePleaseRefresh
 		versionDownloaded:'Can not delete the advertisement which status is "issued" or "wait for issue',//EwayLocale.msg.versionDownloaded 不能删除"等待下发"和"已下发"状态的版本.
@@ -46,13 +46,13 @@ Ext.apply(EwayLocale,{
 		mustSelectDevice:'please choose at least one machine.',//EwayLocale.msg.mustSelectDevice 请至少选择一个设备.
 		selectVersionRecord:'Please choose the version which you want to issue',//EwayLocale.msg.selectVersionRecord 请选择您要下发的版本.
 		missVersionFile:"Version files lost,can not execute",//EwayLocale.msg.missVersionFile 版本文件丢失,暂不能对版本进行下发控制.
-		mustSelectPerson:"Please select personnel must"//EwayLocale.msg.mustSelectPerson
+		mustSelectPerson:"Please choose personnel must"//EwayLocale.msg.mustSelectPerson
 	},
 	confirm:{
 		titleSure:'Confirm',//EwayLocale.confirm.titleSure 确认
 		todoDelete:'Delete this record?',//EwayLocale.confirm.todoDelete 是否删除该记录?
 		title:'Tip',//EwayLocale.confirm.title 提示
-		withoutNumTaskConfirmInfo:'Job save successful,skip to the "Distribute monitor" page?',//EwayLocale.confirm.withoutNumTaskConfirmInfo 作业保存成功,是否跳转到"分发监控"页面?
+		withoutNumTaskConfirmInfo:'Job save successfully,skip to the "Distribute monitor" page?',//EwayLocale.confirm.withoutNumTaskConfirmInfo 作业保存成功,是否跳转到"分发监控"页面?
 		timeout:'Session timeout, 3 seconds after the automatic jump to the system login page',//EwayLocale.confirm.timeout
 		//TODO *为数字需要替换
 		taskConfirmInfo0:'第',//EwayLocale.confirm.taskConfirmInfo0 第
@@ -145,26 +145,26 @@ Ext.apply(EwayLocale,{
 
 		unCertain:'Unknown',//未知
 		searchOfNoLegal:'There are some illegal parameters in the query condition,can not commit ',//查询项中存在不合法的输入,不能提交.
-		choseExportDevInfo:'Please select the machine which you want to export for detail ',//请选择要导出信息的设备
+		choseExportDevInfo:'Please choose the machine which you want to export for detail ',//请选择要导出信息的设备
 		nowLink:'Connecting...',//正在连接......
 		linkFailure:'Connecting failed.',//EwayLocale.tip.linkFailure 连接失败
 		inputError:'Illegal input',//输入有误
 		numberExist:'Exist ID, please enter again',//此编号已经存在,请重新输入.
 		isConfirmRemove:'The relationship of the group will be deleted with this delete operation , make sure you want to delete?',//删除分组,关联关系也被删除,是否真的要删除指定分组?
 		noGroupInfo:'No data of the group ,can not execute query',//没有组信息,无法查询.
-		selectAdd:'Please select the record which you want to add',//请选择您要增加的记录.
-		continueAdd:'Add successful,continue add machine to this group?',//添加成功,是否继续向组内添加设备?
+		selectAdd:'Please choose the record which you want to add',//请选择您要增加的记录.
+		continueAdd:'Add successfully,continue add machine to this group?',//添加成功,是否继续向组内添加设备?
 		addFail:'Add failed.',//添加失败.
 		isRemoveDev:'Remove this machine from this group?',//是否从该组移除该设备?
 		removeFail:'Remove failed',//移除失败.
-		selectRemoveGroup:'Please select the group which the machine you want to remove belongs.',//请选择您要移除的设备所在组.
-		selectRemoveDev:'Please select the machine which you want to remove.',//请选择您要移除的设备.
-		selectMoveDev:'Please select the machine which you want to move.',//请选择要移动的设备.
-		moveSuc:'Move the machine successful',//移机成功.
+		selectRemoveGroup:'Please choose the group which the machine you want to remove belongs.',//请选择您要移除的设备所在组.
+		selectRemoveDev:'Please choose the machine which you want to remove.',//请选择您要移除的设备.
+		selectMoveDev:'Please choose the machine which you want to move.',//请选择要移动的设备.
+		moveSuc:'Move the machine successfully',//移机成功.
 		dateReSelect:'The begin date can not be later than end date,please select again',//开始时间不能大于结束日期,请重新选择
-		selectPlan:'Please select the program which you want to execute',//请选择您应用的方案.
+		selectPlan:'Please choose the program which you want to execute',//请选择您应用的方案.
 		removeFail:'Relieve failed',//解除失败.
-		selectRemoveDev:'Please select the machine which you want to relieve.',//请选择要解除的设备.
+		selectRemoveDev:'Please choose the machine which you want to relieve.',//请选择要解除的设备.
 		relatedFail:'Binding machine failed.',//关联失败.
 		selectRelatedDev:'Please choose machines which you want to bind.',//请选择要关联的设备
 		planNoUpdate:'This program has been executed ,can not be modified ',//该方案已经执行,不可修改.
@@ -174,13 +174,13 @@ Ext.apply(EwayLocale,{
 		operateSuc:'Successful operation',//EwayLocale.tip.operateSuc操作成功
 		operateWrong:'Successful operation',//EwayLocale.tip.operateWrong操作成功
 		deleteOne:'You can only delete a record.',//EwayLocale.tip.deleteOne一次只能删除一条记录
-		chooseRecord:'Please select the records that you want to associate.',//EwayLocale.tip.chooseRecord请选择您要关联的记录
-		choosePlan:'Please select the program you want to view',//EwayLocale.tip.choosePlan请选择您要查看的方案
+		chooseRecord:'Please choose the records that you want to associate.',//EwayLocale.tip.chooseRecord请选择您要关联的记录
+		choosePlan:'Please choose the program you want to view',//EwayLocale.tip.choosePlan请选择您要查看的方案
 		planDetail:'Programme details',//EwayLocale.tip.planDetail方案详情
 		planDate:'Programme details (date)',//EwayLocale.tip.planDate方案详情(日期)
 		planWeek:'Programme details (Week)',//EwayLocale.tip.planWeek方案详情(星期)
 		planNoConf:'The program no detailed settings！',//EwayLocale.tip.planNoConf该方案无详细设置
-		chooseRelatedDev:'Please select the device you want to associate！',//EwayLocale.tip.chooseRelatedDev请选择您要关联的设备
+		chooseRelatedDev:'Please choose the device you want to associate！',//EwayLocale.tip.chooseRelatedDev请选择您要关联的设备
 		devRelatedPlan:'Device has been bound with the service plan!',//EwayLocale.tip.devRelatedPlan设备已关联开机方案
 		//add by panxin
 		tips:'Tips',//EwayLocale.tip.tips 提示
@@ -209,7 +209,7 @@ Ext.apply(EwayLocale,{
 				remove:{
 					confirm:'Delete the manager of this organization?',//EwayLocale.tip.bankOrg.manager.remove.confirm 是否删除该机构管理员?
 					reChoose:'You have not choose the organization or there is no manager of this organization, please choose again',//EwayLocale.tip.bankOrg.manager.remove.reChoose 您未选择您要设置的机构或该机构下没有管理员，请重新选择
-					delSuccess:'Delete the manager successful',//EwayLocale.tip.bankOrg.manager.remove.delSuccess 删除管理员成功.
+					delSuccess:'Delete the manager successfully',//EwayLocale.tip.bankOrg.manager.remove.delSuccess 删除管理员成功.
 					delFail:'Delete the manager failed'//EwayLocale.tip.bankOrg.manager.remove.delFail 删除管理员失败.
 				}
 			},
@@ -245,7 +245,7 @@ Ext.apply(EwayLocale,{
 		user:{
 			add:{
 				createAcc:'Please choose the man which you want to create account',//EwayLocale.tip.user.add.createAcc 请选择您要创建的账号的人员
-				createSuccess:'Create successful,newcreate account',//EwayLocale.tip.user.add.createSuccess 创建成功,新建账户
+				createSuccess:'Create successfully,newcreate account',//EwayLocale.tip.user.add.createSuccess 创建成功,新建账户
 				initPasswd:'The init password is :888888'//EwayLocale.tip.user.add.initPasswd 初始密码为: 888888
 			},
 			remove:{
@@ -276,7 +276,7 @@ Ext.apply(EwayLocale,{
 			},
 			blackList:{
 				importing:'Importing file',//EwayLocale.tip.business.blackList.importing 正在导入文件
-				importSuccess:'Blackcard file importing successful'//EwayLocale.tip.business.blackList.importSuccess 导入黑名单卡文件成功
+				importSuccess:'Blackcard file importing successfully'//EwayLocale.tip.business.blackList.importSuccess 导入黑名单卡文件成功
 			},
 			card:{
 				returnFail:'Turnover failed:system error.',//EwayLocale.tip.business.card.returnFail 移交失败 后台处理出错
@@ -285,7 +285,7 @@ Ext.apply(EwayLocale,{
 				chooseBack:'Please choose the card which you want to draw.',//EwayLocale.tip.business.card.chooseBack 请选择要领取的卡片
 				getSuccess:'Draw successfully.',//EwayLocale.tip.business.card.getSuccess 领取成功
 				destroyConfirm:'Destroy this card?',//EwayLocale.tip.business.card.destroyConfirm 是否销毁这张卡片
-				destroySuccess:'Destroy successful',//EwayLocale.tip.business.card.destroySuccess 销毁成功
+				destroySuccess:'Destroy successfully',//EwayLocale.tip.business.card.destroySuccess 销毁成功
 				chooseDestroy:'Please choose the card which you want to destroy.',//EwayLocale.tip.business.card.chooseDestroy 请选择要销毁的卡片
 				idCardRegex:'Please input the correct ID number,15 or 18 numbers',//EwayLocale.tip.business.card.idCardRegex 请输入正确的身份证号码,15位或者18位
 				accountRegex:'Please input the correct ID number of the householdRegister,15 or 18 numbers',//EwayLocale.tip.business.card.accountRegex 请正确输入户口本上的身份证号码,15位或者18位
@@ -302,7 +302,7 @@ Ext.apply(EwayLocale,{
 				getCashInfoFail:'Get the cashbin info failed',//EwayLocale.tip.business.device.getCashInfoFail 获取钞箱信息失败
 				operating:'Executing',//EwayLocale.tip.business.device.operating 正在执行
 				reviewFail:'Failed to review.',//EwayLocale.tip.business.device.reviewFail 查看失败
-				logLoadConfirm:'Get the applogs successful,download it?',//EwayLocale.tip.business.device.logLoadConfirm 应用日志提取成功,是否下载?
+				logLoadConfirm:'Get the applogs successfully,download it?',//EwayLocale.tip.business.device.logLoadConfirm 应用日志提取成功,是否下载?
 				logPullFail:'Get the applogs failed',//EwayLocale.tip.business.device.logPullFail 提取应用电子日志失败
 				logFail:'Log process failed.',//EwayLocale.tip.business.device.logFail log 处理失败
 				linkServerFail:'Connecting refused.',//EwayLocale.tip.business.device.linkServerFail 服务器连接失败
@@ -337,7 +337,7 @@ Ext.apply(EwayLocale,{
 				forceRebootFail:'Force-reboot failed.',//EwayLocale.tip.business.device.forceRebootFail 强制重启失败.
 				forceRebootSendFail:'Send the normal force-reboot command failed ',//EwayLocale.tip.business.device.forceRebootSendFail 强制重启命令发送失败.
 				resetConfirm:'Confirm execute force-reset command?',//EwayLocale.tip.business.device.resetConfirm 确认要执行强制复位
-				resetSuccess:'Force-reset successful',//EwayLocale.tip.business.device.resetSuccess 强制复位成功
+				resetSuccess:'Force-reset successfully',//EwayLocale.tip.business.device.resetSuccess 强制复位成功
 				resetFail:'Force-reset failed',//EwayLocale.tip.business.device.resetFail 强制复位失败
 				resetSendFail:'Send the force-reset command failed.',//EwayLocale.tip.business.device.resetSendFail 强制复位命令发送失败
 				term:'Terminal',//EwayLocale.tip.business.device.term 设备
@@ -563,7 +563,7 @@ Ext.apply(EwayLocale,{
 		tryOut:'Tryout',//EwayLocale.system.tryOut 试用
 		noLimit:'Limitless',//EwayLocale.system.noLimit 没有限制
 		getSerialNumFail:'Get SerialNo failed',//EwayLocale.system.getSerialNumFail 序列号获取失败
-		registSuc:'Regist successful',//EwayLocale.system.registSuc 注册成功
+		registSuc:'Regist successfully',//EwayLocale.system.registSuc 注册成功
 		registFail:'Regist failed',//EwayLocale.system.registFail 注册失败
 		appearInnerFalse:'System error',//EwayLocale.system.appearInnerFalse 出现内部错误
 		regist:'Regist',//EwayLocale.system.regist 注册
