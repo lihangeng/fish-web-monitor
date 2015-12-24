@@ -581,6 +581,7 @@ Ext.apply(EwayLocale,{
 			tochenckPeople:'Please select personnel',//EwayLocale.machine.serviceplan.tochenckPeople请选择人员
 			tipAddError:'Article Adding failed. Please refresh view',//EwayLocale.machine.serviceplan.tipAddError条添加失败,请刷新后查看
 			planIsHaved:'',
+			chooseOne:'At Least One',
 			linkSuccess:'Associate success',//EwayLocale.machine.serviceplan.linkSuccess关联成功
 			Mon:'Mon',//EwayLocale.machine.serviceplan.Mon一
 			Tues:'Tues',//EwayLocale.machine.serviceplan.Tues二
