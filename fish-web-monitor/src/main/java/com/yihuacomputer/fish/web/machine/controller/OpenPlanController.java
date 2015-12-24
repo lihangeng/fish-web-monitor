@@ -146,6 +146,7 @@ public class OpenPlanController {
 		for (IDeviceOpenPlan plan : plans) {
 			int deviceCount = openPlanService.deviceCount(plan.getId());
 			OpenPlanForm form = new OpenPlanForm(plan, deviceId, terminalId, deviceCount);
+			form.setPlanStateType(getEnumI18n(form.getPlanStateType()));
 			forms.add(form);
 		}
 		return forms;

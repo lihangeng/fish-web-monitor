@@ -72,10 +72,6 @@ public class MqTransaction {
 
         setOrgCode(trans.getOrgCode()== null?"":trans.getOrgCode());
         setOrgName(trans.getOrgName()== null?"":trans.getOrgName());
-//        setErrorText(trans.getErrorText() == null ? "":trans.getErrorText());
-//        setLocalRetText(trans.getLocalRetText());
-//        DecimalFormat df = new DecimalFormat("##0.##") ;
-//        setCostTime(df.format(new Double(trans.getCostTime()/1000))) ;
         setCostTime(trans.getCostTime());
     }
 
@@ -99,8 +95,6 @@ public class MqTransaction {
 
         trans.setOrgCode(this.orgCode);
         trans.setOrgName(this.orgName);
-//        trans.setErrorText(this.errorText);
-//        trans.setLocalRetText(this.localRetText);
         trans.setCostTime(this.costTime);
 
         return trans;
