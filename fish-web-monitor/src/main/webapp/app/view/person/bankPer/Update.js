@@ -91,7 +91,8 @@ Ext.define('Eway.view.person.bankPer.Update', {
 					xtype : 'field.email',
 					allowBlank : true
 				},{
-					xtype:'field_personRemark'
+					xtype:'field_personRemark',
+					maxLength : 200
 				}],
 				buttonAlign : 'center',
 				fbar: [{

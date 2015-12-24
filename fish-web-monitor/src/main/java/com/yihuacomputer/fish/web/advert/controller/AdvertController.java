@@ -517,7 +517,7 @@ public class AdvertController {
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			logger.error(ex.getMessage());
-			result.put("errors", getVersionI18n("advert.deleteFail",new Object[]{ex.getMessage() }));
+			result.put("errors", getVersionI18n("versionType.deleteFail",new Object[]{ex.getMessage() }));
 		}
 		return result;
 	}

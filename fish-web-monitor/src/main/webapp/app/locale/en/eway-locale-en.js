@@ -52,11 +52,11 @@ Ext.apply(EwayLocale,{
 		titleSure:'Confirm',//EwayLocale.confirm.titleSure 确认
 		todoDelete:'Delete this record?',//EwayLocale.confirm.todoDelete 是否删除该记录?
 		title:'Tip',//EwayLocale.confirm.title 提示
-		withoutNumTaskConfirmInfo:'Job save successful,skip to the "Distribute monitor" page?',//EwayLocale.confirm.withoutNumTaskConfirmInfo 作业保存成功,是否跳转到"分发监控"页面?
+		withoutNumTaskConfirmInfo:'Job save successful,skip to the "Deployment Monitor" page?',//EwayLocale.confirm.withoutNumTaskConfirmInfo 作业保存成功,是否跳转到"分发监控"页面?
 		timeout:'Session timeout, 3 seconds after the automatic jump to the system login page',//EwayLocale.confirm.timeout
 		//TODO *为数字需要替换
-		taskConfirmInfo0:'第',//EwayLocale.confirm.taskConfirmInfo0 第
-		taskConfirmInfo1:'次作业保存成功,是否跳转到"分发监控"页面?'//EwayLocale.confirm.taskConfirmInfo1 次作业保存成功,是否跳转到"分发监控"页面?
+		taskConfirmInfo0:' Save No.',//EwayLocale.confirm.taskConfirmInfo0 第
+		taskConfirmInfo1:' job sucessfully,skip to `Deployment Monitor` page?'//EwayLocale.confirm.taskConfirmInfo1 次作业保存成功,是否跳转到"分发监控"页面?
 	},
 	button:{
 		search:'Search',//EwayLocale.button.search 查询
@@ -371,7 +371,7 @@ Ext.apply(EwayLocale,{
 		terminalId:'Just for 1-20 characters ‘a-z’ or ‘A-Z’ or numbers ‘0-9’ or‘-’ or‘_’ or ‘.’,and must be start with character or number.',//输入错误,设备号由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’点号‘.’组成,只能以字母或数字开头,长度1到20位。
 		mobile:'Input error,mobile number can only be 8-11 numbers',//输入错误,手机号码只能输入8到11位数字。
 		cardNo:'Input error,bankcard number can only be 16-19 numbers',//输入错误,银行卡号只能输入16到19位数字。
-		telephone:'Input error,phone number can only be 8-11 numbers',//输入错误,固定电话号码只能输入8到11位数字。
+		telephone:'Input error,phone number can only be 8-12 numbers',//输入错误,固定电话号码只能输入8到11位数字。
 		daterange:'Range of time is not correct.',//日期段不正确
 		numberrange:'Range of money is not correct.',//金额范围不正确
 

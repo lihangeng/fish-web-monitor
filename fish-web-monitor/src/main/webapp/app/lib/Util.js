@@ -66,7 +66,7 @@ Ext.apply(Ext.form.field.VTypes,{
 //自定义固定号码的验证
 Ext.apply(Ext.form.field.VTypes,{
 	telephone :function(v){
-		return /^(\d{3}-?|\d{4}-?)?(\d{8}|\d{7})$/.test(v);
+		return /^\d{8,12}$/.test(v);
 	},
 	telephoneText : EwayLocale.vtype.telephone,
 	telephoneMask : /[\d-]/i

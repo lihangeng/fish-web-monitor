@@ -50,6 +50,7 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 			},{
 				text:EwayLocale.version.download.resetTaskStatus,//'重置任务状态',
 				action:'resetStatus',
+				glyph : 0xf013,
 				code : 'resetStatus',
 				tooltip:EwayLocale.version.download.resetTaskStatus,
 				listeners:{

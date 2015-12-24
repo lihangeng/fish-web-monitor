@@ -102,8 +102,8 @@ Ext.apply(EwayLocale,{
 		advertDownMethodCover:'Override',//EwayLocale.advert.advertDownMethodCover 覆盖
 		uploading:'Resource uploading...',//EwayLocale.advert.uploading 正在上传资源...
 		advertPreviewTitle0:'Preview advertisement (Total ',//EwayLocale.advert.advertPreviewTitle0 广告预览(共有
-		advertPreviewTitle1:'resources,play the no. ',//EwayLocale.advert.advertPreviewTitle1 个资源,当前播放第
-		advertPreviewTitle2:'at the present) ',//EwayLocale.advert.advertPreviewTitle2 //个
+		advertPreviewTitle1:' resources,play the no.',//EwayLocale.advert.advertPreviewTitle1 个资源,当前播放第
+		advertPreviewTitle2:' at the present) ',//EwayLocale.advert.advertPreviewTitle2 //个
 		choosedAdvertRes:'You have choosed',//EwayLocale.advert.choosedAdvertRes 您已经选择了
 		limitNumberTenForEveryResolution:'Only upload up to 10 pictures at each resolution.',//EwayLocale.advert.limitNumberTenForEveryResolution每种分辨率下最多只能上传10张图片
 		mustContainerOnePicAt1024:'1024 image resolution comprises at least one',//EwayLocale.advert.mustContainerOnePicAt10241024分辨率下至少包含一个图片
@@ -228,7 +228,7 @@ Ext.apply(EwayLocale,{
 			taskQueryTips:'Query job detail by condition',//EwayLocale.version.download.taskQueryTips 根据条件查询选中作业下的详情信息
 			autoRefresh:'Start auto refresh',//EwayLocale.version.download.autoRefresh 开启自动刷新
 			stopAutoRefresh:'Stop auto refresh',//EwayLocale.version.download.stopAutoRefresh 停止自动刷新
-			cancelBatch:'cancelBatch',//EwayLocale.version.download.cancelBatch
+			cancelBatch:'Batch Cancel',//EwayLocale.version.download.cancelBatch
 			autoRefreshTips:'Refresh periodic 60 second',//EwayLocale.version.download.autoRefreshTips 刷新周期60秒
 			resetTaskStatus:'Reset Status',//EwayLocale.version.download.resetTaskStatus
 			selectTask:'Please select a task record！',//EwayLocale.version.download.selectTask请选择一条任务记录
@@ -265,7 +265,7 @@ Ext.apply(EwayLocale,{
 			jobId:'Job ID',	//EwayLocale.version.task.jobId 作业ID
 			selectDownloadDevice:'Choose deivce to issue',	//EwayLocale.version.task.selectDownloadDevice 选择下发的设备
 			versionNoBeforeUpdate:'Version before update',	//EwayLocale.version.task.versionNoBeforeUpdate 升级前版本号
-			versionNoAfterUpdate:'Target version no',	//EwayLocale.version.task.versionNoAfterUpdate 目标版本号
+			versionNoAfterUpdate:'Target version no.',	//EwayLocale.version.task.versionNoAfterUpdate 目标版本号
 			deviceVersionHis:'View device history version',	//EwayLocale.version.task.deviceVersionHis 查看设备历史版本
 			downloadUser:'Issue man',	//EwayLocale.version.task.downloadUser 下发人
 			downloadTime:'Issue time',	//EwayLocale.version.task.downloadTime 下发时间

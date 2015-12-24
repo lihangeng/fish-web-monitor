@@ -411,7 +411,7 @@ Ext.apply(EwayLocale,{
 			sysVersion:'OS version',//系统版本号
 			devAddress:'Address',//设备地址
 			basicInfo:'Additional Info',//基本信息
-			virtual:'Virtual teller No.',//虚拟设备号
+			virtual:'Teller',//虚拟设备号
 			serial:'Serial Number',//设备序列号
 			carrier:'Carrieroperator',//运营商
 			moneyOrg:'Cash org',//加钞机构
