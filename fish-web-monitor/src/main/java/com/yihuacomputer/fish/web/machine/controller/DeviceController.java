@@ -383,7 +383,7 @@ public class DeviceController {
 		int count = 1;
 		for (IDevice device : data) {
 			row = sheet.createRow(count);
-
+			count++;
 			cell = row.createCell(0);
 			cell.setCellType(Cell.CELL_TYPE_STRING);
 			cell.setCellStyle(cellStyle);

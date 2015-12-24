@@ -26,6 +26,7 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.AwayFlag;
+import com.yihuacomputer.fish.api.monitor.business.IHostRet;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.OrganizationLevel;
 import com.yihuacomputer.fish.api.person.UserSession;
@@ -111,6 +112,9 @@ public class TransactionResultCountReportController {
 		}
 
 		List<ITransResultCountRpt> data = transRptService.listTransResultCount(filter);
+		
+		transHostRet(data);
+
 
 		String path = this.getReport(parameters, resourcePath, request.getParameter("exportType"),
 				data == null ? new ArrayList<ITransResultCountRpt>() : data);
@@ -250,5 +254,29 @@ public class TransactionResultCountReportController {
 	private boolean isNotFilterName(String name) {
 		return "page".equals(name) || "start".equals(name) || "limit".equals(name) || "_dc".equals(name)
 				|| "sort".equals(name);
+	}
+	
+	
+	private List<ITransResultCountRpt> transHostRet(List<ITransResultCountRpt> data){
+		
+		List<IHostRet> hostRet = transRptService.listHostRetCode();
+		Map<String,String> map = new HashMap<String, String>();
+		String hostRetCode = "" ;
+		String hostExplain = "";
+		for(int i = 0; i<hostRet.size(); i++){
+			hostRetCode = hostRet.get(i).getCode();
+			hostExplain = hostRet.get(i).getName();
+			map.put(hostRetCode, hostExplain);
+		}
+		
+		for(int i = 0; i< data.size(); i++){
+			String resultCode = data.get(i).getResult();
+			String exlpain = map.get(resultCode);
+			
+			if(exlpain!=null){
+				data.get(i).setResult(exlpain);
+			}
+		}
+		return data;
 	}
 }
