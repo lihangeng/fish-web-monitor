@@ -420,7 +420,8 @@ public class VersionDownloadController {
         		messageSourceVersion.getMessage("version.export.downSource", null, FishCfg.locale),
         		messageSourceVersion.getMessage("version.export.planTime", null, FishCfg.locale),
         		messageSourceVersion.getMessage("version.export.excuteMachine", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.remark", null, FishCfg.locale)};
+        		messageSourceVersion.getMessage("version.export.remark", null, FishCfg.locale),
+        		};
         excel.setHeaders(headers);
 
         // 填充数据
@@ -428,14 +429,18 @@ public class VersionDownloadController {
         for (ITask task : tasks) {
             List row = new ArrayList();
             IDevice device = task.getDevice();
+            row.add(task.getTaskBatchName());
             row.add(device.getTerminalId());
+            row.add(task.getVersion().getVersionNo());
+            row.add(getEnumI18n(task.getStatus().getText()));
             row.add(device.getIp().toString());
             row.add(device.getOrganization().getName());
             row.add(task.getVersionBeforeUpdate() == null ? "" : task.getVersionBeforeUpdate());
-            row.add(task.getVersion().getVersionNo());
             row.add(task.getExceptVersion());
             row.add(task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime()));
-            row.add(getEnumI18n(task.getStatus().getText()));
+            row.add(task.getDownSource());
+            row.add(task.getPlanTime().toString());
+            row.add(task.getExcuteMachine());
             row.add(task.getReason() == null ? "" : task.getReason());
             data.add(row);
         }

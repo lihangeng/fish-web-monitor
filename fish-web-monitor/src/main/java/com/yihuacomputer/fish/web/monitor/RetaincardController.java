@@ -539,9 +539,6 @@ public class RetaincardController {
 		cell = row.createCell(6);
 		cell.setCellValue(messageSource.getMessage("retaincard.retainReason", null, FishCfg.locale));
 		cell.setCellStyle(style);
-		cell = row.createCell(7);
-		cell.setCellValue(messageSource.getMessage("retaincard.cardStatus", null, FishCfg.locale));
-		cell.setCellStyle(style);
 
 		/**
 		 * 设置格式，解决当编号以‘0’开头时，点击单元格后‘0’会消失
@@ -572,9 +569,7 @@ public class RetaincardController {
 							.getCardRetainTime())));
 			row.createCell(5).setCellValue(
 					cellValue(retaincard.getCardDistributionBank()));
-			row.createCell(6).setCellValue(
-					cellValue(getEnumI18n(retaincard.getStatus().getText())));
-			row.createCell(7).setCellValue(cellValue(retaincard.getReason()));
+			row.createCell(6).setCellValue(cellValue(retaincard.getReason()));
 		}
 
 		String date = DateUtils.getDate(new Date());

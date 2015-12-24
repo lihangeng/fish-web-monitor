@@ -425,6 +425,11 @@ public class DeviceController {
 			cell = row.createCell(12);
 			cell.setCellValue(cellValue(device.getCashboxLimit()));
 
+			cell = row.createCell(13);
+			cell.setCellValue(cellValue(device.getVirtual()==null?"":getEnumI18n(device.getVirtual())));
+			
+			cell = row.createCell(14);
+			cell.setCellValue(cellValue(device.getSerial()==null?"":getEnumI18n(device.getSerial())));
 		}
 
 		FileOutputStream fos = null;

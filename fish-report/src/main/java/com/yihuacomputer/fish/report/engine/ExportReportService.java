@@ -58,15 +58,6 @@ public class ExportReportService implements IExportReportService {
 		String fileName = UUID.randomUUID().toString();
 
 		JasperPrint jasperPrint = null;
-
-		
-		/* 无报表数据,也需要显示表头 */
-//		if (params.getDataList() == null || params.getDataList().isEmpty()) {
-//			result.setResult(false);
-//			return result;
-//		}
-		
-		
 		try {
 			JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(params.getDataList());
 			JasperReport jasperReport = (JasperReport) JRLoader.loadObjectFromFile(params.getReportModule());

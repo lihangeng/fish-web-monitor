@@ -231,7 +231,7 @@ Ext.apply(EwayLocale,{
 			cancelBatch:'Batch Cancel',//EwayLocale.version.download.cancelBatch
 			autoRefreshTips:'Refresh periodic 60 second',//EwayLocale.version.download.autoRefreshTips 刷新周期60秒
 			resetTaskStatus:'Reset Status',//EwayLocale.version.download.resetTaskStatus
-			selectTask:'Please select a task record！',//EwayLocale.version.download.selectTask请选择一条任务记录
+			selectTask:'Please choose a task record！',//EwayLocale.version.download.selectTask请选择一条任务记录
 			selectAllDevice:'All equipment',//EwayLocale.version.download.selectAllDevice全部设备
 			checkedTaskCantResetTips:'Non-running task can not be reset！',//EwayLocale.version.download.checkedTaskCantResetTips非运行中的任务无法重置
 			taskExportTips:'Export all issue result of job selected'//EwayLocale.version.download.taskExportTips 导出选中作业下的全部下发结果
@@ -250,7 +250,7 @@ Ext.apply(EwayLocale,{
 			restartATM:'Restart ATM',//EwayLocale.version.task.restartATM 重启ATM
 			restartATMTips:'Confirm execute reboot command?it may brings some risk.',//EwayLocale.version.task.restartATMTips 执行重启命令可能存在风险,确认重启?
 			sendRestartCmd:'Reboot command has been sent!',//EwayLocale.version.task.sendRestartCmd 已发送重启命令！
-			cancelDownloadSuccess:'Cancel issue successful!',//EwayLocale.version.task.cancelDownloadSuccess 取消下发成功
+			cancelDownloadSuccess:'Cancel issue successfully!',//EwayLocale.version.task.cancelDownloadSuccess 取消下发成功
 			cancelDownload:'Cancel issue',//EwayLocale.version.task.cancelDownload 取消下发
 			jobName:'Job name',//EwayLocale.version.task.jobName 作业名称
 			jobStatus:'Job status',//EwayLocale.version.task.jobStatus 作业状态

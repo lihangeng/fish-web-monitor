@@ -415,14 +415,14 @@ Ext.apply(EwayLocale,{
 			removeFile:'Remove the file from list',//删除
 			mustIncludeOneFile:'Must exit File to downLoad.',
 			resetBackUp:'Click to backup the logs of this day.',
-			backupAppLogsSuccess:'backup atmc logs success.',
+			backupAppLogsSuccess:'Backup atmc logs successfully.',
 			backupAppLogsFail:'backup atmc logs faile.',
 			backupLogSucList:' backup atmc logs list success.',
 			backupLogFailList:' backup atmc logs list failed.',
 			exitDownLoadFile:'add failed,the file have exited in the list of download.',
 			maxDownLoadFileSize:'add failed ,all the fileSize must less than 200M.',
-            removeSuccess:'delete success.',
-			addFileSuccess:'add file to list success.',
+            removeSuccess:'Delete successfully.',
+			addFileSuccess:'add file to list successfully.',
 		}
 	}
 });
