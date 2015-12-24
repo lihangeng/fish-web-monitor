@@ -250,7 +250,7 @@ Ext.apply(EwayLocale,{
 			restartATM:'Restart ATM',//EwayLocale.version.task.restartATM 重启ATM
 			restartATMTips:'Confirm execute reboot command?it may brings some risk.',//EwayLocale.version.task.restartATMTips 执行重启命令可能存在风险,确认重启?
 			sendRestartCmd:'Reboot command has been sent!',//EwayLocale.version.task.sendRestartCmd 已发送重启命令！
-			cancelDownloadSuccess:'Cancel issue successful!',//EwayLocale.version.task.cancelDownloadSuccess 取消下发成功
+			cancelDownloadSuccess:'Cancel issue successfully!',//EwayLocale.version.task.cancelDownloadSuccess 取消下发成功
 			cancelDownload:'Cancel issue',//EwayLocale.version.task.cancelDownload 取消下发
 			jobName:'Job name',//EwayLocale.version.task.jobName 作业名称
 			jobStatus:'Job status',//EwayLocale.version.task.jobStatus 作业状态
