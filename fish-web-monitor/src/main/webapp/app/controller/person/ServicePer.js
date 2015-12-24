@@ -389,9 +389,8 @@ Ext.define('Eway.controller.person.ServicePer', {
 					win.close();
 				},
 				failure: function(record,operation){
-					Eway.alert(EwayLocale.msg.saveFail);
-					//解决脏数据
-					store.rejectChanges();
+					Eway.alert(operation.getError());
+					store.load();
 				}
 			});
 		}
