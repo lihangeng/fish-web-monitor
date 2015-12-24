@@ -539,9 +539,6 @@ public class RetaincardController {
 		cell = row.createCell(6);
 		cell.setCellValue(messageSource.getMessage("retaincard.retainReason", null, FishCfg.locale));
 		cell.setCellStyle(style);
-		cell = row.createCell(7);
-		cell.setCellValue(messageSource.getMessage("retaincard.cardStatus", null, FishCfg.locale));
-		cell.setCellStyle(style);
 
 		/**
 		 * 设置格式，解决当编号以‘0’开头时，点击单元格后‘0’会消失
