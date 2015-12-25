@@ -246,13 +246,8 @@ public class MonitorFilterController {
                         messageSource.getMessage("monitorFilter.duplicateName", null, FishCfg.locale));
                 return result;
             }
-<<<<<<< HEAD
-            	
             
             statusFilter.setFilterName(filterName);
-=======
-
->>>>>>> branch 'master' of ssh://git@git.nj.yihuacomputer.com/atmvs.git
             filterService.updateStatusFilter(statusFilter);
 
             result.addAttribute(FishConstant.SUCCESS, true);
