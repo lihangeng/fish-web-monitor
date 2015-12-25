@@ -286,6 +286,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			var alertMsg = null;
 
 			var myCheckboxGroup = detailWeekForm.down('#checkboxgroupId');
+			var mustOnePlan = true;
 			for (var i = 0; i < myCheckboxGroup.getChecked().length; i++) {
 				var weekDate = {};
 				weekDate.startTime = data.startTimeHour + ":" + data.startTimeMinute + ":" + data.startTimeSecond;
@@ -295,8 +296,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			    var flag = true;
 				infoWeekGrid.getStore().each(function(record){
 					if(weekDate.openClose != record.data.openClose){
-
-						Eway.alert( EwayLocale.machine.serviceplan.planOlonOne);
+					mustOnePlan = false;  				
 					flag=false;
 					return;
 				}
@@ -332,7 +332,12 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			}
 			if(alertMsg!=null){
 				Eway.alert(EwayLocale.machine.serviceplan.week+alertMsg+EwayLocale.machine.serviceplan.timeEare);
-			alertMsg = null;
+		    	alertMsg = null;
+			}
+			if(!mustOnePlan)
+			{
+				Eway.alert( EwayLocale.machine.serviceplan.planOlonOne);
+				mustOnePlan = true;
 			}
 		});
 
@@ -572,29 +577,34 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					return;
 				}
 				var alertMsg = null;
+				var mustOnePlan = true;
 				for (var i = 0; i < myCheckboxGroup.getChecked().length; i++) {
-				data.week = myCheckboxGroup.getChecked()[i].name;
+					var weekDate = {};
+					weekDate.startTime = data.startTimeHour + ":" + data.startTimeMinute + ":" + data.startTimeSecond;
+					weekDate.endTime = data.endTimeHour + ":" + data.endTimeMinute + ":" + data.endTimeSecond;
+					weekDate.week = myCheckboxGroup.getChecked()[i].name;
+					weekDate.openClose = data.openClose;
 				var flag = true;
 				infoWeekGrid.getStore().each(function(record){
-					if(data.openClose!=record.data.openClose){
-						Eway.alert( EwayLocale.machine.serviceplan.planOlonOne);
+					if(weekDate.openClose!=record.data.openClose){
+						mustOnePlan = false;
 						flag=false;
 						return;
 					}
-						if(data.week==record.data.week){
-							if(data.startTime>=data.endTime){
+						if(weekDate.week==record.data.week){
+							if(weekDate.startTime>=weekDate.endTime){
 								flag=false;
 								return;
 							}
-							if(record.data.startTime<=data.startTime&&data.startTime<=record.data.endTime){
+							if(record.data.startTime<=weekDate.startTime && weekDate.startTime<=record.data.endTime){
 								flag=false;
 								return;
 							}
-							if(record.data.startTime<=data.endTime&&data.endTime<=record.data.endTime){
+							if(record.data.startTime<=weekDate.endTime && weekDate.endTime<=record.data.endTime){
 								flag=false;
 								return;
 							}
-							if(data.startTime<=record.data.startTime&&data.endTime>=record.data.endTime){
+							if(weekDate.startTime<=record.data.startTime && weekDate.endTime>=record.data.endTime){
 								flag=false;
 								return;
 							}
@@ -607,13 +617,18 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 							alertMsg = alertMsg +","+myCheckboxGroup.getChecked()[i].boxLabel;
 						}
 					}else{
-						var record = Ext.create( 'Eway.model.operatingPlan.OpenPlanDetail',data);
+						var record = Ext.create( 'Eway.model.operatingPlan.OpenPlanDetail',weekDate);
 						infoWeekGrid.getStore().add(record);
 					}
 				}
 				if(alertMsg!=null){
 					Eway.alert(EwayLocale.machine.device.person.week+alertMsg+EwayLocale.machine.serviceplan.timeEare);
 					alertMsg = null;
+				}
+				if(!mustOnePlan)
+				{
+					Eway.alert( EwayLocale.machine.serviceplan.planOlonOne);
+					mustOnePlan = true;
 				}
 			});
 
@@ -632,7 +647,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				var flag = true;
 				infoDateGrid.getStore().each(function(record){
 					if(data.openClose!=record.data.openClose){
-						Eway.alert( EwayLocale.machine.serviceplan.planOlonOne);
+						Eway.alert( EwayLocale.machine.serviceplan.planOlonOne);						
 						flag=false;
 						return;
 					}

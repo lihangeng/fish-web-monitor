@@ -475,26 +475,12 @@ Ext.define('Eway.controller.person.BankPer', {
 			record.save({
 				success : function(record,operation){
 					Eway.alert(EwayLocale.updateSuccess);
-//					ewayView.down('treepanel').getSelectionModel().select(0,true);//选择根节点
-//					store.cleanUrlParam();
 					store.load();
-//					store.setBaseParam('organizationId',data.organizationId);
-//					store.load({
-//						params:{
-//							organizationId : data.organizationId
-//						}
-//					});
-//					var actionTip = ewayView.down("tbtext[action=tip]");
-//	     			actionTip.setText('<font color="red">'+record.data.organizationName+'</font>'+EwayLocale.tip.bankPer.personBelongs);
 					win.close();
 				},
 				failure: function(record,operation){
 					Eway.alert(operation.getError());
-					store.load({
-						params:{
-							organizationId : data.organizationId
-						}
-					});
+					store.load();
 				}
 			});
 		}
