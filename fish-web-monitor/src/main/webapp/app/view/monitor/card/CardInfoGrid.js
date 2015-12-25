@@ -60,7 +60,11 @@ Ext.define('Eway.view.monitor.card.CardInfoGrid', {
 			},{
 				text : EwayLocale.monitor.business.card.exportData,
 				glyph : 0xf1c3,
-				action : 'export'
+				action : 'export',
+				code : 'cardExport',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}],
 			columns : [{
 				header : EwayLocale.commen.terminalId,

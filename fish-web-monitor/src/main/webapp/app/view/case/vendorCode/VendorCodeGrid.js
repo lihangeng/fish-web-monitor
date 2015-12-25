@@ -31,7 +31,10 @@ Ext.define('Eway.view.case.vendorCode.VendorCodeGrid', {
                       var requestName =EwayLocale.cases.vendorCode.formwork
                       requestName = requestName.replace("&","%26");//将文件名含有&符号的用URL编码“%26”替换
                       window.location.href = 'api/case/vendorCode/downloadFile?fileName=' + requestName ;
-                   }
+                   },
+                   listeners:{
+   					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+   				}
 			},
 			{
 				text : EwayLocale.cases.vendorCode.massRemove,

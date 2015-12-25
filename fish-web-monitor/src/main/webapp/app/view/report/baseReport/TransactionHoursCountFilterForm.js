@@ -61,7 +61,14 @@ Ext.define('Eway.view.report.baseReport.TransactionHoursCountFilterForm', {
 					fieldLabel : EwayLocale.commen.dayTime,
 					editable : false,
 					value : new Date(),
-					format : 'Y-m-d'
+					format : 'Y-m-d',
+					listeners : {
+						blur : {
+				            fn: function(This, options){
+				            	return;
+				            }
+						}
+					}
 				}]
 			},{
 				columnWidth : .5,

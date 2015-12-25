@@ -61,19 +61,19 @@ public class MonitorFilterController {
 
     @Autowired
     private IFilterService filterService;
-    
+
     @Autowired
     private IAtmBrandService atmBrandService;
-    
+
     @Autowired
     private IAtmTypeService atmTypeService;
-    
+
     @Autowired
     private IOrganizationService organizationService;
-    
+
     @Autowired
     private IAtmGroupService atmGroupService;
-    
+
     @Autowired
     private MessageSource messageSourceStateCode;
 
@@ -85,29 +85,30 @@ public class MonitorFilterController {
      */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public ModelMap getMonitorFilter(@RequestParam int start, @RequestParam int limit, @RequestParam String userId, WebRequest request) {
-        
+    public ModelMap getMonitorFilter(@RequestParam int start, @RequestParam int limit, @RequestParam String userId,
+            WebRequest request) {
+
         IFilter filter = new Filter();
-        
+
         filter.eq("userId", userId);
         String filterName = request.getParameter("filterName");
         if (StringUtils.isNotEmpty(filterName)) {
             filter.like("filterName", filterName);
         }
 
-        IPageResult<IStatusFilter> pageList =  filterService.page(start, limit, filter);
-        
+        IPageResult<IStatusFilter> pageList = filterService.page(start, limit, filter);
+
         // 机构信息
         Map<String, IOrganization> orgMap = new HashMap<String, IOrganization>();
         Iterable<IAtmVendor> listVendor = atmBrandService.list();
         List<IAtmType> listType = atmTypeService.list();
         Iterable<IAtmGroup> listGroup = atmGroupService.list();
-        
+
         List<MonitorFilterForm> result = new ArrayList<MonitorFilterForm>();
         MonitorFilterForm filterForm = null;
         for (IStatusFilter statusFilter : pageList.list()) {
             filterForm = new MonitorFilterForm(statusFilter);
-            
+
             // 获取机构名称
             String orgId = statusFilter.getOrgId();
             if (StringUtils.isNotEmpty(orgId)) {
@@ -121,7 +122,7 @@ public class MonitorFilterController {
                     }
                 }
             }
-            
+
             // 获取设备品牌名称
             if (statusFilter.getDevVendor() > 0) {
                 for (IAtmVendor vendor : listVendor) {
@@ -131,7 +132,7 @@ public class MonitorFilterController {
                     }
                 }
             }
-            
+
             // 获取设备型号名称
             if (statusFilter.getDevType() > 0) {
                 for (IAtmType type : listType) {
@@ -141,7 +142,7 @@ public class MonitorFilterController {
                     }
                 }
             }
-            
+
             // 获取设备分钟名称
             if (statusFilter.getAtmGroup() > 0) {
                 for (IAtmGroup group : listGroup) {
@@ -151,12 +152,9 @@ public class MonitorFilterController {
                     }
                 }
             }
-            
+
             result.add(filterForm);
         }
-        
-        
-        
 
         ModelMap map = new ModelMap();
         map.addAttribute(FishConstant.SUCCESS, true);
@@ -179,28 +177,26 @@ public class MonitorFilterController {
         ModelMap result = new ModelMap();
 
         try {
+            String filterName = request.getParameter("filterName");
+            IStatusFilter sf = filterService.getByFilterName(userId, filterName);
+
+            if (sf != null) {
+                result.addAttribute(FishConstant.SUCCESS, false);
+                result.addAttribute(FishConstant.ERROR_MSG,
+                        messageSource.getMessage("monitorFilter.duplicateName", null, FishCfg.locale));
+                return result;
+            }
+
             IStatusFilter statusFilter = filterService.makeStatusFilter();
-
             this.getWebParams(request, statusFilter);
-
             /* 机构信息 */
             if (StringUtils.isNotEmpty(request.getParameter("orgId"))) {
                 statusFilter.setOrgId(request.getParameter("orgId"));
             }
 
             statusFilter.setUserId(userId);
-            String filterName = request.getParameter("filterName");
             statusFilter.setFilterName(filterName);
-            
-            IStatusFilter sf = filterService.getByFilterName(filterName);
-            
-            if(sf!=null){
-            	result.addAttribute(FishConstant.SUCCESS, false);
-            	result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("monitorFilter.duplicateName", null, FishCfg.locale));
-            	return result;
-            }
-            
-            
+
             filterService.save(statusFilter);
 
             result.addAttribute(FishConstant.SUCCESS, true);
@@ -215,7 +211,7 @@ public class MonitorFilterController {
     }
 
     /**
-     * 增加
+     * 修改
      * 
      * @param userId
      * @param request
@@ -235,32 +231,31 @@ public class MonitorFilterController {
             /* 机构信息 */
             if (StringUtils.isNotEmpty(request.getParameter("orgId"))) {
                 statusFilter.setOrgId(request.getParameter("orgId"));
-            }else{
-            	statusFilter.setOrgId(null);
-            	
+            } else {
+                statusFilter.setOrgId(null);
+
             }
             String filterName = request.getParameter("filterName");
-            
-            IStatusFilter sf = filterService.getByFilterName(filterName);
-            
-            //如果修改的名称存在，并且不是该条记录
-            if(sf!=null && (sf.getId()!= id)){
-            	result.addAttribute(FishConstant.SUCCESS, false);
-            	result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("monitorFilter.duplicateName", null, FishCfg.locale));
-            	return result;
+
+            IStatusFilter sf = filterService.getByFilterName(statusFilter.getUserId(), filterName);
+
+            // 如果修改的名称存在，并且不是该条记录
+            if (sf != null && (sf.getId() != id)) {
+                result.addAttribute(FishConstant.SUCCESS, false);
+                result.addAttribute(FishConstant.ERROR_MSG,
+                        messageSource.getMessage("monitorFilter.duplicateName", null, FishCfg.locale));
+                return result;
             }
-            	
             
-            
+            statusFilter.setFilterName(filterName);
             filterService.updateStatusFilter(statusFilter);
 
-           
             result.addAttribute(FishConstant.SUCCESS, true);
 
         }
         catch (Exception ex) {
             logger.error(String.format("修改监控状态失败!失败信息[%s]", ex.getMessage()));
-            result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage());
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("commen.error", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
         }
 
@@ -359,25 +354,25 @@ public class MonitorFilterController {
         } else {
             statusFilter.setAwayFlag(0);
         }
-        
+
         if (StringUtils.isNotEmpty(request.getParameter("classifyItem"))) {
             statusFilter.setDevType(Long.parseLong(request.getParameter("classifyItem")));
         } else {
             statusFilter.setDevType(0);
         }
-        
+
         if (StringUtils.isNotEmpty(request.getParameter("brandItem"))) {
             statusFilter.setDevVendor(Long.parseLong(request.getParameter("brandItem")));
         } else {
             statusFilter.setDevVendor(0);
         }
-        
+
         if (StringUtils.isNotEmpty(request.getParameter("sellItem"))) {
             statusFilter.setWorkType(Integer.parseInt(request.getParameter("sellItem")));
         } else {
             statusFilter.setWorkType(0);
         }
-        
+
         if (StringUtils.isNotEmpty(request.getParameter("atmGroup"))) {
             statusFilter.setAtmGroup(Long.parseLong(request.getParameter("atmGroup")));
         } else {

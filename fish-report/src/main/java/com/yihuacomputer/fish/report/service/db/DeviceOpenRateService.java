@@ -82,11 +82,11 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 		for (IDevicePlanRelation idpr : allDevice) {
 			IDevice device = deviceService.get(idpr.getDeviceId());
 			if (device == null) {
-				logger.warn("设备不存在");
+				logger.info("设备不存在");
 				continue;
 			}
 			if (device.getStatus().equals(DevStatus.DISABLED) ||device.getStatus().equals(DevStatus.UNOPEN) || device.getStatus().equals(DevStatus.SCRAPPED)) {
-				logger.warn("设备已停用");
+				logger.info("设备已停用");
 				continue;
 			}
 			List<IRunInfo> runInfos = runInfoMap.get(device.getTerminalId());
@@ -238,6 +238,7 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 			int openTimes = 0; // 设备应开机时长(单位：分钟)
 
 			// 状态要根据每次状态变化为准，不能每个详情中都默认为正常
+			
 			RunStatus status = RunStatus.Healthy;
 
 			for (IOpenPlanDetail detail : avaiListOpenPlanDetail) {
@@ -278,6 +279,10 @@ public class DeviceOpenRateService implements IDeviceOpenRateService {
 							// 前一天的状态,刚上此系统前一天的数据可能为null
 							if (null != yestodayRunInfo) {
 								status = yestodayRunInfo.getRunStatus();
+							} 
+					     // modify by zxw  将开机方案默认状态改为未知							 
+							else{
+								status = RunStatus.Unknown;
 							}
 						} else {
 							// 上一次状态

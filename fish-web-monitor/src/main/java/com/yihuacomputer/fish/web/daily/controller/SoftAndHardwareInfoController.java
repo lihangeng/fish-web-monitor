@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.web.daily.controller;
 
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
@@ -12,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.fish.api.monitor.hardware.IHardwareService;
 import com.yihuacomputer.fish.api.monitor.software.ISoftwareService;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.web.daily.form.SoftAndHardwareInfoForm;
+import com.yihuacomputer.fish.web.monitor.form.HalVersion;
 import com.yihuacomputer.fish.web.monitor.form.ModHalVersion;
 
 /**
@@ -75,6 +79,7 @@ public class SoftAndHardwareInfoController {
 
          try {
         	ModHalVersion modHalVersion = (ModHalVersion) HttpProxy.httpGet(url, ModHalVersion.class, 5000);
+        	transEnName(modHalVersion);
             result.put(FishConstant.SUCCESS, true);
             result.put("data", modHalVersion);
         }catch (Exception e) {
@@ -83,5 +88,15 @@ public class SoftAndHardwareInfoController {
         }
         return result;
     }
-
+    
+    private void transEnName(ModHalVersion modHalVersion){
+    	List<HalVersion> list = modHalVersion.getListHal();
+    	if(!"zh_CN".equals(FishCfg.locale.toString())){
+    		for(int i = 0;i<list.size(); i++){
+        		String enName = list.get(i).getEnName();
+        		list.get(i).setName(enName);
+        	}
+    	}
+    	modHalVersion.setListHal(list);
+    } 
 }

@@ -306,12 +306,12 @@ Ext.apply(EwayLocale,{
 				logPullFail:'Get the applogs failed',//EwayLocale.tip.business.device.logPullFail 提取应用电子日志失败
 				logFail:'Log process failed.',//EwayLocale.tip.business.device.logFail log 处理失败
 				linkServerFail:'Connecting refused.',//EwayLocale.tip.business.device.linkServerFail 服务器连接失败
-				logicOpen:'Confirm execute open-service command.',//EwayLocale.tip.business.device.logicOpen 确认要执行开启服务命令
-				openSuccess:'Execute open-service command successfully.',//EwayLocale.tip.business.device.openSuccess 执行开启服务命令成功.
-				openFail:'Execute open-service command failed.',//EwayLocale.tip.business.device.openFail 执行开启服务命令失败.
-				closeConfirm:'Confirm execute pause-service command?',//EwayLocale.tip.business.device.closeConfirm 确认要执行暂停服务命令?
-				closeServiceSuccess:'Execute pause-service command successfully.',//EwayLocale.tip.business.device.closeServiceSuccess 执行暂停服务成功
-				closeServiceFail:'Execute pause-service command failed.',//EwayLocale.tip.business.device.closeServiceFail 执行暂停服务失败
+				logicOpen:'Confirm execute start-service command.',//EwayLocale.tip.business.device.logicOpen 确认要执行开启服务命令
+				openSuccess:'Execute start-service command successfully.',//EwayLocale.tip.business.device.openSuccess 执行开启服务命令成功.
+				openFail:'Execute start-service command failed.',//EwayLocale.tip.business.device.openFail 执行开启服务命令失败.
+				closeConfirm:'Confirm execute stop-service command?',//EwayLocale.tip.business.device.closeConfirm 确认要执行暂停服务命令?
+				closeServiceSuccess:'Execute stop-service command successfully.',//EwayLocale.tip.business.device.closeServiceSuccess 执行暂停服务成功
+				closeServiceFail:'Execute stop-service command failed.',//EwayLocale.tip.business.device.closeServiceFail 执行暂停服务失败
 				closeNormal:'Shut down normally.',//EwayLocale.tip.business.device.closeNormal 正常关机
 				closeComfirm:'Confirm execute normal shut-down command,it may brings some risk?',//EwayLocale.tip.business.device.closeComfirm 确认要执行正常关机命令么,可能会存在风险?
 				closing:'Shutting down normally.',//EwayLocale.tip.business.device.closing 正在执行正常关机
@@ -324,7 +324,7 @@ Ext.apply(EwayLocale,{
 				forceCloseSucess:'Force-shut-down successfully.',//EwayLocale.tip.business.device.forceCloseSucess 强制关机成功.
 				forceCloseFail:'Force-shut-down failed.',//EwayLocale.tip.business.device.forceCloseFail 强制关机失败.
 				ForceCloseSentFail:'Send the force-shut-down command failed ',//EwayLocale.tip.business.device.ForceCloseSentFail 强制关机命令发送失败.
-				reboot:'Reboot normally.',//EwayLocale.tip.business.device.reboot 正常重启
+				reboot:'Reboot normally',//EwayLocale.tip.business.device.reboot 正常重启
 				rebootConfirm:'Confirm execute normal-reboot command,it may brings some risk?',//EwayLocale.tip.business.device.rebootConfirm 确认要执行正常重启命令么,可能会存在风险?
 				rebooting:'Normally rebooting',//EwayLocale.tip.business.device.rebooting 正在执行正常重启
 				rebootSucess:'Normal-reboot successfully.',//EwayLocale.tip.business.device.rebootSucess 正常重启成功
@@ -371,7 +371,7 @@ Ext.apply(EwayLocale,{
 		terminalId:'Just for 1-20 characters ‘a-z’ or ‘A-Z’ or numbers ‘0-9’ or‘-’ or‘_’ or ‘.’,and must be start with character or number.',//输入错误,设备号由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’点号‘.’组成,只能以字母或数字开头,长度1到20位。
 		mobile:'Input error,mobile number can only be 8-11 numbers',//输入错误,手机号码只能输入8到11位数字。
 		cardNo:'Input error,bankcard number can only be 16-19 numbers',//输入错误,银行卡号只能输入16到19位数字。
-		telephone:'Input error,phone number can only be 8-12 numbers',//输入错误,固定电话号码只能输入8到11位数字。
+		telephone:'Input error,phone number can only be 8-12 numbers',//输入错误,固定电话号码只能输入8到12位数字。
 		daterange:'Range of time is not correct.',//日期段不正确
 		numberrange:'Range of money is not correct.',//金额范围不正确
 
@@ -449,8 +449,8 @@ Ext.apply(EwayLocale,{
 		terminalId:'Terminal ID',//EwayLocale.commen.terminalId 设备号
 		ip:'IP',//EwayLocale.commen.ip 网络地址
 		orgNameBelongs:'Bank',//EwayLocale.commen.orgNameBelongs 所属机构
-		devTypeName:'Deivce Type',//EwayLocale.commen.devTypeName 设备型号
-		devVendorName:'Deivce Brand',//EwayLocale.commen.devVendorName 设备品牌
+		devTypeName:'Device Type',//EwayLocale.commen.devTypeName 设备型号
+		devVendorName:'Device Brand',//EwayLocale.commen.devVendorName 设备品牌
 		devCatalogName:'Device Catalog',//EwayLocale.commen.devCatalogName 设备类型
 		devStatus:'Status',//EwayLocale.commen.devStatus 设备状态
 		comboxDevStatus:{
@@ -513,8 +513,8 @@ Ext.apply(EwayLocale,{
 		orgID:'Organization ID',//EwayLocale.commen.orgID 机构ID
 		endValidty:'Valid date until',//EwayLocale.commen.endValidty 截止有效期
 		publishDate:'Issue date',//EwayLocale.commen.publishDate 发布日期
-		announceTheme:'Announce theme'//EwayLocale.commen.announceTheme 公告主题
-
+		announceTheme:'Announce theme',//EwayLocale.commen.announceTheme 公告主题
+		filterDelete: 'deleted'//EwayLocale.commen.filterDelete
 
 
 	},

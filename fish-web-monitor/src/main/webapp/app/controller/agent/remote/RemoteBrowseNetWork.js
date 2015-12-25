@@ -34,6 +34,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowseNetWork', {
 				type : 'text',
 				stroke : 'black',
 				text : conenctRate,
+				font: "16px monospace",
 				x : 90,
 				y : 120,
 				group : 'top-left-line'
@@ -43,6 +44,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowseNetWork', {
 				type : 'text',
 				stroke : 'black',
 				text : receivedByte,
+				font: "16px monospace",
 				x : 260,
 				y : 78,
 				group : 'top-left-line'
@@ -52,6 +54,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowseNetWork', {
 				type : 'text',
 				stroke : 'black',
 				text : sendByte,
+				font: "16px monospace",
 				x : 90,
 				y : 78,
 				group : 'top-left-line'

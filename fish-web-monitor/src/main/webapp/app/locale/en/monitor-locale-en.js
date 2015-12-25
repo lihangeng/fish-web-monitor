@@ -99,7 +99,7 @@ Ext.apply(EwayLocale,{
 				remoteBrowser:'File Browse',//EwayLocale.monitor.devMonitor.remote.remoteBrowser 远程浏览
 				processList:'Fetch Process',//EwayLocale.monitor.devMonitor.remote.processList 查看进程信息
 				screenCamera:'Screen recording',//EwayLocale.monitor.devMonitor.remote.screenCamera 屏幕录制
-				reset:'Reset Modules',//EwayLocale.monitor.devMonitor.remote.reset 强制复位
+				reset:'Force Reset',//EwayLocale.monitor.devMonitor.remote.reset 强制复位
 				remoteLook:'Fetch Application Info',//EwayLocale.monitor.devMonitor.remote.remoteLook 查看应用版本
 				remoteCheckATM:'Physical of ATM',//EwayLocale.monitor.devMonitor.remote.remoteCheckATM ATM体检
 				halfSer:'Half service',//EwayLocale.monitor.devMonitor.remote.halfSer 半功能
@@ -142,9 +142,9 @@ Ext.apply(EwayLocale,{
 				card:'CardNo',//EwayLocale.monitor.business.transaction.card 交易卡号
 				dateTime:'Time',//EwayLocale.monitor.business.transaction.dateTime 交易时间
 				transCode:'Transaction Type',//EwayLocale.monitor.business.transaction.transCode 交易类型
-				amt:'Amt',//EwayLocale.monitor.business.transaction.amt 交易金额
+				amt:'Amount',//EwayLocale.monitor.business.transaction.amt 交易金额
 				currency:'currency',//EwayLocale.monitor.business.transaction.currency 交易币种
-				transId:'Serialno',//EwayLocale.monitor.business.transaction.transId 交易流水号
+				transId:'Serial No.',//EwayLocale.monitor.business.transaction.transId 交易流水号
 				amtfield:'Amount Scope',//EwayLocale.monitor.business.transaction.amtfield 金额范围
 				toNum:'to',//EwayLocale.monitor.business.transaction.toNum 至
 				transContainer:'Time Scope',//EwayLocale.monitor.business.transaction.transContainer 交易时间段
@@ -245,12 +245,12 @@ Ext.apply(EwayLocale,{
 				title:'Settlement Info',//EwayLocale.monitor.business.settlement.title 清机信息查询
 				deTitle:'Information',//EwayLocale.monitor.business.settlement.deTitle 清机详细信息
 				settleId:'SettleID',//EwayLocale.monitor.business.settlement.settleId
-				uuId:'CycleID',//EwayLocale.monitor.business.settlement.uuId 周期ID
+				uuId:'Cycle ID',//EwayLocale.monitor.business.settlement.uuId 周期ID
 				endAmt:'Endbox amount',//EwayLocale.monitor.business.settlement.endAmt 尾箱余额
 				endDate:'Date settlement',//EwayLocale.monitor.business.settlement.endDate 结帐日期
 				cimNum:'Deposit count',//EwayLocale.monitor.business.settlement.cimNum 存款笔数
 				cdmNum:'Draw count',//EwayLocale.monitor.business.settlement.cdmNum 取款笔数
-				totalNum:'Toatl',//EwayLocale.monitor.business.settlement.totalNum
+				totalNum:'Total',//EwayLocale.monitor.business.settlement.totalNum
 				leftDate:'Date settlement',//EwayLocale.monitor.business.settlement.leftDate 结帐日期
 				cimAmt:'Deposit amount',//EwayLocale.monitor.business.settlement.cimAmt 存款金额
 				cdmAmt:'Draw amount',//EwayLocale.monitor.business.settlement.cdmAmt 取款金额
@@ -327,16 +327,16 @@ Ext.apply(EwayLocale,{
 			clickLoadFile:'Click to download this file',//单击即可下载该文件
 			loadFileSize:'Max size of download file is 300M',//下载文件 不能超过200M！
 			nowLoadFile:'File downloading...',//正在下载文件......
-			judgeLoad: '是否续传下载！',//是否续传下载！
-			loadFailure:'Download failed！',//下载失败！
+			judgeLoad: 'Broken-point Continuingly-transferring?',//是否续传下载！
+			loadFailure:'Download failed!',//下载失败！
 			number: 'Serial number',//编号
 			programName: 'Application name',//程序名称
 			version: 'Version number',//版本号
 			publisher: 'Publishers',//发布商
-			diskUsed: 'Disk useage',//磁盘使用
+			diskUsed: 'Disk usage',//磁盘使用
 			softwayList: 'List of software installed',//软件安装列表
 			networkInfo: 'Network info',//网络信息
-			networkLinkStatus: 'Netwok connect status',//网络连接状态
+			networkLinkStatus: 'Network connect status',//网络连接状态
 			send: 'Sended',//已发送
 			receive: 'Received',//已接收
 			bite: 'byte:',//字节
@@ -416,7 +416,7 @@ Ext.apply(EwayLocale,{
 			mustIncludeOneFile:'Must exit File to downLoad.',
 			resetBackUp:'Click to backup the logs of this day.',
 			backupAppLogsSuccess:'Backup atmc logs successfully.',
-			backupAppLogsFail:'backup atmc logs faile.',
+			backupAppLogsFail:'backup atmc logs failed.',
 			backupLogSucList:' backup atmc logs list success.',
 			backupLogFailList:' backup atmc logs list failed.',
 			exitDownLoadFile:'add failed,the file have exited in the list of download.',

@@ -226,12 +226,12 @@ Ext.define('Eway.view.operatingPlan.Add',{
 									items : [ {
 										fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.serviceplan.week,
 										xtype : 'checkboxgroup',
-										allowBlank : false,
+										allowBlank : true,
 										itemId: 'checkboxgroupId',
 										labelWidth:65,
 										columns: 7,
 										msgTarget:'qtip',
-										blankText :EwayLocale.machine.serviceplan.chooseOne,
+										//blankText :EwayLocale.machine.serviceplan.chooseOne,
 							            items : [
 						                    {boxLabel: EwayLocale.machine.serviceplan.Mon, name: 'Mon', checked: true},
 						                    {boxLabel: EwayLocale.machine.serviceplan.Tues, name: 'Tues'},
