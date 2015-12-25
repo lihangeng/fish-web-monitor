@@ -104,7 +104,7 @@ Ext.apply(EwayLocale,{
 			modules:'Module contains'
 		},
 		device:{
-			title:'Deivce Info',//设备信息管理
+			title:'Device Info',//设备信息管理
 			devDetailInfo:'Module Info',//设备模块详细信息
 		    idc:'Card Reader',
 			jpr:'Journal Printer',
@@ -286,7 +286,7 @@ Ext.apply(EwayLocale,{
 			
 			PBKStatus:'Passbook printer(PBK) status',//存折打印机(PBK)状态信息
 			
-			devPerson:'Deivce person',//设备人员信息
+			devPerson:'Device person',//设备人员信息
 			devModuleMsg:'Device module property',//设备模块属性信息
 			devBasicMsg:'Basic info',//设备基本信息
 			devTailMsg:'Detail',//设备详细信息

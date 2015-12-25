@@ -251,7 +251,7 @@ public class MonitorFilterController {
             }
             	
             
-            
+            statusFilter.setFilterName(filterName);
             filterService.updateStatusFilter(statusFilter);
 
            
