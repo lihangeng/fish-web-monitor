@@ -113,7 +113,7 @@ public class AtmBrandController {
 			list.add(atmType);
 		}
 		forms = ItemForm.toTypeForms(list);
-		forms.add(new ItemForm(messageSource.getMessage("c.brand.combox.all", null, request.getLocale()), "0"));
+		forms.add(new ItemForm(messageSource.getMessage("c.brand.combox.all", null, FishCfg.locale), "0"));
 		Collections.reverse(forms);
 		map.addAttribute(FishConstant.SUCCESS, true);
 		map.addAttribute(FishConstant.DATA, forms);
@@ -132,7 +132,7 @@ public class AtmBrandController {
 
 		List<ItemForm> forms = new ArrayList<ItemForm>();
 		forms = ItemForm.toForms(list);
-		forms.add(new ItemForm(messageSource.getMessage("c.brand.combox.all", null, request.getLocale()), "0"));
+		forms.add(new ItemForm(messageSource.getMessage("c.brand.combox.all", null, FishCfg.locale), "0"));
 		Collections.reverse(forms);
 		map.addAttribute(FishConstant.SUCCESS, true);
 		map.addAttribute(FishConstant.DATA, forms);
