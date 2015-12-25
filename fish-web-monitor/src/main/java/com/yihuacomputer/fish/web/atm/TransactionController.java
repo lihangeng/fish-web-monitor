@@ -69,29 +69,6 @@ public class TransactionController{
 	        trans.setTransId(msg.getTransId());
 	        trans.setTipFee(msg.getTipFee());
 
-//	        if(msg.getHostRet() != "00" || msg.getLocalRet() != "OK" ){
-//		        IUncommonTrans uncommonTrans =service.make();
-//		        uncommonTrans.setTerminalId(msg.getTermId());
-//		        uncommonTrans.setAmt(msg.getAmt());
-//		        uncommonTrans.setCreditAccount(msg.getCreditAccount());
-//		        uncommonTrans.setCurrency(msg.getCurrency());
-//		        uncommonTrans.setDateTime(new Date(msg.getDateTime()));
-//		        uncommonTrans.setTransDate(msg.getTransDate());
-//		        uncommonTrans.setDebitAccount(msg.getDebitAccount());
-//		        uncommonTrans.setHostRet(msg.getHostRet());
-//		        uncommonTrans.setLocalRet(msg.getLocalRet());
-//		        uncommonTrans.setTransCode(msg.getTransCode());
-//		        uncommonTrans.setTransId(msg.getTransId());
-//		        uncommonTrans.setTipFee(msg.getTipFee());
-//		        uncommonTrans.setCustName(msg.getCusName());
-//		        uncommonTrans.setPhone(msg.getCusPhone());
-//		        uncommonTrans.setRevflag(msg.getRevFlag());
-//		        uncommonTrans.setCardType(msg.getCardType());
-//	        	collectService.collectATMCUncommonTrans(msg.getTermId(), uncommonTrans);
-//	        	collectService.collectATMCTransaction(msg.getTermId(), trans);
-//	        }else{
-//	        	collectService.collectATMCTransaction(msg.getTermId(), trans);
-//	        }
         	collectService.collectATMCTransaction(msg.getTermId(), trans);
 
         }catch(Exception e){

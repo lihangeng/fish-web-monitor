@@ -102,8 +102,8 @@ Ext.apply(EwayLocale,{
 		advertDownMethodCover:'Override',//EwayLocale.advert.advertDownMethodCover 覆盖
 		uploading:'Resource uploading...',//EwayLocale.advert.uploading 正在上传资源...
 		advertPreviewTitle0:'Preview advertisement (Total ',//EwayLocale.advert.advertPreviewTitle0 广告预览(共有
-		advertPreviewTitle1:'resources,play the no. ',//EwayLocale.advert.advertPreviewTitle1 个资源,当前播放第
-		advertPreviewTitle2:'at the present) ',//EwayLocale.advert.advertPreviewTitle2 //个
+		advertPreviewTitle1:' resources,play the no.',//EwayLocale.advert.advertPreviewTitle1 个资源,当前播放第
+		advertPreviewTitle2:' at the present) ',//EwayLocale.advert.advertPreviewTitle2 //个
 		choosedAdvertRes:'You have choosed',//EwayLocale.advert.choosedAdvertRes 您已经选择了
 		limitNumberTenForEveryResolution:'Only upload up to 10 pictures at each resolution.',//EwayLocale.advert.limitNumberTenForEveryResolution每种分辨率下最多只能上传10张图片
 		mustContainerOnePicAt1024:'1024 image resolution comprises at least one',//EwayLocale.advert.mustContainerOnePicAt10241024分辨率下至少包含一个图片
@@ -122,7 +122,7 @@ Ext.apply(EwayLocale,{
 		addVersionTitle:'Add Version information',//EwayLocale.version.addVersionTitle 增加版本信息
 		batchTaskName:'Batch task name',//EwayLocale.version.batchTaskName 任务批次名称
 		batchTaskNameEmpty:'Example:****first requirement update',//EwayLocale.version.batchTaskNameEmpty 例如:****需求第1批次升级
-		UpdateTitle:'Change version information',//EwayLocale.version.UpdateTitle 更改版本信息
+		UpdateTitle:'Update version information',//EwayLocale.version.UpdateTitle 更改版本信息
 		addJobTitle:'Set version information',//EwayLocale.version.addJobTitle 配置作业信息
 		downloadVersionId:'Issue version ID',//EwayLocale.version.downloadVersionId 下发版本ID
 		taskType:'Task type',//EwayLocale.version.taskType 任务类型
@@ -130,7 +130,7 @@ Ext.apply(EwayLocale,{
 		taskTypeAuto:'Auto Update',//EwayLocale.version.taskTypeAuto 自动升级
 		taskTypeScheduler:'Job plan',//EwayLocale.version.taskTypeScheduler 计划作业
 		planTime:'Plan to execute time',//EwayLocale.version.planTime 计划执行时间
-		selectableDevice:'Deivice can be issue',//EwayLocale.version.selectableDevice 可以下发的设备
+		selectableDevice:'Device can be issue',//EwayLocale.version.selectableDevice 可以下发的设备
 		linkedDevice:'Selected Devices',//EwayLocale.version.linkedDevice 已选择的设备
 		downloadVerFile:'Download version file',//EwayLocale.version.downloadVerFile 下载版本文件
 		installPath:'Install Path',
@@ -173,7 +173,7 @@ Ext.apply(EwayLocale,{
 			versionDescEmpty:'Please describe this version with words (At most 20 words)',//EwayLocale.version.View.versionDescEmpty 请用文字描述此版本需求
 			otherConfigTitle:'Additional Settings',//EwayLocale.version.View.otherConfigTitle 其他配置
 			otherConfigAutoDown:'Allow update automatic (only while the ATM check new version from server ,the version which update automatic will be return to ATM )',//EwayLocale.version.View.otherConfigAutoDown 允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)
-			otherConfigUncompress:'Uzip automatic(when choose this option, the ATM will unzip automatic )&nbsp;<font color="red">attention:if the file is not zip file at first ,and then ziped to zip file ,please select this option!</font>',//EwayLocale.version.View.otherConfigUncompress 自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>
+			otherConfigUncompress:'Uzip automatic(when choose this option, the ATM will unzip automatic )&nbsp;<font color="red">attention:if the file is not zip file at first ,and then zipped to zip file ,please select this option!</font>',//EwayLocale.version.View.otherConfigUncompress 自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>
 			versionServerPath:'File Path In Server', //EwayLocale.version.View.versionServerPath 文件在服务器上的位置
 			versionName:'Name',//EwayLocale.version.View.versionName 版本名称
 			downloadVersionName:'Version issued',//EwayLocale.version.View.downloadVersionName 下发的版本
@@ -228,17 +228,17 @@ Ext.apply(EwayLocale,{
 			taskQueryTips:'Query job detail by condition',//EwayLocale.version.download.taskQueryTips 根据条件查询选中作业下的详情信息
 			autoRefresh:'Start auto refresh',//EwayLocale.version.download.autoRefresh 开启自动刷新
 			stopAutoRefresh:'Stop auto refresh',//EwayLocale.version.download.stopAutoRefresh 停止自动刷新
-			cancelBatch:'cancelBatch',//EwayLocale.version.download.cancelBatch
+			cancelBatch:'Batch Cancel',//EwayLocale.version.download.cancelBatch
 			autoRefreshTips:'Refresh periodic 60 second',//EwayLocale.version.download.autoRefreshTips 刷新周期60秒
 			resetTaskStatus:'Reset Status',//EwayLocale.version.download.resetTaskStatus
-			selectTask:'Please select a task record！',//EwayLocale.version.download.selectTask请选择一条任务记录
+			selectTask:'Please choose a task record！',//EwayLocale.version.download.selectTask请选择一条任务记录
 			selectAllDevice:'All equipment',//EwayLocale.version.download.selectAllDevice全部设备
 			checkedTaskCantResetTips:'Non-running task can not be reset！',//EwayLocale.version.download.checkedTaskCantResetTips非运行中的任务无法重置
 			taskExportTips:'Export all issue result of job selected'//EwayLocale.version.download.taskExportTips 导出选中作业下的全部下发结果
 		},
 		task:{
 			selectJobStartRefresh:'Please choose a job,and then start automatic refresh',//EwayLocale.version.task.selectJobStartRefresh 请选择一个作业,再开启定时刷新！
-			jobBatchName:'Job bacth name',//EwayLocale.version.task.jobBatchName 作业批次名称
+			jobBatchName:'Job batch name',//EwayLocale.version.task.jobBatchName 作业批次名称
 			patchVersion:'Distribute version',//EwayLocale.version.task.patchVersion 分发版本
 			taskStatus:'Task status',//EwayLocale.version.task.taskStatus 任务状态
 			beforeUpdate:'Version before distribute',//EwayLocale.version.task.beforeUpdate 分发前的版本
@@ -250,7 +250,7 @@ Ext.apply(EwayLocale,{
 			restartATM:'Restart ATM',//EwayLocale.version.task.restartATM 重启ATM
 			restartATMTips:'Confirm execute reboot command?it may brings some risk.',//EwayLocale.version.task.restartATMTips 执行重启命令可能存在风险,确认重启?
 			sendRestartCmd:'Reboot command has been sent!',//EwayLocale.version.task.sendRestartCmd 已发送重启命令！
-			cancelDownloadSuccess:'Cancel issue successful!',//EwayLocale.version.task.cancelDownloadSuccess 取消下发成功
+			cancelDownloadSuccess:'Cancel issue successfully!',//EwayLocale.version.task.cancelDownloadSuccess 取消下发成功
 			cancelDownload:'Cancel issue',//EwayLocale.version.task.cancelDownload 取消下发
 			jobName:'Job name',//EwayLocale.version.task.jobName 作业名称
 			jobStatus:'Job status',//EwayLocale.version.task.jobStatus 作业状态
@@ -265,7 +265,7 @@ Ext.apply(EwayLocale,{
 			jobId:'Job ID',	//EwayLocale.version.task.jobId 作业ID
 			selectDownloadDevice:'Choose deivce to issue',	//EwayLocale.version.task.selectDownloadDevice 选择下发的设备
 			versionNoBeforeUpdate:'Version before update',	//EwayLocale.version.task.versionNoBeforeUpdate 升级前版本号
-			versionNoAfterUpdate:'Target version no',	//EwayLocale.version.task.versionNoAfterUpdate 目标版本号
+			versionNoAfterUpdate:'Target version no.',	//EwayLocale.version.task.versionNoAfterUpdate 目标版本号
 			deviceVersionHis:'View device history version',	//EwayLocale.version.task.deviceVersionHis 查看设备历史版本
 			downloadUser:'Issue man',	//EwayLocale.version.task.downloadUser 下发人
 			downloadTime:'Issue time',	//EwayLocale.version.task.downloadTime 下发时间

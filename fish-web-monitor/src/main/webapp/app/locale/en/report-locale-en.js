@@ -103,11 +103,11 @@ Ext.apply(EwayLocale,{
 			fileNotAllowed:'Documents do not meet requirements！',//EwayLocale.report.serviceplan.fileNotAllowed文件不符合要求
 			tipExportSuccess:'Article data successfully imported',//EwayLocale.report.serviceplan.tipExportSuccess条数据,成功导入
 			tipLookUp:'Bar, click View import details!',//EwayLocale.report.serviceplan.tipLookUp条,点击查看导入详情!
-			tochenkDervice:'Please select the device you want to change',//EwayLocale.report.serviceplan.tochenkDervice请选择您要更改的设备
-			tochenckPeople:'Please select personnel',//EwayLocale.report.serviceplan.tochenckPeople请选择人员
+			tochenkDervice:'Please choose the device you want to change',//EwayLocale.report.serviceplan.tochenkDervice请选择您要更改的设备
+			tochenckPeople:'Please choose personnel',//EwayLocale.report.serviceplan.tochenckPeople请选择人员
 			tipAddError:'Article Adding failed. Please refresh view',//EwayLocale.report.serviceplan.tipAddError条添加失败,请刷新后查看
 			planIsHaved:'',
-			linkSuccess:'Associate success',//EwayLocale.report.serviceplan.linkSuccess关联成功
+			linkSuccess:'Associate successfully',//EwayLocale.report.serviceplan.linkSuccess关联成功
 			Mon:'Mon',//EwayLocale.report.serviceplan.Mon一
 			Tues:'Tues',//EwayLocale.report.serviceplan.Tues二
 			Wed:'Wed',//EwayLocale.report.serviceplan.Wed三
@@ -117,7 +117,7 @@ Ext.apply(EwayLocale,{
 			Sun:'Sun',//EwayLocale.report.serviceplan.Sun日
 			useSuccess:'Normal start',//EwayLocale.report.serviceplan.useSuccess正常启用
 			notSuccess:'Not Enabled',//EwayLocale.report.serviceplan.notSuccess未启用
-			lastOneGroup:'Please select at least one in the group',//EwayLocale.report.serviceplan.lastOneGroup请在组内至少选中一项
+			lastOneGroup:'Please choose at least one in the group',//EwayLocale.report.serviceplan.lastOneGroup请在组内至少选中一项
 			lanDetailWeek:'Week program detailed list',//EwayLocale.report.serviceplan.lanDetailWeek星期方案详细列表
 			planDetailDay:'Date program detailed list',//EwayLocale.report.serviceplan.planDetailDay日期方案详细列表
 			selectPlan:'To select a startup program',//EwayLocale.report.serviceplan.selectPlan选择开机方案

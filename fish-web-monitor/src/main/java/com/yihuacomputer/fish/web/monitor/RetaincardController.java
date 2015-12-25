@@ -537,9 +537,6 @@ public class RetaincardController {
 		cell.setCellValue(messageSource.getMessage("retaincard.cardHoldBank", null, FishCfg.locale));
 		cell.setCellStyle(style);
 		cell = row.createCell(6);
-		cell.setCellValue(messageSource.getMessage("retaincard.cardStatus", null, FishCfg.locale));
-		cell.setCellStyle(style);
-		cell = row.createCell(7);
 		cell.setCellValue(messageSource.getMessage("retaincard.retainReason", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
@@ -572,9 +569,7 @@ public class RetaincardController {
 							.getCardRetainTime())));
 			row.createCell(5).setCellValue(
 					cellValue(retaincard.getCardDistributionBank()));
-			row.createCell(6).setCellValue(
-					cellValue(getEnumI18n(retaincard.getStatus().getText())));
-			row.createCell(7).setCellValue(cellValue(retaincard.getReason()));
+			row.createCell(6).setCellValue(cellValue(retaincard.getReason()));
 		}
 
 		String date = DateUtils.getDate(new Date());

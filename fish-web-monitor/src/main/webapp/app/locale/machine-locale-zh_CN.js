@@ -599,6 +599,7 @@ Ext.apply(EwayLocale,{
 			tochenckPeople:'请选择人员',//EwayLocale.machine.serviceplan.tochenckPeople
 			tipAddError:'条添加失败,请刷新后查看',//EwayLocale.machine.serviceplan.tipAddError
 			planIsHaved:'',
+			chooseOne:'至少选择一个',
 			linkSuccess:'关联成功',//EwayLocale.machine.serviceplan.linkSuccess
 			Mon:'一',//EwayLocale.machine.serviceplan.Mon
 			Tues:'二',//EwayLocale.machine.serviceplan.Tues

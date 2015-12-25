@@ -160,28 +160,37 @@ Ext.define('Eway.view.case.caseNotify.NotifyGrid', {
 								if(object.success==true){
 									aboutInfoWin.down('field[name="terminalId"]').setValue(object.data.terminalId);
 									if(object.data.devMod=="IDC"){
-										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.machine.device.IDC);
+										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.cases.caseFault.cardReaderModule);
 					                }
 									else if(object.data.devMod=="CIM"){
-										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.machine.device.CIM);
+										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.cases.caseFault.depoistModule);
 					                }
 									else if(object.data.devMod=="CDM"){
-										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.machine.device.CDM);
+										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.cases.caseFault.drawModule);
 									}
 									else if(object.data.devMod=="RPR"){
-										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.machine.device.RPR);
+										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.cases.caseFault.rprModule);
 									}
 									else if(object.data.devMod=="JPR"){
-										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.machine.device.JPR);
+										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.cases.caseFault.jprModule);
 									}
 									else if(object.data.devMod=="PIN"){
-										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.machine.device.PIN);
+										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.cases.caseFault.pinModule);
 									}
 									else if(object.data.devMod=="TTU"){
-										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.machine.device.TTU);
+										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.cases.caseFault.textTerminalUnit);
 									}
 									else if(object.data.devMod=="SIU"){
-										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.machine.device.SIU);
+										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.cases.caseFault.sensoModule);
+									}
+									else if(object.data.devMod=="ISC"){
+										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.cases.caseFault.iscModule);
+									}
+									else if(object.data.devMod=="ICC"){
+										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.cases.caseFault.iccModule);
+									}
+									else if(object.data.devMod=="FGP"){
+										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.cases.caseFault.fgpModule);
 									}
 									aboutInfoWin.down('field[name="faultClassify"]').setValue(object.data.faultClassify);
 									aboutInfoWin.down('field[name="faultCode"]').setValue(object.data.faultCode);

@@ -26,7 +26,7 @@ Ext.define('Eway.view.advert.WaitTab', {
 						allowBlank: false,
 				    	blankText :EwayLocale.advert.uploadResourceBlank,
 						buttonText: EwayLocale.advert.addMorePic,
-						padding:'2px 5px 0 0',
+						padding:'2px -60px 0 0',
 						regex : (/\.jpg$|\.gif$/i),
 						regexText:EwayLocale.advert.uploadRegText
 			    	}]
@@ -54,7 +54,7 @@ Ext.define('Eway.view.advert.WaitTab', {
 						allowBlank: false,
 				    	blankText :EwayLocale.advert.uploadResourceBlank,
 						buttonText: EwayLocale.advert.addMorePic,
-						padding:'2px 5px 0 0',
+						padding:'2px -60px 0 0',
 						regex : (/\.jpg$|\.gif$/i),
 						regexText:EwayLocale.advert.uploadRegText
 			    	}]
@@ -82,7 +82,7 @@ Ext.define('Eway.view.advert.WaitTab', {
 						allowBlank: false,
 				    	blankText :EwayLocale.advert.uploadResourceBlank,
 						buttonText: EwayLocale.advert.addMorePic,
-						padding:'2px 5px 0 0',
+						padding:'2px -60px 0 0',
 						regex :(/\.jpg$|\.gif$/i),
 						regexText:EwayLocale.advert.uploadRegText
 			    	}]

@@ -252,6 +252,7 @@ public class CaseNotifyService implements ICaseNotifyService {
 			caseNotify.setMail(person.getEmail());
 			caseNotify.setNotifyTimes(faultClassify.getNotifyTimes());
 			caseNotify.setCreateTime(new Date());
+			caseNotify.setSendTime(new Date());
 
 			// 只做短信
 			if (faultClassify.getNotifyWay().equals(NotifyWay.SMS) && notifyContent.getSmsNotify() != null) {

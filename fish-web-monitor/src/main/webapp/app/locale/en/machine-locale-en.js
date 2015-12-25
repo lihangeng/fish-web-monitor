@@ -341,32 +341,32 @@ Ext.apply(EwayLocale,{
 			restartDrive:'Restar drivers',//重启硬件驱动
 			confirmRestartDrive:'Restar drivers?',//确定要重启硬件驱动？
 			nowRestartDrive:'Restarting',//正在重启硬件驱动
-			restartDriveSuc:'Restarting drivers successful!',//成功重启该设备硬件驱动
+			restartDriveSuc:'Restarting drivers successfully!',//成功重启该设备硬件驱动
 			restartDriveFail:'Restarting drivers failed!',//重启硬件驱动失败！
 
 			restartOS:'Restar os',//重启操作系统
 			confirmRestartOS:'Restar os?',//确定要重启操作系统
 			nowRestartOS:'Restarting',//正在重启操作系统
-			restartOSSuc:'Restarting os successful!',//成功重启该设备操作系统
+			restartOSSuc:'Restarting os successfully!',//成功重启该设备操作系统
 			restartOSFail:'Restarting os failed!',//重启操作系统失败
 
 			remoteShutdown:'Shutdown',//关机
 			shutdownApply:'Shutdown app',//关闭应用
 			confirmShutdownApply:'Shutdown app?',//确定要关闭应用？
 			nowShutdownApply:'Shutting down',//
-			shutdownApplySuc:'Shutdown app successful!',//成功关闭该设备应用
+			shutdownApplySuc:'Shutdown app successfully!',//成功关闭该设备应用
 			shutdownApplyFail:'Shutdown app failed!',//关闭该设备应用失败
 
 			shutdownDrive:'Shutdown drivers',//关闭硬件驱动
 			confirmShutdownDrive:'Shutdown drivers?',//确定要关闭硬件驱动？
 			nowShutdownDrive:'Shutting down',//正在关闭硬件驱动
-			shutdownDriveSuc:'Shutdown drivers successful!',//成功关闭硬件驱动
+			shutdownDriveSuc:'Shutdown drivers successfully!',//成功关闭硬件驱动
 			shutdownDriveFail:'Shutdown drivers failed!',//关闭硬件驱动失败！
 
 			shutdownOS:'Shutdown os',//关闭操作系统
 			confirmShutdownOS:'Shutdown os?',//确定要关闭操作系统？
 			nowShutdownOS:'Shutting down',//正在关闭操作系统
-			shutdownOSSuc:'Shutdown os successful!',//成功关闭该设备操作系统
+			shutdownOSSuc:'Shutdown os successfully!',//成功关闭该设备操作系统
 			shutdownOSFail:'Shutdown os failed!',//关闭操作系统失败！
 			getSoftwareList:'Get software installed info',//获取软件安装列表
 			forceReset:'Reset force',//强制复位
@@ -411,7 +411,7 @@ Ext.apply(EwayLocale,{
 			sysVersion:'OS version',//系统版本号
 			devAddress:'Address',//设备地址
 			basicInfo:'Additional Info',//基本信息
-			virtual:'Virtual teller No.',//虚拟设备号
+			virtual:'Teller',//虚拟设备号
 			serial:'Serial Number',//设备序列号
 			carrier:'Carrieroperator',//运营商
 			moneyOrg:'Cash org',//加钞机构
@@ -517,7 +517,7 @@ Ext.apply(EwayLocale,{
 			responsibilityName:'Person in charge',//停机负责人
 			stopReason:'Reason',//停机原因
 			address:'Address',//所属地址
-			selectDev:'Please select the device which you want to stop',//选择需要报停的设备
+			selectDev:'Please choose the device which you want to stop',//选择需要报停的设备
 			to:'to',//至
 			stopType:'Type',//停机类型
 			comboxStopType:{
@@ -577,11 +577,16 @@ Ext.apply(EwayLocale,{
 			fileNotAllowed:'Documents do not meet requirements！',//EwayLocale.machine.serviceplan.fileNotAllowed文件不符合要求
 			tipExportSuccess:'Article data successfully imported',//EwayLocale.machine.serviceplan.tipExportSuccess条数据,成功导入
 			tipLookUp:'Bar, click View import details!',//EwayLocale.machine.serviceplan.tipLookUp条,点击查看导入详情!
-			tochenkDervice:'Please select the device you want to change',//EwayLocale.machine.serviceplan.tochenkDervice请选择您要更改的设备
-			tochenckPeople:'Please select personnel',//EwayLocale.machine.serviceplan.tochenckPeople请选择人员
+			tochenkDervice:'Please choose the device you want to change',//EwayLocale.machine.serviceplan.tochenkDervice请选择您要更改的设备
+			tochenckPeople:'Please choose personnel',//EwayLocale.machine.serviceplan.tochenckPeople请选择人员
 			tipAddError:'Article Adding failed. Please refresh view',//EwayLocale.machine.serviceplan.tipAddError条添加失败,请刷新后查看
 			planIsHaved:'',
+
+			chooseOne:'At Least One',
 			linkSuccess:'Associate success',//EwayLocale.machine.serviceplan.linkSuccess关联成功
+
+			linkSuccess:'Associate successfully',//EwayLocale.machine.serviceplan.linkSuccess关联成功
+
 			Mon:'Mon',//EwayLocale.machine.serviceplan.Mon一
 			Tues:'Tues',//EwayLocale.machine.serviceplan.Tues二
 			Wed:'Wed',//EwayLocale.machine.serviceplan.Wed三
@@ -619,7 +624,7 @@ Ext.apply(EwayLocale,{
 		backupDate:'Back-up date',//EwayLocale.atmLog.backupDate 备份日期
 		dayBackupResult:'Back-up result',//EwayLocale.atmLog.dayBackupResult 当日备份结果
 		backupProcess:'Backing-up',//EwayLocale.atmLog.backupProcess 正在备份
-		backupSuccess:'successful',//EwayLocale.atmLog.backupSuccess 备份成功
+		backupSuccess:'success',//EwayLocale.atmLog.backupSuccess 备份成功
 		backupError:'Back-up error',//EwayLocale.atmLog.backupError 备份错误
 		logDevAccount:'Log back-up machine count total',//EwayLocale.atmLog.logDevAccount 日志设备数量累计
 		logDevSucAccount:'Number of backup success',//EwayLocale.atmLog.logDevSucAccount

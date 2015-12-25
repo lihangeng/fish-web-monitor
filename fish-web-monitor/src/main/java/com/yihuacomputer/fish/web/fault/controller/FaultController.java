@@ -243,7 +243,7 @@ public class FaultController
         cell = row.createCell(12);
         cell.setCellValue(messageSource.getMessage("fault.serPer", null, FishCfg.locale));
         cell.setCellStyle(style);
-
+        
         HSSFCellStyle cellStyle = wb.createCellStyle();
         HSSFDataFormat format = wb.createDataFormat();
         cellStyle.setDataFormat(format.getFormat("@"));

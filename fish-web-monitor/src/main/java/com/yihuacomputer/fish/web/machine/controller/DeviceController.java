@@ -369,6 +369,11 @@ public class DeviceController {
 		cell = row.createCell(12);
 		cell.setCellValue(messageSource.getMessage("device.devCashWarn", null, FishCfg.locale));
 
+		cell = row.createCell(13);
+		cell.setCellValue(messageSource.getMessage("device.virtual", null, FishCfg.locale));
+		
+		cell = row.createCell(14);
+		cell.setCellValue(messageSource.getMessage("device.devSerialNo", null, FishCfg.locale));
 
 		HSSFCellStyle cellStyle = workBook.createCellStyle();
 		HSSFDataFormat format = workBook.createDataFormat();
@@ -378,7 +383,7 @@ public class DeviceController {
 		int count = 1;
 		for (IDevice device : data) {
 			row = sheet.createRow(count);
-
+			count++;
 			cell = row.createCell(0);
 			cell.setCellType(Cell.CELL_TYPE_STRING);
 			cell.setCellStyle(cellStyle);
@@ -420,6 +425,11 @@ public class DeviceController {
 			cell = row.createCell(12);
 			cell.setCellValue(cellValue(device.getCashboxLimit()));
 
+			cell = row.createCell(13);
+			cell.setCellValue(cellValue(device.getVirtual()==null?"":getEnumI18n(device.getVirtual())));
+			
+			cell = row.createCell(14);
+			cell.setCellValue(cellValue(device.getSerial()==null?"":getEnumI18n(device.getSerial())));
 		}
 
 		FileOutputStream fos = null;

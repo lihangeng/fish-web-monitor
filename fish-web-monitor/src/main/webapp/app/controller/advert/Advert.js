@@ -276,8 +276,9 @@ Ext.define('Eway.controller.advert.Advert', {
 									},
 									failure: function(record,operation){
 										//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
+										var object = Ext.decode(operation._response.responseText);
 										record.dropped = false;
-										Eway.alert(operation.request.scope.reader.jsonData.errors);
+										Eway.alert(object.errors);
 									},
 									scope:this
 								});

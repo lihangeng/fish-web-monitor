@@ -3,6 +3,7 @@ package com.yihuacomputer.fish.api.report.base;
 import java.util.List;
 
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.fish.api.monitor.business.IHostRet;
 
 /**
  * 交易相关统计、图表服务
@@ -29,5 +30,13 @@ public interface ITransRptService {
 	 * @return
 	 */
 	public List<ITransResultCountRpt> listTransResultCount(IFilter filter);
+	
+	
+	
+	/**
+	 * 查询所有返回码
+	 * @return
+	 */
+	public List<IHostRet> listHostRetCode();
 
 }
