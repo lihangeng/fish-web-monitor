@@ -799,7 +799,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				str += '|' + EwayLocale.commen.unknow;
 			}
 			if (value.mod_noDevice) {
-				str += '|' + EwayLocale.monitor.devMonitor.noData;
+				str += '|' + EwayLocale.commen.noDevice;
 			}
 			
 //			str = str.startsWith('|') ? str.substr(1) : str;

@@ -324,7 +324,7 @@ Ext.define('Eway.view.monitor.device.filterManager.MonitorStateConfig', {
 						}
 					}, {
 						boxLabel : EwayLocale.monitor.devMonitor.noData,
-						name : 'module_noDevice',
+						name : 'mod_noDevice',
 						statusGroup : 'unknown',
 						action : 'module',
 						listeners : {

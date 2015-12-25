@@ -123,6 +123,6 @@ public interface IFilterService {
      * @param filterName
      * @return
      */
-    public IStatusFilter getByFilterName(String filterName);
+    public IStatusFilter getByFilterName(String userId, String filterName);
 
 }
