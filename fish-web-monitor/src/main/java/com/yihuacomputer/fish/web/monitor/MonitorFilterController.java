@@ -255,7 +255,7 @@ public class MonitorFilterController {
         }
         catch (Exception ex) {
             logger.error(String.format("修改监控状态失败!失败信息[%s]", ex.getMessage()));
-            result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage());
+            result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("commen.error", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
         }
 
