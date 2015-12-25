@@ -109,8 +109,11 @@ public class AutoUpdateController {
         if(device == null){
             return null;
         }
-        ITask task = taskService.make(new Date());
+        Date date = new Date();
+        ITask task = taskService.make(date);
         task.setDevice(device);
+        task.setExcuteTime(date);
+        task.setPlanTime(date);
         String typeName = autoUpdateVersion.getVersionType().getTypeName();
         IDeviceSoftVersion dsv = deviceSoftVersionService.get(device.getId(), typeName);
     	if(dsv != null){
