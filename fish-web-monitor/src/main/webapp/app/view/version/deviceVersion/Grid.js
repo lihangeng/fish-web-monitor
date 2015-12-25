@@ -16,7 +16,11 @@ Ext.define('Eway.view.version.deviceVersion.Grid', {
 				text: EwayLocale.version.task.deviceVersionHis,//'查看设备历史版本',
 				tooltip:EwayLocale.version.task.deviceVersionHisTip,//'查看设备历史版本信息',
 				glyph : 0xf129,
-				action:'history'
+				action:'history',
+				code : 'deviceVersionHisInfo',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}],
 			columns : [{
 				header:EwayLocale.refs.terminalId,

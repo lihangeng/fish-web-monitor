@@ -17,7 +17,11 @@ Ext.define('Eway.view.monitor.cashinit.Grid', {
 			}, {
 				text : EwayLocale.commen.info,
 				glyph : 0xf129,
-				action : 'info'
+				action : 'info',
+				code : 'cashInitInfo',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			} ],
 			viewConfig : {
 				forceFit : true,
