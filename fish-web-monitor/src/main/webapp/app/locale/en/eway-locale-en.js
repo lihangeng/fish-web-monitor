@@ -306,12 +306,12 @@ Ext.apply(EwayLocale,{
 				logPullFail:'Get the applogs failed',//EwayLocale.tip.business.device.logPullFail 提取应用电子日志失败
 				logFail:'Log process failed.',//EwayLocale.tip.business.device.logFail log 处理失败
 				linkServerFail:'Connecting refused.',//EwayLocale.tip.business.device.linkServerFail 服务器连接失败
-				logicOpen:'Confirm execute open-service command.',//EwayLocale.tip.business.device.logicOpen 确认要执行开启服务命令
-				openSuccess:'Execute open-service command successfully.',//EwayLocale.tip.business.device.openSuccess 执行开启服务命令成功.
-				openFail:'Execute open-service command failed.',//EwayLocale.tip.business.device.openFail 执行开启服务命令失败.
-				closeConfirm:'Confirm execute pause-service command?',//EwayLocale.tip.business.device.closeConfirm 确认要执行暂停服务命令?
-				closeServiceSuccess:'Execute pause-service command successfully.',//EwayLocale.tip.business.device.closeServiceSuccess 执行暂停服务成功
-				closeServiceFail:'Execute pause-service command failed.',//EwayLocale.tip.business.device.closeServiceFail 执行暂停服务失败
+				logicOpen:'Confirm execute start-service command.',//EwayLocale.tip.business.device.logicOpen 确认要执行开启服务命令
+				openSuccess:'Execute start-service command successfully.',//EwayLocale.tip.business.device.openSuccess 执行开启服务命令成功.
+				openFail:'Execute start-service command failed.',//EwayLocale.tip.business.device.openFail 执行开启服务命令失败.
+				closeConfirm:'Confirm execute stop-service command?',//EwayLocale.tip.business.device.closeConfirm 确认要执行暂停服务命令?
+				closeServiceSuccess:'Execute stop-service command successfully.',//EwayLocale.tip.business.device.closeServiceSuccess 执行暂停服务成功
+				closeServiceFail:'Execute stop-service command failed.',//EwayLocale.tip.business.device.closeServiceFail 执行暂停服务失败
 				closeNormal:'Shut down normally.',//EwayLocale.tip.business.device.closeNormal 正常关机
 				closeComfirm:'Confirm execute normal shut-down command,it may brings some risk?',//EwayLocale.tip.business.device.closeComfirm 确认要执行正常关机命令么,可能会存在风险?
 				closing:'Shutting down normally.',//EwayLocale.tip.business.device.closing 正在执行正常关机
@@ -324,7 +324,7 @@ Ext.apply(EwayLocale,{
 				forceCloseSucess:'Force-shut-down successfully.',//EwayLocale.tip.business.device.forceCloseSucess 强制关机成功.
 				forceCloseFail:'Force-shut-down failed.',//EwayLocale.tip.business.device.forceCloseFail 强制关机失败.
 				ForceCloseSentFail:'Send the force-shut-down command failed ',//EwayLocale.tip.business.device.ForceCloseSentFail 强制关机命令发送失败.
-				reboot:'Reboot normally.',//EwayLocale.tip.business.device.reboot 正常重启
+				reboot:'Reboot normally',//EwayLocale.tip.business.device.reboot 正常重启
 				rebootConfirm:'Confirm execute normal-reboot command,it may brings some risk?',//EwayLocale.tip.business.device.rebootConfirm 确认要执行正常重启命令么,可能会存在风险?
 				rebooting:'Normally rebooting',//EwayLocale.tip.business.device.rebooting 正在执行正常重启
 				rebootSucess:'Normal-reboot successfully.',//EwayLocale.tip.business.device.rebootSucess 正常重启成功

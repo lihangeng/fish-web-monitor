@@ -118,7 +118,7 @@ Ext.apply(EwayLocale,{
 			fgp:'Finger Printer',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
 			pbk:'Passbook Printer',//EwayLocale.monitor.devMonitor.mod.pbk 存折打印机
 			CDMInfo:'Withdrawal module（CDM）property',
-			hasStack:'是否具有暂存器',
+			hasStack:'Stacker Exists',
 			hasShutter:'Shutter door exist',//是否具有shutter门
 			canRetract:'Ability of recovery', //是否具有回收能力
 			canDetectCashTaken:'Check if cash taked',//是否探测钞币被拿走
@@ -131,7 +131,7 @@ Ext.apply(EwayLocale,{
 			exponents:'index',//指数
 			
 			CIMInfo:'Deposit Module (CIM)property',//存款模块
-			canEscrow:'是否具有暂存器X',
+			canEscrow:'Stacker Exists',
 
 			shutterControlSupported:'Support shutter door',//是否支持控制shutter门
 			maxAcceptItems:'Max count of inspect cash in each trans',//单笔最大验钞张数
@@ -220,7 +220,7 @@ Ext.apply(EwayLocale,{
 			CDMStatus:'Withdrawal module(CDM) status',//取款模块(CDM)状态信息
 			cashUnits:'Cashbox',//钞箱状态
 			safeDoor:'SafeDoor',//安全门状态
-			intermediateStacker:'暂存器状态',
+			intermediateStacker:'Stacker Status',
 			outBox:'Cashbox draw',//取款钞箱
 			pcuId:'Relationship between physical and logic cashbox',//物理逻辑钞箱对应关系
 			cuId:'Logic cashboxID',//逻辑钞箱ID

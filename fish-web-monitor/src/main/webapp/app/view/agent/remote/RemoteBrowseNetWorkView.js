@@ -31,8 +31,9 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 						type : 'text',
 						stroke : 'black',
 						text : EwayLocale.agent.remote.send,
-						x : 90,
-						y : 30
+						font: "18px monospace",
+						x : 80,
+						y : 35
 					}, {
 						type : 'path',
 						stroke : 'black',
@@ -42,8 +43,9 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 						type : 'text',
 						stroke : 'black',
 						text : EwayLocale.agent.remote.receive,
+						font: "18px monospace",
 						x : 285,
-						y : 30
+						y : 35
 					}, {
 						type : 'path',
 						stroke : 'black',
@@ -58,13 +60,15 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 						type : 'text',
 						stroke : 'black',
 						text : EwayLocale.agent.remote.bite,
+						font: "16px monospace",
 						x : 30,
 						y : 78
 					}, {
 						type : 'text',
 						stroke : 'black',
 						text : EwayLocale.agent.remote.speed,
-						x : 15,
+						font: "14px monospace",
+						x : 0,
 						y : 120
 					}, {
 						type : 'image',

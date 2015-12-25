@@ -99,7 +99,7 @@ Ext.apply(EwayLocale,{
 				remoteBrowser:'File Browse',//EwayLocale.monitor.devMonitor.remote.remoteBrowser 远程浏览
 				processList:'Fetch Process',//EwayLocale.monitor.devMonitor.remote.processList 查看进程信息
 				screenCamera:'Screen recording',//EwayLocale.monitor.devMonitor.remote.screenCamera 屏幕录制
-				reset:'Reset Modules',//EwayLocale.monitor.devMonitor.remote.reset 强制复位
+				reset:'Force Reset',//EwayLocale.monitor.devMonitor.remote.reset 强制复位
 				remoteLook:'Fetch Application Info',//EwayLocale.monitor.devMonitor.remote.remoteLook 查看应用版本
 				remoteCheckATM:'Physical of ATM',//EwayLocale.monitor.devMonitor.remote.remoteCheckATM ATM体检
 				halfSer:'Half service',//EwayLocale.monitor.devMonitor.remote.halfSer 半功能
@@ -333,10 +333,10 @@ Ext.apply(EwayLocale,{
 			programName: 'Application name',//程序名称
 			version: 'Version number',//版本号
 			publisher: 'Publishers',//发布商
-			diskUsed: 'Disk useage',//磁盘使用
+			diskUsed: 'Disk usage',//磁盘使用
 			softwayList: 'List of software installed',//软件安装列表
 			networkInfo: 'Network info',//网络信息
-			networkLinkStatus: 'Netwok connect status',//网络连接状态
+			networkLinkStatus: 'Network connect status',//网络连接状态
 			send: 'Sended',//已发送
 			receive: 'Received',//已接收
 			bite: 'byte:',//字节
@@ -416,7 +416,7 @@ Ext.apply(EwayLocale,{
 			mustIncludeOneFile:'Must exit File to downLoad.',
 			resetBackUp:'Click to backup the logs of this day.',
 			backupAppLogsSuccess:'Backup atmc logs successfully.',
-			backupAppLogsFail:'backup atmc logs faile.',
+			backupAppLogsFail:'backup atmc logs failed.',
 			backupLogSucList:' backup atmc logs list success.',
 			backupLogFailList:' backup atmc logs list failed.',
 			exitDownLoadFile:'add failed,the file have exited in the list of download.',
