@@ -299,7 +299,8 @@ public class TransRptService implements ITransRptService {
 	@Override
 	public List<IHostRet> listHostRetCode() {
 		String hql = "from HostRet";
-		List<IHostRet> hostRet = dao.findByHQL(hql);
+        List<Object> param = new ArrayList<Object>();
+		List<IHostRet> hostRet = dao.findByHQL(hql,param.toArray());
 		return hostRet;
 	}
 }
