@@ -19,20 +19,20 @@ import com.yihuacomputer.common.exception.ServiceException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.permission.IPermission;
-import com.yihuacomputer.fish.permission.service.api.IDomainPermissionService;
+import com.yihuacomputer.fish.api.permission.IPermissionService;
 import com.yihuacomputer.fish.system.entity.Permission;
 
 @Service
 @Transactional
-public class PermissionService implements IDomainPermissionService {
+public class PermissionService implements IPermissionService {
 	private static final Logger logger = LoggerFactory.getLogger(PermissionService.class);
 	@Autowired
 	private IGenericDao dao;
 	@Autowired
 	private MessageSource messageSourceVersion;
 	@Override
-	public Permission add(String id,String code, String description,boolean isButton) {
-		Permission permission= make(id);
+	public IPermission add(String id,String code, String description,boolean isButton) {
+		IPermission permission= make(id);
 		permission.setCode(code);
 		permission.setDescription(description);
 		permission.setButton(isButton);
@@ -69,7 +69,7 @@ public class PermissionService implements IDomainPermissionService {
 	}
 
 	@Override
-	public Permission make(String id) {
+	public IPermission make(String id) {
 		Permission permission = new Permission(id);
 		permission.setId(id);
 		permission.setService(this);
@@ -112,7 +112,7 @@ public class PermissionService implements IDomainPermissionService {
 
 	}
 
-	public void remove(Permission permission){
+	public void remove(IPermission permission){
 		dao.delete(permission);
 	}
 
@@ -129,8 +129,8 @@ public class PermissionService implements IDomainPermissionService {
 	}
 
 	@Override
-	public Permission add(String id,String code, String description,boolean isButton,Permission parent) {
-		Permission permission= make(id);
+	public IPermission add(String id,String code, String description,boolean isButton,IPermission parent) {
+		IPermission permission= make(id);
 		permission.setCode(code);
 		permission.setDescription(description);
 		permission.setButton(isButton);
@@ -141,7 +141,7 @@ public class PermissionService implements IDomainPermissionService {
 
 	@Override
     @Transactional(readOnly=true)
-	public List<Permission> listChildByParentId(String parentId) {
+	public List<IPermission> listChildByParentId(String parentId) {
 		return dao.findByHQL("from Permission where parent.id = ?", parentId);
 	}
 
@@ -154,4 +154,5 @@ public class PermissionService implements IDomainPermissionService {
 	public List<IPermission> getGroupSendByCode() {
 		return dao.findByHQL("from Permission where code in ('noteGroupSend','groupSend','groupPerson') ");
 	}
+
 }

@@ -82,4 +82,24 @@ public interface IPermissionService {
 	 */
 	public List<IPermission> getGroupSendByCode();
 
+	/**
+	 * 增加权限
+	 * @param code
+	 * @param description
+	 * @param parent
+	 * @return
+	 */
+	public IPermission add(String id,String code, String description,boolean isButton,IPermission parent);
+	/**
+	 * 删除权限
+	 * @param permission
+	 */
+	public void remove(IPermission permission);
+	/**
+	 * 根据parentId返回子权限列表
+	 * @param parentId
+	 * @return
+	 */
+	public List<IPermission> listChildByParentId(String parentId);
+	
 }

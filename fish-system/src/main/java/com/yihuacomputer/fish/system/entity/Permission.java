@@ -15,9 +15,8 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import com.yihuacomputer.common.exception.NotFoundException;
-import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.fish.api.permission.IPermission;
-import com.yihuacomputer.fish.permission.service.api.IDomainPermissionService;
+import com.yihuacomputer.fish.api.permission.IPermissionService;
 
 @Entity
 @Table(name = "SM_PERMISSION")
@@ -50,13 +49,13 @@ public class Permission implements IPermission ,Serializable{
 	private IPermission parent;
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parent", targetEntity = com.yihuacomputer.fish.system.entity.Permission.class)
-	private List<Permission> children = new ArrayList<Permission>();
+	private List<IPermission> children = new ArrayList<IPermission>();
 
 	@Transient
 	private int childrenSize = 0;
 
 	@Transient
-	private IDomainPermissionService service;
+	private IPermissionService service;
 
 	public Permission() {
 	    this.isButton = false;
@@ -77,11 +76,11 @@ public class Permission implements IPermission ,Serializable{
 		this.id = id;
 	}
 
-	public IDomainPermissionService getService() {
+	public IPermissionService getService() {
 		return service;
 	}
 
-	public void setService(IDomainPermissionService service) {
+	public void setService(IPermissionService service) {
 		this.service = service;
 	}
 
@@ -116,8 +115,8 @@ public class Permission implements IPermission ,Serializable{
 	}
 
 	@Override
-	public Permission getChild(String code) {
-		for (Permission item : getChildren()) {
+	public IPermission getChild(String code) {
+		for (IPermission item : getChildren()) {
 			if (code.equals(item.getCode())) {
 				return item;
 			}
@@ -127,21 +126,21 @@ public class Permission implements IPermission ,Serializable{
 
 	@Override
 	public Permission addChild(String id,String code, String description,boolean isButton) {
-		Permission child = service.add(id,code, description,isButton, this);
+		Permission child = (Permission)service.add(id,code, description,isButton, this);
 		children.add(child);
 		return child;
 	}
 
 	@Override
 	public void removeChild(String code) {
-		Permission child = getChild(code);
+		IPermission child = getChild(code);
 		getChildren().remove(child);
 		service.remove(child);
 	}
 
 	@Override
 	public List<IPermission> listChildren() {
-		return EntityUtils.<IPermission>convert(getChildren());
+		return getChildren();
 	}
 
 	@Override
@@ -159,7 +158,7 @@ public class Permission implements IPermission ,Serializable{
 		setDescription(permission.getDescription());
 	}
 
-	public List<Permission> getChildren() {
+	public List<IPermission> getChildren() {
 		if (this.childrenSize < 1) {
 			this.children = service.listChildByParentId(this.id);
 			this.childrenSize = children.size();
@@ -167,7 +166,7 @@ public class Permission implements IPermission ,Serializable{
 		return children;
 	}
 
-	public void setChildren(List<Permission> children) {
+	public void setChildren(List<IPermission> children) {
 		this.children = children;
 	}
 

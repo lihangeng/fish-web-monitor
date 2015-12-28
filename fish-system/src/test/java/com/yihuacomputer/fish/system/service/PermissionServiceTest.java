@@ -21,9 +21,7 @@ import com.yihuacomputer.fish.api.permission.IPermissionService;
 import com.yihuacomputer.fish.api.permission.IRole;
 import com.yihuacomputer.fish.api.permission.IRoleService;
 import com.yihuacomputer.fish.api.permission.RoleType;
-import com.yihuacomputer.fish.permission.service.api.IDomainPermissionService;
 import com.yihuacomputer.fish.system.H2TestConfig;
-import com.yihuacomputer.fish.system.entity.Permission;
 /**
  * 角色权限管理测试类
  * @author wangchao
@@ -36,7 +34,7 @@ public class PermissionServiceTest extends BindSessionInTest2{
 	@Autowired
 	private IRoleService roleService;
 	@Autowired
-	private IDomainPermissionService permissionService;
+	private IPermissionService permissionService;
 
 	@Test
 	public void testAdd(){
@@ -125,8 +123,8 @@ public class PermissionServiceTest extends BindSessionInTest2{
 		permissionService.add(permission2);
 		System.out.println(permission.getId());
 
-		List<Permission> permissions = permissionService.listChildByParentId(permission.getId());
-		for(Permission items : permissions){
+		List<IPermission> permissions = permissionService.listChildByParentId(permission.getId());
+		for(IPermission items : permissions){
 			System.out.println(items.getDescription());
 		}
 
