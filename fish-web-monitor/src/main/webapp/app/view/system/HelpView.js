@@ -8,7 +8,7 @@ Ext.define('Eway.view.system.HelpView',{
 		var store = new Ext.create('Ext.data.Store', {
 	    	fields:['name', 'describe'],
 		    data:{'items':[
-		        {"name":"The user manual.doc", "describe":EwayLocale.system.guideUsers}
+		        {"name":"ATM View_users_guide.pdf", "describe":EwayLocale.system.guideUsers}
 		    ]},
 		    proxy: {
 		        type: 'memory',
