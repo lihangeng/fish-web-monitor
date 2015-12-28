@@ -28,11 +28,12 @@ import com.yihuacomputer.fish.api.monitor.software.ISoftwareService;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
+import com.yihuacomputer.fish.monitor.H2TestConfig;
 import com.yihuacomputer.fish.monitor.MySQLTestConfig;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = MySQLTestConfig.class)
+@ContextConfiguration(classes = H2TestConfig.class)
 public class AddDeviceServiceTest extends BindSessionInTest2
 {
 	@Autowired
