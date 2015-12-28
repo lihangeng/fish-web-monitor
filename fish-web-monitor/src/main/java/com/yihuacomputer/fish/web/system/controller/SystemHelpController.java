@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.yihuacomputer.common.FishCfg;
+
 
 /**
  * 系统帮助文档的下载：
@@ -28,7 +30,7 @@ public class SystemHelpController
      */
     @RequestMapping(value = "/downloadFile",method = RequestMethod.GET)
     public void download(@RequestParam String fileName,HttpServletRequest request,HttpServletResponse response) throws Exception {
-    	String path = request.getSession().getServletContext().getRealPath("resources/file/" + fileName);
+    	String path = FishCfg.getFishHelpDoc()+FishCfg.fileSep+fileName;
     	File file = new File(path);
         response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName(request,fileName) + "\"");
         response.addHeader("Content-Length", "" + file.length());
