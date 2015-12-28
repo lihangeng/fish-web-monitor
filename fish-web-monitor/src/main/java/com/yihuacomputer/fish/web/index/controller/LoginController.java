@@ -27,7 +27,6 @@ import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.util.MsgDigestAlgorithm;
 import com.yihuacomputer.fish.api.permission.IPermission;
-import com.yihuacomputer.fish.api.permission.IPermissionService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.person.IUserService;
@@ -224,9 +223,6 @@ public class LoginController {
 		}
 		return forms;
 	}
-
-	@Autowired
-	private IPermissionService service;
 
 	private boolean hasChildMenu(IPermission self,List<IPermission> permissions){
 		for(IPermission permission : permissions){
