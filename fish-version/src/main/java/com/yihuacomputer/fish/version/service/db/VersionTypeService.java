@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
@@ -70,17 +71,17 @@ public class VersionTypeService implements IVersionTypeService, IDeviceListener 
     @Override
     @Transactional
     public IVersionType add(IVersionType versionType) {
-        List<IDevice> deviceList = deviceService.list();
         Date date = new Date();
-        for (IDevice device : deviceList) {
-            IDeviceSoftVersion deviceSoftVersion = deviceSoftVersionService.make();
-            deviceSoftVersion.setCreatedTime(date);
-            deviceSoftVersion.setDeviceId(device.getId());
-            deviceSoftVersion.setTypeName(versionType.getTypeName());
-            deviceSoftVersion.setVersionNo("0.0.0.0");
-            deviceSoftVersion.setVersionStr("0000000000000000000000000000000");
-            deviceSoftVersionService.add(deviceSoftVersion);
-        }
+        	StringBuffer sb = new StringBuffer();
+        	sb.append("insert into VER_DEVICE_SOFT_VERSION (CREATED_TIME,LAST_UPDATED_TIME,DEVICE_ID,TYPE_NAME,VERSION_NO,VERSION_STR) ");
+        	sb.append("select ?,?,id,?,?,? from dev_info");
+        	Query query = dao.getSQLQuery(sb.toString());
+        	query.setDate(0,date);
+        	query.setDate(1, date);
+        	query.setString(2, versionType.getTypeName());
+        	query.setString(3, "0.0.0.0");
+        	query.setString(4, "0000000000000000000000000000000");
+        	query.executeUpdate();
         return dao.save(this.interface2Entity(versionType, false));
     }
 
@@ -103,7 +104,10 @@ public class VersionTypeService implements IVersionTypeService, IDeviceListener 
             throw new AppException(messageSourceVersion.getMessage("versionType.deleteFailForExistSubVersion",
                     new Object[]{versions.size()}, FishCfg.locale));
         } else {
-            dao.delete(id, VersionType.class);
+        	Query query = dao.getSQLQuery("delete from VER_DEVICE_SOFT_VERSION WHERE TYPE_NAME=?");
+        	query.setString(0, this.getById(id).getTypeName());
+        	query.executeUpdate();
+        	dao.delete(id, VersionType.class);
         }
     }
 

@@ -26,7 +26,7 @@ Ext.define('Eway.view.system.HelpView',{
 				xtype : 'grid',
 			    store: store,
 			    columns: [
-			        {header: EwayLocale.system.helpName,  dataIndex: 'name',width:150},
+			        {header: EwayLocale.system.helpName,  dataIndex: 'name',width:250},
 			        {header: EwayLocale.system.helpExpain, dataIndex: 'describe',width:400},
 			        {
 			        	header: EwayLocale.system.helpDownload,
