@@ -22,6 +22,7 @@ import com.yihuacomputer.fish.api.system.im.IAnnouncementService;
 import com.yihuacomputer.fish.api.system.im.IMessageService;
 import com.yihuacomputer.fish.api.system.quartz.IJobSynchService;
 import com.yihuacomputer.fish.api.system.sms.IShortMessageService;
+import com.yihuacomputer.fish.permission.service.api.IDomainPermissionService;
 import com.yihuacomputer.fish.permission.service.db.GroupService;
 import com.yihuacomputer.fish.permission.service.db.PermissionEntityInjector;
 import com.yihuacomputer.fish.permission.service.db.PermissionService;
@@ -77,6 +78,10 @@ public class SystemModule {
 	}
 
 	public @Bean IPermissionService permissionService() {
+		return new PermissionService();
+	}
+
+	public @Bean IDomainPermissionService domainPermissionService() {
 		return new PermissionService();
 	}
 	

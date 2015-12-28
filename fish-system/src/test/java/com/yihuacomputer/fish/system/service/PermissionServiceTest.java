@@ -34,11 +34,9 @@ import com.yihuacomputer.fish.system.entity.Permission;
 @ContextConfiguration(classes = H2TestConfig.class)
 public class PermissionServiceTest extends BindSessionInTest2{
 	@Autowired
-	private IPermissionService permissionService;
-	@Autowired
 	private IRoleService roleService;
 	@Autowired
-	private IDomainPermissionService service;
+	private IDomainPermissionService permissionService;
 
 	@Test
 	public void testAdd(){
@@ -127,7 +125,7 @@ public class PermissionServiceTest extends BindSessionInTest2{
 		permissionService.add(permission2);
 		System.out.println(permission.getId());
 
-		List<Permission> permissions = service.listChildByParentId(permission.getId());
+		List<Permission> permissions = permissionService.listChildByParentId(permission.getId());
 		for(Permission items : permissions){
 			System.out.println(items.getDescription());
 		}
