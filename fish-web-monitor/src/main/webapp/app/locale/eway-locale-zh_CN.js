@@ -186,7 +186,7 @@ Ext.apply(EwayLocale,{
 		//add by panxin
 		tips:'提示',//EwayLocale.tip.tips
 		input:'请正确输入',//EwayLocale.tip.input
-		roleName:'由字母‘a-z’或‘A-Z’、数字‘0-9’，最多可输入 40位',//EwayLocale.tip.roleName
+		roleName:'由字母‘a-z’或‘A-Z’、数字‘0-9’或中文，最多可输入 40位',//EwayLocale.tip.roleName
 		notNull:'不能为空',//EwayLocale.tip.notNull
 		cardNo:'只能输入13到19个数字',//EwayLocale.tip.cardNo
 		blankBegin:'不能以空格开头',//EwayLocale.tip.blankBegin
