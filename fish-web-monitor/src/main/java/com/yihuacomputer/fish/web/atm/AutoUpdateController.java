@@ -110,7 +110,11 @@ public class AutoUpdateController {
             return null;
         }
         Date date = new Date();
-        ITask task = taskService.make(date);
+        ITask task = taskService.findTask(device.getId(), autoUpdateVersion.getId());
+        //如果存在相同的任务了，则不要进行新建
+        if(null==task){
+        	task = taskService.make(date);
+        }
         task.setDevice(device);
         task.setExcuteTime(date);
         task.setPlanTime(date);

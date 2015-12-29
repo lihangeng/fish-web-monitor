@@ -100,18 +100,7 @@ public class VersionDownloadController {
     @Autowired
     private MessageSource messageSourceVersion;
     
-//    @RequestMapping(method = RequestMethod.GET)
-//    public @ResponseBody
-//    ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
-//        logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
-//        IFilter filter = getFilter(request);
-//        filter.descOrder("createdTime");
-//        ModelMap result = new ModelMap();
-//        result.addAttribute(FishConstant.SUCCESS, true);
-//       /* result.addAttribute("total", pageResult.getTotal());
-//        result.addAttribute("data", toForm(pageResult.list()));*/
-//        return result;
-//    }
+
 
     /**
      * 创建批量任务
