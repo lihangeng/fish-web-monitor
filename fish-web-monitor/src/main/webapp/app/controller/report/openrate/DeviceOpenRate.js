@@ -15,6 +15,7 @@ Ext.define('Eway.controller.report.openrate.DeviceOpenRate', {
 	} ],
 
 	init : function() {
+		this.onQuery();
 		this.control({
 			'report_openrate_device_view button[action=query]' : {
 				click : this.onQuery

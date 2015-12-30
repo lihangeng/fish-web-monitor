@@ -571,6 +571,7 @@ Ext.apply(EwayLocale,{
 			createDateTime:'创建时间',//EwayLocale.machine.serviceplan.createDateTime
 			date:'日期',//EwayLocale.machine.serviceplan.date
 			week:'星期',//EwayLocale.machine.serviceplan.week
+			weekDay:'星期',//EwayLocale.machine.serviceplan.weekDay
 			inportLinkedMachine:'导入关联设备',//EwayLocale.machine.serviceplan.inportLinkedMachine
 			selectFile:'选择文件',//EwayLocale.machine.serviceplan.selectFile
 			placeUploadingResource:'请上传资源',//EwayLocale.machine.serviceplan.placeUploadingResource
@@ -581,6 +582,7 @@ Ext.apply(EwayLocale,{
 			placeSelect:'---请选择---',//EwayLocale.machine.serviceplan.placeSelect
 			planDevice:'方案<-->设备',//EwayLocale.machine.serviceplan.planDevice
 			timeEare:'输入时间段有误，请重新输入！',//EwayLocale.machine.serviceplan.timeEare
+			timeError:'输入时间段有误，请重新输入！',//EwayLocale.machine.serviceplan.timeError
 			planOlonOne:'同方案只能设置开机或关机的一种',//EwayLocale.machine.serviceplan.planOlonOne
 			addSuccess:'添加成功',//EwayLocale.machine.serviceplan.addSuccess
 			addFail:'添加失败',//EwayLocale.machine.serviceplan.addFail

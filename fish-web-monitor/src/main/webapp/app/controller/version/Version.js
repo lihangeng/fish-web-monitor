@@ -169,15 +169,16 @@ Ext.define('Eway.controller.version.Version', {
 	setCheckBoxModel:function( _this, newValue, oldValue, eOpts ){
 		var grid = this.getAddJobWin().down("version_download_selectableDeviceGrid");
 		if(newValue.allDevice=="true"){
-			grid.selModel.deselectAll();
+			grid.selModel.selectAll();
 			var linkedGrid = this.getAddJobWin().down("version_download_linkedDeviceGrid");
 			linkedGrid.getStore().removeAll();
 			this.getAddJobWin().down("hidden[name='deviceIds']").setValue("");
-			linkedGrid.setTitle(EwayLocale.version.selectDeviceInfo0 + linkedGrid.getStore().getCount() + EwayLocale.version.selectDeviceInfo1);
+			linkedGrid.setTitle(EwayLocale.version.selectDeviceInfo0 + EwayLocale.version.download.selectAllDevice + EwayLocale.version.selectDeviceInfo1);
 			grid.selModel.setLocked(true);
 		}
 		else{
 			grid.selModel.setLocked(false);
+			grid.selModel.deselectAll();
 		}
 	},
 	queryOnKeyDownEnter:function( e, t, eOpts ){

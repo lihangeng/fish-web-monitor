@@ -720,7 +720,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 			params : {ip : ip ,code: code},
 			callback: function(records, operation, success) {
 		        if(success == false){
-					Eway.alert(operation.getError());
+					Eway.alert(EwayLocale.monitor.devMonitor.remote.screenFailed);
 		        }
 				}
 		});

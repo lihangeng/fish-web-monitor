@@ -12,7 +12,7 @@ Ext.define('Eway.view.monitor.device.box.Grid', {
 				header : EwayLocale.monitor.devMonitor.cash.type,
 				dataIndex : 'typeName'
 			}, {
-				header : EwayLocale.monitor.devMonitor.comboxStatus.boxStatus,
+				header : EwayLocale.monitor.devMonitor.cash.boxStatus,
 				dataIndex : 'binStatusName'
 			}, {
 				header : EwayLocale.monitor.devMonitor.cash.initialCount,

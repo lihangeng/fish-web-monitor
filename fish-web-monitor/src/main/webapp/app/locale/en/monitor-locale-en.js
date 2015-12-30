@@ -41,27 +41,28 @@ Ext.apply(EwayLocale,{
 				boxCurrentCount:'Current Amount of Cashbox',//EwayLocale.monitor.devMonitor.cash.boxCurrentCount 钞箱当前金额
 				cashboxLimit:'Cashbox Alarm Amount',//EwayLocale.monitor.devMonitor.cash.cashboxLimit 钞箱报警金额阈值
 				initAmount:'Initial Amount',//EwayLocale.monitor.devMonitor.cash.initAmount 加钞总金额
-				amount:'Amount left',//EwayLocale.monitor.devMonitor.cash.amount
-				dispenseAmount:'Amount paid',//EwayLocale.monitor.devMonitor.cash.dispenseAmount 出钞总金额
+				amount:'Amount Left',//EwayLocale.monitor.devMonitor.cash.amount
+				dispenseAmount:'Reject Amount',//EwayLocale.monitor.devMonitor.cash.dispenseAmount 出钞总金额
 				rejectAmount:'Amount invalid',//EwayLocale.monitor.devMonitor.cash.rejectAmount 废钞金额
-				retractCount:'Time of cash retrieve',//EwayLocale.monitor.devMonitor.cash.retractCount 钞票回收次数
-				minAmount:'Amount mini draw',//EwayLocale.monitor.devMonitor.cash.minAmount 最小取款金额
-				boxId:'Cashbox ID',//EwayLocale.monitor.devMonitor.cash.boxId 钞箱标识
-				type:'Cashbox Type',//EwayLocale.monitor.devMonitor.cash.type 钞箱类型
-				initialCount:'Initial count',//EwayLocale.monitor.devMonitor.cash.initialCount 初始张数
-				cashInCount:'Deposit count',//EwayLocale.monitor.devMonitor.cash.cashInCount 存款张数
-				currentCount:'Count',//EwayLocale.monitor.devMonitor.cash.currentCount 当前计数
-				noteValue:'Cashbox denomination',//EwayLocale.monitor.devMonitor.cash.noteValue 钞箱面值
-				currency:'Cashbox currency',//EwayLocale.monitor.devMonitor.cash.currency 钞箱币种
+				retractCount:'Retract Count',//EwayLocale.monitor.devMonitor.cash.retractCount 钞票回收次数
+				minAmount:'Minimum Withdraw Amount',//EwayLocale.monitor.devMonitor.cash.minAmount 最小取款金额
+				boxId:'ID',//EwayLocale.monitor.devMonitor.cash.boxId 钞箱标识
+				type:'Type',//EwayLocale.monitor.devMonitor.cash.type 钞箱类型
+				boxStatus:'Status',//EwayLocale.monitor.devMonitor.cash.boxStatus 钞箱状态
+				initialCount:'Initial Amount',//EwayLocale.monitor.devMonitor.cash.initialCount 初始张数
+				cashInCount:'CashIn Count',//EwayLocale.monitor.devMonitor.cash.cashInCount 存款张数
+				currentCount:'Current Count',//EwayLocale.monitor.devMonitor.cash.currentCount 当前计数
+				noteValue:'Bank Note',//EwayLocale.monitor.devMonitor.cash.noteValue 钞箱面值
+				currency:'Currency',//EwayLocale.monitor.devMonitor.cash.currency 钞箱币种
 				boxDetail:'Cashbox detail',//EwayLocale.monitor.devMonitor.cash.boxDetail 钞箱详情
-				cimFull:'Cashbox full',//EwayLocale.monitor.devMonitor.cash.cimFull 存款钞满
-				cdmEmpty:'Draw cash empty',//EwayLocale.monitor.devMonitor.cash.cdmEmpty 取款钞空
-				cdmLow:'Draw cash low',//EwayLocale.monitor.devMonitor.cash.cdmLow 取款钞少
-				low:'Cash empty',//EwayLocale.monitor.devMonitor.cash.low 钞少
-				empty:'Cash empty',//EwayLocale.monitor.devMonitor.cash.empty 钞空
-				cimAFull:'Deposit almost full',//EwayLocale.monitor.devMonitor.cash.cimAFull 存款钞将满
-				cashFault:'Cashbox error',//EwayLocale.monitor.devMonitor.cash.cashFault 钞箱故障
-				cashUnknow:'Cashbox unknown'//EwayLocale.monitor.devMonitor.cash.cashUnknow 钞箱未知
+				cimFull:'Full',//EwayLocale.monitor.devMonitor.cash.cimFull 存款钞满
+				cdmEmpty:'Empty',//EwayLocale.monitor.devMonitor.cash.cdmEmpty 取款钞空
+				cdmLow:'Low',//EwayLocale.monitor.devMonitor.cash.cdmLow 取款钞少
+				low:'Low',//EwayLocale.monitor.devMonitor.cash.low 钞少
+				empty:'Empty',//EwayLocale.monitor.devMonitor.cash.empty 钞空
+				cimAFull:'Will Full',//EwayLocale.monitor.devMonitor.cash.cimAFull 存款钞将满
+				cashFault:'Fatal',//EwayLocale.monitor.devMonitor.cash.cashFault 钞箱故障
+				cashUnknow:'Unknown'//EwayLocale.monitor.devMonitor.cash.cashUnknow 钞箱未知
 
 			},
 			modStateGraphic:'Module status graphic',//EwayLocale.monitor.devMonitor.modStateGraphic 模块状态图示
@@ -106,7 +107,7 @@ Ext.apply(EwayLocale,{
 				healthy:'Healthy',//EwayLocale.monitor.devMonitor.remote.healthy 正常服务
 				staff:'Maintenance',//EwayLocale.monitor.devMonitor.remote.staff 维护
 
-				pFault:'ATMP error',//EwayLocale.monitor.devMonitor.remote.pFault 交易前置故障
+				pFault:'ATMP Error',//EwayLocale.monitor.devMonitor.remote.pFault 交易前置故障
 
 				stop:'Stop',//EwayLocale.monitor.devMonitor.remote.stop 报停
 				manualStop:'Stop manual',////EwayLocale.monitor.devMonitor.remote.manualStop 人工报停
@@ -129,23 +130,23 @@ Ext.apply(EwayLocale,{
 			netUnStable:'Net unstable',//EwayLocale.monitor.devMonitor.netUnStable 网络不稳定
 			netFatal:'Net error',//EwayLocale.monitor.devMonitor.netFatal 网络故障
 			filterManager: {
-				title: 'FilterManager',//EwayLocale.monitor.devMonitor.filterManager.title
-				add: 'CreateFilter',//EwayLocale.monitor.devMonitor.filterManager.add
-				update: 'UpdateFilter',//EwayLocale.monitor.devMonitor.filterManager.update
+				title: 'Filters Manager',//EwayLocale.monitor.devMonitor.filterManager.title
+				add: 'Create Filter',//EwayLocale.monitor.devMonitor.filterManager.add
+				update: 'Update Filter',//EwayLocale.monitor.devMonitor.filterManager.update
 				filterForm: {
-					filterName: 'FilterName'//EwayLocale.monitor.devMonitor.filterManager.filterForm.filterName
+					filterName: 'Filter Name'//EwayLocale.monitor.devMonitor.filterManager.filterForm.filterName
 				}
 			}
 		},
 		business:{
 			transaction:{
-				card:'CardNo',//EwayLocale.monitor.business.transaction.card 交易卡号
+				card:'Card No.',//EwayLocale.monitor.business.transaction.card 交易卡号
 				dateTime:'Time',//EwayLocale.monitor.business.transaction.dateTime 交易时间
 				transCode:'Transaction Type',//EwayLocale.monitor.business.transaction.transCode 交易类型
 				amt:'Amount',//EwayLocale.monitor.business.transaction.amt 交易金额
 				currency:'currency',//EwayLocale.monitor.business.transaction.currency 交易币种
-				transId:'Serial No.',//EwayLocale.monitor.business.transaction.transId 交易流水号
-				amtfield:'Amount Scope',//EwayLocale.monitor.business.transaction.amtfield 金额范围
+				transId:'Trans ID.',//EwayLocale.monitor.business.transaction.transId 交易流水号
+				amtfield:'Amount from',//EwayLocale.monitor.business.transaction.amtfield 金额范围
 				toNum:'to',//EwayLocale.monitor.business.transaction.toNum 至
 				transContainer:'Time Scope',//EwayLocale.monitor.business.transaction.transContainer 交易时间段
 				debitAccountOrCard:'Debit/Card',//EwayLocale.monitor.business.transaction.debitAccountOrCard 客户账号或者卡号
@@ -198,7 +199,7 @@ Ext.apply(EwayLocale,{
 				accGetCard:'Customer get card',//EwayLocale.monitor.business.card.accGetCard 客户领卡
 				transferCard:'Turnover',//EwayLocale.monitor.business.card.transferCard 卡片移交
 				processOrg:'Process org',//EwayLocale.monitor.business.card.processOrg 处理机构
-				type:'Retain Type',//EwayLocale.monitor.business.card.type 吞卡类型
+				type:'Retained Type',//EwayLocale.monitor.business.card.type 吞卡类型
 				manual:'Add manually',//EwayLocale.monitor.business.card.manual 手动添加
 				auto:'Add automatically',//EwayLocale.monitor.business.card.auto 自动添加
 				comboxStatus:{
@@ -261,13 +262,13 @@ Ext.apply(EwayLocale,{
 		remoteCommand:{
 			titile:'Remote Command Info',//EwayLocale.monitor.remoteCommand.titile 远程命令查询
 			form:{
-				date:'date'//EwayLocale.monitor.remoteCommand.form.date 执行日期
+				date:'Date'//EwayLocale.monitor.remoteCommand.form.date 执行日期
 			},
 			grid:{
-				commandType:'type',//EwayLocale.monitor.remoteCommand.commandType 命令类型
-				commandResult:'result',//EwayLocale.monitor.remoteCommand.commandResult 执行结果
-				datetime:'date',//EwayLocale.monitor.remoteCommand.datetime 执行日期
-				handlePerson:'personnel'//EwayLocale.monitor.remoteCommand.handlePerson 操作人
+				commandType:'Type',//EwayLocale.monitor.remoteCommand.commandType 命令类型
+				commandResult:'Result',//EwayLocale.monitor.remoteCommand.commandResult 执行结果
+				datetime:'Date',//EwayLocale.monitor.remoteCommand.datetime 执行日期
+				handlePerson:'Personnel'//EwayLocale.monitor.remoteCommand.handlePerson 操作人
 			}
 		}
 	},
@@ -296,10 +297,10 @@ Ext.apply(EwayLocale,{
 				screenCamera: 'Screen recording'//屏幕录制
 			},
 			discInfo: 'Disk info', //磁盘信息
-			discName: 'Disk Pattern name',//磁盘分区名称
-			fileSys: 'Disk file system',//磁盘文件系统
-			totalSize: 'Disk size total',//磁盘总大小
-			freeSize: 'Disk size usable',//磁盘可用空间大小
+			discName: 'Name',//磁盘分区名称
+			fileSys: 'File system',//磁盘文件系统
+			totalSize: 'Total Size',//磁盘总大小
+			freeSize: 'Free Space',//磁盘可用空间大小
 			networkInfo:'Net connection info',//网络连接信息
 			conenctRate: 'Connection speed',//连接速率
 			receivedByte: 'Bytes received',//接收到的字节数
@@ -309,7 +310,7 @@ Ext.apply(EwayLocale,{
 			name: 'Name',//名称
 			format: 'Format',//格式
 			totalSize: 'Total Size',//总大小
-			freeSize: 'Usable size',//可用空间
+			freeSize: 'Free Space',//可用空间
 			refreshFailure:'Refresh failed!',//刷新失败
 			back:'Back',//返回
 			upload: 'upload',//上传
@@ -323,18 +324,18 @@ Ext.apply(EwayLocale,{
 			search: 'Search',//搜索
 			size: 'Size',//大小
 			fileSize:'File size：',//文件大小：
-			lastTime: 'Last modify time',//最后修改时间
+			lastTime: 'Date modified',//最后修改时间
 			clickLoadFile:'Click to download this file',//单击即可下载该文件
-			loadFileSize:'Max size of download file is 300M',//下载文件 不能超过200M！
+			loadFileSize:'Max size of download file is 200M',//下载文件 不能超过200M！
 			nowLoadFile:'File downloading...',//正在下载文件......
 			judgeLoad: 'Broken-point Continuingly-transferring?',//是否续传下载！
 			loadFailure:'Download failed!',//下载失败！
-			number: 'Serial number',//编号
-			programName: 'Application name',//程序名称
-			version: 'Version number',//版本号
+			number: 'ID',//编号
+			programName: 'Program Name',//程序名称
+			version: 'Version Num',//版本号
 			publisher: 'Publishers',//发布商
-			diskUsed: 'Disk usage',//磁盘使用
-			softwayList: 'List of software installed',//软件安装列表
+			diskUsed: 'Disk usage(%)',//磁盘使用
+			softwayList: 'List of Software',//软件安装列表
 			networkInfo: 'Network info',//网络信息
 			networkLinkStatus: 'Network connect status',//网络连接状态
 			send: 'Sended',//已发送
@@ -346,9 +347,9 @@ Ext.apply(EwayLocale,{
 			againTest: 'Test again',//重新测试
 			impressionName: 'Impression name',//印象名称
 			userName: 'User Name',//用户名
-			memoryRate: 'Memory used',//内存使用
-			systemProgressInfo:'System process information',//系统进程信息
-			screenShotTime: 'Screen shot time',//截屏时间
+			memoryRate: 'Memory Used',//内存使用
+			systemProgressInfo:'System process info',//系统进程信息
+			screenShotTime: 'Screenshot time',//截屏时间
 			distanceScreen: 'Remote screenshot',//远程抓屏
 			distanceExplorer: 'Remote browse',//远程浏览
 			ATMExamination:'Physical ATM',//ATM体检

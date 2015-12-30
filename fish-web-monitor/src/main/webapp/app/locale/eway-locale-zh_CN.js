@@ -225,6 +225,7 @@ Ext.apply(EwayLocale,{
 			allPersonInfo:'所有银行人员信息',//EwayLocale.tip.bankPer.allPersonInfo
 			link:{
 				linkPerson:'请选择您关联的人员',//EwayLocale.tip.bankPer.link.linkPerson
+				linkBankPerson:'请选择您关联的人员',//EwayLocale.tip.bankPer.link.linkBankPerson
 				unLinkPersonFail:'关联失败.',//EwayLocale.tip.bankPer.link.unLinkPersonFail
 				unlinkDev:'请选择要解除的设备.',//EwayLocale.tip.bankPer.link.unlinkDev
 				linkDev:'请选择要关联的设备.',//EwayLocale.tip.bankPer.link.linkDev

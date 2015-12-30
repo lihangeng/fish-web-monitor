@@ -113,12 +113,12 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 				header : EwayLocale.commen.seviceMode,
 				dataIndex : 'seviceMode',
 				width : 100
-			}*/, {
+			}, {
 				header : EwayLocale.commen.insideOutside,
 				dataIndex : 'insideOutside',
 				minWidth : 150,
 				flex : 1
-			} ],
+			} */],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true,

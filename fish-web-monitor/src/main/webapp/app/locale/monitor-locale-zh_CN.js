@@ -47,6 +47,7 @@ Ext.apply(EwayLocale,{
 				minAmount:'最小取款金额',//EwayLocale.monitor.devMonitor.cash.minAmount
 				boxId:'钞箱标识',//EwayLocale.monitor.devMonitor.cash.boxId
 				type:'钞箱类型',//EwayLocale.monitor.devMonitor.cash.type
+				boxStatus:'钞箱状态',//EwayLocale.monitor.devMonitor.cash.boxStatus 钞箱状态
 				initialCount:'初始张数',//EwayLocale.monitor.devMonitor.cash.initialCount
 				cashInCount:'存款张数',//EwayLocale.monitor.devMonitor.cash.cashInCount
 				currentCount:'当前计数[张/笔]',//EwayLocale.monitor.devMonitor.cash.currentCount
@@ -113,7 +114,8 @@ Ext.apply(EwayLocale,{
 				pauseSer:'暂停服务',//EwayLocale.monitor.devMonitor.remote.pauseSer
 				pauseCash:'现金暂停',//EwayLocale.monitor.devMonitor.remote.pauseCash   ----中文不明，我猜的----
 				pauseSerUnknow:'未知原因暂停服务',//EwayLocale.monitor.devMonitor.remote.pauseSerUnknow
-				manaAndstaff:'管机员'//EwayLocale.monitor.devMonitor.remote.manaAndstaff
+				manaAndstaff:'管机员',//EwayLocale.monitor.devMonitor.remote.manaAndstaff
+				screenFailed:'截屏失败.'//EwayLocale.monitor.devMonitor.remote.screenFailed
 			},
 			atmGroup:'分组',//EwayLocale.monitor.devMonitor.atmGroup
 			atmGroupTip:'分组详情',//EwayLocale.monitor.devMonitor.atmGroupTip
