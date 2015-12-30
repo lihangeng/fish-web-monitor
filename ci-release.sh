@@ -17,7 +17,7 @@ then
 	RETVAL=$?
 	if [ $RETVAL -eq 0 ]
 	then
-		COMMAND="$MVNCMD release:perform"
+		COMMAND="$MVNCMD release:perform -Dfile.encoding=UTF-8 -Xms256m -Xmx512m -Xss512k"
 		echo $COMMAND
 		$COMMAND
 		RETVAL=$?
