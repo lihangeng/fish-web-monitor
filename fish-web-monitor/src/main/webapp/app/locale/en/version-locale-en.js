@@ -142,7 +142,7 @@ Ext.apply(EwayLocale,{
 			downLoaded:'DownLoaded',//EwayLocale.version.View.downLoaded 已下发
 			waitting:'Waitting',//EwayLocale.version.View.waitting 等待下发
 			versionPath:'Version Path',//EwayLocale.version.View.versionPath 版本路径
-			versionPathRegText:'不符合文件路径规则，规则如下：1.文件名只能包含英文字母(a-z A-Z)、数字(0-9)、下划线(_)、横线(-) ； 2.路径统一用正斜杠(/)作为分隔符 ；3.不区分大小 ; 示例 E: E:/yihua',//EwayLocale.version.View.versionPathRegText
+			versionPathRegText:'Please follow the file-path rule:1.file`s name must contains (a-z A-Z) or (0-9) or (_)or (-);2.file-path must split by (/);3.uppercase and lowercase is the same; for example:E:/yihua',//EwayLocale.version.View.versionPathRegText
 			versionPathDesc:'(path of version file be installed)',//EwayLocale.version.View.versionPathDesc (版本文件在自助设备上的安装路径)
 			versionPerson:'Creater',//EwayLocale.version.View.versionPerson 创建人
 			versionType:'Version Type',//EwayLocale.version.View.versionType 版本类型

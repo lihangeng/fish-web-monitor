@@ -113,7 +113,8 @@ Ext.apply(EwayLocale,{
 				pauseSer:'暂停服务',//EwayLocale.monitor.devMonitor.remote.pauseSer
 				pauseCash:'现金暂停',//EwayLocale.monitor.devMonitor.remote.pauseCash   ----中文不明，我猜的----
 				pauseSerUnknow:'未知原因暂停服务',//EwayLocale.monitor.devMonitor.remote.pauseSerUnknow
-				manaAndstaff:'管机员'//EwayLocale.monitor.devMonitor.remote.manaAndstaff
+				manaAndstaff:'管机员',//EwayLocale.monitor.devMonitor.remote.manaAndstaff
+				screenFailed:'截屏失败.'//EwayLocale.monitor.devMonitor.remote.screenFailed
 			},
 			atmGroup:'分组',//EwayLocale.monitor.devMonitor.atmGroup
 			atmGroupTip:'分组详情',//EwayLocale.monitor.devMonitor.atmGroupTip

@@ -11,7 +11,7 @@ Ext.apply(EwayLocale,{
 			name:'Name',//EwayLocale.person.bankOrg.name 机构名称
 			orgLevel:'Level',//EwayLocale.person.bankOrg.orgLevel 机构级别
 			orgNavi:'Navigator',//EwayLocale.person.bankOrg.orgNavi 机构导航
-			zip:'Z.C',//EwayLocale.person.bankOrg.zip 邮政编码
+			zip:'Z.C.',//EwayLocale.person.bankOrg.zip 邮政编码
 			removeManager:'Delete',//EwayLocale.person.bankOrg.removeManager 删除
 			manager:'Manager',//EwayLocale.person.bankOrg.manager 管理员
 			address:'Address',//EwayLocale.person.bankOrg.address 机构地址
@@ -52,7 +52,7 @@ Ext.apply(EwayLocale,{
 			removeManager:'Delete',//EwayLocale.person.serviceOrg.removeManager 删除
 			code:'Code',//EwayLocale.person.serviceOrg.code 厂商编号
 			name:'Name',//EwayLocale.person.serviceOrg.name 厂商名称
-			zip:'Z.C',//EwayLocale.person.serviceOrg.zip 邮政编码
+			zip:'Z.C.',//EwayLocale.person.serviceOrg.zip 邮政编码
 			shortName:'Maintenance Provider',//EwayLocale.person.serviceOrg.shortName 厂商
 			address:'Address',//EwayLocale.person.serviceOrg.address 厂商地址
 			description:'Description',//EwayLocale.person.serviceOrg.description 厂商描述

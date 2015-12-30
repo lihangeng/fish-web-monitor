@@ -101,7 +101,7 @@
 						<textField>
 							<reportElement uuid="d011b6d2-2d07-4442-94dd-f457de1cc5dd" style="Crosstab Data Text" x="327" y="0" width="160" height="30"/>
 							<box>
-								<rightPen lineWidth="0.5"/>
+								<rightPen lineWidth="0.0"/>
 							</box>
 							<textElement verticalAlignment="Middle">
 								<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>

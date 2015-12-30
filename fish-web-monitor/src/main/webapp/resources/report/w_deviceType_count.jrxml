@@ -216,7 +216,7 @@
 							<textField>
 								<reportElement uuid="166c2a23-d400-47c1-a194-9e8e61b4b2dd" style="Crosstab Data Text" x="0" y="0" width="160" height="25"/>
 								<textElement verticalAlignment="Middle">
-									<font pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+									<font size="13" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$P{subtotal}]]></textFieldExpression>
 							</textField>

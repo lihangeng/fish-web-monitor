@@ -86,7 +86,7 @@ Ext.apply(EwayLocale,{
 			remote:{
 				control:'Remote Control',//EwayLocale.monitor.devMonitor.remote.control 远程控制
 				screen:'Screenshot',//EwayLocale.monitor.devMonitor.remote.screen 远程抓拍
-				commandRet:'Command Ret',//EwayLocale.monitor.devMonitor.remote.commandRet 远程命令执行结果
+				commandRet:'Command result',//EwayLocale.monitor.devMonitor.remote.commandRet 远程命令执行结果
 				log:'Fetch Journal Logs',//EwayLocale.monitor.devMonitor.remote.log 提取电子日志
 				net:'Check Network',//EwayLocale.monitor.devMonitor.remote.net 查看网络连接
 				softwareList:'Fetch Software List',//EwayLocale.monitor.devMonitor.remote.softwareList 获取软件列表
@@ -115,7 +115,8 @@ Ext.apply(EwayLocale,{
 				pauseSer:'Pause serivce',//EwayLocale.monitor.devMonitor.remote.pauseSer 暂停服务
 				pauseCash:'Pause cash',//EwayLocale.monitor.devMonitor.remote.pauseCash   ----中文不明，我猜的----
 				pauseSerUnknow:'Pause serivce-unkown',//EwayLocale.monitor.devMonitor.remote.pauseSerUnknow 未知原因暂停服务
-				manaAndstaff:'Machine manager'//EwayLocale.monitor.devMonitor.remote.manaAndstaff 管机员
+				manaAndstaff:'Machine manager',//EwayLocale.monitor.devMonitor.remote.manaAndstaff 管机员
+				screenFailed:'Screenshot failed'//EwayLocale.monitor.devMonitor.remote.screenFailed	
 			},
 			atmGroup:'Group',//EwayLocale.monitor.devMonitor.atmGroup 分组
 			atmGroupTip:'GroupDetail',//EwayLocale.monitor.devMonitor.atmGroupTip
@@ -232,7 +233,7 @@ Ext.apply(EwayLocale,{
 
 			cashInit:{
 				titile:'Load Cash Info',//EwayLocale.monitor.business.cashInit.titile 加钞信息查询
-				uuId:'CashID',//EwayLocale.monitor.business.cashInit.uuId 加钞ID
+				uuId:'Cash ID',//EwayLocale.monitor.business.cashInit.uuId 加钞ID
 				date:'Date',//EwayLocale.monitor.business.cashInit.date 加钞日期
 				amt:'Amount',//EwayLocale.monitor.business.cashInit.amt 金额
 				info:'Information',//EwayLocale.monitor.business.cashInit.info 加钞详细信息
@@ -325,7 +326,7 @@ Ext.apply(EwayLocale,{
 			fileSize:'File size：',//文件大小：
 			lastTime: 'Last modify time',//最后修改时间
 			clickLoadFile:'Click to download this file',//单击即可下载该文件
-			loadFileSize:'Max size of download file is 300M',//下载文件 不能超过200M！
+			loadFileSize:'Max size of download file is 200M',//下载文件 不能超过200M！
 			nowLoadFile:'File downloading...',//正在下载文件......
 			judgeLoad: 'Broken-point Continuingly-transferring?',//是否续传下载！
 			loadFailure:'Download failed!',//下载失败！
@@ -333,7 +334,7 @@ Ext.apply(EwayLocale,{
 			programName: 'Application name',//程序名称
 			version: 'Version number',//版本号
 			publisher: 'Publishers',//发布商
-			diskUsed: 'Disk usage',//磁盘使用
+			diskUsed: 'Disk usage(%)',//磁盘使用
 			softwayList: 'List of software installed',//软件安装列表
 			networkInfo: 'Network info',//网络信息
 			networkLinkStatus: 'Network connect status',//网络连接状态
