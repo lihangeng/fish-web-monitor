@@ -4,20 +4,19 @@ if [ -z "$MVNCMD" ]
 then
 	MVNCMD=mvn
 fi
-MAVEN_OPTS="-Dfile.encoding=UTF-8 -Xms256m -Xmx512m -Xss512k"
-COMMAND="$MVNCMD release:prepare -DdryRun=true -Dresume=false"
+COMMAND="$MVNCMD release:prepare -Dmaven.test.skip=true -DdryRun=true -Dresume=false"
 echo $COMMAND
 $COMMAND
 RETVAL=$?
 if [ $RETVAL -eq 0 ]
 then
-	COMMAND="$MVNCMD release:prepare -DdryRun=false -Dresume=false"
+	COMMAND="$MVNCMD release:prepare -Dmaven.test.skip=true -DdryRun=false -Dresume=false"
 	echo $COMMAND
 	$COMMAND
 	RETVAL=$?
 	if [ $RETVAL -eq 0 ]
 	then
-		COMMAND="$MVNCMD release:perform"
+		COMMAND="$MVNCMD release:perform -Dmaven.test.skip=true"
 		echo $COMMAND
 		$COMMAND
 		RETVAL=$?
