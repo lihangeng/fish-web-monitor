@@ -14,6 +14,8 @@ import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.monitor.ICollectService;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
+import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusBcr;
+import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusCam;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusCdm;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusCim;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusFgp;
@@ -184,7 +186,25 @@ public class StatusController {
         }else{
         	isc.setStatus(DeviceStatus.NoDevice);
         }
+        
+        IStatusBcr bcr = xfsStatus.makeStatusBcr() ;
+        if(msg.getBcr() != null){
+        	bcr.setStatus(msg.getBcr()) ;
+        	bcr.setCode(msg.getBcrCode()) ;
+        	bcr.setHwCode(msg.getBcrHwCode()) ;
+        }else{
+        	bcr.setStatus(DeviceStatus.NoDevice);
+        }
 
+        IStatusCam cam = xfsStatus.makeStatusCam() ;
+        if(msg.getCam() != null){
+        	cam.setStatus(msg.getCam()) ;
+        	cam.setCode(msg.getCamCode()) ;
+        	cam.setHwCode(msg.getCamHwCode()) ;
+        }else{
+        	cam.setStatus(DeviceStatus.NoDevice);
+        }
+        
         xfsStatus.setStatusIdc(idc);
         xfsStatus.setStatusJpr(jpr);
         xfsStatus.setStatusRpr(rpr);
@@ -199,6 +219,9 @@ public class StatusController {
         xfsStatus.setStatusIcc(icc);
         xfsStatus.setStatusFgp(fgp);
         xfsStatus.setStatusIsc(isc);
+        xfsStatus.setStatusBcr(bcr);
+        xfsStatus.setStatusCam(cam);
+        
         try{
         	collectService.collectModuleStatus(msg.getTermId(), xfsStatus);
         }catch(Exception e){

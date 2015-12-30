@@ -88,5 +88,11 @@ public interface IXfsPropertise {
 
 	public IPropIsc getPropIsc();
 
+	public IPropBcr getBcr();
 
+	public void setBcr(IPropBcr bcr);
+
+	public IPropCam getCam();
+
+	public void setCam(IPropCam cam);
 }

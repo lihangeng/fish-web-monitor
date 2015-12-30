@@ -124,6 +124,24 @@ Ext.define("Eway.view.machine.device.module.Property", {
 				listeners : {
 					'beforerender': this.isHidden
 				}
+			}, {
+				columnWidth : .5,
+				fieldLabel : '摄像头',//EwayLocale.monitor.devMonitor.mod.pbk,
+				name : 'propertyCam',
+				minHeight : 20,
+				code : 'CAM',
+				listeners : {
+					'beforerender': this.isHidden
+				}
+			} ,{
+				columnWidth : .5,
+				fieldLabel : '条形码扫描',//EwayLocale.monitor.devMonitor.mod.pbk,
+				name : 'propertyBcr',
+				minHeight : 20,
+				code : 'BCR',
+				listeners : {
+					'beforerender': this.isHidden
+				}
 			} ]
 		});
 		this.callParent(arguments);

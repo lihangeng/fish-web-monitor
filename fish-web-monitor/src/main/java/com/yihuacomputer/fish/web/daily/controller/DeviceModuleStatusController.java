@@ -33,6 +33,8 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.NetStatus;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.web.monitor.form.ModStatus;
+import com.yihuacomputer.fish.web.monitor.form.StatusBcr;
+import com.yihuacomputer.fish.web.monitor.form.StatusCam;
 import com.yihuacomputer.fish.web.monitor.form.StatusCdm;
 import com.yihuacomputer.fish.web.monitor.form.StatusCim;
 import com.yihuacomputer.fish.web.monitor.form.StatusFgp;
@@ -147,11 +149,21 @@ public class DeviceModuleStatusController {
             pbk.setStatusName(getEnumI18n(pbk.getStatus().getText()));
             modStatus.setPbk(pbk);
         }
-        
+
         StatusFgp fgp = modStatus.getFgp();
         if (fgp != null && fgp.getStatus() != null) {
             fgp.setStatusName(getEnumI18n(fgp.getStatus().getText()));
             modStatus.setFgp(fgp);
+        }
+        StatusBcr bcr = modStatus.getBcr();
+        if (bcr != null && bcr.getStatus() != null) {
+        	bcr.setStatusName(getEnumI18n(bcr.getStatus().getText()));
+            modStatus.setBcr(bcr);
+        }
+        StatusCam cam = modStatus.getCam();
+        if (cam != null && cam.getStatus() != null) {
+        	cam.setStatusName(getEnumI18n(cam.getStatus().getText()));
+            modStatus.setCam(cam);
         }
     	
     	return modStatus;

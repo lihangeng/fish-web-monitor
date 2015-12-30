@@ -86,6 +86,8 @@ public class StatusMonitorForm {
     private DeviceStatus iscStatus ;
 
     private DeviceStatus fgpStatus ;
+    private DeviceStatus camStatus ;
+    private DeviceStatus bcrStatus ;
 
     private String latitude;
 
@@ -139,6 +141,8 @@ public class StatusMonitorForm {
         this.iccStatus = statusReport.getIccStatus();
         this.iscStatus = statusReport.getIscStatus() ;
         this.fgpStatus = statusReport.getFgpStatus() ;
+        this.camStatus = statusReport.getCamStatus();
+        this.bcrStatus = statusReport.getBcrStatus();
 
         this.longtitude = statusReport.getLongtitude();
         this.latitude = statusReport.getLatitude();
@@ -439,6 +443,18 @@ public class StatusMonitorForm {
 
 	public void setFgpStatus(DeviceStatus fgpStatus) {
 		this.fgpStatus = fgpStatus;
+	}
+	public DeviceStatus getCamStatus() {
+		return camStatus;
+	}
+	public void setCamStatus(DeviceStatus camStatus) {
+		this.camStatus = camStatus;
+	}
+	public DeviceStatus getBcrStatus() {
+		return bcrStatus;
+	}
+	public void setBcrStatus(DeviceStatus bcrStatus) {
+		this.bcrStatus = bcrStatus;
 	}
 
 }

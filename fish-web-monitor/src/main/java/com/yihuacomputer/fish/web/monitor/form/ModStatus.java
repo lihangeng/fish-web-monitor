@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.web.monitor.form;
 
+
 public class ModStatus {
     private StatusCdm cdm;
 
@@ -24,6 +25,10 @@ public class ModStatus {
     private StatusFgp fgp;
 
     private StatusPbk pbk;
+
+    private StatusBcr bcr;
+
+    private StatusCam cam;
 
     private Boolean success;
 
@@ -130,5 +135,21 @@ public class ModStatus {
     public void setPbk(StatusPbk pbk) {
         this.pbk = pbk;
     }
+
+	public StatusBcr getBcr() {
+		return bcr;
+	}
+
+	public void setBcr(StatusBcr bcr) {
+		this.bcr = bcr;
+	}
+
+	public StatusCam getCam() {
+		return cam;
+	}
+
+	public void setCam(StatusCam cam) {
+		this.cam = cam;
+	}
 
 }
