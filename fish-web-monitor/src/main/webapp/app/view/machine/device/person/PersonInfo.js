@@ -73,7 +73,7 @@ Ext.define('Eway.view.machine.device.person.PersonInfo', {
 						scope : this
 					}
 				} , {
-					title : EwayLocale.report.plan.name,
+					title : EwayLocale.machine.serviceplan.title,
 					itemid : 'devicePlanInfoID',
 					xtype : 'device_planInfo_grid',
 					listeners : {

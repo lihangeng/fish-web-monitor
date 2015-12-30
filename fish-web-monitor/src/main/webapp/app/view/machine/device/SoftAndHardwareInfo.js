@@ -74,17 +74,17 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 						itemid : 'cpuItemID',
 						xtype : 'grid',
 						store : 'machine.atmHardSoft.Cpu',
-						columns : [ Ext.create('Ext.grid.RowNumberer'), {
+						columns : [ Ext.create('Ext.grid.RowNumberer'), /*{
 							header : EwayLocale.machine.device.cpuFrequency,
 							dataIndex : 'frequency'
-						}, {
-							header : EwayLocale.machine.device.cpuVendor,
-							dataIndex : 'vendor'
-						}, {
+						}, */{
 							header : EwayLocale.machine.device.cpuModel,
 							dataIndex : 'model',
 							flex : 1
 						}, {
+							header : EwayLocale.machine.device.cpuVendor,
+							dataIndex : 'vendor'
+						},/* {
 							header : EwayLocale.machine.device.cacheSize,
 							dataIndex : 'cacheSize',
 							hidden:true
@@ -100,15 +100,15 @@ Ext.define("Eway.view.machine.device.SoftAndHardwareInfo", {
 							header : EwayLocale.machine.device.sysUsePercent,
 							dataIndex : 'sys',
 							width : 90
-						}, {
-							header : EwayLocale.machine.device.idlePercent,
-							dataIndex : 'idle',
-							width : 90
-						}, {
+						}, */{
 							header : EwayLocale.machine.device.combinedPercent,
 							dataIndex : 'combined',
 							width : 90
-						} ]
+						} , {
+							header : EwayLocale.machine.device.idlePercent,
+							dataIndex : 'idle',
+							width : 90
+						}]
 					}, {
 						title : EwayLocale.machine.device.diskItemID,
 						itemid : 'diskItemID',

@@ -387,19 +387,19 @@ Ext.apply(EwayLocale,{
 			memoryPercent:'Memory used(%)',//
 			cpuItemID:'CPU info',//cpu信息
 			cpuFrequency:'CPU(MHz)',//CPU频率(MHz)
-			cpuVendor:'CPU producer',//CPU的厂商
+			cpuVendor:'Manufacturer',//CPU的厂商
 			cpuModel:'CPU type',//CPU的类别
 			cacheSize:'Count of cache storage',//缓冲存储器数量
 			totalCores:'CPU cores',//CPU核数
-			userUsePercent:'Rate user used',//用户使用率
-			sysUsePercent:'Rate system used',//系统使用率
-			idlePercent:'Rate free current',//当前空闲率
-			combinedPercent:'Rate total used',//
+			userUsePercent:'User used',//用户使用率
+			sysUsePercent:'System used',//系统使用率
+			idlePercent:'Idle(%s)',//当前空闲率
+			combinedPercent:'Used(%)',//
 			diskItemID:'Disk info',//磁盘信息
-			diskName:'Pattern name',//磁盘分区名称
+			diskName:'Name',//磁盘分区名称
 			diskFileSys:'File system',//磁盘文件系统
-			diskTotalSize:'Total size',//磁盘总大小
-			diskFreeSize:'Total free size',//磁盘可用空间大小
+			diskTotalSize:'Total Size',//磁盘总大小
+			diskFreeSize:'Free Space',//磁盘可用空间大小
 			sysSoftInfo:'Software info',//系统软件信息
 			OSID:'OS ID',//操作系统ID
 			OSDescription:'OS Description',//OS描述

@@ -308,12 +308,12 @@ Ext.apply(EwayLocale,{
 			loadData: 'Data loading,please wait...',//加载数据中，请稍候...
 			refresh: 'Refresh',//刷新
 			name: 'Name',//名称
-			format: 'Format',//格式
+			format: 'File system',//格式
 			totalSize: 'Total Size',//总大小
 			freeSize: 'Free Space',//可用空间
 			refreshFailure:'Refresh failed!',//刷新失败
 			back:'Back',//返回
-			upload: 'upload',//上传
+			upload: 'Upload',//上传
 			Mkdir: 'New folder',//新建文件夹
 			MkFile: 'New file',//新建文件
 			MKcatalog:'New folder',//新建文件夹
@@ -334,7 +334,7 @@ Ext.apply(EwayLocale,{
 			programName: 'Program Name',//程序名称
 			version: 'Version Num',//版本号
 			publisher: 'Publishers',//发布商
-			diskUsed: 'Disk usage(%)',//磁盘使用
+			diskUsed: 'Disk usage',//磁盘使用
 			softwayList: 'List of Software',//软件安装列表
 			networkInfo: 'Network info',//网络信息
 			networkLinkStatus: 'Network connect status',//网络连接状态
@@ -345,15 +345,15 @@ Ext.apply(EwayLocale,{
 			bandWidth: 'Broadband speed test',//宽带测速
 			unit: 'Unit:MB',//单位：MB
 			againTest: 'Test again',//重新测试
-			impressionName: 'Impression name',//印象名称
+			impressionName: 'Image Name',//印象名称
 			userName: 'User Name',//用户名
-			memoryRate: 'Memory Used',//内存使用
+			memoryRate: 'Memory',//内存使用
 			systemProgressInfo:'System process info',//系统进程信息
 			screenShotTime: 'Screenshot time',//截屏时间
 			distanceScreen: 'Remote screenshot',//远程抓屏
 			distanceExplorer: 'Remote browse',//远程浏览
 			ATMExamination:'Physical ATM',//ATM体检
-			checkATM: 'Physical again',//重新体检
+			checkATM: 'Physical Again',//重新体检
 			ATMExamInfo: 'Physical ATM detail',//ATM体检详情
 			cpuIdle: 'Free rate of CPU',//CPU空闲率
 			memoryIdle: 'Free rate of memory',//内存空闲率
@@ -410,7 +410,7 @@ Ext.apply(EwayLocale,{
 			versionInfo:'The version information :',//您要查看的版本信息如下:
 			ATMCVersion:'Version of ATMC application',//ATMC应用版本
 			monitorVersion: 'Version of monintor client',//监控客户端版本
-			mergeload:'list of download',//查看下载列表
+			mergeload:'List of download',//查看下载列表
 			mergeDownLoad:'Execute the task of download',//执行下载任务
 			clickAddLoadFile:'Add the list of download on click',//单击添加到下载列表
 			removeFile:'Remove the file from list',//删除
