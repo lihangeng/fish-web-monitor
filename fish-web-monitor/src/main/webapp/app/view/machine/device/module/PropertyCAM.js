@@ -7,7 +7,7 @@ Ext.define("Eway.view.machine.device.module.PropertyCAM", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : EwayLocale.machine.device.CDMInfo,
+				title : EwayLocale.machine.device.CAMInfo,
 				titleAlign: 'center',
 				layout : 'column',
 				items : [ {
@@ -22,7 +22,7 @@ Ext.define("Eway.view.machine.device.module.PropertyCAM", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel :'最大拍照张数',//EwayLocale.machine.device.hasStack,
+						fieldLabel :EwayLocale.machine.device.CAMMaxPictures,//'最大拍照张数'
 						name : 'maxPictures',
 						style : 'margin-top:2px'
 					} ]
@@ -38,7 +38,7 @@ Ext.define("Eway.view.machine.device.module.PropertyCAM", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : 'maxDataLength',//EwayLocale.machine.device.logicalUnits,
+						fieldLabel : EwayLocale.machine.device.MaxDataLength,//''最大文字数''
 						name : 'maxDataLength',
 						style : 'margin-top:2px'
 					}]

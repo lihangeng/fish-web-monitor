@@ -7,7 +7,7 @@ Ext.define("Eway.view.machine.device.module.PropertyBCR", {
 				anchor : '100%'
 			},
 			items : [ {
-				title : EwayLocale.machine.device.CDMInfo,
+				title : EwayLocale.machine.device.BCRInfo,
 				titleAlign: 'center',
 				layout : 'column',
 				items : [ {
@@ -22,7 +22,7 @@ Ext.define("Eway.view.machine.device.module.PropertyBCR", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '是否为合成设备',//EwayLocale.machine.device.hasStack,
+						fieldLabel : EwayLocale.machine.device.BCRCanCompound,//'是否为合成设备',
 						name : 'canCompound',
 						style : 'margin-top:2px'
 					} ]
@@ -38,7 +38,7 @@ Ext.define("Eway.view.machine.device.module.PropertyBCR", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : '能否辨别制定的条码',//EwayLocale.machine.device.logicalUnits,
+						fieldLabel : EwayLocale.machine.device.BCRCanFilterSymbologies,//'能否辨别制定的条码',
 						name : 'canFilterSymbologies',
 						style : 'margin-top:2px'
 					}]

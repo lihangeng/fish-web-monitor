@@ -117,6 +117,22 @@ Ext.apply(EwayLocale,{
 			icc:'Card Dispenser',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
 			fgp:'Finger Printer',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
 			pbk:'Passbook Printer',//EwayLocale.monitor.devMonitor.mod.pbk 存折打印机
+			
+			CAMStatusInfo:'Camera status',//EwayLocale.machine.device.CAMStatusInfo,
+			CAMRoomStatus:'Room camera',//EwayLocale.machine.device.CAMRoomStatus,
+			CAMPersonStatus:'Customer camera',//EwayLocale.machine.device.CAMPersonStatus,
+			CAMExitSlotStatus:'Exit slot camera',//EwayLocale.machine.device.CAMExitSlotStatus,
+
+			CAMInfo:'Camera property',//EwayLocale.machine.device.CAMInfo,
+			CAMMaxPictures:'Max pictures',//EwayLocale.machine.device.CAMMaxPictures,
+			CAMMaxDataLength:'Max data length',//EwayLocale.machine.device.MaxDataLength,
+			
+			BCRInfo:'BarCode Reader property',//EwayLocale.machine.device.BCRInfo,
+			BCRCanCompound:'Can compound',//EwayLocale.machine.device.BCRCanCompound,
+			BCRCanFilterSymbologies:'Can filter symbologies',//EwayLocale.machine.device.BCRCanFilterSymbologies,
+			
+			
+			
 			CDMInfo:'Dispenser property',
 			hasStack:'Stacker Exists',
 			hasShutter:'Shutter door exist',//是否具有shutter门

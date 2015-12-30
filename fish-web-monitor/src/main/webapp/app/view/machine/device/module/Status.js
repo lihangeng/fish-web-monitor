@@ -127,7 +127,7 @@ Ext.define("Eway.view.machine.device.module.Status", {
 				}
 			}, {
 				columnWidth : .5,
-				fieldLabel : '摄像头',//EwayLocale.monitor.devMonitor.mod.pbk,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.cam,
 				name : 'statusCam',
 				minHeight : 20,
 				code : 'CAM',
@@ -136,7 +136,7 @@ Ext.define("Eway.view.machine.device.module.Status", {
 				}
 			},{
 				columnWidth : .5,
-				fieldLabel : '条形码扫描',//EwayLocale.monitor.devMonitor.mod.pbk,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.bcr,
 				name : 'statusBcr',
 				minHeight : 20,
 				code : 'BCR',

@@ -81,6 +81,8 @@ Ext.apply(EwayLocale,{
 				icc:'发卡器',//EwayLocale.monitor.devMonitor.mod.icc
 				fgp:'指纹仪',//EwayLocale.monitor.devMonitor.mod.fgp
 				pbk:'存折打印机',//EwayLocale.monitor.devMonitor.mod.pbk
+				cam:'摄像头',//EwayLocale.monitor.devMonitor.mod.cam
+				bcr:'二维码扫描仪',//EwayLocale.monitor.devMonitor.mod.bcr
 				healthy:'模块正常'//EwayLocale.monitor.devMonitor.mod.healthy
 
 			},

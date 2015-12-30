@@ -29,7 +29,7 @@ Ext.define('Eway.view.machine.device.module.StatusCAM', {
 					} ]
 				} ]
 			}, {
-				title : EwayLocale.machine.device.CIMStatus,
+				title : EwayLocale.machine.device.CAMStatusInfo,
 				titleAlign:'center',
 				layout : 'column',
 				border : 'false',
@@ -45,11 +45,11 @@ Ext.define('Eway.view.machine.device.module.StatusCAM', {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : '房内',//EwayLocale.machine.device.baffle,
+						fieldLabel : EwayLocale.machine.device.CAMRoomStatus,//'房内'
 						name : 'roomStatus',
 						style : 'margin-top:2px'
 					}, {
-						fieldLabel : '客户',//EwayLocale.machine.device.inOutPositionStatus,
+						fieldLabel : EwayLocale.machine.device.CAMPersonStatus,//'客户'
 						name : 'personStatus'
 					} ]
 				}, {
@@ -64,7 +64,7 @@ Ext.define('Eway.view.machine.device.module.StatusCAM', {
 						height: 40
 					},
 					items : [ {
-						fieldLabel : '初潮',//EwayLocale.machine.device.intermediateStacker,
+						fieldLabel : EwayLocale.machine.device.CAMExitSlotStatus,//'初潮'
 						name : 'exitSlotStatus',
 						style : 'margin-top:2px'
 					} ]

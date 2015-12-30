@@ -82,6 +82,8 @@ Ext.apply(EwayLocale,{
 				icc:'Card Dispenser',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
 				fgp:'Finger Printer',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
 				healthy:'Healthy',//EwayLocale.monitor.devMonitor.mod.healthy 模块正常
+				cam:'Camera',//EwayLocale.monitor.devMonitor.mod.cam
+				bcr:'Barcode Reader',//EwayLocale.monitor.devMonitor.mod.bcr
 				pbk:'Passbook Printer'//EwayLocale.monitor.devMonitor.mod.pbk 存折打印机
 			},
 			remote:{

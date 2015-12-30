@@ -329,6 +329,12 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 					} else if ('statusIsc' == name) {
 						itemid = 'iscid';
 						module = 'isc';
+					} else if ('statusCam' == name) {
+						itemid = 'camid';
+						module = 'cam';
+					} else if ('statusBcr' == name) {
+						itemid = 'bcrid';
+						module = 'bcr';
 					}
 					layout.setActiveItem(itemid);
 					this.setStatus(layout.getActiveItem(), module);
@@ -387,6 +393,12 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 					} else if ('propertyIsc' == name) {
 						itemid = 'iscid';
 						module = 'isc';
+					} else if ('statusCam' == name) {
+						itemid = 'camid';
+						module = 'cam';
+					} else if ('statusBcr' == name) {
+						itemid = 'bcrid';
+						module = 'bcr';
 					}
 					layout.setActiveItem(itemid);
 					this.setProperty(layout.getActiveItem(), module);

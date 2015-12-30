@@ -121,6 +121,20 @@ Ext.apply(EwayLocale,{
 			icc:'发卡器',
 			fgp:'指纹仪',
 			pbk:'存折打印机',
+			
+			CAMStatusInfo:'摄像头(CAM)状态信息',//EwayLocale.machine.device.CAMStatusInfo,
+			CAMRoomStatus:'房间摄像头',//EwayLocale.machine.device.CAMRoomStatus,
+			CAMPersonStatus:'客户摄像头',//EwayLocale.machine.device.CAMPersonStatus,
+			CAMExitSlotStatus:'出钞口摄像头',//EwayLocale.machine.device.CAMExitSlotStatus,
+
+			CAMInfo:'摄像头(CAM)属性信息',//EwayLocale.machine.device.CAMInfo,
+			CAMMaxPictures:'最大拍照张数',//EwayLocale.machine.device.CAMMaxPictures,
+			CAMMaxDataLength:'最大文字数',//EwayLocale.machine.device.MaxDataLength,
+			
+			BCRInfo:'二维码扫描仪(BCR)属性信息',//EwayLocale.machine.device.BCRInfo,
+			BCRCanCompound:'是否为合成设备',//EwayLocale.machine.device.BCRCanCompound,
+			BCRCanFilterSymbologies:'能否辨别制定的条码',//EwayLocale.machine.device.BCRCanFilterSymbologies,
+			
 			CDMInfo:'取款模块（CDM）属性信息',
 			hasStack:'是否具有暂存器',
 			hasShutter:'是否具有shutter门',

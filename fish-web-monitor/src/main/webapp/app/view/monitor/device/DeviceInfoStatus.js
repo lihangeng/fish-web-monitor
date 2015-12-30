@@ -276,7 +276,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						}
 					} , {
 						columnWidth : .25,
-						fieldLabel : '摄像头',
+						fieldLabel : EwayLocale.monitor.devMonitor.mod.cam,
 						name : 'camStatus',
 						a_link : true,
 						code : 'CAM',
@@ -285,7 +285,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						}
 					} , {
 						columnWidth : .25,
-						fieldLabel : '二维码',
+						fieldLabel : EwayLocale.monitor.devMonitor.mod.bcr,
 						name : 'bcrStatus',
 						a_link : true,
 						code : 'BCR',

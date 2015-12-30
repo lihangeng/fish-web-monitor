@@ -126,7 +126,7 @@ Ext.define("Eway.view.machine.device.module.Property", {
 				}
 			}, {
 				columnWidth : .5,
-				fieldLabel : '摄像头',//EwayLocale.monitor.devMonitor.mod.pbk,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.cam,
 				name : 'propertyCam',
 				minHeight : 20,
 				code : 'CAM',
@@ -135,7 +135,7 @@ Ext.define("Eway.view.machine.device.module.Property", {
 				}
 			} ,{
 				columnWidth : .5,
-				fieldLabel : '条形码扫描',//EwayLocale.monitor.devMonitor.mod.pbk,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.bcr,
 				name : 'propertyBcr',
 				minHeight : 20,
 				code : 'BCR',
