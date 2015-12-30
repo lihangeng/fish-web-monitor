@@ -200,6 +200,8 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 						propertyIsc : this.getDeviceModulePropertyValue(records[0].data.properties.isc),
 						propertyIcc : this.getDeviceModulePropertyValue(records[0].data.properties.icc),
 						propertyFgp : this.getDeviceModulePropertyValue(records[0].data.properties.fgp),
+						propertyCam : this.getDeviceModulePropertyValue(records[0].data.properties.cam),
+						propertyBcr : this.getDeviceModulePropertyValue(records[0].data.properties.bcr),
 						propertyPbk : this.getDeviceModulePropertyValue(records[0].data.properties.pbk)
 					});
 				}
@@ -248,6 +250,9 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 						statusCim : this.getDeviceModuleStatusValue(records[0].data.cim),
 						statusIdc : this.getDeviceModuleStatusValue(records[0].data.idc),
 						statusRpr : this.getDeviceModuleStatusValue(records[0].data.rpr),
+						
+						statusBcr : this.getDeviceModuleStatusValue(records[0].data.bcr),
+						statusCam : this.getDeviceModuleStatusValue(records[0].data.cam),
 						
 						statusIsc : this.getDeviceModuleStatusValue(records[0].data.isc),
 						statusIcc : this.getDeviceModuleStatusValue(records[0].data.icc),

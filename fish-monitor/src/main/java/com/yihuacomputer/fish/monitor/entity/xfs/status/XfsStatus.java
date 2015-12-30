@@ -14,6 +14,8 @@ import javax.persistence.Transient;
 import com.yihuacomputer.fish.api.monitor.business.RunStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.BoxStatus;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
+import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusBcr;
+import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusCam;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusCdm;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusCim;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusFgp;
@@ -103,6 +105,12 @@ public class XfsStatus implements IXfsStatus,Serializable{
 
     @Embedded
     private StatusIsc isc;
+    
+    @Embedded
+    private StatusBcr bcr;
+    
+    @Embedded
+    private StatusCam cam;
 
     @Transient
     private IXfsStatus hisXfsStatus ;
@@ -127,6 +135,8 @@ public class XfsStatus implements IXfsStatus,Serializable{
         this.icc = new StatusIcc();
         this.fgp = new StatusFgp();
         this.isc = new StatusIsc();
+        this.bcr = new StatusBcr();
+        this.cam = new StatusCam();
     }
 
     public String getDateTime() {
@@ -342,6 +352,8 @@ public class XfsStatus implements IXfsStatus,Serializable{
         this.setStatusIcc(xfsStatus.getStatusIcc());
         this.setStatusFgp(xfsStatus.getStatusFgp());
         this.setStatusIsc(xfsStatus.getStatusIsc());
+        this.setStatusBcr(xfsStatus.getStatusBcr());
+        this.setStatusCam(xfsStatus.getStatusCam());
     }
 
     @Override
@@ -367,6 +379,8 @@ public class XfsStatus implements IXfsStatus,Serializable{
         result = prime * result + ((icc == null) ? 0 : icc.hashCode());
         result = prime * result + ((fgp == null) ? 0 : fgp.hashCode());
         result = prime * result + ((isc == null) ? 0 : isc.hashCode());
+        result = prime * result + ((bcr == null) ? 0 : bcr.hashCode());
+        result = prime * result + ((cam == null) ? 0 : cam.hashCode());
         return result;
     }
 
@@ -492,6 +506,22 @@ public class XfsStatus implements IXfsStatus,Serializable{
         } else if (!isc.equals(other.isc)) {
             return false;
         }
+        
+        if (bcr == null) {
+            if (other.bcr != null) {
+                return false;
+            }
+        } else if (!bcr.equals(other.bcr)) {
+            return false;
+        }
+        
+        if (cam == null) {
+            if (other.cam != null) {
+                return false;
+            }
+        } else if (!cam.equals(other.cam)) {
+            return false;
+        }
         return true;
     }
 
@@ -550,4 +580,33 @@ public class XfsStatus implements IXfsStatus,Serializable{
 		this.hisXfsStatus = hisXfsStatus ;
 	}
 	
+	@Override
+    public void setStatusBcr(IStatusBcr bcr) {
+        this.bcr = (StatusBcr) bcr;
+    }
+
+    @Override
+    public IStatusBcr getStatusBcr() {
+        return this.bcr;
+    }
+
+    @Override
+    public IStatusBcr makeStatusBcr() {
+        return new StatusBcr();
+    }
+    
+	@Override
+    public void setStatusCam(IStatusCam cam) {
+        this.cam = (StatusCam) cam;
+    }
+
+    @Override
+    public IStatusCam getStatusCam() {
+        return this.cam;
+    }
+
+    @Override
+    public IStatusCam makeStatusCam() {
+        return new StatusCam();
+    }
 }

@@ -16,7 +16,9 @@ Ext.define("Eway.view.machine.device.DeviceModuleStatus", {
 			'Eway.view.machine.device.module.StatusISC',
 			'Eway.view.machine.device.module.StatusICC',
 			'Eway.view.machine.device.module.StatusFGP',
-			'Eway.view.machine.device.module.StatusPBK' ],
+			'Eway.view.machine.device.module.StatusPBK',
+			'Eway.view.machine.device.module.StatusCAM',
+			'Eway.view.machine.device.module.StatusBCR' ],
 
 	layout : 'border',
 	autoScroll: false,
@@ -70,6 +72,12 @@ Ext.define("Eway.view.machine.device.DeviceModuleStatus", {
 				}, {
 					itemId : 'pbkid',
 					xtype : 'machine_device_module_statuspbk'
+				} , {
+					itemId : 'camid',
+					xtype : 'machine_device_module_statuscam'
+				} , {
+					itemId : 'bcrid',
+					xtype : 'machine_device_module_statusbcr'
 				} ]
 			} ]
 		});

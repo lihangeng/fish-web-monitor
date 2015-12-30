@@ -27,6 +27,10 @@ public class ModProperty {
 
     private PropertyPbk pbk;
 
+    private PropertyBcr bcr;
+
+    private PropertyCam cam;
+    
     private PropertiseMsg properties;
 
     private Boolean success;
@@ -142,4 +146,21 @@ public class ModProperty {
     public void setPbk(PropertyPbk pbk) {
         this.pbk = pbk;
     }
+
+	public PropertyBcr getBcr() {
+		return bcr;
+	}
+
+	public void setBcr(PropertyBcr bcr) {
+		this.bcr = bcr;
+	}
+
+	public PropertyCam getCam() {
+		return cam;
+	}
+
+	public void setCam(PropertyCam cam) {
+		this.cam = cam;
+	}
+    
 }

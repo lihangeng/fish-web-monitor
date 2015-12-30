@@ -274,6 +274,24 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						listeners : {
 							'beforerender': this.isHidden
 						}
+					} , {
+						columnWidth : .25,
+						fieldLabel : '摄像头',
+						name : 'camStatus',
+						a_link : true,
+						code : 'CAM',
+						listeners : {
+							'beforerender': this.isHidden
+						}
+					} , {
+						columnWidth : .25,
+						fieldLabel : '二维码',
+						name : 'bcrStatus',
+						a_link : true,
+						code : 'BCR',
+						listeners : {
+							'beforerender': this.isHidden
+						}
 					} ]
 				} ]
 			}, {
@@ -431,7 +449,8 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					|| name=='cimStatus' || name=='siuStatus'
 					|| name=='rprStatus' || name=='ttuStatus'
 					|| name=='iccStatus' || name=='iscStatus'
-					|| name=='fgpStatus' || name=='pbkStatus'){
+					|| name=='fgpStatus' || name=='pbkStatus'
+						|| name=='camStatus' || name=='bcrStatus'){
 						var text = me._getText(value);
 						if(value == 'Warning'){
 							item.setValue('<a href="#" class="link warningHighLight">'+text+'</a>');

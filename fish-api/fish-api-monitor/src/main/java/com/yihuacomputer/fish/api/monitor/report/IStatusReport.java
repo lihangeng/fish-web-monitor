@@ -172,4 +172,12 @@ public interface IStatusReport {
     public void setIscStatus(DeviceStatus iscStatus);
 
     public DeviceStatus getIscStatus();
+    
+    public DeviceStatus getCamStatus();
+
+	public void setCamStatus(DeviceStatus camStatus);
+
+	public DeviceStatus getBcrStatus();
+
+	public void setBcrStatus(DeviceStatus bcrStatus);
 }
