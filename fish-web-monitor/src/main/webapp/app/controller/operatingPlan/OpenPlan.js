@@ -331,7 +331,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				}
 			}
 			if(alertMsg!=null){
-				Eway.alert(EwayLocale.machine.serviceplan.week+alertMsg+EwayLocale.machine.serviceplan.timeEare);
+				Eway.alert(EwayLocale.machine.serviceplan.weekDay+"'" +alertMsg+ "' " +EwayLocale.machine.serviceplan.timeError);
 		    	alertMsg = null;
 			}
 			if(!mustOnePlan)
@@ -622,7 +622,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					}
 				}
 				if(alertMsg!=null){
-					Eway.alert(EwayLocale.machine.device.person.week+alertMsg+EwayLocale.machine.serviceplan.timeEare);
+					Eway.alert(EwayLocale.machine.serviceplan.weekDay+"'" +alertMsg+ "' " +EwayLocale.machine.serviceplan.timeError);
 					alertMsg = null;
 				}
 				if(!mustOnePlan)

@@ -105,19 +105,19 @@ Ext.apply(EwayLocale,{
 		},
 		device:{
 			title:'Device Info',//设备信息管理
-			devDetailInfo:'Module Info',//设备模块详细信息
+			devDetailInfo:'Status of Modules',//设备模块详细信息
 		    idc:'Card Reader',
 			jpr:'Journal Printer',
-			cdm:'Withdrawal Module',
-			siu:'Sensor Module',
-			cim:'Deposit Module',
-			ttu:'Text Terminal',
+			cdm:'Dispenser',
+			siu:'Sensor',
+			cim:'Deposit',
+			ttu:'Text',
 			rpr:'Receipt Printer',
-			pin:'Encryption Pinpad',
+			pin:'PIN',
 			icc:'Card Dispenser',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
 			fgp:'Finger Printer',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
 			pbk:'Passbook Printer',//EwayLocale.monitor.devMonitor.mod.pbk 存折打印机
-			CDMInfo:'Withdrawal module（CDM）property',
+			CDMInfo:'Dispenser property',
 			hasStack:'Stacker Exists',
 			hasShutter:'Shutter door exist',//是否具有shutter门
 			canRetract:'Ability of recovery', //是否具有回收能力
@@ -172,7 +172,7 @@ Ext.apply(EwayLocale,{
 			
 			PBKInfo:'Passbook printer(PBK) property',
 
-			PINInfo:'Encryption Pinpad(PIN) property',
+			PINInfo:'PIN property',
 			canEBC:'EBC',//能否EBC
 			canCBC:'CBC',//能否CBC
 			canMAC:'MAC',//能否MAC
@@ -185,7 +185,7 @@ Ext.apply(EwayLocale,{
 			canTripleMAC:'Multi MAC support',
 			canTripleCFB:'Multi CFB support',
 			canVerifyECB:'Inspect ECB',
-			canDESOffset:'DeS shifting',
+			canDESOffset:'Des shifting',
 
 			RPRInfo:'Receipt Printer(RPR) property',
 			canEject:'Ability of quit paper',//是否具有退纸能力
@@ -193,7 +193,7 @@ Ext.apply(EwayLocale,{
 
 			maxRetract:'Max count of recovery paper',//最大回收张数
 
-			SIUInfo:'SIU property',//SIU能力属性信息
+			SIUInfo:'Sensors(SIU) property',//SIU能力属性信息
 			operatorSwitchSupported:'Operator swicth support',//是否支持操作员开关
 			cabinetSupported:'Ability of induce  behindDoor open support',//是否支持后盖门打开传感能力
 			safeSupported:'Ability of induce safeDoor open support',//是否支持安全门打开传感能力
@@ -204,7 +204,7 @@ Ext.apply(EwayLocale,{
 			guidelightCimSupported:'Ability of deposit light support',//是否支持存款指示灯能力
 
 
-			TTUInfo:'Text Terminal (TTU) property',
+			TTUInfo:'TTU property',
 			alphanumericKeysPresent:'Ability of character/number input support',//是否支持字母数字键输入
 			numericKeysPresent:'Ability of number input support',//是否支持数字键输入
 			displayLightPresent:'Ability of number adjust screen-brightness support',//是否支持屏幕亮度调节
@@ -238,7 +238,7 @@ Ext.apply(EwayLocale,{
 			puRejectCount:'Count of physical cashbox rejected',//物理钞箱Reject张数
 			cuBinType:'Logic cashbox status',//逻辑钞箱类型
 
-			CIMStatus:'Deposit Module(CIM) status',
+			CIMStatus:'Deposit(CIM) status',
 			baffle:'Baffle',//挡板状态
 			inOutPositionStatus:'Transfer status',//传输状态
 			inBox:'Deposit cashbox',//存款钞箱
@@ -260,7 +260,7 @@ Ext.apply(EwayLocale,{
 			ink:'Ink',//墨水
 			toner:'Ribbon',//色带
 
-			PINStatus:'Encryption Pinpad(PIN) status',
+			PINStatus:'PIN status',
 
 			RPRStatus:'Receipt Printer(RPR)status',//凭条打印机模块(RPR)状态信息
 			bin:'Recovery unit status',//回收单元状态
@@ -384,7 +384,7 @@ Ext.apply(EwayLocale,{
 			memorySize:'Total memory',//内存总数
 			memoryUsed:'Used memory',//已使用内存
 			memoryFree:'Free memory',//空闲内存
-			memoryPercent:'Use rate memory',//
+			memoryPercent:'Memory used(%)',//
 			cpuItemID:'CPU info',//cpu信息
 			cpuFrequency:'CPU(MHz)',//CPU频率(MHz)
 			cpuVendor:'CPU producer',//CPU的厂商
@@ -411,7 +411,7 @@ Ext.apply(EwayLocale,{
 			sysVersion:'OS version',//系统版本号
 			devAddress:'Address',//设备地址
 			basicInfo:'Additional Info',//基本信息
-			virtual:'Teller',//虚拟设备号
+			virtual:'Virtual Terminal ID',//虚拟设备号
 			serial:'Serial Number',//设备序列号
 			carrier:'Carrieroperator',//运营商
 			moneyOrg:'Cash org',//加钞机构
@@ -553,6 +553,7 @@ Ext.apply(EwayLocale,{
 			createDateTime:'Created Time',//EwayLocale.machine.serviceplan.createDateTime创建时间
 			date:'Date',//EwayLocale.machine.serviceplan.date日期
 			week:'Week',//EwayLocale.machine.serviceplan.week星期
+			weekDay:'The weekday ',//EwayLocale.machine.serviceplan.weekDay星期
 			inportLinkedMachine:'Import related devices',//EwayLocale.machine.serviceplan.inportLinkedMachine导入关联设备
 			selectFile:'Select the file',//EwayLocale.machine.serviceplan.selectFile选择文件
 			placeUploadingResource:'Please upload resources',//EwayLocale.machine.serviceplan.placeUploadingResource请上传资源
@@ -563,6 +564,7 @@ Ext.apply(EwayLocale,{
 			placeSelect:'---Please select---',//EwayLocale.machine.serviceplan.placeSelect请选择
 			planDevice:'Service Plan <--> Device',//EwayLocale.machine.serviceplan.planDevice方案<-->设备
 			timeEare:'Enter the time is incorrect, please re-enter！',//EwayLocale.machine.serviceplan.timeEare输入时间段有误，请重新输入
+			timeError:'inputted is invalid,please re-enter',//EwayLocale.machine.serviceplan.timeError输入时间段有误，请重新输入
 			planOlonOne:'The same plan can only set a startup or shutdown',//EwayLocale.machine.serviceplan.planOlonOne同方案只能设置开机或关机的一种
 			addSuccess:'Added Successfully',//EwayLocale.machine.serviceplan.addSuccess添加成功
 			addFail:'Add Failed',//EwayLocale.machine.serviceplan.addFail添加失败
@@ -595,7 +597,7 @@ Ext.apply(EwayLocale,{
 			Sat:'Sat',//EwayLocale.machine.serviceplan.Sat六
 			Sun:'Sun',//EwayLocale.machine.serviceplan.Sun日
 			useSuccess:'Normal',//EwayLocale.machine.serviceplan.useSuccess正常启用
-			notSuccess:'Not Enabled',//EwayLocale.machine.serviceplan.notSuccess未启用
+			notSuccess:'Never used',//EwayLocale.machine.serviceplan.notSuccess未启用
 			lastOneGroup:'Please select at least one in the group',//EwayLocale.machine.serviceplan.lastOneGroup请在组内至少选中一项
 			lanDetailWeek:'Week detailed list',//EwayLocale.machine.serviceplan.lanDetailWeek星期方案详细列表
 			planDetailDay:'Date detailed list',//EwayLocale.machine.serviceplan.planDetailDay日期方案详细列表

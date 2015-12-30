@@ -146,7 +146,7 @@ Ext.define('Eway.controller.person.BankPer', {
 			});
 		}
 		else {
-			Eway.alert(EwayLocale.tip.bankPer.link.linkPerson);
+			Eway.alert(EwayLocale.tip.bankPer.link.linkBankPerson);
 		}
 	},
 	//刷新“已/可关联的设备”列表

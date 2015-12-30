@@ -325,7 +325,7 @@ Ext.apply(EwayLocale,{
 			fileSize:'File size：',//文件大小：
 			lastTime: 'Last modify time',//最后修改时间
 			clickLoadFile:'Click to download this file',//单击即可下载该文件
-			loadFileSize:'Max size of download file is 300M',//下载文件 不能超过200M！
+			loadFileSize:'Max size of download file is 200M',//下载文件 不能超过200M！
 			nowLoadFile:'File downloading...',//正在下载文件......
 			judgeLoad: 'Broken-point Continuingly-transferring?',//是否续传下载！
 			loadFailure:'Download failed!',//下载失败！
@@ -333,7 +333,7 @@ Ext.apply(EwayLocale,{
 			programName: 'Application name',//程序名称
 			version: 'Version number',//版本号
 			publisher: 'Publishers',//发布商
-			diskUsed: 'Used Space',//磁盘使用
+			diskUsed: 'Disk usage(%)',//磁盘使用
 			softwayList: 'List of software installed',//软件安装列表
 			networkInfo: 'Network info',//网络信息
 			networkLinkStatus: 'Network connect status',//网络连接状态

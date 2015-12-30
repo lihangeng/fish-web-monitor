@@ -42,7 +42,7 @@ Ext.define('Eway.view.machine.param.Update', {
 					action : 'confirm'
 				}, {
 					xtype : 'button',
-					text : EwayLocale.button.back,
+					text : EwayLocale.button.cancle,
 					handler : this.onOver
 				} ]
 			}

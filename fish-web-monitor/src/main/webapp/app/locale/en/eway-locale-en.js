@@ -36,11 +36,11 @@ Ext.apply(EwayLocale,{
 		removeSuccess:'Relieve success',//EwayLocale.msg.removeSuccess
 		removeFail:'Relieve failure',//EwayLocale.msg.removeFail
 		someStripRemoveFailePleaseRefresh:'Article lift failed. Please refresh retry！',//EwayLocale.msg.EwayLocale.msg.someStripRemoveFailePleaseRefresh
-		versionDownloaded:'Can not delete the advertisement which status is "issued" or "wait for issue',//EwayLocale.msg.versionDownloaded 不能删除"等待下发"和"已下发"状态的版本.
+		versionDownloaded:'Can not delete the version which status is "issued" or "wait for issue"',//EwayLocale.msg.versionDownloaded 不能删除"等待下发"和"已下发"状态的版本.
 		selectVersionToDelete:'Please choose the version which you want to delete',//EwayLocale.msg.selectVersionToDelete 请选择您要删除的版本.
 		communicationFail:'Add failed : connction refused.',//EwayLocale.msg.communicationFail 增加失败:与服务器通讯失败.
 		sameVersionNoFail:'Add failed: same version no exists.',//EwayLocale.msg.sameVersionNoFail 增加失败:已经存在相同的版本号.
-		fileSizeMaxFail:'Add failed:the max size of the file is 300M',//EwayLocale.msg.fileSizeMaxFail 增加失败:超过最大文件大小限制（最大300M）
+		fileSizeMaxFail:'Add failed:the max size of the file is 200M',//EwayLocale.msg.fileSizeMaxFail 增加失败:超过最大文件大小限制（最大300M）
 		fileUnzipFail:'Add failed: zip-file can not be unziped',//EwayLocale.msg.fileUnzipFail 增加失败:上传的压缩包不能正常解压
 		addFileFail:'Add failed :',//EwayLocale.msg.addFileFail 增加失败:
 		mustSelectDevice:'please choose at least one machine.',//EwayLocale.msg.mustSelectDevice 请至少选择一个设备.
@@ -117,7 +117,7 @@ Ext.apply(EwayLocale,{
 			two:'This record can not be modified'//此条记录不能被更改.
 		},
 		remove :{
-			none:'Plase choose the record which you want to delete',//请选择您要删除的记录.
+			none:'Please select the record which you want to delete',//请选择您要删除的记录.
 			one:'Only one record can be choose to delete', //只能选择一条记录删除
 			confirm:{
 				title:'Please confirm',//请确认
@@ -224,6 +224,7 @@ Ext.apply(EwayLocale,{
 			allPersonInfo:'ALL info of bank employeers',//EwayLocale.tip.bankPer.allPersonInfo 所有银行人员信息
 			link:{
 				linkPerson:'Please choose a maintenaner which you want to bind with.',//EwayLocale.tip.bankPer.link.linkPerson 请选择您关联的人员
+				linkBankPerson:'Please choose a employeer which you want to bind with.',//EwayLocale.tip.bankPer.link.linkBankPerson 请选择您关联的人员
 				unLinkPersonFail:'Link failed.',//EwayLocale.tip.bankPer.link.unLinkPersonFail 关联失败
 				unlinkDev:'Please choose a machine which you want to lift.',//EwayLocale.tip.bankPer.link.unlinkDev 请选择要解除的设备
 				linkDev:'Please choose a machine which you want to link.',//EwayLocale.tip.bankPer.link.linkDev 请选择要关联的设备
@@ -366,7 +367,7 @@ Ext.apply(EwayLocale,{
 
 	vtype:{
 		ip:'Please enter the correct IP address',//请输入正确的IP地址
-		zip:'Please enter the correct Z.C ,6 numbers', //请输入正确的邮编格式，6位的数字
+		zip:'Please enter the correct Z.C. ,6 numbers', //请输入正确的邮编格式，6位的数字
 		versionNo:'Incorrect Version No,format explain：1.Version No make up with 4 part:A.B.C.D ;2.Only part A is necessary ;3. A、B、C、D must be an integer which greater than 0,max length of each part is 8;4.Part ABCD must split with `.`',
 		terminalId:'Just for 1-20 characters ‘a-z’ or ‘A-Z’ or numbers ‘0-9’ or‘-’ or‘_’ or ‘.’,and must be start with character or number.',//输入错误,设备号由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’点号‘.’组成,只能以字母或数字开头,长度1到20位。
 		mobile:'Input error,mobile number can only be 8-11 numbers',//输入错误,手机号码只能输入8到11位数字。

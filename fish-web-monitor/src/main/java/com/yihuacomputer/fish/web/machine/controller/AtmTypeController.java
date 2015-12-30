@@ -147,6 +147,11 @@ public class AtmTypeController {
                 IAtmType type = atmTypeService.make();
                 IAtmVendor vendor = atmBrandService.get(form.getDevVendorId());
                 IAtmCatalog catalog = atmCatalogService.get(form.getDevCatalogId());
+                if(vendor ==null||catalog==null){
+                	result.addAttribute(FishConstant.SUCCESS, false);
+                	result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("atmType.vendorCatalogNoExist", null, FishCfg.locale));
+                	return result;
+                }
                 type.setDevCatalog(catalog);
                 type.setDevVendor(vendor);
                 type.setCashtype("1".equals(form.getCashtype()) ? CashType.CASH : CashType.NOT_CASH);

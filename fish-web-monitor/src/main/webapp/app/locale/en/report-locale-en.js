@@ -61,7 +61,7 @@ Ext.apply(EwayLocale,{
 		},
 		plan:{
 			addPlan:'Add Plan',//EwayLocale.report.plan.addPlan 增加方案
-			name:'Name',//EwayLocale.report.plan.name 名称
+			name:'Service plan name',//EwayLocale.report.plan.name 名称
 			startDate:'Start time',//EwayLocale.report.plan.startDate 有效开始时间
 			endDate:'End time',//EwayLocale.report.plan.endDate 有效结束时间
 			terminalId:'Code',//EwayLocale.report.plan.terminalId 编号

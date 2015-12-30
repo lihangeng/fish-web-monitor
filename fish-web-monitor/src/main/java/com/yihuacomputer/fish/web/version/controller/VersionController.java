@@ -458,14 +458,14 @@ public class VersionController {
 		IVersion version = versionService.getById(versionId);
 		List<VersionChartsDetailForm> list = null;
 		if (null == version) {
-			logger.warn(String.format("version %s not exsit", versionIdStr));
+			logger.warn(String.format("version %s not exist", versionIdStr));
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("data", list);
 			return result;
 		}
 		filter.eq("version", version);
 		if (null == version.getVersionType()) {
-			logger.warn(String.format("version %s type not exsit", versionIdStr));
+			logger.warn(String.format("version %s type not exist", versionIdStr));
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("data", list);
 			return result;

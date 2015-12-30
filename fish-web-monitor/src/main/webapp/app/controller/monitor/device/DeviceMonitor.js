@@ -247,7 +247,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			},
 			failure : function() {
 				winEl.unmask();
-				Eway.alert("memeda");
+				Eway.alert(EwayLocale.tip.business.device.logFail);
 			}
 		});
 	},

@@ -36,6 +36,7 @@ Ext.define('Eway.view.operatingPlan.LinkingDeviceGrid', {
 		});
 		var sm = Ext.create('Ext.selection.CheckboxModel', {
 			checkOnly : true,
+			mode:'SIMPLE',
 	        listeners: {
 	        	select: function(sm, record, index) {
 	        		var form = this.up('window').down("form[name=LinkingDeviceFilter]").getForm();
