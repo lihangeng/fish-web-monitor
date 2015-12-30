@@ -42,12 +42,13 @@ Ext.apply(EwayLocale,{
 				cashboxLimit:'Cashbox Alarm Amount',//EwayLocale.monitor.devMonitor.cash.cashboxLimit 钞箱报警金额阈值
 				initAmount:'Initial Amount',//EwayLocale.monitor.devMonitor.cash.initAmount 加钞总金额
 				amount:'Amount Left',//EwayLocale.monitor.devMonitor.cash.amount
-				dispenseAmount:'Amount paid',//EwayLocale.monitor.devMonitor.cash.dispenseAmount 出钞总金额
+				dispenseAmount:'Reject Amount',//EwayLocale.monitor.devMonitor.cash.dispenseAmount 出钞总金额
 				rejectAmount:'Amount invalid',//EwayLocale.monitor.devMonitor.cash.rejectAmount 废钞金额
-				retractCount:'Time of cash retrieve',//EwayLocale.monitor.devMonitor.cash.retractCount 钞票回收次数
-				minAmount:'Amount mini draw',//EwayLocale.monitor.devMonitor.cash.minAmount 最小取款金额
+				retractCount:'Retract Count',//EwayLocale.monitor.devMonitor.cash.retractCount 钞票回收次数
+				minAmount:'Minimum Withdraw Amount',//EwayLocale.monitor.devMonitor.cash.minAmount 最小取款金额
 				boxId:'ID',//EwayLocale.monitor.devMonitor.cash.boxId 钞箱标识
 				type:'Type',//EwayLocale.monitor.devMonitor.cash.type 钞箱类型
+				boxStatus:'Status',//EwayLocale.monitor.devMonitor.cash.boxStatus 钞箱状态
 				initialCount:'Initial Amount',//EwayLocale.monitor.devMonitor.cash.initialCount 初始张数
 				cashInCount:'CashIn Count',//EwayLocale.monitor.devMonitor.cash.cashInCount 存款张数
 				currentCount:'Current Count',//EwayLocale.monitor.devMonitor.cash.currentCount 当前计数
@@ -106,7 +107,7 @@ Ext.apply(EwayLocale,{
 				healthy:'Healthy',//EwayLocale.monitor.devMonitor.remote.healthy 正常服务
 				staff:'Maintenance',//EwayLocale.monitor.devMonitor.remote.staff 维护
 
-				pFault:'ATMP error',//EwayLocale.monitor.devMonitor.remote.pFault 交易前置故障
+				pFault:'ATMP Error',//EwayLocale.monitor.devMonitor.remote.pFault 交易前置故障
 
 				stop:'Stop',//EwayLocale.monitor.devMonitor.remote.stop 报停
 				manualStop:'Stop manual',////EwayLocale.monitor.devMonitor.remote.manualStop 人工报停
@@ -198,7 +199,7 @@ Ext.apply(EwayLocale,{
 				accGetCard:'Customer get card',//EwayLocale.monitor.business.card.accGetCard 客户领卡
 				transferCard:'Turnover',//EwayLocale.monitor.business.card.transferCard 卡片移交
 				processOrg:'Process org',//EwayLocale.monitor.business.card.processOrg 处理机构
-				type:'Retain Type',//EwayLocale.monitor.business.card.type 吞卡类型
+				type:'Retained Type',//EwayLocale.monitor.business.card.type 吞卡类型
 				manual:'Add manually',//EwayLocale.monitor.business.card.manual 手动添加
 				auto:'Add automatically',//EwayLocale.monitor.business.card.auto 自动添加
 				comboxStatus:{
@@ -261,13 +262,13 @@ Ext.apply(EwayLocale,{
 		remoteCommand:{
 			titile:'Remote Command Info',//EwayLocale.monitor.remoteCommand.titile 远程命令查询
 			form:{
-				date:'date'//EwayLocale.monitor.remoteCommand.form.date 执行日期
+				date:'Date'//EwayLocale.monitor.remoteCommand.form.date 执行日期
 			},
 			grid:{
-				commandType:'type',//EwayLocale.monitor.remoteCommand.commandType 命令类型
-				commandResult:'result',//EwayLocale.monitor.remoteCommand.commandResult 执行结果
-				datetime:'date',//EwayLocale.monitor.remoteCommand.datetime 执行日期
-				handlePerson:'personnel'//EwayLocale.monitor.remoteCommand.handlePerson 操作人
+				commandType:'Type',//EwayLocale.monitor.remoteCommand.commandType 命令类型
+				commandResult:'Result',//EwayLocale.monitor.remoteCommand.commandResult 执行结果
+				datetime:'Date',//EwayLocale.monitor.remoteCommand.datetime 执行日期
+				handlePerson:'Personnel'//EwayLocale.monitor.remoteCommand.handlePerson 操作人
 			}
 		}
 	},
@@ -323,18 +324,18 @@ Ext.apply(EwayLocale,{
 			search: 'Search',//搜索
 			size: 'Size',//大小
 			fileSize:'File size：',//文件大小：
-			lastTime: 'Last modify time',//最后修改时间
+			lastTime: 'Date modified',//最后修改时间
 			clickLoadFile:'Click to download this file',//单击即可下载该文件
 			loadFileSize:'Max size of download file is 200M',//下载文件 不能超过200M！
 			nowLoadFile:'File downloading...',//正在下载文件......
 			judgeLoad: 'Broken-point Continuingly-transferring?',//是否续传下载！
 			loadFailure:'Download failed!',//下载失败！
-			number: 'Serial number',//编号
-			programName: 'Application name',//程序名称
-			version: 'Version number',//版本号
+			number: 'ID',//编号
+			programName: 'Program Name',//程序名称
+			version: 'Version Num',//版本号
 			publisher: 'Publishers',//发布商
 			diskUsed: 'Disk usage(%)',//磁盘使用
-			softwayList: 'List of software installed',//软件安装列表
+			softwayList: 'List of Software',//软件安装列表
 			networkInfo: 'Network info',//网络信息
 			networkLinkStatus: 'Network connect status',//网络连接状态
 			send: 'Sended',//已发送
