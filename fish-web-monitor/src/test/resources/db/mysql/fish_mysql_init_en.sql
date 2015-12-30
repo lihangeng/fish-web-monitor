@@ -16,7 +16,7 @@ INSERT INTO DEV_MODULE(ID,NAME,MOD_NO,NOTE,IS_CASE) VALUES ('110', 'ICC', '0011'
 INSERT INTO DEV_MODULE(ID,NAME,MOD_NO,NOTE,IS_CASE) VALUES ('120', 'FGP', '0012', 'Finger Printer','1');
 
 INSERT INTO SM_PARAM(ID,PARAM_CLASSIFY,DESCIPTION,PARAM_KEY,PARAM_VALUE,PARAM_TYPE) VALUES ('1', '0', 'Monitor service file-saving path', 'fish_home', 'd:\\fish_home','System Config');
-INSERT INTO SM_PARAM(ID,PARAM_CLASSIFY,DESCIPTION,PARAM_KEY,PARAM_VALUE,PARAM_TYPE) VALUES ('2', '1', 'Remote service listen port', 'atm_port', '80','Agent Config');
+INSERT INTO SM_PARAM(ID,PARAM_CLASSIFY,DESCIPTION,PARAM_KEY,PARAM_VALUE,PARAM_TYPE) VALUES ('2', '1', 'Remote service listen port', 'atm_port', '8080','Agent Config');
 INSERT INTO SM_PARAM(ID,PARAM_CLASSIFY,DESCIPTION,PARAM_KEY,PARAM_VALUE,PARAM_TYPE) VALUES ('3', '1', 'ATM APP save rule', 'atm_log_file_cfg', 'bizLog_{terminalId}_{YYYY-MM-DD}.zip','Bankup Rules');
 INSERT INTO SM_PARAM(ID,PARAM_CLASSIFY,DESCIPTION,PARAM_KEY,PARAM_VALUE,PARAM_TYPE) VALUES ('4', '1', 'ATM APP save path', 'atm_log_doc', 'c:\\yihua\\gump\\log','Bankup Rules');
 INSERT INTO SM_PARAM(ID,PARAM_CLASSIFY,DESCIPTION,PARAM_KEY,PARAM_VALUE,PARAM_TYPE) VALUES ('5', '1', 'Get device offline(unit:minute)', 'device_offline', '30','Agent Config');
