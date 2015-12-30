@@ -539,16 +539,16 @@ Ext.apply(EwayLocale,{
 		baseInfo:'Basic info',//EwayLocale.personal.baseInfo 基本信息
 		accountNum:'User Code',//EwayLocale.personal.accountNum 账号
 		personalInfo:'Profile',//EwayLocale.personal.personalInfo 个人信息
-		changePwd:'Udpate password',//EwayLocale.personal.changePwd 修改密码
-		nowLogin:'Current Account',//EwayLocale.personal.nowLogin 当前登录账号
-		inputOldPwd:'Input initial passwd',//EwayLocale.personal.inputOldPwd 输入原始密码
-		inputNewPwd:'Input new passwd',//EwayLocale.personal.inputNewPwd 输入新密码
+		changePwd:'Udpate Password',//EwayLocale.personal.changePwd 修改密码
+		nowLogin:'Current User',//EwayLocale.personal.nowLogin 当前登录账号
+		inputOldPwd:'Input old password',//EwayLocale.personal.inputOldPwd 输入原始密码
+		inputNewPwd:'Input new password',//EwayLocale.personal.inputNewPwd 输入新密码
 		inputVali:"Just for 1-20 characters 'a-z'or 'A-Z'or number '0-9' or '-' or '_' or special characters",//EwayLocale.personal.inputVali 只能输入8到20位字母‘a-z’或‘A-Z’、数字‘0-9’、特殊字符！
-		inputAgain:'Input again',//EwayLocale.personal.inputAgain 再次输入新密码
-		pwdNotSame:'New password is not match',//EwayLocale.personal.pwdNotSame 两次密码不一致！
-		rememberPwd:'Click confirm to update passwd ,please remember it',//EwayLocale.personal.rememberPwd 单击确定即可修改密码，请牢记新密码！
-		pwdSameNoChange:'New password is the same with the old one,can not commit',//EwayLocale.personal.pwdSameNoChange 输入的新密码与旧密码相同,不可修改.
-		reOperate:'Can not modify passwd,please try again'//EwayLocale.personal.reOperate 无法修改密码,请重新操作.
+		inputAgain:'Input new password again',//EwayLocale.personal.inputAgain 再次输入新密码
+		pwdNotSame:'New password is not match.',//EwayLocale.personal.pwdNotSame 两次密码不一致！
+		rememberPwd:'Click confirm to update password ,please remember it!',//EwayLocale.personal.rememberPwd 单击确定即可修改密码，请牢记新密码！
+		pwdSameNoChange:'New password is the same with the old ,can not update.',//EwayLocale.personal.pwdSameNoChange 输入的新密码与旧密码相同,不可修改.
+		reOperate:'Can not update password,please try again.'//EwayLocale.personal.reOperate 无法修改密码,请重新操作.
 	},
 
 	//**********************************************************/
