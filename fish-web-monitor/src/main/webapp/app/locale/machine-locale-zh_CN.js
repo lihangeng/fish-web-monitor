@@ -560,7 +560,7 @@ Ext.apply(EwayLocale,{
 				devFailue:'设备故障未修复',
 				other:'其他'
 			},
-			setTime:'设置时间',
+			setTime:'创建时间',
 			closeManage:'报停管理'
 		},
 		plan:{

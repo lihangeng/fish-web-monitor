@@ -70,10 +70,10 @@ Ext.define('Eway.view.machine.device.DeviceModuleConfig', {
 					itemId : 'pbkid',
 					xtype : 'machine_device_module_propertypbk'
 				} , {
-					itemId : 'pbkid',
+					itemId : 'camid',
 					xtype : 'machine_device_module_propertycam'
 				} , {
-					itemId : 'pbkid',
+					itemId : 'bcrid',
 					xtype : 'machine_device_module_propertybcr'
 				}  ]
 			} ]
