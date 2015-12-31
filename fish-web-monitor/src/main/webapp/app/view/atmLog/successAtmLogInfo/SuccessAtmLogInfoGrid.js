@@ -49,7 +49,7 @@ Ext.define('Eway.view.atmLog.successAtmLogInfo.SuccessAtmLogInfoGrid',{
 				width : 100,
 				renderer : function(value,metaData,record,rowIndex,colIndex,store,view){
 					if(value == 'SUCCESS'){
-						return EwayLocale.tip.success;
+						return EwayLocale.atmLog.backupSuccess;
 					}else{
 						return EwayLocale.tip.fail;
 					}

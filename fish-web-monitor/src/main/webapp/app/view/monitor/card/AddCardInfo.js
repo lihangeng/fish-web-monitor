@@ -36,7 +36,8 @@ Ext.define('Eway.view.monitor.card.AddCardInfo', {
 													combo.setValue('0');
 												}
 											},
-											readOnly : true
+											readOnly : true,
+											hidden:true
 										}, {
 											fieldLabel: '<font color="red">*</font> '+EwayLocale.commen.terminalId,
 											xtype : 'card_TerminalId',

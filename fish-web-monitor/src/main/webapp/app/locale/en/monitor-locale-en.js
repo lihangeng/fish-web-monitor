@@ -202,8 +202,8 @@ Ext.apply(EwayLocale,{
 				transferCard:'Turnover',//EwayLocale.monitor.business.card.transferCard 卡片移交
 				processOrg:'Process org',//EwayLocale.monitor.business.card.processOrg 处理机构
 				type:'Retained Type',//EwayLocale.monitor.business.card.type 吞卡类型
-				manual:'Add manually',//EwayLocale.monitor.business.card.manual 手动添加
-				auto:'Add automatically',//EwayLocale.monitor.business.card.auto 自动添加
+				manual:'Manually',//EwayLocale.monitor.business.card.manual 手动添加
+				auto:'Automatically',//EwayLocale.monitor.business.card.auto 自动添加
 				comboxStatus:{
 					wait:'Wait for claimant',//EwayLocale.monitor.business.card.comboxStatus.wait 待领
 					received:'Received',//EwayLocale.monitor.business.card.comboxStatus.received 已领

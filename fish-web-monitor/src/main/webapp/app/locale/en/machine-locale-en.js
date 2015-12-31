@@ -427,7 +427,7 @@ Ext.apply(EwayLocale,{
 			sysVersion:'OS version',//系统版本号
 			devAddress:'Address',//设备地址
 			basicInfo:'Additional Info',//基本信息
-			virtual:'Virtual Terminal ID',//虚拟设备号
+			virtual:'Virtual Teller No.',//虚拟设备号
 			serial:'Serial Number',//设备序列号
 			carrier:'Carrieroperator',//运营商
 			moneyOrg:'Cash org',//加钞机构
@@ -523,7 +523,7 @@ Ext.apply(EwayLocale,{
 		},
 		quittingNotice:{
 			addCloseMsg:'Add Service Stop',//增加报停信息
-			updateCloseMsg:'Udpate stop',//
+			updateCloseMsg:'Update Service Stop',//
 			dateRangeText:'Recover date can not be earlier than stop date,please choose again',//恢复日期不能小于等于停止日期,请重新选择
 			click:'Click query to choose device',//请点击查询，选择设备
 			stopTime:'Stop time',//停机时间
@@ -534,18 +534,18 @@ Ext.apply(EwayLocale,{
 			stopReason:'Reason',//停机原因
 			address:'Address',//所属地址
 			selectDev:'Please choose the device which you want to stop',//选择需要报停的设备
+			updateUnable:'Can not update the record which is recovered.',
 			to:'to',//至
 			stopType:'Type',//停机类型
 			comboxStopType:{
-
 				recess:'Holiday',//放假
-				fit:'Decorate',//装修
-				power:'Powercut',
-				devFailue:'Error never fix',//设备故障未修复
+				fit:'Decoration',//装修
+				power:'Power Cut',//停电
+				devFailue:'Device Fault',//设备故障未修复
 				other:'Other'	//其他
 			},
-			setTime:'Set time',//
-			closeManage:'Stop manager'//报停管理
+			setTime:'Create time',//
+			closeManage:'Service Stop'//报停管理
 		},
 		plan:{
 			addPlan:'Add Service Plan',//EwayLocale.machine.plan.addPlan 增加方案
@@ -577,7 +577,6 @@ Ext.apply(EwayLocale,{
 			exportExplain:'Import instructions',//EwayLocale.machine.serviceplan.exportExplain导入说明
 			thisIsTooLong:'Please add the device continuously import template device number to be issued, up to a one-time import 2000 data (takes about 5 minutes), a minimum import data',//EwayLocale.machine.serviceplan.thisIsTooLong请在设备导入模板中连续添加要下发的设备号,最多一次性导入2000条数据(约耗时5分钟),最少导入1条数据
 			thisHardToTranslate:'Click to download introducing device ID template',//EwayLocale.machine.serviceplan.thisHardToTranslate点击下载导入设备号模板
-			placeSelect:'---Please select---',//EwayLocale.machine.serviceplan.placeSelect请选择
 			planDevice:'Service Plan <--> Device',//EwayLocale.machine.serviceplan.planDevice方案<-->设备
 			timeEare:'Enter the time is incorrect, please re-enter!',//EwayLocale.machine.serviceplan.timeEare输入时间段有误，请重新输入
 			timeError:'invalid,please re-enter.',//EwayLocale.machine.serviceplan.timeError输入时间段有误，请重新输入
@@ -622,27 +621,27 @@ Ext.apply(EwayLocale,{
 	},
 	
 	atmLog:{
-		dayBackup:'back-up results',//EwayLocale.atmLog.dayBackup 当日备份结果
+		dayBackup:'Backup results',//EwayLocale.atmLog.dayBackup 当日备份结果
 		whole:'All',//EwayLocale.atmLog.whole 所有
 		execute:'Executing',//EwayLocale.atmLog.execute 执行中
 		unKnownFail:'Failed with unknown reason',//EwayLocale.atmLog.unKnownFail 未知原因失败
 		logDate:'Log date',//EwayLocale.atmLog.logDate 日志日期
-		backupResult:'Back-up result',//EwayLocale.atmLog.backupResult 备份结果
-		checkFailInfo:'Check detail of back-up failed',//EwayLocale.atmLog.checkFailInfo 查看备份失败详情
-		checkSucInfo:'Check detail of back-up successful',//EwayLocale.atmLog.checkSucInfo 查看备份成功详情
-		backupSucAmount:'Count of machine back-up successful',//EwayLocale.atmLog.backupSucAmount 备份成功台数
-		backupFailAmount:'Count of machine back-up failed',//EwayLocale.atmLog.backupFailAmount 备份失败台数
+		backupResult:'Backup result',//EwayLocale.atmLog.backupResult 备份结果
+		checkFailInfo:'Check detail of Backup failed',//EwayLocale.atmLog.checkFailInfo 查看备份失败详情
+		checkSucInfo:'Check detail of Backup successful',//EwayLocale.atmLog.checkSucInfo 查看备份成功详情
+		backupSucAmount:'Count of machine Backup successful',//EwayLocale.atmLog.backupSucAmount 备份成功台数
+		backupFailAmount:'Count of machine Backup failed',//EwayLocale.atmLog.backupFailAmount 备份失败台数
 		backupAllAmount:'Total count',//EwayLocale.atmLog.backupAllAmount 总备份台数
-		logBackupSta:'Back-up log total',//EwayLocale.atmLog.logBackupSta 日志备份统计
-		dailyBackup:'Back-up task everyday',//EwayLocale.atmLog.dailyBackup 每日备份任务
+		logBackupSta:'Backup log total',//EwayLocale.atmLog.logBackupSta 日志备份统计
+		dailyBackup:'Backup task everyday',//EwayLocale.atmLog.dailyBackup 每日备份任务
 		lastDoDate:'LastExecute Date',//EwayLocale.atmLog.lastDoDate
 		getLog:'GetLog',//EwayLocale.atmLog.getLog
-		backupDate:'Back-up date',//EwayLocale.atmLog.backupDate 备份日期
-		dayBackupResult:'Back-up result',//EwayLocale.atmLog.dayBackupResult 当日备份结果
-		backupProcess:'Backing-up',//EwayLocale.atmLog.backupProcess 正在备份
-		backupSuccess:'success',//EwayLocale.atmLog.backupSuccess 备份成功
-		backupError:'Back-up error',//EwayLocale.atmLog.backupError 备份错误
-		logDevAccount:'Log back-up machine count total',//EwayLocale.atmLog.logDevAccount 日志设备数量累计
+		backupDate:'Backup date',//EwayLocale.atmLog.backupDate 备份日期
+		dayBackupResult:'Backup result',//EwayLocale.atmLog.dayBackupResult 当日备份结果
+		backupProcess:'Backuping',//EwayLocale.atmLog.backupProcess 正在备份
+		backupSuccess:'Success',//EwayLocale.atmLog.backupSuccess 备份成功
+		backupError:'Backup error',//EwayLocale.atmLog.backupError 备份错误
+		logDevAccount:'Log Backup machine count total',//EwayLocale.atmLog.logDevAccount 日志设备数量累计
 		logDevSucAccount:'Number of backup success',//EwayLocale.atmLog.logDevSucAccount
 		logDevFailAccount:'Number of backup failed',//EwayLocale.atmLog.logDevFailAccount
 		reform:'Reform',//EwayLocale.atmLog.reform 重做
@@ -651,7 +650,7 @@ Ext.apply(EwayLocale,{
 		selectLog:'Choose log',//EwayLocale.atmLog.selectLog 选择日志
 		pleaseDownload:'Please download',//EwayLocale.atmLog.pleaseDownload 请下载
 		title:'ATMC Logs',//EwayLocale.atmLog.appLogDownload 应用日志下载
-		lastBackupTime:'Last back-up time',//EwayLocale.atmLog.lastBackupTime 最后一次备份时间
+		lastBackupTime:'Last Backup time',//EwayLocale.atmLog.lastBackupTime 最后一次备份时间
 		noBegin:'noBegin',//EwayLocale.atmLog.noBegin 未开始
 		noLog:'No log',//EwayLocale.atmLog.noLog 无日志
 		connectFail:'Connect fail',//EwayLocale.atmLog.connectFail 连接失败
