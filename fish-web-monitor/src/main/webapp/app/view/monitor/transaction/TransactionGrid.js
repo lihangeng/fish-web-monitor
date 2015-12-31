@@ -49,7 +49,7 @@ Ext.define('Eway.view.monitor.transaction.TransactionGrid', {
 				dataIndex : 'dateTime'
 			}, {
 				header : EwayLocale.monitor.business.transaction.transCode,
-				width : 80,
+				width : 120,
 				dataIndex : 'transCode'
 			}, {
 				header : EwayLocale.monitor.business.transaction.amt,

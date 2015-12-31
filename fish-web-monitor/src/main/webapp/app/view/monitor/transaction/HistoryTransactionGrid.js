@@ -22,7 +22,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionGrid', {
 				dataIndex : 'dateTime'
 			}, {
 				header : EwayLocale.monitor.business.transaction.transCode,
-				width : 100,
+				width : 130,
 				dataIndex : 'transCode',
 				renderer : function(value){
 					var box = Ext.create('Eway.view.field.monitor.TransTypeComboBox',{});
@@ -31,15 +31,16 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionGrid', {
 				}
 			}, {
 				header : EwayLocale.monitor.business.transaction.amt,
-				dataIndex : 'amt'
+				dataIndex : 'amt',
+				width : 160
 			}, {
 				header : EwayLocale.monitor.business.transaction.currency,
-				width : 80,
+				width : 100,
 				hidden : true,
 				dataIndex : 'currency'
 			}, {
 				header : EwayLocale.commen.terminalId,
-				width : 80,
+				width : 120,
 				dataIndex : 'termId'
 			}, {
 				header : EwayLocale.monitor.business.transaction.transId,
@@ -62,8 +63,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionGrid', {
 					var box = Ext.create('Eway.view.field.monitor.HostRetComboBox',{});
 					box.setValue(value);
 					return box.getDisplayValue();
-				},
-				flex: 1
+				}
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,

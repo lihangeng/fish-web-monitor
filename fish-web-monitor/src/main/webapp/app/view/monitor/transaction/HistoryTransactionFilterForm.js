@@ -44,17 +44,19 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 						labelWidth : 150
 					} ]
 				}, {
-					columnWidth : .28,
+					columnWidth : .32,
 					items : [ {
 						fieldLabel : EwayLocale.monitor.business.transaction.transId,
 						xtype : 'textfield',
 						name : 'transId',
-						labelAlign : 'right'
+						labelAlign : 'right',
+						labelWidth : 120
 					}, {
 						fieldLabel : EwayLocale.monitor.business.transaction.debitAccount,
 						xtype : 'textfield',
 						name : 'debitAccount',
-						labelAlign : 'right'
+						labelAlign : 'right',
+						labelWidth : 120
 					}, {
 						fieldLabel : EwayLocale.monitor.business.transaction.currency,
 						xtype : 'textfield',
@@ -67,7 +69,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 						hidden : true
 					} ]
 				}, {
-					columnWidth : .42,
+					columnWidth : .38,
 					layout : 'anchor',
 					items : [ {
 						xtype : 'fieldcontainer',

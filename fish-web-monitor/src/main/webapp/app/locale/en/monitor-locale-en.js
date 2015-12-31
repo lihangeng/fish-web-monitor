@@ -146,33 +146,33 @@ Ext.apply(EwayLocale,{
 				dateTime:'Time',//EwayLocale.monitor.business.transaction.dateTime 交易时间
 				transCode:'Transaction Type',//EwayLocale.monitor.business.transaction.transCode 交易类型
 				amt:'Amount',//EwayLocale.monitor.business.transaction.amt 交易金额
-				currency:'currency',//EwayLocale.monitor.business.transaction.currency 交易币种
+				currency:'Currency',//EwayLocale.monitor.business.transaction.currency 交易币种
 				transId:'Trans ID.',//EwayLocale.monitor.business.transaction.transId 交易流水号
 				amtfield:'Amount from',//EwayLocale.monitor.business.transaction.amtfield 金额范围
 				toNum:'to',//EwayLocale.monitor.business.transaction.toNum 至
 				transContainer:'Time Scope',//EwayLocale.monitor.business.transaction.transContainer 交易时间段
-				debitAccountOrCard:'Debit/Card',//EwayLocale.monitor.business.transaction.debitAccountOrCard 客户账号或者卡号
-				creditAccountOrCard:'Credit/Card',//EwayLocale.monitor.business.transaction.creditAccountOrCard 对方账号或者卡号
-				debitAccount:'Debit',//EwayLocale.monitor.business.transaction.debitAccount 客户帐号
-				creditAccount:'Credit',//EwayLocale.monitor.business.transaction.creditAccount 对方账号
+				debitAccountOrCard:'Debit Card Number',//EwayLocale.monitor.business.transaction.debitAccountOrCard 客户账号或者卡号
+				creditAccountOrCard:'Credit Card Number',//EwayLocale.monitor.business.transaction.creditAccountOrCard 对方账号或者卡号
+				debitAccount:'Debit Card Number',//EwayLocale.monitor.business.transaction.debitAccount 客户帐号
+				creditAccount:'Credit Card Number',//EwayLocale.monitor.business.transaction.creditAccount 对方账号
 				localRet:'Local Code',//EwayLocale.monitor.business.transaction.localRet ATMC本地代码
 				hostRet:'Host Code',//EwayLocale.monitor.business.transaction.hostRet 主机返回码
 				userName:'User Name',//EwayLocale.monitor.business.transaction.userName 用户姓名
 				historyTransaction:{
-					title:'Query histroy transaction '//EwayLocale.monitor.business.transaction.historyTransaction.title //历史交易查询
+					title:'Histroy Transaction '//EwayLocale.monitor.business.transaction.historyTransaction.title //历史交易查询
 				},
 				transactionMonitor:{
-					title:'Transaction monitoring',//EwayLocale.monitor.business.transaction.transactionMonitor.title 实时交易监控
+					title:'Real-time Transaction',//EwayLocale.monitor.business.transaction.transactionMonitor.title 实时交易监控
 					begin:'Start',//EwayLocale.monitor.business.transaction.transactionMonitor.begin 开始监控
 					stop:'Stop',//EwayLocale.monitor.business.transaction.transactionMonitor.stop 停止监控
-					clear:'Clear screen',//EwayLocale.monitor.business.transaction.transactionMonitor.clear清屏
-					scroll:'scroll',//EwayLocale.monitor.business.transaction.transactionMonitor.scroll滚屏方式
+					clear:'Clear Screen',//EwayLocale.monitor.business.transaction.transactionMonitor.clear清屏
+					scroll:'Scroll',//EwayLocale.monitor.business.transaction.transactionMonitor.scroll滚屏方式
 					up:'up',//EwayLocale.monitor.business.transaction.transactionMonitor.up向上
 					down:'down'//EwayLocale.monitor.business.transaction.transactionMonitor.down向下
 				}
 			},
 			blackList:{
-				title:'BlackCard',//EwayLocale.monitor.business.blackList.title 黑名单卡管理
+				title:'Black Card',//EwayLocale.monitor.business.blackList.title 黑名单卡管理
 				black:'BlackCard',//EwayLocale.monitor.business.blackList.black 黑名单卡
 				addBlack:'Add',//EwayLocale.monitor.business.blackList.addBlack 添加黑名单卡
 				cardBank:'Bank',//EwayLocale.monitor.business.blackList.cardBank 所属银行
