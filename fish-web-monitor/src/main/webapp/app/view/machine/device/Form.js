@@ -162,6 +162,7 @@ Ext.define('Eway.view.machine.device.Form',{
 									regex : /^\w+[\w-\.]*$/,
 									regexText : EwayLocale.vtype.numberRule,
 									maxLength : 25,
+									labelWidth:120,
 									name : 'virtual'
 								}]
 							}]

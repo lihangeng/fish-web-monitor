@@ -4,8 +4,5 @@ Ext.define('Eway.view.field.card.TerminalId', {
 	alias: 'widget.card_TerminalId',
 
 	fieldLabel : EwayLocale.commen.terminalId,
-	name : 'terminalId',
-	maxLength:20,
-	vtype : "terminalId"
-
+	name : 'terminalId'
 });

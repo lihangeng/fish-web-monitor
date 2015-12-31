@@ -42,7 +42,7 @@ Ext.define('Eway.view.atmLog.LogBackupFilterForm',{
 					store : Ext.create('Ext.data.Store',{
 						fields : ['backupResult','displayField'],
 						data : [
-							{'backupResult':'SUCCESS','displayField':EwayLocale.tip.success},
+							{'backupResult':'SUCCESS','displayField':EwayLocale.atmLog.backupSuccess},
 							{'backupResult':'UNDO','displayField':EwayLocale.atmLog.noBegin},
 							{'backupResult':'ERROR_CONNECT','displayField':EwayLocale.tip.linkFailure},
 							{'backupResult':'ERROR_NOLOG','displayField':EwayLocale.atmLog.noLog},

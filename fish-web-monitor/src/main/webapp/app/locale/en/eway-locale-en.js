@@ -468,9 +468,9 @@ Ext.apply(EwayLocale,{
 		areaCode:'Area code',//EwayLocale.commen.areaCode 区域编号
 		areaName:'Area name',//EwayLocale.commen.areaName 区域名称
 		toolbar:'Total：{2},display{0}-{1}',//EwayLocale.commen.toolbar 总共：{2}条，显示{0}-{1}
-		bindMachine :'Device binded',//EwayLocale.commen.bindMachine 已关联的设备
-		lift:'Lift',//EwayLocale.commen.lift 解除
-		canBindMachine:'Device can be binded',//EwayLocale.commen.canBindMachine 可关联的设备
+		bindMachine :'Devices bound',//EwayLocale.commen.bindMachine 已关联的设备
+		lift:'Relieve',//EwayLocale.commen.lift 解除
+		canBindMachine:'Bindable devices',//EwayLocale.commen.canBindMachine 可关联的设备
 		bind:'Bind',//EwayLocale.commen.bind 关联
 		filter:'Filter',//EwayLocale.commen.filter 过滤条件
 		stateDict:{

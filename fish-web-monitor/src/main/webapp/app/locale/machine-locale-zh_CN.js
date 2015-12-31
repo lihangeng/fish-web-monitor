@@ -593,7 +593,6 @@ Ext.apply(EwayLocale,{
 			exportExplain:'导入说明',//EwayLocale.machine.serviceplan.exportExplain
 			thisIsTooLong:'请在设备导入模板中连续添加要下发的设备号,最多一次性导入2000条数据(约耗时5分钟),最少导入1条数据',//EwayLocale.machine.serviceplan.thisIsTooLong
 			thisHardToTranslate:'点击下载导入设备号模板',//EwayLocale.machine.serviceplan.thisHardToTranslate
-			placeSelect:'---请选择---',//EwayLocale.machine.serviceplan.placeSelect
 			planDevice:'方案<-->设备',//EwayLocale.machine.serviceplan.planDevice
 			timeEare:'输入时间段有误，请重新输入！',//EwayLocale.machine.serviceplan.timeEare
 			timeError:'输入时间段有误，请重新输入！',//EwayLocale.machine.serviceplan.timeError
