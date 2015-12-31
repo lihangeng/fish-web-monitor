@@ -162,24 +162,24 @@ Ext.apply(EwayLocale,{
 		selectMoveDev:'Please select the machine which you want to move.',//请选择要移动的设备.
 		moveSuc:'Move the machine successful',//移机成功.
 		dateReSelect:'The begin date can not be later than end date,please select again',//开始时间不能大于结束日期,请重新选择
-		selectPlan:'Please select the program which you want to execute',//请选择您应用的方案.
+		selectPlan:'Please select the plan which you want to execute',//请选择您应用的方案.
 		removeFail:'Relieve failed',//解除失败.
 		selectRemoveDev:'Please select the machine which you want to relieve.',//请选择要解除的设备.
 		relatedFail:'Binding machine failed.',//关联失败.
 		selectRelatedDev:'Please choose machines which you want to bind.',//请选择要关联的设备
-		planNoUpdate:'This program has been executed ,can not be modified ',//该方案已经执行,不可修改.
-		planNoRemove:'This program has been executed ,can not be deleted ',///该方案已经执行,不可删除.
+		planNoUpdate:'This plan has been executed ,can not be modified ',//该方案已经执行,不可修改.
+		planNoRemove:'This plan has been executed ,can not be deleted ',///该方案已经执行,不可删除.
 		exportFiles: 'Please choose a file to import,only support .xls or .xlsx files ',//请选择导入文件,只支持.xls和.xlsx格式的文件
 		noChange:'Did not change the data, change and then click OK!',//EwayLocale.tip.noChange没有更改数据,请更改后再点击确定
 		operateSuc:'Successful operation',//EwayLocale.tip.operateSuc操作成功
 		operateWrong:'Successful operation',//EwayLocale.tip.operateWrong操作成功
 		deleteOne:'You can only delete a record.',//EwayLocale.tip.deleteOne一次只能删除一条记录
 		chooseRecord:'Please select the records that you want to associate.',//EwayLocale.tip.chooseRecord请选择您要关联的记录
-		choosePlan:'Please select the program you want to view',//EwayLocale.tip.choosePlan请选择您要查看的方案
-		planDetail:'Programme details',//EwayLocale.tip.planDetail方案详情
-		planDate:'Programme details (date)',//EwayLocale.tip.planDate方案详情(日期)
-		planWeek:'Programme details (Week)',//EwayLocale.tip.planWeek方案详情(星期)
-		planNoConf:'The program no detailed settings！',//EwayLocale.tip.planNoConf该方案无详细设置
+		choosePlan:'Please select the plan you want to view',//EwayLocale.tip.choosePlan请选择您要查看的方案
+		planDetail:'Plan details',//EwayLocale.tip.planDetail方案详情
+		planDate:'Plan details (date)',//EwayLocale.tip.planDate方案详情(日期)
+		planWeek:'Plan details (Week)',//EwayLocale.tip.planWeek方案详情(星期)
+		planNoConf:'The plan no detailed settings！',//EwayLocale.tip.planNoConf该方案无详细设置
 		chooseRelatedDev:'Please select the device you want to associate！',//EwayLocale.tip.chooseRelatedDev请选择您要关联的设备
 		devRelatedPlan:'Device has been bound with the service plan!',//EwayLocale.tip.devRelatedPlan设备已关联开机方案
 		//add by panxin
@@ -224,7 +224,7 @@ Ext.apply(EwayLocale,{
 			allPersonInfo:'ALL info of bank employeers',//EwayLocale.tip.bankPer.allPersonInfo 所有银行人员信息
 			link:{
 				linkPerson:'Please choose a maintenaner which you want to bind with.',//EwayLocale.tip.bankPer.link.linkPerson 请选择您关联的人员
-				linkBankPerson:'Please choose a employeer which you want to bind with.',//EwayLocale.tip.bankPer.link.linkBankPerson 请选择您关联的人员
+				linkBankPerson:'Please choose a banker which you want to bind with.',//EwayLocale.tip.bankPer.link.linkBankPerson 请选择您关联的人员
 				unLinkPersonFail:'Link failed.',//EwayLocale.tip.bankPer.link.unLinkPersonFail 关联失败
 				unlinkDev:'Please choose a machine which you want to lift.',//EwayLocale.tip.bankPer.link.unlinkDev 请选择要解除的设备
 				linkDev:'Please choose a machine which you want to link.',//EwayLocale.tip.bankPer.link.linkDev 请选择要关联的设备
@@ -392,7 +392,7 @@ Ext.apply(EwayLocale,{
 		hardwayInitialize:'Hardware module initializing......',//硬件模块正在初始化
 		inputCorrect:'Please input correct data.',//请正确输入
 		exportRepError:'Export report error,please try again',//导出报表出错，请重新操作!
-		planOutdate:'(This program is out of date,can not be applied)',//(此方案已过期，不可应用！)
+		planOutdate:'(This plan is out of date,can not be applied)',//(此方案已过期，不可应用！)
 
 		emailRules: 'email must accord with the rule of *@*.* ',//email必须符合*@*.*标准。
 		notifyTimesRules: 'Times of notice must be numbers,minimum 0,maximum 100.',//通知次数必须为数字，最小值为0,最大值为100。
@@ -468,9 +468,9 @@ Ext.apply(EwayLocale,{
 		areaCode:'Area code',//EwayLocale.commen.areaCode 区域编号
 		areaName:'Area name',//EwayLocale.commen.areaName 区域名称
 		toolbar:'Total：{2},display{0}-{1}',//EwayLocale.commen.toolbar 总共：{2}条，显示{0}-{1}
-		bindMachine :'Device binded',//EwayLocale.commen.bindMachine 已关联的设备
-		lift:'Lift',//EwayLocale.commen.lift 解除
-		canBindMachine:'Device can be binded',//EwayLocale.commen.canBindMachine 可关联的设备
+		bindMachine :'Devices bound',//EwayLocale.commen.bindMachine 已关联的设备
+		lift:'Relieve',//EwayLocale.commen.lift 解除
+		canBindMachine:'Bindable devices',//EwayLocale.commen.canBindMachine 可关联的设备
 		bind:'Bind',//EwayLocale.commen.bind 关联
 		filter:'Filter',//EwayLocale.commen.filter 过滤条件
 		stateDict:{
@@ -539,16 +539,16 @@ Ext.apply(EwayLocale,{
 		baseInfo:'Basic info',//EwayLocale.personal.baseInfo 基本信息
 		accountNum:'User Code',//EwayLocale.personal.accountNum 账号
 		personalInfo:'Profile',//EwayLocale.personal.personalInfo 个人信息
-		changePwd:'Udpate password',//EwayLocale.personal.changePwd 修改密码
-		nowLogin:'Current Account',//EwayLocale.personal.nowLogin 当前登录账号
-		inputOldPwd:'Input initial passwd',//EwayLocale.personal.inputOldPwd 输入原始密码
-		inputNewPwd:'Input new passwd',//EwayLocale.personal.inputNewPwd 输入新密码
+		changePwd:'Udpate Password',//EwayLocale.personal.changePwd 修改密码
+		nowLogin:'Current User',//EwayLocale.personal.nowLogin 当前登录账号
+		inputOldPwd:'Input old password',//EwayLocale.personal.inputOldPwd 输入原始密码
+		inputNewPwd:'Input new password',//EwayLocale.personal.inputNewPwd 输入新密码
 		inputVali:"Just for 1-20 characters 'a-z'or 'A-Z'or number '0-9' or '-' or '_' or special characters",//EwayLocale.personal.inputVali 只能输入8到20位字母‘a-z’或‘A-Z’、数字‘0-9’、特殊字符！
-		inputAgain:'Input again',//EwayLocale.personal.inputAgain 再次输入新密码
-		pwdNotSame:'New password is not match',//EwayLocale.personal.pwdNotSame 两次密码不一致！
-		rememberPwd:'Click confirm to update passwd ,please remember it',//EwayLocale.personal.rememberPwd 单击确定即可修改密码，请牢记新密码！
-		pwdSameNoChange:'New password is the same with the old one,can not commit',//EwayLocale.personal.pwdSameNoChange 输入的新密码与旧密码相同,不可修改.
-		reOperate:'Can not modify passwd,please try again'//EwayLocale.personal.reOperate 无法修改密码,请重新操作.
+		inputAgain:'Input new password again',//EwayLocale.personal.inputAgain 再次输入新密码
+		pwdNotSame:'New password is not match.',//EwayLocale.personal.pwdNotSame 两次密码不一致！
+		rememberPwd:'Click confirm to update password ,please remember it!',//EwayLocale.personal.rememberPwd 单击确定即可修改密码，请牢记新密码！
+		pwdSameNoChange:'New password is the same with the old ,can not update.',//EwayLocale.personal.pwdSameNoChange 输入的新密码与旧密码相同,不可修改.
+		reOperate:'Can not update password,please try again.'//EwayLocale.personal.reOperate 无法修改密码,请重新操作.
 	},
 
 	//**********************************************************/
