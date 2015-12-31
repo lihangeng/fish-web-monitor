@@ -330,7 +330,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					}
 				}
 			}
-			if(alertMsg!=null){
+			if((alertMsg!=null)&&mustOnePlan){
 				Eway.alert(EwayLocale.machine.serviceplan.weekDay+"'" +alertMsg+ "' " +EwayLocale.machine.serviceplan.timeError);
 		    	alertMsg = null;
 			}
@@ -621,7 +621,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 						infoWeekGrid.getStore().add(record);
 					}
 				}
-				if(alertMsg!=null){
+				if((alertMsg!=null)&&mustOnePlan){
 					Eway.alert(EwayLocale.machine.serviceplan.weekDay+"'" +alertMsg+ "' " +EwayLocale.machine.serviceplan.timeError);
 					alertMsg = null;
 				}
@@ -756,7 +756,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				win.close();
 			},
 			failure: function(record,operation){
-				if(operation.request.scope.reader.jsonData.type==null){
+				if(operation.request._scope.reader.type==null){
 					Eway.alert( operation.getError(),function(){
 						//解决脏数据
 						store.rejectChanges();

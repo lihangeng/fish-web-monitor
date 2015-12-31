@@ -52,7 +52,7 @@ Ext.define('Eway.view.monitor.device.FilterConfig',{
 			value : '0',
 			editable : false
 		},{
-			fieldLabel : EwayLocale.commen.insideOutside,
+			fieldLabel : EwayLocale.machine.device.onBankSignal,
 			xtype : 'combo',
 			displayField : 'name',
 			name : 'ingItem',

@@ -3,6 +3,7 @@ package com.yihuacomputer.fish.web.atm.format;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import com.yihuacomputer.fish.api.monitor.business.IBoxSettleDetail;
 import com.yihuacomputer.fish.api.monitor.business.ISettlement;
 import com.yihuacomputer.fish.monitor.entity.business.BoxSettleDetail;
@@ -64,7 +65,14 @@ public class SettlementMsg {
     public static List<SettlementMsg> convert(List<ISettlement> settlementList) {
         List<SettlementMsg> result = new ArrayList<SettlementMsg>();
         for (ISettlement iSettlement : settlementList) {
-            result.add(new SettlementMsg(iSettlement));
+        	SettlementMsg  sm  = new SettlementMsg(iSettlement);
+        	String date = sm.getDate().trim();
+        	if(date!=null&&date.length()>=14){
+        		date = date.substring(0,4)+"-"+date.substring(4,6)+"-"+date.substring(6,8)+" "+date.substring(8,10)+":"+date.substring(10,12)+":"+date.substring(12,14);	
+        	}
+        	
+        	sm.setDate(date);
+            result.add(sm);
         }
         return result;
     }

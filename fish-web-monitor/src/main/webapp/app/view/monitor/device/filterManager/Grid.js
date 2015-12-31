@@ -78,7 +78,7 @@ Ext.define('Eway.view.monitor.device.filterManager.Grid', {
 					return name;
 				}
 			}, {
-				header : EwayLocale.commen.insideOutside,
+				header : EwayLocale.machine.device.onBankSignal,
 				dataIndex : 'ingItem',
 				renderer : function(value) {
 					

@@ -83,7 +83,7 @@ Ext.define('Eway.view.monitor.settlement.FilterForm', {
 					} ]
 				}, {
 					xtype : 'fieldcontainer',
-					fieldLabel : EwayLocale.monitor.business.settlement.endDate,
+					fieldLabel : 'aa',
 					layout : 'hbox',
 					defaults : {
 						hideLabel : true

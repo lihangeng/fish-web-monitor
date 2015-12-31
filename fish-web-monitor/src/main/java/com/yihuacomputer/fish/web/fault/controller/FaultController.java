@@ -43,6 +43,7 @@ import com.yihuacomputer.fish.api.fault.FaultCloseType;
 import com.yihuacomputer.fish.api.fault.FaultStatus;
 import com.yihuacomputer.fish.api.fault.ICaseFault;
 import com.yihuacomputer.fish.api.fault.ICaseFaultService;
+import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.fault.form.CaseFaultForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
@@ -257,7 +258,7 @@ public class FaultController
             cell = row.createCell(0);
             cell.setCellType(Cell.CELL_TYPE_STRING);
             cell.setCellStyle(cellStyle);
-            cell.setCellValue(cellValue(fault.getOrg()));
+            cell.setCellValue(cellValue(fault.getOrg().getName()));
             
             
 
@@ -336,11 +337,11 @@ public class FaultController
             
             cell = row.createCell(11);
             cell.setCellStyle(cellStyle);
-            cell.setCellValue(cellValue(fault.getBankPerson()));
+            cell.setCellValue(listPersonName(fault.getBankPerson()));
             
             cell = row.createCell(12);
             cell.setCellStyle(cellStyle);
-            cell.setCellValue(cellValue(fault.getServicePerson()));
+            cell.setCellValue(listPersonName(fault.getServicePerson()));
         }
 
         String date = DateUtils.getDate(new Date());
@@ -482,5 +483,17 @@ public class FaultController
             result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.updateError", null, FishCfg.locale));
         }
         return result;
+    }
+    
+    
+    public String listPersonName(List<IPerson> list){
+    	StringBuffer sb = new StringBuffer();
+    	for(int i=0;i<list.size();i++){
+    		sb.append(list.get(i).getName());
+    		if(i!=list.size()-1){
+    			sb.append(";");
+    		}
+    	}
+    	return sb.toString();
     }
 }
