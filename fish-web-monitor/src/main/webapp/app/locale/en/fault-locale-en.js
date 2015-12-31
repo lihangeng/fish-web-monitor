@@ -21,7 +21,7 @@ Ext.apply(EwayLocale,{
 			sensoModule:'Sensor',//传感器模块
 			faultClassify: 'Fault Catalog',//故障分类
 			faultCode : 'Fault Code',//故障码
-			providerFaultCode: 'Fault Code Manufacturer',//厂商故障码
+			providerFaultCode: 'Fault Code',//厂商故障码
 			faultStartTime : 'Open Time',//故障开始时间
 			faultCloseTime : 'Close Time',//故障关闭时间
 			faultContinueTime : 'Time Last',//持续时长
@@ -93,15 +93,15 @@ Ext.apply(EwayLocale,{
 			applyStatus:'App status'//应用状态
 		},
 		vendorCode:{
-			exportProviderInfo: 'Import manufacturer faultCode',//导入厂商故障信息
+			exportProviderInfo: 'Import manufacturer fault code',//导入厂商故障信息
 			provider:'Manufacturer',
 			exportFile: 'Import file',//导入文件
-			deleteFaultInfo:'Delete manufacturer faultCode',//删除厂商故障信息
+			deleteFaultInfo:'Delete manufacturer fault code',//删除厂商故障信息
 			templateLoad:'Example download',//模板下载
 			massRemove: 'Batch delete',//批量删除
-			providerDescription:'FaultCode describe',//厂商故障描述
+			providerDescription:'Description',//厂商故障描述
 			solveProject: 'Solution',//解决方案
-			providerFaultInfo:'Manufacturer faultCode',//厂商故障信息管理
+			providerFaultInfo:'Fault Code',//厂商故障信息管理
 			formwork:'fault_message_en.xls'//模板下载
 		}
 	}
