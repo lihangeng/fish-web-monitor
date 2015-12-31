@@ -20,13 +20,13 @@ Ext.define('Eway.view.monitor.device.showType.BoxGrid', {
 			columns : [ {
 				xtype : 'rownumberer'
 			}, {
-				header : EwayLocale.person.bankOrg.name,
+				header : EwayLocale.machine.atmGroup.orgName,
 				dataIndex : 'org',
-				flex : 1
+				flex:1
 			}, {
 				header : EwayLocale.commen.terminalId,
 				dataIndex : 'code',
-				flex : 1,
+				width:120,
 				tdCls : 'pointerLink'
 			}, {
 				header : EwayLocale.monitor.devMonitor.comboxStatus.boxStatus,
@@ -42,20 +42,20 @@ Ext.define('Eway.view.monitor.device.showType.BoxGrid', {
  						return value; 
 					} 
 				},
-				flex : 1,
+				width:120,
 				tdCls : 'pointerLink'
 			}, {
 				header : EwayLocale.monitor.devMonitor.cash.boxInitCount,
 				dataIndex : 'boxInitCount',
-				flex : 1
+				width:180
 			}, {
 				header : EwayLocale.monitor.devMonitor.cash.boxCurrentCount,
 				dataIndex : 'boxCurrentCount',
-				flex : 1
+				width:180
 			}, {
 				header : EwayLocale.monitor.devMonitor.cash.cashboxLimit,
 				dataIndex : 'cashboxLimit',
-				flex : 1
+				width:170
 			}, {
 				header : EwayLocale.monitor.devMonitor.retainCardCount,
 				dataIndex : 'retainCardCount',
@@ -66,7 +66,7 @@ Ext.define('Eway.view.monitor.device.showType.BoxGrid', {
 		 				return value; 
 	 				} 
  				},
-				flex : 1
+ 				width:150
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,

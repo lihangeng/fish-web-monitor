@@ -300,11 +300,11 @@ Ext.apply(EwayLocale,{
 
 			},
 			device:{
-				getCashInfoFail:'Get the cashbin info failed',//EwayLocale.tip.business.device.getCashInfoFail 获取钞箱信息失败
+				getCashInfoFail:'Get cash boxes info failed',//EwayLocale.tip.business.device.getCashInfoFail 获取钞箱信息失败
 				operating:'Executing',//EwayLocale.tip.business.device.operating 正在执行
 				reviewFail:'Failed to review.',//EwayLocale.tip.business.device.reviewFail 查看失败
-				logLoadConfirm:'Get the applogs successful,download it?',//EwayLocale.tip.business.device.logLoadConfirm 应用日志提取成功,是否下载?
-				logPullFail:'Get the applogs failed',//EwayLocale.tip.business.device.logPullFail 提取应用电子日志失败
+				logLoadConfirm:'Get the atmc logs successful,download it?',//EwayLocale.tip.business.device.logLoadConfirm 应用日志提取成功,是否下载?
+				logPullFail:'Get atmc logs failed',//EwayLocale.tip.business.device.logPullFail 提取应用电子日志失败
 				logFail:'Log process failed.',//EwayLocale.tip.business.device.logFail log 处理失败
 				linkServerFail:'Connecting refused.',//EwayLocale.tip.business.device.linkServerFail 服务器连接失败
 				logicOpen:'Confirm execute start-service command.',//EwayLocale.tip.business.device.logicOpen 确认要执行开启服务命令
@@ -341,7 +341,7 @@ Ext.apply(EwayLocale,{
 				resetSuccess:'Force-reset successful',//EwayLocale.tip.business.device.resetSuccess 强制复位成功
 				resetFail:'Force-reset failed',//EwayLocale.tip.business.device.resetFail 强制复位失败
 				resetSendFail:'Send the force-reset command failed.',//EwayLocale.tip.business.device.resetSendFail 强制复位命令发送失败
-				term:'Terminal',//EwayLocale.tip.business.device.term 设备
+				term:'Terminal ID',//EwayLocale.tip.business.device.term 设备
 				detail:'Detail',//EwayLocale.tip.business.device.detail 详情
 				refresh:'Refreshing......',//EwayLocale.tip.business.device.refresh 正在刷新......
 				chooseOrg:'Screen organization',//EwayLocale.tip.business.device.chooseOrg 机构筛选
@@ -433,8 +433,8 @@ Ext.apply(EwayLocale,{
 		},
 		type:'Type',//EwayLocale.commen.type 类型
 		comboxType:{
-			machineManager:'Machine manager',//EwayLocale.commen.comboxType.machineManager 管机员
-			machineRepairer:'Machine repairer'//EwayLocale.commen.comboxType.machineRepairer 维修人员
+			machineManager:'Device Manager',//EwayLocale.commen.comboxType.machineManager 管机员
+			machineRepairer:'Maintenance Engineers'//EwayLocale.commen.comboxType.machineRepairer 维修人员
 		},
 		mobile:'Mobile',//EwayLocale.commen.mobile 手机
 		email:'E-Mail',//EwayLocale.commen.email 邮箱

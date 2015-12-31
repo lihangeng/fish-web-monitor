@@ -47,7 +47,6 @@ public class CollectServiceTest extends BindSessionInTest2 {
 //		// de.setAtmcSoft("atmcSoft");
 //		// de.setAwayFlag(AwayFlag.FROM_THE_LINE);
 //		de.setBuyDate(new Date());
-//		// de.setCareLevel(CareLevel.EMPHASIS);
 //		de.setCarrier("carrier");
 //		// de.setCashType(CashType.CASH);
 //		de.setCloseTime("10:10:10");
