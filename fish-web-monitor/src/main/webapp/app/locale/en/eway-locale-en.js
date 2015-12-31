@@ -224,7 +224,7 @@ Ext.apply(EwayLocale,{
 			allPersonInfo:'ALL info of bank employeers',//EwayLocale.tip.bankPer.allPersonInfo 所有银行人员信息
 			link:{
 				linkPerson:'Please choose a maintenaner which you want to bind with.',//EwayLocale.tip.bankPer.link.linkPerson 请选择您关联的人员
-				linkBankPerson:'Please choose a employeer which you want to bind with.',//EwayLocale.tip.bankPer.link.linkBankPerson 请选择您关联的人员
+				linkBankPerson:'Please choose a banker which you want to bind with.',//EwayLocale.tip.bankPer.link.linkBankPerson 请选择您关联的人员
 				unLinkPersonFail:'Link failed.',//EwayLocale.tip.bankPer.link.unLinkPersonFail 关联失败
 				unlinkDev:'Please choose a machine which you want to lift.',//EwayLocale.tip.bankPer.link.unlinkDev 请选择要解除的设备
 				linkDev:'Please choose a machine which you want to link.',//EwayLocale.tip.bankPer.link.linkDev 请选择要关联的设备
