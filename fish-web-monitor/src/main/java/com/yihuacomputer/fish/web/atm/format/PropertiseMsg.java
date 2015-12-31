@@ -37,6 +37,10 @@ public class PropertiseMsg {
 
     private DeviceProp isc ;
 
+    private DeviceProp cam ;
+
+    private DeviceProp bcr ;
+
     public String getTermId() {
         return termId;
     }
@@ -198,6 +202,22 @@ public class PropertiseMsg {
 
 	public DeviceProp getIsc(){
 		return isc ;
+	}
+
+	public DeviceProp getCam() {
+		return cam;
+	}
+
+	public void setCam(DeviceProp cam) {
+		this.cam = cam;
+	}
+
+	public DeviceProp getBcr() {
+		return bcr;
+	}
+
+	public void setBcr(DeviceProp bcr) {
+		this.bcr = bcr;
 	}
 
 }
