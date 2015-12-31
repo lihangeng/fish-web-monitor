@@ -534,6 +534,7 @@ Ext.apply(EwayLocale,{
 			stopReason:'Reason',//停机原因
 			address:'Address',//所属地址
 			selectDev:'Please choose the device which you want to stop',//选择需要报停的设备
+			updateUnable:'Can not update the record which is recovered.',
 			to:'to',//至
 			stopType:'Type',//停机类型
 			comboxStopType:{
