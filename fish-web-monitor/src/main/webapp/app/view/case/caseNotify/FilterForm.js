@@ -12,7 +12,7 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 	initComponent : function(){
 		Ext.apply(this,{
 			items : [{
-				columnWidth : .25,
+				columnWidth : .33,
 				xtype : 'form',
 				items : [{
 					xtype : 'textfield',
@@ -20,31 +20,29 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 					msgTarget:'side',
 					name : 'terminalId'
 				},{
-					xtype : 'field_notifyWay',
-					fieldLabel : EwayLocale.cases.caseFault.informWay,
-					name : 'notifyWay'
-				}]
-			},{
-				columnWidth : .23,
-				xtype : 'form',
-				items : [{
 					xtype : 'textfield',
 					fieldLabel : EwayLocale.cases.caseFault.informMobile,
 					msgTarget : 'side',
-					name : 'mobile',
-					width : 250
-				},{
+					name : 'mobile'
+				}]
+			},/*{
+				columnWidth : .33,
+				xtype : 'form',
+				items : [,{
+							xtype : 'field_notifyWay',
+							fieldLabel : EwayLocale.cases.caseFault.informWay,
+							name : 'notifyWay'
+						},{
 					xtype : 'textfield',
 					fieldLabel : 'E-Mail',
 					vtype : 'email',
 					regexText : EwayLocale.vtype.emailRules,
 					msgTarget : 'side',
 					maxLength:50,
-					name : 'mail',
-					width : 250
+					name : 'mail'
 				}]
-			},{
-				columnWidth : .25,
+			},*/{
+				columnWidth : .34,
 				xtype : 'form',
 				items : [{
 					xtype : 'datefield',
@@ -103,7 +101,7 @@ Ext.define('Eway.view.case.caseNotify.FilterForm',{
 					}
 				}]
 			},{
-				columnWidth : .27,
+				columnWidth : .33,
 				xtype : 'form',
 				items : [{
 					xtype:'numberfield',

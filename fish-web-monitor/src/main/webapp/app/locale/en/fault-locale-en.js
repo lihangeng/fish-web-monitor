@@ -6,43 +6,43 @@ Ext.apply(EwayLocale,{
 		cancel:'Cancel',//取消
 		concern:'Attention please',//请关注
 		SRCBView:',Send by monitor system',//上海农商行新监控发送
-		nowExportFile:'File Importing',//正在导入文件
+		nowExportFile:'Importing File',//正在导入文件
 		exportFaultInfo:'Import fault code successfully',//导入厂商故障信息成功.
 		caseFault:{
 			faultRelevantInfo:'SMS about fault',//故障相关短信
-			faultModule:'Fault Module ',
+			faultModule:'Fault Module',
 			cardReaderModule:'Card Reader',//读卡器模块
 			depoistModule:'Deposit Module',//存款模块
-			drawModule:'Withdrawal Module',//取款模块
+			drawModule:'Dispenser Module',//取款模块
 			rprModule:'Receipt Printer',//凭条打印模块
 			jprModule:'Journal Printer',//日志打印模块
-			pinModule:'Encryption Pinpad',//密码键盘模块
-			textTerminalUnit:'Text Terminal',//文本终端单元
-			sensoModule:'Sensor',//传感器模块
+			pinModule:'PIN',//密码键盘模块
+			textTerminalUnit:'TTU',//文本终端单元
+			sensoModule:'Sensors',//传感器模块
 			faultClassify: 'Fault Catalog',//故障分类
 			faultCode : 'Fault Code',//故障码
 			providerFaultCode: 'Fault Code',//厂商故障码
-			faultStartTime : 'Open Time',//故障开始时间
+			faultStartTime : 'Start Time',//故障开始时间
 			faultCloseTime : 'Close Time',//故障关闭时间
-			faultContinueTime : 'Time Last',//持续时长
+			faultContinueTime : 'Duration',//持续时长
 		    faultState : 'Status',//故障状态
 		    status:{
-		    	open:'Opening',//未关闭
+		    	open:'Open',//未关闭
 		    	close:'Closed'//已关闭
 		    },
 		    closeType:{
-		    	force : 'closeByForce',
-		    	normal : 'closeNormal'
+		    	force : 'Close Manually',
+		    	normal : 'Close Automaticlly'
 		    },
-		    closeByForce : 'click to close fault by hand',
-		    faultCloseType : 'Fault Close Type',
+		    closeByForce : 'Click to close fault by hand',
+		    faultCloseType : 'Close Type',
 		    none : 'none',
 
 		    upgradeTimes: 'Upgrade Times',//升级次数
 		    message: 'SMS',//短信
 		    checkDetails: 'Detail',//查看详情
 		    bankPer: 'Bank Contacts',//银行联系人
-		    serPer: 'Suppliers Contacts',//供应商联系人
+		    serPer: 'Maintenance Engineers',//供应商联系人
 		    createTime: 'Create Time',//创建时间
 		    informContent: 'Notify Content',//通知内容
 		    messageContentDetail: 'SMS Content',//短信内容详情
@@ -51,7 +51,7 @@ Ext.apply(EwayLocale,{
 		    messageAndMail:'SMS And Email',//短信和邮件
 		    informMobile: 'Notify Mobile',//通知手机号
 		    notifyTimes: 'Notify Times',//通知次数
-		    notifyRepeatTimes: 'Repeat Notify Times',//重复通知次数
+		    notifyRepeatTimes: 'Notify Times',//重复通知次数
 		    sendTimes: 'Send Times',//发送次数
 		    sendInterval: 'Intervals Between Each Send',//发送时间间隔
 		    sendTime: 'Send Time',//发送时间
@@ -65,18 +65,18 @@ Ext.apply(EwayLocale,{
 			faultlastTime: 'Fault last(unit:hour)',//故障持续时长(单位:小时)
 			checkFailure:'View failed!',//查看失败！
 			innerFault:'System error',//EwayLocale.cases.caseNotify.innerFault 内部错误
-			messageCheck:'Query SMS'//短信查询
+			messageCheck:'SMS Info'//短信查询
 		},
 		faultClassify:{
-			faultClassifyName: 'Fault type name',//故障分类名称
-			faultresponsorType: 'Fault personliable type', //故障责任人类型
-			maintain:'Maintainer',//维护员
-			manageAndMaintain:'Manager&Maintainer',//管机员和维护员
+			faultClassifyName: 'Name',//故障分类名称
+			faultresponsorType: 'Handlers Type', //故障责任人类型
+			maintain:'Maintenance Engineers',//维护员
+			manageAndMaintain:'All the above',//管机员和维护员
 			upGradeTimes: 'Max upgrade times',//最高升级次数
 			faultInformWay:'Notify way',//故障通知方式
 			faultCloseInterval:'Intervals between close(unit:hour)',//故障规定关闭时间间隔（单位:小时）
 			faultTypeConfiguration: 'Fault type setting',//故障类型配置
-			updateFaultTypeConfiguration: 'Modify fault type',//更改故障类型配置
+			updateFaultTypeConfiguration: 'Update Fault Type Info',//更改故障类型配置
 			number:'Just for numbers ‘0-9’',//由数字‘0-9’,‘.’组成
 			informNumber:'Can not be 0,1-5 numbers'//通知次数不能为0,由数字‘0-9’组成,1-5位
 		},

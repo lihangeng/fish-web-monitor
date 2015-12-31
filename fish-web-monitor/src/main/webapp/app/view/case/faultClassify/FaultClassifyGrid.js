@@ -23,11 +23,11 @@ Ext.define('Eway.view.case.faultClassify.FaultClassifyGrid', {
 			columns : [{
 				header : EwayLocale.cases.faultClassify.faultClassifyName,
 				dataIndex : 'classifyName',
-				width : 140
+				flex : 1
 			}, {
 				header : EwayLocale.cases.faultClassify.faultresponsorType,
 				dataIndex : 'responsorType',
-				width : 110,
+				width : 160,
 				renderer : function(value){
 					if(value == 1){
 						return EwayLocale.commen.comboxType.machineManager;
@@ -40,15 +40,15 @@ Ext.define('Eway.view.case.faultClassify.FaultClassifyGrid', {
 			}, {
 				header : EwayLocale.cases.faultClassify.upGradeTimes,
 				dataIndex : 'upgrade',
-				width : 90
+				width : 150
 			},{
 				header : EwayLocale.cases.caseFault.notifyRepeatTimes,
 				dataIndex : 'notifyTimes',
-				width : 90
+				width : 100
 			},{
 				header : EwayLocale.cases.faultClassify.faultInformWay,
 				dataIndex : 'notifyWay',
-				width : 90,
+				width : 100,
 				renderer : function(value){
 					if(value == 'SMS'){
 						return EwayLocale.cases.caseFault.message;
@@ -63,7 +63,7 @@ Ext.define('Eway.view.case.faultClassify.FaultClassifyGrid', {
 			}, {
 				header : EwayLocale.cases.faultClassify.faultCloseInterval,
 				dataIndex : 'resolveHour',
-				flex : 1
+				width : 240
 			}],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,

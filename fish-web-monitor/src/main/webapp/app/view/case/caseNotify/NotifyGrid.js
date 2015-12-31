@@ -24,7 +24,11 @@ Ext.define('Eway.view.case.caseNotify.NotifyGrid', {
 				header :  EwayLocale.cases.caseFault.informContent,
 				dataIndex : 'content',
 				width : 200
-			}, {
+			},{
+				header : EwayLocale.commen.terminalId,
+				dataIndex : 'terminalId',
+				width : 80
+			}, /*{
 				header : EwayLocale.cases.caseFault.informWay,
 				dataIndex : 'notifyWay',
 				renderer: function(value,metadata,record){
@@ -39,31 +43,15 @@ Ext.define('Eway.view.case.caseNotify.NotifyGrid', {
 					}
 				},
 				width : 80
-			}, {
+			},*/ {
 				header : EwayLocale.cases.caseFault.informMobile,
 				dataIndex : 'mobile',
 				width : 120
 			}, {
-				header : EwayLocale.cases.caseFault.notifyRepeatTimes,
-				dataIndex : 'notifyTimes',
-				width : 60
-			}, {
-				header : EwayLocale.cases.caseFault.sendTimes,
-				dataIndex : 'sendTimes',
-				width : 60
-			}, {
-				header : EwayLocale.cases.caseFault.sendInterval,
-				dataIndex : 'sendInterval',
-				width : 100
-			}, {
 				header : EwayLocale.cases.caseFault.sendTime,
 				dataIndex : 'sendTime',
 				width : 120
-			}, {
-				header : EwayLocale.commen.terminalId,
-				dataIndex : 'terminalId',
-				width : 80
-			}, {
+			},  {
 				xtype:'actioncolumn',
 				header : EwayLocale.cases.caseNotify.fault,
 				dataIndex : 'faultId',
@@ -223,8 +211,20 @@ Ext.define('Eway.view.case.caseNotify.NotifyGrid', {
 			}, {
 				header : EwayLocale.cases.caseFault.serPer,
 				dataIndex : 'serPer',
+				width : 150
+			},{
+				header : EwayLocale.cases.caseFault.notifyRepeatTimes,
+				dataIndex : 'notifyTimes',
 				width : 100
-			}],
+			}, {
+				header : EwayLocale.cases.caseFault.sendTimes,
+				dataIndex : 'sendTimes',
+				width : 120
+			}/*, {
+				header : EwayLocale.cases.caseFault.sendInterval,
+				dataIndex : 'sendInterval',
+				width : 100
+			}*/],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,
 				displayInfo : true

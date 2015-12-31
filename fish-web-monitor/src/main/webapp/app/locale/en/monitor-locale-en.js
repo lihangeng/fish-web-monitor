@@ -118,7 +118,7 @@ Ext.apply(EwayLocale,{
 				pauseSer:'Pause serivce',//EwayLocale.monitor.devMonitor.remote.pauseSer 暂停服务
 				pauseCash:'Pause cash',//EwayLocale.monitor.devMonitor.remote.pauseCash   ----中文不明，我猜的----
 				pauseSerUnknow:'Pause serivce-unkown',//EwayLocale.monitor.devMonitor.remote.pauseSerUnknow 未知原因暂停服务
-				manaAndstaff:'Machine manager'//EwayLocale.monitor.devMonitor.remote.manaAndstaff 管机员
+				manaAndstaff:'Device Manager'//EwayLocale.monitor.devMonitor.remote.manaAndstaff 管机员
 			},
 			atmGroup:'Group',//EwayLocale.monitor.devMonitor.atmGroup 分组
 			atmGroupTip:'GroupDetail',//EwayLocale.monitor.devMonitor.atmGroupTip

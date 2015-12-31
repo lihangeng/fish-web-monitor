@@ -433,8 +433,8 @@ Ext.apply(EwayLocale,{
 		},
 		type:'Type',//EwayLocale.commen.type 类型
 		comboxType:{
-			machineManager:'Machine manager',//EwayLocale.commen.comboxType.machineManager 管机员
-			machineRepairer:'Machine repairer'//EwayLocale.commen.comboxType.machineRepairer 维修人员
+			machineManager:'Device Manager',//EwayLocale.commen.comboxType.machineManager 管机员
+			machineRepairer:'Maintenance Engineers'//EwayLocale.commen.comboxType.machineRepairer 维修人员
 		},
 		mobile:'Mobile',//EwayLocale.commen.mobile 手机
 		email:'E-Mail',//EwayLocale.commen.email 邮箱

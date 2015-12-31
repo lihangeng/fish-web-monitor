@@ -130,7 +130,7 @@ Ext.apply(EwayLocale,{
 		taskTypeAuto:'Auto Update',//EwayLocale.version.taskTypeAuto 自动升级
 		taskTypeScheduler:'Job plan',//EwayLocale.version.taskTypeScheduler 计划作业
 		planTime:'Plan to execute time',//EwayLocale.version.planTime 计划执行时间
-		selectableDevice:'Device can be issue',//EwayLocale.version.selectableDevice 可以下发的设备
+		selectableDevice:'Selectable Devices',//EwayLocale.version.selectableDevice 可以下发的设备
 		linkedDevice:'Selected Devices',//EwayLocale.version.linkedDevice 已选择的设备
 		downloadVerFile:'Download version file',//EwayLocale.version.downloadVerFile 下载版本文件
 		installPath:'Install Path',
@@ -168,12 +168,12 @@ Ext.apply(EwayLocale,{
 			dependVersionEmptyText:'Please select type dependent on', //请选择依赖类型
 			execBefore:'Execute script before update',//EwayLocale.version.View.execBefore 升级前执行脚本
 			execBeforeEmptyText:'Please input the file in the update package which name is end with bat or cmd',//EwayLocale.version.View.execBeforeEmptyText 请输入升级包中的以bat或cmd结尾的文件
-			execBeforeRegexText:'Only the file which name end with ‘bat’ or ‘cmd’ can be inputed',//EwayLocale.version.View.execBeforeRegexText 只能输入bat或cmd结尾的文件
+			execBeforeRegexText:'Only the file which name end with "bat" or "cmd" can be inputed',//EwayLocale.version.View.execBeforeRegexText 只能输入bat或cmd结尾的文件
 			versionDesc:'Description',//EwayLocale.version.View.versionDesc 版本描述
 			versionDescEmpty:'Please describe this version with words (At most 20 words)',//EwayLocale.version.View.versionDescEmpty 请用文字描述此版本需求
 			otherConfigTitle:'Additional Settings',//EwayLocale.version.View.otherConfigTitle 其他配置
-			otherConfigAutoDown:'Allow update automatic (only while the ATM check new version from server ,the version which update automatic will be return to ATM )',//EwayLocale.version.View.otherConfigAutoDown 允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)
-			otherConfigUncompress:'Uzip automatic(when choose this option, the ATM will unzip automatic )&nbsp;<font color="red">attention:if the file is not zip file at first ,and then zipped to zip file ,please select this option!</font>',//EwayLocale.version.View.otherConfigUncompress 自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>
+			otherConfigAutoDown:'Allow auto update ',//EwayLocale.version.View.otherConfigAutoDown 允许自动更新(当ATM向服务器检查新版本时，允许自动更新的版本才可以返回给ATM)
+			otherConfigUncompress:'Auto unzip',//EwayLocale.version.View.otherConfigUncompress 自动解压缩(选中此项时，在ATM端会自动解压缩)&nbsp;<font color="red">注意：如果版本文件本来不符合zip格式，后被压缩成zip时，请选中此项！</font>
 			versionServerPath:'File Path In Server', //EwayLocale.version.View.versionServerPath 文件在服务器上的位置
 			versionName:'Name',//EwayLocale.version.View.versionName 版本名称
 			downloadVersionName:'Version issued',//EwayLocale.version.View.downloadVersionName 下发的版本
@@ -232,7 +232,7 @@ Ext.apply(EwayLocale,{
 			autoRefreshTips:'Refresh periodic 60 second',//EwayLocale.version.download.autoRefreshTips 刷新周期60秒
 			resetTaskStatus:'Reset Status',//EwayLocale.version.download.resetTaskStatus
 			selectTask:'Please choose a task record！',//EwayLocale.version.download.selectTask请选择一条任务记录
-			selectAllDevice:'All equipment',//EwayLocale.version.download.selectAllDevice全部设备
+			selectAllDevice:'All Devices',//EwayLocale.version.download.selectAllDevice全部设备
 			checkedTaskCantResetTips:'Non-running task can not be reset！',//EwayLocale.version.download.checkedTaskCantResetTips非运行中的任务无法重置
 			taskExportTips:'Export all issue result of job selected'//EwayLocale.version.download.taskExportTips 导出选中作业下的全部下发结果
 		},
