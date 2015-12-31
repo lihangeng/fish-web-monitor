@@ -569,7 +569,7 @@ Ext.apply(EwayLocale,{
 			createDateTime:'Created Time',//EwayLocale.machine.serviceplan.createDateTime创建时间
 			date:'Date',//EwayLocale.machine.serviceplan.date日期
 			week:'Week',//EwayLocale.machine.serviceplan.week星期
-			weekDay:'The weekday ',//EwayLocale.machine.serviceplan.weekDay星期
+			weekDay:'',//EwayLocale.machine.serviceplan.weekDay星期
 			inportLinkedMachine:'Import related devices',//EwayLocale.machine.serviceplan.inportLinkedMachine导入关联设备
 			selectFile:'Select the file',//EwayLocale.machine.serviceplan.selectFile选择文件
 			placeUploadingResource:'Please upload resources',//EwayLocale.machine.serviceplan.placeUploadingResource请上传资源
@@ -579,14 +579,12 @@ Ext.apply(EwayLocale,{
 			thisHardToTranslate:'Click to download introducing device ID template',//EwayLocale.machine.serviceplan.thisHardToTranslate点击下载导入设备号模板
 			placeSelect:'---Please select---',//EwayLocale.machine.serviceplan.placeSelect请选择
 			planDevice:'Service Plan <--> Device',//EwayLocale.machine.serviceplan.planDevice方案<-->设备
-			timeEare:'Enter the time is incorrect, please re-enter！',//EwayLocale.machine.serviceplan.timeEare输入时间段有误，请重新输入
-			timeError:'inputted is invalid,please re-enter',//EwayLocale.machine.serviceplan.timeError输入时间段有误，请重新输入
+			timeEare:'Enter the time is incorrect, please re-enter!',//EwayLocale.machine.serviceplan.timeEare输入时间段有误，请重新输入
+			timeError:'invalid,please re-enter.',//EwayLocale.machine.serviceplan.timeError输入时间段有误，请重新输入
 			planOlonOne:'The same plan can only set a startup or shutdown',//EwayLocale.machine.serviceplan.planOlonOne同方案只能设置开机或关机的一种
-			addSuccess:'Added Successfully',//EwayLocale.machine.serviceplan.addSuccess添加成功
-			addFail:'Add Failed',//EwayLocale.machine.serviceplan.addFail添加失败
 			setTime:'Please set the detailed time',//EwayLocale.machine.serviceplan.setTime请设置详细时间
 			thisPlanStop:'(This plan is disabled, can not apply!)',//EwayLocale.machine.serviceplan.thisPlanStop(此方案已停用，不可应用！)
-			placeRefresh:'Article lift failed. Please refresh view！',//EwayLocale.machine.serviceplan.placeRefresh条解除失败，请刷新后查看
+			placeRefresh:'Article lift failed. Please refresh view!',//EwayLocale.machine.serviceplan.placeRefresh条解除失败，请刷新后查看
 			linking:'Being associated devices....',//EwayLocale.machine.serviceplan.linking正在关联设备
 			testingPlaceWaiting:'Device number is judged to meet the requirements, please wait...',//EwayLocale.machine.serviceplan.testingPlaceWaiting正在判断设备号是否符合要求，请耐心等待
 			leastOne:'Importing a device at least once information, please re-select the import file!',//EwayLocale.machine.serviceplan.leastOne最少一次导入1条设备信息，请重新选择导入文件

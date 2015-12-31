@@ -162,24 +162,24 @@ Ext.apply(EwayLocale,{
 		selectMoveDev:'Please select the machine which you want to move.',//请选择要移动的设备.
 		moveSuc:'Move the machine successful',//移机成功.
 		dateReSelect:'The begin date can not be later than end date,please select again',//开始时间不能大于结束日期,请重新选择
-		selectPlan:'Please select the program which you want to execute',//请选择您应用的方案.
+		selectPlan:'Please select the plan which you want to execute',//请选择您应用的方案.
 		removeFail:'Relieve failed',//解除失败.
 		selectRemoveDev:'Please select the machine which you want to relieve.',//请选择要解除的设备.
 		relatedFail:'Binding machine failed.',//关联失败.
 		selectRelatedDev:'Please choose machines which you want to bind.',//请选择要关联的设备
-		planNoUpdate:'This program has been executed ,can not be modified ',//该方案已经执行,不可修改.
-		planNoRemove:'This program has been executed ,can not be deleted ',///该方案已经执行,不可删除.
+		planNoUpdate:'This plan has been executed ,can not be modified ',//该方案已经执行,不可修改.
+		planNoRemove:'This plan has been executed ,can not be deleted ',///该方案已经执行,不可删除.
 		exportFiles: 'Please choose a file to import,only support .xls or .xlsx files ',//请选择导入文件,只支持.xls和.xlsx格式的文件
 		noChange:'Did not change the data, change and then click OK!',//EwayLocale.tip.noChange没有更改数据,请更改后再点击确定
 		operateSuc:'Successful operation',//EwayLocale.tip.operateSuc操作成功
 		operateWrong:'Successful operation',//EwayLocale.tip.operateWrong操作成功
 		deleteOne:'You can only delete a record.',//EwayLocale.tip.deleteOne一次只能删除一条记录
 		chooseRecord:'Please select the records that you want to associate.',//EwayLocale.tip.chooseRecord请选择您要关联的记录
-		choosePlan:'Please select the program you want to view',//EwayLocale.tip.choosePlan请选择您要查看的方案
-		planDetail:'Programme details',//EwayLocale.tip.planDetail方案详情
-		planDate:'Programme details (date)',//EwayLocale.tip.planDate方案详情(日期)
-		planWeek:'Programme details (Week)',//EwayLocale.tip.planWeek方案详情(星期)
-		planNoConf:'The program no detailed settings！',//EwayLocale.tip.planNoConf该方案无详细设置
+		choosePlan:'Please select the plan you want to view',//EwayLocale.tip.choosePlan请选择您要查看的方案
+		planDetail:'Plan details',//EwayLocale.tip.planDetail方案详情
+		planDate:'Plan details (date)',//EwayLocale.tip.planDate方案详情(日期)
+		planWeek:'Plan details (Week)',//EwayLocale.tip.planWeek方案详情(星期)
+		planNoConf:'The plan no detailed settings！',//EwayLocale.tip.planNoConf该方案无详细设置
 		chooseRelatedDev:'Please select the device you want to associate！',//EwayLocale.tip.chooseRelatedDev请选择您要关联的设备
 		devRelatedPlan:'Device has been bound with the service plan!',//EwayLocale.tip.devRelatedPlan设备已关联开机方案
 		//add by panxin
@@ -392,7 +392,7 @@ Ext.apply(EwayLocale,{
 		hardwayInitialize:'Hardware module initializing......',//硬件模块正在初始化
 		inputCorrect:'Please input correct data.',//请正确输入
 		exportRepError:'Export report error,please try again',//导出报表出错，请重新操作!
-		planOutdate:'(This program is out of date,can not be applied)',//(此方案已过期，不可应用！)
+		planOutdate:'(This plan is out of date,can not be applied)',//(此方案已过期，不可应用！)
 
 		emailRules: 'email must accord with the rule of *@*.* ',//email必须符合*@*.*标准。
 		notifyTimesRules: 'Times of notice must be numbers,minimum 0,maximum 100.',//通知次数必须为数字，最小值为0,最大值为100。

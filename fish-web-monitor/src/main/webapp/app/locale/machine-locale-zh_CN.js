@@ -598,8 +598,6 @@ Ext.apply(EwayLocale,{
 			timeEare:'输入时间段有误，请重新输入！',//EwayLocale.machine.serviceplan.timeEare
 			timeError:'输入时间段有误，请重新输入！',//EwayLocale.machine.serviceplan.timeError
 			planOlonOne:'同方案只能设置开机或关机的一种',//EwayLocale.machine.serviceplan.planOlonOne
-			addSuccess:'添加成功',//EwayLocale.machine.serviceplan.addSuccess
-			addFail:'添加失败',//EwayLocale.machine.serviceplan.addFail
 			setTime:'请设置详细时间',//EwayLocale.machine.serviceplan.setTime
 			thisPlanStop:'(此方案已停用，不可应用！)',//EwayLocale.machine.serviceplan.thisPlanStop
 			placeRefresh:'条解除失败，请刷新后查看！',//EwayLocale.machine.serviceplan.placeRefresh
