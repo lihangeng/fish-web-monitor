@@ -109,15 +109,17 @@ public class TaskService implements IDomainTaskService {
 	@Override
 	public ITask addTask(ITask task) {
 		Task entity = this.interface2Entity(task, false);
-		dao.save(entity);
-		// 修改版本状态,NEW--> WAITING
+		if(entity.getId()>0){
+			dao.update(entity);
+		}
+		else{
+			dao.save(entity);
+		}
 		IVersion version = entity.getVersion();
 		if (version.getVersionStatus().equals(VersionStatus.NEW)) {
 			version.setVersionStatus(VersionStatus.WAITING);
 			versionService.update(version);
 		}
-		// 修改或者保存设备版本表
-		//@since 2.0 删除
 		return entity;
 	}
 
