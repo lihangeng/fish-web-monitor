@@ -21,17 +21,17 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 				xtype : 'rownumberer',
 				resizable : true
 			}, {
-				header : EwayLocale.person.bankOrg.name,
+				header : EwayLocale.machine.atmGroup.orgName,
 				dataIndex : 'org'
 			}, {
 				header : EwayLocale.commen.terminalId,
 				dataIndex : 'code',
-				width : 100,
+				width : 120,
 				tdCls : 'pointerLink'
 			}, {
 				header : EwayLocale.commen.ip,
 				dataIndex : 'ip',
-				width : 100
+				width : 120
 			}, {
 				header : EwayLocale.monitor.devMonitor.comboxStatus.runStatus,
 				dataIndex : 'runStatus',
@@ -58,7 +58,7 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 						return value; 
 					} 
 				},
-				width : 100
+				width : 110
 			}, {
 				header : EwayLocale.monitor.devMonitor.comboxStatus.boxStatus,
 				dataIndex : 'boxStatus',
@@ -71,7 +71,7 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 			  			return value; 
 		  			} 
 	  			},
-				width : 100
+				width : 110
 			}, {
 				header : EwayLocale.monitor.devMonitor.comboxStatus.netStatus,
 				dataIndex : 'netStatus',
@@ -85,19 +85,19 @@ Ext.define('Eway.view.monitor.device.showType.ListGrid', {
 	  					return value; 
   					} 
 				},
-				width : 100
+				width : 110
 			}, {
 				header : EwayLocale.monitor.devMonitor.retainCardCount,
 				dataIndex : 'retainCardCount',
-				width : 100
+				width : 150
 			}, {
 				header : EwayLocale.monitor.devMonitor.cash.boxInitCount,
 				dataIndex : 'boxInitCount',
-				width : 100
+				width : 180
 			}, {
 				header : EwayLocale.monitor.devMonitor.cash.boxCurrentCount,
 				dataIndex : 'boxCurrentCount',
-				width : 100
+				width : 180
 			}, {
 				header : EwayLocale.commen.devTypeName,
 				dataIndex : 'type',
