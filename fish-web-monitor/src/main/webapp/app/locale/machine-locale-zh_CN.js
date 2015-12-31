@@ -121,6 +121,20 @@ Ext.apply(EwayLocale,{
 			icc:'发卡器',
 			fgp:'指纹仪',
 			pbk:'存折打印机',
+			
+			CAMStatusInfo:'摄像头(CAM)状态信息',//EwayLocale.machine.device.CAMStatusInfo,
+			CAMRoomStatus:'房间摄像头',//EwayLocale.machine.device.CAMRoomStatus,
+			CAMPersonStatus:'客户摄像头',//EwayLocale.machine.device.CAMPersonStatus,
+			CAMExitSlotStatus:'出钞口摄像头',//EwayLocale.machine.device.CAMExitSlotStatus,
+
+			CAMInfo:'摄像头(CAM)属性信息',//EwayLocale.machine.device.CAMInfo,
+			CAMMaxPictures:'最大拍照张数',//EwayLocale.machine.device.CAMMaxPictures,
+			CAMMaxDataLength:'最大文字数',//EwayLocale.machine.device.MaxDataLength,
+			
+			BCRInfo:'二维码扫描仪(BCR)属性信息',//EwayLocale.machine.device.BCRInfo,
+			BCRCanCompound:'是否为合成设备',//EwayLocale.machine.device.BCRCanCompound,
+			BCRCanFilterSymbologies:'能否辨别制定的条码',//EwayLocale.machine.device.BCRCanFilterSymbologies,
+			
 			CDMInfo:'取款模块（CDM）属性信息',
 			hasStack:'是否具有暂存器',
 			hasShutter:'是否具有shutter门',
@@ -579,13 +593,10 @@ Ext.apply(EwayLocale,{
 			exportExplain:'导入说明',//EwayLocale.machine.serviceplan.exportExplain
 			thisIsTooLong:'请在设备导入模板中连续添加要下发的设备号,最多一次性导入2000条数据(约耗时5分钟),最少导入1条数据',//EwayLocale.machine.serviceplan.thisIsTooLong
 			thisHardToTranslate:'点击下载导入设备号模板',//EwayLocale.machine.serviceplan.thisHardToTranslate
-			placeSelect:'---请选择---',//EwayLocale.machine.serviceplan.placeSelect
 			planDevice:'方案<-->设备',//EwayLocale.machine.serviceplan.planDevice
 			timeEare:'输入时间段有误，请重新输入！',//EwayLocale.machine.serviceplan.timeEare
 			timeError:'输入时间段有误，请重新输入！',//EwayLocale.machine.serviceplan.timeError
 			planOlonOne:'同方案只能设置开机或关机的一种',//EwayLocale.machine.serviceplan.planOlonOne
-			addSuccess:'添加成功',//EwayLocale.machine.serviceplan.addSuccess
-			addFail:'添加失败',//EwayLocale.machine.serviceplan.addFail
 			setTime:'请设置详细时间',//EwayLocale.machine.serviceplan.setTime
 			thisPlanStop:'(此方案已停用，不可应用！)',//EwayLocale.machine.serviceplan.thisPlanStop
 			placeRefresh:'条解除失败，请刷新后查看！',//EwayLocale.machine.serviceplan.placeRefresh

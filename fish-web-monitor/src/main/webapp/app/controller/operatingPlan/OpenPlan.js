@@ -458,7 +458,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 				var store = view.down('operatingPlan_grid').getStore();
 				store.setUrlParamsByObject(values);
 				store.loadPage(1);
-				Eway.alert(EwayLocale.machine.serviceplan.addSuccess);
+				Eway.alert(EwayLocale.addSuccess);
 			},
 //			failure: function(record,operation){
 //				Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors);

@@ -125,7 +125,25 @@ Ext.define("Eway.view.machine.device.module.Status", {
 				listeners : {
 					'beforerender': this.isHidden
 				}
-			} ]
+			}, {
+				columnWidth : .5,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.cam,
+				name : 'statusCam',
+				minHeight : 20,
+				code : 'CAM',
+				listeners : {
+					'beforerender': this.isHidden
+				}
+			},{
+				columnWidth : .5,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.bcr,
+				name : 'statusBcr',
+				minHeight : 20,
+				code : 'BCR',
+				listeners : {
+					'beforerender': this.isHidden
+				}
+			}  ]
 		});
 		this.callParent(arguments);
 	},

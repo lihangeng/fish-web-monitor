@@ -164,7 +164,7 @@ Ext.define('Eway.view.operatingPlan.Add',{
 										}]
 									},{
 										xtype : 'fieldcontainer',
-										fieldLabel : EwayLocale.system.startDate,
+										fieldLabel : EwayLocale.machine.plan.startDate,
 										layout : 'hbox',
 										defaults : {
 											hideLabel : true

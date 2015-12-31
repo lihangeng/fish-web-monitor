@@ -149,7 +149,7 @@ Ext.define('Eway.view.machine.quittingNotice.Add', {
 					handler: this.onReset,
 					hidden : true
 				}, {
-					text: EwayLocale.button.back,
+					text: EwayLocale.button.cancle,
 					handler: this.onOver
 				}]
 			}

@@ -157,6 +157,46 @@ public class StatusMsg {
     // 身份证扫描仪厂商硬件状态码
     private String iscHwCode;
 
+    /**
+     * 条形码扫描模块
+     */
+    private DeviceStatus bcr;
+
+    // 条形码扫描模块状态代码
+    private String bcrCode;
+
+    // 条形码扫描模块厂商硬件状态码
+    private String bcrHwCode;
+    
+	/**
+	 * 出钞口摄像头
+	 * @return
+	 */
+	private DeviceStatus exitSlotStatus;
+	
+	/**
+	 * 客户口摄像头
+	 * @return
+	 */
+	private DeviceStatus personStatus;
+	
+	/**
+	 * 房间口摄像头
+	 * @return
+	 */
+	private DeviceStatus roomStatus;
+	
+    /**
+     * 摄像头模块
+     */
+    private DeviceStatus cam;
+
+    // 摄像头模块状态代码
+    private String camCode;
+
+    // 摄像头模块厂商硬件状态码
+    private String camHwCode;
+    
     public StatusMsg() {
 
     }
@@ -544,4 +584,78 @@ public class StatusMsg {
 	public void setIscHwCode(String iscHwCode) {
 		this.iscHwCode = iscHwCode;
 	}
+
+	public DeviceStatus getBcr() {
+		return bcr;
+	}
+
+	public void setBcr(DeviceStatus bcr) {
+		this.bcr = bcr;
+	}
+
+	public String getBcrCode() {
+		return bcrCode;
+	}
+
+	public void setBcrCode(String bcrCode) {
+		this.bcrCode = bcrCode;
+	}
+
+	public String getBcrHwCode() {
+		return bcrHwCode;
+	}
+
+	public void setBcrHwCode(String bcrHwCode) {
+		this.bcrHwCode = bcrHwCode;
+	}
+
+	public DeviceStatus getCam() {
+		return cam;
+	}
+
+	public void setCam(DeviceStatus cam) {
+		this.cam = cam;
+	}
+
+	public String getCamCode() {
+		return camCode;
+	}
+
+	public void setCamCode(String camCode) {
+		this.camCode = camCode;
+	}
+
+	public String getCamHwCode() {
+		return camHwCode;
+	}
+
+	public void setCamHwCode(String camHwCode) {
+		this.camHwCode = camHwCode;
+	}
+
+	public DeviceStatus getExitSlotStatus() {
+		return exitSlotStatus;
+	}
+
+	public void setExitSlotStatus(DeviceStatus exitSlotStatus) {
+		this.exitSlotStatus = exitSlotStatus;
+	}
+
+	public DeviceStatus getPersonStatus() {
+		return personStatus;
+	}
+
+	public void setPersonStatus(DeviceStatus personStatus) {
+		this.personStatus = personStatus;
+	}
+
+	public DeviceStatus getRoomStatus() {
+		return roomStatus;
+	}
+
+	public void setRoomStatus(DeviceStatus roomStatus) {
+		this.roomStatus = roomStatus;
+	}
+	
+	
 }

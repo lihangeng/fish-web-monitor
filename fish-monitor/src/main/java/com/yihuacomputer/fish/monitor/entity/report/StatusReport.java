@@ -114,6 +114,12 @@ public class StatusReport implements IStatusReport {
 
     /**身份证扫描仪*/
     private DeviceStatus iscStatus;
+    /**摄像头*/
+    private DeviceStatus camStatus;
+    /**条形码扫描*/
+    private DeviceStatus bcrStatus;
+    
+    
 
     /**
      * 地图坐标经度
@@ -420,13 +426,15 @@ public class StatusReport implements IStatusReport {
                 this.siuStatus = device.getXfsStatus().getStatusSiu().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusSiu().getStatus();
                 this.nfcStauts = device.getXfsStatus().getStatusNfc().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusNfc().getStatus();
                 this.pbkStatus = device.getXfsStatus().getStatusPbk().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusPbk().getStatus();
+                
                 this.boxInitCount = getInfo(device.getXfsStatus().getBoxInitCount());
                 this.boxCurrentCount = getInfo(device.getXfsStatus().getBoxCurrentCount());
 
                 this.iccStatus = device.getXfsStatus().getStatusIcc().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusIcc().getStatus();
                 this.fgpStatus = device.getXfsStatus().getStatusFgp().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusFgp().getStatus();
                 this.iscStatus = device.getXfsStatus().getStatusIsc().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusIsc().getStatus();
-
+                this.bcrStatus = device.getXfsStatus().getStatusBcr().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusBcr().getStatus();
+                this.camStatus = device.getXfsStatus().getStatusCam().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusCam().getStatus();
             }
 
             if (device.getDevice() != null) {
@@ -529,6 +537,22 @@ public class StatusReport implements IStatusReport {
 	@Override
 	public DeviceStatus getIscStatus() {
 		return iscStatus ;
+	}
+
+	public DeviceStatus getCamStatus() {
+		return camStatus;
+	}
+
+	public void setCamStatus(DeviceStatus camStatus) {
+		this.camStatus = camStatus;
+	}
+
+	public DeviceStatus getBcrStatus() {
+		return bcrStatus;
+	}
+
+	public void setBcrStatus(DeviceStatus bcrStatus) {
+		this.bcrStatus = bcrStatus;
 	}
 
 }

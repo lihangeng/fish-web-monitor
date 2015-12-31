@@ -32,8 +32,8 @@ Ext.define('Eway.view.personal.UpdatePwd', {
 				trackResetOnLoad : true,
 				selectOnFocus : true,
 				defaults: {
-					width: 550,
-					labelWidth: 150,
+					width: 600,
+					labelWidth: 200,
 					labelAlign: 'right',
 					msgTarget : 'side'
 				},

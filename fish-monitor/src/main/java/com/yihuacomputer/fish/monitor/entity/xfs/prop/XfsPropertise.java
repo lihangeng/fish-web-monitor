@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropBcr;
+import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropCam;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropCdm;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropCim;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropFgp;
@@ -67,6 +69,12 @@ public class XfsPropertise implements IXfsPropertise {
 
     @Embedded
     private PropIsc isc;
+    
+    @Embedded
+    private PropBcr bcr;
+
+    @Embedded
+    private PropCam cam;
 
     public XfsPropertise() {
     }
@@ -151,7 +159,24 @@ public class XfsPropertise implements IXfsPropertise {
         this.pin = (PropPin) pin;
     }
 
-    @Override
+    
+    public IPropBcr getBcr() {
+		return bcr;
+	}
+
+	public void setBcr(IPropBcr bcr) {
+		this.bcr = (PropBcr)bcr;
+	}
+
+	public IPropCam getCam() {
+		return cam;
+	}
+
+	public void setCam(IPropCam cam) {
+		this.cam = (PropCam)cam;
+	}
+
+	@Override
     public IPropIdc makePropIdc() {
         return new PropIdc();
     }
@@ -199,6 +224,13 @@ public class XfsPropertise implements IXfsPropertise {
         return new PropNfc();
     }
 
+    public IPropBcr makePropBcr() {
+        return new PropBcr();
+    }
+
+    public IPropCam makePropCam() {
+        return new PropCam();
+    }
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -214,6 +246,8 @@ public class XfsPropertise implements IXfsPropertise {
         result = prime * result + ((icc == null) ? 0 : icc.hashCode());
         result = prime * result + ((fgp == null) ? 0 : fgp.hashCode());
         result = prime * result + ((isc == null) ? 0 : isc.hashCode());
+        result = prime * result + ((bcr == null) ? 0 : bcr.hashCode());
+        result = prime * result + ((cam == null) ? 0 : cam.hashCode());
         return result;
     }
 
@@ -304,6 +338,20 @@ public class XfsPropertise implements IXfsPropertise {
                 return false;
             }
         } else if (!isc.equals(other.isc)) {
+            return false;
+        }
+        if (bcr == null) {
+            if (other.bcr != null) {
+                return false;
+            }
+        } else if (!bcr.equals(other.bcr)) {
+            return false;
+        }
+        if (cam == null) {
+            if (other.cam != null) {
+                return false;
+            }
+        } else if (!cam.equals(other.cam)) {
             return false;
         }
         return true;

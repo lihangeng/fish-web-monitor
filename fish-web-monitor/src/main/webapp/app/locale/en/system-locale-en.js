@@ -3,15 +3,15 @@ Ext.apply(EwayLocale,{
 	person:{
 		bankOrg :{
 			title:'Banks',//EwayLocale.person.bankOrg.title 银行机构管理
-			moveBankTitle:'Migrate organization',//EwayLocale.person.bankOrg.moveBankTitle 组织迁移
-			updateBankTitle:'Modify organization info',//EwayLocale.person.bankOrg.updateBankTitle 更改银行机构信息
-			addBankOrgTitle:'Add organization info',//EwayLocale.person.bankOrg.addBankOrgTitle 增加银行机构信息
+			moveBankTitle:'Migrate Bank',//EwayLocale.person.bankOrg.moveBankTitle 组织迁移
+			updateBankTitle:'Modify Bank Info',//EwayLocale.person.bankOrg.updateBankTitle 更改银行机构信息
+			addBankOrgTitle:'Add Bank Info',//EwayLocale.person.bankOrg.addBankOrgTitle 增加银行机构信息
 			code:'Code',//EwayLocale.person.bankOrg.code 机构编号
 			orgType:'Type',//EwayLocale.person.bankOrg.orgType 机构类型
 			name:'Name',//EwayLocale.person.bankOrg.name 机构名称
 			orgLevel:'Level',//EwayLocale.person.bankOrg.orgLevel 机构级别
 			orgNavi:'Navigator',//EwayLocale.person.bankOrg.orgNavi 机构导航
-			zip:'Z.C.',//EwayLocale.person.bankOrg.zip 邮政编码
+			zip:'Zip Code',//EwayLocale.person.bankOrg.zip 邮政编码
 			removeManager:'Delete',//EwayLocale.person.bankOrg.removeManager 删除
 			manager:'Manager',//EwayLocale.person.bankOrg.manager 管理员
 			address:'Address',//EwayLocale.person.bankOrg.address 机构地址
@@ -52,6 +52,7 @@ Ext.apply(EwayLocale,{
 			removeManager:'Delete',//EwayLocale.person.serviceOrg.removeManager 删除
 			code:'Code',//EwayLocale.person.serviceOrg.code 厂商编号
 			name:'Name',//EwayLocale.person.serviceOrg.name 厂商名称
+			zip:'Zip Code',//EwayLocale.person.serviceOrg.zip 邮政编码
 			zip:'Z.C.',//EwayLocale.person.serviceOrg.zip 邮政编码
 			shortName:'Maintenance Provider',//EwayLocale.person.serviceOrg.shortName 厂商
 			address:'Address',//EwayLocale.person.serviceOrg.address 厂商地址

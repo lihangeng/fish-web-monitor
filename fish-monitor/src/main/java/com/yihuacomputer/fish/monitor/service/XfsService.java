@@ -281,11 +281,12 @@ public class XfsService implements IXfsService {
             statusReport.setJprStatus(xfs.getStatusJpr()==null?DeviceStatus.Unknown:xfs.getStatusJpr().getStatus());
             statusReport.setNfcStauts(xfs.getStatusNfc()==null?DeviceStatus.Unknown:xfs.getStatusNfc().getStatus());
             statusReport.setPbkStatus(xfs.getStatusPbk()==null?DeviceStatus.Unknown:xfs.getStatusPbk().getStatus());
-
+            
             statusReport.setIccStatus(xfs.getStatusIcc()==null?DeviceStatus.Unknown:xfs.getStatusIcc().getStatus()) ;
             statusReport.setFgpStatus(xfs.getStatusFgp()==null?DeviceStatus.Unknown:xfs.getStatusFgp().getStatus()) ;
             statusReport.setIscStatus(xfs.getStatusIsc()==null?DeviceStatus.Unknown:xfs.getStatusIsc().getStatus()) ;
-
+            statusReport.setBcrStatus(xfs.getStatusBcr()==null?DeviceStatus.Unknown:xfs.getStatusBcr().getStatus());
+            statusReport.setCamStatus(xfs.getStatusCam()==null?DeviceStatus.Unknown:xfs.getStatusCam().getStatus());
             statusMonitorList.add(statusReport);
         }
         IPageResult<IStatusReport> pageResult = new PageResult<IStatusReport>(result.getTotal(), statusMonitorList);

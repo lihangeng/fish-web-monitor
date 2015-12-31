@@ -28,5 +28,10 @@ public interface IDeviceSoftVersionService {
 	
 	public IDeviceSoftVersion get(long terminalId,String typeName);
 	
+	/**
+	 * 根据版本类型名称查找设备对应的版本
+	 * @param typeName
+	 * @return
+	 */
 	public List<Object> findDeviceSoftVersions(String typeName);
 }

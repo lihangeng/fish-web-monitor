@@ -5,13 +5,13 @@ Ext.define('Eway.store.operatingPlan.WeekSelect',{
 	
 	fields : ['value','display'],
 	data : [
-		{'value':'Mon', 'display':EwayLocale.report.serviceplan.Mon},
-		{'value':'Tues', 'display':EwayLocale.report.serviceplan.Tues},
-		{'value':'Wed', 'display':EwayLocale.report.serviceplan.Wed},
-		{'value':'Thur', 'display':EwayLocale.report.serviceplan.Thur},
-		{'value':'Fri', 'display':EwayLocale.report.serviceplan.Fri},
-		{'value':'Sat', 'display':EwayLocale.report.serviceplan.Sat},
-		{'value':'Sun', 'display':EwayLocale.report.serviceplan.Sun}
+		{'value':'Mon', 'display':EwayLocale.machine.serviceplan.Mon},
+		{'value':'Tues', 'display':EwayLocale.machine.serviceplan.Tues},
+		{'value':'Wed', 'display':EwayLocale.machine.serviceplan.Wed},
+		{'value':'Thur', 'display':EwayLocale.machine.serviceplan.Thur},
+		{'value':'Fri', 'display':EwayLocale.machine.serviceplan.Fri},
+		{'value':'Sat', 'display':EwayLocale.machine.serviceplan.Sat},
+		{'value':'Sun', 'display':EwayLocale.machine.serviceplan.Sun}
 	]
 
 });

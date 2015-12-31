@@ -15,7 +15,7 @@ Ext.define('Eway.view.monitor.device.box.FilterForm', {
 				}
 			},
 			items : [ {
-				columnWidth : .5,
+				columnWidth : .4,
 				defaults:{
 					xtype : 'textfield',
 					readOnly:true
@@ -32,10 +32,11 @@ Ext.define('Eway.view.monitor.device.box.FilterForm', {
 					hidden : true
 				} ]
 			}, {
-				columnWidth : .4,
+				columnWidth : .5,
 				defaults:{
 					xtype : 'textfield',
-					readOnly:true
+					readOnly:true,
+					labelWidth:180
 				},
 				items : [ {
 					fieldLabel : EwayLocale.monitor.devMonitor.cash.rejectAmount,

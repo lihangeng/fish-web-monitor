@@ -47,6 +47,7 @@ Ext.apply(EwayLocale,{
 				minAmount:'最小取款金额',//EwayLocale.monitor.devMonitor.cash.minAmount
 				boxId:'钞箱标识',//EwayLocale.monitor.devMonitor.cash.boxId
 				type:'钞箱类型',//EwayLocale.monitor.devMonitor.cash.type
+				boxStatus:'钞箱状态',//EwayLocale.monitor.devMonitor.cash.boxStatus 钞箱状态
 				initialCount:'初始张数',//EwayLocale.monitor.devMonitor.cash.initialCount
 				cashInCount:'存款张数',//EwayLocale.monitor.devMonitor.cash.cashInCount
 				currentCount:'当前计数[张/笔]',//EwayLocale.monitor.devMonitor.cash.currentCount
@@ -80,6 +81,8 @@ Ext.apply(EwayLocale,{
 				icc:'发卡器',//EwayLocale.monitor.devMonitor.mod.icc
 				fgp:'指纹仪',//EwayLocale.monitor.devMonitor.mod.fgp
 				pbk:'存折打印机',//EwayLocale.monitor.devMonitor.mod.pbk
+				cam:'摄像头',//EwayLocale.monitor.devMonitor.mod.cam
+				bcr:'二维码扫描仪',//EwayLocale.monitor.devMonitor.mod.bcr
 				healthy:'模块正常'//EwayLocale.monitor.devMonitor.mod.healthy
 
 			},

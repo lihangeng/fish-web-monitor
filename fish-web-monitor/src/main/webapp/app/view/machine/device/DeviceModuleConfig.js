@@ -14,7 +14,9 @@ Ext.define('Eway.view.machine.device.DeviceModuleConfig', {
 			'Eway.view.machine.device.module.PropertyISC',
 			'Eway.view.machine.device.module.PropertyICC',
 			'Eway.view.machine.device.module.PropertyFGP',
-			'Eway.view.machine.device.module.PropertyPBK' ],
+			'Eway.view.machine.device.module.PropertyPBK' ,
+			'Eway.view.machine.device.module.PropertyCAM' ,
+			'Eway.view.machine.device.module.PropertyBCR' ],
 
 	title : EwayLocale.machine.device.devModuleMsg,
 	layout : 'border',
@@ -67,6 +69,12 @@ Ext.define('Eway.view.machine.device.DeviceModuleConfig', {
 				}, {
 					itemId : 'pbkid',
 					xtype : 'machine_device_module_propertypbk'
+				} , {
+					itemId : 'pbkid',
+					xtype : 'machine_device_module_propertycam'
+				} , {
+					itemId : 'pbkid',
+					xtype : 'machine_device_module_propertybcr'
 				}  ]
 			} ]
 		});

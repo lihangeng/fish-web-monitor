@@ -125,4 +125,16 @@ public interface IXfsStatus {
 	public IXfsStatus getHisXfsStatus() ;
 
 	public void setHisXfsStatus(IXfsStatus hisXfsStatus) ;
+	
+    public void setStatusBcr(IStatusBcr bcr);
+
+    public IStatusBcr getStatusBcr();
+
+    public IStatusBcr makeStatusBcr();
+    
+    public void setStatusCam(IStatusCam cam);
+
+    public IStatusCam getStatusCam();
+
+    public IStatusCam makeStatusCam();
 }
