@@ -523,7 +523,7 @@ Ext.apply(EwayLocale,{
 		},
 		quittingNotice:{
 			addCloseMsg:'Add Service Stop',//增加报停信息
-			updateCloseMsg:'Udpate stop',//
+			updateCloseMsg:'Update Service Stop',//
 			dateRangeText:'Recover date can not be earlier than stop date,please choose again',//恢复日期不能小于等于停止日期,请重新选择
 			click:'Click query to choose device',//请点击查询，选择设备
 			stopTime:'Stop time',//停机时间
@@ -537,15 +537,14 @@ Ext.apply(EwayLocale,{
 			to:'to',//至
 			stopType:'Type',//停机类型
 			comboxStopType:{
-
 				recess:'Holiday',//放假
-				fit:'Decorate',//装修
-				power:'Powercut',
-				devFailue:'Error never fix',//设备故障未修复
+				fit:'Decoration',//装修
+				power:'Power Cut',//停电
+				devFailue:'Device Fault',//设备故障未修复
 				other:'Other'	//其他
 			},
-			setTime:'Set time',//
-			closeManage:'Stop manager'//报停管理
+			setTime:'Create time',//
+			closeManage:'Service Stop'//报停管理
 		},
 		plan:{
 			addPlan:'Add Service Plan',//EwayLocale.machine.plan.addPlan 增加方案
