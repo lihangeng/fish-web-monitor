@@ -42,8 +42,8 @@ Ext.apply(EwayLocale,{
 				cashboxLimit:'Cashbox Alarm Amount',//EwayLocale.monitor.devMonitor.cash.cashboxLimit 钞箱报警金额阈值
 				initAmount:'Initial Amount',//EwayLocale.monitor.devMonitor.cash.initAmount 加钞总金额
 				amount:'Amount Left',//EwayLocale.monitor.devMonitor.cash.amount
-				dispenseAmount:'Reject Amount',//EwayLocale.monitor.devMonitor.cash.dispenseAmount 出钞总金额
-				rejectAmount:'Amount invalid',//EwayLocale.monitor.devMonitor.cash.rejectAmount 废钞金额
+				dispenseAmount:'Cash Out Amount',//EwayLocale.monitor.devMonitor.cash.dispenseAmount 出钞总金额
+				rejectAmount:'Reject Amount',//EwayLocale.monitor.devMonitor.cash.rejectAmount 废钞金额
 				retractCount:'Retract Count',//EwayLocale.monitor.devMonitor.cash.retractCount 钞票回收次数
 				minAmount:'Minimum Withdraw Amount',//EwayLocale.monitor.devMonitor.cash.minAmount 最小取款金额
 				boxId:'ID',//EwayLocale.monitor.devMonitor.cash.boxId 钞箱标识
