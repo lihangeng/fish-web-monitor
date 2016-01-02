@@ -393,10 +393,10 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 					} else if ('propertyIsc' == name) {
 						itemid = 'iscid';
 						module = 'isc';
-					} else if ('statusCam' == name) {
+					} else if ('propertyCam' == name) {
 						itemid = 'camid';
 						module = 'cam';
-					} else if ('statusBcr' == name) {
+					} else if ('propertyBcr' == name) {
 						itemid = 'bcrid';
 						module = 'bcr';
 					}

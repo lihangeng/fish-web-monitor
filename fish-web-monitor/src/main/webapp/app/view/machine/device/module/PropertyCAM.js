@@ -38,7 +38,7 @@ Ext.define("Eway.view.machine.device.module.PropertyCAM", {
 						labelAlign : 'right'
 					},
 					items : [ {
-						fieldLabel : EwayLocale.machine.device.MaxDataLength,//''最大文字数''
+						fieldLabel : EwayLocale.machine.device.CAMMaxDataLength,//''最大文字数''
 						name : 'maxDataLength',
 						style : 'margin-top:2px'
 					}]
