@@ -32,7 +32,7 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 			},{
 				header : EwayLocale.commen.terminalId,
 				dataIndex : 'terminalId',
-				width : 80
+				width : 100
 			}, {
 				header : EwayLocale.cases.caseFault.faultModule,
 				dataIndex : 'devMod',
