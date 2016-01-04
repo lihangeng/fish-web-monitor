@@ -80,6 +80,40 @@ Ext.define('Eway.controller.version.VersionType', {
 			}
 		});
 	},
+	
+	
+	onRemove : function(){
+		var me = this;
+		var grid = me.getGridPanel(),
+			store = grid.getStore(),
+			sm = grid.getSelectionModel(),
+			count = sm.getCount();
+		if(count == 0){
+			Eway.alert(EwayLocale.tip.remove.none);
+			return;
+		}
+		else if(count > 1){
+			Eway.alert(EwayLocale.tip.remove.one);
+			return;
+		}
+		Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title, EwayLocale.tip.remove.confirm.info,function(button,text){
+			if(button == 'yes'){
+				var record = sm.getLastSelected();
+				record.erase({
+					success: function(record,operation){
+						Eway.alert(EwayLocale.deleteSuccess);
+						me.onQuery();
+					},
+					failure: function(record,operation){
+						//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
+						record.dropped = false;
+						Eway.alert(operation.getError());
+					},
+					scope:this
+				});
+			}
+		});
+	},
 
 	//在修改之前
 	beforeUpdateSave : function(win,grid,record){
