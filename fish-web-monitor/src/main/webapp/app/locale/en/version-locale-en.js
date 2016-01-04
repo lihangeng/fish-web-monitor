@@ -106,7 +106,7 @@ Ext.apply(EwayLocale,{
 		advertPreviewTitle2:' at the present) ',//EwayLocale.advert.advertPreviewTitle2 //个
 		choosedAdvertRes:'You have choosed',//EwayLocale.advert.choosedAdvertRes 您已经选择了
 		limitNumberTenForEveryResolution:'Only upload up to 10 pictures at each resolution.',//EwayLocale.advert.limitNumberTenForEveryResolution每种分辨率下最多只能上传10张图片
-		mustContainerOnePicAt1024:'1024 image resolution comprises at least one',//EwayLocale.advert.mustContainerOnePicAt10241024分辨率下至少包含一个图片
+		mustContainerOnePicAt1024:'Under the 1024 resolution contains at least one picture',//EwayLocale.advert.mustContainerOnePicAt10241024分辨率下至少包含一个图片
 		deleteAdvertResource:'Delete the picture',//EwayLocale.advert.deleteAdvertResource删除该图片
 		fileName:'File Name',//EwayLocale.advert.fileName文件名
 		resourceName:'Resource Name',//EwayLocale.advert.resourceName资源名称
