@@ -154,7 +154,7 @@ public class TransRptService implements ITransRptService {
         }
 
         if (orgLevel != null) {
-            hql.append(" and o.organizationLevel <= ? ");
+            hql.append(" and o.organizationLevel >= ? ");
             valueObj.add(orgLevel.getValue());
         }
 //        hql.append(" group by d.organization,tr.transCode order by tr.dateTime desc");

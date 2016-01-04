@@ -306,7 +306,7 @@ Ext.apply(EwayLocale,{
 				logLoadConfirm:'Get the atmc logs successful,download it?',//EwayLocale.tip.business.device.logLoadConfirm 应用日志提取成功,是否下载?
 				logPullFail:'Get atmc logs failed',//EwayLocale.tip.business.device.logPullFail 提取应用电子日志失败
 				logFail:'Log process failed.',//EwayLocale.tip.business.device.logFail log 处理失败
-				linkServerFail:'Connecting refused.',//EwayLocale.tip.business.device.linkServerFail 服务器连接失败
+				linkServerFail:'Connection refused.',//EwayLocale.tip.business.device.linkServerFail 服务器连接失败
 				logicOpen:'Confirm execute start-service command.',//EwayLocale.tip.business.device.logicOpen 确认要执行开启服务命令
 				openSuccess:'Execute start-service command successfully.',//EwayLocale.tip.business.device.openSuccess 执行开启服务命令成功.
 				openFail:'Execute start-service command failed.',//EwayLocale.tip.business.device.openFail 执行开启服务命令失败.
@@ -545,7 +545,7 @@ Ext.apply(EwayLocale,{
 		inputNewPwd:'Input new password',//EwayLocale.personal.inputNewPwd 输入新密码
 		inputVali:"Just for 1-20 characters 'a-z'or 'A-Z'or number '0-9' or '-' or '_' or special characters",//EwayLocale.personal.inputVali 只能输入8到20位字母‘a-z’或‘A-Z’、数字‘0-9’、特殊字符！
 		inputAgain:'Input new password again',//EwayLocale.personal.inputAgain 再次输入新密码
-		pwdNotSame:'New password is not match.',//EwayLocale.personal.pwdNotSame 两次密码不一致！
+		pwdNotSame:'New passwords is not match.',//EwayLocale.personal.pwdNotSame 两次密码不一致！
 		rememberPwd:'Click confirm to update password ,please remember it!',//EwayLocale.personal.rememberPwd 单击确定即可修改密码，请牢记新密码！
 		pwdSameNoChange:'New password is the same with the old ,can not update.',//EwayLocale.personal.pwdSameNoChange 输入的新密码与旧密码相同,不可修改.
 		reOperate:'Can not update password,please try again.'//EwayLocale.personal.reOperate 无法修改密码,请重新操作.

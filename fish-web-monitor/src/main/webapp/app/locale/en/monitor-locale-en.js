@@ -118,7 +118,8 @@ Ext.apply(EwayLocale,{
 				pauseSer:'Pause serivce',//EwayLocale.monitor.devMonitor.remote.pauseSer 暂停服务
 				pauseCash:'Pause cash',//EwayLocale.monitor.devMonitor.remote.pauseCash   ----中文不明，我猜的----
 				pauseSerUnknow:'Pause serivce-unkown',//EwayLocale.monitor.devMonitor.remote.pauseSerUnknow 未知原因暂停服务
-				manaAndstaff:'Device Manager'//EwayLocale.monitor.devMonitor.remote.manaAndstaff 管机员
+				manaAndstaff:'Device Manager',//EwayLocale.monitor.devMonitor.remote.manaAndstaff 管机员
+				screenFailed:'Connection refused.'//EwayLocale.monitor.devMonitor.remote.screenFailed
 			},
 			atmGroup:'Group',//EwayLocale.monitor.devMonitor.atmGroup 分组
 			atmGroupTip:'GroupDetail',//EwayLocale.monitor.devMonitor.atmGroupTip
@@ -235,7 +236,7 @@ Ext.apply(EwayLocale,{
 
 			cashInit:{
 				titile:'Load Cash Info',//EwayLocale.monitor.business.cashInit.titile 加钞信息查询
-				uuId:'CashID',//EwayLocale.monitor.business.cashInit.uuId 加钞ID
+				uuId:'Cash ID',//EwayLocale.monitor.business.cashInit.uuId 加钞ID
 				date:'Date',//EwayLocale.monitor.business.cashInit.date 加钞日期
 				amt:'Amount',//EwayLocale.monitor.business.cashInit.amt 金额
 				info:'Information',//EwayLocale.monitor.business.cashInit.info 加钞详细信息

@@ -67,9 +67,6 @@ Ext.define('Eway.view.monitor.cashinit.Grid', {
 	        whole = whole.replace(r, '$1' + ',' + '$2');  
 	    }  
 	    v = whole + sub;  
-	    if(v.charAt(0) == '-'){  
-	        return '-￥' + v.substr(1);  
-	    }  
-	    return "￥" +  v;
+	    return   v;
 	}
 });

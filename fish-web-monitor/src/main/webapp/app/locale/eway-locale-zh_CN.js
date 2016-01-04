@@ -40,7 +40,7 @@ Ext.apply(EwayLocale,{
 		selectVersionToDelete:'请选择您要删除的版本.',//EwayLocale.msg.selectVersionToDelete
 		communicationFail:'增加失败:与服务器通讯失败.',//EwayLocale.msg.communicationFail
 		sameVersionNoFail:'增加失败:已经存在相同的版本号.',//EwayLocale.msg.sameVersionNoFail
-		fileSizeMaxFail:'增加失败:超过最大文件大小限制（最大300M）',//EwayLocale.msg.fileSizeMaxFail
+		fileSizeMaxFail:'增加失败:超过最大文件大小限制（最大200M）',//EwayLocale.msg.fileSizeMaxFail
 		fileUnzipFail:'增加失败:上传的压缩包不能正常解压',//EwayLocale.msg.fileUnzipFail
 		addFileFail:'增加失败:',//EwayLocale.msg.addFileFail
 		mustSelectDevice:'请至少选择一个设备.',//EwayLocale.msg.mustSelectDevice
