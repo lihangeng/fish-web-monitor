@@ -3,15 +3,15 @@
 	<parent>
 		<groupId>com.yihuacomputer.fish</groupId>
 		<artifactId>atmvs</artifactId>
-		<version>2.0.0.10-SNAPSHOT</version>
+		<version>2.0.0.11-SNAPSHOT</version>
 		<relativePath>..</relativePath>
 	</parent>
 	<artifactId>fish-system</artifactId>
 	<name>Fish System Implement</name>
 	<description>FISH系统自身管理</description>
 	<properties>
-		<fish-api.version>2.0.0.10-SNAPSHOT</fish-api.version>
-		<fish-domain.version>2.0.0.10-SNAPSHOT</fish-domain.version>
+		<fish-api.version>2.0.0.11-SNAPSHOT</fish-api.version>
+		<fish-domain.version>2.0.0.11-SNAPSHOT</fish-domain.version>
 	</properties>
 	<dependencies>
 		<dependency>
