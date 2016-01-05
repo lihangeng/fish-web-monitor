@@ -37,8 +37,55 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 			},
 			'version_distributeView versionstatus_pie polar' : {
 				itemclick : this.diplayVersionStatusDetail
+			},
+			'version_distributeView version_pie legend' : {
+				itemclick : this._itemclick
+			},
+			'version_distributeView versionstatus_pie legend' : {
+				itemclick : this._statusitemclick
 			}
 		})
+	},
+	_statusitemclick:function( _this, record, item, index, e, eOpts ){
+		var me = this;
+		var view = this.getEwayView();
+		var statuspolar = view.down('versionstatus_pie polar');
+		var statuspieStore = statuspolar.getStore();
+		var record_status = this.getDisplayStatus();
+		if(record_status){
+			var detailGrid = view.down('version_distribute_grid');
+			detailGrid.setTitle(record_status.get("taskStatusText"));
+			var detailGridStore = detailGrid.getStore();
+			detailGridStore.setBaseParam("versionId",record_status.get("versionId"));
+			detailGridStore.setBaseParam("taskStatus",record_status.get("taskStatus"));
+			detailGridStore.loadPage(1);
+		}
+	},
+	
+	_itemclick:function( _this, record, item, index, e, eOpts ){
+		var me = this;
+		var view = this.getEwayView();
+		var versionpolar = view.down('version_pie polar');
+		var versionpolarStore = versionpolar.getStore();
+		var statusPanel = view.down('versionstatus_pie');
+		var statuspolar = view.down('versionstatus_pie polar');
+		var statuspieStore = statuspolar.getStore();
+		var record_status = this.getDisplayVersion();
+		if(record_status){
+			statusPanel.setTitle(record_status.get("versionNo")+EwayLocale.version.task.versionDownHisStatusPic);
+			statuspieStore.load({
+				params : {
+					versionId :record_status.get("versionId")
+				},	
+				callback:function(records, operation, success){
+					if(undefined==records||records.length==0){
+						me._statuspieClean();
+						return;
+					}
+					me.gridStoreRefresh();
+				}
+			});
+		}
 	},
 	versionPieRefresh:function(a,b,c){
 		var me = this;
@@ -84,8 +131,12 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 			var pieStore = polar.getStore();
 			var versionArray=pieStore.data.items;
 			if(undefined!=versionArray&&versionArray.length!=0){
-				versionId = versionArray[0].get("versionId")
-				statusPanel.setTitle(versionArray[0].get("versionNo")+EwayLocale.version.task.versionDownHisStatusPic);//"版本下发历史状态分布图");
+				var version = this.getDisplayVersion();
+				if(!version){
+					return;
+				}
+				versionId = version.get("versionId")
+				statusPanel.setTitle(version.get("versionNo")+EwayLocale.version.task.versionDownHisStatusPic);//"版本下发历史状态分布图");
 			}
 			else{
 				me._statuspieClean();
@@ -97,15 +148,24 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 			var versionStatusArray = statuspieStore.data.items;
 			//如果状态信息中有数据,延续上次数据显示
 			if(undefined!=versionStatusArray&&versionStatusArray.length!=0){
-				versionId = versionStatusArray[0].get("versionId");
+
+				var version = this.getDisplayStatus();
+				if(!version){
+					return;
+				}
+				versionId = version.get("versionId");
 			}
 			else{
 				var polar = view.down('version_pie polar');
 				var pieStore = polar.getStore();
 				var versionArray=pieStore.data.items;
 				if(undefined!=versionArray&&versionArray.length!=0){
-					versionId = versionArray[0].get("versionId")
-					statusPanel.setTitle(versionArray[0].get("versionNo")+EwayLocale.version.task.versionDownHisStatusPic);//"版本下发历史状态分布图");
+					var version = this.getDisplayStatus();
+					if(!version){
+						return;
+					}
+					versionId = version.get("versionId")
+					statusPanel.setTitle(version.get("versionNo")+EwayLocale.version.task.versionDownHisStatusPic);//"版本下发历史状态分布图");
 				}
 				else{
 					me._statuspieClean();
@@ -127,6 +187,45 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 			}
 		});
 	},
+	/*获取显示的版本状态信息*/
+	getDisplayStatus:function(){
+		var me = this;
+		var view = this.getEwayView();
+		var statuspiepolar = view.down('versionstatus_pie polar');
+		var statuslegend = statuspiepolar.legend;
+
+		var statuspieStore = statuspiepolar.getStore().data.items;
+		var statuslegendStore = statuslegend.getStore().data.items;
+		for(var record1=0;record1<statuslegendStore.length;record1++){
+			if(statuslegendStore[record1].get("disabled")==false){
+				for(var record_status=0; record_status< statuspieStore.length;record_status++){
+					if(statuslegendStore[record1].get("name")==statuspieStore[record_status].get("taskStatusText")){
+						return statuspieStore[record_status];
+		    		}
+				}
+			}
+		}
+		return undefined;
+	},
+	/*获取显示的版本信息*/
+	getDisplayVersion:function(){
+		var me = this;
+		var view = this.getEwayView();
+		var piepolar = view.down('version_pie polar');
+		var legend = piepolar.legend;
+		var pieStore = piepolar.getStore().data.items;
+		var legendStore = legend.getStore().data.items;
+		for(var record1=0;record1<legendStore.length;record1++){
+			if(legendStore[record1].get("disabled")==false){
+				for(var record_status=0; record_status< pieStore.length;record_status++){
+					if(legendStore[record1].get("name")==pieStore[record_status].get("versionNo")){
+						return pieStore[record_status];
+		    		}
+				}
+			}
+		}
+		return undefined;
+	},
 	gridStoreRefresh:function(a){
 		var me = this;
 		var view = this.getEwayView();
@@ -139,9 +238,13 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 			if(undefined==records||records.length==0){
 				return;
 			}
-			detailGrid.setTitle(records[0].get("taskStatusText"));
-			detailGridStore.setBaseParam("versionId",records[0].get("versionId"));
-			detailGridStore.setBaseParam("taskStatus",records[0].get("taskStatus"));
+			var record = this.getDisplayStatus();
+			if(!record){
+				return;
+			}
+			detailGrid.setTitle(record.get("taskStatusText"));
+			detailGridStore.setBaseParam("versionId",record.get("versionId"));
+			detailGridStore.setBaseParam("taskStatus",record.get("taskStatus"));
 			detailGridStore.loadPage(1);
 		}
 		else{
