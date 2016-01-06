@@ -92,7 +92,7 @@ public class VersionController {
 	private IVersionTypeAtmTypeRelationService versionTypeAtmTypeRelationService;
 
 	/**
-	 * 成功，失败，当前可下发设备[真的可以执行下发操作的设备], 总共符合下发条件的设备[条件为机型符合] 图表BAR
+	 * Bar3d 成功，失败，当前可下发设备[真的可以执行下发操作的设备], 总共符合下发条件的设备[条件为机型符合] 图表BAR
 	 * @param wReq
 	 * @param req
 	 * @return
@@ -376,9 +376,6 @@ public class VersionController {
 	public @ResponseBody ModelMap combo(@RequestParam int start, @RequestParam int limit, @RequestParam long versionTypeId, @RequestParam String versionNo, HttpServletRequest request) {
 		logger.info(String.format("get version's depend versions by versionId = %s and currentVersionNo = %s", versionTypeId, versionNo));
 		UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
-		// IPageResult<IVersion> pageResult =
-		// versionService.pageSelectableDependVersion(start, limit,
-		// Long.valueOf(versionTypeId),versionNo);
 		IFilter filter = new Filter();
 		filter.eq("versionType.id", versionTypeId);
 		filter.descOrder("createdTime");
@@ -421,22 +418,9 @@ public class VersionController {
 		return forms;
 	}
 
-	/**
-	 * 获得某种版本类型下的下一个版本号
-	 *
-	 * @param id
-	 *            版本类型ID
-	 * @return 版本号
-	 */
-//	@RequestMapping(value = "/getNextNo/{id}", method = RequestMethod.GET)
-//	public @ResponseBody String getNextVersionNo(@PathVariable int id) {
-//		logger.info(String.format("getNextVersionNo : versionType.id = %s", id));
-//		String num = versionService.getNextVersionNo(id);
-//		return num;
-//	}
 
 	/**
-	 * 成功，失败，当前可下发设备[真的可以执行下发操作的设备], 总共符合下发条件的设备[条件为机型符合] 明细信息
+	 * 柱状图成功，失败，当前可下发设备[真的可以执行下发操作的设备], 总共符合下发条件的设备[条件为机型符合] 明细信息
 	 * @param start
 	 * @param limit
 	 * @param wReq
@@ -499,7 +483,7 @@ public class VersionController {
 	 * @param versionTypeId
 	 * @param webRequest
 	 * @param request
-	 * @return 获取每个版本所占设备的数量(图表显示)
+	 * @return 获取每个版本所占设备的数量(图表显示)如果当前版本生产上不存在，则不显示.
 	 */
 	@RequestMapping(value = "distribute", method = RequestMethod.GET)
 	@ResponseBody
@@ -525,18 +509,12 @@ public class VersionController {
 		List<VersionDistribute> diplayList = new ArrayList<VersionDistribute>();
 		VersionDistribute versionDistribute = new VersionDistribute();
 		versionDistribute.setVersionTypeId(versionTypeId);
+		//如果当前版本生产上不存在，则不显示.
 		for (int index = 0; index < versionList.size(); index++) {
 			IVersion version = versionList.get(index);
 			if (null != map.get(version.getId())) {
 				diplayList.add(map.get(version.getId()));
-			} else {
-				VersionDistribute versionDistributeNew = new VersionDistribute();
-				versionDistributeNew.setVersionId(version.getId());
-				versionDistributeNew.setVersionNo(version.getVersionNo());
-				versionDistributeNew.setVersionNoNumber(0);
-				versionDistributeNew.setVersionTypeId(versionTypeId);
-				diplayList.add(versionDistributeNew);
-			}
+			} 
 		}
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, diplayList.size());

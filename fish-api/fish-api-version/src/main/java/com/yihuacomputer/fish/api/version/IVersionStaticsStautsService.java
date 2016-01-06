@@ -22,7 +22,7 @@ public interface IVersionStaticsStautsService {
 	List<ChartsInfo> getVersionSummaryInfo(long versionId,String orgFlag,int start,int limit);
 	
 	/**
-	 * 获取版本视图详情
+	 * 依据bar3d获取版本视图详情
 	 * @param filter
 	 * @return
 	 */

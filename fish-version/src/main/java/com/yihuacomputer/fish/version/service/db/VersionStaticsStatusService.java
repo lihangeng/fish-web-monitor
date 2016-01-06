@@ -20,7 +20,6 @@ import com.yihuacomputer.fish.api.charts.ChartsInfo;
 import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
@@ -74,30 +73,30 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
 	public List<ChartsInfo> getVersionSummaryInfo(long versionId,String orgFlag,int start,int limit) {
 		logger.info(String.format("get orgFlag %s Version %d detail charts info", orgFlag,versionId));
 		List<ChartsInfo> list = new ArrayList<ChartsInfo>();
-
 		ChartsInfo chartsT = new ChartsInfo();
 		chartsT.setTitle(getEnumI18n(VersionStaticsStatus.TOTALDEVICE.getText()));
 		chartsT.setFlag(VersionStaticsStatus.TOTALDEVICE.getId());
 		chartsT.setVersionId(versionId);
 		chartsT.setValue(getMatchConditionDeviceTotal(versionId, orgFlag, start, limit).getTotal());
+
 		ChartsInfo chartsS = new ChartsInfo();
 		chartsS.setTitle(getEnumI18n(VersionStaticsStatus.SUCCESSDEVICE.getText()));
 		chartsS.setValue(getMatchConditionDeviceSuccess(versionId, orgFlag, start, limit).getTotal());
-
 		chartsS.setFlag(VersionStaticsStatus.SUCCESSDEVICE.getId());
 		chartsS.setVersionId(versionId);
+		
 		ChartsInfo chartsF = new ChartsInfo();
 		chartsF.setTitle(getEnumI18n(VersionStaticsStatus.FAILDEVICE.getText()));
 		chartsF.setValue(getMatchConditionDeviceFatal(versionId, orgFlag, start, limit).getTotal());
-
 		chartsF.setFlag(VersionStaticsStatus.FAILDEVICE.getId());
 		chartsF.setVersionId(versionId);
+		
 		ChartsInfo chartsP = new ChartsInfo();
 		chartsP.setTitle(getEnumI18n(VersionStaticsStatus.PASHDEVICE.getText()));
-
 		chartsP.setValue(getMatchConditionDevicePush(versionId, orgFlag, start, limit).getTotal());
 		chartsP.setFlag(VersionStaticsStatus.PASHDEVICE.getId());
 		chartsP.setVersionId(versionId);
+		
 		list.add(chartsT);
 		list.add(chartsS);
 		list.add(chartsF);
@@ -128,34 +127,39 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
      */
     public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceTotal(long versionId,String orgFlag,int start,int limit){
     	StringBuffer hqlsb = new StringBuffer();
-    	hqlsb.append("select device from ").append(Device.class.getSimpleName()).append(" device ,").
-    	append(Version.class.getSimpleName()).append(" version ,").
-    	append(VersionTypeAtmTypeRelation.class.getSimpleName()).
-    	append(" as versionatmType where device.devType.id=versionatmType.atmTypeId ").
-    	append(" and versionatmType.versionTypeId=version.versionType.id ").
-    	append(" and version.id=? and device.organization.orgFlag like ? and device.status=?");
-    	Object[] obj = {versionId,orgFlag+"%",DevStatus.OPEN};
-    	IVersion version = versionService.getById(versionId);
-    	if(version==null){
-    		return null;
-    	}
-    	@SuppressWarnings("unchecked")
-		IPageResult<Object> result = (IPageResult<Object>) dao.page(start, limit, hqlsb.toString(), obj);
-    	List<Object> list = result.list();
-    	List<VersionChartsDetailForm> resultList = new ArrayList<VersionChartsDetailForm>();
-    	for(Object objDevice:list){
-    		IDevice device = (IDevice)objDevice;
-    		VersionChartsDetailForm versionChartsDetailForm = new VersionChartsDetailForm();
-    		IDeviceSoftVersion deviceSoftVersion = deviceSoftVersionService.get(device.getId(), version.getVersionType().getTypeName());
-    		versionChartsDetailForm.setTerminalId(device.getTerminalId());
-    		versionChartsDetailForm.setDevType(device.getDevType().getName());
-    		versionChartsDetailForm.setIp(device.getIp().toString());
-    		versionChartsDetailForm.setOrgName(device.getOrganization().getName());
-    		versionChartsDetailForm.setVersionId(versionId);
-    		versionChartsDetailForm.setVersionNo(null!=deviceSoftVersion?deviceSoftVersion.getVersionNo():"");
-    		resultList.add(versionChartsDetailForm);
-    	}
     	
+    	hqlsb.append("select device,deviceSoftVersion.versionNo from ").append(Device.class.getSimpleName()).append(" device ,").
+        append(Version.class.getSimpleName()).append(" version ,").
+        append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ,").
+        append(VersionTypeAtmTypeRelation.class.getSimpleName()).
+        append(" as versionatmType where device.devType.id=versionatmType.atmTypeId ").
+        append(" and versionatmType.versionTypeId=version.versionType.id ").
+        append(" and deviceSoftVersion.typeName=version.versionType.typeName ").
+        append(" and deviceSoftVersion.deviceId=device.id ").
+        append(" and version.id=? and device.organization.orgFlag like ? and device.status=? ");
+        Object[] obj = {versionId,orgFlag+"%",DevStatus.OPEN};
+        IVersion version = versionService.getById(versionId);
+        if(version==null){
+                return null;
+        }
+        @SuppressWarnings("unchecked")
+        IPageResult<Object> result = (IPageResult<Object>) dao.page(start, limit, hqlsb.toString(), obj);
+        List<Object> list = result.list();
+        List<VersionChartsDetailForm> resultList = new ArrayList<VersionChartsDetailForm>();
+    	for(Object object:list){
+    		Object[] resultObj = (Object[])object;
+    		IDevice device = (IDevice)resultObj[0];
+    		String versionNo = resultObj[1]==null?"":String.valueOf(resultObj[1]);
+    		
+    		VersionChartsDetailForm versionChartsDetailForm = new VersionChartsDetailForm();
+            versionChartsDetailForm.setTerminalId(device.getTerminalId());
+            versionChartsDetailForm.setDevType(device.getDevType().getName());
+            versionChartsDetailForm.setIp(device.getIp().toString());
+            versionChartsDetailForm.setOrgName(device.getOrganization().getName());
+            versionChartsDetailForm.setVersionId(versionId);
+            versionChartsDetailForm.setVersionNo(versionNo);
+            resultList.add(versionChartsDetailForm);
+    	}
     	IPageResult<VersionChartsDetailForm> pageResult = new PageResult<VersionChartsDetailForm>(result.getTotal(),resultList);
     	return pageResult;
     }
@@ -193,22 +197,21 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
      * @return
      *  TODO 此处效率较低，需要优化(versionNo无法比对，考虑将versionNo加入数据库；再数据库内部进行比对)
      */
-    private IPageResult<VersionChartsDetailForm> convertResult(IPageResult<Object> result,IVersion version){
-    	List<VersionChartsDetailForm> formList = new ArrayList<VersionChartsDetailForm>();
-    	for(Object object :result.list()){
-//    		Object[] infos = (Object[])object;
-    		IDevice device = (IDevice)object;
-    		IDeviceSoftVersion deviceSoftVersion = deviceSoftVersionService.get(device.getId(), version.getVersionType().getTypeName());
-    		VersionChartsDetailForm versionChartsDetailForm = new VersionChartsDetailForm();
-    		versionChartsDetailForm.setTerminalId(device.getTerminalId());
-    		versionChartsDetailForm.setDevType(device.getDevType().getName());
-    		versionChartsDetailForm.setIp(device.getIp().toString());
-    		versionChartsDetailForm.setOrgName(device.getOrganization().getName());
-    		versionChartsDetailForm.setVersionNo(deviceSoftVersion==null?"":deviceSoftVersion.getVersionNo());
-    		formList.add(versionChartsDetailForm);
-    	}
-    	return new  PageResult<VersionChartsDetailForm>(result.getTotal(),formList);
-    }
+//    private IPageResult<VersionChartsDetailForm> convertResult(IPageResult<Object> result,IVersion version){
+//    	List<VersionChartsDetailForm> formList = new ArrayList<VersionChartsDetailForm>();
+//    	for(Object object :result.list()){
+//    		IDevice device = (IDevice)object;
+//    		IDeviceSoftVersion deviceSoftVersion = deviceSoftVersionService.get(device.getId(), version.getVersionType().getTypeName());
+//    		VersionChartsDetailForm versionChartsDetailForm = new VersionChartsDetailForm();
+//    		versionChartsDetailForm.setTerminalId(device.getTerminalId());
+//    		versionChartsDetailForm.setDevType(device.getDevType().getName());
+//    		versionChartsDetailForm.setIp(device.getIp().toString());
+//    		versionChartsDetailForm.setOrgName(device.getOrganization().getName());
+//    		versionChartsDetailForm.setVersionNo(deviceSoftVersion==null?"":deviceSoftVersion.getVersionNo());
+//    		formList.add(versionChartsDetailForm);
+//    	}
+//    	return new  PageResult<VersionChartsDetailForm>(result.getTotal(),formList);
+//    }
     
 
     /**
@@ -261,7 +264,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     	filter.eq("orgFlag", orgFlag);
     	IPageResult<Object> pushResult = versionDownloadService.getCanPushDevicePagesInfo(start, limit, version, filter);
 		
-    	IPageResult<VersionChartsDetailForm> pageResult= convertResult(pushResult,version);
+    	IPageResult<VersionChartsDetailForm> pageResult= convertResult(pushResult);
     	return pageResult;
     }
     /**

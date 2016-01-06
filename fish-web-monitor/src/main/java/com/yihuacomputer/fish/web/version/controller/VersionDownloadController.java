@@ -120,28 +120,40 @@ public class VersionDownloadController {
         List<ITask> tasks = new ArrayList<ITask>();
         String deviceIds = form.getDeviceIds();
         UserSession session = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
-        Object[] ids = null;
+        Long[] ids = null;
     	Date createdTime = new Date();
     	List<Object> lists = deviceSoftVersionService.findDeviceSoftVersions(versionTypeName);
+
         Map<Long,String> maps = convertToMap(lists);
+    	List<Long> list = new ArrayList<Long>();
         if(form.isAllDevice()){
-        	List<String> list = new ArrayList<String>();
         	IFilter filter = new Filter();
         	filter.eq("orgFlag", session.getOrgFlag());
         	IPageResult<Object> pageResult = downloadService.getCanPushDevicePagesInfo(0, Integer.MAX_VALUE, version, filter);
         	for(Object obj:pageResult.list()){
-        		IDevice device = (IDevice)obj;
-        		list.add(String.valueOf(device.getId()));
+        		Object [] objects = (Object []) obj;
+        		IDevice device = (IDevice)objects[0];
+        		list.add(device.getId());
         	}
-        	ids = list.toArray();
+        	
         }
         else{
-            ids = deviceIds.substring(1).split(",");
+        	String deviceIdArray[] = deviceIds.substring(1).split(",");
+        	for(String deviceId:deviceIdArray){
+        		list.add(Long.parseLong(deviceId));
+        	}
         }
-        
-        for (Object id : ids) {
-            Long deviceId = Long.valueOf(String.valueOf(id));
-            ITask task = taskService.findTask(deviceId, form.getVersionId());
+        ids = list.toArray(new Long[0]);
+        IFilter taskFilter = new Filter();
+        taskFilter.eq("version.id", form.getVersionId());
+        List<ITask> taskList = taskService.list(taskFilter);
+        Map<Long,ITask> taskMap = convertTaskListToMap(taskList);
+        String batchName = messageSourceVersion.getMessage("version.download.batchNumber", new Object[]{form.getJobName(),version.getDownloadCounter()}, FishCfg.locale);
+        Date planTime = form.getPlanTime() == null ? new Date() : form.getPlanTime();
+        TaskType taskType = TaskType.valueOf(form.getTaskType());
+        String executeMachine = request.getLocalAddr();
+        for (Long deviceId : ids) {
+            ITask task = taskMap.get(deviceId);
             //如果存在相关的任务则要判断当前是否可以下发
             if(null != task){
             	 if(!TaskStatus.canRun(task.getStatus())){
@@ -157,7 +169,7 @@ public class VersionDownloadController {
             else{
             	task = taskService.make(createdTime);
             }
-            task.setTaskBatchName( messageSourceVersion.getMessage("version.download.batchNumber", new Object[]{form.getJobName(),version.getDownloadCounter()}, FishCfg.locale));
+            task.setTaskBatchName(batchName);
             task.setDeviceId(deviceId);
             String versionNo = maps.get(deviceId);
             if(versionNo != null){
@@ -165,11 +177,12 @@ public class VersionDownloadController {
             }
             task.setVersion(version);
             task.setCreateTime(createdTime);
-            task.setPlanTime(form.getPlanTime() == null ? new Date() : form.getPlanTime());
-            task.setTaskType(TaskType.valueOf(form.getTaskType()));
-            task.setExcuteMachine(request.getLocalAddr());
+            task.setPlanTime(planTime);
+            task.setTaskType(taskType);
+            task.setExcuteMachine(executeMachine);
             tasks.add(task);
         }
+
         taskManager.createTasksByWeb(tasks);
 
         form.setVersionName(version.getFullName() + " [" + version.getServerPath() + "]");
@@ -185,6 +198,13 @@ public class VersionDownloadController {
     	for(Object object : lists){
     		Object[] obj = (Object[])object;
     		maps.put(Long.valueOf(obj[0].toString()), obj[1].toString());
+    	}
+		return maps;
+	}
+    private Map<Long, ITask> convertTaskListToMap(List<ITask> lists) {
+    	Map<Long,ITask> maps = new HashMap<Long,ITask>();
+    	for(ITask task : lists){
+    		maps.put(task.getDeviceId(), task);
     	}
 		return maps;
 	}

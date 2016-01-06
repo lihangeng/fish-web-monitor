@@ -19,7 +19,6 @@ import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
-import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
@@ -81,17 +80,11 @@ public class VersionDownloadService implements IVersionDownloadService {
 		List<LinkedDeviceForm> linkDeviceList = new ArrayList<LinkedDeviceForm>();
 		IPageResult<Object> pushResult = this.getCanPushDevicePagesInfo(start, limit, version, outerFilter);
 		for(Object record:pushResult.list()){
-			IDevice device = (IDevice)record;
-			
+			Object[] objects = (Object[])record;
+			IDevice device=(IDevice)objects[0];
+			String versionNo=objects[1]==null?"":String.valueOf(objects[1]);
 			LinkedDeviceForm linkDevice = new LinkedDeviceForm(device);
-			IDeviceSoftVersion deviceSoftVersion = deviceSoftVersionService.get(device.getId(), version.getVersionType().getTypeName());
-			if(null==deviceSoftVersion){
-				linkDevice.setDeviceVersion("");
-			}
-			else{
-				linkDevice.setDeviceVersion(deviceSoftVersion.getVersionNo());
-			}
-
+			linkDevice.setDeviceVersion(versionNo);
 			linkDevice.setTargetVersion(version.getVersionNo());
 			linkDeviceList.add(linkDevice);
 		}
@@ -111,7 +104,7 @@ public class VersionDownloadService implements IVersionDownloadService {
 		StringBuffer hqlDevice = new StringBuffer();
 		if(null==version.getDependVersion()){
 			//设备可下发成功的台数
-	    	hqlDevice.append("select device from  ").
+	    	hqlDevice.append("select device,deviceSoftVersion.versionNo from  ").
 			append(Device.class.getSimpleName()).append(" device ,").
 			append(Version.class.getSimpleName()).append(" version ,");
 	    	//如果是广告等不显示的版本不用进行设备型号比对
@@ -177,7 +170,7 @@ public class VersionDownloadService implements IVersionDownloadService {
 //    	存在版本依赖关系
     	else{
     		//设备可下发成功的台数
-        	hqlDevice.append("select device from  ").
+        	hqlDevice.append("select device,deviceSoftVersion.versionNo from  ").
     		append(Device.class.getSimpleName()).append(" device ,").
     		append(Version.class.getSimpleName()).append(" version ,").
     		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType, ").
