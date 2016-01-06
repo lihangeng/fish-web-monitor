@@ -1,13 +1,9 @@
 Ext.apply(EwayLocale,{
-	//**********************************************************/
+	
 	report:{
 		baseReport:{
 			date:'加钞日期',//EwayLocale.report.baseReport.date
 			amt:'加钞金额',//EwayLocale.report.baseReport.amt
-			boxId:'钞箱ID',//EwayLocale.report.baseReport.boxId
-			boxCurrency:'币种',//EwayLocale.report.baseReport.boxCurrency
-			boxInitAmt:'初始金额',//EwayLocale.report.baseReport.boxInitAmt
-			lastAmt:'剩余金额',//EwayLocale.report.baseReport.lastAmt
 			cashAddRep:'加钞情况报表',//EwayLocale.report.baseReport.cashAddRep
 			boxBalanceRep:'钞箱余额报表',//EwayLocale.report.baseReport.boxBalanceRep
 			sysConfRep:'系统硬件配置报表',//EwayLocale.report.baseReport.sysConfRep
@@ -32,7 +28,7 @@ Ext.apply(EwayLocale,{
 			mod : '设备模块',//EwayLocale.report.baseReport.mod
 			rank : 'Top',//EwayLocale.report.baseReport.rank
 			statisticsDays : '统计时间段',//EwayLocale.report.baseReport.statisticsDays
-			caseTrendReportTitle: '故障趋势图'
+			caseTrendReportTitle: '故障趋势图'//EwayLocale.report.baseReport.caseTrendReportTitle
 		},
 		openrate:{
 			device:{

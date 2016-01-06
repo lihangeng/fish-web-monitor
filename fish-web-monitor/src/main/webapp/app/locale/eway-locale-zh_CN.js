@@ -9,33 +9,26 @@ Ext.apply(EwayLocale,{
 	ATMV:'自助设备监控系统',//EwayLocale.ATMV
 	welcome:'欢迎你,',//EwayLocale.welcome
 	personalConf:'个人设置',//EwayLocale.personalConf
-	systemHelp:'系统帮助',///EwayLocale.systemHelp
+	systemHelp:'系统帮助',//EwayLocale.systemHelp
 	exitSystem:'退出系统',//EwayLocale.exitSystem
 	msg:{
 		perviewFailForText:'预览失败:不支持文字滚动广告和公告的预览.',//EwayLocale.msg.perviewFailForText
-		perviewFailNoResource:'预览失败:此广告没有配置广告资源.',//EwayLocale.msg.perviewFailNoResource
 		choseResToPerview:'请选择您要预览的广告.',//EwayLocale.msg.choseResToPerview
 		noAdvertResAtTheResolution:'分辨率下没有配置广告资源.',//EwayLocale.msg.noAdvertResAtTheResolution
 		chooseAdvert:'请选择一条广告.',//EwayLocale.msg.chooseAdvert
 		chooseOneDevice:'请选择一台设备.',//EwayLocale.msg.chooseOneDevice
 		downLoadedAdvertCantDelete:'删除失败:不能删除"已下发"和"等待下发"状态的广告.',//EwayLocale.msg.downLoadedAdvertCantDelete
 		chooseAdvertToDelete:'请选择您要删除的广告.',//EwayLocale.msg.chooseAdvertToDelete
-		chooseAdvertToDownload:'请选择您要删除的广告.',//EwayLocale.msg.chooseAdvertToDownload
 		generalVersionFailForDownloaded:'生成版本文件失败:"已下发"状态的广告不能再生成版本信息.',//EwayLocale.msg.generalVersionFailForDownloaded
 		generalVersionSuccess:"生成版本文件成功.",//EwayLocale.msg.generalVersionSuccess
 		createSuccess:"创建成功.",//EwayLocale.msg.createSuccess
 		mustHaveOneResource:'至少包含一个广告资源!',//EwayLocale.msg.mustHaveOneResource
-		saveFail:'保存失败',//EwayLocale.msg.saveFail
-		saveFailPleaseRefresh:'保存失败，请刷新重试',//EwayLocale.msg.saveFailPleaseRefresh
-		saveFileSizeMaxFail:'保存失败:超过最大单个文件大小限制（最大30M）',//EwayLocale.msg.saveFileSizeMaxFail
 		saveFileCommunicationFail:'保存失败:与服务器通讯失败',//EwayLocale.msg.saveFileCommunicationFail
-		chooseDevice:'请选择设备.',//EwayLocale.msg.chooseDevice
 		downloadFailForNoVersion:"下发版本文件失败:还没有生成版本文件或者版本文件丢失,请先生成版本文件.",//EwayLocale.msg.downloadFailForNoVersion
 		saveSuccess:'保存成功！',//EwayLocale.msg.saveSuccess
 
 		removeSuccess:'解除成功',//EwayLocale.msg.removeSuccess
 		removeFail:'解除失败',//EwayLocale.msg.removeFail
-		someStripRemoveFailePleaseRefresh:'条解除失败，请刷新后重试！',//EwayLocale.msg.EwayLocale.msg.someStripRemoveFailePleaseRefresh
 		versionDownloaded:'不能删除"等待下发"和"已下发"状态的版本.',//EwayLocale.msg.versionDownloaded
 		selectVersionToDelete:'请选择您要删除的版本.',//EwayLocale.msg.selectVersionToDelete
 		communicationFail:'增加失败:与服务器通讯失败.',//EwayLocale.msg.communicationFail
@@ -46,7 +39,6 @@ Ext.apply(EwayLocale,{
 		mustSelectDevice:'请至少选择一个设备.',//EwayLocale.msg.mustSelectDevice
 		selectVersionRecord:'请选择您要下发的版本.',//EwayLocale.msg.selectVersionRecord
 		missVersionFile:"版本文件丢失,暂不能对版本进行下发控制.",//EwayLocale.msg.missVersionFile
-		mustSelectPerson:"请必须选择人员"//EwayLocale.msg.mustSelectPerson
 	},
 	confirm:{
 		titleSure:'确认',//EwayLocale.confirm.titleSure
@@ -54,7 +46,6 @@ Ext.apply(EwayLocale,{
 		title:'提示',//EwayLocale.confirm.title
 		withoutNumTaskConfirmInfo:'作业保存成功,是否跳转到"分发监控"页面?',//EwayLocale.confirm.withoutNumTaskConfirmInfo
 		timeout:'会话超时，3秒后自动跳转到登录页面',//EwayLocale.confirm.timeout
-		//TODO *为数字需要替换
 		taskConfirmInfo0:'第',//EwayLocale.confirm.taskConfirmInfo0
 		taskConfirmInfo1:'次作业保存成功,是否跳转到"分发监控"页面?'//EwayLocale.confirm.taskConfirmInfo1
 		
@@ -70,12 +61,11 @@ Ext.apply(EwayLocale,{
 		apply:'应用',//EwayLocale.button.apply
 		link:'关联',//EwayLocale.button.link
 		unlink:'解除',//EwayLocale.button.unlink
-		//bankOrg
-		deepQuery:'深度查询',
-		bankOrgMove:'组织迁移',
-		bankOrgAdmin:'管理员',
-		//bankPerson
-		bankPerlink:'绑定设备',
+		
+		bankOrgMove:'组织迁移',//EwayLocale.button.bankOrgMove
+		bankOrgAdmin:'管理员',//EwayLocale.button.bankOrgAdmin
+		
+		bankPerlink:'绑定设备',//EwayLocale.button.bankPerlink
 		sure:'确定',//EwayLocale.button.sure
 		confirm:'确认',//EwayLocale.button.confirm
 		cancle:'取消',//EwayLocale.button.cancle
@@ -83,23 +73,21 @@ Ext.apply(EwayLocale,{
 		pause:'暂停',//EwayLocale.button.pause
 
 		exported:'导出',//EwayLocale.button.exported
-		select:'选择',
-		info :'详细信息',
-		move:'移机',
-		exportXLS:'导出XLS',
-		exportPDF:'导出PDF',
-		massExport:'批量导入',
-		download:'下发',
-		downloadToolTip:'配置下发作业',
+		select:'选择',//EwayLocale.button.select
+		info :'详细信息',//EwayLocale.button.info
+		exportXLS:'导出XLS',//EwayLocale.button.exportXLS
+		exportPDF:'导出PDF',//EwayLocale.button.exportPDF
+		massExport:'批量导入',//EwayLocale.button.massExport
+		download:'下发',//EwayLocale.button.download
+		downloadToolTip:'配置下发作业',//EwayLocale.button.downloadToolTip
 		save:'保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存',//EwayLocale.button.save
-		servicePlan:'开机方案',//EwayLocale.button.servicePlan
-		adminBtn:'管理员',
+		adminBtn:'管理员',//EwayLocale.button.adminBtn
 		personM:'厂商管理员',//EwayLocale.button.personM
 		personTM:'管机员',//EwayLocale.button.personTM
 		orgAdmin:'机构管理员'//EwayLocale.button.orgAdmin
 
 	},
-	//引用其他模块
+	
 	refs:{
 		selectAll:'全部',//EwayLocale.refs.selectAll
 		orgName:'机构',//EwayLocale.refs.orgName
@@ -107,7 +95,7 @@ Ext.apply(EwayLocale,{
 		ip:'IP地址',//EwayLocale.refs.ip
 		devType:"设备型号"//EwayLocale.refs.devType
 	},
-	//**********************************************************/
+	
 	tip:{
 		search :{
 			warn:'查询条件存在错误项.',//EwayLocale.tip.search.warn
@@ -118,7 +106,7 @@ Ext.apply(EwayLocale,{
 			two:'此条记录不能被更改.'//EwayLocale.tip.update.two
 		},
 		remove :{
-			none:'请选择您要删除的记录.',
+			none:'请选择您要删除的记录.',//EwayLocale.tip.remove.none
 			one:'只能选择一条记录删除',//EwayLocale.tip.remove.one
 			confirm:{
 				title:'请确认',//EwayLocale.tip.remove.confirm.title
@@ -127,63 +115,57 @@ Ext.apply(EwayLocale,{
 			error:'删除失败:'//EwayLocale.tip.remove.error
 		},
 		own:{
-			have:'有',
-			nothing:'无'
+			have:'有',//EwayLocale.tip.own.have
+			nothing:'无'//EwayLocale.tip.own.nothing
 		},
 		right:{
-			yes:'是',
-			no:'否'
+			yes:'是',//EwayLocale.tip.right.yes
+			no:'否'//EwayLocale.tip.right.no
 		},
 		add:{
 			error:'新增失败'//EwayLocale.tip.add.error
 		},
 		success:'成功.',//EwayLocale.tip.success
 		fail:'失败:',//EwayLocale.tip.fail
-		phone:'请输入正确的电话号码',
+		phone:'请输入正确的电话号码',//EwayLocale.tip.phone
 		remind:'提示',//EwayLocale.tip.remind
-		formatPageBfMsg: '每页显示',// EwayLocale.tip.formatPageBfMsg
-		formatPageAfMsg: '条',// EwayLocale.tip.formatPageAfMsg
+		formatPageBfMsg: '每页显示',//EwayLocale.tip.formatPageBfMsg
+		formatPageAfMsg: '条',//EwayLocale.tip.formatPageAfMsg
 
-		unCertain:'未知',
-		searchOfNoLegal:'查询项中存在不合法的输入,不能提交.',
-		choseExportDevInfo:'请选择要导出信息的设备',
-		nowLink:'正在连接......',
+		unCertain:'未知',//EwayLocale.tip.unCertain
+		searchOfNoLegal:'查询项中存在不合法的输入,不能提交.',//EwayLocale.tip.searchOfNoLegal
+		choseExportDevInfo:'请选择要导出信息的设备',//EwayLocale.tip.choseExportDevInfo
+		nowLink:'正在连接......',//EwayLocale.tip.nowLink
 		linkFailure:'连接失败.',//EwayLocale.tip.linkFailure
-		inputError:'输入有误.',
-		numberExist:'此编号已经存在,请重新输入.',
-		isConfirmRemove:'删除分组,关联关系也被删除,是否真的要删除指定分组?',
-		noGroupInfo:'没有组信息,无法查询.',
-		selectAdd:'请选择您要增加的记录.',
-		continueAdd:'添加成功,是否继续向组内添加设备?',
-		addFail:'添加失败.',
-		isRemoveDev:'是否从该组移除该设备?',
-		removeFail:'移除失败.',
-		selectRemoveGroup:'请选择您要移除的设备所在组.',
-		selectRemoveDev:'请选择您要移除的设备.',
-		selectMoveDev:'请选择要移动的设备.',
-		moveSuc:'移机成功.',
-		dateReSelect:'开始时间不能大于结束日期,请重新选择',
+		inputError:'输入有误.',//EwayLocale.tip.inputError
+		numberExist:'此编号已经存在,请重新输入.',//EwayLocale.tip.numberExist
+		isConfirmRemove:'删除分组,关联关系也被删除,是否真的要删除指定分组?',//EwayLocale.tip.isConfirmRemove
+		noGroupInfo:'没有组信息,无法查询.',//EwayLocale.tip.noGroupInfo
+		selectAdd:'请选择您要增加的记录.',//EwayLocale.tip.selectAdd
+		continueAdd:'添加成功,是否继续向组内添加设备?',//EwayLocale.tip.continueAdd
+		addFail:'添加失败.',//EwayLocale.tip.addFail
+		isRemoveDev:'是否从该组移除该设备?',//EwayLocale.tip.isRemoveDev
+		removeFail:'移除失败.',//EwayLocale.tip.removeFail
+		selectRemoveGroup:'请选择您要移除的设备所在组.',//EwayLocale.tip.selectRemoveGroup
+		selectRemoveDev:'请选择您要移除的设备.',//EwayLocale.tip.selectRemoveDev
+		selectMoveDev:'请选择要移动的设备.',//EwayLocale.tip.selectMoveDev
+		moveSuc:'移机成功.',//EwayLocale.tip.moveSuc
+		dateReSelect:'开始时间不能大于结束日期,请重新选择',//EwayLocale.tip.dateReSelect
 		selectPlan:'请选择您应用的方案.',//EwayLocale.tip.selectPlan
 		removeFail:'解除失败.',//EwayLocale.tip.removeFail
 		selectRemoveDev:'请选择要解除的设备.',//EwayLocale.tip.selectRemoveDev
 		relatedFail:'关联失败.',//EwayLocale.tip.relatedFail
 		selectRelatedDev:'请选择要关联的设备.',//EwayLocale.tip.selectRelatedDev
-		planNoUpdate:'该方案已经执行,不可修改.',
-		planNoRemove:'该方案已经执行,不可删除.',
-		exportFiles: '请选择导入文件,只支持.xls和.xlsx格式的文件',
-		noChange:'没有更改数据,请更改后再点击确定!',//EwayLocale.tip.noChange
+		exportFiles: '请选择导入文件,只支持.xls和.xlsx格式的文件',//EwayLocale.tip.exportFiles
 		operateSuc:'操作成功',//EwayLocale.tip.operateSuc
 		operateWrong:'操作成功',//EwayLocale.tip.operateWrong
-		deleteOne:'一次只能删除一条记录.',//EwayLocale.tip.deleteOne
-		chooseRecord:'请选择您要关联的记录.',//EwayLocale.tip.chooseRecord
 		choosePlan:'请选择您要查看的方案',//EwayLocale.tip.choosePlan
 		planDetail:'方案详情',//EwayLocale.tip.planDetail
 		planDate:'方案详情(日期)',//EwayLocale.tip.planDate
 		planWeek:'方案详情(星期)',//EwayLocale.tip.planWeek
 		planNoConf:'该方案无详细设置！',//EwayLocale.tip.planNoConf
-		chooseRelatedDev:'请选择您要关联的设备！',//EwayLocale.tip.chooseRelatedDev
 		devRelatedPlan:'设备已关联开机方案！',//EwayLocale.tip.devRelatedPlan
-		//add by panxin
+		
 		tips:'提示',//EwayLocale.tip.tips
 		input:'请正确输入',//EwayLocale.tip.input
 		roleName:'由字母‘a-z’或‘A-Z’、数字‘0-9’或中文，最多可输入 40位',//EwayLocale.tip.roleName
@@ -191,9 +173,9 @@ Ext.apply(EwayLocale,{
 		cardNo:'只能输入13到19个数字',//EwayLocale.tip.cardNo
 		blankBegin:'不能以空格开头',//EwayLocale.tip.blankBegin
 		passwd:{
-			confirmPasswd:'是否确认密码重置？',//EwayLocale.tip.confirmPasswd
-			resetPasswding:'正在重置密码......',//EwayLocale.tip.resetPasswding
-			resetPasswdFail:'密码重置失败！'//EwayLocale.tip.resetPasswdFail
+			confirmPasswd:'是否确认密码重置？',//EwayLocale.tip.passwd.confirmPasswd
+			resetPasswding:'正在重置密码......',//EwayLocale.tip.passwd.resetPasswding
+			resetPasswdFail:'密码重置失败！'//EwayLocale.tip.passwd.resetPasswdFail
 		},
 		operateDate:{
 			operateDateBegin:'操作日期开始于',//EwayLocale.tip.operateDate.operateDateBegin
@@ -214,8 +196,6 @@ Ext.apply(EwayLocale,{
 					delFail:'删除管理员失败.'//EwayLocale.tip.bankOrg.manager.remove.delFail
 				}
 			},
-			orgEligible:'符合条件的机构',//EwayLocale.tip.bankOrg.orgEligible
-			downGradeOrg:'的直接下级机构',//EwayLocale.tip.bankOrg.downGradeOrg
 			move:{
 				chooseOrg:'请选择您要迁移的组织.',//EwayLocale.tip.bankOrg.move.chooseOrg
 				moveSuccess:'组织迁移成功.'//EwayLocale.tip.bankOrg.move.moveSuccess
@@ -233,16 +213,12 @@ Ext.apply(EwayLocale,{
 			},
 			personEligible:'符合条件的人员',//EwayLocale.tip.bankPer.personEligible
 			downGradePer:'以及其下属机构下的人员信息',//EwayLocale.tip.bankPer.downGradePer
-			personBelongs:'下的人员信息'//EwayLocale.tip.bankPer.personBelongs
 		},
 		serviceOrg:{
 			chooseOrg:'请选择您要设置的维护商.',//EwayLocale.tip.serviceOrg.chooseOrg
 			remove:{
 				reChoose:'您未选择要设置的维护商或该维护商下没有管理员,请重新选择.'//EwayLocale.tip.serviceOrg.remove.reChoose
 			}
-		},
-		servicePer:{
-			allSerPer:'所有维护商人员信息'//EwayLocale.tip.servicePer.allSerPer
 		},
 		user:{
 			add:{
@@ -257,19 +233,10 @@ Ext.apply(EwayLocale,{
 			},
 			update:{
 				fail:'更改失败:记录不存在,请刷新后操作.'//EwayLocale.tip.user.update.fail
-			},
-			move:{
-				choose:'请选择需要移动的记录.'//EwayLocale.tip.user.move.choose
-
 			}
 		},
 		business:{
 			transaction:{
-				transactionMonitor:{
-					beginMonitor:'请先停止监控后再输入条件，按开始监控按钮即可进行条件监控！',//EwayLocale.tip.business.transaction.transactionMonitor.beginMonitor
-					input:'设备号、对方账号、客户账号至少输入一个.',//EwayLocale.tip.business.transaction.transactionMonitor.input
-					left:'离开'//EwayLocale.tip.business.transaction.transactionMonitor.left
-				},
 				historyTransaction:{
 					input:'查询必须输入设备号.'//EwayLocale.tip.business.transaction.historyTransaction.input
 
@@ -315,7 +282,6 @@ Ext.apply(EwayLocale,{
 				closeServiceSuccess:'执行暂停服务命令成功.',//EwayLocale.tip.business.device.closeServiceSuccess
 				closeServiceFail:'执行暂停服务命令失败.',//EwayLocale.tip.business.device.closeServiceFail
 				closeNormal:'正常关机',//EwayLocale.tip.business.device.closeNormal
-				closeComfirm:'确认要执行正常关机命令么,可能会存在风险?',//EwayLocale.tip.business.device.closeComfirm
 				closing:'正在执行正常关机',//EwayLocale.tip.business.device.closing
 				closeSucess:'正常关机成功.',//EwayLocale.tip.business.device.closeSucess
 				closeFail:'正常关机失败.',//EwayLocale.tip.business.device.closeFail
@@ -345,19 +311,13 @@ Ext.apply(EwayLocale,{
 				term:'设备',//EwayLocale.tip.business.device.term
 				detail:'详情',//EwayLocale.tip.business.device.detail
 				refresh:'正在刷新......',//EwayLocale.tip.business.device.refresh
-				chooseOrg:'机构筛选',//EwayLocale.tip.business.device.chooseOrg
-				stateSet:'状态监控项配置',//EwayLocale.tip.business.device.stateSet
-				filterSet:'过滤条件项配置',//EwayLocale.tip.business.device.filterSet
-				connFirst:'当前已经暂停了与服务器的监控连接,请先与服务器建立连接,即"开始监控"',//EwayLocale.tip.business.device.connFirst
-				matrixPattern:'矩阵方式',//EwayLocale.tip.business.device.matrixPattern
-				listPattern:'列表方式',//EwayLocale.tip.business.device.listPattern
 				remoteCommandMsg:'命令发送成功'//EwayLocale.tip.business.device.remoteCommandMsg
 			}
 		}
 
 	},
 
-	//**********************************************************/
+	
 
 	combox:{
 		select:'--请选择--',//EwayLocale.combox.select
@@ -368,50 +328,40 @@ Ext.apply(EwayLocale,{
 
 	vtype:{
 		ip:'请输入正确的IP地址',//EwayLocale.vtype.ip
-		zip:'请输入正确的邮编格式，6位的数字',
-		versionNo:'不是正确的版本号格式,格式说明：1.版本号由4个部分组成 A.B.C.D ;2.只有A部分是必须的 ；3. A、B、C、D必须为大于等于0的整数 ,每个部分最大长度为8位； 4.ABCD部分必须用.分隔',
-		terminalId:'输入错误,设备号由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’点号‘.’组成,只能以字母或数字开头,长度1到20位。',
-		mobile:'输入错误,手机号码只能输入8到11位数字。',
-		cardNo:'输入错误,银行卡号只能输入16到19位数字。',
-		telephone:'输入错误,固定电话号码只能输入8到12位数字。',
-		daterange:'日期段不正确.',
-		numberrange:'金额范围不正确.',
+		zip:'请输入正确的邮编格式，6位的数字',//EwayLocale.vtype.zip
+		versionNo:'不是正确的版本号格式,格式说明：1.版本号由4个部分组成 A.B.C.D ;2.只有A部分是必须的 ；3. A、B、C、D必须为大于等于0的整数 ,每个部分最大长度为8位； 4.ABCD部分必须用.分隔',//EwayLocale.vtype.versionNo
+		terminalId:'输入错误,设备号由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’点号‘.’组成,只能以字母或数字开头,长度1到20位。',//EwayLocale.vtype.terminalId
+		mobile:'输入错误,手机号码只能输入8到11位数字。',//EwayLocale.vtype.mobile
+		cardNo:'输入错误,银行卡号只能输入16到19位数字。',//EwayLocale.vtype.cardNo
+		telephone:'输入错误,固定电话号码只能输入8到12位数字。',//EwayLocale.vtype.telephone
+		daterange:'日期段不正确.',//EwayLocale.vtype.daterange
+		numberrange:'金额范围不正确.',//EwayLocale.vtype.numberrange
 
-		bankOrgCode:'只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！',
-		zip:'只能输入6个‘0-9’的数字！',
-		maxLength20:'允许的最大长度为20',
-		numberRule: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’和点号‘.’，只能以字母或数字开头。',
-		numberRulesOne: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入100位',
-		numberRulesFour	: '由字母‘a-z’或‘A-Z’、数字‘0-9’、中文组成，最多可输入 40位',
-		numberRules: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’和点号‘.’、汉字，只能以汉字,字母或数字开头,最多可输入200位',
+		bankOrgCode:'只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’、下划线‘_’、点号‘.’， 只能以字母或数字开头！',//EwayLocale.vtype.bankOrgCode
+		zip:'只能输入6个‘0-9’的数字！',//EwayLocale.vtype.zip
+		maxLength20:'允许的最大长度为20',//EwayLocale.vtype.maxLength20
+		numberRule: '由字母‘a-z’或‘A-Z’、数字‘0-9’、减号‘-’和点号‘.’，只能以字母或数字开头。',//EwayLocale.vtype.numberRule
 
 
-		mobileRules:'手机电话号码只能输入8到11位数字‘0-9’',
-		choseDev:'请选择您报停的设备.',
-		dataLoad:'正在加载数据......',
-		devLinkNormal:'请检查与设备的连接是否正常.',
-		hardwayInitialize:'硬件模块正在初始化......',
-		inputCorrect:'请正确输入.',
-		exportRepError:'导出报表出错，请重新操作!',
-		planOutdate:'(此方案已过期，不可应用！)',
+		choseDev:'请选择您报停的设备.',//EwayLocale.vtype.choseDev
+		dataLoad:'正在加载数据......',//EwayLocale.vtype.dataLoad
+		devLinkNormal:'请检查与设备的连接是否正常.',//EwayLocale.vtype.devLinkNormal
+		hardwayInitialize:'硬件模块正在初始化......',//EwayLocale.vtype.hardwayInitialize
+		inputCorrect:'请正确输入.',//EwayLocale.vtype.inputCorrect
+		exportRepError:'导出报表出错，请重新操作!',//EwayLocale.vtype.exportRepError
 
-		emailRules: 'email必须符合*@*.*标准。',
-		notifyTimesRules: '通知次数必须为数字，最小值为0,最大值为100。',
-		sendTimesRules: '发送次数必须为数字，最小值为0,最大值为100。'	,
+		emailRules: 'email必须符合*@*.*标准。',//EwayLocale.vtype.emailRules
+		notifyTimesRules: '通知次数必须为数字，最小值为0,最大值为100。',//EwayLocale.vtype.notifyTimesRules
+		sendTimesRules: '发送次数必须为数字，最小值为0,最大值为100。'	,//EwayLocale.vtype.sendTimesRules
 
-		launchTranscribe:'正在启动录制......',
-		stopTranscribe:'正在停止录制......',
-		inexistenceScreen:'不存在此屏幕',
-		devEmploy:'该台设备已经被',
-		userEmploy:'用户占用!',
-		loadTranscribe:'正在下载录制好的视频文件......',
-		remoteFailure:'远程浏览失败',
-		versionChart:'版本下发历史状态分布图',
-		openRefresh:'开启自动刷新',
-		choseTask:'请选择一个任务',
-		cancelTask:'不能撤销"完成"状态的作业.',
-		cancelParticularTask:'是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)',
-		nowDelete:'正在删除......'
+		launchTranscribe:'正在启动录制......',//EwayLocale.vtype.launchTranscribe
+		stopTranscribe:'正在停止录制......',//EwayLocale.vtype.stopTranscribe
+		inexistenceScreen:'不存在此屏幕',//EwayLocale.vtype.inexistenceScreen
+		devEmploy:'该台设备已经被',//EwayLocale.vtype.devEmploy
+		userEmploy:'用户占用!',//EwayLocale.vtype.userEmploy
+		loadTranscribe:'正在下载录制好的视频文件......',//EwayLocale.vtype.loadTranscribe
+		remoteFailure:'远程浏览失败',//EwayLocale.vtype.remoteFailure
+		choseTask:'请选择一个任务',//EwayLocale.vtype.choseTask
 	},
 
 	commen:{
@@ -427,7 +377,6 @@ Ext.apply(EwayLocale,{
 			onVacation:'休假',//EwayLocale.commen.comboxStatus.onVacation
 			other:'其他',//EwayLocale.commen.comboxStatus.other
 			dredge:'开通',//EwayLocale.commen.comboxStatus.dredge
-			open:'开通',//EwayLocale.commen.comboxStatus.open
 			close:'停用',//EwayLocale.commen.comboxStatus.close
 			pastDue:'过期',//EwayLocale.commen.comboxStatus.pastDue
 			pastDueSoon:'即将过期'//EwayLocale.commen.comboxStatus.pastDueSoon
@@ -459,7 +408,7 @@ Ext.apply(EwayLocale,{
 			upOpen:'未开通',//EwayLocale.commen.comboxDevStatus.upOpen
 			open:'开通',//EwayLocale.commen.comboxDevStatus.open
 			stop:'停用',//EwayLocale.commen.comboxDevStatus.stop
-			scrapped:'报废'//EwayLocale.commen.comboxDevStatus.Scrapped
+			scrapped:'报废'//EwayLocale.commen.comboxDevStatus.scrapped
 		},
 		setManager:'设置',//EwayLocale.commen.setManager
 		devServiceName:'设备维护商',//EwayLocale.commen.devServiceName
@@ -493,7 +442,7 @@ Ext.apply(EwayLocale,{
 		insideOutside:'在行标志',//EwayLocale.commen.insideOutside
 		appVersion:'应用版本号',//EwayLocale.commen.appVersion
 		devInfo:'设备基本信息',//EwayLocale.commen.devInfo
-		//check end
+		
 		personnel:'联系人',//EwayLocale.commen.personnel
 		warn:'警告',//EwayLocale.commen.warn
 		fatal:'故障',//EwayLocale.commen.fatal
@@ -521,7 +470,7 @@ Ext.apply(EwayLocale,{
 
 	},
 
-	//**********************************************************/
+	
 
 	index:{
 		indexPage:'首页',//EwayLocale.index.indexPage
@@ -536,7 +485,7 @@ Ext.apply(EwayLocale,{
 		retainCardTrendTitle:'日均吞卡趋势图'//EwayLocale.index.retainCardTrendTitle
 	},
 
-	//**********************************************************/
+	
 	personal:{
 		baseInfo:'基本信息',//EwayLocale.personal.baseInfo
 		accountNum:'账号',//EwayLocale.personal.accountNum
@@ -553,7 +502,7 @@ Ext.apply(EwayLocale,{
 		reOperate:'无法修改密码,请重新操作.'//EwayLocale.personal.reOperate
 	},
 
-	//**********************************************************/
+	
 	system:{
 		sysRegist:'系统注册',//EwayLocale.system.sysRegist
 		registCode:'注册码',//EwayLocale.system.registCode

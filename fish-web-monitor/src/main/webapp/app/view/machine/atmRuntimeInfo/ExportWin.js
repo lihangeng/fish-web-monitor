@@ -5,7 +5,7 @@ Ext.define('Eway.view.machine.atmRuntimeInfo.ExportWin',{
 
 	requires : [],
 
-	title : Eway.store.machine.atmRuntimeInfo.exportName,
+	title : EwayLocale.machine.atmRuntimeInfo.exportName,
 	modal : true,
 	constrainHeader : true,
 

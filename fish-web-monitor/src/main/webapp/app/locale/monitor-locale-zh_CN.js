@@ -1,5 +1,5 @@
 Ext.apply(EwayLocale,{
-	//**********************************************************/
+	
 	monitor:{
 		summary:{
 			title:'监控总览',//EwayLocale.monitor.summary.title
@@ -10,11 +10,11 @@ Ext.apply(EwayLocale,{
 			netSummary:'网络状态概况'//EwayLocale.monitor.summary.netSummary
 		},
 		deviceStatus:{
-			Healthy:'正常',
-			Warning:'警告',
-			Fatal:'故障',
-			Unknown:'未知',
-			NoDevice:'无设备'
+			Healthy:'正常',//EwayLocale.monitor.deviceStatus.Healthy
+			Warning:'警告',//EwayLocale.monitor.deviceStatus.Warning
+			Fatal:'故障',//EwayLocale.monitor.deviceStatus.Fatal
+			Unknown:'未知',//EwayLocale.monitor.deviceStatus.Unknown
+			NoDevice:'无设备'//EwayLocale.monitor.deviceStatus.NoDevice
 		},
 		devMonitor:{
 			title:'状态监控',//EwayLocale.monitor.devMonitor.title
@@ -47,7 +47,7 @@ Ext.apply(EwayLocale,{
 				minAmount:'最小取款金额',//EwayLocale.monitor.devMonitor.cash.minAmount
 				boxId:'钞箱标识',//EwayLocale.monitor.devMonitor.cash.boxId
 				type:'钞箱类型',//EwayLocale.monitor.devMonitor.cash.type
-				boxStatus:'钞箱状态',//EwayLocale.monitor.devMonitor.cash.boxStatus 钞箱状态
+				boxStatus:'钞箱状态',//EwayLocale.monitor.devMonitor.cash.boxStatus
 				initialCount:'初始张数',//EwayLocale.monitor.devMonitor.cash.initialCount
 				cashInCount:'存款张数',//EwayLocale.monitor.devMonitor.cash.cashInCount
 				currentCount:'当前计数[张/笔]',//EwayLocale.monitor.devMonitor.cash.currentCount
@@ -64,7 +64,6 @@ Ext.apply(EwayLocale,{
 				cashUnknow:'钞箱未知'//EwayLocale.monitor.devMonitor.cash.cashUnknow
 
 			},
-			modStateGraphic:'模块状态图示',//EwayLocale.monitor.devMonitor.modStateGraphic
 			modGraphic:'模块图示',//EwayLocale.monitor.devMonitor.modGraphic
 			registerStatus:'注册状态',//EwayLocale.monitor.devMonitor.registerStatus
 			devModStatus:'设备模块状态',//EwayLocale.monitor.devMonitor.devModStatus
@@ -89,7 +88,7 @@ Ext.apply(EwayLocale,{
 			remote:{
 				control:'远程控制',//EwayLocale.monitor.devMonitor.remote.control
 				screen:'远程抓屏',//EwayLocale.monitor.devMonitor.remote.screen
-				commandRet:'远程命令结果',//EwayLocale.monitor.devMonitor.remote.commandRet 远程命令执行结果
+				commandRet:'远程命令结果',//EwayLocale.monitor.devMonitor.remote.commandRet
 				log:'提取电子日志',//EwayLocale.monitor.devMonitor.remote.log
 				net:'查看网络连接',//EwayLocale.monitor.devMonitor.remote.net
 				softwareList:'获取软件列表',//EwayLocale.monitor.devMonitor.remote.softwareList
@@ -110,11 +109,9 @@ Ext.apply(EwayLocale,{
 				staff:'维护',//EwayLocale.monitor.devMonitor.remote.staff
 				pFault:'交易前置故障',//EwayLocale.monitor.devMonitor.remote.pFault
 				stop:'报停',//EwayLocale.monitor.devMonitor.remote.stop
-				manualStop:'人工报停',////EwayLocale.monitor.devMonitor.remote.manualStop
-				stopFault:'暂停服务-模块故障',//EwayLocale.monitor.devMonitor.remote.stopFault
 				stopCash:'暂停服务-未加钞',//EwayLocale.monitor.devMonitor.remote.stopCash
 				pauseSer:'暂停服务',//EwayLocale.monitor.devMonitor.remote.pauseSer
-				pauseCash:'现金暂停',//EwayLocale.monitor.devMonitor.remote.pauseCash   ----中文不明，我猜的----
+				pauseCash:'现金暂停',//EwayLocale.monitor.devMonitor.remote.pauseCash
 				pauseSerUnknow:'未知原因暂停服务',//EwayLocale.monitor.devMonitor.remote.pauseSerUnknow
 				manaAndstaff:'管机员',//EwayLocale.monitor.devMonitor.remote.manaAndstaff
 				screenFailed:'截屏失败.'//EwayLocale.monitor.devMonitor.remote.screenFailed
@@ -191,7 +188,7 @@ Ext.apply(EwayLocale,{
 				addTitle:'增加吞卡信息',//EwayLocale.monitor.business.card.addTitle
 				time:'吞卡时间',//EwayLocale.monitor.business.card.time
 				reason:'吞卡原因',//EwayLocale.monitor.business.card.reason
-				destroy:'吞卡销毁',//EwayLocale.monitor.business.card.destory
+				destroy:'吞卡销毁',//EwayLocale.monitor.business.card.destroy
 				cardHolder:'发卡行',//EwayLocale.monitor.business.card.cardHolder
 				cardRegex:'允许的最大长度为',//EwayLocale.monitor.business.card.cardRegex
 				beginEndDate:'吞卡起始日期不能大于吞卡截止日期,请重新选择',//EwayLocale.monitor.business.card.beginEndDate
@@ -266,164 +263,160 @@ Ext.apply(EwayLocale,{
 				date:'执行日期'//EwayLocale.monitor.remoteCommand.form.date
 			},
 			grid:{
-				commandType:'命令类型',//EwayLocale.monitor.remoteCommand.commandType
-				commandResult:'执行结果',//EwayLocale.monitor.remoteCommand.commandResult
-				datetime:'执行日期',//EwayLocale.monitor.remoteCommand.datetime
-				handlePerson:'操作人'//EwayLocale.monitor.remoteCommand.handlePerson
+				commandType:'命令类型',//EwayLocale.monitor.remoteCommand.grid.commandType
+				commandResult:'执行结果',//EwayLocale.monitor.remoteCommand.grid.commandResult
+				datetime:'执行日期',//EwayLocale.monitor.remoteCommand.grid.datetime
+				handlePerson:'操作人'//EwayLocale.monitor.remoteCommand.grid.handlePerson
 			}
 		}
 	},
-	//**********************************************************/
+	
 	agent:{
 		remote:{
 			screen:{
-				message:'信息',
-				startcustom:'开始录制客户前屏',
-				stopcustom:'停止录制客户前屏',
-				startadmin:'开始录制管理后屏',
-				stopadmin: '停止录制管理后屏',
-				startadvertise: '开始录制广告屏',
-				stopadvertise: '停止录制广告屏',
-				startCameraDate: '开始录制时间',
-				stopCameraDate: '结束录制时间',
-				monitorType: '屏幕类型',
-				fileNameClient: '文件名称',
-				nowCamera:'正在录制...',
-				finishCamera:'完成录制',
-				videoLoad:'正在将视频文件下载至服务端...',
-				stopManage:'自动停止.如需取得视频文件,请联系管理员!',
-				manage: '操作',
+				message:'信息',//EwayLocale.agent.remote.screen.message
+				startcustom:'开始录制客户前屏',//EwayLocale.agent.remote.screen.startcustom
+				stopcustom:'停止录制客户前屏',//EwayLocale.agent.remote.screen.stopcustom
+				startadmin:'开始录制管理后屏',//EwayLocale.agent.remote.screen.startadmin
+				stopadmin: '停止录制管理后屏',//EwayLocale.agent.remote.screen.stopadmin
+				startadvertise: '开始录制广告屏',//EwayLocale.agent.remote.screen.startadvertise
+				stopadvertise: '停止录制广告屏',//EwayLocale.agent.remote.screen.stopadvertise
+				startCameraDate: '开始录制时间',//EwayLocale.agent.remote.screen.startCameraDate
+				stopCameraDate: '结束录制时间',//EwayLocale.agent.remote.screen.stopCameraDate
+				monitorType: '屏幕类型',//EwayLocale.agent.remote.screen.monitorType
+				fileNameClient: '文件名称',//EwayLocale.agent.remote.screen.fileNameClient
+				nowCamera:'正在录制...',//EwayLocale.agent.remote.screen.nowCamera
+				finishCamera:'完成录制',//EwayLocale.agent.remote.screen.finishCamera
+				videoLoad:'正在将视频文件下载至服务端...',//EwayLocale.agent.remote.screen.videoLoad
+				stopManage:'自动停止.如需取得视频文件,请联系管理员!',//EwayLocale.agent.remote.screen.stopManage
+				manage: '操作',//EwayLocale.agent.remote.screen.manage
 				loading:'下载',//EwayLocale.agent.remote.screen.loading
-				screenCamera: '屏幕录制',
+				screenCamera: '屏幕录制',//EwayLocale.agent.remote.screen.screenCamera
 			},
-			discInfo: '磁盘信息',
-			discName: '磁盘分区名称',
-			fileSys: '磁盘文件系统',
-			totalSize: '磁盘总大小',
-			freeSize: '磁盘可用空间大小',
-			networkInfo:'网络连接信息',
-			conenctRate: '连接速率',
-			receivedByte: '接收到的字节数',
-			sendByte: '发动的字节数',
-			loadData: '加载数据中，请稍候...',
-			refresh: '刷新',
-			name: '名称',//EwayLocale.agent.remote.loading
-			format: '格式',
-			totalSize: '总大小',
-			freeSize: '可用空间',
-			refreshFailure:'刷新失败！',
-			back:'返回',
-			upload: '上传',
-			Mkdir: '新建文件夹',
-			MkFile: '新建文件',
-			MKcatalog:'新建目录',
-			catalogName:'目录名称',
-			remove: '删除',
-			execute: '执行',
-			path: '路径',
-			search: '搜索',
-			size: '大小',
-			fileSize:'文件大小：',
-			lastTime: '最后修改时间',
-			clickLoadFile:'单击即可下载该文件',
-			loadFileSize:'下载文件 不能超过200M！',
-			nowLoadFile:'正在下载文件......',
-			judgeLoad: '是否续传下载！',
-			loadFailure:'下载失败！',
-			number: '编号',
-			programName: '程序名称',
-			version: '版本号',
-			publisher: '发布商',
-			diskUsed: '磁盘使用',
-			softwayList: '软件安装列表',
-			networkInfo: '网络信息',
-			networkLinkStatus: '网络连接状态',
-			send: '已发送',
-			receive: '已接收',
-			bite: '字节:',
-			speed: '速度(Mbps):',
-			bandWidth: '宽带测速',
-			unit: '单位：MB',
-			againTest: '重新测试',
-			impressionName: '印象名称',
-			userName: '用户名',
-			memoryRate: '内存使用',
-			systemProgressInfo:'系统进程信息',
-			screenShotTime: '截屏时间',
-			distanceScreen: '远程抓屏',
-			distanceExplorer: '远程浏览',
-			ATMExamination:'ATM体检',
-			checkATM: '重新体检',
-			ATMExamInfo: 'ATM体检详情',
-			cpuIdle: 'CPU空闲率',
-			memoryIdle: '内存空闲率',
-			hardDiskIdle: '硬盘空闲率',
-			uploadFile: '上传文件',
-			rules:'不能包含一下字符:\/?*":<>|',
-			nowCreat:'正在新建...',
-			nowPath: '当前路径',
-			confirm: '保存',
-			reset: '重置',
-			back: '返回',
-			prepareFile:'待上传文件',
-			choseUploadFile:'请选择上传文件',
-			nowUploadFile:'正在上传文件...',
-			explorer: '浏览...',
-			serverPath: '文件在服务器上的位置',
-			distanceSuccess:'远程创建成功.',
-			distanceFailure:'远程创建失败.',
-			confirmDelete:'确定删除',
-			confirmExecute:'确定执行',
-			choseDeleteFile:'请选择要删除的文件.',
-			distanceExecuteSuccess:'远程执行成功.',
-			distanceExecuteFailure:'远程执行失败.',
-			choseExecuteFile:'请选择要执行的文件.',
-			distanceExplorer:'远程浏览:',
-			distanceExplorerFailure:'远程浏览失败.',
-			fileExist:'该文件已存在！',
-			nowUploadFile:'正在上传文件......',
-			uploadSuccess:'上传成功.',
-			yes: "续传",
-			no: "覆盖",
-			cancel: "取消",
-			choseFile:'未选择上传文件,请选择文件.',
-			returnFailure:'返回失败.',
-			refreshFailure:'刷新失败.',
-			catalogExist:'搜索的目录不存在,请重新输入.',
-			testBandWidth:'测试宽带异常.',
-			networkMaxSpeed:'网络最大接入速度为',
-			minutes:'秒',
-			amount:'相当于',
-			specialLine:'专线',
-			bandWidth:'宽带',
-			handle:'正在处理......',
-			offServer:'与服务器断开连接.',//EwayLocale.agent.offServer
-			submitingWaiting:'正在提交,请稍等...',//EwayLocale.agent.submitingWaiting
-			ATMCheck:'正在ATM体检中...',
-			excellent:'优',
-			fine:'良',
-			middle:'中',
-			bad:'差',
-			point:'分',
-			checkFailure:'ATM体检失败,请重新操作.',
-			checkVersionInfo:'查看版本信息',
-			versionInfo:'您要查看的版本信息如下:',
-			ATMCVersion:'ATMC应用版本',
-			monitorVersion: '监控客户端版本',
-			mergeload:'下载列表',
-			mergeDownLoad:'执行下载任务',
-			clickAddLoadFile:'单击添加到下载列表',
-			removeFile:'删除文件',
-			addFileSuccess:'成功添加到下载列表!',
-            maxDownLoadFileSize:'添加失败,下载列表中文件总大小不能超过200M.',
-            exitDownLoadFile:'添加失败,该文件已添加到下载列表中.',
-            removeSuccess:'删除成功.',
-            mustIncludeOneFile:'请至少添加一个要下载的文件.',
-            resetBackUp:'点击重新备份当天日志.',
-            backupAppLogsSuccess:'日志备份成功.',
-            backupAppLogsFail:'日志备份失败.',
-            backupLogSucList:'日备份日志成功设备列表.',
-            backupLogFailList:'日备份日志失败设备列表.',
+			discInfo: '磁盘信息',//EwayLocale.agent.remote.discInfo
+			discName: '磁盘分区名称',//EwayLocale.agent.remote.discName
+			fileSys: '磁盘文件系统',//EwayLocale.agent.remote.fileSys
+			totalSize: '磁盘总大小',//EwayLocale.agent.remote.totalSize
+			freeSize: '磁盘可用空间大小',//EwayLocale.agent.remote.freeSize
+			networkInfo:'网络连接信息',//EwayLocale.agent.remote.networkInfo
+			conenctRate: '连接速率',//EwayLocale.agent.remote.conenctRate
+			receivedByte: '接收到的字节数',//EwayLocale.agent.remote.receivedByte
+			sendByte: '发动的字节数',//EwayLocale.agent.remote.sendByte
+			loadData: '加载数据中，请稍候...',//EwayLocale.agent.remote.loadData
+			refresh: '刷新',//EwayLocale.agent.remote.refresh
+			name: '名称',//EwayLocale.agent.remote.name
+			format: '格式',//EwayLocale.agent.remote.format
+			totalSize: '总大小',//EwayLocale.agent.remote.totalSize
+			freeSize: '可用空间',//EwayLocale.agent.remote.freeSize
+			refreshFailure:'刷新失败！',//EwayLocale.agent.remote.refreshFailure
+			back:'返回',//EwayLocale.agent.remote.back
+			upload: '上传',//EwayLocale.agent.remote.upload
+			Mkdir: '新建文件夹',//EwayLocale.agent.remote.Mkdir
+			MkFile: '新建文件',//EwayLocale.agent.remote.MkFile
+			MKcatalog:'新建目录',//EwayLocale.agent.remote.MKcatalog
+			catalogName:'目录名称',//EwayLocale.agent.remote.catalogName
+			remove: '删除',//EwayLocale.agent.remote.remove
+			execute: '执行',//EwayLocale.agent.remote.execute
+			path: '路径',//EwayLocale.agent.remote.path
+			search: '搜索',//EwayLocale.agent.remote.search
+			size: '大小',//EwayLocale.agent.remote.size
+			fileSize:'文件大小：',//EwayLocale.agent.remote.fileSize
+			lastTime: '最后修改时间',//EwayLocale.agent.remote.lastTime
+			clickLoadFile:'单击即可下载该文件',//EwayLocale.agent.remote.clickLoadFile
+			loadFileSize:'下载文件 不能超过200M！',//EwayLocale.agent.remote.loadFileSize
+			nowLoadFile:'正在下载文件......',//EwayLocale.agent.remote.nowLoadFile
+			judgeLoad: '是否续传下载！',//EwayLocale.agent.remote.judgeLoad
+			loadFailure:'下载失败！',//EwayLocale.agent.remote.loadFailure
+			number: '编号',//EwayLocale.agent.remote.number
+			programName: '程序名称',//EwayLocale.agent.remote.programName
+			version: '版本号',//EwayLocale.agent.remote.version
+			publisher: '发布商',//EwayLocale.agent.remote.publisher
+			diskUsed: '磁盘使用',//EwayLocale.agent.remote.diskUsed
+			softwayList: '软件安装列表',//EwayLocale.agent.remote.softwayList
+			networkInfo: '网络信息',//EwayLocale.agent.remote.networkInfo
+			networkLinkStatus: '网络连接状态',//EwayLocale.agent.remote.networkLinkStatus
+			send: '已发送',//EwayLocale.agent.remote.send
+			receive: '已接收',//EwayLocale.agent.remote.receive
+			bite: '字节:',//EwayLocale.agent.remote.bite
+			speed: '速度(Mbps):',//EwayLocale.agent.remote.speed
+			bandWidth: '宽带测速',//EwayLocale.agent.remote.bandWidth
+			unit: '单位：MB',//EwayLocale.agent.remote.unit
+			againTest: '重新测试',//EwayLocale.agent.remote.againTest
+			impressionName: '印象名称',//EwayLocale.agent.remote.impressionName
+			userName: '用户名',//EwayLocale.agent.remote.userName
+			memoryRate: '内存使用',//EwayLocale.agent.remote.memoryRate
+			systemProgressInfo:'系统进程信息',//EwayLocale.agent.remote.systemProgressInfo
+			screenShotTime: '截屏时间',//EwayLocale.agent.remote.screenShotTime
+			distanceScreen: '远程抓屏',//EwayLocale.agent.remote.distanceScreen
+			distanceExplorer: '远程浏览',//EwayLocale.agent.remote.distanceExplorer
+			ATMExamination:'ATM体检',//EwayLocale.agent.remote.ATMExamination
+			checkATM: '重新体检',//EwayLocale.agent.remote.checkATM
+			ATMExamInfo: 'ATM体检详情',//EwayLocale.agent.remote.ATMExamInfo
+			cpuIdle: 'CPU空闲率',//EwayLocale.agent.remote.cpuIdle
+			memoryIdle: '内存空闲率',//EwayLocale.agent.remote.memoryIdle
+			hardDiskIdle: '硬盘空闲率',//EwayLocale.agent.remote.hardDiskIdle
+			uploadFile: '上传文件',//EwayLocale.agent.remote.uploadFile
+			rules:'不能包含一下字符:\/?*":<>|',//EwayLocale.agent.remote.rules
+			nowCreat:'正在新建...',//EwayLocale.agent.remote.nowCreat
+			nowPath: '当前路径',//EwayLocale.agent.remote.nowPath
+			confirm: '保存',//EwayLocale.agent.remote.confirm
+			reset: '重置',//EwayLocale.agent.remote.reset
+			back: '返回',//EwayLocale.agent.remote.back
+			prepareFile:'待上传文件',//EwayLocale.agent.remote.prepareFile
+			choseUploadFile:'请选择上传文件',//EwayLocale.agent.remote.choseUploadFile
+			nowUploadFile:'正在上传文件...',//EwayLocale.agent.remote.nowUploadFile
+			explorer: '浏览...',//EwayLocale.agent.remote.explorer
+			serverPath: '文件在服务器上的位置',//EwayLocale.agent.remote.serverPath
+			distanceSuccess:'远程创建成功.',//EwayLocale.agent.remote.distanceSuccess
+			distanceFailure:'远程创建失败.',//EwayLocale.agent.remote.distanceFailure
+			confirmDelete:'确定删除',//EwayLocale.agent.remote.confirmDelete
+			confirmExecute:'确定执行',//EwayLocale.agent.remote.confirmExecute
+			choseDeleteFile:'请选择要删除的文件.',//EwayLocale.agent.remote.choseDeleteFile
+			distanceExecuteSuccess:'远程执行成功.',//EwayLocale.agent.remote.distanceExecuteSuccess
+			distanceExecuteFailure:'远程执行失败.',//EwayLocale.agent.remote.distanceExecuteFailure
+			choseExecuteFile:'请选择要执行的文件.',//EwayLocale.agent.remote.choseExecuteFile
+			distanceExplorer:'远程浏览:',//EwayLocale.agent.remote.distanceExplorer
+			distanceExplorerFailure:'远程浏览失败.',//EwayLocale.agent.remote.distanceExplorerFailure
+			fileExist:'该文件已存在！',//EwayLocale.agent.remote.fileExist
+			nowUploadFile:'正在上传文件......',//EwayLocale.agent.remote.nowUploadFile
+			uploadSuccess:'上传成功.',//EwayLocale.agent.remote.uploadSuccess
+			yes: "续传",//EwayLocale.agent.remote.yes
+			no: "覆盖",//EwayLocale.agent.remote.no
+			cancel: "取消",//EwayLocale.agent.remote.cancel
+			choseFile:'未选择上传文件,请选择文件.',//EwayLocale.agent.remote.choseFile
+			returnFailure:'返回失败.',//EwayLocale.agent.remote.returnFailure
+			refreshFailure:'刷新失败.',//EwayLocale.agent.remote.refreshFailure
+			catalogExist:'搜索的目录不存在,请重新输入.',//EwayLocale.agent.remote.catalogExist
+			testBandWidth:'测试宽带异常.',//EwayLocale.agent.remote.testBandWidth
+			networkMaxSpeed:'网络最大接入速度为',//EwayLocale.agent.remote.networkMaxSpeed
+			minutes:'秒',//EwayLocale.agent.remote.minutes
+			amount:'相当于',//EwayLocale.agent.remote.amount
+			specialLine:'专线',//EwayLocale.agent.remote.specialLine
+			bandWidth:'宽带',//EwayLocale.agent.remote.bandWidth
+			handle:'正在处理......',//EwayLocale.agent.remote.handle
+			offServer:'与服务器断开连接.',//EwayLocale.agent.remote.offServer
+			ATMCheck:'正在ATM体检中...',//EwayLocale.agent.remote.ATMCheck
+			excellent:'优',//EwayLocale.agent.remote.excellent
+			fine:'良',//EwayLocale.agent.remote.fine
+			middle:'中',//EwayLocale.agent.remote.middle
+			bad:'差',//EwayLocale.agent.remote.bad
+			point:'分',//EwayLocale.agent.remote.point
+			checkFailure:'ATM体检失败,请重新操作.',//EwayLocale.agent.remote.checkFailure
+			checkVersionInfo:'查看版本信息',//EwayLocale.agent.remote.checkVersionInfo
+			versionInfo:'您要查看的版本信息如下:',//EwayLocale.agent.remote.versionInfo
+			mergeload:'下载列表',//EwayLocale.agent.remote.mergeload
+			mergeDownLoad:'执行下载任务',//EwayLocale.agent.remote.mergeDownLoad
+			clickAddLoadFile:'单击添加到下载列表',//EwayLocale.agent.remote.clickAddLoadFile
+			removeFile:'删除文件',//EwayLocale.agent.remote.removeFile
+			addFileSuccess:'成功添加到下载列表!',//EwayLocale.agent.remote.addFileSuccess
+            maxDownLoadFileSize:'添加失败,下载列表中文件总大小不能超过200M.',//EwayLocale.agent.remote.maxDownLoadFileSize
+            exitDownLoadFile:'添加失败,该文件已添加到下载列表中.',//EwayLocale.agent.remote.exitDownLoadFile
+            mustIncludeOneFile:'请至少添加一个要下载的文件.',//EwayLocale.agent.remote.mustIncludeOneFile
+            resetBackUp:'点击重新备份当天日志.',//EwayLocale.agent.remote.resetBackUp
+            backupAppLogsSuccess:'日志备份成功.',//EwayLocale.agent.remote.backupAppLogsSuccess
+            backupAppLogsFail:'日志备份失败.',//EwayLocale.agent.remote.backupAppLogsFail
+            backupLogSucList:'日备份日志成功设备列表.',//EwayLocale.agent.remote.backupLogSucList
+            backupLogFailList:'日备份日志失败设备列表.',//EwayLocale.agent.remote.backupLogFailList
 
 		}
 	}
