@@ -101,7 +101,7 @@ Ext.define('Eway.controller.version.VersionDownload', {
 			        }
 			    },
 			    failure:function(){
-					Eway.alert(wayLocale.version.taskStatus.taskResetFailTips);
+					Eway.alert(EwayLocale.version.taskStatus.taskResetFailTips);
 			    }
 			    
 			});

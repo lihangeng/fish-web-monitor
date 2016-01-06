@@ -122,7 +122,7 @@ Ext.define('Eway.view.person.user.Grid', {
 					   Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.passwd.confirmPasswd,callBack);
 					    function callBack(button){
 					    	if(button=='yes'){
-					    		gridEl.mask(EwayLocale.tip.resetPasswding);
+					    		gridEl.mask(EwayLocale.tip.passwd.resetPasswding);
 					    		Ext.Ajax.request({
 			               			method : 'POST',
 			               			url : 'api/person/user/resetPassword',
@@ -144,7 +144,7 @@ Ext.define('Eway.view.person.user.Grid', {
 			               			},
 			               			failure : function(){
 			               				gridEl.unmask();
-			               				Eway.alert(EwayLocale.tip.resetPasswdFail);
+			               				Eway.alert(EwayLocale.tip.passwd.resetPasswdFail);
 			               			}
 		               			});
 					    	}

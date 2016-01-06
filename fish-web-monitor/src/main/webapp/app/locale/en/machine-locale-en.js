@@ -1,621 +1,579 @@
 Ext.apply(EwayLocale,{
 	
 	machine:{
-		atmBrand : {//EwayLocale.machine.atmBrand
-			title:'Device Brand',//EwayLocale.machine.title
-			name: 'Name', //EwayLocale.machine.name
-			country:'Country',//EwayLocale.machine.country
-			hotline1:'Hotline',//EwayLocale.machine.hotline1
-			hotline2:'Hotline2',//EwayLocale.machine.hotline2
-			address:'Address',//EwayLocale.machine.address
-			status:'Status',//EwayLocale.machine.status
+		atmBrand : {
+			title:'Device Brand',//EwayLocale.machine.atmBrand.title
+			name: 'Name', //EwayLocale.machine.atmBrand.name
+			country:'Country',//EwayLocale.machine.atmBrand.country
+			hotline1:'Hotline',//EwayLocale.machine.atmBrand.hotline1
+			hotline2:'Hotline2',//EwayLocale.machine.atmBrand.hotline2
+			address:'Address',//EwayLocale.machine.atmBrand.address
+			status:'Status',//EwayLocale.machine.atmBrand.status
 			comboxStatus:{
-				provider:'Supplier',//EwayLocale.comboxStatus.provider
-				maintance:'Service Provider'//EwayLocale.comboxStatus.maintance
+				provider:'Supplier',//EwayLocale.machine.atmBrand.comboxStatus.provider
+				maintance:'Service Provider'//EwayLocale.machine.atmBrand.comboxStatus.maintance
 			}
 		},
 		atmCatalog:{
-			title:'Device Catalog',//EwayLocale.atmCatalog.title
-			name:'Name',//EwayLocale.atmCatalog.name
-			note:'Description',//EwayLocale.atmCatalog.note
-			addTitle:'Add catalog',//EwayLocale.atmCatalog.addTitle
-			updateTitle:'Update Catalog', //EwayLocale.atmCatalog.updateTitle
-			number:'Code'//EwayLocale.atmCatalog.number
+			title:'Device Catalog',//EwayLocale.machine.atmCatalog.title
+			name:'Name',//EwayLocale.machine.atmCatalog.name
+			note:'Description',//EwayLocale.machine.atmCatalog.note
+			addTitle:'Add catalog',//EwayLocale.machine.atmCatalog.addTitle
+			updateTitle:'Update Catalog', //EwayLocale.machine.atmCatalog.updateTitle
+			number:'Code'//EwayLocale.machine.atmCatalog.number
 		},
-		atmGroup : {//EwayLocale.atmCatalog.atmGroup
-			terminalId:'Terminal ID', //EwayLocale.atmCatalog.terminalId
-			ip: 'IP',//EwayLocale.atmCatalog.ip
-			orgName:'Bank',//EwayLocale.atmCatalog.orgName
-			devTypeName:'Device Type',//EwayLocale.atmCatalog.devTypeName
-			devVendorName:'Device Brand',//EwayLocale.atmCatalog.devVendorName
-			devCatalogName:'Device Catalog',//EwayLocale.atmCatalog.devCatalogName
-			devGroupName: 'Device Group',//EwayLocale.atmCatalog.devGroupName
-			status:'Device Status',//EwayLocale.atmCatalog.status
+		atmGroup : {
+			terminalId:'Terminal ID', //EwayLocale.machine.atmGroup.terminalId
+			ip: 'IP',//EwayLocale.machine.atmGroup.ip
+			orgName:'Bank',//EwayLocale.machine.atmGroup.orgName
+			devTypeName:'Device Type',//EwayLocale.machine.atmGroup.devTypeName
+			devVendorName:'Device Brand',//EwayLocale.machine.atmGroup.devVendorName
+			devCatalogName:'Device Catalog',//EwayLocale.machine.atmGroup.devCatalogName
+			devGroupName: 'Device Group',//EwayLocale.machine.atmGroup.devGroupName
+			status:'Device Status',//EwayLocale.machine.atmGroup.status
 			comboxStatus:{
-				dredge:'Dredge',//EwayLocale.comboxStatus.dredge
-				open:'Open',//EwayLocale.comboxStatus.open
-				close:'Close'//EwayLocale.comboxStatus.close
+				dredge:'Dredge',//EwayLocale.machine.atmGroup.comboxStatus.dredge
+				open:'Open',//EwayLocale.machine.atmGroup.comboxStatus.open
+				close:'Close'//EwayLocale.machine.atmGroup.comboxStatus.close
 			},
-			awayFlag:'AwayFlag',//EwayLocale.comboxStatus.awayFlag
+			awayFlag:'AwayFlag',//EwayLocale.machine.atmGroup.awayFlag
 			comboxAwayFlag:{
-				inBank:'Inside bank',//EwayLocale.comboxAwayFlag.inBank
-				outBank:'Outside bank',//EwayLocale.comboxAwayFlag.outBank
-				clickBank:'Alone out-bank self-service'//EwayLocale.comboxAwayFlag.clickBank
+				inBank:'Inside bank',//EwayLocale.machine.atmGroup.comboxAwayFlag.inBank
+				outBank:'Outside bank',//EwayLocale.machine.atmGroup.comboxAwayFlag.outBank
+				clickBank:'Alone out-bank self-service'//EwayLocale.machine.atmGroup.comboxAwayFlag.clickBank
 			},
-			devServiceName:'Maintenance Provider',//EwayLocale.comboxAwayFlag.devServiceName
-			cashboxLimit:'Cashbox Alarm Amount',//EwayLocale.comboxAwayFlag.cashboxLimit
-			installDate:'Installation Time',//EwayLocale.comboxAwayFlag.installDate
-			address:'Address',//EwayLocale.comboxAwayFlag.address
-			gourpDev:'Group<-->Device',//EwayLocale.comboxAwayFlag.gourpDev
-			addTitle: 'Add Group Info',//EwayLocale.comboxAwayFlag.addTitle
-			groupName:'Group Name',//EwayLocale.comboxAwayFlag.groupName
-			note:'Description',//EwayLocale.comboxAwayFlag.note
-			updateTitle:'Update Group Info'//EwayLocale.comboxAwayFlag.updateTitle
+			devServiceName:'Maintenance Provider',//EwayLocale.machine.atmGroup.devServiceName
+			cashboxLimit:'Cashbox Alarm Amount',//EwayLocale.machine.atmGroup.cashboxLimit
+			installDate:'Installation Time',//EwayLocale.machine.atmGroup.installDate
+			address:'Address',//EwayLocale.machine.atmGroup.address
+			addTitle: 'Add Group Info',//EwayLocale.machine.atmGroup.addTitle
+			groupName:'Group Name',//EwayLocale.machine.atmGroup.groupName
+			note:'Description',//EwayLocale.machine.atmGroup.note
+			updateTitle:'Update Group Info'//EwayLocale.machine.atmGroup.updateTitle
 		},
 		atmModule:{
-			moduleName:'Module Name',//EwayLocale.atmModule.moduleName
-			note:'Description',//EwayLocale.atmModule.note
-			atmModules:'ATM module'	//EwayLocale.atmModule.atmModules
+			moduleName:'Module Name',//EwayLocale.machine.atmModule.moduleName
+			note:'Description',//EwayLocale.machine.atmModule.note
+			atmModules:'ATM module'	//EwayLocale.machine.atmModule.atmModules
 		},
 		atmMove:{
-			title:'Move Manager',//EwayLocale.atmMove.title
-			moveDev:'Move machine',//EwayLocale.atmMove.moveDev
-			moveDevRec:'Move machine and generate the move record',//EwayLocale.atmMove.moveDevRec
-			moveRecordInfo:'Move machine record',//EwayLocale.atmMove.moveRecordInfo
-			waitMove:'Wait for move machine',//EwayLocale.atmMove.waitMove
-			terminalId:'Terminal Id',//EwayLocale.atmMove.terminalId
-			address:'Source address',//EwayLocale.atmMove.address
-			orgName:'Source org',//EwayLocale.atmMove.orgName
-			targetAddress:'Target address',//EwayLocale.atmMove.targetAddress
-			targetOrganization:'Target organization',//EwayLocale.atmMove.targetOrganization
-			targetPerson:'目标机构负责人',//EwayLocale.atmMove.targetPerson
-			responsibility:'负责人',//EwayLocale.atmMove.responsibility
-			destPerson:'源机构负责人',//EwayLocale.atmMove.destPerson
-			date:'date',//EwayLocale.atmMove.date
-			recoverDate:'Recover date',//EwayLocale.atmMove.recoverDate
-			notice:'remark',//EwayLocale.atmMove.notice
-			sAddress:'Address',//EwayLocale.atmMove.sAddress
-			sOrgName:'Organization',//EwayLocale.atmMove.sOrgName
-			to:'to'//EwayLocale.atmMove.to
+			title:'Move Manager',//EwayLocale.machine.atmMove.title
+			moveDev:'Move machine',//EwayLocale.machine.atmMove.moveDev
+			moveRecordInfo:'Move machine record',//EwayLocale.machine.atmMove.moveRecordInfo
+			waitMove:'Wait for move machine',//EwayLocale.machine.atmMove.waitMove
+			terminalId:'Terminal Id',//EwayLocale.machine.atmMove.terminalId
+			address:'Source address',//EwayLocale.machine.atmMove.address
+			orgName:'Source org',//EwayLocale.machine.atmMove.orgName
+			targetAddress:'Target address',//EwayLocale.machine.atmMove.targetAddress
+			targetOrganization:'Target organization',//EwayLocale.machine.atmMove.targetOrganization
+			targetPerson:'目标机构负责人',//EwayLocale.machine.atmMove.targetPerson
+			responsibility:'负责人',//EwayLocale.machine.atmMove.responsibility
+			destPerson:'源机构负责人',//EwayLocale.machine.atmMove.destPerson
+			date:'date',//EwayLocale.machine.atmMove.date
+			recoverDate:'Recover date',//EwayLocale.machine.atmMove.recoverDate
+			notice:'remark',//EwayLocale.machine.atmMove.notice
+			sAddress:'Address',//EwayLocale.machine.atmMove.sAddress
+			sOrgName:'Organization',//EwayLocale.machine.atmMove.sOrgName
+			to:'to'//EwayLocale.machine.atmMove.to
 		},
 		atmRuntimeInfo:{
-			exportName:'Export', //EwayLocale.atmRuntimeInfo.exportName
-			exportDateRangeText:'Start time can not be later than end time',//EwayLocale.atmRuntimeInfo.exportDateRangeText
-			terminalId:'Terminal ID',//EwayLocale.atmRuntimeInfo.terminalId
-			terminalIp:'IP',//EwayLocale.atmRuntimeInfo.terminalIp
-			startDate:'Begin time',//EwayLocale.atmRuntimeInfo.startDate
-			endDate:'End time',//EwayLocale.atmRuntimeInfo.endDate
-			exportLast30: 'Export last 30 days info',//EwayLocale.atmRuntimeInfo.exportLast30
-			terminalId:'terminalId',//EwayLocale.atmRuntimeInfo.terminalId
-			netIp:'Ip',//EwayLocale.atmRuntimeInfo.netIp
-			msgCollect:'Collect info of customservice'//EwayLocale.atmRuntimeInfo.msgCollect
+			exportName:'Export', //EwayLocale.machine.atmRuntimeInfo.exportName
+			exportDateRangeText:'Start time can not be later than end time',//EwayLocale.machine.atmRuntimeInfo.exportDateRangeText
+			terminalId:'Terminal ID',//EwayLocale.machine.atmRuntimeInfo.terminalId
+			terminalIp:'IP',//EwayLocale.machine.atmRuntimeInfo.terminalIp
+			startDate:'Begin time',//EwayLocale.machine.atmRuntimeInfo.startDate
+			endDate:'End time',//EwayLocale.machine.atmRuntimeInfo.endDate
+			exportLast30: 'Export last 30 days info',//EwayLocale.machine.atmRuntimeInfo.exportLast30
+			terminalId:'terminalId',//EwayLocale.machine.atmRuntimeInfo.terminalId
+			netIp:'Ip',//EwayLocale.machine.atmRuntimeInfo.netIp
+			msgCollect:'Collect info of customservice'//EwayLocale.machine.atmRuntimeInfo.msgCollect
 		},
 		atmType:{
-			title:'Device Type',//EwayLocale.atmType.title
-			atmName:'Device Type',//EwayLocale.atmType.atmName
-			name:'Name',//EwayLocale.atmType.name
-			devVendorName:'Brand', //EwayLocale.atmType.devVendorName
-			devCatalogName:'Catalog',//EwayLocale.atmType.devCatalogName
-			devTerminalName:'Type',//EwayLocale.atmType.devTerminalName
-			no:'Code',//EwayLocale.atmType.no
-			cashtype:'Cash Flag',//EwayLocale.atmType.cashtype
-			iscash:'Cash',//EwayLocale.atmType.iscash
-			nocash:'Not Cash',//EwayLocale.atmType.nocash
-			modules:'Module contains'//EwayLocale.atmType.modules
+			title:'Device Type',//EwayLocale.machine.atmType.title
+			name:'Name',//EwayLocale.machine.atmType.name
+			devVendorName:'Brand', //EwayLocale.machine.atmType.devVendorName
+			devCatalogName:'Catalog',//EwayLocale.machine.atmType.devCatalogName
+			devTerminalName:'Type',//EwayLocale.machine.atmType.devTerminalName
+			no:'Code',//EwayLocale.machine.atmType.no
+			cashtype:'Cash Flag',//EwayLocale.machine.atmType.cashtype
+			iscash:'Cash',//EwayLocale.machine.atmType.iscash
+			nocash:'Not Cash',//EwayLocale.machine.atmType.nocash
+			modules:'Module contains'//EwayLocale.machine.atmType.modules
 		},
 		device:{
-			title:'Device Info',//EwayLocale.device.title
-			devDetailInfo:'Status of Modules',//EwayLocale.device.devDetailInfo
-		    idc:'Card Reader',//EwayLocale.device.idc
-			jpr:'Journal Printer',//EwayLocale.device.jpr
-			cdm:'Dispenser',//EwayLocale.device.cdm
-			siu:'Sensor',//EwayLocale.device.siu
-			cim:'Deposit',//EwayLocale.device.cim
-			ttu:'Text',//EwayLocale.device.ttu
-			rpr:'Receipt Printer',//EwayLocale.device.rpr
-			pin:'PIN',//EwayLocale.device.pin
-			icc:'Card Dispenser',//EwayLocale.device.icc
-			fgp:'Finger Printer',//EwayLocale.device.fgp
-			pbk:'Passbook Printer',//EwayLocale.device.pbk
+			title:'Device Info',//EwayLocale.machine.device.title
+			devDetailInfo:'Status of Modules',//EwayLocale.machine.device.devDetailInfo
+		    idc:'Card Reader',//EwayLocale.machine.device.idc
+			jpr:'Journal Printer',//EwayLocale.machine.device.jpr
+			cdm:'Dispenser',//EwayLocale.machine.device.cdm
+			siu:'Sensor',//EwayLocale.machine.device.siu
+			cim:'Deposit',//EwayLocale.machine.device.cim
+			ttu:'Text',//EwayLocale.machine.device.ttu
+			rpr:'Receipt Printer',//EwayLocale.machine.device.rpr
+			pin:'PIN',//EwayLocale.machine.device.pin
+			fgp:'Finger Printer',//EwayLocale.machine.device.fgp
 			
-			CAMStatusInfo:'Camera status',//EwayLocale.device.CAMStatusInfo
-			CAMRoomStatus:'Room camera',//EwayLocale.device.CAMRoomStatus
-			CAMPersonStatus:'Customer camera',//EwayLocale.device.CAMPersonStatus
-			CAMExitSlotStatus:'Exit slot camera',//EwayLocale.device.CAMExitSlotStatus
+			CAMStatusInfo:'Camera status',//EwayLocale.machine.device.CAMStatusInfo
+			CAMRoomStatus:'Room camera',//EwayLocale.machine.device.CAMRoomStatus
+			CAMPersonStatus:'Customer camera',//EwayLocale.machine.device.CAMPersonStatus
+			CAMExitSlotStatus:'Exit slot camera',//EwayLocale.machine.device.CAMExitSlotStatus
 
-			CAMInfo:'Camera property',//EwayLocale.device.CAMInfo
-			CAMMaxPictures:'Max pictures',//EwayLocale.device.CAMMaxPictures
-			CAMMaxDataLength:'Max data length',//EwayLocale.device.CAMMaxDataLength
+			CAMInfo:'Camera property',//EwayLocale.machine.device.CAMInfo
+			CAMMaxPictures:'Max pictures',//EwayLocale.machine.device.CAMMaxPictures
+			CAMMaxDataLength:'Max data length',//EwayLocale.machine.device.CAMMaxDataLength
 			
-			BCRInfo:'BarCode Reader property',//EwayLocale.device.BCRInfo
-			BCRCanCompound:'Can compound',//EwayLocale.device.BCRCanCompound
-			BCRCanFilterSymbologies:'Can filter symbologies',//EwayLocale.device.BCRCanFilterSymbologies
+			BCRInfo:'BarCode Reader property',//EwayLocale.machine.device.BCRInfo
+			BCRCanCompound:'Can compound',//EwayLocale.machine.device.BCRCanCompound
+			BCRCanFilterSymbologies:'Can filter symbologies',//EwayLocale.machine.device.BCRCanFilterSymbologies
 			
 			
 			
-			CDMInfo:'Dispenser property',//EwayLocale.device.CDMInfo
-			hasStack:'Stacker Exists',//EwayLocale.device.hasStack
-			hasShutter:'Shutter door exist',//EwayLocale.device.hasShutter
-			canRetract:'Ability of recovery', //EwayLocale.device.canRetract
-			canDetectCashTaken:'Check if cash taked',//EwayLocale.device.canDetectCashTaken
-			canTestPhysicalUnits:'Test physical unit',//EwayLocale.device.canTestPhysicalUnits
-			maxDispensBills:'Get max count of gug cash in each trans',//EwayLocale.device.maxDispensBills
-			logicalUnits:'Count of logic cashbox',//EwayLocale.device.logicalUnits
-			physicalUnits:'Count of physical cashbox',//EwayLocale.device.physicalUnits
-			currency:'Currency supported count',//EwayLocale.device.currency
-			currencies:'Currency category supported ',//EwayLocale.device.currencies
-			exponents:'index',//EwayLocale.device.exponents
+			CDMInfo:'Dispenser property',//EwayLocale.machine.device.CDMInfo
+			hasStack:'Stacker Exists',//EwayLocale.machine.device.hasStack
+			hasShutter:'Shutter door exist',//EwayLocale.machine.device.hasShutter
+			canRetract:'Ability of recovery', //EwayLocale.machine.device.canRetract
+			canDetectCashTaken:'Check if cash taked',//EwayLocale.machine.device.canDetectCashTaken
+			canTestPhysicalUnits:'Test physical unit',//EwayLocale.machine.device.canTestPhysicalUnits
+			maxDispensBills:'Get max count of gug cash in each trans',//EwayLocale.machine.device.maxDispensBills
+			logicalUnits:'Count of logic cashbox',//EwayLocale.machine.device.logicalUnits
+			physicalUnits:'Count of physical cashbox',//EwayLocale.machine.device.physicalUnits
+			currency:'Currency supported count',//EwayLocale.machine.device.currency
+			currencies:'Currency category supported ',//EwayLocale.machine.device.currencies
+			exponents:'index',//EwayLocale.machine.device.exponents
 			
-			CIMInfo:'Deposit Module (CIM)property',//EwayLocale.device.CIMInfo
-			canEscrow:'Stacker Exists',//EwayLocale.device.canEscrow
+			CIMInfo:'Deposit Module (CIM)property',//EwayLocale.machine.device.CIMInfo
+			canEscrow:'Stacker Exists',//EwayLocale.machine.device.canEscrow
 
-			shutterControlSupported:'Support shutter door',//EwayLocale.device.shutterControlSupported
-			maxAcceptItems:'Max count of inspect cash in each trans',//EwayLocale.device.maxAcceptItems
-			canDetectCashInserted:'Check if cash bringed',//EwayLocale.device.canDetectCashInserted
-			canDetectCashTaken:'Check if cash taked',//EwayLocale.device.canDetectCashTaken
-			retractAreas:'Recovery position',//EwayLocale.device.retractAreas
+			shutterControlSupported:'Support shutter door',//EwayLocale.machine.device.shutterControlSupported
+			maxAcceptItems:'Max count of inspect cash in each trans',//EwayLocale.machine.device.maxAcceptItems
+			canDetectCashInserted:'Check if cash bringed',//EwayLocale.machine.device.canDetectCashInserted
+			canDetectCashTaken:'Check if cash taked',//EwayLocale.machine.device.canDetectCashTaken
+			retractAreas:'Recovery position',//EwayLocale.machine.device.retractAreas
 
 
-			IDCInfo:'Card Reader(IDC) property',//EwayLocale.device.IDCInfo
-			variant:'Card Reader type',//EwayLocale.device.variant
-			canEjectCard:'Ability of quit card',//EwayLocale.device.canEjectCard
-			trackJisiiRead:'Ability of read TrackJisii',//EwayLocale.device.trackJisiiRead
-			track1Read:'Ability of read first track',//EwayLocale.device.track1Read
-			track2Read:'Ability of read second track',//EwayLocale.device.track2Read
-			track3Read:'Ability of read third track',//EwayLocale.device.track3Read
-			canCapture:'Ability of retain card',//EwayLocale.device.canCapture
-			binCapacity:'Max count of retain card',//EwayLocale.device.binCapacity
-			security:'Safety support',//EwayLocale.device.security
-			trackJisiiWrite:'Ability of write TrackJisii',//EwayLocale.device.trackJisiiWrite
-			track1Write:'Ability of write first track',//EwayLocale.device.track1Write
-			track2Write:'Ability of write first track',//EwayLocale.device.track2Write
-			track3Write:'Ability of write first track',//EwayLocale.device.track3Write
+			IDCInfo:'Card Reader(IDC) property',//EwayLocale.machine.device.IDCInfo
+			variant:'Card Reader type',//EwayLocale.machine.device.variant
+			canEjectCard:'Ability of quit card',//EwayLocale.machine.device.canEjectCard
+			trackJisiiRead:'Ability of read TrackJisii',//EwayLocale.machine.device.trackJisiiRead
+			track1Read:'Ability of read first track',//EwayLocale.machine.device.track1Read
+			track2Read:'Ability of read second track',//EwayLocale.machine.device.track2Read
+			track3Read:'Ability of read third track',//EwayLocale.machine.device.track3Read
+			canCapture:'Ability of retain card',//EwayLocale.machine.device.canCapture
+			binCapacity:'Max count of retain card',//EwayLocale.machine.device.binCapacity
+			security:'Safety support',//EwayLocale.machine.device.security
+			trackJisiiWrite:'Ability of write TrackJisii',//EwayLocale.machine.device.trackJisiiWrite
+			track1Write:'Ability of write first track',//EwayLocale.machine.device.track1Write
+			track2Write:'Ability of write first track',//EwayLocale.machine.device.track2Write
+			track3Write:'Ability of write first track',//EwayLocale.machine.device.track3Write
 			
 
-			JPRInfo:'Journal Printer(JPR) property',//EwayLocale.device.JPRInfo
-			canEject:'Ability of quit paper',//EwayLocale.device.canEject
-			canCapture:'Ability of recovery',//EwayLocale.device.canCapture
-			canStack:'Ability of deposit',//EwayLocale.device.canStack
+			JPRInfo:'Journal Printer(JPR) property',//EwayLocale.machine.device.JPRInfo
+			canEject:'Ability of quit paper',//EwayLocale.machine.device.canEject
+			canCapture:'Ability of recovery',//EwayLocale.machine.device.canCapture
+			canStack:'Ability of deposit',//EwayLocale.machine.device.canStack
 			
-			ISCInfo:'ID Scanner(ISC) property',//EwayLocale.device.ISCInfo
+			ISCInfo:'ID Scanner(ISC) property',//EwayLocale.machine.device.ISCInfo
 			
-			ICCInfo:'Card dispenser(ICC) property',//EwayLocale.device.ICCInfo
-			dispenseCard:'Ability of read',//EwayLocale.device.dispenseCard
+			ICCInfo:'Card dispenser(ICC) property',//EwayLocale.machine.device.ICCInfo
+			dispenseCard:'Ability of read',//EwayLocale.machine.device.dispenseCard
 			
-			FGPInfo:'Finger Printer(FGP) property',//EwayLocale.device.FGPInfo
-			fgp_variant:'Finger type',//EwayLocale.device.fgp_variant
-			canCompare:'Ability of compare',//EwayLocale.device.canCompare
+			FGPInfo:'Finger Printer(FGP) property',//EwayLocale.machine.device.FGPInfo
+			fgp_variant:'Finger type',//EwayLocale.machine.device.fgp_variant
+			canCompare:'Ability of compare',//EwayLocale.machine.device.canCompare
 			
-			PBKInfo:'Passbook printer(PBK) property',//EwayLocale.device.PBKInfo
+			PBKInfo:'Passbook printer(PBK) property',//EwayLocale.machine.device.PBKInfo
 
-			PINInfo:'PIN property',//EwayLocale.device.PINInfo
-			canEBC:'EBC',//EwayLocale.device.canEBC
-			canCBC:'CBC',//EwayLocale.device.canCBC
-			canMAC:'MAC',//EwayLocale.device.canMAC
-			canRSA:'RSA',//EwayLocale.device.canRSA
-			canVerifyVISA:'Inspect VISA',//EwayLocale.device.canVerifyVISA
-			canVerifyDES:'Inspect DES',//EwayLocale.device.canVerifyDES
-			functionKeys:'Function support',//EwayLocale.device.functionKeys
-			canTripleEBC:'Multi EBC support',//EwayLocale.device.canTripleEBC
-			canTripleCBC:'Multi CBC support',//EwayLocale.device.canTripleCBC
-			canTripleMAC:'Multi MAC support',//EwayLocale.device.canTripleMAC
-			canTripleCFB:'Multi CFB support',//EwayLocale.device.canTripleCFB
-			canVerifyECB:'Inspect ECB',//EwayLocale.device.canVerifyECB
-			canDESOffset:'Des shifting',//EwayLocale.device.canDESOffset
+			PINInfo:'PIN property',//EwayLocale.machine.device.PINInfo
+			canEBC:'EBC',//EwayLocale.machine.device.canEBC
+			canCBC:'CBC',//EwayLocale.machine.device.canCBC
+			canMAC:'MAC',//EwayLocale.machine.device.canMAC
+			canRSA:'RSA',//EwayLocale.machine.device.canRSA
+			canVerifyVISA:'Inspect VISA',//EwayLocale.machine.device.canVerifyVISA
+			canVerifyDES:'Inspect DES',//EwayLocale.machine.device.canVerifyDES
+			functionKeys:'Function support',//EwayLocale.machine.device.functionKeys
+			canTripleEBC:'Multi EBC support',//EwayLocale.machine.device.canTripleEBC
+			canTripleCBC:'Multi CBC support',//EwayLocale.machine.device.canTripleCBC
+			canTripleMAC:'Multi MAC support',//EwayLocale.machine.device.canTripleMAC
+			canTripleCFB:'Multi CFB support',//EwayLocale.machine.device.canTripleCFB
+			canVerifyECB:'Inspect ECB',//EwayLocale.machine.device.canVerifyECB
+			canDESOffset:'Des shifting',//EwayLocale.machine.device.canDESOffset
 
-			RPRInfo:'Receipt Printer(RPR) property',//EwayLocale.device.RPRInfo
-			canEject:'Ability of quit paper',//EwayLocale.device.canEject
-			canCapture:'Ability of recovery',//EwayLocale.device.canCapture
+			RPRInfo:'Receipt Printer(RPR) property',//EwayLocale.machine.device.RPRInfo
+			canEject:'Ability of quit paper',//EwayLocale.machine.device.canEject
+			canCapture:'Ability of recovery',//EwayLocale.machine.device.canCapture
 
-			maxRetract:'Max count of recovery paper',//EwayLocale.device.maxRetract
+			maxRetract:'Max count of recovery paper',//EwayLocale.machine.device.maxRetract
 
-			SIUInfo:'Sensors(SIU) property',//EwayLocale.device.SIUInfo
-			operatorSwitchSupported:'Operator swicth support',//EwayLocale.device.operatorSwitchSupported
-			cabinetSupported:'Ability of induce  behindDoor open support',//EwayLocale.device.cabinetSupported
-			safeSupported:'Ability of induce safeDoor open support',//EwayLocale.device.safeSupported
-			indicatorSupported:'Ability of induce closeto support',//EwayLocale.device.indicatorSupported
-			guidelightIdcSupported:'Ability of card insert light support',//EwayLocale.device.guidelightIdcSupported
-			guidelightCdmSupported:'Ability of draw light  support',//EwayLocale.device.guidelightCdmSupported
-			guidelightReceiptSupported:'Ability of voucher print light support',//EwayLocale.device.guidelightReceiptSupported
-			guidelightCimSupported:'Ability of deposit light support',//EwayLocale.device.guidelightCimSupported
+			SIUInfo:'Sensors(SIU) property',//EwayLocale.machine.device.SIUInfo
+			operatorSwitchSupported:'Operator swicth support',//EwayLocale.machine.device.operatorSwitchSupported
+			cabinetSupported:'Ability of induce  behindDoor open support',//EwayLocale.machine.device.cabinetSupported
+			safeSupported:'Ability of induce safeDoor open support',//EwayLocale.machine.device.safeSupported
+			indicatorSupported:'Ability of induce closeto support',//EwayLocale.machine.device.indicatorSupported
+			guidelightIdcSupported:'Ability of card insert light support',//EwayLocale.machine.device.guidelightIdcSupported
+			guidelightCdmSupported:'Ability of draw light  support',//EwayLocale.machine.device.guidelightCdmSupported
+			guidelightReceiptSupported:'Ability of voucher print light support',//EwayLocale.machine.device.guidelightReceiptSupported
+			guidelightCimSupported:'Ability of deposit light support',//EwayLocale.machine.device.guidelightCimSupported
 
 
-			TTUInfo:'TTU property',//EwayLocale.device.TTUInfo
-			alphanumericKeysPresent:'Ability of character/number input support',//EwayLocale.device.alphanumericKeysPresent
-			numericKeysPresent:'Ability of number input support',//EwayLocale.device.numericKeysPresent
-			displayLightPresent:'Ability of number adjust screen-brightness support',//EwayLocale.device.displayLightPresent
-			cursorSupported:'Mouse support',//EwayLocale.device.cursorSupported
-			resolutionX:'Resolution of cross axle',//EwayLocale.device.resolutionX
-			hexadecimalKeysPresent:'Hexadecimal input support',//EwayLocale.device.hexadecimalKeysPresent
-			keyboardLockPresent:'Lock keyboard support',//EwayLocale.device.keyboardLockPresent
-			formsSupported:'Table support',//EwayLocale.device.formsSupported
-			resolutionY:'Resolution of vertical axle',//EwayLocale.device.resolutionY
+			TTUInfo:'TTU property',//EwayLocale.machine.device.TTUInfo
+			alphanumericKeysPresent:'Ability of character/number input support',//EwayLocale.machine.device.alphanumericKeysPresent
+			numericKeysPresent:'Ability of number input support',//EwayLocale.machine.device.numericKeysPresent
+			displayLightPresent:'Ability of number adjust screen-brightness support',//EwayLocale.machine.device.displayLightPresent
+			cursorSupported:'Mouse support',//EwayLocale.machine.device.cursorSupported
+			resolutionX:'Resolution of cross axle',//EwayLocale.machine.device.resolutionX
+			hexadecimalKeysPresent:'Hexadecimal input support',//EwayLocale.machine.device.hexadecimalKeysPresent
+			keyboardLockPresent:'Lock keyboard support',//EwayLocale.machine.device.keyboardLockPresent
+			formsSupported:'Table support',//EwayLocale.machine.device.formsSupported
+			resolutionY:'Resolution of vertical axle',//EwayLocale.machine.device.resolutionY
 
-			comStatus:'Manufacturer',//EwayLocale.device.comStatus
-			hwCode:'Fault code',//EwayLocale.device.hwCode
-			CDMStatus:'Withdrawal module(CDM) status',//EwayLocale.device.CDMStatus
-			cashUnits:'Cashbox',//EwayLocale.device.cashUnits
-			safeDoor:'SafeDoor',//EwayLocale.device.safeDoor
-			intermediateStacker:'Stacker Status',//EwayLocale.device.intermediateStacker
-			outBox:'Cashbox draw',//EwayLocale.device.outBox
-			pcuId:'Relationship between physical and logic cashbox',//EwayLocale.device.pcuId
-			cuId:'Logic cashboxID',//EwayLocale.device.cuId
-			cuCurrency:'Logic cashbox currency',//EwayLocale.device.cuCurrency
-			cuCurrentCount:'Count of logic cashbox currently',//EwayLocale.device.cuCurrentCount
-			cuInitialCount:'Count of logic cashbox initially',//EwayLocale.device.cuInitialCount
-			cuRejectCount:'Count of logic cashbox rejected',//EwayLocale.device.cuRejectCount
-			cuNoteValue:'Denomination of logic cashbox',//EwayLocale.device.cuNoteValue
-			cuBinStatus:'Logic cashbox status',//EwayLocale.device.cuBinStatus
-			puId:'Physical cashbox ID',//EwayLocale.device.puId
-			puPosName:'Name of physical cashbox',//EwayLocale.device.puPosName
-			puBinStatus:'Physical cashbox status',//EwayLocale.device.puBinStatus
-			puCurrentCount:'Count of physical cashbox currently',//EwayLocale.device.puCurrentCount
-			puInitialCount:'Count of physical cashbox initially',//EwayLocale.device.puInitialCount
-			puRejectCount:'Count of physical cashbox rejected',//EwayLocale.device.puRejectCount
-			cuBinType:'Logic cashbox status',//EwayLocale.device.cuBinType
+			comStatus:'Manufacturer',//EwayLocale.machine.device.comStatus
+			hwCode:'Fault code',//EwayLocale.machine.device.hwCode
+			CDMStatus:'Withdrawal module(CDM) status',//EwayLocale.machine.device.CDMStatus
+			cashUnits:'Cashbox',//EwayLocale.machine.device.cashUnits
+			safeDoor:'SafeDoor',//EwayLocale.machine.device.safeDoor
+			intermediateStacker:'Stacker Status',//EwayLocale.machine.device.intermediateStacker
+			outBox:'Cashbox draw',//EwayLocale.machine.device.outBox
+			pcuId:'Relationship between physical and logic cashbox',//EwayLocale.machine.device.pcuId
+			cuId:'Logic cashboxID',//EwayLocale.machine.device.cuId
+			cuCurrency:'Logic cashbox currency',//EwayLocale.machine.device.cuCurrency
+			cuCurrentCount:'Count of logic cashbox currently',//EwayLocale.machine.device.cuCurrentCount
+			cuInitialCount:'Count of logic cashbox initially',//EwayLocale.machine.device.cuInitialCount
+			cuRejectCount:'Count of logic cashbox rejected',//EwayLocale.machine.device.cuRejectCount
+			cuNoteValue:'Denomination of logic cashbox',//EwayLocale.machine.device.cuNoteValue
+			cuBinStatus:'Logic cashbox status',//EwayLocale.machine.device.cuBinStatus
+			puId:'Physical cashbox ID',//EwayLocale.machine.device.puId
+			puPosName:'Name of physical cashbox',//EwayLocale.machine.device.puPosName
+			puBinStatus:'Physical cashbox status',//EwayLocale.machine.device.puBinStatus
+			puCurrentCount:'Count of physical cashbox currently',//EwayLocale.machine.device.puCurrentCount
+			puInitialCount:'Count of physical cashbox initially',//EwayLocale.machine.device.puInitialCount
+			puRejectCount:'Count of physical cashbox rejected',//EwayLocale.machine.device.puRejectCount
+			cuBinType:'Logic cashbox status',//EwayLocale.machine.device.cuBinType
 
-			CIMStatus:'Deposit(CIM) status',//EwayLocale.device.CIMStatus
-			baffle:'Baffle',//EwayLocale.device.baffle
-			inOutPositionStatus:'Transfer status',//EwayLocale.device.inOutPositionStatus
-			inBox:'Deposit cashbox',//EwayLocale.device.inBox
-			puCashInCount:'Count of physical cashbox in',//EwayLocale.device.puCashInCount
-			pcuId:'Relationship between physical and logic cashbox',//EwayLocale.device.pcuId
-			cuType:'Logic cashbox type',//EwayLocale.device.cuType
-			cuBinStatus:'Logic cashbox status',//EwayLocale.device.cuBinStatus
-			cuCurrentCount:'Count of logic cashbox',//EwayLocale.device.cuCurrentCount
-			cuCurrency:'Currency of logic cashbox',//EwayLocale.device.cuCurrency
-			cuNoteValue:'Denomination of logic cashbox',//EwayLocale.device.cuNoteValue
+			CIMStatus:'Deposit(CIM) status',//EwayLocale.machine.device.CIMStatus
+			baffle:'Baffle',//EwayLocale.machine.device.baffle
+			inOutPositionStatus:'Transfer status',//EwayLocale.machine.device.inOutPositionStatus
+			inBox:'Deposit cashbox',//EwayLocale.machine.device.inBox
+			puCashInCount:'Count of physical cashbox in',//EwayLocale.machine.device.puCashInCount
+			pcuId:'Relationship between physical and logic cashbox',//EwayLocale.machine.device.pcuId
+			cuType:'Logic cashbox type',//EwayLocale.machine.device.cuType
+			cuBinStatus:'Logic cashbox status',//EwayLocale.machine.device.cuBinStatus
+			cuCurrentCount:'Count of logic cashbox',//EwayLocale.machine.device.cuCurrentCount
+			cuCurrency:'Currency of logic cashbox',//EwayLocale.machine.device.cuCurrency
+			cuNoteValue:'Denomination of logic cashbox',//EwayLocale.machine.device.cuNoteValue
 
-			IDCStatus:'Card Reader (IDC) status',//EwayLocale.device.IDCStatus
-			media:'Media',//EwayLocale.device.media
-			retainBin:'Recovery box status',//EwayLocale.device.retainBin
-			cards:'Recovery box count',//EwayLocale.device.cards
+			IDCStatus:'Card Reader (IDC) status',//EwayLocale.machine.device.IDCStatus
+			media:'Media',//EwayLocale.machine.device.media
+			retainBin:'Recovery box status',//EwayLocale.machine.device.retainBin
+			cards:'Recovery box count',//EwayLocale.machine.device.cards
 
-			JRPStatus:'Journal Printer(JPR) status',//EwayLocale.device.JRPStatus
-			supplyLevel:'Journal Printer status',//EwayLocale.device.supplyLevel
-			ink:'Ink',//EwayLocale.device.ink
-			toner:'Ribbon',//EwayLocale.device.toner
+			JRPStatus:'Journal Printer(JPR) status',//EwayLocale.machine.device.JRPStatus
+			supplyLevel:'Journal Printer status',//EwayLocale.machine.device.supplyLevel
+			ink:'Ink',//EwayLocale.machine.device.ink
+			toner:'Ribbon',//EwayLocale.machine.device.toner
 
-			PINStatus:'PIN status',//EwayLocale.device.PINStatus
+			PINStatus:'PIN status',//EwayLocale.machine.device.PINStatus
 
-			RPRStatus:'Receipt Printer(RPR)status',//EwayLocale.device.RPRStatus
-			bin:'Recovery unit status',//EwayLocale.device.bin
+			RPRStatus:'Receipt Printer(RPR)status',//EwayLocale.machine.device.RPRStatus
+			bin:'Recovery unit status',//EwayLocale.machine.device.bin
 
-			SIUStatus:'SIU status',//EwayLocale.device.SIUStatus
-			vandalShield:'Shield',//EwayLocale.device.vandalShield
-			operatorSwitch:'Operate butoon status',//EwayLocale.device.operatorSwitch
-			ambientLight:'Environment light',//EwayLocale.device.ambientLight
-			cabinet:'Box door',//EwayLocale.device.cabinet
-			safe:'Safe door',//EwayLocale.device.safe
-			idcGuidelight:'Guide card-insert light',//EwayLocale.device.idcGuidelight
-			cdmGuidelight:'Guide draw light',//EwayLocale.device.cdmGuidelight
-			receiptGuidelight:'Guide voucher light',//EwayLocale.device.receiptGuidelight
-			cimGuidelight:'Guide CIM light',//EwayLocale.device.cimGuidelight
+			SIUStatus:'SIU status',//EwayLocale.machine.device.SIUStatus
+			vandalShield:'Shield',//EwayLocale.machine.device.vandalShield
+			operatorSwitch:'Operate butoon status',//EwayLocale.machine.device.operatorSwitch
+			ambientLight:'Environment light',//EwayLocale.machine.device.ambientLight
+			cabinet:'Box door',//EwayLocale.machine.device.cabinet
+			safe:'Safe door',//EwayLocale.machine.device.safe
+			idcGuidelight:'Guide card-insert light',//EwayLocale.machine.device.idcGuidelight
+			cdmGuidelight:'Guide draw light',//EwayLocale.machine.device.cdmGuidelight
+			receiptGuidelight:'Guide voucher light',//EwayLocale.machine.device.receiptGuidelight
+			cimGuidelight:'Guide CIM light',//EwayLocale.machine.device.cimGuidelight
 
-			TTUStatus:'Text Terminal(TTU) status',//EwayLocale.device.TTUStatus
+			TTUStatus:'Text Terminal(TTU) status',//EwayLocale.machine.device.TTUStatus
 			
-			ISCStatus:'ID Scanner(ISC) status',//EwayLocale.device.ISCStatus
+			ISCStatus:'ID Scanner(ISC) status',//EwayLocale.machine.device.ISCStatus
 			
-			ICCStatus:'Card dispenser(ICC) status',//EwayLocale.device.ICCStatus
+			ICCStatus:'Card dispenser(ICC) status',//EwayLocale.machine.device.ICCStatus
 			
-			FGPStatus:'Finger Printer(FGP) status',//EwayLocale.device.FGPStatus
+			FGPStatus:'Finger Printer(FGP) status',//EwayLocale.machine.device.FGPStatus
 			
-			PBKStatus:'Passbook printer(PBK) status',//EwayLocale.device.PBKStatus
+			PBKStatus:'Passbook printer(PBK) status',//EwayLocale.machine.device.PBKStatus
 			
-			devPerson:'Device person',//EwayLocale.device.devPerson
-			devModuleMsg:'Device module property',//EwayLocale.device.devModuleMsg
-			devBasicMsg:'Basic info',//EwayLocale.device.devBasicMsg
-			devTailMsg:'Detail',//EwayLocale.device.devTailMsg
-			managePerson:'Manager',//EwayLocale.device.managePerson
-			maintainPerson:'Maintainer',//EwayLocale.device.maintainPerson
-			name:'Name',//EwayLocale.device.name
-			mobile:'Mobile',//EwayLocale.device.mobile
-			phone:'Phone',//EwayLocale.device.phone
-			email:'Email',//EwayLocale.device.email
-			deviceBasicInfo:'Additional info',//EwayLocale.device.deviceBasicInfo
-			lineLogo:'AwayFlag',//EwayLocale.device.lineLogo
-			alarmRateRMB:'Alarm cashbox(RMB)',//EwayLocale.device.alarmRateRMB
-			operation:'Service mode',//EwayLocale.device.operation
-			ipAddress:'IP address',//EwayLocale.device.ipAddress
-			swallowCard:'Count of retain card',//EwayLocale.device.swallowCard
-			alarmRateHKD:'Alarm cashbox(HKD)',//EwayLocale.device.alarmRateHKD
-			adminPhone:'Manager(mobile)',//EwayLocale.device.adminPhone
-			maintainPhone: 'Maintainer(mobile)',//EwayLocale.device.maintainPhone
-			log:'Flag',//EwayLocale.device.log
-			style: 'type',//EwayLocale.device.style
-			status: 'Status',//EwayLocale.device.status
-			initailnumber: 'Init count',//EwayLocale.device.initailnumber
-			postnumber: 'Deposit count',//EwayLocale.device.postnumber
-			currentnumber: 'Current count',//EwayLocale.device.currentnumber
-			facevalue: 'Denomination',//EwayLocale.device.facevalue
-			currency: 'Currency',//EwayLocale.device.currency
-			systemHardwareInfo: 'Hardware & Software',//EwayLocale.device.systemHardwareInfo
-			moduleVersionInfo:'Versions of Module(Real-time)',//EwayLocale.device.moduleVersionInfo
-			devModuleStatusInfo: 'Module Status(Real-time)',//EwayLocale.device.devModuleStatusInfo
-			devModuleAttributeInfo: 'Module Property(Real-time)',//EwayLocale.device.devModuleAttributeInfo
+			devPerson:'Device person',//EwayLocale.machine.device.devPerson
+			devModuleMsg:'Device module property',//EwayLocale.machine.device.devModuleMsg
+			devBasicMsg:'Basic info',//EwayLocale.machine.device.devBasicMsg
+			devTailMsg:'Detail',//EwayLocale.machine.device.devTailMsg
+			managePerson:'Manager',//EwayLocale.machine.device.managePerson
+			maintainPerson:'Maintainer',//EwayLocale.machine.device.maintainPerson
+			name:'Name',//EwayLocale.machine.device.name
+			mobile:'Mobile',//EwayLocale.machine.device.mobile
+			phone:'Phone',//EwayLocale.machine.device.phone
+			email:'Email',//EwayLocale.machine.device.email
+			deviceBasicInfo:'Additional info',//EwayLocale.machine.device.deviceBasicInfo
+			lineLogo:'AwayFlag',//EwayLocale.machine.device.lineLogo
+			alarmRateRMB:'Alarm cashbox(RMB)',//EwayLocale.machine.device.alarmRateRMB
+			operation:'Service mode',//EwayLocale.machine.device.operation
+			ipAddress:'IP address',//EwayLocale.machine.device.ipAddress
+			swallowCard:'Count of retain card',//EwayLocale.machine.device.swallowCard
+			alarmRateHKD:'Alarm cashbox(HKD)',//EwayLocale.machine.device.alarmRateHKD
+			adminPhone:'Manager(mobile)',//EwayLocale.machine.device.adminPhone
+			maintainPhone: 'Maintainer(mobile)',//EwayLocale.machine.device.maintainPhone
+			log:'Flag',//EwayLocale.machine.device.log
+			style: 'type',//EwayLocale.machine.device.style
+			status: 'Status',//EwayLocale.machine.device.status
+			initailnumber: 'Init count',//EwayLocale.machine.device.initailnumber
+			postnumber: 'Deposit count',//EwayLocale.machine.device.postnumber
+			currentnumber: 'Current count',//EwayLocale.machine.device.currentnumber
+			facevalue: 'Denomination',//EwayLocale.machine.device.facevalue
+			currency: 'Currency',//EwayLocale.machine.device.currency
+			systemHardwareInfo: 'Hardware & Software',//EwayLocale.machine.device.systemHardwareInfo
+			moduleVersionInfo:'Versions of Module(Real-time)',//EwayLocale.machine.device.moduleVersionInfo
+			devModuleStatusInfo: 'Module Status(Real-time)',//EwayLocale.machine.device.devModuleStatusInfo
+			devModuleAttributeInfo: 'Module Property(Real-time)',//EwayLocale.machine.device.devModuleAttributeInfo
 
-			remoteControl: 'Control',//EwayLocale.device.remoteControl
-			collectJPR:'Logs getting',//EwayLocale.device.collectJPR
-			remoteScreen:'Screenshot',//EwayLocale.device.remoteScreen
-			processCheck:'View process',//EwayLocale.device.processCheck
-			remoteExplorer:'Browse',//EwayLocale.device.remoteExplorer
-			netWorkLink:'Connect',//EwayLocale.device.netWorkLink
-			remoteRestart:'Reboot',//EwayLocale.device.remoteRestart
+			remoteControl: 'Control',//EwayLocale.machine.device.remoteControl
+			collectJPR:'Logs getting',//EwayLocale.machine.device.collectJPR
+			remoteScreen:'Screenshot',//EwayLocale.machine.device.remoteScreen
+			processCheck:'View process',//EwayLocale.machine.device.processCheck
+			remoteExplorer:'Browse',//EwayLocale.machine.device.remoteExplorer
+			netWorkLink:'Connect',//EwayLocale.machine.device.netWorkLink
+			remoteRestart:'Reboot',//EwayLocale.machine.device.remoteRestart
 
-			progressTip:'Progress tip',//EwayLocale.device.progressTip
-			updateProBar:'This is generate with dynamic update',//EwayLocale.device.updateProBar
-			currentProcess:'Progress currently',//EwayLocale.device.currentProcess
-
-
-			restartApply: 'Restar app',//EwayLocale.device.restartApply
-			confirmRestartApply:'Restar app?',//EwayLocale.device.confirmRestartApply
-			nowRestartApply:'Restarting',//EwayLocale.device.nowRestartApply
-			restartApplySuc:'Restarting app successful!',//EwayLocale.device.restartApplySuc
-			restartApplyFail:'Restarting app failed!',//EwayLocale.device.restartApplyFail
+			progressTip:'Progress tip',//EwayLocale.machine.device.progressTip
+			updateProBar:'This is generate with dynamic update',//EwayLocale.machine.device.updateProBar
 
 
-			restartDrive:'Restar drivers',//EwayLocale.device.restartDrive
-			confirmRestartDrive:'Restar drivers?',//EwayLocale.device.confirmRestartDrive
-			nowRestartDrive:'Restarting',//EwayLocale.device.nowRestartDrive
-			restartDriveSuc:'Restarting drivers successfully!',//EwayLocale.device.restartDriveSuc
-			restartDriveFail:'Restarting drivers failed!',//EwayLocale.device.restartDriveFail
+			restartApply: 'Restar app',//EwayLocale.machine.device.restartApply
+			confirmRestartApply:'Restar app?',//EwayLocale.machine.device.confirmRestartApply
+			nowRestartApply:'Restarting',//EwayLocale.machine.device.nowRestartApply
+			restartApplySuc:'Restarting app successful!',//EwayLocale.machine.device.restartApplySuc
+			restartApplyFail:'Restarting app failed!',//EwayLocale.machine.device.restartApplyFail
 
-			restartOS:'Restar os',//EwayLocale.device.restartOS
-			confirmRestartOS:'Restar os?',//EwayLocale.device.confirmRestartOS
-			nowRestartOS:'Restarting',//EwayLocale.device.nowRestartOS
-			restartOSSuc:'Restarting os successfully!',//EwayLocale.device.restartOSSuc
-			restartOSFail:'Restarting os failed!',//EwayLocale.device.restartOSFail
 
-			remoteShutdown:'Shutdown',//EwayLocale.device.remoteShutdown
-			shutdownApply:'Shutdown app',//EwayLocale.device.shutdownApply
-			confirmShutdownApply:'Shutdown app?',//EwayLocale.device.confirmShutdownApply
-			nowShutdownApply:'Shutting down',//EwayLocale.device.nowShutdownApply
-			shutdownApplySuc:'Shutdown app successfully!',//EwayLocale.device.shutdownApplySuc
-			shutdownApplyFail:'Shutdown app failed!',//EwayLocale.device.shutdownApplyFail
+			restartDrive:'Restar drivers',//EwayLocale.machine.device.restartDrive
+			confirmRestartDrive:'Restar drivers?',//EwayLocale.machine.device.confirmRestartDrive
+			nowRestartDrive:'Restarting',//EwayLocale.machine.device.nowRestartDrive
+			restartDriveSuc:'Restarting drivers successfully!',//EwayLocale.machine.device.restartDriveSuc
+			restartDriveFail:'Restarting drivers failed!',//EwayLocale.machine.device.restartDriveFail
 
-			shutdownDrive:'Shutdown drivers',//EwayLocale.device.shutdownDrive
-			confirmShutdownDrive:'Shutdown drivers?',//EwayLocale.device.confirmShutdownDrive
-			nowShutdownDrive:'Shutting down',//EwayLocale.device.nowShutdownDrive
-			shutdownDriveSuc:'Shutdown drivers successfully!',//EwayLocale.device.shutdownDriveSuc
-			shutdownDriveFail:'Shutdown drivers failed!',//EwayLocale.device.shutdownDriveFail
+			restartOS:'Restar os',//EwayLocale.machine.device.restartOS
+			confirmRestartOS:'Restar os?',//EwayLocale.machine.device.confirmRestartOS
+			nowRestartOS:'Restarting',//EwayLocale.machine.device.nowRestartOS
+			restartOSSuc:'Restarting os successfully!',//EwayLocale.machine.device.restartOSSuc
+			restartOSFail:'Restarting os failed!',//EwayLocale.machine.device.restartOSFail
 
-			shutdownOS:'Shutdown os',//EwayLocale.device.shutdownOS
-			confirmShutdownOS:'Shutdown os?',//EwayLocale.device.confirmShutdownOS
-			nowShutdownOS:'Shutting down',//EwayLocale.device.nowShutdownOS
-			shutdownOSSuc:'Shutdown os successfully!',//EwayLocale.device.shutdownOSSuc
-			shutdownOSFail:'Shutdown os failed!',//EwayLocale.device.shutdownOSFail
-			getSoftwareList:'Get software installed info',//EwayLocale.device.getSoftwareList
-			forceReset:'Reset force',//EwayLocale.device.forceReset
-			openService:'Open service',//EwayLocale.device.openService
-			pauseService:'Pause service',//EwayLocale.device.pauseService
-			checkStatus:'Test status',//EwayLocale.device.checkStatus
+			remoteShutdown:'Shutdown',//EwayLocale.machine.device.remoteShutdown
+			shutdownApply:'Shutdown app',//EwayLocale.machine.device.shutdownApply
+			confirmShutdownApply:'Shutdown app?',//EwayLocale.machine.device.confirmShutdownApply
+			nowShutdownApply:'Shutting down',//EwayLocale.machine.device.nowShutdownApply
+			shutdownApplySuc:'Shutdown app successfully!',//EwayLocale.machine.device.shutdownApplySuc
+			shutdownApplyFail:'Shutdown app failed!',//EwayLocale.machine.device.shutdownApplyFail
 
-			remoteBrowseDisk:'Browse',//EwayLocale.device.remoteBrowseDisk
+			shutdownDrive:'Shutdown drivers',//EwayLocale.machine.device.shutdownDrive
+			confirmShutdownDrive:'Shutdown drivers?',//EwayLocale.machine.device.confirmShutdownDrive
+			nowShutdownDrive:'Shutting down',//EwayLocale.machine.device.nowShutdownDrive
+			shutdownDriveSuc:'Shutdown drivers successfully!',//EwayLocale.machine.device.shutdownDriveSuc
+			shutdownDriveFail:'Shutdown drivers failed!',//EwayLocale.machine.device.shutdownDriveFail
 
-			sysHardwareInfo:'Hardware info',//EwayLocale.device.sysHardwareInfo
-			diskMem:'Disk size',//EwayLocale.device.diskMem
-			biosVersion:'Bios version',//EwayLocale.device.biosVersion
-			biosVendor:'Bios producer',//EwayLocale.device.biosVendor
-			biosReleaseDate:'Bios date',//EwayLocale.device.biosReleaseDate
-			memorySize:'Total memory',//EwayLocale.device.memorySize
-			memoryUsed:'Used memory',//EwayLocale.device.memoryUsed
-			memoryFree:'Free memory',//EwayLocale.device.memoryFree
-			memoryPercent:'Memory used(%)',//EwayLocale.device.memoryPercent
-			cpuItemID:'CPU info',//EwayLocale.device.cpuItemID
-			cpuFrequency:'CPU(MHz)',//EwayLocale.device.cpuFrequency
-			cpuVendor:'Manufacturer',//EwayLocale.device.cpuVendor
-			cpuModel:'CPU type',//EwayLocale.device.cpuModel
-			cacheSize:'Count of cache storage',//EwayLocale.device.cacheSize
-			totalCores:'CPU cores',//EwayLocale.device.totalCores
-			userUsePercent:'User used',//EwayLocale.device.userUsePercent
-			sysUsePercent:'System used',//EwayLocale.device.sysUsePercent
-			idlePercent:'Idle(%s)',//EwayLocale.device.idlePercent
-			combinedPercent:'Used(%)',//EwayLocale.device.combinedPercent
-			diskItemID:'Disk info',//EwayLocale.device.diskItemID
-			diskName:'Name',//EwayLocale.device.diskName
-			diskFileSys:'File system',//EwayLocale.device.diskFileSys
-			diskTotalSize:'Total Size',//EwayLocale.device.diskTotalSize
-			diskFreeSize:'Free Space',//EwayLocale.device.diskFreeSize
-			sysSoftInfo:'Software info',//EwayLocale.device.sysSoftInfo
-			OSID:'OS ID',//EwayLocale.device.OSID
-			OSDescription:'OS Description',//EwayLocale.device.OSDescription
-			OSType:'OS type',//EwayLocale.device.OSType
-			sysPatchLevel:'OS patch level',//EwayLocale.device.sysPatchLevel
-			chkCashData:'BV-version',//EwayLocale.device.chkCashData
-			OSVendor:'OS producer',//EwayLocale.device.OSVendor
-			OSVendorName:'OS supplier',//EwayLocale.device.OSVendorName
-			sysVersion:'OS version',//EwayLocale.device.sysVersion
-			devAddress:'Address',//EwayLocale.device.devAddress
-			basicInfo:'Additional Info',//EwayLocale.device.basicInfo
-			virtual:'Virtual Teller No.',//EwayLocale.device.virtual
-			serial:'Serial Number',//EwayLocale.device.serial
-			carrier:'Carrieroperator',//EwayLocale.device.carrier
-			moneyOrg:'Cash org',//EwayLocale.device.moneyOrg
-			costInterest:'Rate of fund cost',//EwayLocale.device.costInterest
-			atmcSoft:'atmc software',//EwayLocale.device.atmcSoft
-			spType:'sp type',//EwayLocale.device.spType
-			column:'Date',//EwayLocale.device.column
-			buyDate:'Buy date',//EwayLocale.device.buyDate
-			installDate:'Installation Time',//EwayLocale.device.installDate
-			startDate:'Start date',//EwayLocale.device.startDate
-			stopDate:'Stop date',//EwayLocale.device.stopDate
-			expireDate:'Guaranteed date',//EwayLocale.device.expireDate
-			daliyOpen:'Start time everyday',//EwayLocale.device.daliyOpen
-			openTimeHour:'Hour',//EwayLocale.device.openTimeHour
-			openTimeMinute:'Minute',//EwayLocale.device.openTimeMinute
-			openTimeSecond:'Second',//EwayLocale.device.openTimeSecond
-			daliyClose:'Close time everyday',//EwayLocale.device.daliyClose
-			lastPmDate:'Last check date',//EwayLocale.device.lastPmDate
-			expirePmDate:'Next check date',//EwayLocale.device.expirePmDate
-			costInfo:'Expenses',//EwayLocale.device.costInfo
-			price:'Cost',//EwayLocale.device.price
+			shutdownOS:'Shutdown os',//EwayLocale.machine.device.shutdownOS
+			confirmShutdownOS:'Shutdown os?',//EwayLocale.machine.device.confirmShutdownOS
+			nowShutdownOS:'Shutting down',//EwayLocale.machine.device.nowShutdownOS
+			shutdownOSSuc:'Shutdown os successfully!',//EwayLocale.machine.device.shutdownOSSuc
+			shutdownOSFail:'Shutdown os failed!',//EwayLocale.machine.device.shutdownOSFail
+			getSoftwareList:'Get software installed info',//EwayLocale.machine.device.getSoftwareList
+			forceReset:'Reset force',//EwayLocale.machine.device.forceReset
+			openService:'Open service',//EwayLocale.machine.device.openService
+			pauseService:'Pause service',//EwayLocale.machine.device.pauseService
+			checkStatus:'Test status',//EwayLocale.machine.device.checkStatus
+
+			remoteBrowseDisk:'Browse',//EwayLocale.machine.device.remoteBrowseDisk
+
+			sysHardwareInfo:'Hardware info',//EwayLocale.machine.device.sysHardwareInfo
+			diskMem:'Disk size',//EwayLocale.machine.device.diskMem
+			biosVersion:'Bios version',//EwayLocale.machine.device.biosVersion
+			biosVendor:'Bios producer',//EwayLocale.machine.device.biosVendor
+			biosReleaseDate:'Bios date',//EwayLocale.machine.device.biosReleaseDate
+			memorySize:'Total memory',//EwayLocale.machine.device.memorySize
+			memoryUsed:'Used memory',//EwayLocale.machine.device.memoryUsed
+			memoryFree:'Free memory',//EwayLocale.machine.device.memoryFree
+			memoryPercent:'Memory used(%)',//EwayLocale.machine.device.memoryPercent
+			cpuItemID:'CPU info',//EwayLocale.machine.device.cpuItemID
+			cpuFrequency:'CPU(MHz)',//EwayLocale.machine.device.cpuFrequency
+			cpuVendor:'Manufacturer',//EwayLocale.machine.device.cpuVendor
+			cpuModel:'CPU type',//EwayLocale.machine.device.cpuModel
+			cacheSize:'Count of cache storage',//EwayLocale.machine.device.cacheSize
+			totalCores:'CPU cores',//EwayLocale.machine.device.totalCores
+			userUsePercent:'User used',//EwayLocale.machine.device.userUsePercent
+			sysUsePercent:'System used',//EwayLocale.machine.device.sysUsePercent
+			idlePercent:'Idle(%s)',//EwayLocale.machine.device.idlePercent
+			combinedPercent:'Used(%)',//EwayLocale.machine.device.combinedPercent
+			diskItemID:'Disk info',//EwayLocale.machine.device.diskItemID
+			diskName:'Name',//EwayLocale.machine.device.diskName
+			diskFileSys:'File system',//EwayLocale.machine.device.diskFileSys
+			diskTotalSize:'Total Size',//EwayLocale.machine.device.diskTotalSize
+			diskFreeSize:'Free Space',//EwayLocale.machine.device.diskFreeSize
+			sysSoftInfo:'Software info',//EwayLocale.machine.device.sysSoftInfo
+			OSID:'OS ID',//EwayLocale.machine.device.OSID
+			OSDescription:'OS Description',//EwayLocale.machine.device.OSDescription
+			OSType:'OS type',//EwayLocale.machine.device.OSType
+			sysPatchLevel:'OS patch level',//EwayLocale.machine.device.sysPatchLevel
+			chkCashData:'BV-version',//EwayLocale.machine.device.chkCashData
+			OSVendor:'OS producer',//EwayLocale.machine.device.OSVendor
+			OSVendorName:'OS supplier',//EwayLocale.machine.device.OSVendorName
+			sysVersion:'OS version',//EwayLocale.machine.device.sysVersion
+			devAddress:'Address',//EwayLocale.machine.device.devAddress
+			basicInfo:'Additional Info',//EwayLocale.machine.device.basicInfo
+			virtual:'Virtual Teller No.',//EwayLocale.machine.device.virtual
+			serial:'Serial Number',//EwayLocale.machine.device.serial
+			installDate:'Installation Time',//EwayLocale.machine.device.installDate
 
 			
-			notCashSignal:'Cash Flag',//EwayLocale.device.notCashSignal
-			cash: 'Cash',//EwayLocale.device.cash
-			notCash:'Not Cash',//EwayLocale.device.notCash
-			installStyle: 'Installation Way',//EwayLocale.device.installStyle
-			crossWall: 'Through the wall',//EwayLocale.device.crossWall
-			mainRoom: 'Lobby',//EwayLocale.device.mainRoom
-			netType: 'Network Type',//EwayLocale.device.netType
-			wired: 'Wired',//EwayLocale.device.wired
-			wireless: 'Wireless',//EwayLocale.device.wireless
-			wiredAndWireless: 'Wired & Wireless',//EwayLocale.device.wiredAndWireless
-			onBankSignal:'Location',//EwayLocale.device.onBankSignal
-			inBank:'Bank',//EwayLocale.device.inBank
-			outBank:'Non-Bank',//EwayLocale.device.outBank
-			clickBank:'Half Non-Bank',//EwayLocale.device.clickBank
-			managePerson:'Manager',//EwayLocale.device.managePerson
-			maintainPerson:'Maintenance Engineers',//EwayLocale.device.maintainPerson
-			to:'至',//EwayLocale.device.to
-			range: 'Range 1-100 years',//EwayLocale.device.range
-			roleDescription:'Description',//EwayLocale.device.roleDescription
-			roleName:'Name',//EwayLocale.device.roleName
+			cash: 'Cash',//EwayLocale.machine.device.cash
+			installStyle: 'Installation Way',//EwayLocale.machine.device.installStyle
+			crossWall: 'Through the wall',//EwayLocale.machine.device.crossWall
+			mainRoom: 'Lobby',//EwayLocale.machine.device.mainRoom
+			netType: 'Network Type',//EwayLocale.machine.device.netType
+			wired: 'Wired',//EwayLocale.machine.device.wired
+			wireless: 'Wireless',//EwayLocale.machine.device.wireless
+			wiredAndWireless: 'Wired & Wireless',//EwayLocale.machine.device.wiredAndWireless
+			onBankSignal:'Location',//EwayLocale.machine.device.onBankSignal
+			inBank:'Bank',//EwayLocale.machine.device.inBank
+			outBank:'Non-Bank',//EwayLocale.machine.device.outBank
+			clickBank:'Half Non-Bank',//EwayLocale.machine.device.clickBank
+			managePerson:'Manager',//EwayLocale.machine.device.managePerson
+			maintainPerson:'Maintenance Engineers',//EwayLocale.machine.device.maintainPerson
+			to:'至',//EwayLocale.machine.device.to
 
 
 
-			devices:'Device',//EwayLocale.device.devices
-			configuration:'Setting',//EwayLocale.device.configuration
-			spVersion:'SP',//EwayLocale.device.spVersion
-			notSupport:'Unsupport',//EwayLocale.device.notSupport
-			drive:'Driver',//EwayLocale.device.drive
-			firmway: 'Firmware',//EwayLocale.device.firmway
-			noDevice:'NoDevice',//EwayLocale.device.noDevice
-			devTypeInfo: 'Device Type',//EwayLocale.device.devTypeInfo
+			devices:'Device',//EwayLocale.machine.device.devices
+			configuration:'Setting',//EwayLocale.machine.device.configuration
+			spVersion:'SP',//EwayLocale.machine.device.spVersion
+			notSupport:'Unsupport',//EwayLocale.machine.device.notSupport
+			drive:'Driver',//EwayLocale.machine.device.drive
+			firmway: 'Firmware',//EwayLocale.machine.device.firmway
+			noDevice:'NoDevice',//EwayLocale.machine.device.noDevice
+			devTypeInfo: 'Device Type',//EwayLocale.machine.device.devTypeInfo
 
-			devInfo:'Device info',//EwayLocale.device.devInfo
-			unable:'Can not',//EwayLocale.device.unable
-			able:'Can',//EwayLocale.device.able
+			devInfo:'Device info',//EwayLocale.machine.device.devInfo
+			unable:'Can not',//EwayLocale.machine.device.unable
+			able:'Can',//EwayLocale.machine.device.able
 
-			addDevInfo:'Additional equipment information',//EwayLocale.device.addDevInfo
-			effectiveDate:'effective date',//EwayLocale.device.effectiveDate
-			changeDevInfo:'Update the Device Information',//EwayLocale.device.changeDevInfo
-			devManage:'Device Management',//EwayLocale.device.devManage
-			efficientDev:'Device Information in force',//EwayLocale.device.efficientDev
-			unEfficientDev:'Device information not active',//EwayLocale.device.unEfficientDev
+			addDevInfo:'Additional equipment information',//EwayLocale.machine.device.addDevInfo
+			effectiveDate:'effective date',//EwayLocale.machine.device.effectiveDate
+			changeDevInfo:'Update the Device Information',//EwayLocale.machine.device.changeDevInfo
 			person:{
-				week:'Week',//EwayLocale.person.week
-				Mon:'Monday',//EwayLocale.person.Mon
-				Tues:'Tuesday',//EwayLocale.person.Tues
-				Wed:'Wednesday',//EwayLocale.person.Wed
-				Thur:'Thursday',//EwayLocale.person.Thur
-				Fri:'Friday',//EwayLocale.person.Fri
-				Sat:'Saturday',//EwayLocale.person.Sat
-				Sun:'Sunday',//EwayLocale.person.Sun
-				openClose:'Power / Shutdown',//EwayLocale.person.openClose
-				Open:'Power',//EwayLocale.person.Open
-				Close:'Shutdown'//EwayLocale.person.Close
+				week:'Week',//EwayLocale.machine.device.person.week
+				Mon:'Monday',//EwayLocale.machine.device.person.Mon
+				Tues:'Tuesday',//EwayLocale.machine.device.person.Tues
+				Wed:'Wednesday',//EwayLocale.machine.device.person.Wed
+				Thur:'Thursday',//EwayLocale.machine.device.person.Thur
+				Fri:'Friday',//EwayLocale.machine.device.person.Fri
+				Sat:'Saturday',//EwayLocale.machine.device.person.Sat
+				Sun:'Sunday',//EwayLocale.machine.device.person.Sun
+				openClose:'Power / Shutdown',//EwayLocale.machine.device.person.openClose
+				Open:'Power',//EwayLocale.machine.device.person.Open
+				Close:'Shutdown'//EwayLocale.machine.device.person.Close
 			}
 		},
 		param:{
-			paramKey:'Name',//EwayLocale.param.paramKey
-			paramValue:'Value',//EwayLocale.param.paramValue
-			classify:'Type',//EwayLocale.param.classify
-			paramType:'Type',//EwayLocale.param.paramType
-			modifyFlag:'Can be Modify?',//EwayLocale.param.modifyFlag
+			paramKey:'Name',//EwayLocale.machine.param.paramKey
+			paramValue:'Value',//EwayLocale.machine.param.paramValue
+			modifyFlag:'Can be Modify?',//EwayLocale.machine.param.modifyFlag
 			comboxClassify:{
-				unableUpdate:'No',//EwayLocale.comboxClassify.unableUpdate
-				ableUpdate:'Yes'//EwayLocale.comboxClassify.ableUpdate
+				unableUpdate:'No',//EwayLocale.machine.param.comboxClassify.unableUpdate
+				ableUpdate:'Yes'//EwayLocale.machine.param.comboxClassify.ableUpdate
 			},
-			description:'Description',//EwayLocale.comboxClassify.description
-			systemCon:'System Setting',//EwayLocale.comboxClassify.systemCon
-			updateSystemCon:'Update system Setting'//EwayLocale.comboxClassify.updateSystemCon
+			description:'Description',//EwayLocale.machine.param.description
+			systemCon:'System Setting',//EwayLocale.machine.param.systemCon
+			updateSystemCon:'Update system Setting'//EwayLocale.machine.param.updateSystemCon
 		},
 		quittingNotice:{
-			addCloseMsg:'Add Service Stop',//EwayLocale.quittingNotice.addCloseMsg
-			updateCloseMsg:'Update Service Stop',//EwayLocale.quittingNotice.updateCloseMsg
-			dateRangeText:'Recover date can not be earlier than stop date,please choose again',//EwayLocale.quittingNotice.dateRangeText
-			click:'Click query to choose device',//EwayLocale.quittingNotice.click
-			stopTime:'Stop time',//EwayLocale.quittingNotice.stopTime
-			openTime:'Recover time',//EwayLocale.quittingNotice.openTime
-			currentStatus:'Current status',//EwayLocale.quittingNotice.currentStatus
-			closeType:'Type',//EwayLocale.quittingNotice.closeType
-			responsibilityName:'Person in charge',//EwayLocale.quittingNotice.responsibilityName
-			stopReason:'Reason',//EwayLocale.quittingNotice.stopReason
-			address:'Address',//EwayLocale.quittingNotice.address
-			selectDev:'Please choose the device which you want to stop',//EwayLocale.quittingNotice.selectDev
-			updateUnable:'Can not update the record which is recovered.',//EwayLocale.quittingNotice.updateUnable
-			to:'to',//EwayLocale.quittingNotice.to
-			stopType:'Type',//EwayLocale.quittingNotice.stopType
+			addCloseMsg:'Add Service Stop',//EwayLocale.machine.quittingNotice.addCloseMsg
+			updateCloseMsg:'Update Service Stop',//EwayLocale.machine.quittingNotice.updateCloseMsg
+			dateRangeText:'Recover date can not be earlier than stop date,please choose again',//EwayLocale.machine.quittingNotice.dateRangeText
+			click:'Click query to choose device',//EwayLocale.machine.quittingNotice.click
+			stopTime:'Stop time',//EwayLocale.machine.quittingNotice.stopTime
+			openTime:'Recover time',//EwayLocale.machine.quittingNotice.openTime
+			currentStatus:'Current status',//EwayLocale.machine.quittingNotice.currentStatus
+			closeType:'Type',//EwayLocale.machine.quittingNotice.closeType
+			responsibilityName:'Person in charge',//EwayLocale.machine.quittingNotice.responsibilityName
+			stopReason:'Reason',//EwayLocale.machine.quittingNotice.stopReason
+			address:'Address',//EwayLocale.machine.quittingNotice.address
+			selectDev:'Please choose the device which you want to stop',//EwayLocale.machine.quittingNotice.selectDev
+			updateUnable:'Can not update the record which is recovered.',//EwayLocale.machine.quittingNotice.updateUnable
+			to:'to',//EwayLocale.machine.quittingNotice.to
+			stopType:'Type',//EwayLocale.machine.quittingNotice.stopType
 			comboxStopType:{
-				recess:'Holiday',//EwayLocale.comboxStopType.recess
-				fit:'Decoration',//EwayLocale.comboxStopType.fit
-				power:'Power Cut',//EwayLocale.comboxStopType.power
-				devFailue:'Device Fault',//EwayLocale.comboxStopType.devFailue
-				other:'Other'	//EwayLocale.comboxStopType.other
+				recess:'Holiday',//EwayLocale.machine.quittingNotice.comboxStopType.recess
+				fit:'Decoration',//EwayLocale.machine.quittingNotice.comboxStopType.fit
+				power:'Power Cut',//EwayLocale.machine.quittingNotice.comboxStopType.power
+				devFailue:'Device Fault',//EwayLocale.machine.quittingNotice.comboxStopType.devFailue
+				other:'Other'	//EwayLocale.machine.quittingNotice.comboxStopType.other
 			},
-			setTime:'Create time',//EwayLocale.comboxStopType.setTime
-			closeManage:'Service Stop'//EwayLocale.comboxStopType.closeManage
+			setTime:'Create time',//EwayLocale.machine.quittingNotice.setTime
+			closeManage:'Service Stop'//EwayLocale.machine.quittingNotice.closeManage
 		},
 		plan:{
-			addPlan:'Add Service Plan',//EwayLocale.plan.addPlan
-			name:'Plan Name',//EwayLocale.plan.name
-			type:'Type',//EwayLocale.plan.type
-			startDate:'Start Time',//EwayLocale.plan.startDate
-			endDate:'End Time',//EwayLocale.plan.endDate
-			terminalId:'Terminal ID',//EwayLocale.plan.terminalId
-			cashboxLimit:'Alarm cashbox(unit:piece)',//EwayLocale.plan.cashboxLimit
-			perToDev:'Person<-->Device',//EwayLocale.plan.perToDev
-			changePlan:'Update Service Plan',//EwayLocale.plan.changePlan
-			servicePlan:'Service Plan'//EwayLocale.plan.servicePlan
+			addPlan:'Add Service Plan',//EwayLocale.machine.plan.addPlan
+			name:'Plan Name',//EwayLocale.machine.plan.name
+			type:'Type',//EwayLocale.machine.plan.type
+			startDate:'Start Time',//EwayLocale.machine.plan.startDate
+			endDate:'End Time',//EwayLocale.machine.plan.endDate
+			changePlan:'Update Service Plan',//EwayLocale.machine.plan.changePlan
+			servicePlan:'Service Plan'//EwayLocale.machine.plan.servicePlan
 		},
 		serviceplan:{
-			title:'Service Plan',//EwayLocale.serviceplan.title
-			name:'Plan Name',//EwayLocale.serviceplan.name
-			machineQuantity:'Number of devices Used',//EwayLocale.serviceplan.machineQuantity
-			state:'Status',//EwayLocale.serviceplan.state
-			openDate:'Start Time',//EwayLocale.serviceplan.openDate
-			closeDate:'End Time',//EwayLocale.serviceplan.closeDate
-			createDateTime:'Created Time',//EwayLocale.serviceplan.createDateTime
-			date:'Date',//EwayLocale.serviceplan.date
-			week:'Week',//EwayLocale.serviceplan.week
-			weekDay:'',//EwayLocale.serviceplan.weekDay
-			inportLinkedMachine:'Import related devices',//EwayLocale.serviceplan.inportLinkedMachine
-			selectFile:'Select the file',//EwayLocale.serviceplan.selectFile
-			placeUploadingResource:'Please upload resources',//EwayLocale.serviceplan.placeUploadingResource
-			fileNotSupport:'Import file format is not supported, according to the template import device information',//EwayLocale.serviceplan.fileNotSupport
-			exportExplain:'Import instructions',//EwayLocale.serviceplan.exportExplain
-			thisIsTooLong:'Please add the device continuously import template device number to be issued, up to a one-time import 2000 data (takes about 5 minutes), a minimum import data',//EwayLocale.serviceplan.thisIsTooLong
-			thisHardToTranslate:'Click to download introducing device ID template',//EwayLocale.serviceplan.thisHardToTranslate
-			planDevice:'Service Plan <--> Device',//EwayLocale.serviceplan.planDevice
-			timeEare:'Enter the time is incorrect, please re-enter!',//EwayLocale.serviceplan.timeEare
-			timeError:'invalid,please re-enter.',//EwayLocale.serviceplan.timeError
-			planOlonOne:'The same plan can only set a startup or shutdown',//EwayLocale.serviceplan.planOlonOne
-			setTime:'Please set the detailed time',//EwayLocale.serviceplan.setTime
-			thisPlanStop:'(This plan is disabled, can not apply!)',//EwayLocale.serviceplan.thisPlanStop
-			placeRefresh:'Article lift failed. Please refresh view!',//EwayLocale.serviceplan.placeRefresh
-			linking:'Being associated devices....',//EwayLocale.serviceplan.linking
-			testingPlaceWaiting:'Device number is judged to meet the requirements, please wait...',//EwayLocale.serviceplan.testingPlaceWaiting
-			leastOne:'Importing a device at least once information, please re-select the import file!',//EwayLocale.serviceplan.leastOne
-			notMore:'Up to 2000 the first import device information, please re-select the import file!',//EwayLocale.serviceplan.notMore
-			checkFile:'Please check the import file',//EwayLocale.serviceplan.checkFile
-			fileNotAllowed:'Documents do not meet requirements！',//EwayLocale.serviceplan.fileNotAllowed
-			tipExportSuccess:'Article data successfully imported',//EwayLocale.serviceplan.tipExportSuccess
-			tipLookUp:'Bar, click View import details!',//EwayLocale.serviceplan.tipLookUp
-			tochenkDervice:'Please choose the device you want to change',//EwayLocale.serviceplan.tochenkDervice
-			tochenckPeople:'Please choose personnel',//EwayLocale.serviceplan.tochenckPeople
-			tipAddError:'Article Adding failed. Please refresh view',//EwayLocale.serviceplan.tipAddError
-			planIsHaved:'',//EwayLocale.serviceplan.planIsHaved
+			title:'Service Plan',//EwayLocale.machine.serviceplan.title
+			name:'Plan Name',//EwayLocale.machine.serviceplan.name
+			machineQuantity:'Number of devices Used',//EwayLocale.machine.serviceplan.machineQuantity
+			state:'Status',//EwayLocale.machine.serviceplan.state
+			openDate:'Start Time',//EwayLocale.machine.serviceplan.openDate
+			closeDate:'End Time',//EwayLocale.machine.serviceplan.closeDate
+			createDateTime:'Created Time',//EwayLocale.machine.serviceplan.createDateTime
+			date:'Date',//EwayLocale.machine.serviceplan.date
+			week:'Week',//EwayLocale.machine.serviceplan.week
+			weekDay:'',//EwayLocale.machine.serviceplan.weekDay
+			inportLinkedMachine:'Import related devices',//EwayLocale.machine.serviceplan.inportLinkedMachine
+			selectFile:'Select the file',//EwayLocale.machine.serviceplan.selectFile
+			placeUploadingResource:'Please upload resources',//EwayLocale.machine.serviceplan.placeUploadingResource
+			fileNotSupport:'Import file format is not supported, according to the template import device information',//EwayLocale.machine.serviceplan.fileNotSupport
+			exportExplain:'Import instructions',//EwayLocale.machine.serviceplan.exportExplain
+			thisIsTooLong:'Please add the device continuously import template device number to be issued, up to a one-time import 2000 data (takes about 5 minutes), a minimum import data',//EwayLocale.machine.serviceplan.thisIsTooLong
+			thisHardToTranslate:'Click to download introducing device ID template',//EwayLocale.machine.serviceplan.thisHardToTranslate
+			planDevice:'Service Plan <--> Device',//EwayLocale.machine.serviceplan.planDevice
+			timeEare:'Enter the time is incorrect, please re-enter!',//EwayLocale.machine.serviceplan.timeEare
+			timeError:'invalid,please re-enter.',//EwayLocale.machine.serviceplan.timeError
+			planOlonOne:'The same plan can only set a startup or shutdown',//EwayLocale.machine.serviceplan.planOlonOne
+			setTime:'Please set the detailed time',//EwayLocale.machine.serviceplan.setTime
+			thisPlanStop:'(This plan is disabled, can not apply!)',//EwayLocale.machine.serviceplan.thisPlanStop
+			placeRefresh:'Article lift failed. Please refresh view!',//EwayLocale.machine.serviceplan.placeRefresh
+			linking:'Being associated devices....',//EwayLocale.machine.serviceplan.linking
+			testingPlaceWaiting:'Device number is judged to meet the requirements, please wait...',//EwayLocale.machine.serviceplan.testingPlaceWaiting
+			leastOne:'Importing a device at least once information, please re-select the import file!',//EwayLocale.machine.serviceplan.leastOne
+			notMore:'Up to 2000 the first import device information, please re-select the import file!',//EwayLocale.machine.serviceplan.notMore
+			checkFile:'Please check the import file',//EwayLocale.machine.serviceplan.checkFile
+			fileNotAllowed:'Documents do not meet requirements！',//EwayLocale.machine.serviceplan.fileNotAllowed
+			tipExportSuccess:'Article data successfully imported',//EwayLocale.machine.serviceplan.tipExportSuccess
+			tipLookUp:'Bar, click View import details!',//EwayLocale.machine.serviceplan.tipLookUp
+			tipAddError:'Article Adding failed. Please refresh view',//EwayLocale.machine.serviceplan.tipAddError
 
-			chooseOne:'At Least One',//EwayLocale.serviceplan.chooseOne
-			linkSuccess:'Associate success',//EwayLocale.serviceplan.linkSuccess
+			chooseOne:'At Least One',//EwayLocale.machine.serviceplan.chooseOne
+			linkSuccess:'Associate success',//EwayLocale.machine.serviceplan.linkSuccess
 
-			linkSuccess:'Associate successfully',//EwayLocale.serviceplan.linkSuccess
+			linkSuccess:'Associate successfully',//EwayLocale.machine.serviceplan.linkSuccess
 
-			Mon:'Mon',//EwayLocale.serviceplan.Mon
-			Tues:'Tues',//EwayLocale.serviceplan.Tues
-			Wed:'Wed',//EwayLocale.serviceplan.Wed
-			Thur:'Thur',//EwayLocale.serviceplan.Thur
-			Fri:'Fri',//EwayLocale.serviceplan.Fri
-			Sat:'Sat',//EwayLocale.serviceplan.Sat
-			Sun:'Sun',//EwayLocale.serviceplan.Sun
-			useSuccess:'Normal',//EwayLocale.serviceplan.useSuccess
-			notSuccess:'Never used',//EwayLocale.serviceplan.notSuccess
-			lastOneGroup:'Please select at least one in the group',//EwayLocale.serviceplan.lastOneGroup
-			lanDetailWeek:'Week detailed list',//EwayLocale.serviceplan.lanDetailWeek
-			planDetailDay:'Date detailed list',//EwayLocale.serviceplan.planDetailDay
-			selectPlan:'Select a service plan',//EwayLocale.serviceplan.selectPlan
-			weekSelect:'Notify way'//EwayLocale.serviceplan.weekSelect
+			Mon:'Mon',//EwayLocale.machine.serviceplan.Mon
+			Tues:'Tues',//EwayLocale.machine.serviceplan.Tues
+			Wed:'Wed',//EwayLocale.machine.serviceplan.Wed
+			Thur:'Thur',//EwayLocale.machine.serviceplan.Thur
+			Fri:'Fri',//EwayLocale.machine.serviceplan.Fri
+			Sat:'Sat',//EwayLocale.machine.serviceplan.Sat
+			Sun:'Sun',//EwayLocale.machine.serviceplan.Sun
+			useSuccess:'Normal',//EwayLocale.machine.serviceplan.useSuccess
+			notSuccess:'Never used',//EwayLocale.machine.serviceplan.notSuccess
+			lanDetailWeek:'Week detailed list',//EwayLocale.machine.serviceplan.lanDetailWeek
+			planDetailDay:'Date detailed list',//EwayLocale.machine.serviceplan.planDetailDay
+			selectPlan:'Select a service plan',//EwayLocale.machine.serviceplan.selectPlan
+			weekSelect:'Notify way'//EwayLocale.machine.serviceplan.weekSelect
 		}
 
 	},
@@ -633,7 +591,6 @@ Ext.apply(EwayLocale,{
 		backupFailAmount:'Count of machine Backup failed',//EwayLocale.atmLog.backupFailAmount
 		backupAllAmount:'Total count',//EwayLocale.atmLog.backupAllAmount
 		logBackupSta:'Backup log total',//EwayLocale.atmLog.logBackupSta
-		dailyBackup:'Backup task everyday',//EwayLocale.atmLog.dailyBackup
 		lastDoDate:'LastExecute Date',//EwayLocale.atmLog.lastDoDate
 		getLog:'GetLog',//EwayLocale.atmLog.getLog
 		backupDate:'Backup date',//EwayLocale.atmLog.backupDate
@@ -641,7 +598,6 @@ Ext.apply(EwayLocale,{
 		backupProcess:'Backuping',//EwayLocale.atmLog.backupProcess
 		backupSuccess:'Success',//EwayLocale.atmLog.backupSuccess
 		backupError:'Backup error',//EwayLocale.atmLog.backupError
-		logDevAccount:'Log Backup machine count total',//EwayLocale.atmLog.logDevAccount
 		logDevSucAccount:'Number of backup success',//EwayLocale.atmLog.logDevSucAccount
 		logDevFailAccount:'Number of backup failed',//EwayLocale.atmLog.logDevFailAccount
 		reform:'Reform',//EwayLocale.atmLog.reform

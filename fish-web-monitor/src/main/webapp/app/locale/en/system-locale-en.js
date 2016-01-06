@@ -2,109 +2,104 @@ Ext.apply(EwayLocale,{
 	
 	person:{
 		bankOrg :{
-			title:'Banks',//EwayLocale.bankOrg.title
-			moveBankTitle:'Migrate Bank',//EwayLocale.bankOrg.moveBankTitle
-			updateBankTitle:'Modify Bank Info',//EwayLocale.bankOrg.updateBankTitle
-			addBankOrgTitle:'Add Bank Info',//EwayLocale.bankOrg.addBankOrgTitle
-			code:'Code',//EwayLocale.bankOrg.code
-			orgType:'Type',//EwayLocale.bankOrg.orgType
-			name:'Name',//EwayLocale.bankOrg.name
-			orgLevel:'Level',//EwayLocale.bankOrg.orgLevel
-			orgNavi:'Navigator',//EwayLocale.bankOrg.orgNavi
-			zip:'Zip Code',//EwayLocale.bankOrg.zip
-			removeManager:'Delete',//EwayLocale.bankOrg.removeManager
-			manager:'Manager',//EwayLocale.bankOrg.manager
-			address:'Address',//EwayLocale.bankOrg.address
-			upgradeOrg:'Upper',//EwayLocale.bankOrg.upgradeOrg
-			description:'Description',//EwayLocale.bankOrg.description
-			serOrganization:'All',//EwayLocale.bankOrg.serOrganization
+			title:'Banks',//EwayLocale.person.bankOrg.title
+			moveBankTitle:'Migrate Bank',//EwayLocale.person.bankOrg.moveBankTitle
+			updateBankTitle:'Modify Bank Info',//EwayLocale.person.bankOrg.updateBankTitle
+			addBankOrgTitle:'Add Bank Info',//EwayLocale.person.bankOrg.addBankOrgTitle
+			code:'Code',//EwayLocale.person.bankOrg.code
+			orgType:'Type',//EwayLocale.person.bankOrg.orgType
+			name:'Name',//EwayLocale.person.bankOrg.name
+			orgLevel:'Level',//EwayLocale.person.bankOrg.orgLevel
+			zip:'Zip Code',//EwayLocale.person.bankOrg.zip
+			removeManager:'Delete',//EwayLocale.person.bankOrg.removeManager
+			manager:'Manager',//EwayLocale.person.bankOrg.manager
+			address:'Address',//EwayLocale.person.bankOrg.address
+			upgradeOrg:'Upper',//EwayLocale.person.bankOrg.upgradeOrg
+			description:'Description',//EwayLocale.person.bankOrg.description
+			serOrganization:'All',//EwayLocale.person.bankOrg.serOrganization
 			organizationType:{
-				bank:'Bank',//EwayLocale.organizationType.bank
-				serviceOrg:'Maintenance'//EwayLocale.organizationType.serviceOrg
+				serviceOrg:'Maintenance'//EwayLocale.person.bankOrg.organizationType.serviceOrg
 			},
 			organizationLevelDict:{
-				rootBank:'Head Office',//EwayLocale.organizationLevelDict.rootBank
-				branchBank:'Branch',//EwayLocale.organizationLevelDict.branchBank
-				tagBranchBank:'SubBranch',//EwayLocale.organizationLevelDict.tagBranchBank
-				netBank:'Location'//EwayLocale.organizationLevelDict.netBank
+				rootBank:'Head Office',//EwayLocale.person.bankOrg.organizationLevelDict.rootBank
+				branchBank:'Branch',//EwayLocale.person.bankOrg.organizationLevelDict.branchBank
+				tagBranchBank:'SubBranch',//EwayLocale.person.bankOrg.organizationLevelDict.tagBranchBank
+				netBank:'Location'//EwayLocale.person.bankOrg.organizationLevelDict.netBank
 			},
-			addOrgTitle:'Person under this organization',//EwayLocale.organizationLevelDict.addOrgTitle
-			linkPeronTitle:'Person under the organization:',//EwayLocale.organizationLevelDict.linkPeronTitle
-			personList:'Person list',//EwayLocale.organizationLevelDict.personList
-			orgLinkTitle:'Person and device which link this organization',//EwayLocale.organizationLevelDict.orgLinkTitle
-			machineOrg:'Device under the organization:',//EwayLocale.organizationLevelDict.machineOrg
-			personOrg:'Person under the organization:'//EwayLocale.organizationLevelDict.personOrg
+			addOrgTitle:'Person under this organization',//EwayLocale.person.bankOrg.addOrgTitle
+			linkPeronTitle:'Person under the organization:',//EwayLocale.person.bankOrg.linkPeronTitle
+			personList:'Person list',//EwayLocale.person.bankOrg.personList
+			orgLinkTitle:'Person and device which link this organization',//EwayLocale.person.bankOrg.orgLinkTitle
+			machineOrg:'Device under the organization:',//EwayLocale.person.bankOrg.machineOrg
+			personOrg:'Person under the organization:'//EwayLocale.person.bankOrg.personOrg
 
 		},
 		bankPer :{
-			title:'Bankers',//EwayLocale.bankPer.title
-			organizationName:'Bank',//EwayLocale.bankPer.organizationName
-			orgNavi:'All',//EwayLocale.bankPer.orgNavi
-			addBankPerTitle:'Add Banker Info',//EwayLocale.bankPer.addBankPerTitle
-			updateBankPerTitle:'Update Banker Info '//EwayLocale.bankPer.updateBankPerTitle
+			title:'Bankers',//EwayLocale.person.bankPer.title
+			organizationName:'Bank',//EwayLocale.person.bankPer.organizationName
+			orgNavi:'All',//EwayLocale.person.bankPer.orgNavi
+			addBankPerTitle:'Add Banker Info',//EwayLocale.person.bankPer.addBankPerTitle
+			updateBankPerTitle:'Update Banker Info '//EwayLocale.person.bankPer.updateBankPerTitle
 
 		},
 		serviceOrg:{
-			title:'Maintenance Providers',//EwayLocale.serviceOrg.title
-			serviceNavi:'All',//EwayLocale.serviceOrg.serviceNavi
-			serviceOrgAdmin:'Manager',//EwayLocale.serviceOrg.serviceOrgAdmin
-			setManager:'Settings',//EwayLocale.serviceOrg.setManager
-			removeManager:'Delete',//EwayLocale.serviceOrg.removeManager
-			code:'Code',//EwayLocale.serviceOrg.code
-			name:'Name',//EwayLocale.serviceOrg.name
-			zip:'Zip Code',//EwayLocale.serviceOrg.zip
-			zip:'Z.C.',//EwayLocale.serviceOrg.zip
-			shortName:'Maintenance Provider',//EwayLocale.serviceOrg.shortName
-			address:'Address',//EwayLocale.serviceOrg.address
-			description:'Description',//EwayLocale.serviceOrg.description
-			addServiceTitle:'Add Maintenance Provider',//EwayLocale.serviceOrg.addServiceTitle
-			upgradeService:'Parent',//EwayLocale.serviceOrg.upgradeService
-			updateServiceTitle:'Update Maintenance Provider',//EwayLocale.serviceOrg.updateServiceTitle
-			personDevSerLink:'Person and device which link this manufacturer',//EwayLocale.serviceOrg.personDevSerLink
-			devSerLink:'Device under the manufacturer',//EwayLocale.serviceOrg.devSerLink
-			personSerLink:'Person under the manufacturer:',//EwayLocale.serviceOrg.personSerLink
+			title:'Maintenance Providers',//EwayLocale.person.serviceOrg.title
+			serviceNavi:'All',//EwayLocale.person.serviceOrg.serviceNavi
+			serviceOrgAdmin:'Manager',//EwayLocale.person.serviceOrg.serviceOrgAdmin
+			setManager:'Settings',//EwayLocale.person.serviceOrg.setManager
+			removeManager:'Delete',//EwayLocale.person.serviceOrg.removeManager
+			code:'Code',//EwayLocale.person.serviceOrg.code
+			name:'Name',//EwayLocale.person.serviceOrg.name
+			zip:'Zip Code',//EwayLocale.person.serviceOrg.zip
+			zip:'Z.C.',//EwayLocale.person.serviceOrg.zip
+			shortName:'Maintenance Provider',//EwayLocale.person.serviceOrg.shortName
+			address:'Address',//EwayLocale.person.serviceOrg.address
+			description:'Description',//EwayLocale.person.serviceOrg.description
+			addServiceTitle:'Add Maintenance Provider',//EwayLocale.person.serviceOrg.addServiceTitle
+			upgradeService:'Parent',//EwayLocale.person.serviceOrg.upgradeService
+			updateServiceTitle:'Update Maintenance Provider',//EwayLocale.person.serviceOrg.updateServiceTitle
+			personDevSerLink:'Person and device which link this manufacturer',//EwayLocale.person.serviceOrg.personDevSerLink
+			devSerLink:'Device under the manufacturer',//EwayLocale.person.serviceOrg.devSerLink
+			personSerLink:'Person under the manufacturer:',//EwayLocale.person.serviceOrg.personSerLink
 
-			directOrganization:' Maintenance Providers'//EwayLocale.serviceOrg.directOrganization
 		},
 		servicePer:{
-			title:'Maintenance Engineers',//EwayLocale.servicePer.title
-			servicePerlink:'Binding Device',//EwayLocale.servicePer.servicePerlink
-			addServicePerTitle:'Add maintenancer',//EwayLocale.servicePer.addServicePerTitle
-			updateServicePerTitle:'Update maintenancer',//EwayLocale.servicePer.updateServicePerTitle
+			title:'Maintenance Engineers',//EwayLocale.person.servicePer.title
+			servicePerlink:'Binding Device',//EwayLocale.person.servicePer.servicePerlink
+			addServicePerTitle:'Add maintenancer',//EwayLocale.person.servicePer.addServicePerTitle
+			updateServicePerTitle:'Update maintenancer',//EwayLocale.person.servicePer.updateServicePerTitle
 
-			maintainInfo:'All Maintenance Engineers'//EwayLocale.servicePer.maintainInfo
 		},
 		user:{
-			title:'Users',//EwayLocale.user.title
-			code:'Code',//EwayLocale.user.code
-			clickToCheckLog:'Click to Query Log',//EwayLocale.user.clickToCheckLog
-			userLog:' s log',//EwayLocale.user.userLog
-			resetPasswd:'Reset Password',//EwayLocale.user.resetPasswd
-			clickToPasswdInit:'Click to set the password to initialize',//EwayLocale.user.clickToPasswdInit
-			clickToRole:'Click to check all roles list',//EwayLocale.user.clickToRole
-			addUserTitle:'Add user information',//EwayLocale.user.addUserTitle
-			clickToUser:'Please click query ,choose a  person',//EwayLocale.user.clickToUser
-			userType:'User Type',//EwayLocale.user.userType
-			role:'Role',//EwayLocale.user.role
-			roleGiven:'Optional Roles',//EwayLocale.user.roleGiven
-			roleName:'Name',//EwayLocale.user.roleName
-			roleDescription:'Description',//EwayLocale.user.roleDescription
-			userListTitle:'userList',//EwayLocale.user.userListTitle
-			updateUserTitle:'Modify user role(use drafting way)',//EwayLocale.user.updateUserTitle
-			roleCanBeAdd:'Role list can be added',//EwayLocale.user.roleCanBeAdd
-			roleAlreadyBeAdd:'Role list already be added',//EwayLocale.user.roleAlreadyBeAdd
-			operCode:'Operator no',//EwayLocale.user.operCode
-			operName:'Operator name',//EwayLocale.user.operName
-			operTime:'Operate time',//EwayLocale.user.operTime
-			operResult:'Operate result',//EwayLocale.user.operResult
-			operContent:'Operate content',//EwayLocale.user.operContent
-			roleListTitle:'User roles list',//EwayLocale.user.roleListTitle
-			operTitle:'Operator log',//EwayLocale.user.operTitle
-			operDetailTitle:'Operate logs',//EwayLocale.user.operDetailTitle
-			operLogList:'Operate logs list',//EwayLocale.user.operLogList
-			personDevice:'User<-->Device',//EwayLocale.user.personDevice
-			rootUser:'Super user',//EwayLocale.user.rootUser
-			generalUser:'General User'//EwayLocale.user.generalUser
+			title:'Users',//EwayLocale.person.user.title
+			code:'Code',//EwayLocale.person.user.code
+			clickToCheckLog:'Click to Query Log',//EwayLocale.person.user.clickToCheckLog
+			userLog:' s log',//EwayLocale.person.user.userLog
+			resetPasswd:'Reset Password',//EwayLocale.person.user.resetPasswd
+			clickToPasswdInit:'Click to set the password to initialize',//EwayLocale.person.user.clickToPasswdInit
+			clickToRole:'Click to check all roles list',//EwayLocale.person.user.clickToRole
+			addUserTitle:'Add user information',//EwayLocale.person.user.addUserTitle
+			userType:'User Type',//EwayLocale.person.user.userType
+			role:'Role',//EwayLocale.person.user.role
+			roleGiven:'Optional Roles',//EwayLocale.person.user.roleGiven
+			roleName:'Name',//EwayLocale.person.user.roleName
+			roleDescription:'Description',//EwayLocale.person.user.roleDescription
+			userListTitle:'userList',//EwayLocale.person.user.userListTitle
+			updateUserTitle:'Modify user role(use drafting way)',//EwayLocale.person.user.updateUserTitle
+			roleCanBeAdd:'Role list can be added',//EwayLocale.person.user.roleCanBeAdd
+			roleAlreadyBeAdd:'Role list already be added',//EwayLocale.person.user.roleAlreadyBeAdd
+			operCode:'Operator no',//EwayLocale.person.user.operCode
+			operName:'Operator name',//EwayLocale.person.user.operName
+			operTime:'Operate time',//EwayLocale.person.user.operTime
+			operResult:'Operate result',//EwayLocale.person.user.operResult
+			operContent:'Operate content',//EwayLocale.person.user.operContent
+			roleListTitle:'User roles list',//EwayLocale.person.user.roleListTitle
+			operTitle:'Operator log',//EwayLocale.person.user.operTitle
+			operDetailTitle:'Operate logs',//EwayLocale.person.user.operDetailTitle
+			operLogList:'Operate logs list',//EwayLocale.person.user.operLogList
+			personDevice:'User<-->Device',//EwayLocale.person.user.personDevice
+			rootUser:'Super user',//EwayLocale.person.user.rootUser
+			generalUser:'General User'//EwayLocale.person.user.generalUser
 		}
 
 	},
@@ -113,20 +108,20 @@ Ext.apply(EwayLocale,{
 	permission:{
 		systemMenu:'Menus', //EwayLocale.permission.systemMenu
 		role:{
-			title:'Roles',//EwayLocale.role.title
-			update:'Update Role',//EwayLocale.role.update
-			name:'Name',//EwayLocale.role.name
-			type:'Type',//EwayLocale.role.type
-			description:'Description',//EwayLocale.role.description
-			isSysRole:'Is Default Role',//EwayLocale.role.isSysRole
-			chooseRight:'Please choose permissions.',//EwayLocale.role.chooseRight
-			add:'Add Role',//EwayLocale.role.add
-			wrongRoleParam:'Invalid input exists,please try again.'//EwayLocale.role.wrongRoleParam
+			title:'Roles',//EwayLocale.permission.role.title
+			update:'Update Role',//EwayLocale.permission.role.update
+			name:'Name',//EwayLocale.permission.role.name
+			type:'Type',//EwayLocale.permission.role.type
+			description:'Description',//EwayLocale.permission.role.description
+			isSysRole:'Is Default Role',//EwayLocale.permission.role.isSysRole
+			chooseRight:'Please choose permissions.',//EwayLocale.permission.role.chooseRight
+			add:'Add Role',//EwayLocale.permission.role.add
+			wrongRoleParam:'Invalid input exists,please try again.'//EwayLocale.permission.role.wrongRoleParam
 		},
 		permission:{
-			menuName:'Name',//EwayLocale.permission.menuName
-			menuDescription:'Description',//EwayLocale.permission.menuDescription
-			menuPermission:'Permission'//EwayLocale.permission.menuPermission
+			menuName:'Name',//EwayLocale.permission.permission.menuName
+			menuDescription:'Description',//EwayLocale.permission.permission.menuDescription
+			menuPermission:'Permission'//EwayLocale.permission.permission.menuPermission
 		}
 	}
 });
