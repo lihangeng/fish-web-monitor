@@ -1,108 +1,108 @@
 Ext.apply(EwayLocale,{
-	//**********************************************************/
+	
 
 	cases:{
-		confirm:'Confirm',//确认
-		cancel:'Cancel',//取消
-		concern:'Attention please',//请关注
-		SRCBView:',Send by monitor system',//上海农商行新监控发送
-		nowExportFile:'Importing File',//正在导入文件
-		exportFaultInfo:'Import fault code successfully',//导入厂商故障信息成功.
+		confirm:'Confirm',//EwayLocale.cases.confirm
+		cancel:'Cancel',//EwayLocale.cases.cancel
+		concern:'Attention please',//EwayLocale.cases.concern
+		SRCBView:',Send by monitor system',//EwayLocale.cases.SRCBView
+		nowExportFile:'Importing File',//EwayLocale.cases.nowExportFile
+		exportFaultInfo:'Import fault code successfully',//EwayLocale.cases.exportFaultInfo
 		caseFault:{
-			faultRelevantInfo:'SMS about fault',//故障相关短信
-			faultModule:'Fault Module',
-			cardReaderModule:'Card Reader',//读卡器模块
-			depoistModule:'Deposit Module',//存款模块
-			drawModule:'Dispenser Module',//取款模块
-			rprModule:'Receipt Printer',//凭条打印模块
-			jprModule:'Journal Printer',//日志打印模块
-			pinModule:'PIN',//密码键盘模块
-			textTerminalUnit:'TTU',//文本终端单元
-			sensoModule:'Sensors',//传感器模块
-			faultClassify: 'Fault Catalog',//故障分类
-			faultCode : 'Fault Code',//故障码
-			providerFaultCode: 'Fault Code',//厂商故障码
-			faultStartTime : 'Start Time',//故障开始时间
-			faultCloseTime : 'Close Time',//故障关闭时间
-			faultContinueTime : 'Duration',//持续时长
-		    faultState : 'Status',//故障状态
+			faultRelevantInfo:'SMS about fault',//EwayLocale.caseFault.faultRelevantInfo
+			faultModule:'Fault Module',//EwayLocale.caseFault.faultModule
+			cardReaderModule:'Card Reader',//EwayLocale.caseFault.cardReaderModule
+			depoistModule:'Deposit Module',//EwayLocale.caseFault.depoistModule
+			drawModule:'Dispenser Module',//EwayLocale.caseFault.drawModule
+			rprModule:'Receipt Printer',//EwayLocale.caseFault.rprModule
+			jprModule:'Journal Printer',//EwayLocale.caseFault.jprModule
+			pinModule:'PIN',//EwayLocale.caseFault.pinModule
+			textTerminalUnit:'TTU',//EwayLocale.caseFault.textTerminalUnit
+			sensoModule:'Sensors',//EwayLocale.caseFault.sensoModule
+			faultClassify: 'Fault Catalog',//EwayLocale.caseFault.faultClassify
+			faultCode : 'Fault Code',//EwayLocale.caseFault.faultCode
+			providerFaultCode: 'Fault Code',//EwayLocale.caseFault.providerFaultCode
+			faultStartTime : 'Start Time',//EwayLocale.caseFault.faultStartTime
+			faultCloseTime : 'Close Time',//EwayLocale.caseFault.faultCloseTime
+			faultContinueTime : 'Duration',//EwayLocale.caseFault.faultContinueTime
+		    faultState : 'Status',//EwayLocale.caseFault.faultState
 		    status:{
-		    	open:'Open',//未关闭
-		    	close:'Closed'//已关闭
+		    	open:'Open',//EwayLocale.status.open
+		    	close:'Closed'//EwayLocale.status.close
 		    },
 		    closeType:{
-		    	force : 'Close Manually',
-		    	normal : 'Close Automaticlly'
+		    	force : 'Close Manually',//EwayLocale.closeType.force
+		    	normal : 'Close Automaticlly'//EwayLocale.closeType.normal
 		    },
-		    closeByForce : 'Click to close fault by hand',
-		    faultCloseType : 'Close Type',
-		    none : 'none',
+		    closeByForce : 'Click to close fault by hand',//EwayLocale.closeType.closeByForce
+		    faultCloseType : 'Close Type',//EwayLocale.closeType.faultCloseType
+		    none : 'none',//EwayLocale.closeType.none
 
-		    upgradeTimes: 'Upgrade Times',//升级次数
-		    message: 'SMS',//短信
-		    checkDetails: 'Detail',//查看详情
-		    bankPer: 'Bank Contacts',//银行联系人
-		    serPer: 'Maintenance Engineers',//供应商联系人
-		    createTime: 'Create Time',//创建时间
-		    informContent: 'Notify Content',//通知内容
-		    messageContentDetail: 'SMS Content',//短信内容详情
-		    informWay: 'Notify Way',//通知方式
-		    mail:'Email',//邮件
-		    messageAndMail:'SMS And Email',//短信和邮件
-		    informMobile: 'Notify Mobile',//通知手机号
-		    notifyTimes: 'Notify Times',//通知次数
-		    notifyRepeatTimes: 'Notify Times',//重复通知次数
-		    sendTimes: 'Send Times',//发送次数
-		    sendInterval: 'Intervals Between Each Send',//发送时间间隔
-		    sendTime: 'Send Time',//发送时间
-		    faultSearch:'Fault Search',//故障查询
-		    none : 'Do Not Send'//不发送
+		    upgradeTimes: 'Upgrade Times',//EwayLocale.closeType.upgradeTimes
+		    message: 'SMS',//EwayLocale.closeType.message
+		    checkDetails: 'Detail',//EwayLocale.closeType.checkDetails
+		    bankPer: 'Bank Contacts',//EwayLocale.closeType.bankPer
+		    serPer: 'Maintenance Engineers',//EwayLocale.closeType.serPer
+		    createTime: 'Create Time',//EwayLocale.closeType.createTime
+		    informContent: 'Notify Content',//EwayLocale.closeType.informContent
+		    messageContentDetail: 'SMS Content',//EwayLocale.closeType.messageContentDetail
+		    informWay: 'Notify Way',//EwayLocale.closeType.informWay
+		    mail:'Email',//EwayLocale.closeType.mail
+		    messageAndMail:'SMS And Email',//EwayLocale.closeType.messageAndMail
+		    informMobile: 'Notify Mobile',//EwayLocale.closeType.informMobile
+		    notifyTimes: 'Notify Times',//EwayLocale.closeType.notifyTimes
+		    notifyRepeatTimes: 'Notify Times',//EwayLocale.closeType.notifyRepeatTimes
+		    sendTimes: 'Send Times',//EwayLocale.closeType.sendTimes
+		    sendInterval: 'Intervals Between Each Send',//EwayLocale.closeType.sendInterval
+		    sendTime: 'Send Time',//EwayLocale.closeType.sendTime
+		    faultSearch:'Fault Search',//EwayLocale.closeType.faultSearch
+		    none : 'Do Not Send'//EwayLocale.closeType.none
 
 		},
 		caseNotify:{
-			fault:'Fault',//故障
-			faultDetails:'Detail',//故障详情
-			faultlastTime: 'Fault last(unit:hour)',//故障持续时长(单位:小时)
-			checkFailure:'View failed!',//查看失败！
-			innerFault:'System error',//EwayLocale.cases.caseNotify.innerFault 内部错误
-			messageCheck:'SMS Info'//短信查询
+			fault:'Fault',//EwayLocale.caseNotify.fault
+			faultDetails:'Detail',//EwayLocale.caseNotify.faultDetails
+			faultlastTime: 'Fault last(unit:hour)',//EwayLocale.caseNotify.faultlastTime
+			checkFailure:'View failed!',//EwayLocale.caseNotify.checkFailure
+			innerFault:'System error',//EwayLocale.caseNotify.innerFault
+			messageCheck:'SMS Info'//EwayLocale.caseNotify.messageCheck
 		},
 		faultClassify:{
-			faultClassifyName: 'Name',//故障分类名称
-			faultresponsorType: 'Handlers Type', //故障责任人类型
-			maintain:'Maintenance Engineers',//维护员
-			manageAndMaintain:'All the above',//管机员和维护员
-			upGradeTimes: 'Max upgrade times',//最高升级次数
-			faultInformWay:'Notify way',//故障通知方式
-			faultCloseInterval:'Intervals between close(unit:hour)',//故障规定关闭时间间隔（单位:小时）
-			faultTypeConfiguration: 'Fault type setting',//故障类型配置
-			updateFaultTypeConfiguration: 'Update Fault Type Info',//更改故障类型配置
-			number:'Just for numbers ‘0-9’',//由数字‘0-9’,‘.’组成
-			informNumber:'Can not be 0,1-5 numbers'//通知次数不能为0,由数字‘0-9’组成,1-5位
+			faultClassifyName: 'Name',//EwayLocale.faultClassify.faultClassifyName
+			faultresponsorType: 'Handlers Type', //EwayLocale.faultClassify.faultresponsorType
+			maintain:'Maintenance Engineers',//EwayLocale.faultClassify.maintain
+			manageAndMaintain:'All the above',//EwayLocale.faultClassify.manageAndMaintain
+			upGradeTimes: 'Max upgrade times',//EwayLocale.faultClassify.upGradeTimes
+			faultInformWay:'Notify way',//EwayLocale.faultClassify.faultInformWay
+			faultCloseInterval:'Intervals between close(unit:hour)',//EwayLocale.faultClassify.faultCloseInterval
+			faultTypeConfiguration: 'Fault type setting',//EwayLocale.faultClassify.faultTypeConfiguration
+			updateFaultTypeConfiguration: 'Update Fault Type Info',//EwayLocale.faultClassify.updateFaultTypeConfiguration
+			number:'Just for numbers ‘0-9’',//EwayLocale.faultClassify.number
+			informNumber:'Can not be 0,1-5 numbers'//EwayLocale.faultClassify.informNumber
 		},
 		notifyMould:{
-			noticeType:'Type',//通知类型
-			createNotice:'Create',//创建通知
-			upgradeNotice:'Upgrade',//升级通知
-			closeNotice:'Close',//关闭通知
-			noticeValue: 'Parameters',//通知参数
-			messageContentConfiguration:'SMS content',//短信内容配置
-			updateMessageContentConfiguration: 'Modify SMS content',//更改短信内容配置
-			necessaryOption: 'This option is necessary',//此项为必选项
-			faultType:'Fault type',//故障类型
-			applyStatus:'App status'//应用状态
+			noticeType:'Type',//EwayLocale.notifyMould.noticeType
+			createNotice:'Create',//EwayLocale.notifyMould.createNotice
+			upgradeNotice:'Upgrade',//EwayLocale.notifyMould.upgradeNotice
+			closeNotice:'Close',//EwayLocale.notifyMould.closeNotice
+			noticeValue: 'Parameters',//EwayLocale.notifyMould.noticeValue
+			messageContentConfiguration:'SMS content',//EwayLocale.notifyMould.messageContentConfiguration
+			updateMessageContentConfiguration: 'Modify SMS content',//EwayLocale.notifyMould.updateMessageContentConfiguration
+			necessaryOption: 'This option is necessary',//EwayLocale.notifyMould.necessaryOption
+			faultType:'Fault type',//EwayLocale.notifyMould.faultType
+			applyStatus:'App status'//EwayLocale.notifyMould.applyStatus
 		},
 		vendorCode:{
-			exportProviderInfo: 'Import manufacturer fault code',//导入厂商故障信息
-			provider:'Manufacturer',
-			exportFile: 'Import file',//导入文件
-			deleteFaultInfo:'Delete manufacturer fault code',//删除厂商故障信息
-			templateLoad:'Example download',//模板下载
-			massRemove: 'Batch delete',//批量删除
-			providerDescription:'Description',//厂商故障描述
-			solveProject: 'Solution',//解决方案
-			providerFaultInfo:'Fault Code',//厂商故障信息管理
-			formwork:'fault_message_en.xls'//模板下载
+			exportProviderInfo: 'Import manufacturer fault code',//EwayLocale.vendorCode.exportProviderInfo
+			provider:'Manufacturer',//EwayLocale.vendorCode.provider
+			exportFile: 'Import file',//EwayLocale.vendorCode.exportFile
+			deleteFaultInfo:'Delete manufacturer fault code',//EwayLocale.vendorCode.deleteFaultInfo
+			templateLoad:'Example download',//EwayLocale.vendorCode.templateLoad
+			massRemove: 'Batch delete',//EwayLocale.vendorCode.massRemove
+			providerDescription:'Description',//EwayLocale.vendorCode.providerDescription
+			solveProject: 'Solution',//EwayLocale.vendorCode.solveProject
+			providerFaultInfo:'Fault Code',//EwayLocale.vendorCode.providerFaultInfo
+			formwork:'fault_message_en.xls'//EwayLocale.vendorCode.formwork
 		}
 	}
 });
