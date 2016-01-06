@@ -11,7 +11,6 @@ Ext.apply(EwayLocale,{
 	personalConf:'Personal Settings',//EwayLocale.personalConf
 	systemHelp:'Help',//EwayLocale.systemHelp
 	exitSystem:'Log Out',//EwayLocale.exitSystem
-	aaaaaa:'Log Out',//EwayLocale.aaaaaa
 	msg:{
 		perviewFailForText:'Preview failed:the charater and rolling advertisement is supported to preview',//EwayLocale.msg.perviewFailForText
 		perviewFailNoResource:'Preview failed:no resource found in this advertisement.',//EwayLocale.msg.perviewFailNoResource
