@@ -1,432 +1,432 @@
 Ext.apply(EwayLocale,{
 
-	//**********************************************************/
+	
 	monitor:{
 		summary:{
-			title:'Status Overview',//EwayLocale.monitor.summary.title
-			allSummary:'All',//EwayLocale.monitor.summary.allSummary
-			appSummary:'ATMC',//EwayLocale.monitor.summary.appSummary
-			modSummary:'Module',//EwayLocale.monitor.summary.modSummary
-			boxSummary:'Cashbox',//EwayLocale.monitor.summary.boxSummary
-			netSummary:'Network'//EwayLocale.monitor.summary.netSummary
+			title:'Status Overview',//EwayLocale.summary.title
+			allSummary:'All',//EwayLocale.summary.allSummary
+			appSummary:'ATMC',//EwayLocale.summary.appSummary
+			modSummary:'Module',//EwayLocale.summary.modSummary
+			boxSummary:'Cashbox',//EwayLocale.summary.boxSummary
+			netSummary:'Network'//EwayLocale.summary.netSummary
 		},
 		deviceStatus:{
-			Healthy:'Healthy',
-			Warning:'Warning',
-			Fatal:'Fatal',
-			Unknown:'Unknown',
-			NoDevice:'No Device'
+			Healthy:'Healthy',//EwayLocale.deviceStatus.Healthy
+			Warning:'Warning',//EwayLocale.deviceStatus.Warning
+			Fatal:'Fatal',//EwayLocale.deviceStatus.Fatal
+			Unknown:'Unknown',//EwayLocale.deviceStatus.Unknown
+			NoDevice:'No Device'//EwayLocale.deviceStatus.NoDevice
 		},
 		devMonitor:{
-			title:'Status Monitor',//EwayLocale.monitor.devMonitor.title 状态监控
+			title:'Status Monitor',//EwayLocale.devMonitor.title
 			comboxStatus:{
-				runStatus:'ATMC Status',//EwayLocale.monitor.devMonitor.comboxStatus.runStatus 运行状态
-				modStatus:'Module Status',//EwayLocale.monitor.devMonitor.comboxStatus.modStatus 模块状态
-				boxStatus:'Cashbox Status',//EwayLocale.monitor.devMonitor.comboxStatus.boxStatus 钞箱状态
-				netStatus:'Network Status'//EwayLocale.monitor.devMonitor.comboxStatus.netStatus 网络状态
+				runStatus:'ATMC Status',//EwayLocale.comboxStatus.runStatus
+				modStatus:'Module Status',//EwayLocale.comboxStatus.modStatus
+				boxStatus:'Cashbox Status',//EwayLocale.comboxStatus.boxStatus
+				netStatus:'Network Status'//EwayLocale.comboxStatus.netStatus
 			},
-			monitorState:'Filters',//EwayLocale.monitor.devMonitor.monitorState 监控状态
-			showWay:'Show way',//EwayLocale.monitor.devMonitor.showWay 展示方式
+			monitorState:'Filters',//EwayLocale.comboxStatus.monitorState
+			showWay:'Show way',//EwayLocale.comboxStatus.showWay
 			comboxShowWay:{
-				summaryPattern:'Overview',//EwayLocale.monitor.devMonitor.comboxShowWay.summaryPattern
-				matrixPattern:'Matrix',//EwayLocale.monitor.devMonitor.comboxShowWay.matrixPattern 矩形方式
-				maxIconPattern:'Large Matrix',//EwayLocale.monitor.devMonitor.comboxShowWay.maxIconPattern 超大图标
-				listPattern:'List',//EwayLocale.monitor.devMonitor.comboxShowWay.listPattern 列表方式
-				boxPattern:'Cashbox'//EwayLocale.monitor.devMonitor.comboxShowWay.boxPattern 钞箱方式
+				summaryPattern:'Overview',//EwayLocale.comboxShowWay.summaryPattern
+				matrixPattern:'Matrix',//EwayLocale.comboxShowWay.matrixPattern
+				maxIconPattern:'Large Matrix',//EwayLocale.comboxShowWay.maxIconPattern
+				listPattern:'List',//EwayLocale.comboxShowWay.listPattern
+				boxPattern:'Cashbox'//EwayLocale.comboxShowWay.boxPattern
 			},
-			noData:'No data',//EwayLocale.monitor.devMonitor.noData 无记录
-			retainCardCount:'Retained Card Amount',//EwayLocale.monitor.devMonitor.retainCardCount 当前吞卡数量
+			noData:'No data',//EwayLocale.comboxShowWay.noData
+			retainCardCount:'Retained Card Amount',//EwayLocale.comboxShowWay.retainCardCount
 			cash:{
-				boxInitCount:'Initial Amount of Cashbox',//EwayLocale.monitor.devMonitor.cash.boxInitCount 钞箱初始金额
-				boxCurrentCount:'Current Amount of Cashbox',//EwayLocale.monitor.devMonitor.cash.boxCurrentCount 钞箱当前金额
-				cashboxLimit:'Cashbox Alarm Amount',//EwayLocale.monitor.devMonitor.cash.cashboxLimit 钞箱报警金额阈值
-				initAmount:'Initial Amount',//EwayLocale.monitor.devMonitor.cash.initAmount 加钞总金额
-				amount:'Amount Left',//EwayLocale.monitor.devMonitor.cash.amount
-				dispenseAmount:'Cash Out Amount',//EwayLocale.monitor.devMonitor.cash.dispenseAmount 出钞总金额
-				rejectAmount:'Reject Amount',//EwayLocale.monitor.devMonitor.cash.rejectAmount 废钞金额
-				retractCount:'Retract Count',//EwayLocale.monitor.devMonitor.cash.retractCount 钞票回收次数
-				minAmount:'Minimum Withdraw Amount',//EwayLocale.monitor.devMonitor.cash.minAmount 最小取款金额
-				boxId:'ID',//EwayLocale.monitor.devMonitor.cash.boxId 钞箱标识
-				type:'Type',//EwayLocale.monitor.devMonitor.cash.type 钞箱类型
-				boxStatus:'Status',//EwayLocale.monitor.devMonitor.cash.boxStatus 钞箱状态
-				initialCount:'Initial Amount',//EwayLocale.monitor.devMonitor.cash.initialCount 初始张数
-				cashInCount:'CashIn Count',//EwayLocale.monitor.devMonitor.cash.cashInCount 存款张数
-				currentCount:'Current Count',//EwayLocale.monitor.devMonitor.cash.currentCount 当前计数
-				noteValue:'Bank Note',//EwayLocale.monitor.devMonitor.cash.noteValue 钞箱面值
-				currency:'Currency',//EwayLocale.monitor.devMonitor.cash.currency 钞箱币种
-				boxDetail:'Cashbox detail',//EwayLocale.monitor.devMonitor.cash.boxDetail 钞箱详情
-				cimFull:'Full',//EwayLocale.monitor.devMonitor.cash.cimFull 存款钞满
-				cdmEmpty:'Empty',//EwayLocale.monitor.devMonitor.cash.cdmEmpty 取款钞空
-				cdmLow:'Low',//EwayLocale.monitor.devMonitor.cash.cdmLow 取款钞少
-				low:'Low',//EwayLocale.monitor.devMonitor.cash.low 钞少
-				empty:'Empty',//EwayLocale.monitor.devMonitor.cash.empty 钞空
-				cimAFull:'Will Full',//EwayLocale.monitor.devMonitor.cash.cimAFull 存款钞将满
-				cashFault:'Fatal',//EwayLocale.monitor.devMonitor.cash.cashFault 钞箱故障
-				cashUnknow:'Unknown'//EwayLocale.monitor.devMonitor.cash.cashUnknow 钞箱未知
+				boxInitCount:'Initial Amount of Cashbox',//EwayLocale.cash.boxInitCount
+				boxCurrentCount:'Current Amount of Cashbox',//EwayLocale.cash.boxCurrentCount
+				cashboxLimit:'Cashbox Alarm Amount',//EwayLocale.cash.cashboxLimit
+				initAmount:'Initial Amount',//EwayLocale.cash.initAmount
+				amount:'Amount Left',//EwayLocale.cash.amount
+				dispenseAmount:'Cash Out Amount',//EwayLocale.cash.dispenseAmount
+				rejectAmount:'Reject Amount',//EwayLocale.cash.rejectAmount
+				retractCount:'Retract Count',//EwayLocale.cash.retractCount
+				minAmount:'Minimum Withdraw Amount',//EwayLocale.cash.minAmount
+				boxId:'ID',//EwayLocale.cash.boxId
+				type:'Type',//EwayLocale.cash.type
+				boxStatus:'Status',//EwayLocale.cash.boxStatus
+				initialCount:'Initial Amount',//EwayLocale.cash.initialCount
+				cashInCount:'CashIn Count',//EwayLocale.cash.cashInCount
+				currentCount:'Current Count',//EwayLocale.cash.currentCount
+				noteValue:'Bank Note',//EwayLocale.cash.noteValue
+				currency:'Currency',//EwayLocale.cash.currency
+				boxDetail:'Cashbox detail',//EwayLocale.cash.boxDetail
+				cimFull:'Full',//EwayLocale.cash.cimFull
+				cdmEmpty:'Empty',//EwayLocale.cash.cdmEmpty
+				cdmLow:'Low',//EwayLocale.cash.cdmLow
+				low:'Low',//EwayLocale.cash.low
+				empty:'Empty',//EwayLocale.cash.empty
+				cimAFull:'Will Full',//EwayLocale.cash.cimAFull
+				cashFault:'Fatal',//EwayLocale.cash.cashFault
+				cashUnknow:'Unknown'//EwayLocale.cash.cashUnknow
 
 			},
-			modStateGraphic:'Module status graphic',//EwayLocale.monitor.devMonitor.modStateGraphic 模块状态图示
-			modGraphic:'Module graphic',//EwayLocale.monitor.devMonitor.modGraphic
-			registerStatus:'Register Status',//EwayLocale.monitor.devMonitor.registerStatus 注册状态
-			devModStatus:'Status of Modules',//EwayLocale.monitor.devMonitor.devModStatus 设备模块状态
+			modStateGraphic:'Module status graphic',//EwayLocale.cash.modStateGraphic
+			modGraphic:'Module graphic',//EwayLocale.cash.modGraphic
+			registerStatus:'Register Status',//EwayLocale.cash.registerStatus
+			devModStatus:'Status of Modules',//EwayLocale.cash.devModStatus
 			mod:{
-				idc:'Card Reader',//EwayLocale.monitor.devMonitor.mod.idc 读卡器
-				jpr:'Journal Printer',//EwayLocale.monitor.devMonitor.mod.jpr 日志打印机
-				cdm:'Dispenser',//EwayLocale.monitor.devMonitor.mod.cdm 取款模块
-				cim:'Deposit',//EwayLocale.monitor.devMonitor.mod.cim 存款模块
-				siu:'Sensors',//EwayLocale.monitor.devMonitor.mod.siu 传感器
-				rpr:'Receipt Printer',//EwayLocale.monitor.devMonitor.mod.rpr 凭条打印机
-				pin:'PIN',//EwayLocale.monitor.devMonitor.mod.pin 密码键盘
-				ttu:'TTU',//EwayLocale.monitor.devMonitor.mod.ttu 文本终端
-				isc:'ID Scanner',//EwayLocale.monitor.devMonitor.mod.isc 身份证扫描仪
-				icc:'Card Dispenser',//EwayLocale.monitor.devMonitor.mod.icc 发卡器
-				fgp:'Finger Printer',//EwayLocale.monitor.devMonitor.mod.fgp 指纹仪
-				healthy:'Healthy',//EwayLocale.monitor.devMonitor.mod.healthy 模块正常
-				cam:'Camera',//EwayLocale.monitor.devMonitor.mod.cam
-				bcr:'Barcode Reader',//EwayLocale.monitor.devMonitor.mod.bcr
-				pbk:'Passbook Printer'//EwayLocale.monitor.devMonitor.mod.pbk 存折打印机
+				idc:'Card Reader',//EwayLocale.mod.idc
+				jpr:'Journal Printer',//EwayLocale.mod.jpr
+				cdm:'Dispenser',//EwayLocale.mod.cdm
+				cim:'Deposit',//EwayLocale.mod.cim
+				siu:'Sensors',//EwayLocale.mod.siu
+				rpr:'Receipt Printer',//EwayLocale.mod.rpr
+				pin:'PIN',//EwayLocale.mod.pin
+				ttu:'TTU',//EwayLocale.mod.ttu
+				isc:'ID Scanner',//EwayLocale.mod.isc
+				icc:'Card Dispenser',//EwayLocale.mod.icc
+				fgp:'Finger Printer',//EwayLocale.mod.fgp
+				healthy:'Healthy',//EwayLocale.mod.healthy
+				cam:'Camera',//EwayLocale.mod.cam
+				bcr:'Barcode Reader',//EwayLocale.mod.bcr
+				pbk:'Passbook Printer'//EwayLocale.mod.pbk
 			},
 			remote:{
-				control:'Remote Control',//EwayLocale.monitor.devMonitor.remote.control 远程控制
-				screen:'Screenshot',//EwayLocale.monitor.devMonitor.remote.screen 远程抓拍
-				commandRet:'Command Ret',//EwayLocale.monitor.devMonitor.remote.commandRet 远程命令执行结果
-				log:'Fetch Journal Logs',//EwayLocale.monitor.devMonitor.remote.log 提取电子日志
-				net:'Check Network',//EwayLocale.monitor.devMonitor.remote.net 查看网络连接
-				softwareList:'Fetch Software List',//EwayLocale.monitor.devMonitor.remote.softwareList 获取软件列表
-				powerOff:'PowerOff',//EwayLocale.monitor.devMonitor.remote.powerOff 关机
-				closeWays:'Choose way of poweroff',//EwayLocale.monitor.devMonitor.remote.closeWays 请选择关机方式
-				restart:'Reboot',//EwayLocale.monitor.devMonitor.remote.restart 重启
-				restartWay:'Choose way of reboot',//EwayLocale.monitor.devMonitor.remote.restartWay 请选择重启方式
-				logicOpen:'Start Service',//EwayLocale.monitor.devMonitor.remote.logicOpen 开启服务
-				logicClose:'Stop Service',//EwayLocale.monitor.devMonitor.remote.logicClose 暂停服务
-				remoteBrowser:'File Browse',//EwayLocale.monitor.devMonitor.remote.remoteBrowser 远程浏览
-				processList:'Fetch Process',//EwayLocale.monitor.devMonitor.remote.processList 查看进程信息
-				screenCamera:'Screen recording',//EwayLocale.monitor.devMonitor.remote.screenCamera 屏幕录制
-				reset:'Force Reset',//EwayLocale.monitor.devMonitor.remote.reset 强制复位
-				remoteLook:'Fetch Application Info',//EwayLocale.monitor.devMonitor.remote.remoteLook 查看应用版本
-				remoteCheckATM:'Physical of ATM',//EwayLocale.monitor.devMonitor.remote.remoteCheckATM ATM体检
-				halfSer:'Half service',//EwayLocale.monitor.devMonitor.remote.halfSer 半功能
-				healthy:'Healthy',//EwayLocale.monitor.devMonitor.remote.healthy 正常服务
-				staff:'Maintenance',//EwayLocale.monitor.devMonitor.remote.staff 维护
+				control:'Remote Control',//EwayLocale.remote.control
+				screen:'Screenshot',//EwayLocale.remote.screen
+				commandRet:'Command Ret',//EwayLocale.remote.commandRet
+				log:'Fetch Journal Logs',//EwayLocale.remote.log
+				net:'Check Network',//EwayLocale.remote.net
+				softwareList:'Fetch Software List',//EwayLocale.remote.softwareList
+				powerOff:'PowerOff',//EwayLocale.remote.powerOff
+				closeWays:'Choose way of poweroff',//EwayLocale.remote.closeWays
+				restart:'Reboot',//EwayLocale.remote.restart
+				restartWay:'Choose way of reboot',//EwayLocale.remote.restartWay
+				logicOpen:'Start Service',//EwayLocale.remote.logicOpen
+				logicClose:'Stop Service',//EwayLocale.remote.logicClose
+				remoteBrowser:'File Browse',//EwayLocale.remote.remoteBrowser
+				processList:'Fetch Process',//EwayLocale.remote.processList
+				screenCamera:'Screen recording',//EwayLocale.remote.screenCamera
+				reset:'Force Reset',//EwayLocale.remote.reset
+				remoteLook:'Fetch Application Info',//EwayLocale.remote.remoteLook
+				remoteCheckATM:'Physical of ATM',//EwayLocale.remote.remoteCheckATM
+				halfSer:'Half service',//EwayLocale.remote.halfSer
+				healthy:'Healthy',//EwayLocale.remote.healthy
+				staff:'Maintenance',//EwayLocale.remote.staff
 
-				pFault:'ATMP Error',//EwayLocale.monitor.devMonitor.remote.pFault 交易前置故障
+				pFault:'ATMP Error',//EwayLocale.remote.pFault
 
-				stop:'Stop',//EwayLocale.monitor.devMonitor.remote.stop 报停
-				manualStop:'Stop manual',////EwayLocale.monitor.devMonitor.remote.manualStop 人工报停
-				stopFault:'Pause serivce-module error',//EwayLocale.monitor.devMonitor.remote.stopFault 暂停服务
-				stopCash:'Pause serivce-no cash',//EwayLocale.monitor.devMonitor.remote.stopCash 暂停服务-未加钞
-				pauseSer:'Pause serivce',//EwayLocale.monitor.devMonitor.remote.pauseSer 暂停服务
-				pauseCash:'Pause cash',//EwayLocale.monitor.devMonitor.remote.pauseCash   ----中文不明，我猜的----
-				pauseSerUnknow:'Pause serivce-unkown',//EwayLocale.monitor.devMonitor.remote.pauseSerUnknow 未知原因暂停服务
-				manaAndstaff:'Device Manager',//EwayLocale.monitor.devMonitor.remote.manaAndstaff 管机员
-				screenFailed:'Connection refused.'//EwayLocale.monitor.devMonitor.remote.screenFailed
+				stop:'Stop',//EwayLocale.remote.stop
+				manualStop:'Stop manual',//EwayLocale.remote.manualStop
+				stopFault:'Pause serivce-module error',//EwayLocale.remote.stopFault
+				stopCash:'Pause serivce-no cash',//EwayLocale.remote.stopCash
+				pauseSer:'Pause serivce',//EwayLocale.remote.pauseSer
+				pauseCash:'Pause cash',//EwayLocale.remote.pauseCash
+				pauseSerUnknow:'Pause serivce-unkown',//EwayLocale.remote.pauseSerUnknow
+				manaAndstaff:'Device Manager',//EwayLocale.remote.manaAndstaff
+				screenFailed:'Connection refused.'//EwayLocale.remote.screenFailed
 			},
-			atmGroup:'Group',//EwayLocale.monitor.devMonitor.atmGroup 分组
-			atmGroupTip:'GroupDetail',//EwayLocale.monitor.devMonitor.atmGroupTip
-			solution:'Solution suggest',//EwayLocale.monitor.devMonitor.solution 建议解决方案
-			faultDescription:'Module error description',//EwayLocale.monitor.devMonitor.faultDescription 模块故障描述
-			fastChoose:'Fast choose',//EwayLocale.monitor.devMonitor.fastChoose 快捷选择
-			init:'Initialization',//EwayLocale.monitor.devMonitor.init 初始化
-			accTrans:'Transaction',//EwayLocale.monitor.devMonitor.accTrans 客户交易
-			factureStaff:'Manufacturer model',//EwayLocale.monitor.devMonitor.factureStaff 厂商模式维护
-			netHealthy:'Net healthy',//EwayLocale.monitor.devMonitor.netHealthy 网络正常
-			netUnStable:'Net unstable',//EwayLocale.monitor.devMonitor.netUnStable 网络不稳定
-			netFatal:'Net error',//EwayLocale.monitor.devMonitor.netFatal 网络故障
-			filterManager: {
-				title: 'Filters Manager',//EwayLocale.monitor.devMonitor.filterManager.title
-				add: 'Create Filter',//EwayLocale.monitor.devMonitor.filterManager.add
-				update: 'Update Filter',//EwayLocale.monitor.devMonitor.filterManager.update
-				filterForm: {
-					filterName: 'Filter Name'//EwayLocale.monitor.devMonitor.filterManager.filterForm.filterName
+			atmGroup:'Group',//EwayLocale.remote.atmGroup
+			atmGroupTip:'GroupDetail',//EwayLocale.remote.atmGroupTip
+			solution:'Solution suggest',//EwayLocale.remote.solution
+			faultDescription:'Module error description',//EwayLocale.remote.faultDescription
+			fastChoose:'Fast choose',//EwayLocale.remote.fastChoose
+			init:'Initialization',//EwayLocale.remote.init
+			accTrans:'Transaction',//EwayLocale.remote.accTrans
+			factureStaff:'Manufacturer model',//EwayLocale.remote.factureStaff
+			netHealthy:'Net healthy',//EwayLocale.remote.netHealthy
+			netUnStable:'Net unstable',//EwayLocale.remote.netUnStable
+			netFatal:'Net error',//EwayLocale.remote.netFatal
+			filterManager: {//EwayLocale.remote.filterManager
+				title: 'Filters Manager',//EwayLocale.remote.title
+				add: 'Create Filter',//EwayLocale.remote.add
+				update: 'Update Filter',//EwayLocale.remote.update
+				filterForm: {//EwayLocale.remote.filterForm
+					filterName: 'Filter Name'//EwayLocale.remote.filterName
 				}
 			}
 		},
 		business:{
 			transaction:{
-				card:'Card No.',//EwayLocale.monitor.business.transaction.card 交易卡号
-				dateTime:'Time',//EwayLocale.monitor.business.transaction.dateTime 交易时间
-				transCode:'Transaction Type',//EwayLocale.monitor.business.transaction.transCode 交易类型
-				amt:'Amount',//EwayLocale.monitor.business.transaction.amt 交易金额
-				currency:'Currency',//EwayLocale.monitor.business.transaction.currency 交易币种
-				transId:'Trans ID.',//EwayLocale.monitor.business.transaction.transId 交易流水号
-				amtfield:'Amount from',//EwayLocale.monitor.business.transaction.amtfield 金额范围
-				toNum:'to',//EwayLocale.monitor.business.transaction.toNum 至
-				transContainer:'Time Scope',//EwayLocale.monitor.business.transaction.transContainer 交易时间段
-				debitAccountOrCard:'Debit Card Number',//EwayLocale.monitor.business.transaction.debitAccountOrCard 客户账号或者卡号
-				creditAccountOrCard:'Credit Card Number',//EwayLocale.monitor.business.transaction.creditAccountOrCard 对方账号或者卡号
-				debitAccount:'Debit Card Number',//EwayLocale.monitor.business.transaction.debitAccount 客户帐号
-				creditAccount:'Credit Card Number',//EwayLocale.monitor.business.transaction.creditAccount 对方账号
-				localRet:'Local Code',//EwayLocale.monitor.business.transaction.localRet ATMC本地代码
-				hostRet:'Host Code',//EwayLocale.monitor.business.transaction.hostRet 主机返回码
-				userName:'User Name',//EwayLocale.monitor.business.transaction.userName 用户姓名
+				card:'Card No.',//EwayLocale.transaction.card
+				dateTime:'Time',//EwayLocale.transaction.dateTime
+				transCode:'Transaction Type',//EwayLocale.transaction.transCode
+				amt:'Amount',//EwayLocale.transaction.amt
+				currency:'Currency',//EwayLocale.transaction.currency
+				transId:'Trans ID.',//EwayLocale.transaction.transId
+				amtfield:'Amount from',//EwayLocale.transaction.amtfield
+				toNum:'to',//EwayLocale.transaction.toNum
+				transContainer:'Time Scope',//EwayLocale.transaction.transContainer
+				debitAccountOrCard:'Debit Card Number',//EwayLocale.transaction.debitAccountOrCard
+				creditAccountOrCard:'Credit Card Number',//EwayLocale.transaction.creditAccountOrCard
+				debitAccount:'Debit Card Number',//EwayLocale.transaction.debitAccount
+				creditAccount:'Credit Card Number',//EwayLocale.transaction.creditAccount
+				localRet:'Local Code',//EwayLocale.transaction.localRet
+				hostRet:'Host Code',//EwayLocale.transaction.hostRet
+				userName:'User Name',//EwayLocale.transaction.userName
 				historyTransaction:{
-					title:'Histroy Transaction '//EwayLocale.monitor.business.transaction.historyTransaction.title //历史交易查询
+					title:'Histroy Transaction '//EwayLocale.historyTransaction.title
 				},
 				transactionMonitor:{
-					title:'Real-time Transaction',//EwayLocale.monitor.business.transaction.transactionMonitor.title 实时交易监控
-					begin:'Start',//EwayLocale.monitor.business.transaction.transactionMonitor.begin 开始监控
-					stop:'Stop',//EwayLocale.monitor.business.transaction.transactionMonitor.stop 停止监控
-					clear:'Clear Screen',//EwayLocale.monitor.business.transaction.transactionMonitor.clear清屏
-					scroll:'Scroll',//EwayLocale.monitor.business.transaction.transactionMonitor.scroll滚屏方式
-					up:'up',//EwayLocale.monitor.business.transaction.transactionMonitor.up向上
-					down:'down'//EwayLocale.monitor.business.transaction.transactionMonitor.down向下
+					title:'Real-time Transaction',//EwayLocale.transactionMonitor.title
+					begin:'Start',//EwayLocale.transactionMonitor.begin
+					stop:'Stop',//EwayLocale.transactionMonitor.stop
+					clear:'Clear Screen',//EwayLocale.transactionMonitor.clear
+					scroll:'Scroll',//EwayLocale.transactionMonitor.scroll
+					up:'up',//EwayLocale.transactionMonitor.up
+					down:'down'//EwayLocale.transactionMonitor.down
 				}
 			},
 			blackList:{
-				title:'Black Card',//EwayLocale.monitor.business.blackList.title 黑名单卡管理
-				black:'BlackCard',//EwayLocale.monitor.business.blackList.black 黑名单卡
-				addBlack:'Add',//EwayLocale.monitor.business.blackList.addBlack 添加黑名单卡
-				cardBank:'Bank',//EwayLocale.monitor.business.blackList.cardBank 所属银行
-				importData:'Import',//EwayLocale.monitor.business.blackList.importData 批量导入
-				addDate:'Add date',//EwayLocale.monitor.business.blackList.addDate 添加日期
-				importTitle:'Bacth import',//EwayLocale.monitor.business.blackList.importTitle 批量导入黑名单卡
-				importFile:'Import file',//EwayLocale.monitor.business.blackList.importFile 导入文件
-				chooseFileRegex:'Please choose file to import,only .xls or .xlsx file is supported',//EwayLocale.monitor.business.blackList.chooseFileRegex 请选择导入文件,只支持.xls和.xlsx格式的文件
-				fileRegex:'only .xls or .xlsx file is supported',//EwayLocale.monitor.business.blackList.fileRegex 只支持.xls和.xlsx格式的文件
-				tempDownload:'Download temple',//EwayLocale.monitor.business.blackList.tempDownload 模版下载
-				importNow:'Import',//EwayLocale.monitor.business.blackList.importNow 导入
-				updateTitle:'Modify'//EwayLocale.monitor.business.blackList.updateTitle 更改黑名单卡信息
+				title:'Black Card',//EwayLocale.blackList.title
+				black:'BlackCard',//EwayLocale.blackList.black
+				addBlack:'Add',//EwayLocale.blackList.addBlack
+				cardBank:'Bank',//EwayLocale.blackList.cardBank
+				importData:'Import',//EwayLocale.blackList.importData
+				addDate:'Add date',//EwayLocale.blackList.addDate
+				importTitle:'Bacth import',//EwayLocale.blackList.importTitle
+				importFile:'Import file',//EwayLocale.blackList.importFile
+				chooseFileRegex:'Please choose file to import,only .xls or .xlsx file is supported',//EwayLocale.blackList.chooseFileRegex
+				fileRegex:'only .xls or .xlsx file is supported',//EwayLocale.blackList.fileRegex
+				tempDownload:'Download temple',//EwayLocale.blackList.tempDownload
+				importNow:'Import',//EwayLocale.blackList.importNow
+				updateTitle:'Modify'//EwayLocale.blackList.updateTitle
 			},
 			card:{
-				title:'Retained Card',//EwayLocale.monitor.business.card.title 吞卡管理
-				addTitle:'Add Retained Card Information',//EwayLocale.monitor.business.card.addTitle 增加吞卡信息
-				time:'Time',//EwayLocale.monitor.business.card.time 吞卡时间
-				reason:'Reason',//EwayLocale.monitor.business.card.reason  吞卡原因
-				destroy:'Destroy',//EwayLocale.monitor.business.card.destory 吞卡销毁
-				cardHolder:'Issuing Bank',//EwayLocale.monitor.business.card.cardHolder 发卡行
-				cardRegex:'Max length is ',//EwayLocale.monitor.business.card.cardRegex 允许的最大长度为
-				beginEndDate:'Begin date can not be later than end date,please choose again',//EwayLocale.monitor.business.card.beginEndDate 吞卡起始日期不能大于吞卡截止日期,请重新选择
-				orgBelongs:'Org belongs(Include process org)',//EwayLocale.monitor.business.card.orgBelongs 所属机构 (包含处理机构)
-				beginTime:'Begin time ',//EwayLocale.monitor.business.card.beginTime 开始时间
-				endTime:'End time',//EwayLocale.monitor.business.card.endTime
-				accGetCard:'Customer get card',//EwayLocale.monitor.business.card.accGetCard 客户领卡
-				transferCard:'Turnover',//EwayLocale.monitor.business.card.transferCard 卡片移交
-				processOrg:'Process org',//EwayLocale.monitor.business.card.processOrg 处理机构
-				type:'Retained Type',//EwayLocale.monitor.business.card.type 吞卡类型
-				manual:'Manually',//EwayLocale.monitor.business.card.manual 手动添加
-				auto:'Automatically',//EwayLocale.monitor.business.card.auto 自动添加
+				title:'Retained Card',//EwayLocale.card.title
+				addTitle:'Add Retained Card Information',//EwayLocale.card.addTitle
+				time:'Time',//EwayLocale.card.time
+				reason:'Reason',//EwayLocale.card.reason
+				destroy:'Destroy',//EwayLocale.card.destroy
+				cardHolder:'Issuing Bank',//EwayLocale.card.cardHolder
+				cardRegex:'Max length is ',//EwayLocale.card.cardRegex
+				beginEndDate:'Begin date can not be later than end date,please choose again',//EwayLocale.card.beginEndDate
+				orgBelongs:'Org belongs(Include process org)',//EwayLocale.card.orgBelongs
+				beginTime:'Begin time ',//EwayLocale.card.beginTime
+				endTime:'End time',//EwayLocale.card.endTime
+				accGetCard:'Customer get card',//EwayLocale.card.accGetCard
+				transferCard:'Turnover',//EwayLocale.card.transferCard
+				processOrg:'Process org',//EwayLocale.card.processOrg
+				type:'Retained Type',//EwayLocale.card.type
+				manual:'Manually',//EwayLocale.card.manual
+				auto:'Automatically',//EwayLocale.card.auto
 				comboxStatus:{
-					wait:'Wait for claimant',//EwayLocale.monitor.business.card.comboxStatus.wait 待领
-					received:'Received',//EwayLocale.monitor.business.card.comboxStatus.received 已领
-					destroy:'Destroy',//EwayLocale.monitor.business.card.comboxStatus.destroy 销毁
-					bringed:'Bringed'//EwayLocale.monitor.business.card.comboxStatus.bringed 调出
+					wait:'Wait for claimant',//EwayLocale.comboxStatus.wait
+					received:'Received',//EwayLocale.comboxStatus.received
+					destroy:'Destroy',//EwayLocale.comboxStatus.destroy
+					bringed:'Bringed'//EwayLocale.comboxStatus.bringed
 				},
-				treatmentPeople:'Processor',//EwayLocale.monitor.business.card.treatmentPeople 处理人员
-				treatmentTime:'Time',//EwayLocale.monitor.business.card.treatmentTime 处理时间
-				customerName:'Customer name',//EwayLocale.monitor.business.card.customerName 客户姓名
-				customerPhone:'Telephone',//EwayLocale.monitor.business.card.customerPhone 客户电话
-				customerPapers:'License code',//EwayLocale.monitor.business.card.customerPapers 客户证件号
-				processCard:'Process',//EwayLocale.monitor.business.card.processCard 吞卡处理
-				destroyCard:'Destroy',//EwayLocale.monitor.business.card.destroyCard 卡片销毁
-				exportData:'Export',//EwayLocale.monitor.business.card.exportData 导出
-				paperType:'License type',//EwayLocale.monitor.business.card.paperType 证件类型
-				paperCode:'License code',//EwayLocale.monitor.business.card.paperCode 证件号
-				idCard:'I.D card',//EwayLocale.monitor.business.card.idCard 身份证
-				accountPaper:'Register',//EwayLocale.monitor.business.card.accountPaper 户口本
-				drivePaper:'Drive License',//EwayLocale.monitor.business.card.drivePaper 驾驶执照
-				passport:'Passport',//EwayLocale.monitor.business.card.passport 护照
-				officer:'Officer License',//EwayLocale.monitor.business.card.officer 军官证
-				soldier:'Soldier License',//EwayLocale.monitor.business.card.soldier 士兵证
-				busnessPaper:'Juridicalperson License',//EwayLocale.monitor.business.card.busnessPaper 法人营业证
-				busnessCode:'Juridicalperson code',//EwayLocale.monitor.business.card.busnessCode 法人代码证
-				taxPaper:'Taxregistration License',//EwayLocale.monitor.business.card.taxPaper 税务登记证
-				withDev:'With device'//EwayLocale.monitor.business.card.withDev 按设备
+				treatmentPeople:'Processor',//EwayLocale.comboxStatus.treatmentPeople
+				treatmentTime:'Time',//EwayLocale.comboxStatus.treatmentTime
+				customerName:'Customer name',//EwayLocale.comboxStatus.customerName
+				customerPhone:'Telephone',//EwayLocale.comboxStatus.customerPhone
+				customerPapers:'License code',//EwayLocale.comboxStatus.customerPapers
+				processCard:'Process',//EwayLocale.comboxStatus.processCard
+				destroyCard:'Destroy',//EwayLocale.comboxStatus.destroyCard
+				exportData:'Export',//EwayLocale.comboxStatus.exportData
+				paperType:'License type',//EwayLocale.comboxStatus.paperType
+				paperCode:'License code',//EwayLocale.comboxStatus.paperCode
+				idCard:'I.D card',//EwayLocale.comboxStatus.idCard
+				accountPaper:'Register',//EwayLocale.comboxStatus.accountPaper
+				drivePaper:'Drive License',//EwayLocale.comboxStatus.drivePaper
+				passport:'Passport',//EwayLocale.comboxStatus.passport
+				officer:'Officer License',//EwayLocale.comboxStatus.officer
+				soldier:'Soldier License',//EwayLocale.comboxStatus.soldier
+				busnessPaper:'Juridicalperson License',//EwayLocale.comboxStatus.busnessPaper
+				busnessCode:'Juridicalperson code',//EwayLocale.comboxStatus.busnessCode
+				taxPaper:'Taxregistration License',//EwayLocale.comboxStatus.taxPaper
+				withDev:'With device'//EwayLocale.comboxStatus.withDev
 			},
 
 
 			cashInit:{
-				titile:'Load Cash Info',//EwayLocale.monitor.business.cashInit.titile 加钞信息查询
-				uuId:'Cash ID',//EwayLocale.monitor.business.cashInit.uuId 加钞ID
-				date:'Date',//EwayLocale.monitor.business.cashInit.date 加钞日期
-				amt:'Amount',//EwayLocale.monitor.business.cashInit.amt 金额
-				info:'Information',//EwayLocale.monitor.business.cashInit.info 加钞详细信息
-				boxId:'CashboxID',//EwayLocale.monitor.business.cashInit.boxId 钞箱ID
-				boxCurrency:'Currency',//EwayLocale.monitor.business.cashInit.boxCurrency 币种
-				boxInitAmt:'Amount init',//EwayLocale.monitor.business.cashInit.boxInitAmt 初始金额
-				lastAmt:'Amount left'//EwayLocale.monitor.business.cashInit.lastAmt 剩余金额
+				titile:'Load Cash Info',//EwayLocale.cashInit.titile
+				uuId:'Cash ID',//EwayLocale.cashInit.uuId
+				date:'Date',//EwayLocale.cashInit.date
+				amt:'Amount',//EwayLocale.cashInit.amt
+				info:'Information',//EwayLocale.cashInit.info
+				boxId:'CashboxID',//EwayLocale.cashInit.boxId
+				boxCurrency:'Currency',//EwayLocale.cashInit.boxCurrency
+				boxInitAmt:'Amount init',//EwayLocale.cashInit.boxInitAmt
+				lastAmt:'Amount left'//EwayLocale.cashInit.lastAmt
 			},
 			settlement:{
-				title:'Settlement Info',//EwayLocale.monitor.business.settlement.title 清机信息查询
-				deTitle:'Information',//EwayLocale.monitor.business.settlement.deTitle 清机详细信息
-				settleId:'SettleID',//EwayLocale.monitor.business.settlement.settleId
-				uuId:'Cycle ID',//EwayLocale.monitor.business.settlement.uuId 周期ID
-				endAmt:'Endbox amount',//EwayLocale.monitor.business.settlement.endAmt 尾箱余额
-				endDate:'Date settlement',//EwayLocale.monitor.business.settlement.endDate 结帐日期
-				cimNum:'Deposit count',//EwayLocale.monitor.business.settlement.cimNum 存款笔数
-				cdmNum:'Draw count',//EwayLocale.monitor.business.settlement.cdmNum 取款笔数
-				totalNum:'Total',//EwayLocale.monitor.business.settlement.totalNum
-				leftDate:'Date settlement',//EwayLocale.monitor.business.settlement.leftDate 结帐日期
-				cimAmt:'Deposit amount',//EwayLocale.monitor.business.settlement.cimAmt 存款金额
-				cdmAmt:'Draw amount',//EwayLocale.monitor.business.settlement.cdmAmt 取款金额
-				tranAmt:'Total amount'//EwayLocale.monitor.business.settlement.tranAmt 交易总金额
+				title:'Settlement Info',//EwayLocale.settlement.title
+				deTitle:'Information',//EwayLocale.settlement.deTitle
+				settleId:'SettleID',//EwayLocale.settlement.settleId
+				uuId:'Cycle ID',//EwayLocale.settlement.uuId
+				endAmt:'Endbox amount',//EwayLocale.settlement.endAmt
+				endDate:'Date settlement',//EwayLocale.settlement.endDate
+				cimNum:'Deposit count',//EwayLocale.settlement.cimNum
+				cdmNum:'Draw count',//EwayLocale.settlement.cdmNum
+				totalNum:'Total',//EwayLocale.settlement.totalNum
+				leftDate:'Date settlement',//EwayLocale.settlement.leftDate
+				cimAmt:'Deposit amount',//EwayLocale.settlement.cimAmt
+				cdmAmt:'Draw amount',//EwayLocale.settlement.cdmAmt
+				tranAmt:'Total amount'//EwayLocale.settlement.tranAmt
 			}
-		/*}*/
+		/*}*///EwayLocale.settlement./*}*/
 		},
 		remoteCommand:{
-			titile:'Remote Command Info',//EwayLocale.monitor.remoteCommand.titile 远程命令查询
+			titile:'Remote Command Info',//EwayLocale.remoteCommand.titile
 			form:{
-				date:'Date'//EwayLocale.monitor.remoteCommand.form.date 执行日期
+				date:'Date'//EwayLocale.form.date
 			},
 			grid:{
-				commandType:'Type',//EwayLocale.monitor.remoteCommand.commandType 命令类型
-				commandResult:'Result',//EwayLocale.monitor.remoteCommand.commandResult 执行结果
-				datetime:'Date',//EwayLocale.monitor.remoteCommand.datetime 执行日期
-				handlePerson:'Personnel'//EwayLocale.monitor.remoteCommand.handlePerson 操作人
+				commandType:'Type',//EwayLocale.grid.commandType
+				commandResult:'Result',//EwayLocale.grid.commandResult
+				datetime:'Date',//EwayLocale.grid.datetime
+				handlePerson:'Personnel'//EwayLocale.grid.handlePerson
 			}
 		}
 	},
 
-	//**********************************************************/
+	
 	agent:{
 		remote:{
 			screen:{
-				message:'info', //信息
-				startcustom:'Start recording front-screen of customer', //开始录制客户前屏
-				stopcustom:'Stop recording front-screen of customer',//停止录制客户前屏
-				startadmin:'Start recording front-screen of manager',//开始录制管理后屏
-				stopadmin: 'Stop recording front-screen of manager',//停止录制管理后屏
-				startadvertise: 'Start recording advertisement-screen',//开始录制广告屏
-				stopadvertise: 'Stop recording advertisement-screen',//停止录制广告屏
-				startCameraDate: 'Recording start time',//开始录制时间
-				stopCameraDate: 'Recording end time',//停止录制时间
-				monitorType: 'Screen type', //屏幕类型
-				fileNameClient: 'File name',//文件名称
-				nowCamera:'Recording...',//正在录制
-				finishCamera:'Recording finish',//完成录制
-				videoLoad:'Downloading the video file to the server...',//正在将视频文件下载至服务端...
-				stopManage:'Automatic stopped ,please contact the manager!',//自动停止.如需取得视频文件,请联系管理员!
-				manage: 'Operater',	//操作
-				loading:'DownLoad',//EwayLocale.agent.remote.screen.loading 下载
-				screenCamera: 'Screen recording'//屏幕录制
+				message:'info', //EwayLocale.screen.message
+				startcustom:'Start recording front-screen of customer', //EwayLocale.screen.startcustom
+				stopcustom:'Stop recording front-screen of customer',//EwayLocale.screen.stopcustom
+				startadmin:'Start recording front-screen of manager',//EwayLocale.screen.startadmin
+				stopadmin: 'Stop recording front-screen of manager',//EwayLocale.screen.stopadmin
+				startadvertise: 'Start recording advertisement-screen',//EwayLocale.screen.startadvertise
+				stopadvertise: 'Stop recording advertisement-screen',//EwayLocale.screen.stopadvertise
+				startCameraDate: 'Recording start time',//EwayLocale.screen.startCameraDate
+				stopCameraDate: 'Recording end time',//EwayLocale.screen.stopCameraDate
+				monitorType: 'Screen type', //EwayLocale.screen.monitorType
+				fileNameClient: 'File name',//EwayLocale.screen.fileNameClient
+				nowCamera:'Recording...',//EwayLocale.screen.nowCamera
+				finishCamera:'Recording finish',//EwayLocale.screen.finishCamera
+				videoLoad:'Downloading the video file to the server...',//EwayLocale.screen.videoLoad
+				stopManage:'Automatic stopped ,please contact the manager!',//EwayLocale.screen.stopManage
+				manage: 'Operater',	//EwayLocale.screen.manage
+				loading:'DownLoad',//EwayLocale.screen.loading
+				screenCamera: 'Screen recording'//EwayLocale.screen.screenCamera
 			},
-			discInfo: 'Disk info', //磁盘信息
-			discName: 'Name',//磁盘分区名称
-			fileSys: 'File system',//磁盘文件系统
-			totalSize: 'Total Size',//磁盘总大小
-			freeSize: 'Free Space',//磁盘可用空间大小
-			networkInfo:'Net connection info',//网络连接信息
-			conenctRate: 'Connection speed',//连接速率
-			receivedByte: 'Bytes received',//接收到的字节数
-			sendByte: 'Bytes sended',//发动的字节数
-			loadData: 'Data loading,please wait...',//加载数据中，请稍候...
-			refresh: 'Refresh',//刷新
-			name: 'Name',//名称
-			format: 'File system',//格式
-			totalSize: 'Total Size',//总大小
-			freeSize: 'Free Space',//可用空间
-			refreshFailure:'Refresh failed!',//刷新失败
-			back:'Back',//返回
-			upload: 'Upload',//上传
-			Mkdir: 'New folder',//新建文件夹
-			MkFile: 'New file',//新建文件
-			MKcatalog:'New folder',//新建文件夹
-			catalogName:'Folder name',//目录名称
-			remove: 'Delete',//删除
-			execute: 'Execute',//执行
-			path: 'Path',//路径
-			search: 'Search',//搜索
-			size: 'Size',//大小
-			fileSize:'File size：',//文件大小：
-			lastTime: 'Date modified',//最后修改时间
-			clickLoadFile:'Click to download this file',//单击即可下载该文件
-			loadFileSize:'Max size of download file is 200M',//下载文件 不能超过200M！
-			nowLoadFile:'File downloading...',//正在下载文件......
-			judgeLoad: 'Broken-point Continuingly-transferring?',//是否续传下载！
-			loadFailure:'Download failed!',//下载失败！
-			number: 'ID',//编号
-			programName: 'Program Name',//程序名称
-			version: 'Version Num',//版本号
-			publisher: 'Publishers',//发布商
-			diskUsed: 'Disk usage',//磁盘使用
-			softwayList: 'List of Software',//软件安装列表
-			networkInfo: 'Network info',//网络信息
-			networkLinkStatus: 'Network connect status',//网络连接状态
-			send: 'Sended',//已发送
-			receive: 'Received',//已接收
-			bite: 'byte:',//字节
-			speed: 'Speed(Mbps):',//速度
-			bandWidth: 'Broadband speed test',//宽带测速
-			unit: 'Unit:MB',//单位：MB
-			againTest: 'Test again',//重新测试
-			impressionName: 'Image Name',//印象名称
-			userName: 'User Name',//用户名
-			memoryRate: 'Memory',//内存使用
-			systemProgressInfo:'System process info',//系统进程信息
-			screenShotTime: 'Screenshot time',//截屏时间
-			distanceScreen: 'Remote screenshot',//远程抓屏
-			distanceExplorer: 'Remote browse',//远程浏览
-			ATMExamination:'Physical ATM',//ATM体检
-			checkATM: 'Physical Again',//重新体检
-			ATMExamInfo: 'Physical ATM detail',//ATM体检详情
-			cpuIdle: 'Free rate of CPU',//CPU空闲率
-			memoryIdle: 'Free rate of memory',//内存空闲率
-			hardDiskIdle: 'Free rate of disk',//硬盘空闲率
-			uploadFile: 'Upload file',//上传文件
-			rules:'Can not contain:\/?*":<>|',//不能包含一下字符
-			nowCreat:'Creating...',//正在新建
-			nowPath: 'Current path',//当前路径
-			confirm: 'Save', //保存
-			reset: 'Reset',//重置
-			back: 'Back',//返回
-			prepareFile:'File wait for upload',//待上传文件
-			choseUploadFile:'Please choose file to upload',//请选择上传文件
-			nowUploadFile:'File uploading',//正在上传文件...
-			explorer: 'Browse...',//浏览...
-			serverPath: 'Path of file in server',//文件在服务器上的位置
-			distanceSuccess:'Remote create successfully.',//远程创建成功
-			distanceFailure:'Remote create failed.',//远程创建失败
-			confirmDelete:'Confirm delete',//确定删除
-			confirmExecute:'Confirm execute',//确定执行
-			choseDeleteFile:'Please choose file which you want to delete.',//请选择要删除的文件
-			distanceExecuteSuccess:'Remote execute successfully.',//远程执行成功
-			distanceExecuteFailure:'Remote execute failed.',//远程执行失败
-			choseExecuteFile:'Please choose file which you want to execute.',//请选择要执行的文件
-			distanceExplorer:'Remote browse:',//远程浏览
-			distanceExplorerFailure:'Remote browse failed.',//远程浏览失败
-			fileExist:'File already exist!',//该文件已存在！
-			nowUploadFile:'File uploading......',//正在上传文件......
-			uploadSuccess:'Upload successfully.',//上传成功
-			yes: "Continue transfer",//续传
-			no: "Override",//覆盖
-			cancel: "Cancel", //取消
-			choseFile:'No file selected for upload,please choose.',//未选择上传文件,请选择文件.
-			returnFailure:'Return fail.',//返回失败
-			refreshFailure:'Refresh failed.',//刷新失败
-			catalogExist:'The folder does not exist,please input again',//搜索的目录不存在,请重新输入.
-			testBandWidth:'Test broadband error.', //测试宽带异常
-			networkMaxSpeed:'Max net speed is',//网络最大接入速度为
-			minutes:'Second',//秒
-			amount:'Like',//相当于
-			specialLine:'Special line',//专线
-			bandWidth:'Broadband',//宽带
-			handle:'Processing......',//正在处理......
-			offServer:'Lost connection from server.',//与服务器断开连接
-			submitingWaiting:'Being submitted, please wait...',//EwayLocale.agent.submitingWaiting正在提交,请稍等
-			ATMCheck:'Executing physical of ATM...',//正在ATM体检中
-			excellent:'excellent',//优
-			fine:'good',//良
-			middle:'middle',//中
-			bad:'bad',//差
-			point:'point',//分
-			checkFailure:'Execute physical of ATM failed,please try again.',//ATM体检失败,请重新操作
-			checkVersionInfo:'View version information',//查看版本信息
-			versionInfo:'The version information :',//您要查看的版本信息如下:
-			ATMCVersion:'Version of ATMC application',//ATMC应用版本
-			monitorVersion: 'Version of monintor client',//监控客户端版本
-			mergeload:'List of download',//查看下载列表
-			mergeDownLoad:'Execute the task of download',//执行下载任务
-			clickAddLoadFile:'Add the list of download on click',//单击添加到下载列表
-			removeFile:'Remove the file from list',//删除
-			mustIncludeOneFile:'Must exit File to downLoad.',
-			resetBackUp:'Click to backup the logs of this day.',
-			backupAppLogsSuccess:'Backup atmc logs successfully.',
-			backupAppLogsFail:'backup atmc logs failed.',
-			backupLogSucList:' backup atmc logs list success.',
-			backupLogFailList:' backup atmc logs list failed.',
-			exitDownLoadFile:'add failed,the file have exited in the list of download.',
-			maxDownLoadFileSize:'add failed ,all the fileSize must less than 200M.',
-            removeSuccess:'Delete successfully.',
-			addFileSuccess:'add file to list successfully.',
+			discInfo: 'Disk info', //EwayLocale.screen.discInfo
+			discName: 'Name',//EwayLocale.screen.discName
+			fileSys: 'File system',//EwayLocale.screen.fileSys
+			totalSize: 'Total Size',//EwayLocale.screen.totalSize
+			freeSize: 'Free Space',//EwayLocale.screen.freeSize
+			networkInfo:'Net connection info',//EwayLocale.screen.networkInfo
+			conenctRate: 'Connection speed',//EwayLocale.screen.conenctRate
+			receivedByte: 'Bytes received',//EwayLocale.screen.receivedByte
+			sendByte: 'Bytes sended',//EwayLocale.screen.sendByte
+			loadData: 'Data loading,please wait...',//EwayLocale.screen.loadData
+			refresh: 'Refresh',//EwayLocale.screen.refresh
+			name: 'Name',//EwayLocale.screen.name
+			format: 'File system',//EwayLocale.screen.format
+			totalSize: 'Total Size',//EwayLocale.screen.totalSize
+			freeSize: 'Free Space',//EwayLocale.screen.freeSize
+			refreshFailure:'Refresh failed!',//EwayLocale.screen.refreshFailure
+			back:'Back',//EwayLocale.screen.back
+			upload: 'Upload',//EwayLocale.screen.upload
+			Mkdir: 'New folder',//EwayLocale.screen.Mkdir
+			MkFile: 'New file',//EwayLocale.screen.MkFile
+			MKcatalog:'New folder',//EwayLocale.screen.MKcatalog
+			catalogName:'Folder name',//EwayLocale.screen.catalogName
+			remove: 'Delete',//EwayLocale.screen.remove
+			execute: 'Execute',//EwayLocale.screen.execute
+			path: 'Path',//EwayLocale.screen.path
+			search: 'Search',//EwayLocale.screen.search
+			size: 'Size',//EwayLocale.screen.size
+			fileSize:'File size：',//EwayLocale.screen.fileSize
+			lastTime: 'Date modified',//EwayLocale.screen.lastTime
+			clickLoadFile:'Click to download this file',//EwayLocale.screen.clickLoadFile
+			loadFileSize:'Max size of download file is 200M',//EwayLocale.screen.loadFileSize
+			nowLoadFile:'File downloading...',//EwayLocale.screen.nowLoadFile
+			judgeLoad: 'Broken-point Continuingly-transferring?',//EwayLocale.screen.judgeLoad
+			loadFailure:'Download failed!',//EwayLocale.screen.loadFailure
+			number: 'ID',//EwayLocale.screen.number
+			programName: 'Program Name',//EwayLocale.screen.programName
+			version: 'Version Num',//EwayLocale.screen.version
+			publisher: 'Publishers',//EwayLocale.screen.publisher
+			diskUsed: 'Disk usage',//EwayLocale.screen.diskUsed
+			softwayList: 'List of Software',//EwayLocale.screen.softwayList
+			networkInfo: 'Network info',//EwayLocale.screen.networkInfo
+			networkLinkStatus: 'Network connect status',//EwayLocale.screen.networkLinkStatus
+			send: 'Sended',//EwayLocale.screen.send
+			receive: 'Received',//EwayLocale.screen.receive
+			bite: 'byte:',//EwayLocale.screen.bite
+			speed: 'Speed(Mbps):',//EwayLocale.screen.speed
+			bandWidth: 'Broadband speed test',//EwayLocale.screen.bandWidth
+			unit: 'Unit:MB',//EwayLocale.screen.unit
+			againTest: 'Test again',//EwayLocale.screen.againTest
+			impressionName: 'Image Name',//EwayLocale.screen.impressionName
+			userName: 'User Name',//EwayLocale.screen.userName
+			memoryRate: 'Memory',//EwayLocale.screen.memoryRate
+			systemProgressInfo:'System process info',//EwayLocale.screen.systemProgressInfo
+			screenShotTime: 'Screenshot time',//EwayLocale.screen.screenShotTime
+			distanceScreen: 'Remote screenshot',//EwayLocale.screen.distanceScreen
+			distanceExplorer: 'Remote browse',//EwayLocale.screen.distanceExplorer
+			ATMExamination:'Physical ATM',//EwayLocale.screen.ATMExamination
+			checkATM: 'Physical Again',//EwayLocale.screen.checkATM
+			ATMExamInfo: 'Physical ATM detail',//EwayLocale.screen.ATMExamInfo
+			cpuIdle: 'Free rate of CPU',//EwayLocale.screen.cpuIdle
+			memoryIdle: 'Free rate of memory',//EwayLocale.screen.memoryIdle
+			hardDiskIdle: 'Free rate of disk',//EwayLocale.screen.hardDiskIdle
+			uploadFile: 'Upload file',//EwayLocale.screen.uploadFile
+			rules:'Can not contain:\/?*":<>|',//EwayLocale.screen.rules
+			nowCreat:'Creating...',//EwayLocale.screen.nowCreat
+			nowPath: 'Current path',//EwayLocale.screen.nowPath
+			confirm: 'Save', //EwayLocale.screen.confirm
+			reset: 'Reset',//EwayLocale.screen.reset
+			back: 'Back',//EwayLocale.screen.back
+			prepareFile:'File wait for upload',//EwayLocale.screen.prepareFile
+			choseUploadFile:'Please choose file to upload',//EwayLocale.screen.choseUploadFile
+			nowUploadFile:'File uploading',//EwayLocale.screen.nowUploadFile
+			explorer: 'Browse...',//EwayLocale.screen.explorer
+			serverPath: 'Path of file in server',//EwayLocale.screen.serverPath
+			distanceSuccess:'Remote create successfully.',//EwayLocale.screen.distanceSuccess
+			distanceFailure:'Remote create failed.',//EwayLocale.screen.distanceFailure
+			confirmDelete:'Confirm delete',//EwayLocale.screen.confirmDelete
+			confirmExecute:'Confirm execute',//EwayLocale.screen.confirmExecute
+			choseDeleteFile:'Please choose file which you want to delete.',//EwayLocale.screen.choseDeleteFile
+			distanceExecuteSuccess:'Remote execute successfully.',//EwayLocale.screen.distanceExecuteSuccess
+			distanceExecuteFailure:'Remote execute failed.',//EwayLocale.screen.distanceExecuteFailure
+			choseExecuteFile:'Please choose file which you want to execute.',//EwayLocale.screen.choseExecuteFile
+			distanceExplorer:'Remote browse:',//EwayLocale.screen.distanceExplorer
+			distanceExplorerFailure:'Remote browse failed.',//EwayLocale.screen.distanceExplorerFailure
+			fileExist:'File already exist!',//EwayLocale.screen.fileExist
+			nowUploadFile:'File uploading......',//EwayLocale.screen.nowUploadFile
+			uploadSuccess:'Upload successfully.',//EwayLocale.screen.uploadSuccess
+			yes: "Continue transfer",//EwayLocale.screen.yes
+			no: "Override",//EwayLocale.screen.no
+			cancel: "Cancel", //EwayLocale.screen.cancel
+			choseFile:'No file selected for upload,please choose.',//EwayLocale.screen.choseFile
+			returnFailure:'Return fail.',//EwayLocale.screen.returnFailure
+			refreshFailure:'Refresh failed.',//EwayLocale.screen.refreshFailure
+			catalogExist:'The folder does not exist,please input again',//EwayLocale.screen.catalogExist
+			testBandWidth:'Test broadband error.', //EwayLocale.screen.testBandWidth
+			networkMaxSpeed:'Max net speed is',//EwayLocale.screen.networkMaxSpeed
+			minutes:'Second',//EwayLocale.screen.minutes
+			amount:'Like',//EwayLocale.screen.amount
+			specialLine:'Special line',//EwayLocale.screen.specialLine
+			bandWidth:'Broadband',//EwayLocale.screen.bandWidth
+			handle:'Processing......',//EwayLocale.screen.handle
+			offServer:'Lost connection from server.',//EwayLocale.screen.offServer
+			submitingWaiting:'Being submitted, please wait...',//EwayLocale.screen.submitingWaiting
+			ATMCheck:'Executing physical of ATM...',//EwayLocale.screen.ATMCheck
+			excellent:'excellent',//EwayLocale.screen.excellent
+			fine:'good',//EwayLocale.screen.fine
+			middle:'middle',//EwayLocale.screen.middle
+			bad:'bad',//EwayLocale.screen.bad
+			point:'point',//EwayLocale.screen.point
+			checkFailure:'Execute physical of ATM failed,please try again.',//EwayLocale.screen.checkFailure
+			checkVersionInfo:'View version information',//EwayLocale.screen.checkVersionInfo
+			versionInfo:'The version information :',//EwayLocale.screen.versionInfo
+			ATMCVersion:'Version of ATMC application',//EwayLocale.screen.ATMCVersion
+			monitorVersion: 'Version of monintor client',//EwayLocale.screen.monitorVersion
+			mergeload:'List of download',//EwayLocale.screen.mergeload
+			mergeDownLoad:'Execute the task of download',//EwayLocale.screen.mergeDownLoad
+			clickAddLoadFile:'Add the list of download on click',//EwayLocale.screen.clickAddLoadFile
+			removeFile:'Remove the file from list',//EwayLocale.screen.removeFile
+			mustIncludeOneFile:'Must exit File to downLoad.',//EwayLocale.screen.mustIncludeOneFile
+			resetBackUp:'Click to backup the logs of this day.',//EwayLocale.screen.resetBackUp
+			backupAppLogsSuccess:'Backup atmc logs successfully.',//EwayLocale.screen.backupAppLogsSuccess
+			backupAppLogsFail:'backup atmc logs failed.',//EwayLocale.screen.backupAppLogsFail
+			backupLogSucList:' backup atmc logs list success.',//EwayLocale.screen.backupLogSucList
+			backupLogFailList:' backup atmc logs list failed.',//EwayLocale.screen.backupLogFailList
+			exitDownLoadFile:'add failed,the file have exited in the list of download.',//EwayLocale.screen.exitDownLoadFile
+			maxDownLoadFileSize:'add failed ,all the fileSize must less than 200M.',//EwayLocale.screen.maxDownLoadFileSize
+            removeSuccess:'Delete successfully.',//EwayLocale.screen.removeSuccess
+			addFileSuccess:'add file to list successfully.',//EwayLocale.screen.addFileSuccess
 		}
 	}
 });
