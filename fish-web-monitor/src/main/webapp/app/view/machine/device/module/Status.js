@@ -26,6 +26,15 @@ Ext.define("Eway.view.machine.device.module.Status", {
 				listeners : {
 					'beforerender': this.isHidden
 				}
+			},{
+				columnWidth : .5,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.nfc,
+				name : 'statusNfc',
+				minHeight : 20,
+				code : 'NFC',
+				listeners : {
+					'beforerender': this.isHidden
+				}
 			}, {
 				columnWidth : .5,
 				fieldLabel : EwayLocale.monitor.devMonitor.mod.jpr,

@@ -157,19 +157,20 @@ public class PropertiseMsg {
         return pbk;
     }
 
-	public DeviceProp getNfc() {
-		return nfc;
-	}
 
 	public void setNfc(DeviceProp nfc) {
 		this.nfc = nfc;
 	}
-	  public DeviceProp isNfc() {
-	        return nfc;
-	    }
+	public DeviceProp isNfc() {
+        return nfc;
+    }
 
 	public DeviceProp isIcc() {
 		return icc;
+	}
+
+	public DeviceProp getNfc() {
+		return nfc;
 	}
 
 	public void setIcc(DeviceProp icc) {

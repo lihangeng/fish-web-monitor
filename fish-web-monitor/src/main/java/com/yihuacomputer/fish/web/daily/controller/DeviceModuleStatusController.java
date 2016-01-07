@@ -44,6 +44,7 @@ import com.yihuacomputer.fish.web.monitor.form.StatusIsc;
 import com.yihuacomputer.fish.web.monitor.form.StatusJpr;
 import com.yihuacomputer.fish.web.monitor.form.StatusPbk;
 import com.yihuacomputer.fish.web.monitor.form.StatusPin;
+import com.yihuacomputer.fish.web.monitor.form.StatusRfc;
 import com.yihuacomputer.fish.web.monitor.form.StatusRpr;
 import com.yihuacomputer.fish.web.monitor.form.StatusSiu;
 import com.yihuacomputer.fish.web.monitor.form.StatusTtu;
@@ -136,7 +137,12 @@ public class DeviceModuleStatusController {
     	    isc.setStatusName(getEnumI18n(isc.getStatus().getText()));
             modStatus.setIsc(isc);
     	}
-       
+
+    	StatusRfc nfc= modStatus.getNfc();
+    	if (nfc != null && nfc.getStatus() != null) {
+	    	nfc.setStatusName(getEnumI18n(nfc.getStatus().getText()));
+	    	modStatus.setNfc(nfc);
+    	}
         
         StatusIcc icc = modStatus.getIcc();
         if (icc != null && icc.getStatus() != null) {
@@ -342,6 +348,9 @@ public class DeviceModuleStatusController {
                 || xfsStatus.getStatusPin().getStatus().equals(DeviceStatus.Fatal)
                 || xfsStatus.getStatusTtu().getStatus().equals(DeviceStatus.Fatal)
                 || xfsStatus.getStatusSiu().getStatus().equals(DeviceStatus.Fatal)
+                || xfsStatus.getStatusBcr().getStatus().equals(DeviceStatus.Fatal)
+                || xfsStatus.getStatusCam().getStatus().equals(DeviceStatus.Fatal)
+                || xfsStatus.getStatusNfc().getStatus().equals(DeviceStatus.Fatal)
                 
                 || xfsStatus.getStatusIsc().getStatus().equals(DeviceStatus.Fatal)
                 || xfsStatus.getStatusIcc().getStatus().equals(DeviceStatus.Fatal)
@@ -357,6 +366,9 @@ public class DeviceModuleStatusController {
                 || xfsStatus.getStatusTtu().getStatus().equals(DeviceStatus.Warning)
                 || xfsStatus.getStatusSiu().getStatus().equals(DeviceStatus.Warning)
                 
+                || xfsStatus.getStatusBcr().getStatus().equals(DeviceStatus.Warning)
+                || xfsStatus.getStatusCam().getStatus().equals(DeviceStatus.Warning)
+                || xfsStatus.getStatusNfc().getStatus().equals(DeviceStatus.Warning)
                 || xfsStatus.getStatusIsc().getStatus().equals(DeviceStatus.Warning)
                 || xfsStatus.getStatusIcc().getStatus().equals(DeviceStatus.Warning)
                 || xfsStatus.getStatusFgp().getStatus().equals(DeviceStatus.Warning)
@@ -370,6 +382,9 @@ public class DeviceModuleStatusController {
                 && xfsStatus.getStatusPin().getStatus().equals(DeviceStatus.Unknown)
                 && xfsStatus.getStatusTtu().getStatus().equals(DeviceStatus.Unknown)
                 && xfsStatus.getStatusSiu().getStatus().equals(DeviceStatus.Unknown)
+                && xfsStatus.getStatusBcr().getStatus().equals(DeviceStatus.Unknown)
+                && xfsStatus.getStatusCam().getStatus().equals(DeviceStatus.Unknown)
+                && xfsStatus.getStatusNfc().getStatus().equals(DeviceStatus.Unknown)
 
                 && xfsStatus.getStatusIsc().getStatus().equals(DeviceStatus.Unknown)
                 && xfsStatus.getStatusIcc().getStatus().equals(DeviceStatus.Unknown)
@@ -384,6 +399,9 @@ public class DeviceModuleStatusController {
                 && xfsStatus.getStatusPin().getStatus().equals(DeviceStatus.NoDevice)
                 && xfsStatus.getStatusTtu().getStatus().equals(DeviceStatus.NoDevice)
                 && xfsStatus.getStatusSiu().getStatus().equals(DeviceStatus.NoDevice)
+                && xfsStatus.getStatusBcr().getStatus().equals(DeviceStatus.NoDevice)
+                && xfsStatus.getStatusCam().getStatus().equals(DeviceStatus.NoDevice)
+                && xfsStatus.getStatusNfc().getStatus().equals(DeviceStatus.NoDevice)
                 
                 && xfsStatus.getStatusIsc().getStatus().equals(DeviceStatus.NoDevice)
                 && xfsStatus.getStatusIcc().getStatus().equals(DeviceStatus.NoDevice)

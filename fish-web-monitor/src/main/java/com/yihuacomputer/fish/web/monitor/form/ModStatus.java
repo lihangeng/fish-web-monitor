@@ -29,6 +29,8 @@ public class ModStatus {
     private StatusBcr bcr;
 
     private StatusCam cam;
+    
+    private StatusRfc nfc;
 
     private Boolean success;
 
@@ -150,6 +152,14 @@ public class ModStatus {
 
 	public void setCam(StatusCam cam) {
 		this.cam = cam;
+	}
+
+	public StatusRfc getNfc() {
+		return nfc;
+	}
+
+	public void setNfc(StatusRfc nfc) {
+		this.nfc = nfc;
 	}
 
 }

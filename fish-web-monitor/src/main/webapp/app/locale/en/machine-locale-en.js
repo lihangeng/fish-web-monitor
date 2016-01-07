@@ -104,6 +104,7 @@ Ext.apply(EwayLocale,{
 			title:'Device Info',//EwayLocale.machine.device.title
 			devDetailInfo:'Status of Modules',//EwayLocale.machine.device.devDetailInfo
 		    idc:'Card Reader',//EwayLocale.machine.device.idc
+		    rfc:'RFCardReader',//EwayLocale.machine.device.rfc
 			jpr:'Journal Printer',//EwayLocale.machine.device.jpr
 			cdm:'Dispenser',//EwayLocale.machine.device.cdm
 			siu:'Sensor',//EwayLocale.machine.device.siu
@@ -152,6 +153,7 @@ Ext.apply(EwayLocale,{
 
 
 			IDCInfo:'Card Reader(IDC) property',//EwayLocale.machine.device.IDCInfo
+			RFCInfo:'RFCardReader(RFC)property',//EwayLocale.machine.device.RFCInfo
 			variant:'Card Reader type',//EwayLocale.machine.device.variant
 			canEjectCard:'Ability of quit card',//EwayLocale.machine.device.canEjectCard
 			trackJisiiRead:'Ability of read TrackJisii',//EwayLocale.machine.device.trackJisiiRead
@@ -262,6 +264,7 @@ Ext.apply(EwayLocale,{
 			cuNoteValue:'Denomination of logic cashbox',//EwayLocale.machine.device.cuNoteValue
 
 			IDCStatus:'Card Reader (IDC) status',//EwayLocale.machine.device.IDCStatus
+			RFCStatus:'RFCardReader (RFC) status',//EwayLocale.machine.device.RFCStatus
 			media:'Media',//EwayLocale.machine.device.media
 			retainBin:'Recovery box status',//EwayLocale.machine.device.retainBin
 			cards:'Recovery box count',//EwayLocale.machine.device.cards

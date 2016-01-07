@@ -22,7 +22,6 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.http.HttpProxy;
-import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.monitor.filter.IBoxStatusFilter;
 import com.yihuacomputer.fish.api.monitor.filter.IFilterService;
@@ -33,7 +32,6 @@ import com.yihuacomputer.fish.api.monitor.filter.IStatusFilter;
 import com.yihuacomputer.fish.api.monitor.report.IStatusMonitorMapOrg;
 import com.yihuacomputer.fish.api.monitor.report.IStatusReport;
 import com.yihuacomputer.fish.api.monitor.xfs.IStateAnalysis;
-//import com.yihuacomputer.fish.api.monitor.xfs.IStateCodeService;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IXfsStatus;
@@ -88,9 +86,6 @@ public class StatusMonitorController {
         String url = MonitorCfg.getHttpUrl(ip) + "/ctr/propertisedetail";
         try {
             ModProperty modProperty = (ModProperty) HttpProxy.httpGet(url, ModProperty.class, 5000);
-
-            logger.info(JsonUtils.toJson(modProperty));
-            
             result.put(FishConstant.SUCCESS, true);
             result.put("data", modProperty);
             return result;

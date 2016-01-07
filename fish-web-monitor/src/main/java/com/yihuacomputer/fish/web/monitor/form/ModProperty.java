@@ -31,6 +31,8 @@ public class ModProperty {
 
     private PropertyCam cam;
     
+    private PropertyRfc nfc;
+    
     private PropertiseMsg properties;
 
     private Boolean success;
@@ -161,6 +163,14 @@ public class ModProperty {
 
 	public void setCam(PropertyCam cam) {
 		this.cam = cam;
+	}
+
+	public PropertyRfc getNfc() {
+		return nfc;
+	}
+
+	public void setNfc(PropertyRfc nfc) {
+		this.nfc = nfc;
 	}
     
 }

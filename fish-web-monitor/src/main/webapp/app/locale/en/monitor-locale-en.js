@@ -70,6 +70,7 @@ Ext.apply(EwayLocale,{
 			devModStatus:'Status of Modules',//EwayLocale.monitor.devMonitor.devModStatus
 			mod:{
 				idc:'Card Reader',//EwayLocale.monitor.devMonitor.mod.idc
+				nfc:'RFCardReader',//EwayLocale.monitor.devMonitor.mod.nfc
 				jpr:'Journal Printer',//EwayLocale.monitor.devMonitor.mod.jpr
 				cdm:'Dispenser',//EwayLocale.monitor.devMonitor.mod.cdm
 				cim:'Deposit',//EwayLocale.monitor.devMonitor.mod.cim

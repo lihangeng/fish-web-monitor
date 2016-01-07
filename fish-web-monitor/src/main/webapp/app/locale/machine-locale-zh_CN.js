@@ -107,6 +107,7 @@ Ext.apply(EwayLocale,{
 			title:'设备信息管理',//EwayLocale.machine.device.title
 			devDetailInfo:'设备模块详细信息',//EwayLocale.machine.device.devDetailInfo
 		    idc:'读卡器',//EwayLocale.machine.device.idc
+		    rfc:'非接读卡器',//EwayLocale.machine.device.rfc
 			jpr:'日志打印机',//EwayLocale.machine.device.jpr
 			cdm:'取款模块',//EwayLocale.machine.device.cdm
 			siu:'传感器',//EwayLocale.machine.device.siu
@@ -152,6 +153,7 @@ Ext.apply(EwayLocale,{
 
 
 			IDCInfo:'读卡器模块(IDC)属性信息',//EwayLocale.machine.device.IDCInfo
+			RFCInfo:'非接读卡器模块(RFC)属性信息',//EwayLocale.machine.device.RFCInfo
 			variant:'读卡器类型',//EwayLocale.machine.device.variant
 			canEjectCard:'是否具有退卡能力',//EwayLocale.machine.device.canEjectCard
 			trackJisiiRead:'是否具有TrackJisii读能力',//EwayLocale.machine.device.trackJisiiRead
@@ -261,6 +263,7 @@ Ext.apply(EwayLocale,{
 			cuNoteValue:'逻辑钞箱面值',//EwayLocale.machine.device.cuNoteValue
 
 			IDCStatus:'读卡器模块(IDC)状态信息',//EwayLocale.machine.device.IDCStatus
+			RFCStatus:'非接读卡器模块(RFC) status',//EwayLocale.machine.device.RFCStatus
 			media:'媒体状态',//EwayLocale.machine.device.media
 			retainBin:'回收盒状态',//EwayLocale.machine.device.retainBin
 			cards:'回收盒数量',//EwayLocale.machine.device.cards

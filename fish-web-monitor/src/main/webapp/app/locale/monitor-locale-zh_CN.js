@@ -69,6 +69,7 @@ Ext.apply(EwayLocale,{
 			devModStatus:'设备模块状态',//EwayLocale.monitor.devMonitor.devModStatus
 			mod:{
 				idc:'读卡器',//EwayLocale.monitor.devMonitor.mod.idc
+				nfc:'非接读卡器',//EwayLocale.monitor.devMonitor.mod.nfc
 				jpr:'日志打印机',//EwayLocale.monitor.devMonitor.mod.jpr
 				cdm:'取款模块',//EwayLocale.monitor.devMonitor.mod.cdm
 				cim:'存款模块',//EwayLocale.monitor.devMonitor.mod.cim

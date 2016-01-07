@@ -27,6 +27,15 @@ Ext.define("Eway.view.machine.device.module.Property", {
 				}
 			}, {
 				columnWidth : .5,
+				fieldLabel : EwayLocale.machine.device.rfc,
+				name : 'propertyNfc',
+				minHeight : 20,
+				code : 'NFC',
+				listeners : {
+					'beforerender': this.isHidden
+				}
+			}, {
+				columnWidth : .5,
 				fieldLabel : EwayLocale.machine.device.jpr,
 				name : 'propertyJpr',
 				minHeight : 20,
