@@ -18,7 +18,8 @@ Ext.define("Eway.view.machine.device.DeviceModuleStatus", {
 			'Eway.view.machine.device.module.StatusFGP',
 			'Eway.view.machine.device.module.StatusPBK',
 			'Eway.view.machine.device.module.StatusCAM',
-			'Eway.view.machine.device.module.StatusBCR' ],
+			'Eway.view.machine.device.module.StatusBCR' ,
+			'Eway.view.machine.device.module.StatusNFC' ],
 
 	layout : 'border',
 	autoScroll: false,
@@ -78,6 +79,9 @@ Ext.define("Eway.view.machine.device.DeviceModuleStatus", {
 				} , {
 					itemId : 'bcrid',
 					xtype : 'machine_device_module_statusbcr'
+				} , {
+					itemId : 'nfcid',
+					xtype : 'machine_device_module_statusnfc'
 				} ]
 			} ]
 		});

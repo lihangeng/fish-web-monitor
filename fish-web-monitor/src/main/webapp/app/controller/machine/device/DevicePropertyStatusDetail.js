@@ -202,6 +202,7 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 						propertyFgp : this.getDeviceModulePropertyValue(records[0].data.properties.fgp),
 						propertyCam : this.getDeviceModulePropertyValue(records[0].data.properties.cam),
 						propertyBcr : this.getDeviceModulePropertyValue(records[0].data.properties.bcr),
+						propertyNfc : this.getDeviceModulePropertyValue(records[0].data.properties.nfc),
 						propertyPbk : this.getDeviceModulePropertyValue(records[0].data.properties.pbk)
 					});
 				}
@@ -257,6 +258,7 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 						statusIsc : this.getDeviceModuleStatusValue(records[0].data.isc),
 						statusIcc : this.getDeviceModuleStatusValue(records[0].data.icc),
 						statusFgp : this.getDeviceModuleStatusValue(records[0].data.fgp),
+						statusNfc : this.getDeviceModuleStatusValue(records[0].data.nfc),
 						statusPbk : this.getDeviceModuleStatusValue(records[0].data.pbk)
 					});
 					this.statusBindClick(tab);
@@ -335,6 +337,9 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 					} else if ('statusBcr' == name) {
 						itemid = 'bcrid';
 						module = 'bcr';
+					} else if ('statusNfc' == name) {
+						itemid = 'nfcid';
+						module = 'nfc';
 					}
 					layout.setActiveItem(itemid);
 					this.setStatus(layout.getActiveItem(), module);
@@ -399,6 +404,9 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 					} else if ('propertyBcr' == name) {
 						itemid = 'bcrid';
 						module = 'bcr';
+					}else if ('propertyNfc' == name) {
+						itemid = 'nfcid';
+						module = 'nfc';
 					}
 					layout.setActiveItem(itemid);
 					this.setProperty(layout.getActiveItem(), module);

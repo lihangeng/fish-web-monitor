@@ -189,29 +189,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     	}
     	return new  PageResult<VersionChartsDetailForm>(result.getTotal(),formList);
     }
-    /**
-     * 查询的设备结果进行转换并通过条件进行过滤 
-     * @param result 查询的设备结果
-     * @param versionId 要比对的版本号
-     * @param isMatchVersion 是否进行版本号比对,true 则比对
-     * @return
-     *  TODO 此处效率较低，需要优化(versionNo无法比对，考虑将versionNo加入数据库；再数据库内部进行比对)
-     */
-//    private IPageResult<VersionChartsDetailForm> convertResult(IPageResult<Object> result,IVersion version){
-//    	List<VersionChartsDetailForm> formList = new ArrayList<VersionChartsDetailForm>();
-//    	for(Object object :result.list()){
-//    		IDevice device = (IDevice)object;
-//    		IDeviceSoftVersion deviceSoftVersion = deviceSoftVersionService.get(device.getId(), version.getVersionType().getTypeName());
-//    		VersionChartsDetailForm versionChartsDetailForm = new VersionChartsDetailForm();
-//    		versionChartsDetailForm.setTerminalId(device.getTerminalId());
-//    		versionChartsDetailForm.setDevType(device.getDevType().getName());
-//    		versionChartsDetailForm.setIp(device.getIp().toString());
-//    		versionChartsDetailForm.setOrgName(device.getOrganization().getName());
-//    		versionChartsDetailForm.setVersionNo(deviceSoftVersion==null?"":deviceSoftVersion.getVersionNo());
-//    		formList.add(versionChartsDetailForm);
-//    	}
-//    	return new  PageResult<VersionChartsDetailForm>(result.getTotal(),formList);
-//    }
+   
     
 
     /**

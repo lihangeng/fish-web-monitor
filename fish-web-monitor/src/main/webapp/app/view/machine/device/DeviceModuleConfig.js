@@ -16,7 +16,8 @@ Ext.define('Eway.view.machine.device.DeviceModuleConfig', {
 			'Eway.view.machine.device.module.PropertyFGP',
 			'Eway.view.machine.device.module.PropertyPBK' ,
 			'Eway.view.machine.device.module.PropertyCAM' ,
-			'Eway.view.machine.device.module.PropertyBCR' ],
+			'Eway.view.machine.device.module.PropertyBCR' ,
+			'Eway.view.machine.device.module.PropertyNFC' ],
 
 	title : EwayLocale.machine.device.devModuleMsg,
 	layout : 'border',
@@ -75,6 +76,9 @@ Ext.define('Eway.view.machine.device.DeviceModuleConfig', {
 				} , {
 					itemId : 'bcrid',
 					xtype : 'machine_device_module_propertybcr'
+				}  , {
+					itemId : 'nfcid',
+					xtype : 'machine_device_module_propertynfc'
 				}  ]
 			} ]
 		});

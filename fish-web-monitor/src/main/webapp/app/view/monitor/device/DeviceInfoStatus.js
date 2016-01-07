@@ -175,7 +175,16 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						listeners : {
 							'beforerender': this.isHidden
 						}
-					}, {
+					},{
+						columnWidth : .25,
+						fieldLabel : EwayLocale.monitor.devMonitor.mod.nfc,
+						name : 'nfcStatus',
+						a_link : true,
+						code : 'NFC',
+						listeners : {
+							'beforerender': this.isHidden
+						}
+					},{
 						columnWidth : .25,
 						fieldLabel : EwayLocale.monitor.devMonitor.mod.jpr,
 						name : 'jprStatus',
@@ -449,7 +458,7 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					|| name=='cimStatus' || name=='siuStatus'
 					|| name=='rprStatus' || name=='ttuStatus'
 					|| name=='iccStatus' || name=='iscStatus'
-					|| name=='fgpStatus' || name=='pbkStatus'
+					|| name=='fgpStatus' || name=='pbkStatus'|| name=='nfcStatus'
 						|| name=='camStatus' || name=='bcrStatus'){
 						var text = me._getText(value);
 						if(value == 'Warning'){

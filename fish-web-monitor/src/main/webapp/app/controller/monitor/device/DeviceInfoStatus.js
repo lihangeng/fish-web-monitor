@@ -396,6 +396,26 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					},
 					scope : this
 				},
+				
+				'monitor_device_DeviceInfoStatus displayfield[name="nfcStatus"]' : {
+					change : {
+						fn : function(field) {
+							if (field.getEl()) {
+								var text = field.getEl().down('a.link');
+								if (text) {
+									text.on('click', function(e, htmlEl) {
+										var code = Ext.util.Format.stripTags(field.up('form').down('displayfield[name="code"]').getValue());
+										var win = Ext.create('Eway.view.monitor.device.ModuleInfoWin');
+										win.display(code, 'NFC');
+									}, this);
+								}
+							}
+						},
+//						single : true,
+						scope : this
+					},
+					scope : this
+				},
 
 				'monitor_device_DeviceInfoStatus displayfield[name="jprStatus"]' : {
 					change : {

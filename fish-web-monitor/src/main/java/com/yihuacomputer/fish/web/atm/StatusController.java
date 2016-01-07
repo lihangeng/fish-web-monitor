@@ -204,7 +204,7 @@ public class StatusController {
         }else{
         	cam.setStatus(DeviceStatus.NoDevice);
         }
-        
+
         xfsStatus.setStatusIdc(idc);
         xfsStatus.setStatusJpr(jpr);
         xfsStatus.setStatusRpr(rpr);
