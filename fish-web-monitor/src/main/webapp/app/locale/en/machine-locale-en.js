@@ -38,8 +38,8 @@ Ext.apply(EwayLocale,{
 			},
 			awayFlag:'AwayFlag',//EwayLocale.machine.atmGroup.awayFlag
 			comboxAwayFlag:{
-				inBank:'Inside bank',//EwayLocale.machine.atmGroup.comboxAwayFlag.inBank
-				outBank:'Outside bank',//EwayLocale.machine.atmGroup.comboxAwayFlag.outBank
+				inBank:'Bank',//EwayLocale.machine.atmGroup.comboxAwayFlag.inBank
+				outBank:'Non-Bank',//EwayLocale.machine.atmGroup.comboxAwayFlag.outBank
 				clickBank:'Alone out-bank self-service'//EwayLocale.machine.atmGroup.comboxAwayFlag.clickBank
 			},
 			devServiceName:'Maintenance Provider',//EwayLocale.machine.atmGroup.devServiceName
@@ -104,6 +104,7 @@ Ext.apply(EwayLocale,{
 			title:'Device Info',//EwayLocale.machine.device.title
 			devDetailInfo:'Status of Modules',//EwayLocale.machine.device.devDetailInfo
 		    idc:'Card Reader',//EwayLocale.machine.device.idc
+		    rfc:'RFCardReader',//EwayLocale.machine.device.rfc
 			jpr:'Journal Printer',//EwayLocale.machine.device.jpr
 			cdm:'Dispenser',//EwayLocale.machine.device.cdm
 			siu:'Sensor',//EwayLocale.machine.device.siu
@@ -152,6 +153,7 @@ Ext.apply(EwayLocale,{
 
 
 			IDCInfo:'Card Reader(IDC) property',//EwayLocale.machine.device.IDCInfo
+			RFCInfo:'RFCardReader(RFC)property',//EwayLocale.machine.device.RFCInfo
 			variant:'Card Reader type',//EwayLocale.machine.device.variant
 			canEjectCard:'Ability of quit card',//EwayLocale.machine.device.canEjectCard
 			trackJisiiRead:'Ability of read TrackJisii',//EwayLocale.machine.device.trackJisiiRead
@@ -262,6 +264,7 @@ Ext.apply(EwayLocale,{
 			cuNoteValue:'Denomination of logic cashbox',//EwayLocale.machine.device.cuNoteValue
 
 			IDCStatus:'Card Reader (IDC) status',//EwayLocale.machine.device.IDCStatus
+			RFCStatus:'RFCardReader (RFC) status',//EwayLocale.machine.device.RFCStatus
 			media:'Media',//EwayLocale.machine.device.media
 			retainBin:'Recovery box status',//EwayLocale.machine.device.retainBin
 			cards:'Recovery box count',//EwayLocale.machine.device.cards
@@ -582,7 +585,7 @@ Ext.apply(EwayLocale,{
 		dayBackup:'Backup results',//EwayLocale.atmLog.dayBackup
 		whole:'All',//EwayLocale.atmLog.whole
 		execute:'Executing',//EwayLocale.atmLog.execute
-		unKnownFail:'Failed with unknown reason',//EwayLocale.atmLog.unKnownFail
+		unKnownFail:'Failed for unknown reason',//EwayLocale.atmLog.unKnownFail
 		logDate:'Log date',//EwayLocale.atmLog.logDate
 		backupResult:'Backup result',//EwayLocale.atmLog.backupResult
 		checkFailInfo:'Check detail of Backup failed',//EwayLocale.atmLog.checkFailInfo
@@ -600,7 +603,7 @@ Ext.apply(EwayLocale,{
 		backupError:'Backup error',//EwayLocale.atmLog.backupError
 		logDevSucAccount:'Number of backup success',//EwayLocale.atmLog.logDevSucAccount
 		logDevFailAccount:'Number of backup failed',//EwayLocale.atmLog.logDevFailAccount
-		reform:'Reform',//EwayLocale.atmLog.reform
+		reform:'Redo',//EwayLocale.atmLog.reform
 		busLogAnalysis:'Business log analysis',//EwayLocale.atmLog.busLogAnalysis
 		selectAnalysis:'Please choose the log file which you want to analyse, the result will show in Excel file',//EwayLocale.atmLog.selectAnalysis
 		selectLog:'Choose log',//EwayLocale.atmLog.selectLog

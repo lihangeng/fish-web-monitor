@@ -34,8 +34,8 @@ Ext.apply(EwayLocale,{
 				listPattern:'List',//EwayLocale.monitor.devMonitor.comboxShowWay.listPattern
 				boxPattern:'Cashbox'//EwayLocale.monitor.devMonitor.comboxShowWay.boxPattern
 			},
-			noData:'No data',//EwayLocale.monitor.devMonitor.noData
-			retainCardCount:'Retained Card Amount',//EwayLocale.monitor.devMonitor.retainCardCount
+			noData:'No device',//EwayLocale.monitor.devMonitor.noData
+			retainCardCount:'Retained Card Count',//EwayLocale.monitor.devMonitor.retainCardCount
 			cash:{
 				boxInitCount:'Initial Amount of Cashbox',//EwayLocale.monitor.devMonitor.cash.boxInitCount
 				boxCurrentCount:'Current Amount of Cashbox',//EwayLocale.monitor.devMonitor.cash.boxCurrentCount
@@ -70,6 +70,7 @@ Ext.apply(EwayLocale,{
 			devModStatus:'Status of Modules',//EwayLocale.monitor.devMonitor.devModStatus
 			mod:{
 				idc:'Card Reader',//EwayLocale.monitor.devMonitor.mod.idc
+				nfc:'RFCardReader',//EwayLocale.monitor.devMonitor.mod.nfc
 				jpr:'Journal Printer',//EwayLocale.monitor.devMonitor.mod.jpr
 				cdm:'Dispenser',//EwayLocale.monitor.devMonitor.mod.cdm
 				cim:'Deposit',//EwayLocale.monitor.devMonitor.mod.cim
@@ -125,10 +126,10 @@ Ext.apply(EwayLocale,{
 			fastChoose:'Fast choose',//EwayLocale.monitor.devMonitor.fastChoose
 			init:'Initialization',//EwayLocale.monitor.devMonitor.init
 			accTrans:'Transaction',//EwayLocale.monitor.devMonitor.accTrans
-			factureStaff:'Manufacturer model',//EwayLocale.monitor.devMonitor.factureStaff
-			netHealthy:'Net healthy',//EwayLocale.monitor.devMonitor.netHealthy
-			netUnStable:'Net unstable',//EwayLocale.monitor.devMonitor.netUnStable
-			netFatal:'Net error',//EwayLocale.monitor.devMonitor.netFatal
+			factureStaff:'VDM',//EwayLocale.monitor.devMonitor.factureStaff
+			netHealthy:'Healthy',//EwayLocale.monitor.devMonitor.netHealthy
+			netUnStable:'Unstable',//EwayLocale.monitor.devMonitor.netUnStable
+			netFatal:'Fatal',//EwayLocale.monitor.devMonitor.netFatal
 			filterManager: {
 				title: 'Filters Manager',//EwayLocale.monitor.devMonitor.filterManager.title
 				add: 'Create Filter',//EwayLocale.monitor.devMonitor.filterManager.add
