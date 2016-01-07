@@ -18,6 +18,9 @@ Ext.apply(EwayLocale,{
 			jprModule:'Journal Printer',//EwayLocale.cases.caseFault.jprModule
 			pinModule:'PIN',//EwayLocale.cases.caseFault.pinModule
 			textTerminalUnit:'TTU',//EwayLocale.cases.caseFault.textTerminalUnit
+			iscModule:'ID Card Reader',//EwayLocale.cases.caseFault.iscModule
+			iccModule:'Issue Card Module',//EwayLocale.cases.caseFault.iccModule
+			fgpModule:'Fingerprint Recognition Module',//EwayLocale.cases.caseFault.fgpModule
 			sensoModule:'Sensors',//EwayLocale.cases.caseFault.sensoModule
 			faultClassify: 'Fault Catalog',//EwayLocale.cases.caseFault.faultClassify
 			faultCode : 'Fault Code',//EwayLocale.cases.caseFault.faultCode

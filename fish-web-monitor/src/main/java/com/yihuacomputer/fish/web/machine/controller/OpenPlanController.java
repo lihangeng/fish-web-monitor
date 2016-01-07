@@ -379,7 +379,7 @@ public class OpenPlanController {
 			if (isExistCode(Long.valueOf(id), form.getName()) == true) {
 				result.put("success", false);
 				//该开机方案已存在，请重新输入！
-				result.put(FishConstant.ERROR_MSG, messageSource.getMessage("servicePlan.planExsit", null,FishCfg.locale));
+				result.put(FishConstant.ERROR_MSG, messageSource.getMessage("servicePlan.updatePlanExsit", null,FishCfg.locale));
 				return result;
 			}
 			openPlan.setDesc(form.getDesc());

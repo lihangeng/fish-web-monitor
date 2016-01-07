@@ -32,7 +32,7 @@ Ext.apply(EwayLocale,{
 		versionDownloaded:'Can not delete the version which status is "issued" or "wait for issue"',//EwayLocale.msg.versionDownloaded
 		selectVersionToDelete:'Please choose the version which you want to delete',//EwayLocale.msg.selectVersionToDelete
 		communicationFail:'Add failed : connction refused.',//EwayLocale.msg.communicationFail
-		sameVersionNoFail:'Add failed: same version no exists.',//EwayLocale.msg.sameVersionNoFail
+		sameVersionNoFail:'Add failed：the same version already exists',//EwayLocale.msg.sameVersionNoFail
 		fileSizeMaxFail:'Add failed:the max size of the file is 200M',//EwayLocale.msg.fileSizeMaxFail
 		fileUnzipFail:'Add failed: zip-file can not be unziped',//EwayLocale.msg.fileUnzipFail
 		addFileFail:'Add failed :',//EwayLocale.msg.addFileFail
@@ -492,6 +492,7 @@ Ext.apply(EwayLocale,{
 		inputOldPwd:'Input old password',//EwayLocale.personal.inputOldPwd
 		inputNewPwd:'Input new password',//EwayLocale.personal.inputNewPwd
 		inputVali:"Just for 1-20 characters 'a-z'or 'A-Z'or number '0-9' or '-' or '_' or special characters",//EwayLocale.personal.inputVali
+		inputValiPwd:"Just for 8-20 characters 'a-z'or 'A-Z'or number '0-9' or '-' or '_' or special characters",//EwayLocale.personal.inputValiPwd
 		inputAgain:'Input new password again',//EwayLocale.personal.inputAgain
 		pwdNotSame:'New passwords is not match.',//EwayLocale.personal.pwdNotSame
 		rememberPwd:'Click confirm to update password ,please remember it!',//EwayLocale.personal.rememberPwd
