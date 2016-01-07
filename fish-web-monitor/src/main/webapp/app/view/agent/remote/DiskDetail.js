@@ -8,7 +8,7 @@ Ext.define('Eway.view.agent.remote.DiskDetail', {
 	height : 350,
 //	maximizable : true,
 	modal: true,
-	title:'ATM体检',
+	title: EwayLocale.monitor.devMonitor.remote.remoteCheckATM,
 	resizable: false,
 	constrainHeader: true,
 	maximizable: true,

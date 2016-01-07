@@ -61,7 +61,7 @@ Ext.define('Eway.view.personal.UpdatePwd', {
 					inputType : 'password',
 					id : 'pass1',
 					regex: /^[-a-zA-Z0-9'=\\[\];,.?"`~!@#$%^&*()_+|{}:"<>/]{8,20}$/,
-					regexText:EwayLocale.personal.inputVali,
+					regexText:EwayLocale.personal.inputValiPwd,
 					allowBlank : false
 				},{
 					xtype : 'textfield',
