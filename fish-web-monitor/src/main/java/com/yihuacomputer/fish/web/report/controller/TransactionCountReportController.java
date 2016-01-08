@@ -105,7 +105,7 @@ public class TransactionCountReportController {
 		if (filter.getFilterEntry("startData") != null) {
 			startReportDate = (Date) filter.getFilterEntry("startData").getValue();
 			String startReportDateValue = DateUtils.getDate(startReportDate);
-			parameters.put("startReportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + ":" + startReportDateValue);
+			parameters.put("startReportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + " : " + startReportDateValue);
 
 			// 交易是带时分秒的，而页面是不需要时分秒的
 			filter.entrySet().remove(filter.getFilterEntry("startData"));
@@ -146,7 +146,7 @@ public class TransactionCountReportController {
 		if (filter.getFilterEntry("startData") != null) {
 			startReportDate = (Date) filter.getFilterEntry("startData").getValue();
 			String startReportDateValue = DateUtils.getDate(startReportDate);
-			parameters.put("startReportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + ":" + startReportDateValue);
+			parameters.put("startReportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + " : " +  messageSource.getMessage("report.transactionFrom", null, FishCfg.locale) +startReportDateValue+" "+ messageSource.getMessage("report.transactionTo", null, FishCfg.locale));
 
 			// 交易是带时分秒的，而页面是不需要时分秒的
 			filter.entrySet().remove(filter.getFilterEntry("startData"));

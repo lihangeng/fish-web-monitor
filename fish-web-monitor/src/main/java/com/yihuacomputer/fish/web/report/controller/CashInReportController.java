@@ -86,7 +86,7 @@ public class CashInReportController {
 		String resourcePath = rq.getSession().getServletContext().getRealPath("/resources/report/w_cashIn.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("title", getEnumI18n(ReportTitle.CashIn.getText()));
-		parameters.put("reportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + ":" + DateUtils.getDate(new Date()));
+		parameters.put("reportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + " : " + DateUtils.getDate(new Date()));
 		parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
 		parameters.put("terminalId", messageSource.getMessage("device.terminalId", null, FishCfg.locale));
 		parameters.put("date", messageSource.getMessage("report.cashIn.cashDate", null, FishCfg.locale));

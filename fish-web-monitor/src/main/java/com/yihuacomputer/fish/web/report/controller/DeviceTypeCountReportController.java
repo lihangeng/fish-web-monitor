@@ -79,7 +79,7 @@ public class DeviceTypeCountReportController {
                 .getRealPath("/resources/report/w_deviceType_count.jasper");
         HashMap<String, Object> parameters = new HashMap<String, Object>();
         parameters.put("title", getEnumI18n(ReportTitle.DeviceTypeCount.getText()));
-        parameters.put("reportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + ":" + DateUtils.getDate(new Date()));
+        parameters.put("reportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + " : " + DateUtils.getDate(new Date()));
         parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
         parameters.put("vendorName", messageSource.getMessage("report.devTypeCount.vendorName", null, FishCfg.locale));
         parameters.put("type", messageSource.getMessage("report.devTypeCount.type", null, FishCfg.locale));

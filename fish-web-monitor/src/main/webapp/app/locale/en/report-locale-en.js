@@ -15,8 +15,8 @@ Ext.apply(EwayLocale,{
 			clearDate:'Clear date',//EwayLocale.report.baseReport.clearDate
 			clearTable:'Clear report',//EwayLocale.report.baseReport.clearTable
 			dependDev:'Depend on Dev',//EwayLocale.report.baseReport.dependDev
-			tradeRep:'Transation report',//EwayLocale.report.baseReport.tradeRep
-			tradeResultRep:'Transation result report',//EwayLocale.report.baseReport.tradeResultRep
+			tradeRep:'Transaction Statistics',//EwayLocale.report.baseReport.tradeRep
+			tradeResultRep:'Transaction result report',//EwayLocale.report.baseReport.tradeResultRep
 			tradeDaysCountRep:'Transaction day count report',//EwayLocale.report.baseReport.tradeDaysCountRep
 			tradeHoursCountRep:'Transaction hour count report',//EwayLocale.report.baseReport.tradeHoursCountRep
 			tradeCount:'Transaction count',//EwayLocale.report.baseReport.tradeCount

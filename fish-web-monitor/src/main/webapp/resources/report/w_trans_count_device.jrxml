@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="w_trans_count_device" language="groovy" pageWidth="1200" pageHeight="1500" whenNoDataType="AllSectionsNoDetail" columnWidth="1160" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="377d6c5d-3e8b-4b6d-8641-9e651b561646">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="21"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.x" value="145"/>
+	<property name="ireport.y" value="3"/>
 	<style name="Crosstab Data Text" hAlign="Center"/>
 	<parameter name="title" class="java.lang.String"/>
 	<parameter name="startReportDate" class="java.lang.String"/>
@@ -35,18 +35,11 @@
 	<pageHeader>
 		<band height="39" splitType="Stretch">
 			<textField>
-				<reportElement uuid="6924355c-1e60-437e-bbd7-a96af5efe81f" x="152" y="1" width="361" height="35"/>
+				<reportElement uuid="6924355c-1e60-437e-bbd7-a96af5efe81f" x="152" y="1" width="587" height="35"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="14" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{startReportDate} + " - " + $P{endReportDate}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement uuid="23ccf511-a4cf-4257-bbb2-ec8a29ff8a37" x="676" y="1" width="284" height="35"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="14" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{unit}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{startReportDate} +  $P{endReportDate}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

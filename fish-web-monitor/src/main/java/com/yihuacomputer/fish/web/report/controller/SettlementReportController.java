@@ -85,7 +85,7 @@ public class SettlementReportController {
 		String resourcePath = rq.getSession().getServletContext().getRealPath("/resources/report/w_sett_cash.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("title",getEnumI18n(ReportTitle.Settlement.getText()));
-		parameters.put("reportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + ":" + DateUtils.getDate(new Date()));
+		parameters.put("reportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + " : " + DateUtils.getDate(new Date()));
 
 		parameters.put("orgNo", messageSource.getMessage("report.device.orgNo", null, FishCfg.locale));
 		parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
