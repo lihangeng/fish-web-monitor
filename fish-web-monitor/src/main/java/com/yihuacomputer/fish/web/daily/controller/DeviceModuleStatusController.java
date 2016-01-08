@@ -17,6 +17,8 @@ import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.fish.api.monitor.ICollectService;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceStatus;
+import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusBcr;
+import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusCam;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusCdm;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusCim;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusFgp;
@@ -24,6 +26,7 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusIcc;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusIdc;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusIsc;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusJpr;
+import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusNfc;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusPbk;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusPin;
 import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusRpr;
@@ -314,6 +317,39 @@ public class DeviceModuleStatusController {
         else{
         	pbk.setStatus(DeviceStatus.NoDevice);
         }
+        
+        // CAM
+        IStatusCam cam = xfsStatus.makeStatusCam();
+        if(null!=modStatus.getCam()){
+        	cam.setStatus(modStatus.getCam().getStatus());
+        	cam.setCode(modStatus.getCam().getCode());
+        	cam.setHwCode(modStatus.getCam().getHwCode());
+        }
+        else{
+        	cam.setStatus(DeviceStatus.NoDevice);
+        }
+        
+        // BCR
+        IStatusBcr bcr = xfsStatus.makeStatusBcr();
+        if(null!=modStatus.getBcr()){
+        	bcr.setStatus(modStatus.getBcr().getStatus());
+        	bcr.setCode(modStatus.getBcr().getCode());
+        	bcr.setHwCode(modStatus.getBcr().getHwCode());
+        }
+        else{
+        	bcr.setStatus(DeviceStatus.NoDevice);
+        }
+        
+        // NFC
+        IStatusNfc nfc = xfsStatus.makeStatusNfc();
+        if(null!=modStatus.getNfc()){
+        	nfc.setStatus(modStatus.getNfc().getStatus());
+        	nfc.setCode(modStatus.getNfc().getCode());
+        	nfc.setHwCode(modStatus.getNfc().getHwCode());
+        }
+        else{
+        	nfc.setStatus(DeviceStatus.NoDevice);
+        }
         xfsStatus.setStatusIdc(idc);
         xfsStatus.setStatusJpr(jpr);
         xfsStatus.setStatusRpr(rpr);
@@ -327,6 +363,9 @@ public class DeviceModuleStatusController {
         xfsStatus.setStatusIcc(icc);
         xfsStatus.setStatusPbk(pbk);
         xfsStatus.setStatusFgp(fgp);
+        xfsStatus.setStatusCam(cam);
+        xfsStatus.setStatusBcr(bcr);
+        xfsStatus.setStatusNfc(nfc);
 
         xfsStatus.setModStatus(getModStatus(xfsStatus));
 
