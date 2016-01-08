@@ -38,8 +38,8 @@ Ext.apply(EwayLocale,{
 			},
 			awayFlag:'AwayFlag',//EwayLocale.machine.atmGroup.awayFlag
 			comboxAwayFlag:{
-				inBank:'Inside bank',//EwayLocale.machine.atmGroup.comboxAwayFlag.inBank
-				outBank:'Outside bank',//EwayLocale.machine.atmGroup.comboxAwayFlag.outBank
+				inBank:'Bank',//EwayLocale.machine.atmGroup.comboxAwayFlag.inBank
+				outBank:'Non-Bank',//EwayLocale.machine.atmGroup.comboxAwayFlag.outBank
 				clickBank:'Alone out-bank self-service'//EwayLocale.machine.atmGroup.comboxAwayFlag.clickBank
 			},
 			devServiceName:'Maintenance Provider',//EwayLocale.machine.atmGroup.devServiceName
@@ -585,7 +585,7 @@ Ext.apply(EwayLocale,{
 		dayBackup:'Backup results',//EwayLocale.atmLog.dayBackup
 		whole:'All',//EwayLocale.atmLog.whole
 		execute:'Executing',//EwayLocale.atmLog.execute
-		unKnownFail:'Failed with unknown reason',//EwayLocale.atmLog.unKnownFail
+		unKnownFail:'Failed for unknown reason',//EwayLocale.atmLog.unKnownFail
 		logDate:'Log date',//EwayLocale.atmLog.logDate
 		backupResult:'Backup result',//EwayLocale.atmLog.backupResult
 		checkFailInfo:'Check detail of Backup failed',//EwayLocale.atmLog.checkFailInfo

@@ -34,7 +34,7 @@ Ext.apply(EwayLocale,{
 				listPattern:'List',//EwayLocale.monitor.devMonitor.comboxShowWay.listPattern
 				boxPattern:'Cashbox'//EwayLocale.monitor.devMonitor.comboxShowWay.boxPattern
 			},
-			noData:'No data',//EwayLocale.monitor.devMonitor.noData
+			noData:'No device',//EwayLocale.monitor.devMonitor.noData
 			retainCardCount:'Retained Card Amount',//EwayLocale.monitor.devMonitor.retainCardCount
 			cash:{
 				boxInitCount:'Initial Amount of Cashbox',//EwayLocale.monitor.devMonitor.cash.boxInitCount
@@ -126,10 +126,10 @@ Ext.apply(EwayLocale,{
 			fastChoose:'Fast choose',//EwayLocale.monitor.devMonitor.fastChoose
 			init:'Initialization',//EwayLocale.monitor.devMonitor.init
 			accTrans:'Transaction',//EwayLocale.monitor.devMonitor.accTrans
-			factureStaff:'Manufacturer model',//EwayLocale.monitor.devMonitor.factureStaff
-			netHealthy:'Net healthy',//EwayLocale.monitor.devMonitor.netHealthy
-			netUnStable:'Net unstable',//EwayLocale.monitor.devMonitor.netUnStable
-			netFatal:'Net error',//EwayLocale.monitor.devMonitor.netFatal
+			factureStaff:'VDM',//EwayLocale.monitor.devMonitor.factureStaff
+			netHealthy:'Healthy',//EwayLocale.monitor.devMonitor.netHealthy
+			netUnStable:'Unstable',//EwayLocale.monitor.devMonitor.netUnStable
+			netFatal:'Fatal',//EwayLocale.monitor.devMonitor.netFatal
 			filterManager: {
 				title: 'Filters Manager',//EwayLocale.monitor.devMonitor.filterManager.title
 				add: 'Create Filter',//EwayLocale.monitor.devMonitor.filterManager.add
