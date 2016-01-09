@@ -58,7 +58,7 @@ Ext.apply(EwayLocale,{
 		    sendTimes: 'Send Times',//EwayLocale.cases.caseFault.sendTimes
 		    sendInterval: 'Intervals Between Each Send',//EwayLocale.cases.caseFault.sendInterval
 		    sendTime: 'Send Time',//EwayLocale.cases.caseFault.sendTime
-		    faultSearch:'Fault Search',//EwayLocale.cases.caseFault.faultSearch
+		    faultSearch:'Fault Info',//EwayLocale.cases.caseFault.faultSearch
 		    none : 'Do Not Send'//EwayLocale.cases.caseFault.none
 
 		},
@@ -78,7 +78,7 @@ Ext.apply(EwayLocale,{
 			upGradeTimes: 'Max upgrade times',//EwayLocale.cases.faultClassify.upGradeTimes
 			faultInformWay:'Notify way',//EwayLocale.cases.faultClassify.faultInformWay
 			faultCloseInterval:'Intervals between close(unit:hour)',//EwayLocale.cases.faultClassify.faultCloseInterval
-			faultTypeConfiguration: 'Fault type setting',//EwayLocale.cases.faultClassify.faultTypeConfiguration
+			faultTypeConfiguration: 'Fault Type',//EwayLocale.cases.faultClassify.faultTypeConfiguration
 			updateFaultTypeConfiguration: 'Update Fault Type Info',//EwayLocale.cases.faultClassify.updateFaultTypeConfiguration
 			number:'Just for numbers ‘0-9’',//EwayLocale.cases.faultClassify.number
 			informNumber:'Can not be 0,1-5 numbers'//EwayLocale.cases.faultClassify.informNumber
@@ -89,8 +89,8 @@ Ext.apply(EwayLocale,{
 			upgradeNotice:'Upgrade',//EwayLocale.cases.notifyMould.upgradeNotice
 			closeNotice:'Close',//EwayLocale.cases.notifyMould.closeNotice
 			noticeValue: 'Parameters',//EwayLocale.cases.notifyMould.noticeValue
-			messageContentConfiguration:'SMS content',//EwayLocale.cases.notifyMould.messageContentConfiguration
-			updateMessageContentConfiguration: 'Modify SMS content',//EwayLocale.cases.notifyMould.updateMessageContentConfiguration
+			messageContentConfiguration:'SMS Config',//EwayLocale.cases.notifyMould.messageContentConfiguration
+			updateMessageContentConfiguration: 'Modify SMS Config',//EwayLocale.cases.notifyMould.updateMessageContentConfiguration
 			necessaryOption: 'This option is necessary',//EwayLocale.cases.notifyMould.necessaryOption
 			faultType:'Fault type',//EwayLocale.cases.notifyMould.faultType
 			applyStatus:'App status'//EwayLocale.cases.notifyMould.applyStatus
