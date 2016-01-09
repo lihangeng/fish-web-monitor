@@ -36,8 +36,8 @@ Ext.apply(EwayLocale,{
 		userName:'Creater',//EwayLocale.advert.userName
 		versionStatus:'Version status',//EwayLocale.advert.versionStatus
 		advertVersionFile:'Version file',//EwayLocale.advert.advertVersionFile
-		createdTimeStart:'Create time begin with',//EwayLocale.advert.createdTimeStart
-		createdTimeStop:'End time end with',//EwayLocale.advert.createdTimeStop
+		createdTimeStart:'Create time from',//EwayLocale.advert.createdTimeStart
+		createdTimeStop:'To',//EwayLocale.advert.createdTimeStop
 		downloadAdvertConfig:'Deploy Settings',//EwayLocale.advert.downloadAdvertConfig
 		versionType:'Version type',//EwayLocale.advert.versionType
 		jobPriority:'Job priority',//EwayLocale.advert.jobPriority
@@ -49,7 +49,7 @@ Ext.apply(EwayLocale,{
 		beginTime:'Start Time',//EwayLocale.advert.beginTime
 		endTime:'End Time',//EwayLocale.advert.endTime
 		fileSize:'Resource size',//EwayLocale.advert.fileSize
-		content:'Comment of play resource ',//EwayLocale.advert.content
+		content:'Content of play resource ',//EwayLocale.advert.content
 		advertConfig:'Settings',//EwayLocale.advert.advertConfig
 		addIdleTitle:'Add idle advertisement Info',//EwayLocale.advert.addIdleTitle
 		addIdleMore:'Add resource of advertisement again',//EwayLocale.advert.addIdleMore
@@ -68,8 +68,8 @@ Ext.apply(EwayLocale,{
 		annoucementBasicInfo:'Basic information of announcement ',//EwayLocale.advert.annoucementBasicInfo
 		annoucementInfoAdvert:'Announcement',//EwayLocale.advert.annoucementInfoAdvert
 		annoucementAdvertResConfig:'Set the resource of announcement-advertisement',//EwayLocale.advert.annoucementAdvertResConfig
-		advertTypeIdle:'Page of card-insert waiting',//EwayLocale.advert.advertTypeIdle
-		advertTypeText:'Rolling character advertisement',//EwayLocale.advert.advertTypeText
+		advertTypeIdle:'Idle Advert',//EwayLocale.advert.advertTypeIdle
+		advertTypeText:'Text Advert',//EwayLocale.advert.advertTypeText
 		annoucementMoreTitle:'Add announcement',//EwayLocale.advert.annoucementMoreTitle
 		annoucementContext:'Comment of announcement',//EwayLocale.advert.annoucementContext
 		annoucementContextRegText:'Blank is not allowed',//EwayLocale.advert.annoucementContextRegText
@@ -80,12 +80,12 @@ Ext.apply(EwayLocale,{
 		secondeDisplay:'Second',//EwayLocale.advert.secondeDisplay
 		textMoreTitle:'Add page with rolling-character',//EwayLocale.advert.textMoreTitle
 		textContext:'Rolling character',//EwayLocale.advert.textContext
-		idleMoreTitle:'Add page of card-insert waiting advertisement',//EwayLocale.advert.idleMoreTitle
+		idleMoreTitle:'Add page of idle advertisement',//EwayLocale.advert.idleMoreTitle
 		chooseMediaFile:'Please choose media file',//EwayLocale.advert.chooseMediaFile
 		uploadResource:'Upload resource...',//EwayLocale.advert.uploadResource
 		uploadResourceBlank:'Please upload resource...',//EwayLocale.advert.uploadResourceBlank
 		uploadRegText:'Unsupported resource uploaded ,only .jpg,.aiv file can be uploaded',//EwayLocale.advert.uploadRegText
-		resourceFormatTips:'Only .jpg,.aiv file is supported',//EwayLocale.advert.resourceFormatTips
+		resourceFormatTips:'Only .jpg,.avi file is supported',//EwayLocale.advert.resourceFormatTips
 		resourceAlias:'File name after modified',//EwayLocale.advert.resourceAlias
 		transMoreTitle:'Add page of transaction advertisement',//EwayLocale.advert.transMoreTitle
 		chooseMediaFile:'Please choose media file',//EwayLocale.advert.chooseMediaFile
@@ -93,7 +93,7 @@ Ext.apply(EwayLocale,{
 		uploadResourceBlank:'Please upload resource',//EwayLocale.advert.uploadResourceBlank
 		addMorePic:'Add a Picture',//EwayLocale.advert.addMorePic
 		uploadRegText:'Unsupported resource uploaded ,only .jpg,.aiv file can be uploaded',//EwayLocale.advert.uploadRegText
-		resourceFormatTips:'Only .jpg,.aiv file is supported',//EwayLocale.advert.resourceFormatTips
+		resourceFormatTips:'Only .jpg,.avi file is supported',//EwayLocale.advert.resourceFormatTips
 		resourceAlias:'File name after modified',//EwayLocale.advert.resourceAlias
 		advertDownMethodCover:'Override',//EwayLocale.advert.advertDownMethodCover
 		uploading:'Resource uploading...',//EwayLocale.advert.uploading
