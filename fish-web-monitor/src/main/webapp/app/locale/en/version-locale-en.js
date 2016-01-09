@@ -51,18 +51,18 @@ Ext.apply(EwayLocale,{
 		fileSize:'Resource size',//EwayLocale.advert.fileSize
 		content:'Comment of play resource ',//EwayLocale.advert.content
 		advertConfig:'Settings',//EwayLocale.advert.advertConfig
-		addIdleTitle:'Add card-insert waiting advertisement',//EwayLocale.advert.addIdleTitle
+		addIdleTitle:'Add idle advertisement Info',//EwayLocale.advert.addIdleTitle
 		addIdleMore:'Add resource of advertisement again',//EwayLocale.advert.addIdleMore
 		advertBasicInfo:'Basic info',//EwayLocale.advert.advertBasicInfo
-		idleAdvertInfo:'Card-insert waiting advertisement',//EwayLocale.advert.idleAdvertInfo
+		idleAdvertInfo:'Idle advertisement',//EwayLocale.advert.idleAdvertInfo
 		advertValidity:'Expiry date',//EwayLocale.advert.advertValidity
 		validityTemp:'Play temporary',//EwayLocale.advert.validityTemp
 		validityAlways:'Play forever',//EwayLocale.advert.validityAlways
-		idleAdvertResConfig:'Set the resource of card-insert waiting advertisement',//EwayLocale.advert.idleAdvertResConfig
+		idleAdvertResConfig:'Set the resource of idle advertisement',//EwayLocale.advert.idleAdvertResConfig
 		addTransTitle:'Add information of transacton-advertisement',//EwayLocale.advert.addTransTitle
 		transInfoAdvert:'Page of transcatiion-advertisement',//EwayLocale.advert.transInfoAdvert
 		transAdvertResConfig:'Set the resource of transacton-advertisement-page',//EwayLocale.advert.transAdvertResConfig
-		addTextTitle:'Add information of rolling-characters-advertisement',//EwayLocale.advert.addTextTitle
+		addTextTitle:'Add information of text advertisement',//EwayLocale.advert.addTextTitle
 		textAdvertResConfig:'Set the resource of rolling-characters-advertisement',//EwayLocale.advert.textAdvertResConfig
 		addAnnoucementTitle:'Add announcement',//EwayLocale.advert.addAnnoucementTitle
 		annoucementBasicInfo:'Basic information of announcement ',//EwayLocale.advert.annoucementBasicInfo

@@ -21,7 +21,7 @@ Ext.define('Eway.view.version.View', {
 						region : "north"
 					}, {
 						xtype : 'version_grid',
-						height : 350,
+						height : 200,
 						region : 'center'
 					} ]
 				}, {

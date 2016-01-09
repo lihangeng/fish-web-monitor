@@ -56,37 +56,37 @@ Ext.define('Eway.view.report.openrate.device.Grid', {
 			}*/, {
 				header : EwayLocale.report.openrate.device.openTimes,
 				dataIndex : 'openTimes',
-				width:140
+				width:120
 			}, {
 				header : EwayLocale.report.openrate.device.healthyTimeReal,
 				dataIndex : 'healthyTimeReal',
-				width:120
+				width:100
 			}, {
 				header : EwayLocale.report.openrate.device.maintainTimeReal,
 				dataIndex : 'maintainTimeReal',
-				width:130
+				width:100
 			}, {
 				header : EwayLocale.report.openrate.device.unknownTimeReal,
 				dataIndex : 'unknownTimeReal',
-				width:120
+				width:100
 			}, {
 				header : EwayLocale.report.openrate.device.faultTimeReal,
 				dataIndex : 'faultTimeReal',
-				width:140
+				width:100
 			}, {
 				header : EwayLocale.report.openrate.device.atmpTimeReal,
 				dataIndex : 'atmpTimeReal',
-				width:130
+				width:100
 			}, {
 				header : EwayLocale.report.openrate.device.stopTimeReal,
 				dataIndex : 'stopTimeReal',
-				width:180
+				width:150
 			}, {
 				header : EwayLocale.report.openrate.device.openRate,
 				sortable : true,
 				renderer : this.pctChange,
 				dataIndex : 'openRate',
-				width:130
+				width:100
 //				flex:true
 			}/*, {
 				header : '方案开机率',

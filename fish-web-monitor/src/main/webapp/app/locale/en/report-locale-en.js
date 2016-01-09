@@ -44,15 +44,15 @@ Ext.apply(EwayLocale,{
 				atmpTimeReal:'ATMP error',//EwayLocale.report.openrate.device.atmpTimeReal
 				stopTimeReal:'Out of Service',//EwayLocale.report.openrate.device.stopTimeReal
 				openRate:'OpenRate',//EwayLocale.report.openrate.device.openRate
-				devOpenRate:'OpenRate',//EwayLocale.report.openrate.device.devOpenRate
+				devOpenRate:'Device Open Rate',//EwayLocale.report.openrate.device.devOpenRate
 				organizationName:'Bank'//EwayLocale.report.openrate.device.organizationName
 			},
 			org:{
-				orgOpenRate:'OpenRate-org'//EwayLocale.report.openrate.org.orgOpenRate
+				orgOpenRate:'Banks Open Rate'//EwayLocale.report.openrate.org.orgOpenRate
 			},
 			type:{
 				terminalId:'Type',//EwayLocale.report.openrate.type.terminalId
-				typeOpenRate:'OpenRate of device type'//EwayLocale.report.openrate.type.typeOpenRate
+				typeOpenRate:'Device Type Open Rate'//EwayLocale.report.openrate.type.typeOpenRate
 			}
 		}
 	}
