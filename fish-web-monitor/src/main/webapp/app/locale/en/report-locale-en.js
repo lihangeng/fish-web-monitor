@@ -36,16 +36,16 @@ Ext.apply(EwayLocale,{
 				statistics:'Statistics',//EwayLocale.report.openrate.device.statistics
 				importStat:'Export',//EwayLocale.report.openrate.device.importStat
 				statDate:'Statistics date',//EwayLocale.report.openrate.device.statDate
-				openTimes:'Time device should run',//EwayLocale.report.openrate.device.openTimes
-				healthyTimeReal:'Time device run normally',//EwayLocale.report.openrate.device.healthyTimeReal
-				maintainTimeReal:'Time device manage-mode',//EwayLocale.report.openrate.device.maintainTimeReal
-				unknownTimeReal:'Time device off-line',//EwayLocale.report.openrate.device.unknownTimeReal
-				faultTimeReal:'Time device hardware-error',//EwayLocale.report.openrate.device.faultTimeReal
-				atmpTimeReal:'Time ATMP error',//EwayLocale.report.openrate.device.atmpTimeReal
-				stopTimeReal:'Time other reason stop-service',//EwayLocale.report.openrate.device.stopTimeReal
+				openTimes:'Planning time',//EwayLocale.report.openrate.device.openTimes
+				healthyTimeReal:'Healthy',//EwayLocale.report.openrate.device.healthyTimeReal
+				maintainTimeReal:'Maintenance',//EwayLocale.report.openrate.device.maintainTimeReal
+				unknownTimeReal:'Off-line',//EwayLocale.report.openrate.device.unknownTimeReal
+				faultTimeReal:'Hardware-error',//EwayLocale.report.openrate.device.faultTimeReal
+				atmpTimeReal:'ATMP error',//EwayLocale.report.openrate.device.atmpTimeReal
+				stopTimeReal:'Out of Service',//EwayLocale.report.openrate.device.stopTimeReal
 				openRate:'OpenRate',//EwayLocale.report.openrate.device.openRate
 				devOpenRate:'OpenRate',//EwayLocale.report.openrate.device.devOpenRate
-				organizationName:'Org'//EwayLocale.report.openrate.device.organizationName
+				organizationName:'Bank'//EwayLocale.report.openrate.device.organizationName
 			},
 			org:{
 				orgOpenRate:'OpenRate-org'//EwayLocale.report.openrate.org.orgOpenRate
