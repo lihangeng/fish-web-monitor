@@ -8,17 +8,17 @@ Ext.apply(EwayLocale,{
 			boxBalanceRep:'Cashbox left report',//EwayLocale.report.baseReport.boxBalanceRep
 			sysConfRep:'Hardware report',//EwayLocale.report.baseReport.sysConfRep
 			devDetailRep:'Device detail report',//EwayLocale.report.baseReport.devDetailRep
-			devBrandRep:'Device brand report',//EwayLocale.report.baseReport.devBrandRep
+			devBrandRep:'Device Brand Statistics',//EwayLocale.report.baseReport.devBrandRep
 			devRunInfoRep:'Device run report',//EwayLocale.report.baseReport.devRunInfoRep
-			eatCardRep:'Retain card report',//EwayLocale.report.baseReport.eatCardRep
+			eatCardRep:'Retained Card Statistics',//EwayLocale.report.baseReport.eatCardRep
 			eatCardDetailRep:'Retain card detail report',//EwayLocale.report.baseReport.eatCardDetailRep
 			clearDate:'Clear date',//EwayLocale.report.baseReport.clearDate
 			clearTable:'Clear report',//EwayLocale.report.baseReport.clearTable
 			dependDev:'Depend on Dev',//EwayLocale.report.baseReport.dependDev
 			tradeRep:'Transaction Statistics',//EwayLocale.report.baseReport.tradeRep
-			tradeResultRep:'Transaction result report',//EwayLocale.report.baseReport.tradeResultRep
-			tradeDaysCountRep:'Transaction day count report',//EwayLocale.report.baseReport.tradeDaysCountRep
-			tradeHoursCountRep:'Transaction hour count report',//EwayLocale.report.baseReport.tradeHoursCountRep
+			tradeResultRep:'Transaction Result Statistics',//EwayLocale.report.baseReport.tradeResultRep
+			tradeDaysCountRep:'Daily Transaction Statistics',//EwayLocale.report.baseReport.tradeDaysCountRep
+			tradeHoursCountRep:'Hourly Transaction Statistics',//EwayLocale.report.baseReport.tradeHoursCountRep
 			tradeCount:'Transaction count',//EwayLocale.report.baseReport.tradeCount
 			angle : 'Statistical dimension',//EwayLocale.report.baseReport.angle
 			device : 'Device',//EwayLocale.report.baseReport.device
@@ -26,7 +26,7 @@ Ext.apply(EwayLocale,{
 			devType : 'Device Type',//EwayLocale.report.baseReport.devType
 			mod : 'Device Modules',//EwayLocale.report.baseReport.mod
 			rank : 'Top',//EwayLocale.report.baseReport.rank
-			caseStatisticsRep:'Fault Statistic Chart',//EwayLocale.report.baseReport.caseStatisticsRep
+			caseStatisticsRep:'Fault Statistics Chart',//EwayLocale.report.baseReport.caseStatisticsRep
 			statisticsDays : 'Time Scope',//EwayLocale.report.baseReport.statisticsDays
 			caseTrendReportTitle: 'Fault Trend Chart'//EwayLocale.report.baseReport.caseTrendReportTitle
 		},
