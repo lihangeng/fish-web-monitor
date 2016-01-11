@@ -16,7 +16,7 @@ Ext.define('Eway.view.machine.quittingNotice.FilterForm', {
 	initComponent: function() {
 		Ext.apply(this, {
 			items : [{
-				columnWidth : .4,
+				columnWidth : .52,
 				layout : 'anchor',
 				defaults : {
 					anchor : '75%',
@@ -34,7 +34,7 @@ Ext.define('Eway.view.machine.quittingNotice.FilterForm', {
 					fieldLabel : EwayLocale.machine.quittingNotice.responsibilityName
 				}]
 			},{
-				columnWidth : .5,
+				columnWidth : .48,
 				layout : 'anchor',
 				defaults : {
 					anchor : '90%',
