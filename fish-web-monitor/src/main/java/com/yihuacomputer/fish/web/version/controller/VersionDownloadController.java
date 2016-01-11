@@ -151,7 +151,7 @@ public class VersionDownloadController {
     private void createThreadExecuteTask(Long[] deviceId,String executeIp,JobForm form,IVersion version){
 		ExecuteTask execute = new ExecuteTask();
 		String batchName = messageSourceVersion.getMessage("version.download.batchNumber", new Object[]{form.getJobName(),version.getDownloadCounter()}, FishCfg.locale);
-		execute.setDeviceId(deviceId);
+		execute.setDeviceIds(deviceId);
 		execute.setExecuteMachine(executeIp);
 		execute.setForm(form);
 		execute.setBatchName(batchName);
@@ -199,7 +199,7 @@ public class VersionDownloadController {
     }
     
 	class ExecuteTask implements Runnable{
-		private Long[] deviceId;
+		private Long[] deviceIds;
 		
 		private boolean flag = true;
 		
@@ -212,12 +212,12 @@ public class VersionDownloadController {
 		private IVersion version;
 
     	Date createdTime = new Date();
-		public Long[] getDeviceId() {
-			return deviceId;
+		public Long[] getDeviceIds() {
+			return deviceIds;
 		}
 
-		public void setDeviceId(Long[] deviceId) {
-			this.deviceId = deviceId;
+		public void setDeviceIds(Long[] deviceIds) {
+			this.deviceIds = deviceIds;
 		}
 
 		public JobForm getForm() {
@@ -267,7 +267,7 @@ public class VersionDownloadController {
 		        Date planTime = form.getPlanTime() == null ? new Date() : form.getPlanTime();
 		        TaskType taskType = TaskType.valueOf(form.getTaskType());
 		        String executeMachine = this.getExecuteMachine();
-		        for (Long deviceId : deviceId) {
+		        for (Long deviceId : deviceIds) {
 		        	if(!flag){
 		        		break;
 		        	}
