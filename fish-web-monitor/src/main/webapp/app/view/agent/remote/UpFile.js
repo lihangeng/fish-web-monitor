@@ -16,7 +16,7 @@ Ext.define('Eway.view.agent.remote.UpFile', {
 				bodyStyle : 'padding: 10px 10px 10px 10px',
 				trackResetOnLoad : true,
 				defaults : {
-					labelWidth : 80,
+					labelWidth : 120,
 					anchor: '100%',
 					labelAlign : 'right',
 					msgTarget : 'side',

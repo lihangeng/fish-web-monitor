@@ -218,10 +218,10 @@ public class AdvertController {
 					filter.eq("advertDownMethod", AdvertDownMethod.valueOf(value));
 				}
 				if (name.equals("createdTimeStart")) {
-					filter.gt("createdTime", DateUtils.getTimestamp(value));
+					filter.ge("createdTime", DateUtils.getTimestamp(value+" 00:00:00"));
 				}
 				if (name.equals("createdTimeEnd")) {
-					filter.le("createdTime", DateUtils.getTimestamp(value));
+					filter.le("createdTime", DateUtils.getTimestamp(value+" 23:59:59"));
 				}
 			}
 		}
