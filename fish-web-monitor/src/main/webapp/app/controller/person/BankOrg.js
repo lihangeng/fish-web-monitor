@@ -209,8 +209,10 @@ Ext.define('Eway.controller.person.BankOrg', {
 		var code = win.down("form").getForm().findField("code");
 		var organizationType = win.down('form').getForm().findField("organizationType");
 		//上级机构默认显示当前用户所属机构。
-		win.down('field[name="parentId"]').setValue(ewayUser.getOrgId());
-		win.down('field[name="parent"]').setValue(ewayUser.getOrgName());
+		if(1!=ewayUser.getOrgId()){
+			win.down('field[name="parentId"]').setValue(ewayUser.getOrgId());
+			win.down('field[name="parent"]').setValue(ewayUser.getOrgName());
+		}
 		win.show();
 	},
 
