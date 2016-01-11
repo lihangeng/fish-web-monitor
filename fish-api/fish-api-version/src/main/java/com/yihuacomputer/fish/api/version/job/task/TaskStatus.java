@@ -28,7 +28,22 @@ public enum TaskStatus {
 	NOTICE_APP_FAIL(55,"TaskStatus.NOTICE_APP_FAIL"),
 
 	OTHER(99,"TaskStatus.OTHER");
-
+	/**
+	 * 可以重新运行下发流程的任务
+	 * @param status
+	 * @return
+	 */
+	public static boolean canCreate(TaskStatus status){
+	    if((status.equals(TaskStatus.DOWNLOADED_FAIL))
+                || (status.equals(TaskStatus.NOTICED_FAIL))
+                || (status.equals(TaskStatus.DEPLOYED_FAIL))
+                || (status.equals(TaskStatus.NOTICE_APP_FAIL))
+                || (status.equals(TaskStatus.OTHER))
+                || status.equals(TaskStatus.CANCELED)){
+	        return true;
+	    }
+	    return false;
+	}
 	private int id;
 	private String text;
 
@@ -61,19 +76,19 @@ public enum TaskStatus {
 	}
 
 	//没有下载成功,没有通知成功或者取消任务的，新建的任务放入任务队列
+	/**
+	 * 可以执行下发任务
+	 * @param status
+	 * @return
+	 */
 	public static boolean canRun(TaskStatus status){
-	    if((status.equals(TaskStatus.DOWNLOADED_FAIL))
-                || (status.equals(TaskStatus.NOTICED_FAIL))
-                || (status.equals(TaskStatus.DEPLOYED_FAIL))
-                || (status.equals(TaskStatus.NOTICE_APP_FAIL))
-                || (status.equals(TaskStatus.OTHER))
-                || status.equals(TaskStatus.NEW)
-                || status.equals(TaskStatus.CANCELED)){
+	    if((status.equals(TaskStatus.RUN))
+                || status.equals(TaskStatus.NEW)){
 	        return true;
 	    }
 	    return false;
 	}
-
+	
 	public static boolean isCancel(TaskStatus taskStatus){
 		 if((taskStatus.equals(TaskStatus.REMOVED))
 	                || (taskStatus.equals(TaskStatus.CANCELED))

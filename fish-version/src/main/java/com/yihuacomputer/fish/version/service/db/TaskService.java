@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
@@ -105,16 +106,35 @@ public class TaskService implements IDomainTaskService {
 		String hql = "from Task task where task.job.version.versionType.typeName = ? and task.job.version.versionNo = ? and task.deviceId = ?";
 		return dao.findByHQL(hql, typeName, versionNo, deviceId);
 	}
-
+	
+	public boolean cancelTasks(String batchName,long versionId){
+		String sql = "update VER_TASK set TASK_STATUS='CANCELED' where BATCH_NAME=? and VERSION_ID=? and TASK_STATUS='NEW'";
+		Query query = dao.getSQLQuery(sql);
+		query.setParameter(0, batchName);
+		query.setParameter(1, versionId);
+		int result = query.executeUpdate();
+		return result>0;
+	}
+	
 	@Override
-	public ITask addTask(ITask task) {
+	public synchronized ITask addTask(ITask task) {
 		Task entity = this.interface2Entity(task, false);
+		
 		if(entity.getId()>0){
 			dao.update(entity);
 		}
 		else{
-			dao.save(entity);
+			//如果存在同个任务，更改任务信息(同个任务的标识为，相同设备Id和版本ID)
+			ITask sameTask = findTask(task.getDeviceId(), task.getVersion().getId());
+			if(null!=sameTask){
+				entity.setId(sameTask.getId());
+				dao.update(entity);
+			}
+			else{
+				dao.save(entity);
+			}
 		}
+		
 		IVersion version = entity.getVersion();
 		if (version.getVersionStatus().equals(VersionStatus.NEW)) {
 			version.setVersionStatus(VersionStatus.WAITING);
@@ -151,16 +171,8 @@ public class TaskService implements IDomainTaskService {
 	 * 取消任务
 	 */
 	public void cancelTask(ITask task) {
-		List<ITask> tasks = new ArrayList<ITask>();
-		tasks.add(task);
-		cancelTasks(tasks);
-	}
-
-	/**
-	 * 取消前，任务的状态已经是removed 取消一批任务
-	 */
-	public void cancelTasks(List<ITask> tasks) {
-		taskManager.cancelTasks(tasks);
+		task.setStatus(TaskStatus.CANCELED);
+		this.updateTask(task);
 	}
 
 	@Override
@@ -258,6 +270,8 @@ public class TaskService implements IDomainTaskService {
 
 	public boolean noticeATM(ITask task) {
 		boolean ignore = true;
+		//获取数据库中最新的任务状态,判断是否被取消
+//		ITask taskLastestStatus = this.get(task.getId());
 		if (TaskStatus.canRun(task.getStatus()) || TaskStatus.RUN.equals(task.getStatus())) {
 			// 通知
 			try {

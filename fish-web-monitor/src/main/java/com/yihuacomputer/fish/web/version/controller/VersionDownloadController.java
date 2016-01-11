@@ -116,15 +116,9 @@ public class VersionDownloadController {
         logger.info(" add job...");
         ModelMap result = new ModelMap();
         IVersion version = versionService.getById(form.getVersionId());
-        String versionTypeName = version.getVersionType().getTypeName();
-        List<ITask> tasks = new ArrayList<ITask>();
         String deviceIds = form.getDeviceIds();
         UserSession session = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
         Long[] ids = null;
-    	Date createdTime = new Date();
-    	List<Object> lists = deviceSoftVersionService.findDeviceSoftVersions(versionTypeName);
-
-        Map<Long,String> maps = convertToMap(lists);
     	List<Long> list = new ArrayList<Long>();
         if(form.isAllDevice()){
         	IFilter filter = new Filter();
@@ -143,48 +137,9 @@ public class VersionDownloadController {
         		list.add(Long.parseLong(deviceId));
         	}
         }
+
         ids = list.toArray(new Long[0]);
-        IFilter taskFilter = new Filter();
-        taskFilter.eq("version.id", form.getVersionId());
-        List<ITask> taskList = taskService.list(taskFilter);
-        Map<Long,ITask> taskMap = convertTaskListToMap(taskList);
-        String batchName = messageSourceVersion.getMessage("version.download.batchNumber", new Object[]{form.getJobName(),version.getDownloadCounter()}, FishCfg.locale);
-        Date planTime = form.getPlanTime() == null ? new Date() : form.getPlanTime();
-        TaskType taskType = TaskType.valueOf(form.getTaskType());
-        String executeMachine = request.getLocalAddr();
-        for (Long deviceId : ids) {
-            ITask task = taskMap.get(deviceId);
-            //如果存在相关的任务则要判断当前是否可以下发
-            if(null != task){
-            	 if(!TaskStatus.canRun(task.getStatus())){
-            		 continue;
-            	 }
-            	 else{
-            		 task.setStatus(TaskStatus.NEW);
-            		 task.setTaskType(TaskType.MANUAL);
-            		 task.setCreateTime(createdTime);
-            		 task.setTaskCount(task.getTaskCount()+1);
-            	 }
-            }
-            else{
-            	task = taskService.make(createdTime);
-            }
-            task.setTaskBatchName(batchName);
-            task.setDeviceId(deviceId);
-            String versionNo = maps.get(deviceId);
-            if(versionNo != null){
-                task.setVersionBeforeUpdate(versionTypeName + "_" + versionNo);
-            }
-            task.setVersion(version);
-            task.setCreateTime(createdTime);
-            task.setPlanTime(planTime);
-            task.setTaskType(taskType);
-            task.setExcuteMachine(executeMachine);
-            tasks.add(task);
-        }
-
-        taskManager.createTasksByWeb(tasks);
-
+        createThreadExecuteTask(ids,request.getLocalAddr(),form,version);
         form.setVersionName(version.getFullName() + " [" + version.getServerPath() + "]");
         form.setDownLoadCounter(version.getDownloadCounter());
         versionService.updateDownLoadCounter(version);
@@ -192,7 +147,170 @@ public class VersionDownloadController {
         result.addAttribute("data", form);
         return result;
     }
+    private static Map<String,ExecuteTask> threadMap = new HashMap<String,ExecuteTask>();
+    private void createThreadExecuteTask(Long[] deviceId,String executeIp,JobForm form,IVersion version){
+		ExecuteTask execute = new ExecuteTask();
+		String batchName = messageSourceVersion.getMessage("version.download.batchNumber", new Object[]{form.getJobName(),version.getDownloadCounter()}, FishCfg.locale);
+		execute.setDeviceId(deviceId);
+		execute.setExecuteMachine(executeIp);
+		execute.setForm(form);
+		execute.setBatchName(batchName);
+		execute.setVersion(version);
+		Thread thread = new Thread(execute);
+		thread.setName(batchName);
+		thread.start();
+		threadMap.put(batchName, execute);
+	}
+    
+    /**
+     * 暂停一个作业
+     *
+     * @param id
+     *            作业ID
+     * @return
+     */
+    @RequestMapping(value = "/pause", method = RequestMethod.POST)
+    public @ResponseBody
+    String pauseJob(@RequestParam long id) {
+        try {
+        	String cantCancel = messageSourceVersion.getMessage("version.task.cancel.cantcancel", null, FishCfg.locale);
+        	String tasknotExist = messageSourceVersion.getMessage("version.task.notexsit", null, FishCfg.locale);
+        	ITask task = taskService.get(id);
+        	if(null==task){
+        		return "{'success':false,'errors':'"+tasknotExist+"'}";
+        	}
+        	if(TaskType.AUTO_UPDATE==task.getTaskType()){
+        		return "{'success':false,'errors':'"+cantCancel+"'}";
+        	}
+        	String batch = task.getTaskBatchName();
+        	ExecuteTask thread = threadMap.get(batch);
+        	if(thread!=null){
+            	//终止线程新建任务
+            	thread.flag=false;
+        	}
+        	//修改new任务为cancel
+        	
+        	boolean executeResult = taskService.cancelTasks(batch,task.getVersion().getId());
+            return executeResult?"{'success':true}":"{'success':false,'errors':'"+cantCancel+"'}";
+        }
+        catch (Exception ex) {
+            return "{'success':false,'errors':'" + ex.getMessage() + "'}";
+        }
+    }
+    
+	class ExecuteTask implements Runnable{
+		private Long[] deviceId;
+		
+		private boolean flag = true;
+		
+		private JobForm form;
 
+		private String executeMachine;
+		
+		private String batchName;
+		
+		private IVersion version;
+
+    	Date createdTime = new Date();
+		public Long[] getDeviceId() {
+			return deviceId;
+		}
+
+		public void setDeviceId(Long[] deviceId) {
+			this.deviceId = deviceId;
+		}
+
+		public JobForm getForm() {
+			return form;
+		}
+
+		public void setForm(JobForm form) {
+			this.form = form;
+		}
+
+		public String getExecuteMachine() {
+			return executeMachine;
+		}
+
+		public void setExecuteMachine(String executeMachine) {
+			this.executeMachine = executeMachine;
+		}
+
+		public IVersion getVersion() {
+			return version;
+		}
+
+		public void setVersion(IVersion version) {
+			this.version = version;
+		}
+
+		public String getBatchName() {
+			return batchName;
+		}
+
+		public void setBatchName(String batchName) {
+			this.batchName = batchName;
+		}
+
+		@Override
+		public void run() {
+			try{
+		        String versionTypeName = this.getVersion().getVersionType().getTypeName();
+	
+		    	List<Object> lists = deviceSoftVersionService.findDeviceSoftVersions(versionTypeName);
+		    	List<ITask> newTaskList = new ArrayList<ITask>();
+		        Map<Long,String> maps = convertToMap(lists);
+				IFilter taskFilter = new Filter();
+		        taskFilter.eq("version.id", form.getVersionId());
+		        List<ITask> taskList = taskService.list(taskFilter);
+		        Map<Long,ITask> taskMap = convertTaskListToMap(taskList);
+		        Date planTime = form.getPlanTime() == null ? new Date() : form.getPlanTime();
+		        TaskType taskType = TaskType.valueOf(form.getTaskType());
+		        String executeMachine = this.getExecuteMachine();
+		        for (Long deviceId : deviceId) {
+		        	if(!flag){
+		        		break;
+		        	}
+		            ITask task = taskMap.get(deviceId);
+		            //如果存在相关的任务则要判断当前是否可以下发
+		            if(null != task){
+		            	 if(!TaskStatus.canCreate(task.getStatus())){
+		            		 continue;
+		            	 }
+		            	 else{
+		            		 task.setStatus(TaskStatus.NEW);
+		            		 task.setTaskType(TaskType.MANUAL);
+		            		 task.setCreateTime(createdTime);
+		            		 task.setTaskCount(task.getTaskCount()+1);
+		            	 }
+		            }
+		            else{
+		            	task = taskService.make(createdTime);
+		            }
+		            task.setTaskBatchName(batchName);
+		            task.setDeviceId(deviceId);
+		            String versionNo = maps.get(deviceId);
+		            if(versionNo != null){
+		                task.setVersionBeforeUpdate(versionTypeName+ "_" + versionNo);
+		            }
+		            task.setVersion(version);
+		            task.setCreateTime(createdTime);
+		            task.setPlanTime(planTime);
+		            task.setTaskType(taskType);
+		            task.setExcuteMachine(executeMachine);
+		    		taskService.addTask(task);
+		    		newTaskList.add(task);
+		        }
+	            taskManager.createTasksByWeb(newTaskList);
+			}catch(Exception e){
+				logger.error(e.getMessage());
+			}finally{
+				threadMap.remove(this.getBatchName());
+			}
+		}
+		
+	}
+    
     private Map<Long, String> convertToMap(List<Object> lists) {
     	Map<Long,String> maps = new HashMap<Long,String>();
     	for(Object object : lists){
@@ -233,61 +351,6 @@ public class VersionDownloadController {
         return result;
     }
 
-/*    // 转换数据格式
-    private List<JobForm> toForm(List<IJob> jobs) {
-        List<JobForm> forms = new ArrayList<JobForm>();
-        for (IJob job : jobs) {
-            forms.add(new JobForm(job));
-        }
-        return forms;
-    }*/
-
-    // 获得查询条件
-//    private IFilter getFilter(WebRequest request) {
-//        IFilter filter = new Filter();
-//        Iterator<String> iterator = request.getParameterNames();
-//        while (iterator.hasNext()) {
-//            String name = iterator.next();
-//            if (FishWebUtils.isIgnoreRequestName(name)) {
-//                continue;
-//            }
-//            String value = request.getParameter(name);
-//            if (StringUtils.isEmpty(value)) {
-//                continue;
-//            }
-//            if (name.equals("versionTypeId")) {
-//                if (!value.equals("0")) {
-//                    filter.eq("version.versionType.id", Long.valueOf(value));
-//                }
-//            } else if (name.equals("versionNo")) {
-//                filter.like("version.versionNo", value);
-//            } else if ("jobId".equals(name)) {
-//                filter.eq("updateDeployDateHistory.jobId", Long.valueOf(value));
-//            }
-//        }
-//        return filter;
-//    }
-
-//    /**
-//     * 已经关联到作业的设备列表
-//     *
-//     * @param start
-//     * @param limit
-//     * @param request
-//     * @return
-//     */
-//    @RequestMapping(value = "/linked", method = RequestMethod.GET)
-//    public @ResponseBody
-//    ModelMap linked(@RequestParam int start, @RequestParam int limit, WebRequest request) {
-//        logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
-////        IFilter filter = new Filter();// getFilter(request);
-////        IPageResult<IDevice> page = downloadService.pageLinkedDevices(start, limit, job, filter);
-//        ModelMap result = new ModelMap();
-//        result.addAttribute(FishConstant.SUCCESS, true);
-////        result.addAttribute("total", page.getTotal());
-//        // result.addAttribute("data", toLinkedDeviceForm(page.list()));
-//        return result;
-//    }
 
     /**
      * 还可以关联到作业的设备列表，
@@ -412,7 +475,6 @@ public class VersionDownloadController {
             throws Exception {
 
         IFilter filter =	getTaskFilter(webRequest);
-//        filter.ne("status", TaskStatus.REMOVED);
         List<ITask> tasks = taskService.export(filter).list();
 
         Excel excel = new Excel();
@@ -455,10 +517,8 @@ public class VersionDownloadController {
         }
         excel.setData(data);
         String fileName = messageSourceVersion.getMessage("version.export.fileName", new Object[]{FishCfg.getTempDir() + File.separator,DateUtils.getDate(new Date())}, FishCfg.locale);
-//        String fileName = FishCfg.getTempDir() + File.separator + "作业_" + DateUtils.getDate(new Date()) + ".xls";
         String result = messageSourceVersion.getMessage("version.export.result", null, FishCfg.locale);
         excel.export(fileName, result);
-//        excel.export(fileName, "执行结果");
 
         File file = new File(fileName);
         DownFromWebUtils.download(file, request, response);
@@ -485,6 +545,10 @@ public class VersionDownloadController {
         ModelMap result = new ModelMap();
         try {
         	ITask task = taskService.get(taskId);
+        	if(task.getStatus()!=TaskStatus.NEW){
+        		result.addAttribute(FishConstant.SUCCESS, false);
+                result.addAttribute(FishConstant.ERROR_MSG,messageSourceVersion.getMessage("version.task.cancel.cantcancel", null, FishCfg.locale) );
+        	}
         	taskService.cancelTask(task);
             result.addAttribute(FishConstant.SUCCESS, true);
         }
@@ -495,60 +559,7 @@ public class VersionDownloadController {
         return result;
     }
 
-//    @RequestMapping(value = "/task/deepCancel", method = RequestMethod.POST)
-//    public @ResponseBody ModelMap deepCancelTask(@RequestParam long jobId,@RequestParam long taskId) {
-//        logger.info(" deep cancel task: task.id = " + taskId);
-//        ModelMap result = new ModelMap();
-//        try {
-//            taskService.deepCancelApp(taskId);
-//            result.addAttribute(FishConstant.SUCCESS, true);
-//        } catch (Exception ex) {
-//            result.addAttribute(FishConstant.SUCCESS, false);
-//            result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage() == null ? "" : ex.getMessage());
-//        }
-//        return result;
-//     }
-
-
-//    @RequestMapping(value = "/task/reDistribute", method = RequestMethod.POST)
-//    public @ResponseBody
-//    ModelMap reDistribute(@RequestParam long taskId) {
-//        logger.info(" reDistribute task: task.id = " + taskId);
-//        ModelMap result = new ModelMap();
-//        try {
-//            taskService.reDistribute(taskId);
-//            result.addAttribute(FishConstant.SUCCESS, true);
-//        }
-//        catch (Exception ex) {
-//            result.addAttribute(FishConstant.SUCCESS, false);
-//            result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage() == null ? "" : ex.getMessage());
-//        }
-//        return result;
-//    }
-
-    /**
-     * 暂停一个作业
-     *
-     * @param id
-     *            作业ID
-     * @return
-     */
-    @RequestMapping(value = "/pause", method = RequestMethod.POST)
-    public @ResponseBody
-    String pauseJob(@RequestParam long id) {
-        try {
-            ITask task = taskService.get(id);
-            String batchName = task.getTaskBatchName();
-            IFilter filter = new Filter();
-            filter.eq("version", task.getVersion());
-            filter.eq("taskBatchName", batchName);
-            taskService.cancelTasks(taskService.list(filter));
-            return "{'success':true}";
-        }
-        catch (Exception ex) {
-            return "{'success':false,'errors':'" + ex.getMessage() + "'}";
-        }
-    }
+   
 
     private List<TaskForm> toTaskForm(List<ITask> tasks) {
         List<TaskForm> forms = new ArrayList<TaskForm>();

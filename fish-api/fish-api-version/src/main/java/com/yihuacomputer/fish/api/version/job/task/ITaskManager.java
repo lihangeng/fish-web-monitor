@@ -35,11 +35,13 @@ public interface ITaskManager {
 	 * 取消同一个批次的任务
 	 * */
 	public void cancelTasks(List<ITask> list);
-	
+
+	public void createTasksByWeb(ITask task);
 	/**
 	 * 加载系统异常终止的任务
 	 * */
 	public void loadUnFinishedTasks();
 	
+
 
 }

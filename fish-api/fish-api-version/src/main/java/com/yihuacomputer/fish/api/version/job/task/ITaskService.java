@@ -112,8 +112,6 @@ public interface ITaskService {
     public void updateTaskStatus(ITask task);
 
     public void onlyUpdateTask(ITask task);
-
-    public void cancelTasks(List<ITask> tasks);
     
     /**
      * 获取自动升级任务列表
@@ -129,4 +127,12 @@ public interface ITaskService {
 	 * @return
 	 */
 	public ITask webResetTaskStatus(long taskId);
+	
+	/**
+	 * 根据批次取消任务,如果有任务被取消反回true，否则返回false
+	 * @param batchName
+	 * @param versionId
+	 * @return
+	 */
+	public boolean cancelTasks(String batchName,long versionId);
 }

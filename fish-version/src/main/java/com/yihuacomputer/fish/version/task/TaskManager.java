@@ -39,24 +39,58 @@ public class TaskManager implements ITaskManager ,ITaskManagerStatus {
 	private Thread taskTaskerThread;
 
 	private TaskThreadPool taskThreadPool2;
+	
+	
 
 	/***
 	 * 一、创建阶段 1.保存到数据库 2.放入定时器 二、执行阶段－放入队列 1.从数据中根据计划时间查找任务 ２.放入队列
 	 */
-	@Override
-	public void createTasksByWeb(List<ITask> tasks) {
+	public void createTasksByWeb(List<ITask> tasks){
 		if (tasks.size() == 0) {
 			return;
 		}
 		// 1.保存到数据库
 		long start = System.currentTimeMillis();
-		for (ITask task : tasks) {
-			taskService.addTask(task);
-		}
+//		for (ITask task : tasks) {
+//			taskService.addTask(task);
+//		}
 		logger.info(String.format("tasks insert to database spend [%s]s .", (System.currentTimeMillis() - start) / 1000));
 
 		// 2.放入定时器
 		ITask task = tasks.get(0);
+		final Date planDate = task.getPlanTime();
+		long delay = planDate.getTime() - System.currentTimeMillis();
+		scheduledExecutorService.schedule(new Runnable() {
+			// 定时时间到，执行任务分发
+			@Override
+			public void run() {
+				logger.info(String.format("start [%s] task:push to queue", DateUtils.getTimestamp(planDate)));
+				List<ITask> tasks = taskService.findTasks(planDate);
+				for (ITask task : tasks) {
+					logger.info(String.format("the task will push to queue is [%s]",task.toString()));
+					// 没有下载成功,没有通知成功，新建的任务放入任务队列
+					if (TaskStatus.canRun(task.getStatus())) {
+						taskCollection.put(task);
+					} else {
+						logger.info(String.format("ignore a task [%s]", task.toString()));
+					}
+				}
+				logger.info(String.format("complete[%s] task:push to queue", DateUtils.getTimestamp(planDate)));
+			}
+
+		}, delay <= 0 ? 0 : delay, TimeUnit.MILLISECONDS);
+	
+	}
+
+	@Override
+	public void createTasksByWeb(ITask task) {
+		// 1.保存到数据库
+		long start = System.currentTimeMillis();
+		taskService.addTask(task);
+		logger.info(String.format("tasks insert to database spend [%s]s .", (System.currentTimeMillis() - start) / 1000));
+
+		// 2.放入定时器
+//		ITask task = tasks.get(0);
 		final Date planDate = task.getPlanTime();
 		long delay = planDate.getTime() - System.currentTimeMillis();
 		scheduledExecutorService.schedule(new Runnable() {
