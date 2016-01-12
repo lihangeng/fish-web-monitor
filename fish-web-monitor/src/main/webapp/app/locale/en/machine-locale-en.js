@@ -347,7 +347,7 @@ Ext.apply(EwayLocale,{
 			restartApply: 'Restar app',//EwayLocale.machine.device.restartApply
 			confirmRestartApply:'Restar app?',//EwayLocale.machine.device.confirmRestartApply
 			nowRestartApply:'Restarting',//EwayLocale.machine.device.nowRestartApply
-			restartApplySuc:'Restarting app successful!',//EwayLocale.machine.device.restartApplySuc
+			restartApplySuc:'Restarting app successfully!',//EwayLocale.machine.device.restartApplySuc
 			restartApplyFail:'Restarting app failed!',//EwayLocale.machine.device.restartApplyFail
 
 

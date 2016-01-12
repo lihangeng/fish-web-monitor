@@ -141,7 +141,7 @@ Ext.apply(EwayLocale,{
 		isConfirmRemove:'The relationship of the group will be deleted with this delete operation , make sure you want to delete?',//EwayLocale.tip.isConfirmRemove
 		noGroupInfo:'No data of the group ,can not execute query',//EwayLocale.tip.noGroupInfo
 		selectAdd:'Please select the record which you want to add',//EwayLocale.tip.selectAdd
-		continueAdd:'Add successful,continue add machine to this group?',//EwayLocale.tip.continueAdd
+		continueAdd:'Add successfully,continue add machine to this group?',//EwayLocale.tip.continueAdd
 		addFail:'Add failed.',//EwayLocale.tip.addFail
 		isRemoveDev:'Remove this machine from this group?',//EwayLocale.tip.isRemoveDev
 		removeFail:'Remove failed',//EwayLocale.tip.removeFail
@@ -270,7 +270,7 @@ Ext.apply(EwayLocale,{
 				getCashInfoFail:'Get cash boxes info failed',//EwayLocale.tip.business.device.getCashInfoFail
 				operating:'Executing',//EwayLocale.tip.business.device.operating
 				reviewFail:'Failed to review.',//EwayLocale.tip.business.device.reviewFail
-				logLoadConfirm:'Get the atmc logs successful,download it?',//EwayLocale.tip.business.device.logLoadConfirm
+				logLoadConfirm:'Get the atmc logs successfully,download it?',//EwayLocale.tip.business.device.logLoadConfirm
 				logPullFail:'Get atmc logs failed',//EwayLocale.tip.business.device.logPullFail
 				logFail:'Log process failed.',//EwayLocale.tip.business.device.logFail
 				linkServerFail:'Connection refused.',//EwayLocale.tip.business.device.linkServerFail

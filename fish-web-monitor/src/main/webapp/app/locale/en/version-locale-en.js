@@ -275,7 +275,7 @@ Ext.apply(EwayLocale,{
 			cantCancelCompleteJob:'Can not cancel job which status is ‘finish’.',//EwayLocale.version.task.cantCancelCompleteJob
 			doSureCancelTheJob:'Cancel the selected job?(running job can only cancel the task which has not running)',//EwayLocale.version.task.doSureCancelTheJob
 			deleting:'Deleting......',//EwayLocale.version.task.deleting
-			cancelSuccessBut:'Cancel the task in the job which has not run yet successful,the status is "running" at the present,please refresh the list',//EwayLocale.version.task.cancelSuccessBut
+			cancelSuccessBut:'Cancel the task in the job which has not run yet successfully,the status is "running" at the present,please refresh the list',//EwayLocale.version.task.cancelSuccessBut
 			cancelJobSuccess:'Cancel job successfully',//EwayLocale.version.task.cancelJobSuccess
 			updateResult:'Update result',	//EwayLocale.version.task.updateResult
 			updateResultSuccess:'Successful',	//EwayLocale.version.task.updateResultSuccess
