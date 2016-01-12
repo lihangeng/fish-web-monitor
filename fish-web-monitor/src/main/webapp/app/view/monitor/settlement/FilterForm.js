@@ -11,7 +11,7 @@ Ext.define('Eway.view.monitor.settlement.FilterForm', {
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-				columnWidth : .5,
+				columnWidth : .4,
 				defaults : {
 					labelAlign : 'right'
 				},
@@ -25,13 +25,14 @@ Ext.define('Eway.view.monitor.settlement.FilterForm', {
 					name : 'uuId'
 				} ]
 			}, {
-				columnWidth : .5,
+				columnWidth : .6,
 				defaults : {
 					labelAlign : 'right'
 				},
 				items : [ {
 					xtype : 'fieldcontainer',
 					fieldLabel : EwayLocale.monitor.business.settlement.endAmt,
+					labelWidth : 200, 
 					layout : 'hbox',
 					defaults : {
 						hideLabel : true
@@ -85,6 +86,7 @@ Ext.define('Eway.view.monitor.settlement.FilterForm', {
 					xtype : 'fieldcontainer',
 					fieldLabel : EwayLocale.monitor.business.settlement.endDate,
 					layout : 'hbox',
+					labelWidth : 200,
 					defaults : {
 						hideLabel : true
 					},
