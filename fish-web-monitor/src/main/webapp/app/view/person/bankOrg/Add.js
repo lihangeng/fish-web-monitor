@@ -89,11 +89,7 @@ Ext.define('Eway.view.person.bankOrg.Add', {
 				buttons: [{
 					xtype : 'button',
 					text: EwayLocale.button.confirm,
-					id : 'SaveBtn',
-					action: 'add',
-					handler : function() {
-	　　　　　　　　　　 　　　　　　　　 Ext.getCmp('SaveBtn').setDisabled(true);　 //点击“保存”按钮的时候，“保存”按钮置灰，不可点击
-	　　　　　　　　　　　 }
+					action: 'add'
 				}, {
 					text: EwayLocale.button.reset,
 					handler: this.onReset,

@@ -238,7 +238,6 @@ Ext.define('Eway.controller.person.BankOrg', {
 						win.close();
 			    },
 			    failure: function(record,operation){
-			    	Ext.getCmp('SaveBtn').setDisabled(false);　 //点击“保存”按钮的时候，“保存”按钮置灰，不可点击
 					Eway.alert(operation.getError());
 				}
 			});
