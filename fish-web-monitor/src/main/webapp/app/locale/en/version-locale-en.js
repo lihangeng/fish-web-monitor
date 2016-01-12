@@ -199,7 +199,7 @@ Ext.apply(EwayLocale,{
 		taskStatus:{
 			news:'New',//EwayLocale.version.taskStatus.news
 			running:'Running',//EwayLocale.version.taskStatus.running
-			noticed:'Notice successful',//EwayLocale.version.taskStatus.noticed
+			noticed:'Notice successfully',//EwayLocale.version.taskStatus.noticed
 			noticedFail:'Notice failed',//EwayLocale.version.taskStatus.noticedFail
 			downloaded:'Issued',//EwayLocale.version.taskStatus.downloaded
 			downloadedFail:'Issue failed',//EwayLocale.version.taskStatus.downloadedFail
@@ -276,7 +276,7 @@ Ext.apply(EwayLocale,{
 			doSureCancelTheJob:'Cancel the selected job?(running job can only cancel the task which has not running)',//EwayLocale.version.task.doSureCancelTheJob
 			deleting:'Deleting......',//EwayLocale.version.task.deleting
 			cancelSuccessBut:'Cancel the task in the job which has not run yet successful,the status is "running" at the present,please refresh the list',//EwayLocale.version.task.cancelSuccessBut
-			cancelJobSuccess:'Cancel job successful',//EwayLocale.version.task.cancelJobSuccess
+			cancelJobSuccess:'Cancel job successfully',//EwayLocale.version.task.cancelJobSuccess
 			updateResult:'Update result',	//EwayLocale.version.task.updateResult
 			updateResultSuccess:'Successful',	//EwayLocale.version.task.updateResultSuccess
 			updateResultFailed:'Failed'	//EwayLocale.version.task.updateResultFailed

@@ -25,7 +25,7 @@ Ext.apply(EwayLocale,{
 		mustHaveOneResource:'At least has one resource of advertisement!',//EwayLocale.msg.mustHaveOneResource
 		saveFileCommunicationFail:'Save failed:connection refused',//EwayLocale.msg.saveFileCommunicationFail
 		downloadFailForNoVersion:"Version file issue failed :no generated version-file found or version-file lost,please generate version file first.",//EwayLocale.msg.downloadFailForNoVersion
-		saveSuccess:'Save successful',//EwayLocale.msg.saveSuccess
+		saveSuccess:'Save successfully',//EwayLocale.msg.saveSuccess
 
 		removeSuccess:'Relieve success',//EwayLocale.msg.removeSuccess
 		removeFail:'Relieve failure',//EwayLocale.msg.removeFail
@@ -148,7 +148,7 @@ Ext.apply(EwayLocale,{
 		selectRemoveGroup:'Please select the group which the machine you want to remove belongs.',//EwayLocale.tip.selectRemoveGroup
 		selectRemoveDev:'Please select the machine which you want to remove.',//EwayLocale.tip.selectRemoveDev
 		selectMoveDev:'Please select the machine which you want to move.',//EwayLocale.tip.selectMoveDev
-		moveSuc:'Move the machine successful',//EwayLocale.tip.moveSuc
+		moveSuc:'Move the machine successfully',//EwayLocale.tip.moveSuc
 		dateReSelect:'The begin date can not be later than end date,please select again',//EwayLocale.tip.dateReSelect
 		selectPlan:'Please select the plan which you want to execute',//EwayLocale.tip.selectPlan
 		removeFail:'Relieve failed',//EwayLocale.tip.removeFail
@@ -191,7 +191,7 @@ Ext.apply(EwayLocale,{
 				remove:{
 					confirm:'Delete the manager of this organization?',//EwayLocale.tip.bankOrg.manager.remove.confirm
 					reChoose:'You have not choose the organization or there is no manager of this organization, please choose again',//EwayLocale.tip.bankOrg.manager.remove.reChoose
-					delSuccess:'Delete the manager successful',//EwayLocale.tip.bankOrg.manager.remove.delSuccess
+					delSuccess:'Delete the manager successfully',//EwayLocale.tip.bankOrg.manager.remove.delSuccess
 					delFail:'Delete the manager failed'//EwayLocale.tip.bankOrg.manager.remove.delFail
 				}
 			},
@@ -222,8 +222,8 @@ Ext.apply(EwayLocale,{
 		user:{
 			add:{
 				createAcc:'Please choose the man which you want to create account',//EwayLocale.tip.user.add.createAcc
-				createSuccess:'Create successful,newcreate account',//EwayLocale.tip.user.add.createSuccess
-				initPasswd:'The init password is :888888'//EwayLocale.tip.user.add.initPasswd
+				createSuccess:'Create successfully,newcreate account `',//EwayLocale.tip.user.add.createSuccess
+				initPasswd:'` The init password is :888888'//EwayLocale.tip.user.add.initPasswd
 			},
 			remove:{
 				failRoot:'Delete failed,system manager can not be deleted.',//EwayLocale.tip.user.remove.failRoot
@@ -244,7 +244,7 @@ Ext.apply(EwayLocale,{
 			},
 			blackList:{
 				importing:'Importing file',//EwayLocale.tip.business.blackList.importing
-				importSuccess:'Blackcard file importing successful'//EwayLocale.tip.business.blackList.importSuccess
+				importSuccess:'Blackcard file importing successfully'//EwayLocale.tip.business.blackList.importSuccess
 			},
 			card:{
 				returnFail:'Turnover failed:system error.',//EwayLocale.tip.business.card.returnFail
@@ -253,7 +253,7 @@ Ext.apply(EwayLocale,{
 				chooseBack:'Please choose the card which you want to draw.',//EwayLocale.tip.business.card.chooseBack
 				getSuccess:'Draw successfully.',//EwayLocale.tip.business.card.getSuccess
 				destroyConfirm:'Destroy this card?',//EwayLocale.tip.business.card.destroyConfirm
-				destroySuccess:'Destroy successful',//EwayLocale.tip.business.card.destroySuccess
+				destroySuccess:'Destroy successfully',//EwayLocale.tip.business.card.destroySuccess
 				chooseDestroy:'Please choose the card which you want to destroy.',//EwayLocale.tip.business.card.chooseDestroy
 				idCardRegex:'Please input the correct ID number,15 or 18 numbers',//EwayLocale.tip.business.card.idCardRegex
 				accountRegex:'Please input the correct ID number of the householdRegister,15 or 18 numbers',//EwayLocale.tip.business.card.accountRegex
@@ -304,13 +304,13 @@ Ext.apply(EwayLocale,{
 				forceRebootFail:'Force-reboot failed.',//EwayLocale.tip.business.device.forceRebootFail
 				forceRebootSendFail:'Send the normal force-reboot command failed ',//EwayLocale.tip.business.device.forceRebootSendFail
 				resetConfirm:'Confirm execute force-reset command?',//EwayLocale.tip.business.device.resetConfirm
-				resetSuccess:'Force-reset successful',//EwayLocale.tip.business.device.resetSuccess
+				resetSuccess:'Force-reset successfully',//EwayLocale.tip.business.device.resetSuccess
 				resetFail:'Force-reset failed',//EwayLocale.tip.business.device.resetFail
 				resetSendFail:'Send the force-reset command failed.',//EwayLocale.tip.business.device.resetSendFail
 				term:'Terminal ID',//EwayLocale.tip.business.device.term
 				detail:'Detail',//EwayLocale.tip.business.device.detail
 				refresh:'Refreshing......',//EwayLocale.tip.business.device.refresh
-				remoteCommandMsg:'Remote Command send Successful'//EwayLocale.tip.business.device.remoteCommandMsg
+				remoteCommandMsg:'Remote Command send Successfully'//EwayLocale.tip.business.device.remoteCommandMsg
 			}
 		}
 
@@ -513,7 +513,7 @@ Ext.apply(EwayLocale,{
 		tryOut:'Tryout',//EwayLocale.system.tryOut
 		noLimit:'Limitless',//EwayLocale.system.noLimit
 		getSerialNumFail:'Get SerialNo failed',//EwayLocale.system.getSerialNumFail
-		registSuc:'Regist successful',//EwayLocale.system.registSuc
+		registSuc:'Regist successfully',//EwayLocale.system.registSuc
 		registFail:'Regist failed',//EwayLocale.system.registFail
 		appearInnerFalse:'System error',//EwayLocale.system.appearInnerFalse
 		regist:'Regist',//EwayLocale.system.regist

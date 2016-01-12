@@ -589,8 +589,8 @@ Ext.apply(EwayLocale,{
 		logDate:'Log date',//EwayLocale.atmLog.logDate
 		backupResult:'Backup result',//EwayLocale.atmLog.backupResult
 		checkFailInfo:'Check detail of Backup failed',//EwayLocale.atmLog.checkFailInfo
-		checkSucInfo:'Check detail of Backup successful',//EwayLocale.atmLog.checkSucInfo
-		backupSucAmount:'Count of machine Backup successful',//EwayLocale.atmLog.backupSucAmount
+		checkSucInfo:'Check detail of Backup successfully',//EwayLocale.atmLog.checkSucInfo
+		backupSucAmount:'Count of machine Backup successfully',//EwayLocale.atmLog.backupSucAmount
 		backupFailAmount:'Count of machine Backup failed',//EwayLocale.atmLog.backupFailAmount
 		backupAllAmount:'Total count',//EwayLocale.atmLog.backupAllAmount
 		logBackupSta:'Backup log total',//EwayLocale.atmLog.logBackupSta
