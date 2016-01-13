@@ -10,6 +10,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	hiddenField:'',
 	treePanel:'',
 	orgGridPanel:'',
+	enableKeyEvents:true,
 	matchFieldWidth:true,
 	matching:true,
 	config : {
@@ -23,12 +24,18 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 		isFilterOrgStatus:true,
 		parentXtype:'form'
 	},
+	//点击清理按钮进行清理操作
 	onClearClick : function(){
 		this.getOtherCompement();
-		this.setValue('');
-		this.hiddenField.setValue('');
+		this.setOrgValue('','');
 	},
 	listeners:{
+		keydown:function( _this, e, eOpts){
+			if(e.keyCode!=13){
+				this.matching = true;
+				this.onTrigger1Click()
+			}
+		},
 		collapse:function(field,opts){
 			var me = this;
 			var gridpanel = field.getPicker();
@@ -54,8 +61,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 				},this);
 			}
 			if(setEmpty){
-				field.hiddenField.setValue("");
-				field.setValue("");
+				this.setOrgValue('','');
 			}
 			
 		}
@@ -70,7 +76,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 			this.createPicker();
 		}
 	},
-
+	//获取加载树的基础数据信息
 	getFilterData : function(){
 		var filter = this.getFilters() || '{}';
 		return Ext.decode(filter);
@@ -84,7 +90,9 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	onTriggerClick:function(){
 		var me = this;
 		this.createPicker("treePanel");
+		this.setEditable(true);
 	},
+	//找到机构树，默认为form下，但是有些特别情况在toolbar下，需要特别处理
 	getOtherCompement:function(){
 		var orgorg = this.getHiddenValue();
 		if(this.getParentXtype()=="form"){
@@ -108,11 +116,12 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 				return;
 			}
 			this.collapse();
-			this.setEditable(false);
+			this.matching = false;
 			this.picker=this.creatTreePanel();
 			this.picker.ownerCmp = this;
 			this.picker.setVisible(true);
 			this.expand();
+			this.focus();
 		}
 		else if("orgGridPanel"==type){
 			this.matching = true;
@@ -120,7 +129,6 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 				return;
 			}
 			this.collapse();
-			this.setEditable(true);
 			this.picker=this.createPanel();
 			this.picker.ownerCmp = this;
 			this.expand();
@@ -141,11 +149,11 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
         me.removeCls(me.fieldFocusCls);
 		var gridpanel=me.getPicker();
 		//如果对象为treepanel不做任何处理
-		if(gridpanel.$className=='Ext.tree.Panel'){
-			return;
-		}
-		var orgorg = this.getHiddenValue();
-		this.blur();
+//		if(gridpanel.$className=='Ext.tree.Panel'){
+//			return;
+//		}
+//		var orgorg = this.getHiddenValue();
+//		this.blur();
 	},
 	createPanel:function(){
 		var me = this;
@@ -180,11 +188,13 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	//点击确认数据
 	onCellClick:function(_this, td, cellIndex, record, tr, rowIndex, e, eOpts ){
 		this.matching = false;
-		this.setValue(record.get('name'));
-		this.setEditable(false);
-		var orgorg = this.getHiddenValue();
-		this.hiddenField.setValue(record.get('guid'));
+		this.setOrgValue(record.get('name'),record.get('guid'));
 		this.collapse();
+	},
+	//设置当前值
+	setOrgValue:function(displayText,value){
+		this.setValue(displayText);
+		this.hiddenField.setValue(value);
 	},
 	creatTreePanel:function(){
 		var me = this;
@@ -212,7 +222,16 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 		else{
 			isExpanded = true;
 		}
-		if(data.type == "1" || ewayUser.getOrgType() == ""){//维护商
+		var defaultValue = this.hiddenField.getValue();
+		var defaultDispaly = this.getValue();
+		if(defaultValue !=""&&defaultDispaly!=""){
+			treePanel.setRootNode({
+				id: defaultValue,
+				text: defaultDispaly,
+				expanded: isExpanded
+			});
+		}
+		else if(data.type == "1" || ewayUser.getOrgType() == ""){//维护商
 			treePanel.setRootNode({
 				id: 1,
 				text: EwayLocale.commen.orgFramework,
@@ -230,14 +249,12 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	treeBeforeLoad : function(store, operation, options) {
 		store.proxy.extraParams = this.getFilterData() || {};
 	},
-
+	//选择机构树确认输入
 	onTreeItemClick : function(view,record){
-		this.setValue(record.get('text'));
-		var orgorg = this.getHiddenValue();
-		this.hiddenField.setValue(record.get('id'));
+		this.setOrgValue(record.get('text'),record.get('id'));
 		this.collapse();
 	},
-	
+	//手动输入字符串进行查询
 	onChange:function(newVal,oldVal){
 		var clearTip = this.getTrigger("clear");
 		if(undefined==clearTip){
@@ -248,6 +265,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 				this.getTrigger("clear").show();
 			}else{
 				this.getTrigger("clear").hide();
+				this.onTriggerClick();
 			}
 		}
 		if(this.editable&&!this.readOnly&&this.matching)

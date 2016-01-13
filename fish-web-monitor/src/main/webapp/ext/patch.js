@@ -227,36 +227,36 @@ Ext.override(Ext.form.field.Picker, {
     }
 });
 
-Ext.form.field.Picker.override({initEvents:function(){
-    	var me = this;
-        me.callParent();
-        me.keyNav = new Ext.util.KeyNav(me.inputEl, {
-            down: me.onDownArrow,
-            esc: {
-                handler: me.onEsc,
-                scope: me,
-                defaultEventAction: false
-            },
-            scope: me,
-            forceKeyDown: true
-        });
-        if(me.readOnly){
-        	return;
-        }
-        if (me.isOrg) {
-            me.removeManagedListener(me.inputEl, 'click', me.onTriggerClick, me);
-            me.mon(me.inputEl, 'click', me.onTrigger1Click, me);
-        }
-        else{
-        	me.mon(me.inputEl, 'click', me.onTriggerClick, me);
-        }
-
-        // Disable native browser autocomplete
-        if (Ext.isGecko) {
-            me.inputEl.dom.setAttribute('autocomplete', 'off');
-        }
-}
-});
+//Ext.form.field.Picker.override({initEvents:function(){
+//    	var me = this;
+//        me.callParent();
+//        me.keyNav = new Ext.util.KeyNav(me.inputEl, {
+//            down: me.onDownArrow,
+//            esc: {
+//                handler: me.onEsc,
+//                scope: me,
+//                defaultEventAction: false
+//            },
+//            scope: me,
+//            forceKeyDown: true
+//        });
+//        if(me.readOnly){
+//        	return;
+//        }
+//        if (me.isOrg) {
+//            me.removeManagedListener(me.inputEl, 'click', me.onTriggerClick, me);
+//            me.mon(me.inputEl, 'click', me.onTrigger1Click, me);
+//        }
+//        else{
+//        	me.mon(me.inputEl, 'click', me.onTriggerClick, me);
+//        }
+//
+//        // Disable native browser autocomplete
+//        if (Ext.isGecko) {
+//            me.inputEl.dom.setAttribute('autocomplete', 'off');
+//        }
+//}
+//});
 
 
 
