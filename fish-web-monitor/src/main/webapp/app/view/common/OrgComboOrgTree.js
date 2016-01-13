@@ -6,22 +6,29 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	fieldLabel : EwayLocale.commen.orgFramework,
 	readOnly:false,
 	editable:true,
-	isOrg:true,
+	//隐藏域控件
 	hiddenField:'',
+	//机构树面板
 	treePanel:'',
+	//机构列表面板
 	orgGridPanel:'',
+	//支持键盘事件
 	enableKeyEvents:true,
-	matchFieldWidth:true,
+	//是否模糊匹配查询
 	matching:true,
 	config : {
+		//orgId隐藏域控件Name
 		hiddenValue : '',
+		//过滤条件(主要为区分银行机构还是维护商机构)
 		filters : '',
+		//根节点是否显示
 		rootVisible : false,
+		//机构树是否存在
 		treeExist : '',
 		defaultRootId : 1,
 		defaultRootName: EwayLocale.commen.orgFramework,
 		expandRoot:true,
-		isFilterOrgStatus:true,
+		//父类容器的类型
 		parentXtype:'form'
 	},
 	//点击清理按钮进行清理操作
@@ -31,6 +38,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	},
 	listeners:{
 		keydown:function( _this, e, eOpts){
+			//键盘事件触发显示机构列表查询并显示
 			if(e.keyCode!=13){
 				this.matching = true;
 				this.onTrigger1Click()
@@ -52,10 +60,11 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 				return;
 			}
 			var setEmpty=true;
+			//查询列表中没有匹配值，则将值设为空
 			if(undefined!=store){
 				store.each(function(item,index){
 					if(item.data.name==value){
-						me.hiddenField.setValue(item.data.guid);
+						me.setOrgValue(item.data.name,item.data.guid);
 						setEmpty = false;
 					}
 				},this);
@@ -64,16 +73,6 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 				this.setOrgValue('','');
 			}
 			
-		}
-	},
-	reflesh : function(){
-		var data = this.getFilterData();
-		if(this.getTreeExist()){
-			this.treeExist.store.load( {
-					params : data
-			});
-		}else{
-			this.createPicker();
 		}
 	},
 	//获取加载树的基础数据信息
@@ -92,7 +91,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 		this.createPicker("treePanel");
 		this.setEditable(true);
 	},
-	//找到机构树，默认为form下，但是有些特别情况在toolbar下，需要特别处理
+	//找到机构树主控件，默认为form下，但是有些特别情况在toolbar下，需要特别处理
 	getOtherCompement:function(){
 		var orgorg = this.getHiddenValue();
 		if(this.getParentXtype()=="form"){
@@ -149,11 +148,10 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
         me.removeCls(me.fieldFocusCls);
 		var gridpanel=me.getPicker();
 		//如果对象为treepanel不做任何处理
-//		if(gridpanel.$className=='Ext.tree.Panel'){
-//			return;
-//		}
-//		var orgorg = this.getHiddenValue();
-//		this.blur();
+		if(gridpanel.$className=='Ext.tree.Panel'){
+			return;
+		}
+		this.blur();
 	},
 	createPanel:function(){
 		var me = this;
