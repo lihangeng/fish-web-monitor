@@ -25,7 +25,7 @@ CP=`ls $APP_LIB_PATH/*.jar | paste -s -d"$PATH_SEPARATOR" - `
 CLASSPATH=$CP:$APP_CLASSES_PATH:$APP_PATH/WEB-INF/classes
 export CLASSPATH
 
-JAVA_OPTS="-Xms1024m -Xmx1024m -verbosegc -Xloggc:logs/gc_log.log"
+JAVA_OPTS="-server -Xms1024m -Xmx1024m -XX:PermSize=512m -XX:MaxPermSize=1024m -verbosegc -Xloggc:logs/gc_log.log"
 export JAVA_OPTS
 
 #java  $JAVA_OPTS -classpath $CLASSPATH -Dfile.encoding=utf-8 com.yihuacomputer.fish.web.FishConsole
