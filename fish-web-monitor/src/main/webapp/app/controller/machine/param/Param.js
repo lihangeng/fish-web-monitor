@@ -93,7 +93,8 @@ Ext.define('Eway.controller.machine.param.Param', {
 					record.set('description', description);
 
 					store.commitChanges();
-				}
+				},
+				button:win.down('button[action="confirm"]')
 			});
 		}
 	}

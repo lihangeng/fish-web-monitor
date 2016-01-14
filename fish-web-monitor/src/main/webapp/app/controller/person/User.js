@@ -179,7 +179,8 @@ Ext.define('Eway.controller.person.User', {
 			    },
 			    failure: function(record,operation){
 					Eway.alert(operation.getError());
-				}
+				},
+				button:win.down('button[action="confirm"]')
 			});
 		}
 	},

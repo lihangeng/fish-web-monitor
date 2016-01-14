@@ -127,7 +127,6 @@ Ext.define('Eway.controller.base.FishController', {
 			win = button.up('window'),
 			form = win.down('form');
 		if(form.getForm().isValid()){//存在不合法的输入项
-			button.disable();
 			var grid = me.getGridPanel(),
 				store = grid.getStore(),
 				action = win.getAction(),
@@ -172,8 +171,8 @@ Ext.define('Eway.controller.base.FishController', {
 						store.setUrlParamsByObject(oldParams);
 						Eway.alert(actionName + EwayLocale.tip.fail + operation.getError());
 						store.rejectChanges();
-						button.enable();
 					 },
+					 button:button,
 					 scope : this
 				});
 	 	}

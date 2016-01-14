@@ -142,7 +142,8 @@ Ext.define('Eway.controller.person.BankOrg', {
 			    },
 			    failure: function(record,operation){
 					Eway.alert(EwayLocale.tip.bankOrg.manager.set.managerFail);
-				}
+				},
+			    button:addManagerwin.down('button[action="set"]')
 			});
 		}
 	},
@@ -223,7 +224,6 @@ Ext.define('Eway.controller.person.BankOrg', {
 		var record = Ext.create('Eway.model.person.organization.BankOrganization',data);
 		var store = this.getGrid().getStore();
 		if(addForm.isValid()){
-			win.down('button[action="add"]').setDisabled(true);　 //点击“保存”按钮的时候，“保存”按钮置灰，不可点击
 			record.set("organizationType",'0');
 			record.set("organizationState",'1');
 			record.save({
@@ -239,9 +239,9 @@ Ext.define('Eway.controller.person.BankOrg', {
 						win.close();
 			    },
 			    failure: function(record,operation){
-			    	win.down('button[action="add"]').setDisabled(false);　 //点击“保存”按钮的时候，“保存”按钮置灰，不可点击
 					Eway.alert(operation.getError());
-				}
+				},
+			    button:win.down('button[action="add"]')
 			});
 		}
 	},
@@ -329,8 +329,8 @@ Ext.define('Eway.controller.person.BankOrg', {
 					Eway.alert(operation.getError());
 					//解决脏数据
 					store.rejectChanges();
-				}
-
+				},
+			    button:win.down('button[action="update"]')
 			});
 		}
 	},

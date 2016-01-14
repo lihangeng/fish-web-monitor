@@ -223,6 +223,7 @@ Ext.define('Eway.controller.person.ServicePer', {
 		var array = this.multiSelect(linkingDeviceGrid);
 		if(array != null) {
 			var data = new Object();
+			linkingDeviceGrid.down('button[action="link"]').disable();
 			var record2 = Ext.create('Eway.model.person.person.PersonDevice',data);
 			for(var i=0;i<array.length-1;i++){
             	record2.set('id',0);
@@ -240,6 +241,9 @@ Ext.define('Eway.controller.person.ServicePer', {
 							flag:1,
 							guid:record.data.guid,
 							organizationId:record.data.organizationId
+						},
+						callback: function(records, operation, success) {
+							linkingDeviceGrid.down('button[action="link"]').enable();
 						}
 					});
 					linkedDeviceGrid.getStore().cleanUrlParam();
@@ -330,7 +334,8 @@ Ext.define('Eway.controller.person.ServicePer', {
 			    },
 			    failure: function(record,operation){
 					Eway.alert(EwayLocale.tip.add.error);
-				}
+				},
+				button:win.down('button[action="add"]')
 			});
 		}
 	},
@@ -391,7 +396,8 @@ Ext.define('Eway.controller.person.ServicePer', {
 				failure: function(record,operation){
 					Eway.alert(operation.getError());
 					store.load();
-				}
+				},
+				button:win.down('button[action="update"]')
 			});
 		}
 	},
