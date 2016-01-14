@@ -16,6 +16,8 @@ import com.yihuacomputer.common.exception.ConnectionException;
 import com.yihuacomputer.common.jackson.JsonUtils;
 
 public class HttpProxy {
+	
+	private static int CONNECTION_TIMEOUT = 30000;
 	/**
 	 * 负责向客户端发送信息，并接受客户端的返回
 	 * 
@@ -29,6 +31,7 @@ public class HttpProxy {
 		HttpResponse resp = null;
 		InputStream stream = null;
 		try {
+			client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, HttpProxy.CONNECTION_TIMEOUT);
 			get = new HttpGet(url);
 			resp = client.execute(get);
 			stream = resp.getEntity().getContent();
@@ -105,6 +108,8 @@ public class HttpProxy {
 		InputStream stream = null;
 		StringEntity entity = null;
 		try {
+			client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, HttpProxy.CONNECTION_TIMEOUT);
+
 			post = new HttpPost(url);
 			entity = new StringEntity(JsonUtils.toJsonWithGson(msg), "UTF-8");
 			
