@@ -104,7 +104,8 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 						},
 						failure : function(record,operation){
 							Eway.alert(operation.getError());
-						}
+						},
+						button:win.down('button[action="confirm"]')
 					});
 				}
 			},

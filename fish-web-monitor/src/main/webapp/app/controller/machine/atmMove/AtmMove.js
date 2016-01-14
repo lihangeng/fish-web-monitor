@@ -116,7 +116,8 @@ Ext.define('Eway.controller.machine.atmMove.AtmMove', {
 			    },
 			    failure: function(record,operation){
 					Eway.alert(operation.getError());
-				}
+				},
+				button:win.down('button[action="confirm"]')
 			});
 		}
 	},

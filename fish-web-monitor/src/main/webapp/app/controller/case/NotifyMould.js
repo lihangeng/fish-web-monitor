@@ -94,7 +94,8 @@ Ext.define('Eway.controller.case.NotifyMould', {
 					record.set('notifyType', notifyType);
 					record.set('notifyWay', notifyWay);
 					record.set('notifySet', notifySet);
-				}
+				},
+				button:win.down('button[action="confirm"]')
 			});
 		}
 	}

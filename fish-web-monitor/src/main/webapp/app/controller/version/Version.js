@@ -277,6 +277,7 @@ Ext.define('Eway.controller.version.Version', {
 					 failure: function(record,operation){
 						Eway.alert(operation.getError());
 					 },
+					 button:win.down("button[action='confirm']"),
 					 scope : this
 				});
 			}
@@ -390,6 +391,7 @@ Ext.define('Eway.controller.version.Version', {
 							 	fileField.allowBlank = false;
 								Eway.alert(operation.getError());
 							 },
+							 button:win.down("button[action='confirm']"),
 							 scope : this
 						});
 				    },
@@ -471,6 +473,7 @@ Ext.define('Eway.controller.version.Version', {
 						//解决脏数据
 						store.rejectChanges();
 				 },
+				 button:win.down("button[action='confirm']"),
 				 scope: this
 			});
 		}
