@@ -81,6 +81,9 @@ Ext.define('Eway.view.version.distribute.VersionPie', {
                         length: 30,
                         width: 3
                         // specifying 'color' is also possible here
+                    },
+                    renderer: function(value, _this) {
+                        return "";
                     }
                 },
                 highlight: true,

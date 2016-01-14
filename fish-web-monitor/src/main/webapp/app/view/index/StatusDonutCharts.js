@@ -47,7 +47,7 @@ Ext.define('Eway.view.index.StatusDonutCharts', {
                 dbClickEvents: true
             },
             store: this.myDataStore,
-            insetPadding: 50,
+            insetPadding: 10,
             innerPadding: 20,
             legend: {
                 docked: 'right',
@@ -56,7 +56,7 @@ Ext.define('Eway.view.index.StatusDonutCharts', {
             interactions: ['rotate', 'itemhighlight'],
             series: [{
                 type: 'pie',
-                showInLegend:true,
+                showInLegend:false,
                 angleField: this.getLabelField(),
                 donut: 50,
                 label: {
