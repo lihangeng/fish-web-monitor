@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -496,29 +495,23 @@ public class VersionController {
 			result.addAttribute(FishConstant.DATA, null);
 			return result;
 		}
-		IFilter filter = new Filter();
-		filter.eq("versionType", versionType);
-		filter.descOrder("versionStr");
-		List<IVersion> versionList = versionService.list(filter);
 		
 		IFilter filterVersionDistribute = new Filter();
 		filterVersionDistribute.eq("versionType", versionTypeId);
 		UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
 		filterVersionDistribute.eq("orgFlag", userSession.getOrgFlag());
-		Map<Long, VersionDistribute> map = versionService.getVersionDistribute(filterVersionDistribute);
-		List<VersionDistribute> diplayList = new ArrayList<VersionDistribute>();
-		VersionDistribute versionDistribute = new VersionDistribute();
-		versionDistribute.setVersionTypeId(versionTypeId);
+		List<VersionDistribute> diplayList = versionService.getVersionDistribute(filterVersionDistribute);
+		List<VersionDistribute> diplayList1 = new ArrayList<VersionDistribute>();
 		//如果当前版本生产上不存在，则不显示.
-		for (int index = 0; index < versionList.size(); index++) {
-			IVersion version = versionList.get(index);
-			if (null != map.get(version.getId())) {
-				diplayList.add(map.get(version.getId()));
+		for (VersionDistribute vd:diplayList) {
+			if ("".equals(vd.getVersionNo())) {
+				vd.setVersionNo(messageSource.getMessage("version.versionno.unknown", null, FishCfg.locale));
 			} 
+			diplayList1.add(vd);
 		}
 		result.addAttribute(FishConstant.SUCCESS, true);
-		result.addAttribute(FishConstant.TOTAL, diplayList.size());
-		result.addAttribute(FishConstant.DATA, diplayList);
+		result.addAttribute(FishConstant.TOTAL, diplayList1.size());
+		result.addAttribute(FishConstant.DATA, diplayList1);
 		return result;
 	}
 

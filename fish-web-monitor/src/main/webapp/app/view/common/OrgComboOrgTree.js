@@ -75,6 +75,16 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 			
 		}
 	},
+	reflesh : function(){
+		var data = this.getFilterData();
+		if(this.getTreeExist()){
+			this.treeExist.store.load( {
+					params : data
+			});
+		}else{
+			this.createPicker();
+		}
+	},
 	//获取加载树的基础数据信息
 	getFilterData : function(){
 		var filter = this.getFilters() || '{}';

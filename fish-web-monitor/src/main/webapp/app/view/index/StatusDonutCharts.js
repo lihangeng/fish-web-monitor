@@ -56,12 +56,14 @@ Ext.define('Eway.view.index.StatusDonutCharts', {
             interactions: ['rotate', 'itemhighlight'],
             series: [{
                 type: 'pie',
-                showInLegend:false,
+                showInLegend:true,
                 angleField: this.getLabelField(),
                 donut: 50,
                 label: {
                     field: this.getAngleField(),
-                    display: 'outside'
+                    renderer: function(storeItem, item) {
+                    	return "";
+                    }
                 },
                 useDarkerStrokeColor:false,
 
@@ -70,7 +72,8 @@ Ext.define('Eway.view.index.StatusDonutCharts', {
                     trackMouse: true,
                     style: 'background: #fff',
                     renderer: function(storeItem, item) {
-                        this.setHtml(storeItem.get(me.getLabelField()) + ': ' + storeItem.get(me.getAngleField()));
+//                      this.setHtml(storeItem.get(me.getLabelField()) + ': ' + storeItem.get(me.getAngleField()));
+                      this.setHtml(storeItem.get(me.getAngleField()));
                     }
                 }
             }]

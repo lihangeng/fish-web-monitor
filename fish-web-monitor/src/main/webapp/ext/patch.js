@@ -20,7 +20,35 @@
 	    return !!(id || id === 0);
 	}
 });*/
+Ext.chart.series.Pie.override({
+    provideLegendInfo: function (target) {
+        var me = this,
+            store = me.getStore();
+        if (store) {
+            var items = store.getData().items,
+                labelField = me.getLabel().getTemplate().getField(),
+                field = me.getField(),
+                hidden = me.getHidden(),
+                i, style, fill;
 
+            for (i = 0; i < items.length; i++) {
+                style = me.getStyleByIndex(i);
+                fill = style.fillStyle;
+                if (Ext.isObject(fill)) {
+                    fill = fill.stops && fill.stops[0].color;
+                }
+                target.push({
+//                    name: labelField ? String(items[i].get(labelField))  : field + ' ' + i,
+                    name: labelField ? String(items[i].get(labelField))+':'+items[i].get(field)  : field + ' ' + i,
+                    mark: fill || style.strokeStyle || 'black',
+                    disabled: hidden[i],
+                    series: me.getId(),
+                    index: i
+                });
+            }
+        }
+    }
+});
 Ext.data.Model.override({
 	  save: function(options) {
 	        options = Ext.apply({}, options);

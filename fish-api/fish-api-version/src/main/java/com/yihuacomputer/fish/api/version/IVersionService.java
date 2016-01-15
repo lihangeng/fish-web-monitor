@@ -4,7 +4,6 @@
 package com.yihuacomputer.fish.api.version;
 
 import java.util.List;
-import java.util.Map;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -107,7 +106,7 @@ public interface IVersionService {
      * @param filter
      * @return
      */
-    public Map<Long, VersionDistribute> getVersionDistribute(IFilter filter);
+    public List<VersionDistribute> getVersionDistribute(IFilter filter);
 
     /**
      * 根据版本号，查看当前版本下发状态情况
