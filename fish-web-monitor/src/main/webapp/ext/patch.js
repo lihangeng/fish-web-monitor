@@ -39,7 +39,7 @@ Ext.chart.series.Pie.override({
                 }
                 target.push({
 //                    name: labelField ? String(items[i].get(labelField))  : field + ' ' + i,
-                    name: labelField ? String(items[i].get(labelField))+':'+items[i].get(field)  : field + ' ' + i,
+                    name: labelField ? String(items[i].get(labelField))+': '+items[i].get(field)  : field + ' ' + i,
                     mark: fill || style.strokeStyle || 'black',
                     disabled: hidden[i],
                     series: me.getId(),
