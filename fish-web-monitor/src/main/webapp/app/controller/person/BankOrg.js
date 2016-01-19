@@ -142,7 +142,8 @@ Ext.define('Eway.controller.person.BankOrg', {
 			    },
 			    failure: function(record,operation){
 					Eway.alert(EwayLocale.tip.bankOrg.manager.set.managerFail);
-				}
+				},
+			    button:addManagerwin.down('button[action="set"]')
 			});
 		}
 	},
@@ -239,7 +240,8 @@ Ext.define('Eway.controller.person.BankOrg', {
 			    },
 			    failure: function(record,operation){
 					Eway.alert(operation.getError());
-				}
+				},
+			    button:win.down('button[action="add"]')
 			});
 		}
 	},
@@ -327,8 +329,8 @@ Ext.define('Eway.controller.person.BankOrg', {
 					Eway.alert(operation.getError());
 					//解决脏数据
 					store.rejectChanges();
-				}
-
+				},
+			    button:win.down('button[action="update"]')
 			});
 		}
 	},
