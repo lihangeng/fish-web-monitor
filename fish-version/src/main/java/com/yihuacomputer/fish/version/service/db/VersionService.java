@@ -3,9 +3,7 @@ package com.yihuacomputer.fish.version.service.db;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -451,41 +449,49 @@ public class VersionService implements IDomainVersionService {
      * @param filter
      * @return
      */
-    public Map<Long, VersionDistribute> getVersionDistribute(IFilter filter) {
+    public List<VersionDistribute> getVersionDistribute(IFilter filter) {
         StringBuffer hqlSb = new StringBuffer();
         List<Object> hqlArgList = new ArrayList<Object>();
-        hqlSb.append("select version.id,version.versionNo,count(devicesoftVersion) from ")
+        Object versionType = filter.getValue("versionType");
+        IVersionType versionTypeObj = typeService.getById(Long.parseLong(String.valueOf(versionType)));
+        
+        hqlSb.append("select devicesoftVersion.typeName,devicesoftVersion.versionNo,count(devicesoftVersion) from ")
                 .append(DeviceSoftVersion.class.getSimpleName())
                 .append(" devicesoftVersion,")
-                .append(Version.class.getSimpleName())
-                .append(" version, ")
+//               version.id, .append(Version.class.getSimpleName())
+//                .append(" version, ")
                 .append(Device.class.getSimpleName())
                 .append(" device, ")
                 .append(VersionTypeAtmTypeRelation.class.getSimpleName())
                 .append(" versionTypeAtmType ")
-                .append("where version.versionNo= devicesoftVersion.versionNo and version.versionType.typeName=devicesoftVersion.typeName ")
-                .append("and device.devType.id= versionTypeAtmType.atmTypeId and version.versionType.id=versionTypeAtmType.versionTypeId ")
-                .append(" and device.status= ? ").append(" and device.organization.orgFlag like ? ")
-                .append(" and device.id= devicesoftVersion.deviceId ").append(" and version.versionType.id=? ");
-        Object versionType = filter.getValue("versionType");
+//                .append("where version.versionNo= devicesoftVersion.versionNo and version.versionType.typeName=devicesoftVersion.typeName ")
+                .append("where device.devType.id= versionTypeAtmType.atmTypeId ")
+//                .append("and version.versionType.id=versionTypeAtmType.versionTypeId ")
+                .append(" and devicesoftVersion.typeName='").append(versionTypeObj.getTypeName())
+                .append("' and device.id= devicesoftVersion.deviceId ").append(" and versionTypeAtmType.versionTypeId=? ")
+                .append(" and device.status= ? ").append(" and device.organization.orgFlag like ? ");
+//        Object versionType = filter.getValue("versionType");
         Object orgFlag = filter.getValue("orgFlag");
+        hqlArgList.add(versionType);
         hqlArgList.add(DevStatus.OPEN);
         hqlArgList.add(orgFlag + "%");
-        hqlArgList.add(versionType);
-        hqlSb.append(" group by version.id,version.versionNo order by version.versionStr desc");
+        hqlSb.append(" group by devicesoftVersion.typeName,devicesoftVersion.versionNo order by devicesoftVersion.versionStr desc");
         List<Object> hqlResultList = dao.findByHQL(hqlSb.toString(), hqlArgList.toArray());
-        Map<Long, VersionDistribute> map = new HashMap<Long, VersionDistribute>();
+        List<VersionDistribute> list = new ArrayList<VersionDistribute>();
         for (int index = 0; index < hqlResultList.size(); index++) {
             Object hqlResult = hqlResultList.get(index);
             Object obj[] = (Object[]) hqlResult;
+            String versionNo = String.valueOf(obj[1] == null ? "" : obj[1]);
+            String versionTypeName = String.valueOf(obj[0] == null ? "" : obj[0]);
             VersionDistribute versionDistribute = new VersionDistribute();
             versionDistribute.setVersionTypeId(Long.parseLong(String.valueOf(versionType)));
-            versionDistribute.setVersionId(Long.parseLong(String.valueOf(obj[0] == null ? 0 : obj[0])));
-            versionDistribute.setVersionNo(String.valueOf(obj[1] == null ? "" : obj[1]));
+            IVersion version = this.findVersion(versionTypeName, versionNo);
+            versionDistribute.setVersionId(null==version?0:version.getId());
+            versionDistribute.setVersionNo(versionNo);
             versionDistribute.setVersionNoNumber(Integer.parseInt(String.valueOf(obj[2] == null ? 0 : obj[2])));
-            map.put(versionDistribute.getVersionId(), versionDistribute);
+            list.add(versionDistribute);
         }
-        return map;
+        return list;
     }
 
     public List<VersionStatusDistribute> getVersionStatusDistribute(IFilter filter) {

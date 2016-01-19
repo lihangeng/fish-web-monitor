@@ -225,6 +225,7 @@ Ext.define('Eway.controller.person.BankPer', {
 
 		var array = this.multiSelect(linkingDeviceGrid);
 		if(array != null) {
+			linkingDeviceGrid.down('button[action="link"]').disable();
 			var data = new Object();
 			var record2 = Ext.create('Eway.model.person.person.PersonDevice',data);
 			for(var i=0;i<array.length-1;i++){
@@ -243,6 +244,9 @@ Ext.define('Eway.controller.person.BankPer', {
 							flag:1,
 							guid:record.data.guid,
 							organizationId:record.data.organizationId
+						},
+						callback: function(records, operation, success) {
+							linkingDeviceGrid.down('button[action="link"]').enable();
 						}
 					});
 					linkedDeviceGrid.getStore().cleanUrlParam();
@@ -255,6 +259,7 @@ Ext.define('Eway.controller.person.BankPer', {
 					});
 				},
 				failure: function(){
+					linkingDeviceGrid.down('button[action="link"]').enable();
 					Eway.alert(EwayLocale.tip.bankPer.link.unLinkPersonFail);
 				},
 				scope:this
@@ -333,7 +338,8 @@ Ext.define('Eway.controller.person.BankPer', {
 			    },
 			    failure: function(record,operation){
 					Eway.alert(EwayLocale.tip.add.error + operation.getError());
-				}
+				},
+				button:win.down('button[action="add"]')
 			});
 		}
 	},
@@ -401,7 +407,8 @@ Ext.define('Eway.controller.person.BankPer', {
 				failure: function(record,operation){
 					Eway.alert(operation.getError());
 					store.load();
-				}
+				},
+				button:win.down('button[action="update"]')
 			});
 		}
 	},

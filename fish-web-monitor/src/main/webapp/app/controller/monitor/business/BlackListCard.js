@@ -71,7 +71,8 @@ Ext.define('Eway.controller.monitor.business.BlackListCard', {
 					    },
 					    failure: function(record,operation){
 							Eway.alert(operation.getError());
-						}
+						},
+						button:win.down('button[action="add"]')
 					});
 				}
 			},
@@ -114,7 +115,8 @@ Ext.define('Eway.controller.monitor.business.BlackListCard', {
 					    failure: function(record,operation){
 					    	store.rejectChanges();
 							Eway.alert(operation.getError());
-						}
+						},
+						button:win.down('button[action="confirm"]')
 					});
 				}
 			},

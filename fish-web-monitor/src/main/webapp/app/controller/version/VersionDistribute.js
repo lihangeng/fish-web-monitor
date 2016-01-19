@@ -199,7 +199,8 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 		for(var record1=0;record1<statuslegendStore.length;record1++){
 			if(statuslegendStore[record1].get("disabled")==false){
 				for(var record_status=0; record_status< statuspieStore.length;record_status++){
-					if(statuslegendStore[record1].get("name")==statuspieStore[record_status].get("taskStatusText")){
+					var taskStatus = statuslegendStore[record1].get("name").split(":")[0];
+					if(taskStatus==statuspieStore[record_status].get("taskStatusText")){
 						return statuspieStore[record_status];
 		    		}
 				}
@@ -218,7 +219,8 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 		for(var record1=0;record1<legendStore.length;record1++){
 			if(legendStore[record1].get("disabled")==false){
 				for(var record_status=0; record_status< pieStore.length;record_status++){
-					if(legendStore[record1].get("name")==pieStore[record_status].get("versionNo")){
+					var versionNo = legendStore[record1].get("name").split(":")[0];
+					if(versionNo==pieStore[record_status].get("versionNo")){
 						return pieStore[record_status];
 		    		}
 				}

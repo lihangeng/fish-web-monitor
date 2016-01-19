@@ -113,7 +113,8 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 			    },
 			    failure: function(record,operation){
 					Eway.alert(operation.getError());
-				}
+				},
+				button:win.down('button[action="confirm"]')
 			});
 		}
 	},
@@ -203,8 +204,8 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 					Eway.alert(operation.getError());
 					//解决脏数据
 					store.rejectChanges();
-				}
-
+				},
+				button:win.down('button[action="confirm"]')
 			});
 		}
 	},

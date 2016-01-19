@@ -508,9 +508,16 @@ public class OrganizationController {
 			result.addAttribute("data", new OrganizationForm());
 			return result;
 		}
-		UserSession usersession = (UserSession)req.getSession().getAttribute(FishWebUtils.USER);
-		//只能匹配子机构,上级机构不能匹配
-		filter.like("orgFlag", usersession.getOrgFlag()+"%");
+		Object orgTypeobj = filter.getValue("organizationType");
+		OrganizationType orgType = OrganizationType.BANK;
+		if(null!=orgTypeobj){
+			orgType = (OrganizationType)orgTypeobj;
+		}
+		if(orgType==OrganizationType.BANK){
+			UserSession usersession = (UserSession)req.getSession().getAttribute(FishWebUtils.USER);
+			//只能匹配子机构,上级机构不能匹配
+			filter.like("orgFlag", usersession.getOrgFlag()+"%");
+		}
 		List<IOrganization> list = service.listMatching(filter);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("total", list.size());

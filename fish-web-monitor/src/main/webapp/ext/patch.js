@@ -20,6 +20,83 @@
 	    return !!(id || id === 0);
 	}
 });*/
+Ext.chart.series.Pie.override({
+    provideLegendInfo: function (target) {
+        var me = this,
+            store = me.getStore();
+        if (store) {
+            var items = store.getData().items,
+                labelField = me.getLabel().getTemplate().getField(),
+                field = me.getField(),
+                hidden = me.getHidden(),
+                i, style, fill;
+
+            for (i = 0; i < items.length; i++) {
+                style = me.getStyleByIndex(i);
+                fill = style.fillStyle;
+                if (Ext.isObject(fill)) {
+                    fill = fill.stops && fill.stops[0].color;
+                }
+                target.push({
+//                    name: labelField ? String(items[i].get(labelField))  : field + ' ' + i,
+                    name: labelField ? String(items[i].get(labelField))+': '+items[i].get(field)  : field + ' ' + i,
+                    mark: fill || style.strokeStyle || 'black',
+                    disabled: hidden[i],
+                    series: me.getId(),
+                    index: i
+                });
+            }
+        }
+    }
+});
+Ext.data.Model.override({
+	  save: function(options) {
+	        options = Ext.apply({}, options);
+	        if(options.button){
+	        	options.button.disable();
+	        }
+	        var me = this,
+	            phantom = me.phantom,
+	            dropped = me.dropped,
+	            action = dropped ? 'destroy' : (phantom ? 'create' : 'update'),
+	            scope  = options.scope || me,
+	            callback = options.callback,
+	            proxy = me.getProxy(),
+	            operation;
+	            
+	        options.records = [me];
+	        options.internalCallback = function(operation) {
+	            var args = [me, operation],
+	                success = operation.wasSuccessful();
+	            if (success) {
+	                Ext.callback(options.success, scope, args);
+	            } else {
+	                Ext.callback(options.failure, scope, args);
+	                if(options.button){
+	                	options.button.enable();
+	                }
+	            }
+	            args.push(success);
+	            Ext.callback(callback, scope, args);
+	        };
+	        delete options.callback;
+	        
+	        operation = proxy.createOperation(action, options);
+
+	        // Not a phantom, then we must perform this operation on the remote datasource.
+	        // Record will be removed from the store in the callback upon a success response
+	        if (dropped && phantom) {
+	            // If it's a phantom, then call the callback directly with a dummy successful ResultSet
+	            operation.setResultSet(Ext.data.reader.Reader.prototype.nullResultSet);
+	            me.setErased();
+	            operation.setSuccessful(true);
+	        } else {
+	            operation.execute();
+	        }
+	        return operation;
+	    }
+}),
+
 
 Ext.override(Ext.data.Model,{
 	 drop: function (cascade) {
@@ -227,36 +304,6 @@ Ext.override(Ext.form.field.Picker, {
     }
 });
 
-Ext.form.field.Picker.override({initEvents:function(){
-    	var me = this;
-        me.callParent();
-        me.keyNav = new Ext.util.KeyNav(me.inputEl, {
-            down: me.onDownArrow,
-            esc: {
-                handler: me.onEsc,
-                scope: me,
-                defaultEventAction: false
-            },
-            scope: me,
-            forceKeyDown: true
-        });
-        if(me.readOnly){
-        	return;
-        }
-        if (me.isOrg) {
-            me.removeManagedListener(me.inputEl, 'click', me.onTriggerClick, me);
-            me.mon(me.inputEl, 'click', me.onTrigger1Click, me);
-        }
-        else{
-        	me.mon(me.inputEl, 'click', me.onTriggerClick, me);
-        }
-
-        // Disable native browser autocomplete
-        if (Ext.isGecko) {
-            me.inputEl.dom.setAttribute('autocomplete', 'off');
-        }
-}
-});
 
 
 

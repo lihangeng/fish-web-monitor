@@ -151,7 +151,8 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			    },
 			    failure: function(record,operation){
 			    	Eway.alert(operation.getError());
-				}
+				},
+				button:win.down('button[action="add"]')
 			});
 		}
 	},
@@ -197,7 +198,8 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 					Eway.alert(operation.getError());
 					//解决脏数据
 					store.rejectChanges();
-				}
+				},
+				button:win.down('button[action="update"]')
 			});
 		}
 	},
@@ -388,6 +390,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 		var deviceGrid = view.down('atmGroup_deviceGrid');
 		var array = this.multiSelect(deviceAddingGrid);
 		if(array != null) {
+			win.down('button[action="confirm"]').disable();
 			var data = new Object();
 			var record = Ext.create('Eway.model.machine.atmGroup.DeviceGroupRelation',data);
 			for(var i=0;i<array.length-1;i++){
@@ -419,9 +422,11 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 					store2.setUrlParamsByObject(null);
 					store2.setBaseParam("groupId",groupId);
 					store2.load();
+					win.down('button[action="confirm"]').enable();
 				},
 				failure: function(){
 					Eway.alert(EwayLocale.tip.addFail);
+					win.down('button[action="confirm"]').enable();
 				},
 				scope:this
 			});

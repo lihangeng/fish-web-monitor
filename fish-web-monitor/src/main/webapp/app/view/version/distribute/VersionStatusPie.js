@@ -55,6 +55,9 @@ Ext.define('Eway.view.version.distribute.VersionStatusPie', {
                     calloutLine: {
                         length: 20,
                         width: 3
+                    },
+                	renderer: function(value, _this) {
+                        return "";
                     }
                 },
                 highlight: true,

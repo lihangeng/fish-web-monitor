@@ -24,7 +24,7 @@ Ext.apply(EwayLocale,{
 				rootBank:'Head Office',//EwayLocale.person.bankOrg.organizationLevelDict.rootBank
 				branchBank:'Branch',//EwayLocale.person.bankOrg.organizationLevelDict.branchBank
 				tagBranchBank:'SubBranch',//EwayLocale.person.bankOrg.organizationLevelDict.tagBranchBank
-				netBank:'Location'//EwayLocale.person.bankOrg.organizationLevelDict.netBank
+				netBank:'Outlets'//EwayLocale.person.bankOrg.organizationLevelDict.netBank
 			},
 			addOrgTitle:'Person under this organization',//EwayLocale.person.bankOrg.addOrgTitle
 			linkPeronTitle:'Person under the organization:',//EwayLocale.person.bankOrg.linkPeronTitle

@@ -6,29 +6,44 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	fieldLabel : EwayLocale.commen.orgFramework,
 	readOnly:false,
 	editable:true,
-	isOrg:true,
+	//隐藏域控件
 	hiddenField:'',
+	//机构树面板
 	treePanel:'',
+	//机构列表面板
 	orgGridPanel:'',
-	matchFieldWidth:true,
+	//支持键盘事件
+	enableKeyEvents:true,
+	//是否模糊匹配查询
 	matching:true,
 	config : {
+		//orgId隐藏域控件Name
 		hiddenValue : '',
+		//过滤条件(主要为区分银行机构还是维护商机构)
 		filters : '',
+		//根节点是否显示
 		rootVisible : false,
+		//机构树是否存在
 		treeExist : '',
 		defaultRootId : 1,
 		defaultRootName: EwayLocale.commen.orgFramework,
 		expandRoot:true,
-		isFilterOrgStatus:true,
+		//父类容器的类型
 		parentXtype:'form'
 	},
+	//点击清理按钮进行清理操作
 	onClearClick : function(){
 		this.getOtherCompement();
-		this.setValue('');
-		this.hiddenField.setValue('');
+		this.setOrgValue('','');
 	},
 	listeners:{
+		keydown:function( _this, e, eOpts){
+			//键盘事件触发显示机构列表查询并显示
+			if(e.keyCode!=13){
+				this.matching = true;
+				this.onTrigger1Click()
+			}
+		},
 		collapse:function(field,opts){
 			var me = this;
 			var gridpanel = field.getPicker();
@@ -45,17 +60,17 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 				return;
 			}
 			var setEmpty=true;
+			//查询列表中没有匹配值，则将值设为空
 			if(undefined!=store){
 				store.each(function(item,index){
 					if(item.data.name==value){
-						me.hiddenField.setValue(item.data.guid);
+						me.setOrgValue(item.data.name,item.data.guid);
 						setEmpty = false;
 					}
 				},this);
 			}
 			if(setEmpty){
-				field.hiddenField.setValue("");
-				field.setValue("");
+				this.setOrgValue('','');
 			}
 			
 		}
@@ -70,7 +85,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 			this.createPicker();
 		}
 	},
-
+	//获取加载树的基础数据信息
 	getFilterData : function(){
 		var filter = this.getFilters() || '{}';
 		return Ext.decode(filter);
@@ -84,7 +99,9 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	onTriggerClick:function(){
 		var me = this;
 		this.createPicker("treePanel");
+		this.setEditable(true);
 	},
+	//找到机构树主控件，默认为form下，但是有些特别情况在toolbar下，需要特别处理
 	getOtherCompement:function(){
 		var orgorg = this.getHiddenValue();
 		if(this.getParentXtype()=="form"){
@@ -108,11 +125,12 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 				return;
 			}
 			this.collapse();
-			this.setEditable(false);
+			this.matching = false;
 			this.picker=this.creatTreePanel();
 			this.picker.ownerCmp = this;
 			this.picker.setVisible(true);
 			this.expand();
+			this.focus();
 		}
 		else if("orgGridPanel"==type){
 			this.matching = true;
@@ -120,7 +138,6 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 				return;
 			}
 			this.collapse();
-			this.setEditable(true);
 			this.picker=this.createPanel();
 			this.picker.ownerCmp = this;
 			this.expand();
@@ -144,7 +161,6 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 		if(gridpanel.$className=='Ext.tree.Panel'){
 			return;
 		}
-		var orgorg = this.getHiddenValue();
 		this.blur();
 	},
 	createPanel:function(){
@@ -180,11 +196,13 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	//点击确认数据
 	onCellClick:function(_this, td, cellIndex, record, tr, rowIndex, e, eOpts ){
 		this.matching = false;
-		this.setValue(record.get('name'));
-		this.setEditable(false);
-		var orgorg = this.getHiddenValue();
-		this.hiddenField.setValue(record.get('guid'));
+		this.setOrgValue(record.get('name'),record.get('guid'));
 		this.collapse();
+	},
+	//设置当前值
+	setOrgValue:function(displayText,value){
+		this.setValue(displayText);
+		this.hiddenField.setValue(value);
 	},
 	creatTreePanel:function(){
 		var me = this;
@@ -212,7 +230,16 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 		else{
 			isExpanded = true;
 		}
-		if(data.type == "1" || ewayUser.getOrgType() == ""){//维护商
+		var defaultValue = this.hiddenField.getValue();
+		var defaultDispaly = this.getValue();
+		if(defaultValue !=""&&defaultDispaly!=""){
+			treePanel.setRootNode({
+				id: defaultValue,
+				text: defaultDispaly,
+				expanded: isExpanded
+			});
+		}
+		else if(data.type == "1" || ewayUser.getOrgType() == ""){//维护商
 			treePanel.setRootNode({
 				id: 1,
 				text: EwayLocale.commen.orgFramework,
@@ -230,14 +257,12 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	treeBeforeLoad : function(store, operation, options) {
 		store.proxy.extraParams = this.getFilterData() || {};
 	},
-
+	//选择机构树确认输入
 	onTreeItemClick : function(view,record){
-		this.setValue(record.get('text'));
-		var orgorg = this.getHiddenValue();
-		this.hiddenField.setValue(record.get('id'));
+		this.setOrgValue(record.get('text'),record.get('id'));
 		this.collapse();
 	},
-	
+	//手动输入字符串进行查询
 	onChange:function(newVal,oldVal){
 		var clearTip = this.getTrigger("clear");
 		if(undefined==clearTip){
@@ -248,6 +273,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 				this.getTrigger("clear").show();
 			}else{
 				this.getTrigger("clear").hide();
+				this.onTriggerClick();
 			}
 		}
 		if(this.editable&&!this.readOnly&&this.matching)

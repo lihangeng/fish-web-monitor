@@ -466,7 +466,8 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 			failure: function(record,operation){
 				Eway.alert( operation.getError());
 
-			 }
+			 },
+			 button:addWin.down('button[action="confirm"]')
 
 
 		});
@@ -769,7 +770,8 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 						store.load();
 					});
 				}
-			}
+			},
+			 button:win.down('button[action="confirm"]')
 
 		});
 		}else{

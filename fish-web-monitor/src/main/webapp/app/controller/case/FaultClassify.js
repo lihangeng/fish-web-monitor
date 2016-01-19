@@ -76,7 +76,8 @@ Ext.define('Eway.controller.case.FaultClassify', {
 					record.set('resolveHour', resolveHour);
 					record.set('responsorType', responsorType);
 					record.set('upgrade', upgrade);
-				}
+				},
+				button:win.down('button[action="confirm"]')
 			});
 		}
 	}

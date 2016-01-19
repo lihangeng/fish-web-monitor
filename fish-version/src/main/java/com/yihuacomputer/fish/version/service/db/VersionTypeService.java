@@ -79,8 +79,8 @@ public class VersionTypeService implements IVersionTypeService, IDeviceListener 
         	query.setDate(0,date);
         	query.setDate(1, date);
         	query.setString(2, versionType.getTypeName());
-        	query.setString(3, "0.0.0.0");
-        	query.setString(4, "0000000000000000000000000000000");
+        	query.setString(3, "");
+        	query.setString(4, "000000000000000000000000000000");
         	query.executeUpdate();
         return dao.save(this.interface2Entity(versionType, false));
     }
@@ -183,8 +183,8 @@ public class VersionTypeService implements IVersionTypeService, IDeviceListener 
                 deviceSoftVersion.setVersionNo("0");
                 deviceSoftVersion.setVersionStr("0");
             } else {
-                deviceSoftVersion.setVersionNo("0.0.0.0");
-                deviceSoftVersion.setVersionStr("0000000000000000000000000000000");
+                deviceSoftVersion.setVersionNo("");
+                deviceSoftVersion.setVersionStr("000000000000000000000000000000");
             }
             deviceSoftVersionService.add(deviceSoftVersion);
         }

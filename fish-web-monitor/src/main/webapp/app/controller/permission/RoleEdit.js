@@ -73,7 +73,7 @@ Ext.define('Eway.controller.permission.RoleEdit', {
 
 	onCheckAll : function() {
 		var addBtn = this.getAddBtn();
-		addBtn.disable();
+//		addBtn.disable();
 		var tree = this.getRoleTree();
 		var root = tree.getRootNode();
 		root.set("checked", true);
@@ -82,7 +82,7 @@ Ext.define('Eway.controller.permission.RoleEdit', {
 				child.set('checked', true);
 			});
 		});
-		addBtn.enable();
+//		addBtn.enable();
 	},
 
 	onCheckNone : function() {
@@ -177,15 +177,14 @@ Ext.define('Eway.controller.permission.RoleEdit', {
 	 		success: function(ed) {
 	 			Eway.alert(EwayLocale.updateSuccess);
 	    		win.close();
-
 	    		this.queryRoleGrid();
-
 		 	},
 	 		failure: function(record,operation){
 				Eway.alert(operation.getError());
 				record.set('name',name);
 	 		},
-		 scope: me //增加这句后，可以调用this.onQuery();
+	 		button:win.down("button[action='confirm']"),
+	 		scope: me //增加这句后，可以调用this.onQuery();
 		});
 	},
 
@@ -215,20 +214,21 @@ Ext.define('Eway.controller.permission.RoleEdit', {
 		var record = Ext.create('Eway.model.permission.Role',data);
 		this.getPermissions(record);
 		var addBtn = this.getAddBtn();
-		addBtn.disable();
+//		addBtn.disable();
 		record.set('id', 0);
 		record.save({
 			 success: function(record,operation) {
 				 Eway.alert(EwayLocale.addSuccess);
 				  win.close();
 				  this.queryRoleAdd();
-			 	},
+		 	 },
 			 failure: function(record,operation){
 					Eway.alert(operation.getError());
-					addBtn.enable();
-				 },
-		   scope: me
-			});
+//					addBtn.enable();
+			 },
+	 		 button:win.down("button[action='confirm']"),
+	 		 scope: me
+		});
 	},
 
 	queryRoleGrid :function(){

@@ -483,7 +483,6 @@ Ext.define('Eway.controller.advert.Advert', {
 	onDownConfirm : function(){
 		var win = this.getDownAdvert();
 		var btn = win.down('button[action=confirm]');
-		btn.disable();
 		var addForm = win.down("form").getForm();
 		var data = addForm.getValues();
 		var record = Ext.create("Eway.model.version.VersionDownload",data);
@@ -493,7 +492,6 @@ Ext.define('Eway.controller.advert.Advert', {
 			var allDeviceField = addForm.findField("allDevice");
 			if(Ext.isEmpty(deviceIdsField.value)&&!allDeviceField.value){
 				Ext.MessageBox.alert(EwayLocale.confirm.title,EwayLocale.msg.chooseOneDevice);
-				btn.enable();
 			}else if(allDeviceField.value&&linkGrid.getStore().getCount()==0){
 				Eway.alert(EwayLocale.msg.mustSelectDevice);
 			}else{
@@ -512,8 +510,8 @@ Ext.define('Eway.controller.advert.Advert', {
 								EwayLocale.confirm.withoutNumTaskConfirmInfo,this.goToVersionDownloadPage,this);
 					 },
 					 failure: function(ed){
-						 btn.enable();
 					 },
+					 button:btn,
 					 scope : this
 				});
 			}
@@ -802,8 +800,6 @@ Ext.define('Eway.controller.advert.Advert', {
 	//等待插卡广告页面保存
 	onAddWaitConfirm : function(){
 		var win = this.getAddWaitWin();
-		var btn = win.down('button[action=confirm]');
-//		btn.disable();
 		var addForm = win.down("form").getForm();
 		var store = Ext.StoreManager.get("advert.Advert");
 		if(addForm.isValid()){
@@ -812,29 +808,13 @@ Ext.define('Eway.controller.advert.Advert', {
 			var s1024Store = s1024.getStore();
 			if(s1024Store.getCount() == 0){
 				Eway.alert(EwayLocale.advert.mustContainerOnePicAt1024);
-				btn.enable();
 				return;
 			}
 
 			var s800 = tab.down('advertimgview[name=800]');
 			var s800Store = s800.getStore();
-			/*if(s800Store.getCount() == 0){
-				Ext.MessageBox.alert(EwayLocale.confirm.title,"800分辨率至少包含一个图片!");
-				return;
-			}*/
-
 			var s600 = tab.down('advertimgview[name=600]');
 			var s600Store = s600.getStore();
-			/*if(s600Store.getCount() == 0){
-				Ext.MessageBox.alert(EwayLocale.confirm.title,"600分辨率下至少包含一个图片!");
-				return;
-			}*/
-
-			/*if((s1024Store.getCount() !== s800Store.getCount()) || (s800Store.getCount()!== s600Store.getCount())){
-				Ext.MessageBox.alert(EwayLocale.confirm.title,"每种分辨率下的图片数量必须相等!");
-				return;
-			}*/
-
 			var data = addForm.getValues();
 			this.doSaveWait(win,data,s1024Store,s800Store,s600Store);
 		}
@@ -876,7 +856,7 @@ Ext.define('Eway.controller.advert.Advert', {
     		advertValidity : data.advertValidity,
     		resources : resources
     	});
-
+		var btn = win.down('button[action=confirm]');
     	adv.save({
 			 success: function(ed) {
 				var view = me.getEwayView();
@@ -887,9 +867,9 @@ Ext.define('Eway.controller.advert.Advert', {
 				win.close();
 			 },
 			 failure: function(record,operation){
-//				 Eway.alert(operation.request.scope.reader.jsonData.errors);
-				 Eway.alert(operation.request._operation.error.statusText);
+				Eway.alert(operation.request._operation.error.statusText);
 			 },
+			 button:btn,
 			 scope : this
 		});
 	},
@@ -904,7 +884,6 @@ Ext.define('Eway.controller.advert.Advert', {
 				Ext.MessageBox.alert(EwayLocale.confirm.title,EwayLocale.msg.mustHaveOneResource);
 			}else {
 				this.doSave(win,fss,data,store,advertType);
-				Ext.getCmp('savaAdvert').setDisabled(true)
 			}
 		}
 	},
@@ -967,16 +946,17 @@ Ext.define('Eway.controller.advert.Advert', {
     		advertValidity : data.advertValidity,
     		resources : resources
     	});
-
+		var btn = win.down('button[action=confirm]');
     	adv.save({
 			 success: function(ed) {
 				 me.onQuery();
 				 Eway.alert(EwayLocale.msg.createSuccess);
-				win.close();
+				 win.close();
 			 },
 			 failure: function(record,operation){
 				 Eway.alert(operation.request.scope.reader.jsonData.errors);
 			 },
+			 button:btn,
 			 scope : this
 		});
 	}

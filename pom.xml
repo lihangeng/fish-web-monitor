@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.yihuacomputer.fish</groupId>
 	<artifactId>atmvs</artifactId>
-	<version>2.1.0.1-SNAPSHOT</version>
+	<version>2.1.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
 		<module>fish-common</module>

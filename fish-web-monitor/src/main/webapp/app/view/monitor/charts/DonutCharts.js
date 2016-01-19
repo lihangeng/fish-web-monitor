@@ -38,7 +38,10 @@ Ext.define('Eway.view.monitor.charts.DonutCharts', {
                 donut: 50,
                 label: {
                     field: this.getAngleField(),
-                    display: 'outside'
+                    display: 'outside',
+                    renderer: function(a,b,c,d,e) {
+                        return me.myDataStore.data.items[e].get(me.getAngleField())+": "+me.myDataStore.data.items[e].get(me.getLabelField());
+                    }
                 },
                 useDarkerStrokeColor:false,
 
@@ -47,7 +50,7 @@ Ext.define('Eway.view.monitor.charts.DonutCharts', {
                     trackMouse: true,
                     style: 'background: #fff',
                     renderer: function(storeItem, item) {
-                        this.setHtml(storeItem.get(me.getAngleField()));
+                        this.setHtml(storeItem.get(me.getAngleField())+": "+storeItem.get(me.getLabelField()));
                     }
                 }
             }],
