@@ -443,7 +443,7 @@ Ext.apply(EwayLocale,{
 			clickBank:'Half Non-Bank',//EwayLocale.machine.device.clickBank
 			managePerson:'Manager',//EwayLocale.machine.device.managePerson
 			maintainPerson:'Maintenance Engineers',//EwayLocale.machine.device.maintainPerson
-			to:'至',//EwayLocale.machine.device.to
+			to:'To',//EwayLocale.machine.device.to
 
 
 
