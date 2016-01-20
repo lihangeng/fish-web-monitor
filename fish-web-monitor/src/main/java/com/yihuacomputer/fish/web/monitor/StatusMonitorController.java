@@ -284,6 +284,14 @@ public class StatusMonitorController {
                 stateCode = status.getStatusPbk().getCode();
                 break;
             }
+            case CAM: {
+                stateCode = status.getStatusCam().getCode();
+                break;
+            }
+            case BCR: {
+                stateCode = status.getStatusBcr().getCode();
+                break;
+            }
         }
 
         IStateAnalysis analysis = this.getStateCode(stateCode, deviceMod);
