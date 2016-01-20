@@ -50,6 +50,14 @@ public enum DeviceMod {
 	 */
 	FGP("DeviceMod.FGP") ,
 	/**
+	 * 二维码
+	 */
+	BCR("DeviceMod.BCR") ,
+	/**
+	 * 摄像头
+	 */
+	CAM("DeviceMod.CAM") ,
+	/**
 	 * 身份证扫描仪
 	 */
 	ISC("DeviceMod.ISC") ;
