@@ -7,7 +7,7 @@ Ext.apply(EwayLocale,{
 		needRestart:'Need Reboot For Upgrade',//EwayLocale.versionType.needRestart
 		devTypeOfUser:'Suitable Device Type',//EwayLocale.versionType.devTypeOfUser
 		winTitle:'Application Type',//EwayLocale.versionType.winTitle
-		versionTypeNameRegText:'Just for 1-30 character ‘a-z’ or ‘A-Z’、number‘0-9’、minussign‘-’、underline‘_’'//EwayLocale.versionType.versionTypeNameRegText
+		versionTypeNameRegText:'Just For 1-30 Character ‘a-z’ Or ‘A-Z’、number‘0-9’、minussign‘-’、underline‘_’'//EwayLocale.versionType.versionTypeNameRegText
 	},
 	statics:{
 		title:'Distribution Statitics',//EwayLocale.statics.title
@@ -25,110 +25,110 @@ Ext.apply(EwayLocale,{
 		updateTitle:'Modify',//EwayLocale.advert.updateTitle
 		downloadButton:'Deploy',//EwayLocale.advert.downloadButton
 		preview:'Preview',//EwayLocale.advert.preview
-		preview1024:'Preview 1024 resolution',//EwayLocale.advert.preview1024
-		preview800:'Preview 800 resolution',//EwayLocale.advert.preview800
-		preview600:'Preview 600 resolution',//EwayLocale.advert.preview600
+		preview1024:'Preview 1024 Resolution',//EwayLocale.advert.preview1024
+		preview800:'Preview 800 Resolution',//EwayLocale.advert.preview800
+		preview600:'Preview 600 Resolution',//EwayLocale.advert.preview600
 		id:'ID',//EwayLocale.advert.id
 		type:'Advert Type',//EwayLocale.advert.type
-		downType:'Issuing way',//EwayLocale.advert.downType
-		validity:'Expiry date',//EwayLocale.advert.validity
+		downType:'Issuing Way',//EwayLocale.advert.downType
+		validity:'Expiry Date',//EwayLocale.advert.validity
 		createdTime:'Created Time',//EwayLocale.advert.createdTime
 		userName:'Creater',//EwayLocale.advert.userName
-		versionStatus:'Version status',//EwayLocale.advert.versionStatus
-		advertVersionFile:'Version file',//EwayLocale.advert.advertVersionFile
-		createdTimeStart:'Create time from',//EwayLocale.advert.createdTimeStart
+		versionStatus:'Version Status',//EwayLocale.advert.versionStatus
+		advertVersionFile:'Version File',//EwayLocale.advert.advertVersionFile
+		createdTimeStart:'Create Time From',//EwayLocale.advert.createdTimeStart
 		createdTimeStop:'To',//EwayLocale.advert.createdTimeStop
 		downloadAdvertConfig:'Deploy Settings',//EwayLocale.advert.downloadAdvertConfig
-		versionType:'Version type',//EwayLocale.advert.versionType
-		jobPriority:'Job priority',//EwayLocale.advert.jobPriority
-		jobType:'Job type',//EwayLocale.advert.jobType
-		toVersionButton:'Has not generate version information,click button to [generate version]。',//EwayLocale.advert.toVersionButton
+		versionType:'Version Type',//EwayLocale.advert.versionType
+		jobPriority:'Job Priority',//EwayLocale.advert.jobPriority
+		jobType:'Job Type',//EwayLocale.advert.jobType
+		toVersionButton:'Has Not Generate Version Information,ClickButton To [generate Version]。',//EwayLocale.advert.toVersionButton
 		playTime:'Play Time',//EwayLocale.advert.playTime
 		beginDate:'Start Date',//EwayLocale.advert.beginDate
 		endDate:'End Date',//EwayLocale.advert.endDate
 		beginTime:'Start Time',//EwayLocale.advert.beginTime
 		endTime:'End Time',//EwayLocale.advert.endTime
-		fileSize:'Resource size',//EwayLocale.advert.fileSize
-		content:'Content of play resource ',//EwayLocale.advert.content
+		fileSize:'Resource Size',//EwayLocale.advert.fileSize
+		content:'Content Of Play Resource',//EwayLocale.advert.content
 		advertConfig:'Settings',//EwayLocale.advert.advertConfig
-		addIdleTitle:'Add idle advertisement Info',//EwayLocale.advert.addIdleTitle
-		addIdleMore:'Add resource of advertisement again',//EwayLocale.advert.addIdleMore
-		advertBasicInfo:'Basic info',//EwayLocale.advert.advertBasicInfo
-		idleAdvertInfo:'Idle advertisement',//EwayLocale.advert.idleAdvertInfo
-		advertValidity:'Expiry date',//EwayLocale.advert.advertValidity
-		validityTemp:'Play temporary',//EwayLocale.advert.validityTemp
-		validityAlways:'Play forever',//EwayLocale.advert.validityAlways
-		idleAdvertResConfig:'Set the resource of idle advertisement',//EwayLocale.advert.idleAdvertResConfig
-		addTransTitle:'Add information of transacton-advertisement',//EwayLocale.advert.addTransTitle
-		transInfoAdvert:'Page of transcatiion-advertisement',//EwayLocale.advert.transInfoAdvert
-		transAdvertResConfig:'Set the resource of transacton-advertisement-page',//EwayLocale.advert.transAdvertResConfig
-		addTextTitle:'Add information of text advertisement',//EwayLocale.advert.addTextTitle
-		textAdvertResConfig:'Set the resource of rolling-characters-advertisement',//EwayLocale.advert.textAdvertResConfig
-		addAnnoucementTitle:'Add announcement',//EwayLocale.advert.addAnnoucementTitle
-		annoucementBasicInfo:'Basic information of announcement ',//EwayLocale.advert.annoucementBasicInfo
+		addIdleTitle:'Add Idle Advertisement Info',//EwayLocale.advert.addIdleTitle
+		addIdleMore:'Add Resource Of Advertisement Again',//EwayLocale.advert.addIdleMore
+		advertBasicInfo:'Basic Info',//EwayLocale.advert.advertBasicInfo
+		idleAdvertInfo:'Idle Advertisement',//EwayLocale.advert.idleAdvertInfo
+		advertValidity:'Expiry Date',//EwayLocale.advert.advertValidity
+		validityTemp:'Play Temporary',//EwayLocale.advert.validityTemp
+		validityAlways:'Play Forever',//EwayLocale.advert.validityAlways
+		idleAdvertResConfig:'Set The Resource Of Idle Advertisement',//EwayLocale.advert.idleAdvertResConfig
+		addTransTitle:'Add Information Of Transacton-advertisement',//EwayLocale.advert.addTransTitle
+		transInfoAdvert:'Page Of Transcatiion-advertisement',//EwayLocale.advert.transInfoAdvert
+		transAdvertResConfig:'Set The Resource Of Transacton-advertisement-page',//EwayLocale.advert.transAdvertResConfig
+		addTextTitle:'Add Information Of Text Advertisement',//EwayLocale.advert.addTextTitle
+		textAdvertResConfig:'Set The Resource Of Rolling-characters-advertisement',//EwayLocale.advert.textAdvertResConfig
+		addAnnoucementTitle:'Add Announcement',//EwayLocale.advert.addAnnoucementTitle
+		annoucementBasicInfo:'Basic Information Of Announcement',//EwayLocale.advert.annoucementBasicInfo
 		annoucementInfoAdvert:'Announcement',//EwayLocale.advert.annoucementInfoAdvert
-		annoucementAdvertResConfig:'Set the resource of announcement-advertisement',//EwayLocale.advert.annoucementAdvertResConfig
+		annoucementAdvertResConfig:'Set The Resource Of Announcement-advertisement',//EwayLocale.advert.annoucementAdvertResConfig
 		advertTypeIdle:'Idle Advert',//EwayLocale.advert.advertTypeIdle
 		advertTypeText:'Text Advert',//EwayLocale.advert.advertTypeText
-		annoucementMoreTitle:'Add announcement',//EwayLocale.advert.annoucementMoreTitle
-		annoucementContext:'Comment of announcement',//EwayLocale.advert.annoucementContext
-		annoucementContextRegText:'Blank is not allowed',//EwayLocale.advert.annoucementContextRegText
+		annoucementMoreTitle:'Add Announcement',//EwayLocale.advert.annoucementMoreTitle
+		annoucementContext:'Comment Of Announcement',//EwayLocale.advert.annoucementContext
+		annoucementContextRegText:'Blank Is Not Allowed',//EwayLocale.advert.annoucementContextRegText
 		times:'Duration',//EwayLocale.advert.times
-		timesTips:'Unit:second,tip:duration below 60 second will be better',//EwayLocale.advert.timesTips
+		timesTips:'Unit:second,Tip:durationBelow 60 Second Will Be Better',//EwayLocale.advert.timesTips
 		hourDisplay:'Hour',//EwayLocale.advert.hourDisplay
 		minuteDisplay:'Minute',//EwayLocale.advert.minuteDisplay
 		secondeDisplay:'Second',//EwayLocale.advert.secondeDisplay
-		textMoreTitle:'Add page with rolling-character',//EwayLocale.advert.textMoreTitle
-		textContext:'Rolling character',//EwayLocale.advert.textContext
-		idleMoreTitle:'Add page of idle advertisement',//EwayLocale.advert.idleMoreTitle
-		chooseMediaFile:'Please choose media file',//EwayLocale.advert.chooseMediaFile
-		uploadResource:'Upload resource...',//EwayLocale.advert.uploadResource
-		uploadResourceBlank:'Please upload resource...',//EwayLocale.advert.uploadResourceBlank
-		uploadRegText:'Unsupported resource uploaded ,only .jpg,.aiv file can be uploaded',//EwayLocale.advert.uploadRegText
-		resourceFormatTips:'Only .jpg,.avi file is supported',//EwayLocale.advert.resourceFormatTips
-		resourceAlias:'File name after modified',//EwayLocale.advert.resourceAlias
-		transMoreTitle:'Add page of transaction advertisement',//EwayLocale.advert.transMoreTitle
-		chooseMediaFile:'Please choose media file',//EwayLocale.advert.chooseMediaFile
-		uploadResource:'Upload resource...',//EwayLocale.advert.uploadResource
-		uploadResourceBlank:'Please upload resource',//EwayLocale.advert.uploadResourceBlank
-		addMorePic:'Add a Picture',//EwayLocale.advert.addMorePic
-		uploadRegText:'Unsupported resource uploaded ,only .jpg,.aiv file can be uploaded',//EwayLocale.advert.uploadRegText
-		resourceFormatTips:'Only .jpg,.avi file is supported',//EwayLocale.advert.resourceFormatTips
-		resourceAlias:'File name after modified',//EwayLocale.advert.resourceAlias
+		textMoreTitle:'Add Page With Rolling-character',//EwayLocale.advert.textMoreTitle
+		textContext:'Rolling Character',//EwayLocale.advert.textContext
+		idleMoreTitle:'Add Page Of Idle Advertisement',//EwayLocale.advert.idleMoreTitle
+		chooseMediaFile:'Please Choose Media File',//EwayLocale.advert.chooseMediaFile
+		uploadResource:'Upload Resource...',//EwayLocale.advert.uploadResource
+		uploadResourceBlank:'Please Upload Resource...',//EwayLocale.advert.uploadResourceBlank
+		uploadRegText:'Unsupported Resource Uploaded,Only.jpg,.aivFile Can Be Uploaded',//EwayLocale.advert.uploadRegText
+		resourceFormatTips:'Only .jpg,.aviFile Is Supported',//EwayLocale.advert.resourceFormatTips
+		resourceAlias:'File Name After Modified',//EwayLocale.advert.resourceAlias
+		transMoreTitle:'Add Page Of Transaction Advertisement',//EwayLocale.advert.transMoreTitle
+		chooseMediaFile:'Please Choose Media File',//EwayLocale.advert.chooseMediaFile
+		uploadResource:'Upload Resource...',//EwayLocale.advert.uploadResource
+		uploadResourceBlank:'Please Upload Resource',//EwayLocale.advert.uploadResourceBlank
+		addMorePic:'Add A Picture',//EwayLocale.advert.addMorePic
+		uploadRegText:'Unsupported Resource Uploaded,Only.jpg,.aivFile Can Be Uploaded',//EwayLocale.advert.uploadRegText
+		resourceFormatTips:'Only .jpg,.aviFile Is Supported',//EwayLocale.advert.resourceFormatTips
+		resourceAlias:'File Name After Modified',//EwayLocale.advert.resourceAlias
 		advertDownMethodCover:'Override',//EwayLocale.advert.advertDownMethodCover
-		uploading:'Resource uploading...',//EwayLocale.advert.uploading
-		advertPreviewTitle0:'Preview advertisement (Total ',//EwayLocale.advert.advertPreviewTitle0
-		advertPreviewTitle1:' resources,play the no.',//EwayLocale.advert.advertPreviewTitle1
-		advertPreviewTitle2:' at the present) ',//EwayLocale.advert.advertPreviewTitle2
-		choosedAdvertRes:'You have choosed',//EwayLocale.advert.choosedAdvertRes
-		limitNumberTenForEveryResolution:'Only upload up to 10 pictures at each resolution.',//EwayLocale.advert.limitNumberTenForEveryResolution
-		mustContainerOnePicAt1024:'Under the 1024 resolution contains at least one picture',//EwayLocale.advert.mustContainerOnePicAt1024
-		deleteAdvertResource:'Delete the picture',//EwayLocale.advert.deleteAdvertResource
+		uploading:'Resource Uploading...',//EwayLocale.advert.uploading
+		advertPreviewTitle0:'Preview Advertisement (Total',//EwayLocale.advert.advertPreviewTitle0
+		advertPreviewTitle1:' Resources,PlayThe No.',//EwayLocale.advert.advertPreviewTitle1
+		advertPreviewTitle2:' At The Present)',//EwayLocale.advert.advertPreviewTitle2
+		choosedAdvertRes:'You Have Choosed',//EwayLocale.advert.choosedAdvertRes
+		limitNumberTenForEveryResolution:'Only Upload Up To 10 Pictures At Each Resolution.',//EwayLocale.advert.limitNumberTenForEveryResolution
+		mustContainerOnePicAt1024:'Under The 1024 Resolution Contains At Least One Picture',//EwayLocale.advert.mustContainerOnePicAt1024
+		deleteAdvertResource:'Delete The Picture',//EwayLocale.advert.deleteAdvertResource
 		fileName:'File Name',//EwayLocale.advert.fileName
 		resourceName:'Resource Name',//EwayLocale.advert.resourceName
-		perviewAdertWithIEBrowse:'Unsupported preview the video without IE explorer.',//EwayLocale.advert.perviewAdertWithIEBrowse
+		perviewAdertWithIEBrowse:'Unsupported Preview The Video Without IE Explorer.',//EwayLocale.advert.perviewAdertWithIEBrowse
 		fileFormatTipsInfo:"<font color='red'>Upload picture format is not supported, only upload .jpg format images</font>",//EwayLocale.advert.fileFormatTipsInfo
-		idleAdvertUpTipsInfo:'<font color="red">Only supports .jpg and .gif format images; each resolution upload up to 10 pictures; each picture maximum 5M</font>',//EwayLocale.advert.idleAdvertUpTipsInfo
+		idleAdvertUpTipsInfo:'<font Color="red">Only Supports .jpg And .gif Format Images; Each Resolution Upload Up To 10 Pictures; Each Picture Maximum 5M</font>',//EwayLocale.advert.idleAdvertUpTipsInfo
 		configTitle:'Detail Settings'//EwayLocale.advert.configTitle
 	},
 	
 	version:{
 		selectDeviceInfo0:"Selected Devices (<font color='red'>",//EwayLocale.version.selectDeviceInfo0
 		selectDeviceInfo1:"</font>)",//EwayLocale.version.selectDeviceInfo1
-		addVersionTitle:'Add Version information',//EwayLocale.version.addVersionTitle
-		batchTaskName:'Batch task name',//EwayLocale.version.batchTaskName
-		batchTaskNameEmpty:'Example:****first requirement update',//EwayLocale.version.batchTaskNameEmpty
-		UpdateTitle:'Update version information',//EwayLocale.version.UpdateTitle
-		addJobTitle:'Set version information',//EwayLocale.version.addJobTitle
-		downloadVersionId:'Issue version ID',//EwayLocale.version.downloadVersionId
-		taskType:'Task type',//EwayLocale.version.taskType
+		addVersionTitle:'Add Version Information',//EwayLocale.version.addVersionTitle
+		batchTaskName:'Batch Task Name',//EwayLocale.version.batchTaskName
+		batchTaskNameEmpty:'Example:****first Requirement Update',//EwayLocale.version.batchTaskNameEmpty
+		UpdateTitle:'Update Version Information',//EwayLocale.version.UpdateTitle
+		addJobTitle:'Set Version Information',//EwayLocale.version.addJobTitle
+		downloadVersionId:'Issue Version ID',//EwayLocale.version.downloadVersionId
+		taskType:'Task Type',//EwayLocale.version.taskType
 		taskTypeManual:'Manual Update',//EwayLocale.version.taskTypeManual
 		taskTypeAuto:'Auto Update',//EwayLocale.version.taskTypeAuto
-		taskTypeScheduler:'Job plan',//EwayLocale.version.taskTypeScheduler
-		planTime:'Plan to execute time',//EwayLocale.version.planTime
+		taskTypeScheduler:'Job Plan',//EwayLocale.version.taskTypeScheduler
+		planTime:'Plan To Execute Time',//EwayLocale.version.planTime
 		selectableDevice:'Selectable Devices',//EwayLocale.version.selectableDevice
 		linkedDevice:'Selected Devices',//EwayLocale.version.linkedDevice
-		downloadVerFile:'Download version file',//EwayLocale.version.downloadVerFile
+		downloadVerFile:'Download Version File',//EwayLocale.version.downloadVerFile
 		installPath:'Install Path',//EwayLocale.version.installPath
 		View:{
 			title:'Patch', //EwayLocale.version.View.title
@@ -138,15 +138,15 @@ Ext.apply(EwayLocale,{
 			downLoaded:'DownLoaded',//EwayLocale.version.View.downLoaded
 			waitting:'Waitting',//EwayLocale.version.View.waitting
 			versionPath:'Version Path',//EwayLocale.version.View.versionPath
-			versionPathRegText:'Please follow the file-path rule:1.file`s name must contains (a-z A-Z) or (0-9) or (_)or (-);2.file-path must split by (/);3.uppercase and lowercase is the same; for example:E:/yihua',//EwayLocale.version.View.versionPathRegText
-			versionPathDesc:'(path of version file be installed)',//EwayLocale.version.View.versionPathDesc
+			versionPathRegText:'Please Follow The File-path Rule:1.file`s Name Must Contains (a-z A-Z) Or (0-9) Or (_)or (-);2.file-path Must Split By (/);3.uppercase And Lowercase Is The Same; For Example:E:/yihua',//EwayLocale.version.View.versionPathRegText
+			versionPathDesc:'(path Of Version File Be Installed)',//EwayLocale.version.View.versionPathDesc
 			versionPerson:'Creater',//EwayLocale.version.View.versionPerson
 			versionType:'Version Type',//EwayLocale.version.View.versionType
 			versionFile:'Version File',//EwayLocale.version.View.versionFile
 			versionFileButton:'Choose...',//EwayLocale.version.View.versionFileButton
-			versionFileRegexText:'Only .zip or .rar file can be uploaded',//EwayLocale.version.View.versionFileRegexText
-			versionFileUploadMsg:'File uploading...',//EwayLocale.version.View.versionFileUploadMsg
-			versionFileEmpty:'Please zip the version file(or folder) to .zip or .rar format',//EwayLocale.version.View.versionFileEmpty
+			versionFileRegexText:'Only .zip Or .rar File Can Be Uploaded',//EwayLocale.version.View.versionFileRegexText
+			versionFileUploadMsg:'File Uploading...',//EwayLocale.version.View.versionFileUploadMsg
+			versionFileEmpty:'Please Zip The Version File(or Folder) To .zip Or .rar Format',//EwayLocale.version.View.versionFileEmpty
 			versionTypeCode:'Code',//EwayLocale.version.View.versionTypeCode
 			versionTypeName:'Name',//EwayLocale.version.View.versionTypeName
 			versionTypeId:'ID',//EwayLocale.version.View.versionTypeId
@@ -161,19 +161,19 @@ Ext.apply(EwayLocale,{
 			autoUpdateNo:'No',//EwayLocale.version.View.autoUpdateNo
 			autoUpdateEmptyText:'All', //EwayLocale.version.View.autoUpdateEmptyText
 			dependVersion:'Dependented Version',//EwayLocale.version.View.dependVersion
-			dependVersionEmptyText:'Please select type dependent on', //EwayLocale.version.View.dependVersionEmptyText
-			execBefore:'Execute script before update',//EwayLocale.version.View.execBefore
-			execBeforeEmptyText:'Please input the file in the update package which name is end with bat or cmd',//EwayLocale.version.View.execBeforeEmptyText
-			execBeforeRegexText:'Only the file which name end with "bat" or "cmd" can be inputed',//EwayLocale.version.View.execBeforeRegexText
+			dependVersionEmptyText:'Please Select Type Dependent On', //EwayLocale.version.View.dependVersionEmptyText
+			execBefore:'Execute Script Before Update',//EwayLocale.version.View.execBefore
+			execBeforeEmptyText:'Please Input The File In The Update Package Which Name Is End With Bat Or Cmd',//EwayLocale.version.View.execBeforeEmptyText
+			execBeforeRegexText:'Only The File Which Name End With "bat" Or "cmd" Can Be Inputed',//EwayLocale.version.View.execBeforeRegexText
 			versionDesc:'Description',//EwayLocale.version.View.versionDesc
-			versionDescEmpty:'Please describe this version with words (At most 20 words)',//EwayLocale.version.View.versionDescEmpty
+			versionDescEmpty:'Please Describe This Version With Words (At Most 20 Words)',//EwayLocale.version.View.versionDescEmpty
 			otherConfigTitle:'Additional Settings',//EwayLocale.version.View.otherConfigTitle
-			otherConfigAutoDown:'Allow auto update ',//EwayLocale.version.View.otherConfigAutoDown
-			otherConfigUncompress:'Auto unzip',//EwayLocale.version.View.otherConfigUncompress
+			otherConfigAutoDown:'Allow Auto Update',//EwayLocale.version.View.otherConfigAutoDown
+			otherConfigUncompress:'Auto Unzip',//EwayLocale.version.View.otherConfigUncompress
 			versionServerPath:'File Path In Server', //EwayLocale.version.View.versionServerPath
 			versionName:'Name',//EwayLocale.version.View.versionName
-			downloadVersionName:'Version issued',//EwayLocale.version.View.downloadVersionName
-			downloadVersionNameEmpty:'Please choose a version which you want to issue',//EwayLocale.version.View.downloadVersionNameEmpty
+			downloadVersionName:'Version Issued',//EwayLocale.version.View.downloadVersionName
+			downloadVersionNameEmpty:'Please Choose A Version Which You Want To Issue',//EwayLocale.version.View.downloadVersionNameEmpty
 			distributionPic:'Patch Distribution',//EwayLocale.version.View.distributionPic
 			job:{
 				newCreate:'New', //EwayLocale.version.View.job.newCreate
@@ -185,7 +185,7 @@ Ext.apply(EwayLocale,{
 			}
 		},
 		VersionInstallInfo:{
-			title:'Chart of version installed count' //EwayLocale.version.VersionInstallInfo.title
+			title:'Chart Of Version Installed Count' //EwayLocale.version.VersionInstallInfo.title
 		},
 		jobPriority:{
 			hight:'Hight',//EwayLocale.version.jobPriority.hight
@@ -199,17 +199,17 @@ Ext.apply(EwayLocale,{
 		taskStatus:{
 			news:'New',//EwayLocale.version.taskStatus.news
 			running:'Running',//EwayLocale.version.taskStatus.running
-			noticed:'Notice successfully',//EwayLocale.version.taskStatus.noticed
-			noticedFail:'Notice failed',//EwayLocale.version.taskStatus.noticedFail
+			noticed:'Notice Successfully',//EwayLocale.version.taskStatus.noticed
+			noticedFail:'Notice Failed',//EwayLocale.version.taskStatus.noticedFail
 			downloaded:'Issued',//EwayLocale.version.taskStatus.downloaded
-			downloadedFail:'Issue failed',//EwayLocale.version.taskStatus.downloadedFail
+			downloadedFail:'Issue Failed',//EwayLocale.version.taskStatus.downloadedFail
 			deployed:'Installing',//EwayLocale.version.taskStatus.deployed
 			deployedWait:'WaitInstall',//EwayLocale.version.taskStatus.deployedWait
-			deployedFail:'Install failed',//EwayLocale.version.taskStatus.deployedFail
+			deployedFail:'Install Failed',//EwayLocale.version.taskStatus.deployedFail
 			checked:'Finish',//EwayLocale.version.taskStatus.checked
 			noticeOk:'Noticed',//EwayLocale.version.taskStatus.noticeOk
-			taskResetSuccessTips:'Success reset task!',//EwayLocale.version.taskStatus.taskResetSuccessTips
-			taskResetFailTips : 'Fail reset task！',//EwayLocale.version.taskStatus.taskResetFailTips
+			taskResetSuccessTips:'Success Reset Task!',//EwayLocale.version.taskStatus.taskResetSuccessTips
+			taskResetFailTips : 'Fail Reset Task!',//EwayLocale.version.taskStatus.taskResetFailTips
 			noticeFail:'Noticed Fail',//EwayLocale.version.taskStatus.noticeFail
 			downloading:'Issueing'//EwayLocale.version.taskStatus.downloading
 		},
@@ -221,63 +221,63 @@ Ext.apply(EwayLocale,{
 		download:{
 			title:'Deployment Monitor',//EwayLocale.version.download.title
 			updateTitle:'Update Version Info',//EwayLocale.version.download.updateTitle
-			taskQueryTips:'Query job detail by condition',//EwayLocale.version.download.taskQueryTips
-			autoRefresh:'Start auto refresh',//EwayLocale.version.download.autoRefresh
-			stopAutoRefresh:'Stop auto refresh',//EwayLocale.version.download.stopAutoRefresh
+			taskQueryTips:'Query Job Detail By Condition',//EwayLocale.version.download.taskQueryTips
+			autoRefresh:'Start Auto Refresh',//EwayLocale.version.download.autoRefresh
+			stopAutoRefresh:'Stop Auto Refresh',//EwayLocale.version.download.stopAutoRefresh
 			cancelBatch:'Batch Cancel',//EwayLocale.version.download.cancelBatch
-			autoRefreshTips:'Refresh periodic 60 second',//EwayLocale.version.download.autoRefreshTips
+			autoRefreshTips:'Refresh Periodic 60 Second',//EwayLocale.version.download.autoRefreshTips
 			resetTaskStatus:'Reset Status',//EwayLocale.version.download.resetTaskStatus
-			selectTask:'Please choose a task record！',//EwayLocale.version.download.selectTask
+			selectTask:'Please Choose A Task Record!',//EwayLocale.version.download.selectTask
 			selectAllDevice:'All Devices',//EwayLocale.version.download.selectAllDevice
-			checkedTaskCantResetTips:'Non-running task can not be reset！',//EwayLocale.version.download.checkedTaskCantResetTips
-			taskExportTips:'Export all issue result of job selected'//EwayLocale.version.download.taskExportTips
+			checkedTaskCantResetTips:'Non-running Task Can Not Be Reset!',//EwayLocale.version.download.checkedTaskCantResetTips
+			taskExportTips:'Export All Issue Result Of Job Selected'//EwayLocale.version.download.taskExportTips
 		},
 		task:{
-			jobBatchName:'Job batch name',//EwayLocale.version.task.jobBatchName
-			patchVersion:'Distribute version',//EwayLocale.version.task.patchVersion
-			taskStatus:'Task status',//EwayLocale.version.task.taskStatus
-			beforeUpdate:'Version before distribute',//EwayLocale.version.task.beforeUpdate
-			exceptVersion:'Version expect',//EwayLocale.version.task.exceptVersion
-			actionTime:'Execute time',//EwayLocale.version.task.actionTime
-			downSource:'Source download',//EwayLocale.version.task.downSource
-			planTime:'Plan time',//EwayLocale.version.task.planTime
-			excuteMachine:'Execute machine',//EwayLocale.version.task.excuteMachine
+			jobBatchName:'Job Batch Name',//EwayLocale.version.task.jobBatchName
+			patchVersion:'Distribute Version',//EwayLocale.version.task.patchVersion
+			taskStatus:'Task Status',//EwayLocale.version.task.taskStatus
+			beforeUpdate:'Version Before Distribute',//EwayLocale.version.task.beforeUpdate
+			exceptVersion:'Version Expect',//EwayLocale.version.task.exceptVersion
+			actionTime:'Execute Time',//EwayLocale.version.task.actionTime
+			downSource:'Source Download',//EwayLocale.version.task.downSource
+			planTime:'Plan Time',//EwayLocale.version.task.planTime
+			excuteMachine:'Execute Machine',//EwayLocale.version.task.excuteMachine
 			restartATM:'Restart ATM',//EwayLocale.version.task.restartATM
-			restartATMTips:'Confirm execute reboot command?it may brings some risk.',//EwayLocale.version.task.restartATMTips
-			sendRestartCmd:'Reboot command has been sent!',//EwayLocale.version.task.sendRestartCmd
-			cancelDownloadSuccess:'Cancel issue successfully!',//EwayLocale.version.task.cancelDownloadSuccess
-			cancelDownload:'Cancel issue',//EwayLocale.version.task.cancelDownload
-			jobName:'Job name',//EwayLocale.version.task.jobName
-			jobStatus:'Job status',//EwayLocale.version.task.jobStatus
-			chooseTitleDevice:'Choose machine',//EwayLocale.version.task.chooseTitleDevice
+			restartATMTips:'Confirm Execute Reboot Command?it May Brings Some Risk.',//EwayLocale.version.task.restartATMTips
+			sendRestartCmd:'Reboot Command Has Been Sent!',//EwayLocale.version.task.sendRestartCmd
+			cancelDownloadSuccess:'Cancel Issue Successfully!',//EwayLocale.version.task.cancelDownloadSuccess
+			cancelDownload:'Cancel Issue',//EwayLocale.version.task.cancelDownload
+			jobName:'Job Name',//EwayLocale.version.task.jobName
+			jobStatus:'Job Status',//EwayLocale.version.task.jobStatus
+			chooseTitleDevice:'Choose Machine',//EwayLocale.version.task.chooseTitleDevice
 			closeWindow:'Close',//EwayLocale.version.task.closeWindow
-			queryByFilter:'Query by filter',//EwayLocale.version.task.queryByFilter
-			displayNumPerPage:'Display on each page',//EwayLocale.version.task.displayNumPerPage
-			targetVersionNo:'Target version',//EwayLocale.version.task.targetVersionNo
-			downloadStatus:'Issue status',//EwayLocale.version.task.downloadStatus
-			downloadResult:'Issue result',//EwayLocale.version.task.downloadResult
-			cancelJob:'Cancel job',//EwayLocale.version.task.cancelJob
+			queryByFilter:'Query By Filter',//EwayLocale.version.task.queryByFilter
+			displayNumPerPage:'Display On Each Page',//EwayLocale.version.task.displayNumPerPage
+			targetVersionNo:'Target Version',//EwayLocale.version.task.targetVersionNo
+			downloadStatus:'Issue Status',//EwayLocale.version.task.downloadStatus
+			downloadResult:'Issue Result',//EwayLocale.version.task.downloadResult
+			cancelJob:'Cancel Job',//EwayLocale.version.task.cancelJob
 			jobId:'Job ID',	//EwayLocale.version.task.jobId
-			selectDownloadDevice:'Choose device to issue',	//EwayLocale.version.task.selectDownloadDevice
-			versionNoBeforeUpdate:'Version before update',	//EwayLocale.version.task.versionNoBeforeUpdate
-			versionNoAfterUpdate:'Target version no.',	//EwayLocale.version.task.versionNoAfterUpdate
-			deviceVersionHis:'View device history version',	//EwayLocale.version.task.deviceVersionHis
-			downloadUser:'Issue man',	//EwayLocale.version.task.downloadUser
-			downloadTime:'Issue time',	//EwayLocale.version.task.downloadTime
-			downloadResult:'Issue result',	//EwayLocale.version.task.downloadResult
-			deviceVersionHisTitle:'Information of device history version',	//EwayLocale.version.task.deviceVersionHisTitle
-			deviceVersions:'Device version',	//EwayLocale.version.task.deviceVersions
-			deviceVersionHisTip:'View information of device history version',	//EwayLocale.version.task.deviceVersionHisTip
-			autoUpdateInfo:'Information of auto update',//EwayLocale.version.task.autoUpdateInfo
-			selectAJob:'Please choose a job.',//EwayLocale.version.task.selectAJob
+			selectDownloadDevice:'Choose Device To Issue',	//EwayLocale.version.task.selectDownloadDevice
+			versionNoBeforeUpdate:'Version Before Update',	//EwayLocale.version.task.versionNoBeforeUpdate
+			versionNoAfterUpdate:'Target Version No.',	//EwayLocale.version.task.versionNoAfterUpdate
+			deviceVersionHis:'View Device History Version',	//EwayLocale.version.task.deviceVersionHis
+			downloadUser:'Issue Man',	//EwayLocale.version.task.downloadUser
+			downloadTime:'Issue Time',	//EwayLocale.version.task.downloadTime
+			downloadResult:'Issue Result',	//EwayLocale.version.task.downloadResult
+			deviceVersionHisTitle:'Information Of Device History Version',	//EwayLocale.version.task.deviceVersionHisTitle
+			deviceVersions:'Device Version',	//EwayLocale.version.task.deviceVersions
+			deviceVersionHisTip:'View Information Of Device History Version',	//EwayLocale.version.task.deviceVersionHisTip
+			autoUpdateInfo:'Information Of Auto Update',//EwayLocale.version.task.autoUpdateInfo
+			selectAJob:'Please Choose A Job.',//EwayLocale.version.task.selectAJob
 			versionDownHisStatusPic:'&nbsp;&nbsp;StatusDistribute',//EwayLocale.version.task.versionDownHisStatusPic
 			versionNoPic:'&nbsp;&nbsp;VersionDistribute',//EwayLocale.version.task.versionNoPic
-			cantCancelCompleteJob:'Can not cancel job which status is ‘finish’.',//EwayLocale.version.task.cantCancelCompleteJob
-			doSureCancelTheJob:'Cancel the selected job?(running job can only cancel the task which has not running)',//EwayLocale.version.task.doSureCancelTheJob
+			cantCancelCompleteJob:'Can Not Cancel Job Which Status Is ‘finish’.',//EwayLocale.version.task.cantCancelCompleteJob
+			doSureCancelTheJob:'Cancel The Selected Job?(running Job Can Only Cancel The Task Which Has Not Running)',//EwayLocale.version.task.doSureCancelTheJob
 			deleting:'Deleting......',//EwayLocale.version.task.deleting
-			cancelSuccessBut:'Cancel the task in the job which has not run yet successfully,the status is "running" at the present,please refresh the list',//EwayLocale.version.task.cancelSuccessBut
-			cancelJobSuccess:'Cancel job successfully',//EwayLocale.version.task.cancelJobSuccess
-			updateResult:'Update result',	//EwayLocale.version.task.updateResult
+			cancelSuccessBut:'Cancel The Task In The Job Which Has Not Run Yet Successfully,TheStatus Is "running" At The Present,PleaseRefresh The List',//EwayLocale.version.task.cancelSuccessBut
+			cancelJobSuccess:'Cancel Job Successfully',//EwayLocale.version.task.cancelJobSuccess
+			updateResult:'Update Result',	//EwayLocale.version.task.updateResult
 			updateResultSuccess:'Successful',	//EwayLocale.version.task.updateResultSuccess
 			updateResultFailed:'Failed'	//EwayLocale.version.task.updateResultFailed
 		}

@@ -1,9 +1,9 @@
 Ext.apply(EwayLocale,{
-	addSuccess : 'Add successfully.',//EwayLocale.addSuccess
-	updateSuccess : 'Update successfully.',//EwayLocale.updateSuccess
-	deleteSuccess : 'Delete successfully.',//EwayLocale.deleteSuccess
-	choiceUpdateMsg :'Please select the record which you want to update.',//EwayLocale.choiceUpdateMsg
-	choiceDeleteMsg :'Please select the record which you want to delete.',//EwayLocale.choiceDeleteMsg
+	addSuccess : 'Add Successfully.',//EwayLocale.addSuccess
+	updateSuccess : 'Update Successfully.',//EwayLocale.updateSuccess
+	deleteSuccess : 'Delete Successfully.',//EwayLocale.deleteSuccess
+	choiceUpdateMsg :'Please Select The Record Which You Want To Update.',//EwayLocale.choiceUpdateMsg
+	choiceDeleteMsg :'Please Select The Record Which You Want To Delete.',//EwayLocale.choiceDeleteMsg
 
 	myTable:'Workbench',//EwayLocale.myTable
 	ATMV:'ATM View',//EwayLocale.ATMV
@@ -12,46 +12,46 @@ Ext.apply(EwayLocale,{
 	systemHelp:'Help',//EwayLocale.systemHelp
 	exitSystem:'Log Out',//EwayLocale.exitSystem
 	msg:{
-		perviewFailForText:'Preview failed:the charater and rolling advertisement is supported to preview',//EwayLocale.msg.perviewFailForText
-		choseResToPerview:'Please select the advertisement which you want to preview.',//EwayLocale.msg.choseResToPerview
-		noAdvertResAtTheResolution:'No allocation of advertising resources under Resolution.',//EwayLocale.msg.noAdvertResAtTheResolution
-		chooseAdvert:'Please select an advertisement.',//EwayLocale.msg.chooseAdvert
-		chooseOneDevice:'Please select a machine.',//EwayLocale.msg.chooseOneDevice
-		downLoadedAdvertCantDelete:'Delete failed:can not delete the advertisement which status is "issued" or "wait for issue".',//EwayLocale.msg.downLoadedAdvertCantDelete
-		chooseAdvertToDelete:'Please select the advertisement which you want to delete.',//EwayLocale.msg.chooseAdvertToDelete
-		generalVersionFailForDownloaded:'Generate  the version-file failed:the status "issued" advertisement can not generate version-information any more',//EwayLocale.msg.generalVersionFailForDownloaded
+		perviewFailForText:'Preview Failed:the Charater And Rolling Advertisement Is Supported To Preview',//EwayLocale.msg.perviewFailForText
+		choseResToPerview:'Please Select The Advertisement Which You Want To Preview.',//EwayLocale.msg.choseResToPerview
+		noAdvertResAtTheResolution:'No Allocation Of Advertising Resources Under Resolution.',//EwayLocale.msg.noAdvertResAtTheResolution
+		chooseAdvert:'Please Select An Advertisement.',//EwayLocale.msg.chooseAdvert
+		chooseOneDevice:'Please Select A Machine.',//EwayLocale.msg.chooseOneDevice
+		downLoadedAdvertCantDelete:'Delete Failed:can Not Delete The Advertisement Which Status Is "issued" Or "wait For Issue".',//EwayLocale.msg.downLoadedAdvertCantDelete
+		chooseAdvertToDelete:'Please Select The Advertisement Which You Want To Delete.',//EwayLocale.msg.chooseAdvertToDelete
+		generalVersionFailForDownloaded:'Generate The Version-file Failed:the Status "issued" Advertisement Can Not Generate Version-information Any More',//EwayLocale.msg.generalVersionFailForDownloaded
 		generalVersionSuccess:"Generate the version file successful",//EwayLocale.msg.generalVersionSuccess
 		createSuccess:"Create Successfully.",//EwayLocale.msg.createSuccess
-		mustHaveOneResource:'At least has one resource of advertisement!',//EwayLocale.msg.mustHaveOneResource
-		saveFileCommunicationFail:'Save failed:connection refused',//EwayLocale.msg.saveFileCommunicationFail
+		mustHaveOneResource:'At Least Has One Resource Of Advertisement!',//EwayLocale.msg.mustHaveOneResource
+		saveFileCommunicationFail:'Save Failed:connection Refused',//EwayLocale.msg.saveFileCommunicationFail
 		downloadFailForNoVersion:"Version file issue failed :no generated version-file found or version-file lost,please generate version file first.",//EwayLocale.msg.downloadFailForNoVersion
-		saveSuccess:'Save successfully',//EwayLocale.msg.saveSuccess
+		saveSuccess:'Save Successfully',//EwayLocale.msg.saveSuccess
 
-		removeSuccess:'Relieve success',//EwayLocale.msg.removeSuccess
-		removeFail:'Relieve failure',//EwayLocale.msg.removeFail
-		versionDownloaded:'Can not delete the version which status is "issued" or "wait for issue"',//EwayLocale.msg.versionDownloaded
-		selectVersionToDelete:'Please choose the version which you want to delete',//EwayLocale.msg.selectVersionToDelete
-		communicationFail:'Add failed : connction refused.',//EwayLocale.msg.communicationFail
-		sameVersionNoFail:'Add failed：the same version already exists',//EwayLocale.msg.sameVersionNoFail
-		fileSizeMaxFail:'Add failed:the max size of the file is 200M',//EwayLocale.msg.fileSizeMaxFail
-		fileUnzipFail:'Add failed: zip-file can not be unziped',//EwayLocale.msg.fileUnzipFail
-		addFileFail:'Add failed :',//EwayLocale.msg.addFileFail
-		mustSelectDevice:'please choose at least one machine.',//EwayLocale.msg.mustSelectDevice
-		selectVersionRecord:'Please choose the version which you want to issue',//EwayLocale.msg.selectVersionRecord
+		removeSuccess:'Relieve Success',//EwayLocale.msg.removeSuccess
+		removeFail:'Relieve Failure',//EwayLocale.msg.removeFail
+		versionDownloaded:'Can Not Delete The Version Which Status Is "issued" Or "wait For Issue"',//EwayLocale.msg.versionDownloaded
+		selectVersionToDelete:'Please Choose The Version Which You Want To Delete',//EwayLocale.msg.selectVersionToDelete
+		communicationFail:'Add Failed : Connction Refused.',//EwayLocale.msg.communicationFail
+		sameVersionNoFail:'Add Failed:the Same Version Already Exists',//EwayLocale.msg.sameVersionNoFail
+		fileSizeMaxFail:'Add Failed:the Max Size Of The File Is 200M',//EwayLocale.msg.fileSizeMaxFail
+		fileUnzipFail:'Add Failed: Zip-file Can Not Be Unziped',//EwayLocale.msg.fileUnzipFail
+		addFileFail:'Add Failed :',//EwayLocale.msg.addFileFail
+		mustSelectDevice:'please Choose At Least One Machine.',//EwayLocale.msg.mustSelectDevice
+		selectVersionRecord:'Please Choose The Version Which You Want To Issue',//EwayLocale.msg.selectVersionRecord
 		missVersionFile:"Version files lost,can not execute",//EwayLocale.msg.missVersionFile
 	},
 	confirm:{
 		titleSure:'Confirm',//EwayLocale.confirm.titleSure
-		todoDelete:'Delete this record?',//EwayLocale.confirm.todoDelete
+		todoDelete:'Delete This Record?',//EwayLocale.confirm.todoDelete
 		title:'Tip',//EwayLocale.confirm.title
-		withoutNumTaskConfirmInfo:'Job save successful,skip to the "Deployment Monitor" page?',//EwayLocale.confirm.withoutNumTaskConfirmInfo
-		timeout:'Session timeout, 3 seconds after the automatic jump to the system login page',//EwayLocale.confirm.timeout
+		withoutNumTaskConfirmInfo:'Job Save Successful,SkipTo The "Deployment Monitor" Page?',//EwayLocale.confirm.withoutNumTaskConfirmInfo
+		timeout:'Session Timeout,3Seconds After The Automatic Jump To The System Login Page',//EwayLocale.confirm.timeout
 		taskConfirmInfo0:' Save No.',//EwayLocale.confirm.taskConfirmInfo0
-		taskConfirmInfo1:' job sucessfully,skip to `Deployment Monitor` page?'//EwayLocale.confirm.taskConfirmInfo1
+		taskConfirmInfo1:' Job Sucessfully,SkipTo `Deployment Monitor` Page?'//EwayLocale.confirm.taskConfirmInfo1
 	},
 	button:{
 		search:'Search',//EwayLocale.button.search
-		add : 'Add', //EwayLocale.button.add
+		add : 'Add',//EwayLocale.button.add
 		update:'Update',//EwayLocale.button.update
 		remove:'Delete',//EwayLocale.button.remove
 		refresh:'Refresh',//EwayLocale.button.refresh
@@ -61,10 +61,10 @@ Ext.apply(EwayLocale,{
 		link:'Binding',//EwayLocale.button.link
 		unlink:'Delete',//EwayLocale.button.unlink
 		
-		bankOrgMove:'Migrate',  //EwayLocale.button.bankOrgMove
-		bankOrgAdmin:'Manager', //EwayLocale.button.bankOrgAdmin
+		bankOrgMove:'Migrate',//EwayLocale.button.bankOrgMove
+		bankOrgAdmin:'Manager',//EwayLocale.button.bankOrgAdmin
 		
-		bankPerlink:'Binding Devices', //EwayLocale.button.bankPerlink
+		bankPerlink:'Binding Devices',//EwayLocale.button.bankPerlink
 		sure:'Confirm',//EwayLocale.button.sure
 		confirm:'Confirm',//EwayLocale.button.confirm
 		cancle:'Cancel',//EwayLocale.button.cancle
@@ -72,14 +72,14 @@ Ext.apply(EwayLocale,{
 		pause:'Pause',//EwayLocale.button.pause
 
 		exported:'Export',//EwayLocale.button.exported
-		select:'Select', //EwayLocale.button.select
-		info :'Detail', //EwayLocale.button.info
-		exportXLS:'Export as XLS', //EwayLocale.button.exportXLS
-		exportPDF:'Export as PDF', //EwayLocale.button.exportPDF
+		select:'Select',//EwayLocale.button.select
+		info :'Detail',//EwayLocale.button.info
+		exportXLS:'Export As XLS',//EwayLocale.button.exportXLS
+		exportPDF:'Export As PDF',//EwayLocale.button.exportPDF
 
-		massExport:'Batch Import', //EwayLocale.button.massExport
-		download:'Deploy', //EwayLocale.button.download
-		downloadToolTip:'Deploy Settings', //EwayLocale.button.downloadToolTip
+		massExport:'Batch Import',//EwayLocale.button.massExport
+		download:'Deploy',//EwayLocale.button.download
+		downloadToolTip:'Deploy Settings',//EwayLocale.button.downloadToolTip
 		save:'Save',//EwayLocale.button.save
 		adminBtn:'Manager',//EwayLocale.button.adminBtn
 		personM:'Maintenancer',//EwayLocale.button.personM
@@ -97,220 +97,220 @@ Ext.apply(EwayLocale,{
 	
 	tip:{
 		search :{
-			warn:'Error input for query.',//EwayLocale.tip.search.warn
-			record:'Please choose one record'//EwayLocale.tip.search.record
+			warn:'Error Input For Query.',//EwayLocale.tip.search.warn
+			record:'Please Choose One Record'//EwayLocale.tip.search.record
 		},
 		update:{
-			one:'Only choose one record',//EwayLocale.tip.update.one
-			two:'This record can not be modified'//EwayLocale.tip.update.two
+			one:'Only Choose One Record',//EwayLocale.tip.update.one
+			two:'This Record Can Not Be Modified'//EwayLocale.tip.update.two
 		},
 		remove :{
-			none:'Please select the record which you want to delete',//EwayLocale.tip.remove.none
-			one:'Only one record can be choose to delete', //EwayLocale.tip.remove.one
+			none:'Please Select The Record Which You Want To Delete',//EwayLocale.tip.remove.none
+			one:'Only One Record Can Be Choose To Delete',//EwayLocale.tip.remove.one
 			confirm:{
-				title:'Please confirm',//EwayLocale.tip.remove.confirm.title
-				info:'Delete this record'//EwayLocale.tip.remove.confirm.info
+				title:'Please Confirm',//EwayLocale.tip.remove.confirm.title
+				info:'Delete This Record'//EwayLocale.tip.remove.confirm.info
 			},
-			error:'Delete failed:'//EwayLocale.tip.remove.error
+			error:'Delete Failed:'//EwayLocale.tip.remove.error
 		},
 		own:{
 			have:'yes',//EwayLocale.tip.own.have
 			nothing:'no'//EwayLocale.tip.own.nothing
 		},
 		right:{
-			yes:'yes', //EwayLocale.tip.right.yes
+			yes:'yes',//EwayLocale.tip.right.yes
 			no:'no' //EwayLocale.tip.right.no
 		},
 		add:{
-			error:'Add failed'//EwayLocale.tip.add.error
+			error:'Add Failed'//EwayLocale.tip.add.error
 		},
 		success:'Successfully.',//EwayLocale.tip.success
 		fail:'Failed:',//EwayLocale.tip.fail
-		phone:'Please enter the right telephone number', //EwayLocale.tip.phone
+		phone:'Please Enter The Right Telephone Number',//EwayLocale.tip.phone
 		remind:'Tip',//EwayLocale.tip.remind
-		formatPageBfMsg: 'Per page',//EwayLocale.tip.formatPageBfMsg
+		formatPageBfMsg: 'Per Page',//EwayLocale.tip.formatPageBfMsg
 		formatPageAfMsg: 'items',//EwayLocale.tip.formatPageAfMsg
 
 		unCertain:'Unknown',//EwayLocale.tip.unCertain
-		searchOfNoLegal:'There are some illegal parameters in the query condition,can not commit ',//EwayLocale.tip.searchOfNoLegal
-		choseExportDevInfo:'Please select the machine which you want to export for detail ',//EwayLocale.tip.choseExportDevInfo
+		searchOfNoLegal:'There Are Some Illegal Parameters In The Query Condition,CanNot Commit',//EwayLocale.tip.searchOfNoLegal
+		choseExportDevInfo:'Please Select The Machine Which You Want To Export For Detail',//EwayLocale.tip.choseExportDevInfo
 		nowLink:'Connecting...',//EwayLocale.tip.nowLink
-		linkFailure:'Connecting failed.',//EwayLocale.tip.linkFailure
-		inputError:'Illegal input',//EwayLocale.tip.inputError
-		numberExist:'Exist ID, please enter again',//EwayLocale.tip.numberExist
-		isConfirmRemove:'The relationship of the group will be deleted with this delete operation , make sure you want to delete?',//EwayLocale.tip.isConfirmRemove
-		noGroupInfo:'No data of the group ,can not execute query',//EwayLocale.tip.noGroupInfo
-		selectAdd:'Please select the record which you want to add',//EwayLocale.tip.selectAdd
-		continueAdd:'Add successfully,continue add machine to this group?',//EwayLocale.tip.continueAdd
-		addFail:'Add failed.',//EwayLocale.tip.addFail
-		isRemoveDev:'Remove this machine from this group?',//EwayLocale.tip.isRemoveDev
-		removeFail:'Remove failed',//EwayLocale.tip.removeFail
-		selectRemoveGroup:'Please select the group which the machine you want to remove belongs.',//EwayLocale.tip.selectRemoveGroup
-		selectRemoveDev:'Please select the machine which you want to remove.',//EwayLocale.tip.selectRemoveDev
-		selectMoveDev:'Please select the machine which you want to move.',//EwayLocale.tip.selectMoveDev
-		moveSuc:'Move the machine successfully',//EwayLocale.tip.moveSuc
-		dateReSelect:'The begin date can not be later than end date,please select again',//EwayLocale.tip.dateReSelect
-		selectPlan:'Please select the plan which you want to execute',//EwayLocale.tip.selectPlan
-		removeFail:'Relieve failed',//EwayLocale.tip.removeFail
-		selectRemoveDev:'Please select the machine which you want to relieve.',//EwayLocale.tip.selectRemoveDev
-		relatedFail:'Binding machine failed.',//EwayLocale.tip.relatedFail
-		selectRelatedDev:'Please choose machines which you want to bind.',//EwayLocale.tip.selectRelatedDev
-		exportFiles: 'Please choose a file to import,only support .xls or .xlsx files ',//EwayLocale.tip.exportFiles
-		operateSuc:'Successful operation',//EwayLocale.tip.operateSuc
-		operateWrong:'Successful operation',//EwayLocale.tip.operateWrong
-		choosePlan:'Please select the plan you want to view',//EwayLocale.tip.choosePlan
-		planDetail:'Plan details',//EwayLocale.tip.planDetail
-		planDate:'Plan details (date)',//EwayLocale.tip.planDate
-		planWeek:'Plan details (Week)',//EwayLocale.tip.planWeek
-		planNoConf:'The plan no detailed settings！',//EwayLocale.tip.planNoConf
-		devRelatedPlan:'Device has been bound with the service plan!',//EwayLocale.tip.devRelatedPlan
+		linkFailure:'Connecting Failed.',//EwayLocale.tip.linkFailure
+		inputError:'Illegal Input',//EwayLocale.tip.inputError
+		numberExist:'Exist ID,PleaseEnter Again',//EwayLocale.tip.numberExist
+		isConfirmRemove:'The Relationship Of The Group Will Be Deleted With This Delete Operation,MakeSure You Want To Delete?',//EwayLocale.tip.isConfirmRemove
+		noGroupInfo:'No Data Of The Group,CanNot Execute Query',//EwayLocale.tip.noGroupInfo
+		selectAdd:'Please Select The Record Which You Want To Add',//EwayLocale.tip.selectAdd
+		continueAdd:'Add Successfully,ContinueAdd Machine To This Group?',//EwayLocale.tip.continueAdd
+		addFail:'Add Failed.',//EwayLocale.tip.addFail
+		isRemoveDev:'Remove This Machine From This Group?',//EwayLocale.tip.isRemoveDev
+		removeFail:'Remove Failed',//EwayLocale.tip.removeFail
+		selectRemoveGroup:'Please Select The Group Which The Machine You Want To Remove Belongs.',//EwayLocale.tip.selectRemoveGroup
+		selectRemoveDev:'Please Select The Machine Which You Want To Remove.',//EwayLocale.tip.selectRemoveDev
+		selectMoveDev:'Please Select The Machine Which You Want To Move.',//EwayLocale.tip.selectMoveDev
+		moveSuc:'Move The Machine Successfully',//EwayLocale.tip.moveSuc
+		dateReSelect:'The Begin Date Can Not Be Later Than End Date,PleaseSelect Again',//EwayLocale.tip.dateReSelect
+		selectPlan:'Please Select The Plan Which You Want To Execute',//EwayLocale.tip.selectPlan
+		removeFail:'Relieve Failed',//EwayLocale.tip.removeFail
+		selectRemoveDev:'Please Select The Machine Which You Want To Relieve.',//EwayLocale.tip.selectRemoveDev
+		relatedFail:'Binding Machine Failed.',//EwayLocale.tip.relatedFail
+		selectRelatedDev:'Please Choose Machines Which You Want To Bind.',//EwayLocale.tip.selectRelatedDev
+		exportFiles: 'Please Choose A File To Import,OnlySupport .xls Or .xlsx Files',//EwayLocale.tip.exportFiles
+		operateSuc:'Successful Operation',//EwayLocale.tip.operateSuc
+		operateWrong:'Successful Operation',//EwayLocale.tip.operateWrong
+		choosePlan:'Please Select The Plan You Want To View',//EwayLocale.tip.choosePlan
+		planDetail:'Plan Details',//EwayLocale.tip.planDetail
+		planDate:'Plan Details (date)',//EwayLocale.tip.planDate
+		planWeek:'Plan Details (Week)',//EwayLocale.tip.planWeek
+		planNoConf:'The Plan No Detailed Settings!',//EwayLocale.tip.planNoConf
+		devRelatedPlan:'Device Has Been Bound With The Service Plan!',//EwayLocale.tip.devRelatedPlan
 		
 		tips:'Tips',//EwayLocale.tip.tips
-		input:'Please enter the right item',//EwayLocale.tip.input
-		roleName:'Just for character ‘a-z’ or ‘A-Z’ or numbers ‘0-9’ ,max length is 40',//EwayLocale.tip.roleName
-		notNull:'Can not be null',//EwayLocale.tip.notNull
-		cardNo:'Just for 13-19 numbers ‘0-9’',//EwayLocale.tip.cardNo
-		blankBegin:'Can not start with blank',//EwayLocale.tip.blankBegin
+		input:'Please Enter The Right Item',//EwayLocale.tip.input
+		roleName:'Just For Character ‘a-z’ Or ‘A-Z’ Or Numbers ‘0-9’,MaxLength Is 40',//EwayLocale.tip.roleName
+		notNull:'Can Not Be Null',//EwayLocale.tip.notNull
+		cardNo:'Just For 13-19 Numbers ‘0-9’',//EwayLocale.tip.cardNo
+		blankBegin:'Can Not Start With Blank',//EwayLocale.tip.blankBegin
 		passwd:{
-			confirmPasswd:'Reset the password ,confirm?',//EwayLocale.tip.passwd.confirmPasswd
-			resetPasswding:'Reseting the password.....',//EwayLocale.tip.passwd.resetPasswding
-			resetPasswdFail:'Reset the password failed'//EwayLocale.tip.passwd.resetPasswdFail
+			confirmPasswd:'Reset The Password,Confirm?',//EwayLocale.tip.passwd.confirmPasswd
+			resetPasswding:'Reseting The Password.....',//EwayLocale.tip.passwd.resetPasswding
+			resetPasswdFail:'Reset The Password Failed'//EwayLocale.tip.passwd.resetPasswdFail
 		},
 		operateDate:{
-			operateDateBegin:'Operate date start with ',//EwayLocale.tip.operateDate.operateDateBegin
-			operateDateEnd:'Operate date end  with'//EwayLocale.tip.operateDate.operateDateEnd
+			operateDateBegin:'Operate Date Start With',//EwayLocale.tip.operateDate.operateDateBegin
+			operateDateEnd:'Operate Date End With'//EwayLocale.tip.operateDate.operateDateEnd
 		},
 		bankOrg:{
 			manager:{
 				set:{
-					chooseOrg:'Please choose the organization which you want to set',//EwayLocale.tip.bankOrg.manager.set.chooseOrg
-					managerSuccess:'Set manager successfully.',//EwayLocale.tip.bankOrg.manager.set.managerSuccess
-					managerFail:'Set manager failed.',//EwayLocale.tip.bankOrg.manager.set.managerFail
-					chooseOneManager:'Please choose at least one record'//EwayLocale.tip.bankOrg.manager.set.chooseOneManager
+					chooseOrg:'Please Choose The Organization Which You Want To Set',//EwayLocale.tip.bankOrg.manager.set.chooseOrg
+					managerSuccess:'Set Manager Successfully.',//EwayLocale.tip.bankOrg.manager.set.managerSuccess
+					managerFail:'Set Manager Failed.',//EwayLocale.tip.bankOrg.manager.set.managerFail
+					chooseOneManager:'Please Choose At Least One Record'//EwayLocale.tip.bankOrg.manager.set.chooseOneManager
 				},
 				remove:{
-					confirm:'Delete the manager of this organization?',//EwayLocale.tip.bankOrg.manager.remove.confirm
-					reChoose:'You have not choose the organization or there is no manager of this organization, please choose again',//EwayLocale.tip.bankOrg.manager.remove.reChoose
-					delSuccess:'Delete the manager successfully',//EwayLocale.tip.bankOrg.manager.remove.delSuccess
-					delFail:'Delete the manager failed'//EwayLocale.tip.bankOrg.manager.remove.delFail
+					confirm:'Delete The Manager Of This Organization?',//EwayLocale.tip.bankOrg.manager.remove.confirm
+					reChoose:'You Have Not Choose The Organization Or There Is No Manager Of This Organization,PleaseChoose Again',//EwayLocale.tip.bankOrg.manager.remove.reChoose
+					delSuccess:'Delete The Manager Successfully',//EwayLocale.tip.bankOrg.manager.remove.delSuccess
+					delFail:'Delete The Manager Failed'//EwayLocale.tip.bankOrg.manager.remove.delFail
 				}
 			},
 			move:{
-				chooseOrg:'Please choose organization which you want to move.',//EwayLocale.tip.bankOrg.move.chooseOrg
-				moveSuccess:'Move the organization successfully.'//EwayLocale.tip.bankOrg.move.moveSuccess
+				chooseOrg:'Please Choose Organization Which You Want To Move.',//EwayLocale.tip.bankOrg.move.chooseOrg
+				moveSuccess:'Move The Organization Successfully.'//EwayLocale.tip.bankOrg.move.moveSuccess
 			}
 		},
 		bankPer:{
-			allPersonInfo:'ALL info of bank employeers',//EwayLocale.tip.bankPer.allPersonInfo
+			allPersonInfo:'ALL Info Of Bank Employeers',//EwayLocale.tip.bankPer.allPersonInfo
 			link:{
-				linkPerson:'Please choose a maintenaner which you want to bind with.',//EwayLocale.tip.bankPer.link.linkPerson
-				linkBankPerson:'Please choose a banker which you want to bind with.',//EwayLocale.tip.bankPer.link.linkBankPerson
-				unLinkPersonFail:'Link failed.',//EwayLocale.tip.bankPer.link.unLinkPersonFail
-				unlinkDev:'Please choose a machine which you want to lift.',//EwayLocale.tip.bankPer.link.unlinkDev
-				linkDev:'Please choose a machine which you want to link.',//EwayLocale.tip.bankPer.link.linkDev
-				unLinkDevFail:'Lift failed.'//EwayLocale.tip.bankPer.link.unLinkDevFail
+				linkPerson:'Please Choose A Maintenaner Which You Want To Bind With.',//EwayLocale.tip.bankPer.link.linkPerson
+				linkBankPerson:'Please Choose A Banker Which You Want To Bind With.',//EwayLocale.tip.bankPer.link.linkBankPerson
+				unLinkPersonFail:'Link Failed.',//EwayLocale.tip.bankPer.link.unLinkPersonFail
+				unlinkDev:'Please Choose A Machine Which You Want To Lift.',//EwayLocale.tip.bankPer.link.unlinkDev
+				linkDev:'Please Choose A Machine Which You Want To Link.',//EwayLocale.tip.bankPer.link.linkDev
+				unLinkDevFail:'Lift Failed.'//EwayLocale.tip.bankPer.link.unLinkDevFail
 			},
-			personEligible:'People which accordwith the conditions',//EwayLocale.tip.bankPer.personEligible
-			downGradePer:'and its lower organizastion personnel',//EwayLocale.tip.bankPer.downGradePer
+			personEligible:'People Which Accordwith The Conditions',//EwayLocale.tip.bankPer.personEligible
+			downGradePer:'and Its Lower Organizastion Personnel',//EwayLocale.tip.bankPer.downGradePer
 		},
 		serviceOrg:{
-			chooseOrg:'Please choose the service which you want to set.',//EwayLocale.tip.serviceOrg.chooseOrg
+			chooseOrg:'Please Choose The Service Which You Want To Set.',//EwayLocale.tip.serviceOrg.chooseOrg
 			remove:{
-				reChoose:'You hava not choose a service or no manager found in the service,please choose again.'//EwayLocale.tip.serviceOrg.remove.reChoose
+				reChoose:'You Hava Not Choose A Service Or No Manager Found In The Service,PleaseChoose Again.'//EwayLocale.tip.serviceOrg.remove.reChoose
 			}
 		},
 		user:{
 			add:{
-				createAcc:'Please choose the man which you want to create account',//EwayLocale.tip.user.add.createAcc
-				createSuccess:'Create successfully,newcreate account `',//EwayLocale.tip.user.add.createSuccess
-				initPasswd:'` The init password is :888888'//EwayLocale.tip.user.add.initPasswd
+				createAcc:'Please Choose The Man Which You Want To Create Account',//EwayLocale.tip.user.add.createAcc
+				createSuccess:'Create Successfully,NewcreateAccount `',//EwayLocale.tip.user.add.createSuccess
+				initPasswd:'` The Init Password Is :888888'//EwayLocale.tip.user.add.initPasswd
 			},
 			remove:{
-				failRoot:'Delete failed,system manager can not be deleted.',//EwayLocale.tip.user.remove.failRoot
-				confirm:'Delete this record? User log will delete with this operation.',//EwayLocale.tip.user.remove.confirm
-				fail:'Delete failed: can not delete the role,please try again'//EwayLocale.tip.user.remove.fail
+				failRoot:'Delete Failed,SystemManager Can Not Be Deleted.',//EwayLocale.tip.user.remove.failRoot
+				confirm:'Delete This Record? User Log Will Delete With This Operation.',//EwayLocale.tip.user.remove.confirm
+				fail:'Delete Failed: Can Not Delete The Role,PleaseTry Again'//EwayLocale.tip.user.remove.fail
 			},
 			update:{
-				fail:'Update failed:the record dose not exist,please refresh.'//EwayLocale.tip.user.update.fail
+				fail:'Update Failed:the Record Dose Not Exist,PleaseRefresh.'//EwayLocale.tip.user.update.fail
 			}
 		},
 		business:{
 			transaction:{
 				historyTransaction:{
-					input:'Terminal ID is necessary for the query.'//EwayLocale.tip.business.transaction.historyTransaction.input
+					input:'Terminal ID Is Necessary For The Query.'//EwayLocale.tip.business.transaction.historyTransaction.input
 
 
 				}
 			},
 			blackList:{
-				importing:'Importing file',//EwayLocale.tip.business.blackList.importing
-				importSuccess:'Blackcard file importing successfully'//EwayLocale.tip.business.blackList.importSuccess
+				importing:'Importing File',//EwayLocale.tip.business.blackList.importing
+				importSuccess:'Blackcard File Importing Successfully'//EwayLocale.tip.business.blackList.importSuccess
 			},
 			card:{
-				returnFail:'Turnover failed:system error.',//EwayLocale.tip.business.card.returnFail
-				choose:'Please choose the card which you want to turnover.',//EwayLocale.tip.business.card.choose
-				returnSucess:'Turnover successfully.',//EwayLocale.tip.business.card.returnSucess
-				chooseBack:'Please choose the card which you want to draw.',//EwayLocale.tip.business.card.chooseBack
-				getSuccess:'Draw successfully.',//EwayLocale.tip.business.card.getSuccess
-				destroyConfirm:'Destroy this card?',//EwayLocale.tip.business.card.destroyConfirm
-				destroySuccess:'Destroy successfully',//EwayLocale.tip.business.card.destroySuccess
-				chooseDestroy:'Please choose the card which you want to destroy.',//EwayLocale.tip.business.card.chooseDestroy
-				idCardRegex:'Please input the correct ID number,15 or 18 numbers',//EwayLocale.tip.business.card.idCardRegex
-				accountRegex:'Please input the correct ID number of the householdRegister,15 or 18 numbers',//EwayLocale.tip.business.card.accountRegex
-				driveCardRegex:'Please input the correct ID number of the driver-license,15 or 18 numbers',//EwayLocale.tip.business.card.driveCardRegex
-				passportRegex:'Please input the correct ID number of the passport,15 or 18 numbers',//EwayLocale.tip.business.card.passportRegex
-				soldierRegex:'Please input the correct number of officer-license ,1-5 Chinesecharacter or ‘1-10’ numbers',//EwayLocale.tip.business.card.soldierRegex
-				soldierCard:'Please input the correct number of soldier-license 7-8 numbers ',//EwayLocale.tip.business.card.soldierCard
-				busnessPaper:'Please input the correct number of businesslicence,12-15 numbers',//EwayLocale.tip.business.card.busnessPaper
-				busnessCode:'Please input the correct number of juridicalperson,15 numbers',//EwayLocale.tip.business.card.busnessCode
-				taxPaper:'Please input the correct number of taxregistration,15 numbers'//EwayLocale.tip.business.card.taxPaper
+				returnFail:'Turnover Failed:system Error.',//EwayLocale.tip.business.card.returnFail
+				choose:'Please Choose The Card Which You Want To Turnover.',//EwayLocale.tip.business.card.choose
+				returnSucess:'Turnover Successfully.',//EwayLocale.tip.business.card.returnSucess
+				chooseBack:'Please Choose The Card Which You Want To Draw.',//EwayLocale.tip.business.card.chooseBack
+				getSuccess:'Draw Successfully.',//EwayLocale.tip.business.card.getSuccess
+				destroyConfirm:'Destroy This Card?',//EwayLocale.tip.business.card.destroyConfirm
+				destroySuccess:'Destroy Successfully',//EwayLocale.tip.business.card.destroySuccess
+				chooseDestroy:'Please Choose The Card Which You Want To Destroy.',//EwayLocale.tip.business.card.chooseDestroy
+				idCardRegex:'Please Input The Correct ID Number,15Or 18 Numbers',//EwayLocale.tip.business.card.idCardRegex
+				accountRegex:'Please Input The Correct ID Number Of The HouseholdRegister,15Or 18 Numbers',//EwayLocale.tip.business.card.accountRegex
+				driveCardRegex:'Please Input The Correct ID Number Of The Driver-license,15Or 18 Numbers',//EwayLocale.tip.business.card.driveCardRegex
+				passportRegex:'Please Input The Correct ID Number Of The Passport,15Or 18 Numbers',//EwayLocale.tip.business.card.passportRegex
+				soldierRegex:'Please Input The Correct Number Of Officer-license,1-5Chinesecharacter Or ‘1-10’ Numbers',//EwayLocale.tip.business.card.soldierRegex
+				soldierCard:'Please Input The Correct Number Of Soldier-license 7-8 Numbers',//EwayLocale.tip.business.card.soldierCard
+				busnessPaper:'Please Input The Correct Number Of Businesslicence,12-15Numbers',//EwayLocale.tip.business.card.busnessPaper
+				busnessCode:'Please Input The Correct Number Of Juridicalperson,15Numbers',//EwayLocale.tip.business.card.busnessCode
+				taxPaper:'Please Input The Correct Number Of Taxregistration,15Numbers'//EwayLocale.tip.business.card.taxPaper
 
 			},
 			device:{
-				getCashInfoFail:'Get cash boxes info failed',//EwayLocale.tip.business.device.getCashInfoFail
+				getCashInfoFail:'Get Cash Boxes Info Failed',//EwayLocale.tip.business.device.getCashInfoFail
 				operating:'Executing',//EwayLocale.tip.business.device.operating
-				reviewFail:'Failed to review.',//EwayLocale.tip.business.device.reviewFail
-				logLoadConfirm:'Get the atmc logs successfully,download it?',//EwayLocale.tip.business.device.logLoadConfirm
-				logPullFail:'Get atmc logs failed',//EwayLocale.tip.business.device.logPullFail
-				logFail:'Log process failed.',//EwayLocale.tip.business.device.logFail
-				linkServerFail:'Connection refused.',//EwayLocale.tip.business.device.linkServerFail
-				logicOpen:'Confirm execute start-service command.',//EwayLocale.tip.business.device.logicOpen
-				openSuccess:'Execute start-service command successfully.',//EwayLocale.tip.business.device.openSuccess
-				openFail:'Execute start-service command failed.',//EwayLocale.tip.business.device.openFail
-				closeConfirm:'Confirm execute stop-service command?',//EwayLocale.tip.business.device.closeConfirm
-				closeServiceSuccess:'Execute stop-service command successfully.',//EwayLocale.tip.business.device.closeServiceSuccess
-				closeServiceFail:'Execute stop-service command failed.',//EwayLocale.tip.business.device.closeServiceFail
-				closeNormal:'Shut down normally.',//EwayLocale.tip.business.device.closeNormal
-				closing:'Shutting down normally.',//EwayLocale.tip.business.device.closing
-				closeSucess:'Shut down normally successfully.',//EwayLocale.tip.business.device.closeSucess
-				closeFail:'Shut down normally failed.',//EwayLocale.tip.business.device.closeFail
-				closeSentFail:'Send the normal shut-down command failed ',//EwayLocale.tip.business.device.closeSentFail
-				forceClose:'Force shut down',//EwayLocale.tip.business.device.forceClose
-				forceCloseComfirm:'Confirm execute force shut-down command,it may brings some risk?',//EwayLocale.tip.business.device.forceCloseComfirm
-				forceClosing:'Shutting down force.',//EwayLocale.tip.business.device.forceClosing
-				forceCloseSucess:'Force-shut-down successfully.',//EwayLocale.tip.business.device.forceCloseSucess
-				forceCloseFail:'Force-shut-down failed.',//EwayLocale.tip.business.device.forceCloseFail
-				ForceCloseSentFail:'Send the force-shut-down command failed ',//EwayLocale.tip.business.device.ForceCloseSentFail
-				reboot:'Reboot normally',//EwayLocale.tip.business.device.reboot
-				rebootConfirm:'Confirm execute normal-reboot command,it may brings some risk?',//EwayLocale.tip.business.device.rebootConfirm
-				rebooting:'Normally rebooting',//EwayLocale.tip.business.device.rebooting
-				rebootSucess:'Normal-reboot successfully.',//EwayLocale.tip.business.device.rebootSucess
-				rebootFail:'Normal-reboot failed.',//EwayLocale.tip.business.device.rebootFail
-				rebootSendFail:'Send the  normal-reboot command failed ',//EwayLocale.tip.business.device.rebootSendFail
-				forceReboot:'Force reboot',//EwayLocale.tip.business.device.forceReboot
-				forceRebootConfirm:'Confirm execute force-reboot command,it may brings some risk?',//EwayLocale.tip.business.device.forceRebootConfirm
-				forceRebooting:'Executing force-reboot command',//EwayLocale.tip.business.device.forceRebooting
-				forceRebootSuccess:'Force-reboot successfully.',//EwayLocale.tip.business.device.forceRebootSuccess
-				forceRebootFail:'Force-reboot failed.',//EwayLocale.tip.business.device.forceRebootFail
-				forceRebootSendFail:'Send the normal force-reboot command failed ',//EwayLocale.tip.business.device.forceRebootSendFail
-				resetConfirm:'Confirm execute force-reset command?',//EwayLocale.tip.business.device.resetConfirm
-				resetSuccess:'Force-reset successfully',//EwayLocale.tip.business.device.resetSuccess
-				resetFail:'Force-reset failed',//EwayLocale.tip.business.device.resetFail
-				resetSendFail:'Send the force-reset command failed.',//EwayLocale.tip.business.device.resetSendFail
+				reviewFail:'Failed To Review.',//EwayLocale.tip.business.device.reviewFail
+				logLoadConfirm:'Get The Atmc Logs Successfully,DownloadIt?',//EwayLocale.tip.business.device.logLoadConfirm
+				logPullFail:'Get Atmc Logs Failed',//EwayLocale.tip.business.device.logPullFail
+				logFail:'Log Process Failed.',//EwayLocale.tip.business.device.logFail
+				linkServerFail:'Connection Refused.',//EwayLocale.tip.business.device.linkServerFail
+				logicOpen:'Confirm Execute Start-service Command.',//EwayLocale.tip.business.device.logicOpen
+				openSuccess:'Execute Start-service Command Successfully.',//EwayLocale.tip.business.device.openSuccess
+				openFail:'Execute Start-service Command Failed.',//EwayLocale.tip.business.device.openFail
+				closeConfirm:'Confirm Execute Stop-service Command?',//EwayLocale.tip.business.device.closeConfirm
+				closeServiceSuccess:'Execute Stop-service Command Successfully.',//EwayLocale.tip.business.device.closeServiceSuccess
+				closeServiceFail:'Execute Stop-service Command Failed.',//EwayLocale.tip.business.device.closeServiceFail
+				closeNormal:'Shut Down Normally.',//EwayLocale.tip.business.device.closeNormal
+				closing:'Shutting Down Normally.',//EwayLocale.tip.business.device.closing
+				closeSucess:'Shut Down Normally Successfully.',//EwayLocale.tip.business.device.closeSucess
+				closeFail:'Shut Down Normally Failed.',//EwayLocale.tip.business.device.closeFail
+				closeSentFail:'Send The Normal Shut-down Command Failed',//EwayLocale.tip.business.device.closeSentFail
+				forceClose:'Force Shut Down',//EwayLocale.tip.business.device.forceClose
+				forceCloseComfirm:'Confirm Execute Force Shut-down Command,ItMay Brings Some Risk?',//EwayLocale.tip.business.device.forceCloseComfirm
+				forceClosing:'Shutting Down Force.',//EwayLocale.tip.business.device.forceClosing
+				forceCloseSucess:'Force-shut-down Successfully.',//EwayLocale.tip.business.device.forceCloseSucess
+				forceCloseFail:'Force-shut-down Failed.',//EwayLocale.tip.business.device.forceCloseFail
+				ForceCloseSentFail:'Send The Force-shut-down Command Failed',//EwayLocale.tip.business.device.ForceCloseSentFail
+				reboot:'Reboot Normally',//EwayLocale.tip.business.device.reboot
+				rebootConfirm:'Confirm Execute Normal-reboot Command,ItMay Brings Some Risk?',//EwayLocale.tip.business.device.rebootConfirm
+				rebooting:'Normally Rebooting',//EwayLocale.tip.business.device.rebooting
+				rebootSucess:'Normal-reboot Successfully.',//EwayLocale.tip.business.device.rebootSucess
+				rebootFail:'Normal-reboot Failed.',//EwayLocale.tip.business.device.rebootFail
+				rebootSendFail:'Send The Normal-reboot Command Failed',//EwayLocale.tip.business.device.rebootSendFail
+				forceReboot:'Force Reboot',//EwayLocale.tip.business.device.forceReboot
+				forceRebootConfirm:'Confirm Execute Force-reboot Command,ItMay Brings Some Risk?',//EwayLocale.tip.business.device.forceRebootConfirm
+				forceRebooting:'Executing Force-reboot Command',//EwayLocale.tip.business.device.forceRebooting
+				forceRebootSuccess:'Force-reboot Successfully.',//EwayLocale.tip.business.device.forceRebootSuccess
+				forceRebootFail:'Force-reboot Failed.',//EwayLocale.tip.business.device.forceRebootFail
+				forceRebootSendFail:'Send The Normal Force-reboot Command Failed',//EwayLocale.tip.business.device.forceRebootSendFail
+				resetConfirm:'Confirm Execute Force-reset Command?',//EwayLocale.tip.business.device.resetConfirm
+				resetSuccess:'Force-reset Successfully',//EwayLocale.tip.business.device.resetSuccess
+				resetFail:'Force-reset Failed',//EwayLocale.tip.business.device.resetFail
+				resetSendFail:'Send The Force-reset Command Failed.',//EwayLocale.tip.business.device.resetSendFail
 				term:'Terminal ID',//EwayLocale.tip.business.device.term
 				detail:'Detail',//EwayLocale.tip.business.device.detail
 				refresh:'Refreshing......',//EwayLocale.tip.business.device.refresh
-				remoteCommandMsg:'Remote Command send Successfully'//EwayLocale.tip.business.device.remoteCommandMsg
+				remoteCommandMsg:'Remote Command Send Successfully'//EwayLocale.tip.business.device.remoteCommandMsg
 			}
 		}
 
@@ -319,48 +319,48 @@ Ext.apply(EwayLocale,{
 	
 
 	combox:{
-		select:'Please select',//EwayLocale.combox.select
+		select:'Please Select',//EwayLocale.combox.select
 		explorer: 'Browse...'//EwayLocale.combox.explorer
 	},
 
 
 
 	vtype:{
-		ip:'Please enter the correct IP address',//EwayLocale.vtype.ip
-		zip:'Please enter the correct Z.C. ,6 numbers', //EwayLocale.vtype.zip
-		versionNo:'Incorrect Version No,format explain：1.Version No make up with 4 part:A.B.C.D ;2.Only part A is necessary ;3. A、B、C、D must be an integer which greater than 0,max length of each part is 8;4.Part ABCD must split with `.`',//EwayLocale.vtype.versionNo
-		terminalId:'Just for 1-20 characters ‘a-z’ or ‘A-Z’ or numbers ‘0-9’ or‘-’ or‘_’ or ‘.’,and must be start with character or number.',//EwayLocale.vtype.terminalId
-		mobile:'Input error,mobile number can only be 8-11 numbers',//EwayLocale.vtype.mobile
-		cardNo:'Input error,bankcard number can only be 16-19 numbers',//EwayLocale.vtype.cardNo
-		telephone:'Input error,phone number can only be 8-12 numbers',//EwayLocale.vtype.telephone
-		daterange:'Range of time is not correct.',//EwayLocale.vtype.daterange
-		numberrange:'Range of money is not correct.',//EwayLocale.vtype.numberrange
+		ip:'Please Enter The Correct IP Address',//EwayLocale.vtype.ip
+		zip:'Please Enter The Correct Z.C.,6Numbers',//EwayLocale.vtype.zip
+		versionNo:'Incorrect Version No,FormatExplain:1.Version No Make Up With 4 Part:A.B.C.D ;2.Only Part A Is Necessary ;3. A、B、C、D Must Be An Integer Which Greater Than 0,MaxLength Of Each Part Is 8;4.Part ABCD Must Split With `.`',//EwayLocale.vtype.versionNo
+		terminalId:'Just For 1-20 Characters ‘a-z’ Or ‘A-Z’ Or Numbers ‘0-9’ Or‘-’ Or‘_’ Or ‘.’,AndMust Be Start With Character Or Number.',//EwayLocale.vtype.terminalId
+		mobile:'Input Error,MobileNumber Can Only Be 8-11 Numbers',//EwayLocale.vtype.mobile
+		cardNo:'Input Error,BankcardNumber Can Only Be 16-19 Numbers',//EwayLocale.vtype.cardNo
+		telephone:'Input Error,PhoneNumber Can Only Be 8-12 Numbers',//EwayLocale.vtype.telephone
+		daterange:'Range Of Time Is Not Correct.',//EwayLocale.vtype.daterange
+		numberrange:'Range Of Money Is Not Correct.',//EwayLocale.vtype.numberrange
 
-		bankOrgCode:'Just for 1-20 characters ‘a-z’ or ‘A-Z’ or number ‘0-9’ or‘-’ or‘_’ or ‘.’,and must be start with character or number',//EwayLocale.vtype.bankOrgCode
-		zip:'Just for 6 ‘0-9’ numbers',//EwayLocale.vtype.zip
-		maxLength20:'The maximum length for this field is 20.',//EwayLocale.vtype.maxLength20
-		numberRule: 'Just for character ‘a-z’ or ‘A-Z’、number‘0-9’、minussign‘-’、underline‘_’ or point‘.’,only start with character or number',//EwayLocale.vtype.numberRule
+		bankOrgCode:'Just For 1-20 Characters ‘a-z’ Or ‘A-Z’ Or Number ‘0-9’ Or‘-’ Or‘_’ Or ‘.’,AndMust Be Start With Character Or Number',//EwayLocale.vtype.bankOrgCode
+		zip:'Just For 6 ‘0-9’ Numbers',//EwayLocale.vtype.zip
+		maxLength20:'The Maximum Length For This Field Is 20.',//EwayLocale.vtype.maxLength20
+		numberRule: 'Just For Character ‘a-z’ Or ‘A-Z’、number‘0-9’、minussign‘-’、underline‘_’ Or Point‘.’,OnlyStart With Character Or Number',//EwayLocale.vtype.numberRule
 
 
-		choseDev:'Please choose the machine which you want to stop.',//EwayLocale.vtype.choseDev
-		dataLoad:'Data loading......',//EwayLocale.vtype.dataLoad
-		devLinkNormal:'Please check the connection between server and machine.',//EwayLocale.vtype.devLinkNormal
-		hardwayInitialize:'Hardware module initializing......',//EwayLocale.vtype.hardwayInitialize
-		inputCorrect:'Please input correct data.',//EwayLocale.vtype.inputCorrect
-		exportRepError:'Export report error,please try again',//EwayLocale.vtype.exportRepError
+		choseDev:'Please Choose The Machine Which You Want To Stop.',//EwayLocale.vtype.choseDev
+		dataLoad:'Data Loading......',//EwayLocale.vtype.dataLoad
+		devLinkNormal:'Please Check The Connection Between Server And Machine.',//EwayLocale.vtype.devLinkNormal
+		hardwayInitialize:'Hardware Module Initializing......',//EwayLocale.vtype.hardwayInitialize
+		inputCorrect:'Please Input Correct Data.',//EwayLocale.vtype.inputCorrect
+		exportRepError:'Export Report Error,PleaseTry Again',//EwayLocale.vtype.exportRepError
 
-		emailRules: 'email must accord with the rule of *@*.* ',//EwayLocale.vtype.emailRules
-		notifyTimesRules: 'Times of notice must be numbers,minimum 0,maximum 100.',//EwayLocale.vtype.notifyTimesRules
-		sendTimesRules: 'Times of sending must be numbers,minimum 0,maximum 100.',//EwayLocale.vtype.sendTimesRules
+		emailRules: 'email Must Accord With The Rule Of *@*.*',//EwayLocale.vtype.emailRules
+		notifyTimesRules: 'Times Of Notice Must Be Numbers,Minimum0,Maximum100.',//EwayLocale.vtype.notifyTimesRules
+		sendTimesRules: 'Times Of Sending Must Be Numbers,Minimum0,Maximum100.',//EwayLocale.vtype.sendTimesRules
 
-		launchTranscribe:'Starting record......', //EwayLocale.vtype.launchTranscribe
-		stopTranscribe:'Stoping record......',//EwayLocale.vtype.stopTranscribe
-		inexistenceScreen:'Screen not found',//EwayLocale.vtype.inexistenceScreen
-		devEmploy:'This machine is being used by ', //EwayLocale.vtype.devEmploy
+		launchTranscribe:'Starting Record......',//EwayLocale.vtype.launchTranscribe
+		stopTranscribe:'Stoping Record......',//EwayLocale.vtype.stopTranscribe
+		inexistenceScreen:'Screen Not Found',//EwayLocale.vtype.inexistenceScreen
+		devEmploy:'This Machine Is Being Used By',//EwayLocale.vtype.devEmploy
 		userEmploy:'!',//EwayLocale.vtype.userEmploy
-		loadTranscribe:'Downloading the recorded video ......',//EwayLocale.vtype.loadTranscribe
-		remoteFailure:'Remote browse failed',//EwayLocale.vtype.remoteFailure
-		choseTask:'Please choose a Task',//EwayLocale.vtype.choseTask
+		loadTranscribe:'Downloading The Recorded Video ......',//EwayLocale.vtype.loadTranscribe
+		remoteFailure:'Remote Browse Failed',//EwayLocale.vtype.remoteFailure
+		choseTask:'Please Choose A Task',//EwayLocale.vtype.choseTask
 	},
 
 	commen:{
@@ -377,7 +377,7 @@ Ext.apply(EwayLocale,{
 			dredge:'Dredge',//EwayLocale.commen.comboxStatus.dredge
 			close:'Close',//EwayLocale.commen.comboxStatus.close
 			pastDue:'Expired',//EwayLocale.commen.comboxStatus.pastDue
-			pastDueSoon:'About to expire'//EwayLocale.commen.comboxStatus.pastDueSoon
+			pastDueSoon:'About To Expire'//EwayLocale.commen.comboxStatus.pastDueSoon
 		},
 		type:'Type',//EwayLocale.commen.type
 		comboxType:{
@@ -410,15 +410,15 @@ Ext.apply(EwayLocale,{
 		},
 		setManager:'Settings',//EwayLocale.commen.setManager
 		devServiceName:'Maintenance Provider',//EwayLocale.commen.devServiceName
-		cashboxLimit:'Alarm of money in cashbox',//EwayLocale.commen.cashboxLimit
+		cashboxLimit:'Alarm Of Money In Cashbox',//EwayLocale.commen.cashboxLimit
 		installDate:'Installation Time',//EwayLocale.commen.installDate
 		address:'Address',//EwayLocale.commen.address
-		areaCode:'Area code',//EwayLocale.commen.areaCode
-		areaName:'Area name',//EwayLocale.commen.areaName
-		toolbar:'Total：{2},display{0}-{1}',//EwayLocale.commen.toolbar
-		bindMachine :'Devices bound',//EwayLocale.commen.bindMachine
+		areaCode:'Area Code',//EwayLocale.commen.areaCode
+		areaName:'Area Name',//EwayLocale.commen.areaName
+		toolbar:'Total:{2},Display{0}-{1}',//EwayLocale.commen.toolbar
+		bindMachine :'Devices Bound',//EwayLocale.commen.bindMachine
 		lift:'Relieve',//EwayLocale.commen.lift
-		canBindMachine:'Bindable devices',//EwayLocale.commen.canBindMachine
+		canBindMachine:'Bindable Devices',//EwayLocale.commen.canBindMachine
 		bind:'Bind',//EwayLocale.commen.bind
 		filter:'Filter',//EwayLocale.commen.filter
 		stateDict:{
@@ -436,8 +436,8 @@ Ext.apply(EwayLocale,{
 		content:'Content',//EwayLocale.commen.content
 		upgrade:'Upgrade',//EwayLocale.commen.upgrade
 		port:'port',//EwayLocale.commen.port
-		seviceMode:'Service mode',//EwayLocale.commen.seviceMode
-		insideOutside:'In bank flag',//EwayLocale.commen.insideOutside
+		seviceMode:'Service Mode',//EwayLocale.commen.seviceMode
+		insideOutside:'In Bank Flag',//EwayLocale.commen.insideOutside
 		appVersion:'Atmc Version',//EwayLocale.commen.appVersion
 		devInfo:'Device Basic Info',//EwayLocale.commen.devInfo
 		
@@ -449,8 +449,8 @@ Ext.apply(EwayLocale,{
 		noDevice:'NoDevice',//EwayLocale.commen.noDevice
 		description:'Description',//EwayLocale.commen.description
 		info:'Detail',//EwayLocale.commen.info
-		startDataTime:'Start time',//EwayLocale.commen.startDataTime
-		endDataTime:'End time',//EwayLocale.commen.endDataTime
+		startDataTime:'Start Time',//EwayLocale.commen.startDataTime
+		endDataTime:'End Time',//EwayLocale.commen.endDataTime
 		year:'Year',//EwayLocale.commen.year
 		month:'Month',//EwayLocale.commen.month
 		day:'Day',//EwayLocale.commen.day
@@ -458,11 +458,11 @@ Ext.apply(EwayLocale,{
 		monthTime:'Month',//EwayLocale.commen.monthTime
 		dayTime:'Day',//EwayLocale.commen.dayTime
 		orgFramework:'Organization',//EwayLocale.commen.orgFramework
-		matchOrg:'Organization matched',//EwayLocale.commen.matchOrg
+		matchOrg:'Organization Matched',//EwayLocale.commen.matchOrg
 		orgID:'Organization ID',//EwayLocale.commen.orgID
-		endValidty:'Valid date until',//EwayLocale.commen.endValidty
-		publishDate:'Issue date',//EwayLocale.commen.publishDate
-		announceTheme:'Announce theme',//EwayLocale.commen.announceTheme
+		endValidty:'Valid Date Until',//EwayLocale.commen.endValidty
+		publishDate:'Issue Date',//EwayLocale.commen.publishDate
+		announceTheme:'Announce Theme',//EwayLocale.commen.announceTheme
 		filterDelete: 'deleted'//EwayLocale.commen.filterDelete
 
 
@@ -472,7 +472,7 @@ Ext.apply(EwayLocale,{
 	index:{
 		indexPage:'Home',//EwayLocale.index.indexPage
 		dailyFaultPic:'Faults Trend Chart',//EwayLocale.index.dailyFaultPic
-		faultAmount:' Amount of Faults: ',//EwayLocale.index.faultAmount
+		faultAmount:' Amount Of Faults:',//EwayLocale.index.faultAmount
 		devStatusDisPic:'Device Status Pie',//EwayLocale.index.devStatusDisPic
 		normalDev:'Healthy',//EwayLocale.index.normalDev
 		unknownDev:'Unknow',//EwayLocale.index.unknownDev
@@ -484,55 +484,55 @@ Ext.apply(EwayLocale,{
 
 	
 	personal:{
-		baseInfo:'Basic info',//EwayLocale.personal.baseInfo
+		baseInfo:'Basic Info',//EwayLocale.personal.baseInfo
 		accountNum:'User Code',//EwayLocale.personal.accountNum
 		personalInfo:'Profile',//EwayLocale.personal.personalInfo
 		changePwd:'Udpate Password',//EwayLocale.personal.changePwd
 		nowLogin:'Current User',//EwayLocale.personal.nowLogin
-		inputOldPwd:'Input old password',//EwayLocale.personal.inputOldPwd
-		inputNewPwd:'Input new password',//EwayLocale.personal.inputNewPwd
-		inputVali:"Just for 1-20 characters 'a-z'or 'A-Z'or number '0-9' or '-' or '_' or special characters",//EwayLocale.personal.inputVali
-		inputValiPwd:"Just for 8-20 characters 'a-z'or 'A-Z'or number '0-9' or '-' or '_' or special characters",//EwayLocale.personal.inputValiPwd
-		inputAgain:'Input new password again',//EwayLocale.personal.inputAgain
-		pwdNotSame:'New passwords is not match.',//EwayLocale.personal.pwdNotSame
-		rememberPwd:'Click confirm to update password ,please remember it!',//EwayLocale.personal.rememberPwd
-		pwdSameNoChange:'New password is the same with the old ,can not update.',//EwayLocale.personal.pwdSameNoChange
-		reOperate:'Can not update password,please try again.'//EwayLocale.personal.reOperate
+		inputOldPwd:'Input Old Password',//EwayLocale.personal.inputOldPwd
+		inputNewPwd:'Input New Password',//EwayLocale.personal.inputNewPwd
+		inputVali:"Just for 1-20 characters 'a-z'or 'A-Z'or Number '0-9' Or '-' Or '_' or special characters",//EwayLocale.personal.inputVali
+		inputValiPwd:"Just for 8-20 characters 'a-z'or 'A-Z'or Number '0-9' Or '-' Or '_' or special characters",//EwayLocale.personal.inputValiPwd
+		inputAgain:'Input New Password Again',//EwayLocale.personal.inputAgain
+		pwdNotSame:'New Passwords Is Not Match.',//EwayLocale.personal.pwdNotSame
+		rememberPwd:'Click Confirm To Update Password,PleaseRemember It!',//EwayLocale.personal.rememberPwd
+		pwdSameNoChange:'New Password Is The Same With The Old,CanNot Update.',//EwayLocale.personal.pwdSameNoChange
+		reOperate:'Can Not Update Password,PleaseTry Again.'//EwayLocale.personal.reOperate
 	},
 
 	
 	system:{
 		sysRegist:'SystemRegist',//EwayLocale.system.sysRegist
-		registCode:'Regist code',//EwayLocale.system.registCode
-		startDate:'Start date',//EwayLocale.system.startDate
-		endDate:'End date',//EwayLocale.system.endDate
-		registType:'Regist type',//EwayLocale.system.registType
+		registCode:'Regist Code',//EwayLocale.system.registCode
+		startDate:'Start Date',//EwayLocale.system.startDate
+		endDate:'End Date',//EwayLocale.system.endDate
+		registType:'Regist Type',//EwayLocale.system.registType
 		serialNum:'SerialNo',//EwayLocale.system.serialNum
 		getSerialNum:'Getting SerialNo......',//EwayLocale.system.getSerialNum
-		checkCode:'Check code',//EwayLocale.system.checkCode
+		checkCode:'Check Code',//EwayLocale.system.checkCode
 		tryOut:'Tryout',//EwayLocale.system.tryOut
 		noLimit:'Limitless',//EwayLocale.system.noLimit
-		getSerialNumFail:'Get SerialNo failed',//EwayLocale.system.getSerialNumFail
-		registSuc:'Regist successfully',//EwayLocale.system.registSuc
-		registFail:'Regist failed',//EwayLocale.system.registFail
-		appearInnerFalse:'System error',//EwayLocale.system.appearInnerFalse
+		getSerialNumFail:'Get SerialNo Failed',//EwayLocale.system.getSerialNumFail
+		registSuc:'Regist Successfully',//EwayLocale.system.registSuc
+		registFail:'Regist Failed',//EwayLocale.system.registFail
+		appearInnerFalse:'System Error',//EwayLocale.system.appearInnerFalse
 		regist:'Regist',//EwayLocale.system.regist
 		aboutSystem:'About',//EwayLocale.system.aboutSystem
 		softwareName:'Name',//EwayLocale.system.softwareName
-		ATMV:'Self-service machine monitor system(ATMV)',//EwayLocale.system.ATMV
+		ATMV:'Self-service Machine Monitor System(ATMV)',//EwayLocale.system.ATMV
 		softwareVersion:'Software-Version',//EwayLocale.system.softwareVersion
 		innerVersion:'InnerVersion',//EwayLocale.system.innerVersion
-		copyRight:'CopyRight：&copy;YIHUA ',//EwayLocale.system.copyRight
+		copyRight:'CopyRight:&copy;YIHUA',//EwayLocale.system.copyRight
 		introduction:'introduction:',//EwayLocale.system.introduction
-		introductionA:'This system is used for monitor ATM-basic-info,',//EwayLocale.system.introductionA
-		introductionB:'自动化版本分发管理、 ATM设备监控等功能。通过这些功能，各大银行可以集中管理ATM设备信息  监视 远程的ATM，对远程ATM机器上的软件升',//EwayLocale.system.introductionB
-		introductionC:'级和软件维护，方便了各大银 行对自助设备进行高效的管理和维护。',//EwayLocale.system.introductionC
+		introductionA:'This System Is Used For Monitor ATM-basic-info,',//EwayLocale.system.introductionA
+		introductionB:'自动化版本分发管理、 ATM设备监控等功能。通过这些功能，各大银行可以集中管理ATM设备信息监视远程的ATM，对远程ATM机器上的软件升',//EwayLocale.system.introductionB
+		introductionC:'级和软件维护，方便了各大银行对自助设备进行高效的管理和维护。',//EwayLocale.system.introductionC
 
-		guideUsers:'This handbook help user to use this system',//EwayLocale.system.guideUsers
+		guideUsers:'This Handbook Help User To Use This System',//EwayLocale.system.guideUsers
 		systemHelp:'Help',//EwayLocale.system.systemHelp
 		helpName:'Name',//EwayLocale.system.helpName
 		helpExpain:'Instructions',//EwayLocale.system.helpExpain
 		helpDownload:'Download',//EwayLocale.system.helpDownload
-		clickDownload:'Click to download'//EwayLocale.system.clickDownload
+		clickDownload:'Click To Download'//EwayLocale.system.clickDownload
 	}
 });

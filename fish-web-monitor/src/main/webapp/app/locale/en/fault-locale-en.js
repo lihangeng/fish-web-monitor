@@ -4,12 +4,12 @@ Ext.apply(EwayLocale,{
 	cases:{
 		confirm:'Confirm',//EwayLocale.cases.confirm
 		cancel:'Cancel',//EwayLocale.cases.cancel
-		concern:'Attention please',//EwayLocale.cases.concern
-		SRCBView:',Send by monitor system',//EwayLocale.cases.SRCBView
+		concern:'Attention Please',//EwayLocale.cases.concern
+		SRCBView:',SendBy Monitor System',//EwayLocale.cases.SRCBView
 		nowExportFile:'Importing File',//EwayLocale.cases.nowExportFile
-		exportFaultInfo:'Import fault code successfully',//EwayLocale.cases.exportFaultInfo
+		exportFaultInfo:'Import Fault Code Successfully',//EwayLocale.cases.exportFaultInfo
 		caseFault:{
-			faultRelevantInfo:'SMS about fault',//EwayLocale.cases.caseFault.faultRelevantInfo
+			faultRelevantInfo:'SMS About Fault',//EwayLocale.cases.caseFault.faultRelevantInfo
 			faultModule:'Fault Module',//EwayLocale.cases.caseFault.faultModule
 			cardReaderModule:'Card Reader',//EwayLocale.cases.caseFault.cardReaderModule
 			depoistModule:'Deposit Module',//EwayLocale.cases.caseFault.depoistModule
@@ -37,7 +37,7 @@ Ext.apply(EwayLocale,{
 		    	force : 'Close Manually',//EwayLocale.cases.caseFault.closeType.force
 		    	normal : 'Close Automaticlly'//EwayLocale.cases.caseFault.closeType.normal
 		    },
-		    closeByForce : 'Click to close fault by hand',//EwayLocale.cases.caseFault.closeByForce
+		    closeByForce : 'Click To Close Fault By Hand',//EwayLocale.cases.caseFault.closeByForce
 		    faultCloseType : 'Close Type',//EwayLocale.cases.caseFault.faultCloseType
 		    none : 'none',//EwayLocale.cases.caseFault.none
 
@@ -65,23 +65,23 @@ Ext.apply(EwayLocale,{
 		caseNotify:{
 			fault:'Fault',//EwayLocale.cases.caseNotify.fault
 			faultDetails:'Detail',//EwayLocale.cases.caseNotify.faultDetails
-			faultlastTime: 'Fault last(unit:hour)',//EwayLocale.cases.caseNotify.faultlastTime
-			checkFailure:'View failed!',//EwayLocale.cases.caseNotify.checkFailure
-			innerFault:'System error',//EwayLocale.cases.caseNotify.innerFault
+			faultlastTime: 'Fault Last(unit:hour)',//EwayLocale.cases.caseNotify.faultlastTime
+			checkFailure:'View Failed!',//EwayLocale.cases.caseNotify.checkFailure
+			innerFault:'System Error',//EwayLocale.cases.caseNotify.innerFault
 			messageCheck:'SMS Info'//EwayLocale.cases.caseNotify.messageCheck
 		},
 		faultClassify:{
 			faultClassifyName: 'Name',//EwayLocale.cases.faultClassify.faultClassifyName
 			faultresponsorType: 'Handlers Type', //EwayLocale.cases.faultClassify.faultresponsorType
 			maintain:'Maintenance Engineers',//EwayLocale.cases.faultClassify.maintain
-			manageAndMaintain:'All the above',//EwayLocale.cases.faultClassify.manageAndMaintain
-			upGradeTimes: 'Max upgrade times',//EwayLocale.cases.faultClassify.upGradeTimes
-			faultInformWay:'Notify way',//EwayLocale.cases.faultClassify.faultInformWay
-			faultCloseInterval:'Intervals between close(unit:hour)',//EwayLocale.cases.faultClassify.faultCloseInterval
+			manageAndMaintain:'All The Above',//EwayLocale.cases.faultClassify.manageAndMaintain
+			upGradeTimes: 'Max Upgrade Times',//EwayLocale.cases.faultClassify.upGradeTimes
+			faultInformWay:'Notify Way',//EwayLocale.cases.faultClassify.faultInformWay
+			faultCloseInterval:'Intervals Between Close(unit:hour)',//EwayLocale.cases.faultClassify.faultCloseInterval
 			faultTypeConfiguration: 'Fault Type',//EwayLocale.cases.faultClassify.faultTypeConfiguration
 			updateFaultTypeConfiguration: 'Update Fault Type Info',//EwayLocale.cases.faultClassify.updateFaultTypeConfiguration
-			number:'Just for numbers ‘0-9’',//EwayLocale.cases.faultClassify.number
-			informNumber:'Can not be 0,1-5 numbers'//EwayLocale.cases.faultClassify.informNumber
+			number:'Just For Numbers ‘0-9’',//EwayLocale.cases.faultClassify.number
+			informNumber:'Can Not Be 0,1-5Numbers'//EwayLocale.cases.faultClassify.informNumber
 		},
 		notifyMould:{
 			noticeType:'Type',//EwayLocale.cases.notifyMould.noticeType
@@ -91,17 +91,17 @@ Ext.apply(EwayLocale,{
 			noticeValue: 'Parameters',//EwayLocale.cases.notifyMould.noticeValue
 			messageContentConfiguration:'SMS Config',//EwayLocale.cases.notifyMould.messageContentConfiguration
 			updateMessageContentConfiguration: 'Modify SMS Config',//EwayLocale.cases.notifyMould.updateMessageContentConfiguration
-			necessaryOption: 'This option is necessary',//EwayLocale.cases.notifyMould.necessaryOption
-			faultType:'Fault type',//EwayLocale.cases.notifyMould.faultType
-			applyStatus:'App status'//EwayLocale.cases.notifyMould.applyStatus
+			necessaryOption: 'This Option Is Necessary',//EwayLocale.cases.notifyMould.necessaryOption
+			faultType:'Fault Type',//EwayLocale.cases.notifyMould.faultType
+			applyStatus:'App Status'//EwayLocale.cases.notifyMould.applyStatus
 		},
 		vendorCode:{
-			exportProviderInfo: 'Import manufacturer fault code',//EwayLocale.cases.vendorCode.exportProviderInfo
+			exportProviderInfo: 'Import Manufacturer Fault Code',//EwayLocale.cases.vendorCode.exportProviderInfo
 			provider:'Manufacturer',//EwayLocale.cases.vendorCode.provider
-			exportFile: 'Import file',//EwayLocale.cases.vendorCode.exportFile
-			deleteFaultInfo:'Delete manufacturer fault code',//EwayLocale.cases.vendorCode.deleteFaultInfo
-			templateLoad:'Example download',//EwayLocale.cases.vendorCode.templateLoad
-			massRemove: 'Batch delete',//EwayLocale.cases.vendorCode.massRemove
+			exportFile: 'Import File',//EwayLocale.cases.vendorCode.exportFile
+			deleteFaultInfo:'Delete Manufacturer Fault Code',//EwayLocale.cases.vendorCode.deleteFaultInfo
+			templateLoad:'Example Download',//EwayLocale.cases.vendorCode.templateLoad
+			massRemove: 'Batch Delete',//EwayLocale.cases.vendorCode.massRemove
 			providerDescription:'Description',//EwayLocale.cases.vendorCode.providerDescription
 			solveProject: 'Solution',//EwayLocale.cases.vendorCode.solveProject
 			providerFaultInfo:'Fault Code',//EwayLocale.cases.vendorCode.providerFaultInfo
