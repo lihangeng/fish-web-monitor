@@ -42,7 +42,7 @@ Ext.apply(EwayLocale,{
 		versionType:'Version Type',//EwayLocale.advert.versionType
 		jobPriority:'Job Priority',//EwayLocale.advert.jobPriority
 		jobType:'Job Type',//EwayLocale.advert.jobType
-		toVersionButton:'Has Not Generate Version Information,ClickButton To [generate Version]。',//EwayLocale.advert.toVersionButton
+		toVersionButton:'Has Not Generate Version Information,Click Button To [generate Version].',//EwayLocale.advert.toVersionButton
 		playTime:'Play Time',//EwayLocale.advert.playTime
 		beginDate:'Start Date',//EwayLocale.advert.beginDate
 		endDate:'End Date',//EwayLocale.advert.endDate
@@ -74,7 +74,7 @@ Ext.apply(EwayLocale,{
 		annoucementContext:'Comment Of Announcement',//EwayLocale.advert.annoucementContext
 		annoucementContextRegText:'Blank Is Not Allowed',//EwayLocale.advert.annoucementContextRegText
 		times:'Duration',//EwayLocale.advert.times
-		timesTips:'Unit:second,Tip:durationBelow 60 Second Will Be Better',//EwayLocale.advert.timesTips
+		timesTips:'Unit:second,Tip:duration Below 60 Second Will Be Better',//EwayLocale.advert.timesTips
 		hourDisplay:'Hour',//EwayLocale.advert.hourDisplay
 		minuteDisplay:'Minute',//EwayLocale.advert.minuteDisplay
 		secondeDisplay:'Second',//EwayLocale.advert.secondeDisplay
@@ -84,21 +84,21 @@ Ext.apply(EwayLocale,{
 		chooseMediaFile:'Please Choose Media File',//EwayLocale.advert.chooseMediaFile
 		uploadResource:'Upload Resource...',//EwayLocale.advert.uploadResource
 		uploadResourceBlank:'Please Upload Resource...',//EwayLocale.advert.uploadResourceBlank
-		uploadRegText:'Unsupported Resource Uploaded,Only.jpg,.aivFile Can Be Uploaded',//EwayLocale.advert.uploadRegText
-		resourceFormatTips:'Only .jpg,.aviFile Is Supported',//EwayLocale.advert.resourceFormatTips
+		uploadRegText:'Unsupported Resource Uploaded ,Only .jpg,.aiv File Can Be Uploaded',//EwayLocale.advert.uploadRegText
+		resourceFormatTips:'Only .jpg,.avi File Is Supported',//EwayLocale.advert.resourceFormatTips
 		resourceAlias:'File Name After Modified',//EwayLocale.advert.resourceAlias
 		transMoreTitle:'Add Page Of Transaction Advertisement',//EwayLocale.advert.transMoreTitle
 		chooseMediaFile:'Please Choose Media File',//EwayLocale.advert.chooseMediaFile
 		uploadResource:'Upload Resource...',//EwayLocale.advert.uploadResource
 		uploadResourceBlank:'Please Upload Resource',//EwayLocale.advert.uploadResourceBlank
 		addMorePic:'Add A Picture',//EwayLocale.advert.addMorePic
-		uploadRegText:'Unsupported Resource Uploaded,Only.jpg,.aivFile Can Be Uploaded',//EwayLocale.advert.uploadRegText
-		resourceFormatTips:'Only .jpg,.aviFile Is Supported',//EwayLocale.advert.resourceFormatTips
+		uploadRegText:'Unsupported Resource Uploaded ,Only .jpg,.aiv File Can Be Uploaded',//EwayLocale.advert.uploadRegText
+		resourceFormatTips:'Only .jpg,.avi File Is Supported',//EwayLocale.advert.resourceFormatTips
 		resourceAlias:'File Name After Modified',//EwayLocale.advert.resourceAlias
 		advertDownMethodCover:'Override',//EwayLocale.advert.advertDownMethodCover
 		uploading:'Resource Uploading...',//EwayLocale.advert.uploading
 		advertPreviewTitle0:'Preview Advertisement (Total',//EwayLocale.advert.advertPreviewTitle0
-		advertPreviewTitle1:' Resources,PlayThe No.',//EwayLocale.advert.advertPreviewTitle1
+		advertPreviewTitle1:' Resources,Play The No.',//EwayLocale.advert.advertPreviewTitle1
 		advertPreviewTitle2:' At The Present)',//EwayLocale.advert.advertPreviewTitle2
 		choosedAdvertRes:'You Have Choosed',//EwayLocale.advert.choosedAdvertRes
 		limitNumberTenForEveryResolution:'Only Upload Up To 10 Pictures At Each Resolution.',//EwayLocale.advert.limitNumberTenForEveryResolution
@@ -107,13 +107,13 @@ Ext.apply(EwayLocale,{
 		fileName:'File Name',//EwayLocale.advert.fileName
 		resourceName:'Resource Name',//EwayLocale.advert.resourceName
 		perviewAdertWithIEBrowse:'Unsupported Preview The Video Without IE Explorer.',//EwayLocale.advert.perviewAdertWithIEBrowse
-		fileFormatTipsInfo:"<font color='red'>Upload picture format is not supported, only upload .jpg format images</font>",//EwayLocale.advert.fileFormatTipsInfo
+		fileFormatTipsInfo:"<font color='Red'>Upload picture format is not supported, only upload .jpg format images</font>",//EwayLocale.advert.fileFormatTipsInfo
 		idleAdvertUpTipsInfo:'<font Color="red">Only Supports .jpg And .gif Format Images; Each Resolution Upload Up To 10 Pictures; Each Picture Maximum 5M</font>',//EwayLocale.advert.idleAdvertUpTipsInfo
 		configTitle:'Detail Settings'//EwayLocale.advert.configTitle
 	},
 	
 	version:{
-		selectDeviceInfo0:"Selected Devices (<font color='red'>",//EwayLocale.version.selectDeviceInfo0
+		selectDeviceInfo0:"Selected Devices (<font color='Red'>",//EwayLocale.version.selectDeviceInfo0
 		selectDeviceInfo1:"</font>)",//EwayLocale.version.selectDeviceInfo1
 		addVersionTitle:'Add Version Information',//EwayLocale.version.addVersionTitle
 		batchTaskName:'Batch Task Name',//EwayLocale.version.batchTaskName
@@ -138,7 +138,7 @@ Ext.apply(EwayLocale,{
 			downLoaded:'DownLoaded',//EwayLocale.version.View.downLoaded
 			waitting:'Waitting',//EwayLocale.version.View.waitting
 			versionPath:'Version Path',//EwayLocale.version.View.versionPath
-			versionPathRegText:'Please Follow The File-path Rule:1.file`s Name Must Contains (a-z A-Z) Or (0-9) Or (_)or (-);2.file-path Must Split By (/);3.uppercase And Lowercase Is The Same; For Example:E:/yihua',//EwayLocale.version.View.versionPathRegText
+			versionPathRegText:'Please Follow The File-path Rule:1.file`s Name Must Contains (a-z A-Z) Or (0-9) Or (_)or (-);2.file-path Must Split By (/);3.uppercase And Lowercase Is The Same; For Example:E',//EwayLocale.version.View.versionPathRegText
 			versionPathDesc:'(path Of Version File Be Installed)',//EwayLocale.version.View.versionPathDesc
 			versionPerson:'Creater',//EwayLocale.version.View.versionPerson
 			versionType:'Version Type',//EwayLocale.version.View.versionType
@@ -275,7 +275,7 @@ Ext.apply(EwayLocale,{
 			cantCancelCompleteJob:'Can Not Cancel Job Which Status Is ‘finish’.',//EwayLocale.version.task.cantCancelCompleteJob
 			doSureCancelTheJob:'Cancel The Selected Job?(running Job Can Only Cancel The Task Which Has Not Running)',//EwayLocale.version.task.doSureCancelTheJob
 			deleting:'Deleting......',//EwayLocale.version.task.deleting
-			cancelSuccessBut:'Cancel The Task In The Job Which Has Not Run Yet Successfully,TheStatus Is "running" At The Present,PleaseRefresh The List',//EwayLocale.version.task.cancelSuccessBut
+			cancelSuccessBut:'Cancel The Task In The Job Which Has Not Run Yet Successfully,The Status Is "running" At The Present,Please Refresh The List',//EwayLocale.version.task.cancelSuccessBut
 			cancelJobSuccess:'Cancel Job Successfully',//EwayLocale.version.task.cancelJobSuccess
 			updateResult:'Update Result',	//EwayLocale.version.task.updateResult
 			updateResultSuccess:'Successful',	//EwayLocale.version.task.updateResultSuccess

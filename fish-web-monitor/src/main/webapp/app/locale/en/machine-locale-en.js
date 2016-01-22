@@ -69,12 +69,12 @@ Ext.apply(EwayLocale,{
 			targetPerson:'目标机构负责人',//EwayLocale.machine.atmMove.targetPerson
 			responsibility:'负责人',//EwayLocale.machine.atmMove.responsibility
 			destPerson:'源机构负责人',//EwayLocale.machine.atmMove.destPerson
-			date:'date',//EwayLocale.machine.atmMove.date
+			date:'Date',//EwayLocale.machine.atmMove.date
 			recoverDate:'Recover Date',//EwayLocale.machine.atmMove.recoverDate
-			notice:'remark',//EwayLocale.machine.atmMove.notice
+			notice:'Remark',//EwayLocale.machine.atmMove.notice
 			sAddress:'Address',//EwayLocale.machine.atmMove.sAddress
 			sOrgName:'Organization',//EwayLocale.machine.atmMove.sOrgName
-			to:'to'//EwayLocale.machine.atmMove.to
+			to:'To'//EwayLocale.machine.atmMove.to
 		},
 		atmRuntimeInfo:{
 			exportName:'Export', //EwayLocale.machine.atmRuntimeInfo.exportName
@@ -84,7 +84,7 @@ Ext.apply(EwayLocale,{
 			startDate:'Begin Time',//EwayLocale.machine.atmRuntimeInfo.startDate
 			endDate:'End Time',//EwayLocale.machine.atmRuntimeInfo.endDate
 			exportLast30: 'Export Last 30 Days Info',//EwayLocale.machine.atmRuntimeInfo.exportLast30
-			terminalId:'terminalId',//EwayLocale.machine.atmRuntimeInfo.terminalId
+			terminalId:'TerminalId',//EwayLocale.machine.atmRuntimeInfo.terminalId
 			netIp:'Ip',//EwayLocale.machine.atmRuntimeInfo.netIp
 			msgCollect:'Collect Info Of Customservice'//EwayLocale.machine.atmRuntimeInfo.msgCollect
 		},
@@ -140,7 +140,7 @@ Ext.apply(EwayLocale,{
 			physicalUnits:'Count Of Physical Cashbox',//EwayLocale.machine.device.physicalUnits
 			currency:'Currency Supported Count',//EwayLocale.machine.device.currency
 			currencies:'Currency Category Supported',//EwayLocale.machine.device.currencies
-			exponents:'index',//EwayLocale.machine.device.exponents
+			exponents:'Index',//EwayLocale.machine.device.exponents
 			
 			CIMInfo:'Deposit Module (CIM)property',//EwayLocale.machine.device.CIMInfo
 			canEscrow:'Stacker Exists',//EwayLocale.machine.device.canEscrow
@@ -320,7 +320,7 @@ Ext.apply(EwayLocale,{
 			adminPhone:'Manager(mobile)',//EwayLocale.machine.device.adminPhone
 			maintainPhone: 'Maintainer(mobile)',//EwayLocale.machine.device.maintainPhone
 			log:'Flag',//EwayLocale.machine.device.log
-			style: 'type',//EwayLocale.machine.device.style
+			style: 'Type',//EwayLocale.machine.device.style
 			status: 'Status',//EwayLocale.machine.device.status
 			initailnumber: 'Init Count',//EwayLocale.machine.device.initailnumber
 			postnumber: 'Deposit Count',//EwayLocale.machine.device.postnumber
@@ -492,7 +492,7 @@ Ext.apply(EwayLocale,{
 		quittingNotice:{
 			addCloseMsg:'Add Service Stop',//EwayLocale.machine.quittingNotice.addCloseMsg
 			updateCloseMsg:'Update Service Stop',//EwayLocale.machine.quittingNotice.updateCloseMsg
-			dateRangeText:'Recover Date Can Not Be Earlier Than Stop Date,PleaseChoose Again',//EwayLocale.machine.quittingNotice.dateRangeText
+			dateRangeText:'Recover Date Can Not Be Earlier Than Stop Date,Please Choose Again',//EwayLocale.machine.quittingNotice.dateRangeText
 			click:'Click Query To Choose Device',//EwayLocale.machine.quittingNotice.click
 			stopTime:'Stop Time',//EwayLocale.machine.quittingNotice.stopTime
 			openTime:'Recover Time',//EwayLocale.machine.quittingNotice.openTime
@@ -503,7 +503,7 @@ Ext.apply(EwayLocale,{
 			address:'Address',//EwayLocale.machine.quittingNotice.address
 			selectDev:'Please Choose The Device Which You Want To Stop',//EwayLocale.machine.quittingNotice.selectDev
 			updateUnable:'Can Not Update The Record Which Is Recovered.',//EwayLocale.machine.quittingNotice.updateUnable
-			to:'to',//EwayLocale.machine.quittingNotice.to
+			to:'To',//EwayLocale.machine.quittingNotice.to
 			stopType:'Type',//EwayLocale.machine.quittingNotice.stopType
 			comboxStopType:{
 				recess:'Holiday',//EwayLocale.machine.quittingNotice.comboxStopType.recess
@@ -544,7 +544,7 @@ Ext.apply(EwayLocale,{
 			thisHardToTranslate:'Click To Download Introducing Device ID Template',//EwayLocale.machine.serviceplan.thisHardToTranslate
 			planDevice:'Service Plan <--> Device',//EwayLocale.machine.serviceplan.planDevice
 			timeEare:'Enter The Time Is Incorrect, Please Re-enter!',//EwayLocale.machine.serviceplan.timeEare
-			timeError:'invalid,PleaseRe-enter.',//EwayLocale.machine.serviceplan.timeError
+			timeError:'invalid,Please Re-enter.',//EwayLocale.machine.serviceplan.timeError
 			planOlonOne:'The Same Plan Can Only Set A Startup Or Shutdown',//EwayLocale.machine.serviceplan.planOlonOne
 			setTime:'Please Set The Detailed Time',//EwayLocale.machine.serviceplan.setTime
 			thisPlanStop:'(This Plan Is Disabled, Can Not Apply!)',//EwayLocale.machine.serviceplan.thisPlanStop
@@ -610,16 +610,16 @@ Ext.apply(EwayLocale,{
 		pleaseDownload:'Please Download',//EwayLocale.atmLog.pleaseDownload
 		title:'ATMC Logs',//EwayLocale.atmLog.title
 		lastBackupTime:'Last Backup Time',//EwayLocale.atmLog.lastBackupTime
-		noBegin:'noBegin',//EwayLocale.atmLog.noBegin
+		noBegin:'NoBegin',//EwayLocale.atmLog.noBegin
 		noLog:'No Log',//EwayLocale.atmLog.noLog
 		connectFail:'Connect Fail',//EwayLocale.atmLog.connectFail
 		fileSize:'File Size',//EwayLocale.atmLog.fileSize
-		searchIllegal:'Query Option Has Illegal Input,CanNot Export.'//EwayLocale.atmLog.searchIllegal
+		searchIllegal:'Query Option Has Illegal Input,Can Not Export.'//EwayLocale.atmLog.searchIllegal
 	},
 	
 	card:{
 		cardNum:'CardNo',//EwayLocale.card.cardNum
-		onlyNumber:'Just For Numbers,13-19Numbers',//EwayLocale.card.onlyNumber
+		onlyNumber:'Just For Numbers,13-19 Numbers',//EwayLocale.card.onlyNumber
 		cardStatus:'Status',//EwayLocale.card.cardStatus
 		eatCardTime:'Time',//EwayLocale.card.eatCardTime
 		IDType:'License Type',//EwayLocale.card.IDType

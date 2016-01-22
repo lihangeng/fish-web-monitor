@@ -148,7 +148,7 @@ Ext.apply(EwayLocale,{
 				currency:'Currency',//EwayLocale.monitor.business.transaction.currency
 				transId:'Trans ID.',//EwayLocale.monitor.business.transaction.transId
 				amtfield:'Amount From',//EwayLocale.monitor.business.transaction.amtfield
-				toNum:'to',//EwayLocale.monitor.business.transaction.toNum
+				toNum:'To',//EwayLocale.monitor.business.transaction.toNum
 				transContainer:'Time Scope',//EwayLocale.monitor.business.transaction.transContainer
 				debitAccountOrCard:'Debit Card Number',//EwayLocale.monitor.business.transaction.debitAccountOrCard
 				creditAccountOrCard:'Credit Card Number',//EwayLocale.monitor.business.transaction.creditAccountOrCard
@@ -166,8 +166,8 @@ Ext.apply(EwayLocale,{
 					stop:'Stop',//EwayLocale.monitor.business.transaction.transactionMonitor.stop
 					clear:'Clear Screen',//EwayLocale.monitor.business.transaction.transactionMonitor.clear
 					scroll:'Scroll',//EwayLocale.monitor.business.transaction.transactionMonitor.scroll
-					up:'up',//EwayLocale.monitor.business.transaction.transactionMonitor.up
-					down:'down'//EwayLocale.monitor.business.transaction.transactionMonitor.down
+					up:'Up',//EwayLocale.monitor.business.transaction.transactionMonitor.up
+					down:'Down'//EwayLocale.monitor.business.transaction.transactionMonitor.down
 				}
 			},
 			blackList:{
@@ -179,7 +179,7 @@ Ext.apply(EwayLocale,{
 				addDate:'Add Date',//EwayLocale.monitor.business.blackList.addDate
 				importTitle:'Bacth Import',//EwayLocale.monitor.business.blackList.importTitle
 				importFile:'Import File',//EwayLocale.monitor.business.blackList.importFile
-				chooseFileRegex:'Please Choose File To Import,Only.xls Or .xlsx File Is Supported',//EwayLocale.monitor.business.blackList.chooseFileRegex
+				chooseFileRegex:'Please Choose File To Import,Only .xls Or .xlsx File Is Supported',//EwayLocale.monitor.business.blackList.chooseFileRegex
 				fileRegex:'only .xls Or .xlsx File Is Supported',//EwayLocale.monitor.business.blackList.fileRegex
 				tempDownload:'Download Temple',//EwayLocale.monitor.business.blackList.tempDownload
 				importNow:'Import',//EwayLocale.monitor.business.blackList.importNow
@@ -193,7 +193,7 @@ Ext.apply(EwayLocale,{
 				destroy:'Destroy',//EwayLocale.monitor.business.card.destroy
 				cardHolder:'Issuing Bank',//EwayLocale.monitor.business.card.cardHolder
 				cardRegex:'Max Length Is',//EwayLocale.monitor.business.card.cardRegex
-				beginEndDate:'Begin Date Can Not Be Later Than End Date,PleaseChoose Again',//EwayLocale.monitor.business.card.beginEndDate
+				beginEndDate:'Begin Date Can Not Be Later Than End Date,Please Choose Again',//EwayLocale.monitor.business.card.beginEndDate
 				orgBelongs:'Org Belongs(Include Process Org)',//EwayLocale.monitor.business.card.orgBelongs
 				beginTime:'Begin Time',//EwayLocale.monitor.business.card.beginTime
 				endTime:'End Time',//EwayLocale.monitor.business.card.endTime
@@ -277,7 +277,7 @@ Ext.apply(EwayLocale,{
 	agent:{
 		remote:{
 			screen:{
-				message:'info', //EwayLocale.agent.remote.screen.message
+				message:'Info', //EwayLocale.agent.remote.screen.message
 				startcustom:'Start Recording Front-screen Of Customer', //EwayLocale.agent.remote.screen.startcustom
 				stopcustom:'Stop Recording Front-screen Of Customer',//EwayLocale.agent.remote.screen.stopcustom
 				startadmin:'Start Recording Front-screen Of Manager',//EwayLocale.agent.remote.screen.startadmin
@@ -291,7 +291,7 @@ Ext.apply(EwayLocale,{
 				nowCamera:'Recording...',//EwayLocale.agent.remote.screen.nowCamera
 				finishCamera:'Recording Finish',//EwayLocale.agent.remote.screen.finishCamera
 				videoLoad:'Downloading The Video File To The Server...',//EwayLocale.agent.remote.screen.videoLoad
-				stopManage:'Automatic Stopped , Please Contact The Manager!',//EwayLocale.agent.remote.screen.stopManage
+				stopManage:'Automatic Stopped ,Please Contact The Manager!',//EwayLocale.agent.remote.screen.stopManage
 				manage: 'Operater',	//EwayLocale.agent.remote.screen.manage
 				loading:'DownLoad',//EwayLocale.agent.remote.screen.loading
 				screenCamera: 'Screen Recording'//EwayLocale.agent.remote.screen.screenCamera
@@ -305,7 +305,7 @@ Ext.apply(EwayLocale,{
 			conenctRate: 'Connection Speed',//EwayLocale.agent.remote.conenctRate
 			receivedByte: 'Bytes Received',//EwayLocale.agent.remote.receivedByte
 			sendByte: 'Bytes Sended',//EwayLocale.agent.remote.sendByte
-			loadData: 'Data Loading,PleaseWait...',//EwayLocale.agent.remote.loadData
+			loadData: 'Data Loading,Please Wait...',//EwayLocale.agent.remote.loadData
 			refresh: 'Refresh',//EwayLocale.agent.remote.refresh
 			name: 'Name',//EwayLocale.agent.remote.name
 			format: 'File System',//EwayLocale.agent.remote.format
@@ -323,7 +323,7 @@ Ext.apply(EwayLocale,{
 			path: 'Path',//EwayLocale.agent.remote.path
 			search: 'Search',//EwayLocale.agent.remote.search
 			size: 'Size',//EwayLocale.agent.remote.size
-			fileSize:'File Size:',//EwayLocale.agent.remote.fileSize
+			fileSize:'File Size',//EwayLocale.agent.remote.fileSize
 			lastTime: 'Date Modified',//EwayLocale.agent.remote.lastTime
 			clickLoadFile:'Click To Download This File',//EwayLocale.agent.remote.clickLoadFile
 			loadFileSize:'Max Size Of Download File Is 200M',//EwayLocale.agent.remote.loadFileSize
@@ -340,7 +340,7 @@ Ext.apply(EwayLocale,{
 			networkLinkStatus: 'Network Connect Status',//EwayLocale.agent.remote.networkLinkStatus
 			send: 'Sended',//EwayLocale.agent.remote.send
 			receive: 'Received',//EwayLocale.agent.remote.receive
-			bite: 'byte:',//EwayLocale.agent.remote.bite
+			bite: 'Byte:',//EwayLocale.agent.remote.bite
 			speed: 'Speed(Mbps):',//EwayLocale.agent.remote.speed
 			bandWidth: 'Broadband Speed Test',//EwayLocale.agent.remote.bandWidth
 			unit: 'Unit:MB',//EwayLocale.agent.remote.unit
@@ -359,7 +359,7 @@ Ext.apply(EwayLocale,{
 			memoryIdle: 'Free Rate Of Memory',//EwayLocale.agent.remote.memoryIdle
 			hardDiskIdle: 'Free Rate Of Disk',//EwayLocale.agent.remote.hardDiskIdle
 			uploadFile: 'Upload File',//EwayLocale.agent.remote.uploadFile
-			rules:'Can Not Contain:\/?*":<>|',//EwayLocale.agent.remote.rules
+			rules:'Can Not Contain:\/?*"',//EwayLocale.agent.remote.rules
 			nowCreat:'Creating...',//EwayLocale.agent.remote.nowCreat
 			nowPath: 'Current Path',//EwayLocale.agent.remote.nowPath
 			confirm: 'Save', //EwayLocale.agent.remote.confirm
@@ -386,10 +386,10 @@ Ext.apply(EwayLocale,{
 			yes: "Continue transfer",//EwayLocale.agent.remote.yes
 			no: "Override",//EwayLocale.agent.remote.no
 			cancel: "Cancel", //EwayLocale.agent.remote.cancel
-			choseFile:'No File Selected For Upload,PleaseChoose.',//EwayLocale.agent.remote.choseFile
+			choseFile:'No File Selected For Upload,Please Choose.',//EwayLocale.agent.remote.choseFile
 			returnFailure:'Return Fail.',//EwayLocale.agent.remote.returnFailure
 			refreshFailure:'Refresh Failed.',//EwayLocale.agent.remote.refreshFailure
-			catalogExist:'The Folder Does Not Exist,PleaseInput Again',//EwayLocale.agent.remote.catalogExist
+			catalogExist:'The Folder Does Not Exist,Please Input Again',//EwayLocale.agent.remote.catalogExist
 			testBandWidth:'Test Broadband Error.', //EwayLocale.agent.remote.testBandWidth
 			networkMaxSpeed:'Max Net Speed Is',//EwayLocale.agent.remote.networkMaxSpeed
 			minutes:'Second',//EwayLocale.agent.remote.minutes
@@ -399,12 +399,12 @@ Ext.apply(EwayLocale,{
 			handle:'Processing......',//EwayLocale.agent.remote.handle
 			offServer:'Lost Connection From Server.',//EwayLocale.agent.remote.offServer
 			ATMCheck:'Executing Physical Of ATM...',//EwayLocale.agent.remote.ATMCheck
-			excellent:'excellent',//EwayLocale.agent.remote.excellent
-			fine:'good',//EwayLocale.agent.remote.fine
-			middle:'middle',//EwayLocale.agent.remote.middle
-			bad:'bad',//EwayLocale.agent.remote.bad
-			point:'point',//EwayLocale.agent.remote.point
-			checkFailure:'Execute Physical Of ATM Failed,PleaseTry Again.',//EwayLocale.agent.remote.checkFailure
+			excellent:'Excellent',//EwayLocale.agent.remote.excellent
+			fine:'Good',//EwayLocale.agent.remote.fine
+			middle:'Middle',//EwayLocale.agent.remote.middle
+			bad:'Bad',//EwayLocale.agent.remote.bad
+			point:'Point',//EwayLocale.agent.remote.point
+			checkFailure:'Execute Physical Of ATM Failed,Please Try Again.',//EwayLocale.agent.remote.checkFailure
 			checkVersionInfo:'View Version Information',//EwayLocale.agent.remote.checkVersionInfo
 			versionInfo:'The Version Information :',//EwayLocale.agent.remote.versionInfo
 			mergeload:'List Of Download',//EwayLocale.agent.remote.mergeload
@@ -417,8 +417,8 @@ Ext.apply(EwayLocale,{
 			backupAppLogsFail:'backup Atmc Logs Failed.',//EwayLocale.agent.remote.backupAppLogsFail
 			backupLogSucList:' Backup Atmc Logs List Success.',//EwayLocale.agent.remote.backupLogSucList
 			backupLogFailList:' Backup Atmc Logs List Failed.',//EwayLocale.agent.remote.backupLogFailList
-			exitDownLoadFile:'add Failed,TheFile Have Exited In The List Of Download.',//EwayLocale.agent.remote.exitDownLoadFile
-			maxDownLoadFileSize:'add Failed , All The FileSize Must Less Than 200M.',//EwayLocale.agent.remote.maxDownLoadFileSize
+			exitDownLoadFile:'add Failed,The File Have Exited In The List Of Download.',//EwayLocale.agent.remote.exitDownLoadFile
+			maxDownLoadFileSize:'add Failed ,All The FileSize Must Less Than 200M.',//EwayLocale.agent.remote.maxDownLoadFileSize
 			addFileSuccess:'add File To List Successfully.',//EwayLocale.agent.remote.addFileSuccess
 		}
 	}

@@ -5,7 +5,7 @@ Ext.apply(EwayLocale,{
 		confirm:'Confirm',//EwayLocale.cases.confirm
 		cancel:'Cancel',//EwayLocale.cases.cancel
 		concern:'Attention Please',//EwayLocale.cases.concern
-		SRCBView:',SendBy Monitor System',//EwayLocale.cases.SRCBView
+		SRCBView:',Send By Monitor System',//EwayLocale.cases.SRCBView
 		nowExportFile:'Importing File',//EwayLocale.cases.nowExportFile
 		exportFaultInfo:'Import Fault Code Successfully',//EwayLocale.cases.exportFaultInfo
 		caseFault:{
@@ -39,7 +39,7 @@ Ext.apply(EwayLocale,{
 		    },
 		    closeByForce : 'Click To Close Fault By Hand',//EwayLocale.cases.caseFault.closeByForce
 		    faultCloseType : 'Close Type',//EwayLocale.cases.caseFault.faultCloseType
-		    none : 'none',//EwayLocale.cases.caseFault.none
+		    none : 'None',//EwayLocale.cases.caseFault.none
 
 		    upgradeTimes: 'Upgrade Times',//EwayLocale.cases.caseFault.upgradeTimes
 		    message: 'SMS',//EwayLocale.cases.caseFault.message
@@ -65,7 +65,7 @@ Ext.apply(EwayLocale,{
 		caseNotify:{
 			fault:'Fault',//EwayLocale.cases.caseNotify.fault
 			faultDetails:'Detail',//EwayLocale.cases.caseNotify.faultDetails
-			faultlastTime: 'Fault Last(unit:hour)',//EwayLocale.cases.caseNotify.faultlastTime
+			faultlastTime: 'Fault Last(unit:Hour)',//EwayLocale.cases.caseNotify.faultlastTime
 			checkFailure:'View Failed!',//EwayLocale.cases.caseNotify.checkFailure
 			innerFault:'System Error',//EwayLocale.cases.caseNotify.innerFault
 			messageCheck:'SMS Info'//EwayLocale.cases.caseNotify.messageCheck
@@ -77,11 +77,11 @@ Ext.apply(EwayLocale,{
 			manageAndMaintain:'All The Above',//EwayLocale.cases.faultClassify.manageAndMaintain
 			upGradeTimes: 'Max Upgrade Times',//EwayLocale.cases.faultClassify.upGradeTimes
 			faultInformWay:'Notify Way',//EwayLocale.cases.faultClassify.faultInformWay
-			faultCloseInterval:'Intervals Between Close(unit:hour)',//EwayLocale.cases.faultClassify.faultCloseInterval
+			faultCloseInterval:'Intervals Between Close(unit:Hour)',//EwayLocale.cases.faultClassify.faultCloseInterval
 			faultTypeConfiguration: 'Fault Type',//EwayLocale.cases.faultClassify.faultTypeConfiguration
 			updateFaultTypeConfiguration: 'Update Fault Type Info',//EwayLocale.cases.faultClassify.updateFaultTypeConfiguration
 			number:'Just For Numbers ‘0-9’',//EwayLocale.cases.faultClassify.number
-			informNumber:'Can Not Be 0,1-5Numbers'//EwayLocale.cases.faultClassify.informNumber
+			informNumber:'Can Not Be 0,1-5 Numbers'//EwayLocale.cases.faultClassify.informNumber
 		},
 		notifyMould:{
 			noticeType:'Type',//EwayLocale.cases.notifyMould.noticeType

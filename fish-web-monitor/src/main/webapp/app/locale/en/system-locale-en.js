@@ -84,7 +84,7 @@ Ext.apply(EwayLocale,{
 			roleGiven:'Optional Roles',//EwayLocale.person.user.roleGiven
 			roleName:'Name',//EwayLocale.person.user.roleName
 			roleDescription:'Description',//EwayLocale.person.user.roleDescription
-			userListTitle:'userList',//EwayLocale.person.user.userListTitle
+			userListTitle:'UserList',//EwayLocale.person.user.userListTitle
 			updateUserTitle:'Modify User Role(use Drafting Way)',//EwayLocale.person.user.updateUserTitle
 			roleCanBeAdd:'Role List Can Be Added',//EwayLocale.person.user.roleCanBeAdd
 			roleAlreadyBeAdd:'Role List Already Be Added',//EwayLocale.person.user.roleAlreadyBeAdd
@@ -116,7 +116,7 @@ Ext.apply(EwayLocale,{
 			isSysRole:'Is Default Role',//EwayLocale.permission.role.isSysRole
 			chooseRight:'Please Choose Permissions.',//EwayLocale.permission.role.chooseRight
 			add:'Add Role',//EwayLocale.permission.role.add
-			wrongRoleParam:'Invalid Input Exists,PleaseTry Again.'//EwayLocale.permission.role.wrongRoleParam
+			wrongRoleParam:'Invalid Input Exists,Please Try Again.'//EwayLocale.permission.role.wrongRoleParam
 		},
 		permission:{
 			menuName:'Name',//EwayLocale.permission.permission.menuName
