@@ -26,6 +26,7 @@ import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.util.MsgDigestAlgorithm;
+import com.yihuacomputer.domain.util.DBType;
 import com.yihuacomputer.fish.api.permission.IPermission;
 import com.yihuacomputer.fish.api.permission.IPermissionService;
 import com.yihuacomputer.fish.api.person.IOrganization;
@@ -70,13 +71,13 @@ public class LoginController {
 		ModelMap result = new ModelMap();
 
 		 //验证没有注册就进入注册页面。
-//		 if (!new DBType(sf.getHibernateProperties()).isMemDB() &&
-//		 FishCfg.isFishExpiry()) {
-//			 result.addAttribute(FishConstant.SUCCESS, false);
-//			 result.addAttribute("isRegister", false);
-////			 result.addAttribute("message", "请进行系统注册.");
-//			 return result;
-//		 }
+		 if (!new DBType(sf.getHibernateProperties()).isMemDB() &&
+		 FishCfg.isFishExpiry()) {
+			 result.addAttribute(FishConstant.SUCCESS, false);
+			 result.addAttribute("isRegister", false);
+			 result.addAttribute("message", "System is not Register");
+			 return result;
+		 }
 
 		try {
 			IUser user = userService.login(username, password);
