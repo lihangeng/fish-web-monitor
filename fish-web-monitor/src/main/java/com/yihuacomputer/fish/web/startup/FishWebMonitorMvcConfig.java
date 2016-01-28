@@ -19,6 +19,7 @@ import com.yihuacomputer.fish.web.mvc.BrowseMvcConfig;
 			"com.yihuacomputer.fish.web.system.controller",
 			"com.yihuacomputer.fish.web.machine.controller",
 			"com.yihuacomputer.fish.web.advert.controller",
+			"com.yihuacomputer.fish.web.bsadvert.controller",
 			"com.yihuacomputer.fish.web.command",
 			"com.yihuacomputer.fish.web.daily.controller",
 			"com.yihuacomputer.fish.web.fault.controller",

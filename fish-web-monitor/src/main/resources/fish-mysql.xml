@@ -60,6 +60,8 @@
 		<property name="packagesToScan">
 			<list>
 				<value>com.yihuacomputer.fish.advert.entity</value>
+				<value>com.yihuacomputer.fish.advert.bs.entity</value>
+				
 				<value>com.yihuacomputer.fish.version.entity</value>
 				<value>com.yihuacomputer.fish.person.entity</value>
 				<value>com.yihuacomputer.fish.permission.entity</value>
