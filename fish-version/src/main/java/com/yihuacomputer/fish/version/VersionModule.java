@@ -3,6 +3,14 @@ package com.yihuacomputer.fish.version;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.yihuacomputer.fish.advert.bs.service.AdvertGroupDeviceRelationService;
+import com.yihuacomputer.fish.advert.bs.service.AdvertGroupService;
+import com.yihuacomputer.fish.advert.bs.service.BsAdvertResourceService;
+import com.yihuacomputer.fish.advert.bs.service.BsAdvertService;
+import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelationService;
+import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupService;
+import com.yihuacomputer.fish.api.advert.bs.IBsAdvertResourceService;
+import com.yihuacomputer.fish.api.advert.bs.IBsAdvertService;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
 import com.yihuacomputer.fish.api.version.IVersionService;
@@ -104,5 +112,20 @@ public class VersionModule {
 	public IVersionStaticsStautsService versionStaticsStautsService(){
 		return new VersionStaticsStatusService();
 	}
-
+	@Bean
+	public IBsAdvertService bsAdvertService(){
+		return new BsAdvertService();
+	}
+	@Bean
+	public IAdvertGroupService advertGroupService(){
+		return new AdvertGroupService();
+	}
+	@Bean
+	public IAdvertGroupDeviceRelationService advertGroupDeviceRelationService(){
+		return new AdvertGroupDeviceRelationService();
+	}
+	@Bean
+	public IBsAdvertResourceService bsAdvertResourceService(){
+		return new BsAdvertResourceService();
+	}
 }
