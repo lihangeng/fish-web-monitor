@@ -9,7 +9,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<link rel="shortcut icon" type="image/ico" href="resources/images/logo.ico" />
+	<link rel="shortcut icon" type="image/ico" href="resources/images/favicon.ico" />
 
 	<link rel="stylesheet" type="text/css" href="ext/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="ext/packages/sencha-charts/sencha-charts-all.css" media="all" />
