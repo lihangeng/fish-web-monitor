@@ -3,7 +3,8 @@ Ext.define('Eway.view.bsAdvert.AddBsWait', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.advert_add_bsWait',
 
-	requires : ['Eway.view.bsAdvert.BsWaitTab','Eway.view.bsAdvert.BsAdvertResourceConfigForm'],
+	requires : ['Eway.view.bsAdvert.BsWaitTab','Eway.view.bsAdvert.field.AdvertGroupComBox',
+	            'Eway.view.bsAdvert.BsAdvertResourceConfigForm'],
 
 	title : EwayLocale.advert.addIdleTitle,
 	modal : true,
@@ -62,22 +63,9 @@ Ext.define('Eway.view.bsAdvert.AddBsWait', {
 				            	name : 'advertType',
 				            	value: EwayLocale.advert.idleAdvertInfo
 				            },{
-						    	xtype: 'container',
-						        msgTarget: 'under',
-						        layout:'hbox',
-						        defaultType: 'combobox',
-						        items:[{
-					                fieldLabel: EwayLocale.advert.downType,
-					                displayField: 'display',
-					                store: Ext.StoreMgr.lookup("advert.AdvertDownMethod"),
-					                queryMode: 'local',
-					                valueField : 'value',
-					                value:'COVER',
-					                name:'advertDownMethod',
-					                editable : false,
-					                forceSelection: true//强制选择一个,不起作用
-					            }]
-				        	 }]
+				            	xtype:'field_advert_advertGroup',
+				            	fieldLabel: '广告归属组'
+				            }]
 				         }]
 					}
 					,{

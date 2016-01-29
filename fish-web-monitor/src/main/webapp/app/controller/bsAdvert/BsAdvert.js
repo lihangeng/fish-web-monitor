@@ -1,7 +1,7 @@
 Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 	extend : 'Ext.app.Controller',
 
-	stores : [  'bsAdvert.BsAdvert','bsAdvert.BsAdvertResource',
+	stores : [  'bsAdvert.BsAdvert','bsAdvert.BsAdvertResource','bsAdvert.BsAdvertGroupList',
 				'advert.AdvertDownMethod','Hour','Minute'],
 	models : [ 'bsAdvert.BsAdvert','bsAdvert.BsAdvertResource' ],
 	views : [ 'bsAdvert.BsAdvertView','bsAdvert.AddBsWait','bsAdvert.BsAdvertFilterForm','bsAdvert.BsAdvertGrid'],
@@ -129,7 +129,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 				
 				
 				form.submit({
-					 	url: 'api/advert/uploadRes/screen',
+					 	url: 'api/bsadvert/advert/uploadRes/screen',
 					 	params: {
 					 		screen: title
 					 	},
