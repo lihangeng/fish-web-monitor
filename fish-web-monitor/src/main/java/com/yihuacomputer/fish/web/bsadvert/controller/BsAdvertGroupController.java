@@ -26,6 +26,7 @@ import com.yihuacomputer.fish.api.advert.bs.IAdvertGroup;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.OrganizationLevel;
+import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertGroupForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
@@ -56,6 +57,22 @@ public class BsAdvertGroupController {
 			return "";
 		}
 		return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+	}
+	
+	
+	
+	@RequestMapping(value="/list",method = RequestMethod.GET)
+	public @ResponseBody ModelMap getAdvertGroupList(HttpServletRequest request, WebRequest webRequest) {
+		logger.info("search bsAdvert group list");
+		ModelMap result = new ModelMap();
+		UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
+		long orgId = userSession.getOrgId();
+		IFilter filter = new Filter();
+		filter.eq("orgId", orgId);
+		List<IAdvertGroup> groupList = advertGroupService.list(filter);
+		result.addAttribute(FishConstant.TOTAL,groupList.size());
+		result.addAttribute(FishConstant.DATA, groupList);
+		return result;
 	}
 
 	public List<BsAdvertGroupForm> convert(List<Object> groupList) {
