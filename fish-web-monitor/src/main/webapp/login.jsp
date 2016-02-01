@@ -5,11 +5,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<fmt:setLocale value="zh_CN" scope="session" />
+<fmt:setLocale value="en_US" scope="session" />
 <title><spring:message code="login.title" text="" /></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" type="image/ico"
-	href="resources/images/logo.ico" />
+	href="resources/images/favicon.ico" />
 <link rel="stylesheet" type="text/css" href="resources/css/login.css"
 	media="all" />
 
@@ -104,11 +104,11 @@
 	<body onLoad="textFocus()">
 		<div class="container">
 			<div class="head">
-				<img src="resources/images/logo.PNG">
+				<img src="resources/images/logo.png">
 			</div>
 			<div class="left">
 				<div class="left-content">
-					<img src="resources/images/left.PNG">
+					<img src="resources/images/left.png">
 				</div>
 			</div>
 			<div class="right">
