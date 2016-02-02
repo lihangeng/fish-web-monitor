@@ -1,0 +1,25 @@
+<assembly>
+	<id>bsadvert</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<baseDirectory>/</baseDirectory>
+	<files>
+		<file>
+			<source>src/main/webapp/resources/bsAdvert/advert.html</source>
+			<outputDirectory>/advert</outputDirectory>
+		</file>
+		<file>
+			<source>src/main/webapp/resources/bsAdvert/js/jquery.js</source>
+			<outputDirectory>/advert/js</outputDirectory>
+		</file>
+		<file>
+			<source>src/main/webapp/resources/bsAdvert/js/advertisement.js</source>
+			<outputDirectory>/advert/js</outputDirectory>
+		</file>
+		<file>
+			<source>src/main/webapp/resources/bsAdvert/js/advertUrl.js</source>
+			<outputDirectory>/advert/js</outputDirectory>
+		</file>
+	</files>
+</assembly>
