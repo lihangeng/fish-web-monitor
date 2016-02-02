@@ -2,8 +2,7 @@ package com.yihuacomputer.fish.web.bsadvert.form;
 
 import com.yihuacomputer.fish.api.advert.Screen;
 
-public class BsAdvertResourceForm {
-	
+public class BsUploadResourceForm {
 	private long id;
 
 	private long advertId;
@@ -24,8 +23,7 @@ public class BsAdvertResourceForm {
 
 	private Screen screen;
 
-	public BsAdvertResourceForm() {
-		
+	public BsUploadResourceForm() {
 	}
 
 	
@@ -109,6 +107,4 @@ public class BsAdvertResourceForm {
 	public void setScreen(Screen screen) {
 		this.screen = screen;
 	}
-
-
 }

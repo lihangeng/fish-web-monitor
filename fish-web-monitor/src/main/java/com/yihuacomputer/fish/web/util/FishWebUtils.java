@@ -28,6 +28,15 @@ public class FishWebUtils {
 	public static String getRealPathByTmp(HttpServletRequest request){
 	    return request.getSession().getServletContext().getRealPath("/tmp");
 	}
+	
+	/**
+	 * 获得web上下文目录
+	 * @param request
+	 * @return
+	 */
+	public static String getContentRealPath(HttpServletRequest request){
+	    return request.getSession().getServletContext().getRealPath("/");
+	}
 
 	public static UserSession getUserSession(HttpServletRequest request){
 		return (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
