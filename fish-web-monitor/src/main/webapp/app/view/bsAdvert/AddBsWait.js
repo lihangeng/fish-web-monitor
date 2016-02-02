@@ -1,85 +1,115 @@
-
 Ext.define('Eway.view.bsAdvert.AddBsWait', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.advert_add_bsWait',
 
-	requires : ['Eway.view.bsAdvert.BsWaitTab','Eway.view.bsAdvert.field.AdvertGroupComBox',
-	            'Eway.view.bsAdvert.BsAdvertResourceConfigForm'],
+	requires : [ 'Eway.view.bsAdvert.BsWaitTab',
+			'Eway.view.bsAdvert.field.AdvertGroupComBox',
+			'Eway.view.bsAdvert.BsAdvertResourceConfigForm' ],
 
 	title : EwayLocale.advert.addIdleTitle,
 	modal : true,
-	resizable :  true,
+	resizable : true,
 	constrainHeader : true,
-	maximizable: true,
-	height: document.body.clientHeight >= 600 ? 600 : document.body.clientHeight,
+	maximizable : true,
+	height : document.body.clientHeight >= 600 ? 600
+			: document.body.clientHeight,
 	width : 1024,
-	minWidth: 600,
-    minHeight: 400,
+	minWidth : 600,
+	minHeight : 400,
 	autoScroll : true,
-	layout:'border',
+	layout : 'border',
 
 	initComponent : function() {
 		Ext.apply(this, {
-			items: [{
-						region : 'south',
-						padding: '1px 0px 0px 0px',
-						dockedItems : [{
-						buttonAlign : 'center',
-						buttons : [{
-								text : EwayLocale.cases.confirm,
-								action : 'confirm'
-							},{
-								text : EwayLocale.cases.cancel,
-								handler : this.onOver
-							}, {
-					        	text : EwayLocale.advert.idleAdvertUpTipsInfo,
-					        	xtype:'tbtext'
-					        }]
-					}]
-					},{
-						region:'north',
-						xtype : 'form',
-						bodyStyle : 'padding: 10px 10px 10px 10px',
-						trackResetOnLoad : true,
-						fieldDefaults : {
-							labelAlign : 'right',
-							msgTarget : 'side',
-							grow : false
+			items : [ {
+				region : 'south',
+				padding : '1px 0px 0px 0px',
+				dockedItems : [ {
+					buttonAlign : 'center',
+					buttons : [ {
+						text : EwayLocale.cases.confirm,
+						action : 'confirm'
+					}, {
+						text : EwayLocale.cases.cancel,
+						handler : this.onOver
+					}, {
+						text : EwayLocale.advert.idleAdvertUpTipsInfo,
+						xtype : 'tbtext'
+					} ]
+				} ]
+			}, {
+				region : 'north',
+				xtype : 'form',
+				bodyStyle : 'padding: 10px 10px 10px 10px',
+				trackResetOnLoad : true,
+				fieldDefaults : {
+					labelAlign : 'right',
+					msgTarget : 'side',
+					grow : false
+				},
+				items : [ {
+					xtype : 'fieldset',
+					checkboxToggle : false,
+					title : EwayLocale.advert.advertBasicInfo,
+					collapsed : false,
+					items : [ {
+					layout : 'column',
+					height : 80,
+					defaults : {
+						anchor : '95%',
+						style : 'padding-top:5px',
+						labelAlign : 'right'
+					},
+					items : [ {
+						columnWidth : .5,
+						border : false,
+						layout : 'anchor',
+						defaults : {
+							anchor : '95%',
+							style : 'padding-top:5px',
+							labelAlign : 'right'
 						},
-						items : [{
-						 	xtype:'fieldset',
-				            checkboxToggle:false,
-				            title: EwayLocale.advert.advertBasicInfo,
-				            defaultType: 'combobox',
-				            collapsed: false,
-				            layout: 'anchor',
-				            height:80,
-				            defaults: {
-				                anchor: '100%'
-				            },
-				            items :[{
-				            	xtype: 'displayfield',
-				            	fieldLabel: EwayLocale.advert.type,
-				            	name : 'advertType',
-				            	value: EwayLocale.advert.idleAdvertInfo
-				            },{
-				            	xtype:'field_advert_advertGroup',
-				            	fieldLabel: '广告归属组'
-				            }]
-				         }]
-					}
-					,{
-						region:'center',
-						xtype:'advert_bs_waitTab',
-						autoScroll:true,
-						plain: true,
-						padding: '2px 0px 0px 0px'
-				},{
-					region:'east',
-					xtype:'advert_bs_resourceConfigForm',
-					padding: '2px 0px 0px 2px'
-				}
-			]
+						items : [ {
+							xtype : 'field_advert_advertGroup',
+							allowBlank : false,
+							fieldLabel : '<font color="red">*</font>广告归属组'
+						}, {
+							xtype : 'displayfield',
+							fieldLabel : EwayLocale.advert.type,
+							name : 'advertType',
+							value : EwayLocale.advert.idleAdvertInfo
+						} ]
+					}, {
+
+						columnWidth : .5,
+						border : false,
+						layout : 'anchor',
+						defaults : {
+							anchor : '95%',
+							style : 'padding-top:5px',
+							labelAlign : 'right'
+						},
+						items : [ {
+							xtype : 'textfield',
+							name : 'groupName',
+							maxLength : 20,
+							allowBlank : false,
+							fieldLabel : '<font color="red">*</font>广告名称'
+						} ]
+					} ]
+					} ]
+				} ]
+			}, {
+				region : 'center',
+				xtype : 'advert_bs_waitTab',
+				autoScroll : true,
+				plain : true,
+				padding : '2px 0px 0px 0px'
+			}, {
+				region : 'east',
+				xtype : 'advert_bs_resourceConfigForm',
+				padding : '2px 0px 0px 2px'
+			} ]
 		});
 		this.callParent(arguments);
 	},

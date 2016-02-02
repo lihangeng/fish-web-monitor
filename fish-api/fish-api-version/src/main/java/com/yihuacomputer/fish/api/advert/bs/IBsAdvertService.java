@@ -23,7 +23,16 @@ public interface IBsAdvertService {
 	
 	public IBsAdvert getById(long id);
 	
-	public IPageResult<IBsAdvert> page(int offset, int limit, IFilter filter);
+	public IPageResult<Object> page(int offset, int limit, IFilter filter);
 	
 	public List<IBsAdvert> list(IFilter filter);
+	
+	public IBsAdvertResourceService getBsAdvertResourceService();
+	
+	/**
+	 * 激活广告
+	 * @param bsAdvert
+	 * @return
+	 */
+	public IBsAdvert actived(IBsAdvert bsAdvert);
 }

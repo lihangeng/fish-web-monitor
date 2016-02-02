@@ -15,15 +15,14 @@ import com.yihuacomputer.common.jackson.JsonUtils;
 public class AdvertUrlController {
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
-	String reciveMsg(HttpServletRequest request) {		
+	String reciveMsg(HttpServletRequest request) {
 		ModelMap result = new ModelMap();
-		System.out.println("aaa");  
 		String callbackName = (String)request.getParameter("jsoncallback");
 		String terminalId = request.getParameter("terminalId");
 		if("1".equals(terminalId))
-			result.put("ret", "/advertisement/zone/023/advertisement.html");
+			result.put("ret", "/advert/11/AD_IDLE/1024/advertisement.html");
 		else{
-			result.put("ret", "/advertisement/zone/001/advertisement.html");
+			result.put("ret", "/advert/10/AD_IDLE/1024/advertisement.html");
 		}
 		String renderStr = callbackName+"("+JsonUtils.toJson(result)+")";
 		return renderStr;

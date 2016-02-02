@@ -49,6 +49,23 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
+			},{
+				text :EwayLocale.advert.preview,
+				iconCls : 'adPreview',
+				code : 'advertPreview',
+				disabled : true,
+				menu : new Ext.menu.Menu({
+					items : [{
+						text : EwayLocale.advert.preview1024,
+						action:'preview1024'
+					},{
+						text : EwayLocale.advert.preview800,
+						action:'preview800'
+					},{
+						text : EwayLocale.advert.preview600,
+						action:'preview600'
+					}]
+				})
 			}],
 			columns : [{
 				header: 'ID',
@@ -57,8 +74,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 			},{
 				header : '广告组',
 				dataIndex : 'groupName',
-				width: 200,
-				renderer: Eway.lib.Util.dictRenderer('advert.AdvertType')
+				width: 200
 			},/*{
 				header : '广告下发方式',
 				dataIndex : 'advertDownMethod',
@@ -69,16 +85,32 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 				width: 145
 			},{
 				header : '是否激活',
-				dataIndex : 'actived',
-				width: 200
+				dataIndex : 'actived',renderer:function(value,meta,record){
+					if(value == true){
+						return "激活";
+					}else{
+						return "未激活";
+					}
+				},
+				width: 100
 			},{
 				header:'最近更改时间',
 				dataIndex:'lastTime',
 				width: 200
 			},{
+				header:'BS广告文件',
+				dataIndex:'advertFileName',
+				renderer:function(value,meta,record){
+					if(value != null){
+						return "<a class='link' href='#'>"+ value + "</a>";
+					}else{
+						return value;
+					}
+				}
+			},{
 				header : '更改人',
 				dataIndex:'personName',
-				width: 200
+				width: 100
 			},{
 				header : '激活人',
 				dataIndex:'activePersonName',
