@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.monitor.ICollectService;
+import com.yihuacomputer.fish.api.monitor.business.CardType;
 import com.yihuacomputer.fish.api.monitor.business.ITransaction;
 import com.yihuacomputer.fish.api.monitor.business.ITransactionService;
 import com.yihuacomputer.fish.api.monitor.business.IUncommonTransService;
@@ -68,6 +69,10 @@ public class TransactionController{
 	        trans.setTransCode(msg.getTransCode());
 	        trans.setTransId(msg.getTransId());
 	        trans.setTipFee(msg.getTipFee());
+	        
+	        // 20160201-增加卡类型信息
+	        trans.setCardType(CardType.valueOf(msg.getCardType()));
+	        trans.setCostTime(msg.getCostTime());
 
         	collectService.collectATMCTransaction(msg.getTermId(), trans);
 

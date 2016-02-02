@@ -170,6 +170,25 @@ Ext.apply(EwayLocale,{
 					down:'Down'//EwayLocale.monitor.business.transaction.transactionMonitor.down
 				}
 			},
+			newTransaction:{
+				interval: 'Statistics Interval',//EwayLocale.monitor.business.newTransaction.interval
+				type: 'Statistics Type',//EwayLocale.monitor.business.newTransaction.type
+				result: 'Statistics Result',//EwayLocale.monitor.business.newTransaction.result
+				time: 'Statistics Time',//EwayLocale.monitor.business.newTransaction.time
+				timeUnit: 'Minute',//EwayLocale.monitor.business.newTransaction.timeUnit
+				
+				total: 'Transaction Total',//EwayLocale.monitor.business.newTransaction.total
+				localW: 'Local Withdrawl',//EwayLocale.monitor.business.newTransaction.localW
+				localD: 'Local Deposit',//EwayLocale.monitor.business.newTransaction.localD
+				localT: 'Local Transfer',//EwayLocale.monitor.business.newTransaction.localT
+				localQ: 'Local Query',//EwayLocale.monitor.business.newTransaction.localQ
+				creditW: 'Credit Withdrawl',//EwayLocale.monitor.business.newTransaction.creditW
+				creditD: 'Credit Deposit',//EwayLocale.monitor.business.newTransaction.creditD
+				creditQ: 'Credit Other',//EwayLocale.monitor.business.newTransaction.creditQ
+				otherW: 'Other Withdrawl',//EwayLocale.monitor.business.newTransaction.otherW
+				otherT: 'Other Transfer',//EwayLocale.monitor.business.newTransaction.otherT
+				otherQ: 'Other Other',//EwayLocale.monitor.business.newTransaction.otherQ
+			},
 			blackList:{
 				title:'Black Card',//EwayLocale.monitor.business.blackList.title
 				black:'BlackCard',//EwayLocale.monitor.business.blackList.black
@@ -257,6 +276,19 @@ Ext.apply(EwayLocale,{
 				cimAmt:'Deposit Amount',//EwayLocale.monitor.business.settlement.cimAmt
 				cdmAmt:'Withdraw Amount',//EwayLocale.monitor.business.settlement.cdmAmt
 				tranAmt:'Total Amount'//EwayLocale.monitor.business.settlement.tranAmt
+			},
+			transactionColor:{
+				title:'Transaction Return Setting',//EwayLocale.monitor.business.transactionColor.title
+				hostRet:'Host Return',//EwayLocale.monitor.business.transactionColor.hostRet
+				backgroundColor:'Host Background-Color',//EwayLocale.monitor.business.transactionColor.backgroundColor
+				fontColor:'Host Font-Color',//EwayLocale.monitor.business.transactionColor.fontColor
+				hostRetDes:'Host Return Describe',//EwayLocale.monitor.business.transactionColor.hostRetDes
+				localRet:'Local Return',//EwayLocale.monitor.business.transactionColor.localRet
+				localBackgroundColor:'Local Background-Color',//EwayLocale.monitor.business.transactionColor.localBackgroundColor
+				localFontColor:'Local Font-Color',//EwayLocale.monitor.business.transactionColor.localFontColor
+				localRetDes:'Local Return Describe',//EwayLocale.monitor.business.transactionColor.localRetDes
+				updateDateTime:'Update Time',//EwayLocale.monitor.business.transactionColor.updateDateTime
+				remark:'remark'//EwayLocale.monitor.business.transactionColor.remark
 			}
 		},
 		remoteCommand:{
