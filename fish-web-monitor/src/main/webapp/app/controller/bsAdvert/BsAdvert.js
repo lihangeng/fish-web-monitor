@@ -31,6 +31,9 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 			'#bsadvert button[action=add]' : {
 				click : this.onAdd
 			},
+			'#bsadvert button[action=update]' : {
+				click : this.onLoadBsAdvert
+			},
 			'#bsadvert button[action=actived]' : {
 				click : this.onActive
 			},
@@ -105,6 +108,103 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 		store.setUrlParamsByObject(values);
 		store.loadPage(1);
 	},
+	onLoadBsAdvert:function(){
+		var grid = this.getGrid();
+		var sm = grid.getSelectionModel();
+		if(sm.getCount() == 1) {
+			var record = sm.getLastSelected();
+			if(record.get('id') != 0 && record.get('advertFileName') != null){
+				var me = this;
+				Ext.Ajax.request({
+					url :"api/bsadvert/advert/loadAdvertToUpdate",
+					params: {
+						advertId: record.get('id')
+				    },
+					success: function(response){
+						var obj = Ext.decode(response.responseText);
+				        if(obj.success==true){
+							var info1024 = obj.data.screen1024;
+							var info800 = obj.data.screen800;
+							var info600 = obj.data.screen600;
+							me.onUpdate(record,info1024,info800,info600);
+				        }
+				        else{
+							Eway.alert(obj.errorMsg);
+				        }
+				    },
+				    failure:function(){
+				    	Eway.alert("加载广告资源失败!");
+				    }
+				});
+				
+			}else{
+				Eway.alert("广告文件不存在!");
+			}
+		}
+		else {
+			Eway.alert(EwayLocale.msg.chooseAdvert);
+		}
+	},
+	loadPic:function(s1024,info1024){
+		var s1024Store = s1024.getStore();
+		for(var index=0;index<info1024.length;index++){
+			var record = Ext.create("Eway.model.bsAdvert.BsAdvertResource",info1024[index]);
+			s1024Store.insert(index,record);
+		}
+	},
+	onUpdate:function(record,info1024,info800,info600){
+		var win = Ext.create("Eway.view.bsAdvert.AddBsWait");
+		var tab = win.down('advert_bs_waitTab');
+		var s1024 = tab.down('bsadvertimgview[name=1024]');
+		//加载1024图片
+		this.loadPic(s1024,info1024);
+		var s800 = tab.down('bsadvertimgview[name=800]');
+		//加载800图片
+		this.loadPic(s800,info800);
+		var s600 = tab.down('bsadvertimgview[name=600]');
+		//加载600图片
+		this.loadPic(s600,info600);
+
+		win.down("field_advert_advertGroup").setValue([record.get("groupId"),record.get("groupName")]);
+		win.down("textfield[name='advertName']").setValue(record.get("advertName"));
+		
+		
+		var b1 = win.query('button[action=confirm]')[0];
+		b1.on('click', this.onUpdateWaitConfirm, this);
+		var b5 = win.query('filefield[name=file]')[0];
+		b5.on('change',this.onFileChangedScreen,this);
+		var b51 = win.query('filefield[name=file]')[1];
+		b51.on('change',this.onFileChangedScreen,this);
+		var b52 = win.query('filefield[name=file]')[2];
+		b52.on('change',this.onFileChangedScreen,this);
+		var b6 = win.query('bsadvertimgview[name=1024]')[0];
+		b6.on('itemclick',this.onAdvertImgItemClick,this);
+		var b61 = win.query('bsadvertimgview[name=800]')[0];
+		b61.on('itemclick',this.onAdvertImgItemClick,this);
+		var b62 = win.query('bsadvertimgview[name=600]')[0];
+		b62.on('itemclick',this.onAdvertImgItemClick,this);
+		var resConfigForm = win.down('advert_bs_resourceConfigForm').getForm();
+		var b7 = resConfigForm.findField('playTime');
+		b7.on('change',this.onResourceConfigChanged,this);
+		var b8 = resConfigForm.findField('beginDate');
+		b8.on('change',this.onResourceConfigChanged,this);
+		var b9 = resConfigForm.findField('endDate');
+		b9.on('change',this.onResourceConfigChanged,this);
+		var b10 = resConfigForm.findField('beginHour');
+		b10.on('change',this.onResourceConfigChanged,this);
+		var b11 = resConfigForm.findField('beginMinute');
+		b11.on('change',this.onResourceConfigChanged,this);
+		var b12 = resConfigForm.findField('beginSecond');
+		b12.on('change',this.onResourceConfigChanged,this);
+		var b13 = resConfigForm.findField('endHour');
+		b13.on('change',this.onResourceConfigChanged,this);
+		var b14 = resConfigForm.findField('endMinute');
+		b14.on('change',this.onResourceConfigChanged,this);
+		var b15 = resConfigForm.findField('endSecond');
+		b15.on('change',this.onResourceConfigChanged,this);
+		win.show();
+	},
+	onUpdateWaitConfirm:function(){},
 	//增加
 	onAdd:function(){
 		var win = Ext.create("Eway.view.bsAdvert.AddBsWait");
@@ -180,7 +280,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
     	this.generateAdvertResource(advRess,s800Strore);
     	this.generateAdvertResource(advRess,s600Strore);
     	var groupId = win.down("field_advert_advertGroup").getValue();
-    	var advertName = win.down("textfield[name='groupName']").getValue();
+    	var advertName = win.down("textfield[name='advertName']").getValue();
     	var resources = '[';
     	for(var i in advRess){
     		var res = advRess[i];

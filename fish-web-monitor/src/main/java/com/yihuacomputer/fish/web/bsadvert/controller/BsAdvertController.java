@@ -1,6 +1,10 @@
 package com.yihuacomputer.fish.web.bsadvert.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +14,8 @@ import java.util.regex.Pattern;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +56,8 @@ import com.yihuacomputer.fish.api.version.VersionCfg;
 import com.yihuacomputer.fish.web.advert.form.AdvertResourceForm;
 import com.yihuacomputer.fish.web.advert.form.UploadResourceForm;
 import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertForm;
+import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertScreenForm;
+import com.yihuacomputer.fish.web.bsadvert.form.BsUploadResourceForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
@@ -80,6 +88,14 @@ public class BsAdvertController {
 	private final static long ADVERTBYTESIZE = 5242880;
 	private final static long MILLO = 1024 * 1024l;
 
+	/**
+	 * 查找广告列表
+	 * @param limit
+	 * @param start
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap seachBsAdvertList(@RequestParam int limit, @RequestParam int start, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search bsAdvert group ");
@@ -153,6 +169,132 @@ public class BsAdvertController {
 	}
 
 	
+	/**
+	 * 加载广告进行更改
+	 * @param advertId
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
+	@RequestMapping(value="/loadAdvertToUpdate",method = RequestMethod.POST)
+	public @ResponseBody ModelMap loadAdvertToUpdate(@RequestParam long advertId,HttpServletRequest request, WebRequest webRequest) {
+		logger.info("activedBsAdvert "+advertId);
+		ModelMap result = new ModelMap();
+		IBsAdvert bsAdvert = bsAdvertService.getById(advertId);
+		ScreenResources screenResources = null;
+		if(null==bsAdvert){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, "广告不存在，请刷新后操作。");
+			return result;
+		}
+		try {
+			List<IBsAdvertResource> resourceList = bsAdvert.getAdvertResources();
+			@SuppressWarnings("deprecation")
+			String tempDir = request.getRealPath("/")+"/tmp/bsAdvert/" + this.getSessionDir(request) + "/";
+			ZipUtils.unZip(VersionCfg.getBsAdvertDir()+File.separator+bsAdvert.getId()+".zip", tempDir+File.separator+bsAdvert.getId(), "UTF-8");
+			String willCopyFileName = tempDir+File.separator+bsAdvert.getId()+File.separator+"AD_IDLE";
+			for(IBsAdvertResource resource:resourceList){
+				Screen screen = resource.getScreen();
+				String fileName = resource.getContent();
+				String screenName = getEnumI18n(screen.getText());
+				String advertResourceFile = willCopyFileName.concat(File.separator).concat(screenName).concat(File.separator).concat(fileName);
+				IOUtils.copyFileToDirectory(advertResourceFile, tempDir.concat(File.separator).concat(screenName));
+			}
+			screenResources = getResoucesJson(willCopyFileName,request);
+			new File(willCopyFileName).delete();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, "加载广告资源异常。");
+			return result;
+		}
+		result.addAttribute(FishConstant.SUCCESS, true);
+		result.addAttribute(FishConstant.DATA, screenResources);
+		return result;
+	}
+	
+	private ScreenResources getResoucesJson(String willCopyFileName,HttpServletRequest request){
+		
+		String screen1024 = getEnumI18n(Screen.SCREEN_1024.getText());//willCopyFileName+File.separator+"1024"+File.separator+"config.json";
+		String screen800 = getEnumI18n(Screen.SCREEN_800.getText());//willCopyFileName+File.separator+"1024"+File.separator+"config.json";
+		String screen600 = getEnumI18n(Screen.SCREEN_600.getText());//willCopyFileName+File.separator+"1024"+File.separator+"config.json";
+		BsAdvertScreenForm screen1024Form = getAdvertResourceInfos(willCopyFileName+File.separator+screen1024+File.separator+"config.json");
+		BsAdvertScreenForm screen800Form = getAdvertResourceInfos(willCopyFileName+File.separator+screen800+File.separator+"config.json");
+		BsAdvertScreenForm screen600Form = getAdvertResourceInfos(willCopyFileName+File.separator+screen600+File.separator+"config.json");
+		ScreenResources screenResource = new ScreenResources();
+		screenResource.setScreen1024(getResource(screen1024Form.getResources(),request,screen1024));
+		screenResource.setScreen800(getResource(screen800Form.getResources(),request,screen800));
+		screenResource.setScreen600(getResource(screen600Form.getResources(),request,screen600));
+		return screenResource;
+	}
+	
+	private List<UploadResourceForm> getResource(List<BsUploadResourceForm> resourceFormList,HttpServletRequest request,String screen){
+		List<UploadResourceForm> list = new ArrayList<UploadResourceForm>();
+			for(int index=0;index<resourceFormList.size();index++){
+				BsUploadResourceForm resourceForm = resourceFormList.get(index);
+				
+				String fileName = resourceForm.getContent();
+				UploadResourceForm form = new UploadResourceForm(fileName, fileName, getTempWebDir(request, screen, fileName), screen);
+				form.setBeginDate(resourceForm.getBeginDate());
+				String beginTime = resourceForm.getBeginTime();
+				try{
+					if(null!=beginTime&&!"".equals(beginTime)){
+						String beginTimes[] = beginTime.split("\\:");
+						
+						form.setBeginHour(beginTimes[0]);
+						form.setBeginMinute(beginTimes[1]);
+						form.setBeginSecond(beginTimes[2]);
+					}
+				}catch(Exception e){
+					logger.error(e.getMessage());
+				}
+				form.setDisplayName(resourceForm.getContent());
+				form.setEndDate(resourceForm.getEndDate());
+				String endTime = resourceForm.getEndTime();
+				try{
+					if(null!=endTime&&!"".equals(endTime)){
+						String endTimes[] = endTime.split("\\:");
+						form.setEndHour(endTimes[0]);
+						form.setEndMinute(endTimes[1]);
+						form.setEndSecond(endTimes[2]);
+					}
+				}catch(Exception e){
+					logger.error(e.getMessage());
+				}
+				form.setFileName(fileName);
+				form.setId(String.valueOf(resourceForm.getId()));
+				form.setOriginalFileName(fileName);
+				form.setPlayTime(resourceForm.getPlayTime());
+				list.add(form);
+			}
+		return list;
+	}
+	
+	private BsAdvertScreenForm getAdvertResourceInfos(String willCopyFileName){
+		BsAdvertScreenForm screenAdvert = null;
+		FileReader reader = null;
+		BufferedReader br = null;
+		try {
+			reader = new FileReader(willCopyFileName);
+            br = new BufferedReader(reader);
+			String str = br.readLine();
+			str = str.replaceAll("resourceId", "id");
+			screenAdvert = JsonUtils.fromJson(str, BsAdvertScreenForm.class);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally{
+			if(null!=br){
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return screenAdvert;
+	}
 	/**
 	 * 进行预览
 	 * @param id
@@ -232,7 +374,6 @@ public class BsAdvertController {
 		advert.setAdvertName(form.getAdvertName());
 		advert.setGroupId(form.getGroupId());
 		advert.setAdvertType(AdvertType.valueOf(form.getAdvertType()));
-//		UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
 		advert.setPersonId(userSession.getUserId());
 
 		String tempDir = getTempRealDir(request);
@@ -343,6 +484,13 @@ public class BsAdvertController {
         return file.exists() ? file.getName() : null;
     }
 
+	/**
+	 * 上传资源
+	 * @param file
+	 * @param request
+	 * @param response
+	 * @return
+	 */
 	@RequestMapping(value = "/uploadRes/screen", method = RequestMethod.POST)
 	@ResponseBody
 	public String uploadByScreen(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
@@ -377,6 +525,11 @@ public class BsAdvertController {
 		}
 	}
 
+	/**
+	 * 是否有中文
+	 * @param s
+	 * @return
+	 */
 	public boolean containsChinese(String s) {
 		String pattern = "[u4e00-u9fa5]+";
 		Pattern p = Pattern.compile(pattern);
@@ -384,18 +537,39 @@ public class BsAdvertController {
 		return result.find();
 	}
 
+	/**
+	 * 获取web临时目录
+	 * @param request
+	 * @param screen
+	 * @param saveFileName
+	 * @return
+	 */
 	private String getTempWebDir(HttpServletRequest request, String screen, String saveFileName) {
 		return "tmp/bsAdvert/" + this.getSessionDir(request) + "/" + screen + "/" + saveFileName;
 	}
 	
+	/**
+	 * 获取广告html页面,打包时候使用
+	 * @param request
+	 * @return
+	 */
 	private String getBsResourcePath(HttpServletRequest request){
 		return FishWebUtils.getContentRealPath(request)+ File.separator +"resources/bsAdvert/advertisement.html";
 	}
 
+	/**
+	 * @param request
+	 * @return
+	 */
 	private String getTempRealDir(HttpServletRequest request) {
 		return this.getRealPath(request) + File.separator + this.getSessionDir(request);
 	}
 
+	/**
+	 * 获取session目录名称
+	 * @param request
+	 * @return
+	 */
 	private String getSessionDir(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String sessionId = session.getId();
@@ -433,6 +607,35 @@ public class BsAdvertController {
 			this.fileName = fileName;
 		}
 
+	}
+	
+	/**
+	 * 加载更改页面的广告资源进行使用
+	 * @author GQ
+	 *
+	 */
+	class ScreenResources {
+		private List<UploadResourceForm> screen1024;
+		private List<UploadResourceForm> screen800;
+		private List<UploadResourceForm> screen600;
+		public List<UploadResourceForm> getScreen1024() {
+			return screen1024;
+		}
+		public void setScreen1024(List<UploadResourceForm> screen1024) {
+			this.screen1024 = screen1024;
+		}
+		public List<UploadResourceForm> getScreen800() {
+			return screen800;
+		}
+		public void setScreen800(List<UploadResourceForm> screen800) {
+			this.screen800 = screen800;
+		}
+		public List<UploadResourceForm> getScreen600() {
+			return screen600;
+		}
+		public void setScreen600(List<UploadResourceForm> screen600) {
+			this.screen600 = screen600;
+		}
 	}
 
 }
