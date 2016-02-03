@@ -30,6 +30,11 @@ public class TransactionReport {
      * 耗时
      */
     private long costTime;
+    
+    /**
+     * 卡类型
+     */
+    private String cardType;
 
     public String getTransId() {
         return transId;
@@ -143,6 +148,7 @@ public class TransactionReport {
         this.setOrgName(trans.getOrgName());
 
         this.setCostTime(trans.getCostTime());
+        this.setCardType(String.valueOf(trans.getCardType()));
     }
 
     public long getCostTime() {
@@ -151,5 +157,13 @@ public class TransactionReport {
 
     public void setCostTime(long costTime) {
         this.costTime = costTime;
+    }
+
+    public String getCardType() {
+        return cardType;
+    }
+
+    public void setCardType(String cardType) {
+        this.cardType = cardType;
     }
 }

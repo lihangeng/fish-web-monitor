@@ -35,4 +35,12 @@ public interface IBsAdvertService {
 	 * @return
 	 */
 	public IBsAdvert actived(IBsAdvert bsAdvert);
+	
+	/**
+	 * 根据机构和名称查找广告信息
+	 * @param orgId
+	 * @param advertName
+	 * @return
+	 */
+	public List<IBsAdvert> getBsAdvertByNameAndOrgId(long orgId,String advertName);
 }

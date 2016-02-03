@@ -91,7 +91,7 @@ Ext.define('Eway.view.bsAdvert.AddBsWait', {
 						},
 						items : [ {
 							xtype : 'textfield',
-							name : 'groupName',
+							name : 'advertName',
 							maxLength : 20,
 							allowBlank : false,
 							fieldLabel : '<font color="red">*</font>广告名称'
