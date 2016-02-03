@@ -1,7 +1,9 @@
 package com.yihuacomputer.fish.advert.bs.service;
 
+import java.io.File;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yihuacomputer.common.IFilter;
@@ -43,6 +45,13 @@ public class BsAdvertResourceService implements IBsAdvertResourceService {
 		dao.delete(advert);
 	}
 
+
+	@Override
+	public void delete(IBsAdvertResource advert,String fileName) {
+		FileUtils.deleteQuietly(new File(fileName));
+		dao.delete(advert);
+	}
+	
 	@Override
 	public IBsAdvertResource getById(long id) {
 		return dao.get(id, BsAdvertResource.class);

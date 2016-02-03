@@ -150,7 +150,6 @@ Ext.define('Eway.view.bsAdvert.BsAdvertImgView', {
 	            		counter++;
 	            	});
 	            	defaultIndex>=moveIndex?defaultIndex++:defaultIndex;
-	            	Ext.log("defaultIndex"+defaultIndex);
 	                var name = data.patientData.name;  
 
 //                    panel.store.remove(data.patientData);    
@@ -167,7 +166,30 @@ Ext.define('Eway.view.bsAdvert.BsAdvertImgView', {
     },
     removeAdvertRes : function(){
     	if(selectedRecord != null){
-    		this.removeStoreData(selectedRecord);
+    		var me = this;
+    		if('0'!=selectedRecord.get('id')&&Ext.isNumeric(selectedRecord.get('id'))){
+	    		Ext.Ajax.request({
+					url :"api/bsadvert/advert/deleteResource",
+					params: {
+						id: selectedRecord.get('id')
+				    },
+					success: function(response){
+						var obj = Ext.decode(response.responseText);
+				        if(obj.success==true){
+				    		me.removeStoreData(selectedRecord);
+				        }
+				        else{
+							Eway.alert(obj.errorMsg);
+				        }
+				    },
+				    failure:function(){
+				    	Eway.alert("删除失败！");
+				    }
+				});
+    		}
+    		else{
+    			me.removeStoreData(selectedRecord);
+    		}
     	}
     }
 

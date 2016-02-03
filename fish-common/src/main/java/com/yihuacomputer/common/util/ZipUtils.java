@@ -153,11 +153,17 @@ public class ZipUtils {
 						while ((length = is.read(b)) > 0){
 	                        os.write(b, 0, length);  
 	                        os.flush();
-	                     }  
+	                     }
+						if (is!=null) {
+							is.close();
+						}
+						if (os!=null) {
+							os.close();
+						}
 					}
 				
 				}
-				System.out.println("decompression zipFile success!");
+				//System.out.println("decompression zipFile success!");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally{

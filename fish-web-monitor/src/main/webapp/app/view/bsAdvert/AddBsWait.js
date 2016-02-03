@@ -78,6 +78,10 @@ Ext.define('Eway.view.bsAdvert.AddBsWait', {
 							fieldLabel : EwayLocale.advert.type,
 							name : 'advertType',
 							value : EwayLocale.advert.idleAdvertInfo
+						}, {
+							xtype : 'hidden',
+							fieldLabel : EwayLocale.advert.type,
+							name : 'id'
 						} ]
 					}, {
 

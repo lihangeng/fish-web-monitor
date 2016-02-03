@@ -17,11 +17,14 @@ import javax.servlet.http.HttpSession;
 
 
 
+
+
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -53,9 +56,9 @@ import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.person.IUserService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.version.VersionCfg;
-import com.yihuacomputer.fish.web.advert.form.AdvertResourceForm;
 import com.yihuacomputer.fish.web.advert.form.UploadResourceForm;
 import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertForm;
+import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertResourceForm;
 import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertScreenForm;
 import com.yihuacomputer.fish.web.bsadvert.form.BsUploadResourceForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
@@ -131,6 +134,7 @@ public class BsAdvertController {
 		result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 		return result;
 	}
+	
 	
 	
 	/**
@@ -353,17 +357,7 @@ public class BsAdvertController {
 
 		ModelMap result = new ModelMap();
 		UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
-		IFilter groupFilter = new Filter();
-		groupFilter.eq("orgId", userSession.getOrgId());
-		List<IAdvertGroup> groupList = advertGroupService.list(groupFilter);
-		List<Long> groupIdList = new ArrayList<Long>();
-		for(IAdvertGroup group:groupList){
-			groupIdList.add(group.getId());
-		}
-		IFilter filter = new Filter();
-		filter.in("groupId", groupIdList);
-		filter.eq("advertName", form.getAdvertName());
-		List<IBsAdvert> bsAdvertList = bsAdvertService.list(filter);
+		List<IBsAdvert> bsAdvertList = bsAdvertService.getBsAdvertByNameAndOrgId(userSession.getOrgId(),form.getAdvertName());
 		if(bsAdvertList.size()>0){
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, "当前机构广告名称重复");
@@ -378,7 +372,7 @@ public class BsAdvertController {
 
 		String tempDir = getTempRealDir(request);
 		List<ScreenFile> fileNames = new ArrayList<ScreenFile>();
-		for (AdvertResourceForm resForm : form.getAdvertResources()) {
+		for (BsAdvertResourceForm resForm : form.getAdvertResources()) {
 			IBsAdvertResource res = bsAdvertResourceService.make();
 			res.setPlayTime(resForm.getPlayTime());
 			res.setBeginTime(resForm.getBeginTime());
@@ -426,6 +420,96 @@ public class BsAdvertController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/deleteResource")
+	public @ResponseBody
+	ModelMap deleteResource(@RequestParam long id, HttpServletRequest request) {
+		logger.info("delete bsAdvertResource: bsAdvertResource.id = " + id);
+		ModelMap result = new ModelMap();
+		IBsAdvertResource bsAdvertResource = bsAdvertResourceService.getById(id);
+		if(null!=bsAdvertResource){
+			File file = new File(getTempRealDir(request) + File.separator + getEnumI18n(bsAdvertResource.getScreen().getText()) + File.separator + bsAdvertResource.getContent());
+			file.delete();
+			bsAdvertResourceService.delete(bsAdvertResource);
+		}
+
+		result.addAttribute(FishConstant.SUCCESS, true);
+		return result;
+	}
+	
+	/**
+	 * 确认更改BsAdvert
+	 * @param id
+	 * @param form
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public @ResponseBody
+	ModelMap updateBsAdvert(@PathVariable long id, @RequestBody BsAdvertForm form, HttpServletRequest request) {
+		logger.info("update bsAdvert: bsAdvert.id = " + id);
+		ModelMap model = new ModelMap();
+		UserSession session =(UserSession)request.getSession().getAttribute(FishWebUtils.USER);
+		IBsAdvert advert = bsAdvertService.getById(id);
+		advert.setAdvertName(form.getAdvertName());
+		advert.setGroupId(form.getGroupId());
+		advert.setPersonId(session.getUserId());
+		advert.setLastTime(new Date());
+		advert.setAdvertType(AdvertType.valueOf(form.getAdvertType()));
+		advert.insertBsAdvertService(bsAdvertService);
+		advert.getAdvertResources().clear();
+		String tempDir = getTempRealDir(request);
+		List<ScreenFile> fileNames = new ArrayList<ScreenFile>();
+		for (BsAdvertResourceForm resForm : form.getAdvertResources()) {
+			IBsAdvertResource res = bsAdvertResourceService.getById(resForm.getId());
+			if(null==res){
+				res= bsAdvertResourceService.make();
+			}
+			res.setPlayTime(resForm.getPlayTime());
+			res.setBeginTime(resForm.getBeginTime());
+			res.setEndTime(resForm.getEndTime());
+			if (resForm.getBeginDate() != null && !"".equals(resForm.getBeginDate())) {
+				res.setBeginDate(DateUtils.getDate(resForm.getBeginDate()));
+			}
+			if (resForm.getEndDate() != null && resForm.getEndDate().length() > 9) {
+				res.setEndDate(DateUtils.getDate(resForm.getEndDate()));
+			}
+			if (AdvertType.isWords(advert.getAdvertType())) {
+				res.setContent(resForm.getContent());
+			} else {
+				String oFileName = resForm.getContent();
+				res.setContent(oFileName);
+				fileNames.add(new ScreenFile(resForm.getScreen(), File.separator + oFileName));
+				res.setScreen(resForm.getScreen());
+			}
+			res.setBsAdvert(advert);
+			advert.addAdvertResource(res);
+		}
+		bsAdvertService.update(advert);
+
+		// 拷贝临时目录中的文件到advert目录中
+		for (ScreenFile screenFile : fileNames) {
+			IOUtils.copyFileToDirectory(tempDir + File.separator + getEnumI18n(screenFile.getScreen().getText()) + File.separator + screenFile.getFileName(), VersionCfg.getBsAdvertDir()
+					+ File.separator + advert.getId() + File.separator + AdvertTypeConversionService.convert(advert.getAdvertType()) + File.separator + getEnumI18n(screenFile.getScreen().getText()));
+		}
+		// 删除临时目录
+		IOUtils.deleteDir(tempDir);
+
+		// 生成广告版本文件
+		saveConfigInfoToFileByScreen(advert, Screen.SCREEN_1024,request);
+		saveConfigInfoToFileByScreen(advert, Screen.SCREEN_800,request);
+		saveConfigInfoToFileByScreen(advert, Screen.SCREEN_600,request);
+		ZipUtils.zip(getAdvertSourcePath(advert), VersionCfg.getBsAdvertDir()+File.separator+advert.getId()+".zip", "UTF-8");
+		ZipUtils.delFolder(getAdvertSourcePath(advert));
+		bsAdvertService.update(advert);
+		// 回填值到form中
+		form.setId(advert.getId());
+		form.setLastTime(DateUtils.getTimestamp(advert.getLastTime()));
+		form.setPersonName(session.getUserName());
+		
+		model.addAttribute(FishConstant.SUCCESS, true);
+		model.addAttribute(FishConstant.DATA,"");
+		return model;
+	}
 	
 
 	private String getEnumI18n(String enumText) {
@@ -438,7 +522,6 @@ public class BsAdvertController {
 	private void saveConfigInfoToFileByScreen(IBsAdvert advert, Screen screen,HttpServletRequest request) {
 		String configInfo = advert.getAdvertConfigByScreen(screen);
 		IOUtils.writeStringToFile(getConfigFileBasePath(advert) + File.separator + getEnumI18n(screen.getText()) + File.separator + "config.json", configInfo);
-		IOUtils.copyFileToDirectory(getBsResourcePath(request),getConfigFileBasePath(advert) + File.separator + getEnumI18n(screen.getText()) + File.separator);
 	}
 
 	protected String getConfigFileBasePath(IBsAdvert advert) {
@@ -548,15 +631,6 @@ public class BsAdvertController {
 		return "tmp/bsAdvert/" + this.getSessionDir(request) + "/" + screen + "/" + saveFileName;
 	}
 	
-	/**
-	 * 获取广告html页面,打包时候使用
-	 * @param request
-	 * @return
-	 */
-	private String getBsResourcePath(HttpServletRequest request){
-		return FishWebUtils.getContentRealPath(request)+ File.separator +"resources/bsAdvert/advertisement.html";
-	}
-
 	/**
 	 * @param request
 	 * @return
