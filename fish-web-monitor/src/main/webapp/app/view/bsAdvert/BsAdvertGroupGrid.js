@@ -38,14 +38,6 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : EwayLocale.button.bankOrgMove,
-				glyph : 0xf0ec,
-				action : 'move',
-				code : 'bsAdvertGroupLinkDevice',
-				listeners : {
-					'beforerender' : Eway.lib.ButtonUtils.onButtonBeforeRender
-				}
-			}, {
 				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
@@ -53,11 +45,19 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
+			}, {
+				text : '关联设备',
+				glyph : 0xf0c1,
+				action : 'link',
+				code : 'bsAdvertGroupLinkDevice',
+				listeners : {
+					'beforerender' : Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}],
 			columns : [{
 				header : EwayLocale.person.bankOrg.name,
 				dataIndex : 'orgName',
-				width:350,
+				width:250,
 				sortable : true
 			},{
 				header : EwayLocale.person.bankOrg.orgLevel,
@@ -66,10 +66,25 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 			},{
 				header : '组名称',
 				dataIndex : 'groupName',
-				sortable : true
+				width:200,
+				sortable : true,
+				
 			},{
 				header : '广告组分类',
 				dataIndex : 'groupType',
+				width:100,
+				sortable : true,
+				renderer : function(value, metadata, record) {
+					if (value == 1) {
+						return '默认';
+					}
+					if (value == 0) {
+						return '通用';
+					}
+				}
+			},{
+				header : '资源路径',
+				dataIndex : 'resourcePath',
 				sortable : true,
 				flex : 1
 			}],

@@ -19,7 +19,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupFilterForm', {
 		var levelStore = Ext.create('Eway.store.person.organization.OrganizationLevelDict');
 		Ext.apply(this, {
 			items : [{
-				columnWidth : .3,
+				columnWidth : .5,
 				items : [{
 					xtype : 'common_orgComboOrgTree',
 					fieldLabel : EwayLocale.person.bankOrg.name,
@@ -34,7 +34,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupFilterForm', {
 					name :'orgId'
 				}]
 			},{
-				columnWidth : .3,
+				columnWidth : .5,
 				items : [{
 					xtype : 'textfield',
 					labelAlign : 'right',
@@ -43,13 +43,6 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupFilterForm', {
 					msgTarget : 'side'
 				}]
 
-			}, {
-				columnWidth : .3,
-				items : [{
-					xtype : 'field.organizationLevel',
-					name : 'orgLevel',
-					store : levelStore
-				}]
 			}]
 		});
 

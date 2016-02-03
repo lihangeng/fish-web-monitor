@@ -22,7 +22,9 @@ import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistoryService;
 import com.yihuacomputer.fish.api.version.job.task.ITaskCollection;
 import com.yihuacomputer.fish.api.version.job.task.ITaskDetailService;
 import com.yihuacomputer.fish.api.version.job.task.ITaskManager;
+import com.yihuacomputer.fish.api.version.relation.IDeviceAdvertRelation;
 import com.yihuacomputer.fish.version.interceptor.VersionEntityInjector;
+import com.yihuacomputer.fish.version.relation.DeviceAdvertRelation;
 import com.yihuacomputer.fish.version.service.api.IDomainTaskService;
 import com.yihuacomputer.fish.version.service.db.DeviceSoftVersionService;
 import com.yihuacomputer.fish.version.service.db.TaskDetailService;
@@ -124,6 +126,12 @@ public class VersionModule {
 	public IAdvertGroupDeviceRelationService advertGroupDeviceRelationService(){
 		return new AdvertGroupDeviceRelationService();
 	}
+	
+	@Bean
+	public IDeviceAdvertRelation deviceAdvertRelation(){
+		return new DeviceAdvertRelation();
+	}
+	
 	@Bean
 	public IBsAdvertResourceService bsAdvertResourceService(){
 		return new BsAdvertResourceService();

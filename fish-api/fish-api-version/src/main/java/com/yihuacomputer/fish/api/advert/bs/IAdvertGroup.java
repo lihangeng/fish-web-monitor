@@ -19,4 +19,6 @@ public interface IAdvertGroup {
 	 */
 	public String getPath();
 	public void setPath(String path);
+	
+	public String getGuid();
 }

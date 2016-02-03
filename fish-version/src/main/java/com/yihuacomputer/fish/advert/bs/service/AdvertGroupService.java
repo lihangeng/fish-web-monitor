@@ -83,5 +83,12 @@ public class AdvertGroupService implements IAdvertGroupService {
 	public List<IAdvertGroup> list(IFilter filter){
 		return dao.findByFilter(filter, IAdvertGroup.class);
 	}
+
+	@Override
+	public IAdvertGroup orgHasAG(long orgId) {
+		 
+		return dao.findUniqueByHql("from AdvertGroup ag where ag.orgId = ?", orgId);
+		
+	}
 	
 }

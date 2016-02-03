@@ -1,12 +1,15 @@
 package com.yihuacomputer.fish.web.bsadvert.form;
 
+import com.yihuacomputer.fish.api.advert.bs.GroupType;
+import com.yihuacomputer.fish.api.advert.bs.IAdvertGroup;
+
 
 
 public class BsAdvertGroupForm {
 
 	private long id;
 
-	private String groupType;
+	private int groupType;
 
 	private long orgId;
 	
@@ -17,6 +20,8 @@ public class BsAdvertGroupForm {
 	private String orgLevel;
 
 	private String groupName;
+	
+	private String resourcePath;
 
 	public long getId() {
 		return id;
@@ -26,11 +31,11 @@ public class BsAdvertGroupForm {
 		this.id = id;
 	}
 
-	public String getGroupType() {
+	public int getGroupType() {
 		return groupType;
 	}
 
-	public void setGroupType(String groupType) {
+	public void setGroupType(int groupType) {
 		this.groupType = groupType;
 	}
 
@@ -73,5 +78,25 @@ public class BsAdvertGroupForm {
 	public void setOrgLevel(String orgLevel) {
 		this.orgLevel = orgLevel;
 	}
+	
+	public String getResourcePath() {
+		return resourcePath;
+	}
+
+	public void setResourcePath(String resourcePath) {
+		this.resourcePath = resourcePath;
+	}
+	
+	public void translate(IAdvertGroup advertGroup){
+		
+		int groupType = getGroupType();
+		advertGroup.setGroupName(getGroupName());
+		advertGroup.setGroupType((1==groupType)?GroupType.DEFAULT:GroupType.NORMAl);
+		advertGroup.setOrgId(getOrgId());
+		advertGroup.setPath(getResourcePath());
+		
+	}
+
+
 	
 }
