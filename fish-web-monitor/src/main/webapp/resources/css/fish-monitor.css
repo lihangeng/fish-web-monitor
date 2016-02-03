@@ -1012,3 +1012,20 @@ pre.link{
 	background-color: #3386C2;
 }
 
+
+.x-color-picker-item {
+    background-color: #FFFFFF;
+    border-color: #FFFFFF;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    padding: 0px;
+}
+
+.x-color-picker-item-inner {
+    border-color: #E1E1E1;
+    border-width: 1px;
+    line-height: 13px;
+}

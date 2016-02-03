@@ -190,6 +190,14 @@ Ext.define('Eway.controller.Main', {
 			this.activeController('monitor.MonitorSummaryInfo',text);
 		}else if(code == 'remoteCommand') {
 			this.activeController('monitor.device.RemoteCommand', text);
+		}else if(code == "monitor_new_trans"){
+			
+			// 新交易监控
+			this.activeController('monitor.newTransaction.NewTransactionMonitor',text);
+		}else if(code == "transCodeColor"){
+			
+			// 返回码设置
+			this.activeController('monitor.transaction.TransactionColorSet',text);
 		}
 
 	},

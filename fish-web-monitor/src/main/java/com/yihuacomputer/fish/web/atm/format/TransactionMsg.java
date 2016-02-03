@@ -34,6 +34,8 @@ public class TransactionMsg {
 	private String cusName;
 	
 	private String cusPhone; 
+	
+	private long costTime;
 
 	public TransactionMsg() {
 	}
@@ -167,4 +169,13 @@ public class TransactionMsg {
 	public void setCusPhone(String cusPhone){
 		this.cusPhone = cusPhone;
 	}
+
+    public long getCostTime() {
+        return costTime;
+    }
+
+    public void setCostTime(long costTime) {
+        this.costTime = costTime;
+    }
+	
 }
