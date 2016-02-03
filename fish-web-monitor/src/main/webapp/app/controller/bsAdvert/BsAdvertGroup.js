@@ -7,10 +7,10 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 
 	refs : [ {
 		ref : 'ewayView',//必须,固定值为ewayView
-		selector : '#bsadvert', //这里的比较特殊，是对@@处的选择, 在其他地方没有任何定义
+		selector : '#bsadvertGroup', //这里的比较特殊，是对@@处的选择, 在其他地方没有任何定义
 		autoCreate : true,//必须
 		xtype : 'bs_advert_group_view',//必须
-		id : 'bsadvert'//@@
+		id : 'bsadvertGroup'//@@
 	}, {
 		ref : 'grid',
 		selector : 'bs_advert_group_grid'//ComponentQuery的query规则
@@ -21,10 +21,10 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 
 	init : function() {
 		 this.control({
-			'#bsadvert button[action=query]' : {
+			'#bsadvertGroup button[action=query]' : {
 				click : this.onQuery
 			},
-			'#bsadvert button[action=add]' : {
+			'#bsadvertGroup button[action=add]' : {
 				click : this.onAdd
 			}
 		});
