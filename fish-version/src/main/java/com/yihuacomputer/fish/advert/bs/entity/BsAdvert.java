@@ -153,11 +153,21 @@ public class BsAdvert implements IBsAdvert, Serializable {
 		this.advertResources.add(resource);
 	     if (this.getId() > 0) {
 	            resource.setBsAdvert(this);
-	            getResourceService().save(resource);
+	            if(resource.getId()>0){
+	            	getResourceService().update(resource);
+	            }
+	            else{
+	            	getResourceService().save(resource);
+	            }
 	     }
+	   
 	}
     private IBsAdvertResourceService getResourceService() {
         return this.advertService.getBsAdvertResourceService();
+    }
+    
+    public void insertBsAdvertService(IBsAdvertService advertService){
+    	this.advertService = advertService;
     }
 	@Override
 	public void removeAdvertResource(IBsAdvertResource resource) {

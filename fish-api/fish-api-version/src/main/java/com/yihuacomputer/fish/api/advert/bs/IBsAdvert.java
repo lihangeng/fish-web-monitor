@@ -52,4 +52,6 @@ public interface IBsAdvert {
 
 
     public String getAdvertConfigByScreen(Screen screen);
+
+    public void insertBsAdvertService(IBsAdvertService advertService);
 }

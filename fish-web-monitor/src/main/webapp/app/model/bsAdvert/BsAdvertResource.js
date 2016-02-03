@@ -42,7 +42,9 @@ Ext.define('Eway.model.bsAdvert.BsAdvertResource',{
 
     convertToAdvertResource: function(){
     	var me = this;
+    	
 		return Ext.create("Eway.model.bsAdvert.BsAdvertResource",{
+				id:Ext.isNumeric(me.data.id)?me.data.id:0,
 				playTime: me.data.playTime,
 				beginDate:me.data.beginDate,
 				endDate:me.data.endDate,

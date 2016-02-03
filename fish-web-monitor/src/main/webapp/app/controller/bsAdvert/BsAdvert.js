@@ -167,6 +167,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 
 		win.down("field_advert_advertGroup").setValue([record.get("groupId"),record.get("groupName")]);
 		win.down("textfield[name='advertName']").setValue(record.get("advertName"));
+		win.down("hidden[name='id']").setValue(record.get("id"));
 		
 		
 		var b1 = win.query('button[action=confirm]')[0];
@@ -204,7 +205,76 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 		b15.on('change',this.onResourceConfigChanged,this);
 		win.show();
 	},
-	onUpdateWaitConfirm:function(){},
+	onUpdateWaitConfirm:function(){
+		var win = this.getAddWaitWin();
+		var addForm = win.down("form").getForm();
+		var store = Ext.StoreManager.get("bsAdvert.BsAdvert");
+		if(addForm.isValid()){
+			var tab = win.down('advert_bs_waitTab');
+			var s1024 = tab.down('bsadvertimgview[name=1024]');
+			var s1024Store = s1024.getStore();
+			if(s1024Store.getCount() == 0){
+				Eway.alert(EwayLocale.advert.mustContainerOnePicAt1024);
+				return;
+			}
+
+			var s800 = tab.down('bsadvertimgview[name=800]');
+			var s800Store = s800.getStore();
+			var s600 = tab.down('bsadvertimgview[name=600]');
+			var s600Store = s600.getStore();
+			var data = addForm.getValues();
+			this.doUpdate(win,data,s1024Store,s800Store,s600Store);
+		}
+	},
+	doUpdate : function(win,data,s1024Strore,s800Strore,s600Strore){
+		var me =this;
+		var advRess = [];
+    	this.generateAdvertResource(advRess,s1024Strore);
+    	this.generateAdvertResource(advRess,s800Strore);
+    	this.generateAdvertResource(advRess,s600Strore);
+    	var groupId = win.down("field_advert_advertGroup").getValue();
+    	var advertName = win.down("textfield[name='advertName']").getValue();
+    	var resources = '[';
+    	for(var i in advRess){
+    		var res = advRess[i];
+			var advRes_str = "{'id':"+res.data.id+",'playTime':" + res.data.playTime + ",'beginTime':'" + res.data.beginTime
+			+ "','endTime':'"+res.data.endTime
+			+"','beginDate':'"+Ext.Date.format(res.data.beginDate, "Y-m-d")
+			+"','endDate':'"+Ext.Date.format(res.data.endDate, "Y-m-d")
+			+"','screen':'"+res.data.screen
+			+ "','content':'" + res.data.content +"'}";
+			if(resources == '['){
+				resources = resources + advRes_str;
+			}else{
+				resources = resources + "," + advRes_str;
+			}
+    	}
+    	resources = resources + "]";
+
+    	var adv = Ext.create("Eway.model.bsAdvert.BsAdvert",{
+    		advertType : "WAIT_INSERT_CARD",
+    		groupId : groupId,
+    		id:win.down("hidden[name='id']").getValue(),
+    		advertName : advertName,
+    		resources : resources
+    	});
+		var btn = win.down('button[action=confirm]');
+    	adv.save({
+			 success: function(ed) {
+				var view = me.getEwayView();
+				var store = view.down('bs_advert_grid').getStore();
+				store.setUrlParamsByObject(null);
+				store.loadPage(1);
+				Eway.alert(EwayLocale.msg.createSuccess);
+				win.close();
+			 },
+			 failure: function(record,operation){
+				Eway.alert(operation.error);
+			 },
+			 button:btn,
+			 scope : this
+		});
+	},
 	//增加
 	onAdd:function(){
 		var win = Ext.create("Eway.view.bsAdvert.AddBsWait");

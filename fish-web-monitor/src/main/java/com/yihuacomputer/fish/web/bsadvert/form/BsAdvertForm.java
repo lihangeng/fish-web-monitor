@@ -8,7 +8,6 @@ import org.apache.commons.lang.StringUtils;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.yihuacomputer.common.jackson.JsonUtils;
-import com.yihuacomputer.fish.web.advert.form.AdvertResourceForm;
 
 
 
@@ -135,12 +134,12 @@ public class BsAdvertForm {
 		this.advertType = advertType;
 	}
 
-	public List<AdvertResourceForm> getAdvertResources() {
-        List<AdvertResourceForm> advertResources = new ArrayList<AdvertResourceForm>();
+	public List<BsAdvertResourceForm> getAdvertResources() {
+        List<BsAdvertResourceForm> advertResources = new ArrayList<BsAdvertResourceForm>();
         if (StringUtils.isNotEmpty(this.resources)) {
             try {
                 JsonUtils.om.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
-                advertResources = JsonUtils.om.readValue(this.resources, new TypeReference<List<AdvertResourceForm>>() {
+                advertResources = JsonUtils.om.readValue(this.resources, new TypeReference<List<BsAdvertResourceForm>>() {
                 });
             }
             catch (Exception e) {

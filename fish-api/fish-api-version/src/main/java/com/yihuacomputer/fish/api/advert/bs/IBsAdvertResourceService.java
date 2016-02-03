@@ -21,4 +21,5 @@ public interface IBsAdvertResourceService {
 
 	public IPageResult<IBsAdvertResource> page(int offset, int limit, IFilter filter);
 	public List<IBsAdvertResource> list(IFilter filter);
+	public void delete(IBsAdvertResource advert,String fileName);
 }
