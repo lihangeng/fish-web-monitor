@@ -14,6 +14,7 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.IOUtils;
 import com.yihuacomputer.common.util.ZipUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.advert.bs.entity.AdvertGroup;
 import com.yihuacomputer.fish.advert.bs.entity.BsAdvert;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvert;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvertResourceService;
@@ -119,6 +120,15 @@ public class BsAdvertService implements IBsAdvertService {
 		return bsAdvertResourceService;
 	}
 	
+	public List<IBsAdvert> getBsAdvertByNameAndOrgId(long orgId,String advertName){
+		StringBuffer hql= new StringBuffer("select bsAdvert from ");
+		hql.append(BsAdvert.class.getSimpleName()).append(" bsAdvert, ").
+		append(AdvertGroup.class.getSimpleName()).append(" advertGroup ").
+		append("where bsAdvert.groupId=advertGroup.id and advertGroup.orgId = ? ").
+		append(" and bsAdvert.advertName=?");
+		List<IBsAdvert> list = dao.findByHQL(hql.toString(), orgId,advertName);
+		return list;
+	}
 	
 	public IBsAdvert actived(IBsAdvert bsAdvert){
 		IFilter filter = new Filter();
