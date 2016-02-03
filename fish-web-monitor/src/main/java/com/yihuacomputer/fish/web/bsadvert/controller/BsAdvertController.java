@@ -522,7 +522,6 @@ public class BsAdvertController {
 	private void saveConfigInfoToFileByScreen(IBsAdvert advert, Screen screen,HttpServletRequest request) {
 		String configInfo = advert.getAdvertConfigByScreen(screen);
 		IOUtils.writeStringToFile(getConfigFileBasePath(advert) + File.separator + getEnumI18n(screen.getText()) + File.separator + "config.json", configInfo);
-		IOUtils.copyFileToDirectory(getBsResourcePath(request),getConfigFileBasePath(advert) + File.separator + getEnumI18n(screen.getText()) + File.separator);
 	}
 
 	protected String getConfigFileBasePath(IBsAdvert advert) {
@@ -632,15 +631,6 @@ public class BsAdvertController {
 		return "tmp/bsAdvert/" + this.getSessionDir(request) + "/" + screen + "/" + saveFileName;
 	}
 	
-	/**
-	 * 获取广告html页面,打包时候使用
-	 * @param request
-	 * @return
-	 */
-	private String getBsResourcePath(HttpServletRequest request){
-		return FishWebUtils.getContentRealPath(request)+ File.separator +"resources/bsAdvert/advertisement.html";
-	}
-
 	/**
 	 * @param request
 	 * @return

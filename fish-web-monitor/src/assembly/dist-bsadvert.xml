@@ -6,6 +6,10 @@
 	<baseDirectory>/</baseDirectory>
 	<files>
 		<file>
+			<source>src/main/webapp/resources/bsAdvert/advertisement.html</source>
+			<outputDirectory>/advert</outputDirectory>
+		</file>
+		<file>
 			<source>src/main/webapp/resources/bsAdvert/advert.html</source>
 			<outputDirectory>/advert</outputDirectory>
 		</file>

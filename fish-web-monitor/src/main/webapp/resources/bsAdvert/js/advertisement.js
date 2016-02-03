@@ -7,21 +7,13 @@ $(document).ready(function() {
 	var div1 = $("#Layer2");
 	var div2 = $("#Layer3");
 	width=getArgs(sHerf,"?width=","&height=");//url.subString(url.indexOf("?width=")+7);
-	height=getArgs(sHerf,"&height=");
-	
-	div1.css("width", width);
-	div1.css("height", height);
-	div2.css("width", width);
-	div2.css("height", height);
-	loadZongHangConfig(width, height)
-	//加载默认资源图片
-	var imgLoading = $("<img/>");
-	imgLoading.attr("id", "id0");
-	imgLoading.css("display", "block");
-	imgLoading.css("width", width);
-	imgLoading.css("height", height);
-	imgLoading.attr("src","../../../images/defaultload.gif");
-	$("#Layer3").append(imgLoading);
+	height=getArgs(sHerf,"&height=","&groupPath=");
+	groupPath=getArgs(sHerf,"&groupPath=");
+		div1.css("width", width);
+		div1.css("height", height);
+		div2.css("width", width);
+		div2.css("height", height);
+	loadZongHangConfig(width, height,groupPath)
 });
 
 
@@ -32,12 +24,12 @@ function getArgs(url,argA,argB){
 	return url.substring(url.indexOf(argA)+argA.length);
 }
 
-function addResources(_resources,width,height) {
+function addResources(_resources,width,height,resourePath) {
 	var resourceLength = _resources.length;
 	for (var i = 0; i < resourceLength; i++) {
 		var img = $("<img/>");
 		img.attr("id", "id0");
-		img.attr("src", _resources[i].content);
+		img.attr("src", resourePath+_resources[i].content);
 		img.css("width", width);
 		img.css("height", height);
 		img.css("display", "none");
@@ -51,14 +43,25 @@ function addResources(_resources,width,height) {
 }
 
 var flag = false;
-function loadZongHangConfig(width, height) {
+function loadZongHangConfig(width, height,groupPath) {
+var resourePath = groupPath+"/AD_IDLE/"+width+"/";
 	$.ajax({
 		type : 'GET',
-		url : 'advertisement.json',
+		url : resourePath+'config.json',
 		dataType : 'json',
 		success : function(data) {
 			var jsonArrayResource = eval(data.resources);
-			addResources(jsonArrayResource,width, height);
+			
+			var imgLoading = $("<img/>");
+			imgLoading.attr("id", "id0");
+			imgLoading.css("display", "block");
+			imgLoading.css("width", width);
+			imgLoading.css("height", height);
+			imgLoading.attr("src","defaultload.gif");
+			$("#Layer3").append(imgLoading);
+			
+
+			addResources(jsonArrayResource,width, height,resourePath);
 			
 		},
 		error : function(XMLHttpRequest, textStatus, errorThrown) {
