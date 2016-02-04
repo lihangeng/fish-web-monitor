@@ -154,10 +154,11 @@ public class BsAdvertGroupController {
 		
 		advertGroupService.save(advertGroup);
 		
-		String bsAdvertIP = paramService.getParam("bs_advert_ip").getParamValue();
-		String bsAdvertPort = paramService.getParam("bs_advert_port").getParamValue();
+		String bsAdvertIP = paramService.getParam("bsAdvertServerIP").getParamValue();
+		String bsAdvertPort = paramService.getParam("bsAdvertServerPort").getParamValue();
+		String bsAdvertPath = paramService.getParam("bsAdvertPath").getParamValue();
 		
-		advertGroup.setPath("http://"+bsAdvertIP+":"+bsAdvertPort+"/"+advertGroup.getId());
+		advertGroup.setPath("http://"+bsAdvertIP+":"+bsAdvertPort+"/"+advertGroup.getId()+bsAdvertPath+"/advert.html");
 		
 		advertGroupService.update(advertGroup);
 		result.put(FishConstant.SUCCESS, true);
