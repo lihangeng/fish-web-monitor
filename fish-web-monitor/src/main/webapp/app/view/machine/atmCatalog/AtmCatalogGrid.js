@@ -19,21 +19,6 @@ Ext.define('Eway.view.machine.atmCatalog.AtmCatalogGrid', {
 				glyph : 0xf002,
 				action:'query'
 			}
-//			{
-//				text: '添加', 
-//				glyph : 0xf067,
-//				action: 'add'
-//			},
-//			{
-//				text: '删除',
-//				glyph : 0xf014,
-//				action: 'remove'
-//			},
-//			{
-//				text: '更改',
-//				glyph : 0xf040,
-//				action:'update'
-//			},
 			],
 			columns : [{
 				header : EwayLocale.machine.atmCatalog.name,

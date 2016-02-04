@@ -169,6 +169,25 @@ Ext.apply(EwayLocale,{
 					down:'向下'//EwayLocale.monitor.business.transaction.transactionMonitor.down
 				}
 			},
+			newTransaction:{
+				interval: '统计间隔',//EwayLocale.monitor.business.newTransaction.interval
+				type: '统计纬度',//EwayLocale.monitor.business.newTransaction.type
+				result: '统计结果',//EwayLocale.monitor.business.newTransaction.result
+				time: '统计时间',//EwayLocale.monitor.business.newTransaction.time
+				timeUnit: '分钟',//EwayLocale.monitor.business.newTransaction.timeUnit
+				
+				total: '交易总数',//EwayLocale.monitor.business.newTransaction.total
+				localW: '本行卡取款数',//EwayLocale.monitor.business.newTransaction.localW
+				localD: '本行卡存款数',//EwayLocale.monitor.business.newTransaction.localD
+				localT: '本行卡转帐数',//EwayLocale.monitor.business.newTransaction.localT
+				localQ: '本行卡查询数',//EwayLocale.monitor.business.newTransaction.localQ
+				creditW: '贷记卡取款数',//EwayLocale.monitor.business.newTransaction.creditW
+				creditD: '贷记卡存款数',//EwayLocale.monitor.business.newTransaction.creditD
+				creditQ: '贷记卡查询数',//EwayLocale.monitor.business.newTransaction.creditQ
+				otherW: '他行卡取款数',//EwayLocale.monitor.business.newTransaction.otherW
+				otherT: '他行卡转帐数',//EwayLocale.monitor.business.newTransaction.otherT
+				otherQ: '他行卡查询数',//EwayLocale.monitor.business.newTransaction.otherQ
+			},
 			blackList:{
 				title:'黑名单卡管理',//EwayLocale.monitor.business.blackList.title
 				black:'黑名单卡',//EwayLocale.monitor.business.blackList.black
@@ -256,6 +275,19 @@ Ext.apply(EwayLocale,{
 				cimAmt:'存款金额',//EwayLocale.monitor.business.settlement.cimAmt
 				cdmAmt:'取款金额',//EwayLocale.monitor.business.settlement.cdmAmt
 				tranAmt:'交易总金额'//EwayLocale.monitor.business.settlement.tranAmt
+			},
+			transactionColor:{
+				title:'交易返回码设置',//EwayLocale.monitor.business.transactionColor.title
+				hostRet:'主机返回码',//EwayLocale.monitor.business.transactionColor.hostRet
+				backgroundColor:'主机背景颜色',//EwayLocale.monitor.business.transactionColor.backgroundColor
+				fontColor:'主机字体颜色',//EwayLocale.monitor.business.transactionColor.fontColor
+				hostRetDes:'主机返回码描述',//EwayLocale.monitor.business.transactionColor.hostRetDes
+				localRet:'本地返回码',//EwayLocale.monitor.business.transactionColor.localRet
+				localBackgroundColor:'本地背景颜色',//EwayLocale.monitor.business.transactionColor.localBackgroundColor
+				localFontColor:'本地字体颜色',//EwayLocale.monitor.business.transactionColor.localFontColor
+				localRetDes:'本地返回码描述',//EwayLocale.monitor.business.transactionColor.localRetDes
+				updateDateTime:'修改日期',//EwayLocale.monitor.business.transactionColor.updateDateTime
+				remark:'备注'//EwayLocale.monitor.business.transactionColor.remark
 			}
 		},
 		remoteCommand:{

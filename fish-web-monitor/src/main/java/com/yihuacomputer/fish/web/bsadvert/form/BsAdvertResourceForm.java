@@ -110,4 +110,5 @@ public class BsAdvertResourceForm {
 		this.screen = screen;
 	}
 
+
 }

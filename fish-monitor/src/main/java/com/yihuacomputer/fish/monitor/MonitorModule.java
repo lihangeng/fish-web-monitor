@@ -16,6 +16,7 @@ import com.yihuacomputer.fish.api.monitor.business.IRetaincardService;
 import com.yihuacomputer.fish.api.monitor.business.IRunInfoService;
 import com.yihuacomputer.fish.api.monitor.business.ISettlementService;
 import com.yihuacomputer.fish.api.monitor.business.ITransTypeService;
+import com.yihuacomputer.fish.api.monitor.business.ITransactionColorService;
 import com.yihuacomputer.fish.api.monitor.business.ITransactionService;
 import com.yihuacomputer.fish.api.monitor.business.ITransactionViewService;
 import com.yihuacomputer.fish.api.monitor.business.IUncommonTransService;
@@ -45,6 +46,7 @@ import com.yihuacomputer.fish.monitor.service.RuntimeParamService;
 import com.yihuacomputer.fish.monitor.service.SettlementService;
 import com.yihuacomputer.fish.monitor.service.SoftwareService;
 import com.yihuacomputer.fish.monitor.service.TransTypeService;
+import com.yihuacomputer.fish.monitor.service.TransactionColorService;
 import com.yihuacomputer.fish.monitor.service.TransactionService;
 import com.yihuacomputer.fish.monitor.service.TransactionViewService;
 import com.yihuacomputer.fish.monitor.service.UncommonTransService;
@@ -173,5 +175,10 @@ public class MonitorModule {
 	@Bean
     public IRemoteCommHistService remoteCommHistService() {
         return new RemoteCommHistService();
+    }
+	
+	@Bean
+    public ITransactionColorService transactionColorService() {
+        return new TransactionColorService();
     }
 }

@@ -3,6 +3,9 @@ package com.yihuacomputer.fish.api.advert.bs;
 import java.util.Date;
 import java.util.List;
 
+import com.yihuacomputer.fish.api.advert.AdvertType;
+import com.yihuacomputer.fish.api.advert.Screen;
+
 
 public interface IBsAdvert {
 	public long getId();
@@ -28,4 +31,27 @@ public interface IBsAdvert {
 
 	public List<IBsAdvertResource> getAdvertResources();
 	public void setAdvertResources(List<IBsAdvertResource> advertResources);
+
+	public void setAdvertType(AdvertType advertType);
+	public AdvertType getAdvertType();
+	
+
+    /**
+     * 增加广告资源
+     *
+     * @param resource
+     */
+    public void addAdvertResource(IBsAdvertResource resource);
+
+    /**
+     * 删除广告资源
+     *
+     * @param resource
+     */
+    public void removeAdvertResource(IBsAdvertResource resource);
+
+
+    public String getAdvertConfigByScreen(Screen screen);
+
+    public void insertBsAdvertService(IBsAdvertService advertService);
 }

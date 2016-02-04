@@ -83,5 +83,10 @@ public class AdvertGroup implements IAdvertGroup, Serializable {
 		this.path = path;
 	}
 	
+	@Override
+    public String getGuid() {
+        return String.valueOf(id);
+    }
+	
 
 }

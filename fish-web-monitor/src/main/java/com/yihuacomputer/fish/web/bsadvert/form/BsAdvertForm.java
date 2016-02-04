@@ -1,5 +1,14 @@
 package com.yihuacomputer.fish.web.bsadvert.form;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.yihuacomputer.common.jackson.JsonUtils;
+
 
 
 public class BsAdvertForm {
@@ -8,6 +17,8 @@ public class BsAdvertForm {
 	private long groupId;
 	
 	private String groupName;
+	
+	private String advertType;
 
 	private String advertName;
 	
@@ -22,6 +33,10 @@ public class BsAdvertForm {
 	private long activePersonId;
 	
 	private String activePersonName;
+
+    private String resources;
+    
+    private String advertFileName;
 
 	public long getId() {
 		return id;
@@ -103,5 +118,43 @@ public class BsAdvertForm {
 		this.activePersonName = activePersonName;
 	}
 
+	public String getResources() {
+		return resources;
+	}
+
+	public void setResources(String resources) {
+		this.resources = resources;
+	}
+
+    public String getAdvertType() {
+		return advertType;
+	}
+
+	public void setAdvertType(String advertType) {
+		this.advertType = advertType;
+	}
+
+	public List<BsAdvertResourceForm> getAdvertResources() {
+        List<BsAdvertResourceForm> advertResources = new ArrayList<BsAdvertResourceForm>();
+        if (StringUtils.isNotEmpty(this.resources)) {
+            try {
+                JsonUtils.om.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
+                advertResources = JsonUtils.om.readValue(this.resources, new TypeReference<List<BsAdvertResourceForm>>() {
+                });
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return advertResources;
+    }
+
+	public String getAdvertFileName() {
+		return advertFileName;
+	}
+
+	public void setAdvertFileName(String advertFileName) {
+		this.advertFileName = advertFileName;
+	}
 	
 }

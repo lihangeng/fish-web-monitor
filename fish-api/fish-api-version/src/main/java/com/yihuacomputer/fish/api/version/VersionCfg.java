@@ -19,6 +19,15 @@ public class VersionCfg {
 	public static String getAdvertDir() {
 		return FishCfg.getFishHome() + FishCfg.fileSep + "advert";
 	}
+	
+	/**
+	 * 获得广告的存放路径
+	 *
+	 * @return
+	 */
+	public static String getBsAdvertDir() {
+		return FishCfg.getFishHome() + FishCfg.fileSep + "bsAdvert";
+	}
 
 	/**
 	 * 获得修改的ATM参数文件存放路径

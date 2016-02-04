@@ -25,4 +25,6 @@ public interface IAdvertGroupService {
 	public IPageResult<Object> page(int offset, int limit, IFilter filter);
 	
 	public List<IAdvertGroup> list(IFilter filter);
+	
+	public IAdvertGroup orgHasAG(long orgId);
 }
