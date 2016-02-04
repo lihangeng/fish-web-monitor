@@ -78,6 +78,7 @@ public class DeviceAdvertRelation implements IDeviceAdvertRelation{
         StringBuffer hqls = new StringBuffer();
         hqls.append("select DISTINCT d from Device d WHERE NOT EXISTS ( ");
         hqls.append(" select dp.deviceId from AdvertGroupDeviceRelation dp where dp.deviceId = d.id and dp.groupId = ? )");
+        hqls.append(" and d.id not in (select dp.deviceId from AdvertGroupDeviceRelation dp )");
 
         // 分页查询
         return (IPageResult<IDevice>) dao.page(offset, limit, fi, hqls.toString(), Long.valueOf(advertGroup.getGuid()));

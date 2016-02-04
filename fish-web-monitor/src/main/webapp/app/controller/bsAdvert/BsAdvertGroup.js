@@ -24,19 +24,19 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 
 	init : function() {
 		 this.control({
-			'#bsadvert button[action=query]' : {
+			'#bsadvertGroup button[action=query]' : {
 				click : this.onQuery
 			},
-			'#bsadvert button[action=add]' : {
+			'#bsadvertGroup button[action=add]' : {
 				click : this.onAdd
 			},
-			'#bsadvert button[action=update]' : {
+			'#bsadvertGroup button[action=update]' : {
 				click : this.onGroupUpdate
 			},
-			'#bsadvert button[action=remove]' : {
+			'#bsadvertGroup button[action=remove]' : {
 				click : this.onGroupRemove
 			},
-			'#bsadvert button[action=link]' : {
+			'#bsadvertGroup button[action=link]' : {
 				click : this.onGroupLink
 			}
 		});
