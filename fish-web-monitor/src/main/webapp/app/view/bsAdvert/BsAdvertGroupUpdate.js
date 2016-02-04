@@ -1,5 +1,5 @@
 /**
- * 设备组信息修改窗口：
+ * 广告组信息修改窗口：
  */
 Ext.define('Eway.view.bsAdvert.BsAdvertGroupUpdate', {
 	extend: 'Ext.window.Window',

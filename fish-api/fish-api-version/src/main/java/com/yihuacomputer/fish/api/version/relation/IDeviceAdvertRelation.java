@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
-import com.yihuacomputer.fish.api.advert.bs.GroupType;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroup;
 import com.yihuacomputer.fish.api.device.IDevice;
 
@@ -52,22 +51,10 @@ public interface IDeviceAdvertRelation
     public IPageResult<IDevice> pageDeviceByAdvertGroup(int offset, int limit, IAdvertGroup advertGroup, IFilter filter);
     
     /**
-     * 根据某广告组的所有关联设备分页
-     */
-    public IPageResult<IDevice> pageDeviceByTypeAdvertGroup(int offset, int limit, IAdvertGroup advertGroup, IFilter filter,String orgId,boolean flag);
-    
-    /**
      * 根据设备获得该设备的关联广告组
      * @param device
      * @return
      */
-    public List<IAdvertGroup> listAdvertGroupByDevice(String terminalId);
+    public List<IAdvertGroup> listAdvertGroupByGroupId(Long groupId);
     
-    /**
-     * 根据设备号获得该设备的关联的广告组
-     * @param terminalId
-     * @param advertType
-     * @return
-     */
-    public List<IAdvertGroup> listAdminAdvertGroupByDevice(String terminalId,GroupType groupType);
 }

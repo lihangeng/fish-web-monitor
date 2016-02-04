@@ -112,10 +112,8 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 		var store = ewayView.down('bs_advert_group_grid').getStore();
 		var id = record.get("id");
 		if(win.down('form').getForm().isValid()){
-			record.set("orgName",Ext.String.trim(data.orgName));
+			record.set("groupName",Ext.String.trim(data.groupName));
 			record.set("groupType",data.groupType);
-			record.set("orgId",Ext.String.trim(data.orgId));
-			record.set("resourcePath",Ext.String.trim(data.resourcePath));
 			record.save({
 				success : function(recordResult,operation){
 					

@@ -32,7 +32,6 @@ import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.OrganizationLevel;
-import com.yihuacomputer.fish.api.person.OrganizationType;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.system.config.IParamService;
 import com.yihuacomputer.fish.api.version.relation.IDeviceAdvertRelation;
@@ -176,6 +175,7 @@ public class BsAdvertGroupController {
 		ModelMap result = new ModelMap();
 		try {
 			IAdvertGroup advertGroup = advertGroupService.getById(id);
+			
 			if (advertGroup == null) {
 				result.addAttribute(FishConstant.SUCCESS, false);
 				result.addAttribute(FishConstant.ERROR_MSG, "修改的广告组已经不存在，请刷新后重试");
@@ -198,7 +198,18 @@ public class BsAdvertGroupController {
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
 		logger.info(" delete bsAdvertGroup: bsAdvertGroup.id = " + id);
+		
+		List<IAdvertGroup> list = deviceAdvertRelation.listAdvertGroupByGroupId(id);
+		
 		ModelMap result = new ModelMap();
+		
+		if(list.size()!=0){
+			
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, "该广告组下已经存在关联关系，请解除后再删除");
+			return result;
+			
+		}
 		try {
 			IAdvertGroup group = advertGroupService.getById(id);
 			if (group != null) {
@@ -279,52 +290,20 @@ public class BsAdvertGroupController {
            @RequestParam String guid, @RequestParam String organizationId, WebRequest request, HttpServletRequest req) {
        logger.info(String.format("search device : start = %s ,limt = %s ", start, limit));
        ModelMap result = new ModelMap();
-       UserSession userSession = (UserSession) req.getSession().getAttribute("SESSION_USER");
-       OrganizationType type = orgService.get(organizationId).getOrganizationType();
        IPageResult<IDevice> pageResult = null;
        if (flag == 0) {// 已关联的设备
            result.addAttribute(FishConstant.SUCCESS, true);
            Filter filter = new Filter();
            filter.addFilterEntry(FilterFactory.like("terminalId", request.getParameter("terminalId")));
-           if (OrganizationType.BANK.equals(userSession.getOrgType())) {
-               pageResult = deviceAdvertRelation.pageDeviceByTypeAdvertGroup(start, limit, advertGroupService.getById(Long.parseLong(guid)), filter,
-                       String.valueOf(userSession.getOrgId()), true);
-           } else if (OrganizationType.MAINTAINER.equals(userSession.getOrgType())) {
-               pageResult = deviceAdvertRelation.pageDeviceByTypeAdvertGroup(start, limit, advertGroupService.getById(Long.parseLong(guid)), filter,
-                       String.valueOf(userSession.getOrgId()), false);
-           } else {
-               pageResult = deviceAdvertRelation.pageDeviceByAdvertGroup(start, limit, advertGroupService.getById(Long.parseLong(guid)), filter);
-           }
+           pageResult = deviceAdvertRelation.pageDeviceByAdvertGroup(start, limit, advertGroupService.getById(Long.parseLong(guid)), filter);
            result.addAttribute("total", pageResult.getTotal());
            result.addAttribute("data", DeviceForm.convert(pageResult.list()));
        } else {// 可以关联的设备
            IFilter filter = new Filter();
            filter.like("terminalId", request.getParameter("terminalId"));
-           if (OrganizationType.BANK.equals(userSession.getOrgType())) {
-               if (OrganizationType.BANK.equals(type)) {
-                   pageResult = deviceAdvertRelation.pageUnlinkDeviceByAdvertGroup(start, limit, advertGroupService.getById(Long.parseLong(guid)), filter,
+           pageResult = deviceAdvertRelation.pageUnlinkDeviceByAdvertGroup(start, limit, advertGroupService.getById(Long.parseLong(guid)), filter,
                            organizationId, orgService.getRoot().get(0).getGuid());
-               } else {
-                   pageResult = deviceAdvertRelation.pageUnlinkDeviceByAdvertGroup(start, limit, advertGroupService.getById(Long.parseLong(guid)), filter,
-                           String.valueOf(userSession.getOrgId()), organizationId);
-               }
-           } else if (OrganizationType.MAINTAINER.equals(userSession.getOrgType())) {
-               if (OrganizationType.BANK.equals(type)) {
-                   pageResult = deviceAdvertRelation.pageUnlinkDeviceByAdvertGroup(start, limit, advertGroupService.getById(Long.parseLong(guid)), filter,
-                           organizationId, String.valueOf(userSession.getOrgId()));
-               } else {
-                   pageResult = deviceAdvertRelation.pageUnlinkDeviceByAdvertGroup(start, limit, advertGroupService.getById(Long.parseLong(guid)), filter,
-                		   orgService.getRoot().get(0).getGuid(), organizationId);
-               }
-           } else {
-               if (OrganizationType.BANK.equals(type)) {
-                   pageResult = deviceAdvertRelation.pageUnlinkDeviceByAdvertGroup(start, limit, advertGroupService.getById(Long.parseLong(guid)), filter,
-                           organizationId, orgService.getRoot().get(0).getGuid());
-               } else {
-                   pageResult = deviceAdvertRelation.pageUnlinkDeviceByAdvertGroup(start, limit, advertGroupService.getById(Long.parseLong(guid)), filter,
-                		   orgService.getRoot().get(0).getGuid(), organizationId);
-               }
-           }
+           
            result.addAttribute(FishConstant.SUCCESS, true);
            result.addAttribute("total", pageResult.getTotal());
            result.addAttribute("data", DeviceForm.convert(pageResult.list()));
