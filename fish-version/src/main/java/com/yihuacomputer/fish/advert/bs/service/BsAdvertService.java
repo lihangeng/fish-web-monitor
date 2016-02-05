@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.SQLQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,9 @@ import com.yihuacomputer.common.util.ZipUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.advert.bs.entity.AdvertGroup;
 import com.yihuacomputer.fish.advert.bs.entity.BsAdvert;
+import com.yihuacomputer.fish.api.advert.bs.IAdvertGroup;
+import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelationService;
+import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupService;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvert;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvertResourceService;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvertService;
@@ -31,6 +35,10 @@ public class BsAdvertService implements IBsAdvertService {
 	private IGenericDao dao;
 	@Autowired
 	private IBsAdvertResourceService bsAdvertResourceService;
+	@Autowired
+	private IAdvertGroupDeviceRelationService advertGroupDeviceRelationService;
+	@Autowired
+	private IAdvertGroupService advertGroupService;
 	
 	@Autowired
 	private IParamService paramService;	
@@ -146,11 +154,21 @@ public class BsAdvertService implements IBsAdvertService {
 		//获取Bs广告服务器路径
 		IParam param = paramService.getParam("bsAdvertServerPath");
 		String path = param.getParamValue()+File.separator+bsAdvert.getId();
+		IAdvertGroup advertGroup= advertGroupService.getById(bsAdvert.getGroupId());
+		String targetPath = param.getParamValue()+File.separator+advertGroup.getPath();
 		IOUtils.copyFileToDirectory(VersionCfg.getBsAdvertDir()+File.separator+bsAdvert.getId()+".zip", path);
-		ZipUtils.unZip(path+File.separator+bsAdvert.getId()+".zip", path,"UTF-8" );
+		ZipUtils.unZip(path+File.separator+bsAdvert.getId()+".zip", targetPath,"UTF-8" );
 		File file = new File(path+File.separator+bsAdvert.getId()+".zip");
 		file.delete();
+		updateAdvertGroupDeviceRelationService(bsAdvert);
 		return bsAdvert;
+	}
+	
+	private void updateAdvertGroupDeviceRelationService(IBsAdvert bsAdvert){
+		String sbSql = "update ADV_GROUP_DEVICE_RELATION set ADVERT_ID=? where GROUP_ID=?";
+		SQLQuery query = dao.getSQLQuery(sbSql);
+		query.setParameter(0, bsAdvert.getId());
+		query.setParameter(1, bsAdvert.getGroupId());
 	}
 
 }
