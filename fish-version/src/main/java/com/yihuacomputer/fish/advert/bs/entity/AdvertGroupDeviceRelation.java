@@ -19,8 +19,8 @@ public class AdvertGroupDeviceRelation implements IAdvertGroupDeviceRelation,
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_ADV_GROUP")
-	@SequenceGenerator(name = "SEQ_ADV_GROUP", sequenceName = "SEQ_ADV_GROUP")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_ADV_GROUP_DEVICE_RELATION")
+	@SequenceGenerator(name = "SEQ_ADV_GROUP_DEVICE_RELATION", sequenceName = "SEQ_ADV_GROUP_DEVICE_RELATION")
 	@Column(name = "ID")
 	private long id;
 
@@ -80,5 +80,20 @@ public class AdvertGroupDeviceRelation implements IAdvertGroupDeviceRelation,
 	public void setAdvertIdUsing(long advertIdUsing) {
 		this.advertIdUsing = advertIdUsing;
 	}
+	
+	
+    /**
+     * 根据指定的广告组和设备创建关系实体
+     * 
+     * @param master
+     * @param role
+     * @return
+     */
+    public static AdvertGroupDeviceRelation make(Long groupId, Long deviceId) {
+    	AdvertGroupDeviceRelation obj = new AdvertGroupDeviceRelation();
+        obj.groupId = groupId;
+        obj.deviceId = deviceId;
+        return obj;
+    }
 	
 }
