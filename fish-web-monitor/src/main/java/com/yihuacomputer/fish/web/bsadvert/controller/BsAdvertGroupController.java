@@ -141,7 +141,7 @@ public class BsAdvertGroupController {
 		if(advertGroup != null){
 			
 			result.put(FishConstant.SUCCESS, false);
-			result.put("errorMsg", "该机构下已存在广告组，无法添加");
+			result.put("errorMsg", "该机构下已存在默认广告组，无法添加默认广告组");
 			return result;
 		}
 		advertGroup = advertGroupService.make();
@@ -153,11 +153,8 @@ public class BsAdvertGroupController {
 		
 		advertGroupService.save(advertGroup);
 		
-		String bsAdvertIP = paramService.getParam("bsAdvertServerIP").getParamValue();
-		String bsAdvertPort = paramService.getParam("bsAdvertServerPort").getParamValue();
-		String bsAdvertPath = paramService.getParam("bsAdvertPath").getParamValue();
 		
-		advertGroup.setPath("http://"+bsAdvertIP+":"+bsAdvertPort+"/"+advertGroup.getId()+bsAdvertPath+"/advert.html");
+		advertGroup.setPath(advertGroup.getOrgId() + " " + advertGroup.getGuid());
 		
 		advertGroupService.update(advertGroup);
 		result.put(FishConstant.SUCCESS, true);
@@ -302,7 +299,7 @@ public class BsAdvertGroupController {
            IFilter filter = new Filter();
            filter.like("terminalId", request.getParameter("terminalId"));
            pageResult = deviceAdvertRelation.pageUnlinkDeviceByAdvertGroup(start, limit, advertGroupService.getById(Long.parseLong(guid)), filter,
-                           organizationId, orgService.getRoot().get(0).getGuid());
+                           organizationId);
            
            result.addAttribute(FishConstant.SUCCESS, true);
            result.addAttribute("total", pageResult.getTotal());

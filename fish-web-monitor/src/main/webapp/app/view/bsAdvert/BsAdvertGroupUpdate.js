@@ -35,31 +35,6 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupUpdate', {
 					maxLength : 30,
 					msgTarget : 'side',
 					allowBlank : false
-				}, {
-					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.atmGroup.orgName,
-					allowBlank : false,
-					emptyText : EwayLocale.combox.select,
-					name : 'orgName',
-					hiddenValue : 'orgId',
-					editable : false,
-					filters : '{"type" : "0"}',
-					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false,
-					readOnly:true
-				},{
-					fieldLabel : '组类型',
-					xtype : 'radiogroup',
-					anchor : '69%',
-					items : [ {
-						boxLabel : '通用',
-						name : 'groupType',
-						checked : true,
-						inputValue : 0
-					}, {
-						boxLabel : '默认',
-						name : 'groupType',
-						inputValue : 1
-					}]
 				}],
 				buttonAlign : 'center',
 				buttons: [{
