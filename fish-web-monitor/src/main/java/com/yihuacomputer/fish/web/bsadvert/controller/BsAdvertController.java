@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 
 
+
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -45,6 +46,7 @@ import com.yihuacomputer.common.util.IOUtils;
 import com.yihuacomputer.common.util.ZipUtils;
 import com.yihuacomputer.fish.api.advert.AdvertType;
 import com.yihuacomputer.fish.api.advert.Screen;
+import com.yihuacomputer.fish.api.advert.bs.BsAdvertStatus;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroup;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupService;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvert;
@@ -106,7 +108,7 @@ public class BsAdvertController {
 		IFilter filter = new Filter();
 		String groupId = request.getParameter("groupId");
 		String advertName = request.getParameter("advertName");
-		String actived = request.getParameter("actived");
+		String bsAdvertStatus = request.getParameter("bsAdvertStatus");
 		String updateTimeEnd = request.getParameter("updateTimeEnd");
 		String updateTimeStart = request.getParameter("updateTimeStart");
 		if(null!=groupId&&!"".equals(groupId.trim())){
@@ -115,11 +117,8 @@ public class BsAdvertController {
 		if(null!=advertName&&!"".equals(advertName.trim())){
 			filter.eq("advertName", advertName);
 		}
-		if(null!=actived&&!"".equals(actived.trim())){
-			filter.eq("actived", actived.equals("1")?Boolean.TRUE:Boolean.FALSE);
-		}
-		if(null!=actived&&!"".equals(actived.trim())){
-			filter.eq("actived", actived.equals("1")?Boolean.TRUE:Boolean.FALSE);
+		if(null!=bsAdvertStatus&&!"".equals(bsAdvertStatus.trim())){
+			filter.eq("bsAdvertStatus", BsAdvertStatus.getBsAdvertStatusById(Integer.parseInt(bsAdvertStatus)));
 		}
 		if(null!=updateTimeEnd&&!"".equals(updateTimeEnd.trim())){
 			filter.eq("updateTimeEnd", DateUtils.getTimestamp(updateTimeEnd+" 23:59:59"));
@@ -153,14 +152,14 @@ public class BsAdvertController {
 			result.addAttribute(FishConstant.ERROR_MSG, "广告不存在，请刷新后操作。");
 			return result;
 		}
-		else if(bsAdvert.getActived()){
+		else if(bsAdvert.getBsAdvertStatus().equals(BsAdvertStatus.ACTIVED)){
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, "广告已激活。");
 			return result;
 		}
 		try {
 			UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
-			bsAdvert.setActivePersonId(userSession.getUserId());
+			bsAdvert.setActiveUserId(userSession.getUserId());
 			bsAdvertService.actived(bsAdvert);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -367,8 +366,9 @@ public class BsAdvertController {
 		advert.setLastTime(new Date());
 		advert.setAdvertName(form.getAdvertName());
 		advert.setGroupId(form.getGroupId());
+		advert.setBsAdvertStatus(BsAdvertStatus.UNACTIVE);
 		advert.setAdvertType(AdvertType.valueOf(form.getAdvertType()));
-		advert.setPersonId(userSession.getUserId());
+		advert.setUserId(userSession.getUserId());
 
 		String tempDir = getTempRealDir(request);
 		List<ScreenFile> fileNames = new ArrayList<ScreenFile>();
@@ -414,7 +414,7 @@ public class BsAdvertController {
 		// 回填值到form中
 		form.setId(advert.getId());
 		form.setLastTime(DateUtils.getTimestamp(advert.getLastTime()));
-		form.setPersonName(userSession.getUserName());
+		form.setUserName(userSession.getUserName());
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, form);
 		return result;
@@ -452,10 +452,13 @@ public class BsAdvertController {
 		IBsAdvert advert = bsAdvertService.getById(id);
 		advert.setAdvertName(form.getAdvertName());
 		advert.setGroupId(form.getGroupId());
-		advert.setPersonId(session.getUserId());
+		advert.setUserId(session.getUserId());
 		advert.setLastTime(new Date());
 		advert.setAdvertType(AdvertType.valueOf(form.getAdvertType()));
 		advert.insertBsAdvertService(bsAdvertService);
+		if(advert.getBsAdvertStatus().equals(BsAdvertStatus.ACTIVED)){
+			advert.setBsAdvertStatus(BsAdvertStatus.UPDATEUNACTIVE);
+		}
 		advert.getAdvertResources().clear();
 		String tempDir = getTempRealDir(request);
 		List<ScreenFile> fileNames = new ArrayList<ScreenFile>();
@@ -504,7 +507,7 @@ public class BsAdvertController {
 		// 回填值到form中
 		form.setId(advert.getId());
 		form.setLastTime(DateUtils.getTimestamp(advert.getLastTime()));
-		form.setPersonName(session.getUserName());
+		form.setUserName(session.getUserName());
 		
 		model.addAttribute(FishConstant.SUCCESS, true);
 		model.addAttribute(FishConstant.DATA,"");
@@ -544,19 +547,19 @@ public class BsAdvertController {
 			IAdvertGroup advertGroup = (IAdvertGroup)advertObjs[0];
 			IBsAdvert bsAdvert = (IBsAdvert)advertObjs[1];
 			BsAdvertForm form = new BsAdvertForm();
-			form.setActived(bsAdvert.getActived());
-			form.setActivePersonId(bsAdvert.getActivePersonId());
-			IUser activeUser = userService.get(bsAdvert.getActivePersonId());
-			form.setActivePersonName(activeUser==null?"":activeUser.getName());
+			form.setBsAdvertStatus(getEnumI18n(bsAdvert.getBsAdvertStatus().getName()));
+			form.setActiveUserId(bsAdvert.getActiveUserId());
+			IUser activeUser = userService.get(bsAdvert.getActiveUserId());
+			form.setActiveUserName(activeUser==null?"":activeUser.getName());
 			form.setAdvertName(bsAdvert.getAdvertName());
 			form.setGroupId(bsAdvert.getGroupId());
 			form.setGroupName(advertGroup.getGroupName());
 			form.setId(bsAdvert.getId());
 			form.setAdvertFileName(getBsAdvertFile(bsAdvert));
 			form.setLastTime(DateUtils.getDate(bsAdvert.getLastTime()));
-			form.setPersonId(bsAdvert.getPersonId());
-			IUser createUser = userService.get(bsAdvert.getPersonId());
-			form.setPersonName(createUser==null?"":createUser.getName());
+			form.setUserId(bsAdvert.getUserId());
+			IUser createUser = userService.get(bsAdvert.getUserId());
+			form.setUserName(createUser==null?"":createUser.getName());
 			formList.add(form);
 		}
 		return formList;

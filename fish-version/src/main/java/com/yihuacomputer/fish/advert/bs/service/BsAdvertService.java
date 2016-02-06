@@ -17,6 +17,7 @@ import com.yihuacomputer.common.util.ZipUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.advert.bs.entity.AdvertGroup;
 import com.yihuacomputer.fish.advert.bs.entity.BsAdvert;
+import com.yihuacomputer.fish.api.advert.bs.BsAdvertStatus;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroup;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelationService;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupService;
@@ -91,9 +92,9 @@ public class BsAdvertService implements IBsAdvertService {
 			sb.append(" and advert.advertName like ? ");
 			argsList.add("%"+advertName+"%");
 		}
-		Object actived = filter.getValue("actived");
+		Object actived = filter.getValue("bsAdvertStatus");
 		if(actived!=null){
-			sb.append(" and advert.actived = ? ");
+			sb.append(" and advert.bsAdvertStatus = ? ");
 			argsList.add(actived);
 		}
 		Object orgId = filter.getValue("orgId");
@@ -141,15 +142,15 @@ public class BsAdvertService implements IBsAdvertService {
 	public IBsAdvert actived(IBsAdvert bsAdvert){
 		IFilter filter = new Filter();
 		filter.eq("groupId", bsAdvert.getGroupId());
-		filter.eq("actived", Boolean.TRUE);
+		filter.eq("bsAdvertStatus", BsAdvertStatus.ACTIVED);
 		List<IBsAdvert> advertList = this.list(filter);
 		for(IBsAdvert bs:advertList){
-			if(bs.getActived()){
-				bs.setActived(Boolean.FALSE);
+			if(bs.getBsAdvertStatus().equals(BsAdvertStatus.ACTIVED)){
+				bs.setBsAdvertStatus(BsAdvertStatus.UNACTIVE);
 				this.update(bs);
 			}
 		}
-		bsAdvert.setActived(Boolean.TRUE);
+		bsAdvert.setBsAdvertStatus(BsAdvertStatus.ACTIVED);
 		this.update(bsAdvert);
 		//获取Bs广告服务器路径
 		IParam param = paramService.getParam("bsAdvertServerPath");

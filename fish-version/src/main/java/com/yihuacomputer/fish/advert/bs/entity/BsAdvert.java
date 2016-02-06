@@ -25,6 +25,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.yihuacomputer.fish.api.advert.AdvertType;
 import com.yihuacomputer.fish.api.advert.Screen;
+import com.yihuacomputer.fish.api.advert.bs.BsAdvertStatus;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvert;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvertResource;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvertResourceService;
@@ -56,19 +57,19 @@ public class BsAdvert implements IBsAdvert, Serializable {
     @Column(name = "ADVERT_TYPE", nullable = false, length = 32)
     private AdvertType advertType;
 	
-	@org.hibernate.annotations.Type(type="com.yihuacomputer.domain.util.BooleanUserType")
-	@Column(name = "ACTIVED",columnDefinition="CHAR",length=1)
-	private boolean actived;
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "ADVERT_STRATUS",nullable = false, length = 32)
+	private BsAdvertStatus bsAdvertStatus;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "LAST_TIME")
 	private Date lastTime;
 
-	@Column(name = "PERSON_ID", nullable = true, length = 20)
-	private long personId;
+	@Column(name = "USER_ID", nullable = true, length = 20)
+	private long userId;
 
-	@Column(name = "ACTIVE_PERSON_ID", nullable = true, length = 20)
-	private long activePersonId;
+	@Column(name = "ACTIVE_USER_ID", nullable = true, length = 20)
+	private long activeUserId;
 
 	@OneToMany(targetEntity = BsAdvertResource.class, orphanRemoval = true, cascade = CascadeType.ALL)
 	@JoinColumn(name = "ADVERT_ID")
@@ -100,12 +101,12 @@ public class BsAdvert implements IBsAdvert, Serializable {
 		this.advertName = advertName;
 	}
 
-	public boolean getActived() {
-		return actived;
+	public BsAdvertStatus getBsAdvertStatus() {
+		return bsAdvertStatus;
 	}
 
-	public void setActived(boolean actived) {
-		this.actived = actived;
+	public void setBsAdvertStatus(BsAdvertStatus bsAdvertStatus) {
+		this.bsAdvertStatus = bsAdvertStatus;
 	}
 
 	public Date getLastTime() {
@@ -116,20 +117,22 @@ public class BsAdvert implements IBsAdvert, Serializable {
 		this.lastTime = lastTime;
 	}
 
-	public long getPersonId() {
-		return personId;
+	
+
+	public long getUserId() {
+		return userId;
 	}
 
-	public void setPersonId(long personId) {
-		this.personId = personId;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
-	public long getActivePersonId() {
-		return activePersonId;
+	public long getActiveUserId() {
+		return activeUserId;
 	}
 
-	public void setActivePersonId(long activePersonId) {
-		this.activePersonId = activePersonId;
+	public void setActiveUserId(long activeUserId) {
+		this.activeUserId = activeUserId;
 	}
 
 	public List<IBsAdvertResource> getAdvertResources() {

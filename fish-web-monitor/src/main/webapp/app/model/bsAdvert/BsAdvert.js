@@ -2,8 +2,8 @@
 Ext.define('Eway.model.bsAdvert.BsAdvert', {
 	extend: 'Ext.data.Model',
 	idProperty : 'id',
-	fields: ['id', 'groupId','groupName','advertName','actived','lastTime','advertFileName'
-			 ,'personId','personName','activePersonId','activePersonName'],
+	fields: ['id', 'groupId','groupName','advertName','bsAdvertStatus','lastTime','advertFileName'
+			 ,'userId','userName','activeUserId','activeUserName'],
     proxy: {
         type: 'rest',
         url : 'api/bsadvert/advert',

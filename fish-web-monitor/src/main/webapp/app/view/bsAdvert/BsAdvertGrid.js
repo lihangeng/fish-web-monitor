@@ -85,13 +85,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 				width: 145
 			},{
 				header : '是否激活',
-				dataIndex : 'actived',renderer:function(value,meta,record){
-					if(value == true){
-						return "激活";
-					}else{
-						return "未激活";
-					}
-				},
+				dataIndex : 'bsAdvertStatus',
 				width: 100
 			},{
 				header:'最近更改时间',
@@ -109,11 +103,11 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 				}
 			},{
 				header : '更改人',
-				dataIndex:'personName',
+				dataIndex:'userName',
 				width: 100
 			},{
 				header : '激活人',
-				dataIndex:'activePersonName',
+				dataIndex:'activeUserName',
 				flex : 1
 			}],
 			bbar : Ext.create('Ext.PagingToolbar',{

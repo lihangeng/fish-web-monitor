@@ -22,17 +22,17 @@ public class BsAdvertForm {
 
 	private String advertName;
 	
-	private boolean actived;
+	private String bsAdvertStatus;
 
 	private String lastTime;
 
-	private long personId;
+	private long userId;
 
-	private String personName;
+	private String userName;
 
-	private long activePersonId;
+	private long activeUserId;
 	
-	private String activePersonName;
+	private String activeUserName;
 
     private String resources;
     
@@ -70,12 +70,12 @@ public class BsAdvertForm {
 		this.advertName = advertName;
 	}
 
-	public boolean isActived() {
-		return actived;
+	public String getBsAdvertStatus() {
+		return bsAdvertStatus;
 	}
 
-	public void setActived(boolean actived) {
-		this.actived = actived;
+	public void setBsAdvertStatus(String bsAdvertStatus) {
+		this.bsAdvertStatus = bsAdvertStatus;
 	}
 
 	public String getLastTime() {
@@ -86,36 +86,36 @@ public class BsAdvertForm {
 		this.lastTime = lastTime;
 	}
 
-	public long getPersonId() {
-		return personId;
+	public long getUserId() {
+		return userId;
 	}
 
-	public void setPersonId(long personId) {
-		this.personId = personId;
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
-	public String getPersonName() {
-		return personName;
+	public String getUserName() {
+		return userName;
 	}
 
-	public void setPersonName(String personName) {
-		this.personName = personName;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
-	public long getActivePersonId() {
-		return activePersonId;
+	public long getActiveUserId() {
+		return activeUserId;
 	}
 
-	public void setActivePersonId(long activePersonId) {
-		this.activePersonId = activePersonId;
+	public void setActiveUserId(long activeUserId) {
+		this.activeUserId = activeUserId;
 	}
 
-	public String getActivePersonName() {
-		return activePersonName;
+	public String getActiveUserName() {
+		return activeUserName;
 	}
 
-	public void setActivePersonName(String activePersonName) {
-		this.activePersonName = activePersonName;
+	public void setActiveUserName(String activeUserName) {
+		this.activeUserName = activeUserName;
 	}
 
 	public String getResources() {

@@ -20,9 +20,9 @@ public class AdvertUrlController {
 		String callbackName = (String)request.getParameter("jsoncallback");
 		String terminalId = request.getParameter("terminalId");
 		if("1".equals(terminalId))
-			result.put("ret", "/advert/13/AD_IDLE/1024/advertisement.html");
+			result.put("ret", "10");
 		else{
-			result.put("ret", "/advert/10/AD_IDLE/1024/advertisement.html");
+			result.put("ret", "aaa");
 		}
 		String renderStr = callbackName+"("+JsonUtils.toJson(result)+")";
 		return renderStr;
