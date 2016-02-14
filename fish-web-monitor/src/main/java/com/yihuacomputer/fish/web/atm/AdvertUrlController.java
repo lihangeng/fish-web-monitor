@@ -42,6 +42,7 @@ public class AdvertUrlController {
 		ModelMap result = new ModelMap();
 		String callbackName = (String)request.getParameter("jsoncallback");
 		String terminalId = request.getParameter("terminalId");
+
 		
 		if(terminalId !=null){
 			IDevice device=deviceService.get(terminalId);
