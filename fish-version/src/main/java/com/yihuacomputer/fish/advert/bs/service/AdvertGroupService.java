@@ -91,4 +91,13 @@ public class AdvertGroupService implements IAdvertGroupService {
 		
 	}
 	
+	@Override
+	public List<IAdvertGroup> list(long orgId){
+		StringBuffer hql=new StringBuffer("select id from");
+		hql.append(AdvertGroup.class.getSimpleName()).append("advertGroup");
+		hql.append("where advertGroup.orgId=? ");
+		List<IAdvertGroup> list=dao.findByHQL(hql.toString(), orgId);
+		return list;
+	}
+	
 }
