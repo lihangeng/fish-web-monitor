@@ -1,7 +1,7 @@
 Ext.define('Eway.view.bsAdvert.BsAdvertImgView', {
     extend: 'Ext.view.View',
     alias : 'widget.bsadvertimgview',
-    requires: ['Ext.data.Store','Eway.model.advert.UploadResource'],
+    requires: ['Ext.data.Store','Eway.model.bsAdvert.BsAdvertResource'],
 
     tpl: [
         '<tpl for=".">',
@@ -38,7 +38,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertImgView', {
     initComponent: function() {
         this.store = Ext.create('Ext.data.Store', {
             autoLoad: false,
-            model:'Eway.model.advert.UploadResource',
+            model:'Eway.model.bsAdvert.BsAdvertResource',
             autoSync: false
         });
 
