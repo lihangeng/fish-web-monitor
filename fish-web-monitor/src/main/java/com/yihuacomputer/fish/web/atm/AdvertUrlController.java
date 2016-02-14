@@ -46,8 +46,13 @@ public class AdvertUrlController {
 		
 		if(terminalId !=null){
 			IDevice device=deviceService.get(terminalId);
-			long orgId=device.getOrganization().getId();
-			getGroupPath(orgId,terminalId);
+			if(device!=null){
+				long orgId=device.getOrganization().getId();
+				getGroupPath(orgId,terminalId);
+			}
+			else{
+				path="1";
+			}
 		}
 			result.put("ret", path);
 		String renderStr = callbackName+"("+JsonUtils.toJson(result)+")";

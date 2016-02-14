@@ -74,7 +74,7 @@ public class VersionTypeService implements IVersionTypeService, IDeviceListener 
         Date date = new Date();
         	StringBuffer sb = new StringBuffer();
         	sb.append("insert into VER_DEVICE_SOFT_VERSION (CREATED_TIME,LAST_UPDATED_TIME,DEVICE_ID,TYPE_NAME,VERSION_NO,VERSION_STR) ");
-        	sb.append("select ?,?,id,?,?,? from dev_info");
+        	sb.append("select ?,?,id,?,?,? from DEV_INFO");
         	Query query = dao.getSQLQuery(sb.toString());
         	query.setDate(0,date);
         	query.setDate(1, date);

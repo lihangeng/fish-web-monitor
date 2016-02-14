@@ -4,55 +4,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/advertUrl.js"></script>
-<script type="text/javascript">
-$().ready(
-	function(){
-		var url = window.location.search;
-		var width,height,terminalId;
-		width=getArgs(url,"width=","height=");//url.subString(url.indexOf("?width=")+7);
-		height=getArgs(url,"height=","terminalId=");
-		terminalId=getArgs(url,"terminalId=");
-		height = checkRate(height)?height:768;
-		width=(width==1024||width==800||width==600)?width:1024;
-		/*
-		*/
-		var advert = new AdvertUrl();
-		advert.width = width;
-		advert.height = height;
-		advert.terminalId = terminalId;
-		advert.getUrl(function (advert){
-		var iframe = $("<iframe>");
-			iframe.attr("src","advertisement.html"+"?width="+advert.width+"&height="+advert.height+"&groupPath="+advert.url);
-			iframe.attr("width",advert.width);
-			iframe.attr("height",advert.height);
-			iframe.css("border",0);
-			$("body").append(iframe);
-		});
-	}
-	
-);
- function checkRate(nubmer)
-{
-     var re = /^[0-9]+$/;   //判断字符串是否为数字     
-     if (!re.test(nubmer))
-    {
-        return false;
-    }
-	return true;
-}
+<script type="text/javascript" src="js/advertisement.js"></script>
+<script type="text/javascript" src="js/playAdvertTask.js"></script>
 
-function getArgs(url,argA,argB){
-	if(argB){
-		return url.substring(url.indexOf(argA)+argA.length,url.indexOf(argB)-1);
-	}
-	return url.substring(url.indexOf(argA)+argA.length);
-}
-</script>
 <title>advertisement</title>
 </head>
 
 
 <body topmargin='0' leftmargin='0'>
-	
+<div style="position:relative">
+<div id="Layer2" align="center" style="width:720px; height:520px; visibility:visible;position:absolute;overflow:hidden"></div>
+<div id="Layer3" align="center" style="width:720px; height:520px; visibility:visible;position:absolute"></div>
+</div>
 </body>
 </html>

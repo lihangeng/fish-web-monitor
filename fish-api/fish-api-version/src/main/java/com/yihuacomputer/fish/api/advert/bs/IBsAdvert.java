@@ -17,18 +17,20 @@ public interface IBsAdvert {
 	public String getAdvertName() ;
 	public void setAdvertName(String advertName);
 
-	public boolean getActived();
-	public void setActived(boolean actived);
+	public BsAdvertStatus getBsAdvertStatus();
+	public void setBsAdvertStatus(BsAdvertStatus bsAdvertStatus);
 
 	public Date getLastTime();
 	public void setLastTime(Date lastTime);
 
-	public long getPersonId();
-	public void setPersonId(long personId);
 
-	public long getActivePersonId();
-	public void setActivePersonId(long activePersonId);
 
+	public long getUserId();
+	public void setUserId(long userId);
+
+	public long getActiveUserId();
+	public void setActiveUserId(long activeUserId);
+	
 	public List<IBsAdvertResource> getAdvertResources();
 	public void setAdvertResources(List<IBsAdvertResource> advertResources);
 

@@ -1,7 +1,7 @@
 Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 	extend : 'Ext.app.Controller',
 
-	stores : [ 'bsAdvert.BsAdvertGroup'],
+	stores : [ 'bsAdvert.BsAdvertGroup','bsAdvert.BsAdvertGroupType'],
 	models : [ 'bsAdvert.BsAdvertGroup' ],
 	views : [ 'bsAdvert.BsAdvertGroupView','bsAdvert.BsAdvertGroupFilterForm','bsAdvert.BsAdvertGroupGrid'],
 
@@ -81,7 +81,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 					Eway.alert('保存成功');
 			    },
 			    failure: function(record,operation){
-			    	Eway.alert('保存失败');
+			    	Eway.alert(operation.error);
 				},
 				button:win.down('button[action="add"]')
 			});

@@ -9,7 +9,7 @@ public enum GroupType {
 		this.id = id;
 		this.name = name;
 	}
-	public GroupType getGroupTypeById(int id){
+	public static GroupType getGroupTypeById(int id){
 		GroupType defaultType = GroupType.NORMAl;
 		GroupType[] groupTypes = GroupType.values();
 		for(GroupType groupType:groupTypes){

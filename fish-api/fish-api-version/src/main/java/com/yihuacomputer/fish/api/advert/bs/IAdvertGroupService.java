@@ -27,6 +27,5 @@ public interface IAdvertGroupService {
 	public List<IAdvertGroup> list(IFilter filter);
 	
 	public IAdvertGroup orgHasAG(long orgId);
-	
 	public List<IAdvertGroup> list(long orgId);
 }

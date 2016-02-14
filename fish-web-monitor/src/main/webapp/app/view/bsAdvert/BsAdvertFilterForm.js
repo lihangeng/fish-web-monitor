@@ -19,7 +19,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertFilterForm',
 											fieldLabel : '广告归属组'
 										},{
 											xtype : 'field_bsadvert_advertStatus',
-											name:'actived',
+											name:'bsAdvertStatus',
 											fieldLabel : '广告状态'
 										} ]
 									},

@@ -5,11 +5,13 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupFilterForm', {
 	extend: 'Eway.view.base.FilterForm',
 	alias: 'widget.bs_advert_group_filterform',
 
+	store:['Eway.store.bsAdvert.BsAdvertGroupType'],
 	requires: ['Eway.view.common.OrgComboOrgTree',
-	           'Eway.view.field.person.OrganizationLevel'],
+	           'Eway.view.field.person.OrganizationLevel',
+	           'Eway.view.bsAdvert.field.BsGroupTypeComBox'],
 
 	/*title: '输入您的查询条件',*/
-	height: 40,
+	height: 80,
 	layout : 'column',
 	defaults : {
 		border : false
@@ -32,6 +34,10 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupFilterForm', {
 				},{
 					xtype : 'hiddenfield',
 					name :'orgId'
+				},{					
+					columnWidth : .5,
+					name:'groupType',
+					xtype : 'field_bsadvert_groupType',
 				}]
 			},{
 				columnWidth : .5,
@@ -41,6 +47,13 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupFilterForm', {
 					name : 'groupName',
 					fieldLabel : '广告组名称',
 					msgTarget : 'side'
+				},{
+					columnWidth : .5,
+					items : [{
+						xtype : 'field.organizationLevel',
+						name : 'orgLevel',
+						store : levelStore
+					}]
 				}]
 
 			}]

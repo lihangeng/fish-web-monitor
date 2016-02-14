@@ -87,7 +87,7 @@ public class AdvertGroupService implements IAdvertGroupService {
 	@Override
 	public IAdvertGroup orgHasAG(long orgId) {
 		 
-		return dao.findUniqueByHql("from AdvertGroup ag where ag.orgId = ?", orgId);
+		return dao.findUniqueByHql("from AdvertGroup ag where ag.orgId = ? and ag.groupType=1 ", orgId);
 		
 	}
 	
