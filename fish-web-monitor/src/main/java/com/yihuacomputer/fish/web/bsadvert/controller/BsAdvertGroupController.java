@@ -1,10 +1,12 @@
 package com.yihuacomputer.fish.web.bsadvert.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +25,16 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.common.filter.FilterFactory;
+import com.yihuacomputer.common.util.IOUtils;
+import com.yihuacomputer.common.util.ZipUtils;
+import com.yihuacomputer.fish.api.advert.bs.GroupType;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroup;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupService;
+import com.yihuacomputer.fish.api.advert.bs.IBsAdvert;
+import com.yihuacomputer.fish.api.advert.bs.IBsAdvertResource;
+import com.yihuacomputer.fish.api.advert.util.AdvertTypeConversionService;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.IOrganization;
@@ -34,6 +42,7 @@ import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.OrganizationLevel;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.system.config.IParamService;
+import com.yihuacomputer.fish.api.version.VersionCfg;
 import com.yihuacomputer.fish.api.version.relation.IDeviceAdvertRelation;
 import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertGroupDeviceForm;
 import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertGroupForm;
@@ -64,12 +73,18 @@ public class BsAdvertGroupController {
 	
     @Autowired
     private IDeviceService deviceService;
+    
+	@Autowired
+	private MessageSource messageSourceVersion;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap getAdvertGroup(@RequestParam int limit, @RequestParam int start, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search bsAdvert group ");
+		HttpSession session = request.getSession();
+		UserSession user = (UserSession) session.getAttribute(FishWebUtils.USER);
 		ModelMap result = new ModelMap();
 		IFilter filter = getFilter(webRequest);
+		filter.like("orgId", String.valueOf(user.getOrgId()));
 		IPageResult<Object> pageResult = advertGroupService.page(start, limit, filter);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
 		result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
@@ -290,8 +305,8 @@ public class BsAdvertGroupController {
        IPageResult<IDevice> pageResult = null;
        if (flag == 0) {// 已关联的设备
            result.addAttribute(FishConstant.SUCCESS, true);
-           Filter filter = new Filter();
-           filter.addFilterEntry(FilterFactory.like("terminalId", request.getParameter("terminalId")));
+           Filter filter = getFilterDevice(request);
+           
            pageResult = deviceAdvertRelation.pageDeviceByAdvertGroup(start, limit, advertGroupService.getById(Long.parseLong(guid)), filter);
            result.addAttribute("total", pageResult.getTotal());
            result.addAttribute("data", DeviceForm.convert(pageResult.list()));
@@ -299,7 +314,7 @@ public class BsAdvertGroupController {
            IFilter filter = new Filter();
            filter.like("terminalId", request.getParameter("terminalId"));
            pageResult = deviceAdvertRelation.pageUnlinkDeviceByAdvertGroup(start, limit, advertGroupService.getById(Long.parseLong(guid)), filter,
-                           organizationId);
+                           organizationId, orgService.getRoot().get(0).getGuid());
            
            result.addAttribute(FishConstant.SUCCESS, true);
            result.addAttribute("total", pageResult.getTotal());
@@ -329,8 +344,104 @@ public class BsAdvertGroupController {
 				if (name.equals("groupName")) {
 					filter.eq("groupName", value);
 				}
+				if (name.equals("groupType")) {
+					filter.eq("groupType", GroupType.getGroupTypeById(Integer.parseInt(value)));
+				}
 			}
 		}
 		return filter;
+	}
+	
+	private Filter getFilterDevice(WebRequest request) {
+		Filter filter = new Filter();
+		Iterator<String> iterator = request.getParameterNames();
+		while (iterator.hasNext()) {
+			String name = iterator.next();
+			if (FishWebUtils.isIgnoreRequestName(name)) {
+				continue;
+			} else {
+				String value = request.getParameter(name);
+				if (org.apache.commons.lang.StringUtils.isEmpty(value)) {
+					continue;
+				}
+				if (name.equals("orgId")) {
+					filter.eq("orgId", Long.valueOf(value));
+				}
+				if (name.equals("ip")) {
+					filter.like("ip", value);
+				}
+				if (name.equals("terminalId")) {
+					filter.like("terminalId", value);
+				}
+				if (name.equals("devType")) {
+					filter.eq("devType", value);
+				}
+			}
+		}
+		return filter;
+	}
+	
+	
+	@RequestMapping(value="/actived",method = RequestMethod.POST)
+	public @ResponseBody ModelMap activedBsAdvert(@RequestParam long advertGroupId,HttpServletRequest request, WebRequest webRequest) {
+		
+		IBsAdvert advert = advertGroupService.getBsAdvertByGroupId(advertGroupId);
+		ModelMap result = new ModelMap();
+		if(advert==null){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, "此广告组不存在激活的广告,请设置后重试");
+			return result;
+		}else{
+			result.addAttribute(FishConstant.SUCCESS, true);
+			return result;
+		}
+	}
+	
+	/**
+	 * 进行预览
+	 * @param id
+	 * @param screen
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/preview2", method = RequestMethod.POST)
+	@ResponseBody
+	public String preview2(@RequestParam long id, @RequestParam String screen, HttpServletRequest request) {
+		// 1.根据广告编号把媒体文件放到临时目录，并把临时目录保存到request中
+		// 2.获取媒体资源的文件名并保存到到request中
+		IBsAdvert advert = advertGroupService.getBsAdvertByGroupId(id);
+		String workHome = VersionCfg.getBsAdvertDir();
+		String contextPath = this.getRealPath(request);
+		File targetDir = new File(contextPath + File.separator + advert.getId() + File.separator + screen);
+		if (!targetDir.exists()&&!targetDir.mkdirs()){
+			throw new AppException(getVersionI18n("advert.createDir.fail", new Object[]{targetDir.getName()}));
+		}
+		String zipFilePath = VersionCfg.getBsAdvertDir()+File.separator+advert.getId()+".zip";
+		ZipUtils.unZip(zipFilePath, VersionCfg.getBsAdvertDir()+File.separator+advert.getId(), "UTF-8");
+		StringBuffer result = new StringBuffer("[");
+		for (IBsAdvertResource resource : advert.getAdvertResources()) {
+			if (getEnumI18n(resource.getScreen().getText()).equals(screen)) {
+				String sourceFilePath = workHome + File.separator + advert.getId() + File.separator + AdvertTypeConversionService.convert(advert.getAdvertType()) + File.separator + getEnumI18n(resource.getScreen().getText())
+						+ File.separator + resource.getContent();
+				IOUtils.copyFileToDirectory(sourceFilePath, targetDir.getAbsolutePath());
+				String image = "tmp/bsAdvert/" + advert.getId() + "/" + screen + "/" + resource.getContent();
+				result.append("{'picName':'").append(image).append("','playTime':'").append(resource.getPlayTime()).append("'}").append(",");
+			}
+		}
+
+		if (!result.toString().equals("[")) {
+			String r = result.toString().substring(0, result.toString().length() - 1);
+			return r + "]";
+		}
+		return result.append("]").toString();
+	}
+	
+	
+	private String getRealPath(HttpServletRequest request) {
+		return FishWebUtils.getRealPathByTmp(request) + "/bsAdvert";
+	}
+	
+	private String getVersionI18n(String key,Object[] value){
+		return messageSourceVersion.getMessage(key,value, FishCfg.locale);
 	}
 }
