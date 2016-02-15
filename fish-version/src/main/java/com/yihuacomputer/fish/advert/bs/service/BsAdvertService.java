@@ -168,6 +168,7 @@ public class BsAdvertService implements IBsAdvertService {
 		SQLQuery query = dao.getSQLQuery(sbSql);
 		query.setParameter(0, bsAdvert.getId());
 		query.setParameter(1, bsAdvert.getGroupId());
+		query.executeUpdate();
 	}
 
 }

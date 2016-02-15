@@ -29,6 +29,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 				text :'更改',
 				glyph : 0xf067,
 				action: 'update',
+				disabled : true,
 				code : 'bsAdvertUpdate',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
@@ -45,6 +46,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 				text: '激活',
 				glyph : 0xf014,
 				action: 'actived',
+				disabled : true,
 				code : 'bsAdvertActive',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender

@@ -34,7 +34,6 @@ Ext.define('Eway.view.bsAdvert.BsAdvertFilterForm',
 											xtype : 'fieldcontainer',
 											labelWidth : 120,
 											fieldLabel : EwayLocale.advert.createdTimeStart,
-											labelAlign : 'right',
 											layout : 'hbox',
 											defaults : {
 												hideLabel : true

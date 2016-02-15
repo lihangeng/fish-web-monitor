@@ -132,8 +132,26 @@ public class BsAdvertController {
 		result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 		return result;
 	}
-	
-	
+	@RequestMapping(value = "/{id}",method=RequestMethod.DELETE)
+	public @ResponseBody ModelMap deleteBsAdvert(@PathVariable long id,HttpServletRequest request, WebRequest webRequest) {
+		logger.info("activedBsAdvert "+id);
+		ModelMap result = new ModelMap();
+		IBsAdvert bsAdvert = bsAdvertService.getById(id);
+		if(null==bsAdvert){
+			result.addAttribute(FishConstant.SUCCESS, true);
+			return result;
+		}
+		if(bsAdvert.getBsAdvertStatus()!=BsAdvertStatus.UNACTIVE){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, "当前广告无法删除！");
+			return result;
+		}
+		else if(bsAdvert.getBsAdvertStatus()==BsAdvertStatus.UNACTIVE){
+			bsAdvertService.delete(bsAdvert);
+		}
+		result.addAttribute(FishConstant.SUCCESS, true);
+		return result;
+	}
 	
 	/**
 	 * 激活广告

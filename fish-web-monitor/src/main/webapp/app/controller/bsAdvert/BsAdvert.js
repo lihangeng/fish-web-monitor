@@ -37,6 +37,9 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 			'#bsadvert button[action=actived]' : {
 				click : this.onActive
 			},
+			'#bsadvert button[action=remove]' : {
+				click : this.onRemove
+			},
 			'#bsadvert grid' :{
 				rowclick : this.onRowClick
 			},
@@ -55,10 +58,51 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 		var view = this.getEwayView();
 		if(record.get("advertFileName")!=null){
 			view.down("grid button[code='advertPreview']").setDisabled(false);
+			view.down("grid button[code='bsAdvertActive']").setDisabled(false);
+			view.down("grid button[code='bsAdvertUpdate']").setDisabled(false);
 		}
 		else{
 			view.down("grid button[code='advertPreview']").setDisabled(true);
+			view.down("grid button[code='bsAdvertActive']").setDisabled(true);
+			view.down("grid button[code='bsAdvertUpdate']").setDisabled(true);
 		}
+	},
+	onRemove:function(){
+		var grid = this.getGrid();
+		var sm = grid.getSelectionModel();
+		if(sm.getCount() == 1) {
+			var record = sm.getLastSelected();
+
+//			if(record.get("bsAdvertActive") == EwayLocale.version.View.downLoaded || record.get("versionStatus") == EwayLocale.version.View.waitting ){
+//				Eway.alert(EwayLocale.msg.downLoadedAdvertCantDelete);
+//			}else{
+				Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,EwayLocale.tip.remove.confirm.info,
+						function(button,text) {
+							if(button=="yes"){
+								record.erase({
+									success: function(){
+										Eway.alert(EwayLocale.deleteSuccess);
+										//刷新详细配置列表
+										grid.getStore().load();
+									},
+									failure: function(record,operation){
+										//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
+										var object = Ext.decode(operation._response.responseText);
+										record.dropped = false;
+										Eway.alert(object.errors);
+									},
+									scope:this
+								});
+							}
+				}, this);
+//			}
+			
+			
+		}
+		else {
+			Eway.alert(EwayLocale.msg.chooseAdvert);
+		}
+	
 	},
 	onActive:function(){
 		var grid = this.getGrid();
