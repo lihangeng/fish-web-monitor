@@ -21,15 +21,15 @@
 		fish-web，mysql版本的配置
 	</description>
 
-	<!--自身的配置(数据源的配置) 
+	<!--自身的配置(数据源的配置) -->
 	<bean id="hiberanteDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306/atmv"/>
 		<property name="username" value="root"/>
 		<property name="password" value="root"/>
-	</bean>-->
+	</bean>
 
-	<!-- 部署时采用JNDI数据源方式-->
+	<!-- 部署时采用JNDI数据源方式
 	<bean id="hiberanteDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="resourceRef">
             <value>true</value>
@@ -37,7 +37,7 @@
 		<property name="jndiName">
 			<value>java:comp/env/jdbc/fish</value>
 		</property>
-	</bean>
+	</bean>-->
 
 	<bean id="sessionFactory"
 		class="com.yihuacomputer.domain.spring.Hibernate4SessionFactoryBeanInJetty">
