@@ -31,7 +31,7 @@ public interface IDeviceAdvertRelation
      * @param filter
      * @return
      */
-    public IPageResult<IDevice> pageUnlinkDeviceByAdvertGroup(int offset, int limit, IAdvertGroup advertGroup,IFilter filter,String bankOrgId);
+    public IPageResult<IDevice> pageUnlinkDeviceByAdvertGroup(int offset, int limit, IAdvertGroup advertGroup,IFilter filter,String bankOrgId, String serOrgId);
 
    /**
     * 列出某广告组的所有关联设备

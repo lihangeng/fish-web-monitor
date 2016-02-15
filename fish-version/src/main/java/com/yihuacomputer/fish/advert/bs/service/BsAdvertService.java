@@ -142,13 +142,11 @@ public class BsAdvertService implements IBsAdvertService {
 	public IBsAdvert actived(IBsAdvert bsAdvert){
 		IFilter filter = new Filter();
 		filter.eq("groupId", bsAdvert.getGroupId());
-		filter.eq("bsAdvertStatus", BsAdvertStatus.ACTIVED);
+		filter.ne("bsAdvertStatus", BsAdvertStatus.UNACTIVE);
 		List<IBsAdvert> advertList = this.list(filter);
 		for(IBsAdvert bs:advertList){
-			if(bs.getBsAdvertStatus().equals(BsAdvertStatus.ACTIVED)){
-				bs.setBsAdvertStatus(BsAdvertStatus.UNACTIVE);
-				this.update(bs);
-			}
+			bs.setBsAdvertStatus(BsAdvertStatus.UNACTIVE);
+			this.update(bs);
 		}
 		bsAdvert.setBsAdvertStatus(BsAdvertStatus.ACTIVED);
 		this.update(bsAdvert);

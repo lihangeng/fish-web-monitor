@@ -55,7 +55,7 @@ public class DeviceAdvertRelation implements IDeviceAdvertRelation{
     @Transactional(readOnly = true)
 	public IPageResult<IDevice> pageUnlinkDeviceByAdvertGroup(int offset,
 			int limit, IAdvertGroup advertGroup, IFilter filter,
-			String bankOrgId) {
+			String bankOrgId, String serOrgId) {
 
         // 由于不知道传过来的filter参数没有设置表别名，所以重新处理加上表别名
         IFilter fi = new Filter();
@@ -70,16 +70,18 @@ public class DeviceAdvertRelation implements IDeviceAdvertRelation{
 
         // 添加条件
         IOrganization bankOrg = orgService.get(bankOrgId);
+        IOrganization serOrg = orgService.get(serOrgId);
         fi.rlike("d.organization.orgFlag", bankOrg.getOrgFlag());
+        fi.rlike("d.devService.orgFlag", serOrg.getOrgFlag());
 
         // hql拼写
         StringBuffer hqls = new StringBuffer();
         hqls.append("select DISTINCT d from Device d WHERE NOT EXISTS ( ");
         hqls.append(" select dp.deviceId from AdvertGroupDeviceRelation dp where dp.deviceId = d.id and dp.groupId = ? )");
-        hqls.append(" and d.id not in (select dp.deviceId from AdvertGroupDeviceRelation dp,AdvertGroup ag where dp.groupId = ag.id and ag.orgId = ?)");
+        hqls.append(" and d.id not in (select dp.deviceId from AdvertGroupDeviceRelation dp )");
 
         // 分页查询
-        return (IPageResult<IDevice>) dao.page(offset, limit, fi, hqls.toString(), Long.valueOf(advertGroup.getGuid()),Long.valueOf(advertGroup.getOrgId()));
+        return (IPageResult<IDevice>) dao.page(offset, limit, fi, hqls.toString(), Long.valueOf(advertGroup.getGuid()));
     }
 
 	@Override

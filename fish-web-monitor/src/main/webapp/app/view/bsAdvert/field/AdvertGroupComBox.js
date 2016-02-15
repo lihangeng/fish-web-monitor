@@ -9,5 +9,10 @@ Ext.define('Eway.view.bsAdvert.field.AdvertGroupComBox', {
 	displayField : 'groupName',
 	queryMode: 'local',
 	editable : false,
-	emptyText : EwayLocale.combox.select
+	emptyText : EwayLocale.combox.select,
+	listeners:{
+		focus:function(_this, event, eOpts ){
+			_this.getStore().load();
+		}
+	}
 });
