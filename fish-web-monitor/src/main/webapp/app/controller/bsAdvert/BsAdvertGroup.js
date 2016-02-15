@@ -1,7 +1,7 @@
 Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 	extend : 'Ext.app.Controller',
 
-	stores : [ 'bsAdvert.BsAdvertGroup','bsAdvert.BsAdvertGroupType'],
+	stores : [ 'bsAdvert.BsAdvertGroup','bsAdvert.BsAdvertGroupType','machine.DeviceAtmType','machine.atmType.DeviceAtmCatalog'],
 	models : [ 'bsAdvert.BsAdvertGroup' ],
 	views : [ 'bsAdvert.BsAdvertGroupView','bsAdvert.BsAdvertGroupFilterForm','bsAdvert.BsAdvertGroupGrid'],
 
@@ -37,9 +37,30 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 				click : this.onGroupRemove
 			},
 			'#bsadvertGroup button[action=link]' : {
-				click : this.onGroupLink
+				click : this.onGroupLinkBefore
+			},
+			'#bsadvertGroup grid' :{
+				rowclick : this.onRowClick
+			},
+			'#bsadvertGroup menuitem[action=preview1024]' :{
+				click : this.onPreview1024
+			},
+			'#bsadvertGroup menuitem[action=preview800]' :{
+				click : this.onPreview800
+			},
+			'#bsadvertGroup menuitem[action=preview600]' :{
+				click : this.onPreview600
 			}
 		});
+	},
+	onRowClick:function( _this, record, tr, rowIndex, e, eOpts){
+		var view = this.getEwayView();
+//		if(record.get("advertFileName")!= null){
+			view.down("grid button[code='advertPreview']").setDisabled(false);
+//		}
+//		else{
+//			view.down("grid button[code='advertPreview']").setDisabled(true);
+//		}
 	},
 
 	//查询
@@ -113,6 +134,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 		var id = record.get("id");
 		if(win.down('form').getForm().isValid()){
 			record.set("groupName",Ext.String.trim(data.groupName));
+			record.set("groupType",data.groupType);
 			record.save({
 				success : function(recordResult,operation){
 					
@@ -179,12 +201,50 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 
 	},
 	
+	onGroupLinkBefore :function(){
+		var grid = this.getGrid();
+		var sm = grid.getSelectionModel();
+		var me = this;
+		
+		if(sm.getCount() == 1) {
+			var record = sm.getLastSelected();
+			
+			if(record.data.groupType == 1){
+				Eway.alert('默认组不需要绑定设备');
+				return;
+			}
+			Ext.Ajax.request({
+				url :"api/bsadvert/advertgroup/actived",
+				params: {
+					advertGroupId: record.get('id')
+			    },
+				success: function(response){
+					var obj = Ext.decode(response.responseText);
+			        if(obj.success==true){
+			        	me.onGroupLink();
+			        }
+			        else{
+						Eway.alert(obj.errorMsg);
+			        }
+			        
+			    },
+			    failure:function(){
+			    	Eway.alert(obj.errorMsg);
+			    }
+			});
+		}
+		else {
+			Eway.alert(EwayLocale.tip.bankPer.link.linkBankPerson);
+		}
+	},
+	
 	/*关联设备管理*/
 	onGroupLink : function(){
 		var grid = this.getGrid();
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
+			
 			var advertDeviceWin = Ext.create('Eway.view.bsAdvert.BsAdvertDevice');
 			var linkedFilterForm = advertDeviceWin.down('bsAdvert_linkedDeviceFilter');
 			var linkedDeviceGrid = advertDeviceWin.down('bsAdvert_linkedDeviceGrid');
@@ -368,6 +428,135 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 			});
 		}else{
 			Eway.alert(EwayLocale.tip.bankPer.link.linkDev);
+		}
+	},
+	onPreview1024 : function(){
+		this.onPreview("1024");
+	},
+
+	onPreview800 : function(){
+		this.onPreview("800");
+	},
+
+	onPreview600 : function(){
+		this.onPreview("600");
+	},
+	//广告预览
+	onPreview : function(screen){
+		var grid = this.getGrid();
+		var sm = grid.getSelectionModel();
+		if(sm.getCount() == 1) {
+			var record = sm.getLastSelected();
+				var advertId = record.get('id');
+				Ext.Ajax.request({
+					url :"api/bsadvert/advertgroup/preview2",
+					params: {
+				        id: advertId,
+				        screen:screen
+				    },
+					success: function(response){
+						 var images = Ext.decode(response.responseText);
+						 if(Ext.isEmpty(images)){
+						 	Eway.alert("["+screen+"]"+EwayLocale.msg.noAdvertResAtTheResolution);
+						 }else{
+							 var vedioCfg = '<OBJECT id=WindowsMediaPlayer1 name="player" height=490 width=700 classid=clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6>'+
+												'<PARAM NAME="URL" VALUE="">'+
+												'<PARAM NAME="rate" VALUE="1">'+
+												'<PARAM NAME="balance" VALUE="0">'+
+												'<PARAM NAME="currentPosition" VALUE="0">'+
+												'<PARAM NAME="defaultFrame" VALUE="">'+
+												'<PARAM NAME="playCount" VALUE="1">'+
+												'<PARAM NAME="autoStart" VALUE="-1">'+
+												'<PARAM NAME="currentMarker" VALUE="0">'+
+												'<PARAM NAME="invokeURLs" VALUE="-1">'+
+												'<PARAM NAME="baseURL" VALUE="">'+
+												'<PARAM NAME="volume" VALUE="50">'+
+												'<PARAM NAME="mute" VALUE="0">'+
+												'<PARAM NAME="uiMode" VALUE="full">'+
+												'<PARAM NAME="stretchToFit" VALUE="0">'+
+												'<PARAM NAME="windowlessVideo" VALUE="0">'+
+												'<PARAM NAME="enabled" VALUE="-1">'+
+												'<PARAM NAME="enableContextMenu" VALUE="-1">'+
+												'<PARAM NAME="fullScreen" VALUE="0">'+
+												'<PARAM NAME="SAMIStyle" VALUE="">'+
+												'<PARAM NAME="SAMILang" VALUE="">'+
+												'<PARAM NAME="SAMIFilename" VALUE="">'+
+												'<PARAM NAME="captioningID" VALUE="">'+
+												'<PARAM NAME="enableErrorDialogs" VALUE="0">'+
+												'<PARAM NAME="_cx" VALUE="12700">'+
+												'<PARAM NAME="_cy" VALUE="9525">'+
+													'<embed src="" width="480" height="360" autostart="-1" url="" rate="1" balance="0" currentposition="0" defaultframe="" playcount="1" '+
+														'currentmarker="0" invokeurls="-1" baseurl="" volume="50" mute="0" uimode="full" stretchtofit="0" windowlessvideo="0" '+
+													    'enabled="-1" enablecontextmenu="-1" fullscreen="0" samistyle="" samilang="" samifilename="" captioningid="" enableerrordialogs="0" _cx="12700" _cy="9525">'+
+													'</embed> '+
+											'</OBJECT>';
+							 var len = images.length;
+							 var stoped = false;
+							 var win = Ext.create('Ext.window.Window',{
+								title:EwayLocale.advert.advertPreviewTitle0+ len +EwayLocale.advert.advertPreviewTitle1,
+								width: 705,
+								height: document.body.clientHeight < 525 ? document.body.clientHeight: 525,
+								layout : 'fit',
+								maximizable: false,
+								autoScroll : true,
+								modal : true,
+								resizable : true,
+								constrainHeader : true,
+								html:'<div class="_previewAD"><img width="680" height="485"></div><div class="_previewVedio" style="display:none">'+vedioCfg+'</div>',
+								listeners:{
+									'beforeclose' : function(win){
+										stoped = true;
+									}
+								}
+							});
+
+							win.show();
+							var title = win.title;
+							var el = win.getEl();
+							var div = Ext.DomQuery.select("div[class=_previewAD]",el.dom)[0],
+								divVedio =  Ext.DomQuery.select("div[class=_previewVedio]",el.dom)[0],
+								img = Ext.DomQuery.select("div[class=_previewAD] img",el.dom)[0],
+								v = document.getElementById('WindowsMediaPlayer1');
+							var time = 0;
+							var i = 0;
+							var playNext = function(){
+								if(!stoped){
+									if(i < len){
+										var currentPic = images[i];
+										if(currentPic.picName.indexOf('.avi') > 0){
+											divVedio.style.display = "block";
+											div.style.display = "none";
+											img.src = "";
+											if(Ext.isIE){
+												v.URL = currentPic.picName;
+											}else{
+												divVedio.innerHTML = '<font color="red">'+EwayLocale.advert.perviewAdertWithIEBrowse+'</font>';
+											}
+										}else{
+											divVedio.style.display = "none";
+											div.style.display = "block";
+											img.src = currentPic.picName;
+										}
+
+									   	win.setTitle(title + (i+1) +EwayLocale.advert.advertPreviewTitle2);
+									   	time = currentPic.playTime * 1000;
+										i ++
+									}
+									if(i==len){
+										i = 0;
+									}
+
+									setTimeout(function(){
+										playNext();
+									},time);
+								}
+							};
+							playNext();
+						}
+					}
+				});
+		}else{
+			Eway.alert(EwayLocale.msg.choseResToPerview);
 		}
 	}
 	
