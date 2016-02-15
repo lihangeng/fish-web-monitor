@@ -53,6 +53,23 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 				listeners : {
 					'beforerender' : Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
+			},{
+				text :EwayLocale.advert.preview,
+				iconCls : 'adPreview',
+				code : 'advertPreview',
+				disabled : true,
+				menu : new Ext.menu.Menu({
+					items : [{
+						text : EwayLocale.advert.preview1024,
+						action:'preview1024'
+					},{
+						text : EwayLocale.advert.preview800,
+						action:'preview800'
+					},{
+						text : EwayLocale.advert.preview600,
+						action:'preview600'
+					}]
+				})
 			}],
 			columns : [{
 				header : EwayLocale.person.bankOrg.name,
