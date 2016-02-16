@@ -3,6 +3,7 @@
 	<groupId>com.yihuacomputer.fish</groupId>
 	<artifactId>atmvs</artifactId>
 	<version>2.1.0.2-SNAPSHOT</version>
+	<name>标准化监控系统</name>
 	<packaging>pom</packaging>
 	<modules>
 		<module>fish-common</module>
