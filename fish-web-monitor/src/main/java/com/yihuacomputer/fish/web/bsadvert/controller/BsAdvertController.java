@@ -412,44 +412,22 @@ public class BsAdvertController {
 			advert.addAdvertResource(res);
 		}
 		bsAdvertService.save(advert);
-
-		// 拷贝临时目录中的文件到advert目录中
-		for (ScreenFile screenFile : fileNames) {
-			IOUtils.copyFileToDirectory(tempDir + File.separator + getEnumI18n(screenFile.getScreen().getText()) + File.separator + screenFile.getFileName(), VersionCfg.getBsAdvertDir()
-					+ File.separator + advert.getId() + File.separator + AdvertTypeConversionService.convert(advert.getAdvertType()) + File.separator + getEnumI18n(screenFile.getScreen().getText()));
+		zipAdvertFile(advert,request,fileNames,tempDir);
+		advert.setActiveUserId(userSession.getUserId());
+		IFilter filter = new Filter();
+		filter.eq("groupId", advert.getGroupId());
+		List<IBsAdvert> groupBsAdvertList = bsAdvertService.list(filter);
+		if(groupBsAdvertList.size()==1){
+			bsAdvertService.actived(advert);
+		}else{
+			bsAdvertService.update(advert);
 		}
-		// 删除临时目录
-		IOUtils.deleteDir(tempDir);
-
-		// 生成广告版本文件
-		saveConfigInfoToFileByScreen(advert, Screen.SCREEN_1024,request);
-		saveConfigInfoToFileByScreen(advert, Screen.SCREEN_800,request);
-		saveConfigInfoToFileByScreen(advert, Screen.SCREEN_600,request);
-		ZipUtils.zip(getAdvertSourcePath(advert), VersionCfg.getBsAdvertDir()+File.separator+advert.getId()+".zip", "UTF-8");
-		ZipUtils.delFolder(getAdvertSourcePath(advert));
-		bsAdvertService.update(advert);
 		// 回填值到form中
 		form.setId(advert.getId());
 		form.setLastTime(DateUtils.getTimestamp(advert.getLastTime()));
 		form.setUserName(userSession.getUserName());
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, form);
-		return result;
-	}
-	
-	@RequestMapping(value = "/deleteResource")
-	public @ResponseBody
-	ModelMap deleteResource(@RequestParam long id, HttpServletRequest request) {
-		logger.info("delete bsAdvertResource: bsAdvertResource.id = " + id);
-		ModelMap result = new ModelMap();
-		IBsAdvertResource bsAdvertResource = bsAdvertResourceService.getById(id);
-		if(null!=bsAdvertResource){
-			File file = new File(getTempRealDir(request) + File.separator + getEnumI18n(bsAdvertResource.getScreen().getText()) + File.separator + bsAdvertResource.getContent());
-			file.delete();
-			bsAdvertResourceService.delete(bsAdvertResource);
-		}
-
-		result.addAttribute(FishConstant.SUCCESS, true);
 		return result;
 	}
 	
@@ -473,9 +451,6 @@ public class BsAdvertController {
 		advert.setLastTime(new Date());
 		advert.setAdvertType(AdvertType.valueOf(form.getAdvertType()));
 		advert.insertBsAdvertService(bsAdvertService);
-		if(advert.getBsAdvertStatus().equals(BsAdvertStatus.ACTIVED)){
-			advert.setBsAdvertStatus(BsAdvertStatus.UPDATEUNACTIVE);
-		}
 		advert.getAdvertResources().clear();
 		String tempDir = getTempRealDir(request);
 		List<ScreenFile> fileNames = new ArrayList<ScreenFile>();
@@ -504,8 +479,21 @@ public class BsAdvertController {
 			res.setBsAdvert(advert);
 			advert.addAdvertResource(res);
 		}
+		zipAdvertFile(advert,request,fileNames,tempDir);
 		bsAdvertService.update(advert);
-
+		// 回填值到form中
+		form.setId(advert.getId());
+		form.setLastTime(DateUtils.getTimestamp(advert.getLastTime()));
+		form.setUserName(session.getUserName());
+		if(advert.getBsAdvertStatus().equals(BsAdvertStatus.ACTIVED)){
+			bsAdvertService.actived(advert);
+		}
+		model.addAttribute(FishConstant.SUCCESS, true);
+		model.addAttribute(FishConstant.DATA,"");
+		return model;
+	}
+	
+	private void zipAdvertFile(IBsAdvert advert,HttpServletRequest request,List<ScreenFile> fileNames,String tempDir){
 		// 拷贝临时目录中的文件到advert目录中
 		for (ScreenFile screenFile : fileNames) {
 			IOUtils.copyFileToDirectory(tempDir + File.separator + getEnumI18n(screenFile.getScreen().getText()) + File.separator + screenFile.getFileName(), VersionCfg.getBsAdvertDir()
@@ -520,16 +508,25 @@ public class BsAdvertController {
 		saveConfigInfoToFileByScreen(advert, Screen.SCREEN_600,request);
 		ZipUtils.zip(getAdvertSourcePath(advert), VersionCfg.getBsAdvertDir()+File.separator+advert.getId()+".zip", "UTF-8");
 		ZipUtils.delFolder(getAdvertSourcePath(advert));
-		bsAdvertService.update(advert);
-		// 回填值到form中
-		form.setId(advert.getId());
-		form.setLastTime(DateUtils.getTimestamp(advert.getLastTime()));
-		form.setUserName(session.getUserName());
-		
-		model.addAttribute(FishConstant.SUCCESS, true);
-		model.addAttribute(FishConstant.DATA,"");
-		return model;
 	}
+	
+	@RequestMapping(value = "/deleteResource")
+	public @ResponseBody
+	ModelMap deleteResource(@RequestParam long id, HttpServletRequest request) {
+		logger.info("delete bsAdvertResource: bsAdvertResource.id = " + id);
+		ModelMap result = new ModelMap();
+		IBsAdvertResource bsAdvertResource = bsAdvertResourceService.getById(id);
+		if(null!=bsAdvertResource){
+			File file = new File(getTempRealDir(request) + File.separator + getEnumI18n(bsAdvertResource.getScreen().getText()) + File.separator + bsAdvertResource.getContent());
+			file.delete();
+			bsAdvertResourceService.delete(bsAdvertResource);
+		}
+
+		result.addAttribute(FishConstant.SUCCESS, true);
+		return result;
+	}
+	
+	
 	
 
 	private String getEnumI18n(String enumText) {
