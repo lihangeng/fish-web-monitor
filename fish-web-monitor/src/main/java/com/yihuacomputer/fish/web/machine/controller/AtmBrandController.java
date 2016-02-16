@@ -67,9 +67,7 @@ public class AtmBrandController {
 	ModelMap getTypeItem(WebRequest request) {
 		ModelMap map = new ModelMap();
 		String brand = request.getParameter("brand");
-		List<IAtmType> list = new ArrayList<IAtmType>();
-		List<ItemForm> forms = new ArrayList<ItemForm>();
-		Iterable<IAtmType> atmTypes = new ArrayList<IAtmType>();
+		List<IAtmType> atmTypes = null;
 		boolean flag = false;
 		if (brand == null || brand.trim().isEmpty() || brand.trim().equals("0")) {
 			atmTypes = atmTypeService.list();
@@ -77,17 +75,13 @@ public class AtmBrandController {
 		} else {
 			IFilter filter = new Filter();
 			filter.eq("devVendor.id", Long.parseLong(brand));
-
+			filter.order("typeStatus");
 			atmTypes = atmTypeService.list(filter);
 		}
-		for (IAtmType atmType : atmTypes) {
-			list.add(atmType);
-		}
-		forms = ItemForm.toTypeForms(list);
+		List<ItemForm> forms = ItemForm.toTypeForms(atmTypes);
 		if (flag) {
-			forms.add(new ItemForm(messageSource.getMessage("c.brand.combox.all", null, request.getLocale()), "0"));
+			forms.add(0,new ItemForm(messageSource.getMessage("c.brand.combox.all", null, request.getLocale()), "0"));
 		}
-		Collections.reverse(forms);
 		map.addAttribute(FishConstant.SUCCESS, true);
 		map.addAttribute(FishConstant.DATA, forms);
 		return map;

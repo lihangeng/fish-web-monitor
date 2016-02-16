@@ -238,7 +238,7 @@ public class QuittingNoticeController {
 				}
 				String strDay = DateUtils.getDate(new Date());
 				Date todayStart = DateUtils.getTimestamp(strDay + " 00:00:00");
-				if( form.getOpenTime() != null && !form.getOpenTime().equals(""))
+				if( form.getOpenTime() != null)
 				{
 					Date openTime = form.getOpenTime();
 					if( openTime.getTime() == todayStart.getTime())

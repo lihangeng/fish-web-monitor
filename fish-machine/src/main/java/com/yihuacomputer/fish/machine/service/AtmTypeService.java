@@ -59,7 +59,7 @@ public class AtmTypeService implements IAtmTypeService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<IAtmType> list() {
-		String hql = "select  atmType from AtmType  atmType  order by  typeStatus asc ";
+		String hql = "select atmType from AtmType atmType order by typeStatus asc ";
 		return dao.findByHQL(hql);
 	}
 

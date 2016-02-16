@@ -483,7 +483,7 @@ public class AtmLogController {
     		log.setBackupResult(ret);
     		logService.updateAtmLog(log);    	
             result.addAttribute(FishConstant.SUCCESS, true);
-        }else if(ret.equals(HttpFileRet.ERROR)){
+        }else if(ret.equals(BackupResult.ERROR)){
             result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("exploer.fileDown.error", null, FishCfg.locale));
             result.addAttribute(FishConstant.SUCCESS, false);
         }
