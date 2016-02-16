@@ -71,13 +71,14 @@ public class SystemRegisterUtil {
 						.append(endDay <10? ("0"+endDay) : endDay)
 						.append(index)
 						.toString();
-	
-		String result = "";
+		
+		StringBuffer resultSb = new StringBuffer("");
 		for(int i = 1 ; i<=need.length();i++){
 			if( i>=5 && i%5 ==0){
-				result = result + need.substring(i-5, i)+"-";
+				resultSb.append(need.substring(i-5, i)).append("-");
 			}
 		}
+		String result = resultSb.toString();
 		result = result.substring(0, result.length()-1);
 		
 		result = SystemRegisterUtil.singleStringConvert(result);		
@@ -245,11 +246,11 @@ public class SystemRegisterUtil {
 		int keyLength = 12;
 		
 		String[] keys = key.split("\\W");
-		String result = "";
+		StringBuffer result = new StringBuffer();
 		for(String v : keys){
-			result += v;
+			result.append(v);
 		}
-		key = result;
+		key = result.toString();
 		if(key.length()>keyLength){
 			key = key.substring(0,keyLength-1);
 		}
@@ -331,7 +332,6 @@ public class SystemRegisterUtil {
 	
 	private static String addDisDay(int disDay,String serial){
 		String a = "";
-		String result = "";
 		if(disDay<=9){
 			a="0000"+disDay;
 		}else if(disDay<=99){
@@ -343,12 +343,13 @@ public class SystemRegisterUtil {
 		}else{
 			return null;
 		}
-		
+		StringBuffer resultSb = new StringBuffer();
 		String[] se = serial.split("-");
 		for(int i = 0 ; i < se.length;i++){
 			se[i] = SystemRegisterUtil.convertFirstNum2Index(i,Integer.parseInt(a.substring(i, i+1)))+se[i];
-			result += se[i]+"-";
+			resultSb.append(se[i]).append("-");
 		}
+		String result = resultSb.toString();
 		result = result.substring(0, result.length()-1);
 		return result;
 	}
@@ -371,32 +372,31 @@ public class SystemRegisterUtil {
 	
 	private static String strings2Chars(String numString){
 		byte[] abyte = numString.getBytes();
-		String chars = "" ;
+		StringBuffer chars = new StringBuffer() ;
 		for(int i = 0 ; i < abyte.length;i++){
 			char c = (char)(abyte[i]+20);
-			chars = chars + String.valueOf(c);
+			chars.append(c);
 		}
-		return chars;
+		return chars.toString();
 	}
 	private static String chars2Strings(String ch){
 		byte[] abyte = ch.getBytes();
-		String string = "" ;
+		StringBuffer sb = new StringBuffer() ;
 		for(int i = 0 ; i < abyte.length;i++){
 			char c = (char)(abyte[i]-20);
-			string =string + String.valueOf(c);
+			sb.append(c);
 		}
-		return string;
+		return sb.toString();
 	}
 	
 	private static String changePosition(int index,String source){
 		String sort = SystemRegisterUtil.getZuHe(index);
-		String result = "";
+		StringBuffer sb = new StringBuffer() ;
 		String[] a = source.split("-");
 		for(int i = 0 ; i < sort.length();i++ ){
-			result = result+"-"+a[Integer.parseInt(sort.substring(i, i+1))-1];
+			sb.append("-").append(a[Integer.parseInt(sort.substring(i, i+1))-1]);
 		}
-		result = result.substring(1);
-		return result;
+		return sb.toString().substring(1);
 	}
 	
 	

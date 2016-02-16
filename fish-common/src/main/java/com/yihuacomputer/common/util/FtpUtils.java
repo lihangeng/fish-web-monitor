@@ -90,9 +90,11 @@ public class FtpUtils {
         ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
         String str[] = path.split("/");
         String resultPath = "";
+        StringBuffer sb = new StringBuffer();
         for (String s : str) {
             if (!"".equals(s)) {
-                resultPath = resultPath + "/" + s;
+            	sb.append("/").append(s);
+                resultPath = sb.toString();
                 if (!"".equals(resultPath) && !isDirExist(resultPath, ftp)) {
                     // 创建文件夹
                     ftp.makeDirectory(resultPath);
