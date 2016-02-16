@@ -1,6 +1,9 @@
 package com.yihuacomputer.fish.web.atm;
 
+import java.util.ArrayList;
 import java.util.List;
+
+
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,14 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yihuacomputer.common.jackson.JsonUtils;
+import com.yihuacomputer.fish.api.advert.bs.GroupType;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroup;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelation;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelationService;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupService;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.person.IOrganization;
-import com.yihuacomputer.fish.api.person.IOrganizationService;
 
 @Controller
 @RequestMapping("/msg/advertUrl")
@@ -31,72 +33,59 @@ public class AdvertUrlController {
 	@Autowired
 	private IDeviceService deviceService;
 	@Autowired
-	private IOrganizationService organizationService;
-	@Autowired
 	private IAdvertGroupDeviceRelationService advertGroupDeviceRelationService;
-	String path=null;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody
-	String reciveMsg(HttpServletRequest request) {
+	public @ResponseBody String reciveMsg(HttpServletRequest request) {
 		ModelMap result = new ModelMap();
 		String callbackName = (String)request.getParameter("jsoncallback");
 		String terminalId = request.getParameter("terminalId");
-
-		
+		String path = "1";
 		if(terminalId !=null){
 			IDevice device=deviceService.get(terminalId);
 			if(device!=null){
-				long orgId=device.getOrganization().getId();
-				getGroupPath(orgId,terminalId);
-			}
-			else{
-				path="1";
+				String orgFlag=device.getOrganization().getOrgFlag();
+				String orgGuids[] = orgFlag.split("-");
+				for(int index=orgGuids.length-1;index>=0;index--){
+					IAdvertGroup group = getGroupPath(Long.parseLong(orgGuids[index]),device.getId());
+					if(group!=null){
+						path = group.getPath();
+						break;
+					}
+				}
 			}
 		}
-			result.put("ret", path);
+		result.put("ret", path);
 		String renderStr = callbackName+"("+JsonUtils.toJson(result)+")";
 		return renderStr;
 	}
 	/**
-	 * 获取广告组的路径
+	 * 获取可用的广告组
 	 * @param orgId
 	 * @param terminalId
 	 * @return
 	 */
-	public String getGroupPath(long orgId,String terminalId){
+	private IAdvertGroup getGroupPath(long orgId,long deviceId){
+		IAdvertGroup defaultGroup = null;
 		List<IAdvertGroup> list=advertGroupService.list(orgId);
 		if(list.isEmpty()){
-			getParentId(orgId,terminalId);
+			return null;
 		}else{
-			IAdvertGroupDeviceRelation advertGroupDeviceRelation=advertGroupDeviceRelationService.getGroup(terminalId);
-			if(advertGroupDeviceRelation==null){
-				for(IAdvertGroup advertGroup:list){
-					if(advertGroup.getGroupType().getName().toString()=="0"){
-						path=advertGroup.getPath();
-					}
+			List<Long> groupIdList = new ArrayList<Long>();
+			//如果存在默认组，则将默认组缓存；不存在关联设备时候，直接返回默认组,存在关联的广告组，直接返回广告组
+			for(IAdvertGroup group:list){
+				if(group.getGroupType().equals(GroupType.DEFAULT)){
+					defaultGroup = group;
 				}
-				if(path==null){
-					getParentId(orgId,terminalId);
+				else{
+					groupIdList.add(group.getId());
 				}
-			}else{
-				long groupId=advertGroupDeviceRelation.getGroupId();
-				path=advertGroupService.getById(groupId).getPath();
+			}
+			IAdvertGroupDeviceRelation advertGroupDeviceRelation=advertGroupDeviceRelationService.getGroup(deviceId,groupIdList);
+			if(null!=advertGroupDeviceRelation){
+				defaultGroup = advertGroupService.getById(advertGroupDeviceRelation.getGroupId());
 			}
 		}
-		return path;
-	}
-	/**
-	 * 获取机构的父节点
-	 * @param orgId
-	 * @param terminalId
-	 */
-	long parentId=1;
-	public void getParentId(long orgId,String terminalId){
-		if(parentId>0){
-			IOrganization organization=organizationService.get(String.valueOf(orgId));
-			parentId=organization.getParent().getId();
-			getGroupPath(parentId,terminalId);
-		}
+		return defaultGroup;
 	}
 }

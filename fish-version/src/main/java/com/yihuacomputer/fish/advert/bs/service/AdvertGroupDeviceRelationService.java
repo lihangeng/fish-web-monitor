@@ -1,7 +1,11 @@
 package com.yihuacomputer.fish.advert.bs.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.advert.bs.entity.AdvertGroupDeviceRelation;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelation;
@@ -11,12 +15,10 @@ public class AdvertGroupDeviceRelationService implements
 		IAdvertGroupDeviceRelationService {
 	@Autowired
 	private IGenericDao dao;
-	public IAdvertGroupDeviceRelation getGroup(String deviceId){
-		StringBuffer hql=new StringBuffer("select id from");
-		hql.append(AdvertGroupDeviceRelation.class.getSimpleName()).append("aGDR");
-		hql.append("where deviceId=?");
-		IAdvertGroupDeviceRelation advertGroupDeviceRelation=dao.findUniqueByHql(hql.toString(), deviceId);
-		return advertGroupDeviceRelation;
-		
+	public IAdvertGroupDeviceRelation getGroup(long deviceId,List<Long> groupIdList){
+		IFilter filter = new Filter();
+		filter.eq("deviceId", deviceId);
+		filter.in("groupId", groupIdList);
+		return dao.findUniqueByFilter(filter, AdvertGroupDeviceRelation.class);
 	}
 }
