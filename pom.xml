@@ -40,13 +40,14 @@
 		<logback.version>1.0.9</logback.version>
 		<jetty.version>8.1.5.v20120716</jetty.version>
 		<jsp.glassfish.version>9.1.02.B04.p0</jsp.glassfish.version>
-		<sonarVersion>3.5.1</sonarVersion>
+		<sonarVersion>2.6</sonarVersion>
 		
 		<!-- Plugin的属性定义 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<!-- maven编辑器的jdk版本设置 -->
 		<maven.compiler.source>1.6</maven.compiler.source>
 		<maven.compiler.target>1.6</maven.compiler.target>
+		<sonar.language>java</sonar.language>
 	</properties>
 	<!-- 设定持续集成发布包服务器 -->
 	<distributionManagement>
