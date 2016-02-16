@@ -100,10 +100,7 @@ public class MessageService implements IMessageService {
 	@Override
 	public List<IMessage> list(int startId, int limit) {
 		List<IMessage> lists = new ArrayList<IMessage>();
-		// EntityUtils.convert(lists);
-		// TODO: 错误！！！
-		return (List<IMessage>) new PageResult(lists, startId, limit);
-
+		return new PageResult(lists, startId, limit).list();
 	}
 
 	@Override

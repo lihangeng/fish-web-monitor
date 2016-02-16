@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.channels.FileChannel;
@@ -92,7 +91,6 @@ public class JournalFileService implements IJournalFileService{
 		CustomerCycle customerCycle =null;
 		TransCycle transCycle =null;
 		
-        FileReader filereader = null;
         BufferedReader bufferedReader = null;
         String content = null;
         StringBuffer contents = new StringBuffer();
@@ -100,9 +98,7 @@ public class JournalFileService implements IJournalFileService{
         
         try {
             /* 读文件内容 */
-           // filereader = new FileReader(journalFile);
             bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(journalFile),"GBK"));
-
 
             while ((content = bufferedReader.readLine()) != null) {
             	BizJournal journal = journalParser.readLineJournalLog(content);
@@ -161,14 +157,6 @@ public class JournalFileService implements IJournalFileService{
         catch (Exception ex) {
             //ex.printStackTrace();
         }finally{
-        	if(filereader!=null){
-        		try {
-					filereader.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-				//	e.printStackTrace();
-				}
-        	}
         	if(bufferedReader!=null){
         		try {
 					bufferedReader.close();
