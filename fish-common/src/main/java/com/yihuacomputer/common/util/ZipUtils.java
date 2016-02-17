@@ -131,7 +131,7 @@ public class ZipUtils {
 			destDir = destDir.endsWith("\\") ? destDir : destDir + "\\";
 			byte b[] = new byte[1024];  
 	        int length;  
-	        ZipFile zipFile;
+	        ZipFile zipFile = null;
 	        try {
 				zipFile=new ZipFile(file);
 				Enumeration<? extends ZipEntry> enumeration =zipFile.entries();
@@ -154,25 +154,21 @@ public class ZipUtils {
 	                        os.write(b, 0, length);  
 	                        os.flush();
 	                     }
-						if (is!=null) {
-							is.close();
-						}
-						if (os!=null) {
-							os.close();
-						}
 					}
 				
 				}
-				//System.out.println("decompression zipFile success!");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}finally{
 				try {
+					if (os!=null) {
+						os.close();
+					}
 					if (is!=null) {
 						is.close();
 					}
-					if (os!=null) {
-						os.close();
+					if(zipFile!=null){
+						zipFile.close();
 					}
 				} catch (Exception e2) {
 					e2.printStackTrace();
@@ -287,21 +283,41 @@ public class ZipUtils {
 			}else{
 				if(item.getName().equals(name)){
 					File newfile = new File(desDir);
+					FileReader reader = null;
+					FileWriter writer = null;
+					BufferedReader br = null;
+					BufferedWriter bw = null;
 					try {
-						FileReader reader = new FileReader(item);
-						FileWriter writer = new FileWriter(newfile.getPath() + File.separator + name);
-						BufferedReader br = new BufferedReader(reader);
-						BufferedWriter bw = new BufferedWriter(writer);
+						reader = new FileReader(item);
+						writer = new FileWriter(newfile.getPath() + File.separator + name);
+						br = new BufferedReader(reader);
+						bw = new BufferedWriter(writer);
 						while ((line = br.readLine()) != null) {
 							//System.out.println(line);
 							bw.write(line);
 							bw.newLine();
 							bw.flush();
 						}
-						reader.close();
-						writer.close();
+						
 					} catch (Exception e) {
 						e.printStackTrace();
+					}finally{
+						try {
+							if(bw!=null){
+								bw.close();
+							}
+							if(br!=null){
+								br.close();
+							}
+							if(writer!=null){
+								writer.close();
+							}
+							if(reader!=null){
+								reader.close();
+							}
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 					}
 				}
 			}

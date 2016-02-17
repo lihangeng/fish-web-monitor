@@ -64,8 +64,7 @@ public class MAC implements ITypeMAC {
 	     node3 *= 0x1000000L;
 	     node4 *= 0x10000L;
 	     node5 *= 256L;
-	     Long rst = new Long(0L); 
-	     rst = new Long(node1 + node2 + node3 + node4 + node5 + node6);
+	     Long rst = Long.valueOf(node1 + node2 + node3 + node4 + node5 + node6);
 	     return rst;
 	 }
 	 

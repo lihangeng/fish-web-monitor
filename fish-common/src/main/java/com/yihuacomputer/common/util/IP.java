@@ -58,8 +58,7 @@ public class IP implements ITypeIP {
 	     node1 *= 0x1000000L;
 	     node2 *= 0x10000L;
 	     node3 *= 256L;
-	     Long rst = new Long(0L);
-	     rst = new Long(node1 + node2 + node3 + node4);
+	     Long rst = Long.valueOf(node1 + node2 + node3 + node4);
 	     return rst;
 	 }
 

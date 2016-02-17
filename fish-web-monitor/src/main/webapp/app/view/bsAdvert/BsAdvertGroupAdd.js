@@ -42,7 +42,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupAdd', {
 					hiddenValue : 'orgId',
 					editable : false,
 					filters : '{"type" : "0"}',
-					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
+					rootVisible :true 
 				},{
 					fieldLabel : '组类型',
 					xtype : 'radiogroup',

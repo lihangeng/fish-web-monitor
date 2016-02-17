@@ -90,9 +90,11 @@ public class FtpUtils {
         ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
         String str[] = path.split("/");
         String resultPath = "";
+        StringBuffer sb = new StringBuffer();
         for (String s : str) {
             if (!"".equals(s)) {
-                resultPath = resultPath + "/" + s;
+            	sb.append("/").append(s);
+                resultPath = sb.toString();
                 if (!"".equals(resultPath) && !isDirExist(resultPath, ftp)) {
                     // 创建文件夹
                     ftp.makeDirectory(resultPath);
@@ -195,6 +197,7 @@ public class FtpUtils {
         boolean result = false;
         // 创建FTPClient对象
         FTPClient ftp = login(ip, port, username, password);
+        OutputStream is = null;
         if (ftp == null)
             return false;
         try {
@@ -207,7 +210,7 @@ public class FtpUtils {
                     // 根据绝对路径初始化文件
                     File localFile = new File(localPath + File.separator + ff.getName());
                     // 输出流
-                    OutputStream is = new FileOutputStream(localFile);
+                    is = new FileOutputStream(localFile);
                     // 下载文件
                     ftp.retrieveFile(ff.getName(), is);
                     is.close();
@@ -230,6 +233,13 @@ public class FtpUtils {
                 catch (IOException ioe) {
                     logger.error(String.format("when download file with IOException：[%s]", ioe));
                 }
+            }
+            if(is!=null){
+            	try {
+					is.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
             }
         }
         return result;

@@ -6,6 +6,11 @@ import java.util.List;
 
 
 
+
+
+
+
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,21 +20,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.jackson.JsonUtils;
+import com.yihuacomputer.fish.api.advert.bs.BsAdvertStatus;
 import com.yihuacomputer.fish.api.advert.bs.GroupType;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroup;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelation;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelationService;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupService;
+import com.yihuacomputer.fish.api.advert.bs.IBsAdvert;
+import com.yihuacomputer.fish.api.advert.bs.IBsAdvertService;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 
 @Controller
 @RequestMapping("/msg/advertUrl")
 public class AdvertUrlController {
-	
+
 	@Autowired
 	private IAdvertGroupService advertGroupService;
+	@Autowired
+	private IBsAdvertService bsAdvertService;
 	@Autowired
 	private IDeviceService deviceService;
 	@Autowired
@@ -75,7 +87,13 @@ public class AdvertUrlController {
 			//如果存在默认组，则将默认组缓存；不存在关联设备时候，直接返回默认组,存在关联的广告组，直接返回广告组
 			for(IAdvertGroup group:list){
 				if(group.getGroupType().equals(GroupType.DEFAULT)){
-					defaultGroup = group;
+					IFilter filter  = new Filter();
+					filter.eq("groupId", group.getId());
+					filter.ne("bsAdvertStatus", BsAdvertStatus.UNACTIVE);
+					List<IBsAdvert> advertList = bsAdvertService.list(filter);
+					if(advertList.size()>0){
+						defaultGroup = group;
+					}
 				}
 				else{
 					groupIdList.add(group.getId());
