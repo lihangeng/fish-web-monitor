@@ -101,10 +101,8 @@ public class TransactionCountReportController {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("title", getEnumI18n(ReportTitle.TransactionCount.getText()));
 
-		Date startReportDate = new Date();
 		if (filter.getFilterEntry("startData") != null) {
-			startReportDate = (Date) filter.getFilterEntry("startData").getValue();
-			String startReportDateValue = DateUtils.getDate(startReportDate);
+			String startReportDateValue = DateUtils.getDate((Date)filter.getFilterEntry("startData").getValue());
 			parameters.put("startReportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + " : " + startReportDateValue);
 
 			// 交易是带时分秒的，而页面是不需要时分秒的
@@ -113,10 +111,8 @@ public class TransactionCountReportController {
 		} else {
 			parameters.put("startReportDate", "");
 		}
-		Date endReportDate = new Date();
 		if (filter.getFilterEntry("endData") != null) {
-			endReportDate = (Date) filter.getFilterEntry("endData").getValue();
-			String endReportDateValue = DateUtils.getDate(endReportDate);
+			String endReportDateValue = DateUtils.getDate((Date) filter.getFilterEntry("endData").getValue());
 			parameters.put("endReportDate", endReportDateValue);
 
 			// 交易是带时分秒的，而页面是不需要时分秒的
@@ -142,10 +138,8 @@ public class TransactionCountReportController {
 				.getRealPath("/resources/report/w_trans_count_device.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("title", getEnumI18n(ReportTitle.TransactionCount.getText()));
-		Date startReportDate = new Date();
 		if (filter.getFilterEntry("startData") != null) {
-			startReportDate = (Date) filter.getFilterEntry("startData").getValue();
-			String startReportDateValue = DateUtils.getDate(startReportDate);
+			String startReportDateValue = DateUtils.getDate((Date) filter.getFilterEntry("startData").getValue());
 			parameters.put("startReportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + " : " +  messageSource.getMessage("report.transactionFrom", null, FishCfg.locale) +startReportDateValue+" "+ messageSource.getMessage("report.transactionTo", null, FishCfg.locale));
 
 			// 交易是带时分秒的，而页面是不需要时分秒的
@@ -155,10 +149,8 @@ public class TransactionCountReportController {
 			parameters.put("startReportDate", "");
 		}
 
-		Date endReportDate = new Date();
 		if (filter.getFilterEntry("endData") != null) {
-			endReportDate = (Date) filter.getFilterEntry("endData").getValue();
-			String endReportDateValue = DateUtils.getDate(endReportDate);
+			String endReportDateValue = DateUtils.getDate((Date) filter.getFilterEntry("endData").getValue());
 			parameters.put("endReportDate", endReportDateValue);
 
 			// 交易是带时分秒的，而页面是不需要时分秒的

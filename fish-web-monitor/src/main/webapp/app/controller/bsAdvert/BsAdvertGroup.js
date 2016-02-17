@@ -164,7 +164,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 		var store = this.getEwayView().down('bs_advert_group_grid').getStore();
 		if(sm.getCount() == 1) {
 			Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,
-					EwayLocale.tip.isConfirmRemove,
+					'确认删除广告分组？',
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();

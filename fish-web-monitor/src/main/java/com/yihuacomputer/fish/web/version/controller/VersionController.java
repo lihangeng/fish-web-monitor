@@ -196,7 +196,11 @@ public class VersionController {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			zipFile.delete();
+			if(zipFile!=null){
+				
+				zipFile.delete();
+				
+			}
 			return "{'success':false,'msg':'" + e.getMessage() + "'}";
 		}
 		return "{'success':true,'serverPath':'" + fileName + "'}";

@@ -658,9 +658,9 @@ public class VersionDownloadController {
         try {
 //            Date startDate = DateUtils.getDate(deployStartDate);
 //            Date endDate = null;
-            if (deployEndDate != null && !"".equals(deployEndDate)) {
+//            if (deployEndDate != null && !"".equals(deployEndDate)) {
 //                endDate = DateUtils.getDate(deployEndDate);
-            }
+//            }
 //            jobService.updateDeployDate(jobId, startDate, endDate);
             result.addAttribute(FishConstant.SUCCESS, true);
         }
