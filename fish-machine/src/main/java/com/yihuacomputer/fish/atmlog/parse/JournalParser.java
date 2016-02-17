@@ -73,8 +73,12 @@ public class JournalParser {
 		InputStream ins = null;
 		BufferedReader bf =null;
 		try{
-			ins = this.getClass().getResourceAsStream("/com/yihuacomputer/fish/atmlog/YiHuaJournalParser.propertise");			
-			bf = new BufferedReader(new InputStreamReader(ins,"utf-8"));  
+			ins = this.getClass().getResourceAsStream("/com/yihuacomputer/fish/atmlog/YiHuaJournalParser.propertise");	
+			try{
+			bf = new BufferedReader(new InputStreamReader(ins,"utf-8"));
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 			pros.load(bf);		
 			
 			/*加载参数*/
