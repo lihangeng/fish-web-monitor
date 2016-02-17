@@ -47,20 +47,20 @@ public class UserForm
         if(user.getPerson().getOrganization()!=null){
             this.organizationName = user.getPerson().getOrganization().getName();
         }
-        String roleVal="";
+        StringBuffer roleVal= new StringBuffer();
         if(user.getRoles()!=null){
         	int counter = 0;
         	for(IRole role:user.getRoles())
         	{
         		counter++;
-        		roleVal+=role.getName();
+        		roleVal.append(role.getName());
         		if(user.getRoles().size()==counter){
         			break;
         		}
-        			roleVal+=";";
+        			roleVal.append(";");
         	}
         }
-        this.roles = roleVal;
+        this.roles = roleVal.toString();
     }
     
     /**

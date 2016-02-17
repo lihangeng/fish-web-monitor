@@ -432,9 +432,7 @@ public class DaybackupInfoController {
 				} else if ("orgId".equals(name)) {
 					String orgFlag = orgService.get(value).getOrgFlag();
 					filter.like("device.organization.orgFlag", orgFlag);
-				} else {
-
-				}
+				} 
 			}
 		}
 

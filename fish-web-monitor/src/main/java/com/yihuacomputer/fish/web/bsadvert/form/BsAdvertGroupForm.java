@@ -22,6 +22,8 @@ public class BsAdvertGroupForm {
 	private String groupName;
 	
 	private String resourcePath;
+	
+	private String activedAdv;
 
 	public long getId() {
 		return id;
@@ -87,6 +89,14 @@ public class BsAdvertGroupForm {
 		this.resourcePath = resourcePath;
 	}
 	
+	public String getActivedAdv() {
+		return activedAdv;
+	}
+
+	public void setActivedAdv(String activedAdv) {
+		this.activedAdv = activedAdv;
+	}
+
 	public void translate(IAdvertGroup advertGroup){
 		
 		int groupType = getGroupType();
@@ -96,7 +106,5 @@ public class BsAdvertGroupForm {
 		advertGroup.setPath(getResourcePath());
 		
 	}
-
-
 	
 }
