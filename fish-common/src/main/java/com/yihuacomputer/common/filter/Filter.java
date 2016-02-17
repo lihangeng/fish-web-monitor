@@ -89,7 +89,7 @@ public class Filter implements IFilter {
 					if(value == entry.getValue()) {
 						continue;
 					}
-					else if(value == null && entry.getValue() != null) {
+					else if(value == null) {
 						return false;
 					}else if(!value.toString().equals(entry.getValue().toString())){
 						return false;
