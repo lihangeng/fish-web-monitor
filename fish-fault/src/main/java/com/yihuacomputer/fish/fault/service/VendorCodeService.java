@@ -17,10 +17,7 @@ import com.yihuacomputer.fish.fault.entity.VendorCode;
 @Service
 @Transactional
 public class VendorCodeService implements IVendorCodeService {
-
-	private final String OPEN_VENDORCODE_HQL = "from VendorCode v where v.vendor = ?";
 	
-	private final String DELETE_VENDORCODE_HQL = "delete from VendorCode v where v.vendor = ?";
 	@Autowired
 	private IGenericDao dao;
 	
@@ -36,13 +33,15 @@ public class VendorCodeService implements IVendorCodeService {
 
 	@Override
 	public List<IVendorCode> getByVendor(long vendorId) {
-		List<IVendorCode> result = dao.findByHQL(OPEN_VENDORCODE_HQL, vendorId);
+		String hql = "from VendorCode v where v.vendor = ?";
+		List<IVendorCode> result = dao.findByHQL(hql, vendorId);
 		return result;
 	}
 
 	@Override
 	public void deleteByVendor(long vendorId) {
-		dao.batchUpdate(DELETE_VENDORCODE_HQL, vendorId);
+		String hql = "delete from VendorCode v where v.vendor = ?";
+		dao.batchUpdate(hql, vendorId);
 	}
 
 	@Override

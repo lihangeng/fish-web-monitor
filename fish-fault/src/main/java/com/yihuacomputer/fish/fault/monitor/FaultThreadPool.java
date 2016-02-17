@@ -41,7 +41,7 @@ public class FaultThreadPool {
 	/**
 	 * 执行任务
 	 * */
-	public void execute(Thread faultHandle){
+	public void execute(Runnable faultHandle){
 		faultExecutor.execute(faultHandle);
 	}
 }
