@@ -252,9 +252,8 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
    public List<IDevicePlanRelation> devicePlanRelations()
    {
 	   StringBuffer  hql = new StringBuffer();
-	   List<IDevicePlanRelation> devicePlanRelation = new ArrayList<IDevicePlanRelation>();
 	   hql.append("select devicePlanRelation from DevicePlanRelation devicePlanRelation ");
-	   devicePlanRelation = dao.findByHQL(hql.toString());
+	   List<IDevicePlanRelation> devicePlanRelation = dao.findByHQL(hql.toString());
 	   return devicePlanRelation;
    }
    /**
@@ -268,14 +267,14 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 	   IOrganization org = orgService.get(orgId);
 	   StringBuffer hql = new StringBuffer();
 	   List<Object> valueObj = new ArrayList<Object>();
-	   List<IDevice> device = new ArrayList<IDevice>();
+	  
 	   hql.append("select device from Device device where device.terminalId = ? and device.organization.orgFlag like ?  ");
 	   valueObj.add(deviceCode);
 	   valueObj.add( org.getOrgFlag() +"%");
 		hql.append(" and device.devType.devCatalog.no != '01' ");
 		hql.append(" and device.devType.devCatalog.no != '05' ");
 		hql.append(" and device.devType.devCatalog.no != '08' ");
-	   device = dao.findByHQL(hql.toString(), valueObj.toArray());
+		 List<IDevice> device = dao.findByHQL(hql.toString(), valueObj.toArray());
 	   return device;
 
    }
