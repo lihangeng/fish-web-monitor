@@ -2,6 +2,7 @@ package com.yihuacomputer.domain.interceptor;
 
 import java.io.Serializable;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.hibernate.EmptyInterceptor;
 import org.hibernate.type.Type;
@@ -24,8 +25,8 @@ public class HibernateEntityInterceptor extends EmptyInterceptor implements Appl
     @Override
 	public boolean onLoad(Object entity, Serializable id, Object[] state,String[] propertyNames, Type[] types) {
         Map<String,IEntityInjector> injectors = this.applicationContext.getBeansOfType(IEntityInjector.class);
-        for(String key :injectors.keySet()){
-        	injectors.get(key).injectDependencies(entity);
+        for(Entry<String,IEntityInjector> key :injectors.entrySet()){
+        	injectors.get(key.getKey()).injectDependencies(entity);
     	}
         return super.onLoad(entity, id, state, propertyNames, types);
     }
