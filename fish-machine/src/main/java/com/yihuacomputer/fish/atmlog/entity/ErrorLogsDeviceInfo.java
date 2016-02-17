@@ -25,9 +25,9 @@ public class ErrorLogsDeviceInfo implements IErrorLogsDeviceInfo,Serializable {
 	
 	private String address;
 	
-	private String DateTime;
+	private String dateTime;
 	
-	private String IP;
+	private String ip;
 	
 	@Override
 	public long getId() {
@@ -101,22 +101,22 @@ public class ErrorLogsDeviceInfo implements IErrorLogsDeviceInfo,Serializable {
 
 	@Override
 	public String getDateTime() {
-		return DateTime;
+		return dateTime;
 	}
 
 	@Override
 	public void setDateTime(String DateTime) {
-		this.DateTime = DateTime;
+		this.dateTime = DateTime;
 	}
 
 	@Override
 	public String getIP() {
-		return IP;
+		return ip;
 	}
 
 	@Override
 	public void setIP(String IP) {
-		this.IP = IP;
+		this.ip = IP;
 	}
 
 }
