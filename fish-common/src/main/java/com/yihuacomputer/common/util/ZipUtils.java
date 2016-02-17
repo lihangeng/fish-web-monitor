@@ -154,12 +154,6 @@ public class ZipUtils {
 	                        os.write(b, 0, length);  
 	                        os.flush();
 	                     }
-						if (is!=null) {
-							is.close();
-						}
-						if (os!=null) {
-							os.close();
-						}
 					}
 				
 				}
