@@ -93,7 +93,7 @@ public class AtmGroupService implements IAtmGroupService
     }
     
     private AtmGroup interface2Entity(IAtmGroup atmGroup, boolean load) {
-		if (atmGroup instanceof IAtmGroup) {
+		if (atmGroup instanceof AtmGroup) {
 			return (AtmGroup) atmGroup;
 		}
 		return null;

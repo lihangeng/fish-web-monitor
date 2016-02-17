@@ -197,6 +197,7 @@ public class FtpUtils {
         boolean result = false;
         // 创建FTPClient对象
         FTPClient ftp = login(ip, port, username, password);
+        OutputStream is = null;
         if (ftp == null)
             return false;
         try {
@@ -209,7 +210,7 @@ public class FtpUtils {
                     // 根据绝对路径初始化文件
                     File localFile = new File(localPath + File.separator + ff.getName());
                     // 输出流
-                    OutputStream is = new FileOutputStream(localFile);
+                    is = new FileOutputStream(localFile);
                     // 下载文件
                     ftp.retrieveFile(ff.getName(), is);
                     is.close();
@@ -232,6 +233,13 @@ public class FtpUtils {
                 catch (IOException ioe) {
                     logger.error(String.format("when download file with IOException：[%s]", ioe));
                 }
+            }
+            if(is!=null){
+            	try {
+					is.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
             }
         }
         return result;

@@ -154,12 +154,6 @@ public class ZipUtils {
 	                        os.write(b, 0, length);  
 	                        os.flush();
 	                     }
-						if (is!=null) {
-							is.close();
-						}
-						if (os!=null) {
-							os.close();
-						}
 					}
 				
 				}
@@ -167,11 +161,11 @@ public class ZipUtils {
 				e.printStackTrace();
 			}finally{
 				try {
-					if (is!=null) {
-						is.close();
-					}
 					if (os!=null) {
 						os.close();
+					}
+					if (is!=null) {
+						is.close();
 					}
 					if(zipFile!=null){
 						zipFile.close();

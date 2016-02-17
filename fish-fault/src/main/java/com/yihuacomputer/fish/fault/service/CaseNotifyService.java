@@ -85,21 +85,23 @@ public class CaseNotifyService implements ICaseNotifyService {
 	 */
 	public NotifyContent getNotifyContent(IFaultClassify faultClassify, INotifyMouldSet notifyMouldSet) {
 		NotifyContent notifyContent = new NotifyContent();
-
 		switch (faultClassify.getNotifyWay()) {
-		case SMS: {
-			notifyContent.setSmsNotify(notifyMouldService.getNotifyMould(faultClassify.getId(), NotifyType.CREATE, NotifyWay.SMS));
-			break;
-		}
-		case MAIL: {
-			notifyContent.setMailNotify(notifyMouldService.getNotifyMould(faultClassify.getId(), NotifyType.CREATE, NotifyWay.MAIL));
-			break;
-		}
-		case BOTH: {
-			notifyContent.setSmsNotify(notifyMouldService.getNotifyMould(faultClassify.getId(), NotifyType.CREATE, NotifyWay.SMS));
-			notifyContent.setMailNotify(notifyMouldService.getNotifyMould(faultClassify.getId(), NotifyType.CREATE, NotifyWay.MAIL));
-			break;
-		}
+			case SMS: {
+				notifyContent.setSmsNotify(notifyMouldService.getNotifyMould(faultClassify.getId(), NotifyType.CREATE, NotifyWay.SMS));
+				break;
+			}
+			case MAIL: {
+				notifyContent.setMailNotify(notifyMouldService.getNotifyMould(faultClassify.getId(), NotifyType.CREATE, NotifyWay.MAIL));
+				break;
+			}
+			case BOTH: {
+				notifyContent.setSmsNotify(notifyMouldService.getNotifyMould(faultClassify.getId(), NotifyType.CREATE, NotifyWay.SMS));
+				notifyContent.setMailNotify(notifyMouldService.getNotifyMould(faultClassify.getId(), NotifyType.CREATE, NotifyWay.MAIL));
+				break;
+			}
+			default:{
+				break;
+			}
 		}
 
 		if (notifyContentService != null) {
@@ -244,7 +246,7 @@ public class CaseNotifyService implements ICaseNotifyService {
 
 		for (IPerson person : personList) {
 			ICaseNotify caseNotify = make();
-			if (caseFault != null && caseFault.getId() != 0) {
+			if (caseFault.getId() != 0) {
 				caseNotify.setFaultId(caseFault.getId());
 			}
 			caseNotify.setTerminalId(caseFault.getTerminalId());

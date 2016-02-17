@@ -27,7 +27,7 @@ public class OpenPlanService implements IOpenPlanService {
 
 	@Override
 	public DeviceOpenPlan saveOpenPlan(IDeviceOpenPlan openPlan) {
-		if (openPlan instanceof IDeviceOpenPlan) {
+		if (openPlan instanceof DeviceOpenPlan) {
 			DeviceOpenPlan plan = (DeviceOpenPlan) openPlan;
 			return dao.save(plan);
 		}

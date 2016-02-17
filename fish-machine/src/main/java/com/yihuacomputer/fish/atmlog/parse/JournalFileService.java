@@ -57,7 +57,7 @@ public class JournalFileService implements IJournalFileService{
 				try {
 					mFileChannel.close();
 				} catch (IOException e) {
-					//e.printStackTrace();
+					/*e.printStackTrace();*/
 					return null;
 				}
 			}
@@ -66,7 +66,7 @@ public class JournalFileService implements IJournalFileService{
 					inFileChannel.close();
 				} catch (IOException e) {
 					return null;
-					//e.printStackTrace();
+					/*e.printStackTrace();*/
 				}
 			}
 		}
@@ -155,14 +155,14 @@ public class JournalFileService implements IJournalFileService{
             } 
         }
         catch (Exception ex) {
-            //ex.printStackTrace();
+            /*ex.printStackTrace();*/
         }finally{
         	if(bufferedReader!=null){
         		try {
 					bufferedReader.close();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
-				//	e.printStackTrace();
+				/*	e.printStackTrace();*/
 				}
         	}            
         }

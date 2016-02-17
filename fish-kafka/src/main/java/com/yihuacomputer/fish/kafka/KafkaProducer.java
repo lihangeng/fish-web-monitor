@@ -9,6 +9,8 @@ import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,8 @@ import com.yihuacomputer.fish.api.mq.IMqProducer;
  */
 @Service
 public class KafkaProducer implements IMqProducer {
+	
+	private static Logger logger = LoggerFactory.getLogger(KafkaProducer.class);
 
 	@Autowired
 	private KafkaConfig kafkaConfig;
@@ -46,7 +50,7 @@ public class KafkaProducer implements IMqProducer {
 
 	@Override
 	public void put(String message) {
-		System.out.println("put msg is : " + message);
+		logger.info(String.format("put msg is : [%s] " , message));
 		KeyedMessage<String, String> data = new KeyedMessage<String, String>(this.getKafkaConfig().getTopic(), "", message);
 		producer.send(data);
 	}

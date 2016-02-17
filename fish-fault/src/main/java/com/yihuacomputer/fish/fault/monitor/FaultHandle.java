@@ -39,7 +39,7 @@ public class FaultHandle implements Runnable {
 	}
 
 
-	public synchronized void run() {
+	public void run() {
 		logger.info(String.format("handle status start,terminal id is [%s]",xfsStatus.getTerminalId()));
 		deviceCaseService.handleModStatus(xfsStatus);
 	}

@@ -71,11 +71,13 @@ public class AtmMove implements IAtmMove,Serializable {
     @Column(name = "TARGET_ADDR", length = 50)
     private String targetAddress;
 
-    // /**
-    // * 目标机构
-    // */
-    // @Column(name = "TARGET_ORG" ,length = 20)
-    // private String targetOrganization;
+     /**
+     * 目标机构
+     */
+    /*
+     @Column(name = "TARGET_ORG" ,length = 20)
+     private String targetOrganization;
+     */
     /**
      * 源机构
      */
@@ -83,11 +85,13 @@ public class AtmMove implements IAtmMove,Serializable {
     @JoinColumn(name = "TARGET_ORG_ID")
     private IOrganization targetOrganization;
 
-//    /**
-//     * 设备号
-//     */
-//    @Column(name = "TARGET_DEV_NO", length = 60)
-//    private String targetTerminalId;
+    /**
+     * 设备号
+     */
+    /*
+    @Column(name = "TARGET_DEV_NO", length = 60)
+    private String targetTerminalId;
+     */
 
     /**
      * 备注
@@ -185,37 +189,37 @@ public class AtmMove implements IAtmMove,Serializable {
     public Date getDate() {
         return date;
     }
+/*
+    @Override
+    public void setTargetIp(String targetIp) {
+        this.targetIp = targetIp;
+    }
 
-//    @Override
-//    public void setTargetIp(String targetIp) {
-//        this.targetIp = targetIp;
-//    }
-//
-//    @Override
-//    public String getTargetIp() {
-//        return this.targetIp;
-//    }
-//
-//    @Override
-//    public void setIp(String ip) {
-//        this.ip = ip;
-//    }
-//
-//    @Override
-//    public String getIp() {
-//        return this.ip;
-//    }
+    @Override
+    public String getTargetIp() {
+        return this.targetIp;
+    }
 
-//    @Override
-//    public void setTargetTerminalId(String targetTerminalId) {
-//        this.targetTerminalId = targetTerminalId;
-//    }
-//
-//    @Override
-//    public String getTargetTerminalId() {
-//        return this.targetTerminalId;
-//    }
+    @Override
+    public void setIp(String ip) {
+        this.ip = ip;
+    }
 
+    @Override
+    public String getIp() {
+        return this.ip;
+    }
+
+    @Override
+    public void setTargetTerminalId(String targetTerminalId) {
+        this.targetTerminalId = targetTerminalId;
+    }
+
+    @Override
+    public String getTargetTerminalId() {
+        return this.targetTerminalId;
+    }
+*/
     public void update(IAtmMove atmMove) {
         setAddress(atmMove.getAddress());
         setOrganization(atmMove.getOrganization());
@@ -225,9 +229,11 @@ public class AtmMove implements IAtmMove,Serializable {
         setResponsibility(atmMove.getResponsibility());
         setTargetAddress(atmMove.getTargetAddress());
         setTargetOrganization(atmMove.getTargetOrganization());
-//        setTargetTerminalId(atmMove.getTargetTerminalId());
-//        setIp(atmMove.getIp());
-//        setTargetIp(atmMove.getTargetIp());
+        /*
+        setTargetTerminalId(atmMove.getTargetTerminalId());
+        setIp(atmMove.getIp());
+        setTargetIp(atmMove.getTargetIp());
+        */
     }
 
 }
