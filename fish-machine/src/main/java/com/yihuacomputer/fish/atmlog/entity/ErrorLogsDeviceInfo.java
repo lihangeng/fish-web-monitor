@@ -105,8 +105,8 @@ public class ErrorLogsDeviceInfo implements IErrorLogsDeviceInfo,Serializable {
 	}
 
 	@Override
-	public void setDateTime(String DateTime) {
-		this.dateTime = DateTime;
+	public void setDateTime(String dateTime) {
+		this.dateTime = dateTime;
 	}
 
 	@Override
@@ -115,8 +115,8 @@ public class ErrorLogsDeviceInfo implements IErrorLogsDeviceInfo,Serializable {
 	}
 
 	@Override
-	public void setIP(String IP) {
-		this.ip = IP;
+	public void setIP(String ip) {
+		this.ip = ip;
 	}
 
 }
