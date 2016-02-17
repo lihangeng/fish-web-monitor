@@ -70,7 +70,7 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 		IFilterEntry devType = filter.getFilterEntry("devType");
 		IFilterEntry devCatalogId = filter.getFilterEntry("devCatalogId");
 		IFilterEntry devVendorId = filter.getFilterEntry("devVendorId");
-	//	IFilterEntry devServiceId = filter.getFilterEntry("devService");
+	/*	IFilterEntry devServiceId = filter.getFilterEntry("devService");*/
 		IFilterEntry organizationId = filter.getFilterEntry("organization");
 		IFilterEntry ip = filter.getFilterEntry("ip");
 		/*IFilterEntry awayFlag = filter.getFilterEntry("awayFlag");*/
@@ -78,12 +78,14 @@ public class OpenPlanDeviceRelation implements IOpenPlanDeviceRelation {
 	/*	IFilterEntry address = filter.getFilterEntry("address");*/
 		hql.append("from Device device where device.id not in ");
 		hql.append("(select distinct devicePlanRelation.deviceId from DevicePlanRelation devicePlanRelation ) ");
-	//	valueObj.add(openPlan.getId());
+	/*	valueObj.add(openPlan.getId());*/
 		hql.append("and device.organization.orgFlag like ? ");
 		valueObj.add(org.getOrgFlag() + "%");
-//		hql.append(" and device.devType.devCatalog.no != '01' ");
-//		hql.append(" and device.devType.devCatalog.no != '05' ");
-//		hql.append(" and device.devType.devCatalog.no != '08' ");
+		/*
+		hql.append(" and device.devType.devCatalog.no != '01' ");
+		hql.append(" and device.devType.devCatalog.no != '05' ");
+		hql.append(" and device.devType.devCatalog.no != '08' ");
+ */
 	/*	if (startCashboxLimit != null) {
 			hql.append("and device.cashboxLimit>=? ");
 			valueObj.add(startCashboxLimit.getValue());
