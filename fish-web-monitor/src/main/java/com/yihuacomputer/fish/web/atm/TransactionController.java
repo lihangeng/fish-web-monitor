@@ -77,7 +77,6 @@ public class TransactionController{
         	collectService.collectATMCTransaction(msg.getTermId(), trans);
 
         }catch(Exception e){
-        	e.printStackTrace();
             logger.error(String.format("collection transaction exception![%s],transaction is [%s]",e,JsonUtils.toJson(msg)));
         }
 

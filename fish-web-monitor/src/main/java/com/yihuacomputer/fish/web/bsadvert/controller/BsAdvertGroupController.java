@@ -101,8 +101,6 @@ public class BsAdvertGroupController {
 		return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
 	}
 	
-	
-	
 	@RequestMapping(value="/list",method = RequestMethod.GET)
 	public @ResponseBody ModelMap getAdvertGroupList(HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search bsAdvert group list");
@@ -125,8 +123,8 @@ public class BsAdvertGroupController {
 			bsAdvertGroupForm.setGroupName(String.valueOf(objs[2]));
 			bsAdvertGroupForm.setOrgId((Long)(objs[4]));
 			if (null != objs[6]) {
-				bsAdvertGroupForm.setOrgLevel(getEnumI18n(OrganizationLevel.getById((Integer)(objs[4])).getText()));
-				bsAdvertGroupForm.setOrgLevelId((Integer)(objs[4]));
+				bsAdvertGroupForm.setOrgLevel(getEnumI18n(OrganizationLevel.getById((Integer)(objs[6])).getText()));
+				bsAdvertGroupForm.setOrgLevelId((Integer)(objs[6]));
 			}
 			bsAdvertGroupForm.setOrgName(String.valueOf(objs[7]));
 			bsAdvertGroupForm.setGroupType((Integer)objs[3]);
@@ -145,7 +143,6 @@ public class BsAdvertGroupController {
 	ModelMap add(@RequestBody BsAdvertGroupForm request) {
 		logger.info("add bsAdvertGroup");
 		long orgId = request.getOrgId();
-		
 		
 		IOrganization org = orgService.get(String.valueOf(request.getOrgId()));		
 		ModelMap result = new ModelMap();
@@ -167,11 +164,8 @@ public class BsAdvertGroupController {
 		advertGroup.setGroupName(request.getGroupName());
 		
 		request.setResourcePath("");
-		
 		request.translate(advertGroup);
-		
 		advertGroupService.save(advertGroup);
-		
 		
 		advertGroup.setPath(advertGroup.getOrgId() + " " + advertGroup.getGuid());
 		
@@ -181,8 +175,6 @@ public class BsAdvertGroupController {
 
 		return result;
 	}
-	
-	
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody
@@ -209,14 +201,11 @@ public class BsAdvertGroupController {
 		return result;
 	}
 	
-	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
+		
 		logger.info(" delete bsAdvertGroup: bsAdvertGroup.id = " + id);
-		
-		
-		
 		ModelMap result = new ModelMap();
 		
 		IFilter filter = new Filter();
@@ -233,11 +222,9 @@ public class BsAdvertGroupController {
 		List<IAdvertGroup> listAdvertGroup = deviceAdvertRelation.listAdvertGroupByGroupId(id);
 		
 		if(listAdvertGroup.size()!=0){
-			
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, "该广告组下已经存在关联关系，无法删除");
 			return result;
-			
 		}
 		try {
 			IAdvertGroup group = advertGroupService.getById(id);
@@ -254,7 +241,6 @@ public class BsAdvertGroupController {
 		return result;
 	}
 
-	
     /**
      * 建立关联关系：
      *
@@ -278,8 +264,6 @@ public class BsAdvertGroupController {
         result.put("data", request);
         return result;
     }
-	
-	
 	
     /**
      * 解除关联关系：
@@ -398,7 +382,6 @@ public class BsAdvertGroupController {
 		return filter;
 	}
 	
-	
 	@RequestMapping(value="/actived",method = RequestMethod.POST)
 	public @ResponseBody ModelMap activedBsAdvert(@RequestParam long advertGroupId,HttpServletRequest request, WebRequest webRequest) {
 		
@@ -452,7 +435,6 @@ public class BsAdvertGroupController {
 		}
 		return result.append("]").toString();
 	}
-	
 	
 	private String getRealPath(HttpServletRequest request) {
 		return FishWebUtils.getRealPathByTmp(request) + "/bsAdvert";

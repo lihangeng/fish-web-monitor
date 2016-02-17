@@ -18,6 +18,8 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -42,7 +44,7 @@ import com.yihuacomputer.fish.web.monitor.form.RuntimeInfoMsg;
 @RequestMapping("/machine/runtimeInfo")
 public class RuntimeInfoController {
 	// 日志
-//	private Logger logger = LoggerFactory.getLogger(DeviceModuleStatusController.class);
+	private Logger logger = LoggerFactory.getLogger(RuntimeInfoController.class);
 
 	private final String RUNTIMEINFO_FROMDATE_PATH = "/ctr/runtimeInfo/fromDate";
 
@@ -189,7 +191,7 @@ public class RuntimeInfoController {
 					wb.write(fout);
 					fout.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 				// File file = new
 				// File(FishCfg.getTempDir()+File.separator+name);
@@ -427,7 +429,7 @@ public class RuntimeInfoController {
 					wb.write(fout);
 					fout.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 				// File file = new
 				// File(FishCfg.getTempDir()+File.separator+name);
@@ -437,7 +439,7 @@ public class RuntimeInfoController {
 
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("msg", e.getMessage());
 			return result;
@@ -561,7 +563,7 @@ public class RuntimeInfoController {
 					wb.write(fout);
 					fout.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 				// File file = new File(name);
 				// this.download(file, response, "gb2312", "application/x-xls");
@@ -807,7 +809,7 @@ public class RuntimeInfoController {
 					wb.write(fout);
 					fout.close();
 				} catch (Exception e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 
 				// File file = new File(name);
@@ -817,7 +819,7 @@ public class RuntimeInfoController {
 				return result;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("msg", e.getMessage());
 			return result;
@@ -870,20 +872,20 @@ public class RuntimeInfoController {
 			}
 			// osa.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		} finally {
 			if (out != null) {
 				try {
 					out.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 			}
 			if (is != null) {
 				try {
 					is.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 			}
 

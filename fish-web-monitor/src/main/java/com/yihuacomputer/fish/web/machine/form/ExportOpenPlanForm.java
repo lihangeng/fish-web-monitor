@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.openplan.IDeviceOpenPlan;
 import com.yihuacomputer.fish.api.openplan.IOpenPlanDetail;
@@ -14,6 +17,8 @@ import com.yihuacomputer.fish.api.openplan.PlanType;
 
 
 public class ExportOpenPlanForm {
+	
+	private Logger logger = LoggerFactory.getLogger(ExportOpenPlanForm.class);
 
 	private long id;
 
@@ -84,7 +89,7 @@ public class ExportOpenPlanForm {
 					this.planStateType = PlanStateType.WExpired.getText();
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error(e.getMessage());
 			}
 		}
 		this.desc = deviceOpenPlan.getDesc();

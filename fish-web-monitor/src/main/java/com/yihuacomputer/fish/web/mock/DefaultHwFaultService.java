@@ -79,7 +79,6 @@ public class DefaultHwFaultService {
 			handleBoxFault(xfsStatus, openCaseList);
 
 		}catch(Exception e){
-			e.printStackTrace();
 			logger.error(String.format("collection caseFault exception[%s]", e));
 		}
 	}

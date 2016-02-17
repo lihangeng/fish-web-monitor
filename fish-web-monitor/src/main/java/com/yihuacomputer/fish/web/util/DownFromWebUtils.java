@@ -8,7 +8,13 @@ import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 public class DownFromWebUtils {
+	
+	private static Logger logger = LoggerFactory.getLogger(DownFromWebUtils.class);
 
     public static String getFileName(HttpServletRequest request, String name) throws Exception {
         if (request.getHeader("User-Agent").toUpperCase().indexOf("MSIE") > 0) {
@@ -40,7 +46,7 @@ public class DownFromWebUtils {
             }
         }
         catch (Exception ex) {
-            ex.printStackTrace();
+        	logger.error(ex.getMessage());
         }
         finally {
             if (out != null) {

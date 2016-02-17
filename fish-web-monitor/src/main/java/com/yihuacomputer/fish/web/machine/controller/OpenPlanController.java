@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -57,7 +58,7 @@ import com.yihuacomputer.fish.web.machine.form.OpenPlanForm;
 @RequestMapping(value = "/plan")
 public class OpenPlanController {
 
-	private Logger logger = org.slf4j.LoggerFactory.getLogger(OpenPlanController.class);
+	private Logger logger = LoggerFactory.getLogger(OpenPlanController.class);
 
 	@Autowired
 	private IOpenPlanService openPlanService;
@@ -554,7 +555,7 @@ public class OpenPlanController {
 				contentLength += len;
 			}
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			logger.error(ex.getMessage());
 		} finally {
 			if (out != null) {
 				out.close();
@@ -648,7 +649,7 @@ public class OpenPlanController {
 					i++;
 				}
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error(e.getMessage());
 				i++;
 			}
 		}

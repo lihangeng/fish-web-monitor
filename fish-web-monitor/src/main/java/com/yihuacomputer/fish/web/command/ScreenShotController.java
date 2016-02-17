@@ -486,20 +486,20 @@ public class ScreenShotController {
 			}
 			// osa.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		} finally {
 			if (out != null) {
 				try {
 					out.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 			}
 			if (is != null) {
 				try {
 					is.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 			}
 
@@ -508,7 +508,7 @@ public class ScreenShotController {
 			// osw.close();
 			// }
 			// catch (IOException e) {
-			// e.printStackTrace();
+			// logger.error(e.getMessage());
 			// }
 			// }
 		}

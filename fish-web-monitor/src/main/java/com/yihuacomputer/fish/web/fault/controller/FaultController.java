@@ -21,6 +21,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -53,7 +54,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
 public class FaultController
 {
 
-    private final Logger logger = org.slf4j.LoggerFactory.getLogger(FaultController.class);
+    private final Logger logger = LoggerFactory.getLogger(FaultController.class);
 
     @Autowired
     private ICaseFaultService service;
@@ -353,7 +354,7 @@ public class FaultController
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
 
         File file = new File(FishCfg.getTempDir() + System.getProperty("file.separator") + name);
@@ -404,7 +405,7 @@ public class FaultController
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
         finally
         {
@@ -416,7 +417,7 @@ public class FaultController
                 }
                 catch (IOException e)
                 {
-                    e.printStackTrace();
+                    logger.error(e.getMessage());
                 }
             }
             if (is != null)
@@ -427,7 +428,7 @@ public class FaultController
                 }
                 catch (IOException e)
                 {
-                    e.printStackTrace();
+                    logger.error(e.getMessage());
                 }
             }
         }

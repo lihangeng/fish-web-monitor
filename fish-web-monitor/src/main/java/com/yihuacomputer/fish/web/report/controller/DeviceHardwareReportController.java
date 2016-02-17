@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -42,7 +43,7 @@ import com.yihuacomputer.fish.report.engine.ReportParam;
 @RequestMapping(value = "/report")
 public class DeviceHardwareReportController {
 
-    private Logger logger = org.slf4j.LoggerFactory.getLogger(DeviceHardwareReportController.class);
+    private Logger logger = LoggerFactory.getLogger(DeviceHardwareReportController.class);
 
     @Autowired
     private IDeviceHardwareRptService deviceHardwareRptService;
@@ -181,7 +182,7 @@ public class DeviceHardwareReportController {
             }
         }
         catch (Exception ex) {
-            ex.printStackTrace();
+        	logger.error(ex.getMessage());
         }
         finally {
             if (out != null) {

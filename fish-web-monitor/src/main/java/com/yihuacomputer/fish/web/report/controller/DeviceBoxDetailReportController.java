@@ -173,7 +173,7 @@ public class DeviceBoxDetailReportController {
             }
         }
         catch (Exception ex) {
-            ex.printStackTrace();
+        	logger.error(ex.getMessage());
         }
         finally {
             if (out != null) {

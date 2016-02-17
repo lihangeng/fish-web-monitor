@@ -10,6 +10,8 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -47,7 +49,8 @@ import com.yihuacomputer.fish.web.command.format.MyComputerForm;
 @RequestMapping("/agent/remoteBrowse")
 public class ExploerController
 {
-
+	private Logger logger = LoggerFactory.getLogger(ExploerController.class);
+	
 	private final static long MAXFILESIZE=209715200L;
 	private final static long SIZEOFPERM=1024*1024L;
 	
@@ -234,7 +237,7 @@ public class ExploerController
                 contentLength += len;
             }
         }catch(Exception ex){
-            ex.printStackTrace();
+        	logger.error(ex.getMessage());
         }finally{
             if (out != null)
             {
