@@ -20,7 +20,7 @@ public enum HttpFileRet {
                 return httpRet;
             }
         }
-        throw new IllegalArgumentException(String.format("id=[%d] error", ret));
+        throw new IllegalArgumentException(String.format("id=[%s] error", ret));
     }
 
     public String getText() {

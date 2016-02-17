@@ -9,11 +9,11 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.SocketException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPFile;
 import org.apache.commons.net.ftp.FTPReply;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * ftp操作工具类
@@ -23,7 +23,7 @@ import org.apache.commons.net.ftp.FTPReply;
  */
 public class FtpUtils {
     
-    public final static Log logger = LogFactory.getLog(FtpUtils.class);
+    public static final Logger logger = LoggerFactory.getLogger(FtpUtils.class);
 
     /**
      * 向FTP服务器上传文件
@@ -90,9 +90,11 @@ public class FtpUtils {
         ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
         String str[] = path.split("/");
         String resultPath = "";
+        StringBuffer sb = new StringBuffer();
         for (String s : str) {
             if (!"".equals(s)) {
-                resultPath = resultPath + "/" + s;
+            	sb.append("/").append(s);
+                resultPath = sb.toString();
                 if (!"".equals(resultPath) && !isDirExist(resultPath, ftp)) {
                     // 创建文件夹
                     ftp.makeDirectory(resultPath);

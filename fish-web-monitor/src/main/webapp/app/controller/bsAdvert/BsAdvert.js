@@ -198,6 +198,8 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 	},
 	onUpdate:function(record,info1024,info800,info600){
 		var win = Ext.create("Eway.view.bsAdvert.AddBsWait");
+		win.setTitle("更改广告");
+		win.down("field_advert_advertGroup").setDisabled(true);
 		var tab = win.down('advert_bs_waitTab');
 		var s1024 = tab.down('bsadvertimgview[name=1024]');
 		//加载1024图片
