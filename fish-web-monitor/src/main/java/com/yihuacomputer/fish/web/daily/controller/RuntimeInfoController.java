@@ -186,8 +186,8 @@ public class RuntimeInfoController {
 				// terminalId + ".xls";
 				String time = DateUtils.getTime(new Date()).replace(":", "");
 				String name = FishCfg.getTempDir() + System.getProperty("file.separator") + "RuntimeInfo" + "_" + startDate + "_" + endDate + "_" + terminalId + "_" + time + ".xls";
+				FileOutputStream fout = new FileOutputStream(name);
 				try {
-					FileOutputStream fout = new FileOutputStream(name);
 					wb.write(fout);
 					fout.close();
 				} catch (Exception e) {
@@ -804,8 +804,8 @@ public class RuntimeInfoController {
 				String date = DateUtils.getDate(new Date());
 				String time = DateUtils.getTime(new Date()).replace(":", "");
 				String name = FishCfg.getTempDir() + System.getProperty("file.separator") + "RuntimeInfoLast30" + "_" + terminalId + "_" + date + "_" + time + ".xls";
+				FileOutputStream fout = new FileOutputStream(name);
 				try {
-					FileOutputStream fout = new FileOutputStream(name);
 					wb.write(fout);
 					fout.close();
 				} catch (Exception e) {
