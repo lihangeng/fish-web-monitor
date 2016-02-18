@@ -18,7 +18,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 				glyph : 0xf002,
 				action: 'query'
 			}, {
-				text : EwayLocale.advert.createAdvert,
+				text : EwayLocale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'bsAdvertAdd',
@@ -26,8 +26,9 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text :'更改',
-				glyph : 0xf067,
+				//'更改'
+				text :EwayLocale.button.update,
+				glyph : 0xf040,
 				action: 'update',
 				disabled : true,
 				code : 'bsAdvertUpdate',
@@ -43,9 +44,10 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '激活',
-				glyph : 0xf014,
+				//'激活'
+				text: EwayLocale.button.active,
 				action: 'actived',
+				glyph : 0xf0ed,
 				disabled : true,
 				code : 'bsAdvertActive',
 				listeners:{
@@ -54,6 +56,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 			},{
 				text :EwayLocale.advert.preview,
 				iconCls : 'adPreview',
+				glyph : 0xf1c5,
 				code : 'advertPreview',
 				disabled : true,
 				menu : new Ext.menu.Menu({
@@ -74,27 +77,28 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 				dataIndex: 'id',
 				width: 45
 			},{
-				header : '广告组',
+				//'广告组'
+				header : EwayLocale.bsAdvert.advertGroup,
 				dataIndex : 'groupName',
 				width: 200
-			},/*{
-				header : '广告下发方式',
-				dataIndex : 'advertDownMethod',
-				renderer: Eway.lib.Util.dictRenderer('advert.AdvertDownMethod')
-			},*/{
-				header : '广告名称',
+			},{
+				//'广告名称'
+				header : EwayLocale.bsAdvert.advertName,
 				dataIndex : 'advertName',
 				width: 145
 			},{
-				header : '是否激活',
+				//'是否激活'
+				header : EwayLocale.bsAdvert.advertStatus,
 				dataIndex : 'bsAdvertStatus',
 				width: 100
 			},{
-				header:'最近更改时间',
+				//'制作时间'
+				header:EwayLocale.bsAdvert.createdTime,
 				dataIndex:'lastTime',
 				width: 200
 			},{
-				header:'BS广告文件',
+				//'广告文件'
+				header:EwayLocale.bsAdvert.advertFile,
 				dataIndex:'advertFileName',
 				renderer:function(value,meta,record){
 					if(value != null){
@@ -104,11 +108,13 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 					}
 				}
 			},{
-				header : '更改人',
+				//'制作人'
+				header : EwayLocale.bsAdvert.userName,
 				dataIndex:'userName',
 				width: 100
 			},{
-				header : '激活人',
+				//'激活人'
+				header : EwayLocale.bsAdvert.activedUserName,
 				dataIndex:'activeUserName',
 				flex : 1
 			}],

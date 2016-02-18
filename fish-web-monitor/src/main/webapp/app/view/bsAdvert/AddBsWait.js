@@ -72,7 +72,8 @@ Ext.define('Eway.view.bsAdvert.AddBsWait', {
 						items : [ {
 							xtype : 'field_advert_advertGroup',
 							allowBlank : false,
-							fieldLabel : '<font color="red">*</font>广告归属组'
+							//广告组
+							fieldLabel : '<font color="red">*</font>'+EwayLocale.bsAdvert.advertGroup
 						}, {
 							xtype : 'displayfield',
 							fieldLabel : EwayLocale.advert.type,
@@ -80,7 +81,6 @@ Ext.define('Eway.view.bsAdvert.AddBsWait', {
 							value : EwayLocale.advert.idleAdvertInfo
 						}, {
 							xtype : 'hidden',
-							fieldLabel : EwayLocale.advert.type,
 							name : 'id'
 						} ]
 					}, {
@@ -98,7 +98,8 @@ Ext.define('Eway.view.bsAdvert.AddBsWait', {
 							name : 'advertName',
 							maxLength : 20,
 							allowBlank : false,
-							fieldLabel : '<font color="red">*</font>广告名称'
+							//广告名称
+							fieldLabel : '<font color="red">*</font>'+EwayLocale.bsAdvert.advertName
 						} ]
 					} ]
 					} ]

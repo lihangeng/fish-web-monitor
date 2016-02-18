@@ -6,7 +6,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertImgView', {
     tpl: [
         '<tpl for=".">',
             '<div class="thumb-wrap">',
-             	'<div class="remove_adevert_res"><img src="resources/images/delete.gif" title="'+EwayLocale.advert.deleteAdvertResource+'"></div>',
+             	'<div class="remove_adevert_res"><img src="resources/images/delete.gif" title="'+EwayLocale.bsAdvert.deleteAdvertResource+'"></div>',
                 '<div class="thumb">',
                     '<img src="{path}" style="cursor:pointer" title="{displayName}">',
                 '</div>',
@@ -28,7 +28,6 @@ Ext.define('Eway.view.bsAdvert.BsAdvertImgView', {
     cls: 'advert-image-view',
    	overItemCls: 'advert-item-over',
    	selectedItemCls :'advert-item-selected',
-//   	itemSelector: 'div.moveimg',  
     prepareData: function(data) {
             Ext.apply(data, {
                 shortName: Ext.util.Format.ellipsis(data.displayName, 23)
@@ -83,8 +82,6 @@ Ext.define('Eway.view.bsAdvert.BsAdvertImgView', {
 	                if (sourceEl) {  
 	                	srcLeft = sourceEl.offsetLeft;
 	                	srcTop = sourceEl.offsetTop;
-//	                	dragPicWidth = sourceEl.offsetWidth;
-//	                	dragPicHeight = sourceEl.offsetHeight;
 	                    d = sourceEl.cloneNode(true);  
 	                    d.id = Ext.id();
 	                    d.childNodes[1].childNodes[0].style.width=dragPicWidth+"px";
@@ -151,12 +148,8 @@ Ext.define('Eway.view.bsAdvert.BsAdvertImgView', {
 	            	});
 	            	defaultIndex>=moveIndex?defaultIndex++:defaultIndex;
 	                var name = data.patientData.name;  
-
-//                    panel.store.remove(data.patientData);    
 	                var comFlag = Ext.getCmp(data.patientData.id);  
-	      
-//	                    panel.store.add(data.patientData);  
-	                     panel.store.insert(defaultIndex,data.patientData);     
+                     panel.store.insert(defaultIndex,data.patientData);     
 	      
 	                return true;  
 	            }  
@@ -183,7 +176,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertImgView', {
 				        }
 				    },
 				    failure:function(){
-				    	Eway.alert("删除失败！");
+				    	Eway.alert(EwayLocale.tip.remove.error);
 				    }
 				});
     		}

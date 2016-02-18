@@ -114,6 +114,8 @@ Ext.apply(EwayLocale,{
 	},
 	bsAdvert : {//EwayLocale.bsAdvert.advert
 		advertGroup:'广告组',//EwayLocale.bsAdvert.advertGroup
+		advertName:'广告名称',//EwayLocale.bsAdvert.advertName
+		advertTitle:'广告管理',//EwayLocale.bsAdvert.advertTitle
 		advertStatus:'广告状态',//EwayLocale.bsAdvert.advertStatus
 		advertGroupType:'广告组类型',//EwayLocale.bsAdvert.advertGroupType
 		title : 'BS广告管理',//EwayLocale.bsAdvert.title
@@ -129,8 +131,9 @@ Ext.apply(EwayLocale,{
 		validity : '广告有效期',//EwayLocale.bsAdvert.validity
 		createdTime : '制作时间',//EwayLocale.bsAdvert.createdTime
 		userName : '制作人',//EwayLocale.bsAdvert.userName
+		activedUserName : '激活人',//EwayLocale.bsAdvert.activedUserName
 		versionStatus : '广告版本状态',//EwayLocale.bsAdvert.versionStatus
-		advertVersionFile : '版本文件',//EwayLocale.bsAdvert.advertVersionFile
+		advertFile : '广告文件文件',//EwayLocale.bsAdvert.advertFile
 		createdTimeStart : '制作时间开始于',//EwayLocale.bsAdvert.createdTimeStart
 		createdTimeStop : '制作时间结束于',//EwayLocale.bsAdvert.createdTimeStop
 		playTime : '广告播放时长',//EwayLocale.bsAdvert.playTime

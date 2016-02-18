@@ -7,8 +7,8 @@ Ext.define('Eway.view.bsAdvert.BsAdvertView', {
 
 	requires: ['Eway.view.bsAdvert.BsAdvertGrid',
 	           'Eway.view.bsAdvert.BsAdvertFilterForm'],
-
-	title: '广告管理',
+	//'广告管理'
+	title: EwayLocale.bsAdvert.advertTitle,
 	layout: 'border',
 
 	initComponent: function() {

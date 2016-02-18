@@ -24,11 +24,11 @@ Ext.define('Eway.view.bsAdvert.BsWaitTab', {
 						buttonOnly:true,
 						name: 'file',
 						allowBlank: false,
-				    	blankText :EwayLocale.advert.uploadResourceBlank,
-						buttonText: EwayLocale.advert.addMorePic,
+				    	blankText :EwayLocale.bsAdvert.uploadResourceBlank,
+						buttonText: EwayLocale.bsAdvert.addMorePic,
 						padding:'2px -60px 0 0',
 						regex : (/\.jpg$|\.gif$/i),
-						regexText:EwayLocale.advert.uploadRegText
+						regexText:EwayLocale.bsAdvert.uploadRegText
 			    	}]
 				},{
 					region:'center',
@@ -52,11 +52,11 @@ Ext.define('Eway.view.bsAdvert.BsWaitTab', {
 						buttonOnly:true,
 						name: 'file',
 						allowBlank: false,
-				    	blankText :EwayLocale.advert.uploadResourceBlank,
-						buttonText: EwayLocale.advert.addMorePic,
+				    	blankText :EwayLocale.bsAdvert.uploadResourceBlank,
+						buttonText: EwayLocale.bsAdvert.addMorePic,
 						padding:'2px -60px 0 0',
 						regex : (/\.jpg$|\.gif$/i),
-						regexText:EwayLocale.advert.uploadRegText
+						regexText:EwayLocale.bsAdvert.uploadRegText
 			    	}]
 				},{
 					region:'center',
@@ -80,11 +80,11 @@ Ext.define('Eway.view.bsAdvert.BsWaitTab', {
 						buttonOnly:true,
 						name: 'file',
 						allowBlank: false,
-				    	blankText :EwayLocale.advert.uploadResourceBlank,
-						buttonText: EwayLocale.advert.addMorePic,
+				    	blankText :EwayLocale.bsAdvert.uploadResourceBlank,
+						buttonText: EwayLocale.bsAdvert.addMorePic,
 						padding:'2px -60px 0 0',
 						regex :(/\.jpg$|\.gif$/i),
-						regexText:EwayLocale.advert.uploadRegText
+						regexText:EwayLocale.bsAdvert.uploadRegText
 			    	}]
 				},{
 					region:'center',
