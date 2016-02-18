@@ -169,8 +169,18 @@ public class Role implements IRole,Serializable {
 
     @Override
     public boolean equals(Object obj) {
-        Role role = (Role) obj;
-        return this.getId() == role.getId() ? true : false;
+    	if(this==obj){
+    		return true;
+    	}
+    	if(obj==null){
+    		return false;
+    	}
+    	if(obj instanceof Role){
+    		Role role = (Role) obj;
+    	    return this.getId() == role.getId() ? true : false;
+    	}
+    	return false;
+       
     }
 
     @Override
