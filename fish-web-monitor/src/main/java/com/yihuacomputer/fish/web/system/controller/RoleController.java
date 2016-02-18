@@ -188,12 +188,12 @@ public class RoleController {
 			if (this.isSystem(id)) {
 				// IRole role = service.get(id);
 				List<IPermission> permissions = rolePermissionRelation.listPermissionByRole(role);
-				String s = null;
+				StringBuffer s = new StringBuffer();
 				for (IPermission item : permissions) {
-					s = s + item.getCode() + ",";
+					s.append(item.getCode()+",");
 				}
 				RoleForm oldRole = new RoleForm(role);
-				oldRole.setPermissions(s);
+				oldRole.setPermissions(s.toString());
 
 				result.addAttribute(FishConstant.SUCCESS, true);
 				result.addAttribute("errorMsg", messageSource.getMessage("role.update.systemRole", null, FishCfg.locale));
