@@ -61,6 +61,7 @@ Ext.apply(EwayLocale,{
 		apply:'应用',//EwayLocale.button.apply
 		link:'关联',//EwayLocale.button.link
 		unlink:'解除',//EwayLocale.button.unlink
+		active:'激活',//EwayLocale.button.active
 		
 		bankOrgMove:'组织迁移',//EwayLocale.button.bankOrgMove
 		bankOrgAdmin:'管理员',//EwayLocale.button.bankOrgAdmin

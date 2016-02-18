@@ -17,11 +17,13 @@ Ext.define('Eway.view.bsAdvert.BsAdvertFilterForm',
 										items : [ {
 											xtype : 'field_advert_advertGroup',
 											name:'groupId',
-											fieldLabel : '广告归属组'
+											//'广告归属组'
+											fieldLabel : EwayLocale.bsAdvert.advertGroup
 										},{
 											xtype : 'field_bsadvert_advertStatus',
 											name:'bsAdvertStatus',
-											fieldLabel : '广告状态'
+											//'广告状态'
+											fieldLabel : EwayLocale.bsAdvert.advertStatus
 										} ]
 									},
 									{
@@ -30,11 +32,12 @@ Ext.define('Eway.view.bsAdvert.BsAdvertFilterForm',
 											xtype : 'textfield',
 											name:'advertName',
 											labelWidth : 120,
-											fieldLabel : '广告名'
+											//'广告名'
+											fieldLabel : EwayLocale.bsAdvert.advertName
 										},{
 											xtype : 'fieldcontainer',
 											labelWidth : 120,
-											fieldLabel : EwayLocale.advert.createdTimeStart,
+											fieldLabel : EwayLocale.bsAdvert.createdTimeStart,
 											layout : 'hbox',
 											defaults : {
 												hideLabel : true
@@ -62,7 +65,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertFilterForm',
 										},
 										{
 											xtype : 'displayfield',
-											value : EwayLocale.advert.createdTimeStop
+											value : EwayLocale.bsAdvert.createdTimeStop
 										},
 										{
 											fieldLabel : 'endDateTime',

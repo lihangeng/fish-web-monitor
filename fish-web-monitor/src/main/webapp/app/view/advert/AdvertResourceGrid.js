@@ -17,6 +17,7 @@ Ext.define('Eway.view.advert.AdvertResourceGrid', {
 				text:EwayLocale.advert.downloadButton,
 				iconCls : 'versionDown',
 				action :'downAdvert',
+				glyph : 0xf0ed,
 				code : 'advertDownAdvert',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
@@ -25,6 +26,7 @@ Ext.define('Eway.view.advert.AdvertResourceGrid', {
 				text :EwayLocale.advert.preview,
 				iconCls : 'adPreview',
 				code : 'advertPreview',
+				glyph : 0xf1c5,
 				disabled : true,
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
