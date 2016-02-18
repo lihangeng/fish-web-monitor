@@ -73,7 +73,6 @@ public class CounterFeitMoneyController{
         	counterFeitMoney.setNoteItem(noteResultList);
         	collectService.collectATMCCounterFeitMoney(msg.getTermId(), counterFeitMoney);
         }catch(Exception e){
-        	e.printStackTrace();
             logger.error(String.format("collection transaction info fail![%s],transaction context is:[%s]",e,JsonUtils.toJson(msg)));
         }
         

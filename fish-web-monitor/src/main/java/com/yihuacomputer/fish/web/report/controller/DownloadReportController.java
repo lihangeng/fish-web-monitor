@@ -8,6 +8,8 @@ import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,8 @@ import com.yihuacomputer.common.FishCfg;
 @Controller
 @RequestMapping(value = "/report/downloadFile")
 public class DownloadReportController {
+	
+	private Logger logger = LoggerFactory.getLogger(DownloadReportController.class);
 
 	@Autowired
 	private MessageSource messageSourceEnum;
@@ -61,7 +65,7 @@ public class DownloadReportController {
 				contentLength += len;
 			}
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			logger.error(ex.getMessage());
 		} finally {
 			if (out != null) {
 				out.close();

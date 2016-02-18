@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -64,7 +65,7 @@ import com.yihuacomputer.fish.web.version.form.VersionForm;
 @RequestMapping(value = "/version/version")
 public class VersionController {
 
-	private Logger logger = org.slf4j.LoggerFactory.getLogger(VersionController.class);
+	private Logger logger = LoggerFactory.getLogger(VersionController.class);
 
 	@Autowired
 	private IVersionTypeService versionTypeService;
@@ -195,7 +196,7 @@ public class VersionController {
 				return "{'success':false,'msg':'2'}";
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 			if(zipFile!=null){
 				
 				zipFile.delete();

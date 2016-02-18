@@ -122,7 +122,7 @@ public class VendorCodeController {
 					return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileEmpty", null, FishCfg.locale)+"'}";
 				}
 			} catch (Exception ex) {
-				ex.printStackTrace();
+				logger.error(ex.getMessage());
 				return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileComment", null, FishCfg.locale)+"'}";
 			}
 		}
@@ -312,7 +312,7 @@ public class VendorCodeController {
                 contentLength += len;
             }
         }catch(Exception ex){
-            ex.printStackTrace();
+            logger.error(ex.getMessage());
         }finally{
             if (out != null)
             {

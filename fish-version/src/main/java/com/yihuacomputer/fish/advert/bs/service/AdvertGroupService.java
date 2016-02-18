@@ -70,8 +70,8 @@ public class AdvertGroupService implements IAdvertGroupService {
 		if(null!=orgObj){
 			IOrganization org = organizationService.get(String.valueOf(orgObj));
 			if(org!=null){
-				sb.append(" and org.ORG_FLAG like '%");
-				sb.append(org.getOrgFlag()+"'");
+				sb.append(" and org.ORG_FLAG like '");
+				sb.append(org.getOrgFlag()+"%'");
 			}
 		}
 		if(null!=orgLevelIdObj){

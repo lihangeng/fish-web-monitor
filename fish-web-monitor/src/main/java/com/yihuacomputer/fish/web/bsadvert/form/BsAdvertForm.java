@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -12,6 +14,9 @@ import com.yihuacomputer.common.jackson.JsonUtils;
 
 
 public class BsAdvertForm {
+	
+	private Logger logger = LoggerFactory.getLogger(BsAdvertForm.class);
+	
 	private long id;
 
 	private long groupId;
@@ -143,7 +148,7 @@ public class BsAdvertForm {
                 });
             }
             catch (Exception e) {
-                e.printStackTrace();
+            	logger.error(e.getMessage());
             }
         }
         return advertResources;
