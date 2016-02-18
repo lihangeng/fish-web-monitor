@@ -68,8 +68,8 @@ public class OrgAndDeviceImportController {
 		out = response.getOutputStream();
 		if(file!=null){
 			response.setHeader("Content-Disposition", "attachment; filename=" + file.getName());
+			response.addHeader("Content-Length", "" + file.length());
 		}
-		response.addHeader("Content-Length", "" + file.length());
 		response.setContentType("application/x-msdownload;charset=UTF-8");
 		RandomAccessFile randomFile = new RandomAccessFile(file, "r");
 		try {

@@ -376,13 +376,16 @@ public class ScreenShotController {
 			}
 		}
 		int index = 0;
+		String filePathService = "";
+		String fileNameService = "";
+		
 		if(screenForm!=null&&screenForm.getFileName()!=null){
 			
-			index = screenForm.getFileName().lastIndexOf("\\");	
+			index = screenForm.getFileName().lastIndexOf("\\");
+			filePathService = screenForm.getFileName().substring(0, index);
+			fileNameService = screenForm.getFileName().substring(index + 1);
 		}
 		
-		String filePathService = screenForm.getFileName().substring(0, index);
-		String fileNameService = screenForm.getFileName().substring(index + 1);
 
 		screenForm.setFileNameClient(screenForm.getMonitorType().name() + "_" + fileNameService);
 		screenForm.setFilePathClient(FishCfg.getTempDir());

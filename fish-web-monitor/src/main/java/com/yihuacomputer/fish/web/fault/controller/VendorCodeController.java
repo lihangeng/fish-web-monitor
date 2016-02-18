@@ -99,7 +99,7 @@ public class VendorCodeController {
 						+ UUID.randomUUID());
 				file.transferTo(readFile);
 				/* 读文件内容 */
-				ArrayList<IVendorCode> vendorCodeList = new ArrayList<IVendorCode>();
+				ArrayList<IVendorCode> vendorCodeList = null;
 				if (fileType.equals(".xls")) {
 					vendorCodeList = this.readExl(readFile, "0");// 从excel
 																	// 2003文件解析数据：
