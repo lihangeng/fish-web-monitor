@@ -112,6 +112,80 @@ Ext.apply(EwayLocale,{
 		idleAdvertUpTipsInfo : '<font color="red">仅支持.jpg和.gif格式的图片;每种分辨率最多上传10张图片;每张图片最大5M</font>',//EwayLocale.advert.idleAdvertUpTipsInfo
 		configTitle : '广告详细配置'//EwayLocale.advert.configTitle
 	},
+	bsAdvert : {//EwayLocale.bsAdvert.advert
+		advertGroup:'广告组',//EwayLocale.bsAdvert.advertGroup
+		advertStatus:'广告状态',//EwayLocale.bsAdvert.advertStatus
+		advertGroupType:'广告组类型',//EwayLocale.bsAdvert.advertGroupType
+		title : 'BS广告管理',//EwayLocale.bsAdvert.title
+		createAdvert : '创建广告',//EwayLocale.bsAdvert.createAdvert
+		idleAdvert : '创建等待插卡广告',//EwayLocale.bsAdvert.idleAdvert
+		updateTitle : '更改广告信息',//EwayLocale.bsAdvert.updateTitle
+		activeAdvert : '激活广告',//EwayLocale.bsAdvert.activeAdvert
+		preview : '广告预览',//EwayLocale.bsAdvert.preview
+		preview1024 : '预览1024分辨率',//EwayLocale.bsAdvert.preview1024
+		preview800 : '预览800分辨率',//EwayLocale.bsAdvert.preview800
+		preview600 : '预览600分辨率',//EwayLocale.bsAdvert.preview600
+		id : '广告ID',//EwayLocale.bsAdvert.id
+		validity : '广告有效期',//EwayLocale.bsAdvert.validity
+		createdTime : '制作时间',//EwayLocale.bsAdvert.createdTime
+		userName : '制作人',//EwayLocale.bsAdvert.userName
+		versionStatus : '广告版本状态',//EwayLocale.bsAdvert.versionStatus
+		advertVersionFile : '版本文件',//EwayLocale.bsAdvert.advertVersionFile
+		createdTimeStart : '制作时间开始于',//EwayLocale.bsAdvert.createdTimeStart
+		createdTimeStop : '制作时间结束于',//EwayLocale.bsAdvert.createdTimeStop
+		playTime : '广告播放时长',//EwayLocale.bsAdvert.playTime
+		beginDate : '开始日期',//EwayLocale.bsAdvert.beginDate
+		endDate : '结束日期',//EwayLocale.bsAdvert.endDate
+		beginTime : '开始时间',//EwayLocale.bsAdvert.beginTime
+		endTime : '结束时间',//EwayLocale.bsAdvert.endTime
+		fileSize : '资源大小',//EwayLocale.bsAdvert.fileSize
+		content : '播放资源内容',//EwayLocale.bsAdvert.content
+		advertConfig : '广告配置',//EwayLocale.bsAdvert.advertConfig
+		addIdleTitle : '增加等待插卡广告信息',//EwayLocale.bsAdvert.addIdleTitle
+		addIdleMore : '再增加一个广告资源',//EwayLocale.bsAdvert.addIdleMore
+		advertBasicInfo : '广告基本信息',//EwayLocale.bsAdvert.advertBasicInfo
+		idleAdvertInfo : '等待插卡页面广告',//EwayLocale.bsAdvert.idleAdvertInfo
+		advertValidity : '广告有效期',//EwayLocale.bsAdvert.advertValidity
+		validityTemp : '临时播放',//EwayLocale.bsAdvert.validityTemp
+		validityAlways : '永久播放',//EwayLocale.bsAdvert.validityAlways
+		idleAdvertResConfig : '等待插卡页面广告资源配置',//EwayLocale.bsAdvert.idleAdvertResConfig
+		advertTypeIdle : '等待插卡广告',//EwayLocale.bsAdvert.advertTypeIdle
+		annoucementContextRegText : '不能包含空格',//EwayLocale.bsAdvert.annoucementContextRegText
+		times : '时长',//EwayLocale.bsAdvert.times
+		timesTips : '单位:秒，提示：广告播放时长请控制在60秒内',//EwayLocale.bsAdvert.timesTips
+		hourDisplay : '时',//EwayLocale.bsAdvert.hourDisplay
+		minuteDisplay : '分',//EwayLocale.bsAdvert.minuteDisplay
+		secondeDisplay : '秒',//EwayLocale.bsAdvert.secondeDisplay
+		idleMoreTitle : '添加等待插卡页面广告',//EwayLocale.bsAdvert.idleMoreTitle
+		chooseMediaFile : '请选择媒体文件',//EwayLocale.bsAdvert.chooseMediaFile
+		uploadResource : '上传资源...',//EwayLocale.bsAdvert.uploadResource
+		uploadResourceBlank : '请上传资源',//EwayLocale.bsAdvert.uploadResourceBlank
+		uploadRegText : '上传的资源格式不支持,只能上传.jpg、.gif格式的文件',//EwayLocale.bsAdvert.uploadRegText
+		resourceFormatTips : '(仅支持.jpg、.gif格式的文件)',//EwayLocale.bsAdvert.resourceFormatTips
+		resourceAlias : '修改后的文件名',//EwayLocale.bsAdvert.resourceAlias
+		transMoreTitle : '添加交易页面广告',//EwayLocale.bsAdvert.transMoreTitle
+		chooseMediaFile : '请选择媒体文件',//EwayLocale.bsAdvert.chooseMediaFile
+		uploadResource : '上传资源...',//EwayLocale.bsAdvert.uploadResource
+		uploadResourceBlank : '请上传资源',//EwayLocale.bsAdvert.uploadResourceBlank
+		addMorePic : '添加图片',//EwayLocale.bsAdvert.addMorePic
+		uploadRegText : '上传的资源格式不支持,只能上传.jpg、.gif格式的文件',//EwayLocale.bsAdvert.uploadRegText
+		resourceFormatTips : '(仅支持.jpg、.gif格式的文件)',//EwayLocale.bsAdvert.resourceFormatTips
+		resourceAlias : '修改后的文件名',//EwayLocale.bsAdvert.resourceAlias
+		uploading : '正在上传资源...',//EwayLocale.bsAdvert.uploading
+		advertPreviewTitle0 : '广告预览(共有 ',//EwayLocale.bsAdvert.advertPreviewTitle0
+		advertPreviewTitle1 : '个资源,当前播放第 ',//EwayLocale.bsAdvert.advertPreviewTitle1
+		advertPreviewTitle2 : '个) ',//EwayLocale.bsAdvert.advertPreviewTitle2
+		choosedAdvertRes : '您已经选择了',//EwayLocale.bsAdvert.choosedAdvertRes
+		limitNumberTenForEveryResolution : '每种分辨率下最多只能上传10张图片.',//EwayLocale.bsAdvert.limitNumberTenForEveryResolution
+		mustContainerOnePicAt1024 : '1024分辨率下至少包含一个图片',//EwayLocale.bsAdvert.mustContainerOnePicAt1024
+		deleteAdvertResource : '删除该图片',//EwayLocale.bsAdvert.deleteAdvertResource
+		fileName : '文件名',//EwayLocale.bsAdvert.fileName
+		resourceName : '资源名称',//EwayLocale.bsAdvert.resourceName
+		perviewAdertWithIEBrowse : '非IE浏览器不支持视频广告的预览.',//EwayLocale.bsAdvert.perviewAdertWithIEBrowse
+		fileFormatTipsInfo : "<font color='red'>上传的图片格式不支持,只能上传.jpg格式的图片</font>",//EwayLocale.bsAdvert.fileFormatTipsInfo
+		idleAdvertUpTipsInfo : '<font color="red">仅支持.jpg和.gif格式的图片;每种分辨率最多上传10张图片;每张图片最大5M</font>',//EwayLocale.bsAdvert.idleAdvertUpTipsInfo
+		configTitle : '广告详细配置'//EwayLocale.bsAdvert.configTitle
+	},
 	
 	version : {//EwayLocale.version.version
 		selectDeviceInfo0 : "已选择的设备(<font color='red'>",//EwayLocale.version.selectDeviceInfo0

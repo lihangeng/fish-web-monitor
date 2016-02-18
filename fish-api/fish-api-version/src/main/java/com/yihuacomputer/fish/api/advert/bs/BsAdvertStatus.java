@@ -1,16 +1,14 @@
 package com.yihuacomputer.fish.api.advert.bs;
 
 public enum BsAdvertStatus {
-	//未激活
-	UNACTIVE(0,"BsAdvertStatus.UNACTIVE"),
 	/**
-	 * 更改未激活
+	 * 未激活
 	 */
-	UPDATEUNACTIVE(1,"BsAdvertStatus.UPDATEUNACTIVE"),
+	UNACTIVE(0,"BsAdvertStatus.UNACTIVE"),
 	/**
 	 *已激活 
 	 */
-	ACTIVED(2,"BsAdvertStatus.ACTIVED");
+	ACTIVED(1,"BsAdvertStatus.ACTIVED");
 	private int id;
 	private String name;
 	private BsAdvertStatus(int id,String name){

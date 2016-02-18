@@ -143,9 +143,10 @@ public class BsAdvertController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			return result;
 		}
+		//bsadvert.delete.fail=激活状态的广告无法删除
 		if(bsAdvert.getBsAdvertStatus()!=BsAdvertStatus.UNACTIVE){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "当前广告无法删除！");
+			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.delete.fail",null));
 			return result;
 		}
 		else if(bsAdvert.getBsAdvertStatus()==BsAdvertStatus.UNACTIVE){
@@ -153,6 +154,10 @@ public class BsAdvertController {
 		}
 		result.addAttribute(FishConstant.SUCCESS, true);
 		return result;
+	}
+	
+	private String getI18NResource(String code,String args[]){
+		return messageSourceVersion.getMessage(code, args, FishCfg.locale);
 	}
 	
 	/**
@@ -166,14 +171,16 @@ public class BsAdvertController {
 		logger.info("activedBsAdvert "+advertId);
 		ModelMap result = new ModelMap();
 		IBsAdvert bsAdvert = bsAdvertService.getById(advertId);
+		//bsadvert.notExist=广告不存在，请刷新后操作
 		if(null==bsAdvert){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "广告不存在，请刷新后操作。");
+			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.notExist",null));
 			return result;
 		}
+		//bsadvert.active.actived=广告已激活。
 		else if(bsAdvert.getBsAdvertStatus().equals(BsAdvertStatus.ACTIVED)){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "广告已激活。");
+			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.active.actived",null));
 			return result;
 		}
 		try {
@@ -183,7 +190,8 @@ public class BsAdvertController {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "广告激活异常。");
+			//bsadvert.active.exception"广告激活异常。"
+			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.active.exception",null));
 			return result;
 		}
 		result.addAttribute(FishConstant.SUCCESS, true);
@@ -204,9 +212,10 @@ public class BsAdvertController {
 		ModelMap result = new ModelMap();
 		IBsAdvert bsAdvert = bsAdvertService.getById(advertId);
 		ScreenResources screenResources = null;
+		//bsadvert.notExist=广告不存在，请刷新后操作
 		if(null==bsAdvert){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "广告不存在，请刷新后操作。");
+			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.notExist",null));
 			return result;
 		}
 		try {
@@ -226,8 +235,9 @@ public class BsAdvertController {
 			new File(willCopyFileName).delete();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
+//			bsadvert.load.exception=加载广告资源异常。
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "加载广告资源异常。");
+			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.load.exception", null));
 			return result;
 		}
 		result.addAttribute(FishConstant.SUCCESS, true);
@@ -380,7 +390,8 @@ public class BsAdvertController {
 		List<IBsAdvert> bsAdvertList = bsAdvertService.getBsAdvertByNameAndOrgId(userSession.getOrgId(),form.getAdvertName());
 		if(bsAdvertList.size()>0){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "当前机构广告名称重复");
+//			bsadvert.org.sameName=当前机构存在相同的广告名称
+			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.org.sameName", null));
 			return result;
 		}
 		IBsAdvert advert = bsAdvertService.make();
@@ -421,6 +432,7 @@ public class BsAdvertController {
 		IFilter filter = new Filter();
 		filter.eq("groupId", advert.getGroupId());
 		List<IBsAdvert> groupBsAdvertList = bsAdvertService.list(filter);
+		//如果为当前组的第一个广告则直接激活；第一条及以后的广告不做自动激活处理
 		if(groupBsAdvertList.size()==1){
 			bsAdvertService.actived(advert);
 		}else{
@@ -450,7 +462,6 @@ public class BsAdvertController {
 		UserSession session =(UserSession)request.getSession().getAttribute(FishWebUtils.USER);
 		IBsAdvert advert = bsAdvertService.getById(id);
 		advert.setAdvertName(form.getAdvertName());
-		advert.setGroupId(form.getGroupId());
 		advert.setUserId(session.getUserId());
 		advert.setLastTime(new Date());
 		advert.setAdvertType(AdvertType.valueOf(form.getAdvertType()));
@@ -486,14 +497,29 @@ public class BsAdvertController {
 		zipAdvertFile(advert,request,fileNames,tempDir);
 		bsAdvertService.update(advert);
 		// 回填值到form中
+		
+		form.setActiveUserId(advert.getActiveUserId());
+		IUser activeUser = userService.get(advert.getActiveUserId());
+		form.setActiveUserName(activeUser==null?"":activeUser.getName());
+		form.setAdvertName(advert.getAdvertName());
+		form.setGroupId(advert.getGroupId());
+		IAdvertGroup advertGroup= advertGroupService.getById(advert.getGroupId());
+		if(advertGroup!=null){
+			form.setGroupName(advertGroup.getGroupName());
+		}
+		form.setBsAdvertStatus(getEnumI18n(advert.getBsAdvertStatus().getName()));
 		form.setId(advert.getId());
-		form.setLastTime(DateUtils.getTimestamp(advert.getLastTime()));
-		form.setUserName(session.getUserName());
+		form.setAdvertFileName(getBsAdvertFile(advert));
+		form.setLastTime(DateUtils.getDate(advert.getLastTime()));
+		form.setUserId(advert.getUserId());
+		IUser createUser = userService.get(advert.getUserId());
+		form.setUserName(createUser==null?"":createUser.getName());
+		//如果当前广告更改之前是激活状态的，直接进行激活操作
 		if(advert.getBsAdvertStatus().equals(BsAdvertStatus.ACTIVED)){
 			bsAdvertService.actived(advert);
 		}
 		model.addAttribute(FishConstant.SUCCESS, true);
-		model.addAttribute(FishConstant.DATA,"");
+		model.addAttribute(FishConstant.DATA,form);
 		return model;
 	}
 	
@@ -531,7 +557,9 @@ public class BsAdvertController {
 	}
 	
 	
-	
+	public static void main(String args[]){
+		IOUtils.deleteDir("D:\\workspace\\atmvs\\fish-web-monitor\\src\\main\\webapp\\tmp\\bsAdvert\\admin_1dhuh8gfyiaa518ynjudizride\\9");
+	}
 
 	private String getEnumI18n(String enumText) {
 		if (null == enumText) {
