@@ -370,8 +370,9 @@ public class OrganizationController {
 			OrganizationType orgType = OrganizationType.getById(Integer.valueOf(request.getParameter("type")));
 			String org = request.getParameter("orgId");
 			String bcOrg = request.getParameter("bcOrg");
-			if (null == org || "".equals(org))
+			if (null == org || "".equals(org)){
 				childs = service.listChildren(node, orgType);
+			}
 			else if (null != bcOrg && !"".equals(bcOrg)) {
 				IFilter filter = new Filter();
 				filter.eq("parent.id", Long.parseLong(org));
@@ -381,10 +382,11 @@ public class OrganizationController {
 				Long pId = service.get(org).getParent().getId();
 				childs = service.get(String.valueOf(pId)).listChildren(orgType);
 			}
-			if (childs != null)
+			if (childs != null){
 				for (IOrganization item : childs) {
 					result.add(new OrganizationTreeForm(item));
 				}
+			}
 		}
 		return result;
 	}

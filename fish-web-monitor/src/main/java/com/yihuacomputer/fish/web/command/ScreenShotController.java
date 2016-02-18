@@ -375,7 +375,12 @@ public class ScreenShotController {
 				}
 			}
 		}
-		int index = screenForm.getFileName().lastIndexOf("\\");
+		int index = 0;
+		if(screenForm!=null&&screenForm.getFileName()!=null){
+			
+			index = screenForm.getFileName().lastIndexOf("\\");	
+		}
+		
 		String filePathService = screenForm.getFileName().substring(0, index);
 		String fileNameService = screenForm.getFileName().substring(index + 1);
 
@@ -439,10 +444,13 @@ public class ScreenShotController {
 				}
 			}
 		}
+		if(screenForm!=null){
+			
+			File file = new File(screenForm.getFilePathClient() + System.getProperty("file.separator") + screenForm.getFileNameClient());
 
-		File file = new File(screenForm.getFilePathClient() + System.getProperty("file.separator") + screenForm.getFileNameClient());
-
-		download(file, response, "gb2312", "video/avi");
+			download(file, response, "gb2312", "video/avi");
+		}
+		
 
 		// result.put(FishConstant.SUCCESS, true);
 		// return result;

@@ -310,8 +310,10 @@ public class BsAdvertController {
 			reader = new FileReader(willCopyFileName);
             br = new BufferedReader(reader);
 			String str = br.readLine();
-			str = str.replaceAll("resourceId", "id");
-			screenAdvert = JsonUtils.fromJson(str, BsAdvertScreenForm.class);
+			if(str!=null){
+				str = str.replaceAll("resourceId", "id");
+				screenAdvert = JsonUtils.fromJson(str, BsAdvertScreenForm.class);
+			}
 		} catch (FileNotFoundException e) {
 			logger.error(e.getMessage());
 		} catch (IOException e) {
