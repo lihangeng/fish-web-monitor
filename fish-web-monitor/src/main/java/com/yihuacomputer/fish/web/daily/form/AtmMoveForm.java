@@ -64,8 +64,9 @@ public class AtmMoveForm {
         if(null!=destPerson){
         	this.destPerson = destPerson.getName();
         }
-        if(null!=targetPerson)
+        if(null!=targetPerson){
         this.targetPerson = targetPerson.getName();
+        }
     }
 
     public void translate(IAtmMove atmMove) {

@@ -1,7 +1,8 @@
 Ext.define('Eway.view.bsAdvert.field.BsAdvertStatusComBox', {
 	extend : 'Ext.form.field.ComboBox',
 	alias : 'widget.field_bsadvert_advertStatus',
-	fieldLabel : '广告状态',
+	//'广告状态'
+	fieldLabel : EwayLocale.bsAdvert.advertStatus,
 	name : 'actived',
 	hiddenName : 'actived',
 	store : 'bsAdvert.BsAdvertStatus',

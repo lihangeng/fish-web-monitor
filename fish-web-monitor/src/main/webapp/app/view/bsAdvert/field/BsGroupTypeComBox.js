@@ -2,7 +2,8 @@
 Ext.define('Eway.view.bsAdvert.field.BsGroupTypeComBox', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field_bsadvert_groupType',
-	fieldLabel : '广告组类型',
+	//'广告组类型',
+	fieldLabel : EwayLocale.bsAdvert.advertGroupType,
 	name : 'actived',
 	hiddenName : 'actived',
 	store : 'bsAdvert.BsAdvertGroupType',

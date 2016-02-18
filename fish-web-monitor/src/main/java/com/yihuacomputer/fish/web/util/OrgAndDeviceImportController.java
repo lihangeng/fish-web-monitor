@@ -66,7 +66,9 @@ public class OrgAndDeviceImportController {
 		}
 		OutputStream out = null;
 		out = response.getOutputStream();
-		response.setHeader("Content-Disposition", "attachment; filename=" + file.getName());
+		if(file!=null){
+			response.setHeader("Content-Disposition", "attachment; filename=" + file.getName());
+		}
 		response.addHeader("Content-Length", "" + file.length());
 		response.setContentType("application/x-msdownload;charset=UTF-8");
 		RandomAccessFile randomFile = new RandomAccessFile(file, "r");
@@ -102,7 +104,10 @@ public class OrgAndDeviceImportController {
 		} else if ("2".equals(type)) {
 			file = new File(request.getSession().getServletContext().getRealPath("/deviceResult.xls"));
 		}
-		file.delete();
+		if(file!=null){
+			file.delete();
+		}
+		
 	}
 
 	@RequestMapping(value = "/downloadFile", method = RequestMethod.GET)
