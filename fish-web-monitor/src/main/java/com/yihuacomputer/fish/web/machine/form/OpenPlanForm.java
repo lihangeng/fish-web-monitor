@@ -7,6 +7,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -18,6 +20,8 @@ import com.yihuacomputer.fish.api.openplan.PlanStateType;
 import com.yihuacomputer.fish.api.openplan.PlanType;
 
 public class OpenPlanForm {
+	
+	private Logger logger = LoggerFactory.getLogger(OpenPlanForm.class);
 
 	private long id;
 
@@ -75,7 +79,7 @@ public class OpenPlanForm {
 				}
 			}
 			catch (Exception e){
-				e.printStackTrace();
+				logger.error(e.getMessage());
 			}
 		}
 		this.desc = deviceOpenPlan.getDesc();
@@ -152,7 +156,7 @@ public class OpenPlanForm {
 				openPlanDetails = JsonUtils.om.readValue(this.openPlanDetailForms, new TypeReference<List<OpenPlanDetailForm>>() {
 				});
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error(e.getMessage());
 			}
 		}
 		return openPlanDetails;

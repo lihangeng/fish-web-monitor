@@ -37,10 +37,10 @@ public class JournalParser {
 	/*交易金额匹配表达式*/
 	private Pattern transAmountPattern = null;
 	
-	// 交易时间匹配表达式
-//	private Pattern transTimePattern = null;
+	/* 交易时间匹配表达式*/
+/*	private Pattern transTimePattern = null;*/
 	
-	// 日期匹配表达式
+	/* 日期匹配表达式*/
 	private Pattern dateTimePattern = null;
 	
 	/*交易帐号匹配表达式*/
@@ -88,19 +88,26 @@ public class JournalParser {
 			this.transTypePattern = Pattern.compile(pros.getProperty("TRANS_TYPE_PATTERN_TEXT"));
 			this.transAmountPattern = Pattern.compile(pros.getProperty("TRANS_AMOUNT_PATTERN_TEXT"));
 			this.hostRetcodePattern = Pattern.compile(pros.getProperty("TRANS_HOSTRETURN_PATTERN_TEXT"));
-//			this.transTimePattern = Pattern.compile(pros.getProperty("TRANS_TIME_PATTERN_TEXT"));
+/*			this.transTimePattern = Pattern.compile(pros.getProperty("TRANS_TIME_PATTERN_TEXT"));*/
 			this.transBoxlistPattern = Pattern.compile(pros.getProperty("TRANS_BOXLIST_PATTERN_TEXT"));
-//			this.transTimePattern = Pattern.compile(pros.getProperty("TRANS_TIME_PATTERN_TEXT"));
+/*			this.transTimePattern = Pattern.compile(pros.getProperty("TRANS_TIME_PATTERN_TEXT"));*/
 			
 		}catch( Exception e ){
-			//e.printStackTrace();
+			/*e.printStackTrace();*/
 			return;
 		}finally{
+			if ( null != bf  ){
+				try{
+					bf.close();
+				}catch(IOException e){
+					/*e.printStackTrace();*/
+				}
+			}
 			if ( null != ins ){
 				try {
 					ins.close();
 				} catch (IOException e) {
-					//e.printStackTrace();
+					/*e.printStackTrace();*/
 				}
 			}
 		}	
@@ -195,8 +202,8 @@ public class JournalParser {
 		AtmCycle atm = new AtmCycle();
 		List<ICustomerCycle> customer = new ArrayList<ICustomerCycle>();
 		atm.setCustomers(customer);
-//		Matcher cashInMatch = cashInPattern.matcher(content);
-//		if
+/*		Matcher cashInMatch = cashInPattern.matcher(content);*/
+/*		if*/
 		//TODO 解析ATM周期信息
 		return atm;
 	}

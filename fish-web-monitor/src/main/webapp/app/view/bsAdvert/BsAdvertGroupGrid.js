@@ -100,8 +100,8 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 					}
 				}
 			},{
-				header : '资源路径',
-				dataIndex : 'resourcePath',
+				header : '已激活的广告',
+				dataIndex : 'activedAdv',
 				sortable : true,
 				flex : 1
 			}],

@@ -24,6 +24,8 @@ import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -78,7 +80,8 @@ public class AtmLogController {
 	
 	@Autowired
 	private IAtmLogService logService;
-
+	
+	private Logger logger = LoggerFactory.getLogger(AtmLogController.class);
 
 
 	@RequestMapping(value = "/getBackup", method = RequestMethod.GET)
@@ -196,7 +199,7 @@ public class AtmLogController {
 			}
 			os.flush();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		} finally {
 			if (fis != null) {
 				fis.close();
@@ -240,7 +243,7 @@ public class AtmLogController {
 		try {
 			file.transferTo(targetFile);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 			String tips = messageSource.getMessage("exploer.fileUpload.fail", null, FishCfg.locale);
 			return "{'success':false,'errors':'"+tips+"'}";
 		}
@@ -371,7 +374,7 @@ public class AtmLogController {
 				wb.write(fout);
 				fout.close();
 			} catch (Exception e) {
-				e.printStackTrace();
+				logger.error(e.getMessage());
 			}
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("path", FishCfg.getTempDir() + System.getProperty("file.separator") + name);
@@ -408,20 +411,20 @@ public class AtmLogController {
 				out.write(buffer, 0, len);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		} finally {
 			if (out != null) {
 				try {
 					out.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 			}
 			if (is != null) {
 				try {
 					is.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 			}
 		}

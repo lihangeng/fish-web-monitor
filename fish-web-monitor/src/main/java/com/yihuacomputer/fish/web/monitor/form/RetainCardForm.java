@@ -3,6 +3,9 @@ package com.yihuacomputer.fish.web.monitor.form;
 import java.lang.reflect.Method;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
@@ -19,6 +22,9 @@ import com.yihuacomputer.fish.api.person.IOrganizationService;
  * 
  */
 public class RetainCardForm {
+	
+	private Logger logger = LoggerFactory.getLogger(RetainCardForm.class);
+
 	private long id;
 	/**
 	 * 设备号
@@ -359,7 +365,7 @@ public class RetainCardForm {
 			Method method = targetClass.getMethod("getById", new Class[] { int.class });
 			resultObj = (T) method.invoke(null, new Object[] { Integer.valueOf(value) });
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return resultObj;
 	}

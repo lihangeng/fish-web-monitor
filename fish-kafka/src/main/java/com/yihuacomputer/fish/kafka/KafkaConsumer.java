@@ -19,8 +19,8 @@ import org.slf4j.LoggerFactory;
  */
 public class KafkaConsumer implements Runnable{
 	private Logger logger = LoggerFactory.getLogger(KafkaConsumer.class);
-	private final String STATUS = "STATUS";
-    private final String TRANS = "TRANS";
+	private static final String STATUS = "STATUS";
+    private static final String TRANS = "TRANS";
 	private ConsumerConnector consumer;
 	private KafkaConsumerManager kafkaConsumerManager;
 	
@@ -43,7 +43,7 @@ public class KafkaConsumer implements Runnable{
 	public void run() {
 		String topic = getKafkaConfig().getTopic();
 		Map<String, Integer> topicCountMap = new HashMap<String, Integer>();
-		topicCountMap.put(topic, new Integer(1));
+		topicCountMap.put(topic, Integer.valueOf(1));
 		Map<String, List<KafkaStream<byte[], byte[]>>> consumerMap = consumer.createMessageStreams(topicCountMap);
 		List<KafkaStream<byte[], byte[]>> streams = consumerMap.get(topic);
 		for (final KafkaStream stream : streams) {
@@ -60,15 +60,14 @@ public class KafkaConsumer implements Runnable{
 	}
 	private void post(String msg) {
 		 try {
-            if (msg.contains(STATUS)) {
+            if (msg.contains(KafkaConsumer.STATUS)) {
             	kafkaConsumerManager.getMessagePusher().pushStatusToWeb(msg);
-            } else if (msg.contains(TRANS)) {
+            } else if (msg.contains(KafkaConsumer.TRANS)) {
             	kafkaConsumerManager.getMessagePusher().pushTransToWeb(msg);
             }else{
             	logger.warn("ignore message [%s]",msg);
             }
         } catch (Exception e) {
-            e.printStackTrace();
             logger.error("mq handle error [%s]", e);
         }
 	}

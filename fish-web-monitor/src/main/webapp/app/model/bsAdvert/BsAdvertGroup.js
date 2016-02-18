@@ -1,7 +1,7 @@
 
 Ext.define('Eway.model.bsAdvert.BsAdvertGroup', {
 	extend: 'Ext.data.Model',
-	fields: ["id","groupType","orgId","orgName","orgLevelId","orgLevel","groupName","resourcePath"],
+	fields: ["id","groupType","orgId","orgName","orgLevelId","orgLevel","groupName","resourcePath","activedAdv"],
 	
 	idProperty : 'id',  
 	proxy : {

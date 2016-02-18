@@ -71,7 +71,7 @@ public class DayBackupExcuter implements IDayBackupExcuter{
 			dayBackup.setDate(date);
 			dayBackup.setDoTime(DateUtils.getTimestamp(new Date()));
 			this.dayBackupService.save(dayBackup);
-			Date today = null;
+			Date today = new Date();
 			Calendar c = Calendar.getInstance();
 			try {
 				today = new SimpleDateFormat("yy-MM-dd").parse(date);

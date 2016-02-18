@@ -21,8 +21,6 @@ import com.yihuacomputer.fish.fault.entity.NotifyMouldSet;
 @Transactional
 public class NotifyMouldService implements INotifyMouldService{
 
-	private final String GET_NOTIFY_HQL = "from NotifyMould n where n.faultClassify.id = ? and n.notifyType = ? and n.notifyWay = ?";
-	
 	@Autowired
 	private IGenericDao dao;
 	
@@ -35,10 +33,10 @@ public class NotifyMouldService implements INotifyMouldService{
 	
 	@Override
 	public void updateNotifyMould(INotifyMould notifyMould) {
-		dao.update(interface2Entity(notifyMould,true));
+		dao.update(interface2Entity(notifyMould));
 	}
 	
-	private NotifyMould interface2Entity(INotifyMould notifyMould, boolean load){
+	private NotifyMould interface2Entity(INotifyMould notifyMould){
 		if(notifyMould instanceof NotifyMould){
 			return (NotifyMould) notifyMould;
 		}
@@ -47,7 +45,8 @@ public class NotifyMouldService implements INotifyMouldService{
 	
 	@Override
 	public String getNotifyMould(String classifyName,NotifyType notifyType, NotifyWay notifyWay) {
-		List<INotifyMould> result = dao.findByHQL(GET_NOTIFY_HQL,classifyName,notifyType,notifyWay);
+		String hql = "from NotifyMould n where n.faultClassify.id = ? and n.notifyType = ? and n.notifyWay = ?";
+		List<INotifyMould> result = dao.findByHQL(hql,classifyName,notifyType,notifyWay);
 		
 		for(INotifyMould notifyMould:result){
 			return notifyMould.getNotifySet();

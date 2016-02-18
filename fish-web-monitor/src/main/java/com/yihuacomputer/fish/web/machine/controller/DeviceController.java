@@ -289,7 +289,7 @@ public class DeviceController {
 				contentLength += len;
 			}
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			logger.error(ex.getMessage());
 		} finally {
 			if (out != null) {
 				out.close();

@@ -21,6 +21,8 @@ import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -72,6 +74,8 @@ public class DaybackupInfoController {
 	
 	@Autowired
 	protected MessageSource messageSource;
+	
+	private Logger logger = LoggerFactory.getLogger(DaybackupInfoController.class);
 
 	@RequestMapping(value = "/getDayBackup", method = RequestMethod.GET)
 	public @ResponseBody
@@ -110,7 +114,7 @@ public class DaybackupInfoController {
 			map.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception e) {
 			map.addAttribute(FishConstant.SUCCESS, false);
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 		return map;
 	}
@@ -203,7 +207,7 @@ public class DaybackupInfoController {
 			FileOutputStream fout = new FileOutputStream(FishCfg.getTempDir() + File.separator + name);
 			wb.write(fout);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 		File file = new File(FishCfg.getTempDir() + System.getProperty("file.separator") + name);
@@ -275,7 +279,7 @@ public class DaybackupInfoController {
 			FileOutputStream fout = new FileOutputStream(FishCfg.getTempDir() + File.separator + name);
 			wb.write(fout);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 		File file = new File(FishCfg.getTempDir() + System.getProperty("file.separator") + name);
@@ -339,7 +343,7 @@ public class DaybackupInfoController {
 			FileOutputStream fout = new FileOutputStream(FishCfg.getTempDir() + File.separator + name);
 			wb.write(fout);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 
 		File file = new File(FishCfg.getTempDir() + System.getProperty("file.separator") + name);
@@ -386,20 +390,20 @@ public class DaybackupInfoController {
 			}
 			// osa.close();
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		} finally {
 			if (out != null) {
 				try {
 					out.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 			}
 			if (is != null) {
 				try {
 					is.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 			}
 
@@ -408,7 +412,7 @@ public class DaybackupInfoController {
 			// osw.close();
 			// }
 			// catch (IOException e) {
-			// e.printStackTrace();
+			// logger.error(e.getMessage());
 			// }
 			// }
 		}
@@ -432,9 +436,7 @@ public class DaybackupInfoController {
 				} else if ("orgId".equals(name)) {
 					String orgFlag = orgService.get(value).getOrgFlag();
 					filter.like("device.organization.orgFlag", orgFlag);
-				} else {
-
-				}
+				} 
 			}
 		}
 

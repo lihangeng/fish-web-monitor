@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -28,7 +29,7 @@ import com.yihuacomputer.fish.web.index.form.ChartForm;
 @Controller
 @RequestMapping("/report/transactionDaysCount")
 public class TransactionDaysCountController {
-	private Logger logger = org.slf4j.LoggerFactory.getLogger(TransactionDaysCountController.class);
+	private Logger logger = LoggerFactory.getLogger(TransactionDaysCountController.class);
 
 	@Autowired
 	private ITransactionService transactionService;
@@ -48,7 +49,7 @@ public class TransactionDaysCountController {
         try {
 			days = DateUtils.daysOfMonth(month) ;
 		} catch (ParseException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
         filter.eq("endDate", Integer.parseInt((month +"-" + days).replaceAll("-", "")));
         String orgId = req.getParameter("orgId") ;

@@ -19,7 +19,9 @@ import javax.servlet.http.HttpSession;
 
 
 
+
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -68,7 +70,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
 @RequestMapping("bsadvert/advert")
 public class BsAdvertController {
 
-	private Logger logger = org.slf4j.LoggerFactory.getLogger(BsAdvertController.class);
+	private Logger logger = LoggerFactory.getLogger(BsAdvertController.class);
 
 	@Autowired
 	private MessageSource messageSourceEnum;
