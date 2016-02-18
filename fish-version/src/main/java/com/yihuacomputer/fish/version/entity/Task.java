@@ -427,5 +427,9 @@ public class Task implements ITask {
     public void setProcess(double process) {
         this.process = process;
     }
-
+    
+    public int hashCode() {  
+        return Long.valueOf(id).hashCode();  
+              
+    }  
 }

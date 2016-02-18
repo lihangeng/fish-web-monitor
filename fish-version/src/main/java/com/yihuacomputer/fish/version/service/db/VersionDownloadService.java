@@ -18,7 +18,6 @@ import com.yihuacomputer.fish.api.device.IComplexDeviceService;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
-import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
@@ -268,10 +267,10 @@ public class VersionDownloadService implements IVersionDownloadService {
 
 	}
 
-	@SuppressWarnings("unused")
-	private void rebootOne(String ip){
-		 String url = MonitorCfg.getHttpUrl(ip) + "/ctr/normalReboot";
-	}
+//	@SuppressWarnings("unused")
+//	private void rebootOne(String ip){
+//		 String url = MonitorCfg.getHttpUrl(ip) + "/ctr/normalReboot";
+//	}
 
 	public long getMayBeDownDevice(IVersion version,IOrganization org){
         StringBuffer hql = new StringBuffer();
