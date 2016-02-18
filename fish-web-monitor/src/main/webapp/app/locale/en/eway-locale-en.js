@@ -60,6 +60,7 @@ Ext.apply(EwayLocale,{
 		apply:'Apply',//EwayLocale.button.apply
 		link:'Binding',//EwayLocale.button.link
 		unlink:'Delete',//EwayLocale.button.unlink
+		active:'Active',//EwayLocale.button.active
 		
 		bankOrgMove:'Migrate',//EwayLocale.button.bankOrgMove
 		bankOrgAdmin:'Manager',//EwayLocale.button.bankOrgAdmin

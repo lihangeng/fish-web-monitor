@@ -82,11 +82,6 @@ Ext.apply(EwayLocale,{
 		textMoreTitle : '添加文字滚动页面广告',//EwayLocale.advert.textMoreTitle
 		textContext : '滚动文字',//EwayLocale.advert.textContext
 		idleMoreTitle : '添加等待插卡页面广告',//EwayLocale.advert.idleMoreTitle
-		chooseMediaFile : '请选择媒体文件',//EwayLocale.advert.chooseMediaFile
-		uploadResource : '上传资源...',//EwayLocale.advert.uploadResource
-		uploadResourceBlank : '请上传资源',//EwayLocale.advert.uploadResourceBlank
-		uploadRegText : '上传的资源格式不支持,只能上传.jpg、.gif格式的文件',//EwayLocale.advert.uploadRegText
-		resourceFormatTips : '(仅支持.jpg、.gif格式的文件)',//EwayLocale.advert.resourceFormatTips
 		resourceAlias : '修改后的文件名',//EwayLocale.advert.resourceAlias
 		transMoreTitle : '添加交易页面广告',//EwayLocale.advert.transMoreTitle
 		chooseMediaFile : '请选择媒体文件',//EwayLocale.advert.chooseMediaFile
@@ -132,8 +127,7 @@ Ext.apply(EwayLocale,{
 		createdTime : '制作时间',//EwayLocale.bsAdvert.createdTime
 		userName : '制作人',//EwayLocale.bsAdvert.userName
 		activedUserName : '激活人',//EwayLocale.bsAdvert.activedUserName
-		versionStatus : '广告版本状态',//EwayLocale.bsAdvert.versionStatus
-		advertFile : '广告文件文件',//EwayLocale.bsAdvert.advertFile
+		advertFile : '广告文件',//EwayLocale.bsAdvert.advertFile
 		createdTimeStart : '制作时间开始于',//EwayLocale.bsAdvert.createdTimeStart
 		createdTimeStop : '制作时间结束于',//EwayLocale.bsAdvert.createdTimeStop
 		playTime : '广告播放时长',//EwayLocale.bsAdvert.playTime
@@ -159,14 +153,7 @@ Ext.apply(EwayLocale,{
 		hourDisplay : '时',//EwayLocale.bsAdvert.hourDisplay
 		minuteDisplay : '分',//EwayLocale.bsAdvert.minuteDisplay
 		secondeDisplay : '秒',//EwayLocale.bsAdvert.secondeDisplay
-		idleMoreTitle : '添加等待插卡页面广告',//EwayLocale.bsAdvert.idleMoreTitle
-		chooseMediaFile : '请选择媒体文件',//EwayLocale.bsAdvert.chooseMediaFile
-		uploadResource : '上传资源...',//EwayLocale.bsAdvert.uploadResource
-		uploadResourceBlank : '请上传资源',//EwayLocale.bsAdvert.uploadResourceBlank
-		uploadRegText : '上传的资源格式不支持,只能上传.jpg、.gif格式的文件',//EwayLocale.bsAdvert.uploadRegText
-		resourceFormatTips : '(仅支持.jpg、.gif格式的文件)',//EwayLocale.bsAdvert.resourceFormatTips
-		resourceAlias : '修改后的文件名',//EwayLocale.bsAdvert.resourceAlias
-		transMoreTitle : '添加交易页面广告',//EwayLocale.bsAdvert.transMoreTitle
+		idleMoreTitle : '添加等待插卡页面广告',//EwayLocale.bsAdvert.idleMoreTitle	
 		chooseMediaFile : '请选择媒体文件',//EwayLocale.bsAdvert.chooseMediaFile
 		uploadResource : '上传资源...',//EwayLocale.bsAdvert.uploadResource
 		uploadResourceBlank : '请上传资源',//EwayLocale.bsAdvert.uploadResourceBlank

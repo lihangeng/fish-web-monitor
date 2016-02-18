@@ -81,19 +81,14 @@ Ext.apply(EwayLocale,{
 		textMoreTitle:'Add Page With Rolling-character',//EwayLocale.advert.textMoreTitle
 		textContext:'Rolling Character',//EwayLocale.advert.textContext
 		idleMoreTitle:'Add Page Of Idle Advertisement',//EwayLocale.advert.idleMoreTitle
-		chooseMediaFile:'Please Choose Media File',//EwayLocale.advert.chooseMediaFile
-		uploadResource:'Upload Resource...',//EwayLocale.advert.uploadResource
-		uploadResourceBlank:'Please Upload Resource...',//EwayLocale.advert.uploadResourceBlank
-		uploadRegText:'Unsupported Resource Uploaded ,Only .jpg,.aiv File Can Be Uploaded',//EwayLocale.advert.uploadRegText
-		resourceFormatTips:'Only .jpg,.avi File Is Supported',//EwayLocale.advert.resourceFormatTips
 		resourceAlias:'File Name After Modified',//EwayLocale.advert.resourceAlias
 		transMoreTitle:'Add Page Of Transaction Advertisement',//EwayLocale.advert.transMoreTitle
 		chooseMediaFile:'Please Choose Media File',//EwayLocale.advert.chooseMediaFile
 		uploadResource:'Upload Resource...',//EwayLocale.advert.uploadResource
 		uploadResourceBlank:'Please Upload Resource',//EwayLocale.advert.uploadResourceBlank
 		addMorePic:'Add A Picture',//EwayLocale.advert.addMorePic
-		uploadRegText:'Unsupported Resource Uploaded ,Only .jpg,.aiv File Can Be Uploaded',//EwayLocale.advert.uploadRegText
-		resourceFormatTips:'Only .jpg,.avi File Is Supported',//EwayLocale.advert.resourceFormatTips
+		uploadRegText:'Unsupported Resource Uploaded ,Only .jpg,.gif File Can Be Uploaded',//EwayLocale.advert.uploadRegText
+		resourceFormatTips:'Only .jpg,.gif File Is Supported',//EwayLocale.advert.resourceFormatTips
 		resourceAlias:'File Name After Modified',//EwayLocale.advert.resourceAlias
 		advertDownMethodCover:'Override',//EwayLocale.advert.advertDownMethodCover
 		uploading:'Resource Uploading...',//EwayLocale.advert.uploading
@@ -110,6 +105,75 @@ Ext.apply(EwayLocale,{
 		fileFormatTipsInfo:"<font color='Red'>Upload picture format is not supported, only upload .jpg format images</font>",//EwayLocale.advert.fileFormatTipsInfo
 		idleAdvertUpTipsInfo:'<font Color="red">Only Supports .jpg And .gif Format Images; Each Resolution Upload Up To 10 Pictures; Each Picture Maximum 5M</font>',//EwayLocale.advert.idleAdvertUpTipsInfo
 		configTitle:'Detail Settings'//EwayLocale.advert.configTitle
+	},
+	bsAdvert : {//EwayLocale.bsAdvert.advert
+		advertGroup:'Advert Group',//EwayLocale.bsAdvert.advertGroup
+		advertName:'Advert Name',//EwayLocale.bsAdvert.advertName
+		advertTitle:'Advertisement',//EwayLocale.bsAdvert.advertTitle
+		advertStatus:'Advert Status',//EwayLocale.bsAdvert.advertStatus
+		advertGroupType:'Group Type',//EwayLocale.bsAdvert.advertGroupType
+		title : 'BS Advertisement',//EwayLocale.bsAdvert.title
+		createAdvert : 'Create Advert',//EwayLocale.bsAdvert.createAdvert
+		idleAdvert : 'Idle Advert',//EwayLocale.bsAdvert.idleAdvert
+		updateTitle : 'Update Advert',//EwayLocale.bsAdvert.updateTitle
+		activeAdvert : 'Active Advert',//EwayLocale.bsAdvert.activeAdvert
+		preview : 'Preview',//EwayLocale.bsAdvert.preview
+		preview1024 : Preview 1024 Resolution',//EwayLocale.bsAdvert.preview1024
+		preview800 : 'Preview 800 Resolution',//EwayLocale.bsAdvert.preview800
+		preview600 : 'Preview 600 Resolution',//EwayLocale.bsAdvert.preview600
+		id : 'Advert ID',//EwayLocale.bsAdvert.id
+		validity : 'Expiry Date',//EwayLocale.bsAdvert.validity
+		createdTime : 'Created Time',//EwayLocale.bsAdvert.createdTime
+		userName : 'Creater',//EwayLocale.bsAdvert.userName
+		activedUserName : 'Activer',//EwayLocale.bsAdvert.activedUserName
+		advertFile : 'File',//EwayLocale.bsAdvert.advertFile
+		createdTimeStart : 'Create Time From',//EwayLocale.bsAdvert.createdTimeStart
+		createdTimeStop : 'To',//EwayLocale.bsAdvert.createdTimeStop
+		playTime : 'Play Time',//EwayLocale.bsAdvert.playTime
+		beginDate : 'Start Date',//EwayLocale.bsAdvert.beginDate
+		endDate : 'End Date',//EwayLocale.bsAdvert.endDate
+		beginTime : 'Start Time',//EwayLocale.bsAdvert.beginTime
+		endTime : 'End Time',//EwayLocale.bsAdvert.endTime
+		fileSize : 'Resource Size',//EwayLocale.bsAdvert.fileSize
+		content : 'Content Of Play Resource',//EwayLocale.bsAdvert.content
+		advertConfig : 'Settings',//EwayLocale.bsAdvert.advertConfig
+		addIdleTitle : 'Add Idle Advertisement Info',//EwayLocale.bsAdvert.addIdleTitle
+		addIdleMore : 'Add Resource Of Advertisement Again',//EwayLocale.bsAdvert.addIdleMore
+		advertBasicInfo : 'Basic Info',//EwayLocale.bsAdvert.advertBasicInfo
+		idleAdvertInfo : 'Idle Advertisement',//EwayLocale.bsAdvert.idleAdvertInfo
+		advertValidity : 'Expiry Date',//EwayLocale.bsAdvert.advertValidity
+		validityTemp : 'Play Temporary',//EwayLocale.bsAdvert.validityTemp
+		validityAlways : 'Play Forever',//EwayLocale.bsAdvert.validityAlways
+		idleAdvertResConfig : 'Set The Resource Of Idle Advertisement',//EwayLocale.bsAdvert.idleAdvertResConfig
+		advertTypeIdle : 'Idle Advert',//EwayLocale.bsAdvert.advertTypeIdle
+		annoucementContextRegText : 'Blank Is Not Allowed',//EwayLocale.bsAdvert.annoucementContextRegText
+		times : 'Duration',//EwayLocale.bsAdvert.times
+		timesTips : 'Unit:second,Tip:duration Below 60 Second Will Be Better',//EwayLocale.bsAdvert.timesTips
+		hourDisplay : 'Hour',//EwayLocale.bsAdvert.hourDisplay
+		minuteDisplay : 'Minute',//EwayLocale.bsAdvert.minuteDisplay
+		secondeDisplay : 'Second',//EwayLocale.bsAdvert.secondeDisplay
+		idleMoreTitle : 'Add Page With Rolling-character',//EwayLocale.bsAdvert.idleMoreTitle
+		chooseMediaFile : 'Please Choose Media File',//EwayLocale.bsAdvert.chooseMediaFile
+		uploadResource : 'Upload Resource...',//EwayLocale.bsAdvert.uploadResource
+		uploadResourceBlank : 'Please Upload Resource',//EwayLocale.bsAdvert.uploadResourceBlank
+		addMorePic : 'Add A Picture',//EwayLocale.bsAdvert.addMorePic
+		uploadRegText : 'Unsupported Resource Uploaded ,Only .jpg,.gif File Can Be Uploaded',//EwayLocale.bsAdvert.uploadRegText
+		resourceFormatTips : 'Only .jpg,.gif File Is Supported',//EwayLocale.bsAdvert.resourceFormatTips
+		resourceAlias : 'File Name After Modified',//EwayLocale.bsAdvert.resourceAlias
+		uploading : 'Resource Uploading...',//EwayLocale.bsAdvert.uploading
+		advertPreviewTitle0 : 'Preview Advertisement (Total ',//EwayLocale.bsAdvert.advertPreviewTitle0
+		advertPreviewTitle1 : 'Resources,Play The No.',//EwayLocale.bsAdvert.advertPreviewTitle1
+		advertPreviewTitle2 : ' At The Present) ',//EwayLocale.bsAdvert.advertPreviewTitle2
+		choosedAdvertRes : 'You Have Choosed',//EwayLocale.bsAdvert.choosedAdvertRes
+		limitNumberTenForEveryResolution : 'Only Upload Up To 10 Pictures At Each Resolution..',//EwayLocale.bsAdvert.limitNumberTenForEveryResolution
+		mustContainerOnePicAt1024 : 'Under The 1024 Resolution Contains At Least One Picture',//EwayLocale.bsAdvert.mustContainerOnePicAt1024
+		deleteAdvertResource : 'Delete The Picture',//EwayLocale.bsAdvert.deleteAdvertResource
+		fileName : 'File Name',//EwayLocale.bsAdvert.fileName
+		resourceName : 'Resource Name',//EwayLocale.bsAdvert.resourceName
+		perviewAdertWithIEBrowse : 'Unsupported Preview The Video Without IE Explorer..',//EwayLocale.bsAdvert.perviewAdertWithIEBrowse
+		fileFormatTipsInfo : "<font color='Red'>Upload picture format is not supported, only upload .jpg format images</font>",//EwayLocale.bsAdvert.fileFormatTipsInfo
+		idleAdvertUpTipsInfo : '<font Color="red">Only Supports .jpg And .gif Format Images; Each Resolution Upload Up To 10 Pictures; Each Picture Maximum 5M</font>',//EwayLocale.bsAdvert.idleAdvertUpTipsInfo
+		configTitle : 'Detail Settings'//EwayLocale.bsAdvert.configTitle
 	},
 	
 	version:{
