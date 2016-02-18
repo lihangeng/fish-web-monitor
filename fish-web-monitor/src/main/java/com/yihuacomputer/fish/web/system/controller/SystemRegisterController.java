@@ -100,8 +100,8 @@ public class SystemRegisterController {
 	public @ResponseBody ModelMap getSystemRegisterInfo(HttpServletRequest request){
 		ModelMap map = new ModelMap();
 		//String sn = new NetInfo().getMac();
-		String key = SystemRegisterUtil.getRegSn();
-		key = key.replaceAll("\\W", "");
+//		String key = SystemRegisterUtil.getRegSn();
+//		key = key.replaceAll("\\W", "");
 		IParam serialParam = paramService.getParam("register_serial");
 		if(serialParam == null){
 			map.addAttribute(FishConstant.SUCCESS, false);

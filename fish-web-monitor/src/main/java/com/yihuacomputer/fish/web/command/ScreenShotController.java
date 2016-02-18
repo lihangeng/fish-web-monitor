@@ -375,36 +375,32 @@ public class ScreenShotController {
 				}
 			}
 		}
-		int index = 0;
-		String filePathService = "";
-		String fileNameService = "";
-		
-		if(screenForm!=null&&screenForm.getFileName()!=null){
-			
-			index = screenForm.getFileName().lastIndexOf("\\");
-			filePathService = screenForm.getFileName().substring(0, index);
-			fileNameService = screenForm.getFileName().substring(index + 1);
+		if(screenForm == null || screenForm.getFileName() == null){
+			result.put(FishConstant.SUCCESS, false);
+			return result;
+		} else {
+			int index = screenForm.getFileName().lastIndexOf("\\");
+			String filePathService = screenForm.getFileName().substring(0, index);
+			String fileNameService = screenForm.getFileName().substring(index + 1);
+
+			screenForm.setFileNameClient(screenForm.getMonitorType().name() + "_" + fileNameService);
+			screenForm.setFilePathClient(FishCfg.getTempDir());
+
+			HttpFileCfg httpFileCfg = new HttpFileCfg();
+			httpFileCfg.setCompress(true);
+			httpFileCfg.setRequestPath(filePathService);
+			httpFileCfg.setRequestName(fileNameService);
+			httpFileCfg.setLocalName(screenForm.getFileNameClient());
+			httpFileCfg.setLocalPath(screenForm.getFilePathClient());
+			httpFileCfg.setIpAdd(screenForm.getIpAddress());
+			httpFileCfg.setPort(MonitorCfg.getRemotePort());
+
+			HttpFileClient.downloadFile(httpFileCfg);
+
+			screenForm.setStatus("4");
+			result.put(FishConstant.SUCCESS, true);
+			return result;
 		}
-		
-
-		screenForm.setFileNameClient(screenForm.getMonitorType().name() + "_" + fileNameService);
-		screenForm.setFilePathClient(FishCfg.getTempDir());
-
-		HttpFileCfg httpFileCfg = new HttpFileCfg();
-		httpFileCfg.setCompress(true);
-		httpFileCfg.setRequestPath(filePathService);
-		httpFileCfg.setRequestName(fileNameService);
-		httpFileCfg.setLocalName(screenForm.getFileNameClient());
-		httpFileCfg.setLocalPath(screenForm.getFilePathClient());
-
-		httpFileCfg.setIpAdd(screenForm.getIpAddress());
-		httpFileCfg.setPort(MonitorCfg.getRemotePort());
-
-		HttpFileClient.downloadFile(httpFileCfg);
-
-		screenForm.setStatus("4");
-		result.put(FishConstant.SUCCESS, true);
-		return result;
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/removeAvi")
