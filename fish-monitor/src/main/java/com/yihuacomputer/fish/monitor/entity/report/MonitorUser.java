@@ -92,11 +92,8 @@ public class MonitorUser implements IMonitorUser {
 		if (this.userSession.isHandshook() && this.userSession.isConnected()) {
 			IMonitorListener monitorListener = this.monitorService.getMonitorListener();
 			IClassifyReport classifyReport = modStatusFilter.filterMod(deviceReport,messageSourceRef);
-			if(classifyReport.getMethod().equals(ReportMedthod.BEFILTERED)&&classifyReport.getBoxMethod().equals(ReportMedthod.BEFILTERED)
-					&&classifyReport.getNetMethod().equals(ReportMedthod.BEFILTERED)){
-
-			}
-			else{
+			if(!classifyReport.getMethod().equals(ReportMedthod.BEFILTERED)||!classifyReport.getBoxMethod().equals(ReportMedthod.BEFILTERED)||
+					!classifyReport.getNetMethod().equals(ReportMedthod.BEFILTERED)){
 				//不为删除项，则要生成ID;
 				if(!classifyReport.getMethod().equals(ReportMedthod.DELETE)&&!classifyReport.getBoxMethod().equals(ReportMedthod.DELETE)
 						&&!classifyReport.getNetMethod().equals(ReportMedthod.DELETE)){

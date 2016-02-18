@@ -138,6 +138,7 @@ public class WorkUnit implements IWorkUnit{
 			break;
 		case CounterFeitMoney:
 			this.monitorCounterFeitMoneyUserList.remove(user);
+			break;
 		case All: {
 			this.monitorUserList.remove(user);
 			this.monitorClassifyUserList.remove( user);
