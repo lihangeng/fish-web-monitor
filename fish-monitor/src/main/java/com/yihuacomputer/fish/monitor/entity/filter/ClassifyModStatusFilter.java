@@ -149,7 +149,7 @@ public class ClassifyModStatusFilter implements IClassifyModStatusFilter{
 		classifyReport.setStatusReport(deviceReport,messageSourceRef);
 		IDevice device = deviceReport.getDevice();
 		// 设备号不存在
-		if (null==subOrg||subOrg.isEmpty()||device == null||deviceReport==null||deviceReport.getXfsStatus()==null||deviceReport.getXfsStatus().getModStatus()==null) {
+		if (null==subOrg||subOrg.isEmpty()||device == null||deviceReport.getXfsStatus()==null||deviceReport.getXfsStatus().getModStatus()==null) {
 			classifyReport.setMethod( ReportMedthod.BEFILTERED);
 			classifyReport.setNetMethod(ReportMedthod.BEFILTERED);
 			classifyReport.setBoxMethod(ReportMedthod.BEFILTERED);
