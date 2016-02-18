@@ -369,15 +369,21 @@ public class AtmLogController {
 			String date = DateUtils.getDate(new Date());
 			String name = "atmLogTotal" + date + ".xls";
 			try {
-				FileOutputStream fout = new FileOutputStream(FishCfg.getTempDir()
-						+ System.getProperty("file.separator") + name);
-				wb.write(fout);
-				fout.close();
+				FileOutputStream fout = new FileOutputStream(FishCfg.getTempDir()+ System.getProperty("file.separator") + name);
+				
+				try {
+					wb.write(fout);
+					fout.close();
+					result.addAttribute(FishConstant.SUCCESS, true);
+					result.addAttribute("path", FishCfg.getTempDir() + System.getProperty("file.separator") + name);
+				} catch (Exception e) {
+					logger.error(e.getMessage());
+				}
+				
 			} catch (Exception e) {
-				logger.error(e.getMessage());
+					logger.error(e.getMessage());
 			}
-			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute("path", FishCfg.getTempDir() + System.getProperty("file.separator") + name);
+			
 		}
 		return result;
 	}
