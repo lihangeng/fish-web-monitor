@@ -68,7 +68,8 @@ public class RemoteCommHistService implements IRemoteCommHistService {
         return dao.page(start, limit, filter, RemoteCommHist.class);
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public IPageResult<Object> pageObj(int start, int limit, IFilter filter) {
 
         String hql = "select d,r from Device d, RemoteCommHist r where d.terminalId=r.terminalId order by r.id desc ";
