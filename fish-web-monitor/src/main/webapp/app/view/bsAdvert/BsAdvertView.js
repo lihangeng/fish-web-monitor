@@ -24,7 +24,12 @@ Ext.define('Eway.view.bsAdvert.BsAdvertView', {
 					region: 'center',
 					xtype: 'bs_advert_grid'
 				}]
-			}]
+			}],
+			listeners:{
+				activate:function(_this,  eOpts ){
+					_this.down("field_advert_advertGroup").getStore().load();
+				}
+			}
 		});
 		this.callParent(arguments);
 	}

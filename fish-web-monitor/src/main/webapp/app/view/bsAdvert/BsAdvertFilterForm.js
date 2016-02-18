@@ -16,6 +16,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertFilterForm',
 										columnWidth : .5,
 										items : [ {
 											xtype : 'field_advert_advertGroup',
+											name:'groupId',
 											fieldLabel : '广告归属组'
 										},{
 											xtype : 'field_bsadvert_advertStatus',

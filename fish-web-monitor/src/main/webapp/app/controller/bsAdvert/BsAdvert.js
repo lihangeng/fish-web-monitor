@@ -72,32 +72,25 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 		var sm = grid.getSelectionModel();
 		if(sm.getCount() == 1) {
 			var record = sm.getLastSelected();
-
-//			if(record.get("bsAdvertActive") == EwayLocale.version.View.downLoaded || record.get("versionStatus") == EwayLocale.version.View.waitting ){
-//				Eway.alert(EwayLocale.msg.downLoadedAdvertCantDelete);
-//			}else{
-				Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,EwayLocale.tip.remove.confirm.info,
-						function(button,text) {
-							if(button=="yes"){
-								record.erase({
-									success: function(){
-										Eway.alert(EwayLocale.deleteSuccess);
-										//刷新详细配置列表
-										grid.getStore().load();
-									},
-									failure: function(record,operation){
-										//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
-										var object = Ext.decode(operation._response.responseText);
-										record.dropped = false;
-										Eway.alert(object.errors);
-									},
-									scope:this
-								});
-							}
-				}, this);
-//			}
-			
-			
+			Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,EwayLocale.tip.remove.confirm.info,
+					function(button,text) {
+						if(button=="yes"){
+							record.erase({
+								success: function(){
+									Eway.alert(EwayLocale.deleteSuccess);
+									//刷新详细配置列表
+									grid.getStore().remove(record);
+								},
+								failure: function(record,operation){
+									//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
+									var object = Ext.decode(operation._response.responseText);
+									record.dropped = false;
+									Eway.alert(object.errorMsg);
+								},
+								scope:this
+							});
+						}
+			}, this);
 		}
 		else {
 			Eway.alert(EwayLocale.msg.chooseAdvert);
@@ -197,6 +190,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 		}
 	},
 	onUpdate:function(record,info1024,info800,info600){
+		var me = this;
 		var win = Ext.create("Eway.view.bsAdvert.AddBsWait");
 		win.setTitle("更改广告");
 		win.down("field_advert_advertGroup").setDisabled(true);
@@ -217,7 +211,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 		
 		
 		var b1 = win.query('button[action=confirm]')[0];
-		b1.on('click', this.onUpdateWaitConfirm, this);
+		b1.on('click', Ext.bind(me.onUpdateWaitConfirm,this,[record]), this);
 		var b5 = win.query('filefield[name=file]')[0];
 		b5.on('change',this.onFileChangedScreen,this);
 		var b51 = win.query('filefield[name=file]')[1];
@@ -251,7 +245,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 		b15.on('change',this.onResourceConfigChanged,this);
 		win.show();
 	},
-	onUpdateWaitConfirm:function(){
+	onUpdateWaitConfirm:function(record){
 		var win = this.getAddWaitWin();
 		var addForm = win.down("form").getForm();
 		var store = Ext.StoreManager.get("bsAdvert.BsAdvert");
@@ -269,10 +263,10 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 			var s600 = tab.down('bsadvertimgview[name=600]');
 			var s600Store = s600.getStore();
 			var data = addForm.getValues();
-			this.doUpdate(win,data,s1024Store,s800Store,s600Store);
+			this.doUpdate(win,data,s1024Store,s800Store,s600Store,record);
 		}
 	},
-	doUpdate : function(win,data,s1024Strore,s800Strore,s600Strore){
+	doUpdate : function(win,data,s1024Strore,s800Strore,s600Strore,record){
 		var me =this;
 		var advRess = [];
     	this.generateAdvertResource(advRess,s1024Strore);
@@ -305,20 +299,26 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
     		resources : resources
     	});
 		var btn = win.down('button[action=confirm]');
+		var id = win.down("hidden[name='id']").getValue();
+		
     	adv.save({
-			 success: function(ed) {
+			 success: function(recordResult,operation) {
 				var view = me.getEwayView();
-				var store = view.down('bs_advert_grid').getStore();
-				store.setUrlParamsByObject(null);
-				store.loadPage(1);
-				Eway.alert(EwayLocale.msg.updateSuccess);
+				record.set("advertName",recordResult.get("advertName"));
+				record.set("lastTime",recordResult.get("lastTime"));
+				record.set("userId",recordResult.get("userId"));
+				record.set("userName",recordResult.get("userName"));
+				record.set("activeUserId",recordResult.get("activeUserId"));
+				record.set("activeUserName",recordResult.get("activeUserName"));
+				record.set("bsAdvertStatus",recordResult.get("bsAdvertStatus"));
+				record.set("groupName",recordResult.get("groupName"));
+				Eway.alert(EwayLocale.updateSuccess);
 				win.close();
 			 },
 			 failure: function(record,operation){
 				Eway.alert(operation.error);
 			 },
-			 button:btn,
-			 scope : this
+			 button:btn
 		});
 	},
 	//增加

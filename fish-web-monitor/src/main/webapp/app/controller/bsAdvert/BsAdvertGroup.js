@@ -141,7 +141,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 					if(undefined==recordResult.get("id")||""==recordResult.get("id")||0==recordResult.get("id")){
 						recordResult.set("id",id);
 					}
-					store.applyModel(recordResult);
+//					store.applyModel(recordResult);
 					Eway.alert(EwayLocale.updateSuccess);
 					win.close();
 				},
