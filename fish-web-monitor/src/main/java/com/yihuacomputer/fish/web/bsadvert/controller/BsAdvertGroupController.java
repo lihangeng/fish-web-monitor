@@ -87,7 +87,9 @@ public class BsAdvertGroupController {
 		UserSession user = (UserSession) session.getAttribute(FishWebUtils.USER);
 		ModelMap result = new ModelMap();
 		IFilter filter = getFilter(webRequest);
-		filter.like("orgId", String.valueOf(user.getOrgId()));
+		if(filter.getValue("orgId")==null){
+			filter.like("orgId", String.valueOf(user.getOrgId()));
+		}
 		IPageResult<Object> pageResult = advertGroupService.page(start, limit, filter);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
 		result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
