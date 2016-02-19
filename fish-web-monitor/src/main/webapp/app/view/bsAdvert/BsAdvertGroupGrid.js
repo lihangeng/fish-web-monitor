@@ -34,6 +34,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 				glyph : 0xf040,
 				action: 'update',
 				code : 'bsAdvertGroupUpdate',
+				disabled : true,
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
@@ -41,6 +42,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
+				disabled : true,
 				code : 'bsAdvertGroupDel',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
@@ -49,6 +51,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 				text : '关联设备',
 				glyph : 0xf0c1,
 				action : 'link',
+				disabled : true,
 				code : 'bsAdvertGroupLinkDevice',
 				listeners : {
 					'beforerender' : Eway.lib.ButtonUtils.onButtonBeforeRender

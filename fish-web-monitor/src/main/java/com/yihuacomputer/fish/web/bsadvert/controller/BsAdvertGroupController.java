@@ -140,11 +140,12 @@ public class BsAdvertGroupController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
-	ModelMap add(@RequestBody BsAdvertGroupForm request) {
+	ModelMap add(@RequestBody BsAdvertGroupForm request,HttpServletRequest Httprequest) {
 		logger.info("add bsAdvertGroup");
-		long orgId = request.getOrgId();
+		UserSession userSession = (UserSession)Httprequest.getSession().getAttribute(FishWebUtils.USER);
+		long orgId = userSession.getOrgId();
 		
-		IOrganization org = orgService.get(String.valueOf(request.getOrgId()));		
+		IOrganization org = orgService.get(String.valueOf(orgId));		
 		ModelMap result = new ModelMap();
 		
 		if(org == null){
@@ -164,6 +165,7 @@ public class BsAdvertGroupController {
 		advertGroup.setGroupName(request.getGroupName());
 		
 		request.setResourcePath("");
+		request.setOrgId(orgId);
 		request.translate(advertGroup);
 		advertGroupService.save(advertGroup);
 		
@@ -229,6 +231,12 @@ public class BsAdvertGroupController {
 		try {
 			IAdvertGroup group = advertGroupService.getById(id);
 			if (group != null) {
+				//如果是根节点默认广告组，则不允许删除
+				if(group.getOrgId()==1&&(group.getGroupType().getId()==1)){
+					result.addAttribute(FishConstant.SUCCESS, false);
+					result.addAttribute(FishConstant.ERROR_MSG, "删除失败，根节点默认广告组不允许删除");
+					return result;
+				}
 				advertGroupService.deleteById(id);
 				result.addAttribute(FishConstant.SUCCESS, true);
 			} else {

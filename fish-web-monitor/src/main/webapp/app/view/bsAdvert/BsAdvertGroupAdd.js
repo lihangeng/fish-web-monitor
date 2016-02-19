@@ -33,16 +33,6 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupAdd', {
 					maxLength : 30,
 					msgTarget : 'side',
 					allowBlank : false
-				}, {
-					xtype : 'common_orgComboOrgTree',
-					fieldLabel : '<font color="red">*</font>'+EwayLocale.machine.atmGroup.orgName,
-					allowBlank : false,
-					emptyText : EwayLocale.combox.select,
-					name : 'orgName',
-					hiddenValue : 'orgId',
-					editable : false,
-					filters : '{"type" : "0"}',
-					rootVisible :true 
 				},{
 					fieldLabel : '组类型',
 					xtype : 'radiogroup',
