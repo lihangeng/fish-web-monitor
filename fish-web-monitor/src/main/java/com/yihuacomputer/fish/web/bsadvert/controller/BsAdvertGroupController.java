@@ -133,7 +133,7 @@ public class BsAdvertGroupController {
 			bsAdvertGroupForm.setId((Long)objs[0]);
 			bsAdvertGroupForm.setResourcePath(String.valueOf(objs[5]));
 			String activedAdv = String.valueOf(objs[1]);
-			bsAdvertGroupForm.setActivedAdv(activedAdv.equals("null")?"无":activedAdv);
+			bsAdvertGroupForm.setActivedAdv(activedAdv);
 			bsGroupList.add(bsAdvertGroupForm);
 		}
 

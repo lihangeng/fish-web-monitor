@@ -60,6 +60,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 				text :EwayLocale.advert.preview,
 				iconCls : 'adPreview',
 				code : 'advertPreview',
+				glyph : 0xf1c5,
 				disabled : true,
 				menu : new Ext.menu.Menu({
 					items : [{
@@ -106,7 +107,16 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 				header : '已激活的广告',
 				dataIndex : 'activedAdv',
 				sortable : true,
-				flex : 1
+				flex : 1,
+				renderer : function(value, metadata, record) {
+					if (value == 'null') {
+						return "无";
+					}else{
+						return value;
+					}
+					
+				}
+				
 			}],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,

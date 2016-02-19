@@ -55,7 +55,11 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 	},
 	onRowClick:function( _this, record, tr, rowIndex, e, eOpts){
 		var view = this.getEwayView();
-		view.down("grid button[code='advertPreview']").setDisabled(false);
+		if(record.data.activedAdv != 'null'){
+			view.down("grid button[code='advertPreview']").setDisabled(false);
+		}else{
+			view.down("grid button[code='advertPreview']").setDisabled(true);
+		}
 		if(ewayUser.getOrgId()==record.data.orgId){
 			view.down("grid button[code='bsAdvertGroupUpdate']").setDisabled(false);
 			view.down("grid button[code='bsAdvertGroupDel']").setDisabled(false);
