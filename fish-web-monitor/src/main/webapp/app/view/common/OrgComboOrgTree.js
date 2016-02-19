@@ -39,9 +39,11 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 	listeners:{
 		keydown:function( _this, e, eOpts){
 			//键盘事件触发显示机构列表查询并显示
-			if(e.keyCode!=13){
+			if(e.keyCode==13){
 				this.matching = true;
 				this.onTrigger1Click()
+				if(this.editable&&!this.readOnly&&this.matching)
+					this.queryMsg(_this.getValue());
 			}
 		},
 		collapse:function(field,opts){
@@ -276,8 +278,6 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 				this.onTriggerClick();
 			}
 		}
-		if(this.editable&&!this.readOnly&&this.matching)
-			this.queryMsg(newVal);
 		
 	},
 	//到后台进行模糊查询
