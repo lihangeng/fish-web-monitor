@@ -267,8 +267,7 @@ public class OpenPlanController {
 		logger.info(String.format("search plan detail: start = %s ,limit = %s ", start, limit));
 		ModelMap result = new ModelMap();
 		result.addAttribute("success", true);
-		List<IOpenPlanDetail> planDetails = new ArrayList<IOpenPlanDetail>();
-		planDetails = openPlanService.getOpenPlanDetialById(Long.parseLong(request.getParameter("openPlanId")));
+		List<IOpenPlanDetail> planDetails = openPlanService.getOpenPlanDetialById(Long.parseLong(request.getParameter("openPlanId")));
 		result.addAttribute("data", toPlanDetailForm(planDetails));
 		return result;
 	}
@@ -291,8 +290,7 @@ public class OpenPlanController {
 			openPlanId = list.get(0).getId();
 		}
 		result.addAttribute("success", true);
-		List<IOpenPlanDetail> planDetails = new ArrayList<IOpenPlanDetail>();
-		planDetails = openPlanService.getOpenPlanDetialById(openPlanId);
+		List<IOpenPlanDetail> planDetails = openPlanService.getOpenPlanDetialById(openPlanId);
 		result.addAttribute("data", toPlanDetailForm(planDetails));
 		return result;
 	}

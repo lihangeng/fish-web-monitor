@@ -157,18 +157,16 @@ public class RetaincardService implements IRetaincardService{
 		Set<OrderBy> orderBySet = filter.getOrders();
 		if (orderBySet != null && orderBySet.size() > 0) {
 			sql.append(" order by ");
-		}
+		
 		int index = 0;
-		for (OrderBy orderBy : orderBySet) {
-			if (index > 0) {
+			for (OrderBy orderBy : orderBySet) {
+				if (index > 0) {
 				sql.append(", ");
-			}
-			if(orderBy!=null){
-				sql.append(" retaincard.").append(orderBy.getPropertyName());
-				sql.append(" ").append(orderBy.isAscending() ? "asc" : "desc");
-			}
-			
+				}
+			sql.append(" retaincard.").append(orderBy.getPropertyName());
+			sql.append(" ").append(orderBy.isAscending() ? "asc" : "desc");
 			index++;
+			}
 		}
 
 		String sql1 = sql.toString();

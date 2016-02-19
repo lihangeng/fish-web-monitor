@@ -62,7 +62,7 @@ public class RuntimeInfoController {
 		RuntimeInfoMsg msg = new RuntimeInfoMsg();
 		msg.setDate(endDate);
 		msg.setLimit(getLimit(startDate,endDate));
-
+		FileOutputStream fout = null;
 		try {
 			RuntimeInfoListForm form = (RuntimeInfoListForm) HttpProxy.httpPost(url, msg, RuntimeInfoListForm.class);
 			if (form.getAppRet().equals("01")) {
@@ -186,7 +186,7 @@ public class RuntimeInfoController {
 				// terminalId + ".xls";
 				String time = DateUtils.getTime(new Date()).replace(":", "");
 				String name = FishCfg.getTempDir() + System.getProperty("file.separator") + "RuntimeInfo" + "_" + startDate + "_" + endDate + "_" + terminalId + "_" + time + ".xls";
-				FileOutputStream fout = new FileOutputStream(name);
+				fout = new FileOutputStream(name);
 				try {
 					wb.write(fout);
 					fout.close();
@@ -424,8 +424,8 @@ public class RuntimeInfoController {
 				// terminalId + ".xls";
 				String time = DateUtils.getTime(new Date()).replace(":", "");
 				String name = FishCfg.getTempDir() + System.getProperty("file.separator") + "RuntimeInfo" + "_" + startDate + "_" + endDate + "_" + terminalId + "_" + time + ".xls";
+				fout = new FileOutputStream(name);
 				try {
-					FileOutputStream fout = new FileOutputStream(name);
 					wb.write(fout);
 					fout.close();
 				} catch (Exception e) {
@@ -443,6 +443,15 @@ public class RuntimeInfoController {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("msg", e.getMessage());
 			return result;
+		}finally{
+			if(fout!=null){
+				try {
+					fout.close();
+				} catch (IOException e) {
+					logger.error(e.getMessage());
+				}
+			}
+			
 		}
 		return result;
 	}
@@ -469,6 +478,7 @@ public class RuntimeInfoController {
 	ModelMap exportLast30Check(@RequestParam String ip, @RequestParam String terminalId, HttpServletRequest request, HttpServletResponse response) {
 		ModelMap result = new ModelMap();
 		String url = MonitorCfg.getHttpUrl(ip) + this.RUNTIMEINFO_LASTTOTAL30_PATH;
+		FileOutputStream fout = null;
 		try {
 			RuntimeInfoForm runtimeInfoForm = (RuntimeInfoForm) HttpProxy.httpGet(url, RuntimeInfoForm.class);
 			if (runtimeInfoForm.getAppRet().equals("01")) {
@@ -559,7 +569,7 @@ public class RuntimeInfoController {
 				String name = FishCfg.getTempDir() + System.getProperty("file.separator") + "RuntimeInfoLast30" + "_" + terminalId + "_" + date + "_" + time +".xls";
 
 				try {
-					FileOutputStream fout = new FileOutputStream(name);
+					fout = new FileOutputStream(name);
 					wb.write(fout);
 					fout.close();
 				} catch (Exception e) {
@@ -804,7 +814,7 @@ public class RuntimeInfoController {
 				String date = DateUtils.getDate(new Date());
 				String time = DateUtils.getTime(new Date()).replace(":", "");
 				String name = FishCfg.getTempDir() + System.getProperty("file.separator") + "RuntimeInfoLast30" + "_" + terminalId + "_" + date + "_" + time + ".xls";
-				FileOutputStream fout = new FileOutputStream(name);
+				fout = new FileOutputStream(name);
 				try {
 					wb.write(fout);
 					fout.close();
@@ -823,6 +833,15 @@ public class RuntimeInfoController {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("msg", e.getMessage());
 			return result;
+		}finally{
+			if(fout!=null){
+				try {
+					fout.close();
+				} catch (IOException e) {
+					logger.error(e.getMessage());
+				}
+			}
+			
 		}
 	}
 

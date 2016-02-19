@@ -55,12 +55,21 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 	},
 	onRowClick:function( _this, record, tr, rowIndex, e, eOpts){
 		var view = this.getEwayView();
-//		if(record.get("advertFileName")!= null){
+		if(record.data.activedAdv != 'null'){
 			view.down("grid button[code='advertPreview']").setDisabled(false);
-//		}
-//		else{
-//			view.down("grid button[code='advertPreview']").setDisabled(true);
-//		}
+		}else{
+			view.down("grid button[code='advertPreview']").setDisabled(true);
+		}
+		if(ewayUser.getOrgId()==record.data.orgId){
+			view.down("grid button[code='bsAdvertGroupUpdate']").setDisabled(false);
+			view.down("grid button[code='bsAdvertGroupDel']").setDisabled(false);
+			view.down("grid button[code='bsAdvertGroupLinkDevice']").setDisabled(false);
+		}else{
+			view.down("grid button[code='bsAdvertGroupUpdate']").setDisabled(true);
+			view.down("grid button[code='bsAdvertGroupDel']").setDisabled(true);
+			view.down("grid button[code='bsAdvertGroupLinkDevice']").setDisabled(true);
+			
+		}
 	},
 
 	//查询

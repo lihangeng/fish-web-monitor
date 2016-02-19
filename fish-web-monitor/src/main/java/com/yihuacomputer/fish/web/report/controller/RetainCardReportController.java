@@ -88,18 +88,14 @@ public class RetainCardReportController {
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("title", getEnumI18n(ReportTitle.RetainCard.getText()));
 
-		Date startReportDate = new Date();
 		if (filter.getFilterEntry("startData") != null) {
-			startReportDate = (Date) filter.getFilterEntry("startData").getValue();
-			parameters.put("startReportDate", DateUtils.getTimestamp(startReportDate));
+			parameters.put("startReportDate", DateUtils.getTimestamp((Date) filter.getFilterEntry("startData").getValue()));
 		} else {
 			parameters.put("startReportDate", "");
 		}
 
-		Date endReportDate = new Date();
 		if (filter.getFilterEntry("endData") != null) {
-			endReportDate = (Date) filter.getFilterEntry("endData").getValue();
-			parameters.put("endReportDate", DateUtils.getTimestamp(endReportDate));
+			parameters.put("endReportDate", DateUtils.getTimestamp((Date) filter.getFilterEntry("endData").getValue()));
 		} else {
 			parameters.put("endReportDate", "");
 		}

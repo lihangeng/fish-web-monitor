@@ -574,13 +574,22 @@ public class RetaincardController {
 
 		String date = DateUtils.getDate(new Date());
 		String name = "retaincard" + date + ".xls";
+		FileOutputStream fout = null;
 		try {
-			FileOutputStream fout = new FileOutputStream(FishCfg.getTempDir()
+			fout = new FileOutputStream(FishCfg.getTempDir()
 					+ File.separator + name);
 			wb.write(fout);
 			fout.close();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
+		}finally{
+			if(fout!=null){
+				try {
+					fout.close();
+				} catch (IOException e) {
+					logger.error(e.getMessage());
+				}
+			}
 		}
 
 		File file = new File(FishCfg.getTempDir()

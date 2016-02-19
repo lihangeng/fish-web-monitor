@@ -368,9 +368,9 @@ public class AtmLogController {
 			}
 			String date = DateUtils.getDate(new Date());
 			String name = "atmLogTotal" + date + ".xls";
+			FileOutputStream fout = null;
 			try {
-				FileOutputStream fout = new FileOutputStream(FishCfg.getTempDir()+ System.getProperty("file.separator") + name);
-				
+				fout = new FileOutputStream(FishCfg.getTempDir()+ System.getProperty("file.separator") + name);
 				try {
 					wb.write(fout);
 					fout.close();
@@ -382,6 +382,15 @@ public class AtmLogController {
 				
 			} catch (Exception e) {
 					logger.error(e.getMessage());
+			} finally{
+				if(fout!=null){
+					try {
+						fout.close();
+					} catch (IOException e) {
+						logger.error(e.getMessage());
+					}
+				}
+				
 			}
 			
 		}
