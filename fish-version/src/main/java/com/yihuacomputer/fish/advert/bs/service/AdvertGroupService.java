@@ -56,7 +56,7 @@ public class AdvertGroupService implements IAdvertGroupService {
 	public IAdvertGroup getById(long id){
 		return dao.get(id, AdvertGroup.class);
 	}
-	private final static String  AdvertGroupSql = "select b.group_id as id,a.advert_name as advertName,b.group_name as groupName,b.group_type as groupType , b.org_id orgId,b.resource_path path,b.org_level orgLevel,b.org_name orgName from (select advbsadvert.advert_name advert_name ,advbsadvert.group_id group_id from adv_bsadvert advbsadvert where advbsadvert.advert_stratus = 2 ) a right join (select advertgroup.id group_id,advertgroup.group_name group_name ,advertgroup.group_type group_type ,advertgroup.org_id org_id ,advertgroup.resource_path resource_path ,org.org_level org_level ,org.name org_name from adv_group advertgroup,sm_org org where org.id=advertgroup.org_id ";
+	private final static String  AdvertGroupSql = "select b.group_id as id,a.advert_name as advertName,b.group_name as groupName,b.group_type as groupType , b.org_id orgId,b.resource_path path,b.org_level orgLevel,b.org_name orgName from (select advbsadvert.advert_name advert_name ,advbsadvert.group_id group_id from adv_bsadvert advbsadvert where advbsadvert.advert_stratus = 1 ) a right join (select advertgroup.id group_id,advertgroup.group_name group_name ,advertgroup.group_type group_type ,advertgroup.org_id org_id ,advertgroup.resource_path resource_path ,org.org_level org_level ,org.name org_name from adv_group advertgroup,sm_org org where org.id=advertgroup.org_id ";
 	
 	public IPageResult<Object> page(int start, int limit, IFilter filter){
 		
@@ -126,7 +126,7 @@ public class AdvertGroupService implements IAdvertGroupService {
 
 	@Override
 	public IBsAdvert getBsAdvertByGroupId(long groupId) {
-		return dao.findUniqueByHql("from BsAdvert bs where bs.groupId = ? and bs.bsAdvertStatus = 2 ", groupId);
+		return dao.findUniqueByHql("from BsAdvert bs where bs.groupId = ? and bs.bsAdvertStatus = 1 ", groupId);
 	}
 	
 	@Override
