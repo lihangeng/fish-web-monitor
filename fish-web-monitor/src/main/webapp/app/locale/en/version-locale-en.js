@@ -118,7 +118,7 @@ Ext.apply(EwayLocale,{
 		updateTitle : 'Update Advert',//EwayLocale.bsAdvert.updateTitle
 		activeAdvert : 'Active Advert',//EwayLocale.bsAdvert.activeAdvert
 		preview : 'Preview',//EwayLocale.bsAdvert.preview
-		preview1024 : Preview 1024 Resolution',//EwayLocale.bsAdvert.preview1024
+		preview1024 : 'Preview 1024 Resolution',//EwayLocale.bsAdvert.preview1024
 		preview800 : 'Preview 800 Resolution',//EwayLocale.bsAdvert.preview800
 		preview600 : 'Preview 600 Resolution',//EwayLocale.bsAdvert.preview600
 		id : 'Advert ID',//EwayLocale.bsAdvert.id
