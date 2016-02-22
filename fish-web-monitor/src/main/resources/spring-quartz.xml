@@ -4,8 +4,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
 
-    <!-- 总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序  -->
-    <bean id="startQuertz" lazy-init="false" autowire="no"
+    <!-- 定时任务总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序 内存版 -->
+    <bean id="startQuartz" lazy-init="false" autowire="no"
         class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
@@ -17,10 +17,15 @@
                 <ref bean="yearReportTime" />
                 <ref bean="updateDeviceInfoTaskTime"/>
                 <ref bean="updateQuittingDevInfoTaskTime"/>
-
             </list>
         </property>
     </bean>
+    <!-- 定时任务数据版本配置
+    <bean id="startQuartz" lazy-init="false" autowire="no"
+        class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="configLocation" value="classpath:quartz.properties" /> 
+    </bean> -->
+    
     <import resource="classpath:/com/yihuacomputer/fish/monitor/monitor-quartz.xml"/>
 	<import resource="classpath:/com/yihuacomputer/fish/atmlog/atmlog-quartz.xml"/>
 	<import resource="classpath:/com/yihuacomputer/fish/report/report-quartz.xml"/>
