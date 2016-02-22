@@ -1,6 +1,6 @@
 @echo off
 set "APP_HOME=%CD%"
-set "WEB_PIDFILE=%APP_HOME%\WEBPID.ini"
+set "WEB_PIDFILE=%APP_HOME%\ATMVSPID.ini"
 for /f "skip=1 delims== tokens=1,2" %%i in (%WEB_PIDFILE%) do if "%%i"=="WEB_PID" echo WEB_IDΪ :%%j & set "CURRPID=%%j"
 
 echo WEB_PID:%CURRPID%
