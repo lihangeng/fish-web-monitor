@@ -6,7 +6,7 @@
 	<baseDirectory>/</baseDirectory>
 	<fileSets>  
         <fileSet>  
-            <directory>${project.basedir}\src\main\webapp\resources\bsAdvert\1 1</directory>  
+            <directory>src\main\webapp\resources\bsAdvert\1 1</directory>  
             <outputDirectory>/</outputDirectory>  
         </fileSet>  
     </fileSets>  
