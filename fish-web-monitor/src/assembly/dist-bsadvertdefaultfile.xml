@@ -1,13 +1,13 @@
 <assembly>
-	<id>bsadvert</id>
+	<id>bsadvertdefaultfile</id>
 	<formats>
 		<format>zip</format>
 	</formats>
 	<baseDirectory>/</baseDirectory>
 	<fileSets>  
         <fileSet>  
-            <directory>${project.basedir}\src\main\webapp\resources\bsAdvert</directory>  
-            <outputDirectory>/advert</outputDirectory>  
+            <directory>${project.basedir}\src\main\webapp\resources\bsAdvert\1 1</directory>  
+            <outputDirectory>/</outputDirectory>  
         </fileSet>  
     </fileSets>  
 </assembly>
