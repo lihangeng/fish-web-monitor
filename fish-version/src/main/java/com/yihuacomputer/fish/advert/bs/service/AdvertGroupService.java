@@ -142,7 +142,7 @@ public class AdvertGroupService implements IAdvertGroupService {
     @Transactional(readOnly=true)
 	private int getTotal(String sqlStr) {
 		StringBuffer sql = new StringBuffer();
-		sql = sql.append("select COUNT(a.id) as total from (").append(sqlStr).append(") a");
+		sql = sql.append("SELECT COUNT(A.ID) AS TOTAL FROM (").append(sqlStr).append(") A");
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		query.addScalar("total", StandardBasicTypes.INTEGER);
 		List<Integer> lists = query.list();
