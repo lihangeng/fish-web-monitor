@@ -129,13 +129,13 @@ public class BsAdvertService implements IBsAdvertService {
 		return bsAdvertResourceService;
 	}
 	
-	public List<IBsAdvert> getBsAdvertByNameAndOrgId(long orgId,String advertName){
+	public List<IBsAdvert> getBsAdvertByNameAndOrgId(long orgId,String advertName,long advertId){
 		StringBuffer hql= new StringBuffer("select bsAdvert from ");
 		hql.append(BsAdvert.class.getSimpleName()).append(" bsAdvert, ").
 		append(AdvertGroup.class.getSimpleName()).append(" advertGroup ").
 		append("where bsAdvert.groupId=advertGroup.id and advertGroup.orgId = ? ").
-		append(" and bsAdvert.advertName=?");
-		List<IBsAdvert> list = dao.findByHQL(hql.toString(), orgId,advertName);
+		append(" and bsAdvert.advertName=? and bsAdvert.id!=?");
+		List<IBsAdvert> list = dao.findByHQL(hql.toString(), orgId,advertName,advertId);
 		return list;
 	}
 	

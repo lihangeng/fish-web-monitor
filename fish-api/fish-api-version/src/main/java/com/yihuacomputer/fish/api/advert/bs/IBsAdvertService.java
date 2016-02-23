@@ -42,5 +42,5 @@ public interface IBsAdvertService {
 	 * @param advertName
 	 * @return
 	 */
-	public List<IBsAdvert> getBsAdvertByNameAndOrgId(long orgId,String advertName);
+	public List<IBsAdvert> getBsAdvertByNameAndOrgId(long orgId,String advertName,long advertId);
 }

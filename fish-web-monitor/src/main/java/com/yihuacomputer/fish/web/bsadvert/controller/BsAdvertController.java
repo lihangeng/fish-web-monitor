@@ -387,8 +387,7 @@ public class BsAdvertController {
 
 		ModelMap result = new ModelMap();
 		UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
-		List<IBsAdvert> bsAdvertList = bsAdvertService.getBsAdvertByNameAndOrgId(userSession.getOrgId(),form.getAdvertName());
-		if(bsAdvertList.size()>0){
+		if(exsitSameAdvert(userSession.getOrgId(),form.getAdvertName(),0)){
 			result.addAttribute(FishConstant.SUCCESS, false);
 //			bsadvert.org.sameName=当前机构存在相同的广告名称
 			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.org.sameName", null));
@@ -447,6 +446,10 @@ public class BsAdvertController {
 		return result;
 	}
 	
+	private boolean exsitSameAdvert(long id,String advertName,long advertId){
+		List<IBsAdvert> bsAdvertList = bsAdvertService.getBsAdvertByNameAndOrgId(id,advertName,advertId);
+		return bsAdvertList.size()>0;
+	}
 	/**
 	 * 确认更改BsAdvert
 	 * @param id
@@ -460,7 +463,13 @@ public class BsAdvertController {
 		logger.info("update bsAdvert: bsAdvert.id = " + id);
 		ModelMap model = new ModelMap();
 		UserSession session =(UserSession)request.getSession().getAttribute(FishWebUtils.USER);
+		UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
 		IBsAdvert advert = bsAdvertService.getById(id);
+		if(exsitSameAdvert(userSession.getOrgId(),form.getAdvertName(),id)){
+			model.addAttribute(FishConstant.SUCCESS, false);
+			model.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.org.sameName", null));
+			return model;
+		}
 		advert.setAdvertName(form.getAdvertName());
 		advert.setUserId(session.getUserId());
 		advert.setLastTime(new Date());
