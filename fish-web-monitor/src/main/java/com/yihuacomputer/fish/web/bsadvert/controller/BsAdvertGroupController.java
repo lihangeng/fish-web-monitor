@@ -192,8 +192,7 @@ public class BsAdvertGroupController {
 				result.addAttribute(FishConstant.SUCCESS, false);
 				result.addAttribute(FishConstant.ERROR_MSG, "修改的广告组已经不存在，请刷新后重试");
 			} else {
-					request.translate(advertGroup);
-					advertGroup.setId(id);
+					advertGroup.setGroupName(request.getGroupName());
 					advertGroupService.update(advertGroup);
 					result.addAttribute(FishConstant.SUCCESS, true);
 					result.addAttribute(FishConstant.DATA, request);

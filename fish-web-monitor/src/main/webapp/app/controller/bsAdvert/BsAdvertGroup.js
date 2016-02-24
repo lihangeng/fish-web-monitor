@@ -152,6 +152,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 					}
 //					store.applyModel(recordResult);
 					Eway.alert(EwayLocale.updateSuccess);
+					store.loadPage(1);
 					win.close();
 				},
 				failure: function(record,operation){
