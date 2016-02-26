@@ -136,7 +136,7 @@ public class BsAdvertController {
 	}
 	@RequestMapping(value = "/{id}",method=RequestMethod.DELETE)
 	public @ResponseBody ModelMap deleteBsAdvert(@PathVariable long id,HttpServletRequest request, WebRequest webRequest) {
-		logger.info("activedBsAdvert "+id);
+		logger.info("deleteBsAdvert "+id);
 		ModelMap result = new ModelMap();
 		IBsAdvert bsAdvert = bsAdvertService.getById(id);
 		if(null==bsAdvert){
@@ -221,9 +221,12 @@ public class BsAdvertController {
 		try {
 			List<IBsAdvertResource> resourceList = bsAdvert.getAdvertResources();
 			@SuppressWarnings("deprecation")
-			String tempDir = request.getRealPath("/")+"/tmp/bsAdvert/" + this.getSessionDir(request) + "/";
-			ZipUtils.unZip(VersionCfg.getBsAdvertDir()+File.separator+bsAdvert.getId()+".zip", tempDir+File.separator+bsAdvert.getId(), "UTF-8");
-			String willCopyFileName = tempDir+File.separator+bsAdvert.getId()+File.separator+"AD_IDLE";
+			String tempDir = stringConcat(request.getRealPath("/"),File.separator,"tmp",File.separator,"bsAdvert",File.separator,this.getSessionDir(request),File.separator);
+			String zipFilePath = stringConcat(VersionCfg.getBsAdvertDir(),File.separator,bsAdvert.getId(),".zip");
+			String unzipTarget = stringConcat(tempDir,File.separator,bsAdvert.getId());
+			
+			ZipUtils.unZip(zipFilePath, unzipTarget, "UTF-8");
+			String willCopyFileName = stringConcat(tempDir,File.separator,bsAdvert.getId(),File.separator,"AD_IDLE");
 			for(IBsAdvertResource resource:resourceList){
 				Screen screen = resource.getScreen();
 				String fileName = resource.getContent();
@@ -247,12 +250,12 @@ public class BsAdvertController {
 	
 	private ScreenResources getResoucesJson(String willCopyFileName,HttpServletRequest request){
 		
-		String screen1024 = getEnumI18n(Screen.SCREEN_1024.getText());//willCopyFileName+File.separator+"1024"+File.separator+"config.json";
-		String screen800 = getEnumI18n(Screen.SCREEN_800.getText());//willCopyFileName+File.separator+"1024"+File.separator+"config.json";
-		String screen600 = getEnumI18n(Screen.SCREEN_600.getText());//willCopyFileName+File.separator+"1024"+File.separator+"config.json";
-		BsAdvertScreenForm screen1024Form = getAdvertResourceInfos(willCopyFileName+File.separator+screen1024+File.separator+"config.json");
-		BsAdvertScreenForm screen800Form = getAdvertResourceInfos(willCopyFileName+File.separator+screen800+File.separator+"config.json");
-		BsAdvertScreenForm screen600Form = getAdvertResourceInfos(willCopyFileName+File.separator+screen600+File.separator+"config.json");
+		String screen1024 = getEnumI18n(Screen.SCREEN_1024.getText());
+		String screen800 = getEnumI18n(Screen.SCREEN_800.getText());
+		String screen600 = getEnumI18n(Screen.SCREEN_600.getText());
+		BsAdvertScreenForm screen1024Form = getAdvertResourceInfos(stringConcat(willCopyFileName,File.separator,screen1024,File.separator,"config.json"));
+		BsAdvertScreenForm screen800Form = getAdvertResourceInfos(stringConcat(willCopyFileName,File.separator,screen800,File.separator+"config.json"));
+		BsAdvertScreenForm screen600Form = getAdvertResourceInfos(stringConcat(willCopyFileName,File.separator,screen600,File.separator+"config.json"));
 		ScreenResources screenResource = new ScreenResources();
 		screenResource.setScreen1024(getResource(screen1024Form.getResources(),request,screen1024));
 		screenResource.setScreen800(getResource(screen800Form.getResources(),request,screen800));
@@ -353,10 +356,10 @@ public class BsAdvertController {
 		StringBuffer result = new StringBuffer("[");
 		for (IBsAdvertResource resource : advert.getAdvertResources()) {
 			if (getEnumI18n(resource.getScreen().getText()).equals(screen)) {
-				String sourceFilePath = workHome + File.separator + id + File.separator + AdvertTypeConversionService.convert(advert.getAdvertType()) + File.separator + getEnumI18n(resource.getScreen().getText())
-						+ File.separator + resource.getContent();
+				String sourceFilePath = stringConcat(workHome , File.separator , id , File.separator , AdvertTypeConversionService.convert(advert.getAdvertType()) , File.separator , getEnumI18n(resource.getScreen().getText())
+						, File.separator , resource.getContent());
 				IOUtils.copyFileToDirectory(sourceFilePath, targetDir.getAbsolutePath());
-				String image = "tmp/bsAdvert/" + id + "/" + screen + "/" + resource.getContent();
+				String image = stringConcat("tmp/bsAdvert/" , id , "/" , screen , "/" + resource.getContent());
 				result.append("{'picName':'").append(image).append("','playTime':'").append(resource.getPlayTime()).append("'}").append(",");
 			}
 		}
@@ -368,6 +371,14 @@ public class BsAdvertController {
 		return result.append("]").toString();
 	}
 
+	private String stringConcat(Object... args){
+		StringBuffer sb = new StringBuffer();
+		for(Object arg:args){
+			sb.append(arg);
+		}
+		return sb.toString();
+	}
+	
 	private String getVersionI18n(String key,Object[] value){
 		return messageSourceVersion.getMessage(key,value, FishCfg.locale);
 	}
@@ -566,10 +577,6 @@ public class BsAdvertController {
 	}
 	
 	
-	public static void main(String args[]){
-		IOUtils.deleteDir("D:\\workspace\\atmvs\\fish-web-monitor\\src\\main\\webapp\\tmp\\bsAdvert\\admin_1dhuh8gfyiaa518ynjudizride\\9");
-	}
-
 	private String getEnumI18n(String enumText) {
 		if (null == enumText) {
 			return "";
