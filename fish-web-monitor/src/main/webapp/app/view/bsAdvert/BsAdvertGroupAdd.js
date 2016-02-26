@@ -56,7 +56,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupAdd', {
 					text: EwayLocale.button.reset,
 					handler: this.onReset
 				}, {
-					text: EwayLocale.button.back,
+					text: EwayLocale.button.cancle,
 					handler: this.onOver
 				}]
 			}
