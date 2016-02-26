@@ -152,7 +152,7 @@ public class BsAdvertService implements IBsAdvertService {
 		this.update(bsAdvert);
 		//获取Bs广告服务器路径
 		IParam param = paramService.getParam("bsAdvertServerPath");
-		String path = param.getParamValue()+File.separator+bsAdvert.getId();
+		String path = param.getParamValue()+File.separator;
 		IAdvertGroup advertGroup= advertGroupService.getById(bsAdvert.getGroupId());
 		String targetPath = param.getParamValue()+File.separator+advertGroup.getPath();
 		IOUtils.copyFileToDirectory(VersionCfg.getBsAdvertDir()+File.separator+bsAdvert.getId()+".zip", path);
