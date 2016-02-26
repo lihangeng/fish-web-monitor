@@ -101,7 +101,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 				dataIndex:'advertFileName',
 				renderer:function(value,meta,record){
 					if(value != null){
-						return "<a href='#'>"+ value + "</a>";
+						return "<a href='#' style='TEXT-DECORATION:none;' >"+ value + "</a>";
 					}else{
 						return value;
 					}
