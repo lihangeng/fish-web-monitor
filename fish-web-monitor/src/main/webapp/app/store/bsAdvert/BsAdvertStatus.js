@@ -4,7 +4,7 @@ Ext.define('Eway.store.bsAdvert.BsAdvertStatus', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'1', display:'激活'}, 
-	       {value:'0', display:'未激活'}]
+	data: [{value:'1', display:EwayLocale.bsAdvertGroup.Actived}, 
+	       {value:'0', display:EwayLocale.bsAdvertGroup.unActived}]
 });
 

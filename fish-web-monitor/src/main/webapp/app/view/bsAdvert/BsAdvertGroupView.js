@@ -8,7 +8,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupView', {
 	requires: ['Eway.view.bsAdvert.BsAdvertGroupGrid',
 	           'Eway.view.bsAdvert.BsAdvertGroupFilterForm'],
 
-	title: '广告组管理',
+	title: EwayLocale.bsAdvertGroup.title,
 	layout: 'border',
 
 	initComponent: function() {

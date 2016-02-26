@@ -5,7 +5,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupUpdate', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.bsAdvertGroup_update',
 
-	title: '修改广告组信息',
+	title: EwayLocale.bsAdvertGroup.updateTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,

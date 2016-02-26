@@ -1,6 +1,3 @@
-/**
- * 机构查询条件Form
- */
 Ext.define('Eway.view.bsAdvert.BsAdvertGroupFilterForm', {
 	extend: 'Eway.view.base.FilterForm',
 	alias: 'widget.bs_advert_group_filterform',
@@ -10,7 +7,6 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupFilterForm', {
 	           'Eway.view.field.person.OrganizationLevel',
 	           'Eway.view.bsAdvert.field.BsGroupTypeComBox'],
 
-	/*title: '输入您的查询条件',*/
 	height: 80,
 	layout : 'column',
 	defaults : {
@@ -45,7 +41,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupFilterForm', {
 					xtype : 'textfield',
 					labelAlign : 'right',
 					name : 'groupName',
-					fieldLabel : '广告组名称',
+					fieldLabel : EwayLocale.bsAdvertGroup.groupName,
 					msgTarget : 'side'
 				},{
 					columnWidth : .5,

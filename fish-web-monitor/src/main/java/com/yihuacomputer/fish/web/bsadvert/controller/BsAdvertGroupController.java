@@ -152,7 +152,7 @@ public class BsAdvertGroupController {
 		
 		if(org == null){
 			result.put(FishConstant.SUCCESS, false);
-			result.put("errorMsg", "该机构已经不存在，无法添加");
+			result.put("errorMsg", messageSourceVersion.getMessage("bsadvertGroup.org.notExists", null, FishCfg.locale));
 			return result;
 		}
 		
@@ -160,7 +160,7 @@ public class BsAdvertGroupController {
 		if(advertGroup != null && request.getGroupType()==1){
 			
 			result.put(FishConstant.SUCCESS, false);
-			result.put("errorMsg", "该机构下已存在默认广告组，无法添加默认广告组");
+			result.put("errorMsg", messageSourceVersion.getMessage("bsadvertGroup.org.groupDup", null, FishCfg.locale));
 			return result;
 		}
 		advertGroup = advertGroupService.make();
@@ -190,7 +190,7 @@ public class BsAdvertGroupController {
 			
 			if (advertGroup == null) {
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "修改的广告组已经不存在，请刷新后重试");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSourceVersion.getMessage("bsadvertGroup.update.groupNotExists", null, FishCfg.locale));
 			} else {
 					advertGroup.setGroupName(request.getGroupName());
 					advertGroupService.update(advertGroup);
@@ -199,7 +199,7 @@ public class BsAdvertGroupController {
 			}
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "修改广告组信息异常");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSourceVersion.getMessage("bsadvertGroup.update.updateError", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -217,7 +217,7 @@ public class BsAdvertGroupController {
 		
 		if(listBsAdvert.size()!=0){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "该广告组存在广告归属，无法删除");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSourceVersion.getMessage("bsadvertGroup.delete.hasAdvert", null, FishCfg.locale));
 			return result;
 			
 		}
@@ -226,7 +226,7 @@ public class BsAdvertGroupController {
 		
 		if(listAdvertGroup.size()!=0){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "该广告组下已经存在关联关系，无法删除");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSourceVersion.getMessage("bsadvertGroup.delete.hasLinkedDevice", null, FishCfg.locale));
 			return result;
 		}
 		try {
@@ -235,7 +235,7 @@ public class BsAdvertGroupController {
 				//如果是根节点默认广告组，则不允许删除
 				if(group.getOrgId()==1&&(group.getGroupType().getId()==1)){
 					result.addAttribute(FishConstant.SUCCESS, false);
-					result.addAttribute(FishConstant.ERROR_MSG, "删除失败，根节点默认广告组不允许删除");
+					result.addAttribute(FishConstant.ERROR_MSG, messageSourceVersion.getMessage("bsadvertGroup.delete.rootDelete", null, FishCfg.locale));
 					return result;
 				}
 				advertGroupService.deleteById(id);
@@ -245,7 +245,7 @@ public class BsAdvertGroupController {
 			}
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "删除失败");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSourceVersion.getMessage("bsadvertGroup.delete.deleteFailed", null, FishCfg.locale));
 		}
 		return result;
 	}
@@ -398,7 +398,7 @@ public class BsAdvertGroupController {
 		ModelMap result = new ModelMap();
 		if(advert==null){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "此广告组不存在激活的广告,请设置后重试");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSourceVersion.getMessage("bsadvertGroup.actived.hasNoActivedAdvert", null, FishCfg.locale));
 			return result;
 		}else{
 			result.addAttribute(FishConstant.SUCCESS, true);

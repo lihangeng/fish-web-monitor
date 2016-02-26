@@ -5,7 +5,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupAdd', {
 	
 	requires: ['Eway.view.common.OrgComboOrgTree'],
 	
-	title: '增加广告组信息',
+	title: EwayLocale.bsAdvertGroup.addTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -34,16 +34,16 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupAdd', {
 					msgTarget : 'side',
 					allowBlank : false
 				},{
-					fieldLabel : '组类型',
+					fieldLabel : EwayLocale.bsAdvert.advertGroupType,
 					xtype : 'radiogroup',
 					anchor : '69%',
 					items : [ {
-						boxLabel : '通用',
+						boxLabel : EwayLocale.bsAdvertGroup.commenType,
 						name : 'groupType',
 						checked : true,
 						inputValue : 0
 					}, {
-						boxLabel : '默认',
+						boxLabel : EwayLocale.bsAdvertGroup.defaultType,
 						name : 'groupType',
 						inputValue : 1
 					}]

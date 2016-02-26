@@ -1,6 +1,3 @@
-/**
- * 机构信息列表Grid：
- */
 Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 	alias: 'widget.bs_advert_group_grid',
 	extend: 'Eway.view.base.Grid',
@@ -48,7 +45,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text : '关联设备',
+				text : EwayLocale.person.servicePer.servicePerlink,
 				glyph : 0xf0c1,
 				action : 'link',
 				disabled : true,
@@ -85,32 +82,32 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 				dataIndex : 'orgLevel',
 				sortable : true
 			},{
-				header : '组名称',
+				header : EwayLocale.bsAdvertGroup.groupName,
 				dataIndex : 'groupName',
 				width:200,
 				sortable : true,
 				
 			},{
-				header : '广告组分类',
+				header : EwayLocale.bsAdvertGroup.group,
 				dataIndex : 'groupType',
 				width:100,
 				sortable : true,
 				renderer : function(value, metadata, record) {
 					if (value == 1) {
-						return '默认';
+						return EwayLocale.bsAdvertGroup.defaultType;
 					}
 					if (value == 0) {
-						return '通用';
+						return EwayLocale.bsAdvertGroup.commenType;
 					}
 				}
 			},{
-				header : '已激活的广告',
+				header : EwayLocale.bsAdvertGroup.activedAdvert,
 				dataIndex : 'activedAdv',
 				sortable : true,
 				flex : 1,
 				renderer : function(value, metadata, record) {
 					if (value == 'null') {
-						return "无";
+						return EwayLocale.tip.own.nothing;
 					}else{
 						return value;
 					}

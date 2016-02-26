@@ -110,7 +110,7 @@ Ext.apply(EwayLocale,{
 	bsAdvert : {//EwayLocale.bsAdvert.advert
 		advertGroup:'广告组',//EwayLocale.bsAdvert.advertGroup
 		advertName:'广告名称',//EwayLocale.bsAdvert.advertName
-		advertTitle:'广告管理',//EwayLocale.bsAdvert.advertTitle
+		advertTitle:'BS广告管理',//EwayLocale.bsAdvert.advertTitle
 		advertStatus:'广告状态',//EwayLocale.bsAdvert.advertStatus
 		advertGroupType:'广告组类型',//EwayLocale.bsAdvert.advertGroupType
 		title : 'BS广告管理',//EwayLocale.bsAdvert.title
@@ -176,7 +176,19 @@ Ext.apply(EwayLocale,{
 		idleAdvertUpTipsInfo : '<font color="red">仅支持.jpg和.gif格式的图片;每种分辨率最多上传10张图片;每张图片最大5M</font>',//EwayLocale.bsAdvert.idleAdvertUpTipsInfo
 		configTitle : '广告详细配置'//EwayLocale.bsAdvert.configTitle
 	},
-	
+	bsAdvertGroup : { //EwayLocale.bsAdvertGroup.bsAdvertGroup 
+		commenType:'通用',//EwayLocale.bsAdvertGroup.commenType
+		defaultType:'默认',//EwayLocale.bsAdvertGroup.defaultType
+		title:'广告组管理',//EwayLocale.bsAdvertGroup.title
+		updateTitle:'修改广告组信息',//EwayLocale.bsAdvertGroup.updateTitle
+		addTitle:'增加广告组信息',//EwayLocale.bsAdvertGroup.addTitle
+		activedAdvert:'已激活的广告',//EwayLocale.bsAdvertGroup.activedAdvert
+		groupName:'广告组名称',//EwayLocale.bsAdvertGroup.groupName
+		groupType:'广告组类型',//EwayLocale.bsAdvertGroup.groupType
+		linkDevice:'广告组<-->设备',//EwayLocale.bsAdvertGroup.linkDevice
+		deleteConfirm:'确认删除广告分组？',//EwayLocale.bsAdvertGroup.deleteConfirm
+		cantLinkDevice:'默认组不需要绑定设备'//EwayLocale.bsAdvertGroup.cantLinkDevice
+	},
 	version : {//EwayLocale.version.version
 		selectDeviceInfo0 : "已选择的设备(<font color='red'>",//EwayLocale.version.selectDeviceInfo0
 		selectDeviceInfo1 : "</font>)台",//EwayLocale.version.selectDeviceInfo1

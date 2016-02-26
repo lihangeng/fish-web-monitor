@@ -4,6 +4,6 @@ Ext.define('Eway.store.bsAdvert.BsAdvertGroupType', {
 	
 	model: 'Eway.model.Dict',
 	
-	data: [{value:'0', display:'通用'}, 
-	       {value:'1', display:'默认'}]
+	data: [{value:'0', display:EwayLocale.bsAdvertGroup.commenType}, 
+	       {value:'1', display:EwayLocale.bsAdvertGroup.defaultType}]
 });

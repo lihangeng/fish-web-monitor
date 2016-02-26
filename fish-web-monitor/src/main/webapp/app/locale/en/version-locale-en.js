@@ -109,7 +109,7 @@ Ext.apply(EwayLocale,{
 	bsAdvert : {//EwayLocale.bsAdvert.advert
 		advertGroup:'Advert Group',//EwayLocale.bsAdvert.advertGroup
 		advertName:'Advert Name',//EwayLocale.bsAdvert.advertName
-		advertTitle:'Advertisement',//EwayLocale.bsAdvert.advertTitle
+		advertTitle:'BSAdvertisement',//EwayLocale.bsAdvert.advertTitle
 		advertStatus:'Advert Status',//EwayLocale.bsAdvert.advertStatus
 		advertGroupType:'Group Type',//EwayLocale.bsAdvert.advertGroupType
 		title : 'BS Advertisement',//EwayLocale.bsAdvert.title
@@ -175,7 +175,19 @@ Ext.apply(EwayLocale,{
 		idleAdvertUpTipsInfo : '<font Color="red">Only Supports .jpg And .gif Format Images; Each Resolution Upload Up To 10 Pictures; Each Picture Maximum 5M</font>',//EwayLocale.bsAdvert.idleAdvertUpTipsInfo
 		configTitle : 'Detail Settings'//EwayLocale.bsAdvert.configTitle
 	},
-	
+	bsAdvertGroup : { //EwayLocale.bsAdvertGroup.bsAdvertGroup 
+		commenType:'Common',//EwayLocale.bsAdvertGroup.commenType
+		defaultType:'Default',//EwayLocale.bsAdvertGroup.defaultType
+		title:'AdvertGroup Manager',//EwayLocale.bsAdvertGroup.title
+		updateTitle:'Update AdvertGroup',//EwayLocale.bsAdvertGroup.updateTitle
+		addTitle:'Add AdvertGroup',//EwayLocale.bsAdvertGroup.addTitle
+		activedAdvert:'Actived Advert',//EwayLocale.bsAdvertGroup.activedAdvert
+		groupName:'AdvertGroup Name',//EwayLocale.bsAdvertGroup.groupName
+		groupType:'AdvertGroup Type',//EwayLocale.bsAdvertGroup.groupType
+		linkDevice:'AdvertGroup<-->Deivce',//EwayLocale.bsAdvertGroup.linkDevice
+		deleteConfirm:'Are You Sure To Delete?',//EwayLocale.bsAdvertGroup.deleteConfirm
+		cantLinkDevice:'Can`t Link Deivce For Default AdvertGroup'//EwayLocale.bsAdvertGroup.cantLinkDevice
+	},
 	version:{
 		selectDeviceInfo0:"Selected Devices (<font color='Red'>",//EwayLocale.version.selectDeviceInfo0
 		selectDeviceInfo1:"</font>)",//EwayLocale.version.selectDeviceInfo1

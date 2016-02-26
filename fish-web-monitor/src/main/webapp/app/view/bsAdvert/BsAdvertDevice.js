@@ -21,7 +21,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertDevice', {
 	
 	initComponent: function() {
 		Ext.apply(this, {
-			title : '广告组<-->设备',
+			title : EwayLocale.bsAdvertGroup.linkDevice,
 			items : [{
 				region: 'west',
 				width:'50%',

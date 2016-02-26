@@ -174,7 +174,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 		var store = this.getEwayView().down('bs_advert_group_grid').getStore();
 		if(sm.getCount() == 1) {
 			Ext.MessageBox.confirm(EwayLocale.tip.remove.confirm.title,
-					'确认删除广告分组？',
+					EwayLocale.bsAdvertGroup.deleteConfirm,
 					function(button,text) {
 						if(button=="yes"){
 							var record = sm.getLastSelected();
@@ -220,7 +220,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 			var record = sm.getLastSelected();
 			
 			if(record.data.groupType == 1){
-				Eway.alert('默认组不需要绑定设备');
+				Eway.alert(EwayLocale.bsAdvertGroup.cantLinkDevice);
 				return;
 			}
 			Ext.Ajax.request({

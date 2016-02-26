@@ -112,7 +112,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 					success: function(response){
 						var obj = Ext.decode(response.responseText);
 				        if(obj.success==true){
-							Eway.alert("激活成功！");
+							Eway.alert(EwayLocale.bsAdvert.activedSuccessfully);
 				        }
 				        else{
 							Eway.alert(obj.errorMsg);
@@ -120,7 +120,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 				        me.onQuery();
 				    },
 				    failure:function(){
-				    	Eway.alert("激活失败！");
+				    	Eway.alert(EwayLocale.bsAdvert.activedFailed);
 				    }
 				});
 				
