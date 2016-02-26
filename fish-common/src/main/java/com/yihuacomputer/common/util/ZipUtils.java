@@ -89,7 +89,7 @@ public class ZipUtils {
 			if (real.equals(base)){
 				break;
 			}else{
-				ret = real.getName() + "/" + ret;
+				ret = real.getName() + File.separator + ret;
 			}
 		}
 		return ret;
@@ -128,7 +128,7 @@ public class ZipUtils {
 //			System.out.println("该程序无法解压非zip文件");
 			System.out.println("The application only decompression zipFile");
 		}else{
-			destDir = destDir.endsWith("\\") ? destDir : destDir + "\\";
+			destDir = destDir.endsWith(File.separator) ? destDir : destDir + File.separator;
 			byte b[] = new byte[1024];  
 	        int length;  
 	        ZipFile zipFile = null;
@@ -187,7 +187,7 @@ public class ZipUtils {
 	 * @return File 实际的文件
 	 */
 	public static File getRealFileName(String baseDir, String absFileName) {
-		String[] dirs = absFileName.split("/");
+		String[] dirs = absFileName.split(File.separator);
 		File ret = new File(baseDir);
 		if (dirs.length > 1) {
 			for (int i = 0; i < dirs.length - 1; i++) {
@@ -242,8 +242,8 @@ public class ZipUtils {
 				temp.delete();
 			}
 			if (temp.isDirectory()) {
-				delAllFile(path + "/" + tempList[i]);// 先删除文件夹里面的文件
-				delFolder(path + "/" + tempList[i]);// 再删除空文件夹
+				delAllFile(path + File.separator + tempList[i]);// 先删除文件夹里面的文件
+				delFolder(path + File.separator + tempList[i]);// 再删除空文件夹
 				flag = true;
 			}
 		}
