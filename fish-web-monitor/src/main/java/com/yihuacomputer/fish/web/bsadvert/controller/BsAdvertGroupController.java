@@ -150,6 +150,16 @@ public class BsAdvertGroupController {
 		IOrganization org = orgService.get(String.valueOf(orgId));		
 		ModelMap result = new ModelMap();
 		
+		String  groupName = request.getGroupName();
+		
+		boolean nameDupFlag = advertGroupService.dupGroupName(orgId,groupName);
+		
+		if(nameDupFlag){
+			result.put(FishConstant.SUCCESS, false);
+			result.put("errorMsg", messageSourceVersion.getMessage("bsadvertGroup.add.groupNameDup", null, FishCfg.locale));
+			return result;
+		}
+		
 		if(org == null){
 			result.put(FishConstant.SUCCESS, false);
 			result.put("errorMsg", messageSourceVersion.getMessage("bsadvertGroup.org.notExists", null, FishCfg.locale));
@@ -184,7 +194,21 @@ public class BsAdvertGroupController {
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody BsAdvertGroupForm request) {
 		logger.info("update bsAdvertGroup: bsAdvertGroup.id = " + id);
+		
 		ModelMap result = new ModelMap();
+		
+		long orgId = request.getOrgId();
+		String groupName = request.getGroupName();
+		
+		boolean nameDupFlag = advertGroupService.dupGroupName(orgId,groupName);
+		
+		if(nameDupFlag){
+			result.put(FishConstant.SUCCESS, false);
+			result.put("errorMsg", messageSourceVersion.getMessage("bsadvertGroup.add.groupNameDup", null, FishCfg.locale));
+			return result;
+		}
+		
+		
 		try {
 			IAdvertGroup advertGroup = advertGroupService.getById(id);
 			

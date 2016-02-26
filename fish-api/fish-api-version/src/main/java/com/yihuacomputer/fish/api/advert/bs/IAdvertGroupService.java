@@ -31,4 +31,6 @@ public interface IAdvertGroupService {
 	public List<IAdvertGroup> list(long orgId);
 	
 	public IBsAdvert getBsAdvertByGroupId(long groupId);
+	
+	public boolean dupGroupName(long orgId,String groupName);
 }

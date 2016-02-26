@@ -148,4 +148,15 @@ public class AdvertGroupService implements IAdvertGroupService {
 		List<Integer> lists = query.list();
 		return lists.get(0);
 	}
+
+	@Override
+	public boolean dupGroupName(long orgId,String groupName) {
+		
+		Object advertGroup =  dao.findUniqueByHql("from AdvertGroup ag where ag.groupName = ? and ag.orgId = ?", groupName , orgId);
+		
+		if(advertGroup==null){
+			return false;
+		}
+		return true;
+	}
 }
