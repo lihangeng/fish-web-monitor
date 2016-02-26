@@ -30,7 +30,6 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 				text :EwayLocale.button.update,
 				glyph : 0xf040,
 				action: 'update',
-				disabled : true,
 				code : 'bsAdvertUpdate',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
@@ -102,7 +101,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 				dataIndex:'advertFileName',
 				renderer:function(value,meta,record){
 					if(value != null){
-						return "<a class='link' href='#'>"+ value + "</a>";
+						return "<a href='#'>"+ value + "</a>";
 					}else{
 						return value;
 					}

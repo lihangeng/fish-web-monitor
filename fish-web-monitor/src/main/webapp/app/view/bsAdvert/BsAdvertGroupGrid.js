@@ -34,7 +34,6 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 				glyph : 0xf040,
 				action: 'update',
 				code : 'bsAdvertGroupUpdate',
-				disabled : true,
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
@@ -42,7 +41,6 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
-				disabled : true,
 				code : 'bsAdvertGroupDel',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
