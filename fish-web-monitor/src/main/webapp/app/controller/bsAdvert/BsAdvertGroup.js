@@ -244,7 +244,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 			});
 		}
 		else {
-			Eway.alert(EwayLocale.tip.bankPer.link.linkBankPerson);
+			Eway.alert(EwayLocale.msg.linkBSGroup);
 		}
 	},
 	

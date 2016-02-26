@@ -178,7 +178,7 @@ Ext.apply(EwayLocale,{
 	bsAdvertGroup : { //EwayLocale.bsAdvertGroup.bsAdvertGroup 
 		commenType:'Common',//EwayLocale.bsAdvertGroup.commenType
 		defaultType:'Default',//EwayLocale.bsAdvertGroup.defaultType
-		title:'AdvertGroup Manager',//EwayLocale.bsAdvertGroup.title
+		title:'BS AdvertGroup Manager',//EwayLocale.bsAdvertGroup.title
 		updateTitle:'Update AdvertGroup',//EwayLocale.bsAdvertGroup.updateTitle
 		addTitle:'Add AdvertGroup',//EwayLocale.bsAdvertGroup.addTitle
 		activedAdvert:'Actived Advert',//EwayLocale.bsAdvertGroup.activedAdvert

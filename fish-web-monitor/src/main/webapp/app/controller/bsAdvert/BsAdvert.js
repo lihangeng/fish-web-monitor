@@ -93,7 +93,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 			}, this);
 		}
 		else {
-			Eway.alert(EwayLocale.msg.chooseAdvert);
+			Eway.alert(EwayLocale.choiceDeleteMsg);
 		}
 	
 	},
@@ -179,7 +179,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 			}
 		}
 		else {
-			Eway.alert(EwayLocale.msg.chooseAdvert);
+			Eway.alert(EwayLocale.choiceUpdateMsg);
 		}
 	},
 	loadPic:function(s1024,info1024){

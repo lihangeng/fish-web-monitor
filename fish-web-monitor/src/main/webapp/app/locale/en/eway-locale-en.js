@@ -39,6 +39,7 @@ Ext.apply(EwayLocale,{
 		mustSelectDevice:'please Choose At Least One Machine.',//EwayLocale.msg.mustSelectDevice
 		selectVersionRecord:'Please Choose The Version Which You Want To Issue',//EwayLocale.msg.selectVersionRecord
 		missVersionFile:"Version files lost,can not execute",//EwayLocale.msg.missVersionFile
+		linkBSGroup:"请选择您关联的广告组.",//EwayLocale.msg.linkBSGroup
 	},
 	confirm:{
 		titleSure:'Confirm',//EwayLocale.confirm.titleSure

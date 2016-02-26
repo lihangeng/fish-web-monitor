@@ -179,7 +179,7 @@ Ext.apply(EwayLocale,{
 	bsAdvertGroup : { //EwayLocale.bsAdvertGroup.bsAdvertGroup 
 		commenType:'通用',//EwayLocale.bsAdvertGroup.commenType
 		defaultType:'默认',//EwayLocale.bsAdvertGroup.defaultType
-		title:'广告组管理',//EwayLocale.bsAdvertGroup.title
+		title:'BS广告组管理',//EwayLocale.bsAdvertGroup.title
 		updateTitle:'修改广告组信息',//EwayLocale.bsAdvertGroup.updateTitle
 		addTitle:'增加广告组信息',//EwayLocale.bsAdvertGroup.addTitle
 		activedAdvert:'已激活的广告',//EwayLocale.bsAdvertGroup.activedAdvert

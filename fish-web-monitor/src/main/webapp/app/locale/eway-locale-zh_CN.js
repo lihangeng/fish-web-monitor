@@ -39,6 +39,7 @@ Ext.apply(EwayLocale,{
 		mustSelectDevice:'请至少选择一个设备.',//EwayLocale.msg.mustSelectDevice
 		selectVersionRecord:'请选择您要下发的版本.',//EwayLocale.msg.selectVersionRecord
 		missVersionFile:"版本文件丢失,暂不能对版本进行下发控制.",//EwayLocale.msg.missVersionFile
+		linkBSGroup:"请选择您关联的广告组.",//EwayLocale.msg.linkBSGroup
 	},
 	confirm:{
 		titleSure:'确认',//EwayLocale.confirm.titleSure
