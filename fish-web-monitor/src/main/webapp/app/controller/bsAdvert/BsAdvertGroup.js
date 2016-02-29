@@ -108,7 +108,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 					//点击增加成功后查询条件不带入重新查询。
 					store.setUrlParamsByObject(null);
 					store.loadPage(1);
-					Eway.alert('保存成功');
+					Eway.alert(EwayLocale.msg.saveSuccess);
 			    },
 			    failure: function(record,operation){
 			    	Eway.alert(operation.error);

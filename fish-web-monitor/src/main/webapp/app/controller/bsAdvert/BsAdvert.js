@@ -125,7 +125,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 				});
 				
 			}else{
-				Eway.alert("广告文件不存在!");
+				Eway.alert(EwayLocale.bsAdvert.notExistFile);
 			}
 		}
 		else {
@@ -170,12 +170,12 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 				        }
 				    },
 				    failure:function(){
-				    	Eway.alert("加载广告资源失败!");
+				    	Eway.alert(EwayLocale.bsAdvert.loadingFail);
 				    }
 				});
 				
 			}else{
-				Eway.alert("广告文件不存在!");
+				Eway.alert(EwayLocale.bsAdvert.notExistFile);
 			}
 		}
 		else {
@@ -192,7 +192,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 	onUpdate:function(record,info1024,info800,info600){
 		var me = this;
 		var win = Ext.create("Eway.view.bsAdvert.AddBsWait");
-		win.setTitle("更改广告");
+		win.setTitle(EwayLocale.advert.updateTitle);
 		win.down("field_advert_advertGroup").setDisabled(true);
 		var tab = win.down('advert_bs_waitTab');
 		var s1024 = tab.down('bsadvertimgview[name=1024]');

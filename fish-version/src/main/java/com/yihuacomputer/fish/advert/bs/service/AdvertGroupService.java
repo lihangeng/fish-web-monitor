@@ -159,4 +159,12 @@ public class AdvertGroupService implements IAdvertGroupService {
 		}
 		return true;
 	}
+	@Override
+	public boolean isExist(long groupId,long orgId,String groupName){
+		Object advertGroup2=dao.findUniqueByHql("from AdvertGroup ag where ag.groupName = ? and ag.orgId = ? and ag.id != ? ", groupName,orgId,groupId);
+		if(advertGroup2==null){
+			return false;
+		}
+			return true;
+	}
 }
