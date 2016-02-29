@@ -5,6 +5,7 @@ import java.util.List;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroup;
+import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelation;
 import com.yihuacomputer.fish.api.device.IDevice;
 
 public interface IDeviceAdvertRelation
@@ -56,5 +57,21 @@ public interface IDeviceAdvertRelation
      * @return
      */
     public List<IAdvertGroup> listAdvertGroupByGroupId(Long groupId);
+    
+    
+    /**
+     * 根据设备获得该设备的关联广告组
+     * @param device
+     * @return
+     */
+    public IAdvertGroupDeviceRelation getDeviceRelation(long deviceId);
+    
+    
+    /**
+     * 根据设备Id删除广告组关联
+     * @param device
+     * @return
+     */
+    public void delete(long deviceId);
     
 }

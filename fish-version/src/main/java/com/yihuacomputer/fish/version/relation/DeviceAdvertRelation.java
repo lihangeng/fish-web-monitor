@@ -2,6 +2,9 @@ package com.yihuacomputer.fish.version.relation;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,20 +17,27 @@ import com.yihuacomputer.common.filter.FilterEntry;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.advert.bs.entity.AdvertGroupDeviceRelation;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroup;
+import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelation;
 import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.device.IDeviceListener;
+import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.version.relation.IDeviceAdvertRelation;
 
 @Service
 @Transactional
-public class DeviceAdvertRelation implements IDeviceAdvertRelation{
+public class DeviceAdvertRelation implements IDeviceAdvertRelation,IDeviceListener{
 
     @Autowired
     private IGenericDao dao;
 
     @Autowired
     private IOrganizationService orgService;
+    
+
+    @Autowired
+    private IDeviceService deviceService;
 	
 	
 	@Override
@@ -126,6 +136,68 @@ public class DeviceAdvertRelation implements IDeviceAdvertRelation{
         List<IAdvertGroup> advertGroup = dao.findByHQL(hql.toString(), groupId);
         return advertGroup;
     
+	}
+
+
+	@Override
+	public IAdvertGroupDeviceRelation getDeviceRelation(long deviceId) {
+		IAdvertGroupDeviceRelation advertGroupDeviceRelation = (IAdvertGroupDeviceRelation) dao.getCriteria(AdvertGroupDeviceRelation.class)
+		        .add(Restrictions.eq("deviceId", deviceId)).uniqueResult();
+		return advertGroupDeviceRelation;
+	}
+
+	@Override
+	public void delete(long deviceId) {
+		IAdvertGroupDeviceRelation entity = getDeviceRelation(deviceId);
+		if(entity!=null){
+			dao.delete(entity);
+		}
+	}
+
+	@Override
+	public String getListenerName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+    @PostConstruct
+    public void init() {
+        deviceService.addDeviceListener(this);
+    }
+
+	@Override
+	public void beforeAdd(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterAdd(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeUpdate(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterUpdate(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeDelete(IDevice device) {
+		delete(device.getId());
+	}
+
+	@Override
+	public void afterDelete(IDevice device) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
