@@ -173,7 +173,9 @@ Ext.apply(EwayLocale,{
 		perviewAdertWithIEBrowse : 'Unsupported Preview The Video Without IE Explorer..',//EwayLocale.bsAdvert.perviewAdertWithIEBrowse
 		fileFormatTipsInfo : "<font color='Red'>Upload picture format is not supported, only upload .jpg format images</font>",//EwayLocale.bsAdvert.fileFormatTipsInfo
 		idleAdvertUpTipsInfo : '<font Color="red">Only Supports .jpg And .gif Format Images; Each Resolution Upload Up To 10 Pictures; Each Picture Maximum 5M</font>',//EwayLocale.bsAdvert.idleAdvertUpTipsInfo
-		configTitle : 'Detail Settings'//EwayLocale.bsAdvert.configTitle
+		configTitle : 'Detail Settings',//EwayLocale.bsAdvert.configTitle
+		notExistFile:'The advert file does not exist!',//EwayLocale.bsAdvert.notExistFile
+		loadingFail:'The loading of advert resourse is failure!'//EwayLocale.bsAdvert.loadingFail
 	},
 	bsAdvertGroup : { //EwayLocale.bsAdvertGroup.bsAdvertGroup 
 		commenType:'Common',//EwayLocale.bsAdvertGroup.commenType

@@ -174,7 +174,9 @@ Ext.apply(EwayLocale,{
 		perviewAdertWithIEBrowse : '非IE浏览器不支持视频广告的预览.',//EwayLocale.bsAdvert.perviewAdertWithIEBrowse
 		fileFormatTipsInfo : "<font color='red'>上传的图片格式不支持,只能上传.jpg格式的图片</font>",//EwayLocale.bsAdvert.fileFormatTipsInfo
 		idleAdvertUpTipsInfo : '<font color="red">仅支持.jpg和.gif格式的图片;每种分辨率最多上传10张图片;每张图片最大5M</font>',//EwayLocale.bsAdvert.idleAdvertUpTipsInfo
-		configTitle : '广告详细配置'//EwayLocale.bsAdvert.configTitle
+		configTitle : '广告详细配置',//EwayLocale.bsAdvert.configTitle
+		notExistFile:'广告文件不存在!',//EwayLocale.bsAdvert.notExistFile
+		loadingFail:'加载广告资源失败!'//EwayLocale.bsAdvert.loadingFail
 	},
 	bsAdvertGroup : { //EwayLocale.bsAdvertGroup.bsAdvertGroup 
 		commenType:'通用',//EwayLocale.bsAdvertGroup.commenType
