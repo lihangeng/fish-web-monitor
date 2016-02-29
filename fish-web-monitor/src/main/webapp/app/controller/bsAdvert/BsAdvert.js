@@ -427,7 +427,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
 				var store = view.down('bs_advert_grid').getStore();
 				store.setUrlParamsByObject(null);
 				store.loadPage(1);
-				Eway.alert(EwayLocale.msg.createSuccess);
+				Eway.alert(EwayLocale.addSuccess);
 				win.close();
 			 },
 			 failure: function(record,operation){
