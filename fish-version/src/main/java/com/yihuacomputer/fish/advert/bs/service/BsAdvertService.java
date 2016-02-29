@@ -115,7 +115,7 @@ public class BsAdvertService implements IBsAdvertService {
 			argsList.add(updateTimeStart);
 		}
 		
-		
+		sb.append("order by advert.id desc");
 		return (IPageResult<Object>)dao.page(start, limit, sb.toString(), argsList.toArray());
 	}
 

@@ -88,7 +88,7 @@ public class AdvertGroupService implements IAdvertGroupService {
 			GroupType groupType = (GroupType)groupTypeObj;
 			sb.append(groupType.getId()+"'");
 		}
-		sb.append(") B ON B.GROUP_ID = A.GROUP_ID GROUP BY B.GROUP_ID");
+		sb.append(") B ON B.GROUP_ID = A.GROUP_ID GROUP BY B.GROUP_ID ORDER BY B.GROUP_ID DESC");
 		
 		int total = getTotal(sb.toString());
 		SQLQuery query = dao.getSQLQuery(sb.toString());

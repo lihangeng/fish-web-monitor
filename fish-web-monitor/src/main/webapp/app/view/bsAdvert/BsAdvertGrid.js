@@ -71,20 +71,20 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 					}]
 				})
 			}],
-			columns : [{
+			columns : [/*{
 				header: 'ID',
 				dataIndex: 'id',
 				width: 45
+			},*/{
+				//'广告名称'
+				header : EwayLocale.bsAdvert.advertName,
+				dataIndex : 'advertName',
+				width: 145
 			},{
 				//'广告组'
 				header : EwayLocale.bsAdvert.advertGroup,
 				dataIndex : 'groupName',
 				width: 200
-			},{
-				//'广告名称'
-				header : EwayLocale.bsAdvert.advertName,
-				dataIndex : 'advertName',
-				width: 145
 			},{
 				//'是否激活'
 				header : EwayLocale.bsAdvert.advertStatus,
@@ -95,7 +95,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 				header:EwayLocale.bsAdvert.createdTime,
 				dataIndex:'lastTime',
 				width: 200
-			},{
+			},/*{
 				//'广告文件'
 				header:EwayLocale.bsAdvert.advertFile,
 				dataIndex:'advertFileName',
@@ -106,7 +106,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 						return value;
 					}
 				}
-			},{
+			},*/{
 				//'制作人'
 				header : EwayLocale.bsAdvert.userName,
 				dataIndex:'userName',
