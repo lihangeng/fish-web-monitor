@@ -33,4 +33,5 @@ public interface IAdvertGroupService {
 	public IBsAdvert getBsAdvertByGroupId(long groupId);
 	
 	public boolean dupGroupName(long orgId,String groupName);
+	public boolean isExist(long groupId,long orgId,String groupName);
 }

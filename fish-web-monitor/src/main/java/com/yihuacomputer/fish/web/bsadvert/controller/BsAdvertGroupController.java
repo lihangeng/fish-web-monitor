@@ -200,7 +200,7 @@ public class BsAdvertGroupController {
 		long orgId = request.getOrgId();
 		String groupName = request.getGroupName();
 		
-		boolean nameDupFlag = advertGroupService.dupGroupName(orgId,groupName);
+		boolean nameDupFlag= advertGroupService.isExist(id, orgId, groupName);
 		
 		if(nameDupFlag){
 			result.put(FishConstant.SUCCESS, false);
