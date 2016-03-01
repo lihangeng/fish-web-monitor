@@ -438,12 +438,12 @@ public class BsAdvertController {
 		}
 		bsAdvertService.save(advert);
 		zipAdvertFile(advert,request,fileNames,tempDir);
-		advert.setActiveUserId(userSession.getUserId());
 		IFilter filter = new Filter();
 		filter.eq("groupId", advert.getGroupId());
 		List<IBsAdvert> groupBsAdvertList = bsAdvertService.list(filter);
 		//如果为当前组的第一个广告则直接激活；第一条及以后的广告不做自动激活处理
 		if(groupBsAdvertList.size()==1){
+			advert.setActiveUserId(userSession.getUserId());
 			bsAdvertService.actived(advert);
 		}else{
 			bsAdvertService.update(advert);
