@@ -159,7 +159,7 @@ public class AdvertResource implements IAdvertResource, Serializable {
         cfg.append("\"playTime\":\"").append(this.getPlayTime()).append("\",");
         cfg.append("\"content\":\"").append(this.getContent()).append("\",");
         cfg.append("\"beginDate\":\"").append(DateUtils.getDate(this.getBeginDate())).append("\",");
-        cfg.append("\"endDate\":\"").append(this.getEndDate() == null ? "9999-01-01" : DateUtils.getDate(this.getEndDate())).append("\",");
+        cfg.append("\"endDate\":\"").append(this.getEndDate() == null ? "" : DateUtils.getDate(this.getEndDate())).append("\",");
         cfg.append("\"beginTime\":\"").append(this.getBeginTime()).append("\",");
         cfg.append("\"endTime\":\"").append(this.getEndTime()).append("\"");
         cfg.append("}");
