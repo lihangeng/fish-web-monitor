@@ -6,8 +6,22 @@
 	<baseDirectory>/</baseDirectory>
 	<fileSets>  
         <fileSet>  
-            <directory>src\main\webapp\resources\bsAdvert\</directory>  
-            <outputDirectory>/advert</outputDirectory>  
+            <directory>src/main/webapp/resources/bsAdvert/1 1</directory>  
+            <outputDirectory>/advert/1 1</outputDirectory>  
+        </fileSet> 
+        <fileSet>  
+            <directory>src/main/webapp/resources/bsAdvert/js</directory>  
+            <outputDirectory>/advert/js</outputDirectory>  
         </fileSet>  
-    </fileSets>  
+    </fileSets>
+    <files>
+		<file>
+			<source>src/main/webapp/resources/bsAdvert/loading.gif</source>
+			<outputDirectory>/advert</outputDirectory>
+		</file>
+		<file>
+			<source>src/main/webapp/resources/bsAdvert/advert.html</source>
+			<outputDirectory>/advert</outputDirectory>
+		</file>
+	</files>
 </assembly>

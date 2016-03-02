@@ -143,7 +143,6 @@
 					<descriptors>
 						<descriptor>src/assembly/dist.xml</descriptor>
 						<descriptor>src/assembly/dist-bsadvert.xml</descriptor>
-						<descriptor>src/assembly/dist-bsadvertdefaultfile.xml</descriptor>
 					</descriptors>
 				</configuration>
 				<executions>
