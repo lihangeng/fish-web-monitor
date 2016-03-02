@@ -6,7 +6,8 @@ Ext.define('Eway.view.monitor.charts.DonutCharts', {
     config:{
             angleField:'displayName',
             labelField:'numberInfo',
-            stores:''
+            stores:'',
+            indexStore:0
     },
     initComponent: function() {
         var me = this;
@@ -40,7 +41,9 @@ Ext.define('Eway.view.monitor.charts.DonutCharts', {
                     field: this.getAngleField(),
                     display: 'outside',
                     renderer: function(a,b,c,d,e) {
-                        return me.myDataStore.data.items[e].get(me.getAngleField())+": "+me.myDataStore.data.items[e].get(me.getLabelField());
+                    	if(undefined!=me.myDataStore.data.items[me.indexStore]){
+                    		return me.myDataStore.data.items[me.indexStore++].get(me.getAngleField())+": "+me.myDataStore.data.items[e].get(me.getLabelField());
+                    	}
                     }
                 },
                 useDarkerStrokeColor:false,
