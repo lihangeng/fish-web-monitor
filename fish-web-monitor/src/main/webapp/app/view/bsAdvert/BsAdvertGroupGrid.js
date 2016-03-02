@@ -86,7 +86,7 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGroupGrid', {
 				sortable : true,
 				
 			},{
-				header : EwayLocale.bsAdvertGroup.group,
+				header : EwayLocale.bsAdvertGroup.groupType,
 				dataIndex : 'groupType',
 				width:100,
 				sortable : true,

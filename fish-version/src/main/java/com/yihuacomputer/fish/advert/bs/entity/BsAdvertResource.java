@@ -160,7 +160,7 @@ public class BsAdvertResource implements IBsAdvertResource, Serializable {
 		cfg.append("\"beginDate\":\"")
 				.append(DateUtils.getDate(this.getBeginDate())).append("\",");
 		cfg.append("\"endDate\":\"")
-				.append(this.getEndDate() == null ? "9999-01-01" : DateUtils
+				.append(this.getEndDate() == null ? "" : DateUtils
 						.getDate(this.getEndDate())).append("\",");
 		cfg.append("\"beginTime\":\"").append(this.getBeginTime())
 				.append("\",");

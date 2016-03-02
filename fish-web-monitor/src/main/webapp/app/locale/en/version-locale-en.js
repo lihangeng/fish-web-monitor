@@ -175,7 +175,8 @@ Ext.apply(EwayLocale,{
 		idleAdvertUpTipsInfo : '<font Color="red">Only Supports .jpg And .gif Format Images; Each Resolution Upload Up To 10 Pictures; Each Picture Maximum 5M</font>',//EwayLocale.bsAdvert.idleAdvertUpTipsInfo
 		configTitle : 'Detail Settings',//EwayLocale.bsAdvert.configTitle
 		notExistFile:'The advert file does not exist!',//EwayLocale.bsAdvert.notExistFile
-		loadingFail:'The loading of advert resourse is failure!'//EwayLocale.bsAdvert.loadingFail
+		loadingFail:'The loading of advert resourse is failure!',//EwayLocale.bsAdvert.loadingFail
+		activedSuccessfully:'The advert is actived successfully'//EwayLocale.bsAdvert.activedSuccessfully
 	},
 	bsAdvertGroup : { //EwayLocale.bsAdvertGroup.bsAdvertGroup 
 		commenType:'Common',//EwayLocale.bsAdvertGroup.commenType

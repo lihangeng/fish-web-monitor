@@ -176,7 +176,8 @@ Ext.apply(EwayLocale,{
 		idleAdvertUpTipsInfo : '<font color="red">仅支持.jpg和.gif格式的图片;每种分辨率最多上传10张图片;每张图片最大5M</font>',//EwayLocale.bsAdvert.idleAdvertUpTipsInfo
 		configTitle : '广告详细配置',//EwayLocale.bsAdvert.configTitle
 		notExistFile:'广告文件不存在!',//EwayLocale.bsAdvert.notExistFile
-		loadingFail:'加载广告资源失败!'//EwayLocale.bsAdvert.loadingFail
+		loadingFail:'加载广告资源失败!',//EwayLocale.bsAdvert.loadingFail
+		activedSuccessfully:'激活成功'//EwayLocale.bsAdvert.activedSuccessfully
 	},
 	bsAdvertGroup : { //EwayLocale.bsAdvertGroup.bsAdvertGroup 
 		commenType:'通用',//EwayLocale.bsAdvertGroup.commenType
