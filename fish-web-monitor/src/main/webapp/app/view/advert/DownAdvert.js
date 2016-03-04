@@ -99,7 +99,7 @@ Ext.define('Eway.view.advert.DownAdvert', {
 		                valueField : 'value',
 		                displayField: 'display',
 		                value:'MANUAL',
-		                name:'taskType',
+		                name:'jobType',
 		                editable : false,
 		                width : 245
 		            }, {
@@ -122,8 +122,8 @@ Ext.define('Eway.view.advert.DownAdvert', {
 					        columns: 2,
 					        vertical: true,
 					        items: [
-					            { boxLabel: EwayLocale.commen.yes, name: 'allDevice', inputValue: 'true' },
-					            { boxLabel: EwayLocale.commen.no, name: 'allDevice', inputValue: 'false', checked: true}
+					            { boxLabel: EwayLocale.commen.yes, name: 'selectAll', inputValue: 'true' },
+					            { boxLabel: EwayLocale.commen.no, name: 'selectAll', inputValue: 'false', checked: true}
 					        ]
 					}]
 				},{

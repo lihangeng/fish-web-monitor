@@ -129,7 +129,7 @@ Ext.define('Eway.controller.version.Version', {
 				var win = Ext.create('Eway.view.version.AddJob');
 				win.down("button[action=confirm]").on("click",this.onDownConfirm,this);
 				win.on("destroy",this.onCloseDownWin,this);
-				win.down("form combobox[name=taskType]").on('change',this.onJobTypeChange,this);
+				win.down("form combobox[name=jobType]").on('change',this.onJobTypeChange,this);
 				win.down("version_download_selectableDeviceGrid pagingtoolbar").on("beforechange",this.onSelectalbeDeviceFresh,this);
 				var pagingtoolbar = win.down("pagingtoolbar");
 				win.down("version_download_linkedDeviceGrid").on("activate",this.refreshLinkedDeviceGridData,this)
@@ -168,7 +168,7 @@ Ext.define('Eway.controller.version.Version', {
 	},
 	setCheckBoxModel:function( _this, newValue, oldValue, eOpts ){
 		var grid = this.getAddJobWin().down("version_download_selectableDeviceGrid");
-		if(newValue.allDevice=="true"){
+		if(newValue.selectAll=="true"){
 			grid.selModel.selectAll();
 			var linkedGrid = this.getAddJobWin().down("version_download_linkedDeviceGrid");
 			linkedGrid.getStore().removeAll();
@@ -252,7 +252,7 @@ Ext.define('Eway.controller.version.Version', {
 		var linkGrid = win.down('version_download_selectableDeviceGrid');
 		if(addForm.isValid()){
 			var deviceIdsField = addForm.findField("deviceIds");
-			var allDeviceField = addForm.findField("allDevice");
+			var allDeviceField = addForm.findField("selectAll");
 			//allDeviceField
 			if(Ext.isEmpty(deviceIdsField.value)&&!allDeviceField.value){
 				Eway.alert(EwayLocale.msg.mustSelectDevice);//"请至少选择一个设备.");
@@ -270,7 +270,13 @@ Ext.define('Eway.controller.version.Version', {
 					 	//保存成功后让用户选择是否跳转到分发监控页面
 					 	win.close();
 					 	Ext.MessageBox.confirm(EwayLocale.confirm.title,//'提示',
-					 			record.get("jobName")+EwayLocale.confirm.taskConfirmInfo0+ed.data.downLoadCounter+EwayLocale.confirm.taskConfirmInfo1,this.goToVersionDownloadPage,this);
+					 			record.get("jobName")+EwayLocale.confirm.taskConfirmInfo0+ed.data.downLoadCounter+EwayLocale.confirm.taskConfirmInfo1,
+					 			function(button, text) {
+					 				if (button == "yes") {
+					 					var controller = this.parent.activeController('version.monitor.VersionDownloadMonitor');
+					 					controller.autoJobDetail(ed.get("id"),ed.get("jobName"));
+					 				}
+					 			},this);
 //					 			record.get("jobName")+"第"+ed.data.downLoadCounter+'次作业保存成功,是否跳转到"分发监控"页面?',this.goToVersionDownloadPage,this);
 
 					 },
@@ -287,7 +293,8 @@ Ext.define('Eway.controller.version.Version', {
 	//跳转到分发监控页面
 	goToVersionDownloadPage :function(button, text) {
 		if (button == "yes") {
-			this.parent.activeController('version.VersionDownload');
+			this.parent.activeController('version.monitor.VersionDownloadMonitor');
+			autoJobDetail
 		}
 	},
 

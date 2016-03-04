@@ -18,15 +18,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import org.springframework.context.MessageSource;
-
-import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.version.IVersion;
+import com.yihuacomputer.fish.api.version.job.IJob;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
+import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.api.version.job.task.TaskType;
-import com.yihuacomputer.fish.version.service.api.IDomainTaskService;
 
 @Entity
 @Table(name = "VER_TASK")
@@ -37,9 +35,6 @@ public class Task implements ITask {
     @SequenceGenerator(name = "SEQ_VER_TASK", sequenceName = "SEQ_VER_TASK")
     @Column(name = "ID")
     private long id;
-
-    @Column(name = "BATCH_NAME", nullable = true, length = 16)
-    private String taskBatchName;
 
     @Transient
     private IDevice device;
@@ -59,26 +54,16 @@ public class Task implements ITask {
     @Column(name = "JOB_TIME")
     private Date excuteTime;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "CREATE_TIME")
-    private Date createTime;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "PLAN_TIME")
-    private Date planTime;
-
-    @Column(name = "EXCUTE_MACHINE", nullable = true, length = 16)
-    private String excuteMachine;
-
-    @Column(name = "DOWN_SOURCE", nullable = true, length = 32)
-    private String downSource;
-
     @org.hibernate.annotations.Type(type = "com.yihuacomputer.domain.util.BooleanUserType")
     @Column(name = "IS_SUCCESS", columnDefinition = "CHAR", length = 1)
     private boolean success;
 
-    @Column(name = "REASON", nullable = true, length = 40)
+    @Column(name = "REASON", nullable = true, length = 120)
     private String reason;
+
+    @ManyToOne(targetEntity = Job.class)
+    @JoinColumn(name = "JOB_ID")
+    private IJob job;
 
     @ManyToOne(targetEntity = Version.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "VERSION_ID", nullable = false)
@@ -90,73 +75,26 @@ public class Task implements ITask {
     @Column(name = "EXCEPT_VERSION", nullable = true, length = 70)
     private String exceptVersion;
 
-    /**
-     * 任务首次创建时间
-     */
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "FIRST_TIME", nullable = false)
-    private Date firstTime;
-
-    /**
-     * 任务下发的次数
-     */
-    @Column(name = "TASK_COUNT", nullable = false)
-    private int taskCount;
+    @org.hibernate.annotations.Type(type = "com.yihuacomputer.domain.util.BooleanUserType")
+    @Column(name = "EAGER_RESTART", columnDefinition = "CHAR", length = 1)
+    private boolean eagerRestart;
 
     @Column(name = "PROCESS")
     private double process;
 
-    /**
-     * 从２.０开始禁用
-     */
-    @org.hibernate.annotations.Type(type = "com.yihuacomputer.domain.util.BooleanUserType")
-    @Column(name = "EAGER_RESTART", columnDefinition = "CHAR", length = 1)
-    @Deprecated
-    private boolean eagerRestart;
+    @Column(name = "DOWNLOAD_START_TIME")
+    private String downloadStartTime ;
+
+    @Column(name = "DOWNLOAD_FINISH_TIME")
+    private String downloadFinishTime ;
 
     @Transient
-    private IDomainTaskService taskService;
+    private ITaskService taskService;
 
-    @Transient
-    private MessageSource messageSourceVersion;
-
-    @Transient
-    private MessageSource messageSourceEnum;
-
-    private String getEnumI18n(String enumText) {
-        if (null == enumText) {
-            return "";
-        }
-        return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
-    }
-
-    public MessageSource getMessageSourceVersion() {
-        return messageSourceVersion;
-    }
-
-    public void setMessageSourceVersion(MessageSource messageSourceVersion) {
-        this.messageSourceVersion = messageSourceVersion;
-    }
-
-    public MessageSource getMessageSourceEnum() {
-        return messageSourceEnum;
-    }
-
-    public void setMessageSourceEnum(MessageSource messageSourceEnum) {
-        this.messageSourceEnum = messageSourceEnum;
-    }
-
-    public Task(Date firstCreateDate) {
+    public Task() {
         this.status = TaskStatus.NEW;
         this.taskType = TaskType.MANUAL;
         this.eagerRestart = false;
-        this.setFirstTime(firstCreateDate);
-        this.setTaskCount(1);
-        this.createTime = new Date();
-    }
-
-    public Task() {
-
     }
 
     public long getId() {
@@ -185,17 +123,8 @@ public class Task implements ITask {
         return status;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * com.yihuacomputer.fish.api.version.job.task.ITask#setStatus(com.yihuacomputer
-     * .fish.api.version.job.task.TaskStatus)
-     */
     public void setStatus(TaskStatus status) {
-        if (!this.status.equals(TaskStatus.CHECKED)) {
-            this.status = status;
-        }
+        this.status = status;
     }
 
     public Date getExcuteTime() {
@@ -226,35 +155,14 @@ public class Task implements ITask {
         return this.getDevice().getTerminalId() + " ~ " + this.getDevice().getIp().toString();
     }
 
-    public boolean equals(Object obj) {
-        if (obj instanceof Task) {
-            Task task = (Task) obj;
-            return (this.getCreateTime().equals(task.getCreateTime())
-                    &&
-                    // 时间不一致
-                    // this.getDeployEndDate().equals(task.getDeployEndDate())&&
-                    // 时间不一致
-                    // this.getDeployStartDate().equals(task.getDeployStartDate())&&
-                    // 对象中含有对象不一致 this.getDevice().equals(task.getDevice())&&
-                    this.getDeviceId() == (task.getDeviceId())
-                    &&
-                    // null 下载源可能不一致
-                    // this.getDownSource().equals(task.getDownSource())&&
-                    // null
-                    // this.getExceptVersion().equals(task.getExceptVersion())&&
-                    this.getExcuteMachine().equals(task.getExcuteMachine())
-                    && this.getExcuteTime().equals(task.getExcuteTime())
-                    && this.getFirstTime().equals(task.getFirstTime()) && this.getId() == (task.getId())
-                    && this.getPlanTime().equals(task.getPlanTime()) && this.getReason().equals(task.getReason())
-                    && this.getState().equals(task.getState()) && (this.getTaskCount() == task.getTaskCount())
-                    && this.getTaskBatchName().equals(task.getTaskBatchName())
-                    && this.getTaskType().equals(task.getTaskType())
-                    && this.getVersion().getId() == task.getVersion().getId() && this.getVersionBeforeUpdate().equals(
-                    task.getVersionBeforeUpdate()));
+    @Override
+    public void setJob(IJob job) {
+        this.job = job;
+    }
 
-        } else {
-            return false;
-        }
+    @Override
+    public IJob getJob() {
+        return job;
     }
 
     public long getDeviceId() {
@@ -265,24 +173,21 @@ public class Task implements ITask {
         this.deviceId = deviceId;
     }
 
-    public IDomainTaskService getTaskService() {
+    public ITaskService getTaskService() {
         return taskService;
     }
 
-    public void setTaskService(IDomainTaskService taskService) {
+    public void setTaskService(ITaskService taskService) {
         this.taskService = taskService;
     }
 
     @Override
     public String getState() {
-        String tip = getEnumI18n(this.getStatus().getText());
         if (this.getStatus().equals(TaskStatus.NEW) || this.getStatus().equals(TaskStatus.RUN)) {
-            return tip;
-        } else {
-            return tip
-                    + (this.isSuccess() ? messageSourceVersion.getMessage("task.taskStauts.success", null,
-                            FishCfg.locale) : messageSourceVersion.getMessage("task.taskStauts.fail", null,
-                            FishCfg.locale));
+            return this.getStatus().getText();
+        }
+        else {
+            return this.getStatus().getText() + (this.isSuccess() ? "(成功)" : "(失败)");
         }
     }
 
@@ -354,82 +259,41 @@ public class Task implements ITask {
 
     @Override
     public Date getDeployStartDate() {
-        return new Date();
+       return this.getJob().getDeployStartDate();
     }
 
     @Override
     public Date getDeployEndDate() {
-        return new Date();
+        return this.getJob().getDeployEndDate();
     }
 
-    public Date getCreateTime() {
-        return createTime;
-    }
+	public double getProcess() {
+		return process;
+	}
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
-    }
+	public void setProcess(double process) {
+		this.process = process;
+	}
 
-    public String getExcuteMachine() {
-        return excuteMachine;
-    }
+	@Override
+	public void setDownloadStartTime(String downloadStartTime) {
+		this.downloadStartTime = downloadStartTime ;
+	}
 
-    public void setExcuteMachine(String excuteMachine) {
-        this.excuteMachine = excuteMachine;
-    }
+	@Override
+	public String getDownloadStartTime() {
+		return this.downloadStartTime ;
+	}
 
-    public String getDownSource() {
-        return downSource;
-    }
+	@Override
+	public void setDownloadFinishTime(String downloadFinishTime) {
+		this.downloadFinishTime = downloadFinishTime ;
+	}
 
-    public void setDownSource(String downSource) {
-        this.downSource = downSource;
-    }
+	@Override
+	public String getDownloadFinishTime() {
+		return this.downloadFinishTime ;
+	}
 
-    public Date getPlanTime() {
-        return planTime;
-    }
 
-    public void setPlanTime(Date planTime) {
-        this.planTime = planTime;
-    }
-
-    public Date getFirstTime() {
-        return firstTime;
-    }
-
-    public void setFirstTime(Date firstTime) {
-        this.firstTime = firstTime;
-    }
-
-    public int getTaskCount() {
-        return taskCount;
-    }
-
-    public void setTaskCount(int taskCount) {
-        this.taskCount = taskCount;
-    }
-
-    public String getTaskBatchName() {
-        return taskBatchName;
-    }
-
-    public void setTaskBatchName(String taskBatchName) {
-        this.taskBatchName = taskBatchName;
-    }
-
-    @Override
-    public double getProcess() {
-        return this.process;
-    }
-
-    @Override
-    public void setProcess(double process) {
-        this.process = process;
-    }
-    
-    public int hashCode() {  
-        return Long.valueOf(id).hashCode();  
-              
-    }  
 }

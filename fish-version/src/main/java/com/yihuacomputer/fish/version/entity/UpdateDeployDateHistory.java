@@ -77,7 +77,7 @@ public class UpdateDeployDateHistory implements IUpdateDeployDateHistory {
     public UpdateDeployDateHistory(ITask task){
         this();
         this.taskId = task.getId();
-//        this.jobId = task.getJob().getJobId();
+        this.jobId = task.getJob().getJobId();
     }
     public long getId() {
         return id;

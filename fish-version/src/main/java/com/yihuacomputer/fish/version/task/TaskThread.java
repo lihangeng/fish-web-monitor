@@ -44,10 +44,10 @@ public class TaskThread implements Runnable {
 	public synchronized void run() {
 		logger.info("Starting notify atm client：" + task.toString()+task.getState());
 		if(!taskService.noticeATM(task)){
-			// 尝试等待60秒
+			// 尝试等待20秒
 	        synchronized (this) {
 	            try {
-	                this.wait(60 * 1000);
+	                this.wait(20 * 1000);
 	            }
 	            catch (InterruptedException e) {
 	                e.printStackTrace();

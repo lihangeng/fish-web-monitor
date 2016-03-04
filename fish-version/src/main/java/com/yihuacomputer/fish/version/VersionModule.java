@@ -12,21 +12,25 @@ import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupService;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvertResourceService;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvertService;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
+import com.yihuacomputer.fish.api.version.IDeviceVersionService;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
 import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.IVersionStaticsService;
 import com.yihuacomputer.fish.api.version.IVersionStaticsStautsService;
 import com.yihuacomputer.fish.api.version.IVersionTypeAtmTypeRelationService;
 import com.yihuacomputer.fish.api.version.IVersionTypeService;
+import com.yihuacomputer.fish.api.version.job.IJobManager;
 import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistoryService;
-import com.yihuacomputer.fish.api.version.job.task.ITaskCollection;
 import com.yihuacomputer.fish.api.version.job.task.ITaskDetailService;
-import com.yihuacomputer.fish.api.version.job.task.ITaskManager;
+import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.relation.IDeviceAdvertRelation;
 import com.yihuacomputer.fish.version.interceptor.VersionEntityInjector;
+import com.yihuacomputer.fish.version.job.JobManager;
 import com.yihuacomputer.fish.version.relation.DeviceAdvertRelation;
-import com.yihuacomputer.fish.version.service.api.IDomainTaskService;
+import com.yihuacomputer.fish.version.service.api.IDomainJobService;
 import com.yihuacomputer.fish.version.service.db.DeviceSoftVersionService;
+import com.yihuacomputer.fish.version.service.db.DeviceVersionService;
+import com.yihuacomputer.fish.version.service.db.JobService;
 import com.yihuacomputer.fish.version.service.db.TaskDetailService;
 import com.yihuacomputer.fish.version.service.db.TaskService;
 import com.yihuacomputer.fish.version.service.db.UpdateDeployDateHistoryService;
@@ -36,8 +40,7 @@ import com.yihuacomputer.fish.version.service.db.VersionStaticsService;
 import com.yihuacomputer.fish.version.service.db.VersionStaticsStatusService;
 import com.yihuacomputer.fish.version.service.db.VersionTypeAtmTypeRelationService;
 import com.yihuacomputer.fish.version.service.db.VersionTypeService;
-import com.yihuacomputer.fish.version.task.TaskCollection;
-import com.yihuacomputer.fish.version.task.TaskManager;
+import com.yihuacomputer.fish.version.task.TaskQueue;
 
 @Configuration
 public class VersionModule {
@@ -62,10 +65,10 @@ public class VersionModule {
 		return new UpdateDeployDateHistoryService();
 	}
 
-//	@Bean
-//	public IDeviceVersionService deviceVersionService() {
-//		return new DeviceVersionService();
-//	}
+	@Bean
+	public IDeviceVersionService deviceVersionService() {
+		return new DeviceVersionService();
+	}
 
 	@Bean
 	public IDeviceSoftVersionService deviceSoftVersionService() {
@@ -77,13 +80,18 @@ public class VersionModule {
 		return new TaskDetailService();
 	}
 
+	@Bean
+	public ITaskService taskService() {
+		return new TaskService();
+	}
+
 	/**
 	 * 特别的配置，不是ITaskService
 	 * @return
 	 */
 	@Bean
-	public IDomainTaskService taskService() {
-		return new TaskService();
+	public IDomainJobService jobService(){
+		return  new JobService();
 	}
 
 	@Bean
@@ -97,19 +105,21 @@ public class VersionModule {
 	}
 
 	@Bean
+	public IJobManager jobManager() {
+		return new JobManager();
+	}
+	@Bean
 	public VersionEntityInjector versionEntityInjector() {
 		return new VersionEntityInjector();
 	}
-
-	@Bean
-	public ITaskCollection taskCollection(){
-		return  new TaskCollection();
+		@Bean
+	public TaskQueue taskQueue(){
+		return new TaskQueue();
 	}
-
-	@Bean
-	public ITaskManager taskMgr(){
-		return new TaskManager();
-	}
+//	@Bean
+//	public ITaskManager taskMgr(){
+//		return new TaskManager();
+//	}
 	@Bean
 	public IVersionStaticsStautsService versionStaticsStautsService(){
 		return new VersionStaticsStatusService();

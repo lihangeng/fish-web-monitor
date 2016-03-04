@@ -385,7 +385,7 @@ Ext.define('Eway.controller.advert.Advert', {
 				win.down("button[action=confirm]").on("click",this.onDownConfirm,this);
 				win.down("textfield[name=jobName]").setValue(record.get("versionDesc"));
 				win.on("destroy",this.onCloseDownWin,this);
-				win.down("form combobox[name=taskType]").on('change',this.onJobTypeChange,this);
+				win.down("form combobox[name=jobType]").on('change',this.onJobTypeChange,this);
 				win.down("version_download_multiselectableDeviceGrid pagingtoolbar").on("beforechange",this.onSelectalbeDeviceFresh,this);
 				var pagingtoolbar = win.down("pagingtoolbar");
 				win.down("version_download_linkedDeviceGrid").on("activate",this.refreshLinkedDeviceGridData,this)
@@ -423,7 +423,7 @@ Ext.define('Eway.controller.advert.Advert', {
 	},
 	setCheckBoxModel:function( _this, newValue, oldValue, eOpts ){
 		var grid = this.getDownAdvert().down("version_download_multiselectableDeviceGrid");
-		if(newValue.allDevice=="true"){
+		if(newValue.selectAll=="true"){
 			grid.selModel.deselectAll();
 			var linkedGrid = this.getDownAdvert().down("version_download_linkedDeviceGrid");
 			linkedGrid.getStore().removeAll();
@@ -489,7 +489,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		var linkGrid = win.down('version_download_multiselectableDeviceGrid');
 		if(addForm.isValid()){
 			var deviceIdsField = addForm.findField("deviceIds");
-			var allDeviceField = addForm.findField("allDevice");
+			var allDeviceField = addForm.findField("selectAll");
 			if(Ext.isEmpty(deviceIdsField.value)&&!allDeviceField.value){
 				Ext.MessageBox.alert(EwayLocale.confirm.title,EwayLocale.msg.chooseOneDevice);
 			}else if(allDeviceField.value&&linkGrid.getStore().getCount()==0){

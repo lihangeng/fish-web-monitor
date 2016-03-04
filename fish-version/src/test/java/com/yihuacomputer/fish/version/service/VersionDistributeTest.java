@@ -2,6 +2,7 @@ package com.yihuacomputer.fish.version.service;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,7 @@ public class VersionDistributeTest {
 	private IVersionService versionService;
 
 	@Test
+	@Ignore
 	public void test() {
 		IFilter filter = new Filter();
 		filter.eq("versionType", Long.parseLong("2"));

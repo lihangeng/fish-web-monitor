@@ -13,6 +13,7 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -50,6 +51,21 @@ public class Hibernate4Dao implements IGenericDao {
 		Session session = sessionFactory.getCurrentSession();
 		session.save(entity);
 		return entity;
+	}
+
+	public <T> List<T> batchSave(List<T> entities){
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx =session.beginTransaction();
+		int count=0;
+		for(T t:entities){
+			session.save(t);
+			if(count%100==0){   //每一千条刷新并写入数据库
+                session.flush();
+                session.clear();
+            }
+		}
+		tx.commit();
+		return entities;
 	}
 
 	public <T> List<T> loadAll(Class<T> entityClass) {
@@ -146,7 +162,7 @@ public class Hibernate4Dao implements IGenericDao {
 		criteria.setProjection(null);
 		addCriterionOrderByFitler(criteria, filter);
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-		criteria.addOrder(Order.desc(this.getIdName(entityClass))).setFirstResult(offset).setMaxResults(limit);
+		criteria.addOrder(Order.asc(this.getIdName(entityClass))).setFirstResult(offset).setMaxResults(limit);
 		List<IT> data = criteria.list();
 		result.setData(data);
 		return result;
@@ -167,7 +183,6 @@ public class Hibernate4Dao implements IGenericDao {
 		return page(start, limit, new Filter(), hql, values);
 	}
 
-	@SuppressWarnings("rawtypes")
 	@Override
 	public IPageResult<? extends Object> page(int start, int limit, IFilter filter, String hql, Object... values) {
 		PageResult<Object> page = new PageResult<Object>();
@@ -178,7 +193,7 @@ public class Hibernate4Dao implements IGenericDao {
 		query.setFirstResult(start);
 		query.setMaxResults(limit);
 
-		List data = query.list();
+		List<Object> data = query.list();
 		page.setData(data);
 		return page;
 	}
@@ -211,6 +226,17 @@ public class Hibernate4Dao implements IGenericDao {
 		return query;
 	}
 
+	private Query createSqlQuery(final String sql, final Object... values) {
+		Query query = this.getHibernateSession().createSQLQuery(sql);
+		if (values != null) {
+			for (int i = 0; i < values.length; i++) {
+				query.setParameter(i, values[i]);
+			}
+		}
+		return query;
+	}
+
+
 	private <T> Criteria addCriterionByFitler(IFilter filter, Class<T> entityClass) {
 		List<String> alias = new ArrayList<String>();
 		Criteria criteria = getCriteria(entityClass);
@@ -233,11 +259,7 @@ public class Hibernate4Dao implements IGenericDao {
 				criteria.add(Restrictions.eq(propertyName, c.getValue()));
 			} else if (Operator.LIKE.equals(c.getOperator())) {
 				criteria.add(Restrictions.like(propertyName, (String) c.getValue(), MatchMode.ANYWHERE));
-			} else if (Operator.RLIKE.equals(c.getOperator())) {
-                criteria.add(Restrictions.like(propertyName, (String) c.getValue(), MatchMode.START));
-            } else if (Operator.LLIKE.equals(c.getOperator())) {
-                criteria.add(Restrictions.like(propertyName, (String) c.getValue(), MatchMode.END));
-            } else if (Operator.NE.equals(c.getOperator())) {
+			} else if (Operator.NE.equals(c.getOperator())) {
 				criteria.add(Restrictions.or(Restrictions.ne(propertyName, c.getValue()),
 						Restrictions.isNull(propertyName)));
 			} else if (Operator.LT.equals(c.getOperator())) {
@@ -287,8 +309,39 @@ public class Hibernate4Dao implements IGenericDao {
 		}
 	}
 
+	public int countSqlResultBySQL(String hql, Object[] values) {
+		String countHql = prepareCountHql(hql);
+		try {
+			int count = findUniqueBySqlByFilter(countHql, values);
+			return count;
+		} catch (Exception e) {
+			throw new AppException("hql can't be auto count, hql is: " + countHql, e);
+		}
+	}
+
 	private <T> T findUniqueByHqlByFilter(IFilter filter, String countHql, Object[] values) {
 		return (T) this.createQueryByFilter(filter, countHql, values).uniqueResult();
+	}
+
+	private int findUniqueBySqlByFilter( String countSql, Object[] values) {
+		return  (Integer)this.createSqlQueryByFilter(countSql, values).uniqueResult();
+	}
+
+	private Query createSqlQueryByFilter( String outerSql, Object... values) {
+		String sqlBeforeOrder = "";
+		String orders = "";
+		int index = outerSql.indexOf("order by");
+		if (index > 0) {
+			orders = " " + outerSql.substring(index);
+			sqlBeforeOrder = outerSql.substring(0, index);
+		} else {
+			sqlBeforeOrder = outerSql;
+		}
+
+		String sql = sqlBeforeOrder + orders;
+
+		Query query = this.createSqlQuery(sql, values);
+		return query;
 	}
 
 	public Query createQueryByFilter(IFilter filter, String outerHql, Object... values) {
@@ -344,6 +397,49 @@ public class Hibernate4Dao implements IGenericDao {
 		}
 
 		return "select count(*) " + fromHql;
+	}
+
+	@Override
+	public IPageResult<Object> pageForSQL(int start, int limit, String sql, Object... values) {
+			PageResult<Object> page = new PageResult<Object>();
+			long time1 = System.currentTimeMillis() ;
+			int total = this.countSqlResultBySQL( sql, values);
+			long time2 = System.currentTimeMillis() ;
+			logger.info(String.format("query count time [%s] ms",(time2-time1)));
+			Query query = this.createSqlQueryByFilter( sql, values);
+
+			page.setTotal(total);
+			query.setFirstResult(start);
+			query.setMaxResults(limit);
+
+			List<Object> data = query.list();
+			long time3 = System.currentTimeMillis() ;
+			logger.info(String.format("query page time [%s] ms", (time3-time2)));
+			page.setData(data);
+			return page;
+	}
+
+	@Override
+	public IPageResult<Object> pageForSQLTrans(int start, int limit,
+			String sql, Object... values) {
+		PageResult<Object> page = new PageResult<Object>();
+		long time1 = System.currentTimeMillis() ;
+		int total = 0 ;
+		if(start==0){
+			total = this.countSqlResultBySQL( sql, values);
+			page.setTotal(total);
+		}
+		long time2 = System.currentTimeMillis() ;
+		logger.info(String.format("query count time [%s] ms",(time2-time1)));
+		Query query = this.createSqlQueryByFilter( sql, values);
+		query.setFirstResult(start);
+		query.setMaxResults(limit);
+
+		List<Object> data = query.list();
+		long time3 = System.currentTimeMillis() ;
+		logger.info(String.format("query page time [%s] ms", (time3-time2)));
+		page.setData(data);
+		return page;
 	}
 
 }

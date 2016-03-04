@@ -13,6 +13,7 @@ import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
@@ -35,7 +36,7 @@ import com.yihuacomputer.common.util.PageResult;
 
 /**
  * 数据库的基本操作，HIBERNATE实现
- * 
+ *
  * @author xuxigang
  * @version
  * @since
@@ -57,6 +58,21 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 		getHibernateTemplate().save(entity);
 		logger.debug("save entity: {}", entity);
 		return entity;
+	}
+
+	public <T> List<T> batchSave(List<T> entities){
+		Session session = super.getSessionFactory().getCurrentSession();
+		Transaction tx =session.beginTransaction();
+		int count=0;
+		for(T t:entities){
+			session.save(t);
+			if(count%100==0){   //每一千条刷新并写入数据库
+                session.flush();
+                session.clear();
+            }
+		}
+		tx.commit();
+		return entities;
 	}
 
 	/**
@@ -121,8 +137,7 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 		ClassMetadata meta = getSessionFactory().getClassMetadata(entityClass);
 		return meta.getIdentifierPropertyName();
 	}
-	
-	@SuppressWarnings("deprecation")
+
 	private <T> Criteria addCriterionByFitler(IFilter filter,
 			Class<T> entityClass) {
 		List<String> alias = new ArrayList<String>();
@@ -146,11 +161,7 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 				criteria.add(Restrictions.eq(propertyName, c.getValue()));
 			}else if(Operator.LIKE.equals(c.getOperator())){
 				criteria.add(Restrictions.like(propertyName,(String)c.getValue(),MatchMode.ANYWHERE));
-			}else if(Operator.RLIKE.equals(c.getOperator())){
-                criteria.add(Restrictions.like(propertyName,(String)c.getValue(),MatchMode.START));
-            }else if(Operator.LLIKE.equals(c.getOperator())){
-                criteria.add(Restrictions.like(propertyName,(String)c.getValue(),MatchMode.END));
-            }
+			}
 			else if(Operator.NE.equals(c.getOperator())) {
 				criteria.add(Restrictions.or(Restrictions.ne(propertyName, c.getValue()), Restrictions.isNull(propertyName)));
 			}
@@ -172,7 +183,7 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 		}
 		return criteria;
 	}
-	
+
 	//增加排序条件
 	private <T> void addCriterionOrderByFitler(Criteria criteria,IFilter filter) {
 	    if(filter == null){
@@ -187,7 +198,7 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 		if(orderBy.isAscending()){
 			return Property.forName(orderBy.getPropertyName()).asc();
 		}
-		return Property.forName(orderBy.getPropertyName()).desc();	
+		return Property.forName(orderBy.getPropertyName()).desc();
 	}
 
  	public <T> List<T> findByEntity(T entity) {
@@ -239,23 +250,22 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 	@Override
 	public IPageResult<? extends Object> page(int start, int limit, String hql, Object... values) {
 		return page(start,limit,new Filter(),hql,values);
-	}	
+	}
 
-	@SuppressWarnings("rawtypes")
 	public IPageResult<? extends Object> page(int start, int limit , IFilter filter,String hql, Object... values) {
 		PageResult<Object> page = new PageResult<Object>();
 		Query query = this.createQueryByFilter(filter,hql, values);
 		int total = this.countHqlResultByFilter(filter,hql, values);
 		page.setTotal(total);
-		
+
 		query.setFirstResult(start);
 		query.setMaxResults(limit);
-		
-		List data = query.list();
+
+		List<Object> data = query.list();
 		page.setData(data);
 		return page;
-	}	
-	
+	}
+
 	private int countHqlResultByFilter(IFilter filter, String hql, Object[] values) {
 		String countHql = prepareCountHql(hql);
 		try {
@@ -271,10 +281,10 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 	}
 
 	public Query createQueryByFilter(IFilter filter,String outerHql, Object... values){
-		FilterHql2 fh = new FilterHql2(filter); 
+		FilterHql2 fh = new FilterHql2(filter);
 		String hql = outerHql + fh.getHql();
 		Query query = this.createQuery(hql, values);
-		
+
 		String [] names = fh.getParamNames();
 		Object [] paramValues = fh.getValues();
 		for (int i = 0; i< names.length; i ++) {
@@ -297,7 +307,7 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 
 	/**
 	 * 执行count查询获得本次Hql查询所能获得的对象总数.
-	 * 
+	 *
 	 * 本函数只能自动处理简单的hql语句,复杂的hql查询请另行编写count语句查询.
 	 */
 	protected int countHqlResult(final String hql, final Object... values) {
@@ -352,13 +362,33 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
         return this.getSession();
     }
 
+	@Override
+	public IPageResult<Object> pageForSQL(int start, int limit,
+			String sql, Object... values) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int countSqlResultBySQL(String hql, Object[] values) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public IPageResult<Object> pageForSQLTrans(int start, int limit,
+			String sql, Object... values) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
 
 class FilterHql{
 	private String hql;
 	private List<String> paramNames = new ArrayList<String>();
 	private List<Object> values = new ArrayList<Object>();
-	
+
 	public FilterHql(IFilter outerFilter){
 		IFilter filter = null;
 	    if(outerFilter == null){
@@ -398,11 +428,11 @@ class FilterHql{
 		return result;
 	}
 
-	
+
 	public Object[] getValues() {
 		return this.values.toArray();
 	}
 
-	
+
 }
-	
+

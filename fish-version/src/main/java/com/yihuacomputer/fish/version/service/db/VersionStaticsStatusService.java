@@ -20,6 +20,7 @@ import com.yihuacomputer.fish.api.charts.ChartsInfo;
 import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
@@ -128,14 +129,14 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceTotal(long versionId,String orgFlag,int start,int limit){
     	StringBuffer hqlsb = new StringBuffer();
     	
-    	hqlsb.append("select device,deviceSoftVersion.versionNo from ").append(Device.class.getSimpleName()).append(" device ,").
+    	hqlsb.append("select device,deviceSoftVersion from ").append(Device.class.getSimpleName()).append(" device ,").
         append(Version.class.getSimpleName()).append(" version ,").
         append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ,").
         append(VersionTypeAtmTypeRelation.class.getSimpleName()).
         append(" as versionatmType where device.devType.id=versionatmType.atmTypeId ").
         append(" and versionatmType.versionTypeId=version.versionType.id ").
         append(" and deviceSoftVersion.typeName=version.versionType.typeName ").
-        append(" and deviceSoftVersion.deviceId=device.id ").
+        append(" and deviceSoftVersion.terminalId=device.terminalId ").
         append(" and version.id=? and device.organization.orgFlag like ? and device.status=? ");
         Object[] obj = {versionId,orgFlag+"%",DevStatus.OPEN};
         IVersion version = versionService.getById(versionId);
@@ -149,7 +150,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     	for(Object object:list){
     		Object[] resultObj = (Object[])object;
     		IDevice device = (IDevice)resultObj[0];
-    		String versionNo = resultObj[1]==null?"":String.valueOf(resultObj[1]);
+    		IDeviceSoftVersion deviceSoftVersion = (IDeviceSoftVersion)resultObj[1];
     		
     		VersionChartsDetailForm versionChartsDetailForm = new VersionChartsDetailForm();
             versionChartsDetailForm.setTerminalId(device.getTerminalId());
@@ -157,7 +158,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
             versionChartsDetailForm.setIp(device.getIp().toString());
             versionChartsDetailForm.setOrgName(device.getOrganization().getName());
             versionChartsDetailForm.setVersionId(versionId);
-            versionChartsDetailForm.setVersionNo(versionNo);
+            versionChartsDetailForm.setVersionNo(deviceSoftVersion.getVersionNo());
             resultList.add(versionChartsDetailForm);
     	}
     	IPageResult<VersionChartsDetailForm> pageResult = new PageResult<VersionChartsDetailForm>(result.getTotal(),resultList);
@@ -178,13 +179,13 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     	for(Object object :result.list()){
     		Object[] infos = (Object[])object;
     		IDevice device = (IDevice)infos[0];
-    		String currentVersionNo = String.valueOf(infos[1]);
+    		IDeviceSoftVersion deviceSoftVersion = (IDeviceSoftVersion)infos[1];
     		VersionChartsDetailForm versionChartsDetailForm = new VersionChartsDetailForm();
     		versionChartsDetailForm.setTerminalId(device.getTerminalId());
     		versionChartsDetailForm.setDevType(device.getDevType().getName());
     		versionChartsDetailForm.setIp(device.getIp().toString());
     		versionChartsDetailForm.setOrgName(device.getOrganization().getName());
-    		versionChartsDetailForm.setVersionNo(currentVersionNo);
+    		versionChartsDetailForm.setVersionNo(deviceSoftVersion.getVersionNo());
     		formList.add(versionChartsDetailForm);
     	}
     	return new  PageResult<VersionChartsDetailForm>(result.getTotal(),formList);
@@ -203,7 +204,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceSuccess(long versionId,String orgFlag,int start,int limit){
     	StringBuffer hql = new StringBuffer();
 		//设备下发成功的台数
-		hql.append("select device,deviceSoftVersion.versionNo from  ").
+		hql.append("select device,deviceSoftVersion from  ").
 		append(Task.class.getSimpleName()).append( " task , ").
 		append(Device.class.getSimpleName()).append(" device ,").
 		append(Version.class.getSimpleName()).append(" version ,").
@@ -216,7 +217,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     	append(" and versionatmType.versionTypeId=version.versionType.id ").
 		append(" and device.organization.orgFlag like ? ").
 		append(" and version.versionType.typeName=deviceSoftVersion.typeName ").
-		append(" and device.id=deviceSoftVersion.deviceId ");
+		append(" and device.terminalId=deviceSoftVersion.terminalId ");
 		Object[] obj = {versionId,TaskStatus.CHECKED,DevStatus.OPEN,orgFlag+"%"};
     	@SuppressWarnings("unchecked")
 		IPageResult<Object> successResult = (IPageResult<Object>) dao.page(start, limit, hql.toString(), obj);
@@ -241,6 +242,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     	IFilter filter = new Filter();
     	filter.eq("orgFlag", orgFlag);
     	IPageResult<Object> pushResult = versionDownloadService.getCanPushDevicePagesInfo(start, limit, version, filter);
+//    	IPageResult<Object> pushResult = new PageResult<Object>();
 		
     	IPageResult<VersionChartsDetailForm> pageResult= convertResult(pushResult);
     	return pageResult;
@@ -254,7 +256,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceFatal(long versionId,String orgFlag,int start,int limit){
     	StringBuffer hql = new StringBuffer();
 		//设备下发失败的台数
-		hql.append("select device,deviceSoftVersion.versionNo  from ").
+		hql.append("select device,deviceSoftVersion  from ").
 		append(Task.class.getSimpleName()).append( " task , ").
 		append(Device.class.getSimpleName()).append(" device, ").
 		append(Version.class.getSimpleName()).append(" version ,").
@@ -265,7 +267,7 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
 		append(" and task.status in('DEPLOYED_FAIL','NOTICED_FAIL','DOWNLOADED_FAIL','NOTICE_APP_FAIL')").
 		append(" and versionatmType.versionTypeId=version.versionType.id and device.devType.id=versionatmType.atmTypeId ").
 		append(" and version.versionType.typeName=deviceSoftVersion.typeName ").
-		append(" and device.id=deviceSoftVersion.deviceId ");
+		append(" and device.terminalId=deviceSoftVersion.terminalId ");
 		Object[] obj = {versionId,DevStatus.OPEN,orgFlag+"%"};
 		
     	@SuppressWarnings("unchecked")

@@ -1,191 +1,208 @@
 package com.yihuacomputer.fish.web.version.form;
 
+import com.yihuacomputer.common.util.DateUtils;
+import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.version.job.task.ITask;
+
 public class TaskForm {
-	private long id;
+    private long id;
 
-	private long deviceId;
+    private long deviceId;
 
-	private String terminalId;
+    private String terminalId;
 
-	private String orgName;
+    private String orgName;
 
-	private String deviceIp;
+    private String deviceIp;
 
-	private String excuteTime;
+    private String excuteTime;
 
-	private String taskStatus;
+    private String taskStatus;
 
-	private boolean success;
+    private String taskStatusText;
 
-	private String reason;
+    private boolean success;
 
-	private String jobName;
+    private String reason;
 
-	private String version;
+    private long jobId;
 
-	private String state;
+    private String version;
 
-	private String versionBeforeUpdate;
+    private String state;
 
-	private String exceptVersion;
+    private String versionBeforeUpdate;
 
-	private String currentVersion;
+    private String exceptVersion;
 
-	private String planTime;
-	private String excuteMachine;
-	private String downSource;
-	
+    private String currentVersion;
+
     private double process;
 
-	public TaskForm() {
-	}
+    private String downloadStartTime ;
 
-	public long getId() {
-		return id;
-	}
+    private String downloadFinishTime ;
 
-	public void setId(long id) {
-		this.id = id;
-	}
+    public TaskForm() {
+    }
 
-	public long getDeviceId() {
-		return deviceId;
-	}
+    public TaskForm(ITask task) {
+        this.id = task.getId();
+        this.excuteTime = task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime());
+        this.success = task.isSuccess();
+        this.reason = task.getReason();
 
-	public void setDeviceId(long deviceId) {
-		this.deviceId = deviceId;
-	}
+        if (task.getStatus() != null) {
+            this.taskStatus = String.valueOf(task.getStatus());
+            this.taskStatusText = task.getStatus().getText();
+        }
 
-	public String getDeviceIp() {
-		return deviceIp;
-	}
+        this.jobId = task.getJob().getJobId();
+        this.version = task.getVersion().getVersionNo();
+        this.state = task.getState();
+        IDevice device = task.getDevice();
+        this.deviceId = device.getId();
+        this.terminalId = device.getTerminalId();
+        this.deviceIp = device.getIp().toString();
+        this.orgName = device.getOrganization().getName();
+        if (task.getVersionBeforeUpdate() != null) {
+            int index = task.getVersionBeforeUpdate().indexOf("_");
+            this.versionBeforeUpdate = task.getVersionBeforeUpdate().substring(index + 1);
+        }
+        this.exceptVersion = task.getExceptVersion();
+        this.currentVersion = "";
+        this.process = task.getProcess();
 
-	public void setDeviceIp(String deviceIp) {
-		this.deviceIp = deviceIp;
-	}
+        this.downloadStartTime = task.getDownloadStartTime() ;
+        this.downloadFinishTime = task.getDownloadFinishTime() ;
+    }
 
-	public String getExcuteTime() {
-		return excuteTime;
-	}
+    public long getId() {
+        return id;
+    }
 
-	public void setExcuteTime(String excuteTime) {
-		this.excuteTime = excuteTime;
-	}
+    public void setId(long id) {
+        this.id = id;
+    }
 
-	public String getTaskStatus() {
-		return taskStatus;
-	}
+    public long getDeviceId() {
+        return deviceId;
+    }
 
-	public void setTaskStatus(String taskStatus) {
-		this.taskStatus = taskStatus;
-	}
+    public void setDeviceId(long deviceId) {
+        this.deviceId = deviceId;
+    }
 
-	public boolean isSuccess() {
-		return success;
-	}
+    public String getDeviceIp() {
+        return deviceIp;
+    }
 
-	public void setSuccess(boolean success) {
-		this.success = success;
-	}
+    public void setDeviceIp(String deviceIp) {
+        this.deviceIp = deviceIp;
+    }
 
-	public String getReason() {
-		return reason;
-	}
+    public String getExcuteTime() {
+        return excuteTime;
+    }
 
-	public void setReason(String reason) {
-		this.reason = reason;
-	}
+    public void setExcuteTime(String excuteTime) {
+        this.excuteTime = excuteTime;
+    }
 
-	public String getJobName() {
-		return jobName;
-	}
+    public String getTaskStatus() {
+        return taskStatus;
+    }
 
-	public void setJobId(String jobName) {
-		this.jobName = jobName;
-	}
+    public void setTaskStatus(String taskStatus) {
+        this.taskStatus = taskStatus;
+    }
 
-	public String getVersion() {
-		return version;
-	}
+    public boolean isSuccess() {
+        return success;
+    }
 
-	public void setVersion(String version) {
-		this.version = version;
-	}
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
 
-	public String getState() {
-		return state;
-	}
+    public String getReason() {
+        return reason;
+    }
 
-	public void setState(String state) {
-		this.state = state;
-	}
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
 
-	public String getTerminalId() {
-		return terminalId;
-	}
+    public long getJobId() {
+        return jobId;
+    }
 
-	public void setTerminalId(String terminalId) {
-		this.terminalId = terminalId;
-	}
+    public void setJobId(long jobId) {
+        this.jobId = jobId;
+    }
 
-	public String getOrgName() {
-		return orgName;
-	}
+    public String getVersion() {
+        return version;
+    }
 
-	public void setOrgName(String orgName) {
-		this.orgName = orgName;
-	}
+    public void setVersion(String version) {
+        this.version = version;
+    }
 
-	public String getVersionBeforeUpdate() {
-		return versionBeforeUpdate;
-	}
+    public String getState() {
+        return state;
+    }
 
-	public void setVersionBeforeUpdate(String versionBeforeUpdate) {
-		this.versionBeforeUpdate = versionBeforeUpdate;
-	}
+    public void setState(String state) {
+        this.state = state;
+    }
 
-	public String getCurrentVersion() {
-		return currentVersion;
-	}
+    public String getTerminalId() {
+        return terminalId;
+    }
 
-	public void setCurrentVersion(String currentVersion) {
-		this.currentVersion = currentVersion;
-	}
+    public void setTerminalId(String terminalId) {
+        this.terminalId = terminalId;
+    }
 
-	public String getExceptVersion() {
-		return exceptVersion;
-	}
+    public String getOrgName() {
+        return orgName;
+    }
 
-	public void setExceptVersion(String exceptVersion) {
-		this.exceptVersion = exceptVersion;
-	}
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
+    }
 
-	public String getPlanTime() {
-		return planTime;
-	}
+    public String getVersionBeforeUpdate() {
+        return versionBeforeUpdate;
+    }
 
-	public void setPlanTime(String planTime) {
-		this.planTime = planTime;
-	}
+    public void setVersionBeforeUpdate(String versionBeforeUpdate) {
+        this.versionBeforeUpdate = versionBeforeUpdate;
+    }
 
-	public String getExcuteMachine() {
-		return excuteMachine;
-	}
+    public String getCurrentVersion() {
+        return currentVersion;
+    }
 
-	public void setExcuteMachine(String excuteMachine) {
-		this.excuteMachine = excuteMachine;
-	}
+    public void setCurrentVersion(String currentVersion) {
+        this.currentVersion = currentVersion;
+    }
 
-	public String getDownSource() {
-		return downSource;
-	}
+    public String getExceptVersion() {
+        return exceptVersion;
+    }
 
-	public void setDownSource(String downSource) {
-		this.downSource = downSource;
-	}
+    public void setExceptVersion(String exceptVersion) {
+        this.exceptVersion = exceptVersion;
+    }
 
-	public void setJobName(String jobName) {
-		this.jobName = jobName;
+    public String getTaskStatusText() {
+        return taskStatusText;
+    }
+
+    public void setTaskStatusText(String taskStatusText) {
+        this.taskStatusText = taskStatusText;
     }
 
     public double getProcess() {
@@ -195,5 +212,21 @@ public class TaskForm {
     public void setProcess(double process) {
         this.process = process;
     }
+
+	public String getDownloadStartTime() {
+		return downloadStartTime;
+	}
+
+	public void setDownloadStartTime(String downloadStartTime) {
+		this.downloadStartTime = downloadStartTime;
+	}
+
+	public String getDownloadFinishTime() {
+		return downloadFinishTime;
+	}
+
+	public void setDownloadFinishTime(String downloadFinishTime) {
+		this.downloadFinishTime = downloadFinishTime;
+	}
 
 }

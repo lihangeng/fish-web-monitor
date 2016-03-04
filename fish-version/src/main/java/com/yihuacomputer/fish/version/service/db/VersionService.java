@@ -16,7 +16,6 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.OrderBy;
-import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.exception.DependException;
 import com.yihuacomputer.common.exception.NotFoundException;
 import com.yihuacomputer.common.file.FileMD5;
@@ -29,7 +28,6 @@ import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.IUserService;
-import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionType;
@@ -274,7 +272,7 @@ public class VersionService implements IDomainVersionService {
         } else {
             task.setStatus(TaskStatus.OTHER);
         }
-        task.setDownSource(ip);
+//        task.setDownSource(ip);
         taskService.updateTask(task);
     }
 
@@ -369,45 +367,45 @@ public class VersionService implements IDomainVersionService {
      */
     @Override
     public void collectCurrentVersionInfo(String terminalId, String typeName, String versionNo) {
-        try {
-            IDevice device = deviceService.get(terminalId);
-
-            if (null == device) {
-                String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.deviceNotExist",
-                        null, FishCfg.locale);
-                throw new AppException(exceptionMsg);
-            }
-            if (typeName == null || "".equals(typeName)) {
-                String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.versionTypeIsEmpty",
-                        null, FishCfg.locale);
-                throw new AppException(exceptionMsg);
-            }
-            if (versionNo == null || "".equals(versionNo)) {
-                String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.versionNoIsEmpty",
-                        null, FishCfg.locale);
-                throw new AppException(exceptionMsg);
-            }
-            IDeviceSoftVersion dsv = deviceVersionService.get(device.getId(), typeName);
-            IVersion version = this.autoUpdate(typeName, versionNo);
-            if (dsv != null) {
-                if (!versionNo.equals(dsv.getVersionNo())) {
-                    dsv.setVersionNo(versionNo);
-                    deviceVersionService.update(dsv);
-                }
-            } else {
-                dsv = deviceVersionService.make();
-                dsv.setDeviceId(device.getId());
-                dsv.setTypeName(typeName);
-                dsv.setVersionNo(versionNo);
-                dsv.setVersionNo(versionNo);
-                dsv.setVersionStr(version.getVersionStr());
-                deviceVersionService.add(dsv);
-            }
-        }
-        catch (Exception ex) {
-            // logger.error(String.format("登记软件版本信息失败[%s]", ex.getMessage()));
-            logger.error(String.format("save version fail[%s]", ex.getMessage()));
-        }
+//        try {
+//            IDevice device = deviceService.get(terminalId);
+//
+//            if (null == device) {
+//                String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.deviceNotExist",
+//                        null, FishCfg.locale);
+//                throw new AppException(exceptionMsg);
+//            }
+//            if (typeName == null || "".equals(typeName)) {
+//                String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.versionTypeIsEmpty",
+//                        null, FishCfg.locale);
+//                throw new AppException(exceptionMsg);
+//            }
+//            if (versionNo == null || "".equals(versionNo)) {
+//                String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.versionNoIsEmpty",
+//                        null, FishCfg.locale);
+//                throw new AppException(exceptionMsg);
+//            }
+//            IDeviceSoftVersion dsv = deviceVersionService.get(device.getId(), typeName);
+//            IVersion version = this.autoUpdate(typeName, versionNo);
+//            if (dsv != null) {
+//                if (!versionNo.equals(dsv.getVersionNo())) {
+//                    dsv.setVersionNo(versionNo);
+//                    deviceVersionService.update(dsv);
+//                }
+//            } else {
+//                dsv = deviceVersionService.make();
+//                dsv.setDeviceId(device.getId());
+//                dsv.setTypeName(typeName);
+//                dsv.setVersionNo(versionNo);
+//                dsv.setVersionNo(versionNo);
+//                dsv.setVersionStr(version.getVersionStr());
+//                deviceVersionService.add(dsv);
+//            }
+//        }
+//        catch (Exception ex) {
+//            // logger.error(String.format("登记软件版本信息失败[%s]", ex.getMessage()));
+//            logger.error(String.format("save version fail[%s]", ex.getMessage()));
+//        }
     }
 
     @SuppressWarnings("deprecation")
@@ -468,14 +466,14 @@ public class VersionService implements IDomainVersionService {
                 .append("where device.devType.id= versionTypeAtmType.atmTypeId ")
 //                .append("and version.versionType.id=versionTypeAtmType.versionTypeId ")
                 .append(" and devicesoftVersion.typeName='").append(versionTypeObj.getTypeName())
-                .append("' and device.id= devicesoftVersion.deviceId ").append(" and versionTypeAtmType.versionTypeId=? ")
+                .append("' and device.terminalId= devicesoftVersion.terminalId ").append(" and versionTypeAtmType.versionTypeId=? ")
                 .append(" and device.status= ? ").append(" and device.organization.orgFlag like ? ");
 //        Object versionType = filter.getValue("versionType");
         Object orgFlag = filter.getValue("orgFlag");
         hqlArgList.add(versionType);
         hqlArgList.add(DevStatus.OPEN);
         hqlArgList.add(orgFlag + "%");
-        hqlSb.append(" group by devicesoftVersion.typeName,devicesoftVersion.versionNo order by devicesoftVersion.versionStr desc");
+        hqlSb.append(" group by devicesoftVersion.typeName,devicesoftVersion.versionNo order by devicesoftVersion.versionNo desc");
         List<Object> hqlResultList = dao.findByHQL(hqlSb.toString(), hqlArgList.toArray());
         List<VersionDistribute> list = new ArrayList<VersionDistribute>();
         for (int index = 0; index < hqlResultList.size(); index++) {

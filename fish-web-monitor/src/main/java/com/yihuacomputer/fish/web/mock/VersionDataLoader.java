@@ -50,13 +50,13 @@ public class VersionDataLoader {
 
 	private void initDeviceSoftVersion() {
 		IDeviceSoftVersion dv = dvService.make();
-		dv.setDeviceId(1l);
+//		dv.setDeviceId(1l);
 		dv.setTypeName("YH-ATMC");
 		dv.setVersionNo("0.1");
 		dvService.add(dv);
 
 		dv = dvService.make();
-		dv.setDeviceId(2l);
+//		dv.setDeviceId(2l);
 		dv.setTypeName("YH-ATMC");
 		dv.setVersionNo("0.2");
 		dvService.add(dv);

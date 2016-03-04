@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,29 +40,30 @@ public class TaskServiceTest  extends BindSessionInTest2{
 
 
 	@Test
+	@Ignore
 	public void test(){
 
-		IVersionType versionType = versionTypeService.make("JCOLS");
-		versionTypeService.add(versionType);
-
-		IVersion version = versionService.make();
-		version.setCreatedTime(new Date());
-		version.setVersionType(versionType);
-		version.setVersionNo("1.0");
-		version.setVersionPath("D:");
-		version.setServerPath("aa.file");
-		versionService.add(version);
-
-		Date planTime = new Date();
-		ITask task = taskService.make(new Date());
-		task.setPlanTime(planTime);
-		task.setVersion(version);
-		taskService.addTask(task);
-		List<ITask> tasks = taskService.findTasks(planTime);
-		assertEquals(tasks.size(),1);
-
-		ITask taskInDB = tasks.get(0);
-		assertEquals(taskInDB.getVersion().getVersionType().getTypeName(),"JCOLS");
+//		IVersionType versionType = versionTypeService.make("JCOLS");
+//		versionTypeService.add(versionType);
+//
+//		IVersion version = versionService.make();
+//		version.setCreatedTime(new Date());
+//		version.setVersionType(versionType);
+//		version.setVersionNo("1.0");
+//		version.setVersionPath("D:");
+//		version.setServerPath("aa.file");
+//		versionService.add(version);
+//
+//		Date planTime = new Date();
+//		ITask task = taskService.make(new Date());
+//		task.setPlanTime(planTime);
+//		task.setVersion(version);
+//		taskService.addTask(task);
+//		List<ITask> tasks = taskService.findTasks(planTime);
+//		assertEquals(tasks.size(),1);
+//
+//		ITask taskInDB = tasks.get(0);
+//		assertEquals(taskInDB.getVersion().getVersionType().getTypeName(),"JCOLS");
 	}
 
 }

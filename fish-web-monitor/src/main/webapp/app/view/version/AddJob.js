@@ -97,7 +97,7 @@ Ext.define('Eway.view.version.AddJob', {
 		                valueField : 'value',
 		                displayField: 'display',
 		                value:'MANUAL',
-		                name:'taskType',
+		                name:'jobType',
 		                padding: '0 0 0 30',
 		                canClear : false,
 		                editable : false,
@@ -122,8 +122,8 @@ Ext.define('Eway.view.version.AddJob', {
 					        columns: 2,
 					        vertical: true,
 					        items: [
-					            { boxLabel: EwayLocale.commen.yes, name: 'allDevice', inputValue: 'true' },
-					            { boxLabel: EwayLocale.commen.no, name: 'allDevice', inputValue: 'false', checked: true}
+					            { boxLabel: EwayLocale.commen.yes, name: 'selectAll', inputValue: 'true' },
+					            { boxLabel: EwayLocale.commen.no, name: 'selectAll', inputValue: 'false', checked: true}
 					        ]
 					}]
 				}/*,{

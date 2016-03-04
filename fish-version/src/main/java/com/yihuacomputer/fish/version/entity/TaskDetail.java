@@ -15,9 +15,8 @@ import javax.persistence.TemporalType;
 import com.yihuacomputer.fish.api.version.job.task.ITaskDetail;
 
 /**
- * 任务详情记录表
- * 记录任务在每个执行阶段的执行时间等信息
- * @since 0.17
+ * 
+ * @sinc 0.17
  * @author xuxigang
  * 
  */

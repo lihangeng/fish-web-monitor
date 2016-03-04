@@ -25,6 +25,13 @@ public interface IGenericDao {
 	 * @return
 	 */
 	 <T> T save(T entity);
+
+	 /***
+	  * 批量增加实体
+	  * @param entities
+	  * @return
+	  */
+	 public <T> List<T> batchSave(List<T> entities);
 	/**
 	 * 修改实体
 	 * @param entity
@@ -34,7 +41,7 @@ public interface IGenericDao {
 	/**
 	 * 批量更新（包括删除操作）
 	 * @param hql
-	 * @param values 
+	 * @param values
 	 */
 	 void batchUpdate(String hql, Object...values);
 	/**
@@ -66,7 +73,7 @@ public interface IGenericDao {
 	 * @return T
 	 */
 	 <T> T get(Serializable id,Class<T> entityClass);
-	
+
 	/**
 	 * 加载所有的对象
 	 * @return List<T>
@@ -124,7 +131,7 @@ public interface IGenericDao {
 	 * @return
 	 */
 	 <T> T findUniqueByHql(String hql,Object...values);
-	
+
 	//TODO 缺少查找某列值的接口
 
 	/**
@@ -137,9 +144,9 @@ public interface IGenericDao {
 	 * @return
 	 */
 	 IPageResult<? extends Object> page(int start,int limit,String hql,Object...values);
-	
+
 	/**
-	 * 
+	 *
 	 * @param start
 	 * @param limit
 	 * @param filter 过滤条件
@@ -148,9 +155,9 @@ public interface IGenericDao {
 	 * @return
 	 */
 	 IPageResult<? extends Object> page(int start, int limit , IFilter filter,String hql, Object... values);
-	
+
 	 <T> T saveOrUpdate(T entity);
-	 
+
 	 /**
 	  * 支持native sql 的查询
 	  * @param sql 标准的sql语句
@@ -162,6 +169,20 @@ public interface IGenericDao {
 	  * @return
 	  */
 	 Session getHibernateSession();
-	 
-	
+
+		/**
+		 *
+		 * @param start
+		 * @param limit
+		 * @param filter 过滤条件
+		 * @param hql
+		 * @param values
+		 * @return
+		 */
+		 IPageResult<Object> pageForSQL(int start, int limit,String sql, Object... values);
+
+		 IPageResult<Object> pageForSQLTrans(int start, int limit,String sql, Object... values);
+
+		 int countSqlResultBySQL(String hql, Object[] values) ;
+
 }

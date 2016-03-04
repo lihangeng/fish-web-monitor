@@ -311,7 +311,7 @@ Ext.define('Eway.controller.version.VersionDownload', {
 		}
 		var data = form.getValues();
 		var url = 'api/version/download/exportToExcel?terminalId='+data.terminalId+
-		'&updateResult='+data.updateResult+'&taskType='+data.taskType+
+		'&updateResult='+data.updateResult+'&jobType='+data.jobType+
 		'&jobName='+data.jobName+'&versionTypeId='+data.versionTypeId+'&versionNo='+data.versionNo+'' ;
 		var iframe = document.getElementById('downloadFileFromWeb');
 		iframe.src = url;

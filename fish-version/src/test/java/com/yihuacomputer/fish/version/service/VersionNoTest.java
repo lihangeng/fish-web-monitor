@@ -3,6 +3,7 @@ package com.yihuacomputer.fish.version.service;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.yihuacomputer.common.util.StringUtils;
@@ -24,6 +25,7 @@ public class VersionNoTest {
     }
     
     @Test
+    @Ignore
     public void testVersionNO(){
     	System.out.println(generateVersionStr("1.0.0"));
     	//00000001 00000000 00000000 000000-1

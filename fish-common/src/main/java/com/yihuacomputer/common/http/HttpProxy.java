@@ -181,4 +181,54 @@ public class HttpProxy {
             }
         }
     }
+    /**
+     * 负责向客户端发送信息，并接受客户端的返回
+     * 
+     * @param url
+     * @param msg
+     * @param classOfT
+     * @param connectTimeOut
+     *            连接超时
+     * @param soTimeOut
+     *            响应超时
+     * @return
+     */
+    public static Object httpPost(String url, Object msg, Class<?> classOfT, int connectTimeOut, int soTimeOut) {
+        DefaultHttpClient client = new DefaultHttpClient();
+
+        // 请求超时
+        client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, connectTimeOut);
+        client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, soTimeOut);
+
+        HttpPost post = null;
+        HttpResponse resp = null;
+        InputStream stream = null;
+        StringEntity entity = null;
+        try {
+            post = new HttpPost(url);
+            entity = new StringEntity(JsonUtils.toJsonWithGson(msg), "UTF-8");
+
+            Header header = new BasicHeader("Content-Type", "application/json;charset=UTF-8");
+            entity.setContentType(header);
+
+            post.setEntity(entity);
+            resp = client.execute(post);
+            stream = resp.getEntity().getContent();
+            if (classOfT != null) {
+                return JsonUtils.inputStreamToObject(stream, classOfT);
+            } else {
+                return stream;
+            }
+        } catch (Exception e) {
+            throw new ConnectionException(String.format("连接ATM失败[%s]", e));
+        } finally {
+            if (stream != null) {
+                try {
+                    stream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

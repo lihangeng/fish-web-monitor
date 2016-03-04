@@ -13,9 +13,20 @@ public class TaskThreadPool {
 
 	private ThreadPoolExecutor taskExecutor;
 	
-	public TaskThreadPool(){
+	private TaskQueue taskQueue;
+	
+	public TaskThreadPool(TaskQueue taskQueue){
+		this.taskQueue = taskQueue;
 		this.init();
 	}
+	
+	public TaskQueue getTaskQueue() {
+		return taskQueue;
+	}
+	
+	public int getCorePoolSize(){
+		return this.taskQueue.getTaskQueueLength();
+	}	
 	 
 	/**
 	 * 获取执行器
@@ -28,7 +39,7 @@ public class TaskThreadPool {
 	 * */
 	
 	public void init(){
-		taskExecutor = new ThreadPoolExecutor(30,30,10,TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(30),new ThreadPoolExecutor.CallerRunsPolicy());
+		taskExecutor = new ThreadPoolExecutor(getCorePoolSize(),getCorePoolSize(),10,TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(this.taskQueue.getTaskQueueLength()),new ThreadPoolExecutor.CallerRunsPolicy());
 	}
 	
 	public void close(){

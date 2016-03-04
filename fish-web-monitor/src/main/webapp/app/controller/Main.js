@@ -207,7 +207,7 @@ Ext.define('Eway.controller.Main', {
 		if(code =="version"){
 			this.activeController('version.Version',text);
 		}else if(code == "versionMonitor"){
-			this.activeController('version.VersionDownload',text);
+			this.activeController('version.monitor.VersionDownloadMonitor',text);
 		}else if(code == "advert"){
 			this.activeController('advert.Advert',text);
 		}else if(code == "bsAdvertGroup"){

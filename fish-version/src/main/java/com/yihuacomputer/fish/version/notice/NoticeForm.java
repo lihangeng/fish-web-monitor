@@ -17,210 +17,210 @@ import com.yihuacomputer.fish.api.version.job.task.ITask;
  *
  */
 public class NoticeForm {
-	private long taskId;
+    private long taskId;
 
-	private String patch;
+    private String patch;
 
-	private String patchNo;
+    private String patchNo;
 
-	private String prePatchNo;
+    private String prePatchNo;
 
-	private String serverPath;
+    private String serverPath;
 
-	private String localPath;
+    private String localPath;
 
-	private String fileName;
+    private String fileName;
 
-	// 文件大小
-	private String fileSize;
+    //文件大小
+    private String fileSize;
 
-	// 文件的MD5校验码
-	private String md5CheckNum;
+    // 文件的MD5校验码
+    private String md5CheckNum;
 
-	private boolean uncompress;
+    private boolean uncompress;
 
-	private boolean eagerRestart;
+    private boolean eagerRestart;
 
-	// 软件分类的版本号通过页面自定义
-	private boolean customVersion;
+    // 软件分类的版本号通过页面自定义
+    private boolean customVersion;
 
-	private boolean system;
+    private boolean system;
 
-	private String deployStartDate;
+    private String deployStartDate;
 
-	private String deployEndDate;
+    private String deployEndDate;
 
-	private String versionCatalog;
+    private String versionCatalog;
 
-	private String ret;
+    private String ret;
 
-	// 版本文件下载源地址
-	private String downUrl;
+    private long cancelPreVer ;
 
-	// 部署之前执行的脚本命令
-	private String execBefore;
+    private long deployScheduler ;
 
-	public NoticeForm() {
-	}
+    public NoticeForm() {
+    }
 
-	public NoticeForm(ITask task) {
-		IVersion version = task.getVersion();
-		this.taskId = task.getId();
-		IVersionType type = version.getVersionType();
-		this.patch = type.getTypeName();
-		this.patchNo = version.getVersionNo();
-		this.prePatchNo = version.getDependVersion() == null ? null : version.getDependVersion().getVersionNo();
-		this.serverPath = VersionCfg.getVersionDir() + File.separator + version.getVersionType().getTypeName();
-		this.localPath = version.getVersionPath();
-		this.fileName = version.getServerPath();
-		this.md5CheckNum = version.getMd5CheckNum();
-		this.uncompress = version.isUncompress();
-		this.eagerRestart = task.isEagerRestart();
-		this.customVersion = type.isCustomVersion();
-		this.system = type.isSystem();
-		this.versionCatalog = type.getVersionCatalog() == null ? VersionCatalog.OTHER.name() : type.getVersionCatalog().name();
-		this.deployStartDate = task.getDeployStartDate() == null ? "" : DateUtils.getDate(task.getDeployStartDate());
-		this.deployEndDate = task.getDeployEndDate() == null ? "" : DateUtils.getDate(task.getDeployEndDate());
-		this.fileSize = getVersionFileSize();
-		this.execBefore = version.getExecBefore();
-	}
+    public NoticeForm(ITask task) {
+        IVersion version = task.getVersion();
+        this.taskId = task.getId();
+        IVersionType type = version.getVersionType();
+        this.patch = type.getTypeName();
+        this.patchNo = version.getVersionNo();
+        this.prePatchNo = version.getDependVersion() == null ? null : version.getDependVersion().getVersionNo();
+        this.serverPath = VersionCfg.getVersionDir() + File.separator + version.getVersionType().getTypeName();
+        this.localPath = version.getVersionPath();
+        this.fileName = version.getServerPath();
+        this.md5CheckNum = version.getMd5CheckNum();
+        this.uncompress = version.isUncompress();
+        this.eagerRestart = task.isEagerRestart();
+        this.customVersion = type.isCustomVersion();
+        this.system = type.isSystem();
+        this.versionCatalog = type.getVersionCatalog() == null ? VersionCatalog.OTHER.name() : type.getVersionCatalog().name();
+        this.deployStartDate = task.getDeployStartDate() == null ? "" : DateUtils.getDate(task.getDeployStartDate());
+        this.deployEndDate = task.getDeployEndDate() == null ? "" : DateUtils.getDate(task.getDeployEndDate());
+        this.fileSize = getVersionFileSize();
 
-	private String getVersionFileSize() {
-		File file = new File(this.serverPath + File.separator + this.fileName);
-		if (file.exists()) {
-			return String.valueOf(file.length());
-		} else {
-			return "0";
-		}
-	}
+        this.cancelPreVer = task.getJob().getCancelPreVer() ;
+//        this.deployScheduler = version.getDeployScheFlag();
+    }
 
-	public String getPatch() {
-		return patch;
-	}
+    private String getVersionFileSize(){
+    	File file = new File(this.serverPath + File.separator + this.fileName);
+    	if(file.exists()){
+    		return String.valueOf(file.length());
+    	}else{
+    		return "0";
+    	}
+    }
 
-	public void setPatch(String patch) {
-		this.patch = patch;
-	}
+    public String getPatch() {
+        return patch;
+    }
 
-	public String getPatchNo() {
-		return patchNo;
-	}
+    public void setPatch(String patch) {
+        this.patch = patch;
+    }
 
-	public void setPatchNo(String patchNo) {
-		this.patchNo = patchNo;
-	}
+    public String getPatchNo() {
+        return patchNo;
+    }
 
-	public String getPrePatchNo() {
-		return prePatchNo;
-	}
+    public void setPatchNo(String patchNo) {
+        this.patchNo = patchNo;
+    }
 
-	public void setPrePatchNo(String prePatchNo) {
-		this.prePatchNo = prePatchNo;
-	}
+    public String getPrePatchNo() {
+        return prePatchNo;
+    }
 
-	public String getServerPath() {
-		return serverPath;
-	}
+    public void setPrePatchNo(String prePatchNo) {
+        this.prePatchNo = prePatchNo;
+    }
 
-	public void setServerPath(String serverPath) {
-		this.serverPath = serverPath;
-	}
+    public String getServerPath() {
+        return serverPath;
+    }
 
-	public String getLocalPath() {
-		return localPath;
-	}
+    public void setServerPath(String serverPath) {
+        this.serverPath = serverPath;
+    }
 
-	public void setLocalPath(String localPath) {
-		this.localPath = localPath;
-	}
+    public String getLocalPath() {
+        return localPath;
+    }
 
-	public String getFileName() {
-		return fileName;
-	}
+    public void setLocalPath(String localPath) {
+        this.localPath = localPath;
+    }
 
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
+    public String getFileName() {
+        return fileName;
+    }
 
-	public String getFileSize() {
-		return fileSize;
-	}
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
 
-	public void setFileSize(String fileSize) {
-		this.fileSize = fileSize;
-	}
+    public String getFileSize() {
+        return fileSize;
+    }
 
-	public String getRet() {
-		return ret;
-	}
+    public void setFileSize(String fileSize) {
+        this.fileSize = fileSize;
+    }
 
-	public void setRet(String ret) {
-		this.ret = ret;
-	}
+    public String getRet() {
+        return ret;
+    }
 
-	public boolean isUncompress() {
-		return uncompress;
-	}
+    public void setRet(String ret) {
+        this.ret = ret;
+    }
 
-	public void setUncompress(boolean uncompress) {
-		this.uncompress = uncompress;
-	}
+    public boolean isUncompress() {
+        return uncompress;
+    }
 
-	public long getTaskId() {
-		return taskId;
-	}
+    public void setUncompress(boolean uncompress) {
+        this.uncompress = uncompress;
+    }
 
-	public void setTaskId(long taskId) {
-		this.taskId = taskId;
-	}
+    public long getTaskId() {
+        return taskId;
+    }
 
-	public boolean isEagerRestart() {
-		return eagerRestart;
-	}
+    public void setTaskId(long taskId) {
+        this.taskId = taskId;
+    }
 
-	public void setEagerRestart(boolean eagerRestart) {
-		this.eagerRestart = eagerRestart;
-	}
+    public boolean isEagerRestart() {
+        return eagerRestart;
+    }
 
-	public boolean isCustomVersion() {
-		return customVersion;
-	}
+    public void setEagerRestart(boolean eagerRestart) {
+        this.eagerRestart = eagerRestart;
+    }
 
-	public void setCustomVersion(boolean customVersion) {
-		this.customVersion = customVersion;
-	}
+    public boolean isCustomVersion() {
+        return customVersion;
+    }
 
-	public boolean isSystem() {
-		return system;
-	}
+    public void setCustomVersion(boolean customVersion) {
+        this.customVersion = customVersion;
+    }
 
-	public void setSystem(boolean system) {
-		this.system = system;
-	}
+    public boolean isSystem() {
+        return system;
+    }
 
-	public String getDeployStartDate() {
-		return deployStartDate;
-	}
+    public void setSystem(boolean system) {
+        this.system = system;
+    }
 
-	public void setDeployStartDate(String deployStartDate) {
-		this.deployStartDate = deployStartDate;
-	}
+    public String getDeployStartDate() {
+        return deployStartDate;
+    }
 
-	public String getDeployEndDate() {
-		return deployEndDate;
-	}
+    public void setDeployStartDate(String deployStartDate) {
+        this.deployStartDate = deployStartDate;
+    }
 
-	public void setDeployEndDate(String deployEndDate) {
-		this.deployEndDate = deployEndDate;
-	}
+    public String getDeployEndDate() {
+        return deployEndDate;
+    }
 
-	public String getVersionCatalog() {
-		return versionCatalog;
-	}
+    public void setDeployEndDate(String deployEndDate) {
+        this.deployEndDate = deployEndDate;
+    }
 
-	public void setVersionCatalog(String versionCatalog) {
-		this.versionCatalog = versionCatalog;
-	}
+    public String getVersionCatalog() {
+        return versionCatalog;
+    }
+
+    public void setVersionCatalog(String versionCatalog) {
+        this.versionCatalog = versionCatalog;
+    }
 
 	public String getMd5CheckNum() {
 		return md5CheckNum;
@@ -230,20 +230,20 @@ public class NoticeForm {
 		this.md5CheckNum = md5CheckNum;
 	}
 
-	public String getDownUrl() {
-		return downUrl;
+	public long getCancelPreVer() {
+		return cancelPreVer;
 	}
 
-	public void setDownUrl(String downUrl) {
-		this.downUrl = downUrl;
+	public void setCancelPreVer(long cancelPreVer) {
+		this.cancelPreVer = cancelPreVer;
 	}
 
-	public String getExecBefore() {
-		return execBefore;
+	public long getDeployScheduler() {
+		return deployScheduler;
 	}
 
-	public void setExecBefore(String execBefore) {
-		this.execBefore = execBefore;
+	public void setDeployScheduler(long deployScheduler) {
+		this.deployScheduler = deployScheduler;
 	}
 
 }

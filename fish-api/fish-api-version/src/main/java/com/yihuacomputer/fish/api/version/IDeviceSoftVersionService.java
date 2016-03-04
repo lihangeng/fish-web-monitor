@@ -26,12 +26,7 @@ public interface IDeviceSoftVersionService {
 
 	public IPageResult<IDeviceSoftVersion> page(int offset, int limit, IFilter filter);
 	
-	public IDeviceSoftVersion get(long terminalId,String typeName);
+	public IDeviceSoftVersion get(String terminalId,String typeName);
 	
-	/**
-	 * 根据版本类型名称查找设备对应的版本
-	 * @param typeName
-	 * @return
-	 */
-	public List<Object> findDeviceSoftVersions(String typeName);
+	public List<Object> findByTypeName(String typeName);
 }

@@ -17,8 +17,8 @@ public interface IDeviceSoftVersion {
 	public String getVersionNo();
 //	public void setVersion(IVersion version);
 	public IVersion getVersion();
-	public long getDeviceId();
-	public void setDeviceId(long deviceId);
+	public void setTerminalId(String terminalId);
+	public String getTerminalId();
 //	public void setDevice(IDevice device);
 	public IDevice getDevice();
 	public void setCreatedTime(Date createTime);
@@ -27,8 +27,6 @@ public interface IDeviceSoftVersion {
 	public Date getLastUpdatedTime();
 	public void setDesc(String desc);
 	public String getDesc();
-
-
 	public String getVersionStr();
 	public void setVersionStr(String versionStr);
 }

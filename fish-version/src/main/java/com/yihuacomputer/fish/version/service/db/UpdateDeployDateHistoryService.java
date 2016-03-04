@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.IDevice;
@@ -86,13 +85,12 @@ public class UpdateDeployDateHistoryService implements IUpdateDeployDateHistoryS
         return pageResult;
     }
 
-    @SuppressWarnings("deprecation")
-	@Override
+    @Override
     public IPageResult<IUpdateDeployDateHistory> page(int start, int offset, long jobId, Date deployStartDate, IFilter filter) {
         if(filter == null){
             filter = new Filter();
         }
-        filter.addFilterEntry(FilterFactory.eq("jobId", jobId));
+        filter.eq("jobId", jobId);
         return page(start,offset,filter);
     }
 

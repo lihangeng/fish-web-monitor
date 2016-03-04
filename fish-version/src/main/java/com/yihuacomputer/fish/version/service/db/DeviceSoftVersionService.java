@@ -1,6 +1,9 @@
 package com.yihuacomputer.fish.version.service.db;
 
+import java.util.Date;
 import java.util.List;
+
+import javax.annotation.PostConstruct;
 
 import org.hibernate.SQLQuery;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +13,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.device.IDeviceListener;
+import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IVersion;
+import com.yihuacomputer.fish.api.version.IVersionType;
+import com.yihuacomputer.fish.api.version.IVersionTypeService;
 import com.yihuacomputer.fish.version.entity.DeviceSoftVersion;
 import com.yihuacomputer.fish.version.entity.Version;
-import com.yihuacomputer.fish.version.service.api.IDomainDeviceSoftVersionService;
+import com.yihuacomputer.fish.version.service.base.DomainDeviceSoftVersionService;
 
 /**
  * 
@@ -23,21 +31,30 @@ import com.yihuacomputer.fish.version.service.api.IDomainDeviceSoftVersionServic
  */
 @Service
 @Transactional
-public class DeviceSoftVersionService implements IDomainDeviceSoftVersionService {
+public class DeviceSoftVersionService extends DomainDeviceSoftVersionService implements IDeviceListener{
 
 	@Autowired
 	private IGenericDao dao;
 	
-	public IDeviceSoftVersion make() {
-		return new DeviceSoftVersion(this);
+	@Autowired
+	private IVersionTypeService versionTypeService;
+	
+	@Autowired
+	private IDeviceService deviceService;
+	/**
+	 * 收集服务初始化
+	 */
+	@PostConstruct
+	public void init() {
+		deviceService.addDeviceListener(this);
 	}
 	
     @Transactional(readOnly = true)
-	public IDeviceSoftVersion get(long deviceId,String typeName){
+	public IDeviceSoftVersion get(String terminalId,String typeName){
 		StringBuffer hql = new StringBuffer();
 		hql.append("from DeviceSoftVersion t where ");
-		hql.append("t.deviceId = ? and t.typeName = ? ");
-		return dao.findUniqueByHql(hql.toString(), deviceId,typeName);
+		hql.append("t.terminalId = ? and t.typeName = ? ");
+		return dao.findUniqueByHql(hql.toString(), terminalId,typeName);
 	}
 
 	@Override
@@ -90,16 +107,70 @@ public class DeviceSoftVersionService implements IDomainDeviceSoftVersionService
         return null;
 	}
 
+    @SuppressWarnings("unchecked")
+    @Override
+    public List<Object> findByTypeName(String typeName) {
+        StringBuffer sql = new StringBuffer();
+        sql.append("select dev.id,dsv.TYPE_NAME,dsv.VERSION_NO,dev.TERMINAL_ID");
+        sql.append(" from VER_DEVICE_SOFT_VERSION dsv,DEV_INFO dev");
+        sql.append(" where dsv.TERMINAL_ID = dev.TERMINAL_ID ");
+        sql.append(" and dsv.TYPE_NAME = ?");
+        SQLQuery query = dao.getSQLQuery(sql.toString());
+        query.setString(0, typeName);
+        return query.list();
+    }
+
 	@Override
-	@SuppressWarnings("unchecked")
-    @Transactional(readOnly = true)
-	public List<Object> findDeviceSoftVersions(String typeName) {
-		StringBuffer sql = new StringBuffer();
-		sql.append("select dev.id,dsv.VERSION_NO from DEV_INFO dev,VER_DEVICE_SOFT_VERSION dsv ");
-		sql.append("where dev.id = dsv.DEVICE_ID and dsv.TYPE_NAME = ?");
-		SQLQuery query = dao.getSQLQuery(sql.toString());
-		query.setString(0,typeName);
-		return query.list();
+	public String getListenerName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void beforeAdd(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterAdd(IDevice device) {
+		Date date = new Date();
+		List<IVersionType> list = versionTypeService.listAll();
+		for(IVersionType versionType:list){
+			IDeviceSoftVersion deviceSoftVersion = make();
+			deviceSoftVersion.setTerminalId(device.getTerminalId());
+			deviceSoftVersion.setTypeName(versionType.getTypeName());
+			deviceSoftVersion.setCreatedTime(date);
+			deviceSoftVersion.setLastUpdatedTime(date);
+			deviceSoftVersion.setVersionNo("0");
+			deviceSoftVersion.setVersionStr("0000000000000000000000000000000");
+			this.add(deviceSoftVersion);
+		}
+		
+	}
+
+	@Override
+	public void beforeUpdate(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterUpdate(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeDelete(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterDelete(IDevice device) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

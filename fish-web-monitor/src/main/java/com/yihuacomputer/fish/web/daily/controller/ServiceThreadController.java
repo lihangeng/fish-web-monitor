@@ -9,9 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
-import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.fish.api.atmlog.IBackupManagerStatus;
-import com.yihuacomputer.fish.api.version.job.ITaskManagerStatus;
+import com.yihuacomputer.fish.api.version.job.IJobManangerStatus;
 import com.yihuacomputer.fish.web.daily.form.ServiceThreadForm;
 
 
@@ -26,7 +25,7 @@ public class ServiceThreadController {
     private IBackupManagerStatus backupManager;
     
     @Autowired
-    private ITaskManagerStatus JobManager;
+    private IJobManangerStatus JobManager;
 
     /**
      * 
@@ -49,7 +48,7 @@ public class ServiceThreadController {
         form.setJobQueueCount(JobManager.getJobQueueCount());
         form.setMaxJobCount(JobManager.getMaxJobCount());
         form.setTaskMangerState(JobManager.getTaskMangerState());
-        result.addAttribute(FishConstant.SUCCESS, true);
+        result.addAttribute("success", true);
         result.addAttribute("data", form);
         return result;
     }

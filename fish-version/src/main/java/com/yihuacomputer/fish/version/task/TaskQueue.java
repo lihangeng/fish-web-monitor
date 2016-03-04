@@ -30,6 +30,9 @@ public class TaskQueue {
 	public void init(){
 		try{
 			taskQueueLength = Integer.valueOf(paramService.getParam(paramKey).getParamValue());
+			if(taskQueueLength>30){
+				taskQueueLength=30;
+			}
 		}catch(Exception ex){
 			logger.error(String.format("get device_update_count error [%s]",ex.getMessage()));
 		}

@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,8 +34,9 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.DateUtils;
+import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IDevice;
-import com.yihuacomputer.fish.api.person.IOrganization;
+import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
@@ -44,15 +44,17 @@ import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
 import com.yihuacomputer.fish.api.version.IVersionService;
-import com.yihuacomputer.fish.api.version.IVersionStaticsStautsService;
 import com.yihuacomputer.fish.api.version.LinkedDeviceForm;
+import com.yihuacomputer.fish.api.version.job.IJob;
+import com.yihuacomputer.fish.api.version.job.IJobManager;
+import com.yihuacomputer.fish.api.version.job.IJobService;
 import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistory;
 import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistoryService;
+import com.yihuacomputer.fish.api.version.job.JobStatus;
+import com.yihuacomputer.fish.api.version.job.JobType;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
-import com.yihuacomputer.fish.api.version.job.task.ITaskManager;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
-import com.yihuacomputer.fish.api.version.job.task.TaskType;
 import com.yihuacomputer.fish.web.command.format.CommandLevel;
 import com.yihuacomputer.fish.web.command.format.RestartForm;
 import com.yihuacomputer.fish.web.command.format.RestartParamForm;
@@ -70,687 +72,704 @@ import com.yihuacomputer.fish.web.version.form.UpdateDeployDateHistoryForm;
 @RequestMapping(value = "/version/download")
 public class VersionDownloadController {
 
-    private Logger logger = org.slf4j.LoggerFactory.getLogger(VersionDownloadController.class);
+	private Logger logger = org.slf4j.LoggerFactory.getLogger(VersionDownloadController.class);
 
-    @Autowired
-    private IVersionService versionService;
+	@Autowired
+	private IVersionService versionService;
 
-    @Autowired
-    private ITaskManager taskManager;
+	@Autowired
+	private IJobManager jobManager;
 
-    @Autowired
-    private IVersionDownloadService downloadService;
-    
-    @Autowired
-    private IVersionStaticsStautsService versionStaticsStatusService;
+	@Autowired
+	private IJobService jobService;
 
-    @Autowired
-    private ITaskService taskService;
-    
-    @Autowired
-    private IOrganizationService organizationService;
+	@Autowired
+	private IVersionDownloadService downloadService;
 
+	@Autowired
+	private ITaskService taskService;
+
+	@Autowired
+	private IUpdateDeployDateHistoryService updateDeployDateHistoryService;
+
+	@Autowired
+	private IDeviceService deviceService;
+
+	@Autowired
+	private IVersionDownloadService vdownService;
+
+	@Autowired
+	private IOrganizationService orgService;
 
 	@Autowired
 	private IDeviceSoftVersionService deviceSoftVersionService;
 
-    @Autowired
-    private IUpdateDeployDateHistoryService updateDeployDateHistoryService;
-
-    @Autowired
-    private MessageSource messageSourceVersion;
-    
-
-
-    /**
-     * 创建批量任务
-     * @param form
-     * @param request
-     * @return
-     * 可以全批量的下发所有设备 {@link JobForm.allDevice}
-     */
-    // 增加
-    @RequestMapping(method = RequestMethod.POST)
-    public @ResponseBody
-    ModelMap add(@RequestBody JobForm form,HttpServletRequest request) {
-        logger.info(" add job...");
-        ModelMap result = new ModelMap();
-        IVersion version = versionService.getById(form.getVersionId());
-        String deviceIds = form.getDeviceIds();
-        UserSession session = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
-        Long[] ids = null;
-    	List<Long> list = new ArrayList<Long>();
-        if(form.isAllDevice()){
-        	IFilter filter = new Filter();
-        	filter.eq("orgFlag", session.getOrgFlag());
-        	IPageResult<Object> pageResult = downloadService.getCanPushDevicePagesInfo(0, Integer.MAX_VALUE, version, filter);
-        	for(Object obj:pageResult.list()){
-        		Object [] objects = (Object []) obj;
-        		IDevice device = (IDevice)objects[0];
-        		list.add(device.getId());
-        	}
-        	
-        }
-        else{
-        	String deviceIdArray[] = deviceIds.substring(1).split(",");
-        	for(String deviceId:deviceIdArray){
-        		list.add(Long.parseLong(deviceId));
-        	}
-        }
-
-        ids = list.toArray(new Long[0]);
-        createThreadExecuteTask(ids,request.getLocalAddr(),form,version);
-        form.setVersionName(version.getFullName() + " [" + version.getServerPath() + "]");
-        form.setDownLoadCounter(version.getDownloadCounter());
-        versionService.updateDownLoadCounter(version);
-        result.addAttribute(FishConstant.SUCCESS, true);
-        result.addAttribute("data", form);
-        return result;
-    }
-    private static Map<String,ExecuteTask> threadMap = new HashMap<String,ExecuteTask>();
-    private void createThreadExecuteTask(Long[] deviceId,String executeIp,JobForm form,IVersion version){
-		ExecuteTask execute = new ExecuteTask();
-		String batchName = messageSourceVersion.getMessage("version.download.batchNumber", new Object[]{form.getJobName(),version.getDownloadCounter()}, FishCfg.locale);
-		execute.setDeviceIds(deviceId);
-		execute.setExecuteMachine(executeIp);
-		execute.setForm(form);
-		execute.setBatchName(batchName);
-		execute.setVersion(version);
-		Thread thread = new Thread(execute);
-		thread.setName(batchName);
-		thread.start();
-		threadMap.put(batchName, execute);
+	@RequestMapping(method = RequestMethod.GET)
+	public @ResponseBody
+	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
+		logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
+		IFilter filter = getFilter(request);
+		filter.descOrder("createdTime");
+		IPageResult<IJob> pageResult = jobService.page(start, limit, filter);
+		ModelMap result = new ModelMap();
+		result.addAttribute("success", true);
+		result.addAttribute("total", pageResult.getTotal());
+		result.addAttribute("data", toForm(pageResult.list()));
+		return result;
 	}
-    
-    /**
-     * 暂停一个作业
-     *
-     * @param id
-     *            作业ID
-     * @return
-     */
-    @RequestMapping(value = "/pause", method = RequestMethod.POST)
-    public @ResponseBody
-    String pauseJob(@RequestParam long id) {
-        try {
-        	String cantCancel = messageSourceVersion.getMessage("version.task.cancel.cantcancel", null, FishCfg.locale);
-        	String tasknotExist = messageSourceVersion.getMessage("version.task.notexsit", null, FishCfg.locale);
-        	ITask task = taskService.get(id);
-        	if(null==task){
-        		return "{'success':false,'errors':'"+tasknotExist+"'}";
-        	}
-        	if(TaskType.AUTO_UPDATE==task.getTaskType()){
-        		return "{'success':false,'errors':'"+cantCancel+"'}";
-        	}
-        	String batch = task.getTaskBatchName();
-        	ExecuteTask thread = threadMap.get(batch);
-        	if(thread!=null){
-            	//终止线程新建任务
-            	thread.flag=false;
-        	}
-        	//修改new任务为cancel
-        	
-        	boolean executeResult = taskService.cancelTasks(batch,task.getVersion().getId());
-            return executeResult?"{'success':true}":"{'success':false,'errors':'"+cantCancel+"'}";
-        }
-        catch (Exception ex) {
-            return "{'success':false,'errors':'" + ex.getMessage() + "'}";
-        }
-    }
-    
-	class ExecuteTask implements Runnable{
-		private Long[] deviceIds;
-		
-		private boolean flag = true;
-		
-		private JobForm form;
 
-		private String executeMachine;
-		
-		private String batchName;
-		
-		private IVersion version;
+	// 增加
+	@RequestMapping(method = RequestMethod.POST)
+	public @ResponseBody
+	ModelMap add(@RequestBody JobForm form, HttpServletRequest request) {
+		logger.info(" add job...");
 
-    	Date createdTime = new Date();
-		public Long[] getDeviceIds() {
-			return deviceIds;
-		}
+		ModelMap result = new ModelMap();
+		UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
+		IVersion version = versionService.getById(form.getVersionId());
+		String versionTypeName = version.getVersionType().getTypeName();
+		List<ITask> tasks = new ArrayList<ITask>();
+		if (form.isSelectAll()) {
+			long start1 = System.currentTimeMillis();
+			List<Object> devices = vdownService.getSelectAllForList(version, orgService.get(String.valueOf(userSession.getOrgId())));
+			// List<IDevice> devices = vdownService.getSelectAll(version,
+			// orgService.get(userSession.getOrgId()));
+			if (devices.size() == 0) {
+				result.addAttribute("success", false);
+				result.addAttribute(FishConstant.ERROR_MSG, "下发失败,当前无可下发的设备!");
+				return result;
+			}
 
-		public void setDeviceIds(Long[] deviceIds) {
-			this.deviceIds = deviceIds;
-		}
-
-		public JobForm getForm() {
-			return form;
-		}
-
-		public void setForm(JobForm form) {
-			this.form = form;
-		}
-
-		public String getExecuteMachine() {
-			return executeMachine;
-		}
-
-		public void setExecuteMachine(String executeMachine) {
-			this.executeMachine = executeMachine;
-		}
-
-		public IVersion getVersion() {
-			return version;
-		}
-
-		public void setVersion(IVersion version) {
-			this.version = version;
-		}
-
-		public String getBatchName() {
-			return batchName;
-		}
-
-		public void setBatchName(String batchName) {
-			this.batchName = batchName;
-		}
-
-		@Override
-		public void run() {
-			try{
-		        String versionTypeName = this.getVersion().getVersionType().getTypeName();
-	
-		    	List<Object> lists = deviceSoftVersionService.findDeviceSoftVersions(versionTypeName);
-		    	List<ITask> newTaskList = new ArrayList<ITask>();
-		        Map<Long,String> maps = convertToMap(lists);
-				IFilter taskFilter = new Filter();
-		        taskFilter.eq("version.id", form.getVersionId());
-		        List<ITask> taskList = taskService.list(taskFilter);
-		        Map<Long,ITask> taskMap = convertTaskListToMap(taskList);
-		        Date planTime = form.getPlanTime() == null ? new Date() : form.getPlanTime();
-		        TaskType taskType = TaskType.valueOf(form.getTaskType());
-		        String executeMachine = this.getExecuteMachine();
-		        for (Long deviceId : deviceIds) {
-		        	if(!flag){
-		        		break;
-		        	}
-		            ITask task = taskMap.get(deviceId);
-		            //如果存在相关的任务则要判断当前是否可以下发
-		            if(null != task){
-		            	 if(!TaskStatus.canCreate(task.getStatus())){
-		            		 continue;
-		            	 }
-		            	 else{
-		            		 task.setStatus(TaskStatus.NEW);
-		            		 task.setTaskType(TaskType.MANUAL);
-		            		 task.setCreateTime(createdTime);
-		            		 task.setTaskCount(task.getTaskCount()+1);
-		            	 }
-		            }
-		            else{
-		            	task = taskService.make(createdTime);
-		            }
-		            task.setTaskBatchName(batchName);
-		            task.setDeviceId(deviceId);
-		            String versionNo = maps.get(deviceId);
-		            if(versionNo != null){
-		                task.setVersionBeforeUpdate(versionTypeName+ "_" + versionNo);
-		            }
-		            task.setVersion(version);
-		            task.setCreateTime(createdTime);
-		            task.setPlanTime(planTime);
-		            task.setTaskType(taskType);
-		            task.setExcuteMachine(executeMachine);
-		    		taskService.addTask(task);
-		    		newTaskList.add(task);
-		        }
-	            taskManager.createTasksByWeb(newTaskList);
-			}catch(Exception e){
-				logger.error(e.getMessage());
-			}finally{
-				threadMap.remove(this.getBatchName());
+			for (Object obj : devices) {
+				// long start = System.currentTimeMillis();
+				Object[] objs = (Object[]) obj;
+				Long deviceId = Long.valueOf(objs[0].toString());
+				ITask task = taskService.make();
+				task.setDeviceId(deviceId);
+				// ITask task = taskService.make(Long.valueOf(id),
+				// versionTypeName);
+				String dsv = objs[1].toString() + "_" + objs[2].toString();
+				if (dsv != null) {
+					task.setVersionBeforeUpdate(dsv);
+				}
+				task.setVersion(version);
+				task.setEagerRestart(form.isEagerRestart());
+				tasks.add(task);
+				// logger.debug("execute one task times " +
+				// (System.currentTimeMillis() - start));
+			}
+			logger.debug("execute all task times " + (System.currentTimeMillis() - start1));
+			// for(IDevice device :devices){
+			// ITask task = taskService.make(device, versionTypeName);
+			// task.setVersion(version);
+			// task.setEagerRestart(form.isEagerRestart());
+			// tasks.add(task);
+			// }
+		} else {
+			String deviceIds = form.getDeviceIds();
+			if (StringUtils.isNotEmpty(deviceIds)) {
+				String[] ids = deviceIds.substring(1).split(",");
+				List<Object> lists = deviceSoftVersionService.findByTypeName(versionTypeName);
+				Map<Long, Object> maps = convertToMap(lists);
+				long start1 = System.currentTimeMillis();
+				for (String id : ids) {
+					// long start = System.currentTimeMillis();
+					Long deviceId = Long.valueOf(id);
+					ITask task = taskService.make();
+					task.setDeviceId(deviceId);
+					// ITask task = taskService.make(Long.valueOf(id),
+					// versionTypeName);
+					String dsv = findDeviceSoftVersion(maps, deviceId);
+					if (dsv != null) {
+						task.setVersionBeforeUpdate(dsv);
+					}
+					task.setVersion(version);
+					task.setEagerRestart(form.isEagerRestart());
+					tasks.add(task);
+					// logger.info("execute one task times " +
+					// (System.currentTimeMillis() - start));
+				}
+				logger.info("execute all task times " + (System.currentTimeMillis() - start1));
 			}
 		}
-		
-	}
-    
-    private Map<Long, String> convertToMap(List<Object> lists) {
-    	Map<Long,String> maps = new HashMap<Long,String>();
-    	for(Object object : lists){
-    		Object[] obj = (Object[])object;
-    		maps.put(Long.valueOf(obj[0].toString()), obj[1].toString());
-    	}
-		return maps;
-	}
-    private Map<Long, ITask> convertTaskListToMap(List<ITask> lists) {
-    	Map<Long,ITask> maps = new HashMap<Long,ITask>();
-    	for(ITask task : lists){
-    		maps.put(task.getDeviceId(), task);
-    	}
-		return maps;
-	}
-
-    /**
-     * 从2.0开始，不在提供此方法
-     * @param id
-     * @return
-     * @since 2.0
-     */
-	// 撤销作业
-    @Deprecated
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public @ResponseBody
-    ModelMap delete(@PathVariable long id) {
-        logger.info(" delete job: job.id = " + id);
-        ModelMap result = new ModelMap();
-        try {
-           /* jobManager.cancelJob(id);*/
-            result.addAttribute(FishConstant.SUCCESS, true);
-        }
-        catch (Exception ex) {
-            result.addAttribute(FishConstant.SUCCESS, false);
-            result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage());
-        }
-        return result;
-    }
-
-
-    /**
-     * 还可以关联到作业的设备列表，
-     * 对应增加作业页面可选择的设备列表
-     *
-     * @param start
-     * @param limit
-     * @param request
-     * @return
-     */
-    @RequestMapping(value = "/selectable", method = RequestMethod.GET)
-    public @ResponseBody
-    ModelMap selectable(@RequestParam int start, @RequestParam int limit, @RequestParam int versionId,
-            WebRequest webRequest, HttpServletRequest request) {
-        logger.info(String.format("search selectable device : start = %s ,limit = %s , versionId = %s ", start, limit,versionId));
-        IFilter filter = getDeviceFilter(webRequest);
-        UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
-        if(null==filter.getValue("orgFlag")){
-        	filter.eq("orgFlag", userSession.getOrgFlag());
-        }
-        IVersion version = versionService.getById(versionId);
-        IPageResult<LinkedDeviceForm> page = downloadService.pageDownLoadDevices(start, limit, version, filter);
-        ModelMap result = new ModelMap();
-        result.addAttribute(FishConstant.SUCCESS, true);
-        result.addAttribute("total", page.getTotal());
-        result.addAttribute("data", page.list());
-        return result;
-    }
-
-    private IFilter getDeviceFilter(WebRequest request) {
-        IFilter filter = new Filter();
-        Iterator<String> iterator = request.getParameterNames();
-        while (iterator.hasNext()) {
-            String name = iterator.next();
-            if (FishWebUtils.isIgnoreRequestName(name)) {
-                continue;
-            }
-
-            String value = request.getParameter(name);
-            if (StringUtils.isEmpty(value)) {
-                continue;
-            }
-
-            if (name.equals("orgId")) {
-            	IOrganization org = organizationService.get(value);
-                filter.eq("orgFlag", org.getOrgFlag());
-            }
-
-            if (name.equals("ip")) {
-                filter.eq(name, value);
-            }
-
-            if (name.equals("atmTypeId")) {
-                filter.eq(name, Long.valueOf(value));
-            }
-
-            if (name.equals("terminalId")) {
-                filter.like(name, value);
-            }
-        }
-        return filter;
-    }
-
-    // 根据jobId获得下面的任务列表
-    @RequestMapping(value = "/task", method = RequestMethod.GET)
-    public @ResponseBody
-    ModelMap task(@RequestParam int start, @RequestParam int limit, WebRequest request) {
-        IFilter filter = getTaskFilter(request);
-        IPageResult<ITask> page = taskService.page(start, limit, filter);
-        ModelMap result = new ModelMap();
-        result.addAttribute(FishConstant.SUCCESS, true);
-        result.addAttribute("total", page.getTotal());
-        result.addAttribute("data", toTaskForm(page.list()));
-        return result;
-    }
-
-    // 获得任务的过滤条件
-    private IFilter getTaskFilter(WebRequest request) {
-        IFilter filter = new Filter();
-        Iterator<String> iterator = request.getParameterNames();
-        while (iterator.hasNext()) {
-            String name = iterator.next();
-            if (FishWebUtils.isIgnoreRequestName(name)) {
-                continue;
-            }
-
-            String value = request.getParameter(name);
-            if (StringUtils.isEmpty(value)) {
-                continue;
-            }
-
-            if (name.equals("updateResult")) {
-              if (value.equals("1")) {// 成功的升级
-            	  filter.eq("task.status", TaskStatus.CHECKED);
-	          } else {
-	              filter.ne("task.status", TaskStatus.CHECKED);
-	          }
-            }else if (name.equals("terminalId")) {
-                filter.like("device.terminalId", value);
-            }else if(name.equals("jobName")){
-            	filter.like("task.taskBatchName", value);
-            }else if(name.equals("taskType")){
-            	filter.eq("task.taskType", TaskType.getById(Integer.parseInt(value)));
-            }else if(name.equals("versionTypeId")){
-            	filter.eq("task.version.versionType.id", Long.parseLong(value));
-            }else if(name.equals("versionNo")){
-            	filter.eq("task.version.versionNo", value);
-            }
-        }
-        filter.ne("task.status", TaskStatus.REMOVED);
-        return filter;
-    }
-
-    /**
-     *
-     * 根据条件生成升级报告
-     *
-     */
-    @SuppressWarnings({"rawtypes", "unchecked"})
-    @RequestMapping(value = "exportToExcel", method = RequestMethod.GET)
-    public void export(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
-
-        IFilter filter =	getTaskFilter(webRequest);
-        List<ITask> tasks = taskService.export(filter).list();
-
-        Excel excel = new Excel();
-
-        String[] headers = new String[]{messageSourceVersion.getMessage("version.export.jobBatchName", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.devId", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.updateVersionNo", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.taskStatus", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.ipAddress", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.org", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.versionNoBeforeUpdate", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.exceptVersionNo", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.executeTime", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.downSource", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.planTime", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.excuteMachine", null, FishCfg.locale),
-        		messageSourceVersion.getMessage("version.export.remark", null, FishCfg.locale),
-        		};
-        excel.setHeaders(headers);
-
-        // 填充数据
-        List<List> data = new ArrayList<List>();
-        for (ITask task : tasks) {
-            List row = new ArrayList();
-            IDevice device = task.getDevice();
-            row.add(task.getTaskBatchName());
-            row.add(device.getTerminalId());
-            row.add(task.getVersion().getVersionNo());
-            row.add(getEnumI18n(task.getStatus().getText()));
-            row.add(device.getIp().toString());
-            row.add(device.getOrganization().getName());
-            row.add(task.getVersionBeforeUpdate() == null ? "" : task.getVersionBeforeUpdate());
-            row.add(task.getExceptVersion());
-            row.add(task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime()));
-            row.add(task.getDownSource());
-            row.add(task.getPlanTime().toString());
-            row.add(task.getExcuteMachine());
-            row.add(task.getReason() == null ? "" : task.getReason());
-            data.add(row);
-        }
-        excel.setData(data);
-        String fileName = messageSourceVersion.getMessage("version.export.fileName", new Object[]{FishCfg.getTempDir() + File.separator,DateUtils.getDate(new Date())}, FishCfg.locale);
-        String result = messageSourceVersion.getMessage("version.export.result", null, FishCfg.locale);
-        excel.export(fileName, result);
-
-        File file = new File(fileName);
-        DownFromWebUtils.download(file, request, response);
-    }
-
-	@Autowired
-	private MessageSource messageSourceEnum;
-    private String getEnumI18n(String enumText){
-    	if(null==enumText){
-    		return "";
-    	}
-    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
-    }
-    /**
-     * 撤销一个任务
-     *
-     * @param taskId
-     * @return
-     */
-    @RequestMapping(value = "/task/cancel", method = RequestMethod.POST)
-    public @ResponseBody
-    ModelMap cancelTask( @RequestParam long taskId) {
-        logger.info(" cancle task: task.id = " + taskId);
-        ModelMap result = new ModelMap();
-        try {
-        	ITask task = taskService.get(taskId);
-        	if(task.getStatus()!=TaskStatus.NEW){
-        		result.addAttribute(FishConstant.SUCCESS, false);
-                result.addAttribute(FishConstant.ERROR_MSG,messageSourceVersion.getMessage("version.task.cancel.cantcancel", null, FishCfg.locale) );
-        	}
-        	taskService.cancelTask(task);
-            result.addAttribute(FishConstant.SUCCESS, true);
-        }
-        catch (Exception ex) {
-            result.addAttribute(FishConstant.SUCCESS, false);
-            result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage() == null ? "" : ex.getMessage());
-        }
-        return result;
-    }
-
-   
-
-    private List<TaskForm> toTaskForm(List<ITask> tasks) {
-        List<TaskForm> forms = new ArrayList<TaskForm>();
-        for (ITask task : tasks) {
-            forms.add(convertTaskToTaskForm(task));
-        }
-        return forms;
-    }
-    private TaskForm convertTaskToTaskForm(ITask task) {
-    	TaskForm taskForm = new TaskForm();
-		taskForm.setId(task.getId());
-		taskForm.setExcuteTime(task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime()));
-		taskForm.setSuccess(task.isSuccess());
-		taskForm.setReason(task.getReason());
-		taskForm.setTaskStatus(task.getStatus() == null ? "" : getEnumI18n(task.getStatus().getText()));
-		taskForm.setVersion(task.getVersion().getVersionNo());
-		taskForm.setState(task.getState());
-		IDevice device = task.getDevice();
-		taskForm.setDeviceId(device.getId());
-		taskForm.setTerminalId(device.getTerminalId());
-		taskForm.setDeviceIp(device.getIp().toString());
-		
-		taskForm.setOrgName(device.getOrganization().getName());
-		if (task.getVersionBeforeUpdate() != null) {
-			int index = task.getVersionBeforeUpdate().indexOf("_");
-			taskForm.setVersionBeforeUpdate(task.getVersionBeforeUpdate().substring(index + 1));
+		int downloadCounter = version.getDownloadCounter()+1;
+		IJob job = jobService.make();
+		job.setJobName(form.getJobName()+"_"+downloadCounter);
+		job.setVersion(versionService.getById(form.getVersionId()));
+		job.setJobType(form.getJobType());
+		job.setJobPriority(form.getJobPriority());
+		job.setCreateUserId(userSession.getUserId());
+		if (form.getDeployStartDate() == null || "".equals(form.getDeployStartDate())) {
+			job.setDeployStartDate(new Date());
+		} else {
+			job.setDeployStartDate(DateUtils.getDate(form.getDeployStartDate()));
 		}
-		taskForm.setExceptVersion(task.getExceptVersion());
-		taskForm.setCurrentVersion("");
-		taskForm.setJobName(task.getTaskBatchName());
-		taskForm.setPlanTime(DateUtils.getTimestamp(task.getPlanTime()));
-		taskForm.setDownSource(task.getDownSource());
-		taskForm.setExcuteMachine(task.getExcuteMachine());
-		
-		taskForm.setProcess(task.getProcess());
-		
-		return taskForm;
+		if (form.getDeployEndDate() != null && !"".equals(form.getDeployEndDate())) {
+			job.setDeployEndDate(DateUtils.getDate(form.getDeployEndDate()));
+		}
+		job.setDesc(form.getDesc());
+		if (form.getJobType().equals(JobType.SCHEDULER)) {
+			job.setPlanTime(form.getPlanTime());
+			job.setJobStatus(JobStatus.SCHEDULER);
+		} else {
+			job.setJobStatus(JobStatus.NEW);
+			job.setPlanTime(new Date());
+		}
+		// 设置取消升级和重启部署标志
+		job.setCancelPreVer(form.isCancelPreVersion() ? 1 : 0);
+		job.setRebootUpdate(form.isRebootUpdate() ? 1 : 0);
+		job.addTasks(tasks);
+		long start1 = System.currentTimeMillis();
+		jobManager.createJob(job);
+		version.setDownloadCounter(++downloadCounter);
+		versionService.update(version);
+		logger.info("execute all task times " + (System.currentTimeMillis() - start1));
+
+		// 回填值到form中
+		form.setId(job.getJobId());
+		form.setVersionName(version.getFullName() + " [" + version.getServerPath() + "]");
+
+		result.addAttribute("success", true);
+		result.addAttribute("data", form);
+		return result;
 	}
-    
-    /**
-     * 重启某作业下的可以重启的全部设备
-     *
-     * @param jobId
-     *            作业ID
-     * @return
-     */
-//    @RequestMapping(value = "/rebootAll", method = RequestMethod.POST)
-//    public @ResponseBody
-//    ModelMap rebootAll(@RequestParam long jobId) {
-//        logger.info(" reboot all in job: job.id = " + jobId);
-//        ModelMap result = new ModelMap();
-//
-//        return result;
-//    }
 
-    /**
-     * 重启某任务对应的设备
-     *
-     * @param taskId
-     *            任务ID
-     * @return
-     */
-    @RequestMapping(value = "/rebootOne", method = RequestMethod.POST)
-    public @ResponseBody
-    ModelMap rebootOne(@RequestParam long taskId) {
-        logger.info(" reboot task: task.id = " + taskId);
-        ModelMap result = new ModelMap();
-        ITask task = taskService.get(taskId);
-        String url = MonitorCfg.getHttpUrl(task.getDevice().getIp().toString()) + "/ctr/normalReboot";
-
-        RestartParamForm restartParamForm = new RestartParamForm();
-        restartParamForm.setRestartType(CommandLevel.APP);// 通过应用重启
-        try {
-            RestartForm restartForm = (RestartForm) HttpProxy.httpPost(url, restartParamForm, RestartForm.class);
-            String appRet = restartForm.getAppRet();
-            // 修改任务状态
-            task.setStatus(TaskStatus.DEPLOYED);
-            taskService.updateTask(task);
-
-            result.put(FishConstant.SUCCESS, true);
-            result.addAttribute("appRet", appRet);
-        }
-        catch (Exception e) {
-            result.put(FishConstant.SUCCESS, false);
-            logger.error(e.getMessage());
-            result.addAttribute(FishConstant.ERROR_MSG, messageSourceVersion.getMessage("task.restart.fail", null, FishCfg.locale));
-        }
-        return result;
-    }
-
-    @RequestMapping(value = "/updateDeployDate", method = RequestMethod.POST)
-    public @ResponseBody
-    ModelMap update(@RequestParam long jobId, @RequestParam String deployStartDate, @RequestParam String deployEndDate) {
-        logger.info(" updateDeployDate  : jobId.id = " + jobId);
-        ModelMap result = new ModelMap();
-        try {
-//            Date startDate = DateUtils.getDate(deployStartDate);
-//            Date endDate = null;
-//            if (deployEndDate != null && !"".equals(deployEndDate)) {
-//                endDate = DateUtils.getDate(deployEndDate);
-//            }
-//            jobService.updateDeployDate(jobId, startDate, endDate);
-            result.addAttribute(FishConstant.SUCCESS, true);
-        }
-        catch (Exception ex) {
-            result.addAttribute(FishConstant.SUCCESS, false);
-            result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage());
-        }
-        return result;
-    }
-
-
-//    @RequestMapping(value = "/queryUpdateDeployDateHist", method = RequestMethod.GET)
-//    public @ResponseBody
-//    ModelMap searchUpdateDeployDateHist(@RequestParam int start, @RequestParam int limit, WebRequest request) {
-//        logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
-//        IFilter filter = getFilter(request);
-//        filter.descOrder("noticeTime");
-//        IPageResult<IUpdateDeployDateHistory> pageResult = updateDeployDateHistoryService.page(start, limit, filter);
-//        ModelMap result = new ModelMap();
-//        result.addAttribute(FishConstant.SUCCESS, true);
-//        result.addAttribute("total", pageResult.getTotal());
-//        result.addAttribute("data", toUpdateDeployDateHistoryForm(pageResult.list(), start));
-//        return result;
-//    }
-
-    public List<UpdateDeployDateHistoryForm> toUpdateDeployDateHistoryForm(List<IUpdateDeployDateHistory> list, int start) {
-        List<UpdateDeployDateHistoryForm> result = new ArrayList<UpdateDeployDateHistoryForm>();
-
-        int index = 0;
-        UpdateDeployDateHistoryForm form = null;
-        for (IUpdateDeployDateHistory item : list) {
-            form = new UpdateDeployDateHistoryForm(item);
-            if (index == 0 && start == 0) {
-                form.setGroupName("1");
-            } else {
-                form.setGroupName("2");
-            }
-            index++;
-
-            result.add(form);
-        }
-        return result;
-    }
-
-//    @RequestMapping(value = "/reNoticeApp", method = RequestMethod.GET)
-//    public @ResponseBody
-//    ModelMap reNoticeApp(@RequestParam long updateDeployDateHistoryId , WebRequest request) {
-//        logger.info(String.format("reNoticeApp job : updateDeployDateHistoryId = %s  ", updateDeployDateHistoryId));
-//        ModelMap result = new ModelMap();
-//        try {
-//            taskService.reNoticeApp(updateDeployDateHistoryId);
-//            result.addAttribute(FishConstant.SUCCESS, true);
-//        } catch (Exception e) {
-//            result.addAttribute(FishConstant.SUCCESS, false);
-//        }
-//        return result;
-//    }
-    
-    private boolean canReset(TaskStatus status){
-	    if((status.equals(TaskStatus.DEPLOYED))
-                || (status.equals(TaskStatus.DOWNLOADED))
-                || (status.equals(TaskStatus.NEW))
-                || (status.equals(TaskStatus.NOTICE_APP_OK))
-                || (status.equals(TaskStatus.NOTICED))
-                || status.equals(TaskStatus.RUN)
-                || status.equals(TaskStatus.DEPLOYED_WAIT)){
-	        return true;
-	    }
-	    return false;
+	private Map<Long, Object> convertToMap(List<Object> lists) {
+		Map<Long, Object> maps = new HashMap<Long, Object>();
+		for (Object object : lists) {
+			Object[] dsv = (Object[]) object;
+			maps.put(Long.valueOf(dsv[0].toString()), object);
+		}
+		return maps;
 	}
-    
-    @RequestMapping(value = "/resetTaskStatus", method = RequestMethod.GET)
-    public @ResponseBody
-    ModelMap resetTaskStatus(@RequestParam long id , WebRequest request) {
-        logger.info(String.format("reset taskStatus  : taskId = %s  ", id));
-        ModelMap result = new ModelMap();
-        try {
-        	ITask task = taskService.get(id);
-        	if(canReset(task.getStatus())){
-	            taskService.webResetTaskStatus(id);
-	            result.addAttribute(FishConstant.SUCCESS, true);
-        	}
-        	else{
-        		result.addAttribute(FishConstant.SUCCESS, false);
-        		result.addAttribute(FishConstant.ERROR_MSG,messageSourceVersion.getMessage("exception.task.cantResetTask",null,FishCfg.locale));
-        	}
-        } catch (Exception e) {
-            result.addAttribute(FishConstant.SUCCESS, false);
-        }
-        return result;
-    }
-    
+
+	private String findDeviceSoftVersion(Map<Long, Object> maps, Long deviceId) {
+		Object object = maps.get(deviceId);
+		if (object != null) {
+			Object[] dsv = (Object[]) object;
+			return dsv[1].toString() + "_" + dsv[2].toString();
+		}
+		return null;
+	}
+
+	// 撤销作业
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public @ResponseBody
+	ModelMap delete(@PathVariable long id) {
+		logger.info(" delete job: job.id = " + id);
+		ModelMap result = new ModelMap();
+		try {
+			jobManager.cancelJob(id);
+			result.addAttribute("success", true);
+		} catch (Exception ex) {
+			logger.error("撤销作业失败：" + ex.getMessage());
+			result.addAttribute("success", false);
+			result.addAttribute("errors", ex.getMessage());
+		}
+		return result;
+	}
+
+	// 转换数据格式
+	private List<JobForm> toForm(List<IJob> jobs) {
+		List<JobForm> forms = new ArrayList<JobForm>();
+		for (IJob job : jobs) {
+			if (JobType.AUTO_UPDATE.equals(job.getJobType())) {
+				IFilter filter = new Filter();
+				filter.eq("deviceExtend.version", job.getVersion().getVersionNo());
+				int devVersionCount = deviceService.list(filter).size();
+				int repeatDevVersionCount = jobService.getRepeatTaskByJob(job.getJobId());
+				forms.add(new JobForm(job, devVersionCount, repeatDevVersionCount));
+			} else {
+				forms.add(new JobForm(job));
+			}
+
+		}
+		return forms;
+	}
+
+	// 获得查询条件
+	private IFilter getFilter(WebRequest request) {
+		IFilter filter = new Filter();
+		Iterator<String> iterator = request.getParameterNames();
+		while (iterator.hasNext()) {
+			String name = iterator.next();
+			if (FishWebUtils.isIgnoreRequestName(name)) {
+				continue;
+			}
+			String value = request.getParameter(name);
+			if (StringUtils.isEmpty(value)) {
+				continue;
+			}
+			if (name.equals("versionTypeId")) {
+				if (!value.equals("0")) {
+					filter.eq("version.versionType.id", Long.valueOf(value));
+				}
+			} else if (name.equals("versionNo")) {
+				filter.like("version.versionNo", value);
+			} else if ("jobId".equals(name)) {
+				filter.eq("updateDeployDateHistory.jobId", Long.valueOf(value));
+			}
+		}
+		return filter;
+	}
+
+	/**
+	 * 已经关联到作业的设备列表
+	 *
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/linked", method = RequestMethod.GET)
+	public @ResponseBody
+	ModelMap linked(@RequestParam int start, @RequestParam int limit, WebRequest request) {
+		logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
+		IFilter filter = new Filter();// getFilter(request);
+		IJob job = null;
+		IPageResult<IDevice> page = downloadService.pageLinkedDevices(start, limit, job, filter);
+		ModelMap result = new ModelMap();
+		result.addAttribute("success", true);
+		result.addAttribute("total", page.getTotal());
+		// result.addAttribute("data", toLinkedDeviceForm(page.list()));
+		return result;
+	}
+
+	/**
+	 * 还可以关联到作业的设备列表
+	 *
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "/selectable", method = RequestMethod.GET)
+	public @ResponseBody
+	ModelMap selectable(@RequestParam int start, @RequestParam int limit, @RequestParam int versionId,
+			WebRequest webRequest, HttpServletRequest request) {
+		logger.info(String.format("search selectable device : start = %s ,limit = %s , versionId = %s ", start, limit,
+				versionId));
+		IFilter filter = getDeviceFilter(webRequest, request);
+		String atmGroup = request.getParameter("atmGroup");
+		if (atmGroup != null && !"".equals(atmGroup)) {
+			filter.eq("atmGroup", Long.parseLong(atmGroup));
+		}
+		IVersion version = versionService.getById(versionId);
+		IPageResult<LinkedDeviceForm> page = null;
+		page = downloadService.pageDevices(start, limit, version,filter);
+
+		ModelMap result = new ModelMap();
+		result.addAttribute("success", true);
+		result.addAttribute("total", page.getTotal());
+		result.addAttribute("data", page.list());
+		return result;
+	}
+
+	private IFilter getDeviceFilter(WebRequest request, HttpServletRequest rq) {
+		UserSession userSession = (UserSession) rq.getSession().getAttribute(FishWebUtils.USER);
+		String orgFlag = userSession.getOrgFlag();
+		IFilter filter = new Filter();
+		Iterator<String> iterator = request.getParameterNames();
+		while (iterator.hasNext()) {
+			String name = iterator.next();
+			if (FishWebUtils.isIgnoreRequestName(name)) {
+				continue;
+			}
+
+			String value = request.getParameter(name);
+			if (StringUtils.isEmpty(value)) {
+				continue;
+			}
+
+			if (name.equals("orgId")) {
+				orgFlag = orgService.get(value).getOrgFlag();
+			}
+
+			if (name.equals("ip")) {
+				filter.eq("ip", new IP(value));
+			}
+
+			if (name.equals("atmTypeId")) {
+				filter.eq("atmTypeId", value);
+			}
+
+			if (name.equals("terminalId")) {
+				filter.eq("terminalId", value);
+			}
+		}
+		filter.eq("orgFlag", orgFlag);
+		return filter;
+	}
+
+	// 根据jobId获得下面的任务列表
+	@RequestMapping(value = "/task", method = RequestMethod.GET)
+	public @ResponseBody
+	ModelMap task(@RequestParam int start, @RequestParam int limit, WebRequest request) {
+		IFilter filter = getTaskFilter(request);
+		ModelMap result = new ModelMap();
+		result.addAttribute("success", true);
+		if ("1".equals(request.getParameter("filterTaskFlag"))) {
+			IPageResult<Object> page = taskService.pageForRepeat(start, limit, filter);
+			result.addAttribute("total", page.getTotal());
+			result.addAttribute("data", toTaskFormForRepeat(page.list()));
+		} else {
+			IPageResult<ITask> page = taskService.page(start, limit, filter);
+			result.addAttribute("total", page.getTotal());
+			result.addAttribute("data", toTaskForm(page.list()));
+		}
+		return result;
+	}
+
+	// 获得任务的过滤条件
+	private IFilter getTaskFilter(WebRequest request) {
+		IFilter filter = new Filter();
+		String jobId = request.getParameter("jobId");
+		if (StringUtils.isEmpty(jobId)) {
+			jobId = "2";
+		}
+		filter.eq("task.job.jobId", Long.valueOf(jobId));
+
+		String updateResult = request.getParameter("updateResult");
+		if (StringUtils.isNotEmpty(updateResult)) {
+			if (updateResult.equals("NEW")) {
+				filter.eq("task.status", TaskStatus.NEW);
+			} else if (updateResult.equals("RUN")) {
+				filter.eq("task.status", TaskStatus.RUN);
+			} else if (updateResult.equals("NOTICED")) {
+				filter.eq("task.status", TaskStatus.NOTICED);
+			} else if (updateResult.equals("NOTICED_FAIL")) {
+				filter.eq("task.status", TaskStatus.NOTICED_FAIL);
+			} else if (updateResult.equals("DOWNLOADED")) {
+				List<TaskStatus> status = new ArrayList<TaskStatus>();
+				status.add(TaskStatus.DOWNLOADED);
+				status.add(TaskStatus.DEPLOYED_WAIT);
+				filter.in("task.status", status);
+			} else if (updateResult.equals("DOWNLOADED_FAIL")) {
+				filter.eq("task.status", TaskStatus.DOWNLOADED_FAIL);
+			} else if (updateResult.equals("DEPLOYED")) {
+				filter.eq("task.status", TaskStatus.DEPLOYED);
+			} else if (updateResult.equals("DEPLOYED_FAIL")) {
+				filter.eq("task.status", TaskStatus.DEPLOYED_FAIL);
+			} else if (updateResult.equals("CHECKED")) {
+				filter.eq("task.status", TaskStatus.CHECKED);
+			} else if (updateResult.equals("DEPLOYED_WAIT")) {
+				filter.eq("task.status", TaskStatus.DEPLOYED_WAIT);
+			} else if (updateResult.equals("DOWNLOADING")) {
+				filter.eq("task.status", TaskStatus.DOWNLOADING);
+			} else if (updateResult.equals("CANCEL_UPDATE_OK")) {
+				filter.eq("task.status", TaskStatus.CANCEL_UPDATE_OK);
+			} else if (updateResult.equals("FAIL_ROLLBACK")) {
+				filter.eq("task.status", TaskStatus.FAIL_ROLLBACK);
+			}  else if (updateResult.equals("OTHER")) {
+				List<TaskStatus> status = new ArrayList<TaskStatus>();
+				status.add(TaskStatus.CANCEL_FAIL);
+				status.add(TaskStatus.CANCEL_UPDATE_FAIL);
+				status.add(TaskStatus.CANCELED);
+				status.add(TaskStatus.NOTICE_APP_FAIL);
+				status.add(TaskStatus.NOTICE_APP_OK);
+				status.add(TaskStatus.OTHER);
+				status.add(TaskStatus.REMOVED);
+				filter.in("task.status", status);
+			}
+		}
+
+		String terminalId = request.getParameter("terminalId");
+		if (StringUtils.isNotEmpty(terminalId)) {
+			filter.like("device.terminalId", terminalId);
+		}
+
+		// filter.eq("task.status", TaskStatus.REMOVED);
+
+		return filter;
+	}
+
+	/**
+	 *
+	 * 根据条件生成升级报告
+	 *
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@RequestMapping(value = "exportToExcel", method = RequestMethod.GET)
+	public void export(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		String jobId = request.getParameter("jobId");
+		logger.info("jobId is " + jobId);
+		if (StringUtils.isEmpty(jobId)) {
+			jobId = "0";
+		}
+		IFilter filter = new Filter();
+		filter.eq("job.jobId", Long.valueOf(jobId));
+		filter.order("deviceId");
+		// filter.addFilterEntry(FilterFactory.ne("status",
+		// TaskStatus.REMOVED));
+		List<ITask> tasks = taskService.list(filter);
+
+		Excel excel = new Excel();
+		String[] headers = new String[] { "终端号", "设备IP", "所属机构", "分发前版本", "分发版本", "任务状态", "执行时间", "版本下载开始时间",
+				"版本下载完成时间", "备注", "重启ATM" };
+		excel.setHeaders(headers);
+
+		// 填充数据
+		List<List> data = new ArrayList<List>();
+		String filterTaskFlag = request.getParameter("filterTaskFlag");
+		List<Long> terminalList = new ArrayList<Long>();
+		if ("1".equals(filterTaskFlag)) {
+			List<Object> tempDevList = taskService.findTerminalForRepeat(Long.valueOf(jobId));
+			if (tempDevList != null && !tempDevList.isEmpty()) {
+				for (Object obj : tempDevList) {
+					terminalList.add(Long.parseLong(obj.toString()));
+				}
+			}
+		}
+		for (ITask task : tasks) {
+			IDevice device = task.getDevice();
+			if(device==null){
+				continue ;
+			}
+			if ("1".equals(filterTaskFlag)) {
+				if (!terminalList.contains(device.getId())) {
+					continue;
+				}
+			}
+			List row = new ArrayList();
+			row.add(device.getTerminalId());
+			row.add(device.getIp().toString());
+			row.add(device.getOrganization().getName());
+			row.add(task.getVersionBeforeUpdate() == null ? "" : task.getVersionBeforeUpdate());
+			row.add(task.getVersion().getVersionNo());
+			row.add(task.getStatus().getText());
+			// row.add(task.getExceptVersion());
+			row.add(task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime()));
+			row.add(task.getDownloadStartTime());
+			row.add(task.getDownloadFinishTime());
+			row.add(task.getReason() == null ? "" : task.getReason());
+			data.add(row);
+		}
+		excel.setData(data);
+
+		String fileName = FishCfg.getTempDir() + File.separator + "作业_" + DateUtils.getDate(new Date()) + ".xls";
+		excel.export(fileName, "执行结果");
+
+		File file = new File(fileName);
+		DownFromWebUtils.download(file, request, response);
+	}
+
+	/**
+	 * 撤销一个任务
+	 *
+	 * @param taskId
+	 * @return
+	 */
+	@RequestMapping(value = "/task/cancel", method = RequestMethod.POST)
+	public @ResponseBody
+	ModelMap cancelTask(@RequestParam long jobId, @RequestParam long taskId) {
+		logger.info(" cancle task: task.id = " + taskId);
+		ModelMap result = new ModelMap();
+		try {
+			jobManager.cancelTask(jobId, taskId);
+			result.addAttribute("success", true);
+		} catch (Exception ex) {
+			result.addAttribute("success", false);
+			result.addAttribute("errors", ex.getMessage() == null ? "" : ex.getMessage());
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/task/deepCancel", method = RequestMethod.POST)
+	public @ResponseBody
+	ModelMap deepCancelTask(@RequestParam long jobId, @RequestParam long taskId) {
+		logger.info(" deep cancel task: task.id = " + taskId);
+		ModelMap result = new ModelMap();
+		try {
+			taskService.deepCancelApp(taskId);
+			result.addAttribute("success", true);
+		} catch (Exception ex) {
+			result.addAttribute("success", false);
+			result.addAttribute("errors", ex.getMessage() == null ? "" : ex.getMessage());
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/task/reDistribute", method = RequestMethod.POST)
+	public @ResponseBody
+	ModelMap reDistribute(@RequestParam long taskId) {
+		logger.info(" reDistribute task: task.id = " + taskId);
+		ModelMap result = new ModelMap();
+		try {
+			taskService.reDistribute(taskId);
+			result.addAttribute("success", true);
+		} catch (Exception ex) {
+			result.addAttribute("success", false);
+			result.addAttribute("errors", ex.getMessage() == null ? "" : ex.getMessage());
+		}
+		return result;
+	}
+
+	/**
+	 * 暂停一个作业
+	 *
+	 * @param id
+	 *            作业ID
+	 * @return
+	 */
+	@RequestMapping(value = "/pause", method = RequestMethod.POST)
+	public @ResponseBody
+	String pauseJob(@RequestParam long id) {
+		try {
+			jobManager.suspendJob(id);
+			return "{'success':true}";
+		} catch (Exception ex) {
+			return "{'success':false,'errors':'" + ex.getMessage() + "'}";
+		}
+	}
+
+	private List<TaskForm> toTaskForm(List<ITask> tasks) {
+		List<TaskForm> forms = new ArrayList<TaskForm>();
+		for (ITask task : tasks) {
+			forms.add(new TaskForm(task));
+		}
+		return forms;
+	}
+
+	private List<TaskForm> toTaskFormForRepeat(List<Object> tasks) {
+		List<TaskForm> forms = new ArrayList<TaskForm>();
+		for (Object task : tasks) {
+			Object[] tempObj = (Object[]) task;
+			TaskForm taskForm = new TaskForm();
+			taskForm.setTerminalId(tempObj[0].toString());
+			taskForm.setDeviceIp(tempObj[1].toString());
+			taskForm.setOrgName(tempObj[2].toString());
+			taskForm.setVersionBeforeUpdate(tempObj[3] == null ? "" : tempObj[3].toString());
+			taskForm.setTaskStatus(tempObj[4].toString());
+			taskForm.setExcuteTime(tempObj[5] == null ? "" : tempObj[5].toString());
+			taskForm.setDownloadStartTime(tempObj[6] == null ? "" : tempObj[6].toString());
+			taskForm.setDownloadFinishTime(tempObj[7] == null ? "" : tempObj[7].toString());
+			taskForm.setReason(tempObj[8] == null ? "" : tempObj[8].toString());
+			taskForm.setId(Long.parseLong(tempObj[9].toString()));
+			forms.add(taskForm);
+		}
+		return forms;
+	}
+
+	/**
+	 * 重启某作业下的可以重启的全部设备
+	 *
+	 * @param jobId
+	 *            作业ID
+	 * @return
+	 */
+	@RequestMapping(value = "/rebootAll", method = RequestMethod.POST)
+	public @ResponseBody
+	ModelMap rebootAll(@RequestParam long jobId) {
+		logger.info(" reboot all in job: job.id = " + jobId);
+		ModelMap result = new ModelMap();
+
+		return result;
+	}
+
+	/**
+	 * 重启某任务对应的设备
+	 *
+	 * @param taskId
+	 *            任务ID
+	 * @return
+	 */
+	@RequestMapping(value = "/rebootOne", method = RequestMethod.POST)
+	public @ResponseBody
+	ModelMap rebootOne(@RequestParam long taskId) {
+		logger.info(" reboot task: task.id = " + taskId);
+		ModelMap result = new ModelMap();
+		ITask task = taskService.get(taskId);
+		String url = MonitorCfg.getHttpUrl(task.getDevice().getIp().toString()) + "/ctr/normalReboot";
+
+		RestartParamForm restartParamForm = new RestartParamForm();
+		restartParamForm.setRestartType(CommandLevel.APP);// 通过应用重启
+		try {
+			RestartForm restartForm = (RestartForm) HttpProxy.httpPost(url, restartParamForm, RestartForm.class);
+			String appRet = restartForm.getAppRet();
+			// 修改任务状态
+			task.setStatus(TaskStatus.DEPLOYED);
+			taskService.updateTask(task);
+
+			result.put("success", true);
+			result.addAttribute("appRet", appRet);
+		} catch (Exception e) {
+			result.put("success", false);
+			result.addAttribute("errors", e.getMessage());
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/updateDeployDate", method = RequestMethod.POST)
+	public @ResponseBody
+	ModelMap update(@RequestParam long jobId, @RequestParam String deployStartDate, @RequestParam String deployEndDate) {
+		logger.info(" updateDeployDate  : jobId.id = " + jobId);
+		ModelMap result = new ModelMap();
+		try {
+			Date startDate = DateUtils.getDate(deployStartDate);
+			Date endDate = null;
+			if (deployEndDate != null && !"".equals(deployEndDate)) {
+				endDate = DateUtils.getDate(deployEndDate);
+			}
+			jobService.updateDeployDate(jobId, startDate, endDate);
+			result.addAttribute("success", true);
+		} catch (Exception ex) {
+			result.addAttribute("success", false);
+			result.addAttribute("errors", ex.getMessage());
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/queryUpdateDeployDateHist", method = RequestMethod.GET)
+	public @ResponseBody
+	ModelMap searchUpdateDeployDateHist(@RequestParam int start, @RequestParam int limit, WebRequest request) {
+		logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
+		// IFilter filter = new Filter();
+		IFilter filter = getFilter(request);
+		// filter.addOrder(new OrderBy("createdTime", OrderBy.DESC));
+		// filter.addOrder(new OrderBy("updateDeployDateHistory.noticeTime",
+		// OrderBy.DESC));
+		filter.descOrder("noticeTime");
+		IPageResult<IUpdateDeployDateHistory> pageResult = updateDeployDateHistoryService.page(start, limit, filter);
+		ModelMap result = new ModelMap();
+		result.addAttribute("success", true);
+		result.addAttribute("total", pageResult.getTotal());
+		result.addAttribute("data", toUpdateDeployDateHistoryForm(pageResult.list(), start));
+		return result;
+	}
+
+	public List<UpdateDeployDateHistoryForm> toUpdateDeployDateHistoryForm(List<IUpdateDeployDateHistory> list,
+			int start) {
+		List<UpdateDeployDateHistoryForm> result = new ArrayList<UpdateDeployDateHistoryForm>();
+
+		int index = 0;
+		UpdateDeployDateHistoryForm form = null;
+		for (IUpdateDeployDateHistory item : list) {
+			form = new UpdateDeployDateHistoryForm(item);
+			if (index == 0 && start == 0) {
+				form.setGroupName("1");
+			} else {
+				form.setGroupName("2");
+			}
+			index++;
+
+			result.add(form);
+		}
+		return result;
+	}
+
+	@RequestMapping(value = "/reNoticeApp", method = RequestMethod.GET)
+	public @ResponseBody
+	ModelMap reNoticeApp(@RequestParam long updateDeployDateHistoryId, WebRequest request) {
+		logger.info(String.format("reNoticeApp job : updateDeployDateHistoryId = %s  ", updateDeployDateHistoryId));
+		ModelMap result = new ModelMap();
+		try {
+			taskService.reNoticeApp(updateDeployDateHistoryId);
+			result.addAttribute("success", true);
+		} catch (Exception e) {
+			result.addAttribute("success", false);
+		}
+		return result;
+	}
 }

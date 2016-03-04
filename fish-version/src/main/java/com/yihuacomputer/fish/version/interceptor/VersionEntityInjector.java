@@ -8,11 +8,11 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import com.yihuacomputer.domain.interceptor.IEntityInjector;
+import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.version.entity.DeviceSoftVersion;
 import com.yihuacomputer.fish.version.entity.Task;
 import com.yihuacomputer.fish.version.entity.Version;
 import com.yihuacomputer.fish.version.service.api.IDomainDeviceSoftVersionService;
-import com.yihuacomputer.fish.version.service.api.IDomainTaskService;
 import com.yihuacomputer.fish.version.service.api.IDomainVersionService;
 
 /**
@@ -22,7 +22,7 @@ import com.yihuacomputer.fish.version.service.api.IDomainVersionService;
 public class VersionEntityInjector implements IEntityInjector {
 
     @Autowired
-    private IDomainTaskService taskService;
+    private ITaskService taskService;
 
     @Autowired
     private IDomainDeviceSoftVersionService dsvService;
@@ -39,8 +39,8 @@ public class VersionEntityInjector implements IEntityInjector {
         if (entity instanceof Task) {
             Task task = (Task) entity;
             task.setTaskService(taskService);
-            task.setMessageSourceVersion(messageSourceVersion);
-            task.setMessageSourceEnum(messageSourceEnum);
+//            task.setMessageSourceVersion(messageSourceVersion);
+//            task.setMessageSourceEnum(messageSourceEnum);
         }
         else if (entity instanceof DeviceSoftVersion) {
             DeviceSoftVersion dsv = (DeviceSoftVersion) entity;
