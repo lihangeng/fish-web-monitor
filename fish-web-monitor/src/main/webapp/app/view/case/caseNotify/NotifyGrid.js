@@ -180,6 +180,12 @@ Ext.define('Eway.view.case.caseNotify.NotifyGrid', {
 									else if(object.data.devMod=="FGP"){
 										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.cases.caseFault.fgpModule);
 									}
+									else if(object.data.devMod=="CAM"){
+										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.cases.caseFault.camModule);
+									}
+									else if(object.data.devMod=="BCR"){
+										aboutInfoWin.down('field[name="devMod"]').setValue(EwayLocale.cases.caseFault.bcrModule);
+									}
 									aboutInfoWin.down('field[name="faultClassify"]').setValue(object.data.faultClassify);
 									aboutInfoWin.down('field[name="faultCode"]').setValue(object.data.faultCode);
 									aboutInfoWin.down('field[name="vendorHwCode"]').setValue(object.data.vendorHwCode);

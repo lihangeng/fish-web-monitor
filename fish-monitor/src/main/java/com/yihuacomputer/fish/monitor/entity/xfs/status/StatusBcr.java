@@ -13,7 +13,7 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusBcr;
 @Embeddable
 public class StatusBcr implements IStatusBcr,Serializable{
 private static final long serialVersionUID = 1L;
-	
+
     @Enumerated(EnumType.STRING)
     @Column(name = "BCR_STATUS")
     private DeviceStatus bcr;
@@ -23,22 +23,38 @@ private static final long serialVersionUID = 1L;
 
     @Transient
     private String bcrHwCode;
-	@Override
+    /**
+     * 获取硬件主状态
+     *
+     * @return 硬件主状态
+     */
 	public DeviceStatus getStatus() {
 		return this.bcr;
 	}
 
-	@Override
+	/**
+     * 获取状态代码
+     *
+     * @return 状态代码
+     */
 	public String getCode() {
 		return this.bcrCode;
 	}
 
-	@Override
+	/**
+     * 设置硬件主状态
+     *
+     * @param cdm
+     */
 	public void setStatus(DeviceStatus bcr) {
 		this.bcr = bcr;
 	}
 
-	@Override
+	 /**
+     * 设置状态码
+     *
+     * @param code
+     */
 	public void setCode(String code) {
 		this.bcrCode = code;
 	}
