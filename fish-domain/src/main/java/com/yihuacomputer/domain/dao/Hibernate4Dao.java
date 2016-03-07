@@ -55,7 +55,12 @@ public class Hibernate4Dao implements IGenericDao {
 
 	public <T> List<T> batchSave(List<T> entities){
 		Session session = sessionFactory.getCurrentSession();
-		Transaction tx =session.beginTransaction();
+		boolean newTransaction = false;
+		Transaction tx = session.getTransaction();
+		if(tx==null){
+			newTransaction = true;
+			tx =session.beginTransaction();
+		}
 		int count=0;
 		for(T t:entities){
 			session.save(t);
@@ -64,7 +69,9 @@ public class Hibernate4Dao implements IGenericDao {
                 session.clear();
             }
 		}
-		tx.commit();
+		if(newTransaction){
+			tx.commit();
+		}
 		return entities;
 	}
 
