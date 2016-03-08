@@ -1,5 +1,5 @@
 Ext.apply(EwayLocale,{
-	
+
 
 	cases:{
 		confirm:'确认',//EwayLocale.cases.confirm
@@ -22,6 +22,8 @@ Ext.apply(EwayLocale,{
 			iscModule:'身份证扫描仪模块',//EwayLocale.cases.caseFault.iscModule
 			iccModule:'发卡器模块',//EwayLocale.cases.caseFault.iccModule
 			fgpModule:'指纹仪模块',//EwayLocale.cases.caseFault.fgpModule
+			camModule:'摄像头故障模块',//EwayLocale.cases.caseFault.camModule
+			bcrModule:'二维码故障模块',//EwayLocale.cases.caseFault.bcrModule
 			faultClassify: '故障分类',//EwayLocale.cases.caseFault.faultClassify
 			faultCode : '故障码',//EwayLocale.cases.caseFault.faultCode
 			providerFaultCode: '厂商故障码',//EwayLocale.cases.caseFault.providerFaultCode

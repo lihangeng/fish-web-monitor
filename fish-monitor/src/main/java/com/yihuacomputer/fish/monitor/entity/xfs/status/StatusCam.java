@@ -14,10 +14,10 @@ import com.yihuacomputer.fish.api.monitor.xfs.status.IStatusCam;
 public class StatusCam implements IStatusCam, Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Enumerated(EnumType.STRING)
     @Column(name = "CAM_STATUS")
     private DeviceStatus cam;
@@ -27,24 +27,41 @@ public class StatusCam implements IStatusCam, Serializable {
 
     @Transient
     private String camHwCode;
-	
 
-	@Override
+
+
+    /**
+     * 获取硬件主状态
+     *
+     * @return 硬件主状态
+     */
 	public DeviceStatus getStatus() {
 		return this.cam;
 	}
 
-	@Override
+	 /**
+     * 获取状态代码
+     *
+     * @return 状态代码
+     */
 	public String getCode() {
 		return this.camCode;
 	}
 
-	@Override
+	/**
+     * 设置硬件主状态
+     *
+     * @param cdm
+     */
 	public void setStatus(DeviceStatus cam) {
 		this.cam = cam;
 	}
 
-	@Override
+	 /**
+     * 设置状态码
+     *
+     * @param code
+     */
 	public void setCode(String code) {
 		this.camCode=code;
 	}
@@ -58,5 +75,40 @@ public class StatusCam implements IStatusCam, Serializable {
 	public void setHwCode(String hwCode) {
 		this.camHwCode = hwCode;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime=31;
+        int result=1;
+        result=prime*result+((cam==null)?0:cam.hashCode());
+        result=prime*result+((camCode==null)?0:camCode.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+        if(this==obj){
+        	return true;
+        }
+        if(obj==null){
+        	return false;
+        }
+        if(getClass()!=obj.getClass()){
+        	return false;
+        }
+        StatusCam other=(StatusCam)obj;
+        if(cam!=other.cam){
+        	return false;
+        }
+        if(camCode==null){
+        	if(other.camCode!=null){
+        		return false;
+        	}
+        }else if(!camCode.equals(other.camCode)){
+    		return false;
+        }
+		return true;
+	}
+
 
 }

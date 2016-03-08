@@ -135,12 +135,15 @@ public class JobService extends DomainJobService {
         Long versionId = version.getId();
         List<IDeviceVersion> dvs = dvService.findDeviceVersionContainsRemoved(version.getId());
         Map<Long,IDeviceVersion> maps = convertToMap(dvs);
+
+        List<IDeviceVersion> deviceVersionList = new ArrayList<IDeviceVersion>();
+        List<ITask> taskList = new ArrayList<ITask>();
+        long start1 = System.currentTimeMillis();
         for (ITask task : entity.getTasks()) {
-            long start1 = System.currentTimeMillis();
+//            long start1 = System.currentTimeMillis();
             task.setJob(job);
-            dao.save(task);
-            long t = System.currentTimeMillis();
-            logger.info("create task times " + (t -start1));
+//            dao.save(task);
+            taskList.add(task);
             if (version.getVersionStatus().equals(VersionStatus.NEW)) {
                 version.setVersionStatus(VersionStatus.WAITING);
                 versionService.update(version);
@@ -154,19 +157,24 @@ public class JobService extends DomainJobService {
                 dv.setTaskStatus(TaskStatus.NEW);
                 dv.setLastUpdatedTime(new Date());
                 dv.setDesc(null);
-                dao.saveOrUpdate(dv);
-                logger.info("create dev version add times " + (System.currentTimeMillis() -t));
+//                dao.saveOrUpdate(dv);
+//                logger.info("create dev version add times " + (System.currentTimeMillis() -t));
             }else{
                if(!dv.getTaskStatus().equals(TaskStatus.NEW)) {
                    dv.setTaskStatus(TaskStatus.NEW);
                    dv.setLastUpdatedTime(new Date());
                    dv.setDesc(null);
-                   dao.saveOrUpdate(dv);
-                   logger.info("create dev version upate times " + (System.currentTimeMillis() -t));
+//                   dao.saveOrUpdate(dv);
+//                   logger.info("create dev version upate times " + (System.currentTimeMillis() -t));
                }
-               logger.info("create dev times " + (System.currentTimeMillis() -t));
+//               logger.info("create dev times " + (System.currentTimeMillis() -t));
             }
+            deviceVersionList.add(dv);
         }
+        dao.batchSave(taskList);
+        dao.batchSave(deviceVersionList);
+        long t = System.currentTimeMillis();
+        logger.info("create task times " + (t -start1));
         return entity;
     }
 

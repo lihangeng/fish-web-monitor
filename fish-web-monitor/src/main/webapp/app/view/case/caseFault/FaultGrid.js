@@ -71,6 +71,12 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 					else if(value=="FGP"){
 						return EwayLocale.cases.caseFault.fgpModule;
 					}
+					else if(value=="CAM"){
+						return EwayLocale.cases.caseFault.camModule;
+					}
+					else if(value=="BCR"){
+						return EwayLocale.cases.caseFault.bcrModule;
+					}
 				}
 			}, {
 				header : EwayLocale.cases.caseFault.faultClassify,

@@ -73,8 +73,10 @@ public class DefaultHwFaultService {
 			handlePinFault(xfsStatus,openCaseList,hisXfsStatus);
 
 			handleIccFault(xfsStatus,openCaseList,hisXfsStatus);
-			handleFgpFault(xfsStatus,openCaseList,hisXfsStatus) ;
-			handleIscFault(xfsStatus,openCaseList,hisXfsStatus) ;
+			handleFgpFault(xfsStatus,openCaseList,hisXfsStatus);
+			handleIscFault(xfsStatus,openCaseList,hisXfsStatus);
+			handleCamFault(xfsStatus,openCaseList,hisXfsStatus);
+			handleBcrFault(xfsStatus,openCaseList,hisXfsStatus);
 
 			handleBoxFault(xfsStatus, openCaseList);
 
@@ -331,6 +333,47 @@ public class DefaultHwFaultService {
 			caseFault.setTerminalId(isc.getTerminalId());
 			caseFault.setVendorHwCode(isc.getStatusIsc().getHwCode());
 			createCaseFault(caseFault,openCaseList,F_MOD);
+		}
+	}
+	/**
+	 * 摄像头
+	 * @param cam
+	 * @param openCaseList
+	 * @param hisXFsStatus
+	 */
+	private void handleCamFault(IXfsStatus cam,List<ICaseFault> openCaseList,IXfsStatus hisXFsStatus){
+		if(cam.getStatusCam().getStatus().equals(DeviceStatus.Healthy)){
+			caseFaultService.closeHealthyModCase(openCaseList, DeviceMod.CAM,F_MOD);
+		}else if(cam.getStatusCam().getStatus().equals(DeviceStatus.Fatal)
+			&&DeviceStatus.Fatal.equals(hisXFsStatus.getStatusCam().getStatus())){
+			ICaseFault caseFault=caseFaultService.make();
+			caseFault.setDevMod(DeviceMod.CAM);
+			caseFault.setAppStatus(cam.getRunStatus());
+			caseFault.setFaultCode(cam.getStatusCam().getCode());
+			caseFault.setTerminalId(cam.getTerminalId());
+			caseFault.setVendorHwCode(cam.getStatusCam().getHwCode());
+			createCaseFault(caseFault,openCaseList,F_MOD);
+		}
+	}
+	/**
+	 * 二维码扫描
+	 * @param bcr
+	 * @param openCaseList
+	 * @param hisXFsStatus
+	 */
+	private void handleBcrFault(IXfsStatus bcr,List<ICaseFault> openCaseList,IXfsStatus hisXFsStatus){
+		if(bcr.getStatusBcr().getStatus().equals(DeviceStatus.Healthy)){
+		caseFaultService.closeHealthyModCase(openCaseList, DeviceMod.BCR,F_MOD);
+		}else if(bcr.getStatusBcr().getStatus().equals(DeviceStatus.Fatal)
+				&&DeviceStatus.Fatal.equals(hisXFsStatus.getStatusBcr().getStatus())){
+			ICaseFault caseFault=caseFaultService.make();
+			caseFault.setDevMod(DeviceMod.BCR);
+			caseFault.setAppStatus(bcr.getRunStatus());
+			caseFault.setFaultCode(bcr.getStatusBcr().getCode());
+			caseFault.setTerminalId(bcr.getTerminalId());
+			caseFault.setVendorHwCode(bcr.getStatusBcr().getHwCode());
+			createCaseFault(caseFault,openCaseList,F_MOD);
+
 		}
 	}
 

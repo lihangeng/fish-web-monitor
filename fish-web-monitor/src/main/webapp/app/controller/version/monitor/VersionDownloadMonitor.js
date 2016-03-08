@@ -46,7 +46,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			},
 			/*'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=export]':{
 				click :this.onTaskExport
-			},*/
+			},
 			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=rebootAll]':{
 				click :this.onTaskRebootAll
 			},
@@ -314,7 +314,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	//查找任务
 	onTaskQuery : function(){
 		var grid = this.getActiveTask()
-		Eway.alert(grid.getTitle());
+//		Eway.alert(grid.getTitle());
 		var jobId = grid.getConfig().jobId;
 		this.setTaskSearchFilter(jobId);
 		grid.getStore().loadPage(1);
@@ -328,6 +328,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	onAutoRefresh : function(btn,e,options){
 		var grid = this.getActiveTask()
 		var jobId = grid.getConfig().jobId;
+<<<<<<< HEAD
 			if(this.currentTask == null){
 				this.currentTask = {
 				   run : function() {
@@ -349,6 +350,29 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 				Ext.TaskManager.start(this.currentTask);
 			}
 	}/*,
+=======
+		if(this.currentTask == null){
+			this.currentTask = {
+			   run : function() {
+					this.setTaskSearchFilter(jobId);
+					grid.getStore().loadPage(1);
+			    },
+			   interval : 60000, //60秒刷新一次
+			   scope : this
+			   };
+		}
+		if(btn.started){
+			btn.setText("开启自动刷新");
+			btn.started = false;
+			Ext.TaskManager.stop(this.currentTask);
+			this.currentTask = null;
+		}else{
+			btn.setText("停止自动刷新");
+			btn.started = true;
+			Ext.TaskManager.start(this.currentTask);
+		}
+	},
+>>>>>>> refs/remotes/origin/master
 	//导出升级报告
 	onTaskExport : function(){
 		var taskGrid = this.getActiveTask()

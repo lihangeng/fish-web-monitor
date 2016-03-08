@@ -40,6 +40,7 @@ import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
+import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
@@ -129,11 +130,13 @@ public class VersionDownloadController {
 		IVersion version = versionService.getById(form.getVersionId());
 		String versionTypeName = version.getVersionType().getTypeName();
 		List<ITask> tasks = new ArrayList<ITask>();
+		long start1 = System.currentTimeMillis();
 		if (form.isSelectAll()) {
-			long start1 = System.currentTimeMillis();
-			List<Object> devices = vdownService.getSelectAllForList(version, orgService.get(String.valueOf(userSession.getOrgId())));
-			// List<IDevice> devices = vdownService.getSelectAll(version,
-			// orgService.get(userSession.getOrgId()));
+			IFilter filter = new Filter();
+			filter.eq("orgFlag", userSession.getOrgFlag());
+			IPageResult<Object> results = vdownService.getCanPushDevicePagesInfo(0, Integer.MAX_VALUE, version, filter);
+			logger.info("getCanPushDevicePagesInfo times " + (System.currentTimeMillis() - start1));
+			List<Object> devices =results.list();
 			if (devices.size() == 0) {
 				result.addAttribute("success", false);
 				result.addAttribute(FishConstant.ERROR_MSG, "下发失败,当前无可下发的设备!");
@@ -141,44 +144,34 @@ public class VersionDownloadController {
 			}
 
 			for (Object obj : devices) {
-				// long start = System.currentTimeMillis();
+				long start2 = System.currentTimeMillis();
 				Object[] objs = (Object[]) obj;
-				Long deviceId = Long.valueOf(objs[0].toString());
+				IDevice device = (IDevice)objs[0];
+				IDeviceSoftVersion deviceSoftVersion = (IDeviceSoftVersion)objs[1];
+				Long deviceId = device.getId();
 				ITask task = taskService.make();
+				logger.info("execute one task times " + (System.currentTimeMillis() - start2));
 				task.setDeviceId(deviceId);
-				// ITask task = taskService.make(Long.valueOf(id),
-				// versionTypeName);
-				String dsv = objs[1].toString() + "_" + objs[2].toString();
+				String dsv = deviceSoftVersion.getTypeName() + "_" + deviceSoftVersion.getVersionNo();
 				if (dsv != null) {
 					task.setVersionBeforeUpdate(dsv);
 				}
 				task.setVersion(version);
 				task.setEagerRestart(form.isEagerRestart());
 				tasks.add(task);
-				// logger.debug("execute one task times " +
-				// (System.currentTimeMillis() - start));
 			}
-			logger.debug("execute all task times " + (System.currentTimeMillis() - start1));
-			// for(IDevice device :devices){
-			// ITask task = taskService.make(device, versionTypeName);
-			// task.setVersion(version);
-			// task.setEagerRestart(form.isEagerRestart());
-			// tasks.add(task);
-			// }
+			logger.info("execute all task times " + (System.currentTimeMillis() - start1));
 		} else {
 			String deviceIds = form.getDeviceIds();
 			if (StringUtils.isNotEmpty(deviceIds)) {
 				String[] ids = deviceIds.substring(1).split(",");
 				List<Object> lists = deviceSoftVersionService.findByTypeName(versionTypeName);
 				Map<Long, Object> maps = convertToMap(lists);
-				long start1 = System.currentTimeMillis();
+				
 				for (String id : ids) {
-					// long start = System.currentTimeMillis();
 					Long deviceId = Long.valueOf(id);
 					ITask task = taskService.make();
 					task.setDeviceId(deviceId);
-					// ITask task = taskService.make(Long.valueOf(id),
-					// versionTypeName);
 					String dsv = findDeviceSoftVersion(maps, deviceId);
 					if (dsv != null) {
 						task.setVersionBeforeUpdate(dsv);
@@ -186,8 +179,6 @@ public class VersionDownloadController {
 					task.setVersion(version);
 					task.setEagerRestart(form.isEagerRestart());
 					tasks.add(task);
-					// logger.info("execute one task times " +
-					// (System.currentTimeMillis() - start));
 				}
 				logger.info("execute all task times " + (System.currentTimeMillis() - start1));
 			}
@@ -219,9 +210,8 @@ public class VersionDownloadController {
 		job.setCancelPreVer(form.isCancelPreVersion() ? 1 : 0);
 		job.setRebootUpdate(form.isRebootUpdate() ? 1 : 0);
 		job.addTasks(tasks);
-		long start1 = System.currentTimeMillis();
 		jobManager.createJob(job);
-		version.setDownloadCounter(++downloadCounter);
+		version.setDownloadCounter(downloadCounter);
 		versionService.update(version);
 		logger.info("execute all task times " + (System.currentTimeMillis() - start1));
 
@@ -233,6 +223,7 @@ public class VersionDownloadController {
 		result.addAttribute("data", form);
 		return result;
 	}
+	
 
 	private Map<Long, Object> convertToMap(List<Object> lists) {
 		Map<Long, Object> maps = new HashMap<Long, Object>();
