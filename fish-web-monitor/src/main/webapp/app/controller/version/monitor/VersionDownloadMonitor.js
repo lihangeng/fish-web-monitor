@@ -130,7 +130,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 								},
 								failure:  function(record,operation){
 									winEl.unmask();
-									Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors);
+									Eway.alert(operation.getError());
 								},
 								scope : this
 							});
@@ -150,13 +150,14 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		if (sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			var tabpanel = this.getEwayView().down("tabpanel");
-			var activeId = "job_"+record.get("jobName");
-			var activePanel = tabpanel.setActiveTab(activeId);
-			if(activePanel.id==activeId){
+			var activeId = "job_"+record.get("id");
+//			
+			var activePanel = tabpanel.setActiveItem(activeId);
+			if(activePanel.getItemId()==activeId){
 				return;
 			}
-			var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":record.get("id")});
-			jobDetailPanel.id=activeId;
+			var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"itemId":activeId,"jobId":record.get("id")});
+//			jobDetailPanel.id="'"+activeId+"'";
 			tabpanel.add(jobDetailPanel);
 			jobDetailPanel.setTitle(record.get("jobName"));
 			tabpanel.setActiveItem(jobDetailPanel);
