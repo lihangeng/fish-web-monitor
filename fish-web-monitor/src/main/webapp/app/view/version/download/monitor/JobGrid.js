@@ -14,7 +14,18 @@ Ext.define('Eway.view.version.download.monitor.JobGrid', {
                 bodyField: 'extraBody',
                 expanded: true,
                 pluginId: 'preview'
+                	
             }],
+            getRowClass: function(record, rowIndex, rowParams, store){
+    			if(record.get('jobStatus') == 'RUN'){
+    				return "running";
+    			}else if(record.get('jobStatus') == 'SCHEDULER'){
+    				return "plan";
+    			}else if(record.get('runTaskCount') != 0){
+    				return "grey";
+    			}
+            	return "";
+       		},
             enableTextSelection : true
         },
 

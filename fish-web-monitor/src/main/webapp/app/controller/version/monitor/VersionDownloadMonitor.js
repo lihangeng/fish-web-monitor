@@ -44,9 +44,9 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=taskquery]':{
 				click :this.onTaskQuery
 			},
-			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=export]':{
+			/*'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=export]':{
 				click :this.onTaskExport
-			},
+			},*/
 			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=rebootAll]':{
 				click :this.onTaskRebootAll
 			},
@@ -72,9 +72,6 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		 store.setUrlParamsByObject(data);
 		 store.loadPage(1);
 	},
-
-
-
 
 
 	//开始运行一个作业
@@ -166,6 +163,8 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		} else {
 			Ext.Msg.alert("提示", "请选择一个作业.");
 		}
+		var autoRefreshButton = jobDetailPanel.down("button[action=autoRefresh]");
+		Ext.Function.defer(this.onAutoRefresh,500,this,[autoRefreshButton]);
 	},
 	
 	autoJobDetail:function(jobId,jobName){
@@ -326,35 +325,36 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	onAutoRefresh : function(btn,e,options){
 		var grid = this.getActiveTask()
 		var jobId = grid.getConfig().jobId;
-		if(this.currentTask == null){
-			this.currentTask = {
-			   run : function() {
-					this.setTaskSearchFilter(jobId);
-					grid.getStore().loadPage(1);
-			    },
-			   interval : 60000, //60秒刷新一次
-			   scope : this
-			   };
-		}
-		if(btn.started){
-			btn.setText("开启自动刷新");
-			btn.started = false;
-			Ext.TaskManager.stop(this.currentTask);
-			this.currentTask = null;
-		}else{
-			btn.setText("停止自动刷新");
-			btn.started = true;
-			Ext.TaskManager.start(this.currentTask);
-		}
+			if(this.currentTask == null){
+				this.currentTask = {
+				   run : function() {
+						this.setTaskSearchFilter(jobId);
+						grid.getStore().loadPage(1);
+				    },
+				   interval : 60000, //60秒刷新一次
+				   scope : this
+				   };
+			}
+			if(btn.started){
+				btn.setText("开启自动刷新");
+				btn.started = false;
+				Ext.TaskManager.stop(this.currentTask);
+				this.currentTask = null;
+			}else{
+				btn.setText("停止自动刷新");
+				btn.started = true;
+				Ext.TaskManager.start(this.currentTask);
+			}
 	},
-	//导出升级报告
+
+	/*//导出升级报告
 	onTaskExport : function(){
 		var taskGrid = this.getActiveTask()
 		var jobId = taskGrid.getConfig().jobId;
 		var url = 'api/version/download/exportToExcel?jobId=' + jobId ;
 		var iframe = document.getElementById('downloadFileFromWeb');
 		iframe.src = url;
-	}
+	}*/
 
 
 });
