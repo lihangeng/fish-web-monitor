@@ -56,6 +56,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	private ITaskService taskService;
 	@Autowired
 	private TaskQueue taskQueue;
+	
 
 	/**
 	 * 初始化作业调度管理器
@@ -118,10 +119,10 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 		scheduler.schedulerJob(job);
 	}
 
-	public IJob createJob(IJob job) {
+	public IJob createJob(IJob job,IFilter filter) {
 		// 如果没有入库，则入库
 		if (job.getJobId() < 1) {
-			job = jobService.cascadeAdd(job);
+			job = jobService.cascadeAdd(job,filter);
 		}
 		Job entity = (Job)job;
 		// 放到缓存队列
@@ -153,7 +154,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 		}
 		job.addTasks(tasks);
 
-		return createJob(job);
+		return createJob(job,null);
 	}
 
 	/**
@@ -298,7 +299,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	public void loadDowntimeJobs() {
 		List<IJob> jobs = jobService.findReloadJob();
 		for (IJob job : jobs) {
-			this.createJob(job);
+			this.createJob(job,null);
 		}
 	}
 

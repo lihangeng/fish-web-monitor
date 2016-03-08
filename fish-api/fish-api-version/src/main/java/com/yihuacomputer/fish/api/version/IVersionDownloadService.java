@@ -80,5 +80,7 @@ public interface IVersionDownloadService {
 	 */
 	public List<Object> getSelectAllForList(IVersion version, IOrganization org) ;
 	public IPageResult<Object> getCanPushDevicePagesInfo(int start, int limit,IVersion version,IFilter outerFilter);
-	 public IPageResult<LinkedDeviceForm> pageDevices(int start, int limit,IVersion version,IFilter outerFilter);
+	public IPageResult<LinkedDeviceForm> pageDevices(int start, int limit,IVersion version,IFilter outerFilter);
+
+	public boolean selectAllDeviceToTask(IJob job,IFilter outerFilter);
 }

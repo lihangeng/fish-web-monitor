@@ -26,6 +26,7 @@ import com.yihuacomputer.fish.api.person.IUserService;
 import com.yihuacomputer.fish.api.version.IDeviceVersion;
 import com.yihuacomputer.fish.api.version.IDeviceVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
+import com.yihuacomputer.fish.api.version.IVersionDownloadService;
 import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.VersionCatalog;
 import com.yihuacomputer.fish.api.version.VersionStatus;
@@ -62,6 +63,8 @@ public class JobService extends DomainJobService {
 
 	@Autowired
     private IVersionService versionService;
+	@Autowired
+    private IVersionDownloadService versionDownloadService;
 
     @Autowired
     private IDeviceVersionService dvService;
@@ -126,7 +129,7 @@ public class JobService extends DomainJobService {
     }
 
     @Override
-    public Job cascadeAdd(IJob job) {
+    public Job cascadeAdd(IJob job,IFilter filter) {
         // 保存作业信息
     	job.setServerIp(FishCfg.hostIp);//集群时设置执行的服务IP
         Job entity = dao.save(this.interface2Entity(job, false));
@@ -135,19 +138,22 @@ public class JobService extends DomainJobService {
         Long versionId = version.getId();
         List<IDeviceVersion> dvs = dvService.findDeviceVersionContainsRemoved(version.getId());
         Map<Long,IDeviceVersion> maps = convertToMap(dvs);
-
-        List<IDeviceVersion> deviceVersionList = new ArrayList<IDeviceVersion>();
-        List<ITask> taskList = new ArrayList<ITask>();
+        if(null!=filter){
+        	versionDownloadService.selectAllDeviceToTask(job, filter);
+        }
         long start1 = System.currentTimeMillis();
+        if (version.getVersionStatus().equals(VersionStatus.NEW)) {
+            version.setVersionStatus(VersionStatus.WAITING);
+            versionService.update(version);
+        }
+        IFilter taskFilter = new Filter();
+        taskFilter.eq("job", entity);
+        List<ITask> taskList = taskService.list(taskFilter);
         for (ITask task : entity.getTasks()) {
 //            long start1 = System.currentTimeMillis();
-            task.setJob(job);
+//            task.setJob(job);
 //            dao.save(task);
-            taskList.add(task);
-            if (version.getVersionStatus().equals(VersionStatus.NEW)) {
-                version.setVersionStatus(VersionStatus.WAITING);
-                versionService.update(version);
-            }
+            
             Long deviceId = task.getDeviceId();
             IDeviceVersion dv = maps.get(deviceId);
             if(dv == null){
@@ -157,24 +163,22 @@ public class JobService extends DomainJobService {
                 dv.setTaskStatus(TaskStatus.NEW);
                 dv.setLastUpdatedTime(new Date());
                 dv.setDesc(null);
-//                dao.saveOrUpdate(dv);
+                dao.saveOrUpdate(dv);
 //                logger.info("create dev version add times " + (System.currentTimeMillis() -t));
             }else{
                if(!dv.getTaskStatus().equals(TaskStatus.NEW)) {
                    dv.setTaskStatus(TaskStatus.NEW);
                    dv.setLastUpdatedTime(new Date());
                    dv.setDesc(null);
-//                   dao.saveOrUpdate(dv);
+                   dao.saveOrUpdate(dv);
 //                   logger.info("create dev version upate times " + (System.currentTimeMillis() -t));
                }
 //               logger.info("create dev times " + (System.currentTimeMillis() -t));
             }
-            deviceVersionList.add(dv);
         }
-        dao.batchSave(taskList);
-        dao.batchSave(deviceVersionList);
         long t = System.currentTimeMillis();
         logger.info("create task times " + (t -start1));
+        entity.addTasks(taskList);
         return entity;
     }
 

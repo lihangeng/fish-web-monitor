@@ -26,6 +26,12 @@ public class RedoJob implements Runnable{
 	
 	public void run() {
 		while(true){
+			try {
+				Thread.sleep(2*60*60*1000);
+			} catch (InterruptedException e) {
+				logger.error(String.format("redo daybackup sleep error！[%s]",e));
+				break;
+			}
 			List<IBackupRule> atmLogs = atmLogService.loadErrorLogs();
 			try {
 				for (IBackupRule rule : atmLogs) {
@@ -34,12 +40,6 @@ public class RedoJob implements Runnable{
 			} catch (InterruptedException e) {
 				logger.error(String.format("redo daybackup log error！[%s]",e));
 				continue;
-			}
-			try {
-				Thread.sleep(2*60*60*1000);
-			} catch (InterruptedException e) {
-				logger.error(String.format("redo daybackup sleep error！[%s]",e));
-				break;
 			}
 		}	
 	}	

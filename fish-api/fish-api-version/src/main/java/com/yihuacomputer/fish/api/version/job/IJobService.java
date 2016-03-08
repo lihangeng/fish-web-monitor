@@ -42,7 +42,8 @@ public interface IJobService {
 	 * @param job
 	 * @return
 	 */
-	public IJob cascadeAdd(IJob job);
+	
+	public IJob cascadeAdd(IJob job,IFilter fitler);
 
 	/**
 	 * 修改一个作业信息

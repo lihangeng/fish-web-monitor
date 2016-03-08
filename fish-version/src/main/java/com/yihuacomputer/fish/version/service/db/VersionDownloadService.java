@@ -4,8 +4,10 @@
 package com.yihuacomputer.fish.version.service.db;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,7 @@ import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.version.entity.DeviceSoftVersion;
+import com.yihuacomputer.fish.version.entity.DeviceVersion;
 import com.yihuacomputer.fish.version.entity.Task;
 import com.yihuacomputer.fish.version.entity.VersionType;
 import com.yihuacomputer.fish.version.entity.VersionTypeAtmTypeRelation;
@@ -696,30 +699,7 @@ public class VersionDownloadService implements IVersionDownloadService {
 	}
 
 
-	   private IOrganization getBelongsOrg(IFilter outerFilter) {
-	        IFilter filter = null;
-	        if (outerFilter == null) {
-	            filter = new Filter();
-	        }
-	        else {
-	            filter = outerFilter;
-	        }
-	        String orgId = null;
-	        for (IFilterEntry c : filter.entrySet()) {
-	            if (c.getKey().equals("device.organization")) {
-	                orgId = c.getValue().toString();
-	                filter.entrySet().remove(c);
-	                break;
-	            }
-	        }
 
-	        logger.info(String.format("orgId is [%s]", orgId));
-	        if (orgId != null && !"".equals(orgId)) {
-	            return orgService.get(orgId);
-	        }
-
-	        return null;
-	    }
 	   
 	   //-------------------------增加
 	   public IPageResult<LinkedDeviceForm> pageDevices(int start, int limit,IVersion version,IFilter outerFilter){
@@ -792,16 +772,16 @@ public class VersionDownloadService implements IVersionDownloadService {
 	    	argList.add(orgFlagStr);
 			//下发成功的设备
 	    	hqlDevice.append("(select device1.id from  ").
-			append(Task.class.getSimpleName()).append( " task1 , ").
+			append(DeviceVersion.class.getSimpleName()).append( " deviceVersion , ").
 			append(Device.class.getSimpleName()).append(" device1 ,");
 
 			if(version.getVersionType().isDisplay()){
 				hqlDevice.append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType1 ,");
 			}
 	    	hqlDevice.append(Version.class.getSimpleName()).append(" version1 ").
-			append(" where  task1.deviceId=device1.id ").
-			append(" and task1.version.id=version1.id and ").
-			append(" version1.id=? and task1.status in('NEW','RUN','NOTICED','NOTICE_APP_OK','DOWNLOADED','DEPLOYED','DEPLOYED_WAIT') and device1.status=?");
+			append(" where  deviceVersion.deviceId=device1.id ").
+			append(" and deviceVersion.versionId=version1.id and ").
+			append(" version1.id=? and deviceVersion.taskStatus in('NEW','RUN','NOTICED','NOTICE_APP_OK','DOWNLOADED','DEPLOYED','DEPLOYED_WAIT') and device1.status=?");
 	    	if(version.getVersionType().isDisplay()){
 		    	hqlDevice.append(" and device1.devType.id=versionatmType1.atmTypeId ").
 		    	append(" and versionatmType1.versionTypeId=version1.versionType.id ");
@@ -858,13 +838,13 @@ public class VersionDownloadService implements IVersionDownloadService {
 	    	argList.add(orgFlagStr);
     		//下发成功的设备
         	hqlDevice.append("(select device1.id from  ").
-    		append(Task.class.getSimpleName()).append( " task1 , ").
+			append(DeviceVersion.class.getSimpleName()).append( " deviceVersion , ").
     		append(Device.class.getSimpleName()).append(" device1 ,").
     		append(Version.class.getSimpleName()).append(" version1 ,").
     		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType1 ").
-    		append(" where  task1.deviceId=device1.id ").
-    		append(" and task1.version.id=version1.id and ").
-    		append(" version1.id=? and task1.status in('NEW','RUN','NOTICED','NOTICE_APP_OK','DOWNLOADED','DEPLOYED','DEPLOYED_WAIT') and device1.status=?").
+    		append(" where  deviceVersion.deviceId=device1.id ").
+    		append(" and deviceVersion.versionId=version1.id and ").
+    		append(" version1.id=? and deviceVersion.taskStatus in('NEW','RUN','NOTICED','NOTICE_APP_OK','DOWNLOADED','DEPLOYED','DEPLOYED_WAIT') and device1.status=?").
     		append(" and device1.devType.id=versionatmType1.atmTypeId ");
 			argList.add(version.getId());
 			argList.add(DevStatus.OPEN);
@@ -887,6 +867,74 @@ public class VersionDownloadService implements IVersionDownloadService {
 		@SuppressWarnings("unchecked")
 		IPageResult<Object> pushResult = (IPageResult<Object>) dao.page(start, limit, hqlDevice.toString(), argList.toArray());
 		return pushResult;
+   	}
+   	
+   	
+   	public boolean selectAllDeviceToTask(IJob job,IFilter outerFilter){
+		List<Object> argList=new ArrayList<Object>();
+		Object orgFlag = outerFilter.getValue("orgFlag");
+		String orgFlagStr =orgFlag+ "%";
+		Object terminalId = outerFilter.getValue("terminalId");
+		Object atmTypeId = outerFilter.getValue("atmTypeId");
+		Object ip = outerFilter.getValue("ip");
+		Object eagerRestart = outerFilter.getValue("eagerRestart");
+		Object deviceIds = outerFilter.getValue("deviceIds");
+		//如果有没有依赖版本则版本号要小于当前要下发的版本号;并且下发的设备如果存在下发的任务，任务不可以为没有失败的任务
+//		StringBuffer hqlDevice = new StringBuffer();
+		
+		StringBuffer sb = new StringBuffer();
+     	sb.append("INSERT INTO VER_TASK(DEVICE_ID,VERSION_BEFORE_UPDATE,VERSION_ID,EAGER_RESTART,JOB_ID,TASK_STATUS,TASK_TYPE) ");
+     	sb.append("select device0_.ID ,concat(concat(devicesoft3_.TYPE_NAME,'_'),devicesoft3_.VERSION_NO),?,?,?,'NEW','MANUAL' ");
+     	sb.append("from DEV_INFO device0_ ,VER_VERSION version1_ ,VER_VERSIONTYPE_ATMTYPE versiontyp2_ , ");
+     	sb.append("VER_DEVICE_SOFT_VERSION devicesoft3_,VER_VERSION_TYPE versiontyp4_ ,SM_ORG organizati5_ ");
+     	sb.append("where version1_.VERSION_TYPE_ID=versiontyp4_.ID  and device0_.DEV_TYPE_ID=versiontyp2_.ATM_TYPE_ID ");
+     	sb.append("and versiontyp2_.VERSION_TYPE_ID=version1_.VERSION_TYPE_ID  and devicesoft3_.TYPE_NAME=versiontyp4_.TYPE_NAME ");
+     	sb.append("and devicesoft3_.TERMINAL_ID=device0_.TERMINAL_ID  and version1_.VERSION_STR>devicesoft3_.VERSION_STR  ");
+     	sb.append("and device0_.ORG_ID=organizati5_.ID  and version1_.ID=?  and device0_.STATUS=? ");
+
+     	sb.append("and ( organizati5_.ORG_FLAG like ?) and ( device0_.ID not in  ( ");
+     	sb.append("select device7_.ID   from VER_DEVICE_VERSION task6_ ,  DEV_INFO device7_ , VER_VERSIONTYPE_ATMTYPE versiontyp8_ , VER_VERSION version9_ , SM_ORG organizati10_ ");
+     	sb.append("where device7_.ORG_ID=organizati10_.ID and task6_.DEVICE_ID=device7_.ID and task6_.VERSION_ID=version9_.ID ");
+     	sb.append("and device7_.DEV_TYPE_ID=versiontyp8_.ATM_TYPE_ID  and versiontyp8_.VERSION_TYPE_ID=version9_.VERSION_TYPE_ID ");
+     	sb.append("and version9_.ID=? and (task6_.TASK_STATUS in ('NEW' , 'RUN' , 'NOTICED' , 'NOTICE_APP_OK' , 'DOWNLOADED' , 'DEPLOYED' , 'DEPLOYED_WAIT') ");
+     	sb.append(") and device7_.STATUS=? and (organizati10_.ORG_FLAG like ?)))");
+     	
+     	if(terminalId!=null){
+     		sb.append(" and device0_.TERMINAL_ID like ? ");
+    		argList.add("%"+String.valueOf(terminalId)+"%");
+    	}
+    	if(atmTypeId!=null){
+    		sb.append(" and versiontyp2_.ATM_TYPE_ID =? ");
+    		argList.add(Long.parseLong(String.valueOf(atmTypeId)));
+    	}
+    	if(ip!=null){
+    		sb.append(" and device0_.IP =? ");
+    		argList.add(new IP(String.valueOf(ip)));
+    	}
+    	if(deviceIds!=null){
+    		@SuppressWarnings("unchecked")
+			List<Long> deviceIdList = (List<Long>)deviceIds;
+    		sb.append(" and device0_.ID in ( ");
+    		for(int index=0;index<deviceIdList.size();index++){
+    			sb.append(deviceIdList.get(index));
+    			if(index!=deviceIdList.size()-1)
+    			sb.append(",");
+    		}
+    		sb.append(")");
+    	}
+    	IVersion version = job.getVersion();
+     	Query query = dao.getSQLQuery(sb.toString());
+     	query.setLong(0,version.getId());
+     	query.setCharacter(1, ((Boolean)eagerRestart?'1':'0'));
+     	query.setLong(2, job.getJobId());
+     	query.setLong(3, version.getId());
+     	query.setInteger(4, DevStatus.OPEN.ordinal());
+     	query.setString(5, orgFlagStr);
+     	query.setLong(6, version.getId());
+     	query.setInteger(7, DevStatus.OPEN.ordinal());
+     	query.setString(8, orgFlagStr);
+     	int insertCount = query.executeUpdate();
+     	return insertCount!=0;
    	}
    	
    	
