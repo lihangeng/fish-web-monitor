@@ -7,6 +7,7 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 	store : 'version.monitor.Task',
 	border : false,
 	autoScroll : true,
+	closable : true ,
 	viewConfig : {
 		forceFit : true,
 		stripeRows : true,
