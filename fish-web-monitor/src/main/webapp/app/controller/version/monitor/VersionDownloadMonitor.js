@@ -347,28 +347,6 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			}
 	},
 
-		if(this.currentTask == null){
-			this.currentTask = {
-			   run : function() {
-					this.setTaskSearchFilter(jobId);
-					grid.getStore().loadPage(1);
-			    },
-			   interval : 60000, //60秒刷新一次
-			   scope : this
-			   };
-		}
-		if(btn.started){
-			btn.setText("开启自动刷新");
-			btn.started = false;
-			Ext.TaskManager.stop(this.currentTask);
-			this.currentTask = null;
-		}else{
-			btn.setText("停止自动刷新");
-			btn.started = true;
-			Ext.TaskManager.start(this.currentTask);
-		}
-	},
-
 	/*//导出升级报告
 	onTaskExport : function(){
 		var taskGrid = this.getActiveTask()
