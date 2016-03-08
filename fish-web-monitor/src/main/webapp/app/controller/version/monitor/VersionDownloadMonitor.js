@@ -46,7 +46,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			},
 			/*'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=export]':{
 				click :this.onTaskExport
-			},
+			},*/
 			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=rebootAll]':{
 				click :this.onTaskRebootAll
 			},
@@ -72,9 +72,6 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		 store.setUrlParamsByObject(data);
 		 store.loadPage(1);
 	},
-
-
-
 
 
 	//开始运行一个作业
@@ -328,7 +325,6 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	onAutoRefresh : function(btn,e,options){
 		var grid = this.getActiveTask()
 		var jobId = grid.getConfig().jobId;
-<<<<<<< HEAD
 			if(this.currentTask == null){
 				this.currentTask = {
 				   run : function() {
@@ -349,8 +345,8 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 				btn.started = true;
 				Ext.TaskManager.start(this.currentTask);
 			}
-	}/*,
-=======
+	},
+
 		if(this.currentTask == null){
 			this.currentTask = {
 			   run : function() {
@@ -372,8 +368,8 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			Ext.TaskManager.start(this.currentTask);
 		}
 	},
->>>>>>> refs/remotes/origin/master
-	//导出升级报告
+
+	/*//导出升级报告
 	onTaskExport : function(){
 		var taskGrid = this.getActiveTask()
 		var jobId = taskGrid.getConfig().jobId;
