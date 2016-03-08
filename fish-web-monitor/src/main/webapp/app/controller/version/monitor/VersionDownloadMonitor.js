@@ -44,9 +44,9 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=taskquery]':{
 				click :this.onTaskQuery
 			},
-			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=export]':{
+			/*'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=export]':{
 				click :this.onTaskExport
-			},
+			},*/
 			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=rebootAll]':{
 				click :this.onTaskRebootAll
 			},
@@ -166,6 +166,8 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		} else {
 			Ext.Msg.alert("提示", "请选择一个作业.");
 		}
+		var autoRefreshButton = jobDetailPanel.down("button[action=autoRefresh]");
+		Ext.Function.defer(this.onAutoRefresh,500,this,[autoRefreshButton]);
 	},
 	
 	autoJobDetail:function(jobId,jobName){
@@ -346,7 +348,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 				btn.started = true;
 				Ext.TaskManager.start(this.currentTask);
 			}
-	},
+	}/*,
 	//导出升级报告
 	onTaskExport : function(){
 		var taskGrid = this.getActiveTask()
@@ -354,7 +356,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		var url = 'api/version/download/exportToExcel?jobId=' + jobId ;
 		var iframe = document.getElementById('downloadFileFromWeb');
 		iframe.src = url;
-	}
+	}*/
 
 
 });

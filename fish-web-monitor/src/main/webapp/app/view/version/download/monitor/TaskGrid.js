@@ -56,7 +56,7 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 				iconCls : 'queryBtn',
 				action: 'taskquery',
 				tooltip:'根据条件查询选中作业下的详情信息'
-			},{
+			}/*,{
 				text: '导出',
 				iconCls : 'exportToExcel',
 				action: 'export',
@@ -65,7 +65,7 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
-			}/*,{
+			},{
 				text: '全部重启',
 				iconCls : 'exportToExcel',
 				action: 'rebootAll',

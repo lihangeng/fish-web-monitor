@@ -74,7 +74,7 @@ public class JobForm {
 
 	public JobForm(IJob job) {
         this.id = Long.valueOf(job.getJobId());
-        this.jobName = job.getJobName();
+        this.jobName = job.getVersion().getVersionType().getTypeName()+"_"+job.getVersion().getVersionNo()+"_"+job.getVersion().getDownloadCounter();
         this.planTime = job.getPlanTime();
         this.jobType = job.getJobType();
         this.jobStatus = job.getJobStatus();
