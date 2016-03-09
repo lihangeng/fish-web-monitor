@@ -106,7 +106,7 @@ public class VersionDownloadController {
 	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
 		IFilter filter = getFilter(request);
-		filter.descOrder("createdTime");
+		filter.descOrder("id");
 		IPageResult<IJob> pageResult = jobService.page(start, limit, filter);
 		ModelMap result = new ModelMap();
 		result.addAttribute("success", true);
