@@ -189,7 +189,9 @@ Ext.apply(EwayLocale,{
 		groupType:'AdvertGroup Type',//EwayLocale.bsAdvertGroup.groupType
 		linkDevice:'AdvertGroup<-->Deivce',//EwayLocale.bsAdvertGroup.linkDevice
 		deleteConfirm:'Are You Sure To Delete?',//EwayLocale.bsAdvertGroup.deleteConfirm
-		cantLinkDevice:'Can`t Link Deivce For Default AdvertGroup'//EwayLocale.bsAdvertGroup.cantLinkDevice
+		cantLinkDevice:'Can`t Link Deivce For Default AdvertGroup',//EwayLocale.bsAdvertGroup.cantLinkDevice
+		Actived:'Actived',//EwayLocale.bsAdvertGroup.Actived
+		unActived:'Not Actived'//EwayLocale.bsAdvertGroup.unActived
 	},
 	version:{
 		selectDeviceInfo0:"Selected Devices (<font color='Red'>",//EwayLocale.version.selectDeviceInfo0

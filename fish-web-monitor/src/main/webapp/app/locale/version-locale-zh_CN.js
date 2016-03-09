@@ -190,7 +190,9 @@ Ext.apply(EwayLocale,{
 		groupType:'广告组类型',//EwayLocale.bsAdvertGroup.groupType
 		linkDevice:'广告组<-->设备',//EwayLocale.bsAdvertGroup.linkDevice
 		deleteConfirm:'确认删除广告分组？',//EwayLocale.bsAdvertGroup.deleteConfirm
-		cantLinkDevice:'默认组不需要绑定设备'//EwayLocale.bsAdvertGroup.cantLinkDevice
+		cantLinkDevice:'默认组不需要绑定设备',//EwayLocale.bsAdvertGroup.cantLinkDevice
+		Actived:'已激活',//EwayLocale.bsAdvertGroup.Actived
+		unActived:'未激活'//EwayLocale.bsAdvertGroup.unActived
 	},
 	version : {//EwayLocale.version.version
 		selectDeviceInfo0 : "已选择的设备(<font color='red'>",//EwayLocale.version.selectDeviceInfo0
