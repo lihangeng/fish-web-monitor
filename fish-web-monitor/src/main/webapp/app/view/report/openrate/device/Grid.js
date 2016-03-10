@@ -18,11 +18,19 @@ Ext.define('Eway.view.report.openrate.device.Grid', {
 			tbar : [ '->', {
 				text : EwayLocale.report.openrate.device.statistics,
 				glyph : 0xf002,
-				action : 'query'
+				action : 'query',
+				code:'deviceOpenrateCountQuery',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}, {
 				text : EwayLocale.report.openrate.device.importStat,
 				glyph : 0xf1c3,
-				action : 'importStat'
+				action : 'importStat',
+				code:'deviceOpenrateCountImport',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			} ],
 			columns : [ {
 				header : EwayLocale.commen.terminalId,

@@ -15,7 +15,11 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 			tbar: ['->', {
 				text: EwayLocale.button.search,
 				glyph : 0xf002,
-				action: 'query'
+				action: 'query',
+				code:'casefaultQuery',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			},{
 				text : EwayLocale.button.exported,
 				glyph : 0xf1c3,

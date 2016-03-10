@@ -14,7 +14,11 @@ Ext.define('Eway.view.case.caseNotify.NotifyGrid', {
 			tbar: ['->', {
 				text: EwayLocale.button.search,
 				glyph : 0xf002,
-				action: 'query'
+				action: 'query',
+				code:'messagQuery',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}],
 			columns : [{
 				header : EwayLocale.cases.caseFault.createTime,
