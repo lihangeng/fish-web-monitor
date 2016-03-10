@@ -4,7 +4,6 @@
 package com.yihuacomputer.fish.version.service.db;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -49,7 +48,6 @@ import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.version.entity.DeviceSoftVersion;
 import com.yihuacomputer.fish.version.entity.DeviceVersion;
-import com.yihuacomputer.fish.version.entity.Task;
 import com.yihuacomputer.fish.version.entity.VersionType;
 import com.yihuacomputer.fish.version.entity.VersionTypeAtmTypeRelation;
 

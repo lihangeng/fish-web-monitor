@@ -11,7 +11,7 @@ Ext.define('Eway.view.version.download.monitor.JobFilterForm', {
 				columnWidth : 0.5,
 				items : [{
 					xtype : 'textfield',
-					fieldLabel : '版本号',
+					fieldLabel : EwayLocale.version.View.versionNo,//'版本号',
 					name : 'versionNo',
 					maxLength: 20
 				}]},{

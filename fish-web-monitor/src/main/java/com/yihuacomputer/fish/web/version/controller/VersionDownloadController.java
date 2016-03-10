@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -186,25 +187,6 @@ public class VersionDownloadController {
 		return result;
 	}
 	
-
-//	private Map<Long, Object> convertToMap(List<Object> lists) {
-//		Map<Long, Object> maps = new HashMap<Long, Object>();
-//		for (Object object : lists) {
-//			Object[] dsv = (Object[]) object;
-//			maps.put(Long.valueOf(dsv[0].toString()), object);
-//		}
-//		return maps;
-//	}
-//
-//	private String findDeviceSoftVersion(Map<Long, Object> maps, Long deviceId) {
-//		Object object = maps.get(deviceId);
-//		if (object != null) {
-//			Object[] dsv = (Object[]) object;
-//			return dsv[1].toString() + "_" + dsv[2].toString();
-//		}
-//		return null;
-//	}
-
 	// 撤销作业
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
@@ -580,9 +562,50 @@ public class VersionDownloadController {
 	private List<TaskForm> toTaskForm(List<ITask> tasks) {
 		List<TaskForm> forms = new ArrayList<TaskForm>();
 		for (ITask task : tasks) {
-			forms.add(new TaskForm(task));
+			forms.add(convertToTaskForm(task));
 		}
 		return forms;
+	}
+	 private String getEnumI18n(String enumText){
+	    	if(null==enumText){
+	    		return "";
+	    	}
+	    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+	    }
+	
+	@Autowired
+	private MessageSource messageSourceEnum;
+	private TaskForm convertToTaskForm(ITask task){
+		TaskForm form = new TaskForm();
+		form.setId(task.getId());
+		form.setExcuteTime (task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime()));
+		form.setSuccess(task.isSuccess());
+        form.setReason(task.getReason());
+
+        if (task.getStatus() != null) {
+            form.setTaskStatus(getEnumI18n(task.getStatus().getText()));
+            form.setTaskStatusText(getEnumI18n(task.getStatus().getText()));
+        }
+
+        form.setJobId(task.getJob().getJobId());
+        form.setVersion(task.getVersion().getVersionNo());
+        form.setState(task.getState());
+        IDevice device = task.getDevice();
+        form.setDeviceId(device.getId());
+        form.setTerminalId(device.getTerminalId());
+        form.setDeviceIp(device.getIp().toString());
+        form.setOrgName(device.getOrganization().getName());
+        if (task.getVersionBeforeUpdate() != null) {
+            int index = task.getVersionBeforeUpdate().indexOf("_");
+            form.setVersionBeforeUpdate(task.getVersionBeforeUpdate().substring(index + 1));
+        }
+        form.setExceptVersion(task.getExceptVersion());
+        form.setCurrentVersion("");
+        form.setProcess(task.getProcess());
+
+        form.setDownloadStartTime(task.getDownloadStartTime());
+        form.setDownloadFinishTime(task.getDownloadFinishTime());
+	    return form;
 	}
 
 	private List<TaskForm> toTaskFormForRepeat(List<Object> tasks) {

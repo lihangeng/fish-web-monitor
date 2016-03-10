@@ -202,8 +202,9 @@ Ext.apply(EwayLocale,{
 		batchTaskNameEmpty : '例如:****需求第1批次升级',//EwayLocale.version.batchTaskNameEmpty
 		UpdateTitle : '更改版本信息',//EwayLocale.version.UpdateTitle
 		addJobTitle : '配置作业信息',//EwayLocale.version.addJobTitle
+		jobTitle : '配置作业信息',//EwayLocale.version.jobTitle
 		downloadVersionId : '下发版本ID',//EwayLocale.version.downloadVersionId
-		taskType : '任务类型',//EwayLocale.version.taskType
+		taskType : '作业类型',//EwayLocale.version.taskType
 		taskTypeManual : '手动升级',//EwayLocale.version.taskTypeManual
 		taskTypeAuto : '自动升级',//EwayLocale.version.taskTypeAuto
 		taskTypeScheduler : '计划作业',//EwayLocale.version.taskTypeScheduler
@@ -306,7 +307,8 @@ Ext.apply(EwayLocale,{
 			taskQueryTips : '根据条件查询选中作业下的详情信息',//EwayLocale.version.download.taskQueryTips
 			autoRefresh : '开启自动刷新',//EwayLocale.version.download.autoRefresh
 			stopAutoRefresh : '停止自动刷新',//EwayLocale.version.download.stopAutoRefresh
-			cancelBatch : '批次取消',//EwayLocale.version.download.cancelBatch
+			cancelJob : '撤销作业',//EwayLocale.version.download.cancelBatch
+			jobDetail:'查看作业明细',//EwayLocale.version.download.jobDetail
 			autoRefreshTips : '刷新周期60秒',//EwayLocale.version.download.autoRefreshTips
 			resetTaskStatus : '重置任务状态',//EwayLocale.version.download.resetTaskStatus
 			selectTask : '请选择一条任务记录！',//EwayLocale.version.download.selectTask
@@ -315,7 +317,7 @@ Ext.apply(EwayLocale,{
 			taskExportTips : '导出选中作业下的全部下发结果'//EwayLocale.version.download.taskExportTips
 		},
 		task : {//EwayLocale.version.task.task
-			jobBatchName : '作业批次名称',//EwayLocale.version.task.jobBatchName
+			jobId : '作业ID',//EwayLocale.version.task.jobId
 			patchVersion : '分发版本',//EwayLocale.version.task.patchVersion
 			taskStatus : '任务状态',//EwayLocale.version.task.taskStatus
 			beforeUpdate : '分发前的版本',//EwayLocale.version.task.beforeUpdate
@@ -339,7 +341,6 @@ Ext.apply(EwayLocale,{
 			downloadStatus : '下发状态',//EwayLocale.version.task.downloadStatus
 			downloadResult : '下发结果',//EwayLocale.version.task.downloadResult
 			cancelJob : '下发结果',//EwayLocale.version.task.cancelJob
-			jobId : '作业ID', //EwayLocale.version.task.jobId
 			selectDownloadDevice : '选择下发的设备', //EwayLocale.version.task.selectDownloadDevice
 			versionNoBeforeUpdate : '升级前版本号', //EwayLocale.version.task.versionNoBeforeUpdate
 			versionNoAfterUpdate : '目标版本号', //EwayLocale.version.task.versionNoAfterUpdate

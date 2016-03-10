@@ -201,8 +201,9 @@ Ext.apply(EwayLocale,{
 		batchTaskNameEmpty:'Example:****first Requirement Update',//EwayLocale.version.batchTaskNameEmpty
 		UpdateTitle:'Update Version Information',//EwayLocale.version.UpdateTitle
 		addJobTitle:'Set Version Information',//EwayLocale.version.addJobTitle
+		jobTitle : 'Job Info',//EwayLocale.version.jobTitle
 		downloadVersionId:'Issue Version ID',//EwayLocale.version.downloadVersionId
-		taskType:'Task Type',//EwayLocale.version.taskType
+		taskType:'Job Type',//EwayLocale.version.taskType
 		taskTypeManual:'Manual Update',//EwayLocale.version.taskTypeManual
 		taskTypeAuto:'Auto Update',//EwayLocale.version.taskTypeAuto
 		taskTypeScheduler:'Job Plan',//EwayLocale.version.taskTypeScheduler
@@ -305,7 +306,8 @@ Ext.apply(EwayLocale,{
 			taskQueryTips:'Query Job Detail By Condition',//EwayLocale.version.download.taskQueryTips
 			autoRefresh:'Start Auto Refresh',//EwayLocale.version.download.autoRefresh
 			stopAutoRefresh:'Stop Auto Refresh',//EwayLocale.version.download.stopAutoRefresh
-			cancelBatch:'Batch Cancel',//EwayLocale.version.download.cancelBatch
+			cancelJob:'Job Cancel',//EwayLocale.version.download.cancelBatch
+			jobDetail:'Show Job Detail',//EwayLocale.version.download.jobDetail
 			autoRefreshTips:'Refresh Periodic 60 Second',//EwayLocale.version.download.autoRefreshTips
 			resetTaskStatus:'Reset Status',//EwayLocale.version.download.resetTaskStatus
 			selectTask:'Please Choose A Task Record!',//EwayLocale.version.download.selectTask
@@ -314,7 +316,7 @@ Ext.apply(EwayLocale,{
 			taskExportTips:'Export All Issue Result Of Job Selected'//EwayLocale.version.download.taskExportTips
 		},
 		task:{
-			jobBatchName:'Job Batch Name',//EwayLocale.version.task.jobBatchName
+			jobId:'Job ID',//EwayLocale.version.task.jobId
 			patchVersion:'Distribute Version',//EwayLocale.version.task.patchVersion
 			taskStatus:'Task Status',//EwayLocale.version.task.taskStatus
 			beforeUpdate:'Version Before Distribute',//EwayLocale.version.task.beforeUpdate
@@ -338,7 +340,6 @@ Ext.apply(EwayLocale,{
 			downloadStatus:'Issue Status',//EwayLocale.version.task.downloadStatus
 			downloadResult:'Issue Result',//EwayLocale.version.task.downloadResult
 			cancelJob:'Cancel Job',//EwayLocale.version.task.cancelJob
-			jobId:'Job ID',	//EwayLocale.version.task.jobId
 			selectDownloadDevice:'Choose Device To Issue',	//EwayLocale.version.task.selectDownloadDevice
 			versionNoBeforeUpdate:'Version Before Update',	//EwayLocale.version.task.versionNoBeforeUpdate
 			versionNoAfterUpdate:'Target Version No.',	//EwayLocale.version.task.versionNoAfterUpdate

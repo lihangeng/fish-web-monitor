@@ -270,7 +270,7 @@ Ext.define('Eway.controller.version.Version', {
 					 	//保存成功后让用户选择是否跳转到分发监控页面
 					 	win.close();
 					 	Ext.MessageBox.confirm(EwayLocale.confirm.title,//'提示',
-					 			record.get("jobName")+EwayLocale.confirm.taskConfirmInfo0+ed.data.downLoadCounter+EwayLocale.confirm.taskConfirmInfo1,
+					 			record.get("jobName")+EwayLocale.confirm.taskConfirmInfo1,
 					 			function(button, text) {
 					 				if (button == "yes") {
 					 					var controller = this.parent.activeController('version.monitor.VersionDownloadMonitor');

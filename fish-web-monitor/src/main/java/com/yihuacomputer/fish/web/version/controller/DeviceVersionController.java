@@ -59,8 +59,6 @@ public class DeviceVersionController {
     private IVersionService versionService;
     @Autowired
     private IDeviceSoftVersionService dsvService;
-    @Autowired
-    private MessageSource messageSourceVersion;
  
 
     @RequestMapping(method = RequestMethod.GET)

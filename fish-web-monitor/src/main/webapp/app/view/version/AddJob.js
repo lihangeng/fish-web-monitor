@@ -77,9 +77,9 @@ Ext.define('Eway.view.version.AddJob', {
 				},{
 					xtype: 'container',
                     layout: 'hbox',
-                    items: [/*{
+                    items: [{
                     	xtype: 'combobox',
-                    	fieldLabel: '作业优先级',
+                    	fieldLabel: EwayLocale.advert.jobPriority,//'作业优先级',
 		                store: Ext.StoreMgr.lookup("version.JobPriority"),
 		                queryMode: 'local',
 		                valueField : 'value',
@@ -89,7 +89,7 @@ Ext.define('Eway.view.version.AddJob', {
 		                editable : false,
 		                canClear : false,
 		                width : 200
-		            },*/{
+		            },{
                     	xtype: 'combobox',
                     	fieldLabel: EwayLocale.version.taskType,//'任务类型',
 		                store: Ext.StoreMgr.lookup("version.JobType"),

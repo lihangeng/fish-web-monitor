@@ -1,8 +1,5 @@
 package com.yihuacomputer.fish.web.version.form;
 
-import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.fish.api.device.IDevice;
-import com.yihuacomputer.fish.api.version.job.task.ITask;
 
 public class TaskForm {
     private long id;
@@ -46,36 +43,6 @@ public class TaskForm {
     public TaskForm() {
     }
 
-    public TaskForm(ITask task) {
-        this.id = task.getId();
-        this.excuteTime = task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime());
-        this.success = task.isSuccess();
-        this.reason = task.getReason();
-
-        if (task.getStatus() != null) {
-            this.taskStatus = String.valueOf(task.getStatus());
-            this.taskStatusText = task.getStatus().getText();
-        }
-
-        this.jobId = task.getJob().getJobId();
-        this.version = task.getVersion().getVersionNo();
-        this.state = task.getState();
-        IDevice device = task.getDevice();
-        this.deviceId = device.getId();
-        this.terminalId = device.getTerminalId();
-        this.deviceIp = device.getIp().toString();
-        this.orgName = device.getOrganization().getName();
-        if (task.getVersionBeforeUpdate() != null) {
-            int index = task.getVersionBeforeUpdate().indexOf("_");
-            this.versionBeforeUpdate = task.getVersionBeforeUpdate().substring(index + 1);
-        }
-        this.exceptVersion = task.getExceptVersion();
-        this.currentVersion = "";
-        this.process = task.getProcess();
-
-        this.downloadStartTime = task.getDownloadStartTime() ;
-        this.downloadFinishTime = task.getDownloadFinishTime() ;
-    }
 
     public long getId() {
         return id;

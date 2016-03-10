@@ -177,7 +177,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 //			}
 			return;
 		}
-		logger.info("jobQueue status"+jobInQueue.getJobStatus());
+		logger.info("jobQueue status "+jobInQueue.getJobStatus());
 		//作业在作业队列中，直接删除“新建”、“计划中”的作业(物理删除)
 		if(jobInQueue.getJobStatus().equals(JobStatus.NEW) || jobInQueue.getJobStatus().equals(JobStatus.SCHEDULER)){
             jobInQueue.getScheduler().cancelTime();//取消定时器

@@ -95,7 +95,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			    }
 			});
 		}else{
-			Ext.Msg.alert("提示", "请选择一个作业.");
+			Eway.alert(EwayLocale.version.task.selectAJob);
 		}
 	},
 
@@ -109,22 +109,22 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			var record = sm.getLastSelected();
 			var status = record.get('jobStatus');
 			if(status == 'COMPLETE'){
-				Ext.Msg.alert("提示", '不能撤销"完成"状态的作业.');
+				Eway.alert(EwayLocale.version.task.cantCancelCompleteJob);
 			}else{
-					Ext.MessageBox.confirm("提示", "是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)", function(button,text) {
+					Ext.MessageBox.confirm(EwayLocale.confirm.title, EwayLocale.version.task.doSureCancelTheJob, function(button,text) {
 						if (button == "yes") {
 							var winEl = grid.getEl();
-							winEl.mask('正在删除......');
+							winEl.mask(EwayLocale.version.task.deleting);
 							record.erase({
 								success : function() {
 									winEl.unmask();
 									if(status  == 'RUN'){
-										Ext.Msg.alert("提示", '已经成功撤销作业中还没有运行的任务,此时作业的状态仍然是"运行中",请稍等后刷新作业列表.');
+										Eway.alert(EwayLocale.version.task.cancelSuccessBut);
 										//同时刷新任务列表页面
 										Ext.StoreManager.get("version.Task").load();
 									}else{
 										store.remove(record);
-										Ext.Msg.alert("提示", "成功撤销作业.");
+										Eway.alert(EwayLocale.version.task.cancelJobSuccess);
 										this.onQuery();
 									}
 								},
@@ -138,7 +138,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 					}, this);
 				}
 		} else {
-			Ext.Msg.alert("提示", "请选择一个作业.");
+			Eway.alert(EwayLocale.version.task.selectAJob);
 		}
 	},
 	currentTask : null,
@@ -162,7 +162,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			jobDetailPanel.setTitle(record.get("jobName"));
 			tabpanel.setActiveItem(jobDetailPanel);
 		} else {
-			Ext.Msg.alert("提示", "请选择一个作业.");
+			Eway.alert(EwayLocale.version.task.selectAJob);
 		}
 		var autoRefreshButton = jobDetailPanel.down("button[action=autoRefresh]");
 		Ext.Function.defer(this.onAutoRefresh,500,this,[autoRefreshButton]);
@@ -249,24 +249,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			this.currentTask = null;
 		}
 	},
-	//刷新任务列表
-	onTaskFresh : function(pagingtoolbar){
-
-		var taskGrid = this.getActiveTask()
-		var jobId = taskGrid.getConfig().jobId;
-//		var sm = grid.getSelectionModel();
-//		if (sm.getCount() == 1) {
-//			var record = sm.getLastSelected();
-			//增加请求参数
-			this.setTaskSearchFilter(jobId);
-			taskGrid.getStore().loadPage(1);
-//		}
-	},
-	//选择一个作业时，刷新任务列表
-	onTask: function(grid,record){
-		var taskGrid = this.getTaskGrid();
-		taskGrid.refresh(record.get('id'));
-	},
+	
 
 	
 	//暂停一个作业
@@ -289,7 +272,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			    }
 			});
 		}else{
-			Eway.alert(EwayLocale.vtype.choseTask);//"请选择一个作业.");
+			Eway.alert(EwayLocale.version.task.selectAJob);//"请选择一个作业.");
 		}
 	},
 
@@ -312,7 +295,6 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	//查找任务
 	onTaskQuery : function(){
 		var grid = this.getActiveTask()
-//		Eway.alert(grid.getTitle());
 		var jobId = grid.getConfig().jobId;
 		this.setTaskSearchFilter(jobId);
 		grid.getStore().loadPage(1);
@@ -337,25 +319,16 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 				   };
 			}
 			if(btn.started){
-				btn.setText("开启自动刷新");
+				btn.setText(EwayLocale.version.download.autoRefresh);
 				btn.started = false;
 				Ext.TaskManager.stop(this.currentTask);
 				this.currentTask = null;
 			}else{
-				btn.setText("停止自动刷新");
+				btn.setText(EwayLocale.version.download.stopAutoRefresh);
 				btn.started = true;
 				Ext.TaskManager.start(this.currentTask);
 			}
-	},
-
-	/*//导出升级报告
-	onTaskExport : function(){
-		var taskGrid = this.getActiveTask()
-		var jobId = taskGrid.getConfig().jobId;
-		var url = 'api/version/download/exportToExcel?jobId=' + jobId ;
-		var iframe = document.getElementById('downloadFileFromWeb');
-		iframe.src = url;
-	}*/
+	}
 
 
 });
