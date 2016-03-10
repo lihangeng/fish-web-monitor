@@ -67,7 +67,7 @@ Ext.apply(EwayLocale,{
 		bankOrgMove:'组织迁移',//EwayLocale.button.bankOrgMove
 		bankOrgAdmin:'管理员',//EwayLocale.button.bankOrgAdmin
 		
-		bankPerlink:'绑定设备',//EwayLocale.button.bankPerlink
+		bankPerlink:'关联设备',//EwayLocale.button.bankPerlink
 		sure:'确定',//EwayLocale.button.sure
 		confirm:'确认',//EwayLocale.button.confirm
 		cancle:'取消',//EwayLocale.button.cancle
