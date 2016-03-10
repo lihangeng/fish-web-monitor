@@ -25,9 +25,11 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.ITypeIP;
 import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.IOUtils;
+import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.common.util.ZipUtils;
 import com.yihuacomputer.fish.api.advert.bs.GroupType;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroup;
@@ -345,8 +347,8 @@ public class BsAdvertGroupController {
            result.addAttribute("total", pageResult.getTotal());
            result.addAttribute("data", DeviceForm.convert(pageResult.list()));
        } else {// 可以关联的设备
-           IFilter filter = new Filter();
-           filter.like("terminalId", request.getParameter("terminalId"));
+           IFilter filter = getFilterDevice(request);
+          // filter.like("terminalId", request.getParameter("terminalId"));
            pageResult = deviceAdvertRelation.pageUnlinkDeviceByAdvertGroup(start, limit, advertGroupService.getById(Long.parseLong(guid)), filter,
                            organizationId, orgService.getRoot().get(0).getGuid());
            
@@ -399,16 +401,19 @@ public class BsAdvertGroupController {
 					continue;
 				}
 				if (name.equals("orgId")) {
-					filter.eq("orgId", Long.valueOf(value));
+					IOrganization org = orgService.get(value);
+
+					filter.like("organization.orgFlag", org.getOrgFlag());
 				}
 				if (name.equals("ip")) {
-					filter.like("ip", value);
+					ITypeIP ip = new IP(value);
+					filter.eq("ip", ip);
 				}
 				if (name.equals("terminalId")) {
 					filter.like("terminalId", value);
 				}
 				if (name.equals("devType")) {
-					filter.eq("devType", value);
+					filter.eq("devType.id", Long.parseLong(value));
 				}
 			}
 		}

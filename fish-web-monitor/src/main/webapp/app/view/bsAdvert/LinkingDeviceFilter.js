@@ -43,7 +43,8 @@ Ext.define('Eway.view.bsAdvert.LinkingDeviceFilter', {
 					name : 'ip',
 					width:200,
 					regex : /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/,
-					regexText : EwayLocale.vtype.ip
+					regexText : EwayLocale.vtype.ip,
+					msgTarget:'side'
 				}]
 			}, {
 				columnWidth : .5,
