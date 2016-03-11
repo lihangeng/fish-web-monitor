@@ -4,6 +4,7 @@
 package com.yihuacomputer.fish.version.service.db;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -894,7 +895,7 @@ public class VersionDownloadService implements IVersionDownloadService {
      	sb.append("select device7_.ID   from VER_DEVICE_VERSION task6_ ,  DEV_INFO device7_ , VER_VERSIONTYPE_ATMTYPE versiontyp8_ , VER_VERSION version9_ , SM_ORG organizati10_ ");
      	sb.append("where device7_.ORG_ID=organizati10_.ID and task6_.DEVICE_ID=device7_.ID and task6_.VERSION_ID=version9_.ID ");
      	sb.append("and device7_.DEV_TYPE_ID=versiontyp8_.ATM_TYPE_ID  and versiontyp8_.VERSION_TYPE_ID=version9_.VERSION_TYPE_ID ");
-     	sb.append("and version9_.ID=? and (task6_.TASK_STATUS in ('NEW' , 'RUN' , 'NOTICED' , 'NOTICE_APP_OK' , 'DOWNLOADED' , 'DEPLOYED' , 'DEPLOYED_WAIT') ");
+     	sb.append("and version9_.ID=? and (task6_.TASK_STATUS in ('NEW' , 'RUN' , 'NOTICED' ,'NOTICE_APP_OK' , 'DOWNLOADED' , 'DEPLOYED' , 'DEPLOYED_WAIT','DOWN_BEFORE_WAIT','DOWNLOADING') ");
      	sb.append(") and device7_.STATUS=? and (organizati10_.ORG_FLAG like ?)))");
      	
      	if(terminalId!=null){
@@ -909,18 +910,29 @@ public class VersionDownloadService implements IVersionDownloadService {
     		sb.append(" and device0_.IP =? ");
     		argList.add(new IP(String.valueOf(ip)));
     	}
+		StringBuffer deviceSb = new StringBuffer();
     	if(deviceIds!=null){
+    		sb.append("and device0_.ID in ");
     		@SuppressWarnings("unchecked")
 			List<Long> deviceIdList = (List<Long>)deviceIds;
-    		sb.append(" and device0_.ID in ( ");
+    		deviceSb.append(" ( ");
     		for(int index=0;index<deviceIdList.size();index++){
-    			sb.append(deviceIdList.get(index));
+    			deviceSb.append(deviceIdList.get(index));
     			if(index!=deviceIdList.size()-1)
-    			sb.append(",");
+    				deviceSb.append(",");
     		}
-    		sb.append(")");
+    		deviceSb.append(")");
+    		sb.append(deviceSb);
     	}
+
     	IVersion version = job.getVersion();
+    	StringBuffer updateDvSb = new StringBuffer();
+    	updateDvSb.append("update VER_DEVICE_VERSION  set TASK_STATUS='NEW',LAST_UPDATED_TIME=?,REMARK='' where VERSION_ID = ?");
+    	updateDvSb.append(" and TASK_STATUS not in('NEW' , 'RUN' , 'NOTICED' ,'NOTICE_APP_OK' , 'DOWNLOADED' , 'DEPLOYED' , 'DEPLOYED_WAIT','DOWN_BEFORE_WAIT','DOWNLOADING') ");
+    	if(!deviceSb.toString().isEmpty()){
+    		updateDvSb.append(" and DEVICE_ID in ").append(deviceSb);
+    	}
+    	
      	Query query = dao.getSQLQuery(sb.toString());
      	query.setLong(0,version.getId());
      	query.setCharacter(1, ((Boolean)eagerRestart?'1':'0'));
@@ -932,6 +944,11 @@ public class VersionDownloadService implements IVersionDownloadService {
      	query.setInteger(7, DevStatus.OPEN.ordinal());
      	query.setString(8, orgFlagStr);
      	int insertCount = query.executeUpdate();
+     	//DEVICE_VERSION状态重置
+     	Query queryDv = dao.getSQLQuery(updateDvSb.toString());
+     	queryDv.setDate(0,new Date());
+     	queryDv.setLong(1, version.getId());
+     	queryDv.executeUpdate();
      	return insertCount!=0;
    	}
    	

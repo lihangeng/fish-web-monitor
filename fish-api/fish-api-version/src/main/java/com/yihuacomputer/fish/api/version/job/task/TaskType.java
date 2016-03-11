@@ -7,8 +7,9 @@ package com.yihuacomputer.fish.api.version.job.task;
  *
  */
 public enum TaskType {
-	AUTO_UPDATE(0, "自动升级"), // 自动更新任务
-	MANUAL(1, "手动升级");// 手工任务
+	AUTO_UPDATE(0, "TaskType.AUTO_UPDATE"), // 自动更新任务
+	MANUAL(1, "TaskType.MANUAL"),// 手工任务
+	SCHEDULER(2, "TaskType.SCHEDULER");
 
 	private int id;
 	private String text;
@@ -34,5 +35,13 @@ public enum TaskType {
 		this.text = text;
 	}
 	
+	public static TaskType getById(int id){
+        for (TaskType each : TaskType.values()){
+            if (each.getId() == id){
+                return each;
+            }
+        }
+        throw new IllegalArgumentException(String.format("id=[%d] error", id));
+    }
 
 }

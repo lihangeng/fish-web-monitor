@@ -136,11 +136,11 @@ public class JobService extends DomainJobService {
         // 保存任务列表
         IVersion version = entity.getVersion();
         Long versionId = version.getId();
-        List<IDeviceVersion> dvs = dvService.findDeviceVersionContainsRemoved(version.getId());
-        Map<Long,IDeviceVersion> maps = convertToMap(dvs);
         if(null!=filter){
         	versionDownloadService.selectAllDeviceToTask(job, filter);
         }
+        List<IDeviceVersion> dvs = dvService.findDeviceVersionContainsRemoved(version.getId());
+        Map<Long,IDeviceVersion> maps = convertToMap(dvs);
         long start1 = System.currentTimeMillis();
         if (version.getVersionStatus().equals(VersionStatus.NEW)) {
             version.setVersionStatus(VersionStatus.WAITING);
@@ -150,10 +150,7 @@ public class JobService extends DomainJobService {
         taskFilter.eq("job", entity);
         List<ITask> taskList = taskService.list(taskFilter);
         for (ITask task : entity.getTasks()) {
-//            long start1 = System.currentTimeMillis();
-//            task.setJob(job);
-//            dao.save(task);
-            
+        
             Long deviceId = task.getDeviceId();
             IDeviceVersion dv = maps.get(deviceId);
             if(dv == null){
@@ -164,16 +161,6 @@ public class JobService extends DomainJobService {
                 dv.setLastUpdatedTime(new Date());
                 dv.setDesc(null);
                 dao.saveOrUpdate(dv);
-//                logger.info("create dev version add times " + (System.currentTimeMillis() -t));
-            }else{
-               if(!dv.getTaskStatus().equals(TaskStatus.NEW)) {
-                   dv.setTaskStatus(TaskStatus.NEW);
-                   dv.setLastUpdatedTime(new Date());
-                   dv.setDesc(null);
-                   dao.saveOrUpdate(dv);
-//                   logger.info("create dev version upate times " + (System.currentTimeMillis() -t));
-               }
-//               logger.info("create dev times " + (System.currentTimeMillis() -t));
             }
         }
         long t = System.currentTimeMillis();

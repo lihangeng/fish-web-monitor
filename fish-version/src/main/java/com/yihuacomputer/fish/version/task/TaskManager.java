@@ -2,6 +2,7 @@ package com.yihuacomputer.fish.version.task;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.MessageSource;
 
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
@@ -16,15 +17,18 @@ public class TaskManager implements Runnable {
 	private TaskThreadPool taskThreadPool;
 	
 	private TaskQueue taskQueue;
+	
+	private MessageSource messageSource;
 
 	public ITaskService getTaskService() {
 		return taskService;
 	}
 
-	public void setTaskService(ITaskService taskService,TaskThreadPool taskThreadPool,TaskQueue taskQueue) {
+	public void setTaskService(ITaskService taskService,TaskThreadPool taskThreadPool,TaskQueue taskQueue,MessageSource messageSource) {
 		this.taskService = taskService;
 		this.taskThreadPool = taskThreadPool;
 		this.taskQueue = taskQueue;
+		this.messageSource = messageSource;
 	}
 	
 	public TaskQueue getTaskQueue() {
@@ -44,6 +48,7 @@ public class TaskManager implements Runnable {
     				task.setStatus(TaskStatus.RUN);
     				TaskThread taskThread = new TaskThread(task);
     				taskThread.setTaskService(taskService);
+    				taskThread.setMessageSource(messageSource);
     				taskService.updateTaskStatus(task);
     				this.taskThreadPool.getTaskExecutor().execute(taskThread);
 				}

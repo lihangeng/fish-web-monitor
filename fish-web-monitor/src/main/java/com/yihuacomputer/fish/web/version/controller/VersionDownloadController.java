@@ -125,7 +125,6 @@ public class VersionDownloadController {
 		ModelMap result = new ModelMap();
 		UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
 		IVersion version = versionService.getById(form.getVersionId());
-//		String versionTypeName = version.getVersionType().getTypeName();
 		List<ITask> tasks = new ArrayList<ITask>();
 		long start1 = System.currentTimeMillis();
 		IFilter filter = new Filter();
@@ -143,7 +142,6 @@ public class VersionDownloadController {
 					deviceIdList.add(deviceId);
 				}
 				filter.eq("deviceIds", deviceIdList);
-//				logger.info("execute all task times " + (System.currentTimeMillis() - start1));
 			}
 		}
 		int downloadCounter = version.getDownloadCounter()+1;
@@ -213,15 +211,74 @@ public class VersionDownloadController {
 				filter.eq("deviceExtend.version", job.getVersion().getVersionNo());
 				int devVersionCount = deviceService.list(filter).size();
 				int repeatDevVersionCount = jobService.getRepeatTaskByJob(job.getJobId());
-				forms.add(new JobForm(job, devVersionCount, repeatDevVersionCount));
+				forms.add(convertWithIntArgs(job, devVersionCount, repeatDevVersionCount));
 			} else {
-				forms.add(new JobForm(job));
+				forms.add(convert(job));
 			}
 
 		}
 		return forms;
 	}
 
+	
+	public JobForm convertWithIntArgs(IJob job,int devVersionCount,int repeatDevVersionCount){
+		JobForm jobForm = convert(job) ;
+		jobForm.setExtraBody( "&nbsp;&nbsp;作业类型 : " + getEnumI18n(job.getJobType().getText()) + "&nbsp;&nbsp; "
+		+( job.getJobType()==JobType.MANUAL?"作业状态 : " + (jobForm.getRunTaskCount()==0?"完成":"进行中") : "自动更新状态："
+		+ (job.getVersion().isAutoDown()?"打开":"关闭")) + "&nbsp;&nbsp;重复任务设备台数： " + repeatDevVersionCount + 
+		"&nbsp;&nbsp;当前版本设备总台数：" + devVersionCount +  "&nbsp;&nbsp;总任务数 : " + jobForm.getAllTaskCount() + 
+		"&nbsp;&nbsp;任务完成数 : " + jobForm.getFinishTaskCount() + "&nbsp;&nbsp;任务失败数 : " + jobForm.getFailTaskCount() + 
+		"&nbsp;&nbsp;进行中任务数 : " +jobForm.getRunTaskCount());
+		return jobForm;
+	}
+
+	public JobForm convert(IJob job) {
+		JobForm jobForm = new JobForm();
+		jobForm.setId(Long.valueOf(job.getJobId()));
+		jobForm.setJobName(job.getVersion().getVersionType().getTypeName()+"_"+job.getVersion().getVersionNo()+"_"+job.getVersion().getDownloadCounter());
+        jobForm.setPlanTime(job.getPlanTime());
+        jobForm.setJobType(job.getJobType());
+        jobForm.setJobStatus(job.getJobStatus());
+        jobForm.setJobPriority(job.getJobPriority());
+        jobForm.setDesc(job.getDesc());
+
+        jobForm.setCancelPreVersion (job.getCancelPreVer()==0?false:true );
+        jobForm.setRebootUpdate(job.getRebootUpdate()==0?false:true);
+
+        if (job.getVersion() != null) {
+            jobForm.setVersionId(job.getVersion().getId());
+            jobForm.setVersionFile(job.getVersion().getServerPath());
+            jobForm.setVersionName(job.getVersion().getFullName());
+            jobForm.setVersionCatalog(job.getVersion().getVersionType().getVersionCatalog().name());
+        }
+        if (job.getDeployStartDate() != null) {
+            jobForm.setDeployStartDate(DateUtils.getDate(job.getDeployStartDate()));
+        }
+        if (job.getDeployEndDate() != null) {
+            jobForm.setDeployEndDate(DateUtils.getDate(job.getDeployEndDate()));
+        }
+
+        List<ITask> taskList=job.getTasks() ;
+        jobForm.setAllTaskCount(job.getTaskSize()) ;
+        for(ITask task:taskList){
+        	if(TaskStatus.CHECKED.equals(task.getStatus()) || TaskStatus.FAIL_ROLLBACK.equals(task.getStatus())){
+        		jobForm.setFinishTaskCount(jobForm.getFinishTaskCount()+1) ;
+        	}else if(TaskStatus.CANCELED.equals(task.getStatus())||TaskStatus.CANCEL_UPDATE_OK.equals(task.getStatus())||TaskStatus.DEPLOYED_FAIL.equals(task.getStatus())||TaskStatus.NOTICED_FAIL.equals(task.getStatus())||TaskStatus.OTHER.equals(task.getStatus())||TaskStatus.REMOVED.equals(task.getStatus())||TaskStatus.DOWNLOADED_FAIL.equals(task.getStatus())){
+        		jobForm.setFailTaskCount(jobForm.getFailTaskCount()+1) ;
+        	}
+        }
+        jobForm.setRunTaskCount(jobForm.getAllTaskCount()-jobForm.getFinishTaskCount()-jobForm.getFailTaskCount()) ;
+
+        jobForm.setExtraBody("&nbsp;&nbsp;作业类型 : " + getEnumI18n(job.getJobType().getText()) + 
+        		"&nbsp;&nbsp; " +( job.getJobType()==JobType.MANUAL?"作业状态 : " + 
+        (jobForm.getRunTaskCount()==0?"完成":"进行中") : "自动更新状态：" + (job.getVersion().isAutoDown()?"打开":"关闭")) + 
+        "&nbsp;&nbsp;" + "总任务数 : " + jobForm.getAllTaskCount() + "&nbsp;&nbsp;任务完成数 : " + jobForm.getFinishTaskCount() + 
+        "&nbsp;&nbsp;任务失败数 : " + jobForm.getFailTaskCount() + "&nbsp;&nbsp;进行中任务数 : " +jobForm.getRunTaskCount());
+        return jobForm;
+
+    }
+	
+	
 	// 获得查询条件
 	private IFilter getFilter(WebRequest request) {
 		IFilter filter = new Filter();
@@ -473,7 +530,7 @@ public class VersionDownloadController {
 			row.add(device.getOrganization().getName());
 			row.add(task.getVersionBeforeUpdate() == null ? "" : task.getVersionBeforeUpdate());
 			row.add(task.getVersion().getVersionNo());
-			row.add(task.getStatus().getText());
+			row.add(getEnumI18n(task.getStatus().getText()));
 			// row.add(task.getExceptVersion());
 			row.add(task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime()));
 			row.add(task.getDownloadStartTime());
@@ -607,6 +664,16 @@ public class VersionDownloadController {
         form.setDownloadFinishTime(task.getDownloadFinishTime());
 	    return form;
 	}
+	
+	public String getState(ITask task) {
+        if (task.getStatus().equals(TaskStatus.NEW) || task.getStatus().equals(TaskStatus.RUN)) {
+            return getEnumI18n(task.getStatus().getText());
+        }
+        else {
+            return getEnumI18n(task.getStatus().getText()) + (task.isSuccess() ? getEnumI18n("taskstatus.execute.result.success") : getEnumI18n("taskstatus.execute.result.failer"));
+        }
+    }
+    
 
 	private List<TaskForm> toTaskFormForRepeat(List<Object> tasks) {
 		List<TaskForm> forms = new ArrayList<TaskForm>();

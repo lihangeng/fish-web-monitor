@@ -11,7 +11,9 @@ import javax.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.exception.AppException;
@@ -55,6 +57,8 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	@Autowired
 	private ITaskService taskService;
 	@Autowired
+	private MessageSource messageSources;
+	@Autowired
 	private TaskQueue taskQueue;
 	
 
@@ -78,7 +82,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	 * */
 	private void initTaskManager() {
 		taskManager = new TaskManager();
-		taskManager.setTaskService(taskService,taskThreadPool,taskQueue);
+		taskManager.setTaskService(taskService,taskThreadPool,taskQueue,messageSources);
 		taskManagerThread = new Thread(taskManager);
 		taskManagerThread.setName("Task_Manager");
 		taskManagerThread.start();
@@ -177,7 +181,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 //			}
 			return;
 		}
-		logger.info("jobQueue status "+jobInQueue.getJobStatus());
+		logger.info("jobQueue status "+getI18NInfo(jobInQueue.getJobStatus().getText()));
 		//作业在作业队列中，直接删除“新建”、“计划中”的作业(物理删除)
 		if(jobInQueue.getJobStatus().equals(JobStatus.NEW) || jobInQueue.getJobStatus().equals(JobStatus.SCHEDULER)){
             jobInQueue.getScheduler().cancelTime();//取消定时器
@@ -206,7 +210,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
                     }
                 }
                 if(removedTasks.size() == 0){
-                    throw new AppException("该作业中没有可以撤销的任务。请刷新列表。");
+                    throw new AppException(getI18NInfo("job.exception.tip.noTaskToCancel"));
                 }
                 logger.info("ready to cacelTasks");
                 taskService.cancelTasks(removedTasks);
@@ -216,10 +220,23 @@ public class JobManager implements IJobManager,IJobManangerStatus {
                 throw new AppException(e.getMessage());
             }
 		}else{
-			String tip = String.format("不能撤销[%s]状态的作业.",jobInQueue.getJobStatus().getText());
+			String tip = getI18NInfos("job.exception.tip.cantCancelTask",new Object[]{getI18NInfo(jobInQueue.getJobStatus().getText())});
 			logger.warn(tip);
 			throw new AppException(tip);
 		}
+	}
+
+	private String getI18NInfo(String code){
+		if(null==code){
+    		return "";
+    	}
+		return messageSources.getMessage(code, null, FishCfg.locale);
+	}
+	private String getI18NInfos(String code,Object[] args){
+		if(null==code){
+    		return "";
+    	}
+		return messageSources.getMessage(code, args, FishCfg.locale);
 	}
 
 	/**
@@ -233,7 +250,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	        if(task.getStatus().equals(TaskStatus.NEW)){
                 taskService.cancelTask(task);
 	        }else{
-	            throw new AppException("只有“新建”的任务才能取消！");
+	            throw new AppException(getI18NInfo("job.exception.tip.onlyCancelNewTask"));
 	        }
 	    }else{
 	        task = taskService.get(taskId);

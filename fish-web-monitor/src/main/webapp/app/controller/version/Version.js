@@ -144,6 +144,8 @@ Ext.define('Eway.controller.version.Version', {
 				form.findField("versionType").setValue(record.get("versionTypeDesc"));
 				form.findField("versionNo").setValue(record.get("versionNo"));
 				form.findField("serverPath").setValue(record.get("serverPath"));
+				form.findField("jobName").setValue(record.get("desc"));
+				
 				var atmTypeStore = win.down("field_device_deviceatmtype[name=atmTypeId]").getStore();
 				atmTypeStore.proxy.extraParams={versionId:record.get("id")};
 				atmTypeStore.load({
@@ -152,8 +154,6 @@ Ext.define('Eway.controller.version.Version', {
 					}
 				});
 				win.show();
-				
-				win.down("textfield[name=jobName]").setValue(record.get("desc"));
 				win.down("textfield[name=ip]").on({keydown:this.queryOnKeyDownEnter, scope: this });
 				win.down("textfield[name=terminalId]").on({keydown:this.queryOnKeyDownEnter, scope: this});
 				win.down("common_orgComboOrgTree[name=orgName]").on({keydown:this.queryOnKeyDownEnter, scope: this});
@@ -167,6 +167,7 @@ Ext.define('Eway.controller.version.Version', {
 		}
 	},
 	setCheckBoxModel:function( _this, newValue, oldValue, eOpts ){
+		var tabPanel =  this.getAddJobWin().down("tabpanel");
 		var grid = this.getAddJobWin().down("version_download_selectableDeviceGrid");
 		if(newValue.selectAll=="true"){
 			grid.selModel.selectAll();
@@ -175,10 +176,12 @@ Ext.define('Eway.controller.version.Version', {
 			this.getAddJobWin().down("hidden[name='deviceIds']").setValue("");
 			linkedGrid.setTitle(EwayLocale.version.selectDeviceInfo0 + EwayLocale.version.download.selectAllDevice + EwayLocale.version.selectDeviceInfo1);
 			grid.selModel.setLocked(true);
+			tabPanel.getEl().mask(); 
 		}
 		else{
 			grid.selModel.setLocked(false);
 			grid.selModel.deselectAll();
+			tabPanel.getEl().unmask(); 
 		}
 	},
 	queryOnKeyDownEnter:function( e, t, eOpts ){
@@ -277,8 +280,6 @@ Ext.define('Eway.controller.version.Version', {
 					 					controller.autoJobDetail(ed.get("id"),ed.get("jobName"));
 					 				}
 					 			},this);
-//					 			record.get("jobName")+"第"+ed.data.downLoadCounter+'次作业保存成功,是否跳转到"分发监控"页面?',this.goToVersionDownloadPage,this);
-
 					 },
 					 failure: function(record,operation){
 						Eway.alert(operation.getError());
@@ -287,14 +288,6 @@ Ext.define('Eway.controller.version.Version', {
 					 scope : this
 				});
 			}
-		}
-	},
-
-	//跳转到分发监控页面
-	goToVersionDownloadPage :function(button, text) {
-		if (button == "yes") {
-			this.parent.activeController('version.monitor.VersionDownloadMonitor');
-			autoJobDetail
 		}
 	},
 

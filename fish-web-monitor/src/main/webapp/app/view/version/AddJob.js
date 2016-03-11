@@ -45,20 +45,16 @@ Ext.define('Eway.view.version.AddJob', {
 					border : false
 				},
 				items : [{
-					xtype: 'textfield',
-					fieldLabel:EwayLocale.version.View.versionDesc,//版本描述",
-					name :'jobName',
-					maxLength: 128,
-					allowBlank:false,
-					readOnly:true,
-					emptyText:EwayLocale.version.batchTaskNameEmpty//'例如:****需求第1批次升级'
-			 },{
 					xtype: 'container',
                     layout: 'hbox',
                     items: [{
     					xtype: 'hidden',
     					fieldLabel : EwayLocale.version.downloadVersionId,//'下发版本ID',
     					name: 'versionId'
+    				},{
+    					xtype: 'displayfield',
+    					fieldLabel:EwayLocale.version.View.versionDesc,//版本描述",
+    					name :'jobName'//'例如:****需求第1批次升级'
     				},{
     					xtype: 'displayfield',
     					fieldLabel : EwayLocale.version.View.versionTypeName,//'软件分类',
@@ -108,7 +104,7 @@ Ext.define('Eway.view.version.AddJob', {
 			        	name:'planTime',
 			        	disabled: true,
 			        	editable: false,
-			            labelWidth:130,
+			            labelWidth:160,
 		                width : 325,
 			        	canClear : false,
 		                padding: '0 0 0 30',

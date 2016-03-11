@@ -120,8 +120,6 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 									winEl.unmask();
 									if(status  == 'RUN'){
 										Eway.alert(EwayLocale.version.task.cancelSuccessBut);
-										//同时刷新任务列表页面
-										Ext.StoreManager.get("version.Task").load();
 									}else{
 										store.remove(record);
 										Eway.alert(EwayLocale.version.task.cancelJobSuccess);

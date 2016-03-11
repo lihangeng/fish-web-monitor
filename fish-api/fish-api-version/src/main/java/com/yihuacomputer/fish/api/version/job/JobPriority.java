@@ -6,9 +6,9 @@ package com.yihuacomputer.fish.api.version.job;
  *
  */
 public enum JobPriority {
-	GENERAL(0, "普通"), // 普通
-	MIDDLE(1, "中等"), // 中等
-	HIGH(2, "高级");// 高
+	GENERAL(0, "JobPriority.GENERAL"), // 普通
+	MIDDLE(1, "JobPriority.MIDDLE"), // 中等
+	HIGH(2, "JobPriority.HIGH");// 高
 
 	private int id;
 	private String text;

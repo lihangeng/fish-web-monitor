@@ -1,23 +1,14 @@
 package com.yihuacomputer.fish.web.version.form;
 
 import java.util.Date;
-import java.util.List;
 
-import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.fish.api.version.job.IJob;
 import com.yihuacomputer.fish.api.version.job.JobPriority;
 import com.yihuacomputer.fish.api.version.job.JobStatus;
 import com.yihuacomputer.fish.api.version.job.JobType;
-import com.yihuacomputer.fish.api.version.job.task.ITask;
-import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 
 public class JobForm {
 	private long id;
-//	allDevice: false
-//	deviceIds: ",0"
-//	jobName: "aaa"
-//	taskType: "MANUAL"
-//	versionId: "1
+
 	private String jobName;
 
 	private long versionId = 1;
@@ -67,55 +58,7 @@ public class JobForm {
 	public JobForm() {
 	}
 
-	public JobForm(IJob job,int devVersionCount,int repeatDevVersionCount){
-		this(job) ;
-		this.extraBody = "&nbsp;&nbsp;作业类型 : " + job.getJobType().getText() + "&nbsp;&nbsp; " +( job.getJobType()==JobType.MANUAL?"作业状态 : " + (runTaskCount==0?"完成":"进行中") : "自动更新状态：" + (job.getVersion().isAutoDown()?"打开":"关闭")) + "&nbsp;&nbsp;重复任务设备台数： " + repeatDevVersionCount + "&nbsp;&nbsp;当前版本设备总台数：" + devVersionCount +  "&nbsp;&nbsp;总任务数 : " + this.allTaskCount + "&nbsp;&nbsp;任务完成数 : " + this.finishTaskCount + "&nbsp;&nbsp;任务失败数 : " + this.failTaskCount + "&nbsp;&nbsp;进行中任务数 : " +this.runTaskCount;
-	}
-
-	public JobForm(IJob job) {
-        this.id = Long.valueOf(job.getJobId());
-        this.jobName = job.getVersion().getVersionType().getTypeName()+"_"+job.getVersion().getVersionNo()+"_"+job.getVersion().getDownloadCounter();
-        this.planTime = job.getPlanTime();
-        this.jobType = job.getJobType();
-        this.jobStatus = job.getJobStatus();
-        this.jobPriority = job.getJobPriority();
-        this.desc = job.getDesc();
-
-        this.cancelPreVersion  = job.getCancelPreVer()==0?false:true ;
-        this.rebootUpdate = job.getRebootUpdate()==0?false:true;
-
-        if (job.getVersion() != null) {
-            this.versionId = job.getVersion().getId();
-            this.versionFile = job.getVersion().getServerPath();
-            this.versionName = job.getVersion().getFullName()/*
-                                                              * + " [" +
-                                                              * this.versionFile
-                                                              * + "]"
-                                                              */;
-            this.versionCatalog = job.getVersion().getVersionType().getVersionCatalog().name();
-        }
-        if (job.getDeployStartDate() != null) {
-            this.deployStartDate = DateUtils.getDate(job.getDeployStartDate());
-        }
-        if (job.getDeployEndDate() != null) {
-            this.deployEndDate = DateUtils.getDate(job.getDeployEndDate());
-        }
-
-        List<ITask> taskList = job.getTasks() ;
-        this.allTaskCount = job.getTaskSize() ;
-        for(ITask task:taskList){
-        	if(TaskStatus.CHECKED.equals(task.getStatus()) || TaskStatus.FAIL_ROLLBACK.equals(task.getStatus())){
-        		this.finishTaskCount++ ;
-        	}else if(TaskStatus.CANCELED.equals(task.getStatus())||TaskStatus.CANCEL_UPDATE_OK.equals(task.getStatus())||TaskStatus.DEPLOYED_FAIL.equals(task.getStatus())||TaskStatus.NOTICED_FAIL.equals(task.getStatus())||TaskStatus.OTHER.equals(task.getStatus())||TaskStatus.REMOVED.equals(task.getStatus())||TaskStatus.DOWNLOADED_FAIL.equals(task.getStatus())){
-        		this.failTaskCount++ ;
-        	}
-        }
-        this.runTaskCount = allTaskCount-finishTaskCount-failTaskCount ;
-
-        this.extraBody = "&nbsp;&nbsp;作业类型 : " + job.getJobType().getText() + "&nbsp;&nbsp; " +( job.getJobType()==JobType.MANUAL?"作业状态 : " + (runTaskCount==0?"完成":"进行中") : "自动更新状态：" + (job.getVersion().isAutoDown()?"打开":"关闭")) + "&nbsp;&nbsp;" + "总任务数 : " + this.allTaskCount + "&nbsp;&nbsp;任务完成数 : " + this.finishTaskCount + "&nbsp;&nbsp;任务失败数 : " + this.failTaskCount + "&nbsp;&nbsp;进行中任务数 : " +this.runTaskCount;
-
-
-    }
+	
 
 	public String getJobName() {
 		return jobName;
