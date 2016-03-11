@@ -127,9 +127,9 @@ function validateFileDisplayTime(file) {
 	var endTime = now.format("yyyy/MM/dd") + " " + file.endTime;
 
 	if (Date.parse(nowDate) >= Date.parse(beginDate)
-			&& Date.parse(nowDate) <= Date.parse(endDate)
+			&& (Date.parse(nowDate) <= Date.parse(endDate)||endDate=="")
 			&& Date.parse(nowTime) >= Date.parse(beginTime)
-			&& Date.parse(nowTime) <= Date.parse(endTime)) {
+			&& (Date.parse(nowTime) <= Date.parse(endTime)||endTime="")) {
 		return true;
 	} else {
 		return false;
