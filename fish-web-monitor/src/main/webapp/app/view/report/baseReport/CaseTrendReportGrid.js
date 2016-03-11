@@ -12,7 +12,11 @@ Ext.define('Eway.view.report.baseReport.CaseTrendReportGrid', {
         	 tbar : [ '->', {
      			text : EwayLocale.button.search,
      			glyph : 0xf002,
-     			action : 'query'
+     			action : 'query',
+     			code:'caseTrendQuery',
+     			listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
      		}],
         	items:[{
                 xtype: 'cartesian',

@@ -48,7 +48,11 @@ Ext.define('Eway.view.version.download.monitor.JobGrid', {
 			tbar: ['->',{
 				text: EwayLocale.button.search,//'查询',
 				glyph : 0xf002,
-				action: 'query'
+				action: 'query',
+				code:'jobQuery',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}/*, {
 				text: '创建新的作业',
 				action: 'add'
@@ -70,7 +74,10 @@ Ext.define('Eway.view.version.download.monitor.JobGrid', {
 				text: EwayLocale.version.download.jobDetail,//'查看作业明细',
 				glyph : 0xf129,
 				action: 'detail',
-				code : 'jobDetail'
+				code : 'jobDetail',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}],
 			columns : [
 			{

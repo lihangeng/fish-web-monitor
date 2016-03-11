@@ -30,18 +30,30 @@ Ext.define('Eway.view.monitor.transaction.TransactionGrid', {
 				xtype : 'button',
 				text : EwayLocale.monitor.business.transaction.transactionMonitor.begin,
 				action : 'start',
-				glyph : 0xf144
+				glyph : 0xf144,
+				code:'TransactionStart',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}, {
 				xtype : 'button',
 				text : EwayLocale.monitor.business.transaction.transactionMonitor.stop,
 				glyph : 0xf04c,
 				action : 'stop',
-				disabled : true
+				disabled : true,
+				code:'TransactionStop',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}, {
                 xtype : 'button',
                 text : EwayLocale.monitor.business.transaction.transactionMonitor.clear,
                 glyph : 0xf014,
-                action : 'clear'
+                action : 'clear',
+                code:'TransactionClear',
+                listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
             } ],
 			columns : [ {
 				header : EwayLocale.monitor.business.transaction.dateTime,

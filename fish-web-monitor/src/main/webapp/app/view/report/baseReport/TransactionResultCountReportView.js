@@ -4,7 +4,7 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportView', {
 
 	requires : [
 			'Eway.view.report.baseReport.TransactionResultCountReportFilter',
-			'Eway.view.report.baseReport.ReportDownload' ],
+			'Eway.view.report.baseReport.TransactionResultCountReportGrid' ],
 
 	title : EwayLocale.report.baseReport.tradeResultRep,
 	layout : 'border',
@@ -16,7 +16,7 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportView', {
 				xtype : 'baseReport_TransactionResultCountReportFilter'
 			}, {
 				region : 'center',
-				xtype : 'reportDownload'
+				xtype : 'baseReport_TransactionResultCountReportGrid'
 			} ],
 			listeners : {
 				activate : function(panel) {

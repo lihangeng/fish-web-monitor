@@ -30,7 +30,11 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 				action:'autoRefresh',
 				glyph : 0xf021,
 				tooltip:EwayLocale.version.download.autoRefreshTips,//'刷新周期60秒',
-				started:false
+				started:false,
+				code:'taskAutoRefresh',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			},'-',{
 				xtype : 'combo',
 				fieldLabel : EwayLocale.version.task.updateResult,//'升级结果',
@@ -56,7 +60,11 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 				text:  EwayLocale.button.search,//'查询',
 				iconCls : 'queryBtn',
 				action: 'taskquery',
-				tooltip:EwayLocale.version.download.taskQueryTips//'根据条件查询选中作业下的详情信息'
+				tooltip:EwayLocale.version.download.taskQueryTips,//'根据条件查询选中作业下的详情信息'
+				code:'taskQuery',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}/*,{
 				text: '导出',
 				iconCls : 'exportToExcel',

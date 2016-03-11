@@ -14,11 +14,11 @@ Ext.define('Eway.view.case.faultClassify.FaultClassifyGrid', {
 			tbar: ['->', {
 				text: EwayLocale.button.update,
 				glyph : 0xf040,
-				action:'update'
-//				code : 'atmBrandUpdate',
-//				listeners:{
-//					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-//				}
+				action:'update',
+				code : 'faultClassifyUpdate',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}],
 			columns : [{
 				header : EwayLocale.cases.faultClassify.faultClassifyName,
