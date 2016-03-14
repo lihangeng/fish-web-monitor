@@ -136,12 +136,26 @@ public class TaskService implements ITaskService {
 	public void cancelTask(ITask task){
 	    task.setStatus(TaskStatus.REMOVED);
 	    dao.update(task);
-
         List<ITask> tasks = new ArrayList<ITask>();
         tasks.add(task);
         cancelTasks(tasks);
 	}
-
+	
+	public void resetTask(ITask task){
+	    task.setStatus(TaskStatus.DEPLOYED_FAIL);
+	    dao.update(task);
+        List<ITask> tasks = new ArrayList<ITask>();
+        tasks.add(task);
+        resetTasks(tasks);
+	}
+	public void resetTasks(List<ITask> tasks){
+	    int size = tasks.size();
+	    if(size > 0){
+            for(ITask task : tasks){//修改设备版本表的任务状态为“删除”
+                dvService.updateDeviceVersionStatusForList(task.getDevice().getId(), task.getVersion().getId(), TaskStatus.DEPLOYED_FAIL);
+            }
+	    }
+	}
 	/**
 	 * 取消前，任务的状态已经是removed
 	 * 取消一批任务

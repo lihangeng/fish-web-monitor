@@ -718,9 +718,10 @@ public class VersionDownloadService implements IVersionDownloadService {
 			   linkedDeviceForm.setOrgName(device.getOrganization().getName());
 			   linkedDeviceForm.setPort(1);
 			   linkedDeviceForm.setId(device.getId());
-			   linkedDeviceForm.setReason(deviceSoftVersion.getDesc());
 			   linkedDeviceForm.setTargetVersion(version.getVersionNo());
-//			   linkedDeviceForm.setTaskStatus(deviceSoftVersion.get);
+			   linkedDeviceForm.setDeviceVersion(deviceSoftVersion.getVersionNo());
+//			   linkedDeviceForm.setTaskStatus(deviceSoftVersion.get());
+//			   linkedDeviceForm.setReason(deviceSoftVersion.getDesc());
 			   formPage.add(linkedDeviceForm);
 //			   linkedDeviceForm.set
 		   }
@@ -882,8 +883,8 @@ public class VersionDownloadService implements IVersionDownloadService {
 //		StringBuffer hqlDevice = new StringBuffer();
 		
 		StringBuffer sb = new StringBuffer();
-     	sb.append("INSERT INTO VER_TASK(DEVICE_ID,VERSION_BEFORE_UPDATE,VERSION_ID,EAGER_RESTART,JOB_ID,TASK_STATUS,TASK_TYPE) ");
-     	sb.append("select device0_.ID ,concat(concat(devicesoft3_.TYPE_NAME,'_'),devicesoft3_.VERSION_NO),?,?,?,'NEW','MANUAL' ");
+     	sb.append("INSERT INTO VER_TASK(DEVICE_ID,VERSION_BEFORE_UPDATE,VERSION_ID,EAGER_RESTART,JOB_ID,TASK_STATUS,TASK_TYPE,EXCEPT_VERSION) ");
+     	sb.append("select device0_.ID ,concat(concat(devicesoft3_.TYPE_NAME,'_'),devicesoft3_.VERSION_NO),?,?,?,'NEW','MANUAL',version1_.VERSION_NO ");
      	sb.append("from DEV_INFO device0_ ,VER_VERSION version1_ ,VER_VERSIONTYPE_ATMTYPE versiontyp2_ , ");
      	sb.append("VER_DEVICE_SOFT_VERSION devicesoft3_,VER_VERSION_TYPE versiontyp4_ ,SM_ORG organizati5_ ");
      	sb.append("where version1_.VERSION_TYPE_ID=versiontyp4_.ID  and device0_.DEV_TYPE_ID=versiontyp2_.ATM_TYPE_ID ");

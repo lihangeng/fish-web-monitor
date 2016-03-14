@@ -43,7 +43,8 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 				store : Ext.create('Ext.data.Store',{
 					fields : ['value','name'],
 					data : [
-						{'value':'1','name':EwayLocale.version.task.updateResultSuccess},//'成功'},
+							{'value':'2','name':EwayLocale.version.task.updateResultRunning},
+							{'value':'1','name':EwayLocale.version.task.updateResultSuccess},//'成功'},
 						{'value':'0','name':EwayLocale.version.task.updateResultFailed}//'失败'}
 					]
 				}),
@@ -63,6 +64,15 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 				action: 'taskquery',
 				tooltip:EwayLocale.version.download.taskQueryTips,//'根据条件查询选中作业下的详情信息'
 				code:'taskQuery',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
+			},{
+				text:EwayLocale.version.download.resetTaskStatus,//'重置任务状态',
+				action:'resetStatus',
+				glyph : 0xf013,
+				code : 'resetStatus',
+				tooltip:EwayLocale.version.download.resetTaskStatus,
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}

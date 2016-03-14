@@ -362,6 +362,7 @@ Ext.apply(EwayLocale,{
 			cancelJobSuccess : '成功撤销作业',//EwayLocale.version.task.cancelJobSuccess
 			updateResult : '升级结果', //EwayLocale.version.task.updateResult
 			updateResultSuccess:'成功',	//EwayLocale.version.task.updateResultSuccess
+			updateResultRunning:'运行中',	//EwayLocale.version.task.updateResultRunning
 			updateResultFailed:'失败'	//EwayLocale.version.task.updateResultFailed
 		}
 	}

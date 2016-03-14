@@ -69,7 +69,9 @@ public class JobThread implements Runnable {
 			List<ITask> tasks = this.job.getTasks();			
         	Collections.shuffle(tasks);//对队列进行混乱,使下发无序
 			for (ITask task : tasks) {
-				if(!job.getJobStatus().equals(JobStatus.FINISH)){
+				if(job.getJobStatus().equals(JobStatus.FINISH)){
+					break;
+				}
 					//没有下载成功,没有通知成功，新建的任务放入任务队列
 					if(TaskStatus.canRun(task.getStatus())){
 						this.getTaskQueue().getTaskQueue().put(task);
@@ -77,7 +79,6 @@ public class JobThread implements Runnable {
 						logger.info(String.format("ignore a task [%s]",task.toString()));
 					}
 				}
-			}
 		} catch (Exception e) {
 			logger.error(String.format("execute job error [%]",e.getMessage()));
 		}

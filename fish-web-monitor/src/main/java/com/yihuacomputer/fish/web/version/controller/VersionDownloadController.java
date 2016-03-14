@@ -235,8 +235,40 @@ public class VersionDownloadController {
 		}
 		return forms;
 	}
-
 	
+  private boolean canReset(TaskStatus status){
+	    if((status.equals(TaskStatus.DEPLOYED))
+                || (status.equals(TaskStatus.DOWNLOADED))
+                || (status.equals(TaskStatus.NEW))
+                || (status.equals(TaskStatus.NOTICE_APP_OK))
+                || (status.equals(TaskStatus.NOTICED))
+                || status.equals(TaskStatus.RUN)
+                || status.equals(TaskStatus.DEPLOYED_WAIT)){
+	        return true;
+	    }
+	    return false;
+	}
+	
+	@RequestMapping(value = "/resetTaskStatus", method = RequestMethod.POST)
+	public @ResponseBody
+	ModelMap resetTaskStatus(@PathVariable long id){
+		logger.info(String.format("reset taskStatus  : taskId = %s  ", id));
+        ModelMap result = new ModelMap();
+        try {
+        	ITask task = taskService.get(id);
+        	if(canReset(task.getStatus())){
+	            taskService.resetTask(task);
+	            result.addAttribute(FishConstant.SUCCESS, true);
+        	}
+        	else{
+        		result.addAttribute(FishConstant.SUCCESS, false);
+        		result.addAttribute(FishConstant.ERROR_MSG,messageSourceEnum.getMessage("exception.task.cantResetTask",null,FishCfg.locale));
+        	}
+        } catch (Exception e) {
+            result.addAttribute(FishConstant.SUCCESS, false);
+        }
+        return result;
+	}
 	public JobForm convertWithIntArgs(IJob job,int devVersionCount,int repeatDevVersionCount){
 		JobForm jobForm = convert(job) ;
 		jobForm.setExtraBody( "&nbsp;&nbsp;作业类型 : " + getEnumI18n(job.getJobType().getText()) + "&nbsp;&nbsp; "
@@ -488,6 +520,18 @@ public class VersionDownloadController {
 				status.add(TaskStatus.DOWNLOADED_FAIL);
 				status.add(TaskStatus.DEPLOYED_FAIL);
 				status.add(TaskStatus.NOTICE_APP_FAIL);
+				status.add(TaskStatus.REMOVED);
+				filter.in("task.status", status);
+			}
+			else if(updateResult.equals("2")){
+				List<TaskStatus> status = new ArrayList<TaskStatus>();
+				status.add(TaskStatus.DEPLOYED_WAIT);
+				status.add(TaskStatus.DOWNLOADED);
+				status.add(TaskStatus.DOWNLOADING);
+				status.add(TaskStatus.NEW);
+				status.add(TaskStatus.NOTICE_APP_OK);
+				status.add(TaskStatus.NOTICED);
+				status.add(TaskStatus.RUN);
 				filter.in("task.status", status);
 			}
 		}
@@ -684,7 +728,7 @@ public class VersionDownloadController {
             form.setVersionBeforeUpdate(task.getVersionBeforeUpdate().substring(index + 1));
         }
         form.setExceptVersion(task.getExceptVersion());
-        form.setCurrentVersion("");
+        form.setCurrentVersion(task.getVersionBeforeUpdate());
         form.setProcess(task.getProcess());
 
         form.setDownloadStartTime(task.getDownloadStartTime());

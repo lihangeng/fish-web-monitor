@@ -361,6 +361,7 @@ Ext.apply(EwayLocale,{
 			cancelJobSuccess:'Cancel Job Successfully',//EwayLocale.version.task.cancelJobSuccess
 			updateResult:'Update Result',	//EwayLocale.version.task.updateResult
 			updateResultSuccess:'Successful',	//EwayLocale.version.task.updateResultSuccess
+			updateResultRunning:'Running',	//EwayLocale.version.task.updateResultRunning
 			updateResultFailed:'Failed'	//EwayLocale.version.task.updateResultFailed
 		}
 	}
