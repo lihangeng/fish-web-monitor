@@ -279,8 +279,8 @@ Ext.define('Eway.controller.bsAdvert.BsAdvert', {
     		var res = advRess[i];
 			var advRes_str = "{'id':"+res.data.id+",'playTime':" + res.data.playTime + ",'beginTime':'" + res.data.beginTime
 			+ "','endTime':'"+res.data.endTime
-			+"','beginDate':'"+Ext.Date.format(res.data.beginDate, "Y-m-d")
-			+"','endDate':'"+Ext.Date.format(res.data.endDate, "Y-m-d")
+			+"','beginDate':'"+(typeof(res.data.beginDate)=="string" ? res.data.beginDate:Ext.Date.format(res.data.beginDate, "Y-m-d"))
+			+"','endDate':'"+(typeof(res.data.endDate)=="string" ? res.data.endDate:Ext.Date.format(res.data.endDate, "Y-m-d"))
 			+"','screen':'"+res.data.screen
 			+ "','content':'" + res.data.content +"'}";
 			if(resources == '['){
