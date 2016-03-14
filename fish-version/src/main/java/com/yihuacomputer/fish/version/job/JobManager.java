@@ -1,7 +1,6 @@
 package com.yihuacomputer.fish.version.job;
 
 import java.lang.Thread.State;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

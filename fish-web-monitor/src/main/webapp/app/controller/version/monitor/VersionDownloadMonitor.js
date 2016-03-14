@@ -193,18 +193,10 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		if (sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			var tabpanel = this.getEwayView().down("tabpanel");
-//			var activeId = "job_"+record.get("id");
-
-//			var activePanel = tabpanel.setActiveItem(activeId);
-//			if(activePanel.id==activeId){
-//				return;
-//			}
 			var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":record.get("id")});
-//			jobDetailPanel.itemId="'"+activeId+"'";
 			tabpanel.add(jobDetailPanel);
 			jobDetailPanel.setTitle(record.get("jobName"));
 			tabpanel.setActiveItem(jobDetailPanel);
-//			jobDetailPanel.id="'"+activeId+"'";
 		} else {
 			Eway.alert(EwayLocale.version.task.selectAJob);
 		}
@@ -213,13 +205,8 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	},
 	
 	autoJobDetail:function(jobId){
+		var me =this;
 		var tabpanel = this.getEwayView().down("tabpanel");
-//		var activeId = "job_"+jobId;
-//		var activePanel = tabpanel.setActiveTab(activeId);
-//		if(activePanel.id==activeId){
-//			return;
-//		}
-		
 		Ext.Ajax.request({
 		    url: 'api/version/download/getJobInfo',
 		    method:'POST',
@@ -229,11 +216,11 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		    success: function(response){
 		        var object = Ext.decode(response.responseText);
 		        var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":jobId});
-//		        jobDetailPanel.itemId="job_"+jobId;
-//				jobDetailPanel.id="'"+activeId+"'";
 				tabpanel.add(jobDetailPanel);
 				jobDetailPanel.setTitle(object.total.jobName);
 				tabpanel.setActiveItem(jobDetailPanel);
+				var autoRefreshButton = jobDetailPanel.down("button[action=autoRefresh]");
+				Ext.Function.defer(me.onAutoRefresh,500,me,[autoRefreshButton]);
 		    }
 		});
 	},

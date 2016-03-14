@@ -32,7 +32,6 @@ import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.version.entity.DeviceSoftVersion;
 import com.yihuacomputer.fish.version.entity.DeviceVersion;
-import com.yihuacomputer.fish.version.entity.Task;
 import com.yihuacomputer.fish.version.entity.Version;
 import com.yihuacomputer.fish.version.entity.VersionTypeAtmTypeRelation;
 

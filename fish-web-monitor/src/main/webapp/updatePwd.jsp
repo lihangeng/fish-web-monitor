@@ -84,7 +84,7 @@ input:focus {
 	</script>
 	<div class="container1">
 		<div class="head">
-			<img src="./resources/images/logo.PNG">
+			<img src="./resources/images/logo.png">
 		</div>
 		<div class="headline">
 			<p class="xiugaimima"><spring:message code="login.updatePwd" /></p>
