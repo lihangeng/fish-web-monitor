@@ -10,9 +10,11 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.IPageResult;
@@ -76,6 +78,9 @@ public class TaskService implements ITaskService {
     @Autowired
     private IUpdateDeployDateHistoryService updateDeployDateService;
 
+    @Autowired
+	private MessageSource messageSourceVersion;
+    
 	@Override
     @Transactional(readOnly = true)
 	public List<ITask> findTasks(long deviceId) {
@@ -248,7 +253,7 @@ public class TaskService implements ITaskService {
         if(!task.isSuccess()){
             noticeATM(task);
         }else{
-            throw new AppException("分发过程中，没有异常，无需重新分发");
+            throw new AppException(messageSourceVersion.getMessage("exception.task.dontNeedReDO", null, FishCfg.locale));
         }
     }
 
@@ -266,7 +271,7 @@ public class TaskService implements ITaskService {
                 if(notice.getRet().equals("RET0100")){
                 	 //task.setStatus(TaskStatus.NOTICED_FAIL);
                 	 retResult = 1 ;
-                	 task.setReason("相同的软件分类正在升级");
+                	 task.setReason(messageSourceVersion.getMessage("exception.task.sameTaskRuningForAgentRefuse", null, FishCfg.locale));
                 	 //task.setSuccess(false);
                 }else{
                 	retResult = 2 ;
@@ -278,7 +283,7 @@ public class TaskService implements ITaskService {
             	retResult = -1 ;
                 //task.setStatus(TaskStatus.NOTICED_FAIL);
                 //task.setSuccess(false);
-                task.setReason("连接监控客户端失败");
+                task.setReason(messageSourceVersion.getMessage("exception.task.connectAgentFail", null, FishCfg.locale));
             }
             if(TaskStatus.REMOVED.equals(task.getStatus())){
             	task.setReason("");
@@ -318,10 +323,10 @@ public class TaskService implements ITaskService {
                 HttpProxy.httpPost(getCancelUrl(device.getIp()), notice, NoticeForm.class);
             } catch (Exception ex) {
                 ex.printStackTrace();
-                throw new AppException("取消失败:" + ex.getMessage());
+                throw new AppException(messageSourceVersion.getMessage("exception.task.cancelFial", null, FishCfg.locale) + ex.getMessage());
             }
         }else{
-            throw new AppException("分发已完成，无法取消");
+            throw new AppException(messageSourceVersion.getMessage("exception.task.cantCancelForComplete", null, FishCfg.locale));
         }
     }
 
@@ -343,12 +348,12 @@ public class TaskService implements ITaskService {
             } catch (Exception ex) {
                 ex.printStackTrace();
                 updateDeployDateHistory.setNoticeStatus(NoticeStatus.FAIL);
-                updateDeployDateHistory.setReason("通知失败");
+                updateDeployDateHistory.setReason(messageSourceVersion.getMessage("exception.task.noticeFail", null, FishCfg.locale));
             }
             updateDeployDateService.update(updateDeployDateHistory);
 
         }else{
-            throw new AppException("已通知成功，不需要重复通知应用");
+            throw new AppException(messageSourceVersion.getMessage("exception.task.dontReNoticeForNoticeSuccess", null, FishCfg.locale));
         }
     }
 

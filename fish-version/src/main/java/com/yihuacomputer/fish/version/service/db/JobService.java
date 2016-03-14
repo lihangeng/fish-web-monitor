@@ -14,6 +14,7 @@ import org.hibernate.SQLQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -73,6 +74,9 @@ public class JobService extends DomainJobService {
     @Autowired
     private IUpdateDeployDateHistoryService deployService;
 
+    @Autowired
+    private MessageSource messageVersionSource;
+    
     public ITaskService getTaskService() {
 		return taskService;
 	}
@@ -291,7 +295,7 @@ public class JobService extends DomainJobService {
         		threadService.execute(new UpdateDeployDateThread(task,deployService,deployStartDate));
         	}
         }else{
-        	throw new AppException("非‘应用’，不可以修改部署生效时间！");
+        	throw new AppException(messageVersionSource.getMessage("version.download.notUpdateTime", null, FishCfg.locale));
         }
     }
 

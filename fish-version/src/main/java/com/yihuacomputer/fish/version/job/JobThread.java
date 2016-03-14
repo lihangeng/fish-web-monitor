@@ -65,7 +65,7 @@ public class JobThread implements Runnable {
 	 * */
 	public synchronized void run() {
 		try {
-			logger.info("开始运行一个作业" + this.job.toString());
+			logger.info("start to run a job" + this.job.toString());
 			List<ITask> tasks = this.job.getTasks();			
         	Collections.shuffle(tasks);//对队列进行混乱,使下发无序
 			for (ITask task : tasks) {

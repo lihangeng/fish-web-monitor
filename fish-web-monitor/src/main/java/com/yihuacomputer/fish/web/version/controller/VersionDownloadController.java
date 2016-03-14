@@ -103,6 +103,8 @@ public class VersionDownloadController {
 	@Autowired
 	private IDeviceSoftVersionService deviceSoftVersionService;
 
+	@Autowired
+	private MessageSource messageVersionSource;
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
@@ -211,7 +213,7 @@ public class VersionDownloadController {
 			jobManager.cancelJob(id);
 			result.addAttribute("success", true);
 		} catch (Exception ex) {
-			logger.error("撤销作业失败：" + ex.getMessage());
+			logger.error("The Failure of Canceling Job：" + ex.getMessage());
 			result.addAttribute("success", false);
 			result.addAttribute("errors", ex.getMessage());
 		}
@@ -271,12 +273,12 @@ public class VersionDownloadController {
 	}
 	public JobForm convertWithIntArgs(IJob job,int devVersionCount,int repeatDevVersionCount){
 		JobForm jobForm = convert(job) ;
-		jobForm.setExtraBody( "&nbsp;&nbsp;作业类型 : " + getEnumI18n(job.getJobType().getText()) + "&nbsp;&nbsp; "
-		+( job.getJobType()==JobType.MANUAL?"作业状态 : " + (jobForm.getRunTaskCount()==0?"完成":"进行中") : "自动更新状态："
-		+ (job.getVersion().isAutoDown()?"打开":"关闭")) + "&nbsp;&nbsp;重复任务设备台数： " + repeatDevVersionCount + 
-		"&nbsp;&nbsp;当前版本设备总台数：" + devVersionCount +  "&nbsp;&nbsp;总任务数 : " + jobForm.getAllTaskCount() + 
-		"&nbsp;&nbsp;任务完成数 : " + jobForm.getFinishTaskCount() + "&nbsp;&nbsp;任务失败数 : " + jobForm.getFailTaskCount() + 
-		"&nbsp;&nbsp;进行中任务数 : " +jobForm.getRunTaskCount());
+		jobForm.setExtraBody( "&nbsp;&nbsp; "+messageVersionSource.getMessage("version.download.jobType", null, FishCfg.locale) + getEnumI18n(job.getJobType().getText()) + "&nbsp;&nbsp; "
+		+( job.getJobType()==JobType.MANUAL? messageVersionSource.getMessage("version.download.jobStatus", null, FishCfg.locale) + (jobForm.getRunTaskCount()==0?messageVersionSource.getMessage("version.download.finished", null, FishCfg.locale):messageVersionSource.getMessage("version.download.running", null, FishCfg.locale)) : messageVersionSource.getMessage("version.download.autoRefreshStatus", null, FishCfg.locale)
+		+ (job.getVersion().isAutoDown()?messageVersionSource.getMessage("version.download.open", null, FishCfg.locale):messageVersionSource.getMessage("version.download.close", null, FishCfg.locale))) + "&nbsp;&nbsp; "+ messageVersionSource.getMessage("version.download.deviceRepeatly", null, FishCfg.locale)+ repeatDevVersionCount + 
+		"&nbsp;&nbsp;"+messageVersionSource.getMessage("version.download.currentVersionDevCount", null, FishCfg.locale) + devVersionCount +  "&nbsp;&nbsp;"+messageVersionSource.getMessage("version.download.taskCount", null, FishCfg.locale) + jobForm.getAllTaskCount() + 
+		"&nbsp;&nbsp; "+messageVersionSource.getMessage("version.download.taskCountFinished", null, FishCfg.locale) + jobForm.getFinishTaskCount() + "&nbsp;&nbsp; "+messageVersionSource.getMessage("version.download.taskCountFailed", null, FishCfg.locale) + jobForm.getFailTaskCount() + 
+		"&nbsp;&nbsp; "+messageVersionSource.getMessage("version.download.runTaskCount", null, FishCfg.locale) +jobForm.getRunTaskCount());
 		return jobForm;
 	}
 
@@ -317,11 +319,11 @@ public class VersionDownloadController {
         }
         jobForm.setRunTaskCount(jobForm.getAllTaskCount()-jobForm.getFinishTaskCount()-jobForm.getFailTaskCount()) ;
 
-        jobForm.setExtraBody("&nbsp;&nbsp;作业类型 : " + getEnumI18n(job.getJobType().getText()) + 
-        		"&nbsp;&nbsp; " +( job.getJobType()==JobType.MANUAL?"作业状态 : " + 
-        (jobForm.getRunTaskCount()==0?"完成":"进行中") : "自动更新状态：" + (job.getVersion().isAutoDown()?"打开":"关闭")) + 
-        "&nbsp;&nbsp;" + "总任务数 : " + jobForm.getAllTaskCount() + "&nbsp;&nbsp;任务完成数 : " + jobForm.getFinishTaskCount() + 
-        "&nbsp;&nbsp;任务失败数 : " + jobForm.getFailTaskCount() + "&nbsp;&nbsp;进行中任务数 : " +jobForm.getRunTaskCount());
+        jobForm.setExtraBody("&nbsp;&nbsp; "+messageVersionSource.getMessage("version.download.jobType", null, FishCfg.locale) + getEnumI18n(job.getJobType().getText()) + 
+        		"&nbsp;&nbsp; " +( job.getJobType()==JobType.MANUAL?messageVersionSource.getMessage("version.download.jobStatus", null, FishCfg.locale) + 
+        (jobForm.getRunTaskCount()==0?messageVersionSource.getMessage("version.download.finished", null, FishCfg.locale):messageVersionSource.getMessage("version.download.running", null, FishCfg.locale)) : messageVersionSource.getMessage("version.download.autoRefreshStatus", null, FishCfg.locale) + (job.getVersion().isAutoDown()?messageVersionSource.getMessage("version.download.open", null, FishCfg.locale):messageVersionSource.getMessage("version.download.close", null, FishCfg.locale))) + 
+        "&nbsp;&nbsp;" + messageVersionSource.getMessage("version.download.taskCount", null, FishCfg.locale) + jobForm.getAllTaskCount() + "&nbsp;&nbsp;"+messageVersionSource.getMessage("version.download.taskCountFinished", null, FishCfg.locale) + jobForm.getFinishTaskCount() + 
+        "&nbsp;&nbsp; "+messageVersionSource.getMessage("version.download.taskCountFailed", null, FishCfg.locale) + jobForm.getFailTaskCount() + "&nbsp;&nbsp;"+messageVersionSource.getMessage("version.download.runTaskCount", null, FishCfg.locale) +jobForm.getRunTaskCount());
         return jobForm;
 
     }
@@ -569,10 +571,14 @@ public class VersionDownloadController {
 		List<ITask> tasks = taskService.list(filter);
 
 		Excel excel = new Excel();
-		String[] headers = new String[] { "终端号", "设备IP", "所属机构", "分发前版本", "分发版本", "任务状态", "执行时间", "版本下载开始时间",
-				"版本下载完成时间", "备注", "重启ATM" };
+		String[] headers = new String[] { messageVersionSource.getMessage("version.export.terminalId", null, FishCfg.locale),
+				messageVersionSource.getMessage("version.export.ip", null, FishCfg.locale), messageVersionSource.getMessage("version.export.orgName", null, FishCfg.locale),
+				messageVersionSource.getMessage("version.export.versionNoBeforeUpdate", null, FishCfg.locale), messageVersionSource.getMessage("version.export.updateVersionNo", null, FishCfg.locale),
+				messageVersionSource.getMessage("version.export.taskStatus", null, FishCfg.locale), messageVersionSource.getMessage("version.export.version.export.executeTime", null, FishCfg.locale), 
+				messageVersionSource.getMessage("version.download.versionDownloadStartTime", null, FishCfg.locale),
+				messageVersionSource.getMessage("version.download.versionDownloadFinishTime", null, FishCfg.locale), 
+				messageVersionSource.getMessage("version.export.remark", null, FishCfg.locale), messageVersionSource.getMessage("version.download.rebootATM", null, FishCfg.locale) };
 		excel.setHeaders(headers);
-
 		// 填充数据
 		List<List> data = new ArrayList<List>();
 		String filterTaskFlag = request.getParameter("filterTaskFlag");
@@ -611,8 +617,8 @@ public class VersionDownloadController {
 		}
 		excel.setData(data);
 
-		String fileName = FishCfg.getTempDir() + File.separator + "作业_" + DateUtils.getDate(new Date()) + ".xls";
-		excel.export(fileName, "执行结果");
+		String fileName = FishCfg.getTempDir() + File.separator + messageVersionSource.getMessage("version.download.jobName", null, FishCfg.locale) + DateUtils.getDate(new Date()) + messageVersionSource.getMessage("version.download.postfix", null, FishCfg.locale);
+		excel.export(fileName, messageVersionSource.getMessage("version.export.executeResult", null, FishCfg.locale));
 
 		File file = new File(fileName);
 		DownFromWebUtils.download(file, request, response);
