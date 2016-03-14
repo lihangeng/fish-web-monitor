@@ -113,7 +113,7 @@ public class VersionDownloadController {
 		filter.descOrder("id");
 		IPageResult<IJob> pageResult = jobService.page(start, limit, filter);
 		ModelMap result = new ModelMap();
-		result.addAttribute("success", true);
+		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("total", pageResult.getTotal());
 		result.addAttribute("data", toForm(pageResult.list()));
 		return result;
@@ -198,7 +198,7 @@ public class VersionDownloadController {
 		form.setId(job.getJobId());
 		form.setVersionName(version.getFullName() + " [" + version.getServerPath() + "]");
 		form.setJobName(version.getVersionType().getTypeName()+"_"+version.getVersionNo()+"_"+version.getDownloadCounter());
-		result.addAttribute("success", true);
+		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("data", form);
 		return result;
 	}
@@ -211,11 +211,11 @@ public class VersionDownloadController {
 		ModelMap result = new ModelMap();
 		try {
 			jobManager.cancelJob(id);
-			result.addAttribute("success", true);
+			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
 			logger.error("The Failure of Canceling Job：" + ex.getMessage());
-			result.addAttribute("success", false);
-			result.addAttribute("errors", ex.getMessage());
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage());
 		}
 		return result;
 	}
@@ -371,7 +371,7 @@ public class VersionDownloadController {
 		IJob job = null;
 		IPageResult<IDevice> page = downloadService.pageLinkedDevices(start, limit, job, filter);
 		ModelMap result = new ModelMap();
-		result.addAttribute("success", true);
+		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("total", page.getTotal());
 		// result.addAttribute("data", toLinkedDeviceForm(page.list()));
 		return result;
@@ -401,7 +401,7 @@ public class VersionDownloadController {
 		page = downloadService.pageDevices(start, limit, version,filter);
 
 		ModelMap result = new ModelMap();
-		result.addAttribute("success", true);
+		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("total", page.getTotal());
 		result.addAttribute("data", page.list());
 		return result;
@@ -449,7 +449,7 @@ public class VersionDownloadController {
 	ModelMap task(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		IFilter filter = getTaskFilter(request);
 		ModelMap result = new ModelMap();
-		result.addAttribute("success", true);
+		result.addAttribute(FishConstant.SUCCESS, true);
 		if ("1".equals(request.getParameter("filterTaskFlag"))) {
 			IPageResult<Object> page = taskService.pageForRepeat(start, limit, filter);
 			result.addAttribute("total", page.getTotal());
@@ -637,10 +637,10 @@ public class VersionDownloadController {
 		ModelMap result = new ModelMap();
 		try {
 			jobManager.cancelTask(jobId, taskId);
-			result.addAttribute("success", true);
+			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
-			result.addAttribute("success", false);
-			result.addAttribute("errors", ex.getMessage() == null ? "" : ex.getMessage());
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage() == null ? "" : ex.getMessage());
 		}
 		return result;
 	}
@@ -652,10 +652,10 @@ public class VersionDownloadController {
 		ModelMap result = new ModelMap();
 		try {
 			taskService.deepCancelApp(taskId);
-			result.addAttribute("success", true);
+			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
-			result.addAttribute("success", false);
-			result.addAttribute("errors", ex.getMessage() == null ? "" : ex.getMessage());
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage() == null ? "" : ex.getMessage());
 		}
 		return result;
 	}
@@ -667,10 +667,10 @@ public class VersionDownloadController {
 		ModelMap result = new ModelMap();
 		try {
 			taskService.reDistribute(taskId);
-			result.addAttribute("success", true);
+			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
-			result.addAttribute("success", false);
-			result.addAttribute("errors", ex.getMessage() == null ? "" : ex.getMessage());
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage() == null ? "" : ex.getMessage());
 		}
 		return result;
 	}
@@ -812,11 +812,11 @@ public class VersionDownloadController {
 			task.setStatus(TaskStatus.DEPLOYED);
 			taskService.updateTask(task);
 
-			result.put("success", true);
+			result.put(FishConstant.SUCCESS, true);
 			result.addAttribute("appRet", appRet);
 		} catch (Exception e) {
-			result.put("success", false);
-			result.addAttribute("errors", e.getMessage());
+			result.put(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, e.getMessage());
 		}
 		return result;
 	}
@@ -833,10 +833,10 @@ public class VersionDownloadController {
 				endDate = DateUtils.getDate(deployEndDate);
 			}
 			jobService.updateDeployDate(jobId, startDate, endDate);
-			result.addAttribute("success", true);
+			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
-			result.addAttribute("success", false);
-			result.addAttribute("errors", ex.getMessage());
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage());
 		}
 		return result;
 	}
@@ -853,7 +853,7 @@ public class VersionDownloadController {
 		filter.descOrder("noticeTime");
 		IPageResult<IUpdateDeployDateHistory> pageResult = updateDeployDateHistoryService.page(start, limit, filter);
 		ModelMap result = new ModelMap();
-		result.addAttribute("success", true);
+		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("total", pageResult.getTotal());
 		result.addAttribute("data", toUpdateDeployDateHistoryForm(pageResult.list(), start));
 		return result;
@@ -886,9 +886,9 @@ public class VersionDownloadController {
 		ModelMap result = new ModelMap();
 		try {
 			taskService.reNoticeApp(updateDeployDateHistoryId);
-			result.addAttribute("success", true);
+			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception e) {
-			result.addAttribute("success", false);
+			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
 	}
