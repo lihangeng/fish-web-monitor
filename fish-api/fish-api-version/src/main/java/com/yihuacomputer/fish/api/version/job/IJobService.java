@@ -97,5 +97,12 @@ public interface IJobService {
 	 * @return
 	 */
 	public int getRepeatTaskByJob(long jobId) ;
+	
+	/**
+	 * 需改versionDevice/Task,insert deviceVersion
+	 * @param jobId
+	 * @return
+	 */
+	public boolean batchCancelTaskByJob(long jobId);
 
 }

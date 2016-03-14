@@ -54,6 +54,8 @@ public class JobForm {
 	private int runTaskCount;
 
 	private int allTaskCount;
+	
+	private int downloadCounter;
 
 	public JobForm() {
 	}
@@ -250,6 +252,14 @@ public class JobForm {
 
 	public void setAllTaskCount(int allTaskCount) {
 		this.allTaskCount = allTaskCount;
+	}
+
+	public int getDownloadCounter() {
+		return downloadCounter;
+	}
+
+	public void setDownloadCounter(int downloadCounter) {
+		this.downloadCounter = downloadCounter;
 	}
 
 }

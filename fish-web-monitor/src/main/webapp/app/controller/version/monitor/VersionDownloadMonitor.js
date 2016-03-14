@@ -148,17 +148,18 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		if (sm.getCount() == 1) {
 			var record = sm.getLastSelected();
 			var tabpanel = this.getEwayView().down("tabpanel");
-			var activeId = "job_"+record.get("id");
-//			
-			var activePanel = tabpanel.setActiveItem(activeId);
-			if(activePanel.getItemId()==activeId){
-				return;
-			}
-			var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"itemId":activeId,"jobId":record.get("id")});
-//			jobDetailPanel.id="'"+activeId+"'";
+//			var activeId = "job_"+record.get("id");
+
+//			var activePanel = tabpanel.setActiveItem(activeId);
+//			if(activePanel.id==activeId){
+//				return;
+//			}
+			var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":record.get("id")});
+//			jobDetailPanel.itemId="'"+activeId+"'";
 			tabpanel.add(jobDetailPanel);
 			jobDetailPanel.setTitle(record.get("jobName"));
 			tabpanel.setActiveItem(jobDetailPanel);
+//			jobDetailPanel.id="'"+activeId+"'";
 		} else {
 			Eway.alert(EwayLocale.version.task.selectAJob);
 		}
@@ -166,18 +167,30 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		Ext.Function.defer(this.onAutoRefresh,500,this,[autoRefreshButton]);
 	},
 	
-	autoJobDetail:function(jobId,jobName){
+	autoJobDetail:function(jobId){
 		var tabpanel = this.getEwayView().down("tabpanel");
-		var activeId = "job_"+jobName;
-		var activePanel = tabpanel.setActiveTab(activeId);
-		if(activePanel.id==activeId){
-			return;
-		}
-		var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":jobId});
-		jobDetailPanel.id=activeId;
-		tabpanel.add(jobDetailPanel);
-		jobDetailPanel.setTitle(jobName);
-		tabpanel.setActiveItem(jobDetailPanel);
+//		var activeId = "job_"+jobId;
+//		var activePanel = tabpanel.setActiveTab(activeId);
+//		if(activePanel.id==activeId){
+//			return;
+//		}
+		
+		Ext.Ajax.request({
+		    url: 'api/version/download/getJobInfo',
+		    method:'POST',
+		    params: {
+		        'jobId':jobId
+		    },
+		    success: function(response){
+		        var object = Ext.decode(response.responseText);
+		        var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":jobId});
+//		        jobDetailPanel.itemId="job_"+jobId;
+//				jobDetailPanel.id="'"+activeId+"'";
+				tabpanel.add(jobDetailPanel);
+				jobDetailPanel.setTitle(object.total.jobName);
+				tabpanel.setActiveItem(jobDetailPanel);
+		    }
+		});
 	},
 	
 	

@@ -198,27 +198,31 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 		}
 
 		//作业正在运行，仅删除任务列表中“新建”状态的任务（逻辑删除）
-		if(jobInQueue.getJobStatus().equals(JobStatus.RUN)){
-		    try {
-                List<ITask> tasks = jobInQueue.getTasks();
-                List<ITask> removedTasks = new ArrayList<ITask>();
-                for(ITask task : tasks){
-                    if(task.getStatus().equals(TaskStatus.NEW)||task.getStatus().equals(TaskStatus.RUN)){
-                        task.setStatus(TaskStatus.REMOVED);
-                        taskService.onlyUpdateTask(task);
-                        removedTasks.add(task);
-                    }
-                }
-                if(removedTasks.size() == 0){
-                    throw new AppException(getI18NInfo("job.exception.tip.noTaskToCancel"));
-                }
-                logger.info("ready to cacelTasks");
-                taskService.cancelTasks(removedTasks);
-            }
-            catch (Exception e) {
-                logger.error(e.getMessage());
-                throw new AppException(e.getMessage());
-            }
+		if(jobInQueue.getJobStatus().equals(JobStatus.RUN)){//从作业队列中移除
+			jobService.batchCancelTaskByJob(jobId);
+			jobInQueue.setJobStatus(JobStatus.FINISH);
+//			this.jobQueue.removeJob(jobInQueue);
+//			this.jobQueue.addJob(job);
+//		    try {
+//                List<ITask> tasks = jobInQueue.getTasks();
+//                List<ITask> removedTasks = new ArrayList<ITask>();
+//                for(ITask task : tasks){
+//                    if(task.getStatus().equals(TaskStatus.NEW)||task.getStatus().equals(TaskStatus.RUN)){
+//                        task.setStatus(TaskStatus.REMOVED);
+//                        taskService.onlyUpdateTask(task);
+//                        removedTasks.add(task);
+//                    }
+//                }
+//                if(removedTasks.size() == 0){
+//                    throw new AppException(getI18NInfo("job.exception.tip.noTaskToCancel"));
+//                }
+//                logger.info("ready to cacelTasks");
+//                taskService.cancelTasks(removedTasks);
+//            }
+//            catch (Exception e) {
+//                logger.error(e.getMessage());
+//                throw new AppException(e.getMessage());
+//            }
 		}else{
 			String tip = getI18NInfos("job.exception.tip.cantCancelTask",new Object[]{getI18NInfo(jobInQueue.getJobStatus().getText())});
 			logger.warn(tip);

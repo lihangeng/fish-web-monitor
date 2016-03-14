@@ -114,6 +114,10 @@ public class Job implements IJob, Serializable {
 
     @Column(name = "REBOOT_UPDATE", nullable = true, length = 20)
     private long rebootUpdate;
+    
+    @Column(name = "DOWN_COUNTER")
+    private int downCounter;
+
 
     public Date getDeployStartDate() {
         return deployStartDate;
@@ -314,6 +318,13 @@ public class Job implements IJob, Serializable {
 		this.serverIp = serverIp;
 	}
 
+	public int getDownCounter() {
+		return downCounter;
+	}
+
+	public void setDownCounter(int downCounter) {
+		this.downCounter = downCounter;
+	}
 	
 }
 

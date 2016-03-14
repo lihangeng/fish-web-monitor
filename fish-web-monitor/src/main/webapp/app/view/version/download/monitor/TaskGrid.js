@@ -19,6 +19,7 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 	},
 	firstIn : true,
 	initComponent : function() {
+		var me = this;
 		Ext.apply(this, {
 			initRegion : true,
 			tbar: ['->',{
@@ -50,12 +51,12 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 				valueField : 'value',
 				displayField : 'name',
 				value:'',
-				width: 200
+				width: 250
 			},{
 				xtype:'textfield',
 				fieldLabel:EwayLocale.refs.terminalId,//'设备编号',
 				name:'terminalId',
-				width: 180
+				width: 250
 			},{
 				text:  EwayLocale.button.search,//'查询',
 				iconCls : 'queryBtn',
@@ -218,7 +219,8 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 							method : 'POST',
 							url : 'api/version/download/task/cancel' ,
 							params : {
-								'taskId' : taskId
+								'taskId' : taskId,
+								'jobId' : me.getJobId()
 							},
 							success : function(response){
 								var text = Ext.decode(response.responseText);

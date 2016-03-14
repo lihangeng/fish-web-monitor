@@ -25,7 +25,10 @@ Ext.define("Ext.ux.form.DateTimeField",{
         var    day;
         var    time;
 
-        
+
+        if (!me.allowBlank && (me.value ==""||me.value ==null)) {
+            errors.push(me.blankText);
+        }
 
         if (value === null || value.length < 1) { // if it's blank and textfield didn't flag it then it's valid
              return errors;
@@ -33,6 +36,7 @@ Ext.define("Ext.ux.form.DateTimeField",{
 
         svalue = value;
         value = me.parseDate(value);
+
         if (!value) {
             errors.push(format(me.invalidText, svalue, Ext.Date.unescapeFormat(me.format)));
             return errors;

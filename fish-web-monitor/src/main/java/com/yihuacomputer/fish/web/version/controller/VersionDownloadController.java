@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishCfg;
+import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
@@ -116,6 +117,20 @@ public class VersionDownloadController {
 		return result;
 	}
 
+	@RequestMapping(value="/getJobInfo",method = RequestMethod.POST)
+	public @ResponseBody
+	ModelMap getJobInfo(@RequestParam long jobId, HttpServletRequest request) {
+		IJob job = jobService.getById(jobId);
+		ModelMap result = new ModelMap();
+		if(null==job){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			return result;
+		}
+		JobForm form = convert(job);
+		result.addAttribute(FishConstant.SUCCESS, true);
+		result.addAttribute(FishConstant.TOTAL, form);
+		return result;
+	}
 	// 增加
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
@@ -151,6 +166,8 @@ public class VersionDownloadController {
 		job.setJobType(form.getJobType());
 		job.setJobPriority(form.getJobPriority());
 		job.setCreateUserId(userSession.getUserId());
+		job.setDownCounter(downloadCounter);
+		job.setDesc(form.getDesc());
 		if (form.getDeployStartDate() == null || "".equals(form.getDeployStartDate())) {
 			job.setDeployStartDate(new Date());
 		} else {
@@ -159,7 +176,6 @@ public class VersionDownloadController {
 		if (form.getDeployEndDate() != null && !"".equals(form.getDeployEndDate())) {
 			job.setDeployEndDate(DateUtils.getDate(form.getDeployEndDate()));
 		}
-		job.setDesc(form.getDesc());
 		if (form.getJobType().equals(JobType.SCHEDULER)) {
 			job.setPlanTime(form.getPlanTime());
 			job.setJobStatus(JobStatus.SCHEDULER);
@@ -179,7 +195,7 @@ public class VersionDownloadController {
 		// 回填值到form中
 		form.setId(job.getJobId());
 		form.setVersionName(version.getFullName() + " [" + version.getServerPath() + "]");
-
+		form.setJobName(version.getVersionType().getTypeName()+"_"+version.getVersionNo()+"_"+version.getDownloadCounter());
 		result.addAttribute("success", true);
 		result.addAttribute("data", form);
 		return result;
@@ -235,13 +251,13 @@ public class VersionDownloadController {
 	public JobForm convert(IJob job) {
 		JobForm jobForm = new JobForm();
 		jobForm.setId(Long.valueOf(job.getJobId()));
-		jobForm.setJobName(job.getVersion().getVersionType().getTypeName()+"_"+job.getVersion().getVersionNo()+"_"+job.getVersion().getDownloadCounter());
+		jobForm.setJobName(job.getVersion().getVersionType().getTypeName()+"_"+job.getVersion().getVersionNo()+"_"+job.getDownCounter());
         jobForm.setPlanTime(job.getPlanTime());
         jobForm.setJobType(job.getJobType());
         jobForm.setJobStatus(job.getJobStatus());
         jobForm.setJobPriority(job.getJobPriority());
         jobForm.setDesc(job.getDesc());
-
+        jobForm.setDownloadCounter(job.getDownCounter());
         jobForm.setCancelPreVersion (job.getCancelPreVer()==0?false:true );
         jobForm.setRebootUpdate(job.getRebootUpdate()==0?false:true);
 
@@ -461,6 +477,17 @@ public class VersionDownloadController {
 				status.add(TaskStatus.NOTICE_APP_OK);
 				status.add(TaskStatus.OTHER);
 				status.add(TaskStatus.REMOVED);
+				filter.in("task.status", status);
+			}
+			else if(updateResult.equals("1")){
+				filter.eq("task.status", TaskStatus.CHECKED);
+			}
+			else if(updateResult.equals("0")){
+				List<TaskStatus> status = new ArrayList<TaskStatus>();
+				status.add(TaskStatus.NOTICED_FAIL);
+				status.add(TaskStatus.DOWNLOADED_FAIL);
+				status.add(TaskStatus.DEPLOYED_FAIL);
+				status.add(TaskStatus.NOTICE_APP_FAIL);
 				filter.in("task.status", status);
 			}
 		}

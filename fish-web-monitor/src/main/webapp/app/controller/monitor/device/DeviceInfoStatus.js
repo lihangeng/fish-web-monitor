@@ -626,7 +626,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					},
 					scope : this
 				},
-				'monitor_device_DeviceInfoStatus displayfield[name="brcStatus"]' : {
+				'monitor_device_DeviceInfoStatus displayfield[name="bcrStatus"]' : {
 					change : {
 						fn : function(field) {
 							if (field.getEl()) {

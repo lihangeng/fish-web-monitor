@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Hibernate;
+import org.hibernate.SQLQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -317,6 +318,55 @@ public class JobService extends DomainJobService {
 		valueObj.add(jobId) ;
 		List<Object> list = this.dao.findByHQL(hql, valueObj.toArray()) ;
 		return list.size() ;
+	}
+	
+
+	public boolean batchCancelTaskByJob(long jobId){
+		IJob job = this.getById(jobId);
+		if(job==null){
+			logger.error(String.format("job %d not exist", jobId));
+			return false;
+		}
+		if(job.getVersion()==null){
+			logger.error(String.format("%d job's version  not exist", jobId));
+			return false;
+		}
+		StringBuffer taskSb = new StringBuffer();
+		taskSb.append("update VER_TASK  set TASK_STATUS='REMOVED' ");
+		taskSb.append(" where JOB_ID=? and (TASK_STATUS='NEW' OR TASK_STATUS='RUN')");
+		
+
+		StringBuffer deviceVersionSb = new StringBuffer();
+		deviceVersionSb.append("update VER_DEVICE_VERSION  set TASK_STATUS='REMOVED' ");
+		deviceVersionSb.append(" where VERSION_ID=? and (TASK_STATUS='NEW' OR TASK_STATUS='RUN' ) and DEVICE_ID in(  ");
+		deviceVersionSb.append(" select DEVICE_ID from VER_TASK where JOB_ID=? and (TASK_STATUS='NEW' OR TASK_STATUS='RUN'))");
+		
+		StringBuffer insertDeviceVersionSb = new StringBuffer();
+		insertDeviceVersionSb.append("insert into  VER_DEVICE_VERSION (DEVICE_ID,VERSION_ID,TASK_STATUS,CREATED_TIME,LAST_UPDATED_TIME)    ");
+		insertDeviceVersionSb.append(" select DEVICE_ID,?,?,?,? from VER_TASK where JOB_ID=? and (TASK_STATUS='NEW' OR TASK_STATUS='RUN')");
+		insertDeviceVersionSb.append(" and DEVICE_ID not in (select DEVICE_ID from VER_DEVICE_VERSION)");
+		
+		
+		SQLQuery deviceQuery = dao.getSQLQuery(deviceVersionSb.toString());
+		deviceQuery.setLong(0, job.getVersion().getId());
+		deviceQuery.setLong(1, jobId);
+		int deviceVersionUpdate = deviceQuery.executeUpdate();
+		
+		
+		Date date = new Date();
+		SQLQuery insertDeviceVersionQuery = dao.getSQLQuery(insertDeviceVersionSb.toString());
+		insertDeviceVersionQuery.setLong(0, job.getVersion().getId());
+		insertDeviceVersionQuery.setString(1, "REMOVED");
+		insertDeviceVersionQuery.setDate(2, date);
+		insertDeviceVersionQuery.setDate(3, date);
+		insertDeviceVersionQuery.setLong(4, jobId);
+		int deviceVersionInsert = insertDeviceVersionQuery.executeUpdate();
+
+		SQLQuery taskQuery = dao.getSQLQuery(taskSb.toString());
+		taskQuery.setLong(0, jobId);
+		int taskUpdate = taskQuery.executeUpdate();
+		return taskUpdate!=0&&(deviceVersionUpdate+deviceVersionInsert)!=0;
+		
 	}
 
 }

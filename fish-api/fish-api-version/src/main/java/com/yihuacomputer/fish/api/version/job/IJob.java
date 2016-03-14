@@ -167,5 +167,11 @@ public interface IJob {
 	 */
 	public String getServerIp();
 	public void setServerIp(String serverIp);
-
+	
+	/**
+	 * 当前任务对应的下发版本下发次数
+	 * @return
+	 */
+	public int getDownCounter();
+	public void setDownCounter(int downCounter);
 }

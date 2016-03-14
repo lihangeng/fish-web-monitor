@@ -2,7 +2,7 @@ Ext.define('Eway.model.version.monitor.Job', {
 	extend: 'Ext.data.Model',
 	idProperty : 'id',
 	fields: [{name:'id',type:'int'}, 'userName','deployStartDate','deployEndDate',
-	         'planTime','versionFile',
+	         'planTime','versionFile','downloadCounter',
 	         {name:'versionId',type:'int',defaultValue:100},{'name':'eagerRestart','type':'boolean',defaultValue:true},
 	         'versionName','jobName','jobType',{name:'jobStatus',defaultValue: 'NEW'},'jobPriority','desc','extraBody',
 	         'finishTaskCount','failTaskCount','runTaskCount','allTaskCount'],
