@@ -83,7 +83,7 @@ Ext.define('Eway.view.version.download.monitor.JobGrid', {
 			{
 				header: EwayLocale.version.task.jobId,//'作业ID',
 				dataIndex: 'id',
-				width: 50
+				width: 80
 			},{
 				header: EwayLocale.version.View.versionName,//'下发的版本',
 				dataIndex: 'versionName',
@@ -121,13 +121,13 @@ Ext.define('Eway.view.version.download.monitor.JobGrid', {
 			/*	xtype:'datecolumn',
 				format:'Y-m-d H:i:s',*/
 				sortable : true,
-				width: 140
+				width: 150
 			},{
 				header: EwayLocale.version.task.jobStatus,//'作业状态',
 				dataIndex: 'jobStatus',
 				renderer: Eway.lib.Util.dictRenderer('version.JobStatus'),
 				sortable: true,
-				width: 60
+				width: 150
 			},{
 				header : EwayLocale.version.taskType,//'备注',
 				dataIndex : 'jobType',
