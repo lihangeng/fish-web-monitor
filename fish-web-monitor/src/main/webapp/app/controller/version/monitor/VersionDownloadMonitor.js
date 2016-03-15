@@ -185,18 +185,21 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		}
 	},
 	currentTask : null,
+	lastTaskGrid :null,
 
 	onJobDetail:function(){
 		var grid = this.getGrid();
 		var store = grid.getStore();
 		var sm = grid.getSelectionModel();
 		if (sm.getCount() == 1) {
+			this.onViewBeforeDeactivate();
 			var record = sm.getLastSelected();
 			var tabpanel = this.getEwayView().down("tabpanel");
 			var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":record.get("id")});
 			tabpanel.add(jobDetailPanel);
 			jobDetailPanel.setTitle(record.get("jobName"));
 			tabpanel.setActiveItem(jobDetailPanel);
+			this.lastTaskGrid = jobDetailPanel;
 		} else {
 			Eway.alert(EwayLocale.version.task.selectAJob);
 		}
@@ -215,10 +218,13 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		    },
 		    success: function(response){
 		        var object = Ext.decode(response.responseText);
+
+				this.onViewBeforeDeactivate();
 		        var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":jobId});
 				tabpanel.add(jobDetailPanel);
 				jobDetailPanel.setTitle(object.total.jobName);
 				tabpanel.setActiveItem(jobDetailPanel);
+				me.lastTaskGrid = jobDetailPanel;
 				var autoRefreshButton = jobDetailPanel.down("button[action=autoRefresh]");
 				Ext.Function.defer(me.onAutoRefresh,500,me,[autoRefreshButton]);
 		    }
@@ -244,7 +250,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	onViewBeforeDeactivate : function(){
 		if(this.currentTask != null){
 			Ext.TaskManager.stop(this.currentTask);
-			var btn = this.getTaskGrid().down("button[action=autoRefresh]");
+			var btn = this.lastTaskGrid.down("button[action=autoRefresh]");
 			btn.setText(EwayLocale.version.download.autoRefresh);//"开启自动刷新");
 			btn.started = false;
 			this.currentTask = null;
