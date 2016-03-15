@@ -215,9 +215,13 @@ public class VersionDownloadController {
 		} catch (Exception ex) {
 			logger.error("The Failure of Canceling Job：" + ex.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage());
+			result.addAttribute(FishConstant.ERROR_MSG, getI18N("job.cancel.cancelfailer"));
 		}
 		return result;
+	}
+	
+	private String getI18N(String code){
+		return messageVersionSource.getMessage(code,null,FishCfg.locale);
 	}
 
 	// 转换数据格式
@@ -264,21 +268,22 @@ public class VersionDownloadController {
         	}
         	else{
         		result.addAttribute(FishConstant.SUCCESS, false);
-        		result.addAttribute(FishConstant.ERROR_MSG,messageSourceEnum.getMessage("exception.task.cantResetTask",null,FishCfg.locale));
+        		result.addAttribute(FishConstant.ERROR_MSG,getI18N("exception.task.cantResetTask"));
         	}
         } catch (Exception e) {
             result.addAttribute(FishConstant.SUCCESS, false);
+            result.addAttribute(FishConstant.ERROR_MSG, getI18N("task.reset.failer"));
         }
         return result;
 	}
 	public JobForm convertWithIntArgs(IJob job,int devVersionCount,int repeatDevVersionCount){
 		JobForm jobForm = convert(job) ;
-		jobForm.setExtraBody( "&nbsp;&nbsp; "+messageVersionSource.getMessage("version.download.jobType", null, FishCfg.locale) + getEnumI18n(job.getJobType().getText()) + "&nbsp;&nbsp; "
-		+( job.getJobType()==JobType.MANUAL? messageVersionSource.getMessage("version.download.jobStatus", null, FishCfg.locale) + (jobForm.getRunTaskCount()==0?messageVersionSource.getMessage("version.download.finished", null, FishCfg.locale):messageVersionSource.getMessage("version.download.running", null, FishCfg.locale)) : messageVersionSource.getMessage("version.download.autoRefreshStatus", null, FishCfg.locale)
-		+ (job.getVersion().isAutoDown()?messageVersionSource.getMessage("version.download.open", null, FishCfg.locale):messageVersionSource.getMessage("version.download.close", null, FishCfg.locale))) + "&nbsp;&nbsp; "+ messageVersionSource.getMessage("version.download.deviceRepeatly", null, FishCfg.locale)+ repeatDevVersionCount + 
-		"&nbsp;&nbsp;"+messageVersionSource.getMessage("version.download.currentVersionDevCount", null, FishCfg.locale) + devVersionCount +  "&nbsp;&nbsp;"+messageVersionSource.getMessage("version.download.taskCount", null, FishCfg.locale) + jobForm.getAllTaskCount() + 
-		"&nbsp;&nbsp; "+messageVersionSource.getMessage("version.download.taskCountFinished", null, FishCfg.locale) + jobForm.getFinishTaskCount() + "&nbsp;&nbsp; "+messageVersionSource.getMessage("version.download.taskCountFailed", null, FishCfg.locale) + jobForm.getFailTaskCount() + 
-		"&nbsp;&nbsp; "+messageVersionSource.getMessage("version.download.runTaskCount", null, FishCfg.locale) +jobForm.getRunTaskCount());
+		jobForm.setExtraBody( "&nbsp;&nbsp; "+getI18N("version.download.jobType") + getEnumI18n(job.getJobType().getText()) + "&nbsp;&nbsp; "
+		+( job.getJobType()==JobType.MANUAL? getI18N("version.download.jobStatus") + (jobForm.getRunTaskCount()==0?getI18N("version.download.finished"):getI18N("version.download.running")) : getI18N("version.download.autoRefreshStatus")
+		+ (job.getVersion().isAutoDown()?getI18N("version.download.open"):getI18N("version.download.close"))) + "&nbsp;&nbsp; "+ getI18N("version.download.deviceRepeatly")+ repeatDevVersionCount + 
+		"&nbsp;&nbsp;"+getI18N("version.download.currentVersionDevCount") + devVersionCount +  "&nbsp;&nbsp;"+getI18N("version.download.taskCount") + jobForm.getAllTaskCount() + 
+		"&nbsp;&nbsp; "+getI18N("version.download.taskCountFinished") + jobForm.getFinishTaskCount() + "&nbsp;&nbsp; "+getI18N("version.download.taskCountFailed") + jobForm.getFailTaskCount() + 
+		"&nbsp;&nbsp; "+getI18N("version.download.runTaskCount") +jobForm.getRunTaskCount());
 		return jobForm;
 	}
 
@@ -319,11 +324,11 @@ public class VersionDownloadController {
         }
         jobForm.setRunTaskCount(jobForm.getAllTaskCount()-jobForm.getFinishTaskCount()-jobForm.getFailTaskCount()) ;
 
-        jobForm.setExtraBody("&nbsp;&nbsp; "+messageVersionSource.getMessage("version.download.jobType", null, FishCfg.locale) + getEnumI18n(job.getJobType().getText()) + 
-        		"&nbsp;&nbsp; " +( job.getJobType()==JobType.MANUAL?messageVersionSource.getMessage("version.download.jobStatus", null, FishCfg.locale) + 
-        (jobForm.getRunTaskCount()==0?messageVersionSource.getMessage("version.download.finished", null, FishCfg.locale):messageVersionSource.getMessage("version.download.running", null, FishCfg.locale)) : messageVersionSource.getMessage("version.download.autoRefreshStatus", null, FishCfg.locale) + (job.getVersion().isAutoDown()?messageVersionSource.getMessage("version.download.open", null, FishCfg.locale):messageVersionSource.getMessage("version.download.close", null, FishCfg.locale))) + 
-        "&nbsp;&nbsp;" + messageVersionSource.getMessage("version.download.taskCount", null, FishCfg.locale) + jobForm.getAllTaskCount() + "&nbsp;&nbsp;"+messageVersionSource.getMessage("version.download.taskCountFinished", null, FishCfg.locale) + jobForm.getFinishTaskCount() + 
-        "&nbsp;&nbsp; "+messageVersionSource.getMessage("version.download.taskCountFailed", null, FishCfg.locale) + jobForm.getFailTaskCount() + "&nbsp;&nbsp;"+messageVersionSource.getMessage("version.download.runTaskCount", null, FishCfg.locale) +jobForm.getRunTaskCount());
+        jobForm.setExtraBody("&nbsp;&nbsp; "+getI18N("version.download.jobType") + getEnumI18n(job.getJobType().getText()) + 
+        		"&nbsp;&nbsp; " +( job.getJobType()==JobType.MANUAL?getI18N("version.download.jobStatus") + 
+        (jobForm.getRunTaskCount()==0?getI18N("version.download.finished"):getI18N("version.download.running")) : getI18N("version.download.autoRefreshStatus") + (job.getVersion().isAutoDown()?getI18N("version.download.open"):getI18N("version.download.close"))) + 
+        "&nbsp;&nbsp;" + getI18N("version.download.taskCount") + jobForm.getAllTaskCount() + "&nbsp;&nbsp;"+getI18N("version.download.taskCountFinished") + jobForm.getFinishTaskCount() + 
+        "&nbsp;&nbsp; "+getI18N("version.download.taskCountFailed") + jobForm.getFailTaskCount() + "&nbsp;&nbsp;"+getI18N("version.download.runTaskCount") +jobForm.getRunTaskCount());
         return jobForm;
 
     }
@@ -571,13 +576,13 @@ public class VersionDownloadController {
 		List<ITask> tasks = taskService.list(filter);
 
 		Excel excel = new Excel();
-		String[] headers = new String[] { messageVersionSource.getMessage("version.export.terminalId", null, FishCfg.locale),
-				messageVersionSource.getMessage("version.export.ip", null, FishCfg.locale), messageVersionSource.getMessage("version.export.orgName", null, FishCfg.locale),
-				messageVersionSource.getMessage("version.export.versionNoBeforeUpdate", null, FishCfg.locale), messageVersionSource.getMessage("version.export.updateVersionNo", null, FishCfg.locale),
-				messageVersionSource.getMessage("version.export.taskStatus", null, FishCfg.locale), messageVersionSource.getMessage("version.export.version.export.executeTime", null, FishCfg.locale), 
-				messageVersionSource.getMessage("version.download.versionDownloadStartTime", null, FishCfg.locale),
-				messageVersionSource.getMessage("version.download.versionDownloadFinishTime", null, FishCfg.locale), 
-				messageVersionSource.getMessage("version.export.remark", null, FishCfg.locale), messageVersionSource.getMessage("version.download.rebootATM", null, FishCfg.locale) };
+		String[] headers = new String[] { getI18N("version.export.terminalId"),
+				getI18N("version.export.ip"), getI18N("version.export.orgName"),
+				getI18N("version.export.versionNoBeforeUpdate"), getI18N("version.export.updateVersionNo"),
+				getI18N("version.export.taskStatus"), getI18N("version.export.version.export.executeTime"), 
+				getI18N("version.download.versionDownloadStartTime"),
+				getI18N("version.download.versionDownloadFinishTime"), 
+				getI18N("version.export.remark"), getI18N("version.download.rebootATM") };
 		excel.setHeaders(headers);
 		// 填充数据
 		List<List> data = new ArrayList<List>();
@@ -617,8 +622,8 @@ public class VersionDownloadController {
 		}
 		excel.setData(data);
 
-		String fileName = FishCfg.getTempDir() + File.separator + messageVersionSource.getMessage("version.download.jobName", null, FishCfg.locale) + DateUtils.getDate(new Date()) + messageVersionSource.getMessage("version.download.postfix", null, FishCfg.locale);
-		excel.export(fileName, messageVersionSource.getMessage("version.export.executeResult", null, FishCfg.locale));
+		String fileName = FishCfg.getTempDir() + File.separator + getI18N("version.download.jobName") + DateUtils.getDate(new Date()) + getI18N("version.download.postfix");
+		excel.export(fileName, getI18N("version.export.executeResult"));
 
 		File file = new File(fileName);
 		DownFromWebUtils.download(file, request, response);
@@ -640,7 +645,7 @@ public class VersionDownloadController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage() == null ? "" : ex.getMessage());
+			result.addAttribute(FishConstant.ERROR_MSG, getI18N("task.cancel.failer"));
 		}
 		return result;
 	}
@@ -655,7 +660,7 @@ public class VersionDownloadController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage() == null ? "" : ex.getMessage());
+			result.addAttribute(FishConstant.ERROR_MSG, getI18N("task.cancel.failer"));
 		}
 		return result;
 	}
@@ -670,7 +675,7 @@ public class VersionDownloadController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage() == null ? "" : ex.getMessage());
+			result.addAttribute(FishConstant.ERROR_MSG,getI18N("task.reDistribute.failer"));
 		}
 		return result;
 	}
@@ -689,7 +694,7 @@ public class VersionDownloadController {
 			jobManager.suspendJob(id);
 			return "{'success':true}";
 		} catch (Exception ex) {
-			return "{'success':false,'errors':'" + ex.getMessage() + "'}";
+			return "{'success':false,'errors':'" + getI18N("job.pause.failer") + "'}";
 		}
 	}
 
@@ -704,7 +709,7 @@ public class VersionDownloadController {
 	    	if(null==enumText){
 	    		return "";
 	    	}
-	    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+	    	return messageSourceEnum.getMessage(enumText,null,FishCfg.locale);
 	    }
 	
 	@Autowired
@@ -816,7 +821,7 @@ public class VersionDownloadController {
 			result.addAttribute("appRet", appRet);
 		} catch (Exception e) {
 			result.put(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, e.getMessage());
+			result.addAttribute(FishConstant.ERROR_MSG, getI18N("task.reboot.failer"));
 		}
 		return result;
 	}
@@ -836,7 +841,7 @@ public class VersionDownloadController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, ex.getMessage());
+			result.addAttribute(FishConstant.ERROR_MSG, getI18N("job.updateDeployDate.failer"));
 		}
 		return result;
 	}
@@ -845,11 +850,7 @@ public class VersionDownloadController {
 	public @ResponseBody
 	ModelMap searchUpdateDeployDateHist(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
-		// IFilter filter = new Filter();
 		IFilter filter = getFilter(request);
-		// filter.addOrder(new OrderBy("createdTime", OrderBy.DESC));
-		// filter.addOrder(new OrderBy("updateDeployDateHistory.noticeTime",
-		// OrderBy.DESC));
 		filter.descOrder("noticeTime");
 		IPageResult<IUpdateDeployDateHistory> pageResult = updateDeployDateHistoryService.page(start, limit, filter);
 		ModelMap result = new ModelMap();

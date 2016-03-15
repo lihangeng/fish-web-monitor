@@ -168,16 +168,6 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 
 		//作业不在作业队列中 表明作业还没有加入队列或者作业已执行完毕
 		if (jobInQueue == null) {//update  @since 1.4.0
-//			logger.warn(String.format("Not found job[id = %s] in queue.", jobId));
-//			Job cancelJob = this.jobService.getById(jobId);
-//			if(cancelJob != null && (JobStatus.RUN.equals(cancelJob.getJobStatus())
-//						||JobStatus.SCHEDULER.equals(cancelJob.getJobStatus()))){
-//    			this.jobService.cascadeDelete(cancelJob);
-//			}else{
-//				String tip = String.format("不能撤销[%s]状态的作业.",cancelJob.getJobStatus().getText());
-//				logger.warn(tip);
-//				throw new AppException(tip);
-//			}
 			return;
 		}
 		logger.info("jobQueue status "+getI18NInfo(jobInQueue.getJobStatus().getText()));
@@ -200,28 +190,6 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 		if(jobInQueue.getJobStatus().equals(JobStatus.RUN)){//从作业队列中移除
 			jobService.batchCancelTaskByJob(jobId);
 			jobInQueue.setJobStatus(JobStatus.FINISH);
-//			this.jobQueue.removeJob(jobInQueue);
-//			this.jobQueue.addJob(job);
-//		    try {
-//                List<ITask> tasks = jobInQueue.getTasks();
-//                List<ITask> removedTasks = new ArrayList<ITask>();
-//                for(ITask task : tasks){
-//                    if(task.getStatus().equals(TaskStatus.NEW)||task.getStatus().equals(TaskStatus.RUN)){
-//                        task.setStatus(TaskStatus.REMOVED);
-//                        taskService.onlyUpdateTask(task);
-//                        removedTasks.add(task);
-//                    }
-//                }
-//                if(removedTasks.size() == 0){
-//                    throw new AppException(getI18NInfo("job.exception.tip.noTaskToCancel"));
-//                }
-//                logger.info("ready to cacelTasks");
-//                taskService.cancelTasks(removedTasks);
-//            }
-//            catch (Exception e) {
-//                logger.error(e.getMessage());
-//                throw new AppException(e.getMessage());
-//            }
 		}else{
 			String tip = getI18NInfos("job.exception.tip.cantCancelTask",new Object[]{getI18NInfo(jobInQueue.getJobStatus().getText())});
 			logger.warn(tip);
@@ -324,7 +292,6 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	}
 
 	public IPageResult<IJob> pageDowntimeJobs(int offset, int limit, IFilter filter) {
-		// filter.addFilterEntry(FilterFactory.ne("jobStatus", JobStatus.STOP));
 		return jobService.page(offset, limit, filter);
 	}
 

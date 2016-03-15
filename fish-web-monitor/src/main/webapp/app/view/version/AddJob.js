@@ -45,16 +45,16 @@ Ext.define('Eway.view.version.AddJob', {
 					border : false
 				},
 				items : [{
+						xtype: 'displayfield',
+						fieldLabel:EwayLocale.version.View.versionDesc,//版本描述",
+						name :'jobName'//'例如:****需求第1批次升级'
+				},{
 					xtype: 'container',
                     layout: 'hbox',
                     items: [{
     					xtype: 'hidden',
     					fieldLabel : EwayLocale.version.downloadVersionId,//'下发版本ID',
     					name: 'versionId'
-    				},{
-    					xtype: 'displayfield',
-    					fieldLabel:EwayLocale.version.View.versionDesc,//版本描述",
-    					name :'jobName'//'例如:****需求第1批次升级'
     				},{
     					xtype: 'displayfield',
     					fieldLabel : EwayLocale.version.View.versionTypeName,//'软件分类',
@@ -105,7 +105,7 @@ Ext.define('Eway.view.version.AddJob', {
 			        	disabled: true,
 			        	editable: false,
 			            labelWidth:160,
-		                width : 325,
+		                width : 355,
 			        	canClear : false,
 		                padding: '0 0 0 30',
 			            format: 'Y-m-d H:i:s',

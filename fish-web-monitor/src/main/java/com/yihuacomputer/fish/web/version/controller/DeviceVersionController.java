@@ -59,6 +59,8 @@ public class DeviceVersionController {
     private IVersionService versionService;
     @Autowired
     private IDeviceSoftVersionService dsvService;
+	@Autowired
+	private MessageSource messageSourceEnum;
  
 
     @RequestMapping(method = RequestMethod.GET)
@@ -126,8 +128,6 @@ public class DeviceVersionController {
         return forms;
     }
 
-	@Autowired
-	private MessageSource messageSourceEnum;
     private String getEnumI18n(String enumText){
     	if(null==enumText){
     		return "";

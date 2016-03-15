@@ -13,8 +13,6 @@ public interface IVersionStaticsService {
 
     public long getDeviceTotal();
     
-    public IVersionStatics getVersionStatics(IVersion version,IOrganization org);
-    
     public long getDeviceTotal(IOrganization org);
 
 }
