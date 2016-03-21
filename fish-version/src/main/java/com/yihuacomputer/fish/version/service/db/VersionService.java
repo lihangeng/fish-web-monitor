@@ -16,6 +16,7 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.OrderBy;
+import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.exception.DependException;
 import com.yihuacomputer.common.exception.NotFoundException;
 import com.yihuacomputer.common.file.FileMD5;
@@ -28,6 +29,7 @@ import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.IUserService;
+import com.yihuacomputer.fish.api.version.IDeviceSoftVersion;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionType;
@@ -367,45 +369,45 @@ public class VersionService implements IDomainVersionService {
      */
     @Override
     public void collectCurrentVersionInfo(String terminalId, String typeName, String versionNo) {
-//        try {
-//            IDevice device = deviceService.get(terminalId);
-//
-//            if (null == device) {
-//                String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.deviceNotExist",
-//                        null, FishCfg.locale);
-//                throw new AppException(exceptionMsg);
-//            }
-//            if (typeName == null || "".equals(typeName)) {
-//                String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.versionTypeIsEmpty",
-//                        null, FishCfg.locale);
-//                throw new AppException(exceptionMsg);
-//            }
-//            if (versionNo == null || "".equals(versionNo)) {
-//                String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.versionNoIsEmpty",
-//                        null, FishCfg.locale);
-//                throw new AppException(exceptionMsg);
-//            }
-//            IDeviceSoftVersion dsv = deviceVersionService.get(device.getId(), typeName);
-//            IVersion version = this.autoUpdate(typeName, versionNo);
-//            if (dsv != null) {
-//                if (!versionNo.equals(dsv.getVersionNo())) {
-//                    dsv.setVersionNo(versionNo);
-//                    deviceVersionService.update(dsv);
-//                }
-//            } else {
-//                dsv = deviceVersionService.make();
-//                dsv.setDeviceId(device.getId());
-//                dsv.setTypeName(typeName);
-//                dsv.setVersionNo(versionNo);
-//                dsv.setVersionNo(versionNo);
-//                dsv.setVersionStr(version.getVersionStr());
-//                deviceVersionService.add(dsv);
-//            }
-//        }
-//        catch (Exception ex) {
-//            // logger.error(String.format("登记软件版本信息失败[%s]", ex.getMessage()));
-//            logger.error(String.format("save version fail[%s]", ex.getMessage()));
-//        }
+        try {
+            IDevice device = deviceService.get(terminalId);
+
+            if (null == device) {
+                String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.deviceNotExist",
+                        null, FishCfg.locale);
+                throw new AppException(exceptionMsg);
+            }
+            if (typeName == null || "".equals(typeName)) {
+                String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.versionTypeIsEmpty",
+                        null, FishCfg.locale);
+                throw new AppException(exceptionMsg);
+            }
+            if (versionNo == null || "".equals(versionNo)) {
+                String exceptionMsg = messageSourceVersion.getMessage("exception.versionCollection.versionNoIsEmpty",
+                        null, FishCfg.locale);
+                throw new AppException(exceptionMsg);
+            }
+            IDeviceSoftVersion dsv = deviceVersionService.get(device.getTerminalId(), typeName);
+            IVersion version = this.getVersion(typeName, versionNo);
+            if (dsv != null) {
+                if (!versionNo.equals(dsv.getVersionNo())) {
+                    dsv.setVersionNo(versionNo);
+                    dsv.setVersionStr(version.getVersionStr());
+                    deviceVersionService.update(dsv);
+                }
+            } else {
+                dsv = deviceVersionService.make();
+                dsv.setTerminalId(device.getTerminalId());
+                dsv.setTypeName(typeName);
+                dsv.setVersionNo(versionNo);
+                dsv.setVersionStr(version.getVersionStr());
+                deviceVersionService.add(dsv);
+            }
+        }
+        catch (Exception ex) {
+            // logger.error(String.format("登记软件版本信息失败[%s]", ex.getMessage()));
+            logger.error(String.format("save version fail[%s]", ex.getMessage()));
+        }
     }
 
     @SuppressWarnings("deprecation")

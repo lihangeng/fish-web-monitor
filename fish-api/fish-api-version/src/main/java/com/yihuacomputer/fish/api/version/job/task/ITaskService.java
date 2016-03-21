@@ -175,4 +175,15 @@ public interface ITaskService {
     public IPageResult<Object> pageForRepeat(int start, int limit, IFilter filter);
 
     public List<Object> findTerminalForRepeat(long jobId) ;
+    
+    /**
+     * 运行中卡死，手工重置
+     * @param task
+     */
+    public void resetTask(ITask task);
+    /**
+     * 运行中卡死，手工重置
+     * @param task
+     */
+    public void resetTasks(List<ITask> tasks);
 }

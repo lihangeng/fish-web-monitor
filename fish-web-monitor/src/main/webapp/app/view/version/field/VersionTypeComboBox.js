@@ -21,7 +21,7 @@ Ext.define('Eway.view.version.field.VersionTypeComboBox', {
 			mode : 'local',
 			triggerAction : 'all',
 			valueField : 'id',
-			displayField : 'typeName',
+			displayField : 'desc',
 			listeners : {
 				beforerender : function() {
 					this.store.load({

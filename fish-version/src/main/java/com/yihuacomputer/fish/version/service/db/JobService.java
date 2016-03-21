@@ -10,9 +10,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Hibernate;
+import org.hibernate.SQLQuery;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,6 +28,7 @@ import com.yihuacomputer.fish.api.person.IUserService;
 import com.yihuacomputer.fish.api.version.IDeviceVersion;
 import com.yihuacomputer.fish.api.version.IDeviceVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
+import com.yihuacomputer.fish.api.version.IVersionDownloadService;
 import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.VersionCatalog;
 import com.yihuacomputer.fish.api.version.VersionStatus;
@@ -62,6 +65,8 @@ public class JobService extends DomainJobService {
 
 	@Autowired
     private IVersionService versionService;
+	@Autowired
+    private IVersionDownloadService versionDownloadService;
 
     @Autowired
     private IDeviceVersionService dvService;
@@ -69,6 +74,9 @@ public class JobService extends DomainJobService {
     @Autowired
     private IUpdateDeployDateHistoryService deployService;
 
+    @Autowired
+    private MessageSource messageVersionSource;
+    
     public ITaskService getTaskService() {
 		return taskService;
 	}
@@ -126,28 +134,28 @@ public class JobService extends DomainJobService {
     }
 
     @Override
-    public Job cascadeAdd(IJob job) {
+    public Job cascadeAdd(IJob job,IFilter filter) {
         // 保存作业信息
     	job.setServerIp(FishCfg.hostIp);//集群时设置执行的服务IP
         Job entity = dao.save(this.interface2Entity(job, false));
         // 保存任务列表
         IVersion version = entity.getVersion();
         Long versionId = version.getId();
+        if(null!=filter){
+        	versionDownloadService.selectAllDeviceToTask(job, filter);
+        }
         List<IDeviceVersion> dvs = dvService.findDeviceVersionContainsRemoved(version.getId());
         Map<Long,IDeviceVersion> maps = convertToMap(dvs);
-
-        List<IDeviceVersion> deviceVersionList = new ArrayList<IDeviceVersion>();
-        List<ITask> taskList = new ArrayList<ITask>();
         long start1 = System.currentTimeMillis();
+        if (version.getVersionStatus().equals(VersionStatus.NEW)) {
+            version.setVersionStatus(VersionStatus.WAITING);
+            versionService.update(version);
+        }
+        IFilter taskFilter = new Filter();
+        taskFilter.eq("job", entity);
+        List<ITask> taskList = taskService.list(taskFilter);
         for (ITask task : entity.getTasks()) {
-//            long start1 = System.currentTimeMillis();
-            task.setJob(job);
-//            dao.save(task);
-            taskList.add(task);
-            if (version.getVersionStatus().equals(VersionStatus.NEW)) {
-                version.setVersionStatus(VersionStatus.WAITING);
-                versionService.update(version);
-            }
+        
             Long deviceId = task.getDeviceId();
             IDeviceVersion dv = maps.get(deviceId);
             if(dv == null){
@@ -157,24 +165,12 @@ public class JobService extends DomainJobService {
                 dv.setTaskStatus(TaskStatus.NEW);
                 dv.setLastUpdatedTime(new Date());
                 dv.setDesc(null);
-//                dao.saveOrUpdate(dv);
-//                logger.info("create dev version add times " + (System.currentTimeMillis() -t));
-            }else{
-               if(!dv.getTaskStatus().equals(TaskStatus.NEW)) {
-                   dv.setTaskStatus(TaskStatus.NEW);
-                   dv.setLastUpdatedTime(new Date());
-                   dv.setDesc(null);
-//                   dao.saveOrUpdate(dv);
-//                   logger.info("create dev version upate times " + (System.currentTimeMillis() -t));
-               }
-//               logger.info("create dev times " + (System.currentTimeMillis() -t));
+                dao.saveOrUpdate(dv);
             }
-            deviceVersionList.add(dv);
         }
-        dao.batchSave(taskList);
-        dao.batchSave(deviceVersionList);
         long t = System.currentTimeMillis();
         logger.info("create task times " + (t -start1));
+        entity.addTasks(taskList);
         return entity;
     }
 
@@ -299,7 +295,7 @@ public class JobService extends DomainJobService {
         		threadService.execute(new UpdateDeployDateThread(task,deployService,deployStartDate));
         	}
         }else{
-        	throw new AppException("非‘应用’，不可以修改部署生效时间！");
+        	throw new AppException(messageVersionSource.getMessage("version.download.notUpdateTime", null, FishCfg.locale));
         }
     }
 
@@ -326,6 +322,55 @@ public class JobService extends DomainJobService {
 		valueObj.add(jobId) ;
 		List<Object> list = this.dao.findByHQL(hql, valueObj.toArray()) ;
 		return list.size() ;
+	}
+	
+
+	public boolean batchCancelTaskByJob(long jobId){
+		IJob job = this.getById(jobId);
+		if(job==null){
+			logger.error(String.format("job %d not exist", jobId));
+			return false;
+		}
+		if(job.getVersion()==null){
+			logger.error(String.format("%d job's version  not exist", jobId));
+			return false;
+		}
+		StringBuffer taskSb = new StringBuffer();
+		taskSb.append("update VER_TASK  set TASK_STATUS='REMOVED' ");
+		taskSb.append(" where JOB_ID=? and (TASK_STATUS='NEW' OR TASK_STATUS='RUN')");
+		
+
+		StringBuffer deviceVersionSb = new StringBuffer();
+		deviceVersionSb.append("update VER_DEVICE_VERSION  set TASK_STATUS='REMOVED' ");
+		deviceVersionSb.append(" where VERSION_ID=? and (TASK_STATUS='NEW' OR TASK_STATUS='RUN' ) and DEVICE_ID in(  ");
+		deviceVersionSb.append(" select DEVICE_ID from VER_TASK where JOB_ID=? and (TASK_STATUS='NEW' OR TASK_STATUS='RUN'))");
+		
+		StringBuffer insertDeviceVersionSb = new StringBuffer();
+		insertDeviceVersionSb.append("insert into  VER_DEVICE_VERSION (DEVICE_ID,VERSION_ID,TASK_STATUS,CREATED_TIME,LAST_UPDATED_TIME)    ");
+		insertDeviceVersionSb.append(" select DEVICE_ID,?,?,?,? from VER_TASK where JOB_ID=? and (TASK_STATUS='NEW' OR TASK_STATUS='RUN')");
+		insertDeviceVersionSb.append(" and DEVICE_ID not in (select DEVICE_ID from VER_DEVICE_VERSION)");
+		
+		
+		SQLQuery deviceQuery = dao.getSQLQuery(deviceVersionSb.toString());
+		deviceQuery.setLong(0, job.getVersion().getId());
+		deviceQuery.setLong(1, jobId);
+		int deviceVersionUpdate = deviceQuery.executeUpdate();
+		
+		
+		Date date = new Date();
+		SQLQuery insertDeviceVersionQuery = dao.getSQLQuery(insertDeviceVersionSb.toString());
+		insertDeviceVersionQuery.setLong(0, job.getVersion().getId());
+		insertDeviceVersionQuery.setString(1, "REMOVED");
+		insertDeviceVersionQuery.setDate(2, date);
+		insertDeviceVersionQuery.setDate(3, date);
+		insertDeviceVersionQuery.setLong(4, jobId);
+		int deviceVersionInsert = insertDeviceVersionQuery.executeUpdate();
+
+		SQLQuery taskQuery = dao.getSQLQuery(taskSb.toString());
+		taskQuery.setLong(0, jobId);
+		int taskUpdate = taskQuery.executeUpdate();
+		return taskUpdate!=0&&(deviceVersionUpdate+deviceVersionInsert)!=0;
+		
 	}
 
 }

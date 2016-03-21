@@ -1029,3 +1029,13 @@ pre.link{
     border-width: 1px;
     line-height: 13px;
 }
+
+.notFinish{
+	color:grey;
+}
+.plan{
+	color:blue;
+}
+.running{
+	color:red;
+}

@@ -3,7 +3,7 @@ Ext.define('Eway.view.report.baseReport.TransactionCountReportView', {
 	alias : 'widget.transactionCountReportView',
 
 	requires : [ 'Eway.view.report.baseReport.TransactionCountReportFilter',
-			'Eway.view.report.baseReport.ReportDownload' ],
+			'Eway.view.report.baseReport.TransactionCountReportGrid' ],
 
 	title : EwayLocale.report.baseReport.tradeRep,
 	layout : 'border',
@@ -15,7 +15,7 @@ Ext.define('Eway.view.report.baseReport.TransactionCountReportView', {
 				xtype : 'baseReport_TransactionCountReportFilter'
 			}, {
 				region : 'center',
-				xtype : 'reportDownload'
+				xtype : 'baseReport_TransactionCountReportGrid'
 			} ],
 			listeners : {
 				activate : function(panel) {

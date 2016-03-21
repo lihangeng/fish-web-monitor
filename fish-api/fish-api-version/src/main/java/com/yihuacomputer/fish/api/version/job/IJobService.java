@@ -42,7 +42,8 @@ public interface IJobService {
 	 * @param job
 	 * @return
 	 */
-	public IJob cascadeAdd(IJob job);
+	
+	public IJob cascadeAdd(IJob job,IFilter fitler);
 
 	/**
 	 * 修改一个作业信息
@@ -96,5 +97,12 @@ public interface IJobService {
 	 * @return
 	 */
 	public int getRepeatTaskByJob(long jobId) ;
+	
+	/**
+	 * 需改versionDevice/Task,insert deviceVersion
+	 * @param jobId
+	 * @return
+	 */
+	public boolean batchCancelTaskByJob(long jobId);
 
 }

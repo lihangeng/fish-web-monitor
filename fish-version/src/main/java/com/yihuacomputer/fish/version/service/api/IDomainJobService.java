@@ -5,6 +5,7 @@ package com.yihuacomputer.fish.version.service.api;
 
 import java.util.List;
 
+import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.fish.api.person.IUserService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.job.IJob;
@@ -24,7 +25,7 @@ public interface IDomainJobService extends IJobService{
 	 */
 	public List<IJob> findReloadJob();
 	
-	public Job cascadeAdd(IJob job);
+	public Job cascadeAdd(IJob job,IFilter fitler);
 	
 	public Job getById(long jobId);
 	

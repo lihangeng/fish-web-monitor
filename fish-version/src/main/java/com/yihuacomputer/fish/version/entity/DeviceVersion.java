@@ -4,6 +4,7 @@
 package com.yihuacomputer.fish.version.entity;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -73,8 +74,9 @@ public class DeviceVersion implements Serializable, IDeviceVersion {
     private IDomainDeviceVersionService dvService;
 
     public DeviceVersion() {
-        this.createdTime = new Date();
-        this.lastUpdatedTime = new Date();
+    	Date date = Calendar.getInstance().getTime();
+        this.createdTime = date;
+        this.lastUpdatedTime = date;
     }
 
     @Override

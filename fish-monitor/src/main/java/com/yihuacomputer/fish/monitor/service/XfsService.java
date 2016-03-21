@@ -164,6 +164,12 @@ public class XfsService implements IXfsService {
             case ISC: {
                 return status.getStatusIsc().getCode();
             }
+            case BCR: {
+            	return status.getStatusBcr().getCode();
+            }
+            case CAM: {
+            	return status.getStatusCam().getCode();
+            }
             default: {
                 return null;
             }

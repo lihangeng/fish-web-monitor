@@ -213,16 +213,17 @@ Ext.define('Eway.view.version.download.SelectableDeviceGrid', {
 				header: EwayLocale.version.task.targetVersionNo,//'目标版本',
 				dataIndex : 'targetVersion',
 				width: 120,
-				sortable: true
-			} ,{
-				header: EwayLocale.version.task.downloadStatus,//'下发状态',
-				dataIndex : 'taskStatus',
-				width: 110,
-				sortable: true
-			} ,{
-				header: EwayLocale.version.task.downloadResult,//'下发结果',
-				dataIndex : 'reason',
+				sortable: true,
 				flex : 1
+//			} ,{
+//				header: EwayLocale.version.task.downloadStatus,//'下发状态',
+//				dataIndex : 'taskStatus',
+//				width: 110,
+//				sortable: true
+//			} ,{
+//				header: EwayLocale.version.task.downloadResult,//'下发结果',
+//				dataIndex : 'reason',
+//				flex : 1
 			}],
 			dockedItems : [{ // 分页栏
 				xtype : 'pagingtoolbar',

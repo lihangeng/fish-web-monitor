@@ -31,7 +31,7 @@ import com.yihuacomputer.fish.api.version.VersionStaticsStatus;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.version.entity.DeviceSoftVersion;
-import com.yihuacomputer.fish.version.entity.Task;
+import com.yihuacomputer.fish.version.entity.DeviceVersion;
 import com.yihuacomputer.fish.version.entity.Version;
 import com.yihuacomputer.fish.version.entity.VersionTypeAtmTypeRelation;
 
@@ -205,14 +205,14 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     	StringBuffer hql = new StringBuffer();
 		//设备下发成功的台数
 		hql.append("select device,deviceSoftVersion from  ").
-		append(Task.class.getSimpleName()).append( " task , ").
-		append(Device.class.getSimpleName()).append(" device ,").
+		append(Device.class.getSimpleName()).append( " device , ").
+		append(DeviceVersion.class.getSimpleName()).append(" deviceVersion ,").
 		append(Version.class.getSimpleName()).append(" version ,").
     	append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ,").
 		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType ").
-		append(" where  task.deviceId=device.id ").
-		append(" and task.version.id=version.id ").
-		append(" and version.id=? and task.status=? and device.status=?").
+		append(" where  deviceVersion.deviceId=device.id ").
+		append(" and deviceVersion.versionId=version.id ").
+		append(" and version.id=? and deviceVersion.taskStatus=? and device.status=?").
 		append(" and device.devType.id=versionatmType.atmTypeId ").
     	append(" and versionatmType.versionTypeId=version.versionType.id ").
 		append(" and device.organization.orgFlag like ? ").
@@ -257,17 +257,17 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
     	StringBuffer hql = new StringBuffer();
 		//设备下发失败的台数
 		hql.append("select device,deviceSoftVersion  from ").
-		append(Task.class.getSimpleName()).append( " task , ").
+		append(DeviceVersion.class.getSimpleName()).append( " deviceVersion , ").
 		append(Device.class.getSimpleName()).append(" device, ").
 		append(Version.class.getSimpleName()).append(" version ,").
     	append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType ,").
 		append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ").
-		append(" where  task.deviceId=device.id and task.version.id=version.id and ").
-		append(" version.id=?  and device.status=? and device.organization.orgFlag like ? ").
-		append(" and task.status in('DEPLOYED_FAIL','NOTICED_FAIL','DOWNLOADED_FAIL','NOTICE_APP_FAIL')").
-		append(" and versionatmType.versionTypeId=version.versionType.id and device.devType.id=versionatmType.atmTypeId ").
+		append(" where  deviceVersion.deviceId=device.id and deviceVersion.versionId=version.id and ").
+		append("  versionatmType.versionTypeId=version.versionType.id and device.devType.id=versionatmType.atmTypeId ").
 		append(" and version.versionType.typeName=deviceSoftVersion.typeName ").
-		append(" and device.terminalId=deviceSoftVersion.terminalId ");
+		append(" and device.terminalId=deviceSoftVersion.terminalId  ").
+		append(" and deviceVersion.taskStatus in('DEPLOYED_FAIL','NOTICED_FAIL','DOWNLOADED_FAIL','NOTICE_APP_FAIL')").
+		append(" and version.id=?  and device.status=? and device.organization.orgFlag like ? ");
 		Object[] obj = {versionId,DevStatus.OPEN,orgFlag+"%"};
 		
     	@SuppressWarnings("unchecked")

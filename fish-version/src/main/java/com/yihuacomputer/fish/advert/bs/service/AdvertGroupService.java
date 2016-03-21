@@ -108,8 +108,8 @@ public class AdvertGroupService implements IAdvertGroupService {
 			lists.add(item);
 		}
 		
-		PageResult<Object> page = new PageResult<Object>();
-		page.setData(lists);
+		PageResult<Object> page = new PageResult<Object>(lists,start,limit);
+		//page.setData(lists);
 		page.setTotal(total);
 		
 		return page;

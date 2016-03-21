@@ -13,7 +13,11 @@ Ext.define('Eway.view.report.baseReport.TransactionDaysCountGrid', {
         tbar : [ '->', {
 			text : EwayLocale.button.search,
 			glyph : 0xf002,
-			action : 'query'
+			action : 'query',
+			code:'dayCountQuery',
+			listeners:{
+				'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+			}
 		}
 		/*, {
 			text : EwayLocale.report.openrate.device.importStat,

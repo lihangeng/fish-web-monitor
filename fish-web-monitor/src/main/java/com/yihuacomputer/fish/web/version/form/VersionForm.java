@@ -41,6 +41,8 @@ public class VersionForm {
 	private String dvDisplayName;// 依赖版本的显示名称
 
 	private VersionStatus versionStatus;
+	
+	private int downLoadCounter;
 
 	/*private long deviceTotal;
 
@@ -76,6 +78,7 @@ public class VersionForm {
 		this.autoDown = version.isAutoDown();
 		this.desc = version.getDesc();
 		this.fullName = version.getFullName();
+		this.downLoadCounter = version.getDownloadCounter();
 		this.displayName = this.fullName + " [" + this.serverPath + "]";
 		if (version.getDependVersion() != null) {
 			this.dependVersion = version.getDependVersion().getFullName();
@@ -251,6 +254,14 @@ public class VersionForm {
 
 	public void setVersionTypeDesc(String versionTypeDesc) {
 		this.versionTypeDesc = versionTypeDesc;
+	}
+
+	public int getDownLoadCounter() {
+		return downLoadCounter;
+	}
+
+	public void setDownLoadCounter(int downLoadCounter) {
+		this.downLoadCounter = downLoadCounter;
 	}
 	
 }

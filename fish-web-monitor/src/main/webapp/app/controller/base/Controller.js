@@ -44,6 +44,7 @@ Ext.define('Eway.controller.base.Controller', {
 		this.activeControllerView(childView);
 		this.actived = child;
 		child.parent = this;
+		return child;
 	},
 
 	activeControllerView : function(childView) {

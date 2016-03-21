@@ -9,6 +9,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.yihuacomputer.fish.api.version.job.JobStatus;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.version.entity.Job;
@@ -64,17 +65,20 @@ public class JobThread implements Runnable {
 	 * */
 	public synchronized void run() {
 		try {
-			logger.info("开始运行一个作业" + this.job.toString());
+			logger.info("start to run a job" + this.job.toString());
 			List<ITask> tasks = this.job.getTasks();			
         	Collections.shuffle(tasks);//对队列进行混乱,使下发无序
 			for (ITask task : tasks) {
-				//没有下载成功,没有通知成功，新建的任务放入任务队列
-				if(TaskStatus.canRun(task.getStatus())){
-					this.getTaskQueue().getTaskQueue().put(task);
-				}else{
-					logger.info(String.format("ignore a task [%s]",task.toString()));
+				if(job.getJobStatus().equals(JobStatus.FINISH)){
+					break;
 				}
-			}
+					//没有下载成功,没有通知成功，新建的任务放入任务队列
+					if(TaskStatus.canRun(task.getStatus())){
+						this.getTaskQueue().getTaskQueue().put(task);
+					}else{
+						logger.info(String.format("ignore a task [%s]",task.toString()));
+					}
+				}
 		} catch (Exception e) {
 			logger.error(String.format("execute job error [%]",e.getMessage()));
 		}

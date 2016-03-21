@@ -44,160 +44,33 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=taskquery]':{
 				click :this.onTaskQuery
 			},
-			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=export]':{
+			/*'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=export]':{
 				click :this.onTaskExport
-			},
+			},*/
 			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=rebootAll]':{
 				click :this.onTaskRebootAll
 			},
 			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=autoRefresh]':{
 				click :this.onAutoRefresh
+			},
+			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=resetStatus]':{
+				click :this.onResetStatus
 			}
 		});
 	},
-	
-
-	//选中第一条记录
-	onSelectFirst : function(grid){
-		if(grid.getStore().getCount() > 0){
-			grid.getSelectionModel().select(0);
-		}
-	},
-
-	//查询
-	onQuery: function(){
-		 var grid = this.getGrid();
-		 var store = grid.getStore();
-		 var data = this.getFilterForm().getForm().getValues();//得到所有的查询条件的值 {code='n',name='',....}
-		 store.setUrlParamsByObject(data);
-		 store.loadPage(1);
-	},
-
-
-
-
-
-	//开始运行一个作业
-	onStart : function(){
-	},
-
-	//暂停一个作业
-	onPause: function(){
-		var grid = this.getGrid();
-		var store = grid.getStore();
-		var sm = grid.getSelectionModel();
-		if (sm.getCount() == 1) {
-			var record = sm.getLastSelected();
-			Ext.Ajax.request({
-			    url: 'api/version/download/pause',
-			    params: {
-			        id: record.get('id')
-			    },
-			    success: function(response){
-			        var text = response.responseText;
-			    }
-			});
-		}else{
-			Ext.Msg.alert("提示", "请选择一个作业.");
-		}
-	},
-
-
-	//删除一个作业
-	onRemove: function(){
-		var grid = this.getGrid();
-		var store = grid.getStore();
-		var sm = grid.getSelectionModel();
-		if (sm.getCount() == 1) {
-			var record = sm.getLastSelected();
-			var status = record.get('jobStatus');
-			if(status == 'COMPLETE'){
-				Ext.Msg.alert("提示", '不能撤销"完成"状态的作业.');
-			}else{
-					Ext.MessageBox.confirm("提示", "是否真的要撤销指定的作业?(正在运行的作业只会撤销还没有运行的任务.)", function(button,text) {
-						if (button == "yes") {
-							var winEl = grid.getEl();
-							winEl.mask('正在删除......');
-							record.erase({
-								success : function() {
-									winEl.unmask();
-									if(status  == 'RUN'){
-										Ext.Msg.alert("提示", '已经成功撤销作业中还没有运行的任务,此时作业的状态仍然是"运行中",请稍等后刷新作业列表.');
-										//同时刷新任务列表页面
-										Ext.StoreManager.get("version.Task").load();
-									}else{
-										store.remove(record);
-										Ext.Msg.alert("提示", "成功撤销作业.");
-										this.onQuery();
-									}
-								},
-								failure:  function(record,operation){
-									winEl.unmask();
-									Ext.Msg.alert("提示", operation.request.scope.reader.jsonData.errors);
-								},
-								scope : this
-							});
-						}
-					}, this);
-				}
-		} else {
-			Ext.Msg.alert("提示", "请选择一个作业.");
-		}
-	},
-	currentTask : null,
-
-	onJobDetail:function(){
-		var grid = this.getGrid();
-		var store = grid.getStore();
-		var sm = grid.getSelectionModel();
-		if (sm.getCount() == 1) {
-			var record = sm.getLastSelected();
-			var tabpanel = this.getEwayView().down("tabpanel");
-			var activeId = "job_"+record.get("jobName");
-			var activePanel = tabpanel.setActiveTab(activeId);
-			if(activePanel.id==activeId){
-				return;
-			}
-			var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":record.get("id")});
-			jobDetailPanel.id=activeId;
-			tabpanel.add(jobDetailPanel);
-			jobDetailPanel.setTitle(record.get("jobName"));
-			tabpanel.setActiveItem(jobDetailPanel);
-		} else {
-			Ext.Msg.alert("提示", "请选择一个作业.");
-		}
-	},
-	
-	autoJobDetail:function(jobId,jobName){
-		var tabpanel = this.getEwayView().down("tabpanel");
-		var activeId = "job_"+jobName;
-		var activePanel = tabpanel.setActiveTab(activeId);
-		if(activePanel.id==activeId){
-			return;
-		}
-		var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":jobId});
-		jobDetailPanel.id=activeId;
-		tabpanel.add(jobDetailPanel);
-		jobDetailPanel.setTitle(jobName);
-		tabpanel.setActiveItem(jobDetailPanel);
-	},
-	
-	
-	//---------------------------------------------------------
-	
-	//任务处于某种状态无法继续需要重置任务状态
 	onResetStatus:function(){
-		var grid = this.getTaskGrid();
+		var grid = this.getEwayView().down("tabpanel").getActiveTab();
 		var sm = grid.getSelectionModel();
 		if (sm.getCount() == 1) {
 			var record = sm.getLastSelected();
-			if(record.get("taskStatus")==EwayLocale.version.taskStatus.checked||
-					record.get("taskStatus")==EwayLocale.version.taskStatus.noticedFail||
-					record.get("taskStatus")==EwayLocale.version.taskStatus.downloadedFail||
-					record.get("taskStatus")==EwayLocale.version.taskStatus.deployedFail||
-					record.get("taskStatus")==EwayLocale.version.taskStatus.noticeFail||
-					record.get("taskStatus")==EwayLocale.version.taskStatus.checked||
-					record.get("taskStatus")==EwayLocale.version.taskStatus.checked){
+			var taskStatus = record.get("taskStatusText");
+			if(taskStatus==EwayLocale.version.taskStatus.checked||
+					taskStatus==EwayLocale.version.taskStatus.noticedFail||
+					taskStatus==EwayLocale.version.taskStatus.downloadedFail||
+					taskStatus==EwayLocale.version.taskStatus.deployedFail||
+					taskStatus==EwayLocale.version.taskStatus.noticeFail||
+					taskStatus==EwayLocale.version.taskStatus.checked||
+					taskStatus==EwayLocale.version.taskStatus.checked){
 				Eway.alert(EwayLocale.version.download.checkedTaskCantResetTips);
 				return;
 			}
@@ -228,6 +101,140 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			Eway.alert(EwayLocale.version.download.selectTask);
 		}
 	},
+
+	//选中第一条记录
+	onSelectFirst : function(grid){
+		if(grid.getStore().getCount() > 0){
+			grid.getSelectionModel().select(0);
+		}
+	},
+
+	//查询
+	onQuery: function(){
+		 var grid = this.getGrid();
+		 var store = grid.getStore();
+		 var data = this.getFilterForm().getForm().getValues();//得到所有的查询条件的值 {code='n',name='',....}
+		 store.setUrlParamsByObject(data);
+		 store.loadPage(1);
+	},
+
+
+	//开始运行一个作业
+	onStart : function(){
+	},
+
+	//暂停一个作业
+	onPause: function(){
+		var grid = this.getGrid();
+		var store = grid.getStore();
+		var sm = grid.getSelectionModel();
+		if (sm.getCount() == 1) {
+			var record = sm.getLastSelected();
+			Ext.Ajax.request({
+			    url: 'api/version/download/pause',
+			    params: {
+			        id: record.get('id')
+			    },
+			    success: function(response){
+			        var text = response.responseText;
+			    }
+			});
+		}else{
+			Eway.alert(EwayLocale.version.task.selectAJob);
+		}
+	},
+
+
+	//删除一个作业
+	onRemove: function(){
+		var grid = this.getGrid();
+		var store = grid.getStore();
+		var sm = grid.getSelectionModel();
+		if (sm.getCount() == 1) {
+			var record = sm.getLastSelected();
+			var status = record.get('jobStatus');
+			if(status == 'COMPLETE'){
+				Eway.alert(EwayLocale.version.task.cantCancelCompleteJob);
+			}else{
+					Ext.MessageBox.confirm(EwayLocale.confirm.title, EwayLocale.version.task.doSureCancelTheJob, function(button,text) {
+						if (button == "yes") {
+							var winEl = grid.getEl();
+							winEl.mask(EwayLocale.version.task.deleting);
+							record.erase({
+								success : function() {
+									winEl.unmask();
+									if(status  == 'RUN'){
+										Eway.alert(EwayLocale.version.task.cancelSuccessBut);
+									}else{
+										store.remove(record);
+										Eway.alert(EwayLocale.version.task.cancelJobSuccess);
+										this.onQuery();
+									}
+								},
+								failure:  function(record,operation){
+									winEl.unmask();
+									Eway.alert(operation.getError());
+								},
+								scope : this
+							});
+						}
+					}, this);
+				}
+		} else {
+			Eway.alert(EwayLocale.version.task.selectAJob);
+		}
+	},
+	currentTask : null,
+	lastTaskGrid :null,
+
+	onJobDetail:function(){
+		var grid = this.getGrid();
+		var store = grid.getStore();
+		var sm = grid.getSelectionModel();
+		if (sm.getCount() == 1) {
+			this.onViewBeforeDeactivate();
+			var record = sm.getLastSelected();
+			var tabpanel = this.getEwayView().down("tabpanel");
+			var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":record.get("id")});
+			tabpanel.add(jobDetailPanel);
+			jobDetailPanel.setTitle(record.get("jobName"));
+			tabpanel.setActiveItem(jobDetailPanel);
+			this.lastTaskGrid = jobDetailPanel;
+		} else {
+			Eway.alert(EwayLocale.version.task.selectAJob);
+		}
+		var autoRefreshButton = jobDetailPanel.down("button[action=autoRefresh]");
+		Ext.Function.defer(this.onAutoRefresh,500,this,[autoRefreshButton]);
+	},
+	
+	autoJobDetail:function(jobId){
+		var me =this;
+		var tabpanel = this.getEwayView().down("tabpanel");
+		Ext.Ajax.request({
+		    url: 'api/version/download/getJobInfo',
+		    method:'POST',
+		    params: {
+		        'jobId':jobId
+		    },
+		    success: function(response){
+		        var object = Ext.decode(response.responseText);
+
+				this.onViewBeforeDeactivate();
+		        var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":jobId});
+				tabpanel.add(jobDetailPanel);
+				jobDetailPanel.setTitle(object.total.jobName);
+				tabpanel.setActiveItem(jobDetailPanel);
+				me.lastTaskGrid = jobDetailPanel;
+				var autoRefreshButton = jobDetailPanel.down("button[action=autoRefresh]");
+				Ext.Function.defer(me.onAutoRefresh,500,me,[autoRefreshButton]);
+		    }
+		});
+	},
+	
+	
+	//---------------------------------------------------------
+	
+	
 	//选中第一条记录
 	onSelectFirst : function(grid){
 		if(grid.getStore().getCount() > 0){
@@ -243,30 +250,13 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	onViewBeforeDeactivate : function(){
 		if(this.currentTask != null){
 			Ext.TaskManager.stop(this.currentTask);
-			var btn = this.getTaskGrid().down("button[action=autoRefresh]");
+			var btn = this.lastTaskGrid.down("button[action=autoRefresh]");
 			btn.setText(EwayLocale.version.download.autoRefresh);//"开启自动刷新");
 			btn.started = false;
 			this.currentTask = null;
 		}
 	},
-	//刷新任务列表
-	onTaskFresh : function(pagingtoolbar){
-
-		var taskGrid = this.getActiveTask()
-		var jobId = taskGrid.getConfig().jobId;
-//		var sm = grid.getSelectionModel();
-//		if (sm.getCount() == 1) {
-//			var record = sm.getLastSelected();
-			//增加请求参数
-			this.setTaskSearchFilter(jobId);
-			taskGrid.getStore().loadPage(1);
-//		}
-	},
-	//选择一个作业时，刷新任务列表
-	onTask: function(grid,record){
-		var taskGrid = this.getTaskGrid();
-		taskGrid.refresh(record.get('id'));
-	},
+	
 
 	
 	//暂停一个作业
@@ -289,7 +279,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			    }
 			});
 		}else{
-			Eway.alert(EwayLocale.vtype.choseTask);//"请选择一个作业.");
+			Eway.alert(EwayLocale.version.task.selectAJob);//"请选择一个作业.");
 		}
 	},
 
@@ -312,7 +302,6 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	//查找任务
 	onTaskQuery : function(){
 		var grid = this.getActiveTask()
-//		Eway.alert(grid.getTitle());
 		var jobId = grid.getConfig().jobId;
 		this.setTaskSearchFilter(jobId);
 		grid.getStore().loadPage(1);
@@ -326,34 +315,26 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	onAutoRefresh : function(btn,e,options){
 		var grid = this.getActiveTask()
 		var jobId = grid.getConfig().jobId;
-		if(this.currentTask == null){
-			this.currentTask = {
-			   run : function() {
-					this.setTaskSearchFilter(jobId);
-					grid.getStore().loadPage(1);
-			    },
-			   interval : 60000, //60秒刷新一次
-			   scope : this
-			   };
-		}
-		if(btn.started){
-			btn.setText("开启自动刷新");
-			btn.started = false;
-			Ext.TaskManager.stop(this.currentTask);
-			this.currentTask = null;
-		}else{
-			btn.setText("停止自动刷新");
-			btn.started = true;
-			Ext.TaskManager.start(this.currentTask);
-		}
-	},
-	//导出升级报告
-	onTaskExport : function(){
-		var taskGrid = this.getActiveTask()
-		var jobId = taskGrid.getConfig().jobId;
-		var url = 'api/version/download/exportToExcel?jobId=' + jobId ;
-		var iframe = document.getElementById('downloadFileFromWeb');
-		iframe.src = url;
+			if(this.currentTask == null){
+				this.currentTask = {
+				   run : function() {
+						this.setTaskSearchFilter(jobId);
+						grid.getStore().loadPage(1);
+				    },
+				   interval : 60000, //60秒刷新一次
+				   scope : this
+				   };
+			}
+			if(btn.started){
+				btn.setText(EwayLocale.version.download.autoRefresh);
+				btn.started = false;
+				Ext.TaskManager.stop(this.currentTask);
+				this.currentTask = null;
+			}else{
+				btn.setText(EwayLocale.version.download.stopAutoRefresh);
+				btn.started = true;
+				Ext.TaskManager.start(this.currentTask);
+			}
 	}
 
 

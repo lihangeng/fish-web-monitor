@@ -70,10 +70,13 @@ public class TransactionController{
 	        trans.setTransId(msg.getTransId());
 	        trans.setTipFee(msg.getTipFee());
 	        
+	        try{
 	        // 20160201-增加卡类型信息
-	        trans.setCardType(CardType.valueOf(msg.getCardType()));
-	        trans.setCostTime(msg.getCostTime());
-
+		        trans.setCardType(CardType.getById(Integer.parseInt(msg.getCardType())));
+		        trans.setCostTime(msg.getCostTime());
+	        }catch(Exception e){
+	        	logger.error(e.getMessage());
+	        }
         	collectService.collectATMCTransaction(msg.getTermId(), trans);
 
         }catch(Exception e){

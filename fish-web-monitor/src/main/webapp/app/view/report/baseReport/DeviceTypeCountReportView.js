@@ -2,7 +2,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportView', {
 	extend : 'Eway.view.base.Panel',
 	alias : 'widget.baseReport_DeviceTypeCountReportView',
 
-	requires : [ 'Eway.view.report.baseReport.ReportDownload',
+	requires : [ 'Eway.view.report.baseReport.DeviceTypeCountReportGrid',
 			'Eway.view.report.baseReport.DeviceTypeCountReportFilter' ],
 
 	title : EwayLocale.report.baseReport.devBrandRep,
@@ -15,7 +15,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportView', {
 				xtype : 'baseReport_DeviceTypeCountReportFilter'
 			}, {
 				region : 'center',
-				xtype : 'reportDownload'
+				xtype : 'baseReport_DeviceTypeCountReportGrid'
 			} ],
 			listeners : {
 				activate : function(panel) {

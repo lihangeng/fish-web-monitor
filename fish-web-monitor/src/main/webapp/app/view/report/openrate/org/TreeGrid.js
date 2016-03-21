@@ -17,11 +17,19 @@ Ext.define('Eway.view.report.openrate.org.TreeGrid', {
 			tbar : [ '->', {
 				text : EwayLocale.report.openrate.device.statistics,
 				glyph : 0xf002,
-				action : 'query'
+				action : 'query',
+				code:'orgOpenrateQuery',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}, {
 				text : EwayLocale.report.openrate.device.importStat,
 				glyph : 0xf1c3,
-				action : 'importStat'
+				action : 'importStat',
+				code:'orgOpenrateImport',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			} ],
 			columns : [ {
 				xtype : 'treecolumn',

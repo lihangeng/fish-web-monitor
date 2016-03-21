@@ -21,7 +21,7 @@ public interface IJobManager {
 	 * */
 	public IJob createJob(String jobName, long versionId, JobType jobType, JobPriority jobPriority, Date schedulerDate, List<ITask> tasks);
 
-	public IJob createJob(IJob job);
+	public IJob createJob(IJob job,IFilter filter);
 
 	public IJob createManualJob(String jobName, long versionId, JobPriority jobPriority, List<ITask> tasks);
 

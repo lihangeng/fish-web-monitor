@@ -45,14 +45,10 @@ Ext.define('Eway.view.version.AddJob', {
 					border : false
 				},
 				items : [{
-					xtype: 'textfield',
-					fieldLabel:EwayLocale.version.View.versionDesc,//版本描述",
-					name :'jobName',
-					maxLength: 128,
-					allowBlank:false,
-					readOnly:true,
-					emptyText:EwayLocale.version.batchTaskNameEmpty//'例如:****需求第1批次升级'
-			 },{
+						xtype: 'displayfield',
+						fieldLabel:EwayLocale.version.View.versionDesc,//版本描述",
+						name :'jobName'//'例如:****需求第1批次升级'
+				},{
 					xtype: 'container',
                     layout: 'hbox',
                     items: [{
@@ -77,9 +73,9 @@ Ext.define('Eway.view.version.AddJob', {
 				},{
 					xtype: 'container',
                     layout: 'hbox',
-                    items: [/*{
+                    items: [{
                     	xtype: 'combobox',
-                    	fieldLabel: '作业优先级',
+                    	fieldLabel: EwayLocale.advert.jobPriority,//'作业优先级',
 		                store: Ext.StoreMgr.lookup("version.JobPriority"),
 		                queryMode: 'local',
 		                valueField : 'value',
@@ -89,7 +85,7 @@ Ext.define('Eway.view.version.AddJob', {
 		                editable : false,
 		                canClear : false,
 		                width : 200
-		            },*/{
+		            },{
                     	xtype: 'combobox',
                     	fieldLabel: EwayLocale.version.taskType,//'任务类型',
 		                store: Ext.StoreMgr.lookup("version.JobType"),
@@ -108,8 +104,8 @@ Ext.define('Eway.view.version.AddJob', {
 			        	name:'planTime',
 			        	disabled: true,
 			        	editable: false,
-			            labelWidth:130,
-		                width : 325,
+			            labelWidth:160,
+		                width : 355,
 			        	canClear : false,
 		                padding: '0 0 0 30',
 			            format: 'Y-m-d H:i:s',

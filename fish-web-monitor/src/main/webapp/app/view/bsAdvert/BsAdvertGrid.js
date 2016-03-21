@@ -69,7 +69,10 @@ Ext.define('Eway.view.bsAdvert.BsAdvertGrid', {
 						text : EwayLocale.advert.preview600,
 						action:'preview600'
 					}]
-				})
+				}),
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}],
 			columns : [/*{
 				header: 'ID',

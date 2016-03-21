@@ -14,7 +14,18 @@ Ext.define('Eway.view.version.download.monitor.JobGrid', {
                 bodyField: 'extraBody',
                 expanded: true,
                 pluginId: 'preview'
+                	
             }],
+            getRowClass: function(record, rowIndex, rowParams, store){
+    			if(record.get('jobStatus') == 'RUN'){
+    				return "running";
+    			}else if(record.get('jobStatus') == 'SCHEDULER'){
+    				return "plan";
+    			}else if(record.get('runTaskCount') != 0){
+    				return "grey";
+    			}
+            	return "";
+       		},
             enableTextSelection : true
         },
 
@@ -35,9 +46,13 @@ Ext.define('Eway.view.version.download.monitor.JobGrid', {
 			initRegion : true,
 			store: gridStore,
 			tbar: ['->',{
-				text: '查询',
-				iconCls : 'queryBtn',
-				action: 'query'
+				text: EwayLocale.button.search,//'查询',
+				glyph : 0xf002,
+				action: 'query',
+				code:'jobQuery',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}/*, {
 				text: '创建新的作业',
 				action: 'add'
@@ -48,26 +63,29 @@ Ext.define('Eway.view.version.download.monitor.JobGrid', {
 				text: '暂停',
 				action: 'pause'
 			}*/, {
-				text: '撤销作业',
-				iconCls : 'removeBtn',
+				text: EwayLocale.version.download.cancelJob,//'撤销作业',
+				glyph : 0xf014,
 				action: 'remove',
 				code : 'versionMonitorDel',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: '查看作业明细',
-				iconCls : 'removeBtn',
+				text: EwayLocale.version.download.jobDetail,//'查看作业明细',
+				glyph : 0xf129,
 				action: 'detail',
-				code : 'jobDetail'
+				code : 'jobDetail',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}],
 			columns : [
 			{
-				header: '作业ID',
+				header: EwayLocale.version.task.jobId,//'作业ID',
 				dataIndex: 'id',
-				width: 50
+				width: 80
 			},{
-				header: '下发的版本',
+				header: EwayLocale.version.View.versionName,//'下发的版本',
 				dataIndex: 'versionName',
 				sortable: true,
 				width: 180
@@ -98,28 +116,31 @@ Ext.define('Eway.view.version.download.monitor.JobGrid', {
 				renderer: Eway.lib.Util.dictRenderer('version.JobPriority'),
 				sortable: true
 			}*/,{
-				header : '计划执行时间',
+				header : EwayLocale.version.planTime,//'计划执行时间',
 				dataIndex : 'planTime',
 			/*	xtype:'datecolumn',
 				format:'Y-m-d H:i:s',*/
 				sortable : true,
-				width: 140
+				width: 150
 			},{
-				header: '作业状态',
+				header: EwayLocale.version.task.jobStatus,//'作业状态',
 				dataIndex: 'jobStatus',
 				renderer: Eway.lib.Util.dictRenderer('version.JobStatus'),
 				sortable: true,
-				width: 60
+				width: 150
 			},{
-				header : '备注',
-				dataIndex : 'desc',
+				header : EwayLocale.version.taskType,//'备注',
+				dataIndex : 'jobType',
 				flex : 1,
 				sortable : true
 			}],
 			bbar : Ext.create('Ext.toolbar.Paging',{
 				store : gridStore,
 				displayInfo : true
-			})
+			}),
+			listener:{
+				
+			}
 		});
 
 		this.callParent(arguments);

@@ -130,7 +130,7 @@ Ext.define('Ext.ux.form.TimePickerField', {
 	                  minValue: 0,
 	                  maxValue: 23,
 	                  value:hour,
-                      fieldLabel : "Time",
+                      fieldLabel : EwayLocale.msg.time,
                       editable:false,
                       labelWidth:30,
                       width:90

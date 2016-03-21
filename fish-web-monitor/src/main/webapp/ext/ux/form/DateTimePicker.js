@@ -1,7 +1,7 @@
 ﻿Ext.define('Ext.ux.form.DateTimePicker', {
 	extend: 'Ext.picker.Date',
       alias: 'widget.datetimepicker',
-      todayText: 'Confirm',
+      todayText: EwayLocale.button.confirm,
       timeLabel: 'Time',
       requires: ['Ext.ux.form.TimePickerField'],
       timefield:"",

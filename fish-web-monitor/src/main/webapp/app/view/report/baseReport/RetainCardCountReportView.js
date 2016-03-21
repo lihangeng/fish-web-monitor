@@ -3,7 +3,7 @@ Ext.define('Eway.view.report.baseReport.RetainCardCountReportView', {
 	alias : 'widget.retainCardCountReportView',
 
 	requires : [ 'Eway.view.report.baseReport.RetainCardCountReportFilter',
-			'Eway.view.report.baseReport.ReportDownload' ],
+			'Eway.view.report.baseReport.RetainCardCountReportGrid' ],
 
 	title : EwayLocale.report.baseReport.eatCardRep,
 	layout : 'border',
@@ -15,7 +15,7 @@ Ext.define('Eway.view.report.baseReport.RetainCardCountReportView', {
 				xtype : 'baseReport_RetainCardCountReportFilter'
 			}, {
 				region : 'center',
-				xtype : 'reportDownload'
+				xtype : 'baseReport_RetainCardCountReportGrid'
 			} ],
 			listeners : {
 				activate : function(panel) {

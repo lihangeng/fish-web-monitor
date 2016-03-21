@@ -40,6 +40,7 @@ Ext.apply(EwayLocale,{
 		selectVersionRecord:'请选择您要下发的版本.',//EwayLocale.msg.selectVersionRecord
 		missVersionFile:"版本文件丢失,暂不能对版本进行下发控制.",//EwayLocale.msg.missVersionFile
 		linkBSGroup:"请选择您关联的广告组.",//EwayLocale.msg.linkBSGroup
+		time:'时间'//EwayLocale.msg.time
 	},
 	confirm:{
 		titleSure:'确认',//EwayLocale.confirm.titleSure
@@ -67,7 +68,7 @@ Ext.apply(EwayLocale,{
 		bankOrgMove:'组织迁移',//EwayLocale.button.bankOrgMove
 		bankOrgAdmin:'管理员',//EwayLocale.button.bankOrgAdmin
 		
-		bankPerlink:'绑定设备',//EwayLocale.button.bankPerlink
+		bankPerlink:'关联设备',//EwayLocale.button.bankPerlink
 		sure:'确定',//EwayLocale.button.sure
 		confirm:'确认',//EwayLocale.button.confirm
 		cancle:'取消',//EwayLocale.button.cancle

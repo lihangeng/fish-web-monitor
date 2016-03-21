@@ -13,7 +13,11 @@ Ext.define('Eway.view.report.baseReport.TransactionHoursCountGrid', {
         tbar : [ '->', {
 			text : EwayLocale.button.search,
 			glyph : 0xf002,
-			action : 'query'
+			action : 'query',
+			code:'hoursCountQuery',
+			listeners:{
+				'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+			}
 		}
 		/*, {
 			text : EwayLocale.report.openrate.device.importStat,

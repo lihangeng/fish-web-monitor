@@ -1,7 +1,6 @@
 package com.yihuacomputer.fish.version.job;
 
 import java.lang.Thread.State;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +10,9 @@ import javax.annotation.PreDestroy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.exception.AppException;
@@ -55,7 +56,10 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	@Autowired
 	private ITaskService taskService;
 	@Autowired
+	private MessageSource messageSources;
+	@Autowired
 	private TaskQueue taskQueue;
+	
 
 	/**
 	 * 初始化作业调度管理器
@@ -77,7 +81,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	 * */
 	private void initTaskManager() {
 		taskManager = new TaskManager();
-		taskManager.setTaskService(taskService,taskThreadPool,taskQueue);
+		taskManager.setTaskService(taskService,taskThreadPool,taskQueue,messageSources);
 		taskManagerThread = new Thread(taskManager);
 		taskManagerThread.setName("Task_Manager");
 		taskManagerThread.start();
@@ -118,10 +122,10 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 		scheduler.schedulerJob(job);
 	}
 
-	public IJob createJob(IJob job) {
+	public IJob createJob(IJob job,IFilter filter) {
 		// 如果没有入库，则入库
 		if (job.getJobId() < 1) {
-			job = jobService.cascadeAdd(job);
+			job = jobService.cascadeAdd(job,filter);
 		}
 		Job entity = (Job)job;
 		// 放到缓存队列
@@ -153,7 +157,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 		}
 		job.addTasks(tasks);
 
-		return createJob(job);
+		return createJob(job,null);
 	}
 
 	/**
@@ -164,19 +168,9 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 
 		//作业不在作业队列中 表明作业还没有加入队列或者作业已执行完毕
 		if (jobInQueue == null) {//update  @since 1.4.0
-//			logger.warn(String.format("Not found job[id = %s] in queue.", jobId));
-//			Job cancelJob = this.jobService.getById(jobId);
-//			if(cancelJob != null && (JobStatus.RUN.equals(cancelJob.getJobStatus())
-//						||JobStatus.SCHEDULER.equals(cancelJob.getJobStatus()))){
-//    			this.jobService.cascadeDelete(cancelJob);
-//			}else{
-//				String tip = String.format("不能撤销[%s]状态的作业.",cancelJob.getJobStatus().getText());
-//				logger.warn(tip);
-//				throw new AppException(tip);
-//			}
 			return;
 		}
-		logger.info("jobQueue status"+jobInQueue.getJobStatus());
+		logger.info("jobQueue status "+getI18NInfo(jobInQueue.getJobStatus().getText()));
 		//作业在作业队列中，直接删除“新建”、“计划中”的作业(物理删除)
 		if(jobInQueue.getJobStatus().equals(JobStatus.NEW) || jobInQueue.getJobStatus().equals(JobStatus.SCHEDULER)){
             jobInQueue.getScheduler().cancelTime();//取消定时器
@@ -193,32 +187,27 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 		}
 
 		//作业正在运行，仅删除任务列表中“新建”状态的任务（逻辑删除）
-		if(jobInQueue.getJobStatus().equals(JobStatus.RUN)){
-		    try {
-                List<ITask> tasks = jobInQueue.getTasks();
-                List<ITask> removedTasks = new ArrayList<ITask>();
-                for(ITask task : tasks){
-                    if(task.getStatus().equals(TaskStatus.NEW)||task.getStatus().equals(TaskStatus.RUN)){
-                        task.setStatus(TaskStatus.REMOVED);
-                        taskService.onlyUpdateTask(task);
-                        removedTasks.add(task);
-                    }
-                }
-                if(removedTasks.size() == 0){
-                    throw new AppException("该作业中没有可以撤销的任务。请刷新列表。");
-                }
-                logger.info("ready to cacelTasks");
-                taskService.cancelTasks(removedTasks);
-            }
-            catch (Exception e) {
-                logger.error(e.getMessage());
-                throw new AppException(e.getMessage());
-            }
+		if(jobInQueue.getJobStatus().equals(JobStatus.RUN)){//从作业队列中移除
+			jobService.batchCancelTaskByJob(jobId);
+			jobInQueue.setJobStatus(JobStatus.FINISH);
 		}else{
-			String tip = String.format("不能撤销[%s]状态的作业.",jobInQueue.getJobStatus().getText());
+			String tip = getI18NInfos("job.exception.tip.cantCancelTask",new Object[]{getI18NInfo(jobInQueue.getJobStatus().getText())});
 			logger.warn(tip);
 			throw new AppException(tip);
 		}
+	}
+
+	private String getI18NInfo(String code){
+		if(null==code){
+    		return "";
+    	}
+		return messageSources.getMessage(code, null, FishCfg.locale);
+	}
+	private String getI18NInfos(String code,Object[] args){
+		if(null==code){
+    		return "";
+    	}
+		return messageSources.getMessage(code, args, FishCfg.locale);
 	}
 
 	/**
@@ -232,7 +221,7 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	        if(task.getStatus().equals(TaskStatus.NEW)){
                 taskService.cancelTask(task);
 	        }else{
-	            throw new AppException("只有“新建”的任务才能取消！");
+	            throw new AppException(getI18NInfo("job.exception.tip.onlyCancelNewTask"));
 	        }
 	    }else{
 	        task = taskService.get(taskId);
@@ -298,12 +287,11 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	public void loadDowntimeJobs() {
 		List<IJob> jobs = jobService.findReloadJob();
 		for (IJob job : jobs) {
-			this.createJob(job);
+			this.createJob(job,null);
 		}
 	}
 
 	public IPageResult<IJob> pageDowntimeJobs(int offset, int limit, IFilter filter) {
-		// filter.addFilterEntry(FilterFactory.ne("jobStatus", JobStatus.STOP));
 		return jobService.page(offset, limit, filter);
 	}
 

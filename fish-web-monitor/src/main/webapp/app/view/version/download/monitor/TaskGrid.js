@@ -7,6 +7,7 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 	store : 'version.monitor.Task',
 	border : false,
 	autoScroll : true,
+	closable : true ,
 	viewConfig : {
 		forceFit : true,
 		stripeRows : true,
@@ -18,6 +19,7 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 	},
 	firstIn : true,
 	initComponent : function() {
+		var me = this;
 		Ext.apply(this, {
 			initRegion : true,
 			tbar: ['->',{
@@ -25,38 +27,56 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 				action:'tip',
 				xtype:'tbtext'
 			},{
-				text:'开启自动刷新',
+				text:EwayLocale.version.download.autoRefresh,//'开启自动刷新',
 				action:'autoRefresh',
-				tooltip:'刷新周期60秒',
-				started:false
+				glyph : 0xf021,
+				tooltip:EwayLocale.version.download.autoRefreshTips,//'刷新周期60秒',
+				started:false,
+				code:'taskAutoRefresh',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			},'-',{
 				xtype : 'combo',
-				fieldLabel : '升级结果',
+				fieldLabel : EwayLocale.version.task.updateResult,//'升级结果',
 				name : 'updateResult',
 				store : Ext.create('Ext.data.Store',{
 					fields : ['value','name'],
 					data : [
-						{'value':'','name':'全部'},
-						{'value':'1','name':'成功'},
-						{'value':'0','name':'失败'}
+							{'value':'2','name':EwayLocale.version.task.updateResultRunning},
+							{'value':'1','name':EwayLocale.version.task.updateResultSuccess},//'成功'},
+						{'value':'0','name':EwayLocale.version.task.updateResultFailed}//'失败'}
 					]
 				}),
 				queryMode : 'local',
 				valueField : 'value',
 				displayField : 'name',
 				value:'',
-				width: 200
+				width: 250
 			},{
 				xtype:'textfield',
-				fieldLabel:'设备编号',
+				fieldLabel:EwayLocale.refs.terminalId,//'设备编号',
 				name:'terminalId',
-				width: 180
+				width: 250
 			},{
-				text: '查询',
+				text:  EwayLocale.button.search,//'查询',
 				iconCls : 'queryBtn',
 				action: 'taskquery',
-				tooltip:'根据条件查询选中作业下的详情信息'
+				tooltip:EwayLocale.version.download.taskQueryTips,//'根据条件查询选中作业下的详情信息'
+				code:'taskQuery',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			},{
+				text:EwayLocale.version.download.resetTaskStatus,//'重置任务状态',
+				action:'resetStatus',
+				glyph : 0xf013,
+				code : 'resetStatus',
+				tooltip:EwayLocale.version.download.resetTaskStatus,
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
+			}/*,{
 				text: '导出',
 				iconCls : 'exportToExcel',
 				action: 'export',
@@ -65,7 +85,7 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
-			}/*,{
+			},{
 				text: '全部重启',
 				iconCls : 'exportToExcel',
 				action: 'rebootAll',
@@ -95,54 +115,64 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 					}
 				}]
 			}*/,{
-				header: '设备编号',
+				header: EwayLocale.refs.terminalId,//'设备编号',
 				dataIndex:'terminalId'
 			},{
-				header: '设备IP',
+				header: EwayLocale.refs.ip,//'设备IP',
 				dataIndex:'deviceIp',
 				sortable: true
 			},{
-				header: '所属机构',
+				header: EwayLocale.refs.orgName,//'所属机构',
 				dataIndex:'orgName',
 				sortable: true
 			},{
-				header:'分发前的版本',
+				header:EwayLocale.version.task.beforeUpdate,//'分发前的版本',
 				dataIndex:'versionBeforeUpdate'
 			},{
-				header:'分发版本',
-				dataIndex:'version'
-			},{
-				header:'预期版本',
+//				header:'分发版本',
+//				dataIndex:'version'
+//			},{
+				header:EwayLocale.version.task.exceptVersion,//'预期版本',
 				dataIndex:'exceptVersion'
 			},{
-				header :'任务状态',
+				header :EwayLocale.version.task.taskStatus,//'任务状态',
 				dataIndex:'taskStatus',
-				renderer:function(value,meta,record){
-					if(value == '部署已确认'){
+				renderer: function(value,meta,record) {
+					if (value == EwayLocale.version.taskStatus.downloading) {
+						 var process = record.get('process');
+			            return value + '('+ process + '%)';
+					} else if(value == EwayLocale.version.taskStatus.checked){//'部署已确认'){
 						return value + "&nbsp;<img src='resources/images/accept.png'>";
-					}else{
+					} else {
 						return value;
 					}
 				},
+//				renderer:function(value,meta,record){
+//					if(value == '部署已确认'){
+//						return value + "&nbsp;<img src='resources/images/accept.png'>";
+//					}else{
+//						return value;
+//					}
+//				},
 				width: 150
 			},{
-				header :'执行时间',
+				header :EwayLocale.version.task.actionTime,//'执行时间',
 				dataIndex:'excuteTime',
 				width: 140
 			},{
-				header: '备注',
+				header: EwayLocale.version.View.remark,//'备注',
 				dataIndex:'reason',
 				flex:1
 			},{
 				xtype:'actioncolumn',
 				width: 80,
-				header: '重启ATM',
+				header: EwayLocale.version.task.restartATM,//'重启ATM',
 				items : [{
 					icon : 'resources/images/version/reboot.png',
-					tooltip: '重启ATM',
+					tooltip: EwayLocale.version.task.restartATM,//'重启ATM',
 					getClass : function(value,metadata,record,ronwIndex,colindex,store){
 						var taskStatus = record.get('taskStatus');
-						if(taskStatus == '等待部署'){
+						if(taskStatus == EwayLocale.version.taskStatus.deployedWait){//'等待部署'){
 							return '';
 						}else {
 							return 'hiddenComp';
@@ -151,7 +181,9 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 					handler : function(grid,rowIndex,colIndex){
 						var record = grid.getStore().getAt(rowIndex);
 						var taskId = record.get('id');
-						Ext.MessageBox.confirm('提示','执行重启命令可能存在风险,确认重启?',callBack);
+//						Ext.MessageBox.confirm('提示','执行重启命令可能存在风险,确认重启?',callBack);
+						Ext.MessageBox.confirm(EwayLocale.confirm.title,EwayLocale.version.task.restartATMTips,callBack);
+
 	            		function callBack(id){
 	            			if(id == 'yes'){
 								Ext.Ajax.request({
@@ -163,9 +195,9 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 									success : function(response){
 										var text = Ext.decode(response.responseText);
 										if(text.success){
-											Ext.Msg.alert("提示", "已发送重启命令！");
+											Eway.alert(EwayLocale.version.task.sendRestartCmd);//"已发送重启命令！");
 										}else{
-											Ext.Msg.alert("提示", text.errors);
+											Eway.alert(text.errorMsg);
 										}
 										grid.getStore().load();
 									}
@@ -177,14 +209,14 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 				}]
 			},{
 				xtype:'actioncolumn',
-				width: 80,
-				header: '取消下发',
+				width: 100,
+				header: EwayLocale.version.task.cancelDownload,//'取消下发',
 				items : [{
 					icon : 'resources/images/remove.png',
-					tooltip: '取消下发',
+					tooltip: EwayLocale.version.task.cancelDownload,//'取消下发',
 					getClass : function(value,metadata,record,ronwIndex,colindex,store){
 						var taskStatus = record.get('taskStatus');
-						if(taskStatus == '新建'){
+						if(taskStatus == EwayLocale.version.View.newCreate){
 							return '';
 						}else {
 							return 'hiddenComp';
@@ -193,21 +225,20 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 					handler : function(grid,rowIndex,colIndex){
 						var record = grid.getStore().getAt(rowIndex);
 						var taskId = record.get('id');
-						var jobId = record.get('jobId');
 						Ext.Ajax.request({
 							method : 'POST',
 							url : 'api/version/download/task/cancel' ,
 							params : {
-								'jobId' : jobId,
-								'taskId' : taskId
+								'taskId' : taskId,
+								'jobId' : me.getJobId()
 							},
 							success : function(response){
 								var text = Ext.decode(response.responseText);
 								if(text.success){
-									Ext.Msg.alert("提示", "取消下发 成功！");
+									Eway.alert(EwayLocale.version.task.cancelDownloadSuccess);//"取消下发 成功！");
 								}else{
-									if(text.errors !== ""){
-										Ext.Msg.alert("提示", text.errors);
+									if(text.errorMsg !== ""){
+										Eway.alert(text.errorMsg);
 									}
 								}
 								grid.getStore().load();

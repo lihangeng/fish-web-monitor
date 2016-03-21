@@ -131,7 +131,7 @@ public class AutoUpdateController {
         	job.setVersion(autoUpdateVersion);
         	job.setJobStatus(JobStatus.COMPLETE);
         	job.setCreateUserId(1);
-        	return jobService.cascadeAdd(job) ;
+        	return jobService.cascadeAdd(job,null) ;
         }
     	return job ;
     }

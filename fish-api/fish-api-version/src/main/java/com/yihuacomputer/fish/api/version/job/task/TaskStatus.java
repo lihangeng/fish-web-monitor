@@ -7,37 +7,39 @@ package com.yihuacomputer.fish.api.version.job.task;
  *
  */
 public enum TaskStatus {
-	NEW(0, "待通知"), // 新建
-	RUN(1, "正在通知"), // 运行中,已进入任务队列
-	REMOVED(2,"已删除,取消升级"),//删除的标记，假删除
-	CANCELED(3,"已取消,取消下发任务"),//已取消
-	CANCEL_FAIL(4,"取消失败，因为取消的动作通知应用失败"),//取消失败，因为取消的动作通知应用失败
+	NEW(0, "TaskStatus.NEW"), // 新建
+	RUN(1, "TaskStatus.RUN"), // 运行中,已进入任务队列
+	REMOVED(2,"TaskStatus.REMOVED"),//删除的标记，假删除
+	CANCELED(3,"TaskStatus.CANCELED"),//已取消
+	CANCEL_FAIL(4,"TaskStatus.CANCEL_FAIL"),//取消失败，因为取消的动作通知应用失败
 
-	NOTICED(30, "已通知"),
-	NOTICED_FAIL(31,"通知失败"),
+	NOTICED(30, "TaskStatus.NOTICED"),
+	NOTICED_FAIL(31,"TaskStatus.NOTICED_FAIL"),
 
-	DOWNLOADING(42, "正在下载..."), // 版本文件正在下载中
-	DOWNLOADED(40, "下载完成,等待部署"), //下发到客户端的临时目录
-	DOWNLOADED_FAIL(41, "下载失败"),
-	DOWN_BEFORE_WAIT(43, "正在排队等待下载"), // 由于atmv端限制下载数，当下载数被占满时，将排队等待下载
+	DOWNLOADING(42, "TaskStatus.DOWNLOADING"), // 版本文件正在下载中
+	DOWNLOADED(40, "TaskStatus.DOWNLOADED"), //下发到客户端的临时目录
+	DOWNLOADED_FAIL(41, "TaskStatus.DOWNLOADED_FAIL"),
+	DOWN_BEFORE_WAIT(43, "正在排队等待下载"), 
 
-	DEPLOYED(50,"正在部署"),//根据不同的软件类型，对于部署有不同的含义，如简单的拷贝到指定目录，调用第三方的部署服务，重启系统等
-	DEPLOYED_WAIT(51,"下载完成,等待部署"),//等待部署的任务需要从页面手动触发一次“重启ATM”的动作，完成最终的流程，执行此动作后修改任务状态为DEPLOYED
-	DEPLOYED_FAIL(52,"部署失败"),//任务的最终状态“失败”
-	CHECKED(53,"部署已确认"),//任务的最终状态“成功”
-	NOTICE_APP_OK(54,"已通知应用"),
-	NOTICE_APP_FAIL(55,"通知应用失败"),
+	DEPLOYED(50,"TaskStatus.DEPLOYED"),//根据不同的软件类型，对于部署有不同的含义，如简单的拷贝到指定目录，调用第三方的部署服务，重启系统等
+	DEPLOYED_WAIT(51,"TaskStatus.DEPLOYED_WAIT"),//等待部署的任务需要从页面手动触发一次“重启ATM”的动作，完成最终的流程，执行此动作后修改任务状态为DEPLOYED
+	DEPLOYED_FAIL(52,"TaskStatus.DEPLOYED_FAIL"),//任务的最终状态“失败”
+	CHECKED(53,"TaskStatus.CHECKED"),//任务的最终状态“成功”
+	NOTICE_APP_OK(54,"TaskStatus.NOTICE_APP_OK"),
+	NOTICE_APP_FAIL(55,"TaskStatus.NOTICE_APP_FAIL"),
 
-	CANCEL_UPDATE_OK(60,"取消升级"),
-	CANCEL_UPDATE_FAIL(61,"客户端取消升级失败"),
+	OTHER(99,"TaskStatus.OTHER"),
 
-	OTHER(99,"其他"),
+	CANCEL_UPDATE_OK(60,"TaskStatus.CANCEL_UPDATE_OK"),//取消升级
+	CANCEL_UPDATE_FAIL(61,"TaskStatus.CANCEL_UPDATE_FAIL"),//客户端取消升级失败
 	
-	ROLLBACK_OR_PATCHED(101, "版本被回滚或者被人为安装成低版本"),
 	
-	REPEAT_TASK(102, "相同的软件分类正在升级,已终止"),
 	
-	FAIL_ROLLBACK(103, "部署失败，自动回滚至上一版本");
+	ROLLBACK_OR_PATCHED(101, "TaskStatus.ROLLBACK_OR_PATCHED"),//版本被回滚或者被人为安装成低版本
+	
+	REPEAT_TASK(102, "TaskStatus.REPEAT_TASK"),//相同的软件分类正在升级,已终止
+	
+	FAIL_ROLLBACK(103, "TaskStatus.FAIL_ROLLBACK");//部署失败，自动回滚至上一版本
 	
 	private int id;
 	private String text;
@@ -93,4 +95,4 @@ public enum TaskStatus {
 	    return false;
 	}
 
-}
+ }

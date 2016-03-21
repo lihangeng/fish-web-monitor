@@ -20,7 +20,7 @@ Ext.define('Eway.view.version.download.monitor.View', {
 				items : [{
 						name:'groupPanel',
 						xtype:'panel',
-						title: '作业信息',
+						title: EwayLocale.version.jobTitle,
 						layout : 'border',
 						items:[{
 								xtype:'version_download_monitor_jobfilterForm',
@@ -35,10 +35,6 @@ Ext.define('Eway.view.version.download.monitor.View', {
 			}],
 			listeners : {
 				activate : function(panel) {
-					if (panel.isLoad) {
-						return;
-					}
-					panel.isLoad = true;
 					panel.down('version_download_monitor_jobgrid').getStore().load();
 				}
 			}
