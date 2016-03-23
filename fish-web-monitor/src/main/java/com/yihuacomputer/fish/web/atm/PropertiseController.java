@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.monitor.ICollectService;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
+import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropBcr;
+import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropCam;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropCdm;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropCim;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropFgp;
@@ -114,6 +116,16 @@ public class PropertiseController {
 		IPropIsc isc =  xfsProp.makePropIsc();
 		isc.setPropIsc(msg.isIsc()) ;
 		xfsProp.setIsc(isc) ;
+		
+
+
+		IPropBcr bcr =  xfsProp.makePropBcr();
+		bcr.setPropBcr(msg.getBcr()) ;
+		xfsProp.setBcr(bcr) ;
+		
+		IPropCam cam =  xfsProp.makePropCam();
+		cam.setPropCam(msg.getCam()) ;
+		xfsProp.setCam(cam) ;
 		try{
 			collectService.collectModulePropertise(msg.getTermId(), xfsProp);
 		}catch(Exception e){
