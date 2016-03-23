@@ -3,7 +3,7 @@ Ext.define('Eway.model.parameter.classify.Classify', {
 	fields: ['id', 'paramName','paramRemark'],
     proxy: {
         type: 'rest',
-        url : 'api/parameter/element',
+        url : 'api/parameter/classify',
         reader: {
             type: 'json',
             rootProperty: 'data'
