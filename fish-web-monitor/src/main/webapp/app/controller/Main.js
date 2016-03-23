@@ -291,6 +291,8 @@ Ext.define('Eway.controller.Main', {
 			this.activeController('parameter.element.Element',text);
 		}else if(code=="appSystem"){
 			this.activeController('parameter.AppSystem',text);
+		}else if(code=="parameterTemplate"){
+			this.activeController('parameter.template.Template',text);
 		}
 	},
 
