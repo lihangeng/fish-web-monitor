@@ -1,6 +1,8 @@
 package com.yihuacomputer.fish.parameter.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -10,6 +12,8 @@ import com.yihuacomputer.fish.api.parameter.IElementService;
 import com.yihuacomputer.fish.machine.entity.AtmVendor;
 import com.yihuacomputer.fish.parameter.entity.Element;
 
+@Service
+@Transactional
 public class ElementService implements IElementService {
 
 	@Autowired
