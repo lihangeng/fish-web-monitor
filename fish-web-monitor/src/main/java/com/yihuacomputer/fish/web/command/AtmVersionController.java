@@ -67,7 +67,7 @@ public class AtmVersionController {
             // 将版本号在监控系统中保持一致
             IDevice device = deviceService.get(terminalId);
             IFilter filter = new Filter();
-            filter.eq("deviceId", device.getId());
+            filter.eq("terminalId", device.getTerminalId());
             List<IDeviceSoftVersion> listSoft = deviceSoftVersionService.list(filter); 
             for (IDeviceSoftVersion soft : listSoft) {
                 for (SimpleVersion version : atmVersionForm.getCurrentPatches()) {
