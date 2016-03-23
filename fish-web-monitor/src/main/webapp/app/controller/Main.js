@@ -99,6 +99,7 @@ Ext.define('Eway.controller.Main', {
 			this.openSoftMenu(code,text);
 			this.openCaseMenu(code,text);
 			this.openReportMenu(code,text);
+			this.openParameter(code,text);
 		}
 	},
 
@@ -281,6 +282,13 @@ Ext.define('Eway.controller.Main', {
 			this.activeController('report.baseReport.CaseStatisticsReport',text);
 		}else if(code =="caseTrendReport"){
 			this.activeController('report.baseReport.CaseTrendReport',text);
+		}
+	},
+	
+	//打开参数管理下子菜单
+	openParameter : function(code,text){
+		if(code=="appSystem"){
+			this.activeController('parameter.AppSystem',text);
 		}
 	},
 

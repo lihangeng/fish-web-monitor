@@ -26,7 +26,8 @@ import com.yihuacomputer.fish.web.mvc.BrowseMvcConfig;
 			"com.yihuacomputer.fish.web.mock",//默认的事故发送服务
 			"com.yihuacomputer.fish.web.monitor",
 			"com.yihuacomputer.fish.web.report.controller",
-			"com.yihuacomputer.fish.web.version.controller"
+			"com.yihuacomputer.fish.web.version.controller",
+			"com.yihuacomputer.fish.web.parameter.controller"
 		},
 basePackageClasses = {})
 public class FishWebMonitorMvcConfig extends BrowseMvcConfig {
