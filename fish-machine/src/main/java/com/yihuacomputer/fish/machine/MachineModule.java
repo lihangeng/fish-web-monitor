@@ -116,7 +116,6 @@ public class MachineModule {
 	public IAppSystemService AppSystemService(){
 		return new AppSystemService();
 	}
-	
 
 	@Bean
 	public IElementService elementService(){
