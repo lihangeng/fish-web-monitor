@@ -129,7 +129,7 @@ function validateFileDisplayTime(file) {
 	if (Date.parse(nowDate) >= Date.parse(beginDate)
 			&& (Date.parse(nowDate) <= Date.parse(endDate)||endDate=="")
 			&& Date.parse(nowTime) >= Date.parse(beginTime)
-			&& (Date.parse(nowTime) <= Date.parse(endTime)||endTime="")) {
+			&& (Date.parse(nowTime) <= Date.parse(endTime)||endTime =="")) {
 		return true;
 	} else {
 		return false;
