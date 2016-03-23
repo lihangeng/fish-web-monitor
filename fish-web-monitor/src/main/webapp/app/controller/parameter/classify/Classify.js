@@ -46,6 +46,14 @@ Ext.define('Eway.controller.parameter.classify.Classify', {
 			}
 		});
 	},
+	
+	// 根据条件查询组信息：
+	onQuery : function(){
+		var store = this.getEwayView().down('classify_Grid').getStore();
+		var data = this.getEwayView().down('form').getForm().getValues();// 得到所有的查询条件的值
+		store.setUrlParamsByObject(data);
+		// store.loadPage(1);
+	},
 			
 	onAdd : function(){
 		var groupAddWin = Ext.create('Eway.view.parameter.classify.ClassifyAdd');
