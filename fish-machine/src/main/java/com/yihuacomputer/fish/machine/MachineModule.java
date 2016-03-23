@@ -14,6 +14,7 @@ import com.yihuacomputer.fish.api.device.IComplexDeviceService;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.openplan.IOpenPlanDeviceRelation;
 import com.yihuacomputer.fish.api.openplan.IOpenPlanService;
+import com.yihuacomputer.fish.api.parameter.IElementService;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNoticeService;
 import com.yihuacomputer.fish.api.relation.IDeviceGroupRelation;
 import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
@@ -31,6 +32,7 @@ import com.yihuacomputer.fish.machine.service.DevicePersonRelation;
 import com.yihuacomputer.fish.machine.service.DeviceService;
 import com.yihuacomputer.fish.machine.service.OpenPlanDeviceRelation;
 import com.yihuacomputer.fish.machine.service.OpenPlanService;
+import com.yihuacomputer.fish.parameter.service.ElementService;
 
 
 @Configuration
@@ -94,16 +96,21 @@ public class MachineModule {
 	public IAtmTypeAtmModuleRelationService atmTypeAtmModuleRelationService(){
 		return new AtmTypeAtmModuleRelationService();
 	}
-	
+
 	@Bean
 	public IOpenPlanDeviceRelation openPlanDeviceRelation(){
 		return new OpenPlanDeviceRelation();
 	}
-	
+
 	@Bean
 	public IOpenPlanService openPlanService(){
 		return new OpenPlanService();
 
+	}
+
+	@Bean
+	public IElementService elementService(){
+		return new ElementService();
 	}
 
 }

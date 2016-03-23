@@ -99,6 +99,7 @@ Ext.define('Eway.controller.Main', {
 			this.openSoftMenu(code,text);
 			this.openCaseMenu(code,text);
 			this.openReportMenu(code,text);
+			this.openParameterMenu(code,text);
 		}
 	},
 
@@ -191,11 +192,11 @@ Ext.define('Eway.controller.Main', {
 		}else if(code == 'remoteCommand') {
 			this.activeController('monitor.device.RemoteCommand', text);
 		}else if(code == "monitor_new_trans"){
-			
+
 			// 新交易监控
 			this.activeController('monitor.newTransaction.NewTransactionMonitor',text);
 		}else if(code == "transCodeColor"){
-			
+
 			// 返回码设置
 			this.activeController('monitor.transaction.TransactionColorSet',text);
 		}
@@ -281,6 +282,11 @@ Ext.define('Eway.controller.Main', {
 			this.activeController('report.baseReport.CaseStatisticsReport',text);
 		}else if(code =="caseTrendReport"){
 			this.activeController('report.baseReport.CaseTrendReport',text);
+		}
+	},
+	openParameterMenu : function(code,text){
+		if(code == "parameterElement"){
+			this.activeController('parameter.element.Element',text);
 		}
 	},
 
