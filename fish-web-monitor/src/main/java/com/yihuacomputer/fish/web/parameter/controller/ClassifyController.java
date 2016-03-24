@@ -110,6 +110,9 @@ public class ClassifyController {
 		try {
 			logger.info("checkclassifyName" + name);
 			IClassify classify = classifyService.get(name.trim());
+			if(classify == null){
+				return false;
+			}
 			if (classify.getId() == id) {
 				return false;
 			} else {

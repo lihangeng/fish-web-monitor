@@ -39,9 +39,6 @@ public class ClassifyService implements IClassifyService {
 	@Transactional(readOnly = true)
 	public IClassify get(String name) {
 		Classify classify = (Classify) dao.getCriteria(Classify.class).add(Restrictions.eq("name", name)).uniqueResult();
-		if (classify == null) {
-			throw new NotFoundException(messageSourceVersion.getMessage("system.classify.notExist", new Object[]{name}, FishCfg.locale));
-		}
 		return classify;
 	}
 
