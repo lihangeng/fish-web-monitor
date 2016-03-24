@@ -1,14 +1,20 @@
 package com.yihuacomputer.fish.parameter.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.parameter.IClassify;
 import com.yihuacomputer.fish.api.parameter.IClassifyService;
+import com.yihuacomputer.fish.api.parameter.IElement;
 import com.yihuacomputer.fish.parameter.entity.Classify;
+import com.yihuacomputer.fish.parameter.entity.Element;
 
+@Service
+@Transactional
 public class ClassifyService implements IClassifyService {
 
 	@Autowired
@@ -21,32 +27,34 @@ public class ClassifyService implements IClassifyService {
 
 	@Override
 	public IClassify get(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.get(id, Classify.class);
 	}
 
 	@Override
 	public IClassify get(String name) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public IClassify add(IClassify classify) {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.save(classify);
 	}
 
 	@Override
 	public void remove(long id) {
-		// TODO Auto-generated method stub
-
+		dao.delete(id, Classify.class);
 	}
 
 	@Override
 	public void update(IClassify classify) {
-		// TODO Auto-generated method stub
+		dao.update(interface2Entity(classify, true));
+	}
 
+	private Classify interface2Entity(IClassify classify, boolean load) {
+		if (classify instanceof Classify) {
+			return (Classify) classify;
+		}
+		return null;
 	}
 
 	@Override

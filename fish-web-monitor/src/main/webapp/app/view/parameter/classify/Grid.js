@@ -19,7 +19,7 @@ Ext.define('Eway.view.parameter.classify.Grid', {
 				text: EwayLocale.button.add,
 				glyph : 0xf067,
 				action: 'add',
-				code : 'atmBrandAdd',
+				code : 'paramClassifyAdd',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
@@ -27,7 +27,7 @@ Ext.define('Eway.view.parameter.classify.Grid', {
 				text: EwayLocale.button.update,
 				glyph : 0xf040,
 				action:'update',
-				code : 'atmBrandUpdate',
+				code : 'paramClassifyUpdate',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
@@ -35,7 +35,7 @@ Ext.define('Eway.view.parameter.classify.Grid', {
 				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
-				code : 'atmBrandDel',
+				code : 'paramClassifyDel',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
@@ -45,12 +45,12 @@ Ext.define('Eway.view.parameter.classify.Grid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '参数名',
-				dataIndex : 'paramName',
+				header : '参数类名',
+				dataIndex : 'name',
 				flex : 1
 			},{
-				header : '参数备注',
-				dataIndex : 'paramRemark',
+				header : '参数类备注',
+				dataIndex : 'remark',
 				flex : 2
 			}],
 			bbar : Ext.create('Ext.PagingToolbar',{
