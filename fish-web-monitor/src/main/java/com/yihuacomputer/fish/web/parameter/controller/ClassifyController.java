@@ -89,6 +89,11 @@ public class ClassifyController {
 		logger.info("update classify: classify.id = " + id);
 		ModelMap result = new ModelMap();
 		IClassify classify = classifyService.get(id);
+		if(id == 1){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, "更改失败：默认分类无法更改。");
+			return result;
+		}
 		request.translate(classify);
 		classify.setId(id);
 		classifyService.update(classify);

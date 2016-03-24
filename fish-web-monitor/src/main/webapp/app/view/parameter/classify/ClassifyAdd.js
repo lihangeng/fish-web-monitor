@@ -25,15 +25,19 @@ Ext.define('Eway.view.parameter.classify.ClassifyAdd', {
 					fieldLabel : '<font color="red">*</font>参数类名',// +EwayLocale.machine.atmGroup.groupName,
 					xtype : 'textfield',
 					name : 'name',
-					maxLength : 30,
+					regex: /^[a-zA-Z0-9\u4E00-\u9FA5][a-zA-Z0-9-_\.\u4E00-\u9FA5]{0,19}$/,
+					regexText: '只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、中文、减号‘-’、下划线‘_’、点号‘.’， 只能以中文、字母或数字开头！',
+					maxLength : 20,
 					msgTarget : 'side',
 					allowBlank : false
 				},{
 				    xtype : 'textarea',
 				    fieldLabel : '参数类备注',// EwayLocale.machine.atmGroup.note,
 				    name : 'remark',
+					regex: /^[a-zA-Z0-9\u4E00-\u9FA5][a-zA-Z0-9-_\.\u4E00-\u9FA5，。“”（）]{0,39}$/,
+					regexText: '只能输入1到40字母‘a-z’或‘A-Z’、数字‘0-9’、中文、减号‘-’、下划线‘_’、点号‘.’、逗号、句号、括号、双引号， 只能以中文、字母或数字开头！',
 				    autoScroll : true,
-					maxLength :30,
+					maxLength :40,
 					msgTarget : 'side',
 					allowBlank : true
 				}],
