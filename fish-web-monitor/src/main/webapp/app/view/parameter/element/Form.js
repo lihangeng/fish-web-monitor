@@ -12,6 +12,7 @@ Ext.define('Eway.view.parameter.element.Form',{
 	           'Eway.view.field.paramElement.ParamBelongs',
 	           'Eway.view.field.paramElement.CreateTime',
 	           'Eway.view.field.paramElement.LastModifyTime',
+	           'Eway.view.field.paramElement.Remark'
 	           ],
 	defaults: {
 					labelWidth: 120,
@@ -20,6 +21,7 @@ Ext.define('Eway.view.parameter.element.Form',{
 					width: 400
 				},
 	initComponent : function(){
+		var rights=Ext.create('Eway.store.parameter.element.ParamRights');
 		Ext.apply(this,{
 			defaults: {
 				anchor : '90%',
@@ -36,12 +38,12 @@ Ext.define('Eway.view.parameter.element.Form',{
 //				fieldLabel: '<font color="red">*</font> '+EwayLocale.machine.atmBrand.name,
 				xtype : 'field_paramElement_ParamValue',
 				maxLength : 20,
-//				allowBlank: false
+				allowBlank: false
 		    },{
 //				fieldLabel: '<font color="red">*</font> '+EwayLocale.machine.atmBrand.name,
 				xtype : 'field_paramElement_ParamType',
 				maxLength : 20,
-//				allowBlank: false
+				allowBlank: false
 		   },{
 //					fieldLabel: '<font color="red">*</font>'+ EwayLocale.machine.atmBrand.country,
 					xtype : 'field_paramElement_VersionNo',
@@ -57,10 +59,15 @@ Ext.define('Eway.view.parameter.element.Form',{
 					xtype : 'field_paramElement_ParamRights',
 //					regex:/(^[0-9]{3,4}[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^[0-9]{3,4}\-[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^\([0-9]{3,4}\)[0-9]{3,8}$)|(^0{0,1}13[0-9]{9}$)/,
 //					regexText: EwayLocale.tip.phone
+					store:rights
 			},{
 					xtype : 'field_paramElement_ParamBelongs',
 					maxLength : 60
-			},{
+			},
+			{
+				xtype : 'field_paramElement_Remark',
+				maxLength : 60
+		    },{
 				    xtype : 'field_paramElement_CreateTime',
 				    maxLength : 60
 		    },{

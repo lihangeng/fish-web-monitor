@@ -68,11 +68,31 @@ Ext.define('Eway.view.parameter.element.Grid', {
 			},{
 				header : '参数权限',
 				dataIndex : 'paramRights',
-				flex : 2
+				flex : 2,
+				width :180,
+				sortable:true,
+				renderer:function(value,metadata,record){
+					if(value==1){
+						return "是";
+					}
+					if(value==2){
+						return "否";
+					}
+				}
 			},{
 				header : '归属的应用系统',
 				dataIndex : 'paramBelongs',
-				flex : 2
+				flex : 2,
+				width :180,
+				sortable:true,
+				renderer:function(value,metadata,record){
+					if(value==1){
+						return "ATMC系统";
+					}
+					if(value==2){
+						return "监控客户端";
+					}
+				}
 			},{
 				header : '备注',
 				dataIndex : 'remark',
@@ -83,7 +103,7 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				flex : 2
 			},{
 				header : '最后修改时间',
-				dataIndex : 'LastModifyTime',
+				dataIndex : 'lastModifyTime',
 				flex : 2
 			}
 			],
