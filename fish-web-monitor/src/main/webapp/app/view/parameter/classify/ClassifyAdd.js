@@ -22,7 +22,7 @@ Ext.define('Eway.view.parameter.classify.ClassifyAdd', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font>参数名',// +EwayLocale.machine.atmGroup.groupName,
+					fieldLabel : '<font color="red">*</font>参数类名',// +EwayLocale.machine.atmGroup.groupName,
 					xtype : 'textfield',
 					name : 'name',
 					maxLength : 30,
@@ -30,7 +30,7 @@ Ext.define('Eway.view.parameter.classify.ClassifyAdd', {
 					allowBlank : false
 				},{
 				    xtype : 'textarea',
-				    fieldLabel : '参数备注',// EwayLocale.machine.atmGroup.note,
+				    fieldLabel : '参数类备注',// EwayLocale.machine.atmGroup.note,
 				    name : 'remark',
 				    autoScroll : true,
 					maxLength :30,

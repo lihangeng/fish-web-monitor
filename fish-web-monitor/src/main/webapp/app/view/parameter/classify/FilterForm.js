@@ -11,7 +11,7 @@ Ext.define('Eway.view.parameter.classify.FilterForm', {
 					xtype : 'textfield',
 					labelAlign : 'right',
 					name : 'name',
-					fieldLabel : '参数名',
+					fieldLabel : '参数类名',
 					msgTarget : 'side'
 				}]
 			},{
@@ -21,7 +21,7 @@ Ext.define('Eway.view.parameter.classify.FilterForm', {
 					// labelWidth: 110,
 					name : 'remark',
 					labelAlign : 'right',
-					fieldLabel :'参数备注',
+					fieldLabel :'参数类备注',
 					msgTarget : 'side'
 				}]
 			}]
