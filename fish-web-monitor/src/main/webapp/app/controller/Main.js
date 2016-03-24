@@ -295,7 +295,7 @@ Ext.define('Eway.controller.Main', {
 			this.activeController('parameter.template.Template',text);
 		}else if(code =="paramClassify"){
 			this.activeController('parameter.classify.Classify',text);
-		}else if(code='devParameter'){
+		}else if(code=='devParameter'){
 			this.activeController('parameter.devParameter.DevParameter',text);
 		}
 	},
