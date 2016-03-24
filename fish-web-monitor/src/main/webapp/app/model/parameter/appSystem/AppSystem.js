@@ -1,4 +1,4 @@
-Ext.define('Eway.model.parameter.AppSystem',{
+Ext.define('Eway.model.parameter.appSystem.AppSystem',{
 	extend :'Ext.data.Model',
 	fields:['id','name','configName','configForm','configPath','remark'],
 

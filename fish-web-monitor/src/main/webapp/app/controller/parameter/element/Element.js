@@ -1,10 +1,13 @@
 Ext.define('Eway.controller.parameter.element.Element', {
 			extend : 'Eway.controller.base.FishController',
 
-			stores : ['parameter.element.Element'],
-			models : ['parameter.element.Element'],
+			stores : ['parameter.element.Element',
+			          'parameter.element.ParamRights',
+			          'parameter.element.ParamBelongs'
+			          ],
+			models : ['parameter.element.Element','Dict'],
 
-			views : ['parameter.element.View'],
+			views : ['parameter.element.View','parameter.element.Form'],
 
 			refs : [{
 						ref : 'ewayView',
@@ -18,40 +21,41 @@ Ext.define('Eway.controller.parameter.element.Element', {
 						ref : 'elementGrid',
 						selector : 'element_Grid'
 					}
-//					, {
-//						ref : 'addWin',
-//						selector : 'atmBrand_add'
-//					}, {
-//						ref : 'updateWin',
-//						selector : 'atmBrand_update'
-//					}
+					, {
+						ref : 'addWin',
+						selector : 'element_add'
+					}, {
+						ref : 'updateWin',
+						selector : 'element_update'
+					}
 					],
 
-//			formConfig : {
-//				form : 'Eway.view.machine.atmBrand.Form',
-//				xtype : 'machine_atmBrand_form',
-//				width: 500,
-//				height:280,
-//				title : EwayLocale.machine.atmBrand.title
-//			},
+			formConfig : {
+				form : 'Eway.view.parameter.element.Form',
+				xtype : 'parameter_element_form',
+				width: 500,
+				height:280,
+				title : EwayLocale.machine.atmBrand.title
+			},
 
-//			init : function() {
-//				this.initBaseControl();
-//				this.control({
-//							'atmBrand_AtmBrandView button[action=query]' : {
-//								click : this.onQuery
-//							},
-//							'atmBrand_AtmBrandView button[action=add]' : {
-//								click : this.onAdd,
-//								scope : this
-//							},
-//							'atmBrand_AtmBrandView button[action=update]' : {
-//								click : this.onUpdate,
-//								scope : this
-//							},
-//							'atmBrand_AtmBrandView button[action=remove]' : {
-//								click : this.onRemove
-//							}
-//						});
-//			}
+			init : function() {
+				this.initBaseControl();
+				this.control({
+							'element_View button[action=query]' : {
+								click : this.onQuery
+							},
+							'element_View button[action=add]' : {
+								click : this.onAdd,
+								scope : this
+							},
+							'element_View button[action=update]' : {
+								click : this.onUpdate,
+								scope : this
+							},
+							'element_View button[action=remove]' : {
+								click : this.onRemove
+							}
+						});
+			},
+
 });

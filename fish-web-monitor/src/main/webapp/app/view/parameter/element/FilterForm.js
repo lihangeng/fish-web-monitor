@@ -15,7 +15,7 @@ Ext.define('Eway.view.parameter.element.FilterForm', {
 				items : [{
 					xtype : 'textfield',
 					labelAlign : 'right',
-					name : 'name',
+					name : 'paramName',
 					fieldLabel : '参数名',
 					msgTarget : 'side'
 				}]
@@ -24,6 +24,7 @@ Ext.define('Eway.view.parameter.element.FilterForm', {
 				items : [{
 					xtype : 'textfield',
 					labelWidth: 110,
+					name : 'paramValue',
 					fieldLabel :'参数值',
 					msgTarget : 'side',
 					labelAlign : 'right'

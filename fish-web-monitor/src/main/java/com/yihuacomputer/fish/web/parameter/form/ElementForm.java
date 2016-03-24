@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.parameter.IElement;
 
 public class ElementForm {
@@ -16,8 +17,8 @@ public class ElementForm {
 	private String paramRights;
 	private String paramBelongs;
 	private String remark;
-	private Date createTime;
-	private Date lastModifyTime;
+	private String createTime;
+	private String lastModifyTime;
 
 	public ElementForm(){
 
@@ -25,30 +26,31 @@ public class ElementForm {
 
 	public ElementForm(IElement element){
 		setId(element.getId());
-		setName(element.getName());
-		setValue(element.getValue());
-		setType(element.getType());
-		setClassify(element.getClassify());
+		setParamName(element.getParamName());
+		setParamValue(element.getParamValue());
+		setParamType(element.getParamType());
+		setParamClassify(element.getParamClassify());
 		setVersionNo(element.getVersionNo());
-		setParamRights(element.getRights());
-		setParamBelongs(element.getBelongs());
+		setParamRights(element.getParamRights());
+		setParamBelongs(element.getParamBelongs());
 		setRemark(element.getRemark());
-		setCreateTime(element.getCreateTime());
-		setLastModifyTime(element.getLastModifyTime());
+		setCreateTime(nullString(element.getCreateTime()));
+		setLastModifyTime(nullString(element.getLastModifyTime()));
+
 	}
 
 	public void translate(IElement element){
-		element.setId(getId());
-		element.setName(getName());
-		element.setValue(getValue());
-		element.setType(getType());
-		element.setClassify(getClassify());
+//		element.setId(getId());
+		element.setParamName(getParamName());
+		element.setParamValue(getParamValue());
+		element.setParamType(getParamType());
+		element.setParamClassify(getParamClassify());
 		element.setVersionNo(getVersionNo());
-		element.setRights(getParamRights());
-		element.setBelongs(getParamBelongs());
+		element.setParamRights(getParamRights());
+		element.setParamBelongs(getParamBelongs());
 		element.setRemark(getRemark());
-		element.setCreateTime(getCreateTime());
-		element.setLastModifyTime(getLastModifyTime());
+		element.setCreateTime(this.nullDate(getCreateTime()));
+		element.setLastModifyTime(this.nullDate(getLastModifyTime()));
 	}
 
 	public static List<ElementForm> convert(List<IElement> list) {
@@ -59,93 +61,112 @@ public class ElementForm {
 		return result;
 	}
 
-	public long getId(){
+	private Date nullDate(String string) {
+		if (string == null || "".equals(string)) {
+			return null;
+		}
+		String str="2014-00-00 00:00:00";
+		if(string.contains("T")){
+			str=string.replace("T", " ");
+		}
+		return DateUtils.getTimestamp(str);
+	}
+
+	private String nullString(Date date) {
+		if (date == null) {
+			return null;
+		}
+		return DateUtils.getTimestamp(date);
+	}
+
+	public long getId() {
 		return id;
 	}
 
-	public void setId(long id){
-		this.id=id;
+	public void setId(long id) {
+		this.id = id;
 	}
 
-	public String getName(){
+	public String getParamName() {
 		return paramName;
 	}
 
-	public void setName(String paramName){
-		this.paramName=paramName;
+	public void setParamName(String paramName) {
+		this.paramName = paramName;
 	}
 
-	public String getValue(){
+	public String getParamValue() {
 		return paramValue;
 	}
 
-	public void setValue(String paramValue){
-		this.paramValue=paramValue;
+	public void setParamValue(String paramValue) {
+		this.paramValue = paramValue;
 	}
 
-	public String getType(){
+	public String getParamType() {
 		return paramType;
 	}
 
-	public void setType(String paramType){
-		this.paramType=paramType;
+	public void setParamType(String paramType) {
+		this.paramType = paramType;
 	}
 
-	public String getClassify(){
+	public String getParamClassify() {
 		return paramClassify;
 	}
 
-	public void setClassify(String paramClassify){
-		this.paramClassify=paramClassify;
+	public void setParamClassify(String paramClassify) {
+		this.paramClassify = paramClassify;
 	}
 
-	public String getVersionNo(){
+	public String getVersionNo() {
 		return versionNo;
 	}
 
-	public void setVersionNo(String versionNo){
-		this.versionNo=versionNo;
+	public void setVersionNo(String versionNo) {
+		this.versionNo = versionNo;
 	}
 
-	public String getParamRights(){
+	public String getParamRights() {
 		return paramRights;
 	}
 
-	public void setParamRights(String paramRights){
-		this.paramRights=paramRights;
+	public void setParamRights(String paramRights) {
+		this.paramRights = paramRights;
 	}
 
-	public String getParamBelongs(){
+	public String getParamBelongs() {
 		return paramBelongs;
 	}
 
-	public void setParamBelongs(String paramBelongs){
-		this.paramBelongs=paramBelongs;
+	public void setParamBelongs(String paramBelongs) {
+		this.paramBelongs = paramBelongs;
 	}
 
-	public String getRemark(){
+	public String getRemark() {
 		return remark;
 	}
 
-	public void setRemark(String remark){
-		this.remark=remark;
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 
-	public Date getCreateTime(){
+	public String getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime){
-		this.createTime =createTime;
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
 	}
 
-	public Date getLastModifyTime(){
+	public String getLastModifyTime() {
 		return lastModifyTime;
 	}
 
-	public void setLastModifyTime(Date lastModifyTime){
-		this.lastModifyTime=lastModifyTime;
+	public void setLastModifyTime(String lastModifyTime) {
+		this.lastModifyTime = lastModifyTime;
 	}
+
 
 
 

@@ -5,7 +5,7 @@ Ext.define('Eway.view.parameter.appSystem.Grid',{
 	border : false,
 	
 	initComponent : function(){
-		var store=Ext.create('Eway.store.parameter.AppSystem');
+		var store=Ext.create('Eway.store.parameter.appSystem.AppSystem');
 		store.loadPage(1);
 		Ext.apply(this,{
 			store:store,

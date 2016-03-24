@@ -1,4 +1,4 @@
-Ext.define('Eway.store.parameter.FileForm',{
+Ext.define('Eway.store.parameter.appSystem.FileForm',{
 	extend :'Ext.data.Store',
 	
 	model:'Eway.model.Dict',

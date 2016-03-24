@@ -20,7 +20,7 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				text: EwayLocale.button.add,
 				glyph : 0xf067,
 				action: 'add',
-				code : 'atmBrandAdd',
+				code : 'elementAdd',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
@@ -28,7 +28,7 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				text: EwayLocale.button.update,
 				glyph : 0xf040,
 				action:'update',
-				code : 'atmBrandUpdate',
+				code : 'elementUpdate',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
@@ -36,7 +36,7 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				text: EwayLocale.button.remove,
 				glyph : 0xf014,
 				action: 'remove',
-				code : 'atmBrandDel',
+				code : 'elementDel',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
@@ -46,7 +46,7 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '参数名',
+				header : '参数名称',
 				dataIndex : 'paramName',
 				flex : 1
 			},{
@@ -54,43 +54,58 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				dataIndex : 'paramValue',
 				flex : 2
 			},{
-				header : '分类',
-				dataIndex : 'paramValue',
+				header : '参数值类型',
+				dataIndex : 'paramType',
+				flex : 2
+			},{
+				header : '参数分类',
+				dataIndex : 'paramClassify',
 				flex : 2
 			},{
 				header : '版本号',
-				dataIndex : 'paramValue',
+				dataIndex : 'versionNo',
 				flex : 2
 			},{
 				header : '参数权限',
-				dataIndex : 'paramValue',
-				flex : 2
+				dataIndex : 'paramRights',
+				flex : 2,
+				width :180,
+				sortable:true,
+				renderer:function(value,metadata,record){
+					if(value==1){
+						return "是";
+					}
+					if(value==2){
+						return "否";
+					}
+				}
+			},{
+				header : '归属的应用系统',
+				dataIndex : 'paramBelongs',
+				flex : 2,
+				width :180,
+				sortable:true,
+				renderer:function(value,metadata,record){
+					if(value==1){
+						return "ATMC系统";
+					}
+					if(value==2){
+						return "监控客户端";
+					}
+				}
 			},{
 				header : '备注',
-				dataIndex : 'paramValue',
+				dataIndex : 'remark',
 				flex : 2
 			},{
 				header : '创建时间',
-				dataIndex : 'paramValue',
+				dataIndex : 'createTime',
 				flex : 2
 			},{
 				header : '最后修改时间',
-				dataIndex : 'paramValue',
+				dataIndex : 'lastModifyTime',
 				flex : 2
 			}
-//			,{
-//				header : EwayLocale.machine.atmBrand.hotline1,
-//				dataIndex : 'hotline1',
-//				flex : 1
-//			},{
-//				header : EwayLocale.machine.atmBrand.hotline2,
-//				dataIndex : 'hotline2',
-//				flex : 1
-//			},{
-//				header : EwayLocale.machine.atmBrand.address,
-//				dataIndex : 'address',
-//				flex : 3
-//			}
 			],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,

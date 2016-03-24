@@ -1,8 +1,8 @@
-Ext.define('Eway.controller.parameter.AppSystem',{
+Ext.define('Eway.controller.parameter.appSystem.AppSystem',{
 	extend :'Eway.controller.base.FishController',
 	
-	stores :['parameter.AppSystem'],
-	models :['parameter.AppSystem'],
+	stores :['parameter.appSystem.AppSystem'],
+	models :['parameter.appSystem.AppSystem'],
 	views  :['parameter.appSystem.View','parameter.appSystem.Update'],
 	
 	refs :[{

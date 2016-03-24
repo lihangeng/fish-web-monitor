@@ -58,11 +58,11 @@ public class Element implements IElement, Serializable {
 	@Column(name="REMARK",length=60)
 	private String remark;
 
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="CREATE_TIME")
 	private Date createTime;
 
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="LAST_MODIFY_TIME")
 	private Date lastModifyTime;
 
@@ -83,51 +83,51 @@ public class Element implements IElement, Serializable {
 	}
 
 	@Override
-	public String getName()
+	public String getParamName()
 	{
 		return paramName;
 	}
 
 	@Override
-	public void setName(String name)
+	public void setParamName(String paramName)
 	{
-		this.paramName=name;
+		this.paramName=paramName;
 	}
 
 	@Override
-	public String getValue()
+	public String getParamValue()
 	{
 		return paramValue;
 	}
 
 	@Override
-	public void setValue(String value)
+	public void setParamValue(String paramValue)
 	{
-       this.paramValue=value;
+       this.paramValue=paramValue;
 	}
 
 	@Override
-	public String getType()
+	public String getParamType()
 	{
 		return paramType;
 	}
 
 	@Override
-	public void setType(String type)
+	public void setParamType(String paramType)
 	{
-        this.paramType=type;
+        this.paramType=paramType;
 	}
 
 	@Override
-	public String getClassify()
+	public String getParamClassify()
 	{
 		return paramClassify;
 	}
 
 	@Override
-	public void setClassify(String classify)
+	public void setParamClassify(String paramClassify)
 	{
-        this.paramClassify=classify;
+        this.paramClassify=paramClassify;
 	}
 
 	@Override
@@ -143,27 +143,27 @@ public class Element implements IElement, Serializable {
 	}
 
 	@Override
-	public String getRights()
+	public String getParamRights()
 	{
 		return paramRights;
 	}
 
 	@Override
-	public void setRights(String rights)
+	public void setParamRights(String paramRights)
 	{
-       this.paramRights=rights;
+       this.paramRights=paramRights;
 	}
 
 	@Override
-	public String getBelongs()
+	public String getParamBelongs()
 	{
 		return paramBelongs;
 	}
 
 	@Override
-	public void setBelongs(String belongs)
+	public void setParamBelongs(String paramBelongs)
 	{
-        this.paramBelongs=belongs;
+        this.paramBelongs=paramBelongs;
 	}
 
 	@Override

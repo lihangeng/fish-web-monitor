@@ -15,6 +15,7 @@ import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.openplan.IOpenPlanDeviceRelation;
 import com.yihuacomputer.fish.api.openplan.IOpenPlanService;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
+import com.yihuacomputer.fish.api.parameter.IClassifyService;
 import com.yihuacomputer.fish.api.parameter.IElementService;
 import com.yihuacomputer.fish.api.parameter.ITemplateService;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNoticeService;
@@ -35,6 +36,7 @@ import com.yihuacomputer.fish.machine.service.DeviceService;
 import com.yihuacomputer.fish.machine.service.OpenPlanDeviceRelation;
 import com.yihuacomputer.fish.machine.service.OpenPlanService;
 import com.yihuacomputer.fish.parameter.service.AppSystemService;
+import com.yihuacomputer.fish.parameter.service.ClassifyService;
 import com.yihuacomputer.fish.parameter.service.ElementService;
 import com.yihuacomputer.fish.parameter.service.TemplateService;
 
@@ -126,6 +128,11 @@ public class MachineModule {
 	@Bean
 	public ITemplateService templateService(){
 		return new TemplateService();
+	}
+	
+	@Bean
+	public IClassifyService classifyService(){
+		return new ClassifyService();
 	}
 
 }

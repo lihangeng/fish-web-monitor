@@ -2,13 +2,13 @@ Ext.define('Eway.view.parameter.appSystem.FilterForm',{
 	extend :'Eway.view.base.FilterForm',
 	alias : 'widget.parameter_appSystem_filterForm',
 	
-	store:['Eway.store.parameter.FileForm'],
+	store:['Eway.store.parameter.appSystem.FileForm'],
 	requires:['Eway.view.parameter.appSystem.field.FileFormCombox'],
 	
 	height :50,
 	
 	initComponent : function(){
-		var format=Ext.create('Eway.store.parameter.FileForm');
+		var format=Ext.create('Eway.store.parameter.appSystem.FileForm');
 		Ext.apply(this,{
 			layout :'column',
 			items :[{
