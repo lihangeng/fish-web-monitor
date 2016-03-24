@@ -13,7 +13,7 @@ Ext.define('Eway.view.parameter.template.Grid', {
 			initRegion : true,
 			store : store,
 			tbar: ['->',{
-				text:EwayLocale.button.search,
+				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action:'query'
 			},{
@@ -40,6 +40,14 @@ Ext.define('Eway.view.parameter.template.Grid', {
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
+			},{
+				text: '关联设备',
+				glyph : 0xf014,
+				action: 'link',
+				code : 'templateDevRelation',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}],
 			viewConfig : {
 				forceFit : true,
@@ -50,23 +58,10 @@ Ext.define('Eway.view.parameter.template.Grid', {
 				dataIndex : 'name',
 				flex : 1
 			},{
-				header : '参数值',
+				header : '描述',
 				dataIndex : 'remark',
 				flex : 1
 			}
-//			,{
-//				header : EwayLocale.machine.atmBrand.hotline1,
-//				dataIndex : 'hotline1',
-//				flex : 1
-//			},{
-//				header : EwayLocale.machine.atmBrand.hotline2,
-//				dataIndex : 'hotline2',
-//				flex : 1
-//			},{
-//				header : EwayLocale.machine.atmBrand.address,
-//				dataIndex : 'address',
-//				flex : 3
-//			}
 			],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,
