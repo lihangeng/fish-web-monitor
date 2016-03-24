@@ -18,10 +18,10 @@ Ext.define('Eway.view.parameter.classify.FilterForm', {
 				columnWidth : .45,
 				items : [{
 					xtype : 'textfield',
-					labelWidth: 110,
+					// labelWidth: 110,
+					labelAlign : 'right',
 					fieldLabel :'参数备注',
-					msgTarget : 'side',
-					labelAlign : 'right'
+					msgTarget : 'side'
 				}]
 			}]
 		});

@@ -7,33 +7,33 @@ public interface IElement {
 
     public void setId(long id);
 
-    public String getName();
+    public String getParamName();
 
-    public void setName(String name);
+    public void setParamName(String name);
 
-    public String getValue();
+    public String getParamValue();
 
-    public void setValue(String value);
+    public void setParamValue(String value);
 
-    public String getType();
+    public String getParamType();
 
-    public void setType(String type);
+    public void setParamType(String type);
 
-    public String getClassify();
+    public String getParamClassify();
 
-    public void setClassify(String classify);
+    public void setParamClassify(String classify);
 
     public String getVersionNo();
 
     public void setVersionNo(String no);
 
-    public String getRights();
+    public String getParamRights();
 
-    public void setRights(String rights);
+    public void setParamRights(String rights);
 
-    public String getBelongs();
+    public String getParamBelongs();
 
-    public void setBelongs(String belongs);
+    public void setParamBelongs(String belongs);
 
     public Date getCreateTime();
 
