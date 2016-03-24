@@ -1,17 +1,19 @@
 package com.yihuacomputer.fish.parameter.service;
 
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.exception.NotFoundException;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.parameter.IClassify;
 import com.yihuacomputer.fish.api.parameter.IClassifyService;
-import com.yihuacomputer.fish.api.parameter.IElement;
 import com.yihuacomputer.fish.parameter.entity.Classify;
-import com.yihuacomputer.fish.parameter.entity.Element;
 
 @Service
 @Transactional
@@ -19,6 +21,9 @@ public class ClassifyService implements IClassifyService {
 
 	@Autowired
 	private IGenericDao dao;
+
+	@Autowired
+	private MessageSource messageSourceVersion;
 
 	@Override
 	public IClassify make() {
@@ -31,8 +36,13 @@ public class ClassifyService implements IClassifyService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public IClassify get(String name) {
-		return null;
+		Classify classify = (Classify) dao.getCriteria(Classify.class).add(Restrictions.eq("name", name)).uniqueResult();
+		if (classify == null) {
+			throw new NotFoundException(messageSourceVersion.getMessage("system.classify.notExist", new Object[]{name}, FishCfg.locale));
+		}
+		return classify;
 	}
 
 	@Override

@@ -21,9 +21,7 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.parameter.IClassify;
 import com.yihuacomputer.fish.api.parameter.IClassifyService;
-import com.yihuacomputer.fish.api.parameter.IElement;
 import com.yihuacomputer.fish.web.parameter.form.ClassifyForm;
-import com.yihuacomputer.fish.web.parameter.form.ElementForm;
 
 @Controller
 @RequestMapping("/parameter/classify")
@@ -52,11 +50,17 @@ public class ClassifyController {
 	ModelMap add(@RequestBody ClassifyForm request){
 		logger.info("add classify");
 		ModelMap result=new ModelMap();
-		IClassify classify =classifyService.make();
-		request.translate(classify);
-		classifyService.add(classify);
-		result.put(FishConstant.SUCCESS, true);
-		result.addAttribute(FishConstant.DATA, new ClassifyForm(classify));
+		boolean isExist = this.isExistClassifyName(request.getId(), request.getName());
+		if(isExist){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, "增加失败：分类名称已存在。");
+		} else {
+			IClassify classify =classifyService.make();
+			request.translate(classify);
+			classifyService.add(classify);
+			result.put(FishConstant.SUCCESS, true);
+			result.addAttribute(FishConstant.DATA, new ClassifyForm(classify));
+		}
 		return result;
 	}
 	
@@ -67,12 +71,12 @@ public class ClassifyController {
 		ModelMap result = new ModelMap();
 		try {
 			if(id == 1){
-				result.addAttribute(FishConstant.ERROR_MSG, false);
+				result.addAttribute(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, "删除失败：默认分类无法删除。");
 				return result;
-			} else {
-				classifyService.remove(id);
-				result.addAttribute(FishConstant.SUCCESS, true);
 			}
+			classifyService.remove(id);
+			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
@@ -91,6 +95,29 @@ public class ClassifyController {
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, request);
 		return result;
+	}
+
+	/**
+	 * 判断分类名称是否重复
+	 *
+	 * @param id
+	 *            分类Id
+	 * @param name
+	 *            分类名称
+	 * @return
+	 */
+	private boolean isExistClassifyName(long id, String name) {
+		try {
+			logger.info("checkclassifyName" + name);
+			IClassify classify = classifyService.get(name.trim());
+			if (classify.getId() == id) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (Exception e) {
+			return false;
+		}
 	}
 
 	private IFilter request2filter(WebRequest request) {
