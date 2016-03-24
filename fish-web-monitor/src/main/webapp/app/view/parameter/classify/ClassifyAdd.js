@@ -31,7 +31,7 @@ Ext.define('Eway.view.parameter.classify.ClassifyAdd', {
 				},{
 				    xtype : 'textarea',
 				    fieldLabel : '参数备注',// EwayLocale.machine.atmGroup.note,
-				    name : 'note',
+				    name : 'remark',
 				    autoScroll : true,
 					maxLength :30,
 					msgTarget : 'side',
