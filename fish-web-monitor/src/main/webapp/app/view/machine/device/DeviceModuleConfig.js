@@ -25,6 +25,7 @@ Ext.define('Eway.view.machine.device.DeviceModuleConfig', {
 		Ext.apply(this, {
 			items : [ {
 				region : 'north',
+				height:240,
 				xtype : 'machine_device_module_property'
 			}, {
 				region : 'center',
