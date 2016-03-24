@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.web.parameter.controller;
 
+import java.util.Date;
 import java.util.Iterator;
 
 import org.slf4j.Logger;
@@ -19,10 +20,9 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.fish.api.atm.IAtmCatalog;
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.parameter.IElement;
 import com.yihuacomputer.fish.api.parameter.IElementService;
-import com.yihuacomputer.fish.web.machine.form.AtmCatalogForm;
 import com.yihuacomputer.fish.web.parameter.form.ElementForm;
 
 @Controller
@@ -54,6 +54,7 @@ public class ElementController {
 	ModelMap add(@RequestBody ElementForm request){
 		logger.info("add elementelement");
 		ModelMap result=new ModelMap();
+		System.out.println(request.getCreateTime().getClass().getSimpleName());
 		IElement element =elementService.make();
 		request.translate(element);
 		elementService.add(element);
@@ -82,12 +83,30 @@ public class ElementController {
 	ModelMap update(@PathVariable long id, @RequestBody ElementForm request) {
 		logger.info("update elemet: elemet.id = " + id);
 		ModelMap result = new ModelMap();
+		request.setCreateTime(convert(request.getCreateTime()));
+		request.setLastModifyTime(convert(request.getLastModifyTime()));
 		IElement element = elementService.get(id);
 		request.translate(element);
 		elementService.update(element);
+
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, request);
 		return result;
+	}
+
+
+	private String convert(String string) {
+		if (string == null || "".equals(string)) {
+			return null;
+		}else{
+			if(string.contains("T")){
+				String str=string.replace("T", " ");
+				return str;
+			}
+
+		}
+		return null;
+
 	}
 
 	private IFilter request2filter(WebRequest request) {

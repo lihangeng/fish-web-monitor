@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.parameter.IElement;
 
 public class ElementForm {
@@ -16,8 +17,8 @@ public class ElementForm {
 	private String paramRights;
 	private String paramBelongs;
 	private String remark;
-	private Date createTime;
-	private Date lastModifyTime;
+	private String createTime;
+	private String lastModifyTime;
 
 	public ElementForm(){
 
@@ -33,12 +34,13 @@ public class ElementForm {
 		setParamRights(element.getParamRights());
 		setParamBelongs(element.getParamBelongs());
 		setRemark(element.getRemark());
-		setCreateTime(element.getCreateTime());
-		setLastModifyTime(element.getLastModifyTime());
+		setCreateTime(nullString(element.getCreateTime()));
+		setLastModifyTime(nullString(element.getLastModifyTime()));
+
 	}
 
 	public void translate(IElement element){
-		element.setId(getId());
+//		element.setId(getId());
 		element.setParamName(getParamName());
 		element.setParamValue(getParamValue());
 		element.setParamType(getParamType());
@@ -47,8 +49,8 @@ public class ElementForm {
 		element.setParamRights(getParamRights());
 		element.setParamBelongs(getParamBelongs());
 		element.setRemark(getRemark());
-		element.setCreateTime(getCreateTime());
-		element.setLastModifyTime(getLastModifyTime());
+		element.setCreateTime(this.nullDate(getCreateTime()));
+		element.setLastModifyTime(this.nullDate(getLastModifyTime()));
 	}
 
 	public static List<ElementForm> convert(List<IElement> list) {
@@ -57,6 +59,24 @@ public class ElementForm {
 			result.add(new ElementForm(item));
 		}
 		return result;
+	}
+
+	private Date nullDate(String string) {
+		if (string == null || "".equals(string)) {
+			return null;
+		}
+		String str="2014-00-00 00:00:00";
+		if(string.contains("T")){
+			str=string.replace("T", " ");
+		}
+		return DateUtils.getTimestamp(str);
+	}
+
+	private String nullString(Date date) {
+		if (date == null) {
+			return null;
+		}
+		return DateUtils.getTimestamp(date);
 	}
 
 	public long getId() {
@@ -131,19 +151,19 @@ public class ElementForm {
 		this.remark = remark;
 	}
 
-	public Date getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(Date createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
 
-	public Date getLastModifyTime() {
+	public String getLastModifyTime() {
 		return lastModifyTime;
 	}
 
-	public void setLastModifyTime(Date lastModifyTime) {
+	public void setLastModifyTime(String lastModifyTime) {
 		this.lastModifyTime = lastModifyTime;
 	}
 

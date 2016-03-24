@@ -58,11 +58,11 @@ public class Element implements IElement, Serializable {
 	@Column(name="REMARK",length=60)
 	private String remark;
 
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="CREATE_TIME")
 	private Date createTime;
 
-	@Temporal(TemporalType.TIME)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name="LAST_MODIFY_TIME")
 	private Date lastModifyTime;
 

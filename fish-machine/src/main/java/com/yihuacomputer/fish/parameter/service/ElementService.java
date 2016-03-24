@@ -9,7 +9,6 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.parameter.IElement;
 import com.yihuacomputer.fish.api.parameter.IElementService;
-import com.yihuacomputer.fish.machine.entity.AtmVendor;
 import com.yihuacomputer.fish.parameter.entity.Element;
 
 @Service
@@ -26,12 +25,14 @@ public class ElementService implements IElementService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public IElement get(long id) {
 
 		return dao.get(id, Element.class);
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public IElement get(String name) {
 		return null;
 	}

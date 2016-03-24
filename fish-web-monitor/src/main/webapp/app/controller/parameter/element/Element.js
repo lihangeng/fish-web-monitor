@@ -1,10 +1,13 @@
 Ext.define('Eway.controller.parameter.element.Element', {
 			extend : 'Eway.controller.base.FishController',
 
-			stores : ['parameter.element.Element'],
-			models : ['parameter.element.Element'],
+			stores : ['parameter.element.Element',
+			          'parameter.element.ParamRights',
+			          'parameter.element.ParamBelongs'
+			          ],
+			models : ['parameter.element.Element','Dict'],
 
-			views : ['parameter.element.View'],
+			views : ['parameter.element.View','parameter.element.Form'],
 
 			refs : [{
 						ref : 'ewayView',
