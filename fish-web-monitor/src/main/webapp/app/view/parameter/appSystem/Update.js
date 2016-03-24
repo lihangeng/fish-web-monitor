@@ -6,7 +6,7 @@ Ext.define('Eway.view.parameter.appSystem.Update',{
 	requires:['Eway.view.parameter.appSystem.field.FileFormCombox'],
 	          
 	initComponent:function(){
-		var format=Ext.create('Eway.store.parameter.FileForm');
+		var format=Ext.create('Eway.store.parameter.appSystem.FileForm');
 		Ext.apply(this,{
 				defaults: {
 					width: 400,
