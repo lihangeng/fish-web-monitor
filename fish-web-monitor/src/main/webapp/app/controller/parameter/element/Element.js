@@ -3,7 +3,8 @@ Ext.define('Eway.controller.parameter.element.Element', {
 
 			stores : ['parameter.element.Element',
 			          'parameter.element.ParamRights',
-			          'parameter.element.ParamBelongs'
+			          'parameter.element.ParamBelongs',
+			          'parameter.element.ElementClassify'
 			          ],
 			models : ['parameter.element.Element','Dict'],
 

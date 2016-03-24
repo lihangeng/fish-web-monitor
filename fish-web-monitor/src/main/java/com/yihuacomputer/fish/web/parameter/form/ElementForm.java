@@ -12,6 +12,7 @@ public class ElementForm {
 	private String paramName;
 	private String paramValue;
 	private String paramType;
+	private long   classifyId;
 	private String paramClassify;
 	private String versionNo;
 	private String paramRights;
@@ -29,7 +30,8 @@ public class ElementForm {
 		setParamName(element.getParamName());
 		setParamValue(element.getParamValue());
 		setParamType(element.getParamType());
-		setParamClassify(element.getParamClassify());
+		setClassifyId(element.getParamClassify().getId());
+		setParamClassify(element.getParamClassify().getName());
 		setVersionNo(element.getVersionNo());
 		setParamRights(element.getParamRights());
 		setParamBelongs(element.getParamBelongs());
@@ -44,7 +46,7 @@ public class ElementForm {
 		element.setParamName(getParamName());
 		element.setParamValue(getParamValue());
 		element.setParamType(getParamType());
-		element.setParamClassify(getParamClassify());
+//		element.setParamClassify(getParamClassify());
 		element.setVersionNo(getVersionNo());
 		element.setParamRights(getParamRights());
 		element.setParamBelongs(getParamBelongs());
@@ -111,6 +113,15 @@ public class ElementForm {
 		this.paramType = paramType;
 	}
 
+	public long getClassifyId() {
+		return classifyId;
+	}
+
+	public void setClassifyId(long classifyId) {
+		this.classifyId = classifyId;
+	}
+
+
 	public String getParamClassify() {
 		return paramClassify;
 	}
@@ -166,6 +177,7 @@ public class ElementForm {
 	public void setLastModifyTime(String lastModifyTime) {
 		this.lastModifyTime = lastModifyTime;
 	}
+
 
 
 

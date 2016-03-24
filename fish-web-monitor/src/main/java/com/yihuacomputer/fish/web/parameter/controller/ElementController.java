@@ -1,7 +1,7 @@
 package com.yihuacomputer.fish.web.parameter.controller;
 
-import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,9 +20,12 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.common.util.DateUtils;
+import com.yihuacomputer.common.util.EntityUtils;
+import com.yihuacomputer.fish.api.parameter.IClassify;
+import com.yihuacomputer.fish.api.parameter.IClassifyService;
 import com.yihuacomputer.fish.api.parameter.IElement;
 import com.yihuacomputer.fish.api.parameter.IElementService;
+import com.yihuacomputer.fish.web.parameter.form.ClassifyForm;
 import com.yihuacomputer.fish.web.parameter.form.ElementForm;
 
 @Controller
@@ -33,6 +36,9 @@ public class ElementController {
 
 	@Autowired
 	private IElementService elementService;
+
+	@Autowired
+	private IClassifyService classifyService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
@@ -54,7 +60,6 @@ public class ElementController {
 	ModelMap add(@RequestBody ElementForm request){
 		logger.info("add elementelement");
 		ModelMap result=new ModelMap();
-		System.out.println(request.getCreateTime().getClass().getSimpleName());
 		IElement element =elementService.make();
 		request.translate(element);
 		elementService.add(element);
@@ -93,6 +98,16 @@ public class ElementController {
 		result.addAttribute(FishConstant.DATA, request);
 		return result;
 	}
+
+	@RequestMapping(value = "/elementClassify", method = RequestMethod.GET)
+    public @ResponseBody ModelMap queryAtmVendor() {
+        logger.info(String.format("search element : queryClassify"));
+        ModelMap model = new ModelMap();
+        List<IClassify> cassifyList = EntityUtils.convert(classifyService.list());
+        model.put(FishConstant.DATA, ClassifyForm.convert(cassifyList));
+        model.put(FishConstant.SUCCESS, true);
+        return model;
+    }
 
 
 	private String convert(String string) {

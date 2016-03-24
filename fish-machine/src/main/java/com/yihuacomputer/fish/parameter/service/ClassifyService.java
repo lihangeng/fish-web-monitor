@@ -6,10 +6,8 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
-import com.yihuacomputer.common.exception.NotFoundException;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.parameter.IClassify;
 import com.yihuacomputer.fish.api.parameter.IClassifyService;
@@ -51,6 +49,13 @@ public class ClassifyService implements IClassifyService {
 	public void remove(long id) {
 		dao.delete(id, Classify.class);
 	}
+
+	@Override
+    @Transactional(readOnly=true)
+    public Iterable<IClassify> list()
+    {
+    	return dao.loadAll(IClassify.class);
+    }
 
 	@Override
 	public void update(IClassify classify) {

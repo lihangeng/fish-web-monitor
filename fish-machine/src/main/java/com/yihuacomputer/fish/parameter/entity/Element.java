@@ -13,6 +13,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.yihuacomputer.fish.api.parameter.IClassify;
 import com.yihuacomputer.fish.api.parameter.IElement;
 
 /**
@@ -44,7 +45,7 @@ public class Element implements IElement, Serializable {
 	private String paramType;
 
 	@Column(name="PARAM_CLASSIFY",length=10)
-	private String paramClassify;
+	private IClassify paramClassify;
 
 	@Column(name=" VERSION_NO",length=60)
 	private String versionNo;
@@ -119,13 +120,13 @@ public class Element implements IElement, Serializable {
 	}
 
 	@Override
-	public String getParamClassify()
+	public IClassify getParamClassify()
 	{
 		return paramClassify;
 	}
 
 	@Override
-	public void setParamClassify(String paramClassify)
+	public void setParamClassify(IClassify paramClassify)
 	{
         this.paramClassify=paramClassify;
 	}

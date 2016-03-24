@@ -19,9 +19,9 @@ public interface IElement {
 
     public void setParamType(String type);
 
-    public String getParamClassify();
+    public IClassify getParamClassify();
 
-    public void setParamClassify(String classify);
+    public void setParamClassify(IClassify classify);
 
     public String getVersionNo();
 
