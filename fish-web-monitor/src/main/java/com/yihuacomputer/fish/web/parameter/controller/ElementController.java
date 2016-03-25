@@ -6,6 +6,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +41,9 @@ public class ElementController {
 	@Autowired
 	private IClassifyService classifyService;
 
+    @Autowired
+    protected MessageSource messageSource;
+
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request){
@@ -61,7 +65,19 @@ public class ElementController {
 		logger.info("add elementelement");
 		ModelMap result=new ModelMap();
 		IElement element =elementService.make();
-		request.translate(element);
+
+		IClassify classify=classifyService.get(request.getClassifyId());
+		element.setParamName(request.getParamName());
+		element.setParamValue(request.getParamValue());
+		element.setParamType(request.getParamType());
+		element.setParamClassify(classify);
+		element.setVersionNo(request.getVersionNo());
+		element.setParamRights(request.getParamRights());
+		element.setParamBelongs(request.getParamBelongs());
+		element.setRemark(request.getRemark());
+		element.setCreateTime(request.nullDate(request.getCreateTime()));
+		element.setLastModifyTime(request.nullDate(request.getLastModifyTime()));
+
 		elementService.add(element);
 		result.put(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, new ElementForm(element));
@@ -91,9 +107,20 @@ public class ElementController {
 		request.setCreateTime(convert(request.getCreateTime()));
 		request.setLastModifyTime(convert(request.getLastModifyTime()));
 		IElement element = elementService.get(id);
-		request.translate(element);
-		elementService.update(element);
 
+		IClassify classify=classifyService.get(request.getClassifyId());
+		element.setParamName(request.getParamName());
+		element.setParamValue(request.getParamValue());
+		element.setParamType(request.getParamType());
+		element.setParamClassify(classify);
+		element.setVersionNo(request.getVersionNo());
+		element.setParamRights(request.getParamRights());
+		element.setParamBelongs(request.getParamBelongs());
+		element.setRemark(request.getRemark());
+		element.setCreateTime(request.nullDate(request.getCreateTime()));
+		element.setLastModifyTime(request.nullDate(request.getLastModifyTime()));
+
+		elementService.update(element);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, request);
 		return result;

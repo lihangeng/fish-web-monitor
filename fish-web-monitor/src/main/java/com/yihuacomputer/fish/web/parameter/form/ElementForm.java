@@ -41,19 +41,20 @@ public class ElementForm {
 
 	}
 
-	public void translate(IElement element){
-//		element.setId(getId());
-		element.setParamName(getParamName());
-		element.setParamValue(getParamValue());
-		element.setParamType(getParamType());
-//		element.setParamClassify(getParamClassify());
-		element.setVersionNo(getVersionNo());
-		element.setParamRights(getParamRights());
-		element.setParamBelongs(getParamBelongs());
-		element.setRemark(getRemark());
-		element.setCreateTime(this.nullDate(getCreateTime()));
-		element.setLastModifyTime(this.nullDate(getLastModifyTime()));
-	}
+//	public void translate(IElement element){
+//
+////		element.setId(getId());
+//		element.setParamName(getParamName());
+//		element.setParamValue(getParamValue());
+//		element.setParamType(getParamType());
+////		element.setParamClassify(getParamClassify());
+//		element.setVersionNo(getVersionNo());
+//		element.setParamRights(getParamRights());
+//		element.setParamBelongs(getParamBelongs());
+//		element.setRemark(getRemark());
+//		element.setCreateTime(this.nullDate(getCreateTime()));
+//		element.setLastModifyTime(this.nullDate(getLastModifyTime()));
+//	}
 
 	public static List<ElementForm> convert(List<IElement> list) {
 		List<ElementForm> result=new ArrayList<ElementForm>();
@@ -63,7 +64,7 @@ public class ElementForm {
 		return result;
 	}
 
-	private Date nullDate(String string) {
+	public Date nullDate(String string) {
 		if (string == null || "".equals(string)) {
 			return null;
 		}
