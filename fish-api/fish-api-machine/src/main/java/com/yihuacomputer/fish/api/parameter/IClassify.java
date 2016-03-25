@@ -1,7 +1,7 @@
 package com.yihuacomputer.fish.api.parameter;
 
 public interface IClassify {
-	
+
 	public String getName();
 
 	public long getId();

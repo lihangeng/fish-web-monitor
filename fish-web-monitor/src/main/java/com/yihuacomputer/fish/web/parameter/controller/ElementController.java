@@ -65,7 +65,6 @@ public class ElementController {
 		logger.info("add elementelement");
 		ModelMap result=new ModelMap();
 		IElement element =elementService.make();
-
 		IClassify classify=classifyService.get(request.getClassifyId());
 		element.setParamName(request.getParamName());
 		element.setParamValue(request.getParamValue());
@@ -144,10 +143,11 @@ public class ElementController {
 			if(string.contains("T")){
 				String str=string.replace("T", " ");
 				return str;
+			}else{
+				return string;
 			}
 
 		}
-		return null;
 
 	}
 

@@ -35,13 +35,13 @@ import com.yihuacomputer.fish.web.parameter.form.AppSystemForm;
 @RequestMapping("/parameter/appSystem")
 public class AppSystemController {
 	private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
-	
+
 	@Autowired
 	private IAppSystemService appSystemService;
-	
+
 	@Autowired
 	private MessageSource messageSource;
-	
+
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,@RequestParam int limit,HttpServletRequest request,WebRequest webRequest){
 		logger.info("search appSystem");
@@ -53,7 +53,7 @@ public class AppSystemController {
 		result.addAttribute(FishConstant.DATA, toForm(pageResult.list()));
 		return result;
 	}
-	
+
 	/**
 	 * 数据格式转换
 	 */
@@ -62,10 +62,10 @@ public class AppSystemController {
 				for(IAppSystem app:appSystem){
 					lists.add(new AppSystemForm(app));
 				}
-			
+
 			return lists;
 	}
-	
+
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
 	public @ResponseBody
 	ModelMap update(@PathVariable long id,@RequestBody AppSystemForm request){
@@ -83,8 +83,8 @@ public class AppSystemController {
 			}
 		return result;
 	}
-	
-	
+
+
 	private IFilter request2filter(WebRequest request) {
 		IFilter filter = new Filter();
 		Iterator<String> iterator = request.getParameterNames();
@@ -118,7 +118,7 @@ public class AppSystemController {
 	private boolean isNotFilterName(String name) {
 		return "page".equals(name) || "start".equals(name) || "limit".equals(name) || "_dc".equals(name);
 	}
-	
-	
-	
+
+
+
 }

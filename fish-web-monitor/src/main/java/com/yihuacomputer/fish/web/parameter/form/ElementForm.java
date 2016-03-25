@@ -30,8 +30,10 @@ public class ElementForm {
 		setParamName(element.getParamName());
 		setParamValue(element.getParamValue());
 		setParamType(element.getParamType());
-		setClassifyId(element.getParamClassify().getId());
-		setParamClassify(element.getParamClassify().getName());
+		if(element.getParamClassify()!=null){
+			setClassifyId(element.getParamClassify().getId());
+			setParamClassify(element.getParamClassify().getName());
+		}
 		setVersionNo(element.getVersionNo());
 		setParamRights(element.getParamRights());
 		setParamBelongs(element.getParamBelongs());
