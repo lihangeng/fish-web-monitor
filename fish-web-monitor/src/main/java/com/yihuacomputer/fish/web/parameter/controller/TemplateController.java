@@ -155,7 +155,7 @@ public class TemplateController {
            result.addAttribute(FishConstant.SUCCESS, true);
            Filter filter = getFilterDevice(request);
            
-           pageResult = templateService.pageUnlinkedDevice(start, limit, templateService.get(Long.parseLong(guid)), filter);
+           pageResult = templateService.pageLinkedDevice(start, limit, templateService.get(Long.parseLong(guid)), filter);
            result.addAttribute("total", pageResult.getTotal());
            result.addAttribute("data", DeviceForm.convert(pageResult.list()));
        } else {

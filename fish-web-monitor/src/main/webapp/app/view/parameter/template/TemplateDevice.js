@@ -1,6 +1,3 @@
-/**
- * 人员设备关联显示窗口：
- */
 Ext.define('Eway.view.parameter.template.TemplateDevice', {
 	alias: 'widget.parameter_templateDevice',
 	extend: 'Ext.window.Window',
