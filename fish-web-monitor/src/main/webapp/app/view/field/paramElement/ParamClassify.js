@@ -4,8 +4,8 @@ Ext.define('Eway.view.field.paramElement.ParamClassify', {
 	alias: 'widget.field_paramElement_ParamClassify',
 
 	fieldLabel : '参数分类',
-	name : 'paramClassify',
-	hiddenName : 'paramClassify',
+	name : 'classifyId',
+	hiddenName : 'classifyId',
 	msgTarget : 'side',
 	store : 'parameter.element.ElementClassify',
 	valueField : 'id',

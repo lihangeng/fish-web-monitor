@@ -64,7 +64,7 @@ Ext.define('Eway.view.machine.device.Form',{
 						maxLength : 40,
 						name : 'serial',
 						labelAlign:'right'
-					}]					
+					}]
 				}, {
 					columnWidth : .55,
 					border : false,
@@ -108,8 +108,8 @@ Ext.define('Eway.view.machine.device.Form',{
 						rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '1' ? true : false
 					} ]
 				}]
-				
-			},{				
+
+			},{
 				layout : 'column',
 				border : false,
 				items : [ {
@@ -166,7 +166,7 @@ Ext.define('Eway.view.machine.device.Form',{
 									name : 'virtual'
 								}]
 							}]
-					
+
 					},{
 						columnWidth : 1,
 						border : false,
@@ -187,19 +187,19 @@ Ext.define('Eway.view.machine.device.Form',{
 							anchor : '49%',
 							name : 'cashboxLimit',
 							value:0
-						},{  			        
+						},{
 							fieldLabel : EwayLocale.machine.device.installStyle,
 							xtype : 'radiogroup',
 							allowBlank : false,
 							anchor : '69%',
 							items : [ {
 								boxLabel : EwayLocale.machine.device.crossWall,
-								name : 'setupType',	
+								name : 'setupType',
 								checked : true,
 								inputValue : 1
 							}, {
 								boxLabel : EwayLocale.machine.device.mainRoom,
-								name : 'setupType',								
+								name : 'setupType',
 								inputValue : 2
 							} ]
 						},{

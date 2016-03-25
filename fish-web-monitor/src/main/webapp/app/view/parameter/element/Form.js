@@ -33,17 +33,22 @@ Ext.define('Eway.view.parameter.element.Form',{
 //					fieldLabel: '<font color="red">*</font> '+EwayLocale.machine.atmBrand.name,
 					xtype : 'field_paramElement_ParamName',
 					maxLength : 20,
+					regex:/(^[a-zA-Z0-9_-\s]*$)/,
+					regexText:'只能输入英文，数字，下划线，横线'
 //					allowBlank: false
 			},{
 //				fieldLabel: '<font color="red">*</font> '+EwayLocale.machine.atmBrand.name,
 				xtype : 'field_paramElement_ParamValue',
 				maxLength : 20,
-				allowBlank: false
+				allowBlank: false,
+				regex:/(^[a-zA-Z0-9]*$)/,
+				regexText:'只能输入字符和数字'
 		    },{
 //				fieldLabel: '<font color="red">*</font> '+EwayLocale.machine.atmBrand.name,
 				xtype : 'field_paramElement_ParamType',
 				maxLength : 20,
-				allowBlank: false
+				allowBlank: false,
+
 		   },{
 //					fieldLabel: '<font color="red">*</font>'+ EwayLocale.machine.atmBrand.country,
 					xtype : 'field_paramElement_VersionNo',
@@ -59,9 +64,11 @@ Ext.define('Eway.view.parameter.element.Form',{
 					xtype : 'field_paramElement_ParamRights',
 //					regex:/(^[0-9]{3,4}[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^[0-9]{3,4}\-[0-9]{7,8}$)|(^[0-9]{7,8}$)|(^\([0-9]{3,4}\)[0-9]{3,8}$)|(^0{0,1}13[0-9]{9}$)/,
 //					regexText: EwayLocale.tip.phone
+					editable : false,
 					store:rights
 			},{
 					xtype : 'field_paramElement_ParamBelongs',
+					editable : false,
 					maxLength : 60
 			},
 			{
