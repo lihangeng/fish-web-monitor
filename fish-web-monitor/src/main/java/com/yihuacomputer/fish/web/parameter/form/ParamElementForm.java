@@ -5,9 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.fish.api.parameter.IElement;
+import com.yihuacomputer.fish.api.parameter.IParamElement;
 
-public class ElementForm {
+public class ParamElementForm {
 	private long id;
 	private String paramName;
 	private String paramValue;
@@ -21,11 +21,11 @@ public class ElementForm {
 	private String createTime;
 	private String lastModifyTime;
 
-	public ElementForm(){
+	public ParamElementForm(){
 
 	}
 
-	public ElementForm(IElement element){
+	public ParamElementForm(IParamElement element){
 		setId(element.getId());
 		setParamName(element.getParamName());
 		setParamValue(element.getParamValue());
@@ -58,10 +58,10 @@ public class ElementForm {
 //		element.setLastModifyTime(this.nullDate(getLastModifyTime()));
 //	}
 
-	public static List<ElementForm> convert(List<IElement> list) {
-		List<ElementForm> result=new ArrayList<ElementForm>();
-		for(IElement item:list){
-			result.add(new ElementForm(item));
+	public static List<ParamElementForm> convert(List<IParamElement> list) {
+		List<ParamElementForm> result=new ArrayList<ParamElementForm>();
+		for(IParamElement item:list){
+			result.add(new ParamElementForm(item));
 		}
 		return result;
 	}

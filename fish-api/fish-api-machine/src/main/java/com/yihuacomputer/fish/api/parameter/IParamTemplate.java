@@ -1,6 +1,6 @@
 package com.yihuacomputer.fish.api.parameter;
 
-public interface ITemplate {
+public interface IParamTemplate {
 	
 	public String getName();
 

@@ -1,6 +1,6 @@
 package com.yihuacomputer.fish.api.parameter;
 
-public enum FileForm {
+public enum FileFormat {
 	JSON("FileForm.JSON",0),
 	
 	PROPERTIES("FileForm.PROPERTIES",1),
@@ -12,7 +12,7 @@ public enum FileForm {
 	private int id;
 	private String text;
 	
-	private FileForm(String text, int id) {
+	private FileFormat(String text, int id) {
 		this.text = text;
 		this.id = id;
 	}
@@ -33,8 +33,8 @@ public enum FileForm {
 		this.text = text;
 	}
 	
-	public static FileForm getById(int id){
-		for(FileForm each : FileForm.values()){
+	public static FileFormat getById(int id){
+		for(FileFormat each : FileFormat.values()){
 			if(each.getId()==id){
 				return each;
 			}

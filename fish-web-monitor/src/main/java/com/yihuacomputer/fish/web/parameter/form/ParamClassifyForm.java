@@ -3,33 +3,33 @@ package com.yihuacomputer.fish.web.parameter.form;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.yihuacomputer.fish.api.parameter.IClassify;
+import com.yihuacomputer.fish.api.parameter.IParamClassify;
 
-public class ClassifyForm {
+public class ParamClassifyForm {
 	private long id;
 	private String name;
 	private String remark;
 
-	public ClassifyForm() {
+	public ParamClassifyForm() {
 
 	}
 
-	public ClassifyForm(IClassify classify) {
+	public ParamClassifyForm(IParamClassify classify) {
 		setId(classify.getId());
 		setName(classify.getName());
 		setRemark(classify.getRemark());
 	}
 
-	public void translate(IClassify classify) {
+	public void translate(IParamClassify classify) {
 		classify.setId(getId());
 		classify.setName(getName());
 		classify.setRemark(getRemark());
 	}
 
-	public static List<ClassifyForm> convert(List<IClassify> list) {
-		List<ClassifyForm> result = new ArrayList<ClassifyForm>();
-		for (IClassify item : list) {
-			result.add(new ClassifyForm(item));
+	public static List<ParamClassifyForm> convert(List<IParamClassify> list) {
+		List<ParamClassifyForm> result = new ArrayList<ParamClassifyForm>();
+		for (IParamClassify item : list) {
+			result.add(new ParamClassifyForm(item));
 		}
 		return result;
 	}

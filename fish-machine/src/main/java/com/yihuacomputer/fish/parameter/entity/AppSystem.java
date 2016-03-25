@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.yihuacomputer.fish.api.parameter.FileForm;
+import com.yihuacomputer.fish.api.parameter.FileFormat;
 import com.yihuacomputer.fish.api.parameter.IAppSystem;
 
 
@@ -51,7 +51,7 @@ public class AppSystem implements IAppSystem,Serializable {
 	 */
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name="CONFIG_FORM",length=10)
-	private FileForm configForm;
+	private FileFormat configForm;
 	/**
 	 * 备注
 	 */
@@ -96,11 +96,11 @@ public class AppSystem implements IAppSystem,Serializable {
 		this.configPath = configPath;
 	}
 	@Override
-	public FileForm getConfigForm() {
+	public FileFormat getConfigForm() {
 		return this.configForm;
 	}
 	@Override
-	public void setConfigForm(FileForm configForm) {
+	public void setConfigForm(FileFormat configForm) {
 		this.configForm = configForm;
 	}
 	@Override

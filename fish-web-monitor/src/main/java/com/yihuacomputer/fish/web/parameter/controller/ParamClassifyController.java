@@ -19,35 +19,34 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.fish.api.parameter.IClassify;
-import com.yihuacomputer.fish.api.parameter.IClassifyService;
-import com.yihuacomputer.fish.web.parameter.form.ClassifyForm;
+import com.yihuacomputer.fish.api.parameter.IParamClassify;
+import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
+import com.yihuacomputer.fish.web.parameter.form.ParamClassifyForm;
 
 @Controller
 @RequestMapping("/parameter/classify")
-public class ClassifyController {
+public class ParamClassifyController {
 
-	private Logger logger = LoggerFactory.getLogger(ClassifyController.class);
+	private Logger logger = LoggerFactory.getLogger(ParamClassifyController.class);
 
 	@Autowired
-	private IClassifyService classifyService;
+	private IParamClassifyService classifyService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,@RequestParam int limit, WebRequest request) {
-		logger.info(String.format("search template : start = %s ,limt = %s ",start, limit));
+		logger.info(String.format("search param template : start = %s ,limit = %s ",start, limit));
 		IFilter filter = request2filter(request);
 		ModelMap result = new ModelMap();
-		IPageResult<IClassify> pageResult = classifyService.page(start, limit, filter);
+		IPageResult<IParamClassify> pageResult = classifyService.page(start, limit, filter);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-		logger.info("classify size:" + pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA,ClassifyForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA,ParamClassifyForm.convert(pageResult.list()));
 		return result;
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
 	public @ResponseBody
-	ModelMap add(@RequestBody ClassifyForm request){
+	ModelMap add(@RequestBody ParamClassifyForm request){
 		logger.info("add classify");
 		ModelMap result=new ModelMap();
 		boolean isExist = this.isExistClassifyName(request.getId(), request.getName());
@@ -55,11 +54,11 @@ public class ClassifyController {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, "增加失败：分类名称已存在。");
 		} else {
-			IClassify classify =classifyService.make();
+			IParamClassify classify =classifyService.make();
 			request.translate(classify);
 			classifyService.add(classify);
 			result.put(FishConstant.SUCCESS, true);
-			result.addAttribute(FishConstant.DATA, new ClassifyForm(classify));
+			result.addAttribute(FishConstant.DATA, new ParamClassifyForm(classify));
 		}
 		return result;
 	}
@@ -85,10 +84,10 @@ public class ClassifyController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody
-	ModelMap update(@PathVariable long id, @RequestBody ClassifyForm request) {
+	ModelMap update(@PathVariable long id, @RequestBody ParamClassifyForm request) {
 		logger.info("update classify: classify.id = " + id);
 		ModelMap result = new ModelMap();
-		IClassify classify = classifyService.get(id);
+		IParamClassify classify = classifyService.get(id);
 		if(id == 1){
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, "更改失败：默认分类无法更改。");
@@ -114,7 +113,7 @@ public class ClassifyController {
 	private boolean isExistClassifyName(long id, String name) {
 		try {
 			logger.info("checkclassifyName" + name);
-			IClassify classify = classifyService.get(name.trim());
+			IParamClassify classify = classifyService.get(name.trim());
 			if(classify == null){
 				return false;
 			}

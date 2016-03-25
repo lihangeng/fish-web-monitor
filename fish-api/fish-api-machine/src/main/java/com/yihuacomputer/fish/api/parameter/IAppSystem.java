@@ -22,8 +22,8 @@ public interface IAppSystem {
 	 * 配置文件格式
 	 * @param configForm
 	 */
-	void setConfigForm(FileForm configForm);
-	FileForm getConfigForm();
+	void setConfigForm(FileFormat configForm);
+	FileFormat getConfigForm();
 	/**
 	 * 备注
 	 * @param remark

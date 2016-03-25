@@ -25,7 +25,7 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.fish.api.parameter.FileForm;
+import com.yihuacomputer.fish.api.parameter.FileFormat;
 import com.yihuacomputer.fish.api.parameter.IAppSystem;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.web.parameter.form.AppSystemForm;
@@ -105,7 +105,7 @@ public class AppSystemController {
 					filter.eq(name, value.trim());
 				}else if (name.equals("configForm")) {
 					String value = request.getParameter(name);
-					filter.eq(name, FileForm.getById(Integer.parseInt(value)));
+					filter.eq(name, FileFormat.getById(Integer.parseInt(value)));
 				}else {
 					filter.like(name, request.getParameter(name));
 				}

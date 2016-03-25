@@ -1,6 +1,6 @@
 package com.yihuacomputer.fish.api.parameter;
 
-public interface IClassify {
+public interface IParamClassify {
 
 	public String getName();
 

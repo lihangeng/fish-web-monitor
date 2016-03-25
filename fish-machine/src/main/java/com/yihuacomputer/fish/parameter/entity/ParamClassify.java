@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.yihuacomputer.fish.api.parameter.IClassify;
+import com.yihuacomputer.fish.api.parameter.IParamClassify;
 
 /**
  * 参数元数据分组管理
@@ -20,7 +20,7 @@ import com.yihuacomputer.fish.api.parameter.IClassify;
  */
 @Entity
 @Table(name = "PARAM_CLASSIFY")
-public class Classify implements IClassify, Serializable {
+public class ParamClassify implements IParamClassify, Serializable {
 
 	public static final long serialVersionUID = 1L;
 
@@ -36,7 +36,7 @@ public class Classify implements IClassify, Serializable {
 	@Column(name = "REMARK", length = 40)
 	private String remark;
 
-	public Classify() {
+	public ParamClassify() {
 
 	}
 

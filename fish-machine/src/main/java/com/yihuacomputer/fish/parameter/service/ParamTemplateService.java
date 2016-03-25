@@ -13,39 +13,39 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.filter.FilterEntry;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.IDevice;
-import com.yihuacomputer.fish.api.parameter.ITemplate;
-import com.yihuacomputer.fish.api.parameter.ITemplateService;
-import com.yihuacomputer.fish.parameter.entity.Template;
-import com.yihuacomputer.fish.parameter.entity.TemplateDeviceRelation;
+import com.yihuacomputer.fish.api.parameter.IParamTemplate;
+import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
+import com.yihuacomputer.fish.parameter.entity.ParamTemplate;
+import com.yihuacomputer.fish.parameter.entity.ParamTemplateDeviceRelation;
 
 @Service
 @Transactional
-public class TemplateService implements ITemplateService {
+public class ParamTemplateService implements IParamTemplateService {
 	
 	@Autowired
 	private IGenericDao dao;
 
 
 	@Override
-	public ITemplate make() {
+	public IParamTemplate make() {
 		
-		return new Template();
+		return new ParamTemplate();
 	
 	}
 
 	@Override
-	public ITemplate get(long id) {
-		return dao.get(id, Template.class);
+	public IParamTemplate get(long id) {
+		return dao.get(id, ParamTemplate.class);
 	}
 
 	@Override
-	public ITemplate get(String name) {
+	public IParamTemplate get(String name) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ITemplate add(ITemplate template) {
+	public IParamTemplate add(IParamTemplate template) {
 		
 		return dao.save(template);
 			
@@ -53,23 +53,23 @@ public class TemplateService implements ITemplateService {
 
 	@Override
 	public void remove(long id) {
-		dao.delete(id,Template.class);
+		dao.delete(id,ParamTemplate.class);
 	}
 
 	@Override
-	public void update(ITemplate element) {
+	public void update(IParamTemplate element) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public IPageResult<ITemplate> page(int offset, int limit, IFilter filter) {
-		return dao.page(offset, limit, filter, Template.class);
+	public IPageResult<IParamTemplate> page(int offset, int limit, IFilter filter) {
+		return dao.page(offset, limit, filter, ParamTemplate.class);
 	}
 	
 	@SuppressWarnings("all")
 	@Override
-	public IPageResult<IDevice> pageUnlinkedDevice(int offset, int limit,ITemplate template, IFilter filter) {
+	public IPageResult<IDevice> pageUnlinkedDevice(int offset, int limit,IParamTemplate template, IFilter filter) {
 
         // 由于不知道传过来的filter参数没有设置表别名，所以重新处理加上表别名
         IFilter fi = new Filter();
@@ -95,7 +95,7 @@ public class TemplateService implements ITemplateService {
 	
 	@SuppressWarnings("all")
 	@Override
-	public IPageResult<IDevice> pageLinkedDevice(int offset, int limit,ITemplate template, IFilter filter) {
+	public IPageResult<IDevice> pageLinkedDevice(int offset, int limit,IParamTemplate template, IFilter filter) {
 			
 		IFilter fi = new Filter();
         for (IFilterEntry entry : filter.entrySet()) {
@@ -115,7 +115,7 @@ public class TemplateService implements ITemplateService {
 	}
 
 	@Override
-	public List<IDevice> listDeviceByTemplate(ITemplate template) {
+	public List<IDevice> listDeviceByTemplate(IParamTemplate template) {
         StringBuffer hql = new StringBuffer();
         hql.append("select t from Device t ,TemplateDeviceRelation t1 ");
         hql.append("where t.id = t1.deviceId and t1.templateId = ?");
@@ -124,20 +124,20 @@ public class TemplateService implements ITemplateService {
     }
 
 	@Override
-	public void link(ITemplate template, IDevice device) {
-		 dao.save(TemplateDeviceRelation.make(template.getId(), device.getId()));
+	public void link(IParamTemplate template, IDevice device) {
+		 dao.save(ParamTemplateDeviceRelation.make(template.getId(), device.getId()));
 		
 	}
 
 	@Override
-	public void unlink(ITemplate template, IDevice device) {
+	public void unlink(IParamTemplate template, IDevice device) {
 		 	Filter filter = new Filter();
 	        filter.eq("templateId", template.getId());
 	        filter.eq("deviceId", device.getId());
 
-	        TemplateDeviceRelation obj = dao.findUniqueByFilter(filter, TemplateDeviceRelation.class);
+	        ParamTemplateDeviceRelation obj = dao.findUniqueByFilter(filter, ParamTemplateDeviceRelation.class);
 	        if (obj != null) {
-	            dao.delete(obj.getId(), TemplateDeviceRelation.class);
+	            dao.delete(obj.getId(), ParamTemplateDeviceRelation.class);
 	        }
 		
 	}}

@@ -1,6 +1,6 @@
 package com.yihuacomputer.fish.api.parameter;
 
-public interface ITemplateDeviceRelation {
+public interface IParamTemplateDeviceRelation {
 	
 	public long getId();
 

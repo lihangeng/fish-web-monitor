@@ -11,12 +11,10 @@ Ext.define('Eway.view.parameter.classify.View', {
 	initComponent: function() {
 		Ext.apply(this, {
 			items: [{
-				itemId : 'filterFormItemId',
 				region: 'north',
 				xtype: 'classify_FilterForm',
 				height: 40
 			}, {
-				itemId : 'gridItemId',
 				region: 'center',
 				xtype: 'classify_Grid'
 			}]

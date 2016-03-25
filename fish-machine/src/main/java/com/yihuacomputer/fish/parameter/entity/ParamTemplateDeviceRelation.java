@@ -10,12 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.yihuacomputer.fish.api.parameter.ITemplateDeviceRelation;
+import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelation;
 
 
 @Entity
 @Table(name="PARAM_TEMPLATE_DEVICE_RELATION")
-public class TemplateDeviceRelation implements ITemplateDeviceRelation,Serializable {
+public class ParamTemplateDeviceRelation implements IParamTemplateDeviceRelation,Serializable {
 
 
 	private static final long serialVersionUID = 1L;
@@ -38,7 +38,7 @@ public class TemplateDeviceRelation implements ITemplateDeviceRelation,Serializa
 	private long deviceId;
 	
 	
-	public TemplateDeviceRelation(){
+	public ParamTemplateDeviceRelation(){
 		
 	}
 	
@@ -77,8 +77,8 @@ public class TemplateDeviceRelation implements ITemplateDeviceRelation,Serializa
      * @param role
      * @return
      */
-    public static TemplateDeviceRelation make(Long templateId, Long deviceId) {
-    	TemplateDeviceRelation obj = new TemplateDeviceRelation();
+    public static ParamTemplateDeviceRelation make(Long templateId, Long deviceId) {
+    	ParamTemplateDeviceRelation obj = new ParamTemplateDeviceRelation();
         obj.templateId = templateId;
         obj.deviceId = deviceId;
         return obj;
