@@ -36,7 +36,7 @@ Ext.define('Eway.controller.parameter.element.Element', {
 				xtype : 'parameter_element_form',
 				width: 500,
 				height:280,
-				title : EwayLocale.machine.atmBrand.title
+				title : '参数元数据',
 			},
 
 			init : function() {
