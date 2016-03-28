@@ -3,33 +3,33 @@ package com.yihuacomputer.fish.web.parameter.form;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.yihuacomputer.fish.api.parameter.ITemplate;
+import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 
-public class TemplateForm {
+public class ParamTemplateForm {
 	private long id;
 	private String name;
 	private String remark;
 
-	public TemplateForm(){
+	public ParamTemplateForm(){
 
 	}
 
-	public TemplateForm(ITemplate template){
+	public ParamTemplateForm(IParamTemplate template){
 		setId(template.getId());
 		setName(template.getName());
 		setRemark(template.getRemark());
 	}
 
-	public void translate(ITemplate template){
+	public void translate(IParamTemplate template){
 		template.setId(getId());
 		template.setName(getName());
 		template.setRemark(getRemark());
 	}
 
-	public static List<TemplateForm> convert(List<ITemplate> list) {
-		List<TemplateForm> result = new ArrayList<TemplateForm>();
-		for(ITemplate item:list){
-			result.add(new TemplateForm(item));
+	public static List<ParamTemplateForm> convert(List<IParamTemplate> list) {
+		List<ParamTemplateForm> result = new ArrayList<ParamTemplateForm>();
+		for(IParamTemplate item:list){
+			result.add(new ParamTemplateForm(item));
 		}
 		return result;
 	}

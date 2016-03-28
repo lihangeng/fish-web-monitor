@@ -16,8 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.yihuacomputer.fish.api.parameter.IClassify;
-import com.yihuacomputer.fish.api.parameter.IElement;
+import com.yihuacomputer.fish.api.parameter.IParamClassify;
+import com.yihuacomputer.fish.api.parameter.IParamElement;
 
 /**
  * 参数元数据
@@ -27,7 +27,7 @@ import com.yihuacomputer.fish.api.parameter.IElement;
  */
 @Entity
 @Table(name="PARAM_ELEMENT")
-public class Element implements IElement, Serializable {
+public class ParamElement implements IParamElement, Serializable {
 
 
 	public static final long serialVersionUID=1L;
@@ -47,9 +47,9 @@ public class Element implements IElement, Serializable {
 	@Column(name="PARAM_TYPE",length=10)
 	private String paramType;
 
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Classify.class)
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = ParamClassify.class)
 	@JoinColumn(name="PARAM_CLASSIFY")
-	private IClassify paramClassify;
+	private IParamClassify paramClassify;
 
 	@Column(name=" VERSION_NO",length=60)
 	private String versionNo;
@@ -71,7 +71,7 @@ public class Element implements IElement, Serializable {
 	@Column(name="LAST_MODIFY_TIME")
 	private Date lastModifyTime;
 
-	public Element(){
+	public ParamElement(){
 
 	}
 
@@ -124,13 +124,13 @@ public class Element implements IElement, Serializable {
 	}
 
 	@Override
-	public IClassify getParamClassify()
+	public IParamClassify getParamClassify()
 	{
 		return paramClassify;
 	}
 
 	@Override
-	public void setParamClassify(IClassify paramClassify)
+	public void setParamClassify(IParamClassify paramClassify)
 	{
         this.paramClassify=paramClassify;
 	}

@@ -22,24 +22,24 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.EntityUtils;
-import com.yihuacomputer.fish.api.parameter.IClassify;
-import com.yihuacomputer.fish.api.parameter.IClassifyService;
-import com.yihuacomputer.fish.api.parameter.IElement;
-import com.yihuacomputer.fish.api.parameter.IElementService;
-import com.yihuacomputer.fish.web.parameter.form.ClassifyForm;
-import com.yihuacomputer.fish.web.parameter.form.ElementForm;
+import com.yihuacomputer.fish.api.parameter.IParamClassify;
+import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
+import com.yihuacomputer.fish.api.parameter.IParamElement;
+import com.yihuacomputer.fish.api.parameter.IParamElementService;
+import com.yihuacomputer.fish.web.parameter.form.ParamClassifyForm;
+import com.yihuacomputer.fish.web.parameter.form.ParamElementForm;
 
 @Controller
 @RequestMapping("/parameter/element")
-public class ElementController {
+public class ParamElementController {
 
-	private Logger logger = LoggerFactory.getLogger(ElementController.class);
-
-	@Autowired
-	private IElementService elementService;
+	private Logger logger = LoggerFactory.getLogger(ParamElementController.class);
 
 	@Autowired
-	private IClassifyService classifyService;
+	private IParamElementService elementService;
+
+	@Autowired
+	private IParamClassifyService classifyService;
 
     @Autowired
     protected MessageSource messageSource;
@@ -50,22 +50,22 @@ public class ElementController {
 		logger.info(String.format("search element : start = %s ,limt = %s ", start, limit));
 		IFilter filter = request2filter(request);
 		ModelMap result = new ModelMap();
-		IPageResult<IElement> pageResult = elementService.page(start, limit, filter);
+		IPageResult<IParamElement> pageResult = elementService.page(start, limit, filter);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
 		logger.info("element size:" + pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA, ElementForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA, ParamElementForm.convert(pageResult.list()));
 		return result;
 
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
 	public @ResponseBody
-	ModelMap add(@RequestBody ElementForm request){
+	ModelMap add(@RequestBody ParamElementForm request){
 		logger.info("add elementelement");
 		ModelMap result=new ModelMap();
-		IElement element =elementService.make();
-		IClassify classify=classifyService.get(request.getClassifyId());
+		IParamElement element =elementService.make();
+		IParamClassify classify=classifyService.get(request.getClassifyId());
 		element.setParamName(request.getParamName());
 		element.setParamValue(request.getParamValue());
 		element.setParamType(request.getParamType());
@@ -79,7 +79,7 @@ public class ElementController {
 
 		elementService.add(element);
 		result.put(FishConstant.SUCCESS, true);
-		result.addAttribute(FishConstant.DATA, new ElementForm(element));
+		result.addAttribute(FishConstant.DATA, new ParamElementForm(element));
 
 		return result;
 	}
@@ -100,14 +100,14 @@ public class ElementController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody
-	ModelMap update(@PathVariable long id, @RequestBody ElementForm request) {
+	ModelMap update(@PathVariable long id, @RequestBody ParamElementForm request) {
 		logger.info("update elemet: elemet.id = " + id);
 		ModelMap result = new ModelMap();
 		request.setCreateTime(convert(request.getCreateTime()));
 		request.setLastModifyTime(convert(request.getLastModifyTime()));
-		IElement element = elementService.get(id);
+		IParamElement element = elementService.get(id);
 
-		IClassify classify=classifyService.get(request.getClassifyId());
+		IParamClassify classify=classifyService.get(request.getClassifyId());
 		element.setParamName(request.getParamName());
 		element.setParamValue(request.getParamValue());
 		element.setParamType(request.getParamType());
@@ -129,8 +129,8 @@ public class ElementController {
     public @ResponseBody ModelMap queryAtmVendor() {
         logger.info(String.format("search element : queryClassify"));
         ModelMap model = new ModelMap();
-        List<IClassify> cassifyList = EntityUtils.convert(classifyService.list());
-        model.put(FishConstant.DATA, ClassifyForm.convert(cassifyList));
+        List<IParamClassify> cassifyList = EntityUtils.convert(classifyService.list());
+        model.put(FishConstant.DATA, ParamClassifyForm.convert(cassifyList));
         model.put(FishConstant.SUCCESS, true);
         return model;
     }

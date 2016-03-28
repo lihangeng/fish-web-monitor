@@ -16,6 +16,8 @@ Ext.apply(EwayLocale,{
 			drawModule:'Dispenser Module',//EwayLocale.cases.caseFault.drawModule
 			rprModule:'Receipt Printer',//EwayLocale.cases.caseFault.rprModule
 			jprModule:'Journal Printer',//EwayLocale.cases.caseFault.jprModule
+			camModule:'Camera Module',//EwayLocale.cases.caseFault.camModule
+			bcrModule:'BCR',//EwayLocale.cases.caseFault.bcrModule
 			pinModule:'PIN',//EwayLocale.cases.caseFault.pinModule
 			textTerminalUnit:'TTU',//EwayLocale.cases.caseFault.textTerminalUnit
 			iscModule:'ID Card Reader',//EwayLocale.cases.caseFault.iscModule

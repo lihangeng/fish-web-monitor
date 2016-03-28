@@ -2,7 +2,7 @@ package com.yihuacomputer.fish.api.parameter;
 
 import java.util.Date;
 
-public interface IElement {
+public interface IParamElement {
     public long getId();
 
     public void setId(long id);
@@ -19,9 +19,9 @@ public interface IElement {
 
     public void setParamType(String type);
 
-    public IClassify getParamClassify();
+    public IParamClassify getParamClassify();
 
-    public void setParamClassify(IClassify classify);
+    public void setParamClassify(IParamClassify classify);
 
     public String getVersionNo();
 

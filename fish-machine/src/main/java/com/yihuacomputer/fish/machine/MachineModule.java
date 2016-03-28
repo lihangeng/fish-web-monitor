@@ -15,9 +15,9 @@ import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.openplan.IOpenPlanDeviceRelation;
 import com.yihuacomputer.fish.api.openplan.IOpenPlanService;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
-import com.yihuacomputer.fish.api.parameter.IClassifyService;
-import com.yihuacomputer.fish.api.parameter.IElementService;
-import com.yihuacomputer.fish.api.parameter.ITemplateService;
+import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
+import com.yihuacomputer.fish.api.parameter.IParamElementService;
+import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNoticeService;
 import com.yihuacomputer.fish.api.relation.IDeviceGroupRelation;
 import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
@@ -36,9 +36,9 @@ import com.yihuacomputer.fish.machine.service.DeviceService;
 import com.yihuacomputer.fish.machine.service.OpenPlanDeviceRelation;
 import com.yihuacomputer.fish.machine.service.OpenPlanService;
 import com.yihuacomputer.fish.parameter.service.AppSystemService;
-import com.yihuacomputer.fish.parameter.service.ClassifyService;
-import com.yihuacomputer.fish.parameter.service.ElementService;
-import com.yihuacomputer.fish.parameter.service.TemplateService;
+import com.yihuacomputer.fish.parameter.service.ParamClassifyService;
+import com.yihuacomputer.fish.parameter.service.ParamElementService;
+import com.yihuacomputer.fish.parameter.service.ParamTemplateService;
 
 
 @Configuration
@@ -120,19 +120,19 @@ public class MachineModule {
 	}
 
 	@Bean
-	public IElementService elementService(){
-		return new ElementService();
+	public IParamElementService elementService(){
+		return new ParamElementService();
 	}
 	
 	
 	@Bean
-	public ITemplateService templateService(){
-		return new TemplateService();
+	public IParamTemplateService templateService(){
+		return new ParamTemplateService();
 	}
 	
 	@Bean
-	public IClassifyService classifyService(){
-		return new ClassifyService();
+	public IParamClassifyService classifyService(){
+		return new ParamClassifyService();
 	}
 
 }

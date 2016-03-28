@@ -11,7 +11,7 @@ Ext.define('Eway.view.parameter.element.FilterForm', {
 	initComponent: function() {
 		Ext.apply(this, {
 			items : [{
-				columnWidth : .45,
+				columnWidth : .25,
 				items : [{
 					xtype : 'textfield',
 					labelAlign : 'right',
@@ -20,7 +20,7 @@ Ext.define('Eway.view.parameter.element.FilterForm', {
 					msgTarget : 'side'
 				}]
 			},{
-				columnWidth : .45,
+				columnWidth : .25,
 				items : [{
 					xtype : 'textfield',
 					labelWidth: 110,
@@ -29,7 +29,19 @@ Ext.define('Eway.view.parameter.element.FilterForm', {
 					msgTarget : 'side',
 					labelAlign : 'right'
 				}]
-			}]
+			},{
+				columnWidth : .25,
+				items : [{
+					xtype : 'field_paramElement_ParamBelongs',
+					labelWidth: 110,
+					value: 1,
+					editable : false,
+					name : 'paramBelongs',
+					fieldLabel :'归属的应用系统',
+					msgTarget : 'side',
+					labelAlign : 'right'
+				}]
+			},]
 		});
 
 		this.callParent(arguments);

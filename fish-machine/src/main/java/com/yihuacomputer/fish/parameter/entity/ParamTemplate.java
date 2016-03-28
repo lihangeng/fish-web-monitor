@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.yihuacomputer.fish.api.parameter.ITemplate;
+import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 
 /**
  * 参数元数据
@@ -20,7 +20,7 @@ import com.yihuacomputer.fish.api.parameter.ITemplate;
  */
 @Entity
 @Table(name="PARAM_TEMPLATE")
-public class Template implements ITemplate, Serializable {
+public class ParamTemplate implements IParamTemplate, Serializable {
 
 
 	public static final long serialVersionUID=1L;
@@ -39,7 +39,7 @@ public class Template implements ITemplate, Serializable {
 
 	
 
-	public Template(){
+	public ParamTemplate(){
 
 	}
 

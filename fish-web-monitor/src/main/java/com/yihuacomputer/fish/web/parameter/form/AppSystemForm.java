@@ -1,6 +1,6 @@
 package com.yihuacomputer.fish.web.parameter.form;
 
-import com.yihuacomputer.fish.api.parameter.FileForm;
+import com.yihuacomputer.fish.api.parameter.FileFormat;
 import com.yihuacomputer.fish.api.parameter.IAppSystem;
 
 public class AppSystemForm {
@@ -81,7 +81,7 @@ public class AppSystemForm {
 	public void translate(IAppSystem appSystem){
 		appSystem.setName(getName());
 		appSystem.setConfigName(getConfigName());
-		appSystem.setConfigForm(FileForm.getById(getConfigForm()));
+		appSystem.setConfigForm(FileFormat.getById(getConfigForm()));
 		appSystem.setConfigPath(getConfigPath());
 		appSystem.setRemark(getRemark());
 	}

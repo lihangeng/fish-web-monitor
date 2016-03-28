@@ -26,23 +26,23 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.parameter.ITemplate;
-import com.yihuacomputer.fish.api.parameter.ITemplateService;
+import com.yihuacomputer.fish.api.parameter.IParamTemplate;
+import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertGroupDeviceForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
-import com.yihuacomputer.fish.web.parameter.form.TemplateForm;
+import com.yihuacomputer.fish.web.parameter.form.ParamTemplateForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
 @RequestMapping("/parameter/template")
-public class TemplateController {
+public class ParamTemplateController {
 
-	private Logger logger = LoggerFactory.getLogger(TemplateController.class);
+	private Logger logger = LoggerFactory.getLogger(ParamTemplateController.class);
 
 	@Autowired
-	private ITemplateService templateService;
+	private IParamTemplateService templateService;
 	
     @Autowired
     private IDeviceService deviceService;
@@ -57,25 +57,25 @@ public class TemplateController {
 		logger.info(String.format("search template : start = %s ,limt = %s ", start, limit));
 		IFilter filter = request2filter(request);
 		ModelMap result = new ModelMap();
-		IPageResult<ITemplate> pageResult = templateService.page(start, limit, filter);
+		IPageResult<IParamTemplate> pageResult = templateService.page(start, limit, filter);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
 		logger.info("template size:" + pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA, TemplateForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA, ParamTemplateForm.convert(pageResult.list()));
 		return result;
 	}
 
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public @ResponseBody
-	ModelMap add(@RequestBody TemplateForm request){
+	ModelMap add(@RequestBody ParamTemplateForm request){
 		logger.info("add template");
 		ModelMap result=new ModelMap();
-		ITemplate template = templateService.make();
+		IParamTemplate template = templateService.make();
 		request.translate(template);
 		templateService.add(template);
 		result.put(FishConstant.SUCCESS, true);
-		result.addAttribute(FishConstant.DATA, new TemplateForm(template));
+		result.addAttribute(FishConstant.DATA, new ParamTemplateForm(template));
 
 		return result;
 	}
@@ -96,10 +96,10 @@ public class TemplateController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody
-	ModelMap update(@PathVariable long id, @RequestBody TemplateForm request) {
+	ModelMap update(@PathVariable long id, @RequestBody ParamTemplateForm request) {
 		logger.info("update elemet: elemet.id = " + id);
 		ModelMap result = new ModelMap();
-		ITemplate template = templateService.get(id);
+		IParamTemplate template = templateService.get(id);
 		request.translate(template);
 		template.setId(id);
 		templateService.update(template);
@@ -155,7 +155,7 @@ public class TemplateController {
            result.addAttribute(FishConstant.SUCCESS, true);
            Filter filter = getFilterDevice(request);
            
-           pageResult = templateService.pageUnlinkedDevice(start, limit, templateService.get(Long.parseLong(guid)), filter);
+           pageResult = templateService.pageLinkedDevice(start, limit, templateService.get(Long.parseLong(guid)), filter);
            result.addAttribute("total", pageResult.getTotal());
            result.addAttribute("data", DeviceForm.convert(pageResult.list()));
        } else {
@@ -184,7 +184,7 @@ public class TemplateController {
    ModelMap link(@RequestBody BsAdvertGroupDeviceForm request) {
        logger.info(String.format("device %s linked  %s", request.getGroupId(), request.getDeviceId()));
        ModelMap result = new ModelMap();
-       ITemplate advertGroup = templateService.get(request.getGroupId());
+       IParamTemplate advertGroup = templateService.get(request.getGroupId());
        IDevice device = deviceService.get(request.getDeviceId());
        List<IDevice> list = templateService.listDeviceByTemplate(advertGroup);
        if (list.contains(device)) {
