@@ -1,6 +1,8 @@
 package com.yihuacomputer.fish.web.parameter.controller;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +42,7 @@ public class ParamClassifyController {
 		IPageResult<IParamClassify> pageResult = classifyService.page(start, limit, filter);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA,ParamClassifyForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA,convert(pageResult.list()));
 		return result;
 	}
 
@@ -125,6 +127,14 @@ public class ParamClassifyController {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	public List<ParamClassifyForm> convert(List<IParamClassify> list) {
+		List<ParamClassifyForm> result = new ArrayList<ParamClassifyForm>();
+		for (IParamClassify item : list) {
+			result.add(new ParamClassifyForm(item));
+		}
+		return result;
 	}
 
 	private IFilter request2filter(WebRequest request) {

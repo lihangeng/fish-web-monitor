@@ -26,13 +26,13 @@ public class ParamClassifyForm {
 		classify.setRemark(getRemark());
 	}
 
-	public static List<ParamClassifyForm> convert(List<IParamClassify> list) {
-		List<ParamClassifyForm> result = new ArrayList<ParamClassifyForm>();
-		for (IParamClassify item : list) {
-			result.add(new ParamClassifyForm(item));
-		}
-		return result;
-	}
+//	public static List<ParamClassifyForm> convert(List<IParamClassify> list) {
+//		List<ParamClassifyForm> result = new ArrayList<ParamClassifyForm>();
+//		for (IParamClassify item : list) {
+//			result.add(new ParamClassifyForm(item));
+//		}
+//		return result;
+//	}
 
 	public long getId() {
 		return id;
