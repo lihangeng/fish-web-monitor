@@ -5,12 +5,13 @@ Ext.define('Eway.view.parameter.classify.ClassifyUpdate', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.classify_ClassifyUpdate',
 
-	title: '更改参数元数据分类信息',// EwayLocale.machine.atmGroup.updateTitle,
+	title: '更改分类信息',// EwayLocale.machine.atmGroup.updateTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
 
-	requires: [],
+	requires: ['Eway.view.field.paramClassify.ClassifyName',
+           	   	   'Eway.view.field.paramClassify.ClassifyRemark'],
 
 	initComponent: function() {
 		Ext.apply(this, {
@@ -25,21 +26,16 @@ Ext.define('Eway.view.parameter.classify.ClassifyUpdate', {
 					msgTarget : 'side'
 				},
 				items: [{
-					fieldLabel : '<font color="red">*</font>参数类名',// +EwayLocale.machine.atmGroup.groupName,
-					xtype : 'textfield',
-					name : 'name',
+					xtype : 'field_paramClassify_ClassifyName',
 					regex: /^[a-zA-Z0-9\u4E00-\u9FA5][a-zA-Z0-9-_\.\u4E00-\u9FA5]{0,19}$/,
 					regexText: '只能输入1到20字母‘a-z’或‘A-Z’、数字‘0-9’、中文、减号‘-’、下划线‘_’、点号‘.’， 只能以中文、字母或数字开头！',
-					maxLength : 20,
+					maxLength : 32,
 					allowBlank : false
 				},{
-				    xtype : 'textarea',
-				    fieldLabel :  '参数类备注',// EwayLocale.machine.atmGroup.note,
-				    name : 'remark',
+				    xtype : 'field_paramClassify_ClassifyRemark',
 					regex: /^[a-zA-Z0-9\u4E00-\u9FA5][a-zA-Z0-9-_\.\u4E00-\u9FA5，。“”（）]{0,39}$/,
 					regexText: '只能输入1到40字母‘a-z’或‘A-Z’、数字‘0-9’、中文、减号‘-’、下划线‘_’、点号‘.’、逗号、句号、括号、双引号， 只能以中文、字母或数字开头！',
-				    autoScroll : true,
-					maxLength :40,
+					maxLength :128,
 					allowBlank : true
 				}],
 				buttonAlign : 'center',

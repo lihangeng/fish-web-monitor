@@ -1,6 +1,8 @@
 package com.yihuacomputer.fish.web.parameter.controller;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +42,7 @@ public class ParamClassifyController {
 		IPageResult<IParamClassify> pageResult = classifyService.page(start, limit, filter);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA,ParamClassifyForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA,convert(pageResult.list()));
 		return result;
 	}
 
@@ -52,10 +54,10 @@ public class ParamClassifyController {
 		boolean isExist = this.isExistClassifyName(request.getId(), request.getName());
 		if(isExist){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "增加失败：分类名称已存在。");
+			result.addAttribute(FishConstant.ERROR_MSG, "分类名称已存在。");
 		} else {
 			IParamClassify classify =classifyService.make();
-			request.translate(classify);
+			translate(classify,request);
 			classifyService.add(classify);
 			result.put(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, new ParamClassifyForm(classify));
@@ -71,7 +73,7 @@ public class ParamClassifyController {
 		try {
 			if(id == 1){
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "删除失败：默认分类无法删除。");
+				result.addAttribute(FishConstant.ERROR_MSG, "默认分类无法删除。");
 				return result;
 			}
 			classifyService.remove(id);
@@ -90,10 +92,10 @@ public class ParamClassifyController {
 		IParamClassify classify = classifyService.get(id);
 		if(id == 1){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "更改失败：默认分类无法更改。");
+			result.addAttribute(FishConstant.ERROR_MSG, "默认分类无法更改。");
 			return result;
 		}
-		request.translate(classify);
+		translate(classify,request);
 		classify.setId(id);
 		classifyService.update(classify);
 		result.addAttribute(FishConstant.SUCCESS, true);
@@ -125,6 +127,20 @@ public class ParamClassifyController {
 		} catch (Exception e) {
 			return false;
 		}
+	}
+
+	public List<ParamClassifyForm> convert(List<IParamClassify> list) {
+		List<ParamClassifyForm> result = new ArrayList<ParamClassifyForm>();
+		for (IParamClassify item : list) {
+			result.add(new ParamClassifyForm(item));
+		}
+		return result;
+	}
+
+	public void translate(IParamClassify classify, ParamClassifyForm request) {
+		classify.setId(request.getId());
+		classify.setName(request.getName());
+		classify.setRemark(request.getRemark());
 	}
 
 	private IFilter request2filter(WebRequest request) {
