@@ -3,10 +3,10 @@ Ext.define('Eway.view.parameter.appSystem.Update',{
 	extend : 'Eway.view.base.Form',
 	
 	alias : 'widget.parameter_appSystem_update',
-	requires:['Eway.view.parameter.appSystem.field.FileFormCombox'],
+	requires:['Eway.view.parameter.appSystem.field.FileFormatCombox'],
 	          
 	initComponent:function(){
-		var format=Ext.create('Eway.store.parameter.appSystem.FileForm');
+		var format=Ext.create('Eway.store.parameter.appSystem.FileFormat');
 		Ext.apply(this,{
 				defaults: {
 					width: 400,
@@ -21,7 +21,7 @@ Ext.define('Eway.view.parameter.appSystem.Update',{
 					maxLength : 80
 				},{
 					fieldLabel:'配置文件格式',
-					xtype:'field_appSystem_fileForm',
+					xtype:'field_appSystem_fileFormat',
 					allowBlank:false,
 					store:format
 				},{
