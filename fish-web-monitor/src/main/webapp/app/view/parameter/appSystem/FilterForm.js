@@ -2,13 +2,13 @@ Ext.define('Eway.view.parameter.appSystem.FilterForm',{
 	extend :'Eway.view.base.FilterForm',
 	alias : 'widget.parameter_appSystem_filterForm',
 	
-	store:['Eway.store.parameter.appSystem.FileForm'],
-	requires:['Eway.view.parameter.appSystem.field.FileFormCombox'],
+	store:['Eway.store.parameter.appSystem.FileFormat'],
+	requires:['Eway.view.parameter.appSystem.field.FileFormatCombox'],
 	
-	height :50,
+	height :30,
 	
 	initComponent : function(){
-		var format=Ext.create('Eway.store.parameter.appSystem.FileForm');
+		var format=Ext.create('Eway.store.parameter.appSystem.FileFormat');
 		Ext.apply(this,{
 			layout :'column',
 			items :[{
@@ -31,7 +31,7 @@ Ext.define('Eway.view.parameter.appSystem.FilterForm',{
 			},{
 				columnWidth :.3,
 				items:[{
-					xtype:'field_appSystem_fileForm',
+					xtype:'field_appSystem_fileFormat',
 					fieldLabel:'配置文件格式',
 					name:'configForm',
 					nameLenght:20,

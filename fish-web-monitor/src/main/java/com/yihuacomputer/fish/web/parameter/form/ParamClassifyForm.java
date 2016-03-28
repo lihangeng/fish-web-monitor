@@ -1,8 +1,5 @@
 package com.yihuacomputer.fish.web.parameter.form;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.yihuacomputer.fish.api.parameter.IParamClassify;
 
 public class ParamClassifyForm {
@@ -18,20 +15,6 @@ public class ParamClassifyForm {
 		setId(classify.getId());
 		setName(classify.getName());
 		setRemark(classify.getRemark());
-	}
-
-	public void translate(IParamClassify classify) {
-		classify.setId(getId());
-		classify.setName(getName());
-		classify.setRemark(getRemark());
-	}
-
-	public static List<ParamClassifyForm> convert(List<IParamClassify> list) {
-		List<ParamClassifyForm> result = new ArrayList<ParamClassifyForm>();
-		for (IParamClassify item : list) {
-			result.add(new ParamClassifyForm(item));
-		}
-		return result;
 	}
 
 	public long getId() {
