@@ -234,7 +234,7 @@ public class VersionController {
 			UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
 			v.setCreateUserId(userSession.getUserId());
 			v.setExecBefore(form.getExecBefore());
-			v.setDownloadCounter(1);
+			v.setDownloadCounter(0);
 			versionService.add(v);
 
 			// 回填值到form中

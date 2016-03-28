@@ -41,12 +41,12 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			'#versionDownloadMonitorView version_download_grid' :{
 				afterrender : this.onSelectFirst
 			},
+			'#versionDownloadMonitorView version_download_monitor_taskgrid':{
+				close :this.onDestory
+			},
 			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=taskquery]':{
 				click :this.onTaskQuery
 			},
-			/*'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=export]':{
-				click :this.onTaskExport
-			},*/
 			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=rebootAll]':{
 				click :this.onTaskRebootAll
 			},
@@ -186,7 +186,12 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	},
 	currentTask : null,
 	lastTaskGrid :null,
-
+	onDestory:function(){
+		if(this.currentTask != null){
+			Ext.TaskManager.stop(this.currentTask);
+			this.currentTask = null;
+		}
+	},
 	onJobDetail:function(){
 		var grid = this.getGrid();
 		var store = grid.getStore();
@@ -218,8 +223,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		    },
 		    success: function(response){
 		        var object = Ext.decode(response.responseText);
-
-				this.onViewBeforeDeactivate();
+				me.onViewBeforeDeactivate();
 		        var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":jobId});
 				tabpanel.add(jobDetailPanel);
 				jobDetailPanel.setTitle(object.total.jobName);
@@ -250,6 +254,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	onViewBeforeDeactivate : function(){
 		if(this.currentTask != null){
 			Ext.TaskManager.stop(this.currentTask);
+			this.currentTask = null;
 			var btn = this.lastTaskGrid.down("button[action=autoRefresh]");
 			btn.setText(EwayLocale.version.download.autoRefresh);//"开启自动刷新");
 			btn.started = false;
@@ -306,7 +311,6 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		this.setTaskSearchFilter(jobId);
 		grid.getStore().loadPage(1);
 	},
-	currentTask : null,
 	
 	getActiveTask:function(){
 		return this.getEwayView().down("tabpanel").getActiveTab();
