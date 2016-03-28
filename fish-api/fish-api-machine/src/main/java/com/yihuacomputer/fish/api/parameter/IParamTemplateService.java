@@ -20,11 +20,7 @@ public interface IParamTemplateService {
 
 	public void update(IParamTemplate template);
 
-//	public Iterable<IElement> list();
-//
 	public IPageResult<IParamTemplate> page(int offset,int limit,IFilter filter);
-//
-//	public Iterable<IElement> list(IFilter filter);
 	
 	public IPageResult<IDevice> pageUnlinkedDevice(int offset,int limit, IParamTemplate template, IFilter filter);
 	
@@ -38,9 +34,7 @@ public interface IParamTemplateService {
 	
 	public void unlink(IParamTemplate template, IDevice device);
 	
-			
-			 
-	
-	
+
+	public List<IParamElement> listParamByTemplate(long templateId) ;
 
 }

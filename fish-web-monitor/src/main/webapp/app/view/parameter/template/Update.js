@@ -1,62 +1,59 @@
 Ext.define('Eway.view.parameter.template.Update', {
-	extend: 'Ext.window.Window',
-	alias: 'widget.template_update',
+	extend : 'Ext.window.Window',
+	alias : 'widget.template_update',
 
-	title: '更改模板',
-	modal: true,
-	resizable: false,
-	constrainHeader: true,
+	requires : [ 'Eway.view.parameter.template.ParamGrid',
+//		           'Eway.view.field.person.UserType',
+			'Eway.view.parameter.template.AddedParamGrid' ],
 
-	requires: [],
+	title : '更改参数模板（使用拖拽的方式）',
+	modal : true,
+	resizable : true,
+	constrainHeader : true,
+	layout : 'border',
+	width : 800,
+	height : 500,
 
-	initComponent: function() {
+	initComponent : function() {
 		Ext.apply(this, {
-			items : {
-				xtype: 'form',
-				bodyStyle : 'padding: 10px 30px 10px 10px',
+			items : [ {
+//				fieldLabel : '<font color="red">*</font> 用户类型',
+//				xtype : 'field_userType',
+//				region : 'north',
+//				name:'userType',
+//				allowBlank : false
+//			},{
+				xtype : 'panel',
 				trackResetOnLoad : true,
 				selectOnFocus : true,
-				defaults: {
-					width: 350,
-					labelAlign: 'right',
-					msgTarget : 'side'
-				},
-				items: [{
-					fieldLabel : '<font color="red">*</font>模板名称',
-					xtype : 'textfield',
-					name : 'name',
-					maxLength : 30,
-					allowBlank : false
-				},{
-				    xtype : 'textarea',
-				    fieldLabel :  '模板备注',
-				    name : 'remark',
-				    autoScroll : true,
-					maxLength :30,
-					allowBlank : true
-				}],
-				buttonAlign : 'center',
-				buttons: [{
-					text: EwayLocale.button.confirm,
-					action: 'update'
-				},{
-					text: EwayLocale.button.reset,
-					handler: this.onReset,
-					hidden : true
-				},{
-					text: EwayLocale.button.cancle,
-					handler: this.onOver
-				}]
-			}
+				region : 'center',
+				layout : 'border',
+				items : [ {
+					title : '可添加参数',
+					region : 'west',
+					width : 400,
+					xtype : 'param_paramGrid',
+					margin : '0 5px 0 0',
+					autoLoadStore : true
+				}, {
+					title : '已添加的参数',
+					region : 'center',
+					xtype : 'param_addedParamGrid',
+					autoLoadStore : true
+				} ]
+			} ],
+			buttonAlign : 'center',
+			fbar : [ {
+				text : EwayLocale.button.back,
+				// iconCls :'returnBtn',
+				handler : this.onOver
+			} ]
 		});
+
 		this.callParent(arguments);
 	},
 
-	onReset: function() {
-		this.up('form').getForm().reset();
-	},
-
-	onOver: function() {
+	onOver : function() {
 		this.up('window').close();
 	}
 });

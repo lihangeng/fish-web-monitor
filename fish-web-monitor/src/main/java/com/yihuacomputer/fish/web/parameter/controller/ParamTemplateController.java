@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.web.parameter.controller;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,12 +27,15 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.parameter.IParamElement;
+import com.yihuacomputer.fish.api.parameter.IParamElementService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertGroupDeviceForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
+import com.yihuacomputer.fish.web.parameter.form.ParamElementForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamTemplateForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
@@ -46,6 +50,9 @@ public class ParamTemplateController {
 	
     @Autowired
     private IDeviceService deviceService;
+    
+    @Autowired
+    private IParamElementService paramElementService;
 	
 	
 	@Autowired
@@ -223,6 +230,49 @@ public class ParamTemplateController {
        }
        return result;
    }
+   
+   
+	/**
+	 * 获得该模板下的已关联参数
+	 *
+	 * @return
+	 */
+	@RequestMapping(value = "/addedParam", method = RequestMethod.GET)
+	public @ResponseBody
+	ModelMap getAddedRole(@RequestParam int start, @RequestParam int limit,@RequestParam long id) {
+
+		ModelMap result = new ModelMap();
+		if (templateService.get(id) == null) {
+			result.addAttribute(FishConstant.SUCCESS, false);
+		} else {
+			result.addAttribute(FishConstant.SUCCESS, true);
+			result.addAttribute(FishConstant.DATA , convert(templateService.listParamByTemplate(id)));
+		}
+		return result;
+	}
+	
+	
+	
+	/**
+	 * 获得该模板下的可关联参数
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/addingParam", method = RequestMethod.GET)
+	public @ResponseBody
+	ModelMap getAddingRole(@RequestParam int start, @RequestParam int limit,@RequestParam long id) {
+
+		ModelMap result = new ModelMap();
+		if (templateService.get(id) == null) {
+			result.addAttribute(FishConstant.SUCCESS, false);
+		} else {
+			List<IParamElement> list  = (List<IParamElement>) paramElementService.list();
+			list.removeAll(templateService.listParamByTemplate(id));
+			result.addAttribute(FishConstant.SUCCESS, true);
+			result.addAttribute(FishConstant.DATA, convert(list));
+		}
+		return result;
+	}
 	
    
    
@@ -256,6 +306,15 @@ public class ParamTemplateController {
 			}
 		}
 		return filter;
+	}
+	
+	
+	public List<ParamElementForm> convert(List<IParamElement> resources) {
+		List<ParamElementForm> result = new ArrayList<ParamElementForm>();
+		for (IParamElement resource : resources) {
+			result.add(new ParamElementForm(resource));
+		}
+		return result;
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.web.parameter.controller;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -130,7 +131,7 @@ public class ParamElementController {
         logger.info(String.format("search element : queryClassify"));
         ModelMap model = new ModelMap();
         List<IParamClassify> cassifyList = EntityUtils.convert(classifyService.list());
-        model.put(FishConstant.DATA, ParamClassifyForm.convert(cassifyList));
+        model.put(FishConstant.DATA, convert(cassifyList));
         model.put(FishConstant.SUCCESS, true);
         return model;
     }
@@ -178,6 +179,14 @@ public class ParamElementController {
 	private boolean isNotFilterName(String name) {
 		return "page".equals(name) || "start".equals(name) || "limit".equals(name) || "_dc".equals(name);
 	}
+
+	public static List<ParamClassifyForm> convert(List<IParamClassify> list) {
+	List<ParamClassifyForm> result = new ArrayList<ParamClassifyForm>();
+	for (IParamClassify item : list) {
+		result.add(new ParamClassifyForm(item));
+	}
+	return result;
+}
 
 
 }

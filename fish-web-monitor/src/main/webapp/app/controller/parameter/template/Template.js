@@ -1,10 +1,15 @@
 Ext.define('Eway.controller.parameter.template.Template', {
 			extend : 'Eway.controller.base.FishController',
 
-			stores : ['parameter.template.Template','machine.DeviceAtmType','machine.atmType.DeviceAtmCatalog'],
-			models : ['parameter.template.Template'],
+			stores : ['parameter.template.Template','machine.DeviceAtmType','machine.atmType.DeviceAtmCatalog',
+			          
+			          'parameter.template.AddedParam','parameter.template.AddingParam'],
+			
+			
+			models : ['parameter.template.Template','parameter.template.AddedParam',
+			          'parameter.template.AddingParam','parameter.template.TemplateParam'],
 
-			views : ['parameter.template.View'],
+			views : ['parameter.template.View','parameter.template.Update'],
 
 			refs : [{
 						ref : 'ewayView',
@@ -23,8 +28,14 @@ Ext.define('Eway.controller.parameter.template.Template', {
 					}, {
 						ref : 'updateWin',
 						selector : 'template_update'
-					}
-					],
+					}, {
+						ref: 'paramGrid',
+						selector: 'template_update param_paramGrid'
+					}, {
+						ref: 'addedParamGrid',
+						selector: 'template_update param_addedParamGrid'
+					} ],
+					
 
 			formConfig : {
 						form : 'Eway.view.parameter.template.Form',
@@ -54,6 +65,117 @@ Ext.define('Eway.controller.parameter.template.Template', {
 								click : this.onGroupLink
 							}
 						});
+			},
+			
+			
+			onUpdate: function() {
+				var grid = this.getTemplateGrid();
+				var sm = grid.getSelectionModel();
+				var flag = true;
+				if(sm.getCount() == 1) {
+					var win = Ext.create('Eway.view.parameter.template.Update');
+					var record = sm.getLastSelected();
+
+					var paramGrid = this.getParamGrid();
+					var addedParamGrid = this.getAddedParamGrid();
+
+					addedParamGrid.getView().on('drop', this.onAddedParam, this);
+					paramGrid.getView().on('drop', this.onAddingParam, this);
+					
+
+					addedParamGrid.getStore().load({
+						params : {
+							id: record.data.id
+						},
+						callback: function(records, operation, success) {
+							if(success==false){
+								//Eway.alert(EwayLocale.tip.user.update.fail);
+								win.close();
+							}
+					    }
+					});
+
+					paramGrid.getStore().load({
+						params : {
+							id: record.data.id
+						},
+						callback: function(records, operation, success) {
+							if(success==false){
+								Eway.alert(EwayLocale.tip.user.update.fail);
+								win.close();
+							}
+					    }
+					});
+
+					win.show();
+				}else {
+					Eway.alert(EwayLocale.choiceUpdateMsg);
+				}
+			},
+
+			onAddedParam: function(node, record, overModel, dropPosition) {
+				
+				var addedParamRecord = this.getAddedParamGrid().getSelectionModel().getLastSelected();
+				var templateRecord = this.getGrid().getSelectionModel().getLastSelected();//得到模板的ID
+
+				this.onAddedConfirmParam(addedParamRecord.get('id'), templateRecord.get('id'));
+			},
+			
+			onAddingParam: function(node, record, overModel, dropPosition){
+				var addingParamRecord = this.getParamGrid().getSelectionModel().getLastSelected();
+				if(addingParamRecord == null){
+					Eway.alert(EwayLocale.tip.user.add.choose);
+					this.getParamGrid().getStore().load();
+					return;
+				}
+
+				var templateRecord = this.getGrid().getSelectionModel().getLastSelected();//得到模板的ID
+				this.onAddingConfirmParam(addingParamRecord.get('id'), templateRecord.get('id'));
+			},
+			
+
+			onAddingConfirmParam: function(paramId,templateId) {
+				Ext.Ajax.request({
+					method : 'POST',
+					url : 'api/parameter/template/removeParam',
+					params : {
+						paramId: paramId ,
+						templateId : templateId
+					},
+					success : function(response) {
+						var object = Ext.decode(response.responseText);
+						if(object.success == true){
+							Eway.alert(EwayLocale.updateSuccess);
+						} else {
+							Eway.alert(EwayLocale.tip.remove.error);
+						}
+					},
+					failure : function() {
+						Eway.alert(EwayLocale.tip.user.remove.fail);
+					},
+					scope : this
+				});
+			},
+			
+			onAddedConfirmParam: function(paramId,templateId){
+				var data = new Object();
+				var record = Ext.create('Eway.model.parameter.template.TemplateParam',data);
+
+				record.set('paramId', paramId);
+				record.set('templateId', templateId);
+
+				record.save({
+					success : function(record, operation) {
+						Eway.alert(EwayLocale.addSuccess);
+					},
+					failure : function(record, operation) {
+						Eway.alert(EwayLocale.tip.add.error + operation.getError());
+
+						this.getParamGrid().getStore().reload();
+						this.getAddedParamGrid().getStore().reload();
+					},
+					scope: this
+				});
 			},
 						
 			onGroupLink : function(){

@@ -34,13 +34,60 @@ public class ParamTemplate implements IParamTemplate, Serializable {
 	@Column(name="NAME",length=40)
 	private String name;
 
-	@Column(name="REMARK",length=40)
+	@Column(name="REMARK",length=60)
 	private String remark;
-
+	
+	
+	@Column(name="PARAM_KEY",length=40)
+	private String paramKey;
+	
+	
+	@Column(name="PARAM_VALUE",length=60)
+	private String paramValue;
+	
+	
+	@Column(name="VERSION_NO")
+	private long versionNo;
 	
 
 	public ParamTemplate(){
 
+	}
+
+	
+	@Override
+	public String getParamKey() {
+		return paramKey;
+	}
+
+	
+	@Override
+	public void setParamKey(String paramKey) {
+		this.paramKey = paramKey;
+	}
+
+	
+	@Override
+	public String getParamValue() {
+		return paramValue;
+	}
+
+	
+	@Override
+	public void setParamValue(String paramValue) {
+		this.paramValue = paramValue;
+	}
+
+	
+	@Override
+	public long getVersionNo() {
+		return versionNo;
+	}
+
+	
+	@Override
+	public void setVersionNo(long versionNo) {
+		this.versionNo = versionNo;
 	}
 
 
