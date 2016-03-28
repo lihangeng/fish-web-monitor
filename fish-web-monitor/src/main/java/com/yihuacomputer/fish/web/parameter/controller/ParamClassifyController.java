@@ -57,7 +57,7 @@ public class ParamClassifyController {
 			result.addAttribute(FishConstant.ERROR_MSG, "分类名称已存在。");
 		} else {
 			IParamClassify classify =classifyService.make();
-			request.translate(classify);
+			translate(classify,request);
 			classifyService.add(classify);
 			result.put(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, new ParamClassifyForm(classify));
@@ -95,7 +95,7 @@ public class ParamClassifyController {
 			result.addAttribute(FishConstant.ERROR_MSG, "默认分类无法更改。");
 			return result;
 		}
-		request.translate(classify);
+		translate(classify,request);
 		classify.setId(id);
 		classifyService.update(classify);
 		result.addAttribute(FishConstant.SUCCESS, true);
@@ -135,6 +135,12 @@ public class ParamClassifyController {
 			result.add(new ParamClassifyForm(item));
 		}
 		return result;
+	}
+
+	public void translate(IParamClassify classify, ParamClassifyForm request) {
+		classify.setId(request.getId());
+		classify.setName(request.getName());
+		classify.setRemark(request.getRemark());
 	}
 
 	private IFilter request2filter(WebRequest request) {
