@@ -482,6 +482,7 @@ Ext.apply(EwayLocale,{
 		param:{
 			paramKey:'参数',//EwayLocale.machine.param.paramKey
 			paramValue:'参数值',//EwayLocale.machine.param.paramValue
+			paramClassify:'参数分类',//EwayLocale.machine.param.paramClassify
 			modifyFlag:'是否可以修改',//EwayLocale.machine.param.modifyFlag
 			comboxClassify:{
 				unableUpdate:'不可修改',//EwayLocale.machine.param.comboxClassify.unableUpdate
