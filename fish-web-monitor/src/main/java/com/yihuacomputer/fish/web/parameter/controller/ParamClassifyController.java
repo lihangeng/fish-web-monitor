@@ -52,7 +52,7 @@ public class ParamClassifyController {
 		boolean isExist = this.isExistClassifyName(request.getId(), request.getName());
 		if(isExist){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "增加失败：分类名称已存在。");
+			result.addAttribute(FishConstant.ERROR_MSG, "分类名称已存在。");
 		} else {
 			IParamClassify classify =classifyService.make();
 			request.translate(classify);
@@ -71,7 +71,7 @@ public class ParamClassifyController {
 		try {
 			if(id == 1){
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "删除失败：默认分类无法删除。");
+				result.addAttribute(FishConstant.ERROR_MSG, "默认分类无法删除。");
 				return result;
 			}
 			classifyService.remove(id);
@@ -90,7 +90,7 @@ public class ParamClassifyController {
 		IParamClassify classify = classifyService.get(id);
 		if(id == 1){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "更改失败：默认分类无法更改。");
+			result.addAttribute(FishConstant.ERROR_MSG, "默认分类无法更改。");
 			return result;
 		}
 		request.translate(classify);
