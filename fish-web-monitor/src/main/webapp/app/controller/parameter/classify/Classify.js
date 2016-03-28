@@ -18,12 +18,6 @@ Ext.define('Eway.controller.parameter.classify.Classify', {
 	},{
 		ref : 'classifyGrid',
 		selector : 'classify_Grid'
-	},{
-		ref : 'addWin',
-		selector : 'classify_ClassifyAdd'
-	},{
-		ref : 'updateWin',
-		selector : 'classify_ClassifyUpdate'
 	}],
 
 	formConfig : {

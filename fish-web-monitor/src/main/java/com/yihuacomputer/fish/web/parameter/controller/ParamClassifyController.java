@@ -68,7 +68,7 @@ public class ParamClassifyController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
-		logger.info(" delete classify: classify.id = " + id);
+		logger.info("delete classify: classify.id = " + id);
 		ModelMap result = new ModelMap();
 		try {
 			if(id == 1){
