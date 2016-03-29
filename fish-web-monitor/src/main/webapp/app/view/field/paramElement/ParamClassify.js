@@ -14,9 +14,21 @@ Ext.define('Eway.view.field.paramElement.ParamClassify', {
 	editable : false,
 	emptyText : EwayLocale.combox.select,
 	listeners : {
+
+
 		beforerender : function() {
-			this.store.load();
+			this.store.load({
+				callback : function(records, operation, success) {
+					if (success) {
+						if (this.getValue()) {
+							this.isValid();
+						}
+					}
+				},
+				scope : this
+			});
 		},
+
 		change:function(text,newValue,oldValue){
 			if(newValue && newValue!== "" ){
 				text.getTrigger("clear").show();

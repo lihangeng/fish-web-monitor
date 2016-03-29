@@ -22,10 +22,11 @@ Ext.define('Eway.view.parameter.element.FilterForm', {
 			},{
 				columnWidth : .25,
 				items : [{
-					xtype : 'textfield',
+					xtype : 'field_paramElement_ParamClassify',
 					labelWidth: 110,
-					name : 'paramValue',
-					fieldLabel :'参数值',
+					name : 'classifyId',
+					fieldLabel :'参数分类',
+					editable : false,
 					msgTarget : 'side',
 					labelAlign : 'right'
 				}]

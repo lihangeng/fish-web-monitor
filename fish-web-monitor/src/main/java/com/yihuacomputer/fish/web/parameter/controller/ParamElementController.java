@@ -172,7 +172,8 @@ public class ParamElementController {
 						filter.eq(name, value.trim());
 					}
 					else {
-						filter.like(name, request.getParameter(name));
+						IParamClassify classify = classifyService.get(Long.parseLong(request.getParameter(name)));
+						filter.eq("paramClassify", classify);
 					}
 				}
 			}
