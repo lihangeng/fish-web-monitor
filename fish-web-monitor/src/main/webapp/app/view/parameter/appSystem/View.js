@@ -11,13 +11,11 @@ Ext.define('Eway.view.parameter.appSystem.View',{
 	 initComponent:function(){
 		 Ext.apply(this,{
 			 items:[{
-				 itemId : 'appSystemFilterForm',
 				 region : 'north',
 				 xtype : 'parameter_appSystem_filterForm'
 					 ,
 				 height : 70
 			 },{
-				 itemId : 'appSystemGrid',
 				 region : 'center',
 				 xtype : 'parameter_appSystem_grid'
 			 }]
