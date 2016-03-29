@@ -75,7 +75,6 @@ public class ParamElementController {
 		element.setParamValue(request.getParamValue());
 		element.setParamType(request.getParamType());
 		element.setParamClassify(classify);
-		element.setVersionNo(request.getVersionNo());
 		element.setParamRights(request.getParamRights());
 		element.setParamBelongs(request.getParamBelongs());
 		element.setRemark(request.getRemark());
@@ -117,7 +116,6 @@ public class ParamElementController {
 		element.setParamValue(request.getParamValue());
 		element.setParamType(request.getParamType());
 		element.setParamClassify(classify);
-		element.setVersionNo(request.getVersionNo());
 		element.setParamRights(request.getParamRights());
 		element.setParamBelongs(request.getParamBelongs());
 		element.setRemark(request.getRemark());

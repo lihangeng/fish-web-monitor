@@ -51,9 +51,6 @@ public class ParamElement implements IParamElement, Serializable {
 	@JoinColumn(name="PARAM_CLASSIFY")
 	private IParamClassify paramClassify;
 
-	@Column(name=" VERSION_NO",length=60)
-	private String versionNo;
-
 	@Column(name="PARAM_RIGHTS",length=10)
 	private String paramRights;
 
@@ -133,18 +130,6 @@ public class ParamElement implements IParamElement, Serializable {
 	public void setParamClassify(IParamClassify paramClassify)
 	{
         this.paramClassify=paramClassify;
-	}
-
-	@Override
-	public String getVersionNo()
-	{
-		return versionNo;
-	}
-
-	@Override
-	public void setVersionNo(String versionNo)
-	{
-       this.versionNo=versionNo;
 	}
 
 	@Override

@@ -23,10 +23,6 @@ public interface IParamElement {
 
     public void setParamClassify(IParamClassify classify);
 
-    public String getVersionNo();
-
-    public void setVersionNo(String no);
-
     public String getParamRights();
 
     public void setParamRights(String rights);

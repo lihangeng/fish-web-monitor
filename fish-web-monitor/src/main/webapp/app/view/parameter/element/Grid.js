@@ -62,10 +62,6 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				dataIndex : 'paramClassify',
 				flex : 2
 			},{
-				header : '版本号',
-				dataIndex : 'versionNo',
-				flex : 2
-			},{
 				header : '参数权限',
 				dataIndex : 'paramRights',
 				flex : 2,

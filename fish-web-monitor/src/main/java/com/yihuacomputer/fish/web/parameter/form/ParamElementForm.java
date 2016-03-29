@@ -14,7 +14,6 @@ public class ParamElementForm {
 	private String paramType;
 	private long   classifyId;
 	private String paramClassify;
-	private String versionNo;
 	private String paramRights;
 	private String paramBelongs;
 	private String remark;
@@ -34,7 +33,6 @@ public class ParamElementForm {
 		setClassifyId(element.getParamClassify().getId());
 		setParamClassify(element.getParamClassify().getName());
 		}
-		setVersionNo(element.getVersionNo());
 		setParamRights(element.getParamRights());
 		setParamBelongs(element.getParamBelongs());
 		setRemark(element.getRemark());
@@ -43,20 +41,6 @@ public class ParamElementForm {
 
 	}
 
-//	public void translate(IElement element){
-//
-////		element.setId(getId());
-//		element.setParamName(getParamName());
-//		element.setParamValue(getParamValue());
-//		element.setParamType(getParamType());
-////		element.setParamClassify(getParamClassify());
-//		element.setVersionNo(getVersionNo());
-//		element.setParamRights(getParamRights());
-//		element.setParamBelongs(getParamBelongs());
-//		element.setRemark(getRemark());
-//		element.setCreateTime(this.nullDate(getCreateTime()));
-//		element.setLastModifyTime(this.nullDate(getLastModifyTime()));
-//	}
 
 	public static List<ParamElementForm> convert(List<IParamElement> list) {
 		List<ParamElementForm> result=new ArrayList<ParamElementForm>();
@@ -131,14 +115,6 @@ public class ParamElementForm {
 
 	public void setParamClassify(String paramClassify) {
 		this.paramClassify = paramClassify;
-	}
-
-	public String getVersionNo() {
-		return versionNo;
-	}
-
-	public void setVersionNo(String versionNo) {
-		this.versionNo = versionNo;
 	}
 
 	public String getParamRights() {
