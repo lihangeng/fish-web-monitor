@@ -11,6 +11,7 @@ import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.filter.FilterEntry;
+import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
@@ -18,6 +19,7 @@ import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.parameter.entity.ParamTemplate;
 import com.yihuacomputer.fish.parameter.entity.ParamTemplateDeviceRelation;
+import com.yihuacomputer.fish.parameter.entity.ParamTemplateElementRelation;
 
 @Service
 @Transactional
@@ -155,12 +157,26 @@ public class ParamTemplateService implements IParamTemplateService {
 
 		StringBuffer hql = new StringBuffer();
 		
-		hql.append("select DISTINCT e from ParamElement e WHERE NOT EXISTS ( ");
-		hql.append(" select er.elementId from ParamTemplateElementRelation er where er.elementId = e.id and er.templateId = ? )");
-		hql.append(" and e.id not in (select er.elementId from ParamTemplateElementRelation er )");
-		
+        hql.append("select t from ParamElement t ,ParamTemplateElementRelation t1 ");
+        hql.append("where t.id = t1.elementId and t1.templateId = ?");
 		List<IParamElement> elements = dao.findByHQL(hql.toString(), templateId);
 		
 		return elements ;
+	}
+
+	@Override
+	public void unlinkTempParam(IParamTemplate template, IParamElement emlement) {
+		 	Filter filter = new Filter();
+	        filter.addFilterEntry(FilterFactory.eq("templateId", template.getId()));
+	        filter.addFilterEntry(FilterFactory.eq("elementId", emlement.getId()));
+	        ParamTemplateElementRelation obj = dao.findUniqueByFilter(filter, ParamTemplateElementRelation.class);
+	        if (obj != null) {
+	            dao.delete(obj);
+	        }
+	}
+
+	@Override
+	public void linkTempParam(IParamTemplate template, IParamElement emlement) {
+		dao.save(ParamTemplateElementRelation.make(template.getId(), emlement.getId()));
 	}
 }

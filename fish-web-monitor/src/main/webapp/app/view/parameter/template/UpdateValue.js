@@ -1,11 +1,10 @@
-Ext.define('Eway.view.parameter.template.Update', {
+Ext.define('Eway.view.parameter.template.UpdateValue', {
 	extend : 'Ext.window.Window',
-	alias : 'widget.template_update',
+	alias : 'widget.template_updateValue',
 
-	requires : [ 'Eway.view.parameter.template.ParamGrid',
-			'Eway.view.parameter.template.AddedParamGrid' ],
+	requires : [ 'Eway.view.parameter.template.ParamValueGrid'],
 
-	title : '更改参数模板（使用拖拽的方式）',
+	title : '更改参数值(直接修改)',
 	modal : true,
 	resizable : true,
 	constrainHeader : true,
@@ -25,21 +24,19 @@ Ext.define('Eway.view.parameter.template.Update', {
 					title : '可添加参数',
 					region : 'west',
 					width : 400,
-					xtype : 'param_paramGrid',
+					xtype : 'param_paramValueGrid',
 					margin : '0 5px 0 0',
 					autoLoadStore : true
-				}, {
-					title : '已添加的参数',
-					region : 'center',
-					xtype : 'param_addedParamGrid',
-					autoLoadStore : true
-				} ]
+				}]
 			} ],
 			buttonAlign : 'center',
-			fbar : [ {
-				text : EwayLocale.button.back,
+			buttons : [ {
+				text : '确认',
+				action : 'confirm'
+			}, {
+				text : '取消',
 				handler : this.onOver
-			} ]
+			}]
 		});
 
 		this.callParent(arguments);

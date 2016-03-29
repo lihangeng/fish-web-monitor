@@ -9,7 +9,7 @@ Ext.define('Eway.controller.parameter.template.Template', {
 			models : ['parameter.template.Template','parameter.template.AddedParam',
 			          'parameter.template.AddingParam','parameter.template.TemplateParam'],
 
-			views : ['parameter.template.View','parameter.template.Update'],
+			views : ['parameter.template.View','parameter.template.Update','parameter.template.UpdateValue'],
 
 			refs : [{
 						ref : 'ewayView',
@@ -27,7 +27,7 @@ Ext.define('Eway.controller.parameter.template.Template', {
 						selector : 'template_add'
 					}, {
 						ref : 'updateWin',
-						selector : 'template_update'
+						selector : 'template_updateValue'
 					}, {
 						ref: 'paramGrid',
 						selector: 'template_update param_paramGrid'
@@ -36,14 +36,21 @@ Ext.define('Eway.controller.parameter.template.Template', {
 						selector: 'template_update param_addedParamGrid'
 					} ],
 					
-
-			formConfig : {
-						form : 'Eway.view.parameter.template.Form',
-						xtype : 'parameter_template_form',
-						width: 500,
-						height:280,
-						title : EwayLocale.machine.atmBrand.title
+					onUpdate : function() {
+						var grid = this.getTemplateGrid();
+						var sm = grid.getSelectionModel();
+						if (sm.getCount() == 1) {
+							var record = sm.getLastSelected();
+							var win = Ext.create('Eway.view.parameter.template.UpdateValue');
+							
+							var button = win.down('button[action="confirm"]');
+							button.on('click', this.onUpdateConfirm, this);
+							win.show();
+						} else {
+							Eway.alert(EwayLocale.choiceUpdateMsg);
+						}
 					},
+					
 			init : function() {
 				this.initBaseControl();
 				this.control({
@@ -54,7 +61,11 @@ Ext.define('Eway.controller.parameter.template.Template', {
 								click : this.onAdd,
 								scope : this
 							},
-							'template_View button[action=update]' : {
+							'template_View button[action=updateElement]' : {
+								click : this.onUpdateElement,
+								scope : this
+							},
+							'template_View button[action=updateValue]' : {
 								click : this.onUpdate,
 								scope : this
 							},
@@ -68,7 +79,7 @@ Ext.define('Eway.controller.parameter.template.Template', {
 			},
 			
 			
-			onUpdate: function() {
+			onUpdateElement: function() {
 				var grid = this.getTemplateGrid();
 				var sm = grid.getSelectionModel();
 				var flag = true;
@@ -116,7 +127,7 @@ Ext.define('Eway.controller.parameter.template.Template', {
 			onAddedParam: function(node, record, overModel, dropPosition) {
 				
 				var addedParamRecord = this.getAddedParamGrid().getSelectionModel().getLastSelected();
-				var templateRecord = this.getGrid().getSelectionModel().getLastSelected();//得到模板的ID
+				var templateRecord = this.getTemplateGrid().getSelectionModel().getLastSelected();//得到模板的ID
 
 				this.onAddedConfirmParam(addedParamRecord.get('id'), templateRecord.get('id'));
 			},
@@ -129,7 +140,7 @@ Ext.define('Eway.controller.parameter.template.Template', {
 					return;
 				}
 
-				var templateRecord = this.getGrid().getSelectionModel().getLastSelected();//得到模板的ID
+				var templateRecord = this.getTemplateGrid().getSelectionModel().getLastSelected();//得到模板的ID
 				this.onAddingConfirmParam(addingParamRecord.get('id'), templateRecord.get('id'));
 			},
 			
@@ -151,7 +162,7 @@ Ext.define('Eway.controller.parameter.template.Template', {
 						}
 					},
 					failure : function() {
-						Eway.alert(EwayLocale.tip.user.remove.fail);
+						Eway.alert('添加到模板失败');
 					},
 					scope : this
 				});

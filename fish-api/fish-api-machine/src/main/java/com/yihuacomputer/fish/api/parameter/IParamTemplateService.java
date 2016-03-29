@@ -36,5 +36,10 @@ public interface IParamTemplateService {
 	
 
 	public List<IParamElement> listParamByTemplate(long templateId) ;
+	
+	public void unlinkTempParam(IParamTemplate  template, IParamElement emlement);
+	
+	public void linkTempParam(IParamTemplate  template, IParamElement emlement);
+	
 
 }

@@ -15,28 +15,42 @@ Ext.define('Eway.view.parameter.template.ParamGrid', {
 			enableDrop : true
 		}
 	},
+	selModel:{selType:'checkboxmodel'},
 
-
+	
 	initComponent : function() {
+		//复选框选择模式  
+		var checkboxSM = new Ext.create('Ext.selection.CheckboxModel', {
+			checkOnly : false,
+			singleSelect : false
+		});
+		
 		Ext.apply(this, {
 			initRegion : true,
-			columns : [ {
+			frame: true,  
+			columns : [
+			    {
 				header : '参数名称',
-				dataIndex : 'name',
+				dataIndex : 'paramName',
+				flex : 1,
 				storable : true
 			}, {
 				header : '参数值',
-				dataIndex : 'description',
-				flex : 1
+				dataIndex : 'paramValue',
+				flex : 1,
+				editor : new Ext.form.TextField({
+	                allowBlank:false  
+	            })  
 			}, {
 				header : 'ID',
 				dataIndex : 'id',
 				hidden : true,
 				storable : true
-			} ]
+			} ],
+		    stripeRows: true,  
+		    sm: checkboxSM  
 
 		});
-
 		this.callParent(arguments);
 	},
 

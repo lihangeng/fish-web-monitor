@@ -1,29 +1,25 @@
-Ext.define('Eway.view.parameter.template.AddedParamGrid', {
-	alias : 'widget.param_addedParamGrid',
+Ext.define('Eway.view.parameter.template.ParamValueGrid', {
+	alias : 'widget.param_paramValueGrid',
 	extend : 'Eway.view.base.Grid',
 
-	requires : [ 'Eway.lib.Util' ],
-
-	store : 'parameter.template.AddedParam',
+	store : 'parameter.template.AddingParam',
 	border : false,
 	autoFit : true,
-	id : 'addedParamGridId',
 
-	viewConfig : {
-		plugins : {
-			ptype : 'gridviewdragdrop',
-			dragGroup : 'addedParamGridId',
-			dropGroup : 'paramGridId',
-			enableDrop : true
-		}
+	plugins : {
+			ptype : 'cellediting',
+			clicksToEdit: 1
 	},
-
+	
 	initComponent : function() {
 		Ext.apply(this, {
 			initRegion : true,
-			columns : [ {
+			frame: true,  
+			columns : [
+			    {
 				header : '参数名称',
 				dataIndex : 'paramName',
+				flex : 1,
 				storable : true
 			}, {
 				header : '参数值',
@@ -34,15 +30,13 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 				dataIndex : 'id',
 				hidden : true,
 				storable : true
-			} ],
+			} ]
 
-			enableColumnMove : true
 		});
-
 		this.callParent(arguments);
 	},
 
 	onReload : function() {
-		this.getStore().reload();
+		this.getStore().load();
 	}
 });

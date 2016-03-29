@@ -1,38 +1,17 @@
 package com.yihuacomputer.fish.web.parameter.form;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 
 public class ParamTemplateParamRelationForm {
 	private long id;
-	private String name;
-	private String remark;
+	private String paramId;
+	private String templateId;
 
 	public ParamTemplateParamRelationForm(){
 
 	}
 
-	public ParamTemplateParamRelationForm(IParamTemplate template){
-		setId(template.getId());
-		setName(template.getName());
-		setRemark(template.getRemark());
-	}
 
-	public void translate(IParamTemplate template){
-		template.setId(getId());
-		template.setName(getName());
-		template.setRemark(getRemark());
-	}
-
-	public static List<ParamTemplateParamRelationForm> convert(List<IParamTemplate> list) {
-		List<ParamTemplateParamRelationForm> result = new ArrayList<ParamTemplateParamRelationForm>();
-		for(IParamTemplate item:list){
-			result.add(new ParamTemplateParamRelationForm(item));
-		}
-		return result;
-	}
 
 	public long getId(){
 		return id;
@@ -42,22 +21,20 @@ public class ParamTemplateParamRelationForm {
 		this.id = id;
 	}
 
-	public String getName(){
-		return name;
+	public String getParamId() {
+		return paramId;
 	}
 
-	public void setName(String name){
-		this.name = name;
+	public void setParamId(String paramId) {
+		this.paramId = paramId;
 	}
 
-
-
-
-	public String getRemark(){
-		return remark;
+	public String getTemplateId() {
+		return templateId;
 	}
 
-	public void setRemark(String remark){
-		this.remark=remark;
+	public void setTemplateId(String templateId) {
+		this.templateId = templateId;
 	}
+
 }

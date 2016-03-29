@@ -37,6 +37,7 @@ import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertGroupDeviceForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamElementForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamTemplateForm;
+import com.yihuacomputer.fish.web.parameter.form.ParamTemplateParamRelationForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
@@ -144,7 +145,6 @@ public class ParamTemplateController {
 	}
 	
 	
-	
     /**
     *
     * @param form
@@ -176,8 +176,6 @@ public class ParamTemplateController {
        }
        return result;
    }
-   
-   
    
    
    /**
@@ -239,7 +237,7 @@ public class ParamTemplateController {
 	 */
 	@RequestMapping(value = "/addedParam", method = RequestMethod.GET)
 	public @ResponseBody
-	ModelMap getAddedRole(@RequestParam int start, @RequestParam int limit,@RequestParam long id) {
+	ModelMap getAddedParam(@RequestParam int start, @RequestParam int limit,@RequestParam long id) {
 
 		ModelMap result = new ModelMap();
 		if (templateService.get(id) == null) {
@@ -252,6 +250,59 @@ public class ParamTemplateController {
 	}
 	
 	
+	/**
+	 * 去除模板参数
+	 */
+	@RequestMapping(value = "/removeParam", method = RequestMethod.POST)
+	public @ResponseBody
+	ModelMap deleteParam(@RequestParam long templateId, @RequestParam long paramId) {
+		ModelMap result = new ModelMap();
+		if (paramElementService.get(paramId) == null) {
+			result.addAttribute(FishConstant.SUCCESS, true);
+			return result;
+		}
+		try {
+			templateService.unlinkTempParam(templateService.get(templateId), paramElementService.get(paramId));
+			result.addAttribute(FishConstant.SUCCESS, true);
+			result.addAttribute("count", 0);
+		}
+
+		catch (Exception ex) {
+			logger.info(ex.getMessage());
+			result.addAttribute(FishConstant.SUCCESS, false);
+
+		}
+		return result;
+	}
+	
+	/**
+	 * 增加模板参数
+	 */
+	@RequestMapping(value = "/addParam", method = RequestMethod.POST)
+	public @ResponseBody
+	ModelMap addParam(@RequestBody ParamTemplateParamRelationForm request) {
+//		logger.info(String.format("addParam %s linked  %s", request.getId()));
+		ModelMap result = new ModelMap();
+		try {
+			IParamTemplate template = templateService.get(Long.parseLong(request.getTemplateId()));
+			if (template == null) {
+				result.addAttribute(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, "模板已经不存在");
+				return result;
+			}
+
+			templateService.linkTempParam(template, paramElementService.get(Long.parseLong(request.getParamId())));
+			result.put(FishConstant.SUCCESS, true);
+			result.put(FishConstant.DATA, request);
+		} catch (Exception ex) {
+			logger.info(ex.getMessage());
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, "添加异常");
+		}
+		return result;
+	}
+
+	
 	
 	/**
 	 * 获得该模板下的可关联参数
@@ -260,7 +311,7 @@ public class ParamTemplateController {
 	 */
 	@RequestMapping(value = "/addingParam", method = RequestMethod.GET)
 	public @ResponseBody
-	ModelMap getAddingRole(@RequestParam int start, @RequestParam int limit,@RequestParam long id) {
+	ModelMap getAddingParam(@RequestParam int start, @RequestParam int limit,@RequestParam long id) {
 
 		ModelMap result = new ModelMap();
 		if (templateService.get(id) == null) {
