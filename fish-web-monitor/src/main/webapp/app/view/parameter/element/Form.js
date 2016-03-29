@@ -66,14 +66,7 @@ Ext.define('Eway.view.parameter.element.Form',{
 			{
 				xtype : 'field_paramElement_Remark',
 				maxLength : 60
-		    },{
-				    xtype : 'field_paramElement_CreateTime',
-				    maxLength : 60
-		    },{
-					xtype : 'field_paramElement_LastModifyTime',
-					maxLength : 60
-
-			}]
+		    }]
 		});
 		this.callParent(arguments);
 	}

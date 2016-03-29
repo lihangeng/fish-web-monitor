@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.web.parameter.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,6 +23,7 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.fish.api.parameter.IParamClassify;
 import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
@@ -67,6 +69,8 @@ public class ParamElementController {
 		ModelMap result=new ModelMap();
 		IParamElement element =elementService.make();
 		IParamClassify classify=classifyService.get(request.getClassifyId());
+		Date date=new Date();
+
 		element.setParamName(request.getParamName());
 		element.setParamValue(request.getParamValue());
 		element.setParamType(request.getParamType());
@@ -75,7 +79,7 @@ public class ParamElementController {
 		element.setParamRights(request.getParamRights());
 		element.setParamBelongs(request.getParamBelongs());
 		element.setRemark(request.getRemark());
-		element.setCreateTime(request.nullDate(request.getCreateTime()));
+		element.setCreateTime(date);
 		element.setLastModifyTime(request.nullDate(request.getLastModifyTime()));
 
 		elementService.add(element);
@@ -105,8 +109,8 @@ public class ParamElementController {
 		logger.info("update elemet: elemet.id = " + id);
 		ModelMap result = new ModelMap();
 		request.setCreateTime(convert(request.getCreateTime()));
-		request.setLastModifyTime(convert(request.getLastModifyTime()));
 		IParamElement element = elementService.get(id);
+	    Date date=new Date();
 
 		IParamClassify classify=classifyService.get(request.getClassifyId());
 		element.setParamName(request.getParamName());
@@ -117,9 +121,8 @@ public class ParamElementController {
 		element.setParamRights(request.getParamRights());
 		element.setParamBelongs(request.getParamBelongs());
 		element.setRemark(request.getRemark());
-		element.setCreateTime(request.nullDate(request.getCreateTime()));
-		element.setLastModifyTime(request.nullDate(request.getLastModifyTime()));
-
+		element.setLastModifyTime(date);
+		request.setLastModifyTime(DateUtils.getTimestamp2(date));
 		elementService.update(element);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, request);
@@ -166,7 +169,11 @@ public class ParamElementController {
 				} else {
 					if (name.equals("sort")) {
 						continue;
-					} else {
+					} else if(name.equals("paramBelongs")){
+						String value = request.getParameter(name);
+						filter.eq(name, value.trim());
+					}
+					else {
 						filter.like(name, request.getParameter(name));
 					}
 				}
