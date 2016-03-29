@@ -5,7 +5,7 @@ Ext.define('Eway.view.parameter.appSystem.FilterForm',{
 	store:['Eway.store.parameter.appSystem.FileFormat'],
 	requires:['Eway.view.parameter.appSystem.field.FileFormatCombox'],
 	
-	height :30,
+	height :67,
 	
 	initComponent : function(){
 		var format=Ext.create('Eway.store.parameter.appSystem.FileFormat');

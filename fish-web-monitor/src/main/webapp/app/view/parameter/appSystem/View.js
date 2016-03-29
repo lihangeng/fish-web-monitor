@@ -13,8 +13,6 @@ Ext.define('Eway.view.parameter.appSystem.View',{
 			 items:[{
 				 region : 'north',
 				 xtype : 'parameter_appSystem_filterForm'
-					 ,
-				 height : 70
 			 },{
 				 region : 'center',
 				 xtype : 'parameter_appSystem_grid'
