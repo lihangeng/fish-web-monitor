@@ -79,7 +79,6 @@ public class ParamElementController {
 		element.setParamBelongs(request.getParamBelongs());
 		element.setRemark(request.getRemark());
 		element.setCreateTime(date);
-		element.setLastModifyTime(request.nullDate(request.getLastModifyTime()));
 
 		elementService.add(element);
 		result.put(FishConstant.SUCCESS, true);
@@ -107,7 +106,6 @@ public class ParamElementController {
 	ModelMap update(@PathVariable long id, @RequestBody ParamElementForm request) {
 		logger.info("update elemet: elemet.id = " + id);
 		ModelMap result = new ModelMap();
-		request.setCreateTime(convert(request.getCreateTime()));
 		IParamElement element = elementService.get(id);
 	    Date date=new Date();
 
@@ -119,8 +117,8 @@ public class ParamElementController {
 		element.setParamRights(request.getParamRights());
 		element.setParamBelongs(request.getParamBelongs());
 		element.setRemark(request.getRemark());
+		request.setLastModifyTime(DateUtils.getTimestamp(date));
 		element.setLastModifyTime(date);
-		request.setLastModifyTime(DateUtils.getTimestamp2(date));
 		elementService.update(element);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, request);
@@ -138,20 +136,6 @@ public class ParamElementController {
     }
 
 
-	private String convert(String string) {
-		if (string == null || "".equals(string)) {
-			return null;
-		}else{
-			if(string.contains("T")){
-				String str=string.replace("T", " ");
-				return str;
-			}else{
-				return string;
-			}
-
-		}
-
-	}
 
 	private IFilter request2filter(WebRequest request) {
 
