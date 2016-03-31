@@ -17,6 +17,7 @@ import com.yihuacomputer.fish.api.openplan.IOpenPlanService;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
+import com.yihuacomputer.fish.api.parameter.IParamTemplateDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNoticeService;
 import com.yihuacomputer.fish.api.relation.IDeviceGroupRelation;
@@ -38,6 +39,7 @@ import com.yihuacomputer.fish.machine.service.OpenPlanService;
 import com.yihuacomputer.fish.parameter.service.AppSystemService;
 import com.yihuacomputer.fish.parameter.service.ParamClassifyService;
 import com.yihuacomputer.fish.parameter.service.ParamElementService;
+import com.yihuacomputer.fish.parameter.service.ParamTemplateDetailService;
 import com.yihuacomputer.fish.parameter.service.ParamTemplateService;
 
 
@@ -133,6 +135,11 @@ public class MachineModule {
 	@Bean
 	public IParamClassifyService classifyService(){
 		return new ParamClassifyService();
+	}
+	
+	@Bean
+	public IParamTemplateDetailService paramTemplateDetailService(){
+		return new ParamTemplateDetailService();
 	}
 
 }

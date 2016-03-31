@@ -42,7 +42,7 @@ public class ParamTemplateDetail implements IParamTemplateDetail, Serializable {
 	private long versionNo;
 
 	@Column(name = "PARAM_BELONGS")
-	private long paramBelongs;
+	private String paramBelongs;
 
 	public ParamTemplateDetail() {
 
@@ -64,12 +64,12 @@ public class ParamTemplateDetail implements IParamTemplateDetail, Serializable {
 	}
 
 	@Override
-	public long getParamBelongs() {
+	public String getParamBelongs() {
 		return paramBelongs;
 	}
 
 	@Override
-	public void setParamBelongs(long paramBelongs) {
+	public void setParamBelongs(String paramBelongs) {
 		this.paramBelongs = paramBelongs;
 	}
 

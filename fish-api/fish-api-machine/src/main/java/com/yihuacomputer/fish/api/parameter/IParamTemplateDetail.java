@@ -5,9 +5,9 @@ public interface IParamTemplateDetail {
 
 	public void setTemplateId(long templateId);
 
-	public long getParamBelongs();
+	public String getParamBelongs();
 
-	public void setParamBelongs(long paramBelongs);
+	public void setParamBelongs(String paramBelongs);
 
 	public void setParamName(String paramName);
 
