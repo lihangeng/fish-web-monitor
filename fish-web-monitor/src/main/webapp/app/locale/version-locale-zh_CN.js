@@ -363,7 +363,8 @@ Ext.apply(EwayLocale,{
 			updateResult : '升级结果', //EwayLocale.version.task.updateResult
 			updateResultSuccess:'成功',	//EwayLocale.version.task.updateResultSuccess
 			updateResultRunning:'运行中',	//EwayLocale.version.task.updateResultRunning
-			updateResultFailed:'失败'	//EwayLocale.version.task.updateResultFailed
+			updateResultFailed:'失败',	//EwayLocale.version.task.updateResultFailed
+			jobBatchName:'作业批次名称'//EwayLocale.version.task.jobBatchName
 		}
 	}
 });

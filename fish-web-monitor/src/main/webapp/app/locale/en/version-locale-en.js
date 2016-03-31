@@ -362,7 +362,8 @@ Ext.apply(EwayLocale,{
 			updateResult:'Update Result',	//EwayLocale.version.task.updateResult
 			updateResultSuccess:'Successful',	//EwayLocale.version.task.updateResultSuccess
 			updateResultRunning:'Running',	//EwayLocale.version.task.updateResultRunning
-			updateResultFailed:'Failed'	//EwayLocale.version.task.updateResultFailed
+			updateResultFailed:'Failed'	,//EwayLocale.version.task.updateResultFailed
+			jobBatchName:'Job Batch Name'//EwayLocale.version.task.jobBatchName
 		}
 	}
 });
