@@ -1,9 +1,17 @@
 package com.yihuacomputer.fish.api.parameter;
 
 public interface IParamTemplateDetail {
-	public String getParamName();
+	public long getTemplateId();
+
+	public void setTemplateId(long templateId);
+
+	public long getParamBelongs();
+
+	public void setParamBelongs(long paramBelongs);
 
 	public void setParamName(String paramName);
+
+	public String getParamName();
 
 	public String getParamValue();
 
