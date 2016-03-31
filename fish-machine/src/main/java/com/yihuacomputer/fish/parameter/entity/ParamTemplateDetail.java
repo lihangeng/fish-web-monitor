@@ -41,6 +41,9 @@ public class ParamTemplateDetail implements IParamTemplateDetail, Serializable {
 	@Column(name = "VERSION_NO")
 	private long versionNo;
 
+	@Column(name = "PARAM_BELONGS")
+	private long paramBelongs;
+
 	public ParamTemplateDetail() {
 
 	}
@@ -48,6 +51,26 @@ public class ParamTemplateDetail implements IParamTemplateDetail, Serializable {
 	@Override
 	public String getParamName() {
 		return paramName;
+	}
+
+	@Override
+	public long getTemplateId() {
+		return templateId;
+	}
+
+	@Override
+	public void setTemplateId(long templateId) {
+		this.templateId = templateId;
+	}
+
+	@Override
+	public long getParamBelongs() {
+		return paramBelongs;
+	}
+
+	@Override
+	public void setParamBelongs(long paramBelongs) {
+		this.paramBelongs = paramBelongs;
 	}
 
 	@Override
