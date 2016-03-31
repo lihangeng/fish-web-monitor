@@ -14,7 +14,7 @@
 			http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 			http://www.springframework.org/schema/aop
 			http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
-			http://www.springframework.org/schema/cache 
+			http://www.springframework.org/schema/cache
 			http://www.springframework.org/schema/cache/spring-cache.xsd">
 
 	<bean id="propertiesConfigurer"
@@ -31,7 +31,7 @@
 		<property name="ignoreUnresolvablePlaceholders" value="false" />
 		<property name="searchSystemEnvironment" value="true" />
 	</bean>
-	
+
 	<!-- Spring 国际化配置 -->
 	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="defaultEncoding" value="utf-8"/>
@@ -44,10 +44,10 @@
 				<value>messageVersion</value>
 			</list>
 		</property>
-		<property name="useCodeAsDefaultMessage" value="true" /> 
-	</bean>		
-	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.FixedLocaleResolver"> 
-    	<property name="defaultLocale" value="zh_CN" /> <!-- en_US  -->
+		<property name="useCodeAsDefaultMessage" value="true" />
+	</bean>
+	<bean id="localeResolver" class="org.springframework.web.servlet.i18n.FixedLocaleResolver">
+    	<property name="defaultLocale" value="en_US" /> <!-- en_US  -->
 	</bean>
 	<!-- ehcache缓存配置 -->
 	<!-- 缓存配置 -->
@@ -55,14 +55,14 @@
 	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
 		<property name="cacheManager" ref="ehcacheManager"/>
    	</bean>
-   	
+
    	<bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
    		<property name="configLocation" value="classpath:ehcache.xml"/>
     </bean>
-    
+
     <!-- 分布式队列kafka的配置
     <import resource="classpath:/com/yihuacomputer/fish/kafka/fish-kafka.xml" /> -->
-    
+
 	<!--内嵌数据库版本
 	<import resource="classpath:fish-h2.xml" />-->
 	<!--msyql数据库版本-->
