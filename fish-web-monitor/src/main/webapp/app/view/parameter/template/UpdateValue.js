@@ -6,11 +6,23 @@ Ext.define('Eway.view.parameter.template.UpdateValue', {
 
 	title : '更改参数值(直接修改)',
 	modal : true,
-	resizable : true,
+	resizable : false,
 	constrainHeader : true,
 	layout : 'border',
 	width : 800,
 	height : 500,
+	selModel: 'cellmodel',
+	
+	viewConfig: {
+		
+        plugins: [{
+            ptype: 'cellediting',
+            clicksToEdit: 1
+            	
+        }],
+        
+        renderTo: Ext.getBody(),
+	},
 
 	initComponent : function() {
 		Ext.apply(this, {
@@ -21,10 +33,11 @@ Ext.define('Eway.view.parameter.template.UpdateValue', {
 				region : 'center',
 				layout : 'border',
 				items : [ {
-					title : '可添加参数',
+//					title : '可添加参数',
 					region : 'west',
-					width : 400,
+					width : 800,
 					xtype : 'param_paramValueGrid',
+					templateId:this.templateId,
 					margin : '0 5px 0 0',
 					autoLoadStore : true
 				}]

@@ -4,6 +4,6 @@ Ext.define('Eway.store.parameter.element.ParamRights', {
 
 	model: 'Eway.model.Dict',
 
-	data: [{value:'1', display:'是'},
-	       {value:'2', display:'否'}]
+	data: [{value:'1', display:'可编辑'},
+	       {value:'2', display:'不可编辑'}]
 });

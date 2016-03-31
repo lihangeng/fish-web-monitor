@@ -30,12 +30,14 @@ import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
+import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertGroupDeviceForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamElementForm;
+import com.yihuacomputer.fish.web.parameter.form.ParamTempDetailForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamTemplateForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamTemplateParamRelationForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
@@ -325,6 +327,29 @@ public class ParamTemplateController {
 		return result;
 	}
 	
+	
+	
+	/**
+	 * 获得该模板下的可关联参数
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/templateDetail", method = RequestMethod.GET)
+	public @ResponseBody
+	ModelMap getTempDetail(@RequestParam int start, @RequestParam int limit,@RequestParam long id) {
+
+		ModelMap result = new ModelMap();
+		if (templateService.get(id) == null) {
+			result.addAttribute(FishConstant.SUCCESS, false);
+		} else {
+			List<IParamTemplateDetail> list  = templateService.listTemplateDetail(id);
+//			list.removeAll(templateService.listParamByTemplate(id));
+			result.addAttribute(FishConstant.SUCCESS, true);
+			result.addAttribute(FishConstant.DATA, convertDetail(list));
+		}
+		return result;
+	}
+	
    
    
 	private Filter getFilterDevice(WebRequest request) {
@@ -364,6 +389,15 @@ public class ParamTemplateController {
 		List<ParamElementForm> result = new ArrayList<ParamElementForm>();
 		for (IParamElement resource : resources) {
 			result.add(new ParamElementForm(resource));
+		}
+		return result;
+	}
+	
+	
+	public List<ParamTempDetailForm> convertDetail(List<IParamTemplateDetail> resources) {
+		List<ParamTempDetailForm> result = new ArrayList<ParamTempDetailForm>();
+		for (IParamTemplateDetail resource : resources) {
+			result.add(new ParamTempDetailForm(resource));
 		}
 		return result;
 	}
