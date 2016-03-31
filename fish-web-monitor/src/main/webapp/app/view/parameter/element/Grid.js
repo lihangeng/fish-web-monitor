@@ -56,7 +56,24 @@ Ext.define('Eway.view.parameter.element.Grid', {
 			},{
 				header : '参数值类型',
 				dataIndex : 'paramType',
-				flex : 2
+				flex : 2,
+				flex : 2,
+				width :180,
+				sortable:true,
+				renderer:function(value,metadata,record){
+					if(value==1){
+						return "整型";
+					}
+					if(value==2){
+						return "字符型";
+					}
+					if(value==3){
+						return "布尔型";
+					}
+					if(value==4){
+						return "IP地址型";
+					}
+				}
 			},{
 				header : '参数分类',
 				dataIndex : 'paramClassify',
@@ -69,10 +86,10 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				sortable:true,
 				renderer:function(value,metadata,record){
 					if(value==1){
-						return "是";
+						return "可编辑";
 					}
 					if(value==2){
-						return "否";
+						return "不可编辑";
 					}
 				}
 			},{
