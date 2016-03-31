@@ -4,7 +4,8 @@ Ext.define('Eway.controller.parameter.element.Element', {
 			stores : ['parameter.element.Element',
 			          'parameter.element.ParamRights',
 			          'parameter.element.ParamBelongs',
-			          'parameter.element.ElementClassify'
+			          'parameter.element.ElementClassify',
+			          'parameter.element.ParamType'
 			          ],
 			models : ['parameter.element.Element','Dict'],
 
@@ -55,8 +56,26 @@ Ext.define('Eway.controller.parameter.element.Element', {
 							},
 							'element_View button[action=remove]' : {
 								click : this.onRemove
+							},
+							'parameter_element_form field_paramElement_ParamType':{
+								change:this.onChange
 							}
 						});
 			},
+			onChange:function( _this, newValue, oldValue, eOpts){
+				var paramValue = _this.up("parameter_element_form").down("field_paramElement_ParamValue");
+				if(newValue==1){
+					return paramValue.regex=/(^[0-9]*$)/,paramValue.regexText='只能输入整型数据';
+				}
+				if(newValue==2){
+					return paramValue.regex=/(^[a-zA-Z]*$)/,paramValue.regexText='只能输入字符串型数据';
+				}
+				if(newValue==3){
+					return paramValue.regex=/(true|false)/,paramValue.regexText='只能输入布尔型数据';
+				}
+				if(newValue==4){
+					return paramValue.vtype='ip';
+				}
+			}
 
 });
