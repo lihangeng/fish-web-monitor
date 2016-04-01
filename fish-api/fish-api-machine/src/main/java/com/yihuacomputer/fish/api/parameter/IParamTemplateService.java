@@ -42,5 +42,8 @@ public interface IParamTemplateService {
 	public void linkTempParam(IParamTemplate  template, IParamElement emlement);
 	
 	public List<IParamTemplateDetail> listTemplateDetail(long id);
+	
+	
+	
 
 }

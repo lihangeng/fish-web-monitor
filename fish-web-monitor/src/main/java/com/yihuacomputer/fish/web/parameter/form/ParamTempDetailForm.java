@@ -1,6 +1,13 @@
 package com.yihuacomputer.fish.web.parameter.form;
 
+import java.util.ArrayList;
+import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 
 public class ParamTempDetailForm {
@@ -9,6 +16,7 @@ public class ParamTempDetailForm {
 	private String paramValue;
 	private long templateId;
 	private String paramBelongs;
+	private String resources;
 
 	public ParamTempDetailForm() {
 
@@ -17,10 +25,25 @@ public class ParamTempDetailForm {
 	public ParamTempDetailForm(IParamTemplateDetail detail) {
 		setId(detail.getId());
 		setTemplateId(detail.getTemplateId());
-		setParamName(detail.getParamName());
+		setParamName(detail.getParamElement().getParamName());
 		setParamValue(detail.getParamValue());
-		setParamBelongs(getParamBelongs());
+		setParamBelongs(detail.getParamElement().getParamBelongs());
 
+	}
+
+	public List<ParamTempDetailForm> getParamTempDetailForm() {
+		List<ParamTempDetailForm> tempDetailForm = new ArrayList<ParamTempDetailForm>();
+		if (StringUtils.isNotEmpty(this.resources)) {
+			try {
+				JsonUtils.om.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES,
+						true);
+				tempDetailForm = JsonUtils.om.readValue(this.resources,
+						new TypeReference<List<ParamTempDetailForm>>() {
+						});
+			} catch (Exception e) {
+			}
+		}
+		return tempDetailForm;
 	}
 
 	public long getId() {
@@ -61,6 +84,14 @@ public class ParamTempDetailForm {
 
 	public void setParamBelongs(String paramBelongs) {
 		this.paramBelongs = paramBelongs;
+	}
+
+	public String getResources() {
+		return resources;
+	}
+
+	public void setResources(String resources) {
+		this.resources = resources;
 	}
 
 }

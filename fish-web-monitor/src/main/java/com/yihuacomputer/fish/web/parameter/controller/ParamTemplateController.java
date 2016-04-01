@@ -104,6 +104,23 @@ public class ParamTemplateController {
 		return result;
 	}	
 	
+	
+	
+	@RequestMapping(value = "/{templateDetail}",method = RequestMethod.POST)
+	@ResponseBody
+	public ModelMap updateTemplateDetail(@RequestBody ParamTempDetailForm form, HttpServletRequest request) {
+		ModelMap result = new ModelMap();
+		List<ParamTempDetailForm> listDetail = form.getParamTempDetailForm();
+		List<IParamTemplateDetail> list = templateService.listTemplateDetail(listDetail.get(0).getTemplateId());
+		
+		
+		
+		return result.addAttribute(FishConstant.SUCCESS, true);
+		
+	}
+	
+	
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody ParamTemplateForm request) {
@@ -401,5 +418,5 @@ public class ParamTemplateController {
 		}
 		return result;
 	}
-
+	
 }

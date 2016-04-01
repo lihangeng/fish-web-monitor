@@ -19,6 +19,7 @@ import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.parameter.entity.ParamTemplate;
+import com.yihuacomputer.fish.parameter.entity.ParamTemplateDetail;
 import com.yihuacomputer.fish.parameter.entity.ParamTemplateDeviceRelation;
 import com.yihuacomputer.fish.parameter.entity.ParamTemplateElementRelation;
 
@@ -179,6 +180,7 @@ public class ParamTemplateService implements IParamTemplateService {
 	@Override
 	public void linkTempParam(IParamTemplate template, IParamElement emlement) {
 		dao.save(ParamTemplateElementRelation.make(template.getId(), emlement.getId()));
+		dao.save(ParamTemplateDetail.make(template, emlement));
 	}
 
 	@Override

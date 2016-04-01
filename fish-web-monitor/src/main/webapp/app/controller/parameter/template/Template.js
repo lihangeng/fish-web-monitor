@@ -76,6 +76,9 @@ Ext.define('Eway.controller.parameter.template.Template',
 							},
 							'template_View button[action=link]' : {
 								click : this.onGroupLink
+							},
+							'template_updateValue button[action=confirm]' : {
+								click : this.onUpdateConfirm
 							}
 						});
 					},
@@ -88,8 +91,6 @@ Ext.define('Eway.controller.parameter.template.Template',
 							var win = Ext.create('Eway.view.parameter.template.UpdateValue',{
 								templateId : record.id
 							});
-							var button = win.down('button[action="confirm"]');
-							button.on('click', this.onUpdateConfirm(win), this);
 							win.show();
 						} else {
 							Eway.alert(EwayLocale.choiceUpdateMsg);
@@ -99,13 +100,23 @@ Ext.define('Eway.controller.parameter.template.Template',
 					
 					generateTemplateDetail : function(tempRess,store){
 						for(var i = 0; i < store.getCount(); i++){
+							
 							var record = store.getAt(i);
-							tempRess.push(record.convertToTempResource());
+							var tempDetail = Ext.create("Eway.model.parameter.template.TemplateResource",{
+									id:Ext.isNumeric(record.data.id)?record.data.id:0,
+									templateId: record.data.templateId,
+									paramName:record.data.paramName,
+									paramValue:record.data.paramValue,
+									paramBelongs : record.paramBelongs
+								});
+							
+							tempRess.push(tempDetail);
 						}
 					},
 					
 					
-					onUpdateConfirm : function(win) {
+					onUpdateConfirm : function() {
+						
 						var grid = this.getParamValueGrid();
 						var store = grid.getStore();
 						var tempRess = [];
@@ -125,52 +136,28 @@ Ext.define('Eway.controller.parameter.template.Template',
 						resources = resources + "]";
 						
 						
-						var temp = Ext.create("Eway.model.parameter.template.TemplateDetail");
-						
-						var btn = win.down('button[action=confirm]');
+						var temp = Ext.create("Eway.model.parameter.template.TemplateDetail",{
+				    		resources : resources
+				    	});
 						
 						
 						temp.save({
 							 success: function(ed) {
-								var view = me.getEwayView();
-								var store = view.down('paramValueGrid').getStore();
-								store.setUrlParamsByObject(null);
-								store.loadPage(1);
+//								var view = me.getEwayView();
+//								var store = view.down('paramValueGrid').getStore();
+//								store.setUrlParamsByObject(null);
+//								store.loadPage(1);
 								Eway.alert(EwayLocale.msg.createSuccess);
-								win.close();
+//								win.close();
 							 },
 							 failure: function(record,operation){
 								Eway.alert('失败');
 							 },
-							 button:btn,
+							 
 							 scope : this
 						});
 						
 						
-						var sm = grid.getSelectionModel();
-						var record = sm.getLastSelected();
-						var win = this.getUpdateWin();
-						var updateForm = win.down('form').getForm();
-						var data = updateForm.getValues();
-						var paramName = record.data.paramName;
-						var paramValue = record.data.paramValue;
-						if (updateForm.isValid()) {
-							record.set('paramName', data.paramName);
-							record.set('paramValue', data.paramValue);
-							record.save({
-								success : function(record, operation) {
-									Eway.alert(EwayLocale.updateSuccess);
-									win.close();
-									grid.onReload();
-								},
-								failure : function(record, operation) {
-									Eway.alert(operation.getError());
-									record.set('paramName', paramName);
-									record.set('paramValue', paramValue);
-								},
-								button:win.down('button[action="confirm"]')
-							});
-						}
 					},
 					
 					

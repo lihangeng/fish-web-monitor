@@ -14,6 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.yihuacomputer.fish.api.parameter.IParamElement;
+import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 
 /**
@@ -43,6 +44,16 @@ public class ParamTemplateDetail implements IParamTemplateDetail, Serializable {
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = ParamElement.class)
 	@JoinColumn(name = "ELEMENT_ID")
 	private IParamElement paramElement;
+
+	public static ParamTemplateDetail make(IParamTemplate template,
+			IParamElement emlement) {
+		ParamTemplateDetail obj = new ParamTemplateDetail();
+		obj.setParamElement(emlement);
+		obj.setParamValue(emlement.getParamValue());
+		obj.setTemplateId(template.getId());
+		obj.setVersionNo(0);
+		return obj;
+	}
 
 	@Override
 	public IParamElement getParamElement() {
