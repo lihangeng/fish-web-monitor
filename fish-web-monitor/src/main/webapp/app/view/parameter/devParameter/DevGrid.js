@@ -3,10 +3,10 @@ Ext.define('Eway.view.parameter.devParameter.DevGrid', {
 	extend : 'Eway.view.base.Grid',
 	border : false,
 	autoFit : true,
-	selectfirst : true,
 	requires : [ 'Eway.lib.Util' ],
 	initComponent : function() {
 		var store = Ext.create('Eway.store.parameter.devParameter.DevInfo');
+		store.loadPage(1);
 		Ext.apply(this, {
 			initRegion : true,
 			store : store,

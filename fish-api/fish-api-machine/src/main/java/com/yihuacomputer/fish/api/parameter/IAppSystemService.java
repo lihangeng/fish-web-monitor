@@ -7,4 +7,5 @@ public interface IAppSystemService {
 	IAppSystem get(long id);
 	void update(IAppSystem appSystem);
 	IPageResult<IAppSystem> page(int start,int limit,IFilter filter);
+	Iterable<IAppSystem> list();
 }

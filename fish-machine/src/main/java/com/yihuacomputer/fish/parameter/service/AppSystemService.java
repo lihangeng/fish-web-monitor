@@ -32,5 +32,10 @@ public class AppSystemService implements IAppSystemService {
 	public IPageResult<IAppSystem> page(int start, int limit, IFilter filter) {
 		return dao.page(start, limit, filter, AppSystem.class);
 	}
+
+	@Override
+	public Iterable<IAppSystem> list() {
+		return dao.loadAll(IAppSystem.class);
+	}
 	
 }

@@ -59,18 +59,5 @@ Ext.define('Eway.view.parameter.devParameter.View', {
 		this.callParent(arguments);
 	}
 	
-//	getData:function(){
-//		Ext.Ajax.request({
-//			method:'GET',
-//			url:'api/parameter/appSystem',
-//			success:function(response){
-//				var appData=Ext.decode(response.responseText);
-//				console.log(appData);
-//			}
-//		});
-		
-//		console.log('111111');
-//	}
-	
 });
 

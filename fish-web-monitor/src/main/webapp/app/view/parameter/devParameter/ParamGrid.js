@@ -5,11 +5,6 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 	border : false,
 	autoFit : true,
 
-	plugins:[  
-             Ext.create('Ext.grid.plugin.CellEditing',{  
-                 clicksToEdit:1 //设置单击单元格编辑  
-             })  
-    ],  
 //    verticalScroller:{  
 //    	        xtype:'paginggridscroller'  
 //    	  },  
@@ -49,7 +44,7 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 			}],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
-				displayInfo : true
+				displayInfo : true,
 			})
 		});
 		

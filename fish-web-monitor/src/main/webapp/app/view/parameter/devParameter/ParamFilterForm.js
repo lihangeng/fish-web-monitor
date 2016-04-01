@@ -2,21 +2,21 @@ Ext.define('Eway.view.parameter.devParameter.ParamFilterForm',{
 	extend :'Eway.view.base.FilterForm',
 	alias : 'widget.parameter_devParameter_paramFilterForm',
 	
-	requires:['Eway.view.parameter.devParameter.field.ParamBelongs'],
+	requires:['Eway.view.parameter.devParameter.field.ParamClassify'],
 	
 	height :79,
 	
 	initComponent : function(){
-		var store=Ext.create('Eway.store.parameter.devParameter.ParamBelongs');
+		var store=Ext.create('Eway.store.parameter.devParameter.ParamClassify');
 		Ext.apply(this,{
 			layout :'column',
 			msgTarget : 'side',
 			style :'padding-top:10px',
 			items :[{
 				items:[{
-					xtype:'devParameter_field_ParamBelongs',
-					name:'paramBelongs',
-					fieldLabel:'参数所属系统',
+					xtype:'devParameter_field_ParamClassify',
+					name:'ClassifyId',
+					fieldLabel:'参数分类',
 					store:store
 				}]
 			},{
