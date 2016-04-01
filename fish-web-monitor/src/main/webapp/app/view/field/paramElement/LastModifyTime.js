@@ -3,7 +3,7 @@ Ext.define('Eway.view.field.paramElement.LastModifyTime', {
 	extend: 'Ext.ux.form.DateTimeField',
 	alias: 'widget.field_paramElement_LastModifyTime',
 
-	fieldLabel : '最后修改时间',
+	fieldLabel : EwayLocale.param.element.lastModifyTime,
 	name : 'lastModifyTime',
 	format : 'Y-m-d H:i:s',
 	editable : false,

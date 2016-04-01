@@ -5,7 +5,7 @@ Ext.define('Eway.view.parameter.classify.View', {
 	requires: ['Eway.view.parameter.classify.FilterForm',
 	           	   'Eway.view.parameter.classify.Grid'],
 
-	title: '参数元数据分类管理',
+	title: EwayLocale.param.classify.title,
 	layout: 'border',
 
 	initComponent: function() {

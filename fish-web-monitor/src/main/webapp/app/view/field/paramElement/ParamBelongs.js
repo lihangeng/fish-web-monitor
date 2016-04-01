@@ -3,7 +3,7 @@ Ext.define('Eway.view.field.paramElement.ParamBelongs', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field_paramElement_ParamBelongs',
 
-	fieldLabel : '归属的应用系统',
+	fieldLabel : '<font color="red">*</font>'+EwayLocale.param.element.paramBelongs,
 	name : 'paramBelongs',
 	hiddenName : 'paramBelongs',
 	msgTarget : 'side',

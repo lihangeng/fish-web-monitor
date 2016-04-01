@@ -46,15 +46,15 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '参数名称',
+				header : EwayLocale.param.element.paramName,
 				dataIndex : 'paramName',
 				flex : 1
 			},{
-				header : '参数值',
+				header : EwayLocale.param.element.paramValue,
 				dataIndex : 'paramValue',
 				flex : 2
 			},{
-				header : '参数值类型',
+				header : EwayLocale.param.element.paramType,
 				dataIndex : 'paramType',
 				flex : 2,
 				flex : 2,
@@ -62,60 +62,60 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				sortable:true,
 				renderer:function(value,metadata,record){
 					if(value==1){
-						return "整型";
+						return EwayLocale.param.element.integer;
 					}
 					if(value==2){
-						return "字符型";
+						return EwayLocale.param.element.character;
 					}
 					if(value==3){
-						return "布尔型";
+						return EwayLocale.param.element.boolean;
 					}
 					if(value==4){
-						return "IP地址型";
+						return EwayLocale.param.element.ip;
 					}
 				}
 			},{
-				header : '参数分类',
+				header : EwayLocale.param.element.paramClassify,
 				dataIndex : 'paramClassify',
 				flex : 2
 			},{
-				header : '参数权限',
+				header : EwayLocale.param.element.paramRights,
 				dataIndex : 'paramRights',
 				flex : 2,
 				width :180,
 				sortable:true,
 				renderer:function(value,metadata,record){
 					if(value==1){
-						return "可编辑";
+						return EwayLocale.param.element.editable;
 					}
 					if(value==2){
-						return "不可编辑";
+						return EwayLocale.param.element.uneditable;
 					}
 				}
 			},{
-				header : '归属的应用系统',
+				header : EwayLocale.param.element.paramBelongs,
 				dataIndex : 'paramBelongs',
 				flex : 2,
 				width :180,
 				sortable:true,
 				renderer:function(value,metadata,record){
 					if(value==1){
-						return "ATMC系统";
+						return EwayLocale.param.element.ATMC;
 					}
 					if(value==2){
-						return "监控客户端";
+						return EwayLocale.param.element.monitoringCient;
 					}
 				}
 			},{
-				header : '备注',
+				header : EwayLocale.param.element.remark,
 				dataIndex : 'remark',
 				flex : 2
 			},{
-				header : '创建时间',
+				header : EwayLocale.param.element.createTime,
 				dataIndex : 'createTime',
 				flex : 2
 			},{
-				header : '最后修改时间',
+				header : EwayLocale.param.element.lastModifyTime,
 				dataIndex : 'lastModifyTime',
 				flex : 2
 			}

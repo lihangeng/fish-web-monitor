@@ -3,7 +3,7 @@ Ext.define('Eway.view.field.paramElement.ParamClassify', {
 	extend : 'Ext.form.field.ComboBox',
 	alias: 'widget.field_paramElement_ParamClassify',
 
-	fieldLabel : '参数分类',
+	fieldLabel : '<font color="red">*</font>'+EwayLocale.param.element.paramClassify,
 	name : 'classifyId',
 	hiddenName : 'classifyId',
 	msgTarget : 'side',

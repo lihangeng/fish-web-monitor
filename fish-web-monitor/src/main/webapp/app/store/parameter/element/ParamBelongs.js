@@ -4,6 +4,6 @@ Ext.define('Eway.store.parameter.element.ParamBelongs', {
 
 	model: 'Eway.model.Dict',
 
-	data: [{value:'1', display:'ATMC系统'},
-	       {value:'2', display:'监控客户端'}]
+	data: [{value:'1', display:EwayLocale.param.element.ATMC},
+	       {value:'2', display:EwayLocale.param.element.monitoringCient}]
 });

@@ -7,7 +7,7 @@ Ext.define('Eway.view.parameter.element.View', {
 	           'Eway.view.parameter.element.Grid'
 	           ],
 
-	title: '参数元数据管理',
+	title: EwayLocale.param.element.title,
 	layout: 'border',
 
 	initComponent: function() {
