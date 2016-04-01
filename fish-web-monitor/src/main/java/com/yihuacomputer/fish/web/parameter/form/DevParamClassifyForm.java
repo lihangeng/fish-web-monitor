@@ -7,9 +7,9 @@ public class DevParamClassifyForm {
 	private long id;
 
 	private String paramBelongs;
-	
+
 	private String paramName;
-	
+
 	private String paramValue;
 
 	public long getId() {
@@ -19,7 +19,7 @@ public class DevParamClassifyForm {
 	public void setId(long id) {
 		this.id = id;
 	}
-	
+
 	public String getParamBelongs() {
 		return paramBelongs;
 	}
@@ -44,16 +44,15 @@ public class DevParamClassifyForm {
 		this.paramValue = paramValue;
 	}
 
-	public DevParamClassifyForm(){
-		
+	public DevParamClassifyForm() {
+
 	}
-	
-	public DevParamClassifyForm(IParamTemplateDetail paramDetail){
-		this.id=paramDetail.getId();
-		this.paramName=paramDetail.getParamName();
-		this.paramValue=paramDetail.getParamValue();
-		this.paramBelongs=paramDetail.getParamBelongs();
+
+	public DevParamClassifyForm(IParamTemplateDetail paramDetail) {
+		this.id = paramDetail.getId();
+		this.paramName = paramDetail.getParamElement().getParamName();
+		this.paramValue = paramDetail.getParamValue();
+		this.paramBelongs = paramDetail.getParamElement().getParamBelongs();
 	}
-	
-	
+
 }

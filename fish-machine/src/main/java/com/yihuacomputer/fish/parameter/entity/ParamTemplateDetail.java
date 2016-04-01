@@ -4,11 +4,16 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 
 /**
@@ -32,25 +37,28 @@ public class ParamTemplateDetail implements IParamTemplateDetail, Serializable {
 	@Column(name = "TEMPLATE_ID")
 	private long templateId;
 
-	@Column(name = "PARAM_NAME", length = 40)
-	private String paramName;
+	@Column(name = "VERSION_NO")
+	private long versionNo;
+
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = ParamElement.class)
+	@JoinColumn(name = "ELEMENT_ID")
+	private IParamElement paramElement;
+
+	@Override
+	public IParamElement getParamElement() {
+		return paramElement;
+	}
+
+	@Override
+	public void setParamElement(IParamElement paramElement) {
+		this.paramElement = paramElement;
+	}
 
 	@Column(name = "PARAM_VALUE", length = 60)
 	private String paramValue;
 
-	@Column(name = "VERSION_NO")
-	private long versionNo;
-
-	@Column(name = "PARAM_BELONGS")
-	private String paramBelongs;
-
 	public ParamTemplateDetail() {
 
-	}
-
-	@Override
-	public String getParamName() {
-		return paramName;
 	}
 
 	@Override
@@ -64,21 +72,6 @@ public class ParamTemplateDetail implements IParamTemplateDetail, Serializable {
 	}
 
 	@Override
-	public String getParamBelongs() {
-		return paramBelongs;
-	}
-
-	@Override
-	public void setParamBelongs(String paramBelongs) {
-		this.paramBelongs = paramBelongs;
-	}
-
-	@Override
-	public void setParamName(String paramName) {
-		this.paramName = paramName;
-	}
-
-	@Override
 	public String getParamValue() {
 		return paramValue;
 	}
@@ -89,16 +82,6 @@ public class ParamTemplateDetail implements IParamTemplateDetail, Serializable {
 	}
 
 	@Override
-	public long getVersionNo() {
-		return versionNo;
-	}
-
-	@Override
-	public void setVersionNo(long versionNo) {
-		this.versionNo = versionNo;
-	}
-
-	@Override
 	public long getId() {
 		return id;
 	}
@@ -106,6 +89,16 @@ public class ParamTemplateDetail implements IParamTemplateDetail, Serializable {
 	@Override
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	@Override
+	public long getVersionNo() {
+		return versionNo;
+	}
+
+	@Override
+	public void setVersionNo(long versionNo) {
+		this.versionNo = versionNo;
 	}
 
 }
