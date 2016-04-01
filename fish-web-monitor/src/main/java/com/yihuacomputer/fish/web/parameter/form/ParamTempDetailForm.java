@@ -16,6 +16,7 @@ public class ParamTempDetailForm {
 	private String paramValue;
 	private long templateId;
 	private String paramBelongs;
+	private long elementId;
 	private String resources;
 
 	public ParamTempDetailForm() {
@@ -28,6 +29,7 @@ public class ParamTempDetailForm {
 		setParamName(detail.getParamElement().getParamName());
 		setParamValue(detail.getParamValue());
 		setParamBelongs(detail.getParamElement().getParamBelongs());
+		setElementId(detail.getParamElement().getId());
 
 	}
 
@@ -92,6 +94,14 @@ public class ParamTempDetailForm {
 
 	public void setResources(String resources) {
 		this.resources = resources;
+	}
+
+	public long getElementId() {
+		return elementId;
+	}
+
+	public void setElementId(long elementId) {
+		this.elementId = elementId;
 	}
 
 }

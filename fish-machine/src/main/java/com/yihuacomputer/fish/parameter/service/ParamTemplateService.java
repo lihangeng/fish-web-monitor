@@ -1,6 +1,9 @@
 package com.yihuacomputer.fish.parameter.service;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -158,37 +161,65 @@ public class ParamTemplateService implements IParamTemplateService {
 	public List<IParamElement> listParamByTemplate(long templateId) {
 
 		StringBuffer hql = new StringBuffer();
-		
-        hql.append("select t from ParamElement t ,ParamTemplateElementRelation t1 ");
-        hql.append("where t.id = t1.elementId and t1.templateId = ?");
-		List<IParamElement> elements = dao.findByHQL(hql.toString(), templateId);
-		
-		return elements ;
+
+		hql.append("select t from ParamElement t ,ParamTemplateElementRelation t1 ");
+		hql.append("where t.id = t1.elementId and t1.templateId = ?");
+		List<IParamElement> elements = dao
+				.findByHQL(hql.toString(), templateId);
+
+		return elements;
 	}
 
 	@Override
 	public void unlinkTempParam(IParamTemplate template, IParamElement emlement) {
-		 	Filter filter = new Filter();
-	        filter.addFilterEntry(FilterFactory.eq("templateId", template.getId()));
-	        filter.addFilterEntry(FilterFactory.eq("elementId", emlement.getId()));
-	        ParamTemplateElementRelation obj = dao.findUniqueByFilter(filter, ParamTemplateElementRelation.class);
-	        if (obj != null) {
-	            dao.delete(obj);
-	        }
+		Filter filter = new Filter();
+		filter.addFilterEntry(FilterFactory.eq("templateId", template.getId()));
+		filter.addFilterEntry(FilterFactory.eq("elementId", emlement.getId()));
+		ParamTemplateElementRelation obj = dao.findUniqueByFilter(filter,
+				ParamTemplateElementRelation.class);
+		if (obj != null) {
+			dao.delete(obj);
+		}
+		ParamTemplateDetail obj2 =  ParamTemplateDetail.make(template, emlement);
+		if (obj2 != null) {
+			dao.delete(obj2);
+		}
 	}
 
 	@Override
 	public void linkTempParam(IParamTemplate template, IParamElement emlement) {
-		dao.save(ParamTemplateElementRelation.make(template.getId(), emlement.getId()));
+		dao.save(ParamTemplateElementRelation.make(template.getId(),
+				emlement.getId()));
 		dao.save(ParamTemplateDetail.make(template, emlement));
 	}
 
 	@Override
 	public List<IParamTemplateDetail> listTemplateDetail(long id) {
-		
+
 		String hql = "select t from ParamTemplateDetail t where t.templateId = ?";
 		List<IParamTemplateDetail> detail = dao.findByHQL(hql.toString(), id);
 		return detail;
-		
+
+	}
+
+	@Override
+	public boolean updateTemplateDetail(long templateId,Map<Long, String> newMap) {
+
+		String hql = "select t from ParamTemplateDetail t where t.templateId = ? and t.paramElement.id = ?";
+		Set<Long> set = newMap.keySet();
+		Iterator<Long> it = set.iterator();
+		ParamTemplateDetail ptd = null;
+		Long eleId = 0L;
+		long versionNo = 0L;
+		while (it.hasNext()) {
+			eleId = it.next();
+			ptd = dao.findUniqueByHql(hql, templateId, eleId);
+			ptd.setParamValue(newMap.get(eleId));
+			versionNo = ptd.getVersionNo();
+			ptd.setVersionNo(versionNo + 1);
+			dao.update(ptd);
+		}
+
+		return true;
 	}
 }

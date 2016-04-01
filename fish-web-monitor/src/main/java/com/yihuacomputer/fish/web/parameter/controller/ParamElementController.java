@@ -126,7 +126,7 @@ public class ParamElementController {
 	}
 
 	@RequestMapping(value = "/elementClassify", method = RequestMethod.GET)
-    public @ResponseBody ModelMap queryAtmVendor() {
+    public @ResponseBody ModelMap queryElementClassify() {
         logger.info(String.format("search element : queryClassify"));
         ModelMap model = new ModelMap();
         List<IParamClassify> cassifyList = EntityUtils.convert(classifyService.list());
@@ -134,6 +134,8 @@ public class ParamElementController {
         model.put(FishConstant.SUCCESS, true);
         return model;
     }
+
+
 
 
 

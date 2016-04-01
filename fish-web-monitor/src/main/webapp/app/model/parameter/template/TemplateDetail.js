@@ -1,7 +1,7 @@
 
 Ext.define('Eway.model.parameter.template.TemplateDetail', {
 	extend: 'Ext.data.Model',
-	fields: ['id', 'paramName','paramValue','templateId','paramBelongs','resources'],
+	fields: ['id', 'paramName','paramValue','templateId','paramBelongs','elementId','resources'],
     proxy: {
         type: 'rest',
         url : 'api/parameter/template/templateDetail',
