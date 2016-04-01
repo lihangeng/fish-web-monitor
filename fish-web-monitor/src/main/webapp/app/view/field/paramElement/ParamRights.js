@@ -3,7 +3,7 @@ Ext.define('Eway.view.field.paramElement.ParamRights', {
 	extend: 'Ext.form.field.ComboBox',
 	alias: 'widget.field_paramElement_ParamRights',
 
-	fieldLabel : '参数权限',
+	fieldLabel : '<font color="red">*</font>'+EwayLocale.param.element.paramRights,
 	name : 'paramRights',
 	hiddenName : 'paramRights',
 	msgTarget : 'side',

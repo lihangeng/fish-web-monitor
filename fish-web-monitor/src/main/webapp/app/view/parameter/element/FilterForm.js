@@ -16,7 +16,7 @@ Ext.define('Eway.view.parameter.element.FilterForm', {
 					xtype : 'textfield',
 					labelAlign : 'right',
 					name : 'paramName',
-					fieldLabel : '参数名',
+					fieldLabel : EwayLocale.param.element.paramName,
 					msgTarget : 'side'
 				}]
 			},{
@@ -25,7 +25,7 @@ Ext.define('Eway.view.parameter.element.FilterForm', {
 					xtype : 'field_paramElement_ParamClassify',
 					labelWidth: 110,
 					name : 'classifyId',
-					fieldLabel :'参数分类',
+					fieldLabel :EwayLocale.param.element.paramClassify,
 					editable : false,
 					msgTarget : 'side',
 					labelAlign : 'right'
@@ -38,7 +38,7 @@ Ext.define('Eway.view.parameter.element.FilterForm', {
 					value: 1,
 					editable : false,
 					name : 'paramBelongs',
-					fieldLabel :'归属的应用系统',
+					fieldLabel : EwayLocale.param.element.paramBelongs,
 					msgTarget : 'side',
 					labelAlign : 'right'
 				}]

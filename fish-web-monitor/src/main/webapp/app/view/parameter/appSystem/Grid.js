@@ -1,9 +1,9 @@
 Ext.define('Eway.view.parameter.appSystem.Grid',{
 	extend : 'Eway.view.base.Grid',
 	alias : 'widget.parameter_appSystem_grid',
-	
+
 	border : false,
-	
+
 	initComponent : function(){
 		var store=Ext.create('Eway.store.parameter.appSystem.AppSystem');
 		store.loadPage(1);
@@ -11,7 +11,7 @@ Ext.define('Eway.view.parameter.appSystem.Grid',{
 			store:store,
 			initRegion:true,
 			tbar : ['->',{
-				text:'查询',
+				text:EwayLocale.button.search,
 				action:'query',
 				glyph : 0xf002,
 				code : 'appSystemQuery',
@@ -19,7 +19,7 @@ Ext.define('Eway.view.parameter.appSystem.Grid',{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text:'更改',
+				text:EwayLocale.button.add,
 				action :'update',
 				glyph : 0xf040,
 				code : 'appSystemUpdate',
@@ -28,17 +28,17 @@ Ext.define('Eway.view.parameter.appSystem.Grid',{
 				}
 			}],
 			columns : [{
-				header : '名称',
+				header : EwayLocale.param.application.name,
 				dataIndex :'name',
 				width :80,
 				sortable:true
 			},{
-				header :'配置文件名称',
+				header :EwayLocale.param.application.configureName,
 				dataIndex :'configName',
 				width :190,
 				sortable:true
 			},{
-				header :'配置文件格式',
+				header :EwayLocale.param.application.configureForm,
 				dataIndex :'configForm',
 				width :180,
 				sortable:true,
@@ -57,11 +57,11 @@ Ext.define('Eway.view.parameter.appSystem.Grid',{
 					}
 				}
 			},{
-				header :'配置文件路径',
+				header :EwayLocale.param.application.configurePath,
 				dataIndex : 'configPath',
 				width :190
 			},{
-				header :'备注',
+				header :EwayLocale.param.application.remark,
 				dataIndex :'remark',
 				flex:1
 			}],

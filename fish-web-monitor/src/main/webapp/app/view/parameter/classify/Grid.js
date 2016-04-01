@@ -45,11 +45,11 @@ Ext.define('Eway.view.parameter.classify.Grid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '参数分类',
+				header : EwayLocale.param.classify.name,
 				dataIndex : 'name',
 				flex : 1
 			},{
-				header : '参数分类备注',
+				header : EwayLocale.param.classify.remark,
 				dataIndex : 'remark',
 				flex : 2
 			}],

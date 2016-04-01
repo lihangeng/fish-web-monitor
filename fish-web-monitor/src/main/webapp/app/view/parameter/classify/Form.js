@@ -4,14 +4,14 @@ Ext.define('Eway.view.parameter.classify.Form',{
 
 	requires: ['Eway.view.field.paramClassify.ClassifyName',
 	           	   'Eway.view.field.paramClassify.ClassifyRemark'],
-	
+
 	defaults: {
 					labelWidth: 120,
 					labelAlign: 'right',
 					msgTarget : 'side',
 					width: 400
 				  },
-				  
+
 	initComponent : function(){
 		Ext.apply(this,{
 			defaults: {

@@ -6,7 +6,6 @@ Ext.define('Eway.view.parameter.element.Form',{
 	requires: ['Eway.view.field.paramElement.ParamName',
 	           'Eway.view.field.paramElement.ParamValue',
 	           'Eway.view.field.paramElement.ParamType',
-	           'Eway.view.field.paramElement.VersionNo',
 	           'Eway.view.field.paramElement.ParamClassify',
 	           'Eway.view.field.paramElement.ParamRights',
 	           'Eway.view.field.paramElement.ParamBelongs',

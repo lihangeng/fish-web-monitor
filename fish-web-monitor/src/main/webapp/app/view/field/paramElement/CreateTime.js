@@ -3,7 +3,7 @@ Ext.define('Eway.view.field.paramElement.CreateTime', {
 	extend: 'Ext.ux.form.DateTimeField',
 	alias: 'widget.field_paramElement_CreateTime',
 
-	fieldLabel : '创建时间',
+	fieldLabel : EwayLocale.param.element.createTime,
 	name : 'createTime',
 	format : 'Y-m-d H:i:s',
 	editable : false,
