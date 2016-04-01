@@ -20,11 +20,16 @@ Ext.define('Eway.view.parameter.template.ParamValueGrid', {
 			store : store,
 			columns : [
 			    {
+				header : '模板名称',
+				dataIndex : 'template',
+				flex : 1,
+				storable : true
+			},  {
 				header : '参数名称',
 				dataIndex : 'paramName',
 				flex : 1,
 				storable : true
-			}, {
+			},{
 				header : '参数值',
 				dataIndex : 'paramValue',
 				flex : 1,
@@ -36,17 +41,7 @@ Ext.define('Eway.view.parameter.template.ParamValueGrid', {
 				dataIndex : 'paramBelongs',
 				flex : 1.5,
 				storable : true
-			} ],
-			tbar: [{text:EwayLocale.commen.bindMachine,xtype:'tbtext'},'->', {
-				text:'应用',
-				glyph : 0xf002,
-				action:'confirm'
-			},{
-				text: '取消',
-				glyph : 0xf014,
-				action: 'cancle'
-			}],
-
+			} ]
 		});
 		this.callParent(arguments);
 	},

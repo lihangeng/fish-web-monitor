@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.api.parameter;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -43,7 +44,7 @@ public interface IParamTemplateService {
 	
 	public List<IParamTemplateDetail> listTemplateDetail(long id);
 	
-	
+	public boolean updateTemplateDetail(long templateId , Map<Long,String> newMap);
 	
 
 }

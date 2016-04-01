@@ -107,7 +107,8 @@ Ext.define('Eway.controller.parameter.template.Template',
 									templateId: record.data.templateId,
 									paramName:record.data.paramName,
 									paramValue:record.data.paramValue,
-									paramBelongs : record.paramBelongs
+									paramBelongs : record.data.paramBelongs,
+									elementId : record.data.elementId
 								});
 							
 							tempRess.push(tempDetail);
@@ -126,7 +127,9 @@ Ext.define('Eway.controller.parameter.template.Template',
 				    		var res = tempRess[i];
 							var tempRes_str = "{'templateId':" + res.data.templateId + ",'paramName':'" + res.data.paramName
 							+ "','paramValue':'"+res.data.paramValue
-							+"','paramBelongs':'"+res.data.paramBelongs+"'}";
+							+ "','elementId':'"+res.data.elementId
+							+ "','id':'"+res.data.id
+							+ "','paramBelongs':'"+res.data.paramBelongs+"'}";
 							if(resources == '['){
 								resources = resources + tempRes_str;
 							}else{
@@ -309,8 +312,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 									.down('parameter_linkingDeviceFilter');
 
 							linkedDeviceGrid.down('button[action="unlink"]')
-									.on(
-											'click',
+									.on('click',
 											Ext.bind(this.onUnlinkConfirm,
 													this, [ linkedDeviceGrid,
 															linkingDeviceGrid,
@@ -363,15 +365,10 @@ Ext.define('Eway.controller.parameter.template.Template',
 									.alert(EwayLocale.tip.bankPer.link.linkBankPerson);
 						}
 					},
+					
 					/**
 					 * 解除关联
 					 * 
-					 * @param {}
-					 *            linkedDeviceGrid
-					 * @param {}
-					 *            linkingDeviceGrid
-					 * @param {}
-					 *            record
 					 */
 					onUnlinkConfirm : function(linkedDeviceGrid,
 							linkingDeviceGrid, record) {
@@ -387,8 +384,9 @@ Ext.define('Eway.controller.parameter.template.Template',
 										method : 'POST',
 										url : 'api/parameter/template/unlink',
 										params : {
-											groupId : record.data.id,
-											deviceId : info
+											templateId : record.data.id,
+											deviceId : info,
+											id:record.data.id
 										},
 										success : function() {
 											linkedDeviceGrid
