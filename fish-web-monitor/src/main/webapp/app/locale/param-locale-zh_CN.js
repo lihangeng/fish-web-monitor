@@ -19,7 +19,7 @@ Ext.apply(EwayLocale,{
     		ParamBelongs:'归属的应用系统',//EwayLocale.param.element.ParamBelongs
     		remark:'备注',//EwayLocale.param.element.remark
     		createTime:'创建时间',//EwayLocale.param.element.createTime
-    		lastModifyTime:'最后修改时间'//EwayLocale.param.element.lastModifyTime
+    		lastModifyTime:'最后修改时间',//EwayLocale.param.element.lastModifyTime
     		integer:'整型',//EwayLocale.param.element.integer
         	character:'字符串型',//EwayLocale.param.element.character
         	boolean:'布尔型',//EwayLocale.param.element.boolean
