@@ -79,7 +79,7 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				dataIndex : 'paramClassify',
 				flex : 2
 			},{
-				header : EwayLocale.param.element.ParamRights,
+				header : EwayLocale.param.element.paramRights,
 				dataIndex : 'paramRights',
 				flex : 2,
 				width :180,
@@ -93,7 +93,7 @@ Ext.define('Eway.view.parameter.element.Grid', {
 					}
 				}
 			},{
-				header : EwayLocale.param.element.ParamBelongs,
+				header : EwayLocale.param.element.paramBelongs,
 				dataIndex : 'paramBelongs',
 				flex : 2,
 				width :180,

@@ -15,8 +15,8 @@ Ext.apply(EwayLocale,{
     		paramValue:'参数值',//EwayLocale.param.element.paramValue
     		paramType:'参数值类型',//EwayLocale.param.element.paramType
     		paramClassify:'参数分类',//EwayLocale.param.element.paramClassify
-    		ParamRights:'参数权限',//EwayLocale.param.element.ParamRights
-    		ParamBelongs:'归属的应用系统',//EwayLocale.param.element.ParamBelongs
+    		paramRights:'参数权限',//EwayLocale.param.element.ParamRights
+    		paramBelongs:'归属的应用系统',//EwayLocale.param.element.ParamBelongs
     		remark:'备注',//EwayLocale.param.element.remark
     		createTime:'创建时间',//EwayLocale.param.element.createTime
     		lastModifyTime:'最后修改时间',//EwayLocale.param.element.lastModifyTime
