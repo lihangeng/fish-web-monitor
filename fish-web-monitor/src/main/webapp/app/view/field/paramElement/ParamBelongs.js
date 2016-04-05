@@ -8,8 +8,8 @@ Ext.define('Eway.view.field.paramElement.ParamBelongs', {
 	hiddenName : 'paramBelongsId',
 	msgTarget : 'side',
 	store: 'parameter.element.ParamBelongs',
-	valueField : 'value',
-	displayField : 'display',
+	valueField : 'id',
+	displayField : 'name',
 	queryMode : 'local',
 	emptyText: EwayLocale.combox.select,
 
