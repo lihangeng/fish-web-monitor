@@ -28,7 +28,7 @@ public class ParamTempDetailForm {
 		setTemplateId(detail.getTemplateId());
 		setParamName(detail.getParamElement().getParamName());
 		setParamValue(detail.getParamValue());
-		setParamBelongs(detail.getParamElement().getParamBelongs());
+		setParamBelongs(detail.getParamElement().getParamBelongs().getName());
 		setElementId(detail.getParamElement().getId());
 
 	}
