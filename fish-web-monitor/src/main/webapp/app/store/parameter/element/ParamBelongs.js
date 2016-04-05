@@ -4,7 +4,7 @@ Ext.define('Eway.store.parameter.element.ParamBelongs', {
 	fields : [ 'id', 'name' ],
 	proxy : {
 		type : 'rest',
-		url : 'api/parameter/element/elementClassify',
+		url : 'api/parameter/element/queryAppsystem',
 		reader : {
 			type : 'json',
 			rootProperty : 'data'
