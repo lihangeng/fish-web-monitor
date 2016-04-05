@@ -56,7 +56,7 @@ public class ParamElement implements IParamElement, Serializable {
 	private String paramRights;
 
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = AppSystem.class)
-	@Column(name="PARAM_BELONGS",length=40)
+	@JoinColumn(name="PARAM_BELONGS")
 	private IAppSystem paramBelongs;
 
 	@Column(name="REMARK",length=60)
