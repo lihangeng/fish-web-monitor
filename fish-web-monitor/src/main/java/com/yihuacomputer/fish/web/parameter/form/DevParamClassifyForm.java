@@ -52,7 +52,7 @@ public class DevParamClassifyForm {
 		this.id = paramDetail.getId();
 		this.paramName = paramDetail.getParamElement().getParamName();
 		this.paramValue = paramDetail.getParamValue();
-		this.paramBelongs = paramDetail.getParamElement().getParamBelongs();
+		this.paramBelongs = paramDetail.getParamElement().getParamBelongs().getName();
 	}
 
 }

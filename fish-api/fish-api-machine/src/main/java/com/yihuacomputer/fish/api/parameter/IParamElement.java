@@ -27,9 +27,9 @@ public interface IParamElement {
 
     public void setParamRights(String rights);
 
-    public String getParamBelongs();
+    public IAppSystem getParamBelongs();
 
-    public void setParamBelongs(String belongs);
+    public void setParamBelongs(IAppSystem belongs);
 
     public Date getCreateTime();
 

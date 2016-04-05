@@ -15,7 +15,8 @@ public class ParamElementForm {
 	private long   classifyId;
 	private String paramClassify;
 	private String paramRights;
-	private String paramBelongs;
+	private long paramBelongsId;
+	private String paramBelongsName;
 	private String remark;
 	private String createTime;
 	private String lastModifyTime;
@@ -33,8 +34,10 @@ public class ParamElementForm {
 		setClassifyId(element.getParamClassify().getId());
 		setParamClassify(element.getParamClassify().getName());
 		}
+		if(element.getParamBelongs()!=null)
 		setParamRights(element.getParamRights());
-		setParamBelongs(element.getParamBelongs());
+		setParamBelongsId(element.getParamBelongs().getId());
+		setParamBelongsName(element.getParamBelongs().getName());
 		setRemark(element.getRemark());
 		setCreateTime(nullString(element.getCreateTime()));
 		setLastModifyTime(nullString(element.getLastModifyTime()));
@@ -125,12 +128,20 @@ public class ParamElementForm {
 		this.paramRights = paramRights;
 	}
 
-	public String getParamBelongs() {
-		return paramBelongs;
+	public long getParamBelongsId() {
+		return paramBelongsId;
 	}
 
-	public void setParamBelongs(String paramBelongs) {
-		this.paramBelongs = paramBelongs;
+	public void setParamBelongsId(long paramBelongsId) {
+		this.paramBelongsId = paramBelongsId;
+	}
+
+	public String getParamBelongsName(){
+		return paramBelongsName;
+	}
+
+	public void setParamBelongsName(String paramBelongsName){
+		this.paramBelongsName = paramBelongsName;
 	}
 
 	public String getRemark() {

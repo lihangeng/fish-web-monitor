@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.yihuacomputer.fish.api.parameter.IAppSystem;
 import com.yihuacomputer.fish.api.parameter.IParamClassify;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 
@@ -54,8 +55,9 @@ public class ParamElement implements IParamElement, Serializable {
 	@Column(name="PARAM_RIGHTS",length=10)
 	private String paramRights;
 
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = AppSystem.class)
 	@Column(name="PARAM_BELONGS",length=40)
-	private String paramBelongs;
+	private IAppSystem paramBelongs;
 
 	@Column(name="REMARK",length=60)
 	private String remark;
@@ -145,13 +147,13 @@ public class ParamElement implements IParamElement, Serializable {
 	}
 
 	@Override
-	public String getParamBelongs()
+	public IAppSystem getParamBelongs()
 	{
 		return paramBelongs;
 	}
 
 	@Override
-	public void setParamBelongs(String paramBelongs)
+	public void setParamBelongs(IAppSystem paramBelongs)
 	{
         this.paramBelongs=paramBelongs;
 	}

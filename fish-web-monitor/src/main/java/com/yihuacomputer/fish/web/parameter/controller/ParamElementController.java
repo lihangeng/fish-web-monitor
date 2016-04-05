@@ -25,10 +25,13 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.EntityUtils;
+import com.yihuacomputer.fish.api.parameter.IAppSystem;
+import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamClassify;
 import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
+import com.yihuacomputer.fish.web.parameter.form.AppSystemForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamClassifyForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamElementForm;
 
@@ -43,6 +46,9 @@ public class ParamElementController {
 
 	@Autowired
 	private IParamClassifyService classifyService;
+
+	@Autowired
+	private IAppSystemService appSystemService;
 
     @Autowired
     protected MessageSource messageSource;
@@ -69,6 +75,7 @@ public class ParamElementController {
 		ModelMap result=new ModelMap();
 		IParamElement element =elementService.make();
 		IParamClassify classify=classifyService.get(request.getClassifyId());
+		IAppSystem appSystem=appSystemService.get(request.getParamBelongsId());
 		Date date=new Date();
 
 		element.setParamName(request.getParamName());
@@ -76,7 +83,7 @@ public class ParamElementController {
 		element.setParamType(request.getParamType());
 		element.setParamClassify(classify);
 		element.setParamRights(request.getParamRights());
-		element.setParamBelongs(request.getParamBelongs());
+		element.setParamBelongs(appSystem);
 		element.setRemark(request.getRemark());
 		element.setCreateTime(date);
 
@@ -115,7 +122,8 @@ public class ParamElementController {
 		element.setParamType(request.getParamType());
 		element.setParamClassify(classify);
 		element.setParamRights(request.getParamRights());
-		element.setParamBelongs(request.getParamBelongs());
+		IAppSystem appSystem=appSystemService.get(request.getParamBelongsId());
+		element.setParamBelongs(appSystem);
 		element.setRemark(request.getRemark());
 		request.setLastModifyTime(DateUtils.getTimestamp(date));
 		element.setLastModifyTime(date);
@@ -130,12 +138,20 @@ public class ParamElementController {
         logger.info(String.format("search element : queryClassify"));
         ModelMap model = new ModelMap();
         List<IParamClassify> cassifyList = EntityUtils.convert(classifyService.list());
-        model.put(FishConstant.DATA, convert(cassifyList));
+        model.put(FishConstant.DATA, convert1(cassifyList));
         model.put(FishConstant.SUCCESS, true);
         return model;
     }
 
-
+   @RequestMapping(value= "/queryAppsystem",method=RequestMethod.GET)
+   public @ResponseBody ModelMap queryAppSystem(){
+	   logger.info(String.format("search appSystem : queryAppSystem"));
+	   ModelMap model=new ModelMap();
+	   List<IAppSystem> appSystemList = EntityUtils.convert(appSystemService.list());
+	   model.put(FishConstant.DATA, convert2(appSystemList));
+	   model.put(FishConstant.SUCCESS,true);
+	return model;
+   }
 
 
 
@@ -172,13 +188,21 @@ public class ParamElementController {
 		return "page".equals(name) || "start".equals(name) || "limit".equals(name) || "_dc".equals(name);
 	}
 
-	public static List<ParamClassifyForm> convert(List<IParamClassify> list) {
+	public static List<ParamClassifyForm> convert1(List<IParamClassify> list) {
 	List<ParamClassifyForm> result = new ArrayList<ParamClassifyForm>();
 	for (IParamClassify item : list) {
 		result.add(new ParamClassifyForm(item));
 	}
 	return result;
 }
+	public static List<AppSystemForm> convert2(List<IAppSystem> list){
+
+		List<AppSystemForm> result=new ArrayList<AppSystemForm>();
+		for(IAppSystem item: list){
+			result.add(new AppSystemForm(item));
+		}
+		return result;
+	}
 
 
 }
