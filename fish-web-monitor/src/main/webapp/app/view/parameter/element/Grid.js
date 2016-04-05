@@ -94,18 +94,9 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				}
 			},{
 				header : EwayLocale.param.element.paramBelongs,
-				dataIndex : 'paramBelongs',
+				dataIndex : 'paramBelongsName',
 				flex : 2,
 				width :180,
-				sortable:true,
-				renderer:function(value,metadata,record){
-					if(value==1){
-						return EwayLocale.param.element.ATMC;
-					}
-					if(value==2){
-						return EwayLocale.param.element.monitoringCient;
-					}
-				}
 			},{
 				header : EwayLocale.param.element.remark,
 				dataIndex : 'remark',
