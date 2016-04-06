@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
+import com.yihuacomputer.fish.machine.entity.Device;
 
 /**
  * 参数元数据
@@ -35,11 +36,11 @@ public class ParamDeviceDetail implements IParamDeviceDetail, Serializable {
 	@Column(name = "ID")
 	private long id;
 
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = IDevice.class)
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Device.class)
 	@JoinColumn(name = "DEVICE_ID")
 	private IDevice device;
 
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = IParamElement.class)
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = ParamElement.class)
 	@JoinColumn(name = "ELEMENT_ID")
 	private IParamElement element;
 
