@@ -34,10 +34,11 @@ public class ParamElementForm {
 		setClassifyId(element.getParamClassify().getId());
 		setParamClassify(element.getParamClassify().getName());
 		}
-		if(element.getParamBelongs()!=null)
 		setParamRights(element.getParamRights());
+		if(element.getParamBelongs()!=null){
 		setParamBelongsId(element.getParamBelongs().getId());
 		setParamBelongsName(element.getParamBelongs().getName());
+		}
 		setRemark(element.getRemark());
 		setCreateTime(nullString(element.getCreateTime()));
 		setLastModifyTime(nullString(element.getLastModifyTime()));

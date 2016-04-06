@@ -125,11 +125,11 @@ public class ParamElementController {
 		IAppSystem appSystem=appSystemService.get(request.getParamBelongsId());
 		element.setParamBelongs(appSystem);
 		element.setRemark(request.getRemark());
-		request.setLastModifyTime(DateUtils.getTimestamp(date));
+		request.setLastModifyTime(DateUtils.getTimestamp5(date));
 		element.setLastModifyTime(date);
 		elementService.update(element);
 		result.addAttribute(FishConstant.SUCCESS, true);
-		result.addAttribute(FishConstant.DATA, request);
+		result.addAttribute(FishConstant.DATA, new ParamElementForm(element));
 		return result;
 	}
 
@@ -170,12 +170,14 @@ public class ParamElementController {
 					if (name.equals("sort")) {
 						continue;
 					} else if(name.equals("paramBelongs")){
-						String value = request.getParameter(name);
-						filter.eq(name, value.trim());
+						IAppSystem appSystem = appSystemService.get(Long.parseLong(request.getParameter(name)));
+						filter.eq("paramBelongs",appSystem);
 					}
-					else {
+					else if(name.equals("classifyId")) {
 						IParamClassify classify = classifyService.get(Long.parseLong(request.getParameter(name)));
 						filter.eq("paramClassify", classify);
+					} else {
+						filter.like(name, request.getParameter(name));
 					}
 				}
 			}

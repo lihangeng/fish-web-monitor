@@ -230,8 +230,8 @@ public class VersionDownloadController {
 		for (IJob job : jobs) {
 			if (JobType.AUTO_UPDATE.equals(job.getJobType())) {
 				IFilter filter = new Filter();
-				filter.eq("deviceExtend.version", job.getVersion().getVersionNo());
-				int devVersionCount = deviceService.list(filter).size();
+				filter.eq("job.jobId", job.getJobId());
+				int devVersionCount = taskService.list(filter).size();
 				int repeatDevVersionCount = jobService.getRepeatTaskByJob(job.getJobId());
 				forms.add(convertWithIntArgs(job, devVersionCount, repeatDevVersionCount));
 			} else {
