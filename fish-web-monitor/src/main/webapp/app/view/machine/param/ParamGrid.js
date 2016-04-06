@@ -21,7 +21,8 @@ Ext.define('Eway.view.machine.param.ParamGrid', {
 	        store: store,
 	        
 	        features: [{
-	            ftype: 'grouping'
+	            ftype: 'grouping',
+	            groupHeaderTpl: '{name}'
 	        }],
 	        
 			initRegion : true,
