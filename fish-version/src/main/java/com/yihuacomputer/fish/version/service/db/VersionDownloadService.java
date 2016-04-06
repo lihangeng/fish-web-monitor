@@ -291,17 +291,28 @@ public class VersionDownloadService implements IVersionDownloadService {
 		StringBuffer sb = new StringBuffer();
      	sb.append("INSERT INTO VER_TASK(DEVICE_ID,VERSION_BEFORE_UPDATE,VERSION_ID,EAGER_RESTART,JOB_ID,TASK_STATUS,TASK_TYPE,EXCEPT_VERSION) ");
      	sb.append("select device0_.ID ,concat(concat(devicesoft3_.TYPE_NAME,'_'),devicesoft3_.VERSION_NO),?,?,?,'NEW','MANUAL',version1_.VERSION_NO ");
-     	sb.append("from DEV_INFO device0_ ,VER_VERSION version1_ ,VER_VERSIONTYPE_ATMTYPE versiontyp2_ , ");
+     	sb.append("from DEV_INFO device0_ ,VER_VERSION version1_ , ");
+     	if(job.getVersion().getVersionType().isDisplay()){
+     		sb.append("VER_VERSIONTYPE_ATMTYPE versiontyp2_ ,");
+     	}
      	sb.append("VER_DEVICE_SOFT_VERSION devicesoft3_,VER_VERSION_TYPE versiontyp4_ ,SM_ORG organizati5_ ");
-     	sb.append("where version1_.VERSION_TYPE_ID=versiontyp4_.ID  and device0_.DEV_TYPE_ID=versiontyp2_.ATM_TYPE_ID ");
-     	sb.append("and versiontyp2_.VERSION_TYPE_ID=version1_.VERSION_TYPE_ID  and devicesoft3_.TYPE_NAME=versiontyp4_.TYPE_NAME ");
+     	sb.append("where version1_.VERSION_TYPE_ID=versiontyp4_.ID  ");
+     	if(job.getVersion().getVersionType().isDisplay()){
+     		sb.append(" and device0_.DEV_TYPE_ID=versiontyp2_.ATM_TYPE_ID and versiontyp2_.VERSION_TYPE_ID=version1_.VERSION_TYPE_ID ");
+     	}
+     	sb.append(" and devicesoft3_.TYPE_NAME=versiontyp4_.TYPE_NAME ");
      	sb.append("and devicesoft3_.TERMINAL_ID=device0_.TERMINAL_ID  and version1_.VERSION_STR>devicesoft3_.VERSION_STR  ");
      	sb.append("and device0_.ORG_ID=organizati5_.ID  and version1_.ID=?  and device0_.STATUS=? ");
 
      	sb.append("and ( organizati5_.ORG_FLAG like ?) and ( device0_.ID not in  ( ");
-     	sb.append("select device7_.ID   from VER_DEVICE_VERSION task6_ ,  DEV_INFO device7_ , VER_VERSIONTYPE_ATMTYPE versiontyp8_ , VER_VERSION version9_ , SM_ORG organizati10_ ");
+     	sb.append("select device7_.ID   from VER_DEVICE_VERSION task6_ ,  DEV_INFO device7_ , VER_VERSION version9_ , SM_ORG organizati10_ ");
+     	if(job.getVersion().getVersionType().isDisplay()){
+     		sb.append(",VER_VERSIONTYPE_ATMTYPE versiontyp8_  ");
+     	}
      	sb.append("where device7_.ORG_ID=organizati10_.ID and task6_.DEVICE_ID=device7_.ID and task6_.VERSION_ID=version9_.ID ");
-     	sb.append("and device7_.DEV_TYPE_ID=versiontyp8_.ATM_TYPE_ID  and versiontyp8_.VERSION_TYPE_ID=version9_.VERSION_TYPE_ID ");
+     	if(job.getVersion().getVersionType().isDisplay()){
+     		sb.append("and device7_.DEV_TYPE_ID=versiontyp8_.ATM_TYPE_ID  and versiontyp8_.VERSION_TYPE_ID=version9_.VERSION_TYPE_ID ");
+     	}
      	sb.append("and version9_.ID=? and (task6_.TASK_STATUS in ('NEW' , 'RUN' , 'NOTICED' ,'NOTICE_APP_OK' , 'DOWNLOADED' , 'DEPLOYED' , 'DEPLOYED_WAIT','DOWN_BEFORE_WAIT','DOWNLOADING') ");
      	sb.append(") and device7_.STATUS=? and (organizati10_.ORG_FLAG like ?)))");
      	

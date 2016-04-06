@@ -76,7 +76,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			}
 			Ext.Ajax.request({
 			    url: 'api/version/download/resetTaskStatus',
-			    method:'GET',
+			    method:'POST',
 			    params: {
 			        id: record.get('id')
 			    },

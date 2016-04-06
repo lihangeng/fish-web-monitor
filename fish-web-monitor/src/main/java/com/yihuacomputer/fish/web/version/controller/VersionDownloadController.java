@@ -257,7 +257,7 @@ public class VersionDownloadController {
 	
 	@RequestMapping(value = "/resetTaskStatus", method = RequestMethod.POST)
 	public @ResponseBody
-	ModelMap resetTaskStatus(@PathVariable long id){
+	ModelMap resetTaskStatus(@RequestParam long id){
 		logger.info(String.format("reset taskStatus  : taskId = %s  ", id));
         ModelMap result = new ModelMap();
         try {

@@ -506,8 +506,16 @@ Ext.define('Eway.controller.advert.Advert', {
 //					 	 Eway.alert('保存成功！');
 //						//win.down("version_download_multiselectableDeviceGrid").getStore().load();
 						win.close();
-						Ext.MessageBox.confirm(EwayLocale.confirm.title,
-								EwayLocale.confirm.withoutNumTaskConfirmInfo,this.goToVersionDownloadPage,this);
+//						Ext.MessageBox.confirm(EwayLocale.confirm.title,
+//								EwayLocale.confirm.withoutNumTaskConfirmInfo,this.goToVersionDownloadPage,this);
+						Ext.MessageBox.confirm(EwayLocale.confirm.title,//'提示',
+					 			ed.get("jobName")+EwayLocale.confirm.taskConfirmInfo1,
+					 			function(button, text) {
+					 				if (button == "yes") {
+					 					var controller = this.parent.activeController('version.monitor.VersionDownloadMonitor');
+					 					controller.autoJobDetail(ed.get("id"));
+					 				}
+					 			},this);
 					 },
 					 failure: function(ed){
 					 },
@@ -521,7 +529,8 @@ Ext.define('Eway.controller.advert.Advert', {
 	//跳转到分发监控页面
 	goToVersionDownloadPage :function(button, text) {
 		if (button == "yes") {
-			this.parent.activeController('version.VersionDownload');
+			var controller = this.parent.activeController('version.monitor.VersionDownloadMonitor');
+			controller.autoJobDetail(ed.get("id"));
 		}
 	},
 
