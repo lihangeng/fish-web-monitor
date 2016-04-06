@@ -88,6 +88,7 @@ public class ParamTemplateController {
 	public @ResponseBody ModelMap add(@RequestBody ParamTemplateForm request) {
 		logger.info("add template");
 		ModelMap result = new ModelMap();
+		request.setApplyFlag("0");
 		IParamTemplate template = templateService.add(translate(request));
 		
 		
@@ -462,6 +463,7 @@ public class ParamTemplateController {
 		template.setId(templateForm.getId());
 		template.setName(templateForm.getName());
 		template.setRemark(templateForm.getRemark());
+		template.setApplyFlag(templateForm.getApplyFlag());
 		IAppSystem appSystem = appSystemService.get(templateForm.getParamBelongsId());
 		template.setParamBelongs(appSystem);
 		return template;

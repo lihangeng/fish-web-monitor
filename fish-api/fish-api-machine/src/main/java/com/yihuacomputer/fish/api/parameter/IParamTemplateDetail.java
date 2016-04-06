@@ -1,9 +1,9 @@
 package com.yihuacomputer.fish.api.parameter;
 
 public interface IParamTemplateDetail {
-	public long getTemplateId();
+	public IParamTemplate getTemplate();
 
-	public void setTemplateId(long templateId);
+	public void setTemplate(IParamTemplate template);
 
 	public String getParamValue();
 
@@ -16,9 +16,5 @@ public interface IParamTemplateDetail {
 	public IParamElement getParamElement();
 
 	public void setParamElement(IParamElement paramElement);
-
-	public long getVersionNo();
-
-	public void setVersionNo(long versionNo);
 
 }
