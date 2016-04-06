@@ -66,6 +66,14 @@ Ext.define('Eway.view.parameter.template.Grid', {
 				dataIndex : 'name',
 				flex : 1
 			},{
+				header : '归属系统',
+				dataIndex : 'paramBelongsName',
+				flex : 1
+			},{
+				header : '是否已经下发',
+				dataIndex : 'applyFlag',
+				flex : 1
+			},{
 				header : '描述',
 				dataIndex : 'remark',
 				flex : 1
