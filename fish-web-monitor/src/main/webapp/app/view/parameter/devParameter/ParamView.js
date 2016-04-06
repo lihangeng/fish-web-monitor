@@ -4,9 +4,6 @@ Ext.define('Eway.view.parameter.devParameter.ParamView', {
 
 	requires : [ 'Eway.view.parameter.devParameter.ParamFilterForm',
 			     'Eway.view.parameter.devParameter.ParamGrid' ],
-	config:{
-		appType:''
-	},
 	layout : 'border',
 	name:'devParamDetails',
 	margin:'-9 0 0 0',
@@ -19,12 +16,6 @@ Ext.define('Eway.view.parameter.devParameter.ParamView', {
 				region:'center',
 				xtype:'parameter_devParameter_paramGrid'
 			}],
-			listeners:{
-				render:function(_this,a){
-					var ok = _this.getConfig().appType;
-					//alert(ok);
-				}
-			}
 		});
 
 		this.callParent(arguments);

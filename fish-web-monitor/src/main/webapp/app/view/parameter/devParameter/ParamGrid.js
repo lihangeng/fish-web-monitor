@@ -5,13 +5,9 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 	border : false,
 	autoFit : true,
 
-//    verticalScroller:{  
-//    	        xtype:'paginggridscroller'  
-//    	  },  
-
 	initComponent : function() {
 		var store = Ext.create('Eway.store.parameter.devParameter.ParamInfo',{
-	        groupField: 'paramBelongs'
+	        groupField: 'paramClassify'
 		});
 		store.loadPage(1);
 		Ext.apply(this, {

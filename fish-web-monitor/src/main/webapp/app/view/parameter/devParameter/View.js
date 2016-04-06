@@ -15,9 +15,7 @@ Ext.define('Eway.view.parameter.devParameter.View', {
 					items : [{
 						region: 'west',
 						layout:'border',
-						width:'55%',
-//						plain:true,
-						//split:true,
+						width:'35%',
 						collapsible:true,
 						items:[{
 							region:'north',
@@ -29,7 +27,7 @@ Ext.define('Eway.view.parameter.devParameter.View', {
 					},{
 						region: 'center',
 						layout:'border',
-						name:'groupPanel',
+						name:'paramPanel',
 						xtype:'tabpanel',
 						tabPosition : 'left',
 						headerPosition: 'left',
@@ -39,17 +37,18 @@ Ext.define('Eway.view.parameter.devParameter.View', {
 					    
 					}],
 					listeners: {
-				       'render':function( _this, eOpts){
+				       'beforerender':function( _this, eOpts){
 				    	   Ext.Ajax.request({
 				   			method:'GET',
 				   			url:'api/parameter/devParameter/getAppData',
 				   			success:function(response){
 				   				var appData=Ext.decode(response.responseText);
 				   				for(var i=0;i<appData.total;i++){
-				   					var param=Ext.create('Eway.view.parameter.devParameter.ParamView',{appType:appData.data[i].id});
-				   					_this.down("tabpanel").add(param);
-				   					param.setTitle(appData.data[i].name);
+				   					var tab=Ext.create('Eway.view.parameter.devParameter.ParamView',{appType:appData.data[i].id});
+				   					_this.down("tabpanel").add(tab);
+				   					tab.setTitle(appData.data[i].name);
 				   				}
+				   				_this.down("tabpanel").setActiveItem(0);
 				   			}
 				   		});
 				       }

@@ -25,16 +25,15 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.parameter.DeviceParam;
 import com.yihuacomputer.fish.api.parameter.IAppSystem;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamClassify;
 import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
-import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
-import com.yihuacomputer.fish.api.parameter.IParamTemplateDetailService;
+import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.parameter.form.AppSystemForm;
-import com.yihuacomputer.fish.web.parameter.form.DevParamClassifyForm;
 import com.yihuacomputer.fish.web.parameter.form.DevParameterForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamClassifyForm;
 
@@ -60,7 +59,7 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 	private IParamClassifyService classifyService;
 	
 	@Autowired
-	private IParamTemplateDetailService templateDetailService;
+	private IParamDeviceDetailService paramDeviceDetailService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,@RequestParam int limit,HttpServletRequest request,WebRequest webRequest){
@@ -139,27 +138,29 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 	}
 	
 	/**
-	 * 查询设备参数
+	 * 进入界面默认加载第一条设备参数
 	 */
 	@RequestMapping(value="/paramInfo",method=RequestMethod.GET)
-	public @ResponseBody ModelMap searchParam(@RequestParam int start,@RequestParam int limit,HttpServletRequest request,WebRequest webRequest){
+	public @ResponseBody ModelMap searchParam(HttpServletRequest request,WebRequest webRequest){
 		logger.info("search the relative device's parameter information");
-		UserSession userSession=(UserSession) request.getSession().getAttribute("SESSION_USER");
-		String organization=String.valueOf(userSession.getOrgId());
-		IFilter devFilter = new Filter();
-		IPageResult<IDevice> devInfo=deviceService.page(start, limit, devFilter,organization);
 		ModelMap result=new ModelMap();
-		if(devInfo != null){
-			long devId=devInfo.list().get(0).getId();
-			IFilter filter = paramfilter(webRequest);
-			IPageResult<IParamTemplateDetail> pageResult=templateDetailService.getByDeviceId(0, 25, filter, devId);
-			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-			result.addAttribute(FishConstant.DATA,paramConvert(pageResult.list()));
+		IFilter filter = paramfilter(webRequest);
+		long deviceId=1l;
+		if(null!=request.getParameter("deviceId")&&!request.getParameter("deviceId").isEmpty()){
+			deviceId=Long.parseLong(request.getParameter("deviceId"));
 		}else{
-			result.addAttribute(FishConstant.SUCCESS,false);
+			result.addAttribute(FishConstant.SUCCESS, false);
 		}
-		
+		long tabId=1l;
+		if(null!=request.getParameter("tabId")&&!request.getParameter("tabId").isEmpty()){
+			tabId=Long.parseLong(request.getParameter("tabId"));
+		}else{
+			result.addAttribute(FishConstant.SUCCESS, false);
+		}
+		List<DeviceParam> pageResult=paramDeviceDetailService.list(filter, tabId, deviceId);
+		result.addAttribute(FishConstant.SUCCESS, true);
+		result.addAttribute(FishConstant.TOTAL, pageResult.size());
+		result.addAttribute(FishConstant.DATA,pageResult);
 		return result;
 	}
 	
@@ -178,12 +179,15 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 					continue;
 				} else if (name.equals("sort")) {
 					continue;
-				} else if (name.equals("paramName")) {
-					filter.eq("ptd."+name, request.getParameter("paramName"));
-				} else if(name.equals("paramBelongs")) {
-					filter.eq("ptd."+name, request.getParameter("paramBelongs"));
+				}/* else if (name.equals("paramName")) {
+					filter.eq("pe."+name, request.getParameter("paramName"));
+				} else if(name.equals("paramClassify")) {
+					filter.eq("pe."+name, request.getParameter("paramClassify"));
 				}else{
 					filter.like(name, request.getParameter(name));
+				}*/
+				else{
+					logger.info(name  + " " + request.getParameter(name));
 				}
 			}
 		}
@@ -191,33 +195,6 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 		return filter;
 	}
 	
-	
-	public List<DevParamClassifyForm> paramConvert(List<IParamTemplateDetail> list) {
-		List<DevParamClassifyForm> result = new ArrayList<DevParamClassifyForm>();
-		for (IParamTemplateDetail item : list) {
-			result.add(new DevParamClassifyForm(item));
-		}
-		return result;
-	}
-	/**
-	 * 根据设备号查询参数
-	 */
-	@RequestMapping(value="/devParamSearch",method=RequestMethod.GET)
-	public @ResponseBody ModelMap devParamSearch (@RequestParam String id,@RequestParam int start,@RequestParam int limit,HttpServletRequest request,WebRequest webRequest){
-		ModelMap result=new ModelMap();
-		if(!(id.isEmpty())){
-//			IFilter filter = paramfilter(webRequest);
-			IFilter filter=new Filter();
-			IPageResult<IParamTemplateDetail> pageResult=templateDetailService.getByDeviceId(0, 25, filter, Long.valueOf(id));
-			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-			result.addAttribute(FishConstant.DATA,paramConvert(pageResult.list()));
-		}else{
-			result.addAttribute(FishConstant.SUCCESS,false);
-		}
-		
-		return result;
-	}
 	
 	/**
 	 * 参数分类查询

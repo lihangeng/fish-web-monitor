@@ -3,7 +3,7 @@ package com.yihuacomputer.fish.web.parameter.form;
 import com.yihuacomputer.fish.api.device.IDevice;
 
 public class DevParameterForm {
-	private String id;
+	private long id;
 
 	/**
 	 * 设备号
@@ -72,11 +72,11 @@ public class DevParameterForm {
 		this.devCatalogName = devCatalogName;
 	}
 
-	public String getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -100,7 +100,7 @@ public class DevParameterForm {
 		
 	}
 	public DevParameterForm(IDevice device){
-		this.id=String.valueOf(device.getId());
+		this.id=device.getId();
 		this.terminalId=device.getTerminalId();
 		this.ip=device.getIp().toString();
 		if (device.getDevType() != null) {
