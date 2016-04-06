@@ -120,6 +120,12 @@ input:focus {
 			</div>
 	
 <script type="text/javascript">
+//添加键盘事件
+	onkeydown = function(event) {
+		if (event.keyCode == 13) {
+			updatePasswordSubmitFn();
+		}
+	}
 	function $(id){
 		return document.getElementById(id);
 	}
