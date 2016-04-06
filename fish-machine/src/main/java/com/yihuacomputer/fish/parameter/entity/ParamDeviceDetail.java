@@ -13,8 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.yihuacomputer.fish.api.parameter.IAppSystem;
+import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
+import com.yihuacomputer.fish.api.parameter.IParamElement;
 
 /**
  * 参数元数据
@@ -34,16 +35,39 @@ public class ParamDeviceDetail implements IParamDeviceDetail, Serializable {
 	@Column(name = "ID")
 	private long id;
 
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = AppSystem.class)
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = IDevice.class)
 	@JoinColumn(name = "DEVICE_ID")
-	private IAppSystem deviceId;
+	private IDevice device;
 
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = AppSystem.class)
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = IParamElement.class)
 	@JoinColumn(name = "ELEMENT_ID")
-	private IAppSystem elementId;
+	private IParamElement element;
+
+	@Column(name = "PARAM_VALUE", length = 40)
+	private String paramValue;
 
 	public ParamDeviceDetail() {
 
+	}
+
+	@Override
+	public IDevice getDevice() {
+		return device;
+	}
+
+	@Override
+	public void setDevice(IDevice device) {
+		this.device = device;
+	}
+
+	@Override
+	public IParamElement getElement() {
+		return element;
+	}
+
+	@Override
+	public void setElement(IParamElement element) {
+		this.element = element;
 	}
 
 	@Override
@@ -57,23 +81,13 @@ public class ParamDeviceDetail implements IParamDeviceDetail, Serializable {
 	}
 
 	@Override
-	public IAppSystem getDeviceId() {
-		return deviceId;
+	public String getParamValue() {
+		return paramValue;
 	}
 
 	@Override
-	public void setDeviceId(IAppSystem deviceId) {
-		this.deviceId = deviceId;
-	}
-
-	@Override
-	public IAppSystem getElementId() {
-		return elementId;
-	}
-
-	@Override
-	public void setElementId(IAppSystem elementId) {
-		this.elementId = elementId;
+	public void setParamValue(String paramValue) {
+		this.paramValue = paramValue;
 	}
 
 }
