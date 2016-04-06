@@ -1,8 +1,12 @@
 package com.yihuacomputer.fish.api.person;
 
-public class UserSession {
+import java.io.Serializable;
 
-    /**
+public class UserSession implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+
+	/**
      * 用户ID
      */
     private long userId;
