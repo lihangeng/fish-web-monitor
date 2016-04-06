@@ -44,8 +44,11 @@ Ext.define('Eway.view.parameter.template.UpdateValue', {
 			} ],
 			buttonAlign : 'center',
 			buttons : [ {
-				text : '确认',
-				action : 'confirm'
+				text : '保存',
+				action : 'save'
+			},  {
+				text : '下发',
+				action : 'issue'
 			}, {
 				text : '取消',
 				handler : this.onOver

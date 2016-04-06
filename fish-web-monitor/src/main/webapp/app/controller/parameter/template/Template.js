@@ -77,13 +77,17 @@ Ext.define('Eway.controller.parameter.template.Template',
 							'template_View button[action=link]' : {
 								click : this.onGroupLink
 							},
-							'template_updateValue button[action=confirm]' : {
-								click : this.onUpdateConfirm
+							'template_updateValue button[action=save]' : {
+								click : this.onUpdateSave
+							},
+							'template_updateValue button[action=issue]' : {
+								click : this.onIssue
 							}
 						});
 					},
 
 					onUpdateValue : function() {
+						
 						var grid = this.getTemplateGrid();
 						var sm = grid.getSelectionModel();
 						if (sm.getCount() == 1) {
@@ -96,7 +100,33 @@ Ext.define('Eway.controller.parameter.template.Template',
 							Eway.alert(EwayLocale.choiceUpdateMsg);
 						}
 					},
-					
+					onIssue :function(){
+						this.onUpdateSave();
+						var grid = this.getParamValueGrid();
+						var store = grid.getStore();
+						var templateId = store.getAt(0).data.templateId;
+						Ext.Ajax.request({
+							method : 'POST',
+							url : 'api/parameter/template/issueParam',
+							params : {
+								templateId : templateId
+							},
+							success : function(response) {
+								var object = Ext.decode(response.responseText);
+								if (object.success == true) {
+									Eway.alert('下发成功');
+								} else {
+									Eway.alert('下发失败');
+								}
+							},
+							failure : function() {
+								Eway.alert('添加到模板失败');
+							},
+							scope : this
+						});
+						
+						
+					},
 					
 					generateTemplateDetail : function(tempRess,store){
 						for(var i = 0; i < store.getCount(); i++){
@@ -116,7 +146,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 					},
 					
 					
-					onUpdateConfirm : function() {
+					onUpdateSave : function() {
 						
 						var grid = this.getParamValueGrid();
 						var store = grid.getStore();

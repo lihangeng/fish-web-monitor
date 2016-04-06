@@ -365,6 +365,18 @@ public class ParamTemplateController {
 		}
 		return result;
 	}
+	
+	/**
+	 * 将设备当前所有参数覆盖为模板的参数
+	 */
+	@RequestMapping(value = "/issueParam", method = RequestMethod.POST)
+	public @ResponseBody ModelMap issueParam(@RequestParam long templateId) {
+		
+		templateService.coverDeviceParam(templateId);
+		return null;
+			
+	}
+	
 
 	/**
 	 * 获得该模板下的可关联参数

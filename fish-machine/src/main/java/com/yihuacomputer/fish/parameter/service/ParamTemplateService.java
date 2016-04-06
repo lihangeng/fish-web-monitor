@@ -219,4 +219,10 @@ public class ParamTemplateService implements IParamTemplateService {
 
 		return true;
 	}
+
+	@Override
+	public boolean coverDeviceParam(long templateId) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }

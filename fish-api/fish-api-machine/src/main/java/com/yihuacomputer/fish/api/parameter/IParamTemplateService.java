@@ -46,5 +46,7 @@ public interface IParamTemplateService {
 	
 	public boolean updateTemplateDetail(long templateId , Map<Long,String> newMap);
 	
+	public boolean coverDeviceParam(long templateId);
+	
 
 }
