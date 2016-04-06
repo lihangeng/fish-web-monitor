@@ -66,9 +66,24 @@ Ext.define('Eway.view.parameter.template.Grid', {
 				dataIndex : 'name',
 				flex : 1
 			},{
+				header : '归属系统',
+				dataIndex : 'paramBelongsName',
+				flex : 1
+			},{
+				header : '是否已经下发',
+				dataIndex : 'applyFlag',
+				flex : 1,
+				renderer: function(value,metadata,record){
+					if(value == 0){
+		                	 return '未下发';
+		             }else if(value == 1){
+		                	   return '已经下发';
+		             }
+				}
+			},{
 				header : '描述',
 				dataIndex : 'remark',
-				flex : 1
+				flex : 2
 			}
 			],
 			bbar : Ext.create('Ext.PagingToolbar',{

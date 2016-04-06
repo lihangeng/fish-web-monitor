@@ -35,11 +35,9 @@ public class ParamTemplateDetail implements IParamTemplateDetail, Serializable {
 	@Column(name = "ID")
 	private long id;
 
-	@Column(name = "TEMPLATE_ID")
-	private long templateId;
-
-	@Column(name = "VERSION_NO")
-	private long versionNo;
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = ParamTemplate.class)
+	@JoinColumn(name = "TEMPLATE_ID")
+	private IParamTemplate paramTemplate;
 
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = ParamElement.class)
 	@JoinColumn(name = "ELEMENT_ID")
@@ -50,8 +48,7 @@ public class ParamTemplateDetail implements IParamTemplateDetail, Serializable {
 		ParamTemplateDetail obj = new ParamTemplateDetail();
 		obj.setParamElement(emlement);
 		obj.setParamValue(emlement.getParamValue());
-		obj.setTemplateId(template.getId());
-		obj.setVersionNo(0);
+		obj.setTemplate(template);
 		return obj;
 	}
 
@@ -70,16 +67,6 @@ public class ParamTemplateDetail implements IParamTemplateDetail, Serializable {
 
 	public ParamTemplateDetail() {
 
-	}
-
-	@Override
-	public long getTemplateId() {
-		return templateId;
-	}
-
-	@Override
-	public void setTemplateId(long templateId) {
-		this.templateId = templateId;
 	}
 
 	@Override
@@ -103,13 +90,14 @@ public class ParamTemplateDetail implements IParamTemplateDetail, Serializable {
 	}
 
 	@Override
-	public long getVersionNo() {
-		return versionNo;
+	public IParamTemplate getTemplate() {
+		return this.paramTemplate;
 	}
 
 	@Override
-	public void setVersionNo(long versionNo) {
-		this.versionNo = versionNo;
+	public void setTemplate(IParamTemplate paramTemplate) {
+		this.paramTemplate = paramTemplate;
+
 	}
 
 }

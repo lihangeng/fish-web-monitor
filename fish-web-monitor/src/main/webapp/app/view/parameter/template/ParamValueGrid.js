@@ -21,7 +21,7 @@ Ext.define('Eway.view.parameter.template.ParamValueGrid', {
 			columns : [
 			    {
 				header : '模板名称',
-				dataIndex : 'template',
+				dataIndex : 'name',
 				flex : 1,
 				storable : true
 			},  {

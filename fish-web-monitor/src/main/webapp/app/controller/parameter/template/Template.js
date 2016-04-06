@@ -5,7 +5,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 					stores : [ 'parameter.template.Template',
 							'machine.DeviceAtmType',
 							'machine.atmType.DeviceAtmCatalog',
-
+							'parameter.element.ParamBelongs',
 							'parameter.template.AddedParam',
 							'parameter.template.AddingParam' ],
 

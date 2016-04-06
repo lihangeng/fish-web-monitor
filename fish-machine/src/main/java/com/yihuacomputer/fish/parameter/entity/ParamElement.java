@@ -181,15 +181,17 @@ public class ParamElement implements IParamElement, Serializable {
 	{
         this.lastModifyTime=lastModifyTime;
 	}
-
+	
+	@Override
 	public String getRemark()
 	{
 		return remark;
 	}
-
+	
+	@Override
 	public void setRemark(String remark)
-	{
-        this.remark=remark;
+ {
+		this.remark = remark;
 	}
 
 }

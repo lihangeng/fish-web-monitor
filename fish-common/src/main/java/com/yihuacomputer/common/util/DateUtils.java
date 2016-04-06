@@ -36,6 +36,8 @@ public class DateUtils {
 	public static final String STANDARD_TIMESTAMP3 = "yyyy-MM-dd HH:mm";
 
 	public static final String STANDARD_MONTH_FULL = "yyyy-MM" ;
+	
+	public static final String STANDARD_TIMESTAMP5 = "yyyyMMddHHmmssSSS";
 
 	public static Date get(String strDate, String format) {
 		if (format == null) {
@@ -81,7 +83,11 @@ public class DateUtils {
 	public static String getTimestamp(Date date) {
 		return get(date, STANDARD_TIMESTAMP);
 	}
-
+	
+	public static String getTimestamp5(Date date) {
+		return get(date, STANDARD_TIMESTAMP5);
+	}
+	
 	public static String getTimestamp2(Date date) {
 		return get(date, STANDARD_TIMESTAMP3);
 	}

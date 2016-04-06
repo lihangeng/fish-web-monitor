@@ -1,39 +1,44 @@
-Ext.define('Eway.view.parameter.template.Form',{
+Ext.define('Eway.view.parameter.template.Form', {
 
 	extend : 'Eway.view.base.Form',
 	alias : 'widget.parameter_template_form',
 
-	requires: [],
-	defaults: {
-					labelWidth: 120,
-					labelAlign: 'right',
-					msgTarget : 'side',
-					width: 400
-				},
-	initComponent : function(){
-		Ext.apply(this,{
-			defaults: {
+	requires : [ 'Eway.view.field.paramElement.ParamBelongs' ],
+	defaults : {
+		labelWidth : 120,
+		labelAlign : 'right',
+		msgTarget : 'side',
+		width : 400
+	},
+	initComponent : function() {
+		Ext.apply(this, {
+			defaults : {
 				anchor : '90%',
-				labelWidth: 120,
-				labelAlign: 'right',
+				labelWidth : 120,
+				labelAlign : 'right',
 				msgTarget : 'side'
 			},
-			items: [{
+			items : [ {
 				fieldLabel : '<font color="red">*</font>模板名称',
 				xtype : 'textfield',
 				name : 'name',
 				maxLength : 30,
 				msgTarget : 'side',
 				allowBlank : false
-			},{
-			    xtype : 'textarea',
-			    fieldLabel : '模板备注',
-			    name : 'remark',
-			    autoScroll : true,
-				maxLength :30,
+			}, {
+				fieldLabel : '<font color="red">*</font>归属系统',
+				xtype : 'field_paramElement_ParamBelongs',
+				editable : false,
+				allowBlank : false
+			}, {
+				xtype : 'textarea',
+				fieldLabel : '模板备注',
+				name : 'remark',
+				autoScroll : true,
+				maxLength : 30,
 				msgTarget : 'side',
 				allowBlank : true
-			}]
+			} ]
 		});
 		this.callParent(arguments);
 	}

@@ -29,6 +29,8 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.parameter.IAppSystem;
+import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
@@ -61,6 +63,9 @@ public class ParamTemplateController {
 
 	@Autowired
 	private IOrganizationService orgService;
+	
+	@Autowired
+	private IAppSystemService appSystemService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,
@@ -83,9 +88,10 @@ public class ParamTemplateController {
 	public @ResponseBody ModelMap add(@RequestBody ParamTemplateForm request) {
 		logger.info("add template");
 		ModelMap result = new ModelMap();
-		IParamTemplate template = templateService.make();
-		request.translate(template);
-		templateService.add(template);
+		request.setApplyFlag("0");
+		IParamTemplate template = templateService.add(translate(request));
+		
+		
 		result.put(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, new ParamTemplateForm(template));
 
@@ -160,7 +166,7 @@ public class ParamTemplateController {
 		logger.info("update elemet: elemet.id = " + id);
 		ModelMap result = new ModelMap();
 		IParamTemplate template = templateService.get(id);
-		request.translate(template);
+		template = translate(request);
 		template.setId(id);
 		templateService.update(template);
 		result.addAttribute(FishConstant.SUCCESS, true);
@@ -452,5 +458,15 @@ public class ParamTemplateController {
 		}
 		return result;
 	}
-
+	private IParamTemplate translate(ParamTemplateForm templateForm) {
+		IParamTemplate template  =  templateService.make();
+		template.setId(templateForm.getId());
+		template.setName(templateForm.getName());
+		template.setRemark(templateForm.getRemark());
+		template.setApplyFlag(templateForm.getApplyFlag());
+		IAppSystem appSystem = appSystemService.get(templateForm.getParamBelongsId());
+		template.setParamBelongs(appSystem);
+		return template;
+		
+	}
 }

@@ -196,7 +196,7 @@ public class ParamTemplateService implements IParamTemplateService {
 	@Override
 	public List<IParamTemplateDetail> listTemplateDetail(long id) {
 
-		String hql = "select t from ParamTemplateDetail t where t.templateId = ?";
+		String hql = "select t from ParamTemplateDetail t where t.paramTemplate.id = ?";
 		List<IParamTemplateDetail> detail = dao.findByHQL(hql.toString(), id);
 		return detail;
 
@@ -205,18 +205,15 @@ public class ParamTemplateService implements IParamTemplateService {
 	@Override
 	public boolean updateTemplateDetail(long templateId,Map<Long, String> newMap) {
 
-		String hql = "select t from ParamTemplateDetail t where t.templateId = ? and t.paramElement.id = ?";
+		String hql = "select t from ParamTemplateDetail t where t.paramTemplate.id = ? and t.paramElement.id = ?";
 		Set<Long> set = newMap.keySet();
 		Iterator<Long> it = set.iterator();
 		ParamTemplateDetail ptd = null;
 		Long eleId = 0L;
-		long versionNo = 0L;
 		while (it.hasNext()) {
 			eleId = it.next();
 			ptd = dao.findUniqueByHql(hql, templateId, eleId);
 			ptd.setParamValue(newMap.get(eleId));
-			versionNo = ptd.getVersionNo();
-			ptd.setVersionNo(versionNo + 1);
 			dao.update(ptd);
 		}
 

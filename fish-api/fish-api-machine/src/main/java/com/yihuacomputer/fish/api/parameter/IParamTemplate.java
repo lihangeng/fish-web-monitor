@@ -14,4 +14,12 @@ public interface IParamTemplate {
 
 	public void setRemark(String remark);
 
+	public IAppSystem getParamBelongs();
+
+	public void setParamBelongs(IAppSystem paramBelongs);
+
+	public void setApplyFlag(String applyFlag);
+
+	public String getApplyFlag();
+
 }
