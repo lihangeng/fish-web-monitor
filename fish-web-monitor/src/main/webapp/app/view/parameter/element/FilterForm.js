@@ -3,10 +3,6 @@ Ext.define('Eway.view.parameter.element.FilterForm', {
 	extend: 'Eway.view.base.FilterForm',
 	alias: 'widget.element_FilterForm',
 
-
-//	requires: ['Eway.view.field.atmBrand.StatusComboBox',
-//	           'Eway.view.field.atmBrand.Country'],
-
 	layout : 'column',
 	initComponent: function() {
 		Ext.apply(this, {
