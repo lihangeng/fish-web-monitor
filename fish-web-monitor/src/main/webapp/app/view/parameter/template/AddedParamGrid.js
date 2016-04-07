@@ -29,6 +29,10 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 				header : '参数值',
 				dataIndex : 'paramValue',
 				flex : 1
+				,
+				editor:new Ext.form.TextField({  
+	                allowBlank:false  
+	            })
 			}, {
 				header : 'ID',
 				dataIndex : 'id',

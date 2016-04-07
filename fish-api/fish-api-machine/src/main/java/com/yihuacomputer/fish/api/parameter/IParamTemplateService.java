@@ -36,7 +36,7 @@ public interface IParamTemplateService {
 	public void unlink(IParamTemplate template, IDevice device);
 	
 
-	public List<IParamElement> listParamByTemplate(long templateId) ;
+	public List<IParamElement> listParamByTemplate(long paramBelongsId) ;
 	
 	public void unlinkTempParam(IParamTemplate  template, IParamElement emlement);
 	
@@ -47,6 +47,8 @@ public interface IParamTemplateService {
 	public boolean updateTemplateDetail(long templateId , Map<Long,String> newMap);
 	
 	public boolean coverDeviceParam(long templateId);
+	
+	public List<IParamElement> listParam(long paramBelongsId) ;
 	
 
 }

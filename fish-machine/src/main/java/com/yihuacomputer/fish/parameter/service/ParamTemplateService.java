@@ -158,7 +158,20 @@ public class ParamTemplateService implements IParamTemplateService {
 	}
 
 	@Override
-	public List<IParamElement> listParamByTemplate(long templateId) {
+	public List<IParamElement> listParamByTemplate(long paramBelongsId) {
+
+		StringBuffer hql = new StringBuffer();
+
+		hql.append("select t from ParamElement t ,ParamTemplateElementRelation t1 ");
+		hql.append("where t.id = t1.elementId and t.paramBelongs.id = ?");
+		List<IParamElement> elements = dao.findByHQL(hql.toString(), paramBelongsId);
+
+		return elements;
+	}
+	
+	
+	@Override
+	public List<IParamElement> listParam(long templateId) {
 
 		StringBuffer hql = new StringBuffer();
 
