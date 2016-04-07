@@ -31,7 +31,16 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 		StringBuffer hql= new StringBuffer();
 		hql.append("select pc.id,pc.name, pe.paramName ,pdd.paramValue ");
 		hql.append("FROM ParamElement pe,ParamClassify pc,ParamDeviceDetail pdd ");
-		hql.append("WHERE pe.paramClassify.id=pc.id AND pe.id = pdd.element.id AND pe.paramBelongs.id = ? AND pdd.device.id = ? ");
+		hql.append("WHERE pe.paramClassify.id=pc.id AND pe.id = pdd.element.id ");
+		Object paramName=filter.getValue("paramName");
+		if(paramName != null){
+			hql.append("and pe.paramName = '").append(String.valueOf(paramName)).append("' ");
+		}
+		Object paramClassifyId = filter.getValue("ClassifyId");
+		if(paramClassifyId !=null){
+			hql.append("and pe.paramClassify.id = '").append(String.valueOf(paramClassifyId)).append("' ");
+		}
+		hql.append("AND pe.paramBelongs.id = ? AND pdd.device.id = ? ");
 		List<DeviceParam> resultList=dao.findByHQL(hql.toString(), Long.valueOf(tabId),Long.valueOf(deviceId));
 		return resultList;
 	}

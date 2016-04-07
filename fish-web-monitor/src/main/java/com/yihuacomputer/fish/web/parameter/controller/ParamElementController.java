@@ -76,7 +76,7 @@ public class ParamElementController {
 		IParamElement element =elementService.make();
 		IParamClassify classify=classifyService.get(request.getClassifyId());
 		IAppSystem appSystem=appSystemService.get(request.getParamBelongsId());
-		Date date=new Date();
+//		Date date=new Date();
 
 		element.setParamName(request.getParamName());
 		element.setParamValue(request.getParamValue());
@@ -85,8 +85,7 @@ public class ParamElementController {
 		element.setParamRights(request.getParamRights());
 		element.setParamBelongs(appSystem);
 		element.setRemark(request.getRemark());
-		element.setCreateTime(date);
-
+		element.setCreateTime(System.currentTimeMillis());
 		elementService.add(element);
 		result.put(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, new ParamElementForm(element));
@@ -125,8 +124,7 @@ public class ParamElementController {
 		IAppSystem appSystem=appSystemService.get(request.getParamBelongsId());
 		element.setParamBelongs(appSystem);
 		element.setRemark(request.getRemark());
-		request.setLastModifyTime(DateUtils.getTimestamp5(date));
-		element.setLastModifyTime(date);
+		element.setLastModifyTime(System.currentTimeMillis());
 		elementService.update(element);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, new ParamElementForm(element));

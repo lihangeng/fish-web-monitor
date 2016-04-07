@@ -138,7 +138,7 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 	}
 	
 	/**
-	 * 进入界面默认加载第一条设备参数
+	 * 根据设备号查询设备参数
 	 */
 	@RequestMapping(value="/paramInfo",method=RequestMethod.GET)
 	public @ResponseBody ModelMap searchParam(HttpServletRequest request,WebRequest webRequest){
@@ -179,15 +179,10 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 					continue;
 				} else if (name.equals("sort")) {
 					continue;
-				}/* else if (name.equals("paramName")) {
-					filter.eq("pe."+name, request.getParameter("paramName"));
-				} else if(name.equals("paramClassify")) {
-					filter.eq("pe."+name, request.getParameter("paramClassify"));
-				}else{
-					filter.like(name, request.getParameter(name));
-				}*/
-				else{
-					logger.info(name  + " " + request.getParameter(name));
+				} else if (name.equals("paramName")) {
+					filter.eq(name, request.getParameter("paramName").trim());
+				} else if(name.equals("ClassifyId")) {
+					filter.eq(name, request.getParameter("ClassifyId"));
 				}
 			}
 		}
