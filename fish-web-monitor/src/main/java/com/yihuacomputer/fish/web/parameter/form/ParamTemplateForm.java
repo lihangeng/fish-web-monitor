@@ -3,6 +3,11 @@ package com.yihuacomputer.fish.web.parameter.form;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 
 public class ParamTemplateForm {
@@ -12,6 +17,7 @@ public class ParamTemplateForm {
 	private long paramBelongsId;
 	private String paramBelongsName;
 	private String applyFlag;
+	private String resources;
 
 	public ParamTemplateForm() {
 
@@ -81,4 +87,28 @@ public class ParamTemplateForm {
 	public void setApplyFlag(String applyFlag) {
 		this.applyFlag = applyFlag;
 	}
+
+	public String getResources() {
+		return resources;
+	}
+
+	public void setResource(String resources) {
+		this.resources = resources;
+	}
+
+	public List<ParamTemplateForm> getParamTemplateForm() {
+		List<ParamTemplateForm> tempForm = new ArrayList<ParamTemplateForm>();
+		if (StringUtils.isNotEmpty(this.resources)) {
+			try {
+				JsonUtils.om.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES,
+						true);
+				tempForm = JsonUtils.om.readValue(this.resources,
+						new TypeReference<List<ParamTemplateForm>>() {
+						});
+			} catch (Exception e) {
+			}
+		}
+		return tempForm;
+	}
+
 }

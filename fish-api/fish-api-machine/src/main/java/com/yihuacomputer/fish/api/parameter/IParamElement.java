@@ -1,6 +1,5 @@
 package com.yihuacomputer.fish.api.parameter;
 
-import java.util.Date;
 
 public interface IParamElement {
     public long getId();
@@ -31,13 +30,13 @@ public interface IParamElement {
 
     public void setParamBelongs(IAppSystem belongs);
 
-    public Date getCreateTime();
+    public long getCreateTime();
 
-    public void setCreateTime(Date createTime);
+    public void setCreateTime(long createTime);
 
-    public Date getLastModifyTime();
+    public long getLastModifyTime();
 
-    public void setLastModifyTime(Date lastModifyTime);
+    public void setLastModifyTime(long lastModifyTime);
 
     public String getRemark();
 

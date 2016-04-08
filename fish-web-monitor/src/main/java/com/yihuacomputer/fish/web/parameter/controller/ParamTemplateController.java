@@ -296,16 +296,52 @@ public class ParamTemplateController {
 	 * @return
 	 */
 	@RequestMapping(value = "/addedParam", method = RequestMethod.GET)
-	public @ResponseBody ModelMap getAddedParam(@RequestParam int start,
-			@RequestParam int limit, @RequestParam long id) {
+	public @ResponseBody ModelMap getAddedParam(@RequestParam int start,@RequestParam int limit, @RequestParam long id,@RequestParam long flag) {
 
 		ModelMap result = new ModelMap();
-		if (templateService.get(id) == null) {
+		if (templateService.get(id) == null && flag == 0) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 		} else {
+			if(flag == 0){
 			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute(FishConstant.DATA,
-					convert(templateService.listParamByTemplate(id)));
+			result.addAttribute(FishConstant.DATA,convert(templateService.listParamByTemplate(id)));
+			}
+			else
+			{
+			result.addAttribute(FishConstant.SUCCESS, true);
+			result.addAttribute(FishConstant.DATA,convert(templateService.listParam(id)));
+			}
+		}
+		return result;
+	}
+	
+	
+	/**
+	 * 获得该模板下的可关联参数
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "/addingParam", method = RequestMethod.GET)
+	public @ResponseBody ModelMap getAddingParam(@RequestParam int start,
+			@RequestParam int limit, @RequestParam long id,@RequestParam long flag) {
+
+		ModelMap result = new ModelMap();
+		if (templateService.get(id) == null&&flag == 0) {
+			result.addAttribute(FishConstant.SUCCESS, false);
+		} else {
+			List<IParamElement> list = null;
+			if(flag == 0){
+				list = (List<IParamElement>) paramElementService.list();
+				list.removeAll(templateService.listParamByTemplate(id));
+				result.addAttribute(FishConstant.SUCCESS, true);
+				result.addAttribute(FishConstant.DATA, convert(list));
+			}else{
+				list = (List<IParamElement>) paramElementService.list();
+				list.removeAll(templateService.listParam(id));
+				result.addAttribute(FishConstant.SUCCESS, true);
+				result.addAttribute(FishConstant.DATA, convert(list));
+				
+			}
 		}
 		return result;
 	}
@@ -340,22 +376,21 @@ public class ParamTemplateController {
 	 * 增加模板参数
 	 */
 	@RequestMapping(value = "/addParam", method = RequestMethod.POST)
-	public @ResponseBody ModelMap addParam(
-			@RequestBody ParamTemplateParamRelationForm request) {
+	public @ResponseBody ModelMap addParam(@RequestBody ParamTemplateParamRelationForm request) {
+			
 		// logger.info(String.format("addParam %s linked  %s",
 		// request.getId()));
 		ModelMap result = new ModelMap();
 		try {
-			IParamTemplate template = templateService.get(Long
-					.parseLong(request.getTemplateId()));
+			IParamTemplate template = templateService.get(Long.parseLong(request.getTemplateId()));
 			if (template == null) {
 				result.addAttribute(FishConstant.SUCCESS, false);
 				result.addAttribute(FishConstant.ERROR_MSG, "模板已经不存在");
 				return result;
 			}
 
-			templateService.linkTempParam(template, paramElementService
-					.get(Long.parseLong(request.getParamId())));
+			templateService.linkTempParam(template, paramElementService.get(Long.parseLong(request.getParamId())));
+					
 			result.put(FishConstant.SUCCESS, true);
 			result.put(FishConstant.DATA, request);
 		} catch (Exception ex) {
@@ -376,32 +411,10 @@ public class ParamTemplateController {
 		return null;
 			
 	}
-	
+
 
 	/**
-	 * 获得该模板下的可关联参数
-	 * 
-	 * @return
-	 */
-	@RequestMapping(value = "/addingParam", method = RequestMethod.GET)
-	public @ResponseBody ModelMap getAddingParam(@RequestParam int start,
-			@RequestParam int limit, @RequestParam long id) {
-
-		ModelMap result = new ModelMap();
-		if (templateService.get(id) == null) {
-			result.addAttribute(FishConstant.SUCCESS, false);
-		} else {
-			List<IParamElement> list = (List<IParamElement>) paramElementService
-					.list();
-			list.removeAll(templateService.listParamByTemplate(id));
-			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute(FishConstant.DATA, convert(list));
-		}
-		return result;
-	}
-
-	/**
-	 * 获得该模板下的可关联参数
+	 * 获得该模板下的详细信息
 	 * 
 	 * @return
 	 */
