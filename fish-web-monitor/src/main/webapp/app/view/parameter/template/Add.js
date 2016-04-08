@@ -2,7 +2,7 @@ Ext.define('Eway.view.parameter.template.Add', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.template_add',
 	
-	requires: ['Eway.view.parameter.template.ParamGrid','Eway.view.parameter.template.AddedParamGrid','Eway.view.field.paramElement.ParamBelongs'],
+	requires: ['Eway.view.parameter.template.ParamGrid','Eway.view.parameter.template.AddedParamGrid'],
 	
 	title:'新增',
 	modal: true,
@@ -27,14 +27,7 @@ Ext.define('Eway.view.parameter.template.Add', {
 					maxLength : 30,
 					msgTarget : 'side',
 					allowBlank : false
-				}, {
-					fieldLabel : '<font color="red">*</font>归属系统',
-					xtype : 'field_paramElement_ParamBelongs',
-					name : 'paramBelongsId',
-					value: 1,
-					editable : false,
-					allowBlank : false
-				},{
+				},,{
 				    xtype : 'textarea',
 				    fieldLabel : '模板备注',
 				    name : 'remark',

@@ -14,8 +14,6 @@ public class ParamTemplateForm {
 	private long id;
 	private String name;
 	private String remark;
-	private long paramBelongsId;
-	private String paramBelongsName;
 	private String applyFlag;
 	private String resources;
 	private String paramValue;
@@ -58,8 +56,6 @@ public class ParamTemplateForm {
 		setId(template.getId());
 		setName(template.getName());
 		setRemark(template.getRemark());
-		setParamBelongsId(template.getParamBelongs().getId());
-		setParamBelongsName(template.getParamBelongs().getName());
 		setApplyFlag(template.getApplyFlag());
 	}
 
@@ -93,22 +89,6 @@ public class ParamTemplateForm {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
-	}
-
-	public long getParamBelongsId() {
-		return paramBelongsId;
-	}
-
-	public void setParamBelongsId(long paramBelongsId) {
-		this.paramBelongsId = paramBelongsId;
-	}
-
-	public String getParamBelongsName() {
-		return paramBelongsName;
-	}
-
-	public void setParamBelongsName(String paramBelongsName) {
-		this.paramBelongsName = paramBelongsName;
 	}
 
 	public String getApplyFlag() {
