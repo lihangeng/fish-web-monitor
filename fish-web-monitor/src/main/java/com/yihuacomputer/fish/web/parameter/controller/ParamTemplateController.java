@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,8 +78,8 @@ public class ParamTemplateController {
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
 		logger.info("template size:" + pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA,
-				ParamTemplateForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA,ParamTemplateForm.convert(pageResult.list()));
+				
 		return result;
 	}
 
@@ -90,7 +89,15 @@ public class ParamTemplateController {
 		ModelMap result = new ModelMap();
 		request.setApplyFlag("0");
 		IParamTemplate template = templateService.add(translate(request));
-		
+	
+		List<ParamTemplateForm> listElement =  request.getParamTemplateForm();
+		 
+		for(int i=0;i<listElement.size();i++){
+			 
+			IParamElement emlement = paramElementService.get(Long.parseLong(listElement.get(i).getElementId()));
+			templateService.linkTempParam(template, emlement,listElement.get(i).getParamValue());
+			
+		}
 		
 		result.put(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, new ParamTemplateForm(template));
@@ -113,13 +120,12 @@ public class ParamTemplateController {
 
 	@RequestMapping(value = "/{templateDetail}", method = RequestMethod.POST)
 	@ResponseBody
-	public ModelMap updateTemplateDetail(@RequestBody ParamTempDetailForm form,
-			HttpServletRequest request) {
+	public ModelMap updateTemplateDetail(@RequestBody ParamTempDetailForm form , HttpServletRequest request) {
+			
 		ModelMap result = new ModelMap();
 		List<ParamTempDetailForm> listDetail = form.getParamTempDetailForm();
 
-		List<IParamTemplateDetail> origList = templateService
-				.listTemplateDetail(listDetail.get(0).getTemplateId());
+		List<IParamTemplateDetail> origList = templateService.listTemplateDetail(listDetail.get(0).getTemplateId());
 
 		long templateId = listDetail.get(0).getTemplateId();
 
@@ -161,8 +167,8 @@ public class ParamTemplateController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public @ResponseBody ModelMap update(@PathVariable long id,
-			@RequestBody ParamTemplateForm request) {
+	public @ResponseBody ModelMap update(@PathVariable long id,@RequestBody ParamTemplateForm request) {
+			
 		logger.info("update elemet: elemet.id = " + id);
 		ModelMap result = new ModelMap();
 		IParamTemplate template = templateService.get(id);
@@ -358,8 +364,8 @@ public class ParamTemplateController {
 			return result;
 		}
 		try {
-			templateService.unlinkTempParam(templateService.get(templateId),
-					paramElementService.get(paramId));
+			templateService.unlinkTempParam(templateService.get(templateId),paramElementService.get(paramId));
+					
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("count", 0);
 		}
@@ -389,7 +395,7 @@ public class ParamTemplateController {
 				return result;
 			}
 
-			templateService.linkTempParam(template, paramElementService.get(Long.parseLong(request.getParamId())));
+//			templateService.linkTempParam(template, paramElementService.get(Long.parseLong(request.getParamId())));
 					
 			result.put(FishConstant.SUCCESS, true);
 			result.put(FishConstant.DATA, request);

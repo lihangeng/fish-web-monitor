@@ -193,17 +193,17 @@ public class ParamTemplateService implements IParamTemplateService {
 		if (obj != null) {
 			dao.delete(obj);
 		}
-		ParamTemplateDetail obj2 =  ParamTemplateDetail.make(template, emlement);
+		ParamTemplateDetail obj2 =  ParamTemplateDetail.make(template, emlement , null);
 		if (obj2 != null) {
 			dao.delete(obj2);
 		}
 	}
 
 	@Override
-	public void linkTempParam(IParamTemplate template, IParamElement emlement) {
+	public void linkTempParam(IParamTemplate template, IParamElement emlement,String paramValue) {
 		dao.save(ParamTemplateElementRelation.make(template.getId(),
 				emlement.getId()));
-		dao.save(ParamTemplateDetail.make(template, emlement));
+		dao.save(ParamTemplateDetail.make(template, emlement,paramValue));
 	}
 
 	@Override

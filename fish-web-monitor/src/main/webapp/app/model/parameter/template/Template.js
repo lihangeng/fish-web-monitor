@@ -9,6 +9,7 @@ Ext.define('Eway.model.parameter.template.Template', {
 			type : 'json',
 			rootProperty : 'data'
 		}
-	},
-	hasMany : 'TemplateDetailList'
+	}
+//,
+//	hasMany : 'TemplateDetailList'
 });

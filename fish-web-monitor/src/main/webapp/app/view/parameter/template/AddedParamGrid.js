@@ -7,7 +7,6 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 	store : 'parameter.template.AddedParam',
 	border : false,
 	autoFit : true,
-	id : 'addedParamGridId',
 
 	viewConfig : {
 		plugins : {
@@ -16,6 +15,11 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 			dropGroup : 'paramGridId',
 			enableDrop : true
 		}
+	},
+	
+	plugins : {
+		ptype : 'cellediting',
+		clicksToEdit: 1
 	},
 
 	initComponent : function() {
@@ -28,10 +32,10 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 			}, {
 				header : '参数值',
 				dataIndex : 'paramValue',
-				flex : 1
-				,
+				flex : 1,
+				editable : true,
 				editor:new Ext.form.TextField({  
-	                allowBlank:false  
+	                allowBlank:false
 	            })
 			}, {
 				header : 'ID',
