@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.parameter.IAppSystem;
@@ -78,14 +79,14 @@ public class ParamUpdateController {
 							String fileName = new String();
 							if(j % 2 != 0){
 								fileName = as.get(j).getConfigName() + as.get(j).getConfigForm().getText();
-						        File file = new File(as.get(j).getConfigPath() + File.separator + fileName);
+						        File file = new File(FishCfg.getFishHome() + FishCfg.fileSep + "temp" + FishCfg.fileSep + "paramUpdate" + pdd.get(i).getVersionTimeStamp() + fileName);
 								BufferedWriter bw  = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
 								bw.write(pe.get(i).getParamName() + " = " + pdd.get(i).getParamValue());
 							    bw.newLine();
 						        bw.close();
 							} else {
 								fileName = as.get(j).getConfigName() + as.get(j).getConfigForm().getText();
-						        File file = new File(as.get(j).getConfigPath() + File.separator + fileName);
+						        File file = new File(FishCfg.getFishHome() + FishCfg.fileSep + "temp" + FishCfg.fileSep + "paramUpdate" + pdd.get(i).getVersionTimeStamp() + fileName);
 								BufferedWriter bw  = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
 								bw.write(pe.get(i).getParamName() + " = " + pdd.get(i).getParamValue());
 							    bw.newLine();
@@ -98,7 +99,7 @@ public class ParamUpdateController {
 					Long maxVersionTimeStamp = pdd.get(0).getVersionTimeStamp();
 					if(pdd.get(i).getVersionTimeStamp() > maxVersionTimeStamp){
 						maxVersionTimeStamp = pdd.get(i).getVersionTimeStamp();
-						File file = new File("Description.ini");
+						File file = new File(FishCfg.getFishHome() + FishCfg.fileSep + "temp" + FishCfg.fileSep + "paramUpdate" + pdd.get(i).getVersionTimeStamp() + FishCfg.fileSep +"Description.ini");
 						BufferedWriter bw  = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
 						for(int j = 0; j < as.size(); j++){
 							if(i % 2 != 0){
