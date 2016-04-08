@@ -25,7 +25,7 @@ public interface IParamElementService {
 	public Iterable<IParamElement> list(IFilter filter);
 
 	/**
-	 * 得到参数值
+	 * 得到参数值以及参数归属
 	 * 
 	 * @return
 	 */

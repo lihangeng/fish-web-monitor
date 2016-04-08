@@ -43,7 +43,7 @@ public class AppSystemService implements IAppSystemService {
 	@Override
 	public List<IAppSystem> getBelongs() {
 		StringBuffer hql= new StringBuffer();
-		hql.append("select id from AppSystem");
+		hql.append("select t from AppSystem t");
 		List<IAppSystem> result = dao.findUniqueByHql(hql.toString());
 		return result;
 	}
