@@ -50,4 +50,23 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 		return dao.loadAll(IParamDeviceDetail.class);
 	}
 
+	@Override
+	public List<IParamDeviceDetail> getVersionTimeStampData(long id, long timestamp) {
+		StringBuffer hql1= new StringBuffer();
+		StringBuffer hql2= new StringBuffer();
+		hql1.append("select * from ParamDeviceDetail pdd where pdd.device.id = ");
+		hql1.append(id);
+		hql1.append(" and pdd.versionTimeStamp > ");// and pdd.element.paramBelongs.id = 1 
+		hql1.append(timestamp);
+		List<IParamDeviceDetail> result = dao.findByHQL(hql1.toString());
+		hql2.append("select * from ParamDeviceDetail pdd where pdd.device.id = ");
+		hql2.append(id);
+		List<IParamDeviceDetail> resultList = dao.findByHQL(hql2.toString());
+		if(result.size()==0){
+			return null;
+		}else{
+			return resultList;
+		}
+	}
+
 }

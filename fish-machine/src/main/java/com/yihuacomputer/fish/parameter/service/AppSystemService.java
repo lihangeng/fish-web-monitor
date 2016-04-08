@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.parameter.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -36,6 +38,14 @@ public class AppSystemService implements IAppSystemService {
 	@Override
 	public Iterable<IAppSystem> list() {
 		return dao.loadAll(IAppSystem.class);
+	}
+
+	@Override
+	public List<IAppSystem> getBelongs() {
+		StringBuffer hql= new StringBuffer();
+		hql.append("select id from AppSystem");
+		List<IAppSystem> result = dao.findUniqueByHql(hql.toString());
+		return result;
 	}
 	
 }

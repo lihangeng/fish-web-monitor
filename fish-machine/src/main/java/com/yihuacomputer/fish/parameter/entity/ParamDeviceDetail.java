@@ -47,6 +47,9 @@ public class ParamDeviceDetail implements IParamDeviceDetail, Serializable {
 	@Column(name = "PARAM_VALUE", length = 40)
 	private String paramValue;
 
+	@Column(name = "VERSION_TIMESTAMP")
+	private long versionTimeStamp;
+
 	public ParamDeviceDetail() {
 
 	}
@@ -89,6 +92,14 @@ public class ParamDeviceDetail implements IParamDeviceDetail, Serializable {
 	@Override
 	public void setParamValue(String paramValue) {
 		this.paramValue = paramValue;
+	}
+
+	public long getVersionTimeStamp() {
+		return versionTimeStamp;
+	}
+
+	public void setVersionTimeStamp(long versionTimeStamp) {
+		this.versionTimeStamp = versionTimeStamp;
 	}
 
 }

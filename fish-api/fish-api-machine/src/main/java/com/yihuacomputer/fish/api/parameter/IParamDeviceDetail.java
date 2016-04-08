@@ -18,4 +18,8 @@ public interface IParamDeviceDetail {
 	public String getParamValue();
 
 	public void setParamValue(String paramValue);
+	
+	public long getVersionTimeStamp();
+	
+	public void setVersionTimeStamp(long versionTimeStamp);
 }
