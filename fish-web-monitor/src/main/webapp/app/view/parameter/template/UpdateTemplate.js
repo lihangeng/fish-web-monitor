@@ -1,6 +1,6 @@
-Ext.define('Eway.view.parameter.template.Add', {
+Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 	extend: 'Ext.window.Window',
-	alias: 'widget.template_add',
+	alias: 'widget.template_updateTemplate',
 	
 	requires: ['Eway.view.parameter.template.ParamGrid','Eway.view.parameter.template.AddedParamGrid','Eway.view.field.paramElement.ParamBelongs'],
 	
@@ -52,14 +52,12 @@ Ext.define('Eway.view.parameter.template.Add', {
 					autoScroll : true,
 					items : [ {
 						title : '可添加参数',
-//						region : 'west',
 						width : 200,
 						height: 350,
 						xtype : 'param_paramGrid',
 						autoLoadStore : true
 					}, {
 						title : '已添加的参数',
-//						region : 'east',
 						width : 400,
 						height: 350,
 						xtype : 'param_addedParamGrid',
@@ -69,7 +67,7 @@ Ext.define('Eway.view.parameter.template.Add', {
 				buttonAlign : 'center',
 				buttons: [{
 					text: EwayLocale.button.confirm,
-					action: 'add'
+					action: 'confirm'
 				},{
 					text: EwayLocale.button.reset,
 					handler: this.onReset,

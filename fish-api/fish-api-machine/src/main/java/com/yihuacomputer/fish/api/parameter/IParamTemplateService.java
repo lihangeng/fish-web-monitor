@@ -40,7 +40,7 @@ public interface IParamTemplateService {
 	
 	public void unlinkTempParam(IParamTemplate  template, IParamElement emlement);
 	
-	public void linkTempParam(IParamTemplate  template, IParamElement emlement);
+	public void linkTempParam(IParamTemplate template, IParamElement emlement,String paramValue);
 	
 	public List<IParamTemplateDetail> listTemplateDetail(long id);
 	

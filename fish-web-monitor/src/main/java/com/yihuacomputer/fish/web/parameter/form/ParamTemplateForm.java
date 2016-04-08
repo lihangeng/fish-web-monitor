@@ -18,6 +18,37 @@ public class ParamTemplateForm {
 	private String paramBelongsName;
 	private String applyFlag;
 	private String resources;
+	private String paramValue;
+	private String paramName;
+	private String elementId;
+
+	public String getParamValue() {
+		return paramValue;
+	}
+
+	public void setParamValue(String paramValue) {
+		this.paramValue = paramValue;
+	}
+
+	public String getParamName() {
+		return paramName;
+	}
+
+	public void setParamName(String paramName) {
+		this.paramName = paramName;
+	}
+
+	public String getElementId() {
+		return elementId;
+	}
+
+	public void setElementId(String elementId) {
+		this.elementId = elementId;
+	}
+
+	public void setResources(String resources) {
+		this.resources = resources;
+	}
 
 	public ParamTemplateForm() {
 

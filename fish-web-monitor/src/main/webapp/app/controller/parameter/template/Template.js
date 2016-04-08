@@ -9,12 +9,12 @@ Ext.define('Eway.controller.parameter.template.Template',
 							'parameter.template.AddedParam',
 							'parameter.template.AddingParam'],
 
-					models : [ 'parameter.template.Template',
+					models : ['parameter.template.Template',
 							'parameter.template.AddedParam',
 							'parameter.template.AddingParam',
 							'parameter.template.TemplateParam'],
 
-					views : [ 'parameter.template.View',
+					views : ['parameter.template.View',
 							'parameter.template.Update',
 							'parameter.template.UpdateValue'],
 
@@ -90,8 +90,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 							
 							var record = store.getAt(i);
 							var tempDetail = Ext.create("Eway.model.parameter.template.TemplateDetailList",{
-									id:Ext.isNumeric(record.data.id)?record.data.id:0,
-									elementId: record.data.elementId,
+									elementId: record.data.id,
 									paramName:record.data.paramName,
 									paramValue:record.data.paramValue
 								});
@@ -106,7 +105,6 @@ Ext.define('Eway.controller.parameter.template.Template',
 						var addForm = win.down("form").getForm();
 						var data = addForm.getValues();
 						
-						
 						var grid = this.getAddedParamGrid();
 						var store = grid.getStore();
 						var tempRess = [];
@@ -114,10 +112,10 @@ Ext.define('Eway.controller.parameter.template.Template',
 						var resources = '[';
 						for(var i in tempRess){
 				    		var res = tempRess[i];
-							var tempRes_str = "{'paramName':" + res.data.paramName
+							var tempRes_str = "{'paramName':'" + res.data.paramName
 							+ "','paramValue':'"+res.data.paramValue
-							+ "','elementId':'"+res.data.elementId
-							+ "','id':'"+res.data.id+"'}";
+							+ "','elementId':'"+res.data.elementId+"'}";
+							
 							if(resources == '['){
 								resources = resources + tempRes_str;
 							}else{
@@ -129,10 +127,10 @@ Ext.define('Eway.controller.parameter.template.Template',
 						var record = store.getAt(i);
 						var temp = Ext.create("Eway.model.parameter.template.Template",{
 						
-				    		id:Ext.isNumeric(record.data.id)?record.data.id:0,
-				    		name:data.name,
-				    		paramBelongs:data.paramBelongsId,
-				    		remark:data.remark,
+				    		id : null,
+				    		name: data.name,
+				    		paramBelongsId:data.paramBelongsId,
+				    		remark: data.remark,
 				    		resources : resources
 				    		
 				    	});
@@ -250,7 +248,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 						var resources = '[';
 						for(var i in tempRess){
 				    		var res = tempRess[i];
-							var tempRes_str = "{'templateId':" + res.data.templateId + ",'paramName':'" + res.data.paramName
+							var tempRes_str = "{'templateId':'" + res.data.templateId + ",'paramName':'" + res.data.paramName
 							+ "','paramValue':'"+res.data.paramValue
 							+ "','elementId':'"+res.data.elementId
 							+ "','id':'"+res.data.id
@@ -268,7 +266,6 @@ Ext.define('Eway.controller.parameter.template.Template',
 				    		resources : resources
 				    	});
 						
-						
 						temp.save({
 							 success: function(ed) {
 								Eway.alert(EwayLocale.msg.createSuccess);
@@ -279,7 +276,6 @@ Ext.define('Eway.controller.parameter.template.Template',
 							 
 							 scope : this
 						});
-						
 						
 					},
 					
@@ -413,9 +409,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 									Eway.alert(EwayLocale.addSuccess);
 								},
 								failure : function(record, operation) {
-									Eway.alert(EwayLocale.tip.add.error
-											+ operation.getError());
-
+									Eway.alert(EwayLocale.tip.add.error+ operation.getError());
 									this.getParamGrid().getStore().reload();
 									this.getAddedParamGrid().getStore().reload();
 								},
@@ -431,52 +425,38 @@ Ext.define('Eway.controller.parameter.template.Template',
 						if (sm.getCount() == 1) {
 							var record = sm.getLastSelected();
 
-							var templateDeviceWin = Ext
-									.create('Eway.view.parameter.template.TemplateDevice');
-							var linkedFilterForm = templateDeviceWin
-									.down('parameter_linkedDeviceFilter');
-							var linkedDeviceGrid = templateDeviceWin
-									.down('parameter_linkedDeviceGrid');
+							var templateDeviceWin = Ext.create('Eway.view.parameter.template.TemplateDevice');
+									
+							var linkedFilterForm = templateDeviceWin.down('parameter_linkedDeviceFilter');
+									
+							var linkedDeviceGrid = templateDeviceWin.down('parameter_linkedDeviceGrid');
+									
 
-							var linkingDeviceGrid = templateDeviceWin
-									.down('parameter_linkingDeviceGrid');
-							var linkingFilterForm = templateDeviceWin
-									.down('parameter_linkingDeviceFilter');
+							var linkingDeviceGrid = templateDeviceWin.down('parameter_linkingDeviceGrid');
+									
+							var linkingFilterForm = templateDeviceWin.down('parameter_linkingDeviceFilter');
 
 							linkedDeviceGrid.down('button[action="unlink"]')
-									.on('click',
-											Ext.bind(this.onUnlinkConfirm,
-													this, [ linkedDeviceGrid,
-															linkingDeviceGrid,
-															record ]), this);
-							linkedDeviceGrid.down('button[action="query"]').on(
-									'click',
-									Ext.bind(this.onQueryDevice, this, [ 0,
-											linkedDeviceGrid, linkedFilterForm,
-											record ]), this);
-							linkedDeviceGrid.down('pagingtoolbar').on(
-									'beforechange',
-									Ext.bind(this.onLinkDeviceFresh, this, [ 0,
-											linkedDeviceGrid, linkedFilterForm,
-											record ]), this);
-							linkingDeviceGrid.down('button[action="link"]').on(
-									'click',
-									Ext.bind(this.onLinkConfirm, this, [
-											linkingDeviceGrid,
-											linkedDeviceGrid, record ]), this);
-							linkingDeviceGrid.down('button[action="query"]')
-									.on(
-											'click',
-											Ext.bind(this.onQueryDevice, this,
-													[ 1, linkingDeviceGrid,
-															linkingFilterForm,
-															record ]), this);
-							linkingDeviceGrid.down('pagingtoolbar').on(
-									'beforechange',
-									Ext.bind(this.onLinkDeviceFresh, this, [ 1,
-											linkingDeviceGrid,
-											linkingFilterForm, record ]), this);
-
+									.on('click',Ext.bind(this.onUnlinkConfirm,this, [ linkedDeviceGrid,linkingDeviceGrid,record ]), this);
+															
+							linkedDeviceGrid.down('button[action="query"]').on('click',
+									
+							Ext.bind(this.onQueryDevice, this, [ 0,linkedDeviceGrid, linkedFilterForm,record ]), this);
+											
+											
+							linkedDeviceGrid.down('pagingtoolbar').on('beforechange',
+									
+							Ext.bind(this.onLinkDeviceFresh, this, [ 0,linkedDeviceGrid, linkedFilterForm,record ]), this);
+											
+											
+							linkingDeviceGrid.down('button[action="link"]').on('click',Ext.bind(this.onLinkConfirm, this, [linkingDeviceGrid,linkedDeviceGrid, record ]), this);
+											
+							linkingDeviceGrid.down('button[action="query"]').on('click',
+											
+							Ext.bind(this.onQueryDevice, this,[ 1, linkingDeviceGrid,linkingFilterForm,record ]), this);
+															
+							linkingDeviceGrid.down('pagingtoolbar').on('beforechange',Ext.bind(this.onLinkDeviceFresh, this, [ 1,linkingDeviceGrid,linkingFilterForm, record ]), this);
+									
 							templateDeviceWin.show();
 							linkingDeviceGrid.getStore().load({
 								params : {
@@ -493,8 +473,8 @@ Ext.define('Eway.controller.parameter.template.Template',
 								}
 							});
 						} else {
-							Eway
-									.alert(EwayLocale.tip.bankPer.link.linkBankPerson);
+								Eway.alert(EwayLocale.tip.bankPer.link.linkBankPerson);
+									
 						}
 					},
 					
@@ -510,8 +490,8 @@ Ext.define('Eway.controller.parameter.template.Template',
 							for (var i = 0; i < array.length; i++) {
 								info += array[i] + ',';
 							}
-							Ext.Ajax
-									.request({
+							Ext.Ajax.request({
+									
 										scope : this,
 										method : 'POST',
 										url : 'api/parameter/template/unlink',
@@ -521,9 +501,8 @@ Ext.define('Eway.controller.parameter.template.Template',
 											id:record.data.id
 										},
 										success : function() {
-											linkedDeviceGrid
-													.getStore()
-													.load(
+											linkedDeviceGrid.getStore().load(
+													
 															{
 																params : {
 																	flag : 0,
@@ -531,11 +510,10 @@ Ext.define('Eway.controller.parameter.template.Template',
 																	organizationId : record.data.orgId
 																}
 															});
-											linkingDeviceGrid.getStore()
-													.cleanUrlParam();
-											linkingDeviceGrid
-													.getStore()
-													.load(
+											linkingDeviceGrid.getStore().cleanUrlParam();
+													
+											linkingDeviceGrid.getStore().load(
+													
 															{
 																params : {
 																	flag : 1,
@@ -545,8 +523,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 															});
 										},
 										failure : function() {
-											Eway
-													.alert(EwayLocale.tip.bankPer.link.unLinkDevFail);
+											Eway.alert(EwayLocale.tip.bankPer.link.unLinkDevFail);
 										},
 										scope : this
 									});
@@ -573,10 +550,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 							linkingDeviceGrid.down('button[action="link"]')
 									.disable();
 							var data = new Object();
-							var record2 = Ext
-									.create(
-											'Eway.model.parameter.template.TemplateDevice',
-											data);
+							var record2 = Ext.create('Eway.model.parameter.template.TemplateDevice',data);
 							for (var i = 0; i < array.length - 1; i++) {
 								record2.set('id', 0);
 								record2.set('groupId', record.data.id);
@@ -586,12 +560,9 @@ Ext.define('Eway.controller.parameter.template.Template',
 							record2.set('id', 0);
 							record2.set('groupId', record.data.id);
 							record2.set('deviceId', array[array.length - 1]);
-							record2
-									.save({
+							record2.save({
 										success : function() {
-											linkingDeviceGrid
-													.getStore()
-													.load(
+											linkingDeviceGrid.getStore().load(
 															{
 																params : {
 																	flag : 1,
@@ -602,17 +573,12 @@ Ext.define('Eway.controller.parameter.template.Template',
 																		records,
 																		operation,
 																		success) {
-																	linkingDeviceGrid
-																			.down(
-																					'button[action="link"]')
-																			.enable();
+																			linkingDeviceGrid.down('button[action="link"]').enable();
 																}
 															});
-											linkedDeviceGrid.getStore()
-													.cleanUrlParam();
-											linkedDeviceGrid
-													.getStore()
-													.load(
+											linkedDeviceGrid.getStore().cleanUrlParam();
+													
+											linkedDeviceGrid.getStore().load(
 															{
 																params : {
 																	flag : 0,
@@ -622,11 +588,10 @@ Ext.define('Eway.controller.parameter.template.Template',
 															});
 										},
 										failure : function() {
-											linkingDeviceGrid.down(
-													'button[action="link"]')
-													.enable();
-											Eway
-													.alert(EwayLocale.tip.bankPer.link.unLinkPersonFail);
+											linkingDeviceGrid.down('button[action="link"]').enable();
+													
+											Eway.alert(EwayLocale.tip.bankPer.link.unLinkPersonFail);
+													
 										},
 										scope : this
 									});
