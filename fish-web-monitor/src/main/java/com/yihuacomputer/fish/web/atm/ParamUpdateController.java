@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.parameter.FileFormat;
 import com.yihuacomputer.fish.api.parameter.IAppSystem;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
@@ -95,7 +94,47 @@ public class ParamUpdateController {
 						}
 					}
 				}
-				// File file = new File("Description.ini");
+				for(int i = 0; i < pdd.size(); i++){
+					Long maxVersionTimeStamp = pdd.get(0).getVersionTimeStamp();
+					if(pdd.get(i).getVersionTimeStamp() > maxVersionTimeStamp){
+						maxVersionTimeStamp = pdd.get(i).getVersionTimeStamp();
+						File file = new File("Description.ini");
+						BufferedWriter bw  = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
+						for(int j = 0; j < as.size(); j++){
+							if(i % 2 != 0){
+								String fileName = new String();
+								fileName = as.get(j).getConfigName() + as.get(j).getConfigForm().getText();
+						        String Path = as.get(j).getConfigPath() + "/" + fileName;
+								bw.write("[" + fileName + "]");
+							    bw.newLine();
+								bw.write("Name = " + as.get(j).getConfigName());
+							    bw.newLine();
+							    bw.write("VersionNo = " + maxVersionTimeStamp);
+							    bw.newLine();
+							    bw.write("Path = " + Path);
+							    bw.newLine();
+							    bw.write("Restart = ");
+							    bw.newLine();
+						        bw.close();
+							} else {
+								String fileName = new String();
+								fileName = as.get(j).getConfigName() + as.get(j).getConfigForm().getText();
+						        String Path = as.get(j).getConfigPath() + "/" + fileName;
+								bw.write("[" + fileName + "]");
+							    bw.newLine();
+								bw.write("Name = " + as.get(j).getConfigName());
+							    bw.newLine();
+							    bw.write("VersionNo = " + maxVersionTimeStamp);
+							    bw.newLine();
+							    bw.write("Path = " + Path);
+							    bw.newLine();
+							    bw.write("Restart = ");
+							    bw.newLine();
+						        bw.close();
+							}
+						}
+					}
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
