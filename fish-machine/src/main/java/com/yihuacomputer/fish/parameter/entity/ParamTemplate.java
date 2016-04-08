@@ -4,16 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.yihuacomputer.fish.api.parameter.IAppSystem;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 
 /**
@@ -42,10 +38,6 @@ public class ParamTemplate implements IParamTemplate, Serializable {
 
 	@Column(name = "APPLY_FLAG", length = 1)
 	private String applyFlag;
-
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = AppSystem.class)
-	@JoinColumn(name = "PARAM_BELONGS")
-	private IAppSystem paramBelongs;
 
 	public ParamTemplate() {
 
@@ -81,15 +73,6 @@ public class ParamTemplate implements IParamTemplate, Serializable {
 		this.remark = remark;
 	}
 
-	@Override
-	public IAppSystem getParamBelongs() {
-		return paramBelongs;
-	}
-
-	@Override
-	public void setParamBelongs(IAppSystem paramBelongs) {
-		this.paramBelongs = paramBelongs;
-	}
 
 	@Override
 	public void setApplyFlag(String applyFlag) {

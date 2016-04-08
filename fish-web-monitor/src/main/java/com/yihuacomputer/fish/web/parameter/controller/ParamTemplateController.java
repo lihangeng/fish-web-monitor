@@ -28,7 +28,6 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.parameter.IAppSystem;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
@@ -308,15 +307,8 @@ public class ParamTemplateController {
 		if (templateService.get(id) == null && flag == 0) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 		} else {
-			if(flag == 0){
 			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute(FishConstant.DATA,convert(templateService.listParamByTemplate(id)));
-			}
-			else
-			{
-			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute(FishConstant.DATA,convert(templateService.listParam(id)));
-			}
+			result.addAttribute(FishConstant.DATA,convert(templateService.listParam(id,flag)));
 		}
 		return result;
 	}
@@ -336,18 +328,10 @@ public class ParamTemplateController {
 			result.addAttribute(FishConstant.SUCCESS, false);
 		} else {
 			List<IParamElement> list = null;
-			if(flag == 0){
-				list = (List<IParamElement>) paramElementService.list();
-				list.removeAll(templateService.listParamByTemplate(id));
-				result.addAttribute(FishConstant.SUCCESS, true);
-				result.addAttribute(FishConstant.DATA, convert(list));
-			}else{
-				list = (List<IParamElement>) paramElementService.list();
-				list.removeAll(templateService.listParam(id));
-				result.addAttribute(FishConstant.SUCCESS, true);
-				result.addAttribute(FishConstant.DATA, convert(list));
-				
-			}
+			list = (List<IParamElement>) paramElementService.list();
+			list.removeAll(templateService.listParam(id,flag));
+			result.addAttribute(FishConstant.SUCCESS, true);
+			result.addAttribute(FishConstant.DATA, convert(list));
 		}
 		return result;
 	}
@@ -394,9 +378,10 @@ public class ParamTemplateController {
 				result.addAttribute(FishConstant.ERROR_MSG, "模板已经不存在");
 				return result;
 			}
-
-//			templateService.linkTempParam(template, paramElementService.get(Long.parseLong(request.getParamId())));
-					
+			
+			IParamElement element = paramElementService.get(Long.parseLong(request.getParamId()));
+			templateService.linkTempParam(template,element,element.getParamValue());
+			
 			result.put(FishConstant.SUCCESS, true);
 			result.put(FishConstant.DATA, request);
 		} catch (Exception ex) {
@@ -495,8 +480,6 @@ public class ParamTemplateController {
 		template.setName(templateForm.getName());
 		template.setRemark(templateForm.getRemark());
 		template.setApplyFlag(templateForm.getApplyFlag());
-		IAppSystem appSystem = appSystemService.get(templateForm.getParamBelongsId());
-		template.setParamBelongs(appSystem);
 		return template;
 		
 	}
