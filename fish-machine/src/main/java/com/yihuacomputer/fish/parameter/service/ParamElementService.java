@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.parameter.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,6 +78,14 @@ public class ParamElementService implements IParamElementService {
 	public Iterable<IParamElement> list(IFilter filter) {
 
 		return null;
+	}
+
+	@Override
+	public List<IParamElement> getValue() {
+		StringBuffer hql= new StringBuffer();
+		hql.append("select paramValue,paramBelongs from ParamElement");
+		List<IParamElement> result = dao.findUniqueByHql(hql.toString());
+		return result;
 	}
 
 }
