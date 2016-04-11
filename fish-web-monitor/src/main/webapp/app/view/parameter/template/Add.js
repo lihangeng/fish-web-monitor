@@ -4,7 +4,7 @@ Ext.define('Eway.view.parameter.template.Add', {
 	
 	requires: ['Eway.view.parameter.template.ParamGrid','Eway.view.parameter.template.AddedParamGrid'],
 	
-	title:'新增',
+	title:'新增参数模板',
 	modal: true,
 	resizable: false,
 	constrainHeader: true,

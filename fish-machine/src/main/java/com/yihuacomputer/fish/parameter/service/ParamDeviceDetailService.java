@@ -3,6 +3,8 @@ package com.yihuacomputer.fish.parameter.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.domain.dao.IGenericDao;
@@ -11,6 +13,8 @@ import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
 import com.yihuacomputer.fish.parameter.entity.ParamDeviceDetail;
 
+@Service
+@Transactional
 public class ParamDeviceDetailService implements IParamDeviceDetailService {
 	
 	@Autowired
@@ -23,13 +27,13 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 
 	@Override
 	public void update(IParamDeviceDetail paramDeviceDetail) {
-		dao.update(paramDeviceDetail instanceof ParamDeviceDetail ? (ParamDeviceDetail)paramDeviceDetail : null);
+		dao.update(paramDeviceDetail);
 	}
 
 	@Override
 	public List<DeviceParam> list(IFilter filter, long tabId, long deviceId) {
 		StringBuffer hql= new StringBuffer();
-		hql.append("select pc.id,pc.name, pe.paramName ,pdd.paramValue ");
+		hql.append("select pdd.id,pc.id,pc.name, pe.paramName ,pdd.paramValue ");
 		hql.append("FROM ParamElement pe,ParamClassify pc,ParamDeviceDetail pdd ");
 		hql.append("WHERE pe.paramClassify.id=pc.id AND pe.id = pdd.element.id ");
 		Object paramName=filter.getValue("paramName");
