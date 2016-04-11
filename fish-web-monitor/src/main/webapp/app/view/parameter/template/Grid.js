@@ -17,7 +17,7 @@ Ext.define('Eway.view.parameter.template.Grid', {
 				glyph : 0xf002,
 				action:'query'
 			},{
-				text: EwayLocale.button.add,
+				text: '新增模板',
 				glyph : 0xf067,
 				action: 'add',
 				code : 'templateAdd',
@@ -25,15 +25,7 @@ Ext.define('Eway.view.parameter.template.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '更改元数据',
-				glyph : 0xf040,
-				action:'updateElement',
-				code : 'templateUpdateElement',
-				listeners:{
-					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-				}
-			},{
-				text: '更改参数值',
+				text: '更改模板',
 				glyph : 0xf040,
 				action:'updateValue',
 				code : 'templateUpdateValue',
@@ -53,6 +45,14 @@ Ext.define('Eway.view.parameter.template.Grid', {
 				glyph : 0xf0c1,
 				action: 'link',
 				code : 'templateDevRelation',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
+			},{
+				text: '应用',
+				glyph : 0xf040,
+				action:'apply',
+				code : 'templateApply',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}

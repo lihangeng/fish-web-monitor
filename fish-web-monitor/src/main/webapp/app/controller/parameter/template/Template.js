@@ -73,8 +73,8 @@ Ext.define('Eway.controller.parameter.template.Template',
 							'template_View button[action=confirm]' : {
 								click : this.onAdd
 							},
-							'template_View button[action=issue]' : {
-								click : this.onIssue
+							'template_View button[action=apply]' : {
+								click : this.onApply
 							}
 						});
 					},
@@ -113,8 +113,6 @@ Ext.define('Eway.controller.parameter.template.Template',
 								paramGrid = this.getParamGrid();
 								addedParamGrid = this.getAddedParamGrid();
 								flag = '0';
-								addedParamGrid.getView().on('drop',this.onAddedParam, this);
-								paramGrid.getView().on('drop', this.onAddingParam,this);
 						}
 							
 						}
@@ -239,105 +237,34 @@ Ext.define('Eway.controller.parameter.template.Template',
 						
 					},
 
-					onIssue :function(){
-						this.onUpdateSave();
-						var grid = this.getParamValueGrid();
-						var store = grid.getStore();
-						var templateId = store.getAt(0).data.templateId;
-						Ext.Ajax.request({
-							method : 'POST',
-							url : 'api/parameter/template/issueParam',
-							params : {
-								templateId : templateId
-							},
-							success : function(response) {
-								var object = Ext.decode(response.responseText);
-								if (object.success == true) {
-									Eway.alert('下发成功');
-								} else {
-									Eway.alert('下发失败');
-								}
-							},
-							failure : function() {
-								Eway.alert('添加到模板失败');
-							},
-							scope : this
-						});
-						
-					},
-					
-
-					onAddedParam : function() {
-
-						var addedParamRecord = this.getAddedParamGrid().getSelectionModel().getLastSelected();
-								
-						var templateRecord = this.getTemplateGrid().getSelectionModel().getLastSelected();// 得到模板的ID
-							
-						this.onAddedConfirmParam(addedParamRecord.get('id'),templateRecord.get('id'),"0");
-							
-					},
-
-					onAddingParam : function() {
-							
-						var addingParamRecord = this.getParamGrid().getSelectionModel().getLastSelected();
-								
-						if (addingParamRecord == null) {
-							Eway.alert(EwayLocale.tip.user.add.choose);
-							this.getParamGrid().getStore().load();
-							return;
-						}
-
-							var templateRecord = this.getTemplateGrid().getSelectionModel().getLastSelected();// 得到模板的ID
-							
-							this.onAddingConfirmParam(addingParamRecord.get('id'),templateRecord.get('id'),"0");
-								
-					},
-
-					onAddingConfirmParam : function(paramId, templateId) {
+					onApply :function(){
+						var grid = this.getTemplateGrid();
+						var sm = grid.getSelectionModel();
+						if (sm.getCount() == 1) {
+							var record = sm.getLastSelected();
+							var templateId = record.data.id;
 							Ext.Ajax.request({
 								method : 'POST',
-								url : 'api/parameter/template/removeParam',
+								url : 'api/parameter/template/issueParam',
 								params : {
-									paramId : paramId,
 									templateId : templateId
 								},
 								success : function(response) {
 									var object = Ext.decode(response.responseText);
 									if (object.success == true) {
-										Eway.alert(EwayLocale.updateSuccess);
+										Eway.alert('应用模板成功');
 									} else {
-										Eway.alert(EwayLocale.tip.remove.error);
+										Eway.alert('应用模板失败');
 									}
 								},
 								failure : function() {
-									Eway.alert('添加到模板失败');
-								},
-								scope : this
-							});
-						
-					},
-
-					onAddedConfirmParam : function(paramId, templateId,flag) {
-						var data = new Object();
-						var record = Ext.create('Eway.model.parameter.template.TemplateParam',data);
-
-						record.set('paramId', paramId);
-						record.set('templateId', templateId);
-						if(flag=="0"){
-							record.save({
-								success : function(record, operation) {
-									Eway.alert(EwayLocale.addSuccess);
-								},
-								failure : function(record, operation) {
-									Eway.alert(EwayLocale.tip.add.error+ operation.getError());
-									this.getParamGrid().getStore().reload();
-									this.getAddedParamGrid().getStore().reload();
+									Eway.alert('应用模板失败');
 								},
 								scope : this
 							});
 						}
-						
 					},
+					
 
 					onGroupLink : function() {
 						var grid = this.getTemplateGrid();

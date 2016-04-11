@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,6 @@ import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamElementForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamTempDetailForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamTemplateForm;
-import com.yihuacomputer.fish.web.parameter.form.ParamTemplateParamRelationForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
@@ -68,12 +68,12 @@ public class ParamTemplateController {
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,
 			@RequestParam int limit, WebRequest request) {
-		logger.info(String.format("search template : start = %s ,limt = %s ",
-				start, limit));
+		logger.info(String.format("search template : start = %s ,limt = %s ",start, limit));
+				
 		IFilter filter = request2filter(request);
 		ModelMap result = new ModelMap();
-		IPageResult<IParamTemplate> pageResult = templateService.page(start,
-				limit, filter);
+		IPageResult<IParamTemplate> pageResult = templateService.page(start,limit, filter);
+				
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
 		logger.info("template size:" + pageResult.getTotal());
@@ -98,6 +98,7 @@ public class ParamTemplateController {
 			
 		}
 		
+		templateService.insertNewParam(template,System.currentTimeMillis());
 		result.put(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, new ParamTemplateForm(template));
 
@@ -120,64 +121,45 @@ public class ParamTemplateController {
 	@RequestMapping(value = "/{templateDetail}", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelMap updateTemplateDetail(@RequestBody ParamTempDetailForm form , HttpServletRequest request) {
-			
+		
 		ModelMap result = new ModelMap();
 		List<ParamTempDetailForm> listDetail = form.getParamTempDetailForm();
 
 		long templateId = form.getTemplateId();
-
-		List<IParamTemplateDetail> origList = templateService.listTemplateDetail(templateId);
 		
-		Map<Long, String> origMap = new HashMap<Long, String>();
+		templateService.unlinkAll(templateId);
+		IParamTemplate template = templateService.get(templateId);
+		IParamElement emlement = null;
+		
+		for(int i = 0; i<listDetail.size(); i++){
+			
+			emlement = paramElementService.get(listDetail.get(i).getElementId());
+			templateService.linkTempParam(template, emlement, listDetail.get(i).getParamValue());
+			
+		}
 
 		Map<Long, String> newMap = new HashMap<Long, String>();
 
 		String paramValue = null;
 		Long elementId = 0L;
 
-		// 将原先的数据放入map中
-		for (int i = 0; i < origList.size(); i++) {
-
-			elementId = origList.get(i).getParamElement().getId();
-
-			origMap.put(elementId, origList.get(i).getParamValue());
-
-		}
-
-		// 将比较后不同的数据放入map中
 		for (int i = 0; i < listDetail.size(); i++) {
 			elementId = listDetail.get(i).getElementId();
 			paramValue = listDetail.get(i).getParamValue();
-			if (!origMap.get(elementId).trim().equals(paramValue.trim())) {
 
-				newMap.put(elementId, paramValue);
-
-			}
-
+			newMap.put(elementId, paramValue);
 		}
 
 		if (templateService.updateTemplateDetail(templateId, newMap)) {
-
+			
 			return result.addAttribute(FishConstant.SUCCESS, true);
+			
 		}
 
 		return result.addAttribute(FishConstant.SUCCESS, false);
 
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public @ResponseBody ModelMap update(@PathVariable long id,@RequestBody ParamTemplateForm request) {
-			
-		logger.info("update elemet: elemet.id = " + id);
-		ModelMap result = new ModelMap();
-		IParamTemplate template = templateService.get(id);
-		template = translate(request);
-		template.setId(id);
-		templateService.update(template);
-		result.addAttribute(FishConstant.SUCCESS, true);
-		result.addAttribute(FishConstant.DATA, request);
-		return result;
-	}
 
 	private IFilter request2filter(WebRequest request) {
 
@@ -219,8 +201,8 @@ public class ParamTemplateController {
 			@RequestParam int limit, @RequestParam int flag,
 			@RequestParam String guid, @RequestParam String organizationId,
 			WebRequest request, HttpServletRequest req) {
-		logger.info(String.format("search device : start = %s ,limt = %s ",
-				start, limit));
+		logger.info(String.format("search device : start = %s ,limt = %s ",start, limit));
+				
 		ModelMap result = new ModelMap();
 		IPageResult<IDevice> pageResult = null;
 		if (flag == 0) {
@@ -252,8 +234,8 @@ public class ParamTemplateController {
 	 * @return
 	 */
 	@RequestMapping(value = "/link", method = RequestMethod.POST)
-	public @ResponseBody ModelMap link(
-			@RequestBody BsAdvertGroupDeviceForm request) {
+	public @ResponseBody ModelMap link(@RequestBody BsAdvertGroupDeviceForm request) {
+			
 		logger.info(String.format("device %s linked  %s", request.getGroupId(),request.getDeviceId()));
 				
 		ModelMap result = new ModelMap();
@@ -264,7 +246,7 @@ public class ParamTemplateController {
 			result.put(FishConstant.SUCCESS, true);
 			return result;
 		}
-		templateService.link(advertGroup, device);
+		templateService.link(advertGroup, device,System.currentTimeMillis());
 		result.put(FishConstant.SUCCESS, true);
 		result.put("data", request);
 		return result;
@@ -284,8 +266,8 @@ public class ParamTemplateController {
 		String[] ids = deviceId.split(",");
 		try {
 			for (String idd : ids) {
-				templateService.unlink(templateService.get(Long.parseLong(templateId)),
-						deviceService.get(Long.valueOf(idd)));
+				templateService.unlink(templateService.get(Long.parseLong(templateId)),deviceService.get(Long.valueOf(idd)));
+				
 			}
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
@@ -308,7 +290,11 @@ public class ParamTemplateController {
 			result.addAttribute(FishConstant.SUCCESS, false);
 		} else if(flag == 0){
 			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute(FishConstant.DATA,convert(templateService.listParam(id,flag)));
+			List<IParamElement> elements = templateService.listParam(id,flag);
+			for(int i=0;i<elements.size();i++){
+				elements.get(i).setParamValue(templateService.getDetailByTemplateId(id, elements.get(i).getId()).getParamValue());
+			}
+			result.addAttribute(FishConstant.DATA,convert(elements));
 		}else {
 			List<IParamElement> list = null;
 			list = (List<IParamElement>) paramElementService.list();
@@ -347,61 +333,6 @@ public class ParamTemplateController {
 		return result;
 	}
 
-	/**
-	 * 去除模板参数
-	 */
-	@RequestMapping(value = "/removeParam", method = RequestMethod.POST)
-	public @ResponseBody ModelMap deleteParam(@RequestParam long templateId,
-			@RequestParam long paramId) {
-		ModelMap result = new ModelMap();
-		if (paramElementService.get(paramId) == null) {
-			result.addAttribute(FishConstant.SUCCESS, true);
-			return result;
-		}
-		try {
-			templateService.unlinkTempParam(templateService.get(templateId),paramElementService.get(paramId));
-					
-			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute("count", 0);
-		}
-
-		catch (Exception ex) {
-			logger.info(ex.getMessage());
-			result.addAttribute(FishConstant.SUCCESS, false);
-
-		}
-		return result;
-	}
-
-	/**
-	 * 增加模板参数
-	 */
-	@RequestMapping(value = "/addParam", method = RequestMethod.POST)
-	public @ResponseBody ModelMap addParam(@RequestBody ParamTemplateParamRelationForm request) {
-			
-		// logger.info(String.format("addParam %s linked  %s",
-		// request.getId()));
-		ModelMap result = new ModelMap();
-		try {
-			IParamTemplate template = templateService.get(Long.parseLong(request.getTemplateId()));
-			if (template == null) {
-				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "模板已经不存在");
-				return result;
-			}
-			
-			IParamElement element = paramElementService.get(Long.parseLong(request.getParamId()));
-			templateService.linkTempParam(template,element,element.getParamValue());
-			
-			result.put(FishConstant.SUCCESS, true);
-			result.put(FishConstant.DATA, request);
-		} catch (Exception ex) {
-			logger.info(ex.getMessage());
-			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "添加异常");
-		}
-		return result;
-	}
 	
 	/**
 	 * 将设备当前所有参数覆盖为模板的参数
@@ -409,8 +340,31 @@ public class ParamTemplateController {
 	@RequestMapping(value = "/issueParam", method = RequestMethod.POST)
 	public @ResponseBody ModelMap issueParam(@RequestParam long templateId) {
 		
-		templateService.coverDeviceParam(templateId);
-		return null;
+		ModelMap result = new ModelMap();
+		
+		long  timeStamp = System.currentTimeMillis();
+		
+		try {
+			
+			IParamTemplate template = templateService.get(templateId);
+		
+			templateService.insertNewParam(template , timeStamp);
+		
+			templateService.updateTempDev(timeStamp , templateId);
+			
+			templateService.removeTempDev(templateId);
+			
+			result.put(FishConstant.SUCCESS, true);
+		
+		}catch(Exception ex){
+			
+			logger.info(ex.getMessage());
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, "添加异常");
+			
+		}
+
+		return result;
 			
 	}
 
@@ -430,7 +384,6 @@ public class ParamTemplateController {
 		} else {
 			List<IParamTemplateDetail> list = templateService
 					.listTemplateDetail(id);
-			// list.removeAll(templateService.listParamByTemplate(id));
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, convertDetail(list));
 		}

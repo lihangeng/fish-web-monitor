@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hibernate.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -63,11 +64,6 @@ public class ParamTemplateService implements IParamTemplateService {
 		dao.delete(id, ParamTemplate.class);
 	}
 
-	@Override
-	public void update(IParamTemplate element) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public IPageResult<IParamTemplate> page(int offset, int limit,
@@ -137,10 +133,26 @@ public class ParamTemplateService implements IParamTemplateService {
 	}
 
 	@Override
-	public void link(IParamTemplate template, IDevice device) {
-		dao.save(ParamTemplateDeviceRelation.make(template.getId(),
-				device.getId()));
-
+	public void link(IParamTemplate template , IDevice device , long timeStamp) {
+		dao.save(ParamTemplateDeviceRelation.make(template.getId(),device.getId()));
+		
+//		updateParamDevDetail(template, timeStamp);
+//		long timeStamp = System.currentTimeMillis();
+//		StringBuffer sql = new  StringBuffer();
+//		
+//		sql.append("INSERT INTO PARAM_DEVICE_DETAIL (DEVICE_ID,ELEMENT_ID,PARAM_VALUE,VERSION_TIMESTAMP) ");
+//		sql.append("SELECT T2.DEVICE_ID,T1.ELEMENT_ID,T1.PARAM_VALUE FROM ");
+//		sql.append("PARAM_TEMPLATE_DETAIL T1, ");
+//		sql.append("PARAM_TEMPLATE_DEVICE_RELATION T2 ");
+//		sql.append("WHERE T1.TEMPLATE_ID = T2.TEMPLATE_ID  ");
+//		sql.append("AND T1.ELEMENT_ID ");
+//		sql.append("NOT IN (SELECT T.ELEMENT_ID FROM PARAM_DEVICE_DETAIL T ) AND T1.TEMPLATE_ID = ? ");
+//		
+//     	Query query = dao.getSQLQuery(sql.toString());
+//     	query.setLong(0,template.getId());
+//     	query.setLong(1,timeStamp);
+//     	int insertCount = query.executeUpdate();
+//		return insertCount!=0;
 	}
 
 	@Override
@@ -149,11 +161,13 @@ public class ParamTemplateService implements IParamTemplateService {
 		filter.eq("templateId", template.getId());
 		filter.eq("deviceId", device.getId());
 
-		ParamTemplateDeviceRelation obj = dao.findUniqueByFilter(filter,
-				ParamTemplateDeviceRelation.class);
+		ParamTemplateDeviceRelation obj = dao.findUniqueByFilter(filter,ParamTemplateDeviceRelation.class);
+				
 		if (obj != null) {
 			dao.delete(obj.getId(), ParamTemplateDeviceRelation.class);
 		}
+		
+		removeTempDev(template.getId());
 
 	}
 
@@ -232,10 +246,57 @@ public class ParamTemplateService implements IParamTemplateService {
 		return true;
 	}
 
+
 	@Override
-	public boolean coverDeviceParam(long templateId) {
-		// TODO Auto-generated method stub
-		return false;
+	public void unlinkAll(long templateId) {
+		String hql = "delete from ParamTemplateElementRelation t where t.templateId = ?";
+		dao.batchUpdate(hql, templateId);
+		
+		hql = "delete from ParamTemplateDetail t where t.paramTemplate.id = ?";
+		dao.batchUpdate(hql, templateId);
 	}
 
+	@Override
+	public void updateTempDev(long timeStamp,long templateId) {
+		String hql = "update ParamDeviceDetail t set t.versionTimeStamp = ? where t.device.id in "
+				+ "(select t1.deviceId from ParamTemplateDeviceRelation t1 where t1.templateId = ?)";
+		dao.batchUpdate(hql, timeStamp , templateId);
+	}
+
+	@Override
+	public void insertNewParam(IParamTemplate template , long timeStamp) {
+		
+		StringBuffer sql = new StringBuffer();
+		
+		sql.append("INSERT INTO PARAM_DEVICE_DETAIL (DEVICE_ID,ELEMENT_ID,PARAM_VALUE,VERSION_TIMESTAMP) ");
+		sql.append("SELECT T2.DEVICE_ID,T1.ELEMENT_ID,T1.PARAM_VALUE , ? ");
+		sql.append("FROM PARAM_TEMPLATE_DETAIL T1, PARAM_TEMPLATE_DEVICE_RELATION T2,PARAM_ELEMENT T3 ");
+		sql.append("WHERE T1.TEMPLATE_ID = T2.TEMPLATE_ID  AND T3.ID = T1.ELEMENT_ID ");
+		sql.append("AND T3.PARAM_VALUE <> T1.PARAM_VALUE ");
+		sql.append("AND T1.TEMPLATE_ID  = ? ");
+		
+     	Query query = dao.getSQLQuery(sql.toString());
+     	query.setLong(0,timeStamp);
+     	query.setLong(1,template.getId());
+     	query.executeUpdate();
+		
+	}
+
+	@Override
+	public void removeTempDev(long templateId) {
+		
+		String hql = "delete from ParamDeviceDetail t1 where t1.element.id not in "
+				+ "(select t2.paramElement.id from ParamTemplateDetail t2 , ParamTemplateDeviceRelation t3 "
+				+ "where t2.paramTemplate.id = t3.templateId and t2.paramTemplate.id = ? group by t2.paramElement.id)";
+		dao.batchUpdate(hql, templateId);
+	}
+
+	@Override
+	public IParamTemplateDetail getDetailByTemplateId(long templateId, long elementId) {
+		Filter filter = new Filter();
+		filter.eq("paramTemplate.id", templateId);
+		filter.eq("paramElement.id", elementId);
+
+		return dao.findUniqueByFilter(filter,IParamTemplateDetail.class);
+	}
 }
