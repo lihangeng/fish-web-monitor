@@ -18,8 +18,8 @@ public class ParamElementForm {
 	private long paramBelongsId;
 	private String paramBelongsName;
 	private String remark;
-	private long createTime;
-	private long lastModifyTime;
+	private String createTime;
+	private String lastModifyTime;
 
 	public ParamElementForm(){
 
@@ -40,8 +40,8 @@ public class ParamElementForm {
 		setParamBelongsName(element.getParamBelongs().getName());
 		}
 		setRemark(element.getRemark());
-		setCreateTime(element.getCreateTime());
-		setLastModifyTime(element.getLastModifyTime());
+		setCreateTime(nullString(element.getCreateTime()));
+		setLastModifyTime(nullString(element.getLastModifyTime()));
 
 	}
 
@@ -153,22 +153,21 @@ public class ParamElementForm {
 		this.remark = remark;
 	}
 
-	public long getCreateTime() {
+	public String getCreateTime() {
 		return createTime;
 	}
 
-	public void setCreateTime(long createTime) {
+	public void setCreateTime(String createTime) {
 		this.createTime = createTime;
 	}
 
-	public long getLastModifyTime() {
+	public String getLastModifyTime() {
 		return lastModifyTime;
 	}
 
-	public void setLastModifyTime(long lastModifyTime) {
+	public void setLastModifyTime(String lastModifyTime) {
 		this.lastModifyTime = lastModifyTime;
 	}
-
 
 
 

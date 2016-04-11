@@ -62,11 +62,16 @@ public class ParamElement implements IParamElement, Serializable {
 	@Column(name="REMARK",length=60)
 	private String remark;
 
-	@Column(name="CREATE_TIME",length=20)
-	private long createTime;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="CREATE_TIME")
+	private Date createTime;
 
-	@Column(name="LAST_MODIFY_TIME",length=20)
-	private long lastModifyTime;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="LAST_MODIFY_TIME")
+	private Date lastModifyTime;
+
+	@Column(name="PARAM_TIMESTAMP",length=20)
+	private long paramTimestamp;
 
 	public ParamElement(){
 
@@ -157,25 +162,25 @@ public class ParamElement implements IParamElement, Serializable {
 	}
 
 	@Override
-	public long getCreateTime()
+	public Date getCreateTime()
 	{
 		return createTime;
 	}
 
 	@Override
-	public void setCreateTime(long createTime)
+	public void setCreateTime(Date createTime)
     {
         this.createTime=createTime;
 	}
 
 	@Override
-	public long getLastModifyTime()
+	public Date getLastModifyTime()
 	{
 		return lastModifyTime;
 	}
 
 	@Override
-	public void setLastModifyTime(long lastModifyTime)
+	public void setLastModifyTime(Date lastModifyTime)
 	{
         this.lastModifyTime=lastModifyTime;
 	}
@@ -190,6 +195,14 @@ public class ParamElement implements IParamElement, Serializable {
 	public void setRemark(String remark)
  {
 		this.remark = remark;
+	}
+
+	public long getParamTimestamp() {
+		return paramTimestamp;
+	}
+
+	public void setParamTimestamp(long paramTimestamp) {
+		this.paramTimestamp = paramTimestamp;
 	}
 
 }
