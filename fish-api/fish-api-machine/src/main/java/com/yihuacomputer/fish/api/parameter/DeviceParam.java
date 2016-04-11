@@ -1,6 +1,9 @@
 package com.yihuacomputer.fish.api.parameter;
 
 public class DeviceParam {
+	
+	private long id;
+
 	private long paramClassifyId;
 	
 	private String paramClassify;
@@ -9,6 +12,14 @@ public class DeviceParam {
 
 	private String paramValue;
 
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	public long getParamClassifyId() {
 		return paramClassifyId;
 	}

@@ -162,10 +162,13 @@ public class ParamTemplateService implements IParamTemplateService {
 
 		StringBuffer hql = new StringBuffer();
 
-		hql.append("select t from ParamElement t ,ParamTemplateElementRelation t1 ");
-		hql.append("where t.id = t1.elementId ");
 		List<IParamElement> elements = null;
-		if(flag == 1){
+		hql.append("select t from ParamElement t ");
+		
+		if(flag == 0){
+			
+			hql.append(",ParamTemplateElementRelation t1 ");
+			hql.append("where t.id = t1.elementId ");
 			hql.append("and t1.templateId = ?");
 			elements = dao.findByHQL(hql.toString(), templateId);
 		}else{
