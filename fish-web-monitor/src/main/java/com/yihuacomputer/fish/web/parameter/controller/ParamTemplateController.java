@@ -124,10 +124,10 @@ public class ParamTemplateController {
 		ModelMap result = new ModelMap();
 		List<ParamTempDetailForm> listDetail = form.getParamTempDetailForm();
 
-		List<IParamTemplateDetail> origList = templateService.listTemplateDetail(listDetail.get(0).getTemplateId());
+		long templateId = form.getTemplateId();
 
-		long templateId = listDetail.get(0).getTemplateId();
-
+		List<IParamTemplateDetail> origList = templateService.listTemplateDetail(templateId);
+		
 		Map<Long, String> origMap = new HashMap<Long, String>();
 
 		Map<Long, String> newMap = new HashMap<Long, String>();
@@ -306,9 +306,15 @@ public class ParamTemplateController {
 		ModelMap result = new ModelMap();
 		if (templateService.get(id) == null && flag == 0) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-		} else {
+		} else if(flag == 0){
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA,convert(templateService.listParam(id,flag)));
+		}else {
+			List<IParamElement> list = null;
+			list = (List<IParamElement>) paramElementService.list();
+			list.removeAll(templateService.listParam(id,flag));
+			result.addAttribute(FishConstant.SUCCESS, true);
+			result.addAttribute(FishConstant.DATA, convert(list));
 		}
 		return result;
 	}
@@ -326,12 +332,17 @@ public class ParamTemplateController {
 		ModelMap result = new ModelMap();
 		if (templateService.get(id) == null&&flag == 0) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-		} else {
+		} else if(flag == 0){
 			List<IParamElement> list = null;
 			list = (List<IParamElement>) paramElementService.list();
 			list.removeAll(templateService.listParam(id,flag));
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, convert(list));
+		}else{
+			
+			result.addAttribute(FishConstant.SUCCESS, true);
+			result.addAttribute(FishConstant.DATA,convert(templateService.listParam(id,flag)));
+			
 		}
 		return result;
 	}
