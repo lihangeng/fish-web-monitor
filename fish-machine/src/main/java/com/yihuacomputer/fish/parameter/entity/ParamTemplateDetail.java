@@ -44,10 +44,10 @@ public class ParamTemplateDetail implements IParamTemplateDetail, Serializable {
 	private IParamElement paramElement;
 
 	public static ParamTemplateDetail make(IParamTemplate template,
-			IParamElement emlement) {
+			IParamElement emlement,String paramValue) {
 		ParamTemplateDetail obj = new ParamTemplateDetail();
 		obj.setParamElement(emlement);
-		obj.setParamValue(emlement.getParamValue());
+		obj.setParamValue(paramValue);
 		obj.setTemplate(template);
 		return obj;
 	}

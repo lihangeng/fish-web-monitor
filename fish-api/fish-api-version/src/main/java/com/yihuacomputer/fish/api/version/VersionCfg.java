@@ -37,4 +37,8 @@ public class VersionCfg {
 	public static String getAtmParamDir() {
 		return FishCfg.getFishHome() + FishCfg.fileSep + "temp"+FishCfg.fileSep+"atmParam";
 	}
+	
+	public static void main(String[] args) {
+		System.out.println(FishCfg.getFishHome()+FishCfg.fileSep+"temp");
+	}
 }

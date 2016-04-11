@@ -5,7 +5,6 @@ Ext.define('Eway.view.parameter.template.ParamGrid', {
 	store : 'parameter.template.AddingParam',
 	border : false,
 	autoFit : true,
-	id : 'paramGridId',
 
 	viewConfig : {
 		plugins : {
@@ -34,13 +33,6 @@ Ext.define('Eway.view.parameter.template.ParamGrid', {
 				dataIndex : 'paramName',
 				flex : 1,
 				storable : true
-			}, {
-				header : '参数值',
-				dataIndex : 'paramValue',
-				flex : 1,
-				editor : new Ext.form.TextField({
-	                allowBlank:false  
-	            })  
 			}, {
 				header : 'ID',
 				dataIndex : 'id',

@@ -3,7 +3,7 @@ Ext.define('Eway.view.parameter.template.Form', {
 	extend : 'Eway.view.base.Form',
 	alias : 'widget.parameter_template_form',
 
-	requires : [ 'Eway.view.field.paramElement.ParamBelongs' ],
+	requires : [],
 	defaults : {
 		labelWidth : 120,
 		labelAlign : 'right',
@@ -24,11 +24,6 @@ Ext.define('Eway.view.parameter.template.Form', {
 				name : 'name',
 				maxLength : 30,
 				msgTarget : 'side',
-				allowBlank : false
-			}, {
-				fieldLabel : '<font color="red">*</font>归属系统',
-				xtype : 'field_paramElement_ParamBelongs',
-				editable : false,
 				allowBlank : false
 			}, {
 				xtype : 'textarea',

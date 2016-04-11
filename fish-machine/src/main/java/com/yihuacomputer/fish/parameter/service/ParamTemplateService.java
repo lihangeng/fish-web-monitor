@@ -158,31 +158,23 @@ public class ParamTemplateService implements IParamTemplateService {
 	}
 
 	@Override
-	public List<IParamElement> listParamByTemplate(long paramBelongsId) {
+	public List<IParamElement> listParam(long templateId,long flag) {
 
 		StringBuffer hql = new StringBuffer();
 
 		hql.append("select t from ParamElement t ,ParamTemplateElementRelation t1 ");
-		hql.append("where t.id = t1.elementId and t.paramBelongs.id = ?");
-		List<IParamElement> elements = dao.findByHQL(hql.toString(), paramBelongsId);
-
+		hql.append("where t.id = t1.elementId ");
+		List<IParamElement> elements = null;
+		if(flag == 1){
+			hql.append("and t1.templateId = ?");
+			elements = dao.findByHQL(hql.toString(), templateId);
+		}else{
+			elements = dao.findByHQL(hql.toString());
+			
+		}
 		return elements;
 	}
 	
-	
-	@Override
-	public List<IParamElement> listParam(long templateId) {
-
-		StringBuffer hql = new StringBuffer();
-
-		hql.append("select t from ParamElement t ,ParamTemplateElementRelation t1 ");
-		hql.append("where t.id = t1.elementId and t1.templateId = ?");
-		List<IParamElement> elements = dao
-				.findByHQL(hql.toString(), templateId);
-
-		return elements;
-	}
-
 	@Override
 	public void unlinkTempParam(IParamTemplate template, IParamElement emlement) {
 		Filter filter = new Filter();
@@ -193,17 +185,21 @@ public class ParamTemplateService implements IParamTemplateService {
 		if (obj != null) {
 			dao.delete(obj);
 		}
-		ParamTemplateDetail obj2 =  ParamTemplateDetail.make(template, emlement);
+		filter = new Filter();
+		filter.addFilterEntry(FilterFactory.eq("paramTemplate.id", template.getId()));
+		filter.addFilterEntry(FilterFactory.eq("paramElement.id", emlement.getId()));
+		ParamTemplateDetail obj2 =  dao.findUniqueByFilter(filter,ParamTemplateDetail.class);
+				
 		if (obj2 != null) {
 			dao.delete(obj2);
 		}
 	}
 
 	@Override
-	public void linkTempParam(IParamTemplate template, IParamElement emlement) {
+	public void linkTempParam(IParamTemplate template, IParamElement emlement,String paramValue) {
 		dao.save(ParamTemplateElementRelation.make(template.getId(),
 				emlement.getId()));
-		dao.save(ParamTemplateDetail.make(template, emlement));
+		dao.save(ParamTemplateDetail.make(template, emlement,paramValue));
 	}
 
 	@Override
@@ -238,4 +234,5 @@ public class ParamTemplateService implements IParamTemplateService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 }

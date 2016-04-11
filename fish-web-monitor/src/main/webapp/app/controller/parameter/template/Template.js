@@ -5,18 +5,23 @@ Ext.define('Eway.controller.parameter.template.Template',
 					stores : ['parameter.template.Template',
 							'machine.DeviceAtmType',
 							'machine.atmType.DeviceAtmCatalog',
-							'parameter.element.ParamBelongs',
-							'parameter.template.AddedParam',
-							'parameter.template.AddingParam'],
-
-					models : [ 'parameter.template.Template',
+//							'parameter.element.ParamBelongs',
 							'parameter.template.AddedParam',
 							'parameter.template.AddingParam',
-							'parameter.template.TemplateParam'],
+							'parameter.template.TemplateDetail'],
 
-					views : [ 'parameter.template.View',
-							'parameter.template.Update',
-							'parameter.template.UpdateValue'],
+					models : ['parameter.template.Template',
+							'parameter.template.AddedParam',
+							'parameter.template.AddingParam',
+							'parameter.template.TemplateParam',
+							'parameter.template.TemplateDetailList'],
+
+					views : ['parameter.template.View'
+//					         ,
+//							'parameter.template.Update',
+//							'parameter.template.UpdateValue',
+//							'parameter.template.UpdateTemplate'
+							],
 
 					refs : [ {
 						ref : 'ewayView',
@@ -34,32 +39,55 @@ Ext.define('Eway.controller.parameter.template.Template',
 						selector : 'template_add'
 					}, {
 						ref : 'updateWin',
-						selector : 'template_updateValue'
+						selector : 'template_updateTemplate'
 					}, {
 						ref : 'paramGrid',
-						selector : 'template_add param_paramGrid'
+						selector : 'param_paramGrid'
 					}, {
 						ref : 'paramValueGrid',
 						selector : 'param_paramValueGrid'
 					}, {
 						ref : 'addedParamGrid',
-						selector : 'template_add param_addedParamGrid'
+						selector : 'param_addedParamGrid'
 					} ],
 					
-					onAdd: function() {
-						var win = Ext.create('Eway.view.parameter.template.Add');
-						win.down('button[action="add"]').on('click',Ext.bind(this.onAddConfirm,this,[win]),this);
-						var paramBelongsId = win.down('textfield[name="paramBelongsId"]').getValue();
-						var paramGrid = this.getParamGrid();
+					onAddUpdate: function(action) {
 						
+						var flag = '1';
+						
+						var paramGrid = this.getParamGrid();
 						var addedParamGrid = this.getAddedParamGrid();
+						if(action=='add'){
+						
+							var win = Ext.create('Eway.view.parameter.template.Add');
+							win.down('button[action="add"]').on('click',Ext.bind(this.onAddUpdateConfirm,this,[win,action]),this);
+							var templateId = "1";
+							flag = '1';
+							paramGrid = this.getParamGrid();
+							addedParamGrid = this.getAddedParamGrid();
+						}else{
+							var grid = this.getTemplateGrid();
+							var sm = grid.getSelectionModel();
+							if (sm.getCount() == 1) {
 
-								
+								var record = sm.getLastSelected();
+								var win = Ext.create('Eway.view.parameter.template.UpdateTemplate');
+								win.down('button[action="confirm"]').on('click',Ext.bind(this.onAddUpdateConfirm,this,[win,action]),this);
+								var templateId = record.data.id;
+								paramGrid = this.getParamGrid();
+								addedParamGrid = this.getAddedParamGrid();
+								flag = '0';
+								addedParamGrid.getView().on('drop',this.onAddedParam, this);
+								paramGrid.getView().on('drop', this.onAddingParam,this);
+						}
+							
+						}
+						
 						addedParamGrid.getStore().load(
 								{
 									params : {
-										id : paramBelongsId,
-										flag: '1'
+										id : templateId,
+										flag: flag
 									},
 									callback : function(records, operation,success) {
 											
@@ -71,8 +99,8 @@ Ext.define('Eway.controller.parameter.template.Template',
 						paramGrid.getStore().load(
 										{
 											params : {
-												id : paramBelongsId,
-												flag: '1'
+												id : templateId,
+												flag: flag
 											},
 											callback : function(records,operation, success) {
 												if (success == false) {
@@ -90,8 +118,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 							
 							var record = store.getAt(i);
 							var tempDetail = Ext.create("Eway.model.parameter.template.TemplateDetailList",{
-									id:Ext.isNumeric(record.data.id)?record.data.id:0,
-									elementId: record.data.elementId,
+									elementId: record.data.id,
 									paramName:record.data.paramName,
 									paramValue:record.data.paramValue
 								});
@@ -100,12 +127,10 @@ Ext.define('Eway.controller.parameter.template.Template',
 						}
 					},
 					
-					onAddConfirm: function(win) {
-						
+					onAddUpdateConfirm: function(win,action) {
 						var ewayView = this.getAddWin();
 						var addForm = win.down("form").getForm();
 						var data = addForm.getValues();
-						
 						
 						var grid = this.getAddedParamGrid();
 						var store = grid.getStore();
@@ -114,10 +139,10 @@ Ext.define('Eway.controller.parameter.template.Template',
 						var resources = '[';
 						for(var i in tempRess){
 				    		var res = tempRess[i];
-							var tempRes_str = "{'paramName':" + res.data.paramName
+							var tempRes_str = "{'paramName':'" + res.data.paramName
 							+ "','paramValue':'"+res.data.paramValue
-							+ "','elementId':'"+res.data.elementId
-							+ "','id':'"+res.data.id+"'}";
+							+ "','elementId':'"+res.data.elementId+"'}";
+							
 							if(resources == '['){
 								resources = resources + tempRes_str;
 							}else{
@@ -127,26 +152,34 @@ Ext.define('Eway.controller.parameter.template.Template',
 						resources = resources + "]";
 						
 						var record = store.getAt(i);
-						var temp = Ext.create("Eway.model.parameter.template.Template",{
+						if(action=='add'){
+							var temp = Ext.create("Eway.model.parameter.template.Template",{
+								
+					    		id : null,
+					    		name: data.name,
+					    		remark: data.remark,
+					    		resources : resources
+					    		
+					    	});
+							
+							temp.save({
+								 success: function(ed) {
+									Eway.alert(EwayLocale.msg.createSuccess);
+								 },
+								 failure: function(record,operation){
+									Eway.alert('失败');
+								 },
+								 
+								 scope : this
+							});
+							
+						}
+						else{
+							
+							
+							
+						}
 						
-				    		id:Ext.isNumeric(record.data.id)?record.data.id:0,
-				    		name:data.name,
-				    		paramBelongs:data.paramBelongsId,
-				    		remark:data.remark,
-				    		resources : resources
-				    		
-				    	});
-						
-						temp.save({
-							 success: function(ed) {
-								Eway.alert(EwayLocale.msg.createSuccess);
-							 },
-							 failure: function(record,operation){
-								Eway.alert('失败');
-							 },
-							 
-							 scope : this
-						});
 					},
 					
 					init : function() {
@@ -164,7 +197,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 								scope : this
 							},
 							'template_View button[action=updateValue]' : {
-								click : this.onUpdateValue,
+								click : this.onUpdate,
 								scope : this
 							},
 							'template_View button[action=remove]' : {
@@ -173,29 +206,38 @@ Ext.define('Eway.controller.parameter.template.Template',
 							'template_View button[action=link]' : {
 								click : this.onGroupLink
 							},
-							'template_updateValue button[action=save]' : {
-								click : this.onUpdateSave
+							'template_View button[action=confirm]' : {
+								click : this.onAdd
 							},
-							'template_updateValue button[action=issue]' : {
+							'template_View button[action=issue]' : {
 								click : this.onIssue
 							}
 						});
 					},
+					
 
-					onUpdateValue : function() {
-						
-						var grid = this.getTemplateGrid();
-						var sm = grid.getSelectionModel();
-						if (sm.getCount() == 1) {
-							var record = sm.getLastSelected();
-							var win = Ext.create('Eway.view.parameter.template.UpdateValue',{
-								templateId : record.id
-							});
-							win.show();
-						} else {
-							Eway.alert(EwayLocale.choiceUpdateMsg);
-						}
+					onAdd : function(){
+						this.onAddUpdate('add');
 					},
+
+					onUpdate : function(){
+						this.onAddUpdate('update');
+					},
+
+//					onUpdateValue : function() {
+//						
+//						var grid = this.getTemplateGrid();
+//						var sm = grid.getSelectionModel();
+//						if (sm.getCount() == 1) {
+//							var record = sm.getLastSelected();
+//							var win = Ext.create('Eway.view.parameter.template.UpdateTemplate',{
+//								templateId : record.id
+//							});
+//							win.show();
+//						} else {
+//							Eway.alert(EwayLocale.choiceUpdateMsg);
+//						}
+//					},
 					onIssue :function(){
 						this.onUpdateSave();
 						var grid = this.getParamValueGrid();
@@ -233,7 +275,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 									templateId: record.data.templateId,
 									paramName:record.data.paramName,
 									paramValue:record.data.paramValue,
-									paramBelongs : record.data.paramBelongs,
+//									paramBelongs : record.data.paramBelongs,
 									elementId : record.data.elementId
 								});
 							
@@ -241,118 +283,162 @@ Ext.define('Eway.controller.parameter.template.Template',
 						}
 					},
 					
-					onUpdateSave : function() {
-						
-						var grid = this.getParamValueGrid();
-						var store = grid.getStore();
-						var tempRess = [];
-						this.generateTemplateDetail(tempRess,store);
-						var resources = '[';
-						for(var i in tempRess){
-				    		var res = tempRess[i];
-							var tempRes_str = "{'templateId':" + res.data.templateId + ",'paramName':'" + res.data.paramName
-							+ "','paramValue':'"+res.data.paramValue
-							+ "','elementId':'"+res.data.elementId
-							+ "','id':'"+res.data.id
-							+ "','paramBelongs':'"+res.data.paramBelongs+"'}";
-							if(resources == '['){
-								resources = resources + tempRes_str;
-							}else{
-								resources = resources + "," + tempRes_str;
-							}
-				    	}
-						resources = resources + "]";
-						
-						
-						var temp = Ext.create("Eway.model.parameter.template.TemplateDetail",{
-				    		resources : resources
-				    	});
-						
-						
-						temp.save({
-							 success: function(ed) {
-								Eway.alert(EwayLocale.msg.createSuccess);
-							 },
-							 failure: function(record,operation){
-								Eway.alert('失败');
-							 },
-							 
-							 scope : this
-						});
-						
-						
-					},
+//					onUpdateSave : function() {
+//						
+//						var paramGrid = this.getParamGrid();
+//						var addedParamGrid = this.getAddedParamGrid();
+//						
+//						var grid = this.getTemplateGrid();
+//						var sm = grid.getSelectionModel();
+//						if (sm.getCount() == 1) {
+//							var record = sm.getLastSelected();
+//							var win = Ext.create('Eway.view.parameter.template.UpdateTemplate');
+//							win.down('button[action="confirm"]').on('click',Ext.bind(this.onAddConfirm,this,[win]),this);
+//							win.show();
+//								
+//						addedParamGrid.getStore().load(
+//								{
+//									params : {
+//										id : record.data.id,
+//										flag: '0'
+//									},
+//									callback : function(records, operation,success) {
+//											
+//										if (success == false) {
+//											win.close();
+//										}
+//									}
+//								});
+//							paramGrid.getStore().load(
+//										{
+//											params : {
+//												id : record.data.id,
+//												flag: '0'
+//											},
+//											callback : function(records,operation, success) {
+//												if (success == false) {
+//													Eway.alert(EwayLocale.tip.user.update.fail);
+//													win.close();
+//												}
+//											}
+//										});
+//							win.show();
+//						} else {
+//							Eway.alert(EwayLocale.choiceUpdateMsg);
+//						}
+//					},
+					
+//						onUpdateConfirm: function(win) {
+//						
+//						var ewayView = this.getAddWin();
+//						var addForm = win.down("form").getForm();
+//						var data = addForm.getValues();
+//						
+//						var grid = this.getAddedParamGrid();
+//						var store = grid.getStore();
+//						var tempRess = [];
+//						this.generateTemplateDetail2(tempRess,store);
+//						var resources = '[';
+//						for(var i in tempRess){
+//				    		var res = tempRess[i];
+//							var tempRes_str = "{'paramName':'" + res.data.paramName
+//							+ "','paramValue':'"+res.data.paramValue
+//							+ "','elementId':'"+res.data.elementId+"'}";
+//							
+//							if(resources == '['){
+//								resources = resources + tempRes_str;
+//							}else{
+//								resources = resources + "," + tempRes_str;
+//							}
+//				    	}
+//						resources = resources + "]";
+//						
+//						var record = store.getAt(i);
+//						var temp = Ext.create("Eway.model.parameter.template.Template",{
+//						
+//				    		id : null,
+//				    		name: data.name,
+//				    		paramBelongsId:data.paramBelongsId,
+//				    		remark: data.remark,
+//				    		resources : resources
+//				    		
+//				    	});
+//						
+//						temp.save({
+//							 success: function(ed) {
+//								Eway.alert(EwayLocale.msg.createSuccess);
+//							 },
+//							 failure: function(record,operation){
+//								Eway.alert('失败');
+//							 },
+//							 
+//							 scope : this
+//						});
+//					},
 					
 					
-					onUpdateElement : function() {
-						var grid = this.getTemplateGrid();
-						var sm = grid.getSelectionModel();
-						var flag = true;
-						if (sm.getCount() == 1) {
-							var win = Ext.create('Eway.view.parameter.template.Update');
-									
-							var record = sm.getLastSelected();
+//					onUpdateElement : function() {
+//						var grid = this.getTemplateGrid();
+//						var sm = grid.getSelectionModel();
+//						var flag = true;
+//						if (sm.getCount() == 1) {
+//							var win = Ext.create('Eway.view.parameter.template.Update');
+//									
+//							var record = sm.getLastSelected();
+//
+//							var paramGrid = this.getParamGrid();
+//							var addedParamGrid = this.getAddedParamGrid();
+//
+//							addedParamGrid.getView().on('drop',this.onAddedParam("0"), this);
+//									
+//							paramGrid.getView().on('drop', this.onAddingParam("0"),this);
+//									
+//							addedParamGrid.getStore().load(
+//									{
+//										params : {
+//											id : record.data.id,
+//											flag : '0'
+//										},
+//										callback : function(records, operation,
+//												success) {
+//											if (success == false) {
+//												win.close();
+//											}
+//										}
+//									});
+//
+//							paramGrid.getStore().load(
+//											{
+//												params : {
+//													id : record.data.id,
+//													flag : '0'
+//												},
+//												callback : function(records,
+//														operation, success) {
+//													if (success == false) {
+//														Eway.alert(EwayLocale.tip.user.update.fail);
+//														win.close();
+//													}
+//												}
+//											});
+//							win.show();
+//						} else {
+//							Eway.alert(EwayLocale.choiceUpdateMsg);
+//						}
+//					},
 
-							var paramGrid = this.getParamGrid();
-							var addedParamGrid = this.getAddedParamGrid();
-
-							addedParamGrid.getView().on('drop',this.onAddedParam("0"), this);
-									
-							paramGrid.getView().on('drop', this.onAddingParam("0"),this);
-									
-							addedParamGrid.getStore().load(
-									{
-										params : {
-											id : record.data.id,
-											flag : '0'
-										},
-										callback : function(records, operation,
-												success) {
-											if (success == false) {
-												win.close();
-											}
-										}
-									});
-
-							paramGrid.getStore().load(
-											{
-												params : {
-													id : record.data.id,
-													flag : '0'
-												},
-												callback : function(records,
-														operation, success) {
-													if (success == false) {
-														Eway.alert(EwayLocale.tip.user.update.fail);
-														win.close();
-													}
-												}
-											});
-							win.show();
-						} else {
-							Eway.alert(EwayLocale.choiceUpdateMsg);
-						}
-					},
-
-					onAddedParam : function(flag) {
+					onAddedParam : function() {
 
 						var addedParamRecord = this.getAddedParamGrid().getSelectionModel().getLastSelected();
 								
-						if(flag=="0"){
+						var templateRecord = this.getTemplateGrid().getSelectionModel().getLastSelected();// 得到模板的ID
 							
-							var templateRecord = this.getTemplateGrid().getSelectionModel().getLastSelected();// 得到模板的ID
+						this.onAddedConfirmParam(addedParamRecord.get('id'),templateRecord.get('id'),"0");
 							
-							this.onAddedConfirmParam(addedParamRecord.get('id'),templateRecord.get('id'),"0");
-							
-						}else{
-							
-							this.onAddedConfirmParam(null,null,"1");
-						}
-						
 								
 					},
 
-					onAddingParam : function(flag) {
+					onAddingParam : function() {
 							
 						var addingParamRecord = this.getParamGrid().getSelectionModel().getLastSelected();
 								
@@ -362,21 +448,13 @@ Ext.define('Eway.controller.parameter.template.Template',
 							return;
 						}
 
-						if(flag=="0"){
 							var templateRecord = this.getTemplateGrid().getSelectionModel().getLastSelected();// 得到模板的ID
 							
 							this.onAddingConfirmParam(addingParamRecord.get('id'),templateRecord.get('id'),"0");
-						}
-						else{
-							this.onAddingConfirmParam(null,null,"1");
-							
-						}
-						
 								
 					},
 
-					onAddingConfirmParam : function(paramId, templateId,flag) {
-						if(flag == "0"){
+					onAddingConfirmParam : function(paramId, templateId) {
 							Ext.Ajax.request({
 								method : 'POST',
 								url : 'api/parameter/template/removeParam',
@@ -397,7 +475,6 @@ Ext.define('Eway.controller.parameter.template.Template',
 								},
 								scope : this
 							});
-						}
 						
 					},
 
@@ -413,9 +490,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 									Eway.alert(EwayLocale.addSuccess);
 								},
 								failure : function(record, operation) {
-									Eway.alert(EwayLocale.tip.add.error
-											+ operation.getError());
-
+									Eway.alert(EwayLocale.tip.add.error+ operation.getError());
 									this.getParamGrid().getStore().reload();
 									this.getAddedParamGrid().getStore().reload();
 								},
@@ -431,52 +506,38 @@ Ext.define('Eway.controller.parameter.template.Template',
 						if (sm.getCount() == 1) {
 							var record = sm.getLastSelected();
 
-							var templateDeviceWin = Ext
-									.create('Eway.view.parameter.template.TemplateDevice');
-							var linkedFilterForm = templateDeviceWin
-									.down('parameter_linkedDeviceFilter');
-							var linkedDeviceGrid = templateDeviceWin
-									.down('parameter_linkedDeviceGrid');
+							var templateDeviceWin = Ext.create('Eway.view.parameter.template.TemplateDevice');
+									
+							var linkedFilterForm = templateDeviceWin.down('parameter_linkedDeviceFilter');
+									
+							var linkedDeviceGrid = templateDeviceWin.down('parameter_linkedDeviceGrid');
+									
 
-							var linkingDeviceGrid = templateDeviceWin
-									.down('parameter_linkingDeviceGrid');
-							var linkingFilterForm = templateDeviceWin
-									.down('parameter_linkingDeviceFilter');
+							var linkingDeviceGrid = templateDeviceWin.down('parameter_linkingDeviceGrid');
+									
+							var linkingFilterForm = templateDeviceWin.down('parameter_linkingDeviceFilter');
 
 							linkedDeviceGrid.down('button[action="unlink"]')
-									.on('click',
-											Ext.bind(this.onUnlinkConfirm,
-													this, [ linkedDeviceGrid,
-															linkingDeviceGrid,
-															record ]), this);
-							linkedDeviceGrid.down('button[action="query"]').on(
-									'click',
-									Ext.bind(this.onQueryDevice, this, [ 0,
-											linkedDeviceGrid, linkedFilterForm,
-											record ]), this);
-							linkedDeviceGrid.down('pagingtoolbar').on(
-									'beforechange',
-									Ext.bind(this.onLinkDeviceFresh, this, [ 0,
-											linkedDeviceGrid, linkedFilterForm,
-											record ]), this);
-							linkingDeviceGrid.down('button[action="link"]').on(
-									'click',
-									Ext.bind(this.onLinkConfirm, this, [
-											linkingDeviceGrid,
-											linkedDeviceGrid, record ]), this);
-							linkingDeviceGrid.down('button[action="query"]')
-									.on(
-											'click',
-											Ext.bind(this.onQueryDevice, this,
-													[ 1, linkingDeviceGrid,
-															linkingFilterForm,
-															record ]), this);
-							linkingDeviceGrid.down('pagingtoolbar').on(
-									'beforechange',
-									Ext.bind(this.onLinkDeviceFresh, this, [ 1,
-											linkingDeviceGrid,
-											linkingFilterForm, record ]), this);
-
+									.on('click',Ext.bind(this.onUnlinkConfirm,this, [ linkedDeviceGrid,linkingDeviceGrid,record ]), this);
+															
+							linkedDeviceGrid.down('button[action="query"]').on('click',
+									
+							Ext.bind(this.onQueryDevice, this, [ 0,linkedDeviceGrid, linkedFilterForm,record ]), this);
+											
+											
+							linkedDeviceGrid.down('pagingtoolbar').on('beforechange',
+									
+							Ext.bind(this.onLinkDeviceFresh, this, [ 0,linkedDeviceGrid, linkedFilterForm,record ]), this);
+											
+											
+							linkingDeviceGrid.down('button[action="link"]').on('click',Ext.bind(this.onLinkConfirm, this, [linkingDeviceGrid,linkedDeviceGrid, record ]), this);
+											
+							linkingDeviceGrid.down('button[action="query"]').on('click',
+											
+							Ext.bind(this.onQueryDevice, this,[ 1, linkingDeviceGrid,linkingFilterForm,record ]), this);
+															
+							linkingDeviceGrid.down('pagingtoolbar').on('beforechange',Ext.bind(this.onLinkDeviceFresh, this, [ 1,linkingDeviceGrid,linkingFilterForm, record ]), this);
+									
 							templateDeviceWin.show();
 							linkingDeviceGrid.getStore().load({
 								params : {
@@ -493,8 +554,8 @@ Ext.define('Eway.controller.parameter.template.Template',
 								}
 							});
 						} else {
-							Eway
-									.alert(EwayLocale.tip.bankPer.link.linkBankPerson);
+								Eway.alert(EwayLocale.tip.bankPer.link.linkBankPerson);
+									
 						}
 					},
 					
@@ -510,8 +571,8 @@ Ext.define('Eway.controller.parameter.template.Template',
 							for (var i = 0; i < array.length; i++) {
 								info += array[i] + ',';
 							}
-							Ext.Ajax
-									.request({
+							Ext.Ajax.request({
+									
 										scope : this,
 										method : 'POST',
 										url : 'api/parameter/template/unlink',
@@ -521,9 +582,8 @@ Ext.define('Eway.controller.parameter.template.Template',
 											id:record.data.id
 										},
 										success : function() {
-											linkedDeviceGrid
-													.getStore()
-													.load(
+											linkedDeviceGrid.getStore().load(
+													
 															{
 																params : {
 																	flag : 0,
@@ -531,11 +591,10 @@ Ext.define('Eway.controller.parameter.template.Template',
 																	organizationId : record.data.orgId
 																}
 															});
-											linkingDeviceGrid.getStore()
-													.cleanUrlParam();
-											linkingDeviceGrid
-													.getStore()
-													.load(
+											linkingDeviceGrid.getStore().cleanUrlParam();
+													
+											linkingDeviceGrid.getStore().load(
+													
 															{
 																params : {
 																	flag : 1,
@@ -545,8 +604,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 															});
 										},
 										failure : function() {
-											Eway
-													.alert(EwayLocale.tip.bankPer.link.unLinkDevFail);
+											Eway.alert(EwayLocale.tip.bankPer.link.unLinkDevFail);
 										},
 										scope : this
 									});
@@ -573,10 +631,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 							linkingDeviceGrid.down('button[action="link"]')
 									.disable();
 							var data = new Object();
-							var record2 = Ext
-									.create(
-											'Eway.model.parameter.template.TemplateDevice',
-											data);
+							var record2 = Ext.create('Eway.model.parameter.template.TemplateDevice',data);
 							for (var i = 0; i < array.length - 1; i++) {
 								record2.set('id', 0);
 								record2.set('groupId', record.data.id);
@@ -586,12 +641,9 @@ Ext.define('Eway.controller.parameter.template.Template',
 							record2.set('id', 0);
 							record2.set('groupId', record.data.id);
 							record2.set('deviceId', array[array.length - 1]);
-							record2
-									.save({
+							record2.save({
 										success : function() {
-											linkingDeviceGrid
-													.getStore()
-													.load(
+											linkingDeviceGrid.getStore().load(
 															{
 																params : {
 																	flag : 1,
@@ -602,17 +654,12 @@ Ext.define('Eway.controller.parameter.template.Template',
 																		records,
 																		operation,
 																		success) {
-																	linkingDeviceGrid
-																			.down(
-																					'button[action="link"]')
-																			.enable();
+																			linkingDeviceGrid.down('button[action="link"]').enable();
 																}
 															});
-											linkedDeviceGrid.getStore()
-													.cleanUrlParam();
-											linkedDeviceGrid
-													.getStore()
-													.load(
+											linkedDeviceGrid.getStore().cleanUrlParam();
+													
+											linkedDeviceGrid.getStore().load(
 															{
 																params : {
 																	flag : 0,
@@ -622,11 +669,10 @@ Ext.define('Eway.controller.parameter.template.Template',
 															});
 										},
 										failure : function() {
-											linkingDeviceGrid.down(
-													'button[action="link"]')
-													.enable();
-											Eway
-													.alert(EwayLocale.tip.bankPer.link.unLinkPersonFail);
+											linkingDeviceGrid.down('button[action="link"]').enable();
+													
+											Eway.alert(EwayLocale.tip.bankPer.link.unLinkPersonFail);
+													
 										},
 										scope : this
 									});

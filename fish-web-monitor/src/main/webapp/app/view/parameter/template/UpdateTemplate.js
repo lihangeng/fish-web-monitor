@@ -1,10 +1,10 @@
-Ext.define('Eway.view.parameter.template.Add', {
+Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 	extend: 'Ext.window.Window',
-	alias: 'widget.template_add',
+	alias: 'widget.template_updateTemplate',
 	
 	requires: ['Eway.view.parameter.template.ParamGrid','Eway.view.parameter.template.AddedParamGrid'],
 	
-	title:'新增',
+	title:'修改',
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -20,22 +20,7 @@ Ext.define('Eway.view.parameter.template.Add', {
 					labelAlign: 'right',
 					msgTarget : 'side'
 				},
-				items: [{
-					fieldLabel : '<font color="red">*</font>模板名称',
-					xtype : 'textfield',
-					name : 'name',
-					maxLength : 30,
-					msgTarget : 'side',
-					allowBlank : false
-				},,{
-				    xtype : 'textarea',
-				    fieldLabel : '模板备注',
-				    name : 'remark',
-				    autoScroll : true,
-					maxLength :30,
-					msgTarget : 'side',
-					allowBlank : true
-				}, {
+				items: [ {
 					xtype : 'panel',
 					trackResetOnLoad : true,
 					selectOnFocus : true,
@@ -45,14 +30,12 @@ Ext.define('Eway.view.parameter.template.Add', {
 					autoScroll : true,
 					items : [ {
 						title : '可添加参数',
-//						region : 'west',
 						width : 200,
 						height: 350,
 						xtype : 'param_paramGrid',
 						autoLoadStore : true
 					}, {
 						title : '已添加的参数',
-//						region : 'east',
 						width : 400,
 						height: 350,
 						xtype : 'param_addedParamGrid',
@@ -62,7 +45,7 @@ Ext.define('Eway.view.parameter.template.Add', {
 				buttonAlign : 'center',
 				buttons: [{
 					text: EwayLocale.button.confirm,
-					action: 'add'
+					action: 'confirm'
 				},{
 					text: EwayLocale.button.reset,
 					handler: this.onReset,
