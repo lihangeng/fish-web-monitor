@@ -332,4 +332,18 @@ public class ParamTemplateService implements IParamTemplateService {
 		}
 		return false;
 	}
+
+	@Override
+	public void unlinkAllBeforeDelete(long templateId) {
+
+		String hql = "delete from ParamTemplateElementRelation t where t.templateId = ?";
+		dao.batchUpdate(hql, templateId);
+		
+		hql = "delete from ParamTemplateDetail t where t.paramTemplate.id = ?";
+		dao.batchUpdate(hql, templateId);
+		
+		hql = "delete from ParamTemplateDeviceRelation t where t.templateId = ?";
+		dao.batchUpdate(hql, templateId);
+		
+	}
 }

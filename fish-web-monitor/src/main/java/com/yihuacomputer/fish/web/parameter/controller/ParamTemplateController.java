@@ -118,6 +118,7 @@ public class ParamTemplateController {
 		logger.info(" delete template: template.id = " + id);
 		ModelMap result = new ModelMap();
 		try {
+			templateService.unlinkAllBeforeDelete(id);
 			templateService.remove(id);
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {

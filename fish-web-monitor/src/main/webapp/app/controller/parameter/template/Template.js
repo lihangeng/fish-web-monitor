@@ -113,6 +113,9 @@ Ext.define('Eway.controller.parameter.template.Template',
 								paramGrid = this.getParamGrid();
 								addedParamGrid = this.getAddedParamGrid();
 								flag = '0';
+							}else{
+								Eway.alert('请选择一条记录');
+								
 							}
 							
 						}
@@ -211,10 +214,10 @@ Ext.define('Eway.controller.parameter.template.Template',
 							
 							temp.save({
 								 success: function(ed) {
-									 	Eway.alert('修改成功');
+									 	Eway.alert('修改模板成功');
 									 },
 									 failure: function(record,operation){
-										Eway.alert('修改失败');
+										Eway.alert('修改模板失败'+operation.error);
 									 },
 									 scope : this
 								});

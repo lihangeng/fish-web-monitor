@@ -17,5 +17,9 @@ public interface IParamTemplate {
 	public void setApplyFlag(String applyFlag);
 
 	public String getApplyFlag();
+	
+	public long getVersionTimeStamp();
+	
+	public void setVersionTimeStamp(long versionTimeStamp);
 
 }

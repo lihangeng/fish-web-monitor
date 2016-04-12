@@ -78,7 +78,7 @@ public interface IParamTemplateService {
 	public void unlink(IParamTemplate template, IDevice device);
 	
 	/**
-	 * 解绑所有模板元数据关联
+	 * 解绑所有模板元数据关联,并删除模板详情
 	 * @param templateId
 	 */
 	public void unlinkAll(long templateId);
@@ -86,7 +86,7 @@ public interface IParamTemplateService {
 	/**
 	 * 获取模板所有关联元数据
 	 * @param templateId
-	 * @param flag
+	 * @param flag 1:新增时查询  0:更改时查询
 	 * @return
 	 */
 	public List<IParamElement> listParam(long templateId, long flag) ;
@@ -148,5 +148,12 @@ public interface IParamTemplateService {
 	 * @return
 	 */
 	public boolean duplicateTemplateName(String templateName);
+	
+	
+	/**
+	 * 删除模板之前删除所有模板关联关系
+	 * @param templateId
+	 */
+	public void unlinkAllBeforeDelete(long templateId);
 	
 }
