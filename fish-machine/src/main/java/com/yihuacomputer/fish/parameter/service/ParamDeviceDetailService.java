@@ -54,6 +54,7 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 		}
 		sql.append("AND pe.PARAM_BELONGS = '").append(tabId+"'");
 		sql.append(" AND pdd.DEVICE_ID = '").append(deviceId+"'");
+		sql.append(" group by pe.PARAM_NAME");
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		List<Object> infos = query.list();
 		List<DeviceParam> resultList=new ArrayList<DeviceParam>();
