@@ -27,7 +27,7 @@
 	<!--自身的配置(数据源的配置) -->
 	<bean id="hiberanteDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-		<property name="url" value="jdbc:mysql://localhost:3306/fish"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/atmv"/>
 		<property name="username" value="root"/>
 		<property name="password" value="root"/>
 	</bean>
@@ -47,13 +47,14 @@
 				</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
 			</props>
 		</property> 
 		<property name="packagesToScan">  
 			<list> 
 				<value>com.yihuacomputer.fish.machine.entity</value>
 				<value>com.yihuacomputer.fish.system.entity</value>
+				<value>com.yihuacomputer.fish.parameter.entity</value>
 			</list>  
 		</property>
 	</bean>

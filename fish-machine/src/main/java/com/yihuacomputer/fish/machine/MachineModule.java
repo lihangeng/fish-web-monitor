@@ -18,6 +18,7 @@ import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
+import com.yihuacomputer.fish.api.parameter.IParamPushService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
@@ -42,6 +43,7 @@ import com.yihuacomputer.fish.parameter.service.AppSystemService;
 import com.yihuacomputer.fish.parameter.service.ParamClassifyService;
 import com.yihuacomputer.fish.parameter.service.ParamDeviceDetailService;
 import com.yihuacomputer.fish.parameter.service.ParamElementService;
+import com.yihuacomputer.fish.parameter.service.ParamPushService;
 import com.yihuacomputer.fish.parameter.service.ParamTemplateDetailService;
 import com.yihuacomputer.fish.parameter.service.ParamTemplateDeviceRelationService;
 import com.yihuacomputer.fish.parameter.service.ParamTemplateService;
@@ -154,4 +156,8 @@ public class MachineModule {
 		return new ParamTemplateDeviceRelationService();
 	}
 
+	@Bean 
+	public IParamPushService paramPushService(){
+		return new ParamPushService();
+	}
 }
