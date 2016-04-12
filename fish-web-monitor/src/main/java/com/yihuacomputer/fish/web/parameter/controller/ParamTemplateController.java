@@ -86,6 +86,11 @@ public class ParamTemplateController {
 	public @ResponseBody ModelMap add(@RequestBody ParamTemplateForm request) {
 		logger.info("add template");
 		ModelMap result = new ModelMap();
+		if(templateService.duplicateTemplateName(request.getName())){
+			result.put(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, "模板名称重复,请修改后重试");
+			return result;
+		}
 		request.setApplyFlag("0");
 		IParamTemplate template = templateService.add(translate(request));
 	
@@ -98,7 +103,6 @@ public class ParamTemplateController {
 			
 		}
 		
-		templateService.insertNewParam(template,System.currentTimeMillis());
 		result.put(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, new ParamTemplateForm(template));
 
