@@ -59,9 +59,7 @@ public class ParamTemplateService implements IParamTemplateService {
 
 	@Override
 	public IParamTemplate add(IParamTemplate template) {
-
 		return dao.save(template);
-
 	}
 
 	@Override
@@ -318,5 +316,16 @@ public class ParamTemplateService implements IParamTemplateService {
 		
 		dao.update(template);
 		
+	}
+
+	@Override
+	public boolean duplicateTemplateName(String templateName) {
+		Filter filter = new Filter();
+		filter.eq("name", templateName);
+		IParamTemplate template = dao.findUniqueByFilter(filter, IParamTemplate.class);
+		if(template!=null){
+			return true;
+		}
+		return false;
 	}
 }

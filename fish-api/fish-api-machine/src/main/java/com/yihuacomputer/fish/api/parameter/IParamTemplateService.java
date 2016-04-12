@@ -53,4 +53,6 @@ public interface IParamTemplateService {
 	
 	public IParamTemplateDetail getDetailByTemplateId(long templateId ,long elementId);
 	
+	public boolean duplicateTemplateName(String templateName);
+	
 }

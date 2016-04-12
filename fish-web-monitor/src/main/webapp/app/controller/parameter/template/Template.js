@@ -200,19 +200,20 @@ Ext.define('Eway.controller.parameter.template.Template',
 									
 									temp.save({
 										 success: function(ed) {
-											Eway.alert('新增成功');
+											Eway.alert('新增模板成功');
+											win.close();
+											this.onQueryAfterAdd();
 										 },
 										 failure: function(record,operation){
-											Eway.alert('新增失败');
+											Eway.alert('新增模板失败 '+operation.error);
 										 },
 										 
 										 scope : this
 									});
-										win.close();
+										
 								}else{
 									
 								}
-								
 						}
 						else{
 							var temp = Ext.create("Eway.model.parameter.template.TemplateDetail",{
