@@ -143,7 +143,7 @@ Ext.define('Eway.view.machine.device.Grid', {
 						return EwayLocale.machine.device.clickBank;
 					}
 				},
-				width : 80
+				width : 160
 			}, {
 				header : EwayLocale.machine.atmGroup.devServiceName,
 				dataIndex : 'devServiceName',
