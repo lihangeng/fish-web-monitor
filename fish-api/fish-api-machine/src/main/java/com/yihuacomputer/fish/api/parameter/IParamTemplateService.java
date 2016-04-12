@@ -22,13 +22,6 @@ public interface IParamTemplateService {
 	public IParamTemplate add(IParamTemplate template);
 	
 	public void update(IParamTemplate template);
-	
-	/**
-	 * 应用版本时更新或插入设备参数表
-	 * @param template
-	 * @param timeStamp
-	 */
-	public void insertNewParam(IParamTemplate template , long timeStamp);
 
 	public void remove(long id);
 
@@ -121,18 +114,6 @@ public interface IParamTemplateService {
 	 */
 	public boolean updateTemplateDetail(long templateId , Map<Long,String> newMap);
 	
-	/**
-	 * 更新设备参数表中参数版本
-	 * @param timeStamp
-	 * @param templateId
-	 */
-	public void updateTempDev(long timeStamp , long templateId);
-	
-	/**
-	 * 删除设备参数表无用参数
-	 * @param templateId
-	 */
-	public void removeTempDev(long templateId);
 	
 	/**
 	 * 根据模板id、元数据id获取模板详情
@@ -155,5 +136,8 @@ public interface IParamTemplateService {
 	 * @param templateId
 	 */
 	public void unlinkAllBeforeDelete(long templateId);
+	
+	
+	public void issueTemplate(IParamTemplate template ,long timeStamp);
 	
 }

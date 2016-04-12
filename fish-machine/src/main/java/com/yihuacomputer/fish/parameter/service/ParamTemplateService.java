@@ -247,64 +247,6 @@ public class ParamTemplateService implements IParamTemplateService {
 		dao.batchUpdate(hql, templateId);
 	}
 
-	@Override
-	public void updateTempDev(long timeStamp,long templateId) {
-		String hql = "update ParamDeviceDetail t set t.versionTimeStamp = ? where t.device.id in "
-				+ "(select t1.deviceId from ParamTemplateDeviceRelation t1 where t1.templateId = ?)"
-				+ "and t.paramValue <> (select t1.paramValue from ParamTemplateDetail t1 where t1.paramTemplate.id = ? and t1.paramElement.id = t.element.id)";
-		dao.batchUpdate(hql, timeStamp , templateId, templateId);
-	}
-
-	@Override
-	public void insertNewParam(IParamTemplate template , long timeStamp) {
-		
-		StringBuffer sql = new StringBuffer();
-		
-		
-		sql.append("SELECT T2.DEVICE_ID as deviceId,T1.ELEMENT_ID as elementId,T1.PARAM_VALUE as paramValue");
-		sql.append(" FROM PARAM_TEMPLATE_DETAIL T1, PARAM_TEMPLATE_DEVICE_RELATION T2,PARAM_ELEMENT T3 ");
-		sql.append("WHERE T1.TEMPLATE_ID = T2.TEMPLATE_ID  AND T3.ID = T1.ELEMENT_ID ");
-		sql.append("AND T3.PARAM_VALUE <> T1.PARAM_VALUE AND T1.TEMPLATE_ID ='");
-		sql.append(template.getId()+"'");
-		
-		SQLQuery query = dao.getSQLQuery(sql.toString());
-		query.addScalar("deviceId", StandardBasicTypes.LONG);
-		query.addScalar("elementId", StandardBasicTypes.LONG);
-		query.addScalar("paramValue", StandardBasicTypes.STRING);
-		
-		List<?> infos = query.list();
-		Filter filter = null;
-		for(Object object : infos){
-			Object[] objs = (Object[]) object;
-			filter = new Filter();
-			filter.eq("device.id", objs[0]);
-			filter.eq("element.id", objs[1]);
-			IParamDeviceDetail devDetail = dao.findUniqueByFilter(filter,IParamDeviceDetail.class);
-			if(devDetail != null&&(!devDetail.getParamValue().equals((String)objs[2]))){
-				devDetail.setParamValue((String)objs[2]);
-				devDetail.setVersionTimeStamp(timeStamp);
-				dao.update(devDetail);
-			}else if (devDetail == null){
-				devDetail = new ParamDeviceDetail();
-				devDetail.setDevice(dao.get((Long)objs[0], Device.class));
-				devDetail.setElement(dao.get((Long)objs[1], ParamElement.class));
-				devDetail.setParamValue((String)objs[2]);
-				devDetail.setVersionTimeStamp(timeStamp);
-				dao.save(devDetail);
-			}
-			
-		}
-		
-	}
-
-	@Override
-	public void removeTempDev(long templateId) {
-		
-		String hql = "delete from ParamDeviceDetail t1 where t1.element.id not in "
-				+ "(select t2.paramElement.id from ParamTemplateDetail t2 , ParamTemplateDeviceRelation t3 "
-				+ "where t2.paramTemplate.id = t3.templateId and t2.paramTemplate.id = ? group by t2.paramElement.id)";
-		dao.batchUpdate(hql, templateId);
-	}
 
 	@Override
 	public IParamTemplateDetail getDetailByTemplateId(long templateId, long elementId) {
@@ -346,4 +288,85 @@ public class ParamTemplateService implements IParamTemplateService {
 		dao.batchUpdate(hql, templateId);
 		
 	}
+
+	@Override
+	public void issueTemplate(IParamTemplate template, long timeStamp) {
+		insertNewParam(template , timeStamp);
+		
+		updateTempDev(timeStamp , template.getId());
+		
+		removeTempDev(template.getId());
+		
+	}
+	
+	/**
+	 * 更新设备参数表中参数版本
+	 * @param timeStamp
+	 * @param templateId
+	 */
+	public void updateTempDev(long timeStamp,long templateId) {
+		String hql = "update ParamDeviceDetail t set t.versionTimeStamp = ? where t.device.id in "
+				+ "(select t1.deviceId from ParamTemplateDeviceRelation t1 where t1.templateId = ?)"
+				+ "and t.paramValue <> (select t1.paramValue from ParamTemplateDetail t1 where t1.paramTemplate.id = ? and t1.paramElement.id = t.element.id)";
+		dao.batchUpdate(hql, timeStamp , templateId, templateId);
+	}
+
+	/**
+	 * 应用版本时更新或插入设备参数表
+	 * @param template
+	 * @param timeStamp
+	 */
+	public void insertNewParam(IParamTemplate template , long timeStamp) {
+		
+		StringBuffer sql = new StringBuffer();
+		
+		
+		sql.append("SELECT T2.DEVICE_ID as deviceId,T1.ELEMENT_ID as elementId,T1.PARAM_VALUE as paramValue");
+		sql.append(" FROM PARAM_TEMPLATE_DETAIL T1, PARAM_TEMPLATE_DEVICE_RELATION T2,PARAM_ELEMENT T3 ");
+		sql.append("WHERE T1.TEMPLATE_ID = T2.TEMPLATE_ID  AND T3.ID = T1.ELEMENT_ID ");
+		sql.append("AND T3.PARAM_VALUE <> T1.PARAM_VALUE AND T1.TEMPLATE_ID ='");
+		sql.append(template.getId()+"'");
+		
+		SQLQuery query = dao.getSQLQuery(sql.toString());
+		query.addScalar("deviceId", StandardBasicTypes.LONG);
+		query.addScalar("elementId", StandardBasicTypes.LONG);
+		query.addScalar("paramValue", StandardBasicTypes.STRING);
+		
+		List<?> infos = query.list();
+		Filter filter = null;
+		for(Object object : infos){
+			Object[] objs = (Object[]) object;
+			filter = new Filter();
+			filter.eq("device.id", objs[0]);
+			filter.eq("element.id", objs[1]);
+			IParamDeviceDetail devDetail = dao.findUniqueByFilter(filter,IParamDeviceDetail.class);
+			if(devDetail != null&&(!devDetail.getParamValue().equals((String)objs[2]))){
+				devDetail.setParamValue((String)objs[2]);
+				devDetail.setVersionTimeStamp(timeStamp);
+				dao.update(devDetail);
+			}else if (devDetail == null){
+				devDetail = new ParamDeviceDetail();
+				devDetail.setDevice(dao.get((Long)objs[0], Device.class));
+				devDetail.setElement(dao.get((Long)objs[1], ParamElement.class));
+				devDetail.setParamValue((String)objs[2]);
+				devDetail.setVersionTimeStamp(timeStamp);
+				dao.save(devDetail);
+			}
+			
+		}
+		
+	}
+
+	/**
+	 * 删除设备参数表无用参数
+	 * @param templateId
+	 */
+	public void removeTempDev(long templateId) {
+		
+		String hql = "delete from ParamDeviceDetail t1 where t1.element.id not in "
+				+ "(select t2.paramElement.id from ParamTemplateDetail t2 , ParamTemplateDeviceRelation t3 "
+				+ "where t2.paramTemplate.id = t3.templateId and t2.paramTemplate.id = ? group by t2.paramElement.id)";
+		dao.batchUpdate(hql, templateId);
+	}
+	
 }

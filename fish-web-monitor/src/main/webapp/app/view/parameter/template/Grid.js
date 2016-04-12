@@ -71,9 +71,9 @@ Ext.define('Eway.view.parameter.template.Grid', {
 				flex : 1,
 				renderer: function(value,metadata,record){
 					if(value == 0){
-		                	 return '未下发';
+		                	 return '未应用';
 		             }else if(value == 1){
-		                	   return '已经下发';
+		                	   return '已应用';
 		             }
 				}
 			},{

@@ -361,12 +361,8 @@ public class ParamTemplateController {
 		try {
 			
 			IParamTemplate template = templateService.get(templateId);
-		
-			templateService.insertNewParam(template , timeStamp);
-		
-			templateService.updateTempDev(timeStamp , templateId);
 			
-			templateService.removeTempDev(templateId);
+			templateService.issueTemplate(template, timeStamp);
 			
 			template.setApplyFlag("1");
 			templateService.update(template);

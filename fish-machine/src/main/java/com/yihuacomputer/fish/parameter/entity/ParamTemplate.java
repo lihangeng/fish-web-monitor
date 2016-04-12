@@ -39,9 +39,6 @@ public class ParamTemplate implements IParamTemplate, Serializable {
 	@Column(name = "APPLY_FLAG", length = 1)
 	private String applyFlag;
 	
-	@Column(name = "VERSION_TIMESTAMP")
-	private long versionTimeStamp;
-
 
 	public ParamTemplate() {
 
@@ -88,15 +85,4 @@ public class ParamTemplate implements IParamTemplate, Serializable {
 		return this.applyFlag;
 	}
 	
-	@Override
-	public long getVersionTimeStamp() {
-		return versionTimeStamp;
-	}
-
-	@Override
-	public void setVersionTimeStamp(long versionTimeStamp) {
-		this.versionTimeStamp = versionTimeStamp;
-	}
-
-
 }
