@@ -98,7 +98,7 @@ public class ParamTemplateController {
 			
 		}
 		
-		templateService.insertNewParam(template,System.currentTimeMillis());
+//		templateService.insertNewParam(template,System.currentTimeMillis());
 		result.put(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, new ParamTemplateForm(template));
 

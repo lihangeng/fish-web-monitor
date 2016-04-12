@@ -83,8 +83,8 @@ public class ParamElementService implements IParamElementService {
 	@Override
 	public List<IParamElement> getValue() {
 		StringBuffer hql= new StringBuffer();
-		hql.append("select paramValue,paramBelongs from ParamElement");
-		List<IParamElement> result = dao.findUniqueByHql(hql.toString());
+		hql.append("select t from ParamElement t");
+		List<IParamElement> result = dao.findByHQL(hql.toString());
 		return result;
 	}
 
