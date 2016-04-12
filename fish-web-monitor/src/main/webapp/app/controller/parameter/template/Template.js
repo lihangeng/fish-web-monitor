@@ -113,7 +113,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 								paramGrid = this.getParamGrid();
 								addedParamGrid = this.getAddedParamGrid();
 								flag = '0';
-						}
+							}
 							
 						}
 						
@@ -145,20 +145,6 @@ Ext.define('Eway.controller.parameter.template.Template',
 										});
 
 						win.show();
-					},
-					
-					generateTemplateDetail : function(tempRess,store){
-						for(var i = 0; i < store.getCount(); i++){
-							
-							var record = store.getAt(i);
-							var tempDetail = Ext.create("Eway.model.parameter.template.TemplateDetailList",{
-									elementId: record.data.id,
-									paramName:record.data.paramName,
-									paramValue:record.data.paramValue
-								});
-							
-							tempRess.push(tempDetail);
-						}
 					},
 					
 					onAddUpdateConfirm: function(win,action,templateId) {
@@ -202,7 +188,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 										 success: function(ed) {
 											Eway.alert('新增模板成功');
 											win.close();
-											this.onQueryAfterAdd();
+											this.onQueryAfterOperate();
 										 },
 										 failure: function(record,operation){
 											Eway.alert('新增模板失败 '+operation.error);
@@ -237,6 +223,20 @@ Ext.define('Eway.controller.parameter.template.Template',
 						
 						
 					},
+					
+					generateTemplateDetail : function(tempRess,store){
+						for(var i = 0; i < store.getCount(); i++){
+							
+							var record = store.getAt(i);
+							var tempDetail = Ext.create("Eway.model.parameter.template.TemplateDetailList",{
+									elementId: record.data.id,
+									paramName:record.data.paramName,
+									paramValue:record.data.paramValue
+								});
+							
+							tempRess.push(tempDetail);
+						}
+					},
 
 					onApply :function(){
 						var grid = this.getTemplateGrid();
@@ -254,12 +254,15 @@ Ext.define('Eway.controller.parameter.template.Template',
 									var object = Ext.decode(response.responseText);
 									if (object.success == true) {
 										Eway.alert('应用模板成功');
+										this.onQueryAfterOperate();
 									} else {
 										Eway.alert('应用模板失败');
+										this.onQueryAfterOperate();
 									}
 								},
 								failure : function() {
-									Eway.alert('应用模板失败');
+										Eway.alert('应用模板失败');
+										this.onQueryAfterOperate();
 								},
 								scope : this
 							});
@@ -269,7 +272,6 @@ Ext.define('Eway.controller.parameter.template.Template',
 						}
 					},
 					
-
 					onGroupLink : function() {
 						var grid = this.getTemplateGrid();
 						var sm = grid.getSelectionModel();
@@ -487,5 +489,11 @@ Ext.define('Eway.controller.parameter.template.Template',
 							array[i] = record[i].get('id');
 						}
 						return array;
+					},
+					
+					onQueryAfterOperate : function(){
+						var store = this.getGridPanel().getStore();
+						store.setUrlParamsByObject();
+						store.loadPage(1);
 					}
 				});

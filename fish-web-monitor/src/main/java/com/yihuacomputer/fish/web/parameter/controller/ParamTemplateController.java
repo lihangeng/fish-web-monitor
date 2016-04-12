@@ -44,6 +44,10 @@ import com.yihuacomputer.fish.web.parameter.form.ParamTempDetailForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamTemplateForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
+/**
+ * @author panxin
+ *
+ */
 @Controller
 @RequestMapping("/parameter/template")
 public class ParamTemplateController {
@@ -122,6 +126,12 @@ public class ParamTemplateController {
 		return result;
 	}
 
+	/**
+	 * 更新模板详情
+	 * @param form
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value = "/{templateDetail}", method = RequestMethod.POST)
 	@ResponseBody
 	public ModelMap updateTemplateDetail(@RequestBody ParamTempDetailForm form , HttpServletRequest request) {
@@ -233,7 +243,6 @@ public class ParamTemplateController {
 
 	/**
 	 * 建立关联关系：
-	 *
 	 * @param request
 	 * @return
 	 */
@@ -367,7 +376,7 @@ public class ParamTemplateController {
 			
 			logger.info(ex.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "添加异常");
+			result.addAttribute(FishConstant.ERROR_MSG, "应用模板失败");
 			
 		}
 
