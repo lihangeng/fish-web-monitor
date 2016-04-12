@@ -67,9 +67,6 @@ Ext.define('Eway.controller.parameter.element.Element', {
 				if(newValue==1){
 					return paramValue.regex=/(^[0-9]*$)/,paramValue.regexText='只能输入整型数据';
 				}
-				if(newValue==2){
-					return paramValue.regex=/(^[a-zA-Z]*$)/,paramValue.regexText='只能输入字符串型数据';
-				}
 				if(newValue==3){
 					return paramValue.regex=/(true|false)/,paramValue.regexText='只能输入布尔型数据';
 				}
