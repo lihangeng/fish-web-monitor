@@ -16,10 +16,10 @@ public interface IParamTemplateService {
 	public IParamTemplate get(String name);
 
 	public IParamTemplate add(IParamTemplate template);
+	
+	public void insertNewParam(IParamTemplate template , long timeStamp);
 
 	public void remove(long id);
-
-	public void update(IParamTemplate template);
 
 	public IPageResult<IParamTemplate> page(int offset,int limit,IFilter filter);
 	
@@ -29,13 +29,12 @@ public interface IParamTemplateService {
 	
 	public List<IDevice> listDeviceByTemplate(IParamTemplate template);
 	
-	
-	public void link(IParamTemplate template, IDevice device);
-	
+	public void link(IParamTemplate template, IDevice device,long timeStamp);
 	
 	public void unlink(IParamTemplate template, IDevice device);
 	
-
+	public void unlinkAll(long templateId);
+	
 	public List<IParamElement> listParam(long templateId, long flag) ;
 	
 	public void unlinkTempParam(IParamTemplate  template, IParamElement emlement);
@@ -46,6 +45,10 @@ public interface IParamTemplateService {
 	
 	public boolean updateTemplateDetail(long templateId , Map<Long,String> newMap);
 	
-	public boolean coverDeviceParam(long templateId);
+	public void updateTempDev(long timeStamp , long templateId);
+	
+	public void removeTempDev(long templateId);
+	
+	public IParamTemplateDetail getDetailByTemplateId(long templateId ,long elementId);
 	
 }
