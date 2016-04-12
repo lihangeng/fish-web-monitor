@@ -94,7 +94,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			    failure:function(){
 					Eway.alert(EwayLocale.version.taskStatus.taskResetFailTips);
 			    }
-			    
+
 			});
 		}
 		else{
@@ -211,7 +211,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		var autoRefreshButton = jobDetailPanel.down("button[action=autoRefresh]");
 		Ext.Function.defer(this.onAutoRefresh,500,this,[autoRefreshButton]);
 	},
-	
+
 	autoJobDetail:function(jobId){
 		var me =this;
 		var tabpanel = this.getEwayView().down("tabpanel");
@@ -234,11 +234,11 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		    }
 		});
 	},
-	
-	
+
+
 	//---------------------------------------------------------
-	
-	
+
+
 	//选中第一条记录
 	onSelectFirst : function(grid){
 		if(grid.getStore().getCount() > 0){
@@ -261,9 +261,9 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			this.currentTask = null;
 		}
 	},
-	
 
-	
+
+
 	//暂停一个作业
 	onCancelBatch: function(){
 		var grid = this.getTaskGrid();
@@ -311,11 +311,11 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		this.setTaskSearchFilter(jobId);
 		grid.getStore().loadPage(1);
 	},
-	
+
 	getActiveTask:function(){
 		return this.getEwayView().down("tabpanel").getActiveTab();
 	},
-	
+
 	onAutoRefresh : function(btn,e,options){
 		var grid = this.getActiveTask()
 		var jobId = grid.getConfig().jobId;
