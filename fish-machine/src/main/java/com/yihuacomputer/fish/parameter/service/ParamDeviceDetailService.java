@@ -1,17 +1,23 @@
 package com.yihuacomputer.fish.parameter.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.SQLQuery;
+import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.parameter.DeviceParam;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
+import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.parameter.entity.ParamDeviceDetail;
+import com.yihuacomputer.fish.parameter.entity.ParamElement;
 
 @Service
 @Transactional
@@ -30,22 +36,39 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 		dao.update(paramDeviceDetail);
 	}
 
+	@SuppressWarnings({ "unchecked" })
 	@Override
 	public List<DeviceParam> list(IFilter filter, long tabId, long deviceId) {
-		StringBuffer hql= new StringBuffer();
-		hql.append("select pdd.id,pc.id,pc.name, pe.paramName ,pe.paramValue ,pdd.paramValue ");
-		hql.append("FROM ParamClassify pc INNER JOIN ParamElement pe on pc.id = pe.paramClassify.id ");
-		hql.append("LEFT JOIN ParamDeviceDetail pdd on pe.id = pdd.element.id ");
+		StringBuffer sql= new StringBuffer();
+		
+		sql.append("select pdd.id ppdid,pc.id pcid,pc.name, pe.PARAM_NAME ,pe.PARAM_VALUE pevalue,pdd.PARAM_VALUE  pddvalue ");
+		sql.append("FROM PARAM_CLASSIFY pc inner join param_element pe on pc.id = pe.PARAM_CLASSIFY ");
+		sql.append("left join param_device_detail pdd on pe.id = pdd.ELEMENT_ID ");
 		Object paramName=filter.getValue("paramName");
 		if(paramName != null){
-			hql.append("and pe.paramName = '").append(String.valueOf(paramName)).append("' ");
+			sql.append("and pe.PARAM_NAME = '").append(String.valueOf(paramName)).append("' ");
 		}
 		Object paramClassifyId = filter.getValue("ClassifyId");
 		if(paramClassifyId !=null){
-			hql.append("and pe.paramClassify.id = '").append(String.valueOf(paramClassifyId)).append("' ");
+			sql.append("and pe.PARAM_CLASSIFY = '").append(String.valueOf(paramClassifyId)).append("' ");
 		}
-		hql.append("AND pe.paramBelongs.id = ? AND pdd.device.id = ? ");
-		List<DeviceParam> resultList=dao.findByHQL(hql.toString(), Long.valueOf(tabId),Long.valueOf(deviceId));
+		sql.append("AND pe.PARAM_BELONGS = '").append(tabId+"'");
+		sql.append(" AND pdd.DEVICE_ID = '").append(deviceId+"'");
+		SQLQuery query = dao.getSQLQuery(sql.toString());
+		List<Object> infos = query.list();
+		List<DeviceParam> resultList=new ArrayList<DeviceParam>();
+		for(Object object : infos){
+			Object[] objs = (Object[]) object;
+			DeviceParam dp=new DeviceParam();
+			dp.setId(Long.parseLong(objs[0]==null?"0":String.valueOf(objs[0])));
+			dp.setParamClassifyId(Long.parseLong(objs[1]==null?"0":String.valueOf(objs[1])));
+			dp.setParamClassify(objs[2]==null?"":String.valueOf(objs[2]));
+			dp.setParamName(objs[3]==null?"":String.valueOf(objs[3]));
+			dp.setElementParamValue(objs[4]==null?"":String.valueOf(objs[4]));
+			dp.setParamValue(objs[5]==null?"":String.valueOf(objs[5]));
+			resultList.add(dp);
+		}
+		
 		return resultList;
 	}
 
@@ -73,25 +96,43 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 		}
 	}
 
+	@SuppressWarnings({ "unchecked" })
 	@Override
 	public List<DeviceParam> paramList(IFilter filter, long tabId, long deviceId) {
-		StringBuffer hql=new StringBuffer();
-		hql.append("SELECT device.id,classify.ID,classify.name,elemet.id,element.paramName,element.paramValue,detail.paramValue,device.paramValue ");
-		hql.append("from ParamClassify classify INNER JOIN ParamElement element ON classify.ID=element.paramClassify.id ");
-		hql.append("INNER JOIN ParamTemplateDetail detail on element.id= detail.paramElement.id ");
-		hql.append("LEFT JOIN ParamDeviceDetail device on detail.paramElement.id=device.element.id ");
+		StringBuffer sql=new StringBuffer();
+		sql.append("SELECT device.id pddid,classify.id pcid,classify.name,element.id peid,element.param_Name,element.param_Value peValue,detail.param_Value templateValue,device.param_Value deviceValue ");
+		sql.append("from param_classify classify join param_element element on classify.ID=element.PARAM_CLASSIFY ");
+		sql.append("join param_template_detail detail on element.id= detail.ELEMENT_ID ");
+		sql.append("left join param_device_detail device on detail.ELEMENT_ID=device.ELEMENT_ID  ");
 		
 		Object paramName=filter.getValue("paramName");
 		if(paramName != null){
-			hql.append("and element.paramName = '").append(String.valueOf(paramName)).append("' ");
+			sql.append("and element.param_Name = '").append(String.valueOf(paramName)).append("' ");
 		}
 		Object paramClassifyId = filter.getValue("ClassifyId");
 		if(paramClassifyId !=null){
-			hql.append("and element.paramClassify.id = '").append(String.valueOf(paramClassifyId)).append("' ");
+			sql.append("and element.PARAM_CLASSIFY = '").append(String.valueOf(paramClassifyId)).append("' ");
 		}
-		hql.append("AND element.paramBelongs.id = ? AND device.device.id = ? ");
-		hql.append(" group by element.paramName");
-		List<DeviceParam> resultList=dao.findByHQL(hql.toString(), Long.valueOf(tabId),Long.valueOf(deviceId));
+		sql.append("AND element.PARAM_BELONGS = '").append(tabId+"'");
+		sql.append(" AND device.DEVICE_ID = '").append(deviceId+"'");
+		sql.append(" group by element.param_Name");
+		SQLQuery query = dao.getSQLQuery(sql.toString());
+		List<Object> infos = query.list();
+		List<DeviceParam> resultList=new ArrayList<DeviceParam>();
+		for(Object object : infos){
+			Object[] objs = (Object[]) object;
+			DeviceParam dp=new DeviceParam();
+			dp.setId(Long.valueOf(objs[0]==null?"0":String.valueOf(objs[0])));
+			dp.setParamClassifyId(Long.parseLong(objs[1]==null?"0":String.valueOf(objs[1])));
+			dp.setParamClassify(objs[2]==null?"":String.valueOf(objs[2]));
+			dp.setElementId(Long.parseLong(objs[3]==null?"0":String.valueOf(objs[3])));
+			dp.setParamName(objs[4]==null?"":String.valueOf(objs[4]));
+			dp.setElementParamValue(objs[5]==null?"":String.valueOf(objs[5]));
+			dp.setTemplateParamValue(objs[6]==null?"":String.valueOf(objs[6]));
+			dp.setParamValue(objs[7]==null?"":String.valueOf(objs[7]));
+			resultList.add(dp);
+		}
+		
 		return resultList;
 	}
 
