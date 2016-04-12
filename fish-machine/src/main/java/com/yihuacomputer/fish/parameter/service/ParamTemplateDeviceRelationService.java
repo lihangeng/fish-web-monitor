@@ -26,7 +26,7 @@ public class ParamTemplateDeviceRelationService implements IParamTemplateDeviceR
 	@Override
 	public List<IParamTemplateDeviceRelation> getByDeviceId(long deviceId) {
 		StringBuffer hql=new StringBuffer();
-		hql.append("select ptdr from ParamTemplateDeviceRelation ptdr");
+		hql.append("select ptdr from ParamTemplateDeviceRelation ptdr ");
 		hql.append("where ptdr.deviceId = ?");
 		List<IParamTemplateDeviceRelation> realtionList=dao.findByHQL(hql.toString(), deviceId);
 		return realtionList;
