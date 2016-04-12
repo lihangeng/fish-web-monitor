@@ -33,9 +33,9 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 	@Override
 	public List<DeviceParam> list(IFilter filter, long tabId, long deviceId) {
 		StringBuffer hql= new StringBuffer();
-		hql.append("select pdd.id,pc.id,pc.name, pe.paramName ,pdd.paramValue ");
-		hql.append("FROM ParamElement pe,ParamClassify pc,ParamDeviceDetail pdd ");
-		hql.append("WHERE pe.paramClassify.id=pc.id AND pe.id = pdd.element.id ");
+		hql.append("select pdd.id,pc.id,pc.name, pe.paramName ,pe.paramValue ,pdd.paramValue ");
+		hql.append("FROM ParamClassify pc INNER JOIN ParamElement pe on pc.id = pe.paramClassify.id ");
+		hql.append("LEFT JOIN ParamDeviceDetail pdd on pe.id = pdd.element.id ");
 		Object paramName=filter.getValue("paramName");
 		if(paramName != null){
 			hql.append("and pe.paramName = '").append(String.valueOf(paramName)).append("' ");
@@ -71,6 +71,28 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 		}else{
 			return resultList;
 		}
+	}
+
+	@Override
+	public List<DeviceParam> paramList(IFilter filter, long tabId, long deviceId) {
+		StringBuffer hql=new StringBuffer();
+		hql.append("SELECT device.id,classify.ID,classify.name,elemet.id,element.paramName,element.paramValue,detail.paramValue,device.paramValue ");
+		hql.append("from ParamClassify classify INNER JOIN ParamElement element ON classify.ID=element.paramClassify.id ");
+		hql.append("INNER JOIN ParamTemplateDetail detail on element.id= detail.paramElement.id ");
+		hql.append("LEFT JOIN ParamDeviceDetail device on detail.paramElement.id=device.element.id ");
+		
+		Object paramName=filter.getValue("paramName");
+		if(paramName != null){
+			hql.append("and element.paramName = '").append(String.valueOf(paramName)).append("' ");
+		}
+		Object paramClassifyId = filter.getValue("ClassifyId");
+		if(paramClassifyId !=null){
+			hql.append("and element.paramClassify.id = '").append(String.valueOf(paramClassifyId)).append("' ");
+		}
+		hql.append("AND element.paramBelongs.id = ? AND device.device.id = ? ");
+		hql.append(" group by element.paramName");
+		List<DeviceParam> resultList=dao.findByHQL(hql.toString(), Long.valueOf(tabId),Long.valueOf(deviceId));
+		return resultList;
 	}
 
 }
