@@ -19,7 +19,7 @@ Ext.define('Eway.view.parameter.appSystem.Grid',{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text:EwayLocale.button.add,
+				text:EwayLocale.button.update,
 				action :'update',
 				glyph : 0xf040,
 				code : 'appSystemUpdate',
