@@ -95,11 +95,17 @@ public class ParamClassifyController {
 			result.addAttribute(FishConstant.ERROR_MSG, "默认分类无法更改。");
 			return result;
 		}
-		translate(classify,request);
-		classify.setId(id);
-		classifyService.update(classify);
-		result.addAttribute(FishConstant.SUCCESS, true);
-		result.addAttribute(FishConstant.DATA, request);
+		boolean isExist = this.isExistClassifyName(request.getId(), request.getName());
+		if(isExist){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, "分类名称已存在。");
+		} else {
+			translate(classify,request);
+			classify.setId(id);
+			classifyService.update(classify);
+			result.addAttribute(FishConstant.SUCCESS, true);
+			result.addAttribute(FishConstant.DATA, request);
+		}
 		return result;
 	}
 
