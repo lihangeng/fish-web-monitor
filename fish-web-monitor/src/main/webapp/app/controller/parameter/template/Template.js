@@ -263,6 +263,9 @@ Ext.define('Eway.controller.parameter.template.Template',
 								scope : this
 							});
 						}
+						else {
+								Eway.alert(EwayLocale.tip.bankPer.link.linkBankPerson);
+						}
 					},
 					
 
