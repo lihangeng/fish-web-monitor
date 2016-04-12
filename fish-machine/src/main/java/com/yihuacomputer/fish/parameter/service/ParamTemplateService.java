@@ -299,4 +299,11 @@ public class ParamTemplateService implements IParamTemplateService {
 
 		return dao.findUniqueByFilter(filter,IParamTemplateDetail.class);
 	}
+
+	@Override
+	public void update(IParamTemplate template) {
+		
+		dao.update(template);
+		
+	}
 }

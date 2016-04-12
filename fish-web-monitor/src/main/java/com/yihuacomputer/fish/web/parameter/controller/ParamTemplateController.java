@@ -354,6 +354,9 @@ public class ParamTemplateController {
 			
 			templateService.removeTempDev(templateId);
 			
+			template.setApplyFlag("1");
+			templateService.update(template);
+			
 			result.put(FishConstant.SUCCESS, true);
 		
 		}catch(Exception ex){

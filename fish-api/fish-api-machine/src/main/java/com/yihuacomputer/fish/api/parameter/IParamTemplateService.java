@@ -17,6 +17,8 @@ public interface IParamTemplateService {
 
 	public IParamTemplate add(IParamTemplate template);
 	
+	public void update(IParamTemplate template);
+	
 	public void insertNewParam(IParamTemplate template , long timeStamp);
 
 	public void remove(long id);
