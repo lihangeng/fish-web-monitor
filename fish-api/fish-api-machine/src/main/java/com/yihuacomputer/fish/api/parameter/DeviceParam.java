@@ -1,5 +1,14 @@
 package com.yihuacomputer.fish.api.parameter;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.yihuacomputer.common.jackson.JsonUtils;
+
 public class DeviceParam {
 	
 	private long id;
@@ -8,9 +17,17 @@ public class DeviceParam {
 	
 	private String paramClassify;
 	
+	private long elementId;
+	
 	private String paramName;
 
+	private String elementParamValue;
+	
+	private String templateParamValue;
+	
 	private String paramValue;
+	
+	private String data;
 
 	public long getId() {
 		return id;
@@ -50,5 +67,52 @@ public class DeviceParam {
 
 	public void setParamValue(String paramValue) {
 		this.paramValue = paramValue;
+	}
+
+	public long getElementId() {
+		return elementId;
+	}
+
+	public void setElementId(long elementId) {
+		this.elementId = elementId;
+	}
+
+	public String getElementParamValue() {
+		return elementParamValue;
+	}
+
+	public void setElementParamValue(String elementParamValue) {
+		this.elementParamValue = elementParamValue;
+	}
+
+	public String getTemplateParamValue() {
+		return templateParamValue;
+	}
+
+	public void setTemplateParamValue(String templateParamValue) {
+		this.templateParamValue = templateParamValue;
+	}
+	
+	public List<DeviceParam> getDeviceParam() {
+		List<DeviceParam> tempDetailForm = new ArrayList<DeviceParam>();
+		if (StringUtils.isNotEmpty(this.data)) {
+			try {
+				JsonUtils.om.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES,
+						true);
+				tempDetailForm = JsonUtils.om.readValue(this.data,
+						new TypeReference<List<DeviceParam>>() {
+						});
+			} catch (Exception e) {
+			}
+		}
+		return tempDetailForm;
+	}
+
+	public String getData() {
+		return data;
+	}
+
+	public void setData(String data) {
+		this.data = data;
 	}
 }

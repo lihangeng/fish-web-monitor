@@ -37,6 +37,8 @@ Ext.define('Eway.view.parameter.element.Form',{
 				xtype : 'field_paramElement_ParamValue',
 				maxLength : 40,
 				allowBlank: false,
+				regex:/(^[a-zA-Z]*$)/,
+				regexText:'只能输入字符串型数据'
 		    },{
 				xtype : 'field_paramElement_ParamType',
 				maxLength : 10,

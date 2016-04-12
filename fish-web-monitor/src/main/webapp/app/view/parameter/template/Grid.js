@@ -66,7 +66,7 @@ Ext.define('Eway.view.parameter.template.Grid', {
 				dataIndex : 'name',
 				flex : 1
 			},{
-				header : '是否已经下发',
+				header : '状态',
 				dataIndex : 'applyFlag',
 				flex : 1,
 				renderer: function(value,metadata,record){

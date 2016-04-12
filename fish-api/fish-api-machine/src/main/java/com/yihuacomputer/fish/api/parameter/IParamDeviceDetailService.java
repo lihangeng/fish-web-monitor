@@ -21,4 +21,12 @@ public interface IParamDeviceDetailService {
 	 * @return
 	 */
 	List<IParamDeviceDetail> getVersionTimeStampData(long id, long timestamp);
+	/**
+	 * 根据模板和设备详情获取参数
+	 * @param filter
+	 * @param tabId
+	 * @param deviceId
+	 * @return
+	 */
+	List<DeviceParam> paramList(IFilter filter ,long tabId, long deviceId);
 }
