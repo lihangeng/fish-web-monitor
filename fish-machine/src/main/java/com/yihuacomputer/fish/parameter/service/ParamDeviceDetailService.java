@@ -4,20 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.SQLQuery;
-import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
-import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.parameter.DeviceParam;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
-import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.parameter.entity.ParamDeviceDetail;
-import com.yihuacomputer.fish.parameter.entity.ParamElement;
 
 @Service
 @Transactional
@@ -137,4 +133,13 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 		return resultList;
 	}
 
+	@Override
+	public IParamDeviceDetail make() {
+		return new ParamDeviceDetail();
+	}
+
+	@Override
+	public IParamDeviceDetail add(IParamDeviceDetail paramDeviceDetail) {
+		return dao.save(paramDeviceDetail);
+	}
 }

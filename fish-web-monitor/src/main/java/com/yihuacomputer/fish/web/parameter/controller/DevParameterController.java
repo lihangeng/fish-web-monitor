@@ -1,6 +1,8 @@
 package com.yihuacomputer.fish.web.parameter.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -12,12 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -30,7 +35,11 @@ import com.yihuacomputer.fish.api.parameter.IAppSystem;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamClassify;
 import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
+import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
+import com.yihuacomputer.fish.api.parameter.IParamElementService;
+import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelation;
+import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.parameter.form.AppSystemForm;
@@ -60,6 +69,12 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 	
 	@Autowired
 	private IParamDeviceDetailService paramDeviceDetailService;
+	
+	@Autowired
+	private IParamTemplateDeviceRelationService paramTemplateDeviceRelationService;
+	
+	@Autowired
+	private IParamElementService paramElementService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,@RequestParam int limit,HttpServletRequest request,WebRequest webRequest){
@@ -146,6 +161,7 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 		ModelMap result=new ModelMap();
 		IFilter filter = paramfilter(webRequest);
 		long deviceId=1l;
+		List<DeviceParam> pageResult = null;
 		if(null!=request.getParameter("deviceId")&&!request.getParameter("deviceId").isEmpty()){
 			deviceId=Long.parseLong(request.getParameter("deviceId"));
 		}else{
@@ -157,7 +173,23 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 		}else{
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
-		List<DeviceParam> pageResult=paramDeviceDetailService.list(filter, tabId, deviceId);
+		List<IParamTemplateDeviceRelation> relationList=paramTemplateDeviceRelationService.getByDeviceId(deviceId);
+		if(relationList.isEmpty()){
+			pageResult=paramDeviceDetailService.list(filter, tabId, deviceId);
+			for(DeviceParam deviceParam:pageResult){
+				if(deviceParam.getParamValue().isEmpty() || deviceParam.getParamValue()==null){
+					deviceParam.setParamValue(deviceParam.getElementParamValue());
+				}
+			}
+		}else{
+			pageResult=paramDeviceDetailService.paramList(filter, tabId, deviceId);
+			for(DeviceParam deviceParam:pageResult){
+				if(deviceParam.getParamValue().isEmpty() || deviceParam.getParamValue()==null){
+					deviceParam.setParamValue(deviceParam.getTemplateParamValue());
+				}
+			}
+		}
+		
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.size());
 		result.addAttribute(FishConstant.DATA,pageResult);
@@ -213,5 +245,40 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 
 	return lists;
 	}
+	
+	/**@PathVariable long id,
+	 * 更改设备参数
+	 */
+	@RequestMapping(value="/paramInfo/{id}",method=RequestMethod.PUT)
+	public @ResponseBody
+	ModelMap update(@PathVariable long id,@RequestBody DeviceParam paramForm,HttpServletRequest request){
+		logger.info("update device's parameter deviceId="+id);
+		ModelMap result=new ModelMap();
+		List<DeviceParam> paramList=paramForm.getDeviceParam();
+		if(paramList==null){
+			result.addAttribute(FishConstant.SUCCESS,false);
+			result.addAttribute(FishConstant.ERROR_MSG,messageSource.getMessage("parameter.updateNotExist", null, FishCfg.locale));
+		}else{
+				for(int i=0;i<paramList.size();i++){
+					long detailid=paramList.get(i).getId();
+					IParamDeviceDetail deviceDetail=paramDeviceDetailService.get(Long.valueOf(detailid));
+					if(deviceDetail != null){
+						deviceDetail.setParamValue(paramList.get(i).getParamValue());
+						paramDeviceDetailService.update(deviceDetail);
+					}else{
+						IParamDeviceDetail pdd=paramDeviceDetailService.make();
+						pdd.setDevice(deviceService.get(id));
+						pdd.setElement(paramElementService.get(paramList.get(i).getElementId()));
+						pdd.setParamValue(paramList.get(i).getParamValue());
+						String dateStr=new SimpleDateFormat("yyMMddHHmmssSSS").format(new Date());
+						pdd.setVersionTimeStamp(Long.valueOf(dateStr));
+						paramDeviceDetailService.add(pdd);
+					}
+				}
+				result.addAttribute(FishConstant.SUCCESS, true);
+			}
+		return result;
+	}
+	
 	
 }
