@@ -20,12 +20,12 @@ Ext.define('Eway.view.parameter.appSystem.Update',{
 					allowBlank:false,
 					maxLength : 80
 				},{
-					fieldLabel:EwayLocale.param.application.configurePath,
+					fieldLabel:EwayLocale.param.application.configureForm,
 					xtype:'field_appSystem_fileFormat',
 					allowBlank:false,
 					store:format
 				},{
-					fieldLabel:EwayLocale.param.application.configureForm,
+					fieldLabel:EwayLocale.param.application.configurePath,
 					xtype:'textfield',
 					allowBlank:false,
 					name:'configPath',
