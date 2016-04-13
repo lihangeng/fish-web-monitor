@@ -4,7 +4,7 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 	
 	requires: ['Eway.view.parameter.template.ParamGrid','Eway.view.parameter.template.AddedParamGrid'],
 	
-	title:'修改',
+	title:'修改参数模板',
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -35,10 +35,21 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 						xtype : 'param_paramGrid',
 						autoLoadStore : true
 					}, {
-						title : '已添加的参数',
+						title : '已添加的参数(可编辑的元数据可以直接修改)',
 						width : 400,
 						height: 350,
 						xtype : 'param_addedParamGrid',
+						listeners:{
+							        beforeedit:function(o){
+									var grid = o.grid;
+									var sm = grid.getSelectionModel();
+									var record = sm.getLastSelected();
+									var paramRights = record.data.paramRights;
+							            if( paramRights =='2'){
+							                return false;
+							            }
+							        }
+							    },
 						autoLoadStore : true
 					} ]
 				} ],

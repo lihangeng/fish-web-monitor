@@ -33,7 +33,7 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 				header : '参数值',
 				dataIndex : 'paramValue',
 				flex : 1,
-				editable : true,
+//				editable : true,
 				editor:new Ext.form.TextField({  
 	                allowBlank:false
 	            })
