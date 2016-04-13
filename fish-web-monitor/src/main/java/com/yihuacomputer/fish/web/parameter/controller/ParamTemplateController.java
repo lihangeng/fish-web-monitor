@@ -311,7 +311,7 @@ public class ParamTemplateController {
 			result.addAttribute(FishConstant.DATA,convert(elements));
 		}else {
 			List<IParamElement> list = null;
-			list = (List<IParamElement>) paramElementService.list();
+			list =  paramElementService.list();
 			list.removeAll(templateService.listParam(id,flag));
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, convert(list));
@@ -334,7 +334,7 @@ public class ParamTemplateController {
 			result.addAttribute(FishConstant.SUCCESS, false);
 		} else if(flag == 0){
 			List<IParamElement> list = null;
-			list = (List<IParamElement>) paramElementService.list();
+			list =  paramElementService.list();
 			list.removeAll(templateService.listParam(id,flag));
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, convert(list));

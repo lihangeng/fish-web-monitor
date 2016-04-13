@@ -13,6 +13,7 @@ public interface IParamDeviceDetailService {
 
 	Iterable<IParamDeviceDetail> list();
 
+	List<IParamDeviceDetail> list(IFilter filter);
 	/**
 	 * 获取同设备id下的最大版本号的数据
 	 * 

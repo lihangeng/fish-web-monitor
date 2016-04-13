@@ -63,7 +63,7 @@ public class ParamElementService implements IParamElementService {
 	}
 
 	@Override
-	public Iterable<IParamElement> list() {
+	public List<IParamElement> list() {
 
 		return dao.loadAll(IParamElement.class);
 	}

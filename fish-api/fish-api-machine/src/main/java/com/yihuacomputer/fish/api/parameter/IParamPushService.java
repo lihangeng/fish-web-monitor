@@ -11,13 +11,13 @@ public interface IParamPushService {
 	 * @param templateId
 	 * @return
 	 */
-	boolean generateParamFileByTemplate(long templateId);
+	long generateParamFileByTemplate(long templateId);
 	/**
 	 * 根据设备号生成参数文件
 	 * @param deviceId
 	 * @return
 	 */
-	boolean generateParamFileByDevice(long deviceId);
+	long generateParamFileByDevice(long deviceId);
 	
 	/**
 	 * 模板参数下发

@@ -18,7 +18,7 @@ public interface IParamElementService {
 
 	public void update(IParamElement element);
 
-	public Iterable<IParamElement> list();
+	public List<IParamElement> list();
 
 	public IPageResult<IParamElement> page(int offset, int limit, IFilter filter);
 

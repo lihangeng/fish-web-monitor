@@ -32,6 +32,8 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 		dao.update(paramDeviceDetail);
 	}
 
+	
+	
 	@SuppressWarnings({ "unchecked" })
 	@Override
 	public List<DeviceParam> list(IFilter filter, long tabId, long deviceId) {
@@ -141,5 +143,10 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 	@Override
 	public IParamDeviceDetail add(IParamDeviceDetail paramDeviceDetail) {
 		return dao.save(paramDeviceDetail);
+	}
+
+	@Override
+	public List<IParamDeviceDetail> list(IFilter filter) {
+		return dao.findByFilter(filter, IParamDeviceDetail.class);
 	}
 }

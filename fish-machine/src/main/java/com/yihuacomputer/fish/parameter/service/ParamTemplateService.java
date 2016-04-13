@@ -369,4 +369,13 @@ public class ParamTemplateService implements IParamTemplateService {
 		dao.batchUpdate(hql, templateId);
 	}
 	
+	public List<IParamTemplateDetail> getParamTemplateDetailListByDeviceId(long deviceId){
+		StringBuffer sb = new StringBuffer();
+		sb.append("select templateDetail from ").append(ParamTemplateDetail.class.getSimpleName()).append(" templateDetail, ");
+		sb.append(ParamTemplateDeviceRelation.class.getSimpleName()).append(" deviceDetail ");
+		sb.append(" where deviceDetail.deviceId=? and deviceDetail.templateId=templateDetail.paramTemplate.id");
+		List<IParamTemplateDetail> list = dao.findByHQL(sb.toString(), new Object[]{deviceId});
+		return list;
+	}
+	
 }
