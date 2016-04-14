@@ -32,9 +32,6 @@ Ext.define('Eway.controller.parameter.template.Template',
 						ref : 'addWin',
 						selector : 'template_add'
 					}, {
-						ref : 'updateWin',
-						selector : 'template_updateTemplate'
-					}, {
 						ref : 'paramGrid',
 						selector : 'param_paramGrid'
 					}, {
@@ -54,10 +51,6 @@ Ext.define('Eway.controller.parameter.template.Template',
 							},
 							'template_View button[action=add]' : {
 								click : this.onAdd,
-								scope : this
-							},
-							'template_View button[action=updateElement]' : {
-								click : this.onUpdateElement,
 								scope : this
 							},
 							'template_View button[action=updateValue]' : {
@@ -141,7 +134,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 											},
 											callback : function(records,operation, success) {
 												if (success == false) {
-													Eway.alert(EwayLocale.tip.user.update.fail);
+													Eway.alert('元数据展示失败');
 													win.close();
 												}
 											}
@@ -271,7 +264,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 							});
 						}
 						else {
-								Eway.alert(EwayLocale.tip.bankPer.link.linkBankPerson);
+								Eway.alert('请选择需应用的模板');
 						}
 					},
 					
@@ -329,7 +322,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 								}
 							});
 						} else {
-								Eway.alert(EwayLocale.tip.bankPer.link.linkBankPerson);
+								Eway.alert('请选择一条数据');
 									
 						}
 					},
@@ -379,12 +372,12 @@ Ext.define('Eway.controller.parameter.template.Template',
 															});
 										},
 										failure : function() {
-											Eway.alert(EwayLocale.tip.bankPer.link.unLinkDevFail);
+											Eway.alert('解除关联设备失败');
 										},
 										scope : this
 									});
 						} else {
-							Eway.alert(EwayLocale.tip.bankPer.link.unlinkDev);
+							Eway.alert('请选择一条数据');
 						}
 					},
 
@@ -443,13 +436,13 @@ Ext.define('Eway.controller.parameter.template.Template',
 										failure : function() {
 											linkingDeviceGrid.down('button[action="link"]').enable();
 													
-											Eway.alert(EwayLocale.tip.bankPer.link.unLinkPersonFail);
+											Eway.alert('解除关联设备失败');
 													
 										},
 										scope : this
 									});
 						} else {
-							Eway.alert(EwayLocale.tip.bankPer.link.linkDev);
+							Eway.alert('请选择一条数据');
 						}
 					},
 
