@@ -29,9 +29,11 @@ public interface IParamDeviceDetailService {
 	 * @param deviceId
 	 * @return
 	 */
-	List<DeviceParam> paramList(IFilter filter ,long tabId, long deviceId);
-	
 	IParamDeviceDetail make();
 	
 	IParamDeviceDetail add(IParamDeviceDetail paramDeviceDetail);
+	
+	Iterable<IParamDeviceDetail> loadAll();
+	
+	IParamDeviceDetail getById(long elementId,long deviceId);
 }
