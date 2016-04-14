@@ -225,6 +225,7 @@ public class ParamTemplateController {
 			// 已关联的设备
 			result.addAttribute(FishConstant.SUCCESS, true);
 			Filter filter = getFilterDevice(request);
+			filter.eq("t.templateId", Long.parseLong(guid));
 
 			pageResult = templateService.pageLinkedDevice(start, limit,
 					templateService.get(Long.parseLong(guid)), filter);
@@ -427,17 +428,17 @@ public class ParamTemplateController {
 				if (name.equals("orgId")) {
 					IOrganization org = orgService.get(value);
 
-					filter.like("organization.orgFlag", org.getOrgFlag());
+					filter.like("d.organization.orgFlag", org.getOrgFlag());
 				}
 				if (name.equals("ip")) {
 					ITypeIP ip = new IP(value);
-					filter.eq("ip", ip);
+					filter.eq("d.ip", ip);
 				}
 				if (name.equals("terminalId")) {
-					filter.like("terminalId", value);
+					filter.like("d.terminalId", value);
 				}
 				if (name.equals("devType")) {
-					filter.eq("devType.id", Long.parseLong(value));
+					filter.eq("d.devType.id", Long.parseLong(value));
 				}
 			}
 		}

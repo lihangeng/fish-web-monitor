@@ -12,10 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
-import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.common.filter.FilterEntry;
 import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.IDevice;
@@ -83,26 +81,11 @@ public class ParamTemplateService implements IParamTemplateService {
 	public IPageResult<IDevice> pageUnlinkedDevice(int offset, int limit,
 			IParamTemplate template, IFilter filter) {
 
-		// 由于不知道传过来的filter参数没有设置表别名，所以重新处理加上表别名
-		IFilter fi = new Filter();
-		for (IFilterEntry entry : filter.entrySet()) {
-
-			if (entry.getValue() == null) {
-				continue;
-			}
-
-			fi.addFilterEntry(new FilterEntry("d." + entry.getKey(), entry
-					.getValue(), entry.getOperator()));
-		}
-
-		// hql拼写
 		StringBuffer hqls = new StringBuffer();
-		hqls.append("select DISTINCT d from Device d WHERE NOT EXISTS ( ");
-		hqls.append(" select dp.deviceId from ParamTemplateDeviceRelation dp where dp.deviceId = d.id and dp.templateId = ? )");
-		hqls.append(" and d.id not in (select dp.deviceId from ParamTemplateDeviceRelation dp )");
+		hqls.append("select DISTINCT d from Device d WHERE ");
+		hqls.append(" d.id not in (select dp.deviceId from ParamTemplateDeviceRelation dp where dp.templateId = ?)");
 
-		// 分页查询
-		return (IPageResult<IDevice>) dao.page(offset, limit, fi,
+		return (IPageResult<IDevice>) dao.page(offset, limit, filter,
 				hqls.toString(), (Long) (template.getId()));
 	}
 
@@ -110,23 +93,14 @@ public class ParamTemplateService implements IParamTemplateService {
 	@Override
 	public IPageResult<IDevice> pageLinkedDevice(int offset, int limit,
 			IParamTemplate template, IFilter filter) {
-
+		
 		IFilter fi = new Filter();
-		for (IFilterEntry entry : filter.entrySet()) {
-
-			if (entry.getValue() == null) {
-				continue;
-			}
-
-			fi.addFilterEntry(new FilterEntry("d." + entry.getKey(), entry
-					.getValue(), entry.getOperator()));
-		}
 
 		StringBuffer hql = new StringBuffer();
 		hql.append("select d from Device d ,ParamTemplateDeviceRelation t ");
 		hql.append("where d.id = t.deviceId ");
 
-		return (IPageResult<IDevice>) dao.page(offset, limit, fi,
+		return (IPageResult<IDevice>) dao.page(offset, limit, filter,
 				hql.toString(), null);
 	}
 
@@ -363,10 +337,12 @@ public class ParamTemplateService implements IParamTemplateService {
 	 */
 	public void removeTempDev(long templateId) {
 		
-		String hql = "delete from ParamDeviceDetail t1 where t1.element.id not in "
-				+ "(select t2.paramElement.id from ParamTemplateDetail t2 , ParamTemplateDeviceRelation t3 "
-				+ "where t2.paramTemplate.id = t3.templateId and t2.paramTemplate.id = ? group by t2.paramElement.id)";
-		dao.batchUpdate(hql, templateId);
+		String hql = "delete from ParamDeviceDetail t1 "
+				+ "where t1.element.id not in (select t2.paramElement.id from ParamTemplateDetail t2 , "
+				+ "ParamTemplateDeviceRelation t3 where t2.paramTemplate.id = t3.templateId and t2.paramTemplate.id = ? "
+				+ "group by t2.paramElement.id) and t1.device.id in ( select t3.deviceId from "
+				+ "ParamTemplateDeviceRelation t3 where t3.templateId = ? group by t3.deviceId)";
+		dao.batchUpdate(hql, templateId, templateId);
 	}
 	
 	public List<IParamTemplateDetail> getParamTemplateDetailListByDeviceId(long deviceId){
