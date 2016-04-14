@@ -32,6 +32,7 @@ import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
+import com.yihuacomputer.fish.api.parameter.IParamPushService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
@@ -347,6 +348,8 @@ public class ParamTemplateController {
 		return result;
 	}
 
+	@Autowired
+	private IParamPushService paramPushService;
 	
 	/**
 	 * 将设备当前所有参数覆盖为模板的参数
@@ -363,11 +366,17 @@ public class ParamTemplateController {
 			IParamTemplate template = templateService.get(templateId);
 			
 			templateService.issueTemplate(template, timeStamp);
-			
-			template.setApplyFlag("1");
-			templateService.update(template);
-			
-			result.put(FishConstant.SUCCESS, true);
+			long maxVersionNO = paramPushService.generateParamFileByTemplate(templateId);
+			boolean noticeResult = paramPushService.noticeDeviceDownloadParamFileByTemplate(templateId, maxVersionNO);
+			if(noticeResult){
+				template.setApplyFlag("1");
+				templateService.update(template);
+				result.put(FishConstant.SUCCESS, true);
+			}
+			else{
+				result.addAttribute(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, "通知失败!");
+			}
 		
 		}catch(Exception ex){
 			

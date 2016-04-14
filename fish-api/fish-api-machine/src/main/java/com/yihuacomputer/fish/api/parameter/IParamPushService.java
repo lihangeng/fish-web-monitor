@@ -24,12 +24,12 @@ public interface IParamPushService {
 	 * @param templateId
 	 * @return
 	 */
-	boolean noticeDeviceDownloadParamFileByTemplate(long templateId);
+	boolean noticeDeviceDownloadParamFileByTemplate(long templateId,long versionNo);
 	
 	/**
 	 * 设备参数下发
 	 * @param deviceId
 	 * @return
 	 */
-	boolean noticeDeviceDownloadParamFileByDevice(long deviceId);
+	boolean noticeDeviceDownloadParamFileByDevice(long deviceId,long versionNo);
 }

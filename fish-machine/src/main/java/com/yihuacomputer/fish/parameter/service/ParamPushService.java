@@ -18,9 +18,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.ITypeIP;
 import com.yihuacomputer.common.file.INIFileWriter;
 import com.yihuacomputer.common.file.PropertiesFileWriter;
 import com.yihuacomputer.common.filter.Filter;
+import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.common.util.ZipUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
@@ -34,11 +36,13 @@ import com.yihuacomputer.fish.api.parameter.IParamElementService;
 import com.yihuacomputer.fish.api.parameter.IParamPushService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
-import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelation;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
+import com.yihuacomputer.fish.api.parameter.ParamInfo;
+import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.parameter.entity.ParamDeviceDetail;
 import com.yihuacomputer.fish.parameter.entity.ParamElement;
+import com.yihuacomputer.fish.parameter.entity.ParamTemplateDetail;
 import com.yihuacomputer.fish.parameter.entity.ParamTemplateDeviceRelation;
 import com.yihuacomputer.fish.parameter.entity.ParamTemplateElementRelation;
 
@@ -74,6 +78,10 @@ public class ParamPushService implements IParamPushService {
 	@Override
 	public long generateParamFileByTemplate(long templateId) {
 		IParamTemplate template = templateService.get(templateId);
+		if (null == template) {
+			logger.error("The template don't exsit");
+			return 0;
+		}
 		List<IDevice> deviceList = templateService.listDeviceByTemplate(template);
 		if (deviceList == null || deviceList.size() == 0) {
 			logger.error("The template don't link device,can't generate file");
@@ -95,112 +103,160 @@ public class ParamPushService implements IParamPushService {
 			// 如果应用类型下的参数分类Map不存在，new一个
 			if (paramTypeMap == null) {
 				paramTypeMap = new HashMap<String, List<IParamTemplateDetail>>();
-				map.put(appSystemName, paramTypeMap);
 			}
 			// 获取参数分类下参数列表
 			List<IParamTemplateDetail> detailList = paramTypeMap.get(paramClassifyName);
 			if (detailList == null) {
 				detailList = new ArrayList<IParamTemplateDetail>();
-				paramTypeMap.put(paramClassifyName, detailList);
 			}
 			detailList.add(detail);
+			paramTypeMap.put(paramClassifyName, detailList);
+			map.put(appSystemName, paramTypeMap);
 		}
 		// 生成参数文件
-		if(!generateParamFile(map, appVersionMap)){
+		if (!generateParamFile(map, appVersionMap)) {
 			return 0;
 		}
 		String sourceFile = FishCfg.getFishHome() + FishCfg.fileSep + "param" + FishCfg.fileSep + appVersionMap.get(MAX_VERSION_TIMESTAMP) + FishCfg.fileSep;
-		ZipUtils.zip(sourceFile, sourceFile+"param.zip", "utf-8");
+		ZipUtils.zip(sourceFile, sourceFile + "param.zip", "utf-8");
 		// TODO 在制定目录生成压缩文件
 		return appVersionMap.get(MAX_VERSION_TIMESTAMP);
 	}
 
-	/**
-	 * 根据集合和版本号生成参数文件
-	 * 
-	 * @param map
-	 * @param appVersionMap
-	 * @return
-	 */
-	private boolean generateParamFile(Map<String, Map<String, List<IParamTemplateDetail>>> map, Map<String, Long> appVersionMap) {
-		// 获取应用类型集合
-		Set<String> appNameSet = map.keySet();
-		Iterator<String> appNameIterator = appNameSet.iterator();
-		Map<String, Map<String, String>> descriptionMap = new HashMap<String, Map<String, String>>();
-		long maxVersionNo = appVersionMap.get(MAX_VERSION_TIMESTAMP);
-
-		while (appNameIterator.hasNext()) {
-			String appName = appNameIterator.next();
-			Map<String, String> descSectionMap = new HashMap<String, String>();
-			// 获取一个详情查找所需要的信息
-			List<IParamTemplateDetail> detaiList = null;
-			// 具体参数的Map文件
-			Map<String, Map<String, String>> paramMap = new HashMap<String, Map<String, String>>();
-			// 获取参数分类Map
-			Map<String, List<IParamTemplateDetail>> paramTypeMap = map.get(appName);
-			Set<String> paramTypeNameSet = paramTypeMap.keySet();
-			Iterator<String> paramTypeNameIterator = paramTypeNameSet.iterator();
-			while (paramTypeNameIterator.hasNext()) {
-				String paramTypeName = paramTypeNameIterator.next();
-				detaiList = paramTypeMap.get(paramTypeName);
-				Map<String, String> paramSectionMap = new HashMap<String, String>();
-				for (IParamTemplateDetail templateDetail : detaiList) {
-					paramSectionMap.put(templateDetail.getParamElement().getParamName(), templateDetail.getParamValue());
-				}
-				paramMap.put(paramTypeName, paramSectionMap);
-				// TODO 转化成参数文件
-			}
-			IAppSystem appSystem = detaiList.get(0).getParamElement().getParamBelongs();
-			descSectionMap.put("Name", appSystem.getName());
-			descSectionMap.put("VersionNo", String.valueOf(appVersionMap.get(appSystem.getName())));
-			descSectionMap.put("Path", appSystem.getConfigPath());
-			// TODO 可扩展字段，是否重启
-			descSectionMap.put("Restart", "false");
-			descriptionMap.put(appSystem.getConfigName(), descSectionMap);
-			wirteFile(paramMap, appSystem.getConfigForm(), maxVersionNo, appSystem.getConfigName());
-		}
-		return wirteFile(descriptionMap, FileFormat.INI, maxVersionNo, "description.ini");
-	}
-
-	
-
 	@Override
 	public long generateParamFileByDevice(long deviceId) {
-		Map<String, Long> paramVersionNoMap = getMaxVersionNoInfoByDeviceId(deviceId);
+		Map<String, Long> appVersionMap = getMaxVersionNoInfoByDeviceId(deviceId);
+		// 和设备关联的模板中参数
 		List<IParamTemplateDetail> tempDeviceRelationList = templateService.getParamTemplateDetailListByDeviceId(deviceId);
-		IFilter  filter  = new Filter();
+		IFilter filter = new Filter();
 		filter.eq("device.id", deviceId);
-		//变动的参数
-		List<IParamDeviceDetail>paramDeviceDetailList = paramDeviceDetailService.list(filter);
-		Map<String, Map<String, String>> descriptionMap = new HashMap<String, Map<String, String>>();
-		//如果设备未关联模板，则直接获取元数据
-		if(tempDeviceRelationList.size()==0){
-			List<IParamElement> elementList = elementService.list();
-			
-		}
-		else{
-			for(IParamTemplateDetail tempDetail: tempDeviceRelationList){
-				
+		// 设备参数表中数据
+		List<IParamDeviceDetail> paramDeviceDetailList = paramDeviceDetailService.list(filter);
+		Map<String, Map<String, Map<String, String>>> paramDeviceDetailMap = new HashMap<String, Map<String, Map<String, String>>>();
+		for (IParamDeviceDetail paramDeviceDetail : paramDeviceDetailList) {
+			String value = paramDeviceDetail.getParamValue();
+			String appName = paramDeviceDetail.getElement().getParamBelongs().getName();
+			String typeName = paramDeviceDetail.getElement().getParamClassify().getName();
+			String paramName = paramDeviceDetail.getElement().getParamName();
+			Map<String, Map<String, String>> appMap = paramDeviceDetailMap.get(appName);
+			if (null == appMap) {
+				appMap = new HashMap<String, Map<String, String>>();
 			}
-			
+			Map<String, String> typeMap = appMap.get(appName);
+			if (null == typeMap) {
+				typeMap = new HashMap<String, String>();
+			}
+			typeMap.put(paramName, value);
+			appMap.put(typeName, typeMap);
+			paramDeviceDetailMap.put(appName, appMap);
 		}
-		return 0l;
+		Map<String, Map<String, List<IParamTemplateDetail>>> descriptionMap = new HashMap<String, Map<String, List<IParamTemplateDetail>>>();
+		// 如果设备未关联模板，则直接获取元数据
+		if (tempDeviceRelationList.size() == 0) {
+			// 元数据中参数
+			List<IParamElement> elementList = elementService.list();
+			// 将元数据转为IParamTemplateDetail内容并存入descriptionMap
+			for (IParamElement paramElement : elementList) {
+				String appName = paramElement.getParamBelongs().getName();
+				String paramTypeName = paramElement.getParamClassify().getName();
+				Map<String, List<IParamTemplateDetail>> appMap = descriptionMap.get(appName);
+				if (appMap == null) {
+					appMap = new HashMap<String, List<IParamTemplateDetail>>();
+				}
+				List<IParamTemplateDetail> detailList = appMap.get(paramTypeName);
+				if (detailList == null || detailList.size() == 0) {
+					detailList = new ArrayList<IParamTemplateDetail>();
+				}
+				IParamTemplateDetail paramDetail = new ParamTemplateDetail();
+				paramDetail.setParamElement(paramElement);
+				String paramValue = null;
+				if (null == paramDeviceDetailMap.get(appName) || null == paramDeviceDetailMap.get(appName).get(paramTypeName) || null == paramDeviceDetailMap.get(appName).get(paramTypeName).get(paramElement.getParamName())) {
+					paramValue = paramElement.getParamValue();
+				} else {
+					paramValue = paramDeviceDetailMap.get(appName).get(paramTypeName).get(paramElement.getParamName());
+				}
+				paramDetail.setParamValue(paramValue);
+				detailList.add(paramDetail);
+				appMap.put(paramTypeName, detailList);
+				descriptionMap.put(appName, appMap);
+			}
+		} else {
+			// 参数模板得到不重复的元数据信息
+			Map<Long, Integer> map = new HashMap<Long, Integer>();
+			List<IParamTemplateDetail> noRepeatTempDeviceRelationList = new ArrayList<IParamTemplateDetail>();
+			int index = 0;
+			for (IParamTemplateDetail tempDetail : tempDeviceRelationList) {
+				long elementId = tempDetail.getParamElement().getId();
+				if (null == map.get(elementId)) {
+					noRepeatTempDeviceRelationList.add(tempDetail);
+					map.put(elementId, index++);
+				} else {
+					// 获取重复的模板详情index
+					int detailIndex = map.get(elementId);
+					tempDetail = noRepeatTempDeviceRelationList.get(detailIndex);
+					tempDetail.setParamValue(tempDetail.getParamElement().getParamValue());
+					noRepeatTempDeviceRelationList.remove(detailIndex);
+					noRepeatTempDeviceRelationList.add(detailIndex, tempDetail);
+				}
+			}
+			for (IParamTemplateDetail tempDetail : noRepeatTempDeviceRelationList) {
+				String appName = tempDetail.getParamElement().getParamBelongs().getName();
+				String paramTypeName = tempDetail.getParamElement().getParamClassify().getName();
+				Map<String, List<IParamTemplateDetail>> appMap = descriptionMap.get(appName);
+				if (appMap == null) {
+					appMap = new HashMap<String, List<IParamTemplateDetail>>();
+				}
+				List<IParamTemplateDetail> detailList = appMap.get(paramTypeName);
+				if (detailList == null || detailList.size() == 0) {
+					detailList = new ArrayList<IParamTemplateDetail>();
+				}
+				if (null != paramDeviceDetailMap.get(appName) && null != paramDeviceDetailMap.get(appName).get(paramTypeName) && null != paramDeviceDetailMap.get(appName).get(paramTypeName).get(tempDetail.getParamElement().getParamName())) {
+					tempDetail.setParamValue(paramDeviceDetailMap.get(appName).get(paramTypeName).get(tempDetail.getParamElement().getParamName()));
+				}
+				detailList.add(tempDetail);
+				appMap.put(paramTypeName, detailList);
+				descriptionMap.put(appName, appMap);
+			}
+
+		}
+		if (!generateParamFile(descriptionMap, appVersionMap)) {
+			return 0;
+		}
+		String sourceFile = FishCfg.getFishHome() + FishCfg.fileSep + "param" + FishCfg.fileSep + appVersionMap.get(MAX_VERSION_TIMESTAMP) + FishCfg.fileSep;
+		ZipUtils.zip(sourceFile, sourceFile + "param.zip", "utf-8");
+		return appVersionMap.get(MAX_VERSION_TIMESTAMP);
 	}
 
 	@Override
-	public boolean noticeDeviceDownloadParamFileByTemplate(long templateId) {
+	public boolean noticeDeviceDownloadParamFileByTemplate(long templateId,long versionNo) {
 		// TODO Auto-generated method stub
+		List<IDevice> templateDeviceRelationList = templateDeviceRelationService.listDeviceByTemplate(templateId);
+		String file = FishCfg.getFishHome() + FishCfg.fileSep + "param" + FishCfg.fileSep + versionNo + FishCfg.fileSep;
+		ParamInfo paramInfo = new ParamInfo();
+		paramInfo.setVersionNo(String.valueOf(versionNo));
+		paramInfo.setServerPath(file);
+//		NoticeThread noticeThread = new NoticeThread(templateDeviceRelationList,paramInfo);
+		Thread thread = new Thread(new NoticeThread(templateDeviceRelationList,paramInfo));
+		thread.start();
 		return false;
 	}
 
 	@Override
-	public boolean noticeDeviceDownloadParamFileByDevice(long deviceId) {
-		
+	public boolean noticeDeviceDownloadParamFileByDevice(long deviceId,long versionNo) {
+		List<IDevice> deviceList = new ArrayList<IDevice>();
+		String file = FishCfg.getFishHome() + FishCfg.fileSep + "param" + FishCfg.fileSep + versionNo + FishCfg.fileSep;
+		ParamInfo paramInfo = new ParamInfo();
+		paramInfo.setVersionNo(String.valueOf(versionNo));
+		paramInfo.setServerPath(file);
+//		NoticeThread noticeThread = new NoticeThread(templateDeviceRelationList,paramInfo);
+		Thread thread = new Thread(new NoticeThread(deviceList,paramInfo));
+		thread.start();
 		return false;
 	}
 
 	/**
 	 * 通过设备号获取参数最大的版本号
+	 * 
 	 * @param deviceId
 	 * @return
 	 */
@@ -253,13 +309,64 @@ public class ParamPushService implements IParamPushService {
 		map.put(MAX_VERSION_TIMESTAMP, maxVersionNo);
 		return map;
 	}
-	
+
+	/**
+	 * 根据集合和版本号生成参数文件
+	 * 
+	 * @param map
+	 * @param appVersionMap
+	 * @return
+	 */
+	private boolean generateParamFile(Map<String, Map<String, List<IParamTemplateDetail>>> map, Map<String, Long> appVersionMap) {
+		// 获取应用类型集合
+		Set<String> appNameSet = map.keySet();
+		Iterator<String> appNameIterator = appNameSet.iterator();
+		Map<String, Map<String, String>> descriptionMap = new HashMap<String, Map<String, String>>();
+		long maxVersionNo = appVersionMap.get(MAX_VERSION_TIMESTAMP);
+
+		while (appNameIterator.hasNext()) {
+			String appName = appNameIterator.next();
+			Map<String, String> descSectionMap = new HashMap<String, String>();
+			// 获取一个详情查找所需要的信息
+			List<IParamTemplateDetail> detaiList = null;
+			// 具体参数的Map文件
+			Map<String, Map<String, String>> paramMap = new HashMap<String, Map<String, String>>();
+			// 获取参数分类Map
+			Map<String, List<IParamTemplateDetail>> paramTypeMap = map.get(appName);
+			Set<String> paramTypeNameSet = paramTypeMap.keySet();
+			Iterator<String> paramTypeNameIterator = paramTypeNameSet.iterator();
+			while (paramTypeNameIterator.hasNext()) {
+				String paramTypeName = paramTypeNameIterator.next();
+				detaiList = paramTypeMap.get(paramTypeName);
+				Map<String, String> paramSectionMap = new HashMap<String, String>();
+				for (IParamTemplateDetail templateDetail : detaiList) {
+					paramSectionMap.put(templateDetail.getParamElement().getParamName(), templateDetail.getParamValue());
+				}
+				paramMap.put(paramTypeName, paramSectionMap);
+			}
+			IAppSystem appSystem = detaiList.get(0).getParamElement().getParamBelongs();
+			descSectionMap.put("Name", appSystem.getName());
+			descSectionMap.put("VersionNo", String.valueOf(appVersionMap.get(appSystem.getName())));
+			descSectionMap.put("Path", appSystem.getConfigPath());
+			// TODO 可扩展字段，是否重启
+			descSectionMap.put("Restart", "false");
+			descriptionMap.put(appSystem.getConfigName(), descSectionMap);
+			wirteFile(paramMap, appSystem.getConfigForm(), maxVersionNo, appSystem.getConfigName());
+		}
+		return wirteFile(descriptionMap, FileFormat.INI, maxVersionNo, "description.ini");
+	}
+
 	/**
 	 * 生成相应格式的文件
-	 * @param mapInfo 参数配置文件内容
-	 * @param fileFormat 文件格式
-	 * @param maxVersion 最大版本号
-	 * @param fileName 文件名称
+	 * 
+	 * @param mapInfo
+	 *            参数配置文件内容
+	 * @param fileFormat
+	 *            文件格式
+	 * @param maxVersion
+	 *            最大版本号
+	 * @param fileName
+	 *            文件名称
 	 * @return
 	 */
 	private boolean wirteFile(Map<String, Map<String, String>> mapInfo, FileFormat fileFormat, long maxVersion, String fileName) {
@@ -325,6 +432,40 @@ public class ParamPushService implements IParamPushService {
 			}
 		}
 		return true;
+	}
+
+}
+
+class NoticeThread implements Runnable {
+
+	private Logger logger = LoggerFactory.getLogger(NoticeThread.class);
+	private static final String PARAM_PUSH_URL = "/ctr/paramUpdateNotify";
+	private List<IDevice> deviceList;
+	private ParamInfo paramInfo;
+
+	public NoticeThread(List<IDevice> deviceList, ParamInfo paramInfo) {
+		this.deviceList = deviceList;
+		this.paramInfo = paramInfo;
+	}
+
+	@Override
+	public void run() {
+		for (IDevice device : deviceList) {
+			notice(device);
+		}
+	}
+
+	public void notice(IDevice device) {
+		try {
+			paramInfo = (ParamInfo) HttpProxy.httpPost(geNoticetUrl(device.getIp()), paramInfo, ParamInfo.class, 10000, 30000);
+			logger.info(paramInfo.getRet());
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+	}
+
+	private String geNoticetUrl(ITypeIP ip) {
+		return MonitorCfg.getHttpUrl(ip.toString()) + PARAM_PUSH_URL;
 	}
 
 }

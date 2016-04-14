@@ -25,7 +25,6 @@ import com.yihuacomputer.fish.api.parameter.IParamClassify;
 import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
-import com.yihuacomputer.fish.parameter.entity.ParamElement;
 import com.yihuacomputer.fish.web.parameter.form.ParamClassifyForm;
 
 @Controller
