@@ -21,6 +21,7 @@ public class ParamPushServiceTest extends BindSessionInTest2{
 	@org.junit.Test
 	@Ignore
 	public void Test(){
-		paramPushService.noticeDeviceDownloadParamFileByDevice(1l);
+		paramPushService.generateParamFileByTemplate(2l);
+		paramPushService.generateParamFileByDevice(3l);
 	}
 }
