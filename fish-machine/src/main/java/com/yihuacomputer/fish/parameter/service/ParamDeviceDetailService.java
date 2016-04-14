@@ -39,9 +39,11 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 	public List<DeviceParam> list(IFilter filter, long tabId, long deviceId) {
 		StringBuffer sql= new StringBuffer();
 		
-		sql.append("select pdd.id ppdid,pc.id pcid,pc.name, pe.PARAM_NAME ,pe.PARAM_VALUE pevalue,pdd.PARAM_VALUE  pddvalue ");
-		sql.append("FROM PARAM_CLASSIFY pc inner join param_element pe on pc.id = pe.PARAM_CLASSIFY ");
-		sql.append("left join param_device_detail pdd on pe.id = pdd.ELEMENT_ID ");
+		sql.append("SELECT pdd.id pddid,t1.pcid classifyId,t1.pcname classifyName,t1.peid elementId,t1.paramName paramName, ");
+		sql.append("t1.paramvalue paramvalue,pdd.param_value pddparamValue ");
+		sql.append("FROM (select pc.ID pcid,pc.NAME pcname,pe.ID peid,pe.PARAM_NAME paramName, ");
+		sql.append("pe.PARAM_VALUE paramvalue FROM PARAM_CLASSIFY pc,PARAM_ELEMENT pe");
+		sql.append(" where pc.ID = pe.PARAM_CLASSIFY ");
 		Object paramName=filter.getValue("paramName");
 		if(paramName != null){
 			sql.append("and pe.PARAM_NAME = '").append(String.valueOf(paramName)).append("' ");
@@ -51,20 +53,21 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 			sql.append("and pe.PARAM_CLASSIFY = '").append(String.valueOf(paramClassifyId)).append("' ");
 		}
 		sql.append("AND pe.PARAM_BELONGS = '").append(tabId+"'");
+		sql.append(" ) t1 left join PARAM_DEVICE_DETAIL pdd on  t1.peid = pdd.ELEMENT_ID");
 		sql.append(" AND pdd.DEVICE_ID = '").append(deviceId+"'");
-		sql.append(" group by pe.PARAM_NAME");
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		List<Object> infos = query.list();
 		List<DeviceParam> resultList=new ArrayList<DeviceParam>();
 		for(Object object : infos){
 			Object[] objs = (Object[]) object;
 			DeviceParam dp=new DeviceParam();
-			dp.setId(Long.parseLong(objs[0]==null?"0":String.valueOf(objs[0])));
+			dp.setId(Long.parseLong(objs[0]==null?String.valueOf(objs[3]):String.valueOf(objs[0])));
 			dp.setParamClassifyId(Long.parseLong(objs[1]==null?"0":String.valueOf(objs[1])));
 			dp.setParamClassify(objs[2]==null?"":String.valueOf(objs[2]));
-			dp.setParamName(objs[3]==null?"":String.valueOf(objs[3]));
-			dp.setElementParamValue(objs[4]==null?"":String.valueOf(objs[4]));
-			dp.setParamValue(objs[5]==null?"":String.valueOf(objs[5]));
+			dp.setElementId(Long.parseLong(objs[3]==null ? "0":String.valueOf(objs[3])));
+			dp.setParamName(objs[4]==null?"":String.valueOf(objs[4]));
+			dp.setElementParamValue(objs[5]==null?"":String.valueOf(objs[5]));
+			dp.setParamValue(objs[6]==null?"":String.valueOf(objs[6]));
 			resultList.add(dp);
 		}
 		
