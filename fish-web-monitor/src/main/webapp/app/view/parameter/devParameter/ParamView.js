@@ -7,6 +7,7 @@ Ext.define('Eway.view.parameter.devParameter.ParamView', {
 	layout : 'border',
 	name:'devParamDetails',
 	margin:'-9 0 0 0',
+	closable:false,
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [{
