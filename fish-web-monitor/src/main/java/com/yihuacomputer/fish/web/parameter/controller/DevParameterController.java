@@ -3,8 +3,11 @@ package com.yihuacomputer.fish.web.parameter.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -38,6 +41,8 @@ import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
+import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
+import com.yihuacomputer.fish.api.parameter.IParamTemplateDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelation;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
@@ -75,6 +80,9 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 	
 	@Autowired
 	private IParamElementService paramElementService;
+	
+	@Autowired
+	private IParamTemplateDetailService paramTemplateDetailService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,@RequestParam int limit,HttpServletRequest request,WebRequest webRequest){
@@ -182,10 +190,28 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 				}
 			}
 		}else{
-			pageResult=paramDeviceDetailService.paramList(filter, tabId, deviceId);
-			for(DeviceParam deviceParam:pageResult){
-				if(deviceParam.getParamValue().isEmpty() || deviceParam.getParamValue()==null){
-					deviceParam.setParamValue(deviceParam.getTemplateParamValue());
+			pageResult= new ArrayList<DeviceParam>();
+			List<DeviceParam> param=paramDeviceDetailService.list(filter, tabId, deviceId);
+			Map<Long,String> template=new HashMap<Long,String>();
+			List<IParamTemplateDetail> templateParam=paramTemplateDetailService.list(deviceId);
+			for(IParamTemplateDetail detail:templateParam){
+				template.put(detail.getParamElement().getId(), detail.getParamValue());
+			}
+			for(Entry<Long,String> entry:template.entrySet()){
+				for(DeviceParam dp:param){
+					if(entry.getKey().equals(dp.getId())){
+						DeviceParam dParam=new DeviceParam();
+						dParam.setId(entry.getKey());
+						dParam.setParamClassifyId(dp.getParamClassifyId());
+						dParam.setParamClassify(dp.getParamClassify());
+						dParam.setParamName(dp.getParamName());
+						if(dp.getParamValue() != null){
+							dParam.setParamValue(dp.getParamValue());
+						}else{
+							dParam.setParamValue(dp.getElementParamValue());
+						}
+						pageResult.add(dParam);
+					}
 				}
 			}
 		}
@@ -260,15 +286,15 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 			result.addAttribute(FishConstant.ERROR_MSG,messageSource.getMessage("parameter.updateNotExist", null, FishCfg.locale));
 		}else{
 				for(int i=0;i<paramList.size();i++){
-					long detailid=paramList.get(i).getId();
-					IParamDeviceDetail deviceDetail=paramDeviceDetailService.get(Long.valueOf(detailid));
+					long elementId=paramList.get(i).getId();
+					IParamDeviceDetail deviceDetail=paramDeviceDetailService.getById(elementId, id);
 					if(deviceDetail != null){
 						deviceDetail.setParamValue(paramList.get(i).getParamValue());
 						paramDeviceDetailService.update(deviceDetail);
 					}else{
 						IParamDeviceDetail pdd=paramDeviceDetailService.make();
 						pdd.setDevice(deviceService.get(id));
-						pdd.setElement(paramElementService.get(paramList.get(i).getElementId()));
+						pdd.setElement(paramElementService.get(paramList.get(i).getId()));
 						pdd.setParamValue(paramList.get(i).getParamValue());
 						String dateStr=new SimpleDateFormat("yyMMddHHmmssSSS").format(new Date());
 						pdd.setVersionTimeStamp(Long.valueOf(dateStr));

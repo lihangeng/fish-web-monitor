@@ -17,13 +17,13 @@ public class DeviceParam {
 	
 	private String paramClassify;
 	
-	private long elementId;
-	
 	private String paramName;
 
 	private String elementParamValue;
 	
 	private String templateParamValue;
+	
+	private long deviceParamId;
 	
 	private String paramValue;
 	
@@ -61,22 +61,6 @@ public class DeviceParam {
 		this.paramName = paramName;
 	}
 
-	public String getParamValue() {
-		return paramValue;
-	}
-
-	public void setParamValue(String paramValue) {
-		this.paramValue = paramValue;
-	}
-
-	public long getElementId() {
-		return elementId;
-	}
-
-	public void setElementId(long elementId) {
-		this.elementId = elementId;
-	}
-
 	public String getElementParamValue() {
 		return elementParamValue;
 	}
@@ -91,6 +75,22 @@ public class DeviceParam {
 
 	public void setTemplateParamValue(String templateParamValue) {
 		this.templateParamValue = templateParamValue;
+	}
+	
+	public long getDeviceParamId() {
+		return deviceParamId;
+	}
+
+	public void setDeviceParamId(long deviceParamId) {
+		this.deviceParamId = deviceParamId;
+	}
+
+	public String getParamValue() {
+		return paramValue;
+	}
+
+	public void setParamValue(String paramValue) {
+		this.paramValue = paramValue;
 	}
 	
 	public List<DeviceParam> getDeviceParam() {
@@ -115,4 +115,6 @@ public class DeviceParam {
 	public void setData(String data) {
 		this.data = data;
 	}
+
+	
 }
