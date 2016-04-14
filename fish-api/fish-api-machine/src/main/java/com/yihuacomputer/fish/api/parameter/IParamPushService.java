@@ -9,13 +9,13 @@ public interface IParamPushService {
 	/**
 	 * 根据模板生成参数文件并返回版本号
 	 * @param templateId
-	 * @return
+	 * @return 返回零代表生成文件失败
 	 */
 	long generateParamFileByTemplate(long templateId);
 	/**
 	 * 根据设备号生成参数文件并返回版本号
 	 * @param deviceId
-	 * @return
+	 * @return 返回零代表生成文件失败
 	 */
 	long generateParamFileByDevice(long deviceId);
 	
