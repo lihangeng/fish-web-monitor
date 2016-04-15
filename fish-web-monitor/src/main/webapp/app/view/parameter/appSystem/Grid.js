@@ -37,7 +37,7 @@ Ext.define('Eway.view.parameter.appSystem.Grid',{
 				dataIndex :'configName',
 				width :190,
 				sortable:true
-			},{
+			}/*,{
 				header :EwayLocale.param.application.configureForm,
 				dataIndex :'configForm',
 				width :180,
@@ -56,7 +56,7 @@ Ext.define('Eway.view.parameter.appSystem.Grid',{
 						return "XML";
 					}
 				}
-			},{
+			}*/,{
 				header :EwayLocale.param.application.configurePath,
 				dataIndex : 'configPath',
 				width :190
