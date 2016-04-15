@@ -11,7 +11,9 @@ Ext.define('Eway.view.parameter.appSystem.FilterForm',{
 		var format=Ext.create('Eway.store.parameter.appSystem.FileFormat');
 		Ext.apply(this,{
 			layout :'column',
+			
 			items :[{
+				style:'padding-top:13px',
 				columnWidth :0.3,
 				items:[{
 					xtype:'textfield',
@@ -20,6 +22,7 @@ Ext.define('Eway.view.parameter.appSystem.FilterForm',{
 					nameLenght:20
 				}],
 			},{
+				style:'padding-top:13px',
 				columnWidth :.3,
 				items:[{
 					xtype :'textfield',
@@ -28,7 +31,7 @@ Ext.define('Eway.view.parameter.appSystem.FilterForm',{
 					nameLength:20
 				}]
 
-			},{
+			}/*,{
 				columnWidth :.3,
 				items:[{
 					xtype:'field_appSystem_fileFormat',
@@ -38,8 +41,7 @@ Ext.define('Eway.view.parameter.appSystem.FilterForm',{
 					store:format
 				}]
 
-			}
-
+			}*/
 		]
 		});
 		this.callParent(arguments);
