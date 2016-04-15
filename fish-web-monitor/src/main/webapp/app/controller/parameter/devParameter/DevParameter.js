@@ -33,8 +33,14 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 			'parameter_devParameter_devGrid' : {
 				itemclick :this.onItemclick
 			},
-			'tabpanel':{
+			'parameter_devParameter_view tabpanel':{
 				tabchange:this.onTabChange
+			},
+			'parameter_devParameter_paramGrid button[action=update]':{
+				click:this.onUpdate
+			},
+			'parameter_devParameter_paramGrid button[action=save]':{
+				click:this.onSave
 			}
 		});
 	},
@@ -87,9 +93,62 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 		store.setBaseParam('deviceId',record.get('id'));
 		store.setBaseParam('tabId',tabPanelId);
 		store.loadPage(1);		
+	},
+	
+	
+	onUpdate:function(){
+		var view=this.getEwayView();
+		var grid = view.down('tabpanel').activeTab.down('grid');
+		var cellEditor=grid.plugins[0];
+		if(cellEditor.clicksToEdit == 1){
+			cellEditor.clicksToEdit=2;
+		}
+		grid.columns[1].setText(EwayLocale.param.element.paramValue+'<font color="red">'+EwayLocale.param.deviceParam.couldUpdate+'</font>');
+	},
+	
+	onSave:function(){
+		var view=this.getEwayView();
+		var grid = view.down('tabpanel').activeTab.down('grid');
+		grid.columns[1].setText(EwayLocale.param.element.paramValue);
+		var cellEditor=grid.plugins[0];
+		if(cellEditor.clicksToEdit == 2){
+			cellEditor.clicksToEdit=1;
+		}
+		var store=grid.getStore();
+		var data="[";
+		for(var index = 0;index < store.count();index++){
+			var record=store.getAt(index);
+			if(record.dirty){
+				var resource="{'id':'"+record.get('id')+"','paramValue':'"+record.get('paramValue')+"'}";
+				if(data== "["){
+					data=data+resource;
+				}else{
+					data=data+","+resource;
+				}
+			}
+		}
+		data=data+"]";
+		
+		var deviceGrid=view.down('parameter_devParameter_devGrid');
+		var deviceRecord = deviceGrid.getSelectionModel().getLastSelected();
+		var record=Ext.create('Eway.model.parameter.devParameter.ParamInfo',{
+			id:deviceRecord.get('id'),
+			data:data
+		});
+		
+		record.save({
+			 success: function(ed) {
+				Eway.alert(EwayLocale.updateSuccess);
+				store.loadPage(1);
+			 },
+			 failure: function(ed){
+				Eway.alert(EwayLocale.tip.fail);
+			 },
+			 scope : this
+		});
+		
 	}
 
-	
 	
 	
 });

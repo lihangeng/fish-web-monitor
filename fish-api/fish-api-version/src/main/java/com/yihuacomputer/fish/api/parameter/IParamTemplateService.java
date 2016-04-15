@@ -140,4 +140,11 @@ public interface IParamTemplateService {
 	
 	public void issueTemplate(IParamTemplate template ,long timeStamp);
 	
+	/**
+	 * 根据设备号获取关联的模板中的元数据
+	 * @param deviceId
+	 * @return
+	 */
+	List<IParamTemplateDetail> getParamTemplateDetailListByDeviceId(long deviceId);
+	
 }

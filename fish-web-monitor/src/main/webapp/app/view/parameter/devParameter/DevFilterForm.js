@@ -8,11 +8,10 @@ Ext.define('Eway.view.parameter.devParameter.DevFilterForm',{
 		Ext.apply(this,{
 			layout :'column',
 			msgTarget : 'side',
-//			style :'padding-top:10px',
 			items :[{
 				xtype : 'textfield',
 				name : 'terminalId',
-				fieldLabel : '设备号'
+				fieldLabel : EwayLocale.commen.terminalId
 			}/*,{
 				xtype : 'textfield',
 				name : 'ip',

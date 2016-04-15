@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.parameter.IParamClassify;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
 import com.yihuacomputer.fish.parameter.entity.ParamElement;
@@ -63,7 +64,7 @@ public class ParamElementService implements IParamElementService {
 	}
 
 	@Override
-	public Iterable<IParamElement> list() {
+	public List<IParamElement> list() {
 
 		return dao.loadAll(IParamElement.class);
 	}
@@ -86,6 +87,13 @@ public class ParamElementService implements IParamElementService {
 		hql.append("select t from ParamElement t");
 		List<IParamElement> result = dao.findByHQL(hql.toString());
 		return result;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<IParamElement> listByClassify(IParamClassify paramClassify) {
+
+		return dao.findByHQL("from ParamElement paramElement where paramElement.paramClassify.id = ?", paramClassify.getId());
 	}
 
 }

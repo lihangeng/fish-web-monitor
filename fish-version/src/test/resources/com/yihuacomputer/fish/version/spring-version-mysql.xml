@@ -52,6 +52,7 @@
 				<value>com.yihuacomputer.fish.version.entity</value>
 				<value>com.yihuacomputer.fish.machine.entity</value>
 				<value>com.yihuacomputer.fish.system.entity</value>
+				<value>com.yihuacomputer.fish.parameter.entity</value>
 			</list>  
 		</property>
 	</bean>

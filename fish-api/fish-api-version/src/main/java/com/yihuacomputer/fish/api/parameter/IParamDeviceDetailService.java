@@ -13,6 +13,7 @@ public interface IParamDeviceDetailService {
 
 	Iterable<IParamDeviceDetail> list();
 
+	List<IParamDeviceDetail> list(IFilter filter);
 	/**
 	 * 获取同设备id下的最大版本号的数据
 	 * 
@@ -28,5 +29,11 @@ public interface IParamDeviceDetailService {
 	 * @param deviceId
 	 * @return
 	 */
-	List<DeviceParam> paramList(IFilter filter ,long tabId, long deviceId);
+	IParamDeviceDetail make();
+	
+	IParamDeviceDetail add(IParamDeviceDetail paramDeviceDetail);
+	
+	Iterable<IParamDeviceDetail> loadAll();
+	
+	IParamDeviceDetail getById(long elementId,long deviceId);
 }

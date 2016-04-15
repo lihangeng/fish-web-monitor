@@ -18,7 +18,9 @@ public interface IParamElementService {
 
 	public void update(IParamElement element);
 
-	public Iterable<IParamElement> list();
+	public List<IParamElement> list();
+
+	public List<IParamElement> listByClassify(IParamClassify paramClassify);
 
 	public IPageResult<IParamElement> page(int offset, int limit, IFilter filter);
 
@@ -26,7 +28,7 @@ public interface IParamElementService {
 
 	/**
 	 * 得到参数值以及参数归属
-	 * 
+	 *
 	 * @return
 	 */
 	public List<IParamElement> getValue();

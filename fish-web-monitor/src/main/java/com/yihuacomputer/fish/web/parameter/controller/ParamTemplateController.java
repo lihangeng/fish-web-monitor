@@ -32,6 +32,7 @@ import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
+import com.yihuacomputer.fish.api.parameter.IParamPushService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
@@ -224,6 +225,7 @@ public class ParamTemplateController {
 			// 已关联的设备
 			result.addAttribute(FishConstant.SUCCESS, true);
 			Filter filter = getFilterDevice(request);
+			filter.eq("t.templateId", Long.parseLong(guid));
 
 			pageResult = templateService.pageLinkedDevice(start, limit,
 					templateService.get(Long.parseLong(guid)), filter);
@@ -311,7 +313,7 @@ public class ParamTemplateController {
 			result.addAttribute(FishConstant.DATA,convert(elements));
 		}else {
 			List<IParamElement> list = null;
-			list = (List<IParamElement>) paramElementService.list();
+			list =  paramElementService.list();
 			list.removeAll(templateService.listParam(id,flag));
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, convert(list));
@@ -334,7 +336,7 @@ public class ParamTemplateController {
 			result.addAttribute(FishConstant.SUCCESS, false);
 		} else if(flag == 0){
 			List<IParamElement> list = null;
-			list = (List<IParamElement>) paramElementService.list();
+			list =  paramElementService.list();
 			list.removeAll(templateService.listParam(id,flag));
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, convert(list));
@@ -347,6 +349,8 @@ public class ParamTemplateController {
 		return result;
 	}
 
+	@Autowired
+	private IParamPushService paramPushService;
 	
 	/**
 	 * 将设备当前所有参数覆盖为模板的参数
@@ -363,11 +367,17 @@ public class ParamTemplateController {
 			IParamTemplate template = templateService.get(templateId);
 			
 			templateService.issueTemplate(template, timeStamp);
-			
-			template.setApplyFlag("1");
-			templateService.update(template);
-			
-			result.put(FishConstant.SUCCESS, true);
+			long maxVersionNO = paramPushService.generateParamFileByTemplate(templateId);
+			boolean noticeResult = paramPushService.noticeDeviceDownloadParamFileByTemplate(templateId, maxVersionNO);
+			if(noticeResult){
+				template.setApplyFlag("1");
+				templateService.update(template);
+				result.put(FishConstant.SUCCESS, true);
+			}
+			else{
+				result.addAttribute(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, "通知失败!");
+			}
 		
 		}catch(Exception ex){
 			
@@ -418,17 +428,17 @@ public class ParamTemplateController {
 				if (name.equals("orgId")) {
 					IOrganization org = orgService.get(value);
 
-					filter.like("organization.orgFlag", org.getOrgFlag());
+					filter.like("d.organization.orgFlag", org.getOrgFlag());
 				}
 				if (name.equals("ip")) {
 					ITypeIP ip = new IP(value);
-					filter.eq("ip", ip);
+					filter.eq("d.ip", ip);
 				}
 				if (name.equals("terminalId")) {
-					filter.like("terminalId", value);
+					filter.like("d.terminalId", value);
 				}
 				if (name.equals("devType")) {
-					filter.eq("devType.id", Long.parseLong(value));
+					filter.eq("d.devType.id", Long.parseLong(value));
 				}
 			}
 		}

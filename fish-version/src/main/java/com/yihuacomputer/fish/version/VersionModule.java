@@ -11,6 +11,14 @@ import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupDeviceRelationService;
 import com.yihuacomputer.fish.api.advert.bs.IAdvertGroupService;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvertResourceService;
 import com.yihuacomputer.fish.api.advert.bs.IBsAdvertService;
+import com.yihuacomputer.fish.api.parameter.IAppSystemService;
+import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
+import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
+import com.yihuacomputer.fish.api.parameter.IParamElementService;
+import com.yihuacomputer.fish.api.parameter.IParamPushService;
+import com.yihuacomputer.fish.api.parameter.IParamTemplateDetailService;
+import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
+import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IDeviceVersionService;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
@@ -24,6 +32,13 @@ import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistoryService;
 import com.yihuacomputer.fish.api.version.job.task.ITaskDetailService;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.relation.IDeviceAdvertRelation;
+import com.yihuacomputer.fish.parameter.service.ParamClassifyService;
+import com.yihuacomputer.fish.parameter.service.ParamDeviceDetailService;
+import com.yihuacomputer.fish.parameter.service.ParamElementService;
+import com.yihuacomputer.fish.parameter.service.ParamPushService;
+import com.yihuacomputer.fish.parameter.service.ParamTemplateDetailService;
+import com.yihuacomputer.fish.parameter.service.ParamTemplateDeviceRelationService;
+import com.yihuacomputer.fish.parameter.service.ParamTemplateService;
 import com.yihuacomputer.fish.version.interceptor.VersionEntityInjector;
 import com.yihuacomputer.fish.version.job.JobManager;
 import com.yihuacomputer.fish.version.relation.DeviceAdvertRelation;
@@ -145,5 +160,43 @@ public class VersionModule {
 	@Bean
 	public IBsAdvertResourceService bsAdvertResourceService(){
 		return new BsAdvertResourceService();
+	}
+	@Bean
+	public IAppSystemService AppSystemService(){
+		return new com.yihuacomputer.fish.parameter.service.AppSystemService();
+	}
+
+	@Bean
+	public IParamElementService elementService(){
+		return new ParamElementService();
+	}
+	
+	
+	@Bean
+	public IParamTemplateService templateService(){
+		return new ParamTemplateService();
+	}
+	
+	@Bean
+	public IParamClassifyService classifyService(){
+		return new ParamClassifyService();
+	}
+	
+	@Bean
+	public IParamTemplateDetailService paramTemplateDetailService(){
+		return new ParamTemplateDetailService();
+	}
+	
+	@Bean public IParamDeviceDetailService paramDeviceDetailService(){
+		return new ParamDeviceDetailService();
+	}
+	
+	@Bean public IParamTemplateDeviceRelationService paramTemplateDeviceRelationService(){
+		return new ParamTemplateDeviceRelationService();
+	}
+
+	@Bean 
+	public IParamPushService paramPushService(){
+		return new ParamPushService();
 	}
 }

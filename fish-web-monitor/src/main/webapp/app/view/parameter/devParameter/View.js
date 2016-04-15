@@ -7,7 +7,7 @@ Ext.define('Eway.view.parameter.devParameter.View', {
 	             'Eway.view.parameter.devParameter.DevFilterForm',
 	             'Eway.view.parameter.devParameter.ParamFilterForm'],
 	    
-	title : '设备参数管理',
+	title : EwayLocale.param.deviceParam.title,
 	layout : 'border',
 	initComponent : function() {
 		 
@@ -42,13 +42,15 @@ Ext.define('Eway.view.parameter.devParameter.View', {
 				   			method:'GET',
 				   			url:'api/parameter/devParameter/getAppData',
 				   			success:function(response){
-				   				var appData=Ext.decode(response.responseText);
-				   				for(var i=0;i<appData.total;i++){
-				   					var tab=Ext.create('Eway.view.parameter.devParameter.ParamView',{appType:appData.data[i].id});
-				   					_this.down("tabpanel").add(tab);
-				   					tab.setTitle(appData.data[i].name);
+				   				if(response.responseText !=null){
+				   					var appData=Ext.decode(response.responseText);
+					   				for(var i=0;i<appData.total;i++){
+					   					var tab=Ext.create('Eway.view.parameter.devParameter.ParamView',{appType:appData.data[i].id});
+					   					_this.down("tabpanel").add(tab);
+					   					tab.setTitle(appData.data[i].name);
+					   				}
+					   				_this.down("tabpanel").setActiveItem(0);
 				   				}
-				   				_this.down("tabpanel").setActiveItem(0);
 				   			}
 				   		});
 				       }

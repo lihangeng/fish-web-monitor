@@ -23,6 +23,8 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.parameter.IParamClassify;
 import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
+import com.yihuacomputer.fish.api.parameter.IParamElement;
+import com.yihuacomputer.fish.api.parameter.IParamElementService;
 import com.yihuacomputer.fish.web.parameter.form.ParamClassifyForm;
 
 @Controller
@@ -33,6 +35,9 @@ public class ParamClassifyController {
 
 	@Autowired
 	private IParamClassifyService classifyService;
+
+	@Autowired
+	private IParamElementService elementService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,@RequestParam int limit, WebRequest request) {
@@ -64,23 +69,35 @@ public class ParamClassifyController {
 		}
 		return result;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
 		logger.info("delete classify: classify.id = " + id);
 		ModelMap result = new ModelMap();
-		try {
-			if(id == 1){
+
+		if(classifyService.get(id)!=null){
+			IParamClassify paramClassify=classifyService.get(id);
+			List<IParamElement> list=elementService.listByClassify(paramClassify);
+			if(list.size()>0){
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "默认分类无法删除。");
+				result.addAttribute(FishConstant.ERROR_MSG, "删除失败，该分类与参数元数据有关联。");
 				return result;
+			}else{
+				try {
+					if(id == 1){
+						result.addAttribute(FishConstant.SUCCESS, false);
+						result.addAttribute(FishConstant.ERROR_MSG, "默认分类无法删除。");
+						return result;
+					}
+					classifyService.remove(id);
+					result.addAttribute(FishConstant.SUCCESS, true);
+				} catch (Exception ex) {
+					result.addAttribute(FishConstant.SUCCESS, false);
+				}
 			}
-			classifyService.remove(id);
-			result.addAttribute(FishConstant.SUCCESS, true);
-		} catch (Exception ex) {
-			result.addAttribute(FishConstant.SUCCESS, false);
 		}
+
 		return result;
 	}
 
@@ -95,17 +112,11 @@ public class ParamClassifyController {
 			result.addAttribute(FishConstant.ERROR_MSG, "默认分类无法更改。");
 			return result;
 		}
-		boolean isExist = this.isExistClassifyName(request.getId(), request.getName());
-		if(isExist){
-			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "分类名称已存在。");
-		} else {
 			translate(classify,request);
 			classify.setId(id);
 			classifyService.update(classify);
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, request);
-		}
 		return result;
 	}
 

@@ -34,6 +34,10 @@ Ext.apply(EwayLocale,{
     		title:'参数元数据分类管理',//EwayLocale.param.classify.title
     		name:'参数分类',//EwayLocale.param.classify.name
     		remark:'参数分类备注'//EwayLocale.param.classify.remark
+    	},
+    	deviceParam:{
+    		title:'设备参数管理',//EwayLocale.param.deviceParam.title
+    		couldUpdate:'(可更改)',//EwayLocale.param.deviceParam.couldUpdate
     	}
 
     }
