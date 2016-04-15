@@ -7,7 +7,7 @@ Ext.define('Eway.view.parameter.devParameter.View', {
 	             'Eway.view.parameter.devParameter.DevFilterForm',
 	             'Eway.view.parameter.devParameter.ParamFilterForm'],
 	    
-	title : '设备参数管理',
+	title : EwayLocale.param.deviceParam.title,
 	layout : 'border',
 	initComponent : function() {
 		 

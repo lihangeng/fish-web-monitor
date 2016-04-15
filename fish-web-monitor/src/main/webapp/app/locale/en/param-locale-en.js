@@ -37,7 +37,12 @@ Ext.apply(EwayLocale,{
     		remark:'ClassifyRemark',//EwayLocale.param.classify.remark
 //    		regexText1:'',
 //    		regexText2:''
+    	},
+    	deviceParam:{
+    		title:'The Manage Of Device Paramter',//EwayLocale.param.deviceParam.title
+    		couldUpdate:'(Could Update)',//EwayLocale.param.deviceParam.couldUpdate
     	}
+
 
     }
 

@@ -25,27 +25,28 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 			initRegion : true,
 			store : store,
 			features: [{
-	            ftype: 'grouping'
+	            ftype: 'grouping',
+	            groupHeaderTpl: '{name}'
 	        }],
 			tbar : [ '->', {
-				text : '查询',
+				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
 			},{
-				text : '更改',
+				text : EwayLocale.button.update,
 				glyph : 0xf129,
 				action : 'update'
 			},{
-				text : '保存',
+				text : EwayLocale.button.save,
 				//glyph : 0xf002,
 				action : 'save'
 			}],
 			columns : [ {
-				header : '参数名称',
+				header : EwayLocale.param.element.paramName,
 				dataIndex : 'paramName',
 				width:'35%'
 			}, {
-				header : '参数值',
+				header : EwayLocale.param.element.paramValue,
 				dataIndex : 'paramValue',
 				flex:1,
 				editor: {

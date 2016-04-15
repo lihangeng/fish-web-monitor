@@ -7,7 +7,6 @@ Ext.define('Eway.view.parameter.devParameter.field.ParamClassify', {
 	store: 'parameter.devParameter.ParamClassify',
 	valueField : 'id',
 	displayField : 'name',
-//	queryMode : 'local',
 	editable : false,
 	emptyText: EwayLocale.combox.select
 
