@@ -14,14 +14,6 @@ import com.yihuacomputer.fish.api.device.IComplexDeviceService;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.openplan.IOpenPlanDeviceRelation;
 import com.yihuacomputer.fish.api.openplan.IOpenPlanService;
-import com.yihuacomputer.fish.api.parameter.IAppSystemService;
-import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
-import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
-import com.yihuacomputer.fish.api.parameter.IParamElementService;
-import com.yihuacomputer.fish.api.parameter.IParamPushService;
-import com.yihuacomputer.fish.api.parameter.IParamTemplateDetailService;
-import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
-import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.quittingNotice.IQuittingNoticeService;
 import com.yihuacomputer.fish.api.relation.IDeviceGroupRelation;
 import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
@@ -39,14 +31,6 @@ import com.yihuacomputer.fish.machine.service.DevicePersonRelation;
 import com.yihuacomputer.fish.machine.service.DeviceService;
 import com.yihuacomputer.fish.machine.service.OpenPlanDeviceRelation;
 import com.yihuacomputer.fish.machine.service.OpenPlanService;
-import com.yihuacomputer.fish.parameter.service.AppSystemService;
-import com.yihuacomputer.fish.parameter.service.ParamClassifyService;
-import com.yihuacomputer.fish.parameter.service.ParamDeviceDetailService;
-import com.yihuacomputer.fish.parameter.service.ParamElementService;
-import com.yihuacomputer.fish.parameter.service.ParamPushService;
-import com.yihuacomputer.fish.parameter.service.ParamTemplateDetailService;
-import com.yihuacomputer.fish.parameter.service.ParamTemplateDeviceRelationService;
-import com.yihuacomputer.fish.parameter.service.ParamTemplateService;
 
 
 @Configuration
@@ -122,42 +106,4 @@ public class MachineModule {
 
 	}
 	
-	@Bean
-	public IAppSystemService AppSystemService(){
-		return new AppSystemService();
-	}
-
-	@Bean
-	public IParamElementService elementService(){
-		return new ParamElementService();
-	}
-	
-	
-	@Bean
-	public IParamTemplateService templateService(){
-		return new ParamTemplateService();
-	}
-	
-	@Bean
-	public IParamClassifyService classifyService(){
-		return new ParamClassifyService();
-	}
-	
-	@Bean
-	public IParamTemplateDetailService paramTemplateDetailService(){
-		return new ParamTemplateDetailService();
-	}
-	
-	@Bean public IParamDeviceDetailService paramDeviceDetailService(){
-		return new ParamDeviceDetailService();
-	}
-	
-	@Bean public IParamTemplateDeviceRelationService paramTemplateDeviceRelationService(){
-		return new ParamTemplateDeviceRelationService();
-	}
-
-	@Bean 
-	public IParamPushService paramPushService(){
-		return new ParamPushService();
-	}
 }
