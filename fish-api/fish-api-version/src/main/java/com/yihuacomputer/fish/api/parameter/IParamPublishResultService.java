@@ -1,5 +1,5 @@
 package com.yihuacomputer.fish.api.parameter;
 
-public interface IParamPushResult {
+public interface IParamPublishResultService {
 
 }
