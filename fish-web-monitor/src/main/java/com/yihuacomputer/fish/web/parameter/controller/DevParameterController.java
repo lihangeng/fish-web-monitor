@@ -41,6 +41,7 @@ import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
+import com.yihuacomputer.fish.api.parameter.IParamPushService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelation;
@@ -83,6 +84,9 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 	
 	@Autowired
 	private IParamTemplateDetailService paramTemplateDetailService;
+	
+	@Autowired
+	private IParamPushService paramPushService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,@RequestParam int limit,HttpServletRequest request,WebRequest webRequest){
@@ -300,6 +304,16 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 						pdd.setVersionTimeStamp(Long.valueOf(dateStr));
 						paramDeviceDetailService.add(pdd);
 					}
+				}
+				long versionNo=paramPushService.generateParamFileByDevice(id);
+				if(versionNo == 0){
+					result.addAttribute(FishConstant.SUCCESS, false);
+					result.addAttribute(FishConstant.ERROR_MSG, "生成文件失败!");
+				}
+				boolean download=paramPushService.noticeDeviceDownloadParamFileByDevice(id, versionNo);
+				if(!download){
+					result.addAttribute(FishConstant.SUCCESS, false);
+					result.addAttribute(FishConstant.ERROR_MSG, "参数下发失败!");
 				}
 				result.addAttribute(FishConstant.SUCCESS, true);
 			}
