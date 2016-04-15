@@ -16,6 +16,7 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 			enableDrop : true
 		}
 	},
+	selModel:{selType:'checkboxmodel'},
 	
 	plugins : {
 		ptype : 'cellediting',
@@ -23,6 +24,12 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 	},
 
 	initComponent : function() {
+		//复选框选择模式  
+		var checkboxSM = new Ext.create('Ext.selection.CheckboxModel', {
+			checkOnly : false,
+			singleSelect : false
+		});
+		
 		Ext.apply(this, {
 			initRegion : true,
 			columns : [ {
@@ -33,19 +40,30 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 				header : '参数值',
 				dataIndex : 'paramValue',
 				flex : 1,
-//				editable : true,
 				editor:new Ext.form.TextField({  
 	                allowBlank:false
 	            })
+			},{
+				header : '编辑',
+				dataIndex : 'paramRights',
+				flex : 1,
+				renderer: function(value,metadata,record){
+					if(value == 2){
+		                	 return '不可编辑';
+		             }else {
+		                	 return '可以编辑';
+		             }
+				}
 			}, {
 				header : 'ID',
 				dataIndex : 'id',
 				hidden : true,
 				storable : true
 			} ],
-
+			sm: checkboxSM,
 			enableColumnMove : true
 		});
+		
 
 		this.callParent(arguments);
 	},

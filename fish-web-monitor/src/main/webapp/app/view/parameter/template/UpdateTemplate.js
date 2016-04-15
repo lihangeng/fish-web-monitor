@@ -4,7 +4,7 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 	
 	requires: ['Eway.view.parameter.template.ParamGrid','Eway.view.parameter.template.AddedParamGrid'],
 	
-	title:'修改参数模板',
+	title:'更改参数模板',
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -21,6 +21,21 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 					msgTarget : 'side'
 				},
 				items: [ {
+					fieldLabel : '<font color="red">*</font>模板名称',
+					xtype : 'textfield',
+					name : 'name',
+					maxLength : 30,
+					msgTarget : 'side',
+					allowBlank : false
+					},{
+				    xtype : 'textarea',
+				    fieldLabel : '模板备注',
+				    name : 'remark',
+				    autoScroll : true,
+					maxLength :30,
+					msgTarget : 'side',
+					allowBlank : true
+					},{
 					xtype : 'panel',
 					trackResetOnLoad : true,
 					selectOnFocus : true,
@@ -30,8 +45,9 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 					autoScroll : true,
 					items : [ {
 						title : '可添加参数',
-						width : 200,
+						width : 195,
 						height: 350,
+						margin : '0 5px 0 0',
 						xtype : 'param_paramGrid',
 						autoLoadStore : true
 					}, {

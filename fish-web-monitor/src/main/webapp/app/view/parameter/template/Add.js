@@ -27,7 +27,7 @@ Ext.define('Eway.view.parameter.template.Add', {
 					maxLength : 30,
 					msgTarget : 'side',
 					allowBlank : false
-				},,{
+				},{
 				    xtype : 'textarea',
 				    fieldLabel : '模板备注',
 				    name : 'remark',
@@ -45,14 +45,13 @@ Ext.define('Eway.view.parameter.template.Add', {
 					autoScroll : true,
 					items : [ {
 						title : '可添加参数',
-//						region : 'west',
-						width : 200,
+						width : 195,
 						height: 350,
+						margin : '0 5px 0 0',
 						xtype : 'param_paramGrid',
 						autoLoadStore : true
 					}, {
-						title : '已添加的参数(可编辑的元数据可以直接修改)',
-//						region : 'east',
+						title : '已添加的参数(可编辑的参数可以直接修改)',
 						width : 400,
 						height: 350,
 						xtype : 'param_addedParamGrid',
@@ -74,10 +73,6 @@ Ext.define('Eway.view.parameter.template.Add', {
 				buttons: [{
 					text: EwayLocale.button.confirm,
 					action: 'add'
-				},{
-					text: EwayLocale.button.reset,
-					handler: this.onReset,
-					hidden : true
 				},{
 					text: EwayLocale.button.cancle,
 					handler: this.onOver

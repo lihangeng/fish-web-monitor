@@ -11,7 +11,7 @@ Ext.define('Eway.view.person.user.Update', {
 	resizable : true,
 	constrainHeader : true,
 	layout : 'border',
-	width : 800,
+	width : 900,
 	height : 500,
 
 	initComponent : function() {
