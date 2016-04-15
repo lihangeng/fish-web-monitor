@@ -22,6 +22,14 @@ Ext.define('Eway.view.field.atmType.DeviceAtmVendorForTypeComboBox', {
 			}else{
 				text.getTrigger("clear").hide();
 			}
+		},
+		afterrender: function(text){
+			var clearTip = text.getTrigger("clear");
+			if(undefined==clearTip){
+				return;
+			}else{
+				clearTip.hide();
+			}
 		}
 	}
 });

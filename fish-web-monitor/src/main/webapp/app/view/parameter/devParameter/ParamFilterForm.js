@@ -16,14 +16,14 @@ Ext.define('Eway.view.parameter.devParameter.ParamFilterForm',{
 				items:[{
 					xtype:'devParameter_field_ParamClassify',
 					name:'ClassifyId',
-					fieldLabel:'参数分类',
+					fieldLabel:EwayLocale.param.classify.name,
 					store:store
 				}]
 			},{
 				items:[{
 					xtype : 'textfield',
 					name : 'paramName',
-					fieldLabel : '参数名称'
+					fieldLabel : EwayLocale.param.element.paramName
 				}]
 			}]
 		});

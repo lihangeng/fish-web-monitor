@@ -39,7 +39,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 			'atmGroup_groupGrid button[action=add]' : {
 				click : this.onGroupAdd
 			},
-			'tabpanel':{
+			'machine_atmGroup_view tabpanel':{
 				tabchange:this.onTabChange
 			},
 			'atmGroup_groupGrid button[action=showDetail]' : {
