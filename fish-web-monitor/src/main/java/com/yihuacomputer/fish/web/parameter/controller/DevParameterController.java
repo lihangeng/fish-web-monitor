@@ -308,12 +308,12 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 				long versionNo=paramPushService.generateParamFileByDevice(id);
 				if(versionNo == 0){
 					result.addAttribute(FishConstant.SUCCESS, false);
-					result.addAttribute(FishConstant.ERROR_MSG, "生成文件失败!");
+					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.fileFailure", null, FishCfg.locale));
 				}
 				boolean download=paramPushService.noticeDeviceDownloadParamFileByDevice(id, versionNo);
 				if(!download){
 					result.addAttribute(FishConstant.SUCCESS, false);
-					result.addAttribute(FishConstant.ERROR_MSG, "参数下发失败!");
+					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.paramterDownload", null, FishCfg.locale));
 				}
 				result.addAttribute(FishConstant.SUCCESS, true);
 			}

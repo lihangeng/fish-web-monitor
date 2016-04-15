@@ -103,13 +103,13 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 		if(cellEditor.clicksToEdit == 1){
 			cellEditor.clicksToEdit=2;
 		}
-		grid.columns[1].setText('参数值 <font color="red">(可更改)</font>');
+		grid.columns[1].setText(EwayLocale.param.element.paramValue+'<font color="red">'+EwayLocale.param.deviceParam.couldUpdate+'</font>');
 	},
 	
 	onSave:function(){
 		var view=this.getEwayView();
 		var grid = view.down('tabpanel').activeTab.down('grid');
-		grid.columns[1].setText('参数值 ');
+		grid.columns[1].setText(EwayLocale.param.element.paramValue);
 		var cellEditor=grid.plugins[0];
 		if(cellEditor.clicksToEdit == 2){
 			cellEditor.clicksToEdit=1;
@@ -138,11 +138,11 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 		
 		record.save({
 			 success: function(ed) {
-				Eway.alert('更改成功');
+				Eway.alert(EwayLocale.updateSuccess);
 				store.loadPage(1);
 			 },
 			 failure: function(ed){
-				Eway.alert('更改失败');
+				Eway.alert(EwayLocale.tip.fail);
 			 },
 			 scope : this
 		});

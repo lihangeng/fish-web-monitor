@@ -16,15 +16,15 @@ Ext.define('Eway.view.parameter.devParameter.DevGrid', {
 				action : 'query'
 			 }],
 			columns : [ {
-				header : '设备号',
+				header : EwayLocale.commen.terminalId,
 				dataIndex : 'terminalId',
 				width:150
 			},{
-				header : 'Ip地址',
+				header : EwayLocale.commen.ip,
 				dataIndex : 'ip',
 				width:150
 			},{
-				header : '所属机构',
+				header : EwayLocale.commen.orgNameBelongs,
 				dataIndex : 'orgName',
 				flex:1
 			}/*,{
