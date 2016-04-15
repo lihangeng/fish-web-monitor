@@ -209,7 +209,7 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 						dParam.setParamClassifyId(dp.getParamClassifyId());
 						dParam.setParamClassify(dp.getParamClassify());
 						dParam.setParamName(dp.getParamName());
-						if(dp.getParamValue() != null){
+						if(dp.getParamValue() != null && dp.getParamValue() != ""){
 							dParam.setParamValue(dp.getParamValue());
 						}else{
 							dParam.setParamValue(dp.getElementParamValue());
