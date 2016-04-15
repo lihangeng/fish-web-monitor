@@ -33,7 +33,7 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 			'parameter_devParameter_devGrid' : {
 				itemclick :this.onItemclick
 			},
-			'tabpanel':{
+			'parameter_devParameter_view tabpanel':{
 				tabchange:this.onTabChange
 			},
 			'parameter_devParameter_paramGrid button[action=update]':{
