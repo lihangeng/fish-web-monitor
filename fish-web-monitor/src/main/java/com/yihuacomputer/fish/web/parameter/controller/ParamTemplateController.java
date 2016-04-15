@@ -32,7 +32,7 @@ import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
-import com.yihuacomputer.fish.api.parameter.IParamPushService;
+import com.yihuacomputer.fish.api.parameter.IParamPulishService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
@@ -350,7 +350,7 @@ public class ParamTemplateController {
 	}
 
 	@Autowired
-	private IParamPushService paramPushService;
+	private IParamPulishService paramPushService;
 	
 	/**
 	 * 将设备当前所有参数覆盖为模板的参数

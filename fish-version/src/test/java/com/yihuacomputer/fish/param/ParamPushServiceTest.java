@@ -9,14 +9,14 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yihuacomputer.domain.test.BindSessionInTest2;
-import com.yihuacomputer.fish.api.parameter.IParamPushService;
+import com.yihuacomputer.fish.api.parameter.IParamPulishService;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = MysqlTestConfig.class)
 public class ParamPushServiceTest extends BindSessionInTest2{
 	@Autowired
-	private IParamPushService paramPushService;
+	private IParamPulishService paramPushService;
 	
 	@org.junit.Test
 	@Ignore

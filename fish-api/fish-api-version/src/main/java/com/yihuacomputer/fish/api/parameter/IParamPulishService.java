@@ -5,7 +5,7 @@ package com.yihuacomputer.fish.api.parameter;
  * @author GQ
  *
  */
-public interface IParamPushService {
+public interface IParamPulishService {
 	/**
 	 * 根据模板生成参数文件并返回版本号
 	 * @param templateId

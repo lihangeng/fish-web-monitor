@@ -41,7 +41,7 @@ import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
-import com.yihuacomputer.fish.api.parameter.IParamPushService;
+import com.yihuacomputer.fish.api.parameter.IParamPulishService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelation;
@@ -86,7 +86,7 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 	private IParamTemplateDetailService paramTemplateDetailService;
 	
 	@Autowired
-	private IParamPushService paramPushService;
+	private IParamPulishService paramPushService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,@RequestParam int limit,HttpServletRequest request,WebRequest webRequest){

@@ -33,7 +33,7 @@ import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
-import com.yihuacomputer.fish.api.parameter.IParamPushService;
+import com.yihuacomputer.fish.api.parameter.IParamPulishService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
@@ -52,9 +52,9 @@ import com.yihuacomputer.fish.parameter.entity.ParamTemplateElementRelation;
  */
 @Service
 @Transactional
-public class ParamPushService implements IParamPushService {
+public class ParamPulishService implements IParamPulishService {
 
-	private Logger logger = LoggerFactory.getLogger(ParamPushService.class);
+	private Logger logger = LoggerFactory.getLogger(ParamPulishService.class);
 
 	@Autowired
 	private IParamTemplateService templateService;
@@ -413,7 +413,7 @@ public class ParamPushService implements IParamPushService {
 				new PropertiesFileWriter(fileStr, mapInfo);
 				break;
 			case INI:
-				new INIFileWriter(fileStr, mapInfo);
+				new INIFileWriter(fileStr, mapInfo,maxVersion);
 				break;
 			default:
 				break;

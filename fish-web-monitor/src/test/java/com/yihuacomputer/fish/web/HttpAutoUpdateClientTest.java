@@ -28,9 +28,9 @@ public class  HttpAutoUpdateClientTest {
 	 */
 	public static void main(String[] args) {
 		AutoUpdateMsg request= new AutoUpdateMsg();
-		request.setTermId("0001");
+		request.setTermId("13050003");
 		List<SimpleVersion> currentPatches = new ArrayList<SimpleVersion>(); 
-		currentPatches.add(new SimpleVersion("gump-professional","1.0.1"));
+		currentPatches.add(new SimpleVersion("ATMVC","1.0.1"));
 		request.setCurrentPatches(currentPatches);
 		
 //		AutoUpdateMsg response = (AutoUpdateMsg)HttpProxy.httpPost("http://localhost:8085/fish-web/api/msg/autoupdate", request, AutoUpdateMsg.class);

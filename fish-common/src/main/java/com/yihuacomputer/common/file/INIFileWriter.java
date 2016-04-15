@@ -11,11 +11,17 @@ public class INIFileWriter {
 
 	public static String LINE_SEPARATOR = System.getProperty("line.separator");
 
-	public INIFileWriter(String filename, Map<String, Map<String, String>> sections) throws IOException {
+	/**
+	 * @param filename 文件名称
+	 * @param sections 文件域的详情
+	 * @param maxVersion 当前文件版本
+	 * @throws IOException
+	 */
+	public INIFileWriter(String filename, Map<String, Map<String, String>> sections,long maxVersion) throws IOException {
 		BufferedWriter writer = null;
 		try {
 			writer = initWriter(filename);
-			initIni(sections);
+			initIni(sections,maxVersion);
 			writer.write(sb.toString());
 		} finally {
 			if (writer != null) {
@@ -39,7 +45,8 @@ public class INIFileWriter {
 	}
 
 	// 组装ini文件
-	private void initIni(Map<String, Map<String, String>> sections) {
+	private void initIni(Map<String, Map<String, String>> sections,long maxVersion) {
+		sb.append("#").append(maxVersion);
 		for (Map.Entry<String, Map<String, String>> e : sections.entrySet()) {
 			String k = e.getKey();
 			Map<String, String> values = e.getValue();
