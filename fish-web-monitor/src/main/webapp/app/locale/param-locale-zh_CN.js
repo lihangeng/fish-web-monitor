@@ -20,10 +20,8 @@ Ext.apply(EwayLocale,{
     		remark:'备注',//EwayLocale.param.element.remark
     		createTime:'创建时间',//EwayLocale.param.element.createTime
     		lastModifyTime:'最后修改时间',//EwayLocale.param.element.lastModifyTime
-    		integer:'整型',//EwayLocale.param.element.integer
-        	character:'字符串型',//EwayLocale.param.element.character
-        	boolean:'布尔型',//EwayLocale.param.element.boolean
-        	ip:'IP地址型',//EwayLocale.param.element.ip
+    		integer:'数字',//EwayLocale.param.element.integer
+        	character:'字符串',//EwayLocale.param.element.character
         	editable:'可编辑',//EwayLocale.param.element.editable
         	uneditable:'不可编辑',//EwayLocale.param.element.uneditable
         	ATMC:'ATMC',//EwayLocale.param.element.ATMC

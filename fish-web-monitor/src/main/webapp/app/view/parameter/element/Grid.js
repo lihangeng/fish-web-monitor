@@ -32,14 +32,6 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
-			},{
-				text: EwayLocale.button.remove,
-				glyph : 0xf014,
-				action: 'remove',
-				code : 'elementDel',
-				listeners:{
-					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-				}
 			}],
 			viewConfig : {
 				forceFit : true,
@@ -67,12 +59,6 @@ Ext.define('Eway.view.parameter.element.Grid', {
 					if(value==2){
 						return EwayLocale.param.element.character;
 					}
-					if(value==3){
-						return EwayLocale.param.element.boolean;
-					}
-					if(value==4){
-						return EwayLocale.param.element.ip;
-					}
 				}
 			},{
 				header : EwayLocale.param.element.paramClassify,
@@ -98,16 +84,16 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				flex : 2,
 				width :180,
 			},{
-				header : EwayLocale.param.element.remark,
-				dataIndex : 'remark',
-				flex : 2
-			},{
 				header : EwayLocale.param.element.createTime,
 				dataIndex : 'createTime',
 				flex : 2
 			},{
 				header : EwayLocale.param.element.lastModifyTime,
 				dataIndex : 'lastModifyTime',
+				flex : 2
+			},{
+				header : EwayLocale.param.element.remark,
+				dataIndex : 'remark',
 				flex : 2
 			}
 			],

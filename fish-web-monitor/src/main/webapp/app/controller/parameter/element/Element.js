@@ -65,14 +65,12 @@ Ext.define('Eway.controller.parameter.element.Element', {
 			onChange:function( _this, newValue, oldValue, eOpts){
 				var paramValue = _this.up("parameter_element_form").down("field_paramElement_ParamValue");
 				if(newValue==1){
-					return paramValue.regex=/(^(0|[1-9]\d{0,17})$)/,paramValue.regexText='只能输入整型数据';
+					return paramValue.regex=/(^([0-9]\d{0,17})$)/,paramValue.regexText='只能输入数字';
 				}
-				if(newValue==3){
-					return paramValue.regex=/(true|false)/,paramValue.regexText='只能输入布尔型数据';
+				if(newValue==2){
+					return paramValue.regex=null;
 				}
-				if(newValue==4){
-					return paramValue.regex=/^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/,paramValue.regexText='请正确输入IP地址';
-				}
+
 			}
 
 });

@@ -22,8 +22,6 @@ Ext.apply(EwayLocale,{
     		lastModifyTime:'LastModifyTime',//EwayLocale.param.element.lastModifyTime
     		integer:'Integer',//EwayLocale.param.element.integer
     		character:'String',//EwayLocale.param.element.character
-    		boolean:'Boolean',//EwayLocale.param.element.boolean
-    		ip:'IP',//EwayLocale.param.element.ip
     		editable:'Editable',//EwayLocale.param.element.editable
     		uneditable:'Uneditable',//EwayLocale.param.element.uneditable
     		ATMC:'ATMC',//EwayLocale.param.element.ATMC
