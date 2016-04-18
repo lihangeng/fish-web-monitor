@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.parameter.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.parameter.IParamClassify;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
@@ -43,6 +45,8 @@ public class ParamElementService implements IParamElementService {
 	@Override
 	public IParamElement add(IParamElement element) {
 
+		Date date=new Date();
+		element.setParamTimestamp(Long.parseLong(DateUtils.getTimestamp5(date)));
 		return dao.save(element);
 	}
 
@@ -53,6 +57,9 @@ public class ParamElementService implements IParamElementService {
 
 	@Override
 	public void update(IParamElement element) {
+
+		Date date=new Date();
+		element.setParamTimestamp(Long.parseLong(DateUtils.getTimestamp5(date)));
 		dao.update(interface2Entity(element,true));
 	}
 
