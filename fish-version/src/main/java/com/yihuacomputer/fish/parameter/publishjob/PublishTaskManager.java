@@ -8,18 +8,18 @@ import org.slf4j.LoggerFactory;
 
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
-import com.yihuacomputer.fish.api.parameter.IParamPulishResult;
-import com.yihuacomputer.fish.parameter.entity.ParamPulishResult;
+import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
+import com.yihuacomputer.fish.parameter.entity.ParamPublishResult;
 
 public class PublishTaskManager implements Runnable {
 
 	private Logger logger = LoggerFactory.getLogger(PublishTaskManager.class);
 
-	private IParamPublishResultService atmcParamPublishResultService;
+	private IParamPublishResultService paramPublishResultService;
 
 	private IDeviceService deviceService;
 
-	private BlockingQueue<IParamPulishResult> queue ;
+	private BlockingQueue<IParamPublishResult> queue ;
 
 	private ThreadPoolExecutor taskExecutor;
 
@@ -27,9 +27,9 @@ public class PublishTaskManager implements Runnable {
 	public void run() {
 		while (true) {
 			try {
-				IParamPulishResult paramPulishResult = this.queue.take();
+				IParamPublishResult paramPulishResult = this.queue.take();
 				AtmcParamsJobThread jobThread = new AtmcParamsJobThread(paramPulishResult) ;
-				jobThread.setParamPublishResultService(atmcParamPublishResultService);
+				jobThread.setParamPublishResultService(paramPublishResultService);
 				jobThread.setDeviceService(deviceService);
     			this.taskExecutor.execute(jobThread);
 			} catch (Exception e) {
@@ -38,19 +38,19 @@ public class PublishTaskManager implements Runnable {
 		}
 	}
 
-	public void init(BlockingQueue<IParamPulishResult> queue,ThreadPoolExecutor taskExecutor){
+	public void init(BlockingQueue<IParamPublishResult> queue,ThreadPoolExecutor taskExecutor){
 		this.queue = queue ;
 		this.taskExecutor = taskExecutor ;
 	}
 
-//	public IAtmcParamPublishResultService getAtmcParamPublishResultService() {
-//		return atmcParamPublishResultService;
-//	}
+	public IParamPublishResultService getParamPublishResultService() {
+		return paramPublishResultService;
+	}
 
-//	public void setAtmcParamPublishResultService(
-//			IAtmcParamPublishResultService atmcParamPublishResultService) {
-//		this.atmcParamPublishResultService = atmcParamPublishResultService;
-//	}
+	public void setParamPublishResultService(
+			IParamPublishResultService atmcParamPublishResultService) {
+		this.paramPublishResultService = atmcParamPublishResultService;
+	}
 
 	public IDeviceService getDeviceService() {
 		return deviceService;
@@ -60,7 +60,7 @@ public class PublishTaskManager implements Runnable {
 		this.deviceService = deviceService;
 	}
 
-	public void addPublish(ParamPulishResult result ){
+	public void addPublish(ParamPublishResult result ){
 		try {
 			this.queue.put(result);
 		} catch (InterruptedException e) {

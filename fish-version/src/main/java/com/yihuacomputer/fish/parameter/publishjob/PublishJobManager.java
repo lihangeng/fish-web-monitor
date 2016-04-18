@@ -5,12 +5,15 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import javax.annotation.PostConstruct;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.parameter.IParamPulishResult;
+import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
+import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
 import com.yihuacomputer.fish.api.system.config.IParamService;
 
 public class PublishJobManager {
@@ -18,8 +21,8 @@ public class PublishJobManager {
 
 	private PublishTaskManager taskManager ;
 
-//	@Autowired
-//	private IAtmcParamPublishResultService atmcParamPublishResultService;
+	@Autowired
+	private IParamPublishResultService atmcParamPublishResultService;
 
 	@Autowired
 	private IDeviceService deviceService;
@@ -27,7 +30,7 @@ public class PublishJobManager {
 	@Autowired
 	private IParamService paramService;
 
-	private BlockingQueue<IParamPulishResult> queue ;
+	private BlockingQueue<IParamPublishResult> queue ;
 
 	private String paramKey = "param_update_count";
 
@@ -36,17 +39,18 @@ public class PublishJobManager {
 
 	private ThreadPoolExecutor taskExecutor;
 
+	@PostConstruct
 	public void init(){
 		taskManager = new PublishTaskManager() ;
 		taskManager.init(getQueue(), getThreadPool());
-//		taskManager.setAtmcParamPublishResultService(atmcParamPublishResultService);
+		taskManager.setParamPublishResultService(atmcParamPublishResultService);
 		taskManager.setDeviceService(deviceService);
 		Thread taskManagerThread = new Thread(taskManager);
 		taskManagerThread.setName("Publish_Task_Manager");
 		taskManagerThread.start();
 	}
 
-	public BlockingQueue<IParamPulishResult>  getQueue(){
+	public BlockingQueue<IParamPublishResult>  getQueue(){
 		try{
 			taskQueueLength = Integer.valueOf(paramService.getParam(paramKey).getParamValue());
 			if(taskQueueLength>50){
@@ -56,7 +60,7 @@ public class PublishJobManager {
 			logger.error(String.format("get param_update_count error [%s]",ex.getMessage()));
 		}
 		if(queue == null){
-			queue = new ArrayBlockingQueue<IParamPulishResult>(this.taskQueueLength);
+			queue = new ArrayBlockingQueue<IParamPublishResult>(this.taskQueueLength);
 		}
 		logger.info("taskQueueLength is " + this.taskQueueLength);
 		return this.queue;
@@ -67,7 +71,7 @@ public class PublishJobManager {
 		return taskExecutor ;
 	}
 
-	public void addTask(IParamPulishResult result){
+	public void addTask(IParamPublishResult result){
 		try {
 			this.queue.put(result) ;
 		} catch (InterruptedException e) {

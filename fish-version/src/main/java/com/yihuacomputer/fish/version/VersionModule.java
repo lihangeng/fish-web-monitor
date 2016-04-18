@@ -15,7 +15,8 @@ import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
-import com.yihuacomputer.fish.api.parameter.IParamPulishService;
+import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
+import com.yihuacomputer.fish.api.parameter.IParamPublishService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
@@ -32,10 +33,12 @@ import com.yihuacomputer.fish.api.version.job.IUpdateDeployDateHistoryService;
 import com.yihuacomputer.fish.api.version.job.task.ITaskDetailService;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.relation.IDeviceAdvertRelation;
+import com.yihuacomputer.fish.parameter.publishjob.PublishJobManager;
 import com.yihuacomputer.fish.parameter.service.ParamClassifyService;
 import com.yihuacomputer.fish.parameter.service.ParamDeviceDetailService;
 import com.yihuacomputer.fish.parameter.service.ParamElementService;
-import com.yihuacomputer.fish.parameter.service.ParamPulishService;
+import com.yihuacomputer.fish.parameter.service.ParamPublishResultService;
+import com.yihuacomputer.fish.parameter.service.ParamPublishService;
 import com.yihuacomputer.fish.parameter.service.ParamTemplateDetailService;
 import com.yihuacomputer.fish.parameter.service.ParamTemplateDeviceRelationService;
 import com.yihuacomputer.fish.parameter.service.ParamTemplateService;
@@ -196,7 +199,16 @@ public class VersionModule {
 	}
 
 	@Bean 
-	public IParamPulishService paramPushService(){
-		return new ParamPulishService();
+	public IParamPublishService paramPushService(){
+		return new ParamPublishService();
+	}
+	
+	@Bean 
+	public IParamPublishResultService paramPublishResultService(){
+		return new ParamPublishResultService();
+	}
+	@Bean
+	public PublishJobManager publishJobManager(){
+		return new PublishJobManager();
 	}
 }

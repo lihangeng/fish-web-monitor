@@ -13,6 +13,7 @@
  	<bean id="jobManager" class="com.yihuacomputer.fish.version.job.JobManager"></bean>
  	
  	<bean id="taskQueue" class="com.yihuacomputer.fish.version.task.TaskQueue"></bean>
+	<bean id="publishManager" class="com.yihuacomputer.fish.parameter.publishjob.PublishJobManager"></bean>
 	
 	<bean name="versionEntityInjector" class="com.yihuacomputer.fish.version.interceptor.VersionEntityInjector"/> 
 </beans>

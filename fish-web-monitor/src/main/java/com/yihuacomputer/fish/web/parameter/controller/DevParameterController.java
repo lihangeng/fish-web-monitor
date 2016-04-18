@@ -41,7 +41,7 @@ import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
-import com.yihuacomputer.fish.api.parameter.IParamPulishService;
+import com.yihuacomputer.fish.api.parameter.IParamPublishService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelation;
@@ -86,7 +86,7 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 	private IParamTemplateDetailService paramTemplateDetailService;
 	
 	@Autowired
-	private IParamPulishService paramPushService;
+	private IParamPublishService paramPushService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,@RequestParam int limit,HttpServletRequest request,WebRequest webRequest){
@@ -214,9 +214,6 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 						}else{
 							dParam.setParamValue(dp.getElementParamValue());
 						}
-						dParam.setEleParamType(dp.getEleParamType());
-						dParam.setEleParamRights(dp.getEleParamRights());
-						dParam.setEleModifyTiem(dp.getEleModifyTiem());
 						pageResult.add(dParam);
 					}
 				}
@@ -303,7 +300,7 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 						pdd.setDevice(deviceService.get(id));
 						pdd.setElement(paramElementService.get(paramList.get(i).getId()));
 						pdd.setParamValue(paramList.get(i).getParamValue());
-						String dateStr=new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
+						String dateStr=new SimpleDateFormat("yyMMddHHmmssSSS").format(new Date());
 						pdd.setVersionTimeStamp(Long.valueOf(dateStr));
 						paramDeviceDetailService.add(pdd);
 					}
@@ -313,11 +310,11 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 					result.addAttribute(FishConstant.SUCCESS, false);
 					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.fileFailure", null, FishCfg.locale));
 				}
-				boolean download=paramPushService.noticeDeviceDownloadParamFileByDevice(id, versionNo);
-				if(!download){
-					result.addAttribute(FishConstant.SUCCESS, false);
-					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.paramterDownload", null, FishCfg.locale));
-				}
+//				boolean download=paramPushService.noticeDeviceDownloadParamFileByDevice(id, versionNo);
+//				if(!download){
+//					result.addAttribute(FishConstant.SUCCESS, false);
+//					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.paramterDownload", null, FishCfg.locale));
+//				}
 				result.addAttribute(FishConstant.SUCCESS, true);
 			}
 		return result;

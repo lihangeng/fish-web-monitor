@@ -9,7 +9,7 @@ public class ParamInfo {
 	/**
 	 * 参数文件版本号--时间戳
 	 */
-	private String versionNo;
+	private long versionNo;
 	/**
 	 * 设备号
 	 */
@@ -27,11 +27,11 @@ public class ParamInfo {
 		this.serverPath = serverPath;
 	}
 
-	public String getVersionNo() {
+	public long getVersionNo() {
 		return versionNo;
 	}
 
-	public void setVersionNo(String timestamp) {
+	public void setVersionNo(long timestamp) {
 		this.versionNo = timestamp;
 	}
 
