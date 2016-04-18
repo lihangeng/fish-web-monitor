@@ -44,7 +44,7 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 	                allowBlank:false
 	            })
 			},{
-				header : '编辑',
+				header : '参数权限',
 				dataIndex : 'paramRights',
 				flex : 1,
 				renderer: function(value,metadata,record){

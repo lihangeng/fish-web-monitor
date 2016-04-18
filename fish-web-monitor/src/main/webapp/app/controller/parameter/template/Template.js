@@ -97,11 +97,13 @@ Ext.define('Eway.controller.parameter.template.Template',
 						}else{
 							var grid = this.getTemplateGrid();
 							var sm = grid.getSelectionModel();
+							var record = sm.getLastSelected();
 							if (sm.getCount() == 1) {
-
+								
 								var record = sm.getLastSelected();
 								var win = Ext.create('Eway.view.parameter.template.UpdateTemplate');
 								var templateId = record.data.id;
+								win.down('form').getForm().loadRecord(record);
 								win.down('button[action="confirm"]').on('click',Ext.bind(this.onAddUpdateConfirm,this,[win,action,templateId]),this);
 								paramGrid = this.getParamGrid();
 								addedParamGrid = this.getAddedParamGrid();
@@ -249,22 +251,22 @@ Ext.define('Eway.controller.parameter.template.Template',
 								success : function(response) {
 									var object = Ext.decode(response.responseText);
 									if (object.success == true) {
-										Eway.alert('应用模板成功');
+										Eway.alert('发布模板成功');
 										this.onQueryAfterOperate();
 									} else {
-										Eway.alert('应用模板失败');
+										Eway.alert('发布模板失败');
 										this.onQueryAfterOperate();
 									}
 								},
 								failure : function() {
-										Eway.alert('应用模板失败');
+										Eway.alert('发布模板失败');
 										this.onQueryAfterOperate();
 								},
 								scope : this
 							});
 						}
 						else {
-								Eway.alert('请选择需应用的模板');
+								Eway.alert('请选择需发布的模板');
 						}
 					},
 					

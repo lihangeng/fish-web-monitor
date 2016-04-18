@@ -383,7 +383,7 @@ public class ParamTemplateController {
 			
 			logger.info(ex.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "应用模板失败");
+			result.addAttribute(FishConstant.ERROR_MSG, "下发模板失败");
 			
 		}
 
