@@ -48,8 +48,7 @@ Ext.define('Eway.view.parameter.element.Grid', {
 			},{
 				header : EwayLocale.param.element.paramType,
 				dataIndex : 'paramType',
-				flex : 2,
-				flex : 2,
+				flex : 1,
 				width :180,
 				sortable:true,
 				renderer:function(value,metadata,record){
@@ -67,7 +66,7 @@ Ext.define('Eway.view.parameter.element.Grid', {
 			},{
 				header : EwayLocale.param.element.paramRights,
 				dataIndex : 'paramRights',
-				flex : 2,
+				flex : 1,
 				width :180,
 				sortable:true,
 				renderer:function(value,metadata,record){
@@ -91,7 +90,14 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				header : EwayLocale.param.element.lastModifyTime,
 				dataIndex : 'lastModifyTime',
 				flex : 2
-			},{
+			},
+			{
+					header:EwayLocale.param.element.versionNo,
+					dataIndex:'versionNo',
+					hidden:true,
+					flex: 2
+			},
+			{
 				header : EwayLocale.param.element.remark,
 				dataIndex : 'remark',
 				flex : 2

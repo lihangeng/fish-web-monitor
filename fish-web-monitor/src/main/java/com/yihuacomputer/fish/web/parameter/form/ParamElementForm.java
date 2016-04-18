@@ -20,6 +20,7 @@ public class ParamElementForm {
 	private String remark;
 	private String createTime;
 	private String lastModifyTime;
+	private long  versionNo;
 
 	public ParamElementForm(){
 
@@ -42,6 +43,7 @@ public class ParamElementForm {
 		setRemark(element.getRemark());
 		setCreateTime(nullString(element.getCreateTime()));
 		setLastModifyTime(nullString(element.getLastModifyTime()));
+		setVersionNo(element.getParamTimestamp());
 
 	}
 
@@ -167,6 +169,14 @@ public class ParamElementForm {
 
 	public void setLastModifyTime(String lastModifyTime) {
 		this.lastModifyTime = lastModifyTime;
+	}
+
+	public long getVersionNo() {
+		return versionNo;
+	}
+
+	public void setVersionNo(long versionNo) {
+		this.versionNo = versionNo;
 	}
 
 

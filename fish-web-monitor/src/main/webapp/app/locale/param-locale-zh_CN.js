@@ -25,7 +25,8 @@ Ext.apply(EwayLocale,{
         	editable:'可编辑',//EwayLocale.param.element.editable
         	uneditable:'不可编辑',//EwayLocale.param.element.uneditable
         	ATMC:'ATMC',//EwayLocale.param.element.ATMC
-            monitoringCient:'监控客户端'//EwayLocale.param.element.monitoringCient
+            monitoringCient:'监控客户端',//EwayLocale.param.element.monitoringCient
+            versionNo:'版本号'//EwayLocale.param.element.versionNo
 
     	},
     	classify:{

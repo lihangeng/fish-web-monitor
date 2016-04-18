@@ -87,7 +87,6 @@ public class ParamElementController {
 		element.setRemark(request.getRemark());
 		request.setCreateTime(DateUtils.getTimestamp(date));
 		element.setCreateTime(DateUtils.getTimestamp(request.getCreateTime()));
-		element.setParamTimestamp(System.currentTimeMillis());
 		elementService.add(element);
 		result.put(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, new ParamElementForm(element));
@@ -128,7 +127,6 @@ public class ParamElementController {
 		element.setRemark(request.getRemark());
 		request.setLastModifyTime(DateUtils.getTimestamp(date));
 		element.setLastModifyTime(DateUtils.getTimestamp(request.getLastModifyTime()));
-		element.setParamTimestamp(System.currentTimeMillis());
 		elementService.update(element);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, new ParamElementForm(element));
