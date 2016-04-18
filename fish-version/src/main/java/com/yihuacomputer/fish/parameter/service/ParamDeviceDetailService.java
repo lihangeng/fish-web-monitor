@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.parameter.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,10 +41,10 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 		StringBuffer sql= new StringBuffer();
 		
 		sql.append("SELECT t1.peid elementId,t1.pcid classifyId,t1.pcname classifyName,t1.paramName paramName, ");
-		sql.append("t1.paramvalue paramvalue,pdd.id pddid,pdd.param_value pddparamValue ");
+		sql.append("t1.paramvalue paramvalue,t1.peType eleParamType,t1.peRights eleparamRights,t1.peModifyTime paramModifyTime,pdd.id pddid,pdd.param_value pddparamValue ");
 		sql.append("FROM (select pc.ID pcid,pc.NAME pcname,pe.ID peid,pe.PARAM_NAME paramName, ");
-		sql.append("pe.PARAM_VALUE paramvalue FROM PARAM_CLASSIFY pc,PARAM_ELEMENT pe");
-		sql.append(" where pc.ID = pe.PARAM_CLASSIFY ");
+		sql.append("pe.PARAM_VALUE paramvalue,pe.PARAM_TYPE peType,pe.PARAM_RIGHTS peRights,pe.LAST_MODIFY_TIME peModifyTime ");
+		sql.append("FROM PARAM_CLASSIFY pc,PARAM_ELEMENT pe where pc.ID = pe.PARAM_CLASSIFY ");
 		Object paramName=filter.getValue("paramName");
 		if(paramName != null){
 			sql.append("and pe.PARAM_NAME = '").append(String.valueOf(paramName)).append("' ");
@@ -66,8 +67,11 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 			dp.setParamClassify(objs[2]==null?"":String.valueOf(objs[2]));
 			dp.setParamName(objs[3]==null?"":String.valueOf(objs[3]));
 			dp.setElementParamValue(objs[4]==null?"":String.valueOf(objs[4]));
-			dp.setDeviceParamId(Long.parseLong(objs[5]==null ? "0":String.valueOf(objs[5])));
-			dp.setParamValue(objs[6]==null?"":String.valueOf(objs[6]));
+			dp.setEleParamType(objs[5]==null?"":String.valueOf(objs[5]));
+			dp.setEleParamRights(objs[6]==null?"":String.valueOf(objs[6]));
+			dp.setEleModifyTiem(objs[7]==null?"":new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(objs[7]));
+			dp.setDeviceParamId(Long.parseLong(objs[8]==null ? "0":String.valueOf(objs[8])));
+			dp.setParamValue(objs[9]==null?"":String.valueOf(objs[9]));
 			resultList.add(dp);
 		}
 		

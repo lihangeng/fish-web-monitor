@@ -44,15 +44,48 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 			columns : [ {
 				header : EwayLocale.param.element.paramName,
 				dataIndex : 'paramName',
-				width:'35%'
+				width:110
 			}, {
 				header : EwayLocale.param.element.paramValue,
 				dataIndex : 'paramValue',
-				flex:1,
 				editor: {
 					xtype:'textfield',
 					allowBlank:false
+				},
+				width:130
+			},{
+				header:'参数权限',
+				dataIndex:'eleParamRights',
+				renderer:function(value,metadata,record){
+					if(value==1){
+						return EwayLocale.param.element.editable;
+					}
+					if(value==2){
+						return EwayLocale.param.element.uneditable;
+					}
 				}
+			},{
+				header:'参数类型',
+				dataIndex:'eleParamType',
+				width:110,
+				renderer:function(value,metadata,record){
+					if(value==1){
+						return EwayLocale.param.element.integer;
+					}
+					if(value==2){
+						return EwayLocale.param.element.character;
+					}
+					if(value==3){
+						return EwayLocale.param.element.boolean;
+					}
+					if(value==4){
+						return EwayLocale.param.element.ip;
+					}
+				}
+			},{
+				header:'最后修改时间',
+				dataIndex:'eleModifyTiem',
+				flex:1
 			}]
 		});
 		

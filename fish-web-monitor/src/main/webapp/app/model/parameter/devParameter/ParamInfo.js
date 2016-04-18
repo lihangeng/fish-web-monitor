@@ -1,6 +1,6 @@
 Ext.define('Eway.model.parameter.devParameter.ParamInfo', {
 	extend : 'Ext.data.Model',
-	fields : ['id','classifyId','paramClassify','paramName','paramValue'],
+	fields : ['id','classifyId','paramClassify','paramName','paramValue','eleParamType','eleParamRights','eleModifyTiem'],
 	proxy : {
 		type : 'rest',
 		url : 'api/parameter/devParameter/paramInfo',

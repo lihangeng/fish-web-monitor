@@ -21,6 +21,12 @@ public class DeviceParam {
 
 	private String elementParamValue;
 	
+	private String eleParamType;
+	
+	private String eleParamRights;
+	
+	private String eleModifyTiem;
+	
 	private String templateParamValue;
 	
 	private long deviceParamId;
@@ -67,6 +73,30 @@ public class DeviceParam {
 
 	public void setElementParamValue(String elementParamValue) {
 		this.elementParamValue = elementParamValue;
+	}
+
+	public String getEleParamType() {
+		return eleParamType;
+	}
+
+	public void setEleParamType(String eleParamType) {
+		this.eleParamType = eleParamType;
+	}
+
+	public String getEleParamRights() {
+		return eleParamRights;
+	}
+
+	public void setEleParamRights(String eleParamRights) {
+		this.eleParamRights = eleParamRights;
+	}
+
+	public String getEleModifyTiem() {
+		return eleModifyTiem;
+	}
+
+	public void setEleModifyTiem(String eleModifyTiem) {
+		this.eleModifyTiem = eleModifyTiem;
 	}
 
 	public String getTemplateParamValue() {

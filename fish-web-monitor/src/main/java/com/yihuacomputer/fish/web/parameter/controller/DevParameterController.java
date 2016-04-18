@@ -214,6 +214,9 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 						}else{
 							dParam.setParamValue(dp.getElementParamValue());
 						}
+						dParam.setEleParamType(dp.getEleParamType());
+						dParam.setEleParamRights(dp.getEleParamRights());
+						dParam.setEleModifyTiem(dp.getEleModifyTiem());
 						pageResult.add(dParam);
 					}
 				}
@@ -300,7 +303,7 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 						pdd.setDevice(deviceService.get(id));
 						pdd.setElement(paramElementService.get(paramList.get(i).getId()));
 						pdd.setParamValue(paramList.get(i).getParamValue());
-						String dateStr=new SimpleDateFormat("yyMMddHHmmssSSS").format(new Date());
+						String dateStr=new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
 						pdd.setVersionTimeStamp(Long.valueOf(dateStr));
 						paramDeviceDetailService.add(pdd);
 					}
