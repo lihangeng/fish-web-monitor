@@ -56,7 +56,7 @@ import com.yihuacomputer.fish.web.parameter.form.ParamClassifyForm;
 @Controller
 @RequestMapping("/parameter/devParameter")
 public class DevParameterController {
-private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
+private Logger logger=LoggerFactory.getLogger(DevParameterController.class);
 	
 	@Autowired
 	private MessageSource messageSource;
@@ -308,18 +308,18 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 						paramDeviceDetailService.add(pdd);
 					}
 				}
-				long terminalId=Long.valueOf(deviceService.get(id).getTerminalId());
-				long versionNo=paramPushService.generateParamFileByDevice(terminalId);
-				if(versionNo == 0){
-					result.addAttribute(FishConstant.SUCCESS, false);
-					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.fileFailure", null, FishCfg.locale));
-				}
-//				boolean download=paramPushService.paramPublishByDeviceIds(deviceIdList, personId);
-//				if(!download){
-//					result.addAttribute(FishConstant.SUCCESS, false);
-//					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.paramterDownload", null, FishCfg.locale));
-//				}
-				result.addAttribute(FishConstant.SUCCESS, true);
+					result.addAttribute(FishConstant.SUCCESS, true);
+					long terminalId=Long.valueOf(deviceService.get(id).getTerminalId());
+					List<Long> deviceIdList =new ArrayList<Long>();
+					deviceIdList.add(terminalId);
+					UserSession userSession=(UserSession) request.getSession().getAttribute("SESSION_USER");
+					boolean download=paramPushService.paramPublishByDeviceIds(deviceIdList, userSession.getUserId());
+					
+					if(!download){
+						result.addAttribute(FishConstant.SUCCESS, false);
+						result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.paramterDownload", null, FishCfg.locale));
+					}
+				
 			}
 		return result;
 	}
@@ -329,23 +329,24 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 	 */
 	@RequestMapping(value="/paramInfo/release",method=RequestMethod.POST)
 	public @ResponseBody 
-	 ModelMap releaseParam(@RequestParam String arrayId){
+	 ModelMap releaseParam(@RequestParam String arrayId,HttpServletRequest request){
 		logger.info("下发设备参数");
 		ModelMap result=new ModelMap();
 		String[] str=arrayId.split("-");
+		List<Long> deviceIdList=new ArrayList<Long>();
 		for(int i=1;i<str.length;i++){
 			String terminalId=deviceService.get(Long.valueOf(str[i])).getTerminalId();
-			long versionNo=paramPushService.generateParamFileByDevice(Long.valueOf(terminalId));
-			if(versionNo == 0){
-				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.fileFailure", null, FishCfg.locale));
-			}
-//			boolean download=paramPushService.noticeDeviceDownloadParamFileByDevice(Long.valueOf(terminalId), versionNo);
-//			if(!download){
-//				result.addAttribute(FishConstant.SUCCESS, false);
-//				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.paramterDownload", null, FishCfg.locale));
-//			}
-			
+			deviceIdList.add(Long.valueOf(terminalId));
+		}
+		UserSession userSession=(UserSession) request.getSession().getAttribute("SESSION_USER");
+		boolean download=paramPushService.paramPublishByDeviceIds(deviceIdList, userSession.getUserId());
+		if(download){
+			result.addAttribute(FishConstant.SUCCESS, true);
+			result.addAttribute(FishConstant.SUCCESS, messageSource.getMessage("下发成功", null, FishCfg.locale));
+		}else{
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.paramterDownload", null, FishCfg.locale));
+
 		}
 		return result;
 		
