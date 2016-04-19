@@ -14,7 +14,6 @@ import javax.persistence.Transient;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.parameter.IParamPublish;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
-import com.yihuacomputer.fish.version.entity.Job;
 @Entity
 @Table(name="PARAM_PUBLISH_RESULT")
 public class ParamPublishResult implements IParamPublishResult {
@@ -24,7 +23,7 @@ public class ParamPublishResult implements IParamPublishResult {
 	@Column(name = "ID")
 	private long id;
 
-    @ManyToOne(targetEntity = Job.class)
+    @ManyToOne(targetEntity = ParamPublish.class)
     @JoinColumn(name = "PARAM_PUBLISH_ID")
 	private IParamPublish paramPublish;
     

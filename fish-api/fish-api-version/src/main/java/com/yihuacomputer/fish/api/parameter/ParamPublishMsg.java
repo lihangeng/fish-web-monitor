@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.parameter.publishjob;
+package com.yihuacomputer.fish.api.parameter;
 
 import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
 

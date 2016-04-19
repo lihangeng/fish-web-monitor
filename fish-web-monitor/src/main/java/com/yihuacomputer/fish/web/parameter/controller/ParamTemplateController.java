@@ -368,8 +368,7 @@ public class ParamTemplateController {
 			IParamTemplate template = templateService.get(templateId);
 			UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
 			templateService.issueTemplate(template, timeStamp);
-			long maxVersionNO = paramPushService.generateParamFileByTemplate(templateId);
-			boolean noticeResult = paramPushService.noticeDeviceDownloadParamFileByTemplate(templateId, maxVersionNO,Long.parseLong(userSession.getPersonId()));
+			boolean noticeResult = paramPushService.paramPublishByTemplate(templateId, Long.parseLong(userSession.getPersonId()));
 			if(noticeResult){
 				template.setApplyFlag("1");
 				templateService.update(template);

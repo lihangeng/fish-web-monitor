@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +64,7 @@ public class ParamPublishService implements IParamPublishService {
 
 	@Autowired
 	private IParamTemplateService templateService;
-	
+
 	@Autowired
 	private IDeviceService deviceService;
 
@@ -75,7 +73,7 @@ public class ParamPublishService implements IParamPublishService {
 
 	@Autowired
 	private IParamTemplateDeviceRelationService templateDeviceRelationService;
-	
+
 	@Autowired
 	private IParamDeviceDetailService paramDeviceDetailService;
 
@@ -84,7 +82,7 @@ public class ParamPublishService implements IParamPublishService {
 
 	@Autowired
 	private PublishJobManager publishJobManager;
-	
+
 	@Autowired
 	private IParamPublishResultService paramPulishResultService;
 
@@ -95,13 +93,18 @@ public class ParamPublishService implements IParamPublishService {
 	public IParamPublishResultService getParamPulishResultService() {
 		return paramPulishResultService;
 	}
+
 	/**
 	 * 最大版本号标识(放置MAP中和每种应用进行比较，并存入MAP，所以标识尽量长一些，避免和现有的应用名称重复)
 	 */
 	private final static String MAX_VERSION_TIMESTAMP = "MAX_VERSION_TIMESTAMP_MAX_VERSION_TIMESTAMP";
 
-	@Override
-	public long generateParamFileByTemplate(long templateId) {
+	/**
+	 * 根据模板生成参数文件并返回版本号
+	 * @param templateId
+	 * @return 返回零代表生成文件失败
+	 */
+	private long generateParamFileByTemplate(long templateId) {
 		IParamTemplate template = templateService.get(templateId);
 		if (null == template) {
 			logger.error("The template don't exsit");
@@ -147,8 +150,12 @@ public class ParamPublishService implements IParamPublishService {
 		return appVersionMap.get(MAX_VERSION_TIMESTAMP);
 	}
 
-	@Override
-	public long generateParamFileByDevice(long deviceId) {
+	/**
+	 * 根据设备号生成参数文件并返回版本号
+	 * @param deviceId
+	 * @return 返回零代表生成文件失败
+	 */
+	private long generateParamFileByDevice(long deviceId) {
 		Map<String, Long> appVersionMap = getMaxVersionNoInfoByDeviceId(deviceId);
 		// 和设备关联的模板中参数
 		List<IParamTemplateDetail> tempDeviceRelationList = templateService.getParamTemplateDetailListByDeviceId(deviceId);
@@ -251,31 +258,39 @@ public class ParamPublishService implements IParamPublishService {
 		return appVersionMap.get(MAX_VERSION_TIMESTAMP);
 	}
 
-	@Override
-	public boolean noticeDeviceDownloadParamFileByTemplate(long templateId,long versionNo,long personId) {
+	/**
+	 * 模板参数下发
+	 * @param templateId
+	 * @return
+	 */
+	private boolean noticeDeviceDownloadParamFileByTemplate(long templateId, long versionNo, long personId) {
 		List<IDevice> templateDeviceRelationList = templateDeviceRelationService.listDeviceByTemplate(templateId);
 		String file = FishCfg.getFishHome() + FishCfg.fileSep + "param" + FishCfg.fileSep + versionNo + FishCfg.fileSep;
 		ParamInfo paramInfo = new ParamInfo();
 		paramInfo.setVersionNo(versionNo);
 		paramInfo.setServerPath(file);
-		Thread thread = new Thread(new NoticeThread(templateDeviceRelationList,paramInfo,sessionFactory,publishJobManager,personId));
+		Thread thread = new Thread(new NoticeThread(templateDeviceRelationList, paramInfo, paramPulishResultService, publishJobManager, personId));
 		thread.start();
-		return false;
+		return true;
 	}
-
-	public boolean noticeDeviceDownloadParamFileByDevice(List<Long> deviceIdList,List<Long>  versionNoList,long personId) {
+	/**
+	 * 设备参数下发
+	 * @param deviceId
+	 * @return
+	 */
+	private boolean noticeDeviceDownloadParamFileByDevice(List<Long> deviceIdList, List<Long> versionNoList, long personId) {
 		IFilter filter = new Filter();
 		filter.in("id", deviceIdList);
 		List<IDevice> deviceList = deviceService.list(filter);
 		List<ParamInfo> list = new ArrayList<ParamInfo>();
-		for(long versionNo:versionNoList){
+		for (long versionNo : versionNoList) {
 			String file = FishCfg.getFishHome() + FishCfg.fileSep + "param" + FishCfg.fileSep + versionNo + FishCfg.fileSep;
 			ParamInfo paramInfo = new ParamInfo();
 			paramInfo.setVersionNo(versionNo);
 			paramInfo.setServerPath(file);
 			list.add(paramInfo);
 		}
-		Thread thread = new Thread(new NoticeThread(deviceList,list,sessionFactory,publishJobManager,personId));
+		Thread thread = new Thread(new NoticeThread(deviceList, list, paramPulishResultService, publishJobManager, personId));
 		thread.start();
 		return true;
 	}
@@ -439,7 +454,7 @@ public class ParamPublishService implements IParamPublishService {
 				new PropertiesFileWriter(fileStr, mapInfo);
 				break;
 			case INI:
-				new INIFileWriter(fileStr, mapInfo,maxVersion);
+				new INIFileWriter(fileStr, mapInfo, maxVersion);
 				break;
 			default:
 				break;
@@ -469,10 +484,12 @@ public class ParamPublishService implements IParamPublishService {
 	public IParamPublish update(IParamPublish publish) {
 		return dao.update(publish);
 	}
+
 	@Override
 	public IParamPublish get(long id) {
 		return dao.get(id, IParamPublish.class);
 	}
+
 	@Override
 	public IParamPublish update(long id, String ret) {
 		IParamPublish paramPulish = this.get(id);
@@ -482,27 +499,27 @@ public class ParamPublishService implements IParamPublishService {
 	}
 
 	@Override
-	public boolean paramPublishByTemplate(long templateId,long personId) {
-		return noticeDeviceDownloadParamFileByTemplate(templateId,generateParamFileByTemplate(templateId), personId);
+	public boolean paramPublishByTemplate(long templateId, long personId) {
+		return noticeDeviceDownloadParamFileByTemplate(templateId, generateParamFileByTemplate(templateId), personId);
 	}
+
 	@Override
-	public boolean paramPublishByDeviceIds(List<Long> deviceIds,long personId) {
+	public boolean paramPublishByDeviceIds(List<Long> deviceIds, long personId) {
 		List<Long> versionList = new ArrayList<Long>();
-		for(long deviceId:deviceIds){
+		for (long deviceId : deviceIds) {
 			versionList.add(generateParamFileByDevice(deviceId));
 		}
-		noticeDeviceDownloadParamFileByDevice(deviceIds,versionList,personId);
+		noticeDeviceDownloadParamFileByDevice(deviceIds, versionList, personId);
 		return true;
 	}
 
-	@Autowired
-	private SessionFactory sessionFactory;
-	
+	// @Autowired
+	// private SessionFactory sessionFactory;
+
 	@Override
 	public IParamPublish save(IParamPublish publish) {
 		return dao.save(publish);
 	}
-
 
 }
 
@@ -512,81 +529,90 @@ class NoticeThread implements Runnable {
 	private List<IDevice> deviceList;
 	private ParamInfo paramInfo;
 	private List<ParamInfo> paramInfoList;
-//	private IParamPublishResultService paramPulishResultService;
-//	private IParamPublishService paramPulishService;
 
-	private SessionFactory sessionFactory;
-	
+	// private SessionFactory sessionFactory;
+	private IParamPublishService paramPublishService;
+	private IParamPublishResultService paramPublishResultService;
 	private PublishJobManager publishJobManager;
 	private boolean isTemplate = true;
 	private long personId;
 
 	/**
 	 * 模板下发
+	 * 
 	 * @param deviceList
 	 * @param paramInfo
 	 * @param publishService
 	 * @param publishJobManager
 	 */
-	public NoticeThread(List<IDevice> deviceList, ParamInfo paramInfo,SessionFactory sessionFactory, PublishJobManager publishJobManager,long personId) {
+	public NoticeThread(List<IDevice> deviceList, ParamInfo paramInfo, IParamPublishResultService paramPublishResultService, PublishJobManager publishJobManager, long personId) {
 		this.deviceList = deviceList;
 		this.paramInfo = paramInfo;
 		this.publishJobManager = publishJobManager;
-		this.sessionFactory = sessionFactory;
-//		this.paramPulishResultService = publishService.getParamPulishResultService();
+		// this.sessionFactory = sessionFactory;
+		this.paramPublishService = paramPublishResultService.getParamPublishService();
+		this.paramPublishResultService = paramPublishResultService;
+		// this.paramPublishResultService =
+		// paramPublishService.getParamPulishResultService();
 		this.personId = personId;
-	}	
+	}
+
 	/**
 	 * 设备下发通知
+	 * 
 	 * @param deviceList
 	 * @param paramInfoList
 	 * @param publishService
 	 * @param publishJobManager
 	 */
-	public NoticeThread(List<IDevice> deviceList, List<ParamInfo> paramInfoList,SessionFactory sessionFactory, PublishJobManager publishJobManager,long personId) {
+	public NoticeThread(List<IDevice> deviceList, List<ParamInfo> paramInfoList, IParamPublishResultService paramPublishResultService, PublishJobManager publishJobManager, long personId) {
 		this.deviceList = deviceList;
 		this.paramInfoList = paramInfoList;
 		this.publishJobManager = publishJobManager;
-		this.sessionFactory = sessionFactory;
-//		this.paramPulishResultService = publishService.getParamPulishResultService();
+		// this.sessionFactory = sessionFactory;
+		this.paramPublishService = paramPublishResultService.getParamPublishService();
+		this.paramPublishResultService = paramPublishResultService;
 		this.isTemplate = false;
 		this.personId = personId;
 	}
 
 	@Override
 	public synchronized void run() {
-		IParamPublish paramPublish = new ParamPublish();//paramPulishService.make();
+		IParamPublish paramPublish = paramPublishService.make();
 		String date = DateUtils.getTimestamp(new Date());
-		logger.info("paramPublish date is "+date+",person is "+personId);
+		logger.info("paramPublish date is " + date + ",person is " + personId);
 		paramPublish.setDate(date);
 		paramPublish.setPublisher(personId);
-		Session session = sessionFactory.openSession();
-		session.save(paramPublish);
-//		paramPulishService.save(paramPublish);
-//		TODO 设置状态
-//		paramPublish.setRet(ret);
-		List<IParamPublishResult> paramPublishResultList = new ArrayList<IParamPublishResult>();
-		//模板发布
-		int index=0;
-		ParamInfo paramInfoDetail;
-		for(IDevice device:deviceList){
-			if(isTemplate){
-				paramInfoDetail = paramInfo;
-			}else{
-				paramInfoDetail = paramInfoList.get(index++);
+		try {
+			paramPublishService.save(paramPublish);
+			// TODO 设置状态
+			// paramPublish.setRet(ret);
+			List<IParamPublishResult> paramPublishResultList = new ArrayList<IParamPublishResult>();
+			// 模板发布
+			int index = 0;
+			ParamInfo paramInfoDetail;
+
+			for (IDevice device : deviceList) {
+				if (isTemplate) {
+					paramInfoDetail = paramInfo;
+				} else {
+					paramInfoDetail = paramInfoList.get(index++);
+				}
+				IParamPublishResult paramPublishResult = new ParamPublishResult();
+				// TODO terminalId
+				paramPublishResult.setDeviceId(device.getId());
+				paramPublishResult.setParamPublish(paramPublish);
+				paramPublishResult.setVersionNo(paramInfoDetail.getVersionNo());
+				paramPublishResult.setDevice(device);
+				paramPublishResultService.save(paramPublishResult);
+				paramPublishResultList.add(paramPublishResult);
+				publishJobManager.addTask(paramPublishResult);
 			}
-			IParamPublishResult paramPublishResult = new ParamPublishResult();
-			//TODO terminalId
-			paramPublishResult.setDeviceId(device.getId());
-			paramPublishResult.setParamPublish(paramPublish);
-			paramPublishResult.setVersionNo(paramInfoDetail.getVersionNo());
-			paramPublishResult.setDevice(device);
-			session.save(paramPublishResult);
-			paramPublishResultList.add(paramPublishResult);
-			publishJobManager.addTask(paramPublishResult);
+			paramPublish.setParamPublishs(paramPublishResultList);
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 		}
-		paramPublish.setParamPublishs(paramPublishResultList);
-		sessionFactory.close();
+
 	}
 
 }

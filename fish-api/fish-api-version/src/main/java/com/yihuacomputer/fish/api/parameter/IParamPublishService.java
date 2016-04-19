@@ -17,33 +17,20 @@ public interface IParamPublishService {
 	IParamPublish get(long id);
 	IParamPublishResultService getParamPulishResultService() ;
 	
+	/**
+	 * 根据模板ID和操作人员信息进行下发操作
+	 * @param templateId
+	 * @param personId
+	 * @return
+	 */
 	boolean paramPublishByTemplate(long templateId,long personId);
 	
+	/**
+	 * 根据设备ID列表和操作人员信息进行下发操作
+	 * @param deviceId
+	 * @param personId
+	 * @return
+	 */
 	boolean paramPublishByDeviceIds(List<Long> deviceId,long personId);
-	/**
-	 * 根据模板生成参数文件并返回版本号
-	 * @param templateId
-	 * @return 返回零代表生成文件失败
-	 */
-	long generateParamFileByTemplate(long templateId);
-	/**
-	 * 根据设备号生成参数文件并返回版本号
-	 * @param deviceId
-	 * @return 返回零代表生成文件失败
-	 */
-	long generateParamFileByDevice(long deviceIds);
 	
-	/**
-	 * 模板参数下发
-	 * @param templateId
-	 * @return
-	 */
-	boolean noticeDeviceDownloadParamFileByTemplate(long templateId,long versionNo,long personId);
-	
-	/**
-	 * 设备参数下发
-	 * @param deviceId
-	 * @return
-	 */
-	boolean noticeDeviceDownloadParamFileByDevice(List<Long> deviceIdList,List<Long>  versionNoList,long personId);
 }

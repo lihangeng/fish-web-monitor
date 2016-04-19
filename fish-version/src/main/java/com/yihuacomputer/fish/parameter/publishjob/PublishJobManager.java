@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.annotation.PostConstruct;
 
+import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,9 @@ public class PublishJobManager {
 	@Autowired
 	private IParamService paramService;
 
+	@Autowired
+	private SessionFactory sessionFactory;
+	
 	private BlockingQueue<IParamPublishResult> queue ;
 
 	private String paramKey = "param_update_count";
@@ -43,8 +47,7 @@ public class PublishJobManager {
 	public void init(){
 		taskManager = new PublishTaskManager() ;
 		taskManager.init(getQueue(), getThreadPool());
-		taskManager.setParamPublishResultService(atmcParamPublishResultService);
-		taskManager.setDeviceService(deviceService);
+		taskManager.setAtmcParamPublishResultService(atmcParamPublishResultService);
 		Thread taskManagerThread = new Thread(taskManager);
 		taskManagerThread.setName("Publish_Task_Manager");
 		taskManagerThread.start();
@@ -77,5 +80,13 @@ public class PublishJobManager {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 }
