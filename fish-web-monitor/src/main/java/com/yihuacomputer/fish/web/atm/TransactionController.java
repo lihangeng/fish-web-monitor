@@ -72,8 +72,10 @@ public class TransactionController{
 	        
 	        try{
 	        // 20160201-增加卡类型信息
-		        trans.setCardType(CardType.getById(Integer.parseInt(msg.getCardType())));
-		        trans.setCostTime(msg.getCostTime());
+	        	if(null!=msg.getCardType()){
+			        trans.setCardType(CardType.getById(Integer.parseInt(msg.getCardType())));
+			        trans.setCostTime(msg.getCostTime());
+	        	}
 	        }catch(Exception e){
 	        	logger.error(e.getMessage());
 	        }

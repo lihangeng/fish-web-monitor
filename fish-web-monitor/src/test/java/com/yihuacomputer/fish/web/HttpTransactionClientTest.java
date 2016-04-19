@@ -30,10 +30,10 @@ public class HttpTransactionClientTest {
 	public static void main(String[] args) {
 
 	 // 测试交易数据：0为无限次数,>0为指定次数
-        int count = 1000;
+        int count = 10;
         
         // 设备号
-        String termId = "ooxx0001";
+        String termId = "13050001";
 
         // 发送交易数据间隔
         int sleep = 2;
@@ -54,6 +54,7 @@ public class HttpTransactionClientTest {
 				msg.setHostRet("00");// 主机返回码
 				msg.setLocalRet("OK");// 本地返回码
 				msg.setCurrency("CNY");// 币种
+				msg.setCardType("1");
 				String json = JsonUtils.toJson(msg);
 				System.out.println(json);
 
