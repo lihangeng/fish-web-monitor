@@ -27,6 +27,9 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 			'parameter_devParameter_devGrid button[action=query]' : {
 				click :this.onQuery
 			},
+			'parameter_devParameter_devGrid button[action=release]' :{
+				click :this.onRelease
+			},
 			'parameter_devParameter_paramGrid button[action=query]' : {
 				click :this.onParamQuery
 			},
@@ -36,8 +39,8 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 			'parameter_devParameter_view tabpanel':{
 				tabchange:this.onTabChange
 			},
-			'parameter_devParameter_paramGrid button[action=update]':{
-				click:this.onUpdate
+			'parameter_devParameter_paramGrid ':{
+				itemclick:this.paramItemClick
 			},
 			'parameter_devParameter_paramGrid button[action=save]':{
 				click:this.onSave
@@ -64,6 +67,31 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 		store.setBaseParam('deviceId',record.get('id'));
 		store.setBaseParam('tabId',tabPanelId);
 		store.loadPage(1);
+	},
+	
+	onRelease:function(){
+		var grid=this.getGrid();
+		var sm=grid.getSelectionModel();
+		var records=sm.getSelection();
+		var devArrayId='0';
+		for(var p in records){
+			var id=records[p].get('id');
+			devArrayId+='-'+id;
+		}
+		Ext.Ajax.request({
+			method:'POST',
+			url:'api/parameter/devParameter/paramInfo/release',
+			params:{
+				arrayId:devArrayId
+			},
+			success:function(response){
+				alert('下发成功');
+			},
+			failure:function(response){
+				alert('下发失败');
+			},
+			scope:this
+		})
 	},
 	
 	tabPanelId : 1,
@@ -96,20 +124,21 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 	},
 	
 	
-	onUpdate:function(){
+	paramItemClick:function(){
 		var view=this.getEwayView();
-		var grid = view.down('tabpanel').activeTab.down('grid');
-		var cellEditor=grid.plugins[0];
-		if(cellEditor.clicksToEdit == 1){
+		var paramGrid = view.down('tabpanel').activeTab.down('grid');
+		var record=paramGrid.getSelectionModel().getLastSelected();
+		var cellEditor=paramGrid.plugins[0];
+		if(record.get('eleParamRights') == '1'){
+			cellEditor.clicksToEdit=1;
+		}else if(record.get('eleParamRights') == '2'){
 			cellEditor.clicksToEdit=2;
 		}
-		grid.columns[1].setText(EwayLocale.param.element.paramValue+'<font color="red">'+EwayLocale.param.deviceParam.couldUpdate+'</font>');
 	},
 	
 	onSave:function(){
 		var view=this.getEwayView();
 		var grid = view.down('tabpanel').activeTab.down('grid');
-		grid.columns[1].setText(EwayLocale.param.element.paramValue);
 		var cellEditor=grid.plugins[0];
 		if(cellEditor.clicksToEdit == 2){
 			cellEditor.clicksToEdit=1;

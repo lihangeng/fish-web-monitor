@@ -308,12 +308,13 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 						paramDeviceDetailService.add(pdd);
 					}
 				}
-				long versionNo=paramPushService.generateParamFileByDevice(id);
+				long terminalId=Long.valueOf(deviceService.get(id).getTerminalId());
+				long versionNo=paramPushService.generateParamFileByDevice(terminalId);
 				if(versionNo == 0){
 					result.addAttribute(FishConstant.SUCCESS, false);
 					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.fileFailure", null, FishCfg.locale));
 				}
-				boolean download=paramPushService.noticeDeviceDownloadParamFileByDevice(id, versionNo);
+				boolean download=paramPushService.noticeDeviceDownloadParamFileByDevice(terminalId, versionNo);
 				if(!download){
 					result.addAttribute(FishConstant.SUCCESS, false);
 					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.paramterDownload", null, FishCfg.locale));
@@ -323,5 +324,31 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 		return result;
 	}
 	
+	/**
+	 * 下发设备参数
+	 */
+	@RequestMapping(value="/paramInfo/release",method=RequestMethod.POST)
+	public @ResponseBody 
+	 ModelMap releaseParam(@RequestParam String arrayId){
+		logger.info("下发设备参数");
+		ModelMap result=new ModelMap();
+		String[] str=arrayId.split("-");
+		for(int i=1;i<str.length;i++){
+			String terminalId=deviceService.get(Long.valueOf(str[i])).getTerminalId();
+			long versionNo=paramPushService.generateParamFileByDevice(Long.valueOf(terminalId));
+			if(versionNo == 0){
+				result.addAttribute(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.fileFailure", null, FishCfg.locale));
+			}
+			boolean download=paramPushService.noticeDeviceDownloadParamFileByDevice(Long.valueOf(terminalId), versionNo);
+			if(!download){
+				result.addAttribute(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.paramterDownload", null, FishCfg.locale));
+			}
+			
+		}
+		return result;
+		
+	}
 	
 }

@@ -3,6 +3,7 @@ Ext.define('Eway.view.parameter.devParameter.DevGrid', {
 	extend : 'Eway.view.base.Grid',
 	border : false,
 	autoFit : true,
+	selModel:{selType:'checkboxmodel'},
 	requires : [ 'Eway.lib.Util' ],
 	initComponent : function() {
 		var store = Ext.create('Eway.store.parameter.devParameter.DevInfo');
@@ -10,10 +11,14 @@ Ext.define('Eway.view.parameter.devParameter.DevGrid', {
 		Ext.apply(this, {
 			initRegion : true,
 			store : store,
+			selectOnFocus : true,
 			tbar : [ '->', {
 				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
+			 },{
+				 text:'发布',
+				 action:'release'
 			 }],
 			columns : [ {
 				header : EwayLocale.commen.terminalId,

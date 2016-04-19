@@ -9,12 +9,12 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
         ptype: 'cellediting',
         listeners : {
                'beforeEdit' : function(_this) {
-                       if (_this.clicksToEdit == 1) {
+                       if (_this.clicksToEdit == 2) {
                                return false;
                        }
                }
        },
-        clicksToEdit: 1
+        clicksToEdit: 2
     },
 	initComponent : function() {
 		var store = Ext.create('Eway.store.parameter.devParameter.ParamInfo',{
@@ -32,10 +32,6 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 				text : EwayLocale.button.search,
 				glyph : 0xf002,
 				action : 'query'
-			},{
-				text : EwayLocale.button.update,
-				glyph : 0xf129,
-				action : 'update'
 			},{
 				text : EwayLocale.button.save,
 				//glyph : 0xf002,
