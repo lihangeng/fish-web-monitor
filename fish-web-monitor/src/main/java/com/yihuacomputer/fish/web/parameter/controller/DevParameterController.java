@@ -309,11 +309,11 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 					}
 				}
 				long terminalId=Long.valueOf(deviceService.get(id).getTerminalId());
-//				long versionNo=paramPushService.generateParamFileByDevice(terminalId);
-//				if(versionNo == 0){
-//					result.addAttribute(FishConstant.SUCCESS, false);
-//					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.fileFailure", null, FishCfg.locale));
-//				}
+				long versionNo=paramPushService.generateParamFileByDevice(terminalId);
+				if(versionNo == 0){
+					result.addAttribute(FishConstant.SUCCESS, false);
+					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.fileFailure", null, FishCfg.locale));
+				}
 //				boolean download=paramPushService.paramPublishByDeviceIds(deviceIdList, personId);
 //				if(!download){
 //					result.addAttribute(FishConstant.SUCCESS, false);
@@ -335,11 +335,11 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 		String[] str=arrayId.split("-");
 		for(int i=1;i<str.length;i++){
 			String terminalId=deviceService.get(Long.valueOf(str[i])).getTerminalId();
-//			long versionNo=paramPushService.generateParamFileByDevice(Long.valueOf(terminalId));
-//			if(versionNo == 0){
-//				result.addAttribute(FishConstant.SUCCESS, false);
-//				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.fileFailure", null, FishCfg.locale));
-//			}
+			long versionNo=paramPushService.generateParamFileByDevice(Long.valueOf(terminalId));
+			if(versionNo == 0){
+				result.addAttribute(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.fileFailure", null, FishCfg.locale));
+			}
 //			boolean download=paramPushService.noticeDeviceDownloadParamFileByDevice(Long.valueOf(terminalId), versionNo);
 //			if(!download){
 //				result.addAttribute(FishConstant.SUCCESS, false);
