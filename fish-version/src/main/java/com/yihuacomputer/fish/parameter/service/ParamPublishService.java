@@ -4,12 +4,15 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,33 +21,38 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
-import com.yihuacomputer.common.ITypeIP;
 import com.yihuacomputer.common.file.INIFileWriter;
 import com.yihuacomputer.common.file.PropertiesFileWriter;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.jackson.JsonUtils;
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.ZipUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.parameter.FileFormat;
 import com.yihuacomputer.fish.api.parameter.IAppSystem;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
-import com.yihuacomputer.fish.api.parameter.IParamPulishService;
+import com.yihuacomputer.fish.api.parameter.IParamPublish;
+import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
+import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
+import com.yihuacomputer.fish.api.parameter.IParamPublishService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.parameter.ParamInfo;
-import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.parameter.entity.ParamDeviceDetail;
 import com.yihuacomputer.fish.parameter.entity.ParamElement;
+import com.yihuacomputer.fish.parameter.entity.ParamPublish;
+import com.yihuacomputer.fish.parameter.entity.ParamPublishResult;
 import com.yihuacomputer.fish.parameter.entity.ParamTemplateDetail;
 import com.yihuacomputer.fish.parameter.entity.ParamTemplateDeviceRelation;
 import com.yihuacomputer.fish.parameter.entity.ParamTemplateElementRelation;
+import com.yihuacomputer.fish.parameter.publishjob.PublishJobManager;
 
 /**
  * @author GQ
@@ -52,24 +60,41 @@ import com.yihuacomputer.fish.parameter.entity.ParamTemplateElementRelation;
  */
 @Service
 @Transactional
-public class ParamPulishService implements IParamPulishService {
+public class ParamPublishService implements IParamPublishService {
 
-	private Logger logger = LoggerFactory.getLogger(ParamPulishService.class);
+	private Logger logger = LoggerFactory.getLogger(ParamPublishService.class);
 
 	@Autowired
 	private IParamTemplateService templateService;
+	
+	@Autowired
+	private IDeviceService deviceService;
 
 	@Autowired
 	private IGenericDao dao;
 
 	@Autowired
 	private IParamTemplateDeviceRelationService templateDeviceRelationService;
+	
 	@Autowired
 	private IParamDeviceDetailService paramDeviceDetailService;
 
 	@Autowired
 	private IParamElementService elementService;
 
+	@Autowired
+	private PublishJobManager publishJobManager;
+	
+	@Autowired
+	private IParamPublishResultService paramPulishResultService;
+
+	public PublishJobManager getPublishJobManager() {
+		return publishJobManager;
+	}
+
+	public IParamPublishResultService getParamPulishResultService() {
+		return paramPulishResultService;
+	}
 	/**
 	 * 最大版本号标识(放置MAP中和每种应用进行比较，并存入MAP，所以标识尽量长一些，避免和现有的应用名称重复)
 	 */
@@ -119,7 +144,6 @@ public class ParamPulishService implements IParamPulishService {
 		}
 		String sourceFile = FishCfg.getFishHome() + FishCfg.fileSep + "param" + FishCfg.fileSep + appVersionMap.get(MAX_VERSION_TIMESTAMP) + FishCfg.fileSep;
 		ZipUtils.zip(sourceFile, sourceFile + "param.zip", "utf-8");
-		// TODO 在制定目录生成压缩文件
 		return appVersionMap.get(MAX_VERSION_TIMESTAMP);
 	}
 
@@ -228,30 +252,32 @@ public class ParamPulishService implements IParamPulishService {
 	}
 
 	@Override
-	public boolean noticeDeviceDownloadParamFileByTemplate(long templateId,long versionNo) {
-		// TODO Auto-generated method stub
+	public boolean noticeDeviceDownloadParamFileByTemplate(long templateId,long versionNo,long personId) {
 		List<IDevice> templateDeviceRelationList = templateDeviceRelationService.listDeviceByTemplate(templateId);
 		String file = FishCfg.getFishHome() + FishCfg.fileSep + "param" + FishCfg.fileSep + versionNo + FishCfg.fileSep;
 		ParamInfo paramInfo = new ParamInfo();
-		paramInfo.setVersionNo(String.valueOf(versionNo));
+		paramInfo.setVersionNo(versionNo);
 		paramInfo.setServerPath(file);
-//		NoticeThread noticeThread = new NoticeThread(templateDeviceRelationList,paramInfo);
-		Thread thread = new Thread(new NoticeThread(templateDeviceRelationList,paramInfo));
+		Thread thread = new Thread(new NoticeThread(templateDeviceRelationList,paramInfo,sessionFactory,publishJobManager,personId));
 		thread.start();
 		return false;
 	}
 
-	@Override
-	public boolean noticeDeviceDownloadParamFileByDevice(long deviceId,long versionNo) {
-		List<IDevice> deviceList = new ArrayList<IDevice>();
-		String file = FishCfg.getFishHome() + FishCfg.fileSep + "param" + FishCfg.fileSep + versionNo + FishCfg.fileSep;
-		ParamInfo paramInfo = new ParamInfo();
-		paramInfo.setVersionNo(String.valueOf(versionNo));
-		paramInfo.setServerPath(file);
-//		NoticeThread noticeThread = new NoticeThread(templateDeviceRelationList,paramInfo);
-		Thread thread = new Thread(new NoticeThread(deviceList,paramInfo));
+	public boolean noticeDeviceDownloadParamFileByDevice(List<Long> deviceIdList,List<Long>  versionNoList,long personId) {
+		IFilter filter = new Filter();
+		filter.in("id", deviceIdList);
+		List<IDevice> deviceList = deviceService.list(filter);
+		List<ParamInfo> list = new ArrayList<ParamInfo>();
+		for(long versionNo:versionNoList){
+			String file = FishCfg.getFishHome() + FishCfg.fileSep + "param" + FishCfg.fileSep + versionNo + FishCfg.fileSep;
+			ParamInfo paramInfo = new ParamInfo();
+			paramInfo.setVersionNo(versionNo);
+			paramInfo.setServerPath(file);
+			list.add(paramInfo);
+		}
+		Thread thread = new Thread(new NoticeThread(deviceList,list,sessionFactory,publishJobManager,personId));
 		thread.start();
-		return false;
+		return true;
 	}
 
 	/**
@@ -434,38 +460,133 @@ public class ParamPulishService implements IParamPulishService {
 		return true;
 	}
 
+	@Override
+	public IParamPublish make() {
+		return new ParamPublish();
+	}
+
+	@Override
+	public IParamPublish update(IParamPublish publish) {
+		return dao.update(publish);
+	}
+	@Override
+	public IParamPublish get(long id) {
+		return dao.get(id, IParamPublish.class);
+	}
+	@Override
+	public IParamPublish update(long id, String ret) {
+		IParamPublish paramPulish = this.get(id);
+		paramPulish.setRet(ret);
+		dao.update(paramPulish);
+		return paramPulish;
+	}
+
+	@Override
+	public boolean paramPublishByTemplate(long templateId,long personId) {
+		return noticeDeviceDownloadParamFileByTemplate(templateId,generateParamFileByTemplate(templateId), personId);
+	}
+	@Override
+	public boolean paramPublishByDeviceIds(List<Long> deviceIds,long personId) {
+		List<Long> versionList = new ArrayList<Long>();
+		for(long deviceId:deviceIds){
+			versionList.add(generateParamFileByDevice(deviceId));
+		}
+		noticeDeviceDownloadParamFileByDevice(deviceIds,versionList,personId);
+		return true;
+	}
+
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	@Override
+	public IParamPublish save(IParamPublish publish) {
+		return dao.save(publish);
+	}
+
+
 }
 
 class NoticeThread implements Runnable {
 
 	private Logger logger = LoggerFactory.getLogger(NoticeThread.class);
-	private static final String PARAM_PUSH_URL = "/ctr/paramUpdateNotify";
 	private List<IDevice> deviceList;
 	private ParamInfo paramInfo;
+	private List<ParamInfo> paramInfoList;
+//	private IParamPublishResultService paramPulishResultService;
+//	private IParamPublishService paramPulishService;
 
-	public NoticeThread(List<IDevice> deviceList, ParamInfo paramInfo) {
+	private SessionFactory sessionFactory;
+	
+	private PublishJobManager publishJobManager;
+	private boolean isTemplate = true;
+	private long personId;
+
+	/**
+	 * 模板下发
+	 * @param deviceList
+	 * @param paramInfo
+	 * @param publishService
+	 * @param publishJobManager
+	 */
+	public NoticeThread(List<IDevice> deviceList, ParamInfo paramInfo,SessionFactory sessionFactory, PublishJobManager publishJobManager,long personId) {
 		this.deviceList = deviceList;
 		this.paramInfo = paramInfo;
+		this.publishJobManager = publishJobManager;
+		this.sessionFactory = sessionFactory;
+//		this.paramPulishResultService = publishService.getParamPulishResultService();
+		this.personId = personId;
+	}	
+	/**
+	 * 设备下发通知
+	 * @param deviceList
+	 * @param paramInfoList
+	 * @param publishService
+	 * @param publishJobManager
+	 */
+	public NoticeThread(List<IDevice> deviceList, List<ParamInfo> paramInfoList,SessionFactory sessionFactory, PublishJobManager publishJobManager,long personId) {
+		this.deviceList = deviceList;
+		this.paramInfoList = paramInfoList;
+		this.publishJobManager = publishJobManager;
+		this.sessionFactory = sessionFactory;
+//		this.paramPulishResultService = publishService.getParamPulishResultService();
+		this.isTemplate = false;
+		this.personId = personId;
 	}
 
 	@Override
-	public void run() {
-		for (IDevice device : deviceList) {
-			notice(device);
+	public synchronized void run() {
+		IParamPublish paramPublish = new ParamPublish();//paramPulishService.make();
+		String date = DateUtils.getTimestamp(new Date());
+		logger.info("paramPublish date is "+date+",person is "+personId);
+		paramPublish.setDate(date);
+		paramPublish.setPublisher(personId);
+		Session session = sessionFactory.openSession();
+		session.save(paramPublish);
+//		paramPulishService.save(paramPublish);
+//		TODO 设置状态
+//		paramPublish.setRet(ret);
+		List<IParamPublishResult> paramPublishResultList = new ArrayList<IParamPublishResult>();
+		//模板发布
+		int index=0;
+		ParamInfo paramInfoDetail;
+		for(IDevice device:deviceList){
+			if(isTemplate){
+				paramInfoDetail = paramInfo;
+			}else{
+				paramInfoDetail = paramInfoList.get(index++);
+			}
+			IParamPublishResult paramPublishResult = new ParamPublishResult();
+			//TODO terminalId
+			paramPublishResult.setDeviceId(device.getId());
+			paramPublishResult.setParamPublish(paramPublish);
+			paramPublishResult.setVersionNo(paramInfoDetail.getVersionNo());
+			paramPublishResult.setDevice(device);
+			session.save(paramPublishResult);
+			paramPublishResultList.add(paramPublishResult);
+			publishJobManager.addTask(paramPublishResult);
 		}
-	}
-
-	public void notice(IDevice device) {
-		try {
-			paramInfo = (ParamInfo) HttpProxy.httpPost(geNoticetUrl(device.getIp()), paramInfo, ParamInfo.class, 10000, 30000);
-			logger.info(paramInfo.getRet());
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-		}
-	}
-
-	private String geNoticetUrl(ITypeIP ip) {
-		return MonitorCfg.getHttpUrl(ip.toString()) + PARAM_PUSH_URL;
+		paramPublish.setParamPublishs(paramPublishResultList);
+		sessionFactory.close();
 	}
 
 }

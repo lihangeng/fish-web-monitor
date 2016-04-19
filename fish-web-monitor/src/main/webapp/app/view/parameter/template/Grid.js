@@ -33,7 +33,7 @@ Ext.define('Eway.view.parameter.template.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: EwayLocale.button.remove,
+				text: "删除模板",
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'templateDel',
@@ -49,8 +49,8 @@ Ext.define('Eway.view.parameter.template.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '应用',
-				glyph : 0xf040,
+				text: '发布模板',
+				glyph : 0xf0ed,
 				action:'apply',
 				code : 'templateApply',
 				listeners:{
@@ -71,9 +71,9 @@ Ext.define('Eway.view.parameter.template.Grid', {
 				flex : 1,
 				renderer: function(value,metadata,record){
 					if(value == 0){
-		                	 return '未应用';
+		                	 return '未发布';
 		             }else if(value == 1){
-		                	   return '已应用';
+		                	   return '已发布';
 		             }
 				}
 			},{

@@ -32,12 +32,13 @@ import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
-import com.yihuacomputer.fish.api.parameter.IParamPulishService;
+import com.yihuacomputer.fish.api.parameter.IParamPublishService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
+import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertGroupDeviceForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamElementForm;
@@ -350,13 +351,13 @@ public class ParamTemplateController {
 	}
 
 	@Autowired
-	private IParamPulishService paramPushService;
+	private IParamPublishService paramPushService;
 	
 	/**
 	 * 将设备当前所有参数覆盖为模板的参数
 	 */
 	@RequestMapping(value = "/issueParam", method = RequestMethod.POST)
-	public @ResponseBody ModelMap issueParam(@RequestParam long templateId) {
+	public @ResponseBody ModelMap issueParam(@RequestParam long templateId,HttpServletRequest request) {
 		
 		ModelMap result = new ModelMap();
 		
@@ -365,10 +366,10 @@ public class ParamTemplateController {
 		try {
 			
 			IParamTemplate template = templateService.get(templateId);
-			
+			UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
 			templateService.issueTemplate(template, timeStamp);
 			long maxVersionNO = paramPushService.generateParamFileByTemplate(templateId);
-			boolean noticeResult = paramPushService.noticeDeviceDownloadParamFileByTemplate(templateId, maxVersionNO);
+			boolean noticeResult = paramPushService.noticeDeviceDownloadParamFileByTemplate(templateId, maxVersionNO,Long.parseLong(userSession.getPersonId()));
 			if(noticeResult){
 				template.setApplyFlag("1");
 				templateService.update(template);
@@ -383,7 +384,7 @@ public class ParamTemplateController {
 			
 			logger.info(ex.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "应用模板失败");
+			result.addAttribute(FishConstant.ERROR_MSG, "下发模板失败");
 			
 		}
 

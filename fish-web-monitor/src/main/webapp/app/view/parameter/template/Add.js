@@ -16,7 +16,7 @@ Ext.define('Eway.view.parameter.template.Add', {
 				trackResetOnLoad : true,
 				selectOnFocus : true,
 				defaults: {
-					width: 600,
+					width: 700,
 					labelAlign: 'right',
 					msgTarget : 'side'
 				},
@@ -41,18 +41,18 @@ Ext.define('Eway.view.parameter.template.Add', {
 					selectOnFocus : true,
 					layout:'column',
 					height: 350,
-					width : 600,
+					width : 700,
 					autoScroll : true,
 					items : [ {
-						title : '可添加参数',
-						width : 195,
+						title : '<font color="black" >可添加参数(使用拖拽的方式)</font>',
+						width : 220,
 						height: 350,
-						margin : '0 5px 0 0',
+						margin : '0 10px 0 0',
 						xtype : 'param_paramGrid',
 						autoLoadStore : true
-					}, {
-						title : '已添加的参数(可编辑的参数可以直接修改)',
-						width : 400,
+					},{
+						title : '<font color="black">已添加的参数(可编辑的参数可以直接修改)</font>',
+						width : 470,
 						height: 350,
 						xtype : 'param_addedParamGrid',
 						listeners:{
