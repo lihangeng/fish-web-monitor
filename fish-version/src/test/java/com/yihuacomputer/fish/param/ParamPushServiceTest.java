@@ -16,10 +16,11 @@ import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishService;
 import com.yihuacomputer.fish.parameter.entity.ParamPublishResult;
+import com.yihuacomputer.fish.version.H2TestConfig;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = MysqlTestConfig.class)
+@ContextConfiguration(classes = H2TestConfig.class)
 public class ParamPushServiceTest extends BindSessionInTest2{
 	@Autowired
 	private IParamPublishService paramPushService;
