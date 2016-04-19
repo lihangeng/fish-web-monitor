@@ -120,6 +120,7 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 			},{
 				header: EwayLocale.refs.ip,//'设备IP',
 				dataIndex:'deviceIp',
+				width:120,
 				sortable: true
 			},{
 				header: EwayLocale.refs.orgName,//'所属机构',
