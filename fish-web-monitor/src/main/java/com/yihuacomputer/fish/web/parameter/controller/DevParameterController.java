@@ -41,7 +41,7 @@ import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
-import com.yihuacomputer.fish.api.parameter.IParamPulishService;
+import com.yihuacomputer.fish.api.parameter.IParamPublishService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelation;
@@ -86,7 +86,7 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 	private IParamTemplateDetailService paramTemplateDetailService;
 	
 	@Autowired
-	private IParamPulishService paramPushService;
+	private IParamPublishService paramPushService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,@RequestParam int limit,HttpServletRequest request,WebRequest webRequest){
@@ -314,11 +314,11 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 					result.addAttribute(FishConstant.SUCCESS, false);
 					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.fileFailure", null, FishCfg.locale));
 				}
-				boolean download=paramPushService.noticeDeviceDownloadParamFileByDevice(terminalId, versionNo);
-				if(!download){
-					result.addAttribute(FishConstant.SUCCESS, false);
-					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.paramterDownload", null, FishCfg.locale));
-				}
+//				boolean download=paramPushService.paramPublishByDeviceIds(deviceIdList, personId);
+//				if(!download){
+//					result.addAttribute(FishConstant.SUCCESS, false);
+//					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.paramterDownload", null, FishCfg.locale));
+//				}
 				result.addAttribute(FishConstant.SUCCESS, true);
 			}
 		return result;
@@ -340,11 +340,11 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 				result.addAttribute(FishConstant.SUCCESS, false);
 				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.fileFailure", null, FishCfg.locale));
 			}
-			boolean download=paramPushService.noticeDeviceDownloadParamFileByDevice(Long.valueOf(terminalId), versionNo);
-			if(!download){
-				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.paramterDownload", null, FishCfg.locale));
-			}
+//			boolean download=paramPushService.noticeDeviceDownloadParamFileByDevice(Long.valueOf(terminalId), versionNo);
+//			if(!download){
+//				result.addAttribute(FishConstant.SUCCESS, false);
+//				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.paramterDownload", null, FishCfg.locale));
+//			}
 			
 		}
 		return result;
