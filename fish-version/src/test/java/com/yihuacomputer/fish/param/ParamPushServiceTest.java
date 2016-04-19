@@ -29,7 +29,7 @@ public class ParamPushServiceTest extends BindSessionInTest2{
 	private IDeviceService deviceService;
 	
 	@org.junit.Test
-//	@Ignore
+	@Ignore
 	public void Test(){
 		IParamPublish paramPublish=paramPushService.make();
 		paramPublish.setDate("123123");
