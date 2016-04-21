@@ -13,10 +13,11 @@ Ext.define('Eway.view.parameter.devParameter.View', {
 		 
 		Ext.apply(this, {
 					items : [{
-						region: 'west',
+						region: 'north',
 						layout:'border',
-						width:'35%',
-//						split:true,
+						split:true,
+						collapsible: true,
+						height:'45%',
 						items:[{
 							region:'north',
 							xtype:'parameter_devParameter_devFilterForm'

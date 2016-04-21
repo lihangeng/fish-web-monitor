@@ -34,7 +34,7 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 				action : 'query'
 			},{
 				text : EwayLocale.button.save,
-				//glyph : 0xf002,
+				// glyph : 0xf002,
 				action : 'save'
 			}],
 			columns : [ {
@@ -70,12 +70,6 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 					}
 					if(value==2){
 						return EwayLocale.param.element.character;
-					}
-					if(value==3){
-						return EwayLocale.param.element.boolean;
-					}
-					if(value==4){
-						return EwayLocale.param.element.ip;
 					}
 				}
 			},{

@@ -4,7 +4,7 @@ Ext.define('Eway.view.parameter.devParameter.ParamFilterForm',{
 	
 	requires:['Eway.view.parameter.devParameter.field.ParamClassify'],
 	
-	height :79,
+	height :57,
 	
 	initComponent : function(){
 		var store=Ext.create('Eway.store.parameter.devParameter.ParamClassify');
