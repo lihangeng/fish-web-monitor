@@ -140,12 +140,23 @@ public class ParamTemplateController {
 	public ModelMap updateTemplateDetail(@RequestBody ParamTempDetailForm form , HttpServletRequest request) {
 		
 		ModelMap result = new ModelMap();
+
 		List<ParamTempDetailForm> listDetail = form.getParamTempDetailForm();
 
 		long templateId = form.getTemplateId();
 		
 		templateService.unlinkAll(templateId);
 		IParamTemplate template = templateService.get(templateId);
+        
+		template.setName(form.getName());
+		template.setRemark(form.getRemark());
+
+		templateService.update(template);
+		
+		result.addAttribute(FishConstant.SUCCESS, true);
+		result.addAttribute(FishConstant.DATA, form);
+		
+		
 		IParamElement emlement = null;
 		
 		for(int i = 0; i<listDetail.size(); i++){
@@ -173,6 +184,8 @@ public class ParamTemplateController {
 			
 		}
 
+        
+		
 		return result.addAttribute(FishConstant.SUCCESS, false);
 
 	}
