@@ -98,10 +98,10 @@ public interface IParamPublishResult {
 	 * 下发进度
 	 * @return
 	 */
-	public String getRet() ;
+	public ParamPublishRet getRet() ;
 	/**
 	 * 下发进度
 	 * @param ret
 	 */
-	public void setRet(String ret) ;
+	public void setRet(ParamPublishRet ret) ;
 }

@@ -2,6 +2,8 @@ package com.yihuacomputer.fish.api.parameter;
 
 import java.util.List;
 
+import com.yihuacomputer.fish.api.version.job.JobType;
+
 
 public interface IParamPublish {
 	public long getId() ;
@@ -33,4 +35,6 @@ public interface IParamPublish {
 	public void setRet(String ret);
 	public List<IParamPublishResult> getParamPublishs();
 	public void setParamPublishs(List<IParamPublishResult> paramPublishs);
+	public JobType getJobType();
+	public void setJobType(JobType jobType);
 }

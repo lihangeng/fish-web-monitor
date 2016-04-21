@@ -9,6 +9,9 @@ public class ParamPublishMsg {
 	private long versionNo;
 	private String serverPath;
 
+	public ParamPublishMsg(){
+	}
+	
 	public ParamPublishMsg(IParamPublishResult result){
 		this.taskId = result.getId();
 		this.versionNo = result.getVersionNo();

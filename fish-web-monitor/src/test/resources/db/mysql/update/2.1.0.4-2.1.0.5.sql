@@ -1,0 +1,1 @@
+alter table PARAM_PUBLISH add column PUBLISHER_TYPE int default 1;

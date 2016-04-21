@@ -35,7 +35,7 @@ public class ParamPushServiceTest extends BindSessionInTest2{
 		IParamPublish paramPublish=paramPushService.make();
 		paramPublish.setDate("123123");
 		paramPublish.setPublisher(1l);//("123123");
-		paramPublish.setRet("123123");
+		paramPublish.setRet("");
 		paramPublish.setDate("123123");
 		paramPushService.save(paramPublish);
 		IParamPublishResult paramPublishResult = new ParamPublishResult();

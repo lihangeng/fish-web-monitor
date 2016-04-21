@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.api.parameter;
 
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -32,5 +33,12 @@ public interface IParamPublishService {
 	 * @return
 	 */
 	boolean paramPublishByDeviceIds(List<Long> deviceId,long personId);
+	
+	/**
+	 * 获取设备最新的参数版本号
+	 * @param deviceId
+	 * @return
+	 */
+	public Map<String, Long> getMaxVersionNoInfoByDeviceId(long deviceId);
 	
 }

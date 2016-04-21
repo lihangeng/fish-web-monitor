@@ -2,6 +2,8 @@ package com.yihuacomputer.fish.parameter.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +16,7 @@ import javax.persistence.Transient;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.parameter.IParamPublish;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
+import com.yihuacomputer.fish.api.parameter.ParamPublishRet;
 @Entity
 @Table(name="PARAM_PUBLISH_RESULT")
 public class ParamPublishResult implements IParamPublishResult {
@@ -47,9 +50,10 @@ public class ParamPublishResult implements IParamPublishResult {
 
     @Column(name = "REASON", nullable = true, length = 120)
     private String reason;
-    
+
+	@Enumerated(EnumType.STRING)
     @Column(name = "RET", nullable = true, length = 120)
-	private String ret;
+	private ParamPublishRet ret;
 
 	public long getId() {
 		return id;
@@ -115,11 +119,11 @@ public class ParamPublishResult implements IParamPublishResult {
 		this.reason = reason;
 	}
 
-	public String getRet() {
+	public ParamPublishRet getRet() {
 		return ret;
 	}
 
-	public void setRet(String ret) {
+	public void setRet(ParamPublishRet ret) {
 		this.ret = ret;
 	}
 

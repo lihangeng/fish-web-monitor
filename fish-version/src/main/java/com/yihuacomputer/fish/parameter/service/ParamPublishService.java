@@ -43,6 +43,7 @@ import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.parameter.ParamInfo;
+import com.yihuacomputer.fish.api.version.VersionCfg;
 import com.yihuacomputer.fish.parameter.entity.ParamDeviceDetail;
 import com.yihuacomputer.fish.parameter.entity.ParamElement;
 import com.yihuacomputer.fish.parameter.entity.ParamPublish;
@@ -97,7 +98,7 @@ public class ParamPublishService implements IParamPublishService {
 	/**
 	 * 最大版本号标识(放置MAP中和每种应用进行比较，并存入MAP，所以标识尽量长一些，避免和现有的应用名称重复)
 	 */
-	private final static String MAX_VERSION_TIMESTAMP = "MAX_VERSION_TIMESTAMP_MAX_VERSION_TIMESTAMP";
+	public final static String MAX_VERSION_TIMESTAMP = "MAX_VERSION_TIMESTAMP_MAX_VERSION_TIMESTAMP";
 
 	/**
 	 * 根据模板生成参数文件并返回版本号
@@ -145,8 +146,12 @@ public class ParamPublishService implements IParamPublishService {
 		if (!generateParamFile(map, appVersionMap)) {
 			return 0;
 		}
-		String sourceFile = FishCfg.getFishHome() + FishCfg.fileSep + "param" + FishCfg.fileSep + appVersionMap.get(MAX_VERSION_TIMESTAMP) + FishCfg.fileSep;
-		ZipUtils.zip(sourceFile, sourceFile + "param.zip", "utf-8");
+		String sourceFile = VersionCfg.getAtmParamDir()  + FishCfg.fileSep + appVersionMap.get(MAX_VERSION_TIMESTAMP) + FishCfg.fileSep;
+		String targetFile = sourceFile+"param.zip";
+		//压缩包存在则不再进行压缩处理
+		if(!new File(targetFile).exists()){
+			ZipUtils.zip(sourceFile, sourceFile + "param.zip", "utf-8");
+		}
 		return appVersionMap.get(MAX_VERSION_TIMESTAMP);
 	}
 
@@ -253,7 +258,7 @@ public class ParamPublishService implements IParamPublishService {
 		if (!generateParamFile(descriptionMap, appVersionMap)) {
 			return 0;
 		}
-		String sourceFile = FishCfg.getFishHome() + FishCfg.fileSep + "param" + FishCfg.fileSep + appVersionMap.get(MAX_VERSION_TIMESTAMP) + FishCfg.fileSep;
+		String sourceFile = VersionCfg.getAtmParamDir()  + FishCfg.fileSep + appVersionMap.get(MAX_VERSION_TIMESTAMP) + FishCfg.fileSep;
 		ZipUtils.zip(sourceFile, sourceFile + "param.zip", "utf-8");
 		return appVersionMap.get(MAX_VERSION_TIMESTAMP);
 	}
@@ -265,7 +270,7 @@ public class ParamPublishService implements IParamPublishService {
 	 */
 	private boolean noticeDeviceDownloadParamFileByTemplate(long templateId, long versionNo, long personId) {
 		List<IDevice> templateDeviceRelationList = templateDeviceRelationService.listDeviceByTemplate(templateId);
-		String file = FishCfg.getFishHome() + FishCfg.fileSep + "param" + FishCfg.fileSep + versionNo + FishCfg.fileSep;
+		String file = VersionCfg.getAtmParamDir()  + FishCfg.fileSep + versionNo + FishCfg.fileSep;
 		ParamInfo paramInfo = new ParamInfo();
 		paramInfo.setVersionNo(versionNo);
 		paramInfo.setServerPath(file);
@@ -284,7 +289,7 @@ public class ParamPublishService implements IParamPublishService {
 		List<IDevice> deviceList = deviceService.list(filter);
 		List<ParamInfo> list = new ArrayList<ParamInfo>();
 		for (long versionNo : versionNoList) {
-			String file = FishCfg.getFishHome() + FishCfg.fileSep + "param" + FishCfg.fileSep + versionNo + FishCfg.fileSep;
+			String file = VersionCfg.getAtmParamDir() + FishCfg.fileSep + versionNo + FishCfg.fileSep;
 			ParamInfo paramInfo = new ParamInfo();
 			paramInfo.setVersionNo(versionNo);
 			paramInfo.setServerPath(file);
@@ -301,7 +306,7 @@ public class ParamPublishService implements IParamPublishService {
 	 * @param deviceId
 	 * @return
 	 */
-	private Map<String, Long> getMaxVersionNoInfoByDeviceId(long deviceId) {
+	public Map<String, Long> getMaxVersionNoInfoByDeviceId(long deviceId) {
 		Map<String, Long> map = new HashMap<String, Long>();
 		StringBuffer hql = new StringBuffer();
 		// 根据应用类型分组查找设备参数详情中版本最大的值
@@ -411,7 +416,7 @@ public class ParamPublishService implements IParamPublishService {
 	 * @return
 	 */
 	private boolean wirteFile(Map<String, Map<String, String>> mapInfo, FileFormat fileFormat, long maxVersion, String fileName) {
-		String fileStr = FishCfg.getFishHome() + FishCfg.fileSep + "param" + FishCfg.fileSep + maxVersion + FishCfg.fileSep + fileName;
+		String fileStr = VersionCfg.getAtmParamDir() + FishCfg.fileSep + maxVersion + FishCfg.fileSep + fileName;
 		File file = new File(fileStr);
 		FileWriter fw = null;
 		try {
@@ -583,6 +588,8 @@ class NoticeThread implements Runnable {
 		logger.info("paramPublish date is " + date + ",person is " + personId);
 		paramPublish.setDate(date);
 		paramPublish.setPublisher(personId);
+		//
+		paramPublish.setRet("NEW");
 		try {
 			paramPublishService.save(paramPublish);
 			// TODO 设置状态

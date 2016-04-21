@@ -41,6 +41,13 @@ public class HttpPropClientTest {
 		msg.setIcc(DeviceProp.T) ;
 		msg.setIsc(DeviceProp.F) ;
 		msg.setFgp(DeviceProp.T) ;
+		msg.setPbk(DeviceProp.T) ;
+		msg.setNfc(DeviceProp.T) ;
+		msg.setBcr(DeviceProp.T) ;
+		msg.setCam(DeviceProp.T) ;
+//		{"termId":"VAA033","idc":"T","cdm":"F","cim":"F","rpr":"T","jpr":"T","ttu":"F","pin":"T","siu":"T",
+//		"icc":"T","fgp":"T","isc":"T","pbk":"F","nfc":"F","bcr":"F","cam":"F"}
+
 
 			String json = JsonUtils.toJson(msg);
 			System.out.println(json);
@@ -48,20 +55,15 @@ public class HttpPropClientTest {
 //				HttpPost httpPost = new HttpPost("http://192.168.91.130:8080?action=update");
 				HttpPost httpPost = new HttpPost("http://127.0.0.1:8080/fish-web-monitor/atm/msg/propertise");
 
-				 StringEntity entity = new StringEntity(json, "UTF-8");
-
-
-				 // 设置请求头信息
-		        Header header = new BasicHeader("Content-Type",
-		                "application/json;charset=UTF-8");
-		        entity.setContentType(header);
-		        httpPost.setEntity(entity);
-
-
+				StringEntity entity = new StringEntity(json, "UTF-8");
+				// 设置请求头信息
+				Header header = new BasicHeader("Content-Type", "application/json;charset=UTF-8");
+				entity.setContentType(header);
+				httpPost.setEntity(entity);
 
 				ResponseHandler<String> responseHandler = new BasicResponseHandler();
 				System.out.println(httpPost.getURI());
-				String responseBody = httpClient.execute(httpPost,responseHandler);
+				String responseBody = httpClient.execute(httpPost, responseHandler);
 				System.out.println("responseBody");
 				System.out.println(responseBody);
 

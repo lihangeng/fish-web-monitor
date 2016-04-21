@@ -1,11 +1,11 @@
 package com.yihuacomputer.fish.parameter.service;
 
+import java.io.File;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import com.yihuacomputer.common.ITypeIP;
 import com.yihuacomputer.common.http.HttpProxy;
@@ -16,7 +16,9 @@ import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishService;
 import com.yihuacomputer.fish.api.parameter.ParamPublishMsg;
+import com.yihuacomputer.fish.api.parameter.ParamPublishRet;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
+import com.yihuacomputer.fish.api.version.VersionCfg;
 import com.yihuacomputer.fish.parameter.entity.ParamPublishResult;
 
 @Service
@@ -40,7 +42,7 @@ public class ParamPublishResultService implements IParamPublishResultService {
 
 	@Override
 	public IParamPublishResult get(long id) {
-		return dao.get(id, IParamPublishResult.class);
+		return dao.get(id, ParamPublishResult.class);
 	}
 
 	@Override
@@ -51,7 +53,7 @@ public class ParamPublishResultService implements IParamPublishResultService {
 	@Override
 	public IParamPublishResult update(long id, String ret) {
 		IParamPublishResult paramPublishResult = this.get(id);
-		paramPublishResult.setRet(ret);
+		paramPublishResult.setRet(ParamPublishRet.getById(ret));
 		return dao.update(paramPublishResult);
 	}
 
@@ -61,12 +63,13 @@ public class ParamPublishResultService implements IParamPublishResultService {
 		String url = getNoticetUrl(device.getIp());
 		IParamPublishResult result = get(msg.getTaskId());
 		if (result != null) {
+			msg.setServerPath(VersionCfg.getAtmParamDir()+File.separator+msg.getVersionNo());
 			result.setDownloadStartTime(DateUtils.getTimestamp(new Date()));
 			ParamPublishMsg responseMsg = (ParamPublishMsg) HttpProxy.httpPost(url, msg, ParamPublishMsg.class, 30000);
 			// 将下发结果回填至业务功能下发结果表
 			if (responseMsg != null) {
 				result.setDownloadFinishTime(DateUtils.getTimestamp(new Date()));
-				result.setRet(StringUtils.isEmpty(responseMsg.getRet()) ? "02" : responseMsg.getRet());
+				result.setRet(ParamPublishRet.NOTICED);
 				update(result);
 				return true;
 			}

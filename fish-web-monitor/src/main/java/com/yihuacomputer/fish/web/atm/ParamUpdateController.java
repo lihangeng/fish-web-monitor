@@ -1,34 +1,35 @@
 package com.yihuacomputer.fish.web.atm;
 
 import java.io.BufferedInputStream;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.yihuacomputer.common.FishCfg;
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.parameter.IAppSystem;
-import com.yihuacomputer.fish.api.parameter.IAppSystemService;
-import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
-import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
-import com.yihuacomputer.fish.api.parameter.IParamElement;
-import com.yihuacomputer.fish.api.parameter.IParamElementService;
-import com.yihuacomputer.fish.web.atm.format.ParamUpdateMsg;
+import com.yihuacomputer.fish.api.parameter.IParamPublish;
+import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
+import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
+import com.yihuacomputer.fish.api.parameter.IParamPublishService;
+import com.yihuacomputer.fish.api.parameter.ParamPublishMsg;
+import com.yihuacomputer.fish.api.parameter.ParamPublishRet;
+import com.yihuacomputer.fish.api.version.VersionCfg;
+import com.yihuacomputer.fish.api.version.job.JobType;
+import com.yihuacomputer.fish.parameter.service.ParamPublishService;
 
 /**
  * 参数下发
@@ -41,20 +42,15 @@ import com.yihuacomputer.fish.web.atm.format.ParamUpdateMsg;
 @RequestMapping("/msg/paramUpdate")
 public class ParamUpdateController {
 
-	// private Logger logger =
-	// LoggerFactory.getLogger(AutoUpdateController.class);
+	private Logger logger = LoggerFactory.getLogger(AutoUpdateController.class);
 
 	@Autowired
-	private IParamElementService paramElementService;
-
-	@Autowired
-	private IAppSystemService appSystemService;
-
+	private IParamPublishService paramPublishService;
 	@Autowired
 	private IDeviceService deviceService;
-
+	
 	@Autowired
-	private IParamDeviceDetailService paramDeviceDetailService;
+	private IParamPublishResultService paramPublishResultService;
 
 	/**
 	 * 接收参数自动更新请求
@@ -63,83 +59,36 @@ public class ParamUpdateController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody ModelMap reciveMsg(@RequestBody ParamUpdateMsg msg) {
-		ModelMap result = new ModelMap();
+	public @ResponseBody ParamPublishMsg reciveMsg(@RequestBody ParamPublishMsg msg) {
+		IDevice device = deviceService.get(msg.getTerminalId());
+		if(null==device){
+			logger.error(String.format("device %s not exist", msg.getTerminalId()));
+			return msg;
+		}
 		try {
-			IDevice device = deviceService.get(msg.getTerminalId());
-
-			// 查出所有的版本数据
-			List<IParamDeviceDetail> pdd = paramDeviceDetailService.getVersionTimeStampData(device.getId(), msg.getTimestamp());
-
-			// 查出所有的应用类型
-			List<IAppSystem> as = appSystemService.getBelongs();
-
-			// 查出所有的归属和参数值
-			List<IParamElement> pe = paramElementService.getValue();
-
-			if (pdd != null) {
-				for (int i = 0; i < pe.size(); i++) {
-					for (int j = 0; j < as.size(); j++) {
-						if(pe.get(i).getParamBelongs().getId() == as.get(j).getId()){
-							String fileName = new String();
-								fileName = as.get(j).getConfigName() + as.get(j).getConfigForm().getText();
-						        File file = new File(FishCfg.getFishHome() + FishCfg.fileSep + "temp" + FishCfg.fileSep + "paramUpdate" + pdd.get(i).getVersionTimeStamp() + fileName);
-								BufferedWriter bw  = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
-								bw.write(pe.get(i).getParamName() + " = " + pdd.get(i).getParamValue());
-							    bw.newLine();
-						        bw.close();
-						}
-					}
-				}
-				for(int i = 0; i < pdd.size(); i++){
-					Long maxVersionTimeStamp = pdd.get(0).getVersionTimeStamp();
-					if(pdd.get(i).getVersionTimeStamp() > maxVersionTimeStamp){
-						maxVersionTimeStamp = pdd.get(i).getVersionTimeStamp();
-						File file = new File(FishCfg.getFishHome() + FishCfg.fileSep + "temp" + FishCfg.fileSep + "paramUpdate" + pdd.get(i).getVersionTimeStamp() + FishCfg.fileSep +"Description.ini");
-						BufferedWriter bw  = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
-						for(int j = 0; j < as.size(); j++){
-								String fileName = new String();
-								fileName = as.get(j).getConfigName() + as.get(j).getConfigForm().getText();
-						        String Path = as.get(j).getConfigPath() + "/" + fileName;
-								bw.write("[" + fileName + "]");
-							    bw.newLine();
-								bw.write("Name = " + as.get(j).getConfigName());
-							    bw.newLine();
-							    bw.write("VersionNo = " + maxVersionTimeStamp);
-							    bw.newLine();
-							    bw.write("Path = " + Path);
-							    bw.newLine();
-							    bw.write("Restart = ");
-							    bw.newLine();
-						        bw.close();
-						}
-					}
-				}
-			}
-			for (int i = 0; i < pe.size(); i++) {
-				for (int j = 0; j < as.size(); j++) {
-					String fileName = new String();
-					fileName = as.get(j).getConfigName() + as.get(j).getConfigForm().getText();
-					File fileConf = new File(FishCfg.getFishHome() + FishCfg.fileSep + "temp" + FishCfg.fileSep + "paramUpdate" + pdd.get(i).getVersionTimeStamp() + FishCfg.fileSep + fileName); 
-					File fileDescription = new File(FishCfg.getFishHome() + FishCfg.fileSep + "temp" + FishCfg.fileSep + "paramUpdate" + pdd.get(i).getVersionTimeStamp() + FishCfg.fileSep + "Description.ini"); 
-					List<File> files = new ArrayList<File>();
-					files.add(fileConf);
-					files.add(fileDescription);
-					File file = new File(FishCfg.getFishHome() + FishCfg.fileSep + "temp" + FishCfg.fileSep + "paramUpdate" + pdd.get(i).getVersionTimeStamp() + FishCfg.fileSep + "param.zip");
-		            if (!file.exists()){   
-		                file.createNewFile();   
-		            }
-		            FileOutputStream fous = new FileOutputStream(file); 
-		            ZipOutputStream zipOut = new ZipOutputStream(fous);
-		            zipFile(files, zipOut);
-		            zipOut.close();
-		            fous.close();
-				}
-			}
+			Map<String,Long> deviceMap = paramPublishService.getMaxVersionNoInfoByDeviceId(device.getId());
+			long versionNo = deviceMap.get(ParamPublishService.MAX_VERSION_TIMESTAMP);
+			IParamPublish paramPublish = paramPublishService.make();
+			paramPublish.setJobType(JobType.AUTO_UPDATE);
+			paramPublish.setDate(DateUtils.getTimestamp(new Date()));
+			paramPublish.setPublisher(0);
+			paramPublishService.save(paramPublish);
+			logger.debug(String.format("paramPublish job create success,id is %d",paramPublish.getId()));
+			IParamPublishResult paramPublishResult = paramPublishResultService.make();
+			paramPublishResult.setDevice(device);
+			paramPublishResult.setDeviceId(device.getId());
+			paramPublishResult.setParamPublish(paramPublish);
+			paramPublishResult.setRet(ParamPublishRet.NEW);
+			paramPublishResult.setVersionNo(versionNo);
+			paramPublishResultService.save(paramPublishResult);
+			logger.debug(String.format("paramPublishResult task create success,id is %d",paramPublishResult.getId()));
+			msg.setTaskId(paramPublishResult.getId());
+			msg.setVersionNo(versionNo);
+			msg.setServerPath(VersionCfg.getAtmParamDir()+File.separator+versionNo);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return result;
+		return msg;
 	}
 	
     public static void zipFile(List<File> files,ZipOutputStream outputStream) {
