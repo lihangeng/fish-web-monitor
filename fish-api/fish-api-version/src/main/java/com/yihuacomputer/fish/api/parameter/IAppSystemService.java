@@ -14,9 +14,11 @@ public interface IAppSystemService {
 
 	Iterable<IAppSystem> list();
 
+	List<IAppSystem> listContainsApp(IFilter filter);
+
 	/**
 	 * 得到参数应用分类
-	 * 
+	 *
 	 * @return
 	 */
 	List<IAppSystem> getBelongs();

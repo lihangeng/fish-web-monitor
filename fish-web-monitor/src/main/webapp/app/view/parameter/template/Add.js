@@ -46,14 +46,14 @@ Ext.define('Eway.view.parameter.template.Add', {
 					layout : 'border',
 					autoScroll : true,
 					items : [ {
-						title : '<font color="black" >可添加参数(使用拖拽的方式)</font>',
+						title : '<font color="black"><b>可添加参数(使用拖拽的方式)</b></font>',
 						width : 220,
 						height: 350,
 						region : 'west',
 						margin : '0 10px 0 0',
 						xtype : 'param_paramGrid',
 						autoLoadStore : true
-					},{
+					}, {
 						title : '<font color="black">已添加的参数(可编辑的参数可以直接修改)</font>',
 						width : 470,
 						height: 350,

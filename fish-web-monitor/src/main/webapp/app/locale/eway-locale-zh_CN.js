@@ -50,13 +50,14 @@ Ext.apply(EwayLocale,{
 		timeout:'会话超时，3秒后自动跳转到登录页面',//EwayLocale.confirm.timeout
 		taskConfirmInfo0:'第',//EwayLocale.confirm.taskConfirmInfo0
 		taskConfirmInfo1:'次作业保存成功,是否跳转到"分发监控"页面?'//EwayLocale.confirm.taskConfirmInfo1
-		
+
 	},
 	button:{
 		search:'查询',//EwayLocale.button.search
 		add : '增加',//EwayLocale.button.add
 		update:'更改',//EwayLocale.button.update
 		remove:'删除',//EwayLocale.button.remove
+		import:'导入',//EwayLocale.button.import
 		refresh:'刷新',//EwayLocale.button.refresh
 		reset:'重置',//EwayLocale.button.reset
 		back:'返回',//EwayLocale.button.back
@@ -64,10 +65,10 @@ Ext.apply(EwayLocale,{
 		link:'关联',//EwayLocale.button.link
 		unlink:'解除',//EwayLocale.button.unlink
 		active:'激活',//EwayLocale.button.active
-		
+
 		bankOrgMove:'组织迁移',//EwayLocale.button.bankOrgMove
 		bankOrgAdmin:'管理员',//EwayLocale.button.bankOrgAdmin
-		
+
 		bankPerlink:'关联设备',//EwayLocale.button.bankPerlink
 		sure:'确定',//EwayLocale.button.sure
 		confirm:'确认',//EwayLocale.button.confirm
@@ -90,7 +91,7 @@ Ext.apply(EwayLocale,{
 		orgAdmin:'机构管理员'//EwayLocale.button.orgAdmin
 
 	},
-	
+
 	refs:{
 		selectAll:'全部',//EwayLocale.refs.selectAll
 		orgName:'机构',//EwayLocale.refs.orgName
@@ -98,7 +99,7 @@ Ext.apply(EwayLocale,{
 		ip:'IP地址',//EwayLocale.refs.ip
 		devType:"设备型号"//EwayLocale.refs.devType
 	},
-	
+
 	tip:{
 		search :{
 			warn:'查询条件存在错误项.',//EwayLocale.tip.search.warn
@@ -168,7 +169,7 @@ Ext.apply(EwayLocale,{
 		planWeek:'方案详情(星期)',//EwayLocale.tip.planWeek
 		planNoConf:'该方案无详细设置！',//EwayLocale.tip.planNoConf
 		devRelatedPlan:'设备已关联开机方案！',//EwayLocale.tip.devRelatedPlan
-		
+
 		tips:'提示',//EwayLocale.tip.tips
 		input:'请正确输入',//EwayLocale.tip.input
 		roleName:'由字母‘a-z’或‘A-Z’、数字‘0-9’或中文，最多可输入 40位',//EwayLocale.tip.roleName
@@ -320,7 +321,7 @@ Ext.apply(EwayLocale,{
 
 	},
 
-	
+
 
 	combox:{
 		select:'--请选择--',//EwayLocale.combox.select
@@ -445,7 +446,7 @@ Ext.apply(EwayLocale,{
 		insideOutside:'在行标志',//EwayLocale.commen.insideOutside
 		appVersion:'应用版本号',//EwayLocale.commen.appVersion
 		devInfo:'设备基本信息',//EwayLocale.commen.devInfo
-		
+
 		personnel:'联系人',//EwayLocale.commen.personnel
 		warn:'警告',//EwayLocale.commen.warn
 		fatal:'故障',//EwayLocale.commen.fatal
@@ -473,7 +474,7 @@ Ext.apply(EwayLocale,{
 
 	},
 
-	
+
 
 	index:{
 		indexPage:'首页',//EwayLocale.index.indexPage
@@ -488,7 +489,7 @@ Ext.apply(EwayLocale,{
 		retainCardTrendTitle:'日均吞卡趋势图'//EwayLocale.index.retainCardTrendTitle
 	},
 
-	
+
 	personal:{
 		baseInfo:'基本信息',//EwayLocale.personal.baseInfo
 		accountNum:'账号',//EwayLocale.personal.accountNum
@@ -505,7 +506,7 @@ Ext.apply(EwayLocale,{
 		reOperate:'无法修改密码,请重新操作.'//EwayLocale.personal.reOperate
 	},
 
-	
+
 	system:{
 		sysRegist:'系统注册',//EwayLocale.system.sysRegist
 		registCode:'注册码',//EwayLocale.system.registCode

@@ -14,6 +14,7 @@ Ext.define('Eway.view.parameter.template.FilterForm', {
 					labelAlign : 'right',
 					name : 'name',
 					fieldLabel : '模板名称',
+					maxLength : 30,
 					msgTarget : 'side'
 				}]
 			}]

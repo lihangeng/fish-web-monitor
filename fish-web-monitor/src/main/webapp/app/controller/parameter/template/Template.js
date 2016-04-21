@@ -201,7 +201,8 @@ Ext.define('Eway.controller.parameter.template.Template',
 						}
 						else{
 							var temp = Ext.create("Eway.model.parameter.template.TemplateDetail",{
-								
+					    		name: data.name,
+					    		remark: data.remark,
 								templateId:templateId,
 								resources : resources
 					    		
@@ -210,13 +211,16 @@ Ext.define('Eway.controller.parameter.template.Template',
 							temp.save({
 								 success: function(ed) {
 									 	Eway.alert('修改模板成功');
+									 	win.close();
+										this.onQueryAfterOperate();
 									 },
 									 failure: function(record,operation){
 										Eway.alert('修改模板失败'+operation.error);
 									 },
 									 scope : this
 								});
-							win.close();
+							
+							
 						}
 						
 						

@@ -55,7 +55,7 @@ public class VendorCodeController {
 
 	@Autowired
 	private IOrganizationService organizationService;
-	
+
 	@Autowired
 	protected MessageSource messageSource;
 

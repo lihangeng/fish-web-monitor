@@ -32,7 +32,10 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
-			}],
+			},{
+			     text:EwayLocale.button.import,
+			     action:'import',
+				}],
 			viewConfig : {
 				forceFit : true,
 				stripeRows : true
@@ -40,7 +43,7 @@ Ext.define('Eway.view.parameter.element.Grid', {
 			columns : [{
 				header : EwayLocale.param.element.paramName,
 				dataIndex : 'paramName',
-				flex : 1
+				flex : 2
 			},{
 				header : EwayLocale.param.element.paramValue,
 				dataIndex : 'paramValue',
@@ -80,7 +83,7 @@ Ext.define('Eway.view.parameter.element.Grid', {
 			},{
 				header : EwayLocale.param.element.paramBelongs,
 				dataIndex : 'paramBelongsName',
-				flex : 2,
+				flex : 1,
 				width :180,
 			},{
 				header : EwayLocale.param.element.createTime,

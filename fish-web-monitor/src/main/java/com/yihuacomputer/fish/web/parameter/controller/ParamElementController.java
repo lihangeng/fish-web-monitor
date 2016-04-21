@@ -1,9 +1,21 @@
 package com.yihuacomputer.fish.web.parameter.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Properties;
+import java.util.Set;
+import java.util.UUID;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +30,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -31,6 +46,7 @@ import com.yihuacomputer.fish.api.parameter.IParamClassify;
 import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
+import com.yihuacomputer.fish.parameter.entity.ParamElement;
 import com.yihuacomputer.fish.web.parameter.form.AppSystemForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamClassifyForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamElementForm;
@@ -53,11 +69,17 @@ public class ParamElementController {
     @Autowired
     protected MessageSource messageSource;
 
+
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request){
 		logger.info(String.format("search element : start = %s ,limt = %s ", start, limit));
+
 		IFilter filter = request2filter(request);
+		if(request.getParameter("appSystem") ==null || request.getParameter("appSystem").equals("")){
+			IAppSystem appSystem = appSystemService.get(1);
+			filter.eq("paramBelongs",appSystem);
+		}
 		ModelMap result = new ModelMap();
 		IPageResult<IParamElement> pageResult = elementService.page(start, limit, filter);
 		result.addAttribute(FishConstant.SUCCESS, true);
@@ -143,8 +165,17 @@ public class ParamElementController {
         return model;
     }
 
+   @RequestMapping(value= "/queryAppsystemRadioGroup",method=RequestMethod.GET)
+   public @ResponseBody ModelMap queryAppSystem1(){
+	   logger.info(String.format("search appSystem : queryAppSystem"));
+	   ModelMap model=new ModelMap();
+	   List<IAppSystem> appSystemList = appSystemService.listContainsApp(new Filter());
+	   model.put(FishConstant.DATA, appSystemList);
+	return model;
+   }
+
    @RequestMapping(value= "/queryAppsystem",method=RequestMethod.GET)
-   public @ResponseBody ModelMap queryAppSystem(){
+   public @ResponseBody ModelMap queryAppSystem2(){
 	   logger.info(String.format("search appSystem : queryAppSystem"));
 	   ModelMap model=new ModelMap();
 	   List<IAppSystem> appSystemList = EntityUtils.convert(appSystemService.list());
@@ -153,6 +184,110 @@ public class ParamElementController {
 	return model;
    }
 
+
+   @RequestMapping(method = RequestMethod.POST, value = "/import")
+	public @ResponseBody
+	String importFile(@RequestParam long appSystem, HttpServletRequest request, HttpServletResponse response) {
+
+	   response.setContentType("text/html;charset=UTF-8");// 解决IE9 上传文件乱码问题
+	   MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+	   List<MultipartFile> files = multipartRequest.getFiles("file");
+	   MultipartFile file = files.get(0);
+	   if (!file.getOriginalFilename().isEmpty() && file.getSize() > 10485760) {
+			return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileSize", null, FishCfg.locale)+"'}";
+		}
+	   String fileType = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf('.'));
+	   if (!file.getOriginalFilename().isEmpty()) {
+
+			try {
+				File readFile = new File(FishCfg.getTempDir() + System.getProperty("file.separator")
+						+ UUID.randomUUID());
+				file.transferTo(readFile);
+				/* 读文件内容 */
+				ArrayList<IParamElement> paramElementList = null;
+				if (fileType.equals(".ini")) {
+					paramElementList = this.readIni(readFile);// 从ini文件件解析数据：
+
+				}  else {
+					return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileType", null, FishCfg.locale)+"'}";
+				}
+				if (paramElementList != null && !paramElementList.isEmpty()) {
+					if (this.check(paramElementList, appSystem)) {
+						return "{'success':false,'content':'"+messageSource.getMessage("paramElement.fileComment", null, FishCfg.locale)+"'}";
+					} else {
+						for (IParamElement item : paramElementList) {
+							item.setParamBelongs(appSystemService.get(appSystem));
+							elementService.save(item);
+						}
+					}
+				} else {
+					return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileEmpty", null, FishCfg.locale)+"'}";
+				}
+			} catch (Exception ex) {
+				logger.error(ex.getMessage());
+				return "{'success':false,'content':'"+messageSource.getMessage("paramElement.fileComment", null, FishCfg.locale)+"'}";
+			}
+
+	   }else
+		{
+			return "{'success':false,'content':'"+messageSource.getMessage("paramElement.fileComment", null, FishCfg.locale)+"'}";
+		}
+		return "{'success':true,'content':'"+messageSource.getMessage("paramElement.fileSuccess", null, FishCfg.locale)+"'}";
+   }
+
+
+
+	private ArrayList<IParamElement> readIni(File readFile) throws FileNotFoundException,IOException{
+            ArrayList<IParamElement> paramElementList=new ArrayList<IParamElement>();
+            Date date=new Date();
+
+            Properties props= new Properties();
+            props.load(new FileInputStream(readFile));
+            Set<Entry<Object, Object>> set = props.entrySet();
+            // 返回在此Set中的元素上进行迭代的迭代器
+            Iterator<Map.Entry<Object, Object>> it = set.iterator();
+            String key = null, value = null;
+            ParamElement paramElement = null;
+            // 循环取出key-value
+            while (it.hasNext()) {
+          	  paramElement = new ParamElement();
+                Entry<Object, Object> entry = it.next();
+
+                key = String.valueOf(entry.getKey());
+                value = String.valueOf(entry.getValue());
+
+                key = key == null ? key : key.trim().toUpperCase();
+                value = value == null ? value : value.trim().toUpperCase();
+                // 将key-value放入map中
+                paramElement.setParamName(key);
+                paramElement.setParamValue(value);
+                paramElement.setCreateTime(DateUtils.getTimestamp(DateUtils.getTimestamp(date)));
+                paramElement.setParamTimestamp(Long.parseLong(DateUtils.getTimestamp5(date)));
+                paramElement.setParamClassify(classifyService.get("默认分类"));
+
+                paramElementList.add(paramElement);
+
+            }
+            return paramElementList;
+}
+
+	private boolean check(List<IParamElement> list, long appSystem) {
+		boolean flag = false;
+		List<IParamElement> paramElementList = elementService.getByAppSystem(appSystemService.get(appSystem));
+		if (paramElementList.size() == 0) {
+			flag = false;
+		} else {
+			for (IParamElement item : list) {
+				for (IParamElement paramElement : paramElementList) {
+					if (item.getParamName().equals(paramElement.getParamName())) {
+						flag = true;
+						break;
+					}
+				}
+			}
+		}
+		return flag;
+	}
 
 
 	private IFilter request2filter(WebRequest request) {
@@ -169,7 +304,7 @@ public class ParamElementController {
 				} else {
 					if (name.equals("sort")) {
 						continue;
-					} else if(name.equals("paramBelongs")){
+					} else if(name.equals("appSystem")){
 						IAppSystem appSystem = appSystemService.get(Long.parseLong(request.getParameter(name)));
 						filter.eq("paramBelongs",appSystem);
 					}
@@ -205,6 +340,35 @@ public class ParamElementController {
 		}
 		return result;
 	}
+	public static void main(String[] args) throws Exception{
+      ArrayList<IParamElement> paramElementList=new ArrayList<IParamElement>();
 
+      String readFile = "C:\\Users\\YH\\Desktop\\datapool.ini";
+      Properties props= new Properties();
+
+      props.load(new FileInputStream(readFile));
+
+      Set<Entry<Object, Object>> set = props.entrySet();
+      // 返回在此Set中的元素上进行迭代的迭代器
+      Iterator<Map.Entry<Object, Object>> it = set.iterator();
+      String key = null, value = null;
+      ParamElement paramElement = null;
+      // 循环取出key-value
+      while (it.hasNext()) {
+    	  paramElement = new ParamElement();
+          Entry<Object, Object> entry = it.next();
+
+          key = String.valueOf(entry.getKey());
+          value = String.valueOf(entry.getValue());
+
+          key = key == null ? key : key.trim().toUpperCase();
+          value = value == null ? value : value.trim().toUpperCase();
+          // 将key-value放入map中
+          paramElement.setParamName(key);
+          paramElement.setParamValue(value);
+          paramElementList.add(paramElement);
+      }
+      System.out.println(paramElementList);
+}
 
 }

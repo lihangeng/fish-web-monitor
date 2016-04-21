@@ -12,6 +12,8 @@ import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 
 public class ParamTempDetailForm {
 	private long id;
+	private String name;
+	private String remark;
 	private String paramName;
 	private String paramValue;
 	private long templateId;
@@ -32,7 +34,10 @@ public class ParamTempDetailForm {
 		setParamBelongs(detail.getParamElement().getParamBelongs().getName());
 		setElementId(detail.getParamElement().getId());
 		setTemplateName(detail.getTemplate().getName());
+		setName(detail.getTemplate().getName());
+		setRemark(detail.getTemplate().getRemark());
 	}
+
 
 	public List<ParamTempDetailForm> getParamTempDetailForm() {
 		List<ParamTempDetailForm> tempDetailForm = new ArrayList<ParamTempDetailForm>();
@@ -112,5 +117,19 @@ public class ParamTempDetailForm {
 	public void setTemplateName(String templateName) {
 		this.templateName = templateName;
 	}
+	public String getName() {
+		return name;
+	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getRemark() {
+		return remark;
+	}
+
+	public void setRemark(String remark) {
+		this.remark = remark;
+	}
 }

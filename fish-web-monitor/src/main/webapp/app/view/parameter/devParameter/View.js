@@ -13,10 +13,12 @@ Ext.define('Eway.view.parameter.devParameter.View', {
 		 
 		Ext.apply(this, {
 					items : [{
-						region: 'west',
+						region: 'north',
 						layout:'border',
-						width:'35%',
-						collapsible:true,
+						split:true,
+						collapsible: true,
+						header:false,
+						height:'45%',
 						items:[{
 							region:'north',
 							xtype:'parameter_devParameter_devFilterForm'
@@ -31,10 +33,9 @@ Ext.define('Eway.view.parameter.devParameter.View', {
 						xtype:'tabpanel',
 						tabPosition : 'left',
 						headerPosition: 'left',
-						plain:true,
+						plain:false,
 					    activeTab: 0,
 					    tabRotation:0
-					    
 					}],
 					listeners: {
 				       'beforerender':function( _this, eOpts){
@@ -42,7 +43,7 @@ Ext.define('Eway.view.parameter.devParameter.View', {
 				   			method:'GET',
 				   			url:'api/parameter/devParameter/getAppData',
 				   			success:function(response){
-				   				if(response.responseText !=null){
+				   				if(response.responseText){
 				   					var appData=Ext.decode(response.responseText);
 					   				for(var i=0;i<appData.total;i++){
 					   					var tab=Ext.create('Eway.view.parameter.devParameter.ParamView',{appType:appData.data[i].id});
