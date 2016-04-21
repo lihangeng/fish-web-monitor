@@ -17,6 +17,7 @@ Ext.define('Eway.view.parameter.devParameter.View', {
 						layout:'border',
 						split:true,
 						collapsible: true,
+						header:false,
 						height:'45%',
 						items:[{
 							region:'north',

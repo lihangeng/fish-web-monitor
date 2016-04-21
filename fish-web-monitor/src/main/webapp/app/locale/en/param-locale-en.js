@@ -39,7 +39,8 @@ Ext.apply(EwayLocale,{
     	},
     	deviceParam:{
     		title:'The Manage Of Device Paramter',//EwayLocale.param.deviceParam.title
-    		couldUpdate:'(Could Update)',//EwayLocale.param.deviceParam.couldUpdate
+    		downloadFailure:'Download Failure',//EwayLocale.param.deviceParam.downloadFailure
+    		downloadSuccess:'Download Success'//EwayLocale.param.deviceParam.downloadSuccess
     	}
 
 

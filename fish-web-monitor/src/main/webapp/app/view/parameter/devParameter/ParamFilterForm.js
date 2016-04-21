@@ -13,6 +13,7 @@ Ext.define('Eway.view.parameter.devParameter.ParamFilterForm',{
 			msgTarget : 'side',
 			style :'padding-top:10px',
 			items :[{
+				columnWidth:.4,
 				items:[{
 					xtype:'devParameter_field_ParamClassify',
 					name:'ClassifyId',
@@ -20,6 +21,7 @@ Ext.define('Eway.view.parameter.devParameter.ParamFilterForm',{
 					store:store
 				}]
 			},{
+				columnWidth:.4,
 				items:[{
 					xtype : 'textfield',
 					name : 'paramName',

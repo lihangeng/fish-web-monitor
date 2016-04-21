@@ -17,7 +17,7 @@ Ext.define('Eway.view.parameter.devParameter.DevGrid', {
 				glyph : 0xf002,
 				action : 'query'
 			 },{
-				 text:'发布',
+				 text:EwayLocale.button.download,
 				 action:'release'
 			 }],
 			columns : [ {
@@ -31,16 +31,16 @@ Ext.define('Eway.view.parameter.devParameter.DevGrid', {
 			},{
 				header : EwayLocale.commen.orgNameBelongs,
 				dataIndex : 'orgName',
-				flex:1
-			}/*,{
-				header : '设备型号',
+				width:150
+			},{
+				header : EwayLocale.commen.devTypeName,
 				dataIndex : 'devTypeName',
 				width:150
 			},{
-				header : '设备类型',
+				header : EwayLocale.commen.devCatalogName,
 				dataIndex : 'devCatalogName',
 				flex : 1
-			}*/],
+			}],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
 				displayInfo : true

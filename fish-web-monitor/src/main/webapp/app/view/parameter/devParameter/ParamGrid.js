@@ -50,8 +50,9 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 				},
 				width:130
 			},{
-				header:'参数权限',
+				header : EwayLocale.param.element.paramRights,
 				dataIndex:'eleParamRights',
+				width:130,
 				renderer:function(value,metadata,record){
 					if(value==1){
 						return EwayLocale.param.element.editable;
@@ -61,7 +62,7 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 					}
 				}
 			},{
-				header:'参数类型',
+				header:EwayLocale.param.element.paramType,
 				dataIndex:'eleParamType',
 				width:110,
 				renderer:function(value,metadata,record){
@@ -73,7 +74,7 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 					}
 				}
 			},{
-				header:'最后修改时间',
+				header:EwayLocale.param.element.lastModifyTime,
 				dataIndex:'eleModifyTiem',
 				flex:1
 			}]

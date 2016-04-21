@@ -29,8 +29,10 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.ITypeIP;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.EntityUtils;
+import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.parameter.DeviceParam;
@@ -118,8 +120,11 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 				} else if (name.equals("terminalId")) {
 					String value = request.getParameter(name);
 					filter.eq(name, value.trim());
-				} else {
-					filter.like(name, request.getParameter(name));
+				} else if(name.equals("devTypeId")) {
+					filter.eq("device.devType.id", Long.parseLong(request.getParameter(name)));
+				} else if(name.equals("ip")){
+					ITypeIP ip = new IP(request.getParameter("ip"));
+					filter.eq("device.ip", ip);
 				}
 			}
 		}
@@ -315,10 +320,10 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 				boolean release=paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
 				if(release){
 					result.addAttribute(FishConstant.SUCCESS, true);
-					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("参数下发成功", null, FishCfg.locale));
+					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadSuccess", null, FishCfg.locale));
 				}else{
 					result.addAttribute(FishConstant.SUCCESS, false);
-					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.paramterDownload", null, FishCfg.locale));
+					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadFailure", null, FishCfg.locale));
 				}
 			}
 		return result;
@@ -330,7 +335,7 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 	@RequestMapping(value="/paramInfo/release",method=RequestMethod.POST)
 	public @ResponseBody 
 	 ModelMap releaseParam(@RequestParam String arrayId,HttpServletRequest request){
-		logger.info("下发设备参数");
+		logger.info("release the parameters of devices");
 		ModelMap result=new ModelMap();
 		String[] str=arrayId.split("-");
 		List<Long> deviceIdList=new ArrayList<Long>();
@@ -342,10 +347,10 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 		boolean release=paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
 		if(release){
 			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("参数下发成功", null, FishCfg.locale));
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadSuccess", null, FishCfg.locale));
 		}else{
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("paramter.deviceParam.paramterDownload", null, FishCfg.locale));
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadFailure", null, FishCfg.locale));
 		}
 		return result;
 		

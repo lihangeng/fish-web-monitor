@@ -85,10 +85,10 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 				arrayId:devArrayId
 			},
 			success:function(response){
-				alert('下发成功');
+				Eway.alert(EwayLocale.param.deviceParam.downloadSuccess);
 			},
 			failure:function(response){
-				alert('下发失败');
+				Eway.alert(EwayLocale.param.deviceParam.downloadFailure);
 			},
 			scope:this
 		})
