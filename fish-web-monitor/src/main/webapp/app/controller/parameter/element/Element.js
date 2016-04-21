@@ -86,12 +86,14 @@ Ext.define('Eway.controller.parameter.element.Element', {
 				var win = this.win;
 				var importForm = this.getImportWin().down("form").getForm();
 				var paramBelongs = win.down('field_paramElement_ParamBelongs').getValue();
+//				var view = this.getEwayView();
+//				var paramBelongs=view.down('element_FilterForm').down("field_paramElement_ParamBelongsRadioGroup").getValue();
 				if(importForm.isValid()){
 					Ext.Msg.wait(EwayLocale.cases.nowExportFile);
 					importForm.submit({
-						url : 'api/case/vendorCode/import',
+						url : 'api/parameter/element/import',
 						params : {
-							vendor : vendor
+							appSystem : paramBelongs
 						},
 						success : function(form, action){
 							Ext.Msg.hide();
@@ -107,7 +109,6 @@ Ext.define('Eway.controller.parameter.element.Element', {
 						scope :this
 					});
 				}
-				alert('hello');
 			},
 
 			onChange:function( _this, newValue, oldValue, eOpts){
