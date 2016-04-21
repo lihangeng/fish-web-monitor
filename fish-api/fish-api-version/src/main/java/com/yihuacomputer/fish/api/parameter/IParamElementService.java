@@ -26,6 +26,10 @@ public interface IParamElementService {
 
 	public Iterable<IParamElement> list(IFilter filter);
 
+	public void save(IParamElement paramElement);
+
+	public List<IParamElement> getByAppSystem(IAppSystem paramBelongs);
+
 	/**
 	 * 得到参数值以及参数归属
 	 *

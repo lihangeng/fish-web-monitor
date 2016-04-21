@@ -56,6 +56,7 @@ Ext.apply(EwayLocale,{
 		add : 'Add',//EwayLocale.button.add
 		update:'Update',//EwayLocale.button.update
 		remove:'Delete',//EwayLocale.button.remove
+		import:'Import',//EwayLocale.button.import
 		refresh:'Refresh',//EwayLocale.button.refresh
 		reset:'Reset',//EwayLocale.button.reset
 		back:'Back',//EwayLocale.button.back
@@ -63,10 +64,10 @@ Ext.apply(EwayLocale,{
 		link:'Binding',//EwayLocale.button.link
 		unlink:'Delete',//EwayLocale.button.unlink
 		active:'Active',//EwayLocale.button.active
-		
+
 		bankOrgMove:'Migrate',//EwayLocale.button.bankOrgMove
 		bankOrgAdmin:'Manager',//EwayLocale.button.bankOrgAdmin
-		
+
 		bankPerlink:'Binding Devices',//EwayLocale.button.bankPerlink
 		sure:'Confirm',//EwayLocale.button.sure
 		confirm:'Confirm',//EwayLocale.button.confirm
@@ -89,7 +90,7 @@ Ext.apply(EwayLocale,{
 		personTM:'Banker',//EwayLocale.button.personTM
 		orgAdmin:'Bank Administrator'//EwayLocale.button.orgAdmin
 	},
-	
+
 	refs:{
 		selectAll:'All',//EwayLocale.refs.selectAll
 		orgName:'Bank',//EwayLocale.refs.orgName
@@ -97,7 +98,7 @@ Ext.apply(EwayLocale,{
 		ip:'IP',//EwayLocale.refs.ip
 		devType:"Device Type"//EwayLocale.refs.devType
 	},
-	
+
 	tip:{
 		search :{
 			warn:'Error Input For Query.',//EwayLocale.tip.search.warn
@@ -167,7 +168,7 @@ Ext.apply(EwayLocale,{
 		planWeek:'Plan Details (Week)',//EwayLocale.tip.planWeek
 		planNoConf:'The Plan No Detailed Settings!',//EwayLocale.tip.planNoConf
 		devRelatedPlan:'Device Has Been Bound With The Service Plan!',//EwayLocale.tip.devRelatedPlan
-		
+
 		tips:'Tips',//EwayLocale.tip.tips
 		input:'Please Enter The Right Item',//EwayLocale.tip.input
 		roleName:'Just For Character ‘a-z’ Or ‘A-Z’ Or Numbers ‘0-9’ ,Max Length Is 40',//EwayLocale.tip.roleName
@@ -319,7 +320,7 @@ Ext.apply(EwayLocale,{
 
 	},
 
-	
+
 
 	combox:{
 		select:'Please Select',//EwayLocale.combox.select
@@ -443,7 +444,7 @@ Ext.apply(EwayLocale,{
 		insideOutside:'In Bank Flag',//EwayLocale.commen.insideOutside
 		appVersion:'Atmc Version',//EwayLocale.commen.appVersion
 		devInfo:'Device Basic Info',//EwayLocale.commen.devInfo
-		
+
 		personnel:'Contacts',//EwayLocale.commen.personnel
 		warn:'Warning',//EwayLocale.commen.warn
 		fatal:'Fatal',//EwayLocale.commen.fatal
@@ -470,7 +471,7 @@ Ext.apply(EwayLocale,{
 
 
 	},
-	
+
 
 	index:{
 		indexPage:'Home',//EwayLocale.index.indexPage
@@ -485,7 +486,7 @@ Ext.apply(EwayLocale,{
 		retainCardTrendTitle:'Retained Card Trend Chart'//EwayLocale.index.retainCardTrendTitle
 	},
 
-	
+
 	personal:{
 		baseInfo:'Basic Info',//EwayLocale.personal.baseInfo
 		accountNum:'User Code',//EwayLocale.personal.accountNum
@@ -503,7 +504,7 @@ Ext.apply(EwayLocale,{
 		reOperate:'Can Not Update Password,Please Try Again.'//EwayLocale.personal.reOperate
 	},
 
-	
+
 	system:{
 		sysRegist:'SystemRegist',//EwayLocale.system.sysRegist
 		registCode:'Regist Code',//EwayLocale.system.registCode

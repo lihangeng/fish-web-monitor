@@ -32,7 +32,10 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
-			}],
+			},{
+			     text:EwayLocale.button.import,
+			     action:'import',
+				}],
 			viewConfig : {
 				forceFit : true,
 				stripeRows : true

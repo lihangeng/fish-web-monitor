@@ -11,6 +11,7 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.parameter.IAppSystem;
 import com.yihuacomputer.fish.api.parameter.IParamClassify;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
@@ -101,6 +102,19 @@ public class ParamElementService implements IParamElementService {
 	public List<IParamElement> listByClassify(IParamClassify paramClassify) {
 
 		return dao.findByHQL("from ParamElement paramElement where paramElement.paramClassify.id = ?", paramClassify.getId());
+	}
+
+	@Override
+	public void save(IParamElement paramElement) {
+		 dao.save(paramElement);
+
+	}
+
+	@Override
+	public List<IParamElement> getByAppSystem(IAppSystem paramBelongs) {
+		String hql="from ParamElement P where P.paramBelongs=?";
+		List<IParamElement> result=dao.findByHQL(hql, paramBelongs);
+		return result;
 	}
 
 }

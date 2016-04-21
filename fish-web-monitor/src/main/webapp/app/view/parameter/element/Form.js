@@ -56,7 +56,8 @@ Ext.define('Eway.view.parameter.element.Form',{
 					xtype : 'field_paramElement_ParamBelongs',
 					editable : false,
 					allowBlank: false,
-					maxLength : 40
+					maxLength : 40,
+					value:1
 			},
 			{
 				xtype : 'field_paramElement_Remark',

@@ -16,7 +16,7 @@ import com.yihuacomputer.fish.parameter.entity.AppSystem;
 @Service
 @Transactional
 public class AppSystemService implements IAppSystemService {
-	
+
 	@Autowired
 	private IGenericDao dao;
 
@@ -29,7 +29,7 @@ public class AppSystemService implements IAppSystemService {
 	public void update(IAppSystem appSystem) {
 		dao.update(appSystem instanceof AppSystem ? (AppSystem) appSystem:null);
 	}
-	
+
 	@Override
 	public IPageResult<IAppSystem> page(int start, int limit, IFilter filter) {
 		return dao.page(start, limit, filter, AppSystem.class);
@@ -47,5 +47,11 @@ public class AppSystemService implements IAppSystemService {
 		List<IAppSystem> result = dao.findByHQL(hql.toString());
 		return result;
 	}
-	
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<IAppSystem> listContainsApp(IFilter filter) {
+		return dao.findByFilter(filter, IAppSystem.class);
+	}
+
 }

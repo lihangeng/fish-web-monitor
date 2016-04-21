@@ -22,8 +22,10 @@ Ext.define('Eway.controller.parameter.element.Element', {
 					}, {
 						ref : 'elementGrid',
 						selector : 'element_Grid'
-					}
-					, {
+					},{
+						ref :'importWin',
+						selector:'element_ImportParamFile'
+					}, {
 						ref : 'addWin',
 						selector : 'element_add'
 					}, {
@@ -57,11 +59,57 @@ Ext.define('Eway.controller.parameter.element.Element', {
 							'element_View button[action=remove]' : {
 								click : this.onRemove
 							},
+							'element_View button[action=import]' :{
+								click : this.onImport
+							},
 							'parameter_element_form field_paramElement_ParamType':{
 								change:this.onChange
+							},
+							'element_View element_FilterForm field_paramElement_ParamBelongsRadioGroup':{
+                                change:this.onChange2
 							}
 						});
 			},
+
+			initBaseControl : function(){
+
+			},
+
+			onImport:function(){
+				var win = Ext.create('Eway.view.parameter.element.ImportParamFile');
+				this.win = win;
+				win.down('button[action="import"]').on('click',this.onImportConfirm,this);
+				win.show();
+			},
+			onImportConfirm :function(){
+
+				var win = this.win;
+				var importForm = this.getImportWin().down("form").getForm();
+				var paramBelongs = win.down('field_paramElement_ParamBelongs').getValue();
+				if(importForm.isValid()){
+					Ext.Msg.wait(EwayLocale.cases.nowExportFile);
+					importForm.submit({
+						url : 'api/case/vendorCode/import',
+						params : {
+							vendor : vendor
+						},
+						success : function(form, action){
+							Ext.Msg.hide();
+							win.close();
+							var store = this.getVendorCodeGrid().getStore();
+							store.load();
+							Eway.alert(EwayLocale.cases.exportFaultInfo);
+						},
+						failure :function(form, action){
+							Eway.alert(action.result.content);
+							Ext.Msg.hide();
+						},
+						scope :this
+					});
+				}
+				alert('hello');
+			},
+
 			onChange:function( _this, newValue, oldValue, eOpts){
 				var paramValue = _this.up("parameter_element_form").down("field_paramElement_ParamValue");
 				if(newValue==1){
@@ -71,6 +119,17 @@ Ext.define('Eway.controller.parameter.element.Element', {
 					return paramValue.regex=null;
 				}
 
+			},
+			onChange2: function(_this, newValue, oldValue, eOpts){
+				var view = this.getEwayView();
+				var paramBelongsRadioGroup=view.down('element_FilterForm').down("field_paramElement_ParamBelongsRadioGroup").getValue();
+
+				var store = Ext.create('Eway.store.parameter.element.Element');
+
+
+				var store = this.getGridPanel().getStore();
+				store.setUrlParamsByObject(paramBelongsRadioGroup);
+				store.loadPage(1);
 			}
 
 });
