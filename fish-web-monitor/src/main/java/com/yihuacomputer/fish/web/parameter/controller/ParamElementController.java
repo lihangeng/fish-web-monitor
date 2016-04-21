@@ -213,7 +213,7 @@ public class ParamElementController {
 				}
 				if (paramElementList != null && !paramElementList.isEmpty()) {
 					if (this.check(paramElementList, appSystem)) {
-						return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileComment", null, FishCfg.locale)+"'}";
+						return "{'success':false,'content':'"+messageSource.getMessage("paramElement.fileComment", null, FishCfg.locale)+"'}";
 					} else {
 						for (IParamElement item : paramElementList) {
 							item.setParamBelongs(appSystemService.get(appSystem));
