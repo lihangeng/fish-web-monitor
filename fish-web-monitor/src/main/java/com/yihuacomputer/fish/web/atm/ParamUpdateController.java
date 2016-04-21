@@ -1,13 +1,8 @@
 package com.yihuacomputer.fish.web.atm;
 
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -91,44 +86,5 @@ public class ParamUpdateController {
 		return msg;
 	}
 	
-    public static void zipFile(List<File> files,ZipOutputStream outputStream) {
-    	int size = files.size();
-    	for(int i = 0; i < size; i++) {
-    		File file = (File) files.get(i);
-    		zipFile(file, outputStream);
-    	}
-    }
-    
-    public static void zipFile(File inputFile, ZipOutputStream ouputStream) {
-        try {
-            if(inputFile.exists()) {
-                if (inputFile.isFile()) {
-                    FileInputStream IN = new FileInputStream(inputFile);
-                    BufferedInputStream bins = new BufferedInputStream(IN, 512);
-                    ZipEntry entry = new ZipEntry(inputFile.getName());
-                    ouputStream.putNextEntry(entry);
-                    // 向压缩文件中输出数据   
-                    int nNumber;
-                    byte[] buffer = new byte[512];
-                    while ((nNumber = bins.read(buffer)) != -1) {
-                        ouputStream.write(buffer, 0, nNumber);
-                    }
-                    // 关闭创建的流对象   
-                    bins.close();
-                    IN.close();
-                } else {
-                    try {
-                        File[] files = inputFile.listFiles();
-                        for (int i = 0; i < files.length; i++) {
-                            zipFile(files[i], ouputStream);
-                        }
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+   
 }
