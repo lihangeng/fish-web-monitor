@@ -212,33 +212,34 @@ public class ParamElementController {
 					return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileType", null, FishCfg.locale)+"'}";
 				}
 				if (paramElementList != null && !paramElementList.isEmpty()) {
-//					if (this.check(paramElementList, appSystem)) {
-//						return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileComment", null, FishCfg.locale)+"'}";
-//					} else {
+					if (this.check(paramElementList, appSystem)) {
+						return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileComment", null, FishCfg.locale)+"'}";
+					} else {
 						for (IParamElement item : paramElementList) {
 							item.setParamBelongs(appSystemService.get(appSystem));
 							elementService.save(item);
-//						}
+						}
 					}
 				} else {
 					return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileEmpty", null, FishCfg.locale)+"'}";
 				}
 			} catch (Exception ex) {
 				logger.error(ex.getMessage());
-				return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileComment", null, FishCfg.locale)+"'}";
+				return "{'success':false,'content':'"+messageSource.getMessage("paramElement.fileComment", null, FishCfg.locale)+"'}";
 			}
 
 	   }else
 		{
-			return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileComment", null, FishCfg.locale)+"'}";
+			return "{'success':false,'content':'"+messageSource.getMessage("paramElement.fileComment", null, FishCfg.locale)+"'}";
 		}
-		return "{'success':true}";
+		return "{'success':true,'content':'"+messageSource.getMessage("paramElement.fileSuccess", null, FishCfg.locale)+"'}";
    }
 
 
 
 	private ArrayList<IParamElement> readIni(File readFile) throws FileNotFoundException,IOException{
             ArrayList<IParamElement> paramElementList=new ArrayList<IParamElement>();
+            Date date=new Date();
 
             Properties props= new Properties();
             props.load(new FileInputStream(readFile));
@@ -260,32 +261,14 @@ public class ParamElementController {
                 // 将key-value放入map中
                 paramElement.setParamName(key);
                 paramElement.setParamValue(value);
+                paramElement.setCreateTime(DateUtils.getTimestamp(DateUtils.getTimestamp(date)));
+                paramElement.setParamTimestamp(Long.parseLong(DateUtils.getTimestamp5(date)));
+                paramElement.setParamClassify(classifyService.get("默认分类"));
+
                 paramElementList.add(paramElement);
+
             }
             return paramElementList;
-
-//            map = new HashMap<String, Map<String,List<String>>>();
-//            Map<String, String> loadSqlMap = new HashMap<String, String>();
-//            Properties props=null;
-//            props.load(new FileInputStream(readFile));
-//
-//            Set<Entry<Object, Object>> set = props.entrySet();
-//            // 返回在此Set中的元素上进行迭代的迭代器
-//            Iterator<Map.Entry<Object, Object>> it = set.iterator();
-//            String key = null, value = null;
-//            // 循环取出key-value
-//            while (it.hasNext()) {
-//
-//                Entry<Object, Object> entry = it.next();
-//
-//                key = String.valueOf(entry.getKey());
-//                value = String.valueOf(entry.getValue());
-//
-//                key = key == null ? key : key.trim().toUpperCase();
-//                value = value == null ? value : value.trim().toUpperCase();
-//                // 将key-value放入map中
-//                Constants.loadSqlMap.put(key, value);
-//            }
 }
 
 	private boolean check(List<IParamElement> list, long appSystem) {
