@@ -1,10 +1,17 @@
 package com.yihuacomputer.fish.web.parameter.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Properties;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,13 +40,13 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.EntityUtils;
-import com.yihuacomputer.fish.api.fault.IVendorCode;
 import com.yihuacomputer.fish.api.parameter.IAppSystem;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamClassify;
 import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
+import com.yihuacomputer.fish.parameter.entity.ParamElement;
 import com.yihuacomputer.fish.web.parameter.form.AppSystemForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamClassifyForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamElementForm;
@@ -61,6 +68,7 @@ public class ParamElementController {
 
     @Autowired
     protected MessageSource messageSource;
+
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
@@ -179,7 +187,7 @@ public class ParamElementController {
 
    @RequestMapping(method = RequestMethod.POST, value = "/import")
 	public @ResponseBody
-	String importFile(@RequestParam IAppSystem appSystem, HttpServletRequest request, HttpServletResponse response) {
+	String importFile(@RequestParam long appSystem, HttpServletRequest request, HttpServletResponse response) {
 
 	   response.setContentType("text/html;charset=UTF-8");// 解决IE9 上传文件乱码问题
 	   MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
@@ -198,19 +206,19 @@ public class ParamElementController {
 				/* 读文件内容 */
 				ArrayList<IParamElement> paramElementList = null;
 				if (fileType.equals(".ini")) {
-					paramElementList = this.readIni(readFile, "0");// 从ini文件件解析数据：
+					paramElementList = this.readIni(readFile);// 从ini文件件解析数据：
 
 				}  else {
 					return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileType", null, FishCfg.locale)+"'}";
 				}
 				if (paramElementList != null && !paramElementList.isEmpty()) {
-					if (this.check(paramElementList, appSystem)) {
-						return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileComment", null, FishCfg.locale)+"'}";
-					} else {
+//					if (this.check(paramElementList, appSystem)) {
+//						return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileComment", null, FishCfg.locale)+"'}";
+//					} else {
 						for (IParamElement item : paramElementList) {
-							item.setParamBelongs(appSystem);
+							item.setParamBelongs(appSystemService.get(appSystem));
 							elementService.save(item);
-						}
+//						}
 					}
 				} else {
 					return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileEmpty", null, FishCfg.locale)+"'}";
@@ -229,14 +237,60 @@ public class ParamElementController {
 
 
 
-	private ArrayList<IParamElement> readIni(File readFile, String string) {
-	// TODO Auto-generated method stub
-	return null;
+	private ArrayList<IParamElement> readIni(File readFile) throws FileNotFoundException,IOException{
+            ArrayList<IParamElement> paramElementList=new ArrayList<IParamElement>();
+
+            Properties props= new Properties();
+            props.load(new FileInputStream(readFile));
+            Set<Entry<Object, Object>> set = props.entrySet();
+            // 返回在此Set中的元素上进行迭代的迭代器
+            Iterator<Map.Entry<Object, Object>> it = set.iterator();
+            String key = null, value = null;
+            ParamElement paramElement = null;
+            // 循环取出key-value
+            while (it.hasNext()) {
+          	  paramElement = new ParamElement();
+                Entry<Object, Object> entry = it.next();
+
+                key = String.valueOf(entry.getKey());
+                value = String.valueOf(entry.getValue());
+
+                key = key == null ? key : key.trim().toUpperCase();
+                value = value == null ? value : value.trim().toUpperCase();
+                // 将key-value放入map中
+                paramElement.setParamName(key);
+                paramElement.setParamValue(value);
+                paramElementList.add(paramElement);
+            }
+            return paramElementList;
+
+//            map = new HashMap<String, Map<String,List<String>>>();
+//            Map<String, String> loadSqlMap = new HashMap<String, String>();
+//            Properties props=null;
+//            props.load(new FileInputStream(readFile));
+//
+//            Set<Entry<Object, Object>> set = props.entrySet();
+//            // 返回在此Set中的元素上进行迭代的迭代器
+//            Iterator<Map.Entry<Object, Object>> it = set.iterator();
+//            String key = null, value = null;
+//            // 循环取出key-value
+//            while (it.hasNext()) {
+//
+//                Entry<Object, Object> entry = it.next();
+//
+//                key = String.valueOf(entry.getKey());
+//                value = String.valueOf(entry.getValue());
+//
+//                key = key == null ? key : key.trim().toUpperCase();
+//                value = value == null ? value : value.trim().toUpperCase();
+//                // 将key-value放入map中
+//                Constants.loadSqlMap.put(key, value);
+//            }
 }
 
-	private boolean check(List<IParamElement> list, IAppSystem appSystem) {
+	private boolean check(List<IParamElement> list, long appSystem) {
 		boolean flag = false;
-		List<IParamElement> paramElementList = elementService.getByAppSystem(appSystem);
+		List<IParamElement> paramElementList = elementService.getByAppSystem(appSystemService.get(appSystem));
 		if (paramElementList.size() == 0) {
 			flag = false;
 		} else {
@@ -303,6 +357,35 @@ public class ParamElementController {
 		}
 		return result;
 	}
+	public static void main(String[] args) throws Exception{
+      ArrayList<IParamElement> paramElementList=new ArrayList<IParamElement>();
 
+      String readFile = "C:\\Users\\YH\\Desktop\\datapool.ini";
+      Properties props= new Properties();
+
+      props.load(new FileInputStream(readFile));
+
+      Set<Entry<Object, Object>> set = props.entrySet();
+      // 返回在此Set中的元素上进行迭代的迭代器
+      Iterator<Map.Entry<Object, Object>> it = set.iterator();
+      String key = null, value = null;
+      ParamElement paramElement = null;
+      // 循环取出key-value
+      while (it.hasNext()) {
+    	  paramElement = new ParamElement();
+          Entry<Object, Object> entry = it.next();
+
+          key = String.valueOf(entry.getKey());
+          value = String.valueOf(entry.getValue());
+
+          key = key == null ? key : key.trim().toUpperCase();
+          value = value == null ? value : value.trim().toUpperCase();
+          // 将key-value放入map中
+          paramElement.setParamName(key);
+          paramElement.setParamValue(value);
+          paramElementList.add(paramElement);
+      }
+      System.out.println(paramElementList);
+}
 
 }
