@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.web.parameter.controller;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -26,6 +27,7 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.ITypeIP;
 import com.yihuacomputer.common.filter.Filter;
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
@@ -140,6 +142,11 @@ public class ParamTemplateController {
 	public ModelMap updateTemplateDetail(@RequestBody ParamTempDetailForm form , HttpServletRequest request) {
 		
 		ModelMap result = new ModelMap();
+		if(templateService.duplicateTemplateName(form.getName())){
+			result.put(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, "模板名称重复,请修改后重试");
+			return result;
+		}
 
 		List<ParamTempDetailForm> listDetail = form.getParamTempDetailForm();
 
@@ -276,7 +283,9 @@ public class ParamTemplateController {
 			result.put(FishConstant.SUCCESS, true);
 			return result;
 		}
-		templateService.link(advertGroup, device,System.currentTimeMillis());
+		Date date = new Date();
+		long timeStamp = Long.parseLong(DateUtils.getTimestamp5(date));
+		templateService.link(advertGroup, device,timeStamp);
 		result.put(FishConstant.SUCCESS, true);
 		result.put("data", request);
 		return result;
@@ -374,8 +383,9 @@ public class ParamTemplateController {
 		
 		ModelMap result = new ModelMap();
 		
-		long  timeStamp = System.currentTimeMillis();
-		
+		Date date = new Date();
+		long timeStamp = Long.parseLong(DateUtils.getTimestamp5(date));
+	
 		try {
 			
 			IParamTemplate template = templateService.get(templateId);

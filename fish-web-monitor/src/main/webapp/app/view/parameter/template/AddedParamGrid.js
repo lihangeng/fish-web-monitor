@@ -54,6 +54,17 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 		                	 return '可以编辑';
 		             }
 				}
+			},{
+				header : "参数类型",
+				dataIndex : 'paramType',
+				flex : 1,
+				renderer:function(value,metadata,record){
+					if(value==1){
+						return "数字";
+					}else {
+						return "字符串";
+					}
+				}
 			}, {
 				header : 'ID',
 				dataIndex : 'id',
