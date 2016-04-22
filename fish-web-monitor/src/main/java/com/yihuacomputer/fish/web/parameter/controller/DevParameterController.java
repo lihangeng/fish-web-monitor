@@ -119,7 +119,7 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 					continue;
 				} else if (name.equals("terminalId")) {
 					String value = request.getParameter(name);
-					filter.eq(name, value.trim());
+					filter.like(name, value.trim());
 				} else if(name.equals("devTypeId")) {
 					filter.eq("device.devType.id", Long.parseLong(request.getParameter(name)));
 				} else if(name.equals("ip")){

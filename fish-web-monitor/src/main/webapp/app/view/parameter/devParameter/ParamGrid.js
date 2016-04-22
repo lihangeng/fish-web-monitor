@@ -40,7 +40,8 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 			columns : [ {
 				header : EwayLocale.param.element.paramName,
 				dataIndex : 'paramName',
-				width:110
+				width:110,
+				sortable:true
 			}, {
 				header : EwayLocale.param.element.paramValue,
 				dataIndex : 'paramValue',
@@ -48,11 +49,13 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 					xtype:'textfield',
 					allowBlank:false
 				},
-				width:130
+				width:130,
+				sortable:true
 			},{
 				header : EwayLocale.param.element.paramRights,
 				dataIndex:'eleParamRights',
 				width:130,
+				sortable:true,
 				renderer:function(value,metadata,record){
 					if(value==1){
 						return EwayLocale.param.element.editable;
@@ -65,6 +68,7 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 				header:EwayLocale.param.element.paramType,
 				dataIndex:'eleParamType',
 				width:110,
+				sortable:true,
 				renderer:function(value,metadata,record){
 					if(value==1){
 						return EwayLocale.param.element.integer;
@@ -76,6 +80,7 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 			},{
 				header:EwayLocale.param.element.lastModifyTime,
 				dataIndex:'eleModifyTiem',
+				sortable:true,
 				flex:1
 			}]
 		});
