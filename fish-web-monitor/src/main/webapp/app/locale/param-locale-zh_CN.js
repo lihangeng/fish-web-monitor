@@ -26,7 +26,8 @@ Ext.apply(EwayLocale,{
         	uneditable:'不可编辑',//EwayLocale.param.element.uneditable
         	ATMC:'ATMC',//EwayLocale.param.element.ATMC
             monitoringCient:'监控客户端',//EwayLocale.param.element.monitoringCient
-            versionNo:'版本号'//EwayLocale.param.element.versionNo
+            versionNo:'版本号',//EwayLocale.param.element.versionNo
+            importSuccess:'导入参数元数据成功！'//EwayLocale.param.element.importSuccess
 
     	},
     	classify:{

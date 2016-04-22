@@ -26,8 +26,8 @@ Ext.apply(EwayLocale,{
     		uneditable:'Uneditable',//EwayLocale.param.element.uneditable
     		ATMC:'ATMC',//EwayLocale.param.element.ATMC
             monitoringCient:'Monitoring Client',//EwayLocale.param.element.monitoringCient
-            versionNo:'VersionNo'//EwayLocale.param.element.versionNo
-
+            versionNo:'VersionNo',//EwayLocale.param.element.versionNo
+            importSuccess:'Import parameter element successfully!',//EwayLocale.param.element.importSuccess
 
     	},
     	classify:{

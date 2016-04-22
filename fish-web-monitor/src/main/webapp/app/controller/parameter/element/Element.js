@@ -98,9 +98,9 @@ Ext.define('Eway.controller.parameter.element.Element', {
 						success : function(form, action){
 							Ext.Msg.hide();
 							win.close();
-							var store = this.getVendorCodeGrid().getStore();
+							var store = this.getElementGrid().getStore();
 							store.load();
-							Eway.alert(EwayLocale.cases.exportFaultInfo);
+							Eway.alert(EwayLocale.param.element.importSuccess);
 						},
 						failure :function(form, action){
 							Eway.alert(action.result.content);
