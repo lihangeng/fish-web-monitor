@@ -20,11 +20,7 @@ Ext.define('Eway.view.parameter.element.ImportParamFile', {
 					labelAlign : 'right',
 					msgTarget : 'side'
 				},
-				items : [{
-					xtype:'field_paramElement_ParamBelongs',
-					editable:false,
-//					value:1
-				},
+				items : [
                   {
 					xtype : 'filefield',
 					buttonText : EwayLocale.combox.explorer,
@@ -33,8 +29,6 @@ Ext.define('Eway.view.parameter.element.ImportParamFile', {
 					width : 400,
 					allowBlank : false,
 					name : 'file',
-//					regex : /^([\w|\W]*)(\.xlsx)|([\w|\W]*)(\.xls)$/,
-//					regexText : EwayLocale.tip.exportFiles
 				} ],
 				buttonAlign : 'center',
 				buttons : [ {
