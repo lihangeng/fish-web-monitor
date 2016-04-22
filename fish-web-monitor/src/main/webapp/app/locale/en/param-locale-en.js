@@ -11,6 +11,7 @@ Ext.apply(EwayLocale,{
     	},
     	element:{
     		title:'Param Element',//EwayLocale.param.element.title
+    		name:'Param Element',//EwayLocale.param.element.name
     		paramName:'ParamName',//EwayLocale.param.element.paramName
     		paramValue:'ParamValue',//EwayLocale.param.element.paramValue
     		paramType:'ParamType',//EwayLocale.param.element.paramType
@@ -28,7 +29,11 @@ Ext.apply(EwayLocale,{
             monitoringCient:'Monitoring Client',//EwayLocale.param.element.monitoringCient
             versionNo:'VersionNo',//EwayLocale.param.element.versionNo
             importSuccess:'Import parameter element successfully!',//EwayLocale.param.element.importSuccess
-
+            regex1:'Can only input numbers! ',//EwayLocale.param.element.regex1
+            regex2:'Can only input english,numbers,underline,line',//EwayLocale.param.element.regex2
+            import:'Import parameter elenemt file',//EwayLocale.param.element.import
+            importFile:'Import file',//EwayLocale.param.element.importFile
+            importEmptyText:'Please chose file!'//EwayLocale.param.element.importEmptyText
     	},
     	classify:{
     		title:'Param Classify',//EwayLocale.param.classify.title

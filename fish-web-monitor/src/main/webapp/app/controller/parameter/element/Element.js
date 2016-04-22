@@ -39,7 +39,7 @@ Ext.define('Eway.controller.parameter.element.Element', {
 				xtype : 'parameter_element_form',
 				width: 500,
 				height:280,
-				title : '参数元数据',
+				title : EwayLocale.param.element.name,
 			},
 
 			init : function() {
@@ -113,7 +113,7 @@ Ext.define('Eway.controller.parameter.element.Element', {
 			onChange:function( _this, newValue, oldValue, eOpts){
 				var paramValue = _this.up("parameter_element_form").down("field_paramElement_ParamValue");
 				if(newValue==1){
-					return paramValue.regex=/(^([0-9]\d{0,17})$)/,paramValue.regexText='只能输入数字';
+					return paramValue.regex=/(^([0-9]\d{0,17})$)/,paramValue.regexText=EwayLocale.param.element.regex1;
 				}
 				if(newValue==2){
 					return paramValue.regex=null;

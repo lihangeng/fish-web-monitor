@@ -11,6 +11,7 @@ Ext.apply(EwayLocale,{
     	},
     	element:{
     		title:'参数元数据管理',//EwayLocale.param.element.title
+    		name:'参数元数据',//EwayLocale.param.element.name
     		paramName:'参数名',//EwayLocale.param.element.paramName
     		paramValue:'参数值',//EwayLocale.param.element.paramValue
     		paramType:'参数值类型',//EwayLocale.param.element.paramType
@@ -27,7 +28,12 @@ Ext.apply(EwayLocale,{
         	ATMC:'ATMC',//EwayLocale.param.element.ATMC
             monitoringCient:'监控客户端',//EwayLocale.param.element.monitoringCient
             versionNo:'版本号',//EwayLocale.param.element.versionNo
-            importSuccess:'导入参数元数据成功！'//EwayLocale.param.element.importSuccess
+            importSuccess:'导入参数元数据成功！',//EwayLocale.param.element.importSuccess
+            regex1:'只能输入数字',//EwayLocale.param.element.regex1
+            regex2:'只能输入英文，数字，下划线，横线',//EwayLocale.param.element.regex2
+            import:'导入参数元数据文件',//EwayLocale.param.element.import
+            importFile:'导入文件',//EwayLocale.param.element.importFile
+            importEmptyText:'请选择导入文件'//EwayLocale.param.element.importEmptyText
 
     	},
     	classify:{

@@ -30,45 +30,6 @@ Ext.define('Eway.view.field.paramElement.ParamBelongsRadioGroup', {
 
 		},
 
-//		change:function(){
-//			var store = Ext.create('Eway.store.parameter.element.Element');
-//			var appSystem = this.getValue();
-//			Ext.Ajax.request({
-//				method: 'get',
-//			    url: 'api/parameter/element',
-//			    params : {
-//			    	appSystem : appSystem,
-//			    	start :0,
-//			    	limit:25
-//				},
-//				scope : this,
-//
-//				success: function(response, opts) {
-//
-//
-//				},
-//			    failure: function(response, opts) {
-//			        console.log('server-side failure with status code ' + response.status);
-//			    },
-//				callback : function() {//
-//				}
-//			});
-//			store.load({
-//				scope: this,
-//				params : {
-//					appSystem : appSystem,
-//			    	start :0,
-//			    	limit:25
-//				},
-////				callback: function(records, operation, success){
-////					if(success == false){
-////						Eway.alert(operation.getError());
-////					}
-////				}
-//			});
-
-
-//		}
 	}
 
 });

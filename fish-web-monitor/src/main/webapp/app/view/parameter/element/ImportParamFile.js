@@ -2,7 +2,7 @@ Ext.define('Eway.view.parameter.element.ImportParamFile', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.element_ImportParamFile',
 
-	title : '导入参数元数据文件',
+	title : EwayLocale.param.element.import,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,
@@ -24,8 +24,8 @@ Ext.define('Eway.view.parameter.element.ImportParamFile', {
                   {
 					xtype : 'filefield',
 					buttonText : EwayLocale.combox.explorer,
-					fieldLabel : '导入文件',
-					emptyText : '请选择导入文件',
+					fieldLabel : EwayLocale.param.element.importFile,
+					emptyText : EwayLocale.param.element.importEmptyText,
 					width : 400,
 					allowBlank : false,
 					name : 'file',
