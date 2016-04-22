@@ -6,16 +6,29 @@ Ext.define('Eway.view.parameter.element.FilterForm', {
 	requires:['Eway.view.field.paramElement.ParamBelongsRadioGroup'],
 
 	layout : 'column',
+	height : 80,
 	initComponent: function() {
 		Ext.apply(this, {
 			items : [{
-				columnWidth : .25,
+				columnWidth : .3,
+				xtype : 'form',
 				items : [{
+					labelWidth : 90,
 					xtype : 'textfield',
-					labelAlign : 'right',
+//					labelAlign : 'right',
 					name : 'paramName',
 					fieldLabel : EwayLocale.param.element.paramName,
 					msgTarget : 'side'
+				},{
+					xtype : 'field_paramElement_ParamBelongsRadioGroup',
+					labelWidth: 90,
+//					value: 1,
+					editable : false,
+					name : 'paramBelongsId',
+					fieldLabel : EwayLocale.param.element.paramBelongs,
+					msgTarget : 'side',
+//					labelAlign : 'right',
+					checked:true
 				}]
 			},{
 				columnWidth : .25,
@@ -26,20 +39,7 @@ Ext.define('Eway.view.parameter.element.FilterForm', {
 					fieldLabel :EwayLocale.param.element.paramClassify,
 					editable : false,
 					msgTarget : 'side',
-					labelAlign : 'right'
-				}]
-			},{
-				columnWidth : .25,
-				items : [{
-					xtype : 'field_paramElement_ParamBelongsRadioGroup',
-					labelWidth: 110,
-//					value: 1,
-					editable : false,
-					name : 'paramBelongsId',
-					fieldLabel : EwayLocale.param.element.paramBelongs,
-					msgTarget : 'side',
-					labelAlign : 'right',
-					checked:true
+//					labelAlign : 'right'
 				}]
 			},]
 		});

@@ -15,10 +15,10 @@ Ext.define('Eway.view.field.paramElement.ParamBelongsRadioGroup', {
 			        var obj = Ext.decode(response.responseText).data;
 			        for(var index=0;index<obj.length;index++){
 			        	if(index==0){
-			        	var radio = Ext.create("Ext.form.field.Radio",{boxLabel:obj[index].name+'&nbsp&nbsp&nbsp', name:'appSystem',inputValue:obj[index].id,checked:true});
+			        	var radio = Ext.create("Ext.form.field.Radio",{boxLabel:obj[index].name+'&nbsp&nbsp', name:'appSystem',inputValue:obj[index].id,checked:true});
 			        	_this.add(radio);
 			        	}else{
-			        		var radio = Ext.create("Ext.form.field.Radio",{boxLabel:obj[index].name+'&nbsp&nbsp&nbsp', name:'appSystem',inputValue:obj[index].id});
+			        		var radio = Ext.create("Ext.form.field.Radio",{boxLabel:obj[index].name+'&nbsp&nbsp', name:'appSystem',inputValue:obj[index].id});
 				        	_this.add(radio);
 			        	}
 			        }
