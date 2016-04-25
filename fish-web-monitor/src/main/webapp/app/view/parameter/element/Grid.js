@@ -34,6 +34,7 @@ Ext.define('Eway.view.parameter.element.Grid', {
 				}
 			},{
 			     text:EwayLocale.button.import,
+			     iconCls : 'importBtn',
 			     action:'import',
 				}],
 			viewConfig : {

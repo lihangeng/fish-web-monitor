@@ -109,6 +109,7 @@ Ext.define('Eway.controller.base.FishController', {
 				this.beforeShowAddWin(win,grid);
 			}
 			win.show();
+			this.afterShowAddWin(win,grid);
 		},this);
 	},
 
@@ -160,6 +161,7 @@ Ext.define('Eway.controller.base.FishController', {
 						if(action == 'add'){
 							this.onQueryAfterAdd();
 						}else{
+							this.onQueryAfterUpdate();
 							var resId = recordInDB.get("id");
 							if(undefined==resId||""==resId||0==resId){
 								recordInDB.set("id",id);
@@ -181,7 +183,9 @@ Ext.define('Eway.controller.base.FishController', {
 	//在显示增加页面之前
 	beforeShowAddWin : function(win,grid){
 	},
-
+	//在显示增加页面之后
+	afterShowAddWin: function(win,grid){
+	},
 	//抽象方法，留给子类扩展
 	//在增加之前处理逻辑
 	beforeAddSave : function(win,grid){
@@ -202,6 +206,10 @@ Ext.define('Eway.controller.base.FishController', {
 		var store = this.getGridPanel().getStore();
 		store.setUrlParamsByObject();
 		store.loadPage(1);
+	},
+
+	//更改后调用的查询，过滤条件不带入查询，且页面的查询不清除
+	onQueryAfterUpdate : function(){
 	}
 
 
