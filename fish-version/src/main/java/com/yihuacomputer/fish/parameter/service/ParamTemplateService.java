@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.hibernate.SQLQuery;
+import org.hibernate.criterion.Restrictions;
 import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,7 @@ import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.machine.entity.Device;
+import com.yihuacomputer.fish.parameter.entity.ParamClassify;
 import com.yihuacomputer.fish.parameter.entity.ParamDeviceDetail;
 import com.yihuacomputer.fish.parameter.entity.ParamElement;
 import com.yihuacomputer.fish.parameter.entity.ParamTemplate;
@@ -55,8 +57,8 @@ public class ParamTemplateService implements IParamTemplateService {
 
 	@Override
 	public IParamTemplate get(String name) {
-		// TODO Auto-generated method stub
-		return null;
+		ParamTemplate template = (ParamTemplate) dao.getCriteria(ParamTemplate.class).add(Restrictions.eq("name", name)).uniqueResult();
+		return template;
 	}
 
 	@Override

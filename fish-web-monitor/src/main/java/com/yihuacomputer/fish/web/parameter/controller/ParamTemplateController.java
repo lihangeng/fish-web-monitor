@@ -32,6 +32,7 @@ import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
+import com.yihuacomputer.fish.api.parameter.IParamClassify;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishService;
@@ -142,12 +143,7 @@ public class ParamTemplateController {
 	public ModelMap updateTemplateDetail(@RequestBody ParamTempDetailForm form , HttpServletRequest request) {
 		
 		ModelMap result = new ModelMap();
-		if(templateService.duplicateTemplateName(form.getName())){
-			result.put(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "模板名称重复,请修改后重试");
-			return result;
-		}
-
+		
 		List<ParamTempDetailForm> listDetail = form.getParamTempDetailForm();
 
 		long templateId = form.getTemplateId();
@@ -155,48 +151,68 @@ public class ParamTemplateController {
 		templateService.unlinkAll(templateId);
 		IParamTemplate template = templateService.get(templateId);
         
-		template.setName(form.getName());
-		template.setRemark(form.getRemark());
+		boolean isExist = this.isExistTemplateName(form.getTemplateId(), form.getName());
+		if(isExist){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, "模板名称重复,请修改后重试");
+		} else {
+			template.setName(form.getName());
+			template.setRemark(form.getRemark());
 
-		templateService.update(template);
-		
-		result.addAttribute(FishConstant.SUCCESS, true);
-		result.addAttribute(FishConstant.DATA, form);
-		
-		
-		IParamElement emlement = null;
-		
-		for(int i = 0; i<listDetail.size(); i++){
+			templateService.update(template);
 			
-			emlement = paramElementService.get(listDetail.get(i).getElementId());
-			templateService.linkTempParam(template, emlement, listDetail.get(i).getParamValue());
+			result.addAttribute(FishConstant.SUCCESS, true);
+			result.addAttribute(FishConstant.DATA, form);
 			
+			IParamElement emlement = null;
+			
+			for(int i = 0; i<listDetail.size(); i++){
+				
+				emlement = paramElementService.get(listDetail.get(i).getElementId());
+				templateService.linkTempParam(template, emlement, listDetail.get(i).getParamValue());
+				
+			}
+
+			Map<Long, String> newMap = new HashMap<Long, String>();
+
+			String paramValue = null;
+			Long elementId = 0L;
+
+			for (int i = 0; i < listDetail.size(); i++) {
+				elementId = listDetail.get(i).getElementId();
+				paramValue = listDetail.get(i).getParamValue();
+
+				newMap.put(elementId, paramValue);
+			}
+
+			if (templateService.updateTemplateDetail(templateId, newMap)) {
+				
+				return result.addAttribute(FishConstant.SUCCESS, true);
+				
+			}
 		}
-
-		Map<Long, String> newMap = new HashMap<Long, String>();
-
-		String paramValue = null;
-		Long elementId = 0L;
-
-		for (int i = 0; i < listDetail.size(); i++) {
-			elementId = listDetail.get(i).getElementId();
-			paramValue = listDetail.get(i).getParamValue();
-
-			newMap.put(elementId, paramValue);
-		}
-
-		if (templateService.updateTemplateDetail(templateId, newMap)) {
-			
-			return result.addAttribute(FishConstant.SUCCESS, true);
-			
-		}
-
-        
 		
-		return result.addAttribute(FishConstant.SUCCESS, false);
+		return result;
+		
 
 	}
 
+	private boolean isExistTemplateName(long templateId, String name) {
+		try {
+
+			IParamTemplate template = templateService.get(name.trim());
+			if(template == null){
+				return false;
+			}
+			if (template.getId() == templateId) {
+				return false;
+			} else {
+				return true;
+			}
+		} catch (Exception e) {
+			return false;
+		}
+	}
 
 	private IFilter request2filter(WebRequest request) {
 

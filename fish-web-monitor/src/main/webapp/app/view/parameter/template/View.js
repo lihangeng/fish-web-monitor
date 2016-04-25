@@ -16,7 +16,7 @@ Ext.define('Eway.view.parameter.template.View', {
 				itemId : 'filterFormItemId',
 				region: 'north',
 				xtype: 'template_FilterForm',
-				height: 40
+				height: 50
 			}, {
 				itemId : 'gridItemId',
 				region: 'center',

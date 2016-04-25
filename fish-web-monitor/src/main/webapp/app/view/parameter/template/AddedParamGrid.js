@@ -44,17 +44,6 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 	                allowBlank:false
 	            })
 			},{
-				header : '参数权限',
-				dataIndex : 'paramRights',
-				flex : 1,
-				renderer: function(value,metadata,record){
-					if(value == 2){
-		                	 return '不可编辑';
-		             }else {
-		                	 return '可以编辑';
-		             }
-				}
-			},{
 				header : "参数类型",
 				dataIndex : 'paramType',
 				flex : 1,
@@ -64,6 +53,17 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 					}else {
 						return "字符串";
 					}
+				}
+			},{
+				header : '参数权限',
+				dataIndex : 'paramRights',
+				flex : 1,
+				renderer: function(value,metadata,record){
+					if(value == 2){
+		                	 return '不可编辑';
+		             }else {
+		                	 return '可以编辑';
+		             }
 				}
 			}, {
 				header : 'ID',
