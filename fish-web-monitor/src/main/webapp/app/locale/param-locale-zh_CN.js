@@ -44,7 +44,8 @@ Ext.apply(EwayLocale,{
     	deviceParam:{
     		title:'设备参数管理',//EwayLocale.param.deviceParam.title
     		downloadFailure:'下发失败',//EwayLocale.param.deviceParam.downloadFailure
-    		downloadSuccess:'下发成功 '//EwayLocale.param.deviceParam.downloadSuccess
+    		downloadSuccess:'下发成功 ',//EwayLocale.param.deviceParam.downloadSuccess
+    		notMatch:' 输入字符类型不匹配!'//EwayLocale.param.deviceParam.notMatch
     	}
 
     }

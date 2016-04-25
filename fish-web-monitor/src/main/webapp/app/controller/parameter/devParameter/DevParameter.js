@@ -48,7 +48,6 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 		});
 	},
 	
-	
 	onParamQuery : function(){
 		var view = this.getEwayView();
 		var form = view.down('tabpanel').activeTab.down('parameter_devParameter_paramFilterForm').getForm();

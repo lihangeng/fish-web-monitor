@@ -8,11 +8,28 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
     plugins: {
         ptype: 'cellediting',
         listeners : {
-               'beforeEdit' : function(_this) {
+               'beforeEdit' : function(_this, context, eOpts) {
                        if (_this.clicksToEdit == 2) {
                                return false;
                        }
+               },
+               'validateedit':function( _editor, context, eOpts ){
+            	   var argsType = context.record.get("eleParamType");
+            	   var regex=/(^([0-9]\d{0,17})$)/;
+            	   if(argsType == '1'){
+            		   if(!(context.value.match(regex))){
+            			   Eway.alert(EwayLocale.param.element.paramName+context.record.get("paramValue")+EwayLocale.param.deviceParam.notMatch);
+//                		   _editor.startEditByPosition({
+//                			    row: context.rowIdx,
+//                			    column: context.colIdx
+//                			});
+                		   return false;
+                	   }
+            	   }
+//            	   _editor.completeEdit(true);
+            	   return true;
                }
+               
        },
         clicksToEdit: 2
     },
