@@ -12,6 +12,9 @@ Ext.define('Eway.view.field.paramElement.ParamBelongs', {
 	displayField : 'name',
 	queryMode : 'local',
 	emptyText: EwayLocale.combox.select,
+	config:{
+		defaultSelectValue:'',
+	},
 
 	listeners : {
 
@@ -22,6 +25,11 @@ Ext.define('Eway.view.field.paramElement.ParamBelongs', {
 					if (success) {
 						if (this.getValue()) {
 							this.isValid();
+						}
+						for(var index=0;index<records.length;index++){
+							if(records[index].get("id")==this.getDefaultSelectValue()){
+								this.select(records[index]);
+							}
 						}
 					}
 				},

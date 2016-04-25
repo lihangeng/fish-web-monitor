@@ -128,12 +128,28 @@ Ext.define('Eway.controller.parameter.element.Element', {
 				store.setUrlParamsByObject(paramBelongsRadioGroup);
 				store.loadPage(1);
 			},
-			beforeShowAddWin : function(win,grid){
+			afterShowAddWin : function(win,grid){
 				var form = win.down('form');
 				var view = this.getEwayView();
 				var paramBelongsRadioGroup=view.down('element_FilterForm').down("field_paramElement_ParamBelongsRadioGroup").getValue().appSystem;
-				var paramBelongs=form.down('field_paramElement_ParamBelongs').getValue();
-				return paramBelongs=paramBelongsRadioGroup;
+				var paramBelongsField=form.down('field_paramElement_ParamBelongs');
+				paramBelongsField.setDefaultSelectValue(paramBelongsRadioGroup);
+			},
+			onQueryAfterAdd : function(){
+				var view = this.getEwayView();
+				var paramBelongsRadioGroup=view.down('element_FilterForm').down("field_paramElement_ParamBelongsRadioGroup").getValue();
+//				var store = Ext.create('Eway.store.parameter.element.Element');
+				var store = this.getGridPanel().getStore();
+				store.setUrlParamsByObject(paramBelongsRadioGroup);
+				store.loadPage(1);
+			},
+			onQueryAfterUpdate : function(){
+				var view = this.getEwayView();
+				var paramBelongsRadioGroup=view.down('element_FilterForm').down("field_paramElement_ParamBelongsRadioGroup").getValue();
+//				var store = Ext.create('Eway.store.parameter.element.Element');
+				var store = this.getGridPanel().getStore();
+				store.setUrlParamsByObject(paramBelongsRadioGroup);
+				store.loadPage(1);
 			}
 
 });
