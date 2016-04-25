@@ -29,7 +29,7 @@ Ext.define('Eway.view.parameter.template.ParamGrid', {
 			frame: true,  
 			columns : [
 			    {
-				header : '参数名称',
+				header : EwayLocale.param.template.paramName,
 				dataIndex : 'paramName',
 				flex : 1,
 				storable : true

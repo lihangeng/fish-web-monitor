@@ -33,36 +33,36 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 		Ext.apply(this, {
 			initRegion : true,
 			columns : [ {
-				header : '参数名称',
+				header : EwayLocale.param.template.paramName,
 				dataIndex : 'paramName',
 				storable : true
 			}, {
-				header : '参数值',
+				header : EwayLocale.param.template.paramValue,
 				dataIndex : 'paramValue',
 				flex : 1,
 				editor:new Ext.form.TextField({  
 	                allowBlank:false
 	            })
 			},{
-				header : "参数类型",
+				header : EwayLocale.param.template.paramType,
 				dataIndex : 'paramType',
 				flex : 1,
 				renderer:function(value,metadata,record){
 					if(value==1){
-						return "数字";
+						return EwayLocale.param.element.integer;
 					}else {
-						return "字符串";
+						return EwayLocale.param.element.character;
 					}
 				}
 			},{
-				header : '参数权限',
+				header : EwayLocale.param.template.paramRights,
 				dataIndex : 'paramRights',
 				flex : 1,
 				renderer: function(value,metadata,record){
 					if(value == 2){
-		                	 return '不可编辑';
+		                	 return EwayLocale.param.template.editable;
 		             }else {
-		                	 return '可以编辑';
+		                	 return EwayLocale.param.template.uneditable;
 		             }
 				}
 			}, {

@@ -17,7 +17,7 @@ Ext.define('Eway.view.parameter.template.Grid', {
 				glyph : 0xf002,
 				action:'query'
 			},{
-				text: '新增模板',
+				text: EwayLocale.button.addParamTemplate,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'templateAdd',
@@ -25,7 +25,7 @@ Ext.define('Eway.view.parameter.template.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '更改模板',
+				text: EwayLocale.button.updateParamTemplate,
 				glyph : 0xf040,
 				action:'updateValue',
 				code : 'templateUpdateValue',
@@ -33,7 +33,7 @@ Ext.define('Eway.view.parameter.template.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: "删除模板",
+				text: EwayLocale.button.removeParamTemplate,
 				glyph : 0xf014,
 				action: 'remove',
 				code : 'templateDel',
@@ -41,7 +41,7 @@ Ext.define('Eway.view.parameter.template.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '关联设备',
+				text: EwayLocale.button.bankPerlink,
 				glyph : 0xf0c1,
 				action: 'link',
 				code : 'templateDevRelation',
@@ -49,7 +49,7 @@ Ext.define('Eway.view.parameter.template.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '发布模板',
+				text: EwayLocale.button.applyParamTemplate,
 				glyph : 0xf0ed,
 				action:'apply',
 				code : 'templateApply',
@@ -62,22 +62,22 @@ Ext.define('Eway.view.parameter.template.Grid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '参数模板名称',
+				header : EwayLocale.param.template.paramTemplateName,
 				dataIndex : 'name',
 				flex : 1
 			},{
-				header : '状态',
+				header : EwayLocale.param.template.applyFlag,
 				dataIndex : 'applyFlag',
 				flex : 1,
 				renderer: function(value,metadata,record){
 					if(value == 0){
-		                	 return '未发布';
+		                	 return EwayLocale.param.template.unpublished;
 		             }else if(value == 1){
-		                	   return '已发布';
+		                	   return EwayLocale.param.template.published;
 		             }
 				}
 			},{
-				header : '描述',
+				header : EwayLocale.param.template.templateRemark,
 				dataIndex : 'remark',
 				flex : 2
 			}

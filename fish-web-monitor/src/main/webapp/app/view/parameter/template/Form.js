@@ -19,7 +19,7 @@ Ext.define('Eway.view.parameter.template.Form', {
 				msgTarget : 'side'
 			},
 			items : [ {
-				fieldLabel : '<font color="red">*</font>模板名称',
+				fieldLabel : '<font color="red">*</font>'+EwayLocale.param.template.templateName,
 				xtype : 'textfield',
 				name : 'name',
 				maxLength : 30,
@@ -27,7 +27,7 @@ Ext.define('Eway.view.parameter.template.Form', {
 				allowBlank : false
 			}, {
 				xtype : 'textarea',
-				fieldLabel : '模板备注',
+				fieldLabel : EwayLocale.param.template.templateRemark,
 				name : 'remark',
 				autoScroll : true,
 				maxLength : 30,

@@ -88,7 +88,12 @@ Ext.apply(EwayLocale,{
 		adminBtn:'管理员',//EwayLocale.button.adminBtn
 		personM:'厂商管理员',//EwayLocale.button.personM
 		personTM:'管机员',//EwayLocale.button.personTM
-		orgAdmin:'机构管理员'//EwayLocale.button.orgAdmin
+		orgAdmin:'机构管理员',//EwayLocale.button.orgAdmin
+			
+		addParamTemplate:'新增模板',//EwayLocale.button.addParamTemplate
+		updateParamTemplate:'更新模板',//EwayLocale.button.updateParamTemplate
+		removeParamTemplate:'删除模板',//EwayLocale.button.removeParamTemplate
+		applyParamTemplate:'发布模板',//EwayLocale.button.applyParamTemplate
 
 	},
 
@@ -317,6 +322,17 @@ Ext.apply(EwayLocale,{
 				refresh:'正在刷新......',//EwayLocale.tip.business.device.refresh
 				remoteCommandMsg:'命令发送成功'//EwayLocale.tip.business.device.remoteCommandMsg
 			}
+		},		
+		paramTemplate:{
+			one:'请选择一条记录.',//EwayLocale.tip.paramTemplate.one
+			failedElement:'元数据展示失败.',//EwayLocale.tip.paramTemplate.failedElement
+			addFailure:'新增参数模板失败.',//EwayLocale.tip.paramTemplate.addFailure
+			addSuccess:'新增参数模板成功.',//EwayLocale.tip.paramTemplate.addSuccess
+			updateFailure:'更改参数模板失败.',//EwayLocale.tip.paramTemplate.updateFailure
+			updateSuccess:'更改参数模板成功.',//EwayLocale.tip.paramTemplate.updateSuccess
+			applySuccess:'发布参数模板成功.',//EwayLocale.tip.paramTemplate.applySuccess
+			applyFailure:'发布参数模板失败.',//EwayLocale.tip.paramTemplate.applyFailure
+			unlinkedFailure:'解除关联设备失败.',//EwayLocale.tip.paramTemplate.unlinkedFailure		
 		}
 
 	},

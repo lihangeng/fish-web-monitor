@@ -44,9 +44,31 @@ Ext.apply(EwayLocale,{
     	deviceParam:{
     		title:'设备参数管理',//EwayLocale.param.deviceParam.title
     		downloadFailure:'下发失败',//EwayLocale.param.deviceParam.downloadFailure
-    		downloadSuccess:'下发成功 ',//EwayLocale.param.deviceParam.downloadSuccess
-    		notMatch:' 输入字符类型不匹配!'//EwayLocale.param.deviceParam.notMatch
-    	}
+    		downloadSuccess:'下发成功 '//EwayLocale.param.deviceParam.downloadSuccess
+    	},
+        template:{
+        	addTitle:'增加参数模板',//EwayLocale.param.template.addTitle
+        	updateTitle:'更改参数模板',//EwayLocale.param.template.updateTitle
+        	title:'参数模板管理',//EwayLocale.param.template.title
+            templateName:'模板名称',//EwayLocale.param.template.templateName
+            templateRemark:'模板备注',//EwayLocale.param.template.templateRemark
+            paramGridTitle:'可添加参数(使用拖拽的方式)',//EwayLocale.param.template.paramGridTitle
+            addedParamGridTitle:'已添加的参数(可编辑的参数可以直接修改)',//EwayLocale.param.template.addedParamGridTitle
+            paramName:'参数名称',//EwayLocale.param.template.paramName
+        	paramValue:'参数值',//EwayLocale.param.template.paramValue
+        	paramType:'参数类型',//EwayLocale.param.template.paramType
+        	integer:'数字',//EwayLocale.param.template.integer
+        	character:'字符串',//EwayLocale.param.template.character
+        	paramRights:'参数权限',//EwayLocale.param.template.paramRights
+        	editable:'可编辑',//EwayLocale.param.template.editable
+        	uneditable:'不可编辑',//EwayLocale.param.template.uneditable
+        	paramTemplateName:'参数模板名称',//EwayLocale.param.template.paramTemplateName
+        	applyFlag:'状态',//EwayLocale.param.template.applyFlag
+        	published:'已发布',//EwayLocale.param.template.published
+        	unpublished:'未发布',//EwayLocale.param.template.unpublished
+        	paramBelongs:'所属系统',//EwayLocale.param.template.paramBelongs
+        	bankPerlink:'关联设备',//EwayLocale.param.template.bankPerlink
+        }
 
     }
 

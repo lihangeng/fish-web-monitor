@@ -13,7 +13,7 @@ Ext.define('Eway.view.parameter.template.FilterForm', {
 					xtype : 'textfield',
 					labelAlign : 'right',
 					name : 'name',
-					fieldLabel : '模板名称',
+					fieldLabel : EwayLocale.param.template.templateName,
 					maxLength : 30,
 					msgTarget : 'side'
 				}]

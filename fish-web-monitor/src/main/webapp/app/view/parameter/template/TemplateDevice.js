@@ -18,7 +18,7 @@ Ext.define('Eway.view.parameter.template.TemplateDevice', {
 	
 	initComponent: function() {
 		Ext.apply(this, {
-			title : '关联设备',
+			title : EwayLocale.param.template.bankPerlink,
 			items : [{
 				region: 'west',
 				width:'50%',

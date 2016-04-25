@@ -88,7 +88,12 @@ Ext.apply(EwayLocale,{
 		adminBtn:'Manager',//EwayLocale.button.adminBtn
 		personM:'Maintenancer',//EwayLocale.button.personM
 		personTM:'Banker',//EwayLocale.button.personTM
-		orgAdmin:'Bank Administrator'//EwayLocale.button.orgAdmin
+		orgAdmin:'Bank Administrator',//EwayLocale.button.orgAdmin
+			
+		addParamTemplate:'Add ParamTemplate',//EwayLocale.button.addParamTemplate
+		updateParamTemplate:'Update ParamTemplate',//EwayLocale.button.updateParamTemplate
+		removeParamTemplate:'Remove ParamTemplate',//EwayLocale.button.removeParamTemplate
+		applyParamTemplate:'Apply ParamTemplate',//EwayLocale.button.applyParamTemplate
 	},
 
 	refs:{
@@ -316,7 +321,19 @@ Ext.apply(EwayLocale,{
 				refresh:'Refreshing......',//EwayLocale.tip.business.device.refresh
 				remoteCommandMsg:'Remote Command Send Successfully'//EwayLocale.tip.business.device.remoteCommandMsg
 			}
+		},
+		paramTemplate:{
+			one:'Please Choose One Record.',//EwayLocale.tip.paramTemplate.one
+			failedElement:'Show The Element Failed.',//EwayLocale.tip.paramTemplate.failedElement
+			addFailure:'Add The ParamTemplate Failed.',//EwayLocale.tip.paramTemplate.addFailure
+			addSuccess:'Add The ParamTemplate Successfully.',//EwayLocale.tip.paramTemplate.addSuccess
+			updateFailure:'Update The ParamTemplate Failed.',//EwayLocale.tip.paramTemplate.updateFailure
+			updateSuccess:'Update The ParamTemplate Successfully.',//EwayLocale.tip.paramTemplate.updateSuccess
+			applySuccess:'Apply The ParamTemplate Successfully.',//EwayLocale.tip.paramTemplate.applySuccess
+			applyFailure:'Apply The ParamTemplate Failed.',//EwayLocale.tip.paramTemplate.applyFailure
+			unlinkedFailure:'Related Device Failed.',//EwayLocale.tip.paramTemplate.unlinkedFailure		
 		}
+		
 
 	},
 

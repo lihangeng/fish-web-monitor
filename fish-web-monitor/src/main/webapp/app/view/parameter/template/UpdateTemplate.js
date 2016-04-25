@@ -4,7 +4,7 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 	
 	requires: ['Eway.view.parameter.template.ParamGrid','Eway.view.parameter.template.AddedParamGrid'],
 	
-	title:'更改参数模板',
+	title:EwayLocale.param.template.updateTitle,
 	modal: true,
 	resizable: false,
 	constrainHeader: true,
@@ -21,7 +21,7 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 					msgTarget : 'side'
 				},
 				items: [ {
-					fieldLabel : '<font color="red">*</font>模板名称',
+					fieldLabel : '<font color="red">*</font>'+EwayLocale.param.template.templateName,
 					xtype : 'textfield',
 					name : 'name',
 					maxLength : 30,
@@ -29,7 +29,7 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 					allowBlank : false
 					},{
 				    xtype : 'textarea',
-				    fieldLabel : '模板备注',
+				    fieldLabel : EwayLocale.param.template.templateRemark,
 				    name : 'remark',
 				    autoScroll : true,
 					maxLength :30,
@@ -46,7 +46,7 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 					layout : 'border',
 					autoScroll : true,
 					items : [ {
-						title : '<font color="black"><b>可添加参数(使用拖拽的方式)</b></font>',
+						title : '<font color="black"><b></b></font>'+EwayLocale.param.template.paramGridTitle,
 						width : 220,
 						height: 350,
 						region : 'west',
@@ -54,7 +54,7 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 						xtype : 'param_paramGrid',
 						autoLoadStore : true
 					}, {
-						title : '<font color="black">已添加的参数(可编辑的参数可以直接修改)</font>',
+						title : '<font color="black"></font>'+EwayLocale.param.template.addedParamGridTilte,
 						width : 470,
 						height: 350,
 						region : 'center',

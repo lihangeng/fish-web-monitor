@@ -20,24 +20,24 @@ Ext.define('Eway.view.parameter.template.ParamValueGrid', {
 			store : store,
 			columns : [
 			    {
-				header : '模板名称',
+				header : EwayLocale.param.template.templateName,
 				dataIndex : 'templateName',
 				flex : 1,
 				storable : true
 			},  {
-				header : '参数名称',
+				header : EwayLocale.param.template.paramName,
 				dataIndex : 'paramName',
 				flex : 1,
 				storable : true
 			},{
-				header : '参数值',
+				header : EwayLocale.param.template.paramValue,
 				dataIndex : 'paramValue',
 				flex : 1,
 				editor:new Ext.form.TextField({  
 	                allowBlank:false  
 	            })
 			}, {
-				header : '所属系统',
+				header : EwayLocale.param.template.paramBelongs,
 				dataIndex : 'paramBelongs',
 				flex : 1.5,
 				storable : true

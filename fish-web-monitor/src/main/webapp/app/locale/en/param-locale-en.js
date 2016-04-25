@@ -45,10 +45,31 @@ Ext.apply(EwayLocale,{
     	deviceParam:{
     		title:'The Manage Of Device Paramter',//EwayLocale.param.deviceParam.title
     		downloadFailure:'Download Failure',//EwayLocale.param.deviceParam.downloadFailure
-    		downloadSuccess:'Download Success',//EwayLocale.param.deviceParam.downloadSuccess
-    		notMatch:' The character which input is not match!'//EwayLocale.param.deviceParam.notMatch
-    	}
-
+    		downloadSuccess:'Download Success'//EwayLocale.param.deviceParam.downloadSuccess
+    	},
+    	template:{
+        	addTitle:'Add Parameter Template',//EwayLocale.param.template.addTitle
+        	updateTitle:'Update Parameter Template',//EwayLocale.param.template.updateTitle
+        	title:'Parameter Template',//EwayLocale.param.template.title
+            templateName:'Template Name',//EwayLocale.param.template.templateName
+            templateRemark:'Template Remark',//EwayLocale.param.template.templateRemark
+            paramGridTitle:'You Can Add Parameters (Using Drag And Drop)',//EwayLocale.param.template.paramGridTitle
+            addedParamGridTitle:'Parameters Have Been Added (Editable Parameters Can Be Modified Directly)',//EwayLocale.param.template.addedParamGridTitle
+            paramName:'Parameter Name',//EwayLocale.param.template.paramName
+        	paramValue:'Parameter Value',//EwayLocale.param.template.paramValue
+        	paramType:'Parameter Type',//EwayLocale.param.template.paramType
+        	integer:'Integer',//EwayLocale.param.template.integer
+        	character:'Character',//EwayLocale.param.template.character
+        	paramRights:'Parameter Root',//EwayLocale.param.template.paramRights
+        	editable:'Editable',//EwayLocale.param.template.editable
+        	uneditable:'Uneditable',//EwayLocale.param.template.uneditable
+        	paramTemplateName:'Parameter Template Name',//EwayLocale.param.template.paramTemplateName
+        	applyFlag:'Status',//EwayLocale.param.template.applyFlag
+        	published:'Published',//EwayLocale.param.template.published
+        	unpublished:'Unpublished',//EwayLocale.param.template.unpublished
+        	paramBelongs:'Subordinate System',//EwayLocale.param.template.paramBelongs
+        	bankPerlink:'Visual Plant',//EwayLocale.param.template.bankPerlink
+        }
 
     }
 

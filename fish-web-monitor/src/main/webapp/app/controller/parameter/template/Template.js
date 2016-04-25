@@ -109,7 +109,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 								addedParamGrid = this.getAddedParamGrid();
 								flag = '0';
 							}else{
-								Eway.alert('请选择一条记录');
+								Eway.alert(EwayLocale.tip.paramTemplate.one);
 								
 							}
 							
@@ -136,7 +136,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 											},
 											callback : function(records,operation, success) {
 												if (success == false) {
-													Eway.alert('元数据展示失败');
+													Eway.alert(EwayLocale.tip.paramTemplate.failedElement);
 													win.close();
 												}
 											}
@@ -184,12 +184,12 @@ Ext.define('Eway.controller.parameter.template.Template',
 									
 									temp.save({
 										 success: function(ed) {
-											Eway.alert('新增模板成功');
+											Eway.alert(EwayLocale.tip.paramTemplate.addSuccess);
 											win.close();
 											this.onQueryAfterOperate();
 										 },
 										 failure: function(record,operation){
-											Eway.alert('新增模板失败 '+operation.error);
+											Eway.alert(EwayLocale.tip.paramTemplate.addFailure+operation.error);
 										 },
 										 
 										 scope : this
@@ -210,12 +210,12 @@ Ext.define('Eway.controller.parameter.template.Template',
 							
 							temp.save({
 								 success: function(ed) {
-									 	Eway.alert('修改模板成功');
+									 	Eway.alert(EwayLocale.tip.paramTemplate.updateSuccess);
 									 	win.close();
 										this.onQueryAfterOperate();
 									 },
 									 failure: function(record,operation){
-										Eway.alert('修改模板失败'+operation.error);
+										Eway.alert(EwayLocale.tip.paramTemplate.updateFailure+operation.error);
 									 },
 									 scope : this
 								});
@@ -255,22 +255,22 @@ Ext.define('Eway.controller.parameter.template.Template',
 								success : function(response) {
 									var object = Ext.decode(response.responseText);
 									if (object.success == true) {
-										Eway.alert('发布模板成功');
+										Eway.alert(EwayLocale.tip.paramTemplate.applySuccess);
 										this.onQueryAfterOperate();
 									} else {
-										Eway.alert('发布模板失败');
+										Eway.alert(EwayLocale.tip.paramTemplate.applyFailure);
 										this.onQueryAfterOperate();
 									}
 								},
 								failure : function() {
-										Eway.alert('发布模板失败');
+										Eway.alert(EwayLocale.tip.paramTemplate.applyFailure);
 										this.onQueryAfterOperate();
 								},
 								scope : this
 							});
 						}
 						else {
-								Eway.alert('请选择需发布的模板');
+								Eway.alert(EwayLocale.tip.paramTemplate.one);
 						}
 					},
 					
@@ -328,13 +328,13 @@ Ext.define('Eway.controller.parameter.template.Template',
 								}
 							});
 						} else {
-								Eway.alert('请选择一条数据');
+								Eway.alert(EwayLocale.tip.paramTemplate.one);
 									
 						}
 					},
 					
 					/**
-					 * 解除关联
+					 * unlink
 					 * 
 					 */
 					onUnlinkConfirm : function(linkedDeviceGrid,linkingDeviceGrid, record) {
@@ -378,17 +378,17 @@ Ext.define('Eway.controller.parameter.template.Template',
 															});
 										},
 										failure : function() {
-											Eway.alert('解除关联设备失败');
+											Eway.alert(EwayLocale.tip.paramTemplate.unlinkedFailure);
 										},
 										scope : this
 									});
 						} else {
-							Eway.alert('请选择一条数据');
+							Eway.alert(EwayLocale.tip.paramTemplate.one);
 						}
 					},
 
 					/**
-					 * 进行关联
+					 * link
 					 * 
 					 * @param {}
 					 *            linkingDeviceGrid
@@ -442,17 +442,17 @@ Ext.define('Eway.controller.parameter.template.Template',
 										failure : function() {
 											linkingDeviceGrid.down('button[action="link"]').enable();
 													
-											Eway.alert('解除关联设备失败');
+											Eway.alert(EwayLocale.tip.paramTemplate.unlinkedFailure);
 													
 										},
 										scope : this
 									});
 						} else {
-							Eway.alert('请选择一条数据');
+							Eway.alert(EwayLocale.tip.paramTemplate.one);
 						}
 					},
 
-					// 刷新“已/可关联的设备”列表
+					
 					onLinkDeviceFresh : function(flag, grid, form, record) {
 						var store = grid.getStore();
 						store.cleanUrlParam();
@@ -475,7 +475,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 					},
 
 					/**
-					 * 获得选中的行id数组：
+					 * id
 					 * 
 					 * @param {}
 					 *            grid

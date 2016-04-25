@@ -16,8 +16,7 @@ Ext.define('Eway.view.parameter.template.AdvertImgView', {
     ],
 
 	autoScroll : true,
-	// 解决IE7,8下不出现滚动条问题,由于extjs会对ie7,8特殊处理
-	// autoScroll属性会作用在其他div上,所以需要直接写css来显示滚动
+
 	style : 'overflow:auto;',
 	frame : true,
  
