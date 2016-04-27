@@ -261,6 +261,8 @@ public class TaskService implements ITaskService {
         boolean ignore = true;
         //暂时存放远程访问的返回值
         int retResult = 0 ;
+        //下发之前判断是否任务已取消
+        task = this.get(task.getId());
         if(TaskStatus.canRun(task.getStatus()) || TaskStatus.RUN.equals(task.getStatus())){
             // 通知
             try {
