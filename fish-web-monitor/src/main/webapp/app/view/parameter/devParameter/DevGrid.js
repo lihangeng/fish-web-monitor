@@ -15,10 +15,18 @@ Ext.define('Eway.view.parameter.devParameter.DevGrid', {
 			tbar : [ '->', {
 				text : EwayLocale.button.search,
 				glyph : 0xf002,
-				action : 'query'
+				action : 'query',
+				code : 'devParamDevQuery',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			 },{
 				 text:EwayLocale.button.download,
-				 action:'release'
+				 action:'release',
+				 code : 'devParamDevRelease',
+				 listeners:{
+					 'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				 }
 			 }],
 			columns : [ {
 				header : EwayLocale.commen.terminalId,
