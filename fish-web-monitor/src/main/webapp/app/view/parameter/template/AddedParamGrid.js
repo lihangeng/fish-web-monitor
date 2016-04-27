@@ -59,7 +59,7 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 				dataIndex : 'paramRights',
 				flex : 1,
 				renderer: function(value,metadata,record){
-					if(value == 2){
+					if(value == 1){
 		                	 return EwayLocale.param.template.editable;
 		             }else {
 		                	 return EwayLocale.param.template.uneditable;

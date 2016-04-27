@@ -46,7 +46,7 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 					layout : 'border',
 					autoScroll : true,
 					items : [ {
-						title : '<font color="black"><b></b></font>'+EwayLocale.param.template.paramGridTitle,
+						title : EwayLocale.param.template.paramGridTitle,
 						width : 220,
 						height: 350,
 						region : 'west',
@@ -54,7 +54,7 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 						xtype : 'param_paramGrid',
 						autoLoadStore : true
 					}, {
-						title : '<font color="black"></font>'+EwayLocale.param.template.addedParamGridTilte,
+						title : EwayLocale.param.template.addedParamGridTitle,
 						width : 470,
 						height: 350,
 						region : 'center',
