@@ -95,6 +95,11 @@ public class ParamElementController {
 	ModelMap add(@RequestBody ParamElementForm request){
 		logger.info("add elementelement");
 		ModelMap result=new ModelMap();
+		boolean isExist=this.isExistParamName(request.getId(), request.getParamName(), request.getClassifyId(), request.getParamBelongsId());
+		if(isExist){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, "参数名已经存在。");
+		}else{
 		IParamElement element =elementService.make();
 		IParamClassify classify=classifyService.get(request.getClassifyId());
 		IAppSystem appSystem=appSystemService.get(request.getParamBelongsId());
@@ -112,7 +117,7 @@ public class ParamElementController {
 		elementService.add(element);
 		result.put(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, new ParamElementForm(element));
-
+		}
 		return result;
 	}
 
@@ -279,7 +284,7 @@ public class ParamElementController {
 		} else {
 			for (IParamElement item : list) {
 				for (IParamElement paramElement : paramElementList) {
-					if (item.getParamName().equals(paramElement.getParamName())) {
+					if (item.getParamName().equals(paramElement.getParamName()) && item.getParamClassify().equals(paramElement.getParamClassify()) && item.getParamBelongs().equals(paramElement.getParamBelongs())) {
 						flag = true;
 						break;
 					}
@@ -370,5 +375,23 @@ public class ParamElementController {
       }
       System.out.println(paramElementList);
 }
+
+	private boolean isExistParamName(long id,String name,long classifyId,long paramBelongsId){
+		try{
+			logger.info("checkParamName" + name);
+			IParamElement paramElement =elementService.get(name.trim(), classifyId, paramBelongsId);
+			if(paramElement==null){
+				return false;
+			}
+			else if(paramElement.getId()==id){
+				return false;
+			}else{
+				return true;
+			}
+		}catch(Exception e){
+			return false;
+		}
+
+	}
 
 }

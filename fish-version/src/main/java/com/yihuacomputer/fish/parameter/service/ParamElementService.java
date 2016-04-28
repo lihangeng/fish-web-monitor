@@ -3,6 +3,7 @@ package com.yihuacomputer.fish.parameter.service;
 import java.util.Date;
 import java.util.List;
 
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -115,6 +116,17 @@ public class ParamElementService implements IParamElementService {
 		String hql="from ParamElement P where P.paramBelongs=?";
 		List<IParamElement> result=dao.findByHQL(hql, paramBelongs);
 		return result;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public IParamElement get(String name, long classifyId, long paramBelongsId) {
+
+		ParamElement paramElement=(ParamElement) dao.getCriteria(ParamElement.class).
+				add(Restrictions.eq("paramName", name))
+				.add(Restrictions.eq("paramClassify.id", classifyId))
+				.add(Restrictions.eq("paramBelongs.id", paramBelongsId)).uniqueResult();
+		return paramElement;
 	}
 
 }
