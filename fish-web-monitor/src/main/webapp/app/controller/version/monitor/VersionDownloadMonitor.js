@@ -26,6 +26,9 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			'#versionDownloadMonitorView button[action=query]' : {
 				click : this.onQuery
 			},
+			'versionDownloadMonitorView tabpanel':{
+				tabchange:this.onTabChange
+			},
 			'#versionDownloadMonitorView button[action=start]' : {
 				click : this.onStart
 			},
@@ -192,6 +195,17 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			this.currentTask = null;
 		}
 	},
+	
+	onTabChange:function( tabPanel, newCard, oldCard, eOpts ){
+		if(newCard.name=='groupPanel'){
+			var tabpanel = this.getEwayView().down("tabpanel");
+			var jobDetailPanel = this.getEwayView().down("panel[name='taskDetails']");
+			tabpanel.remove(jobDetailPanel,true);
+			this.onJobDetail();
+
+		}
+	},
+	
 	onJobDetail:function(){
 		var grid = this.getGrid();
 		var store = grid.getStore();

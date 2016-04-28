@@ -14,6 +14,8 @@ public interface IParamElementService {
 
 	public IParamElement add(IParamElement element);
 
+	public IParamElement get(String name,long classifyId,long paramBelongsId);
+
 	public void remove(long id);
 
 	public void update(IParamElement element);

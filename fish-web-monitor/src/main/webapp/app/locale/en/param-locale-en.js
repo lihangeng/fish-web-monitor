@@ -45,7 +45,8 @@ Ext.apply(EwayLocale,{
     	deviceParam:{
     		title:'The Manage Of Device Paramter',//EwayLocale.param.deviceParam.title
     		downloadFailure:'Download Failure',//EwayLocale.param.deviceParam.downloadFailure
-    		downloadSuccess:'Download Success'//EwayLocale.param.deviceParam.downloadSuccess
+    		downloadSuccess:'Download Success',//EwayLocale.param.deviceParam.downloadSuccess
+    		notMatch:'is not match the type of parameter'//EwayLocale.param.deviceParam.notMatch
     	},
     	template:{
         	addTitle:'Add Parameter Template',//EwayLocale.param.template.addTitle
@@ -53,8 +54,8 @@ Ext.apply(EwayLocale,{
         	title:'Parameter Template',//EwayLocale.param.template.title
             templateName:'Template Name',//EwayLocale.param.template.templateName
             templateRemark:'Template Remark',//EwayLocale.param.template.templateRemark
-            paramGridTitle:'You Can Add Parameters (Using Drag And Drop)',//EwayLocale.param.template.paramGridTitle
-            addedParamGridTitle:'Parameters Have Been Added (Editable Parameters Can Be Modified Directly)',//EwayLocale.param.template.addedParamGridTitle
+            paramGridTitle:'<font color="black"><b>You Can Add Parameters (Using Drag And Drop)</b></font>',//EwayLocale.param.template.paramGridTitle
+            addedParamGridTitle:'<font color="black"><b>Parameters Have Been Added (Editable Parameters Can Be Modified Directly)</b></font>',//EwayLocale.param.template.addedParamGridTitle
             paramName:'Parameter Name',//EwayLocale.param.template.paramName
         	paramValue:'Parameter Value',//EwayLocale.param.template.paramValue
         	paramType:'Parameter Type',//EwayLocale.param.template.paramType

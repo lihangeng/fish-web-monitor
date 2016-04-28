@@ -44,7 +44,8 @@ Ext.apply(EwayLocale,{
     	deviceParam:{
     		title:'设备参数管理',//EwayLocale.param.deviceParam.title
     		downloadFailure:'下发失败',//EwayLocale.param.deviceParam.downloadFailure
-    		downloadSuccess:'下发成功 '//EwayLocale.param.deviceParam.downloadSuccess
+    		downloadSuccess:'下发成功 ',//EwayLocale.param.deviceParam.downloadSuccess
+    		notMatch:'数值类型不匹配'//EwayLocale.param.deviceParam.notMatch
     	},
         template:{
         	addTitle:'增加参数模板',//EwayLocale.param.template.addTitle
@@ -52,8 +53,8 @@ Ext.apply(EwayLocale,{
         	title:'参数模板管理',//EwayLocale.param.template.title
             templateName:'模板名称',//EwayLocale.param.template.templateName
             templateRemark:'模板备注',//EwayLocale.param.template.templateRemark
-            paramGridTitle:'可添加参数(使用拖拽的方式)',//EwayLocale.param.template.paramGridTitle
-            addedParamGridTitle:'已添加的参数(可编辑的参数可以直接修改)',//EwayLocale.param.template.addedParamGridTitle
+            paramGridTitle:'<font color="black"><b>可添加参数(使用拖拽的方式)</b></font>',//EwayLocale.param.template.paramGridTitle
+            addedParamGridTitle:'<font color="black"><b>已添加的参数(可编辑的参数可以直接修改)</b></font>',//EwayLocale.param.template.addedParamGridTitle
             paramName:'参数名称',//EwayLocale.param.template.paramName
         	paramValue:'参数值',//EwayLocale.param.template.paramValue
         	paramType:'参数类型',//EwayLocale.param.template.paramType

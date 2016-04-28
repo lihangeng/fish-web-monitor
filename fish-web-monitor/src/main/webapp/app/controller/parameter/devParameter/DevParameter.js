@@ -173,7 +173,7 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 			 },
 			 scope : this
 		});
-		
+		this.onParamQuery();
 	}
 
 	

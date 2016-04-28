@@ -33,11 +33,9 @@ Ext.define('Eway.view.parameter.element.ImportParamFile', {
 				buttonAlign : 'center',
 				buttons : [ {
 					text : EwayLocale.cases.confirm,
-					// iconCls : 'sureBtn',
 					action : 'import'
 				}, {
 					text : EwayLocale.cases.cancel,
-					// iconCls : 'returnBtn',
 					handler : this.onOver
 				} ]
 			}

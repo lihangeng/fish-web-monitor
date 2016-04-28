@@ -48,11 +48,19 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 			tbar : [ '->', {
 				text : EwayLocale.button.search,
 				glyph : 0xf002,
-				action : 'query'
+				action : 'query',
+				code : 'devParamQuery',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			},{
 				text : EwayLocale.button.save,
 				// glyph : 0xf002,
-				action : 'save'
+				action : 'save',
+				code : 'devParamSave',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}],
 			columns : [ {
 				header : EwayLocale.param.element.paramName,

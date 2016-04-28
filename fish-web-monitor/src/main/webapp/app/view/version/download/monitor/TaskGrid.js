@@ -4,6 +4,7 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 
 	requires : [ 'Eway.lib.Util'],
 
+	name : 'taskDetails',
 	store : 'version.monitor.Task',
 	border : false,
 	autoScroll : true,
