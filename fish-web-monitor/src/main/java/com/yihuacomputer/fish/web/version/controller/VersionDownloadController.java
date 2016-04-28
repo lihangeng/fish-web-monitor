@@ -34,6 +34,7 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
+import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
@@ -162,6 +163,26 @@ public class VersionDownloadController {
 			}
 		}
 		int downloadCounter = version.getDownloadCounter()+1;
+		if(downloadCounter == 0){
+			result.put(FishConstant.SUCCESS, false);
+			result.put("errorMsg", "下发的版本不存在，请重新选择！");
+			return result;
+		}
+		
+		IDevice device = deviceService.get(form.getDeviceIds());
+		if (device == null) {
+			result.put(FishConstant.SUCCESS, false);
+			result.put("errorMsg", "下发的设备不存在，请重新选择！");
+			return result;
+		}
+		
+/*		IVersion versions = versionService.getById(form.getVersionId());	
+		if(versions == null){
+			result.put(FishConstant.SUCCESS, false);
+			result.put("errorMsg", "下发的版本不存在，请重新选择！");
+			return result;
+		}*/
+		
 		IJob job = jobService.make();
 		job.setJobName(form.getJobName()+"_"+downloadCounter);
 		job.setVersion(versionService.getById(form.getVersionId()));
