@@ -357,7 +357,7 @@ public class ParamPublishService implements IParamPublishService {
 	}
 
 	/**
-	 * 根据集合和版本号生成参数文件
+	 * 根据参数集合和版本号生成参数文件
 	 * 
 	 * @param map
 	 * @param appVersionMap
@@ -554,11 +554,8 @@ class NoticeThread implements Runnable {
 		this.deviceList = deviceList;
 		this.paramInfo = paramInfo;
 		this.publishJobManager = publishJobManager;
-		// this.sessionFactory = sessionFactory;
 		this.paramPublishService = paramPublishResultService.getParamPublishService();
 		this.paramPublishResultService = paramPublishResultService;
-		// this.paramPublishResultService =
-		// paramPublishService.getParamPulishResultService();
 		this.personId = personId;
 	}
 
@@ -574,7 +571,6 @@ class NoticeThread implements Runnable {
 		this.deviceList = deviceList;
 		this.paramInfoList = paramInfoList;
 		this.publishJobManager = publishJobManager;
-		// this.sessionFactory = sessionFactory;
 		this.paramPublishService = paramPublishResultService.getParamPublishService();
 		this.paramPublishResultService = paramPublishResultService;
 		this.isTemplate = false;
@@ -606,7 +602,6 @@ class NoticeThread implements Runnable {
 					paramInfoDetail = paramInfoList.get(index++);
 				}
 				IParamPublishResult paramPublishResult = new ParamPublishResult();
-				// TODO terminalId
 				paramPublishResult.setDeviceId(device.getId());
 				paramPublishResult.setParamPublish(paramPublish);
 				paramPublishResult.setVersionNo(paramInfoDetail.getVersionNo());

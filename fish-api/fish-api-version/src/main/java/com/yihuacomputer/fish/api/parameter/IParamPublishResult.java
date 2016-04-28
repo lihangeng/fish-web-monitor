@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.api.parameter;
 
 import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 
 public interface IParamPublishResult {
 	public long getId();
@@ -95,13 +96,13 @@ public interface IParamPublishResult {
 	public void setReason(String reason) ;
 
 	/**
-	 * 下发进度
+	 * 下发状态
 	 * @return
 	 */
-	public ParamPublishRet getRet() ;
+	public TaskStatus getRet() ;
 	/**
-	 * 下发进度
+	 * 下发状态
 	 * @param ret
 	 */
-	public void setRet(ParamPublishRet ret) ;
+	public void setRet(TaskStatus ret) ;
 }

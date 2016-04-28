@@ -72,11 +72,8 @@ public class AutoUpdateController {
         logger.info(msg.getTermId() + " autoUpdate:" + JsonUtils.toJson(msg));
         try {
             for (SimpleVersion version : msg.getCurrentPatches()) {
-
                 // 登记最新版本
-                versionService
-                        .collectCurrentVersionInfo(msg.getTermId(), version.getTypeName(), version.getVersionNo());
-
+                versionService.collectCurrentVersionInfo(msg.getTermId(), version.getTypeName(), version.getVersionNo());
                 // 获取可以更新的版本
                 IVersion autoUpdateVersion = versionService.autoUpdate(version.getTypeName(), version.getVersionNo());
                 if (autoUpdateVersion != null) {
@@ -88,23 +85,18 @@ public class AutoUpdateController {
                     }
                 }
             }
-
             // 修改任务的状态
             for (TaskMsg taskMsg : msg.getTasks()) {
-
                 // 任务ID为0,或者任务状态不是部署确认,则重新计算
                 if (taskMsg.getTaskId() == 0 || !DeployStatus.CHECKED.equals(taskMsg.getDeployStatus())) {
                     continue;
                 }
-
                 ITask task = taskService.get(taskMsg.getTaskId());
-
                 if (task == null) {
                     // 数据库不存在此任务号,需要把状态设备为commited,客户端就会把此任务删除
                     taskMsg.setDeployStatus(DeployStatus.COMMITED);
                     continue;
                 }
-
                 // 更新任务状态
                 task.setExceptVersion(taskMsg.getDownTypeName() + "_" + taskMsg.getDownVersionNo());
                 task.setStatus(TaskStatus.CHECKED);
@@ -143,8 +135,6 @@ public class AutoUpdateController {
             // 设备未注册，忽略
             return null;
         }
-
-
         IFilter filter = new Filter();
         filter.eq("taskType", TaskType.AUTO_UPDATE);
         filter.eq("version", autoUpdateVersion);
@@ -169,13 +159,11 @@ public class AutoUpdateController {
 
         ITask task = taskService.make(device, autoUpdateVersion.getVersionType().getTypeName());
         task.setVersion(autoUpdateVersion);
-//        task.setJob(jobService.getByName("AUTOUPDATEJOB"));
         task.setJob(job);
         task.setTaskType(TaskType.AUTO_UPDATE);
         task.setStatus(TaskStatus.NOTICED);
         //设置任务执行时间
         task.setExcuteTime(new Date());
         return taskService.addTask(task);
-
     }
 }

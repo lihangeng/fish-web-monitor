@@ -168,16 +168,11 @@ public class TaskService implements ITaskService {
 	public void cancelTasks(List<ITask> tasks){
 	    int size = tasks.size();
 	    if(size > 0){
-//	        IJob job = tasks.get(0).getJob();
-//	        if(jobService.getNotRemovedTasks(job) == 0){//该作业下的任务全部被取消
-//	            jobService.cascadeDelete(job);
-//	        }else{
-	            for(ITask task : tasks){//修改设备版本表的任务状态为“删除”
-	            	logger.info("task.getDevice().getId()"+task.getDevice().getId());
-	            	logger.info("task.getVersion().getId()"+task.getVersion().getId());
-	                dvService.updateDeviceVersionStatusForList(task.getDevice().getId(), task.getVersion().getId(), TaskStatus.REMOVED);
-	            }
-//	        }
+            for(ITask task : tasks){//修改设备版本表的任务状态为“删除”
+            	logger.info("task.getDevice().getId()"+task.getDevice().getId());
+            	logger.info("task.getVersion().getId()"+task.getVersion().getId());
+                dvService.updateDeviceVersionStatusForList(task.getDevice().getId(), task.getVersion().getId(), TaskStatus.REMOVED);
+            }
 	    }
 	}
 
@@ -268,23 +263,16 @@ public class TaskService implements ITaskService {
             try {
                 IDevice device = task.getDevice();
                 NoticeForm notice = new NoticeForm(task);
-//                notice = (NoticeForm)HttpProxy.httpPost(geNoticetUrl(device.getIp()), notice, NoticeForm.class);
                 notice = (NoticeForm)HttpProxy.httpPost(geNoticetUrl(device.getIp()), notice, NoticeForm.class, 10000, 30000);
                 if(notice.getRet().equals("RET0100")){
-                	 //task.setStatus(TaskStatus.NOTICED_FAIL);
                 	 retResult = 1 ;
                 	 task.setReason(messageSourceVersion.getMessage("exception.task.sameTaskRuningForAgentRefuse", null, FishCfg.locale));
-                	 //task.setSuccess(false);
                 }else{
                 	retResult = 2 ;
-	                //task.setStatus(TaskStatus.NOTICED);
 	                task.setReason("");
-	                //task.setSuccess(true);
                 }
             } catch (Exception ex) {
             	retResult = -1 ;
-                //task.setStatus(TaskStatus.NOTICED_FAIL);
-                //task.setSuccess(false);
                 task.setReason(messageSourceVersion.getMessage("exception.task.connectAgentFail", null, FishCfg.locale));
             }
             if(TaskStatus.REMOVED.equals(task.getStatus())){

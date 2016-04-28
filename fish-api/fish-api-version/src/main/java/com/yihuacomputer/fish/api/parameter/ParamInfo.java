@@ -15,9 +15,15 @@ public class ParamInfo {
 	 */
 	private String terminalId;
 	/**
+	 * 参数类型
+	 */
+	private String appType;
+	/**
 	 * 参数更新进度(通知，下载，部署成功..)
 	 */
 	private String ret;
+	
+	private long taskId;
 
 	public String getServerPath() {
 		return serverPath;
@@ -51,4 +57,19 @@ public class ParamInfo {
 		this.ret = ret;
 	}
 
+	public String getAppType() {
+		return appType;
+	}
+
+	public void setAppType(String appType) {
+		this.appType = appType;
+	}
+
+	public long getTaskId() {
+		return taskId;
+	}
+
+	public void setTaskId(long taskId) {
+		this.taskId = taskId;
+	}
 }

@@ -16,7 +16,7 @@ import javax.persistence.Transient;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.parameter.IParamPublish;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
-import com.yihuacomputer.fish.api.parameter.ParamPublishRet;
+import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 @Entity
 @Table(name="PARAM_PUBLISH_RESULT")
 public class ParamPublishResult implements IParamPublishResult {
@@ -52,8 +52,8 @@ public class ParamPublishResult implements IParamPublishResult {
     private String reason;
 
 	@Enumerated(EnumType.STRING)
-    @Column(name = "RET", nullable = true, length = 120)
-	private ParamPublishRet ret;
+    @Column(name = "RET", nullable = true, length = 20)
+	private TaskStatus ret;
 
 	public long getId() {
 		return id;
@@ -119,11 +119,11 @@ public class ParamPublishResult implements IParamPublishResult {
 		this.reason = reason;
 	}
 
-	public ParamPublishRet getRet() {
+	public TaskStatus getRet() {
 		return ret;
 	}
 
-	public void setRet(ParamPublishRet ret) {
+	public void setRet(TaskStatus ret) {
 		this.ret = ret;
 	}
 

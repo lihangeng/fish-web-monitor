@@ -15,5 +15,5 @@ public interface IParamPublishResultService {
 	 * 进行下发通知
 	 * @param msg
 	 */
-	public boolean notice(ParamPublishMsg msg,IDevice device);
+	public boolean notice(IParamPublishResult msg,IDevice device);
 }

@@ -4,9 +4,11 @@ import java.io.File;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.ITypeIP;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.DateUtils;
@@ -15,11 +17,11 @@ import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishService;
-import com.yihuacomputer.fish.api.parameter.ParamPublishMsg;
-import com.yihuacomputer.fish.api.parameter.ParamPublishRet;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.api.version.VersionCfg;
+import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.parameter.entity.ParamPublishResult;
+import com.yihuacomputer.fish.version.notice.NoticeForm;
 
 @Service
 @Transactional
@@ -29,6 +31,10 @@ public class ParamPublishResultService implements IParamPublishResultService {
 	private IGenericDao dao;
 	@Autowired
 	private IParamPublishService paramPublishService;
+	
+
+    @Autowired
+	private MessageSource messageSourceVersion;
 
 	@Override
 	public IParamPublishResult make() {
@@ -53,27 +59,41 @@ public class ParamPublishResultService implements IParamPublishResultService {
 	@Override
 	public IParamPublishResult update(long id, String ret) {
 		IParamPublishResult paramPublishResult = this.get(id);
-		paramPublishResult.setRet(ParamPublishRet.getById(ret));
+		paramPublishResult.setRet(TaskStatus.valueOf(ret));
 		return dao.update(paramPublishResult);
 	}
 
 	private static final String PARAM_PUSH_URL = "/ctr/paramUpdateNotify";
 
-	public boolean notice(ParamPublishMsg msg, IDevice device) {
+	public boolean notice(IParamPublishResult result, IDevice device) {
 		String url = getNoticetUrl(device.getIp());
-		IParamPublishResult result = get(msg.getTaskId());
+		NoticeForm 	msg = new NoticeForm() ;
+
+        int retResult = 0 ;
+		msg.setTaskId(result.getId());
+		msg.setPatchNo(String.valueOf(result.getVersionNo()));
 		if (result != null) {
-			msg.setServerPath(VersionCfg.getAtmParamDir()+File.separator+msg.getVersionNo());
+			msg.setServerPath(VersionCfg.getAtmParamDir()+File.separator+msg.getPatchNo());
 			result.setDownloadStartTime(DateUtils.getTimestamp(new Date()));
-			ParamPublishMsg responseMsg = (ParamPublishMsg) HttpProxy.httpPost(url, msg, ParamPublishMsg.class, 30000);
-			// 将下发结果回填至业务功能下发结果表
-			if (responseMsg != null) {
-				result.setDownloadFinishTime(DateUtils.getTimestamp(new Date()));
-				result.setRet(ParamPublishRet.NOTICED);
-				update(result);
-				return true;
-			}
+			msg = (NoticeForm) HttpProxy.httpPost(url, msg, NoticeForm.class, 30000);
+             if(msg.getRet().equals("RET0100")){
+             	 retResult = 1 ;
+             	 result.setReason(messageSourceVersion.getMessage("exception.task.sameTaskRuningForAgentRefuse", null, FishCfg.locale));
+             }else{
+             	retResult = 2 ;
+             	result.setReason("");
+             }
 		}
+		if(retResult==1){
+			result.setRet(TaskStatus.NOTICED_FAIL);
+			result.setSuccess(false);
+    	}else if(retResult==2){
+    		result.setRet(TaskStatus.NOTICED);
+    		result.setSuccess(true);
+    	}else if(retResult==-1){
+    		result.setRet(TaskStatus.NOTICED_FAIL);
+    		result.setSuccess(false);
+    	}
 		return false;
 
 	}
