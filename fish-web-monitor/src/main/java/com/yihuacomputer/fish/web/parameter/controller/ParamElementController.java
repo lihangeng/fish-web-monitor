@@ -1,11 +1,14 @@
 package com.yihuacomputer.fish.web.parameter.controller;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +40,7 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.file.INIFileReader;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.EntityUtils;
@@ -209,9 +213,51 @@ public class ParamElementController {
 						+ UUID.randomUUID());
 				file.transferTo(readFile);
 				/* 读文件内容 */
-				ArrayList<IParamElement> paramElementList = null;
+				ArrayList<IParamElement> paramElementList = new ArrayList<IParamElement>();
 				if (fileType.equals(".ini")) {
-					paramElementList = this.readIni(readFile);// 从ini文件件解析数据：
+//					paramElementList = this.readIni(readFile);// 从ini文件件解析数据：
+					INIFileReader iniReader= new INIFileReader(readFile.getAbsolutePath());
+					 Map<String,Properties> sectionLevel = iniReader.sections;
+					 Iterator<String> elementTypeItertor = sectionLevel.keySet().iterator();
+					 while(elementTypeItertor.hasNext()){
+						 //获取参数分类
+						 String elementType =  elementTypeItertor.next();
+						 logger.debug(elementType);
+						 Properties pro = sectionLevel.get(elementType);
+
+						 Set<Entry<Object, Object>> set = pro.entrySet();
+						 Iterator<Map.Entry<Object, Object>> it = set.iterator();
+						 String key = null, value = null;
+			            ParamElement paramElement = null;
+			            // 循环取出key-value
+			            while (it.hasNext()) {
+			          	  paramElement = new ParamElement();
+			                Entry<Object, Object> entry = it.next();
+
+			                key = String.valueOf(entry.getKey());
+			                value = String.valueOf(entry.getValue());
+
+			                key = key == null ? key : key.trim().toUpperCase();
+			                value = value == null ? value : value.trim().toUpperCase();
+			                // 将key-value放入map中
+			                paramElement.setParamName(key);
+			                paramElement.setParamValue(value);
+			                Date date = new Date();
+							paramElement.setCreateTime(DateUtils.getTimestamp(DateUtils.getTimestamp(date)));
+			                paramElement.setParamTimestamp(Long.parseLong(DateUtils.getTimestamp5(date)));
+			                IParamClassify classify=classifyService.get(elementType);
+			                if(classify!=null){
+			                	paramElement.setParamClassify(classifyService.get(elementType));
+			                }else{
+			                	IParamClassify paramClassify =classifyService.make();
+			                	paramClassify.setName(elementType);
+			                	classifyService.add(paramClassify);
+			                	paramElement.setParamClassify(paramClassify);
+			                }
+
+			                paramElementList.add(paramElement);
+			            }
+					 }
 
 				}  else {
 					return "{'success':false,'content':'"+messageSource.getMessage("vendorCode.fileType", null, FishCfg.locale)+"'}";
@@ -240,41 +286,6 @@ public class ParamElementController {
 		return "{'success':true,'content':'"+messageSource.getMessage("paramElement.fileSuccess", null, FishCfg.locale)+"'}";
    }
 
-
-
-	private ArrayList<IParamElement> readIni(File readFile) throws FileNotFoundException,IOException{
-            ArrayList<IParamElement> paramElementList=new ArrayList<IParamElement>();
-            Date date=new Date();
-
-            Properties props= new Properties();
-            props.load(new FileInputStream(readFile));
-            Set<Entry<Object, Object>> set = props.entrySet();
-            // 返回在此Set中的元素上进行迭代的迭代器
-            Iterator<Map.Entry<Object, Object>> it = set.iterator();
-            String key = null, value = null;
-            ParamElement paramElement = null;
-            // 循环取出key-value
-            while (it.hasNext()) {
-          	  paramElement = new ParamElement();
-                Entry<Object, Object> entry = it.next();
-
-                key = String.valueOf(entry.getKey());
-                value = String.valueOf(entry.getValue());
-
-                key = key == null ? key : key.trim().toUpperCase();
-                value = value == null ? value : value.trim().toUpperCase();
-                // 将key-value放入map中
-                paramElement.setParamName(key);
-                paramElement.setParamValue(value);
-                paramElement.setCreateTime(DateUtils.getTimestamp(DateUtils.getTimestamp(date)));
-                paramElement.setParamTimestamp(Long.parseLong(DateUtils.getTimestamp5(date)));
-                paramElement.setParamClassify(classifyService.get("默认分类"));
-
-                paramElementList.add(paramElement);
-
-            }
-            return paramElementList;
-}
 
 	private boolean check(List<IParamElement> list, long appSystem) {
 		boolean flag = false;
