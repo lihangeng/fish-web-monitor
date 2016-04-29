@@ -12,7 +12,7 @@ public interface IAppSystemService {
 
 	IPageResult<IAppSystem> page(int start, int limit, IFilter filter);
 
-	Iterable<IAppSystem> list();
+	List<IAppSystem> list();
 
 	List<IAppSystem> listContainsApp(IFilter filter);
 
@@ -22,4 +22,11 @@ public interface IAppSystemService {
 	 * @return
 	 */
 	List<IAppSystem> getBelongs();
+	
+	/**
+	 * 根据应用唯一名称获取应用
+	 * @param name
+	 * @return
+	 */
+	public IAppSystem get(String name);
 }

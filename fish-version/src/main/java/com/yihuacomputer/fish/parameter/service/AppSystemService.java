@@ -2,6 +2,7 @@ package com.yihuacomputer.fish.parameter.service;
 
 import java.util.List;
 
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,10 @@ public class AppSystemService implements IAppSystemService {
 	public IAppSystem get(long id) {
 		return dao.get(id, AppSystem.class);
 	}
+	@Override
+	public IAppSystem get(String name) {
+		return (IAppSystem) dao.getCriteria(AppSystem.class).add(Restrictions.eq("name", name)).uniqueResult();
+	}
 
 	@Override
 	public void update(IAppSystem appSystem) {
@@ -36,7 +41,7 @@ public class AppSystemService implements IAppSystemService {
 	}
 
 	@Override
-	public Iterable<IAppSystem> list() {
+	public List<IAppSystem> list() {
 		return dao.loadAll(IAppSystem.class);
 	}
 

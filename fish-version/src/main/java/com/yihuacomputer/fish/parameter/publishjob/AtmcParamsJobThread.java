@@ -33,7 +33,7 @@ public class AtmcParamsJobThread implements Runnable {
 		IDevice device = null;
 		try {
 			device = result.getDevice();
-			logger.info(String.format("down params to [%s] start.",device.getTerminalId()));			if(atmcParamPublishResultService.notice(result,device)){
+			logger.info(String.format("down params to [%s] start.",device.getTerminalId()));			if(!atmcParamPublishResultService.notice(result,device)){
 				logger.error(String.format("%s publish failer!",device.getTerminalId()));
 			}
 		} catch (Exception e) {

@@ -29,6 +29,7 @@ import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.parameter.service.ParamPublishService;
 import com.yihuacomputer.fish.web.atm.format.AutoUpdateMsg;
 import com.yihuacomputer.fish.web.atm.format.PatchMsg;
+import com.yihuacomputer.fish.web.atm.format.SimpleVersion;
 
 /**
  * 参数下发
@@ -65,32 +66,38 @@ public class ParamAutoUpdateController {
 			return msg;
 		}
 		try {
-			List<PatchMsg>list = msg.getAutoUpdatePatches();
+			List<SimpleVersion>list = msg.getCurrentPatches();
+			//获取服务器上当前最大版本号
 			Map<String,Long> deviceMap = paramPublishService.getMaxVersionNoInfoByDeviceId(device.getId());
 			long versionNo = deviceMap.get(ParamPublishService.MAX_VERSION_TIMESTAMP);
+			//根据客户端反馈判断是否要执行自动更新操作
 			boolean isUpdating = true;
-			for(PatchMsg patchMsg :list){
-				long patchNo = Long.parseLong(patchMsg.getPatchNo());
-				if(patchMsg.getPatch().equals(ParamInfo.class.getSimpleName())&&versionNo<=patchNo){
+			for(SimpleVersion patchMsg :list){
+				long patchNo = Long.parseLong(patchMsg.getVersionNo());
+				if(patchMsg.getTypeName().equals(ParamInfo.class.getSimpleName())&&versionNo<=patchNo){
 					isUpdating = false;
 				}
 			}
 			if(isUpdating){
-				String date = DateUtils.getTimestamp(new Date());
-				IParamPublish paramPublish = paramPublishService.make();
-				paramPublish.setJobType(JobType.AUTO_UPDATE);
-				paramPublish.setDate(date);
-				paramPublish.setPublisher(0);
-				paramPublishService.save(paramPublish);
-				logger.debug(String.format("paramPublish job create success,id is %d",paramPublish.getId()));
-				IParamPublishResult paramPublishResult = paramPublishResultService.make();
-				paramPublishResult.setDevice(device);
-				paramPublishResult.setDeviceId(device.getId());
-				paramPublishResult.setParamPublish(paramPublish);
-				paramPublishResult.setRet(TaskStatus.NEW);
-				paramPublishResult.setDownloadStartTime(date);
-				paramPublishResult.setVersionNo(versionNo);
-				paramPublishResultService.save(paramPublishResult);
+				IParamPublishResult paramPublishResult = paramPublishResultService.getParamPublishResult(device.getId(),versionNo);
+				if(null==paramPublishResult){
+					String date = DateUtils.getTimestamp(new Date());
+					IParamPublish paramPublish = paramPublishService.make();
+					paramPublish.setJobType(JobType.AUTO_UPDATE);
+					paramPublish.setDate(date);
+					paramPublish.setPublisher(0);
+					paramPublishService.save(paramPublish);
+					
+					logger.debug(String.format("paramPublish job create success,id is %d",paramPublish.getId()));
+					paramPublishResult = paramPublishResultService.make();
+					paramPublishResult.setDevice(device);
+					paramPublishResult.setDeviceId(device.getId());
+					paramPublishResult.setParamPublish(paramPublish);
+					paramPublishResult.setRet(TaskStatus.NEW);
+					paramPublishResult.setDownloadStartTime(date);
+					paramPublishResult.setVersionNo(versionNo);
+					paramPublishResultService.save(paramPublishResult);
+				}
 				logger.debug(String.format("paramPublishResult task create success,id is %d",paramPublishResult.getId()));
 				
 				//将自动升级任务增加到Msg中进行返回操作

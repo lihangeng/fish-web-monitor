@@ -3,6 +3,8 @@ package com.yihuacomputer.fish.parameter.service;
 import java.io.File;
 import java.util.Date;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
@@ -17,8 +19,10 @@ import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishService;
+import com.yihuacomputer.fish.api.parameter.ParamInfo;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.api.version.VersionCfg;
+import com.yihuacomputer.fish.api.version.job.JobType;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 import com.yihuacomputer.fish.parameter.entity.ParamPublishResult;
 import com.yihuacomputer.fish.version.notice.NoticeForm;
@@ -31,9 +35,10 @@ public class ParamPublishResultService implements IParamPublishResultService {
 	private IGenericDao dao;
 	@Autowired
 	private IParamPublishService paramPublishService;
-	
 
-    @Autowired
+	private Logger logger = LoggerFactory.getLogger(ParamPublishResultService.class);
+
+	@Autowired
 	private MessageSource messageSourceVersion;
 
 	@Override
@@ -67,34 +72,39 @@ public class ParamPublishResultService implements IParamPublishResultService {
 
 	public boolean notice(IParamPublishResult result, IDevice device) {
 		String url = getNoticetUrl(device.getIp());
-		NoticeForm 	msg = new NoticeForm() ;
+		NoticeForm msg = new NoticeForm();
 
-        int retResult = 0 ;
+		int retResult = 0;
 		msg.setTaskId(result.getId());
 		msg.setPatchNo(String.valueOf(result.getVersionNo()));
 		if (result != null) {
-			msg.setServerPath(VersionCfg.getAtmParamDir()+File.separator+msg.getPatchNo());
+			msg.setPatch(ParamInfo.class.getSimpleName());
+			msg.setServerPath(VersionCfg.getAtmParamDir() + File.separator + msg.getPatchNo());
 			result.setDownloadStartTime(DateUtils.getTimestamp(new Date()));
-			msg = (NoticeForm) HttpProxy.httpPost(url, msg, NoticeForm.class, 30000);
-             if(msg.getRet().equals("RET0100")){
-             	 retResult = 1 ;
-             	 result.setReason(messageSourceVersion.getMessage("exception.task.sameTaskRuningForAgentRefuse", null, FishCfg.locale));
-             }else{
-             	retResult = 2 ;
-             	result.setReason("");
-             }
+			try {
+				msg = (NoticeForm) HttpProxy.httpPost(url, msg, NoticeForm.class, 30000);
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+			if (msg.getRet().equals("RET0100")) {
+				retResult = 1;
+				result.setReason(messageSourceVersion.getMessage("exception.task.sameTaskRuningForAgentRefuse", null, FishCfg.locale));
+			} else {
+				retResult = 2;
+				result.setReason("");
+			}
 		}
-		if(retResult==1){
+		if (retResult == 1) {
 			result.setRet(TaskStatus.NOTICED_FAIL);
 			result.setSuccess(false);
-    	}else if(retResult==2){
-    		result.setRet(TaskStatus.NOTICED);
-    		result.setSuccess(true);
-    	}else if(retResult==-1){
-    		result.setRet(TaskStatus.NOTICED_FAIL);
-    		result.setSuccess(false);
-    	}
-		return false;
+		} else if (retResult == 2) {
+			result.setRet(TaskStatus.NOTICED);
+			result.setSuccess(true);
+		} else if (retResult == -1) {
+			result.setRet(TaskStatus.NOTICED_FAIL);
+			result.setSuccess(false);
+		}
+		return true;
 
 	}
 
@@ -104,8 +114,15 @@ public class ParamPublishResultService implements IParamPublishResultService {
 
 	@Override
 	public IParamPublishService getParamPublishService() {
-		// TODO Auto-generated method stub
 		return paramPublishService;
+	}
+
+	@Override
+	public IParamPublishResult getParamPublishResult(long deviceId, long versionNo) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("from ").append(ParamPublishResult.class.getSimpleName()).append(" result ").append("where result.deviceId=? and result.versionNo=? and result.paramPublish.jobType=?");
+
+		return dao.findUniqueByHql(sb.toString(), new Object[] { deviceId, versionNo, JobType.AUTO_UPDATE });
 	}
 
 }

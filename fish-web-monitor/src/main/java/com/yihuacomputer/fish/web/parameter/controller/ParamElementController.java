@@ -183,7 +183,7 @@ public class ParamElementController {
    public @ResponseBody ModelMap queryAppSystem2(){
 	   logger.info(String.format("search appSystem : queryAppSystem"));
 	   ModelMap model=new ModelMap();
-	   List<IAppSystem> appSystemList = EntityUtils.convert(appSystemService.list());
+	   List<IAppSystem> appSystemList =appSystemService.list();
 	   model.put(FishConstant.DATA, convert2(appSystemList));
 	   model.put(FishConstant.SUCCESS,true);
 	return model;

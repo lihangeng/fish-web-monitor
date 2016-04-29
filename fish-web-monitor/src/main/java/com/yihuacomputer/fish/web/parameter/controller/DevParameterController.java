@@ -148,7 +148,7 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 	public @ResponseBody ModelMap getAppData(HttpServletRequest request,WebRequest webRequest){
 		logger.info("search appSystem information");
 		ModelMap result=new ModelMap();
-		List<IAppSystem> appList=EntityUtils.convert(appSystemService.list());
+		List<IAppSystem> appList=appSystemService.list();
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, appList.size());
 		result.addAttribute(FishConstant.DATA,toForm(appList));
