@@ -238,6 +238,8 @@ public class ParamElementController {
 			                Date date = new Date();
 							paramElement.setCreateTime(DateUtils.getTimestamp(DateUtils.getTimestamp(date)));
 			                paramElement.setParamTimestamp(Long.parseLong(DateUtils.getTimestamp5(date)));
+			                paramElement.setParamType("2");
+			                paramElement.setParamRights("1");
 			                IParamClassify classify=classifyService.get(elementType);
 			                if(classify!=null){
 			                	paramElement.setParamClassify(classifyService.get(elementType));
