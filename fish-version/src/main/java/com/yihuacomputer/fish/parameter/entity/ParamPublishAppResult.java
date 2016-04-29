@@ -33,6 +33,9 @@ public class ParamPublishAppResult implements IParamPublishAppResult {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "STATUS", nullable = true, length = 20)
 	private TaskStatus status;
+	
+	@Column(name = "REASON", nullable = true, length = 30)
+	private String reason;
 
 	@ManyToOne(targetEntity = ParamPublishResult.class)
 	@JoinColumn(name = "PARAM_PUBLISH_RESULT_ID")
@@ -68,6 +71,14 @@ public class ParamPublishAppResult implements IParamPublishAppResult {
 
 	public void setParamPublishResult(IParamPublishResult paramPublishResult) {
 		this.paramPublishResult = paramPublishResult;
+	}
+
+	public String getReason() {
+		return reason;
+	}
+
+	public void setReason(String reason) {
+		this.reason = reason;
 	}
 
 }
