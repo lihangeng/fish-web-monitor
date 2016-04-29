@@ -16,7 +16,7 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 				trackResetOnLoad : true,
 				selectOnFocus : true,
 				defaults: {
-					width: 700,
+					width: 900,
 					labelAlign: 'right',
 					msgTarget : 'side'
 				},
@@ -41,13 +41,13 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 					selectOnFocus : true,
 					layout:'column',
 					height: 350,
-					width : 700,
+					width : 900,
 					region : 'center',
 					layout : 'border',
 					autoScroll : true,
 					items : [ {
 						title : EwayLocale.param.template.paramGridTitle,
-						width : 220,
+						width : 300,
 						height: 350,
 						region : 'west',
 						margin : '0 10px 0 0',
@@ -55,7 +55,7 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 						autoLoadStore : true
 					}, {
 						title : EwayLocale.param.template.addedParamGridTitle,
-						width : 470,
+						width : 600,
 						height: 350,
 						region : 'center',
 						xtype : 'param_addedParamGrid',

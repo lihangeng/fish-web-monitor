@@ -1,7 +1,7 @@
 
 Ext.define('Eway.model.parameter.template.AddingParam', {
 	extend: 'Ext.data.Model',
-	fields:['id','name','description','permissions','system'],
+	fields:['id','name','description','permissions','system','paramBelongsName','paramClassify'],
     proxy: {
         type: 'rest',
         url : 'api/parameter/template/addingParam',
