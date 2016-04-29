@@ -24,4 +24,11 @@ public interface IParamPublishAppResult {
 	 */
 	public IParamPublishResult getParamPublishResult();
 	public void setParamPublishResult(IParamPublishResult paramPublishResult);
+	
+	/**
+	 * 部署出现问题的原因
+	 * @return
+	 */
+	public String getReason() ;
+	public void setReason(String reason) ;
 }

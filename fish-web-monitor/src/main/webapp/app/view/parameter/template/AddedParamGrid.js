@@ -34,6 +34,7 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 			initRegion : true,
 			columns : [ {
 				header : EwayLocale.param.template.paramName,
+				flex : 1,
 				dataIndex : 'paramName',
 				storable : true
 			}, {
@@ -65,6 +66,14 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 		                	 return EwayLocale.param.template.uneditable;
 		             }
 				}
+			}, {
+				header : '归属系统',
+				dataIndex : 'paramBelongsName',
+				flex : 1
+			}, {
+				header : '参数分类',
+				dataIndex : 'paramClassify',
+				flex : 1
 			}, {
 				header : 'ID',
 				dataIndex : 'id',

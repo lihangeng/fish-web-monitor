@@ -34,6 +34,16 @@ Ext.define('Eway.view.parameter.template.ParamGrid', {
 				flex : 1,
 				storable : true
 			}, {
+				header : '归属系统',
+				dataIndex : 'paramBelongsName',
+				flex : 1,
+				storable : true
+			},{
+				header : '参数分类',
+				dataIndex : 'paramClassify',
+				flex : 1,
+				storable : true
+			},{
 				header : 'ID',
 				dataIndex : 'id',
 				hidden : true,
