@@ -1,14 +1,8 @@
 package com.yihuacomputer.fish.web.parameter.controller;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -215,7 +209,6 @@ public class ParamElementController {
 				/* 读文件内容 */
 				ArrayList<IParamElement> paramElementList = new ArrayList<IParamElement>();
 				if (fileType.equals(".ini")) {
-//					paramElementList = this.readIni(readFile);// 从ini文件件解析数据：
 					INIFileReader iniReader= new INIFileReader(readFile.getAbsolutePath());
 					 Map<String,Properties> sectionLevel = iniReader.sections;
 					 Iterator<String> elementTypeItertor = sectionLevel.keySet().iterator();
@@ -356,36 +349,6 @@ public class ParamElementController {
 		}
 		return result;
 	}
-	public static void main(String[] args) throws Exception{
-      ArrayList<IParamElement> paramElementList=new ArrayList<IParamElement>();
-
-      String readFile = "C:\\Users\\YH\\Desktop\\datapool.ini";
-      Properties props= new Properties();
-
-      props.load(new FileInputStream(readFile));
-
-      Set<Entry<Object, Object>> set = props.entrySet();
-      // 返回在此Set中的元素上进行迭代的迭代器
-      Iterator<Map.Entry<Object, Object>> it = set.iterator();
-      String key = null, value = null;
-      ParamElement paramElement = null;
-      // 循环取出key-value
-      while (it.hasNext()) {
-    	  paramElement = new ParamElement();
-          Entry<Object, Object> entry = it.next();
-
-          key = String.valueOf(entry.getKey());
-          value = String.valueOf(entry.getValue());
-
-          key = key == null ? key : key.trim().toUpperCase();
-          value = value == null ? value : value.trim().toUpperCase();
-          // 将key-value放入map中
-          paramElement.setParamName(key);
-          paramElement.setParamValue(value);
-          paramElementList.add(paramElement);
-      }
-      System.out.println(paramElementList);
-}
 
 	private boolean isExistParamName(long id,String name,long classifyId,long paramBelongsId){
 		try{
