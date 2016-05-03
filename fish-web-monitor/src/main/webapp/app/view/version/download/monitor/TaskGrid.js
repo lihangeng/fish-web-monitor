@@ -164,7 +164,14 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 			},{
 				header: EwayLocale.version.View.remark,//'备注',
 				dataIndex:'reason',
-				flex:1
+				flex:1,
+				renderer: function(value,metadata,record){
+					if(value == 'NULL'){
+		                	 return "";
+		             }else{
+		            	 return value;
+		             }
+				}
 			},{
 				xtype:'actioncolumn',
 				width: 80,

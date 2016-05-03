@@ -234,7 +234,7 @@ public class XfsService implements IXfsService {
 
             devStatusHql.append(getModHql(statusFilter));
         }
-
+        devStatusHql.append(" order by d.id");
         Object[] values = valueObj.toArray();
 
         PageResult<Object> result = (PageResult<Object>) this.dao.page(offset, limit, devStatusHql.toString(), values);
