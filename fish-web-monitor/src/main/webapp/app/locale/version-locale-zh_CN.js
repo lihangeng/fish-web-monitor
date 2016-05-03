@@ -276,8 +276,8 @@ Ext.apply(EwayLocale,{
 			general : '普通'//EwayLocale.version.jobPriority.general
 		},
 		jobType : {
-			float : '手工作业(立即下发)',//EwayLocale.version.jobType.float
-			fix : '计划作业(定时下发)'//EwayLocale.version.jobType.fix
+			float : '手工作业',//EwayLocale.version.jobType.float
+			fix : '计划作业'//EwayLocale.version.jobType.fix
 		},
 		taskStatus : {
 			news : '新建',//EwayLocale.version.taskStatus.news
