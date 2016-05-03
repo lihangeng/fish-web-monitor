@@ -104,7 +104,7 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 				}
 			},{
 				header:EwayLocale.param.element.lastModifyTime,
-				dataIndex:'eleModifyTiem',
+				dataIndex:'eleModifyTime',
 				sortable:true,
 				flex:1
 			}]

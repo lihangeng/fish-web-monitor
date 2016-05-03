@@ -196,6 +196,10 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 			for(DeviceParam deviceParam:pageResult){
 				if(deviceParam.getParamValue().isEmpty() || deviceParam.getParamValue()==null){
 					deviceParam.setParamValue(deviceParam.getElementParamValue());
+				}else{
+					String str=deviceParam.getDevParamModifyTime();
+					String s=str.substring(0,4)+"-"+str.substring(4, 6)+"-"+str.substring(6, 8)+" "+str.substring(8, 10)+":"+str.substring(10, 12)+":"+str.substring(12, 14);
+					deviceParam.setEleModifyTime(s);
 				}
 			}
 		}else{
@@ -216,12 +220,15 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 						dParam.setParamName(dp.getParamName());
 						if(dp.getParamValue() != null && dp.getParamValue() != ""){
 							dParam.setParamValue(dp.getParamValue());
+							String str=dp.getDevParamModifyTime();
+							String s=str.substring(0,4)+"-"+str.substring(4, 6)+"-"+str.substring(6, 8)+" "+str.substring(8, 10)+":"+str.substring(10, 12)+":"+str.substring(12, 14);
+							dParam.setEleModifyTime(s);
 						}else{
 							dParam.setParamValue(dp.getElementParamValue());
+							dParam.setEleModifyTime(dp.getEleModifyTime());
 						}
 						dParam.setEleParamType(dp.getEleParamType());
 						dParam.setEleParamRights(dp.getEleParamRights());
-						dParam.setEleModifyTiem(dp.getEleModifyTiem());
 						pageResult.add(dParam);
 					}
 				}
