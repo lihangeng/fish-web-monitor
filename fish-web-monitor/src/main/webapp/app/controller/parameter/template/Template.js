@@ -32,6 +32,9 @@ Ext.define('Eway.controller.parameter.template.Template',
 						ref : 'addWin',
 						selector : 'template_add'
 					}, {
+						ref : 'updateWin',
+						selector : 'template_updateTemplate'
+					}, {
 						ref : 'paramGrid',
 						selector : 'param_paramGrid'
 					}, {
@@ -146,7 +149,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 					},
 					
 					onAddUpdateConfirm: function(win,action,templateId) {
-						var ewayView = this.getAddWin();
+						
 						var addForm = win.down("form").getForm();
 						var data = addForm.getValues();
 						
@@ -170,8 +173,10 @@ Ext.define('Eway.controller.parameter.template.Template',
 						resources = resources + "]";
 						
 						var record = store.getAt(i);
+						
 						if(action=='add'){
-							
+								var addWin = this.getAddWin();
+								addWin.down('button[action="add"]').setDisabled(true);
 								var form = win.down('form').getForm();
 								if(form.isValid()){
 									var temp = Ext.create("Eway.model.parameter.template.Template",{
@@ -191,7 +196,6 @@ Ext.define('Eway.controller.parameter.template.Template',
 										 failure: function(record,operation){
 											Eway.alert(EwayLocale.tip.paramTemplate.addFailure+operation.error);
 										 },
-										 
 										 scope : this
 									});
 										
@@ -200,6 +204,8 @@ Ext.define('Eway.controller.parameter.template.Template',
 								}
 						}
 						else{
+							var updateWin = this.getUpdateWin();
+							updateWin.down('button[action="confirm"]').setDisabled(true);
 							var temp = Ext.create("Eway.model.parameter.template.TemplateDetail",{
 					    		name: data.name,
 					    		remark: data.remark,
