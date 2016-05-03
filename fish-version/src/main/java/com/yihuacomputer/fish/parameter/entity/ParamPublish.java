@@ -36,8 +36,8 @@ public class ParamPublish implements IParamPublish {
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "PUBLISHER_TYPE", length = 20)
     private JobType jobType;
-	
-    @OneToMany(mappedBy = "paramPublish", targetEntity = ParamPublishResult.class)
+    
+    @OneToMany(targetEntity = ParamPublishResult.class,mappedBy="paramPublish")
     private List<IParamPublishResult> paramPublishs = new ArrayList<IParamPublishResult>();
 
 	@Column(name = "PUBLISH_RET")

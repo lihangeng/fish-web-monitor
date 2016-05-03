@@ -17,6 +17,7 @@ import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishAppResultService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
+import com.yihuacomputer.fish.api.parameter.IParamPublishSearchService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
@@ -40,6 +41,7 @@ import com.yihuacomputer.fish.parameter.service.ParamDeviceDetailService;
 import com.yihuacomputer.fish.parameter.service.ParamElementService;
 import com.yihuacomputer.fish.parameter.service.ParamPublishAppResultService;
 import com.yihuacomputer.fish.parameter.service.ParamPublishResultService;
+import com.yihuacomputer.fish.parameter.service.ParamPublishSearchService;
 import com.yihuacomputer.fish.parameter.service.ParamPublishService;
 import com.yihuacomputer.fish.parameter.service.ParamTemplateDetailService;
 import com.yihuacomputer.fish.parameter.service.ParamTemplateDeviceRelationService;
@@ -216,5 +218,9 @@ public class VersionModule {
 	@Bean
 	public IParamPublishAppResultService paramPublishAppResultService(){
 		return new ParamPublishAppResultService();
+	}
+	@Bean
+	public IParamPublishSearchService paramPublishSearchService(){
+		return new ParamPublishSearchService();
 	}
 }

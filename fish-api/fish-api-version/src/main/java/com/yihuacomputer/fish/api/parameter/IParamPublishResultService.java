@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.api.parameter;
 
+import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.fish.api.device.IDevice;
 
 
@@ -23,4 +25,8 @@ public interface IParamPublishResultService {
 	 * @param msg
 	 */
 	public boolean notice(IParamPublishResult msg,IDevice device);
+	
+	IPageResult<ParamDownloadResultForm> page(int start,int limit,IFilter filter);
+	IPageResult<ParamDownloadResultForm> getByPublishId(int start,int limit, long publishId);
+	
 }

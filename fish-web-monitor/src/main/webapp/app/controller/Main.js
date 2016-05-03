@@ -297,6 +297,8 @@ Ext.define('Eway.controller.Main', {
 			this.activeController('parameter.classify.Classify',text);
 		}else if(code=='devParameter'){
 			this.activeController('parameter.devParameter.DevParameter',text);
+		}else if(code =='paramMonitor'){
+			this.activeController('parameter.paramMonitor.ParamMonitor',text);
 		}
 	},
 

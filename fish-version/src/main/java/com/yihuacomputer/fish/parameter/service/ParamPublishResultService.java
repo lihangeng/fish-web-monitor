@@ -1,7 +1,9 @@
 package com.yihuacomputer.fish.parameter.service;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,19 +13,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.FishCfg;
+import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.ITypeIP;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.DateUtils;
+import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishService;
+import com.yihuacomputer.fish.api.parameter.ParamDownloadResultForm;
 import com.yihuacomputer.fish.api.parameter.ParamInfo;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.api.version.VersionCfg;
 import com.yihuacomputer.fish.api.version.job.JobType;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
+import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.parameter.entity.ParamPublishResult;
 import com.yihuacomputer.fish.version.notice.NoticeForm;
 
@@ -36,7 +43,8 @@ public class ParamPublishResultService implements IParamPublishResultService {
 	@Autowired
 	private IParamPublishService paramPublishService;
 
-	private Logger logger = LoggerFactory.getLogger(ParamPublishResultService.class);
+	private Logger logger = LoggerFactory
+			.getLogger(ParamPublishResultService.class);
 
 	@Autowired
 	private MessageSource messageSourceVersion;
@@ -79,16 +87,20 @@ public class ParamPublishResultService implements IParamPublishResultService {
 		msg.setPatchNo(String.valueOf(result.getVersionNo()));
 		if (result != null) {
 			msg.setPatch(ParamInfo.class.getSimpleName());
-			msg.setServerPath(VersionCfg.getAtmParamDir() + File.separator + msg.getPatchNo());
+			msg.setServerPath(VersionCfg.getAtmParamDir() + File.separator
+					+ msg.getPatchNo());
 			result.setDownloadStartTime(DateUtils.getTimestamp(new Date()));
 			try {
-				msg = (NoticeForm) HttpProxy.httpPost(url, msg, NoticeForm.class, 30000);
+				msg = (NoticeForm) HttpProxy.httpPost(url, msg,
+						NoticeForm.class, 30000);
 			} catch (Exception e) {
 				logger.error(e.getMessage());
 			}
 			if (msg.getRet().equals("RET0100")) {
 				retResult = 1;
-				result.setReason(messageSourceVersion.getMessage("exception.task.sameTaskRuningForAgentRefuse", null, FishCfg.locale));
+				result.setReason(messageSourceVersion.getMessage(
+						"exception.task.sameTaskRuningForAgentRefuse", null,
+						FishCfg.locale));
 			} else {
 				retResult = 2;
 				result.setReason("");
@@ -118,11 +130,72 @@ public class ParamPublishResultService implements IParamPublishResultService {
 	}
 
 	@Override
-	public IParamPublishResult getParamPublishResult(long deviceId, long versionNo) {
+	public IParamPublishResult getParamPublishResult(long deviceId,
+			long versionNo) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("from ").append(ParamPublishResult.class.getSimpleName()).append(" result ").append("where result.deviceId=? and result.versionNo=? and result.paramPublish.jobType=?");
+		sb.append("from ")
+				.append(ParamPublishResult.class.getSimpleName())
+				.append(" result ")
+				.append("where result.deviceId=? and result.versionNo=? and result.paramPublish.jobType=?");
 
-		return dao.findUniqueByHql(sb.toString(), new Object[] { deviceId, versionNo, JobType.AUTO_UPDATE });
+		return dao.findUniqueByHql(sb.toString(), new Object[] { deviceId,
+				versionNo, JobType.AUTO_UPDATE });
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public IPageResult<ParamDownloadResultForm> page(int start, int limit,IFilter filter) {
+		StringBuffer hql = new StringBuffer();
+		hql.append("select ppr,device from ParamPublishResult ppr ");
+		hql.append(",Device device where ppr.deviceId=device.id ");
+		IPageResult<Object> list = (IPageResult<Object>) dao.page(start,limit,filter, hql.toString());
+		List<ParamDownloadResultForm> result = new ArrayList<ParamDownloadResultForm>();
+		for (Object object : list.list()) {
+			ParamDownloadResultForm form = new ParamDownloadResultForm();
+			Object[] objects = (Object[]) object;
+			IParamPublishResult ppr = (ParamPublishResult) objects[0];
+			IDevice device = (Device) objects[1];
+			form.setId(ppr.getId());
+			form.setDeviceId(ppr.getDeviceId());
+			form.setTerminalId(device.getTerminalId());
+			form.setDownloadStartTime(ppr.getDownloadStartTime());
+			form.setDownloadFinishTime(ppr.getDownloadFinishTime());
+			form.setReason(ppr.getReason());
+			form.setSuccess(ppr.isSuccess());
+			form.setVersionNo(ppr.getVersionNo());
+			form.setTaskStatus(ppr.getRet().getText());
+			result.add(form);
+		}
+		return new PageResult<ParamDownloadResultForm>(list.getTotal(), result);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public IPageResult<ParamDownloadResultForm> getByPublishId(int start,int limit, long publishId) {
+		StringBuffer hql = new StringBuffer();
+		hql.append("select ppr,device from ParamPublishResult ppr ");
+		hql.append(",Device device where ppr.deviceId=device.id and ppr.paramPublish.id= ?");
+		IPageResult<Object> list = (IPageResult<Object>) dao.page(start,limit, hql.toString(),publishId);
+		List<ParamDownloadResultForm> result = new ArrayList<ParamDownloadResultForm>();
+		for (Object object : list.list()) {
+			ParamDownloadResultForm form = new ParamDownloadResultForm();
+			Object[] objects = (Object[]) object;
+			IParamPublishResult ppr = (ParamPublishResult) objects[0];
+			IDevice device = (Device) objects[1];
+			form.setId(ppr.getId());
+			form.setDeviceId(ppr.getDeviceId());
+			form.setTerminalId(device.getTerminalId());
+			form.setDownloadStartTime(ppr.getDownloadStartTime());
+			form.setDownloadFinishTime(ppr.getDownloadFinishTime());
+			form.setReason(ppr.getReason());
+			form.setSuccess(ppr.isSuccess());
+			form.setVersionNo(ppr.getVersionNo());
+			form.setTaskStatus(ppr.getRet().getText());
+			result.add(form);
+		}
+
+		
+		return new PageResult<ParamDownloadResultForm>(list.getTotal(), result);
 	}
 
 }
