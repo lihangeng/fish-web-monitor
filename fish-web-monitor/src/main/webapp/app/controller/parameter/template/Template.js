@@ -158,6 +158,8 @@ Ext.define('Eway.controller.parameter.template.Template',
 						var tempRess = [];
 						this.generateTemplateDetail(tempRess,store);
 						var resources = '[';
+						
+						if(addForm.isValid()){
 						for(var i in tempRess){
 				    		var res = tempRess[i];
 							var tempRes_str = "{'paramName':'" + res.data.paramName
@@ -228,7 +230,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 							
 							
 						}
-						
+					}
 						
 					},
 					
