@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetailService;
 import com.yihuacomputer.fish.parameter.entity.ParamTemplateDetail;
@@ -15,7 +16,7 @@ public class ParamTemplateDetailService implements IParamTemplateDetailService {
 
 	@Autowired
 	private IGenericDao dao;
-	
+
 	@Override
 	public IParamTemplateDetail get(long id) {
 		return dao.get(id, ParamTemplateDetail.class);
@@ -43,8 +44,13 @@ public class ParamTemplateDetailService implements IParamTemplateDetailService {
 		hql.append("where ptd.paramTemplate.id= ptdr.templateId and ptdr.deviceId = ?");
 		return dao.findByHQL(hql.toString(),Long.valueOf(deviceId));
 	}
-	
-	
-	
+
+	@Override
+	public List<IParamTemplateDetail> listByTempateId(long templateId) {
+		return dao.loadAll(IParamTemplateDetail.class);
+	}
+
+
+
 
 }
