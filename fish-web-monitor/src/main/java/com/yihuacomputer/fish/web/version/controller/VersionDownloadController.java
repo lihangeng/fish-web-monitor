@@ -157,32 +157,26 @@ public class VersionDownloadController {
 				List<Long> deviceIdList = new ArrayList<Long>();
 				for (String id : ids) {
 					Long deviceId = Long.valueOf(id);
+					IDevice device = deviceService.get(deviceId);
+					if (device == null) {
+						result.put(FishConstant.SUCCESS, false);
+						result.put("errorMsg", messageVersionSource.getMessage("version.device.downloadFailure", null, FishCfg.locale));
+						return result;
+					}
 					deviceIdList.add(deviceId);
 				}
 				filter.eq("deviceIds", deviceIdList);
 			}
 		}
-		int downloadCounter = version.getDownloadCounter()+1;
-		if(downloadCounter == 0){
-			result.put(FishConstant.SUCCESS, false);
-			result.put("errorMsg", "下发的版本不存在，请重新选择！");
-			return result;
-		}
-		
-		IDevice device = deviceService.get(form.getDeviceIds());
-		if (device == null) {
-			result.put(FishConstant.SUCCESS, false);
-			result.put("errorMsg", "下发的设备不存在，请重新选择！");
-			return result;
-		}
-		
-/*		IVersion versions = versionService.getById(form.getVersionId());	
+
+		IVersion versions = versionService.getById(form.getVersionId());
 		if(versions == null){
 			result.put(FishConstant.SUCCESS, false);
-			result.put("errorMsg", "下发的版本不存在，请重新选择！");
+			result.put("errorMsg", messageVersionSource.getMessage("version.versionNo.downloadFailure", null, FishCfg.locale));
 			return result;
-		}*/
+		}
 		
+		int downloadCounter = version.getDownloadCounter()+1;		
 		IJob job = jobService.make();
 		job.setJobName(form.getJobName()+"_"+downloadCounter);
 		job.setVersion(versionService.getById(form.getVersionId()));

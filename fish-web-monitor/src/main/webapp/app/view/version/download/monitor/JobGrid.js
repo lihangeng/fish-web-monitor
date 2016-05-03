@@ -131,6 +131,7 @@ Ext.define('Eway.view.version.download.monitor.JobGrid', {
 			},{
 				header : EwayLocale.version.taskType,//'备注',
 				dataIndex : 'jobType',
+				renderer: Eway.lib.Util.dictRenderer('version.JobType'),
 				flex : 1,
 				sortable : true
 			}],

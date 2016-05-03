@@ -198,10 +198,8 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	
 	onTabChange:function( tabPanel, newCard, oldCard, eOpts ){
 		if(newCard.name=='groupPanel'){
-			var tabpanel = this.getEwayView().down("tabpanel");
 			var jobDetailPanel = this.getEwayView().down("panel[name='taskDetails']");
-			tabpanel.remove(jobDetailPanel,true);
-			this.onJobDetail();
+			jobDetailPanel.close();
 
 		}
 	},
