@@ -44,7 +44,7 @@ Ext.define('Eway.view.parameter.template.Add', {
 					width : 900,
 					region : 'center',
 					layout : 'border',
-					autoScroll : true,
+//					autoScroll : true,
 					items : [ {
 						title : EwayLocale.param.template.paramGridTitle,
 						width : 300,

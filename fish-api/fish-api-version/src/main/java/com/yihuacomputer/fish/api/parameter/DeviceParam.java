@@ -25,7 +25,9 @@ public class DeviceParam {
 	
 	private String eleParamRights;
 	
-	private String eleModifyTiem;
+	private String eleModifyTime;
+	
+	private String devParamModifyTime;
 	
 	private String templateParamValue;
 	
@@ -91,12 +93,21 @@ public class DeviceParam {
 		this.eleParamRights = eleParamRights;
 	}
 
-	public String getEleModifyTiem() {
-		return eleModifyTiem;
+
+	public String getEleModifyTime() {
+		return eleModifyTime;
 	}
 
-	public void setEleModifyTiem(String eleModifyTiem) {
-		this.eleModifyTiem = eleModifyTiem;
+	public void setEleModifyTime(String eleModifyTime) {
+		this.eleModifyTime = eleModifyTime;
+	}
+
+	public String getDevParamModifyTime() {
+		return devParamModifyTime;
+	}
+
+	public void setDevParamModifyTime(String devParamModifyTime) {
+		this.devParamModifyTime = devParamModifyTime;
 	}
 
 	public String getTemplateParamValue() {
