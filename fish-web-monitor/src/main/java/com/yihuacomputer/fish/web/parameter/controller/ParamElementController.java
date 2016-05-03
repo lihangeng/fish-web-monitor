@@ -245,9 +245,15 @@ public class ParamElementController {
 			                	paramElement.setParamClassify(classifyService.get(elementType));
 			                }else{
 			                	IParamClassify paramClassify =classifyService.make();
+
+			                	if(elementType != null && elementType.length()!=0  ){
 			                	paramClassify.setName(elementType);
 			                	classifyService.add(paramClassify);
 			                	paramElement.setParamClassify(paramClassify);
+			                	}
+			                	else{
+			                		paramElement.setParamClassify(classifyService.get(1));
+			                	}
 			                }
 
 			                paramElementList.add(paramElement);
