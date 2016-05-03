@@ -12,7 +12,11 @@ Ext.define('Eway.view.parameter.paramMonitor.TaskGrid', {
 			tbar : [ '->', {
 				text : EwayLocale.button.search,
 				glyph : 0xf002,
-				action : 'query'
+				action : 'query',
+				code : 'paramMonitorTaskQuery',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			 }],
 			columns : [ {
 				header : '任务ID',

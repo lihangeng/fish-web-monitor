@@ -12,10 +12,18 @@ Ext.define('Eway.view.parameter.paramMonitor.JobGrid', {
 			tbar : [ '->', {
 				text : EwayLocale.button.search,
 				glyph : 0xf002,
-				action : 'query'
+				action : 'query',
+				code : 'paramMonitorQuery',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			 },{
 				 text:'详情',
-				 action:'detail'
+				 action:'detail',
+				 code : 'paramMonitorDetail',
+					listeners:{
+						'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+					}
 			 }],
 			columns : [ {
 				header : '作业ID',
