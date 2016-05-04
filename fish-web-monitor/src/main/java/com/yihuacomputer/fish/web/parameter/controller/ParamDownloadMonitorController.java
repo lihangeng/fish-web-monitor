@@ -108,8 +108,12 @@ public class ParamDownloadMonitorController {
 	public @ResponseBody ModelMap TaskSearch(@RequestParam int start,@RequestParam int limit,HttpServletRequest request,WebRequest webRequest){
 		logger.info("search parameter download task information");
 		ModelMap result=new ModelMap();
+		String publishId=null;
+		if(request.getParameter("publishId") !=null && !request.getParameter("publishId").isEmpty()){
+			publishId=request.getParameter("publishId");
+		}
 		IFilter filter=TaskFilter(webRequest);
-		IPageResult<ParamDownloadResultForm> pageResult=paramPublishResultService.page(start, limit, filter);
+		IPageResult<ParamDownloadResultForm> pageResult=paramPublishResultService.getByPublishId(start, limit, filter,publishId);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
 		result.addAttribute(FishConstant.DATA, pageResult.list());
@@ -136,17 +140,6 @@ public class ParamDownloadMonitorController {
 		}
 
 		return filter;
-	}
-	
-	@RequestMapping(value="/detail",method=RequestMethod.GET)
-	public @ResponseBody ModelMap detail(@RequestParam int start,@RequestParam int limit,@RequestParam long id,HttpServletRequest request){
-		logger.info("search job detail");
-		ModelMap result=new ModelMap();
-		IPageResult<ParamDownloadResultForm> pageResult=paramPublishResultService.getByPublishId(start, limit, id);
-		result.addAttribute(FishConstant.SUCCESS, true);
-		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA, pageResult.list());
-		return result;
 	}
 	
 }

@@ -142,40 +142,21 @@ public class ParamPublishResultService implements IParamPublishResultService {
 				versionNo, JobType.AUTO_UPDATE });
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public IPageResult<ParamDownloadResultForm> page(int start, int limit,IFilter filter) {
-		StringBuffer hql = new StringBuffer();
-		hql.append("select ppr,device from ParamPublishResult ppr ");
-		hql.append(",Device device where ppr.deviceId=device.id ");
-		IPageResult<Object> list = (IPageResult<Object>) dao.page(start,limit,filter, hql.toString());
-		List<ParamDownloadResultForm> result = new ArrayList<ParamDownloadResultForm>();
-		for (Object object : list.list()) {
-			ParamDownloadResultForm form = new ParamDownloadResultForm();
-			Object[] objects = (Object[]) object;
-			IParamPublishResult ppr = (ParamPublishResult) objects[0];
-			IDevice device = (Device) objects[1];
-			form.setId(ppr.getId());
-			form.setDeviceId(ppr.getDeviceId());
-			form.setTerminalId(device.getTerminalId());
-			form.setDownloadStartTime(ppr.getDownloadStartTime());
-			form.setDownloadFinishTime(ppr.getDownloadFinishTime());
-			form.setReason(ppr.getReason());
-			form.setSuccess(ppr.isSuccess());
-			form.setVersionNo(ppr.getVersionNo());
-			form.setTaskStatus(ppr.getRet().getText());
-			result.add(form);
-		}
-		return new PageResult<ParamDownloadResultForm>(list.getTotal(), result);
+		return dao.page(start, limit, filter, ParamPublishResult.class);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public IPageResult<ParamDownloadResultForm> getByPublishId(int start,int limit, long publishId) {
+	public IPageResult<ParamDownloadResultForm> getByPublishId(int start,int limit,IFilter filter,String publishId) {
 		StringBuffer hql = new StringBuffer();
 		hql.append("select ppr,device from ParamPublishResult ppr ");
-		hql.append(",Device device where ppr.deviceId=device.id and ppr.paramPublish.id= ?");
-		IPageResult<Object> list = (IPageResult<Object>) dao.page(start,limit, hql.toString(),publishId);
+		hql.append(",Device device where ppr.deviceId=device.id ");
+		if(publishId != null && !publishId.isEmpty()){
+			hql.append("and ppr.paramPublish.id= ").append(Long.valueOf(publishId));
+		}
+		IPageResult<Object> list = (IPageResult<Object>) dao.page(start,limit, hql.toString());
 		List<ParamDownloadResultForm> result = new ArrayList<ParamDownloadResultForm>();
 		for (Object object : list.list()) {
 			ParamDownloadResultForm form = new ParamDownloadResultForm();
@@ -193,8 +174,6 @@ public class ParamPublishResultService implements IParamPublishResultService {
 			form.setTaskStatus(ppr.getRet().getText());
 			result.add(form);
 		}
-
-		
 		return new PageResult<ParamDownloadResultForm>(list.getTotal(), result);
 	}
 

@@ -58,21 +58,8 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 			tabpanel.add(paramDetailPanel);
 			paramDetailPanel.setTitle("作业："+record.get('id')+"监控下发详情");
 			tabpanel.setActiveItem(paramDetailPanel);
-			Ext.Ajax.request({
-				method:'GET',
-				params:{
-					id:record.get('id'),
-					start:0,
-					limit:25
-				},
-				url:'api//parameter/downloadMonior/detail',
-				success:function(){
-					
-				}
-				
-			});
+			this.onTaskQuery();
 		}
-		
 	},
 	onTaskQuery : function(){
 		var view = this.getEwayView();
@@ -93,7 +80,5 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 		}else {
 			Eway.alert('选中一条记录');
 		}
-
 	},
-	
 });
