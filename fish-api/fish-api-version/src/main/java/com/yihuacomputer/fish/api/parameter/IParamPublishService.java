@@ -22,17 +22,17 @@ public interface IParamPublishService {
 	 * 根据模板ID和操作人员信息进行下发操作
 	 * @param templateId
 	 * @param personId
-	 * @return
+	 * @return 下发任务详情
 	 */
-	boolean paramPublishByTemplate(long templateId,long personId);
+	long paramPublishByTemplate(long templateId,long personId);
 	
 	/**
 	 * 根据设备ID列表和操作人员信息进行下发操作
 	 * @param deviceId
 	 * @param personId
-	 * @return
+	 * @return 下发任务详情
 	 */
-	boolean paramPublishByDeviceIds(List<Long> deviceId,long personId);
+	long paramPublishByDeviceIds(List<Long> deviceId,long personId);
 	
 	/**
 	 * 获取设备最新的参数版本号

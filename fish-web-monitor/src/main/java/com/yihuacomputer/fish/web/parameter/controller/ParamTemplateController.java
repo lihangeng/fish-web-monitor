@@ -428,8 +428,8 @@ public class ParamTemplateController {
 			IParamTemplate template = templateService.get(templateId);
 			UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
 			templateService.issueTemplate(template, timeStamp);
-			boolean noticeResult = paramPushService.paramPublishByTemplate(templateId, Long.parseLong(userSession.getPersonId()));
-			if(noticeResult){
+			long jobId = paramPushService.paramPublishByTemplate(templateId, Long.parseLong(userSession.getPersonId()));
+			if(jobId!=Long.MIN_VALUE){
 				template.setApplyFlag("1");
 				templateService.update(template);
 				result.put(FishConstant.SUCCESS, true);

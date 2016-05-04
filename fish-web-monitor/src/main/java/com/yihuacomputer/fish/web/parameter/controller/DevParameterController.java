@@ -324,8 +324,8 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 				List<Long> deviceIdList=new ArrayList<Long>();
 				deviceIdList.add(terminalId);
 				UserSession userSession=(UserSession) request.getSession().getAttribute("SESSION_USER");
-				boolean release=paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
-				if(release){
+				long jobId=paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
+				if(jobId!=Long.MIN_VALUE){
 					result.addAttribute(FishConstant.SUCCESS, true);
 					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadSuccess", null, FishCfg.locale));
 				}else{
@@ -351,8 +351,8 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 			deviceIdList.add(Long.valueOf(terminalId));
 		}
 		UserSession userSession=(UserSession) request.getSession().getAttribute("SESSION_USER");
-		boolean release=paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
-		if(release){
+		long jobId=paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
+		if(jobId!=Long.MIN_VALUE){
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadSuccess", null, FishCfg.locale));
 		}else{

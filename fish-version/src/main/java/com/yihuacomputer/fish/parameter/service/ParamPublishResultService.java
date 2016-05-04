@@ -78,44 +78,42 @@ public class ParamPublishResultService implements IParamPublishResultService {
 
 	private static final String PARAM_PUSH_URL = "/ctr/paramUpdateNotify";
 
-	public boolean notice(IParamPublishResult result, IDevice device) {
+	public boolean notice(IParamPublishResult publishResult, IDevice device) {
 		String url = getNoticetUrl(device.getIp());
 		NoticeForm msg = new NoticeForm();
 
 		int retResult = 0;
-		msg.setTaskId(result.getId());
-		msg.setPatchNo(String.valueOf(result.getVersionNo()));
-		if (result != null) {
+		msg.setTaskId(publishResult.getId());
+		msg.setPatchNo(String.valueOf(publishResult.getVersionNo()));
+		if (publishResult != null) {
 			msg.setPatch(ParamInfo.class.getSimpleName());
-			msg.setServerPath(VersionCfg.getAtmParamDir() + File.separator
-					+ msg.getPatchNo());
-			result.setDownloadStartTime(DateUtils.getTimestamp(new Date()));
+			msg.setServerPath(VersionCfg.getAtmParamDir() + File.separator + msg.getPatchNo());
+			publishResult.setDownloadStartTime(DateUtils.getTimestamp(new Date()));
 			try {
-				msg = (NoticeForm) HttpProxy.httpPost(url, msg,
-						NoticeForm.class, 30000);
+				msg = (NoticeForm) HttpProxy.httpPost(url, msg, NoticeForm.class, 30000);
 			} catch (Exception e) {
 				logger.error(e.getMessage());
 			}
 			if (msg.getRet().equals("RET0100")) {
 				retResult = 1;
-				result.setReason(messageSourceVersion.getMessage(
-						"exception.task.sameTaskRuningForAgentRefuse", null,
+				publishResult.setReason(messageSourceVersion.getMessage("exception.task.sameTaskRuningForAgentRefuse", null,
 						FishCfg.locale));
 			} else {
 				retResult = 2;
-				result.setReason("");
+				publishResult.setReason("");
 			}
 		}
 		if (retResult == 1) {
-			result.setRet(TaskStatus.NOTICED_FAIL);
-			result.setSuccess(false);
+			publishResult.setRet(TaskStatus.NOTICED_FAIL);
+			publishResult.setSuccess(false);
 		} else if (retResult == 2) {
-			result.setRet(TaskStatus.NOTICED);
-			result.setSuccess(true);
+			publishResult.setRet(TaskStatus.NOTICED);
+			publishResult.setSuccess(true);
 		} else if (retResult == -1) {
-			result.setRet(TaskStatus.NOTICED_FAIL);
-			result.setSuccess(false);
+			publishResult.setRet(TaskStatus.NOTICED_FAIL);
+			publishResult.setSuccess(false);
 		}
+		this.update(publishResult);
 		return true;
 
 	}

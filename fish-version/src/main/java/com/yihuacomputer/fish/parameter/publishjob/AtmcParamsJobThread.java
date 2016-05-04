@@ -21,9 +21,7 @@ public class AtmcParamsJobThread implements Runnable {
 
 	}
 
-	public AtmcParamsJobThread(IParamPublishResult result,
-			IParamPublishResultService atmcParamPublishResultService
-			) {
+	public AtmcParamsJobThread(IParamPublishResult result,IParamPublishResultService atmcParamPublishResultService) {
 		this.result = result;
 		this.atmcParamPublishResultService = atmcParamPublishResultService;
 	}
