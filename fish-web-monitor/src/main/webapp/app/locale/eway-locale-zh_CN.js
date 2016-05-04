@@ -85,6 +85,7 @@ Ext.apply(EwayLocale,{
 		download:'下发',//EwayLocale.button.download
 		downloadToolTip:'配置下发作业',//EwayLocale.button.downloadToolTip
 		save:'保&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;存',//EwayLocale.button.save
+		saves:'保存',//EwayLocale.button.saves
 		adminBtn:'管理员',//EwayLocale.button.adminBtn
 		personM:'厂商管理员',//EwayLocale.button.personM
 		personTM:'管机员',//EwayLocale.button.personTM

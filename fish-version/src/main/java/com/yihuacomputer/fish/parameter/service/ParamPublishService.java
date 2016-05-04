@@ -268,36 +268,61 @@ public class ParamPublishService implements IParamPublishService {
 	 * @param templateId
 	 * @return
 	 */
-	private boolean noticeDeviceDownloadParamFileByTemplate(long templateId, long versionNo, long personId) {
-		List<IDevice> templateDeviceRelationList = templateDeviceRelationService.listDeviceByTemplate(templateId);
-		String file = VersionCfg.getAtmParamDir()  + FishCfg.fileSep + versionNo + FishCfg.fileSep;
-		ParamInfo paramInfo = new ParamInfo();
-		paramInfo.setVersionNo(versionNo);
-		paramInfo.setServerPath(file);
-		Thread thread = new Thread(new NoticeThread(templateDeviceRelationList, paramInfo, paramPulishResultService, publishJobManager, personId));
-		thread.start();
-		return true;
+	private long noticeDeviceDownloadParamFileByTemplate(long templateId, long versionNo, long personId) {
+		try{
+			List<IDevice> templateDeviceRelationList = templateDeviceRelationService.listDeviceByTemplate(templateId);
+			String file = VersionCfg.getAtmParamDir()  + FishCfg.fileSep + versionNo + FishCfg.fileSep;
+			ParamInfo paramInfo = new ParamInfo();
+			paramInfo.setVersionNo(versionNo);
+			paramInfo.setServerPath(file);
+			IParamPublish paramPublish = make();
+			String date = DateUtils.getTimestamp(new Date());
+			logger.info("paramPublish date is " + date + ",person is " + personId);
+			paramPublish.setDate(date);
+			paramPublish.setPublisher(personId);
+			//
+			paramPublish.setRet("NEW");
+			paramPublish = save(paramPublish);
+			Thread thread = new Thread(new NoticeThread(templateDeviceRelationList, paramInfo, paramPulishResultService, publishJobManager,paramPublish));
+			thread.start();
+			return paramPublish.getId();
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			return Long.MIN_VALUE;
+		}
 	}
 	/**
 	 * 设备参数下发
 	 * @param deviceId
 	 * @return
 	 */
-	private boolean noticeDeviceDownloadParamFileByDevice(List<Long> deviceIdList, List<Long> versionNoList, long personId) {
-		IFilter filter = new Filter();
-		filter.in("id", deviceIdList);
-		List<IDevice> deviceList = deviceService.list(filter);
-		List<ParamInfo> list = new ArrayList<ParamInfo>();
-		for (long versionNo : versionNoList) {
-			String file = VersionCfg.getAtmParamDir() + FishCfg.fileSep + versionNo + FishCfg.fileSep;
-			ParamInfo paramInfo = new ParamInfo();
-			paramInfo.setVersionNo(versionNo);
-			paramInfo.setServerPath(file);
-			list.add(paramInfo);
+	private long noticeDeviceDownloadParamFileByDevice(List<Long> deviceIdList, List<Long> versionNoList, long personId) {
+		try{
+			IFilter filter = new Filter();
+			filter.in("id", deviceIdList);
+			List<IDevice> deviceList = deviceService.list(filter);
+			List<ParamInfo> list = new ArrayList<ParamInfo>();
+			for (long versionNo : versionNoList) {
+				String file = VersionCfg.getAtmParamDir() + FishCfg.fileSep + versionNo + FishCfg.fileSep;
+				ParamInfo paramInfo = new ParamInfo();
+				paramInfo.setVersionNo(versionNo);
+				paramInfo.setServerPath(file);
+				list.add(paramInfo);
+			}
+			IParamPublish paramPublish = make();
+			String date = DateUtils.getTimestamp(new Date());
+			logger.info("paramPublish date is " + date + ",person is " + personId);
+			paramPublish.setDate(date);
+			paramPublish.setPublisher(personId);
+			paramPublish.setRet("NEW");
+			paramPublish = save(paramPublish);
+			Thread thread = new Thread(new NoticeThread(deviceList, list, paramPulishResultService, publishJobManager,paramPublish));
+			thread.start();
+			return  paramPublish.getId();
+		}catch(Exception e){
+			logger.error(e.getMessage());
+			return Long.MIN_VALUE;
 		}
-		Thread thread = new Thread(new NoticeThread(deviceList, list, paramPulishResultService, publishJobManager, personId));
-		thread.start();
-		return true;
 	}
 
 	/**
@@ -504,18 +529,17 @@ public class ParamPublishService implements IParamPublishService {
 	}
 
 	@Override
-	public boolean paramPublishByTemplate(long templateId, long personId) {
+	public long paramPublishByTemplate(long templateId, long personId) {
 		return noticeDeviceDownloadParamFileByTemplate(templateId, generateParamFileByTemplate(templateId), personId);
 	}
 
 	@Override
-	public boolean paramPublishByDeviceIds(List<Long> deviceIds, long personId) {
+	public long paramPublishByDeviceIds(List<Long> deviceIds, long personId) {
 		List<Long> versionList = new ArrayList<Long>();
 		for (long deviceId : deviceIds) {
 			versionList.add(generateParamFileByDevice(deviceId));
 		}
-		noticeDeviceDownloadParamFileByDevice(deviceIds, versionList, personId);
-		return true;
+		return noticeDeviceDownloadParamFileByDevice(deviceIds, versionList, personId);
 	}
 
 	// @Autowired
@@ -535,12 +559,12 @@ class NoticeThread implements Runnable {
 	private ParamInfo paramInfo;
 	private List<ParamInfo> paramInfoList;
 
-	// private SessionFactory sessionFactory;
 	private IParamPublishService paramPublishService;
 	private IParamPublishResultService paramPublishResultService;
 	private PublishJobManager publishJobManager;
 	private boolean isTemplate = true;
-	private long personId;
+	
+	private IParamPublish paramPublish;
 
 	/**
 	 * 模板下发
@@ -550,13 +574,13 @@ class NoticeThread implements Runnable {
 	 * @param publishService
 	 * @param publishJobManager
 	 */
-	public NoticeThread(List<IDevice> deviceList, ParamInfo paramInfo, IParamPublishResultService paramPublishResultService, PublishJobManager publishJobManager, long personId) {
+	public NoticeThread(List<IDevice> deviceList, ParamInfo paramInfo, IParamPublishResultService paramPublishResultService, PublishJobManager publishJobManager, IParamPublish paramPublish) {
 		this.deviceList = deviceList;
 		this.paramInfo = paramInfo;
 		this.publishJobManager = publishJobManager;
 		this.paramPublishService = paramPublishResultService.getParamPublishService();
 		this.paramPublishResultService = paramPublishResultService;
-		this.personId = personId;
+		this.paramPublish = paramPublish;
 	}
 
 	/**
@@ -567,27 +591,20 @@ class NoticeThread implements Runnable {
 	 * @param publishService
 	 * @param publishJobManager
 	 */
-	public NoticeThread(List<IDevice> deviceList, List<ParamInfo> paramInfoList, IParamPublishResultService paramPublishResultService, PublishJobManager publishJobManager, long personId) {
+	public NoticeThread(List<IDevice> deviceList, List<ParamInfo> paramInfoList, IParamPublishResultService paramPublishResultService, PublishJobManager publishJobManager, IParamPublish paramPublish) {
 		this.deviceList = deviceList;
 		this.paramInfoList = paramInfoList;
 		this.publishJobManager = publishJobManager;
 		this.paramPublishService = paramPublishResultService.getParamPublishService();
 		this.paramPublishResultService = paramPublishResultService;
 		this.isTemplate = false;
-		this.personId = personId;
+		this.paramPublish = paramPublish;
 	}
 
 	@Override
 	public synchronized void run() {
-		IParamPublish paramPublish = paramPublishService.make();
-		String date = DateUtils.getTimestamp(new Date());
-		logger.info("paramPublish date is " + date + ",person is " + personId);
-		paramPublish.setDate(date);
-		paramPublish.setPublisher(personId);
-		//
-		paramPublish.setRet("NEW");
+		
 		try {
-			paramPublishService.save(paramPublish);
 			// TODO 设置状态
 			// paramPublish.setRet(ret);
 			List<IParamPublishResult> paramPublishResultList = new ArrayList<IParamPublishResult>();
@@ -611,6 +628,8 @@ class NoticeThread implements Runnable {
 				publishJobManager.addTask(paramPublishResult);
 			}
 			paramPublish.setParamPublishs(paramPublishResultList);
+			paramPublish.setRet("FINISH");
+			paramPublishService.save(paramPublish);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}

@@ -42,7 +42,6 @@ import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
-import com.yihuacomputer.fish.parameter.entity.ParamTemplateDetail;
 import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertGroupDeviceForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamElementForm;
@@ -428,8 +427,8 @@ public class ParamTemplateController {
 			IParamTemplate template = templateService.get(templateId);
 			UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
 			templateService.issueTemplate(template, timeStamp);
-			boolean noticeResult = paramPushService.paramPublishByTemplate(templateId, Long.parseLong(userSession.getPersonId()));
-			if(noticeResult){
+			long jobId = paramPushService.paramPublishByTemplate(templateId, Long.parseLong(userSession.getPersonId()));
+			if(jobId!=Long.MIN_VALUE){
 				template.setApplyFlag("1");
 				templateService.update(template);
 				result.put(FishConstant.SUCCESS, true);

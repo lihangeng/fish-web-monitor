@@ -54,8 +54,8 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text : EwayLocale.button.save,
-				// glyph : 0xf002,
+				text : EwayLocale.button.saves,
+				iconCls : 'db-save',
 				action : 'save',
 				code : 'devParamSave',
 				listeners:{

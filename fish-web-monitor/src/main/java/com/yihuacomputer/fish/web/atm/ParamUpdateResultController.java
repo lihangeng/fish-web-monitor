@@ -77,10 +77,11 @@ public class ParamUpdateResultController {
         } else if (AgentRet.isDeployFail(agentRet)) {
             status = TaskStatus.DEPLOYED_FAIL;
             reason = getEnumI18n(agentRet.getText());
+        } else if (agentRet.equals(AgentRet.RET00)) {
+            status = TaskStatus.DEPLOYED;
         } else {
             status = TaskStatus.OTHER;
         }
-        //上报全局状态
         if(ParamInfo.class.getSimpleName().equals(appType)){
 			IParamPublishResult paramPublishResult = paramPublishResultService.get(msg.getTaskId());
 			if(null==paramPublishResult){
@@ -121,8 +122,8 @@ public class ParamUpdateResultController {
     		//如果结果全部上报了，则修改全局状态
     		if(appResultList.size() == appSystemList.size()){
     			IParamPublishResult paramPublishResult = paramPublishResultService.get(msg.getTaskId());
-    			TaskStatus paramStatus = paramPublishResult.getRet();
     			for(IParamPublishAppResult appResult:appResultList){
+        			TaskStatus paramStatus = paramPublishResult.getRet();
     				if(appResult.getStatus().getId()>paramStatus.getId()){
     					paramPublishResult.setRet(appResult.getStatus());
     					paramPublishResult.setReason(appResult.getReason());
