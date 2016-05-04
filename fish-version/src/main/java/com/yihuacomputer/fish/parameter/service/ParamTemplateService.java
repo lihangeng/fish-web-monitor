@@ -24,7 +24,6 @@ import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.machine.entity.Device;
-import com.yihuacomputer.fish.parameter.entity.ParamClassify;
 import com.yihuacomputer.fish.parameter.entity.ParamDeviceDetail;
 import com.yihuacomputer.fish.parameter.entity.ParamElement;
 import com.yihuacomputer.fish.parameter.entity.ParamTemplate;

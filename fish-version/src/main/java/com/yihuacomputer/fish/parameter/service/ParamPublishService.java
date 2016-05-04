@@ -283,7 +283,7 @@ public class ParamPublishService implements IParamPublishService {
 			//
 			paramPublish.setRet("NEW");
 			paramPublish = save(paramPublish);
-			Thread thread = new Thread(new NoticeThread(templateDeviceRelationList, paramInfo, paramPulishResultService, publishJobManager, personId,paramPublish));
+			Thread thread = new Thread(new NoticeThread(templateDeviceRelationList, paramInfo, paramPulishResultService, publishJobManager,paramPublish));
 			thread.start();
 			return paramPublish.getId();
 		}catch(Exception e){
@@ -316,7 +316,7 @@ public class ParamPublishService implements IParamPublishService {
 			paramPublish.setPublisher(personId);
 			paramPublish.setRet("NEW");
 			paramPublish = save(paramPublish);
-			Thread thread = new Thread(new NoticeThread(deviceList, list, paramPulishResultService, publishJobManager, personId,paramPublish));
+			Thread thread = new Thread(new NoticeThread(deviceList, list, paramPulishResultService, publishJobManager,paramPublish));
 			thread.start();
 			return  paramPublish.getId();
 		}catch(Exception e){
@@ -559,12 +559,10 @@ class NoticeThread implements Runnable {
 	private ParamInfo paramInfo;
 	private List<ParamInfo> paramInfoList;
 
-	// private SessionFactory sessionFactory;
 	private IParamPublishService paramPublishService;
 	private IParamPublishResultService paramPublishResultService;
 	private PublishJobManager publishJobManager;
 	private boolean isTemplate = true;
-	private long personId;
 	
 	private IParamPublish paramPublish;
 
@@ -576,13 +574,12 @@ class NoticeThread implements Runnable {
 	 * @param publishService
 	 * @param publishJobManager
 	 */
-	public NoticeThread(List<IDevice> deviceList, ParamInfo paramInfo, IParamPublishResultService paramPublishResultService, PublishJobManager publishJobManager, long personId,IParamPublish paramPublish) {
+	public NoticeThread(List<IDevice> deviceList, ParamInfo paramInfo, IParamPublishResultService paramPublishResultService, PublishJobManager publishJobManager, IParamPublish paramPublish) {
 		this.deviceList = deviceList;
 		this.paramInfo = paramInfo;
 		this.publishJobManager = publishJobManager;
 		this.paramPublishService = paramPublishResultService.getParamPublishService();
 		this.paramPublishResultService = paramPublishResultService;
-		this.personId = personId;
 		this.paramPublish = paramPublish;
 	}
 
@@ -594,14 +591,13 @@ class NoticeThread implements Runnable {
 	 * @param publishService
 	 * @param publishJobManager
 	 */
-	public NoticeThread(List<IDevice> deviceList, List<ParamInfo> paramInfoList, IParamPublishResultService paramPublishResultService, PublishJobManager publishJobManager, long personId,IParamPublish paramPublish) {
+	public NoticeThread(List<IDevice> deviceList, List<ParamInfo> paramInfoList, IParamPublishResultService paramPublishResultService, PublishJobManager publishJobManager, IParamPublish paramPublish) {
 		this.deviceList = deviceList;
 		this.paramInfoList = paramInfoList;
 		this.publishJobManager = publishJobManager;
 		this.paramPublishService = paramPublishResultService.getParamPublishService();
 		this.paramPublishResultService = paramPublishResultService;
 		this.isTemplate = false;
-		this.personId = personId;
 		this.paramPublish = paramPublish;
 	}
 
