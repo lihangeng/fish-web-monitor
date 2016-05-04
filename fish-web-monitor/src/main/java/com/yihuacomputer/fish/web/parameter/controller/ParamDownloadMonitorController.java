@@ -26,6 +26,7 @@ import com.yihuacomputer.fish.api.parameter.IParamPublish;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishSearchService;
 import com.yihuacomputer.fish.api.parameter.ParamDownloadResultForm;
+import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.IPersonService;
 import com.yihuacomputer.fish.web.parameter.form.ParamDownloadMonitorForm;
 
@@ -94,7 +95,13 @@ public class ParamDownloadMonitorController {
 		List<ParamDownloadMonitorForm> result=new ArrayList<ParamDownloadMonitorForm>();
 		for(IParamPublish paramPublish :list){
 			ParamDownloadMonitorForm pdmf=new ParamDownloadMonitorForm(paramPublish);
-			pdmf.setPublisherName(personService.get(String.valueOf(paramPublish.getPublisher())).getName());
+			IPerson person = personService.get(String.valueOf(paramPublish.getPublisher()));
+			if(null==person){
+				pdmf.setPublisherName("");
+			}
+			else{
+				pdmf.setPublisherName(person.getName());
+			}
 			result.add(pdmf);
 		}
 		return result;

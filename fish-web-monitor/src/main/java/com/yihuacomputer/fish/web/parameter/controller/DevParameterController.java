@@ -307,15 +307,16 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 				for(int i=0;i<paramList.size();i++){
 					long elementId=paramList.get(i).getId();
 					IParamDeviceDetail deviceDetail=paramDeviceDetailService.getById(elementId, id);
+					String dateStr=new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
 					if(deviceDetail != null){
 						deviceDetail.setParamValue(paramList.get(i).getParamValue());
+						deviceDetail.setVersionTimeStamp(Long.valueOf(dateStr));
 						paramDeviceDetailService.update(deviceDetail);
 					}else{
 						IParamDeviceDetail pdd=paramDeviceDetailService.make();
 						pdd.setDevice(deviceService.get(id));
 						pdd.setElement(paramElementService.get(paramList.get(i).getId()));
 						pdd.setParamValue(paramList.get(i).getParamValue());
-						String dateStr=new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
 						pdd.setVersionTimeStamp(Long.valueOf(dateStr));
 						paramDeviceDetailService.add(pdd);
 					}
@@ -347,8 +348,8 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 		String[] str=arrayId.split("-");
 		List<Long> deviceIdList=new ArrayList<Long>();
 		for(int i=1;i<str.length;i++){
-			String terminalId=deviceService.get(Long.valueOf(str[i])).getTerminalId();
-			deviceIdList.add(Long.valueOf(terminalId));
+//			String terminalId=deviceService.get(Long.valueOf(str[i])).getTerminalId();
+			deviceIdList.add(Long.valueOf(str[i]));
 		}
 		UserSession userSession=(UserSession) request.getSession().getAttribute("SESSION_USER");
 		long jobId=paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
