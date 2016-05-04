@@ -27,6 +27,6 @@ public interface IParamPublishResultService {
 	public boolean notice(IParamPublishResult msg,IDevice device);
 	
 	IPageResult<ParamDownloadResultForm> page(int start,int limit,IFilter filter);
-	IPageResult<ParamDownloadResultForm> getByPublishId(int start,int limit, long publishId);
+	IPageResult<ParamDownloadResultForm> getByPublishId(int start,int limit,IFilter filter, String publishId);
 	
 }

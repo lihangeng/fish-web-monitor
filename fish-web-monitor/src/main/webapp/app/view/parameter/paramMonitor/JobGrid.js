@@ -19,6 +19,7 @@ Ext.define('Eway.view.parameter.paramMonitor.JobGrid', {
 				}
 			 },{
 				 text:'详情',
+				 glyph : 0xf129,
 				 action:'detail',
 				 code : 'paramMonitorDetail',
 					listeners:{

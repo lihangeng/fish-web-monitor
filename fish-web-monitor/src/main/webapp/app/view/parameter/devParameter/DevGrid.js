@@ -22,6 +22,7 @@ Ext.define('Eway.view.parameter.devParameter.DevGrid', {
 				}
 			 },{
 				 text:EwayLocale.button.download,
+				 glyph : 0xf0ed,
 				 action:'release',
 				 code : 'devParamDevRelease',
 				 listeners:{
