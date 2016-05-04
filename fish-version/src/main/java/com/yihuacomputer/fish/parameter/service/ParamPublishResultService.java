@@ -156,7 +156,7 @@ public class ParamPublishResultService implements IParamPublishResultService {
 		if(publishId != null && !publishId.isEmpty()){
 			hql.append("and ppr.paramPublish.id= ").append(Long.valueOf(publishId));
 		}
-		IPageResult<Object> list = (IPageResult<Object>) dao.page(start,limit, hql.toString());
+		IPageResult<Object> list = (IPageResult<Object>) dao.page(start,limit,filter, hql.toString());
 		List<ParamDownloadResultForm> result = new ArrayList<ParamDownloadResultForm>();
 		for (Object object : list.list()) {
 			ParamDownloadResultForm form = new ParamDownloadResultForm();
