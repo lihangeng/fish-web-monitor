@@ -43,7 +43,7 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 		if(newCard.name=='taskPanel'){
 			var tabpanel = this.getEwayView().down("tabpanel");
 			var paramDetailPanel = this.getEwayView().down("panel[name='paramMonitorDetails']");
-			paramDetailPanel.setTitle("监控下发详情");
+			paramDetailPanel.setTitle(EwayLocale.param.paramDownloadMonitor.downloadDetail);
 			tabpanel.remove(paramDetailPanel,true);
 		}
 	},
@@ -56,7 +56,7 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 			var tabpanel = this.getEwayView().down("tabpanel");
 			var paramDetailPanel = Ext.create("Eway.view.parameter.paramMonitor.TaskView");
 			tabpanel.add(paramDetailPanel);
-			paramDetailPanel.setTitle("作业："+record.get('id')+"监控下发详情");
+			paramDetailPanel.setTitle(EwayLocale.param.paramDownloadMonitor.job+record.get('id')+EwayLocale.param.paramDownloadMonitor.downloadDetail);
 			tabpanel.setActiveItem(paramDetailPanel);
 			this.onTaskQuery();
 		}
@@ -78,7 +78,22 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 			store.setBaseParam('publishId',JobRecord.data.id);
 			store.loadPage(1);
 		}else {
-			Eway.alert('选中一条记录');
+			Eway.alert(EwayLocale.param.paramDownloadMonitor.chooseRecord);
 		}
 	},
+	autoJobDetail:function(jobId){
+		if(jobId !=null){
+			var tabpanel = this.getEwayView().down("tabpanel");
+			var paramDetailPanel = Ext.create("Eway.view.parameter.paramMonitor.TaskView");
+			tabpanel.add(paramDetailPanel);
+			paramDetailPanel.setTitle(EwayLocale.param.paramDownloadMonitor.job+jobId+EwayLocale.param.paramDownloadMonitor.downloadDetail);
+			tabpanel.setActiveItem(paramDetailPanel);
+			var view = this.getEwayView();
+			var store = view.down('parameter_paramMonitor_TaskGrid').getStore();
+			store.setBaseParam('publishId',jobId);
+			store.loadPage(1);
+		}
+		this.onTaskQuery();
+	}
 });
+	

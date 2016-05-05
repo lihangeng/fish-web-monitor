@@ -11,7 +11,7 @@ Ext.define('Eway.view.parameter.paramMonitor.TaskFilterForm',{
 				items:[{
 					xtype : 'textfield',
 					name : 'id',
-					fieldLabel : '任务ID',
+					fieldLabel :EwayLocale.param.paramDownloadMonitor.taskId,
 					regex:/(^([0-9]\d{0,17})$)/
 				}]	
 		});

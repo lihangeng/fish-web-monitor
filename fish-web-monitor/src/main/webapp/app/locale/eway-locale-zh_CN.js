@@ -49,7 +49,8 @@ Ext.apply(EwayLocale,{
 		withoutNumTaskConfirmInfo:'作业保存成功,是否跳转到"分发监控"页面?',//EwayLocale.confirm.withoutNumTaskConfirmInfo
 		timeout:'会话超时，3秒后自动跳转到登录页面',//EwayLocale.confirm.timeout
 		taskConfirmInfo0:'第',//EwayLocale.confirm.taskConfirmInfo0
-		taskConfirmInfo1:'次作业保存成功,是否跳转到"分发监控"页面?'//EwayLocale.confirm.taskConfirmInfo1
+		taskConfirmInfo1:'次作业保存成功,是否跳转到"分发监控"页面?',//EwayLocale.confirm.taskConfirmInfo1
+		taskConfirmInfo2:'作业保存成功,是否跳转到"参数下发监控"页面?'//EwayLocale.confirm.taskConfirmInfo2
 
 	},
 	button:{

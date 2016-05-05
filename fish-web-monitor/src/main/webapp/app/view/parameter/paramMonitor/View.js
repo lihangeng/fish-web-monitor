@@ -4,7 +4,7 @@ Ext.define('Eway.view.parameter.paramMonitor.View',{
 	
 	requires : [ 'Eway.view.parameter.paramMonitor.JobView','Eway.view.parameter.paramMonitor.TaskView'],
 	
-	title:'参数下发监控',
+	title:EwayLocale.param.paramDownloadMonitor.title,
 	layout:'border',
 	initComponent:function(){
 		
@@ -16,9 +16,7 @@ Ext.define('Eway.view.parameter.paramMonitor.View',{
 				headerPosition: 'bottom',
 				items:[{
 					name:'taskPanel',
-					height:'100%',
-					width:'100%',
-					title:"作业名",
+					title:EwayLocale.param.paramDownloadMonitor.jobName,
 					closable:false,
 					region:'center',
 					xtype:'parameter_paramMonitor_JobView'
