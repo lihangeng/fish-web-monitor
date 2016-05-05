@@ -428,7 +428,7 @@ public class ParamTemplateController {
 
 		try {
 			List<IDevice> deviceList = paramTemplateDeviceRelationService.listDeviceByTemplate(templateId);
-			if(null!=deviceList&&deviceList.size()!=0){
+			if(null!=deviceList&&deviceList.size()==0){
 				result.addAttribute(FishConstant.SUCCESS, false);
 				result.addAttribute(FishConstant.ERROR_MSG, "当前模板未关联设备无法进行下发!");
 				return result;
