@@ -627,9 +627,9 @@ class NoticeThread implements Runnable {
 				paramPublishResultList.add(paramPublishResult);
 				publishJobManager.addTask(paramPublishResult);
 			}
-			paramPublish.setParamPublishs(paramPublishResultList);
-			paramPublish.setRet("FINISH");
-			paramPublishService.save(paramPublish);
+//			paramPublish.setParamPublishs(paramPublishResultList);
+//			paramPublish.setRet("FINISH");
+//			paramPublishService.update(paramPublish);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
