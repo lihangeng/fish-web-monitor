@@ -56,6 +56,7 @@ public class ParamDownloadMonitorController {
 		logger.info("search parameter download information");
 		ModelMap result=new ModelMap();
 		IFilter filter=JobFilter(webRequest);
+		filter.descOrder("id");
 		IPageResult<IParamPublish> pageResult= paramPublishSearchService.page(start, limit, filter);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
