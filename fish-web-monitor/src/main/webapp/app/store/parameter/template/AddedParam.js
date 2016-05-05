@@ -1,5 +1,5 @@
 Ext.define('Eway.store.parameter.template.AddedParam', {
-	extend : 'Ext.data.Store',
+	extend : 'Eway.store.base.Store',
 
 	model : 'Eway.model.parameter.template.AddedParam',
 

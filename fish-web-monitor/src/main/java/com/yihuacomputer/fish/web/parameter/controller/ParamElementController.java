@@ -230,8 +230,8 @@ public class ParamElementController {
 			                key = String.valueOf(entry.getKey());
 			                value = String.valueOf(entry.getValue());
 
-			                key = key == null ? key : key.trim().toUpperCase();
-			                value = value == null ? value : value.trim().toUpperCase();
+			                key = key == null ? key : key.trim();
+			                value = value == null ? value : value.trim();
 			                // 将key-value放入map中
 			                paramElement.setParamName(key);
 			                paramElement.setParamValue(value);

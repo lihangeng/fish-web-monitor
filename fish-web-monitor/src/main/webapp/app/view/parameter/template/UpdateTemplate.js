@@ -1,9 +1,11 @@
 Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 	extend: 'Ext.window.Window',
 	alias: 'widget.template_updateTemplate',
-	
-	requires: ['Eway.view.parameter.template.ParamGrid','Eway.view.parameter.template.AddedParamGrid'],
-	
+
+	requires: ['Eway.view.parameter.template.ParamGrid',
+	           'Eway.view.parameter.template.AddedParamGrid',
+	           'Eway.view.field.paramElement.ParamBelongsRadioGroup'],
+
 	title:EwayLocale.param.template.updateTitle,
 	modal: true,
 	resizable: false,
@@ -35,6 +37,18 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 					maxLength :30,
 					msgTarget : 'side',
 					allowBlank : true
+					}, {
+						xtype:'field_paramElement_ParamBelongsRadioGroup',
+						labelWidth: 90,
+						width:300,
+//						value: 1,
+						editable : false,
+						name : 'paramBelongsId',
+						fieldLabel : EwayLocale.param.element.paramBelongs,
+						msgTarget : 'side',
+//						labelAlign : 'right',
+						checked:true
+
 					},{
 					xtype : 'panel',
 					trackResetOnLoad : true,
@@ -89,11 +103,11 @@ Ext.define('Eway.view.parameter.template.UpdateTemplate', {
 		});
 		this.callParent(arguments);
 	},
-	
+
 	onReset: function() {
 		this.up('form').getForm().reset();
 	},
-	
+
 	onOver: function() {
 		this.up('window').close();
 	}

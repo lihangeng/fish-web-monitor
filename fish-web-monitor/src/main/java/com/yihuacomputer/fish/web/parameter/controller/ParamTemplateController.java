@@ -31,6 +31,7 @@ import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.parameter.IAppSystem;
 import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
@@ -362,14 +363,14 @@ public class ParamTemplateController {
 	 * @return
 	 */
 	@RequestMapping(value = "/addedParam", method = RequestMethod.GET)
-	public @ResponseBody ModelMap getAddedParam(@RequestParam int start,@RequestParam int limit, @RequestParam long id,@RequestParam long flag) {
+	public @ResponseBody ModelMap getAddedParam(@RequestParam int start,@RequestParam int limit, @RequestParam long id,@RequestParam long flag,@RequestParam long appSystem) {
 
 		ModelMap result = new ModelMap();
 		if (templateService.get(id) == null && flag == 0) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 		} else if(flag == 0){
 			result.addAttribute(FishConstant.SUCCESS, true);
-			List<IParamElement> elements = templateService.listParam(id,flag);
+			List<IParamElement> elements = templateService.listParam(id,flag,appSystem);
 			for(int i=0;i<elements.size();i++){
 				elements.get(i).setParamValue(templateService.getDetailByTemplateId(id, elements.get(i).getId()).getParamValue());
 			}
@@ -377,7 +378,13 @@ public class ParamTemplateController {
 		}else {
 			List<IParamElement> list = null;
 			list =  paramElementService.list();
-			list.removeAll(templateService.listParam(id,flag));
+			list.removeAll(templateService.listParam(id,flag,appSystem));
+			int size = list.size();
+			for(int i = 0;i<size;i++){
+				if(list.get(i).getParamBelongs().getId() != appSystem){
+					list.remove(i);
+				}
+			}
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, convert(list));
 		}
@@ -392,7 +399,7 @@ public class ParamTemplateController {
 	 */
 	@RequestMapping(value = "/addingParam", method = RequestMethod.GET)
 	public @ResponseBody ModelMap getAddingParam(@RequestParam int start,
-			@RequestParam int limit, @RequestParam long id,@RequestParam long flag) {
+			@RequestParam int limit, @RequestParam long id,@RequestParam long flag,@RequestParam long appSystem,HttpServletRequest req) {
 
 		ModelMap result = new ModelMap();
 		if (templateService.get(id) == null&&flag == 0) {
@@ -400,13 +407,13 @@ public class ParamTemplateController {
 		} else if(flag == 0){
 			List<IParamElement> list = null;
 			list =  paramElementService.list();
-			list.removeAll(templateService.listParam(id,flag));
+			list.removeAll(templateService.listParam(id,flag,Long.valueOf(appSystem)));
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, convert(list));
 		}else{
 
 			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute(FishConstant.DATA,convert(templateService.listParam(id,flag)));
+			result.addAttribute(FishConstant.DATA,convert(templateService.listParam(id,flag,appSystem)));
 
 		}
 		return result;
