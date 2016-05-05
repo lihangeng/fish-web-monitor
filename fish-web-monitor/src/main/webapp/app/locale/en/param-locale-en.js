@@ -70,6 +70,22 @@ Ext.apply(EwayLocale,{
         	unpublished:'Unpublished',//EwayLocale.param.template.unpublished
         	paramBelongs:'Subordinate System',//EwayLocale.param.template.paramBelongs
         	bankPerlink:'Visual Plant',//EwayLocale.param.template.bankPerlink
+        },
+        paramDownloadMonitor:{
+        	title:'Parameter Download Monitor',//EwayLocale.param.paramDownloadMonitor.title
+        	jobName:'Job Name',//EwayLocale.param.paramDownloadMonitor.jobName
+        	taskId:'Task ID',//EwayLocale.param.paramDownloadMonitor.taskId
+        	devCode:'Device TerminalId',//EwayLocale.param.paramDownloadMonitor.devCode
+        	versionNo: 'Version Number',//EwayLocale.param.paramDownloadMonitor.versionNo
+        	downloadStartTime: 'The Start Time Of Download',//EwayLocale.param.paramDownloadMonitor.downloadStartTime
+        	downloadFinishTime: 'The Finish Time Of Download',//EwayLocale.param.paramDownloadMonitor.downloadFinishTime
+        	reason: 'Reason',//EwayLocale.param.paramDownloadMonitor.reason
+        	taskStatus: 'Task Status',//EwayLocale.param.paramDownloadMonitor.taskStatus
+        	jobDetail:'Check Job Detail',//EwayLocale.param.paramDownloadMonitor.jobDetail
+        	jobId: 'Job ID',//EwayLocale.param.paramDownloadMonitor.jobId
+        	date: 'Date',//EwayLocale.param.paramDownloadMonitor.date
+        	publisherName: 'Publisher'//EwayLocale.param.paramDownloadMonitor.publisherName
+        	
         }
 
     }

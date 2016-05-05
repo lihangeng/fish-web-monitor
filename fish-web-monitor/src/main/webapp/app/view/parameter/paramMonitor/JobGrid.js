@@ -18,7 +18,7 @@ Ext.define('Eway.view.parameter.paramMonitor.JobGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			 },{
-				 text:'详情',
+				 text:EwayLocale.param.paramDownloadMonitor.jobDetail,
 				 glyph : 0xf129,
 				 action:'detail',
 				 code : 'paramMonitorDetail',
@@ -27,17 +27,17 @@ Ext.define('Eway.view.parameter.paramMonitor.JobGrid', {
 					}
 			 }],
 			columns : [ {
-				header : '作业ID',
+				header : EwayLocale.param.paramDownloadMonitor.jobId,
 				dataIndex : 'id',
 				width:150,
 				sortable:true
 			},{
-				header : '日期',
+				header : EwayLocale.param.paramDownloadMonitor.date,
 				dataIndex : 'date',
 				width:150,
 				sortable:true
 			},{
-				header : '发布者',
+				header : EwayLocale.param.paramDownloadMonitor.publisherName,
 				dataIndex : 'publisherName',
 				sortable:true,
 				flex:1

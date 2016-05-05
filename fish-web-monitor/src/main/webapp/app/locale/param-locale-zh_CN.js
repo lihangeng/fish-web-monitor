@@ -69,6 +69,22 @@ Ext.apply(EwayLocale,{
         	unpublished:'未发布',//EwayLocale.param.template.unpublished
         	paramBelongs:'所属系统',//EwayLocale.param.template.paramBelongs
         	bankPerlink:'关联设备',//EwayLocale.param.template.bankPerlink
+        },
+        paramDownloadMonitor:{
+        	title:'参数下发监控',//EwayLocale.param.paramDownloadMonitor.title
+        	jobName:'作业名',//EwayLocale.param.paramDownloadMonitor.jobName
+        	taskId:'任务ID',//EwayLocale.param.paramDownloadMonitor.taskId
+        	devCode:'设备终端号',//EwayLocale.param.paramDownloadMonitor.devCode
+        	versionNo: '版本号',//EwayLocale.param.paramDownloadMonitor.versionNo
+        	downloadStartTime: '下载开始时间',//EwayLocale.param.paramDownloadMonitor.downloadStartTime
+        	downloadFinishTime: '下载结束时间',//EwayLocale.param.paramDownloadMonitor.downloadFinishTime
+        	reason: '原因',//EwayLocale.param.paramDownloadMonitor.reason
+        	taskStatus: '任务状态',//EwayLocale.param.paramDownloadMonitor.taskStatus
+        	jobDetail:'查看作业明细',//EwayLocale.param.paramDownloadMonitor.jobDetail
+        	jobId: '作业ID',//EwayLocale.param.paramDownloadMonitor.jobId
+        	date: '日期',//EwayLocale.param.paramDownloadMonitor.date
+        	publisherName: '发布者'//EwayLocale.param.paramDownloadMonitor.publisherName
+        	
         }
 
     }
