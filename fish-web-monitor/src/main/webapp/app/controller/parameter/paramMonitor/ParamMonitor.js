@@ -93,6 +93,7 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 			store.setBaseParam('publishId',jobId);
 			store.loadPage(1);
 		}
+		this.onTaskQuery();
 	}
 });
 	
