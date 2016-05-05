@@ -42,6 +42,9 @@ public class ParamPublish implements IParamPublish {
 
 	@Column(name = "PUBLISH_RET")
 	private String ret;
+
+	@Column(name = "TEMPLATE_ID")
+	private long templateId;
 	public long getId() {
 		return id;
 	}
@@ -77,6 +80,14 @@ public class ParamPublish implements IParamPublish {
 	}
 	public void setJobType(JobType jobType) {
 		this.jobType = jobType;
+	}
+	@Override
+	public void setTemplateId(long tempateId) {
+		this.templateId = tempateId;
+	}
+	@Override
+	public long getTemplateId() {
+		return this.templateId;
 	}
 	
 }

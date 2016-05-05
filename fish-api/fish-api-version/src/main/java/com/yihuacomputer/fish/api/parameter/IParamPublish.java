@@ -37,4 +37,6 @@ public interface IParamPublish {
 	public void setParamPublishs(List<IParamPublishResult> paramPublishs);
 	public JobType getJobType();
 	public void setJobType(JobType jobType);
+	public void setTemplateId(long tempateId);
+	public long getTemplateId();
 }

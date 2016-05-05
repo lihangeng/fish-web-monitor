@@ -21,6 +21,10 @@ import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.parameter.IAppSystem;
+import com.yihuacomputer.fish.api.parameter.IAppSystemService;
+import com.yihuacomputer.fish.api.parameter.IParamPublishAppResult;
+import com.yihuacomputer.fish.api.parameter.IParamPublishAppResultService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResult;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishService;
@@ -42,12 +46,15 @@ public class ParamPublishResultService implements IParamPublishResultService {
 	private IGenericDao dao;
 	@Autowired
 	private IParamPublishService paramPublishService;
+	@Autowired
+	private IParamPublishAppResultService paramPublishAppResultService;
+	@Autowired
+	private IAppSystemService appSystemService;
 
 	@Autowired
 	private MessageSource messageSourceEnum;
-	
-	private Logger logger = LoggerFactory
-			.getLogger(ParamPublishResultService.class);
+
+	private Logger logger = LoggerFactory.getLogger(ParamPublishResultService.class);
 
 	@Autowired
 	private MessageSource messageSourceVersion;
@@ -59,7 +66,16 @@ public class ParamPublishResultService implements IParamPublishResultService {
 
 	@Override
 	public IParamPublishResult save(IParamPublishResult publishResult) {
-		return dao.save(publishResult);
+		List<IAppSystem> systemList = appSystemService.list();
+		publishResult = dao.save(publishResult);
+		for (IAppSystem appSystem : systemList) {
+			IParamPublishAppResult appResult = paramPublishAppResultService.make();
+			appResult.setAppSystem(appSystem);
+			appResult.setParamPublishResult(publishResult);
+			appResult.setStatus(TaskStatus.NEW);
+			paramPublishAppResultService.save(appResult);
+		}
+		return publishResult;
 	}
 
 	@Override
@@ -82,41 +98,44 @@ public class ParamPublishResultService implements IParamPublishResultService {
 	private static final String PARAM_PUSH_URL = "/ctr/paramUpdateNotify";
 
 	public boolean notice(IParamPublishResult publishResult, IDevice device) {
-		String url = getNoticetUrl(device.getIp());
-		NoticeForm msg = new NoticeForm();
-
 		int retResult = 0;
-		msg.setTaskId(publishResult.getId());
-		msg.setPatchNo(String.valueOf(publishResult.getVersionNo()));
-		if (publishResult != null) {
-			msg.setPatch(ParamInfo.class.getSimpleName());
-			msg.setServerPath(VersionCfg.getAtmParamDir() + File.separator + msg.getPatchNo());
-			publishResult.setDownloadStartTime(DateUtils.getTimestamp(new Date()));
-			try {
+		try {
+			String url = getNoticetUrl(device.getIp());
+			NoticeForm msg = new NoticeForm();
+
+			msg.setTaskId(publishResult.getId());
+			msg.setPatchNo(String.valueOf(publishResult.getVersionNo()));
+			if (publishResult != null) {
+				msg.setPatch(ParamInfo.class.getSimpleName());
+				msg.setServerPath(VersionCfg.getAtmParamDir() + File.separator + msg.getPatchNo());
+				publishResult.setDownloadStartTime(DateUtils.getTimestamp(new Date()));
 				msg = (NoticeForm) HttpProxy.httpPost(url, msg, NoticeForm.class, 30000);
-			} catch (Exception e) {
-				logger.error(e.getMessage());
+
+				if (msg.getRet().equals("RET0100")) {
+					retResult = 1;
+				} else {
+					retResult = 2;
+					publishResult.setReason("");
+				}
 			}
-			if (msg.getRet().equals("RET0100")) {
-				retResult = 1;
-				publishResult.setReason(messageSourceVersion.getMessage("exception.task.sameTaskRuningForAgentRefuse", null,
-						FishCfg.locale));
-			} else {
-				retResult = 2;
-				publishResult.setReason("");
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			retResult = -1;
+			return false;
+		} finally {
+			if (retResult == 1) {
+				publishResult.setRet(TaskStatus.NOTICED_FAIL);
+				publishResult.setReason(messageSourceVersion.getMessage("exception.task.sameTaskRuningForAgentRefuse", null, FishCfg.locale));
+				publishResult.setSuccess(false);
+			} else if (retResult == 2) {
+				publishResult.setRet(TaskStatus.NOTICED);
+				publishResult.setSuccess(true);
+			} else if (retResult == -1) {
+				publishResult.setRet(TaskStatus.NOTICED_FAIL);
+				publishResult.setSuccess(false);
 			}
+			this.update(publishResult);
 		}
-		if (retResult == 1) {
-			publishResult.setRet(TaskStatus.NOTICED_FAIL);
-			publishResult.setSuccess(false);
-		} else if (retResult == 2) {
-			publishResult.setRet(TaskStatus.NOTICED);
-			publishResult.setSuccess(true);
-		} else if (retResult == -1) {
-			publishResult.setRet(TaskStatus.NOTICED_FAIL);
-			publishResult.setSuccess(false);
-		}
-		this.update(publishResult);
 		return true;
 
 	}
@@ -131,33 +150,28 @@ public class ParamPublishResultService implements IParamPublishResultService {
 	}
 
 	@Override
-	public IParamPublishResult getParamPublishResult(long deviceId,
-			long versionNo) {
+	public IParamPublishResult getParamPublishResult(long deviceId, long versionNo) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("from ")
-				.append(ParamPublishResult.class.getSimpleName())
-				.append(" result ")
-				.append("where result.deviceId=? and result.versionNo=? and result.paramPublish.jobType=?");
+		sb.append("from ").append(ParamPublishResult.class.getSimpleName()).append(" result ").append("where result.deviceId=? and result.versionNo=? and result.paramPublish.jobType=?");
 
-		return dao.findUniqueByHql(sb.toString(), new Object[] { deviceId,
-				versionNo, JobType.AUTO_UPDATE });
+		return dao.findUniqueByHql(sb.toString(), new Object[] { deviceId, versionNo, JobType.AUTO_UPDATE });
 	}
 
 	@Override
-	public IPageResult<ParamDownloadResultForm> page(int start, int limit,IFilter filter) {
+	public IPageResult<ParamDownloadResultForm> page(int start, int limit, IFilter filter) {
 		return dao.page(start, limit, filter, ParamPublishResult.class);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public IPageResult<ParamDownloadResultForm> getByPublishId(int start,int limit,IFilter filter,String publishId) {
+	public IPageResult<ParamDownloadResultForm> getByPublishId(int start, int limit, IFilter filter, String publishId) {
 		StringBuffer hql = new StringBuffer();
 		hql.append("select ppr,device from ParamPublishResult ppr ");
 		hql.append(",Device device where ppr.deviceId=device.id ");
-		if(publishId != null && !publishId.isEmpty()){
+		if (publishId != null && !publishId.isEmpty()) {
 			hql.append("and ppr.paramPublish.id= ").append(Long.valueOf(publishId));
 		}
-		IPageResult<Object> list = (IPageResult<Object>) dao.page(start,limit,filter, hql.toString());
+		IPageResult<Object> list = (IPageResult<Object>) dao.page(start, limit, filter, hql.toString());
 		List<ParamDownloadResultForm> result = new ArrayList<ParamDownloadResultForm>();
 		for (Object object : list.list()) {
 			ParamDownloadResultForm form = new ParamDownloadResultForm();
@@ -172,19 +186,19 @@ public class ParamPublishResultService implements IParamPublishResultService {
 			form.setReason(ppr.getReason());
 			form.setSuccess(ppr.isSuccess());
 			form.setVersionNo(ppr.getVersionNo());
-			if(ppr.getRet() !=null){
+			if (ppr.getRet() != null) {
 				form.setTaskStatus(getEnumI18n(ppr.getRet().getText()));
 			}
 			result.add(form);
 		}
 		return new PageResult<ParamDownloadResultForm>(list.getTotal(), result);
 	}
-	
-	 private String getEnumI18n(String enumText){
-	    	if(null==enumText){
-	    		return "";
-	    	}
-	    	return messageSourceEnum.getMessage(enumText,null,FishCfg.locale);
-	    }
+
+	private String getEnumI18n(String enumText) {
+		if (null == enumText) {
+			return "";
+		}
+		return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+	}
 
 }

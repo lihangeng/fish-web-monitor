@@ -37,6 +37,11 @@ Ext.define('Eway.view.parameter.paramMonitor.JobGrid', {
 				width:150,
 				sortable:true
 			},{
+				header : EwayLocale.param.template.templateName,
+				dataIndex : 'templateName',
+				width:150,
+				sortable:true
+			},{
 				header : EwayLocale.param.paramDownloadMonitor.publisherName,
 				dataIndex : 'publisherName',
 				sortable:true,

@@ -25,6 +25,8 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.parameter.IParamPublish;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishSearchService;
+import com.yihuacomputer.fish.api.parameter.IParamTemplate;
+import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.parameter.ParamDownloadResultForm;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.IPersonService;
@@ -43,6 +45,10 @@ public class ParamDownloadMonitorController {
 	
 	@Autowired
 	private IParamPublishResultService paramPublishResultService;
+	
+	
+	@Autowired
+	private IParamTemplateService paramtemplateService;
 	/**
 	 * 查询参数下发Job信息
 	 * @param start
@@ -97,11 +103,12 @@ public class ParamDownloadMonitorController {
 		for(IParamPublish paramPublish :list){
 			ParamDownloadMonitorForm pdmf=new ParamDownloadMonitorForm(paramPublish);
 			IPerson person = personService.get(String.valueOf(paramPublish.getPublisher()));
-			if(null==person){
-				pdmf.setPublisherName("");
-			}
-			else{
+			if(null!=person){
 				pdmf.setPublisherName(person.getName());
+			}
+			IParamTemplate template = paramtemplateService.get(paramPublish.getTemplateId());
+			if(null!=template){
+				pdmf.setTemplateName(template.getName());
 			}
 			result.add(pdmf);
 		}

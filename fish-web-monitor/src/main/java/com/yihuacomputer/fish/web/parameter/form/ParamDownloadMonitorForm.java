@@ -9,6 +9,8 @@ public class ParamDownloadMonitorForm {
 	
 	public long publisher;
 	
+	private String templateName;
+	
 	public String publisherName;
 
 	public long getId() {
@@ -51,6 +53,14 @@ public class ParamDownloadMonitorForm {
 		this.id = paramPublish.getId();
 		this.date = paramPublish.getDate();
 		this.publisher = paramPublish.getPublisher();
+	}
+
+	public String getTemplateName() {
+		return templateName;
+	}
+
+	public void setTemplateName(String templateName) {
+		this.templateName = templateName;
 	}
 	
 	

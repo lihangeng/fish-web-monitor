@@ -279,6 +279,7 @@ public class ParamPublishService implements IParamPublishService {
 			String date = DateUtils.getTimestamp(new Date());
 			logger.info("paramPublish date is " + date + ",person is " + personId);
 			paramPublish.setDate(date);
+			paramPublish.setTemplateId(templateId);
 			paramPublish.setPublisher(personId);
 			//
 			paramPublish.setRet("NEW");

@@ -7,6 +7,11 @@ import com.yihuacomputer.fish.api.device.IDevice;
 
 public interface IParamPublishResultService {
 	public IParamPublishResult make();
+	/**
+	 * 新建下发结果对象时，自动建应用类型下发结果对象
+	 * @param publishResult
+	 * @return
+	 */
 	public IParamPublishResult save(IParamPublishResult publishResult);
 	public IParamPublishResult get(long id);
 	public IParamPublishResult update(IParamPublishResult publishResult);

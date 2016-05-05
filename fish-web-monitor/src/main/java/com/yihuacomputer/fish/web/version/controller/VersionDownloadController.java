@@ -34,7 +34,6 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
-import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
