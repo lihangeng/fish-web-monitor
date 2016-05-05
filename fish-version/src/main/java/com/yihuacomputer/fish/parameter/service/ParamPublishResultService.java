@@ -43,6 +43,9 @@ public class ParamPublishResultService implements IParamPublishResultService {
 	@Autowired
 	private IParamPublishService paramPublishService;
 
+	@Autowired
+	private MessageSource messageSourceEnum;
+	
 	private Logger logger = LoggerFactory
 			.getLogger(ParamPublishResultService.class);
 
@@ -170,11 +173,18 @@ public class ParamPublishResultService implements IParamPublishResultService {
 			form.setSuccess(ppr.isSuccess());
 			form.setVersionNo(ppr.getVersionNo());
 			if(ppr.getRet() !=null){
-				form.setTaskStatus(ppr.getRet().getText());
+				form.setTaskStatus(getEnumI18n(ppr.getRet().getText()));
 			}
 			result.add(form);
 		}
 		return new PageResult<ParamDownloadResultForm>(list.getTotal(), result);
 	}
+	
+	 private String getEnumI18n(String enumText){
+	    	if(null==enumText){
+	    		return "";
+	    	}
+	    	return messageSourceEnum.getMessage(enumText,null,FishCfg.locale);
+	    }
 
 }
