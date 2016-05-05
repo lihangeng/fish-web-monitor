@@ -81,4 +81,18 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 			Eway.alert('选中一条记录');
 		}
 	},
+	autoJobDetail:function(jobId){
+		if(jobId !=null){
+			var tabpanel = this.getEwayView().down("tabpanel");
+			var paramDetailPanel = Ext.create("Eway.view.parameter.paramMonitor.TaskView");
+			tabpanel.add(paramDetailPanel);
+			paramDetailPanel.setTitle("作业："+jobId+"监控下发详情");
+			tabpanel.setActiveItem(paramDetailPanel);
+			var view = this.getEwayView();
+			var store = view.down('parameter_paramMonitor_TaskGrid').getStore();
+			store.setBaseParam('publishId',jobId);
+			store.loadPage(1);
+		}
+	}
 });
+	

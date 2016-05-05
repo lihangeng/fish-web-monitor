@@ -169,7 +169,9 @@ public class ParamPublishResultService implements IParamPublishResultService {
 			form.setReason(ppr.getReason());
 			form.setSuccess(ppr.isSuccess());
 			form.setVersionNo(ppr.getVersionNo());
-			form.setTaskStatus(ppr.getRet().getText());
+			if(ppr.getRet() !=null){
+				form.setTaskStatus(ppr.getRet().getText());
+			}
 			result.add(form);
 		}
 		return new PageResult<ParamDownloadResultForm>(list.getTotal(), result);
