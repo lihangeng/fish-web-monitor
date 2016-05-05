@@ -24,8 +24,31 @@ public class INIFileReader {
 
 	protected void read(BufferedReader reader) throws IOException {
 		String line;
+		int num = 0;
 		while ((line = reader.readLine()) != null) {
-			parseLine(line);
+			line = line.trim();
+			if (line.matches("\\[.*\\]")) {
+				currentSecion = line.replaceFirst("\\[(.*)\\]", "$1");
+				current = new Properties();
+				sections.put(currentSecion, current);
+			}else if(line.matches("#.*") ){
+				if( num ==0){
+					currentSecion = line.replaceFirst("#.*", "");
+					current = new Properties();
+					sections.put(currentSecion, current);
+				}
+				num++;
+
+			}
+
+			else if (line.matches(".*=.*")) {
+				if (current != null) {
+					int i = line.indexOf('=');
+					String name = line.substring(0, i);
+					String value = line.substring(i + 1);
+					current.setProperty(name, value);
+				}
+			}
 		}
 	}
 

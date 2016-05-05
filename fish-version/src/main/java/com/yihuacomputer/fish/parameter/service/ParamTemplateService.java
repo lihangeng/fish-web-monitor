@@ -18,6 +18,7 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.parameter.IAppSystem;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetail;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
@@ -94,7 +95,7 @@ public class ParamTemplateService implements IParamTemplateService {
 	@Override
 	public IPageResult<IDevice> pageLinkedDevice(int offset, int limit,
 			IParamTemplate template, IFilter filter) {
-		
+
 		IFilter fi = new Filter();
 
 		StringBuffer hql = new StringBuffer();
@@ -116,9 +117,9 @@ public class ParamTemplateService implements IParamTemplateService {
 
 	@Override
 	public void link(IParamTemplate template , IDevice device , long timeStamp) {
-		
+
 		dao.save(ParamTemplateDeviceRelation.make(template.getId(),device.getId()));
-		
+
 	}
 
 	@Override
@@ -128,36 +129,38 @@ public class ParamTemplateService implements IParamTemplateService {
 		filter.eq("deviceId", device.getId());
 
 		ParamTemplateDeviceRelation obj = dao.findUniqueByFilter(filter,ParamTemplateDeviceRelation.class);
-				
+
 		if (obj != null) {
 			dao.delete(obj.getId(), ParamTemplateDeviceRelation.class);
 		}
-		
+
 		removeTempDev(template.getId());
 
 	}
 
 	@Override
-	public List<IParamElement> listParam(long templateId,long flag) {
+	public List<IParamElement> listParam(long templateId,long flag,long appSystem) {
 
 		StringBuffer hql = new StringBuffer();
 
 		List<IParamElement> elements = null;
 		hql.append("select t from ParamElement t ");
-		
+
+		//更新模板
 		if(flag == 0){
-			
+
 			hql.append(",ParamTemplateElementRelation t1 ");
 			hql.append("where t.id = t1.elementId ");
-			hql.append("and t1.templateId = ?");
-			elements = dao.findByHQL(hql.toString(), templateId);
+			hql.append("and t1.templateId = ? and t.paramBelongs.id = ?");
+			elements = dao.findByHQL(hql.toString(), templateId , appSystem);
 		}else{
-			elements = dao.findByHQL(hql.toString());
-			
+			hql.append("where t.paramBelongs.id = ?");
+			elements = dao.findByHQL(hql.toString() , appSystem);
+
 		}
 		return elements;
 	}
-	
+
 	@Override
 	public void unlinkTempParam(IParamTemplate template, IParamElement emlement) {
 		Filter filter = new Filter();
@@ -172,7 +175,7 @@ public class ParamTemplateService implements IParamTemplateService {
 		filter.addFilterEntry(FilterFactory.eq("paramTemplate.id", template.getId()));
 		filter.addFilterEntry(FilterFactory.eq("paramElement.id", emlement.getId()));
 		ParamTemplateDetail obj2 =  dao.findUniqueByFilter(filter,ParamTemplateDetail.class);
-				
+
 		if (obj2 != null) {
 			dao.delete(obj2);
 		}
@@ -217,7 +220,7 @@ public class ParamTemplateService implements IParamTemplateService {
 	public void unlinkAll(long templateId) {
 		String hql = "delete from ParamTemplateElementRelation t where t.templateId = ?";
 		dao.batchUpdate(hql, templateId);
-		
+
 		hql = "delete from ParamTemplateDetail t where t.paramTemplate.id = ?";
 		dao.batchUpdate(hql, templateId);
 	}
@@ -234,9 +237,9 @@ public class ParamTemplateService implements IParamTemplateService {
 
 	@Override
 	public void update(IParamTemplate template) {
-		
+
 		dao.update(template);
-		
+
 	}
 
 	@Override
@@ -255,25 +258,25 @@ public class ParamTemplateService implements IParamTemplateService {
 
 		String hql = "delete from ParamTemplateElementRelation t where t.templateId = ?";
 		dao.batchUpdate(hql, templateId);
-		
+
 		hql = "delete from ParamTemplateDetail t where t.paramTemplate.id = ?";
 		dao.batchUpdate(hql, templateId);
-		
+
 		hql = "delete from ParamTemplateDeviceRelation t where t.templateId = ?";
 		dao.batchUpdate(hql, templateId);
-		
+
 	}
 
 	@Override
 	public void issueTemplate(IParamTemplate template, long timeStamp) {
 		insertNewParam(template , timeStamp);
-		
+
 		updateTempDev(timeStamp , template.getId());
-		
+
 		removeTempDev(template.getId());
-		
+
 	}
-	
+
 	/**
 	 * 更新设备参数表中参数版本
 	 * @param timeStamp
@@ -292,21 +295,21 @@ public class ParamTemplateService implements IParamTemplateService {
 	 * @param timeStamp
 	 */
 	public void insertNewParam(IParamTemplate template , long timeStamp) {
-		
+
 		StringBuffer sql = new StringBuffer();
-		
-		
+
+
 		sql.append("SELECT T2.DEVICE_ID as deviceId,T1.ELEMENT_ID as elementId,T1.PARAM_VALUE as paramValue");
 		sql.append(" FROM PARAM_TEMPLATE_DETAIL T1, PARAM_TEMPLATE_DEVICE_RELATION T2,PARAM_ELEMENT T3 ");
 		sql.append("WHERE T1.TEMPLATE_ID = T2.TEMPLATE_ID  AND T3.ID = T1.ELEMENT_ID ");
 		sql.append("AND T3.PARAM_VALUE <> T1.PARAM_VALUE AND T1.TEMPLATE_ID ='");
 		sql.append(template.getId()+"'");
-		
+
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		query.addScalar("deviceId", StandardBasicTypes.LONG);
 		query.addScalar("elementId", StandardBasicTypes.LONG);
 		query.addScalar("paramValue", StandardBasicTypes.STRING);
-		
+
 		List<?> infos = query.list();
 		Filter filter = null;
 		for(Object object : infos){
@@ -327,9 +330,9 @@ public class ParamTemplateService implements IParamTemplateService {
 				devDetail.setVersionTimeStamp(timeStamp);
 				dao.save(devDetail);
 			}
-			
+
 		}
-		
+
 	}
 
 	/**
@@ -337,7 +340,7 @@ public class ParamTemplateService implements IParamTemplateService {
 	 * @param templateId
 	 */
 	public void removeTempDev(long templateId) {
-		
+
 		String hql = "delete from ParamDeviceDetail t1 "
 				+ "where t1.element.id not in (select t2.paramElement.id from ParamTemplateDetail t2 , "
 				+ "ParamTemplateDeviceRelation t3 where t2.paramTemplate.id = t3.templateId and t2.paramTemplate.id = ? "
@@ -345,7 +348,7 @@ public class ParamTemplateService implements IParamTemplateService {
 				+ "ParamTemplateDeviceRelation t3 where t3.templateId = ? group by t3.deviceId)";
 		dao.batchUpdate(hql, templateId, templateId);
 	}
-	
+
 	public List<IParamTemplateDetail> getParamTemplateDetailListByDeviceId(long deviceId){
 		StringBuffer sb = new StringBuffer();
 		sb.append("select templateDetail from ").append(ParamTemplateDetail.class.getSimpleName()).append(" templateDetail, ");
@@ -354,5 +357,5 @@ public class ParamTemplateService implements IParamTemplateService {
 		List<IParamTemplateDetail> list = dao.findByHQL(sb.toString(), new Object[]{deviceId});
 		return list;
 	}
-	
+
 }
