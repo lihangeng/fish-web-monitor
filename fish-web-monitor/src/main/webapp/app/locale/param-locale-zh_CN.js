@@ -83,8 +83,10 @@ Ext.apply(EwayLocale,{
         	jobDetail:'查看作业明细',//EwayLocale.param.paramDownloadMonitor.jobDetail
         	jobId: '作业ID',//EwayLocale.param.paramDownloadMonitor.jobId
         	date: '日期',//EwayLocale.param.paramDownloadMonitor.date
-        	publisherName: '发布者'//EwayLocale.param.paramDownloadMonitor.publisherName
-        	
+        	publisherName: '发布者',//EwayLocale.param.paramDownloadMonitor.publisherName
+        	downloadDetail:'监控下发详情',//EwayLocale.param.paramDownloadMonitor.downloadDetail
+        	job:'作业: ',//EwayLocale.param.paramDownloadMonitor.job
+        	chooseRecord:'请选中一条记录',//EwayLocale.param.paramDownloadMonitor.chooseRecord
         }
 
     }

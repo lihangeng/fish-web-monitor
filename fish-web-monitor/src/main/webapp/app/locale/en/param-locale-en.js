@@ -84,8 +84,10 @@ Ext.apply(EwayLocale,{
         	jobDetail:'Check Job Detail',//EwayLocale.param.paramDownloadMonitor.jobDetail
         	jobId: 'Job ID',//EwayLocale.param.paramDownloadMonitor.jobId
         	date: 'Date',//EwayLocale.param.paramDownloadMonitor.date
-        	publisherName: 'Publisher'//EwayLocale.param.paramDownloadMonitor.publisherName
-        	
+        	publisherName: 'Publisher',//EwayLocale.param.paramDownloadMonitor.publisherName
+        	downloadDetail:'Monitor Download Detail',//EwayLocale.param.paramDownloadMonitor.downloadDetail
+            job:'Job: ',//EwayLocale.param.paramDownloadMonitor.job
+            chooseRecord:'Please Choose A Record'//EwayLocale.param.paramDownloadMonitor.chooseRecord
         }
 
     }
