@@ -38,6 +38,7 @@ import com.yihuacomputer.fish.api.parameter.IParamPublishService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetailService;
+import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
@@ -64,6 +65,9 @@ public class ParamTemplateController {
 
 	@Autowired
 	private IDeviceService deviceService;
+	
+	@Autowired
+	private IParamTemplateDeviceRelationService paramTemplateDeviceRelationService;
 
 	@Autowired
 	private IParamElementService paramElementService;
@@ -423,7 +427,12 @@ public class ParamTemplateController {
 		long timeStamp = Long.parseLong(DateUtils.getTimestamp5(date));
 
 		try {
-
+			List<IDevice> deviceList = paramTemplateDeviceRelationService.listDeviceByTemplate(templateId);
+			if(null!=deviceList&&deviceList.size()!=0){
+				result.addAttribute(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, "当前模板未关联设备无法进行下发!");
+				return result;
+			}
 			IParamTemplate template = templateService.get(templateId);
 			UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
 			templateService.issueTemplate(template, timeStamp);
