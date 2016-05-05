@@ -307,6 +307,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 					onApply :function(){
 						var grid = this.getTemplateGrid();
 						var sm = grid.getSelectionModel();
+
 						if (sm.getCount() == 1) {
 							var record = sm.getLastSelected();
 							var templateId = record.data.id;
@@ -318,13 +319,21 @@ Ext.define('Eway.controller.parameter.template.Template',
 								},
 								success : function(response) {
 									var object = Ext.decode(response.responseText);
+									Ext.MessageBox.confirm(EwayLocale.confirm.title,//'提示',
+											EwayLocale.confirm.taskConfirmInfo2,
+											function(button, text) {
+												if (button == "yes") {
+												var controller = this.parent.activeController('parameter.paramMonitor.ParamMonitor');
+												controller.onDetail(record.get("id"));
+												}
+												},this);
 									if (object.success == true) {
-										Eway.alert(EwayLocale.tip.paramTemplate.applySuccess);
 										this.onQueryAfterOperate();
 									} else {
 										Eway.alert(EwayLocale.tip.paramTemplate.applyFailure);
 										this.onQueryAfterOperate();
 									}
+									
 								},
 								failure : function() {
 										Eway.alert(EwayLocale.tip.paramTemplate.applyFailure);

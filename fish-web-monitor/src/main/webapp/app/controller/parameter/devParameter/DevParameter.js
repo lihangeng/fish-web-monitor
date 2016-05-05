@@ -83,8 +83,18 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 			params:{
 				arrayId:devArrayId
 			},
-			success:function(response){
-				Eway.alert(EwayLocale.param.deviceParam.downloadSuccess);
+			success:function(ed){
+				if(Ext.decode(ed.responseText).data){
+					var jobId=Ext.decode(ed.responseText).data;
+					Ext.MessageBox.confirm(EwayLocale.confirm.title,//'提示',
+							jobId+'次作业保存成功，是否跳转到参数下发监控界面！',
+				 			function(button, text) {
+				 				if (button == "yes") {
+				 					var controller = this.parent.activeController('parameter.paramMonitor.ParamMonitor');
+				 					controller.autoJobDetail(jobId);
+				 				}
+				 			},this);
+				}
 			},
 			failure:function(response){
 				Eway.alert(EwayLocale.param.deviceParam.downloadFailure);

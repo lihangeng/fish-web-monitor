@@ -12,7 +12,7 @@ Ext.define('Eway.view.parameter.paramMonitor.JobFilterForm',{
 				items:[{
 					xtype : 'textfield',
 					name : 'id',
-					fieldLabel : '作业ID',
+					fieldLabel : EwayLocale.param.paramDownloadMonitor.jobId,
 					regex:/(^([0-9]\d{0,17})$)/
 				}]	
 		/*	},{

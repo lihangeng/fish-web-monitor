@@ -19,23 +19,23 @@ Ext.define('Eway.view.parameter.paramMonitor.TaskGrid', {
 				}
 			 }],
 			columns : [ {
-				header : '任务ID',
+				header : EwayLocale.param.paramDownloadMonitor.taskId,
 				dataIndex : 'id',
 				width:150
 			},{
-				header : '设备终端号',
+				header : EwayLocale.param.paramDownloadMonitor.devCode,
 				dataIndex : 'terminalId',
 				width:150
 			},{
-				header : '版本号',
+				header : EwayLocale.param.paramDownloadMonitor.versionNo,
 				dataIndex : 'versionNo',
 				width:150
 			},{
-				header : '下载开始时间',
+				header : EwayLocale.param.paramDownloadMonitor.downloadStartTime,
 				dataIndex : 'downloadStartTime',
 				width:150
 			},{
-				header : '下载开始时间',
+				header : EwayLocale.param.paramDownloadMonitor.downloadFinishTime,
 				dataIndex : 'downloadFinishTime',
 				width:150
 			}/*,{
@@ -43,11 +43,11 @@ Ext.define('Eway.view.parameter.paramMonitor.TaskGrid', {
 				dataIndex : 'success',
 				width:150
 			}*/,{
-				header : '原因',
+				header : EwayLocale.param.paramDownloadMonitor.reason,
 				dataIndex : 'reason',
 				width:150
 			},{
-				header : '任务状态',
+				header :EwayLocale.param.paramDownloadMonitor.taskStatus,
 				dataIndex : 'taskStatus',
 				flex:1
 			}],
