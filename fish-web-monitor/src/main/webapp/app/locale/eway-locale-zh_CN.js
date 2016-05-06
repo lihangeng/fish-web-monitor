@@ -50,7 +50,7 @@ Ext.apply(EwayLocale,{
 		timeout:'会话超时，3秒后自动跳转到登录页面',//EwayLocale.confirm.timeout
 		taskConfirmInfo0:'第',//EwayLocale.confirm.taskConfirmInfo0
 		taskConfirmInfo1:'次作业保存成功,是否跳转到"分发监控"页面?',//EwayLocale.confirm.taskConfirmInfo1
-		taskConfirmInfo2:'作业保存成功,是否跳转到"参数下发监控"页面?'//EwayLocale.confirm.taskConfirmInfo2
+		taskConfirmInfo2:'次作业保存成功,是否跳转到"参数下发监控"页面?'//EwayLocale.confirm.taskConfirmInfo2
 
 	},
 	button:{
@@ -334,7 +334,8 @@ Ext.apply(EwayLocale,{
 			updateSuccess:'更改参数模板成功.',//EwayLocale.tip.paramTemplate.updateSuccess
 			applySuccess:'发布参数模板成功.',//EwayLocale.tip.paramTemplate.applySuccess
 			applyFailure:'发布参数模板失败.',//EwayLocale.tip.paramTemplate.applyFailure
-			unlinkedFailure:'解除关联设备失败.',//EwayLocale.tip.paramTemplate.unlinkedFailure		
+			unlinkedFailure:'解除关联设备失败.',//EwayLocale.tip.paramTemplate.unlinkedFailure	
+			deviceUnlinked:'模板未关联设备，请重新操作.'//EwayLocale.tip.paramTemplate.deviceUnlinked
 		}
 
 	},
