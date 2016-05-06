@@ -333,7 +333,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 									if (object.success == true) {
 										this.onQueryAfterOperate();
 									} else {
-										Eway.alert(EwayLocale.tip.paramTemplate.deviceUnlinked);
+										Eway.alert(object.errorMsg);
 										this.onQueryAfterOperate();
 									}
 									

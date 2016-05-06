@@ -11,5 +11,5 @@ public interface IParamTemplateDetailService {
 	IPageResult<IParamTemplateDetail> getByDeviceId(int start,int limit,IFilter filter,long deviceId);
 	List<IParamTemplateDetail> list(long deviceId);
 	List<IParamTemplateDetail> listByTempateId(long templateId);
-
+	List<IParamTemplate> listParamByTemplate(long templateId);
 }
