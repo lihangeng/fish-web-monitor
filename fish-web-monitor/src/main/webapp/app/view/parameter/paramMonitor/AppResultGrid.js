@@ -9,7 +9,7 @@ Ext.define('Eway.view.parameter.paramMonitor.AppResultGrid', {
 			initRegion : true,
 			store : store,
 			 columns : [{
-					header : EwayLocale.param.element.ParamBelongs,
+					header : EwayLocale.param.element.paramBelongs,
 					dataIndex : 'appSystem',
 					width:150
 				},{
