@@ -85,9 +85,9 @@ public class ParamElementService implements IParamElementService {
 	}
 
 	@Override
-	public Iterable<IParamElement> list(IFilter filter) {
+	public List<IParamElement> list(IFilter filter) {
 
-		return null;
+		return dao.findByFilter(filter, IParamElement.class);
 	}
 
 	@Override

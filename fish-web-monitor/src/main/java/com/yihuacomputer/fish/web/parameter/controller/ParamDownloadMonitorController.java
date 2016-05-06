@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,11 +19,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.parameter.IParamPublish;
+import com.yihuacomputer.fish.api.parameter.IParamPublishAppResult;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishSearchService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
@@ -31,6 +34,7 @@ import com.yihuacomputer.fish.api.parameter.ParamDownloadResultForm;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.IPersonService;
 import com.yihuacomputer.fish.web.parameter.form.ParamDownloadMonitorForm;
+import com.yihuacomputer.fish.web.parameter.form.ParamPublishAppResultForm;
 
 @Controller
 @RequestMapping("/parameter/downloadMonior")
@@ -49,6 +53,9 @@ public class ParamDownloadMonitorController {
 	
 	@Autowired
 	private IParamTemplateService paramtemplateService;
+	
+	@Autowired
+	private MessageSource messageSourceEnum;
 	/**
 	 * 查询参数下发Job信息
 	 * @param start
@@ -156,5 +163,39 @@ public class ParamDownloadMonitorController {
 
 		return filter;
 	}
+	
+	@RequestMapping(value="/task/status",method=RequestMethod.GET)
+	public @ResponseBody ModelMap searchStatus(HttpServletRequest req,WebRequest webRequest){
+		logger.info("search publish result status");
+		ModelMap result=new ModelMap();
+		if(req.getParameter("publishResultId")!=null){
+			String pubId=req.getParameter("publishResultId");
+			List<IParamPublishAppResult> list=paramPublishResultService.getStatus(Long.valueOf(pubId));
+			result.addAttribute(FishConstant.SUCCESS, true);
+			result.addAttribute(FishConstant.TOTAL, list.size());
+			result.addAttribute(FishConstant.DATA, statusConvert(list));
+		}
+		return result;
+	}
+	
+	private List<ParamPublishAppResultForm> statusConvert(List<IParamPublishAppResult> list){
+		List<ParamPublishAppResultForm> ppar=new ArrayList<ParamPublishAppResultForm>();
+		for(IParamPublishAppResult result:list){
+			ParamPublishAppResultForm pparf=new ParamPublishAppResultForm();
+			pparf.setAppSystem(result.getAppSystem().getName());
+			pparf.setReason(result.getReason());
+			if(result.getStatus()!=null){
+				pparf.setStatus(getEnumI18n(result.getStatus().getText()));
+			}
+			ppar.add(pparf);
+		}
+		return ppar;
+	}
+	private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText,null,FishCfg.locale);
+    }
 	
 }

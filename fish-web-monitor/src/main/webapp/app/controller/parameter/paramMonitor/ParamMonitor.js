@@ -104,11 +104,14 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 	
 	onCellClick:function( _this, td, cellIndex, record, tr, rowIndex, e, eOpts){
 		if(cellIndex==6){
-			var form=Ext.create('Eway.view.parameter.paramMonitor.Form');
-			form.show();
+			var win=Ext.create('Eway.view.parameter.paramMonitor.Form');
+			win.show();
+			
+			var grid=win.down('parameter_paramMonitor_AppResultGrid');
 			var record=this.getTaskGrid().getSelectionModel().getLastSelected();
+			win.setTitle(EwayLocale.param.paramDownloadMonitor.task+record.get('id')+EwayLocale.param.paramDownloadMonitor.StatusDetail);
 			if(record){
-				var store=form.getStore();
+				var store=grid.getStore();
 				var publishResultId=record.get('id');
 				store.setBaseParam('publishResultId',publishResultId);
 				store.loadPage(1);

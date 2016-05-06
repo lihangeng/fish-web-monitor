@@ -53,6 +53,7 @@ import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.parameter.form.AppSystemForm;
 import com.yihuacomputer.fish.web.parameter.form.DevParameterForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamClassifyForm;
+import com.yihuacomputer.fish.web.parameter.form.ParamDownloadMonitorForm;
 
 
 @Controller
@@ -325,9 +326,12 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 				deviceIdList.add(id);
 				UserSession userSession=(UserSession) request.getSession().getAttribute("SESSION_USER");
 				long jobId=paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
+				ParamDownloadMonitorForm pdmf=new ParamDownloadMonitorForm();
+				pdmf.setId(jobId);
 				if(jobId!=Long.MIN_VALUE){
 					result.addAttribute(FishConstant.SUCCESS, true);
 					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadSuccess", null, FishCfg.locale));
+					result.addAttribute(FishConstant.DATA, pdmf);
 				}else{
 					result.addAttribute(FishConstant.SUCCESS, false);
 					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadFailure", null, FishCfg.locale));

@@ -148,7 +148,6 @@ public class ParamTemplateService implements IParamTemplateService {
 
 		//更新模板
 		if(flag == 0){
-
 			hql.append(",ParamTemplateElementRelation t1 ");
 			hql.append("where t.id = t1.elementId ");
 			hql.append("and t1.templateId = ? and t.paramBelongs.id = ?");
@@ -156,7 +155,24 @@ public class ParamTemplateService implements IParamTemplateService {
 		}else{
 			hql.append("where t.paramBelongs.id = ?");
 			elements = dao.findByHQL(hql.toString() , appSystem);
+		}
+		return elements;
+	}
 
+	@Override
+	public List<IParamElement> listParam2(long templateId, long flag) {
+		StringBuffer hql = new StringBuffer();
+		List<IParamElement> elements = null;
+		hql.append("select t from ParamElement t ");
+		//更新模板
+		if(flag == 0){
+			hql.append(",ParamTemplateElementRelation t1 ");
+			hql.append(" where t.id = t1.elementId ");
+			hql.append(" and t1.templateId = ?");
+			elements = dao.findByHQL(hql.toString(), templateId);
+		}else{
+			hql.append("where t.paramBelongs.id = ?");
+			elements = dao.findByHQL(hql.toString(),templateId);
 		}
 		return elements;
 	}
@@ -357,5 +373,7 @@ public class ParamTemplateService implements IParamTemplateService {
 		List<IParamTemplateDetail> list = dao.findByHQL(sb.toString(), new Object[]{deviceId});
 		return list;
 	}
+
+
 
 }
