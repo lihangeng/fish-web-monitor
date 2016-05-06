@@ -66,7 +66,7 @@ public class ParamTemplateController {
 
 	@Autowired
 	private IDeviceService deviceService;
-	
+
 	@Autowired
 	private IParamTemplateDeviceRelationService paramTemplateDeviceRelationService;
 
@@ -379,14 +379,15 @@ public class ParamTemplateController {
 			List<IParamElement> list = null;
 			list =  paramElementService.list();
 			list.removeAll(templateService.listParam(id,flag,appSystem));
+			List<IParamElement> list2 = new ArrayList<IParamElement>();
 			int size = list.size();
-			for(int i = 0;i<size;i++){
-				if(list.get(i).getParamBelongs().getId() != appSystem){
-					list.remove(i);
+			for(int i = 0 ; i< size ;i++){
+				if(list.get(i).getParamBelongs().getId() == appSystem){
+					list2.add(list.get(i));
 				}
 			}
 			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute(FishConstant.DATA, convert(list));
+			result.addAttribute(FishConstant.DATA, convert(list2));
 		}
 		return result;
 	}

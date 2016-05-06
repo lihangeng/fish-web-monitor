@@ -91,27 +91,25 @@ Ext.define('Eway.controller.parameter.template.Template',
 						var record = sm.getLastSelected();
 						var appSystem=this.getAddWin().down("field_paramElement_ParamBelongsRadioGroup").getValue().appSystem;
 						var flag = 1;
-						if(undefined != record.get("flag")){
-							flag = 0;
-						}
 //						var store = Ext.create('Eway.store.parameter.template.AddingParam');
 						var store = this.getParamGrid().getStore();
 						var storeAdded = this.getAddedParamGrid().getStore();
 //						store.setUrlParamsByObject(paramBelongsRadioGroup);
-						store.setBaseParam ('id',record.get("id"));
+						store.setBaseParam ('id',1);
 						store.setBaseParam ('appSystem',appSystem);
 						store.setBaseParam ('flag',flag);
 						store.loadPage(1);
 //						storeAdded.setUrlParamsByObject(appSystem);
-						storeAdded.setBaseParam ('id',record.get("id"));
-						storeAdded.setBaseParam ('flag',flag);
-						storeAdded.setBaseParam ('appSystem',appSystem);
-						storeAdded.loadPage(1);
+//						storeAdded.setBaseParam ('id',record.get("id"));
+//						storeAdded.setBaseParam ('flag',flag);
+//						storeAdded.setBaseParam ('appSystem',appSystem);
+//						storeAdded.loadPage(1);
 					},
 					onChange2 : function(_this, newValue, oldValue, eOpts){
 						var grid = this.getTemplateGrid();
 
 						var sm = grid.getSelectionModel();
+						var flag = 0;
 
 						var record = sm.getLastSelected();
 						var appSystem=this.getUpdateWin().down("field_paramElement_ParamBelongsRadioGroup").getValue().appSystem;
@@ -120,12 +118,12 @@ Ext.define('Eway.controller.parameter.template.Template',
 						var storeAdded = this.getAddedParamGrid().getStore();
 						store.setBaseParam('appSystem',appSystem);
 						store.setBaseParam ('id',record.get("id"));
-						store.setBaseParam ('flag',1);
+						store.setBaseParam ('flag',flag);
 						store.loadPage(1);
-						storeAdded.setBaseParam('appSystem',appSystem);
-						storeAdded.setBaseParam ('id',record.get("id"));
-						storeAdded.setBaseParam ('flag',1);
-						storeAdded.loadPage(1);
+//						storeAdded.setBaseParam('appSystem',appSystem);
+//						storeAdded.setBaseParam ('id',record.get("id"));
+//						storeAdded.setBaseParam ('flag',1);
+//						storeAdded.loadPage(1);
 					},
 
 					onAdd : function(){
@@ -333,7 +331,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 										Eway.alert(EwayLocale.tip.paramTemplate.applyFailure);
 										this.onQueryAfterOperate();
 									}
-									
+
 								},
 								failure : function() {
 										Eway.alert(EwayLocale.tip.paramTemplate.applyFailure);
