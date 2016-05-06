@@ -66,16 +66,7 @@ public class ParamPublishResultService implements IParamPublishResultService {
 
 	@Override
 	public IParamPublishResult save(IParamPublishResult publishResult) {
-		List<IAppSystem> systemList = appSystemService.list();
-		publishResult = dao.save(publishResult);
-		for (IAppSystem appSystem : systemList) {
-			IParamPublishAppResult appResult = paramPublishAppResultService.make();
-			appResult.setAppSystem(appSystem);
-			appResult.setParamPublishResult(publishResult);
-			appResult.setStatus(TaskStatus.NEW);
-			paramPublishAppResultService.save(appResult);
-		}
-		return publishResult;
+		return  dao.save(publishResult);
 	}
 
 	@Override
@@ -134,7 +125,16 @@ public class ParamPublishResultService implements IParamPublishResultService {
 				publishResult.setRet(TaskStatus.NOTICED_FAIL);
 				publishResult.setSuccess(false);
 			}
-			this.update(publishResult);
+			List<IAppSystem> systemList = appSystemService.list();
+			publishResult = dao.update(publishResult);
+			for (IAppSystem appSystem : systemList) {
+				IParamPublishAppResult appResult = paramPublishAppResultService.make();
+				appResult.setAppSystem(appSystem);
+				appResult.setParamPublishResult(publishResult);
+				appResult.setStatus(publishResult.getRet());
+				appResult.setReason(publishResult.getReason());
+				paramPublishAppResultService.save(appResult);
+			}
 		}
 		return true;
 

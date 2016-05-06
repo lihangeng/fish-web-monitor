@@ -37,7 +37,7 @@ Ext.define('Eway.view.monitor.newTransaction.Chart', {
                 store: store,
                 shadow: true,
                 animate: true,
-                layout: 'border',
+//                layout: 'border',
 //                legend: {
 //	                docked: 'right'
 //	            },
