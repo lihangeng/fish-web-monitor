@@ -3,7 +3,6 @@ Ext.define('Eway.view.parameter.paramMonitor.Form',{
 	alias : 'widget.parameter_paramMonitor_form',
 	
 	requires:['Eway.view.parameter.paramMonitor.AppResultGrid'],
-//	title : '任务状态详情',
 	initComponent:function(){
 		Ext.apply(this,{
 			items:[{

@@ -9,15 +9,15 @@ Ext.define('Eway.view.parameter.paramMonitor.AppResultGrid', {
 			initRegion : true,
 			store : store,
 			 columns : [{
-					header : '应用系统',
+					header : EwayLocale.param.element.ParamBelongs,
 					dataIndex : 'appSystem',
 					width:150
 				},{
-					header : '状态',
+					header : EwayLocale.param.paramDownloadMonitor.taskStatus,
 					dataIndex : 'status',
 					width:150
 				},{
-					header : '原因',
+					header : EwayLocale.param.paramDownloadMonitor.reason,
 					dataIndex : 'reason',
 					width:150
 				}]

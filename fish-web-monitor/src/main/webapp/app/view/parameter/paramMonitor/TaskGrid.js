@@ -7,7 +7,6 @@ Ext.define('Eway.view.parameter.paramMonitor.TaskGrid', {
 	},
 	initComponent : function() {
 		var store = Ext.create('Eway.store.parameter.paramMonitor.TaskMonitor');
-//		store.loadPage(1);
 		Ext.apply(this, {
 			initRegion : true,
 			store : store,

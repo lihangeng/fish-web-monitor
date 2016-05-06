@@ -109,7 +109,7 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 			
 			var grid=win.down('parameter_paramMonitor_AppResultGrid');
 			var record=this.getTaskGrid().getSelectionModel().getLastSelected();
-			win.setTitle('任务：'+record.get('id')+' 状态详情');
+			win.setTitle(EwayLocale.param.paramDownloadMonitor.task+record.get('id')+EwayLocale.param.paramDownloadMonitor.StatusDetail);
 			if(record){
 				var store=grid.getStore();
 				var publishResultId=record.get('id');
