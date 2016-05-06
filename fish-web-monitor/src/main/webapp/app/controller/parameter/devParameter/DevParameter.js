@@ -87,7 +87,7 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 				if(Ext.decode(ed.responseText).data){
 					var jobId=Ext.decode(ed.responseText).data;
 					Ext.MessageBox.confirm(EwayLocale.confirm.title,//'提示',
-							jobId+'次作业保存成功，是否跳转到参数下发监控界面！',
+							jobId+EwayLocale.param.paramDownloadMonitor.aotuJump,
 				 			function(button, text) {
 				 				if (button == "yes") {
 				 					var controller = this.parent.activeController('parameter.paramMonitor.ParamMonitor');
@@ -174,8 +174,18 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 		});
 		
 		record.save({
-			 success: function(ed) {
-				Eway.alert(EwayLocale.updateSuccess);
+			success:function(ed) {
+				if(ed.data.id){
+					var jobId=ed.data.id;
+					Ext.MessageBox.confirm(EwayLocale.confirm.title,//'提示',
+							jobId+EwayLocale.param.paramDownloadMonitor.aotuJump,
+				 			function(button, text) {
+				 				if (button == "yes") {
+				 					var controller = this.parent.activeController('parameter.paramMonitor.ParamMonitor');
+				 					controller.autoJobDetail(jobId);
+				 				}
+				 			},this);
+				}
 				store.loadPage(1);
 			 },
 			 failure: function(ed){

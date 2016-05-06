@@ -2,10 +2,12 @@ Ext.define('Eway.view.parameter.paramMonitor.TaskGrid', {
 	alias : 'widget.parameter_paramMonitor_TaskGrid',
 	extend : 'Eway.view.base.Grid',
 
-	
+	config:{
+		jobId:0
+	},
 	initComponent : function() {
 		var store = Ext.create('Eway.store.parameter.paramMonitor.TaskMonitor');
-		store.loadPage(1);
+//		store.loadPage(1);
 		Ext.apply(this, {
 			initRegion : true,
 			store : store,
@@ -49,7 +51,10 @@ Ext.define('Eway.view.parameter.paramMonitor.TaskGrid', {
 			},{
 				header :EwayLocale.param.paramDownloadMonitor.taskStatus,
 				dataIndex : 'taskStatus',
-				flex:1
+				flex:1,
+				renderer: function(value,meta,record) {
+					return '<font style="color:red;cursor:pointer">'+value+'</font>';
+				},
 			}],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,
