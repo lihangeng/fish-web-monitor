@@ -87,7 +87,8 @@ Ext.apply(EwayLocale,{
         	publisherName: 'Publisher',//EwayLocale.param.paramDownloadMonitor.publisherName
         	downloadDetail:'Monitor Download Detail',//EwayLocale.param.paramDownloadMonitor.downloadDetail
             job:'Job: ',//EwayLocale.param.paramDownloadMonitor.job
-            chooseRecord:'Please Choose A Record'//EwayLocale.param.paramDownloadMonitor.chooseRecord
+            chooseRecord:'Please Choose A Record',//EwayLocale.param.paramDownloadMonitor.chooseRecord
+            aotuJump:'次作业保存成功，是否跳转到参数下发监控界面！'//EwayLocale.param.paramDownloadMonitor.aotuJump
         }
 
     }

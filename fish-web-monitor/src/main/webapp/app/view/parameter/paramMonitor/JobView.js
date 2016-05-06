@@ -15,7 +15,13 @@ Ext.define('Eway.view.parameter.paramMonitor.JobView', {
 			 },{
 				 region : 'center',
 				 xtype : 'parameter_paramMonitor_JobGrid'
-			 }]
+			 }],
+			 listeners:{
+				 activate:function( _this, eOpts ){
+					 var store = _this.down("parameter_paramMonitor_JobGrid").getStore();
+					 store.load();
+				 }
+			 }
 		 });
 		this.callParent(arguments);
 	}

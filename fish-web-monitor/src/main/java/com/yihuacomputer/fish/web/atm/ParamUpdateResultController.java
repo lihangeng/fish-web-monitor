@@ -59,15 +59,20 @@ public class ParamUpdateResultController {
 	public @ResponseBody ParamInfo reciveMsg(@RequestBody ParamInfo msg) {
 		// 获取上报的参数归属应用
 		String appType = msg.getAppType();
+		IParamPublishResult paramPublishResult = paramPublishResultService.get(msg.getTaskId());
+		String date =DateUtils.getTimestamp(new Date());
 		// 将结果RET进行转换
 		TaskStatus status = null;
 		String reason = null;
 		AgentRet agentRet = AgentRet.valueOf(msg.getRet());
+		//下载失败和部署失败进行设置任务结束时间
 		if (agentRet.equals(AgentRet.RET40)) {
 			status = TaskStatus.DOWNLOADED;
 		} else if (AgentRet.isDownFail(agentRet)) {
 			status = TaskStatus.DOWNLOADED_FAIL;
 			reason = getEnumI18n(agentRet.getText());
+			paramPublishResult.setDownloadFinishTime(date);
+			paramPublishResultService.update(paramPublishResult);
 		} else if (agentRet.equals(AgentRet.RET50)) {
 			status = TaskStatus.DEPLOYED;
 		} else if (agentRet.equals(AgentRet.RET51)) {
@@ -75,13 +80,14 @@ public class ParamUpdateResultController {
 		} else if (AgentRet.isDeployFail(agentRet)) {
 			status = TaskStatus.DEPLOYED_FAIL;
 			reason = getEnumI18n(agentRet.getText());
+			paramPublishResult.setDownloadFinishTime(date);
+			paramPublishResultService.update(paramPublishResult);
 		} else if (agentRet.equals(AgentRet.RET00)) {
 			status = TaskStatus.CHECKED;
 		} else {
 			status = TaskStatus.OTHER;
 		}
 		if (ParamInfo.class.getSimpleName().equals(appType)) {
-			IParamPublishResult paramPublishResult = paramPublishResultService.get(msg.getTaskId());
 			if (null == paramPublishResult) {
 				logger.error(String.format("param update task %d not exist", msg.getTaskId()));
 				return null;
@@ -103,7 +109,6 @@ public class ParamUpdateResultController {
 					logger.error(String.format("appType %s not exist", appType));
 					return msg;
 				}
-				IParamPublishResult paramPublishResult = paramPublishResultService.get(msg.getTaskId());
 				if (null == paramPublishResult) {
 					logger.error(String.format("paramPublishResult [Task] %d not exist", msg.getTaskId()));
 					return msg;
@@ -116,13 +121,12 @@ public class ParamUpdateResultController {
 			paramPublishAppResult.setReason(reason);
 			paramPublishAppResultService.save(paramPublishAppResult);
 			// 如果结果全部上报了，则修改全局状态
-			IParamPublishResult paramPublishResult = paramPublishResultService.get(msg.getTaskId());
 			TaskStatus paramStatus = paramPublishResult.getRet();
 			if (paramPublishAppResult.getStatus().getId() > paramStatus.getId()||paramStatus.equals(TaskStatus.CHECKED)) {
 				paramPublishResult.setRet(paramPublishAppResult.getStatus());
 				paramPublishResult.setReason(paramPublishAppResult.getReason());
 			}
-			paramPublishResult.setDownloadFinishTime(DateUtils.getTimestamp(new Date()));
+			paramPublishResult.setDownloadFinishTime(date);
 			paramPublishResultService.update(paramPublishResult);
 		}
 		return msg;
