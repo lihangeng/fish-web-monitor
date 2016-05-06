@@ -31,8 +31,6 @@ import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
-import com.yihuacomputer.fish.api.parameter.IAppSystem;
-import com.yihuacomputer.fish.api.parameter.IAppSystemService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishService;
@@ -66,7 +64,7 @@ public class ParamTemplateController {
 
 	@Autowired
 	private IDeviceService deviceService;
-	
+
 	@Autowired
 	private IParamTemplateDeviceRelationService paramTemplateDeviceRelationService;
 
@@ -79,8 +77,6 @@ public class ParamTemplateController {
 	@Autowired
 	private IOrganizationService orgService;
 
-	@Autowired
-	private IAppSystemService appSystemService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,
@@ -370,7 +366,7 @@ public class ParamTemplateController {
 			result.addAttribute(FishConstant.SUCCESS, false);
 		} else if(flag == 0){
 			result.addAttribute(FishConstant.SUCCESS, true);
-			List<IParamElement> elements = templateService.listParam(id,flag,appSystem);
+			List<IParamElement> elements = templateService.listParam2(id,flag);
 			for(int i=0;i<elements.size();i++){
 				elements.get(i).setParamValue(templateService.getDetailByTemplateId(id, elements.get(i).getId()).getParamValue());
 			}
@@ -378,15 +374,16 @@ public class ParamTemplateController {
 		}else {
 			List<IParamElement> list = null;
 			list =  paramElementService.list();
-			list.removeAll(templateService.listParam(id,flag,appSystem));
+			list.removeAll(templateService.listParam2(id,flag));
+			List<IParamElement> list2 = new ArrayList<IParamElement>();
 			int size = list.size();
-			for(int i = 0;i<size;i++){
-				if(list.get(i).getParamBelongs().getId() != appSystem){
-					list.remove(i);
+			for(int i = 0 ; i< size ;i++){
+				if(list.get(i).getParamBelongs().getId() == appSystem){
+					list2.add(list.get(i));
 				}
 			}
 			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute(FishConstant.DATA, convert(list));
+			result.addAttribute(FishConstant.DATA, convert(list2));
 		}
 		return result;
 	}
@@ -406,8 +403,11 @@ public class ParamTemplateController {
 			result.addAttribute(FishConstant.SUCCESS, false);
 		} else if(flag == 0){
 			List<IParamElement> list = null;
-			list =  paramElementService.list();
-			list.removeAll(templateService.listParam(id,flag,Long.valueOf(appSystem)));
+			IFilter filter  = new Filter();
+			filter.eq("paramBelongs.id", appSystem);
+			list =  paramElementService.list(filter);
+			List<IParamElement> element =templateService.listParam2(id,flag);
+			list.removeAll(element);
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, convert(list));
 		}else{
@@ -448,7 +448,6 @@ public class ParamTemplateController {
 				template.setApplyFlag("1");
 				templateService.update(template);
 				result.put(FishConstant.SUCCESS, true);
-				result.put(FishConstant.DATA, jobId);
 			}
 			else{
 				result.addAttribute(FishConstant.SUCCESS, false);
