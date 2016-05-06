@@ -317,21 +317,24 @@ Ext.define('Eway.controller.parameter.template.Template',
 								},
 								success : function(response) {
 									var object = Ext.decode(response.responseText);
+									if(object.data){
+									var jobId = object.data;
 									Ext.MessageBox.confirm(EwayLocale.confirm.title,//'提示',
-											EwayLocale.confirm.taskConfirmInfo2,
+											EwayLocale.confirm.taskConfirmInfo0+jobId+EwayLocale.confirm.taskConfirmInfo2,
 											function(button, text) {
 												if (button == "yes") {
 												var controller = this.parent.activeController('parameter.paramMonitor.ParamMonitor');
-												controller.onDetail(record.get("id"));
+												controller.autoJobDetail(jobId);
 												}
 												},this);
+									  }
 									if (object.success == true) {
 										this.onQueryAfterOperate();
 									} else {
-										Eway.alert(EwayLocale.tip.paramTemplate.applyFailure);
+										Eway.alert(object.errorMsg);
 										this.onQueryAfterOperate();
 									}
-
+									
 								},
 								failure : function() {
 										Eway.alert(EwayLocale.tip.paramTemplate.applyFailure);
