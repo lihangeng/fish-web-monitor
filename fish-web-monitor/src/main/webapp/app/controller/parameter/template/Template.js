@@ -113,17 +113,13 @@ Ext.define('Eway.controller.parameter.template.Template',
 
 						var record = sm.getLastSelected();
 						var appSystem=this.getUpdateWin().down("field_paramElement_ParamBelongsRadioGroup").getValue().appSystem;
-//						var store = Ext.create('Eway.store.parameter.template.AddingParam');
 						var store = this.getParamGrid().getStore();
 						var storeAdded = this.getAddedParamGrid().getStore();
 						store.setBaseParam('appSystem',appSystem);
 						store.setBaseParam ('id',record.get("id"));
 						store.setBaseParam ('flag',flag);
 						store.loadPage(1);
-//						storeAdded.setBaseParam('appSystem',appSystem);
-//						storeAdded.setBaseParam ('id',record.get("id"));
-//						storeAdded.setBaseParam ('flag',1);
-//						storeAdded.loadPage(1);
+
 					},
 
 					onAdd : function(){

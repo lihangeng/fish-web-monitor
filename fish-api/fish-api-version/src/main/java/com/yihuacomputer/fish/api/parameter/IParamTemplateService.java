@@ -84,6 +84,14 @@ public interface IParamTemplateService {
 	 */
 	public List<IParamElement> listParam(long templateId, long flag,long appSystem) ;
 
+    /**
+     *
+     * @param templateId
+     * @param flag
+     * @return
+     */
+	public List<IParamElement> listParam2(long templateId, long flag) ;
+
 	/**
 	 * 解绑元数据与模板关联
 	 * @param template

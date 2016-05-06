@@ -26,7 +26,7 @@ public interface IParamElementService {
 
 	public IPageResult<IParamElement> page(int offset, int limit, IFilter filter);
 
-	public Iterable<IParamElement> list(IFilter filter);
+	public List<IParamElement> list(IFilter filter);
 
 	public void save(IParamElement paramElement);
 
