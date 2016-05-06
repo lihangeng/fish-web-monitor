@@ -126,7 +126,7 @@ public class ParamPublishResultService implements IParamPublishResultService {
 				publishResult.setSuccess(false);
 			}
 			List<IAppSystem> systemList = appSystemService.list();
-			publishResult = dao.save(publishResult);
+			publishResult = dao.update(publishResult);
 			for (IAppSystem appSystem : systemList) {
 				IParamPublishAppResult appResult = paramPublishAppResultService.make();
 				appResult.setAppSystem(appSystem);
@@ -135,7 +135,6 @@ public class ParamPublishResultService implements IParamPublishResultService {
 				appResult.setReason(publishResult.getReason());
 				paramPublishAppResultService.save(appResult);
 			}
-			this.update(publishResult);
 		}
 		return true;
 
