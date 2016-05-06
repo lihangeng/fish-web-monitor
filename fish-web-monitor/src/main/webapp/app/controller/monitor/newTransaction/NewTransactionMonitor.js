@@ -54,6 +54,7 @@ Ext.define('Eway.controller.monitor.newTransaction.NewTransactionMonitor', {
             },
             'monitor_new_transaction_view ' : {
                 close : this.stopMonitor,
+                deactivate : this.stopMonitor,
                 activate : this.initLoad,
                 render : this.initUserParam
             },
