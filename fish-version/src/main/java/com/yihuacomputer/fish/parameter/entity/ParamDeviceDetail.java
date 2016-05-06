@@ -44,7 +44,7 @@ public class ParamDeviceDetail implements IParamDeviceDetail, Serializable {
 	@JoinColumn(name = "ELEMENT_ID")
 	private IParamElement element;
 
-	@Column(name = "PARAM_VALUE", length = 40)
+	@Column(name = "PARAM_VALUE", length = 128)
 	private String paramValue;
 
 	@Column(name = "VERSION_TIMESTAMP")

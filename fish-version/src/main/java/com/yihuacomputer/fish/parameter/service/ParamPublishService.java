@@ -606,8 +606,6 @@ class NoticeThread implements Runnable {
 	public synchronized void run() {
 		
 		try {
-			// TODO 设置状态
-			// paramPublish.setRet(ret);
 			List<IParamPublishResult> paramPublishResultList = new ArrayList<IParamPublishResult>();
 			// 模板发布
 			int index = 0;
@@ -628,9 +626,9 @@ class NoticeThread implements Runnable {
 				paramPublishResultList.add(paramPublishResult);
 				publishJobManager.addTask(paramPublishResult);
 			}
-//			paramPublish.setParamPublishs(paramPublishResultList);
-//			paramPublish.setRet("FINISH");
-//			paramPublishService.update(paramPublish);
+			paramPublish.setParamPublishs(paramPublishResultList);
+			paramPublish.setRet("FINISH");
+			paramPublishService.update(paramPublish);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
