@@ -167,7 +167,7 @@ public class ParamPublishResultService implements IParamPublishResultService {
 	public IPageResult<ParamDownloadResultForm> getByPublishId(int start, int limit, IFilter filter, String publishId) {
 		StringBuffer hql = new StringBuffer();
 		hql.append("select ppr,device from ParamPublishResult ppr ");
-		hql.append(",Device device where ppr.deviceId=device.id ");
+		hql.append(",Device device where ppr.deviceId=device.id and ppr.ret != 'NEW' ");
 		if (publishId != null && !publishId.isEmpty()) {
 			hql.append("and ppr.paramPublish.id= ").append(Long.valueOf(publishId));
 		}
@@ -200,5 +200,10 @@ public class ParamPublishResultService implements IParamPublishResultService {
 		}
 		return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
 	}
-
+	@Override
+	public List<IParamPublishAppResult> getStatus(long pubId) {
+		StringBuffer hql=new StringBuffer();
+		hql.append("select ppar from ParamPublishAppResult ppar where ppar.paramPublishResult.id =?");
+		return dao.findByHQL(hql.toString(), pubId);
+	}
 }
