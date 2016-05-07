@@ -77,10 +77,29 @@ Ext.define('Eway.controller.parameter.template.Template',
 							},
 							'template_updateTemplate field_paramElement_ParamBelongsRadioGroup' : {
 								change : this.onChange2
+							},
+							'param_paramGrid':{
+								afterrender:this.onRerender
 							}
 
 						});
 					},
+					
+					onRerender:function( _this, eOpts ){
+			    		var store = _this.getStore();
+			    		var addedGrid = _this.up("window").down("param_addedParamGrid");
+			    		var addedStore = addedGrid.getStore();
+			    		store.on("load",function( _this, records, successful, eOpts){
+				    		var addedSum = addedStore.getCount();
+			    			for(var index=0;index<records.length;index++){
+			    				for(var addedIndex = 0 ;addedIndex<addedSum;addedIndex++){
+			    					if(records[index].get("id")==addedStore.getAt(addedIndex).get("id")){
+			    						store.remove(records[index]);
+			    					}
+			    				}
+			    			}
+			    		},this);
+			    	},
 
 					onChange: function(_this, newValue, oldValue, eOpts){
 //						var view = this.getEwayView();
