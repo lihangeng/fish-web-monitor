@@ -201,22 +201,26 @@ Ext.define('Eway.controller.parameter.template.Template',
 										if (success == false) {
 											win.close();
 										}
+										else{
+											paramGrid.getStore().load(
+													{
+														params : {
+															id : templateId,
+															appSystem : 1,
+															flag: flag
+														},
+														callback : function(records,operation, success) {
+															if (success == false) {
+																Eway.alert(EwayLocale.tip.paramTemplate.failedElement);
+																win.close();
+															}
+														}
+													});
+										}
+										
 									}
 								});
-						paramGrid.getStore().load(
-										{
-											params : {
-												id : templateId,
-												appSystem : 1,
-												flag: flag
-											},
-											callback : function(records,operation, success) {
-												if (success == false) {
-													Eway.alert(EwayLocale.tip.paramTemplate.failedElement);
-													win.close();
-												}
-											}
-										});
+						
 
 						win.show();
 					},

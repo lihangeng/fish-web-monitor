@@ -415,8 +415,8 @@ public class ParamTemplateController {
 			IFilter filter  = new Filter();
 			filter.eq("paramBelongs.id", appSystem);
 			list =  paramElementService.list(filter);
-			List<IParamElement> element =templateService.listParam2(id,flag);
-			list.removeAll(element);
+//			List<IParamElement> element =templateService.listParam2(id,flag);
+//			list.removeAll(element);
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, convert(list));
 		}else{
