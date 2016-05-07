@@ -1,10 +1,10 @@
 Ext.define('Eway.controller.parameter.appSystem.AppSystem',{
 	extend :'Eway.controller.base.FishController',
-	
+
 	stores :['parameter.appSystem.AppSystem'],
 	models :['parameter.appSystem.AppSystem'],
 	views  :['parameter.appSystem.View','parameter.appSystem.Update'],
-	
+
 	refs :[{
 		ref:'ewayView',
 		selector:'#parameter_appSystem_view',
@@ -21,15 +21,15 @@ Ext.define('Eway.controller.parameter.appSystem.AppSystem',{
 		ref:'updateWin',
 		selector:'parameter_appSystem_update'
 	}],
-	
+
 	formConfig:{
 		form:'Eway.view.parameter.appSystem.Update',
 		xtype:'parameter_appSystem_update',
 		width:450,
 		height:280,
-		title:'应用系统信息'
+		title:EwayLocale.param.application.form
 	},
-	
+
 	init : function(){
 		this.control({
 			'#parameter_appSystem_view button[action=query]' : {
@@ -40,7 +40,7 @@ Ext.define('Eway.controller.parameter.appSystem.AppSystem',{
 			}
 		});
 	}
-	
-	
-	
+
+
+
 });

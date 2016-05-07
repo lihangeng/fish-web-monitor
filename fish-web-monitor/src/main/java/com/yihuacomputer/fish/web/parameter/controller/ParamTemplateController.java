@@ -67,13 +67,13 @@ public class ParamTemplateController {
 
 	@Autowired
 	private IDeviceService deviceService;
-	
+
 	@Autowired
 	private MessageSource messageSource;
-	
+
 	@Autowired
 	private IParamDeviceDetailService paramDeviceDetailService;
-	
+
 	@Autowired
 	private IParamTemplateDeviceRelationService paramTemplateDeviceRelationService;
 
@@ -110,7 +110,7 @@ public class ParamTemplateController {
 		ModelMap result = new ModelMap();
 		if(templateService.duplicateTemplateName(request.getName())){
 			result.put(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "模板名称重复,请修改后重试");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.template.addFailure", null, FishCfg.locale));
 			return result;
 		}
 		request.setApplyFlag("0");
@@ -179,7 +179,7 @@ public class ParamTemplateController {
 		boolean isExist = this.isExistTemplateName(form.getTemplateId(), form.getName());
 		if(isExist){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "模板名称重复,请修改后重试");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.template.updateTemplateDetail", null, FishCfg.locale));
 		} else {
 			template.setName(form.getName());
 			template.setRemark(form.getRemark());
@@ -449,15 +449,15 @@ public class ParamTemplateController {
 				result.addAttribute(FishConstant.ERROR_MSG, getI18N("parameter.template.deviceUnlinked"));
 				return result;
 			}
-			
+
 			List<IParamTemplate> elementList = paramTemplateDetailService.listParamByTemplate(templateId);
 			if(null!=elementList&&elementList.size()==0){
 				result.addAttribute(FishConstant.SUCCESS, false);
 				result.addAttribute(FishConstant.ERROR_MSG, getI18N("parameter.template.hasNoParams"));
 				return result;
 			}
-			
-			
+
+
 			IParamTemplate template = templateService.get(templateId);
 			UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
 			templateService.issueTemplate(template, timeStamp);
@@ -470,14 +470,14 @@ public class ParamTemplateController {
 			}
 			else{
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "通知失败!");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.template.infoFailure", null, FishCfg.locale));
 			}
 
 		}catch(Exception ex){
 
 			logger.info(ex.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "下发模板失败");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.template.issueFailure", null, FishCfg.locale));
 
 		}
 
@@ -564,7 +564,7 @@ public class ParamTemplateController {
 		return template;
 
 	}
-	
+
 	private String getI18N(String code){
 		if(null==code){
     		return "";

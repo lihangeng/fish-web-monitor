@@ -17,19 +17,19 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 		}
 	},
 	selModel:{selType:'checkboxmodel'},
-	
+
 	plugins : {
 		ptype : 'cellediting',
 		clicksToEdit: 1
 	},
 
 	initComponent : function() {
-		//复选框选择模式  
+		//复选框选择模式
 		var checkboxSM = new Ext.create('Ext.selection.CheckboxModel', {
 			checkOnly : false,
 			singleSelect : false
 		});
-		
+
 		Ext.apply(this, {
 			initRegion : true,
 			columns : [ {
@@ -41,7 +41,7 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 				header : EwayLocale.param.template.paramValue,
 				dataIndex : 'paramValue',
 				flex : 1,
-				editor:new Ext.form.TextField({  
+				editor:new Ext.form.TextField({
 	                allowBlank:false
 	            })
 			},{
@@ -67,11 +67,11 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 		             }
 				}
 			}, {
-				header : '归属系统',
+				header : EwayLocale.param.template.paramBelongs,
 				dataIndex : 'paramBelongsName',
 				flex : 1
 			}, {
-				header : '参数分类',
+				header : EwayLocale.param.element.paramClassify,
 				dataIndex : 'paramClassify',
 				flex : 1
 			}, {
@@ -83,7 +83,7 @@ Ext.define('Eway.view.parameter.template.AddedParamGrid', {
 			sm: checkboxSM,
 			enableColumnMove : true
 		});
-		
+
 
 		this.callParent(arguments);
 	},

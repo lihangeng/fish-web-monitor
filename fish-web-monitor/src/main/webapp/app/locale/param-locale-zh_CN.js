@@ -4,6 +4,7 @@ Ext.apply(EwayLocale,{
     	application:{
     		title:'应用系统管理',//EwayLocale.param.application.title
     		name:'名称',//EwayLocale.param.application.name
+    		form:'应用系统',//EwayLocale.param.application.form
     		configureName:'配置文件名称',//EwayLocale.param.application.configureName
     		configurePath:'配置文件路径',//EwayLocale.param.application.configurePath
     		configureForm:'配置文件格式',//EwayLocale.param.application.configureForm
@@ -39,7 +40,10 @@ Ext.apply(EwayLocale,{
     	classify:{
     		title:'参数元数据分类管理',//EwayLocale.param.classify.title
     		name:'参数分类',//EwayLocale.param.classify.name
-    		remark:'参数分类备注'//EwayLocale.param.classify.remark
+    		remark:'参数分类备注',//EwayLocale.param.classify.remark
+    		regexText1:'只能输入1到32字母‘a-z’或‘A-Z’、数字‘0-9’、中文、减号‘-’、下划线‘_’、点号‘.’， 只能以中文、字母或数字开头！',//EwayLocale.param.classify.regexText1
+        	regexText2:'只能输入1到128字母‘a-z’或‘A-Z’、数字‘0-9’、中文、减号‘-’、下划线‘_’、点号‘.’、逗号、句号、括号、双引号， 只能以中文、字母或数字开头！.'//EwayLocale.param.classify.regexText2
+
     	},
     	deviceParam:{
     		title:'设备参数管理',//EwayLocale.param.deviceParam.title
