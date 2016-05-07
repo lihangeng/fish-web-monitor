@@ -27,7 +27,6 @@ public class ParamPublishSearchService implements IParamPublishSearchService {
         }else{
             filter = outfilter;
         }
-		filter.ne("id", new Long(1));
 		return dao.page(start, limit, filter, ParamPublish.class);
 	}
 
