@@ -61,6 +61,8 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 			paramDetailPanel.setTitle(EwayLocale.param.paramDownloadMonitor.job+record.get('id')+EwayLocale.param.paramDownloadMonitor.downloadDetail);
 			tabpanel.setActiveItem(paramDetailPanel);
 			this.onTaskQuery();
+		}else {
+			Eway.alert(EwayLocale.param.paramDownloadMonitor.chooseRecord);
 		}
 	},
 	onTaskQuery : function(){
@@ -75,13 +77,10 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 		var values = form.getValues();
 		var taskGrid = view.down('parameter_paramMonitor_TaskGrid');
 		var store = taskGrid.getStore();
-		store.setUrlParamsByObject(values);
-		var JobRecord = view.down('parameter_paramMonitor_JobGrid').getSelectionModel().getLastSelected();
-		if(JobRecord!=null){
+		if(taskGrid.getJobId()!=0){
+			store.setUrlParamsByObject(values);
 			store.setBaseParam('publishId',taskGrid.getJobId());
 			store.loadPage(1);
-		}else {
-			Eway.alert(EwayLocale.param.paramDownloadMonitor.chooseRecord);
 		}
 	},
 	autoJobDetail:function(jobId){
