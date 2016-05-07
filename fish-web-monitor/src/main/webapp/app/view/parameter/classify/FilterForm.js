@@ -12,7 +12,7 @@ Ext.define('Eway.view.parameter.classify.FilterForm', {
 					labelAlign : 'right',
 					name : 'name',
 					regex: /^[a-zA-Z0-9\u4E00-\u9FA5][a-zA-Z0-9-_\.\u4E00-\u9FA5]{0,31}$/,
-					regexText: '只能输入1到32字母‘a-z’或‘A-Z’、数字‘0-9’、中文、减号‘-’、下划线‘_’、点号‘.’， 只能以中文、字母或数字开头！',
+					regexText: EwayLocale.param.classify.regexText1,
 					fieldLabel : EwayLocale.param.classify.name,
 					msgTarget : 'side'
 				}]
@@ -23,7 +23,7 @@ Ext.define('Eway.view.parameter.classify.FilterForm', {
 					// labelWidth: 110,
 					name : 'remark',
 					regex: /^[a-zA-Z0-9\u4E00-\u9FA5][a-zA-Z0-9-_\.\u4E00-\u9FA5，。“”（）]{0,127}$/,
-					regexText: '只能输入1到128字母‘a-z’或‘A-Z’、数字‘0-9’、中文、减号‘-’、下划线‘_’、点号‘.’、逗号、句号、括号、双引号， 只能以中文、字母或数字开头！',
+					regexText: EwayLocale.param.classify.regexText2,
 					labelAlign : 'right',
 					fieldLabel : EwayLocale.param.classify.remark,
 					msgTarget : 'side'
