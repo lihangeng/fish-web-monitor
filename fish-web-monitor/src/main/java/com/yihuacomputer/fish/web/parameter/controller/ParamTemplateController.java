@@ -453,7 +453,7 @@ public class ParamTemplateController {
 			List<IParamTemplate> elementList = paramTemplateDetailService.listParamByTemplate(templateId);
 			if(null!=elementList&&elementList.size()==0){
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, getI18N("parameter.template.deviceUnlinked"));
+				result.addAttribute(FishConstant.ERROR_MSG, getI18N("parameter.template.hasNoParams"));
 				return result;
 			}
 			
