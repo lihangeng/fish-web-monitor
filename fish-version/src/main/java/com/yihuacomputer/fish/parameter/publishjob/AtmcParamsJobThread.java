@@ -35,7 +35,7 @@ public class AtmcParamsJobThread implements Runnable {
 				logger.error(String.format("%s publish failer!",device.getTerminalId()));
 			}
 		} catch (Exception e) {
-			logger.error(String.format("下发失败! 错误信息[%s]!", e));
+			logger.error(String.format("publish failer! Error Message is [%s]!", e));
 		}
 	}
 
