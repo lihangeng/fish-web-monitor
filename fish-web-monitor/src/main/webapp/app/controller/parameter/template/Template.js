@@ -77,10 +77,29 @@ Ext.define('Eway.controller.parameter.template.Template',
 							},
 							'template_updateTemplate field_paramElement_ParamBelongsRadioGroup' : {
 								change : this.onChange2
+							},
+							'param_paramGrid':{
+								afterrender:this.onRerender
 							}
 
 						});
 					},
+					
+					onRerender:function( _this, eOpts ){
+			    		var store = _this.getStore();
+			    		var addedGrid = _this.up("window").down("param_addedParamGrid");
+			    		var addedStore = addedGrid.getStore();
+			    		store.on("load",function( _this, records, successful, eOpts){
+				    		var addedSum = addedStore.getCount();
+			    			for(var index=0;index<records.length;index++){
+			    				for(var addedIndex = 0 ;addedIndex<addedSum;addedIndex++){
+			    					if(records[index].get("id")==addedStore.getAt(addedIndex).get("id")){
+			    						store.remove(records[index]);
+			    					}
+			    				}
+			    			}
+			    		},this);
+			    	},
 
 					onChange: function(_this, newValue, oldValue, eOpts){
 //						var view = this.getEwayView();
@@ -182,22 +201,26 @@ Ext.define('Eway.controller.parameter.template.Template',
 										if (success == false) {
 											win.close();
 										}
+										else{
+											paramGrid.getStore().load(
+													{
+														params : {
+															id : templateId,
+															appSystem : 1,
+															flag: flag
+														},
+														callback : function(records,operation, success) {
+															if (success == false) {
+																Eway.alert(EwayLocale.tip.paramTemplate.failedElement);
+																win.close();
+															}
+														}
+													});
+										}
+										
 									}
 								});
-						paramGrid.getStore().load(
-										{
-											params : {
-												id : templateId,
-												appSystem : 1,
-												flag: flag
-											},
-											callback : function(records,operation, success) {
-												if (success == false) {
-													Eway.alert(EwayLocale.tip.paramTemplate.failedElement);
-													win.close();
-												}
-											}
-										});
+						
 
 						win.show();
 					},
@@ -317,21 +340,24 @@ Ext.define('Eway.controller.parameter.template.Template',
 								},
 								success : function(response) {
 									var object = Ext.decode(response.responseText);
+									if(object.data){
+									var jobId = object.data;
 									Ext.MessageBox.confirm(EwayLocale.confirm.title,//'提示',
-											EwayLocale.confirm.taskConfirmInfo2,
+											EwayLocale.confirm.taskConfirmInfo0+jobId+EwayLocale.confirm.taskConfirmInfo2,
 											function(button, text) {
 												if (button == "yes") {
 												var controller = this.parent.activeController('parameter.paramMonitor.ParamMonitor');
-												controller.onDetail(record.get("id"));
+												controller.autoJobDetail(jobId);
 												}
 												},this);
+									  }
 									if (object.success == true) {
 										this.onQueryAfterOperate();
 									} else {
-										Eway.alert(EwayLocale.tip.paramTemplate.applyFailure);
+										Eway.alert(object.errorMsg);
 										this.onQueryAfterOperate();
 									}
-
+									
 								},
 								failure : function() {
 										Eway.alert(EwayLocale.tip.paramTemplate.applyFailure);
