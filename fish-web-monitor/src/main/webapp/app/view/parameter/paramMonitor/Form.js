@@ -7,7 +7,7 @@ Ext.define('Eway.view.parameter.paramMonitor.Form',{
 		Ext.apply(this,{
 			items:[{
 				xtype: 'form',
-				bodyStyle : 'padding: 10px 30px 10px 10px',
+				bodyStyle : 'padding: 10px 10px 10px 10px',
 				trackResetOnLoad : true,
 				selectOnFocus : true,
 				defaults: {

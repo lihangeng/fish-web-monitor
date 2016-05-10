@@ -96,7 +96,7 @@ public class ParamElementController {
 		boolean isExist=this.isExistParamName(request.getId(), request.getParamName(), request.getClassifyId(), request.getParamBelongsId());
 		if(isExist){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "参数名已经存在。");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.element.addFailure", null, FishCfg.locale));
 		}else{
 		IParamElement element =elementService.make();
 		IParamClassify classify=classifyService.get(request.getClassifyId());
@@ -115,20 +115,6 @@ public class ParamElementController {
 		elementService.add(element);
 		result.put(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, new ParamElementForm(element));
-		}
-		return result;
-	}
-
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public @ResponseBody
-	ModelMap delete(@PathVariable long id) {
-		logger.info(" delete element: element.id = " + id);
-		ModelMap result = new ModelMap();
-		try {
-			elementService.remove(id);
-			result.addAttribute(FishConstant.SUCCESS, true);
-		} catch (Exception ex) {
-			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
 	}

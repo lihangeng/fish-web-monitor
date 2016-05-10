@@ -7,6 +7,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -39,6 +41,9 @@ public class ParamClassifyController {
 	@Autowired
 	private IParamElementService elementService;
 
+	@Autowired
+	private MessageSource messageSource;
+
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap search(@RequestParam int start,@RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search param template : start = %s ,limit = %s ",start, limit));
@@ -59,7 +64,7 @@ public class ParamClassifyController {
 		boolean isExist = this.isExistClassifyName(request.getId(), request.getName());
 		if(isExist){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "分类名称已存在。");
+			result.addAttribute(FishConstant.ERROR_MSG,messageSource.getMessage("parameter.classify.addFailure", null, FishCfg.locale));
 		} else {
 			IParamClassify classify =classifyService.make();
 			translate(classify,request);
@@ -81,13 +86,13 @@ public class ParamClassifyController {
 			List<IParamElement> list=elementService.listByClassify(paramClassify);
 			if(list.size()>0){
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "删除失败，该分类与参数元数据有关联。");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.classify.deleteFailureRelated", null, FishCfg.locale));
 				return result;
 			}else{
 				try {
 					if(id == 1){
 						result.addAttribute(FishConstant.SUCCESS, false);
-						result.addAttribute(FishConstant.ERROR_MSG, "默认分类无法删除。");
+						result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.classify.deleteFailureDefault", null, FishCfg.locale));
 						return result;
 					}
 					classifyService.remove(id);
@@ -109,7 +114,7 @@ public class ParamClassifyController {
 		IParamClassify classify = classifyService.get(id);
 		if(id == 1){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "默认分类无法更改。");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.classify.updateFailureDefault", null, FishCfg.locale));
 			return result;
 		}
 			translate(classify,request);

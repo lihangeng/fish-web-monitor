@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -31,6 +33,7 @@ import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishService;
@@ -64,6 +67,12 @@ public class ParamTemplateController {
 
 	@Autowired
 	private IDeviceService deviceService;
+
+	@Autowired
+	private MessageSource messageSource;
+
+	@Autowired
+	private IParamDeviceDetailService paramDeviceDetailService;
 
 	@Autowired
 	private IParamTemplateDeviceRelationService paramTemplateDeviceRelationService;
@@ -101,7 +110,7 @@ public class ParamTemplateController {
 		ModelMap result = new ModelMap();
 		if(templateService.duplicateTemplateName(request.getName())){
 			result.put(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "模板名称重复,请修改后重试");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.template.addFailure", null, FishCfg.locale));
 			return result;
 		}
 		request.setApplyFlag("0");
@@ -170,7 +179,7 @@ public class ParamTemplateController {
 		boolean isExist = this.isExistTemplateName(form.getTemplateId(), form.getName());
 		if(isExist){
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "模板名称重复,请修改后重试");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.template.updateTemplateDetail", null, FishCfg.locale));
 		} else {
 			template.setName(form.getName());
 			template.setRemark(form.getRemark());
@@ -406,8 +415,8 @@ public class ParamTemplateController {
 			IFilter filter  = new Filter();
 			filter.eq("paramBelongs.id", appSystem);
 			list =  paramElementService.list(filter);
-			List<IParamElement> element =templateService.listParam2(id,flag);
-			list.removeAll(element);
+//			List<IParamElement> element =templateService.listParam2(id,flag);
+//			list.removeAll(element);
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, convert(list));
 		}else{
@@ -437,9 +446,18 @@ public class ParamTemplateController {
 			List<IDevice> deviceList = paramTemplateDeviceRelationService.listDeviceByTemplate(templateId);
 			if(null!=deviceList&&deviceList.size()==0){
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "当前模板未关联设备无法进行下发!");
+				result.addAttribute(FishConstant.ERROR_MSG, getI18N("parameter.template.deviceUnlinked"));
 				return result;
 			}
+
+			List<IParamTemplate> elementList = paramTemplateDetailService.listParamByTemplate(templateId);
+			if(null!=elementList&&elementList.size()==0){
+				result.addAttribute(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, getI18N("parameter.template.hasNoParams"));
+				return result;
+			}
+
+
 			IParamTemplate template = templateService.get(templateId);
 			UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
 			templateService.issueTemplate(template, timeStamp);
@@ -448,17 +466,18 @@ public class ParamTemplateController {
 				template.setApplyFlag("1");
 				templateService.update(template);
 				result.put(FishConstant.SUCCESS, true);
+				result.put(FishConstant.DATA, jobId);
 			}
 			else{
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, "通知失败!");
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.template.infoFailure", null, FishCfg.locale));
 			}
 
 		}catch(Exception ex){
 
 			logger.info(ex.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, "下发模板失败");
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.template.issueFailure", null, FishCfg.locale));
 
 		}
 
@@ -544,5 +563,12 @@ public class ParamTemplateController {
 		template.setApplyFlag(templateForm.getApplyFlag());
 		return template;
 
+	}
+
+	private String getI18N(String code){
+		if(null==code){
+    		return "";
+    	}
+		return messageSource.getMessage(code, null, code, FishCfg.locale);
 	}
 }

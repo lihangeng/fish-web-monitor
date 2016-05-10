@@ -11,15 +11,15 @@ Ext.define('Eway.view.parameter.paramMonitor.AppResultGrid', {
 			 columns : [{
 					header : EwayLocale.param.element.paramBelongs,
 					dataIndex : 'appSystem',
-					width:150
+					width:120
 				},{
 					header : EwayLocale.param.paramDownloadMonitor.taskStatus,
 					dataIndex : 'status',
-					width:150
+					width:160
 				},{
 					header : EwayLocale.param.paramDownloadMonitor.reason,
 					dataIndex : 'reason',
-					width:150
+					flex:1
 				}]
 		});
 
