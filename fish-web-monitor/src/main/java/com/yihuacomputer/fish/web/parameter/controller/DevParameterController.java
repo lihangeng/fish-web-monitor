@@ -184,6 +184,7 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 			deviceId=Long.parseLong(request.getParameter("deviceId"));
 		}else{
 			result.addAttribute(FishConstant.SUCCESS, false);
+			return null;
 		}
 		long tabId=1l;
 		if(null!=request.getParameter("tabId")&&!request.getParameter("tabId").isEmpty()){
