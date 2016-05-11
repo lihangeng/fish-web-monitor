@@ -21,7 +21,13 @@ Ext.define('Eway.view.parameter.element.ImportParamFile', {
 					msgTarget : 'side'
 				},
 				items : [
-                  {
+                 {
+                    xtype : 'field_paramElement_ParamBelongs',
+ 					editable : false,
+ 					allowBlank: false,
+ 					maxLength : 40,
+                 },
+                 {
 					xtype : 'filefield',
 					buttonText : EwayLocale.combox.explorer,
 					fieldLabel : EwayLocale.param.element.importFile,

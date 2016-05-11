@@ -86,7 +86,7 @@ Ext.define('Eway.controller.parameter.element.Element', {
 				var win = this.win;
 				var importForm = this.getImportWin().down("form").getForm();
 				var view = this.getEwayView();
-				var paramBelongs=view.down('element_FilterForm').down("field_paramElement_ParamBelongsRadioGroup").getValue().appSystem;
+				var paramBelongs=this.getImportWin().down("field_paramElement_ParamBelongs").value;
 				if(importForm.isValid()){
 					Ext.Msg.wait(EwayLocale.cases.nowExportFile);
 					importForm.submit({
