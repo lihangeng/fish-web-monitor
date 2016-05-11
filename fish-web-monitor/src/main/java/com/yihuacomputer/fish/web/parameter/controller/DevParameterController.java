@@ -259,7 +259,8 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 				} else if (name.equals("sort")) {
 					continue;
 				} else if (name.equals("paramName")) {
-					filter.eq(name, request.getParameter("paramName").trim());
+					String value=request.getParameter("paramName").trim();
+					filter.like(name,value);
 				} else if(name.equals("ClassifyId")) {
 					filter.eq(name, request.getParameter("ClassifyId"));
 				}

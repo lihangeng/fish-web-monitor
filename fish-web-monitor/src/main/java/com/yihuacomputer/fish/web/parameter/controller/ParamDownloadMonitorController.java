@@ -157,6 +157,9 @@ public class ParamDownloadMonitorController {
 				} else if (name.equals("id")) {
 					String value = request.getParameter(name);
 					filter.eq("ppr.id", Long.valueOf(value.trim()));
+				}else if (name.equals("terminalId")) {
+					String value = request.getParameter(name).trim();
+					filter.like("device.terminalId", value);
 				}
 			}
 		}

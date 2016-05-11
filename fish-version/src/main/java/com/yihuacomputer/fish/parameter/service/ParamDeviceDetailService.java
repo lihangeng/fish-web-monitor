@@ -47,7 +47,7 @@ public class ParamDeviceDetailService implements IParamDeviceDetailService {
 		sql.append("FROM PARAM_CLASSIFY pc,PARAM_ELEMENT pe where pc.ID = pe.PARAM_CLASSIFY ");
 		Object paramName=filter.getValue("paramName");
 		if(paramName != null){
-			sql.append("and pe.PARAM_NAME = '").append(String.valueOf(paramName)).append("' ");
+			sql.append("and pe.PARAM_NAME like '%").append(String.valueOf(paramName)).append("%' ");
 		}
 		Object paramClassifyId = filter.getValue("ClassifyId");
 		if(paramClassifyId !=null){
