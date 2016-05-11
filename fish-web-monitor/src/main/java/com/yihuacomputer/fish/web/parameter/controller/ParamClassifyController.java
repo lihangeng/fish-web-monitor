@@ -117,11 +117,17 @@ public class ParamClassifyController {
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.classify.updateFailureDefault", null, FishCfg.locale));
 			return result;
 		}
+		boolean isExist = this.isExistClassifyName(request.getId(), request.getName());
+		if(isExist){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG,messageSource.getMessage("parameter.classify.addFailure", null, FishCfg.locale));
+		} else {
 			translate(classify,request);
 			classify.setId(id);
 			classifyService.update(classify);
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, request);
+		}
 		return result;
 	}
 
