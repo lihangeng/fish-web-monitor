@@ -86,7 +86,7 @@ Ext.define('Eway.controller.parameter.element.Element', {
 				var win = this.win;
 				var importForm = this.getImportWin().down("form").getForm();
 				var view = this.getEwayView();
-				var paramBelongs=view.down('element_FilterForm').down("field_paramElement_ParamBelongsRadioGroup").getValue().appSystem;
+				var paramBelongs=this.getImportWin().down("field_paramElement_ParamBelongs").value;
 				if(importForm.isValid()){
 					Ext.Msg.wait(EwayLocale.cases.nowExportFile);
 					importForm.submit({
@@ -134,6 +134,22 @@ Ext.define('Eway.controller.parameter.element.Element', {
 				var paramBelongsRadioGroup=view.down('element_FilterForm').down("field_paramElement_ParamBelongsRadioGroup").getValue().appSystem;
 				var paramBelongsField=form.down('field_paramElement_ParamBelongs');
 				paramBelongsField.setDefaultSelectValue(paramBelongsRadioGroup);
+				paramBelongsField.disable();
+			},
+			beforeAddSave : function(win,grid){
+				var form = win.down('form');
+				var paramBelongsField=form.down('field_paramElement_ParamBelongs');
+				paramBelongsField.enable();
+
+			},
+			afterShowUpdateWin : function(win,grid){
+
+				var form = win.down('form');
+				var view = this.getEwayView();
+				var paramBelongsRadioGroup=view.down('element_FilterForm').down("field_paramElement_ParamBelongsRadioGroup").getValue().appSystem;
+				var paramBelongsField=form.down('field_paramElement_ParamBelongs');
+				paramBelongsField.setDefaultSelectValue(paramBelongsRadioGroup);
+				paramBelongsField.enable();
 			},
 			onQueryAfterAdd : function(){
 				var view = this.getEwayView();
