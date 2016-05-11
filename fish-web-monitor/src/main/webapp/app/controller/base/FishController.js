@@ -105,11 +105,13 @@ Ext.define('Eway.controller.base.FishController', {
 				var record = sm.getLastSelected();
 				form.loadCusRecord(record);
 				this.boforeShowUpdateWin(win,grid,record);
+				win.show();
+				this.afterShowUpdateWin(win,grid);
 			}else{
 				this.beforeShowAddWin(win,grid);
+				win.show();
+				this.afterShowAddWin(win,grid);
 			}
-			win.show();
-			this.afterShowAddWin(win,grid);
 		},this);
 	},
 
@@ -138,8 +140,8 @@ Ext.define('Eway.controller.base.FishController', {
 
 				if(action == 'add') {
 					actionName = EwayLocale.button.add;
-					var values = form.getCusValues();
 					record = this.beforeAddSave(win,grid);
+					var values = form.getCusValues();
 					if(undefined==record){
 						record = Ext.create(store.getModelName(),values);
 					}
@@ -194,6 +196,12 @@ Ext.define('Eway.controller.base.FishController', {
 	//抽象方法，留给子类扩展
 	//在显示更改页面之前
 	boforeShowUpdateWin : function(updateWin,grid,record){
+	},
+
+	//抽象方法，留给子类扩展
+	//在显示更改页面之后
+	afterShowUpdateWin  : function(win,grid){
+
 	},
 
 	//抽象方法，留给子类扩展
