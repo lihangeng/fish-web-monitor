@@ -149,7 +149,7 @@ Ext.define('Eway.controller.parameter.element.Element', {
 				var paramBelongsRadioGroup=view.down('element_FilterForm').down("field_paramElement_ParamBelongsRadioGroup").getValue().appSystem;
 				var paramBelongsField=form.down('field_paramElement_ParamBelongs');
 				paramBelongsField.setDefaultSelectValue(paramBelongsRadioGroup);
-				paramBelongsField.enable();
+				paramBelongsField.disable();
 			},
 			onQueryAfterAdd : function(){
 				var view = this.getEwayView();

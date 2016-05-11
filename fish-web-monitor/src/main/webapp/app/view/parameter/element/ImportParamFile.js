@@ -26,6 +26,7 @@ Ext.define('Eway.view.parameter.element.ImportParamFile', {
  					editable : false,
  					allowBlank: false,
  					maxLength : 40,
+ 					value:1
                  },
                  {
 					xtype : 'filefield',
