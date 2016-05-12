@@ -9,7 +9,8 @@ Ext.define('Eway.view.parameter.classify.Form',{
 					labelWidth: 120,
 					labelAlign: 'right',
 					msgTarget : 'side',
-					width: 400
+					width: 500,
+					height: 280
 				  },
 
 	initComponent : function(){
@@ -29,8 +30,6 @@ Ext.define('Eway.view.parameter.classify.Form',{
 			},{
 				xtype : 'field_paramClassify_ClassifyRemark',
 				maxLength : 128,
-				regex: /^[a-zA-Z0-9\u4E00-\u9FA5][a-zA-Z0-9-_\.\u4E00-\u9FA5，。“”（）]{0,127}$/,
-				regexText: EwayLocale.param.classify.regexText2,
 				allowBlank: true
 		    }]
 		});
