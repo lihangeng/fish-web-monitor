@@ -33,17 +33,17 @@
     background-color: lightsteelblue;
 }
 .x-btn-over.x-btn-default-toolbar-small {
-    background-color: #3386c2;
+    background-color: #3892d3;
 }
 .x-btn-focus.x-btn-default-toolbar-small{
-    background-color: #3386c2;
+    background-color: #3892d3;
 }
 .x-btn-focus.x-btn-pressed.x-btn-default-toolbar-small {
-    background-color: #3386c2;
+    background-color: #3892d3;
 }
 .x-btn.x-btn-menu-active.x-btn-default-toolbar-small,
 .x-btn.x-btn-pressed.x-btn-default-toolbar-small{
-	    background-color: #3386c2;
+	    background-color: #3892d3;
 }
 .x-btn-default-toolbar-small {
     -webkit-border-radius: 3px;
@@ -86,6 +86,75 @@
     background-image: none;
     background-color: gray;
 }
+
+.x-btn-default-toolbar-small-tl,
+.x-btn-default-toolbar-small-bl,
+.x-btn-default-toolbar-small-tr,
+.x-btn-default-toolbar-small-br,
+.x-btn-default-toolbar-small-tc,
+.x-btn-default-toolbar-small-bc,
+.x-btn-default-toolbar-small-ml,
+.x-btn-default-toolbar-small-mr,
+.x-btn-default-toolbar-small-mc{
+	background-image:none;
+	background-color:#1c396f;
+}
+
+.x-btn-over .x-btn-default-toolbar-small-tl,
+.x-btn-over .x-btn-default-toolbar-small-bl,
+.x-btn-over .x-btn-default-toolbar-small-tr,
+.x-btn-over .x-btn-default-toolbar-small-br,
+.x-btn-over .x-btn-default-toolbar-small-tc,
+.x-btn-over .x-btn-default-toolbar-small-bc,
+.x-btn-over .x-btn-default-toolbar-small-ml,
+.x-btn-over .x-btn-default-toolbar-small-mr,
+.x-btn-over .x-btn-default-toolbar-small-mc{
+	background-image:none;
+	background-color:#3892d3;
+}
+
+.x-btn-pressed .x-btn-default-toolbar-small-tl,
+.x-btn-pressed .x-btn-default-toolbar-small-bl,
+.x-btn-pressed .x-btn-default-toolbar-small-tr,
+.x-btn-pressed .x-btn-default-toolbar-small-br,
+.x-btn-pressed .x-btn-default-toolbar-small-tc,
+.x-btn-pressed .x-btn-default-toolbar-small-bc,
+.x-btn-pressed .x-btn-default-toolbar-small-ml,
+.x-btn-pressed .x-btn-default-toolbar-small-mr,
+.x-btn-pressed .x-btn-default-toolbar-small-mc
+{
+	background-image:none;
+	background-color:#3892d3;
+}
+
+.x-btn-focus.x-btn-over .x-btn-default-toolbar-small-tl,
+.x-btn-focus.x-btn-over .x-btn-default-toolbar-small-bl,
+.x-btn-focus.x-btn-over .x-btn-default-toolbar-small-tr,
+.x-btn-focus.x-btn-over .x-btn-default-toolbar-small-br,
+.x-btn-focus.x-btn-over .x-btn-default-toolbar-small-tc,
+.x-btn-focus.x-btn-over .x-btn-default-toolbar-small-bc,
+.x-btn-focus.x-btn-over .x-btn-default-toolbar-small-ml,
+.x-btn-focus.x-btn-over .x-btn-default-toolbar-small-mr,
+.x-btn-focus.x-btn-over .x-btn-default-toolbar-small-mc
+{
+	background-image:none;
+	background-color:#3892d3;
+}
+
+.x-btn-focus .x-btn-default-toolbar-small-tl,
+.x-btn-focus .x-btn-default-toolbar-small-bl,
+.x-btn-focus .x-btn-default-toolbar-small-tr,
+.x-btn-focus .x-btn-default-toolbar-small-br,
+.x-btn-focus .x-btn-default-toolbar-small-tc,
+.x-btn-focus .x-btn-default-toolbar-small-bc,
+.x-btn-focus .x-btn-default-toolbar-small-ml,
+.x-btn-focus .x-btn-default-toolbar-small-mr,
+.x-btn-focus .x-btn-default-toolbar-small-mc
+{
+	background-image:none;
+	background-color:#3892d3;
+}
+
 #loading .title {
 	font-size:16px; 
 	position: absolute;
