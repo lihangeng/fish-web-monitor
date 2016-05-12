@@ -87,6 +87,34 @@
     background-color: gray;
 }
 
+/**ie9下的button显示问题**/
+.x-btn-default-small-tl,
+.x-btn-default-small-bl,
+.x-btn-default-small-tr,
+.x-btn-default-small-br,
+.x-btn-default-small-tc,
+.x-btn-default-small-bc,
+.x-btn-default-small-ml,
+.x-btn-default-small-mr,
+.x-btn-default-small-mc{
+	background-image:none;
+	background-color:#1c396f;
+}
+
+.x-btn-over .x-btn-default-small-tl,
+.x-btn-over .x-btn-default-small-bl,
+.x-btn-over .x-btn-default-small-tr,
+.x-btn-over .x-btn-default-small-br,
+.x-btn-over .x-btn-default-small-tc,
+.x-btn-over .x-btn-default-small-bc,
+.x-btn-over .x-btn-default-small-ml,
+.x-btn-over .x-btn-default-small-mr,
+.x-btn-over .x-btn-default-small-mc{
+	background-image:none;
+	background-color:#3892d3;
+}
+
+/**ie9下toolbar下的button显示问题---start**/
 .x-btn-default-toolbar-small-tl,
 .x-btn-default-toolbar-small-bl,
 .x-btn-default-toolbar-small-tr,
@@ -154,6 +182,8 @@
 	background-image:none;
 	background-color:#3892d3;
 }
+/**ie9下toolbar下的button显示问题---end**/
+
 
 #loading .title {
 	font-size:16px; 
