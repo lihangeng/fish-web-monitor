@@ -22,7 +22,7 @@ Ext.define('Eway.view.parameter.classify.Form',{
 			},
 			items: [{
 				xtype : 'field_paramClassify_ClassifyName',
-				maxLength : 32,
+				maxLength : 64,
 				regex: /^[a-zA-Z0-9\u4E00-\u9FA5][a-zA-Z0-9-_\.\u4E00-\u9FA5]{0,31}$/,
 				regexText: EwayLocale.param.classify.regexText1,
 				allowBlank: false
