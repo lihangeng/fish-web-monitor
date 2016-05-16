@@ -122,7 +122,7 @@ public class ParamElementService implements IParamElementService {
 	@Transactional(readOnly = true)
 	public IParamElement get(String name, long classifyId, long paramBelongsId) {
 
-		ParamElement paramElement=(ParamElement) dao.getCriteria(ParamElement.class).
+		IParamElement paramElement=(IParamElement) dao.getCriteria(ParamElement.class).
 				add(Restrictions.eq("paramName", name))
 				.add(Restrictions.eq("paramClassify.id", classifyId))
 				.add(Restrictions.eq("paramBelongs.id", paramBelongsId)).uniqueResult();

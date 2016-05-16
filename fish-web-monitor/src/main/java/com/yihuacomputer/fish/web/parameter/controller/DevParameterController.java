@@ -184,6 +184,7 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 			deviceId=Long.parseLong(request.getParameter("deviceId"));
 		}else{
 			result.addAttribute(FishConstant.SUCCESS, false);
+			return null;
 		}
 		long tabId=1l;
 		if(null!=request.getParameter("tabId")&&!request.getParameter("tabId").isEmpty()){
@@ -258,7 +259,8 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 				} else if (name.equals("sort")) {
 					continue;
 				} else if (name.equals("paramName")) {
-					filter.eq(name, request.getParameter("paramName").trim());
+					String value=request.getParameter("paramName").trim();
+					filter.like(name,value);
 				} else if(name.equals("ClassifyId")) {
 					filter.eq(name, request.getParameter("ClassifyId"));
 				}

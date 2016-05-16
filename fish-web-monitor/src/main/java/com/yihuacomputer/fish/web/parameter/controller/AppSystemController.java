@@ -99,10 +99,10 @@ public class AppSystemController {
 					continue;
 				} else if (name.equals("name")) {
 					String value = request.getParameter(name);
-					filter.eq(name, value.trim());
+					filter.like(name, value.trim());
 				} else if (name.equals("configName")) {
 					String value = request.getParameter(name);
-					filter.eq(name, value.trim());
+					filter.like(name, value.trim());
 				}else if (name.equals("configForm")) {
 					String value = request.getParameter(name);
 					filter.eq(name, FileFormat.getById(Integer.parseInt(value)));

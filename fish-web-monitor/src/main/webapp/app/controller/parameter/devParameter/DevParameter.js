@@ -62,10 +62,12 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 		store.setUrlParamsByObject(values);
 		var devGrid = this.getGrid();
 		var sm = devGrid.getSelectionModel();
-		var record = sm.getLastSelected();
-		store.setBaseParam('deviceId',record.get('id'));
-		store.setBaseParam('tabId',tabPanelId);
-		store.loadPage(1);
+		if(sm.getCount()==1){
+			var record = sm.getLastSelected();
+			store.setBaseParam('deviceId',record.get('id'));
+			store.setBaseParam('tabId',tabPanelId);
+			store.loadPage(1);
+		}
 	},
 	
 	onRelease:function(){
@@ -129,9 +131,11 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 		var view = this.getEwayView();
 		var grid = view.down('tabpanel').activeTab.down('grid');
 		var store = grid.getStore();
-		store.setBaseParam('deviceId',record.get('id'));
-		store.setBaseParam('tabId',tabPanelId);
-		store.loadPage(1);		
+		if(record!=null){
+			store.setBaseParam('deviceId',record.get('id'));
+			store.setBaseParam('tabId',tabPanelId);
+			store.loadPage(1);	
+		}
 	},
 	
 	

@@ -124,6 +124,11 @@ public class ParamElementController {
 	ModelMap update(@PathVariable long id, @RequestBody ParamElementForm request) {
 		logger.info("update elemet: elemet.id = " + id);
 		ModelMap result = new ModelMap();
+		boolean isExist=this.isExistParamName(id, request.getParamName(), request.getClassifyId(), request.getParamBelongsId());
+		if(isExist){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.element.addFailure", null, FishCfg.locale));
+		}else{
 		IParamElement element = elementService.get(id);
 	    Date date=new Date();
 
@@ -141,6 +146,7 @@ public class ParamElementController {
 		elementService.update(element);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.DATA, new ParamElementForm(element));
+		}
 		return result;
 	}
 

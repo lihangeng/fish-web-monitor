@@ -42,8 +42,9 @@ Ext.apply(EwayLocale,{
     		name:'参数分类',//EwayLocale.param.classify.name
     		remark:'参数分类备注',//EwayLocale.param.classify.remark
     		regexText1:'只能输入1到32字母‘a-z’或‘A-Z’、数字‘0-9’、中文、减号‘-’、下划线‘_’、点号‘.’， 只能以中文、字母或数字开头！',//EwayLocale.param.classify.regexText1
-        	regexText2:'只能输入1到128字母‘a-z’或‘A-Z’、数字‘0-9’、中文、减号‘-’、下划线‘_’、点号‘.’、逗号、句号、括号、双引号， 只能以中文、字母或数字开头！.'//EwayLocale.param.classify.regexText2
-
+        	regexText2:'只能输入1到128字母‘a-z’或‘A-Z’、数字‘0-9’、中文、减号‘-’、下划线‘_’、点号‘.’、逗号、句号、括号、双引号， 只能以中文、字母或数字开头！.',//EwayLocale.param.classify.regexText2
+        	notUpdate:'默认分类无法更改',//EwayLocale.param.classify.notUpdate
+        	notRemove:'默认分类无法删除'//EwayLocale.param.classify.notRemove
     	},
     	deviceParam:{
     		title:'设备参数管理',//EwayLocale.param.deviceParam.title

@@ -18,7 +18,7 @@ Ext.define('Eway.view.parameter.appSystem.Update',{
 					xtype:'textfield',
 					name:'configName',
 					allowBlank:false,
-					maxLength : 80
+					maxLength : 64
 				}/*,{
 					fieldLabel:EwayLocale.param.application.configureForm,
 					xtype:'field_appSystem_fileFormat',
@@ -29,13 +29,14 @@ Ext.define('Eway.view.parameter.appSystem.Update',{
 					xtype:'textfield',
 					allowBlank:false,
 					name:'configPath',
+					maxLength : 128,
 					regex:/^[a-zA-z]{1}:([/][\w-]+)*$/i
 				},{
 					fieldLabel:EwayLocale.param.application.remark,
 					xtype:'textarea',
 					allowBlank:false,
 					name:'remark',
-					maxLength : 40
+					maxLength : 128
 				}]
 		});
 		this.callParent(arguments);

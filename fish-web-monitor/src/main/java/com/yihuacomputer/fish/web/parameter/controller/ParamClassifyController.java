@@ -117,11 +117,17 @@ public class ParamClassifyController {
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.classify.updateFailureDefault", null, FishCfg.locale));
 			return result;
 		}
+		boolean isExist = this.isExistClassifyName(id, request.getName());
+		if(isExist){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG,messageSource.getMessage("parameter.classify.addFailure", null, FishCfg.locale));
+		} else {
 			translate(classify,request);
 			classify.setId(id);
 			classifyService.update(classify);
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.DATA, request);
+		}
 		return result;
 	}
 
@@ -136,14 +142,13 @@ public class ParamClassifyController {
 	 */
 	private boolean isExistClassifyName(long id, String name) {
 		try {
-			logger.info("checkclassifyName" + name);
+			logger.info("checkclassifyName=" + name);
 			IParamClassify classify = classifyService.get(name.trim());
-			if(classify == null){
-				return false;
-			}
-			if (classify.getId() == id) {
+			if (classify.getId()==id) {
+				// 找到的Id和传入的Id相等，说明是同一个品牌
 				return false;
 			} else {
+				// 说明存在
 				return true;
 			}
 		} catch (Exception e) {
@@ -160,7 +165,6 @@ public class ParamClassifyController {
 	}
 
 	public void translate(IParamClassify classify, ParamClassifyForm request) {
-		classify.setId(request.getId());
 		classify.setName(request.getName());
 		classify.setRemark(request.getRemark());
 	}
