@@ -14,6 +14,10 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
                        }
                },
                'validateedit':function( _editor, context, eOpts ){
+            	   if(context.value.length>128){
+        			   Eway.alert(EwayLocale.param.deviceParam.tooLong);
+        			   return false;
+        		   }
             	   var argsType = context.record.get("eleParamType");
             	   var regex=/(^([0-9]\d{0,17})$)/;
             	   if(argsType == '1'){
@@ -25,6 +29,7 @@ Ext.define('Eway.view.parameter.devParameter.ParamGrid', {
 //                			});
                 		   return false;
                 	   }
+            		  
             	   }
 //            	   _editor.completeEdit(true);
             	   return true;
