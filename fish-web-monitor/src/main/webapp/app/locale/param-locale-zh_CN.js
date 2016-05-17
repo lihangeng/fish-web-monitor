@@ -50,7 +50,8 @@ Ext.apply(EwayLocale,{
     		title:'设备参数管理',//EwayLocale.param.deviceParam.title
     		downloadFailure:'下发失败',//EwayLocale.param.deviceParam.downloadFailure
     		downloadSuccess:'下发成功 ',//EwayLocale.param.deviceParam.downloadSuccess
-    		notMatch:'数值类型不匹配'//EwayLocale.param.deviceParam.notMatch
+    		notMatch:'数值类型不匹配',//EwayLocale.param.deviceParam.notMatch
+    		tooLong:'参数值长度超出范围，请重新输入！'//EwayLocale.param.deviceParam.tooLong
     	},
         template:{
         	addTitle:'增加参数模板',//EwayLocale.param.template.addTitle
@@ -92,7 +93,7 @@ Ext.apply(EwayLocale,{
         	downloadDetail:'监控下发详情',//EwayLocale.param.paramDownloadMonitor.downloadDetail
         	job:'作业: ',//EwayLocale.param.paramDownloadMonitor.job
         	chooseRecord:'请选中一条记录',//EwayLocale.param.paramDownloadMonitor.chooseRecord
-        	aotuJump:'次作业保存成功，是否跳转到参数下发监控界面！',//EwayLocale.param.paramDownloadMonitor.aotuJump
+        	aotuJump:'次作业保存成功，是否跳转到参数下发监控界面 ？',//EwayLocale.param.paramDownloadMonitor.aotuJump
         	task:'任务:',//EwayLocale.param.paramDownloadMonitor.task
         	StatusDetail:' 状态详情'//EwayLocale.param.paramDownloadMonitor.StatusDetail
         }
