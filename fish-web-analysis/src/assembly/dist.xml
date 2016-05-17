@@ -1,0 +1,33 @@
+<assembly>
+	<id>dbscript</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<baseDirectory>/</baseDirectory>
+	<files>
+		<file>
+			<source>src/test/resources/db/mysql/fish_mysql_db.sql</source>
+			<outputDirectory>/mysqlscript</outputDirectory>
+		</file>
+		<file>
+			<source>src/test/resources/db/mysql/fish_mysql_idx.sql</source>
+			<outputDirectory>/mysqlscript</outputDirectory>
+		</file>
+		<file>
+			<source>src/test/resources/db/mysql/fish_mysql_init_en.sql</source>
+			<outputDirectory>/mysqlscript</outputDirectory>
+		</file>
+		<file>
+			<source>src/test/resources/db/mysql/fish_mysql_init.sql</source>
+			<outputDirectory>/mysqlscript</outputDirectory>
+		</file>
+		<file>
+			<source>src/test/resources/db/mysql/fish_mysql_source.sql</source>
+			<outputDirectory>/mysqlscript</outputDirectory>
+		</file>
+<!-- 		<file> -->
+<!-- 			<source>src/test/resources/manual/The user manual.doc</source> -->
+<!-- 			<outputDirectory>/manual</outputDirectory> -->
+<!-- 		</file> -->
+	</files>
+</assembly>

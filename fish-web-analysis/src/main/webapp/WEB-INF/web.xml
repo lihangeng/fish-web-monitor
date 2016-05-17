@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<display-name>YIHUA Fish Web Application</display-name>
+
+	<context-param>
+		<param-name>contextClass</param-name>
+		<param-value>
+			org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+		</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>com.yihuacomputer.fish.web.startup.FishWebMonitorModuleConfig</param-value>
+	</context-param>
+
+	<!--监听器 -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.yihuacomputer.fish.web.listener.FishSessionListener</listener-class>
+	</listener>
+
+	<!--过滤器配置 -->
+
+
+	<filter>
+		<filter-name>cross-origin</filter-name>
+		<filter-class>org.eclipse.jetty.servlets.CrossOriginFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>cross-origin</filter-name>
+		<url-pattern>/cometd/*</url-pattern>
+	</filter-mapping>
+
+	<filter>
+		<filter-name>continuation</filter-name>
+		<filter-class>org.eclipse.jetty.continuation.ContinuationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>continuation</filter-name>
+		<url-pattern>/cometd/*</url-pattern>
+	</filter-mapping>
+	<!--servlet配置 -->
+	<servlet>
+		<servlet-name>springmvc</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextClass</param-name>
+			<param-value>
+				org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>com.yihuacomputer.fish.web.startup.FishWebMonitorMvcConfig</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>springmvc</servlet-name>
+		<url-pattern>/api/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>springmvc-atm</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextClass</param-name>
+			<param-value>
+				org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+			</param-value>
+		</init-param>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>com.yihuacomputer.fish.web.startup.AtmMvcConfig</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>springmvc-atm</servlet-name>
+		<url-pattern>/atm/*</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>cometd</servlet-name>
+		<servlet-class>org.cometd.server.CometdServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>cometd</servlet-name>
+		<url-pattern>/cometd/*</url-pattern>
+	</servlet-mapping>
+
+	<!--其他配置 -->
+	<welcome-file-list>
+		<welcome-file>login.jsp</welcome-file>
+	</welcome-file-list>
+	<session-config>
+		<session-timeout>30</session-timeout>
+	</session-config>
+	<!-- <resource-ref> <res-ref-name>jdbc/fish</res-ref-name> <res-type>javax.sql.DataSource</res-type> 
+		<res-auth>Container</res-auth> <res-sharing-scope>Shareable</res-sharing-scope> 
+		</resource-ref> -->
+</web-app>
