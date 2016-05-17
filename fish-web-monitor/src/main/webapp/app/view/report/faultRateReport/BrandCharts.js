@@ -48,11 +48,10 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
                 axes: [{
                     type: 'numeric',
                     position: 'left',
-//                    majorTickSteps: 2,
                     minimum: 0,
                     fields: [me.getColumnField()],
                     label: {
-                        renderer: function(v) { return v + '%'; }
+                        renderer: function(v) { return v.toFixed() + '%'; }
                     },
                     grid: true
                 }, {
