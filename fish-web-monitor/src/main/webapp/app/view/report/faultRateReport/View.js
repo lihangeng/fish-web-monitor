@@ -23,7 +23,7 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 					labelWidth : 50,
 					editable : false,
 					value : new Date(),
-					// labelAlign : 'left',
+					labelAlign : 'left',
 					format : 'Y-m',
 					width : 220,
 					height : 20
