@@ -9,7 +9,7 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 	title : '故障率报表',
 	defaults : {
 		width : 550,
-		height : 400
+		height : 420
 	},
 
 	scrollable : true,
@@ -24,24 +24,30 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 				xtype : 'report_faultRateReport_BrandGrid',
 				margin : 20,
 				border : true,
-				style:'border-width:5px'
+				style:'border:solid #D2D2D2'
 			}, {
 				xtype : 'report_faultRateReport_BrandCharts',
+				split:true,
 				border : true,
+				style:'border:solid #D2D2D2'
 			}, {
 				xtype : 'report_faultRateReport_TypeGrid',
 				margin : 20,
 				border : true,
+				style:'border:solid #D2D2D2'
 			},{
 				xtype:'report_faultRateReport_TypeCharts',
 				border:true,
+				style:'border:solid #D2D2D2'
 			}, {
 				xtype : 'report_faultRateReport_ModuleGrid',
 				margin:20,
 				border : true,
+				style:'border:solid #D2D2D2'
 			},{
 				xtype:'report_faultRateReport_ModuleCharts',
 				border:true,
+				style:'border:solid #D2D2D2'
 			} ]
 		});
 

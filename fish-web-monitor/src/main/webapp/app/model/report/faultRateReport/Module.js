@@ -4,7 +4,7 @@ Ext.define('Eway.model.report.faultRateReport.Module',{
 
 	proxy:{
 		type:'rest',
-		url :'api/parameter/appSystem',
+		url :'api/report/faultRate/faultByModule',
 		reader:{
 			type:'json',
 			rootProperty:'data'

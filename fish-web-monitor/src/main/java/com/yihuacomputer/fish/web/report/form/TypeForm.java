@@ -2,7 +2,7 @@ package com.yihuacomputer.fish.web.report.form;
 
 public class TypeForm {
 
-	private String type;
+	private String typeName;
 
 	private int fault;
 
@@ -14,21 +14,21 @@ public class TypeForm {
 
 	}
 
-	public TypeForm(String type,int fault,int trade,double rate){
+	public TypeForm(String typeName,int fault,int trade,double rate){
 
-		this.type=type;
+		this.typeName=typeName;
 		this.fault=fault;
 		this.trade=trade;
 		this.rate=rate;
 
 	}
 
-	public String getType() {
-		return type;
+	public String getTypeName() {
+		return typeName;
 	}
 
-	public void setType(String type) {
-		this.type = type;
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
 	}
 
 	public int getFault() {

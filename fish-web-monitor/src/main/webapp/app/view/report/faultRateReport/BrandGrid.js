@@ -4,30 +4,29 @@ Ext.define('Eway.view.report.faultRateReport.BrandGrid', {
 	width : 400,
 	height :400,
 	initComponent : function() {
-//		var store = Ext.create('Eway.store.parameter.devParameter.DevInfo');
-//		store.loadPage(1);
+		var store=Ext.create('Eway.store.report.faultRateReport.Brand');
 		Ext.apply(this, {
 			initRegion : true,
-//			store : store,
+			store : store,
 			columns : [ {
 				header : '品牌',
-				dataIndex : 'brand',
-				width:100
+				dataIndex : 'brandName',
+				width:130
 			},{
 				header : '故障数',
 				dataIndex : 'fault',
-				width:100
+				width:130
 			},{
 				header : '交易数',
 				dataIndex : 'trade',
-				width:100
+				width:130
 			},{
 				header : '故障率',
 				dataIndex : 'rate',
-				width:100
+				flex:1
 			}],
 			bbar : Ext.create('Ext.PagingToolbar', {
-//				store : store,
+				store : store,
 				displayInfo : true
 			})
 		});
