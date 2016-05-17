@@ -15,7 +15,7 @@ public class T {
 
 //		TimeZone.setDefault(TimeZone.getTimeZone("Asia/Shanghai"));
 //		TimeZone.setDefault(TimeZone.getTimeZone("GMT"));
-		System.out.print(new Date(1384544188203l));
+		System.out.print(new Date(138454418820300l));
 		for(int i =0 ;i < 1 ;i ++){
 			long s = System.currentTimeMillis();
 			System.out.println(s);
