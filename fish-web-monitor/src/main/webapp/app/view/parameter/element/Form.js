@@ -36,7 +36,7 @@ Ext.define('Eway.view.parameter.element.Form',{
 					regexText:EwayLocale.param.element.regex2
 			},{
 				xtype : 'field_paramElement_ParamValue',
-				maxLength : 40,
+				maxLength : 128,
 				allowBlank: false,
 		    },{
 				xtype : 'field_paramElement_ParamType',
@@ -46,6 +46,7 @@ Ext.define('Eway.view.parameter.element.Form',{
 		   },{
 					xtype : 'field_paramElement_ParamClassify',
 					allowBlank: false,
+					maxLength : 10,
 					value:1
 			},{
 					xtype : 'field_paramElement_ParamRights',

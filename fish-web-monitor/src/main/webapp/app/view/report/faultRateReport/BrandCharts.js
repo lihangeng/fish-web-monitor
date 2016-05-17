@@ -4,14 +4,14 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
 
 	requires : [ 'Eway.lib.Util','Ext.chart.theme.Muted' ],
     config:{
-    	columnField:'total',
-    	rowField:'angle'
+    	columnField:'rate',
+    	rowField:'brandName'
     },
 	border : false,
 	closable : false ,
     initComponent: function() {
     	var me = this;
-//        var store = Ext.create('Eway.store.report.baseReport.CaseStatisticsReport');
+    	var store=Ext.create('Eway.store.report.faultRateReport.Brand');
         Ext.apply(this, {
         items : [{
                 xtype: 'cartesian',
@@ -26,7 +26,7 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
                     clickEvents: true,
                     dbClickEvents: true
                 },
-                height: 430,
+                height: 400,
                 style: 'background: #fff',
                 padding: '0 0 0 0',
                 insetPadding: 15,
@@ -35,7 +35,7 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
                     duration: 5
                 },
                 shadow: false,
-//                store: store,
+                store: store,
                 sprites: [{
                     type  : 'text',
                     font  : '14px Helvetica',
@@ -48,20 +48,12 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
                 axes: [{
                     type: 'numeric',
                     position: 'left',
-//                    majorTickSteps: 2,
                     minimum: 0,
                     fields: [me.getColumnField()],
                     label: {
-                        textAlign: 'right'
+                        renderer: function(v) { return v.toFixed() + '%'; }
                     },
-                    grid: {
-                        odd: {
-                            fillStyle: 'rgba(255, 255, 255, 0.06)'
-                        },
-                        even: {
-                            fillStyle: 'rgba(0, 0, 0, 0.03)'
-                        }
-                    }
+                    grid: true
                 }, {
                     type: 'category',
                     position: 'bottom',

@@ -4,14 +4,14 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
 
 	requires : [ 'Eway.lib.Util','Ext.chart.theme.Muted' ],
     config:{
-    	columnField:'total',
-    	rowField:'angle'
+    	columnField:'rate',
+    	rowField:'moduleName'
     },
 	border : false,
 	closable : false ,
     initComponent: function() {
     	var me = this;
-//        var store = Ext.create('Eway.store.report.baseReport.CaseStatisticsReport');
+        var store = Ext.create('Eway.store.report.faultRateReport.Module');
         Ext.apply(this, {
         items : [{
                 xtype: 'cartesian',
@@ -26,7 +26,7 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
                     clickEvents: true,
                     dbClickEvents: true
                 },
-                height: 430,
+                height: 400,
                 style: 'background: #fff',
                 padding: '0 0 0 0',
                 insetPadding: 15,
@@ -35,7 +35,7 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
                     duration: 5
                 },
                 shadow: false,
-//                store: store,
+                store: store,
                 sprites: [{
                     type  : 'text',
                     font  : '14px Helvetica',
@@ -46,22 +46,15 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
                     y : 12  //the sprite y position
                 }],
                 axes: [{
-                    type: 'numeric',
+                	type: 'numeric',
                     position: 'left',
 //                    majorTickSteps: 2,
                     minimum: 0,
                     fields: [me.getColumnField()],
                     label: {
-                        textAlign: 'right'
+                        renderer: function(v) { return v + '%'; }
                     },
-                    grid: {
-                        odd: {
-                            fillStyle: 'rgba(255, 255, 255, 0.06)'
-                        },
-                        even: {
-                            fillStyle: 'rgba(0, 0, 0, 0.03)'
-                        }
-                    }
+                    grid: true
                 }, {
                     type: 'category',
                     position: 'bottom',
