@@ -9,6 +9,7 @@
         class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
+            	<ref bean="extractTime" />
                 <ref bean="backupTime" />
                 <ref bean="deleteTime" />
                 <ref bean="offlineTime" />
@@ -23,11 +24,12 @@
     <!-- 定时任务数据版本配置
     <bean id="startQuartz" lazy-init="false" autowire="no"
         class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
-        <property name="configLocation" value="classpath:quartz.properties" /> 
+        <property name="configLocation" value="classpath:quartz.properties" />
     </bean> -->
-    
+
     <import resource="classpath:/com/yihuacomputer/fish/monitor/monitor-quartz.xml"/>
 	<import resource="classpath:/com/yihuacomputer/fish/atmlog/atmlog-quartz.xml"/>
+	<import resource="classpath:/com/yihuacomputer/fish/report/faultRate-quartz.xml"/>
 	<import resource="classpath:/com/yihuacomputer/fish/report/report-quartz.xml"/>
 	<import resource="classpath:deldoc-quartz.xml"/>
 </beans>

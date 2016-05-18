@@ -8,6 +8,7 @@ import com.yihuacomputer.fish.api.report.engine.IExportReportService;
 import com.yihuacomputer.fish.report.engine.exporter.HtmlExporter;
 import com.yihuacomputer.fish.report.engine.exporter.PdfExporter;
 import com.yihuacomputer.fish.report.engine.exporter.XlsExporter;
+import com.yihuacomputer.fish.report.engine.scheduler.DataExtractJob;
 import com.yihuacomputer.fish.report.engine.scheduler.EveryDayReportJob;
 import com.yihuacomputer.fish.report.engine.scheduler.EveryMonthReportJob;
 import com.yihuacomputer.fish.report.engine.scheduler.EveryYearReportJob;
@@ -60,6 +61,11 @@ public class ReportEngineModule {
 	@Bean(name = "YearETLJob")
 	public EveryYearReportJob everyYearReportJob() {
 		return new EveryYearReportJob();
+	}
+
+	@Bean(name = "DataExtractJob")
+	public DataExtractJob dataExtractJob() {
+		return new DataExtractJob();
 	}
 
 }
