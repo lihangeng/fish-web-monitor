@@ -7,7 +7,8 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 			'Eway.view.report.faultRateReport.TypeGrid',
 			'Eway.view.report.faultRateReport.TypeCharts',
 			'Eway.view.report.faultRateReport.ModuleGrid',
-			'Eway.view.report.faultRateReport.ModuleCharts' ],
+			'Eway.view.report.faultRateReport.ModuleCharts',
+			'Eway.lib.DateMonth'],
 
 	title : '故障率报表',
 
@@ -18,15 +19,13 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 			items : [ {
 				margin : 20,
 				items : [ {
-					xtype : 'datefield',
-					fieldLabel : '月份',
-					labelWidth : 50,
+					xtype : 'monthfield',
+					fieldLabel : '<font color="red">*</font>月份',
+					format : 'Y-m',
+					labelAlign : 'right',
+					allowBlank : false,
 					editable : false,
 					value : new Date(),
-					labelAlign : 'left',
-					format : 'Y-m',
-					width : 220,
-					height : 20
 				}, {
 					height:30,
 					tbar : [ '->', {
