@@ -18,6 +18,7 @@
                 <ref bean="yearReportTime" />
                 <ref bean="updateDeviceInfoTaskTime"/>
                 <ref bean="updateQuittingDevInfoTaskTime"/>
+                <ref bean="everyMonthFaultTime"/>
             </list>
         </property>
     </bean>
@@ -30,6 +31,7 @@
     <import resource="classpath:/com/yihuacomputer/fish/monitor/monitor-quartz.xml"/>
 	<import resource="classpath:/com/yihuacomputer/fish/atmlog/atmlog-quartz.xml"/>
 	<import resource="classpath:/com/yihuacomputer/fish/report/faultRate-quartz.xml"/>
+	<import resource="classpath:/com/yihuacomputer/fish/report/everyMonthFault-quartz.xml"/>
 	<import resource="classpath:/com/yihuacomputer/fish/report/report-quartz.xml"/>
 	<import resource="classpath:deldoc-quartz.xml"/>
 </beans>
