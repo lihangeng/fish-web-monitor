@@ -1,4 +1,4 @@
-Ext.define('Eway.model.system.Organization', {
+Ext.define('Eway.model.bankOrg.Organization', {
 	extend : 'Ext.data.Model',
 
 	fields : [ 'id','guid', 'code', 'name', 'zip','displayName']

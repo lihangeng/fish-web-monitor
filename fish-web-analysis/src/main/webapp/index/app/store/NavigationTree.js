@@ -25,13 +25,6 @@ Ext.define('Eway.store.NavigationTree', {
 				leaf: true,
 				iconCls: 'x-fa fa-lightbulb-o',
 				routeId:'authentication.passwordreset'
-            },
-            {
-				text: '机构管理',
-				view: 'system.Organization',
-				leaf: true,
-				iconCls: 'x-fa fa-lightbulb-o',
-				routeId:'system.organization'
             }
         ]
     },

@@ -1,4 +1,4 @@
-Ext.define('Eway.view.system.OrganizationModel', {
+Ext.define('Eway.view.bankOrg.OrganizationModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.organizationModel',
 

@@ -1,9 +1,9 @@
-Ext.define('Eway.view.system.Organization', {
+Ext.define('Eway.view.bankOrg.Organization', {
 	extend : 'Ext.container.Container',
 	xtype:'organization',
 
-	requires : [ 'Ext.ux.layout.ResponsiveColumn','Eway.view.system.Grid',
-	             'Eway.view.system.OrganizationController','Eway.view.system.OrganizationModel'],
+	requires : [ 'Ext.ux.layout.ResponsiveColumn','Eway.view.bankOrg.Grid',
+	             'Eway.view.bankOrg.OrganizationController','Eway.view.bankOrg.OrganizationModel'],
 	
 	controller: 'organizationController', 
 	viewModel: { 

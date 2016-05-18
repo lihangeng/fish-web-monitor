@@ -1,4 +1,4 @@
-Ext.define('Eway.view.system.Grid', {
+Ext.define('Eway.view.bankOrg.Grid', {
 	alias: 'widget.bank_organization_grid',
 	extend: 'Ext.grid.Panel',
 
@@ -7,7 +7,7 @@ Ext.define('Eway.view.system.Grid', {
 	border : true,
 
 	initComponent: function() {
-		var store = Ext.create('Eway.store.system.Organization');
+		var store = Ext.create('Eway.store.bankOrg.Organization');
 		Ext.apply(this, {
 			store : store,
 			tbar: [{

@@ -1,6 +1,6 @@
-Ext.define('Eway.store.system.Organization', {
+Ext.define('Eway.store.bankOrg.Organization', {
 	extend: 'Ext.data.Store',
-	model: 'Eway.model.system.Organization',
+	model: 'Eway.model.bankOrg.Organization',
 	autoSync : false,
 	autoLoad: true,
 	remoteFilter: true,//在服务器端过滤，默认是false

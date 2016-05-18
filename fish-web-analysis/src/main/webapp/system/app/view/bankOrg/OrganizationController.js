@@ -1,4 +1,4 @@
-Ext.define('Eway.view.system.OrganizationController', {
+Ext.define('Eway.view.bankOrg.OrganizationController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.organizationController',
 

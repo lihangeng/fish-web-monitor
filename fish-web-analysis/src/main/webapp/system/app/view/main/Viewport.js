@@ -50,7 +50,6 @@ Ext.define('Eway.view.main.Viewport', {
 				{
                     text:'首页',
 					//cls: 'delete-focus-bg',
-					cls:'active-menu1',
                     iconCls: 'fa fa-home',
 					iconAlign:'top',
                     href: '../index/index.html',
@@ -60,6 +59,7 @@ Ext.define('Eway.view.main.Viewport', {
 				{
                     text:'系统管理',
 					//cls: 'delete-focus-bg',
+                    cls:'active-menu1',
                     iconCls:'x-fa fa-envelope',
 					iconAlign:'top',
                     href: '../system/index.html',
