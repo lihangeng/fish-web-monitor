@@ -1,4 +1,4 @@
-Ext.define('Admin.view.dashboard.Earnings', {
+Ext.define('Eway.view.dashboard.Earnings', {
     extend: 'Ext.Panel',
     xtype: 'dashboardearningspanel',
 

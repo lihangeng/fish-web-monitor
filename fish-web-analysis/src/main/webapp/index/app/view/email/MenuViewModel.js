@@ -1,4 +1,4 @@
-Ext.define('Admin.view.email.MenuViewModel', {
+Ext.define('Eway.view.email.MenuViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.emailmenu'
     

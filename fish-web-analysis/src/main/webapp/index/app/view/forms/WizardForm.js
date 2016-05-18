@@ -1,7 +1,7 @@
-Ext.define('Admin.view.forms.WizardForm', {
+Ext.define('Eway.view.forms.WizardForm', {
     extend: 'Ext.panel.Panel',
     xtype: 'wizardform',
-    requires: ['Admin.view.forms.WizardFormModel'],
+    requires: ['Eway.view.forms.WizardFormModel'],
 
     bodyPadding: 15,
 

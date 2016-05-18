@@ -1,4 +1,4 @@
-Ext.define('Admin.view.profile.UserProfileController', {
+Ext.define('Eway.view.profile.UserProfileController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.userprofile'
 

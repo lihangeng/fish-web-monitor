@@ -1,5 +1,5 @@
-Ext.define('Admin.data.email.Inbox', {
-    extend: 'Admin.data.Simulated',
+Ext.define('Eway.data.email.Inbox', {
+    extend: 'Eway.data.Simulated',
 
     data: [
         {

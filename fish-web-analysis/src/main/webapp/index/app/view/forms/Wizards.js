@@ -1,4 +1,4 @@
-Ext.define('Admin.view.forms.Wizards', {
+Ext.define('Eway.view.forms.Wizards', {
     extend: 'Ext.container.Container',
     xtype: 'formswizardscontainer',
 

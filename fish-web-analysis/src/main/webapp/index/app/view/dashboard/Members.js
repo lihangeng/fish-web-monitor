@@ -1,4 +1,4 @@
-Ext.define('Admin.view.dashboard.Members', {
+Ext.define('Eway.view.dashboard.Members', {
     extend: 'Ext.grid.Panel',
     xtype: 'dashboardmemberspanel',
     

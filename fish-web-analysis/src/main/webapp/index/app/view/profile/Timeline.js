@@ -1,4 +1,4 @@
-Ext.define('Admin.view.profile.Timeline', {
+Ext.define('Eway.view.profile.Timeline', {
     extend: 'Ext.grid.Panel',
     xtype: 'profiletimelinepanel',
 

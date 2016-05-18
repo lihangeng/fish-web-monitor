@@ -1,5 +1,5 @@
-Ext.define('Admin.data.Subscriptions', {
-    extend: 'Admin.data.Simulated',
+Ext.define('Eway.data.Subscriptions', {
+    extend: 'Eway.data.Simulated',
 
     data: [
         {

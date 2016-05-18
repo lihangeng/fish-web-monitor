@@ -1,5 +1,5 @@
-Ext.define('Admin.view.widgets.WidgetF', {
-    extend: 'Admin.view.widgets.WidgetE',
+Ext.define('Eway.view.widgets.WidgetF', {
+    extend: 'Eway.view.widgets.WidgetE',
     xtype: 'widget-f',
 
     cls:'admin-widget info-card-item info-card-large-wrap shadow-panel',

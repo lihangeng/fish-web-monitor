@@ -1,4 +1,4 @@
-Ext.define('Admin.view.forms.WizardOne', {
+Ext.define('Eway.view.forms.WizardOne', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.formswizardone',
     requires: [

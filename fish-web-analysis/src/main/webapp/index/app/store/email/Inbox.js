@@ -1,9 +1,9 @@
-Ext.define('Admin.store.email.Inbox', {
+Ext.define('Eway.store.email.Inbox', {
     extend: 'Ext.data.Store',
 
     alias: 'store.emailinbox',
 
-    model: 'Admin.model.email.Email',
+    model: 'Eway.model.email.Email',
 
     pageSize: 20,
 

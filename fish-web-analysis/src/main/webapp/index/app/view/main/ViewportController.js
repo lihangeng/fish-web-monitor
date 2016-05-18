@@ -1,4 +1,4 @@
-Ext.define('Admin.view.main.ViewportController', {
+Ext.define('Eway.view.main.ViewportController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.mainviewport',
 
@@ -39,7 +39,7 @@ Ext.define('Admin.view.main.ViewportController', {
         lastView = mainLayout.getActiveItem();
 
         if (!existingItem) {
-            newView = Ext.create('Admin.view.' + (view || 'pages.Error404Window'), {
+            newView = Ext.create('Eway.view.' + (view || 'pages.Error404Window'), {
                     hideMode: 'offsets',
                     routeId: hashTag
                 });

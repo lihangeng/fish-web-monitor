@@ -3,7 +3,7 @@
  * It's layout is structured to center any Authentication dialog within it's center,
  * and provides a backGround image during such operations.
  */
-Ext.define('Admin.view.authentication.LockingWindow', {
+Ext.define('Eway.view.authentication.LockingWindow', {
     extend: 'Ext.window.Window',
     xtype: 'lockingwindow',
 

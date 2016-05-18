@@ -1,4 +1,4 @@
-Ext.define('Admin.view.pages.BlankPage', {
+Ext.define('Eway.view.pages.BlankPage', {
     extend: 'Ext.container.Container',
     xtype: 'blankpage',
 

@@ -1,9 +1,9 @@
-Ext.define('Admin.store.email.Friends', {
+Ext.define('Eway.store.email.Friends', {
     extend: 'Ext.data.Store',
 
     alias: 'store.emailfriends',
 
-    model: 'Admin.model.email.Friend',
+    model: 'Eway.model.email.Friend',
 
     proxy: {
         type: 'ajax',

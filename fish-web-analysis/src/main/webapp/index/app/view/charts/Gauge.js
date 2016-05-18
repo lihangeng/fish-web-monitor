@@ -1,4 +1,4 @@
-Ext.define('Admin.view.charts.Gauge', {
+Ext.define('Eway.view.charts.Gauge', {
     extend: 'Ext.Panel',
     xtype: 'chartsgaugepanel',
 

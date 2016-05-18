@@ -1,5 +1,5 @@
-Ext.define('Admin.model.MultiDataXY', {
-    extend: 'Admin.model.Base',
+Ext.define('Eway.model.MultiDataXY', {
+    extend: 'Eway.model.Base',
 
     fields: [
         {

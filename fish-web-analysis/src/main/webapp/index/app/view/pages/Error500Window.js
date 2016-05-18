@@ -1,4 +1,4 @@
-Ext.define('Admin.view.pages.Error500Window', {
+Ext.define('Eway.view.pages.Error500Window', {
     extend: 'Ext.window.Window',
     xtype: 'pageserror500window',
 

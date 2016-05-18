@@ -1,5 +1,5 @@
-Ext.define('Admin.model.PersonalInfo', {
-    extend: 'Admin.model.Base',
+Ext.define('Eway.model.PersonalInfo', {
+    extend: 'Eway.model.Base',
 
     fields: [
         {

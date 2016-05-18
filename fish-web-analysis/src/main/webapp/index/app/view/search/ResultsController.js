@@ -1,4 +1,4 @@
-Ext.define('Admin.view.search.ResultsController', {
+Ext.define('Eway.view.search.ResultsController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.searchresults'
 

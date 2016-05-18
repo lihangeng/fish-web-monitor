@@ -1,4 +1,4 @@
-Ext.define('Admin.view.dashboard.Weather', {
+Ext.define('Eway.view.dashboard.Weather', {
     extend: 'Ext.Component',
     xtype: 'dashboardweatherpanel',
 
@@ -12,7 +12,7 @@ Ext.define('Admin.view.dashboard.Weather', {
         temperature: 25
     },
 
-    tpl: '<div class="weather-image-container"><img src="resources/images/icons/{icon}" alt="{forecast}"/></div>'+
+    tpl: '<div class="weather-image-container"><img src="../resources/images/icons/{icon}" alt="{forecast}"/></div>'+
          '<div class="weather-details-container">' +
             '<div>{temperature}&#176;</div>' +
             '<div>{forecast}</div>' +

@@ -1,4 +1,4 @@
-Ext.define('Admin.view.authentication.AuthenticationModel', {
+Ext.define('Eway.view.authentication.AuthenticationModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.authentication',
 

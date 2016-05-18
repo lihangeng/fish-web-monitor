@@ -1,4 +1,4 @@
-Ext.define('Admin.view.charts.Bar', {
+Ext.define('Eway.view.charts.Bar', {
     extend: 'Ext.Panel',
     xtype: 'chartsbarpanel',
 

@@ -1,5 +1,5 @@
-Ext.define('Admin.model.FriendsList', {
-    extend: 'Admin.model.Base',
+Ext.define('Eway.model.FriendsList', {
+    extend: 'Eway.model.Base',
 
     fields: [
         {

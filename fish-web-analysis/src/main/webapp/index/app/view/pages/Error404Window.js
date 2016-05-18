@@ -1,4 +1,4 @@
-Ext.define('Admin.view.pages.Error404Window', {
+Ext.define('Eway.view.pages.Error404Window', {
     extend: 'Ext.window.Window',
     alias: 'widget.pageserror404window',
 

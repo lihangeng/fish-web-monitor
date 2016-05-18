@@ -1,5 +1,5 @@
-Ext.define('Admin.model.Subscription', {
-    extend: 'Admin.model.Base',
+Ext.define('Eway.model.Subscription', {
+    extend: 'Eway.model.Base',
 
     fields: [
         {

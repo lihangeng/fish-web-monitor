@@ -1,4 +1,4 @@
-Ext.define('Admin.view.profile.UserProfileModel', {
+Ext.define('Eway.view.profile.UserProfileModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.userprofile',
 

@@ -1,4 +1,4 @@
-Ext.define('Admin.view.search.ResultsModel', {
+Ext.define('Eway.view.search.ResultsModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.searchresults',
 

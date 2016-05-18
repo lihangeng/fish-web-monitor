@@ -1,7 +1,7 @@
-Ext.define('Admin.model.Base', {
+Ext.define('Eway.model.Base', {
     extend: 'Ext.data.Model',
 
     schema: {
-        namespace: 'Admin.model'
+        namespace: 'Eway.model'
     }
 });

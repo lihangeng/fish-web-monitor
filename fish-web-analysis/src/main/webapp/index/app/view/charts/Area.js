@@ -1,4 +1,4 @@
-Ext.define('Admin.view.charts.Area', {
+Ext.define('Eway.view.charts.Area', {
     extend: 'Ext.Panel',
     xtype: 'chartsareapanel',
 

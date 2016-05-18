@@ -1,4 +1,4 @@
-Ext.define('Admin.view.profile.ShareUpdate', {
+Ext.define('Eway.view.profile.ShareUpdate', {
     extend: 'Ext.panel.Panel',
     xtype: 'profilesharepanel',
 

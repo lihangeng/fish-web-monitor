@@ -1,7 +1,7 @@
 /**
- * @class Admin.view.forms.WizardFormController
+ * @class Eway.view.forms.WizardFormController
  */
-Ext.define('Admin.view.forms.WizardFormController', {
+Ext.define('Eway.view.forms.WizardFormController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.wizardform',
 

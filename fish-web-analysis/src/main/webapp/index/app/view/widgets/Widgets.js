@@ -1,14 +1,14 @@
-Ext.define('Admin.view.widgets.Widgets', {
+Ext.define('Eway.view.widgets.Widgets', {
     extend: 'Ext.container.Container',
     xtype: 'widgets',
 
     requires: [
-        'Admin.view.widgets.WidgetA',
-        'Admin.view.widgets.WidgetB',
-        'Admin.view.widgets.WidgetC',
-        'Admin.view.widgets.WidgetD',
-        'Admin.view.widgets.WidgetE',
-        'Admin.view.widgets.WidgetF',
+        'Eway.view.widgets.WidgetA',
+        'Eway.view.widgets.WidgetB',
+        'Eway.view.widgets.WidgetC',
+        'Eway.view.widgets.WidgetD',
+        'Eway.view.widgets.WidgetE',
+        'Eway.view.widgets.WidgetF',
         'Ext.slider.Single',
         'Ext.form.field.Display'
     ],

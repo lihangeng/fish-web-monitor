@@ -1,5 +1,5 @@
-Ext.define('Admin.data.search.Users', {
-    extend: 'Admin.data.Simulated',
+Ext.define('Eway.data.search.Users', {
+    extend: 'Eway.data.Simulated',
 
     data: [
         {

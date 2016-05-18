@@ -1,4 +1,4 @@
-Ext.define('Admin.store.NavigationTree', {
+Ext.define('Eway.store.NavigationTree', {
     extend: 'Ext.data.TreeStore',
 
     storeId: 'NavigationTree',
@@ -27,11 +27,11 @@ Ext.define('Admin.store.NavigationTree', {
 				routeId:'authentication.passwordreset'
             },
             {
-				text: '退出系统',
-				view: 'authentication.PasswordReset',
+				text: '机构管理',
+				view: 'system.Organization',
 				leaf: true,
 				iconCls: 'x-fa fa-lightbulb-o',
-				routeId:'authentication.passwordreset'
+				routeId:'system.organization'
             }
         ]
     },

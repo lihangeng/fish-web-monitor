@@ -1,5 +1,5 @@
-Ext.define('Admin.data.search.Results', {
-    extend: 'Admin.data.Simulated',
+Ext.define('Eway.data.search.Results', {
+    extend: 'Eway.data.Simulated',
 
 
     data: [{

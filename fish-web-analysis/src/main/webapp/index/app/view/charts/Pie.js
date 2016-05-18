@@ -1,4 +1,4 @@
-Ext.define('Admin.view.charts.Pie', {
+Ext.define('Eway.view.charts.Pie', {
     extend: 'Ext.Panel',
     xtype: 'chartspiepanel',
 

@@ -1,5 +1,5 @@
-Ext.define('Admin.model.search.User', {
-    extend: 'Admin.model.Base',
+Ext.define('Eway.model.search.User', {
+    extend: 'Eway.model.Base',
 
     fields: [
         {

@@ -1,4 +1,4 @@
-Ext.define('Admin.view.authentication.AuthenticationController', {
+Ext.define('Eway.view.authentication.AuthenticationController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.authentication',
 

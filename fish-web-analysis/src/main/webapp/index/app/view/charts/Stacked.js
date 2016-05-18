@@ -1,4 +1,4 @@
-Ext.define('Admin.view.charts.Stacked', {
+Ext.define('Eway.view.charts.Stacked', {
     extend: 'Ext.Panel',
     xtype: 'chartsstackedpanel',
 

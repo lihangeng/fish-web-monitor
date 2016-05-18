@@ -1,9 +1,9 @@
-Ext.define('Admin.view.authentication.Login', {
-    extend: 'Admin.view.authentication.LockingWindow',
+Ext.define('Eway.view.authentication.Login', {
+    extend: 'Eway.view.authentication.LockingWindow',
     xtype: 'pageslogin',
 
     requires: [
-        'Admin.view.authentication.Dialog',
+        'Eway.view.authentication.Dialog',
         'Ext.container.Container',
         'Ext.form.field.Text',
         'Ext.form.field.Checkbox',

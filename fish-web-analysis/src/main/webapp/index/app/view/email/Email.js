@@ -1,4 +1,4 @@
-Ext.define('Admin.view.email.Email', {
+Ext.define('Eway.view.email.Email', {
     extend: 'Ext.container.Container',
 
     xtype: 'email',

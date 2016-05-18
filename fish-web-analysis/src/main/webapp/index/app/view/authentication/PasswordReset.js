@@ -1,9 +1,9 @@
-Ext.define('Admin.view.authentication.PasswordReset', {
-    extend: 'Admin.view.authentication.LockingWindow',
+Ext.define('Eway.view.authentication.PasswordReset', {
+    extend: 'Eway.view.authentication.LockingWindow',
     xtype: 'passwordreset',
 
     requires: [
-        'Admin.view.authentication.Dialog',
+        'Eway.view.authentication.Dialog',
         'Ext.container.Container',
         'Ext.form.Label',
         'Ext.form.field.Text',

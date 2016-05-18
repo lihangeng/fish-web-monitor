@@ -1,5 +1,5 @@
-Ext.define('Admin.data.UserSharedItems', {
-    extend: 'Admin.data.Simulated',
+Ext.define('Eway.data.UserSharedItems', {
+    extend: 'Eway.data.Simulated',
 
     data: [
         {

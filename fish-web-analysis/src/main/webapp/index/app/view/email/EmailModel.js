@@ -1,4 +1,4 @@
-Ext.define('Admin.view.email.EmailModel', {
+Ext.define('Eway.view.email.EmailModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.email'
     

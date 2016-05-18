@@ -1,5 +1,5 @@
-Ext.define('Admin.data.marketshare.MultiYear', {
-    extend: 'Admin.data.Simulated',
+Ext.define('Eway.data.marketshare.MultiYear', {
+    extend: 'Eway.data.Simulated',
 
     data: [
         {

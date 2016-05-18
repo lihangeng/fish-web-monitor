@@ -1,5 +1,5 @@
-Ext.define('Admin.data.Pie', {
-    extend: 'Admin.data.Simulated',
+Ext.define('Eway.data.Pie', {
+    extend: 'Eway.data.Simulated',
 
 	data: [
         {

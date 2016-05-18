@@ -1,5 +1,5 @@
-Ext.define('Admin.data.dashboard.Full', {
-    extend: 'Admin.data.Simulated',
+Ext.define('Eway.data.dashboard.Full', {
+    extend: 'Eway.data.Simulated',
 
     data: [
         {

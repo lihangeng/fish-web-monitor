@@ -1,4 +1,4 @@
-Ext.define('Admin.view.widgets.WidgetsModel', {
+Ext.define('Eway.view.widgets.WidgetsModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.widgets',
 

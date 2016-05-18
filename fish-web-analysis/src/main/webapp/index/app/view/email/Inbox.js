@@ -1,4 +1,4 @@
-Ext.define('Admin.view.email.Inbox', {
+Ext.define('Eway.view.email.Inbox', {
     extend: 'Ext.grid.Panel',
 
     alias: 'widget.emailinbox',

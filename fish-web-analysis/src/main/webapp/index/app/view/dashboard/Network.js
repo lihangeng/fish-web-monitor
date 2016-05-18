@@ -1,4 +1,4 @@
-Ext.define('Admin.view.dashboard.Network', {
+Ext.define('Eway.view.dashboard.Network', {
     extend: 'Ext.panel.Panel',
     
     requires: [

@@ -1,5 +1,5 @@
-Ext.define('Admin.model.PanelSetting', {
-    extend: 'Admin.model.Base',
+Ext.define('Eway.model.PanelSetting', {
+    extend: 'Eway.model.Base',
 
     fields: [
         {

@@ -1,5 +1,5 @@
-Ext.define('Admin.model.DataXY', {
-    extend: 'Admin.model.Base',
+Ext.define('Eway.model.DataXY', {
+    extend: 'Eway.model.Base',
 
     fields: [
         {

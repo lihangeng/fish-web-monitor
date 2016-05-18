@@ -1,5 +1,5 @@
-Ext.define('Admin.data.marketshare.OneEntity', {
-    extend: 'Admin.data.Simulated',
+Ext.define('Eway.data.marketshare.OneEntity', {
+    extend: 'Eway.data.Simulated',
 
     data: [
         {

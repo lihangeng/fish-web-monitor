@@ -1,4 +1,4 @@
-Ext.define('Admin.view.email.Compose', {
+Ext.define('Eway.view.email.Compose', {
     extend: 'Ext.form.Panel',
     alias: 'widget.emailcompose',
     requires: [

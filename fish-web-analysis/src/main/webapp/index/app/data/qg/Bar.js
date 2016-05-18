@@ -1,5 +1,5 @@
-Ext.define('Admin.data.qg.Bar', {
-    extend: 'Admin.data.Simulated',
+Ext.define('Eway.data.qg.Bar', {
+    extend: 'Eway.data.Simulated',
 
     data: [
         {

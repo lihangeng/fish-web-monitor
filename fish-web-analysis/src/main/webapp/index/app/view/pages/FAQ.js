@@ -1,4 +1,4 @@
-Ext.define('Admin.view.pages.FAQ', {
+Ext.define('Eway.view.pages.FAQ', {
     extend: 'Ext.container.Container',
     xtype: 'faq',
 

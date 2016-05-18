@@ -1,5 +1,5 @@
-Ext.define('Admin.model.YearwiseData', {
-    extend: 'Admin.model.Base',
+Ext.define('Eway.model.YearwiseData', {
+    extend: 'Eway.model.Base',
 
     fields: [
         {

@@ -1,4 +1,4 @@
-Ext.define('Admin.view.profile.UserProfile', {
+Ext.define('Eway.view.profile.UserProfile', {
     extend: 'Ext.container.Container',
     xtype: 'userprofile',
 

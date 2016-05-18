@@ -1,4 +1,4 @@
-Ext.define('Admin.view.dashboard.TopMovie', {
+Ext.define('Eway.view.dashboard.TopMovie', {
     extend: 'Ext.panel.Panel',
     xtype: 'dashboardtopmoviepanel',
 

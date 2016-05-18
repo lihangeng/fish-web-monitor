@@ -1,5 +1,5 @@
-Ext.define('Admin.data.qg.Line', {
-    extend: 'Admin.data.Simulated',
+Ext.define('Eway.data.qg.Line', {
+    extend: 'Eway.data.Simulated',
 
     data: [
         {

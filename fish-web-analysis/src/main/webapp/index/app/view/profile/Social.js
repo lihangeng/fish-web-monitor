@@ -1,4 +1,4 @@
-Ext.define('Admin.view.profile.Social', {
+Ext.define('Eway.view.profile.Social', {
     extend: 'Ext.panel.Panel',
     xtype: 'profilesocialpanel',
 

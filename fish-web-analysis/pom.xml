@@ -124,11 +124,11 @@
 						<jettyEnvXml>src/test/resources/jetty-mysql.xml</jettyEnvXml>
 					</webAppConfig>
 					<scanIntervalSeconds>0</scanIntervalSeconds>
-					<stopPort>9900</stopPort>
+					<stopPort>9901</stopPort>
 					<stopKey>jetty</stopKey>
 					<connectors>
 						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-							<port>8080</port>
+							<port>8083</port>
 							<maxIdleTime>60000</maxIdleTime>
 							<useDirectBuffers>false</useDirectBuffers><!-- 默认值是true，true时会导致在jetty运行时js文件不能修改 -->
 						</connector>

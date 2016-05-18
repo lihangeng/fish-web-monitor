@@ -1,4 +1,4 @@
-Ext.define('Admin.view.main.Viewport', {
+Ext.define('Eway.view.main.Viewport', {
     extend: 'Ext.container.Viewport',
     xtype: 'mainviewport',
 
@@ -37,7 +37,7 @@ Ext.define('Admin.view.main.Viewport', {
                     xtype: 'component',
                     reference: 'senchaLogo',
                     cls: 'sencha-logo',
-                    html: '<div class="main-logo"><img src="resources/images/sencha-icon.png">ATMV</div>',
+                    html: '<div class="main-logo"><img src="../resources/images/sencha-icon.png">ATMV</div>',
                     width: 250
                 },
                 {
@@ -81,8 +81,7 @@ Ext.define('Admin.view.main.Viewport', {
                     iconCls:'x-fa fa-envelope',
 					iconAlign:'top',
                     href: '/monitor/#dashboard',
-                    hrefTarget: '_self',
-                    tooltip: '监控管理'
+                    hrefTarget: '_self'
                 },
 				{
                     text:'应用管理',
@@ -113,7 +112,7 @@ Ext.define('Admin.view.main.Viewport', {
                     flex: 1
                 },
 				{
-                    cls: 'delete-focus-bg',
+//                    cls: 'delete-focus-bg',
                     iconCls:'x-fa fa-bell'
                 },
                 {

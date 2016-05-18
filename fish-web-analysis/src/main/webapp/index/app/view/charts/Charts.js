@@ -1,4 +1,4 @@
-Ext.define('Admin.view.charts.Charts', {
+Ext.define('Eway.view.charts.Charts', {
     extend: 'Ext.container.Container',
 
     viewModel: {

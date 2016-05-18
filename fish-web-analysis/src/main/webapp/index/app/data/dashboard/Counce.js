@@ -1,5 +1,5 @@
-Ext.define('Admin.data.dashboard.Counce', {
-    extend: 'Admin.data.Simulated',
+Ext.define('Eway.data.dashboard.Counce', {
+    extend: 'Eway.data.Simulated',
 
     data: [
         {

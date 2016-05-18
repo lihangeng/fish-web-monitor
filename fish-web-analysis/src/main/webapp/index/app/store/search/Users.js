@@ -1,9 +1,9 @@
-Ext.define('Admin.store.search.Users', {
+Ext.define('Eway.store.search.Users', {
     extend: 'Ext.data.Store',
 
     alias: 'store.searchusers',
 
-    model: 'Admin.model.search.User',
+    model: 'Eway.model.search.User',
 
     proxy: {
         type: 'ajax',

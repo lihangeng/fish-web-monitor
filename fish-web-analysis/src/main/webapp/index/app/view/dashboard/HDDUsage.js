@@ -1,4 +1,4 @@
-Ext.define('Admin.view.dashboard.HDDUsage', {
+Ext.define('Eway.view.dashboard.HDDUsage', {
     extend: 'Ext.panel.Panel',
     xtype: 'dashboardhddusagepanel',
 

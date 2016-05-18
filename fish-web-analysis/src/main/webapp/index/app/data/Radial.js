@@ -1,5 +1,5 @@
-Ext.define('Admin.data.Radial', {
-    extend: 'Admin.data.Simulated',
+Ext.define('Eway.data.Radial', {
+    extend: 'Eway.data.Simulated',
 
 	data: [
         {

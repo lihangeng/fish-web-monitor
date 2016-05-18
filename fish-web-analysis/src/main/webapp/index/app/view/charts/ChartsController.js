@@ -1,4 +1,4 @@
-Ext.define('Admin.view.charts.ChartsController', {
+Ext.define('Eway.view.charts.ChartsController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.charts'
 

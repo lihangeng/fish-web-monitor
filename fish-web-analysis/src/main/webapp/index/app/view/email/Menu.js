@@ -1,4 +1,4 @@
-Ext.define('Admin.view.email.Menu', {
+Ext.define('Eway.view.email.Menu', {
     extend: 'Ext.menu.Menu',
 
     alias: 'widget.emailmenu',

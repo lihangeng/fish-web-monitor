@@ -1,9 +1,9 @@
-Ext.define('Admin.view.authentication.Register', {
-    extend: 'Admin.view.authentication.LockingWindow',
+Ext.define('Eway.view.authentication.Register', {
+    extend: 'Eway.view.authentication.LockingWindow',
     xtype: 'authregister',
 
     requires: [
-        'Admin.view.authentication.Dialog',
+        'Eway.view.authentication.Dialog',
         'Ext.form.Label',
         'Ext.form.field.Text',
         'Ext.form.field.Checkbox',

@@ -1,9 +1,9 @@
-Ext.define('Admin.view.authentication.LockScreen', {
-    extend: 'Admin.view.authentication.LockingWindow',
+Ext.define('Eway.view.authentication.LockScreen', {
+    extend: 'Eway.view.authentication.LockingWindow',
     xtype: 'lockscreen',
 
     requires: [
-        'Admin.view.authentication.Dialog',
+        'Eway.view.authentication.Dialog',
         'Ext.Img',
         'Ext.container.Container',
         'Ext.form.field.Text',

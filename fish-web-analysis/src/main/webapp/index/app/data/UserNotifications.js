@@ -1,5 +1,5 @@
-Ext.define('Admin.data.UserNotifications', {
-    extend: 'Admin.data.Simulated',
+Ext.define('Eway.data.UserNotifications', {
+    extend: 'Eway.data.Simulated',
 
     data: [
         {

@@ -1,4 +1,4 @@
-Ext.define('Admin.view.email.FriendsList', {
+Ext.define('Eway.view.email.FriendsList', {
     extend: 'Ext.menu.Menu',
 
     alias: 'widget.emailfriendslist',

@@ -1,5 +1,5 @@
-Ext.define('Admin.data.dashboard.Visitor', {
-    extend: 'Admin.data.Simulated',
+Ext.define('Eway.data.dashboard.Visitor', {
+    extend: 'Eway.data.Simulated',
 
     data: [
         {

@@ -1,4 +1,4 @@
-Ext.define('Admin.view.email.EmailController', {
+Ext.define('Eway.view.email.EmailController', {
     extend: 'Ext.app.ViewController',
 
     alias: 'controller.email',

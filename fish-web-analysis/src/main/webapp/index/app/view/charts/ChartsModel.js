@@ -1,10 +1,10 @@
-Ext.define('Admin.view.charts.ChartsModel', {
+Ext.define('Eway.view.charts.ChartsModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.charts',
 
     stores: {
         marketshareoneyear: {
-            model: 'Admin.model.DataXY',
+            model: 'Eway.model.DataXY',
             autoLoad: true,
 
             proxy: {
@@ -18,7 +18,7 @@ Ext.define('Admin.view.charts.ChartsModel', {
         },
 
         marketsharemultiyear: {
-            model: 'Admin.model.MultiDataXY',
+            model: 'Eway.model.MultiDataXY',
             autoLoad: true,
 
             proxy: {
@@ -46,7 +46,7 @@ Ext.define('Admin.view.charts.ChartsModel', {
         },
 
         radialchartstore: {
-            model: 'Admin.model.DataXY',
+            model: 'Eway.model.DataXY',
             autoLoad: true,
 
             proxy: {
@@ -60,7 +60,7 @@ Ext.define('Admin.view.charts.ChartsModel', {
         },
 
         marketshareoneentitystore: {
-            model: 'Admin.model.DataXY',
+            model: 'Eway.model.DataXY',
             autoLoad: true,
 
             proxy: {
@@ -74,7 +74,7 @@ Ext.define('Admin.view.charts.ChartsModel', {
         },
 
         yearwisemarketsharestore: {
-            model: 'Admin.model.MultiDataXY',
+            model: 'Eway.model.MultiDataXY',
             autoLoad: true,
 
             proxy: {
@@ -88,7 +88,7 @@ Ext.define('Admin.view.charts.ChartsModel', {
         },
 
         piedatastore: {
-            model: 'Admin.model.DataXY',
+            model: 'Eway.model.DataXY',
             autoLoad: true,
 
             proxy: {
@@ -102,7 +102,7 @@ Ext.define('Admin.view.charts.ChartsModel', {
         },
 
         dashboardfulllinechartstore: {
-            model: 'Admin.model.MultiDataXY',
+            model: 'Eway.model.MultiDataXY',
             autoLoad: true,
 
             proxy: {

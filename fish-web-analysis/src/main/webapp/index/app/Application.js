@@ -1,13 +1,13 @@
-Ext.define('Admin.Application', {
+Ext.define('Eway.Application', {
     extend: 'Ext.app.Application',
     
-    name: 'Admin',
+    name: 'Eway',
 
     stores: [
         'NavigationTree'
     ],
 
-    defaultToken : 'dashboard',
+    defaultToken : 'email',
 
     //controllers: [
         // TODO - Add Global View Controllers here

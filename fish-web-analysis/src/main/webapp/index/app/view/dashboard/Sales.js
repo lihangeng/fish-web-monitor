@@ -1,4 +1,4 @@
-Ext.define('Admin.view.dashboard.Sales', {
+Ext.define('Eway.view.dashboard.Sales', {
     extend: 'Ext.panel.Panel',
     xtype: 'dashboardsalespanel',
 

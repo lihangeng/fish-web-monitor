@@ -1,4 +1,4 @@
-Ext.define('Admin.view.profile.Notifications', {
+Ext.define('Eway.view.profile.Notifications', {
     extend: 'Ext.grid.Panel',
     xtype: 'profilenotificationspanel',
 

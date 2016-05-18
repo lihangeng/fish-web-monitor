@@ -1,4 +1,4 @@
-Ext.define('Admin.view.dashboard.DashboardModel', {
+Ext.define('Eway.view.dashboard.DashboardModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.dashboard',
 
@@ -12,7 +12,7 @@ Ext.define('Admin.view.dashboard.DashboardModel', {
     stores: {
         'dashboard.QGAreaStore': {
             autoLoad: true,
-            model: 'Admin.model.DataXY',
+            model: 'Eway.model.DataXY',
             proxy: {
                 type: 'ajax',
                 url: '~api/qg/area',
@@ -25,7 +25,7 @@ Ext.define('Admin.view.dashboard.DashboardModel', {
         },
         'dashboard.QGBarStore': {
             autoLoad: true,
-            model: 'Admin.model.DataXY',
+            model: 'Eway.model.DataXY',
             proxy: {
                 type: 'ajax',
                 url: '~api/qg/bar',
@@ -37,7 +37,7 @@ Ext.define('Admin.view.dashboard.DashboardModel', {
         },
         'dashboard.QGLineStore': {
             autoLoad: true,
-            model: 'Admin.model.DataXY',
+            model: 'Eway.model.DataXY',
             proxy: {
                 type: 'ajax',
                 url: '~api/qg/line',
@@ -49,7 +49,7 @@ Ext.define('Admin.view.dashboard.DashboardModel', {
         },
         'dashboard.QGPieStore': {
             autoLoad: true,
-            model: 'Admin.model.DataXY',
+            model: 'Eway.model.DataXY',
             proxy: {
                 type: 'ajax',
                 url: '~api/qg/pie',
@@ -62,7 +62,7 @@ Ext.define('Admin.view.dashboard.DashboardModel', {
         },
         dashboardfulllinechartstore: {
             autoLoad: true,
-            model: 'Admin.model.MultiDataXY',
+            model: 'Eway.model.MultiDataXY',
             proxy: {
                 type: 'ajax',
                 url: '~api/dashboard/full',
@@ -74,7 +74,7 @@ Ext.define('Admin.view.dashboard.DashboardModel', {
         },
         dashboardvisitorchartstore: {
             autoLoad: true,
-            model: 'Admin.model.MultiDataXY',
+            model: 'Eway.model.MultiDataXY',
             proxy: {
                 type: 'ajax',
                 url: '~api/dashboard/visitor',
@@ -86,7 +86,7 @@ Ext.define('Admin.view.dashboard.DashboardModel', {
         },
         dashboardcouncechartstore: {
             autoLoad: true,
-            model: 'Admin.model.MultiDataXY',
+            model: 'Eway.model.MultiDataXY',
             proxy: {
                 type: 'ajax',
                 url: '~api/dashboard/counce',
@@ -98,7 +98,7 @@ Ext.define('Admin.view.dashboard.DashboardModel', {
         },
         subscriptionstore: {
             autoLoad: true,
-            model: 'Admin.model.Subscription',
+            model: 'Eway.model.Subscription',
             proxy: {
                 type: 'ajax',
                 url: '~api/subscriptions',

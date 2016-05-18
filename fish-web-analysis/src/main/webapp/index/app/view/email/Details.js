@@ -1,9 +1,9 @@
-Ext.define('Admin.view.email.Details', {
+Ext.define('Eway.view.email.Details', {
     extend: 'Ext.form.Panel',
     xtype: 'emaildetails',
 
     requires: [
-        'Admin.view.email.DetailsViewModel',
+        'Eway.view.email.DetailsViewModel',
         'Ext.container.Container',
         'Ext.form.field.HtmlEditor',
         'Ext.layout.container.Anchor',

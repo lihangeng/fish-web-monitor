@@ -1,4 +1,4 @@
-Ext.define('Admin.view.search.Results', {
+Ext.define('Eway.view.search.Results', {
     extend: 'Ext.tab.Panel',
     xtype: 'searchresults',
 

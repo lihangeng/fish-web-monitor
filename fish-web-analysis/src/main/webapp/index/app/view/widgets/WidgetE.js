@@ -1,4 +1,4 @@
-Ext.define('Admin.view.widgets.WidgetE', {
+Ext.define('Eway.view.widgets.WidgetE', {
     extend: 'Ext.panel.Panel',
     xtype: 'widget-e',
 

@@ -1,4 +1,4 @@
-Ext.define('Admin.view.email.FriendsListViewModel', {
+Ext.define('Eway.view.email.FriendsListViewModel', {
     extend: 'Ext.app.ViewModel',
 
     alias: 'viewmodel.emailfriendslist',

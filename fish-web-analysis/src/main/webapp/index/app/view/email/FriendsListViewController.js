@@ -1,4 +1,4 @@
-Ext.define('Admin.view.email.FriendsListViewController', {
+Ext.define('Eway.view.email.FriendsListViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.emailfriendslist',
 
