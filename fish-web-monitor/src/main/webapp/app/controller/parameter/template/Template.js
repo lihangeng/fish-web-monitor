@@ -102,7 +102,6 @@ Ext.define('Eway.controller.parameter.template.Template',
 			    	},
 
 					onChange: function(_this, newValue, oldValue, eOpts){
-//						var view = this.getEwayView();
 						var grid = this.getTemplateGrid();
 
 						var sm = grid.getSelectionModel();
@@ -110,19 +109,12 @@ Ext.define('Eway.controller.parameter.template.Template',
 						var record = sm.getLastSelected();
 						var appSystem=this.getAddWin().down("field_paramElement_ParamBelongsRadioGroup").getValue().appSystem;
 						var flag = 1;
-//						var store = Ext.create('Eway.store.parameter.template.AddingParam');
 						var store = this.getParamGrid().getStore();
 						var storeAdded = this.getAddedParamGrid().getStore();
-//						store.setUrlParamsByObject(paramBelongsRadioGroup);
 						store.setBaseParam ('id',1);
 						store.setBaseParam ('appSystem',appSystem);
 						store.setBaseParam ('flag',flag);
 						store.loadPage(1);
-//						storeAdded.setUrlParamsByObject(appSystem);
-//						storeAdded.setBaseParam ('id',record.get("id"));
-//						storeAdded.setBaseParam ('flag',flag);
-//						storeAdded.setBaseParam ('appSystem',appSystem);
-//						storeAdded.loadPage(1);
 					},
 					onChange2 : function(_this, newValue, oldValue, eOpts){
 						var grid = this.getTemplateGrid();
@@ -132,17 +124,12 @@ Ext.define('Eway.controller.parameter.template.Template',
 
 						var record = sm.getLastSelected();
 						var appSystem=this.getUpdateWin().down("field_paramElement_ParamBelongsRadioGroup").getValue().appSystem;
-//						var store = Ext.create('Eway.store.parameter.template.AddingParam');
 						var store = this.getParamGrid().getStore();
 						var storeAdded = this.getAddedParamGrid().getStore();
 						store.setBaseParam('appSystem',appSystem);
 						store.setBaseParam ('id',record.get("id"));
 						store.setBaseParam ('flag',flag);
 						store.loadPage(1);
-//						storeAdded.setBaseParam('appSystem',appSystem);
-//						storeAdded.setBaseParam ('id',record.get("id"));
-//						storeAdded.setBaseParam ('flag',1);
-//						storeAdded.loadPage(1);
 					},
 
 					onAdd : function(){
@@ -187,7 +174,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 
 							}
 
-						}
+						};
 
 						addedParamGrid.getStore().load(
 								{
@@ -199,7 +186,8 @@ Ext.define('Eway.controller.parameter.template.Template',
 									callback : function(records, operation,success) {
 
 										if (success == false) {
-											win.close();
+											Eway.alert(operation.error);
+											return;
 										}
 										else{
 											paramGrid.getStore().load(
@@ -208,21 +196,12 @@ Ext.define('Eway.controller.parameter.template.Template',
 															id : templateId,
 															appSystem : 1,
 															flag: flag
-														},
-														callback : function(records,operation, success) {
-															if (success == false) {
-																Eway.alert(EwayLocale.tip.paramTemplate.failedElement);
-																win.close();
-															}
 														}
 													});
+											win.show();
 										}
-										
 									}
 								});
-						
-
-						win.show();
 					},
 
 					onAddUpdateConfirm: function(win,action,templateId) {
@@ -409,7 +388,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 
 							linkingDeviceGrid.down('pagingtoolbar').on('beforechange',Ext.bind(this.onLinkDeviceFresh, this, [ 1,linkingDeviceGrid,linkingFilterForm, record ]), this);
 
-							templateDeviceWin.show();
+							
 							linkingDeviceGrid.getStore().load({
 								params : {
 									flag : 1,
@@ -422,8 +401,27 @@ Ext.define('Eway.controller.parameter.template.Template',
 									flag : 0,
 									guid : record.data.id,
 									organizationId : record.data.orgId
+								},
+								callback : function(records, operation,success) {
+
+									if (success == false) {
+										Eway.alert(operation.error);
+										return;
+									}
+									else{
+										linkedDeviceGrid.getStore().load(
+												{
+													params : {
+														flag : 0,
+														guid : record.data.id,
+														organizationId : record.data.orgId
+													}
+												});
+										templateDeviceWin.show();
+									}
 								}
 							});
+							
 						} else {
 								Eway.alert(EwayLocale.tip.paramTemplate.one);
 
