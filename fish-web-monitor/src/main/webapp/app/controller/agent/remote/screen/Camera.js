@@ -106,13 +106,13 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 			callback : function(r) {// 回调函数
 				winEl.unmask();
 				if (r && r.length > 0) { // 判断是否有数据
-					for ( var int = 0; int < r.length; int++) {
-						var type = r[int].data.monitorType;
-						var status = r[int].data.status;
-						var groupField = r[int].data.groupField;
+					for ( var index = 0; index < r.length; index++) {
+						var type = r[index].data.monitorType;
+						var status = r[index].data.status;
+						var groupField = r[index].data.groupField;
 						if (status == 1 && groupField == 'current') {
 							this.setDisabled(type, 'start');
-							this.code = r[int].data.code;
+							this.code = r[index].data.code;
 							break;
 						}
 					}
