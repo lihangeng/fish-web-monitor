@@ -31,8 +31,8 @@ import com.yihuacomputer.fish.api.parameter.IParamPublishSearchService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.parameter.ParamDownloadResultForm;
-import com.yihuacomputer.fish.api.person.IPerson;
-import com.yihuacomputer.fish.api.person.IPersonService;
+import com.yihuacomputer.fish.api.person.IUser;
+import com.yihuacomputer.fish.person.service.base.DomainUserService;
 import com.yihuacomputer.fish.web.parameter.form.ParamDownloadMonitorForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamPublishAppResultForm;
 
@@ -43,10 +43,7 @@ public class ParamDownloadMonitorController {
 	
 	@Autowired 
 	private IParamPublishSearchService paramPublishSearchService;
-	
-	@Autowired
-	private IPersonService personService;
-	
+
 	@Autowired
 	private IParamPublishResultService paramPublishResultService;
 	
@@ -56,6 +53,9 @@ public class ParamDownloadMonitorController {
 	
 	@Autowired
 	private MessageSource messageSourceEnum;
+	
+	@Autowired
+	private DomainUserService userService;
 	/**
 	 * 查询参数下发Job信息
 	 * @param start
@@ -89,12 +89,17 @@ public class ParamDownloadMonitorController {
 					continue;
 				} else if (name.equals("sort")) {
 					continue;
-				} else if (name.equals("id")) {
-					String value = request.getParameter(name);
-					filter.eq(name, Long.valueOf(value.trim()));
-				} else {
-					filter.eq(name, request.getParameter(name));
-				}
+				} else if(name.equals("startTime")){
+					String value=request.getParameter(name);
+					filter.ge("date", value+" 00:00:00");
+				} else if(name.equals("finishTime")){
+					String value=request.getParameter(name);
+					filter.le("date", value+" 23:59:59");
+				}/* else if(name.equals("publisher")){
+					String value=request.getParameter(name);
+					long publish=userService.get(value).getId();
+					filter.eq("publisher", publish);
+				}*/
 			}
 		}
 
@@ -109,9 +114,9 @@ public class ParamDownloadMonitorController {
 		List<ParamDownloadMonitorForm> result=new ArrayList<ParamDownloadMonitorForm>();
 		for(IParamPublish paramPublish :list){
 			ParamDownloadMonitorForm pdmf=new ParamDownloadMonitorForm(paramPublish);
-			IPerson person = personService.get(String.valueOf(paramPublish.getPublisher()));
-			if(null!=person){
-				pdmf.setPublisherName(person.getName());
+			IUser user = userService.getByPerson(String.valueOf(paramPublish.getPublisher()));
+			if(null!=user){
+				pdmf.setPublisherName(user.getCode());
 			}
 			IParamTemplate template = paramtemplateService.get(paramPublish.getTemplateId());
 			if(null!=template){
@@ -160,7 +165,9 @@ public class ParamDownloadMonitorController {
 				}else if (name.equals("terminalId")) {
 					String value = request.getParameter(name).trim();
 					filter.like("device.terminalId", value);
-				}
+				} /*else if(name.equals("downloadStartTime")){
+					filter.eq("downloadStartTime", request.getParameter(name));
+				}*/
 			}
 		}
 
