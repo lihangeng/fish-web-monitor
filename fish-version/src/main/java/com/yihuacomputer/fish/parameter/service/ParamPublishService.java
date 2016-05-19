@@ -102,6 +102,7 @@ public class ParamPublishService implements IParamPublishService {
 
 	/**
 	 * 根据模板生成参数文件并返回版本号
+	 * 
 	 * @param templateId
 	 * @return 返回零代表生成文件失败
 	 */
@@ -146,10 +147,10 @@ public class ParamPublishService implements IParamPublishService {
 		if (!generateParamFile(map, appVersionMap)) {
 			return 0;
 		}
-		String sourceFile = VersionCfg.getAtmParamDir()  + FishCfg.fileSep + appVersionMap.get(MAX_VERSION_TIMESTAMP) + FishCfg.fileSep;
-		String targetFile = sourceFile+"param.zip";
-		//压缩包存在则不再进行压缩处理
-		if(!new File(targetFile).exists()){
+		String sourceFile = VersionCfg.getAtmParamDir() + FishCfg.fileSep + appVersionMap.get(MAX_VERSION_TIMESTAMP) + FishCfg.fileSep;
+		String targetFile = sourceFile + "param.zip";
+		// 压缩包存在则不再进行压缩处理
+		if (!new File(targetFile).exists()) {
 			ZipUtils.zip(sourceFile, sourceFile + "param.zip", "utf-8");
 		}
 		return appVersionMap.get(MAX_VERSION_TIMESTAMP);
@@ -157,6 +158,7 @@ public class ParamPublishService implements IParamPublishService {
 
 	/**
 	 * 根据设备号生成参数文件并返回版本号
+	 * 
 	 * @param deviceId
 	 * @return 返回零代表生成文件失败
 	 */
@@ -168,22 +170,24 @@ public class ParamPublishService implements IParamPublishService {
 		filter.eq("device.id", deviceId);
 		// 设备参数表中数据
 		List<IParamDeviceDetail> paramDeviceDetailList = paramDeviceDetailService.list(filter);
-		Map<String, Map<String, Map<String, String>>> paramDeviceDetailMap = new HashMap<String, Map<String, Map<String, String>>>();
+		Map<String, Map<String, List<Map<String, String>>>> paramDeviceDetailMap = new HashMap<String, Map<String, List<Map<String, String>>>>();
 		for (IParamDeviceDetail paramDeviceDetail : paramDeviceDetailList) {
 			String value = paramDeviceDetail.getParamValue();
 			String appName = paramDeviceDetail.getElement().getParamBelongs().getName();
 			String typeName = paramDeviceDetail.getElement().getParamClassify().getName();
 			String paramName = paramDeviceDetail.getElement().getParamName();
-			Map<String, Map<String, String>> appMap = paramDeviceDetailMap.get(appName);
+			Map<String, List<Map<String, String>>> appMap = paramDeviceDetailMap.get(appName);
 			if (null == appMap) {
-				appMap = new HashMap<String, Map<String, String>>();
+				appMap = new HashMap<String, List<Map<String, String>>>();
 			}
-			Map<String, String> typeMap = appMap.get(appName);
-			if (null == typeMap) {
-				typeMap = new HashMap<String, String>();
+			List<Map<String, String>> typeMapList = appMap.get(typeName);
+			if (null == typeMapList) {
+				typeMapList = new ArrayList<Map<String, String>>();
 			}
+			Map<String, String> typeMap = new HashMap<String, String>();
 			typeMap.put(paramName, value);
-			appMap.put(typeName, typeMap);
+			typeMapList.add(typeMap);
+			appMap.put(typeName, typeMapList);
 			paramDeviceDetailMap.put(appName, appMap);
 		}
 		Map<String, Map<String, List<IParamTemplateDetail>>> descriptionMap = new HashMap<String, Map<String, List<IParamTemplateDetail>>>();
@@ -205,11 +209,16 @@ public class ParamPublishService implements IParamPublishService {
 				}
 				IParamTemplateDetail paramDetail = new ParamTemplateDetail();
 				paramDetail.setParamElement(paramElement);
-				String paramValue = null;
-				if (null == paramDeviceDetailMap.get(appName) || null == paramDeviceDetailMap.get(appName).get(paramTypeName) || null == paramDeviceDetailMap.get(appName).get(paramTypeName).get(paramElement.getParamName())) {
-					paramValue = paramElement.getParamValue();
-				} else {
-					paramValue = paramDeviceDetailMap.get(appName).get(paramTypeName).get(paramElement.getParamName());
+				String paramValue = paramElement.getParamValue();
+
+				if (null == paramDeviceDetailMap.get(appName) || null == paramDeviceDetailMap.get(appName).get(paramTypeName)) {
+					List<Map<String, String>> listTemp = paramDeviceDetailMap.get(appName).get(paramTypeName);
+					for (Map<String, String> mapTemp : listTemp) {
+						String value = mapTemp.get(paramElement.getParamName());
+						if (null != value) {
+							paramValue = value;
+						}
+					}
 				}
 				paramDetail.setParamValue(paramValue);
 				detailList.add(paramDetail);
@@ -246,8 +255,17 @@ public class ParamPublishService implements IParamPublishService {
 				if (detailList == null || detailList.size() == 0) {
 					detailList = new ArrayList<IParamTemplateDetail>();
 				}
-				if (null != paramDeviceDetailMap.get(appName) && null != paramDeviceDetailMap.get(appName).get(paramTypeName) && null != paramDeviceDetailMap.get(appName).get(paramTypeName).get(tempDetail.getParamElement().getParamName())) {
-					tempDetail.setParamValue(paramDeviceDetailMap.get(appName).get(paramTypeName).get(tempDetail.getParamElement().getParamName()));
+				if (null != paramDeviceDetailMap.get(appName) && null != paramDeviceDetailMap.get(appName).get(paramTypeName)) {
+
+					List<Map<String, String>> listTemp = paramDeviceDetailMap.get(appName).get(paramTypeName);
+					if (null != listTemp) {
+						for (Map<String, String> mapTemp : listTemp) {
+							String value = mapTemp.get(tempDetail.getParamElement().getParamName());
+							if (null != value) {
+								tempDetail.setParamValue(value);
+							}
+						}
+					}
 				}
 				detailList.add(tempDetail);
 				appMap.put(paramTypeName, detailList);
@@ -258,20 +276,24 @@ public class ParamPublishService implements IParamPublishService {
 		if (!generateParamFile(descriptionMap, appVersionMap)) {
 			return 0;
 		}
-		String sourceFile = VersionCfg.getAtmParamDir()  + FishCfg.fileSep + appVersionMap.get(MAX_VERSION_TIMESTAMP) + FishCfg.fileSep;
-		ZipUtils.zip(sourceFile, sourceFile + "param.zip", "utf-8");
+		String sourceFile = VersionCfg.getAtmParamDir() + FishCfg.fileSep + appVersionMap.get(MAX_VERSION_TIMESTAMP) + FishCfg.fileSep;
+		File file = new File(sourceFile + "param.zip");
+		if (!file.exists()) {
+			ZipUtils.zip(sourceFile, sourceFile + "param.zip", "utf-8");
+		}
 		return appVersionMap.get(MAX_VERSION_TIMESTAMP);
 	}
 
 	/**
 	 * 模板参数下发
+	 * 
 	 * @param templateId
 	 * @return
 	 */
 	private long noticeDeviceDownloadParamFileByTemplate(long templateId, long versionNo, long personId) {
-		try{
+		try {
 			List<IDevice> templateDeviceRelationList = templateDeviceRelationService.listDeviceByTemplate(templateId);
-			String file = VersionCfg.getAtmParamDir()  + FishCfg.fileSep + versionNo + FishCfg.fileSep;
+			String file = VersionCfg.getAtmParamDir() + FishCfg.fileSep + versionNo + FishCfg.fileSep;
 			ParamInfo paramInfo = new ParamInfo();
 			paramInfo.setVersionNo(versionNo);
 			paramInfo.setServerPath(file);
@@ -284,21 +306,23 @@ public class ParamPublishService implements IParamPublishService {
 			//
 			paramPublish.setRet("NEW");
 			paramPublish = save(paramPublish);
-			Thread thread = new Thread(new NoticeThread(templateDeviceRelationList, paramInfo, paramPulishResultService, publishJobManager,paramPublish));
+			Thread thread = new Thread(new NoticeThread(templateDeviceRelationList, paramInfo, paramPulishResultService, publishJobManager, paramPublish));
 			thread.start();
 			return paramPublish.getId();
-		}catch(Exception e){
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			return Long.MIN_VALUE;
 		}
 	}
+
 	/**
 	 * 设备参数下发
+	 * 
 	 * @param deviceId
 	 * @return
 	 */
 	private long noticeDeviceDownloadParamFileByDevice(List<Long> deviceIdList, List<Long> versionNoList, long personId) {
-		try{
+		try {
 			IFilter filter = new Filter();
 			filter.in("id", deviceIdList);
 			List<IDevice> deviceList = deviceService.list(filter);
@@ -317,10 +341,10 @@ public class ParamPublishService implements IParamPublishService {
 			paramPublish.setPublisher(personId);
 			paramPublish.setRet("NEW");
 			paramPublish = save(paramPublish);
-			Thread thread = new Thread(new NoticeThread(deviceList, list, paramPulishResultService, publishJobManager,paramPublish));
+			Thread thread = new Thread(new NoticeThread(deviceList, list, paramPulishResultService, publishJobManager, paramPublish));
 			thread.start();
-			return  paramPublish.getId();
-		}catch(Exception e){
+			return paramPublish.getId();
+		} catch (Exception e) {
 			logger.error(e.getMessage());
 			return Long.MIN_VALUE;
 		}
@@ -444,6 +468,9 @@ public class ParamPublishService implements IParamPublishService {
 	private boolean wirteFile(Map<String, Map<String, String>> mapInfo, FileFormat fileFormat, long maxVersion, String fileName) {
 		String fileStr = VersionCfg.getAtmParamDir() + FishCfg.fileSep + maxVersion + FishCfg.fileSep + fileName;
 		File file = new File(fileStr);
+		if (file.exists()) {
+			return true;
+		}
 		FileWriter fw = null;
 		try {
 			if (!file.exists()) {
@@ -564,7 +591,7 @@ class NoticeThread implements Runnable {
 	private IParamPublishResultService paramPublishResultService;
 	private PublishJobManager publishJobManager;
 	private boolean isTemplate = true;
-	
+
 	private IParamPublish paramPublish;
 
 	/**
@@ -604,7 +631,7 @@ class NoticeThread implements Runnable {
 
 	@Override
 	public synchronized void run() {
-		
+
 		try {
 			List<IParamPublishResult> paramPublishResultList = new ArrayList<IParamPublishResult>();
 			// 模板发布
