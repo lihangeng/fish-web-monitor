@@ -16,7 +16,6 @@ import org.springframework.web.context.request.WebRequest;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.common.util.FishWebUtils;
 import com.yihuacomputer.fish.api.monitor.business.CommandResult;
 import com.yihuacomputer.fish.api.monitor.business.CommandType;
 import com.yihuacomputer.fish.api.monitor.business.IRemoteCommHist;
@@ -24,6 +23,7 @@ import com.yihuacomputer.fish.api.monitor.business.IRemoteCommHistService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
 import com.yihuacomputer.fish.web.command.format.RemoteCommand;
+import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
 @RequestMapping("/agent/logic")

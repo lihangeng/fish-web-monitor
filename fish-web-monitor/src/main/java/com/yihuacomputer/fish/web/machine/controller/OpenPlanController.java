@@ -33,7 +33,6 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.common.util.FishWebUtils;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
@@ -47,6 +46,7 @@ import com.yihuacomputer.fish.machine.entity.OpenPlanDetail;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.machine.form.OpenPlanDetailForm;
 import com.yihuacomputer.fish.web.machine.form.OpenPlanForm;
+import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 /**
  * 开机方案的控制
