@@ -24,11 +24,7 @@ Ext.define('Eway.view.report.faultRateReport.BrandGrid', {
 				header : '故障率',
 				dataIndex : 'rate',
 				flex:1
-			}],
-			bbar : Ext.create('Ext.PagingToolbar', {
-				store : store,
-				displayInfo : true
-			})
+			}]
 		});
 
 		this.callParent(arguments);

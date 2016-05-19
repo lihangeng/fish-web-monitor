@@ -20,12 +20,23 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 				margin : 20,
 				items : [ {
 					xtype : 'monthfield',
-					fieldLabel : '<font color="red">*</font>月份',
-					format : 'Y-m',
-					labelAlign : 'right',
-					allowBlank : false,
+					fieldLabel : '月份',
+					labelWidth : 50,
 					editable : false,
 					value : new Date(),
+					labelAlign : 'left',
+					format : 'Y-m',
+					name:'dateMonth',
+					width : 220,
+					anchor: '100%',
+					height : 20,
+					listeners : {
+						blur : {
+				            fn: function(This, options){
+				            	return;
+				            }
+						}
+					}
 				}, {
 					height:30,
 					tbar : [ '->', {
