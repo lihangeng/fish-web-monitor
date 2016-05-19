@@ -17,8 +17,11 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.util.DateUtils;
+import com.yihuacomputer.common.util.FishWebUtils;
 import com.yihuacomputer.fish.api.fault.IFaultStatisticsService;
 import com.yihuacomputer.fish.api.monitor.business.IRetaincardService;
+import com.yihuacomputer.fish.api.permission.IPermission;
+import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.index.form.ChartForm;
 
 @Controller
@@ -86,5 +89,24 @@ public class IndexController {
 		result.addAttribute("data", forms);
 		return result;
 	}
+	
+	/**
+	 * 获取一级菜单信息
+	 * @param wReq
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping(value = "headMenu", method = RequestMethod.GET)
+	@ResponseBody
+	public ModelMap headMenu(WebRequest wReq, HttpServletRequest req) {
+		logger.info("get head Menus ...");
+		/*UserSession userSession = FishWebUtils.getUserSession(req);
+		List<IPermission> permissions = userRoleRelation.listUserPermission(userId);*/
+		ModelMap result = new ModelMap();
+		result.addAttribute(FishConstant.SUCCESS, true);
+		result.addAttribute("data", null);
+		return result;
+	}
+
 
 }

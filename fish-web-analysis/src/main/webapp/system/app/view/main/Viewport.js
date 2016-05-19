@@ -52,7 +52,7 @@ Ext.define('Eway.view.main.Viewport', {
 					//cls: 'delete-focus-bg',
                     iconCls: 'fa fa-home',
 					iconAlign:'top',
-                    href: '../index/index.html',
+                    href: Ext.cxtPath + '/index/index.jsp',
                     hrefTarget: '_self',
 					view:'index'
                 },
@@ -62,7 +62,7 @@ Ext.define('Eway.view.main.Viewport', {
                     cls:'active-menu1',
                     iconCls:'x-fa fa-envelope',
 					iconAlign:'top',
-                    href: '../system/index.html',
+                    href: Ext.cxtPath + '/system/index.jsp',
                     hrefTarget: '_self',
 					view:'system'
                 },
@@ -71,7 +71,7 @@ Ext.define('Eway.view.main.Viewport', {
 					//cls: 'delete-focus-bg',
                     iconCls:'x-fa fa-envelope',
 					iconAlign:'top',
-                    href: '/device/#dashboard',
+                    href: Ext.cxtPath + '/device/index.jsp',
                     hrefTarget: '_self',
 				   	view:'device'
                 },
@@ -80,7 +80,7 @@ Ext.define('Eway.view.main.Viewport', {
 					//cls: 'delete-focus-bg',
                     iconCls:'x-fa fa-envelope',
 					iconAlign:'top',
-                    href: '/monitor/#dashboard',
+                    href: Ext.cxtPath + '/monitor/index.jsp',
                     hrefTarget: '_self'
                 },
 				{
@@ -88,7 +88,7 @@ Ext.define('Eway.view.main.Viewport', {
 					//cls: 'delete-focus-bg',
                     iconCls:'x-fa fa-envelope',
 					iconAlign:'top',
-                    href: '/app/#dashboard',
+                    href: Ext.cxtPath + '/application/index.jsp',
                     hrefTarget: '_self'
                 },
 				{
@@ -96,7 +96,7 @@ Ext.define('Eway.view.main.Viewport', {
 					//cls: 'delete-focus-bg',
                     iconCls:'x-fa fa-envelope',
 					iconAlign:'top',
-                    href: '/fault/#dashboard',
+                    href: Ext.cxtPath + '/fault/index.jsp',
                     hrefTarget: '_self'
                 },
 				{
@@ -104,7 +104,7 @@ Ext.define('Eway.view.main.Viewport', {
 					//cls: 'delete-focus-bg',
                     iconCls:'x-fa fa-envelope',
 					iconAlign:'top',
-                    href: '/report/#dashboard',
+                    href:Ext.cxtPath +  '/report/index.jsp',
                     hrefTarget: '_self'
                 },
                 {

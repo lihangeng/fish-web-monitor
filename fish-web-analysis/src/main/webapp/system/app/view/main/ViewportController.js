@@ -132,6 +132,18 @@ Ext.define('Eway.view.main.ViewportController', {
     },
 
     onMainViewRender:function() {
+    	var url = window.location.href;
+    	Ext.Ajax.request({
+			method : 'GET',
+			url : Ext.cxtPath + 'api/index/headmemu',
+			success : function(resp){
+				console.log(resp);
+//				toolbar.add();
+			},
+			failure : function(resp){
+				console.log(resp);
+			}
+		});
         if (!window.location.hash) {
             this.redirectTo("bankOrg");
         }
@@ -147,5 +159,18 @@ Ext.define('Eway.view.main.ViewportController', {
 
     onEmailRouteChange: function () {
         this.setCurrentView('email');
-    }
+    }/*,
+    
+    onHeadMenuBeforeRender : function(toolbar){
+    	Ext.Ajax.request({
+			method : 'POST',
+			url : Ext.cxtPath + 'api/index/headmemu',
+			success : function(resp){
+//				toolbar.add();
+			},
+			failure : function(resp){
+				console.log(resp);
+			}
+		});
+    }*/
 });

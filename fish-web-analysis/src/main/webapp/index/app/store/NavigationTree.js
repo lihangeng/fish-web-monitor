@@ -14,7 +14,7 @@ Ext.define('Eway.store.NavigationTree', {
             }, 
             {
                 text:   '个人信息',
-                view:   'profile.UserProfile',
+                view:   'personal.PersonalSettings',
                 leaf:   true,
                 iconCls: 'x-fa fa-user',
                 routeId:'profile'
