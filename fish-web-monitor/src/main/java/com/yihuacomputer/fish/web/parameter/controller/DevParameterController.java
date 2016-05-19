@@ -294,54 +294,6 @@ public class DevParameterController {
 	/**
 	 * @PathVariable long id, 更改设备参数
 	 */
-<<<<<<< HEAD
-	@RequestMapping(value="/paramInfo/{id}",method=RequestMethod.PUT)
-	public @ResponseBody
-	ModelMap update(@PathVariable long id,@RequestBody DeviceParam paramForm,HttpServletRequest request){
-		logger.info("update device's parameter deviceId="+id);
-		ModelMap result=new ModelMap();
-		List<DeviceParam> paramList=paramForm.getDeviceParam();
-		if(paramList==null){
-			result.addAttribute(FishConstant.SUCCESS,false);
-			result.addAttribute(FishConstant.ERROR_MSG,messageSource.getMessage("parameter.updateNotExist", null, FishCfg.locale));
-		}else{
-				for(int i=0;i<paramList.size();i++){
-					long elementId=paramList.get(i).getId();
-					IParamDeviceDetail deviceDetail=paramDeviceDetailService.getById(elementId, id);
-					String dateStr=new SimpleDateFormat("yyyyMMddHHmmssSSS").format(new Date());
-					if(deviceDetail != null){
-						deviceDetail.setParamValue(paramList.get(i).getParamValue());
-						deviceDetail.setVersionTimeStamp(Long.valueOf(dateStr));
-						paramDeviceDetailService.update(deviceDetail);
-					}else{
-						IParamDeviceDetail pdd=paramDeviceDetailService.make();
-						pdd.setDevice(deviceService.get(id));
-						pdd.setElement(paramElementService.get(paramList.get(i).getId()));
-						pdd.setParamValue(paramList.get(i).getParamValue());
-						pdd.setVersionTimeStamp(Long.valueOf(dateStr));
-						paramDeviceDetailService.add(pdd);
-					}
-				}
-				List<Long> deviceIdList=new ArrayList<Long>();
-				IDevice device=deviceService.get(id);
-				if(device !=null){
-					deviceIdList.add(id);
-					UserSession userSession=(UserSession) request.getSession().getAttribute("SESSION_USER");
-					long jobId=paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
-					if(jobId!=Long.MIN_VALUE){
-						ParamDownloadMonitorForm pdmf=new ParamDownloadMonitorForm();
-						pdmf.setId(jobId);
-						result.addAttribute(FishConstant.SUCCESS, true);
-						result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadSuccess", null, FishCfg.locale));
-						result.addAttribute(FishConstant.DATA, pdmf);
-					}else{
-						result.addAttribute(FishConstant.SUCCESS, false);
-						result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadFailure", null, FishCfg.locale));
-					}
-				}else{
-					result.addAttribute(FishConstant.SUCCESS, false);
-					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("device.removed", null, FishCfg.locale));
-=======
 	@RequestMapping(value = "/paramInfo/{id}", method = RequestMethod.PUT)
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody DeviceParam paramForm, HttpServletRequest request) {
 		logger.info("update device's parameter deviceId=" + id);
@@ -366,23 +318,27 @@ public class DevParameterController {
 					pdd.setParamValue(paramList.get(i).getParamValue());
 					pdd.setVersionTimeStamp(Long.valueOf(dateStr));
 					paramDeviceDetailService.add(pdd);
->>>>>>> refs/remotes/origin/master
 				}
-				
 			}
 			List<Long> deviceIdList = new ArrayList<Long>();
-			deviceIdList.add(id);
-			UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
-			long jobId = paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
-			ParamDownloadMonitorForm pdmf = new ParamDownloadMonitorForm();
-			pdmf.setId(jobId);
-			if (jobId != Long.MIN_VALUE) {
-				result.addAttribute(FishConstant.SUCCESS, true);
-				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadSuccess", null, FishCfg.locale));
-				result.addAttribute(FishConstant.DATA, pdmf);
-			} else {
+			IDevice device=deviceService.get(id);
+			if(device !=null){
+				deviceIdList.add(id);
+				UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
+				long jobId = paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
+				ParamDownloadMonitorForm pdmf = new ParamDownloadMonitorForm();
+				pdmf.setId(jobId);
+				if (jobId != Long.MIN_VALUE) {
+					result.addAttribute(FishConstant.SUCCESS, true);
+					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadSuccess", null, FishCfg.locale));
+					result.addAttribute(FishConstant.DATA, pdmf);
+				} else {
+					result.addAttribute(FishConstant.SUCCESS, false);
+					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadFailure", null, FishCfg.locale));
+				}
+			}else{
 				result.addAttribute(FishConstant.SUCCESS, false);
-				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadFailure", null, FishCfg.locale));
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("device.removed", null, FishCfg.locale));
 			}
 		}
 		return result;
@@ -400,31 +356,21 @@ public class DevParameterController {
 		for (int i = 1; i < str.length; i++) {
 			deviceIdList.add(Long.valueOf(str[i]));
 		}
-<<<<<<< HEAD
 		IFilter filter=new Filter();
 		filter.in("id", deviceIdList);
 		List<IDevice> device=deviceService.list(filter);
 		if(device.size()!=0){
-			UserSession userSession=(UserSession) request.getSession().getAttribute("SESSION_USER");
-			long jobId=paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
-			if(jobId!=Long.MIN_VALUE){
+			UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
+			long jobId = paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
+			if (jobId != Long.MIN_VALUE) {
 				result.addAttribute(FishConstant.SUCCESS, true);
 				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadSuccess", null, FishCfg.locale));
 				result.addAttribute(FishConstant.DATA, jobId);
-			}else{
+			} else {
 				result.addAttribute(FishConstant.SUCCESS, false);
 				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadFailure", null, FishCfg.locale));
 			}
 		}else{
-=======
-		UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
-		long jobId = paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
-		if (jobId != Long.MIN_VALUE) {
-			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadSuccess", null, FishCfg.locale));
-			result.addAttribute(FishConstant.DATA, jobId);
-		} else {
->>>>>>> refs/remotes/origin/master
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("device.removed", null, FishCfg.locale));
 		}
