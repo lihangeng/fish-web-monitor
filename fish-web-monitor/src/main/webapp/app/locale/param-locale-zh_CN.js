@@ -51,7 +51,8 @@ Ext.apply(EwayLocale,{
     		downloadFailure:'下发失败',//EwayLocale.param.deviceParam.downloadFailure
     		downloadSuccess:'下发成功 ',//EwayLocale.param.deviceParam.downloadSuccess
     		notMatch:'数值类型不匹配',//EwayLocale.param.deviceParam.notMatch
-    		tooLong:'参数值长度超出范围，请重新输入！'//EwayLocale.param.deviceParam.tooLong
+    		tooLong:'参数值长度超出范围，请重新输入！',//EwayLocale.param.deviceParam.tooLong
+    		notExist:'操作失败：设备已删除！'//EwayLocale.param.deviceParam.notExist
     	},
         template:{
         	addTitle:'增加参数模板',//EwayLocale.param.template.addTitle

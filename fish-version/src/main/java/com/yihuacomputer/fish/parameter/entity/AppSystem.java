@@ -26,8 +26,8 @@ public class AppSystem implements IAppSystem,Serializable {
 	 */
 	private static final long serialVersionUID = 6671561112698741806L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO,generator="SEQ_PAR_APPSYSTEM")
-	@SequenceGenerator(name="SEQ_PAR_APPSYSTEM",sequenceName="SEQ_PAR_APPSYSTEM")
+	@GeneratedValue(strategy=GenerationType.AUTO,generator="SEQ_PARAM_APP_SYSTEM")
+	@SequenceGenerator(name="SEQ_PARAM_APP_SYSTEM",sequenceName="SEQ_PARAM_APP_SYSTEM")
 	@Column(name="ID",length=20)
 	private long id;
 	/**

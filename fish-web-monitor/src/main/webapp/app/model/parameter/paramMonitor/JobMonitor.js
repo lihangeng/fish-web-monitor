@@ -3,7 +3,7 @@ Ext.define('Eway.model.parameter.paramMonitor.JobMonitor', {
 	fields : ['id','date', 'publisher','templateName'],
 	proxy : {
 		type : 'rest',
-		url : 'api/parameter/downloadMonior',
+		url : 'api/parameter/downloadMonitor',
 		reader : {
 			type : 'json',
 			rootProperty : 'data'

@@ -37,7 +37,7 @@ import com.yihuacomputer.fish.web.parameter.form.ParamDownloadMonitorForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamPublishAppResultForm;
 
 @Controller
-@RequestMapping("/parameter/downloadMonior")
+@RequestMapping("/parameter/downloadMonitor")
 public class ParamDownloadMonitorController {
 	private Logger logger=LoggerFactory.getLogger(ParamDownloadMonitorController.class);
 	

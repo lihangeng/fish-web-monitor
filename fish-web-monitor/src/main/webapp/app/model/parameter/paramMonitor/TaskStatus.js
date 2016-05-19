@@ -3,7 +3,7 @@ Ext.define('Eway.model.parameter.paramMonitor.TaskStatus', {
 	fields : ['appSystem','reason','status'],
 	proxy : {
 		type : 'rest',
-		url : 'api/parameter/downloadMonior/task/status',
+		url : 'api/parameter/downloadMonitor/task/status',
 		reader : {
 			type : 'json',
 			rootProperty : 'data'

@@ -325,19 +325,26 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 					}
 				}
 				List<Long> deviceIdList=new ArrayList<Long>();
-				deviceIdList.add(id);
-				UserSession userSession=(UserSession) request.getSession().getAttribute("SESSION_USER");
-				long jobId=paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
-				ParamDownloadMonitorForm pdmf=new ParamDownloadMonitorForm();
-				pdmf.setId(jobId);
-				if(jobId!=Long.MIN_VALUE){
-					result.addAttribute(FishConstant.SUCCESS, true);
-					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadSuccess", null, FishCfg.locale));
-					result.addAttribute(FishConstant.DATA, pdmf);
+				IDevice device=deviceService.get(id);
+				if(device !=null){
+					deviceIdList.add(id);
+					UserSession userSession=(UserSession) request.getSession().getAttribute("SESSION_USER");
+					long jobId=paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
+					if(jobId!=Long.MIN_VALUE){
+						ParamDownloadMonitorForm pdmf=new ParamDownloadMonitorForm();
+						pdmf.setId(jobId);
+						result.addAttribute(FishConstant.SUCCESS, true);
+						result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadSuccess", null, FishCfg.locale));
+						result.addAttribute(FishConstant.DATA, pdmf);
+					}else{
+						result.addAttribute(FishConstant.SUCCESS, false);
+						result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadFailure", null, FishCfg.locale));
+					}
 				}else{
 					result.addAttribute(FishConstant.SUCCESS, false);
-					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadFailure", null, FishCfg.locale));
+					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("device.removed", null, FishCfg.locale));
 				}
+				
 			}
 		return result;
 	}
@@ -355,15 +362,23 @@ private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 		for(int i=1;i<str.length;i++){
 			deviceIdList.add(Long.valueOf(str[i]));
 		}
-		UserSession userSession=(UserSession) request.getSession().getAttribute("SESSION_USER");
-		long jobId=paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
-		if(jobId!=Long.MIN_VALUE){
-			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadSuccess", null, FishCfg.locale));
-			result.addAttribute(FishConstant.DATA, jobId);
+		IFilter filter=new Filter();
+		filter.in("id", deviceIdList);
+		List<IDevice> device=deviceService.list(filter);
+		if(device.size()!=0){
+			UserSession userSession=(UserSession) request.getSession().getAttribute("SESSION_USER");
+			long jobId=paramPushService.paramPublishByDeviceIds(deviceIdList, Long.valueOf(userSession.getPersonId()));
+			if(jobId!=Long.MIN_VALUE){
+				result.addAttribute(FishConstant.SUCCESS, true);
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadSuccess", null, FishCfg.locale));
+				result.addAttribute(FishConstant.DATA, jobId);
+			}else{
+				result.addAttribute(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadFailure", null, FishCfg.locale));
+			}
 		}else{
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.downloadFailure", null, FishCfg.locale));
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("device.removed", null, FishCfg.locale));
 		}
 		return result;
 		

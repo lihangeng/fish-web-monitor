@@ -50,7 +50,8 @@ Ext.apply(EwayLocale,{
     		downloadFailure:'Download Failure',//EwayLocale.param.deviceParam.downloadFailure
     		downloadSuccess:'Download Success',//EwayLocale.param.deviceParam.downloadSuccess
     		notMatch:'is not match the type of parameter',//EwayLocale.param.deviceParam.notMatch
-    		tooLong:'The length of parameter value is too long,Please enter again!'//EwayLocale.param.deviceParam.tooLong
+    		tooLong:'The length of parameter value is too long,Please enter again!',//EwayLocale.param.deviceParam.tooLong
+    		notExist:'Operation is failure:Device is not exist!'//EwayLocale.param.deviceParam.notExist
     	},
     	template:{
         	addTitle:'Add Parameter Template',//EwayLocale.param.template.addTitle
