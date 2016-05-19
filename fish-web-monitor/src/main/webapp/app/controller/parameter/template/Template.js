@@ -253,6 +253,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 										 },
 										 failure: function(record,operation){
 											Eway.alert(EwayLocale.tip.paramTemplate.addFailure+operation.error);
+											addWin.down('button[action="add"]').setDisabled(false);
 										 },
 										 scope : this
 									});
