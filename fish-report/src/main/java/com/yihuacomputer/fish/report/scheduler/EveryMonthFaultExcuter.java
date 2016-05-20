@@ -16,7 +16,7 @@ import com.yihuacomputer.fish.api.report.engine.IReportDataETL;
  * @author YiHua
  */
 @Service
-public class EveryMonthFaultJob implements IReportDataETL {
+public class EveryMonthFaultExcuter implements IReportDataETL {
 
 	private final String etlName = "SRCB_OPEN_RATE";
 
@@ -33,7 +33,6 @@ public class EveryMonthFaultJob implements IReportDataETL {
 	 */
 	public void reportETL(String date) {
 		String yestoday = DateUtils.getTodayDates();
-		System.out.println("EveryMonthFaultJob");
 		everyMonthFaultCountService.extractMonthFault(yestoday);
 	}
 

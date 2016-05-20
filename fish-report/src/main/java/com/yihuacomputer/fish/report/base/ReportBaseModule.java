@@ -24,7 +24,7 @@ import com.yihuacomputer.fish.report.base.schedule.AtmcDayTransCount;
 import com.yihuacomputer.fish.report.engine.ExportDataETLService;
 import com.yihuacomputer.fish.report.scheduler.DayOpenRateExcuter;
 import com.yihuacomputer.fish.report.scheduler.EveryDayTransExcuter;
-import com.yihuacomputer.fish.report.scheduler.EveryMonthFaultJob;
+import com.yihuacomputer.fish.report.scheduler.EveryMonthFaultExcuter;
 import com.yihuacomputer.fish.report.scheduler.EveryMonthTransExcuter;
 import com.yihuacomputer.fish.report.service.db.DeviceOpenRateService;
 import com.yihuacomputer.fish.report.service.db.EveryMonthFaultCountService;
@@ -112,8 +112,8 @@ public class ReportBaseModule {
 	}
 
 	@Bean
-	public  EveryMonthFaultJob  everyMonthFaultJob() {
-		return new EveryMonthFaultJob();
+	public  EveryMonthFaultExcuter  everyMonthFaultJob() {
+		return new EveryMonthFaultExcuter();
 	}
 
 	@Bean
