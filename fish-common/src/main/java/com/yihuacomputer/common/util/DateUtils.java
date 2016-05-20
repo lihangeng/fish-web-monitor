@@ -169,7 +169,7 @@ public class DateUtils {
 
 	public static String getTodayDates() {
 		Calendar date = Calendar.getInstance();
-		date.add(Calendar.DAY_OF_MONTH, -1);
+		date.add(Calendar.MONTH, -1);
 		return new SimpleDateFormat(STANDARD_MONTH_FULL1).format(date.getTime());
 
 	}
