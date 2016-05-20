@@ -29,7 +29,12 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
                 height: 400,
                 style: 'background: #fff',
                 padding: '0 0 0 0',
-                insetPadding: 15,
+                insetPadding: {
+                    top: 45,
+                    left: 15,
+                    right: 15,
+                    bottom: 15
+                },
                 animation: Ext.isIE8 ? false : {
                     easing: 'backOut',
                     duration: 5
@@ -38,12 +43,13 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
                 store: store,
                 sprites: [{
                     type  : 'text',
+                    text:'不同模块交易故障率',
                     font  : '14px Helvetica',
                     fontStyle:'oblique',
                     width : 100,
                     height: 30,
-                    x : 40, //the sprite x position
-                    y : 12  //the sprite y position
+                    x : 20, //the sprite x position
+                    y : 25  //the sprite y position
                 }],
                 axes: [{
                 	type: 'numeric',

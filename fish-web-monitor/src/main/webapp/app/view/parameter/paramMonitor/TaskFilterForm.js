@@ -12,7 +12,7 @@ Ext.define('Eway.view.parameter.paramMonitor.TaskFilterForm',{
 				items:[{
 					xtype : 'textfield',
 					name : 'terminalId',
-					fieldLabel :'设备终端号',
+					fieldLabel :EwayLocale.machine.atmGroup.terminalId,
 				}]
 			}/*,{
 				columnWidth : .5,

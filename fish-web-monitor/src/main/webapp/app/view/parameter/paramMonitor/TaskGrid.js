@@ -24,7 +24,7 @@ Ext.define('Eway.view.parameter.paramMonitor.TaskGrid', {
 				dataIndex : 'id',
 				width:150
 			},{
-				header : EwayLocale.param.paramDownloadMonitor.devCode,
+				header : EwayLocale.machine.atmGroup.terminalId,
 				dataIndex : 'terminalId',
 				width:150
 			},{
