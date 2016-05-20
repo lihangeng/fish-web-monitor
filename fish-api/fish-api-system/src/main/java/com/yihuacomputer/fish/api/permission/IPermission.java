@@ -48,6 +48,10 @@ public interface IPermission {
 	 * @param permission
 	 */
 	public void setParent(IPermission permission);
+	
+	public void setParentId(String parentId);
+	
+	public String getParentId();
 	/**
 	 * 根据code返回权限
 	 * @param code
@@ -72,5 +76,42 @@ public interface IPermission {
 	public boolean isButton();
 
 	public void setButton(boolean isButton);
+	
+	/**
+	 * 获得视图名称
+	 * @return
+	 * @since 2.1.0.6
+	 */
+	public String getViewName();
+	public void   setViewName(String viewName);
+	
+	/**
+	 * 是否是叶子节点
+	 * @return
+	 */
+    public boolean isLeaf();
+
+	public void setLeaf(boolean isLeaf);
+	
+	/**
+	 * 设置图标样式
+	 * @return
+	 */
+	public String getIconCls();
+	public void   setIconCls(String iconCls);
+	
+	/**
+	 * 设置路由名称
+	 * @return
+	 */
+	public String getRouteId();
+	public void   setRouteId(String routeId);
+	
+	/**
+	 * 选中样式
+	 * @return
+	 */
+	public String getSelectCls();
+	public void setSelectCls(String selectCls);
 
 }

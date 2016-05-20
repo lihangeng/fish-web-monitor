@@ -31,29 +31,50 @@ public class Permission implements IPermission ,Serializable{
 	@Column(name = "PERMISSION_ID")
 	private String id;
 
-	@Column(name = "CODE", unique = true, nullable = false, length = 40)
+	@Column(name = "CODE", unique = true, nullable = false, length = 64)
 	private String code;
 
-	@Column(name = "DESCRIPTION", nullable = true, length = 40)
+	@Column(name = "DESCRIPTION", nullable = true, length = 64)
 	private String description;
 	
-	@Column(name = "PER_ACTION", length = 40)
+	@Column(name = "PER_ACTION", length = 64)
 	private String action;
 	
 	@org.hibernate.annotations.Type(type = "com.yihuacomputer.domain.util.BooleanUserType")
 	@Column(name = "IS_BUTTON", columnDefinition="CHAR",length=1)	
 	private boolean isButton;
 
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = com.yihuacomputer.fish.system.entity.Permission.class)
-	@JoinColumn(name = "PARENT_ID")
+//	@ManyToOne(fetch = FetchType.EAGER, targetEntity = com.yihuacomputer.fish.system.entity.Permission.class)
+//	@JoinColumn(name = "PARENT_ID")
+	@Transient
 	private IPermission parent;
+	
+	@Column(name = "PARENT_ID",length = 20)
+	private String parentId;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parent", targetEntity = com.yihuacomputer.fish.system.entity.Permission.class)
+//	@OneToMany(fetch = FetchType.LAZY, mappedBy = "parent", targetEntity = com.yihuacomputer.fish.system.entity.Permission.class)
+	@Transient
 	private List<IPermission> children = new ArrayList<IPermission>();
 
 	@Transient
 	private int childrenSize = 0;
-
+	
+	@org.hibernate.annotations.Type(type = "com.yihuacomputer.domain.util.BooleanUserType")
+	@Column(name = "IS_LEAF", columnDefinition="CHAR",length=1)	
+	private boolean isLeaf;
+	
+	@Column(name = "ICON_CLS", length = 64)
+	private String iconCls;
+	
+	@Column(name = "VIEW_NAME", length = 64)
+	private String viewName;
+	
+	@Column(name = "ROUTE_ID", length = 64)
+	private String routeId;
+	
+	@Column(name = "SELECT_CLS", length = 64)
+	private String selectCls;
+	
 	@Transient
 	private IPermissionService service;
 
@@ -151,6 +172,7 @@ public class Permission implements IPermission ,Serializable{
 	@Override
 	public void setParent(IPermission permission) {
 		this.parent = permission;
+		this.parentId = permission.getId();
 	}
 
 	public void copyProperties(IPermission permission) {
@@ -177,4 +199,64 @@ public class Permission implements IPermission ,Serializable{
 	public void setAction(String action) {
 		this.action = action;
 	}
+
+
+	public boolean isLeaf() {
+		return isLeaf;
+	}
+
+
+	public void setLeaf(boolean isLeaf) {
+		this.isLeaf = isLeaf;
+	}
+
+
+	public String getIconCls() {
+		return iconCls;
+	}
+
+
+	public void setIconCls(String iconCls) {
+		this.iconCls = iconCls;
+	}
+
+
+	public String getViewName() {
+		return viewName;
+	}
+
+
+	public void setViewName(String viewName) {
+		this.viewName = viewName;
+	}
+
+
+	public String getRouteId() {
+		return routeId;
+	}
+
+
+	public void setRouteId(String routeId) {
+		this.routeId = routeId;
+	}
+
+
+	public String getSelectCls() {
+		return selectCls;
+	}
+
+
+	public void setSelectCls(String selectCls) {
+		this.selectCls = selectCls;
+	}
+
+
+	public String getParentId() {
+		return parentId;
+	}
+
+
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}	
 }

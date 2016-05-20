@@ -142,7 +142,7 @@ public class PermissionService implements IPermissionService {
 	@Override
     @Transactional(readOnly=true)
 	public List<IPermission> listChildByParentId(String parentId) {
-		return dao.findByHQL("from Permission where parent.id = ?", parentId);
+		return dao.findByHQL("from Permission where parentId = ?", parentId);
 	}
 
 	@Override

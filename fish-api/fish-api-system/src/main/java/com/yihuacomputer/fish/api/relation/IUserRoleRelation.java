@@ -47,6 +47,24 @@ public interface IUserRoleRelation {
 	 * @return
 	 */
 	public List<IPermission> listUserPermission(long userId);
+	
+	/**
+	 * 根据用户ID和父类菜单权限ID获取直接的子菜单权限
+	 * @param userId
+	 * @param parentPermissionId 父类菜单权限ID
+	 * @return
+	 * @since 2.1.0.6
+	 */
+	public List<IPermission> findDirectChildPermissionsByUser(long userId,String parentPermissionId);
+	
+	/**
+	 * 根据用户ID和父类菜单权限ID获取所有子类的菜单权限
+	 * @param userId
+	 * @param parentPermissionId 父类菜单权限ID
+	 * @return
+	 *  @since 2.1.0.6
+	 */
+	public List<IPermission> findAllChildPermissionsByUser(long userId,String parentPermissionId);
 
 	/**
 	 * 根据某账号的所有关联可以使用角色分页

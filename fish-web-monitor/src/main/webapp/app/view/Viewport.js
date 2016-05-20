@@ -15,6 +15,8 @@ Ext.define('Eway.view.Viewport', {
 			        rootProperty: 'data'
 			    }
 		    },
+		    fields : [ 'id','code','text','leaf'],
+		    defaultRootId :'0',
 		    autoLoad: true
 		});
 		Ext.apply(this, {

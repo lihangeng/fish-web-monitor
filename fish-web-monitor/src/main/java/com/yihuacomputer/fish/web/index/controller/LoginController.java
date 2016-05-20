@@ -37,7 +37,6 @@ import com.yihuacomputer.fish.api.person.UserState;
 import com.yihuacomputer.fish.api.relation.IRelationService;
 import com.yihuacomputer.fish.api.relation.IUserRoleRelation;
 import com.yihuacomputer.fish.web.index.form.LoginBackForm;
-import com.yihuacomputer.fish.web.index.form.Menu;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
@@ -82,14 +81,6 @@ public class LoginController {
 		try {
 			IUser user = userService.login(username, password);
 			IOrganization org = user.getOrganization();
-
-			//@since 2.0.0.0 删除此逻辑
-//			if (!user.getCode().equals("admin") && user.getAccessTime() != null && (new Date().getTime() - user.getAccessTime().getTime() > 1000l * 60 * 60 * 24 * 50)) {
-//				result.addAttribute("isMessage", true);
-//				result.addAttribute("message", "您已经超过50天没有修改密码了,请尽快修改密码,超过60天未修改密码,用户将被锁定.");
-//			} else {
-//				result.addAttribute("isMessage", false);
-//			}
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("id", session.getId());
 			result.addAttribute("userState", user.getState().getId());
@@ -199,44 +190,25 @@ public class LoginController {
 
 	/**
 	 * 登录用户获取菜单权限
-	 *
+	 * @param node
 	 * @param userId
 	 * @return
 	 */
-	@RequestMapping(value = "/menu", method = RequestMethod.POST)
-	public @ResponseBody ModelMap getMenu(@RequestParam long userId) {
-		logger.info("get menus...");
-		ModelMap result = new ModelMap();
-		result.put("data", getMenuConfig(getMenuFormPermission(userId)));
-		return result;
-	}
-
 	@RequestMapping(value = "/mymenu/{userId}", method = RequestMethod.GET)
 	public @ResponseBody List<TreeMenu> tree(@RequestParam String node, @PathVariable long userId) {
-		List<IPermission> permissions = userRoleRelation.listUserPermission(userId);
+		List<IPermission> permissions = userRoleRelation.findDirectChildPermissionsByUser(userId, node);
 		List<TreeMenu> forms = new ArrayList<TreeMenu>();
 		for (IPermission permission : permissions) {
-			IPermission parent = permission.getParent();
-			if (parent != null && parent.getCode().equals(node)) {
-				TreeMenu menu = new TreeMenu(permission,hasChildMenu(permission,permissions));
-				menu.setDesc(messageSource.getMessage("user.login.remark", null, FishCfg.locale));
+				TreeMenu menu = new TreeMenu(permission);
+//				menu.setText(messageSource.getMessage("user.login.remark", null, FishCfg.locale));
 				forms.add(menu);
-			}
 		}
 		return forms;
 	}
+	
 
 	@Autowired
 	private IPermissionService service;
-
-	private boolean hasChildMenu(IPermission self,List<IPermission> permissions){
-		for(IPermission permission : permissions){
-			if(permission.getParent() != null && permission.getParent().getCode().equals(self.getCode())){
-				return true;
-			}
-		}
-		return false;
-	}
 
 	/**
 	 * 获取用户Button
@@ -255,94 +227,6 @@ public class LoginController {
 	private List<String> getButtonsConfig(long userId) {
 		return relationService.findButtonsByUser(userId);
 	}
-
-	private List<Menu> getMenuFormPermission(long userId) {
-		List<IPermission> permissions = userRoleRelation.listUserPermission(userId);
-		List<List<SimplePermission>> tempPermissions = getTempPermissions(permissions);
-
-		List<SimplePermission> firsts = tempPermissions.get(0);
-		List<SimplePermission> others = tempPermissions.get(1);
-
-		List<Menu> menus = new ArrayList<Menu>();
-		getSubMenu(menus, null, firsts, others);
-		return menus;
-	}
-
-	/**
-	 * 计算子菜单
-	 *
-	 * @param menus
-	 * @param parent
-	 * @param lists
-	 * @param all
-	 */
-	private void getSubMenu(List<Menu> menus, Menu parent, List<SimplePermission> lists, List<SimplePermission> all) {
-		for (SimplePermission p : lists) {
-			createMenu(menus, parent, p, all);
-		}
-	}
-	private void createMenu(List<Menu> menus, Menu parent, SimplePermission p, List<SimplePermission> all) {
-		List<SimplePermission> child = getChild(p, all);
-		Menu menu = null;
-		if (child.size() > 0) {
-			menu = new Menu(p.getText(), p.getAction());
-		} else {
-			menu = new Menu(p.getText(), p.getAction(), p.getAction());
-		}
-
-		if (parent == null) {
-			menus.add(menu);
-		}
-
-		if (parent != null) {
-			parent.addSubMenu(menu);
-		}
-		if (child.size() > 0) {
-			getSubMenu(menus, menu, child, all);
-		}
-	}
-
-	private List<SimplePermission> getChild(SimplePermission p, List<SimplePermission> all) {
-		List<SimplePermission> child = new ArrayList<SimplePermission>();
-		for (SimplePermission sp : all) {
-			if (sp.getParentId().equalsIgnoreCase(p.getId())) {
-				child.add(sp);
-			}
-		}
-		return child;
-	}
-
-	private String getMenuConfig(List<Menu> menus) {
-		StringBuffer config = new StringBuffer("");
-		for (Menu menu : menus) {
-			config.append(",").append(menu.toConfig());
-		}
-		if (config.length() != 0) {
-			config.deleteCharAt(0);
-			config.insert(0, "[");
-			config.append("]");
-		}
-		return config.toString();
-	}
-
-	private List<List<SimplePermission>> getTempPermissions(List<IPermission> permissions) {
-		List<List<SimplePermission>> result = new ArrayList<List<SimplePermission>>();
-		List<SimplePermission> firsts = new ArrayList<SimplePermission>();
-		List<SimplePermission> others = new ArrayList<SimplePermission>();
-		for (IPermission p : permissions) {
-			if (p.getParent() == null) {
-				continue;
-			}
-			if (p.getParent().getCode().equals("root")) {
-				firsts.add(new SimplePermission(p.getId(), p.getDescription(), p.getCode(), p.getCode(), p.getParent().getId()));
-			} else {
-				others.add(new SimplePermission(p.getId(), p.getDescription(), p.getCode(), p.getCode(), p.getParent().getId()));
-			}
-		}
-		result.add(firsts);
-		result.add(others);
-		return result;
-	}
 }
 
 /**
@@ -353,35 +237,58 @@ public class LoginController {
  */
 class TreeMenu {
 	private String id;
+	private String code;
 	private String text;
-	private String desc;
 	private boolean leaf = true;
 	
-
 	public TreeMenu(IPermission permission,boolean hasChild) {
-		this.id = permission.getCode();
+		this.id = permission.getId();
+		this.code = permission.getCode();
 		this.text = permission.getDescription();
 		this.leaf = !hasChild;
 	}
+	
+	public TreeMenu(IPermission permission){
+		this.id = permission.getId();
+		this.code = permission.getCode();
+		this.text = permission.getDescription();
+		this.leaf = permission.isLeaf();
+	}
+	
+	public TreeMenu(){}
 
 	public String getId() {
 		return id;
 	}
 
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	public String getText() {
 		return text;
 	}
-	protected void setDesc(String desc){
-		
-	}
-	public String getDesc() {
-		return desc;
+
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	public boolean isLeaf() {
 		return leaf;
 	}
 
+	public void setLeaf(boolean leaf) {
+		this.leaf = leaf;
+	}
+	
 }
 
 class SimplePermission {

@@ -78,6 +78,39 @@ public class UserRoleRelation implements IUserRoleRelation {
         List<IPermission> permission = dao.findByHQL(hql.toString(), userId, false);
         return permission;
     }
+    
+    /**
+	 * 根据用户ID和父类菜单权限ID获取直接的子菜单权限
+	 * @param userId
+	 * @param parentPermissionId 父类菜单权限ID
+	 * @return
+	 * @since 2.1.0.6
+	 */
+    @Transactional(readOnly = true)
+	public List<IPermission> findDirectChildPermissionsByUser(long userId,String parentPermissionId) {
+        StringBuffer hql = new StringBuffer();
+        hql.append("select distinct m from UserRoleObj ur,RolePermissionObj r,Permission m ");
+        hql.append("where ur.userId=? and r.roleId=ur.roleId and m.isButton=? and m.id=r.permissionId ");
+        hql.append("and m.parentId = ? order by m.id");
+        List<IPermission> permission = dao.findByHQL(hql.toString(), userId, false,parentPermissionId);
+        return permission;
+    }
+    
+	/**
+	 * 根据用户ID和父类菜单权限ID获取所有子类的菜单权限
+	 * @param userId
+	 * @param parentPermissionId 父类菜单权限ID
+	 * @return
+	 *  @since 2.1.0.6
+	 */
+	public List<IPermission> findAllChildPermissionsByUser(long userId,String parentPermissionId){
+		StringBuffer hql = new StringBuffer();
+        hql.append("select distinct m from UserRoleObj ur,RolePermissionObj r,Permission m ");
+        hql.append("where ur.userId=? and r.roleId=ur.roleId and m.isButton=? and m.id=r.permissionId ");
+        hql.append("and m.parentId like ? order by m.id");
+        List<IPermission> permission = dao.findByHQL(hql.toString(), userId, false,parentPermissionId + "%");
+        return permission;
+	}
 
     @Transactional(readOnly = true)
     private List<IRole> listRoleByUser(IUser user, IFilter filter) {

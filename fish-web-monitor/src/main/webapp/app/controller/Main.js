@@ -91,7 +91,7 @@ Ext.define('Eway.controller.Main', {
 		if(!node.isLeaf()){
 			return;
 		}else{
-			var code = node.data.id;
+			var code = node.data.code;
 			var text = node.data.text;
 			this.openSystemMenu(code,text);
 			this.openDeviceMenu(code,text);
