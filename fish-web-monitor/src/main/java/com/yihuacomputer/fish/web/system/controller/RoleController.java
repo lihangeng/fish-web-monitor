@@ -164,6 +164,7 @@ public class RoleController {
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody RoleForm form) {
 		logger.info("update Role: Role.id = " + id);
+		form.setId(id);
 		ModelMap result = new ModelMap();
 		boolean isExist = this.isExistRoleName(id, form.getName());
 		IRole role = service.get(id);

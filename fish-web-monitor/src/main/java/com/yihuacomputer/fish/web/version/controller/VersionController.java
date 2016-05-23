@@ -266,6 +266,7 @@ public class VersionController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody VersionForm form) {
 		logger.info(" update version : version.id = " + id);
+		form.setId(id);
 		ModelMap result = new ModelMap();
 		IVersion v = versionService.getById(id);
 		if (v == null) {

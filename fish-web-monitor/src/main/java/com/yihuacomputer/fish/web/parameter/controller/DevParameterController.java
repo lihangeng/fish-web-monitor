@@ -298,6 +298,7 @@ public class DevParameterController {
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody DeviceParam paramForm, HttpServletRequest request) {
 		logger.info("update device's parameter deviceId=" + id);
 		ModelMap result = new ModelMap();
+		paramForm.setId(id);
 		List<DeviceParam> paramList = paramForm.getDeviceParam();
 		if (paramList == null) {
 			result.addAttribute(FishConstant.SUCCESS, false);
