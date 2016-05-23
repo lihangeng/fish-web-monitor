@@ -44,9 +44,9 @@ public class TransactionMonthsService implements ITransactionMonthsService{
 		long dateEnd = (date1+1)*100;
 		StringBuffer sql=new StringBuffer();
 		sql.append("select sum(TRANS_AMT),sum(TRANS_COUNT),TRANS_CODE,CARD_TYPE,DEV_TYPE,VENDOR_NAME from ATMC_TRANSACTION_DAYS ");
-		sql.append("where trans_date>");
+		sql.append("where TRANS_DATE>");
 		sql.append(dateBegin);
-		sql.append(" and trans_date<");
+		sql.append(" and TRANS_DATE<");
 		sql.append(dateEnd);
 		sql.append(" group by CARD_TYPE,TRANS_CODE,DEV_TYPE,VENDOR_NAME");
 		SQLQuery query =dao.getSQLQuery(sql.toString());

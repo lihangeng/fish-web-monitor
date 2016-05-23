@@ -12,15 +12,6 @@ public interface IEveryMonthFaultCount {
 	public void setId(long id);
 
 	/**
-	 * 设备号
-	 * 
-	 * @return
-	 */
-	public String getTerminalId();
-
-	public void setTerminalId(String terminalId);
-
-	/**
 	 * 故障模块
 	 * 
 	 * @return
@@ -55,5 +46,26 @@ public interface IEveryMonthFaultCount {
 	public long getFaultCount();
 
 	public void setFaultCount(long faultCount);
+	
+	/**
+	 * 设备品牌
+	 * @return
+	 */
+	public String getVendorName();
+	/**
+	 * 设备品牌
+	 * @return
+	 */
+	public void setVendorName(String vendorName);
+	/**
+	 * 设备型号
+	 * @return
+	 */
+	public String getDevType();
+	/**
+	 * 设备型号
+	 * @return
+	 */
+	public void setDevType(String devType);
 
 }

@@ -22,12 +22,11 @@ public class EveryMonthFaultCount implements IEveryMonthFaultCount {
     @Column(name = "ID")
     private long id;
 
-    /**
-     * 设备号
-     */
-    @Column(name = "TERMINAL_ID", length = 20)
-    private String terminalId;
+	@Column(name = "VENDOR_NAME", length = 50)
+	private String vendorName;
 
+	@Column(name = "DEV_TYPE", length = 30)
+	private String devType;
     /**
      * 设备模块
      */
@@ -60,12 +59,20 @@ public class EveryMonthFaultCount implements IEveryMonthFaultCount {
 		this.id = id;
 	}
 
-	public String getTerminalId() {
-		return terminalId;
+	public String getVendorName() {
+		return vendorName;
 	}
 
-	public void setTerminalId(String terminalId) {
-		this.terminalId = terminalId;
+	public void setVendorName(String vendorName) {
+		this.vendorName = vendorName;
+	}
+
+	public String getDevType() {
+		return devType;
+	}
+
+	public void setDevType(String devType) {
+		this.devType = devType;
 	}
 
 	public String getDevMod() {
@@ -99,6 +106,5 @@ public class EveryMonthFaultCount implements IEveryMonthFaultCount {
 	public void setFaultCount(long faultCount) {
 		this.faultCount = faultCount;
 	}
-
 
 }
