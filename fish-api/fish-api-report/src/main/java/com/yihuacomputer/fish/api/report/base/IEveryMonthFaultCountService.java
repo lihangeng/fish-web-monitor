@@ -8,5 +8,7 @@ public interface IEveryMonthFaultCountService {
 	 * @param date yyyyMM
 	 */
 	public void extractMonthFault(String date);
+	
+	public IEveryMonthFaultCount make();
 
 }

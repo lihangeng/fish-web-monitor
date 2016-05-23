@@ -14,16 +14,18 @@ import com.yihuacomputer.fish.report.base.entity.EveryMonthFaultCount;
 
 @Service
 @Transactional
-public class EveryMonthFaultCountService implements
-		IEveryMonthFaultCountService {
+public class EveryMonthFaultCountService implements IEveryMonthFaultCountService {
 
 	@Autowired
 	private IGenericDao dao;
 
 	@Override
 	public void add(IEveryMonthFaultCount everyMonthFaultCount) {
-
 		dao.save(everyMonthFaultCount);
+	}
+	@Override
+	public IEveryMonthFaultCount make() {
+		return new EveryMonthFaultCount();
 	}
 
 	@Override
@@ -43,7 +45,7 @@ public class EveryMonthFaultCountService implements
 		List<Object> info = query.list();
 		for (Object object : info) {
 			Object[] obj = (Object[]) object;
-			EveryMonthFaultCount everyMonthFaultCount = new EveryMonthFaultCount();
+			IEveryMonthFaultCount everyMonthFaultCount = make();
 			everyMonthFaultCount.setDevType(obj[0]==null?"":obj[0].toString());
 			everyMonthFaultCount.setDevMod(obj[1]==null?"":obj[1].toString());
 			everyMonthFaultCount.setClassifyId(obj[2]==null?"":obj[2].toString());
