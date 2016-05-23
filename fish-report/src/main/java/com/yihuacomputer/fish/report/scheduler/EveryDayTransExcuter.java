@@ -11,7 +11,7 @@ import com.yihuacomputer.fish.api.report.engine.IExportDataETLService;
 import com.yihuacomputer.fish.api.report.engine.IReportDataETL;
 
 @Service
-public class EveryDayTransExcuter implements IReportDataETL{
+public class EveryDayTransExcuter implements IReportDataETL {
 
 	private final String etlName = "atmc_transaction_days";
 	@Autowired
@@ -38,7 +38,5 @@ public class EveryDayTransExcuter implements IReportDataETL{
 
 		return etlName;
 	}
-
-
 
 }

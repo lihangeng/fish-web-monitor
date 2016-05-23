@@ -12,12 +12,12 @@ import com.yihuacomputer.fish.api.report.base.ITransactionDays;
 
 @Entity
 @Table(name = "ATMC_TRANSACTION_DAYS ")
-public class TransactionDays implements ITransactionDays{
+public class TransactionDays implements ITransactionDays {
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_ATMC_TRANSACTION_DAYS")
-    @SequenceGenerator(name = "SEQ_ATMC_TRANSACTION_DAYS", sequenceName = "SEQ_ATMC_TRANSACTION_DAYS")
-    @Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_ATMC_TRANSACTION_DAYS")
+	@SequenceGenerator(name = "SEQ_ATMC_TRANSACTION_DAYS", sequenceName = "SEQ_ATMC_TRANSACTION_DAYS")
+	@Column(name = "ID")
 	private long id;
 
 	@Column(name = "VENDOR_NAME", length = 50)
@@ -25,13 +25,13 @@ public class TransactionDays implements ITransactionDays{
 
 	@Column(name = "DEV_TYPE", length = 30)
 	private String devType;
-	
+
 	@Column(name = "TRANS_CODE", length = 20)
 	private String transCode;
 
 	@Column(name = "CARD_TYPE", length = 30)
 	private String cardType;
-	
+
 	@Column(name = "TRANS_DATE", length = 11)
 	private long transDate;
 
