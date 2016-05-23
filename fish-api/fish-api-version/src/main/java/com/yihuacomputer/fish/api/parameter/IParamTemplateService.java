@@ -35,7 +35,7 @@ public interface IParamTemplateService {
 	 * @param filter
 	 * @return
 	 */
-	public IPageResult<IDevice> pageUnlinkedDevice(int offset,int limit, IParamTemplate template, IFilter filter);
+	public IPageResult<IDevice> pageUnlinkedDevice(int offset,int limit, IParamTemplate template,long orgId, IFilter filter);
 
 
 	/**
@@ -46,7 +46,7 @@ public interface IParamTemplateService {
 	 * @param filter
 	 * @return
 	 */
-	public IPageResult<IDevice> pageLinkedDevice(int offset, int limit, IParamTemplate template, IFilter filter);
+	public IPageResult<IDevice> pageLinkedDevice(int offset, int limit, IParamTemplate template,long orgId, IFilter filter);
 
 	/**
 	 * 获取所有模板关联的设备
