@@ -15,9 +15,19 @@
 			<artifactId>fish-api-report</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.yihuacomputer.fish</groupId> -->
+<!-- 			<artifactId>fish-api-system</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
-			<artifactId>fish-api-system</artifactId>
+			<artifactId>fish-system</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.yihuacomputer.fish</groupId>
+			<artifactId>fish-monitor</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>

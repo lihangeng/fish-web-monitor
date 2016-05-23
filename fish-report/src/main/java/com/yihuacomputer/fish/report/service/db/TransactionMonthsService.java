@@ -23,7 +23,7 @@ public class TransactionMonthsService implements ITransactionMonthsService{
 	@Override
 	public ITransactionMonths make() {
 		// TODO Auto-generated method stub
-		return null;
+		return new TransactionMonths();
 	}
 
 	@Override
@@ -34,23 +34,21 @@ public class TransactionMonthsService implements ITransactionMonthsService{
 
 	@Override
 	public List<ITransactionMonths> list() {
-		// TODO Auto-generated method stub
-		return null;
+		return dao.loadAll(ITransactionMonths.class);
 	}
 
 	@Override
 	public void extractDate(String date){
-
+		long date1 = Long.parseLong(date);
+		long dateBegin = date1*100;
+		long dateEnd = (date1+1)*100;
 		StringBuffer sql=new StringBuffer();
-		String currDate = date;
-		String startDate = currDate + "01";
-		String endDate = currDate + "31";
-		sql.append("select terminal_id,trans_date,count(*) from atmc_transaction_days ");
-		sql.append("where trans_date between '");
-		sql.append(startDate);
-		sql.append("' and '");
-		sql.append(endDate);
-		sql.append("' group by terminal_id");
+		sql.append("select sum(TRANS_AMT),sum(TRANS_COUNT),TRANS_CODE,CARD_TYPE,DEV_TYPE,VENDOR_NAME from ATMC_TRANSACTION_DAYS ");
+		sql.append("where trans_date>");
+		sql.append(dateBegin);
+		sql.append(" and trans_date<");
+		sql.append(dateEnd);
+		sql.append(" group by CARD_TYPE,TRANS_CODE,DEV_TYPE,VENDOR_NAME");
 		SQLQuery query =dao.getSQLQuery(sql.toString());
 
 		try{
@@ -58,23 +56,19 @@ public class TransactionMonthsService implements ITransactionMonthsService{
 		List<Object> infos = query.list();
 		for(Object object:infos){
 			Object[] objs = (Object[]) object;
-			TransactionMonths td=new TransactionMonths();
-			td.setTerminalId(objs[0]==null?"":String.valueOf(objs[0]));
-			td.setTransDate(Long.parseLong(objs[1]==null?"0":String.valueOf(objs[1])));
-			td.setTransCount(Long.parseLong(objs[2]==null?"0":String.valueOf(objs[2])));
-			save(td);
+			TransactionMonths tm=new TransactionMonths();
+			tm.setTransAmt(Long.parseLong(objs[0]==null?"0":String.valueOf(objs[0])));
+			tm.setTransCount(Long.parseLong(objs[1]==null?"0":String.valueOf(objs[1])));
+			tm.setTransCode(objs[2]==null?"":String.valueOf(objs[2]));
+			tm.setCardType(objs[3]==null?"":String.valueOf(objs[3]));
+			tm.setDevType(objs[4]==null?"":String.valueOf(objs[4]));
+			tm.setVendorName(objs[5]==null?"":String.valueOf(objs[5]));
+			tm.setTransDate(date1);
+			save(tm);
 		}
 		}catch(Exception e){
 			e.printStackTrace();
 		}
-
-
-
-
-
-
 	}
-
-
 
 }

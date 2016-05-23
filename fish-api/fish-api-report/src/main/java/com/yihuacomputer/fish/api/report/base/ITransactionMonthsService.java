@@ -10,6 +10,9 @@ public interface ITransactionMonthsService {
 
 	public List<ITransactionMonths> list();
 
+	/**
+	 * @param date yyyyMM
+	 */
 	public void extractDate(String date);
 
 }

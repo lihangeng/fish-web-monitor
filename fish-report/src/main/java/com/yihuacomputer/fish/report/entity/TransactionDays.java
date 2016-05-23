@@ -20,14 +20,26 @@ public class TransactionDays implements ITransactionDays{
     @Column(name = "ID")
 	private long id;
 
-	@Column(name = "TERMINAL_ID", length = 20)
-	private String terminalId;
+	@Column(name = "VENDOR_NAME", length = 50)
+	private String vendorName;
 
+	@Column(name = "DEV_TYPE", length = 30)
+	private String devType;
+	
+	@Column(name = "TRANS_CODE", length = 20)
+	private String transCode;
+
+	@Column(name = "CARD_TYPE", length = 30)
+	private String cardType;
+	
 	@Column(name = "TRANS_DATE", length = 11)
 	private long transDate;
 
 	@Column(name = "TRANS_COUNT", length = 11)
 	private long transCount;
+
+	@Column(name = "TRANS_AMT", length = 11)
+	private long transAmt;
 
 	public long getId() {
 		return id;
@@ -35,14 +47,6 @@ public class TransactionDays implements ITransactionDays{
 
 	public void setId(long id) {
 		this.id = id;
-	}
-
-	public String getTerminalId() {
-		return terminalId;
-	}
-
-	public void setTerminalId(String terminalId) {
-		this.terminalId = terminalId;
 	}
 
 	public long getTransDate() {
@@ -61,15 +65,44 @@ public class TransactionDays implements ITransactionDays{
 		this.transCount = transCount;
 	}
 
+	public String getVendorName() {
+		return vendorName;
+	}
 
+	public void setVendorName(String vendorName) {
+		this.vendorName = vendorName;
+	}
 
+	public String getDevType() {
+		return devType;
+	}
 
+	public void setDevType(String devType) {
+		this.devType = devType;
+	}
 
+	public String getTransCode() {
+		return transCode;
+	}
 
+	public void setTransCode(String transCode) {
+		this.transCode = transCode;
+	}
 
+	public String getCardType() {
+		return cardType;
+	}
 
+	public void setCardType(String cardType) {
+		this.cardType = cardType;
+	}
 
+	public long getTransAmt() {
+		return transAmt;
+	}
 
-
+	public void setTransAmt(long transAmt) {
+		this.transAmt = transAmt;
+	}
 
 }
