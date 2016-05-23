@@ -128,6 +128,7 @@ public class AtmGroupController {
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody AtmGroupForm request) {
 		logger.info("update atmGroup: atmGroup.id = " + id);
+		request.setId(id);
 		ModelMap result = new ModelMap();
 		try {
 			IAtmGroup group = null;

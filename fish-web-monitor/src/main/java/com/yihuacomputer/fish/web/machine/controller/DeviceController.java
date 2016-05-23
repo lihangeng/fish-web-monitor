@@ -194,6 +194,7 @@ public class DeviceController {
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody DeviceForm request) {
 		logger.info("update Device: device.id = " + id);
+		request.setId(Long.toString(id));
 		ModelMap model = new ModelMap();
 
 		IDevice device = deviceService.get(id);		

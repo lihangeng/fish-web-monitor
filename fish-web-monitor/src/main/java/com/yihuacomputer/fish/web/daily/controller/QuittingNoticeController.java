@@ -217,6 +217,7 @@ public class QuittingNoticeController {
 	ModelMap update(@PathVariable long id, @RequestBody QuittingNoticeForm form) {
 		logger.info("update QuittingNotice: quittingNotice.id = " + id);
 		ModelMap result = new ModelMap();
+		form.setId(id);
 		try {
 			IDevice device = deviceService.get(form.getDeviceCode());
 			if (device == null) {

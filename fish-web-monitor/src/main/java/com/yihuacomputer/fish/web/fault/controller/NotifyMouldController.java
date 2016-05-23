@@ -65,6 +65,7 @@ public class NotifyMouldController
     ModelMap update(@PathVariable long id, @RequestBody NotifyMouldForm request)
     {
         logger.info("update Param: param.id = " + id);
+		request.setId(id);
         ModelMap result = new ModelMap();
         try
         {

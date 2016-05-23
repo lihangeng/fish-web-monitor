@@ -176,6 +176,7 @@ public class AtmTypeController {
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody AtmTypeForm form) {
         logger.info("update AtmType: atmType.id = " + id);
+        form.setId(id);
         ModelMap result = new ModelMap();
         try {
             IAtmType type = atmTypeService.get(id);

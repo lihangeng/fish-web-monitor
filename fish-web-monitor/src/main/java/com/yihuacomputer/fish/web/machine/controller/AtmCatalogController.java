@@ -83,6 +83,7 @@ public class AtmCatalogController {
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody AtmCatalogForm request) {
 		logger.info("update AtmCatalog: atmCatalog.id = " + id);
+		request.setId(id);
 		ModelMap result = new ModelMap();
 		IAtmCatalog catalog = atmCatalogService.get(id);
 		request.translate(catalog);

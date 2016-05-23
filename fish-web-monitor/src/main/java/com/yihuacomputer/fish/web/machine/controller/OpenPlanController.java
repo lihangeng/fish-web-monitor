@@ -363,6 +363,7 @@ public class OpenPlanController {
 	public @ResponseBody
 	ModelMap update(@PathVariable String id, @RequestBody OpenPlanForm form) {
 		logger.info(" update plan : plan.id = " + id);
+		form.setId(Long.parseLong(id));
 		IFilter filter = new Filter();
 		filter.eq("openPlanId", form.getId());
 		ModelMap result = new ModelMap();
