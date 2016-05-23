@@ -424,8 +424,14 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 
 		var title = this.win.title;
 		var currentPath = title.substring(title.indexOf(":")+1);
-
-		var index = currentPath.lastIndexOf("\\");
+		var index  = 0;
+		//适配liunx系统以/开始
+		if(currentPath.startsWith("/")){
+			index  = currentPath.lastIndexOf("/")
+		}
+		else{
+			index = currentPath.lastIndexOf("\\");
+		}
 		var parentPath = currentPath.substring(0,index);
 
 		var win = this.win;

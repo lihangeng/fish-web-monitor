@@ -76,6 +76,7 @@
 				<value>com.yihuacomputer.fish.journal.entity</value>
 				<value>com.yihuacomputer.fish.parameter.entity</value>
 				<value>com.yihuacomputer.fish.report.base.entity</value>
+				<value>com.yihuacomputer.fish.report.entity</value>
 			</list>
 		</property>
 	</bean>

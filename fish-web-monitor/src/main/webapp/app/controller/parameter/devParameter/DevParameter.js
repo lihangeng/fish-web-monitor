@@ -86,16 +86,21 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 				arrayId:devArrayId
 			},
 			success:function(ed){
-				if(Ext.decode(ed.responseText).data){
-					var jobId=Ext.decode(ed.responseText).data;
-					Ext.MessageBox.confirm(EwayLocale.confirm.title,//'提示',
-							jobId+EwayLocale.param.paramDownloadMonitor.aotuJump,
-				 			function(button, text) {
-				 				if (button == "yes") {
-				 					var controller = this.parent.activeController('parameter.paramMonitor.ParamMonitor');
-				 					controller.autoJobDetail(jobId);
-				 				}
-				 			},this);
+				if(Ext.decode(ed.responseText).success==false){
+					Eway.alert(Ext.decode(ed.responseText).errorMsg);
+					this.onQuery();
+				}else{
+					if(Ext.decode(ed.responseText).data){
+						var jobId=Ext.decode(ed.responseText).data;
+						Ext.MessageBox.confirm(EwayLocale.confirm.title,//'提示',
+								jobId+EwayLocale.param.paramDownloadMonitor.aotuJump,
+					 			function(button, text) {
+					 				if (button == "yes") {
+					 					var controller = this.parent.activeController('parameter.paramMonitor.ParamMonitor');
+					 					controller.autoJobDetail(jobId);
+					 				}
+					 			},this);
+					}
 				}
 			},
 			failure:function(response){
@@ -178,9 +183,9 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 		});
 		
 		record.save({
-			success:function(ed) {
-				if(ed.data.id){
-					var jobId=ed.data.id;
+			success:function(response) {
+				if(response.data.id){
+					var jobId=response.data.id;
 					Ext.MessageBox.confirm(EwayLocale.confirm.title,//'提示',
 							jobId+EwayLocale.param.paramDownloadMonitor.aotuJump,
 				 			function(button, text) {
@@ -193,7 +198,8 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 				store.loadPage(1);
 			 },
 			 failure: function(ed){
-				Eway.alert(EwayLocale.tip.fail);
+				Eway.alert(EwayLocale.param.deviceParam.notExist);
+				this.onQuery();
 			 },
 			 scope : this
 		});

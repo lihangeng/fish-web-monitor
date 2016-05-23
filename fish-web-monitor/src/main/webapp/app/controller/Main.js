@@ -285,6 +285,8 @@ Ext.define('Eway.controller.Main', {
 			this.activeController('report.baseReport.CaseTrendReport',text);
 		}else if(code =="reportModuleFaultRate"){
 			this.activeController('report.baseReport.ModuleFaultRateReport',text);
+		}else if(code =="faultRate"){
+			this.activeController('report.faultRate.FaultRateReport',text);
 		}
 	},
 

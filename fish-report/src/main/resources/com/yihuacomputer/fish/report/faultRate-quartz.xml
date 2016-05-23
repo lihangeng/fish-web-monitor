@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+<!-- 要调用的工作类 -->
+
+    <!-- 定义调用对象和调用对象的方法 -->
+    <bean id="extracttask"
+        class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!-- 调用的类 -->
+        <property name="targetObject">
+            <ref bean="DataExtractJob" />
+        </property>
+        <!-- 调用类中的方法 -->
+        <property name="targetMethod">
+            <value>extracttask</value>
+        </property>
+    </bean>
+    <!-- 定义触发时间 -->
+    <bean id="extractTime"
+        class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="extracttask" />
+        </property>
+        <!-- cron表达式 -->
+        <property name="cronExpression">
+            <!--每日3点加载获取设备APP应用日志-->
+             <value>${extractTime}</value>
+        </property>
+    </bean>
+
+
+</beans>

@@ -19,7 +19,7 @@ import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.report.base.IDayOpenRate;
 import com.yihuacomputer.fish.api.report.base.IDayOpenRateService;
-import com.yihuacomputer.fish.report.entity.DayOpenRate;
+import com.yihuacomputer.fish.report.base.entity.DayOpenRate;
 
 @Service
 @Transactional
@@ -60,7 +60,7 @@ public class DayOpenRateService implements IDayOpenRateService  {
 
     @Autowired
 	private IDeviceService deviceService;
-    
+
     @Override
     public IDayOpenRate make() {
         return new DayOpenRate();

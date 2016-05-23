@@ -271,6 +271,7 @@ Ext.define('Eway.view.monitor.device.View',{
 //		this.config._deviceMartixSub = Ext.Cometd.addListener('/service/status/join',Ext.bind(this._receive,this));
 		
 		this.config._deviceMartixSub = Ext.Cometd.subscribe('/service/status/join', this, this._receive);
+
 	},
 
 	_receive : function(message){
@@ -369,7 +370,7 @@ Ext.define('Eway.view.monitor.device.View',{
 		}
 		
 		store.setUrlParamsByObject(tempParams);
-		store.load({
+		store.loadPage(1,{
 			method : 'POST'
 		});
 		
@@ -379,8 +380,8 @@ Ext.define('Eway.view.monitor.device.View',{
 	},
 
 	getParams : function(params) {
-		var tempParams = {};
 		
+		var tempParams = params==undefined?{}:params;
 		tempParams.userId = ewayUser.getId();
 		tempParams.orgId = ewayUser.getOrgId();
 		

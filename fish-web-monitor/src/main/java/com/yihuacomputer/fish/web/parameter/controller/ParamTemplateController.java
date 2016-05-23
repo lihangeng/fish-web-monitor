@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.ObjectNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,10 +46,10 @@ import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
-import com.yihuacomputer.fish.web.bsadvert.form.BsAdvertGroupDeviceForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamElementForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamTempDetailForm;
+import com.yihuacomputer.fish.web.parameter.form.ParamTemplateDeviceform;
 import com.yihuacomputer.fish.web.parameter.form.ParamTemplateForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
@@ -139,7 +140,11 @@ public class ParamTemplateController {
 			templateService.unlinkAllBeforeDelete(id);
 			templateService.remove(id);
 			result.addAttribute(FishConstant.SUCCESS, true);
-		} catch (Exception ex) {
+		}catch(ObjectNotFoundException ex ){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.template.notExist", null, FishCfg.locale));
+		} 
+		catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 		}
 		return result;
@@ -288,7 +293,11 @@ public class ParamTemplateController {
 
 		ModelMap result = new ModelMap();
 		IPageResult<IDevice> pageResult = null;
-		if (flag == 0) {
+		if (templateService.get(Long.parseLong(guid)) == null) {
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.template.notExist", null, FishCfg.locale));
+		}
+		else if (flag == 0) {
 			// 已关联的设备
 			result.addAttribute(FishConstant.SUCCESS, true);
 			Filter filter = getFilterDevice(request);
@@ -317,21 +326,27 @@ public class ParamTemplateController {
 	 * @return
 	 */
 	@RequestMapping(value = "/link", method = RequestMethod.POST)
-	public @ResponseBody ModelMap link(@RequestBody BsAdvertGroupDeviceForm request) {
+	public @ResponseBody ModelMap link(@RequestBody ParamTemplateDeviceform request) {
 
 		logger.info(String.format("device %s linked  %s", request.getGroupId(),request.getDeviceId()));
 
 		ModelMap result = new ModelMap();
-		IParamTemplate advertGroup = templateService.get(request.getGroupId());
+		IParamTemplate template = templateService.get(request.getGroupId());
 		IDevice device = deviceService.get(request.getDeviceId());
-		List<IDevice> list = templateService.listDeviceByTemplate(advertGroup);
+		if(template == null){
+			result.put(FishConstant.SUCCESS, true);
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.template.notExist", null, FishCfg.locale));
+			return result;
+			
+		}
+		List<IDevice> list = templateService.listDeviceByTemplate(template);
 		if (list.contains(device)) {
 			result.put(FishConstant.SUCCESS, true);
 			return result;
 		}
 		Date date = new Date();
 		long timeStamp = Long.parseLong(DateUtils.getTimestamp5(date));
-		templateService.link(advertGroup, device,timeStamp);
+		templateService.link(template, device,timeStamp);
 		result.put(FishConstant.SUCCESS, true);
 		result.put("data", request);
 		return result;
@@ -373,6 +388,7 @@ public class ParamTemplateController {
 		ModelMap result = new ModelMap();
 		if (templateService.get(id) == null && flag == 0) {
 			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.template.notExist", null, FishCfg.locale));
 		} else if(flag == 0){
 			result.addAttribute(FishConstant.SUCCESS, true);
 			List<IParamElement> elements = templateService.listParam2(id,flag);
@@ -444,6 +460,14 @@ public class ParamTemplateController {
 
 		try {
 			List<IDevice> deviceList = paramTemplateDeviceRelationService.listDeviceByTemplate(templateId);
+			if(templateService.get(templateId)==null){
+				result.addAttribute(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.template.notExist", null, FishCfg.locale));
+				return result;
+				
+				
+			}
+			
 			if(null!=deviceList&&deviceList.size()==0){
 				result.addAttribute(FishConstant.SUCCESS, false);
 				result.addAttribute(FishConstant.ERROR_MSG, getI18N("parameter.template.deviceUnlinked"));

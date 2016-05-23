@@ -11,18 +11,18 @@ Ext.define('Eway.view.parameter.paramMonitor.TaskFilterForm',{
 				columnWidth : .5,
 				items:[{
 					xtype : 'textfield',
-					name : 'id',
-					fieldLabel : EwayLocale.param.paramDownloadMonitor.taskId,
-					regex : /(^([0-9]\d{0,17})$)/
+					name : 'terminalId',
+					fieldLabel :EwayLocale.machine.atmGroup.terminalId,
 				}]
-			},{
+			}/*,{
 				columnWidth : .5,
 				items:[{
-					xtype : 'textfield',
-					name : 'terminalId',
-					fieldLabel :'设备终端号',
+					xtype : 'datefield',
+					name : 'downloadStartTime',
+					fieldLabel : '下载开始时间',
+					format:'Y-m-d'
 				}]
-			}]	
+			}*/]	
 		});
 		this.callParent(arguments);
 	}

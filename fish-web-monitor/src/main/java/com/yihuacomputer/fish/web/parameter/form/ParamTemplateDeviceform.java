@@ -1,12 +1,12 @@
 package com.yihuacomputer.fish.web.parameter.form;
 
-public class BsAdvertGroupDeviceForm
+public class ParamTemplateDeviceform
 {
     private Long id;
     private Long groupId;
     private Long deviceId;
     
-    public BsAdvertGroupDeviceForm(){
+    public ParamTemplateDeviceform(){
         
     }
 

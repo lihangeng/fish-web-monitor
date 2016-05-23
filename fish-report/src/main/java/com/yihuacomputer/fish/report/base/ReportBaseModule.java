@@ -12,15 +12,24 @@ import com.yihuacomputer.fish.api.report.base.IDeviceOpenRateService;
 import com.yihuacomputer.fish.api.report.base.IDeviceRptService;
 import com.yihuacomputer.fish.api.report.base.IDeviceTypeCountRptService;
 import com.yihuacomputer.fish.api.report.base.IDeviceUseCountRptService;
+import com.yihuacomputer.fish.api.report.base.IEveryMonthFaultCountService;
 import com.yihuacomputer.fish.api.report.base.IRetainCardRptService;
 import com.yihuacomputer.fish.api.report.base.ISettlementCashInRptService;
 import com.yihuacomputer.fish.api.report.base.ISettlementRptService;
 import com.yihuacomputer.fish.api.report.base.ITransRptService;
+import com.yihuacomputer.fish.api.report.base.ITransactionDaysService;
+import com.yihuacomputer.fish.api.report.base.ITransactionMonthsService;
 import com.yihuacomputer.fish.api.report.engine.IExportDataETLService;
 import com.yihuacomputer.fish.report.base.schedule.AtmcDayTransCount;
 import com.yihuacomputer.fish.report.engine.ExportDataETLService;
 import com.yihuacomputer.fish.report.scheduler.DayOpenRateExcuter;
+import com.yihuacomputer.fish.report.scheduler.EveryDayTransExcuter;
+import com.yihuacomputer.fish.report.scheduler.EveryMonthFaultExcuter;
+import com.yihuacomputer.fish.report.scheduler.EveryMonthTransExcuter;
 import com.yihuacomputer.fish.report.service.db.DeviceOpenRateService;
+import com.yihuacomputer.fish.report.service.db.EveryMonthFaultCountService;
+import com.yihuacomputer.fish.report.service.db.TransactionDaysService;
+import com.yihuacomputer.fish.report.service.db.TransactionMonthsService;
 
 /**
  * 报表基础模块配置
@@ -103,8 +112,42 @@ public class ReportBaseModule {
 	}
 
 	@Bean
+	public  EveryMonthFaultExcuter  everyMonthFaultJob() {
+		return new EveryMonthFaultExcuter();
+	}
+
+	@Bean
+	public  EveryDayTransExcuter  everyDayTransExcuter() {
+		return new EveryDayTransExcuter();
+	}
+
+	@Bean
+	public  EveryMonthTransExcuter  everyMonthTransExcuter() {
+		return new EveryMonthTransExcuter();
+	}
+
+	@Bean
 	public ICaseStatisticsRptService caseStatisticsRptService()
 	{
 		return new CaseStatisticsRptService();
 	}
+
+	@Bean
+	public IEveryMonthFaultCountService everyMonthFaultCountService()
+	{
+		return new EveryMonthFaultCountService();
+	}
+
+	@Bean
+	public ITransactionDaysService transactionDaysService()
+	{
+		return new TransactionDaysService();
+	}
+
+	@Bean
+	public ITransactionMonthsService transactionMonthsService()
+	{
+		return new TransactionMonthsService();
+	}
 }
+

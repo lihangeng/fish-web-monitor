@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.web.atm;
 
 import java.util.Date;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,8 +93,18 @@ public class ParamUpdateResultController {
 				logger.error(String.format("param update task %d not exist", msg.getTaskId()));
 				return null;
 			}
+			
 			paramPublishResult.setReason(reason);
 			paramPublishResult.setRet(status);
+			List<IAppSystem> systemList = appSystemService.list();
+			for (IAppSystem appSystem : systemList) {
+				IParamPublishAppResult appResult = paramPublishAppResultService.make();
+				appResult.setAppSystem(appSystem);
+				appResult.setParamPublishResult(paramPublishResult);
+				appResult.setStatus(paramPublishResult.getRet());
+				appResult.setReason(paramPublishResult.getReason());
+				paramPublishAppResultService.save(appResult);
+			}
 			try {
 				paramPublishResult = paramPublishResultService.update(paramPublishResult);
 			} catch (Exception e) {

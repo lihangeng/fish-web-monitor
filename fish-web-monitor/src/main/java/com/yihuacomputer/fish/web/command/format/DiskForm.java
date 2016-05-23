@@ -42,7 +42,13 @@ public class DiskForm {
 
 	public void setPath(String name) {
 		int end = name.lastIndexOf(":");
-		this.path = name.substring(0, end+1);
+		//适配liunx系统以/开始
+		if(name.startsWith("/")){
+			this.path = name;
+		}
+		else{
+			this.path = name.substring(0, end+1);
+		}
 	}
 
 	public void setLabel(String label) {
