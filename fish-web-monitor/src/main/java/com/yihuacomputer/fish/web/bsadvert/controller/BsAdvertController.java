@@ -15,11 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
-
-
-
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,14 +69,13 @@ public class BsAdvertController {
 
 	@Autowired
 	private MessageSource messageSourceEnum;
-	
 
 	@Autowired
 	private IUserService userService;
 
 	@Autowired
 	private IBsAdvertService bsAdvertService;
-	
+
 	@Autowired
 	private IAdvertGroupService advertGroupService;
 
@@ -96,6 +90,7 @@ public class BsAdvertController {
 
 	/**
 	 * 查找广告列表
+	 * 
 	 * @param limit
 	 * @param start
 	 * @param request
@@ -112,75 +107,76 @@ public class BsAdvertController {
 		String bsAdvertStatus = request.getParameter("bsAdvertStatus");
 		String updateTimeEnd = request.getParameter("updateTimeEnd");
 		String updateTimeStart = request.getParameter("updateTimeStart");
-		if(null!=groupId&&!"".equals(groupId.trim())){
+		if (null != groupId && !"".equals(groupId.trim())) {
 			filter.eq("groupId", Long.parseLong(groupId));
 		}
-		if(null!=advertName&&!"".equals(advertName.trim())){
+		if (null != advertName && !"".equals(advertName.trim())) {
 			filter.eq("advertName", advertName);
 		}
-		if(null!=bsAdvertStatus&&!"".equals(bsAdvertStatus.trim())){
+		if (null != bsAdvertStatus && !"".equals(bsAdvertStatus.trim())) {
 			filter.eq("bsAdvertStatus", BsAdvertStatus.getBsAdvertStatusById(Integer.parseInt(bsAdvertStatus)));
 		}
-		if(null!=updateTimeEnd&&!"".equals(updateTimeEnd.trim())){
-			filter.eq("updateTimeEnd", DateUtils.getTimestamp(updateTimeEnd+" 23:59:59"));
+		if (null != updateTimeEnd && !"".equals(updateTimeEnd.trim())) {
+			filter.eq("updateTimeEnd", DateUtils.getTimestamp(updateTimeEnd + " 23:59:59"));
 		}
-		if(null!=updateTimeStart&&!"".equals(updateTimeStart.trim())){
-			filter.eq("updateTimeStart", DateUtils.getTimestamp(updateTimeStart+" 00:00:00"));
+		if (null != updateTimeStart && !"".equals(updateTimeStart.trim())) {
+			filter.eq("updateTimeStart", DateUtils.getTimestamp(updateTimeStart + " 00:00:00"));
 		}
-		UserSession userSession = (UserSession)request.getSession().getAttribute(FishWebUtils.USER);
+		UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
 		filter.eq("orgId", userSession.getOrgId());
 		IPageResult<Object> pageResult = bsAdvertService.page(start, limit, filter);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
 		result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 		return result;
 	}
-	@RequestMapping(value = "/{id}",method=RequestMethod.DELETE)
-	public @ResponseBody ModelMap deleteBsAdvert(@PathVariable long id,HttpServletRequest request, WebRequest webRequest) {
-		logger.info("deleteBsAdvert "+id);
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public @ResponseBody ModelMap deleteBsAdvert(@PathVariable long id, HttpServletRequest request, WebRequest webRequest) {
+		logger.info("deleteBsAdvert " + id);
 		ModelMap result = new ModelMap();
 		IBsAdvert bsAdvert = bsAdvertService.getById(id);
-		if(null==bsAdvert){
+		if (null == bsAdvert) {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			return result;
 		}
-		//bsadvert.delete.fail=激活状态的广告无法删除
-		if(bsAdvert.getBsAdvertStatus()!=BsAdvertStatus.UNACTIVE){
+		// bsadvert.delete.fail=激活状态的广告无法删除
+		if (bsAdvert.getBsAdvertStatus() != BsAdvertStatus.UNACTIVE) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.delete.fail",null));
+			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.delete.fail", null));
 			return result;
-		}
-		else if(bsAdvert.getBsAdvertStatus()==BsAdvertStatus.UNACTIVE){
+		} else if (bsAdvert.getBsAdvertStatus() == BsAdvertStatus.UNACTIVE) {
 			bsAdvertService.delete(bsAdvert);
 		}
 		result.addAttribute(FishConstant.SUCCESS, true);
 		return result;
 	}
-	
-	private String getI18NResource(String code,String args[]){
+
+	private String getI18NResource(String code, String args[]) {
 		return messageSourceVersion.getMessage(code, args, FishCfg.locale);
 	}
-	
+
 	/**
 	 * 激活广告
+	 * 
 	 * @param request
 	 * @param webRequest
 	 * @return
 	 */
-	@RequestMapping(value="/actived",method = RequestMethod.POST)
-	public @ResponseBody ModelMap activedBsAdvert(@RequestParam long advertId,HttpServletRequest request, WebRequest webRequest) {
-		logger.info("activedBsAdvert "+advertId);
+	@RequestMapping(value = "/actived", method = RequestMethod.POST)
+	public @ResponseBody ModelMap activedBsAdvert(@RequestParam long advertId, HttpServletRequest request, WebRequest webRequest) {
+		logger.info("activedBsAdvert " + advertId);
 		ModelMap result = new ModelMap();
 		IBsAdvert bsAdvert = bsAdvertService.getById(advertId);
-		//bsadvert.notExist=广告不存在，请刷新后操作
-		if(null==bsAdvert){
+		// bsadvert.notExist=广告不存在，请刷新后操作
+		if (null == bsAdvert) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.notExist",null));
+			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.notExist", null));
 			return result;
 		}
-		//bsadvert.active.actived=广告已激活。
-		else if(bsAdvert.getBsAdvertStatus().equals(BsAdvertStatus.ACTIVED)){
+		// bsadvert.active.actived=广告已激活。
+		else if (bsAdvert.getBsAdvertStatus().equals(BsAdvertStatus.ACTIVED)) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.active.actived",null));
+			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.active.actived", null));
 			return result;
 		}
 		try {
@@ -190,55 +186,55 @@ public class BsAdvertController {
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			result.addAttribute(FishConstant.SUCCESS, false);
-			//bsadvert.active.exception"广告激活异常。"
-			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.active.exception",null));
+			// bsadvert.active.exception"广告激活异常。"
+			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.active.exception", null));
 			return result;
 		}
 		result.addAttribute(FishConstant.SUCCESS, true);
 		return result;
 	}
 
-	
 	/**
 	 * 加载广告进行更改
+	 * 
 	 * @param advertId
 	 * @param request
 	 * @param webRequest
 	 * @return
 	 */
-	@RequestMapping(value="/loadAdvertToUpdate",method = RequestMethod.POST)
-	public @ResponseBody ModelMap loadAdvertToUpdate(@RequestParam long advertId,HttpServletRequest request, WebRequest webRequest) {
-		logger.info("activedBsAdvert "+advertId);
+	@RequestMapping(value = "/loadAdvertToUpdate", method = RequestMethod.POST)
+	public @ResponseBody ModelMap loadAdvertToUpdate(@RequestParam long advertId, HttpServletRequest request, WebRequest webRequest) {
+		logger.info("activedBsAdvert " + advertId);
 		ModelMap result = new ModelMap();
 		IBsAdvert bsAdvert = bsAdvertService.getById(advertId);
 		ScreenResources screenResources = null;
-		//bsadvert.notExist=广告不存在，请刷新后操作
-		if(null==bsAdvert){
+		// bsadvert.notExist=广告不存在，请刷新后操作
+		if (null == bsAdvert) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.notExist",null));
+			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.notExist", null));
 			return result;
 		}
 		try {
 			List<IBsAdvertResource> resourceList = bsAdvert.getAdvertResources();
 			@SuppressWarnings("deprecation")
-			String tempDir = stringConcat(request.getRealPath("/"),File.separator,"tmp",File.separator,"bsAdvert",File.separator,this.getSessionDir(request),File.separator);
-			String zipFilePath = stringConcat(VersionCfg.getBsAdvertDir(),File.separator,bsAdvert.getId(),".zip");
-			String unzipTarget = stringConcat(tempDir,File.separator,bsAdvert.getId());
-			
+			String tempDir = stringConcat(request.getRealPath("/"), File.separator, "tmp", File.separator, "bsAdvert", File.separator, this.getSessionDir(request), File.separator);
+			String zipFilePath = stringConcat(VersionCfg.getBsAdvertDir(), File.separator, bsAdvert.getId(), ".zip");
+			String unzipTarget = stringConcat(tempDir, File.separator, bsAdvert.getId());
+
 			ZipUtils.unZip(zipFilePath, unzipTarget, "UTF-8");
-			String willCopyFileName = stringConcat(tempDir,File.separator,bsAdvert.getId(),File.separator,"AD_IDLE");
-			for(IBsAdvertResource resource:resourceList){
+			String willCopyFileName = stringConcat(tempDir, File.separator, bsAdvert.getId(), File.separator, "AD_IDLE");
+			for (IBsAdvertResource resource : resourceList) {
 				Screen screen = resource.getScreen();
 				String fileName = resource.getContent();
 				String screenName = getEnumI18n(screen.getText());
 				String advertResourceFile = willCopyFileName.concat(File.separator).concat(screenName).concat(File.separator).concat(fileName);
 				IOUtils.copyFileToDirectory(advertResourceFile, tempDir.concat(File.separator).concat(screenName));
 			}
-			screenResources = getResoucesJson(willCopyFileName,request);
+			screenResources = getResoucesJson(willCopyFileName, request);
 			new File(willCopyFileName).delete();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
-//			bsadvert.load.exception=加载广告资源异常。
+			// bsadvert.load.exception=加载广告资源异常。
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.load.exception", null));
 			return result;
@@ -247,73 +243,73 @@ public class BsAdvertController {
 		result.addAttribute(FishConstant.DATA, screenResources);
 		return result;
 	}
-	
-	private ScreenResources getResoucesJson(String willCopyFileName,HttpServletRequest request){
-		
+
+	private ScreenResources getResoucesJson(String willCopyFileName, HttpServletRequest request) {
+
 		String screen1024 = getEnumI18n(Screen.SCREEN_1024.getText());
 		String screen800 = getEnumI18n(Screen.SCREEN_800.getText());
 		String screen600 = getEnumI18n(Screen.SCREEN_600.getText());
-		BsAdvertScreenForm screen1024Form = getAdvertResourceInfos(stringConcat(willCopyFileName,File.separator,screen1024,File.separator,"config.json"));
-		BsAdvertScreenForm screen800Form = getAdvertResourceInfos(stringConcat(willCopyFileName,File.separator,screen800,File.separator+"config.json"));
-		BsAdvertScreenForm screen600Form = getAdvertResourceInfos(stringConcat(willCopyFileName,File.separator,screen600,File.separator+"config.json"));
+		BsAdvertScreenForm screen1024Form = getAdvertResourceInfos(stringConcat(willCopyFileName, File.separator, screen1024, File.separator, "config.json"));
+		BsAdvertScreenForm screen800Form = getAdvertResourceInfos(stringConcat(willCopyFileName, File.separator, screen800, File.separator + "config.json"));
+		BsAdvertScreenForm screen600Form = getAdvertResourceInfos(stringConcat(willCopyFileName, File.separator, screen600, File.separator + "config.json"));
 		ScreenResources screenResource = new ScreenResources();
-		screenResource.setScreen1024(getResource(screen1024Form.getResources(),request,screen1024));
-		screenResource.setScreen800(getResource(screen800Form.getResources(),request,screen800));
-		screenResource.setScreen600(getResource(screen600Form.getResources(),request,screen600));
+		screenResource.setScreen1024(getResource(screen1024Form.getResources(), request, screen1024));
+		screenResource.setScreen800(getResource(screen800Form.getResources(), request, screen800));
+		screenResource.setScreen600(getResource(screen600Form.getResources(), request, screen600));
 		return screenResource;
 	}
-	
-	private List<UploadResourceForm> getResource(List<BsUploadResourceForm> resourceFormList,HttpServletRequest request,String screen){
+
+	private List<UploadResourceForm> getResource(List<BsUploadResourceForm> resourceFormList, HttpServletRequest request, String screen) {
 		List<UploadResourceForm> list = new ArrayList<UploadResourceForm>();
-			for(int index=0;index<resourceFormList.size();index++){
-				BsUploadResourceForm resourceForm = resourceFormList.get(index);
-				
-				String fileName = resourceForm.getContent();
-				UploadResourceForm form = new UploadResourceForm(fileName, fileName, getTempWebDir(request, screen, fileName), screen);
-				form.setBeginDate(resourceForm.getBeginDate());
-				String beginTime = resourceForm.getBeginTime();
-				try{
-					if(null!=beginTime&&!"".equals(beginTime)){
-						String beginTimes[] = beginTime.split("\\:");
-						
-						form.setBeginHour(beginTimes[0]);
-						form.setBeginMinute(beginTimes[1]);
-						form.setBeginSecond(beginTimes[2]);
-					}
-				}catch(Exception e){
-					logger.error(e.getMessage());
+		for (int index = 0; index < resourceFormList.size(); index++) {
+			BsUploadResourceForm resourceForm = resourceFormList.get(index);
+
+			String fileName = resourceForm.getContent();
+			UploadResourceForm form = new UploadResourceForm(fileName, fileName, getTempWebDir(request, screen, fileName), screen);
+			form.setBeginDate(resourceForm.getBeginDate());
+			String beginTime = resourceForm.getBeginTime();
+			try {
+				if (null != beginTime && !"".equals(beginTime)) {
+					String beginTimes[] = beginTime.split("\\:");
+
+					form.setBeginHour(beginTimes[0]);
+					form.setBeginMinute(beginTimes[1]);
+					form.setBeginSecond(beginTimes[2]);
 				}
-				form.setDisplayName(resourceForm.getContent());
-				form.setEndDate(resourceForm.getEndDate());
-				String endTime = resourceForm.getEndTime();
-				try{
-					if(null!=endTime&&!"".equals(endTime)){
-						String endTimes[] = endTime.split("\\:");
-						form.setEndHour(endTimes[0]);
-						form.setEndMinute(endTimes[1]);
-						form.setEndSecond(endTimes[2]);
-					}
-				}catch(Exception e){
-					logger.error(e.getMessage());
-				}
-				form.setFileName(fileName);
-				form.setId(String.valueOf(resourceForm.getId()));
-				form.setOriginalFileName(fileName);
-				form.setPlayTime(resourceForm.getPlayTime());
-				list.add(form);
+			} catch (Exception e) {
+				logger.error(e.getMessage());
 			}
+			form.setDisplayName(resourceForm.getContent());
+			form.setEndDate(resourceForm.getEndDate());
+			String endTime = resourceForm.getEndTime();
+			try {
+				if (null != endTime && !"".equals(endTime)) {
+					String endTimes[] = endTime.split("\\:");
+					form.setEndHour(endTimes[0]);
+					form.setEndMinute(endTimes[1]);
+					form.setEndSecond(endTimes[2]);
+				}
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+			form.setFileName(fileName);
+			form.setId(String.valueOf(resourceForm.getId()));
+			form.setOriginalFileName(fileName);
+			form.setPlayTime(resourceForm.getPlayTime());
+			list.add(form);
+		}
 		return list;
 	}
-	
-	private BsAdvertScreenForm getAdvertResourceInfos(String willCopyFileName){
+
+	private BsAdvertScreenForm getAdvertResourceInfos(String willCopyFileName) {
 		BsAdvertScreenForm screenAdvert = null;
 		FileReader reader = null;
 		BufferedReader br = null;
 		try {
 			reader = new FileReader(willCopyFileName);
-            br = new BufferedReader(reader);
+			br = new BufferedReader(reader);
 			String str = br.readLine();
-			if(str!=null){
+			if (str != null) {
 				str = str.replaceAll("resourceId", "id");
 				screenAdvert = JsonUtils.fromJson(str, BsAdvertScreenForm.class);
 			}
@@ -321,8 +317,8 @@ public class BsAdvertController {
 			logger.error(e.getMessage());
 		} catch (IOException e) {
 			logger.error(e.getMessage());
-		}finally{
-			if(null!=br){
+		} finally {
+			if (null != br) {
 				try {
 					br.close();
 				} catch (IOException e) {
@@ -332,8 +328,10 @@ public class BsAdvertController {
 		}
 		return screenAdvert;
 	}
+
 	/**
 	 * 进行预览
+	 * 
 	 * @param id
 	 * @param screen
 	 * @param request
@@ -348,18 +346,17 @@ public class BsAdvertController {
 		String workHome = VersionCfg.getBsAdvertDir();
 		String contextPath = this.getRealPath(request);
 		File targetDir = new File(contextPath + File.separator + id + File.separator + screen);
-		if (!targetDir.exists()&&!targetDir.mkdirs()){
-			throw new AppException(getVersionI18n("advert.createDir.fail", new Object[]{targetDir.getName()}));
+		if (!targetDir.exists() && !targetDir.mkdirs()) {
+			throw new AppException(getVersionI18n("advert.createDir.fail", new Object[] { targetDir.getName() }));
 		}
-		String zipFilePath = VersionCfg.getBsAdvertDir()+File.separator+advert.getId()+".zip";
-		ZipUtils.unZip(zipFilePath, VersionCfg.getBsAdvertDir()+File.separator+advert.getId(), "UTF-8");
+		String zipFilePath = VersionCfg.getBsAdvertDir() + File.separator + advert.getId() + ".zip";
+		ZipUtils.unZip(zipFilePath, VersionCfg.getBsAdvertDir() + File.separator + advert.getId(), "UTF-8");
 		StringBuffer result = new StringBuffer("[");
 		for (IBsAdvertResource resource : advert.getAdvertResources()) {
 			if (getEnumI18n(resource.getScreen().getText()).equals(screen)) {
-				String sourceFilePath = stringConcat(workHome , File.separator , id , File.separator , AdvertTypeConversionService.convert(advert.getAdvertType()) , File.separator , getEnumI18n(resource.getScreen().getText())
-						, File.separator , resource.getContent());
+				String sourceFilePath = stringConcat(workHome, File.separator, id, File.separator, AdvertTypeConversionService.convert(advert.getAdvertType()), File.separator, getEnumI18n(resource.getScreen().getText()), File.separator, resource.getContent());
 				IOUtils.copyFileToDirectory(sourceFilePath, targetDir.getAbsolutePath());
-				String image = stringConcat("tmp/bsAdvert/" , id , "/" , screen , "/" + resource.getContent());
+				String image = stringConcat("tmp/bsAdvert/", id, "/", screen, "/" + resource.getContent());
 				result.append("{'picName':'").append(image).append("','playTime':'").append(resource.getPlayTime()).append("'}").append(",");
 			}
 		}
@@ -371,21 +368,22 @@ public class BsAdvertController {
 		return result.append("]").toString();
 	}
 
-	private String stringConcat(Object... args){
+	private String stringConcat(Object... args) {
 		StringBuffer sb = new StringBuffer();
-		for(Object arg:args){
+		for (Object arg : args) {
 			sb.append(arg);
 		}
 		return sb.toString();
 	}
-	
-	private String getVersionI18n(String key,Object[] value){
-		return messageSourceVersion.getMessage(key,value, FishCfg.locale);
+
+	private String getVersionI18n(String key, Object[] value) {
+		return messageSourceVersion.getMessage(key, value, FishCfg.locale);
 	}
+
 	/**
-	 * bs广告的目录结构 1.zip  --AD_IDLE ----1024 ------zh_${timestamp}.jpg
-	 * ------zh_${timestamp}.jpg ------..... ------config.json ----800 ------zh_${timestamp}.jpg ------.....
-	 * ------config.json
+	 * bs广告的目录结构 1.zip --AD_IDLE ----1024 ------zh_${timestamp}.jpg
+	 * ------zh_${timestamp}.jpg ------..... ------config.json ----800
+	 * ------zh_${timestamp}.jpg ------..... ------config.json
 	 *
 	 * @param form
 	 * @param request
@@ -398,9 +396,9 @@ public class BsAdvertController {
 
 		ModelMap result = new ModelMap();
 		UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
-		if(exsitSameAdvert(userSession.getOrgId(),form.getAdvertName(),0)){
+		if (exsitSameAdvert(userSession.getOrgId(), form.getAdvertName(), 0)) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-//			bsadvert.org.sameName=当前机构存在相同的广告名称
+			// bsadvert.org.sameName=当前机构存在相同的广告名称
 			result.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.org.sameName", null));
 			return result;
 		}
@@ -437,15 +435,15 @@ public class BsAdvertController {
 			advert.addAdvertResource(res);
 		}
 		bsAdvertService.save(advert);
-		zipAdvertFile(advert,request,fileNames,tempDir);
+		zipAdvertFile(advert, request, fileNames, tempDir);
 		IFilter filter = new Filter();
 		filter.eq("groupId", advert.getGroupId());
 		List<IBsAdvert> groupBsAdvertList = bsAdvertService.list(filter);
-		//如果为当前组的第一个广告则直接激活；第一条及以后的广告不做自动激活处理
-		if(groupBsAdvertList.size()==1){
+		// 如果为当前组的第一个广告则直接激活；第一条及以后的广告不做自动激活处理
+		if (groupBsAdvertList.size() == 1) {
 			advert.setActiveUserId(userSession.getUserId());
 			bsAdvertService.actived(advert);
-		}else{
+		} else {
 			bsAdvertService.update(advert);
 		}
 		// 回填值到form中
@@ -456,27 +454,29 @@ public class BsAdvertController {
 		result.addAttribute(FishConstant.DATA, form);
 		return result;
 	}
-	
-	private boolean exsitSameAdvert(long id,String advertName,long advertId){
-		List<IBsAdvert> bsAdvertList = bsAdvertService.getBsAdvertByNameAndOrgId(id,advertName,advertId);
-		return bsAdvertList.size()>0;
+
+	private boolean exsitSameAdvert(long id, String advertName, long advertId) {
+		List<IBsAdvert> bsAdvertList = bsAdvertService.getBsAdvertByNameAndOrgId(id, advertName, advertId);
+		return bsAdvertList.size() > 0;
 	}
+
 	/**
 	 * 确认更改BsAdvert
+	 * 
 	 * @param id
 	 * @param form
 	 * @param request
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public @ResponseBody
-	ModelMap updateBsAdvert(@PathVariable long id, @RequestBody BsAdvertForm form, HttpServletRequest request) {
+	public @ResponseBody ModelMap updateBsAdvert(@PathVariable long id, @RequestBody BsAdvertForm form, HttpServletRequest request) {
 		logger.info("update bsAdvert: bsAdvert.id = " + id);
+		form.setId(id);
 		ModelMap model = new ModelMap();
-		UserSession session =(UserSession)request.getSession().getAttribute(FishWebUtils.USER);
+		UserSession session = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
 		UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
 		IBsAdvert advert = bsAdvertService.getById(id);
-		if(exsitSameAdvert(userSession.getOrgId(),form.getAdvertName(),id)){
+		if (exsitSameAdvert(userSession.getOrgId(), form.getAdvertName(), id)) {
 			model.addAttribute(FishConstant.SUCCESS, false);
 			model.addAttribute(FishConstant.ERROR_MSG, getI18NResource("bsadvert.org.sameName", null));
 			return model;
@@ -491,8 +491,8 @@ public class BsAdvertController {
 		List<ScreenFile> fileNames = new ArrayList<ScreenFile>();
 		for (BsAdvertResourceForm resForm : form.getAdvertResources()) {
 			IBsAdvertResource res = bsAdvertResourceService.getById(resForm.getId());
-			if(null==res){
-				res= bsAdvertResourceService.make();
+			if (null == res) {
+				res = bsAdvertResourceService.make();
 			}
 			res.setPlayTime(resForm.getPlayTime());
 			res.setBeginTime(resForm.getBeginTime());
@@ -514,17 +514,17 @@ public class BsAdvertController {
 			res.setBsAdvert(advert);
 			advert.addAdvertResource(res);
 		}
-		zipAdvertFile(advert,request,fileNames,tempDir);
+		zipAdvertFile(advert, request, fileNames, tempDir);
 		bsAdvertService.update(advert);
 		// 回填值到form中
-		
+
 		form.setActiveUserId(advert.getActiveUserId());
 		IUser activeUser = userService.get(advert.getActiveUserId());
-		form.setActiveUserName(activeUser==null?"":activeUser.getName());
+		form.setActiveUserName(activeUser == null ? "" : activeUser.getName());
 		form.setAdvertName(advert.getAdvertName());
 		form.setGroupId(advert.getGroupId());
-		IAdvertGroup advertGroup= advertGroupService.getById(advert.getGroupId());
-		if(advertGroup!=null){
+		IAdvertGroup advertGroup = advertGroupService.getById(advert.getGroupId());
+		if (advertGroup != null) {
 			form.setGroupName(advertGroup.getGroupName());
 		}
 		form.setBsAdvertStatus(getEnumI18n(advert.getBsAdvertStatus().getName()));
@@ -533,40 +533,38 @@ public class BsAdvertController {
 		form.setLastTime(DateUtils.getDate(advert.getLastTime()));
 		form.setUserId(advert.getUserId());
 		IUser createUser = userService.get(advert.getUserId());
-		form.setUserName(createUser==null?"":createUser.getName());
-		//如果当前广告更改之前是激活状态的，直接进行激活操作
-		if(advert.getBsAdvertStatus().equals(BsAdvertStatus.ACTIVED)){
+		form.setUserName(createUser == null ? "" : createUser.getName());
+		// 如果当前广告更改之前是激活状态的，直接进行激活操作
+		if (advert.getBsAdvertStatus().equals(BsAdvertStatus.ACTIVED)) {
 			bsAdvertService.actived(advert);
 		}
 		model.addAttribute(FishConstant.SUCCESS, true);
-		model.addAttribute(FishConstant.DATA,form);
+		model.addAttribute(FishConstant.DATA, form);
 		return model;
 	}
-	
-	private void zipAdvertFile(IBsAdvert advert,HttpServletRequest request,List<ScreenFile> fileNames,String tempDir){
+
+	private void zipAdvertFile(IBsAdvert advert, HttpServletRequest request, List<ScreenFile> fileNames, String tempDir) {
 		// 拷贝临时目录中的文件到advert目录中
 		for (ScreenFile screenFile : fileNames) {
-			IOUtils.copyFileToDirectory(tempDir + File.separator + getEnumI18n(screenFile.getScreen().getText()) + File.separator + screenFile.getFileName(), VersionCfg.getBsAdvertDir()
-					+ File.separator + advert.getId() + File.separator + AdvertTypeConversionService.convert(advert.getAdvertType()) + File.separator + getEnumI18n(screenFile.getScreen().getText()));
+			IOUtils.copyFileToDirectory(tempDir + File.separator + getEnumI18n(screenFile.getScreen().getText()) + File.separator + screenFile.getFileName(), VersionCfg.getBsAdvertDir() + File.separator + advert.getId() + File.separator + AdvertTypeConversionService.convert(advert.getAdvertType()) + File.separator + getEnumI18n(screenFile.getScreen().getText()));
 		}
 		// 删除临时目录
 		IOUtils.deleteDir(tempDir);
 
 		// 生成广告版本文件
-		saveConfigInfoToFileByScreen(advert, Screen.SCREEN_1024,request);
-		saveConfigInfoToFileByScreen(advert, Screen.SCREEN_800,request);
-		saveConfigInfoToFileByScreen(advert, Screen.SCREEN_600,request);
-		ZipUtils.zip(getAdvertSourcePath(advert), VersionCfg.getBsAdvertDir()+File.separator+advert.getId()+".zip", "UTF-8");
+		saveConfigInfoToFileByScreen(advert, Screen.SCREEN_1024, request);
+		saveConfigInfoToFileByScreen(advert, Screen.SCREEN_800, request);
+		saveConfigInfoToFileByScreen(advert, Screen.SCREEN_600, request);
+		ZipUtils.zip(getAdvertSourcePath(advert), VersionCfg.getBsAdvertDir() + File.separator + advert.getId() + ".zip", "UTF-8");
 		ZipUtils.delFolder(getAdvertSourcePath(advert));
 	}
-	
+
 	@RequestMapping(value = "/deleteResource")
-	public @ResponseBody
-	ModelMap deleteResource(@RequestParam long id, HttpServletRequest request) {
+	public @ResponseBody ModelMap deleteResource(@RequestParam long id, HttpServletRequest request) {
 		logger.info("delete bsAdvertResource: bsAdvertResource.id = " + id);
 		ModelMap result = new ModelMap();
 		IBsAdvertResource bsAdvertResource = bsAdvertResourceService.getById(id);
-		if(null!=bsAdvertResource){
+		if (null != bsAdvertResource) {
 			File file = new File(getTempRealDir(request) + File.separator + getEnumI18n(bsAdvertResource.getScreen().getText()) + File.separator + bsAdvertResource.getContent());
 			file.delete();
 			bsAdvertResourceService.delete(bsAdvertResource);
@@ -575,8 +573,7 @@ public class BsAdvertController {
 		result.addAttribute(FishConstant.SUCCESS, true);
 		return result;
 	}
-	
-	
+
 	private String getEnumI18n(String enumText) {
 		if (null == enumText) {
 			return "";
@@ -584,7 +581,7 @@ public class BsAdvertController {
 		return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
 	}
 
-	private void saveConfigInfoToFileByScreen(IBsAdvert advert, Screen screen,HttpServletRequest request) {
+	private void saveConfigInfoToFileByScreen(IBsAdvert advert, Screen screen, HttpServletRequest request) {
 		String configInfo = advert.getAdvertConfigByScreen(screen);
 		IOUtils.writeStringToFile(getConfigFileBasePath(advert) + File.separator + getEnumI18n(screen.getText()) + File.separator + "config.json", configInfo);
 	}
@@ -595,6 +592,7 @@ public class BsAdvertController {
 
 	/**
 	 * 获取广告资源的原路径
+	 * 
 	 * @param advert
 	 * @return
 	 */
@@ -605,14 +603,14 @@ public class BsAdvertController {
 	private List<BsAdvertForm> convert(List<Object> advertObjList) {
 		List<BsAdvertForm> formList = new ArrayList<BsAdvertForm>();
 		for (Object advertObj : advertObjList) {
-			Object[] advertObjs = (Object[])advertObj;
-			IAdvertGroup advertGroup = (IAdvertGroup)advertObjs[0];
-			IBsAdvert bsAdvert = (IBsAdvert)advertObjs[1];
+			Object[] advertObjs = (Object[]) advertObj;
+			IAdvertGroup advertGroup = (IAdvertGroup) advertObjs[0];
+			IBsAdvert bsAdvert = (IBsAdvert) advertObjs[1];
 			BsAdvertForm form = new BsAdvertForm();
 			form.setBsAdvertStatus(getEnumI18n(bsAdvert.getBsAdvertStatus().getName()));
 			form.setActiveUserId(bsAdvert.getActiveUserId());
 			IUser activeUser = userService.get(bsAdvert.getActiveUserId());
-			form.setActiveUserName(activeUser==null?"":activeUser.getName());
+			form.setActiveUserName(activeUser == null ? "" : activeUser.getName());
 			form.setAdvertName(bsAdvert.getAdvertName());
 			form.setGroupId(bsAdvert.getGroupId());
 			form.setGroupName(advertGroup.getGroupName());
@@ -621,19 +619,20 @@ public class BsAdvertController {
 			form.setLastTime(DateUtils.getDate(bsAdvert.getLastTime()));
 			form.setUserId(bsAdvert.getUserId());
 			IUser createUser = userService.get(bsAdvert.getUserId());
-			form.setUserName(createUser==null?"":createUser.getName());
+			form.setUserName(createUser == null ? "" : createUser.getName());
 			formList.add(form);
 		}
 		return formList;
 	}
-	
+
 	private String getBsAdvertFile(IBsAdvert bsAdvert) {
-        File file = new File(VersionCfg.getBsAdvertDir() + File.separator + bsAdvert.getId() + ".zip");
-        return file.exists() ? file.getName() : null;
-    }
+		File file = new File(VersionCfg.getBsAdvertDir() + File.separator + bsAdvert.getId() + ".zip");
+		return file.exists() ? file.getName() : null;
+	}
 
 	/**
 	 * 上传资源
+	 * 
 	 * @param file
 	 * @param request
 	 * @param response
@@ -675,6 +674,7 @@ public class BsAdvertController {
 
 	/**
 	 * 是否有中文
+	 * 
 	 * @param s
 	 * @return
 	 */
@@ -687,6 +687,7 @@ public class BsAdvertController {
 
 	/**
 	 * 获取web临时目录
+	 * 
 	 * @param request
 	 * @param screen
 	 * @param saveFileName
@@ -695,7 +696,7 @@ public class BsAdvertController {
 	private String getTempWebDir(HttpServletRequest request, String screen, String saveFileName) {
 		return "tmp/bsAdvert/" + this.getSessionDir(request) + "/" + screen + "/" + saveFileName;
 	}
-	
+
 	/**
 	 * @param request
 	 * @return
@@ -706,6 +707,7 @@ public class BsAdvertController {
 
 	/**
 	 * 获取session目录名称
+	 * 
 	 * @param request
 	 * @return
 	 */
@@ -747,9 +749,10 @@ public class BsAdvertController {
 		}
 
 	}
-	
+
 	/**
 	 * 加载更改页面的广告资源进行使用
+	 * 
 	 * @author GQ
 	 *
 	 */
@@ -757,21 +760,27 @@ public class BsAdvertController {
 		private List<UploadResourceForm> screen1024;
 		private List<UploadResourceForm> screen800;
 		private List<UploadResourceForm> screen600;
+
 		public List<UploadResourceForm> getScreen1024() {
 			return screen1024;
 		}
+
 		public void setScreen1024(List<UploadResourceForm> screen1024) {
 			this.screen1024 = screen1024;
 		}
+
 		public List<UploadResourceForm> getScreen800() {
 			return screen800;
 		}
+
 		public void setScreen800(List<UploadResourceForm> screen800) {
 			this.screen800 = screen800;
 		}
+
 		public List<UploadResourceForm> getScreen600() {
 			return screen600;
 		}
+
 		public void setScreen600(List<UploadResourceForm> screen600) {
 			this.screen600 = screen600;
 		}

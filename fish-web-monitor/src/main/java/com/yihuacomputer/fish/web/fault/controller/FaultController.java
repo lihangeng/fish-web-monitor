@@ -469,7 +469,9 @@ public class FaultController
             @RequestBody CaseFaultForm request)
     {
         logger.info("close fault: fault.id = " + id);
+
         ModelMap result = new ModelMap();
+        request.setId(Long.parseLong(id));
         try
         {
         	ICaseFault fault = service.getFault(Long.parseLong(id)) ;

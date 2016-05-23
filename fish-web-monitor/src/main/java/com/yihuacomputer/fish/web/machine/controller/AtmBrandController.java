@@ -48,10 +48,9 @@ public class AtmBrandController {
 	private IAtmTypeService atmTypeService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody
-	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
+	public @ResponseBody ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search brand : start = %s ,limt = %s ", start, limit));
-		logger.info("locale : " +request.getLocale().getDisplayName());
+		logger.info("locale : " + request.getLocale().getDisplayName());
 		IFilter filter = request2filter(request);
 		ModelMap result = new ModelMap();
 		IPageResult<IAtmVendor> pageResult = atmBrandService.page(start, limit, filter);
@@ -63,8 +62,7 @@ public class AtmBrandController {
 	}
 
 	@RequestMapping(value = "/getTypeItem", method = RequestMethod.GET)
-	public @ResponseBody
-	ModelMap getTypeItem(WebRequest request) {
+	public @ResponseBody ModelMap getTypeItem(WebRequest request) {
 		ModelMap map = new ModelMap();
 		String brand = request.getParameter("brand");
 		List<IAtmType> atmTypes = null;
@@ -80,7 +78,7 @@ public class AtmBrandController {
 		}
 		List<ItemForm> forms = ItemForm.toTypeForms(atmTypes);
 		if (flag) {
-			forms.add(0,new ItemForm(messageSource.getMessage("c.brand.combox.all", null, request.getLocale()), "0"));
+			forms.add(0, new ItemForm(messageSource.getMessage("c.brand.combox.all", null, request.getLocale()), "0"));
 		}
 		map.addAttribute(FishConstant.SUCCESS, true);
 		map.addAttribute(FishConstant.DATA, forms);
@@ -88,8 +86,7 @@ public class AtmBrandController {
 	}
 
 	@RequestMapping(value = "/getTypeItem2", method = RequestMethod.GET)
-	public @ResponseBody
-	ModelMap getTypeItem2(WebRequest request) {
+	public @ResponseBody ModelMap getTypeItem2(WebRequest request) {
 		ModelMap map = new ModelMap();
 		String brand = request.getParameter("brand");
 		List<IAtmType> list = new ArrayList<IAtmType>();
@@ -105,7 +102,7 @@ public class AtmBrandController {
 		for (IAtmType atmType : atmTypes) {
 			list.add(atmType);
 		}
-		List<ItemForm> forms =  ItemForm.toTypeForms(list);
+		List<ItemForm> forms = ItemForm.toTypeForms(list);
 		forms.add(new ItemForm(messageSource.getMessage("c.brand.combox.all", null, FishCfg.locale), "0"));
 		Collections.reverse(forms);
 		map.addAttribute(FishConstant.SUCCESS, true);
@@ -114,8 +111,7 @@ public class AtmBrandController {
 	}
 
 	@RequestMapping(value = "/getBrandItem", method = RequestMethod.GET)
-	public @ResponseBody
-	ModelMap getBrandItem(WebRequest request) {
+	public @ResponseBody ModelMap getBrandItem(WebRequest request) {
 		ModelMap map = new ModelMap();
 		Iterable<IAtmVendor> atmVendors = atmBrandService.list();
 		List<IAtmVendor> list = new ArrayList<IAtmVendor>();
@@ -132,8 +128,7 @@ public class AtmBrandController {
 	}
 
 	@RequestMapping(value = "/deleteQuery", method = RequestMethod.GET)
-	public @ResponseBody
-	ModelMap deleteQuery(@RequestParam long id) {
+	public @ResponseBody ModelMap deleteQuery(@RequestParam long id) {
 		logger.info("query atmBrand : atmBrand.id" + id);
 		ModelMap result = new ModelMap();
 		Iterable<IAtmType> types = atmTypeService.list();
@@ -147,8 +142,7 @@ public class AtmBrandController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public @ResponseBody
-	ModelMap delete(@PathVariable long id) {
+	public @ResponseBody ModelMap delete(@PathVariable long id) {
 		logger.info(" delete AtmBrand: atmBrand.id = " + id);
 		ModelMap result = new ModelMap();
 		if (atmBrandService.get(id) != null) {
@@ -168,8 +162,7 @@ public class AtmBrandController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody
-	ModelMap add(@RequestBody AtmBrandForm request) {
+	public @ResponseBody ModelMap add(@RequestBody AtmBrandForm request) {
 		logger.info("add AtmBrand");
 		ModelMap result = new ModelMap();
 		if (this.isExistCode(String.valueOf(request.getId()), request.getName())) {
@@ -187,10 +180,10 @@ public class AtmBrandController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	public @ResponseBody
-	ModelMap update(@PathVariable long id, @RequestBody AtmBrandForm request) {
+	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody AtmBrandForm request) {
 		logger.info("update AtmBrand: atmBrand.id = " + id);
 		ModelMap result = new ModelMap();
+		request.setId(id);
 		IAtmVendor brand = atmBrandService.get(id);
 		if (brand == null) {
 			result.addAttribute(FishConstant.SUCCESS, false);
@@ -261,8 +254,7 @@ public class AtmBrandController {
 	 * @return
 	 */
 	@RequestMapping(value = "/queryAtmVendor", method = RequestMethod.GET)
-	public @ResponseBody
-	ModelMap queryAtmVendor() {
+	public @ResponseBody ModelMap queryAtmVendor() {
 		logger.info(String.format("search AtmVendor : queryAtmVendor"));
 		ModelMap model = new ModelMap();
 		List<IAtmVendor> atmVendorList = EntityUtils.convert(atmBrandService.list());
@@ -277,8 +269,7 @@ public class AtmBrandController {
 	 * @return
 	 */
 	@RequestMapping(value = "/queryTypeByAtmVendor", method = RequestMethod.GET)
-	public @ResponseBody
-	ModelMap queryAtmTypeByAtmBrand(@RequestParam long devVendorId) {
+	public @ResponseBody ModelMap queryAtmTypeByAtmBrand(@RequestParam long devVendorId) {
 		logger.info(String.format("search AtmType By AtmBrand : queryTypeByAtmVendor"));
 		ModelMap model = new ModelMap();
 		Iterable<IAtmType> typeLists = atmTypeService.list();

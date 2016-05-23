@@ -71,6 +71,7 @@ public class FaultClassifyController
             @RequestBody FaultClassifyForm request)
     {
         logger.info("update Param: param.id = " + id);
+		request.setId(id);
         ModelMap result = new ModelMap();
         try
         {

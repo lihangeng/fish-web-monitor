@@ -58,6 +58,7 @@ public class ParamController {
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody ParamForm request) {
 		logger.info("update Param: param.id = " + id);
+		request.setId(id);
 		ModelMap result = new ModelMap();
 		IParam param = paramService.get(id);
 		try {

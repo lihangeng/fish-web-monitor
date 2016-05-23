@@ -138,6 +138,7 @@ public class AtmMoveController {
 	ModelMap update(@PathVariable long id, @RequestBody AtmMoveForm request) {
 		logger.info("update AtmMove: atmMove.id = " + id);
 		ModelMap result = new ModelMap();
+		request.setId(id);
 		try {
 			IAtmMove atmMove = atmMoveService.get(id);
 			if (atmMove == null) {
