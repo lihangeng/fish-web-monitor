@@ -280,6 +280,7 @@ Ext.define('Eway.controller.parameter.template.Template',
 										this.onQueryAfterOperate();
 									 },
 									 failure: function(record,operation){
+										updateWin.down('button[action="confirm"]').setDisabled(false);
 										Eway.alert(EwayLocale.tip.paramTemplate.updateFailure+operation.error);
 									 },
 									 scope : this
