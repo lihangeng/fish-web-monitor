@@ -23,6 +23,8 @@ import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateDetail;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
+import com.yihuacomputer.fish.api.person.IOrganization;
+import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.machine.entity.Device;
 import com.yihuacomputer.fish.parameter.entity.ParamDeviceDetail;
 import com.yihuacomputer.fish.parameter.entity.ParamElement;
@@ -41,6 +43,10 @@ public class ParamTemplateService implements IParamTemplateService {
 
 	@Autowired
 	private IGenericDao dao;
+	
+	@Autowired
+	private IOrganizationService orgService;
+
 
 	@Override
 	public IParamTemplate make() {
@@ -81,12 +87,14 @@ public class ParamTemplateService implements IParamTemplateService {
 	@Override
 	public IPageResult<IDevice> pageUnlinkedDevice(int offset, int limit,
 			IParamTemplate template,long orgId, IFilter filter) {
-
+		
+		IFilter fi = new Filter();	
+		IOrganization org = orgService.get(String.valueOf(orgId));	
+		filter.like("d.organization.orgFlag", org.getOrgFlag());
+		
 		StringBuffer hqls = new StringBuffer();
 		hqls.append("select DISTINCT d from Device d WHERE ");
 		hqls.append(" d.id not in (select dp.deviceId from ParamTemplateDeviceRelation dp where dp.templateId = ?) " );
-		hqls.append("and d.organization.id >= ");
-		hqls.append(orgId);
 
 		return (IPageResult<IDevice>) dao.page(offset, limit, filter,
 				hqls.toString(), (Long) (template.getId()));
@@ -97,13 +105,14 @@ public class ParamTemplateService implements IParamTemplateService {
 	public IPageResult<IDevice> pageLinkedDevice(int offset, int limit,
 			IParamTemplate template,long orgId, IFilter filter) {
 
-		IFilter fi = new Filter();
-
+		IFilter fi = new Filter();	
+		IOrganization org = orgService.get(String.valueOf(orgId));
+		fi.rlike("d.organization.orgFlag", org.getOrgFlag());
+		
 		StringBuffer hql = new StringBuffer();
+		filter.like("d.organization.orgFlag", org.getOrgFlag());
 		hql.append("select d from Device d ,ParamTemplateDeviceRelation t ");
 		hql.append("where d.id = t.deviceId ");
-		hql.append("and d.organization.id >= ");
-		hql.append(orgId);
 
 		return (IPageResult<IDevice>) dao.page(offset, limit, filter,
 				hql.toString(), null);
