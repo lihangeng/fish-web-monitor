@@ -26,7 +26,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			'#versionDownloadMonitorView button[action=query]' : {
 				click : this.onQuery
 			},
-			'versionDownloadMonitorView tabpanel':{
+			'versionDownloadMonitorView panel[layout=card]':{
 				tabchange:this.onTabChange
 			},
 			'#versionDownloadMonitorView button[action=start]' : {
@@ -62,7 +62,9 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		});
 	},
 	onResetStatus:function(){
-		var grid = this.getEwayView().down("tabpanel").getActiveTab();
+//		var grid = this.getEwayView().down("panel[name=groupPanel]").up("panel").getActiveTab();
+		var layout = this.getEwayView().down("panel[name=groupPanel]").up("panel").getLayout();
+		var grid = layout.getActiveItem( );
 		var sm = grid.getSelectionModel();
 		if (sm.getCount() == 1) {
 			var record = sm.getLastSelected();
@@ -211,22 +213,23 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		if (sm.getCount() == 1) {
 			this.onViewBeforeDeactivate();
 			var record = sm.getLastSelected();
-			var tabpanel = this.getEwayView().down("tabpanel");
+			var tabpanel = this.getEwayView().down("panel[name=groupPanel]").up("panel");
 			var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":record.get("id")});
 			tabpanel.add(jobDetailPanel);
-			jobDetailPanel.setTitle(record.get("jobName"));
+//			jobDetailPanel.setTitle(record.get("jobName"));
+			jobDetailPanel.on("beforeclose",this.taskClose,this);
 			tabpanel.setActiveItem(jobDetailPanel);
 			this.lastTaskGrid = jobDetailPanel;
 		} else {
 			Eway.alert(EwayLocale.version.task.selectAJob);
 		}
-		var autoRefreshButton = jobDetailPanel.down("button[action=autoRefresh]");
-		Ext.Function.defer(this.onAutoRefresh,500,this,[autoRefreshButton]);
+//		var autoRefreshButton = jobDetailPanel.down("button[action=autoRefresh]");
+//		Ext.Function.defer(this.onAutoRefresh,500,this,[autoRefreshButton]);
 	},
 
 	autoJobDetail:function(jobId){
 		var me =this;
-		var tabpanel = this.getEwayView().down("tabpanel");
+		var tabpanel = this.getEwayView().down("panel[name=groupPanel]").up("panel");
 		Ext.Ajax.request({
 		    url: 'api/version/download/getJobInfo',
 		    method:'POST',
@@ -238,16 +241,22 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 				me.onViewBeforeDeactivate();
 		        var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":jobId});
 				tabpanel.add(jobDetailPanel);
-				jobDetailPanel.setTitle(object.total.jobName);
+//				jobDetailPanel.setTitle(object.total.jobName);
 				tabpanel.setActiveItem(jobDetailPanel);
+				jobDetailPanel.on("beforeclose",me.taskClose,me);
 				me.lastTaskGrid = jobDetailPanel;
-				var autoRefreshButton = jobDetailPanel.down("button[action=autoRefresh]");
-				Ext.Function.defer(me.onAutoRefresh,500,me,[autoRefreshButton]);
+//				var autoRefreshButton = jobDetailPanel.down("button[action=autoRefresh]");
+//				Ext.Function.defer(me.onAutoRefresh,500,me,[autoRefreshButton]);
 		    }
 		});
 	},
 
-
+	taskClose:function(_this,opt){
+		var layout = _this.up("panel").getLayout();
+		var groupPanel = this.getEwayView().down("panel[name=groupPanel]");
+//		var grid = layout.getActiveItem( );
+		layout.setActiveItem(groupPanel);
+	},
 	//---------------------------------------------------------
 
 
@@ -325,7 +334,9 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	},
 
 	getActiveTask:function(){
-		return this.getEwayView().down("tabpanel").getActiveTab();
+		var layout = this.getEwayView().down("panel[name=groupPanel]").up("panel").getLayout();
+		return layout.getActiveItem( );
+//		return this.getEwayView().down("panel[name=groupPanel]").up("panel").getActiveTab();
 	},
 
 	onAutoRefresh : function(btn,e,options){

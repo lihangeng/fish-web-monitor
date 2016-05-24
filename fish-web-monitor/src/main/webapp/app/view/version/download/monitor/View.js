@@ -12,16 +12,11 @@ Ext.define('Eway.view.version.download.monitor.View', {
 		Ext.apply(this, {
 			items : [ {
 				region: 'center',
-				xtype: 'tabpanel',
-				plain:false,
-				tabPosition : 'bottom',
-				headerPosition: 'bottom',
-//				title: EwayLocale.version.jobTitle,
-				split: true,
+				xtype: 'panel',
+				layout : 'card',
 				items : [{
 						name:'groupPanel',
 						xtype:'panel',
-						title: EwayLocale.version.jobTitle,
 						layout : 'border',
 						items:[{
 								xtype:'version_download_monitor_jobfilterForm',
@@ -31,28 +26,12 @@ Ext.define('Eway.view.version.download.monitor.View', {
 								region: 'center',
 								xtype : 'version_download_monitor_jobgrid'
 							}
-						]}/*,
-						{
-							name:'groupPane2',
-							xtype:'panel',
-							title: EwayLocale.version.jobTitle,
-							layout : 'border',
-                            hidden : true,
-							items:[{
-									xtype:'version_download_monitor_jobfilterForm',
-									region: 'north',
-									height : 40
-								}, {
-									region: 'center',
-									xtype : 'version_download_monitor_taskgrid'
-								}
-							]}*/
+						]}
 				]
 			}],
 			listeners : {
 				activate : function(panel) {
 					panel.down('version_download_monitor_jobgrid').getStore().load();
-//					panel.down("panel[name='groupPane2']").hide();
 				}
 			}
 		});

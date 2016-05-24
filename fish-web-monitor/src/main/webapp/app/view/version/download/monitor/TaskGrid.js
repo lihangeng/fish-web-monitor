@@ -23,7 +23,12 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 		var me = this;
 		Ext.apply(this, {
 			initRegion : true,
-			tbar: ['->',{
+			tbar: [{text:  EwayLocale.button.search,//'查询',
+				iconCls : 'queryBtn',
+				action: 'taskquery',
+				tooltip:EwayLocale.version.download.taskQueryTips,//'根据条件查询选中作业下的详情信息'
+				code:'taskQuery'
+					},'->',{
 				text:'',
 				action:'tip',
 				xtype:'tbtext'
@@ -61,7 +66,7 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 				width: 250
 			},{
 				text:  EwayLocale.button.search,//'查询',
-				iconCls : 'queryBtn',
+				glyph : 0xf002,
 				action: 'taskquery',
 				tooltip:EwayLocale.version.download.taskQueryTips,//'根据条件查询选中作业下的详情信息'
 				code:'taskQuery',

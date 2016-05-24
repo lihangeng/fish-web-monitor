@@ -3,7 +3,7 @@ Ext.define('Eway.view.version.download.monitor.JobFilterForm', {
 	alias : 'widget.version_download_monitor_jobfilterForm',
 	
 	requires : ['Eway.view.version.field.VersionTypeComboBox'],
-	height : 80,
+//	height : 80,
 	initComponent : function() {
 		Ext.apply(this, {
 			layout : 'column',
