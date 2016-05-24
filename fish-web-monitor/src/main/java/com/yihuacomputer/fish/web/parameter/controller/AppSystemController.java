@@ -70,6 +70,7 @@ public class AppSystemController {
 	public @ResponseBody
 	ModelMap update(@PathVariable long id,@RequestBody AppSystemForm request){
 		logger.info("update appSystem:appSystem.id="+id);
+		request.setId(id);
 		ModelMap result=new ModelMap();
 		IAppSystem appSystem=appSystemService.get(id);
 		if(appSystem==null){

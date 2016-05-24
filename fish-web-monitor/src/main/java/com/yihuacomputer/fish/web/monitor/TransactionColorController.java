@@ -119,6 +119,7 @@ public class TransactionColorController {
     public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody TransactionColorForm request) {
         logger.info("update transaction/color: transaction/color.id = " + id);
         ModelMap model = new ModelMap();
+        request.setId(id);
         model.addAttribute(FishConstant.SUCCESS, true);
 
         ITransactionColor transactionColor = transactionColorService.get(id);

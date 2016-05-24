@@ -148,6 +148,7 @@ public class VersionTypeController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody ModelMap update(@PathVariable long id,@RequestBody VersionTypeForm form) {
 		logger.info(" update versionType : versionType.id = " + form.getId());
+		form.setId(id);
 		ModelMap result = new ModelMap();
 		try{
 			IVersionType type = versionTypeService.getById(id);

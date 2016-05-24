@@ -80,11 +80,13 @@ public class ParamTemplateService implements IParamTemplateService {
 	@SuppressWarnings("all")
 	@Override
 	public IPageResult<IDevice> pageUnlinkedDevice(int offset, int limit,
-			IParamTemplate template, IFilter filter) {
+			IParamTemplate template,long orgId, IFilter filter) {
 
 		StringBuffer hqls = new StringBuffer();
 		hqls.append("select DISTINCT d from Device d WHERE ");
-		hqls.append(" d.id not in (select dp.deviceId from ParamTemplateDeviceRelation dp where dp.templateId = ?)");
+		hqls.append(" d.id not in (select dp.deviceId from ParamTemplateDeviceRelation dp where dp.templateId = ?) " );
+		hqls.append("and d.organization.id >= ");
+		hqls.append(orgId);
 
 		return (IPageResult<IDevice>) dao.page(offset, limit, filter,
 				hqls.toString(), (Long) (template.getId()));
@@ -93,13 +95,15 @@ public class ParamTemplateService implements IParamTemplateService {
 	@SuppressWarnings("all")
 	@Override
 	public IPageResult<IDevice> pageLinkedDevice(int offset, int limit,
-			IParamTemplate template, IFilter filter) {
+			IParamTemplate template,long orgId, IFilter filter) {
 
 		IFilter fi = new Filter();
 
 		StringBuffer hql = new StringBuffer();
 		hql.append("select d from Device d ,ParamTemplateDeviceRelation t ");
 		hql.append("where d.id = t.deviceId ");
+		hql.append("and d.organization.id >= ");
+		hql.append(orgId);
 
 		return (IPageResult<IDevice>) dao.page(offset, limit, filter,
 				hql.toString(), null);

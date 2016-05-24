@@ -180,6 +180,7 @@ public class OrganizationController {
 	@RequestMapping(value = "/{guid}", method = RequestMethod.PUT)
 	public @ResponseBody ModelMap update(@PathVariable String guid, @RequestBody OrganizationForm form, HttpServletRequest req) {
 		logger.info(" update org : org.id = " + guid);
+		form.setGuid(guid);
 		ModelMap result = new ModelMap();
 
 		boolean isExist = this.isExistCode(guid, form.getCode(), form.getOrganizationType());

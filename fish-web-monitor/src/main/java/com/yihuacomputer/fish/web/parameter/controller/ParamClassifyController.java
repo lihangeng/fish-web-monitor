@@ -110,6 +110,7 @@ public class ParamClassifyController {
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody ParamClassifyForm request) {
 		logger.info("update classify: classify.id = " + id);
+		request.setId(id);
 		ModelMap result = new ModelMap();
 		IParamClassify classify = classifyService.get(id);
 		if(id == 1){

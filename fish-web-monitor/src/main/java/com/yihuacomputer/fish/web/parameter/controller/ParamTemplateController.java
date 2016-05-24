@@ -45,6 +45,7 @@ import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
+import com.yihuacomputer.fish.api.person.OrganizationType;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamElementForm;
@@ -292,6 +293,7 @@ public class ParamTemplateController {
 		logger.info(String.format("search device : start = %s ,limt = %s ",start, limit));
 
 		ModelMap result = new ModelMap();
+		UserSession userSession = (UserSession) req.getSession().getAttribute("SESSION_USER");
 		IPageResult<IDevice> pageResult = null;
 		if (templateService.get(Long.parseLong(guid)) == null) {
 			result.addAttribute(FishConstant.SUCCESS, false);
@@ -304,14 +306,16 @@ public class ParamTemplateController {
 			filter.eq("t.templateId", Long.parseLong(guid));
 
 			pageResult = templateService.pageLinkedDevice(start, limit,
-					templateService.get(Long.parseLong(guid)), filter);
+					templateService.get(Long.parseLong(guid)),userSession.getOrgId(), filter);
+
 			result.addAttribute("total", pageResult.getTotal());
 			result.addAttribute("data", DeviceForm.convert(pageResult.list()));
 		} else {
 			// 可以关联的设备
 			IFilter filter = getFilterDevice(request);
+
 			pageResult = templateService.pageUnlinkedDevice(start, limit,
-					templateService.get(Long.parseLong(guid)), filter);
+					templateService.get(Long.parseLong(guid)),userSession.getOrgId(), filter);
 
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("total", pageResult.getTotal());
@@ -558,6 +562,7 @@ public class ParamTemplateController {
 				if (name.equals("devType")) {
 					filter.eq("d.devType.id", Long.parseLong(value));
 				}
+
 			}
 		}
 		return filter;

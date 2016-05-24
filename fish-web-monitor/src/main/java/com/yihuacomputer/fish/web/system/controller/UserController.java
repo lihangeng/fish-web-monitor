@@ -241,6 +241,7 @@ public class UserController {
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody UserForm form) {
 		logger.info("update Master: Master.id = " + id);
+		form.setId(id);
 		ModelMap result = new ModelMap();
 		if (!isExistCode(String.valueOf(form.getId()), form.getCode())) {
 			IUser user = userService.get(id);

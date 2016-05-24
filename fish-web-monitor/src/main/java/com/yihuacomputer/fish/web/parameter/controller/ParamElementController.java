@@ -123,6 +123,7 @@ public class ParamElementController {
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody ParamElementForm request) {
 		logger.info("update elemet: elemet.id = " + id);
+		request.setId(id);
 		ModelMap result = new ModelMap();
 		boolean isExist=this.isExistParamName(id, request.getParamName(), request.getClassifyId(), request.getParamBelongsId());
 		if(isExist){

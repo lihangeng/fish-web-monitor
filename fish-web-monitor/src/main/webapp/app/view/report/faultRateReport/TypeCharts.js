@@ -6,7 +6,7 @@ Ext.define('Eway.view.report.faultRateReport.TypeCharts', {
 	requires : [ 'Eway.lib.Util','Ext.chart.theme.Muted' ],
     config:{
     	columnField:'rate',
-    	rowField:'typeName'
+    	rowField:'name'
     },
 	border : false,
 	closable : false ,	
@@ -65,7 +65,7 @@ Ext.define('Eway.view.report.faultRateReport.TypeCharts', {
                 }, {
                     type: 'category',
                     position: 'bottom',
-                    fields: ['typeName'],
+                    fields: ['name'],
                     grid: true,
                     label: {
                         rotate: {
@@ -76,15 +76,15 @@ Ext.define('Eway.view.report.faultRateReport.TypeCharts', {
                 series: [{
                     type: 'bar',
                     axis: 'left',
-                    xField: 'typeName',
+                    xField: 'name',
                     title: [ '故障数', '交易数', '故障率(百分比)' ],
-                    yField: [ 'fault','trade','rate' ],
+                    yField: [ 'faultCount','tradeCount','rate' ],
                     stacked: false,
                     style: {
                         opacity: 0.80
                     },
                     label: {
-                        field: [ 'fault','trade','rate' ],// me.getColumnField(),
+                        field: [ 'faultCount','tradeCount','rate' ],// me.getColumnField(),
                         display: 'insideEnd'
                     },
                     tooltip: {
@@ -92,7 +92,7 @@ Ext.define('Eway.view.report.faultRateReport.TypeCharts', {
                         style: 'background: #fff',
                         renderer: function(storeItem, item) {
                             var type = item.series.getTitle()[Ext.Array.indexOf(item.series.getYField(), item.field)];
-                            this.setHtml(type + ' for ' + storeItem.get('typeName') + ': ' + storeItem.get(item.field));
+                            this.setHtml(type + ' for ' + storeItem.get('name') + ': ' + storeItem.get(item.field));
                         }
                     },
                 }]

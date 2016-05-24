@@ -1,6 +1,6 @@
 Ext.define('Eway.model.report.faultRateReport.Type',{
 	extend :'Ext.data.Model',
-	fields:['typeName','fault','trade','rate'],
+	fields:['name','faultCount','tradeCount','rate'],
 
 	proxy:{
 		type:'rest',

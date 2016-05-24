@@ -368,6 +368,7 @@ public class PersonController {
     public @ResponseBody
     ModelMap update(@PathVariable String id, @RequestBody PersonForm form) {
         logger.info("update Person: Person.guid = " + id);
+        form.setGuid(id);
         ModelMap result = new ModelMap();
         IPerson person = service.get(id);
         if (person == null) {
