@@ -6,7 +6,7 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
 	requires : [ 'Eway.lib.Util','Ext.chart.theme.Muted' ],
     config:{
     	columnField:'rate',
-    	rowField:'brandName'
+    	rowField:'name'
     },
 	border : false,
 	closable : false ,	
@@ -65,7 +65,7 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
                 }, {
                     type: 'category',
                     position: 'bottom',
-                    fields: ['brandName'],
+                    fields: ['name'],
                     grid: true,
                     label: {
                         rotate: {
@@ -76,9 +76,9 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
                 series: [{
                     type: 'bar',
                     axis: 'left',
-                    xField: 'brandName',
+                    xField: 'name',
                     title: [ '故障数', '交易数', '故障率(百分比)' ],
-                    yField: [ 'fault','trade','rate' ],
+                    yField: [ 'faultCount','tradeCount','rate' ],
                     stacked: false,
                     style: {
                         opacity: 0.80
@@ -92,7 +92,7 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
                         style: 'background: #fff',
                         renderer: function(storeItem, item) {
                             var brand = item.series.getTitle()[Ext.Array.indexOf(item.series.getYField(), item.field)];
-                            this.setHtml(brand + ' for ' + storeItem.get('brandName') + ': ' + storeItem.get(item.field));
+                            this.setHtml(brand + ' for ' + storeItem.get('name') + ': ' + storeItem.get(item.field));
                         }
                     },
                 }]
