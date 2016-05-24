@@ -8,7 +8,6 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 	store : 'version.monitor.Task',
 	border : false,
 	autoScroll : true,
-	closable : true ,
 	viewConfig : {
 		forceFit : true,
 		stripeRows : true,
@@ -23,12 +22,7 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 		var me = this;
 		Ext.apply(this, {
 			initRegion : true,
-			tbar: [{text:  EwayLocale.button.search,//'查询',
-				iconCls : 'queryBtn',
-				action: 'taskquery',
-				tooltip:EwayLocale.version.download.taskQueryTips,//'根据条件查询选中作业下的详情信息'
-				code:'taskQuery'
-					},'->',{
+			tbar: ['->',{
 				text:'',
 				action:'tip',
 				xtype:'tbtext'
@@ -51,7 +45,7 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 					data : [
 							{'value':'2','name':EwayLocale.version.task.updateResultRunning},
 							{'value':'1','name':EwayLocale.version.task.updateResultSuccess},//'成功'},
-						{'value':'0','name':EwayLocale.version.task.updateResultFailed}//'失败'}
+							{'value':'0','name':EwayLocale.version.task.updateResultFailed}//'失败'}
 					]
 				}),
 				queryMode : 'local',
@@ -82,25 +76,7 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
-			}/*,{
-				text: '导出',
-				iconCls : 'exportToExcel',
-				action: 'export',
-				tooltip:'导出选中作业下的全部下发结果',
-				code : 'exportJobToExcel',
-				listeners:{
-					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-				}
-			},{
-				text: '全部重启',
-				iconCls : 'exportToExcel',
-				action: 'rebootAll',
-				tooltip:'重启该作业下的可以重启的全部设备',
-				code : 'rebootAll',
-				listeners:{
-					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-				}
-			}*/],
+			}],
 			columns : [
 			{
 				header : 'ID',
@@ -268,11 +244,7 @@ Ext.define('Eway.view.version.download.monitor.TaskGrid', {
 				displayInfo : true
 			}),
 			listeners:{
-				activate:function( _this, eOpts ){
-					var jobId = _this.getConfig().jobId;
-					_this.getStore().setBaseParam("jobId",jobId);
-					_this.getStore().load();
-				}
+				
 			}
 		});
 

@@ -17,17 +17,14 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		ref : 'filterForm',
 		selector: 'version_download_monitor_jobfilterForm'
 	},{
-		ref:'taskGrid',
-		selector: 'version_download_monitor_taskgrid'
+		ref:'taskPanel',
+		selector: 'version_download_monitor_taskpanel'
 	}],
 
 	init : function() {
 		this.control({
 			'#versionDownloadMonitorView button[action=query]' : {
 				click : this.onQuery
-			},
-			'versionDownloadMonitorView panel[layout=card]':{
-				tabchange:this.onTabChange
 			},
 			'#versionDownloadMonitorView button[action=start]' : {
 				click : this.onStart
@@ -44,27 +41,29 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			'#versionDownloadMonitorView version_download_grid' :{
 				afterrender : this.onSelectFirst
 			},
-			'#versionDownloadMonitorView version_download_monitor_taskgrid':{
+			'#versionDownloadMonitorView version_download_monitor_taskpanel':{
 				close :this.onDestory
 			},
-			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=taskquery]':{
+			'#versionDownloadMonitorView version_download_monitor_taskpanel button[action=taskquery]':{
 				click :this.onTaskQuery
 			},
-			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=rebootAll]':{
+			'#versionDownloadMonitorView version_download_monitor_taskpanel button[action=rebootAll]':{
 				click :this.onTaskRebootAll
 			},
-			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=autoRefresh]':{
+			'#versionDownloadMonitorView version_download_monitor_taskpanel button[action=autoRefresh]':{
 				click :this.onAutoRefresh
 			},
-			'#versionDownloadMonitorView version_download_monitor_taskgrid button[action=resetStatus]':{
+			'#versionDownloadMonitorView version_download_monitor_taskpanel button[action=resetStatus]':{
 				click :this.onResetStatus
+			},
+			'#versionDownloadMonitorView version_download_monitor_taskpanel button[action=toJob]':{
+				click :this.taskClose
 			}
 		});
 	},
 	onResetStatus:function(){
-//		var grid = this.getEwayView().down("panel[name=groupPanel]").up("panel").getActiveTab();
 		var layout = this.getEwayView().down("panel[name=groupPanel]").up("panel").getLayout();
-		var grid = layout.getActiveItem( );
+		var grid = layout.getActiveItem().down("version_download_monitor_taskgrid");
 		var sm = grid.getSelectionModel();
 		if (sm.getCount() == 1) {
 			var record = sm.getLastSelected();
@@ -198,13 +197,6 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		}
 	},
 	
-	onTabChange:function( tabPanel, newCard, oldCard, eOpts ){
-		if(newCard.name=='groupPanel'){
-			var jobDetailPanel = this.getEwayView().down("panel[name='taskDetails']");
-			jobDetailPanel.close();
-
-		}
-	},
 	
 	onJobDetail:function(){
 		var grid = this.getGrid();
@@ -214,17 +206,13 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			this.onViewBeforeDeactivate();
 			var record = sm.getLastSelected();
 			var tabpanel = this.getEwayView().down("panel[name=groupPanel]").up("panel");
-			var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":record.get("id")});
+			var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskPanel",{"jobId":record.get("id")});
 			tabpanel.add(jobDetailPanel);
-//			jobDetailPanel.setTitle(record.get("jobName"));
-			jobDetailPanel.on("beforeclose",this.taskClose,this);
 			tabpanel.setActiveItem(jobDetailPanel);
 			this.lastTaskGrid = jobDetailPanel;
 		} else {
 			Eway.alert(EwayLocale.version.task.selectAJob);
 		}
-//		var autoRefreshButton = jobDetailPanel.down("button[action=autoRefresh]");
-//		Ext.Function.defer(this.onAutoRefresh,500,this,[autoRefreshButton]);
 	},
 
 	autoJobDetail:function(jobId){
@@ -239,22 +227,19 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		    success: function(response){
 		        var object = Ext.decode(response.responseText);
 				me.onViewBeforeDeactivate();
-		        var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskGrid",{"jobId":jobId});
+		        var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskPanel",{"jobId":jobId});
 				tabpanel.add(jobDetailPanel);
-//				jobDetailPanel.setTitle(object.total.jobName);
 				tabpanel.setActiveItem(jobDetailPanel);
-				jobDetailPanel.on("beforeclose",me.taskClose,me);
 				me.lastTaskGrid = jobDetailPanel;
-//				var autoRefreshButton = jobDetailPanel.down("button[action=autoRefresh]");
-//				Ext.Function.defer(me.onAutoRefresh,500,me,[autoRefreshButton]);
 		    }
 		});
 	},
 
 	taskClose:function(_this,opt){
-		var layout = _this.up("panel").getLayout();
+		var taskPanel = _this.up("version_download_monitor_taskpanel");
+		var layout = taskPanel.up("panel").getLayout();
 		var groupPanel = this.getEwayView().down("panel[name=groupPanel]");
-//		var grid = layout.getActiveItem( );
+		taskPanel.close();
 		layout.setActiveItem(groupPanel);
 	},
 	//---------------------------------------------------------
@@ -287,7 +272,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 
 	//暂停一个作业
 	onCancelBatch: function(){
-		var grid = this.getTaskGrid();
+		var grid = this.getTaskPanel().down("version_download_monitor_taskgrid");
 		var store = grid.getStore();
 		var sm = grid.getSelectionModel();
 		if (sm.getCount() == 1) {
@@ -314,8 +299,8 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 
 	setTaskSearchFilter  : function(jobId){
 		var extraParams = ""||{"jobId" : jobId};
-		var taskGrid = this.getActiveTask()
-		var jobId = taskGrid.getConfig().jobId;
+		var taskGrid = this.getActiveTask().down("version_download_monitor_taskgrid");
+		var jobId = this.getActiveTask().getConfig().jobId;
 		var fields = taskGrid.query('field');
 		Ext.each(fields,function(field){
 			if(field.name == 'updateResult' || field.name == 'terminalId'){
@@ -327,8 +312,8 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 
 	//查找任务
 	onTaskQuery : function(){
-		var grid = this.getActiveTask()
-		var jobId = grid.getConfig().jobId;
+		var grid = this.getActiveTask().down("version_download_monitor_taskgrid");
+		var jobId = this.getActiveTask().getConfig().jobId;
 		this.setTaskSearchFilter(jobId);
 		grid.getStore().loadPage(1);
 	},
@@ -336,12 +321,11 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	getActiveTask:function(){
 		var layout = this.getEwayView().down("panel[name=groupPanel]").up("panel").getLayout();
 		return layout.getActiveItem( );
-//		return this.getEwayView().down("panel[name=groupPanel]").up("panel").getActiveTab();
 	},
 
 	onAutoRefresh : function(btn,e,options){
-		var grid = this.getActiveTask()
-		var jobId = grid.getConfig().jobId;
+		var grid = this.getActiveTask().down("version_download_monitor_taskgrid");
+		var jobId = this.getActiveTask().getConfig().jobId;
 			if(this.currentTask == null){
 				this.currentTask = {
 				   run : function() {

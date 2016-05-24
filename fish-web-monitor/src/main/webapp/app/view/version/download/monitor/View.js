@@ -2,7 +2,7 @@ Ext.define('Eway.view.version.download.monitor.View', {
 	extend : 'Eway.view.base.Panel',
 	alias : 'widget.versionDownloadMonitorView',
 
-	requires : ['Eway.view.version.download.monitor.TaskGrid',
+	requires : [
 	            'Eway.view.version.download.monitor.JobGrid',
 	            'Eway.view.version.download.monitor.JobFilterForm'],
 
