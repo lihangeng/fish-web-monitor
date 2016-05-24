@@ -20,9 +20,9 @@
 		<module>fish-web-monitor</module>
 	</modules>
 	<scm>
-	 	<connection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</connection>
-        <developerConnection>scm:git:ssh://git@git.nj.yihuacomputer.com/atmvs.git</developerConnection>
-        <url>http://git.nj.yihuacomputer.com/gitweb/?p=atmvs.git</url>
+	 	<connection>scm:git:ssh://git@10.2.8.222/atmvs.git</connection>
+        <developerConnection>scm:git:ssh://git@10.2.8.222/atmvs.git</developerConnection>
+        <url>http://10.2.8.222/gitweb/?p=atmvs.git</url>
         <tag>HEAD</tag>
 	</scm>
 		<properties>
@@ -65,7 +65,7 @@
 		</repository>
 		<snapshotRepository>
 			<id>snapshots</id>
-			<url>http://172.18.30.232:8081/nexus/content/repositories/snapshots</url>
+			<url>http://10.2.8.232:8081/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<repositories>
@@ -75,7 +75,7 @@
 	    </snapshots>
 	    <id>nexus snapshot</id>
 	    <name>Nexus snapshot Repository</name>
-	    <url>http://172.18.30.232:8081/nexus/content/groups/public</url>
+	    <url>http://10.2.8.232:8081/nexus/content/groups/public</url>
 	  </repository>
 	  <repository>
 	    <snapshots>
