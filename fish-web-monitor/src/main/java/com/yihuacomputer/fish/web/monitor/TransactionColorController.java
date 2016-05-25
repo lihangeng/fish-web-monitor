@@ -103,7 +103,13 @@ public class TransactionColorController {
         logger.info(" delete transaction/color: transaction/color.id = " + id);
         ModelMap result = new ModelMap();
         result.addAttribute(FishConstant.SUCCESS, true);
-
+        if( transactionColorService.get(id) == null){
+        	
+        	 result.addAttribute(FishConstant.SUCCESS, true);
+             result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("commen.delSucess", null, FishCfg.locale));
+             return result;
+        	
+        }
         try {
             transactionColorService.remove(id);
         }

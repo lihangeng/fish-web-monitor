@@ -557,25 +557,25 @@ Ext.define('Eway.controller.monitor.newTransaction.NewTransactionMonitor', {
         
         if (newValue == '2') {
             // "display" : "1分钟"
-            timeAxis.step = [Ext.Date.MINUTE, 1];
-            timeAxis.fromDate = date;
-            timeAxis.toDate = Ext.Date.add(date, Ext.Date.MINUTE, 15);
+        	timeAxis.setStep([Ext.Date.MINUTE, 1]);
+            timeAxis.setFromDate(date);
+            timeAxis.setToDate(Ext.Date.add(date, Ext.Date.MINUTE, 2));
             
             intervalTime = 60;
             
         } else if (newValue == '3') {
             // "display" : "3分钟"
-            timeAxis.step = [Ext.Date.MINUTE, 3];
-            timeAxis.fromDate = date;
-            timeAxis.toDate = Ext.Date.add(date, Ext.Date.MINUTE, 45);
+            timeAxis.setStep([Ext.Date.MINUTE, 3]);
+            timeAxis.setFromDate(date);
+            timeAxis.setToDate(Ext.Date.add(date, Ext.Date.MINUTE, 45));
             
             intervalTime = 180;
             
         } else if (newValue == '4') {
             // "display" : "5分钟"
-            timeAxis.step = [Ext.Date.MINUTE, 5];
-            timeAxis.fromDate = date;
-            timeAxis.toDate = Ext.Date.add(date, Ext.Date.MINUTE, 75);
+        	timeAxis.setStep([Ext.Date.MINUTE, 5]);
+            timeAxis.setFromDate(date);
+            timeAxis.setToDate(Ext.Date.add(date, Ext.Date.MINUTE, 75));
             
             intervalTime = 300;
         }
@@ -645,7 +645,7 @@ Ext.define('Eway.controller.monitor.newTransaction.NewTransactionMonitor', {
         }
         this.data.push(gs);
         
-        var toDate = timeAxis.toDate,
+        var toDate = timeAxis.getToDate(),
             lastDate = gs.date,
             markerIndex = chart.markerIndex || 0;
         
@@ -654,8 +654,8 @@ Ext.define('Eway.controller.monitor.newTransaction.NewTransactionMonitor', {
         
         if (+toDate < +tempLastDate) {
             markerIndex = 1;
-            timeAxis.toDate = tempLastDate;
-            timeAxis.fromDate = Ext.Date.add(Ext.Date.clone(timeAxis.fromDate), Ext.Date.SECOND, intervalTime);
+            timeAxis.setToDate(tempLastDate);
+            timeAxis.setFromDate(Ext.Date.add(Ext.Date.clone(timeAxis.getFromDate()), Ext.Date.SECOND, intervalTime));
             chart.markerIndex = markerIndex;
         }
         
