@@ -18,6 +18,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.job.IJob;
@@ -87,6 +88,9 @@ public class Task implements ITask {
 
     @Column(name = "DOWNLOAD_FINISH_TIME")
     private String downloadFinishTime ;
+    
+    @Column(name = "DOWNLOAD_TIME")
+    private long downloadTime ;
 
     @Transient
     private ITaskService taskService;
@@ -288,11 +292,22 @@ public class Task implements ITask {
 	@Override
 	public void setDownloadFinishTime(String downloadFinishTime) {
 		this.downloadFinishTime = downloadFinishTime ;
+		Date start = DateUtils.getTimestamp(downloadStartTime);
+		Date finish = DateUtils.getTimestamp(downloadFinishTime);
+		this.downloadTime=(finish.getTime()-start.getTime());
 	}
 
 	@Override
 	public String getDownloadFinishTime() {
 		return this.downloadFinishTime ;
+	}
+
+	public long getDownloadTime() {
+		return downloadTime;
+	}
+
+	public void setDownloadTime(long downloadTime) {
+		this.downloadTime = downloadTime;
 	}
 
 

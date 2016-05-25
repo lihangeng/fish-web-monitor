@@ -4,7 +4,8 @@ Ext.define('Eway.view.version.download.monitor.View', {
 
 	requires : [
 	            'Eway.view.version.download.monitor.JobGrid',
-	            'Eway.view.version.download.monitor.JobFilterForm'],
+	            'Eway.view.version.download.monitor.JobFilterForm',
+	            'Eway.view.version.download.monitor.TaskPanel'],
 
 	title : EwayLocale.version.download.title,//'分发监控',
 	layout : 'border',
@@ -26,7 +27,9 @@ Ext.define('Eway.view.version.download.monitor.View', {
 								region: 'center',
 								xtype : 'version_download_monitor_jobgrid'
 							}
-						]}
+						]},{
+							xtype:'version_download_monitor_taskpanel'
+						}
 				]
 			}],
 			listeners : {

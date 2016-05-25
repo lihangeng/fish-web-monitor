@@ -58,7 +58,50 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			},
 			'#versionDownloadMonitorView version_download_monitor_taskpanel button[action=toJob]':{
 				click :this.taskClose
+			},
+			'#versionDownloadMonitorView version_download_monitor_taskpanel button[action=next]':{
+				click :this.nextJob
+			},
+			'#versionDownloadMonitorView version_download_monitor_taskpanel button[action=pref]':{
+				click :this.prefJob
 			}
+		});
+	},
+
+	nextJob:function(){
+		this.jobPageChange("1");
+	},
+	prefJob:function(){
+		this.jobPageChange("-1");
+	},
+	jobPageChange:function(flag){
+		var me = this;
+		var jobId = this.getActiveTask().getConfig().jobId;
+		var panel = this.getTaskPanel().down("panel[name='jobDetailInfo']");
+		Ext.Ajax.request({
+		    url: 'api/version/download/searchJobDetailInfo',
+		    method:'GET',
+		    params: {
+		    	jobId: jobId,
+		        nextRecord:flag
+		    },
+		    success: function(response){
+		        var text = response.responseText;
+		        var object = Ext.decode(text);
+		    	me.getActiveTask().setJobId(object.displayJobId);
+				panel.removeAll();
+		        var length = object.data.length;
+		        for(var index=0;index<length;index++){
+		        	var data = object.data[index];
+		        	var display = Ext.create("Ext.form.field.Display",{margin:'0 0 0 20',labelWidth : 105,columnWidth : .25,fieldLabel:data.frist,value: data.second});
+		        	panel.add(display);
+		        }
+	    		me.onTaskQuery();
+		    },
+		    failure:function(){
+		    		Eway.alert('查看作业失败');	
+		    }
+
 		});
 	},
 	onResetStatus:function(){
@@ -206,10 +249,12 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			this.onViewBeforeDeactivate();
 			var record = sm.getLastSelected();
 			var tabpanel = this.getEwayView().down("panel[name=groupPanel]").up("panel");
-			var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskPanel",{"jobId":record.get("id")});
-			tabpanel.add(jobDetailPanel);
+			var jobDetailPanel = this.getEwayView().down("version_download_monitor_taskpanel");
+			jobDetailPanel.setJobId(record.get("id"));
+//			tabpanel.add(jobDetailPanel);
 			tabpanel.setActiveItem(jobDetailPanel);
 			this.lastTaskGrid = jobDetailPanel;
+			this.jobPageChange("0");
 		} else {
 			Eway.alert(EwayLocale.version.task.selectAJob);
 		}
@@ -227,10 +272,11 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		    success: function(response){
 		        var object = Ext.decode(response.responseText);
 				me.onViewBeforeDeactivate();
-		        var jobDetailPanel = Ext.create("Eway.view.version.download.monitor.TaskPanel",{"jobId":jobId});
-				tabpanel.add(jobDetailPanel);
+				var jobDetailPanel = this.getEwayView().down("version_download_monitor_taskpanel");
+				jobDetailPanel.setJobId(record.get("id"));
 				tabpanel.setActiveItem(jobDetailPanel);
 				me.lastTaskGrid = jobDetailPanel;
+				this.jobPageChange("0");
 		    }
 		});
 	},
@@ -239,7 +285,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		var taskPanel = _this.up("version_download_monitor_taskpanel");
 		var layout = taskPanel.up("panel").getLayout();
 		var groupPanel = this.getEwayView().down("panel[name=groupPanel]");
-		taskPanel.close();
+//		taskPanel.close();
 		layout.setActiveItem(groupPanel);
 	},
 	//---------------------------------------------------------

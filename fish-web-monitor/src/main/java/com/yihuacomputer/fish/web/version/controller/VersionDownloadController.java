@@ -6,8 +6,10 @@ package com.yihuacomputer.fish.web.version.controller;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +36,8 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
+import com.yihuacomputer.common.util.TwoTuple;
+import com.yihuacomputer.fish.api.charts.ChartsInfo;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
@@ -43,7 +47,9 @@ import com.yihuacomputer.fish.api.version.IDeviceSoftVersionService;
 import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
 import com.yihuacomputer.fish.api.version.IVersionService;
+import com.yihuacomputer.fish.api.version.IVersionStaticsStautsService;
 import com.yihuacomputer.fish.api.version.LinkedDeviceForm;
+import com.yihuacomputer.fish.api.version.VersionStaticsStatus;
 import com.yihuacomputer.fish.api.version.job.IJob;
 import com.yihuacomputer.fish.api.version.job.IJobManager;
 import com.yihuacomputer.fish.api.version.job.IJobService;
@@ -54,6 +60,7 @@ import com.yihuacomputer.fish.api.version.job.JobType;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
+import com.yihuacomputer.fish.version.service.db.VersionStaticsStatusService;
 import com.yihuacomputer.fish.web.command.format.CommandLevel;
 import com.yihuacomputer.fish.web.command.format.RestartForm;
 import com.yihuacomputer.fish.web.command.format.RestartParamForm;
@@ -84,6 +91,9 @@ public class VersionDownloadController {
 
 	@Autowired
 	private IVersionDownloadService downloadService;
+	
+	@Autowired
+	private IVersionStaticsStautsService versionStaticsStatusService;
 
 	@Autowired
 	private ITaskService taskService;
@@ -105,6 +115,55 @@ public class VersionDownloadController {
 
 	@Autowired
 	private MessageSource messageVersionSource;
+	@RequestMapping(method = RequestMethod.GET,value="/searchJobDetailInfo")
+	public @ResponseBody ModelMap searchJobDetailInfo(@RequestParam long jobId,HttpServletRequest request, WebRequest wRequest) {
+		ModelMap result = new ModelMap();
+		IFilter filter = new Filter();
+		String nextRecord=request.getParameter("nextRecord");
+		long displayJobId=jobId;
+		//前一页
+		if(nextRecord.equals("-1")){
+			filter.lt("id", jobId);
+			filter.descOrder("id");
+			List<IJob> jobList = jobService.list(filter);
+			displayJobId= jobList.size()>0?jobList.get(0).getJobId():jobId;
+		}
+		//后一页
+		else if(nextRecord.equals("1")){
+			filter.gt("id", jobId);
+			filter.order("id");
+			List<IJob> jobList = jobService.list(filter);
+			displayJobId = jobList.size()>0?jobList.get(0).getJobId():jobId;
+		}
+		UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
+		IJob job = jobService.getById(displayJobId);
+		IVersion version = job.getVersion();
+		//获取当前版本已下发和可下发的设备数据
+		List<ChartsInfo> chartList = versionStaticsStatusService.getVersionSummaryInfo(version.getId(), userSession.getOrgFlag(), 0, 25);
+		List<ChartsInfo> statusList = taskService.listTaskGroupbyTaskStatus(displayJobId);
+		long downloadTime = taskService.getDownloadTimeAvg(displayJobId);
+		
+		List<TwoTuple<String,String>> chartsFormList = new ArrayList<TwoTuple<String,String>>();
+		chartsFormList.add(new TwoTuple<String,String>("版本名称",version.getVersionType().getTypeName()));
+		chartsFormList.add(new TwoTuple<String,String>("版本号",version.getVersionNo()));
+		for(ChartsInfo charsInfo:chartList){
+			if(charsInfo.getTitle().equals(getEnumI18n(VersionStaticsStatus.TOTALDEVICE.getText()))||charsInfo.getTitle().equals(getEnumI18n(VersionStaticsStatus.SUCCESSDEVICE.getText()))){
+				TwoTuple<String,String> twoTuple = new TwoTuple<String,String>(charsInfo.getTitle(),String.valueOf(charsInfo.getValue()));
+				chartsFormList.add(twoTuple);
+			}
+		}
+		chartsFormList.add(new TwoTuple<String,String>("下载速度",String.valueOf(downloadTime)));
+		for(ChartsInfo charsInfo:statusList){
+			TwoTuple<String,String> twoTuple = new TwoTuple<String,String>(getEnumI18n(charsInfo.getTitle()),String.valueOf(charsInfo.getValue()));
+			chartsFormList.add(twoTuple);
+		}
+		result.addAttribute(FishConstant.SUCCESS, true);
+		result.addAttribute("total","" );
+		result.addAttribute("data", chartsFormList);
+		result.addAttribute("displayJobId",displayJobId);
+		return result;
+	}
+	
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {

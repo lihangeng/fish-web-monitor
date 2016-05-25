@@ -23,6 +23,7 @@ import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.charts.ChartsInfo;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.system.config.MonitorCfg;
@@ -508,6 +509,41 @@ public class TaskService implements ITaskService {
 		IFilter filter = new Filter();
 		filter.eq("job.jobId", jobId);
 		return list(filter);
+	}
+	
+	public List<ChartsInfo> listTaskGroupbyTaskStatus(long jobId){
+		StringBuffer sb = new StringBuffer();
+		sb.append("select count(task.id),task.status from ").append(Task.class.getSimpleName())
+		.append(" task where task.job.id=? group by task.status order by task.status ");
+		List<Object> objList = dao.findByHQL(sb.toString(), new Object[]{jobId});
+		List<ChartsInfo> chartsList = new ArrayList<ChartsInfo>();
+		for(Object objs:objList){
+			Object[] obj = (Object[])objs;
+			ChartsInfo chartsInfo = new ChartsInfo();
+			chartsInfo.setValue(Long.parseLong(obj[0]==null?"0":obj[0].toString()));
+			TaskStatus taskStatus = TaskStatus.valueOf(obj[1].toString());
+			chartsInfo.setFlag(taskStatus.getId());
+			chartsInfo.setTitle(taskStatus.getText());
+			chartsList.add(chartsInfo);
+		}
+		return chartsList;
+	}
+	
+	
+	public long getDownloadTimeAvg(long jobId){
+		StringBuffer sb = new StringBuffer();
+		sb.append("select sum(task.downloadTime),count(task.id) from ").append(Task.class.getSimpleName())
+		.append(" task where task.job.id=? and task.downloadTime <> 0 ");
+		Object objects = dao.findUniqueByHql(sb.toString(), new Object[]{jobId});
+		Object[] obj = (Object[]) objects;
+		int taskCounter = Integer.parseInt(obj[1]==null?"0":obj[1].toString());
+		long sumTimes = Long.parseLong(obj[0]==null?"0":obj[0].toString());
+		if(taskCounter==0){
+			return -1;
+		}
+		else{
+			return sumTimes/taskCounter;
+		}
 	}
 	
 }

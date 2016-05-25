@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.fish.api.charts.ChartsInfo;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.version.VersionCatalog;
@@ -186,4 +187,18 @@ public interface ITaskService {
      * @param task
      */
     public void resetTasks(List<ITask> tasks);
+    
+    /**
+     * 当前作业己完成下载任务的平均用时
+     * @param jobId
+     * @return 毫秒 -1代表没有完成下载的Task
+     */
+    public long getDownloadTimeAvg(long jobId);
+
+	/**
+	 * 当前作业每种状态下任务数量
+	 * @param jobId
+	 * @return
+	 */
+	public List<ChartsInfo> listTaskGroupbyTaskStatus(long jobId);
 }

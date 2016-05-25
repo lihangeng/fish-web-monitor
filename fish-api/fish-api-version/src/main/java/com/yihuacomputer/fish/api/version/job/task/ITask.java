@@ -230,4 +230,7 @@ public interface ITask {
     public void setDownloadFinishTime(String downloadFinishTime) ;
 
     public String getDownloadFinishTime() ;
+	public long getDownloadTime();
+
+	public void setDownloadTime(long downloadTime) ;
 }

@@ -45,7 +45,8 @@ Ext.define('Eway.view.version.download.monitor.TaskPanel', {
 		],
 			items:[{
 				xtype:'panel',
-				title:'作业概貌',
+				name:'jobDetailInfo',
+				layout : 'column',
 				region: 'north'
 			},{
 				region: 'center',
