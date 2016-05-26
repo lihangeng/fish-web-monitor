@@ -559,7 +559,7 @@ Ext.define('Eway.controller.monitor.newTransaction.NewTransactionMonitor', {
             // "display" : "1分钟"
         	timeAxis.setStep([Ext.Date.MINUTE, 1]);
             timeAxis.setFromDate(date);
-            timeAxis.setToDate(Ext.Date.add(date, Ext.Date.MINUTE, 2));
+            timeAxis.setToDate(Ext.Date.add(date, Ext.Date.MINUTE, 15));
             
             intervalTime = 60;
             
