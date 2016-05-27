@@ -1138,3 +1138,14 @@ pre.link{
 .running{
 	color:red;
 }
+
+.x-responsivecolumn{padding:20px 0 0 20px}
+.x-responsivecolumn > *{margin:0 20px 20px 0;float:left}
+.big-100{width:calc(100% - 20px);background-position:100% 20px !important}
+.big-60{width:calc(60% - 20px);background-position:60% 20px !important}
+.big-50{width:calc(50% - 20px);background-position:50% 20px !important}
+.big-40{width:calc(40% - 20px);background-position:40% 20px !important}
+.big-33{width:calc(33.33% - 20px);background-position:33.33% 20px !important}
+.big-20{width:calc(20% - 20px);background-position:20% 20px !important}
+.x-responsivecolumn-small > .small-100{width:calc(100% - 20px);background-position:100% 20px !important}
+.x-responsivecolumn-small > .small-50{width:calc(50% - 20px);background-position:50% 20px !important}

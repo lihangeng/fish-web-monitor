@@ -5,7 +5,7 @@ Ext.define('Eway.view.machine.atmBrand.AtmBrandGrid', {
 
 
 //	store: 'machine.atmBrand.AtmBrand',
-	border : false,
+	border : true,
 	autoFit:true,
 
 	initComponent: function() {
