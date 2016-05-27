@@ -11,12 +11,12 @@ Ext.define('Eway.view.report.faultRateReport.TypeGrid', {
 				dataIndex : 'name',
 				width:130
 			},{
-				header : '故障数',
-				dataIndex : 'faultCount',
-				width:130
-			},{
 				header : '交易数',
 				dataIndex : 'tradeCount',
+				width:130
+			},{
+				header : '故障数',
+				dataIndex : 'faultCount',
 				width:130
 			},{
 				header : '故障率',

@@ -78,13 +78,13 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
                     axis: 'left',
                     xField: 'name',
                     title: [ '故障数', '交易数', '故障率(百分比)' ],
-                    yField: [ 'faultCount','tradeCount','rate' ],
+                    yField: [ 'tradeCount','faultCount','rate' ],
                     stacked: false,
                     style: {
                         opacity: 0.80
                     },
                     label: {
-                        field: [ 'fault','trade','rate' ],// me.getColumnField(),
+                        field: ['tradeCount','faultCount','rate' ],// me.getColumnField(),
                         display: 'insideEnd'
                     },
                     tooltip: {

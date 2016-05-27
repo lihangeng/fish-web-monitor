@@ -12,12 +12,12 @@ Ext.define('Eway.view.report.faultRateReport.ModuleGrid', {
 				dataIndex : 'moduleName',
 				width:130
 			},{
-				header : '故障数',
-				dataIndex : 'fault',
-				width:130
-			},{
 				header : '交易数',
 				dataIndex : 'trade',
+				width:130
+			},{
+				header : '故障数',
+				dataIndex : 'fault',
 				width:130
 			},{
 				header : '故障率',
