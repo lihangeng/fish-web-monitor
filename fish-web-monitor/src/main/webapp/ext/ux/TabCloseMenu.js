@@ -74,18 +74,32 @@ Ext.define('Ext.ux.TabCloseMenu', {
     },
 
     onAfterLayout: function() {
-        this.mon(this.tabBar.el, {
-            scope: this,
-            contextmenu: this.onContextMenu,
-            delegate: '.x-tab'
-        });
+    	//火狐不兼容contextmenu处理
+    	if(Ext.browser.is('Firefox')){
+    		this.mon(this.tabBar.el, {
+	            scope: this,
+	            mouseup: this.onContextMenuFirefox,
+	            delegate: '.x-tab'
+	        });
+    	}
+    	else{
+    		this.mon(this.tabBar.el, {
+	            scope: this,
+	            contextmenu: this.onContextMenu,
+	            delegate: '.x-tab'
+	        });
+    	}
     },
 
     destroy : function(){
         this.callParent();
         Ext.destroy(this.menu);
     },
-
+    onContextMenuFirefox:function(event, target){
+    	if(event.button==2){
+    		this.onContextMenu(event, target);
+    	}
+    },
     // private
     onContextMenu : function(event, target){
         var me = this,

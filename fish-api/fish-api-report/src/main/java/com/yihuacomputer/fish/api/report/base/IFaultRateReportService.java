@@ -9,6 +9,8 @@ public interface IFaultRateReportService {
 	
 	List<FaultRateReport> listByType();
 	
+	List<FaultRateReport> listByModule();
+	
 	Iterable<ITransactionMonths> typeTrans();
 	
 	Iterable<IEveryMonthFaultCount> typeFault();

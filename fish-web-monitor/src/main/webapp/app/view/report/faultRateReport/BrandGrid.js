@@ -22,12 +22,9 @@ Ext.define('Eway.view.report.faultRateReport.BrandGrid', {
 				dataIndex : 'faultCount',
 				width:130
 			},{
-				header : '故障率',
+				header : '故障率(百分比)',
 				dataIndex : 'rate',
-				flex:1,
-				renderer:function(value,metadata,record){
-					return value+"%";
-				}
+				flex:1
 			}]
 		});
 

@@ -51,12 +51,12 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 					columns : 2,
 				},
 				defaults : {
-					width : 550,
+					width : 540,
 					height : 420
 				},
 				items : [ {
 					xtype : 'report_faultRateReport_BrandGrid',
-					margin : '5 10 10 20',
+					margin : '5 10 10 10',
 					border : true,
 					style : 'border:solid #D2D2D2'
 				}, {
@@ -67,7 +67,7 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 					style : 'border:solid #D2D2D2'
 				}, {
 					xtype : 'report_faultRateReport_TypeGrid',
-					margin : 20,
+					margin : 10,
 					border : true,
 					style : 'border:solid #D2D2D2'
 				}, {
@@ -76,11 +76,12 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 					style : 'border:solid #D2D2D2'
 				}, {
 					xtype : 'report_faultRateReport_ModuleGrid',
-					margin : 20,
+					margin : '5 10 10 10',
 					border : true,
 					style : 'border:solid #D2D2D2'
 				}, {
 					xtype : 'report_faultRateReport_ModuleCharts',
+					margin : '-5 0 0 0',
 					border : true,
 					style : 'border:solid #D2D2D2'
 				} ]
