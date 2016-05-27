@@ -4,32 +4,30 @@ Ext.define('Eway.view.index.Index', {
 	extend: 'Ext.panel.Panel',
 
 	requires: ['Eway.view.index.FaultTrendByDay','Eway.view.index.VersionDistributePie',
-	           'Eway.view.index.RetainCardByDay','Eway.view.index.StatusDonutCharts'],
+	           'Eway.view.index.RetainCardByDay','Eway.view.index.StatusDonutCharts',
+	           'Ext.ux.layout.ResponsiveColumn'],
 	uses : [ 'Ext.XTemplate'],
-	layout: {
-        type: 'table',
-        columns: 2
-    },
-    
+	layout: 'responsivecolumn',
     scrollable : 'y',
-    bodyStyle : 'padding: 10px 10px 0px 10px',
     defaults: {
-    	frame: true,
-    	width: 550,
-    	margin: 10
+    	frame: true
     },
     
 	initComponent: function() {
 		Ext.apply(this, {
 		    title: EwayLocale.index.indexPage,
 		    items:[{
-		    	xtype:'statusDonutCharts'
+		    	xtype:'statusDonutCharts',
+		    	responsiveCls: 'big-50 small-100'
 		    },{
-		    	xtype:'faultTrendByDay'
+		    	xtype:'faultTrendByDay',
+		    	responsiveCls: 'big-50 small-100'
 		    },{
-		    	xtype:'versionDistributePie'
+		    	xtype:'versionDistributePie',
+		    	responsiveCls: 'big-50 small-100'
 		    },{
-		    	xtype:'retainCardByDay'
+		    	xtype:'retainCardByDay',
+		    	responsiveCls: 'big-50 small-100'
 		    }],
 		    listeners:{
 		    	activate:function(_this,eOpt){
