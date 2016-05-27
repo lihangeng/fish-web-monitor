@@ -2,7 +2,10 @@ package com.yihuacomputer.fish.web.report.controller;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,11 +25,9 @@ import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.fish.api.atm.IAtmBrandService;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
-import com.yihuacomputer.fish.api.report.base.IEveryMonthFaultCount;
+import com.yihuacomputer.fish.api.atm.IAtmVendor;
+import com.yihuacomputer.fish.api.report.base.FaultRateReport;
 import com.yihuacomputer.fish.api.report.base.IFaultRateReportService;
-import com.yihuacomputer.fish.api.report.base.ITransactionMonths;
-import com.yihuacomputer.fish.report.base.FaultRateReportService;
-import com.yihuacomputer.fish.web.report.form.FaultRateReportForm;
 import com.yihuacomputer.fish.web.report.form.ModuleForm;
 
 @Controller
@@ -47,74 +48,89 @@ public class FaultRateReportController {
 	@Autowired
 	private IAtmTypeService atmTypeService;
 
-	/*@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value = "/faultByBrand", method = RequestMethod.GET)
 	public @ResponseBody ModelMap searchByBrand(HttpServletRequest req, WebRequest webRequest) {
-		logger.info("search trades'fault rate of brand");
+		logger.info(String.format("search faultByBrand : queryFaultByBrand"));
 		ModelMap result = new ModelMap();
-		List<FaultRateReportForm> fault = faultRateReportService.list();
+		List<FaultRateReport> list = faultRateReportService.listByBrand();
+		List<IAtmVendor> brand = EntityUtils.convert(atmBrandService.list());
+		Set<String> set1 = new HashSet<String>();
+		Set<String> set2 = new HashSet<String>();
 		DecimalFormat df = new DecimalFormat("#");
-		for (FaultRateReportForm rate : fault) {
-			rate.setRate(df.format((double) rate.getFaultCount() / rate.getTradeCount() * 100));
+		for (FaultRateReport f : list) {
+			if (f.getTradeCount() == 0) {
+				f.setRate("100");
+			} else if (f.getFaultCount() == 0) {
+				f.setRate("00");
+			} else {
+				f.setRate(df.format((double) f.getFaultCount() / f.getTradeCount() * 100));
+			}
+		}
+		for (IAtmVendor t : brand) {
+			set1.add(t.getName());
+		}
+		for (FaultRateReport f : list) {
+			set2.add(f.getName());
+		}
+		set1.removeAll(set2);
+		if (set1 != null) {
+			Iterator<String> it = set1.iterator();
+			if (it.hasNext()) {
+				FaultRateReport form = new FaultRateReport();
+				form.setName(String.valueOf(it.next()));
+				form.setTradeCount(0);
+				form.setFaultCount(0);
+				form.setRate("00");
+				list.add(form);
+			}
+
 		}
 		result.addAttribute(FishConstant.SUCCESS, true);
-		result.addAttribute(FishConstant.TOTAL, fault.size());
-		result.addAttribute(FishConstant.DATA, fault);
+		result.addAttribute(FishConstant.TOTAL, list.size());
+		result.addAttribute(FishConstant.DATA, list);
 		return result;
-	}*/
+	}
 
 	@RequestMapping(value = "/faultByType", method = RequestMethod.GET)
 	public @ResponseBody ModelMap queryFaultByType() {
 		logger.info(String.format("search faultByType : queryFaultByType"));
 		ModelMap result = new ModelMap();
-		List<ITransactionMonths> trans = EntityUtils.convert(faultRateReportService.typeTrans());
-		List<IEveryMonthFaultCount> fault = EntityUtils.convert(faultRateReportService.typeFault());
+		List<FaultRateReport> list = faultRateReportService.listByType();
 		List<IAtmType> type = atmTypeService.list();
-		List<FaultRateReportForm> list=new ArrayList<FaultRateReportForm>();
+		Set<String> set1 = new HashSet<String>();
+		Set<String> set2 = new HashSet<String>();
 		DecimalFormat df = new DecimalFormat("#");
-		for(ITransactionMonths t:trans){
-			FaultRateReportForm form=new FaultRateReportForm();
-			form.setName(t.getDevType());
-			form.setTransCount(t.getTransCount());
-			form.setFaultCount(0);
-			list.add(form);
-		}
-		for(IEveryMonthFaultCount f:fault){
-			for(FaultRateReportForm fr:list){
-				if(f.getDevType().equals(fr.getName())){
-					fr.setFaultCount(f.getFaultCount());
-					if(fr.getFaultCount()==0){
-						fr.setRate("00");
-					}else if(fr.getTransCount()==0){
-						fr.setRate("100");
-					}else{
-						fr.setRate(df.format((double)fr.getFaultCount()/fr.getTransCount()*100));
-					}
-				}else{
-					FaultRateReportForm form=new FaultRateReportForm();
-					form.setName(f.getDevType());
-					form.setTransCount(0);
-					form.setFaultCount(f.getFaultCount());
-					form.setRate("100");
-					list.add(form);
-				}
+		for (FaultRateReport f : list) {
+			if (f.getTradeCount() == 0) {
+				f.setRate("100");
+			} else if (f.getFaultCount() == 0) {
+				f.setRate("00");
+			} else {
+				f.setRate(df.format((double) f.getFaultCount() / f.getTradeCount() * 100));
 			}
 		}
-		for(IAtmType t:type){
-			for(FaultRateReportForm fr:list){
-				if(!t.getName().equals(fr.getName())){
-					FaultRateReportForm form=new FaultRateReportForm();
-					form.setName(t.getName());
-					form.setTransCount(0);
-					form.setFaultCount(0);
-					form.setRate("00");
-					list.add(form);
-				}
-			}
-			
+		for (IAtmType t : type) {
+			set1.add(t.getName());
 		}
-		 result.addAttribute(FishConstant.SUCCESS, true);
-		 result.addAttribute(FishConstant.TOTAL, list.size());
-		 result.addAttribute(FishConstant.DATA, list);
+		for (FaultRateReport f : list) {
+			set2.add(f.getName());
+		}
+		set1.removeAll(set2);
+		if (set1 != null) {
+			Iterator<String> it = set1.iterator();
+			if (it.hasNext()) {
+				FaultRateReport form = new FaultRateReport();
+				form.setName(String.valueOf(it.next()));
+				form.setTradeCount(0);
+				form.setFaultCount(0);
+				form.setRate("00");
+				list.add(form);
+			}
+
+		}
+		result.addAttribute(FishConstant.SUCCESS, true);
+		result.addAttribute(FishConstant.TOTAL, list.size());
+		result.addAttribute(FishConstant.DATA, list);
 		return result;
 	}
 

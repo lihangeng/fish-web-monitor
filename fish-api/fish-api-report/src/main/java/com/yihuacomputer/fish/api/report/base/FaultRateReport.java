@@ -1,10 +1,10 @@
-package com.yihuacomputer.fish.web.report.form;
+package com.yihuacomputer.fish.api.report.base;
 
-public class FaultRateReportForm {
-	
+public class FaultRateReport {
+
 	private String name;
 	
-	private long transCount;
+	private long tradeCount;
 	
 	private long faultCount;
 	
@@ -18,12 +18,12 @@ public class FaultRateReportForm {
 		this.name = name;
 	}
 
-	public long getTransCount() {
-		return transCount;
+	public long getTradeCount() {
+		return tradeCount;
 	}
 
-	public void setTransCount(long transCount) {
-		this.transCount = transCount;
+	public void setTradeCount(long transCount) {
+		this.tradeCount = transCount;
 	}
 
 	public long getFaultCount() {
@@ -33,7 +33,7 @@ public class FaultRateReportForm {
 	public void setFaultCount(long faultCount) {
 		this.faultCount = faultCount;
 	}
-
+	
 	public String getRate() {
 		return rate;
 	}
@@ -42,8 +42,4 @@ public class FaultRateReportForm {
 		this.rate = rate;
 	}
 	
-	public FaultRateReportForm(){
-		
-	}
-
 }
