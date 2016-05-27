@@ -77,7 +77,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	jobPageChange:function(flag){
 		var me = this;
 		var jobId = this.getActiveTask().getConfig().jobId;
-		var panel = this.getTaskPanel().down("panel[name='jobDetailInfo']");
+		var panel = this.getTaskPanel().down("fieldset[name='jobDetailInfo']");
 		Ext.Ajax.request({
 		    url: 'api/version/download/searchJobDetailInfo',
 		    method:'GET',
@@ -93,7 +93,13 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		        var length = object.data.length;
 		        for(var index=0;index<length;index++){
 		        	var data = object.data[index];
-		        	var display = Ext.create("Ext.form.field.Display",{margin:'0 0 0 20',labelWidth : 105,columnWidth : .25,fieldLabel:data.frist,value: data.second});
+		        	var display = undefined;
+		        	if((index+1)%4==1){
+		        		display = Ext.create("Ext.form.field.Display",{margin:'0 0 0 20',labelWidth : 105,columnWidth : .25,fieldLabel:data.frist,value: data.second});
+		        	}else{
+		        		display = Ext.create("Ext.form.field.Display",{labelWidth : 105,columnWidth : .25,fieldLabel:data.frist,value: data.second});
+		        	}
+		        		
 		        	panel.add(display);
 		        }
 	    		me.onTaskQuery();
