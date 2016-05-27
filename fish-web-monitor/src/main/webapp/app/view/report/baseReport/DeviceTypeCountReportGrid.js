@@ -1,5 +1,5 @@
 Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
-	extend : 'Eway.view.base.Panel',
+	extend: 'Ext.panel.Panel',
 	alias : 'widget.baseReport_DeviceTypeCountReportGrid',
 	requires : [ 'Eway.view.report.baseReport.ReportDownloadBody' ],
 

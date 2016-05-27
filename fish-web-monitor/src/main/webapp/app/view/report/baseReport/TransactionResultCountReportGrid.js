@@ -1,5 +1,5 @@
 Ext.define('Eway.view.report.baseReport.TransactionResultCountReportGrid', {
-	extend : 'Eway.view.base.Panel',
+	extend: 'Ext.panel.Panel',
 	alias : 'widget.baseReport_TransactionResultCountReportGrid',
 	requires : [ 'Eway.view.report.baseReport.ReportDownloadBody' ],
 

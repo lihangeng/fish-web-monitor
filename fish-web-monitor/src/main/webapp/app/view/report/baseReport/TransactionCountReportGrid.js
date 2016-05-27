@@ -1,5 +1,5 @@
 Ext.define('Eway.view.report.baseReport.TransactionCountReportGrid', {
-	extend : 'Eway.view.base.Panel',
+	extend: 'Ext.panel.Panel',
 	alias : 'widget.baseReport_TransactionCountReportGrid',
 	requires : [ 'Eway.view.report.baseReport.ReportDownloadBody' ],
 
@@ -7,8 +7,6 @@ Ext.define('Eway.view.report.baseReport.TransactionCountReportGrid', {
 	closable : false,
 	initComponent : function() {
 		Ext.apply(this, {
-			xtype : 'panel',
-			layout : 'border',
 			items : [ {
 				region : 'center',
 				xtype : 'reportDownloadBody'

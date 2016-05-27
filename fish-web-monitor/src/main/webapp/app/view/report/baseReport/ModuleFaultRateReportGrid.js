@@ -1,5 +1,5 @@
 Ext.define('Eway.view.report.baseReport.ModuleFaultRateReportGrid', {
-	extend : 'Eway.view.base.Panel',
+	extend: 'Ext.panel.Panel',
 	alias : 'widget.moduleFaultRateReportGrid',
 	requires : [ 'Eway.view.report.baseReport.ReportDownloadBody' ],
 

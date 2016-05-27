@@ -1,6 +1,6 @@
 Ext.define('Eway.view.report.baseReport.TransactionDaysCountGrid', {
 	alias : 'widget.baseReport_TransactionDaysCountGrid',
-	extend: 'Eway.view.base.Panel',
+	extend: 'Ext.panel.Panel',
 
 	requires : [ 'Eway.lib.Util' ],
 

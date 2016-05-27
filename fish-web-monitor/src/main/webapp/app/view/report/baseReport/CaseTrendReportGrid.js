@@ -1,5 +1,5 @@
 Ext.define('Eway.view.report.baseReport.CaseTrendReportGrid', {
-	extend: 'Eway.view.base.Panel',
+	extend: 'Ext.panel.Panel',
 	alias : 'widget.caseTrendReportGrid',
     requires:['Eway.store.index.FaultTrendByDay'],
     header : false,

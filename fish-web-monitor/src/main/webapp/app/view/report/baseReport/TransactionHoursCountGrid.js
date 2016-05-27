@@ -1,6 +1,6 @@
 Ext.define('Eway.view.report.baseReport.TransactionHoursCountGrid', {
 	alias : 'widget.baseReport_TransactionHoursCountGrid',
-	extend: 'Eway.view.base.Panel',
+	extend: 'Ext.panel.Panel',
 
 	requires : [ 'Eway.lib.Util' ],
 

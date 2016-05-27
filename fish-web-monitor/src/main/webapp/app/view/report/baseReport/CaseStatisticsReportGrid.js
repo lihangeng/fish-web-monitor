@@ -1,6 +1,6 @@
 Ext.define('Eway.view.report.baseReport.CaseStatisticsReportGrid', {
 	alias : 'widget.baseReport_CaseStatisticsReportGrid',
-	extend: 'Eway.view.base.Panel',
+	extend: 'Ext.panel.Panel',
 
 	requires : [ 'Eway.lib.Util','Ext.chart.theme.Muted' ],
     config:{
