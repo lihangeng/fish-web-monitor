@@ -6,7 +6,6 @@ Ext.define('Eway.view.index.Index', {
 	requires: ['Eway.view.index.FaultTrendByDay','Eway.view.index.VersionDistributePie',
 	           'Eway.view.index.RetainCardByDay','Eway.view.index.StatusDonutCharts',
 	           'Ext.ux.layout.ResponsiveColumn'],
-	uses : [ 'Ext.XTemplate'],
 	layout: 'responsivecolumn',
     scrollable : 'y',
     defaults: {
@@ -32,10 +31,18 @@ Ext.define('Eway.view.index.Index', {
 		    listeners:{
 		    	activate:function(_this,eOpt){
 		    		_this.removeAll();
-		    		var chart1 = Ext.create("Eway.view.index.VersionDistributePie");
-		    		var chart2 = Ext.create("Eway.view.index.FaultTrendByDay");
-		    		var chart3 = Ext.create("Eway.view.index.RetainCardByDay");
-		    		var chart4 = Ext.create("Eway.view.index.StatusDonutCharts");
+		    		var chart1 = Ext.create("Eway.view.index.VersionDistributePie",{
+		    			responsiveCls: 'big-50 small-100'
+		    		});
+		    		var chart2 = Ext.create("Eway.view.index.FaultTrendByDay",{
+		    			responsiveCls: 'big-50 small-100'
+		    		});
+		    		var chart3 = Ext.create("Eway.view.index.RetainCardByDay",{
+		    			responsiveCls: 'big-50 small-100'
+		    		});
+		    		var chart4 = Ext.create("Eway.view.index.StatusDonutCharts",{
+		    			responsiveCls: 'big-50 small-100'
+		    		});
 		    		_this.add(chart4);
 		    		_this.add(chart2);
 		    		_this.add(chart1);
