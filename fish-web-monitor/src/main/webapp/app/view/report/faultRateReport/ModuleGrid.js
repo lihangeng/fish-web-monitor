@@ -9,18 +9,18 @@ Ext.define('Eway.view.report.faultRateReport.ModuleGrid', {
 			store : store,
 			columns : [ {
 				header : '模块',
-				dataIndex : 'moduleName',
+				dataIndex : 'name',
 				width:130
 			},{
 				header : '交易数',
-				dataIndex : 'trade',
+				dataIndex : 'tradeCount',
 				width:130
 			},{
 				header : '故障数',
-				dataIndex : 'fault',
+				dataIndex : 'faultCount',
 				width:130
 			},{
-				header : '故障率',
+				header : '故障率(百分比)',
 				dataIndex : 'rate',
 				flex:1
 			}]

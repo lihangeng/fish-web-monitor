@@ -84,6 +84,29 @@ public class FaultRateReportService implements IFaultRateReportService {
 	}
 
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<FaultRateReport> listByModule() {
+		StringBuffer sql=new StringBuffer();
+		sql.append("SELECT f.mname,t.tcount,f.fcount FROM (SELECT trans.DEV_TYPE tname,SUM(trans.TRANS_COUNT) tcount ");
+		sql.append("FROM ATMC_TRANSACTION_MONTHS trans GROUP BY trans.DEV_TYPE)t RIGHT JOIN ");
+		sql.append("(SELECT fault.DEV_MOD mname,fault.DEV_TYPE tname,SUM(fault.FAULT_COUNT) fcount ");
+		sql.append("FROM CASE_FAULT_MONTH fault GROUP BY fault.DEV_MOD)f ON t.tname = f.tname ");
+		SQLQuery query= dao.getSQLQuery(sql.toString());
+		List<Object> list = query.list();
+		List<FaultRateReport> result= new ArrayList<FaultRateReport>();
+		for(Object obj:list){
+			FaultRateReport frr=new FaultRateReport();
+			Object[] object=(Object[])obj;
+			frr.setName(object[0]==null?"":String.valueOf(object[0]));
+			frr.setTradeCount(Long.valueOf(object[1]==null?"0":String.valueOf(object[1])));
+			frr.setFaultCount(Long.valueOf(object[2]==null?"0":String.valueOf(object[2])));
+			result.add(frr);
+		}
+		return result;
+	}
+
+
 	
 
 }

@@ -5,7 +5,7 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
 	requires : [ 'Eway.lib.Util','Ext.chart.theme.Muted' ],
     config:{
     	columnField:'rate',
-    	rowField:'moduleName'
+    	rowField:'name'
     },
 	border : false,
 	closable : false ,
@@ -57,15 +57,18 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
 //                    majorTickSteps: 2,
                     minimum: 0,
                     fields: [me.getColumnField()],
-                    label: {
-                        renderer: function(v) { return v + '%'; }
-                    },
+                    renderer: function (v) { return v + '%'; },
                     grid: true
                 }, {
                     type: 'category',
                     position: 'bottom',
                     fields: [me.getRowField()],
-                    grid: true
+                    grid: true,
+                    label: {
+                        rotate: {
+                            degrees: -45
+                        }
+                    }
                 }],
                 series: [{
                     type: 'bar',
@@ -80,7 +83,7 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
                         trackMouse: true,
                         style: 'background: #fff',
                         renderer: function(storeItem, item) {
-                        	this.setHtml(storeItem.get(me.getRowField()) + ': ' + storeItem.get(me.getColumnField()));
+                        	this.setHtml(storeItem.get(me.getRowField()) + ': ' + storeItem.get(me.getColumnField())+"%");
                         }
                     },
                     renderer: (function () {
