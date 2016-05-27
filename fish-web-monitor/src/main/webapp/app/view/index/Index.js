@@ -32,16 +32,20 @@ Ext.define('Eway.view.index.Index', {
 		    	activate:function(_this,eOpt){
 		    		_this.removeAll();
 		    		var chart1 = Ext.create("Eway.view.index.VersionDistributePie",{
-		    			responsiveCls: 'big-50 small-100'
+		    			responsiveCls: 'big-50 small-100',
+		    			frame: true
 		    		});
 		    		var chart2 = Ext.create("Eway.view.index.FaultTrendByDay",{
-		    			responsiveCls: 'big-50 small-100'
+		    			responsiveCls: 'big-50 small-100',
+		    			frame: true
 		    		});
 		    		var chart3 = Ext.create("Eway.view.index.RetainCardByDay",{
-		    			responsiveCls: 'big-50 small-100'
+		    			responsiveCls: 'big-50 small-100',
+		    			frame: true
 		    		});
 		    		var chart4 = Ext.create("Eway.view.index.StatusDonutCharts",{
-		    			responsiveCls: 'big-50 small-100'
+		    			responsiveCls: 'big-50 small-100',
+		    			frame: true
 		    		});
 		    		_this.add(chart4);
 		    		_this.add(chart2);

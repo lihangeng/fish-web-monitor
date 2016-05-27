@@ -2,15 +2,11 @@
 Ext.define('Eway.view.monitor.charts.View', {
 	alias: 'widget.monitor_view',
 	extend: 'Ext.panel.Panel',
-	requires: ['Eway.view.monitor.charts.DonutCharts'],
-	layout: {
-        type: 'table',
-        columns: 3
-    },
-    closable:true,
+	requires: ['Eway.view.monitor.charts.DonutCharts',
+				'Ext.ux.layout.ResponsiveColumn'],
+	layout: 'responsivecolumn',
     scrollable : 'y',
-    bodyStyle : 'padding: 10px 10px 0px 10px',
- 
+    closable:true,
     
 	initComponent: function() {
 		var me = this;
@@ -98,35 +94,28 @@ Ext.define('Eway.view.monitor.charts.View', {
 			},
 		    defaults: { 
 		    	frame: true,
-		    	width: 350,
-		    	margin: 10,
 		    	xtype:'pie-donut',
 	            angleField:'displayName',
 	            labelField:'numberInfo',
 	            tools:[{
 	                type:'refresh',
-	                tooltip: 'Refresh form Data',
+	                tooltip: 'Refresh',
+	                marginLeft: 10,
 	                handler: function(event, toolEl, panelHeader) {
 	                	me.refresh();
-//	                	Ext.Array.forEach(me.items.items,function(item,index,allItems){
-//	                		if(item.down("polar")!=undefined)
-//	                		item.down("polar").getStore().load({
-//                			 	scope: this,
-//                			    callback: function(records, operation, success) {
-//                			    }
-//	                		});
-//	                	},this);
 	                }
 	            }]
 		    },
 		    items:[{
 		    	title:EwayLocale.monitor.summary.allSummary,//'概况',
 		    	itemId:'DonutChartsSummary',
-	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsSummary")
+	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsSummary"),
+		    	responsiveCls: 'big-50 small-100'
 		    },{
 		    	title:EwayLocale.monitor.summary.appSummary,//'Run概况',
 		    	itemId:'DonutChartsRunSummary',
-	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsRunSummary")
+	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsRunSummary"),
+		    	responsiveCls: 'big-50 small-100'
 //		    },{
 //		    	xtype : 'monitor_device_grid',
 //		    	tools:[{
@@ -147,15 +136,18 @@ Ext.define('Eway.view.monitor.charts.View', {
 		    },{
 		    	title:EwayLocale.monitor.summary.modSummary,//'Mod概况',
 		    	itemId:'DonutChartsModSummary',
-	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsModSummary")
+	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsModSummary"),
+		    	responsiveCls: 'big-33 small-100'
 		    },{
 		    	title:EwayLocale.monitor.summary.boxSummary,//'Box概况',
 		    	itemId:'DonutChartsBoxSummary',
-	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsBoxSummary")
+	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsBoxSummary"),
+		    	responsiveCls: 'big-33 small-100'
 		    },{
 		    	title:EwayLocale.monitor.summary.netSummary,//'网络概况',
 		    	itemId:'DonutChartsNetSummary',
-	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsNetSummary")
+	            stores:Ext.create("Eway.store.monitor.charts.DonutChartsNetSummary"),
+		    	responsiveCls: 'big-33 small-100'
 		    }],
 		    listeners:{
 		    	beforeactivate:function( _this, eOpts ){

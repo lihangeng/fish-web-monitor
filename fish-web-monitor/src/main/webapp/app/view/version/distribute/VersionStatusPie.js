@@ -2,7 +2,6 @@ Ext.define('Eway.view.version.distribute.VersionStatusPie', {
     extend: 'Ext.Panel',
     alias: 'widget.versionstatus_pie',
     requires: ['Ext.chart.theme.Muted'],
-    width: 550,
     title:{
     	height :24
     },

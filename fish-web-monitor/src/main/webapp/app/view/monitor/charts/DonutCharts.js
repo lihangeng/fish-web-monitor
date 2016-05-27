@@ -2,7 +2,6 @@ Ext.define('Eway.view.monitor.charts.DonutCharts', {
     extend: 'Ext.Panel',
     alias: 'widget.pie-donut',
     requires:['Eway.view.monitor.charts.MonitorDeviceGrid'],
-    width: 330,
     config:{
             angleField:'displayName',
             labelField:'numberInfo',

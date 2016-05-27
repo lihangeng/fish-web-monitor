@@ -1,38 +1,31 @@
 Ext.define('Eway.view.version.distribute.View', {
-	extend : 'Eway.view.base.Panel',
+	extend : 'Ext.panel.Panel',
 	alias : 'widget.version_distributeView',
 
 	requires : [ 'Eway.view.version.field.VersionTypeComboBoxAdd',
 			'Eway.view.version.distribute.VersionPie',
 			'Eway.view.version.distribute.FilterForm',
 			'Eway.view.version.distribute.VersionStatusPie',
-			'Eway.view.version.distribute.VersionStatusDetailGrid'],
+			'Eway.view.version.distribute.VersionStatusDetailGrid',
+			'Ext.ux.layout.ResponsiveColumn'],
 
 	title : EwayLocale.version.View.distributionPic,
-	layout: {
-        type: 'table',
-        columns: 2
-    },
-    
+	layout: 'responsivecolumn',
     scrollable : 'y',
-    bodyStyle : 'padding: 10px 5px 0px 5px',
     defaults: {
-    	frame: true,
-    	margin: 10
+    	frame: true
     },
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-		    		width: 550,
-					xtype : 'version_pie'
+					xtype : 'version_pie',
+			    	responsiveCls: 'big-50 small-100'
 				}, {
-		    		width: 550,
-		            height: 350,
-					xtype : 'versionstatus_pie'
+					xtype : 'versionstatus_pie',
+			    	responsiveCls: 'big-50 small-100'
 				}, {
-					colspan:2,
-			    	width: 1120,
-					xtype : 'version_distribute_grid'
+					xtype : 'version_distribute_grid',
+			    	responsiveCls: 'big-100 small-100'
 				} ]
 		});
 
