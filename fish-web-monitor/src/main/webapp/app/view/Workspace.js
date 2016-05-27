@@ -6,8 +6,8 @@ Ext.define('Eway.view.Workspace', {
 	border: false,
 	autoDestroy: false,
 //firefox下不起作用，
-//	requires:['Ext.ux.TabCloseMenu'],
-//	plugins:['tabclosemenu'],
+	requires:['Ext.ux.TabCloseMenu'],
+	plugins:['tabclosemenu'],
 	
 	//F5刷新，未完全实现
 //	requires:['Eway.view.index.Index'],
