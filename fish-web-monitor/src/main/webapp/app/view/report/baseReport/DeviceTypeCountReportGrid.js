@@ -3,14 +3,11 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 	alias : 'widget.baseReport_DeviceTypeCountReportGrid',
 	requires : [ 'Eway.view.report.baseReport.ReportDownloadBody' ],
 
-	layout : 'border',
+	scrollable :true,
 	closable : false,
 	initComponent : function() {
 		Ext.apply(this, {
-//			xtype : 'panel',
-//			layout : 'border',
 			items : [ {
-				region : 'center',
 				xtype : 'reportDownloadBody'
 			} ],
 			tbar : [ '->', {

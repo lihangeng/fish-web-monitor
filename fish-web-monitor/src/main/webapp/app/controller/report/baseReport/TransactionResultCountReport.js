@@ -53,7 +53,6 @@ Ext.define('Eway.controller.report.baseReport.TransactionResultCountReport', {
 			        var object = Ext.decode(response.responseText);
 			        if(object.success){
 			        	centerPanel.add({
-			        		style : 'overflow:auto;',
 			        		border : 0,
 			        		loader:{
 						        url:'api/report/downloadFile?path='+ object.path + '&reportTitle=' + fileName,
