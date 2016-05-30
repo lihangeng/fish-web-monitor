@@ -3,14 +3,12 @@ Ext.define('Eway.view.report.baseReport.TransactionResultCountReportGrid', {
 	alias : 'widget.baseReport_TransactionResultCountReportGrid',
 	requires : [ 'Eway.view.report.baseReport.ReportDownloadBody' ],
 
-	layout : 'border',
+	scrollable :true,
 	closable : false,
 	initComponent : function() {
 		Ext.apply(this, {
 			xtype : 'panel',
-			layout : 'border',
 			items : [ {
-				region : 'center',
 				xtype : 'reportDownloadBody'
 			} ],
 			tbar : [ '->', {

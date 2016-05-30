@@ -33,7 +33,7 @@ Ext.define('Eway.view.parameter.element.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-			     text:EwayLocale.button.import,
+			     text:EwayLocale.button.imports,
 			     iconCls : 'importBtn',
 			     action:'import',
 				}],

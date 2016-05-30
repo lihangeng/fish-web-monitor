@@ -32,7 +32,7 @@ Ext.apply(EwayLocale,{
             importSuccess:'导入参数元数据成功！',//EwayLocale.param.element.importSuccess
             regex1:'只能输入数字',//EwayLocale.param.element.regex1
             regex2:'只能输入英文，数字，下划线，横线',//EwayLocale.param.element.regex2
-            import:'导入参数元数据文件',//EwayLocale.param.element.import
+            imports:'导入参数元数据文件',//EwayLocale.param.element.imports
             importFile:'导入文件',//EwayLocale.param.element.importFile
             importEmptyText:'请选择导入文件'//EwayLocale.param.element.importEmptyText
 
@@ -75,7 +75,7 @@ Ext.apply(EwayLocale,{
         	published:'已发布',//EwayLocale.param.template.published
         	unpublished:'未发布',//EwayLocale.param.template.unpublished
         	paramBelongs:'所属系统',//EwayLocale.param.template.paramBelongs
-        	bankPerlink:'关联设备',//EwayLocale.param.template.bankPerlink
+        	bankPerlink:'关联设备'//EwayLocale.param.template.bankPerlink
         },
         paramDownloadMonitor:{
         	title:'参数下发监控',//EwayLocale.param.paramDownloadMonitor.title

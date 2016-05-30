@@ -56,7 +56,7 @@ Ext.define('Eway.controller.report.baseReport.RetainCardCountReport', {
 			        var object = Ext.decode(response.responseText);
 			        if(object.success){
 			        	centerPanel.add({
-			        		style : 'overflow:auto;',
+//			        		style : 'overflow:auto;',
 			        		border : 0,
 			        		loader:{
 						        url:'api/report/downloadFile?path='+ object.path + '&reportTitle=' + fileName,

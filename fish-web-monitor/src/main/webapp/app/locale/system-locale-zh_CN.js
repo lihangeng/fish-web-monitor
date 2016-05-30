@@ -1,5 +1,5 @@
 Ext.apply(EwayLocale,{
-	
+
 	person:{
 		bankOrg :{
 			title:'银行机构管理',//EwayLocale.person.bankOrg.title
@@ -59,14 +59,14 @@ Ext.apply(EwayLocale,{
 			updateServiceTitle:'更改维护商信息',//EwayLocale.person.serviceOrg.updateServiceTitle
 			personDevSerLink:'该厂商的关联设备和人员',//EwayLocale.person.serviceOrg.personDevSerLink
 			devSerLink:'该厂商下设备',//EwayLocale.person.serviceOrg.devSerLink
-			personSerLink:'该厂商下人员',//EwayLocale.person.serviceOrg.personSerLink
+			personSerLink:'该厂商下人员'//EwayLocale.person.serviceOrg.personSerLink
 
 		},
 		servicePer:{
 			title:'维护人员管理',//EwayLocale.person.servicePer.title
 			servicePerlink:'关联设备',//EwayLocale.person.servicePer.servicePerlink
 			addServicePerTitle:'增加维护人员信息',//EwayLocale.person.servicePer.addServicePerTitle
-			updateServicePerTitle:'更改维护人员信息',//EwayLocale.person.servicePer.updateServicePerTitle
+			updateServicePerTitle:'更改维护人员信息'//EwayLocale.person.servicePer.updateServicePerTitle
 
 		},
 		user:{
@@ -103,7 +103,7 @@ Ext.apply(EwayLocale,{
 
 	},
 
-	
+
 	permission:{
 		systemMenu:'系统菜单',//EwayLocale.permission.systemMenu
 		role:{
