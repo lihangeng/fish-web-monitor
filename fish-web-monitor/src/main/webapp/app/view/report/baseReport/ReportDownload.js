@@ -7,8 +7,8 @@ Ext.define('Eway.view.report.baseReport.ReportDownload', {
 	closable : false,
 	initComponent : function() {
 		Ext.apply(this, {
-			xtype : 'panel',
-			layout : 'border',
+//			xtype : 'panel',
+//			layout : 'border',
 			items : [ {
 				region : 'center',
 				xtype : 'reportDownloadBody'
