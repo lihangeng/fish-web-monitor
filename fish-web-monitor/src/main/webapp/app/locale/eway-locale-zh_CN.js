@@ -58,7 +58,7 @@ Ext.apply(EwayLocale,{
 		add : '增加',//EwayLocale.button.add
 		update:'更改',//EwayLocale.button.update
 		remove:'删除',//EwayLocale.button.remove
-		import:'导入',//EwayLocale.button.import
+		imports:'导入',//EwayLocale.button.imports
 		refresh:'刷新',//EwayLocale.button.refresh
 		reset:'重置',//EwayLocale.button.reset
 		back:'返回',//EwayLocale.button.back
@@ -91,11 +91,11 @@ Ext.apply(EwayLocale,{
 		personM:'厂商管理员',//EwayLocale.button.personM
 		personTM:'管机员',//EwayLocale.button.personTM
 		orgAdmin:'机构管理员',//EwayLocale.button.orgAdmin
-			
+
 		addParamTemplate:'新增模板',//EwayLocale.button.addParamTemplate
 		updateParamTemplate:'更新模板',//EwayLocale.button.updateParamTemplate
 		removeParamTemplate:'删除模板',//EwayLocale.button.removeParamTemplate
-		applyParamTemplate:'发布模板',//EwayLocale.button.applyParamTemplate
+		applyParamTemplate:'发布模板'//EwayLocale.button.applyParamTemplate
 
 	},
 
@@ -223,7 +223,7 @@ Ext.apply(EwayLocale,{
 				unLinkDevFail:'解除失败.'//EwayLocale.tip.bankPer.link.unLinkDevFail
 			},
 			personEligible:'符合条件的人员',//EwayLocale.tip.bankPer.personEligible
-			downGradePer:'以及其下属机构下的人员信息',//EwayLocale.tip.bankPer.downGradePer
+			downGradePer:'以及其下属机构下的人员信息'//EwayLocale.tip.bankPer.downGradePer
 		},
 		serviceOrg:{
 			chooseOrg:'请选择您要设置的维护商.',//EwayLocale.tip.serviceOrg.chooseOrg
@@ -324,7 +324,7 @@ Ext.apply(EwayLocale,{
 				refresh:'正在刷新......',//EwayLocale.tip.business.device.refresh
 				remoteCommandMsg:'命令发送成功'//EwayLocale.tip.business.device.remoteCommandMsg
 			}
-		},		
+		},
 		paramTemplate:{
 			one:'请选择一条记录.',//EwayLocale.tip.paramTemplate.one
 			failedElement:'元数据展示失败.',//EwayLocale.tip.paramTemplate.failedElement
@@ -334,7 +334,7 @@ Ext.apply(EwayLocale,{
 			updateSuccess:'更改参数模板成功.',//EwayLocale.tip.paramTemplate.updateSuccess
 			applySuccess:'发布参数模板成功.',//EwayLocale.tip.paramTemplate.applySuccess
 			applyFailure:'发布参数模板失败.',//EwayLocale.tip.paramTemplate.applyFailure
-			unlinkedFailure:'解除关联设备失败.',//EwayLocale.tip.paramTemplate.unlinkedFailure	
+			unlinkedFailure:'解除关联设备失败.',//EwayLocale.tip.paramTemplate.unlinkedFailure
 			deviceUnlinked:'模板未关联设备，请重新操作.'//EwayLocale.tip.paramTemplate.deviceUnlinked
 		}
 
@@ -384,7 +384,7 @@ Ext.apply(EwayLocale,{
 		userEmploy:'用户占用!',//EwayLocale.vtype.userEmploy
 		loadTranscribe:'正在下载录制好的视频文件......',//EwayLocale.vtype.loadTranscribe
 		remoteFailure:'远程浏览失败',//EwayLocale.vtype.remoteFailure
-		choseTask:'请选择一个任务',//EwayLocale.vtype.choseTask
+		choseTask:'请选择一个任务'//EwayLocale.vtype.choseTask
 	},
 
 	commen:{

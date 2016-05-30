@@ -2,7 +2,7 @@ Ext.define('Eway.view.parameter.element.ImportParamFile', {
 	extend : 'Ext.window.Window',
 	alias : 'widget.element_ImportParamFile',
 
-	title : EwayLocale.param.element.import,
+	title : EwayLocale.param.element.imports,
 	modal : true,
 	resizable : false,
 	constrainHeader : true,

@@ -56,7 +56,7 @@ Ext.apply(EwayLocale,{
 		add : 'Add',//EwayLocale.button.add
 		update:'Update',//EwayLocale.button.update
 		remove:'Delete',//EwayLocale.button.remove
-		import:'Import',//EwayLocale.button.import
+		imports:'Import',//EwayLocale.button.imports
 		refresh:'Refresh',//EwayLocale.button.refresh
 		reset:'Reset',//EwayLocale.button.reset
 		back:'Back',//EwayLocale.button.back
@@ -89,7 +89,7 @@ Ext.apply(EwayLocale,{
 		personM:'Maintenancer',//EwayLocale.button.personM
 		personTM:'Banker',//EwayLocale.button.personTM
 		orgAdmin:'Bank Administrator',//EwayLocale.button.orgAdmin
-			
+
 		addParamTemplate:'Add ParamTemplate',//EwayLocale.button.addParamTemplate
 		updateParamTemplate:'Update ParamTemplate',//EwayLocale.button.updateParamTemplate
 		removeParamTemplate:'Remove ParamTemplate',//EwayLocale.button.removeParamTemplate
@@ -331,9 +331,9 @@ Ext.apply(EwayLocale,{
 			updateSuccess:'Update The ParamTemplate Successfully.',//EwayLocale.tip.paramTemplate.updateSuccess
 			applySuccess:'Apply The ParamTemplate Successfully.',//EwayLocale.tip.paramTemplate.applySuccess
 			applyFailure:'Apply The ParamTemplate Failed.',//EwayLocale.tip.paramTemplate.applyFailure
-			unlinkedFailure:'Related Device Failed.',//EwayLocale.tip.paramTemplate.unlinkedFailure		
+			unlinkedFailure:'Related Device Failed.',//EwayLocale.tip.paramTemplate.unlinkedFailure
 		}
-		
+
 
 	},
 
