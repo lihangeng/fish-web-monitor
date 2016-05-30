@@ -148,80 +148,80 @@ Ext.override(Ext.data.reader.Reader,{
 });
 
 /**
- *
- * 3.重写Ext.form.field.Text类的getErrors方法
- * 文本框必填时，输入空格验证将不通过。
- * @since extjs4.1.0
- *
- **/
+*
+* 3.重写Ext.form.field.Text类的getErrors方法
+* 文本框必填时，输入空格验证将不通过。
+* @since extjs4.1.0
+*
+**/
 Ext.override(Ext.form.field.Text, {
-    getErrors: function(value) {
-        var me = this,
-//            errors = me.callParent(arguments), // 当value为""时，会出现两次验证提示，所以注释掉
-            validator = me.validator,
-            emptyText = me.emptyText,
-            allowBlank = me.allowBlank,
-            vtype = me.vtype,
-            vtypes = Ext.form.field.VTypes,
-            regex = me.regex,
-            format = Ext.String.format,
-            msg;
+   getErrors: function(value) {
+       var me = this,
+//           errors = me.callParent(arguments), // 当value为""时，会出现两次验证提示，所以注释掉
+           validator = me.validator,
+           emptyText = me.emptyText,
+           allowBlank = me.allowBlank,
+           vtype = me.vtype,
+           vtypes = Ext.form.field.VTypes,
+           regex = me.regex,
+           format = Ext.String.format,
+           msg;
 
-        var errors = [];
+       var errors = [];
 
-        value = value || me.processRawValue(me.getRawValue());
+       value = value || me.processRawValue(me.getRawValue());
 
-        if (Ext.isFunction(validator)) {
-            msg = validator.call(me, value);
-            if (msg !== true) {
-                errors.push(msg);
-            }
-        }
+       if (Ext.isFunction(validator)) {
+           msg = validator.call(me, value);
+           if (msg !== true) {
+               errors.push(msg);
+           }
+       }
 
-        // 去除前后空格,只给allowBlank属性验证用
-        var allowBlankValue = Ext.String.trim(value);
-        if (allowBlankValue.length < 1 || allowBlankValue === emptyText) {
-            if (!allowBlank) {
-                errors.push(me.blankText);
-            }
-            //if value is blank, there cannot be any additional errors
-            return errors;
-        }
+       // 去除前后空格,只给allowBlank属性验证用
+       var allowBlankValue = Ext.String.trim(value);
+       if (allowBlankValue.length < 1 || allowBlankValue === emptyText) {
+           if (!allowBlank) {
+               errors.push(me.blankText);
+           }
+           //if value is blank, there cannot be any additional errors
+           return errors;
+       }
 
-        if (value.length < me.minLength) {
-            errors.push(format(me.minLengthText, me.minLength));
-        }
+       if (value.length < me.minLength) {
+           errors.push(format(me.minLengthText, me.minLength));
+       }
 
-        if (value.length > me.maxLength) {
-            errors.push(format(me.maxLengthText, me.maxLength));
-        }
+       if (value.length > me.maxLength) {
+           errors.push(format(me.maxLengthText, me.maxLength));
+       }
 
-        if (vtype) {
-            if(!vtypes[vtype](value, me)){
-                errors.push(me.vtypeText || vtypes[vtype +'Text']);
-            }
-        }
+       if (vtype) {
+           if(!vtypes[vtype](value, me)){
+               errors.push(me.vtypeText || vtypes[vtype +'Text']);
+           }
+       }
 
-        if (regex && !regex.test(value)) {
-            errors.push(me.regexText || me.invalidText);
-        }
+       if (regex && !regex.test(value)) {
+           errors.push(me.regexText || me.invalidText);
+       }
 
-        return errors;
-    },
-   
-    //支持所有的Text增加 clear功能
-    config : {
-    	hideTrigger: false,
-    	canClear: true,
-    	triggers :{
-    		clear:{
-    			cls:Ext.baseCSSPrefix + "form-clear-trigger",
-    			hidden:true,
-    			handler: 'onClearClick',
-                scope: 'this'
-    		}
-    	}
-    },
+       return errors;
+   },
+  
+   //支持所有的Text增加 clear功能
+   config : {
+   	hideTrigger: false,
+   	canClear: true,
+   	triggers :{
+   		clear:{
+   			cls:Ext.baseCSSPrefix + "form-clear-trigger",
+   			hidden:true,
+   			handler: 'onClearClick',
+               scope: 'this'
+   		}
+   	}
+   },
 	
 	listeners:{
 		change:function(text,newValue,oldValue){
@@ -231,48 +231,18 @@ Ext.override(Ext.form.field.Text, {
 			}
 			if(this.canClear && !this.readOnly && !this.hideTrigger){
 				if(newValue && newValue!== "" ){
-					text.getTrigger("clear").show();
+					clearTip.show();
 				}else{
-					text.getTrigger("clear").hide();
+					clearTip.hide();
 				}
 			}
-		}
-	},
-	
-	//可重写此方式，实现具体的业务逻辑
-	onClearClick : function(){
-		this.setValue(null);
-	}
-});
-
-
-Ext.override(Ext.form.field.ComboBox, {
-    //支持所有的Text增加 clear功能
-    config : {
-    	hideTrigger: false,
-    	canClear: true,
-    	triggers :{
-    		clear:{
-    			cls:Ext.baseCSSPrefix + "form-clear-trigger",
-    			hidden:true,
-    			handler: 'onClearClick',
-                scope: 'this'
-    		}
-    	}
-    },
-	
-	listeners:{
-		change:function(text,newValue,oldValue){
+		},
+		afterrender: function(text){
 			var clearTip = text.getTrigger("clear");
 			if(undefined==clearTip){
 				return;
-			}
-			if(this.canClear && !this.readOnly){
-				if(newValue && newValue!== "" ){
-					text.getTrigger("clear").show();
-				}else{
-					text.getTrigger("clear").hide();
-				}
+			}else{
+				clearTip.hide();
 			}
 		}
 	},
@@ -283,30 +253,43 @@ Ext.override(Ext.form.field.ComboBox, {
 	}
 });
 
-/**
- * 重写picker，增加clear
- */
-Ext.override(Ext.form.field.Picker, {
-	config: {
-    	hideTrigger: false,
-    	canClear: true,
-        triggers: {
-    		picker: {
-                handler: 'onTriggerClick',
-                scope: 'this'
-            },
-            clear:{
-    			cls:Ext.baseCSSPrefix + "form-clear-trigger",
-    			hidden:true,
-    			handler: 'onClearClick',
-                scope: 'this'
-    		}
-        }
-    }
+//支持所有的ComboBox增加 clear功能
+Ext.override(Ext.form.field.ComboBox, {
+   config : {
+   	hideTrigger: false,
+   	canClear: true,
+   	triggers :{
+   		clear:{
+   			cls:Ext.baseCSSPrefix + "form-clear-trigger",
+   			hidden:true,
+   			handler: 'onClearClick',
+               scope: 'this'
+   		}
+   	}
+   }
 });
 
-
-
+/**
+* 重写picker，增加clear
+*/
+Ext.override(Ext.form.field.Picker, {
+	config: {
+   	hideTrigger: false,
+   	canClear: true,
+       triggers: {
+   		picker: {
+               handler: 'onTriggerClick',
+               scope: 'this'
+           },
+           clear:{
+   			cls:Ext.baseCSSPrefix + "form-clear-trigger",
+   			hidden:true,
+   			handler: 'onClearClick',
+               scope: 'this'
+   		}
+       }
+   }
+});
 
 //修复model.destroy()时，因row.className = row.className错误，无法调用回调函数的问题
 Ext.define('Ext.view.override.Table', {
