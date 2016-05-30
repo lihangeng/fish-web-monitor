@@ -10,7 +10,7 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 			'Eway.view.report.faultRateReport.ModuleCharts',
 			'Eway.lib.DateMonth'],
 
-	title : '故障率报表',
+	title : EwayLocale.report.faultRateReport.viewTitle,
 
 	scrollable : true,
 	autoScroll : true,
@@ -20,7 +20,7 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 				margin : 20,
 				items : [ {
 					xtype : 'datefield',
-					fieldLabel : '月份',
+					fieldLabel : EwayLocale.report.faultRateReport.dateMonth,
 					labelWidth : 50,
 					editable : false,
 					value : new Date(),

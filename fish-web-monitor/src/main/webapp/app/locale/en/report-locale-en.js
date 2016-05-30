@@ -30,6 +30,19 @@ Ext.apply(EwayLocale,{
 			statisticsDays : 'Time Scope',//EwayLocale.report.baseReport.statisticsDays
 			caseTrendReportTitle: 'Fault Trend Chart'//EwayLocale.report.baseReport.caseTrendReportTitle
 		},
+		faultRateReport:{
+			viewTitle : 'Fault Rate Report',//EwayLocale.report.faultRateReport.viewTitle
+			dateMonth : 'Month',//EwayLocale.report.faultRateReport.dateMonth
+			devType : 'Device Type',//EwayLocale.report.faultRateReport.devType
+			vendorName : 'Device Vendor',//EwayLocale.report.faultRateReport.vendorName
+			moduleName : 'Device Module',//EwayLocale.report.faultRateReport.moduleName
+			tradeCount : 'Transaction Quantity',//EwayLocale.report.faultRateReport.tradeCount
+			faultCount : ' Fault Quantity',//EwayLocale.report.faultRateReport.faultCount
+			rate　: 'Fault Rate(Qercentage)',//EwayLocale.report.faultRateReport.rate
+			vendorRate : 'Qifferent Vendor Transaction Fault Rate',//EwayLocale.report.faultRateReport.vendorRate
+			typeRate : 'Qifferent Type Transaction Fault Rate',//EwayLocale.report.faultRateReport.typeRate
+            moduleRate : 'Qifferent Module Transaction Fault Rate',//EwayLocale.report.faultRateReport.moduleRate
+		},
 		openrate:{
 			device:{
 				statisticsMethod:'Statistics Way',//EwayLocale.report.openrate.device.statisticsMethod
