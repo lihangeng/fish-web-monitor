@@ -1,5 +1,5 @@
 Ext.apply(EwayLocale,{
-	
+
 	versionType : {//EwayLocale.versionType.versionType
 		title : '应用类型管理',//EwayLocale.versionType.title
 		treeRoot : '所有应用类型',//EwayLocale.versionType.treeRoot
@@ -14,7 +14,7 @@ Ext.apply(EwayLocale,{
 		versionInfo : '版本信息',//EwayLocale.statics.versionInfo
 		msg:'信息'	//EwayLocale.statics.msg
 	},
-	
+
 	advert : {//EwayLocale.advert.advert
 		title : '广告管理',//EwayLocale.advert.title
 		createAdvert : '创建广告',//EwayLocale.advert.createAdvert
@@ -153,7 +153,7 @@ Ext.apply(EwayLocale,{
 		hourDisplay : '时',//EwayLocale.bsAdvert.hourDisplay
 		minuteDisplay : '分',//EwayLocale.bsAdvert.minuteDisplay
 		secondeDisplay : '秒',//EwayLocale.bsAdvert.secondeDisplay
-		idleMoreTitle : '添加等待插卡页面广告',//EwayLocale.bsAdvert.idleMoreTitle	
+		idleMoreTitle : '添加等待插卡页面广告',//EwayLocale.bsAdvert.idleMoreTitle
 		chooseMediaFile : '请选择媒体文件',//EwayLocale.bsAdvert.chooseMediaFile
 		uploadResource : '上传资源...',//EwayLocale.bsAdvert.uploadResource
 		uploadResourceBlank : '请上传资源',//EwayLocale.bsAdvert.uploadResourceBlank
@@ -179,7 +179,7 @@ Ext.apply(EwayLocale,{
 		loadingFail:'加载广告资源失败!',//EwayLocale.bsAdvert.loadingFail
 		activedSuccessfully:'激活成功'//EwayLocale.bsAdvert.activedSuccessfully
 	},
-	bsAdvertGroup : { //EwayLocale.bsAdvertGroup.bsAdvertGroup 
+	bsAdvertGroup : { //EwayLocale.bsAdvertGroup.bsAdvertGroup
 		commenType:'通用',//EwayLocale.bsAdvertGroup.commenType
 		defaultType:'默认',//EwayLocale.bsAdvertGroup.defaultType
 		title:'BS广告组管理',//EwayLocale.bsAdvertGroup.title

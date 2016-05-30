@@ -32,7 +32,7 @@ Ext.apply(EwayLocale,{
             importSuccess:'Import parameter element successfully!',//EwayLocale.param.element.importSuccess
             regex1:'Can only input numbers! ',//EwayLocale.param.element.regex1
             regex2:'Can only input english,numbers,underline,line',//EwayLocale.param.element.regex2
-            import:'Import parameter elenemt file',//EwayLocale.param.element.import
+            imports:'Import parameter elenemt file',//EwayLocale.param.element.imports
             importFile:'Import file',//EwayLocale.param.element.importFile
             importEmptyText:'Please chose file!'//EwayLocale.param.element.importEmptyText
     	},

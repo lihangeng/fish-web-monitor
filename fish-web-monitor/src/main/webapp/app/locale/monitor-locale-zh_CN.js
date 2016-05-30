@@ -1,5 +1,5 @@
 Ext.apply(EwayLocale,{
-	
+
 	monitor:{
 		summary:{
 			title:'监控总览',//EwayLocale.monitor.summary.title
@@ -175,7 +175,7 @@ Ext.apply(EwayLocale,{
 				result: '统计结果',//EwayLocale.monitor.business.newTransaction.result
 				time: '统计时间',//EwayLocale.monitor.business.newTransaction.time
 				timeUnit: '分钟',//EwayLocale.monitor.business.newTransaction.timeUnit
-				
+
 				total: '交易总数',//EwayLocale.monitor.business.newTransaction.total
 				localW: '本行卡取款数',//EwayLocale.monitor.business.newTransaction.localW
 				localD: '本行卡存款数',//EwayLocale.monitor.business.newTransaction.localD
@@ -186,7 +186,7 @@ Ext.apply(EwayLocale,{
 				creditQ: '贷记卡查询数',//EwayLocale.monitor.business.newTransaction.creditQ
 				otherW: '他行卡取款数',//EwayLocale.monitor.business.newTransaction.otherW
 				otherT: '他行卡转帐数',//EwayLocale.monitor.business.newTransaction.otherT
-				otherQ: '他行卡查询数',//EwayLocale.monitor.business.newTransaction.otherQ
+				otherQ: '他行卡查询数'//EwayLocale.monitor.business.newTransaction.otherQ
 			},
 			blackList:{
 				title:'黑名单卡管理',//EwayLocale.monitor.business.blackList.title
@@ -303,7 +303,7 @@ Ext.apply(EwayLocale,{
 			}
 		}
 	},
-	
+
 	agent:{
 		remote:{
 			screen:{
@@ -324,7 +324,7 @@ Ext.apply(EwayLocale,{
 				stopManage:'自动停止.如需取得视频文件,请联系管理员!',//EwayLocale.agent.remote.screen.stopManage
 				manage: '操作',//EwayLocale.agent.remote.screen.manage
 				loading:'下载',//EwayLocale.agent.remote.screen.loading
-				screenCamera: '屏幕录制',//EwayLocale.agent.remote.screen.screenCamera
+				screenCamera: '屏幕录制'//EwayLocale.agent.remote.screen.screenCamera
 			},
 			discInfo: '磁盘信息',//EwayLocale.agent.remote.discInfo
 			discName: '磁盘分区名称',//EwayLocale.agent.remote.discName
@@ -449,7 +449,7 @@ Ext.apply(EwayLocale,{
             backupAppLogsSuccess:'日志备份成功.',//EwayLocale.agent.remote.backupAppLogsSuccess
             backupAppLogsFail:'日志备份失败.',//EwayLocale.agent.remote.backupAppLogsFail
             backupLogSucList:'日备份日志成功设备列表.',//EwayLocale.agent.remote.backupLogSucList
-            backupLogFailList:'日备份日志失败设备列表.',//EwayLocale.agent.remote.backupLogFailList
+            backupLogFailList:'日备份日志失败设备列表.'//EwayLocale.agent.remote.backupLogFailList
 
 		}
 	}
