@@ -43,7 +43,7 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
                 store: store,
                 sprites: [{
                     type  : 'text',
-                    text:'不同模块交易故障率',
+                    text:EwayLocale.report.faultRateReport.moduleRate,
                     font  : '14px Helvetica',
                     fontStyle:'oblique',
                     width : 100,
@@ -57,7 +57,7 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
 //                    majorTickSteps: 2,
                     minimum: 0,
                     fields: [me.getColumnField()],
-                    renderer: function (v) { return v + '%'; },
+                    renderer: function (v) { return v.toFixed() + '%'; },
                     grid: true
                 }, {
                     type: 'category',

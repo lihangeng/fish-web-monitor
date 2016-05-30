@@ -46,7 +46,7 @@ Ext.define('Eway.view.report.faultRateReport.TypeCharts', {
                 shadow: false,
                 sprites: [{
                     type  : 'text',
-                    text:'不同型号交易故障率',
+                    text:EwayLocale.report.faultRateReport.typeRate,
                     font  : '14px Helvetica',
                     fontStyle:'oblique',
                     width : 100,
@@ -77,7 +77,9 @@ Ext.define('Eway.view.report.faultRateReport.TypeCharts', {
                     type: 'bar',
                     axis: 'left',
                     xField: 'name',
-                    title: [ '故障数', '交易数', '故障率(百分比)' ],
+                    title: [ EwayLocale.report.faultRateReport.tradeCount,
+                  			EwayLocale.report.faultRateReport.faultCount,
+                 			EwayLocale.report.faultRateReport.rate ],
                     yField: [ 'faultCount','tradeCount','rate' ],
                     stacked: false,
                     style: {
