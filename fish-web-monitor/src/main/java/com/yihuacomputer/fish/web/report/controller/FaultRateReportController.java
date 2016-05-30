@@ -47,7 +47,7 @@ public class FaultRateReportController {
 
 	@Autowired
 	private IAtmTypeService atmTypeService;
-	
+
 	@Autowired
 	private IAtmModuleService atmModuleService;
 
@@ -60,7 +60,7 @@ public class FaultRateReportController {
 		List<IAtmVendor> brand = EntityUtils.convert(atmBrandService.list());
 		Set<String> set1 = new HashSet<String>();
 		Set<String> set2 = new HashSet<String>();
-		DecimalFormat df = new DecimalFormat("#");
+		DecimalFormat df = new DecimalFormat("0.00");
 		for (FaultRateReport f : list) {
 			if (f.getTradeCount() == 0) {
 				f.setRate("100");
@@ -96,16 +96,16 @@ public class FaultRateReportController {
 	}
 
 	@RequestMapping(value = "/faultByType", method = RequestMethod.GET)
-	public @ResponseBody ModelMap queryFaultByType(HttpServletRequest req,WebRequest request) {
+	public @ResponseBody ModelMap queryFaultByType(HttpServletRequest req, WebRequest request) {
 		logger.info(String.format("search faultByType : queryFaultByType"));
 		ModelMap result = new ModelMap();
 		String brandName = req.getParameter("name");
 		String time = req.getParameter("dateTime");
-		List<FaultRateReport> list = faultRateReportService.listByType(brandName,time);
+		List<FaultRateReport> list = faultRateReportService.listByType(brandName, time);
 		List<IAtmType> type = faultRateReportService.getType(brandName);
 		Set<String> set1 = new HashSet<String>();
 		Set<String> set2 = new HashSet<String>();
-		DecimalFormat df = new DecimalFormat("#");
+		DecimalFormat df = new DecimalFormat("0.00");
 		for (FaultRateReport f : list) {
 			if (f.getTradeCount() == 0) {
 				f.setRate("100");
@@ -146,11 +146,11 @@ public class FaultRateReportController {
 		ModelMap result = new ModelMap();
 		String typeName = req.getParameter("name");
 		String time = req.getParameter("dateTime");
-		List<FaultRateReport> list = faultRateReportService.listByModule(typeName,time);
+		List<FaultRateReport> list = faultRateReportService.listByModule(typeName, time);
 		List<IAtmModule> module = faultRateReportService.getModule(typeName);
 		Set<String> set1 = new HashSet<String>();
 		Set<String> set2 = new HashSet<String>();
-		DecimalFormat df = new DecimalFormat("#");
+		DecimalFormat df = new DecimalFormat("0.00");
 		for (FaultRateReport f : list) {
 			if (f.getTradeCount() == 0) {
 				f.setRate("100");
