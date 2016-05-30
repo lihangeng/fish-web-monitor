@@ -314,7 +314,13 @@ Ext.apply(EwayLocale,{
 			selectTask : '请选择一条任务记录！',//EwayLocale.version.download.selectTask
 			selectAllDevice : '全部设备',//EwayLocale.version.download.selectAllDevice
 			checkedTaskCantResetTips : '非运行中的任务无法重置！',//EwayLocale.version.download.checkedTaskCantResetTips
-			taskExportTips : '导出选中作业下的全部下发结果'//EwayLocale.version.download.taskExportTips
+			taskExportTips : '导出选中作业下的全部下发结果',//EwayLocale.version.download.taskExportTips
+			queryJobFailed : '查看作业失败',//EwayLocale.version.download.queryJobFailed
+			callBack : '返回',//EwayLocale.version.download.callBack
+			callBackJob : '返回作业',//EwayLocale.version.download.callBackJob
+			beforeJob : '上一个作业',//EwayLocale.version.download.beforeJob
+			afterJob : '下一个作业',//EwayLocale.version.download.afterJob
+			JobDetails : '作业详情',//EwayLocale.version.download.JobDetails
 		},
 		task : {//EwayLocale.version.task.task
 			jobId : '作业ID',//EwayLocale.version.task.jobId

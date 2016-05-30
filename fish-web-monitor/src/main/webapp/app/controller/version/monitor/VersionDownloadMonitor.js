@@ -105,7 +105,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 	    		me.onTaskQuery();
 		    },
 		    failure:function(){
-		    		Eway.alert('查看作业失败');	
+		    		Eway.alert(EwayLocale.version.download.queryJobFailed);	
 		    }
 
 		});

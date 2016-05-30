@@ -144,15 +144,15 @@ public class VersionDownloadController {
 		long downloadTime = taskService.getDownloadTimeAvg(displayJobId);
 		
 		List<TwoTuple<String,String>> chartsFormList = new ArrayList<TwoTuple<String,String>>();
-		chartsFormList.add(new TwoTuple<String,String>("版本名称",version.getVersionType().getTypeName()));
-		chartsFormList.add(new TwoTuple<String,String>("版本号",version.getVersionNo()));
+		chartsFormList.add(new TwoTuple<String,String>(getEnumI18n("VersionName"),version.getVersionType().getTypeName()));
+		chartsFormList.add(new TwoTuple<String,String>(getEnumI18n("VersionNo"),version.getVersionNo()));
 		for(ChartsInfo charsInfo:chartList){
 			if(charsInfo.getTitle().equals(getEnumI18n(VersionStaticsStatus.TOTALDEVICE.getText()))||charsInfo.getTitle().equals(getEnumI18n(VersionStaticsStatus.SUCCESSDEVICE.getText()))){
 				TwoTuple<String,String> twoTuple = new TwoTuple<String,String>(charsInfo.getTitle(),String.valueOf(charsInfo.getValue()));
 				chartsFormList.add(twoTuple);
 			}
 		}
-		chartsFormList.add(new TwoTuple<String,String>("下载速度",String.valueOf(downloadTime)));
+		chartsFormList.add(new TwoTuple<String,String>(getEnumI18n("downLoadSpeed"),String.valueOf(downloadTime)));
 		for(ChartsInfo charsInfo:statusList){
 			TwoTuple<String,String> twoTuple = new TwoTuple<String,String>(getEnumI18n(charsInfo.getTitle()),String.valueOf(charsInfo.getValue()));
 			chartsFormList.add(twoTuple);

@@ -313,7 +313,13 @@ Ext.apply(EwayLocale,{
 			selectTask:'Please Choose A Task Record!',//EwayLocale.version.download.selectTask
 			selectAllDevice:'All Devices',//EwayLocale.version.download.selectAllDevice
 			checkedTaskCantResetTips:'Non-running Task Can Not Be Reset!',//EwayLocale.version.download.checkedTaskCantResetTips
-			taskExportTips:'Export All Issue Result Of Job Selected'//EwayLocale.version.download.taskExportTips
+			taskExportTips:'Export All Issue Result Of Job Selected',//EwayLocale.version.download.taskExportTips
+			queryJobFailed : 'Query Job Failed',//EwayLocale.version.download.queryJobFailed
+			callBack : 'Call Back',//EwayLocale.version.download.callBack
+			callBackJob : 'Call Back Job',//EwayLocale.version.download.callBackJob
+			beforeJob : 'The Before Job',//EwayLocale.version.download.beforeJob
+			afterJob : 'The Next Job',//EwayLocale.version.download.afterJob
+			JobDetails : 'The Job Datails',//EwayLocale.version.download.JobDetails
 		},
 		task:{
 			jobId:'Job ID',//EwayLocale.version.task.jobId
