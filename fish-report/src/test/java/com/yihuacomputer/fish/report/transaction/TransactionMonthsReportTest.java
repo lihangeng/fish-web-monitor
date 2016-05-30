@@ -2,6 +2,7 @@ package com.yihuacomputer.fish.report.transaction;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class TransactionMonthsReportTest {
 	private ITransactionMonthsService transactionMonthsService;
 	
 	@Test
+	@Ignore
 	public void monthsLoad(){
 		String date = "201605";
 		transactionMonthsService.extractDate(date);
