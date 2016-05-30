@@ -1,6 +1,5 @@
 package com.yihuacomputer.fish.report.base;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +28,6 @@ public class FaultRateReportService implements IFaultRateReportService {
 		return dao.loadAll(ITransactionMonths.class);
 	}
 
-
 	@Override
 	public Iterable<IEveryMonthFaultCount> typeFault() {
 		return dao.loadAll(IEveryMonthFaultCount.class);
@@ -38,38 +36,38 @@ public class FaultRateReportService implements IFaultRateReportService {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<FaultRateReport> listByBrand(String time) {
-		StringBuffer sql=new StringBuffer();
+		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT t.tname,t.tcount,f.fcount FROM (SELECT trans.VENDOR_NAME tname,SUM(trans.TRANS_COUNT) tcount ");
 		sql.append("FROM ATMC_TRANSACTION_MONTHS trans ");
-		if(time !=null){
+		if (time != null) {
 			sql.append("WHERE trans.TRANS_DATE =").append(Long.valueOf(time));
 		}
 		sql.append(" GROUP BY trans.VENDOR_NAME)t LEFT JOIN ");
 		sql.append("(SELECT fault.VENDOR_NAME fname,SUM(fault.FAULT_COUNT) fcount FROM CASE_FAULT_MONTH fault ");
-		if(time != null){
+		if (time != null) {
 			sql.append("WHERE fault.FAULT_DATE =").append(Long.valueOf(time));
 		}
 		sql.append(" GROUP BY fault.VENDOR_NAME)f ON t.tname = f.fname UNION ");
 		sql.append("SELECT f.fname,t.tcount,f.fcount FROM (SELECT trans.VENDOR_NAME tname,SUM(trans.TRANS_COUNT) tcount ");
 		sql.append("FROM ATMC_TRANSACTION_MONTHS trans ");
-		if(time != null){
+		if (time != null) {
 			sql.append("WHERE trans.TRANS_DATE =").append(Long.valueOf(time));
 		}
 		sql.append(" GROUP BY trans.VENDOR_NAME)t RIGHT JOIN ");
 		sql.append("(SELECT fault.VENDOR_NAME fname,SUM(fault.FAULT_COUNT) fcount FROM CASE_FAULT_MONTH fault ");
-		if(time != null){
+		if (time != null) {
 			sql.append("WHERE fault.FAULT_DATE =").append(Long.valueOf(time));
 		}
 		sql.append(" GROUP BY fault.VENDOR_NAME)f ON t.tname = f.fname");
-		SQLQuery query= dao.getSQLQuery(sql.toString());
+		SQLQuery query = dao.getSQLQuery(sql.toString());
 		List<Object> list = query.list();
-		List<FaultRateReport> result= new ArrayList<FaultRateReport>();
-		for(Object obj:list){
-			FaultRateReport frr=new FaultRateReport();
-			Object[] object=(Object[])obj;
-			frr.setName(object[0]==null?"":String.valueOf(object[0]));
-			frr.setTradeCount(Long.valueOf(object[1]==null?"0":String.valueOf(object[1])));
-			frr.setFaultCount(Long.valueOf(object[2]==null?"0":String.valueOf(object[2])));
+		List<FaultRateReport> result = new ArrayList<FaultRateReport>();
+		for (Object obj : list) {
+			FaultRateReport frr = new FaultRateReport();
+			Object[] object = (Object[]) obj;
+			frr.setName(object[0] == null ? "" : String.valueOf(object[0]));
+			frr.setTradeCount(Long.valueOf(object[1] == null ? "0" : String.valueOf(object[1])));
+			frr.setFaultCount(Long.valueOf(object[2] == null ? "0" : String.valueOf(object[2])));
 			result.add(frr);
 		}
 		return result;
@@ -77,75 +75,73 @@ public class FaultRateReportService implements IFaultRateReportService {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<FaultRateReport> listByType(String name,String time) {
-		StringBuffer sql=new StringBuffer();
+	public List<FaultRateReport> listByType(String name, String time) {
+		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT t.tname,t.tcount,f.fcount FROM (SELECT trans.DEV_TYPE tname,SUM(trans.TRANS_COUNT) tcount ");
 		sql.append("FROM ATMC_TRANSACTION_MONTHS trans WHERE trans.VENDOR_NAME = '").append(name).append("'");
-		if(time != null){
+		if (time != null) {
 			sql.append(" AND trans.TRANS_DATE =").append(Long.valueOf(time));
 		}
 		sql.append(" GROUP BY trans.DEV_TYPE)t LEFT JOIN ");
 		sql.append("(SELECT fault.DEV_TYPE fname,SUM(fault.FAULT_COUNT) fcount FROM CASE_FAULT_MONTH fault WHERE fault.VENDOR_NAME = '").append(name).append("'");
-		if(time != null){
+		if (time != null) {
 			sql.append(" AND fault.FAULT_DATE =").append(Long.valueOf(time));
 		}
 		sql.append(" GROUP BY fault.DEV_TYPE)f ON t.tname = f.fname UNION ");
 		sql.append("SELECT f.fname,t.tcount,f.fcount FROM (SELECT trans.DEV_TYPE tname,SUM(trans.TRANS_COUNT) tcount ");
 		sql.append("FROM ATMC_TRANSACTION_MONTHS trans WHERE trans.VENDOR_NAME = '").append(name).append("'");
-		if(time != null){
+		if (time != null) {
 			sql.append(" AND trans.TRANS_DATE =").append(Long.valueOf(time));
 		}
 		sql.append(" GROUP BY trans.DEV_TYPE)t RIGHT JOIN ");
 		sql.append("(SELECT fault.DEV_TYPE fname,SUM(fault.FAULT_COUNT) fcount FROM CASE_FAULT_MONTH fault WHERE fault.VENDOR_NAME = '").append(name).append("'");
-		if(time != null){
+		if (time != null) {
 			sql.append(" AND fault.FAULT_DATE =").append(Long.valueOf(time));
 		}
 		sql.append(" GROUP BY fault.DEV_TYPE)f ON t.tname = f.fname");
-		SQLQuery query= dao.getSQLQuery(sql.toString());
+		SQLQuery query = dao.getSQLQuery(sql.toString());
 		List<Object> list = query.list();
-		List<FaultRateReport> result= new ArrayList<FaultRateReport>();
-		for(Object obj:list){
-			FaultRateReport frr=new FaultRateReport();
-			Object[] object=(Object[])obj;
-			frr.setName(object[0]==null?"":String.valueOf(object[0]));
-			frr.setTradeCount(Long.valueOf(object[1]==null?"0":String.valueOf(object[1])));
-			frr.setFaultCount(Long.valueOf(object[2]==null?"0":String.valueOf(object[2])));
+		List<FaultRateReport> result = new ArrayList<FaultRateReport>();
+		for (Object obj : list) {
+			FaultRateReport frr = new FaultRateReport();
+			Object[] object = (Object[]) obj;
+			frr.setName(object[0] == null ? "" : String.valueOf(object[0]));
+			frr.setTradeCount(Long.valueOf(object[1] == null ? "0" : String.valueOf(object[1])));
+			frr.setFaultCount(Long.valueOf(object[2] == null ? "0" : String.valueOf(object[2])));
 			result.add(frr);
 		}
 		return result;
 	}
 
-
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<FaultRateReport> listByModule(String name,String time) {
-		StringBuffer sql=new StringBuffer();
+	public List<FaultRateReport> listByModule(String name, String time) {
+		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT f.mname,t.tcount,f.fcount FROM (SELECT trans.DEV_TYPE tname,SUM(trans.TRANS_COUNT) tcount ");
 		sql.append("FROM ATMC_TRANSACTION_MONTHS trans WHERE trans.DEV_TYPE = '").append(name).append("'");
-		if(time != null){
+		if (time != null) {
 			sql.append(" AND trans.TRANS_DATE =").append(Long.valueOf(time));
 		}
 		sql.append(" GROUP BY trans.DEV_TYPE)t RIGHT JOIN ");
 		sql.append("(SELECT fault.DEV_MOD mname,fault.DEV_TYPE tname,SUM(fault.FAULT_COUNT) fcount ");
 		sql.append("FROM CASE_FAULT_MONTH fault WHERE fault.DEV_TYPE ='").append(name).append("'");
-		if(time != null){
+		if (time != null) {
 			sql.append(" AND fault.FAULT_DATE =").append(Long.valueOf(time));
 		}
 		sql.append(" GROUP BY fault.DEV_MOD)f ON t.tname = f.tname ");
-		SQLQuery query= dao.getSQLQuery(sql.toString());
+		SQLQuery query = dao.getSQLQuery(sql.toString());
 		List<Object> list = query.list();
-		List<FaultRateReport> result= new ArrayList<FaultRateReport>();
-		for(Object obj:list){
-			FaultRateReport frr=new FaultRateReport();
-			Object[] object=(Object[])obj;
-			frr.setName(object[0]==null?"":String.valueOf(object[0]));
-			frr.setTradeCount(Long.valueOf(object[1]==null?"0":String.valueOf(object[1])));
-			frr.setFaultCount(Long.valueOf(object[2]==null?"0":String.valueOf(object[2])));
+		List<FaultRateReport> result = new ArrayList<FaultRateReport>();
+		for (Object obj : list) {
+			FaultRateReport frr = new FaultRateReport();
+			Object[] object = (Object[]) obj;
+			frr.setName(object[0] == null ? "" : String.valueOf(object[0]));
+			frr.setTradeCount(Long.valueOf(object[1] == null ? "0" : String.valueOf(object[1])));
+			frr.setFaultCount(Long.valueOf(object[2] == null ? "0" : String.valueOf(object[2])));
 			result.add(frr);
 		}
 		return result;
 	}
-
 
 	@Override
 	public List<IAtmType> getType(String name) {
@@ -154,7 +150,6 @@ public class FaultRateReportService implements IFaultRateReportService {
 		return dao.findByHQL(hql.toString(), name);
 	}
 
-
 	@Override
 	public List<IAtmModule> getModule(String name) {
 		StringBuffer hql = new StringBuffer();
@@ -162,8 +157,5 @@ public class FaultRateReportService implements IFaultRateReportService {
 		hql.append("WHERE type.id = relation.atmTypeId AND module.id = relation.atmModuleId AND type.name =?");
 		return dao.findByHQL(hql.toString(), name);
 	}
-
-
-	
 
 }
