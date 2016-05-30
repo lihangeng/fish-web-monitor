@@ -19,7 +19,7 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 			items : [ {
 				margin : 20,
 				items : [ {
-					xtype : 'monthfield',
+					xtype : 'datefield',
 					fieldLabel : '月份',
 					labelWidth : 50,
 					editable : false,

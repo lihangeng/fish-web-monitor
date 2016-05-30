@@ -55,7 +55,8 @@ public class FaultRateReportController {
 	public @ResponseBody ModelMap searchByBrand(HttpServletRequest req, WebRequest webRequest) {
 		logger.info(String.format("search faultByBrand : queryFaultByBrand"));
 		ModelMap result = new ModelMap();
-		List<FaultRateReport> list = faultRateReportService.listByBrand();
+		String time = req.getParameter("dateTime");
+		List<FaultRateReport> list = faultRateReportService.listByBrand(time);
 		List<IAtmVendor> brand = EntityUtils.convert(atmBrandService.list());
 		Set<String> set1 = new HashSet<String>();
 		Set<String> set2 = new HashSet<String>();
@@ -98,8 +99,10 @@ public class FaultRateReportController {
 	public @ResponseBody ModelMap queryFaultByType(HttpServletRequest req,WebRequest request) {
 		logger.info(String.format("search faultByType : queryFaultByType"));
 		ModelMap result = new ModelMap();
-		List<FaultRateReport> list = faultRateReportService.listByType();
-		List<IAtmType> type = atmTypeService.list();
+		String brandName = req.getParameter("name");
+		String time = req.getParameter("dateTime");
+		List<FaultRateReport> list = faultRateReportService.listByType(brandName,time);
+		List<IAtmType> type = faultRateReportService.getType(brandName);
 		Set<String> set1 = new HashSet<String>();
 		Set<String> set2 = new HashSet<String>();
 		DecimalFormat df = new DecimalFormat("#");
@@ -138,11 +141,13 @@ public class FaultRateReportController {
 	}
 
 	@RequestMapping(value = "/faultByModule", method = RequestMethod.GET)
-	public @ResponseBody ModelMap queryFaultByModule() {
+	public @ResponseBody ModelMap queryFaultByModule(HttpServletRequest req, WebRequest webRequest) {
 		logger.info(String.format("search faultByModule : queryFaultByModule"));
 		ModelMap result = new ModelMap();
-		List<FaultRateReport> list = faultRateReportService.listByModule();
-		List<IAtmModule> module = atmModuleService.list();
+		String typeName = req.getParameter("name");
+		String time = req.getParameter("dateTime");
+		List<FaultRateReport> list = faultRateReportService.listByModule(typeName,time);
+		List<IAtmModule> module = faultRateReportService.getModule(typeName);
 		Set<String> set1 = new HashSet<String>();
 		Set<String> set2 = new HashSet<String>();
 		DecimalFormat df = new DecimalFormat("#");
