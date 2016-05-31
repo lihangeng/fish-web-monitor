@@ -20,9 +20,9 @@
 		<module>fish-web-monitor</module>
 	</modules>
 	<scm>
-	 	<connection>scm:git:ssh://git@10.2.8.222/atmvs.git</connection>
-        <developerConnection>scm:git:ssh://git@10.2.8.222/atmvs.git</developerConnection>
-        <url>http://10.2.8.222/gitweb/?p=atmvs.git</url>
+	 	<connection>scm:git:ssh://git@10.2.8.252/atmvs.git</connection>
+        <developerConnection>scm:git:ssh://git@10.2.8.252/atmvs.git</developerConnection>
+        <url>http://10.2.8.252/gitweb/?p=atmvs.git</url>
         <tag>HEAD</tag>
 	</scm>
 		<properties>
