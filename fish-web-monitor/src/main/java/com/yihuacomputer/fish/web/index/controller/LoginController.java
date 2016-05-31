@@ -239,20 +239,15 @@ class TreeMenu {
 	private String id;
 	private String code;
 	private String text;
+	private String iconCls;
 	private boolean leaf = true;
-	
-	public TreeMenu(IPermission permission,boolean hasChild) {
-		this.id = permission.getId();
-		this.code = permission.getCode();
-		this.text = permission.getDescription();
-		this.leaf = !hasChild;
-	}
 	
 	public TreeMenu(IPermission permission){
 		this.id = permission.getId();
 		this.code = permission.getCode();
 		this.text = permission.getDescription();
 		this.leaf = permission.isLeaf();
+		this.iconCls = permission.getIconCls();
 	}
 	
 	public TreeMenu(){}
@@ -288,42 +283,14 @@ class TreeMenu {
 	public void setLeaf(boolean leaf) {
 		this.leaf = leaf;
 	}
-	
+
+	public String getIconCls() {
+		return iconCls;
+	}
+
+	public void setIconCls(String iconCls) {
+		this.iconCls = iconCls;
+	}
 }
 
-class SimplePermission {
-	private String id;
-	private String text;
-	private String cls;
-	private String action;
-	private String parentId;
 
-	public SimplePermission(String id, String text, String cls, String action, String parentId) {
-		this.id = id;
-		this.text = text;
-		this.cls = cls;
-		this.action = action;
-		this.parentId = parentId;
-	}
-
-	public String getText() {
-		return text;
-	}
-
-	public String getCls() {
-		return cls;
-	}
-
-	public String getAction() {
-		return action;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public String getParentId() {
-		return parentId;
-	}
-
-}

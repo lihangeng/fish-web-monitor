@@ -1139,6 +1139,7 @@ pre.link{
 	color:red;
 }
 
+/*响应式布局的样式*/
 .x-responsivecolumn{padding:20px 0 0 20px}
 .x-responsivecolumn > *{margin:0 20px 20px 0;float:left}
 .big-100{width:calc(100% - 20px);background-position:100% 20px !important}
@@ -1149,3 +1150,23 @@ pre.link{
 .big-20{width:calc(20% - 20px);background-position:20% 20px !important}
 .x-responsivecolumn-small > .small-100{width:calc(100% - 20px);background-position:100% 20px !important}
 .x-responsivecolumn-small > .small-50{width:calc(50% - 20px);background-position:50% 20px !important}
+
+/*一级菜单的图表定义*/
+.menu-system {
+	background: url(../images/menu1.png) left 0px no-repeat !important;
+}
+.menu-device {
+	background: url(../images/menu1.png) left -24px no-repeat !important;
+}
+.menu-monitor {
+	background: url(../images/menu1.png) left -48px no-repeat !important;
+}
+.menu-application {
+	background: url(../images/menu1.png) left -72px no-repeat !important;
+}
+.menu-faults {
+	background: url(../images/menu1.png) left -96px no-repeat !important;
+}
+.menu-reports {
+	background: url(../images/menu1.png) left -120px no-repeat !important;
+}
