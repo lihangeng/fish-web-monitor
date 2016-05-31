@@ -47,16 +47,16 @@
 		</property> 
 		<property name="packagesToScan">  
 			<list> 
-				<value>com.yihuacomputer.fish.report.openrate.entity</value>
+				<value>com.yihuacomputer.fish.fault.entity</value>
+				<value>com.yihuacomputer.fish.monitor.entity</value>
+				<value>com.yihuacomputer.fish.machine.entity</value>
+				<value>com.yihuacomputer.fish.system.entity</value>
+				<value>com.yihuacomputer.fish.report.entity</value>
+				<value>com.yihuacomputer.fish.report.base.entity</value>
 			</list>  
 		</property>
 	</bean>
 	
-	<!-- hibernate实现的service扫描 -->
-	<import resource="classpath:/com/yihuacomputer/fish/monitor/spring-monitor-scan-hibernate.xml" />
-	<import resource="classpath:/com/yihuacomputer/fish/machine/spring-machine-scan-hibernate.xml" />
-	<import resource="classpath:/com/yihuacomputer/fish/report/spring-report-scan-hibernate.xml" />
-	<import resource="classpath:/com/yihuacomputer/fish/person/spring-person-core-scan-hibernate.xml" />
-	<!--测试数据 <import resource="classpath:/net/bwda/fish/config/test-data.xml"/> -->
+
 
 </beans>
