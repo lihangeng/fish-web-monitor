@@ -65,7 +65,7 @@ public class FaultRateReportController {
 			if (f.getTradeCount() == 0) {
 				f.setRate("100.00");
 			} else if (f.getFaultCount() == 0) {
-				f.setRate("00.00");
+				f.setRate("0.00");
 			} else {
 				f.setRate(df.format((double) f.getFaultCount() / f.getTradeCount() * 100));
 			}
@@ -84,7 +84,7 @@ public class FaultRateReportController {
 				form.setName(String.valueOf(it.next()));
 				form.setTradeCount(0);
 				form.setFaultCount(0);
-				form.setRate("00.00");
+				form.setRate("0.00");
 				list.add(form);
 			}
 
@@ -110,7 +110,7 @@ public class FaultRateReportController {
 			if (f.getTradeCount() == 0) {
 				f.setRate("100.00");
 			} else if (f.getFaultCount() == 0) {
-				f.setRate("00.00");
+				f.setRate("0.00");
 			} else {
 				f.setRate(df.format((double) f.getFaultCount() / f.getTradeCount() * 100));
 			}
@@ -129,7 +129,7 @@ public class FaultRateReportController {
 				form.setName(String.valueOf(it.next()));
 				form.setTradeCount(0);
 				form.setFaultCount(0);
-				form.setRate("00.00");
+				form.setRate("0.00");
 				list.add(form);
 			}
 
@@ -155,7 +155,7 @@ public class FaultRateReportController {
 			if (f.getTradeCount() == 0) {
 				f.setRate("100.00");
 			} else if (f.getFaultCount() == 0) {
-				f.setRate("00.00");
+				f.setRate("0.00");
 			} else {
 				f.setRate(df.format((double) f.getFaultCount() / f.getTradeCount() * 100));
 			}
@@ -174,7 +174,7 @@ public class FaultRateReportController {
 				form.setName(String.valueOf(it.next()));
 				form.setTradeCount(0);
 				form.setFaultCount(0);
-				form.setRate("00.00");
+				form.setRate("0.00");
 				list.add(form);
 			}
 
