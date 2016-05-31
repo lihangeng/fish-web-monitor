@@ -20,7 +20,7 @@ Ext.define('Eway.view.monitor.newTransaction.Chart', {
                     width: 50,
                     height: 24,
                     renderer: function(storeItem, item) {
-                        this.setTitle(' ' + storeItem.get(field));
+                    	storeItem.setTitle(' ' + item.get(field));
                     }
                 }
             }

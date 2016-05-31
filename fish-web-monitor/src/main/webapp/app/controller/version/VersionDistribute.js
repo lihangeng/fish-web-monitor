@@ -92,6 +92,9 @@ Ext.define('Eway.controller.version.VersionDistribute', {
 		var view = this.getEwayView();
 		var versionTypeCombo = view.down('version_pie combo');
 		var record = versionTypeCombo.getSelectedRecord();
+		if(record==undefined){
+			return;
+		}
 		var selectedVersionName = record.get("desc");
 		var versionTypeId=record.get("id");
 		var panel = view.down('version_pie'); 

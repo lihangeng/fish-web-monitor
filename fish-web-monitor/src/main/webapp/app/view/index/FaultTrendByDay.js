@@ -48,16 +48,16 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
                 grid: true,
                 minimum: 0,
 //                maximum: 48,
-                renderer: function (v, layoutContext) {
-                    return layoutContext.renderer(v);
+                renderer: function (axis, label, layoutContext) {
+                    return layoutContext.renderer(label);
                 }
             }, {
                 type: 'category',
                 fields: 'month',
                 position: 'bottom',
                 grid: true,
-                renderer: function (v) {
-                    return v.substring(5);
+                renderer: function (axis, label, layoutContext) {
+                    return layoutContext.renderer(label);
                 }/*,
                 label: {
                     rotate: {
@@ -92,7 +92,7 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                        this.setHtml(storeItem.get('month') + EwayLocale.index.faultAmount + storeItem.get('data1'));
+                    	storeItem.setHtml(item.get('month') + EwayLocale.index.faultAmount + item.get('data1'));
                     }
                 }
             }]
