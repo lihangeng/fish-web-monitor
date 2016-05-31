@@ -60,7 +60,9 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
                     minimum: 0,
                     adjustByMajorUnit: true,
                     fields: ['rate'],
-                    renderer: function (v) { return v.toFixed(); },
+                    renderer: function (axis, label, layoutContext) {
+                        return layoutContext.renderer(label);
+                    },
                     grid: true
                 }, {
                     type: 'category',
@@ -94,7 +96,7 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
                         style: 'background: #fff',
                         renderer: function(storeItem, item) {
                             var brand = item.series.getTitle()[Ext.Array.indexOf(item.series.getYField(), item.field)];
-                            this.setHtml(brand + ' for ' + storeItem.get('name') + ': ' + storeItem.get(item.field));
+                            storeItem.setHtml(brand + ' for ' + item.get('name') + ': ' + item.get(item.field));
                         }
                     },
                 }]

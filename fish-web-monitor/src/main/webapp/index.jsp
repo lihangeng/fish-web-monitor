@@ -11,14 +11,14 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<link rel="shortcut icon" type="image/ico" href="resources/images/favicon.ico" />
 
-	<link rel="stylesheet" type="text/css" href="ext/packages/ext-theme-crisp/build/resources/ext-theme-crisp-all.css" media="all" />
-	<link rel="stylesheet" type="text/css" href="ext/packages/sencha-charts/sencha-charts-all.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="ext/packages/theme-crisp/resources/theme-crisp-all.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="ext/packages/sencha-charts/crisp/charts-all.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="resources/css/fish-monitor.css" />
 	<link rel="stylesheet" type="text/css" href="resources/css/font-awesome.css" media="all" />
 
-	<script type="text/javascript" src="ext/ext-all-debug.js"></script>
-	<script type="text/javascript" src="ext/packages/ext-theme-crisp/build/ext-theme-crisp.js"></script>
-	<script type="text/javascript" src="ext/packages/sencha-charts/sencha-charts.js"></script>
+	<script type="text/javascript" src="ext/ext-all.js"></script>
+	<script type="text/javascript" src="ext/packages/theme-crisp/theme-crisp.js"></script>
+	<script type="text/javascript" src="ext/packages/sencha-charts/charts.js"></script>
 	<script type="text/javascript" src="ext/ux/cometd/cometd.js"></script>
 	<script type="text/javascript" src="ext/ux/cometd/ext-cometd.js"></script>
 	<script type="text/javascript">
@@ -98,7 +98,7 @@
 	  	var EwayLocale = {};
 	  	ewayUser.language =locale;
 		if(Ext.String.startsWith(locale,"zh")){
-			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-zh_CN.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/system-locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/machine-locale-zh_CN.js");
@@ -108,7 +108,7 @@
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/report-locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/param-locale-zh_CN.js");
 		}else{
-			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/ext-locale-en.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/locale-en.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/eway-locale-en.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/system-locale-en.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/machine-locale-en.js");

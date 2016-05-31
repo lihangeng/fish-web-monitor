@@ -170,7 +170,7 @@
 				</executions>
 				<configuration>
 					<ext>
-						<enabled>true</enabled>
+						<enabled>false</enabled>
 					</ext>
 					<attachClasses>true</attachClasses>
 					<packagingExcludes>

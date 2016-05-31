@@ -60,7 +60,9 @@ Ext.define('Eway.view.report.faultRateReport.TypeCharts', {
                     minimum: 0,
                     adjustByMajorUnit: true,
                     fields: ['rate'],
-                    renderer: function (v) { return v.toFixed(); },
+                    renderer: function (axis, label, layoutContext) {
+                        return layoutContext.renderer(label);
+                    },
                     grid: true
                 }, {
                     type: 'category',
@@ -94,7 +96,7 @@ Ext.define('Eway.view.report.faultRateReport.TypeCharts', {
                         style: 'background: #fff',
                         renderer: function(storeItem, item) {
                             var type = item.series.getTitle()[Ext.Array.indexOf(item.series.getYField(), item.field)];
-                            this.setHtml(type + ' for ' + storeItem.get('name') + ': ' + storeItem.get(item.field));
+                            storeItem.setHtml(type + ' for ' + item.get('name') + ': ' + item.get(item.field));
                         }
                     },
                 }]

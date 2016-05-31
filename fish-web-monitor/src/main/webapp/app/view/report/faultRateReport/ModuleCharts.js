@@ -57,7 +57,9 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
 //                    majorTickSteps: 2,
                     minimum: 0,
                     fields: [me.getColumnField()],
-                    renderer: function (v) { return v.toFixed() + '%'; },
+                    renderer: function (axis, label, layoutContext) {
+                        return layoutContext.renderer(label);
+                    },
                     grid: true
                 }, {
                     type: 'category',
@@ -83,7 +85,7 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
                         trackMouse: true,
                         style: 'background: #fff',
                         renderer: function(storeItem, item) {
-                        	this.setHtml(storeItem.get(me.getRowField()) + ': ' + storeItem.get(me.getColumnField())+"%");
+                        	storeItem.setHtml(item.get(me.getRowField()) + ': ' + item.get(me.getColumnField())+"%");
                         }
                     },
                     renderer: (function () {
