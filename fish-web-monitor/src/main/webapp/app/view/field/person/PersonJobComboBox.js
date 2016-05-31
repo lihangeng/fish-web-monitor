@@ -14,11 +14,19 @@ Ext.define('Eway.view.field.person.PersonJobComboBox', {
 		beforerender : function() {
 			this.store.load();
 		},
-		change : function(text, newValue, oldValue) {
-			if (newValue && newValue !== "") {
+		change:function(text,newValue,oldValue){
+			if(newValue && newValue!== "" ){
 				text.getTrigger("clear").show();
-			} else {
+			}else{
 				text.getTrigger("clear").hide();
+			}
+		},
+		afterrender: function(text){
+			var clearTip = text.getTrigger("clear");
+			if(undefined==clearTip){
+				return;
+			}else{
+				clearTip.hide();
 			}
 		}
 	}

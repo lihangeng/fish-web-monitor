@@ -31,7 +31,7 @@ Ext.define('Eway.view.parameter.element.FilterForm', {
 					checked:true
 				}]
 			},{
-				columnWidth : .25,
+				columnWidth : .5,
 				items : [{
 					xtype : 'field_paramElement_ParamClassify',
 					labelWidth: 110,

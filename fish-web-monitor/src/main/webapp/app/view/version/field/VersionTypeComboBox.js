@@ -41,6 +41,14 @@ Ext.define('Eway.view.version.field.VersionTypeComboBox', {
 					}else{
 						text.getTrigger("clear").hide();
 					}
+				},
+				afterrender: function(text){
+					var clearTip = text.getTrigger("clear");
+					if(undefined==clearTip){
+						return;
+					}else{
+						clearTip.hide();
+					}
 				}
 			}
 		});

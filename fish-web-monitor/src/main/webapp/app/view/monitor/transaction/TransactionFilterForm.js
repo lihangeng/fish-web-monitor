@@ -25,7 +25,8 @@ Ext.define('Eway.view.monitor.transaction.TransactionFilterForm', {
 							labelAlign : 'right',
 							xtype : 'textfield',
 							name : 'terminalId',
-							msgTarget : 'side'
+							msgTarget : 'side',
+							value:''
 						} ]
 					}, {
                     	columnWidth : .25,

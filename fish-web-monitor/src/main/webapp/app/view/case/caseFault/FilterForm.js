@@ -6,7 +6,6 @@ Ext.define('Eway.view.case.caseFault.FilterForm',{
 	requires : [ 'Eway.view.field.case.FaultClassify',
 	             'Eway.view.field.case.DevMod',
 	             'Eway.view.field.case.FaultStatus',
-	             'Eway.view.field.case.FaultClassify',
 	             'Eway.lib.Util'
 	             ],
 

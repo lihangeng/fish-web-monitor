@@ -1,25 +1,4 @@
-/**
- * 1.重写Rest，解决通过Rest方式增加的时候，会在URL中增加/0?。。的问题
- * @since extjs4.2.1
- */
-/*Ext.data.proxy.Rest.override({
-    isValidId: function(id) {
-        return (typeof id ==='number') && id > 0;//5中增加
-    }
-});*/
 
-/**
- * 2.重写模型，解决在关联操作过程中，post操作被当作update操作的问题
- * @since extjs4.2.1
- */
-/*Ext.data.Model.override({
-	hasId: function(id) {
-	    if (arguments.length === 0) {
-	        id = this.getId();
-	    }
-	    return !!(id || id === 0);
-	}
-});*/
 //修改pie支持自定义颜色
 Ext.chart.series.Pie.override({
     provideLegendInfo: function (target) {
@@ -50,6 +29,9 @@ Ext.chart.series.Pie.override({
         }
     }
 });
+/**
+ * 增加和更改页面的确定按钮是否可用
+ */
 Ext.data.Model.override({
 	  save: function(options) {
 	        options = Ext.apply({}, options);

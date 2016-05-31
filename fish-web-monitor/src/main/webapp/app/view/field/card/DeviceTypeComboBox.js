@@ -34,6 +34,14 @@ Ext.define('Eway.view.field.card.DeviceTypeComboBox', {
 			}else{
 				text.getTrigger("clear").hide();
 			}
+		},
+		afterrender: function(text){
+			var clearTip = text.getTrigger("clear");
+			if(undefined==clearTip){
+				return;
+			}else{
+				clearTip.hide();
+			}
 		}
 	}	
 });
