@@ -54,8 +54,8 @@ Ext.define('Eway.view.report.baseReport.TransactionDaysCountGrid', {
                 grid: true,
                 minimum: 0,
 //                maximum: 48,
-                renderer: function (v, layoutContext) {
-                    return layoutContext.renderer(v);
+                renderer: function (axis, label, layoutContext) {
+                    return layoutContext.renderer(label);
                 }
             }, {
                 type: 'category',
@@ -98,7 +98,7 @@ Ext.define('Eway.view.report.baseReport.TransactionDaysCountGrid', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                        this.setHtml(storeItem.get('month') + EwayLocale.report.baseReport.tradeCount + storeItem.get('data1'));
+                    	storeItem.setHtml(item.get('month') + EwayLocale.report.baseReport.tradeCount + item.get('data1'));
                     }
                 }
             }]

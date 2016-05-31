@@ -1,5 +1,5 @@
 Ext.define('Eway.view.version.distribute.View', {
-	extend : 'Ext.panel.Panel',
+	extend : 'Eway.view.base.Panel',
 	alias : 'widget.version_distributeView',
 
 	requires : [ 'Eway.view.version.field.VersionTypeComboBoxAdd',

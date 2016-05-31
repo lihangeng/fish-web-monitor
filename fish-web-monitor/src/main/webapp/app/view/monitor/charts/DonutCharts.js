@@ -52,7 +52,7 @@ Ext.define('Eway.view.monitor.charts.DonutCharts', {
                     trackMouse: true,
                     style: 'background: #fff',
                     renderer: function(storeItem, item) {
-                        this.setHtml(storeItem.get(me.getAngleField())+": "+storeItem.get(me.getLabelField()));
+                    	storeItem.setHtml(item.get(me.getAngleField())+ ': ' +item.get(me.getLabelField())  );
                     }
                 }
             }],

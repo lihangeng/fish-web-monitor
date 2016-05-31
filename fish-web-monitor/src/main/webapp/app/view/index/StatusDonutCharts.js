@@ -72,8 +72,7 @@ Ext.define('Eway.view.index.StatusDonutCharts', {
                     trackMouse: true,
                     style: 'background: #fff',
                     renderer: function(storeItem, item) {
-                      this.setHtml(storeItem.get(me.getAngleField())+ ': ' +storeItem.get(me.getLabelField())  );
-//                      this.setHtml(storeItem.get(me.getAngleField()));
+                    	storeItem.setHtml(item.get(me.getAngleField())+ ': ' +item.get(me.getLabelField())  );
                     }
                 }
             }]
