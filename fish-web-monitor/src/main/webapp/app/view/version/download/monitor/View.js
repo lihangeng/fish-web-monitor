@@ -7,7 +7,7 @@ Ext.define('Eway.view.version.download.monitor.View', {
 	            'Eway.view.version.download.monitor.JobFilterForm',
 	            'Eway.view.version.download.monitor.TaskPanel'],
 
-	title : EwayLocale.version.download.title,//'分发监控',
+	title : EwayLocale.version.download.title,//'分发监控'
 	layout : 'border',
 	initComponent : function() {
 		Ext.apply(this, {

@@ -30,6 +30,19 @@ Ext.apply(EwayLocale,{
 			statisticsDays : '统计时间段',//EwayLocale.report.baseReport.statisticsDays
 			caseTrendReportTitle: '故障趋势图'//EwayLocale.report.baseReport.caseTrendReportTitle
 		},
+		faultRateReport:{
+			viewTitle : '故障率報表',//EwayLocale.report.faultRateReport.viewTitle
+			dateMonth : '月份',//EwayLocale.report.faultRateReport.dateMonth
+			devType : '型号',//EwayLocale.report.faultRateReport.devType
+			vendorName : '品牌',//EwayLocale.report.faultRateReport.vendorName
+			moduleName : '模块',//EwayLocale.report.faultRateReport.moduleName
+			tradeCount : '交易数',//EwayLocale.report.faultRateReport.tradeCount
+			faultCount : '故障数',//EwayLocale.report.faultRateReport.faultCount
+			rate　: '故障率(百分比)',//EwayLocale.report.faultRateReport.rate
+			vendorRate : '不同品牌交易故障率',//EwayLocale.report.faultRateReport.vendorRate
+			typeRate : '不同型号交易故障率',//EwayLocale.report.faultRateReport.typeRate
+            moduleRate : '不同模块交易故障率',//EwayLocale.report.faultRateReport.moduleRate
+		},
 		openrate:{
 			device:{
 				statisticsMethod:'统计方式',//EwayLocale.report.openrate.device.statisticsMethod

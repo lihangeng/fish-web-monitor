@@ -3,23 +3,24 @@ Ext.define('Eway.view.report.faultRateReport.TypeGrid', {
 	extend : 'Eway.view.base.Grid',
 	initComponent : function() {
 		var store = Ext.create('Eway.store.report.faultRateReport.Type');
+		store.loadPage(1);
 		Ext.apply(this, {
 			initRegion : true,
 			store : store,
 			columns : [ {
-				header : '型号',
+				header : EwayLocale.report.faultRateReport.devType,
 				dataIndex : 'name',
 				width:130
 			},{
-				header : '交易数',
+				header : EwayLocale.report.faultRateReport.tradeCount,
 				dataIndex : 'tradeCount',
 				width:130
 			},{
-				header : '故障数',
+				header : EwayLocale.report.faultRateReport.faultCount,
 				dataIndex : 'faultCount',
 				width:130
 			},{
-				header : '故障率(百分比)',
+				header : EwayLocale.report.faultRateReport.rate,
 				dataIndex : 'rate',
 				flex:1
 			}]

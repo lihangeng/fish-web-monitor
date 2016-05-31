@@ -8,19 +8,19 @@ Ext.define('Eway.view.report.faultRateReport.ModuleGrid', {
 			initRegion : true,
 			store : store,
 			columns : [ {
-				header : '模块',
+				header : EwayLocale.report.faultRateReport.moduleName,
 				dataIndex : 'name',
 				width:130
 			},{
-				header : '交易数',
+				header : EwayLocale.report.faultRateReport.tradeCount,
 				dataIndex : 'tradeCount',
 				width:130
 			},{
-				header : '故障数',
+				header : EwayLocale.report.faultRateReport.faultCount,
 				dataIndex : 'faultCount',
 				width:130
 			},{
-				header : '故障率(百分比)',
+				header : EwayLocale.report.faultRateReport.rate,
 				dataIndex : 'rate',
 				flex:1
 			}]
