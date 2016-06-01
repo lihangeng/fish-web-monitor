@@ -13,7 +13,6 @@ import com.yihuacomputer.fish.api.report.base.IDeviceRptService;
 import com.yihuacomputer.fish.api.report.base.IDeviceTypeCountRptService;
 import com.yihuacomputer.fish.api.report.base.IDeviceUseCountRptService;
 import com.yihuacomputer.fish.api.report.base.IEveryMonthFaultCountService;
-import com.yihuacomputer.fish.api.report.base.IModuleFaultRateRptService;
 import com.yihuacomputer.fish.api.report.base.IRetainCardRptService;
 import com.yihuacomputer.fish.api.report.base.ISettlementCashInRptService;
 import com.yihuacomputer.fish.api.report.base.ISettlementRptService;
@@ -115,12 +114,6 @@ public class ReportBaseModule {
 	public ICaseStatisticsRptService caseStatisticsRptService()
 	{
 		return new CaseStatisticsRptService();
-	}
-	
-	@Bean
-	public IModuleFaultRateRptService moduleFaultRateRptService()
-	{
-		return new ModuleFaultRateRptService();
 	}
 	
 	@Bean
