@@ -12,60 +12,6 @@ public class DeviceTypeCountRpt implements IDeviceTypeCountRpt {
 
 	private int deviceCount;
 
-	private String countName;
-
-	private String orgNameColumn;
-
-	private String vendorNameColumn;
-
-	private String devTypeNameColumn;
-
-	private String totalColumn;
-
-	private String subtotalColumn;
-
-	public String getOrgNameColumn() {
-		return orgNameColumn;
-	}
-
-	public void setOrgNameColumn(String orgNameColumn) {
-		this.orgNameColumn = orgNameColumn;
-	}
-
-	public String getVendorNameColumn() {
-		return vendorNameColumn;
-	}
-
-	public void setVendorNameColumn(String vendorNameColumn) {
-		this.vendorNameColumn = vendorNameColumn;
-	}
-
-	public String getDevTypeNameColumn() {
-		return devTypeNameColumn;
-	}
-
-	public void setDevTypeNameColumn(String devTypeNameColumn) {
-		this.devTypeNameColumn = devTypeNameColumn;
-	}
-
-	public String getTotalColumn() {
-		return totalColumn;
-	}
-
-	public void setTotalColumn(String totalColumn) {
-		this.totalColumn = totalColumn;
-	}
-
-	public String getSubtotalColumn() {
-		return subtotalColumn;
-	}
-
-	public void setSubtotalColumn(String subtotalColumn) {
-		this.subtotalColumn = subtotalColumn;
-	}
-
-	
-
 	@Override
 	public String getOrgName() {
 		return orgName;
@@ -102,13 +48,5 @@ public class DeviceTypeCountRpt implements IDeviceTypeCountRpt {
 		this.deviceCount = deviceCount;
 	}
 
-	@Override
-	public String getCountName() {
-		return countName;
-	}
-
-	public void setCountName(String countName) {
-		this.countName = countName;
-	}
 
 }

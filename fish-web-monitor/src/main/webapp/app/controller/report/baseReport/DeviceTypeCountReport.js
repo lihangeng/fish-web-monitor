@@ -35,7 +35,7 @@ Ext.define('Eway.controller.report.baseReport.DeviceTypeCountReport', {
 				click : this.onShowHtml
 			}
 		});
-		this.onShowHtml();
+//		this.onShowHtml();
 	},
 
 	onShowHtml : function(){

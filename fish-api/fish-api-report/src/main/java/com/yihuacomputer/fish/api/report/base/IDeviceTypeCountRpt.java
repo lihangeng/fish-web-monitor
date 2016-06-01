@@ -31,9 +31,5 @@ public interface IDeviceTypeCountRpt {
 	 */
 	public int getDeviceCount();
 	
-	/**
-	 * 统计名称
-	 * @return
-	 */
-	public String getCountName();
+	
 }
