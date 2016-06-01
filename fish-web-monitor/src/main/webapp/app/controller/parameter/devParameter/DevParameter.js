@@ -92,7 +92,7 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 				}else{
 					if(Ext.decode(ed.responseText).data){
 						var jobId=Ext.decode(ed.responseText).data;
-						Ext.MessageBox.confirm(EwayLocale.confirm.title,//'提示',
+						Ext.MessageBox.confirm(EwayLocale.confirm.title,// '提示',
 								jobId+EwayLocale.param.paramDownloadMonitor.aotuJump,
 					 			function(button, text) {
 					 				if (button == "yes") {
@@ -158,52 +158,55 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 	},
 	
 	onSave:function(){
-		var view=this.getEwayView();
-		var grid = view.down('tabpanel').activeTab.down('grid');
-		var store=grid.getStore();
-		var data="[";
-		for(var index = 0;index < store.count();index++){
-			var record=store.getAt(index);
-			if(record.dirty){
-				var resource="{'id':'"+record.get('id')+"','paramValue':'"+record.get('paramValue')+"'}";
-				if(data== "["){
-					data=data+resource;
-				}else{
-					data=data+","+resource;
+		var sm = this.getGrid().getSelectionModel();
+		if(sm.getCount() == 1){
+			var view=this.getEwayView();
+			var grid = view.down('tabpanel').activeTab.down('grid');
+			var store=grid.getStore();
+			var data="[";
+			for(var index = 0;index < store.count();index++){
+				var record=store.getAt(index);
+				if(record.dirty){
+					var resource="{'id':'"+record.get('id')+"','paramValue':'"+record.get('paramValue')+"'}";
+					if(data== "["){
+						data=data+resource;
+					}else{
+						data=data+","+resource;
+					}
 				}
 			}
+			data=data+"]";
+			
+			var deviceGrid=view.down('parameter_devParameter_devGrid');
+			var deviceRecord = deviceGrid.getSelectionModel().getLastSelected();
+			var record=Ext.create('Eway.model.parameter.devParameter.ParamInfo',{
+				id:deviceRecord.get('id'),
+				data:data
+			});
+			
+			record.save({
+				success:function(response) {
+					if(response.data.id){
+						var jobId=response.data.id;
+						Ext.MessageBox.confirm(EwayLocale.confirm.title,// '提示',
+								jobId+EwayLocale.param.paramDownloadMonitor.aotuJump,
+					 			function(button, text) {
+					 				if (button == "yes") {
+					 					var controller = this.parent.activeController('parameter.paramMonitor.ParamMonitor');
+					 					controller.autoJobDetail(jobId);
+					 				}
+					 			},this);
+					}
+					store.loadPage(1);
+				 },
+				 failure: function(ed){
+					Eway.alert(EwayLocale.param.deviceParam.notExist);
+					this.onQuery();
+				 },
+				 scope : this
+			});
+			this.onParamQuery();
 		}
-		data=data+"]";
-		
-		var deviceGrid=view.down('parameter_devParameter_devGrid');
-		var deviceRecord = deviceGrid.getSelectionModel().getLastSelected();
-		var record=Ext.create('Eway.model.parameter.devParameter.ParamInfo',{
-			id:deviceRecord.get('id'),
-			data:data
-		});
-		
-		record.save({
-			success:function(response) {
-				if(response.data.id){
-					var jobId=response.data.id;
-					Ext.MessageBox.confirm(EwayLocale.confirm.title,//'提示',
-							jobId+EwayLocale.param.paramDownloadMonitor.aotuJump,
-				 			function(button, text) {
-				 				if (button == "yes") {
-				 					var controller = this.parent.activeController('parameter.paramMonitor.ParamMonitor');
-				 					controller.autoJobDetail(jobId);
-				 				}
-				 			},this);
-				}
-				store.loadPage(1);
-			 },
-			 failure: function(ed){
-				Eway.alert(EwayLocale.param.deviceParam.notExist);
-				this.onQuery();
-			 },
-			 scope : this
-		});
-		this.onParamQuery();
 	}
 
 	

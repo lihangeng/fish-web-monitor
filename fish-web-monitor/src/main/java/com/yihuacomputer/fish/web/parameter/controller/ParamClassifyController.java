@@ -113,6 +113,11 @@ public class ParamClassifyController {
 		request.setId(id);
 		ModelMap result = new ModelMap();
 		IParamClassify classify = classifyService.get(id);
+		if (classify == null) {
+			result.put(FishConstant.SUCCESS, false);
+			result.put(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.classify.updateFailure", null, FishCfg.locale));
+			return result;
+		}
 		if(id == 1){
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("parameter.classify.updateFailureDefault", null, FishCfg.locale));
