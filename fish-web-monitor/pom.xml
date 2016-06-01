@@ -10,6 +10,8 @@
 	<packaging>war</packaging>
 	<name>Fish web monitor Maven Webapp</name>
 	<dependencies>
+	
+	
 		<!-- local -->
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
