@@ -211,7 +211,7 @@ public class ParamPublishService implements IParamPublishService {
 				paramDetail.setParamElement(paramElement);
 				String paramValue = paramElement.getParamValue();
 
-				if (null == paramDeviceDetailMap.get(appName) || null == paramDeviceDetailMap.get(appName).get(paramTypeName)) {
+				if (null != paramDeviceDetailMap.get(appName) && null != paramDeviceDetailMap.get(appName).get(paramTypeName)) {
 					List<Map<String, String>> listTemp = paramDeviceDetailMap.get(appName).get(paramTypeName);
 					for (Map<String, String> mapTemp : listTemp) {
 						String value = mapTemp.get(paramElement.getParamName());
