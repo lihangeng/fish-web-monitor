@@ -12,6 +12,8 @@ import com.yihuacomputer.fish.api.report.base.IDeviceOpenRateService;
 import com.yihuacomputer.fish.api.report.base.IDeviceRptService;
 import com.yihuacomputer.fish.api.report.base.IDeviceTypeCountRptService;
 import com.yihuacomputer.fish.api.report.base.IDeviceUseCountRptService;
+import com.yihuacomputer.fish.api.report.base.IEveryMonthFaultCountService;
+import com.yihuacomputer.fish.api.report.base.IModuleFaultRateRptService;
 import com.yihuacomputer.fish.api.report.base.IRetainCardRptService;
 import com.yihuacomputer.fish.api.report.base.ISettlementCashInRptService;
 import com.yihuacomputer.fish.api.report.base.ISettlementRptService;
@@ -20,7 +22,9 @@ import com.yihuacomputer.fish.api.report.engine.IExportDataETLService;
 import com.yihuacomputer.fish.report.base.schedule.AtmcDayTransCount;
 import com.yihuacomputer.fish.report.engine.ExportDataETLService;
 import com.yihuacomputer.fish.report.scheduler.DayOpenRateExcuter;
+import com.yihuacomputer.fish.report.scheduler.EveryMonthFaultJob;
 import com.yihuacomputer.fish.report.service.db.DeviceOpenRateService;
+import com.yihuacomputer.fish.report.service.db.EveryMonthFaultCountService;
 
 /**
  * 报表基础模块配置
@@ -103,8 +107,26 @@ public class ReportBaseModule {
 	}
 
 	@Bean
+	public  EveryMonthFaultJob  everyMonthFaultJob() {
+		return new EveryMonthFaultJob();
+	}
+
+	@Bean
 	public ICaseStatisticsRptService caseStatisticsRptService()
 	{
 		return new CaseStatisticsRptService();
 	}
+	
+	@Bean
+	public IModuleFaultRateRptService moduleFaultRateRptService()
+	{
+		return new ModuleFaultRateRptService();
+	}
+	
+	@Bean
+	public IEveryMonthFaultCountService everyMonthFaultCountService()
+	{
+		return new EveryMonthFaultCountService();
+	}
 }
+

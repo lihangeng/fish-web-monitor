@@ -37,6 +37,8 @@ public class DateUtils {
 
 	public static final String STANDARD_MONTH_FULL = "yyyy-MM" ;
 	
+	public static final String STANDARD_MONTH_FULL1 = "yyyyMM" ;
+	
 	public static final String STANDARD_TIMESTAMP5 = "yyyyMMddHHmmssSSS";
 
 	public static Date get(String strDate, String format) {
@@ -51,6 +53,7 @@ public class DateUtils {
 		}
 		return date;
 	}
+
 
 	public static String getTodayDate() {
 		return get(new Date(), STANDARD_DATE_SHORT);
@@ -157,7 +160,21 @@ public class DateUtils {
 		date.add(Calendar.DAY_OF_MONTH, -1);
 		return new SimpleDateFormat(STANDARD_DATE_SHORT).format(date.getTime());
 	}
+	
+	/**
+	 * 获取上一日日期 格式：yyyyMM
+	 * 
+	 * @return
+	 */
+	
+	public static String getTodayDates() {
+		Calendar date = Calendar.getInstance();
+		date.add(Calendar.DAY_OF_MONTH, -1);
+		return new SimpleDateFormat(STANDARD_MONTH_FULL1).format(date.getTime());
 
+	}
+	
+	
 	/**
 	 * 取到距今天前后几天所属年
 	 *
