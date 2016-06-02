@@ -275,7 +275,7 @@ Ext.apply(EwayLocale,{
 			general:'Low'//EwayLocale.version.jobPriority.general
 		},
 		jobType:{
-			float:'Manual',//EwayLocale.version.jobType.float
+			Manual:'Manual',//EwayLocale.version.jobType.Manual
 			fix:'Plan'//EwayLocale.version.jobType.fix
 		},
 		taskStatus:{

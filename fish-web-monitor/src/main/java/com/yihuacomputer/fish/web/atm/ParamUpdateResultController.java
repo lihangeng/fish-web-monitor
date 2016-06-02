@@ -33,7 +33,7 @@ import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
 @RequestMapping("/msg/paramUpdateResult")
 public class ParamUpdateResultController {
 
-	private Logger logger = LoggerFactory.getLogger(AutoUpdateController.class);
+	private Logger logger = LoggerFactory.getLogger(ParamUpdateResultController.class);
 
 	@Autowired
 	private IParamPublishService paramPublishService;

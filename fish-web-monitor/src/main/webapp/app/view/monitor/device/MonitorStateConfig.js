@@ -566,20 +566,19 @@ Ext.define('Eway.view.monitor.device.MonitorStateConfig', {
 		var value = newValue.shortcusStatus;
 		var arrayCheckbox;
 		if (value == 'all') {
-			arrayCheckbox = this.query('checkboxfield')
+			arrayCheckbox = this.query('checkboxfield');
 		} else {
 			var offCheckbox = this.query('checkboxfield');
-			for ( var int = 0; int < offCheckbox.length; int++) {
-				if (!offCheckbox[int].is('radiofield')) {
-					offCheckbox[int].setValue(false);
+			for ( var i = 0; i < offCheckbox.length; i++) {
+				if (!offCheckbox[i].is('radiofield')) {
+					offCheckbox[i].setValue(false);
 				}
 			}
-			arrayCheckbox = this.query('checkboxfield[statusGroup="' + value
-					+ '"]');
+			arrayCheckbox = this.query("checkboxfield[statusGroup='" + value+ "']");
 		}
-		for ( var int = 0; int < arrayCheckbox.length; int++) {
-			if (!arrayCheckbox[int].is('radiofield')) {
-				arrayCheckbox[int].setValue(true);
+		for ( var i = 0; i < arrayCheckbox.length; i++) {
+			if (!arrayCheckbox[i].is('radiofield')) {
+				arrayCheckbox[i].setValue(true);
 			}
 		}
 	}
