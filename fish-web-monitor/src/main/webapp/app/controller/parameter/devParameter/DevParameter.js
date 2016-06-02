@@ -73,46 +73,46 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 	onRelease:function(){
 		var grid=this.getGrid();
 		var sm=grid.getSelectionModel();
-		if(sm.getCount == 1){
-		var records=sm.getSelection();
-		var devArrayId='0';
-		for(var p in records){
-			var id=records[p].get('id');
-			devArrayId+='-'+id;
-		}
-		Ext.Ajax.request({
-			method:'POST',
-			url:'api/parameter/devParameter/paramInfo/release',
-			params:{
-				arrayId:devArrayId
-			},
-			success:function(ed){
-				if(Ext.decode(ed.responseText).success==false){
-					Eway.alert(Ext.decode(ed.responseText).errorMsg);
-					this.onQuery();
-				}else{
-					if(Ext.decode(ed.responseText).data){
-						var jobId=Ext.decode(ed.responseText).data;
-						Ext.MessageBox.confirm(EwayLocale.confirm.title,// '提示',
-								jobId+EwayLocale.param.paramDownloadMonitor.aotuJump,
-					 			function(button, text) {
-					 				if (button == "yes") {
-					 					var controller = this.parent.activeController('parameter.paramMonitor.ParamMonitor');
-					 					controller.autoJobDetail(jobId);
-					 				}
-					 			},this);
-					}
-				}
-			},
-			failure:function(response){
-				Eway.alert(EwayLocale.param.deviceParam.downloadFailure);
-			},
-			scope:this
-		})
-		}else {
-			Eway.alert(EwayLocale.param.deviceParam.noDevice);
-		}
-	},
+		if(sm.getCount() == 1){
+			var records=sm.getSelection();
+		    var devArrayId='0';
+		    for(var p in records){
+		    	var id=records[p].get('id');
+			    devArrayId+='-'+id;
+			    }
+		    Ext.Ajax.request({
+		    	method:'POST',
+			    url:'api/parameter/devParameter/paramInfo/release',
+			    params:{
+			    	arrayId:devArrayId
+			    	},
+			    	success:function(ed){
+				    if(Ext.decode(ed.responseText).success==false){
+				    	Eway.alert(Ext.decode(ed.responseText).errorMsg);
+					    this.onQuery();
+					    }else{
+					    	if(Ext.decode(ed.responseText).data){
+					    		var jobId=Ext.decode(ed.responseText).data;
+					    		Ext.MessageBox.confirm(EwayLocale.confirm.title,// '提示',
+					    				jobId+EwayLocale.param.paramDownloadMonitor.aotuJump,
+					    				function(button, text) {
+					    			if (button == "yes") {
+					    				var controller = this.parent.activeController('parameter.paramMonitor.ParamMonitor');
+					    				controller.autoJobDetail(jobId);
+					    				}
+					    			},this);
+					    		}
+					    	}
+				    },
+				    failure:function(response){
+				    	Eway.alert(EwayLocale.param.deviceParam.downloadFailure);
+				    	},
+				    	scope:this
+				    	})
+				    	}else {
+				    		Eway.alert(EwayLocale.param.deviceParam.noDevice);
+				    		}
+		},
 	
 	tabPanelId : 1,
 	onTabChange:function(tabPanel, newCard, oldCard, eOpts ){
