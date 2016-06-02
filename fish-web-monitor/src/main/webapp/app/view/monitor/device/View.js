@@ -323,7 +323,6 @@ Ext.define('Eway.view.monitor.device.View',{
 	},
 
 	doGridPanel : function(gridpanel,object){
-		debugger;
 		var store = gridpanel.getStore();
 		var action = object.method;
 		if(action == 'ADD'){

@@ -94,7 +94,6 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 
 	// 模块硬件版本信息
 	loadModuleHardVersion : function(tab) {
-		debugger;
 		var store = this.getMachineAtmHardSoftModuleHardVersionStore();
 		var winEl = this.win.getEl();
 		winEl.mask(EwayLocale.vtype.dataLoad);

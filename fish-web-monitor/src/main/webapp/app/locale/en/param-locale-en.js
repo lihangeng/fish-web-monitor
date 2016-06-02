@@ -40,8 +40,8 @@ Ext.apply(EwayLocale,{
     		title:'Param Classify',//EwayLocale.param.classify.title
     		name:'ClassifyName',//EwayLocale.param.classify.name
     		remark:'ClassifyRemark',//EwayLocale.param.classify.remark
-    		regexText1:'Can only enter 1 to 32 letters' A-Z 'or' A-Z 'digital' 0-9 ', Chinese, a minus sign' - ', underline' ', dots'.', only at the beginning of the Chinese, letter or number.',//EwayLocale.param.classify.regexText1
-    		regexText2:'Can only enter 1 to 128 characters' A-Z 'or' A-Z 'digital' 0-9 ', Chinese, a minus sign' - 'and underscore' ', dots'.', commas, periods, brackets, quotation marks, only at the beginning of the Chinese, letter or number.',//EwayLocale.param.classify.regexText2
+    		regexText1:"Can only enter 1 to 32 letters' A-Z 'or' A-Z 'digital' 0-9 ', Chinese, a minus sign' - ', underline' ', dots'.', only at the beginning of the Chinese, letter or number.",//EwayLocale.param.classify.regexText1
+    		regexText2:"Can only enter 1 to 128 characters' A-Z 'or' A-Z 'digital' 0-9 ', Chinese, a minus sign' - 'and underscore' ', dots'.', commas, periods, brackets, quotation marks, only at the beginning of the Chinese, letter or number.",//EwayLocale.param.classify.regexText2
     		notUpdate:'Default classify cannot be updated',//EwayLocale.param.classify.notUpdate
     		notRemove:'Default classify cannot be removed'//EwayLocale.param.classify.notRemove
     	},
