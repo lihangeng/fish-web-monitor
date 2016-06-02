@@ -8,7 +8,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.yihuacomputer.common.FishCfg;
+//import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.domain.dao.IGenericDao;
@@ -22,7 +22,7 @@ public class DeviceTypeCountRptService implements IDeviceTypeCountRptService {
     @Autowired
     private IGenericDao dao;
 
-    private String countName ;
+//    private String countName ;
     
 	@Autowired
 	private MessageSource messageSource;
@@ -76,19 +76,19 @@ public class DeviceTypeCountRptService implements IDeviceTypeCountRptService {
         for (Object obj : list) {
             Object[] o = (Object[]) obj;
             DeviceTypeCountRpt deviceTypeCount = new DeviceTypeCountRpt();
-            countName = messageSource.getMessage("report.devTypeCount.countName", null, FishCfg.locale);
+//            countName = messageSource.getMessage("report.devTypeCount.countName", null, FishCfg.locale);
             
-            deviceTypeCount.setCountName(countName);
+//            deviceTypeCount.setCountName(countName);
             deviceTypeCount.setOrgName(objectToString(o[0]));
             deviceTypeCount.setVendorName(objectToString(o[1]));
             deviceTypeCount.setDevTypeName(objectToString(o[2]));
             deviceTypeCount.setDeviceCount(Integer.valueOf(objectToString(o[3])));
             
-            deviceTypeCount.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
-            deviceTypeCount.setVendorNameColumn(messageSource.getMessage("report.devTypeCount.vendorName", null, FishCfg.locale));
-            deviceTypeCount.setDevTypeNameColumn(messageSource.getMessage("report.devTypeCount.type", null, FishCfg.locale));
-            deviceTypeCount.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
-            deviceTypeCount.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
+//            deviceTypeCount.setOrgNameColumn(messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+//            deviceTypeCount.setVendorNameColumn(messageSource.getMessage("report.devTypeCount.vendorName", null, FishCfg.locale));
+//            deviceTypeCount.setDevTypeNameColumn(messageSource.getMessage("report.devTypeCount.type", null, FishCfg.locale));
+//            deviceTypeCount.setSubtotalColumn(messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
+//            deviceTypeCount.setTotalColumn(messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
             
             deviceTypeList.add(deviceTypeCount);
         }

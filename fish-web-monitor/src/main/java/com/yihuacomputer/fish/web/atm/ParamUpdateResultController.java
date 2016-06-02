@@ -98,7 +98,10 @@ public class ParamUpdateResultController {
 			paramPublishResult.setRet(status);
 			List<IAppSystem> systemList = appSystemService.list();
 			for (IAppSystem appSystem : systemList) {
-				IParamPublishAppResult appResult = paramPublishAppResultService.make();
+				IParamPublishAppResult appResult = paramPublishAppResultService.get(paramPublishResult.getId(), appSystem.getName());
+				if(appResult==null){
+					appResult = paramPublishAppResultService.make();
+				}
 				appResult.setAppSystem(appSystem);
 				appResult.setParamPublishResult(paramPublishResult);
 				appResult.setStatus(paramPublishResult.getRet());

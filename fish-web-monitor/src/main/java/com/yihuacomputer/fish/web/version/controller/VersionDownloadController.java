@@ -6,10 +6,8 @@ package com.yihuacomputer.fish.web.version.controller;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -60,7 +58,6 @@ import com.yihuacomputer.fish.api.version.job.JobType;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
-import com.yihuacomputer.fish.version.service.db.VersionStaticsStatusService;
 import com.yihuacomputer.fish.web.command.format.CommandLevel;
 import com.yihuacomputer.fish.web.command.format.RestartForm;
 import com.yihuacomputer.fish.web.command.format.RestartParamForm;
@@ -91,7 +88,7 @@ public class VersionDownloadController {
 
 	@Autowired
 	private IVersionDownloadService downloadService;
-	
+
 	@Autowired
 	private IVersionStaticsStautsService versionStaticsStatusService;
 
@@ -115,58 +112,58 @@ public class VersionDownloadController {
 
 	@Autowired
 	private MessageSource messageVersionSource;
-	@RequestMapping(method = RequestMethod.GET,value="/searchJobDetailInfo")
-	public @ResponseBody ModelMap searchJobDetailInfo(@RequestParam long jobId,HttpServletRequest request, WebRequest wRequest) {
+
+	@RequestMapping(method = RequestMethod.GET, value = "/searchJobDetailInfo")
+	public @ResponseBody ModelMap searchJobDetailInfo(@RequestParam long jobId, HttpServletRequest request, WebRequest wRequest) {
 		ModelMap result = new ModelMap();
 		IFilter filter = new Filter();
-		String nextRecord=request.getParameter("nextRecord");
-		long displayJobId=jobId;
-		//前一页
-		if(nextRecord.equals("-1")){
+		String nextRecord = request.getParameter("nextRecord");
+		long displayJobId = jobId;
+		// 前一页
+		if (nextRecord.equals("-1")) {
 			filter.lt("id", jobId);
 			filter.descOrder("id");
 			List<IJob> jobList = jobService.list(filter);
-			displayJobId= jobList.size()>0?jobList.get(0).getJobId():jobId;
+			displayJobId = jobList.size() > 0 ? jobList.get(0).getJobId() : jobId;
 		}
-		//后一页
-		else if(nextRecord.equals("1")){
+		// 后一页
+		else if (nextRecord.equals("1")) {
 			filter.gt("id", jobId);
 			filter.order("id");
 			List<IJob> jobList = jobService.list(filter);
-			displayJobId = jobList.size()>0?jobList.get(0).getJobId():jobId;
+			displayJobId = jobList.size() > 0 ? jobList.get(0).getJobId() : jobId;
 		}
 		UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
 		IJob job = jobService.getById(displayJobId);
 		IVersion version = job.getVersion();
-		//获取当前版本已下发和可下发的设备数据
+		// 获取当前版本已下发和可下发的设备数据
 		List<ChartsInfo> chartList = versionStaticsStatusService.getVersionSummaryInfo(version.getId(), userSession.getOrgFlag(), 0, 25);
 		List<ChartsInfo> statusList = taskService.listTaskGroupbyTaskStatus(displayJobId);
 		long downloadTime = taskService.getDownloadTimeAvg(displayJobId);
-		
-		List<TwoTuple<String,String>> chartsFormList = new ArrayList<TwoTuple<String,String>>();
-		chartsFormList.add(new TwoTuple<String,String>(getEnumI18n("VersionName"),version.getVersionType().getTypeName()));
-		chartsFormList.add(new TwoTuple<String,String>(getEnumI18n("VersionNo"),version.getVersionNo()));
-		for(ChartsInfo charsInfo:chartList){
-			if(charsInfo.getTitle().equals(getEnumI18n(VersionStaticsStatus.TOTALDEVICE.getText()))||charsInfo.getTitle().equals(getEnumI18n(VersionStaticsStatus.SUCCESSDEVICE.getText()))){
-				TwoTuple<String,String> twoTuple = new TwoTuple<String,String>(charsInfo.getTitle(),String.valueOf(charsInfo.getValue()));
+
+		List<TwoTuple<String, String>> chartsFormList = new ArrayList<TwoTuple<String, String>>();
+		chartsFormList.add(new TwoTuple<String, String>(getI18N("jobDetailInfo.versionName"), version.getVersionType().getTypeName()));
+		chartsFormList.add(new TwoTuple<String, String>(getI18N("jobDetailInfo.versionNo"), version.getVersionNo()));
+		for (ChartsInfo charsInfo : chartList) {
+			if (charsInfo.getTitle().equals(getEnumI18n(VersionStaticsStatus.TOTALDEVICE.getText())) || charsInfo.getTitle().equals(getEnumI18n(VersionStaticsStatus.SUCCESSDEVICE.getText()))) {
+				TwoTuple<String, String> twoTuple = new TwoTuple<String, String>(charsInfo.getTitle(), String.valueOf(charsInfo.getValue()));
 				chartsFormList.add(twoTuple);
 			}
 		}
-		chartsFormList.add(new TwoTuple<String,String>(getEnumI18n("downLoadSpeed"),String.valueOf(downloadTime)));
-		for(ChartsInfo charsInfo:statusList){
-			TwoTuple<String,String> twoTuple = new TwoTuple<String,String>(getEnumI18n(charsInfo.getTitle()),String.valueOf(charsInfo.getValue()));
+		chartsFormList.add(new TwoTuple<String, String>(getI18N("jobDetailInfo.downLoadSpeed"), String.valueOf(downloadTime)));
+		for (ChartsInfo charsInfo : statusList) {
+			TwoTuple<String, String> twoTuple = new TwoTuple<String, String>(getEnumI18n(charsInfo.getTitle()), String.valueOf(charsInfo.getValue()));
 			chartsFormList.add(twoTuple);
 		}
 		result.addAttribute(FishConstant.SUCCESS, true);
-		result.addAttribute("total","" );
+		result.addAttribute("total", "");
 		result.addAttribute("data", chartsFormList);
-		result.addAttribute("displayJobId",displayJobId);
+		result.addAttribute("displayJobId", displayJobId);
 		return result;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody
-	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
+	public @ResponseBody ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
 		IFilter filter = getFilter(request);
 		filter.descOrder("id");
@@ -178,12 +175,11 @@ public class VersionDownloadController {
 		return result;
 	}
 
-	@RequestMapping(value="/getJobInfo",method = RequestMethod.POST)
-	public @ResponseBody
-	ModelMap getJobInfo(@RequestParam long jobId, HttpServletRequest request) {
+	@RequestMapping(value = "/getJobInfo", method = RequestMethod.POST)
+	public @ResponseBody ModelMap getJobInfo(@RequestParam long jobId, HttpServletRequest request) {
 		IJob job = jobService.getById(jobId);
 		ModelMap result = new ModelMap();
-		if(null==job){
+		if (null == job) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			return result;
 		}
@@ -192,10 +188,10 @@ public class VersionDownloadController {
 		result.addAttribute(FishConstant.TOTAL, form);
 		return result;
 	}
+
 	// 增加
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody
-	ModelMap add(@RequestBody JobForm form, HttpServletRequest request) {
+	public @ResponseBody ModelMap add(@RequestBody JobForm form, HttpServletRequest request) {
 		logger.info(" add job...");
 
 		ModelMap result = new ModelMap();
@@ -210,8 +206,9 @@ public class VersionDownloadController {
 			String deviceIds = form.getDeviceIds();
 			if (StringUtils.isNotEmpty(deviceIds)) {
 				String[] ids = deviceIds.substring(1).split(",");
-//				List<Object> lists = deviceSoftVersionService.findByTypeName(versionTypeName);
-//				Map<Long, Object> maps = convertToMap(lists);
+				// List<Object> lists =
+				// deviceSoftVersionService.findByTypeName(versionTypeName);
+				// Map<Long, Object> maps = convertToMap(lists);
 				List<Long> deviceIdList = new ArrayList<Long>();
 				for (String id : ids) {
 					Long deviceId = Long.valueOf(id);
@@ -228,15 +225,15 @@ public class VersionDownloadController {
 		}
 
 		IVersion versions = versionService.getById(form.getVersionId());
-		if(versions == null){
+		if (versions == null) {
 			result.put(FishConstant.SUCCESS, false);
 			result.put("errorMsg", messageVersionSource.getMessage("version.versionNo.downloadFailure", null, FishCfg.locale));
 			return result;
 		}
-		
-		int downloadCounter = version.getDownloadCounter()+1;		
+
+		int downloadCounter = version.getDownloadCounter() + 1;
 		IJob job = jobService.make();
-		job.setJobName(form.getJobName()+"_"+downloadCounter);
+		job.setJobName(form.getJobName() + "_" + downloadCounter);
 		job.setVersion(versionService.getById(form.getVersionId()));
 		job.setJobType(form.getJobType());
 		job.setJobPriority(form.getJobPriority());
@@ -262,7 +259,7 @@ public class VersionDownloadController {
 		job.setCancelPreVer(form.isCancelPreVersion() ? 1 : 0);
 		job.setRebootUpdate(form.isRebootUpdate() ? 1 : 0);
 		job.addTasks(tasks);
-		jobManager.createJob(job,filter);
+		jobManager.createJob(job, filter);
 		version.setDownloadCounter(downloadCounter);
 		versionService.update(version);
 		logger.info("execute all task times " + (System.currentTimeMillis() - start1));
@@ -270,16 +267,15 @@ public class VersionDownloadController {
 		// 回填值到form中
 		form.setId(job.getJobId());
 		form.setVersionName(version.getFullName() + " [" + version.getServerPath() + "]");
-		form.setJobName(version.getVersionType().getTypeName()+"_"+version.getVersionNo()+"_"+version.getDownloadCounter());
+		form.setJobName(version.getVersionType().getTypeName() + "_" + version.getVersionNo() + "_" + version.getDownloadCounter());
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("data", form);
 		return result;
 	}
-	
+
 	// 撤销作业
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public @ResponseBody
-	ModelMap delete(@PathVariable long id) {
+	public @ResponseBody ModelMap delete(@PathVariable long id) {
 		logger.info(" delete job: job.id = " + id);
 		ModelMap result = new ModelMap();
 		try {
@@ -292,9 +288,9 @@ public class VersionDownloadController {
 		}
 		return result;
 	}
-	
-	private String getI18N(String code){
-		return messageVersionSource.getMessage(code,null,FishCfg.locale);
+
+	private String getI18N(String code) {
+		return messageVersionSource.getMessage(code, null, FishCfg.locale);
 	}
 
 	// 转换数据格式
@@ -314,99 +310,87 @@ public class VersionDownloadController {
 		}
 		return forms;
 	}
-	
-  private boolean canReset(TaskStatus status){
-	    if((status.equals(TaskStatus.DEPLOYED))
-                || (status.equals(TaskStatus.DOWNLOADED))
-                || (status.equals(TaskStatus.NEW))
-                || (status.equals(TaskStatus.NOTICE_APP_OK))
-                || (status.equals(TaskStatus.NOTICED))
-                || status.equals(TaskStatus.RUN)
-                || status.equals(TaskStatus.DEPLOYED_WAIT)){
-	        return true;
-	    }
-	    return false;
+
+	private boolean canReset(TaskStatus status) {
+		if ((status.equals(TaskStatus.DEPLOYED)) || (status.equals(TaskStatus.DOWNLOADED)) || (status.equals(TaskStatus.NEW)) || (status.equals(TaskStatus.NOTICE_APP_OK)) || (status.equals(TaskStatus.NOTICED)) || status.equals(TaskStatus.RUN) || status.equals(TaskStatus.DEPLOYED_WAIT)) {
+			return true;
+		}
+		return false;
 	}
-	
+
 	@RequestMapping(value = "/resetTaskStatus", method = RequestMethod.POST)
-	public @ResponseBody
-	ModelMap resetTaskStatus(@RequestParam long id){
+	public @ResponseBody ModelMap resetTaskStatus(@RequestParam long id) {
 		logger.info(String.format("reset taskStatus  : taskId = %s  ", id));
-        ModelMap result = new ModelMap();
-        try {
-        	ITask task = taskService.get(id);
-        	if(canReset(task.getStatus())){
-	            taskService.resetTask(task);
-	            result.addAttribute(FishConstant.SUCCESS, true);
-        	}
-        	else{
-        		result.addAttribute(FishConstant.SUCCESS, false);
-        		result.addAttribute(FishConstant.ERROR_MSG,getI18N("exception.task.cantResetTask"));
-        	}
-        } catch (Exception e) {
-            result.addAttribute(FishConstant.SUCCESS, false);
-            result.addAttribute(FishConstant.ERROR_MSG, getI18N("task.reset.failer"));
-        }
-        return result;
+		ModelMap result = new ModelMap();
+		try {
+			ITask task = taskService.get(id);
+			if (canReset(task.getStatus())) {
+				taskService.resetTask(task);
+				result.addAttribute(FishConstant.SUCCESS, true);
+			} else {
+				result.addAttribute(FishConstant.SUCCESS, false);
+				result.addAttribute(FishConstant.ERROR_MSG, getI18N("exception.task.cantResetTask"));
+			}
+		} catch (Exception e) {
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, getI18N("task.reset.failer"));
+		}
+		return result;
 	}
-	public JobForm convertWithIntArgs(IJob job,int devVersionCount,int repeatDevVersionCount){
-		JobForm jobForm = convert(job) ;
-		jobForm.setExtraBody( "&nbsp;&nbsp; "+getI18N("version.download.jobType") + getEnumI18n(job.getJobType().getText()) + "&nbsp;&nbsp; "
-		+( job.getJobType()==JobType.MANUAL? getI18N("version.download.jobStatus") + (jobForm.getRunTaskCount()==0?getI18N("version.download.finished"):getI18N("version.download.running")) : getI18N("version.download.autoRefreshStatus")
-		+ (job.getVersion().isAutoDown()?getI18N("version.download.open"):getI18N("version.download.close"))) + "&nbsp;&nbsp; "+ getI18N("version.download.deviceRepeatly")+ repeatDevVersionCount + 
-		"&nbsp;&nbsp;"+getI18N("version.download.currentVersionDevCount") + devVersionCount +  "&nbsp;&nbsp;"+getI18N("version.download.taskCount") + jobForm.getAllTaskCount() + 
-		"&nbsp;&nbsp; "+getI18N("version.download.taskCountFinished") + jobForm.getFinishTaskCount() + "&nbsp;&nbsp; "+getI18N("version.download.taskCountFailed") + jobForm.getFailTaskCount() + 
-		"&nbsp;&nbsp; "+getI18N("version.download.runTaskCount") +jobForm.getRunTaskCount());
+
+	public JobForm convertWithIntArgs(IJob job, int devVersionCount, int repeatDevVersionCount) {
+		JobForm jobForm = convert(job);
+		jobForm.setExtraBody("&nbsp;&nbsp; " + getI18N("version.download.jobType") + getEnumI18n(job.getJobType().getText()) + "&nbsp;&nbsp; "
+				+ (job.getJobType() == JobType.MANUAL ? getI18N("version.download.jobStatus") + (jobForm.getRunTaskCount() == 0 ? getI18N("version.download.finished") : getI18N("version.download.running")) : getI18N("version.download.autoRefreshStatus") + (job.getVersion().isAutoDown() ? getI18N("version.download.open") : getI18N("version.download.close"))) + "&nbsp;&nbsp; "
+				+ getI18N("version.download.deviceRepeatly") + repeatDevVersionCount + "&nbsp;&nbsp;" + getI18N("version.download.currentVersionDevCount") + devVersionCount + "&nbsp;&nbsp;" + getI18N("version.download.taskCount") + jobForm.getAllTaskCount() + "&nbsp;&nbsp; " + getI18N("version.download.taskCountFinished") + jobForm.getFinishTaskCount() + "&nbsp;&nbsp; "
+				+ getI18N("version.download.taskCountFailed") + jobForm.getFailTaskCount() + "&nbsp;&nbsp; " + getI18N("version.download.runTaskCount") + jobForm.getRunTaskCount());
 		return jobForm;
 	}
 
 	public JobForm convert(IJob job) {
 		JobForm jobForm = new JobForm();
 		jobForm.setId(Long.valueOf(job.getJobId()));
-		jobForm.setJobName(job.getVersion().getVersionType().getTypeName()+"_"+job.getVersion().getVersionNo()+"_"+job.getDownCounter());
-        jobForm.setPlanTime(job.getPlanTime());
-        jobForm.setJobType(job.getJobType());
-        jobForm.setJobStatus(job.getJobStatus());
-        jobForm.setJobPriority(job.getJobPriority());
-        jobForm.setDesc(job.getDesc());
-        jobForm.setDownloadCounter(job.getDownCounter());
-        jobForm.setCancelPreVersion (job.getCancelPreVer()==0?false:true );
-        jobForm.setRebootUpdate(job.getRebootUpdate()==0?false:true);
+		jobForm.setJobName(job.getVersion().getVersionType().getTypeName() + "_" + job.getVersion().getVersionNo() + "_" + job.getDownCounter());
+		jobForm.setPlanTime(job.getPlanTime());
+		jobForm.setJobType(job.getJobType());
+		jobForm.setJobStatus(job.getJobStatus());
+		jobForm.setJobPriority(job.getJobPriority());
+		jobForm.setDesc(job.getDesc());
+		jobForm.setDownloadCounter(job.getDownCounter());
+		jobForm.setCancelPreVersion(job.getCancelPreVer() == 0 ? false : true);
+		jobForm.setRebootUpdate(job.getRebootUpdate() == 0 ? false : true);
 
-        if (job.getVersion() != null) {
-            jobForm.setVersionId(job.getVersion().getId());
-            jobForm.setVersionFile(job.getVersion().getServerPath());
-            jobForm.setVersionName(job.getVersion().getFullName());
-            jobForm.setVersionCatalog(job.getVersion().getVersionType().getVersionCatalog().name());
-        }
-        if (job.getDeployStartDate() != null) {
-            jobForm.setDeployStartDate(DateUtils.getDate(job.getDeployStartDate()));
-        }
-        if (job.getDeployEndDate() != null) {
-            jobForm.setDeployEndDate(DateUtils.getDate(job.getDeployEndDate()));
-        }
+		if (job.getVersion() != null) {
+			jobForm.setVersionId(job.getVersion().getId());
+			jobForm.setVersionFile(job.getVersion().getServerPath());
+			jobForm.setVersionName(job.getVersion().getFullName());
+			jobForm.setVersionCatalog(job.getVersion().getVersionType().getVersionCatalog().name());
+		}
+		if (job.getDeployStartDate() != null) {
+			jobForm.setDeployStartDate(DateUtils.getDate(job.getDeployStartDate()));
+		}
+		if (job.getDeployEndDate() != null) {
+			jobForm.setDeployEndDate(DateUtils.getDate(job.getDeployEndDate()));
+		}
 
-        List<ITask> taskList=job.getTasks() ;
-        jobForm.setAllTaskCount(job.getTaskSize()) ;
-        for(ITask task:taskList){
-        	if(TaskStatus.CHECKED.equals(task.getStatus()) || TaskStatus.FAIL_ROLLBACK.equals(task.getStatus())){
-        		jobForm.setFinishTaskCount(jobForm.getFinishTaskCount()+1) ;
-        	}else if(TaskStatus.CANCELED.equals(task.getStatus())||TaskStatus.CANCEL_UPDATE_OK.equals(task.getStatus())||TaskStatus.DEPLOYED_FAIL.equals(task.getStatus())||TaskStatus.NOTICED_FAIL.equals(task.getStatus())||TaskStatus.OTHER.equals(task.getStatus())||TaskStatus.REMOVED.equals(task.getStatus())||TaskStatus.DOWNLOADED_FAIL.equals(task.getStatus())){
-        		jobForm.setFailTaskCount(jobForm.getFailTaskCount()+1) ;
-        	}
-        }
-        jobForm.setRunTaskCount(jobForm.getAllTaskCount()-jobForm.getFinishTaskCount()-jobForm.getFailTaskCount()) ;
+		List<ITask> taskList = job.getTasks();
+		jobForm.setAllTaskCount(job.getTaskSize());
+		for (ITask task : taskList) {
+			if (TaskStatus.CHECKED.equals(task.getStatus()) || TaskStatus.FAIL_ROLLBACK.equals(task.getStatus())) {
+				jobForm.setFinishTaskCount(jobForm.getFinishTaskCount() + 1);
+			} else if (TaskStatus.CANCELED.equals(task.getStatus()) || TaskStatus.CANCEL_UPDATE_OK.equals(task.getStatus()) || TaskStatus.DEPLOYED_FAIL.equals(task.getStatus()) || TaskStatus.NOTICED_FAIL.equals(task.getStatus()) || TaskStatus.OTHER.equals(task.getStatus()) || TaskStatus.REMOVED.equals(task.getStatus()) || TaskStatus.DOWNLOADED_FAIL.equals(task.getStatus())) {
+				jobForm.setFailTaskCount(jobForm.getFailTaskCount() + 1);
+			}
+		}
+		jobForm.setRunTaskCount(jobForm.getAllTaskCount() - jobForm.getFinishTaskCount() - jobForm.getFailTaskCount());
 
-        jobForm.setExtraBody("&nbsp;&nbsp; "+getI18N("version.download.jobType") + getEnumI18n(job.getJobType().getText()) + 
-        		"&nbsp;&nbsp; " +( job.getJobType()==JobType.MANUAL?getI18N("version.download.jobStatus") + 
-        (jobForm.getRunTaskCount()==0?getI18N("version.download.finished"):getI18N("version.download.running")) : getI18N("version.download.autoRefreshStatus") + (job.getVersion().isAutoDown()?getI18N("version.download.open"):getI18N("version.download.close"))) + 
-        "&nbsp;&nbsp;" + getI18N("version.download.taskCount") + jobForm.getAllTaskCount() + "&nbsp;&nbsp;"+getI18N("version.download.taskCountFinished") + jobForm.getFinishTaskCount() + 
-        "&nbsp;&nbsp; "+getI18N("version.download.taskCountFailed") + jobForm.getFailTaskCount() + "&nbsp;&nbsp;"+getI18N("version.download.runTaskCount") +jobForm.getRunTaskCount());
-        return jobForm;
+		jobForm.setExtraBody("&nbsp;&nbsp; " + getI18N("version.download.jobType") + getEnumI18n(job.getJobType().getText()) + "&nbsp;&nbsp; "
+				+ (job.getJobType() == JobType.MANUAL ? getI18N("version.download.jobStatus") + (jobForm.getRunTaskCount() == 0 ? getI18N("version.download.finished") : getI18N("version.download.running")) : getI18N("version.download.autoRefreshStatus") + (job.getVersion().isAutoDown() ? getI18N("version.download.open") : getI18N("version.download.close"))) + "&nbsp;&nbsp;"
+				+ getI18N("version.download.taskCount") + jobForm.getAllTaskCount() + "&nbsp;&nbsp;" + getI18N("version.download.taskCountFinished") + jobForm.getFinishTaskCount() + "&nbsp;&nbsp; " + getI18N("version.download.taskCountFailed") + jobForm.getFailTaskCount() + "&nbsp;&nbsp;" + getI18N("version.download.runTaskCount") + jobForm.getRunTaskCount());
+		return jobForm;
 
-    }
-	
-	
+	}
+
 	// 获得查询条件
 	private IFilter getFilter(WebRequest request) {
 		IFilter filter = new Filter();
@@ -442,8 +426,7 @@ public class VersionDownloadController {
 	 * @return
 	 */
 	@RequestMapping(value = "/linked", method = RequestMethod.GET)
-	public @ResponseBody
-	ModelMap linked(@RequestParam int start, @RequestParam int limit, WebRequest request) {
+	public @ResponseBody ModelMap linked(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
 		IFilter filter = new Filter();// getFilter(request);
 		IJob job = null;
@@ -464,11 +447,8 @@ public class VersionDownloadController {
 	 * @return
 	 */
 	@RequestMapping(value = "/selectable", method = RequestMethod.GET)
-	public @ResponseBody
-	ModelMap selectable(@RequestParam int start, @RequestParam int limit, @RequestParam int versionId,
-			WebRequest webRequest, HttpServletRequest request) {
-		logger.info(String.format("search selectable device : start = %s ,limit = %s , versionId = %s ", start, limit,
-				versionId));
+	public @ResponseBody ModelMap selectable(@RequestParam int start, @RequestParam int limit, @RequestParam int versionId, WebRequest webRequest, HttpServletRequest request) {
+		logger.info(String.format("search selectable device : start = %s ,limit = %s , versionId = %s ", start, limit, versionId));
 		IFilter filter = getDeviceFilter(webRequest, request);
 		String atmGroup = request.getParameter("atmGroup");
 		if (atmGroup != null && !"".equals(atmGroup)) {
@@ -476,7 +456,7 @@ public class VersionDownloadController {
 		}
 		IVersion version = versionService.getById(versionId);
 		IPageResult<LinkedDeviceForm> page = null;
-		page = downloadService.pageDevices(start, limit, version,filter);
+		page = downloadService.pageDevices(start, limit, version, filter);
 
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, true);
@@ -523,8 +503,7 @@ public class VersionDownloadController {
 
 	// 根据jobId获得下面的任务列表
 	@RequestMapping(value = "/task", method = RequestMethod.GET)
-	public @ResponseBody
-	ModelMap task(@RequestParam int start, @RequestParam int limit, WebRequest request) {
+	public @ResponseBody ModelMap task(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		IFilter filter = getTaskFilter(request);
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, true);
@@ -580,7 +559,7 @@ public class VersionDownloadController {
 				filter.eq("task.status", TaskStatus.CANCEL_UPDATE_OK);
 			} else if (updateResult.equals("FAIL_ROLLBACK")) {
 				filter.eq("task.status", TaskStatus.FAIL_ROLLBACK);
-			}  else if (updateResult.equals("OTHER")) {
+			} else if (updateResult.equals("OTHER")) {
 				List<TaskStatus> status = new ArrayList<TaskStatus>();
 				status.add(TaskStatus.CANCEL_FAIL);
 				status.add(TaskStatus.CANCEL_UPDATE_FAIL);
@@ -590,11 +569,9 @@ public class VersionDownloadController {
 				status.add(TaskStatus.OTHER);
 				status.add(TaskStatus.REMOVED);
 				filter.in("task.status", status);
-			}
-			else if(updateResult.equals("1")){
+			} else if (updateResult.equals("1")) {
 				filter.eq("task.status", TaskStatus.CHECKED);
-			}
-			else if(updateResult.equals("0")){
+			} else if (updateResult.equals("0")) {
 				List<TaskStatus> status = new ArrayList<TaskStatus>();
 				status.add(TaskStatus.NOTICED_FAIL);
 				status.add(TaskStatus.DOWNLOADED_FAIL);
@@ -602,8 +579,7 @@ public class VersionDownloadController {
 				status.add(TaskStatus.NOTICE_APP_FAIL);
 				status.add(TaskStatus.REMOVED);
 				filter.in("task.status", status);
-			}
-			else if(updateResult.equals("2")){
+			} else if (updateResult.equals("2")) {
 				List<TaskStatus> status = new ArrayList<TaskStatus>();
 				status.add(TaskStatus.DEPLOYED_WAIT);
 				status.add(TaskStatus.DOWNLOADED);
@@ -633,8 +609,7 @@ public class VersionDownloadController {
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value = "exportToExcel", method = RequestMethod.GET)
-	public void export(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public void export(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) throws Exception {
 
 		String jobId = request.getParameter("jobId");
 		logger.info("jobId is " + jobId);
@@ -649,13 +624,8 @@ public class VersionDownloadController {
 		List<ITask> tasks = taskService.list(filter);
 
 		Excel excel = new Excel();
-		String[] headers = new String[] { getI18N("version.export.terminalId"),
-				getI18N("version.export.ip"), getI18N("version.export.orgName"),
-				getI18N("version.export.versionNoBeforeUpdate"), getI18N("version.export.updateVersionNo"),
-				getI18N("version.export.taskStatus"), getI18N("version.export.version.export.executeTime"), 
-				getI18N("version.download.versionDownloadStartTime"),
-				getI18N("version.download.versionDownloadFinishTime"), 
-				getI18N("version.export.remark"), getI18N("version.download.rebootATM") };
+		String[] headers = new String[] { getI18N("version.export.terminalId"), getI18N("version.export.ip"), getI18N("version.export.orgName"), getI18N("version.export.versionNoBeforeUpdate"), getI18N("version.export.updateVersionNo"), getI18N("version.export.taskStatus"), getI18N("version.export.version.export.executeTime"), getI18N("version.download.versionDownloadStartTime"),
+				getI18N("version.download.versionDownloadFinishTime"), getI18N("version.export.remark"), getI18N("version.download.rebootATM") };
 		excel.setHeaders(headers);
 		// 填充数据
 		List<List> data = new ArrayList<List>();
@@ -671,8 +641,8 @@ public class VersionDownloadController {
 		}
 		for (ITask task : tasks) {
 			IDevice device = task.getDevice();
-			if(device==null){
-				continue ;
+			if (device == null) {
+				continue;
 			}
 			if ("1".equals(filterTaskFlag)) {
 				if (!terminalList.contains(device.getId())) {
@@ -709,8 +679,7 @@ public class VersionDownloadController {
 	 * @return
 	 */
 	@RequestMapping(value = "/task/cancel", method = RequestMethod.POST)
-	public @ResponseBody
-	ModelMap cancelTask(@RequestParam long jobId, @RequestParam long taskId) {
+	public @ResponseBody ModelMap cancelTask(@RequestParam long jobId, @RequestParam long taskId) {
 		logger.info(" cancle task: task.id = " + taskId);
 		ModelMap result = new ModelMap();
 		try {
@@ -724,8 +693,7 @@ public class VersionDownloadController {
 	}
 
 	@RequestMapping(value = "/task/deepCancel", method = RequestMethod.POST)
-	public @ResponseBody
-	ModelMap deepCancelTask(@RequestParam long jobId, @RequestParam long taskId) {
+	public @ResponseBody ModelMap deepCancelTask(@RequestParam long jobId, @RequestParam long taskId) {
 		logger.info(" deep cancel task: task.id = " + taskId);
 		ModelMap result = new ModelMap();
 		try {
@@ -739,8 +707,7 @@ public class VersionDownloadController {
 	}
 
 	@RequestMapping(value = "/task/reDistribute", method = RequestMethod.POST)
-	public @ResponseBody
-	ModelMap reDistribute(@RequestParam long taskId) {
+	public @ResponseBody ModelMap reDistribute(@RequestParam long taskId) {
 		logger.info(" reDistribute task: task.id = " + taskId);
 		ModelMap result = new ModelMap();
 		try {
@@ -748,7 +715,7 @@ public class VersionDownloadController {
 			result.addAttribute(FishConstant.SUCCESS, true);
 		} catch (Exception ex) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG,getI18N("task.reDistribute.failer"));
+			result.addAttribute(FishConstant.ERROR_MSG, getI18N("task.reDistribute.failer"));
 		}
 		return result;
 	}
@@ -761,8 +728,7 @@ public class VersionDownloadController {
 	 * @return
 	 */
 	@RequestMapping(value = "/pause", method = RequestMethod.POST)
-	public @ResponseBody
-	String pauseJob(@RequestParam long id) {
+	public @ResponseBody String pauseJob(@RequestParam long id) {
 		try {
 			jobManager.suspendJob(id);
 			return "{'success':true}";
@@ -778,57 +744,57 @@ public class VersionDownloadController {
 		}
 		return forms;
 	}
-	 private String getEnumI18n(String enumText){
-	    	if(null==enumText){
-	    		return "";
-	    	}
-	    	return messageSourceEnum.getMessage(enumText,null,FishCfg.locale);
-	    }
-	
+
+	private String getEnumI18n(String enumText) {
+		if (null == enumText) {
+			return "";
+		}
+		return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+	}
+
 	@Autowired
 	private MessageSource messageSourceEnum;
-	private TaskForm convertToTaskForm(ITask task){
+
+	private TaskForm convertToTaskForm(ITask task) {
 		TaskForm form = new TaskForm();
 		form.setId(task.getId());
-		form.setExcuteTime (task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime()));
+		form.setExcuteTime(task.getExcuteTime() == null ? "" : DateUtils.getTimestamp(task.getExcuteTime()));
 		form.setSuccess(task.isSuccess());
-        form.setReason(task.getReason());
+		form.setReason(task.getReason());
 
-        if (task.getStatus() != null) {
-            form.setTaskStatus(getEnumI18n(task.getStatus().getText()));
-            form.setTaskStatusText(getEnumI18n(task.getStatus().getText()));
-        }
+		if (task.getStatus() != null) {
+			form.setTaskStatus(getEnumI18n(task.getStatus().getText()));
+			form.setTaskStatusText(getEnumI18n(task.getStatus().getText()));
+		}
 
-        form.setJobId(task.getJob().getJobId());
-        form.setVersion(task.getVersion().getVersionNo());
-        form.setState(task.getState());
-        IDevice device = task.getDevice();
-        form.setDeviceId(device.getId());
-        form.setTerminalId(device.getTerminalId());
-        form.setDeviceIp(device.getIp().toString());
-        form.setOrgName(device.getOrganization().getName());
-        if (task.getVersionBeforeUpdate() != null) {
-            int index = task.getVersionBeforeUpdate().indexOf("_");
-            form.setVersionBeforeUpdate(task.getVersionBeforeUpdate().substring(index + 1));
-        }
-        form.setExceptVersion(task.getExceptVersion());
-        form.setCurrentVersion(task.getVersionBeforeUpdate());
-        form.setProcess(task.getProcess());
+		form.setJobId(task.getJob().getJobId());
+		form.setVersion(task.getVersion().getVersionNo());
+		form.setState(task.getState());
+		IDevice device = task.getDevice();
+		form.setDeviceId(device.getId());
+		form.setTerminalId(device.getTerminalId());
+		form.setDeviceIp(device.getIp().toString());
+		form.setOrgName(device.getOrganization().getName());
+		if (task.getVersionBeforeUpdate() != null) {
+			int index = task.getVersionBeforeUpdate().indexOf("_");
+			form.setVersionBeforeUpdate(task.getVersionBeforeUpdate().substring(index + 1));
+		}
+		form.setExceptVersion(task.getExceptVersion());
+		form.setCurrentVersion(task.getVersionBeforeUpdate());
+		form.setProcess(task.getProcess());
 
-        form.setDownloadStartTime(task.getDownloadStartTime());
-        form.setDownloadFinishTime(task.getDownloadFinishTime());
-	    return form;
+		form.setDownloadStartTime(task.getDownloadStartTime());
+		form.setDownloadFinishTime(task.getDownloadFinishTime());
+		return form;
 	}
-	
+
 	public String getState(ITask task) {
-        if (task.getStatus().equals(TaskStatus.NEW) || task.getStatus().equals(TaskStatus.RUN)) {
-            return getEnumI18n(task.getStatus().getText());
-        }
-        else {
-            return getEnumI18n(task.getStatus().getText()) + (task.isSuccess() ? getEnumI18n("taskstatus.execute.result.success") : getEnumI18n("taskstatus.execute.result.failer"));
-        }
-    }
-    
+		if (task.getStatus().equals(TaskStatus.NEW) || task.getStatus().equals(TaskStatus.RUN)) {
+			return getEnumI18n(task.getStatus().getText());
+		} else {
+			return getEnumI18n(task.getStatus().getText()) + (task.isSuccess() ? getEnumI18n("taskstatus.execute.result.success") : getEnumI18n("taskstatus.execute.result.failer"));
+		}
+	}
 
 	private List<TaskForm> toTaskFormForRepeat(List<Object> tasks) {
 		List<TaskForm> forms = new ArrayList<TaskForm>();
@@ -858,8 +824,7 @@ public class VersionDownloadController {
 	 * @return
 	 */
 	@RequestMapping(value = "/rebootAll", method = RequestMethod.POST)
-	public @ResponseBody
-	ModelMap rebootAll(@RequestParam long jobId) {
+	public @ResponseBody ModelMap rebootAll(@RequestParam long jobId) {
 		logger.info(" reboot all in job: job.id = " + jobId);
 		ModelMap result = new ModelMap();
 
@@ -874,8 +839,7 @@ public class VersionDownloadController {
 	 * @return
 	 */
 	@RequestMapping(value = "/rebootOne", method = RequestMethod.POST)
-	public @ResponseBody
-	ModelMap rebootOne(@RequestParam long taskId) {
+	public @ResponseBody ModelMap rebootOne(@RequestParam long taskId) {
 		logger.info(" reboot task: task.id = " + taskId);
 		ModelMap result = new ModelMap();
 		ITask task = taskService.get(taskId);
@@ -900,8 +864,7 @@ public class VersionDownloadController {
 	}
 
 	@RequestMapping(value = "/updateDeployDate", method = RequestMethod.POST)
-	public @ResponseBody
-	ModelMap update(@RequestParam long jobId, @RequestParam String deployStartDate, @RequestParam String deployEndDate) {
+	public @ResponseBody ModelMap update(@RequestParam long jobId, @RequestParam String deployStartDate, @RequestParam String deployEndDate) {
 		logger.info(" updateDeployDate  : jobId.id = " + jobId);
 		ModelMap result = new ModelMap();
 		try {
@@ -920,8 +883,7 @@ public class VersionDownloadController {
 	}
 
 	@RequestMapping(value = "/queryUpdateDeployDateHist", method = RequestMethod.GET)
-	public @ResponseBody
-	ModelMap searchUpdateDeployDateHist(@RequestParam int start, @RequestParam int limit, WebRequest request) {
+	public @ResponseBody ModelMap searchUpdateDeployDateHist(@RequestParam int start, @RequestParam int limit, WebRequest request) {
 		logger.info(String.format("search job : start = %s ,limit = %s ", start, limit));
 		IFilter filter = getFilter(request);
 		filter.descOrder("noticeTime");
@@ -933,8 +895,7 @@ public class VersionDownloadController {
 		return result;
 	}
 
-	public List<UpdateDeployDateHistoryForm> toUpdateDeployDateHistoryForm(List<IUpdateDeployDateHistory> list,
-			int start) {
+	public List<UpdateDeployDateHistoryForm> toUpdateDeployDateHistoryForm(List<IUpdateDeployDateHistory> list, int start) {
 		List<UpdateDeployDateHistoryForm> result = new ArrayList<UpdateDeployDateHistoryForm>();
 
 		int index = 0;
@@ -954,8 +915,7 @@ public class VersionDownloadController {
 	}
 
 	@RequestMapping(value = "/reNoticeApp", method = RequestMethod.GET)
-	public @ResponseBody
-	ModelMap reNoticeApp(@RequestParam long updateDeployDateHistoryId, WebRequest request) {
+	public @ResponseBody ModelMap reNoticeApp(@RequestParam long updateDeployDateHistoryId, WebRequest request) {
 		logger.info(String.format("reNoticeApp job : updateDeployDateHistoryId = %s  ", updateDeployDateHistoryId));
 		ModelMap result = new ModelMap();
 		try {

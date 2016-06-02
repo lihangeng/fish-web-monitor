@@ -235,7 +235,7 @@ Ext.override(Ext.form.field.Text, {
 	}
 });
 
-//支持所有的ComboBox增加 clear功能
+//支持所有的ComboBox增加 clear功能,如果不需要clear功能，直接将canClear设置为false
 Ext.override(Ext.form.field.ComboBox, {
    config : {
    	hideTrigger: false,
@@ -247,7 +247,17 @@ Ext.override(Ext.form.field.ComboBox, {
    			handler: 'onClearClick',
                scope: 'this'
    		}
-   	}
+   	},
+   	listeners:{
+		afterrender: function(text){
+			var clearTip = text.getTrigger("clear");
+			if(this.canClear){
+				return;
+			}else{
+				clearTip.hide();
+			}
+		}
+	}
    }
 });
 

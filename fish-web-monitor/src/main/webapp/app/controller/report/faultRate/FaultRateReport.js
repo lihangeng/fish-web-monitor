@@ -43,7 +43,63 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 			},
 			'report_faultRateReport_TypeGrid' : {
 				itemclick : this.typeQuery
+			},
+			'#report_faultRateReport_view report_faultRateReport_typeView button[action=next]':{
+				click :this.nextVendor
+			},
+			'#report_faultRateReport_view report_faultRateReport_typeView button[action=pref]':{
+				click :this.prefVendor
+			},
+			'#report_faultRateReport_view report_faultRateReport_moduleView button[action=next]':{
+				click :this.nextType
+			},
+			'#report_faultRateReport_view report_faultRateReport_moduleView button[action=pref]':{
+				click :this.prefType
 			}
+		});
+	},
+	
+	nextVendor:function(){
+		this.jobPageChange("1");
+	},
+	nextVendor:function(){
+		this.jobPageChange("-1");
+	},	
+	
+	jobPageChange:function(flag){
+		var me = this;
+		var jobId = this.getActiveTask().getConfig().jobId;
+		var panel = this.getTaskPanel().down("fieldset[name='jobDetailInfo']");
+		Ext.Ajax.request({
+		    url: 'api/version/download/searchJobDetailInfo',
+		    method:'GET',
+		    params: {
+		    	jobId: jobId,
+		        nextRecord:flag
+		    },
+		    success: function(response){
+		        var text = response.responseText;
+		        var object = Ext.decode(text);
+		    	me.getActiveTask().setJobId(object.displayJobId);
+				panel.removeAll();
+		        var length = object.data.length;
+		        for(var index=0;index<length;index++){
+		        	var data = object.data[index];
+		        	var display = undefined;
+		        	if((index+1)%4==1){
+		        		display = Ext.create("Ext.form.field.Display",{margin:'0 0 0 20',labelWidth : 105,columnWidth : .25,fieldLabel:data.frist,value: data.second});
+		        	}else{
+		        		display = Ext.create("Ext.form.field.Display",{labelWidth : 105,columnWidth : .25,fieldLabel:data.frist,value: data.second});
+		        	}
+		        		
+		        	panel.add(display);
+		        }
+	    		me.onTaskQuery();
+		    },
+		    failure:function(){
+		    		Eway.alert(EwayLocale.version.download.queryJobFailed);	
+		    }
+
 		});
 	},
 	

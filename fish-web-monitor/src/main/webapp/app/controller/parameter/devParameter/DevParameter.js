@@ -73,6 +73,7 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 	onRelease:function(){
 		var grid=this.getGrid();
 		var sm=grid.getSelectionModel();
+		if(sm.getCount() != 0){
 		var records=sm.getSelection();
 		var devArrayId='0';
 		for(var p in records){
@@ -107,7 +108,10 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 				Eway.alert(EwayLocale.param.deviceParam.downloadFailure);
 			},
 			scope:this
-		})
+		});
+		}else {
+			Eway.alert(EwayLocale.param.deviceParam.noDevice);
+		}
 	},
 	
 	tabPanelId : 1,
@@ -206,6 +210,8 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 				 scope : this
 			});
 			this.onParamQuery();
+		}else {
+			Eway.alert(EwayLocale.param.deviceParam.noDevice);
 		}
 	}
 

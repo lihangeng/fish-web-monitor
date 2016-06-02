@@ -22,6 +22,7 @@ import com.yihuacomputer.common.exception.NotFoundException;
 import com.yihuacomputer.common.file.FileMD5;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.filter.FilterFactory;
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.common.util.StringUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
@@ -259,6 +260,7 @@ public class VersionService implements IDomainVersionService {
         AgentRet agentRet = AgentRet.valueOf(ret);
         if (agentRet.equals(AgentRet.RET40)) {
             task.setStatus(TaskStatus.DOWNLOADED);
+            task.setDownloadFinishTime(DateUtils.getTimestamp(new Date()));
         } else if (AgentRet.isDownFail(agentRet)) {
             task.setStatus(TaskStatus.DOWNLOADED_FAIL);
             task.setReason(getEnumI18n(agentRet.getText()));

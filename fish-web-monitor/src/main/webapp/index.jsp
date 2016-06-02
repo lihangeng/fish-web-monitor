@@ -13,11 +13,17 @@
 
 	<link rel="stylesheet" type="text/css" href="ext/packages/theme-crisp/resources/theme-crisp-all.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="ext/packages/sencha-charts/crisp/charts-all.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="ext/packages/pivot/crisp/resources/pivot-all.css" media="all" />
 	<link rel="stylesheet" type="text/css" href="resources/css/fish-monitor.css" />
 	<link rel="stylesheet" type="text/css" href="resources/css/font-awesome.css" media="all" />
 
 	<script type="text/javascript" src="ext/ext-all.js"></script>
 	<script type="text/javascript" src="ext/packages/theme-crisp/theme-crisp.js"></script>
+	<script type="text/javascript" src="ext/ux/ajax/Simlet.js"></script>
+	<script type="text/javascript" src="ext/ux/ajax/DataSimlet.js"></script>
+	<script type="text/javascript" src="ext/ux/ajax/JsonSimlet.js"></script>
+	<script type="text/javascript" src="ext/packages/pivot/exporter.js"></script>
+	<script type="text/javascript" src="ext/packages/pivot/pivot.js"></script>
 	<script type="text/javascript" src="ext/packages/sencha-charts/charts.js"></script>
 	<script type="text/javascript" src="ext/ux/cometd/cometd.js"></script>
 	<script type="text/javascript" src="ext/ux/cometd/ext-cometd.js"></script>

@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceListener;
@@ -169,8 +170,12 @@ public class DeviceSoftVersionService extends DomainDeviceSoftVersionService imp
 
 	@Override
 	public void afterDelete(IDevice device) {
-		// TODO Auto-generated method stub
-		
+		IFilter filter = new Filter();
+		filter.eq("terminalId", device.getTerminalId());
+		List<IDeviceSoftVersion> dsvList = this.list(filter);
+		for(IDeviceSoftVersion dsv:dsvList){
+			this.delete(dsv);
+		}
 	}
 
 }

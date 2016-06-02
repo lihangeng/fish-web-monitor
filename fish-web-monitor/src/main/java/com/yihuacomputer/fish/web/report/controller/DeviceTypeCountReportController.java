@@ -4,12 +4,8 @@ import java.io.File;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,15 +27,12 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.OrganizationLevel;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.report.base.IDeviceTypeCountRpt;
 import com.yihuacomputer.fish.api.report.base.IDeviceTypeCountRptService;
 import com.yihuacomputer.fish.api.report.engine.IExportReportService;
-import com.yihuacomputer.fish.api.report.engine.IReportExport;
-import com.yihuacomputer.fish.report.engine.ReportParam;
 
 @Controller
 @RequestMapping(value = "/report")
@@ -76,24 +69,24 @@ public class DeviceTypeCountReportController {
 
         IFilter filter = request2filter(request, rq);
         ModelMap result = new ModelMap();
-        String resourcePath = rq.getSession().getServletContext()
-                .getRealPath("/resources/report/w_deviceType_count.jasper");
-        HashMap<String, Object> parameters = new HashMap<String, Object>();
-        parameters.put("title", getEnumI18n(ReportTitle.DeviceTypeCount.getText()));
-        parameters.put("reportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + " : " + DateUtils.getDate(new Date()));
-        parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
-        parameters.put("vendorName", messageSource.getMessage("report.devTypeCount.vendorName", null, FishCfg.locale));
-        parameters.put("type", messageSource.getMessage("report.devTypeCount.type", null, FishCfg.locale));
-        parameters.put("total", messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
-        parameters.put("subTotal", messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
+//        String resourcePath = rq.getSession().getServletContext()
+//                .getRealPath("/resources/report/w_deviceType_count.jasper");
+//        HashMap<String, Object> parameters = new HashMap<String, Object>();
+//        parameters.put("title", getEnumI18n(ReportTitle.DeviceTypeCount.getText()));
+//        parameters.put("reportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + " : " + DateUtils.getDate(new Date()));
+//        parameters.put("orgName", messageSource.getMessage("runtimeInfo.orgName", null, FishCfg.locale));
+//        parameters.put("vendorName", messageSource.getMessage("report.devTypeCount.vendorName", null, FishCfg.locale));
+//        parameters.put("type", messageSource.getMessage("report.devTypeCount.type", null, FishCfg.locale));
+//        parameters.put("total", messageSource.getMessage("report.devTypeCount.total", null, FishCfg.locale));
+//        parameters.put("subTotal", messageSource.getMessage("report.devTypeCount.subTotal", null, FishCfg.locale));
 
         List<IDeviceTypeCountRpt> data = deviceTypeCountService.listDeviceTypeCount(filter);
-
-        String path = getReport(parameters, resourcePath, request.getParameter("exportType"),
-                data == null ? new ArrayList<IDeviceTypeCountRpt>() : data);
+//
+//        String path = getReport(parameters, resourcePath, request.getParameter("exportType"),
+//                data == null ? new ArrayList<IDeviceTypeCountRpt>() : data);
 
         result.addAttribute(FishConstant.SUCCESS, true);
-        result.addAttribute("path", path);
+        result.addAttribute(FishConstant.DATA, data);
 
         return result;
     }
@@ -107,40 +100,40 @@ public class DeviceTypeCountReportController {
      * @param data
      * @return
      */
-    private String getReport(Map<String, Object> parameters, String resourcePath, String exportType,
-            List<IDeviceTypeCountRpt> data) {
-        ReportParam reportParam = new ReportParam();
-        if (exportType.equals("pdf")) {
-            reportParam.setPdf(true);
-        }
-        if (exportType.equals("html")) {
-            reportParam.setHtml(true);
-        }
-        if (exportType.equals("xls")) {
-            reportParam.setXls(true);
-            reportParam.setSheetNames(new String[]{"" + parameters.get("title")});
-        }
-
-        reportParam.setParameters(parameters);
-        reportParam.setDataList(data);
-        reportParam.setReportModule(resourcePath);
-        String reportFilepath = FishCfg.getTempDir() + System.getProperty("file.separator") + "report";
-        reportParam.setReportFilepath(reportFilepath);
-        IReportExport reportResult = exportReportService.genReport(reportParam);
-        String path = null;
-        if (reportResult.isSuccess()) {
-            if (reportParam.isPdf()) {
-                path = reportResult.getPdfFile();
-            }
-            if (reportParam.isXls()) {
-                path = reportResult.getXlsFile();
-            }
-            if (reportParam.isHtml()) {
-                path = reportResult.getHtmlFile();
-            }
-        }
-        return path;
-    }
+//    private String getReport(Map<String, Object> parameters, String resourcePath, String exportType,
+//            List<IDeviceTypeCountRpt> data) {
+//        ReportParam reportParam = new ReportParam();
+//        if (exportType.equals("pdf")) {
+//            reportParam.setPdf(true);
+//        }
+//        if (exportType.equals("html")) {
+//            reportParam.setHtml(true);
+//        }
+//        if (exportType.equals("xls")) {
+//            reportParam.setXls(true);
+//            reportParam.setSheetNames(new String[]{"" + parameters.get("title")});
+//        }
+//
+//        reportParam.setParameters(parameters);
+//        reportParam.setDataList(data);
+//        reportParam.setReportModule(resourcePath);
+//        String reportFilepath = FishCfg.getTempDir() + System.getProperty("file.separator") + "report";
+//        reportParam.setReportFilepath(reportFilepath);
+//        IReportExport reportResult = exportReportService.genReport(reportParam);
+//        String path = null;
+//        if (reportResult.isSuccess()) {
+//            if (reportParam.isPdf()) {
+//                path = reportResult.getPdfFile();
+//            }
+//            if (reportParam.isXls()) {
+//                path = reportResult.getXlsFile();
+//            }
+//            if (reportParam.isHtml()) {
+//                path = reportResult.getHtmlFile();
+//            }
+//        }
+//        return path;
+//    }
 
     /**
      * 下载文件到浏览器端：

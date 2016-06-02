@@ -22,6 +22,7 @@ import com.yihuacomputer.common.ITypeIP;
 import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.http.HttpProxy;
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.charts.ChartsInfo;
 import com.yihuacomputer.fish.api.device.IDevice;
@@ -293,7 +294,9 @@ public class TaskService implements ITaskService {
             }
             logger.info("taskStatus is "+task.getStatus());
             // 更新任务状态
-            task.setExcuteTime(new Date());
+            Date date = new Date();
+            task.setExcuteTime(date);
+            task.setDownloadStartTime(DateUtils.getTimestamp(date));
             this.updateTask(task);
             ignore = false;
         }

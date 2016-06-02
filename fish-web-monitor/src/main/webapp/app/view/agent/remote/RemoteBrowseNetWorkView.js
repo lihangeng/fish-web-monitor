@@ -107,7 +107,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseNetWorkView', {
 						} ],
 						series : [ {
 							type : 'gauge',
-							field : 'bandWidth',
+							angleField : 'bandWidth',
 							donut : 80,
 							colorSet : [ '#3AA8CB', '#ddd' ]
 						} ]
