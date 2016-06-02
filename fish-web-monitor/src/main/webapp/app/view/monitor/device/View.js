@@ -72,6 +72,7 @@ Ext.define('Eway.view.monitor.device.View',{
 							items : ['-', EwayLocale.tip.formatPageBfMsg, {
 							    xtype : 'combobox',
 							    name: 'pagesize',
+							    canClear:false,
 						        hiddenName: 'pagesize',
 						        store: new Ext.data.ArrayStore({
 						            fields: ['text', 'value'],
