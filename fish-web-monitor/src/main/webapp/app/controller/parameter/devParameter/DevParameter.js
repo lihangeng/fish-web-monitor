@@ -73,7 +73,7 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 	onRelease:function(){
 		var grid=this.getGrid();
 		var sm=grid.getSelectionModel();
-		if(sm.getCount == 1){
+		if(sm.getCount() != 0){
 		var records=sm.getSelection();
 		var devArrayId='0';
 		for(var p in records){
