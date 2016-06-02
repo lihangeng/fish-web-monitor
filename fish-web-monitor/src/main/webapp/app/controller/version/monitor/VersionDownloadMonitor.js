@@ -89,6 +89,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		        var text = response.responseText;
 		        var object = Ext.decode(text);
 		    	me.getActiveTask().setJobId(object.displayJobId);
+		    	me.getActiveTask().down("version_download_monitor_taskgrid").setJobId(object.displayJobId);
 				panel.removeAll();
 		        var length = object.data.length;
 		        for(var index=0;index<length;index++){
@@ -99,10 +100,11 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		        	}else{
 		        		display = Ext.create("Ext.form.field.Display",{labelWidth : 105,columnWidth : .25,fieldLabel:data.frist,value: data.second});
 		        	}
-		        		
 		        	panel.add(display);
 		        }
-	    		me.onTaskQuery();
+	        	if(flag=="-1"||flag=="1"){
+	            	me.onTaskQuery();
+	        	}
 		    },
 		    failure:function(){
 		    		Eway.alert(EwayLocale.version.download.queryJobFailed);	
@@ -257,10 +259,12 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 			var tabpanel = this.getEwayView().down("panel[name=groupPanel]").up("panel");
 			var jobDetailPanel = this.getEwayView().down("version_download_monitor_taskpanel");
 			jobDetailPanel.setJobId(record.get("id"));
+			jobDetailPanel.down("version_download_monitor_taskgrid").setJobId(record.get("id"));
 //			tabpanel.add(jobDetailPanel);
 			tabpanel.setActiveItem(jobDetailPanel);
 			this.lastTaskGrid = jobDetailPanel;
 			this.jobPageChange("0");
+			this.onTaskQuery();
 		} else {
 			Eway.alert(EwayLocale.version.task.selectAJob);
 		}
@@ -278,11 +282,13 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 		    success: function(response){
 		        var object = Ext.decode(response.responseText);
 				me.onViewBeforeDeactivate();
-				var jobDetailPanel = this.getEwayView().down("version_download_monitor_taskpanel");
-				jobDetailPanel.setJobId(record.get("id"));
+				var jobDetailPanel = me.getEwayView().down("version_download_monitor_taskpanel");
+				jobDetailPanel.setJobId(object.total.id);
+		    	jobDetailPanel.down("version_download_monitor_taskgrid").setJobId(object.total.id);
 				tabpanel.setActiveItem(jobDetailPanel);
 				me.lastTaskGrid = jobDetailPanel;
-				this.jobPageChange("0");
+				me.jobPageChange("0");
+				me.onTaskQuery();
 		    }
 		});
 	},
@@ -364,6 +370,7 @@ Ext.define('Eway.controller.version.monitor.VersionDownloadMonitor', {
 
 	//查找任务
 	onTaskQuery : function(){
+		this.jobPageChange("0");
 		var grid = this.getActiveTask().down("version_download_monitor_taskgrid");
 		var jobId = this.getActiveTask().getConfig().jobId;
 		this.setTaskSearchFilter(jobId);

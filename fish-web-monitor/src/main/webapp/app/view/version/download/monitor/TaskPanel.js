@@ -54,7 +54,8 @@ Ext.define('Eway.view.version.download.monitor.TaskPanel', {
 				layout : 'column'
 			},{
 				region: 'center',
-				xtype:'version_download_monitor_taskgrid'
+				xtype:'version_download_monitor_taskgrid',
+				jobId:this.getJobId()
 			}],
 			listeners:{
 				activate:function( _this, eOpts ){

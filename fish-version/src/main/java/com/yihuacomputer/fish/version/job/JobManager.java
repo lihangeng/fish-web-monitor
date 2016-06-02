@@ -216,6 +216,15 @@ public class JobManager implements IJobManager,IJobManangerStatus {
 	 */
 	public void cancelTask(long jobId,long taskId){
 	    Job jobInQueue = this.jobQueue.getJobById(jobId);
+	    jobInQueue = jobService.getById(jobId);
+	    if(jobInQueue.getJobType().equals(JobType.SCHEDULER)){
+	    	ITask task = taskService.get(taskId);
+	    	if(task.getStatus().equals(TaskStatus.NEW)){
+	    		task.setStatus(TaskStatus.CANCELED);
+	    		taskService.updateTask(task);
+	    	}
+	    	return;
+	    }
 	    ITask task = findTask(jobInQueue,taskId);
 	    if(task != null){
 	        if(task.getStatus().equals(TaskStatus.NEW)){

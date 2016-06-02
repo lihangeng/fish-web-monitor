@@ -26,6 +26,7 @@ import com.yihuacomputer.fish.api.version.IVersion;
 import com.yihuacomputer.fish.api.version.IVersionDownloadService;
 import com.yihuacomputer.fish.api.version.IVersionService;
 import com.yihuacomputer.fish.api.version.IVersionStaticsStautsService;
+import com.yihuacomputer.fish.api.version.VersionCatalog;
 import com.yihuacomputer.fish.api.version.VersionChartsDetailForm;
 import com.yihuacomputer.fish.api.version.VersionStaticsStatus;
 import com.yihuacomputer.fish.api.version.job.task.TaskStatus;
@@ -128,21 +129,27 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
      */
     public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceTotal(long versionId,String orgFlag,int start,int limit){
     	StringBuffer hqlsb = new StringBuffer();
-    	
+    	IVersion version = versionService.getById(versionId);
+    	 if(version==null){
+             return null;
+    	 }
+    	boolean isAdvert = version.getVersionType().getVersionCatalog().equals(VersionCatalog.ADVERT);
     	hqlsb.append("select device,deviceSoftVersion from ").append(Device.class.getSimpleName()).append(" device ,").
         append(Version.class.getSimpleName()).append(" version ,").
-        append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ,").
-        append(VersionTypeAtmTypeRelation.class.getSimpleName()).
-        append(" as versionatmType where device.devType.id=versionatmType.atmTypeId ").
-        append(" and versionatmType.versionTypeId=version.versionType.id ").
-        append(" and deviceSoftVersion.typeName=version.versionType.typeName ").
+        append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ");
+    	if(!isAdvert){
+    		hqlsb.append(",").append(VersionTypeAtmTypeRelation.class.getSimpleName()). append(" as versionatmType ");
+    	}
+    	hqlsb.append(" where deviceSoftVersion.typeName=version.versionType.typeName ").
         append(" and deviceSoftVersion.terminalId=device.terminalId ").
         append(" and version.id=? and device.organization.orgFlag like ? and device.status=? ");
+    	if(!isAdvert){
+	    	hqlsb.append(" and device.devType.id=versionatmType.atmTypeId ").
+	        append(" and versionatmType.versionTypeId=version.versionType.id ");
+    	}
+        
         Object[] obj = {versionId,orgFlag+"%",DevStatus.OPEN};
-        IVersion version = versionService.getById(versionId);
-        if(version==null){
-                return null;
-        }
+       
         @SuppressWarnings("unchecked")
         IPageResult<Object> result = (IPageResult<Object>) dao.page(start, limit, hqlsb.toString(), obj);
         List<Object> list = result.list();
@@ -203,21 +210,30 @@ public class VersionStaticsStatusService implements IVersionStaticsStautsService
      */
     public IPageResult<VersionChartsDetailForm> getMatchConditionDeviceSuccess(long versionId,String orgFlag,int start,int limit){
     	StringBuffer hql = new StringBuffer();
+    	IVersion version = versionService.getById(versionId);
+	   	 if(version==null){
+	            return null;
+	   	 }
+	   	 boolean isAdvert = version.getVersionType().getVersionCatalog().equals(VersionCatalog.ADVERT);
 		//设备下发成功的台数
 		hql.append("select device,deviceSoftVersion from  ").
 		append(Device.class.getSimpleName()).append( " device , ").
 		append(DeviceVersion.class.getSimpleName()).append(" deviceVersion ,").
 		append(Version.class.getSimpleName()).append(" version ,").
-    	append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ,").
-		append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType ").
-		append(" where  deviceVersion.deviceId=device.id ").
+    	append(DeviceSoftVersion.class.getSimpleName()).append(" deviceSoftVersion ");
+		if(!isAdvert){
+		hql.append(",").append(VersionTypeAtmTypeRelation.class.getSimpleName()).append(" versionatmType ");
+		}
+		hql.append(" where  deviceVersion.deviceId=device.id ").
 		append(" and deviceVersion.versionId=version.id ").
 		append(" and version.id=? and deviceVersion.taskStatus=? and device.status=?").
-		append(" and device.devType.id=versionatmType.atmTypeId ").
-    	append(" and versionatmType.versionTypeId=version.versionType.id ").
 		append(" and device.organization.orgFlag like ? ").
 		append(" and version.versionType.typeName=deviceSoftVersion.typeName ").
 		append(" and device.terminalId=deviceSoftVersion.terminalId ");
+		if(!isAdvert){
+			hql.append(" and device.devType.id=versionatmType.atmTypeId ").
+	    	append(" and versionatmType.versionTypeId=version.versionType.id ");
+		}
 		Object[] obj = {versionId,TaskStatus.CHECKED,DevStatus.OPEN,orgFlag+"%"};
     	@SuppressWarnings("unchecked")
 		IPageResult<Object> successResult = (IPageResult<Object>) dao.page(start, limit, hql.toString(), obj);
