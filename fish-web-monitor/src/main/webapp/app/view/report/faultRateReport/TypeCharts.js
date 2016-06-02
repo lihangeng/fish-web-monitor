@@ -82,7 +82,7 @@ Ext.define('Eway.view.report.faultRateReport.TypeCharts', {
                     title: [ EwayLocale.report.faultRateReport.tradeCount,
                   			EwayLocale.report.faultRateReport.faultCount,
                  			EwayLocale.report.faultRateReport.rate ],
-                    yField: [ 'faultCount','tradeCount','rate' ],
+                    yField: [ 'tradeCount','faultCount','rate' ],
                     stacked: false,
                     style: {
                         opacity: 0.80

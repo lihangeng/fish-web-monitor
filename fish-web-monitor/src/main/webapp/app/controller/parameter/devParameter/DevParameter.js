@@ -108,7 +108,7 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 				Eway.alert(EwayLocale.param.deviceParam.downloadFailure);
 			},
 			scope:this
-		})
+		});
 		}else {
 			Eway.alert(EwayLocale.param.deviceParam.noDevice);
 		}
