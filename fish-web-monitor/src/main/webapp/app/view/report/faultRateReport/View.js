@@ -4,20 +4,14 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 
 	requires : [ 'Eway.view.report.faultRateReport.BrandGrid',
 			'Eway.view.report.faultRateReport.BrandCharts',
-			'Eway.view.report.faultRateReport.TypeGrid',
-			'Eway.view.report.faultRateReport.TypeCharts',
-			'Eway.view.report.faultRateReport.ModuleGrid',
-			'Eway.view.report.faultRateReport.ModuleCharts',
-			'Eway.lib.DateMonth'],
+			'Eway.view.report.faultRateReport.TypeView' ],
 
 	title : EwayLocale.report.faultRateReport.viewTitle,
-
-	scrollable : true,
-	autoScroll : true,
+	layout : 'border',
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-				margin : 20,
+				region : 'north',
 				items : [ {
 					xtype : 'datefield',
 					fieldLabel : EwayLocale.report.faultRateReport.dateMonth,
@@ -26,19 +20,19 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 					value : new Date(),
 					labelAlign : 'left',
 					format : 'Y-m',
-					name:'dateMonth',
+					name : 'dateMonth',
 					width : 220,
-					anchor: '100%',
+					anchor : '100%',
 					height : 20,
 					listeners : {
 						blur : {
-				            fn: function(This, options){
-				            	return;
-				            }
+							fn : function(This, options) {
+								return;
+							}
 						}
 					}
 				}, {
-					height:30,
+					height : 40,
 					tbar : [ '->', {
 						text : EwayLocale.button.search,
 						action : 'query',
@@ -46,49 +40,36 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 					} ]
 				} ]
 			}, {
-				layout : {
-					type : 'table',
-					columns : 2,
-				},
-				defaults : {
-					width : 540,
-					height : 420
-				},
+				region : 'center',
+				xtype : 'panel',
+				layout : 'card',
 				items : [ {
-					xtype : 'report_faultRateReport_BrandGrid',
-					margin : '5 10 10 10',
-					border : true,
-					style : 'border:solid #D2D2D2'
+					name : 'groupPanel',
+					xtype : 'panel',
+					layout : 'border',
+					items : [ {
+						xtype : 'report_faultRateReport_BrandGrid',
+						region : 'north',
+						border : true,
+						height : 150
+					}, {
+						xtype : 'report_faultRateReport_BrandCharts',
+						region : 'center',
+					} ]
 				}, {
-					xtype : 'report_faultRateReport_BrandCharts',
-					split : true,
-					margin : '-5 0 0 0',
-					border : true,
-					style : 'border:solid #D2D2D2'
-				}, {
-					xtype : 'report_faultRateReport_TypeGrid',
-					margin : 10,
-					border : true,
-					style : 'border:solid #D2D2D2'
-				}, {
-					xtype : 'report_faultRateReport_TypeCharts',
-					border : true,
-					style : 'border:solid #D2D2D2'
-				}, {
-					xtype : 'report_faultRateReport_ModuleGrid',
-					margin : '5 10 10 10',
-					border : true,
-					style : 'border:solid #D2D2D2'
-				}, {
-					xtype : 'report_faultRateReport_ModuleCharts',
-					margin : '-5 0 0 0',
-					border : true,
-					style : 'border:solid #D2D2D2'
+					xtype : 'report_faultRateReport_typeView'
 				} ]
-			} ]
+			} ],
+			listeners : {
+				activate : function(panel) {
+					panel.down('report_faultRateReport_BrandGrid').getStore()
+							.load();
+					panel.down('report_faultRateReport_BrandCharts').down(
+							'cartesian').getStore().load();
+				}
+			}
 		});
 
 		this.callParent(arguments);
 	}
-
 });
