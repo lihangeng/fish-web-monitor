@@ -2,6 +2,10 @@ package com.yihuacomputer.fish.api.report.base;
 
 public class FaultRateReport {
 
+	private long vendorId;
+	
+	private long devTypeId;
+	
 	private String name;
 	
 	private long tradeCount;
@@ -40,6 +44,22 @@ public class FaultRateReport {
 
 	public void setRate(String rate) {
 		this.rate = rate;
+	}
+
+	public long getVendorId() {
+		return vendorId;
+	}
+
+	public void setVendorId(long vendorId) {
+		this.vendorId = vendorId;
+	}
+
+	public long getDevTypeId() {
+		return devTypeId;
+	}
+
+	public void setDevTypeId(long devTypeId) {
+		this.devTypeId = devTypeId;
 	}
 	
 }

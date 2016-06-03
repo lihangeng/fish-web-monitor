@@ -1,10 +1,6 @@
 package com.yihuacomputer.fish.web.report.controller;
 
-import java.text.DecimalFormat;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,13 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishConstant;
-import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.fish.api.atm.IAtmBrandService;
-import com.yihuacomputer.fish.api.atm.IAtmModule;
 import com.yihuacomputer.fish.api.atm.IAtmModuleService;
-import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
-import com.yihuacomputer.fish.api.atm.IAtmVendor;
 import com.yihuacomputer.fish.api.report.base.FaultRateReport;
 import com.yihuacomputer.fish.api.report.base.IFaultRateReportService;
 
@@ -56,39 +48,7 @@ public class FaultRateReportController {
 		logger.info(String.format("search faultByBrand : queryFaultByBrand"));
 		ModelMap result = new ModelMap();
 		String time = req.getParameter("dateTime");
-		List<FaultRateReport> list = faultRateReportService.listByBrand(time);
-		List<IAtmVendor> brand = EntityUtils.convert(atmBrandService.list());
-		Set<String> set1 = new HashSet<String>();
-		Set<String> set2 = new HashSet<String>();
-		DecimalFormat df = new DecimalFormat("0.00");
-		for (FaultRateReport f : list) {
-			if (f.getTradeCount() == 0) {
-				f.setRate("100.00");
-			} else if (f.getFaultCount() == 0) {
-				f.setRate("0.00");
-			} else {
-				f.setRate(df.format((double) f.getFaultCount() / f.getTradeCount() * 100));
-			}
-		}
-		for (IAtmVendor t : brand) {
-			set1.add(t.getName());
-		}
-		for (FaultRateReport f : list) {
-			set2.add(f.getName());
-		}
-		set1.removeAll(set2);
-		if (set1 != null) {
-			Iterator<String> it = set1.iterator();
-			while (it.hasNext()) {
-				FaultRateReport form = new FaultRateReport();
-				form.setName(String.valueOf(it.next()));
-				form.setTradeCount(0);
-				form.setFaultCount(0);
-				form.setRate("0.00");
-				list.add(form);
-			}
-
-		}
+		List<FaultRateReport> list = faultRateReportService.listAllHql(time);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, list.size());
 		result.addAttribute(FishConstant.DATA, list);
@@ -99,41 +59,9 @@ public class FaultRateReportController {
 	public @ResponseBody ModelMap queryFaultByType(HttpServletRequest req, WebRequest request) {
 		logger.info(String.format("search faultByType : queryFaultByType"));
 		ModelMap result = new ModelMap();
-		String brandName = req.getParameter("name");
+		Long vendorId = Long.parseLong(req.getParameter("vendorId"));
 		String time = req.getParameter("dateTime");
-		List<FaultRateReport> list = faultRateReportService.listByType(brandName, time);
-		List<IAtmType> type = faultRateReportService.getType(brandName);
-		Set<String> set1 = new HashSet<String>();
-		Set<String> set2 = new HashSet<String>();
-		DecimalFormat df = new DecimalFormat("0.00");
-		for (FaultRateReport f : list) {
-			if (f.getTradeCount() == 0) {
-				f.setRate("100.00");
-			} else if (f.getFaultCount() == 0) {
-				f.setRate("0.00");
-			} else {
-				f.setRate(df.format((double) f.getFaultCount() / f.getTradeCount() * 100));
-			}
-		}
-		for (IAtmType t : type) {
-			set1.add(t.getName());
-		}
-		for (FaultRateReport f : list) {
-			set2.add(f.getName());
-		}
-		set1.removeAll(set2);
-		if (set1 != null) {
-			Iterator<String> it = set1.iterator();
-			while (it.hasNext()) {
-				FaultRateReport form = new FaultRateReport();
-				form.setName(String.valueOf(it.next()));
-				form.setTradeCount(0);
-				form.setFaultCount(0);
-				form.setRate("0.00");
-				list.add(form);
-			}
-
-		}
+		List<FaultRateReport> list = faultRateReportService.listByVendorHql(time, vendorId);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, list.size());
 		result.addAttribute(FishConstant.DATA, list);
@@ -144,41 +72,10 @@ public class FaultRateReportController {
 	public @ResponseBody ModelMap queryFaultByModule(HttpServletRequest req, WebRequest webRequest) {
 		logger.info(String.format("search faultByModule : queryFaultByModule"));
 		ModelMap result = new ModelMap();
-		String typeName = req.getParameter("name");
+		long vendorId = Long.parseLong(req.getParameter("vendorId"));
+		long devTypeId = Long.parseLong(req.getParameter("devTypeId"));
 		String time = req.getParameter("dateTime");
-		List<FaultRateReport> list = faultRateReportService.listByModule(typeName, time);
-		List<IAtmModule> module = faultRateReportService.getModule(typeName);
-		Set<String> set1 = new HashSet<String>();
-		Set<String> set2 = new HashSet<String>();
-		DecimalFormat df = new DecimalFormat("0.00");
-		for (FaultRateReport f : list) {
-			if (f.getTradeCount() == 0) {
-				f.setRate("100.00");
-			} else if (f.getFaultCount() == 0) {
-				f.setRate("0.00");
-			} else {
-				f.setRate(df.format((double) f.getFaultCount() / f.getTradeCount() * 100));
-			}
-		}
-		for (IAtmModule m : module) {
-			set1.add(m.getName());
-		}
-		for (FaultRateReport f : list) {
-			set2.add(f.getName());
-		}
-		set1.removeAll(set2);
-		if (set1 != null) {
-			Iterator<String> it = set1.iterator();
-			while (it.hasNext()) {
-				FaultRateReport form = new FaultRateReport();
-				form.setName(String.valueOf(it.next()));
-				form.setTradeCount(0);
-				form.setFaultCount(0);
-				form.setRate("0.00");
-				list.add(form);
-			}
-
-		}
+		List<FaultRateReport> list = faultRateReportService.listByDevTypeHql(time, vendorId, devTypeId);
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, list.size());
 		result.addAttribute(FishConstant.DATA, list);
