@@ -46,8 +46,10 @@ public class TransactionDaysService implements ITransactionDaysService {
 	public void extractDate(String date) {
 		long datel = Long.parseLong(date);
 		StringBuffer sql = new StringBuffer();
-		sql.append("select sum(AMT),count(ATMC_TRANSACTION.ID),TRANS_CODE,CARD_TYPE, ").append("DEV_TYPE.NAME typeName,DEV_VENDOR.NAME vendorName FROM ATMC_TRANSACTION,DEV_INFO,DEV_TYPE,DEV_VENDOR ").append("WHERE ATMC_TRANSACTION.TRANS_DATE=").append(datel);
-		sql.append(" and ATMC_TRANSACTION.TERMINAL_ID=DEV_INFO.TERMINAL_ID and DEV_INFO.DEV_TYPE_ID=DEV_TYPE.ID AND DEV_TYPE.DEV_VENDOR_ID=DEV_VENDOR.ID GROUP BY TRANS_CODE,CARD_TYPE,DEV_TYPE.NAME,DEV_VENDOR.NAME,CARD_TYPE");
+		sql.append("select sum(AMT),count(ATMC_TRANSACTION.ID),TRANS_CODE,CARD_TYPE, ")
+		.append("DEV_TYPE.NAME typeName,DEV_VENDOR.NAME vendorName,DEV_TYPE.ID devTypeId,DEV_VENDOR.ID devVendorId FROM ATMC_TRANSACTION,DEV_INFO,DEV_TYPE,DEV_VENDOR ").
+		append("WHERE ATMC_TRANSACTION.TRANS_DATE=").append(datel);
+		sql.append(" and ATMC_TRANSACTION.TERMINAL_ID=DEV_INFO.TERMINAL_ID and DEV_INFO.DEV_TYPE_ID=DEV_TYPE.ID AND DEV_TYPE.DEV_VENDOR_ID=DEV_VENDOR.ID GROUP BY TRANS_CODE,CARD_TYPE,DEV_TYPE.NAME,DEV_VENDOR.NAME,CARD_TYPE,DEV_TYPE.ID,DEV_VENDOR.ID");
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 		@SuppressWarnings("unchecked")
 		List<Object> infos = query.list();
@@ -60,6 +62,8 @@ public class TransactionDaysService implements ITransactionDaysService {
 			td.setCardType(objs[3] == null ? "" : String.valueOf(objs[3]));
 			td.setDevType(objs[4] == null ? "" : String.valueOf(objs[4]));
 			td.setVendorName(objs[5] == null ? "" : String.valueOf(objs[5]));
+			td.setDevTypeId(objs[6] == null ? 0l : Long.parseLong(String.valueOf(objs[6])));
+			td.setVendorId(objs[7] == null ? 0l : Long.parseLong(String.valueOf(objs[7])));
 			td.setTransDate(datel);
 			save(td);
 		}

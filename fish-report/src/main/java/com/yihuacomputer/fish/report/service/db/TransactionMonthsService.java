@@ -41,12 +41,12 @@ public class TransactionMonthsService implements ITransactionMonthsService {
 		long dateBegin = date1 * 100;
 		long dateEnd = (date1 + 1) * 100;
 		StringBuffer sql = new StringBuffer();
-		sql.append("select sum(TRANS_AMT),sum(TRANS_COUNT),TRANS_CODE,CARD_TYPE,DEV_TYPE,VENDOR_NAME from ATMC_TRANSACTION_DAYS ");
+		sql.append("select sum(TRANS_AMT),sum(TRANS_COUNT),TRANS_CODE,CARD_TYPE,DEV_TYPE,VENDOR_NAME,DEV_TYPE_ID,VENDOR_ID from ATMC_TRANSACTION_DAYS ");
 		sql.append("where TRANS_DATE>");
 		sql.append(dateBegin);
 		sql.append(" and TRANS_DATE<");
 		sql.append(dateEnd);
-		sql.append(" group by CARD_TYPE,TRANS_CODE,DEV_TYPE,VENDOR_NAME");
+		sql.append(" group by CARD_TYPE,TRANS_CODE,DEV_TYPE,VENDOR_NAME,DEV_TYPE_ID,VENDOR_ID");
 		SQLQuery query = dao.getSQLQuery(sql.toString());
 
 		try {
@@ -61,6 +61,8 @@ public class TransactionMonthsService implements ITransactionMonthsService {
 				tm.setCardType(objs[3] == null ? "" : String.valueOf(objs[3]));
 				tm.setDevType(objs[4] == null ? "" : String.valueOf(objs[4]));
 				tm.setVendorName(objs[5] == null ? "" : String.valueOf(objs[5]));
+				tm.setDevTypeId(objs[6] == null ? 0l : Long.parseLong(String.valueOf(objs[6])));
+				tm.setVendorId(objs[7] == null ? 0l : Long.parseLong(String.valueOf(objs[7])));
 				tm.setTransDate(date1);
 				save(tm);
 			}

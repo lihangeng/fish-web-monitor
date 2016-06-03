@@ -82,5 +82,27 @@ public interface ITransactionMonths {
 	 * @param transAmt
 	 */
 	public void setTransAmt(long transAmt);
+	
+	/**
+	 * 品牌ID
+	 * @return
+	 */
+	public long getVendorId() ;
+	/**
+	 * 品牌ID
+	 * @param vendorId
+	 */
+	public void setVendorId(long vendorId);
+
+	/**
+	 * 型号ID
+	 * @return
+	 */
+	public long getDevTypeId();
+	/**
+	 * 型号ID
+	 * @param devTypeId
+	 */
+	public void setDevTypeId(long devTypeId);
 
 }

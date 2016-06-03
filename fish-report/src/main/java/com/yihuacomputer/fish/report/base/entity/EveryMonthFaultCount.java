@@ -48,6 +48,13 @@ public class EveryMonthFaultCount implements IEveryMonthFaultCount {
 	 */
 	@Column(name = "FAULT_COUNT", length = 10)
 	private long faultCount;
+	
+
+	@Column(name = "VENDOR_ID")
+	private long vendorId;
+
+	@Column(name = "DEV_TYPE_ID")
+	private long devTypeId;
 
 	public long getId() {
 		return id;
@@ -103,6 +110,21 @@ public class EveryMonthFaultCount implements IEveryMonthFaultCount {
 
 	public void setFaultCount(long faultCount) {
 		this.faultCount = faultCount;
+	}
+	public long getVendorId() {
+		return vendorId;
+	}
+
+	public void setVendorId(long vendorId) {
+		this.vendorId = vendorId;
+	}
+
+	public long getDevTypeId() {
+		return devTypeId;
+	}
+
+	public void setDevTypeId(long devTypeId) {
+		this.devTypeId = devTypeId;
 	}
 
 }
