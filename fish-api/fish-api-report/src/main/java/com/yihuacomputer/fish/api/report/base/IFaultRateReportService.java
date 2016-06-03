@@ -21,5 +21,11 @@ public interface IFaultRateReportService {
 	List<IAtmType> getType(String name);
 	
 	List<IAtmModule> getModule(String name);
+	
+	List<FaultRateReport> listAllHql(String monthStr);
+	
+	List<FaultRateReport> listByVendorHql(String monthStr,long vendorId);
+	
+	List<FaultRateReport> listByDevTypeHql(String monthStr,long vendorId,long devTypeId);
 
 }

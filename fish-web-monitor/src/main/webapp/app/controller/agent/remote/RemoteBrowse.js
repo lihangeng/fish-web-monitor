@@ -426,7 +426,7 @@ Ext.define('Eway.controller.agent.remote.RemoteBrowse',{
 		var currentPath = title.substring(title.indexOf(":")+1);
 		var index  = 0;
 		//适配liunx系统以/开始
-		if(currentPath.startsWith("/")){
+		if(currentPath.indexOf("/")==0){
 			index  = currentPath.lastIndexOf("/")
 		}
 		else{

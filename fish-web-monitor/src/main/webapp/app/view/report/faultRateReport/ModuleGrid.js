@@ -10,15 +10,15 @@ Ext.define('Eway.view.report.faultRateReport.ModuleGrid', {
 			columns : [ {
 				header : EwayLocale.report.faultRateReport.moduleName,
 				dataIndex : 'name',
-				width:130
+				width:200
 			},{
 				header : EwayLocale.report.faultRateReport.tradeCount,
 				dataIndex : 'tradeCount',
-				width:130
+				width:160
 			},{
 				header : EwayLocale.report.faultRateReport.faultCount,
 				dataIndex : 'faultCount',
-				width:130
+				width:160
 			},{
 				header : EwayLocale.report.faultRateReport.rate,
 				dataIndex : 'rate',

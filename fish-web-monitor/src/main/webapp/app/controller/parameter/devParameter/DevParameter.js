@@ -163,7 +163,7 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 	
 	onSave:function(){
 		var sm = this.getGrid().getSelectionModel();
-		if(sm.getCount() == 1){
+		if(sm.getCount() != 0){
 			var view=this.getEwayView();
 			var grid = view.down('tabpanel').activeTab.down('grid');
 			var store=grid.getStore();

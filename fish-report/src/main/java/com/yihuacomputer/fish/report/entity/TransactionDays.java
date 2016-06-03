@@ -41,6 +41,12 @@ public class TransactionDays implements ITransactionDays {
 	@Column(name = "TRANS_AMT", length = 11)
 	private long transAmt;
 
+	@Column(name = "VENDOR_ID")
+	private long vendorId;
+
+	@Column(name = "DEV_TYPE_ID")
+	private long devTypeId;
+
 	public long getId() {
 		return id;
 	}
@@ -103,6 +109,22 @@ public class TransactionDays implements ITransactionDays {
 
 	public void setTransAmt(long transAmt) {
 		this.transAmt = transAmt;
+	}
+
+	public long getVendorId() {
+		return vendorId;
+	}
+
+	public void setVendorId(long vendorId) {
+		this.vendorId = vendorId;
+	}
+
+	public long getDevTypeId() {
+		return devTypeId;
+	}
+
+	public void setDevTypeId(long devTypeId) {
+		this.devTypeId = devTypeId;
 	}
 
 }
