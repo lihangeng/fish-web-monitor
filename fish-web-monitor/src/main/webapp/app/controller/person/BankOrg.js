@@ -210,9 +210,9 @@ Ext.define('Eway.controller.person.BankOrg', {
 		var code = win.down("form").getForm().findField("code");
 		var organizationType = win.down('form').getForm().findField("organizationType");
 		//上级机构默认显示当前用户所属机构。
-		if(1!=ewayUser.getOrgId()){
-			win.down('field[name="parentId"]').setValue(ewayUser.getOrgId());
-			win.down('field[name="parent"]').setValue(ewayUser.getOrgName());
+		if(1!=Eway.user.getOrgId()){
+			win.down('field[name="parentId"]').setValue(Eway.user.getOrgId());
+			win.down('field[name="parent"]').setValue(Eway.user.getOrgName());
 		}
 		win.show();
 	},
@@ -273,7 +273,7 @@ Ext.define('Eway.controller.person.BankOrg', {
 
 			win.down('field[name="parent"]').setValue(upddata.parent);
 			win.down('field[name="name"]').setValue(upddata.name);
-			if(record.data.code==ewayUser.getOrgCode()){
+			if(record.data.code==Eway.user.getOrgCode()){
 				win.down('field[name="code"]').setReadOnly(true);
 			}
 			win.down('button[action="update"]').on('click',this.onUpdateConfirm,this);
@@ -315,8 +315,8 @@ Ext.define('Eway.controller.person.BankOrg', {
 			record.save({
 				success : function(record,operation){
 					Eway.alert(EwayLocale.updateSuccess);
-					if(data.code==ewayUser.getOrgCode()){
-						ewayUser.setOrgName(data.name);
+					if(data.code==Eway.user.getOrgCode()){
+						Eway.user.setOrgName(data.name);
 					}
 					//防止翻页后数据总量变化，所以把参数带入，翻页的逻辑不会变更
 					store.setUrlParamsByObject({
@@ -379,8 +379,8 @@ Ext.define('Eway.controller.person.BankOrg', {
 					Eway.alert(EwayLocale.tip.bankOrg.move.moveSuccess);
 					//组织树的刷新:
 //					var treePanel = ewayView.down('treepanel');
-					if(data.code==ewayUser.getOrgCode()){
-						ewayUser.setOrgName(data.name);
+					if(data.code==Eway.user.getOrgCode()){
+						Eway.user.setOrgName(data.name);
 					}
 					//防止翻页后数据总量变化，所以把参数带入，翻页的逻辑不会变更
 					store.setUrlParamsByObject({

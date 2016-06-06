@@ -42,7 +42,7 @@ Ext.define('Eway.view.person.servicePer.Update', {
 					allowBlank: false,
 					name : 'organizationName',
 					filters : '{"type" : "1"}',
-					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '1' ? true : false,
+					rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '1' ? true : false,
 					hiddenValue : 'organizationId',
 					editable : false
 			 	},{

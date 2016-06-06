@@ -28,7 +28,7 @@ Ext.define('Eway.model.monitor.card.CardAction', {
 			rootProperty : 'data'
 		},
 		 extraParams : {
-			 organizationId : ewayUser.getOrgId()
+			 organizationId : Eway.user.getOrgId()
 		}
 	}
 

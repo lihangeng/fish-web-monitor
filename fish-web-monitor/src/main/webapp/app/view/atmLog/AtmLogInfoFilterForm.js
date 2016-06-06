@@ -36,7 +36,7 @@ Ext.define('Eway.view.atmLog.AtmLogInfoFilterForm',{
 					hiddenValue : 'orgId',
 					editable : false,
 					filters : '{"type" : "0"}',
-					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
+					rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '0' ? true : false
 					}]
 			}]
 		});

@@ -31,7 +31,7 @@ Ext.define('Eway.view.case.vendorCode.RemoveWin', {
                     hiddenValue : 'vendor',
                     editable : false,
                     filters : '{"type" : "1"}',
-                    rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '1' ? true : false
+                    rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '1' ? true : false
                   }],
 				buttonAlign : 'center',
 				buttons : [ {

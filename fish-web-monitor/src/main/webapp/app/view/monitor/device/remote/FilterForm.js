@@ -32,7 +32,7 @@ Ext.define('Eway.view.monitor.device.remote.FilterForm', {
 				hiddenValue : 'organization',
 				editable : false,
 				filters : '{"type" : "0"}',
-				rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
+				rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '0' ? true : false
 			}, {
 				columnWidth : .5,
 				xtype : 'fieldcontainer',

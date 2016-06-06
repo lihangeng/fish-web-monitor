@@ -12,7 +12,7 @@ Ext.define('Eway.store.monitor.card.CardInfo', {
 	        rootProperty : 'data'
 	    },
 	    extraParams : {
-			 organizationId : ewayUser.getOrgId()
+			 organizationId : Eway.user.getOrgId()
 		}
     }
 });

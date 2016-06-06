@@ -253,8 +253,8 @@ Ext.define('Eway.view.monitor.device.View',{
 				var filterId = filterNameField.getValue();
 				store.load({
 					params : {
-						userId: ewayUser.getId(),
-						orgId: ewayUser.getOrgId(),
+						userId: Eway.user.getId(),
+						orgId: Eway.user.getOrgId(),
 						filterId: filterId
 					}
 				});
@@ -382,8 +382,8 @@ Ext.define('Eway.view.monitor.device.View',{
 	getParams : function(params) {
 		
 		var tempParams = params==undefined?{}:params;
-		tempParams.userId = ewayUser.getId();
-		tempParams.orgId = ewayUser.getOrgId();
+		tempParams.userId = Eway.user.getId();
+		tempParams.orgId = Eway.user.getOrgId();
 		
 		// 设备号
 		var deviceCodeField = this.down('textfield[action="deviceNumber"]');

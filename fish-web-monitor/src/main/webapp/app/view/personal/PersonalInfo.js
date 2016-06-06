@@ -25,7 +25,7 @@ Ext.define('Eway.view.personal.PersonalInfo', {
 				},
 				items: [{
 					fieldLabel : EwayLocale.personal.accountNum,
-					value:ewayUser.getCode()
+					value:Eway.user.getCode()
 				},{
 					fieldLabel : EwayLocale.commen.name,
 					name : 'name'

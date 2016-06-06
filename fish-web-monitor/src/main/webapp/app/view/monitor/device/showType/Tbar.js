@@ -6,7 +6,7 @@ Ext.define('Eway.view.monitor.device.showType.Tbar', {
 
 		var store = Ext.create('Eway.store.monitor.device.DeviceFilter');
 		store.setUrlParamsByObject({
-			userId : ewayUser.getId()
+			userId : Eway.user.getId()
 		});
 		store.loadPage(1);
 

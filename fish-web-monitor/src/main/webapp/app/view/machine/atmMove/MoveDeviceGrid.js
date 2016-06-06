@@ -10,7 +10,7 @@ Ext.define('Eway.view.machine.atmMove.MoveDeviceGrid', {
 
 	initComponent: function() {
 		var store = Ext.create('Eway.store.machine.atmMove.MoveDevice');
-		store.setBaseParam('organizationID',ewayUser.getOrgId());
+		store.setBaseParam('organizationID',Eway.user.getOrgId());
 		store.loadPage(1);
 		Ext.apply(this, {
 			store : store,

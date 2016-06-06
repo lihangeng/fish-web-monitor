@@ -153,7 +153,7 @@ Ext.define('Eway.controller.monitor.transaction.TransactionMonitor', {
 
     _metaHandshake : function(channel, data) {
         this.cometd.publish("/service/transaction/join",{
-            organizationId : ewayUser.getOrgId(), // 用户登录所属机构
+            organizationId : Eway.user.getOrgId(), // 用户登录所属机构
             terminalId : data.terminalId // 设备号
         });
         if (this.config._transactionSub) {

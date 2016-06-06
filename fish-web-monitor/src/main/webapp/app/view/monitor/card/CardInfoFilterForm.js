@@ -34,7 +34,7 @@ Ext.define('Eway.view.monitor.card.CardInfoFilterForm', {
 									hiddenValue : 'orgId',
 									editable : false,
 									filters : '{"type" : "0"}',
-									rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
+									rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '0' ? true : false
 								},{
 									xtype : 'combobox',
 									fieldLabel : EwayLocale.machine.device.onBankSignal,

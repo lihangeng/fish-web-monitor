@@ -19,80 +19,62 @@
 
 	<script type="text/javascript" src="ext/ext-all.js"></script>
 	<script type="text/javascript" src="ext/packages/theme-crisp/theme-crisp.js"></script>
-	<script type="text/javascript" src="ext/ux/ajax/Simlet.js"></script>
-	<script type="text/javascript" src="ext/ux/ajax/DataSimlet.js"></script>
-	<script type="text/javascript" src="ext/ux/ajax/JsonSimlet.js"></script>
-	<script type="text/javascript" src="ext/packages/pivot/exporter.js"></script>
-	<script type="text/javascript" src="ext/packages/pivot/pivot.js"></script>
 	<script type="text/javascript" src="ext/packages/sencha-charts/charts.js"></script>
-	<script type="text/javascript" src="ext/ux/cometd/cometd.js"></script>
-	<script type="text/javascript" src="ext/ux/cometd/ext-cometd.js"></script>
+	<script type="text/javascript" src="ext/ux/cometd/cometd.min.js"></script>
 	<script type="text/javascript">
-		var EwayUserObject = function(id,code,name,orgId,orgType,orgName,orgCode,personId){
-		var me = this;
-		this.id = id;
-		this.code = code;
-		this.name = name;
-		this.orgId = orgId;
-		this.orgType = orgType;
-		this.orgName = orgName;
-		this.orgCode = orgCode;
-		this.personId = personId;
-		return {
-			getId : function(){
-				return me.id;
-			},
-			setOrgName : function(orgName){
-				me.orgName = orgName;
-			},
-			getCode : function(){
-				return me.code;
-			},
-			getName : function(){
-				return me.name;
-			},
-			getOrgId : function(){
-				return me.orgId;
-			},
-			getOrgType : function(){
-				return me.orgType;
-			},
-			getOrgName : function(){
-				return me.orgName;
-			},
-			getOrgCode : function(){
-				return me.orgCode;
-			},
-			getPersonId : function(){
-				return me.personId;
-			}
-		}
-	}
-	var locale='<%=FishCfg.locale%>';
-	<%if (session.getAttribute("SESSION_USER") == null) {%>
-		var ewayUser={getName:function(){
-			return "";
-		},getId:function(){
-			return 1;
-		}};
-	<%} else {
-		UserSession userSession = (UserSession) session.getAttribute("SESSION_USER");%>
-		var ewayUser = new EwayUserObject(
-			'<%=userSession.getUserId()%>',
-			'<%=userSession.getUserCode()%>',
-			'<%=userSession.getUserName()%>',
-			'<%=userSession.getOrgId()%>',
-			'<%=userSession.getOrgType() == null ? "" : String.valueOf(userSession.getOrgType().getId())%>',
-			'<%=userSession.getOrgName()%>',
-			'<%=userSession.getOrgCode()%>',
-			'<%=userSession.getPersonId()%>');
-		var test_userId = Math.random()+'';
-	<%} %>
-
-  	</script>
+		var Eway = Eway || {};
+		<%if (session.getAttribute("SESSION_USER") == null) {%>
+			Eway.user = {
+					getName:function(){
+						return "";
+					},
+					getId:function(){
+						return 1;
+					}};
+		<%} else {
+			UserSession userSession = (UserSession) session.getAttribute("SESSION_USER");%>
+			Eway.user = {
+				id : '<%=userSession.getUserId()%>',
+				code: '<%=userSession.getUserCode()%>',
+				name: '<%=userSession.getUserName()%>',
+				orgId: '<%=userSession.getOrgId()%>',
+				orgType: '<%=userSession.getOrgType() == null ? "" : String.valueOf(userSession.getOrgType().getId())%>',
+				orgName: '<%=userSession.getOrgName()%>',
+				orgCode: '<%=userSession.getOrgCode()%>',
+				personId: '<%=userSession.getPersonId()%>',
+				getId : function(){
+					return this.id;
+				},
+				setOrgName : function(orgName){
+					this.orgName = orgName;
+				},
+				getCode : function(){
+					return this.code;
+				},
+				getName : function(){
+					return this.name;
+				},
+				getOrgId : function(){
+					return this.orgId;
+				},
+				getOrgType : function(){
+					return this.orgType;
+				},
+				getOrgName : function(){
+					return this.orgName;
+				},
+				getOrgCode : function(){
+					return this.orgCode;
+				},
+				getPersonId : function(){
+					return this.personId;
+				}
+			};
+		<%}%>
+		Eway.user.language = '<%=FishCfg.locale%>';
+	</script>
 	<script type="text/javascript">
 		Ext.BLANK_IMAGE_URL = 'resources/images/s.gif';
-	  	Ext.themeModel = "new";
 	  	Ext.Loader.setConfig({
 	  		enabled : true,//动态加载
 	        paths: {
@@ -100,10 +82,8 @@
 	        }
 	      });
 	  	Ext.cxtPath = '<%=request.getContextPath()%>';
-	  	var Eway = Eway || {};
 	  	var EwayLocale = {};
-	  	ewayUser.language =locale;
-		if(Ext.String.startsWith(locale,"zh")){
+		if(Ext.String.startsWith(Eway.user.language,"zh")){
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/system-locale-zh_CN.js");
@@ -127,34 +107,33 @@
 	</script>
 	<script type="text/javascript" src="app.js"></script>
 	<script type="text/javascript" src="ext/patch.js"></script>
+	<script type="text/javascript" src="ext/packages/pivot/exporter.js"></script>
+	<script type="text/javascript" src="ext/packages/pivot/pivot.js"></script>
 </head>
 
 <body>
 	<div id="loading">
 		<span class="title"><spring:message code="login.system.loading" /></span><span class="logo"></span>
 	</div>
-	<iframe id="downloadFileFromWeb" style="display: none"></iframe>
+	<iframe id="downloadFileFromWeb" style="display:none"></iframe>
 </body>
-	<script type="text/javascript">
-		document.onkeypress = forbidBackSpace;
-		document.onkeydown = forbidBackSpace;
-		function forbidBackSpace(e) {
-			var ev = e || window.event;
-			var obj = ev.target || ev.srcElement;
-			var t = obj.type || obj.getAttribute('type');
-			var vReadOnly = obj.readOnly;
-			var vDisabled = obj.disabled;
-			vReadOnly = (vReadOnly == undefined) ? false : vReadOnly;
-			vDisabled = (vDisabled == undefined) ? true : vDisabled;
-			var flag1 = ev.keyCode == 8
-					&& (t == "password" || t == "text" || t == "textarea")
-					&& (vReadOnly == true || vDisabled == true);
-			var flag2 = ev.keyCode == 8 && t != "password" && t != "text"
-					&& t != "textarea";
-			if (flag2 || flag1) {
-				return false
-			}
-			;
+<script type="text/javascript">
+	document.onkeypress = document.onkeydown = function (e) {
+		var ev = e || window.event;
+		var obj = ev.target || ev.srcElement;
+		var t = obj.type || obj.getAttribute('type');
+		var vReadOnly = obj.readOnly;
+		var vDisabled = obj.disabled;
+		vReadOnly = (vReadOnly == undefined) ? false : vReadOnly;
+		vDisabled = (vDisabled == undefined) ? true : vDisabled;
+		var flag1 = ev.keyCode == 8
+				&& (t == "password" || t == "text" || t == "textarea")
+				&& (vReadOnly == true || vDisabled == true);
+		var flag2 = ev.keyCode == 8 && t != "password" && t != "text"
+				&& t != "textarea";
+		if (flag2 || flag1) {
+			return false;
 		}
-	</script>
+	}
+</script>
 </html>

@@ -88,7 +88,7 @@ Ext.define('Eway.view.monitor.card.CardHandoverWin', {
 									hiddenValue : 'orgGuid',
 									editable : false,
 									filters : '{"type" : "0"}',
-									rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
+									rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '0' ? true : false
 								}],
 						buttonAlign : 'center',
 						buttons : [{

@@ -60,7 +60,7 @@ Ext.define('Eway.controller.bsAdvert.BsAdvertGroup', {
 		}else{
 			view.down("grid button[code='advertPreview']").setDisabled(true);
 		}
-		if(ewayUser.getOrgId()==record.data.orgId){
+		if(Eway.user.getOrgId()==record.data.orgId){
 			view.down("grid button[code='bsAdvertGroupUpdate']").setDisabled(false);
 			view.down("grid button[code='bsAdvertGroupDel']").setDisabled(false);
 			view.down("grid button[code='bsAdvertGroupLinkDevice']").setDisabled(false);

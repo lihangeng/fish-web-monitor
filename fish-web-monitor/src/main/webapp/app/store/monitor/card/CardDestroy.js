@@ -12,7 +12,7 @@ Ext.define('Eway.store.monitor.card.CardDestroy', {
             rootProperty : 'data'
         },
         extraParams : {
-			 organizationId : ewayUser.getOrgId()
+			 organizationId : Eway.user.getOrgId()
 		}
     }
 });

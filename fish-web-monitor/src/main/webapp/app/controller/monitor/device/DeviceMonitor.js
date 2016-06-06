@@ -177,7 +177,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		var form = win.down('form');
 		
 		var values = form.getValues();
-		values.userId = ewayUser.getId();
+		values.userId = Eway.user.getId();
 		
 		var grid = this.getFilterGrid();
 		var store = grid.getStore();
@@ -194,7 +194,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		var store = grid.getStore();
 		
 		store.setUrlParamsByObject({
-			userId : ewayUser.getId()
+			userId : Eway.user.getId()
 		});
 		store.loadPage(1);
 		
@@ -226,7 +226,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		for(var i in val1) {
 			values[i] = val1[i];
 		}
-		values.userId = ewayUser.getId();
+		values.userId = Eway.user.getId();
 		var winEl = win.getEl();
 		winEl.mask();
 		
@@ -882,7 +882,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 		var store = grid.getStore();
 		
 		store.setUrlParamsByObject({
-			userId : ewayUser.getId()
+			userId : Eway.user.getId()
 		});
 		store.loadPage(1);
 		

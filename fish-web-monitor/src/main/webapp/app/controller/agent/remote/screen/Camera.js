@@ -58,7 +58,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 			method : 'get',
 			url : 'api/agent/screenshot/removeAvi',
 			params : {
-				userId : ewayUser.getName(),
+				userId : Eway.user.getName(),
 				terminalId : this.terminalId
 			},
 			scope : this,
@@ -99,7 +99,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 		winEl.mask(EwayLocale.vtype.dataLoad);
 		store.load({
 			params : {
-				userId : ewayUser.getName(),
+				userId : Eway.user.getName(),
 				terminalId : this.terminalId
 			},
 			scope : this,
@@ -131,7 +131,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 				monitorType : 'CUSTOM',
 				ip : this.ip,
 				terminalId : this.terminalId,
-				userId : ewayUser.getName()
+				userId : Eway.user.getName()
 			},
 			scope : this,
 			callback : function(r, options, success) {// 回调函数
@@ -156,7 +156,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 				terminalId : this.terminalId,
 				ip : this.ip,
 				code : this.code,
-				userId : ewayUser.getName()
+				userId : Eway.user.getName()
 			},
 			scope : this,
 			callback : function(r, options, success) {// 回调函数
@@ -180,7 +180,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 				monitorType : 'ADMIN',
 				ip : this.ip,
 				terminalId : this.terminalId,
-				userId : ewayUser.getName()
+				userId : Eway.user.getName()
 			},
 			scope : this,
 			callback : function(r, options, success) {// 回调函数
@@ -205,7 +205,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 				terminalId : this.terminalId,
 				ip : this.ip,
 				code : this.code,
-				userId : ewayUser.getName()
+				userId : Eway.user.getName()
 			},
 			scope : this,
 			callback : function(r, options, success) {// 回调函数
@@ -229,7 +229,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 				monitorType : 'ADVERTISE',
 				ip : this.ip,
 				terminalId : this.terminalId,
-				userId : ewayUser.getName()
+				userId : Eway.user.getName()
 			},
 			scope : this,
 			callback : function(r, options, success) {// 回调函数
@@ -254,7 +254,7 @@ Ext.define('Eway.controller.agent.remote.screen.Camera', {
 				terminalId : this.terminalId,
 				ip : this.ip,
 				code : this.code,
-				userId : ewayUser.getName()
+				userId : Eway.user.getName()
 			},
 			scope : this,
 			callback : function(r, options, success) {// 回调函数

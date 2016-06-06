@@ -89,7 +89,7 @@ Ext.define('Eway.view.machine.device.Form',{
 						hiddenValue : 'orgId',
 						editable : false,
 						filters : '{"type" : "0"}',
-						rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
+						rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '0' ? true : false
 					}, {
 						xtype : 'field_device_deviceatmtype',
 						fieldLabel : '<font color="red">*</font> '+EwayLocale.machine.atmGroup.devTypeName,
@@ -105,7 +105,7 @@ Ext.define('Eway.view.machine.device.Form',{
 //						value: "深圳怡化",
 						editable : false,
 						filters : '{"type" : "1"}',
-						rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '1' ? true : false
+						rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '1' ? true : false
 					} ]
 				}]
 

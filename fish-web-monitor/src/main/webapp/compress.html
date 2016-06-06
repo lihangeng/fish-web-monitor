@@ -17,7 +17,7 @@
 	<script type="text/javascript" src="ext/ux/cometd/cometd.js"></script>
 	<script type="text/javascript" src="ext/ux/cometd/ext-cometd.js"></script>
 	<script type="text/javascript">
-		var EwayUserObject = function(id,code,name,orgId,orgType,orgName,orgCode,personId){
+		var Eway.userObject = function(id,code,name,orgId,orgType,orgName,orgCode,personId){
 		var me = this;
 		this.id = id;
 		this.code = code;
@@ -57,7 +57,6 @@
   	</script>
 	<script type="text/javascript">
 		Ext.BLANK_IMAGE_URL = 'resources/images/s.gif';
-	  	Ext.themeModel = "new";
 	  	Ext.Loader.setConfig({
 	  		enabled : true,//动态加载
 	        paths: {

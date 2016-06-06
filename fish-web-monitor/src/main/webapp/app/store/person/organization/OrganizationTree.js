@@ -4,10 +4,10 @@ Ext.define('Eway.store.person.organization.OrganizationTree', {
 	requires : 'Eway.model.common.OrganizationTree',
 	model : 'Eway.model.common.OrganizationTree',
 	root: {
-		text: ewayUser.getOrgName(),
+		text: Eway.user.getOrgName(),
 		expanded: true
 	},
-	defaultRootId:ewayUser.getOrgId(),
+	defaultRootId:Eway.user.getOrgId(),
     proxy: {
         type: 'ajax',
         url : 'api/person/organization/tree',

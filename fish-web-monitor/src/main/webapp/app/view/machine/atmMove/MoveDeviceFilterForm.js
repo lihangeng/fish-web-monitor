@@ -42,7 +42,7 @@ Ext.define('Eway.view.machine.atmMove.MoveDeviceFilterForm', {
 					editable : false,
 					width: 250,
 					filters : '{"type" : "0"}',
-					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
+					rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '0' ? true : false
 				},{
 					style : 'padding-top:0px',
 					xtype : 'hiddenfield',

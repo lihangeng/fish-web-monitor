@@ -60,7 +60,7 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 		var win = Ext.create('Eway.view.machine.quittingNotice.DeviceWin');
 		var deviceGrid = win.down('quittingNotice_DeviceGrid');
 		deviceGrid.getStore().cleanUrlParam();
-		deviceGrid.getStore().setBaseParam('organizationID',ewayUser.getOrgId());
+		deviceGrid.getStore().setBaseParam('organizationID',Eway.user.getOrgId());
 		deviceGrid.down('button[action="select"]').on('click',Ext.bind(this.onCreateConfirm,this,[win]),this);
 		deviceGrid.down('button[action="queryDevice"]').on('click',Ext.bind(this.onQueryDevice,this,[win]),this);
 		deviceGrid.on('itemdblclick',Ext.bind(this.onCreateConfirm,this,[win]),this);
@@ -72,7 +72,7 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 		var store = win.down('quittingNotice_DeviceGrid').getStore();
 		var data = win.down('quittingNotice_DeviceFilterForm').getForm().getValues();
 		store.setUrlParamsByObject(data);
-		store.setBaseParam('organizationID',ewayUser.getOrgId());
+		store.setBaseParam('organizationID',Eway.user.getOrgId());
 		store.loadPage(1);
 	},
 
@@ -108,7 +108,7 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 					Eway.alert(EwayLocale.addSuccess);
 					//点击增加成功后查询条件不带入重新查询。
 					store.setUrlParamsByObject(null);
-					store.setBaseParam('organizationID',ewayUser.getOrgId());
+					store.setBaseParam('organizationID',Eway.user.getOrgId());
 					store.loadPage(1);
 			    },
 			    failure: function(record,operation){
@@ -227,7 +227,7 @@ Ext.define('Eway.controller.machine.quittingNotice.QuittingNotice', {
 									Eway.alert(EwayLocale.deleteSuccess);
 									grid.getStore().remove(record);
 									store.setUrlParamsByObject(quaryData);
-									store.setBaseParam('organizationID',ewayUser.getOrgId());
+									store.setBaseParam('organizationID',Eway.user.getOrgId());
 									store.loadPage(1);
 								},
 								failure: function(record,operation){

@@ -86,7 +86,7 @@ Ext.define('Eway.view.report.baseReport.TransactionHoursCountFilterForm', {
 					hiddenValue : 'orgId',
 					editable : false,
 					filters : '{"type" : "0"}',
-					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
+					rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '0' ? true : false
 				}]
 			} ]
 		});

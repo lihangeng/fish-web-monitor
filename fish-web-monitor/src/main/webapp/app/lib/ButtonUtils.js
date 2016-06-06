@@ -18,7 +18,7 @@ Ext.define('Eway.lib.ButtonUtils', {
 			method : 'GET',
 			url : 'api/login/button',
 			params : {
-				userId : ewayUser.getId()
+				userId : Eway.user.getId()
 			},
 			success : function(response){
 				var text = Ext.decode(response.responseText);
