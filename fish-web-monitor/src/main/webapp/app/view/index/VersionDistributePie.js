@@ -11,6 +11,7 @@ Ext.define('Eway.view.index.VersionDistributePie', {
 		valueField : 'id',
 		displayField : 'desc',
 	    queryMode: 'local',
+	    canClear:false,
 	    editable : false,
 	    listeners : {
 			afterrender:function(){
