@@ -21,7 +21,7 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
                     type: 'muted'
                 },
                 legend: {
-                    docked: 'bottom'
+                    docked: 'right'
                 },
                 interactions: {
                     type: 'itemedit',

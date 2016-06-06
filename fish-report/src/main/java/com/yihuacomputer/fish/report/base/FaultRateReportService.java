@@ -7,11 +7,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.SQLQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.atm.IAtmBrandService;
@@ -256,4 +258,11 @@ public class FaultRateReportService implements IFaultRateReportService {
 		return f;
 	}
 
+	   @Override
+	    @Transactional(readOnly=true)
+	    public List<FaultRateReport> list(IFilter filter)
+	    {
+		   
+		   return null;
+	    }
 }
