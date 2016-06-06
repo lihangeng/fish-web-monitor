@@ -3,7 +3,6 @@ Ext.define('Eway.view.report.faultRateReport.ModuleGrid', {
 	extend : 'Eway.view.base.Grid',
 	initComponent : function() {
 		var store = Ext.create('Eway.store.report.faultRateReport.Module');
-		store.loadPage(1);
 		Ext.apply(this, {
 			initRegion : true,
 			store : store,
