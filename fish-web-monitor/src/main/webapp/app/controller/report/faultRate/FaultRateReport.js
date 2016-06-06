@@ -74,8 +74,7 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 			}
 		})
 	},
-
-
+	
 	onQuery : function() {
 		var view = this.getEwayView();
 		var time = view.down('datefield').getValue();
@@ -94,21 +93,45 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 		brandCharts.loadPage(1);
 
 	},
+	
+	nextVendor:function(){
+		this.vendorPageChange("1");
+	},
+	nextVendor:function(){
+		this.vendorPageChange("-1");
+	},
+	
+	vendorPageChange:function(flag){
+		var me = this;
+		var vendorId = this.getActiveTask().getConfig().vendorId;
+		Ext.Ajax.request({
+		    url: 'api/report/faultRate/searchVendorId',
+		    method:'GET',
+		    params: {
+		    	vendorId: vendorId,
+		        nextRecord:flag
+		    },
+		  
+	},
+
+
 	vendorId:0,
+	name : null,
 	brandQuery : function( _this,  record, itemHtml, index, e, eOpts) {
 		var winEl = Ext.get(itemHtml);
 		vendorId=record.get('vendorId');
+		name = record.get('name');
 	    var imgHtml = winEl.down('img').on("click",this.faceJumpBrand,this);
 	},
-	faceJumpBrand:function(){
+	
+	faceJumpBrand:function(_this,  record, itemHtml, index, e, eOpts){
 		var brandGrid = this.getBrandGrid();
 		var typeGrid = this.getTypeGrid();
 		var store = typeGrid.getStore();
-		var record=brandGrid.getSelectionModel().getLastSelected();
 		var tabpanel = this.getEwayView().down("panel[name=groupPanel]").up("panel");
 		var typeView = this.getEwayView().down("report_faultRateReport_typeView");
 		tabpanel.setActiveItem(typeView);
-		typeView.setTitle('型号所属品牌：' + record.get('name'));
+		typeView.setTitle('型号所属品牌：' + name);
 		var typeCharts = this.getTypeCharts().down('cartesian').getStore();
 		store.setBaseParam("vendorId", vendorId);
 		store.loadPage(1);
@@ -116,21 +139,21 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 	},
 
 	typeId:0,
+	name:null,
 	typeQuery : function(_this,  record, itemHtml, index, e, eOpts) {
 		var winEl = Ext.get(itemHtml);
 		typeId=record.get('devTypeId');
+		name = record.get('name');
 	    var imgHtml = winEl.down('img').on("click",this.faceJumpType,this);
 	},
-	
-	faceJumpType:function(){
+	faceJumpType:function(_this,  record, itemHtml, index, e, eOpts){
 		var typeGrid = this.getTypeGrid();
 		var moduleGrid = this.getModuleGrid();
 		var store = moduleGrid.getStore();
-		var record=typeGrid.getSelectionModel().getLastSelected();
 		var tabpanel = this.getEwayView().down("panel[name=groupPanel]").up("panel");
 		var moduleView = this.getEwayView().down("report_faultRateReport_moduleView");
 		tabpanel.setActiveItem(moduleView);
-		typeView.setTitle('型号所属品牌：' + record.get('name'));
+		moduleView.setTitle('型号所属品牌：' + name);
 		var moduleCharts = this.getModuleCharts().down('cartesian').getStore();
 		store.setBaseParam("vendorId",vendorId);
 		store.setBaseParam("devTypeId",typeId);
@@ -152,4 +175,5 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 		layout.setActiveItem(groupPanel);
 	},
 
+	
 });
