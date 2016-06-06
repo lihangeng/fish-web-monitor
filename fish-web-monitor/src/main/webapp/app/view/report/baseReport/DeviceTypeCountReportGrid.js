@@ -2,20 +2,43 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 	extend: 'Ext.pivot.Grid',
     xtype: 'outline-pivot-grid',
 	alias : 'widget.baseReport_DeviceTypeCountReportGrid',
-	requires : [ 'Eway.store.report.baseReport.DeviceVendorCountReport' ],
+	requires : [ 'Eway.store.report.baseReport.DeviceVendorCountReport' ,
+		           'Ext.pivot.plugin.Exporter'],
+	forceFit : true,
 
-//	scrollable :true,
-//	closable : false,
 	collapsible: false,
-    multiSelect: true,
     store: {
         type: 'deviceVendorCount'
     },
+    plugins: [{
+        ptype: 'pivotexporter',
+        pluginId: 'exporter'
+    }],
     selModel: {
         type: 'rowmodel'
     },
     
-    
+    tbar: {
+        itemPosition: 1, // after title before collapse tool
+        items: ['->',{
+
+			xtype : 'button',
+			text : EwayLocale.button.search,
+			glyph : 0xf002,
+			action : 'query'
+        },{
+            xtype: 'button',
+            glyph : 0xf1c3,
+            text : EwayLocale.button.exportXLS,
+            handler: function(){
+            	this.up('baseReport_DeviceTypeCountReportGrid').saveDocumentAs({
+                    title:      'Pivot grid export demo',
+                    fileName:   'excelExport.xls'
+                });
+            }
+        }]
+    },
+
     // Set layout type to "outline". If this config is missing then the default layout is "outline"
     viewLayoutType: 'outline',
 
@@ -36,14 +59,6 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
         dataIndex:  'orgName',
         header:     'orgName',
         width:      80
-    },{
-        dataIndex:  'vendorName',
-        header:     'vendorName',
-        sortable:   false,
-        width:      80
-    },{
-        dataIndex:  'devTypeName',
-        header:     'devTypeName'
     }],
 
     /**
@@ -52,7 +67,15 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
      * are defined then each top axis result will have in the end a column header with children
      * columns for each aggregate dimension defined.
      */
-//    topAxis: [],
+    topAxis: [{
+        dataIndex:  'vendorName',
+        header:     'vendorName',
+        sortable:   false,
+        width:      80
+    },{
+        dataIndex:  'devTypeName',
+        header:     'devTypeName'
+    }],
 
 //    tbar: [{
 //        text: 'Collapsing',
