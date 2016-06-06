@@ -241,7 +241,7 @@ Ext.define('Eway.view.common.OrgComboOrgTree',{
 				expanded: isExpanded
 			});
 		}
-		else if(data.type == "1" || ewayUser.getOrgType() == ""){//维护商
+		else if(data.type == "1" || Eway.user.getOrgType() == ""){//维护商
 			treePanel.setRootNode({
 				id: 1,
 				text: EwayLocale.commen.orgFramework,

@@ -56,7 +56,7 @@ Ext.define('Eway.view.machine.atmMove.AtmMove', {
 					hiddenValue : 'orgId',
 					readOnly: true,
 					allowBlank : false,
-					rootVisible : ewayUser.getOrgType() != ""? true : false,
+					rootVisible : Eway.user.getOrgType() != ""? true : false,
 					filters : '{"type" : "0"}',
 					msgTarget : 'side'
 				},{
@@ -72,7 +72,7 @@ Ext.define('Eway.view.machine.atmMove.AtmMove', {
 					hiddenValue : 'targetOrganizationId',
 					editable : false,
 					allowBlank : false,
-					rootVisible : ewayUser.getOrgType() != ""? true : false,
+					rootVisible : Eway.user.getOrgType() != ""? true : false,
 					filters : '{"type" : "0"}',
 					msgTarget : 'side'
 				},{

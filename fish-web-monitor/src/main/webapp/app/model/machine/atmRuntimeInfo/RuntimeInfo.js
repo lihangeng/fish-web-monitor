@@ -13,7 +13,7 @@ Ext.define('Eway.model.machine.atmRuntimeInfo.RuntimeInfo', {
 			rootProperty : 'data'
 		},
 		extraParams : {
-			organizationID : ewayUser.getOrgId()
+			organizationID : Eway.user.getOrgId()
 		}
 	}
 });

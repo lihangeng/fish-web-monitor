@@ -9,7 +9,7 @@ Ext.define('Eway.view.Viewport', {
 		var store = Ext.create('Ext.data.TreeStore', {
 		    proxy: {
 		        type: 'ajax',
-		        url : 'api/login/mymenu/'+ewayUser.getId(),
+		        url : 'api/login/mymenu/'+Eway.user.getId(),
 		        reader: {
 			        type: 'json',
 			        rootProperty: 'data'

@@ -131,7 +131,7 @@ Ext.define('Eway.view.version.download.MultiSelectableDeviceGrid', {
 				width: 200,
 				filters : '{"type" : "0"}',
 				parentXtype:'toolbar',
-				rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false,
+				rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '0' ? true : false,
 				onTreeItemClick : function(view,record){
 					this.setValue(record.get('text'));
 					this.up('grid').down("hiddenfield[name=orgId]").setValue(record.get('id'));

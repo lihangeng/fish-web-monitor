@@ -85,7 +85,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 				var viewValues = view.down('form').getForm().getValues();
 				var record = Ext.create('Eway.model.monitor.card.CardInfo',data);
 
-				record.set("userOrgId" , ewayUser.getOrgId());
+				record.set("userOrgId" , Eway.user.getOrgId());
 				var bool = this.getAddWin().down('form').getForm().isValid();
 				var store = this.getCardInfoGrid().getStore();
 				if(data.cardRetainTime == ''){
@@ -99,7 +99,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 							win.close();
 							    //点击增加成功后查询条件不带入重新查询。
 								store.setUrlParamsByObject(null);
-								store.setBaseParam('organizationId',ewayUser.getOrgId());
+								store.setBaseParam('organizationId',Eway.user.getOrgId());
 								store.loadPage(1);
 						},
 						failure : function(record,operation){
@@ -122,7 +122,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 				if(form.isValid() == true){
 					var store = view.down('gridpanel').getStore();
 					store.setUrlParamsByObject(values);
-					store.setBaseParam('organizationId',ewayUser.getOrgId());
+					store.setBaseParam('organizationId',Eway.user.getOrgId());
 					store.loadPage(1);
 				}else{
 					Eway.alert(EwayLocale.tip.search.warn);
@@ -144,7 +144,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 						url: 'api/monitor/retainCard/checkGuid',
 						params:{
 							id: record.data.id,
-							organizationId : ewayUser.getOrgId()
+							organizationId : Eway.user.getOrgId()
 						},
 						success: function(response){
 							var object = Ext.decode(response.responseText);
@@ -157,7 +157,7 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 								}
 							}, this);
 								store.setUrlParamsByObject(viewValues);
-								store.setBaseParam('organizationId',ewayUser.getOrgId());
+								store.setBaseParam('organizationId',Eway.user.getOrgId());
 								store.loadPage(1);
 							}else{
 								Eway.alert(object.errorMsg);

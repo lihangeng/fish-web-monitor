@@ -227,7 +227,7 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 			var win = Ext.create('Eway.view.person.serviceOrg.Update');
 			var record = sm.getLastSelected();
 			win.down('form').getForm().loadRecord(record);
-			if (record.data.code == ewayUser.getOrgCode()) {
+			if (record.data.code == Eway.user.getOrgCode()) {
 				win.down('field[name="code"]').setReadOnly(true);
 			}
 			win.down('button[action="update"]').on('click',this.onUpdateConfirm, this);
@@ -267,8 +267,8 @@ Ext.define('Eway.controller.person.ServiceOrg', {
 			record.save({
 						success : function(record, operation) {
 							Eway.alert(EwayLocale.updateSuccess);
-							if (data.code == ewayUser.getOrgCode()) {
-								ewayUser.setOrgName(data.name);
+							if (data.code == Eway.user.getOrgCode()) {
+								Eway.user.setOrgName(data.name);
 							} 
 							store.setUrlParamsByObject({
 								type : '1'

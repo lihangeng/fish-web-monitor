@@ -58,7 +58,7 @@ Ext.define('Eway.controller.machine.atmMove.AtmMove', {
 		var data = this.getMoveDeviceFilterForm().getForm().getValues();//得到所有的查询条件的值 {code='n',name='',....}
 		if(this.getMoveDeviceFilterForm().getForm().isValid() == true){
 			store.setUrlParamsByObject(data);
-			store.setBaseParam('organizationID',ewayUser.getOrgId());
+			store.setBaseParam('organizationID',Eway.user.getOrgId());
 			store.loadPage(1);
 		}else{
 			Eway.alert(EwayLocale.tip.searchOfNoLegal);

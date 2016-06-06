@@ -42,12 +42,12 @@ Ext.define('Eway.view.personal.UpdatePwd', {
 					xtype : 'field.code',
 					allowBlank : false,
 					readOnly: true,
-					value:ewayUser.getCode()
+					value:Eway.user.getCode()
 				},{
 					xtype : 'field.username',
 					allowBlank : false,
 					readOnly: true,
-					value:ewayUser.getName()
+					value:Eway.user.getName()
 				},{
 				    xtype : 'textfield',
 				    fieldLabel: '<font color="red">*</font>'+EwayLocale.personal.inputOldPwd,

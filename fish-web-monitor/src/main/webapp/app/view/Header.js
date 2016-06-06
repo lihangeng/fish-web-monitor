@@ -16,7 +16,7 @@ Ext.define('Eway.view.Header', {
             style : 'font-size : 18px; color : white;'
         },"->",{
         	xtype:'tbtext',
-        	text: EwayLocale.welcome+ewayUser.getName(),
+        	text: EwayLocale.welcome+Eway.user.getName(),
         	style : 'font-size : 14px; color : white;'
         },{
         	tooltip:EwayLocale.personalConf,

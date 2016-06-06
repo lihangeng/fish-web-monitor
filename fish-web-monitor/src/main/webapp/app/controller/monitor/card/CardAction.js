@@ -58,13 +58,13 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 				url: 'api/monitor/retainCard/checkGuid',
 				params:{
 					id: record.data.id,
-					organizationId : ewayUser.getOrgId()
+					organizationId : Eway.user.getOrgId()
 				},
 				success: function(response){
 					var object = Ext.decode(response.responseText);
 					if(object.success == true){
 						var win = Ext.create(cardHandoverWin);
-						record.data.treatmentPeople = ewayUser.getName();
+						record.data.treatmentPeople = Eway.user.getName();
 						win.down('form').getForm().loadRecord(record);
 						var button = win.query('button[action=confirm]')[0];
 						button.on('click', me.onHandoverConfirm, me);
@@ -98,11 +98,11 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 				method : 'GET',
 				url : 'api/monitor/retainCard/handover',
 				params : {
-					organizationId : ewayUser.getOrgId(),//当前登录用户所属的机构Id
+					organizationId : Eway.user.getOrgId(),//当前登录用户所属的机构Id
 					id : record.data.id,
 					orgGuid : values.orgGuid,
 					status : values.status,
-					treatmentPeople : ewayUser.getName()
+					treatmentPeople : Eway.user.getName()
 				},
 				success : function(response) {
 					var object = Ext.decode(response.responseText);
@@ -111,7 +111,7 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 						var win = Ext.ComponentQuery.query('card_CardHandoverWin')[0];
 						win.close();
 						store.setUrlParamsByObject(viewValues);
-						store.setBaseParam('organizationId',ewayUser.getOrgId());
+						store.setBaseParam('organizationId',Eway.user.getOrgId());
 						store.loadPage(1);
 					}else{
 						Eway.alert(object.errorMsg);
@@ -134,7 +134,7 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 				url: 'api/monitor/retainCard/checkGuidReveice',
 				params:{
 					id: record.data.id,
-					organizationId : ewayUser.getOrgId()
+					organizationId : Eway.user.getOrgId()
 				},
 				success: function(response){
 					var object = Ext.decode(response.responseText);
@@ -142,7 +142,7 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 					if(object.success == true){
 						var win = Ext.create(receiveCardWin);
 						var record = sm.getLastSelected();
-						record.data.treatmentPeople = ewayUser.getName();
+						record.data.treatmentPeople = Eway.user.getName();
 						win.down('form').getForm().loadRecord(record);
 						var button = win.query('button[action=confirm]')[0];
 						button.on('click', me.onReceiveConfirm, me);
@@ -155,7 +155,7 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 			});
 //			var win = Ext.create(this.ReceiveCardWin);
 //			var record = sm.getLastSelected();
-//			record.data.treatmentPeople = ewayUser.name;
+//			record.data.treatmentPeople = Eway.user.name;
 //			win.down('form').getForm().loadRecord(record);
 //			var button = win.query('button[action=confirm]')[0];
 //			button.on('click', this.onReceiveConfirm, this);
@@ -180,14 +180,14 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 				method : 'GET',
 				url : 'api/monitor/retainCard/receive',
 				params : {
-					organizationId : ewayUser.getOrgId(),//当前登录用户所属的机构Id
+					organizationId : Eway.user.getOrgId(),//当前登录用户所属的机构Id
 					id : record.data.id,
 					cardType : values.cardType,
 					customerName : values.customerName,
 					customerPapers : values.customerPapers,
 					customerPhone : values.customerPhone,
 					status : values.status,
-					treatmentPeople : ewayUser.getName()
+					treatmentPeople : Eway.user.getName()
 				},
 				success : function(response) {
 					var object = Ext.decode(response.responseText);
@@ -197,7 +197,7 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 						win.close();
 						store.remove(record);
 						store.setUrlParamsByObject(viewValues);
-						store.setBaseParam('organizationId',ewayUser.getOrgId());
+						store.setBaseParam('organizationId',Eway.user.getOrgId());
 						store.loadPage(1);
 					}else if(object.success == false){
 						Eway.alert(object.errorMsg);
@@ -222,7 +222,7 @@ Ext.define('Eway.controller.monitor.card.CardAction', {
 //			}
 			var store = view.down('gridpanel').getStore();
 			store.setUrlParamsByObject(values);
-			store.setBaseParam('organizationId',ewayUser.getOrgId());
+			store.setBaseParam('organizationId',Eway.user.getOrgId());
 			store.loadPage(1);
 		}else{
 			Eway.alert(EwayLocale.tip.input);

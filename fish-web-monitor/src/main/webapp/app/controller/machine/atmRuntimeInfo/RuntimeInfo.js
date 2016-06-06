@@ -53,7 +53,7 @@ Ext.define('Eway.controller.machine.atmRuntimeInfo.RuntimeInfo', {
 		var store = view.down('gridpanel').getStore();
 
 		store.setUrlParamsByObject(values);
-		store.setBaseParam('organizationID',ewayUser.getOrgId());
+		store.setBaseParam('organizationID',Eway.user.getOrgId());
 		store.loadPage(1);
 	},
 

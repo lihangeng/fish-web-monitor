@@ -6,8 +6,8 @@ Ext.define('Eway.store.person.organization.BankOrganizationTree', {
 	requires : 'Eway.model.common.OrganizationTree',
 	model : 'Eway.model.common.OrganizationTree',
 	root: {
-		id: ewayUser.getOrgId(),
-		text: ewayUser.getOrgName(),
+		id: Eway.user.getOrgId(),
+		text: Eway.user.getOrgName(),
 		expanded: true
 	},
     proxy: {

@@ -109,7 +109,7 @@ Ext.define('Eway.view.person.user.Grid', {
                     icon:"././././resources/images/update.png",
 					getClass:function(v,metadata,r,rowIndex,colIndex,store){
 						var rec=store.getAt(rowIndex);
-						if(rec.data.code==ewayUser.getCode()){
+						if(rec.data.code==Eway.user.getCode()){
 							return "actioncolumn-hidden";
 	                    }else{
 	                        metadata.tdAttr ='data-qtip="'+EwayLocale.person.user.clickToPasswdInit+'"';

@@ -357,7 +357,7 @@ Ext.define('Eway.controller.machine.Device', {
 	_onAddOrUpdate : function(action){
 		
 		var midStr ="";
-		if(!Ext.String.startsWith(ewayUser.language,"zh")){
+		if(!Ext.String.startsWith(Eway.user.language,"zh")){
 			midStr="&nbsp;";
 		}
 		var title = action=='add' ? EwayLocale.button.add+midStr+this.formConfig.title : EwayLocale.button.update+midStr+this.formConfig.title;
@@ -391,13 +391,13 @@ Ext.define('Eway.controller.machine.Device', {
 				win.down('field[name="devServiceName"]').setValue(Eway.yihua);
 
                 //如果是维护商用户或者是admin用户登陆时设置银行机构为空。
-				if(ewayUser.getOrgId() == 1 || ewayUser.getOrgType() == 1){
+				if(Eway.user.getOrgId() == 1 || Eway.user.getOrgType() == 1){
 					win.down('field[name="orgId"]').setValue(null);
 					win.down('field[name="orgName"]').setValue(null);
 				//如果是银行机构登陆则默认显示当前机构
 				}else{
-					win.down('field[name="orgId"]').setValue(ewayUser.getOrgId());
-					win.down('field[name="orgName"]').setValue(ewayUser.getOrgName());
+					win.down('field[name="orgId"]').setValue(Eway.user.getOrgId());
+					win.down('field[name="orgName"]').setValue(Eway.user.getOrgName());
 				}
 			}
 			win.down('button[action="confirm"]').on('click',me._save,me);

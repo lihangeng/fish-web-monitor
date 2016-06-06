@@ -44,7 +44,7 @@ Ext.define('Eway.view.version.autoUpdate.FilterForm', {
 					hiddenValue : 'orgId',
 					editable : false,
 					filters : '{"type" : "0"}',
-					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
+					rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '0' ? true : false
 				},{
 					xtype:'field_device_deviceatmtype',
 					fieldLabel : EwayLocale.refs.devType,

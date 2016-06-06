@@ -28,7 +28,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					style : 'padding-top:0px',
 					xtype : 'hiddenfield',
 					name : 'organizationID',
-					value : ewayUser.getOrgId()
+					value : Eway.user.getOrgId()
 				}, {
 					style : 'padding-top:0px',
 					xtype : 'hiddenfield',
@@ -41,7 +41,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					hiddenValue : 'organization',
 					editable : false,
 					filters : '{"type" : "0"}',
-					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false
+					rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '0' ? true : false
 				}, {
 					xtype : 'field_atmType_DeviceAtmVendorComboBox',
 					fieldLabel : EwayLocale.machine.atmGroup.devVendorName
@@ -71,7 +71,7 @@ Ext.define('Eway.view.machine.device.FilterForm', {
 					hiddenValue : 'devService',
 					editable : false,
 					filters : '{"type" : "1"}',
-					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '1' ? true : false
+					rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '1' ? true : false
 				},{
 					xtype : 'field_device_deviceatmtype',
 					emptyText :  EwayLocale.combox.select

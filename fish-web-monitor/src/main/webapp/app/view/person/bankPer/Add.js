@@ -43,7 +43,7 @@ Ext.define('Eway.view.person.bankPer.Add', {
 					allowBlank: false,
 					name : 'organizationName',
 					filters : '{"type" : "0"}',
-					rootVisible : ewayUser.getOrgType() != "" && ewayUser.getOrgType() == '0' ? true : false,
+					rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '0' ? true : false,
 					hiddenValue : 'organizationId',
 					editable : false
 			 	},{

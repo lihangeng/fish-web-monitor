@@ -37,7 +37,7 @@ Ext.define('Eway.controller.monitor.transaction.HistoryTransaction', {
 			var data = form.getValues();
 			if(data.terminalId!=''){
 				store.setUrlParamsByObject(data);
-				store.setBaseParam('organizationId', ewayUser.getOrgId());
+				store.setBaseParam('organizationId', Eway.user.getOrgId());
 				store.load({
 				    	scope   : this,
 					    callback: function(records, operation, success) {

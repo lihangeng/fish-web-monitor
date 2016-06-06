@@ -47,7 +47,7 @@ Ext.define('Eway.controller.monitor.card.CardDestory', {
 //					}
 					var store = view.down('gridpanel').getStore();
 					store.setUrlParamsByObject(values);
-					store.setBaseParam('organizationId', ewayUser.getOrgId());
+					store.setBaseParam('organizationId', Eway.user.getOrgId());
 					store.loadPage(1);
 				}else{
 					Eway.alert(EwayLocale.tip.input);
@@ -71,8 +71,8 @@ Ext.define('Eway.controller.monitor.card.CardDestory', {
 										url : 'api/monitor/retainCard/destory',
 										params : {
 											id : record.data.id,
-											name : ewayUser.getName(),
-											organizationId : ewayUser.getOrgId()
+											name : Eway.user.getName(),
+											organizationId : Eway.user.getOrgId()
 										},
 										success : function(response) {
 											var object = Ext.decode(response.responseText);
@@ -80,7 +80,7 @@ Ext.define('Eway.controller.monitor.card.CardDestory', {
 												Eway.alert(EwayLocale.tip.business.card.destroySuccess);
 												store.remove(record);
 												store.setUrlParamsByObject(viewValues);
-												store.setBaseParam('organizationId',ewayUser.getOrgId());
+												store.setBaseParam('organizationId',Eway.user.getOrgId());
 												store.loadPage(1);
 											}else{
 												Eway.alert(object.errorMsg);
