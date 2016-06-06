@@ -4,8 +4,11 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 	alias : 'widget.baseReport_DeviceTypeCountReportGrid',
 	requires : [ 'Eway.store.report.baseReport.DeviceVendorCountReport' ,
 		           'Ext.pivot.plugin.Exporter'],
-	forceFit : true,
-
+//	forceFit : true,
+		           rowSubTotalsPosition:'first',
+		           colSubTotalsPosition:'first',
+		           rowGrandTotalsPosition:'first',
+		           colGrandTotalsPosition:'first',
 	collapsible: false,
     store: {
         type: 'deviceVendorCount'
@@ -40,7 +43,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
     },
 
     // Set layout type to "outline". If this config is missing then the default layout is "outline"
-    viewLayoutType: 'outline',
+    viewLayoutType: 'compact',
 
     // Set this to false if multiple dimensions are configured on leftAxis and
     // you want to automatically expand the row groups when calculations are ready.
@@ -58,7 +61,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
     leftAxis: [{
         dataIndex:  'orgName',
         header:     'orgName',
-        width:      80
+        maxWidth:      80
     }],
 
     /**
