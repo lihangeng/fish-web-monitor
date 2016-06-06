@@ -91,20 +91,18 @@ Ext.define('Eway.view.report.faultRateReport.TypeCharts', {
 						opacity : 0.80
 					},
 					label : {
-						field : [ 'faultCount', 'tradeCount', 'rate' ],// me.getColumnField(),
+						field : [  'tradeCount','faultCount', 'rate' ],// me.getColumnField(),
 						display : 'insideEnd'
 					},
-					tooltip : {
-						trackMouse : true,
-						style : 'background: #fff',
-						renderer : function(storeItem, item) {
-							var type = item.series.getTitle()[Ext.Array
-									.indexOf(item.series.getYField(),
-											item.field)];
-							storeItem.setHtml(type + ' for ' + item.get('name')
-									+ ': ' + item.get(item.field));
-						}
-					},
+					tooltip: {
+						renderer: function (tooltip, record, item) {
+                            var fieldIndex = Ext.Array.indexOf(item.series.getYField(), item.field),
+                            brand = item.series.getTitle()[fieldIndex];
+                            tooltip.setHtml(brand + ' on ' +
+                                    record.get('name') + ': ' +
+                                    record.get(item.field) );
+                        }
+                    }
 				} ]
 			} ]
 		});
