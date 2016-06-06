@@ -3,7 +3,7 @@ Ext.define('Eway.view.monitor.transaction.colorset.Form', {
 	extend : 'Eway.view.base.Form',
 	alias : 'widget.monitor_taansaction_colorset_from',
 
-	requires : [ 'Eway.utils.ColorField' ],
+	requires : [ 'Eway.lib.ColorField' ],
 
 	initComponent : function() {
 		Ext.apply(this, {
