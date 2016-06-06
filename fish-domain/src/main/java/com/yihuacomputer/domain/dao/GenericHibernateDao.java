@@ -221,7 +221,7 @@ public class GenericHibernateDao extends HibernateDaoSupport implements IGeneric
 	}
 
 	@Override
-	public <T> List<T> findByHQL(String hql, Object... values) {
+	public List<?> findByHQL(String hql, Object... values) {
 		return super.getHibernateTemplate().find(hql, values);
 	}
 

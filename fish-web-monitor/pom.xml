@@ -33,11 +33,12 @@
 			<artifactId>fish-report</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<dependency>
+		<!-- 默认不依赖kafka模块 -->
+		<!-- <dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-kafka</artifactId>
 			<version>${project.version}</version>
-		</dependency>
+		</dependency> -->
 		<!-- cometd config -->
 		<dependency>
 			<groupId>org.cometd.java</groupId>
