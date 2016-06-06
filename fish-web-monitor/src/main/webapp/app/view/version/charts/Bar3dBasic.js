@@ -86,7 +86,7 @@ Ext.define('Eway.view.version.charts.Bar3dBasic', {
                         trackMouse: true,
                         style: 'background: #fff',
                         renderer: function(storeItem, item) {
-                        	this.setHtml(storeItem.get(me.getRowField()) + ': ' + storeItem.get(me.getColumnField()) + ' views');
+                        	storeItem.setHtml(item.get(me.getRowField()) + ': ' + item.get(me.getColumnField()) + ' views');
                         }
                     }, 
                     listeners:{
