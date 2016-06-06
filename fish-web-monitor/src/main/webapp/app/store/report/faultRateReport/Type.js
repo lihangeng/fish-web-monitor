@@ -3,5 +3,5 @@ Ext.define('Eway.store.report.faultRateReport.Type', {
 	alias:'store.typeRate',
 	autoSync : false,
 	model: 'Eway.model.report.faultRateReport.Type',
-    autoLoad: true
+    autoLoad: false
 });

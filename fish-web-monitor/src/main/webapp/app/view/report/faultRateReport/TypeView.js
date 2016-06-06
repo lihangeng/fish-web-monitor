@@ -15,38 +15,12 @@ Ext.define('Eway.view.report.faultRateReport.TypeView', {
 		enableTextSelection : true
 	},
 	firstIn : true,
-	config : {
-		name : null
-	},
-	
+
 	layout : 'border',
 	initComponent : function() {
 		Ext.apply(this, {
+
 			items : [ {
-				region : 'north',
-				items : [ {
-					height : 40,
-					tbar : [ {
-						text : '返回',
-						glyph : 0xf048,
-						action : 'back',
-						tooltip : '返回',
-						code : 'back'
-					}, "->", {
-						text : '上一个品牌',
-						glyph : 0xf060,
-						action : 'pref',
-						tooltip : '上一个品牌',
-						code : 'pref'
-					}, {
-						text : '下一个品牌',
-						glyph : 0xf061,
-						action : 'next',
-						tooltip : '下一个品牌',
-						code : 'next'
-					}]
-				} ]
-			}, {
 				region : 'center',
 				xtype : 'panel',
 				layout : 'card',
@@ -55,6 +29,31 @@ Ext.define('Eway.view.report.faultRateReport.TypeView', {
 					xtype : 'panel',
 					layout : 'border',
 					items : [ {
+
+						region : 'north',
+						items : [ {
+							height : 40,
+							tbar : [ {
+								text : '返回',
+								glyph : 0xf048,
+								action : 'back',
+								tooltip : '返回',
+								code : 'back'
+							}, "->", {
+								text : '上一个品牌',
+								glyph : 0xf060,
+								action : 'pref',
+								tooltip : '上一个品牌',
+								code : 'pref'
+							}, {
+								text : '下一个品牌',
+								glyph : 0xf061,
+								action : 'next',
+								tooltip : '下一个品牌',
+								code : 'next'
+							} ]
+						} ]
+					}, {
 						xtype : 'report_faultRateReport_TypeGrid',
 						region : 'north',
 						border : true,
@@ -78,6 +77,6 @@ Ext.define('Eway.view.report.faultRateReport.TypeView', {
 		});
 
 		this.callParent(arguments);
-	}
+	},
 
 });

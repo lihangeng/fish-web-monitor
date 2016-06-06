@@ -3,5 +3,5 @@ Ext.define('Eway.store.report.faultRateReport.Module', {
 	alias:'store.moduleRate',
 	autoSync : false,
 	model: 'Eway.model.report.faultRateReport.Module',
-    autoLoad: true
+    autoLoad: false
 });

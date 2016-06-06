@@ -3,7 +3,6 @@ Ext.define('Eway.view.report.faultRateReport.TypeGrid', {
 	extend : 'Eway.view.base.Grid',
 	initComponent : function() {
 		var store = Ext.create('Eway.store.report.faultRateReport.Type');
-		store.loadPage(1);
 		Ext.apply(this, {
 			initRegion : true,
 			store : store,
@@ -23,6 +22,13 @@ Ext.define('Eway.view.report.faultRateReport.TypeGrid', {
 				header : EwayLocale.report.faultRateReport.rate,
 				dataIndex : 'rate',
 				flex:1
+			},{
+				header:'详情',
+				width:180,
+				dataIndex:'detail',
+				renderer: function(value,meta,record) {
+					return "&nbsp;<img src='resources/images/accept.png' style='cursor:pointer'>";
+				}
 			}]
 		});
 

@@ -48,7 +48,7 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
 				shadow : false,
 				sprites : [ {
 					type : 'text',
-					text : EwayLocale.report.faultRateReport.typeRate,
+					text : EwayLocale.report.faultRateReport.moduleRate,
 					font : '14px Helvetica',
 					fontStyle : 'oblique',
 					width : 100,
@@ -97,10 +97,10 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
 						trackMouse : true,
 						style : 'background: #fff',
 						renderer : function(storeItem, item) {
-							var type = item.series.getTitle()[Ext.Array
+							var module = item.series.getTitle()[Ext.Array
 									.indexOf(item.series.getYField(),
 											item.field)];
-							storeItem.setHtml(type + ' for ' + item.get('name')
+							storeItem.setHtml(module + ' for ' + item.get('name')
 									+ ': ' + item.get(item.field));
 						}
 					},

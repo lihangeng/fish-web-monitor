@@ -7,7 +7,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.SQLQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,13 +50,17 @@ public class FaultRateReportService implements IFaultRateReportService {
 	}
 
 	public List<FaultRateReport> listAllHql(String monthStr){
-		long month = Long.parseLong(monthStr);
+		
 		List<FaultRateReport> list= new ArrayList<FaultRateReport>();
 		//统计品牌交易信息
 		StringBuffer monthTrans = new StringBuffer();
-		monthTrans.append("select sum(transMonth.transCount),transMonth.vendorId from ").append(TransactionMonths.class.getSimpleName())
-		.append(" transMonth where transMonth.transDate=? group by transMonth.vendorId");
-		List<Object> transList = dao.findByHQL(monthTrans.toString(), new Object[]{month});
+		monthTrans.append("select sum(transMonth.transCount),transMonth.vendorId from ").append(TransactionMonths.class.getSimpleName()).append(" transMonth");
+		if(monthStr != null){
+			long month = Long.parseLong(monthStr);
+			monthTrans.append(" where transMonth.transDate=").append(month);
+		}
+		monthTrans.append(" group by transMonth.vendorId");
+		List<Object> transList = dao.findByHQL(monthTrans.toString());
 		Map<Long,Long> transMap = new HashMap<Long,Long>();
 		for(Object objects:transList){
 			Object[]obj = (Object[])objects;
@@ -65,9 +68,13 @@ public class FaultRateReportService implements IFaultRateReportService {
 		}
 		//统计品牌故障信息
 		StringBuffer monthFault = new StringBuffer();
-		monthFault.append("select count(faultMonth.faultCount),faultMonth.vendorId from ").append(EveryMonthFaultCount.class.getSimpleName())
-		.append(" faultMonth where faultMonth.faultDate=? group by faultMonth.vendorId");
-		List<Object> faultList = dao.findByHQL(monthFault.toString(), new Object[]{month});
+		monthFault.append("select sum(faultMonth.faultCount),faultMonth.vendorId from ").append(EveryMonthFaultCount.class.getSimpleName()).append(" faultMonth");
+		if(monthStr != null){
+			long month = Long.parseLong(monthStr);
+			monthFault.append(" where faultMonth.faultDate=").append(month);
+		}
+		monthFault.append(" group by faultMonth.vendorId");
+		List<Object> faultList = dao.findByHQL(monthFault.toString());
 
 		Map<Long,Long> faultMap = new HashMap<Long,Long>();
 		for(Object objects:faultList){
@@ -107,13 +114,17 @@ public class FaultRateReportService implements IFaultRateReportService {
 	
 	
 	public List<FaultRateReport> listByVendorHql(String monthStr,long vendorId){
-		long month = Long.parseLong(monthStr);
 		List<FaultRateReport> list= new ArrayList<FaultRateReport>();
 		//统计品牌交易信息
 		StringBuffer monthTrans = new StringBuffer();
 		monthTrans.append("select sum(transMonth.transCount),transMonth.devTypeId from ").append(TransactionMonths.class.getSimpleName())
-		.append(" transMonth where transMonth.transDate=? and transMonth.vendorId=? group by transMonth.devTypeId");
-		List<Object> transList = dao.findByHQL(monthTrans.toString(), new Object[]{month, vendorId});
+		.append(" transMonth where transMonth.vendorId=?");
+		if(monthStr != null){
+			long month = Long.parseLong(monthStr);
+			monthTrans.append(" and transMonth.transDate=").append(month);
+		}
+		monthTrans.append(" group by transMonth.devTypeId");
+		List<Object> transList = dao.findByHQL(monthTrans.toString(), new Object[]{vendorId});
 		Map<Long,Long> transMap = new HashMap<Long,Long>();
 		for(Object objects:transList){
 			Object[]obj = (Object[])objects;
@@ -121,9 +132,14 @@ public class FaultRateReportService implements IFaultRateReportService {
 		}
 		//统计品牌故障信息
 		StringBuffer monthFault = new StringBuffer();
-		monthFault.append("select count(faultMonth.faultCount),faultMonth.devTypeId from ").append(EveryMonthFaultCount.class.getSimpleName())
-		.append(" faultMonth where faultMonth.faultDate=? and faultMonth.vendorId=?  group by faultMonth.devTypeId");
-		List<Object> faultList = dao.findByHQL(monthFault.toString(), new Object[]{month, vendorId});
+		monthFault.append("select sum(faultMonth.faultCount),faultMonth.devTypeId from ").append(EveryMonthFaultCount.class.getSimpleName())
+		.append(" faultMonth where faultMonth.vendorId=? ");
+		if(monthStr != null){
+			long month = Long.parseLong(monthStr);
+			monthFault.append(" and faultMonth.faultDate=").append(month);
+		}
+		monthFault.append(" group by faultMonth.devTypeId");
+		List<Object> faultList = dao.findByHQL(monthFault.toString(), new Object[]{vendorId});
 
 		Map<Long,Long> faultMap = new HashMap<Long,Long>();
 		for(Object objects:faultList){
@@ -133,6 +149,7 @@ public class FaultRateReportService implements IFaultRateReportService {
 //		品牌迭代组装信息
 		IFilter filter = new Filter();
 		filter.order("id");
+		filter.eq("devVendor.id", vendorId);
 		List<IAtmType> atmTypeList=atmTypeService.list(filter);
 		DecimalFormat df = new DecimalFormat("0.00");
 		for(IAtmType atmType:atmTypeList){
@@ -161,13 +178,16 @@ public class FaultRateReportService implements IFaultRateReportService {
 	}
 	
 	public List<FaultRateReport> listByDevTypeHql(String monthStr,long vendorId,long devTypeId){
-		long month = Long.parseLong(monthStr);
 		List<FaultRateReport> list= new ArrayList<FaultRateReport>();
 		//统计品牌交易信息
 		StringBuffer monthTrans = new StringBuffer();
 		monthTrans.append("select sum(transMonth.transCount) from ").append(TransactionMonths.class.getSimpleName())
-		.append(" transMonth where transMonth.transDate=? and transMonth.vendorId=? and transMonth.devTypeId=? ");
-		List<Object> transList = dao.findByHQL(monthTrans.toString(), new Object[]{month});
+		.append(" transMonth where transMonth.vendorId=? and transMonth.devTypeId=? ");
+		if(monthStr != null){
+			long month = Long.parseLong(monthStr);
+			monthTrans.append(" and transMonth.transDate=").append(month);
+		}
+		List<Object> transList = dao.findByHQL(monthTrans.toString(), new Object[]{vendorId,devTypeId});
 		long transCount=0;
 		if(null!=transList&&transList.size()>0){
 			Object obj = transList.get(transList.size()-1);
@@ -175,9 +195,14 @@ public class FaultRateReportService implements IFaultRateReportService {
 		}
 		//统计品牌故障信息
 		StringBuffer monthFault = new StringBuffer();
-		monthFault.append("select count(faultMonth.faultCount),faultMonth.devMod from ").append(EveryMonthFaultCount.class.getSimpleName())
-		.append(" faultMonth where faultMonth.faultDate=? and transMonth.devTypeId=? group by faultMonth.devMod ");
-		List<Object> faultList = dao.findByHQL(monthFault.toString(), new Object[]{month});
+		monthFault.append("select sum(faultMonth.faultCount),faultMonth.devMod from ").append(EveryMonthFaultCount.class.getSimpleName())
+		.append(" faultMonth where faultMonth.vendorId=? and faultMonth.devTypeId=? ");
+		if(monthStr != null){
+			long month = Long.parseLong(monthStr);
+			monthTrans.append(" and faultMonth.faultDate=").append(month);
+		}
+		monthFault.append(" group by faultMonth.devMod");
+		List<Object> faultList = dao.findByHQL(monthFault.toString(), new Object[]{vendorId,devTypeId});
 
 		DecimalFormat df = new DecimalFormat("0.00");
 		for(Object objects:faultList){
@@ -204,115 +229,6 @@ public class FaultRateReportService implements IFaultRateReportService {
 		return list;
 	}
 	
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<FaultRateReport> listByBrand(String time) {
-		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT t.tname,t.tcount,f.fcount FROM (SELECT trans.VENDOR_NAME tname,SUM(trans.TRANS_COUNT) tcount ");
-		sql.append("FROM ATMC_TRANSACTION_MONTHS trans ");
-		if (time != null) {
-			sql.append("WHERE trans.TRANS_DATE =").append(Long.valueOf(time));
-		}
-		sql.append(" GROUP BY trans.VENDOR_NAME)t LEFT JOIN ");
-		sql.append("(SELECT fault.VENDOR_NAME fname,SUM(fault.FAULT_COUNT) fcount FROM CASE_FAULT_MONTH fault ");
-		if (time != null) {
-			sql.append("WHERE fault.FAULT_DATE =").append(Long.valueOf(time));
-		}
-		sql.append(" GROUP BY fault.VENDOR_NAME)f ON t.tname = f.fname UNION ");
-		sql.append("SELECT f.fname,t.tcount,f.fcount FROM (SELECT trans.VENDOR_NAME tname,SUM(trans.TRANS_COUNT) tcount ");
-		sql.append("FROM ATMC_TRANSACTION_MONTHS trans ");
-		if (time != null) {
-			sql.append("WHERE trans.TRANS_DATE =").append(Long.valueOf(time));
-		}
-		sql.append(" GROUP BY trans.VENDOR_NAME)t RIGHT JOIN ");
-		sql.append("(SELECT fault.VENDOR_NAME fname,SUM(fault.FAULT_COUNT) fcount FROM CASE_FAULT_MONTH fault ");
-		if (time != null) {
-			sql.append("WHERE fault.FAULT_DATE =").append(Long.valueOf(time));
-		}
-		sql.append(" GROUP BY fault.VENDOR_NAME)f ON t.tname = f.fname");
-		SQLQuery query = dao.getSQLQuery(sql.toString());
-		List<Object> list = query.list();
-		List<FaultRateReport> result = new ArrayList<FaultRateReport>();
-		for (Object obj : list) {
-			FaultRateReport frr = new FaultRateReport();
-			Object[] object = (Object[]) obj;
-			frr.setName(object[0] == null ? "" : String.valueOf(object[0]));
-			frr.setTradeCount(Long.valueOf(object[1] == null ? "0" : String.valueOf(object[1])));
-			frr.setFaultCount(Long.valueOf(object[2] == null ? "0" : String.valueOf(object[2])));
-			result.add(frr);
-		}
-		return result;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<FaultRateReport> listByType(String name, String time) {
-		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT t.tname,t.tcount,f.fcount FROM (SELECT trans.DEV_TYPE tname,SUM(trans.TRANS_COUNT) tcount ");
-		sql.append("FROM ATMC_TRANSACTION_MONTHS trans WHERE trans.VENDOR_NAME = '").append(name).append("'");
-		if (time != null) {
-			sql.append(" AND trans.TRANS_DATE =").append(Long.valueOf(time));
-		}
-		sql.append(" GROUP BY trans.DEV_TYPE)t LEFT JOIN ");
-		sql.append("(SELECT fault.DEV_TYPE fname,SUM(fault.FAULT_COUNT) fcount FROM CASE_FAULT_MONTH fault WHERE fault.VENDOR_NAME = '").append(name).append("'");
-		if (time != null) {
-			sql.append(" AND fault.FAULT_DATE =").append(Long.valueOf(time));
-		}
-		sql.append(" GROUP BY fault.DEV_TYPE)f ON t.tname = f.fname UNION ");
-		sql.append("SELECT f.fname,t.tcount,f.fcount FROM (SELECT trans.DEV_TYPE tname,SUM(trans.TRANS_COUNT) tcount ");
-		sql.append("FROM ATMC_TRANSACTION_MONTHS trans WHERE trans.VENDOR_NAME = '").append(name).append("'");
-		if (time != null) {
-			sql.append(" AND trans.TRANS_DATE =").append(Long.valueOf(time));
-		}
-		sql.append(" GROUP BY trans.DEV_TYPE)t RIGHT JOIN ");
-		sql.append("(SELECT fault.DEV_TYPE fname,SUM(fault.FAULT_COUNT) fcount FROM CASE_FAULT_MONTH fault WHERE fault.VENDOR_NAME = '").append(name).append("'");
-		if (time != null) {
-			sql.append(" AND fault.FAULT_DATE =").append(Long.valueOf(time));
-		}
-		sql.append(" GROUP BY fault.DEV_TYPE)f ON t.tname = f.fname");
-		SQLQuery query = dao.getSQLQuery(sql.toString());
-		List<Object> list = query.list();
-		List<FaultRateReport> result = new ArrayList<FaultRateReport>();
-		for (Object obj : list) {
-			FaultRateReport frr = new FaultRateReport();
-			Object[] object = (Object[]) obj;
-			frr.setName(object[0] == null ? "" : String.valueOf(object[0]));
-			frr.setTradeCount(Long.valueOf(object[1] == null ? "0" : String.valueOf(object[1])));
-			frr.setFaultCount(Long.valueOf(object[2] == null ? "0" : String.valueOf(object[2])));
-			result.add(frr);
-		}
-		return result;
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<FaultRateReport> listByModule(String name, String time) {
-		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT f.mname,t.tcount,f.fcount FROM (SELECT trans.DEV_TYPE tname,SUM(trans.TRANS_COUNT) tcount ");
-		sql.append("FROM ATMC_TRANSACTION_MONTHS trans WHERE trans.DEV_TYPE = '").append(name).append("'");
-		if (time != null) {
-			sql.append(" AND trans.TRANS_DATE =").append(Long.valueOf(time));
-		}
-		sql.append(" GROUP BY trans.DEV_TYPE)t RIGHT JOIN ");
-		sql.append("(SELECT fault.DEV_MOD mname,fault.DEV_TYPE tname,SUM(fault.FAULT_COUNT) fcount ");
-		sql.append("FROM CASE_FAULT_MONTH fault WHERE fault.DEV_TYPE ='").append(name).append("'");
-		if (time != null) {
-			sql.append(" AND fault.FAULT_DATE =").append(Long.valueOf(time));
-		}
-		sql.append(" GROUP BY fault.DEV_MOD)f ON t.tname = f.tname ");
-		SQLQuery query = dao.getSQLQuery(sql.toString());
-		List<Object> list = query.list();
-		List<FaultRateReport> result = new ArrayList<FaultRateReport>();
-		for (Object obj : list) {
-			FaultRateReport frr = new FaultRateReport();
-			Object[] object = (Object[]) obj;
-			frr.setName(object[0] == null ? "" : String.valueOf(object[0]));
-			frr.setTradeCount(Long.valueOf(object[1] == null ? "0" : String.valueOf(object[1])));
-			frr.setFaultCount(Long.valueOf(object[2] == null ? "0" : String.valueOf(object[2])));
-			result.add(frr);
-		}
-		return result;
-	}
 
 	@Override
 	public List<IAtmType> getType(String name) {
@@ -322,11 +238,22 @@ public class FaultRateReportService implements IFaultRateReportService {
 	}
 
 	@Override
-	public List<IAtmModule> getModule(String name) {
+	public List<IAtmModule> getModule(long typeId) {
 		StringBuffer hql = new StringBuffer();
 		hql.append("SELECT module FROM AtmType type, AtmModule module,AtmTypeAtmModuleRelation relation ");
-		hql.append("WHERE type.id = relation.atmTypeId AND module.id = relation.atmModuleId AND type.name =?");
-		return dao.findByHQL(hql.toString(), name);
+		hql.append("WHERE type.id = relation.atmTypeId AND module.id = relation.atmModuleId AND type.id =? group by module.name");
+		return dao.findByHQL(hql.toString(), typeId);
+	}
+
+	@Override
+	public FaultRateReport getTradeCount(long vendorId, long devTypeId) {
+		StringBuffer hql = new StringBuffer();
+		hql.append("SELECT SUM(trade.transCount) FROM ").append(TransactionMonths.class.getSimpleName());
+		hql.append(" trade WHERE trade.vendorId =? AND trade.devTypeId =?");
+		Object obj = dao.findUniqueByHql(hql.toString(), vendorId,devTypeId);
+		FaultRateReport f =new FaultRateReport();
+		f.setTradeCount(Long.valueOf(obj==null?"0":obj.toString()));
+		return f;
 	}
 
 }

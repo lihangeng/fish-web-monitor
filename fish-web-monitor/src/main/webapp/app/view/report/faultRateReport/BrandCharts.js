@@ -100,9 +100,8 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
 							var brand = item.series.getTitle()[Ext.Array
 									.indexOf(item.series.getYField(),
 											item.field)];
-							storeItem.setHtml(brand + ' for '
-									+ item.get('name') + ': '
-									+ item.get(item.field));
+							storeItem.setHtml(brand + ' for ' + item.get('name')
+									+ ': ' + item.get(item.field));
 						}
 					},
 				} ]

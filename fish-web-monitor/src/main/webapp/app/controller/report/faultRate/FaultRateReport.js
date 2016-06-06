@@ -49,10 +49,10 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 				click : this.onQuery
 			},
 			'report_faultRateReport_BrandGrid ' : {
-				itemclick : this.brandQuery
+				itemmouseenter : this.brandQuery
 			},
 			'report_faultRateReport_TypeGrid' : {
-				itemclick : this.typeQuery
+				itemmouseenter : this.typeQuery
 			},
 			'report_faultRateReport_typeView button[action=back]' : {
 				click : this.onTypeBack
@@ -73,7 +73,6 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 				click : this.prefType
 			}
 		})
-		this.onQuery();
 	},
 
 
@@ -95,41 +94,48 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 		brandCharts.loadPage(1);
 
 	},
-
-	brandQuery : function() {
+	vendorId:0,
+	brandQuery : function( _this,  record, itemHtml, index, e, eOpts) {
+		var winEl = Ext.get(itemHtml);
+		vendorId=record.get('vendorId');
+	    var imgHtml = winEl.down('img').on("click",this.faceJumpBrand,this);
+	},
+	faceJumpBrand:function(){
 		var brandGrid = this.getBrandGrid();
 		var typeGrid = this.getTypeGrid();
 		var store = typeGrid.getStore();
-		var tabpanel = this.getEwayView().down("panel[name=groupPanel]").up(
-				"panel");
-		var typeView = this.getEwayView().down(
-				"report_faultRateReport_typeView");
+		var record=brandGrid.getSelectionModel().getLastSelected();
+		var tabpanel = this.getEwayView().down("panel[name=groupPanel]").up("panel");
+		var typeView = this.getEwayView().down("report_faultRateReport_typeView");
 		tabpanel.setActiveItem(typeView);
+		typeView.setTitle('型号所属品牌：' + record.get('name'));
 		var typeCharts = this.getTypeCharts().down('cartesian').getStore();
-		var record = brandGrid.getSelectionModel().getLastSelected();
-		if (record != null) {
-			store.setBaseParam("name", record.get('name'));
-			store.loadPage(1);
-			typeCharts.loadPage(1);
-		}
+		store.setBaseParam("vendorId", vendorId);
+		store.loadPage(1);
+		typeCharts.loadPage(1);
 	},
 
-	typeQuery : function() {
+	typeId:0,
+	typeQuery : function(_this,  record, itemHtml, index, e, eOpts) {
+		var winEl = Ext.get(itemHtml);
+		typeId=record.get('devTypeId');
+	    var imgHtml = winEl.down('img').on("click",this.faceJumpType,this);
+	},
+	
+	faceJumpType:function(){
 		var typeGrid = this.getTypeGrid();
 		var moduleGrid = this.getModuleGrid();
 		var store = moduleGrid.getStore();
-		var record = typeGrid.getSelectionModel().getLastSelected();
-		var tabpanel = this.getEwayView().down("panel[name=groupPanel]").up(
-				"panel");
-		var moduleView = this.getEwayView().down(
-				"report_faultRateReport_moduleView");
+		var record=typeGrid.getSelectionModel().getLastSelected();
+		var tabpanel = this.getEwayView().down("panel[name=groupPanel]").up("panel");
+		var moduleView = this.getEwayView().down("report_faultRateReport_moduleView");
 		tabpanel.setActiveItem(moduleView);
+		typeView.setTitle('型号所属品牌：' + record.get('name'));
 		var moduleCharts = this.getModuleCharts().down('cartesian').getStore();
-		if (record != null) {
-			store.setBaseParam("name", record.get('name'));
-			store.loadPage(1);
-			moduleCharts.loadPage(1);
-		}
+		store.setBaseParam("vendorId",vendorId);
+		store.setBaseParam("devTypeId",typeId);
+		store.loadPage(1);
+		moduleCharts.loadPage(1);
 	},
 
 	onTypeBack : function(_this, opt) {
@@ -142,7 +148,7 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 	onModuleBack : function(_this, opt) {
 		var panel = _this.up("report_faultRateReport_moduleView");
 		var layout = panel.up("panel").getLayout();
-		var groupPanel = this.getEwayView().down("panel[name=groupPanel]");
+		var groupPanel = this.getTypeView().down("panel[name=groupPanel]");
 		layout.setActiveItem(groupPanel);
 	},
 
