@@ -15,16 +15,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishConstant;
+import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.atm.IAtmBrandService;
 import com.yihuacomputer.fish.api.atm.IAtmModule;
 import com.yihuacomputer.fish.api.atm.IAtmModuleService;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
+import com.yihuacomputer.fish.api.charts.ChartsInfo;
+import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.report.base.FaultRateReport;
 import com.yihuacomputer.fish.api.report.base.IFaultRateReportService;
+import com.yihuacomputer.fish.api.version.IVersion;
+import com.yihuacomputer.fish.api.version.VersionStaticsStatus;
+import com.yihuacomputer.fish.api.version.job.IJob;
 
 @Controller
 @RequestMapping(value = "/report/faultRate")
@@ -125,5 +133,56 @@ public class FaultRateReportController {
 		result.addAttribute(FishConstant.DATA, list);
 		return result;
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/searchVendorId")
+	public @ResponseBody ModelMap searchJobDetailInfo(@RequestParam long vendorId, HttpServletRequest request, WebRequest wRequest) {
+		ModelMap result = new ModelMap();
+		IFilter filter = request2filter(wRequest,request);
+		String nextRecord = request.getParameter("nextRecord");
+		long vendorIds = vendorId;
 
+		if (nextRecord.equals("-1")) {
+			filter.lt("id", vendorId);
+			filter.descOrder("id");
+			List<FaultRateReport> vendorList = faultRateReportService.list(filter);
+			vendorIds = vendorList.size() > 0 ? vendorList.get(0).getVendorId() : vendorId;
+		}
+
+		else if (nextRecord.equals("1")) {
+			filter.gt("id", vendorId);
+			filter.order("id");
+			List<FaultRateReport> vendorList = faultRateReportService.list(filter);
+			vendorIds = vendorList.size() > 0 ? vendorList.get(0).getVendorId() : vendorId;
+		}
+
+		result.addAttribute(FishConstant.SUCCESS, true);
+	
+		result.addAttribute("vendorIds", vendorIds);
+		return result;
+	}
+	
+	private IFilter request2filter(WebRequest request,HttpServletRequest req) {
+		IFilter filter = new Filter();
+		Iterator<String> iterator = request.getParameterNames();
+		while (iterator.hasNext()) {
+            String name = iterator.next();
+            if (isNotFilterName(name)) {
+                continue;
+            }
+            String value = request.getParameter(name);
+            if (value == null || value.isEmpty()) {
+                continue;
+            }
+            if ("vendorId".equals(name)) {
+                filter.eq("vendorId", value);
+            } 
+        }
+
+
+		return filter;
+	}
+    
+    private boolean isNotFilterName(String name) {
+		return "page".equals(name) || "start".equals(name)|| "limit".equals(name) || "_dc".equals(name);
+	}
 }

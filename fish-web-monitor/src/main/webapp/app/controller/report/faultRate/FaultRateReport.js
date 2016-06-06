@@ -73,6 +73,7 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 				click : this.prefType
 			}
 		})
+		this.onQuery();
 	},
 	
 	onQuery : function() {
@@ -87,33 +88,28 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 			date = date + month;
 		}
 		var brandStore = this.getBrandGrid().getStore();
+		var typeStore = this.getTypeGrid().getStore();
+		var moduleStore = this.getModuleGrid().getStore();
+		
 		var brandCharts = this.getBrandCharts().down('cartesian').getStore();
+		var typeCharts = this.getTypeCharts().down('cartesian').getStore();
+		var moduleCharts = this.getModuleCharts().down('cartesian').getStore();
+		
 		brandStore.setBaseParam("dateTime", date);
+		typeStore.setBaseParam("dateTime", date);
+		moduleStore.setBaseParam("dateTime", date);
+		
 		brandStore.loadPage(1);
+		typeStore.loadPage(1);
+		moduleStore.loadPage(1);
+		
 		brandCharts.loadPage(1);
+		typeCharts.loadPage(1);
+		moduleCharts.loadPage(1);
 
 	},
 	
-	nextVendor:function(){
-		this.vendorPageChange("1");
-	},
-	nextVendor:function(){
-		this.vendorPageChange("-1");
-	},
 	
-	vendorPageChange:function(flag){
-		var me = this;
-		var vendorId = this.getActiveTask().getConfig().vendorId;
-		Ext.Ajax.request({
-		    url: 'api/report/faultRate/searchVendorId',
-		    method:'GET',
-		    params: {
-		    	vendorId: vendorId,
-		        nextRecord:flag
-		    },
-		  
-	},
-
 
 	vendorId:0,
 	name : null,
@@ -122,6 +118,44 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 		vendorId=record.get('vendorId');
 		name = record.get('name');
 	    var imgHtml = winEl.down('img').on("click",this.faceJumpBrand,this);
+	},
+
+	nextVendor:function(_this,  record, itemHtml, index, e, eOpts){
+		this.vendorPageChange("1");
+	},
+
+	prefVendor:function(_this,  record, itemHtml, index, e, eOpts){
+
+		this.vendorPageChange("-1");
+	},
+	
+	vendorPageChange:function(flag){
+		var me = this;
+		Ext.Ajax.request({
+		    url: 'api/report/faultRate/searchVendorId',
+		    method:'GET',
+		    params: {
+		    	vendorId: vendorId,
+		        nextRecord:flag
+		    },
+		    success: function(response){
+//		        var text = response.responseText;
+//		        var object = Ext.decode(text);
+//		    	me.getActiveTask().setVendorId(object.vendorIds);
+//		    	me.getActiveTask().down("report_faultRateReport_TypeGrid").setVendorId(object.vendorIds);
+	        	if(flag=="-1"||flag=="1"){
+	            	me.faceJumpBrand();
+	        	}
+		    },
+		    failure:function(){
+		    
+		    }
+		});
+	},
+	
+	getActiveTask:function(){
+		var layout = this.getEwayView().down("panel[name=groupPanel]").up("panel").getLayout();
+		return layout.getActiveItem();
 	},
 	
 	faceJumpBrand:function(_this,  record, itemHtml, index, e, eOpts){
@@ -139,7 +173,6 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 	},
 
 	typeId:0,
-	name:null,
 	typeQuery : function(_this,  record, itemHtml, index, e, eOpts) {
 		var winEl = Ext.get(itemHtml);
 		typeId=record.get('devTypeId');
@@ -171,7 +204,7 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 	onModuleBack : function(_this, opt) {
 		var panel = _this.up("report_faultRateReport_moduleView");
 		var layout = panel.up("panel").getLayout();
-		var groupPanel = this.getTypeView().down("panel[name=groupPanel]");
+		var groupPanel = this.getEwayView().down("panel[name=groupPanel]");
 		layout.setActiveItem(groupPanel);
 	},
 
