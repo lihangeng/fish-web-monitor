@@ -25,18 +25,18 @@ Ext.define('Eway.view.version.download.monitor.TaskPanel', {
 			weight : 15,
 			tbar: [{
 				text:  EwayLocale.version.download.callBack,//'查询',
-				glyph : 0xf048,
+				glyph : 0xf122,
 				action: 'toJob',
 				tooltip:EwayLocale.version.download.callBackJob,//'根据条件查询选中作业下的详情信息'
 				code:'toJob'
 			},"->",{
-				text:  EwayLocale.version.download.beforeJob,//'查询',
+				//text:  EwayLocale.version.download.beforeJob,//'查询',
 				glyph : 0xf060,
 				action: 'pref',
 				tooltip:EwayLocale.version.download.beforeJob,//'根据条件查询选中作业下的详情信息'
 				code:'pref'
 			},{
-				text:  EwayLocale.version.download.afterJob,//'查询',
+				//text:  EwayLocale.version.download.afterJob,//'查询',
 				glyph : 0xf061,
 				action: 'next',
 				tooltip:EwayLocale.version.download.afterJob,//'根据条件查询选中作业下的详情信息'
