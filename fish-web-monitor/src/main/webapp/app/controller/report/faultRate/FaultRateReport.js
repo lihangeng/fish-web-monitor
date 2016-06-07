@@ -102,8 +102,7 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 		var winEl = Ext.get(itemHtml);
 		this.vendorId=record.get('vendorId');
 		this.name = record.get('name');
-	    winEl.down('img').on("click",this.turnToType,this);
-//	    Ext.bind(this.onSetManagerConfirm,this,[addManagerWin])
+	    winEl.down('img').on("click",this.faceJumpBrand,this);
 	},
 
 	nextVendor:function(_this, e, eOpts){
@@ -120,7 +119,7 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 		this.name = rec.get("name");
 		this.vendorId=rec.get('vendorId');
 		var typeStore =  this.getTypeGrid().getStore();
-		this.getTypeView().setTitle(this.name + " 品牌下的所有型号故障率情况");
+		this.getTypeView().setTitle(this.name + " " +EwayLocale.report.faultRateReport.vendorDetail);
 		typeStore.setBaseParam("vendorId", this.vendorId);
 		typeStore.setBaseParam("dateTime", this.dateTime);
 		typeStore.load();
@@ -137,10 +136,10 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 		}
 	},
 	
-	turnToType:function(_this){
+	faceJumpBrand:function(_this){
 		var typeGrid = this.getTypeGrid();
 		var store = typeGrid.getStore();
-		this.getTypeView().setTitle(this.name + " 品牌下的所有型号故障率情况");
+		this.getTypeView().setTitle(this.name + " " +EwayLocale.report.faultRateReport.vendorDetail);
 		store.setBaseParam("vendorId", this.vendorId);
 		store.setBaseParam("dateTime", this.dateTime);
 		store.load();
@@ -154,13 +153,13 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 		var winEl = Ext.get(itemHtml);
 		this.typeId=record.get('devTypeId');
 		this.name = record.get('name');
-	    var imgHtml = winEl.down('img').on("click",this.turnToModule,this);
+	    var imgHtml = winEl.down('img').on("click",this.faceJumpType,this);
 	},
 	
-	turnToModule:function(_this, e, eOpts){
+	faceJumpType:function(_this, e, eOpts){
 		var moduleGrid = this.getModuleGrid();
 		var store = moduleGrid.getStore();
-		this.getModuleView().setTitle(this.name + " 型号下所有模块故障率情况");
+		this.getModuleView().setTitle(this.name + " " +EwayLocale.report.faultRateReport.typeDetail);
 		store.setBaseParam("vendorId",this.vendorId);
 		store.setBaseParam("devTypeId",this.typeId);
 		store.setBaseParam("dateTime", this.dateTime);
@@ -194,7 +193,7 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 	showModule: function(rec){
 		this.name = rec.get("name");
 		this.typeId=rec.get('devTypeId');
-		this.getModuleView().setTitle(this.name + " 型号下所有模块故障率情况");
+		this.getModuleView().setTitle(this.name + " " +EwayLocale.report.faultRateReport.typeDetail);
 		var moduleStore =  this.getModuleGrid().getStore();
 		moduleStore.setBaseParam("vendorId",this.vendorId);
 		moduleStore.setBaseParam("devTypeId",this.typeId);

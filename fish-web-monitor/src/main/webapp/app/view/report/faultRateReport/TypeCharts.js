@@ -48,14 +48,12 @@ Ext.define('Eway.view.report.faultRateReport.TypeCharts', {
 				shadow : false,
 				sprites : [ {
 					type : 'text',
-					//text : EwayLocale.report.faultRateReport.typeRate,
 					font : '14px Helvetica',
 					fontStyle : 'oblique',
 					width : 100,
 					height : 30,
 					x : 20, // the sprite x position
-					y : 25
-				// the sprite y position
+					y : 25 // the sprite y position
 				} ],
 				axes : [ {
 					type : 'numeric',

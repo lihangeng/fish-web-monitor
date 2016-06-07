@@ -27,22 +27,13 @@ Ext.define('Eway.view.report.faultRateReport.BrandGrid', {
 				dataIndex : 'rate',
 				flex:1
 			},{
-				header:'详情',
+				header:EwayLocale.report.faultRateReport.details,
 				width:180,
 				dataIndex:'detail',
 				renderer: function(value,meta,record) {
 					return "&nbsp;<img src='resources/images/accept.png' style='cursor:pointer'>";
 				}
-			}/*,{
-				menuDisabled: true,
-	            sortable: false,
-	            xtype: 'actioncolumn',
-	            width: 50,
-	            items: [{
-	                iconCls: 'menu-system',
-	                tooltip: '点击查看该品牌下所有的型号故障率情况'
-	            }]
-			}*/]
+			}]
 		});
 
 		this.callParent(arguments);

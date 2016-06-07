@@ -39,9 +39,14 @@ Ext.apply(EwayLocale,{
 			tradeCount : '交易数',//EwayLocale.report.faultRateReport.tradeCount
 			faultCount : '故障数',//EwayLocale.report.faultRateReport.faultCount
 			rate　: '故障率(百分比)',//EwayLocale.report.faultRateReport.rate
-			vendorRate : '不同品牌交易故障率',//EwayLocale.report.faultRateReport.vendorRate
-			typeRate : '不同型号交易故障率',//EwayLocale.report.faultRateReport.typeRate
-            moduleRate : '不同模块交易故障率',//EwayLocale.report.faultRateReport.moduleRate
+			details : '详情',//EwayLocale.report.faultRateReport.details
+			back : '返回',//EwayLocale.report.faultRateReport.back
+			preVendor : '上一个品牌',//EwayLocale.report.faultRateReport.preVendor
+			nextVendor : '下一个品牌',//EwayLocale.report.faultRateReport.nextVendor
+			preType : '上一个型号',//EwayLocale.report.faultRateReport.preType
+			nextType : '下一个型号',//EwayLocale.report.faultRateReport.nextType
+			vendorDetail : '品牌下的所有型号故障率情况',//EwayLocale.report.faultRateReport.vendorDetail
+			typeDetail : '型号下所有模块故障率情况',//EwayLocale.report.faultRateReport.typeDetail
 		},
 		openrate:{
 			device:{

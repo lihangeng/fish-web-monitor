@@ -14,22 +14,20 @@ Ext.define('Eway.view.report.faultRateReport.ModuleView', {
 			border : true,
 			weight : 15,
 			tbar : [ {
-				text : '返回',
+				text : EwayLocale.report.faultRateReport.back,
 				glyph : 0xf122,
 				action : 'back',
-				tooltip : '返回',
+				tooltip : EwayLocale.report.faultRateReport.back,
 				code : 'back'
 			}, "->", {
-				//text : '上一个型号',
 				glyph : 0xf060,
 				action : 'pref',
-				tooltip : '上一个型号',
+				tooltip : EwayLocale.report.faultRateReport.preType,
 				code : 'pref'
 			}, {
-				//text : '下一个型号',
 				glyph : 0xf061,
 				action : 'next',
-				tooltip : '下一个型号',
+				tooltip : EwayLocale.report.faultRateReport.nextType,
 				code : 'next'
 			} ],
 			items : [ {
