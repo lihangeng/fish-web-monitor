@@ -39,9 +39,14 @@ Ext.apply(EwayLocale,{
 			tradeCount : 'Transaction Quantity',//EwayLocale.report.faultRateReport.tradeCount
 			faultCount : ' Fault Quantity',//EwayLocale.report.faultRateReport.faultCount
 			rate　: 'Fault Rate(Qercentage)',//EwayLocale.report.faultRateReport.rate
-			vendorRate : 'Qifferent Vendor Transaction Fault Rate',//EwayLocale.report.faultRateReport.vendorRate
-			typeRate : 'Qifferent Type Transaction Fault Rate',//EwayLocale.report.faultRateReport.typeRate
-            moduleRate : 'Qifferent Module Transaction Fault Rate',//EwayLocale.report.faultRateReport.moduleRate
+			details : 'Details',//EwayLocale.report.faultRateReport.details
+			back : 'Return Back',//EwayLocale.report.faultRateReport.back
+			preVendor : 'The Previous Brand',//EwayLocale.report.faultRateReport.preVendor
+			nextVendor : 'The Next Brand',//EwayLocale.report.faultRateReport.nextVendor
+			preType : 'The Previous Type',//EwayLocale.report.faultRateReport.preType
+			nextType : 'The Next Type',//EwayLocale.report.faultRateReport.nextType
+			vendorDetail : 'Brand Under All the Type Failure Rate Situation ',//EwayLocale.report.faultRateReport.vendorDetail
+			typeDetail : 'Type Under All the Module Failure Rate Situation',//EwayLocale.report.faultRateReport.typeDetail
 		},
 		openrate:{
 			device:{
