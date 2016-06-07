@@ -105,10 +105,10 @@
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/param-locale-en.js");
 		}
 	</script>
-	<script type="text/javascript" src="app.js"></script>
-	<script type="text/javascript" src="ext/patch.js"></script>
+	<script type="text/javascript" src="app.js"></script>	
 	<script type="text/javascript" src="ext/packages/pivot/exporter.js"></script>
 	<script type="text/javascript" src="ext/packages/pivot/pivot.js"></script>
+	<script type="text/javascript" src="ext/patch.js"></script>
 </head>
 
 <body>

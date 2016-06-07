@@ -344,6 +344,22 @@ Ext.define('Ext.grid.OrgPanel', {
     lockable: false,
 
     rowLines: true
-
-    
+});
+//针对pivot报表leftAxis进行重写;Default config  text: me.textRowLabels,
+Ext.pivot.matrix.Base.override({
+	generateCompactLeftAxis: function(disableChangeModel) {
+        var me = this;
+        if (!disableChangeModel) {
+            me.model.push({
+                name: me.compactViewKey,
+                type: 'string'
+            });
+        }
+        me.columns.push({
+            dataIndex: me.compactViewKey,
+            text: me.leftAxis.dimensions.items[0].header,
+            leftAxis: true,
+            width: 200
+        });
+    }
 });
