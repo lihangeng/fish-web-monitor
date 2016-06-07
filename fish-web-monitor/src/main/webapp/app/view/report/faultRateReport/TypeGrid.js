@@ -6,22 +6,20 @@ Ext.define('Eway.view.report.faultRateReport.TypeGrid', {
 		Ext.apply(this, {
 			initRegion : true,
 			tbar : [ {
-					text : '返回',
+					text : EwayLocale.report.faultRateReport.back,
 					glyph : 0xf122,
 					action : 'back',
-					tooltip : '返回',
+					tooltip : EwayLocale.report.faultRateReport.back,
 					code : 'back'
 				}, "->", {
-					//text : '上一个品牌',
 					glyph : 0xf060,
 					action : 'pref',
-					tooltip : '上一个品牌',
+					tooltip : EwayLocale.report.faultRateReport.preVendor,
 					code : 'pref'
 				}, {
-					//text : '下一个品牌',
 					glyph : 0xf061,
 					action : 'next',
-					tooltip : '下一个品牌',
+					tooltip : EwayLocale.report.faultRateReport.nextVendor,
 					code : 'next'
 			} ],
 			columns : [ {
@@ -41,7 +39,7 @@ Ext.define('Eway.view.report.faultRateReport.TypeGrid', {
 				dataIndex : 'rate',
 				flex:1
 			},{
-				header:'详情',
+				header:EwayLocale.report.faultRateReport.details,
 				width:180,
 				dataIndex:'detail',
 				renderer: function(value,meta,record) {
