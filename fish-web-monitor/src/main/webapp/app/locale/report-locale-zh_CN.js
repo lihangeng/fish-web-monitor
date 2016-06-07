@@ -1,6 +1,12 @@
 Ext.apply(EwayLocale,{
 	
 	report:{
+		pivot:{
+			common:{
+				totalSum:'共计',//EwayLocale.report.pivot.common.totalSum
+				sumSub:'(小计)'//EwayLocale.report.pivot.common.sumSub
+			}
+		},
 		baseReport:{
 			date:'加钞日期',//EwayLocale.report.baseReport.date
 			amt:'加钞金额',//EwayLocale.report.baseReport.amt

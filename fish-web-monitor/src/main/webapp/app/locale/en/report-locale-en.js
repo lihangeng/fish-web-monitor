@@ -1,6 +1,12 @@
 Ext.apply(EwayLocale,{
 	
 	report:{
+		pivot:{
+			common:{
+				totalSum:'Grand Total',//EwayLocale.report.pivot.common.totalSum
+				sumSub:'(Total)'//EwayLocale.report.pivot.common.sumSub
+			}
+		},
 		baseReport:{
 			date:'Cash Date',//EwayLocale.report.baseReport.date
 			amt:'Cash Amount',//EwayLocale.report.baseReport.amt

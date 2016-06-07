@@ -26,14 +26,14 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
      * @cfg {String}           textTotalTpl.name               Group name
      * @cfg {Ext.data.Model[]} textTotalTpl.rows               An array containing the child records for the group being rendered.
      */
-	 textTotalTpl:               '小计 ({name})',
+	 textTotalTpl:               '{name}'+EwayLocale.report.pivot.common.sumSub,
 
     /**
      * @cfg {String} textGrandTotalTpl Configure the template for the grand total.
      * textGrandTotalTpl:          'Grand total',
      */
     
-	 textGrandTotalTpl:          '合计',
+	 textGrandTotalTpl:          EwayLocale.report.pivot.common.totalSum,
 	tbar : {
 		itemPosition : 1, // after title before collapse tool
 		items : [
@@ -67,7 +67,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 	// Configure the aggregate dimensions. Multiple dimensions are supported.
 	aggregate : [ {
 		dataIndex : 'deviceCount',
-		header : '共计',
+		header : EwayLocale.report.pivot.common.totalSum,
 		aggregator : 'sum',
 		width : 90
 	} ],
