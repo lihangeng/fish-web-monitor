@@ -2,7 +2,6 @@ package com.yihuacomputer.fish.api.report.base;
 
 import java.util.List;
 
-import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.fish.api.atm.IAtmModule;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 
@@ -24,8 +23,6 @@ public interface IFaultRateReportService {
 	
 	List<FaultRateReport> listByDevTypeHql(String monthStr,long vendorId,long devTypeId);
 	
-	FaultRateReport getTradeCount(long vendorId,long devTypeId);
-	
-    public List<FaultRateReport> list(IFilter filter);
+	FaultRateReport getTradeCount(String time,long vendorId,long devTypeId);
 
 }

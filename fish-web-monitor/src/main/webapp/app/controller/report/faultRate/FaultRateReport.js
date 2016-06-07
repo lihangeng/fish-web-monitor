@@ -102,7 +102,7 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 		var winEl = Ext.get(itemHtml);
 		this.vendorId=record.get('vendorId');
 		this.name = record.get('name');
-	    winEl.down('img').on("click",this.faceJumpBrand,this);
+	    winEl.down('img').on("click",this.turnToType,this);
 //	    Ext.bind(this.onSetManagerConfirm,this,[addManagerWin])
 	},
 
@@ -137,7 +137,7 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 		}
 	},
 	
-	faceJumpBrand:function(_this){
+	turnToType:function(_this){
 		var typeGrid = this.getTypeGrid();
 		var store = typeGrid.getStore();
 		this.getTypeView().setTitle(this.name + " 品牌下的所有型号故障率情况");
@@ -154,10 +154,10 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 		var winEl = Ext.get(itemHtml);
 		this.typeId=record.get('devTypeId');
 		this.name = record.get('name');
-	    var imgHtml = winEl.down('img').on("click",this.faceJumpType,this);
+	    var imgHtml = winEl.down('img').on("click",this.turnToModule,this);
 	},
 	
-	faceJumpType:function(_this, e, eOpts){
+	turnToModule:function(_this, e, eOpts){
 		var moduleGrid = this.getModuleGrid();
 		var store = moduleGrid.getStore();
 		this.getModuleView().setTitle(this.name + " 型号下所有模块故障率情况");
