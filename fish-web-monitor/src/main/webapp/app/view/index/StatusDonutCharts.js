@@ -48,7 +48,7 @@ Ext.define('Eway.view.index.StatusDonutCharts', {
             },
             store: this.myDataStore,
             insetPadding: 10,
-            innerPadding: 20,
+            innerPadding: 10,
             legend: {
                 docked: 'right',
                 lazy:true

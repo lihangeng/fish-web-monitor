@@ -75,7 +75,7 @@ Ext.define('Eway.view.index.VersionDistributePie', {
             width: '100%',
             height: 230,
             store: me.myDataStore,
-            insetPadding: 30,
+            insetPadding: 10,
             innerPadding: 10,
             legend: {
                 docked: 'right'
@@ -87,7 +87,7 @@ Ext.define('Eway.view.index.VersionDistributePie', {
                 label: {
                     field: 'versionNo',
                     calloutLine: {
-                        length: 30,
+                        length: 20,
                         width: 2
                         // specifying 'color' is also possible here
                     },
