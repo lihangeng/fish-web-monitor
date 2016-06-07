@@ -3,5 +3,6 @@ Ext.define('Eway.store.report.faultRateReport.Brand', {
 	alias:'store.brandRate',
 	autoSync : false,
 	model: 'Eway.model.report.faultRateReport.Brand',
-    autoLoad: true
+    autoLoad: false,
+    pageSize:200
 });

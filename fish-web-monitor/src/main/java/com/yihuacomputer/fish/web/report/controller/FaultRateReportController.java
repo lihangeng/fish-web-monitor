@@ -22,17 +22,13 @@ import org.springframework.web.context.request.WebRequest;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.atm.IAtmBrandService;
 import com.yihuacomputer.fish.api.atm.IAtmModule;
 import com.yihuacomputer.fish.api.atm.IAtmModuleService;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
-import com.yihuacomputer.fish.api.charts.ChartsInfo;
-import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.report.base.FaultRateReport;
 import com.yihuacomputer.fish.api.report.base.IFaultRateReportService;
-import com.yihuacomputer.fish.api.version.IVersion;
-import com.yihuacomputer.fish.api.version.VersionStaticsStatus;
-import com.yihuacomputer.fish.api.version.job.IJob;
 
 @Controller
 @RequestMapping(value = "/report/faultRate")

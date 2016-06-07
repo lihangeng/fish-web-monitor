@@ -1,11 +1,29 @@
 Ext.define('Eway.view.report.faultRateReport.TypeGrid', {
 	alias : 'widget.report_faultRateReport_TypeGrid',
 	extend : 'Eway.view.base.Grid',
+	height :200,
 	initComponent : function() {
-		var store = Ext.create('Eway.store.report.faultRateReport.Type');
 		Ext.apply(this, {
 			initRegion : true,
-			store : store,
+			tbar : [ {
+					text : '返回',
+					glyph : 0xf122,
+					action : 'back',
+					tooltip : '返回',
+					code : 'back'
+				}, "->", {
+					//text : '上一个品牌',
+					glyph : 0xf060,
+					action : 'pref',
+					tooltip : '上一个品牌',
+					code : 'pref'
+				}, {
+					//text : '下一个品牌',
+					glyph : 0xf061,
+					action : 'next',
+					tooltip : '下一个品牌',
+					code : 'next'
+			} ],
 			columns : [ {
 				header : EwayLocale.report.faultRateReport.devType,
 				dataIndex : 'name',

@@ -48,7 +48,7 @@ Ext.define('Eway.view.report.faultRateReport.ModuleCharts', {
 				shadow : false,
 				sprites : [ {
 					type : 'text',
-					text : EwayLocale.report.faultRateReport.moduleRate,
+					//text : EwayLocale.report.faultRateReport.moduleRate,
 					font : '14px Helvetica',
 					fontStyle : 'oblique',
 					width : 100,

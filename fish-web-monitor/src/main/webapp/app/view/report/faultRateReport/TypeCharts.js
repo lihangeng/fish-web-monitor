@@ -48,7 +48,7 @@ Ext.define('Eway.view.report.faultRateReport.TypeCharts', {
 				shadow : false,
 				sprites : [ {
 					type : 'text',
-					text : EwayLocale.report.faultRateReport.typeRate,
+					//text : EwayLocale.report.faultRateReport.typeRate,
 					font : '14px Helvetica',
 					fontStyle : 'oblique',
 					width : 100,
