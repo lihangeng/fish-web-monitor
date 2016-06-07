@@ -7,13 +7,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.hibernate.SQLQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
-import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.atm.IAtmBrandService;
@@ -51,6 +49,9 @@ public class FaultRateReportService implements IFaultRateReportService {
 		return dao.loadAll(IEveryMonthFaultCount.class);
 	}
 
+	/**
+	 * 查询指定日期的所有品牌故障率
+	 */
 	public List<FaultRateReport> listAllHql(String monthStr){
 		
 		List<FaultRateReport> list= new ArrayList<FaultRateReport>();
@@ -114,7 +115,9 @@ public class FaultRateReportService implements IFaultRateReportService {
 		return list;
 	}
 	
-	
+	/**
+	 * 查询指定日期的某品牌下的所有型号故障率
+	 */
 	public List<FaultRateReport> listByVendorHql(String monthStr,long vendorId){
 		List<FaultRateReport> list= new ArrayList<FaultRateReport>();
 		//统计品牌交易信息
@@ -179,6 +182,9 @@ public class FaultRateReportService implements IFaultRateReportService {
 		return list;
 	}
 	
+	/**
+	 * 查询指定日期的某品牌对应下的型号的所有模块故障率
+	 */
 	public List<FaultRateReport> listByDevTypeHql(String monthStr,long vendorId,long devTypeId){
 		List<FaultRateReport> list= new ArrayList<FaultRateReport>();
 		//统计品牌交易信息
@@ -189,19 +195,16 @@ public class FaultRateReportService implements IFaultRateReportService {
 			long month = Long.parseLong(monthStr);
 			monthTrans.append(" and transMonth.transDate=").append(month);
 		}
-		List<Object> transList = dao.findByHQL(monthTrans.toString(), new Object[]{vendorId,devTypeId});
-		long transCount=0;
-		if(null!=transList&&transList.size()>0){
-			Object obj = transList.get(transList.size()-1);
-			transCount = (null==obj?0l:Long.parseLong(obj.toString()));
-		}
+		Object trans = dao.findUniqueByHql(monthTrans.toString(), new Object[]{vendorId,devTypeId});
+		long transCount=0l;
+		transCount = (null==trans?0l:Long.parseLong(trans.toString()));
 		//统计品牌故障信息
 		StringBuffer monthFault = new StringBuffer();
 		monthFault.append("select sum(faultMonth.faultCount),faultMonth.devMod from ").append(EveryMonthFaultCount.class.getSimpleName())
 		.append(" faultMonth where faultMonth.vendorId=? and faultMonth.devTypeId=? ");
 		if(monthStr != null){
 			long month = Long.parseLong(monthStr);
-			monthTrans.append(" and faultMonth.faultDate=").append(month);
+			monthFault.append(" and faultMonth.faultDate=").append(month);
 		}
 		monthFault.append(" group by faultMonth.devMod");
 		List<Object> faultList = dao.findByHQL(monthFault.toString(), new Object[]{vendorId,devTypeId});
@@ -248,21 +251,17 @@ public class FaultRateReportService implements IFaultRateReportService {
 	}
 
 	@Override
-	public FaultRateReport getTradeCount(long vendorId, long devTypeId) {
+	public FaultRateReport getTradeCount(String time,long vendorId, long devTypeId) {
 		StringBuffer hql = new StringBuffer();
 		hql.append("SELECT SUM(trade.transCount) FROM ").append(TransactionMonths.class.getSimpleName());
 		hql.append(" trade WHERE trade.vendorId =? AND trade.devTypeId =?");
+		if(time != null){
+			hql.append(" AND trade.transDate=").append(Long.valueOf(time));
+		}
 		Object obj = dao.findUniqueByHql(hql.toString(), vendorId,devTypeId);
 		FaultRateReport f =new FaultRateReport();
 		f.setTradeCount(Long.valueOf(obj==null?"0":obj.toString()));
 		return f;
 	}
 
-	   @Override
-	    @Transactional(readOnly=true)
-	    public List<FaultRateReport> list(IFilter filter)
-	    {
-		   
-		   return null;
-	    }
 }

@@ -30,7 +30,7 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
                     }
                 },
                 store: {type: 'brandRate'},
-                height: 400,
+                height : 300,
                 style: 'background: #fff',
                 padding: '0 0 0 0',
                 insetPadding: {
@@ -46,7 +46,7 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
                 shadow: false,
                 sprites: [{
                     type  : 'text',
-                    text:'不同品牌交易故障率',
+                    //text:'不同品牌交易故障率',
                     font  : '14px Helvetica',
                     fontStyle:'oblique',
                     width : 100,

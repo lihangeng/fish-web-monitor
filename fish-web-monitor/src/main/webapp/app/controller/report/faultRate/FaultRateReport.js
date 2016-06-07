@@ -41,17 +41,20 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 	}, {
 		ref : 'typeView',
 		selector : 'report_faultRateReport_typeView'
-	} ],
+	} , {
+		ref : 'brandView',
+		selector : 'report_faultRateReport_brandView'
+	}],
 
 	init : function() {
 		this.control({
 			'#report_faultRateReport_view button[action=query]' : {
 				click : this.onQuery
 			},
-			'report_faultRateReport_BrandGrid ' : {
+			'report_faultRateReport_brandView report_faultRateReport_BrandGrid' : {
 				itemmouseenter : this.brandQuery
 			},
-			'report_faultRateReport_TypeGrid' : {
+			'report_faultRateReport_typeView report_faultRateReport_TypeGrid' : {
 				itemmouseenter : this.typeQuery
 			},
 			'report_faultRateReport_typeView button[action=back]' : {
@@ -61,7 +64,7 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 				click : this.nextVendor
 			},
 			'report_faultRateReport_typeView button[action=pref]' : {
-				click : this.prefVendor
+				click : this.preVendor
 			},
 			'report_faultRateReport_moduleView  button[action=back]' : {
 				click : this.onModuleBack
@@ -70,143 +73,144 @@ Ext.define('Eway.controller.report.faultRate.FaultRateReport', {
 				click : this.nextType
 			},
 			'report_faultRateReport_moduleView button[action=pref]' : {
-				click : this.prefType
+				click : this.preType
 			}
 		})
-		this.onQuery();
 	},
 	
+	dateTime : null,
 	onQuery : function() {
-		var view = this.getEwayView();
-		var time = view.down('datefield').getValue();
-		var year = time.getFullYear();
-		var month = time.getMonth() + 1;
-		var date = year;
-		if (month < 10) {
-			date = date + '0' + month;
-		} else {
-			date = date + month;
-		}
+		this.dateTime = this.getDateTimeValue();
 		var brandStore = this.getBrandGrid().getStore();
-		var typeStore = this.getTypeGrid().getStore();
-		var moduleStore = this.getModuleGrid().getStore();
-		
 		var brandCharts = this.getBrandCharts().down('cartesian').getStore();
-		var typeCharts = this.getTypeCharts().down('cartesian').getStore();
-		var moduleCharts = this.getModuleCharts().down('cartesian').getStore();
-		
-		brandStore.setBaseParam("dateTime", date);
-		typeStore.setBaseParam("dateTime", date);
-		moduleStore.setBaseParam("dateTime", date);
-		
+		brandStore.setBaseParam("dateTime", this.dateTime);
 		brandStore.loadPage(1);
-		typeStore.loadPage(1);
-		moduleStore.loadPage(1);
-		
 		brandCharts.loadPage(1);
-		typeCharts.loadPage(1);
-		moduleCharts.loadPage(1);
-
 	},
 	
+	getDateTimeValue : function(){
+		var view = this.getBrandView();
+		return view.down('form').getForm().getValues().dateMonth;
+	},
 	
-
 	vendorId:0,
 	name : null,
+	brandIndex : 0,
 	brandQuery : function( _this,  record, itemHtml, index, e, eOpts) {
+		this.dateTime = this.getDateTimeValue();
+		this.brandIndex = index;
 		var winEl = Ext.get(itemHtml);
-		vendorId=record.get('vendorId');
-		name = record.get('name');
-	    var imgHtml = winEl.down('img').on("click",this.faceJumpBrand,this);
+		this.vendorId=record.get('vendorId');
+		this.name = record.get('name');
+	    winEl.down('img').on("click",this.turnToType,this);
+//	    Ext.bind(this.onSetManagerConfirm,this,[addManagerWin])
 	},
 
-	nextVendor:function(_this,  record, itemHtml, index, e, eOpts){
-		this.vendorPageChange("1");
+	nextVendor:function(_this, e, eOpts){
+		var store = this.getBrandGrid().getStore();
+		var count = store.getCount();
+		if(this.brandIndex + 1 < count){
+			var rec = store.getAt(this.brandIndex + 1);
+			this.showType(rec);
+			this.brandIndex = this.brandIndex + 1;
+		}
+	},
+	
+	showType : function(rec){
+		this.name = rec.get("name");
+		this.vendorId=rec.get('vendorId');
+		var typeStore =  this.getTypeGrid().getStore();
+		this.getTypeView().setTitle(this.name + " 品牌下的所有型号故障率情况");
+		typeStore.setBaseParam("vendorId", this.vendorId);
+		typeStore.setBaseParam("dateTime", this.dateTime);
+		typeStore.load();
+		this.getTypeCharts().down('cartesian').getStore().load();
 	},
 
-	prefVendor:function(_this,  record, itemHtml, index, e, eOpts){
-
-		this.vendorPageChange("-1");
+	preVendor:function(_this, e, eOpts){
+		var store = this.getBrandGrid().getStore();
+		var count = store.getCount();
+		if(this.brandIndex - 1 >=0){
+			var rec = store.getAt(this.brandIndex - 1);
+			this.showType(rec);
+			this.brandIndex = this.brandIndex - 1;
+		}
 	},
 	
-	vendorPageChange:function(flag){
-		var me = this;
-		Ext.Ajax.request({
-		    url: 'api/report/faultRate/searchVendorId',
-		    method:'GET',
-		    params: {
-		    	vendorId: vendorId,
-		        nextRecord:flag
-		    },
-		    success: function(response){
-//		        var text = response.responseText;
-//		        var object = Ext.decode(text);
-//		    	me.getActiveTask().setVendorId(object.vendorIds);
-//		    	me.getActiveTask().down("report_faultRateReport_TypeGrid").setVendorId(object.vendorIds);
-	        	if(flag=="-1"||flag=="1"){
-	            	me.faceJumpBrand();
-	        	}
-		    },
-		    failure:function(){
-		    
-		    }
-		});
-	},
-	
-	getActiveTask:function(){
-		var layout = this.getEwayView().down("panel[name=groupPanel]").up("panel").getLayout();
-		return layout.getActiveItem();
-	},
-	
-	faceJumpBrand:function(_this,  record, itemHtml, index, e, eOpts){
-		var brandGrid = this.getBrandGrid();
+	turnToType:function(_this){
 		var typeGrid = this.getTypeGrid();
 		var store = typeGrid.getStore();
-		var tabpanel = this.getEwayView().down("panel[name=groupPanel]").up("panel");
-		var typeView = this.getEwayView().down("report_faultRateReport_typeView");
-		tabpanel.setActiveItem(typeView);
-		typeView.setTitle('型号所属品牌：' + name);
-		var typeCharts = this.getTypeCharts().down('cartesian').getStore();
-		store.setBaseParam("vendorId", vendorId);
-		store.loadPage(1);
-		typeCharts.loadPage(1);
+		this.getTypeView().setTitle(this.name + " 品牌下的所有型号故障率情况");
+		store.setBaseParam("vendorId", this.vendorId);
+		store.setBaseParam("dateTime", this.dateTime);
+		store.load();
+		this.getTypeCharts().down('cartesian').getStore().load();
+		var layout = this.getEwayView().getLayout();
+		layout.setActiveItem(1);
 	},
 
 	typeId:0,
 	typeQuery : function(_this,  record, itemHtml, index, e, eOpts) {
 		var winEl = Ext.get(itemHtml);
-		typeId=record.get('devTypeId');
-		name = record.get('name');
-	    var imgHtml = winEl.down('img').on("click",this.faceJumpType,this);
+		this.typeId=record.get('devTypeId');
+		this.name = record.get('name');
+	    var imgHtml = winEl.down('img').on("click",this.turnToModule,this);
 	},
-	faceJumpType:function(_this,  record, itemHtml, index, e, eOpts){
-		var typeGrid = this.getTypeGrid();
+	
+	turnToModule:function(_this, e, eOpts){
 		var moduleGrid = this.getModuleGrid();
 		var store = moduleGrid.getStore();
-		var tabpanel = this.getEwayView().down("panel[name=groupPanel]").up("panel");
-		var moduleView = this.getEwayView().down("report_faultRateReport_moduleView");
-		tabpanel.setActiveItem(moduleView);
-		moduleView.setTitle('型号所属品牌：' + name);
-		var moduleCharts = this.getModuleCharts().down('cartesian').getStore();
-		store.setBaseParam("vendorId",vendorId);
-		store.setBaseParam("devTypeId",typeId);
-		store.loadPage(1);
-		moduleCharts.loadPage(1);
+		this.getModuleView().setTitle(this.name + " 型号下所有模块故障率情况");
+		store.setBaseParam("vendorId",this.vendorId);
+		store.setBaseParam("devTypeId",this.typeId);
+		store.setBaseParam("dateTime", this.dateTime);
+		store.load();
+		this.getModuleCharts().down('cartesian').getStore().load();
+		var layout = this.getEwayView().getLayout();
+		layout.setActiveItem(2);
 	},
-
+	
+	typeIndex:0,
+	
+	preType:function(_this, e, eOpts){
+		var store = this.getTypeGrid().getStore();
+		if(this.typeIndex - 1 >=0){
+			var rec = store.getAt(this.typeIndex - 1);
+			this.showModule(rec);
+			this.typeIndex = this.typeIndex - 1;
+		}
+	},
+	
+	nextType:function(_this, e, eOpts){
+		var store = this.getTypeGrid().getStore();
+		var count = store.getCount();
+		if(this.typeIndex + 1 < count){
+			var rec = store.getAt(this.typeIndex + 1);
+			this.showModule(rec);
+			this.typeIndex = this.typeIndex + 1;
+		}
+	},
+	
+	showModule: function(rec){
+		this.name = rec.get("name");
+		this.typeId=rec.get('devTypeId');
+		this.getModuleView().setTitle(this.name + " 型号下所有模块故障率情况");
+		var moduleStore =  this.getModuleGrid().getStore();
+		moduleStore.setBaseParam("vendorId",this.vendorId);
+		moduleStore.setBaseParam("devTypeId",this.typeId);
+		moduleStore.setBaseParam("dateTime", this.dateTime);
+		moduleStore.load();
+		this.getModuleCharts().down('cartesian').getStore().load();
+	},
+	
 	onTypeBack : function(_this, opt) {
-		var panel = _this.up("report_faultRateReport_typeView");
-		var layout = panel.up("panel").getLayout();
-		var groupPanel = this.getEwayView().down("panel[name=groupPanel]");
-		layout.setActiveItem(groupPanel);
+		var layout = this.getEwayView().getLayout();
+		layout.setActiveItem(0);
 	},
 
 	onModuleBack : function(_this, opt) {
-		var panel = _this.up("report_faultRateReport_moduleView");
-		var layout = panel.up("panel").getLayout();
-		var groupPanel = this.getEwayView().down("panel[name=groupPanel]");
-		layout.setActiveItem(groupPanel);
-	},
-
+		var layout = this.getEwayView().getLayout();
+		layout.setActiveItem(1);
+	}
 	
 });

@@ -5,21 +5,7 @@ Ext.define('Eway.view.report.faultRateReport.ModuleView', {
 	requires : [ 'Eway.lib.Util',
 			'Eway.view.report.faultRateReport.ModuleGrid',
 			'Eway.view.report.faultRateReport.ModuleCharts' ],
-
-	border : false,
-	autoScroll : true,
 	closable : false,
-	viewConfig : {
-		forceFit : true,
-		stripeRows : true,
-		loadMask : true,
-		enableTextSelection : true
-	},
-	firstIn : true,
-	config : {
-		name : null
-	},
-	
 	initComponent : function() {
 		var me = this;
 		Ext.apply(this, {
@@ -29,18 +15,18 @@ Ext.define('Eway.view.report.faultRateReport.ModuleView', {
 			weight : 15,
 			tbar : [ {
 				text : '返回',
-				glyph : 0xf048,
+				glyph : 0xf122,
 				action : 'back',
 				tooltip : '返回',
 				code : 'back'
 			}, "->", {
-				text : '上一个型号',
+				//text : '上一个型号',
 				glyph : 0xf060,
 				action : 'pref',
 				tooltip : '上一个型号',
 				code : 'pref'
 			}, {
-				text : '下一个型号',
+				//text : '下一个型号',
 				glyph : 0xf061,
 				action : 'next',
 				tooltip : '下一个型号',
@@ -54,32 +40,9 @@ Ext.define('Eway.view.report.faultRateReport.ModuleView', {
 			}, {
 				xtype : 'report_faultRateReport_ModuleCharts',
 				region : 'center',
-			} ],
-			listeners : {
-				activate : function(_this, eOpts) {
-					var name = _this.getConfig().name;
-					_this.down('report_faultRateReport_ModuleGrid').getStore()
-							.setBaseParam("name", name);
-					_this.down('report_faultRateReport_ModuleGrid').getStore()
-							.load();
-					_this.down('report_faultRateReport_ModuleCharts').down(
-							'cartesian').getStore().setBaseParam("name", name);
-					_this.down('report_faultRateReport_ModuleCharts').down(
-							'cartesian').getStore().load();
-
-				}
-			}
+			} ]
 		});
 
 		this.callParent(arguments);
-	},
-	refresh: function(name){
-		var store = this.down('report_faultRateReport_ModuleGrid').getStore();
-		store.setBaseParam("name",name);
-		store.loadPage(1);
-		var stores = this.down('report_faultRateReport_ModuleCharts').down(
-		'cartesian').getStore();
-		stores.setBaseParam("name",name);
-		stores.loadPage(1);
 	}
 });

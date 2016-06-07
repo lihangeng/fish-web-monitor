@@ -1,13 +1,15 @@
 Ext.define('Eway.view.report.faultRateReport.BrandGrid', {
 	alias : 'widget.report_faultRateReport_BrandGrid',
 	extend : 'Eway.view.base.Grid',
-	width : 400,
 	height :400,
 	initComponent : function() {
-		var store=Ext.create('Eway.store.report.faultRateReport.Brand');
 		Ext.apply(this, {
 			initRegion : true,
-			store : store,
+			tbar : [ '->', {
+				text : EwayLocale.button.search,
+				action : 'query',
+				glyph : 0xf002,
+			} ],
 			columns : [ {
 				header : EwayLocale.report.faultRateReport.vendorName,
 				dataIndex : 'name',
@@ -31,7 +33,16 @@ Ext.define('Eway.view.report.faultRateReport.BrandGrid', {
 				renderer: function(value,meta,record) {
 					return "&nbsp;<img src='resources/images/accept.png' style='cursor:pointer'>";
 				}
-			}]
+			}/*,{
+				menuDisabled: true,
+	            sortable: false,
+	            xtype: 'actioncolumn',
+	            width: 50,
+	            items: [{
+	                iconCls: 'menu-system',
+	                tooltip: '点击查看该品牌下所有的型号故障率情况'
+	            }]
+			}*/]
 		});
 
 		this.callParent(arguments);
