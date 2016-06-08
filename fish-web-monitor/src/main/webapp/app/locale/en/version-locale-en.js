@@ -320,6 +320,10 @@ Ext.apply(EwayLocale,{
 			beforeJob : 'The Before Job',//EwayLocale.version.download.beforeJob
 			afterJob : 'The Next Job',//EwayLocale.version.download.afterJob
 			JobDetails : 'The Job Datails',//EwayLocale.version.download.JobDetails
+			allTaskCount:'All Task Count',//EwayLocale.version.download.allTaskCount
+			finishTaskCount:'Finish Task Count',//EwayLocale.version.download.finishTaskCount
+			failTaskCount:'Fail Task Count',//EwayLocale.version.download.failTaskCount
+			runTaskCount:'Run Task Count'//EwayLocale.version.download.runTaskCount
 		},
 		task:{
 			jobId:'Job ID',//EwayLocale.version.task.jobId

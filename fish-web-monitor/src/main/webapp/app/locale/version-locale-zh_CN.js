@@ -321,6 +321,10 @@ Ext.apply(EwayLocale,{
 			beforeJob : '上一个作业',//EwayLocale.version.download.beforeJob
 			afterJob : '下一个作业',//EwayLocale.version.download.afterJob
 			JobDetails : '作业详情',//EwayLocale.version.download.JobDetails
+			allTaskCount:'总任务数',//EwayLocale.version.download.allTaskCount
+			finishTaskCount:'任务完成数',//EwayLocale.version.download.finishTaskCount
+			failTaskCount:'任务失败数',//EwayLocale.version.download.failTaskCount
+			runTaskCount:'进行中任务数'//EwayLocale.version.download.runTaskCount
 		},
 		task : {//EwayLocale.version.task.task
 			jobId : '作业ID',//EwayLocale.version.task.jobId
