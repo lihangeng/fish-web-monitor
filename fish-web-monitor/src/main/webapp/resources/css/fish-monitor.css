@@ -1153,20 +1153,20 @@ pre.link{
 
 /*一级菜单的图表定义*/
 .menu-system {
-	background: url(../images/menu1.png) left 0px no-repeat !important;
+	background: url(../images/menu1.png) 0px 0px no-repeat !important;
 }
 .menu-device {
-	background: url(../images/menu1.png) left -24px no-repeat !important;
+	background: url(../images/menu1.png) 0px -24px no-repeat !important;
 }
 .menu-monitor {
-	background: url(../images/menu1.png) left -48px no-repeat !important;
+	background: url(../images/menu1.png) 0px -48px no-repeat !important;
 }
 .menu-application {
-	background: url(../images/menu1.png) left -72px no-repeat !important;
+	background: url(../images/menu1.png) 0px -72px no-repeat !important;
 }
 .menu-faults {
-	background: url(../images/menu1.png) left -96px no-repeat !important;
+	background: url(../images/menu1.png) 0px -96px no-repeat !important;
 }
 .menu-reports {
-	background: url(../images/menu1.png) left -120px no-repeat !important;
+	background: url(../images/menu1.png) 0px -120px no-repeat !important;
 }

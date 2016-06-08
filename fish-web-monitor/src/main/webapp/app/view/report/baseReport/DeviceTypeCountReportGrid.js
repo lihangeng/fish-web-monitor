@@ -75,7 +75,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 	// Configure the left axis dimensions that will be used to generate the grid rows
 	leftAxis : [ {
 		dataIndex : 'orgName',
-		header : 'orgName',
+		header : EwayLocale.person.bankOrg.name,
 		maxWidth : 80
 	} ],
 	showZeroAsBlank: true,

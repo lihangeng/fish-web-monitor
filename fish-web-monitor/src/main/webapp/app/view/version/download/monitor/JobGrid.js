@@ -9,13 +9,13 @@ Ext.define('Eway.view.version.download.monitor.JobGrid', {
 	autoScroll : true,
 
 	 viewConfig: {
-            plugins: [{
-                ptype: 'preview',
-                bodyField: 'extraBody',
-                expanded: true,
-                pluginId: 'preview'
-                	
-            }],
+//            plugins: [{
+//                ptype: 'preview',
+//                bodyField: 'extraBody',
+//                expanded: true,
+//                pluginId: 'preview'
+//                	
+//            }],
             getRowClass: function(record, rowIndex, rowParams, store){
     			if(record.get('jobStatus') == 'RUN'){
     				return "running";
@@ -127,13 +127,33 @@ Ext.define('Eway.view.version.download.monitor.JobGrid', {
 				dataIndex: 'jobStatus',
 				renderer: Eway.lib.Util.dictRenderer('version.JobStatus'),
 				sortable: true,
-				width: 150
+				width: 120
 			},{
 				header : EwayLocale.version.taskType,//'备注',
 				dataIndex : 'jobType',
 				renderer: Eway.lib.Util.dictRenderer('version.JobType'),
-				flex : 1,
+				width: 120,
 				sortable : true
+			},{
+				header: EwayLocale.version.download.allTaskCount,//'总任务数',
+				dataIndex: 'allTaskCount',
+				sortable: true,
+				width: 120
+			},{
+				header: EwayLocale.version.download.finishTaskCount,//'任务完成数',
+				dataIndex:'finishTaskCount',
+				sortable: true,
+				width: 120
+			},{
+				header: EwayLocale.version.download.failTaskCount,//'任务失败数',
+				dataIndex:'failTaskCount',
+				sortable: true,
+				width: 120
+			},{
+				header: EwayLocale.version.download.runTaskCount,//'进行中任务数',
+				dataIndex:'runTaskCount',
+				sortable: true,
+				flex:1
 			}],
 			bbar : Ext.create('Ext.toolbar.Paging',{
 				store : gridStore,
