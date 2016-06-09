@@ -37,7 +37,7 @@ Ext.apply(EwayLocale,{
 			caseTrendReportTitle: '故障趋势图'//EwayLocale.report.baseReport.caseTrendReportTitle
 		},
 		faultRateReport:{
-			viewTitle : '故障率報表',//EwayLocale.report.faultRateReport.viewTitle
+			viewTitle : '故障率报表',//EwayLocale.report.faultRateReport.viewTitle
 			dateMonth : '月份',//EwayLocale.report.faultRateReport.dateMonth
 			devType : '型号',//EwayLocale.report.faultRateReport.devType
 			vendorName : '品牌',//EwayLocale.report.faultRateReport.vendorName
