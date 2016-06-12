@@ -96,7 +96,9 @@ Ext.apply(EwayLocale,{
             chooseRecord:'Please Choose A Record',//EwayLocale.param.paramDownloadMonitor.chooseRecord
             aotuJump:' Job Sucessfully,Skip To `Parameter Download Monitor` Page?',//EwayLocale.param.paramDownloadMonitor.aotuJump
         	task:'Task:',//EwayLocale.param.paramDownloadMonitor.task
-        	StatusDetail:' Status Detail'//EwayLocale.param.paramDownloadMonitor.StatusDetail
+        	StatusDetail:' Status Detail',//EwayLocale.param.paramDownloadMonitor.StatusDetail
+    		preJob:'The Previous Job',//EwayLocale.param.paramDownloadMonitor.preJob
+        	nextJob:'The Next Job'//EwayLocale.param.paramDownloadMonitor.nextJob
         }
 
     }

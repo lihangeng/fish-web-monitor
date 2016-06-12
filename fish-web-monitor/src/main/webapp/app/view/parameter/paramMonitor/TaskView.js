@@ -26,13 +26,13 @@ Ext.define('Eway.view.parameter.paramMonitor.TaskView', {
 			}, "->", {
 				glyph : 0xf060,
 				action : 'pref',
-				tooltip : EwayLocale.report.faultRateReport.preType,
-				code : 'pref'
+				tooltip : EwayLocale.param.paramDownloadMonitor.preJob,
+				code : 'prefJob'
 			}, {
 				glyph : 0xf061,
 				action : 'next',
-				tooltip : EwayLocale.report.faultRateReport.nextType,
-				code : 'next'
+				tooltip : EwayLocale.param.paramDownloadMonitor.nextJob,
+				code : 'nextJob'
 			} ],
 			items : [ {
 				region : 'north',

@@ -97,7 +97,9 @@ Ext.apply(EwayLocale,{
         	chooseRecord:'请选中一条记录',//EwayLocale.param.paramDownloadMonitor.chooseRecord
         	aotuJump:'次作业保存成功，是否跳转到参数下发监控界面 ？',//EwayLocale.param.paramDownloadMonitor.aotuJump
         	task:'任务:',//EwayLocale.param.paramDownloadMonitor.task
-        	StatusDetail:' 状态详情'//EwayLocale.param.paramDownloadMonitor.StatusDetail
+        	StatusDetail:' 状态详情',//EwayLocale.param.paramDownloadMonitor.StatusDetail
+        	preJob:'前一次作业',//EwayLocale.param.paramDownloadMonitor.preJob
+        	nextJob:'后一次作业'//EwayLocale.param.paramDownloadMonitor.nextJob
         }
 
     }
