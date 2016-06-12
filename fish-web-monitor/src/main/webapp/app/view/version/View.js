@@ -46,7 +46,7 @@ Ext.define('Eway.view.version.View', {
 		                nameColumnWidth: 180,
 		                margin:'25 0 0 20',
 		                height: 300,
-		                width:350,
+		                width:390,
 		                sortableColumns:false,
 		                source: {
 		                	versionType: '',
