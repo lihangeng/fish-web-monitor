@@ -82,12 +82,16 @@ Ext.define('Eway.controller.version.Version', {
         		grid.setTitle(chartsStore.getAt(0).get("title")+"&nbsp;&nbsp;"+EwayLocale.statics.msg);//"信息");
 		    }
 		});
-		this.getEwayView().down("bar_3d cartesian").setTitle(record.get("versionTypeDesc")+" - V"+record.get("versionNo"));
-		this.getEwayView().down("panel displayfield[name='versionType']").setValue(record.get("versionType"));
-		this.getEwayView().down("panel displayfield[name='versionPath']").setValue(record.get("versionPath"));
-		this.getEwayView().down("panel displayfield[name='versionTime']").setValue(record.get("createdTime"));
-		this.getEwayView().down("panel displayfield[name='versionPerson']").setValue(record.get("userName"));
-		this.getEwayView().down("panel displayfield[name='desc']").setValue(record.get("desc"));
+		this.getEwayView().down('panel').getComponent('versionPic').setTitle(record.get("versionTypeDesc")+" - V"+record.get("versionNo"));
+		this.getEwayView().down('panel').down('propertygrid').setSource({
+			versionType:record.get("versionType"),
+			versionPath:record.get("versionPath"),
+			versionTime:record.get("createdTime"),
+			versionPerson:record.get("userName"),
+			versionStatus:record.get("versionStatus"),
+			autoDown:record.get("autoDown"),
+			desc:record.get("desc")
+		});
 	},
 
 	//获得版本的Store
