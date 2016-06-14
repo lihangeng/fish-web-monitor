@@ -258,6 +258,7 @@ Ext.apply(EwayLocale,{
 			downloadVersionName : '下发的版本',//EwayLocale.version.View.downloadVersionName
 			downloadVersionNameEmpty : '请选择下发的版本',//EwayLocale.version.View.downloadVersionNameEmpty
 			distributionPic : '版本分布图',//EwayLocale.version.View.distributionPic
+			selectVersion:'请选择一个版本',//EwayLocale.version.View.selectVersion
 			job : {
 				newCreate : '新建',//EwayLocale.version.View.job.newCreate
 				running : '运行中',//EwayLocale.version.View.job.running

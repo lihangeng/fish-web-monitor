@@ -14,8 +14,14 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 		autoCreate:true,
 		id:'parameter_paramMonitor_view'
 	},{
+		ref:'jobView',
+		selector:'parameter_paramMonitor_JobView'
+	},{
 		ref:'jobGrid',
 		selector:'parameter_paramMonitor_JobGrid'
+	},{
+		ref:'taskView',
+		selector:'parameter_paramMonitor_TaskView'
 	},{
 		ref:'taskGrid',
 		selector:'parameter_paramMonitor_TaskGrid'
@@ -33,8 +39,14 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 			'parameter_paramMonitor_TaskGrid button[action=query]':{
 				click:this.onTaskQuery
 			},
-			'parameter_paramMonitor_view tabpanel':{
-				tabchange:this.onTabChange
+			'parameter_paramMonitor_TaskView button[action=back]':{
+				click:this.onBack
+			},
+			'parameter_paramMonitor_TaskView button[action=pref]':{
+				click:this.onPref
+			},
+			'parameter_paramMonitor_TaskView button[action=next]':{
+				click:this.onNext
 			},
 			'parameter_paramMonitor_TaskGrid':{
 				cellclick:this.onCellClick
@@ -42,24 +54,18 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 		});
 	},
 	
-	onTabChange:function( tabPanel, newCard, oldCard, eOpts ){
-		if(newCard.name=='taskPanel'){
-			var tabpanel = this.getEwayView().down("tabpanel");
-			var paramDetailPanel = this.getEwayView().down("panel[name='paramMonitorDetails']");
-			tabpanel.remove(paramDetailPanel,true);
-		}
-	},
-	
-	onDetail:function(){
+	jobId:0,
+	index:0,
+	onDetail:function(_this){
 		var jobGrid=this.getJobGrid();
 		var sm=jobGrid.getSelectionModel();
 		if(sm.getCount() == 1){
 			var record=sm.getLastSelected();
-			var tabpanel = this.getEwayView().down("tabpanel");
-			var paramDetailPanel = Ext.create("Eway.view.parameter.paramMonitor.TaskView",{jobId:record.get("id")});
-			tabpanel.add(paramDetailPanel);
-			paramDetailPanel.setTitle(EwayLocale.param.paramDownloadMonitor.job+record.get('id')+EwayLocale.param.paramDownloadMonitor.downloadDetail);
-			tabpanel.setActiveItem(paramDetailPanel);
+			this.index = jobGrid.getStore().indexOf(record);
+			var layout = this.getEwayView().getLayout();
+			layout.setActiveItem(1);
+			this.jobId = record.get('id');
+			this.getTaskView().setTitle(EwayLocale.param.paramDownloadMonitor.job+record.get('id')+EwayLocale.param.paramDownloadMonitor.downloadDetail);
 			this.onTaskQuery();
 		}else {
 			Eway.alert(EwayLocale.param.paramDownloadMonitor.chooseRecord);
@@ -77,28 +83,56 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 		var values = form.getValues();
 		var taskGrid = view.down('parameter_paramMonitor_TaskGrid');
 		var store = taskGrid.getStore();
-		if(taskGrid.getJobId()!=0){
+		if(this.jobId!=0){
 			store.setUrlParamsByObject(values);
-			store.setBaseParam('publishId',taskGrid.getJobId());
+			store.setBaseParam('publishId',this.jobId);
 			store.loadPage(1);
 		}
 	},
-	autoJobDetail:function(jobId){
-		if(jobId !=null){
-			var tabpanel = this.getEwayView().down("tabpanel");
-			if(tabpanel.items.length>1){
-				tabpanel.remove(tabpanel.down("parameter_paramMonitor_TaskView"),true);
-			}
-			var paramDetailPanel = Ext.create("Eway.view.parameter.paramMonitor.TaskView",{'jobId':jobId});
-			tabpanel.add(paramDetailPanel);
-			paramDetailPanel.setTitle(EwayLocale.param.paramDownloadMonitor.job+jobId+EwayLocale.param.paramDownloadMonitor.downloadDetail);
-			tabpanel.setActiveItem(paramDetailPanel);
+	autoJobDetail:function(autoJobId){
+		if(autoJobId !=null){
 			var view = this.getEwayView();
-			var store = tabpanel.activeTab.down('parameter_paramMonitor_TaskGrid').getStore();
-			store.setBaseParam('publishId',jobId);
+			var layout = view.getLayout();
+			this.jobId = autoJobId;
+			layout.setActiveItem(1);
+			this.getTaskView().setTitle(EwayLocale.param.paramDownloadMonitor.job+autoJobId+EwayLocale.param.paramDownloadMonitor.downloadDetail);
+			var store = this.getTaskGrid().getStore();
+			store.setBaseParam('publishId',autoJobId);
 			store.loadPage(1);
 		}
 		Ext.Function.defer(this.onTaskQuery,5000,this);
+	},
+	
+	onBack:function(){
+		var layout = this.getEwayView().getLayout();
+		layout.setActiveItem(0);
+	},
+	
+	onNext:function(_this, e, eOpts){
+		var store = this.getJobGrid().getStore();
+		if(this.index - 1 >=0){
+			var rec = store.getAt(this.index - 1);
+			this.showJobDetail(rec);
+			this.index = this.index - 1;
+		}
+	},
+	
+	onPref:function(){
+		var store = this.getJobGrid().getStore();
+		var count = store.getCount();
+		if(this.index + 1 < count){
+			var rec = store.getAt(this.index + 1);
+			this.showJobDetail(rec);
+			this.index = this.index + 1;
+		}
+	},
+	
+	showJobDetail:function(rec){
+		if(rec){
+			this.jobId = rec.get('id');
+			this.getTaskView().setTitle(EwayLocale.param.paramDownloadMonitor.job+rec.get('id')+EwayLocale.param.paramDownloadMonitor.downloadDetail);
+			this.onTaskQuery();
+		}
 	},
 	
 	onCellClick:function( _this, td, cellIndex, record, tr, rowIndex, e, eOpts){
