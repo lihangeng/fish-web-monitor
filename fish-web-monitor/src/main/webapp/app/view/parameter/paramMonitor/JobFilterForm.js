@@ -46,7 +46,6 @@ Ext.define('Eway.view.parameter.paramMonitor.JobFilterForm',{
 				items:[{
 					xtype : 'datefield',
 					editable : false,
-					value : new Date(),
 					format : 'Y-m-d',
 					fieldLabel : EwayLocale.commen.startDataTime,
 					name:'startTime',
@@ -65,7 +64,6 @@ Ext.define('Eway.view.parameter.paramMonitor.JobFilterForm',{
 					name : 'finishTime',
 					fieldLabel : EwayLocale.commen.endDataTime,
 					format:'Y-m-d',
-					value:new Date(),
 					editable:false,
 					dateRange : {
 						begin : 'startTime',
