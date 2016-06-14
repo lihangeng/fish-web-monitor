@@ -28,7 +28,8 @@ Ext.define('Eway.view.parameter.appSystem.FilterForm',{
 					xtype :'textfield',
 					fieldLabel:EwayLocale.param.application.configureName,
 					name:'configName',
-					nameLength:20
+					nameLength:20,
+					labelWidth:130
 				}]
 
 			}/*,{
