@@ -69,14 +69,15 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 		dataIndex : 'deviceCount',
 		header : EwayLocale.report.pivot.common.totalSum,
 		aggregator : 'sum',
-		width : 90
+		align:'center',
+		width : 120
 	} ],
 
 	// Configure the left axis dimensions that will be used to generate the grid rows
 	leftAxis : [ {
 		dataIndex : 'orgName',
 		header : EwayLocale.person.bankOrg.name,
-		maxWidth : 80
+		width: 80
 	} ],
 	showZeroAsBlank: true,
 	/**
@@ -91,13 +92,11 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 		showZeroAsBlank : true,
 		renderer:function(v){
 			return v;
-		},
-		width : 80
+		}
 	},{
 		dataIndex : 'devTypeName',
 		header : 'devTypeName',
-		showZeroAsBlank : true,
-		width : 80
+		showZeroAsBlank : true
 	} ],
 
 	initComponent : function() {
