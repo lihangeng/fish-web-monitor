@@ -3,7 +3,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 	xtype : 'outline-pivot-grid',
 	alias : 'widget.baseReport_DeviceTypeCountReportGrid',
 	requires : [ 'Eway.store.report.baseReport.DeviceVendorCountReport',
-			'Ext.pivot.plugin.Exporter' ],
+			'Ext.pivot.plugin.Exporter' ,'Ext.exporter.file.excel.Style'],
 	//	forceFit : true,
 	rowSubTotalsPosition : 'last',
 	colSubTotalsPosition : 'last',
@@ -49,9 +49,156 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 					glyph : 0xf1c3,
 					text : EwayLocale.button.exportXLS,
 					handler : function() {
-						this.up('baseReport_DeviceTypeCountReportGrid').saveDocumentAs({
+						var exports = this.up('baseReport_DeviceTypeCountReportGrid');
+						var config = exports.getConfig();
+						exports.saveDocumentAs({
 									title : EwayLocale.report.baseReport.devBrandRep,
-									fileName : EwayLocale.report.baseReport.devBrandRep+'.xls'
+									fileName : EwayLocale.report.baseReport.devBrandRep+'.xls',
+									/**
+							         * @cfg {Ext.exporter.file.excel.Style} defaultStyle
+							         *
+							         * Default style applied to all cells
+							         */
+							        defaultStyle: {
+							            alignment: {
+							                Vertical: 'Top'
+							            },
+							            font: {
+							                FontName: 'Calibri',
+							                Family: 'Swiss',
+							                Size: 11,
+							                Color: '#000000'
+							            }
+							        },
+							        /**
+							         * @cfg {Ext.exporter.file.excel.Style} titleStyle
+							         *
+							         * Default style applied to the title
+							         */
+							        titleStyle: {
+							            name: 'Title',
+							            alignment: {
+							                Horizontal: 'Center',
+							                Vertical: 'Center'
+							            },
+							            borders: [
+									                {
+									                    Position: 'Bottom',
+									                    LineStyle: 'Continuous',
+									                    Weight: 2,
+									                    Color: '#0A0A0A'
+									                },{
+									                    Position: 'Top',
+									                    LineStyle: 'Continuous',
+									                    Weight: 2,
+									                    Color: '#0A0A0A'
+									                },{
+									                    Position: 'Left',
+									                    LineStyle: 'Continuous',
+									                    Weight: 2,
+									                    Color: '#0A0A0A'
+									                },{
+									                    Position: 'Right',
+									                    LineStyle: 'Continuous',
+									                    Weight: 2,
+									                    Color: '#0A0A0A'
+									                }
+									    ],
+							            font: {
+							                FontName: 'Cambria',
+							                Family: 'Swiss',
+							                Size: 18,
+							                Color: '#000000'
+							            }
+							        },
+							        /**
+							         * @cfg {Ext.exporter.file.excel.Style} groupHeaderStyle
+							         *
+							         * Default style applied to the group headers
+							         */
+							        groupHeaderStyle: {
+							            name: 'Group Header',
+							            borders: [
+							                {
+							                    Position: 'Bottom',
+							                    LineStyle: 'Continuous',
+							                    Weight: 2,
+							                    Color: '#4F81BD'
+							                }
+							            ]
+							        },
+							        /**
+							         * @cfg {Ext.exporter.file.excel.Style} groupFooterStyle
+							         *
+							         * Default style applied to the group footers
+							         */
+							        groupFooterStyle: {
+							            name: 'Total Footer',
+							            borders: [
+							                {
+									                    Position: 'Bottom',
+									                    LineStyle: 'Continuous',
+									                    Weight: 2,
+									                    Color: '#0A0A0A'
+									                },{
+									                    Position: 'Top',
+									                    LineStyle: 'Continuous',
+									                    Weight: 2,
+									                    Color: '#0A0A0A'
+									                },{
+									                    Position: 'Left',
+									                    LineStyle: 'Continuous',
+									                    Weight: 2,
+									                    Color: '#0A0A0A'
+									                },{
+									                    Position: 'Right',
+									                    LineStyle: 'Continuous',
+									                    Weight: 2,
+									                    Color: '#0A0A0A'
+									                }
+							            ]
+							        },
+							        /**
+							         * @cfg {Ext.exporter.file.excel.Style} tableHeaderStyle
+							         *
+							         * Default style applied to the table headers
+							         */
+							        tableHeaderStyle: {
+							            name: 'Heading 1',
+							            alignment: {
+							                Horizontal: 'Center',
+							                Vertical: 'Center'
+							            },
+							            borders: [
+							                      {
+									                    Position: 'Bottom',
+									                    LineStyle: 'Continuous',
+									                    Weight: 2,
+									                    Color: '#0A0A0A'
+									                },{
+									                    Position: 'Top',
+									                    LineStyle: 'Continuous',
+									                    Weight: 2,
+									                    Color: '#0A0A0A'
+									                },{
+									                    Position: 'Left',
+									                    LineStyle: 'Continuous',
+									                    Weight: 2,
+									                    Color: '#0A0A0A'
+									                },{
+									                    Position: 'Right',
+									                    LineStyle: 'Continuous',
+									                    Weight: 2,
+									                    Color: '#0A0A0A'
+									                }
+							            ],
+							            font: {
+							                FontName: 'Calibri',
+							                Family: 'Swiss',
+							                Size: 12,
+							                Color: '#000000'
+							            }
+							        }
 						});
 					}
 				} ]
@@ -69,14 +216,15 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 		dataIndex : 'deviceCount',
 		header : EwayLocale.report.pivot.common.totalSum,
 		aggregator : 'sum',
-		width : 90
+		align:'center',
+		width : 320
 	} ],
 
 	// Configure the left axis dimensions that will be used to generate the grid rows
 	leftAxis : [ {
 		dataIndex : 'orgName',
 		header : EwayLocale.person.bankOrg.name,
-		maxWidth : 80
+		width: 80
 	} ],
 	showZeroAsBlank: true,
 	/**
@@ -91,13 +239,11 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 		showZeroAsBlank : true,
 		renderer:function(v){
 			return v;
-		},
-		width : 80
+		}
 	},{
 		dataIndex : 'devTypeName',
 		header : 'devTypeName',
-		showZeroAsBlank : true,
-		width : 80
+		showZeroAsBlank : true
 	} ],
 
 	initComponent : function() {

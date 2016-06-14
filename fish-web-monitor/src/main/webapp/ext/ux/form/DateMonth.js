@@ -1,5 +1,5 @@
-Ext.define('Eway.lib.DateMonth', {
-	extend : 'Ext.form.field.Date',
+Ext.define('Ext.ux.form.DateMonth', {
+	extend : 'Ext.ux.form.DateTimeField',
 	alias : 'widget.monthfield',
 	requires : [ 'Ext.picker.Month' ],
 	selectMonth : null,
@@ -56,7 +56,7 @@ Ext.define('Eway.lib.DateMonth', {
 	onCancelClick : function() {
 		var me = this;
 		me.selectMonth = null;
-		me.collapse();
+		me._collapse();
 	},
 	onOKClick : function() {
 		var me = this;
@@ -64,7 +64,7 @@ Ext.define('Eway.lib.DateMonth', {
 			me.setValue(me.selectMonth);
 			me.fireEvent('select', me, me.selectMonth);
 		}
-		me.collapse();
+		me._collapse();
 	},
 	onSelect : function(m, d) {
 		var me = this;

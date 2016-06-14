@@ -169,6 +169,21 @@
 	background-color:#3892d3;
 }
 
+.x-btn-disabled.x-btn  .x-btn-default-toolbar-small-tl,
+.x-btn-disabled.x-btn  .x-btn-default-toolbar-small-tc,
+.x-btn-disabled.x-btn  .x-btn-default-toolbar-small-tr,
+.x-btn-disabled.x-btn  .x-btn-default-toolbar-small-ml,
+.x-btn-disabled.x-btn  .x-btn-default-toolbar-small-mc,
+.x-btn-disabled.x-btn  .x-btn-default-toolbar-small-mr,
+.x-btn-disabled.x-btn  .x-btn-default-toolbar-small-bl,
+.x-btn-disabled.x-btn  .x-btn-default-toolbar-small-bc,
+.x-btn-disabled.x-btn  .x-btn-default-toolbar-small-br
+{
+	background-image:none;
+	background-color:#1c396f;
+}
+
+
 .x-btn-focus .x-btn-default-toolbar-small-tl,
 .x-btn-focus .x-btn-default-toolbar-small-bl,
 .x-btn-focus .x-btn-default-toolbar-small-tr,

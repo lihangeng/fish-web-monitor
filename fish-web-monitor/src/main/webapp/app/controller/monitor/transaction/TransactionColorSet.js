@@ -9,7 +9,7 @@ Ext.define('Eway.controller.monitor.transaction.TransactionColorSet', {
 		xtype : 'monitor_taansaction_colorset_from',
 		width : 500,
 		height : 500,
-		title : '交易返回码'
+		title : EwayLocale.monitor.business.transactionColor.title
 	},
 	refs : [ {
 		ref : 'ewayView',

@@ -363,3 +363,26 @@ Ext.pivot.matrix.Base.override({
         });
     }
 });
+
+//针对pivot报表进行渲染，将leftAxis的宽度设置为可调整的
+Ext.pivot.feature.PivotView.override({
+	recordCompactRenderer: function(config) {
+	    var me = this,
+	        prevRenderer = config['renderer'],
+	        group = config['group'];
+	    return function(value, metaData, record, rowIndex, colIndex, store, view) {
+	        if (Ext.isFunction(prevRenderer)) {
+	            value = prevRenderer.apply(this, arguments);
+	        }
+	        // the value has to be encoded to avoid messing up the DOM
+	        value = me.encodeValue(value, group);
+	        if (group.level > 0) {
+	            metaData.style = (me.isRTL() ? 'margin-right: ' : 'margin-left: ') + (me.compactLayoutPadding * group.level) + 'px;';
+	        }
+	        //将leftAxis的宽度设置为可调整的
+	        metaData.column.width= group.dimension.width;
+	        metaData.tdCls = me.groupHeaderCls + ' ' + me.groupTitleCls + ' ' + me.compactGroupHeaderCls;
+	        return value;
+	    };
+	}
+});
