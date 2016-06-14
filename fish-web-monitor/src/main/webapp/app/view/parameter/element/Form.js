@@ -46,7 +46,7 @@ Ext.define('Eway.view.parameter.element.Form',{
 		   },{
 					xtype : 'field_paramElement_ParamClassify',
 					allowBlank: false,
-					maxLength : 10,
+					maxLength : 64,
 					value:1
 			},{
 					xtype : 'field_paramElement_ParamRights',
