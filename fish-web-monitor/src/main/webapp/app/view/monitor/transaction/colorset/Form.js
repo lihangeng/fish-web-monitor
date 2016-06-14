@@ -19,6 +19,8 @@ Ext.define('Eway.view.monitor.transaction.colorset.Form', {
 				xtype : 'textfield',
 				name : 'hostRet',
 				maxLength : 20,
+				labelAlign:'right',
+				labelWidth: 150,
 				regex: /^([a-zA-Z0-9_]){1,20}$/,
 				allowBlank : false
 			}, {
@@ -28,6 +30,8 @@ Ext.define('Eway.view.monitor.transaction.colorset.Form', {
 				maxLength : 20,
 				editable : false,
 				allowBlank : false,
+				labelAlign:'right',
+				labelWidth: 150,
 				listeners : {
 					afterrender : function(me, eOpts ) {
 						this.formColorRender(me, eOpts);
@@ -41,6 +45,8 @@ Ext.define('Eway.view.monitor.transaction.colorset.Form', {
 				maxLength : 20,
 				editable : false,
 				allowBlank : false,
+				labelAlign:'right',
+				labelWidth: 150,
 				listeners : {
 					afterrender : function(me, eOpts ) {
 						this.formColorRender(me, eOpts);
@@ -51,18 +57,24 @@ Ext.define('Eway.view.monitor.transaction.colorset.Form', {
 				fieldLabel : EwayLocale.monitor.business.transactionColor.hostRetDes,
 				xtype : 'textfield',
 				name : 'hostRetDes',
+				labelAlign:'right',
+				labelWidth: 150,
 				maxLength : 20
 			},{
 				fieldLabel : EwayLocale.monitor.business.transactionColor.localRet,
 				xtype : 'textfield',
 				name : 'localRet',
 				maxLength : 20,
+				labelWidth: 150,
+				labelAlign:'right',
 				regex: /^([a-zA-Z0-9_]){1,20}$/
 			}, {
 				fieldLabel : EwayLocale.monitor.business.transactionColor.localBackgroundColor,
 				xtype : 'colorfield',
 				name : 'localBackgroundColor',
 				maxLength : 20,
+				labelAlign:'right',
+				labelWidth: 150,
 				editable : false,
 				listeners : {
 					afterrender : function(me, eOpts ) {
@@ -75,6 +87,8 @@ Ext.define('Eway.view.monitor.transaction.colorset.Form', {
 				xtype : 'colorfield',
 				name : 'localFontColor',
 				maxLength : 20,
+				labelAlign:'right',
+				labelWidth: 150,
 				editable : false,
 				listeners : {
 					afterrender : function(me, eOpts ) {
@@ -86,6 +100,8 @@ Ext.define('Eway.view.monitor.transaction.colorset.Form', {
 				fieldLabel : EwayLocale.monitor.business.transactionColor.localRetDes,
 				xtype : 'textfield',
 				name : 'localRetDes',
+				labelAlign:'right',
+				labelWidth: 150,
 				maxLength : 20
 			},{
 				xtype : 'textarea',
@@ -93,6 +109,8 @@ Ext.define('Eway.view.monitor.transaction.colorset.Form', {
 				fieldLabel : EwayLocale.monitor.business.transactionColor.remark,
 				autoScroll : true,
 				maxLength : 50,
+				labelAlign:'right',
+				labelWidth: 150,
 				allowBlank : true
 			} ]
 		});
