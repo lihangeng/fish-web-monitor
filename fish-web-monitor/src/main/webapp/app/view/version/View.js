@@ -25,72 +25,90 @@ Ext.define('Eway.view.version.View', {
 						region : 'center'
 					} ]
 				}, {
-					xtype : 'panel',
+					 xtype : 'panel',
 					 itemId: 'versionPic',
 					 layout: {
 					        type: 'table',
 					        columns:2
 				    },
 					defaultType : 'displayfield',
+					title:EwayLocale.version.View.selectVersion,
 					items : [
 					{
 						xtype : 'bar_3d',
-						width : 600,
+						width : 680,
 						rowField : 'title',
 						columnField : 'value',
 						title:'',
 						rowspan: 5
-					} ,{
-						name: 'versionType',
-						fieldLabel : EwayLocale.version.View.versionTypeCode,//'版本路径',
-				        text: '',
-				        labelWidth: 150,
-				        labelAlign:'right',
-				        style: {
-				            fontSize: '20px'
-				        },
-				        margin: '0 0 0 100'
-				    },{
-						name: 'versionPath',
-						fieldLabel : EwayLocale.version.installPath,//'版本路径',
-				        text: '',
-				        labelWidth: 150,
-				        labelAlign:'right',
-				        style: {
-				            fontSize: '20px'
-				        },
-				        margin: '0 0 0 100'
-				    },{
-				    	name: 'versionTime',
-						fieldLabel : EwayLocale.version.View.versionTime,//'创建时间',
-				        text: '',
-				        labelWidth: 150,
-				        labelAlign:'right',
-				        style: {
-				            fontSize: '20px'
-				        },
-				        margin: '0 0 0 100'
-				    },{
-				    	name: 'versionPerson',
-						fieldLabel : EwayLocale.version.View.versionPerson,//'创建人',
-				        text: '',
-				        labelWidth: 150,
-				        labelAlign:'right',
-				        style: {
-				            fontSize: '20px'
-				        },
-				        margin: '0 0 0 100'
-				    },{
-				    	name: 'desc',
-						fieldLabel : EwayLocale.version.View.remark,//'备注',
-				        text: '',
-				        labelWidth: 150,
-				        labelAlign:'right',
-				        style: {
-				            fontSize: '20px'
-				        },
-				        margin: '0 0 0 100'
-				    } ]
+					},{
+						xtype: 'propertygrid',
+		                nameColumnWidth: 180,
+		                margin:'25 0 0 20',
+		                height: 300,
+		                width:390,
+		                sortableColumns:false,
+		                source: {
+		                	versionType: '',
+		                	versionPath: '',
+		                	versionTime: '',
+		                	versionPerson: '',
+		                	versionStatus: '',
+		                	autoDown:'',
+		                	desc: ''
+		                },
+		                sourceConfig:{
+		                	versionType :{
+		                		editor: Ext.create('Ext.form.field.Text', {
+		                			readOnly :true
+			                		}
+		                		)
+		                	},
+		                	versionPath :{
+		                		editor: Ext.create('Ext.form.field.Text', {
+		                			readOnly :true
+			                		}
+		                		)
+		                	},
+		                	versionTime :{
+		                		editor: Ext.create('Ext.form.field.Text', {
+		                			readOnly :true
+			                		}
+		                		)
+		                	},
+		                	versionPerson:{
+		                		editor: Ext.create('Ext.form.field.Text', {
+		                			readOnly :true
+			                		}
+		                		)
+		                	},
+		                	versionStatus:{
+		                		editor: Ext.create('Ext.form.field.Text', {
+		                			readOnly :true
+			                		}
+		                		)
+		                	},
+		                	autoDown:{
+		                		editor: Ext.create('Ext.form.field.Text', {
+		                			readOnly :true
+			                		}
+		                		)
+		                	},
+		                	desc :{
+		                		editor: Ext.create('Ext.form.field.Text', {
+		                			readOnly :true
+			                		}
+		                		)
+		                	}
+		                },
+		                propertyNames:{versionType:EwayLocale.version.View.versionTypeCode,
+		                			   versionPath:EwayLocale.version.installPath,
+		                			   versionTime:EwayLocale.version.View.versionTime,
+		                			   versionPerson:EwayLocale.version.View.versionPerson,
+		                			   versionStatus:EwayLocale.version.View.versionStatus,
+		                			   autoDown:EwayLocale.version.View.autoUpdate,
+		                			   desc:EwayLocale.version.View.remark},
+					} ]
 				}, {// 当选择一个图形的内容时，现实对应的设备信息（Grid）
 					xtype : 'version_charts_grid',
 					height : 350,

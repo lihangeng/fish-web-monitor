@@ -257,6 +257,7 @@ Ext.apply(EwayLocale,{
 			downloadVersionName:'Version Issued',//EwayLocale.version.View.downloadVersionName
 			downloadVersionNameEmpty:'Please Choose A Version Which You Want To Issue',//EwayLocale.version.View.downloadVersionNameEmpty
 			distributionPic:'Patch Distribution',//EwayLocale.version.View.distributionPic
+			selectVersion:'Please Choose A Version',//EwayLocale.version.View.selectVersion
 			job:{
 				newCreate:'New', //EwayLocale.version.View.job.newCreate
 				running:'Running', //EwayLocale.version.View.job.running
