@@ -3,7 +3,9 @@ Ext.define('Eway.view.report.faultRateReport.BrandView', {
 	alias : 'widget.report_faultRateReport_brandView',
 
 	requires : [ 'Eway.view.report.faultRateReport.BrandGrid',
-			'Eway.view.report.faultRateReport.BrandCharts'],
+			'Eway.view.report.faultRateReport.BrandCharts',
+			'Ext.ux.form.MonthComBox'
+			],
 
 	title : EwayLocale.report.faultRateReport.viewTitle,
 	closable: false,
@@ -16,10 +18,10 @@ Ext.define('Eway.view.report.faultRateReport.BrandView', {
 						xtype:'form',
 						layout:'column',
 						items : [ {
-							xtype : 'datefield',
+							xtype : 'MonthComBox',
 							fieldLabel : EwayLocale.report.faultRateReport.dateMonth,
 							editable : false,
-							value : new Date(new Date().getFullYear(),new Date().getMonth()-1,new Date().getDate()),
+							value : Ext.Date.format( Ext.Date.add(new Date(), Ext.Date.MONTH, -1),'Ym'),
 							labelAlign : 'left',
 							format : 'Ym',
 							name : 'dateMonth',
@@ -27,6 +29,11 @@ Ext.define('Eway.view.report.faultRateReport.BrandView', {
 							anchor : '100%',
 							height : 30,
 							canClear: false
+						}, {
+							xtype : 'displayfield',
+							name : 'monthLimit',
+							value :　6,
+							hidden : true
 						} ]
 					},  {
 						xtype : 'report_faultRateReport_BrandGrid',
