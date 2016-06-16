@@ -339,15 +339,15 @@ Ext.define('Eway.controller.person.BankOrg', {
 		var sm = grid.getSelectionModel();
 		if (sm.getCount() == 1) {
 			var win = Ext.create('Eway.view.person.bankOrg.Move');
-			var record = sm.getLastSelected();
-			var upddata = record.data;
-			var selected;
-			var stores = Ext.create('Eway.store.person.organization.OrganizationLevelDict');
-			Ext.Array.forEach(stores.data.items, function(item,index) {
-				if (item.data.display == upddata.orgLevel) {
-					selected = item;
-				}
-			});
+//			var record = sm.getLastSelected();
+//			var upddata = record.data;
+//			var selected;
+//			var stores = Ext.create('Eway.store.person.organization.OrganizationLevelDict');
+//			Ext.Array.forEach(stores.data.items, function(item,index) {
+//				if (item.data.display == upddata.orgLevel) {
+//					selected = item;
+//				}
+//			});
 			win.down('button[action="move"]').on('click',this.onMoveConfirm, this);
 			win.show();
 		} else {
