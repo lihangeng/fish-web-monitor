@@ -454,7 +454,7 @@ Ext.define('Eway.controller.machine.atmGroup.AtmGroup', {
 									url : 'api/machine/atmGroup/unlink',
 									params : {groupId :groupRecord.data.id,deviceId:record.data.id},
 									success: function(){
-										Eway.alert(EwayLocale.updateSuccess);
+										Eway.alert(EwayLocale.deleteSuccess);
 										me.onDeviceQueryDevice();
 									},
 									failure: function(){
