@@ -1,7 +1,8 @@
 Ext.define('Eway.view.report.baseReport.TransactionDaysCountFilterForm', {
 	extend : 'Eway.view.base.FilterForm',
 	alias : 'widget.baseReport_TransactionDaysCountFilterForm',
-	requires : ['Eway.view.common.OrgComboOrgTree'],
+	requires : ['Eway.view.common.OrgComboOrgTree',
+	            'Ext.ux.form.DateMonth'],
 	height : 70,
 	layout : 'column',
 	defaults : {
@@ -51,7 +52,7 @@ Ext.define('Eway.view.report.baseReport.TransactionDaysCountFilterForm', {
 				}, {
 					width : 280,
 					name : 'month',
-					xtype : 'datefield',
+					xtype : 'monthfield',
 					fieldLabel : EwayLocale.commen.monthTime,
 					editable : false,
 					value : new Date(),

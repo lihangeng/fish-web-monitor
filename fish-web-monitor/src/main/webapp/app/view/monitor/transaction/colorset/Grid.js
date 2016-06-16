@@ -79,7 +79,7 @@ Ext.define('Eway.view.monitor.transaction.colorset.Grid', {
 				width : 150,
 				dataIndex : 'updateDateTime'
 			}, {
-				header : EwayLocale.monitor.business.transactionColor.title,
+				header : EwayLocale.commen.remark,
 				width : 300,
 				dataIndex : 'remark'
 			} ],
