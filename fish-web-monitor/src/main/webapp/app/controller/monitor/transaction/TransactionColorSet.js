@@ -46,5 +46,12 @@ Ext.define('Eway.controller.monitor.transaction.TransactionColorSet', {
 				scope : this
 			}
 		});
+	},
+	
+	onQueryAfterUpdate  : function(win,grid){
+		
+		var store = this.getGridPanel().getStore();
+		store.setUrlParamsByObject();
+		store.loadPage(1);
 	}
 });
