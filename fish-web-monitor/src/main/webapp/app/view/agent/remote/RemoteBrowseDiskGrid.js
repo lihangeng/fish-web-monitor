@@ -21,7 +21,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseDiskGrid', {
 			},
 			tbar: [{
 				text: EwayLocale.agent.remote.refresh,
-				iconCls:'refresh-btn-custom',
+				glyph : 0xf002,
 				handler: this.onReload,
 				scope: this
 			}],
