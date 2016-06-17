@@ -22,17 +22,17 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 			},
 			tbar: [{
 				text:EwayLocale.agent.remote.back,
-				iconCls:'up-btn-custom',
+				glyph : 0xf112,
 				action:'returnMenu',
 				xtype : 'button'
 			},{
 				text: EwayLocale.agent.remote.refresh,
-				iconCls:'refresh-btn-custom',
+				glyph : 0xf021,
 				action:'reflesh',
 				xtype : 'button'
 			},{
 				text: EwayLocale.agent.remote.upload,
-				iconCls:'upfile-btn-custom',
+				glyph : 0xf093,
 				action:'upFile',
 				xtype : 'button',
 				code : 'remoteUpFile',
@@ -42,7 +42,7 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 			},{
 				text: EwayLocale.agent.remote.mergeload,
 				action:'mergeLoad',
-				glyph : 0xf002,
+				glyph : 0xf0c9,
 				xtype : 'button',
 				code : 'remoteMergeDownFile',
 				listeners:{
@@ -111,18 +111,15 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 				header : EwayLocale.agent.remote.name,
 				sortable : true,
 				renderer: this.iconBackground,
-				width : 260,
+				flex: 1,
 				dataIndex : 'name',
 				renderer: function (value, meta, record) {
 					meta.tdAttr = 'data-qtip="'+ value+ '"';
-					
 					if(record.data.type == "DIR") {
-						return '<span class="floder-name-blackground">&nbsp;&nbsp;&nbsp;&nbsp;</span>'+" "+value;
+						return '<span class="fa fa-folder-o"></span>'+ "&nbsp;&nbsp;" +value;
 					} else {
-						return '<span class="file-name-blackground">&nbsp;&nbsp;&nbsp;&nbsp;</span>'+" "+value;
+						return '<span class="fa fa-file-o"></span>'+"&nbsp;&nbsp;"+value;
 					}
-					
-//					return value;
 	            }
 
 			}, {
@@ -162,10 +159,8 @@ Ext.define('Eway.view.agent.remote.RemoteBrowseFileSystemGrid', {
 				sortable : true
 			},{
 				header : EwayLocale.agent.remote.screen.loading,
-				flex: 1,
-
+				width : 80,
 				xtype:'actioncolumn',
-				flex:1,
 				items:[{
                     icon:"././././resources/images/downfile.png",
                     iconCls:'<span class="floder-name-blackground">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>',
