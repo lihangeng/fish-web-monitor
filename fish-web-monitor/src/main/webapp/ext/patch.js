@@ -386,3 +386,43 @@ Ext.pivot.feature.PivotView.override({
 	    };
 	}
 });
+
+//修复IE9浏览器下filefield文本框不兼容问题
+Ext.form.field.File.override({
+	onRender: function() {
+	    var me = this,
+	        inputEl, button, buttonEl, trigger;
+
+	    me.callParent(arguments);
+
+	    inputEl = me.inputEl;
+	    //name goes on the fileInput, not the text input
+	    inputEl.dom.name = ''; 
+	    // Some browsers will show a blinking cursor in the field, even if it's readonly. If we do happen
+	    // to receive focus, forward it on to our focusEl. Also note that in IE, the file input is treated as
+	    // 2 elements for tabbing purposes (the text, then the button). So as you tab through, it will take 2
+	    // tabs to get to the next field. As far as I know there's no way around this in any kind of reasonable way.
+	    inputEl.on('focus', me.focus, me);
+
+	    trigger = me.getTrigger('filebutton');
+	    button = me.button = trigger.component;
+	    me.fileInputEl = button.fileInputEl;
+	    buttonEl = button.el;
+
+	    if (me.buttonOnly) {
+	        me.inputWrap.setDisplayed(false);
+	        if(Ext.isIE){
+		        me.setStyle("width","60px");
+		        me.setStyle("margin","2px 100px 0px 0px");
+	        }
+	        me.shrinkWrap = 3;
+	    }
+
+	    // Ensure the trigger element is sized correctly upon render
+	    trigger.el.setWidth(buttonEl.getWidth() + buttonEl.getMargin('lr'));
+	    if (Ext.isIE) {
+	        me.button.getEl().repaint();
+	    }
+	}
+
+	});

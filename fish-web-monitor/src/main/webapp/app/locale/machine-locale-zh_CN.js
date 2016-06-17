@@ -144,7 +144,7 @@ Ext.apply(EwayLocale,{
 			exponents:'指数',//EwayLocale.machine.device.exponents
 
 			CIMInfo:'存款模块 （CIM）属性信息',//EwayLocale.machine.device.CIMInfo
-			canEscrow:'是否具有暂存器X',//EwayLocale.machine.device.canEscrow
+			canEscrow:'是否具有暂存器',//EwayLocale.machine.device.canEscrow
 			shutterControlSupported:'是否支持控制shutter门',//EwayLocale.machine.device.shutterControlSupported
 			maxAcceptItems:'单笔最大验钞张数',//EwayLocale.machine.device.maxAcceptItems
 			canDetectCashInserted:'是否能探测钞票放入',//EwayLocale.machine.device.canDetectCashInserted
