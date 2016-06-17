@@ -388,6 +388,7 @@ Ext.pivot.feature.PivotView.override({
 });
 
 //修复IE9浏览器下filefield文本框不兼容问题
+Ext.form.field.File.override({
 	onRender: function() {
 	    var me = this,
 	        inputEl, button, buttonEl, trigger;
