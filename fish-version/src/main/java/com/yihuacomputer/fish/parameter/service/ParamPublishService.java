@@ -570,8 +570,6 @@ public class ParamPublishService implements IParamPublishService {
 		return noticeDeviceDownloadParamFileByDevice(deviceIds, versionList, personId);
 	}
 
-	// @Autowired
-	// private SessionFactory sessionFactory;
 
 	@Override
 	public IParamPublish save(IParamPublish publish) {
