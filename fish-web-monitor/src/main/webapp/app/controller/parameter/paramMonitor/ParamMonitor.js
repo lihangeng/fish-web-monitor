@@ -109,30 +109,36 @@ Ext.define('Eway.controller.parameter.paramMonitor.ParamMonitor',{
 	},
 	
 	onNext:function(_this, e, eOpts){
-		var store = this.getJobGrid().getStore();
-		if(this.index - 1 >=0){
-			var rec = store.getAt(this.index - 1);
-			this.showJobDetail(rec);
-			this.index = this.index - 1;
-		}
+		this.showJobDetail("1");
 	},
 	
 	onPref:function(){
-		var store = this.getJobGrid().getStore();
-		var count = store.getCount();
-		if(this.index + 1 < count){
-			var rec = store.getAt(this.index + 1);
-			this.showJobDetail(rec);
-			this.index = this.index + 1;
-		}
+		this.showJobDetail("-1");
 	},
 	
-	showJobDetail:function(rec){
-		if(rec){
-			this.jobId = rec.get('id');
-			this.getTaskView().setTitle(EwayLocale.param.paramDownloadMonitor.job+rec.get('id')+EwayLocale.param.paramDownloadMonitor.downloadDetail);
-			this.onTaskQuery();
-		}
+	showJobDetail:function(flag){
+		
+		var me = this;
+		Ext.Ajax.request({
+		    url: 'api/parameter/downloadMonitor/searchNextJob',
+		    method:'GET',
+		    params: {
+		    	jobId: me.jobId,
+		        nextRecord:flag
+		    },
+		    success: function(response){
+		        var text = response.responseText;
+		        var object = Ext.decode(text);
+		        me.jobId=object.displayJobId;
+		        me.getTaskView().setTitle(EwayLocale.param.paramDownloadMonitor.job+me.jobId+EwayLocale.param.paramDownloadMonitor.downloadDetail);
+		    	me.onTaskQuery();
+		    },
+		    failure:function(){
+		    		Eway.alert(EwayLocale.version.download.queryJobFailed);	
+		    }
+
+		});
+		
 	},
 	
 	onCellClick:function( _this, td, cellIndex, record, tr, rowIndex, e, eOpts){

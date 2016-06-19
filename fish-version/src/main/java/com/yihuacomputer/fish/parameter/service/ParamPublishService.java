@@ -44,6 +44,7 @@ import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.parameter.ParamInfo;
 import com.yihuacomputer.fish.api.version.VersionCfg;
+import com.yihuacomputer.fish.api.version.job.JobType;
 import com.yihuacomputer.fish.parameter.entity.ParamDeviceDetail;
 import com.yihuacomputer.fish.parameter.entity.ParamElement;
 import com.yihuacomputer.fish.parameter.entity.ParamPublish;
@@ -545,7 +546,7 @@ public class ParamPublishService implements IParamPublishService {
 
 	@Override
 	public IParamPublish get(long id) {
-		return dao.get(id, IParamPublish.class);
+		return dao.get(id, ParamPublish.class);
 	}
 
 	@Override
@@ -574,6 +575,13 @@ public class ParamPublishService implements IParamPublishService {
 	@Override
 	public IParamPublish save(IParamPublish publish) {
 		return dao.save(publish);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<IParamPublish> list(IFilter filter) {
+        filter.ne("jobType", JobType.AUTO_UPDATE);
+        return dao.findByFilter(filter, IParamPublish.class);
 	}
 
 }
