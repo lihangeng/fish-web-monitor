@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.yihuacomputer.fish</groupId>
 	<artifactId>atmvs</artifactId>
-	<version>2.1.0.8-SNAPSHOT</version>
+	<version>2.1.0.8</version>
 	<name>atmvs</name>	
 	<description>标准化监控系统服务器</description>
 	<packaging>pom</packaging>
@@ -23,7 +23,7 @@
 	 	<connection>scm:git:ssh://git@10.2.8.252/atmvs.git</connection>
         <developerConnection>scm:git:ssh://git@10.2.8.252/atmvs.git</developerConnection>
         <url>http://10.2.8.252/gitweb/?p=atmvs.git</url>
-        <tag>HEAD</tag>
+        <tag>atmvs-2.1.0.8</tag>
 	</scm>
 		<properties>
 		<!-- 主要依赖库的版本定义 -->
