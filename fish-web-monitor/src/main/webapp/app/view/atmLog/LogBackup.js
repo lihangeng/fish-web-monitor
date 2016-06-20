@@ -21,7 +21,7 @@ Ext.define('Eway.view.atmLog.LogBackup',{
 					glyph : 0xf002,
 					action : 'query'
 			}],
-	    
+	closable:false,  
 	initComponent : function(){		
 		Ext.apply(this,{
 			items : [{
