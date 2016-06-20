@@ -238,9 +238,10 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 				var object = Ext.decode(response.responseText);
 				winEl.unmask();
 				if (object.success == true) {
-					Eway.alert(succMsg);
 					win.close();
 					me._onFilterManagerQuery();
+					Eway.alert(succMsg);
+					
 				} else {
 					Eway.alert(object.errorMsg);
 				}

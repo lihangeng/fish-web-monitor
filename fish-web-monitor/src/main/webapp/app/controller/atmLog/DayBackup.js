@@ -83,7 +83,6 @@ Ext.define('Eway.controller.atmLog.DayBackup',{
 	},
 	onQuerybackUp: function(lastDay,logBackupPanel,logBackupStore,backupResult){		
 		var terminalId = logBackupPanel.down('textfield[name=terminalId]').value;
-		console.log(terminalId);
 		logBackupStore.load({
 			params:{
 				dateTime:lastDay,

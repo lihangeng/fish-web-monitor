@@ -2,7 +2,7 @@ Ext.define('Eway.view.atmLog.LogBackup',{
 
 	extend : 'Eway.view.base.Panel',
 	alias : 'widget.atmLog_LogBackup',
-	
+	closable:false,
 	requires : [
 		'Eway.view.atmLog.LogBackupGrid',
 		'Eway.view.atmLog.LogBackupFilterForm'
@@ -21,7 +21,7 @@ Ext.define('Eway.view.atmLog.LogBackup',{
 					glyph : 0xf002,
 					action : 'query'
 			}],
-	    
+	closable:false,  
 	initComponent : function(){		
 		Ext.apply(this,{
 			items : [{

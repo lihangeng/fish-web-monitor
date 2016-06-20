@@ -12,7 +12,7 @@
 .x-treelist-nav .x-treelist-item-tool{color:#adb3b8;font-size:18px;width:24px}
 .x-treelist-nav .x-treelist-item-tool{width:44px}
 .x-treelist-nav .x-treelist-item-expander{color:#adb3b8;font-size:16px;width:24px}
-.x-treelist-nav .x-treelist-item-text{color:#adb3b8;margin-left:44px;margin-right:24px;line-height:36px}
+.x-treelist-nav .x-treelist-item-text{color:#adb3b8;margin-left:44px;margin-right:24px;line-height:36px;}
 .x-treelist-nav .x-treelist-row{padding-left:10px;padding-right:10px}
 .x-treelist-nav .x-treelist-row:hover:before,
 .x-treelist-nav .x-treelist-item-selected > .x-treelist-row:before{content:" ";position:absolute;display:block;left:0;top:0;width:6px;height:100%}
