@@ -3,6 +3,8 @@ package com.yihuacomputer.fish.api.parameter;
 import java.util.List;
 import java.util.Map;
 
+import com.yihuacomputer.common.IFilter;
+
 
 /**
  * 执行参数下发
@@ -17,6 +19,9 @@ public interface IParamPublishService {
 	IParamPublish save(IParamPublish publish);
 	IParamPublish get(long id);
 	IParamPublishResultService getParamPulishResultService() ;
+	
+	
+	List<IParamPublish> list(IFilter filter);
 	
 	/**
 	 * 根据模板ID和操作人员信息进行下发操作
@@ -40,5 +45,8 @@ public interface IParamPublishService {
 	 * @return
 	 */
 	public Map<String, Long> getMaxVersionNoInfoByDeviceId(long deviceId);
+	
+	
+	
 	
 }
