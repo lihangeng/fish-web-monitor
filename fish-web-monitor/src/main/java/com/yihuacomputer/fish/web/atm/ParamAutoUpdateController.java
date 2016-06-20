@@ -85,7 +85,7 @@ public class ParamAutoUpdateController {
 					IParamPublish paramPublish = paramPublishService.make();
 					paramPublish.setJobType(JobType.AUTO_UPDATE);
 					paramPublish.setDate(date);
-					paramPublish.setPublisher(0);
+					paramPublish.setPublisher(1);
 					paramPublishService.save(paramPublish);
 					
 					logger.debug(String.format("paramPublish job create success,id is %d",paramPublish.getId()));

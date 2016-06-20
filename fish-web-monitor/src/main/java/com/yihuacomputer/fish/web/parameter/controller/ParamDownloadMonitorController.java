@@ -28,6 +28,7 @@ import com.yihuacomputer.fish.api.parameter.IParamPublish;
 import com.yihuacomputer.fish.api.parameter.IParamPublishAppResult;
 import com.yihuacomputer.fish.api.parameter.IParamPublishResultService;
 import com.yihuacomputer.fish.api.parameter.IParamPublishSearchService;
+import com.yihuacomputer.fish.api.parameter.IParamPublishService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplate;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.parameter.ParamDownloadResultForm;
@@ -47,6 +48,8 @@ public class ParamDownloadMonitorController {
 	@Autowired
 	private IParamPublishResultService paramPublishResultService;
 	
+	@Autowired
+	private IParamPublishService paramPublishService;
 	
 	@Autowired
 	private IParamTemplateService paramtemplateService;
@@ -185,6 +188,32 @@ public class ParamDownloadMonitorController {
 			result.addAttribute(FishConstant.TOTAL, list.size());
 			result.addAttribute(FishConstant.DATA, statusConvert(list));
 		}
+		return result;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/searchNextJob")
+	public @ResponseBody ModelMap searchJobInfo(@RequestParam long jobId, HttpServletRequest request, WebRequest wRequest) {
+		ModelMap result = new ModelMap();
+		IFilter filter = new Filter();
+		String nextRecord = request.getParameter("nextRecord");
+		long displayJobId = jobId;
+		// 前一页
+		if (nextRecord.equals("-1")) {
+			filter.lt("id", jobId);
+			filter.descOrder("id");
+			List<IParamPublish> paramPublishList = paramPublishService.list(filter);
+			displayJobId = paramPublishList.size() > 0 ? paramPublishList.get(0).getId() : jobId;
+		}
+		// 后一页
+		else if (nextRecord.equals("1")) {
+			filter.gt("id", jobId);
+			filter.order("id");
+			List<IParamPublish> paramPublishList = paramPublishService.list(filter);
+			displayJobId = paramPublishList.size() > 0 ? paramPublishList.get(0).getId() : jobId;
+		}
+		result.addAttribute(FishConstant.SUCCESS, true);
+		result.addAttribute("total", "");
+		result.addAttribute("displayJobId", displayJobId);
 		return result;
 	}
 	
