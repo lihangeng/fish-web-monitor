@@ -31,7 +31,7 @@ public class BoxSettleDetail implements IBoxSettleDetail {
 	@Column(name = "BOX_ID", nullable = false, length = 15)
 	private String boxId;
 
-	@Column(name = "BOX_CURRENCY", length = 5)
+	@Column(name = "BOX_CURRENCY", length = 10)
 	private String boxCurrency;
 
 	@Column(name = "BOX_LEFT_AMT")
