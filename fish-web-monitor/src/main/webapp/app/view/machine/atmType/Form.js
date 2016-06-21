@@ -48,10 +48,24 @@ Ext.define('Eway.view.machine.atmType.Form',{
 				value: '1',
 				allowBlank : false,
 				editable : false
-			},
+			},{
+				
+				tbar : [{
+				text: EwayLocale.machine.atmType.modules,//'该类型包含的设备模块',,
+	        	xtype:'tbtext'
+	        },{
+				xtype : 'button',
+				text : EwayLocale.commen.selectAll,
+				handler : this.onCheckAll,
+				scope : this
+			},{
+				xtype : 'button',
+				text : EwayLocale.commen.selectNon,
+				handler : this.unCheckAll,
+				scope : this
+			}],},
 			{
-				xtype: 'checkboxgroup',
-	            fieldLabel: EwayLocale.machine.atmType.modules,//'该类型包含的设备模块',
+				xtype: 'checkboxgroup',	           
 	            labelWith:120,
 	            columns: 3,
 	            loader : {//使用自定义的加载方式
@@ -89,5 +103,18 @@ Ext.define('Eway.view.machine.atmType.Form',{
 		]
 	 	});
 	 	this.callParent(arguments);
-	 }
+	 },
+	 onCheckAll : function(_this) {  
+		  var length = this.down('checkboxgroup').items.items.length;
+		  for(var i=0;i<length;i++){
+			  this.down('checkboxgroup').items.items[i].setValue(true)
+		  }
+		} ,
+	unCheckAll : function() {  
+			  
+		 var length = this.down('checkboxgroup').items.items.length;
+		  for(var i=0;i<length;i++){
+			  this.down('checkboxgroup').items.items[i].setValue(false)
+		  } 
+			}  
 });

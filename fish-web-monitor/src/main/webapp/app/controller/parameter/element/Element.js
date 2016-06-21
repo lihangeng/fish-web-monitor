@@ -102,8 +102,8 @@ Ext.define('Eway.controller.parameter.element.Element', {
 							Eway.alert(EwayLocale.param.element.importSuccess);
 						},
 						failure :function(form, action){
-							Eway.alert(action.result.content);
 							Ext.Msg.hide();
+							Eway.alert(action.result.content);
 						},
 						scope :this
 					});
