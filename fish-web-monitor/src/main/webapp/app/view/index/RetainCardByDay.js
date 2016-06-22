@@ -9,6 +9,7 @@ Ext.define('Eway.view.index.RetainCardByDay', {
 
 	tools:[{
 	    type:'refresh',
+	    tooltip: EwayLocale.button.refresh,
 	    handler: function(event, toolEl, panelHeader) {
 	     	this.up('retainCardByDay').down('cartesian').getStore().load();
 	    }

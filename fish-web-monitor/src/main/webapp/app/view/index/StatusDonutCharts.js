@@ -13,6 +13,7 @@ Ext.define('Eway.view.index.StatusDonutCharts', {
     
     tools:[{
 	    type:'refresh',
+	    tooltip: EwayLocale.button.refresh,
 	    handler: function(event, toolEl, panelHeader) {
 	    	var panel = this.up('statusDonutCharts');
 	     	panel.down('polar').getStore().load({

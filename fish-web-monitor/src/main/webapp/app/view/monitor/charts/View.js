@@ -99,7 +99,7 @@ Ext.define('Eway.view.monitor.charts.View', {
 	            labelField:'numberInfo',
 	            tools:[{
 	                type:'refresh',
-	                tooltip: 'Refresh',
+	                tooltip: EwayLocale.button.refresh,
 	                marginLeft: 10,
 	                handler: function(event, toolEl, panelHeader) {
 	                	me.refresh();

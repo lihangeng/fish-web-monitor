@@ -42,7 +42,7 @@ Ext.define('Eway.view.index.VersionDistributePie', {
 		}
 	},{
 	    type:'refresh',
-	    tooltip: 'Refresh',
+	    tooltip: EwayLocale.button.refresh,
 	    handler: function(event, toolEl, panelHeader) {
 	     	var panel = this.up('versionDistributePie');
 	     	var comboxValue = panel.down('combo').getValue();

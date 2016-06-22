@@ -10,6 +10,7 @@ Ext.define('Eway.view.index.FaultTrendByDay', {
 
 	tools:[{
 	    type:'refresh',
+	    tooltip: EwayLocale.button.refresh,
 	    handler: function(event, toolEl, panelHeader) {
 	     	this.up('faultTrendByDay').down('cartesian').getStore().load();
 	    }
