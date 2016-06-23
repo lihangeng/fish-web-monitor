@@ -1185,3 +1185,8 @@ pre.link{
 .menu-reports {
 	background: url(../images/menu1.png) 0px -120px no-repeat !important;
 }
+/*去除IE浏览器的'X'*/
+input::-ms-clear{
+	display:none;
+	
+}
