@@ -33,7 +33,7 @@ Ext.define('Eway.view.version.distribute.VersionPie', {
 		}
 	},{
 	    type:'refresh',
-	    tooltip: 'Refresh'
+	    tooltip: EwayLocale.button.refresh
 	}],
     
     initComponent: function() {

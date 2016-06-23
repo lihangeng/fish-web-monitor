@@ -7,7 +7,7 @@ Ext.define('Eway.view.version.distribute.VersionStatusPie', {
     },
     tools:[{
 	    type:'refresh',
-	    tooltip: 'Refresh'
+	    tooltip: EwayLocale.button.refresh
 	}],
     
     initComponent: function() {
