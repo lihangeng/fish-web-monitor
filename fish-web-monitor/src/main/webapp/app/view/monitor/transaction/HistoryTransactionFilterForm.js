@@ -87,7 +87,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 							valueField : 'value',
 							name : 'startAmt',
 							lessThan : 'endAmt',
-							width : 100,
+							width : 110,
 							listeners : {
 								change : {
 						            fn: function(This, options){
@@ -108,7 +108,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 							xtype : 'numberfield',
 		        			hideTrigger:true,
 							greaterThan : 'startAmt',
-							width : 100,
+							width : 110,
 							name : 'endAmt',
 							listeners : {
 								change : {
@@ -139,7 +139,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 							name : 'startDateTime',
 							value : Ext.Date.add(new Date(), Ext.Date.DAY, -2),
 							vtype : 'daterange',
-							width : 100,
+							width : 110,
 							endDateField : 'endDateTime',
 							listeners : {
 							blur : {
@@ -160,7 +160,7 @@ Ext.define('Eway.view.monitor.transaction.HistoryTransactionFilterForm', {
 							displayField : 'display',
 							valueField : 'value',
 							fieldLabel : EwayLocale.monitor.business.transaction.amt,
-							width : 100,
+							width : 110,
 							xtype : 'datefield',
 							format : 'Y-m-d',
 							editable : false,
