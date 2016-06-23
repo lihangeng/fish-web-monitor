@@ -38,6 +38,7 @@ Ext.define('Eway.view.report.faultRateReport.BrandView', {
 						store:store
 					}, {
 						xtype : 'report_faultRateReport_BrandCharts',
+						scrollable:true,
 						store:store,
 						region : 'south'
 					} ],

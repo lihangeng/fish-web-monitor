@@ -86,13 +86,34 @@ Ext.define('Eway.view.version.View', {
 		                		editor: Ext.create('Ext.form.field.Text', {
 		                			readOnly :true
 			                		}
-		                		)
+		                		),
+		                		renderer: function(value){
+		        					if(value == 'NEW'){
+		        						return EwayLocale.version.View.newCreate;//新建
+		        					}else if(value == "WAITING"){
+		        						return EwayLocale.version.View.waitting;//等待下发
+		        					}else if(value == "DOWNLOADED"){
+		        						return EwayLocale.version.View.downLoaded;//已下发
+		        					}else{
+		        						return;
+		        					}
+		        				},
 		                	},
 		                	autoDown:{
 		                		editor: Ext.create('Ext.form.field.Text', {
 		                			readOnly :true
 			                		}
-		                		)
+		                		),
+		                		renderer: function(value){
+		                			if(value == '' && value.length==0){
+		                				return '';
+		                			}
+		                			else if(value == "true"|| value == true){
+		        						return EwayLocale.version.View.autoUpdateYes;//"是";
+		        					}else{
+		        						return EwayLocale.version.View.autoUpdateNo;//"否";
+		        					}
+		        				},
 		                	},
 		                	desc :{
 		                		editor: Ext.create('Ext.form.field.Text', {

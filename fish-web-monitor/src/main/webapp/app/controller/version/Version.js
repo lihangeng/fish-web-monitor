@@ -69,6 +69,7 @@ Ext.define('Eway.controller.version.Version', {
 		}
 		var chartsStore = this.getEwayView().down("bar_3d cartesian").getStore();
 		
+		var versionStatus=
 		chartsStore.load({
 		    params: {
 		        versionId:record.get("id")

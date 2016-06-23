@@ -8,7 +8,8 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
     	columnField:'rate',
     	rowField:'name'
     },
-	border : false,
+    scrollable:true,
+	border : true,
 	closable : false ,	
     initComponent: function() {
     	var me = this;
@@ -16,7 +17,7 @@ Ext.define('Eway.view.report.faultRateReport.BrandCharts', {
         items : [{
                 xtype: 'cartesian',
                 reference: 'chart',
-                width: '100%',
+                width: '200%',
                 theme: {
                     type: 'muted'
                 },
