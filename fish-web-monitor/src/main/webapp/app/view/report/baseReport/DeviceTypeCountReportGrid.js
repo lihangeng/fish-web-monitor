@@ -55,152 +55,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 									type: 'excel',
 									title : EwayLocale.report.baseReport.devBrandRep,
 									fileName : EwayLocale.report.baseReport.devBrandRep+'.xls',
-									windowWidth:100,
-									/**
-							         * @cfg {Ext.exporter.file.excel.Style} defaultStyle
-							         *
-							         * Default style applied to all cells
-							         */
-							        defaultStyle: {
-							            alignment: {
-							                Vertical: 'Top'
-							            },
-							            font: {
-							                FontName: 'Calibri',
-							                Family: 'Swiss',
-							                Size: 11,
-							                Color: '#000000'
-							            }
-							        },
-							        /**
-							         * @cfg {Ext.exporter.file.excel.Style} titleStyle
-							         *
-							         * Default style applied to the title
-							         */
-							        titleStyle: {
-							            name: 'Title',
-							            alignment: {
-							                Horizontal: 'Center',
-							                Vertical: 'Center'
-							            },
-							            borders: [
-									                {
-									                    Position: 'Bottom',
-									                    LineStyle: 'Continuous',
-									                    Weight: 2,
-									                    Color: '#0A0A0A'
-									                },{
-									                    Position: 'Top',
-									                    LineStyle: 'Continuous',
-									                    Weight: 2,
-									                    Color: '#0A0A0A'
-									                },{
-									                    Position: 'Left',
-									                    LineStyle: 'Continuous',
-									                    Weight: 2,
-									                    Color: '#0A0A0A'
-									                },{
-									                    Position: 'Right',
-									                    LineStyle: 'Continuous',
-									                    Weight: 2,
-									                    Color: '#0A0A0A'
-									                }
-									    ],
-							            font: {
-							                FontName: 'Cambria',
-							                Family: 'Swiss',
-							                Size: 18,
-							                Color: '#000000'
-							            }
-							        },
-							        /**
-							         * @cfg {Ext.exporter.file.excel.Style} groupHeaderStyle
-							         *
-							         * Default style applied to the group headers
-							         */
-							        groupHeaderStyle: {
-							            name: 'Group Header',
-							            borders: [
-							                {
-							                    Position: 'Bottom',
-							                    LineStyle: 'Continuous',
-							                    Weight: 2,
-							                    Color: '#4F81BD'
-							                }
-							            ]
-							        },
-							        /**
-							         * @cfg {Ext.exporter.file.excel.Style} groupFooterStyle
-							         *
-							         * Default style applied to the group footers
-							         */
-							        groupFooterStyle: {
-							            name: 'Total Footer',
-							            borders: [
-							                {
-									                    Position: 'Bottom',
-									                    LineStyle: 'Continuous',
-									                    Weight: 2,
-									                    Color: '#0A0A0A'
-									                },{
-									                    Position: 'Top',
-									                    LineStyle: 'Continuous',
-									                    Weight: 2,
-									                    Color: '#0A0A0A'
-									                },{
-									                    Position: 'Left',
-									                    LineStyle: 'Continuous',
-									                    Weight: 2,
-									                    Color: '#0A0A0A'
-									                },{
-									                    Position: 'Right',
-									                    LineStyle: 'Continuous',
-									                    Weight: 2,
-									                    Color: '#0A0A0A'
-									                }
-							            ]
-							        },
-							        /**
-							         * @cfg {Ext.exporter.file.excel.Style} tableHeaderStyle
-							         *
-							         * Default style applied to the table headers
-							         */
-							        tableHeaderStyle: {
-							            name: 'Heading 1',
-							            alignment: {
-							                Horizontal: 'Center',
-							                Vertical: 'Center'
-							            },
-							            borders: [
-							                      {
-									                    Position: 'Bottom',
-									                    LineStyle: 'Continuous',
-									                    Weight: 2,
-									                    Color: '#0A0A0A'
-									                },{
-									                    Position: 'Top',
-									                    LineStyle: 'Continuous',
-									                    Weight: 2,
-									                    Color: '#0A0A0A'
-									                },{
-									                    Position: 'Left',
-									                    LineStyle: 'Continuous',
-									                    Weight: 2,
-									                    Color: '#0A0A0A'
-									                },{
-									                    Position: 'Right',
-									                    LineStyle: 'Continuous',
-									                    Weight: 2,
-									                    Color: '#0A0A0A'
-									                }
-							            ],
-							            font: {
-							                FontName: 'Calibri',
-							                Family: 'Swiss',
-							                Size: 12,
-							                Color: '#000000'
-							            }
-							        }
+									windowWidth:100
 						});
 					}
 				} ]
@@ -219,14 +74,14 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 		header : EwayLocale.report.pivot.common.totalSum,
 		aggregator : 'sum',
 		align:'center',
-		width : 320
+		width : 220
 	} ],
 
 	// Configure the left axis dimensions that will be used to generate the grid rows
 	leftAxis : [ {
 		dataIndex : 'orgName',
 		header : EwayLocale.person.bankOrg.name,
-		width: 80
+		width: 120
 	} ],
 	showZeroAsBlank: true,
 	/**
