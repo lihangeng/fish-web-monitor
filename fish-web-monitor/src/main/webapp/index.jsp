@@ -24,13 +24,7 @@
 	<script type="text/javascript">
 		var Eway = Eway || {};
 		<%if (session.getAttribute("SESSION_USER") == null) {%>
-			Eway.user = {
-					getName:function(){
-						return "";
-					},
-					getId:function(){
-						return 1;
-					}};
+			window.location="login.jsp";
 		<%} else {
 			UserSession userSession = (UserSession) session.getAttribute("SESSION_USER");%>
 			Eway.user = {
