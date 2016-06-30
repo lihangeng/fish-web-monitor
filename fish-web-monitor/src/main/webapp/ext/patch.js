@@ -500,8 +500,6 @@ Ext.exporter.Excel.override({
 				var me = this,
 	            config = this.getConfig();
 				me.detailStyle = me.workbook.addStyle(config.detailStyle).getId();
-				me.firstdetailStyle = me.workbook.addStyle(config.firstDetailStyle).getId();
-				me.lastdetailStyle = me.workbook.addStyle(config.lastDetailStyle).getId();
 				var l, row, i, j;
 				if (!lines) {
 					return;
@@ -512,7 +510,7 @@ Ext.exporter.Excel.override({
 					for (j = 0; j < l.length; j++) {
 						row.addCell({
 							value : l[j],
-							styleId : (j == 0)?me.firstdetailStyle :(j == (l.length-1)?me.lastdetailStyle:me.detailStyle)
+							styleId : me.detailStyle
 						});
 					}
 				}
@@ -585,54 +583,6 @@ Ext.exporter.Excel.override({
 						Size : 11,
 						Color : '#000000'
 					}
-				},
-				firstDetailStyle:{
-					parentId:'detailStyle',
-					borders : [{
-						Position : 'Top',
-						LineStyle : 'Continuous',
-						Weight : 1,
-						Color : '#000000'
-					}, {
-						Position : 'Bottom',
-						LineStyle : 'Continuous',
-						Weight : 1,
-						Color : '#000000'
-					} , {
-						Position : 'Right',
-						LineStyle : 'Continuous',
-						Weight : 1,
-						Color : '#000000'
-					} ,{
-						Position : 'Left',
-						LineStyle : 'Continuous',
-						Weight : 1,
-						Color : '#000000'
-					}]
-				},
-				lastDetailStyle:{
-					parentId:'detailStyle',
-					borders : [{
-						Position : 'Top',
-						LineStyle : 'Continuous',
-						Weight : 1,
-						Color : '#000000'
-					}, {
-						Position : 'Bottom',
-						LineStyle : 'Continuous',
-						Weight : 1,
-						Color : '#000000'
-					} , {
-						Position : 'Left',
-						LineStyle : 'Continuous',
-						Weight : 1,
-						Color : '#000000'
-					} ,{
-						Position : 'Right',
-						LineStyle : 'Continuous',
-						Weight : 1,
-						Color : '#000000'
-					}]
 				},
 				detailStyle:{
 					id:'detailStyle',
@@ -714,10 +664,25 @@ Ext.exporter.Excel.override({
 				groupHeaderStyle : {
 					name : 'Group Header',
 					borders : [ {
+						Position : 'Top',
+						LineStyle : 'Continuous',
+						Weight : 1,
+						Color : '#000000'
+					}, {
 						Position : 'Bottom',
 						LineStyle : 'Continuous',
 						Weight : 1,
-						Color : '#4F81BD'
+						Color : '#000000'
+					} , {
+						Position : 'Left',
+						LineStyle : 'Continuous',
+						Weight : 1,
+						Color : '#000000'
+					} , {
+						Position : 'Right',
+						LineStyle : 'Continuous',
+						Weight : 1,
+						Color : '#000000'
 					} ]
 				},
 				/**

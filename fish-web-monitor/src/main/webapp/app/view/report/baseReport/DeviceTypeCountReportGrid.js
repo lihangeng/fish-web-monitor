@@ -62,7 +62,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 	},
 
 	// Set layout type to "outline". If this config is missing then the default layout is "outline"
-	viewLayoutType : 'compact',
+	viewLayoutType : 'outline',
 
 	// Set this to false if multiple dimensions are configured on leftAxis and
 	// you want to automatically expand the row groups when calculations are ready.
@@ -82,15 +82,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 		dataIndex : 'orgName',
 		header : EwayLocale.person.bankOrg.name,
 		width: 120
-	} ],
-	showZeroAsBlank: true,
-	/**
-	 * Configure the top axis dimensions that will be used to generate the columns.
-	 * When columns are generated the aggregate dimensions are also used. If multiple aggregation dimensions
-	 * are defined then each top axis result will have in the end a column header with children
-	 * columns for each aggregate dimension defined.
-	 */
-	topAxis : [ {
+	} , {
 		dataIndex : 'vendorName',
 		header : 'vendorName',
 		showZeroAsBlank : true,
@@ -102,6 +94,14 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 		header : 'devTypeName',
 		showZeroAsBlank : true
 	} ],
+	showZeroAsBlank: true,
+	/**
+	 * Configure the top axis dimensions that will be used to generate the columns.
+	 * When columns are generated the aggregate dimensions are also used. If multiple aggregation dimensions
+	 * are defined then each top axis result will have in the end a column header with children
+	 * columns for each aggregate dimension defined.
+	 */
+//	topAxis : [],
 
 	initComponent : function() {
 		var me = this;
