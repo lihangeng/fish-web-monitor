@@ -17,6 +17,8 @@
 	//添加键盘事件
 	onkeydown = function(event) {
 		if (event.keyCode == 13) {
+			//登录按钮获取焦点;如果是用户名获取焦点会导致第一次回车时候密码为空
+			$('loginButton').focus();
 			ajax();
 		}
 	}
@@ -93,7 +95,6 @@
 		show($("updatePasswordDiv"), false);
 	}
 	
-	
 	function textFocus() {
 		$('username').focus();
 	}
@@ -120,17 +121,15 @@
 							<div id="loginError" class="form-message error" style="display: none"></div>
 							<div style="width:241px;height:35px;border:1px solid #dedede;margin-top:15px;">
 								<label class="laber1" ></label>
-								<input  placeholder="<spring:message code='login.username' />" class ="txt" id="username" type="text"  maxlength=20 size="10" "
-								/>
+								<input  autocomplete="off"  placeholder="<spring:message code='login.username' />" class ="txt" id="username" type="text"  maxlength=20 size="10" />
 							</div>
 							
 							 <div style="width:241px;height:35px;border:1px solid #dedede;margin-top:25px;">
 								<label class="laber2" ></label>
-								 <input ;" placeholder="<spring:message code='login.password' />"
-						 class="txt" id="password" type="password" maxlength=20 size="10" />
+								 <input autocomplete="off" placeholder="<spring:message code='login.password' />" class="txt" id="password" type="password" maxlength=20 size="10" />
 							</div>
 							 
-								 <input style="margin-top: 30px;" class="login"
+								 <input style="margin-top: 30px;" class="login" id="loginButton" 
 								type="button" name="submit" value="<spring:message code='login.submit' />" onclick="ajax()">
 							<div class="finally"></div>
 
