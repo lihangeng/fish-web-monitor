@@ -54,6 +54,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 						exports.saveDocumentAs({
 									type: 'excel',
 									title : EwayLocale.report.baseReport.devBrandRep,
+									showSummary:false,
 									fileName : EwayLocale.report.baseReport.devBrandRep+'.xls',
 									windowWidth:100
 						});
