@@ -418,6 +418,22 @@ Ext.form.field.File.override({
 	}
 });
 
+Ext.pivot.plugin.Exporter.override({
+	getExporter: function(config) {
+	    var me = this;
+	    config = config || {};
+	    me.matrix = me.pivot.getMatrix();
+	    me.onlyExpandedNodes = config.onlyExpandedNodes;
+	    delete (config.onlyExpandedNodes);
+	    return Ext.Factory.exporter(Ext.apply({
+	        type: 'excel',
+	        data: me.prepareData(),
+	        cmp:me.getCmp( )
+	    }, config));
+	}
+});
+
+
 //导出Excel样式渲染
 Ext.exporter.Excel.override({
 			//Title行样式移除，单元格增加样式
@@ -540,6 +556,8 @@ Ext.exporter.Excel.override({
 		        if (!columns) {
 		            return;
 		        }
+		        var columnsIndex=0;
+				var cmpColums = this.cmp.columnManager.columns;
 		        for (var i = 0; i < columns.length; i++) {
 		            col = columns[i];
 		            count = this.getColumnCount(col.columns);
@@ -561,6 +579,7 @@ Ext.exporter.Excel.override({
 		                Ext.apply(s, {
 		                    mergeDown: count
 		                });
+		                this.table.addColumn({autoFitWidth:"1",width:cmpColums[columnsIndex++].width,index:columnsIndex});
 			            result['s' + col.level].push(s);
 		            }
 		            //第二行缩进单元格
@@ -568,6 +587,7 @@ Ext.exporter.Excel.override({
 		            	if(index){
 		            		Ext.apply(s,{index:(index+i)});
 		            	}
+		            	this.table.addColumn({width:cmpColums[columnsIndex++].width,index:columnsIndex});
 			            result['s' + col.level].push(s);
 		            }
 		        }
