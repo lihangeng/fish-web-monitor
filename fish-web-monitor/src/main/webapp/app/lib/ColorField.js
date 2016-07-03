@@ -1,4 +1,4 @@
-Ext.define('Eway.utils.ColorField', {
+Ext.define('Eway.lib.ColorField', {
 	extend : 'Ext.form.field.Picker',
 	alias : 'widget.colorfield',
 	requires : [ 'Ext.picker.Color' ],
