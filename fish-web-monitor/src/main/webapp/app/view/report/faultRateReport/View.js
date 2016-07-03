@@ -10,36 +10,7 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 	layout : 'border',
 	initComponent : function() {
 		Ext.apply(this, {
-			items : [ {
-				region : 'north',
-				items : [ {
-					xtype : 'datefield',
-					fieldLabel : EwayLocale.report.faultRateReport.dateMonth,
-					labelWidth : 50,
-					editable : false,
-					value : new Date(),
-					labelAlign : 'left',
-					format : 'Y-m',
-					name : 'dateMonth',
-					width : 220,
-					anchor : '100%',
-					height : 20,
-					listeners : {
-						blur : {
-							fn : function(This, options) {
-								return;
-							}
-						}
-					}
-				}, {
-					height : 40,
-					tbar : [ '->', {
-						text : EwayLocale.button.search,
-						action : 'query',
-						glyph : 0xf002,
-					} ]
-				} ]
-			}, {
+			items : [{
 				region : 'center',
 				xtype : 'panel',
 				layout : 'card',
@@ -48,6 +19,35 @@ Ext.define('Eway.view.report.faultRateReport.View', {
 					xtype : 'panel',
 					layout : 'border',
 					items : [ {
+						region : 'north',
+						items : [ {
+							xtype : 'datefield',
+							fieldLabel : EwayLocale.report.faultRateReport.dateMonth,
+							labelWidth : 50,
+							editable : false,
+							value : new Date(new Date().getFullYear(),new Date().getMonth()-1,new Date().getDate()),
+							labelAlign : 'left',
+							format : 'Y-m',
+							name : 'dateMonth',
+							width : 220,
+							anchor : '100%',
+							height : 20,
+							listeners : {
+								blur : {
+									fn : function(This, options) {
+										return;
+									}
+								}
+							}
+						}, {
+							height : 40,
+							tbar : [ '->', {
+								text : EwayLocale.button.search,
+								action : 'query',
+								glyph : 0xf002,
+							} ]
+						} ]
+					},  {
 						xtype : 'report_faultRateReport_BrandGrid',
 						region : 'north',
 						border : true,

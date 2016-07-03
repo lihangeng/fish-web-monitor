@@ -57,7 +57,7 @@ Ext.define('Eway.view.report.faultRateReport.ModuleView', {
 			} ],
 			listeners : {
 				activate : function(_this, eOpts) {
-					var jobId = _this.getConfig().jobId;
+					var name = _this.getConfig().name;
 					_this.down('report_faultRateReport_ModuleGrid').getStore()
 							.setBaseParam("name", name);
 					_this.down('report_faultRateReport_ModuleGrid').getStore()
@@ -72,5 +72,14 @@ Ext.define('Eway.view.report.faultRateReport.ModuleView', {
 		});
 
 		this.callParent(arguments);
+	},
+	refresh: function(name){
+		var store = this.down('report_faultRateReport_ModuleGrid').getStore();
+		store.setBaseParam("name",name);
+		store.loadPage(1);
+		var stores = this.down('report_faultRateReport_ModuleCharts').down(
+		'cartesian').getStore();
+		stores.setBaseParam("name",name);
+		stores.loadPage(1);
 	}
 });
