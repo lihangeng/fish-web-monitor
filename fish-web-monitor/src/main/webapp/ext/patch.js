@@ -428,6 +428,7 @@ Ext.pivot.plugin.Exporter.override({
 	    return Ext.Factory.exporter(Ext.apply({
 	        type: 'excel',
 	        data: me.prepareData(),
+	        //增加导出的容器指定，主要为指定导出excel的列宽
 	        cmp:me.getCmp( )
 	    }, config));
 	}
@@ -468,7 +469,7 @@ Ext.exporter.Excel.override({
 					}
 				}
 			},
-			//汇总行样式移除
+			//构建所有数据信息
 			buildSummaryRows : function(groups, colMerge, level) {
 				var me = this, showSummary = me.getShowSummary(), g, row, styleH, styleF;
 				if (!groups) {
@@ -490,6 +491,7 @@ Ext.exporter.Excel.override({
 				});
 				for (var i = 0; i < groups.length; i++) {
 					g = groups[i];
+					//如果不显示统计信息，此处不执行
 					if (showSummary !== false && !Ext.isEmpty(g.text)) {
 						me.table.addRow({}).addCell({
 							mergeAcross : colMerge - 1,
@@ -497,8 +499,11 @@ Ext.exporter.Excel.override({
 							styleId : styleH.getId()
 						});
 					}
+					//针对子项进行迭代
 					me.buildSummaryRows(g.groups, colMerge, level + 1);
+					//针对明细信息进行展示
 					me.buildGroupRows(g.rows);
+					//如果显示统计信息并且统计信息的数据显示
 					if (showSummary !== false && g.summary
 							&& g.summary.length > 0) {
 						// that's the summary footer
@@ -531,7 +536,7 @@ Ext.exporter.Excel.override({
 					}
 				}
 			},
-			//header行样式移除
+			//表头的行样式移除,增加cell样式
 			buildHeader : function() {
 				var me = this, ret = {}, keys, row, i, j, len, lenCells;
 				me.buildHeaderRows(me.getData().columns, ret);
@@ -550,6 +555,7 @@ Ext.exporter.Excel.override({
 					}
 				}
 			},
+			//表头的宽度及缩进处理
 			buildHeaderRows: function(columns, result,index) {
 		        var col, count, s;
 		        var acrossNumber=0;
