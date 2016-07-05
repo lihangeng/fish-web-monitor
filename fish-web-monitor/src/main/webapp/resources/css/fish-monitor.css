@@ -1275,6 +1275,86 @@ pre.link{
 }
 
 
+.menu-application-version {
+	background: url(../images/image.png) 0px  -72px no-repeat !important;
+}
+.menu-application-advert {
+	background: url(../images/image.png) -16px  -72px no-repeat !important;
+}
+.menu-application-versionMonitor {
+	background: url(../images/image.png) -32px  -72px no-repeat !important;
+}
+.menu-application-deviceVersion {
+	background: url(../images/image.png) -48px  -72px no-repeat !important;
+}
+.menu-application-versionType {
+	background: url(../images/image.png) -64px  -72px no-repeat !important;
+}
+.menu-application-versionDistribute {
+	background: url(../images/image.png) -80px  -72px no-repeat !important;
+}
+.menu-application-bsAdvertGroup {
+	background: url(../images/image.png) -96px  -72px no-repeat !important;
+}
+.menu-application-bsAdvert {
+	background: url(../images/image.png) -112px  -72px no-repeat !important;
+}
+
+.menu-faults-notifyMould {
+	background: url(../images/image.png) 0px  -96px no-repeat !important;
+}
+.menu-faults-casenotify {
+	background: url(../images/image.png) -16px  -96px no-repeat !important;
+}
+.menu-faults-faultConfig {
+	background: url(../images/image.png) -32px  -96px no-repeat !important;
+}
+.menu-faults-casefault {
+	background: url(../images/image.png) -48px  -96px no-repeat !important;
+}
+.menu-faults-vendorCode {
+	background: url(../images/image.png) -64px  -96px no-repeat !important;
+}
+
+.menu-reports-vendor {
+	background: url(../images/image.png) 0px  -120px no-repeat !important;
+}
+.menu-reports-retainCard {
+	background: url(../images/image.png) -16px  -120px no-repeat !important;
+}
+.menu-reports-faultRate {
+	background: url(../images/image.png) -32px  -120px no-repeat !important;
+}
+.menu-reports-transaction {
+	background: url(../images/image.png) -48px  -120px no-repeat !important;
+}
+.menu-reports-transactionResult {
+	background: url(../images/image.png) -64px  -120px no-repeat !important;
+}
+.menu-reports-dayTrans {
+	background: url(../images/image.png) -80px  -120px no-repeat !important;
+}
+.menu-reports-dayHourTrans {
+	background: url(../images/image.png) -96px  -120px no-repeat !important;
+}
+.menu-reports-caseTrend {
+	background: url(../images/image.png) -112px  -120px no-repeat !important;
+}
+.menu-reports-caseStatistics {
+	background: url(../images/image.png) -128px  -120px no-repeat !important;
+}
+.menu-reports-deviceOpenRate {
+	background: url(../images/image.png) -144px  -120px no-repeat !important;
+}
+.menu-reports-typeOpenRate {
+	background: url(../images/image.png) -160px  -120px no-repeat !important;
+}
+.menu-reports-orgOpenRate {
+	background: url(../images/image.png) -176px  -120px no-repeat !important;
+}
+
+
+
 
 
 
