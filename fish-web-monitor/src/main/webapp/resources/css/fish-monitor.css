@@ -1172,6 +1172,114 @@ pre.link{
 .menu-reports {
 	background: url(../images/menu1.png) 0px -120px no-repeat !important;
 }
+
+/*二级菜单的图表定义*/
+.menu-system-bankOrg {
+	background: url(../images/image.png) 0px  0px no-repeat !important;
+}
+.menu-system-bankPer {
+	background: url(../images/image.png) -16px  0px no-repeat !important;
+}
+.menu-system-serviceOrg {
+	background: url(../images/image.png) -32px  0px no-repeat !important;
+}
+.menu-system-servicePer {
+	background: url(../images/image.png) -48px  0px no-repeat !important;
+}
+.menu-system-user {
+	background: url(../images/image.png) -64px  0px no-repeat !important;
+}
+.menu-system-role {
+	background: url(../images/image.png) -80px  0px no-repeat !important;
+}
+.menu-system-configuration {
+	background: url(../images/image.png) -96px  0px no-repeat !important;
+}
+
+.menu-device-device {
+	background: url(../images/image.png) 0px  -24px no-repeat !important;
+}
+.menu-device-atmBrand {
+	background: url(../images/image.png) -16px  -24px no-repeat !important;
+}
+.menu-device-atmType {
+	background: url(../images/image.png) -32px  -24px no-repeat !important;
+}
+.menu-device-atmGroup {
+	background: url(../images/image.png) -48px  -24px no-repeat !important;
+}
+.menu-device-quitting {
+	background: url(../images/image.png) -64px  -24px no-repeat !important;
+}
+.menu-device-retainCard {
+	background: url(../images/image.png) -80px  -24px no-repeat !important;
+}
+.menu-device-atmLog {
+	background: url(../images/image.png) -96px  -24px no-repeat !important;
+}
+.menu-device-servicePlan {
+	background: url(../images/image.png) -112px  -24px no-repeat !important;
+}
+
+.menu-device-device {
+	background: url(../images/image.png) 0px  -24px no-repeat !important;
+}
+.menu-device-atmBrand {
+	background: url(../images/image.png) -16px  -24px no-repeat !important;
+}
+.menu-device-atmType {
+	background: url(../images/image.png) -32px  -24px no-repeat !important;
+}
+.menu-device-atmGroup {
+	background: url(../images/image.png) -48px  -24px no-repeat !important;
+}
+.menu-device-quitting {
+	background: url(../images/image.png) -64px  -24px no-repeat !important;
+}
+.menu-device-retainCard {
+	background: url(../images/image.png) -80px  -24px no-repeat !important;
+}
+.menu-device-atmLog {
+	background: url(../images/image.png) -96px  -24px no-repeat !important;
+}
+.menu-device-servicePlan {
+	background: url(../images/image.png) -112px  -24px no-repeat !important;
+}
+
+.menu-monitor-device {
+	background: url(../images/image.png) 0px  -48px no-repeat !important;
+}
+.menu-monitor-summaryInfo {
+	background: url(../images/image.png) -16px  -48px no-repeat !important;
+}
+.menu-monitor-historyTrans {
+	background: url(../images/image.png) -32px  -48px no-repeat !important;
+}
+.menu-monitor-monitorTrans {
+	background: url(../images/image.png) -48px  -48px no-repeat !important;
+}
+.menu-monitor-cashInit {
+	background: url(../images/image.png) -64px  -48px no-repeat !important;
+}
+.menu-monitor-settlement {
+	background: url(../images/image.png) -80px  -48px no-repeat !important;
+}
+.menu-monitor-remoteCommand {
+	background: url(../images/image.png) -96px  -48px no-repeat !important;
+}
+.menu-monitor-newMonitorTrans {
+	background: url(../images/image.png) -112px  -48px no-repeat !important;
+}
+.menu-monitor-transCodeColor {
+	background: url(../images/image.png) -128px  -48px no-repeat !important;
+}
+
+
+
+
+
+
+
 /*去除IE浏览器的'X'*/
 input::-ms-clear{
 	display:none;
