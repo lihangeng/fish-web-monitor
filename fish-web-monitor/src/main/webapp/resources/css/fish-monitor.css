@@ -1172,6 +1172,10 @@ pre.link{
 .menu-reports {
 	background: url(../images/menu1.png) 0px -120px no-repeat !important;
 }
+.menu-param {
+	background: url(../images/menu1.png) 0px -144px no-repeat !important;
+}
+
 
 /*二级菜单的图表定义*/
 .menu-system-bankOrg {
@@ -1287,16 +1291,16 @@ pre.link{
 .menu-application-deviceVersion {
 	background: url(../images/image.png) -48px  -72px no-repeat !important;
 }
-.menu-application-versionType {
+.menu-application-versionDistribute {
 	background: url(../images/image.png) -64px  -72px no-repeat !important;
 }
-.menu-application-versionDistribute {
+.menu-application-bsAdvertGroup {
 	background: url(../images/image.png) -80px  -72px no-repeat !important;
 }
-.menu-application-bsAdvertGroup {
+.menu-application-bsAdvert {
 	background: url(../images/image.png) -96px  -72px no-repeat !important;
 }
-.menu-application-bsAdvert {
+.menu-application-versionType {
 	background: url(../images/image.png) -112px  -72px no-repeat !important;
 }
 
@@ -1353,12 +1357,24 @@ pre.link{
 	background: url(../images/image.png) -176px  -120px no-repeat !important;
 }
 
-
-
-
-
-
-
+.menu-param-appSystem {
+	background: url(../images/image.png) 0px  -144px no-repeat !important;
+}
+.menu-param-paramElement {
+	background: url(../images/image.png) -16px  -144px no-repeat !important;
+}
+.menu-param-paramClassify {
+	background: url(../images/image.png) -32px  -144px no-repeat !important;
+}
+.menu-param-devParam {
+	background: url(../images/image.png) -48px  -144px no-repeat !important;
+}
+.menu-param-paramTemplate {
+	background: url(../images/image.png) -64px  -144px no-repeat !important;
+}
+.menu-param-paramMonitor {
+	background: url(../images/image.png) -80px  -144px no-repeat !important;
+}
 
 /*去除IE浏览器的'X'*/
 input::-ms-clear{
