@@ -86,7 +86,7 @@ Ext.define('Eway.view.person.bankOrg.Grid', {
 				header : EwayLocale.person.bankOrg.zip,
 				dataIndex : 'zip',
 				sortable : true
-			},{
+			},/*{
 				header : EwayLocale.person.bankOrg.organizationType,
 				dataIndex : 'organizationType',
 				renderer: function(value,metadata,record){
@@ -98,7 +98,7 @@ Ext.define('Eway.view.person.bankOrg.Grid', {
 				},
 				hidden: true,
 				sortable : true
-			},{
+			},*/{
 				header : EwayLocale.person.bankOrg.manager,
 				dataIndex : 'manager'
 			},{

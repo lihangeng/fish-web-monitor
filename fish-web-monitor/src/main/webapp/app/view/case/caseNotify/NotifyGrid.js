@@ -59,6 +59,7 @@ Ext.define('Eway.view.case.caseNotify.NotifyGrid', {
 				xtype:'actioncolumn',
 				header : EwayLocale.cases.caseNotify.fault,
 				dataIndex : 'faultId',
+				menuText: EwayLocale.cases.caseNotify.fault,
 				width : 60,
 				items : [{
 					icon : 'resources/images/s_error.gif',

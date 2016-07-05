@@ -140,6 +140,7 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 				xtype:'actioncolumn',
 				header : EwayLocale.cases.caseFault.message,
 				dataIndex : 'id',
+				menuText: EwayLocale.cases.caseFault.message,
 				items : [{
 					icon : 'resources/images/icon_email.gif',
 					tooltip: EwayLocale.cases.caseFault.checkDetails,

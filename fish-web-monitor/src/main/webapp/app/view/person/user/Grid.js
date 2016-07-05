@@ -105,6 +105,7 @@ Ext.define('Eway.view.person.user.Grid', {
 			},{
 				header : EwayLocale.person.user.resetPasswd,
 				xtype:'actioncolumn',
+				menuText : EwayLocale.person.user.resetPasswd,
 				items:[{
                     icon:"././././resources/images/update.png",
 					getClass:function(v,metadata,r,rowIndex,colIndex,store){

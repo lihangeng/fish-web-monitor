@@ -65,6 +65,7 @@ Ext.define('Eway.view.atmLog.LogBackupGrid',{
 				xtype:'actioncolumn',
 				flex : .5,
 				dataIndex : 'backupResult',
+				menuText: EwayLocale.agent.remote.screen.loading,
 				align:'center',
 				header: EwayLocale.agent.remote.screen.loading,
 				items : [{

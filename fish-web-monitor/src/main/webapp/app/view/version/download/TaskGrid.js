@@ -142,6 +142,7 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 				xtype:'actioncolumn',
 				width: 100,
 				header: EwayLocale.version.task.restartATM,//'重启ATM',
+				menuText : EwayLocale.version.task.restartATM,
 				items : [{
 					icon : 'resources/images/version/reboot.png',
 					tooltip: '重启ATM',
@@ -186,6 +187,7 @@ Ext.define('Eway.view.version.download.TaskGrid', {
 				xtype:'actioncolumn',
 				width: 100,
 				header: EwayLocale.version.task.cancelDownload,//'取消下发',
+				menuText : EwayLocale.version.task.cancelDownload,
 				items : [{
 					icon : 'resources/images/remove.png',
 					tooltip: EwayLocale.version.task.cancelDownload,//'取消下发',

@@ -67,6 +67,7 @@ Ext.define('Eway.view.atmLog.DayBackupGrid',{
 				flex : .7,
 				header: EwayLocale.atmLog.reform,
 				dataIndex : 'backupResult',
+				menuText: EwayLocale.atmLog.reform,
 				items : [{
 					icon : 'resources/images/arrow_undo.png',
 					tooltip: EwayLocale.atmLog.reform,

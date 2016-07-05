@@ -31,6 +31,7 @@ Ext.define('Eway.view.system.HelpView',{
 			        {
 			        	header: EwayLocale.system.helpDownload,
 						xtype:'actioncolumn',
+						menuText: EwayLocale.system.helpDownload,
 						flex : 1,
 						renderer: function(value,metadata,record){
 			                   	metadata.tdAttr ='data-qtip="'+EwayLocale.system.clickDownload+'"';
