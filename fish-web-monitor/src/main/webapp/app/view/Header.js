@@ -30,18 +30,21 @@ Ext.define('Eway.view.Header', {
         	tooltip : EwayLocale.exitSystem,
             glyph : 0xf011,
             handler : function(){
-				Ext.Cometd.disconnect();//关闭订阅连接
-				Ext.Ajax.request({
-					method : 'POST',
-					url : 'api/logout',
-					success : function(response){
-						Ext.util.Cookies.set("lastEwayPage","");
-						window.location='login.jsp';
-					},
-					failure : function(response){
-						window.location='login.jsp';
-					}
-				});
+            	Ext.MessageBox.confirm(EwayLocale.exitSystemComfirmTitle, EwayLocale.exitSystemComfirmInfo,function(button,text){
+        			if(button == 'yes'){
+        			Ext.Cometd.disconnect();//关闭订阅连接
+    				Ext.Ajax.request({
+    					method : 'POST',
+    					url : 'api/logout',
+    					success : function(response){
+    						Ext.util.Cookies.set("lastEwayPage","");
+    						window.location='login.jsp';
+    					},
+    					failure : function(response){
+    						window.location='login.jsp';
+    					}
+    				});}
+        		});
 			}
          }]
 });

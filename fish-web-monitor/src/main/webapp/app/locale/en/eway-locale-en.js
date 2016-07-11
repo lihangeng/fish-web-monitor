@@ -11,6 +11,8 @@ Ext.apply(EwayLocale,{
 	personalConf:'Personal Settings',//EwayLocale.personalConf
 	systemHelp:'Help',//EwayLocale.systemHelp
 	exitSystem:'Log Out',//EwayLocale.exitSystem
+	exitSystemComfirmInfo:'Log out?',//EwayLocale.exitSystemComfirmInfo
+	exitSystemComfirmTitle:'Please Confirm',//EwayLocale.exitSystemComfirmTitle
 	msg:{
 		perviewFailForText:'Preview Failed:The Charater And Rolling Advertisement Is Supported To Preview',//EwayLocale.msg.perviewFailForText
 		choseResToPerview:'Please Select The Advertisement Which You Want To Preview.',//EwayLocale.msg.choseResToPerview
