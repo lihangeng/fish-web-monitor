@@ -11,6 +11,8 @@ Ext.apply(EwayLocale,{
 	personalConf:'个人设置',//EwayLocale.personalConf
 	systemHelp:'系统帮助',//EwayLocale.systemHelp
 	exitSystem:'退出系统',//EwayLocale.exitSystem
+	exitSystemComfirmInfo:'是否退出系统？',//EwayLocale.exitSystemComfirmInfo
+	exitSystemComfirmTitle:'请确认',//EwayLocale.exitSystemComfirmTitle
 	msg:{
 		perviewFailForText:'预览失败:不支持文字滚动广告和公告的预览.',//EwayLocale.msg.perviewFailForText
 		choseResToPerview:'请选择您要预览的广告.',//EwayLocale.msg.choseResToPerview

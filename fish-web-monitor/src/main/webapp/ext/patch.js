@@ -443,8 +443,7 @@ Ext.exporter.Excel.override({
 					this.table.addRow({
 						autoFitHeight : 1,
 						height : 22.5
-					}).addCell(
-							{
+					}).addCell({
 								mergeAcross : colMerge - 1,
 								value : config.title,
 								styleId : this.workbook.addStyle(
@@ -555,15 +554,15 @@ Ext.exporter.Excel.override({
 					}
 				}
 			},
+	        cmpIndex: 0,
+	        columnsIndex: 0,
 			//表头的宽度及缩进处理
-			buildHeaderRows: function(columns, result,index) {
-		        var col, count, s;
-		        var acrossNumber=0;
+			buildHeaderRows: function(columns, result) {
+				var col, count, s;
 		        if (!columns) {
 		            return;
 		        }
-		        var columnsIndex=0;
-				var cmpColums = this.cmp.columnManager.columns;
+		        var cmpColums = this.cmp.columnManager.columns;
 		        for (var i = 0; i < columns.length; i++) {
 		            col = columns[i];
 		            count = this.getColumnCount(col.columns);
@@ -571,31 +570,24 @@ Ext.exporter.Excel.override({
 		            s = {
 		                value: this.sanitizeHtml(col.text)
 		            };
-		            //当前单元格横向跨单元格
 		            if (count > 1) {
 		                Ext.apply(s, {
 		                    mergeAcross: count - 1
 		                });
-		                acrossNumber++;
-			            result['s' + col.level].push(s);
-			            this.buildHeaderRows(col.columns, result,acrossNumber+i);
 		            }
-		            //当前单元格纵向跨单元格
-		            else if(count == 1){
-		                Ext.apply(s, {
-		                    mergeDown: count
-		                });
-		                this.table.addColumn({autoFitWidth:"1",width:cmpColums[columnsIndex++].width,index:columnsIndex});
-			            result['s' + col.level].push(s);
-		            }
-		            //第二行缩进单元格
-		            else{
-		            	if(index){
-		            		Ext.apply(s,{index:(index+i)});
+		            else if(count==0){
+		            	var cmpColum=cmpColums[this.cmpIndex];
+		            	if(cmpColum!=undefined){
+		            		this.cmpIndex++;
+		            	}else{
+		            		this.cmpIndex--;
+		            		cmpColum=cmpColums[this.cmpIndex]
 		            	}
-		            	this.table.addColumn({width:cmpColums[columnsIndex++].width,index:columnsIndex});
-			            result['s' + col.level].push(s);
+		            	 this.columnsIndex++;
+		            	 this.table.addColumn({width:cmpColum.width,index:this.columnsIndex});
 		            }
+		            result['s' + col.level].push(s);
+		            this.buildHeaderRows(col.columns, result);
 		        }
 		    },
 			config : {

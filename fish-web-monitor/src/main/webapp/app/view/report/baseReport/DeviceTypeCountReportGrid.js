@@ -9,7 +9,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 	colSubTotalsPosition : 'last',
 	rowGrandTotalsPosition : 'first',
 	colGrandTotalsPosition : 'first',
-	collapsible : false,
+	collapsible : true,
 	store : {
 		type : 'deviceVendorCount'
 	},
@@ -50,11 +50,10 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 					text : EwayLocale.button.exportXLS,
 					handler : function() {
 						var exports = this.up('baseReport_DeviceTypeCountReportGrid');
-						var config = exports.getConfig();
 						exports.saveDocumentAs({
 									type: 'excel',
 									title : EwayLocale.report.baseReport.devBrandRep,
-									showSummary:false,
+									showSummary:true,
 									fileName : EwayLocale.report.baseReport.devBrandRep+'.xls',
 									windowWidth:100
 						});
@@ -68,6 +67,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 	// Set this to false if multiple dimensions are configured on leftAxis and
 	// you want to automatically expand the row groups when calculations are ready.
 	startRowGroupsCollapsed : false,
+	startColGroupsCollapsed:false,
 
 	// Configure the aggregate dimensions. Multiple dimensions are supported.
 	aggregate : [ {
@@ -79,30 +79,27 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 	} ],
 
 	// Configure the left axis dimensions that will be used to generate the grid rows
-	leftAxis : [ {
+	leftAxis : [{
 		dataIndex : 'orgName',
 		header : EwayLocale.person.bankOrg.name,
 		width: 120
-	} , {
-		dataIndex : 'vendorName',
-		header : 'vendorName',
-		showZeroAsBlank : true,
-		renderer:function(v){
-			return v;
-		}
-	},{
-		dataIndex : 'devTypeName',
-		header : 'devTypeName',
-		showZeroAsBlank : true
-	} ],
-	showZeroAsBlank: true,
+	}],
 	/**
 	 * Configure the top axis dimensions that will be used to generate the columns.
 	 * When columns are generated the aggregate dimensions are also used. If multiple aggregation dimensions
 	 * are defined then each top axis result will have in the end a column header with children
 	 * columns for each aggregate dimension defined.
 	 */
-//	topAxis : [],
+	topAxis : [  {
+	dataIndex : 'vendorName',
+	header : 'vendorName',
+	renderer:function(v){
+		return v;
+	}
+},{
+	dataIndex : 'devTypeName',
+	header : 'devTypeName'
+} ],
 
 	initComponent : function() {
 		var me = this;

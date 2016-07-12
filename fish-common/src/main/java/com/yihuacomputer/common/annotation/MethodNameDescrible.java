@@ -17,7 +17,7 @@ public @interface MethodNameDescrible{
 	 * 当前传参数是否为数字(主键)
 	 * @return
 	 */
-	boolean isNumberArgs() default true;
+	boolean hasArgs() default true;
 	/**
 	 * 参数主标识key;能够标识当前操作对象的 key
 	 * 列如:/api/person?name=abc&orgId=1(此处主标识key应该为name)

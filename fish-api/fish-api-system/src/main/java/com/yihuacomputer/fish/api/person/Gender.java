@@ -5,12 +5,12 @@ public enum Gender {
 	/**
 	 * 男
 	 */
-	MALE(1,"Gender.MALE"),
+	MALE(0,"Gender.MALE"),
 	
 	/**
 	 * 女
 	 */
-	FEMALE(2,"Gender.FEMALE");
+	FEMALE(1,"Gender.FEMALE");
 	
 	private int id;
 	
