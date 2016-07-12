@@ -480,7 +480,7 @@ public class OrganizationController {
 	}
 
 	@RequestMapping(value = "/queryMatching", method = RequestMethod.GET)
-	@MethodNameDescrible(describle = "模糊匹配", argsContext = "name", isNumberArgs = false)
+	@MethodNameDescrible(describle = "模糊匹配", argsContext = "name", hasArgs = false)
 	public @ResponseBody ModelMap queryMatching(WebRequest request, HttpServletRequest req) {
 		logger.info(String.format("search organization : queryMatching"));
 		ModelMap result = new ModelMap();
