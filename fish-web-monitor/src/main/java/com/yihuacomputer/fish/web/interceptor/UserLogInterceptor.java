@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
-import org.springframework.core.MethodParameter;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -106,16 +105,17 @@ public class UserLogInterceptor extends HandlerInterceptorAdapter {
 				String uris[] =  request.getRequestURI().split("\\/");
 				operatorAction.append("->").append(uris[uris.length-1]);
 			}
-			if(methodDesc.hasReqBodyParam()){
-				String className = methodDesc.reqBodyClass();
-				Class classz = Class.forName(className);
-				MethodParameter [] methodParams = handlers.getMethodParameters();
-				for(MethodParameter methodParam:methodParams){
+//			if(methodDesc.hasReqBodyParam()){
+//				String className = methodDesc.reqBodyClass();
+//				Class classz = Class.forName(className);
+//				handlers.g
+//				MethodParameter [] methodParams = handlers.getMethodParameters();
+//				for(MethodParameter methodParam:methodParams){
 //					if(methodParam.getParameterType() instanceof classz){
-//						
+//						methodParam.get
 //					}
-				}
-			}
+//				}
+//			}
 			ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext());
 			IUserLogService logService = ctx.getBean(IUserLogService.class);
 			String str = operatorAction.toString();

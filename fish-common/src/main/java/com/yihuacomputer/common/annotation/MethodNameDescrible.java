@@ -28,19 +28,19 @@ public @interface MethodNameDescrible{
 	 * 是否有请求体需要记录
 	 * @return
 	 */
-	boolean hasReqBodyParam() default true;
+//	boolean hasReqBodyParam() default false;
 
 	/**
 	 * 请求体类的别名
 	 * @return
 	 */
-	String reqBodyClass() default "";
+//	String reqBodyClass() default "";
 	
 	/**
 	 * 记录的请求类的关键字
 	 * @return
 	 */
-	String bodyProperties() default "";
+//	String bodyProperties() default "";
 	/**
 	 * 参数是否在uri中
 	 * @return
