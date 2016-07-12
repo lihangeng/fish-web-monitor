@@ -8,19 +8,29 @@ Ext.define('Eway.view.person.person.LinkedDeviceGrid', {
 	border : false,
 	autoFit : true,
 
+	viewConfig : {
+		plugins : {
+			ptype : 'gridviewdragdrop',
+			dragGroup : 'linkedDeviceGridId',
+			dropGroup : 'linkingDeviceGridId',
+			enableDrop : true
+		}
+	},
 	multiSelect:true,
 	selModel:{selType:'checkboxmodel'},
 	
 	initComponent : function() {
 		var store = Ext.create('Eway.store.person.person.LinkedDevice');
 		store.cleanUrlParam();
+		
+		var checkboxSM = new Ext.create('Ext.selection.CheckboxModel', {
+			checkOnly : false,
+			singleSelect : false
+		});
+
 		Ext.apply(this, {
 			store : store,
 			initRegion : true,
-			viewConfig : {
-				forceFit : true,
-				stripeRows : true
-			},
 			tbar: [{text:EwayLocale.commen.bindMachine,xtype:'tbtext'},'->', {
 				text:EwayLocale.button.search,
 				glyph : 0xf002,
@@ -33,7 +43,8 @@ Ext.define('Eway.view.person.person.LinkedDeviceGrid', {
 			columns : [ {
 				header : EwayLocale.commen.terminalId,
 				dataIndex : 'terminalId',
-				width:80
+				width:80,
+				storable : true
 			}, {
 				header : EwayLocale.commen.ip,
 				dataIndex : 'ip'
@@ -74,7 +85,15 @@ Ext.define('Eway.view.person.person.LinkedDeviceGrid', {
 				dataIndex : 'address',
 				minWidth:120,
 				flex:1
+			} , {
+				header : 'ID',
+				dataIndex : 'id',
+				hidden : true,
+				storable : true
 			} ],
+			
+			sm: checkboxSM,
+			enableColumnMove : true,
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,
 				displayInfo : true
