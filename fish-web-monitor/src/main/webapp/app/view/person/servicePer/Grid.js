@@ -101,6 +101,20 @@ Ext.define('Eway.view.person.servicePer.Grid', {
 				header : EwayLocale.commen.phone,
 				dataIndex : 'phone'
 			},{
+
+				header : EwayLocale.commen.gender,
+				dataIndex : 'gender',
+				renderer: function(value,metadata,record){
+					if(value=="MALE"){
+	                	   return EwayLocale.commen.comboxGender.male;
+	                   }else if(value=="FEMALE"){
+	                	   return EwayLocale.commen.comboxGender.female;
+	                   }else{
+	                	   return EwayLocale.commen.comboxGender.unknow;
+	                   }
+				}
+			 
+			},{
 				header : EwayLocale.commen.remark,
 				dataIndex : 'remark',
 				flex :1
