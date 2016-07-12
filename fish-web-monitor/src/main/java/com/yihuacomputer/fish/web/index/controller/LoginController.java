@@ -68,7 +68,7 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap login(@RequestParam String username, @RequestParam String password, HttpSession session, HttpServletRequest request, WebRequest webrequest) {
 		ModelMap result = new ModelMap();
-
+		
 		 //验证没有注册就进入注册页面。
 		 if (!new DBType(sf.getHibernateProperties()).isMemDB() &&
 		 FishCfg.isFishExpiry()) {
