@@ -107,6 +107,9 @@ Ext.define('Eway.controller.person.ServicePer', {
 				Ext.bind(this.onLinkDeviceFresh,this,[1,linkingDeviceGrid,linkingFilterForm,record]),this
 			);
 			PersonDeviceWin.show();
+			
+			linkedDeviceGrid.getView().on('drop',Ext.bind(this.onUnlinkConfirmDrop,this,[linkedDeviceGrid,linkingDeviceGrid,record]),this);				
+			linkingDeviceGrid.getView().on('drop',Ext.bind(this.onLinkConfirmDrop,this,[linkingDeviceGrid,linkedDeviceGrid,record]),this);
 			linkedDeviceGrid.getStore().load({
 				params : {
 					flag:0,
@@ -213,6 +216,54 @@ Ext.define('Eway.controller.person.ServicePer', {
 		}
 	},
 
+	onUnlinkConfirmDrop : function(linkedDeviceGrid,linkingDeviceGrid,record){
+
+		var array = this.multiSelect(linkedDeviceGrid);
+		if(array != null) {
+			linkingDeviceGrid.down('button[action="link"]').disable();
+			var data = new Object();
+			var record2 = Ext.create('Eway.model.person.person.PersonDevice',data);
+			for(var i=0;i<array.length-1;i++){
+            	record2.set('id',0);
+				record2.set('personId',record.data.guid);
+				record2.set('deviceId',array[i]);
+				record2.save();
+            }
+			record2.set('id',0);
+			record2.set('personId',record.data.guid);
+			record2.set('deviceId',array[array.length-1]);
+			record2.save({
+				success: function(){
+					linkingDeviceGrid.getStore().load({
+						params : {
+							flag:1,
+							guid:record.data.guid,
+							organizationId:record.data.organizationId
+						},
+						callback: function(records, operation, success) {
+							linkingDeviceGrid.down('button[action="link"]').enable();
+						}
+					});
+					linkedDeviceGrid.getStore().cleanUrlParam();
+					linkedDeviceGrid.getStore().load({
+						params : {
+							flag:0,
+							guid:record.data.guid,
+							organizationId:record.data.organizationId
+						}
+					});
+				},
+				failure: function(){
+					linkingDeviceGrid.down('button[action="link"]').enable();
+					Eway.alert(EwayLocale.tip.bankPer.link.unLinkPersonFail);
+				},
+				scope:this
+			});
+		}else{
+			Eway.alert(EwayLocale.tip.bankPer.link.linkDev);
+		}
+	},
+	
 	/**
 	 * 进行关联
 	 * @param {} linkingDeviceGrid
@@ -265,6 +316,47 @@ Ext.define('Eway.controller.person.ServicePer', {
 		}
 	},
 
+	onLinkConfirmDrop : function(linkingDeviceGrid,linkedDeviceGrid,record){
+
+
+		var array = this.multiSelect(linkingDeviceGrid);
+		if(array != null) {
+			var info = '';
+			for(var i=0;i<array.length;i++){
+                    info += array[i] + ',';
+            }
+			Ext.Ajax.request({
+				scope : this,
+				method : 'POST',
+				url : 'api/person/person/unlink',
+				params : {personId :record.data.guid,deviceId:info},
+				success: function(){
+					linkedDeviceGrid.getStore().load({
+						params : {
+							flag:0,
+							guid:record.data.guid,
+							organizationId:record.data.organizationId
+						}
+					});
+					linkingDeviceGrid.getStore().cleanUrlParam();
+					linkingDeviceGrid.getStore().load({
+						params : {
+							flag:1,
+							guid:record.data.guid,
+							organizationId:record.data.organizationId
+						}
+					});
+				},
+				failure: function(){
+					Eway.alert(EwayLocale.tip.bankPer.link.unLinkDevFail);
+				},
+				scope:this
+			});
+		}else{
+			Eway.alert(EwayLocale.tip.bankPer.link.linkDev);
+		}
+	},
+	
 	/**
 	 * 根据条件查询
 	 */
@@ -349,6 +441,13 @@ Ext.define('Eway.controller.person.ServicePer', {
 		if(sm.getCount() == 1) {
 			var win = Ext.create('Eway.view.person.servicePer.Update');
 			var record = sm.getLastSelected();
+			var value=record.get("gender");
+			if(value=="MALE"){
+				value=0;
+			}else{
+				value=1;
+			};
+			record.set('gender',value) ;
 			win.down('form').getForm().loadRecord(record);
 			win.down('button[action="update"]').on('click',this.onUpdateConfirm,this);
 			win.show();
