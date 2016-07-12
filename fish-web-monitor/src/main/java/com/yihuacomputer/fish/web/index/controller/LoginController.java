@@ -64,7 +64,7 @@ public class LoginController {
 	/**
 	 * 登录并验证用户
 	 */
-	@MethodNameDescrible(describle="user.login.login",isNumberArgs=false,argsContext="username")
+	@MethodNameDescrible(describle="user.login.login",hasArgs=true,argsContext="username")
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap login(@RequestParam String username, @RequestParam String password, HttpSession session, HttpServletRequest request, WebRequest webrequest) {
 		ModelMap result = new ModelMap();
