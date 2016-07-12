@@ -98,7 +98,7 @@ public class UserLogInterceptor extends HandlerInterceptorAdapter {
 			}
 			StringBuffer operatorAction = new StringBuffer();
 			operatorAction.append(messageSource.getMessage(classDesc.describle(),null,FishCfg.locale)).append("->").append(messageSource.getMessage(methodDesc.describle(),null,FishCfg.locale));
-			if(!methodDesc.isNumberArgs()){
+			if(methodDesc.hasArgs()){
 				operatorAction.append("->").append(request.getParameter(methodDesc.argsContext()));
 			}
 			ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext());
