@@ -453,7 +453,16 @@ Ext.define('Eway.controller.person.BankPer', {
 		if(sm.getCount() == 1) {
 			var win = Ext.create('Eway.view.person.bankPer.Update');
 			var record = sm.getLastSelected();
+			
+			var value=record.get("gender");
+			if(value=="MALE"){
+				value=0;
+			}else{
+				value=1;
+			};
+			record.set('gender',value) ;
 			win.down('form').getForm().loadRecord(record);
+			//win.down('form').down("radiogroup").setValue(value);
 			win.down('button[action="update"]').on('click',this.onUpdateConfirm,this);
 			win.show();
 		}

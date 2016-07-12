@@ -69,12 +69,18 @@ Ext.define('Eway.view.person.bankPer.Update', {
 					allowBlank : false,
 					editable : false
 				},{
-				    xtype : 'field.gender',
-				    fieldLabel : EwayLocale.commen.gender,
-				    emptyText: EwayLocale.combox.select,
-				    allowBlank : false,
-				    value : 'MALE',
-					editable : false
+					fieldLabel : EwayLocale.commen.gender,
+				    xtype : 'radiogroup',
+					anchor : '69%',
+					items : [ {
+						boxLabel : '男',
+						name : 'gender',
+						inputValue : 0
+					}, {
+						boxLabel : '女',
+						name : 'gender',
+						inputValue : 1
+					}]
 				},{
 					xtype : 'hiddenfield',
 					name :'organizationId'

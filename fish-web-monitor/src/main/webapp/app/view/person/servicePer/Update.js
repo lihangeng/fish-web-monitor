@@ -75,10 +75,18 @@ Ext.define('Eway.view.person.servicePer.Update', {
 					vtype:'telephone',
 					name :'phone'
 				},{
-				    xtype : 'field.gender',
-				    fieldLabel : EwayLocale.commen.gender,
-				    allowBlank : false,
-					editable : false
+					fieldLabel : EwayLocale.commen.gender,
+				    xtype : 'radiogroup',
+					anchor : '69%',
+					items : [ {
+						boxLabel : '男',
+						name : 'gender',
+						inputValue : 0
+					}, {
+						boxLabel : '女',
+						name : 'gender',
+						inputValue : 1
+					}]
 				},{
 					xtype : 'field.email'
 				},{
