@@ -32,6 +32,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.exception.NotFoundException;
 import com.yihuacomputer.common.filter.Filter;
@@ -65,6 +67,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
  */
 @Controller
 @RequestMapping(value = "/advert")
+@ClassNameDescrible(describle="userlog.AdvertController")
 public class AdvertController {
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(AdvertController.class);
 
@@ -117,6 +120,7 @@ public class AdvertController {
 	 */
 	@RequestMapping(value = "/uploadRes", method = RequestMethod.POST)
 	@ResponseBody
+	@MethodNameDescrible(describle="userlog.AdvertController.upload",hasArgs=false)
 	public String upload(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html;charset=UTF-8");
 		String oFileName = file.getOriginalFilename();
@@ -142,6 +146,7 @@ public class AdvertController {
 
 	@RequestMapping(value = "/uploadRes/screen", method = RequestMethod.POST)
 	@ResponseBody
+	@MethodNameDescrible(describle="userlog.AdvertController.uploadByScreen",hasArgs=false)
 	public String uploadByScreen(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html;charset=UTF-8");
 		String oFileName = file.getOriginalFilename();
@@ -313,6 +318,7 @@ public class AdvertController {
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
+	@MethodNameDescrible(describle="userlog.AdvertController.add",hasArgs=false,reqBodyClass="com.yihuacomputer.fish.web.advert.form.AdvertForm",bodyProperties="versionId")
 	public ModelMap add(@RequestBody AdvertForm form, HttpServletRequest request) {
 		logger.info(" add advert...");
 
@@ -503,6 +509,7 @@ public class AdvertController {
 	// 删除广告
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseBody
+	@MethodNameDescrible(describle="userlog.AdvertController.delete",hasArgs=false,urlArgs=true)
 	public ModelMap delete(@PathVariable long id) {
 		logger.info(" delete advert with cascade: advert.id = " + id);
 		ModelMap result = new ModelMap();

@@ -41,7 +41,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
 @RequestMapping("/login")
-@ClassNameDescrible(describle="user.login")
+@ClassNameDescrible(describle="userlog.LoginController")
 public class LoginController {
 
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(LoginController.class);
@@ -64,11 +64,11 @@ public class LoginController {
 	/**
 	 * 登录并验证用户
 	 */
-	@MethodNameDescrible(describle="user.login.login",hasArgs=true,argsContext="username")
+	@MethodNameDescrible(describle="userlog.LoginController.login",hasArgs=true,argsContext="username")
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap login(@RequestParam String username, @RequestParam String password, HttpSession session, HttpServletRequest request, WebRequest webrequest) {
 		ModelMap result = new ModelMap();
-
+		
 		 //验证没有注册就进入注册页面。
 		 if (!new DBType(sf.getHibernateProperties()).isMemDB() &&
 		 FishCfg.isFishExpiry()) {

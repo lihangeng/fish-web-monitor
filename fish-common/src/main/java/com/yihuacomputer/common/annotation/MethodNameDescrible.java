@@ -14,7 +14,7 @@ public @interface MethodNameDescrible{
 	 */
 	String describle() default "";
 	/**
-	 * 当前传参数是否为数字(主键)
+	 * 是否有参数需要记录
 	 * @return
 	 */
 	boolean hasArgs() default true;
@@ -24,4 +24,26 @@ public @interface MethodNameDescrible{
 	 * @return
 	 */
 	String argsContext() default "";
+	/**
+	 * 是否有请求体需要记录
+	 * @return
+	 */
+	boolean hasReqBodyParam() default true;
+
+	/**
+	 * 请求体类的别名
+	 * @return
+	 */
+	String reqBodyClass() default "";
+	
+	/**
+	 * 记录的请求类的关键字
+	 * @return
+	 */
+	String bodyProperties() default "";
+	/**
+	 * 参数是否在uri中
+	 * @return
+	 */
+	boolean urlArgs() default false;
 }
