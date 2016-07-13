@@ -39,6 +39,16 @@
 		<property name="basenames">
 			<list>
 				<value>message</value>
+				<value>message-advert</value>
+				<value>message-daily</value>
+				<value>message-fault</value>
+				<value>message-index</value>
+				<value>message-machine</value>
+				<value>message-monitor</value>
+				<value>message-parameter</value>
+				<value>message-report</value>
+				<value>message-system</value>
+				<value>message-version</value>
 				<value>enum</value>
 				<value>messageStateCode</value>
 				<value>messageVersion</value>

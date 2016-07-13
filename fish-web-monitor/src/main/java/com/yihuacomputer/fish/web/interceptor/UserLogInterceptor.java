@@ -101,6 +101,21 @@ public class UserLogInterceptor extends HandlerInterceptorAdapter {
 			if(methodDesc.hasArgs()){
 				operatorAction.append("->").append(request.getParameter(methodDesc.argsContext()));
 			}
+			if(methodDesc.urlArgs()){
+				String uris[] =  request.getRequestURI().split("\\/");
+				operatorAction.append("->").append(uris[uris.length-1]);
+			}
+//			if(methodDesc.hasReqBodyParam()){
+//				String className = methodDesc.reqBodyClass();
+//				Class classz = Class.forName(className);
+//				handlers.g
+//				MethodParameter [] methodParams = handlers.getMethodParameters();
+//				for(MethodParameter methodParam:methodParams){
+//					if(methodParam.getParameterType() instanceof classz){
+//						methodParam.get
+//					}
+//				}
+//			}
 			ApplicationContext ctx = WebApplicationContextUtils.getWebApplicationContext(session.getServletContext());
 			IUserLogService logService = ctx.getBean(IUserLogService.class);
 			String str = operatorAction.toString();
