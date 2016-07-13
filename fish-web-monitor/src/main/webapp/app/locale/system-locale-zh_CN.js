@@ -96,7 +96,7 @@ Ext.apply(EwayLocale,{
 			operTitle:'操作员日志',//EwayLocale.person.user.operTitle
 			operDetailTitle:'操作日志信息',//EwayLocale.person.user.operDetailTitle
 			operLogList:'操作日志列表',//EwayLocale.person.user.operLogList
-			personDevice:'人员<-->设备',//EwayLocale.person.user.personDevice
+			personDevice:'关联设备（可使用拖拽的方式）',//EwayLocale.person.user.personDevice
 			rootUser:'超级用户',//EwayLocale.person.user.rootUser
 			generalUser:'普通用户'//EwayLocale.person.user.generalUser
 		}
