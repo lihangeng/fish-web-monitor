@@ -70,6 +70,7 @@ Ext.define('Eway.view.person.servicePer.Add', {
 					items : [ {
 						boxLabel : EwayLocale.commen.comboxGender.male,
 						name : 'gender',
+						checked: true,
 						inputValue : 0
 					}, {
 						boxLabel : EwayLocale.commen.comboxGender.female,
