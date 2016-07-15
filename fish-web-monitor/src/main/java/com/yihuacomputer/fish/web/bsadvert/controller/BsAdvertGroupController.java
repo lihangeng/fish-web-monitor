@@ -311,7 +311,7 @@ public class BsAdvertGroupController {
 	 * @return
 	 */
 	@RequestMapping(value = "/unlink", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.unlink",hasArgs=true,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.unlink",hasArgs=true,argsContext="deviceId")
 	public @ResponseBody ModelMap unlink(@RequestParam String groupId, @RequestParam String deviceId) {
 		ModelMap result = new ModelMap();
 		String[] ids = deviceId.split(",");
