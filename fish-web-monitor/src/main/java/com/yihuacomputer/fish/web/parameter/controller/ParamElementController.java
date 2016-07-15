@@ -34,6 +34,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.file.INIFileReader;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
@@ -51,6 +53,7 @@ import com.yihuacomputer.fish.web.parameter.form.ParamElementForm;
 
 @Controller
 @RequestMapping("/parameter/element")
+@ClassNameDescrible(describle="userlog.ParamElementController")
 public class ParamElementController {
 
 	private Logger logger = LoggerFactory.getLogger(ParamElementController.class);
@@ -89,6 +92,7 @@ public class ParamElementController {
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.ParamElementController.add",hasArgs=false)
 	public @ResponseBody
 	ModelMap add(@RequestBody ParamElementForm request){
 		logger.info("add elementelement");
@@ -120,6 +124,7 @@ public class ParamElementController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@MethodNameDescrible(describle="userlog.ParamElementController.update",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody ParamElementForm request) {
 		logger.info("update elemet: elemet.id = " + id);
@@ -182,6 +187,7 @@ public class ParamElementController {
 
 
    @RequestMapping(method = RequestMethod.POST, value = "/import")
+	@MethodNameDescrible(describle="userlog.ParamElementController.importFile",hasArgs=true,argsContext="appSystem")
 	public @ResponseBody
 	String importFile(@RequestParam long appSystem, HttpServletRequest request, HttpServletResponse response) {
 

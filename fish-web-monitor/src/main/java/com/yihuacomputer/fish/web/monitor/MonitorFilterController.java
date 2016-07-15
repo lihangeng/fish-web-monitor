@@ -23,6 +23,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.exception.ServiceException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.atm.IAtmBrandService;
@@ -55,6 +57,7 @@ import com.yihuacomputer.fish.web.monitor.form.MonitorFilterForm;
  */
 @Controller
 @RequestMapping("/monitor/device/monitorFilter")
+@ClassNameDescrible(describle="userlog.MonitorFilterController")
 public class MonitorFilterController {
 
     private Logger logger = LoggerFactory.getLogger(MonitorFilterController.class);
@@ -171,6 +174,7 @@ public class MonitorFilterController {
      * @return
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.MonitorFilterController.monitorFilterAdd",hasArgs=true,argsContext="userId")
     @ResponseBody
     public ModelMap monitorFilterAdd(@RequestParam String userId, WebRequest request) {
 
@@ -218,6 +222,7 @@ public class MonitorFilterController {
      * @return
      */
     @RequestMapping(value = "/update", method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.MonitorFilterController.monitorFilterUpdate",hasArgs=true,argsContext="id")
     @ResponseBody
     public ModelMap monitorFilterUpdate(@RequestParam long id, WebRequest request) {
 
@@ -269,6 +274,7 @@ public class MonitorFilterController {
      * @return
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@MethodNameDescrible(describle="userlog.MonitorFilterController.delete",hasArgs=false,urlArgs=true)
     public @ResponseBody ModelMap delete(@PathVariable long id) {
         logger.info(" delete monitorFilter: monitorFilter.id = " + id);
         ModelMap result = new ModelMap();
