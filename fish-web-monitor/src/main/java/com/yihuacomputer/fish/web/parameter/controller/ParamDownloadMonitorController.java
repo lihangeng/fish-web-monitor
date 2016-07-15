@@ -23,6 +23,7 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.parameter.IParamPublish;
 import com.yihuacomputer.fish.api.parameter.IParamPublishAppResult;
@@ -39,6 +40,7 @@ import com.yihuacomputer.fish.web.parameter.form.ParamPublishAppResultForm;
 
 @Controller
 @RequestMapping("/parameter/downloadMonitor")
+@ClassNameDescrible(describle="userlog.ParamDownloadMonitorController")
 public class ParamDownloadMonitorController {
 	private Logger logger=LoggerFactory.getLogger(ParamDownloadMonitorController.class);
 	

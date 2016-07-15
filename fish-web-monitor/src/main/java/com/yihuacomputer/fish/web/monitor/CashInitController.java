@@ -16,6 +16,8 @@ import org.springframework.web.context.request.WebRequest;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.monitor.business.ICashInit;
 import com.yihuacomputer.fish.api.monitor.business.ICashInitService;
@@ -29,6 +31,7 @@ import com.yihuacomputer.fish.web.atm.format.CashInitalMsg;
  *
  */
 @Controller
+@ClassNameDescrible(describle="userlog.CashInitController")
 @RequestMapping("/monitor/cashinit")
 public class CashInitController {
 	private Logger logger = LoggerFactory.getLogger(CashInitalController.class);
