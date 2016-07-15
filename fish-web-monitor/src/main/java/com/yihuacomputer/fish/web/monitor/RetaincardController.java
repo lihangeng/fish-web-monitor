@@ -39,6 +39,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.AwayFlag;
@@ -63,6 +65,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
  */
 @Controller
 @RequestMapping("/monitor/retainCard")
+@ClassNameDescrible(describle="userlog.retaincardController")
 public class RetaincardController {
 
 	private Logger logger = LoggerFactory.getLogger(RetaincardController.class);
@@ -80,6 +83,7 @@ public class RetaincardController {
 	private MessageSource messageSource;
 
 	@RequestMapping(method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.retaincardController.add",hasArgs=false)
 	public @ResponseBody
 	ModelMap add(@RequestBody RetainCardForm request) {
 		ModelMap result = new ModelMap();
@@ -139,6 +143,7 @@ public class RetaincardController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@MethodNameDescrible(describle="userlog.retaincardController.delete",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
 		logger.info(" delete Retaincard: Retaincard.id = " + id);
@@ -412,6 +417,7 @@ public class RetaincardController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/destory")
+	@MethodNameDescrible(describle="userlog.retaincardController.update",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap update(@RequestParam long id, @RequestParam String name,
 			@RequestParam String organizationId) {
@@ -495,6 +501,7 @@ public class RetaincardController {
 	 * @return
 	 */
 	@RequestMapping(value = "/poiExcel", method = RequestMethod.GET)
+	@MethodNameDescrible(describle="userlog.retaincardController.poiExcel",hasArgs=false)
 	public @ResponseBody
 	ModelMap poiExcel(WebRequest wRequest, HttpServletRequest request,
 			HttpServletResponse response) {

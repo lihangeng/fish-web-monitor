@@ -38,6 +38,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.fault.FaultCloseType;
@@ -51,6 +53,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
 @RequestMapping("/case/caseFault")
+@ClassNameDescrible(describle="userlog.faultController")
 public class FaultController
 {
 
@@ -140,6 +143,7 @@ public class FaultController
     }
 
     @RequestMapping(value = "/export", method = RequestMethod.GET)
+	@MethodNameDescrible(describle="userlog.faultController.export",hasArgs=false)
     public @ResponseBody
     ModelMap poi(WebRequest request, HttpServletRequest req, HttpServletResponse response)
     {
@@ -464,6 +468,7 @@ public class FaultController
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@MethodNameDescrible(describle="userlog.faultController.update",hasArgs=false,urlArgs=true)
     public @ResponseBody
     ModelMap update(@PathVariable String id,
             @RequestBody CaseFaultForm request)

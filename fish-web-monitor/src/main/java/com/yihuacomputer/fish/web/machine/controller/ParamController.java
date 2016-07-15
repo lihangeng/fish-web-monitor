@@ -22,12 +22,15 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.system.config.IParam;
 import com.yihuacomputer.fish.api.system.config.IParamService;
 import com.yihuacomputer.fish.web.machine.form.ParamForm;
 
 @Controller
+@ClassNameDescrible(describle="userlog.paramController")
 @RequestMapping("/machine/param")
 public class ParamController {
 	private Logger logger = LoggerFactory.getLogger(ParamController.class);
@@ -55,6 +58,7 @@ public class ParamController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@MethodNameDescrible(describle="userlog.paramController.update",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody ParamForm request) {
 		logger.info("update Param: param.id = " + id);

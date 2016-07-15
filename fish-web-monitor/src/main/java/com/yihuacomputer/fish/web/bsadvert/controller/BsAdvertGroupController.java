@@ -26,6 +26,8 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.ITypeIP;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.IOUtils;
@@ -54,6 +56,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
 @RequestMapping("bsadvert/advertgroup")
+@ClassNameDescrible(describle="userlog.bsAdvertGroupController")
 public class BsAdvertGroupController {
 
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(BsAdvertGroupController.class);
@@ -142,6 +145,7 @@ public class BsAdvertGroupController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.add",hasArgs=false)
 	public @ResponseBody ModelMap add(@RequestBody BsAdvertGroupForm request, HttpServletRequest Httprequest) {
 		logger.info("add bsAdvertGroup");
 		UserSession userSession = (UserSession) Httprequest.getSession().getAttribute(FishWebUtils.USER);
@@ -191,6 +195,7 @@ public class BsAdvertGroupController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.update",hasArgs=false)
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody BsAdvertGroupForm request) {
 		logger.info("update bsAdvertGroup: bsAdvertGroup.id = " + id);
 
@@ -229,6 +234,7 @@ public class BsAdvertGroupController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.delete",hasArgs=false,urlArgs=true)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {
 
 		logger.info(" delete bsAdvertGroup: bsAdvertGroup.id = " + id);
@@ -280,6 +286,7 @@ public class BsAdvertGroupController {
 	 * @return
 	 */
 	@RequestMapping(value = "/link", method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.link",hasArgs=false)
 	public @ResponseBody ModelMap link(@RequestBody BsAdvertGroupDeviceForm request) {
 		logger.info(String.format("device %s linked  %s", request.getGroupId(), request.getDeviceId()));
 		ModelMap result = new ModelMap();
@@ -304,6 +311,7 @@ public class BsAdvertGroupController {
 	 * @return
 	 */
 	@RequestMapping(value = "/unlink", method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.unlink",hasArgs=true,urlArgs=true)
 	public @ResponseBody ModelMap unlink(@RequestParam String groupId, @RequestParam String deviceId) {
 		ModelMap result = new ModelMap();
 		String[] ids = deviceId.split(",");
