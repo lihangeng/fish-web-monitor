@@ -26,6 +26,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.atm.IAtmType;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
@@ -43,6 +45,7 @@ import com.yihuacomputer.fish.web.version.form.VersionTypeTreeForm;
  */
 @Controller
 @RequestMapping(value = "/version/versionType")
+@ClassNameDescrible(describle="userlog.VersionTypeController")
 public class VersionTypeController {
 
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(VersionTypeController.class);
@@ -92,6 +95,7 @@ public class VersionTypeController {
 	 * @param form
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.VersionTypeController.add",hasArgs=false)
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap add(@RequestBody VersionTypeForm form) {
 		logger.info(" add versionType...");
@@ -145,6 +149,7 @@ public class VersionTypeController {
         return result;
     }
 
+	@MethodNameDescrible(describle="userlog.VersionTypeController.update",hasArgs=false,urlArgs=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody ModelMap update(@PathVariable long id,@RequestBody VersionTypeForm form) {
 		logger.info(" update versionType : versionType.id = " + form.getId());
@@ -199,6 +204,7 @@ public class VersionTypeController {
 	 * @param id
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.VersionTypeController.delete",hasArgs=false,urlArgs=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {
 		logger.info(" delete versionType: versionType.id = " + id);

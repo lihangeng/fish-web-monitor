@@ -24,6 +24,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.parameter.FileFormat;
 import com.yihuacomputer.fish.api.parameter.IAppSystem;
@@ -33,6 +35,7 @@ import com.yihuacomputer.fish.web.parameter.form.AppSystemForm;
 
 @Controller
 @RequestMapping("/parameter/appSystem")
+@ClassNameDescrible(describle="userlog.AppSystemController")
 public class AppSystemController {
 	private Logger logger=LoggerFactory.getLogger(AppSystemController.class);
 
@@ -67,6 +70,7 @@ public class AppSystemController {
 	}
 
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
+	@MethodNameDescrible(describle="userlog.AppSystemController.update",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap update(@PathVariable long id,@RequestBody AppSystemForm request){
 		logger.info("update appSystem:appSystem.id="+id);

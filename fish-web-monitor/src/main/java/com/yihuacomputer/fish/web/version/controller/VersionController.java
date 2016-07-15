@@ -28,6 +28,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.exception.DependException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
@@ -63,6 +65,7 @@ import com.yihuacomputer.fish.web.version.form.VersionForm;
  */
 @Controller
 @RequestMapping(value = "/version/version")
+@ClassNameDescrible(describle="userlog.VersionController")
 public class VersionController {
 
 	private Logger logger = LoggerFactory.getLogger(VersionController.class);
@@ -153,6 +156,7 @@ public class VersionController {
 	 * @param model
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.VersionController.upload",hasArgs=true,argsContext="file")
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public @ResponseBody String upload(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html;charset=utf-8");
@@ -210,6 +214,7 @@ public class VersionController {
 	// 增加,
 	@SuppressWarnings("deprecation")
 	@RequestMapping(method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.VersionController.add",hasArgs=false)
 	public @ResponseBody ModelMap add(@RequestBody VersionForm form, HttpServletRequest request) {
 		logger.info(" add version...");
 		ModelMap result = new ModelMap();
@@ -263,6 +268,7 @@ public class VersionController {
 
 	// 修改版本信息
 	@SuppressWarnings("deprecation")
+	@MethodNameDescrible(describle="userlog.VersionController.update",hasArgs=false,urlArgs=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody VersionForm form) {
 		logger.info(" update version : version.id = " + id);
@@ -303,6 +309,7 @@ public class VersionController {
 	}
 
 	// 删除
+	@MethodNameDescrible(describle="userlog.VersionController.delete",hasArgs=false,urlArgs=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {
 		logger.info(" delete version: version.id = " + id);
@@ -552,6 +559,7 @@ public class VersionController {
 	 * @param request
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.VersionController.getVersionDistributeStatusDetail",hasArgs=true,argsContext="versionId")
 	@RequestMapping(value = "distributeStatusDetail", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap getVersionDistributeStatusDetail(@RequestParam long versionId,@RequestParam int start,@RequestParam int limit, WebRequest webRequest, HttpServletRequest request) {

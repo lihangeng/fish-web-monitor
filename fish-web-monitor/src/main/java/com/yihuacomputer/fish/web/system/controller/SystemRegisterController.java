@@ -17,6 +17,8 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.util.RegisterInfo;
 import com.yihuacomputer.common.util.RegisterResult;
 import com.yihuacomputer.common.util.SystemRegisterUtil;
@@ -27,6 +29,7 @@ import com.yihuacomputer.fish.api.system.config.IParamService;
 
 @Controller
 @RequestMapping("/system/register")
+@ClassNameDescrible(describle="userlog.SystemRegisterController")
 public class SystemRegisterController {
 
 	@Autowired
@@ -36,7 +39,8 @@ public class SystemRegisterController {
 	private MessageSource messageSource;
 	
 	private Logger logger = LoggerFactory.getLogger(SystemRegisterController.class);
-
+	
+	@MethodNameDescrible(describle="userlog.SystemRegisterController.register",hasArgs=false)
 	@RequestMapping(method=RequestMethod.POST)
 	public @ResponseBody ModelMap register(WebRequest request){
 		ModelMap map = new ModelMap();

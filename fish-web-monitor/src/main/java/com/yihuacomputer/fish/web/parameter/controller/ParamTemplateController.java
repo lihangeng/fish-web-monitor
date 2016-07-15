@@ -29,6 +29,8 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.ITypeIP;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
@@ -60,6 +62,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
  */
 @Controller
 @RequestMapping("/parameter/template")
+@ClassNameDescrible(describle="userlog.ParamTemplateController")
 public class ParamTemplateController {
 
 	private Logger logger = LoggerFactory.getLogger(ParamTemplateController.class);
@@ -107,6 +110,7 @@ public class ParamTemplateController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.ParamTemplateController.add",hasArgs=false)
 	public @ResponseBody ModelMap add(@RequestBody ParamTemplateForm request) {
 		logger.info("add template");
 		ModelMap result = new ModelMap();
@@ -134,6 +138,7 @@ public class ParamTemplateController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@MethodNameDescrible(describle="userlog.ParamTemplateController.delete",hasArgs=false,urlArgs=true)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {
 		logger.info(" delete template: template.id = " + id);
 		ModelMap result = new ModelMap();
@@ -158,6 +163,7 @@ public class ParamTemplateController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{templateDetail}", method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.ParamTemplateController.updateTemplateDetail",hasArgs=false)
 	@ResponseBody
 	public ModelMap updateTemplateDetail(@RequestBody ParamTempDetailForm form , HttpServletRequest request) {
 
@@ -285,6 +291,7 @@ public class ParamTemplateController {
 	 * @param form
 	 * @return ModelMap<String, Object>
 	 */
+	@MethodNameDescrible(describle="userlog.ParamTemplateController.searchLinkedDevice",hasArgs=true,argsContext="guid")
 	@RequestMapping(value = "/linkedDevice", method = RequestMethod.GET)
 	public @ResponseBody ModelMap searchLinkedDevice(@RequestParam int start,
 			@RequestParam int limit, @RequestParam int flag,
@@ -330,6 +337,7 @@ public class ParamTemplateController {
 	 * @return
 	 */
 	@RequestMapping(value = "/link", method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.ParamTemplateController.link",hasArgs=false)
 	public @ResponseBody ModelMap link(@RequestBody ParamTemplateDeviceform request) {
 
 		logger.info(String.format("device %s linked  %s", request.getGroupId(),request.getDeviceId()));
@@ -364,6 +372,7 @@ public class ParamTemplateController {
 	 * @return
 	 */
 	@RequestMapping(value = "/unlink", method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.ParamTemplateController.unlink",hasArgs=true,argsContext="deviceId")
 	public @ResponseBody ModelMap unlink(@RequestParam String templateId,
 			@RequestParam String deviceId) {
 		ModelMap result = new ModelMap();

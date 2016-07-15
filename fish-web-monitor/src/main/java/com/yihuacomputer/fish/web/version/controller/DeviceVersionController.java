@@ -25,6 +25,8 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.ITypeIP;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IComplexDeviceService;
@@ -46,6 +48,7 @@ import com.yihuacomputer.fish.web.version.form.VersionDeviceForm;
  */
 @Controller
 @RequestMapping(value = "/version/device")
+@ClassNameDescrible(describle="userlog.DeviceVersionController")
 public class DeviceVersionController {
 
     private Logger logger = org.slf4j.LoggerFactory.getLogger(DeviceVersionController.class);
@@ -80,6 +83,7 @@ public class DeviceVersionController {
         return result;
     }
 
+    @MethodNameDescrible(describle="userlog.DeviceVersionController.history",hasArgs=true,argsContext="deviceId")
     @RequestMapping(method = RequestMethod.GET, value = "/history")
     public @ResponseBody
     ModelMap history(@RequestParam int start, @RequestParam int limit, @RequestParam int deviceId) {

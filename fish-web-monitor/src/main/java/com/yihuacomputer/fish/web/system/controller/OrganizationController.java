@@ -24,6 +24,7 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.exception.NotFoundException;
 import com.yihuacomputer.common.filter.Filter;
@@ -50,6 +51,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
  */
 @Controller
 @RequestMapping("/person/organization")
+@ClassNameDescrible(describle="userlog.OrganizationController")
 public class OrganizationController {
 
 	private final Logger logger = org.slf4j.LoggerFactory.getLogger(OrganizationController.class);
@@ -73,6 +75,7 @@ public class OrganizationController {
 	 * @param form
 	 * @return ModelMap
 	 */
+	@MethodNameDescrible(describle="userlog.OrganizationController.add",hasArgs=false)
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap add(@RequestBody OrganizationForm form) {
 		logger.info(" add org...");
@@ -131,6 +134,7 @@ public class OrganizationController {
 	 * @param id
 	 * @return Map<String, Object>
 	 */
+	@MethodNameDescrible(describle="userlog.OrganizationController.delete",hasArgs=false,urlArgs=true)
 	@SuppressWarnings("incomplete-switch")
 	@RequestMapping(value = "/{guid}", method = RequestMethod.DELETE)
 	public @ResponseBody ModelMap delete(@PathVariable String guid) {
@@ -177,6 +181,7 @@ public class OrganizationController {
 	 * @param form
 	 * @return Map<String, Object>
 	 */
+	@MethodNameDescrible(describle="userlog.OrganizationController.update",hasArgs=false,urlArgs=true)
 	@RequestMapping(value = "/{guid}", method = RequestMethod.PUT)
 	public @ResponseBody ModelMap update(@PathVariable String guid, @RequestBody OrganizationForm form, HttpServletRequest req) {
 		logger.info(" update org : org.id = " + guid);
@@ -251,6 +256,7 @@ public class OrganizationController {
 	 * @param form
 	 * @return Map<String, Object>
 	 */
+	@MethodNameDescrible(describle="userlog.OrganizationController.move",hasArgs=true,argsContext="guid")
 	@RequestMapping(value = "/move", method = RequestMethod.POST)
 	public @ResponseBody ModelMap move(@RequestParam String guid, @RequestParam String parentId, HttpServletRequest request, WebRequest webrequest) {
 		logger.info(" move org : org.guid = " + guid);

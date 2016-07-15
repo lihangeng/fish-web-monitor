@@ -28,6 +28,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.common.util.DateUtils;
@@ -66,6 +68,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
  */
 @Controller
 @RequestMapping("/person/person")
+@ClassNameDescrible(describle="userlog.PersonController")
 public class PersonController {
     private final Logger logger = org.slf4j.LoggerFactory.getLogger(PersonController.class);
 
@@ -177,7 +180,9 @@ public class PersonController {
      * @param deviceId
      * @return
      */
+    @MethodNameDescrible(describle="userlog.PersonController.unlink",hasArgs=true,argsContext="personId")
     @RequestMapping(value = "/unlink", method = RequestMethod.POST)
+    
     public @ResponseBody
     ModelMap unlink(@RequestParam String personId, @RequestParam String deviceId) {
         ModelMap result = new ModelMap();
@@ -221,6 +226,7 @@ public class PersonController {
      * @param request
      * @return
      */
+    @MethodNameDescrible(describle="userlog.PersonController.link",hasArgs=false)
     @RequestMapping(value = "/link", method = RequestMethod.POST)
     public @ResponseBody
     ModelMap link(@RequestBody PersonDeviceForm request) {
@@ -246,7 +252,7 @@ public class PersonController {
      * @param form
      * @return ModelMap<String, Object>
      */
-
+    @MethodNameDescrible(describle="userlog.PersonController.add",hasArgs=false)
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody
     ModelMap add(@RequestBody PersonForm form) {
@@ -313,6 +319,7 @@ public class PersonController {
      * @param guid
      * @return ModelMap<String, Object>
      */
+    @MethodNameDescrible(describle="userlog.PersonController.delete",hasArgs=false,urlArgs=true)
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public @ResponseBody
     ModelMap delete(@PathVariable String id) {
@@ -363,7 +370,7 @@ public class PersonController {
      * @param request
      * @return ModelMap<String, Object>
      */
-
+    @MethodNameDescrible(describle="userlog.PersonController.update",hasArgs=false,urlArgs=true)
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public @ResponseBody
     ModelMap update(@PathVariable String id, @RequestBody PersonForm form) {

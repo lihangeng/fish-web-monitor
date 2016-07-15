@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yihuacomputer.common.FishCfg;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.fish.web.report.controller.DownloadReportController;
 
 
@@ -26,6 +28,7 @@ import com.yihuacomputer.fish.web.report.controller.DownloadReportController;
  */
 @Controller
 @RequestMapping("/system")
+@ClassNameDescrible(describle="userlog.SystemHelpController")
 public class SystemHelpController
 {
 	private Logger logger = LoggerFactory.getLogger(DownloadReportController.class);
@@ -33,6 +36,7 @@ public class SystemHelpController
     /**
      * 下载文件到浏览器端：
      */
+	@MethodNameDescrible(describle="userlog.SystemHelpController.download",hasArgs=true,argsContext="fileName")
     @RequestMapping(value = "/downloadFile",method = RequestMethod.GET)
     public void download(@RequestParam String fileName,HttpServletRequest request,HttpServletResponse response) throws Exception {
     	String path = FishCfg.getFishHelpDoc()+FishCfg.fileSep+fileName;

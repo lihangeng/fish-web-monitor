@@ -19,6 +19,8 @@ import org.springframework.web.context.request.WebRequest;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.person.IUserLog;
 import com.yihuacomputer.fish.api.person.IUserLogService;
@@ -37,6 +39,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
  */
 @Controller
 @RequestMapping("/person/userLog")
+@ClassNameDescrible(describle="userlog.UserLogController")
 public class UserLogController {
 
 	private final Logger logger = org.slf4j.LoggerFactory.getLogger(UserLogController.class);
@@ -57,6 +60,7 @@ public class UserLogController {
 	 * @param form
 	 * @return Map<String,Object>
 	 */
+	@MethodNameDescrible(describle="userlog.UserLogController.search",hasArgs=false)
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request, HttpServletRequest req) {

@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishConstant;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.fish.api.atm.IAtmBrandService;
 import com.yihuacomputer.fish.api.atm.IAtmModule;
 import com.yihuacomputer.fish.api.atm.IAtmModuleService;
@@ -28,6 +30,7 @@ import com.yihuacomputer.fish.api.report.base.IFaultRateReportService;
 
 @Controller
 @RequestMapping(value = "/report/faultRate")
+@ClassNameDescrible(describle="userlog.FaultRateReportController")
 public class FaultRateReportController {
 
 	private Logger logger = LoggerFactory.getLogger(FaultRateReportController.class);
@@ -53,6 +56,7 @@ public class FaultRateReportController {
 	 * @param webRequest
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.FaultRateReportController.searchByBrand",hasArgs=false)
 	@RequestMapping(value = "/faultByBrand", method = RequestMethod.GET)
 	public @ResponseBody ModelMap searchByBrand(HttpServletRequest req, WebRequest webRequest) {
 		logger.info(String.format("search faultByBrand : queryFaultByBrand"));
@@ -71,6 +75,7 @@ public class FaultRateReportController {
 	 * @param request
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.FaultRateReportController.queryFaultByType",hasArgs=false)
 	@RequestMapping(value = "/faultByType", method = RequestMethod.GET)
 	public @ResponseBody ModelMap queryFaultByType(HttpServletRequest req, WebRequest request) {
 		logger.info(String.format("search faultByType : queryFaultByType"));
@@ -94,6 +99,7 @@ public class FaultRateReportController {
 	 * @param webRequest
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.FaultRateReportController.queryFaultByModule",hasArgs=false)
 	@RequestMapping(value = "/faultByModule", method = RequestMethod.GET)
 	public @ResponseBody ModelMap queryFaultByModule(HttpServletRequest req, WebRequest webRequest) {
 		logger.info(String.format("search faultByModule : queryFaultByModule"));

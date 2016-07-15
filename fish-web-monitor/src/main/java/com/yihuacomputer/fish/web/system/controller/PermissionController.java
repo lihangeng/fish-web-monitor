@@ -24,6 +24,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.fish.api.permission.IPermission;
@@ -42,6 +44,7 @@ import com.yihuacomputer.fish.web.system.form.PermissionTreeForm;
  */
 @Controller
 @RequestMapping("/relation/permission")
+@ClassNameDescrible(describle="userlog.PermissionController")
 public class PermissionController {
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(PermissionController.class);
 
@@ -65,7 +68,7 @@ public class PermissionController {
 	 * @param form
 	 * @return ModelMap<String, Object>
 	 */
-
+	@MethodNameDescrible(describle="userlog.PermissionController.add",hasArgs=false)
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap add(@RequestBody PermissionRequest request) {
@@ -85,6 +88,7 @@ public class PermissionController {
 	 * @param id
 	 * @return ModelMap<String, Object>
 	 */
+	@MethodNameDescrible(describle="userlog.PermissionController.deleteById",hasArgs=false,urlArgs=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
 	ModelMap deleteById(@PathVariable String id) {
@@ -106,6 +110,7 @@ public class PermissionController {
 	 * @param id
 	 * @return ModelMap<String, Object>
 	 */
+	@MethodNameDescrible(describle="userlog.PermissionController.delete",hasArgs=false,urlArgs=true)
 	@RequestMapping(value = "/{code}", method = RequestMethod.DELETE)
 	public @ResponseBody
 	ModelMap delete(@PathVariable String code) {
@@ -128,7 +133,7 @@ public class PermissionController {
 	 * @param request
 	 * @return ModelMap<String, Object>
 	 */
-
+	@MethodNameDescrible(describle="userlog.PermissionController.update",hasArgs=false,urlArgs=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody PermissionRequest request) {

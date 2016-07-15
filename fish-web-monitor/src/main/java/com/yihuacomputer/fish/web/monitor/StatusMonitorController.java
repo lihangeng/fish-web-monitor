@@ -21,6 +21,7 @@ import org.springframework.web.context.request.WebRequest;
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.monitor.filter.IBoxStatusFilter;
@@ -53,6 +54,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
  *
  */
 @Controller
+@ClassNameDescrible(describle="userlog.StatusMonitorController")
 @RequestMapping("/monitor/device")
 public class StatusMonitorController {
     private Logger logger = LoggerFactory.getLogger(StatusMonitorController.class);

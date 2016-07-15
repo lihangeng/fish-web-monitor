@@ -26,6 +26,8 @@ import org.springframework.web.context.request.WebRequest;
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.OrganizationLevel;
@@ -36,6 +38,7 @@ import com.yihuacomputer.fish.api.report.engine.IExportReportService;
 
 @Controller
 @RequestMapping(value = "/report")
+@ClassNameDescrible(describle="userlog.DeviceTypeCountReportController")
 public class DeviceTypeCountReportController {
 
     private Logger logger = LoggerFactory.getLogger(DeviceTypeCountReportController.class);
@@ -60,7 +63,8 @@ public class DeviceTypeCountReportController {
 
 	@Autowired
 	private MessageSource messageSource;
-
+	
+	@MethodNameDescrible(describle="userlog.DeviceTypeCountReportController.deviceTypeCount",hasArgs=false)
     @RequestMapping(value = "/deviceTypeCount", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap deviceTypeCount(WebRequest request, HttpServletRequest rq) {

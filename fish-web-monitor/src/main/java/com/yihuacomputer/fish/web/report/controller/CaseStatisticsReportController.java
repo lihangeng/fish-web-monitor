@@ -20,6 +20,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
@@ -29,6 +31,7 @@ import com.yihuacomputer.fish.web.report.form.CaseStatisticsForm;
 
 @Controller
 @RequestMapping("/report/caseStatisticsReport")
+@ClassNameDescrible(describle="userlog.CaseStatisticsReportController")
 public class CaseStatisticsReportController {
 
 	@Autowired
@@ -40,7 +43,7 @@ public class CaseStatisticsReportController {
 	@Autowired
 	private MessageSource messageSource;
 
-
+	@MethodNameDescrible(describle="userlog.CaseStatisticsReportController.search",hasArgs=false)
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap search(WebRequest wReq, HttpServletRequest req) {
