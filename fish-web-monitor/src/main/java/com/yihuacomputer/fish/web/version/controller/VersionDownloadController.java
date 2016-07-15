@@ -278,6 +278,7 @@ public class VersionDownloadController {
 	}
 
 	// 撤销作业
+	@MethodNameDescrible(describle="userlog.VersionDownloadController.delete",hasArgs=false,urlArgs=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {
 		logger.info(" delete job: job.id = " + id);
