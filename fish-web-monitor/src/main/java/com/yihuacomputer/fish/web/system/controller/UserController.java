@@ -25,6 +25,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.permission.IRole;
 import com.yihuacomputer.fish.api.permission.IRoleService;
@@ -50,6 +52,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
  */
 @Controller
 @RequestMapping("/person/user")
+@ClassNameDescrible(describle="userlog.UserController")
 public class UserController {
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(UserController.class);
 
@@ -80,6 +83,7 @@ public class UserController {
 	 * @param request
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.UserController.addRole",hasArgs=false)
 	@RequestMapping(value = "/addRole", method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap addRole(@RequestBody UserRoleForm request) {
@@ -107,6 +111,7 @@ public class UserController {
 	/**
 	 * 删除账户角色
 	 */
+	@MethodNameDescrible(describle="userlog.UserController.deleteRole",hasArgs=true,argsContext="uerId")
 	@RequestMapping(value = "/removeRole", method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap deleteRole(@RequestParam long userId, @RequestParam long roleId) {
@@ -137,6 +142,7 @@ public class UserController {
 	 * @return ModelMap<String, Object>
 	 */
 	@Transactional
+	@MethodNameDescrible(describle="userlog.UserController.add",hasArgs=false)
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap add(@RequestBody UserForm form) {
@@ -205,6 +211,7 @@ public class UserController {
 	 * @param id
 	 * @return ModelMap<String, Object>
 	 */
+	@MethodNameDescrible(describle="userlog.UserController.delete",hasArgs=false,urlArgs=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
@@ -236,7 +243,7 @@ public class UserController {
 	 * @param request
 	 * @return ModelMap<String, Object>
 	 */
-
+	@MethodNameDescrible(describle="userlog.UserController.update",hasArgs=false,urlArgs=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody UserForm form) {
@@ -277,6 +284,7 @@ public class UserController {
 	 * @param webrequest
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.UserController.resetPassword",hasArgs=true,argsContext="username")
 	@RequestMapping(value = "/resetPassword", method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap resetPassword(@RequestParam String username, @RequestParam String newPassword, HttpServletRequest request,

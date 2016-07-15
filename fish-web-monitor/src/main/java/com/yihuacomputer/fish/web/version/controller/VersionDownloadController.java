@@ -30,6 +30,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.DateUtils;
@@ -73,6 +75,7 @@ import com.yihuacomputer.fish.web.version.form.UpdateDeployDateHistoryForm;
  */
 @Controller
 @RequestMapping(value = "/version/download")
+@ClassNameDescrible(describle="userlog.VersionDownloadController")
 public class VersionDownloadController {
 
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(VersionDownloadController.class);
@@ -190,6 +193,7 @@ public class VersionDownloadController {
 	}
 
 	// 增加
+	@MethodNameDescrible(describle="userlog.VersionDownloadController.add",hasArgs=false)
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap add(@RequestBody JobForm form, HttpServletRequest request) {
 		logger.info(" add job...");
@@ -318,6 +322,7 @@ public class VersionDownloadController {
 		return false;
 	}
 
+	@MethodNameDescrible(describle="userlog.VersionDownloadController.resetTaskStatus",hasArgs=true,argsContext="id")
 	@RequestMapping(value = "/resetTaskStatus", method = RequestMethod.POST)
 	public @ResponseBody ModelMap resetTaskStatus(@RequestParam long id) {
 		logger.info(String.format("reset taskStatus  : taskId = %s  ", id));
@@ -678,6 +683,7 @@ public class VersionDownloadController {
 	 * @param taskId
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.VersionDownloadController.cancelTask",hasArgs=true,argsContext="jobId")
 	@RequestMapping(value = "/task/cancel", method = RequestMethod.POST)
 	public @ResponseBody ModelMap cancelTask(@RequestParam long jobId, @RequestParam long taskId) {
 		logger.info(" cancle task: task.id = " + taskId);
@@ -727,6 +733,7 @@ public class VersionDownloadController {
 	 *            作业ID
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.VersionDownloadController.pauseJob",hasArgs=true,argsContext="id")
 	@RequestMapping(value = "/pause", method = RequestMethod.POST)
 	public @ResponseBody String pauseJob(@RequestParam long id) {
 		try {
@@ -838,6 +845,7 @@ public class VersionDownloadController {
 	 *            任务ID
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.VersionDownloadController.rebootOne",hasArgs=true,argsContext="taskId")
 	@RequestMapping(value = "/rebootOne", method = RequestMethod.POST)
 	public @ResponseBody ModelMap rebootOne(@RequestParam long taskId) {
 		logger.info(" reboot task: task.id = " + taskId);

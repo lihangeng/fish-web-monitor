@@ -23,6 +23,8 @@ import org.springframework.web.context.request.WebRequest;
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.AwayFlag;
@@ -45,6 +47,7 @@ import com.yihuacomputer.fish.report.engine.ReportParam;
 
 @Controller
 @RequestMapping(value = "/report/transactionResultCount")
+@ClassNameDescrible(describle="userlog.TransactionResultCountReportController")
 public class TransactionResultCountReportController {
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(TransactionResultCountReportController.class);
 
@@ -67,6 +70,7 @@ public class TransactionResultCountReportController {
     }
 	@Autowired
 	private MessageSource messageSource;
+	
 	/**
 	 * 交易结果统计报表
 	 *
@@ -74,6 +78,8 @@ public class TransactionResultCountReportController {
 	 * @param rq
 	 * @return
 	 */
+	
+	@MethodNameDescrible(describle="userlog.TransactionResultCountReportController.transactionResultCount",hasArgs=false)
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap transactionResultCount(WebRequest request, HttpServletRequest rq) {

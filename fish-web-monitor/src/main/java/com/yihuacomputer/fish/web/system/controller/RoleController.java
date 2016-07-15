@@ -23,6 +23,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.permission.IPermission;
 import com.yihuacomputer.fish.api.permission.IPermissionService;
@@ -41,6 +43,7 @@ import com.yihuacomputer.fish.web.system.form.RoleForm;
  */
 @Controller
 @RequestMapping("/relation/role")
+@ClassNameDescrible(describle="userlog.RoleController")
 public class RoleController {
 	private Logger logger = LoggerFactory.getLogger(RoleController.class);
 
@@ -66,6 +69,7 @@ public class RoleController {
 	 * @param form
 	 * @return ModelMap<String, Object>
 	 */
+	@MethodNameDescrible(describle="userlog.RoleController.add",hasArgs=false)
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap add(@RequestBody RoleForm form) {
@@ -100,6 +104,7 @@ public class RoleController {
 	 * @param id
 	 * @return ModelMap<String, Object>
 	 */
+	@MethodNameDescrible(describle="userlog.RoleController.delete",hasArgs=false,urlArgs=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
@@ -159,7 +164,7 @@ public class RoleController {
 	 * @param request
 	 * @return ModelMap<String, Object>
 	 */
-
+	@MethodNameDescrible(describle="userlog.RoleController.update",hasArgs=false,urlArgs=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody RoleForm form) {

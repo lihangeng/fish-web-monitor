@@ -24,6 +24,8 @@ import org.springframework.web.context.request.WebRequest;
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.AwayFlag;
@@ -46,6 +48,7 @@ import com.yihuacomputer.fish.report.engine.ReportParam;
 
 @Controller
 @RequestMapping(value = "/report/retainCard")
+@ClassNameDescrible(describle="userlog.RetainCardReportController")
 public class RetainCardReportController {
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(RetainCardReportController.class);
 
@@ -69,6 +72,8 @@ public class RetainCardReportController {
     	}
     	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
     }
+    
+    
 	/**
 	 * 吞卡明细报表
 	 *
@@ -77,6 +82,7 @@ public class RetainCardReportController {
 	 * @param response
 	 * @return
 	 */
+    @MethodNameDescrible(describle="userlog.RetainCardReportController.searchRetainCard",hasArgs=false)
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap searchRetainCard(WebRequest request, HttpServletRequest rq, HttpServletResponse response) {
