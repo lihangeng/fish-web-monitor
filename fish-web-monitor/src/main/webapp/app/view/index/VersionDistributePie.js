@@ -99,7 +99,7 @@ Ext.define('Eway.view.index.VersionDistributePie', {
                 tooltip: {
                     trackMouse: true,
                     renderer: function(storeItem, item) {
-                    	storeItem.setHtml(item.get('versionNo') + ' : ' + item.get('versionNoNumber') + " " + EwayLocale.index.amount);
+                    	storeItem.setHtml('V'+item.get('versionNo') + '(' + item.get('versionNoNumber') + " " + EwayLocale.index.amount+')');
                     }
                 }
             }]
