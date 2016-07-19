@@ -24,7 +24,6 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.annotation.ClassNameDescrible;
-import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.AwayFlag;
@@ -77,7 +76,6 @@ public class RetainCardCountReportController {
 	 * @param rq
 	 * @return
 	 */
-	@MethodNameDescrible(describle="userlog.RetainCardCountReportController.retainCardCount",hasArgs=false)
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap retainCardCount(WebRequest request, HttpServletRequest rq) {

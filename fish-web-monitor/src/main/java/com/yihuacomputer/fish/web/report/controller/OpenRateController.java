@@ -38,7 +38,6 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.annotation.ClassNameDescrible;
-import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.filter.FilterEntry;
 import com.yihuacomputer.common.filter.FilterFactory;
@@ -91,7 +90,6 @@ public class OpenRateController {
      */
     private Logger logger = LoggerFactory.getLogger(OpenRateController.class);
 
-    @MethodNameDescrible(describle="userlog.OpenRateController.searchDevice",hasArgs=false)
     @RequestMapping(value = "deviceOpenRate", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap searchDevice(@RequestParam int start, @RequestParam int limit, WebRequest webRequest,
@@ -125,7 +123,6 @@ public class OpenRateController {
         return result;
     }
 
-    @MethodNameDescrible(describle="userlog.OpenRateController.searchType",hasArgs=false)
     @RequestMapping(value = "typeOpenRate", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap searchType(@RequestParam int start, @RequestParam int limit, WebRequest webRequest,
@@ -147,7 +144,6 @@ public class OpenRateController {
     }
 
     
-    @MethodNameDescrible(describle="userlog.OpenRateController.searchOrg",hasArgs=false)
     @RequestMapping(value = "orgOpenRate", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap searchOrg(@RequestParam String node, WebRequest request) {
