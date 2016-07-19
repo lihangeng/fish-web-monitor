@@ -69,7 +69,10 @@ Ext.apply(EwayLocale,{
 				stopTimeReal:'Out Of Service',//EwayLocale.report.openrate.device.stopTimeReal
 				openRate:'OpenRate',//EwayLocale.report.openrate.device.openRate
 				devOpenRate:'Device Open Rate',//EwayLocale.report.openrate.device.devOpenRate
-				organizationName:'Bank'//EwayLocale.report.openrate.device.organizationName
+				organizationName:'Bank',//EwayLocale.report.openrate.device.organizationName
+				inBank:'In Bank',//EwayLocale.report.openrate.device.inBank
+				outBank:'Out Of Bank',//EwayLocale.report.openrate.device.outBank
+				allBank:'Both In Or Out Of Bank'//EwayLocale.report.openrate.device.allBank
 			},
 			org:{
 				orgOpenRate:'Banks Open Rate'//EwayLocale.report.openrate.org.orgOpenRate
