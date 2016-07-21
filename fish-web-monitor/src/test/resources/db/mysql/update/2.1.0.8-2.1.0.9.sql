@@ -68,3 +68,8 @@ UPDATE SM_PERMISSION SET ICON_CLS = 'menu-param-paramClassify' WHERE PERMISSION_
 UPDATE SM_PERMISSION SET ICON_CLS = 'menu-param-devParam' WHERE PERMISSION_ID = 'G04';
 UPDATE SM_PERMISSION SET ICON_CLS = 'menu-param-paramTemplate' WHERE PERMISSION_ID = 'G05';
 UPDATE SM_PERMISSION SET ICON_CLS = 'menu-param-paramMonitor' WHERE PERMISSION_ID = 'G06';
+
+
+INSERT INTO SM_PARAM(ID,PARAM_CLASSIFY,DESCIPTION,PARAM_KEY,PARAM_VALUE,PARAM_TYPE) VALUES ('14', '1', '邮件服务器地址', 'mail_system_address', 'smtp.yihuacomputer.com', '系统配置');
+INSERT INTO SM_PARAM(ID,PARAM_CLASSIFY,DESCIPTION,PARAM_KEY,PARAM_VALUE,PARAM_TYPE) VALUES ('15', '1', '发送邮件的用户名', 'mail_userName', 'xxxxxxxxx@yihuacomputer.com', '系统配置');
+INSERT INTO SM_PARAM(ID,PARAM_CLASSIFY,DESCIPTION,PARAM_KEY,PARAM_VALUE,PARAM_TYPE) VALUES ('16', '1', '发送邮件的密码', 'mail_password', 'Xxxxxxx', '系统配置');
