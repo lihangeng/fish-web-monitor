@@ -2,16 +2,26 @@ package com.yihuacomputer.fish.fault.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.util.DateUtils;
+import com.yihuacomputer.common.util.EmailHandle;
+import com.yihuacomputer.common.util.MailUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.fault.FaultStatus;
 import com.yihuacomputer.fish.api.fault.ICaseFault;
@@ -19,6 +29,7 @@ import com.yihuacomputer.fish.api.fault.ICaseNotify;
 import com.yihuacomputer.fish.api.fault.ICaseNotifyService;
 import com.yihuacomputer.fish.api.fault.IFaultClassify;
 import com.yihuacomputer.fish.api.fault.INotifyContentService;
+import com.yihuacomputer.fish.api.fault.INotifyMailSenderManager;
 import com.yihuacomputer.fish.api.fault.INotifyMouldService;
 import com.yihuacomputer.fish.api.fault.INotifyMouldSet;
 import com.yihuacomputer.fish.api.fault.INotifySmsSenderManager;
@@ -48,13 +59,17 @@ public class CaseNotifyService implements ICaseNotifyService {
 
 	@Autowired(required = false)
 	private INotifySmsSenderManager notifySmsSenderManager;
+	
+	@Autowired(required = false)
+	private INotifyMailSenderManager notifyMailSenderManager;
 
 	@Autowired
 	private IOrganizationService orgService;
 
 	@Autowired(required = false)
 	private INotifyContentService notifyContentService;
-
+	
+	
 	@Override
 	public ICaseNotify make() {
 		return new CaseNotify();
@@ -149,7 +164,6 @@ public class CaseNotifyService implements ICaseNotifyService {
 
 	@Override
 	public List<ICaseNotify> listNotifyByDevice(String terminalId, Date createDate) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -243,7 +257,9 @@ public class CaseNotifyService implements ICaseNotifyService {
 		notifyMouldSet.setHwCode(caseFault.getVendorHwCode());
 
 		NotifyContent notifyContent = getNotifyContent(faultClassify, notifyMouldSet);
-
+		 try {
+			 List<String> perList=new ArrayList<String>();
+			 
 		for (IPerson person : personList) {
 			ICaseNotify caseNotify = make();
 			if (caseFault.getId() != 0) {
@@ -268,6 +284,32 @@ public class CaseNotifyService implements ICaseNotifyService {
 					notifySmsSenderManager.notifySmsSend(caseNotify);
 				}
 			}
+			
+			// 只做邮件
+			if (faultClassify.getNotifyWay().equals(NotifyWay.MAIL) && notifyContent.getMailNotify() != null) {
+				if (person.getEmail()== null || person.getEmail().isEmpty()) {// 邮件地址未设置
+					continue;
+				}
+				caseNotify.setContent(notifyContent.getMailNotify());
+				caseNotify.setNotifyWay(NotifyWay.MAIL);
+				saveCaseNotify(caseNotify);
+				perList.add(caseNotify.getMail());
+//				if (notifyMailSenderManager != null) {
+//					notifyMailSenderManager.notifyMailSend(caseNotify);
+//				}
+			}
+		
+			
+		}
+		//收件人集合不为空，则发送硬件故障通知邮件
+		if(!perList.isEmpty()){
+			MailUtils.sendEmail(caseFault.getFaultClassify().getClassifyName(),notifyContent.getMailNotify(),perList,null);
+		}
+			
+			
+		
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
 	}
