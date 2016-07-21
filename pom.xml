@@ -17,6 +17,7 @@
 		<module>fish-fault</module>
 		<module>fish-report</module>
 		<module>fish-kafka</module>
+		<module>fish-analysis</module>
 		<module>fish-web-monitor</module>
 	</modules>
 	<scm>
