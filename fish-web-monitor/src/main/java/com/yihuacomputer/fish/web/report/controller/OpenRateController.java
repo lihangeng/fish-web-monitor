@@ -44,6 +44,7 @@ import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.fish.api.atm.IAtmType;
+import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.OrganizationType;
@@ -136,7 +137,16 @@ public class OpenRateController {
         UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
         String organization = String.valueOf(userSession.getOrgId());
         filter.like("org.orgFlag", orgService.get(organization).getOrgFlag());
-
+        String org = request.getParameter("orgId");
+        if(org != null)
+        {
+        	  filter.like("info.organization.orgFlag",org);
+        }
+        
+        String awayFlag=request.getParameter("awayFlag");
+        if(awayFlag != null){
+        filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
+        }
         result.addAttribute(FishConstant.SUCCESS, true);
         result.addAttribute("total", pageResult.getTotal());
         result.addAttribute("data", listType2Form(pageResult.list(), filter));
@@ -146,7 +156,7 @@ public class OpenRateController {
     
     @RequestMapping(value = "orgOpenRate", method = RequestMethod.GET)
     public @ResponseBody
-    ModelMap searchOrg(@RequestParam String node, WebRequest request) {
+    ModelMap searchOrg(@RequestParam String node, WebRequest webRequest, HttpServletRequest request) {
         ModelMap model = new ModelMap();
 
         Iterable<IOrganization> childs = null;
@@ -166,7 +176,20 @@ public class OpenRateController {
                 result.add(new OpenRateTreeForm(item));
             }
         }
-        IFilter filter = request2filter(request, "rate.statDate");
+        IFilter filter = request2filter(webRequest, "rate.statDate");
+        UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
+        String organization = String.valueOf(userSession.getOrgId());
+        filter.like("org.orgFlag", orgService.get(organization).getOrgFlag());
+        String org = request.getParameter("orgId");
+        if(org != null&&org !="")
+        {
+        	  filter.like("info.organization.orgFlag",org);
+        }
+        
+        String awayFlag=request.getParameter("awayFlag");
+        if(awayFlag != null&&awayFlag !=""){
+        filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
+        }
         model.addAttribute(FishConstant.SUCCESS, true);
         model.addAttribute("data", listOrg2Form(result, filter));
         return model;
@@ -223,7 +246,16 @@ public class OpenRateController {
         UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
         String organization = String.valueOf(userSession.getOrgId());
         filter.like("org.orgFlag", orgService.get(organization).getOrgFlag());
-
+        String org = request.getParameter("orgId");
+        if(org != null&&org !="")
+        {
+        	  filter.like("info.organization.orgFlag",org);
+        }
+        
+        String awayFlag=request.getParameter("awayFlag");
+        if(awayFlag != null&&awayFlag !=""){
+        filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
+        }
         List<OpenRateForm> date = listType2Form(EntityUtils.<IAtmType> convert(iterable), filter);
 
         String path = createExls(date, messageSource.getMessage("openRateReport.devType", null, FishCfg.locale), false);
@@ -251,6 +283,15 @@ public class OpenRateController {
         List<OpenRateTreeForm> treeFormList = OpenRateTreeForm.convert(EntityUtils.<IOrganization> convert(iterable));
 
         IFilter filter = request2filter(webRequest, "rate.statDate");
+        String org = request.getParameter("orgId");
+        if(org != null&&org !="")
+        {
+        	  filter.like("info.organization.orgFlag",org);
+        }
+        String awayFlag=request.getParameter("awayFlag");
+        if(awayFlag != null&&awayFlag !=""){
+        filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
+        }
         List<OpenRateForm> date = listOrg2Form(treeFormList, filter);
 
         String path = createExls(date, messageSource.getMessage("openRateReport.org", null, FishCfg.locale), false);

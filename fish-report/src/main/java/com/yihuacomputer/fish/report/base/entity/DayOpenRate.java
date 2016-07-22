@@ -9,6 +9,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.report.base.IDayOpenRate;
 
 @Entity
@@ -88,6 +89,9 @@ public class DayOpenRate implements IDayOpenRate {
     @Transient
     private String devCatalogName;
 
+    @Transient 
+    private String awayFlag;
+    
     public long getId() {
         return id;
     }
@@ -216,7 +220,13 @@ public class DayOpenRate implements IDayOpenRate {
 		this.devCatalogName = devCatalogName;
 	}
 
+	public String getAwayFlag() {
+		return awayFlag;
+	}
 
+	public void setAwayFlag(String awayFlag) {
+		this.awayFlag = awayFlag;
+	}
 
 
 }

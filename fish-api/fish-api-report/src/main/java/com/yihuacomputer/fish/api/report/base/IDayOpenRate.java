@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.api.report.base;
 
+import com.yihuacomputer.fish.api.device.AwayFlag;
+
 public interface IDayOpenRate {
 
     /**
@@ -129,19 +131,32 @@ public interface IDayOpenRate {
     public void setProgramTimeReal(int programTimeReal);
 
 
-
-
-
+    /**
+     * 机构名称
+     *
+     * @return
+     */
 	public String getOrgName();
 
 	public void setOrgName(String orgName);
 
+	/**
+     * 设备类型
+     *
+     * @return
+     */
 	public String getDevCatalogName();
 
 	public void setDevCatalogName(String devCatalogName) ;
 
+	/**
+     * 在行离行标志
+     *
+     * @return
+     */
+	public String getAwayFlag();
 
-
+	public void setAwayFlag(String awayFlag) ;
 
 
 }
