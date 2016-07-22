@@ -68,11 +68,12 @@ Ext.define('Eway.view.person.servicePer.Add', {
 				    xtype : 'radiogroup',
 					anchor : '69%',
 					items : [ {
-						boxLabel : '男',
+						boxLabel : EwayLocale.commen.comboxGender.male,
 						name : 'gender',
+						checked: true,
 						inputValue : 0
 					}, {
-						boxLabel : '女',
+						boxLabel : EwayLocale.commen.comboxGender.female,
 						name : 'gender',
 						inputValue : 1
 					}]

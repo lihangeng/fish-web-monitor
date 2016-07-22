@@ -44,6 +44,8 @@ public class OpenRateForm {
 	 * 开机率,保留二位小数点.eg:98.15
 	 */
 	private double openRate;
+	
+	private double avgOpenRate;
 
 	private String orgName;
 
@@ -100,6 +102,7 @@ public class OpenRateForm {
 	                    * 1.0 / iOpenRate.getOpenTimes() * 100);
 	            setOpenRate(Double.valueOf(value));
 	        }
+	        setAvgOpenRate(iOpenRate.getAvgOpenRate());
 
 	    }
 
@@ -211,7 +214,7 @@ public class OpenRateForm {
 	public void setOpenRate(double openRate) {
 		this.openRate = openRate;
 	}
-
+	
 	public String getOrgName() {
 		return orgName;
 	}
@@ -226,5 +229,13 @@ public class OpenRateForm {
 
 	public void setDevCatalogName(String devCatalogName) {
 		this.devCatalogName = devCatalogName;
+	}
+
+	public double getAvgOpenRate() {
+		return avgOpenRate;
+	}
+
+	public void setAvgOpenRate(double avgOpenRate) {
+		this.avgOpenRate = avgOpenRate;
 	}
 }

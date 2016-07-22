@@ -69,7 +69,10 @@ Ext.apply(EwayLocale,{
 				stopTimeReal:'其它暂停服务状态时长',//EwayLocale.report.openrate.device.stopTimeReal
 				openRate:'实际工作开机率',//EwayLocale.report.openrate.device.openRate
 				devOpenRate:'设备开机率',//EwayLocale.report.openrate.device.devOpenRate
-				organizationName:'机构'//EwayLocale.report.openrate.device.organizationName
+				organizationName:'机构',//EwayLocale.report.openrate.device.organizationName
+				inBank:'在行',//EwayLocale.report.openrate.device.inBank
+				outBank:'离行',//EwayLocale.report.openrate.device.outBank
+				allBank:'所有'//EwayLocale.report.openrate.device.allBank
 			},
 			org:{
 				orgOpenRate:'机构开机率'//EwayLocale.report.openrate.org.orgOpenRate

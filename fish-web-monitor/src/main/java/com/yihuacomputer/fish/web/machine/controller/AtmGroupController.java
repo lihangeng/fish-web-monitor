@@ -25,6 +25,8 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.ITypeIP;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
@@ -43,6 +45,7 @@ import com.yihuacomputer.fish.web.machine.form.ItemForm;
 
 @Controller
 @RequestMapping("/machine/atmGroup")
+@ClassNameDescrible(describle="userlog.atmGroupController")
 public class AtmGroupController {
 	private Logger logger = LoggerFactory.getLogger(AtmGroupController.class);
 
@@ -80,6 +83,7 @@ public class AtmGroupController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@MethodNameDescrible(describle="userlog.atmGroupController.delete",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
 		logger.info(" delete atmGroup: atmGroup.id = " + id);
@@ -101,6 +105,7 @@ public class AtmGroupController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.atmGroupController.add",hasArgs=false)
 	public @ResponseBody
 	ModelMap add(@RequestBody AtmGroupForm request) {
 		logger.info("add atmGroup");
@@ -125,6 +130,7 @@ public class AtmGroupController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@MethodNameDescrible(describle="userlog.atmGroupController.update",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody AtmGroupForm request) {
 		logger.info("update atmGroup: atmGroup.id = " + id);
@@ -164,6 +170,7 @@ public class AtmGroupController {
 	 * @return
 	 */
 	@RequestMapping(value = "/addDevice", method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.atmGroupController.link",hasArgs=false)
 	public @ResponseBody
 	ModelMap link(@RequestBody GroupDeviceForm request) {
 		logger.info(String.format("device %s linked  %s", request.getGroupId(), request.getDeviceId()));
@@ -182,6 +189,7 @@ public class AtmGroupController {
 	 * @return
 	 */
 	@RequestMapping(value = "/unlink", method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.atmGroupController.unlink",hasArgs=true,argsContext="deviceId")
 	public @ResponseBody
 	ModelMap unlink(@RequestParam String groupId, @RequestParam String deviceId) {
 		ModelMap result = new ModelMap();

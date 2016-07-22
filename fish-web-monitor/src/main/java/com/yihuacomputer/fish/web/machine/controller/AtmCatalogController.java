@@ -20,6 +20,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.atm.IAtmCatalog;
 import com.yihuacomputer.fish.api.atm.IAtmCatalogService;
@@ -27,6 +29,7 @@ import com.yihuacomputer.fish.web.machine.form.AtmCatalogForm;
 
 @Controller
 @RequestMapping("/machine/atmCatalog")
+@ClassNameDescrible(describle="userlog.atmCatalogController")
 public class AtmCatalogController {
 	private Logger logger = LoggerFactory.getLogger(AtmCatalogController.class);
 
@@ -51,6 +54,7 @@ public class AtmCatalogController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@MethodNameDescrible(describle="userlog.atmCatalogController.delete",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
 		logger.info(" delete AtmCatalog: atmCatalog.id = " + id);
@@ -80,6 +84,7 @@ public class AtmCatalogController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@MethodNameDescrible(describle="userlog.atmCatalogController.update",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody AtmCatalogForm request) {
 		logger.info("update AtmCatalog: atmCatalog.id = " + id);

@@ -20,6 +20,8 @@ import org.springframework.web.context.request.WebRequest;
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.fault.INotifyMould;
 import com.yihuacomputer.fish.api.fault.INotifyMouldService;
@@ -29,6 +31,7 @@ import com.yihuacomputer.fish.web.fault.form.NotifyMouldForm;
 
 @Controller
 @RequestMapping("/case/notifyMould")
+@ClassNameDescrible(describle="userlog.notifyMouldController")
 public class NotifyMouldController
 {
 
@@ -61,6 +64,7 @@ public class NotifyMouldController
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@MethodNameDescrible(describle="userlog.notifyMouldController.update",hasArgs=false,urlArgs=true)
     public @ResponseBody
     ModelMap update(@PathVariable long id, @RequestBody NotifyMouldForm request)
     {

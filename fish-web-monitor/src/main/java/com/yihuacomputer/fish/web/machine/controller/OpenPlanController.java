@@ -31,6 +31,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
@@ -56,6 +58,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
  */
 @Controller
 @RequestMapping(value = "/plan")
+@ClassNameDescrible(describle="userlog.openPlanController")
 public class OpenPlanController {
 
 	private Logger logger = LoggerFactory.getLogger(OpenPlanController.class);
@@ -305,6 +308,7 @@ public class OpenPlanController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.openPlanController.add",hasArgs=false)
 	public @ResponseBody
 	ModelMap add(@RequestBody OpenPlanForm form, WebRequest webRequest, HttpSession session, HttpServletRequest request) {
 		ModelMap result = new ModelMap();
@@ -360,6 +364,7 @@ public class OpenPlanController {
 	 * @return Map<String, Object>
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@MethodNameDescrible(describle="userlog.openPlanController.update",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap update(@PathVariable String id, @RequestBody OpenPlanForm form) {
 		logger.info(" update plan : plan.id = " + id);
@@ -419,6 +424,7 @@ public class OpenPlanController {
 
 	// 删除方案
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@MethodNameDescrible(describle="userlog.openPlanController.delete",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id, HttpServletRequest req) {
 		logger.info(" delete plan with cascade: plan.id = " + id);
@@ -573,6 +579,7 @@ public class OpenPlanController {
 	 */
 	@RequestMapping(value = "/unlink", method = RequestMethod.POST)
 	public @ResponseBody
+	@MethodNameDescrible(describle="userlog.openPlanController.unlink",hasArgs=true,argsContext="deviceId")
 	ModelMap unlink(@RequestParam String planId, @RequestParam String deviceId) {
 		ModelMap result = new ModelMap();
 		String[] ids = deviceId.split(",");
@@ -600,6 +607,7 @@ public class OpenPlanController {
 	 * @return
 	 */
 	@RequestMapping(value = "/link", method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.openPlanController.link",hasArgs=true,argsContext="deviceId")
 	public @ResponseBody
 	ModelMap link(@RequestParam String planId, @RequestParam String deviceId) {
 		logger.info(String.format("device %s linked  %s", planId, deviceId));

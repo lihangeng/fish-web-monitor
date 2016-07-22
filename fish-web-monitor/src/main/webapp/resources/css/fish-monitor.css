@@ -1720,3 +1720,11 @@ input::-ms-clear {
       height: 14px;
       vertical-align: middle;
       margin: 0 5px 0 -39px; }
+      
+.device-openrate-report-red {
+	color: red;
+}
+
+.device-openrate-report-green {
+	color: green;
+}

@@ -7,6 +7,8 @@ Ext.define('Eway.model.report.openrate.DeviceOpenRate', {
 				name : 'programOpenRate'
 			}, {
 				name : 'openRate'
+			},{
+				name : 'avgOpenRate'
 			} ],
 	proxy : {
 		type : 'rest',

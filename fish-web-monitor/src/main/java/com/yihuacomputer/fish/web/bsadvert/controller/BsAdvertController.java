@@ -34,6 +34,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.exception.AppException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.jackson.JsonUtils;
@@ -63,6 +65,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
 @RequestMapping("bsadvert/advert")
+@ClassNameDescrible(describle="userlog.BsAdvertController")
 public class BsAdvertController {
 
 	private Logger logger = LoggerFactory.getLogger(BsAdvertController.class);
@@ -131,6 +134,7 @@ public class BsAdvertController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@MethodNameDescrible(describle="userlog.BsAdvertController.delete",hasArgs=false,urlArgs=true)
 	public @ResponseBody ModelMap deleteBsAdvert(@PathVariable long id, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("deleteBsAdvert " + id);
 		ModelMap result = new ModelMap();
@@ -163,6 +167,7 @@ public class BsAdvertController {
 	 * @return
 	 */
 	@RequestMapping(value = "/actived", method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.BsAdvertController.active",hasArgs=true,argsContext="advertId")
 	public @ResponseBody ModelMap activedBsAdvert(@RequestParam long advertId, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("activedBsAdvert " + advertId);
 		ModelMap result = new ModelMap();
@@ -390,6 +395,7 @@ public class BsAdvertController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.BsAdvertController.add",hasArgs=false)
 	@ResponseBody
 	public ModelMap add(@RequestBody BsAdvertForm form, HttpServletRequest request) {
 		logger.info(" add advert...");
@@ -469,6 +475,7 @@ public class BsAdvertController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@MethodNameDescrible(describle="userlog.BsAdvertController.update",hasArgs=false,urlArgs=true)
 	public @ResponseBody ModelMap updateBsAdvert(@PathVariable long id, @RequestBody BsAdvertForm form, HttpServletRequest request) {
 		logger.info("update bsAdvert: bsAdvert.id = " + id);
 		form.setId(id);
@@ -560,6 +567,7 @@ public class BsAdvertController {
 	}
 
 	@RequestMapping(value = "/deleteResource")
+	@MethodNameDescrible(describle="userlog.BsAdvertController.delete",hasArgs=true,argsContext="id")
 	public @ResponseBody ModelMap deleteResource(@RequestParam long id, HttpServletRequest request) {
 		logger.info("delete bsAdvertResource: bsAdvertResource.id = " + id);
 		ModelMap result = new ModelMap();
@@ -639,6 +647,7 @@ public class BsAdvertController {
 	 * @return
 	 */
 	@RequestMapping(value = "/uploadRes/screen", method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.BsAdvertController.upload",hasArgs=false)
 	@ResponseBody
 	public String uploadByScreen(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html;charset=UTF-8");

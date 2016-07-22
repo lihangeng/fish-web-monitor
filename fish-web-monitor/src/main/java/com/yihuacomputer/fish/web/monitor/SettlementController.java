@@ -16,6 +16,7 @@ import org.springframework.web.context.request.WebRequest;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.monitor.business.ISettlement;
 import com.yihuacomputer.fish.api.monitor.business.ISettlementService;
@@ -29,6 +30,7 @@ import com.yihuacomputer.fish.web.atm.format.SettlementMsg;
  */
 @Controller
 @RequestMapping("/monitor/settlement")
+@ClassNameDescrible(describle="userlog.SettlementController")
 public class SettlementController {
     private Logger logger = LoggerFactory.getLogger(SettlementController.class);
 

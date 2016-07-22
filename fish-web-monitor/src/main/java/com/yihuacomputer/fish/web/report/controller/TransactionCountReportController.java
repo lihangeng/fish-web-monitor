@@ -23,6 +23,7 @@ import org.springframework.web.context.request.WebRequest;
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.AwayFlag;
@@ -44,6 +45,7 @@ import com.yihuacomputer.fish.report.engine.ReportParam;
 
 @Controller
 @RequestMapping(value = "/report/transactionCount")
+@ClassNameDescrible(describle="userlog.TransactionCountReportController")
 public class TransactionCountReportController {
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(TransactionCountReportController.class);
 

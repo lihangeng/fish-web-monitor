@@ -28,6 +28,7 @@ public @interface MethodNameDescrible{
 	 * 是否有请求体需要记录
 	 * @return
 	 */
+	long argsContext2() default 0;
 //	boolean hasReqBodyParam() default false;
 
 	/**

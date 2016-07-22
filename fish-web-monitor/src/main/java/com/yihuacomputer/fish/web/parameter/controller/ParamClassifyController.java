@@ -22,6 +22,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.parameter.IParamClassify;
 import com.yihuacomputer.fish.api.parameter.IParamClassifyService;
@@ -30,6 +32,7 @@ import com.yihuacomputer.fish.api.parameter.IParamElementService;
 import com.yihuacomputer.fish.web.parameter.form.ParamClassifyForm;
 
 @Controller
+@ClassNameDescrible(describle="userlog.ParamClassifyController")
 @RequestMapping("/parameter/classify")
 public class ParamClassifyController {
 
@@ -57,6 +60,7 @@ public class ParamClassifyController {
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.ParamClassifyController.add",hasArgs=false)
 	public @ResponseBody
 	ModelMap add(@RequestBody ParamClassifyForm request){
 		logger.info("add classify");
@@ -76,6 +80,7 @@ public class ParamClassifyController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@MethodNameDescrible(describle="userlog.ParamClassifyController.delete",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
 		logger.info("delete classify: classify.id = " + id);
@@ -107,6 +112,7 @@ public class ParamClassifyController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@MethodNameDescrible(describle="userlog.ParamClassifyController.update",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody ParamClassifyForm request) {
 		logger.info("update classify: classify.id = " + id);

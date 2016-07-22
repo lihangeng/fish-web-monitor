@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishConstant;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.fish.api.atm.IAtmBrandService;
 import com.yihuacomputer.fish.api.atm.IAtmModule;
 import com.yihuacomputer.fish.api.atm.IAtmModuleService;
@@ -28,6 +29,7 @@ import com.yihuacomputer.fish.api.report.base.IFaultRateReportService;
 
 @Controller
 @RequestMapping(value = "/report/faultRate")
+@ClassNameDescrible(describle="userlog.FaultRateReportController")
 public class FaultRateReportController {
 
 	private Logger logger = LoggerFactory.getLogger(FaultRateReportController.class);

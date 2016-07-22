@@ -43,6 +43,8 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.ITypeIP;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.exception.ServiceException;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
@@ -66,6 +68,7 @@ import com.yihuacomputer.fish.web.system.form.PersonForm;
 
 @Controller
 @RequestMapping("/machine/device")
+@ClassNameDescrible(describle="userlog.deviceController")
 public class DeviceController {
 
 	private Logger logger = LoggerFactory.getLogger(DeviceController.class);
@@ -99,6 +102,7 @@ public class DeviceController {
 	private IDevicePersonRelation devicePersonRelation;
 
 	@RequestMapping(method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.deviceController.add",hasArgs=false)
 	public @ResponseBody
 	ModelMap add(@RequestBody DeviceForm request) {
 		logger.info("add Device");
@@ -162,6 +166,7 @@ public class DeviceController {
 	 * @return ModelMap<String, Object>
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@MethodNameDescrible(describle="userlog.deviceController.delete",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
 		logger.info(" delete device: device.id = " + id);
@@ -191,6 +196,7 @@ public class DeviceController {
 	 */
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@MethodNameDescrible(describle="userlog.deviceController.update",hasArgs=false,urlArgs=true )
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody DeviceForm request) {
 		logger.info("update Device: device.id = " + id);
@@ -253,6 +259,7 @@ public class DeviceController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "export", method = RequestMethod.GET)
+	@MethodNameDescrible(describle="userlog.deviceController.export",hasArgs=false)
 	public void export(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 

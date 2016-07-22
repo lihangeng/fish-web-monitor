@@ -18,6 +18,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.monitor.business.ITransactionService;
@@ -28,6 +29,7 @@ import com.yihuacomputer.fish.web.index.form.ChartForm;
 
 @Controller
 @RequestMapping("/report/transactionDaysCount")
+@ClassNameDescrible(describle="userlog.TransactionDaysCountController")
 public class TransactionDaysCountController {
 	private Logger logger = LoggerFactory.getLogger(TransactionDaysCountController.class);
 
@@ -36,7 +38,6 @@ public class TransactionDaysCountController {
 
 	@Autowired
 	private IOrganizationService orgService;
-
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
@@ -74,7 +75,8 @@ public class TransactionDaysCountController {
 		result.addAttribute("data", forms);
 		return result;
 	}
-
+	
+	
 	@RequestMapping(value="/hour",method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap searchHour(WebRequest wReq, HttpServletRequest req) {

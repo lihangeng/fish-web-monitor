@@ -23,6 +23,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.fish.api.atm.IAtmBrandService;
@@ -36,6 +38,7 @@ import com.yihuacomputer.fish.web.machine.form.ItemForm;
 
 @Controller
 @RequestMapping("/machine/atmBrand")
+@ClassNameDescrible(describle="userlog.atmBrandController")
 public class AtmBrandController {
 	private Logger logger = LoggerFactory.getLogger(AtmBrandController.class);
 
@@ -142,6 +145,7 @@ public class AtmBrandController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@MethodNameDescrible(describle="userlog.atmBrandController.delete",hasArgs=false,urlArgs=true)
 	public @ResponseBody ModelMap delete(@PathVariable long id) {
 		logger.info(" delete AtmBrand: atmBrand.id = " + id);
 		ModelMap result = new ModelMap();
@@ -162,6 +166,7 @@ public class AtmBrandController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.atmBrandController.add",hasArgs=false)
 	public @ResponseBody ModelMap add(@RequestBody AtmBrandForm request) {
 		logger.info("add AtmBrand");
 		ModelMap result = new ModelMap();
@@ -180,6 +185,7 @@ public class AtmBrandController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@MethodNameDescrible(describle="userlog.atmBrandController.update",hasArgs=false,urlArgs=true)
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody AtmBrandForm request) {
 		logger.info("update AtmBrand: atmBrand.id = " + id);
 		ModelMap result = new ModelMap();

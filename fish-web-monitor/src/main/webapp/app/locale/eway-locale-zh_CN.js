@@ -505,7 +505,7 @@ Ext.apply(EwayLocale,{
 		normalDev:'1.0.0.0',//EwayLocale.index.normalDev
 		unknownDev:'1.3.2.0',//EwayLocale.index.unknownDev
 		exceptionDev:'2.0.0.0',//EwayLocale.index.exceptionDev
-		amount:'台设备',//EwayLocale.index.amount
+		amount:'台',//EwayLocale.index.amount
 		versionDistributePie:'版本分布图',//EwayLocale.index.versionDistributePie
 		retainCardTrendTitle:'日均吞卡趋势图'//EwayLocale.index.retainCardTrendTitle
 	},

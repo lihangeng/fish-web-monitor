@@ -30,6 +30,8 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.ITypeIP;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.common.util.IP;
@@ -57,6 +59,7 @@ import com.yihuacomputer.fish.web.parameter.form.ParamDownloadMonitorForm;
 
 @Controller
 @RequestMapping("/parameter/devParameter")
+@ClassNameDescrible(describle="userlog.DevParameterController")
 public class DevParameterController {
 	private Logger logger = LoggerFactory.getLogger(AppSystemController.class);
 
@@ -295,6 +298,7 @@ public class DevParameterController {
 	 * @PathVariable long id, 更改设备参数
 	 */
 	@RequestMapping(value = "/paramInfo/{id}", method = RequestMethod.PUT)
+	@MethodNameDescrible(describle="userlog.DevParameterController.update",hasArgs=false,urlArgs=true)
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody DeviceParam paramForm, HttpServletRequest request) {
 		logger.info("update device's parameter deviceId=" + id);
 		ModelMap result = new ModelMap();
@@ -349,6 +353,7 @@ public class DevParameterController {
 	 * 下发设备参数
 	 */
 	@RequestMapping(value = "/paramInfo/release", method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.DevParameterController.releaseParam",hasArgs=true,argsContext="arrayId")
 	public @ResponseBody ModelMap releaseParam(@RequestParam String arrayId, HttpServletRequest request) {
 		logger.info("release the parameters of devices");
 		ModelMap result = new ModelMap();

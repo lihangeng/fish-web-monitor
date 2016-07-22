@@ -23,6 +23,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.DevStatus;
@@ -43,6 +45,7 @@ import com.yihuacomputer.fish.web.daily.form.QuittingNoticeForm;
 
 @Controller
 @RequestMapping("/machine/quittingNotice")
+@ClassNameDescrible(describle="userlog.quittingNoticeController")
 public class QuittingNoticeController {
 	private Logger logger = LoggerFactory.getLogger(QuittingNoticeController.class);
 
@@ -74,6 +77,7 @@ public class QuittingNoticeController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.quittingNoticeController.add",hasArgs=false)
 	public @ResponseBody
 	ModelMap add(@RequestBody QuittingNoticeForm form) {
 		logger.info("add QuittingNotice");
@@ -172,6 +176,7 @@ public class QuittingNoticeController {
 	 * @return ModelMap<String, Object>
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@MethodNameDescrible(describle="userlog.quittingNoticeController.delete",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
 		logger.info(" delete QuittingNotice: quittingNotice.id = " + id);
@@ -213,6 +218,7 @@ public class QuittingNoticeController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	@MethodNameDescrible(describle="userlog.quittingNoticeController.update",hasArgs=false,urlArgs=true)
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody QuittingNoticeForm form) {
 		logger.info("update QuittingNotice: quittingNotice.id = " + id);

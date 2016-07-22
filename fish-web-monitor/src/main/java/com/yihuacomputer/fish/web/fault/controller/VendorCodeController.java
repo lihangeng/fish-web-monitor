@@ -39,6 +39,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.fault.IVendorCode;
 import com.yihuacomputer.fish.api.fault.IVendorCodeService;
@@ -47,6 +49,7 @@ import com.yihuacomputer.fish.web.fault.form.VendorCodeForm;
 
 @Controller
 @RequestMapping("/case/vendorCode")
+@ClassNameDescrible(describle="userlog.vendorCodeController")
 public class VendorCodeController {
 	private final Logger logger = LoggerFactory.getLogger(VendorCodeController.class);
 
@@ -83,6 +86,7 @@ public class VendorCodeController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST, value = "/import")
+	@MethodNameDescrible(describle="userlog.vendorCodeController.import",hasArgs=false)
 	public @ResponseBody
 	String importFile(@RequestParam long vendor, HttpServletRequest request, HttpServletResponse response) {
 		response.setContentType("text/html;charset=UTF-8");// 解决IE9 上传文件乱码问题
@@ -141,6 +145,7 @@ public class VendorCodeController {
 	 */
 	@RequestMapping(value = "/remove", method = RequestMethod.POST)
 	public @ResponseBody
+	@MethodNameDescrible(describle="userlog.vendorCodeController.remove",hasArgs=true,argsContext="vendor")
 	String remove(@RequestParam long vendor) {
 		logger.info(String.format("remove vendorCode by vendor"));
 		List<IVendorCode> list = vendorCodeService.getByVendor(vendor);
@@ -292,6 +297,7 @@ public class VendorCodeController {
      * 下载文件到浏览器端：
      */
     @RequestMapping(value = "/downloadFile",method = RequestMethod.GET)
+	@MethodNameDescrible(describle="userlog.vendorCodeController.download",hasArgs=true,argsContext="fileName")
     public void download(@RequestParam String fileName,HttpServletRequest request,HttpServletResponse response) throws Exception {
     	String path = request.getSession().getServletContext().getRealPath("resources/file/" + fileName);
     	File file = new File(path);
