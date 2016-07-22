@@ -17,6 +17,7 @@
 		<module>fish-api-version</module>
 		<module>fish-api-fault</module>		
 		<module>fish-api-report</module>
+		<module>fish-api-analysis</module>
 	</modules>
 	<dependencies>
 		<dependency>
