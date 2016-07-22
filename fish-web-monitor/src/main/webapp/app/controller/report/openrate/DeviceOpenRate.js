@@ -1,7 +1,14 @@
 Ext.define('Eway.controller.report.openrate.DeviceOpenRate', {
 	extend : 'Eway.controller.base.FishController',
 
-	stores : [ 'Eway.store.report.openrate.DeviceOpenRate' ],
+	stores : [ 'Eway.store.report.openrate.DeviceOpenRate',
+	           'machine.atmType.DeviceAtmVendor',
+	           'machine.DeviceAtmType',
+	           'machine.atmType.DeviceAtmCatalog',
+	           'machine.DeviceAwayFlagComboBox',
+	           'machine.PersonM', 'machine.PersonTM',
+	           'person.person.PersonStateFilterDict',
+			   'person.person.PersonJob'],
 
 	models : [ 'Eway.model.report.openrate.DeviceOpenRate' ],
 
@@ -29,7 +36,8 @@ Ext.define('Eway.controller.report.openrate.DeviceOpenRate', {
 		var view = this.getEwayView();
 		var form = view.down('form').getForm();
 		var values = form.getValues();
-		var param = 'statType='+values.statType+'&day='+values.day+'&month='+values.month+'&year='+values.year;
+		var param = 'statType='+values.statType+'&day='+values.day+'&month='+values.month+'&year='+values.year+'&terminalId='+values.terminalId;
+//		+'&devVendor='+values.devVendor+'&devType='+values.devType+'&devCatalogId'+values.devCatalogId+'&awayFlag'+values.awayFlag+'&org'+values.org+'&openRate'+values.openRate
 		window.location.href = 'api/report/openrate/device/importStat?' + param;
 	}
 });

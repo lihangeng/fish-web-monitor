@@ -3,6 +3,7 @@ package com.yihuacomputer.fish.report.base;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.SQLQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +15,7 @@ import com.yihuacomputer.common.Operator;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
@@ -29,6 +31,7 @@ public class DayOpenRateService implements IDayOpenRateService {
     		+"rate.faultTimeReal, rate.atmpTimeReal, rate.stopTimeReal, info.devType.devCatalog.name, info.organization.name,info.organization.code "
             + " from Device info, DayOpenRate rate, Organization org "
             + "where info.terminalId = rate.terminalId and info.organization = org.id ";
+//    ,info.devType.name,info.awayFlag,info.devType.devVendor,info.organization
 
     private String DEV_DEVICE_HQL_GROUP = "select rate.terminalId, sum(rate.openTimes), sum(rate.healthyTimeReal), sum(rate.unknownTimeReal), sum(rate.maintainTimeReal),"
     		+" sum(rate.faultTimeReal), sum(rate.atmpTimeReal), sum(rate.stopTimeReal) "
@@ -215,6 +218,10 @@ public class DayOpenRateService implements IDayOpenRateService {
 
     @Override
     public List<IDayOpenRate> listDev(IFilter filter) {
+    	
+    	StringBuffer sql=new StringBuffer();
+    	sql.append("select sum(HEALTHY_TIMEREAL)/sum(OPENTIMES)*100 from dev_open_rate,dev_info,sm_org ").append(
+    			" where dev_info.TERMINAL_ID=dev_open_rate.TERMINAL_ID and dev_info.ORG_ID=sm_org.ID");
 
         String statType = (String) filter.getFilterEntry("startType").getValue();
 
@@ -236,6 +243,8 @@ public class DayOpenRateService implements IDayOpenRateService {
                 hql.append(" = ?");
                 values.add(entry.getValue());
             }
+            
+            
         }
 
         entry = filter.getFilterEntry("info.devType.devCatalog.id");
@@ -249,7 +258,78 @@ public class DayOpenRateService implements IDayOpenRateService {
                 values.add(entry.getValue());
             }
         }
+        
+        entry = filter.getFilterEntry("info.devType.devVendor.id");
+        if (entry != null) {
+            hql.append(" and ").append(entry.getKey());
+            if (entry.getOperator() == Operator.LIKE) {
+                hql.append(" like ?");
+                values.add("%" + entry.getValue());
+            } else if (entry.getOperator() == Operator.EQ) {
+                hql.append(" = ?");
+                values.add(entry.getValue());
+            }
+        }
+        
+        entry = filter.getFilterEntry("(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100");
+        if (entry != null) {
+            hql.append(" and ").append(entry.getKey());
+            if (entry.getOperator() == Operator.LIKE) {
+                hql.append(" like ?");
+                values.add("%" + entry.getValue());
+            } else if (entry.getOperator() == Operator.EQ) {
+                hql.append(" = ?");
+                values.add(entry.getValue());
+            } else if(entry.getOperator() == Operator.GT){
+            	hql.append("> ?");
+            	values.add(entry.getValue());
+            }else if(entry.getOperator()==Operator.LE){
+            	hql.append("<= ?");
+            	values.add(entry.getValue());
+            }
+        }
+        
+//        entry = filter.getFilterEntry("(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100");
+//        if (entry != null) {
+//            hql.append(" and ").append(entry.getKey());
+//            if (entry.getOperator() == Operator.LIKE) {
+//                hql.append(" like ?");
+//                values.add("%" + entry.getValue());
+//            } else if (entry.getOperator() == Operator.EQ) {
+//                hql.append(" = ?");
+//                values.add(entry.getValue());
+//            } else if(entry.getOperator() == Operator.GT){
+//            	hql.append("> ?");
+//            	values.add(entry.getValue());
+//            }else if(entry.getOperator()==Operator.LT){
+//            	hql.append("< (select avg(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100) form DayOpenRate)");
+//            }
+//        }
+        
+        entry = filter.getFilterEntry("info.devType.id");
+        if (entry != null) {
+            hql.append(" and ").append(entry.getKey());
+            if (entry.getOperator() == Operator.LIKE) {
+                hql.append(" like ?");
+                values.add("%" + entry.getValue());
+            } else if (entry.getOperator() == Operator.EQ) {
+                hql.append(" = ?");
+                values.add(entry.getValue());
+            }
+        }
 
+        entry = filter.getFilterEntry("info.awayFlag");
+        if (entry != null) {
+            hql.append(" and ").append(entry.getKey());
+            if (entry.getOperator() == Operator.LIKE) {
+                hql.append(" like ?");
+                values.add("%" + entry.getValue());
+            } else if (entry.getOperator() == Operator.EQ) {
+                hql.append(" = ?");
+                values.add(entry.getValue());
+            }
+        }
+        
         entry = filter.getFilterEntry("info.organization.orgFlag");
         if (entry != null) {
             hql.append(" and ").append(entry.getKey());
@@ -260,6 +340,8 @@ public class DayOpenRateService implements IDayOpenRateService {
                 hql.append(" = ?");
                 values.add(entry.getValue());
             }
+            
+            sql.append(" and ").append(" sm_org.ID like '").append(entry.getValue()).append("%' ");
         }
 
         entry = filter.getFilterEntry("rate.terminalId");
@@ -283,6 +365,8 @@ public class DayOpenRateService implements IDayOpenRateService {
                 hql.append(" = ?");
                 values.add(date);
             }
+            
+            sql.append(" and").append(" dev_open_rate.STAT_DATE like '").append(date).append("%'");
         }
 
         if ("1".equals(statType) || "2".equals(statType)) {
@@ -290,12 +374,21 @@ public class DayOpenRateService implements IDayOpenRateService {
         }
 
         List<Object> result = dao.findByHQL(hql.toString(), values.toArray());
-
+        
+               
+        SQLQuery query=dao.getSQLQuery(sql.toString());
+        @SuppressWarnings("unchecked")
+		List<Object> avg = query.list();
+        double avgOpenRate=1;
+        if(avg.get(0)!=null){
+        avgOpenRate=Double.parseDouble(avg.get(0).toString());
+        }
         List<IDayOpenRate> dayOpenRateList = new ArrayList<IDayOpenRate>();
 
         DayOpenRate dayOpenRate = null;
         int id = 1;
         for (Object obj : result) {
+        	
             Object[] status = (Object[]) obj;
             String terminalId = status[0] == null ? "" : String.valueOf(status[0]);
             int openTimes = valueToInteger(status[1]);
@@ -307,17 +400,28 @@ public class DayOpenRateService implements IDayOpenRateService {
             int stopTimeReal = valueToInteger(status[7]);
             String orgName = "";
             String catalogName ="";
+            String typeName="";
+            String vendorName="";
+            AwayFlag awayFlag=null;
             if(status.length > 8)
             {
+            	IDevice device = deviceService.get(terminalId);
                 catalogName = (String)status[8];
       			String srcbOrgName = (String)status[9];
       			String srcbOrgCode = (String)status[10];
+      			typeName=device.getDevType().getName();
+      			vendorName=device.getDevType().getDevVendor().getName();
+      			awayFlag=device.getAwayFlag();
       			orgName = srcbOrgName+"("+srcbOrgCode+")";
             }
             else
             {
             	IDevice device = deviceService.get(terminalId);
                 catalogName = device.getDevType().getDevCatalog().getName();
+                typeName=device.getDevType().getName();
+                vendorName=device.getDevType().getDevVendor().getName();
+                awayFlag=device.getAwayFlag();
+                int i=device.getAwayFlag().getId();
             	String srcbOrgName = device.getOrganization().getName();
             	String srcbOrgCode = device.getOrganization().getCode();
             	orgName = srcbOrgName+"("+srcbOrgCode+")";
@@ -335,6 +439,10 @@ public class DayOpenRateService implements IDayOpenRateService {
             dayOpenRate.setStopTimeReal(stopTimeReal);
             dayOpenRate.setOrgName(orgName);
             dayOpenRate.setDevCatalogName(catalogName);
+            dayOpenRate.setDevTypeName(typeName);
+            dayOpenRate.setDevVendorName(vendorName);
+            dayOpenRate.setAwayFlag(awayFlag);
+            dayOpenRate.setAvgOpenRate(avgOpenRate);
 
             dayOpenRateList.add(dayOpenRate);
         }

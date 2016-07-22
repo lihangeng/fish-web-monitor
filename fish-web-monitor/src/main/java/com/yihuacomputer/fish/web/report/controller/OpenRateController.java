@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 import java.net.URLEncoder;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,6 +46,7 @@ import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.EntityUtils;
 import com.yihuacomputer.fish.api.atm.IAtmType;
+import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.OrganizationType;
@@ -101,6 +103,12 @@ public class OpenRateController {
         String terminate = request.getParameter("terminalId");
         String org = request.getParameter("organization");
         String devCatalogId = request.getParameter("devCatalogId");
+        String devVendor=request.getParameter("devVendorId");
+        String devType=request.getParameter("devTypeId");
+        String awayFlag=request.getParameter("awayFlag");
+        String compare=request.getParameter("compare");
+        String openRate=request.getParameter("openrate");
+        String avgType=request.getParameter("avgType");
         IFilter filter = request2filter(webRequest, "rate.statDate");
         if(null!=terminate&&!terminate.isEmpty()){
         	filter.like("rate.terminalId", terminate+"%");
@@ -116,6 +124,29 @@ public class OpenRateController {
         {
         	  filter.like("info.organization.orgFlag",org);
         }
+        if(devVendor != null){
+        	filter.eq("info.devType.devVendor.id", Long.valueOf(devVendor));
+        }
+        if(devType != null){
+        	filter.eq("info.devType.id", Long.valueOf(devType));
+        }
+        if(awayFlag != null){
+        filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
+        }
+        if(openRate != null){
+        if(Integer.parseInt(compare) ==1 ){
+        filter.gt("(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100", Double.parseDouble(openRate));
+        }else if(Integer.parseInt(compare) ==0){
+        filter.le("(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100", Double.parseDouble(openRate));	
+        }
+        }
+//        if(Integer.parseInt(avgType) == 0){
+//        	String value="(select avg(cast(rate.healthyTimeReal as int)/cast(rate.openTimes as int)*100) form DayOpenRate)";
+//        	filter.lt("cast(rate.healthyTimeReal as int)/cast(rate.openTimes as int)*100",value);
+//        	
+//        }else{
+//        	
+//        }
         IPageResult<IDayOpenRate> pageResult = dayOpenRateService.pageDev(start, limit, filter);
 
 
@@ -333,6 +364,31 @@ public class OpenRateController {
 
         bodyCellStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);
         bodyCellStyle.setTopBorderColor(HSSFColor.BLACK.index);
+        
+        bodyCellStyle.setFillForegroundColor(HSSFColor.RED.index);
+        
+        
+        HSSFCellStyle bodyCellStyleRed = workBook.createCellStyle();
+        bodyCellStyleRed.setAlignment(HSSFCellStyle.ALIGN_CENTER);
+        bodyCellStyleRed.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
+
+        bodyCellStyleRed.setBorderBottom(HSSFCellStyle.BORDER_THIN);
+        bodyCellStyleRed.setBottomBorderColor(HSSFColor.BLACK.index);
+
+        bodyCellStyleRed.setBorderLeft(HSSFCellStyle.BORDER_THIN);
+        bodyCellStyleRed.setLeftBorderColor(HSSFColor.BLACK.index);
+
+        bodyCellStyleRed.setBorderRight(HSSFCellStyle.BORDER_THIN);
+        bodyCellStyleRed.setRightBorderColor(HSSFColor.BLACK.index);
+
+        bodyCellStyleRed.setBorderTop(HSSFCellStyle.BORDER_THIN);
+        bodyCellStyleRed.setTopBorderColor(HSSFColor.BLACK.index);
+        
+        bodyCellStyleRed.setFillForegroundColor(HSSFColor.RED.index);
+        
+        HSSFFont font=workBook.createFont();
+    	font.setColor(HSSFColor.RED.index);
+    	bodyCellStyleRed.setFont(font);
 
         HSSFCellStyle titleCellStyle = workBook.createCellStyle();
         titleCellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
@@ -463,8 +519,12 @@ public class OpenRateController {
         }*/
 
         for (int i = 0; i < data.size(); i++) {
-
+             
             OpenRateForm form = data.get(i);
+            
+            double openRate=form.getOpenRate();
+            double avgOpenRate=form.getAvgOpenRate();
+
 
             row = sheet.createRow(i + 1);
             row.setHeight((short) 350);
@@ -533,10 +593,18 @@ public class OpenRateController {
             cell = row.createCell(columnIndex++);
             cell.setCellValue(form.getStopTimeReal());
             cell.setCellStyle(bodyCellStyle);
-
-            cell = row.createCell(columnIndex++);
-            cell.setCellValue(form.getOpenRate() + "%");
-            cell.setCellStyle(bodyCellStyle);
+            
+            if(openRate<avgOpenRate){
+            	cell = row.createCell(columnIndex++);
+                cell.setCellValue(form.getOpenRate() + "%");
+                cell.setCellStyle(bodyCellStyleRed);
+            }else{
+            	cell = row.createCell(columnIndex++);
+                cell.setCellValue(form.getOpenRate() + "%");
+                cell.setCellStyle(bodyCellStyle);
+            }
+            
+            
 
             /*if (isProg) {
                 cell = row.createCell(columnIndex++);

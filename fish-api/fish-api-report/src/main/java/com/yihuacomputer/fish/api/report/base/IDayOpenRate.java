@@ -140,6 +140,9 @@ public interface IDayOpenRate {
 
 	public void setDevCatalogName(String devCatalogName) ;
 
+	public double getAvgOpenRate();
+	
+	public void setAvgOpenRate(double avgOpenRate);
 
 
 
