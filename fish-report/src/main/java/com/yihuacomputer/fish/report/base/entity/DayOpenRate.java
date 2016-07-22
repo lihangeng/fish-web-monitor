@@ -104,6 +104,7 @@ public class DayOpenRate implements IDayOpenRate {
     @Transient 
     private double avgOpenRate;
 
+    
     public long getId() {
         return id;
     }
@@ -264,10 +265,5 @@ public class DayOpenRate implements IDayOpenRate {
 		this.avgOpenRate = avgOpenRate;
 	}
 	
-	
-	
-
-
-
 
 }

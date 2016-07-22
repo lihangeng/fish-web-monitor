@@ -559,7 +559,6 @@ public class VersionController {
 	 * @param request
 	 * @return
 	 */
-	@MethodNameDescrible(describle="userlog.VersionController.getVersionDistributeStatusDetail",hasArgs=true,argsContext="versionId")
 	@RequestMapping(value = "distributeStatusDetail", method = RequestMethod.GET)
 	@ResponseBody
 	public ModelMap getVersionDistributeStatusDetail(@RequestParam long versionId,@RequestParam int start,@RequestParam int limit, WebRequest webRequest, HttpServletRequest request) {

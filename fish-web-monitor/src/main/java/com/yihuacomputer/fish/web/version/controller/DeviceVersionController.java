@@ -83,7 +83,6 @@ public class DeviceVersionController {
         return result;
     }
 
-    @MethodNameDescrible(describle="userlog.DeviceVersionController.history",hasArgs=true,argsContext="deviceId")
     @RequestMapping(method = RequestMethod.GET, value = "/history")
     public @ResponseBody
     ModelMap history(@RequestParam int start, @RequestParam int limit, @RequestParam int deviceId) {

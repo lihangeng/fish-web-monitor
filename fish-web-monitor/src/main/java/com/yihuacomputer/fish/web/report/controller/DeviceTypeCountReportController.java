@@ -64,7 +64,6 @@ public class DeviceTypeCountReportController {
 	@Autowired
 	private MessageSource messageSource;
 	
-	@MethodNameDescrible(describle="userlog.DeviceTypeCountReportController.deviceTypeCount",hasArgs=false)
     @RequestMapping(value = "/deviceTypeCount", method = RequestMethod.GET)
     public @ResponseBody
     ModelMap deviceTypeCount(WebRequest request, HttpServletRequest rq) {

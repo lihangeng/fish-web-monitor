@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.api.report.base;
 
+import com.yihuacomputer.fish.api.device.AwayFlag;
+
 public interface IDayOpenRate {
 
     /**
@@ -140,11 +142,20 @@ public interface IDayOpenRate {
 
 	public void setDevCatalogName(String devCatalogName) ;
 
+
 	public double getAvgOpenRate();
 	
 	public void setAvgOpenRate(double avgOpenRate);
 
+	/**
+     * 在行离行标志
+     *
+     * @return
+     */
+	public AwayFlag getAwayFlag();
 
+
+	public void setAwayFlag(AwayFlag awayFlag) ;
 
 
 }

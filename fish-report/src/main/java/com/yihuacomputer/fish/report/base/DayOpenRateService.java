@@ -101,7 +101,19 @@ public class DayOpenRateService implements IDayOpenRateService {
             values.add(Long.valueOf(typeValue.toString()));
         }
 
-        IFilterEntry entry = filter.getFilterEntry("org.orgFlag");
+        IFilterEntry orgFlag = filter.getFilterEntry("org.orgFlag");
+        if (orgFlag != null) {
+            hql.append(" and ").append(orgFlag.getKey());
+            if (orgFlag.getOperator() == Operator.LIKE) {
+                hql.append(" like ?");
+                values.add(orgFlag.getValue() + "%");
+            } else if (orgFlag.getOperator() == Operator.EQ) {
+                hql.append(" = ?");
+                values.add(orgFlag.getValue());
+            }
+        }
+
+        IFilterEntry entry = filter.getFilterEntry("rate.statDate");
         if (entry != null) {
             hql.append(" and ").append(entry.getKey());
             if (entry.getOperator() == Operator.LIKE) {
@@ -113,19 +125,30 @@ public class DayOpenRateService implements IDayOpenRateService {
             }
         }
 
-        entry = filter.getFilterEntry("rate.statDate");
-        if (entry != null) {
-            hql.append(" and ").append(entry.getKey());
-            if (entry.getOperator() == Operator.LIKE) {
+        IFilterEntry organization = filter.getFilterEntry("info.organization.orgFlag");
+        if (organization != null) {
+            hql.append(" and ").append(organization.getKey());
+            if (organization.getOperator() == Operator.LIKE) {
                 hql.append(" like ?");
-                values.add(entry.getValue() + "%");
-            } else if (entry.getOperator() == Operator.EQ) {
+                values.add(orgService.get(organization.getValue().toString()).getOrgFlag() + "%");
+            } else if (organization.getOperator() == Operator.EQ) {
                 hql.append(" = ?");
-                values.add(entry.getValue());
+                values.add(organization.getValue());
             }
         }
 
-
+        IFilterEntry awayFlags = filter.getFilterEntry("info.awayFlag");
+        if (awayFlags != null) {
+            hql.append(" and ").append(awayFlags.getKey());
+            if (awayFlags.getOperator() == Operator.LIKE) {
+                hql.append(" like ?");
+                values.add("%" + awayFlags.getValue());
+            } else if (awayFlags.getOperator() == Operator.EQ) {
+                hql.append(" = ?");
+                values.add(awayFlags.getValue());
+            }
+        }
+        
         List<Object> result = dao.findByHQL(hql.toString(), values.toArray());
         List<IDayOpenRate> dayOpenRateList = new ArrayList<IDayOpenRate>();
         IDayOpenRate openRate = null;
@@ -143,7 +166,27 @@ public class DayOpenRateService implements IDayOpenRateService {
             int faultTimeReal = valueToInteger(status[4]);
             int atmpTimeReal = valueToInteger(status[5]);
             int stopTimeReal = valueToInteger(status[6]);
-
+            String orgName="";
+            AwayFlag awayFlag = null;
+            if(status.length > 7)
+            {
+      			String srcbOrgName = (String)status[7];
+      			String srcbOrgCode = (String)status[8];
+      			awayFlag=AwayFlag.getById((Integer)status[9]);
+      			orgName = srcbOrgName+"("+srcbOrgCode+")";
+            }
+            else
+            {
+            	if(awayFlags != null){
+            		awayFlag = AwayFlag.getById((Integer)awayFlags.getValue());
+            	}
+            	if(organization !=null){
+                String orgId = organization.getValue().toString();
+            	String srcbOrgName = orgService.get(orgId).getName();
+            	String srcbOrgCode = orgService.get(orgId).getCode();
+            	orgName = srcbOrgName+"("+srcbOrgCode+")";
+            	}
+            }
             openRate = make();
             openRate.setId(id++);
             openRate.setStatDate(entry.getValue().toString());
@@ -154,6 +197,8 @@ public class DayOpenRateService implements IDayOpenRateService {
             openRate.setFaultTimeReal(faultTimeReal);
             openRate.setAtmpTimeReal(atmpTimeReal);
             openRate.setStopTimeReal(stopTimeReal);
+            openRate.setOrgName(orgName);
+            openRate.setAwayFlag(awayFlag);
             dayOpenRateList.add(openRate);
         }
         return dayOpenRateList;
@@ -164,11 +209,19 @@ public class DayOpenRateService implements IDayOpenRateService {
         StringBuffer hql = new StringBuffer(DEV_ORG_STAT_HQL);
 
         List<Object> values = new ArrayList<Object>();
-        Object typeValue = filter.getValue("orgId");
-        if (typeValue != null) {
-            hql.append(" and org.orgFlag like ?");
-            values.add(orgService.get(String.valueOf(typeValue)).getOrgFlag() + "%");
+
+        IFilterEntry orgFlag = filter.getFilterEntry("org.orgFlag");
+        if (orgFlag != null) {
+            hql.append(" and ").append(orgFlag.getKey());
+            if (orgFlag.getOperator() == Operator.LIKE) {
+                hql.append(" like ?");
+                values.add(orgFlag.getValue() + "%");
+            } else if (orgFlag.getOperator() == Operator.EQ) {
+                hql.append(" = ?");
+                values.add(orgFlag.getValue());
+            }
         }
+
         IFilterEntry entry = filter.getFilterEntry("rate.statDate");
         if (entry != null) {
             hql.append(" and ").append(entry.getKey());
@@ -181,6 +234,30 @@ public class DayOpenRateService implements IDayOpenRateService {
             }
         }
 
+        IFilterEntry organization = filter.getFilterEntry("info.organization.orgFlag");
+        if (organization != null) {
+            hql.append(" and ").append(organization.getKey());
+            if (organization.getOperator() == Operator.LIKE) {
+                hql.append(" like ?");
+                values.add(orgService.get(organization.getValue().toString()).getOrgFlag() + "%");
+            } else if (organization.getOperator() == Operator.EQ) {
+                hql.append(" = ?");
+                values.add(organization.getValue());
+            }
+        }
+
+        IFilterEntry awayFlags = filter.getFilterEntry("info.awayFlag");
+        if (awayFlags != null) {
+            hql.append(" and ").append(awayFlags.getKey());
+            if (awayFlags.getOperator() == Operator.LIKE) {
+                hql.append(" like ?");
+                values.add("%" + awayFlags.getValue());
+            } else if (awayFlags.getOperator() == Operator.EQ) {
+                hql.append(" = ?");
+                values.add(awayFlags.getValue());
+            }
+        }
+        
         List<Object> result = dao.findByHQL(hql.toString(), values.toArray());
 
         List<IDayOpenRate> dayOpenRateList = new ArrayList<IDayOpenRate>();
@@ -195,6 +272,27 @@ public class DayOpenRateService implements IDayOpenRateService {
             int faultTimeReal = valueToInteger(status[4]);
             int atmpTimeReal = valueToInteger(status[5]);
             int stopTimeReal = valueToInteger(status[6]);
+            String orgName="";
+            AwayFlag awayFlag=null;
+            if(status.length > 7)
+            {
+      			String srcbOrgName = (String)status[7];
+      			String srcbOrgCode = (String)status[8];
+      			awayFlag=AwayFlag.getById((Integer)status[9]);
+      			orgName = srcbOrgName+"("+srcbOrgCode+")";
+            }
+            else
+            {
+            	if(awayFlags != null){
+            		awayFlag = AwayFlag.getById((Integer)awayFlags.getValue());
+            	}
+            	if(organization !=null){
+                String orgId = organization.getValue().toString();
+            	String srcbOrgName = orgService.get(orgId).getName();
+            	String srcbOrgCode = orgService.get(orgId).getCode();
+            	orgName = srcbOrgName+"("+srcbOrgCode+")";
+            	}
+            }
             openRate = make();
             openRate.setId(id++);
             openRate.setStatDate(entry.getValue().toString());
@@ -205,6 +303,8 @@ public class DayOpenRateService implements IDayOpenRateService {
             openRate.setFaultTimeReal(faultTimeReal);
             openRate.setAtmpTimeReal(atmpTimeReal);
             openRate.setStopTimeReal(stopTimeReal);
+            openRate.setOrgName(orgName);
+            openRate.setAwayFlag(awayFlag);
             dayOpenRateList.add(openRate);
         }
         return dayOpenRateList;
@@ -421,7 +521,7 @@ public class DayOpenRateService implements IDayOpenRateService {
                 typeName=device.getDevType().getName();
                 vendorName=device.getDevType().getDevVendor().getName();
                 awayFlag=device.getAwayFlag();
-                int i=device.getAwayFlag().getId();
+                //int i=device.getAwayFlag().getId();
             	String srcbOrgName = device.getOrganization().getName();
             	String srcbOrgCode = device.getOrganization().getCode();
             	orgName = srcbOrgName+"("+srcbOrgCode+")";

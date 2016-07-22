@@ -5,6 +5,28 @@ Ext.define("Ext.ux.form.DateTimeField",{
 	requires:['Ext.ux.form.DateTimePicker'],
 //	value:Ext.util.Format.date(Ext.Date.add(new Date(),Ext.Date.MONTH+1,0),"Y-m-d")
 	_picker:"",
+	config : {
+		hideTrigger : false,
+		canClear : true,
+		triggers : {
+			clear : {
+				cls : Ext.baseCSSPrefix + "form-clear-trigger",
+				hidden : true,
+				handler : 'onClearClick',
+				scope : 'this'
+			}
+		},
+		listeners : {
+			afterrender : function(text) {
+				var clearTip = text.getTrigger("clear");
+				if (this.canClear) {
+					return;
+				} else {
+					clearTip.hide();
+				}
+			}
+		}
+	},
 	
 	
 	getErrors: function(value) {
@@ -13,7 +35,7 @@ Ext.define("Ext.ux.form.DateTimeField",{
         var me = this;
         var   format = Ext.String.format;
         var   clearTime = Ext.Date.clearTime;
-        var   errors = [];
+        var   errors =me.callParent(arguments);
         var   disabledDays = me.disabledDays;
         var    disabledDatesRE = me.disabledDatesRE;
         var    minValue = me.minValue;

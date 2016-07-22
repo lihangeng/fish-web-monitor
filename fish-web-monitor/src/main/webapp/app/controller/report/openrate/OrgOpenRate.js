@@ -44,7 +44,7 @@ Ext.define('Eway.controller.report.openrate.OrgOpenRate', {
 		var view = this.getEwayView();
 		var form = view.down('form').getForm();
 		var values = form.getValues();
-		var param = 'statType='+values.statType+'&day='+values.day+'&month='+values.month+'&year='+values.year;
+		var param = 'statType='+values.statType+'&day='+values.day+'&month='+values.month+'&year='+values.year+'&orgId='+values.orgId+'&orgName'+values.orgName+'&awayFlag='+values.awayFlag;
 		window.location.href = 'api/report/openrate/org/importStat?' + param;
 	}
 });
