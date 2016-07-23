@@ -72,7 +72,13 @@ Ext.apply(EwayLocale,{
 				organizationName:'Bank',//EwayLocale.report.openrate.device.organizationName
 				inBank:'In Bank',//EwayLocale.report.openrate.device.inBank
 				outBank:'Out Of Bank',//EwayLocale.report.openrate.device.outBank
-				allBank:'Both In Or Out Of Bank'//EwayLocale.report.openrate.device.allBank
+				allBank:'Both In Or Out Of Bank',//EwayLocale.report.openrate.device.allBank
+				lt:'<',//EwayLocale.report.openrate.device.lt
+				gt:'>',//EwayLocale.report.openrate.device.gt
+				openRate:'OpenRate',//EwayLocale.report.openrate.device.openRate
+				regex:'please input 0-100.00',//EwayLocale.report.openrate.device.regex
+				openRateAvg:'AvgOpenRate',//EwayLocale.report.openrate.device.openRateAvg
+				orgAvg:'AvgOpnRateByOrg',//EwayLocale.report.openrate.device.orgAvg
 			},
 			org:{
 				orgOpenRate:'Banks Open Rate'//EwayLocale.report.openrate.org.orgOpenRate

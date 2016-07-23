@@ -120,15 +120,15 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 				fieldLabel : EwayLocale.machine.device.onBankSignal,
 				anchor : '69%',
 				items : [ {
-					boxLabel :'在行',
+					boxLabel :EwayLocale.report.openrate.device.inBank,
 					name : 'awayFlag',
 					inputValue : 1
 				}, {
-					boxLabel :'离行',
+					boxLabel :EwayLocale.report.openrate.device.outBank,
 					name : 'awayFlag',
 					inputValue : 2
 				}, {
-					boxLabel :'所有',
+					boxLabel :EwayLocale.report.openrate.device.allBank,
 					name : 'awayFlag',
 					checked : true,
 					inputValue :""
@@ -161,16 +161,16 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 				rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '0' ? true : false
 			},{
 				xtype : 'radiogroup',
-				fieldLabel : '开机率',
+				fieldLabel : EwayLocale.report.openrate.device.openRate,
 				anchor : '69%',
 				items : [ {
-					boxLabel :'低于',
+					boxLabel :EwayLocale.report.openrate.device.lt,
 					name : 'compare',
 					checked : true,
 					width: 50,
 					inputValue : 0
 				}, {
-					boxLabel :'高于',
+					boxLabel :EwayLocale.report.openrate.device.gt,
 					name : 'compare',
 					width: 50,
 					inputValue : 1
@@ -179,7 +179,7 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 					name:'openrate',
 					width: 60,
 					regex:/(^(\d|[1-9]\d|100)(\.\d{1,2})?$)/,
-					regexText: '请输入0-100.00的数字'
+					regexText: EwayLocale.report.openrate.device.regex
 					
 				}, 
 				{
@@ -190,10 +190,10 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 
 			},{
 				xtype : 'radiogroup',
-				fieldLabel : '平均值',
+				fieldLabel : EwayLocale.report.openrate.device.openRateAvg,
 				anchor : '69%',
 				items : [ {
-					boxLabel :'机构平均值',
+					boxLabel :EwayLocale.report.openrate.device.orgAvg,
 					name : 'avgType',
 					width: 170,
 					checked : true,

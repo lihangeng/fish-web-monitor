@@ -72,7 +72,13 @@ Ext.apply(EwayLocale,{
 				organizationName:'机构',//EwayLocale.report.openrate.device.organizationName
 				inBank:'在行',//EwayLocale.report.openrate.device.inBank
 				outBank:'离行',//EwayLocale.report.openrate.device.outBank
-				allBank:'所有'//EwayLocale.report.openrate.device.allBank
+				allBank:'所有',//EwayLocale.report.openrate.device.allBank
+				lt:'低于',//EwayLocale.report.openrate.device.lt
+				gt:'高于',//EwayLocale.report.openrate.device.gt
+				openRate:'开机率',//EwayLocale.report.openrate.device.openRate
+				regex:'请输入0-100.00的数字',//EwayLocale.report.openrate.device.regex
+				openRateAvg:'平均值',//EwayLocale.report.openrate.device.openRateAvg
+				orgAvg:'机构平均值',//EwayLocale.report.openrate.device.orgAvg
 			},
 			org:{
 				orgOpenRate:'机构开机率'//EwayLocale.report.openrate.org.orgOpenRate
