@@ -18,9 +18,10 @@ public class FaultFilterTest {
 
 	@Test
 	public void test(){
-		idcsms.make();
-		idcsms.save(null);
-		idcsms.list(null);
+		idcsms.make(); //monitor
+		idcsms.save(null);//analysis
+		idcsms.update(null);//null
+		idcsms.list(null);// null
 		idcsms.make();
 		idcsms.list(null);
 	}
