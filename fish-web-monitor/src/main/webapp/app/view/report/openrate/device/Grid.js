@@ -3,12 +3,31 @@ Ext.define('Eway.view.report.openrate.device.Grid', {
 	extend : 'Eway.view.base.Grid',
 
 	requires : [ 'Eway.lib.Util' ],
+	
+	  viewConfig : {
+	        forceFit : true,
+	        enableTextSelection : true
+//	        getRowClass : function(record, index) {
+//
+//	            var openRate = record.get('openRate');
+//	            var avgOpenRate = record.get('avgOpenRate');
+//
+//	            var result = '';
+//	            if (openRate<avgOpenRate) {
+//	                result = 'device-openrate-report-red';
+//	            }else{
+//	            	result = 'device-openrate-report-green';
+//	            }
+//
+////	            if (localRet) {
+////	                result += ' jsnx-grid-local-' + localRet;
+////	            }
+//
+//	            return result;
+//	        }
+	    },
 
 	border : false,
-	viewConfig:{
-		forceFit: true,
-		 scrollOffset: 0
-	},
 	initComponent : function() {
 		var store = Ext.create('Eway.store.report.openrate.DeviceOpenRate');
 		store.loadPage(1);
@@ -92,11 +111,20 @@ Ext.define('Eway.view.report.openrate.device.Grid', {
 			}, {
 				header : EwayLocale.report.openrate.device.openRate,
 				sortable : true,
-				renderer : this.pctChange,
+				renderer:function(value, cellmeta, record, rowIndex, columnIndex, store){
+			         var avgOpenRate = record.get('avgOpenRate');
+			         if (value >= avgOpenRate) {
+			 			return '<span style="color:green;">' + value + '%</span>';
+			 		 } else if (value < avgOpenRate) {
+			 			return '<span style="color:red;">' + value + '%</span>';
+			 		 }
+				},
 				dataIndex : 'openRate',
 				width:100
 //				flex:true
-			}/*, {
+			}
+			
+			/*, {
 				header : '方案开机率',
 				sortable : true,
 				renderer : this.pctChange,
@@ -122,9 +150,10 @@ Ext.define('Eway.view.report.openrate.device.Grid', {
 	 *            val
 	 */
 	pctChange : function(val) {
-		if (val >= 20) {
+		var avgOpenRate = record.get('avgOpenRate');
+		if (val >= avgOpenRate) {
 			return '<span style="color:green;">' + val + '%</span>';
-		} else if (val < 20) {
+		} else if (val < avgOpenRate) {
 			return '<span style="color:red;">' + val + '%</span>';
 		}
 		return val;

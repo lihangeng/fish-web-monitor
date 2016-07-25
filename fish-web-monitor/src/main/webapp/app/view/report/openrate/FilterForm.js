@@ -1,6 +1,8 @@
 Ext.define('Eway.view.report.openrate.FilterForm', {
 	extend : 'Eway.view.base.FilterForm',
 	alias : 'widget.report_openrate_filterform',
+	requires : [ 'Eway.lib.Util','Eway.view.common.OrgComboOrgTree','Eway.view.field.atmType.DeviceAtmCatalogComboBox'],
+
 	height : 70,
 	layout : 'column',
 	defaults : {
@@ -9,7 +11,7 @@ Ext.define('Eway.view.report.openrate.FilterForm', {
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-				columnWidth : .5,
+				columnWidth : .3,
 				defaults : {
 					labelAlign : 'right'
 				},
@@ -83,8 +85,62 @@ Ext.define('Eway.view.report.openrate.FilterForm', {
 						}
 					}
 				} ]
-			} ]
-		});
+			},
+			{
+				columnWidth : .3,
+				defaults : {
+					labelAlign : 'right'
+				},
+				items : [{
+				xtype : 'common_orgComboOrgTree',
+				fieldLabel : EwayLocale.machine.atmGroup.orgName,
+				emptyText : EwayLocale.combox.select,
+				name : 'orgName',
+				hiddenValue : 'orgId',
+				editable : true,
+				width:260,
+				filters : '{"type" : "0"}',
+				rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '0' ? true : false
+			},{
+				style : 'padding-top:0px',
+				xtype : 'hiddenfield',
+				name : 'orgId'
+			},{
+				style : 'padding-top:0px',
+				xtype : 'hiddenfield',
+				name : 'flag',
+				value : '0'
+			}]},
+			{
+				columnWidth : .3,
+				defaults : {
+					labelAlign : 'right'
+				},
+				items : [{
+				fieldLabel : EwayLocale.machine.device.onBankSignal,
+				xtype : 'radiogroup',
+				anchor : '69%',
+				width:280,
+				items : [ {
+					boxLabel : EwayLocale.report.openrate.device.inBank,
+					name : 'awayFlag',					
+					inputValue : 1
+				}, {
+					boxLabel : EwayLocale.report.openrate.device.outBank,
+					name : 'awayFlag',
+					inputValue : 2
+				}, {
+					boxLabel :  EwayLocale.report.openrate.device.allBank,
+					name : 'awayFlag',
+					checked : true,
+					inputValue : ""
+						
+				} ]
+			}
+			]}
+			
+			
+			]});
 		this.callParent(arguments);
 	},
 	changeImport : function(radio, newValue, oldValue, options) {
