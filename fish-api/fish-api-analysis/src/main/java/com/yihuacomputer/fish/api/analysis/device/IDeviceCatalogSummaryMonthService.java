@@ -1,6 +1,8 @@
 package com.yihuacomputer.fish.api.analysis.device;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.yihuacomputer.common.IFilter;
 /**
@@ -13,4 +15,16 @@ public interface IDeviceCatalogSummaryMonthService {
 	IDeviceCatalogSummaryMonth save(IDeviceCatalogSummaryMonth dcsm);
 	List<IDeviceCatalogSummaryMonth> list(IFilter filter);
 	IDeviceCatalogSummaryMonth get(String catalogName,String date);
+	/**
+	 * 根据日期得到分类统计信息
+	 * @param date
+	 * @return
+	 */
+	Map<String,IDeviceCatalogSummaryMonth> get(String date);
+
+	/**
+	 * 加载基础数据
+	 * @param date 执行时间点 7月份执行6月份汇总，此时传入的日期为7月份
+	 */
+	void loadBaseDate(Date date);
 }

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import com.yihuacomputer.fish.api.analysis.device.IDeviceCatalogSummaryMonth;
 
 @Entity
-@Table(name="DEVICE_CATALOG_SUMMARY_MONTH")
+@Table(name="DEV_CATALOG_SUMMARY_MONTH")
 public class DeviceCatalogSummaryMonth implements IDeviceCatalogSummaryMonth {
 
 	@Id
