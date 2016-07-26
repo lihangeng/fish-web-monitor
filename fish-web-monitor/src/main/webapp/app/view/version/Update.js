@@ -83,12 +83,12 @@ Ext.define('Eway.view.version.Update', {
 					pageSize : 15*/
 				},{
 					   xtype: 'textfield',
-				       fieldLabel : EwayLocale.version.View.execBefore,//'升级前执行脚本',
-					   name : 'execBefore',
+				       fieldLabel : EwayLocale.version.View.execAfter,//'升级后执行脚本',
+					   name : 'execAfter',
 					   maxLength: 50,
-					   emptyText: EwayLocale.version.View.execBeforeEmptyText,//'请输入升级包中的以bat或cmd结尾的文件',
+					   emptyText: EwayLocale.version.View.execAfterEmptyText,//'请输入升级包中的以bat或cmd结尾的文件',
 					   regex : /^([\w|\W]*)(\.bat|cmd)$/i,
-					   regexText:EwayLocale.version.View.execBeforeRegexText//'只能输入bat或cmd结尾的文件'
+					   regexText:EwayLocale.version.View.execAfterRegexText//'只能输入bat或cmd结尾的文件'
 				},{
 					xtype:'hidden',
 					name:'dependVersionId'

@@ -239,6 +239,7 @@ public class VersionController {
 			UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
 			v.setCreateUserId(userSession.getUserId());
 			v.setExecBefore(form.getExecBefore());
+			v.setExecAfter(form.getExecAfter());
 			v.setDownloadCounter(0);
 			versionService.add(v);
 
@@ -287,6 +288,7 @@ public class VersionController {
 		v.setEagerRestart(form.isEagerRestart());
 		v.setDesc(form.getDesc());
 		v.setExecBefore(form.getExecBefore());
+		v.setExecAfter(form.getExecAfter());
 		if (form.getDependVersionId() > 0) {
 			v.setDependVersion(versionService.getById(form.getDependVersionId()));
 		} else {

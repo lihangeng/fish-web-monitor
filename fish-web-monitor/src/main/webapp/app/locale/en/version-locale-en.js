@@ -245,6 +245,9 @@ Ext.apply(EwayLocale,{
 			dependVersion:'Dependented Version',//EwayLocale.version.View.dependVersion
 			dependVersionEmptyText:'Please Select Type Dependent On', //EwayLocale.version.View.dependVersionEmptyText
 			execBefore:'Execute Script Before Update',//EwayLocale.version.View.execBefore
+			execAfter : 'Execute Script After Update',//EwayLocale.version.View.execAfter
+			execAfterEmptyText : 'Please Input The File In The Update Package Which Name Is End With Bat Or Cmd',//EwayLocale.version.View.execAfterEmptyText
+			execAfterRegexText : 'Only The File Which Name End With "bat" Or "cmd" Can Be Inputed',//EwayLocale.version.View.execAfterRegexText
 			execBeforeEmptyText:'Please Input The File In The Update Package Which Name Is End With Bat Or Cmd',//EwayLocale.version.View.execBeforeEmptyText
 			execBeforeRegexText:'Only The File Which Name End With "bat" Or "cmd" Can Be Inputed',//EwayLocale.version.View.execBeforeRegexText
 			versionDesc:'Description',//EwayLocale.version.View.versionDesc

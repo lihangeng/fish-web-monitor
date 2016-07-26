@@ -246,6 +246,9 @@ Ext.apply(EwayLocale,{
 			dependVersion : '依赖版本',//EwayLocale.version.View.dependVersion
 			dependVersionEmptyText : '请选择依赖类型',//EwayLocale.version.View.dependVersionEmptyText
 			execBefore : '升级前执行脚本',//EwayLocale.version.View.execBefore
+			execAfter : '升级后执行脚本',//EwayLocale.version.View.execAfter
+			execAfterEmptyText : '请输入升级包中的以bat或cmd结尾的文件',//EwayLocale.version.View.execAfterEmptyText
+			execAfterRegexText : '只能输入bat或cmd结尾的文件',//EwayLocale.version.View.execAfterRegexText
 			execBeforeEmptyText : '请输入升级包中的以bat或cmd结尾的文件',//EwayLocale.version.View.execBeforeEmptyText
 			execBeforeRegexText : '只能输入bat或cmd结尾的文件',//EwayLocale.version.View.execBeforeRegexText
 			versionDesc : '版本描述',//EwayLocale.version.View.versionDesc

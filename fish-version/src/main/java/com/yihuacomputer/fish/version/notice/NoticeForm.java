@@ -57,6 +57,9 @@ public class NoticeForm {
     private long cancelPreVer ;
 
     private long deployScheduler ;
+    
+    private String execBefore;
+    private String execAfter;
 
     public NoticeForm() {
     }
@@ -80,7 +83,8 @@ public class NoticeForm {
         this.deployStartDate = task.getDeployStartDate() == null ? "" : DateUtils.getDate(task.getDeployStartDate());
         this.deployEndDate = task.getDeployEndDate() == null ? "" : DateUtils.getDate(task.getDeployEndDate());
         this.fileSize = getVersionFileSize();
-
+        this.execBefore = version.getExecBefore();
+        this.execAfter = version.getExecAfter();
         this.cancelPreVer = task.getJob().getCancelPreVer() ;
 //        this.deployScheduler = version.getDeployScheFlag();
     }
@@ -244,6 +248,22 @@ public class NoticeForm {
 
 	public void setDeployScheduler(long deployScheduler) {
 		this.deployScheduler = deployScheduler;
+	}
+
+	public String getExecBefore() {
+		return execBefore;
+	}
+
+	public void setExecBefore(String execBefore) {
+		this.execBefore = execBefore;
+	}
+
+	public String getExecAfter() {
+		return execAfter;
+	}
+
+	public void setExecAfter(String execAfter) {
+		this.execAfter = execAfter;
 	}
 
 }
