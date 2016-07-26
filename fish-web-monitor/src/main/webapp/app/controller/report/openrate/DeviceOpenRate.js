@@ -36,8 +36,18 @@ Ext.define('Eway.controller.report.openrate.DeviceOpenRate', {
 		var view = this.getEwayView();
 		var form = view.down('form').getForm();
 		var values = form.getValues();
-		var param = 'statType='+values.statType+'&day='+values.day+'&month='+values.month+'&year='+values.year+'&terminalId='+values.terminalId;
-//		+'&devVendor='+values.devVendor+'&devType='+values.devType+'&devCatalogId'+values.devCatalogId+'&awayFlag'+values.awayFlag+'&org'+values.org+'&openRate'+values.openRate
+		var param = 'statType='+values.statType+
+		'&day='+values.day+
+		'&month='+values.month+
+		'&year='+values.year+
+		'&terminalId='+values.terminalId+
+		'&devVendorId='+values.devVendorId+
+		'&devTypeId='+values.devTypeId+
+		'&devCatalogId='+values.devCatalogId+
+		'&awayFlag='+values.awayFlag+
+		'&org='+values.organization+
+		'&openRate='+values.openrate+
+		'&compare='+values.compare;
 		window.location.href = 'api/report/openrate/device/importStat?' + param;
 	}
 });

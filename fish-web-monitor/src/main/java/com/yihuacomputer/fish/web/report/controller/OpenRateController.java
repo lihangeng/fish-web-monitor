@@ -236,24 +236,54 @@ public class OpenRateController {
         filter.like("org.orgFlag", orgService.get(organization).getOrgFlag());
 
         String terminate = request.getParameter("terminalId");
+        String devVendor=request.getParameter("devVendorId");
+        String devType=request.getParameter("devTypeId");
+        String awayFlag=request.getParameter("awayFlag");
+        String compare=request.getParameter("compare");
+        String org=request.getParameter("org");
+        String openRate=request.getParameter("openRate");
+        
+        
+        if(devVendor != null&&!devVendor.isEmpty()){
+        	filter.eq("info.devType.devVendor.id", Long.valueOf(devVendor));
+        }
 
+        if(devType != null&&!devType.isEmpty()){
+        	filter.eq("info.devType.id", Long.valueOf(devType));
+        }
+        
+        if(awayFlag != null&&!awayFlag.isEmpty()){
+            filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
+            }
+        
+        if(org != null&&!org.isEmpty())
+        {
+        	  filter.like("info.organization.orgFlag",org);
+        }
+        
+        if(openRate != null&&!openRate.isEmpty() ){
+            if(Integer.parseInt(compare) ==1 ){
+            filter.gt("(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100", Double.parseDouble(openRate));
+            }else if(Integer.parseInt(compare) ==0){
+            filter.le("(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100", Double.parseDouble(openRate));	
+            }
+            }
+        
+      
+        
         if(null!=terminate&&!terminate.isEmpty()){
         	filter.like("rate.terminalId", terminate+"%");
         }
-        String org = request.getParameter("organization");
+
         String devCatalogId = request.getParameter("devCatalogId");
 
         UserSession srcbUserSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
         String srcbOrganization = String.valueOf(srcbUserSession.getOrgId());
         filter.like("org.orgFlag", orgService.get(srcbOrganization).getOrgFlag());
 
-        if(devCatalogId != null)
+        if(devCatalogId != null&&!devCatalogId.isEmpty())
         {
         	  filter.eq("info.devType.devCatalog.id", Long.valueOf(devCatalogId));
-        }
-        if(org != null)
-        {
-        	  filter.like("info.organization.orgFlag",org);
         }
 
         List<OpenRateForm> date = OpenRateForm.convert(dayOpenRateService.listDev(filter));

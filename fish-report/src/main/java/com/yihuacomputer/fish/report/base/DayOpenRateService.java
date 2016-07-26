@@ -441,7 +441,7 @@ public class DayOpenRateService implements IDayOpenRateService {
                 values.add(entry.getValue());
             }
             
-            sql.append(" and ").append(" sm_org.ID like '").append(entry.getValue()).append("%' ");
+//            sql.append(" and ").append(" sm_org.ID like '").append(entry.getValue()).append("%' ");
         }
 
         entry = filter.getFilterEntry("rate.terminalId");
@@ -466,7 +466,7 @@ public class DayOpenRateService implements IDayOpenRateService {
                 values.add(date);
             }
             
-            sql.append(" and").append(" dev_open_rate.STAT_DATE like '").append(date).append("%'");
+//            sql.append(" and").append(" dev_open_rate.STAT_DATE like '").append(date).append("%'");
         }
 
         if ("1".equals(statType) || "2".equals(statType)) {

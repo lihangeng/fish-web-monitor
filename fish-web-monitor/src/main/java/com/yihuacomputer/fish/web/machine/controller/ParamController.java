@@ -50,6 +50,13 @@ public class ParamController {
 		ModelMap result = new ModelMap();
 		IPageResult<IParam> pageResult = paramService
 				.page(start, limit, filter);
+		for (Iterator iterator = pageResult.list().iterator(); iterator.hasNext();) {
+			IParam param = (IParam) iterator.next();
+			if(param.getParamKey().equals("mail_password")){
+				param.setParamValue("********");
+			}
+		}
+		
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("total", pageResult.getTotal());
 		logger.info("param size:" + pageResult.getTotal());
