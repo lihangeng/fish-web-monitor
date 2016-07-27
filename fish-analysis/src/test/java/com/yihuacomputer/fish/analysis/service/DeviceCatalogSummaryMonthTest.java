@@ -25,8 +25,8 @@ public class DeviceCatalogSummaryMonthTest {
 //		idcsms.list(null);// null
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
-		c.set(Calendar.MONTH, 8);
-		c.add(Calendar.DAY_OF_MONTH, -14);
+		c.set(Calendar.MONTH, 7);
+//		c.add(Calendar.DAY_OF_MONTH, -14);
 		idcsms.loadBaseDate(c.getTime());
 	}
 }

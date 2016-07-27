@@ -39,25 +39,28 @@ public class DeviceCatalogSummaryMonthService implements IDeviceCatalogSummaryMo
 		//yyyy-mm-dd
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(date.getTime());
+
+		calendar.set(Calendar.DAY_OF_MONTH, 1);
+		calendar.set(Calendar.HOUR, 0);
+		calendar.set(Calendar.MINUTE, 0);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		Date toDate = calendar.getTime();
 		//将时间定位至要汇总日期的上个月
 		calendar.add(Calendar.MONTH, -2);
 		//获取上次汇总日期
 		String lastDate = DateUtils.getDate(calendar.getTime()).substring(0,7);
 		calendar.add(Calendar.MONTH, 1);
-		calendar.set(Calendar.HOUR, 0);
-		calendar.set(Calendar.MINUTE, 0);
-		calendar.set(Calendar.SECOND, 0);
-		calendar.set(Calendar.MILLISECOND, 0);
 		//此次汇总时间点
-		date = calendar.getTime();
-		String dateStr = DateUtils.getDate(date).substring(0,7);
+		Date fromDate = calendar.getTime();
+		String dateStr = DateUtils.getDate(fromDate).substring(0,7);
 		Map<String,IDeviceCatalogSummaryMonth> lastInfoMap = this.get(lastDate);
 		StringBuffer hqlSb = new StringBuffer();
 		hqlSb.append("select device.devType.devCatalog,count(device.id), ");
 		hqlSb.append("sum(case when device.installDate>=? then 1 else 0 end)  ");
 		hqlSb.append("from ").append(Device.class.getSimpleName());
-		hqlSb.append(" device  group by device.devType.devCatalog.name ");
-		List<Object> list = dao.findByHQL(hqlSb.toString(), new Object[]{date});
+		hqlSb.append(" device  where device.installDate<? group by device.devType.devCatalog.name ");
+		List<Object> list = dao.findByHQL(hqlSb.toString(), new Object[]{fromDate,toDate});
 		for(Object objectResult:list){
 			Object[] objects = (Object[])objectResult;
 			AtmCatalog atmlog = (AtmCatalog)objects[0];
