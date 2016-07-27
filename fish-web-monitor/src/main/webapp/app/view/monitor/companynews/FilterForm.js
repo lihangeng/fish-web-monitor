@@ -12,20 +12,26 @@ Ext.define('Eway.view.monitor.companynews.FilterForm', {
 		Ext.apply(this, {
 //			bodyStyle:'background:#edefef;padding:15px;',
 			items : [ {
-					columnWidth : .3,
+//					columnWidth : .3,
+					width:'290px',
 					xtype : 'datefield',
 					format: 'Y-m',
 					fieldLabel : '月份',
 					name : 'time_month',
-//					margin:'15px 0 0 10px'
+					margin:'15px 0 0 10px'
+				},{
+					xtype:'button',
+					text:'查询',
+					glyph : 0xf002,
+					margin:'45px 0 0 755px',
 				}],
-				tbar:['->',{
-					text : '查询',
-	                xtype : 'button',
-	                glyph : 0xf002,
-	                bodyStyle:'background:#edefef;padding:15px;',
-//	                margin:'40px 0 0 730px'
-				}]
+//				tbar:['->',{
+//					text : '查询',
+//	                xtype : 'button',
+//	                glyph : 0xf002,
+////	                bodyStyle:'background:#edefef;padding:15px;',
+////	                margin:'70px 0 0 0'
+//				}]
 			
 		});
 		this.callParent(arguments);
