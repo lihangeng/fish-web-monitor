@@ -3,8 +3,10 @@ package com.yihuacomputer.fish.analysis;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.yihuacomputer.fish.analysis.service.DeviceCatalogSummaryMonthService;
+import com.yihuacomputer.fish.analysis.service.device.DeviceCatalogSummaryMonthService;
+import com.yihuacomputer.fish.analysis.service.device.DeviceCatalogSummaryWeekService;
 import com.yihuacomputer.fish.api.analysis.device.IDeviceCatalogSummaryMonthService;
+import com.yihuacomputer.fish.api.analysis.device.IDeviceCatalogSummaryWeekService;
 
 
 /**
@@ -14,9 +16,13 @@ import com.yihuacomputer.fish.api.analysis.device.IDeviceCatalogSummaryMonthServ
  */
 @Configuration
 public class AnalyisisModule {
-	
+
 	@Bean
 	public IDeviceCatalogSummaryMonthService makeCatalogSummaryMonthService(){
 		return new DeviceCatalogSummaryMonthService();
+	}
+	@Bean
+	public IDeviceCatalogSummaryWeekService makeCatalogSummaryWeekService(){
+		return new DeviceCatalogSummaryWeekService();
 	}
 }

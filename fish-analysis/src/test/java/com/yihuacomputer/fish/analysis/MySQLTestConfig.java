@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.fault;
+package com.yihuacomputer.fish.analysis;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;

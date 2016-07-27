@@ -1,11 +1,10 @@
-package com.yihuacomputer.fish.analysis.service;
+package com.yihuacomputer.fish.analysis.service.device;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TimeZone;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +19,6 @@ import com.yihuacomputer.domain.spring.DataSources;
 import com.yihuacomputer.fish.analysis.entity.device.DeviceCatalogSummaryMonth;
 import com.yihuacomputer.fish.api.analysis.device.IDeviceCatalogSummaryMonth;
 import com.yihuacomputer.fish.api.analysis.device.IDeviceCatalogSummaryMonthService;
-import com.yihuacomputer.fish.api.person.IPersonService;
 import com.yihuacomputer.fish.machine.entity.AtmCatalog;
 import com.yihuacomputer.fish.machine.entity.Device;
 
@@ -28,11 +26,6 @@ import com.yihuacomputer.fish.machine.entity.Device;
 @Transactional
 public class DeviceCatalogSummaryMonthService implements IDeviceCatalogSummaryMonthService {
 	
-	@Autowired 
-	private IPersonService personService;
-//	
-//	@Autowired
-//	private IDeviceService deviceService;
 	
 	@Autowired
 	private IGenericDao dao;
@@ -61,17 +54,14 @@ public class DeviceCatalogSummaryMonthService implements IDeviceCatalogSummaryMo
 		Map<String,IDeviceCatalogSummaryMonth> lastInfoMap = this.get(lastDate);
 		StringBuffer hqlSb = new StringBuffer();
 		hqlSb.append("select device.devType.devCatalog,count(device.id), ");
-//		hqlSb.append("sum(case when device.installDate<? then 1 else 0 end)  ,");
 		hqlSb.append("sum(case when device.installDate>=? then 1 else 0 end)  ");
 		hqlSb.append("from ").append(Device.class.getSimpleName());
-//		.append(" where device.installDate<=?");
 		hqlSb.append(" device  group by device.devType.devCatalog.name ");
 		List<Object> list = dao.findByHQL(hqlSb.toString(), new Object[]{date});
 		for(Object objectResult:list){
 			Object[] objects = (Object[])objectResult;
 			AtmCatalog atmlog = (AtmCatalog)objects[0];
 			int  all = Integer.parseInt(String.valueOf(objects[1]));
-//			int  old = Integer.parseInt(String.valueOf(objects[2]));
 			int  news = Integer.parseInt(String.valueOf(objects[2]));
 			IDeviceCatalogSummaryMonth idcsm = lastInfoMap.get(atmlog.getName());
 			IDeviceCatalogSummaryMonth idcsmNew = this.make();
@@ -88,7 +78,7 @@ public class DeviceCatalogSummaryMonthService implements IDeviceCatalogSummaryMo
 	
 	@Override
 	public IDeviceCatalogSummaryMonth update(IDeviceCatalogSummaryMonth dcsm) {
-		return null;
+		return dao.update(dcsm);
 	}
 
 	@Override
@@ -98,14 +88,15 @@ public class DeviceCatalogSummaryMonthService implements IDeviceCatalogSummaryMo
 	}
 
 	public List<IDeviceCatalogSummaryMonth> list(IFilter filter) {
-
-		return null;
+		return dao.findByFilter(filter, IDeviceCatalogSummaryMonth.class);
 	}
 
 	@Override
 	public IDeviceCatalogSummaryMonth get(String catalogName, String date) {
-		// TODO Auto-generated method stub
-		return null;
+		IFilter filter = new Filter();
+		filter.eq("catalog", catalogName);
+		filter.eq("date", date);
+		return dao.findUniqueByFilter(filter, IDeviceCatalogSummaryMonth.class);
 	}
 	
 	/* (non-Javadoc)
@@ -122,14 +113,6 @@ public class DeviceCatalogSummaryMonthService implements IDeviceCatalogSummaryMo
 			map.put(dcsm.getCatalog(),dcsm);
 		}
 		return map;
-	}
-	public static void main(String args[]){
-		Calendar calendar = Calendar.getInstance();
-		Date date = new Date();//DateUtils.getDate("2015-01-07");
-		long datelong = date.getTime()/(1000l*60*60*24)*(1000l*60*60*24);
-		calendar.setTimeZone(TimeZone.getTimeZone("GMT+1"));
-		calendar.setTimeInMillis(datelong);
-		System.out.println(calendar.getTime().toString());
 	}
 
 }
