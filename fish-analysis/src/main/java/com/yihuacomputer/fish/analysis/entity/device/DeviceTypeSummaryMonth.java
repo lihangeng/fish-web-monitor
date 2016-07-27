@@ -22,7 +22,7 @@ public class DeviceTypeSummaryMonth implements IDeviceTypeSummaryMonth {
 	@Column(name = "DEV_TYPE")
 	private String devType;
 
-	@Column(name = "NUM")
+	@Column(name = "DEV_NUM")
 	private int num;
 	
 	@Column(name = "SUMMARY_DATE")

@@ -20,10 +20,10 @@ public class DeviceCatalogSummaryWeek implements IDeviceCatalogSummaryWeek {
 	@Column(name = "ID")
 	private long id;
 	
-	@Column(name = "CATALOG")
+	@Column(name = "DEV_CATALOG")
 	private String catalog;
 
-	@Column(name = "NUM")
+	@Column(name = "DEV_NUM")
 	private int num;
 	
 	@Column(name = "SUMMARY_DATE")
