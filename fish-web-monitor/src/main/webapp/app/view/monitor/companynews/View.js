@@ -6,7 +6,7 @@ Ext.define('Eway.view.monitor.companynews.View',{
 
 	 title: '6666666',
 	 layout: 'border',
-	 
+	 bodyStyle: 'background:#ffffff;',
 	 initComponent:function(){
 		 var store = Ext.create('Eway.store.monitor.companynews.News');
 		 Ext.apply(this,{
@@ -15,14 +15,13 @@ Ext.define('Eway.view.monitor.companynews.View',{
 				 height:'80px',
 				 region:'north',
 				 xtype:'monitor_companynews_filterform',
-//				 bodyStyle:'background:#edefef;',
 			 },{
 				 autoScroll : true,
 				 name : 'time_line',
 				 itemId : 'timeview',
 				 region : 'center',
 				 xtype : 'companynews_News',
-				 store:store
+				 store:store,
 			}]
 		 });
 		 this.callParent(arguments);

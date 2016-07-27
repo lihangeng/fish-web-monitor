@@ -3,11 +3,13 @@ Ext.define('Eway.model.monitor.companynews.News', {
 
     fields: [
         'type',
-        { name: 'date', type: 'date', dateFormat: 'Y-m-d H:i:s' },
+//        { name: 'date', type: 'date', dateFormat: 'Y-m-d' },
+        'date',
         'time',
         'author',
         'group',
         'title',
-        'paragraph'
+        'paragraph',
+        'detailShow'
     ]
 });
