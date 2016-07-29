@@ -1,7 +1,7 @@
 Ext.define("Eway.view.machine.device.module.Property", {
 	extend : 'Eway.view.base.FilterForm',
 	alias : 'widget.machine_device_module_property',
-	height : 180,
+	height : 200,
 	layout : 'column',
 	defaults : {
 		border : false
@@ -148,6 +148,24 @@ Ext.define("Eway.view.machine.device.module.Property", {
 				name : 'propertyBcr',
 				minHeight : 20,
 				code : 'BCR',
+				listeners : {
+					'beforerender': this.isHidden
+				}
+			} ,{
+				columnWidth : .5,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.ukd,
+				name : 'propertyUkd',
+				minHeight : 20,
+				code : 'UKD',
+				listeners : {
+					'beforerender': this.isHidden
+				}
+			} ,{
+				columnWidth : .5,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.ukr,
+				name : 'propertyUkr',
+				minHeight : 20,
+				code : 'UKR',
 				listeners : {
 					'beforerender': this.isHidden
 				}

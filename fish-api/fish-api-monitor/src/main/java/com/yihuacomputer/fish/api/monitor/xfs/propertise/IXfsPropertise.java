@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.api.monitor.xfs.propertise;
 
 
+
 /**
  * 设备模块属性信息
  * @author YiHua
@@ -99,4 +100,16 @@ public interface IXfsPropertise {
     public IPropBcr makePropBcr();
 
     public IPropCam makePropCam();
+    
+    public IPropUkr getPropUkr();
+
+    public void setUkr(IPropUkr ukr);
+
+    public IPropUkr makePropUkr();
+    
+    public IPropUkd getPropUkd();
+
+    public void setUkd(IPropUkd ukd);
+
+    public IPropUkd makePropUkd();
 }

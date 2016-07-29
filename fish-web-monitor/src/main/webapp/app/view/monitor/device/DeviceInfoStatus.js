@@ -301,6 +301,24 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 						listeners : {
 							'beforerender': this.isHidden
 						}
+					}, {
+						columnWidth : .25,
+						fieldLabel : EwayLocale.monitor.devMonitor.mod.ukd,
+						name : 'ukdStatus',
+						a_link : true,
+						code : 'UKD',
+						listeners : {
+							'beforerender': this.isHidden
+						}
+					}, {
+						columnWidth : .25,
+						fieldLabel : EwayLocale.monitor.devMonitor.mod.ukr,
+						name : 'ukrStatus',
+						a_link : true,
+						code : 'UKR',
+						listeners : {
+							'beforerender': this.isHidden
+						}
 					} ]
 				} ]
 			}, {
@@ -459,7 +477,8 @@ Ext.define('Eway.view.monitor.device.DeviceInfoStatus', {
 					|| name=='rprStatus' || name=='ttuStatus'
 					|| name=='iccStatus' || name=='iscStatus'
 					|| name=='fgpStatus' || name=='pbkStatus'|| name=='nfcStatus'
-						|| name=='camStatus' || name=='bcrStatus'){
+						|| name=='camStatus' || name=='bcrStatus'
+							|| name=='ukrStatus' || name=='ukdStatus'){
 						var text = me._getText(value);
 						if(value == 'Warning'){
 							item.setValue('<a href="#" class="link warningHighLight">'+text+'</a>');

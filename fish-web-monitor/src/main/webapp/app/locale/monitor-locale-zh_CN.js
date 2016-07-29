@@ -83,6 +83,8 @@ Ext.apply(EwayLocale,{
 				pbk:'存折打印机',//EwayLocale.monitor.devMonitor.mod.pbk
 				cam:'摄像头',//EwayLocale.monitor.devMonitor.mod.cam
 				bcr:'二维码扫描仪',//EwayLocale.monitor.devMonitor.mod.bcr
+				ukr:'读Ukey模块',//EwayLocale.monitor.devMonitor.mod.ukr
+				ukd:'发Ukey模块',//EwayLocale.monitor.devMonitor.mod.ukd
 				healthy:'模块正常'//EwayLocale.monitor.devMonitor.mod.healthy
 
 			},

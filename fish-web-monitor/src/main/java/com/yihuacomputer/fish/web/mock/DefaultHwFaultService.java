@@ -77,6 +77,8 @@ public class DefaultHwFaultService {
 			handleIscFault(xfsStatus,openCaseList,hisXfsStatus);
 			handleCamFault(xfsStatus,openCaseList,hisXfsStatus);
 			handleBcrFault(xfsStatus,openCaseList,hisXfsStatus);
+			handleUkrFault(xfsStatus,openCaseList,hisXfsStatus);
+			handleUkdFault(xfsStatus,openCaseList,hisXfsStatus);
 
 			handleBoxFault(xfsStatus, openCaseList);
 
@@ -85,6 +87,44 @@ public class DefaultHwFaultService {
 		}
 	}
 
+	/**
+	 * 发UKEY模块
+	 * @param idc
+	 * @param openCaseList
+	 */
+	private void handleUkdFault(IXfsStatus ukd,List<ICaseFault> openCaseList,IXfsStatus hisXfsStatus){
+		if(ukd.getStatusUkd().getStatus().equals(DeviceStatus.Healthy)){
+			caseFaultService.closeHealthyModCase(openCaseList,DeviceMod.UKD,F_MOD);
+		}else if(ukd.getStatusUkd().getStatus().equals(DeviceStatus.Fatal)
+				&& DeviceStatus.Fatal.equals(hisXfsStatus.getStatusUkd().getStatus())){
+			ICaseFault caseFault = caseFaultService.make();
+			caseFault.setDevMod(DeviceMod.UKD);
+			caseFault.setAppStatus(ukd.getRunStatus());
+			caseFault.setFaultCode(ukd.getStatusUkd().getCode());
+			caseFault.setTerminalId(ukd.getTerminalId());
+			caseFault.setVendorHwCode(ukd.getStatusUkd().getHwCode());
+			createCaseFault(caseFault,openCaseList,F_MOD);
+		}
+	}
+	/**
+	 * 读UKEY模块
+	 * @param idc
+	 * @param openCaseList
+	 */
+	private void handleUkrFault(IXfsStatus ukr,List<ICaseFault> openCaseList,IXfsStatus hisXfsStatus){
+		if(ukr.getStatusUkr().getStatus().equals(DeviceStatus.Healthy)){
+			caseFaultService.closeHealthyModCase(openCaseList,DeviceMod.UKR,F_MOD);
+		}else if(ukr.getStatusUkr().getStatus().equals(DeviceStatus.Fatal)
+				&& DeviceStatus.Fatal.equals(hisXfsStatus.getStatusUkr().getStatus())){
+			ICaseFault caseFault = caseFaultService.make();
+			caseFault.setDevMod(DeviceMod.UKR);
+			caseFault.setAppStatus(ukr.getRunStatus());
+			caseFault.setFaultCode(ukr.getStatusUkr().getCode());
+			caseFault.setTerminalId(ukr.getTerminalId());
+			caseFault.setVendorHwCode(ukr.getStatusUkr().getHwCode());
+			createCaseFault(caseFault,openCaseList,F_MOD);
+		}
+	}
 	/**
 	 * 读卡器
 	 * @param idc

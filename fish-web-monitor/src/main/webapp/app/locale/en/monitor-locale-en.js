@@ -84,6 +84,8 @@ Ext.apply(EwayLocale,{
 				healthy:'Healthy',//EwayLocale.monitor.devMonitor.mod.healthy
 				cam:'Camera',//EwayLocale.monitor.devMonitor.mod.cam
 				bcr:'Barcode Reader',//EwayLocale.monitor.devMonitor.mod.bcr
+				ukr:'Ukey Reader',//EwayLocale.monitor.devMonitor.mod.ukr
+				ukd:'Issue Ukey',//EwayLocale.monitor.devMonitor.mod.ukd
 				pbk:'Passbook Printer'//EwayLocale.monitor.devMonitor.mod.pbk
 			},
 			remote:{

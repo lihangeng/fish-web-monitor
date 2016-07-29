@@ -203,7 +203,9 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 						propertyCam : this.getDeviceModulePropertyValue(records[0].data.properties.cam),
 						propertyBcr : this.getDeviceModulePropertyValue(records[0].data.properties.bcr),
 						propertyNfc : this.getDeviceModulePropertyValue(records[0].data.properties.nfc),
-						propertyPbk : this.getDeviceModulePropertyValue(records[0].data.properties.pbk)
+						propertyPbk : this.getDeviceModulePropertyValue(records[0].data.properties.pbk),
+						propertyUkr : this.getDeviceModulePropertyValue(records[0].data.properties.ukr),
+						propertyUkd : this.getDeviceModulePropertyValue(records[0].data.properties.ukd)
 					});
 				}
 				this.propertyBindClick(tab);
@@ -259,7 +261,9 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 						statusIcc : this.getDeviceModuleStatusValue(records[0].data.icc),
 						statusFgp : this.getDeviceModuleStatusValue(records[0].data.fgp),
 						statusNfc : this.getDeviceModuleStatusValue(records[0].data.nfc),
-						statusPbk : this.getDeviceModuleStatusValue(records[0].data.pbk)
+						statusPbk : this.getDeviceModuleStatusValue(records[0].data.pbk),
+						statusUkr : this.getDeviceModuleStatusValue(records[0].data.ukr),
+						statusUkd : this.getDeviceModuleStatusValue(records[0].data.ukd)
 					});
 					this.statusBindClick(tab);
 				}
@@ -340,6 +344,12 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 					} else if ('statusNfc' == name) {
 						itemid = 'nfcid';
 						module = 'nfc';
+					}else if ('statusUkr' == name) {
+						itemid = 'ukrid';
+						module = 'ukr';
+					}else if ('statusUkd' == name) {
+						itemid = 'ukdid';
+						module = 'ukd';
 					}
 					layout.setActiveItem(itemid);
 					this.setStatus(layout.getActiveItem(), module);
@@ -407,6 +417,12 @@ Ext.define('Eway.controller.machine.device.DevicePropertyStatusDetail', {
 					}else if ('propertyNfc' == name) {
 						itemid = 'nfcid';
 						module = 'nfc';
+					}else if ('propertyUkr' == name) {
+						itemid = 'ukrid';
+						module = 'ukr';
+					}else if ('propertyUkd' == name) {
+						itemid = 'ukdid';
+						module = 'ukd';
 					}
 					layout.setActiveItem(itemid);
 					this.setProperty(layout.getActiveItem(), module);

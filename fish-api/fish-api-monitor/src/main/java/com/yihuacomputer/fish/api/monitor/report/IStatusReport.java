@@ -180,4 +180,13 @@ public interface IStatusReport {
 	public DeviceStatus getBcrStatus();
 
 	public void setBcrStatus(DeviceStatus bcrStatus);
+	
+	
+	public DeviceStatus getUkrStatus();
+
+	public void setUkrStatus(DeviceStatus ukrStatus);
+
+	public DeviceStatus getUkdStatus();
+
+	public void setUkdStatus(DeviceStatus ukdStatus);
 }

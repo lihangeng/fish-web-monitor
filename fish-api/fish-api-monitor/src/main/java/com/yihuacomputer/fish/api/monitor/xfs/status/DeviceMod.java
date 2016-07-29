@@ -60,7 +60,15 @@ public enum DeviceMod {
 	/**
 	 * 身份证扫描仪
 	 */
-	ISC("DeviceMod.ISC") ;
+	ISC("DeviceMod.ISC") ,
+	/**
+	 * 发UKEY模块
+	 */
+	UKD("DeviceMod.UKD") ,
+	/**
+	 * 读UKEY模块
+	 */
+	UKR("DeviceMod.UKR") ;
 
 
 	private String text;

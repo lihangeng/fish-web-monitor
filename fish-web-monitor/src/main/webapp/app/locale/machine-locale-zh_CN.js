@@ -224,6 +224,19 @@ Ext.apply(EwayLocale,{
 			FGPInfo:'指纹仪(FGP)属性信息',//EwayLocale.machine.device.FGPInfo
 			fgp_variant:'指纹仪类型',//EwayLocale.machine.device.fgp_variant
 			canCompare:'是否具有比较特值功能',//EwayLocale.machine.device.canCompare
+
+			UKRInfo:'读UKey模块(UKR)属性信息',//EwayLocale.machine.device.UKRInfo
+			variantUKR:'读UKey类型',//EwayLocale.machine.device.variant
+			canEjectUKR:'是否具有退UKey能力',//EwayLocale.machine.device.canEjectUKR
+			canCaptureUKR:'是否具有吞UKey能力',//EwayLocale.machine.device.canCaptureUKR
+			binCapacityUKR:'获取最大吞UKey个数',//EwayLocale.machine.device.binCapacityUKR
+
+			UKDInfo:'发UKey模块(UKD)属性信息',//EwayLocale.machine.device.UKDInfo
+			variantUKD:'发UKey类型',//EwayLocale.machine.device.variant
+			canEjectUKD:'是否具有退UKey能力',//EwayLocale.machine.device.canEjectUKD
+			canCaptureUKD:'是否具有吞UKey能力',//EwayLocale.machine.device.canCaptureUKD
+			binCapacityUKD:'获取最大吞UKey个数',//EwayLocale.machine.device.binCapacity
+			dispenseCardUKD:'是否可发UKey',//EwayLocale.machine.device.dispenseCardUKD
 			
 			PBKInfo:'存折打印机(PBK)属性信息',//EwayLocale.machine.device.PBKInfo
 			
@@ -298,6 +311,14 @@ Ext.apply(EwayLocale,{
 			FGPStatus:'指纹仪(FGP)状态信息',//EwayLocale.machine.device.FGPStatus
 			
 			PBKStatus:'存折打印机(PBK)状态信息',//EwayLocale.machine.device.PBKStatus
+
+			UKRStatus:'读UKEY模块(UKR)状态信息',//EwayLocale.machine.device.UKRStatus
+			chipModule:'芯片模块',//EwayLocale.machine.device.chipModule
+			binStatus:'获取回收匣状态',//EwayLocale.machine.device.binStatus
+			ukeys:'吞UKEY个数',//EwayLocale.machine.device.ukeys
+
+			UKDStatus:'发UKEY模块(UKD)状态信息',//EwayLocale.machine.device.UKDStatus
+			ukeyCount:'UKEY个数',//EwayLocale.machine.device.ukeyCount
 
 			devPerson:'设备人员信息',//EwayLocale.machine.device.devPerson
 			devModuleMsg:'设备模块属性信息',//EwayLocale.machine.device.devModuleMsg

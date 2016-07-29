@@ -17,7 +17,9 @@ Ext.define('Eway.view.machine.device.DeviceModuleConfig', {
 			'Eway.view.machine.device.module.PropertyPBK' ,
 			'Eway.view.machine.device.module.PropertyCAM' ,
 			'Eway.view.machine.device.module.PropertyBCR' ,
-			'Eway.view.machine.device.module.PropertyNFC' ],
+			'Eway.view.machine.device.module.PropertyNFC' ,
+			'Eway.view.machine.device.module.PropertyUKR' ,
+			'Eway.view.machine.device.module.PropertyUKD' ],
 
 	title : EwayLocale.machine.device.devModuleMsg,
 	layout : 'border',
@@ -25,7 +27,7 @@ Ext.define('Eway.view.machine.device.DeviceModuleConfig', {
 		Ext.apply(this, {
 			items : [ {
 				region : 'north',
-				height:240,
+				height:'auto',
 				xtype : 'machine_device_module_property'
 			}, {
 				region : 'center',
@@ -80,6 +82,12 @@ Ext.define('Eway.view.machine.device.DeviceModuleConfig', {
 				}  , {
 					itemId : 'nfcid',
 					xtype : 'machine_device_module_propertynfc'
+				} , {
+					itemId : 'ukdid',
+					xtype : 'machine_device_module_propertyukd'
+				} , {
+					itemId : 'ukrid',
+					xtype : 'machine_device_module_propertyukr'
 				}  ]
 			} ]
 		});

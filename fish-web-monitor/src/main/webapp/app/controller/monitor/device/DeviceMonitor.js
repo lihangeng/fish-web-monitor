@@ -67,7 +67,7 @@ Ext.define('Eway.controller.monitor.device.DeviceMonitor',{
 			'monitor_device_view menuitem[action=summaryPattern]' : {//打开"全局方式"
 				click : this._onSummaryPatternBtnClick
 			},
-			'monitor_device_view dataview[name=matrix]' : {
+			'monitor_device_view dataview[name=matrix]' : {//矩阵视图下各项操作
 				itemmouseenter : this._onDataViewItemMouseEnter2,
 				itemclick : this._onDataViewItemMouseClick,
 				itemcontextmenu : this._onDataViewItemContextMenu
