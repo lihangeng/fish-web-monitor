@@ -152,10 +152,10 @@ public interface IDayOpenRate {
      *
      * @return
      */
-	public AwayFlag getAwayFlag();
+	public String getAwayFlag();
 
 
-	public void setAwayFlag(AwayFlag awayFlag) ;
+	public void setAwayFlag(String awayFlag) ;
 
 
 }
