@@ -118,6 +118,10 @@ public class StatusReport implements IStatusReport {
     private DeviceStatus camStatus;
     /**条形码扫描*/
     private DeviceStatus bcrStatus;
+    /**读UKEY模块*/
+    private DeviceStatus ukrStatus;
+    /**发UKEY模块*/
+    private DeviceStatus ukdStatus;
     
     
 
@@ -435,6 +439,8 @@ public class StatusReport implements IStatusReport {
                 this.iscStatus = device.getXfsStatus().getStatusIsc().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusIsc().getStatus();
                 this.bcrStatus = device.getXfsStatus().getStatusBcr().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusBcr().getStatus();
                 this.camStatus = device.getXfsStatus().getStatusCam().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusCam().getStatus();
+                this.ukdStatus = device.getXfsStatus().getStatusUkd().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusUkd().getStatus();
+                this.ukrStatus = device.getXfsStatus().getStatusUkr().getStatus()==null?DeviceStatus.Unknown:device.getXfsStatus().getStatusUkr().getStatus();
             }
 
             if (device.getDevice() != null) {
@@ -553,6 +559,22 @@ public class StatusReport implements IStatusReport {
 
 	public void setBcrStatus(DeviceStatus bcrStatus) {
 		this.bcrStatus = bcrStatus;
+	}
+
+	public DeviceStatus getUkrStatus() {
+		return ukrStatus;
+	}
+
+	public void setUkrStatus(DeviceStatus ukrStatus) {
+		this.ukrStatus = ukrStatus;
+	}
+
+	public DeviceStatus getUkdStatus() {
+		return ukdStatus;
+	}
+
+	public void setUkdStatus(DeviceStatus ukdStatus) {
+		this.ukdStatus = ukdStatus;
 	}
 
 }

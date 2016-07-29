@@ -152,6 +152,24 @@ Ext.define("Eway.view.machine.device.module.Status", {
 				listeners : {
 					'beforerender': this.isHidden
 				}
+			} ,{
+				columnWidth : .5,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.ukd,
+				name : 'statusUkd',
+				minHeight : 20,
+				code : 'UKD',
+				listeners : {
+					'beforerender': this.isHidden
+				}
+			} ,{
+				columnWidth : .5,
+				fieldLabel : EwayLocale.monitor.devMonitor.mod.ukr,
+				name : 'statusUkr',
+				minHeight : 20,
+				code : 'UKR',
+				listeners : {
+					'beforerender': this.isHidden
+				}
 			}  ]
 		});
 		this.callParent(arguments);

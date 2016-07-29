@@ -1,6 +1,6 @@
 Ext.define('Eway.model.monitor.device.DeviceProperty', {
 	extend : 'Ext.data.Model',
-	fields : [ 'cdm', 'cim', 'idc', 'jpr', 'pin', 'rpr', 'ttu', 'siu','cam','bcr','nfc',
+	fields : [ 'cdm', 'cim', 'idc', 'jpr', 'pin', 'rpr', 'ttu', 'siu','cam','bcr','nfc','ukr','ukd',
 			'properties' ],
 	proxy : {
 		type : 'rest',

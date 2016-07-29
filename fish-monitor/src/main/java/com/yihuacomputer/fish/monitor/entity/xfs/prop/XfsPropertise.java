@@ -21,6 +21,8 @@ import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropPin;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropRpr;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropSiu;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropTtu;
+import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropUkd;
+import com.yihuacomputer.fish.api.monitor.xfs.propertise.IPropUkr;
 import com.yihuacomputer.fish.api.monitor.xfs.propertise.IXfsPropertise;
 
 @Entity
@@ -75,6 +77,12 @@ public class XfsPropertise implements IXfsPropertise {
 
     @Embedded
     private PropCam cam;
+    
+    @Embedded
+    private PropUkr ukr;
+
+    @Embedded
+    private PropUkd ukd;
 
     public XfsPropertise() {
     }
@@ -248,6 +256,8 @@ public class XfsPropertise implements IXfsPropertise {
         result = prime * result + ((isc == null) ? 0 : isc.hashCode());
         result = prime * result + ((bcr == null) ? 0 : bcr.hashCode());
         result = prime * result + ((cam == null) ? 0 : cam.hashCode());
+        result = prime * result + ((ukr == null) ? 0 : ukr.hashCode());
+        result = prime * result + ((ukd == null) ? 0 : ukd.hashCode());
         return result;
     }
 
@@ -354,6 +364,20 @@ public class XfsPropertise implements IXfsPropertise {
         } else if (!cam.equals(other.cam)) {
             return false;
         }
+        if (ukr == null) {
+            if (other.ukr != null) {
+                return false;
+            }
+        } else if (!ukr.equals(other.ukr)) {
+            return false;
+        }
+        if (ukd == null) {
+            if (other.ukd != null) {
+                return false;
+            }
+        } else if (!ukd.equals(other.ukd)) {
+            return false;
+        }
         return true;
     }
 
@@ -421,5 +445,35 @@ public class XfsPropertise implements IXfsPropertise {
     @Override
     public IPropIsc makePropIsc() {
         return new PropIsc();
+    }
+    
+    @Override
+    public IPropUkr getPropUkr() {
+        return this.ukr;
+    }
+
+    @Override
+    public void setUkr(IPropUkr ukr) {
+        this.ukr = (PropUkr) ukr;
+    }
+
+    @Override
+    public IPropUkr makePropUkr() {
+        return new PropUkr();
+    }
+    
+    @Override
+    public IPropUkd getPropUkd() {
+        return this.ukd;
+    }
+
+    @Override
+    public void setUkd(IPropUkd ukd) {
+        this.ukd = (PropUkd) ukd;
+    }
+
+    @Override
+    public IPropUkd makePropUkd() {
+        return new PropUkd();
     }
 }

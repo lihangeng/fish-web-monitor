@@ -65,9 +65,6 @@ public class StatusMonitorController {
     @Autowired
     private IFilterService filterService;
 
-    // @Autowired
-    // private IStateCodeService stateCodeService;
-
     @Autowired
     private MessageSource messageSourceStateCode;
 
@@ -292,6 +289,14 @@ public class StatusMonitorController {
             }
             case CAM:{
             	stateCode=status.getStatusCam().getCode();
+            	break;
+            }
+            case UKR:{
+            	stateCode=status.getStatusUkr().getCode();
+            	break;
+            }
+            case UKD:{
+            	stateCode=status.getStatusUkd().getCode();
             	break;
             }
         }

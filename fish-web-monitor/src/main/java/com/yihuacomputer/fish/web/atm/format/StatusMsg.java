@@ -197,6 +197,18 @@ public class StatusMsg {
     // 摄像头模块厂商硬件状态码
     private String camHwCode;
     
+	//Ukey 发KEY主状态
+	private DeviceStatus ukeyDispenser;
+	private String ukeyDispenserCode;
+	private String ukeyDispenserHwCode;
+	
+	
+	
+	//Ukey 读KEY主状态
+	private DeviceStatus ukeyReader;
+	private String ukeyReaderCode;
+	private String ukeyReaderHwCode;
+    
     public StatusMsg() {
 
     }
@@ -656,6 +668,53 @@ public class StatusMsg {
 	public void setRoomStatus(DeviceStatus roomStatus) {
 		this.roomStatus = roomStatus;
 	}
-	
+
+	public DeviceStatus getUkeyDispenser() {
+		return ukeyDispenser;
+	}
+
+	public void setUkeyDispenser(DeviceStatus ukeyDispenser) {
+		this.ukeyDispenser = ukeyDispenser;
+	}
+
+	public String getUkeyDispenserCode() {
+		return ukeyDispenserCode;
+	}
+
+	public void setUkeyDispenserCode(String ukeyDispenserCode) {
+		this.ukeyDispenserCode = ukeyDispenserCode;
+	}
+
+	public String getUkeyDispenserHwCode() {
+		return ukeyDispenserHwCode;
+	}
+
+	public void setUkeyDispenserHwCode(String ukeyDispenserHwCode) {
+		this.ukeyDispenserHwCode = ukeyDispenserHwCode;
+	}
+
+	public DeviceStatus getUkeyReader() {
+		return ukeyReader;
+	}
+
+	public void setUkeyReader(DeviceStatus ukeyReader) {
+		this.ukeyReader = ukeyReader;
+	}
+
+	public String getUkeyReaderCode() {
+		return ukeyReaderCode;
+	}
+
+	public void setUkeyReaderCode(String ukeyReaderCode) {
+		this.ukeyReaderCode = ukeyReaderCode;
+	}
+
+	public String getUkeyReaderHwCode() {
+		return ukeyReaderHwCode;
+	}
+
+	public void setUkeyReaderHwCode(String ukeyReaderHwCode) {
+		this.ukeyReaderHwCode = ukeyReaderHwCode;
+	}
 	
 }

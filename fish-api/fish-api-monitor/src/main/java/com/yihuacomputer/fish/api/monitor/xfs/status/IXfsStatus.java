@@ -137,4 +137,16 @@ public interface IXfsStatus {
     public IStatusCam getStatusCam();
 
     public IStatusCam makeStatusCam();
+    
+    public void setStatusUkr(IStatusUkr ukr);
+
+    public IStatusUkr getStatusUkr();
+
+    public IStatusUkr makeStatusUkr();
+    
+    public void setStatusUkd(IStatusUkd ukd);
+
+    public IStatusUkd getStatusUkd();
+
+    public IStatusUkd makeStatusUkd();
 }
