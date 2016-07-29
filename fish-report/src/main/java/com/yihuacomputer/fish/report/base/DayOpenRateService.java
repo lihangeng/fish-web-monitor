@@ -167,18 +167,21 @@ public class DayOpenRateService implements IDayOpenRateService {
             int atmpTimeReal = valueToInteger(status[5]);
             int stopTimeReal = valueToInteger(status[6]);
             String orgName="";
-            AwayFlag awayFlag = null;
+//            AwayFlag awayFlag = null;
+            String awayFlag = "";
             if(status.length > 7)
             {
       			String srcbOrgName = (String)status[7];
       			String srcbOrgCode = (String)status[8];
-      			awayFlag=AwayFlag.getById((Integer)status[9]);
+//      			awayFlag=AwayFlag.getById((Integer)status[9]);
+      			awayFlag = (String)status[9];
       			orgName = srcbOrgName+"("+srcbOrgCode+")";
             }
             else
             {
             	if(awayFlags != null){
-            		awayFlag = AwayFlag.getById((Integer)awayFlags.getValue());
+ //           		awayFlag = AwayFlag.getById((Integer)awayFlags.getValue());
+            		awayFlag = awayFlags.getValue().toString();
             	}
             	if(organization !=null){
                 String orgId = organization.getValue().toString();
@@ -273,18 +276,18 @@ public class DayOpenRateService implements IDayOpenRateService {
             int atmpTimeReal = valueToInteger(status[5]);
             int stopTimeReal = valueToInteger(status[6]);
             String orgName="";
-            AwayFlag awayFlag=null;
+            String awayFlag="";
             if(status.length > 7)
             {
       			String srcbOrgName = (String)status[7];
       			String srcbOrgCode = (String)status[8];
-      			awayFlag=AwayFlag.getById((Integer)status[9]);
+      			awayFlag=(String)status[9];
       			orgName = srcbOrgName+"("+srcbOrgCode+")";
             }
             else
             {
             	if(awayFlags != null){
-            		awayFlag = AwayFlag.getById((Integer)awayFlags.getValue());
+            		awayFlag = awayFlags.getValue().toString();
             	}
             	if(organization !=null){
                 String orgId = organization.getValue().toString();
@@ -418,15 +421,15 @@ public class DayOpenRateService implements IDayOpenRateService {
             }
         }
 
-        entry = filter.getFilterEntry("info.awayFlag");
-        if (entry != null) {
-            hql.append(" and ").append(entry.getKey());
-            if (entry.getOperator() == Operator.LIKE) {
+        IFilterEntry awayFlags = filter.getFilterEntry("info.awayFlag");
+        if (awayFlags != null) {
+            hql.append(" and ").append(awayFlags.getKey());
+            if (awayFlags.getOperator() == Operator.LIKE) {
                 hql.append(" like ?");
-                values.add("%" + entry.getValue());
-            } else if (entry.getOperator() == Operator.EQ) {
+                values.add("%" + awayFlags.getValue());
+            } else if (awayFlags.getOperator() == Operator.EQ) {
                 hql.append(" = ?");
-                values.add(entry.getValue());
+                values.add(awayFlags.getValue());
             }
         }
         
@@ -502,7 +505,7 @@ public class DayOpenRateService implements IDayOpenRateService {
             String catalogName ="";
             String typeName="";
             String vendorName="";
-            AwayFlag awayFlag=null;
+            String awayFlag="";
             if(status.length > 8)
             {
             	IDevice device = deviceService.get(terminalId);
@@ -511,7 +514,7 @@ public class DayOpenRateService implements IDayOpenRateService {
       			String srcbOrgCode = (String)status[10];
       			typeName=device.getDevType().getName();
       			vendorName=device.getDevType().getDevVendor().getName();
-      			awayFlag=device.getAwayFlag();
+      			awayFlag=(String)status[11];
       			orgName = srcbOrgName+"("+srcbOrgCode+")";
             }
             else
@@ -520,7 +523,9 @@ public class DayOpenRateService implements IDayOpenRateService {
                 catalogName = device.getDevType().getDevCatalog().getName();
                 typeName=device.getDevType().getName();
                 vendorName=device.getDevType().getDevVendor().getName();
-                awayFlag=device.getAwayFlag();
+                if(awayFlags != null){
+                	awayFlag = awayFlags.getValue().toString();
+                }
                 //int i=device.getAwayFlag().getId();
             	String srcbOrgName = device.getOrganization().getName();
             	String srcbOrgCode = device.getOrganization().getCode();

@@ -128,9 +128,9 @@ public class OpenRateController {
         if(devType != null){
         	filter.eq("info.devType.id", Long.valueOf(devType));
         }
-        if(awayFlag != null){
-        filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
-        }
+        if(awayFlag != null&&awayFlag !=""){
+            filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
+            }
         if(openRate != null){
         if(Integer.parseInt(compare) ==1 ){
         filter.gt("(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100", Double.parseDouble(openRate));
@@ -174,7 +174,7 @@ public class OpenRateController {
         }
         
         String awayFlag=request.getParameter("awayFlag");
-        if(awayFlag != null){
+        if(awayFlag != null&&awayFlag !=""){
         filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
         }
         result.addAttribute(FishConstant.SUCCESS, true);
@@ -252,10 +252,10 @@ public class OpenRateController {
         	filter.eq("info.devType.id", Long.valueOf(devType));
         }
         
-        if(awayFlag != null&&!awayFlag.isEmpty()){
-            filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
-            }
-        
+
+        if(awayFlag != null&&awayFlag !=""){
+        filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
+        }
         if(org != null&&!org.isEmpty())
         {
         	  filter.like("info.organization.orgFlag",org);
