@@ -12,6 +12,7 @@
 	<name>Fish API</name>
 	<modules>
 		<module>fish-api-system</module>
+		<module>fish-api-sms</module>
 		<module>fish-api-machine</module>
 		<module>fish-api-monitor</module>
 		<module>fish-api-version</module>
