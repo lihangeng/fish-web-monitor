@@ -1,0 +1,68 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.yihuacomputer.fish</groupId>
+		<artifactId>atmvs</artifactId>
+		<version>2.1.1.0-SNAPSHOT</version>
+		<relativePath>..</relativePath>
+	</parent>
+	<artifactId>fish-sms</artifactId>
+	<name>Fish SMS Implement</name>
+	<description>FISH短信息发送管理</description>
+	<dependencies>
+		<dependency>
+			<groupId>com.yihuacomputer.fish</groupId>
+			<artifactId>fish-system</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.yihuacomputer.fish</groupId>
+			<artifactId>fish-api-sms</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.yihuacomputer.fish</groupId>
+			<artifactId>fish-domain</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.smslib</groupId>
+			<artifactId>smslib</artifactId>
+			<version>3.5.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bidib.jbidib.org.qbang.rxtx</groupId>
+			<artifactId>rxtxcomm</artifactId>
+			<version>2.2</version>
+		</dependency>
+
+		<!-- 短信息服务 -->
+		<dependency>
+			<groupId>com.googlecode.jsmpp</groupId>
+			<artifactId>jsmpp</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+		<!-- test -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<scm>
+		<connection>scm:git:ssh://git@10.2.8.222/atmvs.git</connection>
+		<developerConnection>scm:git:ssh://git@10.2.8.222/atmvs.git</developerConnection>
+		<url>http://10.2.8.222/gitweb/?p=atmvs.git</url>
+		<tag>HEAD</tag>
+	</scm>
+</project>
