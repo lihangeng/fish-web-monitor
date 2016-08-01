@@ -126,6 +126,8 @@ Ext.define('Eway.controller.Main', {
 			this.onServiceThreadInfo();
 		}else if(code == "configuration"){
 			this.activeController('machine.param.Param',text);
+		}else if(code == "quartzConf"){
+			this.activeController('system.quartz.Quartz',text);
 		}
 	},
 
