@@ -182,7 +182,18 @@ Ext.apply(EwayLocale,{
 			FGPInfo:'Finger Printer(FGP) Property',//EwayLocale.machine.device.FGPInfo
 			fgp_variant:'Finger Type',//EwayLocale.machine.device.fgp_variant
 			canCompare:'Ability Of Compare',//EwayLocale.machine.device.canCompare
-			
+			UKRInfo:'UKey Reader(UKR)Property',//EwayLocale.machine.device.UKRInfo
+			variantUKR:'UKey Reader Type',//EwayLocale.machine.device.variant
+			canEjectUKR:'Ability Of Quit UKey',//EwayLocale.machine.device.canEjectUKR
+			canCaptureUKR:'Ability Of Retain UKey',//EwayLocale.machine.device.canCaptureUKR
+			binCapacityUKR:'Max Count Of Retain UKeys',//EwayLocale.machine.device.binCapacityUKR
+
+			UKDInfo:'Issue UKey(UKD)Property',//EwayLocale.machine.device.UKDInfo
+			variantUKD:'Issue UKey Type',//EwayLocale.machine.device.variant
+			canEjectUKD:'Ability Of Eject UKey',//EwayLocale.machine.device.canEjectUKD
+			canCaptureUKD:'Ability Of Retain UKey',//EwayLocale.machine.device.canCaptureUKD
+			binCapacityUKD:'Max Count Of Retain UKeys',//EwayLocale.machine.device.binCapacity
+			dispenseCardUKD:'Ability Of Issue UKey',//EwayLocale.machine.device.dispenseCardUKD
 			PBKInfo:'Passbook Printer(PBK) Property',//EwayLocale.machine.device.PBKInfo
 
 			PINInfo:'PIN Property',//EwayLocale.machine.device.PINInfo
@@ -299,6 +310,14 @@ Ext.apply(EwayLocale,{
 			FGPStatus:'Finger Printer(FGP) Status',//EwayLocale.machine.device.FGPStatus
 			
 			PBKStatus:'Passbook Printer(PBK) Status',//EwayLocale.machine.device.PBKStatus
+			
+			UKRStatus:'UKey Reader(UKR) Status',//EwayLocale.machine.device.UKRStatus
+			chipModule:'ChipModule',//EwayLocale.machine.device.chipModule
+			binStatus:'BinStatus',//EwayLocale.machine.device.binStatus
+			ukeys:'Retain Ukeys',//EwayLocale.machine.device.ukeys
+
+			UKDStatus:'Issue UKey(UKD)Status',//EwayLocale.machine.device.UKDStatus
+			ukeyCount:'Ukeys',//EwayLocale.machine.device.ukeyCount
 			
 			devPerson:'Device Person',//EwayLocale.machine.device.devPerson
 			devModuleMsg:'Device Module Property',//EwayLocale.machine.device.devModuleMsg

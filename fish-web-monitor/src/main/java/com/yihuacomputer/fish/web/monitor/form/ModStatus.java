@@ -29,8 +29,10 @@ public class ModStatus {
     private StatusBcr bcr;
 
     private StatusCam cam;
-    
+
     private StatusRfc nfc;
+    private StatusUkr ukr;
+    private StatusUkd ukd;
 
     private Boolean success;
 
@@ -160,6 +162,22 @@ public class ModStatus {
 
 	public void setNfc(StatusRfc nfc) {
 		this.nfc = nfc;
+	}
+
+	public StatusUkr getUkr() {
+		return ukr;
+	}
+
+	public void setUkr(StatusUkr ukr) {
+		this.ukr = ukr;
+	}
+
+	public StatusUkd getUkd() {
+		return ukd;
+	}
+
+	public void setUkd(StatusUkd ukd) {
+		this.ukd = ukd;
 	}
 
 }

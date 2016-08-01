@@ -19,7 +19,9 @@ Ext.define("Eway.view.machine.device.DeviceModuleStatus", {
 			'Eway.view.machine.device.module.StatusPBK',
 			'Eway.view.machine.device.module.StatusCAM',
 			'Eway.view.machine.device.module.StatusBCR' ,
-			'Eway.view.machine.device.module.StatusNFC' ],
+			'Eway.view.machine.device.module.StatusNFC',
+			'Eway.view.machine.device.module.StatusUKR',
+			'Eway.view.machine.device.module.StatusUKD' ],
 
 	layout : 'border',
 	autoScroll: false,
@@ -28,7 +30,7 @@ Ext.define("Eway.view.machine.device.DeviceModuleStatus", {
 		Ext.apply(this, {
 			items : [ {
 				region : 'north',
-				height:240,
+				height:'auto',
 				xtype : 'machine_device_module_status'
 			}, {
 				region : 'center',
@@ -83,6 +85,12 @@ Ext.define("Eway.view.machine.device.DeviceModuleStatus", {
 				} , {
 					itemId : 'nfcid',
 					xtype : 'machine_device_module_statusnfc'
+				} , {
+					itemId : 'ukdid',
+					xtype : 'machine_device_module_statusukd'
+				} , {
+					itemId : 'ukrid',
+					xtype : 'machine_device_module_statusukr'
 				} ]
 			} ]
 		});

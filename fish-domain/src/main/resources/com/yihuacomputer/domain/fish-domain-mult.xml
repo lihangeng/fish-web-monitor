@@ -32,17 +32,6 @@
 	<!--基础DAO的配置 -->
 	<bean id="hibernateDao" class="com.yihuacomputer.domain.dao.Hibernate4OpenSessionDao"></bean>
 
-	<!--分析系统DAO的配置 -->
-	<!-- <bean id="transactionManager1" name="transactionManager1" -->
-	<!-- class="org.springframework.orm.hibernate4.HibernateTransactionManager"> -->
-	<!-- <property name="sessionFactory"> -->
-	<!-- <ref bean="sessionFactory1" /> -->
-	<!-- </property> -->
-	 <!--property name="nestedTransactionAllowed" value="true"/> -->
-	
-	<!-- </bean> -->
-	<!-- <tx:annotation-driven transaction-manager="transactionManager1" proxy-target-class="true"/> -->
-	<!-- <bean id="analysisDao" class="com.yihuacomputer.domain.dao.AnalysisHibernate4Dao"></bean> -->
 
 	<bean id="dataSourceAspect" class="com.yihuacomputer.domain.spring.DataSourceInterceptor" />
 	<aop:config>

@@ -170,6 +170,12 @@ public class XfsService implements IXfsService {
             case CAM: {
             	return status.getStatusCam().getCode();
             }
+            case UKR: {
+            	return status.getStatusUkr().getCode();
+            }
+            case UKD: {
+            	return status.getStatusUkd().getCode();
+            }
             default: {
                 return null;
             }
@@ -293,6 +299,8 @@ public class XfsService implements IXfsService {
             statusReport.setIscStatus(xfs.getStatusIsc()==null?DeviceStatus.Unknown:xfs.getStatusIsc().getStatus()) ;
             statusReport.setBcrStatus(xfs.getStatusBcr()==null?DeviceStatus.Unknown:xfs.getStatusBcr().getStatus());
             statusReport.setCamStatus(xfs.getStatusCam()==null?DeviceStatus.Unknown:xfs.getStatusCam().getStatus());
+            statusReport.setUkrStatus(xfs.getStatusUkr()==null?DeviceStatus.Unknown:xfs.getStatusUkr().getStatus());
+            statusReport.setUkdStatus(xfs.getStatusUkd()==null?DeviceStatus.Unknown:xfs.getStatusUkd().getStatus());
             statusMonitorList.add(statusReport);
         }
         IPageResult<IStatusReport> pageResult = new PageResult<IStatusReport>(result.getTotal(), statusMonitorList);

@@ -59,6 +59,8 @@ public class VersionForm {
 	private String userName;
 
 	private String execBefore;
+
+	private String execAfter;
 	
 	private String versionTypeDesc;
 
@@ -89,6 +91,7 @@ public class VersionForm {
 		this.uncompress = version.isUncompress();
 		this.eagerRestart = version.isEagerRestart();
 		this.execBefore = version.getExecBefore();
+		this.execAfter = version.getExecAfter();
 	}
 
 	private String getVersionFile(String typeName, String fileName) {
@@ -262,6 +265,14 @@ public class VersionForm {
 
 	public void setDownLoadCounter(int downLoadCounter) {
 		this.downLoadCounter = downLoadCounter;
+	}
+
+	public String getExecAfter() {
+		return execAfter;
+	}
+
+	public void setExecAfter(String execAfter) {
+		this.execAfter = execAfter;
 	}
 	
 }

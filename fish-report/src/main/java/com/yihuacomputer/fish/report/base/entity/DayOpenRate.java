@@ -96,7 +96,7 @@ public class DayOpenRate implements IDayOpenRate {
     private String devVendorName;
     
     @Transient 
-    private AwayFlag awayFlag;
+    private String awayFlag;
     
     @Transient 
     private double openRate;
@@ -249,11 +249,11 @@ public class DayOpenRate implements IDayOpenRate {
 		this.devVendorName = devVendorName;
 	}
 
-	public AwayFlag getAwayFlag() {
+	public String getAwayFlag() {
 		return awayFlag;
 	}
 
-	public void setAwayFlag(AwayFlag awayFlag) {
+	public void setAwayFlag(String awayFlag) {
 		this.awayFlag = awayFlag;
 	}
 

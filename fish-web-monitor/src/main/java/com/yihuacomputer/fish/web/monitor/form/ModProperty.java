@@ -31,6 +31,10 @@ public class ModProperty {
 
     private PropertyCam cam;
     
+    private PropertyUkr ukr;
+
+    private PropertyUkd ukd;
+    
     private PropertyRfc nfc;
     
     private PropertiseMsg properties;
@@ -171,6 +175,22 @@ public class ModProperty {
 
 	public void setNfc(PropertyRfc nfc) {
 		this.nfc = nfc;
+	}
+
+	public PropertyUkr getUkr() {
+		return ukr;
+	}
+
+	public void setUkr(PropertyUkr ukr) {
+		this.ukr = ukr;
+	}
+
+	public PropertyUkd getUkd() {
+		return ukd;
+	}
+
+	public void setUkd(PropertyUkd ukd) {
+		this.ukd = ukd;
 	}
     
 }

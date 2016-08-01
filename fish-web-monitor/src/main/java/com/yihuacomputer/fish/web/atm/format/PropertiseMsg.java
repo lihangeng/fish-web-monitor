@@ -40,6 +40,10 @@ public class PropertiseMsg {
     private DeviceProp cam ;
 
     private DeviceProp bcr ;
+    
+    private DeviceProp ukr ;
+
+    private DeviceProp ukd ;
 
     public String getTermId() {
         return termId;
@@ -219,6 +223,22 @@ public class PropertiseMsg {
 
 	public void setBcr(DeviceProp bcr) {
 		this.bcr = bcr;
+	}
+
+	public DeviceProp getUkr() {
+		return ukr;
+	}
+
+	public void setUkr(DeviceProp ukr) {
+		this.ukr = ukr;
+	}
+
+	public DeviceProp getUkd() {
+		return ukd;
+	}
+
+	public void setUkd(DeviceProp ukd) {
+		this.ukd = ukd;
 	}
 
 }
