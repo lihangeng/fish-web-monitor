@@ -54,8 +54,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 									type: 'excel',
 									title : EwayLocale.report.baseReport.devBrandRep,
 									showSummary:true,
-									fileName : EwayLocale.report.baseReport.devBrandRep+'.xls',
-									windowWidth:100
+									fileName : EwayLocale.report.baseReport.devBrandRep+'.xls'
 						});
 					}
 				} ]
@@ -67,7 +66,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 	// Set this to false if multiple dimensions are configured on leftAxis and
 	// you want to automatically expand the row groups when calculations are ready.
 	startRowGroupsCollapsed : false,
-	startColGroupsCollapsed:false,
+	startColGroupsCollapsed:true,
 
 	// Configure the aggregate dimensions. Multiple dimensions are supported.
 	aggregate : [ {
@@ -82,7 +81,7 @@ Ext.define('Eway.view.report.baseReport.DeviceTypeCountReportGrid', {
 	leftAxis : [{
 		dataIndex : 'orgName',
 		header : EwayLocale.person.bankOrg.name,
-		width: 120
+		width: 320
 	}],
 	/**
 	 * Configure the top axis dimensions that will be used to generate the columns.

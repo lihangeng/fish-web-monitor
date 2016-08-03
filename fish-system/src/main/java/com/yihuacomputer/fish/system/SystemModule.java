@@ -18,6 +18,7 @@ import com.yihuacomputer.fish.api.relation.IUserGroupRelation;
 import com.yihuacomputer.fish.api.relation.IUserPermissionRelation;
 import com.yihuacomputer.fish.api.relation.IUserRoleRelation;
 import com.yihuacomputer.fish.api.system.config.IParamService;
+import com.yihuacomputer.fish.api.system.dbQuartz.IQuartzService;
 import com.yihuacomputer.fish.api.system.im.IAnnouncementService;
 import com.yihuacomputer.fish.api.system.im.IMessageService;
 import com.yihuacomputer.fish.api.system.quartz.IJobSynchService;
@@ -43,6 +44,7 @@ import com.yihuacomputer.fish.system.service.AnnouncementService;
 import com.yihuacomputer.fish.system.service.JobSynchService;
 import com.yihuacomputer.fish.system.service.MessageService;
 import com.yihuacomputer.fish.system.service.ParamService;
+import com.yihuacomputer.fish.system.service.QuartzService;
 import com.yihuacomputer.fish.system.service.ShortMessageService;
 
 @Configuration
@@ -143,6 +145,11 @@ public class SystemModule {
 	@Bean
 	public SrcbDevicePersonRelation srcbDevicePersonRelation() {
 		return new SrcbDevicePersonRelation();
+	}
+	
+	@Bean
+	public IQuartzService quartzService() {
+		return new QuartzService();
 	}
 
 }

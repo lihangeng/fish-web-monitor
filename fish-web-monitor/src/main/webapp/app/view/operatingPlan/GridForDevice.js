@@ -37,7 +37,7 @@ Ext.define('Eway.view.operatingPlan.GridForDevice', {
 				width : 100,
 				dataIndex : 'name'
 			}, {
-				header : EwayLocale.machine.serviceplan.state,
+				header : EwayLocale.machine.plan.type,
 				width : 100,
 				dataIndex : 'planType',
 				renderer : function(value, metadata, record) {
