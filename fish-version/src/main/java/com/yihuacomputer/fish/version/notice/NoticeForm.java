@@ -76,7 +76,7 @@ public class NoticeForm {
         this.fileName = version.getServerPath();
         this.md5CheckNum = version.getMd5CheckNum();
         this.uncompress = version.isUncompress();
-        this.eagerRestart = task.isEagerRestart();
+        this.eagerRestart = type.isAutoDeploy();
         this.customVersion = type.isCustomVersion();
         this.system = type.isSystem();
         this.versionCatalog = type.getVersionCatalog() == null ? VersionCatalog.OTHER.name() : type.getVersionCatalog().name();
