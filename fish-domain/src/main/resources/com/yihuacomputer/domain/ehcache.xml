@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" updateCheck="false">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/2002/xmlspec/dtd/2.10/xmlspec.dtd">
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance
+	http://www.springmodules.org/schema/cache/springmodules-cache.xsd"
+	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd" updateCheck="false">  
   <!-- 设置磁盘持久化的位置（当缓存超过最大值时，将溢出的缓存持久化到磁盘） -->
   <diskStore path="E:/tempcache" /> 
   <defaultCache maxElementsInMemory="10000" eternal="true" overflowToDisk="true" />
