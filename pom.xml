@@ -16,6 +16,7 @@
 		<module>fish-version</module>
 		<module>fish-fault</module>
 		<module>fish-report</module>
+		<module>fish-sms</module>
 		<module>fish-kafka</module>
 		<module>fish-analysis</module>
 		<module>fish-web-monitor</module>
