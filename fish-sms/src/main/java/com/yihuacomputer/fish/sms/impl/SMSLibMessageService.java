@@ -63,7 +63,7 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 	 */
 	private AGateway getGateway() {
 		String gateWayId = getParamValue("sms_gateWayId", "modem");// 网关ID
-		String portName = getParamValue("sms_comPort", "COM5");// 串口名称
+		String portName = getParamValue("sms_comPort");// 串口名称
 		int buns = Integer.parseInt(getParamValue("sms_baudRate", "9600"));// 比特率
 		String productName = getParamValue("sms_productName", "Wavecom");// 短信猫生产厂商
 		String productType = getParamValue("sms_productType", "M1206B");// 短信猫生产厂商的产品型号
@@ -88,7 +88,14 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 			return param.getParamValue();
 		}
 	}
-
+	private String getParamValue(String key) {
+		IParam param = null;
+		if(paramService!=null){
+			param = paramService.getParam(key);
+			return param.getParamValue();
+		}
+		return "";
+	}
 
 	/**
 	 * 服务初始化
@@ -97,7 +104,7 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 	 */
 	public boolean init() {
 		String realComPorts = SerialPortDetector.getComPorts();
-		String cfgComPorts = getParamValue("sms_comPort","COM5");
+		String cfgComPorts = getParamValue("sms_comPort");
 		if ("".equals(realComPorts) || !realComPorts.equals(cfgComPorts)) {
 			logger.error(String.format("当前服务器上配置的串口为[%s],扫描到的串口为[%s]", cfgComPorts, realComPorts));
 			System.out.println(String.format("当前服务器上配置的串口为[%s],扫描到的串口为[%s]", cfgComPorts, realComPorts));
