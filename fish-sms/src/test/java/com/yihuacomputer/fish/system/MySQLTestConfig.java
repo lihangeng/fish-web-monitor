@@ -8,7 +8,7 @@ import com.yihuacomputer.domain.DomainModule;
 import com.yihuacomputer.fish.sms.SMSModule;
 
 @Configuration
-@Import({DomainModule.class,SMSModule.class,SystemModule.class})
+@Import({DomainModule.class,SMSModule.class})
 @ImportResource(value = "classpath:/com/yihuacomputer/fish/system/spring-sms-mysql.xml")
 public class MySQLTestConfig {
 

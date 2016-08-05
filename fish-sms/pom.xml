@@ -11,11 +11,11 @@
 	<name>Fish SMS Implement</name>
 	<description>FISH短信息发送管理</description>
 	<dependencies>
-		<dependency>
-			<groupId>com.yihuacomputer.fish</groupId>
-			<artifactId>fish-system</artifactId>
-			<version>${project.version}</version>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>com.yihuacomputer.fish</groupId> -->
+<!-- 			<artifactId>fish-system</artifactId> -->
+<!-- 			<version>${project.version}</version> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-api-sms</artifactId>

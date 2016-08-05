@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.system.service;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,9 @@ public class SmsServiceTest extends BindSessionInTest2
     private ISMSLibMessageService smsLibMessageService;
 
     @Test
+    @Ignore
     public void test(){
-    	smsLibMessageService.sendMsg("15062225210", "test短信");
+    	smsLibMessageService.sendMsg("18724004683", "test短信","COM3");
     	try {
 			Thread.currentThread().sleep(160L*1000L*1);
 		} catch (InterruptedException e) {

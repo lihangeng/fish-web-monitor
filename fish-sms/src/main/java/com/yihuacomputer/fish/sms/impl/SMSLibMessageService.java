@@ -14,11 +14,8 @@ import org.smslib.OutboundMessage;
 import org.smslib.Service;
 import org.smslib.Service.ServiceStatus;
 import org.smslib.modem.SerialModemGateway;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.yihuacomputer.fish.api.ISMSLibMessageService;
-import com.yihuacomputer.fish.api.system.config.IParam;
-import com.yihuacomputer.fish.api.system.config.IParamService;
 import com.yihuacomputer.fish.sms.utils.DllManager;
 import com.yihuacomputer.fish.sms.utils.SerialPortDetector;
 
@@ -27,8 +24,8 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 
 	private static Logger logger = LoggerFactory.getLogger(SMSLibMessageService.class);
 
-	@Autowired
-	private IParamService paramService;
+//	@Autowired
+//	private IParamService paramService;
 
 	static { // 拷贝dll/so到jdk安装目录对应的位置
 		try {
@@ -61,9 +58,9 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 	 * Wavecom：短信猫生产厂商，不同的短信猫生产厂商smslib所封装的AT指令接口会不一致
 	 * ，必须设置正确.常见的有Huawei、wavecom等厂商 最后一个参数表示设备的型号，可选
 	 */
-	private AGateway getGateway() {
+	private AGateway getGateway(String comName) {
 		String gateWayId = getParamValue("sms_gateWayId", "modem");// 网关ID
-		String portName = getParamValue("sms_comPort");// 串口名称
+		String portName =comName;// 串口名称
 		int buns = Integer.parseInt(getParamValue("sms_baudRate", "9600"));// 比特率
 		String productName = getParamValue("sms_productName", "Wavecom");// 短信猫生产厂商
 		String productType = getParamValue("sms_productType", "M1206B");// 短信猫生产厂商的产品型号
@@ -79,32 +76,32 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 	}
 
 	private String getParamValue(String key, String defautValue) {
-		IParam param = null;
-		if(paramService!=null)
-			param = paramService.getParam(key);
-		if (param == null) {
+//		IParam param = null;
+//		if(paramService!=null)
+//			param = paramService.getParam(key);
+//		if (param == null) {
 			return defautValue;
-		} else {
-			return param.getParamValue();
-		}
+//		} else {
+//			return param.getParamValue();
+//		}
 	}
-	private String getParamValue(String key) {
-		IParam param = null;
-		if(paramService!=null){
-			param = paramService.getParam(key);
-			return param.getParamValue();
-		}
-		return "";
-	}
+//	private String getParamValue(String key) {
+//		IParam param = null;
+//		if(paramService!=null){
+//			param = paramService.getParam(key);
+//			return param.getParamValue();
+//		}
+//		return "";
+//	}
 
 	/**
 	 * 服务初始化
 	 *
 	 * @throws Exception
 	 */
-	public boolean init() {
+	public boolean init(String comName) {
 		String realComPorts = SerialPortDetector.getComPorts();
-		String cfgComPorts = getParamValue("sms_comPort");
+		String cfgComPorts = comName;
 		if ("".equals(realComPorts) || !realComPorts.equals(cfgComPorts)) {
 			logger.error(String.format("当前服务器上配置的串口为[%s],扫描到的串口为[%s]", cfgComPorts, realComPorts));
 			System.out.println(String.format("当前服务器上配置的串口为[%s],扫描到的串口为[%s]", cfgComPorts, realComPorts));
@@ -113,7 +110,7 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 		OutboundNotification outboundNotification = new OutboundNotification();
 		Service.getInstance().setOutboundMessageNotification(outboundNotification);// 发送短信成功后的回调函方法
 		try {
-			Service.getInstance().addGateway(getGateway());// 将网关添加到短信猫服务中
+			Service.getInstance().addGateway(getGateway(comName));// 将网关添加到短信猫服务中
 			logger.info("正在启动短信猫服务...");
 			Service.getInstance().startService();// 启动服务，进入短信发送就绪状态
 			logger.info("启动短信猫服务成功");
@@ -140,10 +137,10 @@ public class SMSLibMessageService implements ISMSLibMessageService {
 		}
 	}
 
-	public void sendMsg(String telePhoneNum, String messageInfo) {
+	public void sendMsg(String telePhoneNum, String messageInfo,String comName) {
 		if (Service.getInstance().getServiceStatus() != ServiceStatus.STARTED
 				&& Service.getInstance().getServiceStatus() != ServiceStatus.STARTING) {
-			if (!init()) {
+			if (!init(comName)) {
 				return;
 			}
 
