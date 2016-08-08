@@ -6,6 +6,8 @@ import org.springframework.context.annotation.Configuration;
 import com.yihuacomputer.fish.api.monitor.ICollectService;
 import com.yihuacomputer.fish.api.monitor.IMonitorService;
 import com.yihuacomputer.fish.api.monitor.alarm.IProcessService;
+import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfoService;
+import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
 import com.yihuacomputer.fish.api.monitor.business.IBlackListCardService;
 import com.yihuacomputer.fish.api.monitor.business.ICashInitService;
 import com.yihuacomputer.fish.api.monitor.business.ICounterFeitMoneyService;
@@ -31,6 +33,8 @@ import com.yihuacomputer.fish.monitor.service.BlackListCardService;
 import com.yihuacomputer.fish.monitor.service.CashInitService;
 import com.yihuacomputer.fish.monitor.service.CollectService;
 import com.yihuacomputer.fish.monitor.service.CounterFeitMoneyService;
+import com.yihuacomputer.fish.monitor.service.DeviceBoxDetailInfoService;
+import com.yihuacomputer.fish.monitor.service.DeviceBoxInfoService;
 import com.yihuacomputer.fish.monitor.service.DeviceOfflineCheck;
 import com.yihuacomputer.fish.monitor.service.FilterService;
 import com.yihuacomputer.fish.monitor.service.HardwareService;
@@ -181,4 +185,13 @@ public class MonitorModule {
     public ITransactionColorService transactionColorService() {
         return new TransactionColorService();
     }
+
+	@Bean
+	public IDeviceBoxDetailInfoService deviceBoxDetailInfoService(){
+		return new DeviceBoxDetailInfoService();
+	}
+	@Bean
+	public IDeviceBoxInfoService deviceBoxInfoService(){
+		return new DeviceBoxInfoService();
+	}
 }
