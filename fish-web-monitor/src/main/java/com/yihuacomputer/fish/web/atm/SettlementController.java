@@ -14,7 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yihuacomputer.common.jackson.JsonUtils;
+import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.monitor.ICollectService;
+import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfoService;
+import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
+import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
 import com.yihuacomputer.fish.api.monitor.business.IBoxSettleDetail;
 import com.yihuacomputer.fish.api.monitor.business.ISettlement;
 import com.yihuacomputer.fish.api.monitor.business.ISettlementService;
@@ -36,6 +41,13 @@ public class SettlementController {
 	@Autowired
 	private ICollectService collectService;
 
+	@Autowired(required=false)
+	private IDeviceBoxDetailInfoService deviceBoxDetailInfoService;
+	@Autowired(required=false)
+	private IDeviceService deviceService;
+	@Autowired(required=false)
+	private IDeviceBoxInfoService deviceBoxInfoService;
+	
 	@Autowired
 	private ISettlementService settlementService;
 	/**
@@ -64,8 +76,19 @@ public class SettlementController {
 		List<IBoxSettleDetail> boxDetail =new ArrayList<IBoxSettleDetail> ();
 		boxDetail.addAll(msg.getBoxDetail());
 		settlementInfo.setBoxDetail(boxDetail);
+		
 		try{
 			collectService.collectSettlement(msg.getTermId(), settlementInfo);
+			if(deviceBoxDetailInfoService!=null){
+				IDevice device = deviceService.get(msg.getTermId());
+				if(device!=null){
+					IDeviceBoxInfo deviceBoxInfo = deviceBoxInfoService.findByDeviceId(device.getId());
+					if(deviceBoxInfo!=null){
+						boolean updateResult = deviceBoxDetailInfoService.updateBoxDetailEffect(deviceBoxInfo.getId());
+						logger.debug(String.format("update %s boxDetail %s",msg.getTermId(),updateResult));
+					}
+				}
+			}
 		}catch(Exception e){
 			logger.error(String.format("collection settlementInfo exception![%s],settlementInfo is [%s]",e,JsonUtils.toJson(msg)));
 		}
