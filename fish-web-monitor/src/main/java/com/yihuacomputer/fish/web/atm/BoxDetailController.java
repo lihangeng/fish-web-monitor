@@ -68,46 +68,40 @@ public class BoxDetailController {
         		deviceBoxInfo = deviceBoxInfoService.make();
         		deviceBoxInfo.setDeviceId(device);
         		deviceBoxInfo.setBoxChange(true);
-//        		List<IDeviceBoxDetailInfo> detailInfoList = new ArrayList<IDeviceBoxDetailInfo>();
         		List<BoxDetailReportMsg>  detailList = msg.getBoxdetailList();
         		for(BoxDetailReportMsg bdrm:detailList){
         			IDeviceBoxDetailInfo dbdi = deviceBoxDetailInfoService.make();
         			dbdi.setBoxType(bdrm.getBoxType());
-        			dbdi.setCashId(bdrm.getBoxType());
-        			dbdi.setCurrency(bdrm.getBoxType());
+        			dbdi.setCashId(bdrm.getId());
+        			dbdi.setCurrency(bdrm.getCurrency());
         			dbdi.setEffect(true);
         			dbdi.setMaxiNum(bdrm.getMaximum());
         			dbdi.setValue(bdrm.getValue());
         			dbdi.setNumber(bdrm.getNumber());
         			dbdi.setDeviceBoxInfo(deviceBoxInfo);
-//        			detailInfoList.add(dbdi);
         			deviceBoxInfo.add(dbdi);
         		}
-//        		deviceBoxInfo.setDeviceBoxDetails(detailInfoList);
         		deviceBoxInfoService.save(deviceBoxInfo);
         	}
         	//钞箱信息存在，更改钞箱明细的
         	else{
-//        		deviceBoxDetailInfoService.updateBoxDetailEffect(deviceBoxInfo.getId());
         		IFilter filter = new Filter();
         		filter.eq("deviceBoxInfo.id", deviceBoxInfo.getId());
         		filter.eq("effect", true);
-//        		List<IDeviceBoxDetailInfo> dbdiList = deviceBoxDetailInfoService.list(filter);
-//        		Map<String,IDeviceBoxDetailInfo> dbdiMap = deviceBoxDetailInfoService.getCashIdMap(filter);
         		Map<String,IDeviceBoxDetailInfo> dbdiMap = new HashMap<String,IDeviceBoxDetailInfo>();
         		for(IDeviceBoxDetailInfo idbdi:deviceBoxInfo.getDeviceBoxDetails()){
         			dbdiMap.put(idbdi.getCashId(), idbdi);
         		}
         		List<BoxDetailReportMsg>  detailList = msg.getBoxdetailList();
-//        		List<IDeviceBoxDetailInfo> detailInfoList = new ArrayList<IDeviceBoxDetailInfo>();
         		for(BoxDetailReportMsg bdrm:detailList){
         			IDeviceBoxDetailInfo dbdi = dbdiMap.get(bdrm.getId());
         			IDeviceBoxDetailInfo dbdiHist = dbdi;
+        			//如果钞箱不存在，则新建
         			if(dbdi==null){
         				dbdi = deviceBoxDetailInfoService.make();
         				dbdi.setBoxType(bdrm.getBoxType());
-            			dbdi.setCashId(bdrm.getBoxType());
-            			dbdi.setCurrency(bdrm.getBoxType());
+            			dbdi.setCashId(bdrm.getId());
+            			dbdi.setCurrency(bdrm.getCurrency());
             			dbdi.setEffect(true);
             			dbdi.setMaxiNum(bdrm.getMaximum());
             			dbdi.setValue(bdrm.getValue());
@@ -115,10 +109,11 @@ public class BoxDetailController {
             			dbdi.setDeviceBoxInfo(deviceBoxInfo);
             			deviceBoxInfo.add(dbdi);
         			}
+        			//如果钞箱存在，修改钞箱信息
         			else{
         				dbdi.setBoxType(bdrm.getBoxType());
-            			dbdi.setCashId(bdrm.getBoxType());
-            			dbdi.setCurrency(bdrm.getBoxType());
+            			dbdi.setCashId(bdrm.getId());
+            			dbdi.setCurrency(bdrm.getCurrency());
             			dbdi.setEffect(true);
             			dbdi.setMaxiNum(bdrm.getMaximum());
             			dbdi.setValue(bdrm.getValue());
