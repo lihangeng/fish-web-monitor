@@ -76,6 +76,9 @@ public class BoxInfoTest {
     		return ;
     	}
     	IDeviceBoxInfo deviceBoxInfo = deviceBoxInfoService.findByDeviceId(device.getId());
+    	if(null==deviceBoxInfo){
+    		return;
+    	}
     	System.out.println(JsonUtils.toJson(deviceBoxInfo));
     	//钞箱信息不存在全部新建
     	//钞箱信息存在，更改钞箱明细的

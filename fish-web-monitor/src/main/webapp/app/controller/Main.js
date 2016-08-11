@@ -170,6 +170,15 @@ Ext.define('Eway.controller.Main', {
 		}/*else if(code == "atmLog"){
 			this.activeController('atmLog.AtmLogInfo',text);
 		}*/
+		else if(code == "cashBoxInfo"){
+			this.activeController('cash.boxInfo.CashBoxInfo',text);
+		}
+		else if(code == "alarmRule"){
+			this.activeController('cash.boxInfo.AlarmRule',text);
+		}
+		else if(code == "cashInitPlan"){
+			this.activeController('cash.boxInfo.CashInitPlan',text);
+		}
 	},
 
 	//打开“监控管理”下子菜单

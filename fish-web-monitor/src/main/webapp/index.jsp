@@ -79,6 +79,7 @@
 	  	var EwayLocale = {};
 		if(Ext.String.startsWith(Eway.user.language,"zh")){
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/locale-zh_CN.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/box-locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/eway-locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/system-locale-zh_CN.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/machine-locale-zh_CN.js");
@@ -89,6 +90,7 @@
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/param-locale-zh_CN.js");
 		}else{
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/locale-en.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/box-locale-en.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/eway-locale-en.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/system-locale-en.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/machine-locale-en.js");
