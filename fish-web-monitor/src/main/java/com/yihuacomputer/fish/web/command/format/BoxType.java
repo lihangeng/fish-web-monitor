@@ -55,10 +55,19 @@ public enum BoxType
         return this.text;
     }
 
-    @Override
-    public String toString()
-    {
-        return super.toString() + ":" + text;
-    }
+//    @Override
+//    public String toString()
+//    {
+//        return super.toString() + ":" + text;
+//    }
 
+    public static BoxType getBoxType(String enumItem){
+    	BoxType[] bts = BoxType.values();
+    	for(BoxType bt:bts){
+    		if(bt.toString().equals(enumItem)){
+    			return bt;
+    		}
+    	}
+    	return OTHERTYPECASSETTE;
+    }
 }
