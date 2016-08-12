@@ -31,12 +31,16 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.monitor.box.BoxType;
+import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.cashbox.form.DeviceCashBoxInfoForm;
+import com.yihuacomputer.fish.web.command.format.CashBoxDetail;
+import com.yihuacomputer.fish.web.command.format.DeviceBoxMsg;
 
 @Controller
 @RequestMapping("/cashbox")
@@ -136,6 +140,50 @@ public class DeviceCashBoxInfoController {
 		model.addAttribute(FishConstant.SUCCESS, updateResult);
 		return model;
 	}
+//	查询操作，不做日志记录
+//	@MethodNameDescrible(describle="userlog.CashBoxController.synchronizedBoxLimit",hasArgs=false,urlArgs=true )
+//	@RequestMapping(value = "/getBoxDetailInfo", method = RequestMethod.GET)
+//	public @ResponseBody 
+//	ModelMap getBoxDetailInfo(HttpServletRequest request,WebRequest webRequest) {
+//		ModelMap model = new ModelMap();
+//		long deviceCashBoxId = Long.parseLong(request.getParameter("id"));
+//		logger.info("getBoxDetailInfo : CashBoxInfo.id = " + deviceCashBoxId);
+//		DeviceBoxMsg boxMsg = new DeviceBoxMsg();
+//		
+//		IDeviceBoxInfo deviceBoxInfo = deviceBoxInfoService.get(deviceCashBoxId);
+//		List<IDeviceBoxDetailInfo>  dbBoxDetailList = deviceBoxInfo.getDeviceBoxDetails();
+//		int initAll=0,leafAll=0,rejectAll=0,dispenserAll=0,litterValue=0,retRact=0;
+//		for(IDeviceBoxDetailInfo boxDetail:dbBoxDetailList){
+//			if(BoxType.isEffect(boxDetail.getBoxType())){
+//				if(boxDetail.getValue()!=0&&litterValue==0){
+//					litterValue=boxDetail.getValue();
+//				}
+//				else if(boxDetail.getValue()!=0){
+//					litterValue=litterValue<boxDetail.getValue()?litterValue:boxDetail.getValue();
+//				}
+//				initAll+=boxDetail.getValue()*boxDetail.getInitialCount();
+//				leafAll+=boxDetail.getValue()*boxDetail.getNumber();
+//				dispenserAll+=boxDetail.getValue()*boxDetail.getDispenseCount();
+//			}
+//			else if(boxDetail.getBoxType().equals(BoxType.REJECTCASSETTE)){
+//				rejectAll+=boxDetail.getNumber();
+//			}
+//			else if(boxDetail.getBoxType().equals(BoxType.RETRACTCASSETTE)){
+//				retRact+=boxDetail.getNumber();
+//			}
+//			CashBoxDetail cbd = new CashBoxDetail();
+//			cbd.setBinStatus(boxDetail.get);
+//		}
+//		boxMsg.setRejectAmount(rejectAll);
+//		boxMsg.setAmount(leafAll);
+//		boxMsg.setDispenseAmount(dispenserAll);
+//		boxMsg.setInitAmount(initAll);
+//		boxMsg.setMinAmount(litterValue);
+//		boxMsg.setRetractCount(retRact);
+//		boxMsg.setTermId(deviceBoxInfo.getDeviceId().getTerminalId());
+//		return model;
+//	}
+	
 	private DeviceCashBoxInfoForm convert(IDeviceBoxInfo deviceBoxInfo){
 		DeviceCashBoxInfoForm dcbif = new DeviceCashBoxInfoForm();
 		IDevice device = deviceBoxInfo.getDeviceId();

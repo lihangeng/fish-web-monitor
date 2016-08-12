@@ -16,6 +16,7 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.monitor.box.BoxType;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfoService;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
@@ -54,7 +55,7 @@ public class BoxInfoTest {
 //    		List<IDeviceBoxDetailInfo> detailInfoList = new ArrayList<IDeviceBoxDetailInfo>();
     		for(int i=0;i<2;i++){
     			IDeviceBoxDetailInfo dbdi = deviceBoxDetailInfoService.make();
-    			dbdi.setBoxType("boxType");
+    			dbdi.setBoxType(BoxType.BILLCASSETTE);
     			dbdi.setCashId("case"+i);
     			dbdi.setCurrency("cny");
     			dbdi.setEffect(true);
@@ -97,7 +98,7 @@ public class BoxInfoTest {
     			IDeviceBoxDetailInfo dbdiHist = dbdi;
     			if(dbdi==null){
     				dbdi = deviceBoxDetailInfoService.make();
-    				dbdi.setBoxType("boxType");
+    				dbdi.setBoxType(BoxType.BILLCASSETTE);
         			dbdi.setCashId("case"+i);
         			dbdi.setCurrency("cny5");
         			dbdi.setEffect(true);
@@ -108,7 +109,7 @@ public class BoxInfoTest {
         			deviceBoxInfo.add(dbdi);
     			}
     			else{
-    				dbdi.setBoxType("boxType");
+    				dbdi.setBoxType(BoxType.BILLCASSETTE);
         			dbdi.setCashId("case"+i);
         			dbdi.setCurrency("cny5");
         			dbdi.setEffect(true);

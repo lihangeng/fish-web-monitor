@@ -92,6 +92,7 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 		        // Its "value" setting is taken from the column's dataIndex
 		        widget: {
 		        	xtype: 'button',
+			        action:'showBoxDetail',
 		        	text:'钞箱明细'
 		        }
 		    }
