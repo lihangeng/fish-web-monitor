@@ -385,6 +385,24 @@ Ext.apply(EwayLocale,{
 		remoteFailure:'Remote Browse Failed',//EwayLocale.vtype.remoteFailure
 		choseTask:'Please Choose A Task',//EwayLocale.vtype.choseTask
 	},
+	
+	 batch:{
+			tradeRes :'Trade statistics',//EwayLocale.batch.tradeRes
+			jobName:'Job name',//EwayLocale.batch.jobName
+			startTime:'The startTime of the job',//EwayLocale.batch.startTime
+			tradeTime:'The trade of the job',//EwayLocale.batch.tradeTime
+			endTime:'The endTime of the job',//EwayLocale.batch.endTime
+			operaResult:'Job opera result',//EwayLocale.batch.operaResult
+			errorMsg:'Please check the time style and value',//EwayLocale.batch.errorMsg
+			indexID:'ID',//EwayLocale.batch.indexID
+			AgainOpera:'Retry all',//EwayLocale.batch.AgainOpera
+			unOperaCount:'Get all unOpera tasks',//EwayLocale.batch.unOperaCount
+			check:'Get tasks',//EwayLocale.batch.check
+			again:'Ggain',//EwayLocale.batch.again
+			doAgain:'Do retry？',//EwayLocale.batch.doAgain
+			doAgainSu:'Retry success！',//EwayLocale.batch.doAgainSu
+			doAgainFa:'Retry failed！',//EwayLocale.batch.doAgainFa
+		 },
 
 	commen:{
 		jobNum:'Job Number',//EwayLocale.commen.jobNum

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yihuacomputer.common.util.DateUtils;
+import com.yihuacomputer.fish.api.batch.base.IETLjobMonthService;
 import com.yihuacomputer.fish.api.report.base.ITransactionMonthsService;
 import com.yihuacomputer.fish.api.report.engine.IExportDataETLService;
 import com.yihuacomputer.fish.api.report.engine.IReportDataETL;
@@ -20,6 +21,9 @@ public class EveryMonthTransExcuter implements IReportDataETL{
 	private final String etlName = "SRCB_OPEN_RATE";
 	@Autowired
 	private ITransactionMonthsService transactionMonthsService;
+	
+	@Autowired
+	private IETLjobMonthService iMonthService;
 
 	@Autowired
 	private IExportDataETLService exportDataETLService;
@@ -31,6 +35,7 @@ public class EveryMonthTransExcuter implements IReportDataETL{
 	public void reportETL(String date){
 		String yestoday = DateUtils.getTodayDates();
 		transactionMonthsService.extractDate(yestoday);
+		iMonthService.extractDate(yestoday);
 	}
 
 	@Override
