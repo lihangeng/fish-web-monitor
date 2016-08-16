@@ -3,8 +3,8 @@ package com.yihuacomputer.fish.monitor.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.runner.RunWith;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
@@ -21,11 +21,11 @@ import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfoService;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
-import com.yihuacomputer.fish.monitor.MySQLTestConfig;
+import com.yihuacomputer.fish.monitor.H2TestConfig;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = MySQLTestConfig.class)
+@ContextConfiguration(classes = H2TestConfig.class)
 public class BoxInfoTest {
 	@Autowired
 	private IDeviceService deviceService;
