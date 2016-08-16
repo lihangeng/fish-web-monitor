@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.report.transaction;
+/*package com.yihuacomputer.fish.report.transaction;
 
 
 import org.junit.Test;
@@ -27,3 +27,4 @@ public class CaseFaultMonthReportTest {
 		monthFaultService.extractMonthFault(date);
 	}
 }
+*/
