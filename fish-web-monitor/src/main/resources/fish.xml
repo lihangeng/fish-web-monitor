@@ -38,20 +38,20 @@
 		<!-- <property name="basename" value="message"/> -->
 		<property name="basenames">
 			<list>
-				<value>message</value>
-				<value>message-advert</value>
-				<value>message-daily</value>
-				<value>message-fault</value>
-				<value>message-index</value>
-				<value>message-machine</value>
-				<value>message-monitor</value>
-				<value>message-parameter</value>
-				<value>message-report</value>
-				<value>message-system</value>
-				<value>message-version</value>
-				<value>enum</value>
-				<value>messageStateCode</value>
-				<value>messageVersion</value>
+				<value>i18n/message</value>
+				<value>i18n/message-advert</value>
+				<value>i18n/message-daily</value>
+				<value>i18n/message-fault</value>
+				<value>i18n/message-index</value>
+				<value>i18n/message-machine</value>
+				<value>i18n/message-monitor</value>
+				<value>i18n/message-parameter</value>
+				<value>i18n/message-report</value>
+				<value>i18n/message-system</value>
+				<value>i18n/message-version</value>
+				<value>i18n/enum</value>
+				<value>i18n/messageStateCode</value>
+				<value>i18n/messageVersion</value>
 			</list>
 		</property>
 		<property name="useCodeAsDefaultMessage" value="true" />
