@@ -26,7 +26,7 @@
       <id>nj</id>
       <properties>
         <profile.repository>http://repo.nj.yihuacomputer.com:8081/nexus/content/repositories/releases</profile.repository>
-        <profile.snapshotRepository>http://172.18.30.232:8081/nexus/content/repositories/snapshots</profile.snapshotRepository>
+        <profile.snapshotRepository>http://10.2.8.232:8081/nexus/content/repositories/snapshots</profile.snapshotRepository>
       </properties>
       <repositories>
 	  <repository>
@@ -49,7 +49,7 @@
 	      <enabled>true</enabled>
 	    </snapshots>
 	    <name>Nexus Repository</name>
-	    <url>http://172.18.30.232:8081/nexus/content/groups/public</url>
+	    <url>http://10.2.8.232:8081/nexus/content/groups/public</url>
 	  </repository>
       </repositories>
 	  <pluginRepositories>

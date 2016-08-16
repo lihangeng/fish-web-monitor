@@ -13,10 +13,10 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 
 import com.yihuacomputer.common.jackson.JsonUtils;
+import com.yihuacomputer.fish.api.monitor.box.BoxType;
 import com.yihuacomputer.fish.web.atm.format.BoxDetailReportMsg;
 import com.yihuacomputer.fish.web.atm.format.DeviceBoxReportMsg;
 import com.yihuacomputer.fish.web.command.format.BoxStatus;
-import com.yihuacomputer.fish.web.command.format.BoxType;
 
 /**
  * 进程信息测试

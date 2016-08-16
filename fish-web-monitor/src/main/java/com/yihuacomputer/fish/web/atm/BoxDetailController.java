@@ -19,13 +19,13 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.monitor.box.BoxType;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfoService;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
 import com.yihuacomputer.fish.web.atm.format.BoxDetailReportMsg;
 import com.yihuacomputer.fish.web.atm.format.DeviceBoxReportMsg;
-import com.yihuacomputer.fish.web.command.format.BoxType;
 
 @Controller
 @RequestMapping("/msg/reportboxdetail")
@@ -71,10 +71,13 @@ public class BoxDetailController {
 				List<BoxDetailReportMsg> detailList = msg.getBoxdetailList();
 				for (BoxDetailReportMsg bdrm : detailList) {
 					IDeviceBoxDetailInfo dbdi = deviceBoxDetailInfoService.make();
-					dbdi.setBoxType(bdrm.getBoxType());
+					dbdi.setBoxType(BoxType.getBoxType(bdrm.getBoxType()));
 					dbdi.setCashId(bdrm.getId());
 					dbdi.setCurrency(bdrm.getCurrency());
 					dbdi.setEffect(true);
+					dbdi.setInitialCount(bdrm.getInitialCount());
+					dbdi.setCashInCount(bdrm.getCashInCount());
+					dbdi.setDispenseCount(bdrm.getDispenseNumber());
 					dbdi.setMaxiNum(bdrm.getMaximum());
 					dbdi.setValue(bdrm.getValue());
 					dbdi.setNumber(bdrm.getNumber());
@@ -101,10 +104,13 @@ public class BoxDetailController {
 					// 如果钞箱不存在，则新建
 					if (dbdi == null) {
 						dbdi = deviceBoxDetailInfoService.make();
-						dbdi.setBoxType(bdrm.getBoxType());
+						dbdi.setBoxType(BoxType.getBoxType(bdrm.getBoxType()));
 						dbdi.setCashId(bdrm.getId());
 						dbdi.setCurrency(bdrm.getCurrency());
 						dbdi.setEffect(true);
+						dbdi.setInitialCount(bdrm.getInitialCount());
+						dbdi.setCashInCount(bdrm.getCashInCount());
+						dbdi.setDispenseCount(bdrm.getDispenseNumber());
 						dbdi.setMaxiNum(bdrm.getMaximum());
 						dbdi.setValue(bdrm.getValue());
 						dbdi.setNumber(bdrm.getNumber());
@@ -113,10 +119,13 @@ public class BoxDetailController {
 					}
 					// 如果钞箱存在，修改钞箱信息
 					else {
-						dbdi.setBoxType(bdrm.getBoxType());
+						dbdi.setBoxType(BoxType.getBoxType(bdrm.getBoxType()));
 						dbdi.setCashId(bdrm.getId());
 						dbdi.setCurrency(bdrm.getCurrency());
 						dbdi.setEffect(true);
+						dbdi.setInitialCount(bdrm.getInitialCount());
+						dbdi.setCashInCount(bdrm.getCashInCount());
+						dbdi.setDispenseCount(bdrm.getDispenseNumber());
 						dbdi.setMaxiNum(bdrm.getMaximum());
 						dbdi.setValue(bdrm.getValue());
 						dbdi.setNumber(bdrm.getNumber());

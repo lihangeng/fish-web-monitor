@@ -1,9 +1,9 @@
 package com.yihuacomputer.fish.monitor.service;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,15 +13,29 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.device.IDevice;
+import com.yihuacomputer.fish.api.device.IDeviceListener;
+import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
 import com.yihuacomputer.fish.monitor.entity.box.DeviceBoxInfo;
 
 @Service
 @Transactional
-public class DeviceBoxInfoService implements IDeviceBoxInfoService {
+public class DeviceBoxInfoService implements IDeviceBoxInfoService,IDeviceListener {
 	@Autowired
 	private IGenericDao dao;
+
+	@Autowired
+	private IDeviceService deviceService;
+	
+	/**
+	 * 收集服务初始化
+	 */
+	@PostConstruct
+	public void init() {
+		deviceService.addDeviceListener(this);
+	}
 	
 	@Override
 	public IDeviceBoxInfo make() {
@@ -114,19 +128,46 @@ public class DeviceBoxInfoService implements IDeviceBoxInfoService {
 		}
 		return true;
 	}
-	private HqlQueryStruct getHqlFromFilter(IFilter filter){
-		StringBuffer sb = new StringBuffer();
-		Set<IFilterEntry> set = filter.entrySet();
-		Iterator<IFilterEntry> iterator = set.iterator();
-		HqlQueryStruct hqStruct = new HqlQueryStruct();
-		while(iterator.hasNext()){
-			IFilterEntry entry = iterator.next();
-			sb.append(" and dbi.").append(entry.getKey()).append(" ").append(entry.getOperator().getSign())
-			.append(" ?");
-			hqStruct.addArg(entry.getValue());
-		}
-		hqStruct.setHql(sb.toString());
-		return hqStruct;
+
+	@Override
+	public String getListenerName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void beforeAdd(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterAdd(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeUpdate(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void afterUpdate(IDevice device) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void beforeDelete(IDevice device) {
+		IDeviceBoxInfo deviceBoxInfo = this.findByDeviceId(device.getId());
+		this.delete(deviceBoxInfo);
+	}
+
+	@Override
+	public void afterDelete(IDevice device) {
+		// TODO Auto-generated method stub
 	}
 }
 class HqlQueryStruct{

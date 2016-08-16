@@ -3,7 +3,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 
 	stores : ['cash.boxInfo.CashBoxInfo','machine.DeviceAtmType'
 	          ,'machine.DeviceAwayFlagComboBox',
-				'machine.atmType.DeviceAtmVendor'],
+				'machine.atmType.DeviceAtmVendor','monitor.device.DeviceBox'],
 	models : ['cash.boxInfo.CashBoxInfo'],
 	views : ['cash.boxInfo.View','cash.boxInfo.FilterForm','cash.boxInfo.Grid'],
 
@@ -32,6 +32,9 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 			},
 			'boxInfo_grid  button[action=cashBoxInfoSync]':{
 				click:this.sync
+			},
+			'boxInfo_grid  button[action=showBoxDetail]':{
+				click:this.onBoxDetail
 			}
 		});
 	},
@@ -50,6 +53,22 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 	},
 	onRemove:function(){
 		
+	},
+	onBoxDetail:function(btn){
+		var record = btn.getWidgetRecord();	
+		Eway.model.monitor.device.DeviceBox.load(record.data.ip,{
+			scope:this,
+			success : function(record, operation) {
+//				winEl.unmask();
+				var controller = this.getController('monitor.device.DeviceBox');
+				controller.init();
+				controller.displayWin(record);
+			},
+			failure: function(record, operation){
+				winEl.unmask();
+				Eway.alert(EwayLocale.tip.business.device.getCashInfoFail);
+			}
+		});
 	},
 	sync:function(btn){
 		var record = btn.getWidgetRecord();	

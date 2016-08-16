@@ -18,14 +18,6 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
-			},{
-				text: EwayLocale.button.remove,//'删除',
-				action: 'remove',
-				glyph : 0xf014,
-				code : 'cashBoxInfoDel',
-				listeners:{
-					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-				}
 			}],
 			columns : [ {
 				header : EwayLocale.machine.atmGroup.terminalId,
@@ -92,6 +84,7 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 		        // Its "value" setting is taken from the column's dataIndex
 		        widget: {
 		        	xtype: 'button',
+			        action:'showBoxDetail',
 		        	text:'钞箱明细'
 		        }
 		    }

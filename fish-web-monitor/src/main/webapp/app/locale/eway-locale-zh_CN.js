@@ -389,6 +389,24 @@ Ext.apply(EwayLocale,{
 		choseTask:'请选择一个任务'//EwayLocale.vtype.choseTask
 	},
 
+	 batch:{
+		tradeRes :'交易统计',//EwayLocale.batch.tradeRes
+		jobName:'任务名称',//EwayLocale.batch.jobName
+		startTime:'任务启动时间',//EwayLocale.batch.startTime
+		endTime:'任务结束时间',//EwayLocale.batch.endTime
+		tradeTime:'交易时间',//EwayLocale.batch.tradeTime
+		operaResult:'运行结果',//EwayLocale.batch.operaResult
+		errorMsg:'请正确输入开始和结束时间',//EwayLocale.batch.errorMsg
+		indexID:'编号',//EwayLocale.batch.indexID
+		AgainOpera:'全部重做',//EwayLocale.batch.AgainOpera
+		unOperaCount:'统计未执行的任务',//EwayLocale.batch.unOperaCount
+		check:'统计',//EwayLocale.batch.check
+		again:'重做',//EwayLocale.batch.again
+		doAgain:'是否重做？',//EwayLocale.batch.doAgain
+		doAgainSu:'重做成功！',//EwayLocale.batch.doAgainSu
+		doAgainFa:'重做失败！',//EwayLocale.batch.doAgainFa
+	 },
+	
 	commen:{
 
 		jobNum:'工号',//EwayLocale.commen.jobNum
@@ -505,7 +523,7 @@ Ext.apply(EwayLocale,{
 		normalDev:'1.0.0.0',//EwayLocale.index.normalDev
 		unknownDev:'1.3.2.0',//EwayLocale.index.unknownDev
 		exceptionDev:'2.0.0.0',//EwayLocale.index.exceptionDev
-		amount:'台',//EwayLocale.index.amount
+		amount:'台设备',//EwayLocale.index.amount
 		versionDistributePie:'版本分布图',//EwayLocale.index.versionDistributePie
 		retainCardTrendTitle:'日均吞卡趋势图'//EwayLocale.index.retainCardTrendTitle
 	},

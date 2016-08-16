@@ -9,6 +9,18 @@ public class BoxDetailReportMsg {
 	 * 获取钱箱标识.
 	 */
 	private String id;
+	
+	
+	/**初始化张数*/
+	private int initialCount;
+	
+	/**存入张数*/
+	private int cashInCount;
+
+	/**
+	 *取出张数 
+	 */
+	private int dispenseNumber; 
 	/**
 	 * 获取钱箱币种.
 	 */
@@ -145,6 +157,30 @@ public class BoxDetailReportMsg {
 	 */
 	public void setBoxStatus(String boxStatus) {
 		this.boxStatus = boxStatus;
+	}
+
+	public int getDispenseNumber() {
+		return dispenseNumber;
+	}
+
+	public void setDispenseNumber(int dispenseNumber) {
+		this.dispenseNumber = dispenseNumber;
+	}
+
+	public int getInitialCount() {
+		return initialCount;
+	}
+
+	public void setInitialCount(int initialCount) {
+		this.initialCount = initialCount;
+	}
+
+	public int getCashInCount() {
+		return cashInCount;
+	}
+
+	public void setCashInCount(int cashInCount) {
+		this.cashInCount = cashInCount;
 	}
 
 }

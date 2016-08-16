@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.analysis.service;
+/*package com.yihuacomputer.fish.analysis.service;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -32,3 +32,4 @@ public class DeviceCatalogSummaryWeekTest {
 		}
 	}
 }
+*/
