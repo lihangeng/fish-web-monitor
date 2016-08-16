@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.web.command.format;
+package com.yihuacomputer.fish.api.monitor.box;
 
 /**
  * 钞箱类型定义
@@ -55,10 +55,35 @@ public enum BoxType
         return this.text;
     }
 
-    @Override
-    public String toString()
-    {
-        return super.toString() + ":" + text;
-    }
 
+    /**
+     * 根据字符串得出钞箱类型
+     * @param enumItem
+     * @return
+     */
+    public static BoxType getBoxType(String enumItem){
+    	BoxType[] bts = BoxType.values();
+    	for(BoxType bt:bts){
+    		if(bt.toString().equals(enumItem)){
+    			return bt;
+    		}
+    	}
+    	return OTHERTYPECASSETTE;
+    }
+    
+    /**
+     * 判断当前钞箱是否是有效的钞箱（可进行存取款的）
+     * @param boxType
+     * @return
+     */
+    public static boolean isEffect(BoxType boxType){
+    	if(BoxType.BILLCASSETTE.equals(boxType)||
+    			BoxType.CASHINCASSETTE.equals(boxType)||
+    			BoxType.RECYCLECASSETTE.equals(boxType)){
+    		return true;
+    	}
+    	else{
+    		return false;
+    	}
+    }
 }

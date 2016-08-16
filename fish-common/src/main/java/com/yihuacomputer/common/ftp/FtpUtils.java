@@ -1,4 +1,4 @@
-package com.yihuacomputer.common.util;
+package com.yihuacomputer.common.ftp;
 
 import java.io.File;
 import java.io.FileInputStream;

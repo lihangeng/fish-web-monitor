@@ -59,12 +59,12 @@ public interface IDeviceBoxDetailInfo {
 	 * 钞箱类型
 	 * @return
 	 */
-	public String getBoxType();
+	public BoxType getBoxType();
 	/**
 	 * 钞箱类型
 	 * @param boxType
 	 */
-	public void setBoxType(String boxType);
+	public void setBoxType(BoxType boxType);
 	/**
 	 * 钞箱最大容量
 	 * @return
@@ -85,6 +85,39 @@ public interface IDeviceBoxDetailInfo {
 	 * @param effect
 	 */
 	public void setEffect(boolean effect);
-	
+
+	/**
+	 * 初始化张数
+	 * @return
+	 */
+	public int getInitialCount();
+
+	/**
+	 * 初始化张数
+	 * @return
+	 */
+	public void setInitialCount(int initialCount);
+
+	/**
+	 * 入钞张数
+	 * @return
+	 */
+	public int getCashInCount();
+	/**
+	 * 入钞张数
+	 * @return
+	 */
+	public void setCashInCount(int cashInCount);
+	/**
+	 * 出钞张数
+	 * @return
+	 */
+	public int getDispenseCount();
+
+	/**
+	 * 出钞张数
+	 * @return
+	 */
+	public void setDispenseCount(int dispenseCount);
 	public boolean equals(IDeviceBoxDetailInfo idbdi);
 }

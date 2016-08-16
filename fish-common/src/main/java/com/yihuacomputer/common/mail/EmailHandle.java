@@ -1,4 +1,4 @@
-package com.yihuacomputer.common.util;
+package com.yihuacomputer.common.mail;
 
 import java.util.Iterator;
 import java.util.LinkedList;

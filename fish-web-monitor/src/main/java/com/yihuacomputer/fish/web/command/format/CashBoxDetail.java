@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.web.command.format;
 
+import com.yihuacomputer.fish.api.monitor.box.BoxType;
+
 /**
  * 钞箱详情
  * @author YiHua

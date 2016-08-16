@@ -12,7 +12,18 @@ Ext.define('Eway.lib.ButtonUtils', {
 		
 		button.setVisible(has);
 	},
-	
+	onColumnBeforeRender: function(column){
+		var has = false;
+		
+		Ext.each(Ext.fishButtons,function(code){
+			if(column.code == code){
+				has = true;
+				return;
+			}
+		});
+		column.setVisible(has);
+		column.setHidden(!has);
+	},
 	loadButtons : function(mainController){
 		Ext.Ajax.request({
 			method : 'GET',

@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.system.service;
+/*package com.yihuacomputer.fish.system.service;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -13,11 +13,11 @@ import com.yihuacomputer.domain.test.BindSessionInTest2;
 import com.yihuacomputer.fish.api.ISMSLibMessageService;
 import com.yihuacomputer.fish.system.MySQLTestConfig;
 
-/**
+*//**
  * 账户信息服务单元测试
  * @author xuxigang
  *
- */
+ *//*
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = MySQLTestConfig.class)
@@ -39,3 +39,4 @@ public class SmsServiceTest extends BindSessionInTest2
     
 
 }
+*/

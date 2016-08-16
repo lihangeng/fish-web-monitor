@@ -2,7 +2,6 @@ package com.yihuacomputer.fish.web.startup;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.yihuacomputer.fish.web.mvc.BrowseMvcConfig;
@@ -28,7 +27,8 @@ import com.yihuacomputer.fish.web.mvc.BrowseMvcConfig;
 			"com.yihuacomputer.fish.web.monitor",
 			"com.yihuacomputer.fish.web.report.controller",
 			"com.yihuacomputer.fish.web.version.controller",
-			"com.yihuacomputer.fish.web.parameter.controller"
+			"com.yihuacomputer.fish.web.parameter.controller",
+			"com.yihuacomputer.fish.web.cashbox.controller"
 		},
 basePackageClasses = {})
 //@ImportResource(value={"classpath:/fish-aop.xml"})

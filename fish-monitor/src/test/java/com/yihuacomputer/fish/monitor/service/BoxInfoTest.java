@@ -3,8 +3,8 @@ package com.yihuacomputer.fish.monitor.service;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.runner.RunWith;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
@@ -16,15 +16,16 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.monitor.box.BoxType;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfoService;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
-import com.yihuacomputer.fish.monitor.MySQLTestConfig;
+import com.yihuacomputer.fish.monitor.H2TestConfig;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = MySQLTestConfig.class)
+@ContextConfiguration(classes = H2TestConfig.class)
 public class BoxInfoTest {
 	@Autowired
 	private IDeviceService deviceService;
@@ -54,7 +55,7 @@ public class BoxInfoTest {
 //    		List<IDeviceBoxDetailInfo> detailInfoList = new ArrayList<IDeviceBoxDetailInfo>();
     		for(int i=0;i<2;i++){
     			IDeviceBoxDetailInfo dbdi = deviceBoxDetailInfoService.make();
-    			dbdi.setBoxType("boxType");
+    			dbdi.setBoxType(BoxType.BILLCASSETTE);
     			dbdi.setCashId("case"+i);
     			dbdi.setCurrency("cny");
     			dbdi.setEffect(true);
@@ -76,6 +77,9 @@ public class BoxInfoTest {
     		return ;
     	}
     	IDeviceBoxInfo deviceBoxInfo = deviceBoxInfoService.findByDeviceId(device.getId());
+    	if(null==deviceBoxInfo){
+    		return;
+    	}
     	System.out.println(JsonUtils.toJson(deviceBoxInfo));
     	//钞箱信息不存在全部新建
     	//钞箱信息存在，更改钞箱明细的
@@ -94,7 +98,7 @@ public class BoxInfoTest {
     			IDeviceBoxDetailInfo dbdiHist = dbdi;
     			if(dbdi==null){
     				dbdi = deviceBoxDetailInfoService.make();
-    				dbdi.setBoxType("boxType");
+    				dbdi.setBoxType(BoxType.BILLCASSETTE);
         			dbdi.setCashId("case"+i);
         			dbdi.setCurrency("cny5");
         			dbdi.setEffect(true);
@@ -105,7 +109,7 @@ public class BoxInfoTest {
         			deviceBoxInfo.add(dbdi);
     			}
     			else{
-    				dbdi.setBoxType("boxType");
+    				dbdi.setBoxType(BoxType.BILLCASSETTE);
         			dbdi.setCashId("case"+i);
         			dbdi.setCurrency("cny5");
         			dbdi.setEffect(true);

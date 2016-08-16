@@ -2,6 +2,8 @@ package com.yihuacomputer.fish.monitor.entity.box;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.yihuacomputer.fish.api.monitor.box.BoxType;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
 
@@ -33,12 +36,27 @@ public class DeviceBoxDetailInfo implements IDeviceBoxDetailInfo {
 	
 	@Column(name = "NUMBER")
 	private int number;
-	
+
+    @Enumerated(EnumType.STRING)
 	@Column(name = "BOX_TYPE")
-	private String boxType;
+	private BoxType boxType;
 	
 	@Column(name = "MAXINUM")
 	private int maxiNum;
+	
+	/**初始化张数*/
+	@Column(name = "INIT_COUNT")
+	private int initialCount;
+	
+	/**存入张数*/
+	@Column(name = "CASHIN_COUNT")
+	private int cashInCount;
+
+	/**
+	 *取出张数 
+	 */
+	@Column(name = "DISPENSER_COUNT")
+	private int dispenseCount;
 	
 	@org.hibernate.annotations.Type(type = "com.yihuacomputer.domain.util.BooleanUserType")
 	@Column(name = "EFFECT", columnDefinition = "CHAR", length = 1)
@@ -88,11 +106,11 @@ public class DeviceBoxDetailInfo implements IDeviceBoxDetailInfo {
 		this.number = number;
 	}
 
-	public String getBoxType() {
+	public BoxType getBoxType() {
 		return boxType;
 	}
 
-	public void setBoxType(String boxType) {
+	public void setBoxType(BoxType boxType) {
 		this.boxType = boxType;
 	}
 
@@ -118,6 +136,30 @@ public class DeviceBoxDetailInfo implements IDeviceBoxDetailInfo {
 
 	public void setDeviceBoxInfo(IDeviceBoxInfo deviceBoxInfo) {
 		this.deviceBoxInfo = deviceBoxInfo;
+	}
+
+	public int getInitialCount() {
+		return initialCount;
+	}
+
+	public void setInitialCount(int initialCount) {
+		this.initialCount = initialCount;
+	}
+
+	public int getCashInCount() {
+		return cashInCount;
+	}
+
+	public void setCashInCount(int cashInCount) {
+		this.cashInCount = cashInCount;
+	}
+
+	public int getDispenseCount() {
+		return dispenseCount;
+	}
+
+	public void setDispenseCount(int dispenseCount) {
+		this.dispenseCount = dispenseCount;
 	}
 
 	@Override

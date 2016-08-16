@@ -800,5 +800,37 @@ Ext.grid.plugin.Exporter.override({
 		Ext.destroy(exporter);
 	}
 });
+//增加判断是否有行编辑权限
+Ext.grid.plugin.RowEditing.override({
+	startEdit: function(record, columnHeader) {
+//		增加判断是否有行编辑权限，如果没有直接返回
+		if(!this.grid.showUpdate()){
+			return false;
+		}
+        var me = this,
+            editor = me.getEditor(),
+            context;
+            
+        if (Ext.isEmpty(columnHeader)) {
+            columnHeader = me.grid.getTopLevelVisibleColumnManager().getHeaderAtIndex(0);
+        }
+
+        if (editor.beforeEdit() !== false) {
+            context = me.getEditingContext(record, columnHeader);
+            if (context && me.beforeEdit(context) !== false && me.fireEvent('beforeedit', me, context) !== false && !context.cancel) {
+                me.context = context;
+
+                // If editing one side of a lockable grid, cancel any edit on the other side.
+                if (me.lockingPartner) {
+                    me.lockingPartner.cancelEdit();
+                }
+                editor.startEdit(context.record, context.column, context);
+                me.editing = true;
+                return true;
+            }
+        }
+        return false;
+    }
+});
 
 

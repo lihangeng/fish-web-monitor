@@ -71,4 +71,28 @@ public interface IDeviceBoxInfo {
 	public void setDeviceBoxDetails(List<IDeviceBoxDetailInfo> deviceBoxDetails) ;
 	
 	public void add(IDeviceBoxDetailInfo deviceBoxDetail);
+	
+	/**
+	 * 默认取款值
+	 * @return
+	 */
+	public long getDefaultBill();
+
+	/**
+	 * 默认取款值
+	 * @param defaultBill
+	 */
+	public void setDefaultBill(long defaultBill);
+
+	/**
+	 * 默认存款值
+	 * @return
+	 */
+	public long getDefaultCashIn();
+
+	/**
+	 * 默认存款值
+	 * @param defaultCashIn
+	 */
+	public void setDefaultCashIn(long defaultCashIn);
 }
