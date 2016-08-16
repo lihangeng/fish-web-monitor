@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.yihuacomputer.common.util.FtpUtils;
+import com.yihuacomputer.common.ftp.FtpUtils;
 
 public class FtpUtilsTest {
 
