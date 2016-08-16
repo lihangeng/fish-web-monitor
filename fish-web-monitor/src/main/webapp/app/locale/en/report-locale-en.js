@@ -44,7 +44,7 @@ Ext.apply(EwayLocale,{
 			moduleName : 'Device Module',//EwayLocale.report.faultRateReport.moduleName
 			tradeCount : 'Transaction Quantity',//EwayLocale.report.faultRateReport.tradeCount
 			faultCount : ' Fault Quantity',//EwayLocale.report.faultRateReport.faultCount
-			rate　: 'Fault Rate(Qercentage)',//EwayLocale.report.faultRateReport.rate
+			rate: 'Fault Rate(Qercentage)',//EwayLocale.report.faultRateReport.rate
 			details : 'Details',//EwayLocale.report.faultRateReport.details
 			back : 'Return Back',//EwayLocale.report.faultRateReport.back
 			preVendor : 'The Previous Brand',//EwayLocale.report.faultRateReport.preVendor

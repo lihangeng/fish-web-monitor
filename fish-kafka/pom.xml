@@ -51,6 +51,11 @@
 			<artifactId>spring-test</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 	<scm>
 		<connection>scm:git:ssh://git@10.2.8.222/atmvs.git</connection>
