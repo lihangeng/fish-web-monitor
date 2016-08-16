@@ -48,7 +48,11 @@ public enum ReportTitle {
     /**
      * 异常交易分析报表
      */
-    UncommonTrans("ReportTitle.UncommonTrans");
+    UncommonTrans("ReportTitle.UncommonTrans"),
+    /**
+     * 定时任务统计表
+     */
+    BatchErrorMsg("ReportTitle.BatchError");
 
     public String getText() {
         return text;

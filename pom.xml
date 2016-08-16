@@ -20,6 +20,7 @@
 		<module>fish-kafka</module>
 		<module>fish-analysis</module>
 		<module>fish-web-monitor</module>
+		<module>fish-batch</module>
 	</modules>
 	<scm>
 	 	<connection>scm:git:ssh://git@10.2.8.252/atmvs.git</connection>

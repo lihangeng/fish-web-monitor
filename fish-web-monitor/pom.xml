@@ -25,6 +25,11 @@
 		</dependency>
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
+			<artifactId>fish-batch</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-fault</artifactId>
 			<version>${project.version}</version>
 		</dependency>
