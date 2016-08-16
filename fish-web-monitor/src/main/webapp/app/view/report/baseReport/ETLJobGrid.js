@@ -14,11 +14,15 @@ Ext.define('Eway.view.report.baseReport.ETLJobGrid', {
 				text: EwayLocale.button.search,
 				glyph : 0xf002,
 				action: 'query',
+				code:'ETLJobQuery',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			},{
-
 				text: EwayLocale.batch.check,
 				glyph : 0xf133,
 				action: 'count',
+				code:'ETLJobCount',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
