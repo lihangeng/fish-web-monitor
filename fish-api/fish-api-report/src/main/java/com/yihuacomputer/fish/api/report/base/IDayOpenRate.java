@@ -1,6 +1,5 @@
 package com.yihuacomputer.fish.api.report.base;
 
-import com.yihuacomputer.fish.api.device.AwayFlag;
 
 public interface IDayOpenRate {
 
