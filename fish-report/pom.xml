@@ -16,11 +16,6 @@
 			<artifactId>fish-api-report</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>com.yihuacomputer.fish</groupId> -->
-		<!-- <artifactId>fish-api-system</artifactId> -->
-		<!-- <version>${project.version}</version> -->
-		<!-- </dependency> -->
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-system</artifactId>
@@ -47,11 +42,6 @@
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>com.yihuacomputer.fish</groupId>
-			<artifactId>fish-api-batch</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 		</dependency>
@@ -59,37 +49,25 @@
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
-			<version>5.0.1</version>
+			<version>6.3.0</version>
 			<exclusions>
 				<exclusion>
-					<artifactId>jcommon</artifactId>
-					<groupId>jfree</groupId>
+					<artifactId>bcmail-jdk14</artifactId>
+					<groupId>org.bouncycastle</groupId>
 				</exclusion>
 				<exclusion>
-					<artifactId>jfreechart</artifactId>
-					<groupId>jfree</groupId>
+					<artifactId>bctsp-jdk14</artifactId>
+					<groupId>org.bouncycastle</groupId>
 				</exclusion>
 				<exclusion>
-					<artifactId>itext</artifactId>
-					<groupId>com.lowagie</groupId>
+					<artifactId>bcmail-jdk14</artifactId>
+					<groupId>bouncycastle</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>bcprov-jdk14</artifactId>
+					<groupId>bouncycastle</groupId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.jfree</groupId>
-			<artifactId>jfreechart</artifactId>
-			<version>1.0.14</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>itext</artifactId>
-					<groupId>com.lowagie</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.jfree</groupId>
-			<artifactId>jcommon</artifactId>
-			<version>1.0.17</version>
 		</dependency>
 		<dependency>
 			<groupId>com.itextpdf</groupId>
@@ -102,29 +80,9 @@
 			<version>5.1.1</version>
 		</dependency>
 		<dependency>
-			<artifactId>itext</artifactId>
-			<groupId>com.lowagie</groupId>
-			<version>2.1.7</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>bcmail-jdk14</artifactId>
-					<groupId>bouncycastle</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>bcprov-jdk14</artifactId>
-					<groupId>bouncycastle</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
 			<groupId>com.lowagie</groupId>
 			<artifactId>iTextAsian</artifactId>
 			<version>1.0</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.groovy</groupId>
-			<artifactId>groovy</artifactId>
-			<version>2.0.6</version>
 		</dependency>
 		<!-- test -->
 		<dependency>
@@ -134,11 +92,6 @@
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.batch</groupId>
-			<artifactId>spring-batch-core</artifactId>
-			<version>3.0.7.RELEASE</version>
 		</dependency>
 	</dependencies>
 	<scm>
