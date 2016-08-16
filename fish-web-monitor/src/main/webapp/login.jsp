@@ -26,7 +26,6 @@
 	var xmlHttpReq = null;
 
 	function ajax() {
-
 		if (window.ActiveXObject) {
 			//IE5 以上是以 ActiveXObject 的方式
 			//引入XMLHttpRequest对象的
@@ -37,8 +36,11 @@
 			//实例化一个 XMLHttpRequest 对象
 			xmlHttpReq = new XMLHttpRequest();
 		}
-		var contnet = "username=" + encodeURIComponent(getValue($('username'))) + "&password="
-				+ encodeURIComponent(getValue($('password'))) + "&" + new Date();
+		var contnet = "forceLogin="
+				+ $('forceLogin').checked+ "&username="
+				+ encodeURIComponent(getValue($('username'))) + "&password="
+				+ encodeURIComponent(getValue($('password'))) + "&"
+				+ new Date();
 
 		xmlHttpReq.open("POST", "api/login?" + contnet, true);
 
@@ -94,11 +96,10 @@
 	function divHidden() {
 		show($("updatePasswordDiv"), false);
 	}
-	
+
 	function textFocus() {
 		$('username').focus();
 	}
-	
 </script>
 </head>
 <form name="form1">
@@ -116,39 +117,51 @@
 				<div class="right-content">
 					<div class="content">
 						<div class="text" align="center">
-							<p><spring:message code="login.sign" /></p>
+							<p>
+								<spring:message code="login.sign" />
+							</p>
 							<div class="line"></div>
-							<div id="loginError" class="form-message error" style="display: none"></div>
-							<div style="width:241px;height:35px;border:1px solid #dedede;margin-top:15px;">
-								<label class="laber1" ></label>
-								<input  autocomplete="off"  placeholder="<spring:message code='login.username' />" class ="txt" id="username" type="text"  maxlength=20 size="10" />
+							<div id="loginError" class="form-message error"
+								style="display: none"></div>
+							<div
+								style="width: 241px; height: 35px; border: 1px solid #dedede; margin-top: 15px;">
+								<label class="laber1"></label> <input autocomplete="off"
+									placeholder="<spring:message code='login.username' />"
+									class="txt" id="username" type="text" maxlength=20 size="10" />
 							</div>
-							
-							 <div style="width:241px;height:35px;border:1px solid #dedede;margin-top:25px;">
-								<label class="laber2" ></label>
-								 <input autocomplete="off" placeholder="<spring:message code='login.password' />" class="txt" id="password" type="password" maxlength=20 size="10" />
+
+							<div
+								style="width: 241px; height: 35px; border: 1px solid #dedede; margin-top: 25px;">
+								<label class="laber2"></label> <input autocomplete="off"
+									placeholder="<spring:message code='login.password' />"
+									class="txt" id="password" type="password" maxlength=20
+									size="10" />
 							</div>
-							 
-								 <input style="margin-top: 30px;" class="login" id="loginButton" 
-								type="button" name="submit" value="<spring:message code='login.submit' />" onclick="ajax()">
+							<div style="width: 241px; margin-top: 15px;">
+								<input style="width: 12px;height:12px;" type="checkbox" id='forceLogin' /><spring:message code='login.forceLoginIn'/>
+							</div>
+
+							<input style="margin-top: 18px;" class="login" id="loginButton"
+								type="button" name="submit"
+								value="<spring:message code='login.submit' />" onclick="ajax()">
+
 							<div class="finally"></div>
 
 						</div>
 					</div>
 				</div>
 			</div>
-			</div>
-			    <div   class="bottom" >
+		</div>
+		<div class="bottom">
 
-<table align="center" border="0" cellpadding="0" spacpadding="0">
-<tr >
-	<td ><font style="font-size: 14px; color:#5e5e5f" ><spring:message code='login.footer' /></font>
+			<table align="center" border="0" cellpadding="0" spacpadding="0">
+				<tr>
+					<td><font style="font-size: 14px; color: #5e5e5f"><spring:message
+								code='login.footer' /></font></td>
+				</tr>
+			</table>
 
-</td>
-</tr>
-</table>
-
-</div>
+		</div>
 
 	</body>
 </form>

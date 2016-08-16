@@ -2,7 +2,11 @@ package com.yihuacomputer.fish.web.index.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,8 +29,10 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.exception.AppException;
+import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.common.util.MsgDigestAlgorithm;
 import com.yihuacomputer.domain.util.DBType;
+import com.yihuacomputer.fish.api.mq.IMqProducer;
 import com.yihuacomputer.fish.api.permission.IPermission;
 import com.yihuacomputer.fish.api.permission.IPermissionService;
 import com.yihuacomputer.fish.api.person.IOrganization;
@@ -36,18 +42,23 @@ import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.person.UserState;
 import com.yihuacomputer.fish.api.relation.IRelationService;
 import com.yihuacomputer.fish.api.relation.IUserRoleRelation;
+import com.yihuacomputer.fish.monitor.entity.login.LoginMessage;
 import com.yihuacomputer.fish.web.index.form.LoginBackForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
 @RequestMapping("/login")
-@ClassNameDescrible(describle="userlog.LoginController")
+@ClassNameDescrible(describle = "userlog.LoginController")
 public class LoginController {
 
-	private Logger logger = org.slf4j.LoggerFactory.getLogger(LoginController.class);
+	private Logger logger = org.slf4j.LoggerFactory
+			.getLogger(LoginController.class);
 
 	@Autowired(required = false)
 	private IUserService userService;
+
+	@Autowired(required = false)
+	private IMqProducer mqProducer;
 
 	@Autowired
 	private IRelationService relationService;
@@ -57,34 +68,63 @@ public class LoginController {
 
 	@Autowired
 	private LocalSessionFactoryBean sf;
-	
+
 	@Autowired
 	protected MessageSource messageSource;
 
 	/**
 	 * 登录并验证用户
 	 */
-	@MethodNameDescrible(describle="userlog.LoginController.login",hasArgs=true,argsContext="username")
+	@MethodNameDescrible(describle = "userlog.LoginController.login", hasArgs = true, argsContext = "username")
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody ModelMap login(@RequestParam String username, @RequestParam String password, HttpSession session, HttpServletRequest request, WebRequest webrequest) {
+	public @ResponseBody ModelMap login(@RequestParam String username,
+			@RequestParam String password, HttpSession session,
+			HttpServletRequest request, WebRequest webrequest) {
 		ModelMap result = new ModelMap();
-		
-		 //验证没有注册就进入注册页面。
-		 if (!new DBType(sf.getHibernateProperties()).isMemDB() &&
-		 FishCfg.isFishExpiry()) {
-			 result.addAttribute(FishConstant.SUCCESS, false);
-			 result.addAttribute("isRegister", false);
-			 result.addAttribute("message", "System is not Register");
-			 return result;
-		 }
 
+		// 验证没有注册就进入注册页面。
+		if (!new DBType(sf.getHibernateProperties()).isMemDB()
+				&& FishCfg.isFishExpiry()) {
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute("isRegister", false);
+			result.addAttribute("message", "System is not Register");
+			return result;
+		}
+		Map<String, HttpSession> userSessions = FishConstant.APPLICATION_MAP
+				.get(username);
+		String forceLogin = (String) webrequest.getParameter("forceLogin");
+		logger.error("**********************************************"
+				+ userSessions + " FishConstant.APPLICATION_MAP) "
+				+ FishConstant.APPLICATION_MAP.get(username));
+		if (forceLogin != null && "true".equals(forceLogin)) {
+			if (userSessions != null) {
+				if (mqProducer != null) {
+					Set<String> sessionIdSet = userSessions.keySet();
+					Iterator<String> it = sessionIdSet.iterator();
+					while (it.hasNext()) {
+						LoginMessage loginMessage = new LoginMessage(
+								"LOGIN_OUT", username, it.next());
+						mqProducer.put(JsonUtils.toJson(loginMessage));
+						logger.error("*****************************集群put成功");
+					}
+				}
+			}
+		} else if (userSessions != null) {
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute("message", String.format(
+					"输入的用户名[%s]已经在其他地方登录,请退出后重新登录或者勾选强制登录！", username));
+			// result.addAttribute("message",
+			// messageSource.getMessage("login.forceLogin", new
+			// Object[]{username}, FishCfg.locale));
+			return result;
+		}
 		try {
 			IUser user = userService.login(username, password);
 			IOrganization org = user.getOrganization();
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("id", session.getId());
 			result.addAttribute("userState", user.getState().getId());
-			if(user.getState().equals(UserState.NEW)){
+			if (user.getState().equals(UserState.NEW)) {
 				return result;
 			}
 			// 保存会话信息
@@ -100,10 +140,20 @@ public class LoginController {
 			userSession.setOrgCode(org.getCode());
 			userSession.setOrgType(org.getOrganizationType());
 			if (org.getServiceObject() != null) {
-				userSession.setOrgServiceObjectId(org.getServiceObject().getId());
-				userSession.setOrgServiceObjectName(org.getServiceObject().getName());
+				userSession.setOrgServiceObjectId(org.getServiceObject()
+						.getId());
+				userSession.setOrgServiceObjectName(org.getServiceObject()
+						.getName());
 			}
 			userSession.setMapUrl(getMapUrl());
+			LoginMessage loginMessage = new LoginMessage("LOGIN_IN", username,
+					session.getId());
+			if (mqProducer != null) {
+				mqProducer.put(JsonUtils.toJson(loginMessage));
+			}
+			Map<String, HttpSession> map = new HashMap<String, HttpSession>();
+			map.put(session.getId(), session);
+			FishConstant.APPLICATION_MAP.put(username, map);
 			session.setAttribute(FishWebUtils.USER, userSession);
 		} catch (AppException app) {
 			result.addAttribute(FishConstant.SUCCESS, false);
@@ -111,7 +161,8 @@ public class LoginController {
 		} catch (Exception e) {
 			logger.error(String.format("User login error![%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute("message", messageSource.getMessage("login.loginError", null, FishCfg.locale));
+			result.addAttribute("message", messageSource.getMessage(
+					"login.loginError", null, FishCfg.locale));
 		}
 		result.addAttribute("isRegister", true);
 		return result;
@@ -135,14 +186,17 @@ public class LoginController {
 	 * 验证用户和密码是否正确
 	 */
 	@RequestMapping(value = "/check", method = RequestMethod.POST)
-	public @ResponseBody ModelMap check(@RequestParam String code, @RequestParam String password, HttpSession session, HttpServletRequest request, WebRequest webrequest) {
+	public @ResponseBody ModelMap check(@RequestParam String code,
+			@RequestParam String password, HttpSession session,
+			HttpServletRequest request, WebRequest webrequest) {
 		ModelMap result = new ModelMap();
 		IUser user = userService.get(code);
 		// 验证密码
 		String pwd = MsgDigestAlgorithm.getMD5Str(password);
 		if (!user.getPassword().equals(pwd)) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG,  messageSource.getMessage("login.pwderror", null, FishCfg.locale));//"您输入的密码错误,请重新输入密码."
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource
+					.getMessage("login.pwderror", null, FishCfg.locale));// "您输入的密码错误,请重新输入密码."
 		} else {
 			result.addAttribute(FishConstant.SUCCESS, true);
 		}
@@ -160,7 +214,9 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
-	public @ResponseBody ModelMap updatePassword(@RequestParam String username, @RequestParam String password, @RequestParam String newPassword, HttpSession session, HttpServletRequest request,
+	public @ResponseBody ModelMap updatePassword(@RequestParam String username,
+			@RequestParam String password, @RequestParam String newPassword,
+			HttpSession session, HttpServletRequest request,
 			WebRequest webrequest) {
 		ModelMap result = new ModelMap();
 		IUser user = userService.get(username);
@@ -169,7 +225,8 @@ public class LoginController {
 		String pwd = MsgDigestAlgorithm.getMD5Str(password);
 		if (!user.getPassword().equals(pwd)) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("login.initPwdError", null, FishCfg.locale));
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource
+					.getMessage("login.initPwdError", null, FishCfg.locale));
 		} else {
 			user.setPlainText(newPassword);
 			if (user.getState().equals(UserState.NEW)) {
@@ -182,7 +239,8 @@ public class LoginController {
 			form.setUserId(String.valueOf(userService.get(username).getId()));
 			result.addAttribute("user", form);
 			result.addAttribute(FishConstant.SUCCESS, true);
-			result.addAttribute("message", messageSource.getMessage("login.updateSuccess", null, FishCfg.locale));
+			result.addAttribute("message", messageSource.getMessage(
+					"login.updateSuccess", null, FishCfg.locale));
 			result.addAttribute("sessionId", session.getId());
 		}
 		return result;
@@ -190,22 +248,25 @@ public class LoginController {
 
 	/**
 	 * 登录用户获取菜单权限
+	 * 
 	 * @param node
 	 * @param userId
 	 * @return
 	 */
 	@RequestMapping(value = "/mymenu/{userId}", method = RequestMethod.GET)
-	public @ResponseBody List<TreeMenu> tree(@RequestParam String node, @PathVariable long userId) {
-		List<IPermission> permissions = userRoleRelation.findDirectChildPermissionsByUser(userId, node);
+	public @ResponseBody List<TreeMenu> tree(@RequestParam String node,
+			@PathVariable long userId) {
+		List<IPermission> permissions = userRoleRelation
+				.findDirectChildPermissionsByUser(userId, node);
 		List<TreeMenu> forms = new ArrayList<TreeMenu>();
 		for (IPermission permission : permissions) {
-				TreeMenu menu = new TreeMenu(permission);
-//				menu.setText(messageSource.getMessage("user.login.remark", null, FishCfg.locale));
-				forms.add(menu);
+			TreeMenu menu = new TreeMenu(permission);
+			// menu.setText(messageSource.getMessage("user.login.remark", null,
+			// FishCfg.locale));
+			forms.add(menu);
 		}
 		return forms;
 	}
-	
 
 	@Autowired
 	private IPermissionService service;
@@ -241,16 +302,17 @@ class TreeMenu {
 	private String text;
 	private String iconCls;
 	private boolean leaf = true;
-	
-	public TreeMenu(IPermission permission){
+
+	public TreeMenu(IPermission permission) {
 		this.id = permission.getId();
 		this.code = permission.getCode();
 		this.text = permission.getDescription();
 		this.leaf = permission.isLeaf();
 		this.iconCls = permission.getIconCls();
 	}
-	
-	public TreeMenu(){}
+
+	public TreeMenu() {
+	}
 
 	public String getId() {
 		return id;
@@ -292,5 +354,3 @@ class TreeMenu {
 		this.iconCls = iconCls;
 	}
 }
-
-

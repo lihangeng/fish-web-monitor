@@ -44,7 +44,7 @@ Ext.apply(EwayLocale,{
 			moduleName : '模块',//EwayLocale.report.faultRateReport.moduleName
 			tradeCount : '交易数',//EwayLocale.report.faultRateReport.tradeCount
 			faultCount : '故障数',//EwayLocale.report.faultRateReport.faultCount
-			rate　: '故障率(百分比)',//EwayLocale.report.faultRateReport.rate
+			rate: '故障率(百分比)',//EwayLocale.report.faultRateReport.rate
 			details : '详情',//EwayLocale.report.faultRateReport.details
 			back : '返回',//EwayLocale.report.faultRateReport.back
 			preVendor : '上一个品牌',//EwayLocale.report.faultRateReport.preVendor

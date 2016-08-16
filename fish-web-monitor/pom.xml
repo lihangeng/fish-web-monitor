@@ -34,11 +34,11 @@
 			<version>${project.version}</version>
 		</dependency>
 		<!-- 默认不依赖kafka模块 -->
-		<!-- <dependency>
+		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-kafka</artifactId>
 			<version>${project.version}</version>
-		</dependency> -->
+		</dependency>
 		<!-- cometd config -->
 		<dependency>
 			<groupId>org.cometd.java</groupId>

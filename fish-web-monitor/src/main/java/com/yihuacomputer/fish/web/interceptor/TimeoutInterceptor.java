@@ -7,8 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import com.yihuacomputer.common.FishConstant;
+import com.yihuacomputer.common.jackson.JsonUtils;
+import com.yihuacomputer.fish.api.mq.IMqProducer;
+import com.yihuacomputer.fish.api.person.UserSession;
+import com.yihuacomputer.fish.monitor.entity.login.LoginMessage;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 /**
@@ -20,6 +27,10 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
 public class TimeoutInterceptor extends HandlerInterceptorAdapter {
 	// 用于保存忽略的URL列表
 	private List<String> ignoreUrls = new ArrayList<String>();
+	
+	@Autowired(required = false)
+	private IMqProducer mqProducer;
+
 
 	/**
 	 * 返回false表示用户未登陆或者超时
@@ -31,6 +42,11 @@ public class TimeoutInterceptor extends HandlerInterceptorAdapter {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = httpServletRequest.getSession(false);
+		UserSession userSession=null;
+		if(session!=null){
+			userSession = (UserSession) session.getAttribute("SESSION_USER");
+		}
+
 		// 用户超时或没有登陆时跳转到登陆页面
 		String uri = httpServletRequest.getRequestURI();
 		if (isIgnoreUrl(uri)) {//在忽略列表中
@@ -47,6 +63,18 @@ public class TimeoutInterceptor extends HandlerInterceptorAdapter {
 			httpServletResponse.addHeader("sessionStatus", "timeout");
 		} else {// http超时处理
 			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.jsp");
+		}
+		if(session != null){
+		    session.invalidate();  
+		}
+		ModelMap map = new ModelMap();
+		map.addAttribute(FishConstant.SUCCESS, true);
+		LoginMessage loginMessage = new LoginMessage("TIME_OUT",userSession.getUserName(),session.getId());
+		if(mqProducer!=null){
+			mqProducer.put(JsonUtils.toJson(loginMessage));
+			FishConstant.APPLICATION_MAP.remove(userSession.getUserName());
+		}else{
+			FishConstant.APPLICATION_MAP.remove(userSession.getUserName());
 		}
         return false;
 	}
