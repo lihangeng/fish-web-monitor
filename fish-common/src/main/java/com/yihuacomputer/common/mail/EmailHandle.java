@@ -32,8 +32,8 @@ public class EmailHandle {
 
 	private Multipart mp;// 附件添加的组件
 
-	private List files = new LinkedList();// 存放附件文件
-	
+	private List<FileDataSource> files = new LinkedList<FileDataSource>();// 存放附件文件
+
 	public EmailHandle(String smtp) {
 		sendUserName = "";
 		sendUserPass = "";
@@ -42,8 +42,9 @@ public class EmailHandle {
 	}
 
 	public void setSmtpHost(String hostName) {
-		if (props == null)
+		if (props == null) {
 			props = System.getProperties();
+		}
 		props.put("mail.smtp.host", hostName);
 	}
 
@@ -68,12 +69,14 @@ public class EmailHandle {
 	 * 设置SMTP的身份认证
 	 */
 	public void setNeedAuth(boolean need) {
-		if (props == null)
+		if (props == null) {
 			props = System.getProperties();
-		if (need)
+		}
+		if (need) {
 			props.put("mail.smtp.auth", "true");
-		else
+		} else {
 			props.put("mail.smtp.auth", "false");
+		}
 	}
 
 	/**
@@ -108,7 +111,9 @@ public class EmailHandle {
 	public boolean setBody(String mailBody) {
 		try {
 			BodyPart bp = new MimeBodyPart();
-			bp.setContent("<meta http-equiv=Content-Type content=text/html; charset=UTF-8>" + mailBody, "text/html;charset=UTF-8");
+			bp.setContent(
+					"<meta http-equiv=Content-Type content=text/html; charset=UTF-8>"
+							+ mailBody, "text/html;charset=UTF-8");
 			// 在组件上添加邮件文本
 			mp.addBodyPart(bp);
 		} catch (Exception e) {
@@ -130,7 +135,8 @@ public class EmailHandle {
 			BodyPart bp = new MimeBodyPart();
 			FileDataSource fileds = new FileDataSource(filename);
 			bp.setDataHandler(new DataHandler(fileds));
-			bp.setFileName(MimeUtility.encodeText(fileds.getName(), "utf-8", null)); // 解决附件名称乱码
+			bp.setFileName(MimeUtility.encodeText(fileds.getName(), "utf-8",
+					null)); // 解决附件名称乱码
 			mp.addBodyPart(bp);// 添加附件
 			files.add(fileds);
 		} catch (Exception e) {
@@ -143,7 +149,7 @@ public class EmailHandle {
 	public boolean delFileAffix() {
 		try {
 			FileDataSource fileds = null;
-			for (Iterator it = files.iterator(); it.hasNext();) {
+			for (Iterator<FileDataSource> it = files.iterator(); it.hasNext();) {
 				fileds = (FileDataSource) it.next();
 				if (fileds != null && fileds.getFile() != null) {
 					fileds.getFile().delete();
@@ -178,35 +184,38 @@ public class EmailHandle {
 	 * @return
 	 */
 	public boolean setTo(String to) {
-		if (to == null)
+		if (to == null) {
 			return false;
+		}
 		try {
-			mimeMsg.addRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
+			mimeMsg.addRecipients(Message.RecipientType.TO,
+					InternetAddress.parse(to));
 		} catch (Exception e) {
 			return false;
 		}
 		return true;
 	}
 
-//	/**
-//	 * 设置收件人地址
-//	 * 
-//	 * @param to收件人的地址集
-//	 * @return
-//	 */
-//	public boolean setToMany(List<Recipient> list) {
-//		if (list == null)
-//			return false;
-//		try {
-//			for (Recipient to : list) {
-//				mimeMsg.addRecipients(to.getType(), to.getEmailAddress());
-//			}
-//			// mimeMsg.setRecipients(Message.RecipientType.TO,InternetAddress.parse(to));
-//		} catch (Exception e) {
-//			return false;
-//		}
-//		return true;
-//	}
+	// /**
+	// * 设置收件人地址
+	// *
+	// * @param to收件人的地址集
+	// * @return
+	// */
+	// public boolean setToMany(List<Recipient> list) {
+	// if (list == null)
+	// return false;
+	// try {
+	// for (Recipient to : list) {
+	// mimeMsg.addRecipients(to.getType(), to.getEmailAddress());
+	// }
+	// //
+	// mimeMsg.setRecipients(Message.RecipientType.TO,InternetAddress.parse(to));
+	// } catch (Exception e) {
+	// return false;
+	// }
+	// return true;
+	// }
 
 	/**
 	 * 发送附件
@@ -215,10 +224,12 @@ public class EmailHandle {
 	 * @return
 	 */
 	public boolean setCopyTo(String copyto) {
-		if (copyto == null)
+		if (copyto == null) {
 			return false;
+		}
 		try {
-			mimeMsg.setRecipients(javax.mail.Message.RecipientType.CC, InternetAddress.parse(copyto));
+			mimeMsg.setRecipients(javax.mail.Message.RecipientType.CC,
+					InternetAddress.parse(copyto));
 		} catch (Exception e) {
 			return false;
 		}
@@ -237,10 +248,13 @@ public class EmailHandle {
 		Session mailSession = Session.getInstance(props, null);
 		Transport transport = mailSession.getTransport("smtp");
 		// 连接邮件服务器并进行身份验证
-		transport.connect((String) props.get("mail.smtp.host"), sendUserName, sendUserPass);
+		transport.connect((String) props.get("mail.smtp.host"), sendUserName,
+				sendUserPass);
 		// 发送邮件
-		transport.sendMessage(mimeMsg, mimeMsg.getRecipients(Message.RecipientType.TO));
-//		transport.sendMessage(mimeMsg, mimeMsg.getRecipients(Message.RecipientType.CC));
+		transport.sendMessage(mimeMsg,
+				mimeMsg.getRecipients(Message.RecipientType.TO));
+		// transport.sendMessage(mimeMsg,
+		// mimeMsg.getRecipients(Message.RecipientType.CC));
 
 		System.out.println("发送邮件成功！");
 		transport.close();
