@@ -12,35 +12,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yihuacomputer.common.FishConstant;
-import com.yihuacomputer.common.jackson.JsonUtils;
-import com.yihuacomputer.fish.api.mq.IMqProducer;
 import com.yihuacomputer.fish.api.person.UserSession;
-import com.yihuacomputer.fish.monitor.entity.login.LoginMessage;
+import com.yihuacomputer.fish.api.session.ISessionManage;
 
 @Controller
 @RequestMapping("/logout")
 public class LogoutController {
-	@Autowired(required = false)
-	private IMqProducer mqProducer;
+	@Autowired
+	private ISessionManage sessionManage;
+
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody  ModelMap logout(HttpServletRequest request,HttpServletResponse response) {
+	public @ResponseBody ModelMap logout(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession(false);
 		UserSession userSession = (UserSession) session.getAttribute("SESSION_USER");
-		if(session != null){
-		    session.invalidate();  
-		}
+		sessionManage.logout(userSession.getUserName());
 		ModelMap map = new ModelMap();
 		map.addAttribute(FishConstant.SUCCESS, true);
-		
-		LoginMessage loginMessage = new LoginMessage("LOGIN_OUT",userSession.getUserName(),session.getId());
-		if(mqProducer!=null){
-			mqProducer.put(JsonUtils.toJson(loginMessage));
-//			Map<String,HttpSession> sessionMap = FishConstant.APPLICATION_MAP.get(userSession.getUserName());
-			FishConstant.APPLICATION_MAP.remove(userSession.getUserName());
-		}else{
-			FishConstant.APPLICATION_MAP.remove(userSession.getUserName());
-//			session.getServletContext().removeAttribute(userSession.getUserName());
-		}
 		return map;
 	}
 

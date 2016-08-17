@@ -4,16 +4,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import javax.servlet.http.HttpSession;
+
 import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import com.yihuacomputer.common.FishConstant;
+
 import com.yihuacomputer.common.jackson.JsonUtils;
-import com.yihuacomputer.fish.monitor.entity.login.LoginMessage;
+import com.yihuacomputer.fish.api.session.ISessionManage;
+import com.yihuacomputer.fish.api.session.LoginMessage;
 
 /**
  * kafka消费者的实现
@@ -27,13 +29,14 @@ public class KafkaConsumer implements Runnable {
 	private static final String TRANS = "TRANS";
 	private static final String LOGIN_IN = "LOGIN_IN";
 	private static final String LOGIN_OUT = "LOGIN_OUT";
-	private static final String TIME_OUT = "TIME_OUT";
 	private ConsumerConnector consumer;
 	private KafkaConsumerManager kafkaConsumerManager;
+	private ISessionManage sessionManage;
 
-	public KafkaConsumer(KafkaConsumerManager kafkaConsumerManager) {
+	public KafkaConsumer(KafkaConsumerManager kafkaConsumerManager,ISessionManage sessionManage) {
 		this.kafkaConsumerManager = kafkaConsumerManager;
 		consumer = kafka.consumer.Consumer.createJavaConsumerConnector(createConsumerConfig());
+		this.sessionManage = sessionManage;
 	}
 
 	public KafkaConfig getKafkaConfig() {
@@ -74,35 +77,11 @@ public class KafkaConsumer implements Runnable {
             	kafkaConsumerManager.getMessagePusher().pushTransToWeb(msg);
             }else if(msg.contains(KafkaConsumer.LOGIN_IN)){
             	 LoginMessage loginMessage=JsonUtils.fromJson(msg, LoginMessage.class);
-            	 Map<String,HttpSession> mapSession = FishConstant.APPLICATION_MAP.get(loginMessage.getUsername());
-            	 if(null==mapSession){
-            		 mapSession = new HashMap<String,HttpSession>();
-                	 mapSession.put(loginMessage.getSessionID(), null);
-                	 FishConstant.APPLICATION_MAP.put(loginMessage.getUsername(), mapSession);
-            	 }
+            	 sessionManage.loginByNotice(loginMessage);
             }else if(msg.contains(KafkaConsumer.LOGIN_OUT)){
             	 LoginMessage loginMessage=JsonUtils.fromJson(msg, LoginMessage.class);
-            	 Map<String,HttpSession> mapSession =FishConstant.APPLICATION_MAP.get(loginMessage.getUsername());
-             	 if(mapSession!=null){
-             		 HttpSession session = mapSession.get(loginMessage.getSessionID());
-            		 if(session!=null){
-            			 session.invalidate();
-            		 }
-            	 }	
-            	 FishConstant.APPLICATION_MAP.remove(loginMessage.getUsername());
-            }else if(msg.contains(KafkaConsumer.TIME_OUT)){
-           	 LoginMessage loginMessage=JsonUtils.fromJson(msg, LoginMessage.class);
-           	 Map<String,HttpSession> mapSession =FishConstant.APPLICATION_MAP.get(loginMessage.getUsername());
-            	 if(mapSession!=null){
-            		 HttpSession session = mapSession.get(loginMessage.getSessionID());
-           		 if(session!=null){
-           			 session.invalidate();
-           		 }
-           	 }	
-           	 FishConstant.APPLICATION_MAP.remove(loginMessage.getUsername());
-           }
-            
-            else{
+            	 sessionManage.logoutByNotice(loginMessage);
+            }else{
             	logger.warn("ignore message [%s]",msg);
             }
         } catch (Exception e) {

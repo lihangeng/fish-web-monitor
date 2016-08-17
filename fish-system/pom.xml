@@ -24,6 +24,10 @@
 		  	<groupId>net.sf.ehcache</groupId>
 		  	<artifactId>ehcache</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
 		<!-- test -->
 		<dependency>
 			<groupId>junit</groupId>

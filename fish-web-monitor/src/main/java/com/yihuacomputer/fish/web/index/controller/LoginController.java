@@ -2,11 +2,7 @@ package com.yihuacomputer.fish.web.index.controller;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -29,10 +25,8 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.exception.AppException;
-import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.common.util.MsgDigestAlgorithm;
 import com.yihuacomputer.domain.util.DBType;
-import com.yihuacomputer.fish.api.mq.IMqProducer;
 import com.yihuacomputer.fish.api.permission.IPermission;
 import com.yihuacomputer.fish.api.permission.IPermissionService;
 import com.yihuacomputer.fish.api.person.IOrganization;
@@ -42,7 +36,7 @@ import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.person.UserState;
 import com.yihuacomputer.fish.api.relation.IRelationService;
 import com.yihuacomputer.fish.api.relation.IUserRoleRelation;
-import com.yihuacomputer.fish.monitor.entity.login.LoginMessage;
+import com.yihuacomputer.fish.api.session.ISessionManage;
 import com.yihuacomputer.fish.web.index.form.LoginBackForm;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
@@ -57,9 +51,6 @@ public class LoginController {
 	@Autowired(required = false)
 	private IUserService userService;
 
-	@Autowired(required = false)
-	private IMqProducer mqProducer;
-
 	@Autowired
 	private IRelationService relationService;
 
@@ -71,6 +62,9 @@ public class LoginController {
 
 	@Autowired
 	protected MessageSource messageSource;
+	
+	@Autowired
+	private ISessionManage sessionManage;
 
 	/**
 	 * 登录并验证用户
@@ -90,33 +84,16 @@ public class LoginController {
 			result.addAttribute("message", "System is not Register");
 			return result;
 		}
-		Map<String, HttpSession> userSessions = FishConstant.APPLICATION_MAP
-				.get(username);
-		String forceLogin = (String) webrequest.getParameter("forceLogin");
-		logger.error("**********************************************"
-				+ userSessions + " FishConstant.APPLICATION_MAP) "
-				+ FishConstant.APPLICATION_MAP.get(username));
-		if (forceLogin != null && "true".equals(forceLogin)) {
-			if (userSessions != null) {
-				if (mqProducer != null) {
-					Set<String> sessionIdSet = userSessions.keySet();
-					Iterator<String> it = sessionIdSet.iterator();
-					while (it.hasNext()) {
-						LoginMessage loginMessage = new LoginMessage(
-								"LOGIN_OUT", username, it.next());
-						mqProducer.put(JsonUtils.toJson(loginMessage));
-						logger.error("*****************************集群put成功");
-					}
-				}
+		boolean hasLogin = sessionManage.hasLogin(username);
+		if(hasLogin){
+			String forceLogin = (String) webrequest.getParameter("forceLogin");
+			if (forceLogin != null && "true".equals(forceLogin)) {
+				sessionManage.logout(username);
+			} else {
+				result.addAttribute(FishConstant.SUCCESS, false);
+				result.addAttribute("message", String.format("用户[%s]已经在其他地方登录,请使用其他账号或者勾选强制登录！", username));
+				return result;
 			}
-		} else if (userSessions != null) {
-			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute("message", String.format(
-					"输入的用户名[%s]已经在其他地方登录,请退出后重新登录或者勾选强制登录！", username));
-			// result.addAttribute("message",
-			// messageSource.getMessage("login.forceLogin", new
-			// Object[]{username}, FishCfg.locale));
-			return result;
 		}
 		try {
 			IUser user = userService.login(username, password);
@@ -146,23 +123,16 @@ public class LoginController {
 						.getName());
 			}
 			userSession.setMapUrl(getMapUrl());
-			LoginMessage loginMessage = new LoginMessage("LOGIN_IN", username,
-					session.getId());
-			if (mqProducer != null) {
-				mqProducer.put(JsonUtils.toJson(loginMessage));
-			}
-			Map<String, HttpSession> map = new HashMap<String, HttpSession>();
-			map.put(session.getId(), session);
-			FishConstant.APPLICATION_MAP.put(username, map);
+			sessionManage.login(username, session);
 			session.setAttribute(FishWebUtils.USER, userSession);
 		} catch (AppException app) {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			result.addAttribute("message", app.getMessage());
 		} catch (Exception e) {
+			e.printStackTrace();
 			logger.error(String.format("User login error![%s]", e));
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute("message", messageSource.getMessage(
-					"login.loginError", null, FishCfg.locale));
+			result.addAttribute("message", messageSource.getMessage("login.loginError", null, FishCfg.locale));
 		}
 		result.addAttribute("isRegister", true);
 		return result;

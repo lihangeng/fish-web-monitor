@@ -1,9 +1,5 @@
 package com.yihuacomputer.common;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.servlet.http.HttpSession;
 
 public class FishConstant {
 
@@ -27,8 +23,4 @@ public class FishConstant {
 	 */
 	public static String TOTAL = "total";
 
-	/**
-	 * 模拟全局applicationContext对象
-	 */
-	public static final Map<String,Map<String,HttpSession>> APPLICATION_MAP = new  HashMap<String,Map<String,HttpSession>>();;
 }

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yihuacomputer.fish.api.mq.IMessagePusher;
+import com.yihuacomputer.fish.api.session.ISessionManage;
 
 /**
  * @author xuxiang
@@ -33,11 +34,14 @@ public class KafkaConsumerManager {
 	@Autowired
 	private IMessagePusher messagePusher;
 	private KafkaConsumer kafkaConsumer = null;
+	
+	@Autowired
+	private ISessionManage sessionManage;
 
 	@PostConstruct
 	public void init() {
 		threadPool = Executors.newFixedThreadPool(1);
-		kafkaConsumer = new KafkaConsumer(this);
+		kafkaConsumer = new KafkaConsumer(this,sessionManage);
 		threadPool.submit(kafkaConsumer);
 	}
 

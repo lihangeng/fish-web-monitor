@@ -17,6 +17,7 @@ import com.yihuacomputer.fish.api.relation.IRolePermissionRelation;
 import com.yihuacomputer.fish.api.relation.IUserGroupRelation;
 import com.yihuacomputer.fish.api.relation.IUserPermissionRelation;
 import com.yihuacomputer.fish.api.relation.IUserRoleRelation;
+import com.yihuacomputer.fish.api.session.ISessionManage;
 import com.yihuacomputer.fish.api.system.config.IParamService;
 import com.yihuacomputer.fish.api.system.dbQuartz.IQuartzService;
 import com.yihuacomputer.fish.api.system.im.IAnnouncementService;
@@ -30,9 +31,9 @@ import com.yihuacomputer.fish.permission.service.db.RoleService;
 import com.yihuacomputer.fish.person.interceptor.PersonCoreEntityInjector;
 import com.yihuacomputer.fish.person.service.api.IDomainUserService;
 import com.yihuacomputer.fish.person.service.db.OrganizationService;
-import com.yihuacomputer.fish.person.service.db.SrcbDevicePersonRelation;
 import com.yihuacomputer.fish.person.service.db.PersonJobService;
 import com.yihuacomputer.fish.person.service.db.PersonService;
+import com.yihuacomputer.fish.person.service.db.SrcbDevicePersonRelation;
 import com.yihuacomputer.fish.person.service.db.UserLogService;
 import com.yihuacomputer.fish.person.service.db.UserService;
 import com.yihuacomputer.fish.relation.service.db.RelationService;
@@ -40,6 +41,7 @@ import com.yihuacomputer.fish.relation.service.db.RolePermissionRelation;
 import com.yihuacomputer.fish.relation.service.db.UserGroupRelation;
 import com.yihuacomputer.fish.relation.service.db.UserPermissionRelation;
 import com.yihuacomputer.fish.relation.service.db.UserRoleRelation;
+import com.yihuacomputer.fish.session.SessionManage;
 import com.yihuacomputer.fish.system.service.AnnouncementService;
 import com.yihuacomputer.fish.system.service.JobSynchService;
 import com.yihuacomputer.fish.system.service.MessageService;
@@ -150,6 +152,11 @@ public class SystemModule {
 	@Bean
 	public IQuartzService quartzService() {
 		return new QuartzService();
+	}
+	
+	@Bean
+	public ISessionManage sessionManage() {
+		return new SessionManage();
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.monitor.entity.login;
+package com.yihuacomputer.fish.api.session;
 
 
 public class LoginMessage {

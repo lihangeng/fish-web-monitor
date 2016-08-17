@@ -7,4 +7,10 @@
   </parent>
   <artifactId>fish-api-system</artifactId>
   <name>Fish API for System</name>
+  <dependencies>
+  		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+		</dependency>
+  </dependencies>
 </project>

@@ -12,10 +12,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.yihuacomputer.common.FishConstant;
-import com.yihuacomputer.common.jackson.JsonUtils;
-import com.yihuacomputer.fish.api.mq.IMqProducer;
 import com.yihuacomputer.fish.api.person.UserSession;
-import com.yihuacomputer.fish.monitor.entity.login.LoginMessage;
+import com.yihuacomputer.fish.api.session.ISessionManage;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 /**
@@ -28,9 +26,8 @@ public class TimeoutInterceptor extends HandlerInterceptorAdapter {
 	// 用于保存忽略的URL列表
 	private List<String> ignoreUrls = new ArrayList<String>();
 	
-	@Autowired(required = false)
-	private IMqProducer mqProducer;
-
+	@Autowired
+	private ISessionManage sessionManage;
 
 	/**
 	 * 返回false表示用户未登陆或者超时
@@ -65,17 +62,13 @@ public class TimeoutInterceptor extends HandlerInterceptorAdapter {
 			httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login.jsp");
 		}
 		if(session != null){
-		    session.invalidate();  
+		   //session.invalidate();  
+		   sessionManage.logout(userSession.getUserName());
 		}
+		
 		ModelMap map = new ModelMap();
 		map.addAttribute(FishConstant.SUCCESS, true);
-		LoginMessage loginMessage = new LoginMessage("TIME_OUT",userSession.getUserName(),session.getId());
-		if(mqProducer!=null){
-			mqProducer.put(JsonUtils.toJson(loginMessage));
-			FishConstant.APPLICATION_MAP.remove(userSession.getUserName());
-		}else{
-			FishConstant.APPLICATION_MAP.remove(userSession.getUserName());
-		}
+		
         return false;
 	}
 
@@ -91,6 +84,7 @@ public class TimeoutInterceptor extends HandlerInterceptorAdapter {
 		ignoreUrls.add("/api/system/register");
 		ignoreUrls.add("/api/register/isRegister");
 		ignoreUrls.add("login.jsp");
+		ignoreUrls.add("/api/logout");
 	}
 
 	private boolean isIgnoreUrl(String uri) {
