@@ -90,7 +90,7 @@ public class FtpUtils {
         ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
         String str[] = path.split("/");
         String resultPath = "";
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (String s : str) {
             if (!"".equals(s)) {
             	sb.append("/").append(s);

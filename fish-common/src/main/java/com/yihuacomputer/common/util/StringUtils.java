@@ -40,7 +40,7 @@ public class StringUtils {
 		if(null==srcStr){
 			srcStr="0";
 		}
-    	StringBuffer sb = new StringBuffer();
+    	StringBuilder sb = new StringBuilder();
     	for(int index=0;index<length;index++){
     		sb.append("0");
     	}
@@ -56,7 +56,7 @@ public class StringUtils {
 		if(null==srcStr){
 			srcStr="null";
 		}
-    	StringBuffer sb = new StringBuffer(srcStr);
+    	StringBuilder sb = new StringBuilder(srcStr);
     	for(int index=srcStr.length();index<length;index++){
     		sb.append(" ");
     	}

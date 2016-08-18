@@ -54,7 +54,7 @@ public class IP implements ITypeIP {
 	     long s3 = n2 * 256L * 256L + s2;
 	     long n3 = (ip - s3) / 256L;
 	     long n4 = ip - n3 * 256L - s3;
-	     StringBuffer ipStr = new StringBuffer();
+	     StringBuilder ipStr = new StringBuilder();
 	     ipStr.append(String.valueOf(n1 >= 0L ? n1 : 255L + n1)).append(".");
 	     ipStr.append(n2 >= 0L ? n2 : 255L + n2).append(".");
 	     ipStr.append(n3 >= 0L ? n3 : 255L + n3).append(".");

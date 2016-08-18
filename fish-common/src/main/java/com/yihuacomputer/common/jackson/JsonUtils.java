@@ -143,7 +143,7 @@ public class JsonUtils {
 	 */
 	public static String stringToStringPath(String path, String fileName) {
 		// 拼装文件路径
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
 		result.append(path);
 		if (!(path.endsWith("\\") || path.endsWith("/"))) {
 			result.append("/");

@@ -27,7 +27,7 @@ public class MsgDigestAlgorithm {
 
 		byte[] byteArray = messageDigest.digest();
 
-		StringBuffer md5StrBuff = new StringBuffer();
+		StringBuilder md5StrBuff = new StringBuilder();
 
 		for (int i = 0; i < byteArray.length; i++) {
 			if (Integer.toHexString(0xFF & byteArray[i]).length() == 1) {
