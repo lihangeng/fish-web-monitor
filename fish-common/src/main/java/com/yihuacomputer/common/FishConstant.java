@@ -1,7 +1,13 @@
 package com.yihuacomputer.common;
 
-
+/**
+ * 常用变量
+ * @author xuxiang
+ *
+ */
 public class FishConstant {
+	
+	private FishConstant(){}
 
 	/**
 	 * 数据
