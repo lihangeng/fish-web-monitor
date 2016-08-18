@@ -6,24 +6,33 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
+import com.yihuacomputer.common.http.HttpProxy;
 import com.yihuacomputer.common.util.DateUtils;
-
+/**
+ * JSON格式转换工具类
+ * @author xuxiang
+ *
+ */
 public class JsonUtils {
 	public static final ObjectMapper om = new ObjectMapper();
 
 	public static final Gson gson = new Gson();
+	
+	private static Logger logger = LoggerFactory.getLogger(HttpProxy.class);
 
 	static{
 		om.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
 		om.setDateFormat(new SimpleDateFormat(DateUtils.STANDARD_TIMESTAMP));
 	}
 	public JsonUtils(){
-
 	}
 	/**
 	 * 将post提交的数据流转换为对象
@@ -45,6 +54,7 @@ public class JsonUtils {
 		try {
 			jsonStr = gson.toJson(object);
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			return jsonStr;
 		}
 		return jsonStr;
@@ -99,7 +109,7 @@ public class JsonUtils {
 			om.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
 			return om.readValue(json, classOfT);
 		} catch (Exception e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 			return null;
 		}
 	}
@@ -116,6 +126,7 @@ public class JsonUtils {
 		try {
 			jsonStr = om.writeValueAsString(src);
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			return jsonStr;
 		}
 		return jsonStr;
@@ -156,11 +167,10 @@ public class JsonUtils {
 			JsonNode jsonNode = om.readTree(json);
 			result = jsonNode.get(name).toString();
 		} catch (JsonProcessingException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
-
 		return result;
 	}
 }

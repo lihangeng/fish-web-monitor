@@ -52,10 +52,6 @@ public enum Operator {
 		return sign;
 	}
 
-	public void setSign(String sign) {
-		this.sign = sign;
-	}
-
 	@Override
 	public String toString() {
 		return this.sign;
