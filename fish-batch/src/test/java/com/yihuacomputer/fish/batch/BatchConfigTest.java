@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.batch;
+/*package com.yihuacomputer.fish.batch;
 
 import static org.junit.Assert.assertNotNull;
 
@@ -16,11 +16,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yihuacomputer.domain.test.BindSessionInTest2;
 
-/**
+*//**
  * 账户信息服务单元测试
  * @author xuxigang
  *
- */
+ *//*
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = H2TestConfig.class)
@@ -47,3 +47,4 @@ public class BatchConfigTest extends BindSessionInTest2
     }
 
 }
+*/
