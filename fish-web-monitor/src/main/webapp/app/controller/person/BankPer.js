@@ -455,7 +455,7 @@ Ext.define('Eway.controller.person.BankPer', {
 			var record = sm.getLastSelected();
 			
 			var value=record.get("gender");
-			if(value=="MALE"){
+			if(value=="MALE"||value==0){
 				value=0;
 			}else{
 				value=1;
