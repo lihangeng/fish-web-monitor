@@ -106,7 +106,7 @@ Ext.define('Eway.view.version.AddJob', {
 			        	editable: false,
 			            labelWidth:160,
 		                width : 355,
-			        	canClear : false,
+			        	canClear : true,
 		                padding: '0 0 0 30',
 			            format: 'Y-m-d H:i:s',
 			            minValue: new Date(),
