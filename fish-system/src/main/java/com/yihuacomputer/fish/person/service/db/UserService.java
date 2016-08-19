@@ -77,7 +77,7 @@ public class UserService extends DomainUserService {
      */
     @Override
     public IUser add(IUser user){
-        return dao.save(interface2Entity(user, false));
+        return dao.save(interface2Entity(user));
     }
 
     /**
@@ -129,7 +129,7 @@ public class UserService extends DomainUserService {
      */
     @Override
     public void update(IUser user) {
-         dao.update(interface2Entity(user,true));
+         dao.update(interface2Entity(user));
     }
 
      /**
@@ -158,6 +158,7 @@ public class UserService extends DomainUserService {
     /**
      * 删除账户信息
      */
+    @Override
     public void remove(User user){
         dao.delete(user.getId());
     }
@@ -165,8 +166,9 @@ public class UserService extends DomainUserService {
     /**
      * 格式化账户信息
      */
+    @Override
     public User convert(IUser user){
-        return this.interface2Entity(user, true);
+        return this.interface2Entity(user);
     }
 
     /**
@@ -175,7 +177,7 @@ public class UserService extends DomainUserService {
      * @param load
      * @return
      */
-    private User interface2Entity(IUser user,boolean load){
+    private User interface2Entity(IUser user){
         if(user instanceof User){
             return (User)user;
         }
@@ -227,11 +229,14 @@ public class UserService extends DomainUserService {
             hql.append(" and user.personId = person.id ");
         }
         hql.append(" and person.organization.orgFlag like ? order by user.id desc");
-        IPageResult<IUser> result = (IPageResult<IUser>) this.dao.page(offset, limit,filter, hql.toString(),org.getOrgFlag()  + "%");
-        return result;
+        return (IPageResult<IUser>) this.dao.page(offset, limit,filter, hql.toString(),org.getOrgFlag()  + "%");
     }
 
+    /**
+     * 
+     */
     @Transactional(noRollbackFor = {AppException.class,PasswordErrorException.class})
+    @Override
     public IUser login(String userCode,String plainText){
         User user = null;
         try{
@@ -243,26 +248,29 @@ public class UserService extends DomainUserService {
 
             isValidUser(user,plainText);
             return user;
+        }catch(PasswordErrorException pe){
+        	if(user != null){
+        		 user.setAccessAccount(user.getAccessAccount() + 1);
+                 user.setLoginFailCount(user.getLoginFailCount() + 1);
+                 dao.update(user);
+        	}
+        	throw pe;
         }catch(AppException e){
             //记录失败
             if(user != null){
                  user.setAccessAccount(user.getAccessAccount() + 1);
-                 if(e instanceof PasswordErrorException){
-                     user.setLoginFailCount(user.getLoginFailCount() + 1);
-                 }
                  dao.update(user);
             }
             throw e;
         }
     }
 
+    /**
+     * 
+     * @param user
+     * @param plainText
+     */
     public void isValidUser(User user,String plainText){
-//@since 2.0.0.0 删除此逻辑
-//        //验证锁定
-//        if(user.getState().equals(UserState.LOCK)){
-//            throw new AppException("密码超过60天未修改,用户已被锁定，请联系管理员！");
-//        }
-
         //验证是否被冻结
         Date currentDate = new Date();
         if(user.getFreezeTime() != null){
@@ -287,15 +295,6 @@ public class UserService extends DomainUserService {
                 throw new PasswordErrorException(messageSource.getMessage("login.pwderrorfive", new Object[]{user.getLoginFailCount()+1}, FishCfg.locale));//"连续5次密码错误用户将被冻结5分钟！已输错" + (user.getLoginFailCount() + 1) + "次"
             }
         }
-//@since 2.0.0.0 删除此逻辑
-//        //验证是否被锁定
-//        if(!user.getCode().equals("admin") && user.getAccessTime()!=null
-//                && (currentDate.getTime()-user.getAccessTime().getTime()>1000l*60*60*24*60)){//超过60天未修改密码，锁定用户
-//            user.setState(UserState.LOCK);
-//            dao.update(user);
-//            throw new AppException("密码超过60天未修改,用户已被锁定，请联系管理员！");
-//        }
-
         //正常登陆，清空登陆失败次数
         user.setAccessAccount(user.getAccessAccount() + 1);
         user.setLoginFailCount(0);
@@ -304,8 +303,7 @@ public class UserService extends DomainUserService {
 
     @Override
     public boolean isExist(String personGuid) {
-        User user = null;
-        user = dao.findUniqueByHql("from User user where user.personId = ? ", personGuid);
+        User user = dao.findUniqueByHql("from User user where user.personId = ? ", personGuid);
         if(user==null){
             //存在
             return false;
