@@ -109,7 +109,7 @@ public class VersionNo{
      * @see com.yihuacomputer.fish.api.version.IVersionNo#toString()
      */
     public String toString() {
-        StringBuffer version = new StringBuffer();
+        StringBuilder version = new StringBuilder();
         version.append(this.major);
         if (this.minor != -1) {
             version.append(this.link1).append(this.major);

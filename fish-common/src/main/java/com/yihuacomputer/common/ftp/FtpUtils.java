@@ -90,7 +90,7 @@ public class FtpUtils {
         ftp.setFileType(FTPClient.BINARY_FILE_TYPE);
         String str[] = path.split("/");
         String resultPath = "";
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         for (String s : str) {
             if (!"".equals(s)) {
             	sb.append("/").append(s);
@@ -222,7 +222,6 @@ public class FtpUtils {
             result = true;
         }
         catch (IOException e) {
-//            logger.error(String.format("下载文件时发生IO错误：[%s]", e));
             logger.error(String.format("when download file with IOException：[%s]", e));
         }
         finally {
@@ -283,7 +282,6 @@ public class FtpUtils {
             }
             catch (IOException e) {
                 logger.error(String.format("when close fileOutputStream with IOException：[%s]", e));
-//                logger.error(String.format("关闭文件输出流时发生IO错误：[%s]", e));
             }
             disconnectFtp(ftp);
         }
@@ -323,7 +321,6 @@ public class FtpUtils {
         }
         catch (IOException e) {
             logger.error(String.format("when list subFile with IOException [%s]", e));
-//            logger.error(String.format("列出相对路径下的文件列表时发生IO错误：[%s]", e));
             return null;
         }
         finally {
@@ -363,7 +360,6 @@ public class FtpUtils {
         }
         catch (SocketException e) {
             logger.error(String.format("when login fpt with SocketException ：[%s]", e));
-//            logger.error(String.format("登录ftp时发生socket错误：[%s]", e));
             return null;
         }
         catch (IOException e) {

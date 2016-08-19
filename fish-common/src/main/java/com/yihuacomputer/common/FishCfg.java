@@ -9,6 +9,9 @@ import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.RegisterInfo;
 import com.yihuacomputer.common.util.SystemRegisterUtil;
@@ -21,9 +24,11 @@ import com.yihuacomputer.common.util.SystemRegisterUtil;
  */
 public class FishCfg {
 
+	private static Logger logger = LoggerFactory.getLogger(FishCfg.class);
+	
 	private static Map<String, String> entities = new HashMap<String, String>();
 
-	public static String fileSep = System.getProperty("file.separator");
+	public static final String fileSep = System.getProperty("file.separator");
 
 	public static String hostIp = "127.0.0.1";
 	
@@ -49,7 +54,7 @@ public class FishCfg {
 		try {
 			FishCfg.hostIp=InetAddress.getLocalHost().getHostAddress();
 		} catch (UnknownHostException e) {
-			e.printStackTrace();
+			logger.error(e.getMessage());
 		}
 	}
 
