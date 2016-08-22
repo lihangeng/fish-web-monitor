@@ -5,7 +5,9 @@ import org.springframework.context.annotation.ImportResource;
 
 @Configuration
 //@Import({DomainModule.class})
-@ImportResource(value = "classpath:/com/yihuacomputer/fish/batch/batch_core.xml")
+@ImportResource(locations = {
+		"classpath:/com/yihuacomputer/fish/batch/batch_core.xml",
+		"classpath:/com/yihuacomputer/fish/batch/spring-batch-h2.xml"})
 public class H2TestConfig {
 
 }
