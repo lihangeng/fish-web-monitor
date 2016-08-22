@@ -22,7 +22,7 @@
 	</description>
 
 	<!--自身的配置(数据源的配置)-->
-	<bean id="hiberanteDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="url" value="jdbc:mysql://localhost:3306/atmv"/>
 		<property name="username" value="root"/>
@@ -41,12 +41,12 @@
 	    <property name="targetDataSources">  
 	        <map key-type="java.lang.String">
 	            <!-- 指定lookupKey和与之对应的数据源 -->
-	            <entry key="dataSource" value-ref="hiberanteDataSource"></entry>  
+	            <entry key="dataSource" value-ref="dataSource"></entry>  
 	            <entry key="analysis" value-ref="analysisDataSource"></entry>  
 	        </map>  
 	    </property>  
 	    <!-- 这里可以指定默认的数据源 -->
-	    <property name="defaultTargetDataSource" ref="hiberanteDataSource" />  
+	    <property name="defaultTargetDataSource" ref="dataSource" />  
 	</bean>
 	<!-- SIMPLE缓存配置 -->
 	<import resource="classpath:/com/yihuacomputer/domain/fish-cache-simple.xml"/>
