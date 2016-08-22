@@ -17,14 +17,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
-
-import com.yihuacomputer.fish.system.entity.Person;
-
+/**
+ * 
+ * @author xuxiang
+ *
+ */
 @Configuration
-//@EnableBatchProcessing
 public class BatchConfiguration {
 
-	/*@Autowired
+	@Autowired
     public JobBuilderFactory jobBuilderFactory;
 
     @Autowired
@@ -40,6 +41,10 @@ public class BatchConfiguration {
                 .build();
     }
     
+    /**
+     * 
+     * @return
+     */
     @Bean
     public Step step1() {
         return stepBuilderFactory.get("step1")
@@ -50,6 +55,10 @@ public class BatchConfiguration {
                 .build();
     }
     
+    /**
+     * 
+     * @return
+     */
     @Bean
     public FlatFileItemReader<Person> reader() {
         FlatFileItemReader<Person> reader = new FlatFileItemReader<Person>();
@@ -65,14 +74,25 @@ public class BatchConfiguration {
         return reader;
     }
     
+    /**
+     * 
+     * @return
+     */
     @Bean
     public PersonItemProcessor processor() {
         return new PersonItemProcessor();
     }
     
+    /**
+     * 
+     */
     @Autowired
     public DataSource dataSource;
 
+    /**
+     * 
+     * @return
+     */
     @Bean
     public JdbcBatchItemWriter<Person> writer() {
         JdbcBatchItemWriter<Person> writer = new JdbcBatchItemWriter<Person>();
@@ -81,7 +101,7 @@ public class BatchConfiguration {
         writer.setDataSource(dataSource);
         return writer;
     }
-    */
+    
     
     
     

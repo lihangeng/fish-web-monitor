@@ -21,12 +21,12 @@
 	</description>
 
 	<!--自身的配置(数据源的配置)-->
-	<jdbc:embedded-database id="hiberanteDataSource" type="H2"/>
+	<jdbc:embedded-database id="dataSource" type="H2"/>
 
 	<bean id="sessionFactory"
 		class="com.yihuacomputer.domain.spring.Hibernate4SessionFactoryBeanInJetty">
 		<property name="dataSource">
-			<ref bean="hiberanteDataSource" />
+			<ref bean="dataSource" />
 		</property>
 		<property name="entityInterceptor">
 			<ref bean="hibernateEntityInterceptor"/>

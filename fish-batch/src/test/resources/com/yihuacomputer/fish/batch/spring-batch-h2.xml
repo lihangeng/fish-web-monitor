@@ -24,35 +24,11 @@
 	<!--自身的配置(数据源的配置) -->
 	<jdbc:embedded-database id="dataSource" type="H2"/>
 	
-	<!-- SIMPLE缓存配置 -->
-	<import resource="classpath:/com/yihuacomputer/domain/fish-cache-simple.xml"/>
-	<!-- ehcache缓存配置 
-	<import resource="classpath:/com/yihuacomputer/domain/fish-cache-ehcache.xml"/>-->
-
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource">
-			<ref bean="dataSource" />
-		</property>
-		<property name="entityInterceptor">
-			<ref bean="hibernateEntityInterceptor"/>
-		</property>
-		<property name="hibernateProperties">
-			<props>
-				<prop key="hibernate.dialect">
-					org.hibernate.dialect.H2Dialect
-				</prop>
-				<prop key="hibernate.show_sql">true</prop>
-				<prop key="hibernate.format_sql">true</prop>
-				<prop key="hibernate.hbm2ddl.auto">create</prop>
-			</props>
-		</property>
-		<property name="packagesToScan">
-			<list>
-				<value>com.yihuacomputer.fish.machine.entity</value>
-				<value>com.yihuacomputer.fish.system.entity</value>
-			</list>
-		</property>
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
+
 
 </beans>

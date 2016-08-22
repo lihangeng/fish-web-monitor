@@ -11,13 +11,15 @@
 	<packaging>jar</packaging>
 	<description>SpringBatch批处理</description>
 	
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-api-batch</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.yihuacomputer.fish</groupId>
+			<artifactId>fish-domain</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<dependency>
@@ -29,6 +31,10 @@
 			<artifactId>spring-batch-core</artifactId>
 			<version>3.0.7.RELEASE</version>
 			<exclusions>
+				<exclusion>
+					<artifactId>spring-core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
 				<exclusion>
 					<artifactId>spring-aop</artifactId>
 					<groupId>org.springframework</groupId>
@@ -55,28 +61,6 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 		</dependency>
-		<!-- local -->
-		<dependency>
-			<groupId>com.yihuacomputer.fish</groupId>
-			<artifactId>fish-monitor</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.yihuacomputer.fish</groupId>
-			<artifactId>fish-version</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.yihuacomputer.fish</groupId>
-			<artifactId>fish-fault</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<!-- <dependency>
-			<groupId>com.yihuacomputer.fish</groupId>
-			<artifactId>fish-report</artifactId>
-			<version>${project.version}</version>
-		</dependency> -->
-		
 	</dependencies>
 	<scm>
 		<connection>scm:git:ssh://git@10.2.8.222/atmvs.git</connection>
