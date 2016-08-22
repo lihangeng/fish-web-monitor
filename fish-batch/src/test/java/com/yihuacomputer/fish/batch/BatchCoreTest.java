@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.batch.core.Job;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;
 import org.springframework.batch.core.configuration.annotation.StepBuilderFactory;
 import org.springframework.batch.core.launch.JobLauncher;
@@ -24,7 +25,7 @@ import com.yihuacomputer.domain.test.BindSessionInTest2;
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = H2TestConfig.class)
-public class BatchConfigTest extends BindSessionInTest2
+public class BatchCoreTest extends BindSessionInTest2
 {
     @Autowired
     private JobLauncher jobLauncher;
@@ -44,7 +45,6 @@ public class BatchConfigTest extends BindSessionInTest2
     	assertNotNull(jobRepository);
     	assertNotNull(jobBuilderFactory);
     	assertNotNull(stepBuilderFactory);
-    	
     }
 
 }
