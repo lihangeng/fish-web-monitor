@@ -70,7 +70,7 @@ public class MAC implements ITypeMAC {
 	 
 	public String toString() {
 		String tempString = changeIpFromLongToString(this.longValue);
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
 		for(String each : tempString.split("-")){
 			if(each.length() != 2){
 				each = "0".concat(each);

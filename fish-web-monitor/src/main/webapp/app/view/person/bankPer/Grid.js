@@ -107,9 +107,9 @@ Ext.define('Eway.view.person.bankPer.Grid', {
 				header : EwayLocale.commen.gender,
 				dataIndex : 'gender',
 				renderer: function(value,metadata,record){
-					if(value=="MALE"){
+					if(value=="MALE"||value==0){
 	                	   return EwayLocale.commen.comboxGender.male;
-	                   }else if(value=="FEMALE"){
+	                   }else if(value=="FEMALE"||value==1){
 	                	   return EwayLocale.commen.comboxGender.female;
 	                   }else{
 	                	   return EwayLocale.commen.comboxGender.unknow;

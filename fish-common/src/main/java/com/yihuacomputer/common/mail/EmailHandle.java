@@ -1,6 +1,5 @@
 package com.yihuacomputer.common.mail;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
@@ -18,7 +17,20 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.internet.MimeUtility;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.yihuacomputer.common.http.HttpProxy;
+
+/**
+ * 邮件处理辅助类
+ * 
+ * @author xuxiang
+ *
+ */
 public class EmailHandle {
+
+	private static Logger logger = LoggerFactory.getLogger(HttpProxy.class);
 
 	private MimeMessage mimeMsg; // 邮件对象
 
@@ -53,13 +65,14 @@ public class EmailHandle {
 			// 用props对象来创建并初始化session对象
 			session = Session.getDefaultInstance(props, null);
 		} catch (Exception e) {
-			System.err.println("获取邮件会话对象时发生错误！" + e);
+			logger.error(String.format("获取邮件会话对象时发生错误 [%s]", e.getMessage()));
 			return false;
 		}
 		try {
 			mimeMsg = new MimeMessage(session); // 用session对象来创建并初始化邮件对象
 			mp = new MimeMultipart();// 生成附件组件的实例
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			return false;
 		}
 		return true;
@@ -97,6 +110,7 @@ public class EmailHandle {
 		try {
 			mimeMsg.setSubject(mailSubject);
 		} catch (Exception e) {
+			logger.error(e.getMessage());
 			return false;
 		}
 		return true;
@@ -111,13 +125,11 @@ public class EmailHandle {
 	public boolean setBody(String mailBody) {
 		try {
 			BodyPart bp = new MimeBodyPart();
-			bp.setContent(
-					"<meta http-equiv=Content-Type content=text/html; charset=UTF-8>"
-							+ mailBody, "text/html;charset=UTF-8");
+			bp.setContent("<meta http-equiv=Content-Type content=text/html; charset=UTF-8>" + mailBody, "text/html;charset=UTF-8");
 			// 在组件上添加邮件文本
 			mp.addBodyPart(bp);
 		} catch (Exception e) {
-			System.err.println("设置邮件正文时发生错误！" + e);
+			logger.error(String.format("设置邮件正文时发生错误 [%s]", e.getMessage()));
 			return false;
 		}
 		return true;
@@ -135,27 +147,11 @@ public class EmailHandle {
 			BodyPart bp = new MimeBodyPart();
 			FileDataSource fileds = new FileDataSource(filename);
 			bp.setDataHandler(new DataHandler(fileds));
-			bp.setFileName(MimeUtility.encodeText(fileds.getName(), "utf-8",
-					null)); // 解决附件名称乱码
+			bp.setFileName(MimeUtility.encodeText(fileds.getName(), "utf-8", null)); // 解决附件名称乱码
 			mp.addBodyPart(bp);// 添加附件
 			files.add(fileds);
 		} catch (Exception e) {
-			System.err.println("增加邮件附件：" + filename + "发生错误！" + e);
-			return false;
-		}
-		return true;
-	}
-
-	public boolean delFileAffix() {
-		try {
-			FileDataSource fileds = null;
-			for (Iterator<FileDataSource> it = files.iterator(); it.hasNext();) {
-				fileds = (FileDataSource) it.next();
-				if (fileds != null && fileds.getFile() != null) {
-					fileds.getFile().delete();
-				}
-			}
-		} catch (Exception e) {
+			logger.error(String.format("增加邮件附件 [%s]发生错误[%s]", filename, e.getMessage()));
 			return false;
 		}
 		return true;
@@ -188,34 +184,12 @@ public class EmailHandle {
 			return false;
 		}
 		try {
-			mimeMsg.addRecipients(Message.RecipientType.TO,
-					InternetAddress.parse(to));
+			mimeMsg.addRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
 		} catch (Exception e) {
 			return false;
 		}
 		return true;
 	}
-
-	// /**
-	// * 设置收件人地址
-	// *
-	// * @param to收件人的地址集
-	// * @return
-	// */
-	// public boolean setToMany(List<Recipient> list) {
-	// if (list == null)
-	// return false;
-	// try {
-	// for (Recipient to : list) {
-	// mimeMsg.addRecipients(to.getType(), to.getEmailAddress());
-	// }
-	// //
-	// mimeMsg.setRecipients(Message.RecipientType.TO,InternetAddress.parse(to));
-	// } catch (Exception e) {
-	// return false;
-	// }
-	// return true;
-	// }
 
 	/**
 	 * 发送附件
@@ -228,8 +202,7 @@ public class EmailHandle {
 			return false;
 		}
 		try {
-			mimeMsg.setRecipients(javax.mail.Message.RecipientType.CC,
-					InternetAddress.parse(copyto));
+			mimeMsg.setRecipients(javax.mail.Message.RecipientType.CC, InternetAddress.parse(copyto));
 		} catch (Exception e) {
 			return false;
 		}
@@ -241,24 +214,25 @@ public class EmailHandle {
 	 * 
 	 * @return
 	 */
-	public boolean sendEmail() throws Exception {
-		mimeMsg.setContent(mp);
-		mimeMsg.saveChanges();
-		System.out.println("正在发送邮件....");
-		Session mailSession = Session.getInstance(props, null);
-		Transport transport = mailSession.getTransport("smtp");
-		// 连接邮件服务器并进行身份验证
-		transport.connect((String) props.get("mail.smtp.host"), sendUserName,
-				sendUserPass);
-		// 发送邮件
-		transport.sendMessage(mimeMsg,
-				mimeMsg.getRecipients(Message.RecipientType.TO));
-		// transport.sendMessage(mimeMsg,
-		// mimeMsg.getRecipients(Message.RecipientType.CC));
+	public boolean sendEmail() {
+		try {
+			mimeMsg.setContent(mp);
+			mimeMsg.saveChanges();
+			logger.info("准备发送邮件....");
+			Session mailSession = Session.getInstance(props, null);
+			Transport transport = mailSession.getTransport("smtp");
+			// 连接邮件服务器并进行身份验证
+			transport.connect((String) props.get("mail.smtp.host"), sendUserName, sendUserPass);
+			// 发送邮件
+			transport.sendMessage(mimeMsg, mimeMsg.getRecipients(Message.RecipientType.TO));
 
-		System.out.println("发送邮件成功！");
-		transport.close();
-		return true;
+			logger.info("发送邮件成功.");
+			transport.close();
+			return true;
+		} catch (Exception e) {
+			logger.error(String.format("发送邮件失败 [%s]", e.getMessage()));
+			return false;
+		}
 	}
 
 }

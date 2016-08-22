@@ -11,6 +11,8 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.params.CoreConnectionPNames;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.yihuacomputer.common.exception.ConnectionException;
 import com.yihuacomputer.common.jackson.JsonUtils;
@@ -18,6 +20,8 @@ import com.yihuacomputer.common.jackson.JsonUtils;
 public class HttpProxy {
 	
 	private static int CONNECTION_TIMEOUT = 30000;
+	
+	private static Logger logger = LoggerFactory.getLogger(HttpProxy.class);
 	/**
 	 * 负责向客户端发送信息，并接受客户端的返回
 	 * 
@@ -131,7 +135,7 @@ public class HttpProxy {
 				try {
 					stream.close();
 				} catch (IOException e) {
-					e.printStackTrace();
+					logger.error(e.getMessage());
 				}
 			}
 		}
@@ -176,7 +180,7 @@ public class HttpProxy {
                 try {
                     stream.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                	logger.error(e.getMessage());
                 }
             }
         }
@@ -226,7 +230,7 @@ public class HttpProxy {
                 try {
                     stream.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                	logger.error(e.getMessage());
                 }
             }
         }

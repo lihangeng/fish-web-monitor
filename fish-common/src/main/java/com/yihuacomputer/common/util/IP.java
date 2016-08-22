@@ -1,29 +1,44 @@
-/**
- * 
- */
 package com.yihuacomputer.common.util;
 
 import com.yihuacomputer.common.ITypeIP;
 
-
+/**
+ * IP类实现
+ * @author xuxiang
+ *
+ */
 public class IP implements ITypeIP {
 	private Long longValue;
 	
+	/**
+	 * 默认的构造函数
+	 */
 	public IP(){
 		this(0);
 	}
 	
+	/**
+	 * 给定一个标准化的IP格式的字符串构建一个IP对象
+	 * @param stringValue
+	 */
 	public IP(String stringValue){
 		if(stringValue == null || "".equals(stringValue)) {
 			stringValue = "0.0.0.0";
 		}
 		this.longValue = changeIpFromStringToLong(stringValue);
 	}
-	
+	/**
+	 * 给定一个数字构建一个IP对象
+	 * @param longValue
+	 */
 	public IP(Long longValue){
 		this.longValue = longValue;
 	}
 	
+	/**
+	 * 给定一个数字构建一个IP对象
+	 * @param value
+	 */
 	public IP(long value) {
 		this((Long)value);
 	}
@@ -39,7 +54,12 @@ public class IP implements ITypeIP {
 	     long s3 = n2 * 256L * 256L + s2;
 	     long n3 = (ip - s3) / 256L;
 	     long n4 = ip - n3 * 256L - s3;
-	     return (new StringBuilder(String.valueOf(n1 >= 0L ? n1 : 255L + n1))).append(".").append(n2 >= 0L ? n2 : 255L + n2).append(".").append(n3 >= 0L ? n3 : 255L + n3).append(".").append(n4 >= 0L ? n4 : 255L + n4).toString();
+	     StringBuilder ipStr = new StringBuilder();
+	     ipStr.append(String.valueOf(n1 >= 0L ? n1 : 255L + n1)).append(".");
+	     ipStr.append(n2 >= 0L ? n2 : 255L + n2).append(".");
+	     ipStr.append(n3 >= 0L ? n3 : 255L + n3).append(".");
+	     ipStr.append(n4 >= 0L ? n4 : 255L + n4);
+	     return ipStr.toString();
 	 }
 
 	 /**
@@ -62,6 +82,7 @@ public class IP implements ITypeIP {
 	     return rst;
 	 }
 
+	@Override
 	public String toString() {
 		return changeIpFromLongToString(this.longValue);
 	}

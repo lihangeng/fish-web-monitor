@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.Map;
 
 public class PropertiesFileWriter {
-	private StringBuffer sb = new StringBuffer();
+	private StringBuilder sb = new StringBuilder();
 
 	public static String LINE_SEPARATOR = System.getProperty("line.separator");
 

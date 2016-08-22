@@ -5,6 +5,11 @@ import java.util.List;
 import com.yihuacomputer.common.ITypeIP;
 import com.yihuacomputer.common.util.IPUtils;
 
+/**
+ * 
+ * @author xuxiang
+ *
+ */
 public class IPUtilsTest {
 
 	public static void main(String[] args){

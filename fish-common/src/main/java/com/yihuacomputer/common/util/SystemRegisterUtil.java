@@ -61,7 +61,7 @@ public class SystemRegisterUtil {
 		int endMonth = endCalendar.get(Calendar.MONTH)+1;
 		int endDay = endCalendar.get(Calendar.DAY_OF_MONTH);
 		int index = Double.valueOf(Math.random()*10).intValue();
-		String need = new StringBuffer()
+		String need = new StringBuilder()
 						.append(key)
 						.append(startYear)
 						.append(startMonth <10? ("0"+startMonth) : startMonth)
@@ -72,7 +72,7 @@ public class SystemRegisterUtil {
 						.append(index)
 						.toString();
 		
-		StringBuffer resultSb = new StringBuffer("");
+		StringBuilder resultSb = new StringBuilder("");
 		for(int i = 1 ; i<=need.length();i++){
 			if( i>=5 && i%5 ==0){
 				resultSb.append(need.substring(i-5, i)).append("-");
@@ -115,7 +115,7 @@ public class SystemRegisterUtil {
 			int index = Integer.parseInt(SystemRegisterUtil.chars2Strings(serial.substring(serial.length()-1)));
 			String zuHe = SystemRegisterUtil.getZuHe(index);
 			String[] serials = serial.split("-");
-			String result = new StringBuffer()
+			String result = new StringBuilder()
 							.append(serials[zuHe.indexOf("1")].trim())
 							.append("-")
 							.append(serials[zuHe.indexOf("2")].trim())
@@ -246,7 +246,7 @@ public class SystemRegisterUtil {
 		int keyLength = 12;
 		
 		String[] keys = key.split("\\W");
-		StringBuffer result = new StringBuffer();
+		StringBuilder result = new StringBuilder();
 		for(String v : keys){
 			result.append(v);
 		}
@@ -343,7 +343,7 @@ public class SystemRegisterUtil {
 		}else{
 			return null;
 		}
-		StringBuffer resultSb = new StringBuffer();
+		StringBuilder resultSb = new StringBuilder();
 		String[] se = serial.split("-");
 		for(int i = 0 ; i < se.length;i++){
 			se[i] = SystemRegisterUtil.convertFirstNum2Index(i,Integer.parseInt(a.substring(i, i+1)))+se[i];
@@ -356,7 +356,7 @@ public class SystemRegisterUtil {
 	
 	private static String singleStringConvert(String source){
 		String[] values = source.split("-");
-		String result = new StringBuffer()
+		String result = new StringBuilder()
 							.append(values[0])
 							.append("-")
 							.append(values[1])
@@ -372,7 +372,7 @@ public class SystemRegisterUtil {
 	
 	private static String strings2Chars(String numString){
 		byte[] abyte = numString.getBytes();
-		StringBuffer chars = new StringBuffer() ;
+		StringBuilder chars = new StringBuilder() ;
 		for(int i = 0 ; i < abyte.length;i++){
 			char c = (char)(abyte[i]+20);
 			chars.append(c);
@@ -381,7 +381,7 @@ public class SystemRegisterUtil {
 	}
 	private static String chars2Strings(String ch){
 		byte[] abyte = ch.getBytes();
-		StringBuffer sb = new StringBuffer() ;
+		StringBuilder sb = new StringBuilder() ;
 		for(int i = 0 ; i < abyte.length;i++){
 			char c = (char)(abyte[i]-20);
 			sb.append(c);
@@ -391,7 +391,7 @@ public class SystemRegisterUtil {
 	
 	private static String changePosition(int index,String source){
 		String sort = SystemRegisterUtil.getZuHe(index);
-		StringBuffer sb = new StringBuffer() ;
+		StringBuilder sb = new StringBuilder() ;
 		String[] a = source.split("-");
 		for(int i = 0 ; i < sort.length();i++ ){
 			sb.append("-").append(a[Integer.parseInt(sort.substring(i, i+1))-1]);
@@ -442,7 +442,7 @@ public class SystemRegisterUtil {
 		
 		String sn=System.getProperty("os.version")+System.getProperty("user.name")+System.getProperty("java.version");
 		
-		StringBuffer key = new StringBuffer();
+		StringBuilder key = new StringBuilder();
 		byte[] src =sn.getBytes();
 		for(int idx=0;idx<src.length/2;idx++){
 			key.append(src[idx]);
