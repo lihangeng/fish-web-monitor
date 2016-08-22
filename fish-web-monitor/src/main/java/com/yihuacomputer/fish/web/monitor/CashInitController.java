@@ -17,7 +17,6 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.annotation.ClassNameDescrible;
-import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.monitor.business.ICashInit;
 import com.yihuacomputer.fish.api.monitor.business.ICashInitService;

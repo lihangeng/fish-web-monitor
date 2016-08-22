@@ -8,6 +8,7 @@ import com.yihuacomputer.fish.api.monitor.IMonitorService;
 import com.yihuacomputer.fish.api.monitor.alarm.IProcessService;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfoService;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
+import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInitRuleService;
 import com.yihuacomputer.fish.api.monitor.business.IBlackListCardService;
 import com.yihuacomputer.fish.api.monitor.business.ICashInitService;
 import com.yihuacomputer.fish.api.monitor.business.ICounterFeitMoneyService;
@@ -35,6 +36,7 @@ import com.yihuacomputer.fish.monitor.service.CollectService;
 import com.yihuacomputer.fish.monitor.service.CounterFeitMoneyService;
 import com.yihuacomputer.fish.monitor.service.DeviceBoxDetailInfoService;
 import com.yihuacomputer.fish.monitor.service.DeviceBoxInfoService;
+import com.yihuacomputer.fish.monitor.service.DeviceBoxInitRuleService;
 import com.yihuacomputer.fish.monitor.service.DeviceOfflineCheck;
 import com.yihuacomputer.fish.monitor.service.FilterService;
 import com.yihuacomputer.fish.monitor.service.HardwareService;
@@ -74,7 +76,11 @@ public class MonitorModule {
 	public IMonitorService monitorService() {
 		return new MonitorService();
 	}
-
+	
+	@Bean
+	public IDeviceBoxInitRuleService deviceBoxInitRuleService(){
+		return new DeviceBoxInitRuleService();
+	}
 //	@Bean
 //	public IStateCodeService stateCodeService() {
 //		return new StateCodeService();
