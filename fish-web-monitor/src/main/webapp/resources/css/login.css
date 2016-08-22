@@ -1,9 +1,16 @@
+html,body{
+	margin:0px;
+	padding:0px;
+	margin:0px auto;
+	height:100%;
+	font-family: Microsoft YaHei;
+	background: #086fb8;
+}
 .head{
 
-width:100%;
-background-color:#ffffff;
-padding-top:0px;
-padding-left:20px;
+    width:100%;
+	height:60px; 
+	margin:-10px auto;
 }
 
 .container{
@@ -15,16 +22,19 @@ margin-right: auto;
 }
 .left{
 
-width:647px;
+width:50%;
+
+margin:40px auto;
+
+margin-bottom: 0px;
 
 float:left;
 }
 
 .right{
 
-width:647px;
-
-float:left;
+    float:left;
+	padding:115px 0px 0px 20px;
 
 }
 .right-content{
@@ -33,7 +43,7 @@ width:430px;
 
 
 
-padding-top:50px;
+padding-top:30px;
 padding-left:150px;
 }
 .content{
@@ -42,6 +52,7 @@ width:270px;
 
 border:2px solid #dedede;
 border-top:2px solid #1070ca;
+background: #fff;
 
 padding-top:10px;
 padding-left:30px;
@@ -56,7 +67,8 @@ padding-left:170px;
 }
 .text{
 
-
+color:#086fb8;
+font-size:19px;
 width:230px;
 
 
@@ -83,13 +95,13 @@ line-height:33px;
 .laber1{
 	width:35px;
 	height:35px;
-	background:url("../images/text1.PNG") no-repeat 0% ;
+	background:url("../images/username.png") no-repeat 0% ;
 	float:left;
 }
 .laber2{
 	width:35px;
 	height:35px;
-	background:url("../images/text2.png") no-repeat 0% ;
+	background:url("../images/password.png") no-repeat 0% ;
 	float:left;
 }
 p{
@@ -113,14 +125,16 @@ width:240px;
 }
 .login{
 
-background-color:#1070ca;
-border:none;
-height:37px;
-width:243px;
-color:#ffffff;
-font-size:19px;
-font-family:Fixedsys;
-font-weight:bold;
+    width:100%;
+	background-color:#e69624;
+	border:none;
+	height:42px;
+	color:#ffffff;
+	font-size:21px;
+	text-align: center;
+	line-height: 42px;
+	cursor: pointer;
+	margin-top:20px;
 }
 .form-message.error {
     background: url("../images/serious_warning_16.gif") no-repeat scroll 0.75em 0.75em #FFE7E7;

@@ -106,11 +106,11 @@
 	<body onLoad="textFocus()">
 		<div class="container">
 			<div class="head">
-				<img src="resources/images/logo.png">
+				<img src="resources/images/login1.png">
 			</div>
 			<div class="left">
 				<div class="left-content">
-					<img src="resources/images/left.png">
+					<img src="resources/images/left2.png">
 				</div>
 			</div>
 			<div class="right">
@@ -137,7 +137,7 @@
 									class="txt" id="password" type="password" maxlength=20
 									size="10" />
 							</div>
-							<div style="width: 241px; margin-top: 15px;">
+							<div style="width: 241px; margin-top: 15px;font-size: 15px;">
 								<input style="width: 12px;height:12px;" type="checkbox" id='forceLogin' /><spring:message code='login.forceLoginIn'/>
 							</div>
 
@@ -156,7 +156,7 @@
 
 			<table align="center" border="0" cellpadding="0" spacpadding="0">
 				<tr>
-					<td><font style="font-size: 14px; color: #5e5e5f"><spring:message
+					<td><font style="font-size: 14px; color:#fff;"><spring:message
 								code='login.footer' /></font></td>
 				</tr>
 			</table>
