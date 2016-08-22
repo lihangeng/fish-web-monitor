@@ -4,9 +4,8 @@ Ext.define('Eway.model.cash.boxInfo.CashBoxInfo', {
 	fields: [
 		'id','devType','devTypeName','devCatalogId','devCatalogName','devService',
 		'devServiceName','organization','organizationName','awayFlag',
-		'awayFlagName','ip','terminalId','maxAlarm','minAlarm'
+		'awayFlagName','ip','terminalId','maxAlarm','minAlarm','defaultBill','defaultCashIn'
 	],
-	
 	proxy : {
 		type : 'rest',
 		url : 'api/cashbox',

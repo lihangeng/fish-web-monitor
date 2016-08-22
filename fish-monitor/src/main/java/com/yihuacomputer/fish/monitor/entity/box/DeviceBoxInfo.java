@@ -39,12 +39,18 @@ public class DeviceBoxInfo implements IDeviceBoxInfo {
 	
 	@Column(name = "MIN_ALARM")
 	private long minAlarm;
-	
+
 	@Column(name = "DEFAULT_CASHIN")
 	private long defaultCashIn;
 	
 	@Column(name = "DEFAULT_BILL")
 	private long defaultBill;
+	
+	@Column(name = "CASHIN_VALUE")
+	private long cashInValue;
+	
+	@Column(name = "BILL_VALUE")
+	private long billValue;
 	
 	@org.hibernate.annotations.Type(type = "com.yihuacomputer.domain.util.BooleanUserType")
 	@Column(name = "BOX_CHANGE", columnDefinition = "CHAR", length = 1)
@@ -121,6 +127,22 @@ public class DeviceBoxInfo implements IDeviceBoxInfo {
 
 	public void setDefaultBill(long defaultBill) {
 		this.defaultBill = defaultBill;
+	}
+
+	public long getCashInValue() {
+		return cashInValue;
+	}
+
+	public void setCashInValue(long cashInValue) {
+		this.cashInValue = cashInValue;
+	}
+
+	public long getBillValue() {
+		return billValue;
+	}
+
+	public void setBillValue(long billValue) {
+		this.billValue = billValue;
 	}
 
 }

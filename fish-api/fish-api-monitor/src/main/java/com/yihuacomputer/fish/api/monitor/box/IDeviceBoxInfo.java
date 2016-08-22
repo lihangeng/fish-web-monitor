@@ -73,26 +73,50 @@ public interface IDeviceBoxInfo {
 	public void add(IDeviceBoxDetailInfo deviceBoxDetail);
 	
 	/**
-	 * 默认取款值
+	 * 默认最大取款值
 	 * @return
 	 */
 	public long getDefaultBill();
 
 	/**
-	 * 默认取款值
+	 * 默认最大取款值
 	 * @param defaultBill
 	 */
 	public void setDefaultBill(long defaultBill);
 
 	/**
-	 * 默认存款值
+	 * 默认最大存款值
 	 * @return
 	 */
 	public long getDefaultCashIn();
 
 	/**
-	 * 默认存款值
+	 * 默认最大存款值
 	 * @param defaultCashIn
 	 */
 	public void setDefaultCashIn(long defaultCashIn);
+	
+	/**
+	 * 当前取款箱金额
+	 * @return
+	 */
+	public long getBillValue();
+
+	/**
+	 * 当前取款箱金额
+	 * @param defaultBill
+	 */
+	public void setBillValue(long billValue);
+
+	/**
+	 * 当前存款箱金额
+	 * @return
+	 */
+	public long getCashInValue();
+
+	/**
+	 * 当前存款箱金额
+	 * @param defaultCashIn
+	 */
+	public void setCashInValue(long cashInValue);
 }
