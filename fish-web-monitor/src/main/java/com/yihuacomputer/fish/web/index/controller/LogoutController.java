@@ -24,9 +24,13 @@ public class LogoutController {
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap logout(HttpServletRequest request, HttpServletResponse response) {
 		HttpSession session = request.getSession(false);
+		ModelMap map = new ModelMap();
+		if(session==null){
+			map.addAttribute(FishConstant.SUCCESS, true);
+			return map;
+		}
 		UserSession userSession = (UserSession) session.getAttribute("SESSION_USER");
 		sessionManage.logout(userSession.getUserName());
-		ModelMap map = new ModelMap();
 		map.addAttribute(FishConstant.SUCCESS, true);
 		return map;
 	}
