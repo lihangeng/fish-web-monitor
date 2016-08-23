@@ -55,12 +55,23 @@ public class DateUtils {
 	}
 
 
+	/**
+	 * yyyyMMdd
+	 * @return
+	 */
 	public static String getTodayDate() {
 		return get(new Date(), STANDARD_DATE_SHORT);
 	}
 
 	public static Date getDate(String strDate) {
 		return get(strDate, STANDARD_DATE);
+	}
+	public static Date getDateShort(String strDate) {
+		return get(strDate, STANDARD_DATE_SHORT);
+	}
+	
+	public static String getDateShort(Date date) {
+		return get(date, STANDARD_DATE_SHORT);
 	}
 
 	public static Date getTimestamp(String strDate) {
@@ -171,9 +182,15 @@ public class DateUtils {
 		Calendar date = Calendar.getInstance();
 		date.add(Calendar.MONTH, -1);
 		return new SimpleDateFormat(STANDARD_MONTH_FULL1).format(date.getTime());
-
 	}
-
+	/**
+	 * 获取上一日日期 格式：yyyyMM
+	 *
+	 * @return
+	 */
+	public static String getYM(Date date) {
+		return new SimpleDateFormat(STANDARD_MONTH_FULL1).format(date);
+	}
 
 	/**
 	 * 取到距今天前后几天所属年
@@ -302,4 +319,60 @@ public class DateUtils {
 		int days = cal.getActualMaximum(Calendar.DAY_OF_MONTH) ;
 		return days ;
 	}
+	
+    /**
+    *
+    * @param date
+    * @return 指定日期去年的今天 YYYYMM
+    */
+   public static String getLastYearMonth(Date date){
+   		Calendar lastDate = Calendar.getInstance();
+       lastDate.setTime(date);
+       lastDate.add(Calendar.YEAR, -1);
+       return getDateShort(lastDate.getTime()).substring(0,6);
+   }
+   
+   /**
+    * @param date Date
+    * @return 指定日期上月第一天
+    */
+   public static Date getPreviousMonthFirst(Date date){
+       Calendar lastDate = Calendar.getInstance();
+       lastDate.setTime(date);
+       lastDate.set(Calendar.DATE,1);//设为当前月的1号
+       lastDate.add(Calendar.MONTH,-1);//减一个月，变为下月的1号
+       try {
+    	   return new SimpleDateFormat(STANDARD_DATE_SHORT).parse(new SimpleDateFormat(STANDARD_DATE_SHORT).format(lastDate.getTime()));
+       } catch (ParseException e) {
+    	   throw new AppException("时间转化错误：" + e.getMessage());
+       }
+    }
+   
+   /**
+    * @param date Date
+    * @return 指定日期月第一天
+    */
+   public static Date getMonthFirst(Date date){
+       Calendar lastDate = Calendar.getInstance();
+       lastDate.setTime(date);
+       lastDate.set(Calendar.DATE,1);//设为当前月的1号
+       try {
+    	   return new SimpleDateFormat(STANDARD_DATE_SHORT).parse(new SimpleDateFormat(STANDARD_DATE_SHORT).format(lastDate.getTime()));
+       } catch (ParseException e) {
+    	   throw new AppException("时间转化错误：" + e.getMessage());
+       }
+    }
+   
+   /**
+    * @param date
+    * @return 指定日期上个月的天数
+    */
+   public static int getLastMonthDays(Date date){
+   	Calendar lastDate = Calendar.getInstance();
+       lastDate.setTime(date);
+       lastDate.set(Calendar.DAY_OF_MONTH, 1);
+       lastDate.add(Calendar.DAY_OF_MONTH, -1);
+       return lastDate.get(Calendar.DAY_OF_MONTH);
+   }
+
 }
