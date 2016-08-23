@@ -25,6 +25,7 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
+import com.yihuacomputer.fish.api.person.OrganizationLevel;
 import com.yihuacomputer.fish.api.system.config.IParam;
 import com.yihuacomputer.fish.api.system.config.IParamService;
 import com.yihuacomputer.fish.web.machine.form.ParamForm;
@@ -50,10 +51,13 @@ public class ParamController {
 		ModelMap result = new ModelMap();
 		IPageResult<IParam> pageResult = paramService
 				.page(start, limit, filter);
-		for (Iterator iterator = pageResult.list().iterator(); iterator.hasNext();) {
+		for (Iterator<IParam> iterator = pageResult.list().iterator(); iterator.hasNext();) {
 			IParam param = (IParam) iterator.next();
 			if(param.getParamKey().equals("mail_password")){
 				param.setParamValue("********");
+			}
+			if(param.getParamKey().equals("cashinit_orglevel")){
+				param.setParamValue(getI18N(OrganizationLevel.getById(Integer.parseInt(param.getParamValue())).getText()));
 			}
 		}
 		
@@ -64,6 +68,10 @@ public class ParamController {
 		return result;
 	}
 
+	private String getI18N(String code){
+		return  messageSource.getMessage(code,null,FishCfg.locale);
+	}
+	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@MethodNameDescrible(describle="userlog.paramController.update",hasArgs=false,urlArgs=true)
 	public @ResponseBody
@@ -80,7 +88,7 @@ public class ParamController {
 			result.addAttribute("data", request);
 		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
-			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("param.updateError", null, FishCfg.locale));
+			result.addAttribute(FishConstant.ERROR_MSG, getI18N("param.updateError"));
 		}
 
 		return result;
