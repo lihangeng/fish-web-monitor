@@ -31,16 +31,12 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.device.IDevice;
-import com.yihuacomputer.fish.api.monitor.box.BoxType;
-import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.cashbox.form.DeviceCashBoxInfoForm;
-import com.yihuacomputer.fish.web.command.format.CashBoxDetail;
-import com.yihuacomputer.fish.web.command.format.DeviceBoxMsg;
 
 @Controller
 @RequestMapping("/cashbox")
@@ -215,6 +211,8 @@ public class DeviceCashBoxInfoController {
 			dcbif.setMinAlarm(idbi.getMinAlarm());
 			dcbif.setOrganizationName(device.getOrganization().getName());
 			dcbif.setTerminalId(device.getTerminalId());
+			dcbif.setDefaultCashIn(idbi.getDefaultBill());
+			dcbif.setDefaultBill(idbi.getDefaultCashIn());
 			dcbifList.add(dcbif);
 		}
 		return dcbifList;

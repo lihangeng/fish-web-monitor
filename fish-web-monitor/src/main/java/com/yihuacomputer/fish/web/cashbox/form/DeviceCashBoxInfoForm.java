@@ -61,6 +61,14 @@ public class DeviceCashBoxInfoForm {
 	 */
 	private long maxAlarm;
 	/**
+	 * 取款最大值
+	 */
+	private long defaultBill;
+	/**
+	 * 存款最大值
+	 */
+	private long defaultCashIn;
+	/**
 	 * 下限预警
 	 */
 	private long minAlarm;
@@ -153,5 +161,17 @@ public class DeviceCashBoxInfoForm {
 	}
 	public void setId(long id) {
 		this.id = id;
+	}
+	public long getDefaultBill() {
+		return defaultBill;
+	}
+	public void setDefaultBill(long defaultBill) {
+		this.defaultBill = defaultBill;
+	}
+	public long getDefaultCashIn() {
+		return defaultCashIn;
+	}
+	public void setDefaultCashIn(long defaultCashIn) {
+		this.defaultCashIn = defaultCashIn;
 	}
 }

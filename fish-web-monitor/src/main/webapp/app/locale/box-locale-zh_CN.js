@@ -1,5 +1,19 @@
 Ext.apply(EwayLocale,{
 	boxInfo:{
-		title:'Cash Box Info'
+		title:'钞箱信息'//EwayLocale.boxInfo.title
+	},
+	initRule:{
+		title:'加钞规则管理',//EwayLocale.initRule.title
+		ruleName:'规则名称',//EwayLocale.initRule.ruleName
+		ruleDesc:'规则描述',//EwayLocale.initRule.ruleDesc
+		startUsing:'规则状态',//EwayLocale.initRule.startUsing
+		updateRule:'更改加钞规则',//EwayLocale.initRule.updateRule
+		status:{
+			open:'启用',//EwayLocale.initRule.status.open
+			close:'停用'//EwayLocale.initRule.status.close
+		}
+	},
+	initDevice:{
+		title:'加钞设备管理'
 	}
 });

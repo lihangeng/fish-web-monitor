@@ -30,7 +30,7 @@
 		<property name="location" value="classpath:conf.properties" />
 	</bean>
     
-	<bean id="hiberanteDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
 		<property name="driverClassName" value="${hibernate.driverClassName}"/>
 		<property name="url" value="${hibernate.url}"/>
 		<property name="username" value="${hibernate.username}"/>
@@ -40,7 +40,7 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource">
-			<ref bean="hiberanteDataSource" />
+			<ref bean="dataSource" />
 		</property>
 		<property name="entityInterceptor">
 			<ref bean="hibernateEntityInterceptor"/>

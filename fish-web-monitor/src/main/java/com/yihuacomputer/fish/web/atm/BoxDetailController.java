@@ -56,6 +56,7 @@ public class BoxDetailController {
 		
 		//TODO 清机时候才判断钞箱是否变化?
 		Map<BoxType, Long> boxTypeAmtMap = getBoxCashInfo(msg.getBoxdetailList());
+		Map<BoxType, Long> boxTypeAmtValueMap = getBoxCashValueInfo(msg.getBoxdetailList());
 		try {
 			IDevice device = deviceService.get(msg.getTermianlId());
 			if (device == null) {
@@ -84,8 +85,10 @@ public class BoxDetailController {
 					dbdi.setDeviceBoxInfo(deviceBoxInfo);
 					deviceBoxInfo.add(dbdi);
 				}
-				deviceBoxInfo.setDefaultBill(boxTypeAmtMap.get(BoxType.BILLCASSETTE));
-				deviceBoxInfo.setDefaultCashIn(boxTypeAmtMap.get(BoxType.CASHINCASSETTE));
+				deviceBoxInfo.setDefaultBill(boxTypeAmtMap.get(BoxType.BILLCASSETTE)==null?0:boxTypeAmtMap.get(BoxType.BILLCASSETTE));
+				deviceBoxInfo.setDefaultCashIn(boxTypeAmtMap.get(BoxType.CASHINCASSETTE)==null?0:boxTypeAmtMap.get(BoxType.CASHINCASSETTE));
+				deviceBoxInfo.setBillValue(boxTypeAmtValueMap.get(BoxType.BILLCASSETTE)==null?0:boxTypeAmtValueMap.get(BoxType.BILLCASSETTE));
+				deviceBoxInfo.setCashInValue(boxTypeAmtValueMap.get(BoxType.CASHINCASSETTE)==null?0:boxTypeAmtValueMap.get(BoxType.CASHINCASSETTE));
 				deviceBoxInfoService.save(deviceBoxInfo);
 			}
 			// 钞箱信息存在，更改钞箱明细的
@@ -135,13 +138,17 @@ public class BoxDetailController {
 						}
 					}
 					if(deviceBoxInfo.getDefaultBill()!=boxTypeAmtMap.get(BoxType.BILLCASSETTE)){
-						deviceBoxInfo.setDefaultBill(boxTypeAmtMap.get(BoxType.BILLCASSETTE));
+						deviceBoxInfo.setDefaultBill(boxTypeAmtMap.get(BoxType.BILLCASSETTE)==null?0:boxTypeAmtMap.get(BoxType.BILLCASSETTE));
 						deviceBoxInfo.setBoxChange(true);
 					}
 					if(deviceBoxInfo.getDefaultCashIn()!=boxTypeAmtMap.get(BoxType.CASHINCASSETTE)){
-						deviceBoxInfo.setDefaultBill(boxTypeAmtMap.get(BoxType.CASHINCASSETTE));
+						deviceBoxInfo.setDefaultCashIn(boxTypeAmtMap.get(BoxType.CASHINCASSETTE)==null?0:boxTypeAmtMap.get(BoxType.CASHINCASSETTE));
 						deviceBoxInfo.setBoxChange(true);
 					}
+					deviceBoxInfo.setBillValue(boxTypeAmtValueMap.get(BoxType.BILLCASSETTE)==null?0:boxTypeAmtValueMap.get(BoxType.BILLCASSETTE));
+					deviceBoxInfo.setCashInValue(boxTypeAmtValueMap.get(BoxType.CASHINCASSETTE)==null?0:boxTypeAmtValueMap.get(BoxType.CASHINCASSETTE));
+					deviceBoxInfo.setBillValue(boxTypeAmtValueMap.get(BoxType.BILLCASSETTE));
+					deviceBoxInfo.setCashInValue(boxTypeAmtValueMap.get(BoxType.CASHINCASSETTE));
 					deviceBoxInfoService.update(deviceBoxInfo);
 				}
 			}
@@ -153,6 +160,30 @@ public class BoxDetailController {
 	}
 
 	private Map<BoxType, Long> getBoxCashInfo(List<BoxDetailReportMsg> detailList) {
+
+		Map<BoxType, Long> boxTypeAmtMap = new HashMap<BoxType, Long>();
+		for (BoxDetailReportMsg bdrm : detailList) {
+			BoxType bt = BoxType.getBoxType(bdrm.getBoxType());
+			long boxAmt = boxTypeAmtMap.get(bt)==null?0l:boxTypeAmtMap.get(bt);
+			if (bt.equals(BoxType.BILLCASSETTE)) {
+				boxAmt += bdrm.getValue() * bdrm.getMaximum();
+				boxTypeAmtMap.put(bt, boxAmt);
+			} else if (bt.equals(BoxType.CASHINCASSETTE)) {
+				boxAmt += bdrm.getValue() * bdrm.getMaximum();
+				boxTypeAmtMap.put(bt, boxAmt);
+			} else if (bt.equals(BoxType.RECYCLECASSETTE)) {
+				long boxAmtB = boxTypeAmtMap.get(BoxType.BILLCASSETTE)==null?0:boxTypeAmtMap.get(BoxType.BILLCASSETTE);
+				boxAmtB += bdrm.getValue() * bdrm.getMaximum();
+				boxTypeAmtMap.put(BoxType.BILLCASSETTE, boxAmtB);
+				long boxAmtC = boxTypeAmtMap.get(BoxType.CASHINCASSETTE)==null?0:boxTypeAmtMap.get(BoxType.CASHINCASSETTE);
+				boxAmtC += bdrm.getValue() * bdrm.getMaximum();
+				boxTypeAmtMap.put(BoxType.CASHINCASSETTE, boxAmtC);
+			}
+		}
+		return boxTypeAmtMap;
+	}
+	
+	private Map<BoxType, Long> getBoxCashValueInfo(List<BoxDetailReportMsg> detailList) {
 
 		Map<BoxType, Long> boxTypeAmtMap = new HashMap<BoxType, Long>();
 		for (BoxDetailReportMsg bdrm : detailList) {

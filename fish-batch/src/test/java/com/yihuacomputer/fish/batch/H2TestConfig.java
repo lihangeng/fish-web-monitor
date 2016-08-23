@@ -1,14 +1,12 @@
 package com.yihuacomputer.fish.batch;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
-import com.yihuacomputer.domain.DomainModule;
-
 @Configuration
-@Import({DomainModule.class})
-@ImportResource(value = "classpath:/com/yihuacomputer/fish/batch/batch-core.xml")
-public class H2TestConfig {
+@ImportResource(locations = {
+		"classpath:/com/yihuacomputer/fish/batch/batch_core.xml",
+		"classpath:/com/yihuacomputer/fish/batch/spring-batch-h2.xml"})
+public class H2TestConfig {	
 
 }

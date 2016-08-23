@@ -3,8 +3,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/batch
 		http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
 		http://www.springframework.org/schema/beans 
-		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
-	">
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
 	<bean id="jobRepository"
 		class="org.springframework.batch.core.repository.support.JobRepositoryFactoryBean">
@@ -16,23 +15,13 @@
 		<property name="jobRepository" ref="jobRepository" />
 	</bean>
 	
-	<bean id="jobBuilderFactory" class="org.springframework.batch.core.repository.JobRepository">
-		<property name="jobRepository" ref="jobRepository" />
+	<bean id="jobBuilderFactory" class="org.springframework.batch.core.configuration.annotation.JobBuilderFactory">
+		<constructor-arg ref="jobRepository"/>
 	</bean>
 	
-	<bean id="stepBuilderFactory"
-		class="org.springframework.batch.core.configuration.annotation.StepBuilderFactory">
-		<property name="jobRepository" ref="jobRepository" />
-		<property name="transactionManager" ref="transactionManager" />
-	</bean>
-	
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url"
-			value="jdbc:mysql://localhost:3306/atmv?characterEncoding=utf8" />
-		<property name="username" value="root" />
-		<property name="password" value="root" />
+	<bean id="stepBuilderFactory" class="org.springframework.batch.core.configuration.annotation.StepBuilderFactory">
+		<constructor-arg ref="jobRepository"/>
+		<constructor-arg ref="transactionManager"/>
 	</bean>
 
 </beans>
