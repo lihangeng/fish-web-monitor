@@ -21,8 +21,17 @@
 		fish-machine测试过程中，h2版本的配置
 	</description>
 
-	<!--自身的配置(数据源的配置) -->
-	<jdbc:embedded-database id="dataSource" type="H2"/>
+	<!--自身的配置(数据源的配置)-->
+	<jdbc:embedded-database id="dataSource" type="H2"/> 
+	
+	<!-- <bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/atmv?characterEncoding=utf8" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean> -->
 	
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
