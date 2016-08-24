@@ -8,8 +8,6 @@
 	
 	<bean id="clearFileService" class="com.yihuacomputer.fish.web.util.ClearFileService"/>
 	
-	<bean id="FishServletContext" class="com.yihuacomputer.fish.web.util.FishServletContext"/>
-	
 	<bean id="updateDeviceInfoJob" class="com.yihuacomputer.fish.machine.service.DeviceInfoUpdateTask"/>
 	
 	<bean id="updateQuittingDevInfoJob" class="com.yihuacomputer.fish.monitor.service.QuittingDevInfoUpdateTask"/>

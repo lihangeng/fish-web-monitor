@@ -1,37 +1,32 @@
-package com.yihuacomputer.fish.machine.service;
+package com.yihuacomputer.fish.web.quartz;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.quartz.JobExecutionContext;
+import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.system.batch.AbstractYihuaJob;
 
 /**
- * 
+ * 定时将当天未生效的设备信息更新到信息表中
  * @author xuxiang
- *
+ * @since 2.1.1.1
  */
-@Service("devInfoUpdateJob")
-@Transactional
-public class DeviceInfoUpdateTask {
-	private Logger logger = LoggerFactory.getLogger(DeviceInfoUpdateTask.class);
+public class DeviceInfoUpdateJob extends AbstractYihuaJob{
+	
+	private Logger logger = LoggerFactory.getLogger(DeviceInfoUpdateJob.class);
 
-	@Autowired
-	private IDeviceService deviceService;
-
-	/**
-	 * 
-	 */
-	public void deviceInfoUpdate() {
+	@Override
+	protected void executeYihuaJob(JobExecutionContext context) throws JobExecutionException {
+		IDeviceService deviceService = super.getApplicationContext().getBean(IDeviceService.class);
 		try {
 			StringBuilder hql = new StringBuilder();
 			List<Object> valueObj = new ArrayList<Object>();
@@ -47,8 +42,6 @@ public class DeviceInfoUpdateTask {
 		} catch (Exception e) {
 			logger.error(String.format("DeviceInfo update thread error![%s]", e));
 		}
-
 	}
-
 
 }

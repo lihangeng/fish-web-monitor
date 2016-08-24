@@ -41,7 +41,7 @@ import com.yihuacomputer.fish.web.mock.NotifyContentService;
 		BatchModule.class,
 		ReportEngineModule.class
 		})
-@ImportResource(value = {"classpath:/fish.xml","classpath:/spring-quartz.xml"})
+@ImportResource(value = {"classpath:/fish.xml"})
 public class FishWebMonitorModuleConfig {
 
 	@Bean

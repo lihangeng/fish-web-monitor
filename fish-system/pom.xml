@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>com.yihuacomputer.fish</groupId>
@@ -20,9 +21,40 @@
 			<artifactId>fish-domain</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-			<dependency>
-		  	<groupId>net.sf.ehcache</groupId>
-		  	<artifactId>ehcache</artifactId>
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.batch</groupId>
+			<artifactId>spring-batch-core</artifactId>
+			<version>3.0.7.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>spring-core</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-aop</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-beans</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-context</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>spring-tx</artifactId>
+					<groupId>org.springframework</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -46,9 +78,9 @@
 		</dependency>
 	</dependencies>
 	<scm>
-	 	<connection>scm:git:ssh://git@10.2.8.222/atmvs.git</connection>
-        <developerConnection>scm:git:ssh://git@10.2.8.222/atmvs.git</developerConnection>
-        <url>http://10.2.8.222/gitweb/?p=atmvs.git</url>
-        <tag>HEAD</tag>
+		<connection>scm:git:ssh://git@10.2.8.222/atmvs.git</connection>
+		<developerConnection>scm:git:ssh://git@10.2.8.222/atmvs.git</developerConnection>
+		<url>http://10.2.8.222/gitweb/?p=atmvs.git</url>
+		<tag>HEAD</tag>
 	</scm>
 </project>
