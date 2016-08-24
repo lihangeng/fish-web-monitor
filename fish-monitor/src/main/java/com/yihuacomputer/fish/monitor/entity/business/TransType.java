@@ -34,6 +34,9 @@ public class TransType implements ITransType{
     @Column(name = "TRANS_SEQ")
     private int transSeq;
 
+    @Column(name = "IN_OUT_FLAG")
+    private int inOutFlag;
+
 	public long getId() {
 		return id;
 	}
@@ -64,6 +67,14 @@ public class TransType implements ITransType{
 
 	public void setCodeDesc(String codeDesc) {
 		this.codeDesc = codeDesc;
+	}
+
+	public int getInOutFlag() {
+		return inOutFlag;
+	}
+
+	public void setInOutFlag(int inOutFlag) {
+		this.inOutFlag = inOutFlag;
 	}
 	
 	

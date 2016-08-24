@@ -15,4 +15,20 @@ public interface ITransType{
 	public int getTransSeq();
 
 	public void setTransSeq(int transSeq);
+	
+	/**
+	 * @return 
+	 * 0:不涉及现金交易
+	 * 1:存款/钞箱入钞
+	 * 2.取款/钞箱出钞
+	 */
+	public int getInOutFlag();
+
+	/**
+	 * @param inOutFlag 
+	 * 0:不涉及现金交易
+	 * 1:存款/钞箱入钞
+	 * 2.取款/钞箱出钞
+	 */
+	public void setInOutFlag(int inOutFlag);
 }

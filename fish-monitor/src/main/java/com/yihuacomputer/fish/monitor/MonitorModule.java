@@ -27,9 +27,13 @@ import com.yihuacomputer.fish.api.monitor.filter.IFilterService;
 import com.yihuacomputer.fish.api.monitor.hardware.IHardwareService;
 import com.yihuacomputer.fish.api.monitor.software.IRuntimeParamService;
 import com.yihuacomputer.fish.api.monitor.software.ISoftwareService;
+import com.yihuacomputer.fish.api.monitor.volume.IDayTradingVolumeService;
+import com.yihuacomputer.fish.api.monitor.volume.IMonthDailyTradingVolumeService;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsChartService;
 //import com.yihuacomputer.fish.api.monitor.xfs.IStateCodeService;
 import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
+import com.yihuacomputer.fish.monitor.entity.volume.DayTradingVolumeService;
+import com.yihuacomputer.fish.monitor.entity.volume.MonthDailyTradingVolumeService;
 import com.yihuacomputer.fish.monitor.service.BlackListCardService;
 import com.yihuacomputer.fish.monitor.service.CashInitService;
 import com.yihuacomputer.fish.monitor.service.CollectService;
@@ -199,5 +203,15 @@ public class MonitorModule {
 	@Bean
 	public IDeviceBoxInfoService deviceBoxInfoService(){
 		return new DeviceBoxInfoService();
+	}
+	
+	@Bean
+	public IMonthDailyTradingVolumeService monthDailyTradingVolumeService(){
+		return new MonthDailyTradingVolumeService();
+	}
+	
+	@Bean
+	public IDayTradingVolumeService dayTradingVolumeService(){
+		return new DayTradingVolumeService();
 	}
 }
