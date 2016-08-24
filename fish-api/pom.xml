@@ -18,7 +18,6 @@
 		<module>fish-api-fault</module>		
 		<module>fish-api-report</module>
 		<module>fish-api-analysis</module>
-		<module>fish-api-batch</module>
 	</modules>
 	<dependencies>
 		<dependency>
