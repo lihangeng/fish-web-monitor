@@ -16,9 +16,9 @@
             	<ref bean="deleteTime" />
             	<ref bean="updateDeviceInfoTaskTime"/>
                 <ref bean="updateQuittingDevInfoTaskTime"/>
-              	<!--<ref bean="backupTime" />
-                <ref bean="offlineTime" />
-                <ref bean="dayDeportTime" />
+              	<ref bean="offlineTime" />
+                <ref bean="backupTime" />
+                <!--<ref bean="dayDeportTime" />
                 <ref bean="monthReportTime" />
                 <ref bean="yearReportTime" />
                  -->
@@ -26,8 +26,8 @@
         </property>
     </bean> 
     
-  	<import resource="classpath:/com/yihuacomputer/fish/monitor/monitor-quartz.xml"/>
-	<import resource="classpath:/com/yihuacomputer/fish/atmlog/atmlog-quartz.xml"/>
+  	<import resource="classpath:/com/yihuacomputer/fish/monitor/monitor-quartz-batch.xml"/>
+	<import resource="classpath:/com/yihuacomputer/fish/atmlog/atmlog-quartz-batch.xml"/>
 	<import resource="classpath:/com/yihuacomputer/fish/report/report-quartz.xml"/>
 	<import resource="classpath:/quartz/deldoc-quartz-batch.xml"/>
 	

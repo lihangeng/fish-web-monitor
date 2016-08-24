@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <bean id="offlineTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="description" value="定时检查设备是否离线"/>
+		<property name="jobDetail" ref="offlinetaskJobDetail"/>
+		<property name="cronExpression" value="${offlineTime}"/>
+	</bean>
+	<bean id="offlinetaskJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.yihuacomputer.fish.monitor.service.DeviceOfflineCheckJob" />
+		<property name="durability" value="true" />
+	</bean>
+	
+</beans>
