@@ -53,5 +53,7 @@
 			</list>
 		</property>
 	</bean>
-
+	<import resource="classpath:/com/yihuacomputer/fish/monitor/spring-monitor-scan-hibernate.xml" />
+	<import resource="classpath:/com/yihuacomputer/fish/machine/spring-machine-scan-hibernate.xml" />
+	<import resource="classpath:/com/yihuacomputer/fish/person/spring-person-core-scan-hibernate.xml" />
 </beans>

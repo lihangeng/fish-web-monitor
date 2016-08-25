@@ -33,7 +33,7 @@ public class EveryMonthTransExcuter implements IReportDataETL{
 	 * @throws Exception
 	 */
 	public void reportETL(String date){
-		String yestoday = DateUtils.getTodayDates();
+		String yestoday = DateUtils.getLastMonthShortDates();
 		transactionMonthsService.extractDate(yestoday);
 		iMonthService.extractDate(yestoday);
 	}

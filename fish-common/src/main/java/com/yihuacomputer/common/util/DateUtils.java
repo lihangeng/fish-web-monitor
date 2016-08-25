@@ -173,18 +173,18 @@ public class DateUtils {
 	}
 
 	/**
-	 * 获取上一日日期 格式：yyyyMM
+	 * 获取上一月日期 格式：yyyyMM
 	 *
 	 * @return
 	 */
 
-	public static String getTodayDates() {
+	public static String getLastMonthShortDates() {
 		Calendar date = Calendar.getInstance();
 		date.add(Calendar.MONTH, -1);
 		return new SimpleDateFormat(STANDARD_MONTH_FULL1).format(date.getTime());
 	}
 	/**
-	 * 获取上一日日期 格式：yyyyMM
+	 * 获取指定日期 格式：yyyyMM
 	 *
 	 * @return
 	 */

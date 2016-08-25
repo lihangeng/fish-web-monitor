@@ -1,7 +1,9 @@
 package com.yihuacomputer.fish.monitor.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -169,6 +171,31 @@ public class DeviceBoxInfoService implements IDeviceBoxInfoService,IDeviceListen
 	public void afterDelete(IDevice device) {
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public List<IDeviceBoxInfo> getCashLimitRuleDevice(String orgFlag) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("from ").append(DeviceBoxInfo.class.getSimpleName())
+		.append(" deviceBoxInfo where deviceBoxInfo.deviceId.organization.orgFlag like ? and ")
+		.append(" (deviceBoxInfo.maxAlarm>deviceBoxInfo.cashInValue")
+		.append(" or deviceBoxInfo.minAlarm<deviceBoxInfo.cashOutValue)");
+		return dao.findByHQL(sb.toString(), new Object[]{orgFlag+"%"});
+	}
+
+	@Override
+	public Map<String,IDeviceBoxInfo> getDeviceBoxInfo(String orgFlag) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("from ").append(DeviceBoxInfo.class.getSimpleName())
+		.append(" deviceBoxInfo where deviceBoxInfo.deviceId.organization.orgFlag like ? ");
+		List<IDeviceBoxInfo> list = dao.findByHQL(sb.toString(), new Object[]{orgFlag+"%"});
+		Map<String,IDeviceBoxInfo> map = new HashMap<String,IDeviceBoxInfo>();
+		for(IDeviceBoxInfo deviceBoxInfo:list){
+			map.put(deviceBoxInfo.getDeviceId().getTerminalId(), deviceBoxInfo);
+		}
+		return map;
+	}
+
+	
 }
 class HqlQueryStruct{
 	private String hql;

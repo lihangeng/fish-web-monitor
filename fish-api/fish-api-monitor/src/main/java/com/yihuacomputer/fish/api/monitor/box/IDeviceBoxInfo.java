@@ -4,6 +4,11 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.device.IDevice;
 
+/**
+ * 设备钞箱总信息
+ * @author GQ
+ *
+ */
 public interface IDeviceBoxInfo {
 	public long getId() ;
 

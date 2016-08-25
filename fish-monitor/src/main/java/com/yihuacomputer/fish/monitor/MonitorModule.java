@@ -6,6 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import com.yihuacomputer.fish.api.monitor.ICollectService;
 import com.yihuacomputer.fish.api.monitor.IMonitorService;
 import com.yihuacomputer.fish.api.monitor.alarm.IProcessService;
+import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanDeviceInfoService;
+import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfoService;
+import com.yihuacomputer.fish.api.monitor.box.ICashInitUniqueService;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxDetailInfoService;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInitRuleService;
@@ -35,7 +38,10 @@ import com.yihuacomputer.fish.api.monitor.xfs.IXfsService;
 import com.yihuacomputer.fish.monitor.entity.volume.DayTradingVolumeService;
 import com.yihuacomputer.fish.monitor.entity.volume.MonthDailyTradingVolumeService;
 import com.yihuacomputer.fish.monitor.service.BlackListCardService;
+import com.yihuacomputer.fish.monitor.service.CashInitPlanDeviceInfoService;
+import com.yihuacomputer.fish.monitor.service.CashInitPlanInfoService;
 import com.yihuacomputer.fish.monitor.service.CashInitService;
+import com.yihuacomputer.fish.monitor.service.CashInitUniqueService;
 import com.yihuacomputer.fish.monitor.service.CollectService;
 import com.yihuacomputer.fish.monitor.service.CounterFeitMoneyService;
 import com.yihuacomputer.fish.monitor.service.DeviceBoxDetailInfoService;
@@ -69,6 +75,21 @@ public class MonitorModule {
 	@Bean
 	public ICollectService collectService() {
 		return new CollectService();
+	}
+
+	@Bean
+	public ICashInitPlanDeviceInfoService cashInitPlanDeviceInfoService(){
+		return new CashInitPlanDeviceInfoService();
+	}
+	
+	@Bean
+	public ICashInitUniqueService cashInitUniqueService(){
+		return new CashInitUniqueService();
+	}
+	
+	@Bean
+	public ICashInitPlanInfoService cashInitPlanInfoService(){
+		return new CashInitPlanInfoService();
 	}
 
 	@Bean

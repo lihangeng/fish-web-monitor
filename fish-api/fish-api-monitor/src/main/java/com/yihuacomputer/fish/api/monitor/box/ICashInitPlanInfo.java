@@ -46,12 +46,12 @@ public interface ICashInitPlanInfo {
 	 * 加钞金额
 	 * @return
 	 */
-	public long getAmt();
+	public double getAmt();
 	/**
 	 * 加钞金额
 	 * @param amt
 	 */
-	public void setAmt(long amt);
+	public void setAmt(double amt);
 	/**
 	 * 加钞计划设备列表
 	 * @return

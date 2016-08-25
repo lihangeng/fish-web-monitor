@@ -93,7 +93,7 @@ public class MonthDailyTradingVolumeService implements IMonthDailyTradingVolumeS
 		return dao.findByFilter(filter, IMonthDailyTradingVolume.class);
 	}
 	
-	private Map<String,IMonthDailyTradingVolume> getMonthDailyMap(IFilter filter){
+	public Map<String,IMonthDailyTradingVolume> getMonthDailyMap(IFilter filter){
 		Map<String,IMonthDailyTradingVolume> monthDailyMap = new HashMap<String,IMonthDailyTradingVolume>();
 		List<IMonthDailyTradingVolume> monthDaliyList = this.list(filter);
 		for(IMonthDailyTradingVolume monthDaliy:monthDaliyList){
