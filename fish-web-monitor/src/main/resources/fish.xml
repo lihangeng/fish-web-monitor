@@ -72,7 +72,10 @@
 
     <!-- 分布式队列kafka的配置
     <import resource="classpath:/com/yihuacomputer/fish/kafka/fish-kafka.xml" /> -->
-
+    
+    <!-- 定时任务配置 -->
+ 	<import resource="classpath:/quartz/spring-quartz-batch.xml" />
+ 	
 	<!--内嵌数据库版本
 	<import resource="classpath:fish-h2.xml" />-->
 	<!--msyql数据库版本-->
@@ -81,5 +84,7 @@
 	<import resource="classpath:fish-oracle.xml" />-->
 	<!--db2数据库版本
 	<import resource="classpath:fish-db2.xml" />-->
+	
+	<bean id="FishServletContext" class="com.yihuacomputer.fish.web.util.FishServletContext"/>
 
 </beans>

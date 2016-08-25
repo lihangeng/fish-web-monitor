@@ -41,6 +41,7 @@ public class SessionManage implements ISessionManage {
 					LoginMessage loginMessage = new LoginMessage("LOGIN_OUT", userCode, oldSession.getId());
 					mqProducer.put(JsonUtils.toJson(loginMessage));
 				}
+				sessions.remove(userCode);
 			}
 		}
 	}

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+	<!--每日11点加载删除临时目录文件 -->
+	<bean id="deleteTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="description" value="定时清理临时文件"/>
+		<property name="jobDetail" ref="deleteTimeJobDetail"/>
+		<property name="cronExpression" value="${deleteTime}"/>
+	</bean>
+	<bean id="deleteTimeJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.yihuacomputer.fish.web.quartz.ClearFileJob" />
+		<property name="durability" value="true" />
+	</bean>
+
+	<!--每天0点将当天未生效的设备信息更新到信息表中 -->
+	<bean id="updateDeviceInfoTaskTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="description" value="定时更新未生效的设备信息"/>
+		<property name="jobDetail" ref="updateDeviceInfoJobDetail"/>
+		<property name="cronExpression" value="${updateDeviceInfoTime}"/>
+	</bean>
+	<bean id="updateDeviceInfoJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.yihuacomputer.fish.web.quartz.ClearFileJob" />
+		<property name="durability" value="true" />
+	</bean>
+	
+	<!--每天0点将当天报停设备信息更新到设备信息表中 -->
+	<bean id="updateQuittingDevInfoTaskTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="description" value="定时处理报停的设备信息"/>
+		<property name="jobDetail" ref="updateQuittingDevInfoJobDetail"/>
+		<property name="cronExpression" value="${updateQuittingDeviceInfoTime}"/>
+	</bean>
+	<bean id="updateQuittingDevInfoJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+		<property name="jobClass" value="com.yihuacomputer.fish.web.quartz.QuittingDevInfoUpdateJob" />
+		<property name="durability" value="true" />
+	</bean>
+	
+<!-- 	<bean id="cronTriggerJobA" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="jobDetail1" />
+        </property>
+        <property name="cronExpression">
+             <value>0 0/1 * * * ?</value>
+        </property>
+    </bean>
+	
+	<bean id="jobDetail1" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+			<property name="jobClass" value="com.yihuacomputer.fish.system.batch.SpringBatchJob" />
+			<property name="durability" value="true" />
+			<property name="jobDataAsMap">
+				<map>
+					<entry key="batchJobName" value="batchDayDeport" />
+				</map>
+			</property>
+  	</bean> -->
+</beans>

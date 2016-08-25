@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+    <!-- 定时任务数据版本配置-->
+    <bean id="startQuartz" lazy-init="false" autowire="no"
+        class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="configLocation" value="classpath:/quartz/quartz.properties" />
+        <property name="applicationContextSchedulerContextKey" value="applicationContextKey" />    
+        <property name="autoStartup" value="true" />
+        <property name="startupDelay" value="2" />
+       	<property name="dataSource" ref="jdbcDataSource"/>
+        <property name="triggers">
+            <list>
+            	<ref bean="deleteTime" />
+            	<ref bean="updateDeviceInfoTaskTime"/>
+                <ref bean="updateQuittingDevInfoTaskTime"/>
+              	<ref bean="offlineTime" />
+                <ref bean="backupTime" />
+                <!--<ref bean="dayDeportTime" />
+                <ref bean="monthReportTime" />
+                <ref bean="yearReportTime" />
+                 -->
+            </list>
+        </property>
+    </bean> 
+    
+  	<import resource="classpath:/com/yihuacomputer/fish/monitor/monitor-quartz-batch.xml"/>
+	<import resource="classpath:/com/yihuacomputer/fish/atmlog/atmlog-quartz-batch.xml"/>
+	<import resource="classpath:/com/yihuacomputer/fish/report/report-quartz.xml"/>
+	<import resource="classpath:/quartz/deldoc-quartz-batch.xml"/>
+	
+ 	<!-- Quartz和spring Batch框架使用的数据源配置，采用JNDI数据源方式-->
+	<bean id="jdbcDataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<property name="resourceRef">
+            <value>true</value>
+        </property>
+		<property name="jndiName">
+			<value>java:comp/env/jdbc/fish</value>
+		</property>
+	</bean>
+	
+	<!-- 引入SPRING batch框架时的基础配置-->
+ 	<import resource="classpath:/com/yihuacomputer/fish/system/spring-batch-core.xml" />
+	<bean id="jdbcTransactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="jdbcDataSource" />
+	</bean>
+    
+</beans>
