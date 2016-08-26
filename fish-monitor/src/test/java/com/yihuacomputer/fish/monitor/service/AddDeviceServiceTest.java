@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.monitor.service;
+/*package com.yihuacomputer.fish.monitor.service;
 
 import java.util.Date;
 
@@ -88,3 +88,4 @@ public class AddDeviceServiceTest extends BindSessionInTest2
     	return number.substring(number.length()-8);
     }
 }
+*/

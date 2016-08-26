@@ -13,6 +13,16 @@ Ext.apply(EwayLocale,{
 			close:'停用'//EwayLocale.initRule.status.close
 		}
 	},
+	initPlan:{
+		title:'加钞计划管理',//EwayLocale.initPlan.title
+		initDate:'日期',//EwayLocale.initPlan.initDate
+		cashInitCode:'单号',//EwayLocale.initPlan.cashInitCode
+		orgName:'机构',//EwayLocale.initPlan.orgName
+		lastAmt:'上次加钞金额',//EwayLocale.initPlan.lastAmt
+		lastDate:'上次加钞日期',//EwayLocale.initPlan.lastDate
+		adviceAmt:'推荐加钞金额',//EwayLocale.initPlan.adviceAmt
+		actualAmt:'实际加钞金额',//EwayLocale.initPlan.actualAmt
+	},
 	initDevice:{
 		title:'加钞设备管理'
 	}

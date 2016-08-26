@@ -3,8 +3,12 @@ package com.yihuacomputer.fish.report.engine;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.yihuacomputer.fish.api.report.batch.IETLjobDaysService;
+import com.yihuacomputer.fish.api.report.batch.IETLjobService;
 import com.yihuacomputer.fish.api.report.engine.IExportDataETLService;
 import com.yihuacomputer.fish.api.report.engine.IExportReportService;
+import com.yihuacomputer.fish.report.batch.day.DayTransBatchService;
+import com.yihuacomputer.fish.report.batch.day.ETLjobService;
 import com.yihuacomputer.fish.report.engine.exporter.HtmlExporter;
 import com.yihuacomputer.fish.report.engine.exporter.PdfExporter;
 import com.yihuacomputer.fish.report.engine.exporter.XlsExporter;
@@ -61,8 +65,17 @@ public class ReportEngineModule {
 	public EveryYearReportJob everyYearReportJob() {
 		return new EveryYearReportJob();
 	}
-
-
-
+	
+	@Bean
+	public IETLjobService  EtljobService(){
+		return new ETLjobService();
+	}
+	
+	@Bean
+	public IETLjobDaysService iDaysService()
+	{
+		return new DayTransBatchService();
+	}
+	
 
 }

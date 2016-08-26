@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.monitor.service;
+/*package com.yihuacomputer.fish.monitor.service;
 
 import org.junit.Ignore;
 import org.junit.runner.RunWith;
@@ -26,3 +26,4 @@ public class MonthDailyTradingVolumeServiceTest extends BindSessionInTest2{
 		monthDailyTradingVolumeService.generalMonthDailyTradingVolumeByDate("20160709");
 	}
 }
+*/

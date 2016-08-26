@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.api.monitor.box;
 
+import com.yihuacomputer.fish.api.device.AwayFlag;
+
 
 /**
  * @author GQ
@@ -99,14 +101,25 @@ public interface ICashInitPlanDeviceInfo {
 	 */
 	public void setCashInitPlanInfo(ICashInitPlanInfo cashInitPlanInfo);
 	
-//	/**
-//	 * 是否加钞
-//	 * @return
-//	 */
-//	public boolean isInit();
-//	/**
-//	 * 是否加钞
-//	 * @param init
-//	 */
-//	public void setInit(boolean init);
+	/**
+	 * 设备型号
+	 * @return
+	 */
+	public String getDevType();
+	/**
+	 * 设备型号
+	 * @param devType
+	 */
+	public void setDevType(String devType);
+	/**
+	 * 在离行标识
+	 * @return
+	 */
+	public AwayFlag getAwayFlag();
+	/**
+	 * 在离行标识
+	 * @param awayFlag
+	 */
+	public void setAwayFlag(AwayFlag awayFlag);
+	
 }

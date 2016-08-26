@@ -12,6 +12,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.monitor.box.BoxInitRuleType;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanDeviceInfo;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfo;
@@ -27,6 +28,11 @@ public class CashInitPlanDeviceInfo implements ICashInitPlanDeviceInfo {
 	private long id;
 	@Column(name = "TERMINAL_ID")
 	private String terminalId;
+	@Column(name = "DEV_TYPE")
+	private String devType;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "AWAY_FLAG", length = 15)
+	private AwayFlag awayFlag;
 	@Column(name = "ORG_NAME")
 	private String orgName;
 	@Column(name = "LAST_AMT")
@@ -118,5 +124,17 @@ public class CashInitPlanDeviceInfo implements ICashInitPlanDeviceInfo {
 //	public void setInit(boolean init) {
 //		this.init = init;
 //	}
+	public String getDevType() {
+		return devType;
+	}
+	public void setDevType(String devType) {
+		this.devType = devType;
+	}
+	public AwayFlag getAwayFlag() {
+		return awayFlag;
+	}
+	public void setAwayFlag(AwayFlag awayFlag) {
+		this.awayFlag = awayFlag;
+	}
 	
 }

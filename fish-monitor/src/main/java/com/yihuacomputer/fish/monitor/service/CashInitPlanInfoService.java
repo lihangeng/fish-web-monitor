@@ -147,6 +147,8 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 					cashInitPlanDeviceInfo.setAdviceAmt(dailyVolume);
 					cashInitPlanDeviceInfo.setAddress(device.getAddress());
 					cashInitPlanDeviceInfo.setFlag(BoxInitRuleType.CASHLIMIT);
+					cashInitPlanDeviceInfo.setDevType(device.getDevType().getName());
+					cashInitPlanDeviceInfo.setAwayFlag(device.getAwayFlag());
 					if(cashInitUnique!=null){
 						cashInitPlanDeviceInfo.setLastAmt(cashInitUnique.getAmt());
 						cashInitPlanDeviceInfo.setLastDate(cashInitUnique.getDate());
@@ -192,9 +194,12 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 					else{
 						device = deviceService.get(cashInitUnique.getTerminalId());
 					}
+					//如果设备不存在，不做处理
 					if(device==null){
 						continue;
 					}
+					cashInitPlanDeviceInfo.setDevType(device.getDevType().getName());
+					cashInitPlanDeviceInfo.setAwayFlag(device.getAwayFlag());
 					cashInitPlanDeviceInfo.setActualAmt(dailyVolume);
 					cashInitPlanDeviceInfo.setAdviceAmt(dailyVolume);
 					cashInitPlanDeviceInfo.setAddress(device.getAddress());
