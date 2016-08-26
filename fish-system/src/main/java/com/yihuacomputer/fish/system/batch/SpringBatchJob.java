@@ -8,10 +8,13 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersBuilder;
 import org.springframework.batch.core.configuration.JobLocator;
 import org.springframework.batch.core.launch.JobLauncher;
+
+import com.yihuacomputer.common.util.DateUtils;
 
 /**
  * Quartz定时任务启动一个spring Batch作业
@@ -21,7 +24,7 @@ import org.springframework.batch.core.launch.JobLauncher;
  */
 public class SpringBatchJob extends AbstractYihuaJob {
 
-	private static final String BATCH_JOB_NAME = "batchJobName";
+	private static final String BATCH_JOB_NAME_KEY = "batchJobName";
 
 	private Logger logger = LoggerFactory.getLogger(SpringBatchJob.class);
 
@@ -30,10 +33,12 @@ public class SpringBatchJob extends AbstractYihuaJob {
 		JobLauncher jobLauncher = this.getApplicationContext().getBean(JobLauncher.class);
 		JobLocator jobLocator = this.getApplicationContext().getBean(JobLocator.class);
 		Map<String, Object> jobDataMap = context.getMergedJobDataMap();
-		String jobName = (String) jobDataMap.get(BATCH_JOB_NAME);
+		String jobName = (String) jobDataMap.get(BATCH_JOB_NAME_KEY);
+		logger.info(String.format("prepare to exexute job [%s]" ,jobName));
 		JobParameters jobParameters = getJobParametersFromJobMap(jobDataMap);
 		try {
-			jobLauncher.run(jobLocator.getJob(jobName), jobParameters);
+			JobExecution jobExecution = jobLauncher.run(jobLocator.getJob(jobName), jobParameters);
+			logger.info(String.format("job [%s] finished [%s] ",jobName,jobExecution.getExitStatus().getExitCode()));
 		} catch (Exception e) {
 			logger.error("Could not execute batch_job.", e);
 		}
@@ -52,7 +57,9 @@ public class SpringBatchJob extends AbstractYihuaJob {
 		for (Entry<String, Object> entry : jobDataMap.entrySet()) {
 			String key = entry.getKey();
 			Object value = entry.getValue();
-			if (value instanceof String && !key.equals(BATCH_JOB_NAME)) {
+			if(key.contains("date.")){
+				builderDate(builder,key,(String) value);
+			}else if (value instanceof String && !key.equals(BATCH_JOB_NAME_KEY)) {
 				builder.addString(key, (String) value);
 			} else if (value instanceof Float || value instanceof Double) {
 				builder.addDouble(key, ((Number) value).doubleValue());
@@ -67,6 +74,10 @@ public class SpringBatchJob extends AbstractYihuaJob {
 
 		return builder.toJobParameters();
 
+	}
+
+	private void builderDate(JobParametersBuilder builder,String key, String format) {
+		/*builder.addString(key, DateUtils.getLastDate());*/
 	}
 
 }

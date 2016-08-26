@@ -23,15 +23,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
+
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.fish.api.batch.base.IETLjobDaysService;
-import com.yihuacomputer.fish.api.batch.base.IETLjobMonthService;
-import com.yihuacomputer.fish.api.batch.base.IETLjobService;
+import com.yihuacomputer.fish.api.report.batch.IETLjobDaysService;
+import com.yihuacomputer.fish.api.report.batch.IETLjobMonthService;
+import com.yihuacomputer.fish.api.report.batch.IETLjobService;
 import com.yihuacomputer.fish.web.report.form.JobCountForm;
 import com.yihuacomputer.fish.web.report.form.JobForm;
 
@@ -49,7 +50,7 @@ public class ETLJobController {
 	@Autowired
 	private IETLjobDaysService iDaysService;
 
-	@Autowired
+	//@Autowired
 	private IETLjobMonthService iMonthService;
 
 	/**

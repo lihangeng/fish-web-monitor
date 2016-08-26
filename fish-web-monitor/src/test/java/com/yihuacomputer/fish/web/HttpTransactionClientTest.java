@@ -30,30 +30,27 @@ public class HttpTransactionClientTest {
 	public static void main(String[] args) {
 
 	 // 测试交易数据：0为无限次数,>0为指定次数
-        int count = 500;
+        int count = 10;
         
         // 设备号
-        String termId[] = {"0000001","00002","1301A052","13050003","13050001","13050002"};
-        String transcode[] = {"DEP","CWD","PIN","INQ"};
+        String termId = "13050001";
 
         // 发送交易数据间隔
         int sleep = 2;
 	    
 		try {
-			int termidLength = termId.length;
-			int transLength = transcode.length;
-			int i = 0;
+			int i = 1;
             while (count == 0 ? true : i <= count) {
 				HttpClient httpClient = new DefaultHttpClient();
 				TransactionMsg msg = new TransactionMsg();
-				msg.setTermId(termId[i%termidLength]); // 设备号
+				msg.setTermId(termId); // 设备号
 				msg.setTransId(String.format("%06d", i));// 流水号
 				msg.setAmt(1000);// 交易金额
 				msg.setCreditAccount("9559912345678901235");// 交易帐号
 				msg.setDebitAccount("9559912345678901234");// 对方帐号
 				msg.setDateTime(System.currentTimeMillis());// 交易时间
 				msg.setTransDate(Integer.parseInt(DateUtils.get(new Date(), "yyyyMMdd")));
-				msg.setTransCode(transcode[i%transLength]);// 交易类型
+				msg.setTransCode("DEP");// 交易类型
 				msg.setHostRet("00");// 主机返回码
 				msg.setLocalRet("OK");// 本地返回码
 				msg.setCurrency("CNY");// 币种

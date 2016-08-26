@@ -1,0 +1,94 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:batch="http://www.springframework.org/schema/batch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/batch
+		http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+		
+    <!-- quartz定时任务配置 -->
+	<bean id="dayDeportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="description" value="每日定时执行报表数据统计"/>
+		<property name="jobDetail" ref="dayDeportJobDetail"/>
+		<property name="cronExpression" value="${dayETLJobTime}"/>
+	</bean>
+	<bean id="dayDeportJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+			<property name="jobClass" value="com.yihuacomputer.fish.system.batch.SpringBatchJob" />
+			<property name="durability" value="true" />
+			<property name="jobDataAsMap">
+				<map>
+					<entry key="batchJobName" value="batchDayDeportJob" />
+					<entry key="date.lastDay" value="yyyyMMdd"/>
+					<entry key="date.lastMonth" value="yyyyMM"/>
+				</map>
+			</property>
+  	</bean>
+  	 
+	<!-- spring batch job配置 -->
+	<batch:job id="batchDayDeportJob" restartable="true">
+		<batch:step id="DayStep">
+			<!-- 添加事务控制 -->
+			<batch:tasklet transaction-manager="jdbcTransactionManager">
+				<!-- commit-interval: 批量提交的条数; skip-limit: 指允许跳过记录数 -->
+				<batch:chunk reader="DayTransReader" writer="DayTransWriter"
+					commit-interval="10" skip-limit="1">
+					<batch:skippable-exception-classes>
+						<batch:include class="java.lang.Exception" /> <!-- 出现exception或其子类, Job仍然会往后执行 -->
+						<batch:exclude class="java.io.FileNotFoundException" /> <!-- 出现这个异常, Job会立刻停止 -->
+					</batch:skippable-exception-classes>
+				</batch:chunk>
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="jdbcDataSource" />
+	</bean>
+
+	<!-- 从transactions表读取数据 -->
+	<bean id="DayTransReader" class="org.springframework.batch.item.database.JdbcPagingItemReader" scope="step">
+		<property name="dataSource" ref="jdbcDataSource"/>
+		<property name="queryProvider">
+            <bean
+                class="org.springframework.batch.item.database.support.SqlPagingQueryProviderFactoryBean">
+                <property name="dataSource" ref="jdbcDataSource" />
+                <property name="selectClause" value="select 
+		sum(AMT),count(ATMC_TRANSACTION.ID),TRANS_CODE,CARD_TYPE, DEV_TYPE.NAME typeName,DEV_VENDOR.NAME 
+		vendorName,DEV_TYPE.ID devTypeId,DEV_VENDOR.ID devVendorId ,TRANS_DATE" />
+                <property name="fromClause" value="FROM ATMC_TRANSACTION,DEV_INFO,DEV_TYPE,DEV_VENDOR" />
+                <property name="whereClause"
+                    value="WHERE ATMC_TRANSACTION.TRANS_DATE = :reportDay and ATMC_TRANSACTION.TERMINAL_ID=DEV_INFO.TERMINAL_ID 
+		and DEV_INFO.DEV_TYPE_ID=DEV_TYPE.ID AND DEV_TYPE.DEV_VENDOR_ID=DEV_VENDOR.ID" />
+				<property name="groupClause" value="GROUP BY TRANS_CODE,CARD_TYPE,DEV_TYPE.NAME,DEV_VENDOR.NAME,CARD_TYPE"/>
+              	<property name="sortKey" value="TRANS_CODE" />
+            </bean>
+        </property>
+        <property name="parameterValues">
+            <map>
+                <entry key="reportDay" value="#{jobParameters['lastDay']}" />
+            </map>
+        </property>
+        <!-- 配置limit的大小 -->
+        <property name="pageSize" value="2" />
+		<property name="rowMapper" ref="DayTransRowMapper" />
+	</bean>
+
+	<bean id="DayTransRowMapper" class="com.yihuacomputer.fish.report.batch.day.DayTransMapper" />
+
+	<bean id="DayTransWriter" class="com.yihuacomputer.fish.report.batch.day.DayTransWriter">
+		<property name="jdbcTemplate" ref="jdbcTemplate" />
+	</bean>
+	
+	<!-- <bean id="DayTransReader" class="com.yihuacomputer.fish.report.batch.day.DayTransReader">
+		<property name="dataSource" ref="jdbcDataSource" />
+		<property name="sql"
+			value="select 
+		sum(AMT),count(ATMC_TRANSACTION.ID),TRANS_CODE,CARD_TYPE, DEV_TYPE.NAME typeName,DEV_VENDOR.NAME 
+		vendorName,DEV_TYPE.ID devTypeId,DEV_VENDOR.ID devVendorId ,TRANS_DATE FROM ATMC_TRANSACTION,DEV_INFO,DEV_TYPE,DEV_VENDOR 
+		WHERE ATMC_TRANSACTION.TRANS_DATE=? and ATMC_TRANSACTION.TERMINAL_ID=DEV_INFO.TERMINAL_ID 
+		and DEV_INFO.DEV_TYPE_ID=DEV_TYPE.ID AND DEV_TYPE.DEV_VENDOR_ID=DEV_VENDOR.ID 
+		GROUP BY TRANS_CODE,CARD_TYPE,DEV_TYPE.NAME,DEV_VENDOR.NAME,CARD_TYPE" />
+		<property name="rowMapper" ref="DayTransRowMapper" />
+	</bean> -->
+
+
+</beans>

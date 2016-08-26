@@ -71,10 +71,10 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : 'Job名称',
+				header : '作业名称',
 				dataIndex : 'jobName',
-				width : 140
-			},{
+				width : 200
+			},/*{
 				header : 'Job所属组',
 				dataIndex : 'jobGroup',
 				width : 140
@@ -86,20 +86,21 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				header : 'Trigger所属组',
 				dataIndex : 'triggerGroup',
 				width : 140
-			},{
-				header : 'JobClass路径',
+			},*/{
+				header : '作业实现类',
 				dataIndex : 'jobClassName',
-				width : 400
+				width : 400,
+				hidden:true
 			},{
-				header : 'Job描述',
+				header : '作业描述',
 				dataIndex : 'jobDescription',
-				width : 140
+				flex:1
 			},{
-				header : 'Cron表达式',
+				header : '作业执行规则',
 				dataIndex : 'cronExpression',
 				width : 140
 			},{
-				header : 'Trigger当前状态',
+				header : '作业当前状态',
 				dataIndex : 'triggerState',
 				width : 140
 			},{
@@ -107,18 +108,18 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				dataIndex : 'nextFireTime',
 				width : 140
 			},{
-				header : '上次出发时间',
+				header : '上次触发时间',
 				dataIndex : 'prevFireTime',
 				width : 140
 			},{
-				header : 'Job开始时间',
+				header : '作业创建时间',
 				dataIndex : 'startTime',
 				width : 140
-			},{
+			}/*,{
 				header : 'Job结束时间',
 				dataIndex : 'endTime',
 				width : 140
-			}],
+			}*/],
 			bbar : Ext.create('Ext.PagingToolbar',{
 				store : store,
 				displayInfo : true

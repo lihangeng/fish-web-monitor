@@ -1,0 +1,41 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:batch="http://www.springframework.org/schema/batch" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/batch
+		http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+		
+    <!-- quartz定时任务配置 -->
+	<bean id="dayDeportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="description" value="每日定时执行报表数据统计"/>
+		<property name="jobDetail" ref="dayDeportJobDetail"/>
+		<property name="cronExpression" value="${dayETLJobTime}"/>
+	</bean>
+	<bean id="dayDeportJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+			<property name="jobClass" value="com.yihuacomputer.fish.report.batch.DayReportJob" />
+			<property name="durability" value="true" />
+  	</bean>
+  	
+  	<!-- 每月数据抽取 -->
+  	<bean id="monthReportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="description" value="每日定时执行报表数据统计"/>
+		<property name="jobDetail" ref="monthDeportJobDetail"/>
+		<property name="cronExpression" value="${monthETLJobTime}"/>
+	</bean>
+	<bean id="monthDeportJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+			<property name="jobClass" value="com.yihuacomputer.fish.report.batch.MonthReportJob" />
+			<property name="durability" value="true" />
+  	</bean>
+ 
+    <!-- 每年数据抽取 -->
+    <bean id="yearReportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="description" value="每日定时执行报表数据统计"/>
+		<property name="jobDetail" ref="yearDeportJobDetail"/>
+		<property name="cronExpression" value="${yearETLJobTime}"/>
+	</bean>
+	<bean id="yearDeportJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+			<property name="jobClass" value="com.yihuacomputer.fish.report.batch.YearReportJob" />
+			<property name="durability" value="true" />
+  	</bean>
+  	 
+</beans>
