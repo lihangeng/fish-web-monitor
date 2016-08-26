@@ -2,12 +2,15 @@ package com.yihuacomputer.fish.monitor.entity.box;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.yihuacomputer.fish.api.monitor.box.BoxInitRuleType;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInitRule;
 
 @Entity
@@ -24,7 +27,9 @@ public class DeviceBoxInitRule implements IDeviceBoxInitRule {
 	private String ruleDesc;
 	@Column(name = "START_USING")
 	private boolean startUsing;
-
+    @Enumerated(EnumType.STRING)
+	@Column(name = "RULE_TYPE")
+	private BoxInitRuleType ruleType;
 	public long getId() {
 		return id;
 	}
@@ -55,6 +60,14 @@ public class DeviceBoxInitRule implements IDeviceBoxInitRule {
 
 	public void setStartUsing(boolean startUsing) {
 		this.startUsing = startUsing;
+	}
+
+	public BoxInitRuleType getRuleType() {
+		return ruleType;
+	}
+
+	public void setRuleType(BoxInitRuleType ruleType) {
+		this.ruleType = ruleType;
 	}
 
 }

@@ -34,5 +34,15 @@ public interface IDeviceBoxInitRule {
 	 * @param startUsing
 	 */
 	public void setStartUsing(boolean startUsing);
+	/**
+	 * 规则类型
+	 * @return
+	 */
+	public BoxInitRuleType getRuleType();
+	/**
+	 * 规则类型
+	 * @param ruleType
+	 */
+	public void setRuleType(BoxInitRuleType ruleType);
 	
 }

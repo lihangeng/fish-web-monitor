@@ -18,6 +18,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.jackson.JsonUtils;
 import com.yihuacomputer.fish.api.monitor.ICollectService;
+import com.yihuacomputer.fish.api.monitor.box.ICashInitUnique;
+import com.yihuacomputer.fish.api.monitor.box.ICashInitUniqueService;
 import com.yihuacomputer.fish.api.monitor.business.IBoxInitDetail;
 import com.yihuacomputer.fish.api.monitor.business.ICashInit;
 import com.yihuacomputer.fish.api.monitor.business.ICashInitService;
@@ -41,7 +43,9 @@ public class CashInitalController {
 
 	@Autowired
 	private ICashInitService cashInitService;
-	
+
+	@Autowired
+	private ICashInitUniqueService cashInitUniqueService;
 	
 	@Autowired
 	protected MessageSource messageSource;
@@ -66,8 +70,19 @@ public class CashInitalController {
 		List<IBoxInitDetail> boxDetailList = new ArrayList<IBoxInitDetail>();
 		boxDetailList.addAll(msg.getBoxDetail());
 		cashInitInfo.setBoxDetail(boxDetailList);
+		ICashInitUnique cashInitUnique = cashInitUniqueService.getByTerminalId(msg.getTermId());
+		boolean isNewDevice = false;
+		if(null==cashInitUnique){
+			isNewDevice = true;
+			cashInitUnique = cashInitUniqueService.make();
+			cashInitUnique.setTerminalId(msg.getTermId());
+		}
+		cashInitUnique.setAmt(msg.getAmt());
+		cashInitUnique.setDate(msg.getDate());
+		cashInitUnique.setUuId(msg.getUuId());
 		try{
 			collectService.collectCashInit(msg.getTermId(), cashInitInfo);
+			cashInitUnique = isNewDevice?cashInitUniqueService.save(cashInitUnique):cashInitUniqueService.update(cashInitUnique);
 		}catch(Exception e){
 			logger.error(String.format(messageSource.getMessage("cashInital.processError", null, FishCfg.locale),e,JsonUtils.toJson(msg)));
 		}

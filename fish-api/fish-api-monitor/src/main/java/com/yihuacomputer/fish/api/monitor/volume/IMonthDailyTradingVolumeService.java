@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.api.monitor.volume;
 
 import java.util.List;
+import java.util.Map;
 
 import com.yihuacomputer.common.IFilter;
 
@@ -19,4 +20,5 @@ public interface IMonthDailyTradingVolumeService {
 	IMonthDailyTradingVolume update(IMonthDailyTradingVolume monthDailyTradingVolume);
 	void remove(IMonthDailyTradingVolume monthDailyTradingVolume);
 	List<IMonthDailyTradingVolume> list(IFilter filter);
+	Map<String,IMonthDailyTradingVolume> getMonthDailyMap(IFilter filter);
 }

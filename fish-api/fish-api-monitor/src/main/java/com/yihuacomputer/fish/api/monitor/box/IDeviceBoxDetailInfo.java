@@ -1,5 +1,10 @@
 package com.yihuacomputer.fish.api.monitor.box;
 
+/**
+ * 设备钞箱明细信息
+ * @author GQ
+ *
+ */
 public interface IDeviceBoxDetailInfo {
 
 	public long getId();

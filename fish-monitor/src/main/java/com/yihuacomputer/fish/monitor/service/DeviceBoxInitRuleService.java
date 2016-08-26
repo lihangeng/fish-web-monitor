@@ -6,7 +6,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.monitor.box.BoxInitRuleType;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInitRule;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInitRuleService;
 import com.yihuacomputer.fish.monitor.entity.box.DeviceBoxInitRule;
@@ -30,4 +32,9 @@ public class DeviceBoxInitRuleService implements IDeviceBoxInitRuleService {
 		return dao.get(id, DeviceBoxInitRule.class);
 	}
 
+	public IDeviceBoxInitRule get(BoxInitRuleType ruleType){
+		IFilter filter  = new Filter();
+		filter.eq("ruleType", ruleType);
+		return dao.findUniqueByFilter(filter, IDeviceBoxInitRule.class);
+	}
 }

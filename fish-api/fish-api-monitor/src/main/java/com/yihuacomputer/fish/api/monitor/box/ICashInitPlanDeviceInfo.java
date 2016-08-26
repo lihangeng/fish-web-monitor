@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.api.monitor.box;
 
+
 /**
  * @author GQ
  * 加钞计划中的设备加钞信息
@@ -51,32 +52,32 @@ public interface ICashInitPlanDeviceInfo {
 	 * 建议加钞金额
 	 * @return
 	 */
-	public long getAdviceAmt();
+	public double getAdviceAmt();
 	/**
 	 * 建议加钞金额
 	 * @param adviceAmt
 	 */
-	public void setAdviceAmt(long adviceAmt);
+	public void setAdviceAmt(double adviceAmt);
 	/**
 	 * 实际加钞
 	 * @return
 	 */
-	public long getActualAmt();
+	public double getActualAmt();
 	/**
 	 * 实际加钞
 	 * @param actualAmt
 	 */
-	public void setActualAmt(long actualAmt);
+	public void setActualAmt(double actualAmt);
 	/**
 	 * 加钞原因标识
 	 * @return
 	 */
-	public int getFlag();
+	public BoxInitRuleType getFlag();
 	/**
 	 * 加钞原因标识
 	 * @param flag
 	 */
-	public void setFlag(int flag);
+	public void setFlag(BoxInitRuleType flag);
 	/**
 	 * 加钞设备地址
 	 * @return
@@ -97,4 +98,15 @@ public interface ICashInitPlanDeviceInfo {
 	 * @param cashInitPlanInfo
 	 */
 	public void setCashInitPlanInfo(ICashInitPlanInfo cashInitPlanInfo);
+	
+//	/**
+//	 * 是否加钞
+//	 * @return
+//	 */
+//	public boolean isInit();
+//	/**
+//	 * 是否加钞
+//	 * @param init
+//	 */
+//	public void setInit(boolean init);
 }

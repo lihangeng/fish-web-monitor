@@ -29,10 +29,10 @@ public class HttpCashInClientTest {
 		HttpClient httpClient = new DefaultHttpClient();
 		
 		CashInitalMsg msg =new CashInitalMsg();
-		msg.setTermId("ATM001");
+		msg.setTermId("13050001");
 		msg.setAmt(100000);
 		msg.setUuId("201010101");
-		
+		msg.setDate("2015-01-02 00:00:00");
 		
 		List<BoxInitDetail> boxDetail = new ArrayList<BoxInitDetail>();
      
@@ -49,7 +49,7 @@ public class HttpCashInClientTest {
 			String json = JsonUtils.toJson(msg);
 			System.out.println(json);
 			try {
-				HttpPost httpPost = new HttpPost("http://172.18.30.25:8085/fish-web-monitor/atm/msg/checkincash");
+				HttpPost httpPost = new HttpPost("http://127.0.0.1:8080/atmv/atm/msg/checkincash");
 				
 				StringEntity entity = new StringEntity(json, "UTF-8");
 				
