@@ -29,10 +29,10 @@ public class HttpCashInClientTest {
 		HttpClient httpClient = new DefaultHttpClient();
 		
 		CashInitalMsg msg =new CashInitalMsg();
-		msg.setTermId("13050002");
+		msg.setTermId("13050001");
 		msg.setAmt(100000);
 		msg.setUuId("201010101");
-		
+		msg.setDate("2015-01-02 00:00:00");
 		
 		List<BoxInitDetail> boxDetail = new ArrayList<BoxInitDetail>();
      

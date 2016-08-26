@@ -40,16 +40,18 @@ public class CashInitPlanDeviceInfo implements ICashInitPlanDeviceInfo {
 
     @Enumerated(EnumType.ORDINAL)
 	@Column(name = "INIT_FLAG")
-	private BoxInitRuleType flag;//加钞标识(1:钞箱预警.2:超过加钞预警天数.4.手工强制清机加钞)
+	private BoxInitRuleType flag;//加钞类型标识(1:钞箱预警.2:超过加钞预警天数.4.手工强制清机加钞)
 //	@org.hibernate.annotations.Type(type = "com.yihuacomputer.domain.util.BooleanUserType")
 //	@Column(name = "CASH_INIT", columnDefinition = "CHAR", length = 1)
 //	private boolean init;
 	
 	@Column(name = "ADDRESS")
 	private String address;
+	
     @ManyToOne(targetEntity = CashInitPlanInfo.class)
     @JoinColumn(name = "CASH_INIT_PLAN_ID", insertable = false, updatable = false)
 	private ICashInitPlanInfo cashInitPlanInfo;
+    
 	public long getId() {
 		return id;
 	}

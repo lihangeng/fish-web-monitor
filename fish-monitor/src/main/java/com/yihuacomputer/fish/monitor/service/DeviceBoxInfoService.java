@@ -178,7 +178,7 @@ public class DeviceBoxInfoService implements IDeviceBoxInfoService,IDeviceListen
 		sb.append("from ").append(DeviceBoxInfo.class.getSimpleName())
 		.append(" deviceBoxInfo where deviceBoxInfo.deviceId.organization.orgFlag like ? and ")
 		.append(" (deviceBoxInfo.maxAlarm>deviceBoxInfo.cashInValue")
-		.append(" or deviceBoxInfo.minAlarm<deviceBoxInfo.cashOutValue)");
+		.append(" or deviceBoxInfo.minAlarm<deviceBoxInfo.billValue)");
 		return dao.findByHQL(sb.toString(), new Object[]{orgFlag+"%"});
 	}
 

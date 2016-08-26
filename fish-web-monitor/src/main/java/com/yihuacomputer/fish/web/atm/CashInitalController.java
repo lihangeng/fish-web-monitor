@@ -43,7 +43,8 @@ public class CashInitalController {
 
 	@Autowired
 	private ICashInitService cashInitService;
-	
+
+	@Autowired
 	private ICashInitUniqueService cashInitUniqueService;
 	
 	@Autowired
