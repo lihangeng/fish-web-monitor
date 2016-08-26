@@ -16,11 +16,6 @@
 			<artifactId>fish-api-report</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>com.yihuacomputer.fish</groupId> -->
-		<!-- <artifactId>fish-api-system</artifactId> -->
-		<!-- <version>${project.version}</version> -->
-		<!-- </dependency> -->
 		<dependency>
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-system</artifactId>
@@ -40,20 +35,6 @@
 			<groupId>com.yihuacomputer.fish</groupId>
 			<artifactId>fish-domain</artifactId>
 			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.yihuacomputer.fish</groupId>
-			<artifactId>fish-batch</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.yihuacomputer.fish</groupId>
-			<artifactId>fish-api-batch</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.quartz-scheduler</groupId>
-			<artifactId>quartz</artifactId>
 		</dependency>
 		<!-- iReport Engine -->
 		<dependency>

@@ -57,10 +57,23 @@
 				<value>com.yihuacomputer.fish.system.entity</value>
 				<value>com.yihuacomputer.fish.report.entity</value>
 				<value>com.yihuacomputer.fish.report.base.entity</value>
-				
 			</list>  
 		</property>
 	</bean>
 	
+	<!-- Quartz和spring Batch框架使用的数据源配置，采用JNDI数据源方式-->
+	<bean id="jdbcDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://127.0.0.1:3306/atmv"/>
+		<property name="username" value="root"/>
+		<property name="password" value="root"/>
+	</bean>
+	
+	<!-- 引入SPRING batch框架时的基础配置-->
+ 	<import resource="classpath:/com/yihuacomputer/fish/system/spring-batch-core.xml" />
+	<bean id="jdbcTransactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="jdbcDataSource" />
+	</bean>
 
 </beans>

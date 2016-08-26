@@ -33,7 +33,7 @@ public class HttpTransactionClientTest {
         int count = 10;
         
         // 设备号
-        String termId = "13050001";
+        String termId = "1233";
 
         // 发送交易数据间隔
         int sleep = 2;
@@ -44,7 +44,7 @@ public class HttpTransactionClientTest {
 				HttpClient httpClient = new DefaultHttpClient();
 				TransactionMsg msg = new TransactionMsg();
 				msg.setTermId(termId); // 设备号
-				msg.setTransId(String.format("%06d", i));// 流水号
+				msg.setTransId(termId);// 流水号
 				msg.setAmt(1000);// 交易金额
 				msg.setCreditAccount("9559912345678901235");// 交易帐号
 				msg.setDebitAccount("9559912345678901234");// 对方帐号
