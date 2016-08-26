@@ -15,7 +15,7 @@ import com.yihuacomputer.fish.monitor.MySQLTestConfig;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = H2TestConfig.class)
+@ContextConfiguration(classes = MySQLTestConfig.class)
 public class CashInitPlanTest extends BindSessionInTest2{
 	
 	@Autowired
