@@ -39,7 +39,6 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
  */
 @Controller
 @RequestMapping("/person/userLog")
-@ClassNameDescrible(describle="userlog.UserLogController")
 public class UserLogController {
 
 	private final Logger logger = org.slf4j.LoggerFactory.getLogger(UserLogController.class);
@@ -60,7 +59,6 @@ public class UserLogController {
 	 * @param form
 	 * @return Map<String,Object>
 	 */
-	@MethodNameDescrible(describle="userlog.UserLogController.search",hasArgs=false)
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap search(@RequestParam int start, @RequestParam int limit, WebRequest request, HttpServletRequest req) {
