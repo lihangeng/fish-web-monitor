@@ -6,15 +6,14 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 	border : false,
 	initComponent: function() {
 		var store = Ext.create('Eway.store.cash.initPlan.CashInitPlanDevice');
-//		store.loadPage(1);
 		Ext.apply(this, {
 			initRegion : true,
 			store: store,
 			tbar: [{
-				text:  EwayLocale.version.download.callBack,//'查询',
+				text:  EwayLocale.version.download.callBack,//'返回',
 				glyph : 0xf122,
 				action: 'toPlan',
-				tooltip:EwayLocale.version.download.callBackJob,//'根据条件查询选中作业下的详情信息'
+				tooltip:EwayLocale.version.download.callBackJob,
 				code:'toJob'
 			},'->', {
 				text: EwayLocale.button.search,//'查询',
@@ -25,10 +24,18 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: EwayLocale.button.update,//'更改',
-				action: 'update',
 				code:'cashInitPlanUpdate',
-				glyph : 0xf040,
+				text : EwayLocale.button.add,
+				glyph : 0xf067,
+				action : 'add',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
+			}, {
+				text : EwayLocale.button.remove,
+				glyph : 0xf014,
+				action : 'remove',
+				code : 'deviceDel',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
@@ -42,10 +49,11 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				dataIndex : 'actualAmt',
 				editor: {
 	                xtype: 'numberfield',
-	                allowBlank: false,
-	                focus:function(_this,event,opt){
-	                	me = 	_this;	
-	                }
+	                allowBlank: false
+//	                ,
+//	                focus:function(_this,event,opt){
+//	                	me = 	_this;	
+//	                }
 //	            },
 //	            renderer: function (value, metaData, record, rowIndex, colIndex, store, view) {
 //	            	if(record.get("maxAmt")!=-1){

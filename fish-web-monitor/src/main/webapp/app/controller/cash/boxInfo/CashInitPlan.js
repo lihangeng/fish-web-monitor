@@ -36,8 +36,33 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 			},
 			'initPlan_detailGrid button[action=toPlan]' : {
 				click : this.onBack
+			},
+			'initPlan_detailGrid' : {
+				beforeedit : this.beforeEdit
+			},
+			'initPlan_detailGrid' : {
+				edit : this.onEdit
 			}
 		});
+	},
+	beforeEdit:function( editor, context, eOpts ){
+    	alert("beforeEdit");
+    },
+    onEdit:function(editor, context){
+
+    	if(context.record.get("maxAmt")<context.newValues.actualAmt){
+    		Eway.alert("更改失败最大额度为"+context.record.get("maxAmt"));
+    		return false;
+    	}
+		context.record.save({
+			 success: function(recordInDB) {
+					Eway.alert("更改成功");
+				 },
+				 failure: function(record,operation){
+					store.rejectChanges();
+				 },
+				 scope : this
+			});
 	},
 	//查询
 	onQuery : function(){

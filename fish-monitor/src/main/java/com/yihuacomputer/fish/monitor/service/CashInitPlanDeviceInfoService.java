@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.monitor.box.CashInitPlanDeviceInfoForm;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanDeviceInfo;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanDeviceInfoService;
+import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfo;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.monitor.entity.box.DeviceBoxInfo;
@@ -53,6 +55,19 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 	public List<ICashInitPlanDeviceInfo> list(IFilter filter) {
 		return dao.findByFilter(filter, ICashInitPlanDeviceInfo.class);
 	}
+	
+	/**
+	 * 获取可选的设备列表 1.列出当前计划所有可以加钞的设备，2.排除设备中已经添加的设备
+	 * @param planInfo
+	 * @return
+	 */
+	public List<CashInitPlanDeviceInfoForm> listSelectAble(ICashInitPlanInfo planInfo){
+		List<CashInitPlanDeviceInfoForm> planDeviceList = new ArrayList<CashInitPlanDeviceInfoForm>();
+		List<ICashInitPlanDeviceInfo>  devicePlanList = planInfo.getCashInitPlanDeviceList();
+//		for(ICashInitPlanDeviceInfo cash)
+		return planDeviceList;
+	}
+	
 	
 	public List<Object> listPage(IFilter filter){
 		StringBuilder sb = new StringBuilder();
