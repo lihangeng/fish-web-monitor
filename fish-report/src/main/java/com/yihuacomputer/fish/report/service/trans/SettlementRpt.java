@@ -1,6 +1,6 @@
-package com.yihuacomputer.fish.report.service.transaction;
+package com.yihuacomputer.fish.report.service.trans;
 
-import com.yihuacomputer.fish.api.report.transaction.ISettlementRpt;
+import com.yihuacomputer.fish.api.report.trans.ISettlementRpt;
 
 public class SettlementRpt implements ISettlementRpt{
     

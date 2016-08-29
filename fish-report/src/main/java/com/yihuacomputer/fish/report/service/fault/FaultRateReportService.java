@@ -22,7 +22,7 @@ import com.yihuacomputer.fish.api.atm.IAtmVendor;
 import com.yihuacomputer.fish.api.report.fault.FaultRateReport;
 import com.yihuacomputer.fish.api.report.fault.IEveryMonthFaultCount;
 import com.yihuacomputer.fish.api.report.fault.IFaultRateReportService;
-import com.yihuacomputer.fish.api.report.transaction.ITransactionMonths;
+import com.yihuacomputer.fish.api.report.trans.ITransactionMonths;
 import com.yihuacomputer.fish.report.entity.EveryMonthFaultCount;
 import com.yihuacomputer.fish.report.entity.TransactionMonths;
 

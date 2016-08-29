@@ -1,16 +1,15 @@
-package com.yihuacomputer.fish.api.report.transaction;
+package com.yihuacomputer.fish.api.report.trans;
 
 import java.util.List;
 
 import com.yihuacomputer.common.IFilter;
 
-public interface ISettlementRptService {
-    
+public interface ISettlementCashInRptService {
     /**
      * 根据条件获得清机信息列表
      * @param filter
      * @return
      */
-    public List<ISettlementRpt> listSettlementRpt(IFilter filter);
+    public List<ISettlementCashInRpt> listSettlementCashInRpt(IFilter filter);
 
 }

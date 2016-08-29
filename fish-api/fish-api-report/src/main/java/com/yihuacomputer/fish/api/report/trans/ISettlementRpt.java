@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.api.report.transaction;
+package com.yihuacomputer.fish.api.report.trans;
 
 public interface ISettlementRpt {
     

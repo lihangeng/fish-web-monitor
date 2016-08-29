@@ -1,7 +1,7 @@
-package com.yihuacomputer.fish.report.service.transaction;
+package com.yihuacomputer.fish.report.service.trans;
 
 
-import com.yihuacomputer.fish.api.report.transaction.ICashInRpt;
+import com.yihuacomputer.fish.api.report.trans.ICashInRpt;
 
 public class CashInRpt implements ICashInRpt{
 

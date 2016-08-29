@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.yihuacomputer.fish.api.atm.IAtmModule;
 import com.yihuacomputer.fish.api.atm.IAtmType;
-import com.yihuacomputer.fish.api.report.transaction.ITransactionMonths;
+import com.yihuacomputer.fish.api.report.trans.ITransactionMonths;
 
 
 

@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.report.service.transaction;
+package com.yihuacomputer.fish.report.service.trans;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.domain.dao.IGenericDao;
-import com.yihuacomputer.fish.api.report.transaction.ICashInRpt;
-import com.yihuacomputer.fish.api.report.transaction.ICashInRptService;
+import com.yihuacomputer.fish.api.report.trans.ICashInRpt;
+import com.yihuacomputer.fish.api.report.trans.ICashInRptService;
 
 @Service
 @Transactional(readOnly = true)

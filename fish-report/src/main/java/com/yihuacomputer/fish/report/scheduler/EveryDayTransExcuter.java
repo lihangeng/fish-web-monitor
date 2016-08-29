@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.report.engine.IExportDataETLService;
 import com.yihuacomputer.fish.api.report.engine.IReportDataETL;
-import com.yihuacomputer.fish.api.report.transaction.ITransactionDaysService;
+import com.yihuacomputer.fish.api.report.trans.ITransactionDaysService;
 
 /**
  */

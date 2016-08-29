@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.yihuacomputer.fish.api.report.transaction.ITransactionMonths;
+import com.yihuacomputer.fish.api.report.trans.ITransactionMonths;
 
 @Entity
 @Table(name = "ATMC_TRANSACTION_MONTHS ")

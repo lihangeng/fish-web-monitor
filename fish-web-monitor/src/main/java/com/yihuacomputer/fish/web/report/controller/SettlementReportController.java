@@ -32,8 +32,8 @@ import com.yihuacomputer.fish.api.person.OrganizationLevel;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.report.engine.IExportReportService;
 import com.yihuacomputer.fish.api.report.engine.IReportExport;
-import com.yihuacomputer.fish.api.report.transaction.ISettlementCashInRpt;
-import com.yihuacomputer.fish.api.report.transaction.ISettlementCashInRptService;
+import com.yihuacomputer.fish.api.report.trans.ISettlementCashInRpt;
+import com.yihuacomputer.fish.api.report.trans.ISettlementCashInRptService;
 import com.yihuacomputer.fish.report.engine.ReportParam;
 
 /**

@@ -1,6 +1,6 @@
-package com.yihuacomputer.fish.report.service.transaction;
+package com.yihuacomputer.fish.report.service.trans;
 
-import com.yihuacomputer.fish.api.report.transaction.ISettlementCashInRpt;
+import com.yihuacomputer.fish.api.report.trans.ISettlementCashInRpt;
 
 public class SettlementCashInRpt implements ISettlementCashInRpt {
     private String orgCode;

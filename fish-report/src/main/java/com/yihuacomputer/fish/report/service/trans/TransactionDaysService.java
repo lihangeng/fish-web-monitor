@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.report.service.transaction;
+package com.yihuacomputer.fish.report.service.trans;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.monitor.business.ITransaction;
-import com.yihuacomputer.fish.api.report.transaction.ITransactionDays;
-import com.yihuacomputer.fish.api.report.transaction.ITransactionDaysService;
+import com.yihuacomputer.fish.api.report.trans.ITransactionDays;
+import com.yihuacomputer.fish.api.report.trans.ITransactionDaysService;
 import com.yihuacomputer.fish.report.entity.TransactionDays;
 
 @Service

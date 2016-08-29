@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.report.service.transaction;
+package com.yihuacomputer.fish.report.service.trans;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,9 +12,9 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.monitor.business.IHostRet;
-import com.yihuacomputer.fish.api.report.transaction.ITransCountRpt;
-import com.yihuacomputer.fish.api.report.transaction.ITransResultCountRpt;
-import com.yihuacomputer.fish.api.report.transaction.ITransRptService;
+import com.yihuacomputer.fish.api.report.trans.ITransCountRpt;
+import com.yihuacomputer.fish.api.report.trans.ITransResultCountRpt;
+import com.yihuacomputer.fish.api.report.trans.ITransRptService;
 
 @Service
 public class TransRptService implements ITransRptService {

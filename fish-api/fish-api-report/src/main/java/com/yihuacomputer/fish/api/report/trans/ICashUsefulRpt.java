@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.api.report.transaction;
+package com.yihuacomputer.fish.api.report.trans;
 
 /**
  * 设备加钞清机交易利用模型

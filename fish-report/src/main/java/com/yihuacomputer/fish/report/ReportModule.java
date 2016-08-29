@@ -15,12 +15,12 @@ import com.yihuacomputer.fish.api.report.fault.ICaseStatisticsRptService;
 import com.yihuacomputer.fish.api.report.fault.IEveryMonthFaultCountService;
 import com.yihuacomputer.fish.api.report.fault.IFaultRateReportService;
 import com.yihuacomputer.fish.api.report.openRate.IDayOpenRateService;
-import com.yihuacomputer.fish.api.report.transaction.ICashInRptService;
-import com.yihuacomputer.fish.api.report.transaction.ISettlementCashInRptService;
-import com.yihuacomputer.fish.api.report.transaction.ISettlementRptService;
-import com.yihuacomputer.fish.api.report.transaction.ITransRptService;
-import com.yihuacomputer.fish.api.report.transaction.ITransactionDaysService;
-import com.yihuacomputer.fish.api.report.transaction.ITransactionMonthsService;
+import com.yihuacomputer.fish.api.report.trans.ICashInRptService;
+import com.yihuacomputer.fish.api.report.trans.ISettlementCashInRptService;
+import com.yihuacomputer.fish.api.report.trans.ISettlementRptService;
+import com.yihuacomputer.fish.api.report.trans.ITransRptService;
+import com.yihuacomputer.fish.api.report.trans.ITransactionDaysService;
+import com.yihuacomputer.fish.api.report.trans.ITransactionMonthsService;
 import com.yihuacomputer.fish.report.engine.ExportDataETLService;
 import com.yihuacomputer.fish.report.scheduler.AtmcDayTransCount;
 import com.yihuacomputer.fish.report.scheduler.DayOpenRateExcuter;
@@ -38,12 +38,12 @@ import com.yihuacomputer.fish.report.service.fault.EveryMonthFaultCountService;
 import com.yihuacomputer.fish.report.service.fault.FaultRateReportService;
 import com.yihuacomputer.fish.report.service.openRate.DayOpenRateService;
 import com.yihuacomputer.fish.report.service.openRate.DeviceOpenRateService;
-import com.yihuacomputer.fish.report.service.transaction.CashInRptService;
-import com.yihuacomputer.fish.report.service.transaction.SettlementCashInRptService;
-import com.yihuacomputer.fish.report.service.transaction.SettlementRptService;
-import com.yihuacomputer.fish.report.service.transaction.TransRptService;
-import com.yihuacomputer.fish.report.service.transaction.TransactionDaysService;
-import com.yihuacomputer.fish.report.service.transaction.TransactionMonthsService;
+import com.yihuacomputer.fish.report.service.trans.CashInRptService;
+import com.yihuacomputer.fish.report.service.trans.SettlementCashInRptService;
+import com.yihuacomputer.fish.report.service.trans.SettlementRptService;
+import com.yihuacomputer.fish.report.service.trans.TransRptService;
+import com.yihuacomputer.fish.report.service.trans.TransactionDaysService;
+import com.yihuacomputer.fish.report.service.trans.TransactionMonthsService;
 
 /**
  * 报表模块配置

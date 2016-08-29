@@ -1,6 +1,6 @@
-package com.yihuacomputer.fish.api.report.transaction;
+package com.yihuacomputer.fish.api.report.trans;
 
-public interface ITransactionDays {
+public interface ITransactionMonths {
 
 	public long getId();
 
@@ -104,4 +104,5 @@ public interface ITransactionDays {
 	 * @param devTypeId
 	 */
 	public void setDevTypeId(long devTypeId);
+
 }
