@@ -13,7 +13,7 @@ import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfoService;
 import com.yihuacomputer.fish.monitor.H2TestConfig;
 import com.yihuacomputer.fish.monitor.MySQLTestConfig;
 
-@DirtiesContext(classMode = ClassMode.AFTER_CLASS)
+/*@DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = MySQLTestConfig.class)
 public class CashInitPlanTest extends BindSessionInTest2{
@@ -25,4 +25,4 @@ public class CashInitPlanTest extends BindSessionInTest2{
 	public void test(){
 		caseCashInitPlanInfoService.generalCashInitPlan();
 	}
-}
+}*/

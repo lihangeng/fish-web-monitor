@@ -506,15 +506,15 @@ public class DayOpenRateService implements IDayOpenRateService {
             String typeName="";
             String vendorName="";
             String awayFlag="";
-            if(status.length > 8)
+            if(status.length > 11)
             {
             	IDevice device = deviceService.get(terminalId);
-                catalogName = (String)status[8];
-      			String srcbOrgName = (String)status[9];
-      			String srcbOrgCode = (String)status[10];
+                catalogName = (String)status[11];
+      			String srcbOrgName = (String)status[12];
+      			String srcbOrgCode = (String)status[13];
       			typeName=device.getDevType().getName();
       			vendorName=device.getDevType().getDevVendor().getName();
-      			awayFlag=(String)status[11];
+      			awayFlag=(String)status[14];
       			orgName = srcbOrgName+"("+srcbOrgCode+")";
             }
             else
