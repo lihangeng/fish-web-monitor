@@ -13,6 +13,7 @@ public class CashInitPlanDeviceInfoForm {
 	private long  cashInitPlanInfoId;
 	private int flag;//加钞类型标识(1:钞箱预警.2:超过加钞预警天数.4.手工强制清机加钞)
 	private String address;
+	private long maxAmt;
 	public long getId() {
 		return id;
 	}
@@ -84,6 +85,12 @@ public class CashInitPlanDeviceInfoForm {
 	}
 	public void setAwayFlag(String awayFlag) {
 		this.awayFlag = awayFlag;
+	}
+	public long getMaxAmt() {
+		return maxAmt;
+	}
+	public void setMaxAmt(long maxAmt) {
+		this.maxAmt = maxAmt;
 	}
 	
 }

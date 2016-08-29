@@ -6,7 +6,7 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 	border : false,
 	initComponent: function() {
 		var store = Ext.create('Eway.store.cash.initPlan.CashInitPlanDevice');
-		store.loadPage(1);
+//		store.loadPage(1);
 		Ext.apply(this, {
 			initRegion : true,
 			store: store,
@@ -34,15 +34,21 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 			},  {
 				header :  EwayLocale.initPlan.actualAmt,
 				dataIndex : 'actualAmt',
-				flex : 1,    
 				editor: {
 	                xtype: 'numberfield',
 	                allowBlank: false
+	            },
+	            renderer: function (value, metaData, record, rowIndex, colIndex, store, view) {
+	            	if(record.getAmt("maxAmt")!=-1){
+	            		metaData.column.getEditor().maxValue=record.getAmt("maxAmt");
+	            	}
+	            	metaData.column.getEditor().minValue=0;
+	                return value;
 	            }
 			}, {
-			header :  EwayLocale.initPlan.adviceAmt,
-			dataIndex : 'adviceAmt',
-			flex : 1
+				header :  EwayLocale.initPlan.adviceAmt,
+				dataIndex : 'adviceAmt',
+				flex : 1
 			},{
 				header : EwayLocale.machine.atmGroup.devTypeName,
 				dataIndex : 'devType',
@@ -76,5 +82,16 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 		});
 		
 		this.callParent(arguments);
+	},
+	showUpdate:function(){
+		var has = false;
+		Ext.each(Ext.fishButtons,function(code){
+			if("cashBoxInfoUpdate" == code){
+				has = true;
+				return ;
+			}
+		});
+		
+		return has;
 	}
 });

@@ -23,8 +23,8 @@ Ext.define('Eway.view.cash.initPlan.View', {
 						xtype : 'initPlan_grid'
 				} ]
 				
-			}],
-			items:[{
+			},
+			{
 				layout : 'border',
 				xtype:'panel',
 				itemId:'initDetailPlan',
@@ -35,7 +35,12 @@ Ext.define('Eway.view.cash.initPlan.View', {
 						region : 'center',
 						xtype : 'initPlan_detailGrid'
 				} ]
-			}]
+			}],
+			listeners:{
+				afterrender:function(_this,opt){
+					_this.getLayout().setActiveItem("initPlan");
+				}
+			}
 		});
 
 		this.callParent(arguments);
