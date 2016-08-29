@@ -19,21 +19,22 @@ Ext.define('Eway.view.system.quartz.Form',{
 				msgTarget : 'side'
 			},
 			items: [{
-					fieldLabel: '<font color="red">*</font> '+'job名称',
+					fieldLabel: '任务名称',
 					xtype : 'quartz_jobName',
-					maxLength : 20,
-					allowBlank: false
+					maxLength : 128,
+					allowBlank: false,
+					editable:false
 			},{
-					fieldLabel: '<font color="red">*</font>'+ 'job表达式',
+					fieldLabel: '<font color="red">*</font>'+ '任务执行规则',
 					xtype : 'quartz_jobCron',
-					maxLength : 30,
+					maxLength : 128,
 					allowBlank: false
-			},{
+			}/*,{
 				fieldLabel: '<font color="red">*</font>'+ 'job group',
 				xtype : 'quartz_jobGroup',
 				maxLength : 30,
 				allowBlank: false
-		}]
+		}*/]
 		});
 		this.callParent(arguments);
 	}

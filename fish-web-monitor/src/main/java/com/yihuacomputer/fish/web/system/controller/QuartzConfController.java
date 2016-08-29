@@ -28,7 +28,7 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.fish.api.system.dbQuartz.IQuartzService;
+import com.yihuacomputer.fish.api.system.quartz.IQuartzService;
 import com.yihuacomputer.fish.web.system.form.QuartzConfForm;
 
 /**
