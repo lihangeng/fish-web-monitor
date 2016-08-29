@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.yihuacomputer.fish.api.report.base.IDayOpenRate;
+import com.yihuacomputer.fish.api.report.openRate.IDayOpenRate;
 
 public class OpenRateForm {
 

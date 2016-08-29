@@ -25,7 +25,7 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.monitor.xfs.status.DeviceMod;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
-import com.yihuacomputer.fish.api.report.base.ICaseStatisticsRptService;
+import com.yihuacomputer.fish.api.report.fault.ICaseStatisticsRptService;
 import com.yihuacomputer.fish.web.report.form.CaseStatisticsForm;
 
 @Controller

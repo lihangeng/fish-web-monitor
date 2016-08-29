@@ -61,7 +61,6 @@
 			<list>
 				<value>com.yihuacomputer.fish.advert.entity</value>
 				<value>com.yihuacomputer.fish.advert.bs.entity</value>
-
 				<value>com.yihuacomputer.fish.version.entity</value>
 				<value>com.yihuacomputer.fish.person.entity</value>
 				<value>com.yihuacomputer.fish.permission.entity</value>
@@ -75,7 +74,6 @@
 				<value>com.yihuacomputer.fish.fault.entity</value>
 				<value>com.yihuacomputer.fish.journal.entity</value>
 				<value>com.yihuacomputer.fish.parameter.entity</value>
-				<value>com.yihuacomputer.fish.report.base.entity</value>
 				<value>com.yihuacomputer.fish.report.entity</value>
 			</list>
 		</property>

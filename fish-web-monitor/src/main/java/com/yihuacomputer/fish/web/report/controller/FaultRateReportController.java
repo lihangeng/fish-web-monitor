@@ -24,8 +24,8 @@ import com.yihuacomputer.fish.api.atm.IAtmBrandService;
 import com.yihuacomputer.fish.api.atm.IAtmModule;
 import com.yihuacomputer.fish.api.atm.IAtmModuleService;
 import com.yihuacomputer.fish.api.atm.IAtmTypeService;
-import com.yihuacomputer.fish.api.report.base.FaultRateReport;
-import com.yihuacomputer.fish.api.report.base.IFaultRateReportService;
+import com.yihuacomputer.fish.api.report.fault.FaultRateReport;
+import com.yihuacomputer.fish.api.report.fault.IFaultRateReportService;
 
 @Controller
 @RequestMapping(value = "/report/faultRate")

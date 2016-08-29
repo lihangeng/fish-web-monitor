@@ -44,7 +44,6 @@ public class HtmlExporter implements IExportExporter {
 			exporter.exportReport();
 		}catch (JRException e){	
 			log.error(String.format("Genarate report HTML files Error![%s]",e));
-//			log.error(String.format("生成报表HTML文件出错![%s]",e));
 		}		 
 	}
 }

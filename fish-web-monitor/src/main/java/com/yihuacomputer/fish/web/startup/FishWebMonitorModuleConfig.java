@@ -13,8 +13,8 @@ import com.yihuacomputer.fish.atmlog.AtmLogModule;
 import com.yihuacomputer.fish.fault.FaultModule;
 import com.yihuacomputer.fish.machine.MachineModule;
 import com.yihuacomputer.fish.monitor.MonitorModule;
-import com.yihuacomputer.fish.report.base.ReportBaseModule;
-import com.yihuacomputer.fish.report.engine.ReportEngineModule;
+import com.yihuacomputer.fish.report.ReportEngineModule;
+import com.yihuacomputer.fish.report.ReportModule;
 import com.yihuacomputer.fish.system.SystemModule;
 import com.yihuacomputer.fish.version.VersionModule;
 import com.yihuacomputer.fish.web.mock.DefaultDeviceCaseService;
@@ -36,7 +36,7 @@ import com.yihuacomputer.fish.web.mock.NotifyContentService;
 		AdvertModule.class,
 		AtmLogModule.class,
 		FaultModule.class,
-		ReportBaseModule.class,
+		ReportModule.class,
 		ReportEngineModule.class
 		})
 @ImportResource(value = {"classpath:/fish.xml"})
