@@ -1,12 +1,19 @@
 package com.yihuacomputer.fish.monitor.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanDeviceInfo;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanDeviceInfoService;
+import com.yihuacomputer.fish.api.person.IOrganization;
+import com.yihuacomputer.fish.api.person.IOrganizationService;
+import com.yihuacomputer.fish.monitor.entity.box.DeviceBoxInfo;
 import com.yihuacomputer.fish.monitor.entity.cashplan.CashInitPlanDeviceInfo;
 @Service
 @Transactional
@@ -14,6 +21,8 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 
 	@Autowired
 	private IGenericDao dao;
+	@Autowired
+	private IOrganizationService orgService;
 	
 	@Override
 	public ICashInitPlanDeviceInfo make() {
@@ -38,6 +47,40 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 	@Override
 	public ICashInitPlanDeviceInfo get(long id) {
 		return dao.get(id, CashInitPlanDeviceInfo.class);
+	}
+
+	@Override
+	public List<ICashInitPlanDeviceInfo> list(IFilter filter) {
+		return dao.findByFilter(filter, ICashInitPlanDeviceInfo.class);
+	}
+	
+	public List<Object> listPage(IFilter filter){
+		StringBuilder sb = new StringBuilder();
+		sb.append("select cashInitPlanDevice,deviceBoxInfo from ").append(CashInitPlanDeviceInfo.class).append(" cashInitPlanDevice,")
+		.append(DeviceBoxInfo.class).append(" deviceBoxInfo where deviceBoxInfo.deviceId.terminalId = cashInitPlanDevice.terminalId ");
+		Object terminalId = filter.getValue("terminalId");
+		Object orgId = filter.getValue("orgId");
+		Object awayflag = filter.getValue("awayflag");
+		Object devType = filter.getValue("devType");
+		List<Object> list = new ArrayList<Object>();
+		if(terminalId!=null){
+			sb.append(" and cashInitPlanDevice.terminalId=? ");
+			list.add(terminalId.toString());
+		}
+		if(awayflag!=null){
+			sb.append(" and deviceBoxInfo.deviceId.awayFlag=? ");
+			list.add(awayflag.toString());
+		}
+		if(devType!=null){
+			sb.append(" and deviceBoxInfo.deviceId.devType.id=? ");
+			list.add(Long.parseLong(devType.toString()));
+		}
+		if(orgId!=null){
+			sb.append(" and deviceBoxInfo.deviceId.organization.orgFlag like ? ");
+			IOrganization org = orgService.get(String.valueOf(orgId));
+			list.add(org.getOrgFlag()+"%");
+		}
+		return dao.findByHQL(sb.toString(), list.toArray());
 	}
 
 }
