@@ -30,10 +30,10 @@ import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.OrganizationLevel;
 import com.yihuacomputer.fish.api.person.UserSession;
-import com.yihuacomputer.fish.api.report.base.ICashInRpt;
-import com.yihuacomputer.fish.api.report.base.ICashInRptService;
 import com.yihuacomputer.fish.api.report.engine.IExportReportService;
 import com.yihuacomputer.fish.api.report.engine.IReportExport;
+import com.yihuacomputer.fish.api.report.trans.ICashInRpt;
+import com.yihuacomputer.fish.api.report.trans.ICashInRptService;
 import com.yihuacomputer.fish.report.engine.ReportParam;
 
 /**

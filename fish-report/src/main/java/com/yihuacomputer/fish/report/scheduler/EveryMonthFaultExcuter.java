@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.fish.api.report.base.IEveryMonthFaultCountService;
 import com.yihuacomputer.fish.api.report.engine.IExportDataETLService;
 import com.yihuacomputer.fish.api.report.engine.IReportDataETL;
+import com.yihuacomputer.fish.api.report.fault.IEveryMonthFaultCountService;
 
 /**
  * 启动每日日志备份工作

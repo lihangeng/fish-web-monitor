@@ -54,18 +54,21 @@
 		<property name="packagesToScan">
 			<list>
 				<value>com.yihuacomputer.fish.advert.entity</value>
+				<value>com.yihuacomputer.fish.advert.bs.entity</value>
 				<value>com.yihuacomputer.fish.version.entity</value>
 				<value>com.yihuacomputer.fish.person.entity</value>
-				<value>com.yihuacomputer.fish.permission</value>
-				<value>com.yihuacomputer.fish.relation</value>
+				<value>com.yihuacomputer.fish.permission.entity</value>
+				<value>com.yihuacomputer.fish.relation.entity</value>
 				<value>com.yihuacomputer.fish.machine.entity</value>
 				<value>com.yihuacomputer.fish.monitor.entity</value>
 				<value>com.yihuacomputer.fish.atmlog.entity</value>
 				<value>com.yihuacomputer.fish.system.entity</value>
+				<value>com.yihuacomputer.fish.map.entity</value>
+				<value>com.yihuacomputer.fish.crown.entity</value>
+				<value>com.yihuacomputer.fish.fault.entity</value>
 				<value>com.yihuacomputer.fish.journal.entity</value>
-
-				<!-- 其他注解包 -->
-				<value>com.yihuacomputer.fish.report.base.entity</value>
+				<value>com.yihuacomputer.fish.parameter.entity</value>
+				<value>com.yihuacomputer.fish.report.entity</value>
 			</list>
 		</property>
 	</bean>
