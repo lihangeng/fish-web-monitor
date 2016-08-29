@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.api.system.dbQuartz;
+package com.yihuacomputer.fish.api.system.quartz;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.system.service;
+package com.yihuacomputer.fish.system.quartz;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.domain.dao.IGenericDao;
-import com.yihuacomputer.fish.api.system.dbQuartz.IQuartzService;
+import com.yihuacomputer.fish.api.system.quartz.IQuartzService;
 
 @Service
 @Transactional
@@ -21,7 +21,7 @@ public class QuartzService implements IQuartzService{
 			"       TRIGGERS.TRIGGER_GROUP,\n" + 
 			"       TRIGGERS.JOB_NAME,\n" + 
 			"       TRIGGERS.JOB_GROUP,\n" + 
-			"       JOB_D.DESCRIPTION,\n" + 
+			"       TRIGGERS.DESCRIPTION,\n" + 
 			"       JOB_D.JOB_CLASS_NAME,\n" + 
 			"       CRON_TRIGGERS.CRON_EXPRESSION,\n" + 
 			"		TRIGGERS.TRIGGER_STATE,"+

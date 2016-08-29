@@ -19,10 +19,10 @@ import com.yihuacomputer.fish.api.relation.IUserPermissionRelation;
 import com.yihuacomputer.fish.api.relation.IUserRoleRelation;
 import com.yihuacomputer.fish.api.session.ISessionManage;
 import com.yihuacomputer.fish.api.system.config.IParamService;
-import com.yihuacomputer.fish.api.system.dbQuartz.IQuartzService;
 import com.yihuacomputer.fish.api.system.im.IAnnouncementService;
 import com.yihuacomputer.fish.api.system.im.IMessageService;
 import com.yihuacomputer.fish.api.system.quartz.IJobSynchService;
+import com.yihuacomputer.fish.api.system.quartz.IQuartzService;
 import com.yihuacomputer.fish.api.system.sms.IShortMessageService;
 import com.yihuacomputer.fish.permission.service.db.GroupService;
 import com.yihuacomputer.fish.permission.service.db.PermissionEntityInjector;
@@ -42,11 +42,11 @@ import com.yihuacomputer.fish.relation.service.db.UserGroupRelation;
 import com.yihuacomputer.fish.relation.service.db.UserPermissionRelation;
 import com.yihuacomputer.fish.relation.service.db.UserRoleRelation;
 import com.yihuacomputer.fish.session.SessionManage;
+import com.yihuacomputer.fish.system.quartz.QuartzService;
 import com.yihuacomputer.fish.system.service.AnnouncementService;
 import com.yihuacomputer.fish.system.service.JobSynchService;
 import com.yihuacomputer.fish.system.service.MessageService;
 import com.yihuacomputer.fish.system.service.ParamService;
-import com.yihuacomputer.fish.system.service.QuartzService;
 import com.yihuacomputer.fish.system.service.ShortMessageService;
 
 @Configuration
