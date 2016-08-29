@@ -35,7 +35,7 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				}
 			},*/{
 				text: EwayLocale.button.update,
-				glyph : 0xf040,
+				glyph : 0xf04c,
 				action:'update',
 				code : 'quartzUpdate',
 				listeners:{
@@ -43,7 +43,7 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				}
 			},{
 				text: '暂停',
-				glyph : 0xf014,
+				glyph : 0xf28b,
 				action: 'pause',
 				code : 'quartzPause',
 				listeners:{
@@ -51,7 +51,7 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				}
 			},{
 				text: '恢复',
-				glyph : 0xf014,
+				glyph : 0xf144,
 				action: 'resume',
 				code : 'quartzResume',
 				listeners:{
@@ -59,7 +59,7 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				}
 			},{
 				text: '立即执行',
-				glyph : 0xf014,
+				glyph : 0xf04b,
 				action: 'resume',
 				code : 'quartzExecute',
 				listeners:{
