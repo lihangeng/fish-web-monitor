@@ -45,8 +45,8 @@ public class DeviceCashInitPlanDetailController {
 		logger.info("search CashInit Plan detail Info List");
 		ModelMap result = new ModelMap();
 		IFilter filter = getCashInitPlanInfoFilter(webRequest);
-		List<Object> cashInitPlanPageResult = cashInitPlanDeviceInfoService.listPage(filter);
-		List<CashInitPlanDeviceInfoForm> dcbirList = convert(cashInitPlanPageResult);
+		List<ICashInitPlanDeviceInfo> cashInitPlanPageResult = cashInitPlanDeviceInfoService.list(filter);
+		List<CashInitPlanDeviceInfoForm> dcbirList = convert1(cashInitPlanPageResult);
 		result.put(FishConstant.SUCCESS, true);
 		result.put(FishConstant.TOTAL, dcbirList.size());
 		result.put(FishConstant.DATA, dcbirList);
@@ -81,7 +81,33 @@ public class DeviceCashInitPlanDetailController {
 		}
 		return formList;
 	}
-	
+	private List<CashInitPlanDeviceInfoForm> convert1(List<ICashInitPlanDeviceInfo> list){
+		List<CashInitPlanDeviceInfoForm> formList = new ArrayList<CashInitPlanDeviceInfoForm>();
+		for(ICashInitPlanDeviceInfo cashInitPlanDevice:list){
+			CashInitPlanDeviceInfoForm form = new CashInitPlanDeviceInfoForm();
+			form.setActualAmt(cashInitPlanDevice.getActualAmt());
+			form.setAddress(cashInitPlanDevice.getAddress());
+			form.setAdviceAmt(cashInitPlanDevice.getAdviceAmt());
+			form.setAwayFlag(getI18N(cashInitPlanDevice.getAwayFlag().getText()));
+			form.setDevType(cashInitPlanDevice.getDevType());
+			form.setFlag(cashInitPlanDevice.getFlag().getNo());
+			form.setId(cashInitPlanDevice.getId());
+			form.setLastAmt(cashInitPlanDevice.getLastAmt());
+			form.setLastDate(cashInitPlanDevice.getLastDate());
+			form.setOrgName(cashInitPlanDevice.getOrgName());
+			form.setTerminalId(cashInitPlanDevice.getTerminalId());
+//			IDeviceBoxInfo deviceBoxInfo = null;
+//			if(null!=objs[1]){
+//				deviceBoxInfo = (IDeviceBoxInfo)objs[1];
+//				form.setMaxAmt(deviceBoxInfo.getDefaultBill());
+//			}
+//			else{
+//				form.setMaxAmt(-1);
+//			}
+			formList.add(form);
+		}
+		return formList;
+	}
 	private String getI18N(String code){
 		return messageSource.getMessage(code, null, FishCfg.locale);
 	}
@@ -98,7 +124,7 @@ public class DeviceCashInitPlanDetailController {
 			if (value == null || value.isEmpty()) {
 				continue;
 			}
-
+			System.out.println(name);
 			if ("cashInitPlanInfoId".equals(name)) {
 				filter.eq("cashInitPlanInfo.id", Long.parseLong(value));
 			} else if ("date".equals(name)) {

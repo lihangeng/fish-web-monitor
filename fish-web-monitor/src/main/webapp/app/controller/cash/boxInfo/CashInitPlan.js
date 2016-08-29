@@ -12,6 +12,12 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 	}, {
 		ref : 'grid',
 		selector : 'initPlan_grid'//ComponentQuery的query规则
+	}, {
+		ref : 'detailGrid',
+		selector : 'initPlan_detailGrid'//ComponentQuery的query规则
+	}, {
+		ref : 'detailForm',
+		selector : 'initPlan_detailFilterForm'//ComponentQuery的query规则
 	},{
 		ref : 'filterForm',
 		selector: 'initPlan_filterForm'
@@ -22,8 +28,14 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 			'initPlan_grid button[action=query]' : {
 				click : this.onQuery
 			},
+			'initPlan_detailGrid button[action=query]' : {
+				click : this.onDetailQuery
+			},
 			'initPlan_grid button[action=update]' : {
 				click : this.onUpdate
+			},
+			'initPlan_detailGrid button[action=toPlan]' : {
+				click : this.onBack
 			}
 		});
 	},
@@ -40,26 +52,45 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 		store.setUrlParamsByObject(values);
 		store.loadPage(1);
 	},
+	onDetailQuery:function(){
+		var view = this.getEwayView();
+		var form = view.down('initPlan_detailFilterForm').getForm();
+		if(!form.isValid()){
+			Eway.alert(EwayLocale.tip.search.warn);
+			return ;
+		}
+		var values = form.getValues();
+		var store = view.down('initPlan_detailGrid').getStore();
+		store.setUrlParamsByObject(values);
+		store.loadPage(1);
+	},
+	onBack:function(){
 
+		var view = this.getEwayView();
+		view.getLayout().setActiveItem("initPlan");
+	},
 	onUpdate:function(){
-//		var me = this;
-//		var grid = this.getGrid(),
-//		sm = grid.getSelectionModel(),
-//		count = sm.getCount();
-//		if(count == 0){
-//			Eway.alert(EwayLocale.choiceUpdateMsg);
-//			return;
-//		}
-//		else if(count > 1){
-//			Eway.alert(EwayLocale.tip.update.one);
-//			return;
-//		}
-//		var win = Ext.create('Eway.view.cash.initPlan.UpdateWin');
-//		win.down('button[action="confirm"]').on('click',me.updateConfirm,me);
-//		var record = sm.getLastSelected();
-//		form = win.down('form').getForm();
-//		form.loadRecord(record);
-//		win.show();
+		var view = this.getEwayView(),
+		grid = this.getGrid(),
+		detailGrid = this.getDetailGrid(),
+		detailFilterForm = this.getDetailForm(),
+		sm = grid.getSelectionModel(),
+		count = sm.getCount();
+		if(count == 0){
+			Eway.alert(EwayLocale.choiceUpdateMsg);
+			return;
+		}
+		else if(count > 1){
+			Eway.alert(EwayLocale.tip.update.one);
+			return;
+		}
+		var record = sm.getLastSelected();
+		view.getLayout().setActiveItem("initDetailPlan");
+		
+		var cashPlanInitId = detailFilterForm.down("hidden[name=cashInitPlanInfoId]").setValue(record.get("id"));
+		var detailStore = detailGrid.getStore();
+		detailStore.setBaseParam("cashInitPlanInfoId",record.get("id"));
+		detailStore.load();
 	},
 	updateConfirm:function(button){
 		var me = this,

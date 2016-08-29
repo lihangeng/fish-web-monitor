@@ -56,13 +56,18 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 	
 	public List<Object> listPage(IFilter filter){
 		StringBuilder sb = new StringBuilder();
-		sb.append("select cashInitPlanDevice,deviceBoxInfo from ").append(CashInitPlanDeviceInfo.class).append(" cashInitPlanDevice,")
-		.append(DeviceBoxInfo.class).append(" deviceBoxInfo where deviceBoxInfo.deviceId.terminalId = cashInitPlanDevice.terminalId ");
+		sb.append("select cashInitPlanDevice,deviceBoxInfo from ").append(CashInitPlanDeviceInfo.class.getSimpleName()).append(" cashInitPlanDevice ,")
+		.append(DeviceBoxInfo.class.getSimpleName()).append(" deviceBoxInfo where deviceBoxInfo.deviceId.terminalId = cashInitPlanDevice.terminalId ");
 		Object terminalId = filter.getValue("terminalId");
 		Object orgId = filter.getValue("orgId");
 		Object awayflag = filter.getValue("awayflag");
 		Object devType = filter.getValue("devType");
+		Object planId = filter.getValue("cashInitPlanInfo.id");
 		List<Object> list = new ArrayList<Object>();
+		if(planId!=null){
+			sb.append(" and cashInitPlanDevice.cashInitPlanInfo.id=? ");
+			list.add(Long.parseLong(String.valueOf(planId)));
+		}
 		if(terminalId!=null){
 			sb.append(" and cashInitPlanDevice.terminalId=? ");
 			list.add(terminalId.toString());

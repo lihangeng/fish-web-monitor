@@ -10,7 +10,13 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 		Ext.apply(this, {
 			initRegion : true,
 			store: store,
-			tbar: ['->', {
+			tbar: [{
+				text:  EwayLocale.version.download.callBack,//'查询',
+				glyph : 0xf122,
+				action: 'toPlan',
+				tooltip:EwayLocale.version.download.callBackJob,//'根据条件查询选中作业下的详情信息'
+				code:'toJob'
+			},'->', {
 				text: EwayLocale.button.search,//'查询',
 				action: 'query',
 				code:'cashInitPlanSeach',
@@ -36,16 +42,23 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				dataIndex : 'actualAmt',
 				editor: {
 	                xtype: 'numberfield',
-	                allowBlank: false
-	            },
-	            renderer: function (value, metaData, record, rowIndex, colIndex, store, view) {
-	            	if(record.getAmt("maxAmt")!=-1){
-	            		metaData.column.getEditor().maxValue=record.getAmt("maxAmt");
-	            	}
-	            	metaData.column.getEditor().minValue=0;
-	                return value;
+	                allowBlank: false,
+	                focus:function(_this,event,opt){
+	                	me = 	_this;	
+	                }
+//	            },
+//	            renderer: function (value, metaData, record, rowIndex, colIndex, store, view) {
+//	            	if(record.get("maxAmt")!=-1){
+//	            		metaData.column.getEditor().maxValue=record.get("maxAmt");
+//	            	}
+//	            	metaData.column.getEditor().minValue=0;
+//	                return value;
 	            }
-			}, {
+//			}, {
+//				header :  '最大加钞额',
+//				dataIndex : 'maxAmt',
+//				flex : 1
+			},{
 				header :  EwayLocale.initPlan.adviceAmt,
 				dataIndex : 'adviceAmt',
 				flex : 1
