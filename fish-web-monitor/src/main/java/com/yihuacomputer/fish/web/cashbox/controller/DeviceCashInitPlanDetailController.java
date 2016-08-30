@@ -112,7 +112,7 @@ public class DeviceCashInitPlanDetailController {
 		Map<String, IDeviceBoxInfo> deviceBoxInfoMap = deviceBoxInfoService.getDeviceBoxInfo(planInfo.getOrg().getOrgFlag());
 		List<CashInitPlanDeviceInfoForm> dcbirList = convert(cashInitPlanPageResult, deviceBoxInfoMap);
 		
-		String path = createExls(dcbirList, messageSource.getMessage("device.devinfo", null, FishCfg.locale));
+		String path = createExls(dcbirList, messageSource.getMessage("cashInitPlanDevice.title", new Object[]{planInfo.getOrg().getName(),planInfo.getDate()}, FishCfg.locale));
 
 		File file = new File(path);
 

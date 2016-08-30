@@ -43,10 +43,11 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				text : EwayLocale.button.exported,
 				glyph : 0xf1c3,
 				action : 'export',
-				code : 'cashInitPlanDeviceExport',
-				listeners:{
-					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-				}
+				code : 'cashInitPlanDeviceExport'
+//					,
+//				listeners:{
+//					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+//				}
 			}],
 			columns : [ {
 				header :  EwayLocale.machine.atmGroup.terminalId,

@@ -69,7 +69,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 	//加钞计划明细导出
 	onInitPlanDetailExport:function(){
 		var planId = this.getDetailForm().down("hidden[name=cashInitPlanInfoId]").getValue();
-		var params="&planId="+planId;
+		var params="&cashInitPlanInfoId="+planId;
 		window.location.href = 'api/cashInitPlanDevice/export?_dc=' + params;
 	},
 	//加钞计划增加设备的查询条件
