@@ -16,6 +16,7 @@ import com.yihuacomputer.fish.report.engine.exporter.PdfExporter;
 import com.yihuacomputer.fish.report.engine.exporter.XlsExporter;
 import com.yihuacomputer.fish.report.engine.scheduler.EveryDayReportJob;
 import com.yihuacomputer.fish.report.engine.scheduler.EveryMonthReportJob;
+import com.yihuacomputer.fish.report.engine.scheduler.EveryWeekReportJob;
 import com.yihuacomputer.fish.report.engine.scheduler.EveryYearReportJob;
 
 /**
@@ -56,6 +57,11 @@ public class ReportEngineModule {
 	@Bean(name = "DayETLJob")
 	public EveryDayReportJob everyDayReportJob() {
 		return new EveryDayReportJob();
+	}
+	
+	@Bean(name = "WeekETLJob")
+	public EveryWeekReportJob everyWeekReportJob() {
+		return new EveryWeekReportJob();
 	}
 
 	@Bean(name = "MonthETLJob")

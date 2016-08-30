@@ -11,8 +11,8 @@ public interface IDeviceTypeOpenRateMonth extends IOpenRateColumn{
 	 * 如201611
 	 * @return
 	 */
-	long getDate();
-	void setDate(long date);
+	String getDate();
+	void setDate(String date);
 	
 	/**
 	 * 设备类型ID

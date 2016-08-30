@@ -30,7 +30,7 @@ public class LogoutController {
 			return map;
 		}
 		UserSession userSession = (UserSession) session.getAttribute("SESSION_USER");
-		sessionManage.logout(userSession.getUserName());
+		sessionManage.logout(userSession.getUserCode());
 		map.addAttribute(FishConstant.SUCCESS, true);
 		return map;
 	}

@@ -2,6 +2,7 @@ package com.yihuacomputer.fish.report;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 import com.yihuacomputer.fish.api.report.device.IDeviceBoxDetailRptService;
 import com.yihuacomputer.fish.api.report.device.IDeviceHardwareRptService;
@@ -47,126 +48,127 @@ import com.yihuacomputer.fish.report.service.trans.TransactionMonthsService;
 
 /**
  * 报表模块配置
+ * 
  * @author xuxiang
  * @since
  *
  */
 @Configuration
+@Import(value = { ReportOpenRateModule.class,ReportTransModule.class })
 public class ReportModule {
 
 	@Bean
-	public ICashInRptService cashInRptService(){
+	public ICashInRptService cashInRptService() {
 		return new CashInRptService();
 	}
 
 	@Bean
-	public IDeviceBoxDetailRptService deviceBoxDetailRptService(){
+	public IDeviceBoxDetailRptService deviceBoxDetailRptService() {
 		return new DeviceBoxDetailRptService();
 	}
 
 	@Bean
-	public IDeviceHardwareRptService deviceHardwareRptService(){
+	public IDeviceHardwareRptService deviceHardwareRptService() {
 		return new DeviceHardwareRptService();
 	}
+
 	@Bean
-	public IDeviceRptService deviceRptService(){
+	public IDeviceRptService deviceRptService() {
 		return new DeviceRptService();
 	}
+
 	@Bean
-	public IDeviceTypeCountRptService deviceTypeCountRptService(){
+	public IDeviceTypeCountRptService deviceTypeCountRptService() {
 		return new DeviceTypeCountRptService();
 	}
+
 	@Bean
-	public IDeviceUseCountRptService deviceUseCountRptService(){
+	public IDeviceUseCountRptService deviceUseCountRptService() {
 		return new DeviceUseCountRptService();
 	}
+
 	@Bean
-	public IRetainCardRptService retainCardRptService(){
+	public IRetainCardRptService retainCardRptService() {
 		return new RetainCardRptService();
 	}
+
 	@Bean
-	public ISettlementCashInRptService settlementCashInRptService(){
+	public ISettlementCashInRptService settlementCashInRptService() {
 		return new SettlementCashInRptService();
 	}
+
 	@Bean
-	public ISettlementRptService settlementRptService(){
+	public ISettlementRptService settlementRptService() {
 		return new SettlementRptService();
 	}
 
 	@Bean
-	public ITransRptService transRptService(){
+	public ITransRptService transRptService() {
 		return new TransRptService();
 	}
 
 	@Bean
-	public AtmcDayTransCount atmcDayTransCount(){
+	public AtmcDayTransCount atmcDayTransCount() {
 		return new AtmcDayTransCount();
 	}
 
 	@Bean
-	public  IDayOpenRateService dayOpenRateService(){
-	       return new DayOpenRateService();
+	public IDayOpenRateService dayOpenRateService() {
+		return new DayOpenRateService();
 	}
 
 	@Bean
-	 public IDeviceOpenRateService deviceOpenRateService()
-	 {
-		  return new DeviceOpenRateService();
-	 }
+	public IDeviceOpenRateService deviceOpenRateService() {
+		return new DeviceOpenRateService();
+	}
 
 	@Bean
-	public IExportDataETLService exportDataETLService()
-	{
+	public IExportDataETLService exportDataETLService() {
 		return new ExportDataETLService();
 	}
 
 	@Bean
-	public  DayOpenRateExcuter  dayOpenRateExcuter() {
+	public DayOpenRateExcuter dayOpenRateExcuter() {
 		return new DayOpenRateExcuter();
 	}
-
+	
 	@Bean
-	public  EveryMonthFaultExcuter  everyMonthFaultJob() {
+	public EveryMonthFaultExcuter everyMonthFaultJob() {
 		return new EveryMonthFaultExcuter();
 	}
 
 	@Bean
-	public  EveryDayTransExcuter  everyDayTransExcuter() {
+	public EveryDayTransExcuter everyDayTransExcuter() {
 		return new EveryDayTransExcuter();
 	}
 
 	@Bean
-	public  EveryMonthTransExcuter  everyMonthTransExcuter() {
+	public EveryMonthTransExcuter everyMonthTransExcuter() {
 		return new EveryMonthTransExcuter();
 	}
 
 	@Bean
-	public ICaseStatisticsRptService caseStatisticsRptService()
-	{
+	public ICaseStatisticsRptService caseStatisticsRptService() {
 		return new CaseStatisticsRptService();
 	}
 
 	@Bean
-	public IEveryMonthFaultCountService everyMonthFaultCountService()
-	{
+	public IEveryMonthFaultCountService everyMonthFaultCountService() {
 		return new EveryMonthFaultCountService();
 	}
 
 	@Bean
-	public ITransactionDaysService transactionDaysService()
-	{
+	public ITransactionDaysService transactionDaysService() {
 		return new TransactionDaysService();
 	}
 
 	@Bean
-	public ITransactionMonthsService transactionMonthsService()
-	{
+	public ITransactionMonthsService transactionMonthsService() {
 		return new TransactionMonthsService();
 	}
-	
+
 	@Bean
-	public IFaultRateReportService faultRateReportService(){
+	public IFaultRateReportService faultRateReportService() {
 		return new FaultRateReportService();
 	}
 }
-

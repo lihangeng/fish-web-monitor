@@ -7,6 +7,7 @@ import com.yihuacomputer.fish.api.report.engine.IExportDataETLService;
 import com.yihuacomputer.fish.api.report.engine.IReportDataETL;
 import com.yihuacomputer.fish.report.engine.scheduler.EveryDayReportJob;
 import com.yihuacomputer.fish.report.engine.scheduler.EveryMonthReportJob;
+import com.yihuacomputer.fish.report.engine.scheduler.EveryWeekReportJob;
 import com.yihuacomputer.fish.report.engine.scheduler.EveryYearReportJob;
 @Service
 public class ExportDataETLService implements IExportDataETLService {
@@ -19,6 +20,9 @@ public class ExportDataETLService implements IExportDataETLService {
 	
 	@Autowired
 	private EveryYearReportJob yearReportJob;
+	
+	@Autowired
+	private EveryWeekReportJob weekReportJob;
 	
 	@Override
 	public void addEveryDayETL(IReportDataETL dataETL) {
@@ -34,6 +38,11 @@ public class ExportDataETLService implements IExportDataETLService {
 	@Override
 	public void addEveryYearETL(IReportDataETL dataETL) {
 		yearReportJob.addDataETL(dataETL);
+	}
+
+	@Override
+	public void addEveryWeekETL(IReportDataETL dataETL) {
+		weekReportJob.addDataETL(dataETL);
 	}
 
 }

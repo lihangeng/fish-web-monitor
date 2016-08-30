@@ -9,7 +9,7 @@ import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.report.device.IDeviceOpenRateService;
 import com.yihuacomputer.fish.api.report.engine.IExportDataETLService;
 import com.yihuacomputer.fish.api.report.engine.IReportDataETL;
-import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateEtlService;
 /**
  * 启动每日日志备份工作
  * 
@@ -26,7 +26,7 @@ public class DayOpenRateExcuter implements IReportDataETL{
 	private IExportDataETLService exportDataETLService;
 	
 	@Autowired(required=false)
-	private IAvgOpenRateService avgDayOpenRateService;
+	private IAvgOpenRateEtlService avgDayOpenRateService;
 	
 	/**
 	 * 定时任务调用执行每日备份工作
@@ -38,7 +38,7 @@ public class DayOpenRateExcuter implements IReportDataETL{
 		openRateService.dayOpenRate(yestoday);		
 		//2.计算掐一天所有设备平均开机率
 		if(avgDayOpenRateService != null){
-			avgDayOpenRateService.extractByDay(yestoday);
+			avgDayOpenRateService.extractByDay(DateUtils.getDate(yestoday));
 		}
 	}
 

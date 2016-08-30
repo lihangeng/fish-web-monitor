@@ -374,5 +374,27 @@ public class DateUtils {
        lastDate.add(Calendar.DAY_OF_MONTH, -1);
        return lastDate.get(Calendar.DAY_OF_MONTH);
    }
+   
+   /**
+    * 获得某周的第一天
+    * @param cal
+    * @return
+    */
+   public static Date getFirstDayOfWeek(Calendar cal){
+		cal.setFirstDayOfWeek(Calendar.MONDAY);
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+		return cal.getTime();
+   }
+   
+   /**
+    * 获得某周的最后一天
+    * @param cal
+    * @return
+    */
+   public static Date getLastDayOfWeek(Calendar cal){
+		cal.setFirstDayOfWeek(Calendar.MONDAY);
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+		return cal.getTime();
+   }
 
 }
