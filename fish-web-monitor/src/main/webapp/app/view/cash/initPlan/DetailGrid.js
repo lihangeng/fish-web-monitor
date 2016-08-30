@@ -50,22 +50,11 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				editor: {
 	                xtype: 'numberfield',
 	                allowBlank: false
-//	                ,
-//	                focus:function(_this,event,opt){
-//	                	me = 	_this;	
-//	                }
-//	            },
-//	            renderer: function (value, metaData, record, rowIndex, colIndex, store, view) {
-//	            	if(record.get("maxAmt")!=-1){
-//	            		metaData.column.getEditor().maxValue=record.get("maxAmt");
-//	            	}
-//	            	metaData.column.getEditor().minValue=0;
-//	                return value;
 	            }
-//			}, {
-//				header :  '最大加钞额',
-//				dataIndex : 'maxAmt',
-//				flex : 1
+			}, {
+				header :  '最大加钞额',
+				dataIndex : 'maxAmt',
+				flex : 1
 			},{
 				header :  EwayLocale.initPlan.adviceAmt,
 				dataIndex : 'adviceAmt',
@@ -75,6 +64,14 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				dataIndex : 'devType',
 				flex : 1
 			}, {
+				header : '取款余额',
+				dataIndex : 'billAmt',
+				flex : 1
+			}, {
+				header : '存款余额',
+				dataIndex : 'cashInAmt',
+				flex : 1
+			},{
 				header :  EwayLocale.machine.device.onBankSignal,
 				dataIndex : 'awayFlag',
 				flex : 1

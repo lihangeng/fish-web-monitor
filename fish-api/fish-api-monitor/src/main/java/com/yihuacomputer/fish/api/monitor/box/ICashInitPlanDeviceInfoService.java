@@ -12,5 +12,5 @@ public interface ICashInitPlanDeviceInfoService {
 	public ICashInitPlanDeviceInfo get(long id);
 	public List<ICashInitPlanDeviceInfo> list(IFilter filter);
 //	public List<Object> listPage(IFilter filter);
-	public List<CashInitPlanDeviceInfoForm> listSelectAble(ICashInitPlanInfo planInfo);
+	public List<CashInitPlanDeviceInfoForm> listSelectAble(ICashInitPlanInfo planInfo,IFilter filter);
 }

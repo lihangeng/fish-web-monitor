@@ -17,6 +17,7 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
+import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.monitor.box.BoxInitRuleType;
@@ -81,9 +82,15 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 		return dao.update(cashInitPlanInfo);
 	}
 
+	/* (non-Javadoc)
+	 * 因为级联关系，所以先解除关联关系，再做删除操作
+	 * @see com.yihuacomputer.fish.api.monitor.box.ICashInitPlanDeviceInfoService#remove(com.yihuacomputer.fish.api.monitor.box.ICashInitPlanDeviceInfo)
+	 */
 	@Override
-	public void remove(ICashInitPlanDeviceInfo cashInitPlanInfo) {
-		dao.delete(cashInitPlanInfo);
+	public void remove(ICashInitPlanDeviceInfo cashInitPlanDeviceInfo) {
+		cashInitPlanDeviceInfo.getCashInitPlanInfo().getCashInitPlanDeviceList().remove(cashInitPlanDeviceInfo);
+		cashInitPlanDeviceInfo.setCashInitPlanInfo(null);
+		dao.delete(cashInitPlanDeviceInfo);
 	}
 
 	@Override
@@ -93,7 +100,36 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 
 	@Override
 	public List<ICashInitPlanDeviceInfo> list(IFilter filter) {
-		return dao.findByFilter(filter, ICashInitPlanDeviceInfo.class);
+		Object orgIdObject = filter.getValue("orgId");
+		Object devTypeObject = filter.getValue("devType");
+		Object awayFlagObject = filter.getValue("awayFlag");
+		Object terminalIdObject = filter.getValue("terminalId");
+		StringBuilder sb= new StringBuilder();
+		sb.append("select planDeviceInfo from ").append(CashInitPlanDeviceInfo.class.getSimpleName())
+		.append(" planDeviceInfo ,").append(Device.class.getSimpleName()).append(" device ")
+		.append(" where  planDeviceInfo.cashInitPlanInfo.id=? and planDeviceInfo.terminalId = device.terminalId ");
+		List<Object> argList = new ArrayList<Object>();
+		long planId = Long.parseLong(String.valueOf(filter.getValue("planid")));
+		argList.add(planId);
+		if(orgIdObject!=null){
+			String orgId = String.valueOf(orgIdObject);
+			IOrganization org = orgService.get(orgId);
+			argList.add(org.getOrgFlag()+"%");
+			sb.append(" and device.organization.orgFlag like ? ");
+		}if(devTypeObject!=null){
+			long devType = Long.parseLong(String.valueOf(devTypeObject));
+			argList.add(devType);
+			sb.append(" and device.devType.id = ? ");
+		}if(awayFlagObject!=null){
+			int awayFlag =  Integer.parseInt(String.valueOf(awayFlagObject));
+			argList.add(AwayFlag.getById(awayFlag));
+			sb.append(" and device.awayFlag = ? ");
+		}if(terminalIdObject!=null){
+			String terminalId = String.valueOf(terminalIdObject);
+			argList.add(terminalId);
+			sb.append(" and device.terminalId = ? ");
+		}
+		return dao.findByHQL(sb.toString(),argList.toArray());
 	}
 	
 	/**
@@ -101,15 +137,39 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 	 * @param planInfo
 	 * @return
 	 */
-	public List<CashInitPlanDeviceInfoForm> listSelectAble(ICashInitPlanInfo planInfo){
+	public List<CashInitPlanDeviceInfoForm> listSelectAble(ICashInitPlanInfo planInfo,IFilter filter){
 		List<CashInitPlanDeviceInfoForm> planDeviceList = new ArrayList<CashInitPlanDeviceInfoForm>();
 		List<ICashInitPlanDeviceInfo>  devicePlanList = planInfo.getCashInitPlanDeviceList();
 		IOrganization org = planInfo.getOrg();
+
+		List<Object> argList = new ArrayList<Object>();
+		Object orgIdObject = filter.getValue("orgId");
+		Object devTypeObject = filter.getValue("devType");
+		Object awayFlagObject = filter.getValue("awayFlag");
+		Object terminalIdObject = filter.getValue("terminalId");
 		StringBuilder sb = new StringBuilder();
 		sb.append("from ").append(Device.class.getSimpleName()).append(" device where device.organization.orgFlag like ? ")
 		.append(" and device.devType.devCatalog.no in ('01','02')");
-		
-		List<IDevice> deviceList = dao.findByHQL(sb.toString(), new Object[]{org.getOrgFlag()+"%"});
+		argList.add(org.getOrgFlag()+"%");
+		if(orgIdObject!=null){
+			String orgId = String.valueOf(orgIdObject);
+			IOrganization org1 = orgService.get(orgId);
+			argList.add(org1.getOrgFlag()+"%");
+			sb.append(" and device.organization.orgFlag like ? ");
+		}if(devTypeObject!=null){
+			long devType = Long.parseLong(String.valueOf(devTypeObject));
+			argList.add(devType);
+			sb.append(" and device.devType.id = ? ");
+		}if(awayFlagObject!=null){
+			int awayFlag =  Integer.parseInt(String.valueOf(awayFlagObject));
+			argList.add(AwayFlag.getById(awayFlag));
+			sb.append(" and device.awayFlag = ? ");
+		}if(terminalIdObject!=null){
+			String terminalId = String.valueOf(terminalIdObject);
+			argList.add(terminalId);
+			sb.append(" and device.terminalId = ? ");
+		}
+		List<IDevice> deviceList = dao.findByHQL(sb.toString(), argList.toArray());
 		IParam cashInitDaysParam = paramService.getParam("cashinit_days");
 		int cashInitDays = 7;
 		//获取加钞天数
@@ -151,6 +211,8 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 				cashInitPlanDeviceInfoForm.setDevType(device.getDevType().getName());
 				cashInitPlanDeviceInfoForm.setOrgName(device.getOrganization().getName());
 				cashInitPlanDeviceInfoForm.setTerminalId(device.getTerminalId());
+				cashInitPlanDeviceInfoForm.setAwayFlagType(device.getAwayFlag());
+				cashInitPlanDeviceInfoForm.setId(device.getId());
 				//设置加钞设备的清机信息
 				if(cashInitUnique!=null){
 					String date = DateUtils.getDate(DateUtils.getDate(-cashInitDays))+" 00:0:00";
@@ -178,6 +240,8 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 					if(deviceBoxInfo.getMaxAlarm()<deviceBoxInfo.getCashInValue()||deviceBoxInfo.getMinAlarm()>deviceBoxInfo.getBillValue()){
 						cashInitPlanDeviceInfoForm.setFlag(BoxInitRuleType.CASHLIMIT.getNo());
 					}
+					cashInitPlanDeviceInfoForm.setBillAmt(deviceBoxInfo.getBillValue());
+					cashInitPlanDeviceInfoForm.setCashInAmt(deviceBoxInfo.getCashInValue());
 				}
 				planDeviceList.add(cashInitPlanDeviceInfoForm);	
 			}
@@ -185,38 +249,5 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 		return planDeviceList;
 	}
 
-//	public List<Object> listPage(IFilter filter){
-//		StringBuilder sb = new StringBuilder();
-//		sb.append("select cashInitPlanDevice,deviceBoxInfo from ").append(CashInitPlanDeviceInfo.class.getSimpleName()).append(" cashInitPlanDevice ,")
-//		.append(DeviceBoxInfo.class.getSimpleName()).append(" deviceBoxInfo where deviceBoxInfo.deviceId.terminalId = cashInitPlanDevice.terminalId ");
-//		Object terminalId = filter.getValue("terminalId");
-//		Object orgId = filter.getValue("orgId");
-//		Object awayflag = filter.getValue("awayflag");
-//		Object devType = filter.getValue("devType");
-//		Object planId = filter.getValue("cashInitPlanInfo.id");
-//		List<Object> list = new ArrayList<Object>();
-//		if(planId!=null){
-//			sb.append(" and cashInitPlanDevice.cashInitPlanInfo.id=? ");
-//			list.add(Long.parseLong(String.valueOf(planId)));
-//		}
-//		if(terminalId!=null){
-//			sb.append(" and cashInitPlanDevice.terminalId=? ");
-//			list.add(terminalId.toString());
-//		}
-//		if(awayflag!=null){
-//			sb.append(" and deviceBoxInfo.deviceId.awayFlag=? ");
-//			list.add(awayflag.toString());
-//		}
-//		if(devType!=null){
-//			sb.append(" and deviceBoxInfo.deviceId.devType.id=? ");
-//			list.add(Long.parseLong(devType.toString()));
-//		}
-//		if(orgId!=null){
-//			sb.append(" and deviceBoxInfo.deviceId.organization.orgFlag like ? ");
-//			IOrganization org = orgService.get(String.valueOf(orgId));
-//			list.add(org.getOrgFlag()+"%");
-//		}
-//		return dao.findByHQL(sb.toString(), list.toArray());
-//	}
 
 }
