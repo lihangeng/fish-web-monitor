@@ -29,7 +29,7 @@
   	
   	<!-- 每月数据抽取 -->
   	<bean id="monthReportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="description" value="每日定时执行报表数据统计"/>
+		<property name="description" value="每月定时执行报表数据统计"/>
 		<property name="jobDetail" ref="monthDeportJobDetail"/>
 		<property name="cronExpression" value="${monthETLJobTime}"/>
 	</bean>
