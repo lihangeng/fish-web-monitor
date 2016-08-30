@@ -60,7 +60,7 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 	                allowBlank: false
 	            }
 			}, {
-				header :  '最大加钞额',
+				header : EwayLocale.initPlan.maxAmt,
 				dataIndex : 'maxAmt',
 				flex : 1
 			},{
@@ -72,11 +72,11 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				dataIndex : 'devType',
 				flex : 1
 			}, {
-				header : '取款余额',
+				header : EwayLocale.initPlan.billAmt,
 				dataIndex : 'billAmt',
 				flex : 1
 			}, {
-				header : '存款余额',
+				header : EwayLocale.initPlan.cashInAmt,
 				dataIndex : 'cashInAmt',
 				flex : 1
 			},{

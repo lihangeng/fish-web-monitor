@@ -40,7 +40,7 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 				dataIndex : 'awayFlagName',
 				width : 160
 			}, {
-				header :  EwayLocale.machine.atmGroup.cashboxLimit,
+				header :  EwayLocale.boxInfo.cashboxInLimit,
 				dataIndex : 'maxAlarm',
 				width : 120,    
 				editor: {
@@ -48,7 +48,7 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 	                allowBlank: false
 	            }
 			} , {
-				header :  EwayLocale.machine.atmGroup.cashboxLimit,
+				header :  EwayLocale.boxInfo.cashboxOutLimit,
 				dataIndex : 'minAlarm',
 				flex : 1,    
 				editor: {

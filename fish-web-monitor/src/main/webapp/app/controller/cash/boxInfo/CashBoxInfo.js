@@ -24,9 +24,6 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 			'boxInfo_grid button[action=query]' : {
 				click : this.onQuery
 			},
-			'boxInfo_grid button[action=remove]' : {
-				click : this.onRemove
-			},
 			'boxInfo_grid' : {
 				edit : this.onUpdate
 			},
@@ -51,9 +48,6 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 		store.setUrlParamsByObject(values);
 		store.loadPage(1);
 	},
-	onRemove:function(){
-		
-	},
 	onBoxDetail:function(btn){
 		var record = btn.getWidgetRecord();	
 		Eway.model.monitor.device.DeviceBox.load(record.data.ip,{
@@ -71,6 +65,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 		});
 	},
 	sync:function(btn){
+		var me =this;
 		var record = btn.getWidgetRecord();	
 		Ext.Ajax.request({
 			url :"api/cashbox/synchronizedBoxLimit",
@@ -80,9 +75,10 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 			success: function(response){
 				 var obj = Ext.decode(response.responseText);
 				 if(obj.success){
-				 	Eway.alert("同步成功");
+				 	Eway.alert(EwayLocale.ansynSuccess);
+				 	me.onQuery();
 				 }else{
-					 
+				 	Eway.alert(obj.errorMsg);
 				 }
 			}
 		});
@@ -91,7 +87,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 	onUpdate:function(editor, context){
 		context.record.save({
 			 success: function(recordInDB) {
-					Eway.alert("更改成功");
+					Eway.alert(EwayLocale.updateSuccess);
 				 },
 				 failure: function(record,operation){
 					store.rejectChanges();

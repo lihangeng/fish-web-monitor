@@ -60,11 +60,11 @@ Ext.define('Eway.view.cash.initPlan.DetailSelectableGrid', {
 				dataIndex : 'devType',
 				flex : 1
 			}, {
-				header : '取款余额',
+				header : EwayLocale.initPlan.billAmt,
 				dataIndex : 'billAmt',
 				flex : 1
 			}, {
-				header : '存款余额',
+				header : EwayLocale.initPlan.cashInAmt,
 				dataIndex : 'cashInAmt',
 				flex : 1
 			}, {

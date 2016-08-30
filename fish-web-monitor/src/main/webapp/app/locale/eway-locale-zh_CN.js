@@ -1,6 +1,7 @@
 Ext.apply(EwayLocale,{
 	addSuccess : '增加成功.',//EwayLocale.addSuccess
 	updateSuccess : '更改成功.',//EwayLocale.updateSuccess
+	ansynSuccess : '同步成功.',//EwayLocale.ansynSuccess
 	deleteSuccess : '删除成功.',//EwayLocale.deleteSuccess
 	choiceUpdateMsg :'请选择您要更改的记录.',//EwayLocale.choiceUpdateMsg
 	choiceDeleteMsg :'请选择您要删除的记录.',//EwayLocale.choiceDeleteMsg
