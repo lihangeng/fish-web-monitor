@@ -33,47 +33,43 @@ public class DeviceTypeOpenRateEtlService implements IDeviceTypeOpenRateEtlServi
 	public void extractByWeek(Date date) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
-		Date startDate = DateUtils.getFirstDayOfWeek(cal);
-		Date endDate = DateUtils.getLastDayOfWeek(cal);
-		String start =DateUtils.getDateShort(startDate);
-		String end = DateUtils.getDateShort(endDate);
+		String weekOfYear = String.valueOf(cal.get(Calendar.WEEK_OF_YEAR));
 		
 		StringBuilder sql = new StringBuilder();
-		sql.append("select type_id,dev_type, sum(dor.OPENTIMES) OPENTIMES,sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL ");
-		sql.append("from etl_device_open_rate_week dor");
-		sql.append("where dor.STAT_DATE > ?  and dor.STAT_DATE < ? ");
-		sql.append("group by type_id");
+		sql.append("select dor.type_id,dor.dev_type_name, sum(dor.OPENTIMES) OPENTIMES,");
+		sql.append("sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL,dor.start_date,dor.end_date ");
+		sql.append("from etl_device_open_rate_week dor ");
+		sql.append("where dor.STAT_DATE = ? ");
+		sql.append("group by dor.type_id");
 		
-
 		SQLQuery query = dao.getSQLQuery(sql.toString());
-		query.setString(0, start);
-		query.setString(1, end);
+		query.setString(0,weekOfYear);
 		List<?> lists = query.list();
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			IDeviceTypeOpenRateWeek week = new DeviceTypeOpenRateWeek();
-			week.setDate(String.valueOf(cal.get(Calendar.WEEK_OF_YEAR)));
-			week.setStartDate(start);
-			week.setEndDate(end);
+			week.setDate(weekOfYear);
 			week.setTypeId(Long.parseLong(each[0].toString()));
 			week.setDevType(each[1].toString());
 			week.setOpenTimes(Long.parseLong(each[2].toString()));
 			week.setHealthyTimeReal(Long.parseLong(each[3].toString()));
+			week.setStartDate(each[4].toString());
+			week.setEndDate(each[5].toString());
 			dao.save(week);
 		}
 	}
 
 	@Override
 	public void extractByMonth(Date date) {
-		String month = DateUtils.getYM(date);
+		String month = DateUtils.get(date, "yyyy-MM");
 		StringBuilder sql = new StringBuilder();
-		sql.append("select type_id,dev_type, sum(dor.OPENTIMES) OPENTIMES,sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL ");
-		sql.append("from etl_device_open_rate_week dor");
-		sql.append("where dor.STAT_DATE > ?  and dor.STAT_DATE < ? ");
-		sql.append("group by type_id");
+		sql.append("select dor.type_id,dor.dev_type_name, sum(dor.OPENTIMES) OPENTIMES,sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL ");
+		sql.append("from etl_device_open_rate_month dor ");
+		sql.append("where dor.STAT_DATE = ? ");
+		sql.append("group by dor.type_id");
 		
 		SQLQuery query = dao.getSQLQuery(sql.toString());
-		query.setString(0, month + "%");
+		query.setString(0, month);
 		List<?> lists = query.list();
 		for(Object object : lists){
 			Object [] each = (Object[])object;

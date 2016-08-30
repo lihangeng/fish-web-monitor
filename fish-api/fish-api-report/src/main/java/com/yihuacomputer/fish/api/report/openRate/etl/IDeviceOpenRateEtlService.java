@@ -22,5 +22,5 @@ public interface IDeviceOpenRateEtlService {
 	 * 抽过去上周的统计数据
 	 * @param date 统计周
 	 */
-	public void extractByWeeek(Date Date);
+	public void extractByWeek(Date Date);
 }

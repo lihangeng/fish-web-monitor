@@ -30,17 +30,17 @@ public class DeviceOpenRateEtlService implements IDeviceOpenRateEtlService{
 	private IGenericDao dao;
 	
 	@Override
-	public void extractByWeeek(Date date) {
+	public void extractByWeek(Date date) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		Date startDate = DateUtils.getFirstDayOfWeek(cal);
 		Date endDate = DateUtils.getLastDayOfWeek(cal);
-		String start =DateUtils.getDateShort(startDate);
-		String end = DateUtils.getDateShort(endDate);
+		String start =DateUtils.getDate(startDate);
+		String end = DateUtils.getDate(endDate);
 
 		StringBuilder sql = new StringBuilder();
-		sql.append("select dor.TERMINAL_ID tid,sum(dor.OPENTIMES) OPENTIMES, ");
-		sql.append("sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL,org.CODE,org.NAME,type.ID,type.NAME ");
+		sql.append("select dor.TERMINAL_ID tid,sum(dor.OPENTIMES) OPENTIMES,sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL,");
+		sql.append("org.CODE orgCode,org.NAME orgName,type.ID typeId,type.NAME typeName ");
 		sql.append("from dev_open_rate dor , dev_info dev,dev_type type ,sm_org org ");
 		sql.append("where dor.STAT_DATE > ?  and dor.STAT_DATE < ? and dor.TERMINAL_ID = dev.TERMINAL_ID ");
 		sql.append("and dev.DEV_TYPE_ID = type.ID and dev.ORG_ID = org.ID ");
@@ -69,10 +69,10 @@ public class DeviceOpenRateEtlService implements IDeviceOpenRateEtlService{
 	
 	@Override
 	public void extractByMonth(Date date) {
-		String month = DateUtils.getYM(date);
+		String month = DateUtils.get(date, "yyyy-MM");
 		StringBuilder sql = new StringBuilder();
-		sql.append("select dor.TERMINAL_ID tid,sum(dor.OPENTIMES) OPENTIMES, ");
-		sql.append("sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL,org.CODE,org.NAME,type.ID,type.NAME ");
+		sql.append("select dor.TERMINAL_ID tid,sum(dor.OPENTIMES) OPENTIMES,sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL,");
+		sql.append("org.CODE orgCode,org.NAME orgName,type.ID typeId,type.NAME typeName ");
 		sql.append("from dev_open_rate dor , dev_info dev,dev_type type ,sm_org org ");
 		sql.append("where dor.STAT_DATE like ? and dor.TERMINAL_ID = dev.TERMINAL_ID ");
 		sql.append("and dev.DEV_TYPE_ID = type.ID and dev.ORG_ID = org.ID ");

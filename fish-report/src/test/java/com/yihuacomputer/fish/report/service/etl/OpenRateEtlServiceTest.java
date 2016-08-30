@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.report.service.openrate.etl;
+package com.yihuacomputer.fish.report.service.etl;
 
 import java.util.Date;
 
@@ -16,18 +16,30 @@ import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.report.openRate.IDayOpenRate;
 import com.yihuacomputer.fish.api.report.openRate.IDayOpenRateService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateEtlService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceOpenRateEtlService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateEtlService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IOrgOpenRateEtlService;
 import com.yihuacomputer.fish.report.H2TestConfig;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = H2TestConfig.class)
-public class AvgOpenRateEtlServiceTest {
+public class OpenRateEtlServiceTest {
 	
 	@Autowired
 	private IAvgOpenRateEtlService avgOpenRateEtlService;
 	
 	@Autowired
 	private IDayOpenRateService openRateService;
+	
+	@Autowired
+	private IDeviceOpenRateEtlService deviceOpenRateEtlService;
+	
+	@Autowired
+	private IDeviceTypeOpenRateEtlService deviceTypeOpenRateEtlService;
+	
+	@Autowired
+	private IOrgOpenRateEtlService orgOpenRateEtlService;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -46,11 +58,20 @@ public class AvgOpenRateEtlServiceTest {
 	}
 
 	@Test
-	public void testAvgDay(){
+	public void testOpenRateEtl(){
 		Date date = new Date();
 		avgOpenRateEtlService.extractByDay(date);
 		avgOpenRateEtlService.extractByWeek(date);
 		avgOpenRateEtlService.extractByMonth(date);
+				
+		deviceOpenRateEtlService.extractByWeek(date);
+		deviceOpenRateEtlService.extractByMonth(date);
+		
+		deviceTypeOpenRateEtlService.extractByWeek(date);
+		deviceTypeOpenRateEtlService.extractByMonth(date);
+		
+		orgOpenRateEtlService.extractByWeek(date);
+		orgOpenRateEtlService.extractByMonth(date);
 	}
 	
 }
