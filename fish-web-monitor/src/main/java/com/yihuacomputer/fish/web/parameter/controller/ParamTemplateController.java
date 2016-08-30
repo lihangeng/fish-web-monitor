@@ -47,7 +47,6 @@ import com.yihuacomputer.fish.api.parameter.IParamTemplateDeviceRelationService;
 import com.yihuacomputer.fish.api.parameter.IParamTemplateService;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
-import com.yihuacomputer.fish.api.person.OrganizationType;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.parameter.form.ParamElementForm;
