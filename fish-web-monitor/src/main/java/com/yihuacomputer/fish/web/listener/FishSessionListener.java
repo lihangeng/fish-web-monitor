@@ -9,6 +9,12 @@ import javax.servlet.http.HttpSessionBindingEvent;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+import org.springframework.web.context.ContextLoader;
+import org.springframework.web.context.WebApplicationContext;
+
+import com.yihuacomputer.fish.api.person.UserSession;
+import com.yihuacomputer.fish.api.session.ISessionManage;
+import com.yihuacomputer.fish.session.SessionManage;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 /**
@@ -16,7 +22,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
  *
  */
 public class FishSessionListener implements HttpSessionListener, HttpSessionAttributeListener{
-
+	
     public void attributeAdded(HttpSessionBindingEvent se) {
         // TODO Auto-generated method stub
         
@@ -39,7 +45,11 @@ public class FishSessionListener implements HttpSessionListener, HttpSessionAttr
 
     public void sessionDestroyed(HttpSessionEvent se) {
         HttpSession session = se.getSession();
+        WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();  
+        ISessionManage sessionManage=(ISessionManage)wac.getBean(SessionManage.class);
+        UserSession userSession = (UserSession) session.getAttribute("SESSION_USER");
         session.removeAttribute(FishWebUtils.USER);
+		sessionManage.logout(userSession.getUserCode());
     }
 
 }
