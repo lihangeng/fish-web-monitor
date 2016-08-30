@@ -18,8 +18,7 @@ Ext.define('Eway.view.cash.initPlan.FilterForm',{
 				        anchor: '100%',
 				        fieldLabel: EwayLocale.initPlan.initDate,
 				        name: 'date',
-				        format:'Ymd',
-				        value: new Date()  // defaults to today
+				        format:'Ymd'
 				}]
 			}, {
 				columnWidth : .5,

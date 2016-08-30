@@ -1342,6 +1342,14 @@ pre.link {
 	background: url(../images/image.png) -96px 0px no-repeat !important;
 }
 
+.menu-system-quartz {
+	background: url(../images/image.png) -112px 0px no-repeat !important;
+}
+
+.menu-system-userLog {
+	background: url(../images/image.png) -128px 0px no-repeat !important;
+}
+
 .menu-device-device {
 	background: url(../images/image.png) 0px -24px no-repeat !important;
 }

@@ -40,7 +40,7 @@ Ext.define('Eway.view.cash.initPlan.Grid', {
 				dataIndex : 'orgName',
 				flex : 1
 			}, {
-				header :  EwayLocale.initPlan.amt,
+				header :  EwayLocale.initPlan.actualAmt,
 				dataIndex : 'amt',
 				flex : 1
 			}

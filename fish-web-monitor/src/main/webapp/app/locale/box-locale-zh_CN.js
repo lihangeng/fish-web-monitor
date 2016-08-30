@@ -21,7 +21,7 @@ Ext.apply(EwayLocale,{
 		lastAmt:'上次加钞金额',//EwayLocale.initPlan.lastAmt
 		lastDate:'上次加钞日期',//EwayLocale.initPlan.lastDate
 		adviceAmt:'推荐加钞金额',//EwayLocale.initPlan.adviceAmt
-		actualAmt:'实际加钞金额',//EwayLocale.initPlan.actualAmt
+		actualAmt:'实际加钞金额'//EwayLocale.initPlan.actualAmt
 	},
 	initDevice:{
 		title:'加钞设备管理'

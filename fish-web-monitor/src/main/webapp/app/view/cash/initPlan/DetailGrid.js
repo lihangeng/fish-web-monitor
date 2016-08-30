@@ -6,11 +6,16 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 	border : false,
 	initComponent: function() {
 		var store = Ext.create('Eway.store.cash.initPlan.CashInitPlanDevice');
-		store.loadPage(1);
 		Ext.apply(this, {
 			initRegion : true,
 			store: store,
-			tbar: ['->', {
+			tbar: [{
+				text:  EwayLocale.version.download.callBack,//'返回',
+				glyph : 0xf122,
+				action: 'toPlan',
+				tooltip:EwayLocale.version.download.callBackJob,
+				code:'toJob'
+			},'->', {
 				text: EwayLocale.button.search,//'查询',
 				action: 'query',
 				code:'cashInitPlanSeach',
@@ -19,10 +24,18 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: EwayLocale.button.update,//'更改',
-				action: 'update',
 				code:'cashInitPlanUpdate',
-				glyph : 0xf040,
+				text : EwayLocale.button.add,
+				glyph : 0xf067,
+				action : 'add',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
+			}, {
+				text : EwayLocale.button.remove,
+				glyph : 0xf014,
+				action : 'remove',
+				code : 'deviceDel',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
@@ -34,15 +47,29 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 			},  {
 				header :  EwayLocale.initPlan.actualAmt,
 				dataIndex : 'actualAmt',
-				flex : 1,    
 				editor: {
 	                xtype: 'numberfield',
 	                allowBlank: false
+//	                ,
+//	                focus:function(_this,event,opt){
+//	                	me = 	_this;	
+//	                }
+//	            },
+//	            renderer: function (value, metaData, record, rowIndex, colIndex, store, view) {
+//	            	if(record.get("maxAmt")!=-1){
+//	            		metaData.column.getEditor().maxValue=record.get("maxAmt");
+//	            	}
+//	            	metaData.column.getEditor().minValue=0;
+//	                return value;
 	            }
-			}, {
-			header :  EwayLocale.initPlan.adviceAmt,
-			dataIndex : 'adviceAmt',
-			flex : 1
+//			}, {
+//				header :  '最大加钞额',
+//				dataIndex : 'maxAmt',
+//				flex : 1
+			},{
+				header :  EwayLocale.initPlan.adviceAmt,
+				dataIndex : 'adviceAmt',
+				flex : 1
 			},{
 				header : EwayLocale.machine.atmGroup.devTypeName,
 				dataIndex : 'devType',
@@ -76,5 +103,16 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 		});
 		
 		this.callParent(arguments);
+	},
+	showUpdate:function(){
+		var has = false;
+		Ext.each(Ext.fishButtons,function(code){
+			if("cashBoxInfoUpdate" == code){
+				has = true;
+				return ;
+			}
+		});
+		
+		return has;
 	}
 });

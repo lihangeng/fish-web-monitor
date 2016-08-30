@@ -32,8 +32,8 @@ import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.OrganizationLevel;
 import com.yihuacomputer.fish.api.person.UserSession;
-import com.yihuacomputer.fish.api.report.base.IDeviceTypeCountRpt;
-import com.yihuacomputer.fish.api.report.base.IDeviceTypeCountRptService;
+import com.yihuacomputer.fish.api.report.device.IDeviceTypeCountRpt;
+import com.yihuacomputer.fish.api.report.device.IDeviceTypeCountRptService;
 import com.yihuacomputer.fish.api.report.engine.IExportReportService;
 
 @Controller

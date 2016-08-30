@@ -52,7 +52,6 @@
 				<value>com.yihuacomputer.fish.machine.entity</value>
 				<value>com.yihuacomputer.fish.system.entity</value>
 				<value>com.yihuacomputer.fish.report.entity</value>
-				<value>com.yihuacomputer.fish.report.base.entity</value>
 			</list>  
 		</property>
 	</bean>

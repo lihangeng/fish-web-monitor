@@ -106,8 +106,6 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 		filterVolume.eq("transMonth", Integer.parseInt(lastMonthYear));
 		Map<String,IMonthDailyTradingVolume> monthDailyVolume = monthDailyTradingVolumeService.getMonthDailyMap(filterVolume);
 		
-		//获取所有加钞历史
-		Map<String, ICashInitUnique> cashInitMap = getCashInitMap();
 		Map<String, IDeviceBoxInfo> deviceBoxInfoMap = deviceBoxInfoService.getDeviceBoxInfo(organization.getOrgFlag());
 		IFilter filter = new Filter();
 		filter.like("orgFlag", organization.getOrgFlag()+"%");
@@ -118,6 +116,9 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 		IDeviceBoxInitRule cashLimitRule = deviceBoxInitRuleService.get(BoxInitRuleType.CASHLIMIT);
 		IDeviceBoxInitRule daysLimitRule = deviceBoxInitRuleService.get(BoxInitRuleType.DAYSLIMIT);
 		for(IOrganization org:orgList){
+
+			//获取所有加钞历史
+			Map<String, ICashInitUnique> cashInitMap = cashInitUniqueService.getCashInitMap(org);
 			ICashInitPlanInfo cashInitPlanInfo = this.make();
 			Map<String,IDevice> initDeviceMap = new HashMap<String,IDevice>();
 			//当前加钞总金额
@@ -269,12 +270,12 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 		return dao.page(offset, limit, filter, CashInitPlanInfo.class);
 	}
 
-	public Map<String, ICashInitUnique> getCashInitMap(){
-		Map<String, ICashInitUnique> cashInitMap = new HashMap<String, ICashInitUnique>();
-		List<ICashInitUnique> cashInitList = cashInitUniqueService.list(new Filter());
-		for(ICashInitUnique cashInit:cashInitList){
-			cashInitMap.put(cashInit.getTerminalId(), cashInit);
-		}
-		return cashInitMap;
-	}
+//	public Map<String, ICashInitUnique> getCashInitMap(){
+//		Map<String, ICashInitUnique> cashInitMap = new HashMap<String, ICashInitUnique>();
+//		List<ICashInitUnique> cashInitList = cashInitUniqueService.list(new Filter());
+//		for(ICashInitUnique cashInit:cashInitList){
+//			cashInitMap.put(cashInit.getTerminalId(), cashInit);
+//		}
+//		return cashInitMap;
+//	}
 }

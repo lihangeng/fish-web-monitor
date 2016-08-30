@@ -30,7 +30,7 @@ Ext.define('Eway.controller.system.quartz.Quartz', {
 				xtype : 'system_quartz_form',
 				width: 500,
 				height:280,
-				title : 'quartz 配置'
+				title : '定时任务'
 			},	
 			
 			onPause:function(){

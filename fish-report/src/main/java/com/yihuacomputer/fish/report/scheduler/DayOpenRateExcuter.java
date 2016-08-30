@@ -6,9 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.fish.api.report.base.IDeviceOpenRateService;
+import com.yihuacomputer.fish.api.report.device.IDeviceOpenRateService;
 import com.yihuacomputer.fish.api.report.engine.IExportDataETLService;
 import com.yihuacomputer.fish.api.report.engine.IReportDataETL;
+import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateEtlService;
 /**
  * 启动每日日志备份工作
  * 
@@ -24,13 +25,21 @@ public class DayOpenRateExcuter implements IReportDataETL{
 	@Autowired
 	private IExportDataETLService exportDataETLService;
 	
+	@Autowired(required=false)
+	private IAvgOpenRateEtlService avgDayOpenRateService;
+	
 	/**
 	 * 定时任务调用执行每日备份工作
 	 * @throws Exception
 	 */
 	public void reportETL(String date){		
 		String yestoday = DateUtils.getLastDate();
+		//1.计算前一天所有设备的开机率
 		openRateService.dayOpenRate(yestoday);		
+		//2.计算掐一天所有设备平均开机率
+		if(avgDayOpenRateService != null){
+			avgDayOpenRateService.extractByDay(DateUtils.getDate(yestoday));
+		}
 	}
 
 	@Override

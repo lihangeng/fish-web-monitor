@@ -41,8 +41,6 @@ public class EveryDayReportJob {
 				dataEtl.reportETL(DateUtils.getLastDate());
 			}
 		}catch(Exception e){
-			e.printStackTrace();
-//			logger.error(String.format("每日抽取数据异常[%s]", e));
 			logger.error(String.format("load data exception once every day[%s]", e));
 		}
 		logger.debug("day data ETL finished");

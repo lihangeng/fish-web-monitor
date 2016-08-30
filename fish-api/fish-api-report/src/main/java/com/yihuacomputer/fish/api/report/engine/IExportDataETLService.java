@@ -9,6 +9,12 @@ public interface IExportDataETLService {
 	public void addEveryDayETL(IReportDataETL dataETL);
 	
 	/**
+	 * 设置每周数据抽取引擎
+	 * @param dataETL
+	 */
+	public void addEveryWeekETL(IReportDataETL dataETL);
+	
+	/**
 	 * 设置每月数据抽取引擎
 	 * @param dataETL
 	 */

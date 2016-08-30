@@ -17,19 +17,11 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				text:EwayLocale.button.search,
 				glyph : 0xf002,
 				action:'query'
-			},{
+			},/*{
 				text: EwayLocale.button.add,
 				glyph : 0xf067,
 				action: 'add',
 				code : 'quartzAdd',
-				listeners:{
-					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-				}
-			},{
-				text: EwayLocale.button.update,
-				glyph : 0xf040,
-				action:'update',
-				code : 'quartzUpdate',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
@@ -41,9 +33,17 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
+			},*/{
+				text: EwayLocale.button.update,
+				glyph : 0xf04c,
+				action:'update',
+				code : 'quartzUpdate',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			},{
 				text: '暂停',
-				glyph : 0xf014,
+				glyph : 0xf28b,
 				action: 'pause',
 				code : 'quartzPause',
 				listeners:{
@@ -51,7 +51,7 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				}
 			},{
 				text: '恢复',
-				glyph : 0xf014,
+				glyph : 0xf144,
 				action: 'resume',
 				code : 'quartzResume',
 				listeners:{
@@ -59,7 +59,7 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				}
 			},{
 				text: '立即执行',
-				glyph : 0xf014,
+				glyph : 0xf04b,
 				action: 'resume',
 				code : 'quartzExecute',
 				listeners:{
@@ -71,7 +71,7 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '作业名称',
+				header : '任务名称',
 				dataIndex : 'jobName',
 				width : 200
 			},/*{
@@ -87,20 +87,20 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				dataIndex : 'triggerGroup',
 				width : 140
 			},*/{
-				header : '作业实现类',
+				header : '任务实现类',
 				dataIndex : 'jobClassName',
 				width : 400,
 				hidden:true
 			},{
-				header : '作业描述',
+				header : '任务描述',
 				dataIndex : 'jobDescription',
 				flex:1
 			},{
-				header : '作业执行规则',
+				header : '任务执行规则',
 				dataIndex : 'cronExpression',
 				width : 140
 			},{
-				header : '作业当前状态',
+				header : '任务当前状态',
 				dataIndex : 'triggerState',
 				width : 140
 			},{
@@ -112,7 +112,7 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				dataIndex : 'prevFireTime',
 				width : 140
 			},{
-				header : '作业创建时间',
+				header : '任务创建时间',
 				dataIndex : 'startTime',
 				width : 140
 			}/*,{
