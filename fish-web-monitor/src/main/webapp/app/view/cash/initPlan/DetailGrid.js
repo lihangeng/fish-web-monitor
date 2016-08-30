@@ -18,13 +18,13 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 			},'->', {
 				text: EwayLocale.button.search,//'查询',
 				action: 'query',
-				code:'cashInitPlanSeach',
+				code:'cashInitPlanDeviceSearch',
 				glyph : 0xf002,
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				code:'cashInitPlanUpdate',
+				code:'cashInitPlanDeviceAdd',
 				text : EwayLocale.button.add,
 				glyph : 0xf067,
 				action : 'add',
@@ -35,7 +35,15 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				text : EwayLocale.button.remove,
 				glyph : 0xf014,
 				action : 'remove',
-				code : 'deviceDel',
+				code : 'cashInitPlanDeviceDel',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
+			}, {
+				text : EwayLocale.button.exported,
+				glyph : 0xf1c3,
+				action : 'export',
+				code : 'cashInitPlanDeviceExport',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}

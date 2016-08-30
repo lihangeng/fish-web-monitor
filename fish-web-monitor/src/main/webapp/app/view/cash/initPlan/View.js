@@ -38,7 +38,7 @@ Ext.define('Eway.view.cash.initPlan.View', {
 			}],
 			listeners:{
 				afterrender:function(_this,opt){
-					_this.getLayout().setActiveItem("initPlan");
+					_this.getLayout().setActiveItem("initDetailPlan");
 				}
 			}
 		});
