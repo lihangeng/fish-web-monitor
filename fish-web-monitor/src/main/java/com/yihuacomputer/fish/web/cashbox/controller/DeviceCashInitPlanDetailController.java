@@ -38,25 +38,24 @@ import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
 
 @Controller
 @RequestMapping("/cashInitPlanDevice")
-@ClassNameDescrible(describle="userlog.DeviceCashInitPlanDetailController")
+@ClassNameDescrible(describle = "userlog.DeviceCashInitPlanDetailController")
 public class DeviceCashInitPlanDetailController {
 	private Logger logger = LoggerFactory.getLogger(DeviceCashInitPlanDetailController.class);
-
 
 	@Autowired
 	private ICashInitPlanDeviceInfoService cashInitPlanDeviceInfoService;
 
 	@Autowired
 	private ICashInitPlanInfoService cashInitPlanInfoService;
-	
+
 	@Autowired
 	private IDeviceService deviceService;
-	
+
 	@Autowired
 	private MessageSource messageSource;
 	@Autowired
 	private IDeviceBoxInfoService deviceBoxInfoService;
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ModelMap seachCashBoxInitRuleList(@RequestParam int limit, @RequestParam int start, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search CashInit Plan detail Info List");
@@ -66,26 +65,41 @@ public class DeviceCashInitPlanDetailController {
 		List<ICashInitPlanDeviceInfo> cashInitPlanPageResult = cashInitPlanDeviceInfoService.list(filter);
 
 		ICashInitPlanInfo planInfo = cashInitPlanInfoService.get(Long.parseLong(request.getParameter("cashInitPlanInfoId")));
-		Map<String,IDeviceBoxInfo> deviceBoxInfoMap = deviceBoxInfoService.getDeviceBoxInfo(planInfo.getOrg().getOrgFlag());
-		List<CashInitPlanDeviceInfoForm> dcbirList = convert(cashInitPlanPageResult,deviceBoxInfoMap);
+		Map<String, IDeviceBoxInfo> deviceBoxInfoMap = deviceBoxInfoService.getDeviceBoxInfo(planInfo.getOrg().getOrgFlag());
+		List<CashInitPlanDeviceInfoForm> dcbirList = convert(cashInitPlanPageResult, deviceBoxInfoMap);
 		result.put(FishConstant.SUCCESS, true);
 		result.put(FishConstant.TOTAL, dcbirList.size());
 		result.put(FishConstant.DATA, dcbirList);
 		return result;
 	}
-	
-	@RequestMapping(value="selectableDevice",method = RequestMethod.GET)
+
+	/**
+	 * 获取当前可选的设备列表
+	 * @param limit
+	 * @param start
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
+	@RequestMapping(value = "selectableDevice", method = RequestMethod.GET)
 	public @ResponseBody ModelMap seachDeviceList(@RequestParam int limit, @RequestParam int start, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search selectable device Info List");
 		ModelMap result = new ModelMap();
 		ICashInitPlanInfo planInfo = cashInitPlanInfoService.get(Long.parseLong(request.getParameter("cashInitPlanInfoId")));
-		String orgFlag = planInfo.getOrg().getOrgFlag();
-		IFilter filter = new Filter();
-		filter.like("organization.orgFlag", orgFlag+"%");
-		
-		deviceService.list();
+		List<CashInitPlanDeviceInfoForm> list = null;
+		try {
+			list = cashInitPlanDeviceInfoService.listSelectAble(planInfo);
+		} catch (Exception e) {
+			logger.error("load selectable initplandevice failer");
+			result.put(FishConstant.SUCCESS, false);
+			return result;
+		}
+		result.put(FishConstant.SUCCESS, true);
+		result.put(FishConstant.TOTAL, list.size());
+		result.put(FishConstant.DATA, list);
 		return result;
 	}
+
 	/**
 	 *
 	 * 方法描述 : 根据ID更新设备钞箱信息
@@ -95,13 +109,12 @@ public class DeviceCashInitPlanDetailController {
 	 * @return ModelMap<String, Object>
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.DeviceCashInitPlanDetailController.update",hasArgs=false,urlArgs=true )
-	public @ResponseBody
-	ModelMap update(@PathVariable long id, @RequestBody CashInitPlanDeviceInfoForm request) {
+	@MethodNameDescrible(describle = "userlog.DeviceCashInitPlanDetailController.update", hasArgs = false, urlArgs = true)
+	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody CashInitPlanDeviceInfoForm request) {
 		logger.info("update CashBox Limit Info: CashBoxInfo.id = " + id);
 		request.setId(id);
 		ModelMap model = new ModelMap();
-		ICashInitPlanDeviceInfo cashDeviceInfo = cashInitPlanDeviceInfoService.get(id);		
+		ICashInitPlanDeviceInfo cashDeviceInfo = cashInitPlanDeviceInfoService.get(id);
 		if (cashDeviceInfo == null) {
 			model.put(FishConstant.SUCCESS, false);
 			model.put(FishConstant.ERROR_MSG, messageSource.getMessage("deviceBoxInfo.updateNotExist", null, FishCfg.locale));
@@ -112,27 +125,27 @@ public class DeviceCashInitPlanDetailController {
 		}
 		cashDeviceInfo.setActualAmt(request.getActualAmt());
 		ICashInitPlanInfo initPlan = cashDeviceInfo.getCashInitPlanInfo();
-		initPlan.setAmt(initPlan.getAmt()+request.getActualAmt());
+		initPlan.setAmt(initPlan.getAmt() + request.getActualAmt());
 		try {
 			cashInitPlanDeviceInfoService.update(cashDeviceInfo);
 			cashInitPlanInfoService.update(initPlan);
-		} catch(Exception e) {
-			logger.error(String.format("add error : %s",e.getMessage()));
+		} catch (Exception e) {
+			logger.error(String.format("add error : %s", e.getMessage()));
 			model.put(FishConstant.SUCCESS, false);
 			model.put("errorMsg", messageSource.getMessage("commen.error", null, FishCfg.locale));
 			return model;
 		}
 		model.addAttribute(FishConstant.SUCCESS, true);
-		model.addAttribute(FishConstant.DATA,request);
+		model.addAttribute(FishConstant.DATA, request);
 		return model;
 	}
-	
-	
-	private List<CashInitPlanDeviceInfoForm> convert(List<ICashInitPlanDeviceInfo> list,Map<String,IDeviceBoxInfo> deviceBoxInfoMap){
+
+	private List<CashInitPlanDeviceInfoForm> convert(List<ICashInitPlanDeviceInfo> list, Map<String, IDeviceBoxInfo> deviceBoxInfoMap) {
 		List<CashInitPlanDeviceInfoForm> formList = new ArrayList<CashInitPlanDeviceInfoForm>();
-		for(ICashInitPlanDeviceInfo cashInitPlanDevice:list){
-//			Object[] objs = (Object[]) obj;
-//			ICashInitPlanDeviceInfo cashInitPlanDevice = (ICashInitPlanDeviceInfo)objs[0];
+		for (ICashInitPlanDeviceInfo cashInitPlanDevice : list) {
+			// Object[] objs = (Object[]) obj;
+			// ICashInitPlanDeviceInfo cashInitPlanDevice =
+			// (ICashInitPlanDeviceInfo)objs[0];
 			CashInitPlanDeviceInfoForm form = new CashInitPlanDeviceInfoForm();
 			form.setActualAmt(cashInitPlanDevice.getActualAmt());
 			form.setAddress(cashInitPlanDevice.getAddress());
@@ -146,21 +159,21 @@ public class DeviceCashInitPlanDetailController {
 			form.setOrgName(cashInitPlanDevice.getOrgName());
 			form.setTerminalId(cashInitPlanDevice.getTerminalId());
 			IDeviceBoxInfo deviceBoxInfo = deviceBoxInfoMap.get(cashInitPlanDevice.getTerminalId());
-			if(null!=deviceBoxInfo){
+			if (null != deviceBoxInfo) {
 				form.setMaxAmt(deviceBoxInfo.getDefaultBill());
-			}
-			else{
+			} else {
 				form.setMaxAmt(-1);
 			}
 			formList.add(form);
 		}
 		return formList;
 	}
-	private String getI18N(String code){
+
+	private String getI18N(String code) {
 		return messageSource.getMessage(code, null, FishCfg.locale);
 	}
-	
-	private IFilter getCashInitPlanInfoFilter(WebRequest request){
+
+	private IFilter getCashInitPlanInfoFilter(WebRequest request) {
 		IFilter filter = new Filter();
 		Iterator<String> iterator = request.getParameterNames();
 		while (iterator.hasNext()) {
@@ -181,9 +194,8 @@ public class DeviceCashInitPlanDetailController {
 
 		return filter;
 	}
+
 	private boolean isNotFilterName(String name) {
-		return "devServiceName".equals(name) || "organizationID".equals(name) || "orgName".equals(name)
-				|| "page".equals(name) || "start".equals(name) || "limit".equals(name) || "_dc".equals(name)
-				|| "sort".equals(name);
+		return "devServiceName".equals(name) || "organizationID".equals(name) || "orgName".equals(name) || "page".equals(name) || "start".equals(name) || "limit".equals(name) || "_dc".equals(name) || "sort".equals(name);
 	}
 }
