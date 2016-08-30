@@ -10,7 +10,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="shortcut icon" type="image/ico"
 	href="resources/images/logo.ico" />
-<link rel="stylesheet" type="text/css" href="resources/css/login.css"
+<link rel="stylesheet" type="text/css" href="resources/css/updatePwd.css"
 	media="all" />
 </head>
 <style type="text/css">
