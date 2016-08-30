@@ -1,6 +1,5 @@
 package com.yihuacomputer.fish.report.service.openRate.etl;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -9,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
+import com.yihuacomputer.common.util.NumUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateEtlService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateMonth;
@@ -31,10 +33,7 @@ public class DeviceTypeOpenRateEtlService implements IDeviceTypeOpenRateEtlServi
 	
 	@Override
 	public void extractByWeek(Date date) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		String weekOfYear = String.valueOf(cal.get(Calendar.WEEK_OF_YEAR));
-		
+		Long weekOfYear = DateUtils.getWeek(date);
 		StringBuilder sql = new StringBuilder();
 		sql.append("select dor.type_id,dor.dev_type_name, sum(dor.OPENTIMES) OPENTIMES,");
 		sql.append("sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL,dor.start_date,dor.end_date ");
@@ -43,7 +42,7 @@ public class DeviceTypeOpenRateEtlService implements IDeviceTypeOpenRateEtlServi
 		sql.append("group by dor.type_id");
 		
 		SQLQuery query = dao.getSQLQuery(sql.toString());
-		query.setString(0,weekOfYear);
+		query.setLong(0,weekOfYear);
 		List<?> lists = query.list();
 		for(Object object : lists){
 			Object [] each = (Object[])object;
@@ -55,13 +54,14 @@ public class DeviceTypeOpenRateEtlService implements IDeviceTypeOpenRateEtlServi
 			week.setHealthyTimeReal(Long.parseLong(each[3].toString()));
 			week.setStartDate(each[4].toString());
 			week.setEndDate(each[5].toString());
+			week.setOpenRate(NumUtils.getPercent(week.getHealthyTimeReal(),week.getOpenTimes()));
 			dao.save(week);
 		}
 	}
 
 	@Override
 	public void extractByMonth(Date date) {
-		String month = DateUtils.get(date, "yyyy-MM");
+		Long ym = DateUtils.getLongYM(date);
 		StringBuilder sql = new StringBuilder();
 		sql.append("select dor.type_id,dor.dev_type_name, sum(dor.OPENTIMES) OPENTIMES,sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL ");
 		sql.append("from etl_device_open_rate_month dor ");
@@ -69,30 +69,33 @@ public class DeviceTypeOpenRateEtlService implements IDeviceTypeOpenRateEtlServi
 		sql.append("group by dor.type_id");
 		
 		SQLQuery query = dao.getSQLQuery(sql.toString());
-		query.setString(0, month);
+		query.setLong(0, ym);
 		List<?> lists = query.list();
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			IDeviceTypeOpenRateMonth dorMonth = new DeviceTypeOpenRateMonth();
-			dorMonth.setDate(month);
+			dorMonth.setDate(ym);
 			dorMonth.setTypeId(Long.parseLong(each[0].toString()));
 			dorMonth.setDevType(each[1].toString());
 			dorMonth.setOpenTimes(Long.parseLong(each[2].toString()));
 			dorMonth.setHealthyTimeReal(Long.parseLong(each[3].toString()));
+			dorMonth.setOpenRate(NumUtils.getPercent(dorMonth.getHealthyTimeReal(),dorMonth.getOpenTimes()));
 			dao.save(dorMonth);
 		}
 	}
 
 	@Override
 	public List<IDeviceTypeOpenRateWeek> getDeviceTypeWeek(int weekOfYear) {
-		// TODO Auto-generated method stub
-		return null;
+		IFilter filter = new Filter();
+		filter.eq("date", weekOfYear);
+		return dao.findByFilter(filter, IDeviceTypeOpenRateWeek.class);
 	}
 
 	@Override
 	public List<IDeviceTypeOpenRateMonth> getDeviceTypeMonth(int month) {
-		// TODO Auto-generated method stub
-		return null;
+		IFilter filter = new Filter();
+		filter.eq("date", month);
+		return dao.findByFilter(filter, IDeviceTypeOpenRateMonth.class);
 	}
 
 }

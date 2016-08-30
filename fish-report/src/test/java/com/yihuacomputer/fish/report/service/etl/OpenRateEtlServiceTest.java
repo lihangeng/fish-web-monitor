@@ -1,9 +1,11 @@
 package com.yihuacomputer.fish.report.service.etl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.report.openRate.IDayOpenRate;
 import com.yihuacomputer.fish.api.report.openRate.IDayOpenRateService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IAvgDayOpenRate;
 import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateEtlService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceOpenRateEtlService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateEtlService;
@@ -47,8 +50,8 @@ public class OpenRateEtlServiceTest {
 			IDayOpenRate dor = openRateService.make();
 			dor.setTerminalId("1234");
 			dor.setStatDate(DateUtils.getDate(new Date()));
-			dor.setOpenTimes(10000);
-			dor.setHealthyTimeReal(9900);
+			dor.setOpenTimes(10003);
+			dor.setHealthyTimeReal(9920);
 			openRateService.save(dor);
 		}
 	}
@@ -73,5 +76,31 @@ public class OpenRateEtlServiceTest {
 		orgOpenRateEtlService.extractByWeek(date);
 		orgOpenRateEtlService.extractByMonth(date);
 	}
+	
+	@Test
+	@Ignore
+	public void testOpenRateEtlData(){
+		Date date = new Date();
+		int week = DateUtils.getWeek(date).intValue();
+		int month = (int)DateUtils.getLongYM(date);
+		Object [] objects = avgOpenRateEtlService.getWeekTotal(week);
+		System.out.println(objects[0]);
+		System.out.println(objects[1]);
+		System.out.println(objects[2]);
+		System.out.println("===============");
+		objects = avgOpenRateEtlService.getMonthTotal(month);
+		System.out.println(objects[0]);
+		System.out.println(objects[1]);
+		System.out.println(objects[2]);
+		List<IAvgDayOpenRate> lists = avgOpenRateEtlService.getAvgDays(20160901, 20160930);
+		for(IAvgDayOpenRate each : lists){
+			System.out.println(each.getId());
+			System.out.println(each.getOpenTimes());
+			System.out.println(each.getHealthyTimeReal());
+			System.out.println(each.getOpenRate());
+			System.out.println("=========dddd=====");
+		}
+	}
+	
 	
 }
