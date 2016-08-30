@@ -54,7 +54,7 @@ import com.yihuacomputer.fish.report.service.trans.TransactionMonthsService;
  *
  */
 @Configuration
-@Import(value = { ReportOpenRateModule.class })
+@Import(value = { ReportOpenRateModule.class,ReportTransModule.class })
 public class ReportModule {
 
 	@Bean

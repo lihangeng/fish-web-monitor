@@ -1,3 +1,7 @@
+drop table if exists etl_trans_type_day;
+drop table if exists etl_trans_type_week;
+drop table if exists etl_trans_type_month;
+
 DROP TABLE IF EXISTS CASE_FAULT_MONTH;
 DROP TABLE IF EXISTS ATMC_TRANSACTION_DAYS;
 DROP TABLE IF EXISTS ATMC_TRANSACTION_MONTHS;
