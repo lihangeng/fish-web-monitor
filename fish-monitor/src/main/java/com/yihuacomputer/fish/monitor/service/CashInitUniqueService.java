@@ -1,6 +1,8 @@
 package com.yihuacomputer.fish.monitor.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,7 +58,7 @@ public class CashInitUniqueService implements ICashInitUniqueService {
 	}
 	
 	public List<ICashInitUnique> getCashInitByOrg(IOrganization org,int cashInitDays){
-		StringBuffer sb = new StringBuffer();
+		StringBuilder sb = new StringBuilder();
 		String date = DateUtils.getDate(DateUtils.getDate(-cashInitDays));
 		sb.append("select cashInitUnique from ").
 		append(CashInitUnique.class.getSimpleName()).append(" cashInitUnique,")
@@ -66,4 +68,23 @@ public class CashInitUniqueService implements ICashInitUniqueService {
 		return dao.findByHQL(sb.toString(), new Object[]{date+" 00:0:00",org.getOrgFlag()+"%"});
 	}
 
+	/**
+	 * 获取指定机构设备的加钞信息集合
+	 * @param org
+	 * @return
+	 */
+	public Map<String, ICashInitUnique> getCashInitMap(IOrganization org){
+		Map<String, ICashInitUnique> cashInitMap = new HashMap<String, ICashInitUnique>();
+		StringBuilder sb = new StringBuilder();
+		sb.append("select cashInitUnique from ").
+		append(CashInitUnique.class.getSimpleName()).append(" cashInitUnique,")
+		.append(Device.class.getSimpleName()).append(" device ")
+		.append( "where device.terminalId = cashInitUnique.terminalId and")
+		.append("  device.organization.orgFlag like ?");
+		List<ICashInitUnique> cashInitList =  dao.findByHQL(sb.toString(), new Object[]{org.getOrgFlag()+"%"});
+		for(ICashInitUnique cashInit:cashInitList){
+			cashInitMap.put(cashInit.getTerminalId(), cashInit);
+		}
+		return cashInitMap;
+	}
 }

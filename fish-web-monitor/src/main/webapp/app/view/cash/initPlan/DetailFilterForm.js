@@ -22,8 +22,7 @@ Ext.define('Eway.view.cash.initPlan.DetailFilterForm',{
 				        value: new Date()  // defaults to today
 				},{
 			        xtype: 'hidden',
-			        anchor: '100%',
-			        name: 'cashInitPlanId'
+			        name: 'cashInitPlanInfoId'
 				}]
 			}, {
 				columnWidth : .5,

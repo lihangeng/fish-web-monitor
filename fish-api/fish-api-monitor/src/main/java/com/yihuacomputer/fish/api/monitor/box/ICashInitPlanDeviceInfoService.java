@@ -11,6 +11,6 @@ public interface ICashInitPlanDeviceInfoService {
 	public void remove(ICashInitPlanDeviceInfo cashInitPlanInfo);
 	public ICashInitPlanDeviceInfo get(long id);
 	public List<ICashInitPlanDeviceInfo> list(IFilter filter);
-	public List<Object> listPage(IFilter filter);
-	
+//	public List<Object> listPage(IFilter filter);
+	public List<CashInitPlanDeviceInfoForm> listSelectAble(ICashInitPlanInfo planInfo);
 }
