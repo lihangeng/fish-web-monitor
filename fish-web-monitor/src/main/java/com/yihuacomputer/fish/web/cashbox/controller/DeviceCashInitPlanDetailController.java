@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.web.cashbox.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,7 @@ import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.monitor.box.BoxInitRuleType;
 import com.yihuacomputer.fish.api.monitor.box.CashInitPlanDeviceInfoForm;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanDeviceInfo;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanDeviceInfoService;
@@ -57,13 +59,11 @@ public class DeviceCashInitPlanDetailController {
 	private IDeviceBoxInfoService deviceBoxInfoService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody ModelMap seachCashBoxInitRuleList(@RequestParam int limit, @RequestParam int start, HttpServletRequest request, WebRequest webRequest) {
+	public @ResponseBody ModelMap seachCashInitPlanDeviceInfoList(@RequestParam int limit, @RequestParam int start, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search CashInit Plan detail Info List");
 		ModelMap result = new ModelMap();
 		IFilter filter = getCashInitPlanInfoFilter(webRequest);
-
 		List<ICashInitPlanDeviceInfo> cashInitPlanPageResult = cashInitPlanDeviceInfoService.list(filter);
-
 		ICashInitPlanInfo planInfo = cashInitPlanInfoService.get(Long.parseLong(request.getParameter("cashInitPlanInfoId")));
 		Map<String, IDeviceBoxInfo> deviceBoxInfoMap = deviceBoxInfoService.getDeviceBoxInfo(planInfo.getOrg().getOrgFlag());
 		List<CashInitPlanDeviceInfoForm> dcbirList = convert(cashInitPlanPageResult, deviceBoxInfoMap);
@@ -75,20 +75,22 @@ public class DeviceCashInitPlanDetailController {
 
 	/**
 	 * 获取当前可选的设备列表
+	 * 
 	 * @param limit
 	 * @param start
 	 * @param request
 	 * @param webRequest
 	 * @return
 	 */
-	@RequestMapping(value = "selectableDevice", method = RequestMethod.GET)
-	public @ResponseBody ModelMap seachDeviceList(@RequestParam int limit, @RequestParam int start, HttpServletRequest request, WebRequest webRequest) {
+	@RequestMapping(value = "/selectableDevice", method = RequestMethod.GET)
+	public @ResponseBody ModelMap seachSelectableDeviceList(@RequestParam int limit, @RequestParam int start, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search selectable device Info List");
 		ModelMap result = new ModelMap();
+		IFilter filter = getCashInitPlanInfoFilter(webRequest);
 		ICashInitPlanInfo planInfo = cashInitPlanInfoService.get(Long.parseLong(request.getParameter("cashInitPlanInfoId")));
 		List<CashInitPlanDeviceInfoForm> list = null;
 		try {
-			list = cashInitPlanDeviceInfoService.listSelectAble(planInfo);
+			list = cashInitPlanDeviceInfoService.listSelectAble(planInfo,filter);
 		} catch (Exception e) {
 			logger.error("load selectable initplandevice failer");
 			result.put(FishConstant.SUCCESS, false);
@@ -97,6 +99,87 @@ public class DeviceCashInitPlanDetailController {
 		result.put(FishConstant.SUCCESS, true);
 		result.put(FishConstant.TOTAL, list.size());
 		result.put(FishConstant.DATA, list);
+		return result;
+	}
+
+	/**
+	 * 加钞计划删除加钞设备
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@ResponseBody
+	@MethodNameDescrible(describle="userlog.DeviceCashInitPlanDetailController.delete",hasArgs=false,urlArgs=true)
+	public ModelMap delete(@PathVariable long id) {
+		logger.info(" delete cashInitPlanDeviceInfo with id = " + id);
+		ModelMap result = new ModelMap();
+		try {
+			ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.get(id);
+			if(null!=cashInitPlanDeviceInfo){
+				ICashInitPlanInfo cashInitPlanInfo = cashInitPlanDeviceInfo.getCashInitPlanInfo();
+				double amt = cashInitPlanInfo.getAmt();
+				amt-=cashInitPlanDeviceInfo.getActualAmt();
+				cashInitPlanDeviceInfoService.remove(cashInitPlanDeviceInfo);
+				cashInitPlanInfo.setAmt(amt);
+				cashInitPlanInfoService.update(cashInitPlanInfo);
+			}
+			result.addAttribute(FishConstant.SUCCESS, true);
+		} catch (Exception ex) {
+			result.addAttribute(FishConstant.SUCCESS, false);
+			logger.error(ex.getMessage());
+		}
+		return result;
+	}
+	/**
+	 * 加钞计划中确认添加新的设备
+	 * @param request
+	 * @param webRequest
+	 * @return
+	 */
+	@RequestMapping(value = "/addDevice", method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.DeviceCashInitPlanDetailController.add",hasArgs=false)
+	public @ResponseBody ModelMap addDevice(HttpServletRequest request, WebRequest webRequest) {
+		logger.info("addDevice device Info List");
+		ModelMap result = new ModelMap();
+		String terminalIds = request.getParameter("terminalIds").substring(1);
+		long cashInitPlanInfoId = Long.parseLong(request.getParameter("cashInitPlanInfoId"));
+		ICashInitPlanInfo planInfo = cashInitPlanInfoService.get(cashInitPlanInfoId);
+		List<CashInitPlanDeviceInfoForm> list = null;
+		try {
+			list = cashInitPlanDeviceInfoService.listSelectAble(planInfo,new Filter());
+		} catch (Exception e) {
+			logger.error("load selectable initplandevice failer");
+			result.put(FishConstant.SUCCESS, false);
+			return result;
+		}
+		String[] terminals = terminalIds.split(",");
+		Map<String, String> terminalIdMap = new HashMap<String, String>();
+		for (String terminal : terminals) {
+			terminalIdMap.put(terminal, terminal);
+		}
+		double actualAmt = planInfo.getAmt();
+		for (CashInitPlanDeviceInfoForm cashInitPlanDeviceInfoForm : list) {
+			String terminalId = cashInitPlanDeviceInfoForm.getTerminalId();
+			if (null != terminalIdMap.get(terminalId)) {
+				ICashInitPlanDeviceInfo cashInfoPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
+				cashInfoPlanDeviceInfo.setActualAmt(cashInitPlanDeviceInfoForm.getActualAmt());
+				actualAmt += cashInitPlanDeviceInfoForm.getActualAmt();
+				cashInfoPlanDeviceInfo.setAddress(cashInitPlanDeviceInfoForm.getAddress());
+				cashInfoPlanDeviceInfo.setAdviceAmt(cashInitPlanDeviceInfoForm.getAdviceAmt());
+				cashInfoPlanDeviceInfo.setAwayFlag(cashInitPlanDeviceInfoForm.getAwayFlagType());
+				cashInfoPlanDeviceInfo.setCashInitPlanInfo(planInfo);
+				cashInfoPlanDeviceInfo.setDevType(cashInitPlanDeviceInfoForm.getDevType());
+				cashInfoPlanDeviceInfo.setFlag(BoxInitRuleType.getBoxInitRuleType(cashInitPlanDeviceInfoForm.getFlag()));
+				cashInfoPlanDeviceInfo.setLastAmt(cashInitPlanDeviceInfoForm.getLastAmt());
+				cashInfoPlanDeviceInfo.setLastDate(cashInitPlanDeviceInfoForm.getLastDate());
+				cashInfoPlanDeviceInfo.setOrgName(cashInitPlanDeviceInfoForm.getOrgName());
+				cashInfoPlanDeviceInfo.setTerminalId(cashInitPlanDeviceInfoForm.getTerminalId());
+				cashInfoPlanDeviceInfo = cashInitPlanDeviceInfoService.save(cashInfoPlanDeviceInfo);
+			}
+		}
+		planInfo.setAmt(actualAmt);
+		cashInitPlanInfoService.update(planInfo);
+		result.put(FishConstant.SUCCESS, true);
 		return result;
 	}
 
@@ -143,9 +226,6 @@ public class DeviceCashInitPlanDetailController {
 	private List<CashInitPlanDeviceInfoForm> convert(List<ICashInitPlanDeviceInfo> list, Map<String, IDeviceBoxInfo> deviceBoxInfoMap) {
 		List<CashInitPlanDeviceInfoForm> formList = new ArrayList<CashInitPlanDeviceInfoForm>();
 		for (ICashInitPlanDeviceInfo cashInitPlanDevice : list) {
-			// Object[] objs = (Object[]) obj;
-			// ICashInitPlanDeviceInfo cashInitPlanDevice =
-			// (ICashInitPlanDeviceInfo)objs[0];
 			CashInitPlanDeviceInfoForm form = new CashInitPlanDeviceInfoForm();
 			form.setActualAmt(cashInitPlanDevice.getActualAmt());
 			form.setAddress(cashInitPlanDevice.getAddress());
@@ -186,9 +266,15 @@ public class DeviceCashInitPlanDetailController {
 				continue;
 			}
 			if ("cashInitPlanInfoId".equals(name)) {
-				filter.eq("cashInitPlanInfo.id", Long.parseLong(value));
-			} else if ("date".equals(name)) {
-				filter.eq("date", Integer.valueOf(value));
+				filter.eq("planid", Long.parseLong(value));
+			} else if ("terminalId".equals(name)) {
+				filter.eq("terminalId", value);
+			} else if ("devType".equals(name)) {
+				filter.eq("devType", value);
+			} else if ("orgId".equals(name)) {
+				filter.eq("orgId", value);
+			} else if ("awayFlag".equals(name)) {
+				filter.eq("awayFlag", value);
 			}
 		}
 

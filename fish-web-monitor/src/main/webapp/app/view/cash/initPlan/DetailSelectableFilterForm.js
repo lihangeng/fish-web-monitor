@@ -1,11 +1,12 @@
-Ext.define('Eway.view.cash.initPlan.DetailFilterForm',{
+Ext.define('Eway.view.cash.initPlan.DetailSelectableFilterForm',{
 	extend: 'Eway.view.base.FilterForm',
-	alias : 'widget.initPlan_detailFilterForm',
+	alias : 'widget.initPlan_detailSelectableFilterForm',
 	requires : [ 'Eway.view.common.OrgComboOrgTree', 'Eway.view.field.device.DeviceAtmType',
 	             'Eway.lib.Util'],
 	closable:false,
 	layout : 'column',
 	height: 'auto',
+	
 	initComponent : function(){
 		Ext.apply(this,{
 			items: [ {
@@ -27,6 +28,12 @@ Ext.define('Eway.view.cash.initPlan.DetailFilterForm',{
 					xtype : 'field_device_deviceatmtype',
 					name:'devType',
 					emptyText :  EwayLocale.combox.select
+				},{
+			        xtype: 'hidden',
+			        name: 'cashInitPlanInfoId'
+				},{
+			        xtype: 'hidden',
+			        name: 'terminalIds'
 				}]
 			}, {
 				columnWidth : .5,

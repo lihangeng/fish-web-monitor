@@ -55,7 +55,7 @@ public class CashInitPlanDeviceInfo implements ICashInitPlanDeviceInfo {
 	private String address;
 	
     @ManyToOne(targetEntity = CashInitPlanInfo.class)
-    @JoinColumn(name = "CASH_INIT_PLAN_ID", insertable = false, updatable = false)
+    @JoinColumn(name = "CASH_INIT_PLAN_ID", insertable = true, updatable = false)
 	private ICashInitPlanInfo cashInitPlanInfo;
     
 	public long getId() {
@@ -118,12 +118,6 @@ public class CashInitPlanDeviceInfo implements ICashInitPlanDeviceInfo {
 	public void setCashInitPlanInfo(ICashInitPlanInfo cashInitPlanInfo) {
 		this.cashInitPlanInfo = cashInitPlanInfo;
 	}
-//	public boolean isInit() {
-//		return init;
-//	}
-//	public void setInit(boolean init) {
-//		this.init = init;
-//	}
 	public String getDevType() {
 		return devType;
 	}

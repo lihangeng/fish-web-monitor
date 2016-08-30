@@ -1,10 +1,13 @@
 package com.yihuacomputer.fish.api.monitor.box;
 
+import com.yihuacomputer.fish.api.device.AwayFlag;
+
 public class CashInitPlanDeviceInfoForm {
 	private long id;
 	private String terminalId;
 	private String devType;
 	private String awayFlag;
+	private AwayFlag awayFlagType;
 	private String orgName;
 	private long lastAmt;
 	private String lastDate;
@@ -91,6 +94,12 @@ public class CashInitPlanDeviceInfoForm {
 	}
 	public void setMaxAmt(long maxAmt) {
 		this.maxAmt = maxAmt;
+	}
+	public AwayFlag getAwayFlagType() {
+		return awayFlagType;
+	}
+	public void setAwayFlagType(AwayFlag awayFlagType) {
+		this.awayFlagType = awayFlagType;
 	}
 	
 }
