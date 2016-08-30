@@ -241,6 +241,8 @@ public class DeviceCashInitPlanDetailController {
 			IDeviceBoxInfo deviceBoxInfo = deviceBoxInfoMap.get(cashInitPlanDevice.getTerminalId());
 			if (null != deviceBoxInfo) {
 				form.setMaxAmt(deviceBoxInfo.getDefaultBill());
+				form.setBillAmt(deviceBoxInfo.getBillValue());
+				form.setCashInAmt(deviceBoxInfo.getCashInValue());
 			} else {
 				form.setMaxAmt(-1);
 			}

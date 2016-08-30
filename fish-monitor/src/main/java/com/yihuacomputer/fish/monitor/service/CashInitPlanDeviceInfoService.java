@@ -240,6 +240,8 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 					if(deviceBoxInfo.getMaxAlarm()<deviceBoxInfo.getCashInValue()||deviceBoxInfo.getMinAlarm()>deviceBoxInfo.getBillValue()){
 						cashInitPlanDeviceInfoForm.setFlag(BoxInitRuleType.CASHLIMIT.getNo());
 					}
+					cashInitPlanDeviceInfoForm.setBillAmt(deviceBoxInfo.getBillValue());
+					cashInitPlanDeviceInfoForm.setCashInAmt(deviceBoxInfo.getCashInValue());
 				}
 				planDeviceList.add(cashInitPlanDeviceInfoForm);	
 			}

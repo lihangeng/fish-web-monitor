@@ -64,6 +64,14 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				dataIndex : 'devType',
 				flex : 1
 			}, {
+				header : '取款余额',
+				dataIndex : 'billAmt',
+				flex : 1
+			}, {
+				header : '存款余额',
+				dataIndex : 'cashInAmt',
+				flex : 1
+			},{
 				header :  EwayLocale.machine.device.onBankSignal,
 				dataIndex : 'awayFlag',
 				flex : 1
