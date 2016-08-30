@@ -5,14 +5,14 @@ package com.yihuacomputer.fish.api.report.openRate.etl;
  * @author xuxiang
  * @since 2.1.1.1
  */
-public interface IDeivceOpenRateMonth extends IOpenRateColumn {
+public interface IDeviceOpenRateMonth extends IOpenRateColumn {
 	/**
 	 * 获得统计的日期,格式为yyyyMM
 	 * 如201608
 	 * @return
 	 */
-	long getDate();
-	void setDate(long date);
+	String getDate();
+	void setDate(String date);
 	
 	/**
 	 * 设备编号

@@ -5,7 +5,7 @@
 		http://www.springframework.org/schema/beans 
 		http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 		
-    <!-- quartz定时任务配置 -->
+    <!-- quartz定时每天任务配置 -->
 	<bean id="dayDeportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="description" value="每日定时执行报表数据统计"/>
 		<property name="jobDetail" ref="dayDeportJobDetail"/>
@@ -15,6 +15,17 @@
 			<property name="jobClass" value="com.yihuacomputer.fish.report.batch.DayReportJob" />
 			<property name="durability" value="true" />
   	</bean>
+  	
+  	<!-- quartz定时任务配置 -->
+<!-- 	<bean id="weekDeportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="description" value="每日定时执行报表数据统计"/>
+		<property name="jobDetail" ref="weekDeportJobDetail"/>
+		<property name="cronExpression" value="${weekETLJobTime}"/>
+	</bean>
+	<bean id="weekDeportJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+			<property name="jobClass" value="com.yihuacomputer.fish.report.batch.WeekReportJob" />
+			<property name="durability" value="true" />
+  	</bean> -->
   	
   	<!-- 每月数据抽取 -->
   	<bean id="monthReportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">

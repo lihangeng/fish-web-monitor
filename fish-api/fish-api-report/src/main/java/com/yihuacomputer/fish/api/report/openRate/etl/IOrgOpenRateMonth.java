@@ -11,8 +11,8 @@ public interface IOrgOpenRateMonth extends IOpenRateColumn{
 	 * 如201611
 	 * @return
 	 */
-	long getDate();
-	void setDate(long date);
+	String getDate();
+	void setDate(String date);
 	
 	/**
 	 * 机构编号
