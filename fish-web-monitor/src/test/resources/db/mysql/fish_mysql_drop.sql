@@ -1,3 +1,6 @@
+
+drop table if exists etl_retain_card_week;
+drop table if exists etl_retain_card_month;
 drop table if exists etl_trans_type_day;
 drop table if exists etl_trans_type_week;
 drop table if exists etl_trans_type_month;
