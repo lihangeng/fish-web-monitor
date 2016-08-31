@@ -61,7 +61,7 @@ public class EveryDayReportJob {
 		String shortYestory = DateUtils.getLastShortDate();
 		transactionDaysService.extractDate(shortYestory);
 		//4.每台设备交易量统计(2016年3季度需求加钞设备应加金额的计算)
-		dayTradingVolumeService.generalDayTradingVolumeByDate(yestoday);
+		dayTradingVolumeService.generalDayTradingVolumeByDate(shortYestory);
 		//5.计算每日交易类型(2016年3季度需求综合报告之交易信息汇总)
 		transTypeEtlService.extractByDay(DateUtils.getDate(DateUtils.getLastDate()));
 		//6.计算加钞设备(2016年3季度加钞计划)
