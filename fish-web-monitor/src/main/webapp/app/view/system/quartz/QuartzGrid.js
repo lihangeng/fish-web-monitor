@@ -60,7 +60,7 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 			},{
 				text: '立即执行',
 				glyph : 0xf04b,
-				action: 'resume',
+				action: 'executeJob',
 				code : 'quartzExecute',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender

@@ -64,7 +64,6 @@ public class DeviceCashBoxInfoController {
 		if(null==filter.getFilterEntry("deviceId.organization.orgFlag")){
 			filter.like("deviceId.organization.orgFlag", orgFlag+"%");
 		}
-		filter.order("boxChange");
 		IPageResult<IDeviceBoxInfo> deviceBoxInfoPageResult = deviceBoxInfoService.list(start, limit, filter);
 		List<DeviceCashBoxInfoForm> dcbifList = convert(deviceBoxInfoPageResult.list());
 		result.put(FishConstant.SUCCESS, true);

@@ -86,7 +86,7 @@ public class DeviceBoxInfoService implements IDeviceBoxInfoService,IDeviceListen
 			hql.append(" and ").append(filterEntryOrg.getKey()).append(" like ? ");
 			fixedFilters.add(filterEntryOrg.getValue() + "%");
 		}
-		
+		hql.append("order by boxChange desc");
 		return (IPageResult<IDeviceBoxInfo>) dao.page(offset, limit, filter, hql.toString(), fixedFilters.toArray());
 	}
 
