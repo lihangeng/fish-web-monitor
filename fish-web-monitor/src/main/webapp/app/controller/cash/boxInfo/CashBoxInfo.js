@@ -85,6 +85,16 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 	},
 	
 	onUpdate:function(editor, context){
+		var defaultBill = context.record.get("defaultBill");
+		var defaultCashIn = context.record.get("defaultCashIn");
+    	if(defaultBill<context.newValues.minAlarm){
+    		Eway.alert("取款预警不能超过"+defaultBill);
+    		return false;
+    	}
+    	if(defaultCashIn<context.newValues.maxAlarm){
+    		Eway.alert("存款预警不能超过"+defaultCashIn);
+    		return false;
+    	}
 		context.record.save({
 			 success: function(recordInDB) {
 					Eway.alert(EwayLocale.updateSuccess);

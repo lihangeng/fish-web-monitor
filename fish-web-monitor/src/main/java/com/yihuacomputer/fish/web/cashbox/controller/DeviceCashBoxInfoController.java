@@ -172,6 +172,7 @@ public class DeviceCashBoxInfoController {
 			dcbif.setTerminalId(device.getTerminalId());
 			dcbif.setDefaultCashIn(idbi.getDefaultBill());
 			dcbif.setDefaultBill(idbi.getDefaultCashIn());
+			dcbif.setFlag(idbi.isBoxChange());
 			dcbifList.add(dcbif);
 		}
 		return dcbifList;

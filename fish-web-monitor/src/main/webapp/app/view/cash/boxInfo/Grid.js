@@ -4,6 +4,13 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 	extend: 'Eway.view.base.Grid',
 	
 	border : false,
+	viewConfig : {
+		forceFit : true,
+		stripeRows : true,
+		getRowClass: function(record, rowIndex, rowParams, store){
+		        return record.get("flag") ? 'user-online' : 'user-yellow';
+	    }
+	},
 	initComponent: function() {
 		var store = Ext.create('Eway.store.cash.boxInfo.CashBoxInfo');
 		store.loadPage(1);
@@ -45,6 +52,7 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 				width : 120,    
 				editor: {
 	                xtype: 'numberfield',
+	                minValue:0,
 	                allowBlank: false
 	            }
 			} , {

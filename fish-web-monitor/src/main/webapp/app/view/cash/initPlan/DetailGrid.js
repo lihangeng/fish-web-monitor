@@ -4,6 +4,18 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 	extend: 'Eway.view.base.Grid',
 	
 	border : false,
+	viewConfig : {
+		forceFit : true,
+		stripeRows : true,
+		getRowClass: function(record, rowIndex, rowParams, store){
+		        if(record.get("flag")==0)
+		        	return 'user-online';
+		        else if(record.get("flag")==1)
+		        	return 'blue';
+		        else
+		        	return '';
+	    }
+	},
 	initComponent: function() {
 		var store = Ext.create('Eway.store.cash.initPlan.CashInitPlanDevice');
 		Ext.apply(this, {

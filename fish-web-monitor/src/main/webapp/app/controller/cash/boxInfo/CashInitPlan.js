@@ -198,9 +198,9 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 		store.loadPage(1);
 	},
 	onBack:function(){
-
 		var view = this.getEwayView();
 		view.getLayout().setActiveItem("initPlan");
+		this.onQuery();
 	},
 	onUpdate:function(){
 		var view = this.getEwayView(),
@@ -222,6 +222,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 		
 		var cashPlanInitId = detailFilterForm.down("hidden[name=cashInitPlanInfoId]").setValue(record.get("id"));
 		var detailStore = detailGrid.getStore();
+		detailGrid.setTitle(record.get("orgName")+EwayLocale.initPlan.cashInitCode+record.get("cashInitCode"));
 		detailStore.setBaseParam("cashInitPlanInfoId",record.get("id"));
 		detailStore.load();
 	},
