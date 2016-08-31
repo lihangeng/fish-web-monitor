@@ -1,13 +1,29 @@
 package com.yihuacomputer.fish.web.cashbox.controller;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.RandomAccessFile;
+import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFDataFormat;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +44,7 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.monitor.box.BoxInitRuleType;
 import com.yihuacomputer.fish.api.monitor.box.CashInitPlanDeviceInfoForm;
@@ -73,6 +90,71 @@ public class DeviceCashInitPlanDetailController {
 		return result;
 	}
 
+	
+	
+	
+	/**
+	 *
+	 * 根据条件得到设备列表
+	 *
+	 * @param form
+	 * @return ModelMap<String, Object>
+	 * @throws Exception
+	 */
+	@RequestMapping(value = "export", method = RequestMethod.GET)
+	@MethodNameDescrible(describle="userlog.deviceController.export",hasArgs=false)
+	public void export(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response)
+			throws Exception {
+
+		IFilter filter = getCashInitPlanInfoFilter(webRequest);
+		List<ICashInitPlanDeviceInfo> cashInitPlanPageResult = cashInitPlanDeviceInfoService.list(filter);
+		ICashInitPlanInfo planInfo = cashInitPlanInfoService.get(Long.parseLong(request.getParameter("cashInitPlanInfoId")));
+		Map<String, IDeviceBoxInfo> deviceBoxInfoMap = deviceBoxInfoService.getDeviceBoxInfo(planInfo.getOrg().getOrgFlag());
+		List<CashInitPlanDeviceInfoForm> dcbirList = convert(cashInitPlanPageResult, deviceBoxInfoMap);
+		String fileName = messageSource.getMessage("cashInitPlanDevice.title", new Object[]{planInfo.getOrg().getName(),planInfo.getCashInitCode()}, FishCfg.locale);
+		String path = createExls(dcbirList, fileName);
+
+		File file = new File(path);
+
+		response.setHeader("Content-Disposition",
+				"attachment; filename=\"" + getFileName(request, path.substring(path.lastIndexOf(File.separator)))
+						+ "\"");
+		response.addHeader("Content-Length", "" + file.length());
+		response.setContentType("application/x-msdownload;charset=UTF-8");
+		OutputStream out = null;
+		RandomAccessFile randomFile = new RandomAccessFile(file, "r");
+		try {
+			out = response.getOutputStream();
+			int len = 0;
+			long contentLength = 0;
+			contentLength = contentLength + randomFile.length();
+			randomFile.seek(0);
+			byte[] cache = new byte[1024];
+			while ((len = randomFile.read(cache)) != -1) {
+				out.write(cache, 0, len);
+				contentLength += len;
+			}
+		} catch (Exception ex) {
+			logger.error(ex.getMessage());
+		} finally {
+			if (out != null) {
+				out.close();
+			}
+			if (randomFile != null) {
+				randomFile.close();
+			}
+		}
+
+	}
+
+	private String getFileName(HttpServletRequest request, String name) throws Exception {
+		if (request.getHeader("User-Agent").toUpperCase().indexOf("MSIE") > 0) {
+			// IE浏览器
+			return URLEncoder.encode(name, "UTF-8");
+		} else {
+			return new String(name.getBytes("UTF-8"), "ISO8859-1");
+		}
+	}
 	/**
 	 * 获取当前可选的设备列表
 	 * 
@@ -147,39 +229,41 @@ public class DeviceCashInitPlanDetailController {
 		List<CashInitPlanDeviceInfoForm> list = null;
 		try {
 			list = cashInitPlanDeviceInfoService.listSelectAble(planInfo,new Filter());
+		
+			String[] terminals = terminalIds.split(",");
+			Map<String, String> terminalIdMap = new HashMap<String, String>();
+			for (String terminal : terminals) {
+				terminalIdMap.put(terminal, terminal);
+			}
+			double actualAmt = planInfo.getAmt();
+			for (CashInitPlanDeviceInfoForm cashInitPlanDeviceInfoForm : list) {
+				String terminalId = cashInitPlanDeviceInfoForm.getTerminalId();
+				if (null != terminalIdMap.get(terminalId)) {
+					ICashInitPlanDeviceInfo cashInfoPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
+					cashInfoPlanDeviceInfo.setActualAmt(cashInitPlanDeviceInfoForm.getActualAmt());
+					actualAmt += cashInitPlanDeviceInfoForm.getActualAmt();
+					cashInfoPlanDeviceInfo.setAddress(cashInitPlanDeviceInfoForm.getAddress());
+					cashInfoPlanDeviceInfo.setAdviceAmt(cashInitPlanDeviceInfoForm.getAdviceAmt());
+					cashInfoPlanDeviceInfo.setAwayFlag(cashInitPlanDeviceInfoForm.getAwayFlagType());
+					cashInfoPlanDeviceInfo.setCashInitPlanInfo(planInfo);
+					cashInfoPlanDeviceInfo.setDevType(cashInitPlanDeviceInfoForm.getDevType());
+					cashInfoPlanDeviceInfo.setFlag(BoxInitRuleType.getBoxInitRuleType(cashInitPlanDeviceInfoForm.getFlag()));
+					cashInfoPlanDeviceInfo.setLastAmt(cashInitPlanDeviceInfoForm.getLastAmt());
+					cashInfoPlanDeviceInfo.setLastDate(cashInitPlanDeviceInfoForm.getLastDate());
+					cashInfoPlanDeviceInfo.setOrgName(cashInitPlanDeviceInfoForm.getOrgName());
+					cashInfoPlanDeviceInfo.setTerminalId(cashInitPlanDeviceInfoForm.getTerminalId());
+					cashInfoPlanDeviceInfo = cashInitPlanDeviceInfoService.save(cashInfoPlanDeviceInfo);
+				}
+			}
+			planInfo.setAmt(actualAmt);
+			cashInitPlanInfoService.update(planInfo);
+			result.put(FishConstant.SUCCESS, true);
 		} catch (Exception e) {
 			logger.error("load selectable initplandevice failer");
-			result.put(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.processError", null, FishCfg.locale));
 			return result;
 		}
-		String[] terminals = terminalIds.split(",");
-		Map<String, String> terminalIdMap = new HashMap<String, String>();
-		for (String terminal : terminals) {
-			terminalIdMap.put(terminal, terminal);
-		}
-		double actualAmt = planInfo.getAmt();
-		for (CashInitPlanDeviceInfoForm cashInitPlanDeviceInfoForm : list) {
-			String terminalId = cashInitPlanDeviceInfoForm.getTerminalId();
-			if (null != terminalIdMap.get(terminalId)) {
-				ICashInitPlanDeviceInfo cashInfoPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
-				cashInfoPlanDeviceInfo.setActualAmt(cashInitPlanDeviceInfoForm.getActualAmt());
-				actualAmt += cashInitPlanDeviceInfoForm.getActualAmt();
-				cashInfoPlanDeviceInfo.setAddress(cashInitPlanDeviceInfoForm.getAddress());
-				cashInfoPlanDeviceInfo.setAdviceAmt(cashInitPlanDeviceInfoForm.getAdviceAmt());
-				cashInfoPlanDeviceInfo.setAwayFlag(cashInitPlanDeviceInfoForm.getAwayFlagType());
-				cashInfoPlanDeviceInfo.setCashInitPlanInfo(planInfo);
-				cashInfoPlanDeviceInfo.setDevType(cashInitPlanDeviceInfoForm.getDevType());
-				cashInfoPlanDeviceInfo.setFlag(BoxInitRuleType.getBoxInitRuleType(cashInitPlanDeviceInfoForm.getFlag()));
-				cashInfoPlanDeviceInfo.setLastAmt(cashInitPlanDeviceInfoForm.getLastAmt());
-				cashInfoPlanDeviceInfo.setLastDate(cashInitPlanDeviceInfoForm.getLastDate());
-				cashInfoPlanDeviceInfo.setOrgName(cashInitPlanDeviceInfoForm.getOrgName());
-				cashInfoPlanDeviceInfo.setTerminalId(cashInitPlanDeviceInfoForm.getTerminalId());
-				cashInfoPlanDeviceInfo = cashInitPlanDeviceInfoService.save(cashInfoPlanDeviceInfo);
-			}
-		}
-		planInfo.setAmt(actualAmt);
-		cashInitPlanInfoService.update(planInfo);
-		result.put(FishConstant.SUCCESS, true);
 		return result;
 	}
 
@@ -285,5 +369,140 @@ public class DeviceCashInitPlanDetailController {
 
 	private boolean isNotFilterName(String name) {
 		return "devServiceName".equals(name) || "organizationID".equals(name) || "orgName".equals(name) || "page".equals(name) || "start".equals(name) || "limit".equals(name) || "_dc".equals(name) || "sort".equals(name);
+	}
+	
+	@Autowired
+	private MessageSource messageSourceEnum;
+    private String getEnumI18n(String enumText){
+    	if(null==enumText){
+    		return "";
+    	}
+    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
+    }
+	private String createExls(List<CashInitPlanDeviceInfoForm> data, String sheetName) {
+
+		String pathname = FishCfg.getTempDir() + File.separator + sheetName + ".xls";
+
+		HSSFWorkbook workBook = new HSSFWorkbook();
+
+		HSSFSheet sheet = workBook.createSheet(sheetName);
+
+		HSSFRow row = sheet.createRow(0);
+
+		HSSFCell cell = row.createCell(0);
+		cell.setCellValue(getEnumI18n("cashInitPlanDevice.terminalId"));
+				
+		cell = row.createCell(1);
+		cell.setCellValue(getEnumI18n("cashInitPlanDevice.actualAmt"));
+		
+		cell = row.createCell(2);
+		cell.setCellValue(getEnumI18n("cashInitPlanDevice.maxAmt"));
+		
+		cell = row.createCell(3);
+		cell.setCellValue(getEnumI18n("cashInitPlanDevice.adviceAmt"));
+		
+		cell = row.createCell(4);
+		cell.setCellValue(getEnumI18n("cashInitPlanDevice.devTypeName"));
+		
+		
+		cell = row.createCell(5);
+		cell.setCellValue(getEnumI18n("cashInitPlanDevice.billAmt"));
+		
+		cell = row.createCell(6);
+		cell.setCellValue(getEnumI18n("cashInitPlanDevice.cashInAmt"));
+		
+		cell = row.createCell(7);
+		cell.setCellValue(getEnumI18n("cashInitPlanDevice.onBankSignal"));
+		
+		cell = row.createCell(8);
+		cell.setCellValue(getEnumI18n("cashInitPlanDevice.orgName"));
+
+		cell = row.createCell(9);
+		cell.setCellValue(getEnumI18n("cashInitPlanDevice.lastAmt"));
+
+		cell = row.createCell(10);
+		cell.setCellValue(getEnumI18n("cashInitPlanDevice.lastDate"));
+
+		cell = row.createCell(11);
+		cell.setCellValue(getEnumI18n("cashInitPlanDevice.devAddress"));
+		
+		HSSFCellStyle cellStyle = workBook.createCellStyle();
+		HSSFDataFormat format = workBook.createDataFormat();
+
+		cellStyle.setDataFormat(format.getFormat("@"));
+
+		int count = 1;
+		for (CashInitPlanDeviceInfoForm planDeviceInfo : data) {
+			row = sheet.createRow(count);
+			count++;
+			cell = row.createCell(0);
+			cell.setCellType(Cell.CELL_TYPE_STRING);
+			cell.setCellStyle(cellStyle);
+			cell.setCellValue(cellValue(planDeviceInfo.getTerminalId()));
+
+			cell = row.createCell(1);
+			cell.setCellValue(cellValue(planDeviceInfo.getActualAmt()));
+
+			cell = row.createCell(2);
+			cell.setCellValue(cellValue(planDeviceInfo.getMaxAmt()));
+
+			cell = row.createCell(3);
+			cell.setCellValue(cellValue(planDeviceInfo.getAdviceAmt()));
+
+			cell = row.createCell(4);
+			cell.setCellValue(cellValue(planDeviceInfo.getDevType()));
+
+			cell = row.createCell(5);
+			cell.setCellValue(cellValue(planDeviceInfo.getBillAmt()));
+
+			cell = row.createCell(6);
+			cell.setCellValue(cellValue(planDeviceInfo.getCashInAmt()));
+
+			cell = row.createCell(7);
+			cell.setCellValue(cellValue(planDeviceInfo.getAwayFlag()));
+			
+			cell = row.createCell(8);
+			cell.setCellValue(cellValue(planDeviceInfo.getOrgName()));
+			
+			cell = row.createCell(9);
+			cell.setCellValue(cellValue(planDeviceInfo.getLastAmt()));
+			
+			cell = row.createCell(10);
+			cell.setCellValue(cellValue(planDeviceInfo.getLastDate()));
+			
+			cell = row.createCell(11);
+			cell.setCellValue(cellValue(planDeviceInfo.getAddress()));
+
+		}
+
+		FileOutputStream fos = null;
+		try {
+			fos = new FileOutputStream(pathname);
+			workBook.write(fos);
+		} catch (FileNotFoundException e) {
+		} catch (IOException e) {
+		} finally {
+			if (fos != null) {
+				try {
+					fos.close();
+				} catch (IOException e) {
+				}
+			}
+		}
+		return pathname;
+	}
+
+	private String cellValue(Object obj) {
+		if (obj == null) {
+			return "";
+		}
+		if (obj instanceof String) {
+			return obj.toString();
+		} else if (obj instanceof Date) {
+			return DateUtils.getDate((Date) obj);
+		} else if (obj instanceof Integer || obj instanceof Long || obj instanceof Double) {
+			return String.valueOf(obj.toString());
+		}
+		return obj.toString();
 	}
 }

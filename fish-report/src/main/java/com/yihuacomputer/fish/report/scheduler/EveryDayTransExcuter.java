@@ -26,7 +26,6 @@ public class EveryDayTransExcuter implements IReportDataETL {
 	public void reportETL(String date) {
 		String yestoday = DateUtils.getLastShortDate();
 		transactionDaysService.extractDate(yestoday);
-
 	}
 
 	@Override

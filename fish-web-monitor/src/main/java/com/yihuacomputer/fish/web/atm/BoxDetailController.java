@@ -55,7 +55,9 @@ public class BoxDetailController {
 		result.addAttribute("Ret", "00");
 		
 		//TODO 清机时候才判断钞箱是否变化?
+		//获取钞箱最大存取款金额信息
 		Map<BoxType, Long> boxTypeAmtMap = getBoxCashInfo(msg.getBoxdetailList());
+		//获取当前存取款金额
 		Map<BoxType, Long> boxTypeAmtValueMap = getBoxCashValueInfo(msg.getBoxdetailList());
 		try {
 			IDevice device = deviceService.get(msg.getTermianlId());
@@ -147,8 +149,8 @@ public class BoxDetailController {
 					}
 					deviceBoxInfo.setBillValue(boxTypeAmtValueMap.get(BoxType.BILLCASSETTE)==null?0:boxTypeAmtValueMap.get(BoxType.BILLCASSETTE));
 					deviceBoxInfo.setCashInValue(boxTypeAmtValueMap.get(BoxType.CASHINCASSETTE)==null?0:boxTypeAmtValueMap.get(BoxType.CASHINCASSETTE));
-					deviceBoxInfo.setBillValue(boxTypeAmtValueMap.get(BoxType.BILLCASSETTE));
-					deviceBoxInfo.setCashInValue(boxTypeAmtValueMap.get(BoxType.CASHINCASSETTE));
+//					deviceBoxInfo.setBillValue(boxTypeAmtValueMap.get(BoxType.BILLCASSETTE));
+//					deviceBoxInfo.setCashInValue(boxTypeAmtValueMap.get(BoxType.CASHINCASSETTE));
 					deviceBoxInfoService.update(deviceBoxInfo);
 				}
 			}
@@ -159,6 +161,11 @@ public class BoxDetailController {
 		return result;
 	}
 
+	/**
+	 * 获取钞箱最大存取款金额信息
+	 * @param detailList
+	 * @return
+	 */
 	private Map<BoxType, Long> getBoxCashInfo(List<BoxDetailReportMsg> detailList) {
 
 		Map<BoxType, Long> boxTypeAmtMap = new HashMap<BoxType, Long>();
@@ -183,6 +190,11 @@ public class BoxDetailController {
 		return boxTypeAmtMap;
 	}
 	
+	/**
+	 * 获取当前存取款金额
+	 * @param detailList
+	 * @return
+	 */
 	private Map<BoxType, Long> getBoxCashValueInfo(List<BoxDetailReportMsg> detailList) {
 
 		Map<BoxType, Long> boxTypeAmtMap = new HashMap<BoxType, Long>();

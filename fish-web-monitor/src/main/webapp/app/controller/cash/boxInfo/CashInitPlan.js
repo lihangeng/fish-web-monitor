@@ -55,6 +55,9 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 			'initPlan_detailGrid  button[action=add]' : {
 				click : this.onAddInitPlanDevice
 			},
+			'initPlan_detailGrid  button[action=export]' : {
+				click : this.onInitPlanDetailExport
+			},
 			'initPlan_detailGrid  button[action=remove]' : {
 				click : this.onDeleteCashInitPlanDeviceInfo
 			},
@@ -62,6 +65,12 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 				click : this.onDetailSelectableQuery
 			}
 		});
+	},
+	//加钞计划明细导出
+	onInitPlanDetailExport:function(){
+		var planId = this.getDetailForm().down("hidden[name=cashInitPlanInfoId]").getValue();
+		var params="&cashInitPlanInfoId="+planId;
+		window.location.href = 'api/cashInitPlanDevice/export?_dc=' + params;
 	},
 	//加钞计划增加设备的查询条件
 	onDetailSelectableQuery:function(){
@@ -102,7 +111,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 			}, this);
 		}
 		else {
-			Eway.alert("请选择一条记录删除");
+			Eway.alert(EwayLocale.tip.remove.one);
 		}
 	},
 	//向加钞计划中添加设备
@@ -155,7 +164,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
     	}
 		context.record.save({
 			 success: function(recordInDB) {
-					Eway.alert("更改成功");
+					Eway.alert(EwayLocale.updateSuccess);
 				 },
 				 failure: function(record,operation){
 					store.rejectChanges();
@@ -189,9 +198,9 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 		store.loadPage(1);
 	},
 	onBack:function(){
-
 		var view = this.getEwayView();
 		view.getLayout().setActiveItem("initPlan");
+		this.onQuery();
 	},
 	onUpdate:function(){
 		var view = this.getEwayView(),
@@ -213,6 +222,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 		
 		var cashPlanInitId = detailFilterForm.down("hidden[name=cashInitPlanInfoId]").setValue(record.get("id"));
 		var detailStore = detailGrid.getStore();
+		detailGrid.setTitle(record.get("orgName")+EwayLocale.initPlan.cashInitCode+record.get("cashInitCode"));
 		detailStore.setBaseParam("cashInitPlanInfoId",record.get("id"));
 		detailStore.load();
 	},
@@ -224,7 +234,6 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 		if(form.getForm().isValid()){//存在不合法的输入项
 			var grid = me.getGrid(),
 			store = grid.getStore(),
-//			action = win.getAction(),
 			oldParams = store.getUrlParams(),
 			record;
 			store.cleanUrlParam();

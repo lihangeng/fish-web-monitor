@@ -1,6 +1,9 @@
 Ext.apply(EwayLocale,{
 	boxInfo:{
-		title:'钞箱信息'//EwayLocale.boxInfo.title
+		title:'钞箱信息',//EwayLocale.boxInfo.title
+		cashboxOutLimit:'取款预警',//EwayLocale.boxInfo.cashboxOutLimit
+		cashboxInLimit:'存款预警',//	EwayLocale.boxInfo.cashboxInLimit
+		
 	},
 	initRule:{
 		title:'加钞规则管理',//EwayLocale.initRule.title
@@ -22,6 +25,9 @@ Ext.apply(EwayLocale,{
 		lastDate:'上次加钞日期',//EwayLocale.initPlan.lastDate
 		adviceAmt:'推荐加钞金额',//EwayLocale.initPlan.adviceAmt
 		addDeviceWin:'增加加钞设备',//EwayLocale.initPlan.addDeviceWin
+		maxAmt:'最大加钞金额',//EwayLocale.initPlan.maxAmt
+		billAmt:'取款余额',//EwayLocale.initPlan.billAmt
+		cashInAmt:'存款余额',//EwayLocale.initPlan.cashInAmt
 		actualAmt:'实际加钞金额'//EwayLocale.initPlan.actualAmt
 			
 	},

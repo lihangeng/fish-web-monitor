@@ -615,6 +615,9 @@ body .ux-notification-light {
 .x-grid-row.user-online .x-grid-cell {
 	color: #FF0000;
 }
+.x-grid-row.blue .x-grid-cell {
+	color: #62a7df;
+}
 
 .report-overflow {
 	overflow-x: auto !important;

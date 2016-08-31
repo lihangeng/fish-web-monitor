@@ -72,6 +72,10 @@ public class DeviceCashBoxInfoForm {
 	 * 下限预警
 	 */
 	private long minAlarm;
+	/**
+	 * 变动标识
+	 */
+	private boolean flag;
 	public long getDevType() {
 		return devType;
 	}
@@ -174,4 +178,11 @@ public class DeviceCashBoxInfoForm {
 	public void setDefaultCashIn(long defaultCashIn) {
 		this.defaultCashIn = defaultCashIn;
 	}
+	public boolean getFlag() {
+		return flag;
+	}
+	public void setFlag(boolean flag) {
+		this.flag = flag;
+	}
+	
 }

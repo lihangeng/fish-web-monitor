@@ -132,53 +132,12 @@ public class DeviceCashBoxInfoController {
 			updateResult = deviceBoxInfoService.synchronizedUpdate(deviceBoxInfo,filter);
 		}catch(Exception e){
 			model.addAttribute(FishConstant.SUCCESS, false);
+			model.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("user.processError", null, FishCfg.locale));
 		}
 		model.addAttribute(FishConstant.SUCCESS, updateResult);
 		return model;
 	}
-//	查询操作，不做日志记录
-//	@MethodNameDescrible(describle="userlog.CashBoxController.synchronizedBoxLimit",hasArgs=false,urlArgs=true )
-//	@RequestMapping(value = "/getBoxDetailInfo", method = RequestMethod.GET)
-//	public @ResponseBody 
-//	ModelMap getBoxDetailInfo(HttpServletRequest request,WebRequest webRequest) {
-//		ModelMap model = new ModelMap();
-//		long deviceCashBoxId = Long.parseLong(request.getParameter("id"));
-//		logger.info("getBoxDetailInfo : CashBoxInfo.id = " + deviceCashBoxId);
-//		DeviceBoxMsg boxMsg = new DeviceBoxMsg();
-//		
-//		IDeviceBoxInfo deviceBoxInfo = deviceBoxInfoService.get(deviceCashBoxId);
-//		List<IDeviceBoxDetailInfo>  dbBoxDetailList = deviceBoxInfo.getDeviceBoxDetails();
-//		int initAll=0,leafAll=0,rejectAll=0,dispenserAll=0,litterValue=0,retRact=0;
-//		for(IDeviceBoxDetailInfo boxDetail:dbBoxDetailList){
-//			if(BoxType.isEffect(boxDetail.getBoxType())){
-//				if(boxDetail.getValue()!=0&&litterValue==0){
-//					litterValue=boxDetail.getValue();
-//				}
-//				else if(boxDetail.getValue()!=0){
-//					litterValue=litterValue<boxDetail.getValue()?litterValue:boxDetail.getValue();
-//				}
-//				initAll+=boxDetail.getValue()*boxDetail.getInitialCount();
-//				leafAll+=boxDetail.getValue()*boxDetail.getNumber();
-//				dispenserAll+=boxDetail.getValue()*boxDetail.getDispenseCount();
-//			}
-//			else if(boxDetail.getBoxType().equals(BoxType.REJECTCASSETTE)){
-//				rejectAll+=boxDetail.getNumber();
-//			}
-//			else if(boxDetail.getBoxType().equals(BoxType.RETRACTCASSETTE)){
-//				retRact+=boxDetail.getNumber();
-//			}
-//			CashBoxDetail cbd = new CashBoxDetail();
-//			cbd.setBinStatus(boxDetail.get);
-//		}
-//		boxMsg.setRejectAmount(rejectAll);
-//		boxMsg.setAmount(leafAll);
-//		boxMsg.setDispenseAmount(dispenserAll);
-//		boxMsg.setInitAmount(initAll);
-//		boxMsg.setMinAmount(litterValue);
-//		boxMsg.setRetractCount(retRact);
-//		boxMsg.setTermId(deviceBoxInfo.getDeviceId().getTerminalId());
-//		return model;
-//	}
+
 	
 	private DeviceCashBoxInfoForm convert(IDeviceBoxInfo deviceBoxInfo){
 		DeviceCashBoxInfoForm dcbif = new DeviceCashBoxInfoForm();
@@ -213,6 +172,7 @@ public class DeviceCashBoxInfoController {
 			dcbif.setTerminalId(device.getTerminalId());
 			dcbif.setDefaultCashIn(idbi.getDefaultBill());
 			dcbif.setDefaultBill(idbi.getDefaultCashIn());
+			dcbif.setFlag(idbi.isBoxChange());
 			dcbifList.add(dcbif);
 		}
 		return dcbifList;
@@ -235,7 +195,7 @@ public class DeviceCashBoxInfoController {
 				continue;
 			}
 
-			if ("devTypeId".equals(name)) {// 型号
+			if ("devType".equals(name)) {// 型号
 				filter.eq("deviceId.devType.id", Long.valueOf(value));
 			} else if ("devVendorId".equals(name)) {// 品牌
 				filter.eq("deviceId.devType.devVendor.id", Long.valueOf(value));

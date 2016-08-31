@@ -24,9 +24,6 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 			'boxInfo_grid button[action=query]' : {
 				click : this.onQuery
 			},
-			'boxInfo_grid button[action=remove]' : {
-				click : this.onRemove
-			},
 			'boxInfo_grid' : {
 				edit : this.onUpdate
 			},
@@ -51,9 +48,6 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 		store.setUrlParamsByObject(values);
 		store.loadPage(1);
 	},
-	onRemove:function(){
-		
-	},
 	onBoxDetail:function(btn){
 		var record = btn.getWidgetRecord();	
 		Eway.model.monitor.device.DeviceBox.load(record.data.ip,{
@@ -71,6 +65,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 		});
 	},
 	sync:function(btn){
+		var me =this;
 		var record = btn.getWidgetRecord();	
 		Ext.Ajax.request({
 			url :"api/cashbox/synchronizedBoxLimit",
@@ -80,18 +75,29 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 			success: function(response){
 				 var obj = Ext.decode(response.responseText);
 				 if(obj.success){
-				 	Eway.alert("同步成功");
+				 	Eway.alert(EwayLocale.ansynSuccess);
+				 	me.onQuery();
 				 }else{
-					 
+				 	Eway.alert(obj.errorMsg);
 				 }
 			}
 		});
 	},
 	
 	onUpdate:function(editor, context){
+		var defaultBill = context.record.get("defaultBill");
+		var defaultCashIn = context.record.get("defaultCashIn");
+    	if(defaultBill<context.newValues.minAlarm){
+    		Eway.alert("取款预警不能超过"+defaultBill);
+    		return false;
+    	}
+    	if(defaultCashIn<context.newValues.maxAlarm){
+    		Eway.alert("存款预警不能超过"+defaultCashIn);
+    		return false;
+    	}
 		context.record.save({
 			 success: function(recordInDB) {
-					Eway.alert("更改成功");
+					Eway.alert(EwayLocale.updateSuccess);
 				 },
 				 failure: function(record,operation){
 					store.rejectChanges();
