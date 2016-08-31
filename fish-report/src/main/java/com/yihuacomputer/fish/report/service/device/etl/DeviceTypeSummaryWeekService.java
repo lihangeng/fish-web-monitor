@@ -17,6 +17,7 @@ import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryWeek;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryWeekService;
 import com.yihuacomputer.fish.machine.entity.Device;
+import com.yihuacomputer.fish.report.entity.etl.DeviceTypeSummaryWeek;
 
 @Service
 @Transactional
@@ -66,7 +67,7 @@ public class DeviceTypeSummaryWeekService implements IDeviceTypeSummaryWeekServi
 	}
 
 	@Override
-	public void loadBaseDate(Date date) {
+	public void loadBaseData(Date date) {
 		// yyyy-mm-dd
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(date.getTime());

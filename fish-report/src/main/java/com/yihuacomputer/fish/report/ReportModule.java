@@ -6,14 +6,12 @@ import org.springframework.context.annotation.Import;
 
 import com.yihuacomputer.fish.api.report.batch.IETLjobDaysService;
 import com.yihuacomputer.fish.api.report.batch.IETLjobService;
-import com.yihuacomputer.fish.api.report.engine.IExportDataETLService;
 import com.yihuacomputer.fish.api.report.engine.IExportReportService;
 import com.yihuacomputer.fish.api.report.fault.ICaseStatisticsRptService;
 import com.yihuacomputer.fish.api.report.fault.IEveryMonthFaultCountService;
 import com.yihuacomputer.fish.api.report.fault.IFaultRateReportService;
 import com.yihuacomputer.fish.report.batch.day.DayTransBatchService;
 import com.yihuacomputer.fish.report.batch.day.ETLjobService;
-import com.yihuacomputer.fish.report.engine.ExportDataETLService;
 import com.yihuacomputer.fish.report.engine.ExportReportService;
 import com.yihuacomputer.fish.report.engine.exporter.HtmlExporter;
 import com.yihuacomputer.fish.report.engine.exporter.PdfExporter;
@@ -22,10 +20,6 @@ import com.yihuacomputer.fish.report.engine.scheduler.EveryDayReportJob;
 import com.yihuacomputer.fish.report.engine.scheduler.EveryMonthReportJob;
 import com.yihuacomputer.fish.report.engine.scheduler.EveryWeekReportJob;
 import com.yihuacomputer.fish.report.engine.scheduler.EveryYearReportJob;
-import com.yihuacomputer.fish.report.scheduler.DayOpenRateExcuter;
-import com.yihuacomputer.fish.report.scheduler.EveryDayTransExcuter;
-import com.yihuacomputer.fish.report.scheduler.EveryMonthFaultExcuter;
-import com.yihuacomputer.fish.report.scheduler.EveryMonthTransExcuter;
 import com.yihuacomputer.fish.report.service.fault.CaseStatisticsRptService;
 import com.yihuacomputer.fish.report.service.fault.EveryMonthFaultCountService;
 import com.yihuacomputer.fish.report.service.fault.FaultRateReportService;
@@ -43,31 +37,6 @@ import com.yihuacomputer.fish.report.service.fault.FaultRateReportService;
 				  ReportTransModule.class,
 				  ReportFaultModule.class})
 public class ReportModule {
-	
-	@Bean
-	public DayOpenRateExcuter dayOpenRateExcuter() {
-		return new DayOpenRateExcuter();
-	}
-	
-	@Bean
-	public IExportDataETLService exportDataETLService() {
-		return new ExportDataETLService();
-	}
-	
-	@Bean
-	public EveryMonthFaultExcuter everyMonthFaultJob() {
-		return new EveryMonthFaultExcuter();
-	}
-
-	@Bean
-	public EveryDayTransExcuter everyDayTransExcuter() {
-		return new EveryDayTransExcuter();
-	}
-
-	@Bean
-	public EveryMonthTransExcuter everyMonthTransExcuter() {
-		return new EveryMonthTransExcuter();
-	}
 
 	@Bean
 	public ICaseStatisticsRptService caseStatisticsRptService() {
