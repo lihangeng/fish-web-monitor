@@ -15,11 +15,13 @@ import com.yihuacomputer.fish.api.report.fault.etl.IFaultClassifyWeek;
 import com.yihuacomputer.fish.api.report.fault.etl.IFaultDurationMonth;
 import com.yihuacomputer.fish.api.report.fault.etl.IFaultDurationWeek;
 import com.yihuacomputer.fish.api.report.fault.etl.IFaultEtlService;
+import com.yihuacomputer.fish.api.report.fault.etl.IFaultMonth;
 import com.yihuacomputer.fish.api.report.fault.etl.IFaultWeek;
 import com.yihuacomputer.fish.report.entity.etl.FaultClassifyMonth;
 import com.yihuacomputer.fish.report.entity.etl.FaultClassifyWeek;
 import com.yihuacomputer.fish.report.entity.etl.FaultDurationMonth;
 import com.yihuacomputer.fish.report.entity.etl.FaultDurationWeek;
+import com.yihuacomputer.fish.report.entity.etl.FaultMonth;
 import com.yihuacomputer.fish.report.entity.etl.FaultWeek;
 
 /**
@@ -72,7 +74,7 @@ public class FaultEtlService implements IFaultEtlService {
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			if(each[0] != null){//当没有数据时，会出现一个空行
-				IFaultWeek day = new FaultWeek();
+				IFaultMonth day = new FaultMonth();
 				day.setDate(Long.parseLong(DateUtils.getYM(date)));
 				day.setOpenCount(Long.parseLong(each[0].toString()));
 				day.setCloseCount(Long.parseLong(each[1].toString()));
@@ -93,7 +95,7 @@ public class FaultEtlService implements IFaultEtlService {
 			if(each[0] != null){//当没有数据时，会出现一个空行
 				IFaultClassifyWeek day = new FaultClassifyWeek();
 				day.setDate(DateUtils.getWeek(date));
-				day.setClassifyId(Long.parseLong(each[0].toString()));
+				day.setClassifyId(each[0].toString());
 				day.setClassifyName(each[1].toString());
 				day.setCount(Long.parseLong(each[2].toString()));
 				dao.save(day);
@@ -122,7 +124,7 @@ public class FaultEtlService implements IFaultEtlService {
 			if(each[0] != null){//当没有数据时，会出现一个空行
 				IFaultClassifyMonth day = new FaultClassifyMonth();
 				day.setDate(Long.parseLong(DateUtils.getYM(date)));
-				day.setClassifyId(Long.parseLong(each[0].toString()));
+				day.setClassifyId(each[0].toString());
 				day.setClassifyName(each[1].toString());
 				day.setCount(Long.parseLong(each[2].toString()));
 				dao.save(day);
@@ -144,7 +146,7 @@ public class FaultEtlService implements IFaultEtlService {
 					IFaultDurationWeek day = new FaultDurationWeek();
 					day.setDate(DateUtils.getWeek(date));
 					day.setDuration(i);
-					day.setCount(Long.parseLong(each[i].toString()));
+					day.setCount(Long.parseLong(each[i-1].toString()));
 					dao.save(day);
 				}
 			}
@@ -177,9 +179,9 @@ public class FaultEtlService implements IFaultEtlService {
 			if(each[0] != null){//当没有数据时，会出现一个空行
 				for(int i = 1 ;i < 7;i++){
 					IFaultDurationMonth day = new FaultDurationMonth();
-					day.setDate(DateUtils.getWeek(date));
+					day.setDate(Long.parseLong(DateUtils.getYM(date)));
 					day.setDuration(i);
-					day.setCount(Long.parseLong(each[i].toString()));
+					day.setCount(Long.parseLong(each[i-1].toString()));
 					dao.save(day);
 				}
 			}

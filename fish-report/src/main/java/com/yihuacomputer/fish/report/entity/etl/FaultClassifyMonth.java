@@ -27,8 +27,8 @@ public class FaultClassifyMonth implements IFaultClassifyMonth {
 	@Column(name = "STAT_DATE", length = 10)
 	private long date;
 
-	@Column(name = "CLASSIFY_ID")
-	private long classifyId;
+	@Column(name = "CLASSIFY_ID", length = 10)
+	private String classifyId;
 
 	@Column(name = "CLASSIFY_NAME", length = 30)
 	private String classifyName;
@@ -56,12 +56,12 @@ public class FaultClassifyMonth implements IFaultClassifyMonth {
 	}
 
 	@Override
-	public long getClassifyId() {
+	public String getClassifyId() {
 		return classifyId;
 	}
 
 	@Override
-	public void setClassifyId(long classifyId) {
+	public void setClassifyId(String classifyId) {
 		this.classifyId = classifyId;
 	}
 

@@ -27,12 +27,12 @@ public interface IFaultClassifyWeek {
 	/**
 	 * 获得分类Id
 	 */
-	long getClassifyId();
+	String getClassifyId();
 	/**
 	 * 
 	 * @param classifyId
 	 */
-	void setClassifyId(long classifyId);
+	void setClassifyId(String classifyId);
 	
 	/**
 	 * 

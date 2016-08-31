@@ -1,3 +1,9 @@
+drop table if exists etl_fault_week;
+drop table if exists etl_fault_month;
+drop table if exists etl_fault_classify_week;
+drop table if exists etl_fault_classify_month;
+drop table if exists etl_fault_duration_week;
+drop table if exists etl_fault_duration_month;
 
 drop table if exists etl_retain_card_week;
 drop table if exists etl_retain_card_month;

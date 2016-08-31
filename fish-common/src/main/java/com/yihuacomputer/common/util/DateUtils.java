@@ -436,7 +436,7 @@ public class DateUtils {
 	   Long [] dates = new Long[2];
 	   String sDate = DateUtils.getYM(date);
 	   dates[0] = Long.parseLong(sDate + "01");
-	   dates[0] = Long.parseLong(sDate + "31");
+	   dates[1] = Long.parseLong(sDate + "31");
 	   return dates;
    }
 

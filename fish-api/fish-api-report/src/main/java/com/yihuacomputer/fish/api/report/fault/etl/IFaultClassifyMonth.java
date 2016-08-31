@@ -27,12 +27,12 @@ public interface IFaultClassifyMonth {
 	/**
 	 * 获得分类Id
 	 */
-	long getClassifyId();
+	String getClassifyId();
 	/**
 	 * 
 	 * @param openCount
 	 */
-	void setClassifyId(long ClassifyId);
+	void setClassifyId(String ClassifyId);
 	
 	/**
 	 * 
