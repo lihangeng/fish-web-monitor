@@ -292,9 +292,13 @@ public class DeviceCashInitPlanDetailController {
 		}
 		cashDeviceInfo.setActualAmt(request.getActualAmt());
 		ICashInitPlanInfo initPlan = cashDeviceInfo.getCashInitPlanInfo();
-		initPlan.setAmt(initPlan.getAmt() + request.getActualAmt());
 		try {
 			cashInitPlanDeviceInfoService.update(cashDeviceInfo);
+			long amt = 0;
+			for(ICashInitPlanDeviceInfo cashInitPlanDeviceInfo:initPlan.getCashInitPlanDeviceList()){
+				amt +=cashInitPlanDeviceInfo.getActualAmt();
+			}
+			initPlan.setAmt(amt);
 			cashInitPlanInfoService.update(initPlan);
 		} catch (Exception e) {
 			logger.error(String.format("add error : %s", e.getMessage()));

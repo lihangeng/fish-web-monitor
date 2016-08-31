@@ -2,7 +2,18 @@
 Ext.define('Eway.view.cash.initPlan.DetailSelectableGrid', {
 	alias: 'widget.initPlan_detailSelectableGrid',
 	extend: 'Eway.view.base.Grid',
-	
+	viewConfig : {
+		forceFit : true,
+		stripeRows : true,
+		getRowClass: function(record, rowIndex, rowParams, store){
+		        if(record.get("flag")==0)
+		        	return 'user-online';
+		        else if(record.get("flag")==1)
+		        	return 'blue';
+		        else
+		        	return '';
+	    }
+	},
 	border : false,
 	initComponent: function() {
 		var store = Ext.create('Eway.store.cash.initPlan.CashInitPlanSelectableDevice');

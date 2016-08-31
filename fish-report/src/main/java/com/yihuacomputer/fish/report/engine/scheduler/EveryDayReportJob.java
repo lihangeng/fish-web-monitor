@@ -1,5 +1,7 @@
 package com.yihuacomputer.fish.report.engine.scheduler;
 
+import java.util.Date;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,7 +68,7 @@ public class EveryDayReportJob {
 		transTypeEtlService.extractByDay(DateUtils.getDate(DateUtils.getLastDate()));
 		//6.计算加钞设备(2016年3季度加钞计划)
 		IOrganization org = orgService.get("1");
-		cashInitPlanInfoService.generalCashInitPlan(org, yestoday);
+		cashInitPlanInfoService.generalCashInitPlan(org, DateUtils.getDateShort(new Date()));
 		logger.info("Day data ETL finished");
 	}
 }
