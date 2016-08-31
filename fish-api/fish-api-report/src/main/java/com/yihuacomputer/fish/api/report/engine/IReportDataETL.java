@@ -20,7 +20,7 @@ public interface IReportDataETL {
 	
 	/**
 	 * 执行数据抽取动作
-	 * @param date
+	 * @param date yyyy-MM-dd
 	 */
 	public void reportETL(String date);
 }
