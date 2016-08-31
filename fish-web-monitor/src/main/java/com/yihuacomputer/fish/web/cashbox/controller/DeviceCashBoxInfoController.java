@@ -195,7 +195,7 @@ public class DeviceCashBoxInfoController {
 				continue;
 			}
 
-			if ("devTypeId".equals(name)) {// 型号
+			if ("devType".equals(name)) {// 型号
 				filter.eq("deviceId.devType.id", Long.valueOf(value));
 			} else if ("devVendorId".equals(name)) {// 品牌
 				filter.eq("deviceId.devType.devVendor.id", Long.valueOf(value));
