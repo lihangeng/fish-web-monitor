@@ -111,8 +111,8 @@ public class DeviceCashInitPlanDetailController {
 		ICashInitPlanInfo planInfo = cashInitPlanInfoService.get(Long.parseLong(request.getParameter("cashInitPlanInfoId")));
 		Map<String, IDeviceBoxInfo> deviceBoxInfoMap = deviceBoxInfoService.getDeviceBoxInfo(planInfo.getOrg().getOrgFlag());
 		List<CashInitPlanDeviceInfoForm> dcbirList = convert(cashInitPlanPageResult, deviceBoxInfoMap);
-		
-		String path = createExls(dcbirList, messageSource.getMessage("cashInitPlanDevice.title", new Object[]{planInfo.getOrg().getName(),planInfo.getDate()}, FishCfg.locale));
+		String fileName = messageSource.getMessage("cashInitPlanDevice.title", new Object[]{planInfo.getOrg().getName(),planInfo.getCashInitCode()}, FishCfg.locale);
+		String path = createExls(dcbirList, fileName);
 
 		File file = new File(path);
 
@@ -381,7 +381,7 @@ public class DeviceCashInitPlanDetailController {
     }
 	private String createExls(List<CashInitPlanDeviceInfoForm> data, String sheetName) {
 
-		String pathname = FishCfg.getTempDir() + File.separator + DateUtils.getDate(new Date()) + ".xls";
+		String pathname = FishCfg.getTempDir() + File.separator + sheetName + ".xls";
 
 		HSSFWorkbook workBook = new HSSFWorkbook();
 

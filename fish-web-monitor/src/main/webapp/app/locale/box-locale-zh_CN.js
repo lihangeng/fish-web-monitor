@@ -28,7 +28,6 @@ Ext.apply(EwayLocale,{
 		maxAmt:'最大加钞金额',//EwayLocale.initPlan.maxAmt
 		billAmt:'取款余额',//EwayLocale.initPlan.billAmt
 		cashInAmt:'存款余额',//EwayLocale.initPlan.cashInAmt
-		addDeviceWin:'增加加钞设备',//EwayLocale.initPlan.addDeviceWin
 		actualAmt:'实际加钞金额'//EwayLocale.initPlan.actualAmt
 			
 	},
