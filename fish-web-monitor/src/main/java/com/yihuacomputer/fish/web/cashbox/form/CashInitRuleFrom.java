@@ -1,6 +1,11 @@
 package com.yihuacomputer.fish.web.cashbox.form;
 
-public class DeviceCashBoxInitRuleFrom {
+/**
+ * 加钞规则信息
+ * @author GQ
+ *
+ */
+public class CashInitRuleFrom {
 	private long id;
 	private String name;
 	private String ruleDesc;

@@ -28,12 +28,17 @@ import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInitRule;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInitRuleService;
-import com.yihuacomputer.fish.web.cashbox.form.DeviceCashBoxInitRuleFrom;
+import com.yihuacomputer.fish.web.cashbox.form.CashInitRuleFrom;
 
+/**
+ * 加钞规则管理
+ * @author GQ
+ *
+ */
 @Controller
 @RequestMapping("/cashboxInitRule")
 @ClassNameDescrible(describle = "userlog.CashBoxInitRuleController")
-public class DeviceCashBoxInitRuleController {
+public class CashInitRuleController {
 	private Logger logger = LoggerFactory.getLogger(DeviceCashBoxInfoController.class);
 
 	@Autowired
@@ -55,7 +60,7 @@ public class DeviceCashBoxInitRuleController {
 			filter.eq("startUsing", Boolean.parseBoolean(startUsingstr));
 		}
 		IPageResult<IDeviceBoxInitRule> deviceBoxInitRulePageResult = devBoxInitRuleService.page(start, limit,filter);
-		List<DeviceCashBoxInitRuleFrom> dcbirList = convert(deviceBoxInitRulePageResult.list());
+		List<CashInitRuleFrom> dcbirList = convert(deviceBoxInitRulePageResult.list());
 		result.put(FishConstant.SUCCESS, true);
 		result.put(FishConstant.TOTAL, deviceBoxInitRulePageResult.getTotal());
 		result.put(FishConstant.DATA, dcbirList);
@@ -72,7 +77,7 @@ public class DeviceCashBoxInitRuleController {
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	@MethodNameDescrible(describle = "userlog.CashBoxInitRuleController.update", hasArgs = false, urlArgs = true)
-	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody DeviceCashBoxInitRuleFrom request) {
+	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody CashInitRuleFrom request) {
 		logger.info("update InitRule Info: InitRule.id = " + id);
 		request.setId(id);
 		ModelMap model = new ModelMap();
@@ -92,10 +97,10 @@ public class DeviceCashBoxInitRuleController {
 		return model;
 	}
 
-	private List<DeviceCashBoxInitRuleFrom> convert(List<IDeviceBoxInitRule> list) {
-		List<DeviceCashBoxInitRuleFrom> ruleList = new ArrayList<DeviceCashBoxInitRuleFrom>();
+	private List<CashInitRuleFrom> convert(List<IDeviceBoxInitRule> list) {
+		List<CashInitRuleFrom> ruleList = new ArrayList<CashInitRuleFrom>();
 		for (IDeviceBoxInitRule rule : list) {
-			DeviceCashBoxInitRuleFrom form = new DeviceCashBoxInitRuleFrom();
+			CashInitRuleFrom form = new CashInitRuleFrom();
 			form.setId(rule.getId());
 			form.setName(rule.getName());
 			form.setRuleDesc(rule.getRuleDesc());
@@ -105,8 +110,8 @@ public class DeviceCashBoxInitRuleController {
 		return ruleList;
 	}
 
-	private DeviceCashBoxInitRuleFrom convert(IDeviceBoxInitRule rule) {
-		DeviceCashBoxInitRuleFrom form = new DeviceCashBoxInitRuleFrom();
+	private CashInitRuleFrom convert(IDeviceBoxInitRule rule) {
+		CashInitRuleFrom form = new CashInitRuleFrom();
 		form.setId(rule.getId());
 		form.setName(rule.getName());
 		form.setRuleDesc(rule.getRuleDesc());

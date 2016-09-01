@@ -32,10 +32,15 @@ import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.cashbox.form.CashInitPlanInfoForm;
 
+/**
+ * 加钞计划管理
+ * @author GQ
+ *
+ */
 @Controller
 @RequestMapping("/cashInitPlan")
 @ClassNameDescrible(describle="userlog.DeviceCashInitPlanController")
-public class DeviceCashInitPlanController {
+public class CashInitPlanController {
 	private Logger logger = LoggerFactory.getLogger(DeviceCashBoxInfoController.class);
 
 	@Autowired

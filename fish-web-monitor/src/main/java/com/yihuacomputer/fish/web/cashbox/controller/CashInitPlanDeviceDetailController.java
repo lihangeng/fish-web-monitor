@@ -55,11 +55,15 @@ import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfoService;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
 
+/**
+ * @author GQ
+ * 加钞计划设备明细管理
+ */
 @Controller
 @RequestMapping("/cashInitPlanDevice")
 @ClassNameDescrible(describle = "userlog.DeviceCashInitPlanDetailController")
-public class DeviceCashInitPlanDetailController {
-	private Logger logger = LoggerFactory.getLogger(DeviceCashInitPlanDetailController.class);
+public class CashInitPlanDeviceDetailController {
+	private Logger logger = LoggerFactory.getLogger(CashInitPlanDeviceDetailController.class);
 
 	@Autowired
 	private ICashInitPlanDeviceInfoService cashInitPlanDeviceInfoService;
