@@ -23,6 +23,7 @@ Ext.apply(EwayLocale,{
 		}
 	},
 	initPlan:{
+		chooseOne:'请选择一条记录',//EwayLocale.initPlan.chooseOne
 		title:'加钞计划管理',//EwayLocale.initPlan.title
 		initDate:'日期',//EwayLocale.initPlan.initDate
 		addDeviceFailer:'添加设备失败!',//EwayLocale.initPlan.addDeviceFailer
@@ -36,8 +37,9 @@ Ext.apply(EwayLocale,{
 		maxAmt:'最大加钞金额',//EwayLocale.initPlan.maxAmt
 		billAmt:'取款余额',//EwayLocale.initPlan.billAmt
 		cashInAmt:'存款余额',//EwayLocale.initPlan.cashInAmt
+		lastPlan:'上一条加钞计划',//EwayLocale.initPlan.lastPlan
+		nextPlan:'下一条加钞计划',//EwayLocale.initPlan.nextPlan
 		actualAmt:'实际加钞金额'//EwayLocale.initPlan.actualAmt
-			
 	},
 	initDevice:{
 		title:'加钞设备管理'

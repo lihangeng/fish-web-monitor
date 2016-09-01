@@ -27,6 +27,18 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				action: 'toPlan',
 				tooltip:EwayLocale.version.download.callBackJob,
 				code:'toJob'
+			},{
+				//text:  EwayLocale.version.download.beforeJob,//'查询',
+				glyph : 0xf060,
+				action: 'pref',
+				tooltip:EwayLocale.initPlan.lastPlan,//'根据条件查询选中作业下的详情信息'
+				code:'pref'
+			},{
+				//text:  EwayLocale.version.download.afterJob,//'查询',
+				glyph : 0xf061,
+				action: 'next',
+				tooltip:EwayLocale.initPlan.nextPlan,//'根据条件查询选中作业下的详情信息'
+				code:'next'
 			},'->', {
 				text: EwayLocale.button.search,//'查询',
 				action: 'query',

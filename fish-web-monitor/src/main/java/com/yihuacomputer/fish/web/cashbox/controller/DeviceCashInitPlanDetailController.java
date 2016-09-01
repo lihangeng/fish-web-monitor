@@ -199,6 +199,12 @@ public class DeviceCashInitPlanDetailController {
 			ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.get(id);
 			if(null!=cashInitPlanDeviceInfo){
 				ICashInitPlanInfo cashInitPlanInfo = cashInitPlanDeviceInfo.getCashInitPlanInfo();
+				int nowDate = Integer.parseInt(DateUtils.getDateShort(new Date()));
+				if(cashInitPlanInfo.getDate()<nowDate){
+					result.addAttribute(FishConstant.SUCCESS, false);
+					result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("cashInitPlanDevice.timeout", null, FishCfg.locale));
+					return result;
+				}
 				double amt = cashInitPlanInfo.getAmt();
 				amt-=cashInitPlanDeviceInfo.getActualAmt();
 				cashInitPlanDeviceInfoService.remove(cashInitPlanDeviceInfo);
@@ -226,6 +232,13 @@ public class DeviceCashInitPlanDetailController {
 		String terminalIds = request.getParameter("terminalIds").substring(1);
 		long cashInitPlanInfoId = Long.parseLong(request.getParameter("cashInitPlanInfoId"));
 		ICashInitPlanInfo planInfo = cashInitPlanInfoService.get(cashInitPlanInfoId);
+		//已过期的加钞计划无法再次增加内容
+		int nowDate = Integer.parseInt(DateUtils.getDateShort(new Date()));
+		if(planInfo.getDate()<nowDate){
+			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("cashInitPlanDevice.timeout", null, FishCfg.locale));
+			return result;
+		}
 		List<CashInitPlanDeviceInfoForm> list = null;
 		try {
 			list = cashInitPlanDeviceInfoService.listSelectAble(planInfo,new Filter());
@@ -285,13 +298,18 @@ public class DeviceCashInitPlanDetailController {
 		if (cashDeviceInfo == null) {
 			model.put(FishConstant.SUCCESS, false);
 			model.put(FishConstant.ERROR_MSG, messageSource.getMessage("deviceBoxInfo.updateNotExist", null, FishCfg.locale));
-
 			// 验证失败时，需要把正确(数据库)的数据返回
 			model.addAttribute(FishConstant.DATA, request);
 			return model;
 		}
-		cashDeviceInfo.setActualAmt(request.getActualAmt());
 		ICashInitPlanInfo initPlan = cashDeviceInfo.getCashInitPlanInfo();
+		int nowDate = Integer.parseInt(DateUtils.getDateShort(new Date()));
+		if(initPlan.getDate()<nowDate){
+			model.addAttribute(FishConstant.SUCCESS, false);
+			model.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("cashInitPlanDevice.timeout", null, FishCfg.locale));
+			return model;
+		}
+		cashDeviceInfo.setActualAmt(request.getActualAmt());
 		try {
 			cashInitPlanDeviceInfoService.update(cashDeviceInfo);
 			long amt = 0;

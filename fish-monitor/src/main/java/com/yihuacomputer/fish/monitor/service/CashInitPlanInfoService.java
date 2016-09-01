@@ -270,12 +270,7 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 		return dao.page(offset, limit, filter, CashInitPlanInfo.class);
 	}
 
-//	public Map<String, ICashInitUnique> getCashInitMap(){
-//		Map<String, ICashInitUnique> cashInitMap = new HashMap<String, ICashInitUnique>();
-//		List<ICashInitUnique> cashInitList = cashInitUniqueService.list(new Filter());
-//		for(ICashInitUnique cashInit:cashInitList){
-//			cashInitMap.put(cashInit.getTerminalId(), cashInit);
-//		}
-//		return cashInitMap;
-//	}
+	public List<ICashInitPlanInfo> list(IFilter filter){
+		return dao.findByFilter(filter, ICashInitPlanInfo.class);
+	}
 }
