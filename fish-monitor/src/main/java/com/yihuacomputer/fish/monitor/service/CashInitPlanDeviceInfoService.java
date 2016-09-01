@@ -232,19 +232,17 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 						dailyVolume = monthDailyTradingVolume.getLastYearAmtOutAvg()+monthDailyTradingVolume.getMonthAmtOutAvg();
 						dailyVolume = dailyVolume/2*cashInitDays;
 					}
-					dailyVolume = deviceBoxInfo.getDefaultBill()>dailyVolume?dailyVolume:deviceBoxInfo.getDefaultBill();
-					cashInitPlanDeviceInfoForm.setAdviceAmt(dailyVolume);
 				}
 				if(deviceBoxInfo!=null){
+					dailyVolume = deviceBoxInfo.getDefaultBill()>dailyVolume?dailyVolume:deviceBoxInfo.getDefaultBill();
 					cashInitPlanDeviceInfoForm.setMaxAmt(deviceBoxInfo.getDefaultBill());
 					if(deviceBoxInfo.getMaxAlarm()>deviceBoxInfo.getCashInValue()||deviceBoxInfo.getMinAlarm()<deviceBoxInfo.getBillValue()){
 						cashInitPlanDeviceInfoForm.setFlag(BoxInitRuleType.CASHLIMIT.getNo());
 					}		
-//					.append(" (deviceBoxInfo.maxAlarm>deviceBoxInfo.cashInValue")
-//					.append(" or deviceBoxInfo.minAlarm<deviceBoxInfo.billValue)");
 					cashInitPlanDeviceInfoForm.setBillAmt(deviceBoxInfo.getBillValue());
 					cashInitPlanDeviceInfoForm.setCashInAmt(deviceBoxInfo.getCashInValue());
 				}
+				cashInitPlanDeviceInfoForm.setAdviceAmt(dailyVolume);
 				planDeviceList.add(cashInitPlanDeviceInfoForm);	
 			}
 		}
