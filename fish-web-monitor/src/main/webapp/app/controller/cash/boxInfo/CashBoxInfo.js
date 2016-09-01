@@ -53,13 +53,11 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 		Eway.model.monitor.device.DeviceBox.load(record.data.ip,{
 			scope:this,
 			success : function(record, operation) {
-//				winEl.unmask();
 				var controller = this.getController('monitor.device.DeviceBox');
 				controller.init();
 				controller.displayWin(record);
 			},
 			failure: function(record, operation){
-				winEl.unmask();
 				Eway.alert(EwayLocale.tip.business.device.getCashInfoFail);
 			}
 		});
@@ -76,7 +74,6 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 				 var obj = Ext.decode(response.responseText);
 				 if(obj.success){
 				 	Eway.alert(EwayLocale.ansynSuccess);
-				 	me.onQuery();
 				 }else{
 				 	Eway.alert(obj.errorMsg);
 				 }
@@ -88,11 +85,11 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 		var defaultBill = context.record.get("defaultBill");
 		var defaultCashIn = context.record.get("defaultCashIn");
     	if(defaultBill<context.newValues.minAlarm){
-    		Eway.alert("取款预警不能超过"+defaultBill);
+    		Eway.alert(EwayLocale.boxInfo.billAmtLess+defaultBill);
     		return false;
     	}
     	if(defaultCashIn<context.newValues.maxAlarm){
-    		Eway.alert("存款预警不能超过"+defaultCashIn);
+    		Eway.alert(EwayLocale.boxInfo.cashAmtLess+defaultCashIn);
     		return false;
     	}
 		context.record.save({

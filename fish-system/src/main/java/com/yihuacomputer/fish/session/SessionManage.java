@@ -34,13 +34,11 @@ public class SessionManage implements ISessionManage {
 		SessionInfo sessionInfo = sessions.get(userCode);
 		if (sessionInfo != null) {
 			HttpSession oldSession = sessionInfo.getSession();
-			if(oldSession != null){
+			if (mqProducer != null) {//集群环境中，通知所有节点，包括自己
+				LoginMessage loginMessage = new LoginMessage("LOGIN_OUT", userCode, sessionInfo.getSessionId());
+				mqProducer.put(JsonUtils.toJson(loginMessage));
+			}else{//单机模式
 				oldSession.invalidate();
-				// 通知所有节点，包括自己
-				if (mqProducer != null) {
-					LoginMessage loginMessage = new LoginMessage("LOGIN_OUT", userCode, oldSession.getId());
-					mqProducer.put(JsonUtils.toJson(loginMessage));
-				}
 				sessions.remove(userCode);
 			}
 		}

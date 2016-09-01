@@ -27,6 +27,18 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				action: 'toPlan',
 				tooltip:EwayLocale.version.download.callBackJob,
 				code:'toJob'
+			},{
+				//text:  EwayLocale.version.download.beforeJob,//'查询',
+				glyph : 0xf060,
+				action: 'pref',
+				tooltip:EwayLocale.initPlan.lastPlan,//'根据条件查询选中作业下的详情信息'
+				code:'pref'
+			},{
+				//text:  EwayLocale.version.download.afterJob,//'查询',
+				glyph : 0xf061,
+				action: 'next',
+				tooltip:EwayLocale.initPlan.nextPlan,//'根据条件查询选中作业下的详情信息'
+				code:'next'
 			},'->', {
 				text: EwayLocale.button.search,//'查询',
 				action: 'query',
@@ -55,11 +67,10 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				text : EwayLocale.button.exported,
 				glyph : 0xf1c3,
 				action : 'export',
-				code : 'cashInitPlanDeviceExport'
-//					,
-//				listeners:{
-//					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-//				}
+				code : 'cashInitPlanDeviceExport',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}],
 			columns : [ {
 				header :  EwayLocale.machine.atmGroup.terminalId,
@@ -75,6 +86,12 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 			}, {
 				header : EwayLocale.initPlan.maxAmt,
 				dataIndex : 'maxAmt',
+				renderer : function(value){
+					if(value == -1){
+						return EwayLocale.tip.unCertain;
+					}
+					return value;
+				},
 				flex : 1
 			},{
 				header :  EwayLocale.initPlan.adviceAmt,
@@ -125,12 +142,11 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 	showUpdate:function(){
 		var has = false;
 		Ext.each(Ext.fishButtons,function(code){
-			if("cashBoxInfoUpdate" == code){
+			if("cashInitPlanDeviceUpdate" == code){
 				has = true;
 				return ;
 			}
 		});
-		
 		return has;
 	}
 });

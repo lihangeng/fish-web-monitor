@@ -41,7 +41,7 @@ Ext.define('Eway.view.version.download.monitor.TaskPanel', {
 				action: 'next',
 				tooltip:EwayLocale.version.download.afterJob,//'根据条件查询选中作业下的详情信息'
 				code:'next'
-			},
+			}
 		],
 			items:[{
 //				xtype:'panel',

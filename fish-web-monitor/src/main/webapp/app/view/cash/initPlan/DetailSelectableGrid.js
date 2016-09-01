@@ -65,6 +65,12 @@ Ext.define('Eway.view.cash.initPlan.DetailSelectableGrid', {
 			},{
 				header :  EwayLocale.initPlan.adviceAmt,
 				dataIndex : 'adviceAmt',
+				renderer : function(value){
+					if(value == -1){
+						return EwayLocale.tip.unCertain;
+					}
+					return value;
+				},
 				flex : 1
 			},{
 				header : EwayLocale.machine.atmGroup.devTypeName,

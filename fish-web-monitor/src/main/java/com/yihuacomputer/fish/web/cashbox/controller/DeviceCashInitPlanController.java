@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
@@ -38,7 +40,9 @@ public class DeviceCashInitPlanController {
 
 	@Autowired
 	private ICashInitPlanInfoService cashInitPlanInfoService;
-	
+
+	@Autowired
+	private MessageSource messageSource;
 
 	@Autowired
 	private IOrganizationService orgService;
@@ -47,7 +51,7 @@ public class DeviceCashInitPlanController {
 	private ICashInitPlanDeviceInfoService cashInitPlanDeviceInfoService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody ModelMap seachCashBoxInitRuleList(@RequestParam int limit, @RequestParam int start, HttpServletRequest request, WebRequest webRequest) {
+	public @ResponseBody ModelMap searchCashInitPlanList(@RequestParam int limit, @RequestParam int start, HttpServletRequest request, WebRequest webRequest) {
 		logger.info("search CashInit Plan Info List");
 		ModelMap result = new ModelMap();
 		IFilter filter = getCashInitPlanInfoFilter(webRequest);
@@ -58,7 +62,7 @@ public class DeviceCashInitPlanController {
 		else{
 			String orgId = String.valueOf( filter.getValue("org.id"));
 			IOrganization org = orgService.get(orgId);
-			filter.eq("org.orgFlag", org.getOrgFlag());
+			filter.like("org.orgFlag", org.getOrgFlag()+"%");
 		}
 		filter.descOrder("cashInitCode");
 		IPageResult<ICashInitPlanInfo> cashInitPlanPageResult = cashInitPlanInfoService.page(start, limit,filter);
@@ -66,6 +70,66 @@ public class DeviceCashInitPlanController {
 		result.put(FishConstant.SUCCESS, true);
 		result.put(FishConstant.TOTAL, cashInitPlanPageResult.getTotal());
 		result.put(FishConstant.DATA, dcbirList);
+		return result;
+	}
+	
+	@RequestMapping(value="/nextCashInitPlanId",method = RequestMethod.POST)
+	public @ResponseBody ModelMap nextCashInitPlanId(HttpServletRequest request, WebRequest webRequest) {
+		logger.info("search nextCashInitPlanId");
+		ModelMap result = new ModelMap();
+		IFilter filter =  getCashInitPlanInfoFilter(webRequest);
+		if(filter.getValue("org.id")==null){
+			UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
+			filter.like("org.orgFlag", userSession.getOrgFlag()+"%");
+		}
+		else{
+			String orgId = String.valueOf( filter.getValue("org.id"));
+			IOrganization org = orgService.get(orgId);
+			filter.like("org.orgFlag", org.getOrgFlag()+"%");
+		}
+		long planId = Long.parseLong(request.getParameter("planId"));
+		ICashInitPlanInfo cashInitPlanInfo =cashInitPlanInfoService.get(planId);
+		filter.gt("cashInitCode", cashInitPlanInfo.getCashInitCode());
+		filter.order("cashInitCode");
+		List<ICashInitPlanInfo> list =  cashInitPlanInfoService.list(filter);
+		if(list.size()>0){
+			result.put(FishConstant.SUCCESS, true);
+			result.put(FishConstant.DATA, convert(list.get(0)));
+		}
+		else{
+			result.put(FishConstant.SUCCESS, false);
+			result.put(FishConstant.ERROR_MSG, getI18N("deviceCashInitPlanController.endRecord"));
+		}
+		return result;
+	}
+	
+	@RequestMapping(value="/prefCashInitPlanId",method = RequestMethod.POST)
+	public @ResponseBody ModelMap prefCashInitPlanId(HttpServletRequest request, WebRequest webRequest) {
+		logger.info("search nextCashInitPlanId");
+		ModelMap result = new ModelMap();
+		IFilter filter =  getCashInitPlanInfoFilter(webRequest);
+		if(filter.getValue("org.id")==null){
+			UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
+			filter.like("org.orgFlag", userSession.getOrgFlag()+"%");
+		}
+		else{
+			String orgId = String.valueOf( filter.getValue("org.id"));
+			IOrganization org = orgService.get(orgId);
+			filter.like("org.orgFlag", org.getOrgFlag()+"%");
+		}
+		long planId = Long.parseLong(request.getParameter("planId"));
+		ICashInitPlanInfo cashInitPlanInfo =cashInitPlanInfoService.get(planId);
+		filter.lt("cashInitCode", cashInitPlanInfo.getCashInitCode());
+		filter.descOrder("cashInitCode");
+		List<ICashInitPlanInfo> list =  cashInitPlanInfoService.list(filter);
+		if(list.size()>0){
+			result.put(FishConstant.SUCCESS, true);
+			result.put(FishConstant.DATA, convert(list.get(0)));
+		}
+		else{
+			result.put(FishConstant.SUCCESS, false);
+			result.put(FishConstant.ERROR_MSG, getI18N("deviceCashInitPlanController.firstRecord"));
+		}
 		return result;
 	}
 	
@@ -79,9 +143,17 @@ public class DeviceCashInitPlanController {
 			form.setOrgName(cashInitPlanInfo.getOrg().getName());
 			form.setId(cashInitPlanInfo.getId());
 			formList.add(form);
-			
 		}
 		return formList;
+	}
+	private CashInitPlanInfoForm convert(ICashInitPlanInfo cashInitPlanInfo){
+		CashInitPlanInfoForm form = new CashInitPlanInfoForm();
+		form.setAmt(cashInitPlanInfo.getAmt());
+		form.setCashInitCode(cashInitPlanInfo.getCashInitCode());
+		form.setDate(cashInitPlanInfo.getDate());
+		form.setOrgName(cashInitPlanInfo.getOrg().getName());
+		form.setId(cashInitPlanInfo.getId());
+		return form;
 	}
 	
 	private IFilter getCashInitPlanInfoFilter(WebRequest request){
@@ -110,5 +182,9 @@ public class DeviceCashInitPlanController {
 		return "devServiceName".equals(name) || "organizationID".equals(name) || "orgName".equals(name)
 				|| "page".equals(name) || "start".equals(name) || "limit".equals(name) || "_dc".equals(name)
 				|| "sort".equals(name);
+	}
+	
+	private String getI18N(String code){
+		return messageSource.getMessage(code,null,FishCfg.locale);
 	}
 }

@@ -27,26 +27,32 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 				}
 			}],
 			columns : [ {
+				menuDisabled:true,
 				header : EwayLocale.machine.atmGroup.terminalId,
 				dataIndex : 'terminalId',
 				width : 100
 			}, {
+				menuDisabled:true,
 				header : EwayLocale.machine.atmGroup.ip,
 				dataIndex : 'ip',
 				width : 120
 			}, {
+				menuDisabled:true,
 				header : EwayLocale.machine.atmGroup.orgName,
 				dataIndex : 'organizationName',
 				width : 140
 			}, {
+				menuDisabled:true,
 				header : EwayLocale.machine.atmGroup.devTypeName,
 				dataIndex : 'devTypeName',
 				width : 100
 			},{
+				menuDisabled:true,
 				header : EwayLocale.machine.device.onBankSignal,
 				dataIndex : 'awayFlagName',
 				width : 160
 			}, {
+				menuDisabled:true,
 				header :  EwayLocale.boxInfo.cashboxInLimit,
 				dataIndex : 'maxAlarm',
 				width : 120,    
@@ -56,6 +62,7 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 	                allowBlank: false
 	            }
 			} , {
+				menuDisabled:true,
 				header :  EwayLocale.boxInfo.cashboxOutLimit,
 				dataIndex : 'minAlarm',
 				flex : 1,    
@@ -64,25 +71,25 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 	                allowBlank: false
 	            }
 			} ,{
-		        text: '同步预警金额',
+		        text: EwayLocale.boxInfo.ansynLimitAmt,
 				flex : 1,    
-
+				menuDisabled:true,
 		        code:'cashBoxInfoSync',
 		        // This is our Widget column
 		        xtype: 'widgetcolumn',
-	
 		        // This is the widget definition for each cell.
 		        // Its "value" setting is taken from the column's dataIndex
 		        widget: {
 		        	xtype: 'button',
 			        action:'cashBoxInfoSync',
-		        	text:'同步'
+		        	text:EwayLocale.boxInfo.ansyn
 		        },
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onColumnBeforeRender
 				}
 		    },{
-		        text: '查看钞箱信息',
+				menuDisabled:true,
+		        text: EwayLocale.boxInfo.lookAtBoxInfo,
 				flex : 1,    
 		        code:'showBoxDetail',
 		        // This is our Widget column
@@ -93,7 +100,7 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 		        widget: {
 		        	xtype: 'button',
 			        action:'showBoxDetail',
-		        	text:'钞箱明细'
+		        	text:EwayLocale.boxInfo.boxDetail
 		        }
 		    }
 			],

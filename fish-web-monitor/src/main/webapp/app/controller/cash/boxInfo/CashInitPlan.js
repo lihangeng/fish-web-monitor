@@ -61,9 +61,65 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 			'initPlan_detailGrid  button[action=remove]' : {
 				click : this.onDeleteCashInitPlanDeviceInfo
 			},
+			'initPlan_detailGrid  button[action=next]' : {
+				click : this.nextCashInitPlan
+			},
+			'initPlan_detailGrid  button[action=pref]' : {
+				click : this.prefCashInitPlan
+			},
 			'initPlan_detailSelectableGrid  button[action=query]' : {
 				click : this.onDetailSelectableQuery
 			}
+		});
+	},
+	//下一个加钞计划
+	nextCashInitPlan:function(){
+		var planField = this.getDetailForm().down("hidden[name=cashInitPlanInfoId]");
+		var planId = planField.getValue();
+		var detailGrid = this.getDetailGrid();
+		var  me =this;
+		Ext.Ajax.request({
+		    url: 'api/cashInitPlan/nextCashInitPlanId',
+	    	params: {
+	    		planId: planId
+		    },
+		    success: function(response){
+		    	var obj = Ext.decode(response.responseText);
+		    	if(obj.success){
+		    		var planInfo = obj.data;
+		    		planField.setValue(planInfo.id);
+		    		detailGrid.setTitle(planInfo.orgName+EwayLocale.initPlan.cashInitCode+planInfo.cashInitCode);
+			    	me.onDetailQuery();
+		    	}
+		    	else{
+		    		Eway.alert(obj.errorMsg);
+		    	}
+		    }
+		});
+	},
+	//上一个加钞计划
+	prefCashInitPlan:function(){
+		var planField = this.getDetailForm().down("hidden[name=cashInitPlanInfoId]");
+		var planId = planField.getValue();
+		var detailGrid = this.getDetailGrid();
+		var  me =this;
+		Ext.Ajax.request({
+		    url: 'api/cashInitPlan/prefCashInitPlanId',
+	    	params: {
+	    		planId: planId
+		    },
+		    success: function(response){
+		    	var obj = Ext.decode(response.responseText);
+		    	if(obj.success){
+		    		var planInfo = obj.data;
+		    		planField.setValue(planInfo.id);
+		    		detailGrid.setTitle(planInfo.orgName+EwayLocale.initPlan.cashInitCode+planInfo.cashInitCode);
+			    	me.onDetailQuery();
+		    	}
+		    	else{
+		    		Eway.alert(obj.errorMsg);
+		    	}
+		    }
 		});
 	},
 	//加钞计划明细导出
@@ -103,7 +159,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 									//删除失败后，再次执行save操作时，会依据dropped属性判断执行什么操作，if true再次执行earse操作，false 则执行update
 									var object = Ext.decode(operation._response.responseText);
 									record.dropped = false;
-									Eway.alert(object.errors);
+									Eway.alert(object.errorMsg);
 								},
 								scope:this
 							});
@@ -139,7 +195,6 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 		var terminalIdsField = form.findField("terminalIds");
 		var cashInitPlanInfoId = form.findField("cashInitPlanInfoId");
 		var terminlIds = terminalIdsField.value;
-		var param=
 		Ext.Ajax.request({
 		    url: 'api/cashInitPlanDevice/addDevice',
 	    	params: {
@@ -147,11 +202,17 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 	    		cashInitPlanInfoId:cashInitPlanInfoId.value
 		    },
 		    success: function(response){
-		    	win.close();
-		    	me.onDetailQuery();
+		    	var obj = Ext.decode(response.responseText);
+		    	if(obj.success){
+			    	win.close();
+			    	me.onDetailQuery();
+		    	}
+		    	else{
+		    		Eway.alert(obj.errorMsg);
+		    	}
 		    },
 		    failure: function(response, opts) {
-		        Eway.alert("增加设备失败");
+		        Eway.alert(EwayLocale.initPlan.addDeviceFailer);
 		    }
 		});
 	},
@@ -159,15 +220,16 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
     onEdit:function(editor, context){
     	var maxAmt = context.record.get("maxAmt");
     	if(maxAmt<context.newValues.actualAmt&&maxAmt!=-1){
-    		Eway.alert("更改失败最大额度为"+context.record.get("maxAmt"));
+    		Eway.alert(EwayLocale.initPlan.actualMaxAmt+context.record.get("maxAmt"));
     		return false;
     	}
 		context.record.save({
-			 success: function(recordInDB) {
+			 	success: function(recordInDB) {
 					Eway.alert(EwayLocale.updateSuccess);
 				 },
 				 failure: function(record,operation){
-					store.rejectChanges();
+					 var obj = Ext.decode(operation._response.responseText);
+					 Eway.alert(obj.errorMsg);
 				 },
 				 scope : this
 			});
@@ -210,11 +272,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 		sm = grid.getSelectionModel(),
 		count = sm.getCount();
 		if(count == 0){
-			Eway.alert(EwayLocale.choiceUpdateMsg);
-			return;
-		}
-		else if(count > 1){
-			Eway.alert(EwayLocale.tip.update.one);
+			Eway.alert(EwayLocale.initPlan.chooseOne);
 			return;
 		}
 		var record = sm.getLastSelected();
