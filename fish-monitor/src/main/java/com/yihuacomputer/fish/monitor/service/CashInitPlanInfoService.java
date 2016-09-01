@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.monitor.service;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -101,7 +102,8 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 			}
 		}
 		//获取日均交易信息
-		String lastMonthYear = DateUtils.getLastMonthShortDates();
+		Date generalDate = DateUtils.getDateShort(cashInitDate);
+		String lastMonthYear = DateUtils.lastMonthFormatWithYM(generalDate);
 		IFilter filterVolume  = new Filter();
 		filterVolume.eq("transMonth", Integer.parseInt(lastMonthYear));
 		Map<String,IMonthDailyTradingVolume> monthDailyVolume = monthDailyTradingVolumeService.getMonthDailyMap(filterVolume);
