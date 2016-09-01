@@ -27,26 +27,32 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 				}
 			}],
 			columns : [ {
+				menuDisabled:true,
 				header : EwayLocale.machine.atmGroup.terminalId,
 				dataIndex : 'terminalId',
 				width : 100
 			}, {
+				menuDisabled:true,
 				header : EwayLocale.machine.atmGroup.ip,
 				dataIndex : 'ip',
 				width : 120
 			}, {
+				menuDisabled:true,
 				header : EwayLocale.machine.atmGroup.orgName,
 				dataIndex : 'organizationName',
 				width : 140
 			}, {
+				menuDisabled:true,
 				header : EwayLocale.machine.atmGroup.devTypeName,
 				dataIndex : 'devTypeName',
 				width : 100
 			},{
+				menuDisabled:true,
 				header : EwayLocale.machine.device.onBankSignal,
 				dataIndex : 'awayFlagName',
 				width : 160
 			}, {
+				menuDisabled:true,
 				header :  EwayLocale.boxInfo.cashboxInLimit,
 				dataIndex : 'maxAlarm',
 				width : 120,    
@@ -56,6 +62,7 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 	                allowBlank: false
 	            }
 			} , {
+				menuDisabled:true,
 				header :  EwayLocale.boxInfo.cashboxOutLimit,
 				dataIndex : 'minAlarm',
 				flex : 1,    
@@ -66,11 +73,10 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 			} ,{
 		        text: EwayLocale.boxInfo.ansynLimitAmt,
 				flex : 1,    
-
+				menuDisabled:true,
 		        code:'cashBoxInfoSync',
 		        // This is our Widget column
 		        xtype: 'widgetcolumn',
-	
 		        // This is the widget definition for each cell.
 		        // Its "value" setting is taken from the column's dataIndex
 		        widget: {
@@ -82,6 +88,7 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onColumnBeforeRender
 				}
 		    },{
+				menuDisabled:true,
 		        text: EwayLocale.boxInfo.lookAtBoxInfo,
 				flex : 1,    
 		        code:'showBoxDetail',

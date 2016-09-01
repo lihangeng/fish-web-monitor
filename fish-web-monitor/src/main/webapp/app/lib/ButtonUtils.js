@@ -12,6 +12,7 @@ Ext.define('Eway.lib.ButtonUtils', {
 		
 		button.setVisible(has);
 	},
+	//actionColumns判断当前列是否有权限操作
 	onColumnBeforeRender: function(column){
 		var has = false;
 		
@@ -21,6 +22,7 @@ Ext.define('Eway.lib.ButtonUtils', {
 				return;
 			}
 		});
+		column.removeAll();
 		column.setVisible(has);
 		column.setHidden(!has);
 	},
