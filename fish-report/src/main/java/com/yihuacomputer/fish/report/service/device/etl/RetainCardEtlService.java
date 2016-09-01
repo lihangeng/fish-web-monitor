@@ -130,4 +130,11 @@ public class RetainCardEtlService implements IRetainCardEtlService {
 		}
 	}
 
+
+	@Override
+	public List<IRetainCardWeek> get(int weekOfYear) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
