@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.api.report.device.etl;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 吞卡数据抽取服务
@@ -20,4 +21,11 @@ public interface IRetainCardEtlService {
 	 * @param date
 	 */
 	public void extractByMonth(Date date);
+	
+	/**
+	 * 获取某周的吞卡统计
+	 * @param weekOfYear
+	 * @return
+	 */
+	public List<IRetainCardWeek> get(int weekOfYear);
 }
