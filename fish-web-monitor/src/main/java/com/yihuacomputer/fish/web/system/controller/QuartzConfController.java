@@ -44,7 +44,7 @@ public class QuartzConfController {
 	@Autowired
 	private IQuartzService quartzService;
 	
-	@Autowired
+	@Autowired(required = false)
 	SchedulerFactoryBean startQuartz;
 
 
