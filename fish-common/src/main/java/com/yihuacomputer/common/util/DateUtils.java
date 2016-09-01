@@ -72,6 +72,11 @@ public class DateUtils {
 		return get(strDate, STANDARD_DATE_SHORT);
 	}
 	
+	/**
+	 * 指定日期转化为短格式日期字符串
+	 * @param date
+	 * @return yyyyMMdd
+	 */
 	public static String getDateShort(Date date) {
 		return get(date, STANDARD_DATE_SHORT);
 	}
@@ -439,5 +444,17 @@ public class DateUtils {
 	   dates[1] = Long.parseLong(sDate + "31");
 	   return dates;
    }
+   
+   /**
+    * 获取指定日期上个月时间
+	 * @param date
+	 * @return yyyyMM
+	 */
+	public static String lastMonthFormatWithYM(Date date){
+	   Calendar cal = Calendar.getInstance();
+	   cal.setTime(date);
+	   cal.add(Calendar.MONTH, -1);
+	   return  getDateShort(cal.getTime()).substring(0,6);
+    }
 
 }
