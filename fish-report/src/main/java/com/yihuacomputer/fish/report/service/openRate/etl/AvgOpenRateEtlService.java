@@ -89,8 +89,8 @@ public class AvgOpenRateEtlService implements IAvgOpenRateEtlService{
 			Object [] each = (Object[])object;
 			IAvgMonthOpenRate avgMonth = new AvgMonthOpenRate();
 			avgMonth.setDate(month);
-			avgMonth.setOpenTimes(Long.valueOf(each[0].toString()));
-			avgMonth.setHealthyTimeReal(Long.valueOf(each[1].toString()));
+			avgMonth.setOpenTimes(each[0]==null?0:Long.valueOf(each[0].toString()));
+			avgMonth.setHealthyTimeReal(each[1]==null?0:Long.valueOf(each[1].toString()));
 			dao.save(avgMonth);
 		}
 	}
