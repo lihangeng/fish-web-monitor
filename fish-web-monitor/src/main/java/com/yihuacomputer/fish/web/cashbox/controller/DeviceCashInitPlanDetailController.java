@@ -174,7 +174,7 @@ public class DeviceCashInitPlanDetailController {
 		try {
 			list = cashInitPlanDeviceInfoService.listSelectAble(planInfo,filter);
 		} catch (Exception e) {
-			logger.error("load selectable initplandevice failer");
+			logger.error("load selectable initplandevice failer:"+e.getMessage());
 			result.put(FishConstant.SUCCESS, false);
 			return result;
 		}
