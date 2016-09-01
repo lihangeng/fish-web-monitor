@@ -38,6 +38,11 @@ import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.cashbox.form.DeviceCashBoxInfoForm;
 
+/**
+ * 设备钞箱信息查看,更新设备钞箱预警值
+ * @author GQ
+ *
+ */
 @Controller
 @RequestMapping("/cashbox")
 @ClassNameDescrible(describle="userlog.CashBoxController")

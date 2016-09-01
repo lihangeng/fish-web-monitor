@@ -1,5 +1,9 @@
 package com.yihuacomputer.fish.api.monitor.box;
 
+/**
+ * @author GQ
+ * 设备加钞类型
+ */
 public enum BoxInitRuleType {
 	/**
      * 钞箱上下限额预警

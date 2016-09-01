@@ -149,8 +149,6 @@ public class BoxDetailController {
 					}
 					deviceBoxInfo.setBillValue(boxTypeAmtValueMap.get(BoxType.BILLCASSETTE)==null?0:boxTypeAmtValueMap.get(BoxType.BILLCASSETTE));
 					deviceBoxInfo.setCashInValue(boxTypeAmtValueMap.get(BoxType.CASHINCASSETTE)==null?0:boxTypeAmtValueMap.get(BoxType.CASHINCASSETTE));
-//					deviceBoxInfo.setBillValue(boxTypeAmtValueMap.get(BoxType.BILLCASSETTE));
-//					deviceBoxInfo.setCashInValue(boxTypeAmtValueMap.get(BoxType.CASHINCASSETTE));
 					deviceBoxInfoService.update(deviceBoxInfo);
 				}
 			}

@@ -2,6 +2,11 @@ package com.yihuacomputer.fish.api.monitor.box;
 
 import com.yihuacomputer.fish.api.device.AwayFlag;
 
+/**
+ * 加钞计划的设备信息(前台页面展示)
+ * @author GQ
+ *
+ */
 public class CashInitPlanDeviceInfoForm {
 	private long id;
 	private String terminalId;

@@ -20,5 +20,10 @@ public interface IMonthDailyTradingVolumeService {
 	IMonthDailyTradingVolume update(IMonthDailyTradingVolume monthDailyTradingVolume);
 	void remove(IMonthDailyTradingVolume monthDailyTradingVolume);
 	List<IMonthDailyTradingVolume> list(IFilter filter);
+	/**
+	 * 按设备号为主键获取符合条件 月-日均交易量
+	 * @param filter
+	 * @return Map<terminalId,IMonthDailyTradingVolume>
+	 */
 	Map<String,IMonthDailyTradingVolume> getMonthDailyMap(IFilter filter);
 }

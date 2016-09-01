@@ -1,8 +1,8 @@
 package com.yihuacomputer.fish.api.monitor.box;
 
 /**
+ * 加钞信息以设备号为唯一约束(区别于加钞信息[没有以设备号做约束])
  * @author GQ
- * 加钞信息以设备号为唯一约束
  */
 public interface ICashInitUnique {
 	/**

@@ -3,6 +3,8 @@ package com.yihuacomputer.fish.api.monitor.volume;
 /**
  * @author GQ
  * 当前月的日均交易信息
+ * 2016-08使用的日均交易量 = (2016-07日均交易量+2015-08的日均交易量)/2
+ * 存入的统计月为201607
  */
 public interface IMonthDailyTradingVolume {
 	public long getId();

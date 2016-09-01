@@ -1,5 +1,10 @@
 package com.yihuacomputer.fish.web.cashbox.form;
 
+/**
+ * 加钞计划信息
+ * @author GQ
+ *
+ */
 public class CashInitPlanInfoForm {
 	private long id;
 	private int date;

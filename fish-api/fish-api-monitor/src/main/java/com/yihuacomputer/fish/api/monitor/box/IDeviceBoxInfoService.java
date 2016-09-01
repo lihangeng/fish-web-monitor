@@ -15,6 +15,12 @@ public interface IDeviceBoxInfoService {
 	public void delete(IDeviceBoxInfo dbdi);
 	public List<IDeviceBoxInfo> list(IFilter filter);
 	public IPageResult<IDeviceBoxInfo> list(int offset,int limit,IFilter filter);
+	/**
+	 * 同步设备预警值(filter 中设备型号ID-deviceId.devType.id，用户所在的机构-deviceId.organization.orgFlag)
+	 * @param deviceBoxInfo
+	 * @param filter
+	 * @return
+	 */
 	boolean synchronizedUpdate(IDeviceBoxInfo deviceBoxInfo,IFilter filter);
 	/**
 	 * 根据机构Flag查找需要加钞的设备
