@@ -72,6 +72,11 @@ public class DateUtils {
 		return get(strDate, STANDARD_DATE_SHORT);
 	}
 	
+	/**
+	 * 指定日期转化为短格式日期字符串
+	 * @param date
+	 * @return yyyyMMdd
+	 */
 	public static String getDateShort(Date date) {
 		return get(date, STANDARD_DATE_SHORT);
 	}
