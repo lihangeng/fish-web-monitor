@@ -30,7 +30,7 @@ public class ReportTest {
 			   .addChunk("有10台。上周（上个月）新增设备0台，报废设备0台。",FontMgr.getFont14());
 			pdf.addParagraph(mgr);
 			pdf.addContent("2.设备型号统计");
-			JFreeChart chart = PdfTest.generateLineChart();
+			JFreeChart chart = PdfTest.generatePieChart();
 			int chartWidth = (int)(PageSize.A4.getWidth() * 0.8);
 			pdf.addChart(chart, chartWidth, 200);
 			pdf.addChapter("二、开机率汇总");
