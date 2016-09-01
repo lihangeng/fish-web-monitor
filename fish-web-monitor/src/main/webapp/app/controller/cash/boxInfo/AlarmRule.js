@@ -69,7 +69,6 @@ Ext.define('Eway.controller.cash.boxInfo.AlarmRule', {
 		if(form.getForm().isValid()){//存在不合法的输入项
 			var grid = me.getGrid(),
 			store = grid.getStore(),
-//			action = win.getAction(),
 			oldParams = store.getUrlParams(),
 			record;
 			store.cleanUrlParam();

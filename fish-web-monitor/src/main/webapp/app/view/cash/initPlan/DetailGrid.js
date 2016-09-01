@@ -55,11 +55,10 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				text : EwayLocale.button.exported,
 				glyph : 0xf1c3,
 				action : 'export',
-				code : 'cashInitPlanDeviceExport'
-//					,
-//				listeners:{
-//					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
-//				}
+				code : 'cashInitPlanDeviceExport',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
 			}],
 			columns : [ {
 				header :  EwayLocale.machine.atmGroup.terminalId,
@@ -75,6 +74,12 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 			}, {
 				header : EwayLocale.initPlan.maxAmt,
 				dataIndex : 'maxAmt',
+				renderer : function(value){
+					if(value == -1){
+						return EwayLocale.tip.unCertain;
+					}
+					return value;
+				},
 				flex : 1
 			},{
 				header :  EwayLocale.initPlan.adviceAmt,

@@ -151,7 +151,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 		    	me.onDetailQuery();
 		    },
 		    failure: function(response, opts) {
-		        Eway.alert("增加设备失败");
+		        Eway.alert(EwayLocale.initPlan.addDeviceFailer);
 		    }
 		});
 	},
@@ -159,7 +159,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
     onEdit:function(editor, context){
     	var maxAmt = context.record.get("maxAmt");
     	if(maxAmt<context.newValues.actualAmt&&maxAmt!=-1){
-    		Eway.alert("更改失败最大额度为"+context.record.get("maxAmt"));
+    		Eway.alert(EwayLocale.initPlan.actualMaxAmt+context.record.get("maxAmt"));
     		return false;
     	}
 		context.record.save({

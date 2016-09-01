@@ -64,7 +64,7 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 	                allowBlank: false
 	            }
 			} ,{
-		        text: '同步预警金额',
+		        text: EwayLocale.boxInfo.ansynLimitAmt,
 				flex : 1,    
 
 		        code:'cashBoxInfoSync',
@@ -76,13 +76,13 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 		        widget: {
 		        	xtype: 'button',
 			        action:'cashBoxInfoSync',
-		        	text:'同步'
+		        	text:EwayLocale.boxInfo.ansyn
 		        },
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onColumnBeforeRender
 				}
 		    },{
-		        text: '查看钞箱信息',
+		        text: EwayLocale.boxInfo.lookAtBoxInfo,
 				flex : 1,    
 		        code:'showBoxDetail',
 		        // This is our Widget column
@@ -93,7 +93,7 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 		        widget: {
 		        	xtype: 'button',
 			        action:'showBoxDetail',
-		        	text:'钞箱明细'
+		        	text:EwayLocale.boxInfo.boxDetail
 		        }
 		    }
 			],
