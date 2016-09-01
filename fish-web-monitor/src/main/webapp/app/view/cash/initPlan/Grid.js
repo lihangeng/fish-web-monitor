@@ -19,9 +19,9 @@ Ext.define('Eway.view.cash.initPlan.Grid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				text: EwayLocale.button.update,//'更改',
+				text: EwayLocale.button.info,//'详细信息',
 				action: 'update',
-				code:'cashInitPlanUpdate',
+				code:'cashInitPlanDetail',
 				glyph : 0xf040,
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender

@@ -9,14 +9,23 @@ public class CashInitPlanDeviceInfoForm {
 	private String awayFlag;
 	private AwayFlag awayFlagType;
 	private String orgName;
+	//上次加钞金额
 	private long lastAmt;
+	//上次假钞日期
 	private String lastDate;
+	//推荐加钞金额
 	private double adviceAmt;
+	//实际加钞金额
 	private double actualAmt;
 	private long  cashInitPlanInfoId;
 	private int flag;//加钞类型标识(1:钞箱预警.2:超过加钞预警天数.4.手工强制清机加钞)
 	private String address;
+	//最大加钞金额
 	private long maxAmt;
+	//剩余的金额(取款箱)
+	private double billAmt;
+	//剩余的金额(存款箱)
+	private double cashInAmt;
 	public long getId() {
 		return id;
 	}
@@ -100,6 +109,18 @@ public class CashInitPlanDeviceInfoForm {
 	}
 	public void setAwayFlagType(AwayFlag awayFlagType) {
 		this.awayFlagType = awayFlagType;
+	}
+	public double getBillAmt() {
+		return billAmt;
+	}
+	public void setBillAmt(double billAmt) {
+		this.billAmt = billAmt;
+	}
+	public double getCashInAmt() {
+		return cashInAmt;
+	}
+	public void setCashInAmt(double cashInAmt) {
+		this.cashInAmt = cashInAmt;
 	}
 	
 }

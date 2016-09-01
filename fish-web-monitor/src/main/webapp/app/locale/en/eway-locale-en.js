@@ -1,6 +1,7 @@
 Ext.apply(EwayLocale,{
 	addSuccess : 'Add Successfully.',//EwayLocale.addSuccess
 	updateSuccess : 'Update Successfully.',//EwayLocale.updateSuccess
+	ansynSuccess : 'Ansyn Successfully.',//EwayLocale.ansynSuccess
 	deleteSuccess : 'Delete Successfully.',//EwayLocale.deleteSuccess
 	choiceUpdateMsg :'Please Select The Record Which You Want To Update.',//EwayLocale.choiceUpdateMsg
 	choiceDeleteMsg :'Please Select The Record Which You Want To Delete.',//EwayLocale.choiceDeleteMsg

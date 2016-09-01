@@ -29,9 +29,6 @@ Ext.define('Eway.view.cash.boxInfo.FilterForm',{
 					regexText : EwayLocale.vtype.ip,
 					msgTarget : 'side'
 				}]
-//				'id','devType','devTypeName','devCatalogId','devCatalogName','devService',
-//				'devServiceName','organization','organizationName','awayFlag',
-//				'awayFlagName','ip','terminalId','maxAlarm','minAlarm'
 			}, {
 				columnWidth : .38,
 				defaults : {

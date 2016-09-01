@@ -50,6 +50,7 @@
 				<value>i18n/message-system</value>
 				<value>i18n/message-version</value>
 				<value>i18n/enum</value>
+				<value>i18n/message-cashbox</value>
 				<value>i18n/messageStateCode</value>
 				<value>i18n/messageVersion</value>
 			</list>

@@ -18,6 +18,7 @@ import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryWeek;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryWeekService;
 import com.yihuacomputer.fish.machine.entity.AtmCatalog;
 import com.yihuacomputer.fish.machine.entity.Device;
+import com.yihuacomputer.fish.report.entity.etl.DeviceCatalogSummaryWeek;
 
 @Service
 @Transactional
@@ -67,7 +68,7 @@ public class DeviceCatalogSummaryWeekService implements IDeviceCatalogSummaryWee
 	}
 
 	@Override
-	public void loadBaseDate(Date date) {
+	public void loadBaseData(Date date) {
 		// yyyy-mm-dd
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(date.getTime());

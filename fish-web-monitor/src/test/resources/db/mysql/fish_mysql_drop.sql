@@ -1,6 +1,33 @@
+drop table if exists etl_fault_week;
+drop table if exists etl_fault_month;
+drop table if exists etl_fault_classify_week;
+drop table if exists etl_fault_classify_month;
+drop table if exists etl_fault_duration_week;
+drop table if exists etl_fault_duration_month;
+
+drop table if exists etl_retain_card_week;
+drop table if exists etl_retain_card_month;
 drop table if exists etl_trans_type_day;
 drop table if exists etl_trans_type_week;
 drop table if exists etl_trans_type_month;
+
+DROP TABLE IF EXISTS etl_avg_day_open_rate;
+DROP TABLE IF EXISTS etl_avg_week_open_rate;
+DROP TABLE IF EXISTS etl_avg_month_open_rate;
+DROP TABLE IF EXISTS etl_device_open_rate_week
+DROP TABLE IF EXISTS etl_device_open_rate_month;
+DROP TABLE IF EXISTS etl_dev_type_open_rate_week;
+DROP TABLE IF EXISTS etl_dev_type_open_rate_month;
+DROP TABLE IF EXISTS etl_org_open_rate_week;
+DROP TABLE IF EXISTS etl_org_open_rate_month;
+
+DROP TABLE IF EXISTS ATMC_DAY_TRADING_VOLUME;
+DROP TABLE IF EXISTS ATMC_MONTH_TRADING_VOLUME;
+
+DROP TABLE IF EXISTS DEV_CASH_INIT_PLAN_DEVICE;
+DROP TABLE IF EXISTS ATMC_CASH_INIT_UNIQUE;
+DROP TABLE IF EXISTS DEV_CASH_INIT_PLAN;
+DROP TABLE IF EXISTS DEV_BOX_INIT_RULE;
 
 DROP TABLE IF EXISTS CASE_FAULT_MONTH;
 DROP TABLE IF EXISTS ATMC_TRANSACTION_DAYS;
@@ -108,3 +135,15 @@ DROP TABLE IF EXISTS ATMC_COMMAND_HIST;
 DROP TABLE IF EXISTS SM_TRANSACTION_COLOR;
 DROP TABLE IF EXISTS PARAM_PUBLISH;
 DROP TABLE IF EXISTS PARAM_PUBLISH_RESULT;
+DROP TABLE IF EXISTS DEV_CATALOG_SUMMARY_MONTH;
+DROP TABLE IF EXISTS DEV_CATALOG_SUMMARY_WEEK;
+DROP TABLE IF EXISTS DEV_TYPE_SUMMARY_MONTH;
+DROP TABLE IF EXISTS DEV_TYPE_SUMMARY_WEEK;
+DROP TABLE IF EXISTS DEV_BOX_DETAIL_INFO;
+DROP TABLE IF EXISTS DEV_BOX_INFO;
+DROP TABLE IF EXISTS DEV_BOX_INIT_RULE;
+DROP TABLE IF EXISTS ATMC_DAY_TRADING_VOLUME;
+DROP TABLE IF EXISTS ATMC_MONTH_TRADING_VOLUME;
+DROP TABLE IF EXISTS DEV_CASH_INIT_PLAN_DEVICE;
+DROP TABLE IF EXISTS DEV_CASH_INIT_PLAN;
+DROP TABLE IF EXISTS ATMC_CASH_INIT_UNIQUE ;

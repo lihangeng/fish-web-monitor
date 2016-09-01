@@ -5,7 +5,7 @@ Ext.define('Eway.view.cash.boxInfo.View', {
 	requires : [ 'Eway.view.cash.boxInfo.Grid',
 			'Eway.view.cash.boxInfo.FilterForm' ],
 
-	title : EwayLocale.boxInfo.title,//'软件分类管理',
+	title : EwayLocale.boxInfo.title,//'钞箱管理',
 	layout : 'border',
 
 	initComponent : function() {

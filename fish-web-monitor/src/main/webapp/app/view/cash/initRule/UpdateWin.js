@@ -11,8 +11,8 @@ Ext.define('Eway.view.cash.initRule.UpdateWin', {
 		var startUsingstate = Ext.create('Ext.data.Store', {
 	    fields: ['value', 'name'],
 		    data : [
-		        {"value":"true", "name":"启用"},
-		        {"value":"false", "name":"停用"}
+		        {"value":"true", "name":EwayLocale.machine.serviceplan.useSuccess},
+		        {"value":"false", "name":EwayLocale.machine.serviceplan.notSuccess}
 		    ]
 		});
 		Ext.apply(this, {

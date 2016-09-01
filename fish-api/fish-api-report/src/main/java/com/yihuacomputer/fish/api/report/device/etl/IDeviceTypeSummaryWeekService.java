@@ -27,5 +27,5 @@ public interface IDeviceTypeSummaryWeekService {
 	 * 加载基础数据
 	 * @param date 执行时间点 40周执行39周汇总，此时传入的日期为40周周一,得出的是39新增及汇总数据
 	 */
-	void loadBaseDate(Date date);
+	void loadBaseData(Date date);
 }

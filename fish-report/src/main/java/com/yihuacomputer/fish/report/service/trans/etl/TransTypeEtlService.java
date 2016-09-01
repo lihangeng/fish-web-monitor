@@ -1,6 +1,5 @@
 package com.yihuacomputer.fish.report.service.trans.etl;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -56,27 +55,15 @@ public class TransTypeEtlService implements ITransTypeEtlService{
 
 	@Override
 	public void extractByWeek(Date date) {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(date);
-		Date startDate = DateUtils.getFirstDayOfWeek(cal);
-		Date endDate = DateUtils.getLastDayOfWeek(cal);
-		long start = Long.parseLong(DateUtils.getDateShort(startDate));
-		long end = Long.parseLong(DateUtils.getDateShort(endDate));
-		
-		StringBuilder sql = new StringBuilder();
-		sql.append("SELECT tr.TRANS_CODE,SUM(tr.TRANS_AMOUNT),SUM(tr.TRANS_COUNT) ");
-		sql.append("FROM etl_trans_type_day tr ");
-		sql.append("WHERE tr.STAT_DATE >= ?  and tr.STAT_DATE <= ? ");
-		sql.append("GROUP BY tr.TRANS_CODE");
-		
-		SQLQuery query = dao.getSQLQuery(sql.toString());
-		query.setLong(0, start);
-		query.setLong(1, end);
+		Long [] dates = DateUtils.getFirstAndLastDayofWeek(date);
+		SQLQuery query = dao.getSQLQuery(getTransTypeSql());
+		query.setLong(0, dates[0]);
+		query.setLong(1, dates[1]);
 		List<?> lists = query.list();
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			ITransTypeWeek day = new TransTypeWeek();
-			day.setDate(Long.parseLong(DateUtils.get(date, "yyyyww")));
+			day.setDate(DateUtils.getWeek(date));
 			day.setTransCode(each[0].toString());
 			day.setTransAmount(Double.parseDouble(each[1].toString()));
 			day.setTransCount(Long.parseLong(each[2].toString()));
@@ -84,27 +71,26 @@ public class TransTypeEtlService implements ITransTypeEtlService{
 		}
 		
 	}
-
-	@Override
-	public void extractByMonth(Date date) {
-		String sDate = DateUtils.getYM(date);//yyyyMM
-		long start = Long.parseLong(sDate + "01");
-		long end = Long.parseLong(sDate + "31");
-		
+	private String getTransTypeSql(){
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT tr.TRANS_CODE,SUM(tr.TRANS_AMOUNT),SUM(tr.TRANS_COUNT) ");
 		sql.append("FROM etl_trans_type_day tr ");
 		sql.append("WHERE tr.STAT_DATE >= ?  and tr.STAT_DATE <= ? ");
 		sql.append("GROUP BY tr.TRANS_CODE");
-		
-		SQLQuery query = dao.getSQLQuery(sql.toString());
-		query.setLong(0, start);
-		query.setLong(1, end);
+		return sql.toString();
+	}
+
+	@Override
+	public void extractByMonth(Date date) {
+		Long [] dates = DateUtils.getFirstAndLastDayofMonth(date);
+		SQLQuery query = dao.getSQLQuery(getTransTypeSql());
+		query.setLong(0, dates[0]);
+		query.setLong(1, dates[1]);
 		List<?> lists = query.list();
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			ITransTypeMonth day = new TransTypeMonth();
-			day.setDate(Long.parseLong(sDate));
+			day.setDate(Long.parseLong(DateUtils.getDateShort(date)));
 			day.setTransCode(each[0].toString());
 			day.setTransAmount(Double.parseDouble(each[1].toString()));
 			day.setTransCount(Long.parseLong(each[2].toString()));

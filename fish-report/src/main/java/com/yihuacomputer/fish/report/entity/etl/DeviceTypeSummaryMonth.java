@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.report.service.device.etl;
+package com.yihuacomputer.fish.report.entity.etl;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,20 +8,19 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryWeek;
+import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryMonth;
 
 @Entity
-@Table(name="DEV_CATALOG_SUMMARY_WEEK")
-public class DeviceCatalogSummaryWeek implements IDeviceCatalogSummaryWeek {
-
+@Table(name="DEV_TYPE_SUMMARY_MONTH")
+public class DeviceTypeSummaryMonth implements IDeviceTypeSummaryMonth {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_DEVICE_CATALOG_SUMMARY_WEEK")
-	@SequenceGenerator(name = "SEQ_DEVICE_CATALOG_SUMMARY_WEEK", sequenceName = "SEQ_DEVICE_CATALOG_SUMMARY_WEEK")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_DEV_TYPE_SUMMARY_MONTH")
+	@SequenceGenerator(name = "SEQ_DEV_TYPE_SUMMARY_MONTH", sequenceName = "SEQ_DEV_TYPE_SUMMARY_MONTH")
 	@Column(name = "ID")
 	private long id;
 	
-	@Column(name = "DEV_CATALOG")
-	private String catalog;
+	@Column(name = "DEV_TYPE")
+	private String devType;
 
 	@Column(name = "DEV_NUM")
 	private int num;
@@ -48,13 +47,13 @@ public class DeviceCatalogSummaryWeek implements IDeviceCatalogSummaryWeek {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	public String getCatalog() {
-		return catalog;
+	
+	public String getDevType() {
+		return devType;
 	}
 
-	public void setCatalog(String catalog) {
-		this.catalog = catalog;
+	public void setDevType(String devType) {
+		this.devType = devType;
 	}
 
 	public int getNum() {
@@ -104,5 +103,4 @@ public class DeviceCatalogSummaryWeek implements IDeviceCatalogSummaryWeek {
 	public void setAllScrappedDevNum(int allScrappedDevNum) {
 		this.allScrappedDevNum = allScrappedDevNum;
 	}
-
 }

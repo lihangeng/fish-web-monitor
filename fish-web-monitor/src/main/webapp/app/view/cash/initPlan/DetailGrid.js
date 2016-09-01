@@ -4,6 +4,18 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 	extend: 'Eway.view.base.Grid',
 	
 	border : false,
+	viewConfig : {
+		forceFit : true,
+		stripeRows : true,
+		getRowClass: function(record, rowIndex, rowParams, store){
+		        if(record.get("flag")==0)
+		        	return 'user-online';
+		        else if(record.get("flag")==1)
+		        	return 'blue';
+		        else
+		        	return '';
+	    }
+	},
 	initComponent: function() {
 		var store = Ext.create('Eway.store.cash.initPlan.CashInitPlanDevice');
 		Ext.apply(this, {
@@ -18,13 +30,13 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 			},'->', {
 				text: EwayLocale.button.search,//'查询',
 				action: 'query',
-				code:'cashInitPlanSeach',
+				code:'cashInitPlanDeviceSearch',
 				glyph : 0xf002,
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			}, {
-				code:'cashInitPlanUpdate',
+				code:'cashInitPlanDeviceAdd',
 				text : EwayLocale.button.add,
 				glyph : 0xf067,
 				action : 'add',
@@ -35,7 +47,15 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				text : EwayLocale.button.remove,
 				glyph : 0xf014,
 				action : 'remove',
-				code : 'deviceDel',
+				code : 'cashInitPlanDeviceDel',
+				listeners:{
+					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
+				}
+			}, {
+				text : EwayLocale.button.exported,
+				glyph : 0xf1c3,
+				action : 'export',
+				code : 'cashInitPlanDeviceExport',
 				listeners:{
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
@@ -52,8 +72,14 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 	                allowBlank: false
 	            }
 			}, {
-				header :  '最大加钞额',
+				header : EwayLocale.initPlan.maxAmt,
 				dataIndex : 'maxAmt',
+				renderer : function(value){
+					if(value == -1){
+						return EwayLocale.tip.unCertain;
+					}
+					return value;
+				},
 				flex : 1
 			},{
 				header :  EwayLocale.initPlan.adviceAmt,
@@ -64,6 +90,14 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				dataIndex : 'devType',
 				flex : 1
 			}, {
+				header : EwayLocale.initPlan.billAmt,
+				dataIndex : 'billAmt',
+				flex : 1
+			}, {
+				header : EwayLocale.initPlan.cashInAmt,
+				dataIndex : 'cashInAmt',
+				flex : 1
+			},{
 				header :  EwayLocale.machine.device.onBankSignal,
 				dataIndex : 'awayFlag',
 				flex : 1

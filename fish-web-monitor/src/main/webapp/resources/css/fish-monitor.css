@@ -615,6 +615,9 @@ body .ux-notification-light {
 .x-grid-row.user-online .x-grid-cell {
 	color: #FF0000;
 }
+.x-grid-row.blue .x-grid-cell {
+	color: #62a7df;
+}
 
 .report-overflow {
 	overflow-x: auto !important;
@@ -1380,6 +1383,16 @@ pre.link {
 
 .menu-device-servicePlan {
 	background: url(../images/image.png) -112px -24px no-repeat !important;
+}
+
+.menu-device-boxInfo {
+	background: url(../images/image.png) -128px -24px no-repeat !important;
+}
+.menu-device-cashInitRule {
+	background: url(../images/image.png) -144px -24px no-repeat !important;
+}
+.menu-device-cashInitPlan {
+	background: url(../images/image.png) -160px -24px no-repeat !important;
 }
 
 .menu-device-device {

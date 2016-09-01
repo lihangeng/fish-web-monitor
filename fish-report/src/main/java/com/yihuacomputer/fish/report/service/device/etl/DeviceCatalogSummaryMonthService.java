@@ -20,6 +20,7 @@ import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryMonth;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryMonthService;
 import com.yihuacomputer.fish.machine.entity.AtmCatalog;
 import com.yihuacomputer.fish.machine.entity.Device;
+import com.yihuacomputer.fish.report.entity.etl.DeviceCatalogSummaryMonth;
 
 @Service
 @Transactional
@@ -34,7 +35,7 @@ public class DeviceCatalogSummaryMonthService implements IDeviceCatalogSummaryMo
 		return new DeviceCatalogSummaryMonth();
 	}
 
-	public void loadBaseDate(Date date){
+	public void loadBaseData(Date date){
 		//yyyy-mm-dd
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(date.getTime());

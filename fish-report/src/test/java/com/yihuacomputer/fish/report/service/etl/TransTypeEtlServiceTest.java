@@ -12,15 +12,14 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.monitor.business.ITransaction;
 import com.yihuacomputer.fish.api.monitor.business.ITransactionService;
 import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeEtlService;
-import com.yihuacomputer.fish.report.MysqlEtlTestConfig;
+import com.yihuacomputer.fish.report.H2TestConfig;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = MysqlEtlTestConfig.class)
+@ContextConfiguration(classes = H2TestConfig.class)
 public class TransTypeEtlServiceTest {
 	
 	@Autowired
@@ -31,7 +30,7 @@ public class TransTypeEtlServiceTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		/*for(int i =0 ; i < 5; i++){
+		for(int i =0 ; i < 5; i++){
 			ITransaction trans = transService.make();
 			trans.setDateTime(new Date());
 			trans.setAmt(200);
@@ -41,7 +40,7 @@ public class TransTypeEtlServiceTest {
 			trans.setTransCode("CWD");
 			trans.setTransId("100");
 			transService.save(trans);
-		}*/
+		}
 	}
 
 	@After
@@ -51,8 +50,8 @@ public class TransTypeEtlServiceTest {
 	@Test
 	public void testOpenRateEtl(){
 		Date date = new Date();
-//		transTypeEtlService.extractByDay(date);
-//		transTypeEtlService.extractByWeek(date);
+		transTypeEtlService.extractByDay(date);
+		transTypeEtlService.extractByWeek(date);
 		transTypeEtlService.extractByMonth(date);
 	}
 	

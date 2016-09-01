@@ -2,7 +2,18 @@
 Ext.define('Eway.view.cash.initPlan.DetailSelectableGrid', {
 	alias: 'widget.initPlan_detailSelectableGrid',
 	extend: 'Eway.view.base.Grid',
-	
+	viewConfig : {
+		forceFit : true,
+		stripeRows : true,
+		getRowClass: function(record, rowIndex, rowParams, store){
+		        if(record.get("flag")==0)
+		        	return 'user-online';
+		        else if(record.get("flag")==1)
+		        	return 'blue';
+		        else
+		        	return '';
+	    }
+	},
 	border : false,
 	initComponent: function() {
 		var store = Ext.create('Eway.store.cash.initPlan.CashInitPlanSelectableDevice');
@@ -54,10 +65,24 @@ Ext.define('Eway.view.cash.initPlan.DetailSelectableGrid', {
 			},{
 				header :  EwayLocale.initPlan.adviceAmt,
 				dataIndex : 'adviceAmt',
+				renderer : function(value){
+					if(value == -1){
+						return EwayLocale.tip.unCertain;
+					}
+					return value;
+				},
 				flex : 1
 			},{
 				header : EwayLocale.machine.atmGroup.devTypeName,
 				dataIndex : 'devType',
+				flex : 1
+			}, {
+				header : EwayLocale.initPlan.billAmt,
+				dataIndex : 'billAmt',
+				flex : 1
+			}, {
+				header : EwayLocale.initPlan.cashInAmt,
+				dataIndex : 'cashInAmt',
 				flex : 1
 			}, {
 				header :  EwayLocale.machine.device.onBankSignal,

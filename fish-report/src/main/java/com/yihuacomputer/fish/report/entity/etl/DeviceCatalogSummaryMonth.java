@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.report.service.device.etl;
+package com.yihuacomputer.fish.report.entity.etl;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

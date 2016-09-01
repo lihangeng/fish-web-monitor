@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.report.service.device.etl;
+package com.yihuacomputer.fish.report.entity.etl;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,14 +8,14 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryMonth;
+import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryWeek;
 
 @Entity
-@Table(name="DEV_TYPE_SUMMARY_MONTH")
-public class DeviceTypeSummaryMonth implements IDeviceTypeSummaryMonth {
+@Table(name="DEV_TYPE_SUMMARY_WEEK")
+public class DeviceTypeSummaryWeek implements IDeviceTypeSummaryWeek {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_DEV_TYPE_SUMMARY_MONTH")
-	@SequenceGenerator(name = "SEQ_DEV_TYPE_SUMMARY_MONTH", sequenceName = "SEQ_DEV_TYPE_SUMMARY_MONTH")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_DEV_TYPE_SUMMARY_WEEK")
+	@SequenceGenerator(name = "SEQ_DEV_TYPE_SUMMARY_WEEK", sequenceName = "SEQ_DEV_TYPE_SUMMARY_WEEK")
 	@Column(name = "ID")
 	private long id;
 	

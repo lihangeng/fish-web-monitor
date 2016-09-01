@@ -27,5 +27,5 @@ public interface IDeviceTypeSummaryMonthService {
 	 * 加载基础数据
 	 * @param date 执行时间点 7月份执行6月份汇总，此时传入的日期为7月份,得出的是2016-06月份的新增数据
 	 */
-	void loadBaseDate(Date date);
+	void loadBaseData(Date date);
 }

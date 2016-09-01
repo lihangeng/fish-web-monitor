@@ -40,6 +40,8 @@ public class DateUtils {
 	public static final String STANDARD_MONTH_FULL1 = "yyyyMM" ;
 
 	public static final String STANDARD_TIMESTAMP5 = "yyyyMMddHHmmssSSS";
+	
+	public static final String STANDARD_WEEK = "yyyyww" ;
 
 	public static Date get(String strDate, String format) {
 		if (format == null) {
@@ -395,6 +397,47 @@ public class DateUtils {
 		cal.setFirstDayOfWeek(Calendar.MONDAY);
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
 		return cal.getTime();
+   }
+      
+   /**
+    * 获得周
+    * @param date
+    * @return
+    * @since 2.1.1.1
+    */
+   public static Long getWeek(Date date){
+	   return Long.parseLong(DateUtils.get(date, DateUtils.STANDARD_WEEK));
+   }
+   
+   /**
+    * 获得周的开始时间和结束时间
+    * @param date
+    * @return
+    */
+   public static Long[] getFirstAndLastDayofWeek(Date date){
+	   Long [] dates = new Long[2];
+	   Calendar cal = Calendar.getInstance();
+	   cal.setTime(date);
+	   cal.setFirstDayOfWeek(Calendar.MONDAY);
+	   cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+	   dates[0] = Long.parseLong(DateUtils.getDateShort(cal.getTime()));
+	   
+	   cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY);
+	   dates[1] = Long.parseLong(DateUtils.getDateShort(cal.getTime()));
+	   return dates;
+   }
+   
+   /**
+    * 获得月的开始时间和结束时间
+    * @param date
+    * @return
+    */
+   public static Long[] getFirstAndLastDayofMonth(Date date){
+	   Long [] dates = new Long[2];
+	   String sDate = DateUtils.getYM(date);
+	   dates[0] = Long.parseLong(sDate + "01");
+	   dates[1] = Long.parseLong(sDate + "31");
+	   return dates;
    }
 
 }
