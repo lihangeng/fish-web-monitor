@@ -113,7 +113,7 @@ public class Pdf {
 	
 	public void addTable() throws DocumentException{
 		PdfPTable table = new PdfPTable(3);
-		table.setWidthPercentage(100);  
+		table.setWidthPercentage(90);  
 		table.setTotalWidth(PageSize.A4.getWidth());
 //		table.setTotalWidth(new float[]{120f,250f,150f});
 		PdfPCell cell = new PdfPCell(new Phrase("编号",FontMgr.getFont14()));
