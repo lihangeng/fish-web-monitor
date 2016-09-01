@@ -14,11 +14,11 @@ import com.yihuacomputer.fish.api.monitor.box.BoxInitRuleType;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitRule;
 
 @Entity
-@Table(name = "CASH_INIT_RULE")
+@Table(name = "DEV_CASH_INIT_RULE")
 public class CashInitRule implements ICashInitRule {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_CASH_INIT_RULE")
-	@SequenceGenerator(name = "SEQ_CASH_INIT_RULE", sequenceName = "SEQ_CASH_INIT_RULE")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_DEV_CASH_INIT_RULE")
+	@SequenceGenerator(name = "SEQ_DEV_CASH_INIT_RULE", sequenceName = "SEQ_DEV_CASH_INIT_RULE")
 	@Column(name = "ID")
 	private long id;
 	@Column(name = "NAME")
