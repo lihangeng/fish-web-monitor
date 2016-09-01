@@ -83,4 +83,28 @@ public class OrgOpenRateEtlService implements IOrgOpenRateEtlService{
 		}
 	}
 
+	@Override
+	public List<IOrgOpenRateWeek> getTopOrgWeek(int weekOfYear, int limit) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IOrgOpenRateMonth> getTopOrgMonth(int month, int limit) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IOrgOpenRateWeek> getLastOrgWeek(int weekOfYear, int limit) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IOrgOpenRateMonth> getLastOrgMonth(int month, int limit) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

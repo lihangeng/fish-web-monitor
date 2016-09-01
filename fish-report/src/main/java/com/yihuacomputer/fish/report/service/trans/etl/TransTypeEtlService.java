@@ -97,6 +97,58 @@ public class TransTypeEtlService implements ITransTypeEtlService{
 			dao.save(day);
 		}
 	}
+
+	@Override
+	public List<ITransTypeWeek> getWeek(int weekOfYear) {
+		return dao.findByHQL("from TransTypeWeek where date = ?", weekOfYear);
+	}
+
+	@Override
+	public Long[] getWeekTotal(int weekOfYear) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("select sum(rc.TRANS_COUNT),sum(rc.TRANS_AMOUNT)");
+		sql.append(" from etl_trans_type_week rc");
+		sql.append(" where rc.STAT_DATE = ?");
+		SQLQuery query = dao.getSQLQuery(sql.toString());
+		query.setLong(0, weekOfYear);
+		List<?> lists = query.list();
+		for(Object object : lists){
+			Object [] each = (Object[])object;
+			if(each != null){
+				Long [] values = new Long[]{};
+				values[0] = Long.parseLong(each[0].toString());
+				values[1] = Long.parseLong(each[1].toString());
+				return values;
+			}
+		}
+		return new Long[]{0L,0L};
+	}
+
+	@Override
+	public List<ITransTypeMonth> getMonth(int month) {
+		return dao.findByHQL("from TransTypeMonth where date = ?", month);
+	}
+
+	@Override
+	public Long[] getMonthTotal(int month) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("select sum(rc.TRANS_COUNT),sum(rc.TRANS_AMOUNT)");
+		sql.append(" from etl_trans_type_month rc");
+		sql.append(" where rc.STAT_DATE = ?");
+		SQLQuery query = dao.getSQLQuery(sql.toString());
+		query.setLong(0, month);
+		List<?> lists = query.list();
+		for(Object object : lists){
+			Object [] each = (Object[])object;
+			if(each != null){
+				Long [] values = new Long[]{};
+				values[0] = Long.parseLong(each[0].toString());
+				values[1] = Long.parseLong(each[1].toString());
+				return values;
+			}
+		}
+		return new Long[]{0L,0L};
+	}
 	
 
 }

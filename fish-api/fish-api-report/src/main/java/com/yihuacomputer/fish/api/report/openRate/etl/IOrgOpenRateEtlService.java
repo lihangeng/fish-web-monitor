@@ -4,6 +4,7 @@
 package com.yihuacomputer.fish.api.report.openRate.etl;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -24,4 +25,34 @@ public interface IOrgOpenRateEtlService {
 	 * @param date
 	 */
 	public void extractByMonth(Date date);
+	
+	
+	
+	/**
+	 * 获取某周的统计，排名靠前的网点
+	 * @param weekOfYear
+	 * @return
+	 */
+	public List<IOrgOpenRateWeek> getTopOrgWeek(int weekOfYear,int limit);
+	
+	/**
+	 * 获取某月的统计，排名靠前的网点
+	 * @param weekOfYear
+	 * @return
+	 */
+	public List<IOrgOpenRateMonth> getTopOrgMonth(int month,int limit);
+	
+	/**
+	 * 获取某周的统计（获取倒数limit个网点）
+	 * @param weekOfYear
+	 * @return
+	 */
+	public List<IOrgOpenRateWeek> getLastOrgWeek(int weekOfYear,int limit);
+	
+	/**
+	 * 获取倒数limit个网点的
+	 * @param weekOfYear
+	 * @return
+	 */
+	public List<IOrgOpenRateMonth> getLastOrgMonth(int month,int limit);
 }

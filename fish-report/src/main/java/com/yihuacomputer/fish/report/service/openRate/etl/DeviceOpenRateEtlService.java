@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceOpenRateEtlService;
@@ -94,6 +97,43 @@ public class DeviceOpenRateEtlService implements IDeviceOpenRateEtlService{
 			dorMonth.setDevType(each[6].toString());
 			dao.save(dorMonth);
 		}
+	}
+
+	@Override
+	public List<IDeviceOpenRateWeek> getTopDeviceWeek(int weekOfYear, int limit) {
+		IFilter filter = new Filter();
+		filter.eq("deviceOpenRateWeek.date", weekOfYear);
+		filter.descOrder("deviceOpenRateWeek.date");
+		IPageResult<IDeviceOpenRateWeek> page = dao.page(0, limit, filter, DeviceOpenRateWeek.class);
+		return page.list();
+	}
+
+	@Override
+	public List<IDeviceOpenRateWeek> getLastDeviceWeek(int weekOfYear, int limit) {
+		IFilter filter = new Filter();
+		filter.eq("deviceOpenRateWeek.date", weekOfYear);
+		filter.descOrder("deviceOpenRateWeek.date");
+		IPageResult<IDeviceOpenRateWeek> page = dao.page(0, limit, filter, DeviceOpenRateWeek.class);
+		return page.list();
+	}
+	
+	@Override
+	public List<IDeviceOpenRateMonth> getTopDeviceMonth(int month, int limit) {
+		IFilter filter = new Filter();
+		filter.eq("deviceOpenRateMonth.date", month);
+		filter.descOrder("deviceOpenRateMonth.date");
+		IPageResult<IDeviceOpenRateMonth> page = dao.page(0, limit, filter, DeviceOpenRateMonth.class);
+		return page.list();
+	}
+
+
+	@Override
+	public List<IDeviceOpenRateMonth> getLastDeviceMonth(int month, int limit) {
+		IFilter filter = new Filter();
+		filter.eq("deviceOpenRateMonth.date", month);
+		filter.descOrder("deviceOpenRateMonth.date");
+		IPageResult<IDeviceOpenRateMonth> page = dao.page(0, limit, filter, DeviceOpenRateMonth.class);
+		return page.list();
 	}
 
 }

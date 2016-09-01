@@ -4,6 +4,7 @@
 package com.yihuacomputer.fish.api.report.openRate.etl;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -29,4 +30,28 @@ public interface IAvgOpenRateEtlService {
 	 * @param date yyyy-MM
 	 */
 	public void extractByMonth(Date date);
+	
+	/**
+	 * 获得总的统计数据
+	 * @param weekOfYear
+	 * @return
+	 */
+	public Object [] getWeekTotal(int weekOfYear);
+	
+	/**
+	 * 获得月总的统计数据
+	 * @param weekOfYear
+	 * @return
+	 */
+	public Object [] getMonthTotal(int month);
+	
+	/**
+	 * 某一段时间内的每日平均开机率
+	 * @param start yyyyMMdd开始时间
+	 * @param end yyyyMMdd 结束时间
+	 * @return
+	 */
+	public List<IAvgDayOpenRate> getAvgDays(long start, long end);
+	
+	
 }
