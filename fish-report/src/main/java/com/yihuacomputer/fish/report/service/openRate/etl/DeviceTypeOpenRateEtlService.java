@@ -83,4 +83,16 @@ public class DeviceTypeOpenRateEtlService implements IDeviceTypeOpenRateEtlServi
 		}
 	}
 
+	@Override
+	public List<IDeviceTypeOpenRateWeek> getDeviceTypeWeek(int weekOfYear) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<IDeviceTypeOpenRateMonth> getDeviceTypeMonth(int month) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -4,6 +4,7 @@
 package com.yihuacomputer.fish.api.report.openRate.etl;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -23,4 +24,33 @@ public interface IDeviceOpenRateEtlService {
 	 * @param date 统计周
 	 */
 	public void extractByWeek(Date Date);
+	
+	/**
+	 * 周数据：按照设备统计的开机率，较好设备Top10
+	 * @param weekOfYear
+	 * @return
+	 */
+	public List<IDeviceOpenRateWeek> getTopDeviceWeek(int weekOfYear,int limit);
+	
+	/**
+	 * 获取某月数据：按照设备统计的开机率，较好设备Top10
+	 * @param weekOfYear
+	 * @return
+	 */
+	public List<IDeviceOpenRateMonth> getTopDeviceMonth(int month,int limit);
+	
+	/**
+	 * 获取某周的统计：4.	按照设备统计的开机率，较查设备Top10
+	 * @param weekOfYear
+	 * @return
+	 */
+	public List<IDeviceOpenRateWeek> getLastDeviceWeek(int weekOfYear,int limit);
+	
+	/**
+	 * 获取某月的统计：4.	按照设备统计的开机率，较查设备Top10
+	 * @param weekOfYear
+	 * @return
+	 */
+	public List<IDeviceOpenRateMonth> getLastDeviceMonth(int month,int limit);
+
 }

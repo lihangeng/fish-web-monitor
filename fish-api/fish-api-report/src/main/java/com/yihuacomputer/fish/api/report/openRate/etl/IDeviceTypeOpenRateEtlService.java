@@ -4,6 +4,7 @@
 package com.yihuacomputer.fish.api.report.openRate.etl;
 
 import java.util.Date;
+import java.util.List;
 
 
 /**
@@ -24,4 +25,18 @@ public interface IDeviceTypeOpenRateEtlService {
 	 * @param weekOfYear 一年当中的第几周
 	 */
 	public void extractByMonth(Date date);
+	
+	/**
+	 * 获取某周的统计
+	 * @param weekOfYear
+	 * @return
+	 */
+	public List<IDeviceTypeOpenRateWeek> getDeviceTypeWeek(int weekOfYear);
+	
+	/**
+	 * 获取某月的统计
+	 * @param weekOfYear
+	 * @return
+	 */
+	public List<IDeviceTypeOpenRateMonth> getDeviceTypeMonth(int month);
 }
