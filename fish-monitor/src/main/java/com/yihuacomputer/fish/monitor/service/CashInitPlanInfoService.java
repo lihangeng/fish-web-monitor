@@ -27,8 +27,8 @@ import com.yihuacomputer.fish.api.monitor.box.ICashInitUnique;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitUniqueService;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
-import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInitRule;
-import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInitRuleService;
+import com.yihuacomputer.fish.api.monitor.box.ICashInitRule;
+import com.yihuacomputer.fish.api.monitor.box.ICashInitRuleService;
 import com.yihuacomputer.fish.api.monitor.volume.IMonthDailyTradingVolume;
 import com.yihuacomputer.fish.api.monitor.volume.IMonthDailyTradingVolumeService;
 import com.yihuacomputer.fish.api.person.IOrganization;
@@ -48,7 +48,7 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 	private IGenericDao dao;
 
 	@Autowired
-	private IDeviceBoxInitRuleService deviceBoxInitRuleService;
+	private ICashInitRuleService deviceBoxInitRuleService;
 
 	@Autowired
 	private IDeviceBoxInfoService deviceBoxInfoService;
@@ -115,8 +115,8 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 		//获取当前机构下可以进行操作加钞操作的机构
 		List<IOrganization> orgList = orgService.listMatching(filter);
 		//获取当前加钞规则状态
-		IDeviceBoxInitRule cashLimitRule = deviceBoxInitRuleService.get(BoxInitRuleType.CASHLIMIT);
-		IDeviceBoxInitRule daysLimitRule = deviceBoxInitRuleService.get(BoxInitRuleType.DAYSLIMIT);
+		ICashInitRule cashLimitRule = deviceBoxInitRuleService.get(BoxInitRuleType.CASHLIMIT);
+		ICashInitRule daysLimitRule = deviceBoxInitRuleService.get(BoxInitRuleType.DAYSLIMIT);
 		for(IOrganization org:orgList){
 
 			//获取所有加钞历史

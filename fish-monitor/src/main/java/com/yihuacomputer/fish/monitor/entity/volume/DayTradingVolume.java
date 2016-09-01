@@ -11,11 +11,11 @@ import javax.persistence.Table;
 import com.yihuacomputer.fish.api.monitor.volume.IDayTradingVolume;
 
 @Entity
-@Table(name = "ATMC_DAY_TRADING_VOLUME")
+@Table(name = "DEV_TRADING_VOLUME_DAY")
 public class DayTradingVolume implements IDayTradingVolume {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_ATMC_DAY_TRADING_VOLUME")
-	@SequenceGenerator(name = "SEQ_ATMC_DAY_TRADING_VOLUME", sequenceName = "SEQ_ATMC_DAY_TRADING_VOLUME")
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "SEQ_DEV_TRADING_VOLUME_DAY")
+	@SequenceGenerator(name = "SEQ_DEV_TRADING_VOLUME_DAY", sequenceName = "SEQ_DEV_TRADING_VOLUME_DAY")
 	@Column(name = "ID")
 	private long id;
 

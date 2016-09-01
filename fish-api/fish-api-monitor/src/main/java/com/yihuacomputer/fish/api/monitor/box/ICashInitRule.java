@@ -1,6 +1,6 @@
 package com.yihuacomputer.fish.api.monitor.box;
 
-public interface IDeviceBoxInitRule {
+public interface ICashInitRule {
 	public long getId();
 	public void setId(long id);
 	
