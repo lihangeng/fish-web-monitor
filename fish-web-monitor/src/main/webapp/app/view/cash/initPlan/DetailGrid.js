@@ -130,12 +130,11 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 	showUpdate:function(){
 		var has = false;
 		Ext.each(Ext.fishButtons,function(code){
-			if("cashBoxInfoUpdate" == code){
+			if("cashInitPlanDeviceUpdate" == code){
 				has = true;
 				return ;
 			}
 		});
-		
 		return has;
 	}
 });
