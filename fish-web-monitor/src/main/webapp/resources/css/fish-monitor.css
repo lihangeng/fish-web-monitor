@@ -1385,6 +1385,16 @@ pre.link {
 	background: url(../images/image.png) -112px -24px no-repeat !important;
 }
 
+.menu-device-boxInfo {
+	background: url(../images/image.png) -128px -24px no-repeat !important;
+}
+.menu-device-cashInitRule {
+	background: url(../images/image.png) -144px -24px no-repeat !important;
+}
+.menu-device-cashInitPlan {
+	background: url(../images/image.png) -160px -24px no-repeat !important;
+}
+
 .menu-device-device {
 	background: url(../images/image.png) 0px -24px no-repeat !important;
 }
