@@ -43,9 +43,10 @@ public class AvgOpenRateEtlService implements IAvgOpenRateEtlService{
 				continue;
 			}
 			IAvgDayOpenRate avgDay = new AvgDayOpenRate();
-			avgDay.setDate(DateUtils.getDateShort(date));
+			avgDay.setDate(Long.parseLong(DateUtils.getDateShort(date)));
 			avgDay.setOpenTimes(Long.valueOf(each[0].toString()));
 			avgDay.setHealthyTimeReal(Long.valueOf(each[1].toString()));
+			avgDay.setOpenRate(avgDay.getHealthyTimeReal()/avgDay.getOpenTimes());
 			dao.save(avgDay);
 		}
 	}
@@ -53,18 +54,17 @@ public class AvgOpenRateEtlService implements IAvgOpenRateEtlService{
 	@Override
 	public void extractByWeek(Date date) {
 		Long [] values = DateUtils.getFirstAndLastDayofWeek(date);
-		String start = String.valueOf(values[0]);
-		String end = String.valueOf(values[1]);
-		List<Object> lists = dao.findByHQL(getSqlByAvgOpenRate(),start,end);
+		List<Object> lists = dao.findByHQL(getSqlByAvgOpenRate(),values[0],values[1]);
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			if(each[0] != null){
 				IAvgWeekOpenRate avgWeek = new AvgWeekOpenRate();
-				avgWeek.setDate(String.valueOf(DateUtils.getWeek(date)));
-				avgWeek.setStartDate(start);
-				avgWeek.setEndDate(end);
+				avgWeek.setDate(DateUtils.getWeek(date));
+				avgWeek.setStartDate(String.valueOf(values[0]));
+				avgWeek.setEndDate(String.valueOf(values[1]));
 				avgWeek.setOpenTimes(Long.valueOf(each[0].toString()));
 				avgWeek.setHealthyTimeReal(Long.valueOf(each[1].toString()));
+				avgWeek.setOpenRate(avgWeek.getHealthyTimeReal()/avgWeek.getOpenTimes());
 				dao.save(avgWeek);
 			}
 		}
@@ -73,16 +73,15 @@ public class AvgOpenRateEtlService implements IAvgOpenRateEtlService{
 	@Override
 	public void extractByMonth(Date date) {
 		Long [] values = DateUtils.getFirstAndLastDayofMonth(date);
-		String start = String.valueOf(values[0]);
-		String end = String.valueOf(values[1]);
-		List<Object> lists = dao.findByHQL(getSqlByAvgOpenRate(), start,end);
+		List<Object> lists = dao.findByHQL(getSqlByAvgOpenRate(), values[0],values[1]);
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			if(each[0] != null){
 				IAvgMonthOpenRate avgMonth = new AvgMonthOpenRate();
-				avgMonth.setDate(DateUtils.getYM(date));
+				avgMonth.setDate(DateUtils.getLongYM(date));
 				avgMonth.setOpenTimes(Long.valueOf(each[0].toString()));
 				avgMonth.setHealthyTimeReal(Long.valueOf(each[1].toString()));
+				avgMonth.setOpenRate(avgMonth.getHealthyTimeReal()/avgMonth.getOpenTimes());
 				dao.save(avgMonth);
 			}
 		}
@@ -92,7 +91,7 @@ public class AvgOpenRateEtlService implements IAvgOpenRateEtlService{
 		StringBuilder hql = new StringBuilder();
 		hql.append("select sum(dor.openTimes),sum(dor.healthyTimeReal) ");
 		hql.append("from AvgDayOpenRate dor ");
-		hql.append("where dor.date > ?  and dor.date < ? ");
+		hql.append("where dor.date >= ?  and dor.date <= ? ");
 		return hql.toString();
 	}
 
@@ -103,7 +102,7 @@ public class AvgOpenRateEtlService implements IAvgOpenRateEtlService{
 			Object [] values = new Object []{};
 			values[0] = avgWeekRate.getOpenTimes();
 			values[1] = avgWeekRate.getHealthyTimeReal();
-			values[2] = avgWeekRate.getRate();
+			values[2] = avgWeekRate.getOpenRate();
 			//TODO 低于平局值的台数计算
 			return values;
 		}
@@ -117,7 +116,7 @@ public class AvgOpenRateEtlService implements IAvgOpenRateEtlService{
 			Object [] values = new Object []{};
 			values[0] = avgWeekRate.getOpenTimes();
 			values[1] = avgWeekRate.getHealthyTimeReal();
-			values[2] = avgWeekRate.getRate();
+			values[2] = avgWeekRate.getOpenRate();
 			//TODO 低于平局值的台数计算
 			return values;
 		}

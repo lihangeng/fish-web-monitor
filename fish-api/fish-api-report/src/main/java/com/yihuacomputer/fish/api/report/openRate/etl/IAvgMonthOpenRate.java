@@ -11,11 +11,11 @@ public interface IAvgMonthOpenRate extends IOpenRateColumn{
 	 * 如201608
 	 * @return
 	 */
-	String getDate();
+	long getDate();
 	/**
 	 * 
-	 * @param date
+	 * @param date yyyyMM
 	 */
-	void setDate(String date);
+	void setDate(long date);
 	
 }

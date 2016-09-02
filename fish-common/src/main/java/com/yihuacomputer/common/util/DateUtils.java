@@ -198,6 +198,10 @@ public class DateUtils {
 	public static String getYM(Date date) {
 		return new SimpleDateFormat(STANDARD_MONTH_FULL1).format(date);
 	}
+	
+	public static long getLongYM(Date date) {
+		return Long.parseLong(new SimpleDateFormat(STANDARD_MONTH_FULL1).format(date));
+	}
 
 	/**
 	 * 取到距今天前后几天所属年

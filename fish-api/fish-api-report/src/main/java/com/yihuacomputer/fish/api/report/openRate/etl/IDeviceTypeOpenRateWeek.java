@@ -11,8 +11,8 @@ public interface IDeviceTypeOpenRateWeek extends IOpenRateColumn{
 	 * 如201615
 	 * @return
 	 */
-	String getDate();
-	void setDate(String date);
+	long getDate();
+	void setDate(long date);
 	
 	/**
 	 * 周开始时间yyyyMMdd

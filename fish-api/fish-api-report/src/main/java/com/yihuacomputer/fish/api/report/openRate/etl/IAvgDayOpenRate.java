@@ -12,6 +12,6 @@ public interface IAvgDayOpenRate extends IOpenRateColumn	{
 	 * 如20160830
 	 * @return
 	 */
-	String getDate();
-	void setDate(String date);
+	long getDate();
+	void setDate(long date);
 }

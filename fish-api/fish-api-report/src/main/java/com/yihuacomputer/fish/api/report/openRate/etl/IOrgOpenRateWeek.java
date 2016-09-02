@@ -7,12 +7,12 @@ package com.yihuacomputer.fish.api.report.openRate.etl;
  */
 public interface IOrgOpenRateWeek extends IOpenRateColumn{
 	/**
-	 * 获得统计的日期,格式为yyyyWW
+	 * 获得统计的日期,格式为yyyyww
 	 * 如201615
 	 * @return
 	 */
-	String getDate();
-	void setDate(String date);
+	long getDate();
+	void setDate(long date);
 	
 	/**
 	 * 周开始时间yyyyMMdd

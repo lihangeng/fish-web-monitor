@@ -39,6 +39,8 @@ public class DeviceOpenRateMonth implements IDeviceOpenRateMonth {
 
 	@Column(name = "DEV_TYPE_NAME", length = 30)
 	private String devType;
+	
+	
 
 	@Override
 	public long geId() {
@@ -99,7 +101,7 @@ public class DeviceOpenRateMonth implements IDeviceOpenRateMonth {
 	 * 统计日期
 	 */
 	@Column(name = "STAT_DATE", length = 10)
-	private String date;
+	private long date;
 
 	/** 设备应开机时长 */
 	@Column(name = "OPENTIMES")
@@ -109,12 +111,26 @@ public class DeviceOpenRateMonth implements IDeviceOpenRateMonth {
 	@Column(name = "HEALTHY_TIMEREAL")
 	private long healthyTimeReal;
 
-	public String getDate() {
+	@Column(name = "OPEN_RATE")
+	private double openRate;
+	
+	@Override
+	public double getOpenRate() {
+		return this.openRate;
+	}
+
+	@Override
+	public void setOpenRate(double openRate) {
+		this.openRate = openRate;
+	}
+
+	@Override
+	public long getDate() {
 		return date;
 	}
 
 	@Override
-	public void setDate(String date) {
+	public void setDate(long date) {
 		this.date = date;
 	}
 
@@ -137,9 +153,5 @@ public class DeviceOpenRateMonth implements IDeviceOpenRateMonth {
 	public void setHealthyTimeReal(long healthyTimeReal) {
 		this.healthyTimeReal = healthyTimeReal;
 	}
-	
-	@Override
-	public double getRate() {
-		return this.getHealthyTimeReal() / this.getOpenTimes();
-	}
+
 }

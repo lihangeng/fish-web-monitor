@@ -74,5 +74,11 @@ public interface IOpenRateColumn {
      * 获得开机率，正常开机时间/应开机时间
      * @return
      */
-    public double getRate();
+    public double getOpenRate();
+    
+    /**
+     * 设置开机率
+     * @return
+     */
+    public void setOpenRate(double openRate);
 }

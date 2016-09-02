@@ -90,7 +90,7 @@ public class TransTypeEtlService implements ITransTypeEtlService{
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			ITransTypeMonth day = new TransTypeMonth();
-			day.setDate(Long.parseLong(DateUtils.getDateShort(date)));
+			day.setDate(Long.parseLong(DateUtils.getYM(date)));
 			day.setTransCode(each[0].toString());
 			day.setTransAmount(Double.parseDouble(each[1].toString()));
 			day.setTransCount(Long.parseLong(each[2].toString()));

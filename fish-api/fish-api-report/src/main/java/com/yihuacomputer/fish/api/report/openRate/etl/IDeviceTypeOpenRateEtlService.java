@@ -16,26 +16,26 @@ public interface IDeviceTypeOpenRateEtlService {
 	
 	/**
 	 * 抽取每周的设备型号开机率
-	 * @param date yyyy-MM
+	 * @param date 上周
 	 */
 	public void extractByWeek(Date date);
 	
 	/**
 	 * 抽取上周的设备型号统计数据
-	 * @param weekOfYear 一年当中的第几周
+	 * @param date 上个月
 	 */
 	public void extractByMonth(Date date);
 	
 	/**
 	 * 获取某周的统计
-	 * @param weekOfYear
+	 * @param weekOfYear yyyyww
 	 * @return
 	 */
 	public List<IDeviceTypeOpenRateWeek> getDeviceTypeWeek(int weekOfYear);
 	
 	/**
 	 * 获取某月的统计
-	 * @param weekOfYear
+	 * @param month yyyyMM
 	 * @return
 	 */
 	public List<IDeviceTypeOpenRateMonth> getDeviceTypeMonth(int month);

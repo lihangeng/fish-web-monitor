@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Import;
 import com.yihuacomputer.fish.api.report.batch.IETLjobDaysService;
 import com.yihuacomputer.fish.api.report.batch.IETLjobService;
 import com.yihuacomputer.fish.api.report.engine.IExportReportService;
+import com.yihuacomputer.fish.api.report.engine.IPdfReportService;
 import com.yihuacomputer.fish.api.report.fault.ICaseStatisticsRptService;
 import com.yihuacomputer.fish.api.report.fault.IEveryMonthFaultCountService;
 import com.yihuacomputer.fish.api.report.fault.IFaultRateReportService;
@@ -20,6 +21,7 @@ import com.yihuacomputer.fish.report.engine.scheduler.EveryDayReportJob;
 import com.yihuacomputer.fish.report.engine.scheduler.EveryMonthReportJob;
 import com.yihuacomputer.fish.report.engine.scheduler.EveryWeekReportJob;
 import com.yihuacomputer.fish.report.engine.scheduler.EveryYearReportJob;
+import com.yihuacomputer.fish.report.service.PdfReportService;
 import com.yihuacomputer.fish.report.service.fault.CaseStatisticsRptService;
 import com.yihuacomputer.fish.report.service.fault.EveryMonthFaultCountService;
 import com.yihuacomputer.fish.report.service.fault.FaultRateReportService;
@@ -102,6 +104,12 @@ public class ReportModule {
 	public IETLjobDaysService iDaysService()
 	{
 		return new DayTransBatchService();
+	}
+	
+	@Bean
+	public IPdfReportService pdfReportService()
+	{
+		return new PdfReportService();
 	}
 	
 }
