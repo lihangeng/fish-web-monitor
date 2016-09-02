@@ -47,7 +47,7 @@ public class DeviceOpenRateEtlService implements IDeviceOpenRateEtlService{
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			IDeviceOpenRateWeek week = new DeviceOpenRateWeek();
-			week.setDate(DateUtils.getWeek(endDate));
+			week.setDate(DateUtils.getWeek(date));
 			week.setStartDate(start);
 			week.setEndDate(end);
 			week.setTerminalId(each[0].toString());

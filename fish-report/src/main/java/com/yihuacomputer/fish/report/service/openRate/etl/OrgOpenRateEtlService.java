@@ -61,21 +61,20 @@ public class OrgOpenRateEtlService implements IOrgOpenRateEtlService{
 
 	@Override
 	public void extractByMonth(Date date) {
-		Long [] values = DateUtils.getFirstAndLastDayofMonth(date);
+		Long ym = DateUtils.getLongYM(date);
 		StringBuilder sql = new StringBuilder();
 		sql.append("select org_code,org_name, sum(dor.OPENTIMES) OPENTIMES,sum(dor.HEALTHY_TIMEREAL) HEALTHY_TIMEREAL ");
 		sql.append("from etl_device_open_rate_month dor ");
-		sql.append("where dor.STAT_DATE >= ? and dor.STAT_DATE <= ? ");
+		sql.append("where dor.STAT_DATE = ? ");
 		sql.append("group by org_code");
 		
 		SQLQuery query = dao.getSQLQuery(sql.toString());
-		query.setLong(0, values[0]);
-		query.setLong(1, values[1]);
+		query.setLong(0, ym);
 		List<?> lists = query.list();
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			IOrgOpenRateMonth dorMonth = new OrgOpenRateMonth();
-			dorMonth.setDate(DateUtils.getLongYM(date));
+			dorMonth.setDate(ym);
 			dorMonth.setOrgCode(each[0].toString());
 			dorMonth.setOrgName(each[1].toString());
 			dorMonth.setOpenTimes(Long.parseLong(each[2].toString()));
