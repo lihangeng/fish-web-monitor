@@ -31,7 +31,7 @@ public class FaultDurationWeek implements IFaultDurationWeek {
 	private int duration;
 
 	@Column(name = "FAULT_COUNT")
-	private long count;
+	private long faultCount;
 
 	@Override
 	public long getId() {
@@ -64,12 +64,12 @@ public class FaultDurationWeek implements IFaultDurationWeek {
 
 	@Override
 	public long getCount() {
-		return count;
+		return faultCount;
 	}
 
 	@Override
 	public void setCount(long count) {
-		this.count = count;
+		this.faultCount = count;
 	}
 
 	@Override

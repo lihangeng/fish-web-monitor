@@ -34,7 +34,7 @@ public class FaultClassifyMonth implements IFaultClassifyMonth {
 	private String classifyName;
 
 	@Column(name = "CLASSIFY_COUNT")
-	private long count;
+	private long faultCount;
 
 	@Override
 	public long getId() {
@@ -77,12 +77,12 @@ public class FaultClassifyMonth implements IFaultClassifyMonth {
 
 	@Override
 	public long getCount() {
-		return count;
+		return faultCount;
 	}
 
 	@Override
 	public void setCount(long count) {
-		this.count = count;
+		this.faultCount = count;
 	}
 
 }

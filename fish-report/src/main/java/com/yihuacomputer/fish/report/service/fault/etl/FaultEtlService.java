@@ -190,7 +190,7 @@ public class FaultEtlService implements IFaultEtlService {
 
 	@Override
 	public IFaultWeek getWeek(long weekOfYear) {
-		return dao.findUniqueByHql("from FaultClass where date = ?", weekOfYear);
+		return dao.findUniqueByHql("from FaultWeek where date = ?", weekOfYear);
 	}
 
 	@Override
@@ -200,12 +200,12 @@ public class FaultEtlService implements IFaultEtlService {
 
 	@Override
 	public List<IFaultClassifyWeek> getClassifyWeek(long weekOfYear) {
-		return dao.findByHQL("from FaultClassifyWeek where date = ? order by count desc", weekOfYear);
+		return dao.findByHQL("from FaultClassifyWeek where date = ? order by faultCount desc", weekOfYear);
 	}
 
 	@Override
 	public List<IFaultClassifyMonth> getClassifyMonth(long month) {
-		return dao.findByHQL("from FaultClassifyMonth where date = ? order by count desc", month);
+		return dao.findByHQL("from FaultClassifyMonth where date = ? order by faultCount desc", month);
 	}
 
 	@Override

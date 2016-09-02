@@ -148,7 +148,7 @@ public class RetainCardEtlService implements IRetainCardEtlService {
 		List<?> lists = query.list();
 		for(Object object : lists){
 			Object [] each = (Object[])object;
-			if(each != null){
+			if(each[0] != null){
 				Long [] values = new Long[3];
 				values[0] = Long.parseLong(each[0].toString());
 				values[1] = Long.parseLong(each[1].toString());

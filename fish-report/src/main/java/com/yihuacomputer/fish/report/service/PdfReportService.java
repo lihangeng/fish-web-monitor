@@ -284,7 +284,7 @@ public class PdfReportService implements IPdfReportService{
 		pdf.addChapter("一、设备信息汇总");
 		ParagraphMgr mgr = ParagraphMgr.getInstance();
 		IFilter filter = new Filter();
-		filter.eq("date", weekOfYear);
+		filter.eq("date", String.valueOf(weekOfYear));
 		List<IDeviceCatalogSummaryWeek> list1 = deviceCatalogSummaryWeekService.list(filter);
 		int devNum=0;
 		int devAddNum=0;
