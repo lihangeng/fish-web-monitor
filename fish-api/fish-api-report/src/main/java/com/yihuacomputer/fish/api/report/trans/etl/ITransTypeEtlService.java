@@ -32,27 +32,27 @@ public interface ITransTypeEtlService {
 	 * @param weekOfYear yyyyww
 	 * @return
 	 */
-	public List<ITransTypeWeek> getWeek(int weekOfYear);
+	public List<ITransTypeWeek> getWeek(long weekOfYear);
 	
 	/**
 	 * 获得总的统计数据
 	 * @param weekOfYear yyyyww
 	 * @return
 	 */
-	public Long [] getWeekTotal(int weekOfYear);
+	public Long [] getWeekTotal(long weekOfYear);
 	
 	/**
 	 * 获取某月的统计
 	 * @param month yyyyMM
 	 * @return
 	 */
-	public List<ITransTypeMonth> getMonth(int month);
+	public List<ITransTypeMonth> getMonth(long month);
 	
 	/**
 	 * 获得月总的统计数据 
 	 * @param month yyyyMM
 	 * @return
 	 */
-	public Long [] getMonthTotal(int month);
+	public Long [] getMonthTotal(long month);
 	
 }

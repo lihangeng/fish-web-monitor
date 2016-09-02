@@ -33,26 +33,26 @@ public interface IOrgOpenRateEtlService {
 	 * @param weekOfYear
 	 * @return
 	 */
-	public List<IOrgOpenRateWeek> getTopOrgWeek(int weekOfYear,int limit);
+	public List<IOrgOpenRateWeek> getTopOrgWeek(long weekOfYear,int limit);
 	
 	/**
 	 * 获取某月的统计，排名靠前的网点
 	 * @param weekOfYear
 	 * @return
 	 */
-	public List<IOrgOpenRateMonth> getTopOrgMonth(int month,int limit);
+	public List<IOrgOpenRateMonth> getTopOrgMonth(long month,int limit);
 	
 	/**
 	 * 获取某周的统计（获取倒数limit个网点）
 	 * @param weekOfYear
 	 * @return
 	 */
-	public List<IOrgOpenRateWeek> getLastOrgWeek(int weekOfYear,int limit);
+	public List<IOrgOpenRateWeek> getLastOrgWeek(long weekOfYear,int limit);
 	
 	/**
 	 * 获取倒数limit个网点的
 	 * @param weekOfYear
 	 * @return
 	 */
-	public List<IOrgOpenRateMonth> getLastOrgMonth(int month,int limit);
+	public List<IOrgOpenRateMonth> getLastOrgMonth(long month,int limit);
 }

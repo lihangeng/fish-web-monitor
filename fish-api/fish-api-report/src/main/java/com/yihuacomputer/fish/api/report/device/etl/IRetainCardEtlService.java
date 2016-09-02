@@ -27,26 +27,26 @@ public interface IRetainCardEtlService {
 	 * @param weekOfYear
 	 * @return
 	 */
-	public List<IRetainCardWeek> getWeek(int weekOfYear);
+	public List<IRetainCardWeek> getWeek(long weekOfYear);
 	
 	/**
 	 * 获得总的统计数据
 	 * @param weekOfYear
 	 * @return
 	 */
-	public Long [] getWeekTotal(int weekOfYear);
+	public Long [] getWeekTotal(long weekOfYear);
 	
 	/**
 	 * 获取某月的吞卡统计
 	 * @param weekOfYear
 	 * @return
 	 */
-	public List<IRetainCardMonth> getMonth(int month);
+	public List<IRetainCardMonth> getMonth(long month);
 	
 	/**
 	 * 获得月总的统计数据
 	 * @param weekOfYear
 	 * @return
 	 */
-	public Long [] getMonthTotal(int month);
+	public Long [] getMonthTotal(long month);
 }

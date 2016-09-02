@@ -30,27 +30,27 @@ public interface IDeviceOpenRateEtlService {
 	 * @param weekOfYear
 	 * @return
 	 */
-	public List<IDeviceOpenRateWeek> getTopDeviceWeek(int weekOfYear,int limit);
+	public List<IDeviceOpenRateWeek> getTopDeviceWeek(long weekOfYear,int limit);
 	
 	/**
 	 * 获取某月数据：按照设备统计的开机率，较好设备Top10
 	 * @param weekOfYear
 	 * @return
 	 */
-	public List<IDeviceOpenRateMonth> getTopDeviceMonth(int month,int limit);
+	public List<IDeviceOpenRateMonth> getTopDeviceMonth(long month,int limit);
 	
 	/**
 	 * 获取某周的统计：4.	按照设备统计的开机率，较查设备Top10
 	 * @param weekOfYear
 	 * @return
 	 */
-	public List<IDeviceOpenRateWeek> getLastDeviceWeek(int weekOfYear,int limit);
+	public List<IDeviceOpenRateWeek> getLastDeviceWeek(long weekOfYear,int limit);
 	
 	/**
 	 * 获取某月的统计：4.	按照设备统计的开机率，较查设备Top10
 	 * @param weekOfYear
 	 * @return
 	 */
-	public List<IDeviceOpenRateMonth> getLastDeviceMonth(int month,int limit);
+	public List<IDeviceOpenRateMonth> getLastDeviceMonth(long month,int limit);
 
 }

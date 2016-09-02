@@ -100,7 +100,7 @@ public class DeviceOpenRateEtlService implements IDeviceOpenRateEtlService{
 	}
 
 	@Override
-	public List<IDeviceOpenRateWeek> getTopDeviceWeek(int weekOfYear, int limit) {
+	public List<IDeviceOpenRateWeek> getTopDeviceWeek(long weekOfYear, int limit) {
 		IFilter filter = new Filter();
 		filter.eq("date", weekOfYear);
 		filter.descOrder("openRate");
@@ -109,7 +109,7 @@ public class DeviceOpenRateEtlService implements IDeviceOpenRateEtlService{
 	}
 
 	@Override
-	public List<IDeviceOpenRateWeek> getLastDeviceWeek(int weekOfYear, int limit) {
+	public List<IDeviceOpenRateWeek> getLastDeviceWeek(long weekOfYear, int limit) {
 		IFilter filter = new Filter();
 		filter.eq("ddate", weekOfYear);
 		filter.order("openRate");
@@ -118,7 +118,7 @@ public class DeviceOpenRateEtlService implements IDeviceOpenRateEtlService{
 	}
 	
 	@Override
-	public List<IDeviceOpenRateMonth> getTopDeviceMonth(int month, int limit) {
+	public List<IDeviceOpenRateMonth> getTopDeviceMonth(long month, int limit) {
 		IFilter filter = new Filter();
 		filter.eq("date", month);
 		filter.descOrder("openRate");
@@ -128,7 +128,7 @@ public class DeviceOpenRateEtlService implements IDeviceOpenRateEtlService{
 
 
 	@Override
-	public List<IDeviceOpenRateMonth> getLastDeviceMonth(int month, int limit) {
+	public List<IDeviceOpenRateMonth> getLastDeviceMonth(long month, int limit) {
 		IFilter filter = new Filter();
 		filter.eq("date", month);
 		filter.order("openRate");

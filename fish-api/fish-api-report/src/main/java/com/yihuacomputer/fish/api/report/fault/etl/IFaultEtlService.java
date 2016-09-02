@@ -50,40 +50,40 @@ public interface IFaultEtlService {
 	 * @param weekOfYear
 	 * @return
 	 */
-	public IFaultWeek getWeek(int weekOfYear);
+	public IFaultWeek getWeek(long weekOfYear);
 	
 	/**
 	 * 获取某月的统计
 	 * @param weekOfYear
 	 * @return
 	 */
-	public IFaultMonth getMonth(int month);
+	public IFaultMonth getMonth(long month);
 	
 	/**
 	 * 获取某周的统计
 	 * @param weekOfYear
 	 * @return
 	 */
-	public List<IFaultClassifyWeek> getClassifyWeek(int weekOfYear);
+	public List<IFaultClassifyWeek> getClassifyWeek(long weekOfYear);
 	
 	/**
 	 * 获取某月的统计
 	 * @param weekOfYear
 	 * @return
 	 */
-	public List<IFaultClassifyMonth> getClassifyMonth(int month);
+	public List<IFaultClassifyMonth> getClassifyMonth(long month);
 	
 	/**
 	 * 获取某周的统计
 	 * @param weekOfYear
 	 * @return
 	 */
-	public List<IFaultDurationWeek> getDurationWeek(int weekOfYear);
+	public List<IFaultDurationWeek> getDurationWeek(long weekOfYear);
 	
 	/**
 	 * 获取某月的统计
 	 * @param weekOfYear
 	 * @return
 	 */
-	public List<IFaultDurationMonth> getDurationMonth(int month);
+	public List<IFaultDurationMonth> getDurationMonth(long month);
 }

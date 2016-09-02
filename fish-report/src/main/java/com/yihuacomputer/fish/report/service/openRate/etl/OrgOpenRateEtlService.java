@@ -86,7 +86,7 @@ public class OrgOpenRateEtlService implements IOrgOpenRateEtlService{
 	}
 
 	@Override
-	public List<IOrgOpenRateWeek> getTopOrgWeek(int weekOfYear, int limit) {
+	public List<IOrgOpenRateWeek> getTopOrgWeek(long weekOfYear, int limit) {
 		IFilter filter = new Filter();
 		filter.eq("date", weekOfYear);
 		filter.descOrder("openRate");
@@ -95,7 +95,7 @@ public class OrgOpenRateEtlService implements IOrgOpenRateEtlService{
 	}
 
 	@Override
-	public List<IOrgOpenRateMonth> getTopOrgMonth(int month, int limit) {
+	public List<IOrgOpenRateMonth> getTopOrgMonth(long month, int limit) {
 		IFilter filter = new Filter();
 		filter.eq("date", month);
 		filter.descOrder("openRate");
@@ -104,7 +104,7 @@ public class OrgOpenRateEtlService implements IOrgOpenRateEtlService{
 	}
 
 	@Override
-	public List<IOrgOpenRateWeek> getLastOrgWeek(int weekOfYear, int limit) {
+	public List<IOrgOpenRateWeek> getLastOrgWeek(long weekOfYear, int limit) {
 		IFilter filter = new Filter();
 		filter.eq("date", weekOfYear);
 		filter.descOrder("openRate");
@@ -113,7 +113,7 @@ public class OrgOpenRateEtlService implements IOrgOpenRateEtlService{
 	}
 
 	@Override
-	public List<IOrgOpenRateMonth> getLastOrgMonth(int month, int limit) {
+	public List<IOrgOpenRateMonth> getLastOrgMonth(long month, int limit) {
 		IFilter filter = new Filter();
 		filter.eq("date", month);
 		filter.descOrder("openRate");
