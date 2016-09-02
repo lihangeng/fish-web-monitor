@@ -85,7 +85,6 @@ public class DeviceCatalogSummaryMonthService implements IDeviceCatalogSummaryMo
 	}
 
 	@Override
-	@DataSource(value=DataSources.Analysis)
 	public IDeviceCatalogSummaryMonth save(IDeviceCatalogSummaryMonth dcsm) {
 		return dao.save(dcsm);
 	}

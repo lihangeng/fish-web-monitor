@@ -71,19 +71,20 @@ public class EveryMonthReportJob {
 
 	public void execute(){
 		logger.debug("month data ETL ....");
-		//1.每月交易统计（2016年2季度增加）
+		//1.每月交易统计（2016年2季度增加）ATMC_TRANSACTION_MONTHS
 		String yestoday = DateUtils.getLastMonthShortDates();
 		transactionMonthsService.extractDate(yestoday);
-		//2.（2016年2季度增加）计算设备故障率
+		//2.（2016年2季度增加）计算设备故障率 CASE_FAULT_MONTH
 		everyMonthFaultCountService.extractMonthFault(yestoday);
 		//3.每台设备日均交易统计(加钞计划使用)
 		String curdate = DateUtils.getDateShort(new Date());
 		monthDailyTradingVolumeService.generalMonthDailyTradingVolumeByDate(curdate);
 		
 		//0.设备类统计
+		Date dateNow = new Date();
+		deviceCatalogSummaryMonthService.loadBaseData(dateNow);
+		deviceTypeSummaryMonthService.loadBaseData(dateNow);
 		Date date =DateUtils.getDate(DateUtils.getLastDate());
-		deviceCatalogSummaryMonthService.loadBaseData(date);
-		deviceTypeSummaryMonthService.loadBaseData(date);
 		//1.每周开机率统计(2016年3季度需求综合报告之开机率信息汇总)
 		avgOpenRateEtlService.extractByMonth(date);
 		//2.每周设备开机率统计(2016年3季度需求综合报告之开机率信息汇总)
