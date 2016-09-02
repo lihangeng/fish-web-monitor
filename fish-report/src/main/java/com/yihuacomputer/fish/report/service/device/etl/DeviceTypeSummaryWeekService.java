@@ -71,28 +71,22 @@ public class DeviceTypeSummaryWeekService implements IDeviceTypeSummaryWeekServi
 		// yyyy-mm-dd
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(date.getTime());
-		// 将时间定位至 当前周的周一
-		calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-		calendar.set(Calendar.HOUR, 0);
-		calendar.set(Calendar.MINUTE, 0);
-		calendar.set(Calendar.SECOND, 0);
-		calendar.set(Calendar.MILLISECOND, 0);
-		Date toDate = calendar.getTime();
-		// 当前周的两周前
-		calendar.add(Calendar.DAY_OF_MONTH, -14);
+		//当前周的两周前
+		calendar.add(Calendar.DAY_OF_MONTH, -7);
 		// 获取上次汇总日期
-		String lastDate = DateUtils.getDate(calendar.getTime());
-		calendar.add(Calendar.DAY_OF_MONTH, 7);
+		String lastlastWeek=DateUtils.get(calendar.getTime(), "yyyyww");
 		// 此次汇总时间点
-		Date fromDate = calendar.getTime();
-		String dateStr = DateUtils.getDate(fromDate);
-		Map<String, IDeviceTypeSummaryWeek> lastInfoMap = this.get(lastDate);
+		String week=DateUtils.get(date, "yyyyww");
+		calendar.setTime(date);
+		Date startDate = DateUtils.getFirstDayOfWeek(calendar);
+		Date endDate = DateUtils.getLastDayOfWeek(calendar);
+		Map<String, IDeviceTypeSummaryWeek> lastInfoMap = this.get(lastlastWeek);
 		StringBuffer hqlSb = new StringBuffer();
 		hqlSb.append("select device.devType.name,count(device.id), ");
 		hqlSb.append("sum(case when device.installDate>=? then 1 else 0 end)  ");
 		hqlSb.append("from ").append(Device.class.getSimpleName());
 		hqlSb.append(" device  where device.installDate<?  group by device.devType.name ");
-		List<Object> list = dao.findByHQL(hqlSb.toString(), new Object[] { fromDate,toDate });
+		List<Object> list = dao.findByHQL(hqlSb.toString(), new Object[] { startDate,endDate });
 		for (Object objectResult : list) {
 			Object[] objects = (Object[]) objectResult;
 			String devType = String.valueOf(objects[0]);
@@ -104,7 +98,7 @@ public class DeviceTypeSummaryWeekService implements IDeviceTypeSummaryWeekServi
 			idtswNew.setAddDevNum(news);
 			idtswNew.setAllAddDevNum(idtsw == null ? news : idtsw.getAllAddDevNum() + news);
 			idtswNew.setAllScrappedDevNum(0);
-			idtswNew.setDate(dateStr);
+			idtswNew.setDate(week);
 			idtswNew.setNum(all);
 			idtswNew.setScrappedDevNum(0);
 			this.save(idtswNew);

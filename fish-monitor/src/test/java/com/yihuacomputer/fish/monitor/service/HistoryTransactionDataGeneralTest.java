@@ -58,8 +58,8 @@ public class HistoryTransactionDataGeneralTest  extends BindSessionInTest2{
 //		filter.ne("inOutFlag", 0);
 //		List<ITransType> transTypeList =transTypeService.list(filter);
 //		generalTrans("2016-8-31",deviceList,transTypeList,730);
-//		generalDailyTrans("2016-8-31",730);
-//		generalMonthTrans("2016-9-1",1);
+//		generalDailyTrans("2016-9-1",730);
+//		generalMonthTrans("2016-9-1",24);
 	}
 
 	private void generalDailyTrans(String dateStr,int days){
@@ -107,7 +107,7 @@ public class HistoryTransactionDataGeneralTest  extends BindSessionInTest2{
 			for(IDevice device:deviceList){
 				for(ITransType transType:transTypeList){
 					ITransaction transaction = transactionService.make();
-					transaction.setAmt(random.nextInt(2000000));
+					transaction.setAmt(random.nextInt(80000));
 					transaction.setCardType(CardType.LOCAL_BANK);
 					transaction.setCostTime(0l);
 					transaction.setCreditAccount(i+device.getTerminalId()+transType.getId());
