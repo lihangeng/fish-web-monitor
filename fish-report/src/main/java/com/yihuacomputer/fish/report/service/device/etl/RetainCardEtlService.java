@@ -149,7 +149,7 @@ public class RetainCardEtlService implements IRetainCardEtlService {
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			if(each != null){
-				Long [] values = new Long[]{};
+				Long [] values = new Long[3];
 				values[0] = Long.parseLong(each[0].toString());
 				values[1] = Long.parseLong(each[1].toString());
 				values[2] = Long.parseLong(each[2].toString());
@@ -177,7 +177,7 @@ public class RetainCardEtlService implements IRetainCardEtlService {
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			if(each != null){
-				Long [] values = new Long[]{};
+				Long [] values = new Long[3];
 				values[0] = Long.parseLong(each[0].toString());
 				values[1] = Long.parseLong(each[1].toString());
 				values[2] = Long.parseLong(each[2].toString());
