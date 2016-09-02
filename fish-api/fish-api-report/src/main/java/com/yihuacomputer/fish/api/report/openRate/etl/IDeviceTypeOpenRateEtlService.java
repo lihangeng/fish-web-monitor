@@ -31,12 +31,12 @@ public interface IDeviceTypeOpenRateEtlService {
 	 * @param weekOfYear yyyyww
 	 * @return
 	 */
-	public List<IDeviceTypeOpenRateWeek> getDeviceTypeWeek(int weekOfYear);
+	public List<IDeviceTypeOpenRateWeek> getDeviceTypeWeek(long weekOfYear);
 	
 	/**
 	 * 获取某月的统计
 	 * @param month yyyyMM
 	 * @return
 	 */
-	public List<IDeviceTypeOpenRateMonth> getDeviceTypeMonth(int month);
+	public List<IDeviceTypeOpenRateMonth> getDeviceTypeMonth(long month);
 }

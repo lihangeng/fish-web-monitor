@@ -36,7 +36,7 @@ public class Pdf {
 	
 	private Logger logger = LoggerFactory.getLogger(Pdf.class);
 	
-	private Document document;
+	public Document document;
 	private PdfWriter writer;
 	
 	/**

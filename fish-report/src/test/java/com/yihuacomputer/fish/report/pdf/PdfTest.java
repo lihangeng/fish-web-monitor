@@ -4,8 +4,6 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
@@ -28,7 +26,7 @@ public class PdfTest {
 
 	public static void main(String[] args) throws FileNotFoundException, DocumentException {
 //		writeChartToPDF(generateBarChart(), 500, 400, "D://barchart.pdf");
-		writeChartToPDF(generatePieChart(), 590, 200, "D://piechart2.pdf");
+//		writeChartToPDF(generatePieChart(), 590, 200, "D://piechart2.pdf");
 	}
 	
 	public static void writeChartToPDF(JFreeChart chart, int width, int height, String fileName) {
@@ -78,30 +76,15 @@ public class PdfTest {
 		document.close();
 	}
 	
-	public static JFreeChart generatePieChart() {
-		DefaultPieDataset dataSet = new DefaultPieDataset();
-		dataSet.setValue("中国", 19.64);
-		dataSet.setValue("India", 17.3);
-		dataSet.setValue("United States", 4.54);
-		dataSet.setValue("Indonesia", 3.4);
-		dataSet.setValue("Brazil", 2.83);
-		dataSet.setValue("Pakistan", 2.48);
-		dataSet.setValue("Bangladesh", 2.38);
+	public static JFreeChart generatePieChart(DefaultPieDataset dataSet) {
 
 		JFreeChart chart = ChartFactory.createPieChart(
-				"World 中国 by countries", dataSet, true, true, false);
+				"", dataSet, true, true, false);
 		
 		return chart;
 	}
 	
-	public static JFreeChart generateBarChart() {
-		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-		dataSet.setValue(791, "Population", "1750 AD");
-		dataSet.setValue(978, "Population", "1800 AD");
-		dataSet.setValue(1262, "Population", "1850 AD");
-		dataSet.setValue(1650, "Population", "1900 AD");
-		dataSet.setValue(2519, "Population", "1950 AD");
-		dataSet.setValue(6070, "Population", "2000 AD");
+	public static JFreeChart generateBarChart(DefaultCategoryDataset dataSet) {
 
 		JFreeChart chart = ChartFactory.createBarChart(
 				"World Population growth", "Year", "Population in millions",
@@ -110,13 +93,12 @@ public class PdfTest {
 		return chart;
 	}
 	
-	public static JFreeChart generateLineChart() {
-		XYDataset dataset = createDataset();
-
+	public static JFreeChart generateLineChart(XYDataset dataset) {
+		ReportTest rt = new ReportTest();
 		JFreeChart chart = ChartFactory.createXYLineChart(
-	            "Line Chart Demo 6",      // chart title
-	            "X",                      // x axis label
-	            "Y",                      // y axis label
+	            "",      // chart title
+	            "",                      // x axis label
+	            "",                      // y axis label
 	            dataset,                  // data
 	            PlotOrientation.VERTICAL,
 	            true,                     // include legend

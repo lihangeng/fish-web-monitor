@@ -85,14 +85,14 @@ public class DeviceTypeOpenRateEtlService implements IDeviceTypeOpenRateEtlServi
 	}
 
 	@Override
-	public List<IDeviceTypeOpenRateWeek> getDeviceTypeWeek(int weekOfYear) {
+	public List<IDeviceTypeOpenRateWeek> getDeviceTypeWeek(long weekOfYear) {
 		IFilter filter = new Filter();
 		filter.eq("date", weekOfYear);
 		return dao.findByFilter(filter, IDeviceTypeOpenRateWeek.class);
 	}
 
 	@Override
-	public List<IDeviceTypeOpenRateMonth> getDeviceTypeMonth(int month) {
+	public List<IDeviceTypeOpenRateMonth> getDeviceTypeMonth(long month) {
 		IFilter filter = new Filter();
 		filter.eq("date", month);
 		return dao.findByFilter(filter, IDeviceTypeOpenRateMonth.class);

@@ -99,12 +99,12 @@ public class TransTypeEtlService implements ITransTypeEtlService{
 	}
 
 	@Override
-	public List<ITransTypeWeek> getWeek(int weekOfYear) {
+	public List<ITransTypeWeek> getWeek(long weekOfYear) {
 		return dao.findByHQL("from TransTypeWeek where date = ?", weekOfYear);
 	}
 
 	@Override
-	public Long[] getWeekTotal(int weekOfYear) {
+	public Long[] getWeekTotal(long weekOfYear) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select sum(rc.TRANS_COUNT),sum(rc.TRANS_AMOUNT)");
 		sql.append(" from etl_trans_type_week rc");
@@ -115,7 +115,7 @@ public class TransTypeEtlService implements ITransTypeEtlService{
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			if(each != null){
-				Long [] values = new Long[]{};
+				Long [] values = new Long[2];
 				values[0] = Long.parseLong(each[0].toString());
 				values[1] = Long.parseLong(each[1].toString());
 				return values;
@@ -125,12 +125,12 @@ public class TransTypeEtlService implements ITransTypeEtlService{
 	}
 
 	@Override
-	public List<ITransTypeMonth> getMonth(int month) {
+	public List<ITransTypeMonth> getMonth(long month) {
 		return dao.findByHQL("from TransTypeMonth where date = ?", month);
 	}
 
 	@Override
-	public Long[] getMonthTotal(int month) {
+	public Long[] getMonthTotal(long month) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select sum(rc.TRANS_COUNT),sum(rc.TRANS_AMOUNT)");
 		sql.append(" from etl_trans_type_month rc");
@@ -141,7 +141,7 @@ public class TransTypeEtlService implements ITransTypeEtlService{
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			if(each != null){
-				Long [] values = new Long[]{};
+				Long [] values = new Long[2];
 				values[0] = Long.parseLong(each[0].toString());
 				values[1] = Long.parseLong(each[1].toString());
 				return values;

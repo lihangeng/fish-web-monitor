@@ -132,13 +132,13 @@ public class RetainCardEtlService implements IRetainCardEtlService {
 
 
 	@Override
-	public List<IRetainCardWeek> getWeek(int weekOfYear) {
+	public List<IRetainCardWeek> getWeek(long weekOfYear) {
 		return dao.findByHQL("from RetainCardWeek where date = ?", weekOfYear);
 	}
 
 
 	@Override
-	public Long[] getWeekTotal(int weekOfYear) {
+	public Long[] getWeekTotal(long weekOfYear) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select sum(rc.DEVICE_COUNT),sum(rc.RETAIN_COUNT),sum(rc.LAST_RETAIN_COUNT)");
 		sql.append(" from etl_retain_card_week rc");
@@ -149,7 +149,7 @@ public class RetainCardEtlService implements IRetainCardEtlService {
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			if(each != null){
-				Long [] values = new Long[]{};
+				Long [] values = new Long[3];
 				values[0] = Long.parseLong(each[0].toString());
 				values[1] = Long.parseLong(each[1].toString());
 				values[2] = Long.parseLong(each[2].toString());
@@ -161,12 +161,12 @@ public class RetainCardEtlService implements IRetainCardEtlService {
 
 
 	@Override
-	public List<IRetainCardMonth> getMonth(int month) {
+	public List<IRetainCardMonth> getMonth(long month) {
 		return dao.findByHQL("from RetainCardMonth where date = ?", month);
 	}
 
 	@Override
-	public Long[] getMonthTotal(int month) {
+	public Long[] getMonthTotal(long month) {
 		StringBuilder sql = new StringBuilder();
 		sql.append("select sum(rc.DEVICE_COUNT),sum(rc.RETAIN_COUNT),sum(rc.LAST_RETAIN_COUNT)");
 		sql.append(" from etl_retain_card_month rc");
@@ -177,7 +177,7 @@ public class RetainCardEtlService implements IRetainCardEtlService {
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			if(each != null){
-				Long [] values = new Long[]{};
+				Long [] values = new Long[3];
 				values[0] = Long.parseLong(each[0].toString());
 				values[1] = Long.parseLong(each[1].toString());
 				values[2] = Long.parseLong(each[2].toString());
