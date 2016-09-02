@@ -130,13 +130,14 @@ public class EveryWeekReportJob {
 	 */
 	private void executeWeekDevice() {
 		long start = System.currentTimeMillis();
-		Date now = new Date();
-		//1.设备类型统计
-		deviceCatalogSummaryWeekService.loadBaseData(now);
-		//2.设备型号统计
-		deviceTypeSummaryWeekService.loadBaseData(now);
-		//3.每周吞卡统计(2016年3季度需求综合报告之吞卡信息汇总)
+//		Date now = new Date();
 		Date lastWeek = DateUtils.getLastWeek();
+		//1.设备类型统计
+		deviceCatalogSummaryWeekService.loadBaseData(lastWeek);
+		//2.设备型号统计
+		deviceTypeSummaryWeekService.loadBaseData(lastWeek);
+		//3.每周吞卡统计(2016年3季度需求综合报告之吞卡信息汇总)
+//		Date lastWeek = DateUtils.getLastWeek();
 		retainCardEtlService.extractByWeek(lastWeek);
 		logger.info(String.format("executeWeekDevice SPEND [%s]ms",System.currentTimeMillis() - start));
 	}
