@@ -155,6 +155,28 @@ public class DateUtils {
 		date.add(Calendar.DAY_OF_MONTH, -1);
 		return new SimpleDateFormat(STANDARD_DATE).format(date.getTime());
 	}
+	
+	/**
+	 * 获得上月
+	 * @return
+	 */
+	public static Date getLastMonth(){
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.MONTH, -1);
+		return cal.getTime();
+	}
+	
+	/**
+	 * 获得上周
+	 * @return
+	 */
+	public static Date getLastWeek(){
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		cal.add(Calendar.WEEK_OF_YEAR, -1);
+		return cal.getTime();
+	}
 
 	/**
 	 * 获取当天的前或者后多少天
