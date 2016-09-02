@@ -32,7 +32,7 @@ public class OrgOpenRateMonth implements IOrgOpenRateMonth {
 	private String orgName;
 
 	@Override
-	public long geId() {
+	public long getId() {
 		return this.id;
 	}
 

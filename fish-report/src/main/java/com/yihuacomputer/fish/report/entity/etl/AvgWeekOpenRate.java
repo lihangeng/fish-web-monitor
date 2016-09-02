@@ -89,7 +89,7 @@ public class AvgWeekOpenRate implements IAvgWeekOpenRate {
 	}
 	
 	@Override
-	public long geId() {
+	public long getId() {
 		return this.id;
 	}
 

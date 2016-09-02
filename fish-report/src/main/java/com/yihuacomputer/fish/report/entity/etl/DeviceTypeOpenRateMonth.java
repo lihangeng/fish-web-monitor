@@ -31,7 +31,7 @@ public class DeviceTypeOpenRateMonth implements IDeviceTypeOpenRateMonth {
 	private String devType;
 
 	@Override
-	public long geId() {
+	public long getId() {
 		return this.id;
 	}
 

@@ -38,7 +38,7 @@ public class OrgOpenRateWeek implements IOrgOpenRateWeek {
 	private String endDate;
 
 	@Override
-	public long geId() {
+	public long getId() {
 		return this.id;
 	}
 

@@ -9,7 +9,7 @@ package com.yihuacomputer.fish.api.report.openRate.etl;
  *
  */
 public interface IOpenRateColumn {
-	long geId();
+	long getId();
 	
 	/**
 	 * 应开机时长，单位为秒

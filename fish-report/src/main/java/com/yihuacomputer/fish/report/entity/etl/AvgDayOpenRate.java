@@ -26,7 +26,7 @@ public class AvgDayOpenRate implements IAvgDayOpenRate {
 	private long id;
 
 	@Override
-	public long geId() {
+	public long getId() {
 		return this.id;
 	}
 	

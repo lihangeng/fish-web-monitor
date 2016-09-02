@@ -43,7 +43,7 @@ public class DeviceOpenRateMonth implements IDeviceOpenRateMonth {
 	
 
 	@Override
-	public long geId() {
+	public long getId() {
 		return this.id;
 	}
 

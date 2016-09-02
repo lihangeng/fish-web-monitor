@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
+import com.yihuacomputer.common.util.NumUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateEtlService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateMonth;
@@ -53,7 +54,7 @@ public class DeviceTypeOpenRateEtlService implements IDeviceTypeOpenRateEtlServi
 			week.setHealthyTimeReal(Long.parseLong(each[3].toString()));
 			week.setStartDate(each[4].toString());
 			week.setEndDate(each[5].toString());
-			week.setOpenRate(week.getHealthyTimeReal()/week.getOpenTimes());
+			week.setOpenRate(NumUtils.getPercent(week.getHealthyTimeReal(),week.getOpenTimes()));
 			dao.save(week);
 		}
 	}
@@ -78,7 +79,7 @@ public class DeviceTypeOpenRateEtlService implements IDeviceTypeOpenRateEtlServi
 			dorMonth.setDevType(each[1].toString());
 			dorMonth.setOpenTimes(Long.parseLong(each[2].toString()));
 			dorMonth.setHealthyTimeReal(Long.parseLong(each[3].toString()));
-			dorMonth.setOpenRate(dorMonth.getHealthyTimeReal()/dorMonth.getOpenTimes());
+			dorMonth.setOpenRate(NumUtils.getPercent(dorMonth.getHealthyTimeReal(),dorMonth.getOpenTimes()));
 			dao.save(dorMonth);
 		}
 	}

@@ -36,14 +36,14 @@ public interface IAvgOpenRateEtlService {
 	 * @param weekOfYear
 	 * @return
 	 */
-	public Object [] getWeekTotal(int weekOfYear);
+	public Object [] getWeekTotal(long weekOfYear);
 	
 	/**
 	 * 获得月总的统计数据
 	 * @param weekOfYear
 	 * @return
 	 */
-	public Object [] getMonthTotal(int month);
+	public Object [] getMonthTotal(long month);
 	
 	/**
 	 * 某一段时间内的每日平均开机率

@@ -47,7 +47,7 @@ public class DeviceOpenRateWeek implements IDeviceOpenRateWeek {
 	private String endDate;
 
 	@Override
-	public long geId() {
+	public long getId() {
 		return this.id;
 	}
 

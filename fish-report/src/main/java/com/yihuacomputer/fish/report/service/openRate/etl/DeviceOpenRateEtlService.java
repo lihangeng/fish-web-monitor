@@ -13,6 +13,7 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
+import com.yihuacomputer.common.util.NumUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceOpenRateEtlService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceOpenRateMonth;
@@ -57,7 +58,7 @@ public class DeviceOpenRateEtlService implements IDeviceOpenRateEtlService{
 			week.setOrgName(each[4].toString());
 			week.setTypeId(Long.parseLong(each[5].toString()));
 			week.setDevType(each[6].toString());
-			week.setOpenRate(week.getHealthyTimeReal()/week.getOpenTimes());
+			week.setOpenRate(NumUtils.getPercent(week.getHealthyTimeReal(),week.getOpenTimes()));
 			dao.save(week);
 		}
 	}
@@ -93,7 +94,7 @@ public class DeviceOpenRateEtlService implements IDeviceOpenRateEtlService{
 			dorMonth.setOrgName(each[4].toString());
 			dorMonth.setTypeId(Long.parseLong(each[5].toString()));
 			dorMonth.setDevType(each[6].toString());
-			dorMonth.setOpenRate(dorMonth.getHealthyTimeReal()/dorMonth.getOpenTimes());
+			dorMonth.setOpenRate(NumUtils.getPercent(dorMonth.getHealthyTimeReal(),dorMonth.getOpenTimes()));
 			dao.save(dorMonth);
 		}
 	}
