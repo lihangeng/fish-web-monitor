@@ -191,7 +191,7 @@ public class PdfReportService implements IPdfReportService{
 		String avgRate = String.valueOf(obj[2]);
 		pdf.addContent("1. 上周所有设备平均开机率为"+avgRate+"%");
 		pdf.addContent("2.上周每日的开机率趋势");
-		XYDataset dataset2=createDatasetRate(weekOfYear);
+		XYDataset dataset2=createDatasetRate(weekOfYear);//TODO ..
 		pdf.addChart(PdfTest.generateLineChart(dataset2), chartWidth, 260);
 		
 		pdf.addContent("3.上周所有设备型号的开机率，从高到低排列");
@@ -284,46 +284,29 @@ public class PdfReportService implements IPdfReportService{
 		pdf.addChapter("一、设备信息汇总");
 		ParagraphMgr mgr = ParagraphMgr.getInstance();
 		IFilter filter = new Filter();
+		filter.eq("date", weekOfYear);
 		List<IDeviceCatalogSummaryWeek> list1 = deviceCatalogSummaryWeekService.list(filter);
 		int devNum=0;
-		for(IDeviceCatalogSummaryWeek device :list1){
-			devNum+=device.getNum();
-		}
 		int devAddNum=0;
-		for(IDeviceCatalogSummaryWeek device :list1){
-			devNum+=device.getAddDevNum();
-		}
 		int devScraNum=0;
 		for(IDeviceCatalogSummaryWeek device :list1){
-			devNum+=device.getScrappedDevNum();
+			devNum+=device.getNum();
+			devAddNum+=device.getAddDevNum();
+			devScraNum+=device.getScrappedDevNum();
 		}
+		
 		String date1=DateUtils.getLastDate();
-		int atmNum =0;
-		if(deviceCatalogSummaryWeekService.get("ATM", date1)!=null){
-			atmNum = deviceCatalogSummaryWeekService.get("ATM", date1).getNum();
+		
+		mgr.addChunk("1. 截止"+date1+"，共有设备"+devNum+"台，其中",FontMgr.getFont14());
+		for(IDeviceCatalogSummaryWeek device :list1){
+			mgr.addChunk(device.getCatalog())
+				.addChunk("有"+device.getNum()+"台，",FontMgr.getFont14());
 		}
-		int cdsNum = 0;
-		if(deviceCatalogSummaryWeekService.get("CDS", date1)!=null){
-			cdsNum = deviceCatalogSummaryWeekService.get("CDS", date1).getNum();
-		}
-		int asmNum = 0;
-		if(deviceCatalogSummaryWeekService.get("ASM", date1)!=null){
-			asmNum = deviceCatalogSummaryWeekService.get("ASM", date1).getNum();
-		}
-		mgr.addChunk("1. 截止"+date1+"，共有设备"+devNum+"台，其中",FontMgr.getFont14())
-		   .addChunk("ATM")
-		   .addChunk("有"+atmNum+"台，",FontMgr.getFont14())
-		   .addChunk("CDS")
-		   .addChunk("有"+cdsNum+"台，",FontMgr.getFont14())
-		   .addChunk("ASM")
-		   .addChunk("有"+asmNum+"台。上周新增设备"+devAddNum+"台，报废设备"+devScraNum+"台。",FontMgr.getFont14());
+		mgr.addChunk("上周新增设备"+devAddNum+"台，报废设备"+devScraNum+"台。",FontMgr.getFont14());
 		pdf.addParagraph(mgr);
 		pdf.addContent("2.设备型号统计");
 		
 		PdfPTable table = new PdfPTable(5);
-//		table.setWidthPercentage(60);  
-//		table.setTotalWidth(PageSize.A4.getWidth());
-//		table.setTotalWidth(new float[]{120f,250f,150f});
 		PdfPCell cell = new PdfPCell(new Phrase("型号名称",FontMgr.getFont14()));
 		cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
 		table.addCell(cell);  
@@ -353,9 +336,8 @@ public class PdfReportService implements IPdfReportService{
 		pdf.addEmptyLine(1);
 		pdf.addContent("3.最近4周新增设备和报废设备的趋势图");
 		
-//		XYDataset dataset1=createDataset();
+//		XYDataset dataset1= createDataset(weekOfYear);
 //		JFreeChart devChart = PdfTest.generateLineChart(dataset1);
-		
 //		pdf.addChart(devChart, devChartWidth, 260);
 	}
 
@@ -369,8 +351,11 @@ public class PdfReportService implements IPdfReportService{
 	}
 	
 	public  XYDataset createDataset(int weekOfYear) {
-		IFilter filter = new Filter();
-//		filter.eq("catalog", "ATM");
+		Date week = DateUtils.get(String.valueOf(weekOfYear), DateUtils.STANDARD_WEEK);
+		Long [] dates = DateUtils.getFirstAndLastDayofWeek(week);
+		IFilter filter = new Filter();//TODO 时间格式不对
+		filter.gt("date", dates[0]);
+		filter.le("date", dates[1]);
 		List<IDeviceCatalogSummaryWeek> list1 = deviceCatalogSummaryWeekService.list(filter);
         final XYSeries series1 = new XYSeries("ATM");
         for(IDeviceCatalogSummaryWeek idc:list1){

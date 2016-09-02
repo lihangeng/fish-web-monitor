@@ -29,12 +29,12 @@ public interface IDeviceCatalogSummaryWeek {
 	public void setNum(int num);
 
 	/**
-	 * 设备统计日期
+	 * 设备统计日期 yyyy-ww
 	 * @return
 	 */
 	public String getDate();
 	/**
-	 * 设备统计日期
+	 * 设备统计日期 yyyy-ww
 	 * @return
 	 */
 	public void setDate(String date);
