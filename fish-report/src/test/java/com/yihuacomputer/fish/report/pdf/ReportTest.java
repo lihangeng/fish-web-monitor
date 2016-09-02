@@ -21,7 +21,7 @@ public class ReportTest{
 	
 	@Test
 	public void createReportWeek(){
-		pdfReportService.generateWeekPDF(201636);
+		//pdfReportService.generateWeekPDF(201636);
 	}
 
 }
