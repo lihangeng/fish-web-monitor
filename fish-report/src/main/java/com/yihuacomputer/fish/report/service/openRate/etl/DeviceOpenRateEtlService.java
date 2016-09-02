@@ -111,7 +111,7 @@ public class DeviceOpenRateEtlService implements IDeviceOpenRateEtlService{
 	@Override
 	public List<IDeviceOpenRateWeek> getLastDeviceWeek(long weekOfYear, int limit) {
 		IFilter filter = new Filter();
-		filter.eq("ddate", weekOfYear);
+		filter.eq("date", weekOfYear);
 		filter.order("openRate");
 		IPageResult<IDeviceOpenRateWeek> page = dao.page(0, limit, filter, DeviceOpenRateWeek.class);
 		return page.list();
