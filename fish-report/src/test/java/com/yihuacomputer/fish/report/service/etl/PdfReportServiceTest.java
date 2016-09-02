@@ -1,4 +1,4 @@
-package com.yihuacomputer.fish.report.pdf;
+package com.yihuacomputer.fish.report.service.etl;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +14,7 @@ import com.yihuacomputer.fish.report.H2TestConfig;
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = H2TestConfig.class)
-public class ReportTest{
+public class PdfReportServiceTest{
 	
 	@Autowired
 	IPdfReportService pdfReportService;

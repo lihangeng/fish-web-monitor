@@ -45,7 +45,7 @@ import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeWeek;
 import com.yihuacomputer.fish.report.engine.pdf.FontMgr;
 import com.yihuacomputer.fish.report.engine.pdf.ParagraphMgr;
 import com.yihuacomputer.fish.report.engine.pdf.Pdf;
-import com.yihuacomputer.fish.report.pdf.PdfTest;
+import com.yihuacomputer.fish.report.engine.pdf.PdfChart;
 
 /**
  * 
@@ -112,10 +112,10 @@ public class PdfReportService implements IPdfReportService{
 		pdf.addContent("1.上周共产生故障数"+amountFault+"个，其中已关闭"+openCount+"个，未关闭"+closeCount+"个。");
 		pdf.addContent("2.上周按照故障类型统计故障数量");
 		
-		pdf.addChart(PdfTest.generateBarChart(createBarFault(weekOfYear)), chartWidth, 260);
+		pdf.addChart(PdfChart.generateBarChart(createBarFault(weekOfYear)), chartWidth, 260);
 		
 		pdf.addContent("3.上周故障关闭时间的分布图");
-		JFreeChart faultChart = PdfTest.generatePieChart(createPieFault(weekOfYear));
+		JFreeChart faultChart = PdfChart.generatePieChart(createPieFault(weekOfYear));
 		pdf.addChart(faultChart, chartWidth, 250);
 	}
 
@@ -192,7 +192,7 @@ public class PdfReportService implements IPdfReportService{
 		pdf.addContent("1. 上周所有设备平均开机率为"+avgRate+"%");
 		pdf.addContent("2.上周每日的开机率趋势");
 		XYDataset dataset2=createDatasetRate(weekOfYear);//TODO ..
-		pdf.addChart(PdfTest.generateLineChart(dataset2), chartWidth, 260);
+		pdf.addChart(PdfChart.generateLineChart(dataset2), chartWidth, 260);
 		
 		pdf.addContent("3.上周所有设备型号的开机率，从高到低排列");
 		List<IDeviceTypeOpenRateWeek> typeRate =deviceTypeOpenRateEtlService.getDeviceTypeWeek(weekOfYear); 
