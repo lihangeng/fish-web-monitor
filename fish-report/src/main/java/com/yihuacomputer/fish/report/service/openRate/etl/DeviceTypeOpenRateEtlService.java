@@ -88,6 +88,7 @@ public class DeviceTypeOpenRateEtlService implements IDeviceTypeOpenRateEtlServi
 	public List<IDeviceTypeOpenRateWeek> getDeviceTypeWeek(long weekOfYear) {
 		IFilter filter = new Filter();
 		filter.eq("date", weekOfYear);
+		filter.descOrder("openRate");
 		return dao.findByFilter(filter, IDeviceTypeOpenRateWeek.class);
 	}
 
