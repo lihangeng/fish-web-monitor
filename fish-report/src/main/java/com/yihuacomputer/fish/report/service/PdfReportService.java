@@ -570,7 +570,7 @@ public class PdfReportService implements IPdfReportService{
         c.set(Calendar.YEAR, Integer.valueOf(String.valueOf(month).substring(0, 4))); 
         int mon=0;
         if(String.valueOf(month).substring(4, 5).equals("0")){
-        	mon=Integer.valueOf(String.valueOf(month).substring(6));
+        	mon=Integer.valueOf(String.valueOf(month).substring(5));
         }else{
         	mon=Integer.valueOf(String.valueOf(month).substring(4));
         }
