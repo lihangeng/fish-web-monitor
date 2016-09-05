@@ -22,10 +22,17 @@ public class PdfChart {
 	 * @param dataset
 	 * @return
 	 */
-	public static JFreeChart generateLineChart(XYDataset dataset) {
-		return  ChartFactory.createXYLineChart(EMTPY_STR, EMTPY_STR, EMTPY_STR, dataset, PlotOrientation.VERTICAL, true, true, false);
+//	public static JFreeChart generateLineChart(XYDataset dataset) {
+//		return  ChartFactory.createXYLineChart(EMTPY_STR, EMTPY_STR, EMTPY_STR, dataset, PlotOrientation.VERTICAL, true, true, false);
+//	}
+	public static JFreeChart generateLineChart(DefaultCategoryDataset dataset) {
+	return ChartFactory.createLineChart("", "", "", dataset,
+            PlotOrientation.VERTICAL, // 绘制方向
+            true, // 显示图例
+            true, // 采用标准生成器
+            false // 是否生成超链接
+            );
 	}
-	
 	/**
 	 * 生成柱状图
 	 * @param dataSet
