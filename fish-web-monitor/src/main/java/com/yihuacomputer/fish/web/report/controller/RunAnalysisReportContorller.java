@@ -30,58 +30,59 @@ import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.PageResult;
+import com.yihuacomputer.fish.report.engine.pdf.PdfConfig;
 import com.yihuacomputer.fish.web.report.form.RunAnalysisComparator;
 import com.yihuacomputer.fish.web.report.form.RunAnalysisReportForm;
 
-
 @Controller
 @RequestMapping("/report/runAnalysisReport")
-@ClassNameDescrible(describle="userlog.RunAnalysisReportContorller")
+@ClassNameDescrible(describle = "userlog.RunAnalysisReportContorller")
 public class RunAnalysisReportContorller {
 
 	private Logger logger = LoggerFactory.getLogger(RunAnalysisReportContorller.class);
-	
+
 	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody
-	ModelMap getBackup(@RequestParam int start, @RequestParam int limit, WebRequest request, HttpSession session) {
+	public @ResponseBody ModelMap getBackup(@RequestParam int start, @RequestParam int limit, WebRequest request, HttpSession session) {
 		ModelMap map = new ModelMap();
 		String reportType = request.getParameter("reportType");
-		String filePath = getFilePath();
-		if(reportType=="week"){
-			filePath+=File.separator+"week";
+		String filePath = null;
+		if (reportType == "week") {
+			filePath =PdfConfig.getWeekReportDir();
+		} else {
+			filePath = PdfConfig.getMonthReportDir();
 		}
-		else{
-			filePath+=File.separator+"month";
-		}
-		File file = new File(filePath);
-		File[] subFiles = file.listFiles();
 		List<RunAnalysisReportForm> formList = new ArrayList<RunAnalysisReportForm>();
-		for(File subFile:subFiles){
-			String fileName = subFile.getName();
-			if(subFile.isFile()&&fileName.toLowerCase().endsWith(".pdf")){
-				RunAnalysisReportForm runAnalysisReportForm = new RunAnalysisReportForm();
-				runAnalysisReportForm.setFileName(subFile.getName());
-				runAnalysisReportForm.setCreateDate(DateUtils.getDate(new Date(subFile.lastModified())));
-				runAnalysisReportForm.setFileSize(subFile.length());
-				runAnalysisReportForm.setReportType(reportType);
-				formList.add(runAnalysisReportForm);
+		try {
+			File file = new File(filePath);
+			File[] subFiles = file.listFiles();
+			for (File subFile : subFiles) {
+				String fileName = subFile.getName();
+				if (subFile.isFile() && fileName.toLowerCase().endsWith(".pdf")) {
+					RunAnalysisReportForm runAnalysisReportForm = new RunAnalysisReportForm();
+					runAnalysisReportForm.setFileName(subFile.getName());
+					runAnalysisReportForm.setCreateDate(DateUtils.getDate(new Date(subFile.lastModified())));
+					runAnalysisReportForm.setFileSize(subFile.length());
+					runAnalysisReportForm.setReportType(reportType);
+					formList.add(runAnalysisReportForm);
+				}
 			}
+			RunAnalysisComparator comparator = new RunAnalysisComparator();
+			Collections.sort(formList, comparator);
+			IPageResult<RunAnalysisReportForm> runAnalysisReportResult = new PageResult<RunAnalysisReportForm>(formList, start, limit);
+
+			map.addAttribute(FishConstant.SUCCESS, true);
+			map.addAttribute("total", runAnalysisReportResult.getTotal());
+			map.addAttribute("data", runAnalysisReportResult.list());
+			return map;
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			map.addAttribute(FishConstant.SUCCESS, true);
+			map.addAttribute("total", 0);
+			map.addAttribute("data", formList);
+			return map;
 		}
-		RunAnalysisComparator comparator = new RunAnalysisComparator();
-		Collections.sort(formList,comparator);
-		IPageResult<RunAnalysisReportForm> runAnalysisReportResult = new PageResult<RunAnalysisReportForm>(formList,start,limit);
-		map.addAttribute(FishConstant.SUCCESS, true);
-		map.addAttribute("total", runAnalysisReportResult.getTotal());
-		map.addAttribute("data", runAnalysisReportResult.list());
-		return map;
 	}
 
-
-	private String getFilePath (){
-		String filePath = "D:\\fish_home\\version\\ATMVC";
-		return filePath;
-	}
-	
 	/**
 	 * 下载文件
 	 *
@@ -93,24 +94,20 @@ public class RunAnalysisReportContorller {
 	 * @throws Exception
 	 */
 	@RequestMapping(value = "/downloadFile", method = RequestMethod.GET)
-	public void download( HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String filePath = getFilePath();
+	public void download(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String filePath = null;
 		String reportType = request.getParameter("reportType");
-		if(reportType=="week"){
-			filePath+=File.separator+"week";
-		}
-		else{
-			filePath+=File.separator+"month";
+		if (reportType == "week") {
+			filePath =PdfConfig.getWeekReportDir();
+		} else {
+			filePath += PdfConfig.getMonthReportDir();
 		}
 		String fileName = request.getParameter("fileName");
-		File file= null;
+		File file = null;
 		try {
 			String path = filePath + FishCfg.fileSep + fileName;
-		
 			file = new File(path);
-	
-			response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName(request, file.getName())
-					+ "\"");
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName(request, file.getName()) + "\"");
 			response.setContentType("application/x-msdownload;charset=UTF-8");
 		} catch (ParseException e1) {
 			e1.printStackTrace();
