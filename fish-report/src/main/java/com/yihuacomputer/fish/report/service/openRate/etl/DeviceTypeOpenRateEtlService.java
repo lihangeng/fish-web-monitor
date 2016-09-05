@@ -96,6 +96,7 @@ public class DeviceTypeOpenRateEtlService implements IDeviceTypeOpenRateEtlServi
 	public List<IDeviceTypeOpenRateMonth> getDeviceTypeMonth(long month) {
 		IFilter filter = new Filter();
 		filter.eq("date", month);
+		filter.descOrder("openRate");
 		return dao.findByFilter(filter, IDeviceTypeOpenRateMonth.class);
 	}
 
