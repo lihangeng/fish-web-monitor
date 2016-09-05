@@ -36,7 +36,7 @@ public class Pdf {
 	
 	private Logger logger = LoggerFactory.getLogger(Pdf.class);
 	
-	public Document document;
+	private Document document;
 	private PdfWriter writer;
 	
 	/**
@@ -132,6 +132,18 @@ public class Pdf {
 		table.addCell("CDS6040T");  
 		table.addCell("50"); 
 		document.add(table);  
+	}
+	
+	public PdfPTable addTableHeader(int cols,float widthPercent,float [] widths, String [] headers)throws DocumentException{
+		PdfPTable table = new PdfPTable(cols);
+		table.setWidthPercentage(widthPercent);  
+		table.setTotalWidth(widths);
+		for(String header : headers){
+			PdfPCell cell = new PdfPCell(new Phrase(header,FontMgr.getFont14()));
+			cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+			table.addCell(cell);  
+		}
+		return table;
 	}
 	
 		

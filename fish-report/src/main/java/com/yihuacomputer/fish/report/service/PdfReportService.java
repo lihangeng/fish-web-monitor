@@ -56,6 +56,7 @@ import com.yihuacomputer.fish.report.engine.pdf.FontMgr;
 import com.yihuacomputer.fish.report.engine.pdf.ParagraphMgr;
 import com.yihuacomputer.fish.report.engine.pdf.Pdf;
 import com.yihuacomputer.fish.report.engine.pdf.PdfChart;
+import com.yihuacomputer.fish.report.engine.pdf.PdfConfig;
 
 /**
  * 
@@ -66,41 +67,41 @@ import com.yihuacomputer.fish.report.engine.pdf.PdfChart;
 public class PdfReportService implements IPdfReportService{
 
 	@Autowired
-	IDeviceCatalogSummaryWeekService deviceCatalogSummaryWeekService;
+	private IDeviceCatalogSummaryWeekService deviceCatalogSummaryWeekService;
 	@Autowired
-	IDeviceCatalogSummaryMonthService deviceCatalogSummaryMonthService;
+	private IDeviceCatalogSummaryMonthService deviceCatalogSummaryMonthService;
 	@Autowired
-	IDeviceTypeSummaryWeekService deviceTypeSummaryWeekService;
+	private IDeviceTypeSummaryWeekService deviceTypeSummaryWeekService;
 	@Autowired
-	IDeviceTypeSummaryMonthService deviceTypeSummaryMonthService;
+	private IDeviceTypeSummaryMonthService deviceTypeSummaryMonthService;
 	@Autowired
-	IAvgOpenRateEtlService avgOpenRateEtlService;
+	private IAvgOpenRateEtlService avgOpenRateEtlService;
 	@Autowired
-	ITransTypeEtlService transTypeEtlService;
+	private ITransTypeEtlService transTypeEtlService;
 	@Autowired
-	IRetainCardEtlService retainCardEtlService;
+	private IRetainCardEtlService retainCardEtlService;
 	@Autowired
-	IFaultEtlService faultEtlService;
+	private IFaultEtlService faultEtlService;
 	@Autowired
-	IDeviceTypeOpenRateEtlService deviceTypeOpenRateEtlService;
+	private IDeviceTypeOpenRateEtlService deviceTypeOpenRateEtlService;
 	@Autowired
-	IOrgOpenRateEtlService orgOpenRateEtlService;
+	private IOrgOpenRateEtlService orgOpenRateEtlService;
 	@Autowired
-	IDeviceOpenRateEtlService deviceOpenRateEtlService;
-	int chartWidth = (int)(PageSize.A4.getWidth() * 0.8);
-	int devChartWidth = (int)(PageSize.A4.getWidth() * 0.9);
+	private IDeviceOpenRateEtlService deviceOpenRateEtlService;
+	private int chartWidth = (int)(PageSize.A4.getWidth() * 0.8);
+	private int devChartWidth = (int)(PageSize.A4.getWidth() * 0.9);
 	@Override
 	public String generateWeekPDF(int weekOfYear) {
 		Date week = DateUtils.get(String.valueOf(weekOfYear), DateUtils.STANDARD_WEEK);
 		Long [] dates = DateUtils.getFirstAndLastDayofWeek(week);
 		String weekOf =String.valueOf(weekOfYear).substring(4);
-		File file = new File("D:/自助设备运行分析报告_2016年第"+weekOf+"周("+dates[0].toString().substring(4)+"-"+dates[1].toString().substring(4)+").pdf");
+		File file = PdfConfig.getWeekReportFile(weekOfYear);
 		Pdf pdf = new Pdf();
 		try {
 			pdf.createPdf(file);
 			pdf.addTitle("中国农业银行");
 			pdf.addSubTitle("自助设备运行分析报告");
-			pdf.addTriTitle("2016年第"+weekOf+"周("+dates[0].toString().substring(4)+"-"+dates[0].toString().substring(4)+")");
+			pdf.addTriTitle("2016年"+weekOf+"周("+dates[0].toString().substring(4)+"-"+dates[0].toString().substring(4)+")");
 			pdf.addEmptyLine(2);
 			generateDevice(pdf,weekOfYear);
 			generateOpenRate(pdf,weekOfYear);
@@ -167,7 +168,7 @@ public class PdfReportService implements IPdfReportService{
 			retainTable.addCell(String.valueOf(ir.getRetainCount()));
 			retainTable.addCell(String.valueOf(ir.getLastRetainCount()));
 		}
-		pdf.document.add(retainTable);
+		pdf.getDocument().add(retainTable);
 	}
 
 	private void generateTrans(Pdf pdf,int weekOfYear) throws Exception {
@@ -201,7 +202,7 @@ public class PdfReportService implements IPdfReportService{
 			transTable.addCell(String.valueOf(it.getTransCount()));
 			transTable.addCell(String.valueOf(it.getTransAmount()));
 		}
-		pdf.document.add(transTable);
+		pdf.getDocument().add(transTable);
 	}
 
 	private void generateOpenRate(Pdf pdf,int weekOfYear) throws Exception {
@@ -210,7 +211,7 @@ public class PdfReportService implements IPdfReportService{
 		String avgRate = String.valueOf(obj[2]);
 		pdf.addContent("1. 上周所有设备平均开机率为"+avgRate+"%");
 		pdf.addContent("2.上周每日的开机率趋势");
-		DefaultCategoryDataset openRateDataset2=createDatasetRate(weekOfYear);//TODO ..
+		DefaultCategoryDataset openRateDataset2=createDatasetRate(weekOfYear);
 		pdf.addChart(PdfChart.generateLineChart(openRateDataset2), chartWidth, 260);
 		
 		pdf.addContent("3.上周所有设备型号的开机率，从高到低排列");
@@ -237,7 +238,7 @@ public class PdfReportService implements IPdfReportService{
 			typeTable.addCell(String.valueOf(secondToDay(idt.getHealthyTimeReal())));
 			typeTable.addCell(String.valueOf(idt.getOpenRate()));
 		}
-		pdf.document.add(typeTable);
+		pdf.getDocument().add(typeTable);
 		pdf.addContent("4.上周各网点开机率汇总。");
 		pdf.addContent("4.1 上周各网点统计的开机率，较好开机率前10为：");
 		PdfPTable orgTableTop = new PdfPTable(4);
@@ -262,7 +263,7 @@ public class PdfReportService implements IPdfReportService{
 			orgTableTop.addCell(String.valueOf(secondToDay(ior.getHealthyTimeReal())));
 			orgTableTop.addCell(String.valueOf(ior.getOpenRate()));
 		}
-		pdf.document.add(orgTableTop);
+		pdf.getDocument().add(orgTableTop);
 		
 		pdf.addContent("4.2 上周各网点统计的开机率，较差的开机率前10为：");
 		PdfPTable orgTableLast = new PdfPTable(4);
@@ -287,7 +288,7 @@ public class PdfReportService implements IPdfReportService{
 			orgTableLast.addCell(String.valueOf(secondToDay(ior.getHealthyTimeReal())));
 			orgTableLast.addCell(String.valueOf(ior.getOpenRate()));
 		}
-		pdf.document.add(orgTableLast);
+		pdf.getDocument().add(orgTableLast);
 		
 		pdf.addContent("5.上周所有设备开机率汇总。");
 		pdf.addContent("5.1 上周设备统计的开机率，较好开机率设备的前10为：");
@@ -316,7 +317,7 @@ public class PdfReportService implements IPdfReportService{
 			devTableTop.addCell(String.valueOf(secondToDay(ido.getHealthyTimeReal())));
 			devTableTop.addCell(String.valueOf(ido.getOpenRate()));
 		}
-		pdf.document.add(devTableTop);
+		pdf.getDocument().add(devTableTop);
 		
 		pdf.addContent("5.2 上周设备统计的开机率，较差开机率设备的前10为：");
 		PdfPTable devTableLast = new PdfPTable(5);
@@ -344,7 +345,7 @@ public class PdfReportService implements IPdfReportService{
 			devTableLast.addCell(String.valueOf(secondToDay(ido.getHealthyTimeReal())));
 			devTableLast.addCell(String.valueOf(ido.getOpenRate()));
 		}
-		pdf.document.add(devTableLast);
+		pdf.getDocument().add(devTableLast);
 	}
 
 	private void generateDevice(Pdf pdf,int weekOfYear) throws Exception {
@@ -352,6 +353,7 @@ public class PdfReportService implements IPdfReportService{
 		ParagraphMgr mgr = ParagraphMgr.getInstance();
 		IFilter filter = new Filter();
 		filter.eq("date", String.valueOf(weekOfYear));
+		filter.order("date");
 		List<IDeviceCatalogSummaryWeek> list1 = deviceCatalogSummaryWeekService.list(filter);
 		int devNum=0;
 		int devAddNum=0;
@@ -374,26 +376,7 @@ public class PdfReportService implements IPdfReportService{
 		pdf.addParagraph(mgr);
 		pdf.addContent("2.设备型号统计");
 		
-		PdfPTable table = new PdfPTable(5);
-		table.setWidthPercentage(85);
-		table.setTotalWidth(new float[]{16,16,16,22,22});
-		PdfPCell cell = new PdfPCell(new Phrase("型号名称",FontMgr.getFont14()));
-		cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		table.addCell(cell);  
-		cell = new PdfPCell(new Phrase("设备数量",FontMgr.getFont14()));
-		cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		table.addCell(cell); 
-		cell = new PdfPCell(new Phrase("日期（周）",FontMgr.getFont14()));
-		cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		table.addCell(cell);
-		cell = new PdfPCell(new Phrase("新增设备数量",FontMgr.getFont14()));
-		cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		cell.setVerticalAlignment(1);
-		
-		table.addCell(cell);
-		cell = new PdfPCell(new Phrase("报废设备数量",FontMgr.getFont14()));
-		cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		table.addCell(cell); 
+		PdfPTable table = pdf.addTableHeader(5,85,new float[]{16,16,16,22,22},new String []{"型号名称","设备数量","日期（周）","新增设备数量","报废设备数量"});
 		
 		List<IDeviceTypeSummaryWeek> list2 = deviceTypeSummaryWeekService.list(filter);
 		for(IDeviceTypeSummaryWeek dt:list2){
@@ -403,7 +386,7 @@ public class PdfReportService implements IPdfReportService{
 			table.addCell(String.valueOf(dt.getAddDevNum()));
 			table.addCell(String.valueOf(dt.getScrappedDevNum()));
 		}
-		pdf.document.add(table);  
+		pdf.getDocument().add(table);  
 		
 		pdf.addEmptyLine(1);
 		pdf.addContent("3.最近4周新增设备和报废设备的趋势图");
@@ -414,10 +397,10 @@ public class PdfReportService implements IPdfReportService{
 	}
 	
 	public  DefaultCategoryDataset  createDatasetFW(int weekOfYear) {
-		IFilter filter = new Filter();//TODO 时间格式不对
-		filter.gt("date", String.valueOf(weekOfYear-4));
-		filter.le("date", String.valueOf(weekOfYear+1));
-		filter.descOrder("date");
+		IFilter filter = new Filter();
+		filter.ge("date", String.valueOf(weekOfYear-4));
+		filter.le("date", String.valueOf(weekOfYear));
+		filter.order("date");
 		List<IDeviceCatalogSummaryWeek> list1 = deviceCatalogSummaryWeekService.list(filter);
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		 for(IDeviceCatalogSummaryWeek idc:list1){
@@ -563,7 +546,7 @@ public class PdfReportService implements IPdfReportService{
 			retainTable.addCell(String.valueOf(ir.getRetainCount()));
 			retainTable.addCell(String.valueOf(ir.getLastRetainCount()));
 		}
-		pdf.document.add(retainTable);
+		pdf.getDocument().add(retainTable);
 	}
 
 	private void generateTransMonth(Pdf pdf,int month) throws Exception {
@@ -606,7 +589,7 @@ public class PdfReportService implements IPdfReportService{
 			transTable.addCell(String.valueOf(it.getTransCount()));
 			transTable.addCell(String.valueOf(it.getTransAmount()));
 		}
-		pdf.document.add(transTable);
+		pdf.getDocument().add(transTable);
 	}
 
 	private void generateOpenRateMonth(Pdf pdf,int month) throws Exception {
@@ -642,7 +625,7 @@ public class PdfReportService implements IPdfReportService{
 			typeTable.addCell(String.valueOf(secondToDay(idt.getHealthyTimeReal())));
 			typeTable.addCell(String.valueOf(idt.getOpenRate()));
 		}
-		pdf.document.add(typeTable);
+		pdf.getDocument().add(typeTable);
 		pdf.addContent("4.上月各网点统计的开机率汇总。");
 		pdf.addContent("4.1 上月各网点统计的开机率，较好开机率前10为：");
 		PdfPTable orgTableTop = new PdfPTable(4);
@@ -667,7 +650,7 @@ public class PdfReportService implements IPdfReportService{
 			orgTableTop.addCell(String.valueOf(secondToDay(ior.getHealthyTimeReal())));
 			orgTableTop.addCell(String.valueOf(ior.getOpenRate()));
 		}
-		pdf.document.add(orgTableTop);
+		pdf.getDocument().add(orgTableTop);
 		
 		pdf.addContent("4.2 上月各网点统计的开机率，较差的开机率前10为：");
 		PdfPTable orgTableLast = new PdfPTable(4);
@@ -692,7 +675,7 @@ public class PdfReportService implements IPdfReportService{
 			orgTableLast.addCell(String.valueOf(secondToDay(ior.getHealthyTimeReal())));
 			orgTableLast.addCell(String.valueOf(ior.getOpenRate()));
 		}
-		pdf.document.add(orgTableLast);
+		pdf.getDocument().add(orgTableLast);
 		
 		pdf.addContent("5.上月所有设备开机率汇总。");
 		pdf.addContent("5.1 上月设备统计的开机率，较好开机率设备的前10为：");
@@ -721,7 +704,7 @@ public class PdfReportService implements IPdfReportService{
 			devTableTop.addCell(String.valueOf(secondToDay(ido.getHealthyTimeReal())));
 			devTableTop.addCell(String.valueOf(ido.getOpenRate()));
 		}
-		pdf.document.add(devTableTop);
+		pdf.getDocument().add(devTableTop);
 		
 		pdf.addContent("5.2 上月设备统计的开机率，较差开机率设备的前10为：");
 		PdfPTable devTableLast = new PdfPTable(5);
@@ -749,7 +732,7 @@ public class PdfReportService implements IPdfReportService{
 			devTableLast.addCell(String.valueOf(secondToDay(ido.getHealthyTimeReal())));
 			devTableLast.addCell(String.valueOf(ido.getOpenRate()));
 		}
-		pdf.document.add(devTableLast);
+		pdf.getDocument().add(devTableLast);
 	}
 
 	private void generateDeviceMonth(Pdf pdf,int month) throws Exception {
@@ -805,7 +788,7 @@ public class PdfReportService implements IPdfReportService{
 			table.addCell(String.valueOf(dt.getAddDevNum()));
 			table.addCell(String.valueOf(dt.getScrappedDevNum()));
 		}
-		pdf.document.add(table);  
+		pdf.getDocument().add(table);  
 		
 		pdf.addEmptyLine(1);
 		pdf.addContent("3.最近3个月新增设备和报废设备的趋势图");
