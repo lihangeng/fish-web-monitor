@@ -17,15 +17,15 @@
   	</bean>
   	
   	<!-- quartz定时任务配置 -->
-<!-- 	<bean id="weekDeportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="description" value="每日定时执行报表数据统计"/>
+	<bean id="weekDeportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="description" value="每周定时执行报表数据统计"/>
 		<property name="jobDetail" ref="weekDeportJobDetail"/>
 		<property name="cronExpression" value="${weekETLJobTime}"/>
 	</bean>
 	<bean id="weekDeportJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
 			<property name="jobClass" value="com.yihuacomputer.fish.report.batch.WeekReportJob" />
 			<property name="durability" value="true" />
-  	</bean> -->
+  	</bean>
   	
   	<!-- 每月数据抽取 -->
   	<bean id="monthReportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
@@ -40,7 +40,7 @@
  
     <!-- 每年数据抽取 -->
     <bean id="yearReportTime" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="description" value="每日定时执行报表数据统计"/>
+		<property name="description" value="每年定时执行报表数据统计"/>
 		<property name="jobDetail" ref="yearDeportJobDetail"/>
 		<property name="cronExpression" value="${yearETLJobTime}"/>
 	</bean>
