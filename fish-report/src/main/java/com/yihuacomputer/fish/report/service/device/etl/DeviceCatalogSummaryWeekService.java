@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.report.service.device.etl;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -107,6 +108,23 @@ public class DeviceCatalogSummaryWeekService implements IDeviceCatalogSummaryWee
 			idcswNew.setScrappedDevNum(0);
 			this.save(idcswNew);
 		}
+	}
+
+	@Override
+	public Map<String, List<IDeviceCatalogSummaryWeek>> getWeek(int weekOfYear, int days) {
+		IFilter filter = new Filter();
+		filter.ge("date", String.valueOf(weekOfYear - days));
+		filter.le("date", String.valueOf(weekOfYear));
+		List<IDeviceCatalogSummaryWeek> deviceCatalogList = dao.findByFilter(filter, IDeviceCatalogSummaryWeek.class);
+		Map<String,List<IDeviceCatalogSummaryWeek>> maps = new HashMap<String,List<IDeviceCatalogSummaryWeek>>();
+		for(IDeviceCatalogSummaryWeek each : deviceCatalogList){
+			String catalog = each.getCatalog();
+			if(!maps.containsKey(catalog)){
+				maps.put(catalog, new ArrayList<IDeviceCatalogSummaryWeek>());
+			}
+			maps.get(catalog).add(each);
+		}
+		return maps;
 	}
 
 }

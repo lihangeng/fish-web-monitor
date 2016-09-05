@@ -154,6 +154,28 @@ public class Pdf {
 	}
 	
 	/**
+	 * 增加LOGO
+	 * @param logoDir logo图
+	 * @param logo logo文字
+	 */
+	public void addLogo(String logoDir,String logo) throws DocumentException{
+		if(logoDir != null && !"".equals(logoDir)){
+			
+		}
+		Paragraph paragraph = new Paragraph(logo,FontMgr.getFont20());
+		paragraph.setAlignment(Element.ALIGN_CENTER);
+		document.add(paragraph);
+	}
+	
+	/**
+	 * 增加LOGO
+	 * @param logo
+	 */
+	public void addLogo(String logo) throws DocumentException{
+		 addLogo("",logo);
+	}
+	
+	/**
 	 * 打开PDF
 	 * @param doc
 	 * @return
