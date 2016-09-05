@@ -17,7 +17,6 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
-import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfContentByte;
@@ -36,7 +35,7 @@ public class Pdf {
 	
 	private Logger logger = LoggerFactory.getLogger(Pdf.class);
 	
-	public Document document;
+	private Document document;
 	private PdfWriter writer;
 	
 	/**
@@ -70,40 +69,63 @@ public class Pdf {
 	/**
 	 * 创建文档头
 	 * @param title
+	 * @return
+	 * @throws DocumentException
 	 */
 	public Paragraph addTitle(String title) throws DocumentException{
-		Paragraph paragraph = new Paragraph(title,FontMgr.getFont20());
-		paragraph.setAlignment(Element.ALIGN_CENTER);
-		document.add(paragraph);
-		return paragraph;
-	}
-	
-	public Paragraph addSubTitle(String title) throws DocumentException{
 		Paragraph paragraph = new Paragraph(title,FontMgr.getFont18());
 		paragraph.setAlignment(Element.ALIGN_CENTER);
 		document.add(paragraph);
 		return paragraph;
 	}
 	
-	public Paragraph addTriTitle(String title) throws DocumentException{
-		Paragraph paragraph = new Paragraph(title,FontMgr.getFont16());
-		paragraph.setAlignment(Element.ALIGN_CENTER);
-		document.add(paragraph);
-		return paragraph;
-	}
-	
+	/**
+	 * 
+	 * @param line
+	 * @throws DocumentException
+	 */
 	public void addEmptyLine(int line) throws DocumentException{
 		for(int i =0 ;i < line ;i ++){
 			document.add(Chunk.NEWLINE);
 		}
 	}
 	
-	public void addChapter(String content) throws DocumentException{
+	/**
+	 * 创建一级章节
+	 * @param content
+	 * @throws DocumentException
+	 */
+	public void addL1Chapter(String content) throws DocumentException{
 		Paragraph paragraph = new Paragraph(content,FontMgr.getFont16());
 		document.add(paragraph);
 	}
 	
-	public void addContent(String content) throws DocumentException{
+	/**
+	 * 创建二级章节
+	 * @param content
+	 * @throws DocumentException
+	 */
+	public void addL2Chapter(String content) throws DocumentException{
+		Paragraph paragraph = new Paragraph(content,FontMgr.getFont16());
+		document.add(paragraph);
+	}
+	
+	/**
+	 * 创建三级章节
+	 * @param content
+	 * @throws DocumentException
+	 */
+	public void addL3Chapter(String content) throws DocumentException{
+		Paragraph paragraph = new Paragraph(content,FontMgr.getFont16());
+		document.add(paragraph);
+	}
+	
+	/**
+	 * 增加段落内容
+	 * @param content 段落内容
+	 * @throws DocumentException
+	 */
+	public void addParagraph(String content) throws DocumentException{
 		Paragraph paragraph = new Paragraph(content,FontMgr.getFont14());
 		paragraph.setFirstLineIndent(20);//首行缩进
 		paragraph.setSpacingBefore(5f);
@@ -111,27 +133,25 @@ public class Pdf {
 		document.add(paragraph);
 	}
 	
-	public void addTable() throws DocumentException{
-		PdfPTable table = new PdfPTable(3);
-		table.setWidthPercentage(90);  
-		table.setTotalWidth(PageSize.A4.getWidth());
-//		table.setTotalWidth(new float[]{120f,250f,150f});
-		PdfPCell cell = new PdfPCell(new Phrase("编号",FontMgr.getFont14()));
-		cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		table.addCell(cell);  
-		cell = new PdfPCell(new Phrase("设备型号",FontMgr.getFont14()));
-		cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		table.addCell(cell); 
-		cell = new PdfPCell(new Phrase("数量",FontMgr.getFont14()));
-		cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		table.addCell(cell); 
-		table.addCell("1");  
-		table.addCell("CDS6040W");  
-		table.addCell("100"); 
-		table.addCell("2");  
-		table.addCell("CDS6040T");  
-		table.addCell("50"); 
-		document.add(table);  
+	/**
+	 * 增加表头
+	 * @param cols 列数
+	 * @param widthPercent 列宽总占比
+	 * @param widths 每列的宽度
+	 * @param headers 表头的每列名字
+	 * @return 表格
+	 * @throws DocumentException
+	 */
+	public PdfPTable addTableHeader(int cols,float widthPercent,float [] widths, String [] headers)throws DocumentException{
+		PdfPTable table = new PdfPTable(cols);
+		table.setWidthPercentage(widthPercent);  
+		table.setTotalWidth(widths);
+		for(String header : headers){
+			PdfPCell cell = new PdfPCell(new Phrase(header,FontMgr.getFont14()));
+			cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+			table.addCell(cell);  
+		}
+		return table;
 	}
 	
 		
