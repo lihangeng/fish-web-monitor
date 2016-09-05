@@ -11,10 +11,8 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Phrase;
-import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
@@ -148,19 +146,7 @@ public class PdfReportService implements IPdfReportService{
 		}
 		pdf.addParagraph("1.上周共产生吞卡"+retain[1]+"次，平均"+retain[1]/7+"次/日（/台）。相比较上周"+retainStr+"次吞卡。");
 		pdf.addParagraph("2.上周各型号设备吞卡次数统计表");
-		PdfPTable retainTable = new PdfPTable(4);
-		PdfPCell retainCell = new PdfPCell(new Phrase("设备类型",FontMgr.getFont14()));
-		retainCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		retainTable.addCell(retainCell);  
-		retainCell = new PdfPCell(new Phrase("设备数量",FontMgr.getFont14()));
-		retainCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		retainTable.addCell(retainCell); 
-		retainCell = new PdfPCell(new Phrase("吞卡数量",FontMgr.getFont14()));
-		retainCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		retainTable.addCell(retainCell);
-		retainCell = new PdfPCell(new Phrase("同比上周吞卡数量",FontMgr.getFont14()));
-		retainCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		retainTable.addCell(retainCell);
+		PdfPTable retainTable = pdf.addTableHeader(4,80,new float[]{18,18,18,26},new String[]{"设备类型","吞卡数量","吞卡数量","同比上周吞卡数量"});
 		List<IRetainCardWeek> listRetain = retainCardEtlService.getWeek(Long.valueOf(weekOfYear));
 		for(IRetainCardWeek ir:listRetain){
 			retainTable.addCell(ir.getDevType());
@@ -185,17 +171,7 @@ public class PdfReportService implements IPdfReportService{
 		pdf.addParagraph("1.上周共产生交易"+trans[1]+"次，平均"+(trans[1]/7)+"次/日。相比较上周交易次数"+tranStr);
 		
 		pdf.addParagraph("2.上周按照交易类型统计的交易次数和交易金额");
-		PdfPTable transTable = new PdfPTable(3);
-		PdfPCell transCell = new PdfPCell(new Phrase("交易类型",FontMgr.getFont14()));
-		transCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		transTable.addCell(transCell);  
-		transCell = new PdfPCell(new Phrase("交易数量",FontMgr.getFont14()));
-		transCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		transTable.addCell(transCell); 
-		transCell = new PdfPCell(new Phrase("交易金额",FontMgr.getFont14()));
-		transCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		transTable.addCell(transCell);
-		
+		PdfPTable transTable = pdf.addTableHeader(3,75,new float[]{25,25,25},new String[]{"交易类型","交易数量","交易金额"});
 		List<ITransTypeWeek> transList = transTypeEtlService.getWeek(weekOfYear);
 		for(ITransTypeWeek it:transList){
 			transTable.addCell(it.getTransCode());
@@ -217,98 +193,42 @@ public class PdfReportService implements IPdfReportService{
 		pdf.addParagraph("3.上周所有设备型号的开机率，从高到低排列");
 		List<IDeviceTypeOpenRateWeek> typeRate =deviceTypeOpenRateEtlService.getDeviceTypeWeek(Long.valueOf(weekOfYear)); 
 		
-		PdfPTable typeTable = new PdfPTable(4);
-		typeTable.setWidthPercentage(88);
-		typeTable.setWidths(new float[]{18,22,22,22});
-		PdfPCell typeCell = new PdfPCell(new Phrase("设备型号名称",FontMgr.getFont14()));
-		typeCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		typeTable.addCell(typeCell);  
-		typeCell = new PdfPCell(new Phrase("设备应开机时长（天）",FontMgr.getFont14()));
-		typeCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		typeTable.addCell(typeCell); 
-		typeCell = new PdfPCell(new Phrase("设备实际开机时长（天）",FontMgr.getFont14()));
-		typeCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		typeTable.addCell(typeCell);
-		typeCell = new PdfPCell(new Phrase("开机率（百分比）",FontMgr.getFont14()));
-		typeCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		typeTable.addCell(typeCell);
+		PdfPTable typeTable = pdf.addTableHeader(4,88,new float[]{16,24,24,20},new String[]{"设备型号名称","设备应开机时长","设备实际开机时长","开机率（百分比）"});
 		for(IDeviceTypeOpenRateWeek idt:typeRate){
-			typeTable.addCell(idt.getDevType());
-			typeTable.addCell(String.valueOf(secondToDay(idt.getOpenTimes())));
-			typeTable.addCell(String.valueOf(secondToDay(idt.getHealthyTimeReal())));
+			typeTable.addCell(new Phrase(idt.getDevType(),FontMgr.getFont14()));
+			typeTable.addCell(secondToDay(idt.getOpenTimes()));
+			typeTable.addCell(secondToDay(idt.getHealthyTimeReal()));
 			typeTable.addCell(String.valueOf(idt.getOpenRate()));
 		}
 		pdf.getDocument().add(typeTable);
 		pdf.addParagraph("4.上周各网点开机率汇总。");
 		pdf.addParagraph("4.1 上周各网点统计的开机率，较好开机率前10为：");
-		PdfPTable orgTableTop = new PdfPTable(4);
-		orgTableTop.setWidthPercentage(88);
-		orgTableTop.setWidths(new float[]{12,25,25,21});
-		PdfPCell orgCellTop = new PdfPCell(new Phrase("网点名称",FontMgr.getFont14()));
-		orgCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableTop.addCell(orgCellTop);  
-		orgCellTop = new PdfPCell(new Phrase("设备应开机时长（天）",FontMgr.getFont14()));
-		orgCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableTop.addCell(orgCellTop); 
-		orgCellTop = new PdfPCell(new Phrase("设备实际开机时长（天）",FontMgr.getFont14()));
-		orgCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableTop.addCell(orgCellTop);
-		orgCellTop = new PdfPCell(new Phrase("开机率（百分比）",FontMgr.getFont14()));
-		orgCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableTop.addCell(orgCellTop);
+		PdfPTable orgTableTop = pdf.addTableHeader(4,88,new float[]{12,26,26,21},new String[]{"网点名称","设备应开机时长","设备实际开机时长","开机率（百分比）"});
+		
 		List<IOrgOpenRateWeek> orgTop =orgOpenRateEtlService.getTopOrgWeek(weekOfYear, 10);
 		for(IOrgOpenRateWeek ior:orgTop){
 			orgTableTop.addCell(ior.getOrgName());
-			orgTableTop.addCell(String.valueOf(secondToDay(ior.getOpenTimes())));
-			orgTableTop.addCell(String.valueOf(secondToDay(ior.getHealthyTimeReal())));
+			orgTableTop.addCell(secondToDay(ior.getOpenTimes()));
+			orgTableTop.addCell(secondToDay(ior.getHealthyTimeReal()));
 			orgTableTop.addCell(String.valueOf(ior.getOpenRate()));
 		}
 		pdf.getDocument().add(orgTableTop);
 		
 		pdf.addParagraph("4.2 上周各网点统计的开机率，较差的开机率前10为：");
-		PdfPTable orgTableLast = new PdfPTable(4);
-		orgTableLast.setWidthPercentage(88);
-		orgTableLast.setWidths(new float[]{12,25,25,21});
-		PdfPCell orgCellLast = new PdfPCell(new Phrase("网点名称",FontMgr.getFont14()));
-		orgCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableLast.addCell(orgCellLast);  
-		orgCellLast = new PdfPCell(new Phrase("设备应开机时长（天）",FontMgr.getFont14()));
-		orgCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableLast.addCell(orgCellLast); 
-		orgCellLast = new PdfPCell(new Phrase("设备实际开机时长（天）",FontMgr.getFont14()));
-		orgCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableLast.addCell(orgCellLast);
-		orgCellLast = new PdfPCell(new Phrase("开机率（百分比）",FontMgr.getFont14()));
-		orgCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableLast.addCell(orgCellLast);
+		PdfPTable orgTableLast = pdf.addTableHeader(4,88,new float[]{12,26,26,21},new String[]{"网点名称","设备应开机时长","设备实际开机时长","开机率（百分比）"});
+		
 		List<IOrgOpenRateWeek> orgLast =orgOpenRateEtlService.getLastOrgWeek(weekOfYear, 10);
 		for(IOrgOpenRateWeek ior:orgLast){
 			orgTableLast.addCell(ior.getOrgName());
-			orgTableLast.addCell(String.valueOf(secondToDay(ior.getOpenTimes())));
-			orgTableLast.addCell(String.valueOf(secondToDay(ior.getHealthyTimeReal())));
+			orgTableLast.addCell(secondToDay(ior.getOpenTimes()));
+			orgTableLast.addCell(secondToDay(ior.getHealthyTimeReal()));
 			orgTableLast.addCell(String.valueOf(ior.getOpenRate()));
 		}
 		pdf.getDocument().add(orgTableLast);
 		
 		pdf.addParagraph("5.上周所有设备开机率汇总。");
 		pdf.addParagraph("5.1 上周设备统计的开机率，较好开机率设备的前10为：");
-		PdfPTable devTableTop = new PdfPTable(5);
-		devTableTop.setWidthPercentage(88);
-		PdfPCell devCellTop = new PdfPCell(new Phrase("设备终端号",FontMgr.getFont14()));
-		devCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableTop.addCell(devCellTop);  
-		devCellTop = new PdfPCell(new Phrase("机构名称",FontMgr.getFont14()));
-		devCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableTop.addCell(devCellTop); 
-		devCellTop = new PdfPCell(new Phrase("设备应开机时长（天）",FontMgr.getFont14()));
-		devCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableTop.addCell(devCellTop);
-		devCellTop = new PdfPCell(new Phrase("设备实际开机时长（天）",FontMgr.getFont14()));
-		devCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableTop.addCell(devCellTop);
-		devCellTop = new PdfPCell(new Phrase("开机率（百分比）",FontMgr.getFont14()));
-		devCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableTop.addCell(devCellTop);
+		PdfPTable devTableTop = pdf.addTableHeader(5,88,new float[]{16,16,22,22,12},new String[]{"设备终端号","机构名称","设备应开机时长","设备实际开机时长","开机率（百分比）"});
 		List<IDeviceOpenRateWeek> devListTop=deviceOpenRateEtlService.getTopDeviceWeek(weekOfYear,10); 
 		for(IDeviceOpenRateWeek ido:devListTop){
 			devTableTop.addCell(ido.getTerminalId());
@@ -320,23 +240,8 @@ public class PdfReportService implements IPdfReportService{
 		pdf.getDocument().add(devTableTop);
 		
 		pdf.addParagraph("5.2 上周设备统计的开机率，较差开机率设备的前10为：");
-		PdfPTable devTableLast = new PdfPTable(5);
-		devTableLast.setWidthPercentage(88);
-		PdfPCell devCellLast = new PdfPCell(new Phrase("设备终端号",FontMgr.getFont14()));
-		devCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableLast.addCell(devCellLast);  
-		devCellLast = new PdfPCell(new Phrase("设备所属机构名称",FontMgr.getFont14()));
-		devCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableLast.addCell(devCellLast); 
-		devCellLast = new PdfPCell(new Phrase("设备应开机时长（天）",FontMgr.getFont14()));
-		devCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableLast.addCell(devCellLast);
-		devCellLast = new PdfPCell(new Phrase("设备实际开机时长（天）",FontMgr.getFont14()));
-		devCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableLast.addCell(devCellLast);
-		devCellLast = new PdfPCell(new Phrase("开机率（百分比）",FontMgr.getFont14()));
-		devCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableLast.addCell(devCellLast);
+		PdfPTable devTableLast = pdf.addTableHeader(5,88,new float[]{16,16,22,22,12},new String[]{"设备终端号","机构名称","设备应开机时长","设备实际开机时长","开机率（百分比）"});
+		
 		List<IDeviceOpenRateWeek> devListLast=deviceOpenRateEtlService.getLastDeviceWeek(weekOfYear, 10); 
 		for(IDeviceOpenRateWeek ido:devListLast){
 			devTableLast.addCell(ido.getTerminalId());
@@ -462,8 +367,25 @@ public class PdfReportService implements IPdfReportService{
 	}
 	
 	private String secondToDay(long second){
-		double day = (double)second/(60*60*24);
-		return new java.text.DecimalFormat("0.00").format(day);
+		double dayCount = (double)second/(60*60*24);
+		String day=new java.text.DecimalFormat("0.00").format(dayCount);
+		int dayIn = (int)Double.parseDouble(day);
+		
+		long bala = second - dayIn*60*60*24;
+		
+		double hourCount = (double)bala/(60*60);
+		String hour=new java.text.DecimalFormat("0.00").format(hourCount);
+		int hourIn = (int)Double.parseDouble(hour);
+		
+		long balaM = second - dayIn*60*60*24 - hourIn*60*60;
+		
+		double minCount = (double)balaM/(60);
+		String min=new java.text.DecimalFormat("0.00").format(minCount);
+		int minIn = (int)Double.parseDouble(min);
+		
+		long balaS = second - dayIn*60*60*24 - hourIn*60*60 - minIn*60;
+		String time = dayIn+"天"+hourIn+"时"+minIn+"分"+balaS+"秒";
+		return time;
 	}
 	
 
@@ -526,19 +448,7 @@ public class PdfReportService implements IPdfReportService{
 		}
 		pdf.addParagraph("1.上月共产生吞卡"+retain[1]+"次，平均"+retain[1]/30+"次/日（/台）。相比较上月"+retainStr+"次吞卡。");
 		pdf.addParagraph("2.上月各型号设备吞卡次数统计表");
-		PdfPTable retainTable = new PdfPTable(4);
-		PdfPCell retainCell = new PdfPCell(new Phrase("设备类型",FontMgr.getFont14()));
-		retainCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		retainTable.addCell(retainCell);  
-		retainCell = new PdfPCell(new Phrase("设备数量",FontMgr.getFont14()));
-		retainCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		retainTable.addCell(retainCell); 
-		retainCell = new PdfPCell(new Phrase("吞卡数量",FontMgr.getFont14()));
-		retainCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		retainTable.addCell(retainCell);
-		retainCell = new PdfPCell(new Phrase("同比上月吞卡数量",FontMgr.getFont14()));
-		retainCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		retainTable.addCell(retainCell);
+		PdfPTable retainTable = pdf.addTableHeader(4,80,new float[]{18,18,18,26},new String[]{"设备类型","吞卡数量","吞卡数量","同比上周吞卡数量"});
 		List<IRetainCardMonth> listRetain = retainCardEtlService.getMonth(Long.valueOf(month));
 		for(IRetainCardMonth ir:listRetain){
 			retainTable.addCell(ir.getDevType());
@@ -572,16 +482,7 @@ public class PdfReportService implements IPdfReportService{
 		pdf.addParagraph("1.上月共产生交易"+trans[1]+"次，平均"+(trans[1]/c.getActualMaximum(Calendar.DAY_OF_MONTH))+"次/日。相比较上月交易次数"+tranStr);
 		
 		pdf.addParagraph("2.上月按照交易类型统计的交易次数和交易金额");
-		PdfPTable transTable = new PdfPTable(3);
-		PdfPCell transCell = new PdfPCell(new Phrase("交易类型",FontMgr.getFont14()));
-		transCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		transTable.addCell(transCell);  
-		transCell = new PdfPCell(new Phrase("交易数量",FontMgr.getFont14()));
-		transCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		transTable.addCell(transCell); 
-		transCell = new PdfPCell(new Phrase("交易金额",FontMgr.getFont14()));
-		transCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		transTable.addCell(transCell);
+		PdfPTable transTable = pdf.addTableHeader(3,75,new float[]{25,25,25},new String[]{"交易类型","交易数量","交易金额"});
 		
 		List<ITransTypeMonth> transList = transTypeEtlService.getMonth(month);
 		for(ITransTypeMonth it:transList){
@@ -604,21 +505,8 @@ public class PdfReportService implements IPdfReportService{
 		pdf.addParagraph("3.上月所有设备型号的开机率，从高到低排列");
 		List<IDeviceTypeOpenRateMonth> typeRate =deviceTypeOpenRateEtlService.getDeviceTypeMonth(Long.valueOf(month)); 
 		
-		PdfPTable typeTable = new PdfPTable(4);
-		typeTable.setWidthPercentage(88);
-		typeTable.setWidths(new float[]{18,22,22,22});
-		PdfPCell typeCell = new PdfPCell(new Phrase("设备型号名称",FontMgr.getFont14()));
-		typeCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		typeTable.addCell(typeCell);  
-		typeCell = new PdfPCell(new Phrase("设备应开机时长（天）",FontMgr.getFont14()));
-		typeCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		typeTable.addCell(typeCell); 
-		typeCell = new PdfPCell(new Phrase("设备实际开机时长（天）",FontMgr.getFont14()));
-		typeCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		typeTable.addCell(typeCell);
-		typeCell = new PdfPCell(new Phrase("开机率（百分比）",FontMgr.getFont14()));
-		typeCell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		typeTable.addCell(typeCell);
+		PdfPTable typeTable = pdf.addTableHeader(4,88,new float[]{16,24,24,20},new String[]{"设备型号名称","设备应开机时长","设备实际开机时长","开机率（百分比）"});
+		
 		for(IDeviceTypeOpenRateMonth idt:typeRate){
 			typeTable.addCell(idt.getDevType());
 			typeTable.addCell(String.valueOf(secondToDay(idt.getOpenTimes())));
@@ -628,21 +516,8 @@ public class PdfReportService implements IPdfReportService{
 		pdf.getDocument().add(typeTable);
 		pdf.addParagraph("4.上月各网点统计的开机率汇总。");
 		pdf.addParagraph("4.1 上月各网点统计的开机率，较好开机率前10为：");
-		PdfPTable orgTableTop = new PdfPTable(4);
-		orgTableTop.setWidthPercentage(88);
-		orgTableTop.setWidths(new float[]{12,25,25,21});
-		PdfPCell orgCellTop = new PdfPCell(new Phrase("网点名称",FontMgr.getFont14()));
-		orgCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableTop.addCell(orgCellTop);  
-		orgCellTop = new PdfPCell(new Phrase("设备应开机时长（天）",FontMgr.getFont14()));
-		orgCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableTop.addCell(orgCellTop); 
-		orgCellTop = new PdfPCell(new Phrase("设备实际开机时长（天）",FontMgr.getFont14()));
-		orgCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableTop.addCell(orgCellTop);
-		orgCellTop = new PdfPCell(new Phrase("开机率（百分比）",FontMgr.getFont14()));
-		orgCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableTop.addCell(orgCellTop);
+		PdfPTable orgTableTop = pdf.addTableHeader(4,88,new float[]{12,26,26,21},new String[]{"网点名称","设备应开机时长","设备实际开机时长","开机率（百分比）"});
+		
 		List<IOrgOpenRateMonth> orgTop =orgOpenRateEtlService.getTopOrgMonth(month, 10);
 		for(IOrgOpenRateMonth ior:orgTop){
 			orgTableTop.addCell(ior.getOrgName());
@@ -653,21 +528,8 @@ public class PdfReportService implements IPdfReportService{
 		pdf.getDocument().add(orgTableTop);
 		
 		pdf.addParagraph("4.2 上月各网点统计的开机率，较差的开机率前10为：");
-		PdfPTable orgTableLast = new PdfPTable(4);
-		orgTableLast.setWidthPercentage(88);
-		orgTableLast.setWidths(new float[]{12,25,25,21});
-		PdfPCell orgCellLast = new PdfPCell(new Phrase("网点名称",FontMgr.getFont14()));
-		orgCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableLast.addCell(orgCellLast);  
-		orgCellLast = new PdfPCell(new Phrase("设备应开机时长（天）",FontMgr.getFont14()));
-		orgCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableLast.addCell(orgCellLast); 
-		orgCellLast = new PdfPCell(new Phrase("设备实际开机时长（天）",FontMgr.getFont14()));
-		orgCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableLast.addCell(orgCellLast);
-		orgCellLast = new PdfPCell(new Phrase("开机率（百分比）",FontMgr.getFont14()));
-		orgCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		orgTableLast.addCell(orgCellLast);
+		PdfPTable orgTableLast = pdf.addTableHeader(4,88,new float[]{12,26,26,21},new String[]{"网点名称","设备应开机时长","设备实际开机时长","开机率（百分比）"});
+		
 		List<IOrgOpenRateMonth> orgLast =orgOpenRateEtlService.getLastOrgMonth(month, 10);
 		for(IOrgOpenRateMonth ior:orgLast){
 			orgTableLast.addCell(ior.getOrgName());
@@ -679,23 +541,8 @@ public class PdfReportService implements IPdfReportService{
 		
 		pdf.addParagraph("5.上月所有设备开机率汇总。");
 		pdf.addParagraph("5.1 上月设备统计的开机率，较好开机率设备的前10为：");
-		PdfPTable devTableTop = new PdfPTable(5);
-		devTableTop.setWidthPercentage(88);
-		PdfPCell devCellTop = new PdfPCell(new Phrase("设备终端号",FontMgr.getFont14()));
-		devCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableTop.addCell(devCellTop);  
-		devCellTop = new PdfPCell(new Phrase("设备所属机构名称",FontMgr.getFont14()));
-		devCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableTop.addCell(devCellTop); 
-		devCellTop = new PdfPCell(new Phrase("设备应开机时长（天）",FontMgr.getFont14()));
-		devCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableTop.addCell(devCellTop);
-		devCellTop = new PdfPCell(new Phrase("设备实际开机时长（天）",FontMgr.getFont14()));
-		devCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableTop.addCell(devCellTop);
-		devCellTop = new PdfPCell(new Phrase("开机率（百分比）",FontMgr.getFont14()));
-		devCellTop.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableTop.addCell(devCellTop);
+		PdfPTable devTableTop = pdf.addTableHeader(5,88,new float[]{16,16,22,22,12},new String[]{"设备终端号","机构名称","设备应开机时长","设备实际开机时长","开机率（百分比）"});
+		
 		List<IDeviceOpenRateMonth> devListTop=deviceOpenRateEtlService.getTopDeviceMonth(month,10); 
 		for(IDeviceOpenRateMonth ido:devListTop){
 			devTableTop.addCell(ido.getTerminalId());
@@ -707,23 +554,8 @@ public class PdfReportService implements IPdfReportService{
 		pdf.getDocument().add(devTableTop);
 		
 		pdf.addParagraph("5.2 上月设备统计的开机率，较差开机率设备的前10为：");
-		PdfPTable devTableLast = new PdfPTable(5);
-		devTableLast.setWidthPercentage(88);
-		PdfPCell devCellLast = new PdfPCell(new Phrase("设备终端号",FontMgr.getFont14()));
-		devCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableLast.addCell(devCellLast);  
-		devCellLast = new PdfPCell(new Phrase("设备所属机构名称",FontMgr.getFont14()));
-		devCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableLast.addCell(devCellLast); 
-		devCellLast = new PdfPCell(new Phrase("设备应开机时长（天）",FontMgr.getFont14()));
-		devCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableLast.addCell(devCellLast);
-		devCellLast = new PdfPCell(new Phrase("设备实际开机时长（天）",FontMgr.getFont14()));
-		devCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableLast.addCell(devCellLast);
-		devCellLast = new PdfPCell(new Phrase("开机率（百分比）",FontMgr.getFont14()));
-		devCellLast.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		devTableLast.addCell(devCellLast);
+		PdfPTable devTableLast = pdf.addTableHeader(5,88,new float[]{16,16,22,22,12},new String[]{"设备终端号","机构名称","设备应开机时长","设备实际开机时长","开机率（百分比）"});
+		
 		List<IDeviceOpenRateMonth> devListLast=deviceOpenRateEtlService.getLastDeviceMonth(month, 10); 
 		for(IDeviceOpenRateMonth ido:devListLast){
 			devTableLast.addCell(ido.getTerminalId());
@@ -761,25 +593,7 @@ public class PdfReportService implements IPdfReportService{
 		pdf.addParagraph(mgr);
 		pdf.addParagraph("2.设备型号统计");
 		
-		PdfPTable table = new PdfPTable(5);
-		table.setWidthPercentage(85);
-		table.setTotalWidth(new float[]{16,16,16,22,22});
-		PdfPCell cell = new PdfPCell(new Phrase("型号名称",FontMgr.getFont14()));
-		cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		table.addCell(cell);  
-		cell = new PdfPCell(new Phrase("设备数量",FontMgr.getFont14()));
-		cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		table.addCell(cell); 
-		cell = new PdfPCell(new Phrase("日期（月）",FontMgr.getFont14()));
-		cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		table.addCell(cell);
-		cell = new PdfPCell(new Phrase("新增设备数量",FontMgr.getFont14()));
-		cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		table.addCell(cell);
-		cell = new PdfPCell(new Phrase("报废设备数量",FontMgr.getFont14()));
-		cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-		table.addCell(cell); 
-		
+		PdfPTable table = pdf.addTableHeader(5,85,new float[]{16,16,16,22,22},new String []{"型号名称","设备数量","日期（周）","新增设备数量","报废设备数量"});
 		List<IDeviceTypeSummaryMonth> list2 = deviceTypeSummaryMonthService.list(filter);
 		for(IDeviceTypeSummaryMonth dt:list2){
 			table.addCell(dt.getDevType());
@@ -799,10 +613,10 @@ public class PdfReportService implements IPdfReportService{
 	}
 	
 	public  DefaultCategoryDataset createDatasetMonth(int month) {
-		IFilter filter = new Filter();//TODO 时间格式不对
-		filter.gt("date", String.valueOf(month-2));
+		IFilter filter = new Filter();
+		filter.ge("date", String.valueOf(month-2));
 		filter.le("date", String.valueOf(month));
-		filter.descOrder("date");
+		filter.order("date");
 		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
 		List<IDeviceCatalogSummaryMonth> list1 = deviceCatalogSummaryMonthService.list(filter);
 		String mon="01";
