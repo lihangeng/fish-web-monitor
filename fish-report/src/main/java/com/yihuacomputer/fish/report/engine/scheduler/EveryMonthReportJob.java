@@ -12,7 +12,7 @@ import com.yihuacomputer.fish.api.monitor.volume.IMonthDailyTradingVolumeService
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryMonthService;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryMonthService;
 import com.yihuacomputer.fish.api.report.device.etl.IRetainCardEtlService;
-import com.yihuacomputer.fish.api.report.engine.IPdfReportService;
+import com.yihuacomputer.fish.api.report.engine.IMonthPdfReportService;
 import com.yihuacomputer.fish.api.report.fault.IEveryMonthFaultCountService;
 import com.yihuacomputer.fish.api.report.fault.etl.IFaultEtlService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateEtlService;
@@ -71,7 +71,7 @@ public class EveryMonthReportJob {
 	private IDeviceTypeSummaryMonthService deviceTypeSummaryMonthService;
 	
 	@Autowired
-	private IPdfReportService pdfReportService;
+	private IMonthPdfReportService pdfReportService;
 
 	/**
 	 * 每月任务

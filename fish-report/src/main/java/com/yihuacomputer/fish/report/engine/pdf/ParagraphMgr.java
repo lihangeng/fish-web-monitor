@@ -44,9 +44,9 @@ public class ParagraphMgr {
 	
 	public Paragraph getParagraph(){
 		paragraph.setFirstLineIndent(20);
-		paragraph.setSpacingBefore(5f);
-		paragraph.setSpacingAfter(5f);
-		paragraph.setLeading(25f);
+		paragraph.setSpacingBefore(3f);
+		paragraph.setSpacingAfter(3f);
+		paragraph.setLeading(22f);
 		return this.paragraph;
 	}
 }

@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.report.service.device.etl;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -115,6 +116,24 @@ public class DeviceCatalogSummaryMonthService implements IDeviceCatalogSummaryMo
 			map.put(dcsm.getCatalog(),dcsm);
 		}
 		return map;
+	}
+
+	@Override
+	public Map<String, List<IDeviceCatalogSummaryMonth>> getMonth(int month, int months) {
+		IFilter filter = new Filter();
+		filter.ge("date", String.valueOf(month - months));
+		filter.le("date", String.valueOf(month));
+		List<IDeviceCatalogSummaryMonth> deviceCatalogList = dao.findByFilter(filter, IDeviceCatalogSummaryMonth.class);
+		Map<String,List<IDeviceCatalogSummaryMonth>> maps = new HashMap<String,List<IDeviceCatalogSummaryMonth>>();
+		for(IDeviceCatalogSummaryMonth each : deviceCatalogList){
+			String catalog = each.getCatalog();
+			if(!maps.containsKey(catalog)){
+				maps.put(catalog, new ArrayList<IDeviceCatalogSummaryMonth>());
+			}
+			maps.get(catalog).add(each);
+		}
+		return maps;
+
 	}
 
 }

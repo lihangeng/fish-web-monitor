@@ -28,4 +28,14 @@ public interface IDeviceCatalogSummaryWeekService {
 	 * @param date 执行时间点 40周执行39周汇总，此时传入的日期为40周周一,得出的是39新增及汇总数据
 	 */
 	void loadBaseData(Date date);
+	
+	/**
+	 * 周设备趋势
+	 * @param weekOfYear
+	 * @param days 几周前的，如 4，四周前
+	 * @return String 为设备类型，如ATM
+	 */
+	Map<String,List<IDeviceCatalogSummaryWeek>> getWeek(int weekOfYear,int days);
+	
+
 }

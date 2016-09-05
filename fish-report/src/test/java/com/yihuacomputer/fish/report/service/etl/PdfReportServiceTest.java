@@ -8,7 +8,8 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.yihuacomputer.fish.api.report.engine.IPdfReportService;
+import com.yihuacomputer.fish.api.report.engine.IMonthPdfReportService;
+import com.yihuacomputer.fish.api.report.engine.IWeekPdfReportService;
 import com.yihuacomputer.fish.report.H2TestConfig;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
@@ -17,11 +18,16 @@ import com.yihuacomputer.fish.report.H2TestConfig;
 public class PdfReportServiceTest{
 	
 	@Autowired
-	IPdfReportService pdfReportService;
+	IWeekPdfReportService weekPdfReportService;
+	
+	@Autowired
+	IMonthPdfReportService monthPdfReportService;
+
 	
 	@Test
 	public void createReportWeek(){
-		//pdfReportService.generateWeekPDF(201636);
+		weekPdfReportService.generateWeekPDF(201636);
+		monthPdfReportService.generateMonthPDF(201608);
 	}
 
 }

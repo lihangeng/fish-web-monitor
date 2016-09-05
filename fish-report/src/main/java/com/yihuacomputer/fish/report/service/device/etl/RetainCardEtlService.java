@@ -178,9 +178,9 @@ public class RetainCardEtlService implements IRetainCardEtlService {
 			Object [] each = (Object[])object;
 			if(each != null){
 				Long [] values = new Long[3];
-				values[0] = Long.parseLong(each[0].toString());
-				values[1] = Long.parseLong(each[1].toString());
-				values[2] = Long.parseLong(each[2].toString());
+				values[0] = each[0]==null?0l:Long.parseLong(each[0].toString());
+				values[1] = each[1]==null?0l:Long.parseLong(each[1].toString());
+				values[2] = each[2]==null?0l:Long.parseLong(each[2].toString());
 				return values;
 			}
 		}

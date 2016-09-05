@@ -74,13 +74,27 @@ public class FaultEtlService implements IFaultEtlService {
 		for(Object object : lists){
 			Object [] each = (Object[])object;
 			if(each[0] != null){//当没有数据时，会出现一个空行
-				IFaultMonth day = new FaultMonth();
-				day.setDate(Long.parseLong(DateUtils.getYM(date)));
-				day.setOpenCount(Long.parseLong(each[0].toString()));
-				day.setCloseCount(Long.parseLong(each[1].toString()));
-				dao.save(day);
+				long lastMonth = Long.parseLong(DateUtils.getYM(date));
+				IFaultMonth faultMonth = exsitFaultMonth(lastMonth);
+				if(null==faultMonth){
+					faultMonth = new FaultMonth();
+				}
+				faultMonth.setDate(lastMonth);
+				faultMonth.setOpenCount(Long.parseLong(each[0].toString()));
+				faultMonth.setCloseCount(Long.parseLong(each[1].toString()));
+				dao.saveOrUpdate(faultMonth);
 			}
 		}
+	}
+	
+	public IFaultMonth exsitFaultMonth(long month){
+		StringBuilder sb = new StringBuilder();
+		sb.append(" from ").append(FaultMonth.class.getSimpleName()).append( " faultMonth where faultMonth.date = ?");
+		List<IFaultMonth> list = dao.findByHQL(sb.toString(), month);
+		if(list.size()>0){
+			return list.get(0);
+		}
+		return null;
 	}
 
 	@Override

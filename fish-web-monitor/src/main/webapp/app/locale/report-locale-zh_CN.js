@@ -1,6 +1,17 @@
 Ext.apply(EwayLocale,{
 	
 	report:{
+		run:{
+			viewTitle:'运行分析报告',//EwayLocale.report.run.viewTitle
+			createDate:'创建时间',//EwayLocale.report.run.createDate
+			fileName:'文件名称',//EwayLocale.report.run.fileName
+			fileSize:'文件大小',//EwayLocale.report.run.fileSize
+			reportType:{
+				title:'报告类型',//EwayLocale.report.run.reportType.title
+				weekReport:'周报',//EwayLocale.report.run.reportType.weekReport
+				monthReport:'月报'//EwayLocale.report.run.reportType.monthReport
+			}
+		},
 		pivot:{
 			common:{
 				totalSum:'共计',//EwayLocale.report.pivot.common.totalSum
