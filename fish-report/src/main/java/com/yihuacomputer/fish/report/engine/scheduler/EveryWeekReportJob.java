@@ -11,7 +11,7 @@ import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryWeekService;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryWeekService;
 import com.yihuacomputer.fish.api.report.device.etl.IRetainCardEtlService;
-import com.yihuacomputer.fish.api.report.engine.IPdfReportService;
+import com.yihuacomputer.fish.api.report.engine.IWeekPdfReportService;
 import com.yihuacomputer.fish.api.report.fault.etl.IFaultEtlService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateEtlService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceOpenRateEtlService;
@@ -58,7 +58,7 @@ public class EveryWeekReportJob {
 	private IDeviceTypeSummaryWeekService deviceTypeSummaryWeekService;
 	
 	@Autowired
-	private IPdfReportService pdfReportService;
+	private IWeekPdfReportService pdfReportService;
 	
 	/**
 	 * 每周统计
@@ -80,7 +80,7 @@ public class EveryWeekReportJob {
 	private void executeWeekPdfReport() {
 		long start = System.currentTimeMillis();
 		Date lastWeek = DateUtils.getLastWeek();
-		pdfReportService.generateMonthPDF(DateUtils.getWeek(lastWeek).intValue());
+		pdfReportService.generateWeekPDF(DateUtils.getWeek(lastWeek).intValue());
 		logger.info(String.format("executeWeekPdfReport SPEND [%s]ms",System.currentTimeMillis() - start));
 	}
 

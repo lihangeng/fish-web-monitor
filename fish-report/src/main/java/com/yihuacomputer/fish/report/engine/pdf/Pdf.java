@@ -180,6 +180,10 @@ public class Pdf {
 		return table;
 	}
 	
+	public void addTableCell(PdfPTable table,String text){
+		table.addCell(new Phrase(text,FontMgr.getFont14()));
+	}
+	
 		
 	/**
 	 * 增加一个图
