@@ -142,8 +142,8 @@ public class TransTypeEtlService implements ITransTypeEtlService{
 			Object [] each = (Object[])object;
 			if(each != null){
 				Long [] values = new Long[2];
-				values[0] = Long.parseLong(each[0].toString());
-				values[1] = Long.parseLong(each[1].toString());
+				values[0] = each[0]==null?0l:(long)Double.parseDouble(each[0].toString());
+				values[1] = each[1]==null?0l:(long)Double.parseDouble(each[1].toString());
 				return values;
 			}
 		}
