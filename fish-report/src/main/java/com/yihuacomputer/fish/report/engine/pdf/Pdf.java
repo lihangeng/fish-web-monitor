@@ -16,6 +16,7 @@ import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
@@ -27,6 +28,8 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 /**
  * PDF的文档
+ * 
+ * 章节(chapter)-段落(paragraph)-短语（phrase）-块（chunk）
  * 
  * @author xuxiang
  * @since 2.1.1.1
@@ -51,10 +54,18 @@ public class Pdf {
 		logger.info("open pdf success.");
 	}
 	
+	/**
+	 * 增加一个新页面
+	 */
 	public void newPage(){
 		 document.newPage();
 	}
 	
+	/**
+	 * 增加块列表
+	 * @param chunks
+	 * @throws DocumentException
+	 */
 	public void addChunk(List<String> chunks) throws DocumentException{
 		Paragraph paragraph = new Paragraph();
 		for(String chunk : chunks){
@@ -62,6 +73,11 @@ public class Pdf {
 		}
 	}
 	
+	/**
+	 * 增加一个可扩展的段落
+	 * @param mgr
+	 * @throws DocumentException
+	 */
 	public void addParagraph(ParagraphMgr mgr) throws DocumentException{
 		 document.add(mgr.getParagraph());
 	}
@@ -96,7 +112,10 @@ public class Pdf {
 	 * @throws DocumentException
 	 */
 	public void addL1Chapter(String content) throws DocumentException{
-		Paragraph paragraph = new Paragraph(content,FontMgr.getFont16());
+		Paragraph paragraph = new Paragraph(content,new Font(FontMgr.chinaFont, 16, Font.BOLD));
+		paragraph.setSpacingBefore(5f);
+		paragraph.setSpacingAfter(5f);
+		paragraph.setLeading(25f);
 		document.add(paragraph);
 	}
 	
@@ -106,7 +125,10 @@ public class Pdf {
 	 * @throws DocumentException
 	 */
 	public void addL2Chapter(String content) throws DocumentException{
-		Paragraph paragraph = new Paragraph(content,FontMgr.getFont16());
+		Paragraph paragraph = new Paragraph(content,new Font(FontMgr.chinaFont, 15, Font.BOLD));
+		paragraph.setSpacingBefore(5f);
+		paragraph.setSpacingAfter(5f);
+		paragraph.setLeading(25f);
 		document.add(paragraph);
 	}
 	
@@ -116,7 +138,10 @@ public class Pdf {
 	 * @throws DocumentException
 	 */
 	public void addL3Chapter(String content) throws DocumentException{
-		Paragraph paragraph = new Paragraph(content,FontMgr.getFont16());
+		Paragraph paragraph = new Paragraph(content,new Font(FontMgr.chinaFont, 14, Font.BOLD));
+		paragraph.setSpacingBefore(5f);
+		paragraph.setSpacingAfter(5f);
+		paragraph.setLeading(25f);
 		document.add(paragraph);
 	}
 	
@@ -128,8 +153,8 @@ public class Pdf {
 	public void addParagraph(String content) throws DocumentException{
 		Paragraph paragraph = new Paragraph(content,FontMgr.getFont14());
 		paragraph.setFirstLineIndent(20);//首行缩进
-		paragraph.setSpacingBefore(5f);
-		paragraph.setSpacingAfter(5f);
+		paragraph.setSpacingBefore(3f);
+		paragraph.setSpacingAfter(3f);
 		document.add(paragraph);
 	}
 	
@@ -144,6 +169,7 @@ public class Pdf {
 	 */
 	public PdfPTable addTableHeader(int cols,float widthPercent,float [] widths, String [] headers)throws DocumentException{
 		PdfPTable table = new PdfPTable(cols);
+		table.setSpacingBefore(10f);
 		table.setWidthPercentage(widthPercent);  
 		table.setTotalWidth(widths);
 		for(String header : headers){
@@ -156,7 +182,11 @@ public class Pdf {
 	
 		
 	/**
-	 * 增加图
+	 * 增加一个图
+	 * @param chart 图
+	 * @param width 宽度
+	 * @param height 高度
+	 * @throws DocumentException
 	 */
 	public void addChart(JFreeChart chart,int width, int height) throws DocumentException{
 		PdfContentByte contentByte = writer.getDirectContent();

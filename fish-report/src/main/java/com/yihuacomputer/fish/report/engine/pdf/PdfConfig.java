@@ -61,7 +61,35 @@ public class PdfConfig{
 		String start= DateUtils.get(firstDay, "MM.dd");
 		Date endDay = DateUtils.getLastDayOfWeek(cal);
 		String end= DateUtils.get(endDay, "MM.dd");
-		return String.format("自助设备运行分析报告_%s年%s周(%s-%s).pdf",year,weekStr,start,end);
+		return String.format("%s_%s年%s周(%s-%s).pdf",PdfConfig.getTitle(),year,weekStr,start,end);
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static String getTitle(){
+		String value = FishCfg.getParamValue("PDF_REPORT_TITLE");
+		return value != null ? value : "自助设备运行分析报告";
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public static String getLogo(){
+		String value = FishCfg.getParamValue("PDF_REPORT_LOGO");
+		return value != null ? value : "深圳怡化电脑股份有限公司";
+	}
+	
+	/**
+	 * 
+	 * @param fileName
+	 * @return
+	 */
+	public static String getSubTile(String fileName){
+		String left = fileName.substring(fileName.indexOf('_') + 1);
+		return left.substring(0, left.indexOf(".pdf"));
 	}
 	
 	/**
@@ -71,7 +99,7 @@ public class PdfConfig{
 	 */
 	public static String getMonthPdfFileName(int month){
 		String strMonth = String.valueOf(month);
-		return String.format("自助设备运行分析报告_%s年%s月.pdf",strMonth.substring(0, 4),strMonth.substring(4));
+		return String.format("%s_%s年%s月.pdf",PdfConfig.getTitle(),strMonth.substring(0, 4),strMonth.substring(4));
 	}
 	
 	/**
