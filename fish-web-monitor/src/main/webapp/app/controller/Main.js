@@ -300,6 +300,8 @@ Ext.define('Eway.controller.Main', {
 			this.activeController('report.faultRate.FaultRateReport',text);
 		}else if(code =="ETLJob"){
 			this.activeController('report.baseReport.ETLJob',text);
+		}else if(code =="runAnalysisReport"){
+			this.activeController('report.run.AnalysisReport',text);
 		}
 	},
 
