@@ -48,6 +48,8 @@ Ext.define('Eway.view.case.notifyMould.NotifyMouldGrid', {
 						return EwayLocale.cases.caseFault.mail;
 					}else if(value == 'BOTH'){
 						return EwayLocale.cases.caseFault.messageAndMail;
+					}else if(value == 'NONE'){
+						return EwayLocale.cases.caseFault.none;
 					}
 				}
 			}, {
