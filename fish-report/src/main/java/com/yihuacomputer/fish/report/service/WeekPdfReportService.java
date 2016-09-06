@@ -256,7 +256,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		String nowDate = dates[1].toString().substring(0, 4) + "年" + dates[1].toString().substring(4, 6) + "月" + dates[1].toString().substring(6) + "日";
 		mgr.addChunk("1. 截止" + nowDate + "，共有设备" + devNum + "台，其中", FontMgr.getFont14());
 		for (IDeviceCatalogSummaryWeek device : list1) {
-			mgr.addChunk(device.getCatalog()).addChunk("有" + device.getNum() + "台，", FontMgr.getFont14());
+			mgr.addChunk(device.getCatalog(),FontMgr.getFont14()).addChunk("有" + device.getNum() + "台，", FontMgr.getFont14());
 		}
 		mgr.addChunk("上周新增设备" + devAddNum + "台，报废设备" + devScraNum + "台。", FontMgr.getFont14());
 		pdf.addParagraph(mgr);
@@ -325,7 +325,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		DefaultPieDataset dataSet = new DefaultPieDataset();
 		List<IFaultDurationWeek> listFaultDura = faultEtlService.getDurationWeek(Long.valueOf(weekOfYear));
 		for (IFaultDurationWeek ifd : listFaultDura) {
-			dataSet.setValue(pieTimeToStr(ifd.getDuration()) + "故障数: " + ifd.getCount(), ifd.getCount());
+			dataSet.setValue(pieTimeToStr(ifd.getDuration()) + "(" + ifd.getCount()+")", ifd.getCount());
 		}
 
 		return dataSet;
