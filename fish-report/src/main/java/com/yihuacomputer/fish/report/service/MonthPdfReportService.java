@@ -14,7 +14,6 @@ import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.NumUtils;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryMonth;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryMonthService;
@@ -262,11 +261,11 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 			devScraNum += device.getScrappedDevNum();
 		}
 
-		String date1 = DateUtils.getLastDate();
+		String date1 = String.valueOf(month).substring(0, 4)+"年"+String.valueOf(month).substring(4)+"月底";
 
 		mgr.addChunk("1. 截止" + date1 + "，共有设备" + devNum + "台，其中", FontMgr.getFont14());
 		for (IDeviceCatalogSummaryMonth device : list1) {
-			mgr.addChunk(device.getCatalog()).addChunk("有" + device.getNum() + "台，", FontMgr.getFont14());
+			mgr.addChunk(device.getCatalog(),FontMgr.getFont14()).addChunk("有" + device.getNum() + "台，", FontMgr.getFont14());
 		}
 		mgr.addChunk("上月新增设备" + devAddNum + "台，报废设备" + devScraNum + "台。", FontMgr.getFont14());
 		pdf.addParagraph(mgr);
