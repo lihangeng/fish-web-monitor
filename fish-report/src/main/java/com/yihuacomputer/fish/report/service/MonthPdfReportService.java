@@ -266,7 +266,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 
 		mgr.addChunk("1. 截止" + date1 + "，共有设备" + devNum + "台，其中", FontMgr.getFont14());
 		for (IDeviceCatalogSummaryMonth device : list1) {
-			mgr.addChunk(device.getCatalog()).addChunk("有" + device.getNum() + "台，", FontMgr.getFont14());
+			mgr.addChunk(device.getCatalog(),FontMgr.getFont14()).addChunk("有" + device.getNum() + "台，", FontMgr.getFont14());
 		}
 		mgr.addChunk("上月新增设备" + devAddNum + "台，报废设备" + devScraNum + "台。", FontMgr.getFont14());
 		pdf.addParagraph(mgr);
