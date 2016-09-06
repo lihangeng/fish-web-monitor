@@ -3,6 +3,6 @@ Ext.define('Eway.store.report.run.AnalysisReport', {
 	alias:'store.analysisReport',
 	autoSync : false,
 	model: 'Eway.model.report.run.AnalysisReport',
-    autoLoad: false,
+    autoLoad: true,
     pageSize:200
 });
