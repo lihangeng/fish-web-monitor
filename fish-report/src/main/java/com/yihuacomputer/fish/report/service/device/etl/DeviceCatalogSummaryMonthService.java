@@ -50,11 +50,12 @@ public class DeviceCatalogSummaryMonthService implements IDeviceCatalogSummaryMo
 		//将时间定位至要汇总日期的上个月
 		calendar.add(Calendar.MONTH, -2);
 		//获取上次汇总日期
-		String lastDate = DateUtils.getDate(calendar.getTime()).substring(0,7);
+		String lastDate = DateUtils.getYM(calendar.getTime());
 		calendar.add(Calendar.MONTH, 1);
 		//此次汇总时间点
 		Date fromDate = calendar.getTime();
-		String dateStr = DateUtils.getDate(fromDate).substring(0,7);
+		String dateStr = DateUtils.getYM(fromDate);
+//		String dateStr = DateUtils.getDate(fromDate).substring(0,7);
 		Map<String,IDeviceCatalogSummaryMonth> lastInfoMap = this.get(lastDate);
 		StringBuffer hqlSb = new StringBuffer();
 		hqlSb.append("select device.devType.devCatalog,count(device.id), ");
