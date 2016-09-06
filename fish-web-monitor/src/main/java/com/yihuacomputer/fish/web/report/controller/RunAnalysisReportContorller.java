@@ -46,10 +46,10 @@ public class RunAnalysisReportContorller {
 		ModelMap map = new ModelMap();
 		String reportType = request.getParameter("reportType");
 		String filePath = null;
-		if (reportType == "week") {
-			filePath =PdfConfig.getWeekReportDir();
+		if ("month".equals(reportType)) {
+			filePath =PdfConfig.getMonthReportDir();
 		} else {
-			filePath = PdfConfig.getMonthReportDir();
+			filePath = PdfConfig.getWeekReportDir();
 		}
 		List<RunAnalysisReportForm> formList = new ArrayList<RunAnalysisReportForm>();
 		try {
@@ -97,10 +97,10 @@ public class RunAnalysisReportContorller {
 	public void download(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String filePath = null;
 		String reportType = request.getParameter("reportType");
-		if (reportType == "week") {
+		if (reportType.equals("week")) {
 			filePath =PdfConfig.getWeekReportDir();
 		} else {
-			filePath += PdfConfig.getMonthReportDir();
+			filePath = PdfConfig.getMonthReportDir();
 		}
 		String fileName = request.getParameter("fileName");
 		File file = null;
