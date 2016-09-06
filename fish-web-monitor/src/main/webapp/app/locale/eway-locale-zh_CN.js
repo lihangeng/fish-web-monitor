@@ -391,7 +391,7 @@ Ext.apply(EwayLocale,{
 	},
 
 	 batch:{
-		tradeRes :'定时任务统计表1',//EwayLocale.batch.tradeRes
+		tradeRes :'定时任务统计表',//EwayLocale.batch.tradeRes
 		jobName:'任务名称',//EwayLocale.batch.jobName
 		startTime:'任务启动时间',//EwayLocale.batch.startTime
 		endTime:'任务结束时间',//EwayLocale.batch.endTime
