@@ -325,7 +325,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		DefaultPieDataset dataSet = new DefaultPieDataset();
 		List<IFaultDurationWeek> listFaultDura = faultEtlService.getDurationWeek(Long.valueOf(weekOfYear));
 		for (IFaultDurationWeek ifd : listFaultDura) {
-			dataSet.setValue(pieTimeToStr(ifd.getDuration()) + "故障数: " + ifd.getCount(), ifd.getCount());
+			dataSet.setValue(pieTimeToStr(ifd.getDuration()) + "(" + ifd.getCount()+")", ifd.getCount());
 		}
 
 		return dataSet;

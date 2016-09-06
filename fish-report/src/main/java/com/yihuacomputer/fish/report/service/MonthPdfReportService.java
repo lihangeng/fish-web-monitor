@@ -333,7 +333,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		DefaultPieDataset dataSet = new DefaultPieDataset();
 		List<IFaultDurationMonth> listFaultDura = faultEtlService.getDurationMonth(Long.valueOf(month));
 		for (IFaultDurationMonth ifd : listFaultDura) {
-			dataSet.setValue(pieTimeToStr(ifd.getDuration()) + "故障数: " + ifd.getCount(), ifd.getCount());
+			dataSet.setValue(pieTimeToStr(ifd.getDuration()) + "(" + ifd.getCount()+")", ifd.getCount());
 		}
 
 		return dataSet;
