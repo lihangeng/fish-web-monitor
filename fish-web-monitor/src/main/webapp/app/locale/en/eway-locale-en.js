@@ -388,21 +388,21 @@ Ext.apply(EwayLocale,{
 	},
 	
 	 batch:{
-			tradeRes :'Trade statistics',//EwayLocale.batch.tradeRes
+			tradeRes :'Count timing tasks',//EwayLocale.batch.tradeRes
 			jobName:'Job name',//EwayLocale.batch.jobName
-			startTime:'The startTime of the job',//EwayLocale.batch.startTime
-			tradeTime:'The trade of the job',//EwayLocale.batch.tradeTime
-			endTime:'The endTime of the job',//EwayLocale.batch.endTime
+			startTime:'The start time of the job',//EwayLocale.batch.startTime
+			tradeTime:'The trade time of the job',//EwayLocale.batch.tradeTime
+			endTime:'The end time of the job',//EwayLocale.batch.endTime
 			operaResult:'Job opera result',//EwayLocale.batch.operaResult
 			errorMsg:'Please check the time style and value',//EwayLocale.batch.errorMsg
 			indexID:'ID',//EwayLocale.batch.indexID
 			AgainOpera:'Retry all',//EwayLocale.batch.AgainOpera
-			unOperaCount:'Get all unOpera tasks',//EwayLocale.batch.unOperaCount
-			check:'Get tasks',//EwayLocale.batch.check
-			again:'Ggain',//EwayLocale.batch.again
-			doAgain:'Do retry？',//EwayLocale.batch.doAgain
-			doAgainSu:'Retry success！',//EwayLocale.batch.doAgainSu
-			doAgainFa:'Retry failed！',//EwayLocale.batch.doAgainFa
+			unOperaCount:'Get all not to perform tasks',//EwayLocale.batch.unOperaCount
+			check:'Statistical',//EwayLocale.batch.check
+			again:'Opera again',//EwayLocale.batch.again
+			doAgain:'Redo？',//EwayLocale.batch.doAgain
+			doAgainSu:'Redo success！',//EwayLocale.batch.doAgainSu
+			doAgainFa:'Redo failed！',//EwayLocale.batch.doAgainFa
 		 },
 
 	commen:{
