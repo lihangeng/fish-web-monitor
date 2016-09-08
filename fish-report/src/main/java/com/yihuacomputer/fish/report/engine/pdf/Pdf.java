@@ -151,7 +151,7 @@ public class Pdf {
 	 * @throws DocumentException
 	 */
 	public void addParagraph(String content) throws DocumentException{
-		Paragraph paragraph = new Paragraph(content,FontMgr.getFont14());
+		Paragraph paragraph = new Paragraph(content,FontMgr.getFont12());
 		paragraph.setFirstLineIndent(20);//首行缩进
 		paragraph.setSpacingBefore(3f);
 		paragraph.setSpacingAfter(3f);
@@ -173,15 +173,33 @@ public class Pdf {
 		table.setWidthPercentage(widthPercent);  
 		table.setTotalWidth(widths);
 		for(String header : headers){
-			PdfPCell cell = new PdfPCell(new Phrase(header,FontMgr.getFont14()));
-			cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
-			table.addCell(cell);  
+			PdfPCell cell = new PdfPCell();
+			Phrase p = new Phrase(header,FontMgr.getFont12());
+			cell.setPhrase(p);
+			cell.setBackgroundColor(new BaseColor(210,222,239));
+			cell.setBorderWidth(1f);
+//			cell.setUseAscender(true);
+			cell.setHorizontalAlignment(Element.ALIGN_CENTER); //水平居中
+			cell.setVerticalAlignment(Element.ALIGN_MIDDLE); //垂直居中
+			table.addCell(cell); 
 		}
 		return table;
 	}
 	
 	public void addTableCell(PdfPTable table,String text){
-		table.addCell(new Phrase(text,FontMgr.getFont14()));
+		PdfPCell cell = new PdfPCell();
+//		cell.setUseAscender(true);
+		cell.setBorderWidth(1f);
+		cell.setHorizontalAlignment(Element.ALIGN_CENTER); //水平居中
+		cell.setVerticalAlignment(Element.ALIGN_MIDDLE); //垂直居中
+		 boolean result = text.matches(".*\\p{Alpha}.*");
+		 if(result){
+			 
+		 }else{
+			 cell.setPhrase(new Phrase(text,FontMgr.getFont12()));
+		 }
+		
+		table.addCell(cell);
 	}
 	
 		

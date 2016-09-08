@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.SQLQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -125,6 +126,27 @@ public class DeviceCatalogSummaryWeekService implements IDeviceCatalogSummaryWee
 			maps.get(catalog).add(each);
 		}
 		return maps;
+	}
+
+	@Override
+	public List<IDeviceCatalogSummaryWeek> getAddAndScrp(int weekOfYear,int lastWeek) {
+		StringBuilder sql = new StringBuilder();
+		sql.append("select dev.SUMMARY_DATE,sum(dev.ADD_NUM),sum(dev.SCRAPPED_NUM)");
+		sql.append(" FROM dev_catalog_summary_week dev");
+		sql.append(" WHERE dev.SUMMARY_DATE <=").append(String.valueOf(weekOfYear));
+		sql.append(" AND dev.SUMMARY_DATE >").append(String.valueOf(lastWeek)).append(" GROUP BY dev.SUMMARY_DATE ASC");
+		SQLQuery query = dao.getSQLQuery(sql.toString());
+		List<?> lists = query.list();
+		List<IDeviceCatalogSummaryWeek> result = new ArrayList<IDeviceCatalogSummaryWeek>();
+		for(Object object : lists){
+			Object [] each = (Object[])object;
+			IDeviceCatalogSummaryWeek deviceCatalogSummaryWeek = new DeviceCatalogSummaryWeek();
+			deviceCatalogSummaryWeek.setDate(each[0]==null? "0":each[0].toString());
+			deviceCatalogSummaryWeek.setAddDevNum(each[1]==null?0:Integer.valueOf(each[1].toString()));
+			deviceCatalogSummaryWeek.setScrappedDevNum(each[2]==null?0:Integer.valueOf(each[2].toString()));
+			result.add(deviceCatalogSummaryWeek);
+		}
+		return result;
 	}
 
 }

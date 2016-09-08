@@ -35,4 +35,9 @@ public interface IDeviceCatalogSummaryMonthService {
 	 * @return
 	 */
 	Map<String,List<IDeviceCatalogSummaryMonth>> getMonth(int month,int months);
+	
+	/**
+	 * 新增设备和报废设备趋势图
+	 */
+	List<IDeviceCatalogSummaryMonth> getAddAndScrp(int month,int lastMonth);
 }

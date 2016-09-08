@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
@@ -121,14 +122,14 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		pdf.addL1Chapter("四、吞卡数据汇总");
 		Long[] retain = retainCardEtlService.getWeekTotal(Long.valueOf(weekOfYear));
 		String retainStr = "";
-		if (retain[2] > 0) {
-			retainStr = retainStr + "增加" + retain[2];
+		if (retain[1]- retain[2] > 0) {
+			retainStr = retainStr + "增加" + (retain[1]- retain[2]);
 		} else {
-			retainStr = retainStr + "减少" + retain[2];
+			retainStr = retainStr + "减少" + (retain[2]- retain[1]);
 		}
-		pdf.addParagraph("1.上周共产生吞卡" + retain[1] + "次，平均" + retain[1] / 7 + "次/日（/台）。相比较上周" + retainStr + "次吞卡。");
+		pdf.addParagraph("1.上周共产生吞卡" + retain[1] + "次，平均" + retain[1] / 7 + "次/日。相比较上周" + retainStr + "次吞卡。");
 		pdf.addParagraph("2.上周各型号设备吞卡次数统计表");
-		PdfPTable table = pdf.addTableHeader(4, 80, new float[] { 18, 18, 18, 26 }, new String[] { "设备型号", "设备数量", "吞卡数量", "上周吞卡数量" });
+		PdfPTable table = pdf.addTableHeader(4, 84, new float[] { 19, 19, 19, 27 }, new String[] { "设备型号", "设备数量(次)", "吞卡数量(次)", "上周吞卡数量(次)" });
 		List<IRetainCardWeek> listRetain = retainCardEtlService.getWeek(Long.valueOf(weekOfYear));
 		for (IRetainCardWeek ir : listRetain) {
 			pdf.addTableCell(table, ir.getDevType());
@@ -143,17 +144,17 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		pdf.addL1Chapter("三、交易数据汇总");
 		Long[] trans = transTypeEtlService.getWeekTotal(Long.valueOf(weekOfYear));
 		Long[] lastTrans = transTypeEtlService.getWeekTotal(Long.valueOf(weekOfYear - 1));
-		long remains = trans[1] - lastTrans[1];
+		long remains = trans[0] - lastTrans[0];
 		String tranStr = "";
 		if (remains > 0) {
 			tranStr += "增加" + remains + "次。";
 		} else {
-			tranStr += "减少" + (lastTrans[1] - trans[1]) + "次。";
+			tranStr += "减少" + (lastTrans[0] - trans[0]) + "次。";
 		}
-		pdf.addParagraph("1.上周共产生交易" + trans[1] + "次，平均" + (trans[1] / 7) + "次/日。相比较上周交易次数" + tranStr);
+		pdf.addParagraph("1.上周共产生交易" + trans[0] + "次，平均" + (trans[0] / 7) + "次/日。相比较上周交易次数" + tranStr);
 
 		pdf.addParagraph("2.上周按照交易类型统计的交易次数和交易金额");
-		PdfPTable table = pdf.addTableHeader(3, 75, new float[] { 25, 25, 25 }, new String[] { "交易类型", "交易数量", "交易金额" });
+		PdfPTable table = pdf.addTableHeader(3, 83, new float[] { 27, 27, 27 }, new String[] { "交易类型", "交易数量(次)", "交易金额(元)" });
 		List<ITransTypeWeek> transList = transTypeEtlService.getWeek(weekOfYear);
 		for (ITransTypeWeek it : transList) {
 			pdf.addTableCell(table, it.getTransCode());
@@ -170,7 +171,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		pdf.addParagraph("1. 上周所有设备平均开机率为" + avgRate + "%");
 		pdf.addParagraph("2.上周每日的开机率趋势");
 		DefaultCategoryDataset openRateDataset2 = createDatasetRate(weekOfYear);
-		pdf.addChart(PdfChart.generateLineChart(openRateDataset2), chartWidth, 260);
+		pdf.addChart(PdfChart.generateLineChart(openRateDataset2,"","百分比"), chartWidth, 260);
 
 		pdf.addParagraph("3.上周所有设备型号的开机率，从高到低排列");
 		List<IDeviceTypeOpenRateWeek> typeRate = deviceTypeOpenRateEtlService.getDeviceTypeWeek(Long.valueOf(weekOfYear));
@@ -183,8 +184,10 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 			pdf.addTableCell(table, String.valueOf(idt.getOpenRate()));
 		}
 		pdf.getDocument().add(table);
-		pdf.addParagraph("4.上周各网点开机率汇总。");
-		pdf.addParagraph("4.1 上周各网点统计的开机率，较好开机率前10为：");
+		pdf.addParagraph("4.上周各网点开机率汇总");
+		Paragraph paragraph1 = new Paragraph("较好开机率的网点前10为",FontMgr.getFont12());
+		paragraph1.setFirstLineIndent(200);//首行缩进
+		pdf.getDocument().add(paragraph1);
 		PdfPTable orgTableTop = pdf.addTableHeader(4, 88, new float[] { 12, 26, 26, 21 }, new String[] { "网点名称", "设备应开机时长", "设备实际开机时长", "开机率(%)" });
 
 		List<IOrgOpenRateWeek> orgTop = orgOpenRateEtlService.getTopOrgWeek(weekOfYear, 10);
@@ -195,8 +198,9 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 			pdf.addTableCell(orgTableTop, NumUtils.format(ior.getOpenRate()));
 		}
 		pdf.getDocument().add(orgTableTop);
-
-		pdf.addParagraph("4.2 上周各网点统计的开机率，较差的开机率前10为：");
+		Paragraph paragraph2 = new Paragraph("较差开机率的网点前10为",FontMgr.getFont12());
+		paragraph2.setFirstLineIndent(200);//首行缩进
+		pdf.getDocument().add(paragraph2);
 		PdfPTable orgTableLast = pdf.addTableHeader(4, 88, new float[] { 12, 26, 26, 21 }, new String[] { "网点名称", "设备应开机时长", "设备实际开机时长", "开机率(%)" });
 
 		List<IOrgOpenRateWeek> orgLast = orgOpenRateEtlService.getLastOrgWeek(weekOfYear, 10);
@@ -208,9 +212,11 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		}
 		pdf.getDocument().add(orgTableLast);
 
-		pdf.addParagraph("5.上周所有设备开机率汇总。");
-		pdf.addParagraph("5.1 上周设备统计的开机率，较好开机率设备的前10为：");
-		PdfPTable devTableTop = pdf.addTableHeader(5, 88, new float[] { 16, 16, 22, 22, 12 }, new String[] { "设备编号", "机构名称", "应开机时长", "实际开机时长", "开机率(%)" });
+		pdf.addParagraph("5.上周所有设备开机率汇总");
+		Paragraph paragraph3 = new Paragraph("较好开机率的设备前10为",FontMgr.getFont12());
+		paragraph3.setFirstLineIndent(200);//首行缩进
+		pdf.getDocument().add(paragraph3);
+		PdfPTable devTableTop = pdf.addTableHeader(5, 90, new float[] { 16, 16, 22, 22, 14 }, new String[] { "设备编号", "机构名称", "应开机时长", "实际开机时长", "开机率(%)" });
 		List<IDeviceOpenRateWeek> devListTop = deviceOpenRateEtlService.getTopDeviceWeek(weekOfYear, 10);
 		for (IDeviceOpenRateWeek ido : devListTop) {
 			pdf.addTableCell(devTableTop, ido.getTerminalId());
@@ -221,8 +227,10 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		}
 		pdf.getDocument().add(devTableTop);
 
-		pdf.addParagraph("5.2 上周设备统计的开机率，较差开机率设备的前10为：");
-		PdfPTable devTableLast = pdf.addTableHeader(5, 88, new float[] { 16, 16, 22, 22, 12 }, new String[] { "设备编号", "机构名称", "应开机时长", "实际开机时长", "开机率(%)" });
+		Paragraph paragraph4 = new Paragraph("较差开机率的设备前10为",FontMgr.getFont12());
+		paragraph4.setFirstLineIndent(200);//首行缩进
+		pdf.getDocument().add(paragraph4);
+		PdfPTable devTableLast = pdf.addTableHeader(5, 90, new float[] { 16, 16, 22, 22, 14 }, new String[] { "设备编号", "机构名称", "应开机时长", "实际开机时长", "开机率(%)" });
 
 		List<IDeviceOpenRateWeek> devListLast = deviceOpenRateEtlService.getLastDeviceWeek(weekOfYear, 10);
 		for (IDeviceOpenRateWeek ido : devListLast) {
@@ -254,21 +262,20 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		Date week = DateUtils.get(String.valueOf(weekOfYear), DateUtils.STANDARD_WEEK);
 		Long[] dates = DateUtils.getFirstAndLastDayofWeek(week);
 		String nowDate = dates[1].toString().substring(0, 4) + "年" + dates[1].toString().substring(4, 6) + "月" + dates[1].toString().substring(6) + "日";
-		mgr.addChunk("1. 截止" + nowDate + "，共有设备" + devNum + "台，其中", FontMgr.getFont14());
+		mgr.addChunk("1. 截止" + nowDate + "，共有设备" + devNum + "台，其中", FontMgr.getFont12());
 		for (IDeviceCatalogSummaryWeek device : list1) {
-			mgr.addChunk(device.getCatalog(),FontMgr.getFont14()).addChunk("有" + device.getNum() + "台，", FontMgr.getFont14());
+			mgr.addChunk(device.getCatalog(),FontMgr.getFont12()).addChunk("有" + device.getNum() + "台，", FontMgr.getFont12());
 		}
-		mgr.addChunk("上周新增设备" + devAddNum + "台，报废设备" + devScraNum + "台。", FontMgr.getFont14());
+		mgr.addChunk("上周新增设备" + devAddNum + "台，报废设备" + devScraNum + "台。", FontMgr.getFont12());
 		pdf.addParagraph(mgr);
 		pdf.addParagraph("2.设备型号统计");
 
-		PdfPTable table = pdf.addTableHeader(5, 85, new float[] { 16, 16, 16, 22, 22 }, new String[] { "设备型号", "设备数量", "日期（周）", "新增设备数量", "报废设备数量" });
+		PdfPTable table = pdf.addTableHeader(4, 88, new float[] { 22, 22, 22, 22}, new String[] { "设备型号", "设备数量",  "新增设备数量", "报废设备数量" });
 
 		List<IDeviceTypeSummaryWeek> list2 = deviceTypeSummaryWeekService.list(filter);
 		for (IDeviceTypeSummaryWeek dt : list2) {
 			pdf.addTableCell(table, dt.getDevType());
 			pdf.addTableCell(table, String.valueOf(dt.getNum()));
-			pdf.addTableCell(table, String.valueOf(dt.getDate()).substring(4));
 			pdf.addTableCell(table, String.valueOf(dt.getAddDevNum()));
 			pdf.addTableCell(table, String.valueOf(dt.getScrappedDevNum()));
 		}
@@ -278,7 +285,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		pdf.addParagraph("3.最近4周新增设备和报废设备的趋势图");
 
 		DefaultCategoryDataset dataset1 = createDatasetFW(weekOfYear);
-		JFreeChart devChart = PdfChart.generateLineChart(dataset1);
+		JFreeChart devChart = PdfChart.generateLineChart(dataset1,"","设备数量");
 		pdf.addChart(devChart, chartWidth, 260);
 	}
 
@@ -287,9 +294,9 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		filter.ge("date", String.valueOf(weekOfYear - 4));
 		filter.le("date", String.valueOf(weekOfYear));
 		filter.order("date");
-		List<IDeviceCatalogSummaryWeek> list1 = deviceCatalogSummaryWeekService.list(filter);
+		List<IDeviceCatalogSummaryWeek> list = deviceCatalogSummaryWeekService.getAddAndScrp(weekOfYear,weekOfYear-4);
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		for (IDeviceCatalogSummaryWeek idc : list1) {
+		for (IDeviceCatalogSummaryWeek idc : list) {
 			String week = idc.getDate().substring(4) + "周";
 			dataset.setValue(idc.getAddDevNum(), "新增设备", week);
 			dataset.setValue(idc.getScrappedDevNum(), "报废设备", week);
@@ -307,7 +314,6 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		for (IAvgDayOpenRate ia : rates) {
 			day = String.valueOf(ia.getDate()).substring(6) + "日";
 			dataSet.setValue(ia.getOpenRate(), "开机率", day);
-			;
 		}
 		return dataSet;
 	}
@@ -325,7 +331,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		DefaultPieDataset dataSet = new DefaultPieDataset();
 		List<IFaultDurationWeek> listFaultDura = faultEtlService.getDurationWeek(Long.valueOf(weekOfYear));
 		for (IFaultDurationWeek ifd : listFaultDura) {
-			dataSet.setValue(pieTimeToStr(ifd.getDuration()) + "(" + ifd.getCount()+")", ifd.getCount());
+			dataSet.setValue(pieTimeToStr(ifd.getDuration()) , ifd.getCount());
 		}
 
 		return dataSet;

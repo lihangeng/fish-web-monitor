@@ -36,6 +36,10 @@ public interface IDeviceCatalogSummaryWeekService {
 	 * @return String 为设备类型，如ATM
 	 */
 	Map<String,List<IDeviceCatalogSummaryWeek>> getWeek(int weekOfYear,int days);
+	/**
+	 * 新增设备和报废设备趋势图
+	 */
+	List<IDeviceCatalogSummaryWeek> getAddAndScrp(int weekOfYear,int lastWeek);
 	
 
 }
