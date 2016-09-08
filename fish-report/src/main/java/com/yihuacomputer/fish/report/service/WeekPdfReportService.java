@@ -71,7 +71,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 	@Autowired
 	private IDeviceOpenRateEtlService deviceOpenRateEtlService;
 	private int chartWidth = (int) (PageSize.A4.getWidth() * 0.8);
-	private int devChartWidth = (int) (PageSize.A4.getWidth() * 0.9);
+	private int devChartWidth = (int) (PageSize.A4.getWidth() * 0.92);
 
 	@Override
 	public String generateWeekPDF(int weekOfYear) {
@@ -290,10 +290,6 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 	}
 
 	public DefaultCategoryDataset createDatasetFW(int weekOfYear) {
-		IFilter filter = new Filter();
-		filter.ge("date", String.valueOf(weekOfYear - 4));
-		filter.le("date", String.valueOf(weekOfYear));
-		filter.order("date");
 		List<IDeviceCatalogSummaryWeek> list = deviceCatalogSummaryWeekService.getAddAndScrp(weekOfYear,weekOfYear-4);
 		DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		for (IDeviceCatalogSummaryWeek idc : list) {

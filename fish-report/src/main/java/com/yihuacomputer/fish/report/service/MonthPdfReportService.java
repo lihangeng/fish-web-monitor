@@ -70,7 +70,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 	@Autowired
 	private IDeviceOpenRateEtlService deviceOpenRateEtlService;
 	private int chartWidth = (int) (PageSize.A4.getWidth() * 0.8);
-	private int devChartWidth = (int) (PageSize.A4.getWidth() * 0.9);
+	private int devChartWidth = (int) (PageSize.A4.getWidth() * 0.92);
 
 	@Override
 	public String generateMonthPDF(int month) {
@@ -336,7 +336,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		DefaultPieDataset dataSet = new DefaultPieDataset();
 		List<IFaultDurationMonth> listFaultDura = faultEtlService.getDurationMonth(Long.valueOf(month));
 		for (IFaultDurationMonth ifd : listFaultDura) {
-			dataSet.setValue(pieTimeToStr(ifd.getDuration()) + "(" + ifd.getCount()+")", ifd.getCount());
+			dataSet.setValue(pieTimeToStr(ifd.getDuration()), ifd.getCount());
 		}
 
 		return dataSet;
