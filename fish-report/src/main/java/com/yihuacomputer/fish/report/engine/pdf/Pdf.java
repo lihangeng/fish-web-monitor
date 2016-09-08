@@ -192,13 +192,7 @@ public class Pdf {
 		cell.setBorderWidth(1f);
 		cell.setHorizontalAlignment(Element.ALIGN_CENTER); //水平居中
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE); //垂直居中
-		 boolean result = text.matches(".*\\p{Alpha}.*");
-		 if(result){
-			 
-		 }else{
-			 cell.setPhrase(new Phrase(text,FontMgr.getFont12()));
-		 }
-		
+		cell.setPhrase(new Phrase(text,FontMgr.getFont12()));
 		table.addCell(cell);
 	}
 	
