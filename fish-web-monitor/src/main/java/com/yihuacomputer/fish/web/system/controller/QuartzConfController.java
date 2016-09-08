@@ -225,7 +225,6 @@ public class QuartzConfController {
 			//按新的cronExpression表达式重新构建trigger
 			trigger = trigger.getTriggerBuilder().withIdentity(triggerKey).withSchedule(scheduleBuilder).build();
 			
-			 
 			//按新的trigger重新设置job执行
 			scheduler.rescheduleJob(triggerKey , trigger);
 			result.addAttribute(FishConstant.SUCCESS, true);
@@ -241,9 +240,9 @@ public class QuartzConfController {
 		List<QuartzConfForm> qfs = new ArrayList<QuartzConfForm>();
 		for(Object qf[] : jobs ){
 			QuartzConfForm qff = new QuartzConfForm();
-			qff.setTriggerName((String)qf[0]);
+			qff.setTriggerName((String)qf[2]);
 			qff.setTriggerGroup((String)qf[1]);
-			qff.setJobName((String)qf[2]);
+			qff.setJobName((String)qf[0]);
 			qff.setJobDescription((String)qf[4]);
 			qff.setJobClassName((String)qf[5]);
 			qff.setCronExpression((String)qf[6]);

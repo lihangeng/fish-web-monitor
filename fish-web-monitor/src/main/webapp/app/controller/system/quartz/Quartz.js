@@ -158,7 +158,9 @@ Ext.define('Eway.controller.system.quartz.Quartz', {
 					Eway.alert('请选择需要操作的任务');
 				}
 			},
-
+			beforeUpdateSave:function(win,grid,record){
+				record.set("id",2);
+			},
 			init : function() {
 				this.initBaseControl();
 				this.control({
