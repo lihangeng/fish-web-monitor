@@ -34,10 +34,11 @@ public class MailUtils {
 				String mail = (String) iterator.next();
 				emailHandle.setTo(mail);
 			}
-			
-			for (Iterator<String> iterator = fileList.iterator(); iterator.hasNext();) {
-				String file = (String) iterator.next();
-				emailHandle.addFileAffix(file);
+			if(fileList!=null){
+				for (Iterator<String> iterator = fileList.iterator(); iterator.hasNext();) {
+					String file = (String) iterator.next();
+					emailHandle.addFileAffix(file);
+				}
 			}
 			
 			emailHandle.setFrom(fromAddress);
