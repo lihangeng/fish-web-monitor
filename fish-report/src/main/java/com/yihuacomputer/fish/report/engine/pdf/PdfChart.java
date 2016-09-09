@@ -102,7 +102,7 @@ public class PdfChart {
 		  categoryPlot.setRangeGridlinesVisible(true); 
 		  //图片背景色 
 		  categoryPlot.setBackgroundPaint(Color.white); 
-		  categoryPlot.setOutlineVisible(true); 
+		  categoryPlot.setOutlineVisible(false); 
 		  //图边框颜色 
 		  categoryPlot.setOutlinePaint(Color.magenta); 
 		  //设置柱的透明度 
