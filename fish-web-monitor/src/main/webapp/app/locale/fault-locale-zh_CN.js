@@ -9,7 +9,7 @@ Ext.apply(EwayLocale,{
 		nowExportFile:'正在导入文件',//EwayLocale.cases.nowExportFile
 		exportFaultInfo:'导入厂商故障信息成功.',//EwayLocale.cases.exportFaultInfo
 		caseFault:{
-			faultRelevantInfo:'故障相关短信',//EwayLocale.cases.caseFault.faultRelevantInfo
+			faultRelevantInfo:'故障相关通知',//EwayLocale.cases.caseFault.faultRelevantInfo
 			faultModule:'故障模块',//EwayLocale.cases.caseFault.faultModule
 			cardReaderModule:'读卡器模块',//EwayLocale.cases.caseFault.cardReaderModule
 			depoistModule:'存款模块',//EwayLocale.cases.caseFault.depoistModule
@@ -44,14 +44,12 @@ Ext.apply(EwayLocale,{
 		    none : '没有',//EwayLocale.cases.caseFault.none
 		    upgradeTimes: '升级次数',//EwayLocale.cases.caseFault.upgradeTimes
 		    message: '短信',//EwayLocale.cases.caseFault.message
-		    email: '邮件',//EwayLocale.cases.caseFault.email
-		    both: '短信和邮件',//EwayLocale.cases.caseFault.both
 		    checkDetails: '查看详情',//EwayLocale.cases.caseFault.checkDetails
 		    bankPer: '银行联系人',//EwayLocale.cases.caseFault.bankPer
 		    serPer: '供应商联系人',//EwayLocale.cases.caseFault.serPer
 		    createTime: '创建时间',//EwayLocale.cases.caseFault.createTime
 		    informContent: '通知内容',//EwayLocale.cases.caseFault.informContent
-		    messageContentDetail: '短信内容详情',//EwayLocale.cases.caseFault.messageContentDetail
+		    messageContentDetail: '通知内容详情',//EwayLocale.cases.caseFault.messageContentDetail
 		    informWay: '通知方式',//EwayLocale.cases.caseFault.informWay
 		    mail:'邮件',//EwayLocale.cases.caseFault.mail
 		    messageAndMail:'短信和邮件',//EwayLocale.cases.caseFault.messageAndMail
@@ -71,7 +69,7 @@ Ext.apply(EwayLocale,{
 			faultlastTime: '故障持续时长(单位:小时)',//EwayLocale.cases.caseNotify.faultlastTime
 			checkFailure:'查看失败！',//EwayLocale.cases.caseNotify.checkFailure
 			innerFault:'内部错误',//EwayLocale.cases.caseNotify.innerFault
-			messageCheck:'短信查询'//EwayLocale.cases.caseNotify.messageCheck
+			messageCheck:'通知查询'//EwayLocale.cases.caseNotify.messageCheck
 		},
 		faultClassify:{
 			faultClassifyName: '故障分类名称',//EwayLocale.cases.faultClassify.faultClassifyName
@@ -92,8 +90,8 @@ Ext.apply(EwayLocale,{
 			upgradeNotice:'升级通知',//EwayLocale.cases.notifyMould.upgradeNotice
 			closeNotice:'关闭通知',//EwayLocale.cases.notifyMould.closeNotice
 			noticeValue: '通知参数',//EwayLocale.cases.notifyMould.noticeValue
-			messageContentConfiguration:'短信内容配置',//EwayLocale.cases.notifyMould.messageContentConfiguration
-			updateMessageContentConfiguration: '更改短信内容配置',//EwayLocale.cases.notifyMould.updateMessageContentConfiguration
+			messageContentConfiguration:'通知内容配置',//EwayLocale.cases.notifyMould.messageContentConfiguration
+			updateMessageContentConfiguration: '更改通知内容配置',//EwayLocale.cases.notifyMould.updateMessageContentConfiguration
 			necessaryOption: '此项为必选项',//EwayLocale.cases.notifyMould.necessaryOption
 			faultType:'故障类型',//EwayLocale.cases.notifyMould.faultType
 			applyStatus:'应用状态'//EwayLocale.cases.notifyMould.applyStatus

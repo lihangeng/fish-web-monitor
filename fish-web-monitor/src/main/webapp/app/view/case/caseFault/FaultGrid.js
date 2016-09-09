@@ -138,9 +138,9 @@ Ext.define('Eway.view.case.caseFault.FaultGrid', {
 			}
 			}, {
 				xtype:'actioncolumn',
-				header : EwayLocale.cases.caseFault.message,
+				header : EwayLocale.cases.caseFault.informContent,
 				dataIndex : 'id',
-				menuText: EwayLocale.cases.caseFault.message,
+				menuText: EwayLocale.cases.caseFault.informContent,
 				items : [{
 					icon : 'resources/images/icon_email.gif',
 					tooltip: EwayLocale.cases.caseFault.checkDetails,
