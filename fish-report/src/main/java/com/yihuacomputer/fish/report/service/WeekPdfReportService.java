@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.report.service;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -72,6 +73,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 	private IDeviceOpenRateEtlService deviceOpenRateEtlService;
 	private int chartWidth = (int) (PageSize.A4.getWidth() * 0.8);
 	private int devChartWidth = (int) (PageSize.A4.getWidth() * 0.92);
+	DecimalFormat df = new DecimalFormat("0.00");
 
 	@Override
 	public String generateWeekPDF(int weekOfYear) {
@@ -127,9 +129,9 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		} else {
 			retainStr = retainStr + "减少" + (retain[2]- retain[1]);
 		}
-		pdf.addParagraph("1.上周共产生吞卡" + retain[1] + "次，平均" + retain[1] / 7 + "次/日。相比较上周" + retainStr + "次吞卡。");
+		pdf.addParagraph("1.上周共产生吞卡" + retain[1] + "次，平均" + (df.format((double)retain[1] / 7)) + "次/日。相比较上周" + retainStr + "次吞卡。");
 		pdf.addParagraph("2.上周各型号设备吞卡次数统计表");
-		PdfPTable table = pdf.addTableHeader(4, 84, new float[] { 19, 19, 19, 27 }, new String[] { "设备型号", "设备数量(次)", "吞卡数量(次)", "上周吞卡数量(次)" });
+		PdfPTable table = pdf.addTableHeader(4, 84, new float[] { 19, 19, 19, 27 }, new String[] { "设备型号", "设备数量(台)", "吞卡数量(次)", "上周吞卡数量(次)" });
 		List<IRetainCardWeek> listRetain = retainCardEtlService.getWeek(Long.valueOf(weekOfYear));
 		for (IRetainCardWeek ir : listRetain) {
 			pdf.addTableCell(table, ir.getDevType());
@@ -151,7 +153,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		} else {
 			tranStr += "减少" + (lastTrans[0] - trans[0]) + "次。";
 		}
-		pdf.addParagraph("1.上周共产生交易" + trans[0] + "次，平均" + (trans[0] / 7) + "次/日。相比较上周交易次数" + tranStr);
+		pdf.addParagraph("1.上周共产生交易" + trans[0] + "次，平均" + (df.format((double)trans[0] / 7)) + "次/日。相比较上周交易次数" + tranStr);
 
 		pdf.addParagraph("2.上周按照交易类型统计的交易次数和交易金额");
 		PdfPTable table = pdf.addTableHeader(3, 83, new float[] { 27, 27, 27 }, new String[] { "交易类型", "交易数量(次)", "交易金额(元)" });
@@ -270,7 +272,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		pdf.addParagraph(mgr);
 		pdf.addParagraph("2.设备型号统计");
 
-		PdfPTable table = pdf.addTableHeader(4, 88, new float[] { 22, 22, 22, 22}, new String[] { "设备型号", "设备数量",  "新增设备数量", "报废设备数量" });
+		PdfPTable table = pdf.addTableHeader(4, 88, new float[] { 22, 22, 22, 22}, new String[] { "设备型号", "设备数量(台)",  "新增设备数量(台)", "报废设备数量(台)" });
 
 		List<IDeviceTypeSummaryWeek> list2 = deviceTypeSummaryWeekService.list(filter);
 		for (IDeviceTypeSummaryWeek dt : list2) {
@@ -285,7 +287,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		pdf.addParagraph("3.最近4周新增设备和报废设备的趋势图");
 
 		DefaultCategoryDataset dataset1 = createDatasetFW(weekOfYear);
-		JFreeChart devChart = PdfChart.generateLineChart(dataset1,"","设备数量");
+		JFreeChart devChart = PdfChart.generateLineChart(dataset1,"","设备数量(台)");
 		pdf.addChart(devChart, chartWidth, 260);
 	}
 
