@@ -44,6 +44,8 @@ Ext.apply(EwayLocale,{
 		    none : '没有',//EwayLocale.cases.caseFault.none
 		    upgradeTimes: '升级次数',//EwayLocale.cases.caseFault.upgradeTimes
 		    message: '短信',//EwayLocale.cases.caseFault.message
+		    email: '邮件',//EwayLocale.cases.caseFault.email
+		    both: '短信和邮件',//EwayLocale.cases.caseFault.both
 		    checkDetails: '查看详情',//EwayLocale.cases.caseFault.checkDetails
 		    bankPer: '银行联系人',//EwayLocale.cases.caseFault.bankPer
 		    serPer: '供应商联系人',//EwayLocale.cases.caseFault.serPer
