@@ -45,9 +45,12 @@ public class FishSessionListener implements HttpSessionListener, HttpSessionAttr
 
     public void sessionDestroyed(HttpSessionEvent se) {
         HttpSession session = se.getSession();
+        UserSession userSession = (UserSession) session.getAttribute(FishWebUtils.USER);
+        if(userSession==null){
+        	return ;
+        }
         WebApplicationContext wac = ContextLoader.getCurrentWebApplicationContext();  
         ISessionManage sessionManage=(ISessionManage)wac.getBean(SessionManage.class);
-        UserSession userSession = (UserSession) session.getAttribute("SESSION_USER");
         session.removeAttribute(FishWebUtils.USER);
 		sessionManage.logout(userSession.getUserCode());
     }
