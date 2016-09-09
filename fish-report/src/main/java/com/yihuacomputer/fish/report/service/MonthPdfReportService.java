@@ -1,6 +1,7 @@
 package com.yihuacomputer.fish.report.service;
 
 import java.io.File;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.List;
 
@@ -71,6 +72,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 	private IDeviceOpenRateEtlService deviceOpenRateEtlService;
 	private int chartWidth = (int) (PageSize.A4.getWidth() * 0.8);
 	private int devChartWidth = (int) (PageSize.A4.getWidth() * 0.92);
+	DecimalFormat df = new DecimalFormat("0.00");
 
 	@Override
 	public String generateMonthPDF(int month) {
@@ -126,9 +128,9 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		} else {
 			retainStr = retainStr + "减少" + (retain[2]- retain[1]);
 		}
-		pdf.addParagraph("1.上月共产生吞卡" + retain[1] + "次，平均" + retain[1] / 30 + "次/日。相比较上月" + retainStr + "次吞卡。");
+		pdf.addParagraph("1.上月共产生吞卡" + retain[1] + "次，平均" + (df.format((double)retain[1] / getDaysByMonth(String.valueOf(month)))) + "次/日。相比较上月" + retainStr + "次吞卡。");
 		pdf.addParagraph("2.上月设备型号吞卡次数统计表");
-		PdfPTable table = pdf.addTableHeader(4, 84, new float[] { 19, 19, 19, 27 }, new String[] { "设备型号", "设备数量(次)", "吞卡数量(次)", "上月吞卡数量(次)" });
+		PdfPTable table = pdf.addTableHeader(4, 84, new float[] { 19, 19, 19, 27 }, new String[] { "设备型号", "设备数量(台)", "吞卡数量(次)", "上月吞卡数量(次)" });
 		List<IRetainCardMonth> listRetain = retainCardEtlService.getMonth(Long.valueOf(month));
 		for (IRetainCardMonth ir : listRetain) {
 			pdf.addTableCell(table, ir.getDevType());
@@ -159,7 +161,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 			mon = Integer.valueOf(String.valueOf(month).substring(4));
 		}
 		c.set(Calendar.MONTH, mon - 1); // 6 月
-		pdf.addParagraph("1.上月共产生交易" + trans[0] + "次，平均" + (trans[0] / c.getActualMaximum(Calendar.DAY_OF_MONTH)) + "次/日。相比较上月交易次数" + tranStr);
+		pdf.addParagraph("1.上月共产生交易" + trans[0] + "次，平均" + (df.format((double)trans[0] /getDaysByMonth(String.valueOf(month)))) + "次/日。相比较上月交易次数" + tranStr);
 
 		pdf.addParagraph("2.上月按照交易类型统计的交易次数和交易金额");
 		PdfPTable transTable = pdf.addTableHeader(3, 83, new float[] { 27, 27, 27 }, new String[] { "交易类型", "交易数量(次)", "交易金额(次)" });
@@ -280,7 +282,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		pdf.addParagraph(mgr);
 		pdf.addParagraph("2.设备型号统计");
 
-		PdfPTable table = pdf.addTableHeader(4,  88, new float[] { 22, 22, 22, 22 }, new String[] { "设备型号", "设备数量","新增设备数量", "报废设备数量" });
+		PdfPTable table = pdf.addTableHeader(4,  88, new float[] { 22, 22, 22, 22 }, new String[] { "设备型号", "设备数量(台)","新增设备数量(台)", "报废设备数量(台)" });
 		List<IDeviceTypeSummaryMonth> list2 = deviceTypeSummaryMonthService.list(filter);
 		for (IDeviceTypeSummaryMonth dt : list2) {
 			pdf.addTableCell(table, dt.getDevType());
@@ -294,7 +296,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		pdf.addParagraph("3.最近3个月新增设备和报废设备的趋势图");
 
 		DefaultCategoryDataset dataset1 = createDatasetMonth(month);
-		JFreeChart devChart = PdfChart.generateLineChart(dataset1,"","设备数量");
+		JFreeChart devChart = PdfChart.generateLineChart(dataset1,"","设备数量(台)");
 		pdf.addChart(devChart, chartWidth, 260);
 	}
 
@@ -340,6 +342,23 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		}
 
 		return dataSet;
+	}
+	
+	/**
+	 * 获取每月有多少天-格式yyyyMM
+	 */
+	private int getDaysByMonth(String month){
+		int mon =0;
+		if (String.valueOf(month).substring(4, 5).equals("0")) {
+			mon = Integer.valueOf(String.valueOf(month).substring(5));
+		} else {
+			mon = Integer.valueOf(String.valueOf(month).substring(4));
+		}
+		Calendar c = Calendar.getInstance();
+		c.set(Calendar.YEAR, Integer.parseInt(String.valueOf(month).substring(0, 4)));   
+	    c.set(Calendar.MONTH, mon-1); // 6 月  
+	    int days = c.getActualMaximum(Calendar.DAY_OF_MONTH);
+	    return days;
 	}
 
 }
