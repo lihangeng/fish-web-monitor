@@ -135,6 +135,9 @@ public class PersonController {
                         String.valueOf(userSession.getOrgId()), false);
             } else {
                 pageResult = devicePersonRelation.pageDeviceByPerson(start, limit, service.get(guid), filter);
+                if(pageResult.list().size()==0){
+                	 pageResult = devicePersonRelation.pageDeviceByPerson(0, limit, service.get(guid), filter);
+                }
             }
             result.addAttribute("total", pageResult.getTotal());
             result.addAttribute("data", DeviceForm.convert(pageResult.list()));
@@ -161,9 +164,17 @@ public class PersonController {
                 if (OrganizationType.BANK.equals(type)) {
                     pageResult = devicePersonRelation.pageUnlinkDeviceByPerson(start, limit, service.get(guid), filter,
                             organizationId, organizationService.getRoot().get(0).getGuid());
+                    if(pageResult.list().size()==0){
+                    	pageResult = devicePersonRelation.pageUnlinkDeviceByPerson(0, limit, service.get(guid), filter,
+                                organizationId, organizationService.getRoot().get(0).getGuid());
+                    }
                 } else {
                     pageResult = devicePersonRelation.pageUnlinkDeviceByPerson(start, limit, service.get(guid), filter,
                             organizationService.getRoot().get(0).getGuid(), organizationId);
+                    if(pageResult.list().size()==0){
+                    	pageResult = devicePersonRelation.pageUnlinkDeviceByPerson(0, limit, service.get(guid), filter,
+                                organizationService.getRoot().get(0).getGuid(), organizationId);
+                    }
                 }
             }
             result.addAttribute(FishConstant.SUCCESS, true);
