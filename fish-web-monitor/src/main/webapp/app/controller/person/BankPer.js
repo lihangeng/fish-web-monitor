@@ -256,6 +256,7 @@ Ext.define('Eway.controller.person.BankPer', {
 							organizationId:record.data.organizationId
 						}
 					});
+					linkedDeviceGrid.getSelectionModel().deselectAll();
 				},
 				failure: function(){
 					linkingDeviceGrid.down('button[action="link"]').enable();
@@ -352,6 +353,7 @@ Ext.define('Eway.controller.person.BankPer', {
 							organizationId:record.data.organizationId
 						}
 					});
+					linkingDeviceGrid.getSelectionModel().deselectAll();
 				},
 				failure: function(){
 					Eway.alert(EwayLocale.tip.bankPer.link.unLinkDevFail);
