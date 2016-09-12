@@ -127,6 +127,6 @@ public class AvgOpenRateEtlService implements IAvgOpenRateEtlService{
 
 	@Override
 	public List<IAvgDayOpenRate> getAvgDays(long start, long end) {
-		return dao.findByHQL("from AvgDayOpenRate where date > ?  and date < ?", start,end);
+		return dao.findByHQL("from AvgDayOpenRate where date >= ?  and date <= ? ORDER BY date ASC", start,end);
 	}
 }
