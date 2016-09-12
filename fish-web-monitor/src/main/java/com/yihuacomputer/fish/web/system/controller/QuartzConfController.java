@@ -210,11 +210,11 @@ public class QuartzConfController {
 		try {
 			Scheduler scheduler = startQuartz.getScheduler();
 			
-			String jobName = request.getJobName();
+			String triggerName = request.getTriggerName();
 			String jobGroup = request.getJobGroup();
 			String cronExpression = request.getCronExpression();
 			
-			TriggerKey triggerKey = TriggerKey.triggerKey(jobName,jobGroup);
+			TriggerKey triggerKey = TriggerKey.triggerKey(triggerName,jobGroup);
 			
 			////获取trigger，即在spring配置文件中定义的 bean id="myTrigger"
 			CronTrigger trigger = (CronTrigger) scheduler.getTrigger(triggerKey);
@@ -240,9 +240,9 @@ public class QuartzConfController {
 		List<QuartzConfForm> qfs = new ArrayList<QuartzConfForm>();
 		for(Object qf[] : jobs ){
 			QuartzConfForm qff = new QuartzConfForm();
-			qff.setTriggerName((String)qf[2]);
+			qff.setTriggerName((String)qf[0]);
 			qff.setTriggerGroup((String)qf[1]);
-			qff.setJobName((String)qf[0]);
+			qff.setJobName((String)qf[2]);
 			qff.setJobDescription((String)qf[4]);
 			qff.setJobClassName((String)qf[5]);
 			qff.setCronExpression((String)qf[6]);
