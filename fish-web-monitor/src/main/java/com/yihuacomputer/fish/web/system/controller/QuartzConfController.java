@@ -75,7 +75,7 @@ public class QuartzConfController {
 			filter.like("name", name);
 			logger.info("name : " + name);
 		}
-		List<QuartzConfForm>  data = convert(quartzService.listJobs());
+		List<QuartzConfForm>  data = convert(quartzService.listJobs(filter));
 
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, true);

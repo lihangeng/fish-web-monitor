@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.system.quartz.IQuartzService;
 
@@ -42,9 +43,15 @@ public class QuartzService implements IQuartzService{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Object[]> listJobs() {
-		
-	        SQLQuery query = dao.getSQLQuery(TASK_LIST_SQL);
+	public List<Object[]> listJobs(IFilter filter) {
+			String name = (String)filter.getValue("name");
+			StringBuffer sql = new StringBuffer();
+			if(name !=null){
+				sql.append(" WHERE TRIGGERS.TRIGGER_NAME like'%").append(name).append("%'");
+			}else{
+				sql.append(" WHERE 1=1");
+			}
+	        SQLQuery query = dao.getSQLQuery(TASK_LIST_SQL+sql.toString());
 	        return query.list();
 	}
 
