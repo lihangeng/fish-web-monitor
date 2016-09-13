@@ -46,10 +46,10 @@ public class QuartzService implements IQuartzService{
 	public List<Object[]> listJobs(IFilter filter) {
 			String name = (String)filter.getValue("name");
 			StringBuffer sql = new StringBuffer();
-			if(name !=null){
-				sql.append(" WHERE TRIGGERS.TRIGGER_NAME like'%").append(name).append("%'");
-			}else{
+			if(name == null){
 				sql.append(" WHERE 1=1");
+			}else{
+				sql.append(" WHERE TRIGGERS.TRIGGER_NAME like'%").append(name).append("%'");
 			}
 	        SQLQuery query = dao.getSQLQuery(TASK_LIST_SQL+sql.toString());
 	        return query.list();

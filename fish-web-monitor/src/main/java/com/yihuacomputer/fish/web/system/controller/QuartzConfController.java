@@ -13,6 +13,7 @@ import org.quartz.TriggerKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.annotation.MethodNameDescrible;
@@ -48,6 +50,8 @@ public class QuartzConfController {
 	@Autowired(required = false)
 	SchedulerFactoryBean startQuartz;
 
+	@Autowired
+	protected MessageSource messageSource;
 
 
 	/**
@@ -234,8 +238,9 @@ public class QuartzConfController {
 			//按新的trigger重新设置job执行
 			scheduler.rescheduleJob(triggerKey , trigger);
 			result.addAttribute(FishConstant.SUCCESS, true);
-		} catch (SchedulerException e) {
+		} catch (Exception e) {
 			result.addAttribute(FishConstant.SUCCESS, false);
+			result.addAttribute(FishConstant.ERROR_MSG, messageSource.getMessage("quartz.fail", null, FishCfg.locale));
 		}
 		return result;
 	}
