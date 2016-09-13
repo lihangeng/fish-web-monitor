@@ -39,6 +39,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.AwayFlag;
@@ -63,6 +65,7 @@ import com.yihuacomputer.fish.web.util.FishWebUtils;
  */
 @Controller
 @RequestMapping("/monitor/retainCard")
+@ClassNameDescrible(describle="userlog.RetaincardController")
 public class RetaincardController {
 
 	private Logger logger = LoggerFactory.getLogger(RetaincardController.class);
@@ -81,6 +84,7 @@ public class RetaincardController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
+	@MethodNameDescrible(describle="userlog.RetaincardController.add",hasArgs=false)
 	ModelMap add(@RequestBody RetainCardForm request) {
 		ModelMap result = new ModelMap();
 		try {
@@ -138,6 +142,12 @@ public class RetaincardController {
 		return result;
 	}
 
+	/**
+	 * 删除吞卡信息
+	 * @param id
+	 * @return
+	 */
+	@MethodNameDescrible(describle="userlog.RetaincardController.delete",hasArgs=false,urlArgs=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
@@ -181,6 +191,7 @@ public class RetaincardController {
 	 * @param treatmentPeople
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.RetaincardController.reveive",hasArgs=true,argsContext="id")
 	@RequestMapping(value = "/receive", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap reveive(@RequestParam String organizationId,
@@ -349,6 +360,7 @@ public class RetaincardController {
 	 * @param treatmentPeople
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.RetaincardController.handover",hasArgs=true,argsContext="id")
 	@RequestMapping(value = "/handover", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap handover(@RequestParam String organizationId,
@@ -411,6 +423,7 @@ public class RetaincardController {
 	 *            处理人员
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.RetaincardController.update",hasArgs=true,argsContext="id")
 	@RequestMapping(method = RequestMethod.GET, value = "/destory")
 	public @ResponseBody
 	ModelMap update(@RequestParam long id, @RequestParam String name,
@@ -494,6 +507,7 @@ public class RetaincardController {
 	 *
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.RetaincardController.poiExcel",hasArgs=false)
 	@RequestMapping(value = "/poiExcel", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap poiExcel(WebRequest wRequest, HttpServletRequest request,

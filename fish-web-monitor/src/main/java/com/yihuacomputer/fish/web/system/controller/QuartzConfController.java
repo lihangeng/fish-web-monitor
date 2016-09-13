@@ -26,6 +26,7 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.system.quartz.IQuartzService;
@@ -93,6 +94,7 @@ public class QuartzConfController {
 	 * @param form
 	 * @return ModelMap<String, Object>
 	 */
+	@MethodNameDescrible(describle="userlog.QuartzConfController.pauseJob",hasArgs=true,argsContext="jobName")
 	@RequestMapping(value = "/pauseJob", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap pauseJob(String jobName,String jobGroup,WebRequest request) {
@@ -118,6 +120,7 @@ public class QuartzConfController {
 	 * @param form
 	 * @return ModelMap<String, Object>
 	 */
+	@MethodNameDescrible(describle="userlog.QuartzConfController.resumeJob",hasArgs=true,argsContext="jobName")
 	@RequestMapping(value = "/resumeJob", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap resumeJob(String jobName,String jobGroup,WebRequest request) {
@@ -143,6 +146,7 @@ public class QuartzConfController {
 	 * @param form
 	 * @return ModelMap<String, Object>
 	 */
+	@MethodNameDescrible(describle="userlog.QuartzConfController.deleteJob",hasArgs=true,argsContext="jobName")
 	@RequestMapping(value = "/deleteJob", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap deleteJob(String jobName,String jobGroup,WebRequest request) {
@@ -171,6 +175,7 @@ public class QuartzConfController {
 	 * @param form
 	 * @return ModelMap<String, Object>
 	 */
+	@MethodNameDescrible(describle="userlog.QuartzConfController.executeJob",hasArgs=true,argsContext="jobName")
 	@RequestMapping(value = "/executeJob", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap executeJob(String jobName,String jobGroup,WebRequest request) {
@@ -203,6 +208,7 @@ public class QuartzConfController {
 	 * @param form
 	 * @return ModelMap<String, Object>
 	 */
+	@MethodNameDescrible(describle="userlog.QuartzConfController.updateJob",hasArgs=false,urlArgs=true)
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody QuartzConfForm request) {
 		logger.info("update quartz: job.id = " + id);

@@ -28,6 +28,8 @@ import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.report.batch.IETLjobDaysService;
@@ -38,6 +40,7 @@ import com.yihuacomputer.fish.web.report.form.JobForm;
 
 @Controller
 @RequestMapping("/report/ETLJob")
+@ClassNameDescrible(describle="userlog.ETLJobController")
 public class ETLJobController {
 	private Logger logger = org.slf4j.LoggerFactory.getLogger(ETLJobController.class);
 
@@ -218,6 +221,7 @@ public class ETLJobController {
 	 * @param webrequest
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.ETLJobController.statistic",hasArgs=false)
 	@RequestMapping(value = "/check", method = RequestMethod.GET)
 	public @ResponseBody ModelMap checkTrade(HttpServletRequest request, WebRequest webrequest) {
 		ModelMap result = new ModelMap();
@@ -241,6 +245,7 @@ public class ETLJobController {
 	 * @param request
 	 * @return
 	 */
+	@MethodNameDescrible(describle="userlog.ETLJobController.AllOpera",hasArgs=false)
 	@RequestMapping(value = "/AllOpera", method = RequestMethod.GET)
 	public @ResponseBody ModelMap AgainAll(WebRequest Request, HttpServletRequest req) {
 		logger.info(String.format("All opera!!"));

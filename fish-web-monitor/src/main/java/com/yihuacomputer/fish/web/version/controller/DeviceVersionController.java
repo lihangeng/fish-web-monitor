@@ -82,7 +82,14 @@ public class DeviceVersionController {
         result.addAttribute("data", this.getForms(pageResult.list()));
         return result;
     }
-
+    /**
+     * 查看设备历史版本
+     * @param start
+     * @param limit
+     * @param deviceId
+     * @return
+     */
+	@MethodNameDescrible(describle="userlog.DeviceVersionController.history",hasArgs=true,argsContext="deviceId")
     @RequestMapping(method = RequestMethod.GET, value = "/history")
     public @ResponseBody
     ModelMap history(@RequestParam int start, @RequestParam int limit, @RequestParam int deviceId) {

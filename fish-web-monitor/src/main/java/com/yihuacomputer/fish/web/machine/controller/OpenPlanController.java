@@ -263,7 +263,14 @@ public class OpenPlanController {
 		result.addAttribute("data", toPlanForm(pageResult, deviceId, terminalId));
 		return result;
 	}
-
+	/**
+	 * 查看开机方案详情
+	 * @param start
+	 * @param limit
+	 * @param request
+	 * @return
+	 */
+	@MethodNameDescrible(describle="userlog.openPlanController.details",hasArgs=false)
 	@RequestMapping(value = "/details", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap searchPlanDetail(@RequestParam int start, @RequestParam int limit, WebRequest request) {

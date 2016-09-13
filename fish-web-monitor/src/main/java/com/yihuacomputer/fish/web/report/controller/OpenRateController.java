@@ -38,6 +38,7 @@ import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.annotation.ClassNameDescrible;
+import com.yihuacomputer.common.annotation.MethodNameDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.filter.FilterEntry;
 import com.yihuacomputer.common.filter.FilterFactory;
@@ -224,6 +225,13 @@ public class OpenRateController {
         return model;
     }
 
+    /**
+     * 导出设备开机率报表
+     * @param webRequest
+     * @param request
+     * @param response
+     */
+	@MethodNameDescrible(describle="userlog.OpenRateController.exportDevice",hasArgs=false)
     @RequestMapping(value = "device/importStat", method = RequestMethod.GET)
     public @ResponseBody
     void deviceImportStat(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) {
@@ -295,6 +303,13 @@ public class OpenRateController {
         }
     }
 
+	/**
+	 * 型号开机率报表导出
+	 * @param webRequest
+	 * @param request
+	 * @param response
+	 */
+	@MethodNameDescrible(describle="userlog.OpenRateController.exportType",hasArgs=false)
     @RequestMapping(value = "type/importStat", method = RequestMethod.GET)
     public @ResponseBody
     void typeImportStat(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) {
@@ -326,6 +341,13 @@ public class OpenRateController {
         }
     }
 
+    /**
+     * 机构开机率报表导出
+     * @param webRequest
+     * @param request
+     * @param response
+     */
+    @MethodNameDescrible(describle="userlog.OpenRateController.exportOrg",hasArgs=false)
     @RequestMapping(value = "org/importStat", method = RequestMethod.GET)
     public @ResponseBody
     void orgImportStat(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) {

@@ -244,6 +244,7 @@ public class AtmGroupController {
 	 * @param form
 	 * @return ModelMap<String, Object>
 	 */
+	@MethodNameDescrible(describle="userlog.atmGroupController.groupDetail",hasArgs=false)
 	@RequestMapping(value = "/deviceByGroup", method = RequestMethod.GET)
 	public @ResponseBody
 	ModelMap searchByGroup(@RequestParam int start, @RequestParam int limit, WebRequest request, HttpServletRequest req) {
