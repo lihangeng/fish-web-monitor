@@ -56,6 +56,7 @@ public class PdfConfig{
 		String weekStr = DateUtils.get(week, "ww");
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(week);
+		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		DateUtils.getFirstDayOfWeek(cal);
 		Date firstDay = DateUtils.getFirstDayOfWeek(cal);
 		String start= DateUtils.get(firstDay, "MM.dd");
