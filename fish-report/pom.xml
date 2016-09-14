@@ -95,6 +95,16 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext</artifactId>
+			<version>2.1.7</version>
+		</dependency>
+     <dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>iTextAsian</artifactId>
+			<version>1.0</version>
+		</dependency>
 	</dependencies>
 	<scm>
 		<connection>scm:git:ssh://git@10.2.8.222/atmvs.git</connection>
