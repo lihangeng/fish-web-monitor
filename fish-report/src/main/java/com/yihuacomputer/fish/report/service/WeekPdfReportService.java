@@ -134,10 +134,10 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		PdfPTable table = pdf.addTableHeader(4, 84, new float[] { 19, 19, 19, 27 }, new String[] { "设备型号", "设备数量(台)", "吞卡数量(次)", "上周吞卡数量(次)" });
 		List<IRetainCardWeek> listRetain = retainCardEtlService.getWeek(Long.valueOf(weekOfYear));
 		for (IRetainCardWeek ir : listRetain) {
-			pdf.addTableCell(table, ir.getDevType());
-			pdf.addTableCell(table, String.valueOf(ir.getDeviceCount()));
-			pdf.addTableCell(table, String.valueOf(ir.getRetainCount()));
-			pdf.addTableCell(table, String.valueOf(ir.getLastRetainCount()));
+			pdf.addTableCell(table, ir.getDevType(),false);
+			pdf.addTableCell(table, String.valueOf(ir.getDeviceCount()),false);
+			pdf.addTableCell(table, String.valueOf(ir.getRetainCount()),false);
+			pdf.addTableCell(table, String.valueOf(ir.getLastRetainCount()),true);
 		}
 		pdf.getDocument().add(table);
 	}
@@ -159,9 +159,9 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		PdfPTable table = pdf.addTableHeader(3, 83, new float[] { 27, 27, 27 }, new String[] { "交易类型", "交易数量(次)", "交易金额(元)" });
 		List<ITransTypeWeek> transList = transTypeEtlService.getWeek(weekOfYear);
 		for (ITransTypeWeek it : transList) {
-			pdf.addTableCell(table, it.getTransCode());
-			pdf.addTableCell(table, String.valueOf(it.getTransCount()));
-			pdf.addTableCell(table, String.valueOf(it.getTransAmount()));
+			pdf.addTableCell(table, it.getTransCode(),false);
+			pdf.addTableCell(table, String.valueOf(it.getTransCount()),false);
+			pdf.addTableCell(table, String.valueOf(it.getTransAmount()),true);
 		}
 		pdf.getDocument().add(table);
 	}
@@ -180,10 +180,10 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 
 		PdfPTable table = pdf.addTableHeader(4, 88, new float[] { 16, 24, 24, 20 }, new String[] { "设备型号", "应开机时长", "实际开机时长", "开机率(%)" });
 		for (IDeviceTypeOpenRateWeek idt : typeRate) {
-			pdf.addTableCell(table, idt.getDevType());
-			pdf.addTableCell(table, secondToDay(idt.getOpenTimes()));
-			pdf.addTableCell(table, secondToDay(idt.getHealthyTimeReal()));
-			pdf.addTableCell(table, String.valueOf(idt.getOpenRate()));
+			pdf.addTableCell(table, idt.getDevType(),false);
+			pdf.addTableCell(table, secondToDay(idt.getOpenTimes()),false);
+			pdf.addTableCell(table, secondToDay(idt.getHealthyTimeReal()),false);
+			pdf.addTableCell(table, String.valueOf(idt.getOpenRate()),true);
 		}
 		pdf.getDocument().add(table);
 		pdf.addParagraph("4.上周各网点开机率汇总");
@@ -194,10 +194,10 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 
 		List<IOrgOpenRateWeek> orgTop = orgOpenRateEtlService.getTopOrgWeek(weekOfYear, 10);
 		for (IOrgOpenRateWeek ior : orgTop) {
-			pdf.addTableCell(orgTableTop, ior.getOrgName());
-			pdf.addTableCell(orgTableTop, secondToDay(ior.getOpenTimes()));
-			pdf.addTableCell(orgTableTop, secondToDay(ior.getHealthyTimeReal()));
-			pdf.addTableCell(orgTableTop, NumUtils.format(ior.getOpenRate()));
+			pdf.addTableCell(orgTableTop, ior.getOrgName(),false);
+			pdf.addTableCell(orgTableTop, secondToDay(ior.getOpenTimes()),false);
+			pdf.addTableCell(orgTableTop, secondToDay(ior.getHealthyTimeReal()),false);
+			pdf.addTableCell(orgTableTop, NumUtils.format(ior.getOpenRate()),true);
 		}
 		pdf.getDocument().add(orgTableTop);
 		Paragraph paragraph2 = new Paragraph("较差开机率的网点前10为",FontMgr.getFont12());
@@ -207,10 +207,10 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 
 		List<IOrgOpenRateWeek> orgLast = orgOpenRateEtlService.getLastOrgWeek(weekOfYear, 10);
 		for (IOrgOpenRateWeek ior : orgLast) {
-			pdf.addTableCell(orgTableLast, ior.getOrgName());
-			pdf.addTableCell(orgTableLast, secondToDay(ior.getOpenTimes()));
-			pdf.addTableCell(orgTableLast, secondToDay(ior.getHealthyTimeReal()));
-			pdf.addTableCell(orgTableLast, NumUtils.format(ior.getOpenRate()));
+			pdf.addTableCell(orgTableLast, ior.getOrgName(),false);
+			pdf.addTableCell(orgTableLast, secondToDay(ior.getOpenTimes()),false);
+			pdf.addTableCell(orgTableLast, secondToDay(ior.getHealthyTimeReal()),false);
+			pdf.addTableCell(orgTableLast, NumUtils.format(ior.getOpenRate()),true);
 		}
 		pdf.getDocument().add(orgTableLast);
 
@@ -221,11 +221,11 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		PdfPTable devTableTop = pdf.addTableHeader(5, 90, new float[] { 16, 16, 22, 22, 14 }, new String[] { "设备编号", "机构名称", "应开机时长", "实际开机时长", "开机率(%)" });
 		List<IDeviceOpenRateWeek> devListTop = deviceOpenRateEtlService.getTopDeviceWeek(weekOfYear, 10);
 		for (IDeviceOpenRateWeek ido : devListTop) {
-			pdf.addTableCell(devTableTop, ido.getTerminalId());
-			pdf.addTableCell(devTableTop, ido.getOrgName());
-			pdf.addTableCell(devTableTop, String.valueOf(secondToDay(ido.getOpenTimes())));
-			pdf.addTableCell(devTableTop, String.valueOf(secondToDay(ido.getHealthyTimeReal())));
-			pdf.addTableCell(devTableTop, NumUtils.format(ido.getOpenRate()));
+			pdf.addTableCell(devTableTop, ido.getTerminalId(),false);
+			pdf.addTableCell(devTableTop, ido.getOrgName(),false);
+			pdf.addTableCell(devTableTop, String.valueOf(secondToDay(ido.getOpenTimes())),false);
+			pdf.addTableCell(devTableTop, String.valueOf(secondToDay(ido.getHealthyTimeReal())),false);
+			pdf.addTableCell(devTableTop, NumUtils.format(ido.getOpenRate()),true);
 		}
 		pdf.getDocument().add(devTableTop);
 
@@ -236,11 +236,11 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 
 		List<IDeviceOpenRateWeek> devListLast = deviceOpenRateEtlService.getLastDeviceWeek(weekOfYear, 10);
 		for (IDeviceOpenRateWeek ido : devListLast) {
-			pdf.addTableCell(devTableLast, ido.getTerminalId());
-			pdf.addTableCell(devTableLast, ido.getOrgName());
-			pdf.addTableCell(devTableLast, String.valueOf(secondToDay(ido.getOpenTimes())));
-			pdf.addTableCell(devTableLast, String.valueOf(secondToDay(ido.getHealthyTimeReal())));
-			pdf.addTableCell(devTableLast,NumUtils.format(ido.getOpenRate()));
+			pdf.addTableCell(devTableLast, ido.getTerminalId(),false);
+			pdf.addTableCell(devTableLast, ido.getOrgName(),false);
+			pdf.addTableCell(devTableLast, String.valueOf(secondToDay(ido.getOpenTimes())),false);
+			pdf.addTableCell(devTableLast, String.valueOf(secondToDay(ido.getHealthyTimeReal())),false);
+			pdf.addTableCell(devTableLast,NumUtils.format(ido.getOpenRate()),true);
 		}
 		pdf.getDocument().add(devTableLast);
 	}
@@ -276,10 +276,10 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 
 		List<IDeviceTypeSummaryWeek> list2 = deviceTypeSummaryWeekService.list(filter);
 		for (IDeviceTypeSummaryWeek dt : list2) {
-			pdf.addTableCell(table, dt.getDevType());
-			pdf.addTableCell(table, String.valueOf(dt.getNum()));
-			pdf.addTableCell(table, String.valueOf(dt.getAddDevNum()));
-			pdf.addTableCell(table, String.valueOf(dt.getScrappedDevNum()));
+			pdf.addTableCell(table, dt.getDevType(),false);
+			pdf.addTableCell(table, String.valueOf(dt.getNum()),false);
+			pdf.addTableCell(table, String.valueOf(dt.getAddDevNum()),false);
+			pdf.addTableCell(table, String.valueOf(dt.getScrappedDevNum()),true);
 		}
 		pdf.getDocument().add(table);
 

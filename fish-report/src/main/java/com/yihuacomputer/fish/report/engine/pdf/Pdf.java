@@ -172,12 +172,22 @@ public class Pdf {
 		table.setSpacingBefore(10f);
 		table.setWidthPercentage(widthPercent);  
 		table.setTotalWidth(widths);
+		int currentCell = 1;
 		for(String header : headers){
+			
 			PdfPCell cell = new PdfPCell();
 			Phrase p = new Phrase(header,FontMgr.getFont12());
 			cell.setPhrase(p);
 			cell.setBackgroundColor(new BaseColor(210,222,239));
-			cell.setBorderWidth(1f);
+			if(cols == currentCell){
+				cell.setBorderWidth(0.4f);
+			}else{
+				currentCell = currentCell + 1;
+				cell.setBorderWidthLeft(0.4f);
+				cell.setBorderWidthTop(0.4f);
+				cell.setBorderWidthRight(0);
+				cell.setBorderWidthBottom(0.4f);
+			}
 //			cell.setUseAscender(true);
 			cell.setHorizontalAlignment(Element.ALIGN_CENTER); //水平居中
 			cell.setVerticalAlignment(Element.ALIGN_MIDDLE); //垂直居中
@@ -186,10 +196,21 @@ public class Pdf {
 		return table;
 	}
 	
-	public void addTableCell(PdfPTable table,String text){
+	public void addTableCell(PdfPTable table,String text ,boolean foot){
 		PdfPCell cell = new PdfPCell();
 //		cell.setUseAscender(true);
-		cell.setBorderWidth(1f);
+		if(foot){
+			cell.setBorderWidthLeft(0.4f);
+			cell.setBorderWidthBottom(0.4f);
+			cell.setBorderWidthRight(0.4f);
+			cell.setBorderWidthTop(0);
+		}else{
+			cell.setBorderWidthLeft(0.4f);
+			cell.setBorderWidthBottom(0.4f);
+			cell.setBorderWidthRight(0);
+			cell.setBorderWidthTop(0);
+		}
+		cell.setBorderWidth(0);
 		cell.setHorizontalAlignment(Element.ALIGN_CENTER); //水平居中
 		cell.setVerticalAlignment(Element.ALIGN_MIDDLE); //垂直居中
 		cell.setPhrase(new Phrase(text,FontMgr.getFont12()));

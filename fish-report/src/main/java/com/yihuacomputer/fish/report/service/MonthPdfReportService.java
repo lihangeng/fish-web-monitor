@@ -71,7 +71,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 	@Autowired
 	private IDeviceOpenRateEtlService deviceOpenRateEtlService;
 	private int chartWidth = (int) (PageSize.A4.getWidth() * 0.8);
-	private int devChartWidth = (int) (PageSize.A4.getWidth() * 0.92);
+	private int devChartWidth = (int) (PageSize.A4.getWidth() * 0.95);
 	DecimalFormat df = new DecimalFormat("0.00");
 
 	@Override
@@ -133,10 +133,10 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		PdfPTable table = pdf.addTableHeader(4, 84, new float[] { 19, 19, 19, 27 }, new String[] { "设备型号", "设备数量(台)", "吞卡数量(次)", "上月吞卡数量(次)" });
 		List<IRetainCardMonth> listRetain = retainCardEtlService.getMonth(Long.valueOf(month));
 		for (IRetainCardMonth ir : listRetain) {
-			pdf.addTableCell(table, ir.getDevType());
-			pdf.addTableCell(table, String.valueOf(ir.getDeviceCount()));
-			pdf.addTableCell(table, String.valueOf(ir.getRetainCount()));
-			pdf.addTableCell(table, String.valueOf(ir.getLastRetainCount()));
+			pdf.addTableCell(table, ir.getDevType(),false);
+			pdf.addTableCell(table, String.valueOf(ir.getDeviceCount()),false);
+			pdf.addTableCell(table, String.valueOf(ir.getRetainCount()),false);
+			pdf.addTableCell(table, String.valueOf(ir.getLastRetainCount()),true);
 		}
 		pdf.getDocument().add(table);
 	}
@@ -168,9 +168,9 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 
 		List<ITransTypeMonth> transList = transTypeEtlService.getMonth(month);
 		for (ITransTypeMonth it : transList) {
-			pdf.addTableCell(transTable, it.getTransCode());
-			pdf.addTableCell(transTable, String.valueOf(it.getTransCount()));
-			pdf.addTableCell(transTable, String.valueOf(it.getTransAmount()));
+			pdf.addTableCell(transTable, it.getTransCode(),false);
+			pdf.addTableCell(transTable, String.valueOf(it.getTransCount()),false);
+			pdf.addTableCell(transTable, String.valueOf(it.getTransAmount()),true);
 		}
 		pdf.getDocument().add(transTable);
 	}
@@ -182,7 +182,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		pdf.addParagraph("1. 上月所有设备平均开机率为" + avgRate + "%");
 		pdf.addParagraph("2.上月每日的开机率趋势");
 		DefaultCategoryDataset openRateDataset2 = createDatasetRateMonth(month);
-		pdf.addChart(PdfChart.generateLineChart(openRateDataset2,"","百分比"), devChartWidth, 260);
+		pdf.addChart(PdfChart.generateLineChart(openRateDataset2,"单位(/日)","百分比"), devChartWidth, 260);
 
 		pdf.addParagraph("3.上月所有设备型号的开机率，从高到低排列");
 		List<IDeviceTypeOpenRateMonth> typeRate = deviceTypeOpenRateEtlService.getDeviceTypeMonth(Long.valueOf(month));
@@ -190,10 +190,10 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		PdfPTable typeTable = pdf.addTableHeader(4, 88, new float[] { 16, 24, 24, 20 }, new String[] { "设备型号", "应开机时长", "实际开机时长", "开机率(%)" });
 
 		for (IDeviceTypeOpenRateMonth idt : typeRate) {
-			pdf.addTableCell(typeTable, idt.getDevType());
-			pdf.addTableCell(typeTable, String.valueOf(secondToDay(idt.getOpenTimes())));
-			pdf.addTableCell(typeTable, String.valueOf(secondToDay(idt.getHealthyTimeReal())));
-			pdf.addTableCell(typeTable, NumUtils.format(idt.getOpenRate()));
+			pdf.addTableCell(typeTable, idt.getDevType(),false);
+			pdf.addTableCell(typeTable, String.valueOf(secondToDay(idt.getOpenTimes())),false);
+			pdf.addTableCell(typeTable, String.valueOf(secondToDay(idt.getHealthyTimeReal())),false);
+			pdf.addTableCell(typeTable, NumUtils.format(idt.getOpenRate()),true);
 		}
 		pdf.getDocument().add(typeTable);
 		pdf.addParagraph("4.上月各网点统计的开机率汇总");
@@ -204,10 +204,10 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 
 		List<IOrgOpenRateMonth> orgTop = orgOpenRateEtlService.getTopOrgMonth(month, 10);
 		for (IOrgOpenRateMonth ior : orgTop) {
-			pdf.addTableCell(orgTableTop, ior.getOrgName());
-			pdf.addTableCell(orgTableTop, String.valueOf(secondToDay(ior.getOpenTimes())));
-			pdf.addTableCell(orgTableTop, String.valueOf(secondToDay(ior.getHealthyTimeReal())));
-			pdf.addTableCell(orgTableTop, NumUtils.format(ior.getOpenRate()));
+			pdf.addTableCell(orgTableTop, ior.getOrgName(),false);
+			pdf.addTableCell(orgTableTop, String.valueOf(secondToDay(ior.getOpenTimes())),false);
+			pdf.addTableCell(orgTableTop, String.valueOf(secondToDay(ior.getHealthyTimeReal())),false);
+			pdf.addTableCell(orgTableTop, NumUtils.format(ior.getOpenRate()),true);
 		}
 		pdf.getDocument().add(orgTableTop);
 
@@ -218,10 +218,10 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 
 		List<IOrgOpenRateMonth> orgLast = orgOpenRateEtlService.getLastOrgMonth(month, 10);
 		for (IOrgOpenRateMonth ior : orgLast) {
-			pdf.addTableCell(orgTableLast, ior.getOrgName());
-			pdf.addTableCell(orgTableLast, String.valueOf(secondToDay(ior.getOpenTimes())));
-			pdf.addTableCell(orgTableLast, String.valueOf(secondToDay(ior.getHealthyTimeReal())));
-			pdf.addTableCell(orgTableLast, NumUtils.format(ior.getOpenRate()));
+			pdf.addTableCell(orgTableLast, ior.getOrgName(),false);
+			pdf.addTableCell(orgTableLast, String.valueOf(secondToDay(ior.getOpenTimes())),false);
+			pdf.addTableCell(orgTableLast, String.valueOf(secondToDay(ior.getHealthyTimeReal())),false);
+			pdf.addTableCell(orgTableLast, NumUtils.format(ior.getOpenRate()),true);
 		}
 		pdf.getDocument().add(orgTableLast);
 
@@ -233,11 +233,11 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 
 		List<IDeviceOpenRateMonth> devListTop = deviceOpenRateEtlService.getTopDeviceMonth(month, 10);
 		for (IDeviceOpenRateMonth ido : devListTop) {
-			pdf.addTableCell(devTableTop, ido.getTerminalId());
-			pdf.addTableCell(devTableTop, ido.getOrgName());
-			pdf.addTableCell(devTableTop, String.valueOf(secondToDay(ido.getOpenTimes())));
-			pdf.addTableCell(devTableTop, String.valueOf(secondToDay(ido.getHealthyTimeReal())));
-			pdf.addTableCell(devTableTop, NumUtils.format(ido.getOpenRate()));
+			pdf.addTableCell(devTableTop, ido.getTerminalId(),false);
+			pdf.addTableCell(devTableTop, ido.getOrgName(),false);
+			pdf.addTableCell(devTableTop, String.valueOf(secondToDay(ido.getOpenTimes())),false);
+			pdf.addTableCell(devTableTop, String.valueOf(secondToDay(ido.getHealthyTimeReal())),false);
+			pdf.addTableCell(devTableTop, NumUtils.format(ido.getOpenRate()),true);
 		}
 		pdf.getDocument().add(devTableTop);
 
@@ -248,11 +248,11 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 
 		List<IDeviceOpenRateMonth> devListLast = deviceOpenRateEtlService.getLastDeviceMonth(month, 10);
 		for (IDeviceOpenRateMonth ido : devListLast) {
-			pdf.addTableCell(devTableLast, ido.getTerminalId());
-			pdf.addTableCell(devTableLast, ido.getOrgName());
-			pdf.addTableCell(devTableLast, String.valueOf(secondToDay(ido.getOpenTimes())));
-			pdf.addTableCell(devTableLast, String.valueOf(secondToDay(ido.getHealthyTimeReal())));
-			pdf.addTableCell(devTableLast, String.valueOf(ido.getOpenRate()));
+			pdf.addTableCell(devTableLast, ido.getTerminalId(),false);
+			pdf.addTableCell(devTableLast, ido.getOrgName(),false);
+			pdf.addTableCell(devTableLast, String.valueOf(secondToDay(ido.getOpenTimes())),false);
+			pdf.addTableCell(devTableLast, String.valueOf(secondToDay(ido.getHealthyTimeReal())),false);
+			pdf.addTableCell(devTableLast, String.valueOf(ido.getOpenRate()),true);
 		}
 		pdf.getDocument().add(devTableLast);
 	}
@@ -285,10 +285,10 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		PdfPTable table = pdf.addTableHeader(4,  88, new float[] { 22, 22, 22, 22 }, new String[] { "设备型号", "设备数量(台)","新增设备数量(台)", "报废设备数量(台)" });
 		List<IDeviceTypeSummaryMonth> list2 = deviceTypeSummaryMonthService.list(filter);
 		for (IDeviceTypeSummaryMonth dt : list2) {
-			pdf.addTableCell(table, dt.getDevType());
-			pdf.addTableCell(table, String.valueOf(dt.getNum()));
-			pdf.addTableCell(table, String.valueOf(dt.getAddDevNum()));
-			pdf.addTableCell(table, String.valueOf(dt.getScrappedDevNum()));
+			pdf.addTableCell(table, dt.getDevType(),false);
+			pdf.addTableCell(table, String.valueOf(dt.getNum()),false);
+			pdf.addTableCell(table, String.valueOf(dt.getAddDevNum()),false);
+			pdf.addTableCell(table, String.valueOf(dt.getScrappedDevNum()),true);
 		}
 		pdf.getDocument().add(table);
 
@@ -315,11 +315,11 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 	private DefaultCategoryDataset createDatasetRateMonth(int month) {
 		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
 		long start = month * 100 + 1;
-		long end = month * 100 + 32;
+		long end = month * 100 + 31;
 		List<IAvgDayOpenRate> rates = avgOpenRateEtlService.getAvgDays(start, end);
 		String day = "01";
 		for (IAvgDayOpenRate ia : rates) {
-			day = String.valueOf(ia.getDate()).substring(6) + "日";
+			day = String.valueOf(ia.getDate()).substring(6);
 			dataSet.setValue(ia.getOpenRate(), "开机率", day);
 		}
 		return dataSet;
