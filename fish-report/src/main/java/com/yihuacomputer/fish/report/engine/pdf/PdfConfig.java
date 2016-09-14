@@ -51,8 +51,21 @@ public class PdfConfig{
 	 * @return
 	 */
 	public static String getWeekPdfFileName(int weekOfYear){
+		String[]days = getDayByWeek(weekOfYear);
 		Date week = DateUtils.get(String.valueOf(weekOfYear), DateUtils.STANDARD_WEEK);
 		String year = DateUtils.get(week, "yyyy");
+		String weekStr = DateUtils.get(week, "ww");
+		return String.format("%s_%s年%s周(%s-%s).pdf",PdfConfig.getTitle(),year,weekStr,days[1],days[2]);
+	}
+	/**
+	 * 获取周的第一天和最后一天
+	 * 格式yyyyww
+	 */
+	public static String[] getDayByWeek(int date){
+		String[] days=new String[3];
+		Date week = DateUtils.get(String.valueOf(date), DateUtils.STANDARD_WEEK);
+		String year = DateUtils.get(week, "yyyy");
+		days[0] = year;
 		String weekStr = DateUtils.get(week, "ww");
 		Calendar cal = Calendar.getInstance();
 		cal.clear();
@@ -67,10 +80,10 @@ public class PdfConfig{
 		cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
 		DateUtils.getFirstDayOfWeek(cal);
 		Date firstDay = DateUtils.getFirstDayOfWeek(cal);
-		String start= DateUtils.get(firstDay, "MM.dd");
+		days[1]= DateUtils.get(firstDay, "MM.dd");
 		Date endDay = DateUtils.getLastDayOfWeek(cal);
-		String end= DateUtils.get(endDay, "MM.dd");
-		return String.format("%s_%s年%s周(%s-%s).pdf",PdfConfig.getTitle(),year,weekStr,start,end);
+		days[2] = DateUtils.get(endDay, "MM.dd");
+		return days;
 	}
 	
 	/**
