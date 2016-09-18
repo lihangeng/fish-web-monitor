@@ -126,8 +126,8 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 			sb.append(" and device.awayFlag = ? ");
 		}if(terminalIdObject!=null){
 			String terminalId = String.valueOf(terminalIdObject);
-			argList.add(terminalId);
-			sb.append(" and device.terminalId = ? ");
+			argList.add(terminalId+"%");
+			sb.append(" and device.terminalId LIKE ? ");
 		}
 		return dao.findByHQL(sb.toString(),argList.toArray());
 	}
@@ -166,8 +166,8 @@ public class CashInitPlanDeviceInfoService implements ICashInitPlanDeviceInfoSer
 			sb.append(" and device.awayFlag = ? ");
 		}if(terminalIdObject!=null){
 			String terminalId = String.valueOf(terminalIdObject);
-			argList.add(terminalId);
-			sb.append(" and device.terminalId = ? ");
+			argList.add(terminalId+"%");
+			sb.append(" and device.terminalId LIKE ? ");
 		}
 		List<IDevice> deviceList = dao.findByHQL(sb.toString(), argList.toArray());
 		IParam cashInitDaysParam = paramService.getParam("cashinit_days");

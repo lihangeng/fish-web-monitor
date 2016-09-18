@@ -167,7 +167,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 			}, this);
 		}
 		else {
-			Eway.alert(EwayLocale.tip.remove.one);
+			Eway.alert(EwayLocale.tip.remove.none);
 		}
 	},
 	//向加钞计划中添加设备
