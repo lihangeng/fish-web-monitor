@@ -56,7 +56,6 @@ Ext.define('Eway.view.report.run.Grid', {
 					handler : function(grid,rowIndex,colIndex){
 						var record = grid.getStore().getAt(rowIndex);
 						var url = encodeURI('api/report/runAnalysisReport/downloadFile?fileName='+record.get('fileName')+'&reportType='+record.get('reportType')); 
-						debugger;
 						var iframe = document.getElementById('downloadFileFromWeb'); 
 						iframe.src = url;
 					},
