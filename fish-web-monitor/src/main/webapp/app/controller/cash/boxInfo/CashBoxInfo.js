@@ -101,6 +101,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
 				 },
 				 scope : this
 			});
+		this.onQuery();
 	}
 	
 });
