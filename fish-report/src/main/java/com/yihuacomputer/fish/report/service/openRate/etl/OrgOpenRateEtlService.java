@@ -107,7 +107,7 @@ public class OrgOpenRateEtlService implements IOrgOpenRateEtlService{
 	public List<IOrgOpenRateWeek> getLastOrgWeek(long weekOfYear, int limit) {
 		IFilter filter = new Filter();
 		filter.eq("date", weekOfYear);
-		filter.descOrder("openRate");
+		filter.order("openRate");
 		IPageResult<IOrgOpenRateWeek> page = dao.page(0, limit, filter, OrgOpenRateWeek.class);
 		return page.list();
 	}
@@ -116,7 +116,7 @@ public class OrgOpenRateEtlService implements IOrgOpenRateEtlService{
 	public List<IOrgOpenRateMonth> getLastOrgMonth(long month, int limit) {
 		IFilter filter = new Filter();
 		filter.eq("date", month);
-		filter.descOrder("openRate");
+		filter.order("openRate");
 		IPageResult<IOrgOpenRateMonth> page = dao.page(0, limit, filter, OrgOpenRateMonth.class);
 		return page.list();
 	}

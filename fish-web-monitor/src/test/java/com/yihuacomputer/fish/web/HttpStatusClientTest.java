@@ -29,7 +29,7 @@ public class HttpStatusClientTest {
 	public static void main(String[] args) {
 		HttpClient httpClient = new DefaultHttpClient();
 		StatusMsg status = new StatusMsg();
-		status.setTermId("0002");
+		status.setTermId("001");
 		status.setModStatus(DeviceStatus.Healthy);
 		status.setBoxStatus(BoxStatus.Full);
 		status.setRunStatus(RunStatus.Healthy);

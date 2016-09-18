@@ -310,9 +310,9 @@ Ext.define('Eway.controller.version.VersionDownload', {
 			return;
 		}
 		var data = form.getValues();
-		var url = 'api/version/download/exportToExcel?terminalId='+data.terminalId+
+		var url = encodeURI('api/version/download/exportToExcel?terminalId='+data.terminalId+
 		'&updateResult='+data.updateResult+'&jobType='+data.jobType+
-		'&jobName='+data.jobName+'&versionTypeId='+data.versionTypeId+'&versionNo='+data.versionNo+'' ;
+		'&jobName='+data.jobName+'&versionTypeId='+data.versionTypeId+'&versionNo='+data.versionNo+'') ;
 		var iframe = document.getElementById('downloadFileFromWeb');
 		iframe.src = url;
 	},

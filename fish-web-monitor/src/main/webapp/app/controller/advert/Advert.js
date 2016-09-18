@@ -336,7 +336,7 @@ Ext.define('Eway.controller.advert.Advert', {
 		if (e && e.getTarget().innerHTML === fileName) { //当单击超链接的时候
 			var typeName =  record.get("versionType");
 			fileName = fileName.replace("&","%26");
-			var url = 'api/version/version/download?typeName=' + typeName + '&fileName=' + fileName;
+			var url = encodeURI('api/version/version/download?typeName=' + typeName + '&fileName=' + fileName);
 			var iframe = document.getElementById('downloadFileFromWeb');
 			iframe.src = url;
 		}else{//其他的时候，刷新tab显示内容

@@ -74,8 +74,8 @@ Ext.define('Eway.controller.report.baseReport.TransactionDaysCountReport', {
 				success : function(response) {
 					var object = Ext.decode(response.responseText);
 					if (object.success) {
-						var url = 'api/report/downloadFile?path=' + object.path
-								+ '&reportTitle=' + fileName;
+						var url = encodeURI('api/report/downloadFile?path=' + object.path
+								+ '&reportTitle=' + fileName);
 						var iframe = document
 								.getElementById('downloadFileFromWeb');
 						iframe.src = url;

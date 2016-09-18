@@ -9,6 +9,7 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.AxisLabelLocation;
 import org.jfree.chart.axis.CategoryAnchor;
 import org.jfree.chart.axis.CategoryAxis;
+import org.jfree.chart.axis.CategoryLabelPositions;
 import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.labels.ItemLabelAnchor;
 import org.jfree.chart.labels.ItemLabelPosition;
@@ -52,7 +53,7 @@ public class PdfChart {
 	    	    // 显示折点数据
 	    lineandshaperenderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
 	    lineandshaperenderer.setBaseItemLabelsVisible(true);
-	    lineandshaperenderer.setBasePositiveItemLabelPosition(new ItemLabelPosition(ItemLabelAnchor.OUTSIDE10, TextAnchor.TOP_RIGHT));
+	    lineandshaperenderer.setBasePositiveItemLabelPosition(new ItemLabelPosition(ItemLabelAnchor.OUTSIDE10, TextAnchor.BOTTOM_CENTER));
 	    categoryplot.setDomainGridlinePaint(Color.blue); 
 	    categoryplot.setDomainGridlinesVisible(true); 
 	    categoryplot.setDomainGridlinePosition(CategoryAnchor.MIDDLE);
@@ -66,8 +67,13 @@ public class PdfChart {
 	    categoryplot.setOutlinePaint(Color.magenta); 
 	    CategoryAxis domainAxis = categoryplot.getDomainAxis();
 	    domainAxis.setLabelLocation(AxisLabelLocation.HIGH_END);
+	    domainAxis.setLowerMargin(0.01d);
+	    domainAxis.setUpperMargin(0.01d);
+	    domainAxis.setCategoryLabelPositionOffset(1);
+	    domainAxis.setCategoryLabelPositions(CategoryLabelPositions.DOWN_45);
 	    NumberAxis numberaxis = (NumberAxis) categoryplot.getRangeAxis();
 	    numberaxis.setLabelLocation(AxisLabelLocation.MIDDLE);
+	    numberaxis.setUpperMargin(0.1d);
 		return chart;
 	}
 	
@@ -84,17 +90,17 @@ public class PdfChart {
 		  barRenderer.setIncludeBaseInRange(true);
 		  barRenderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator());
 		  barRenderer.setBaseItemLabelsVisible(true);
-		  barRenderer.setMaximumBarWidth(0.05);
-		  barRenderer.setBasePositiveItemLabelPosition(new ItemLabelPosition(ItemLabelAnchor.OUTSIDE10, TextAnchor.CENTER));//数字上下位置
+		  barRenderer.setMaximumBarWidth(0.04);
+		  barRenderer.setBasePositiveItemLabelPosition(new ItemLabelPosition(ItemLabelAnchor.OUTSIDE12, TextAnchor.TOP_CENTER));//数字上下位置
 		  barRenderer.setItemLabelAnchorOffset(15);//设置数字显示位置，值越大，越向左偏
 		  
-		  barRenderer.setSeriesPaint(0,Color.orange); //设置柱的颜色 
-		  barRenderer.setSeriesPaint(1,Color.green);
-		  barRenderer.setSeriesPaint(2,Color.cyan);
-		  barRenderer.setSeriesPaint(3,Color.GRAY);
-		  barRenderer.setDrawBarOutline(true);
+		  barRenderer.setSeriesPaint(0,new Color(65,155,245)); //设置柱的颜色 
+//		  barRenderer.setSeriesPaint(1,Color.yellow);
+//		  barRenderer.setSeriesPaint(2,Color.green);
+//		  barRenderer.setSeriesPaint(3,Color.GRAY);
+//		  barRenderer.setDrawBarOutline(true);
 		//设置网格竖线颜色 
-		  categoryPlot.setDomainGridlinePaint(Color.blue); 
+		  categoryPlot.setDomainGridlinePaint(Color.lightGray); 
 		  categoryPlot.setDomainGridlinesVisible(true); 
 		  categoryPlot.setDomainGridlinePosition(CategoryAnchor.MIDDLE);
 		  //设置网格横线颜色 
@@ -104,11 +110,14 @@ public class PdfChart {
 		  categoryPlot.setBackgroundPaint(Color.white); 
 		  categoryPlot.setOutlineVisible(false); 
 		  //图边框颜色 
-		  categoryPlot.setOutlinePaint(Color.magenta); 
+//		  categoryPlot.setOutlinePaint(Color.magenta); 
 		  //设置柱的透明度 
-		  categoryPlot.setForegroundAlpha(1.0f); 
+//		  categoryPlot.setForegroundAlpha(0.7f); 
 		  categoryPlot.setRenderer(barRenderer);
-		  
+		  CategoryAxis domainAxis = categoryPlot.getDomainAxis();
+		  domainAxis.setCategoryLabelPositions(CategoryLabelPositions.DOWN_45);
+		  NumberAxis numberaxis = (NumberAxis) categoryPlot.getRangeAxis();
+		  numberaxis.setUpperMargin(0.1d);
 		return chart;
 	}
 	
