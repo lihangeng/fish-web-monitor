@@ -79,9 +79,6 @@ public class OpenRateController {
     @Autowired
 	protected MessageSource messageSource;
 
-    // @Autowired
-    // private IDeviceOpenRateService deviceOpenRateService;
-
     /**
      * 导出excel文件名称 ,response/file目录下
      */
@@ -132,19 +129,12 @@ public class OpenRateController {
             filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
             }
         if(openRate != null){
-        if(Integer.parseInt(compare) ==1 ){
-        filter.gt("(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100", Double.parseDouble(openRate));
-        }else if(Integer.parseInt(compare) ==0){
-        filter.le("(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100", Double.parseDouble(openRate));	
+	        if(Integer.parseInt(compare) ==1 ){
+	        	filter.gt("(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100", Double.parseDouble(openRate));
+	        }else if(Integer.parseInt(compare) ==0){
+	        	filter.le("(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100", Double.parseDouble(openRate));	
+	        }
         }
-        }
-//        if(Integer.parseInt(avgType) == 0){
-//        	String value="(select avg(cast(rate.healthyTimeReal as int)/cast(rate.openTimes as int)*100) form DayOpenRate)";
-//        	filter.lt("cast(rate.healthyTimeReal as int)/cast(rate.openTimes as int)*100",value);
-//        	
-//        }else{
-//        	
-//        }
         IPageResult<IDayOpenRate> pageResult = dayOpenRateService.pageDev(start, limit, filter);
 
 
@@ -191,8 +181,11 @@ public class OpenRateController {
 
         Iterable<IOrganization> childs = null;
         List<OpenRateTreeForm> result = new ArrayList<OpenRateTreeForm>();
+        //机构类型
         String type = request.getParameter("type");
+        //获取要展示开机率的子机构树
         if (type == null || type.isEmpty()) {
+        	//查询子节点
             childs = orgService.get(node).listChildren();
             for (IOrganization item : childs) {
             	if (item.getOrganizationType().equals(OrganizationType.BANK)) {
@@ -206,14 +199,17 @@ public class OpenRateController {
                 result.add(new OpenRateTreeForm(item));
             }
         }
+        //获取开机率的时间条件
         IFilter filter = request2filter(webRequest, "rate.statDate");
         UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
-        String organization = String.valueOf(userSession.getOrgId());
-        filter.like("org.orgFlag", orgService.get(organization).getOrgFlag());
-        String org = request.getParameter("orgId");
-        if(org != null&&org !="")
+        String orgFlag = String.valueOf(userSession.getOrgFlag());
+        //获取orgFlag
+        filter.like("org.orgFlag",orgFlag);
+        String orgId = request.getParameter("orgId");
+        if(orgId != null&&orgId !="")
         {
-        	  filter.like("info.organization.orgFlag",org);
+        	IOrganization org = orgService.get(orgId);
+        	filter.like("org.orgFlag",org.getOrgFlag());
         }
         
         String awayFlag=request.getParameter("awayFlag");
@@ -778,7 +774,6 @@ public class OpenRateController {
     @SuppressWarnings("deprecation")
 	private List<OpenRateForm> listOrg2Form(List<OpenRateTreeForm> result, IFilter filter) {
         List<OpenRateForm> openRateFormList = new ArrayList<OpenRateForm>();
-        OpenRateForm openRateForm = null;
         FilterEntry entry = null;
         for (OpenRateTreeForm form : result) {
         	if(entry!=null){
@@ -787,10 +782,12 @@ public class OpenRateController {
             entry = FilterFactory.eq("orgId", form.getId());
             filter.addFilterEntry(entry);
 
+        	IOrganization org = orgService.get(form.getId());
+        	filter.like("org.orgFlag",org.getOrgFlag());
             List<IDayOpenRate> iDayList = dayOpenRateService.listOrg(filter);
 
+            OpenRateForm openRateForm  = new OpenRateForm();
             if (iDayList == null || iDayList.isEmpty()) {
-                openRateForm = new OpenRateForm();
                 openRateForm.setOpenTimes("0");
                 openRateForm.setHealthyTimeReal("0");
                 openRateForm.setStatDate(DateUtils.getDate(new Date()));

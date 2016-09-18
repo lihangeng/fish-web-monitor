@@ -30,7 +30,6 @@ public class DayOpenRateService implements IDayOpenRateService {
     		+"rate.faultTimeReal, rate.atmpTimeReal, rate.stopTimeReal, info.devType.devCatalog.name, info.organization.name,info.organization.code "
             + " from Device info, DayOpenRate rate, Organization org "
             + "where info.terminalId = rate.terminalId and info.organization = org.id ";
-//    ,info.devType.name,info.awayFlag,info.devType.devVendor,info.organization
 
     private String DEV_DEVICE_HQL_GROUP = "select rate.terminalId, sum(rate.openTimes), sum(rate.healthyTimeReal), sum(rate.unknownTimeReal), sum(rate.maintainTimeReal),"
     		+" sum(rate.faultTimeReal), sum(rate.atmpTimeReal), sum(rate.stopTimeReal) "
@@ -43,15 +42,7 @@ public class DayOpenRateService implements IDayOpenRateService {
             + "where info.devType=type.id and info.terminalId = rate.terminalId and info.organization = org.id ";
 
 
-    // private String DEV_DEVICE_STAT_HQL = "select info, rate "
-    // +
-    // "from dev_info info left join dev_open_rate rate on info.terminal_id=rate.terminal_id "
-    // + " where rate.statDate like ? order by rate.opentimereal desc";
-
-    private String DEV_ORG_STAT_HQL = "select  sum(rate.openTimes), sum(rate.healthyTimeReal), "
-            + "sum(rate.unknownTimeReal), sum(rate.maintainTimeReal), sum(rate.faultTimeReal), sum(rate.atmpTimeReal), sum(rate.stopTimeReal) "
-            + "from Device info, Organization org, DayOpenRate rate "
-            + "where info.organization=org.id and info.terminalId = rate.terminalId ";
+  
 
     @Autowired
     private IGenericDao dao;
@@ -155,9 +146,6 @@ public class DayOpenRateService implements IDayOpenRateService {
         for (Object obj : result) {
             Object[] status = (Object[]) obj;
 
-            // "select sum(rate.openTimes), sum(rate.healthyTimeReal), "
-            // +
-            // "sum(rate.unknownTimeReal), sum(rate.maintainTimeReal), sum(rate.faultTimeReal), sum(rate.atmpTimeReal), sum(rate.stopTimeReal) "
             int openTimes = valueToInteger(status[0]);
             int healthyTimeReal = valueToInteger(status[1]);
             int unknownTimeReal = valueToInteger(status[2]);
@@ -166,20 +154,17 @@ public class DayOpenRateService implements IDayOpenRateService {
             int atmpTimeReal = valueToInteger(status[5]);
             int stopTimeReal = valueToInteger(status[6]);
             String orgName="";
-//            AwayFlag awayFlag = null;
             String awayFlag = "";
             if(status.length > 7)
             {
       			String srcbOrgName = (String)status[7];
       			String srcbOrgCode = (String)status[8];
-//      			awayFlag=AwayFlag.getById((Integer)status[9]);
       			awayFlag = (String)status[9];
       			orgName = srcbOrgName+"("+srcbOrgCode+")";
             }
             else
             {
             	if(awayFlags != null){
- //           		awayFlag = AwayFlag.getById((Integer)awayFlags.getValue());
             		awayFlag = awayFlags.getValue().toString();
             	}
             	if(organization !=null){
@@ -205,7 +190,10 @@ public class DayOpenRateService implements IDayOpenRateService {
         }
         return dayOpenRateList;
     }
-
+    private String DEV_ORG_STAT_HQL = "select  sum(rate.openTimes), sum(rate.healthyTimeReal), "
+            + "sum(rate.unknownTimeReal), sum(rate.maintainTimeReal), sum(rate.faultTimeReal), sum(rate.atmpTimeReal), sum(rate.stopTimeReal) "
+            + "from Device info, Organization org, DayOpenRate rate "
+            + "where info.organization.id=org.id and info.terminalId = rate.terminalId ";
     @Override
     public List<IDayOpenRate> listOrg(IFilter filter) {
         StringBuffer hql = new StringBuffer(DEV_ORG_STAT_HQL);
@@ -215,49 +203,23 @@ public class DayOpenRateService implements IDayOpenRateService {
         IFilterEntry orgFlag = filter.getFilterEntry("org.orgFlag");
         if (orgFlag != null) {
             hql.append(" and ").append(orgFlag.getKey());
-            if (orgFlag.getOperator() == Operator.LIKE) {
-                hql.append(" like ?");
-                values.add(orgFlag.getValue() + "%");
-            } else if (orgFlag.getOperator() == Operator.EQ) {
-                hql.append(" = ?");
-                values.add(orgFlag.getValue());
-            }
+            hql.append(" like ?");
+            values.add(orgFlag.getValue() + "%");
         }
 
         IFilterEntry entry = filter.getFilterEntry("rate.statDate");
         if (entry != null) {
             hql.append(" and ").append(entry.getKey());
-            if (entry.getOperator() == Operator.LIKE) {
-                hql.append(" like ?");
-                values.add(entry.getValue() + "%");
-            } else if (entry.getOperator() == Operator.EQ) {
-                hql.append(" = ?");
-                values.add(entry.getValue());
-            }
+            hql.append(" like ?");
+            values.add(entry.getValue() + "%");
         }
 
-        IFilterEntry organization = filter.getFilterEntry("info.organization.orgFlag");
-        if (organization != null) {
-            hql.append(" and ").append(organization.getKey());
-            if (organization.getOperator() == Operator.LIKE) {
-                hql.append(" like ?");
-                values.add(orgService.get(organization.getValue().toString()).getOrgFlag() + "%");
-            } else if (organization.getOperator() == Operator.EQ) {
-                hql.append(" = ?");
-                values.add(organization.getValue());
-            }
-        }
 
         IFilterEntry awayFlags = filter.getFilterEntry("info.awayFlag");
         if (awayFlags != null) {
             hql.append(" and ").append(awayFlags.getKey());
-            if (awayFlags.getOperator() == Operator.LIKE) {
-                hql.append(" like ?");
-                values.add("%" + awayFlags.getValue());
-            } else if (awayFlags.getOperator() == Operator.EQ) {
-                hql.append(" = ?");
-                values.add(awayFlags.getValue());
-            }
+            hql.append(" = ?");
+            values.add(awayFlags.getValue());
         }
         
         List<Object> result = dao.findByHQL(hql.toString(), values.toArray());
@@ -276,25 +238,16 @@ public class DayOpenRateService implements IDayOpenRateService {
             int stopTimeReal = valueToInteger(status[6]);
             String orgName="";
             String awayFlag="";
-            if(status.length > 7)
-            {
-      			String srcbOrgName = (String)status[7];
-      			String srcbOrgCode = (String)status[8];
-      			awayFlag=(String)status[9];
-      			orgName = srcbOrgName+"("+srcbOrgCode+")";
-            }
-            else
-            {
-            	if(awayFlags != null){
-            		awayFlag = awayFlags.getValue().toString();
-            	}
-            	if(organization !=null){
-                String orgId = organization.getValue().toString();
-            	String srcbOrgName = orgService.get(orgId).getName();
-            	String srcbOrgCode = orgService.get(orgId).getCode();
-            	orgName = srcbOrgName+"("+srcbOrgCode+")";
-            	}
-            }
+        	if(awayFlags != null){
+        		awayFlag = awayFlags.getValue().toString();
+        	}
+        	 IFilterEntry  orgIdFilterEntry = filter.getFilterEntry("orgId");
+        	if(orgIdFilterEntry !=null){
+	            String orgId = orgIdFilterEntry.getValue().toString();
+	        	String srcbOrgName = orgService.get(orgId).getName();
+	        	String srcbOrgCode = orgService.get(orgId).getCode();
+	        	orgName = srcbOrgName+"("+srcbOrgCode+")";
+        	}
             openRate = make();
             openRate.setId(id++);
             openRate.setStatDate(entry.getValue().toString());
@@ -390,23 +343,6 @@ public class DayOpenRateService implements IDayOpenRateService {
             	values.add(entry.getValue());
             }
         }
-        
-//        entry = filter.getFilterEntry("(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100");
-//        if (entry != null) {
-//            hql.append(" and ").append(entry.getKey());
-//            if (entry.getOperator() == Operator.LIKE) {
-//                hql.append(" like ?");
-//                values.add("%" + entry.getValue());
-//            } else if (entry.getOperator() == Operator.EQ) {
-//                hql.append(" = ?");
-//                values.add(entry.getValue());
-//            } else if(entry.getOperator() == Operator.GT){
-//            	hql.append("> ?");
-//            	values.add(entry.getValue());
-//            }else if(entry.getOperator()==Operator.LT){
-//            	hql.append("< (select avg(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100) form DayOpenRate)");
-//            }
-//        }
         
         entry = filter.getFilterEntry("info.devType.id");
         if (entry != null) {
