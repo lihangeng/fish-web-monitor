@@ -389,7 +389,7 @@ public class OpenRateController {
         File file = new File(path);
 
         response.setHeader("Content-Disposition",
-                "attachment; filename=\"" + getFileName(request, path.substring(path.lastIndexOf(File.separator)))
+                "attachment; filename=\"" + getFileName(request, path.substring(path.lastIndexOf(File.separator)+1))
                         + "\"");
         response.addHeader("Content-Length", "" + file.length());
         response.setContentType("application/x-msdownload;charset=UTF-8");
@@ -431,7 +431,7 @@ public class OpenRateController {
 
     private String createExls(List<OpenRateForm> data, String sheetName, boolean isProg) {
 
-    	importFileName = messageSource.getMessage("report.openRate.title", null, FishCfg.locale);
+    	importFileName = sheetName.substring(0, 2) + messageSource.getMessage("report.openRate.title", null, FishCfg.locale);
         String pathname = FishCfg.getTempDir() + File.separator + importFileName;
 
         HSSFWorkbook workBook = new HSSFWorkbook();
