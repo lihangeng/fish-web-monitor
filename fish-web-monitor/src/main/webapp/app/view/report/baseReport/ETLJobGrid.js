@@ -121,7 +121,7 @@ Ext.define('Eway.view.report.baseReport.ETLJobGrid', {
 			               				var fileName='BatchErrorMsg';
 			               				var object = Ext.decode(response.responseText);
 			        			        if(object.success){
-			        			        	var url = 'api/report/downloadFile?path='+ object.data + '&reportTitle=' + fileName;
+			        			        	var url = encodeURI('api/report/downloadFile?path='+ object.data + '&reportTitle=' + fileName);
 			        						var iframe = document.getElementById('downloadFileFromWeb');
 			        						iframe.src = url;
 			        			        }else{

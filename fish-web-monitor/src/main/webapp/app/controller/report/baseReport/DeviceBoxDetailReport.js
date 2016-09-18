@@ -106,7 +106,7 @@ Ext.define('Eway.controller.report.baseReport.DeviceBoxDetailReport', {
 		        var text = response.responseText;
 		        var object = Ext.decode(text);
 		        if(object.success){
-		        	var url = 'api/report/deviceBox/downloadFile?path='+ object.path + '&reportTitle=' + fileName;
+		        	var url = encodeURI('api/report/deviceBox/downloadFile?path='+ object.path + '&reportTitle=' + fileName);
 		        	var iframe = document.getElementById('downloadFileFromWeb');
 		        	iframe.src = url;
 		        }else{

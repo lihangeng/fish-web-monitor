@@ -104,7 +104,7 @@ Ext.define('Eway.controller.report.baseReport.DeviceUseCountReport', {
 		        var text = response.responseText;
 		        var object = Ext.decode(text);
 		        if(object.success){
-		        	var url = 'api/report/deviceUseCount/downloadFile?path='+ object.path + '&reportTitle=' + fileName;
+		        	var url = encodeURI('api/report/deviceUseCount/downloadFile?path='+ object.path + '&reportTitle=' + fileName);
 		        	var iframe = document.getElementById('downloadFileFromWeb');
 		        	iframe.src = url;
 		        }else{

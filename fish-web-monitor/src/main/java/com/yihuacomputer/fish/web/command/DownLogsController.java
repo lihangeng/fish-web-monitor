@@ -159,13 +159,12 @@ public class DownLogsController {
     }
 
     private String getFileName(HttpServletRequest request, String name) throws Exception {
-        if (request.getHeader("User-Agent").toUpperCase().indexOf("MSIE") > 0) {
-            // IE浏览器
-            return URLEncoder.encode(name, "UTF-8");
-        }
-        else {
-            return new String(name.getBytes("UTF-8"), "ISO8859-1");
-        }
+    	if (request.getHeader("User-Agent").toUpperCase().indexOf("CHROME") > 0||request.getHeader("User-Agent").toUpperCase().indexOf("FIREFOX") > 0) {
+			return new String(name.getBytes("UTF-8"), "ISO8859-1");
+		} else {
+			// IE浏览器
+			return URLEncoder.encode(name, "UTF-8");
+		}
     }
 
 }

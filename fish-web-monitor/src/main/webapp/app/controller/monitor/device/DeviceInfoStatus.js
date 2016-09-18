@@ -770,7 +770,7 @@ Ext.define('Eway.controller.monitor.device.DeviceInfoStatus', {
 					Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.business.device.logLoadConfirm,
 							 function(button, text) {
 								if (button == "yes") {
-									var url = 'api/agent/downLogs/downloadFile?path=' + object.path + '&fileName=' + object.fileName
+									var url = encodeURI('api/agent/downLogs/downloadFile?path=' + object.path + '&fileName=' + object.fileName);
 									var iframe = document.getElementById('downloadFileFromWeb');
 									iframe.src = url;
 								}
