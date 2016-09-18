@@ -164,7 +164,9 @@ public class DeviceBoxInfoService implements IDeviceBoxInfoService,IDeviceListen
 	@Override
 	public void beforeDelete(IDevice device) {
 		IDeviceBoxInfo deviceBoxInfo = this.findByDeviceId(device.getId());
-		this.delete(deviceBoxInfo);
+		if(deviceBoxInfo!=null){
+			this.delete(deviceBoxInfo);
+		}
 	}
 
 	@Override
