@@ -9,7 +9,9 @@ import java.io.RandomAccessFile;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,6 +38,7 @@ import org.springframework.web.context.request.WebRequest;
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.annotation.ClassNameDescrible;
 import com.yihuacomputer.common.annotation.MethodNameDescrible;
@@ -103,7 +106,7 @@ public class OpenRateController {
         String awayFlag=request.getParameter("awayFlag");
         String compare=request.getParameter("compare");
         String openRate=request.getParameter("openrate");
-        String avgType=request.getParameter("avgType");
+//        String avgType=request.getParameter("avgType");
         IFilter filter = request2filter(webRequest, "rate.statDate");
         if(null!=terminate&&!terminate.isEmpty()){
         	filter.like("rate.terminalId", terminate+"%");
@@ -204,7 +207,7 @@ public class OpenRateController {
 
         String awayFlag=request.getParameter("awayFlag");
         if(awayFlag != null&&awayFlag !=""){
-        filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
+        	filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
         }
         model.addAttribute(FishConstant.SUCCESS, true);
         model.addAttribute("data", listOrg2Form(result, filter));
@@ -762,18 +765,23 @@ public class OpenRateController {
     }
 
     @SuppressWarnings("deprecation")
-	private List<OpenRateForm> listOrg2Form(List<OpenRateTreeForm> result, IFilter filter) {
+	private List<OpenRateForm> listOrg2Form(List<OpenRateTreeForm> result, IFilter filter1) {
         List<OpenRateForm> openRateFormList = new ArrayList<OpenRateForm>();
-        FilterEntry entry = null;
+        Set<IFilterEntry> set = filter1.entrySet();
+        
         for (OpenRateTreeForm form : result) {
-        	if(entry!=null){
-        		filter.entrySet().remove(entry);
+        	IFilter filter = new Filter();
+        	if(null!=set.iterator()){
+        		Iterator<IFilterEntry> iterator= set.iterator();
+            	while(iterator.hasNext()){
+            		filter.addFilterEntry(iterator.next());
+            	}
         	}
-            entry = FilterFactory.eq("orgId", form.getId());
-            filter.addFilterEntry(entry);
+            filter.eq("orgId", form.getId());
 
         	IOrganization org = orgService.get(form.getId());
         	filter.like("org.orgFlag",org.getOrgFlag());
+        	System.out.println("org.orgFlag is "+org.getOrgFlag());
             List<IDayOpenRate> iDayList = dayOpenRateService.listOrg(filter);
 
             OpenRateForm openRateForm  = new OpenRateForm();
