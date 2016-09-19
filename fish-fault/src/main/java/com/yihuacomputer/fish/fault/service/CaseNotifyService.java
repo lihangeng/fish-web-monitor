@@ -265,8 +265,8 @@ public class CaseNotifyService implements ICaseNotifyService {
 			caseNotify.setCreateTime(new Date());
 			caseNotify.setSendTime(new Date());
 
-			// 只做短信
-			if (faultClassify.getNotifyWay().equals(NotifyWay.SMS) && notifyContent.getSmsNotify() != null) {
+			// 只做短信或者短信和邮件都做处理
+			if ((faultClassify.getNotifyWay().equals(NotifyWay.SMS)||faultClassify.getNotifyWay().equals(NotifyWay.BOTH)) && notifyContent.getSmsNotify() != null) {
 				if (person.getMobile() == null || person.getMobile().isEmpty()) {// 手机号未设置
 					continue;
 				}
@@ -279,7 +279,7 @@ public class CaseNotifyService implements ICaseNotifyService {
 			}
 			
 			// 只做邮件
-			if (faultClassify.getNotifyWay().equals(NotifyWay.MAIL) && notifyContent.getMailNotify() != null) {
+			if ((faultClassify.getNotifyWay().equals(NotifyWay.MAIL)||faultClassify.getNotifyWay().equals(NotifyWay.BOTH)) && notifyContent.getMailNotify() != null) {
 				if (person.getEmail()== null || person.getEmail().isEmpty()) {// 邮件地址未设置
 					continue;
 				}
