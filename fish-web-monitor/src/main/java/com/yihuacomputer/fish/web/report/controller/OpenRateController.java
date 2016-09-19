@@ -781,7 +781,6 @@ public class OpenRateController {
 
         	IOrganization org = orgService.get(form.getId());
         	filter.like("org.orgFlag",org.getOrgFlag());
-        	System.out.println("org.orgFlag is "+org.getOrgFlag());
             List<IDayOpenRate> iDayList = dayOpenRateService.listOrg(filter);
 
             OpenRateForm openRateForm  = new OpenRateForm();
