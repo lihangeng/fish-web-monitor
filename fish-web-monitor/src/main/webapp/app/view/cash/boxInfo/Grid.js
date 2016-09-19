@@ -59,6 +59,7 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 				editor: {
 	                xtype: 'numberfield',
 	                minValue:0,
+	                msgTarget :'side',
 	                allowBlank: false
 	            }
 			} , {
@@ -68,6 +69,7 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 				flex : 1,    
 				editor: {
 	                xtype: 'numberfield',
+	                msgTarget :'side',
 	                allowBlank: false
 	            }
 			} ,{

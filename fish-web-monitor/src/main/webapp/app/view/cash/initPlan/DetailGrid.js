@@ -81,7 +81,8 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				dataIndex : 'actualAmt',
 				editor: {
 	                xtype: 'numberfield',
-	                allowBlank: false
+	                allowBlank: false,
+	                msgTarget :'side'
 	            }
 			}, {
 				header : EwayLocale.initPlan.maxAmt,
