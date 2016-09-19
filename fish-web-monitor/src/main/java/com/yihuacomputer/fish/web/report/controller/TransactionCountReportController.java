@@ -144,7 +144,7 @@ public class TransactionCountReportController {
 		parameters.put("title", getEnumI18n(ReportTitle.TransactionCount.getText()));
 		if (filter.getFilterEntry("startData") != null) {
 			String startReportDateValue = DateUtils.getDate((Date) filter.getFilterEntry("startData").getValue());
-			parameters.put("startReportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + " : " +  messageSource.getMessage("report.transactionFrom", null, FishCfg.locale) +startReportDateValue);
+			parameters.put("startReportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + " : " +startReportDateValue);
 
 			// 交易是带时分秒的，而页面是不需要时分秒的
 			filter.entrySet().remove(filter.getFilterEntry("startData"));
