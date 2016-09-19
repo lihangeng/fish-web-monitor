@@ -42,6 +42,7 @@ Ext.define('Eway.view.case.notifyMould.UpdateWin', {
 					name : 'notifyWay',
 					fieldLabel : '<font color="red">*</font>' +EwayLocale.cases.faultClassify.faultInformWay,
 					store : notifyway,
+					readOnly:true,
 					queryMode : 'local',
 					displayField : 'display',
 					valueField : 'value',
