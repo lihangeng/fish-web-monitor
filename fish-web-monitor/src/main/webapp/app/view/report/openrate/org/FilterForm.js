@@ -1,11 +1,8 @@
-Ext.define('Eway.view.report.openrate.device.FilterForm', {
+Ext.define('Eway.view.report.openrate.org.FilterForm', {
 	extend : 'Eway.view.base.FilterForm',
-	alias : 'widget.report_openrate_device_filterform',
-	requires:['Eway.view.field.atmType.DeviceAtmVendorComboBox',
-	          'Eway.view.field.device.DeviceAtmType',
-	          'Eway.view.field.atmType.DeviceAtmCatalogComboBox',
-	          'Eway.view.common.OrgComboOrgTree',
-	          'Eway.lib.Util'],
+	alias : 'widget.report_openrate_org_filterform',
+	requires : [ 'Eway.lib.Util','Eway.view.common.OrgComboOrgTree','Eway.view.field.atmType.DeviceAtmCatalogComboBox'],
+
 	height : 'auto',
 	layout : 'column',
 	defaults : {
@@ -14,11 +11,11 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-				columnWidth : .28,
+				columnWidth : .55,
 				defaults : {
 					labelAlign : 'right'
 				},
-				items : [{
+				items : [ {
 					fieldLabel : EwayLocale.report.openrate.device.statisticsMethod,
 					xtype : 'radiogroup',
 					width : 280,
@@ -31,7 +28,7 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 						name : 'statType',
 						inputValue : 2
 					}, {
-						boxLabel : EwayLocale.commen.day,
+						boxLabel :EwayLocale.commen.day,
 						name : 'statType',
 						checked : true,
 						inputValue : 3
@@ -87,110 +84,38 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 				            }
 						}
 					}
-				},{
-					columnWidth : .2,
-					labelAlign : 'right',
-					fieldLabel:EwayLocale.commen.terminalId,
-					labelAlign : 'right',
-					xtype : 'textfield',
-					name:'terminalId',
-
-				}]
-			} ,
+				} ]
+			},
 			{
-				columnWidth : .33,
+				columnWidth : .45,
 				defaults : {
-					labelAlign : 'right',
-					labelWidth:140
+					labelAlign : 'right'
 				},
-			items:[{
-				xtype : 'field_device_deviceatmtype',
-				emptyText :  EwayLocale.combox.select
-
-			},{
-				xtype : 'field_atmType_DeviceAtmCatalogComboBox',
-				fieldLabel : EwayLocale.machine.atmGroup.devCatalogName
-
-			},{
-				xtype : 'field_atmType_DeviceAtmVendorComboBox',
-				fieldLabel : EwayLocale.machine.atmGroup.devVendorName
-
-			}]},{
-				columnWidth : .33,
-				defaults : {
-					labelAlign : 'right',
-					labelWidth:160
-				},
-			items:[{
-
-				style : 'padding-top:0px',
-				xtype : 'hiddenfield',
-				name : 'organizationID',
-				value : Eway.user.getOrgId()
-			}, {
-				style : 'padding-top:0px',
-				xtype : 'hiddenfield',
-				name : 'organization'
-			},{
-				xtype : 'common_orgComboOrgTree',
-				fieldLabel : EwayLocale.machine.atmGroup.orgName,
-				emptyText : EwayLocale.combox.select,
-				name : 'orgName',
-				hiddenValue : 'organization',
-				editable : false,
-				filters : '{"type" : "0"}',
-				rootVisible : Eway.user.getOrgType() != "" && Eway.user.getOrgType() == '0' ? true : false
-			},{
-				xtype : 'radiogroup',
-				fieldLabel : EwayLocale.report.openrate.device.openRate,
-				anchor : '69%',
-				items : [ {
-					boxLabel :EwayLocale.report.openrate.device.lt,
-					name : 'compare',
-					checked : true,
-					width: 50,
-					inputValue : 0
-				}, {
-					boxLabel :EwayLocale.report.openrate.device.gt,
-					name : 'compare',
-					width: 50,
-					inputValue : 1
-				},{
-					xtype : 'textfield',
-					name:'openrate',
-					width: 60,
-					regex:/(^(\d|[1-9]\d|100)(\.\d{1,2})?$)/,
-					regexText: EwayLocale.report.openrate.device.regex
-					
-				}, 
-				{
-					xtype : 'displayfield',
-					value : '%'
-				}
-				]
-
-			},{
-				xtype : 'radiogroup',
+				items : [{
 				fieldLabel : EwayLocale.machine.device.onBankSignal,
+				xtype : 'radiogroup',
 				anchor : '69%',
+				width:280,
 				items : [ {
-					boxLabel :EwayLocale.report.openrate.device.inBank,
-					name : 'awayFlag',
+					boxLabel : EwayLocale.report.openrate.device.inBank,
+					name : 'awayFlag',					
 					inputValue : 1
 				}, {
-					boxLabel :EwayLocale.report.openrate.device.outBank,
+					boxLabel : EwayLocale.report.openrate.device.outBank,
 					name : 'awayFlag',
 					inputValue : 2
 				}, {
-					boxLabel :EwayLocale.report.openrate.device.allBank,
+					boxLabel :  EwayLocale.report.openrate.device.allBank,
 					name : 'awayFlag',
 					checked : true,
-					inputValue :""
-				}]
-
-			}]}
-			]
-		});
+					inputValue : ""
+						
+				} ]
+			}
+			]}
+			
+			
+			]});
 		this.callParent(arguments);
 	},
 	changeImport : function(radio, newValue, oldValue, options) {

@@ -201,17 +201,7 @@ public class OpenRateController {
         }
         //获取开机率的时间条件
         IFilter filter = request2filter(webRequest, "rate.statDate");
-        UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
-        String orgFlag = String.valueOf(userSession.getOrgFlag());
-        //获取orgFlag
-        filter.like("org.orgFlag",orgFlag);
-        String orgId = request.getParameter("orgId");
-        if(orgId != null&&orgId !="")
-        {
-        	IOrganization org = orgService.get(orgId);
-        	filter.like("org.orgFlag",org.getOrgFlag());
-        }
-        
+
         String awayFlag=request.getParameter("awayFlag");
         if(awayFlag != null&&awayFlag !=""){
         filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));

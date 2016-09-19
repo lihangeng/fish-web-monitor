@@ -36,11 +36,6 @@ Ext.define('Eway.controller.report.openrate.OrgOpenRate', {
 			return
 		}
 		var values = form.getValues();
-		var grid = view.down('report_openrate_org_treegrid');
-		if(undefined!=values.orgId&&values.orgId!=""){
-			var model = Ext.create("Eway.model.report.openrate.OrgOpenRate",{defaultRootId:values.orgId,expanded : true,node:values.orgId,id:values.orgId,terminalId:values.orgName,orgName:values.orgName});
-			grid.setRootNode(model);
-		}
 		var store = view.down('report_openrate_org_treegrid').getStore();
 		store.proxy.extraParams = values;
 		store.load();

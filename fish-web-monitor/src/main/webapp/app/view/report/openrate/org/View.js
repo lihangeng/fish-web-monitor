@@ -3,7 +3,7 @@ Ext.define('Eway.view.report.openrate.org.View', {
 	alias : 'widget.report_openrate_org_view',
 
 	requires : [
-			'Eway.view.report.openrate.FilterForm',
+			'Eway.view.report.openrate.org.FilterForm',
 			'Eway.view.report.openrate.org.TreeGrid' ],
 
 	title : EwayLocale.report.openrate.org.orgOpenRate,
@@ -14,9 +14,9 @@ Ext.define('Eway.view.report.openrate.org.View', {
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-				itemId : 'filterFormItemId',
+				itemId : 'filterFormOrgItemId',
 				region : 'north',
-				xtype : 'report_openrate_filterform'
+				xtype : 'report_openrate_org_filterform'
 			}, {
 				itemId : 'gridItemId',
 				region : 'center',
