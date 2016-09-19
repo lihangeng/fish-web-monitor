@@ -49,6 +49,7 @@ public class NotifyContentService implements INotifyContentService{
 		notifyContent = StringUtils.replaceLogRule(notifyContent, "\\{faultMod\\}", notifyMouldSet.getFaultMod()==null?"":getEnumI18n(notifyMouldSet.getFaultMod().getText()));
 		notifyContent = StringUtils.replaceLogRule(notifyContent, "\\{faultTime\\}", DateUtils.getTimestamp(new Date()));
 		notifyContent = StringUtils.replaceLogRule(notifyContent, "\\{faultClassify\\}", notifyMouldSet.getFaultClassify());
+		notifyContent = StringUtils.replaceLogRule(notifyContent, "\\{appStatus\\}", notifyMouldSet.getAppStatus()==null?"":getEnumI18n(notifyMouldSet.getAppStatus().getText()));
 		if(!terminalId.equals("")){
 			IDevice device = deviceService.get(terminalId);
 			notifyContent = StringUtils.replaceLogRule(notifyContent, "\\{orgName\\}", device.getOrganization().getName());
