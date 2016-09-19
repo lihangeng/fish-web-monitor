@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +17,9 @@ import com.yihuacomputer.fish.api.session.LoginMessage;
 
 @Service
 public class SessionManage implements ISessionManage {
-
+	
+	private Logger logger = LoggerFactory.getLogger(SessionManage.class);
+	
 	@Autowired(required = false)
 	private IMqProducer mqProducer;
 
@@ -38,8 +42,13 @@ public class SessionManage implements ISessionManage {
 				LoginMessage loginMessage = new LoginMessage("LOGIN_OUT", userCode, sessionInfo.getSessionId());
 				mqProducer.put(JsonUtils.toJson(loginMessage));
 			}else{//单机模式
-				oldSession.invalidate();
-				sessions.remove(userCode);
+				try{
+					oldSession.invalidate();
+				}catch(Exception e){
+					logger.error(e.getMessage());
+				}finally{
+					sessions.remove(userCode);
+				}
 			}
 		}
 	}
@@ -55,7 +64,13 @@ public class SessionManage implements ISessionManage {
 		if (sessionInfo != null) {
 			HttpSession session = sessionInfo.getSession();
 			if (session != null) {
-				session.invalidate();
+				try{
+					session.invalidate();
+				}catch(Exception e){
+					logger.error(e.getMessage());
+				}finally{
+					sessions.remove(userCode);
+				}
 			}
 			sessions.remove(userCode);
 		}
