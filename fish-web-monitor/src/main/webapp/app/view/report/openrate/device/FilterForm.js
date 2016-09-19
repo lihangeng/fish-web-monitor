@@ -172,7 +172,7 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 			},{
 				xtype : 'radiogroup',
 				fieldLabel : EwayLocale.machine.device.onBankSignal,
-				anchor : '69%',
+				anchor : '71%',
 				items : [ {
 					boxLabel :EwayLocale.report.openrate.device.inBank,
 					name : 'awayFlag',
@@ -185,6 +185,7 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 					boxLabel :EwayLocale.report.openrate.device.allBank,
 					name : 'awayFlag',
 					checked : true,
+					width:60,
 					inputValue :""
 				}]
 
