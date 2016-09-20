@@ -23,14 +23,14 @@ Ext.define('Eway.view.report.baseReport.RetainCardCountReportFilter', {
 					// 获取开始时间
 					if (!Ext.isEmpty(field.dateRange.begin)) {
 						var filterForm = Ext.ComponentQuery.query('baseReport_RetainCardCountReportFilter')[0];
-						beginDateCmp = filterForm.down('field[name="startDataTime"]');
+						beginDateCmp = filterForm.down('field[name="startDateTime"]');
 						beginDate = beginDateCmp.getValue();
 
 					}
 					// 获取结束时间
 					if (!Ext.isEmpty(field.dateRange.end)) {
 						var filterForm = Ext.ComponentQuery.query('baseReport_RetainCardCountReportFilter')[0];
-						enddateCmp = filterForm.down('field[name="endDataTime"]');
+						enddateCmp = filterForm.down('field[name="endDateTime"]');
 						endDate = enddateCmp.getValue();
 					}
 				}
@@ -65,9 +65,10 @@ Ext.define('Eway.view.report.baseReport.RetainCardCountReportFilter', {
 						items : [{
 									xtype: 'datetimefield',
 									fieldLabel : EwayLocale.commen.startDataTime,
-									name: 'startDataTime',
+									name: 'startDateTime',
 									format: 'Y-m-d H:i:s',
 									editable : false,
+									value : Ext.Date.add(new Date(), Ext.Date.MONTH, -1),
 									 dateRange : {
 									 begin : 'beginDateTime',
 									 end : 'endDateTime'
@@ -77,7 +78,7 @@ Ext.define('Eway.view.report.baseReport.RetainCardCountReportFilter', {
 									 labelAlign : 'right',
 									 listeners: {
 									 	change : function(){
-									 		var endDate = this.up('form').down('field[name="endDataTime"]');
+									 		var endDate = this.up('form').down('field[name="endDateTime"]');
 									 		endDate.clearInvalid();
 									 	}
 									 }
@@ -89,19 +90,20 @@ Ext.define('Eway.view.report.baseReport.RetainCardCountReportFilter', {
 						items : [{
 									xtype: 'datetimefield',
 									fieldLabel : EwayLocale.commen.endDataTime,
-									name: 'endDataTime',
+									name: 'endDateTime',
 									editable : false,
 									format: 'Y-m-d H:i:s',
 									dateRange : {
 										begin : 'beginDateTime',
 										end : 'endDateTime'
 									},
+									value : new Date(),
 									vtype : 'cardInfoDateRange',
 									msgTarget : 'side',
 									labelAlign : 'right',
 									listeners : {
 										change : function(){
-											var beginDate = this.up('form').down('field[name="startDataTime"]');
+											var beginDate = this.up('form').down('field[name="startDateTime"]');
 											beginDate.clearInvalid();
 										}
 									}
