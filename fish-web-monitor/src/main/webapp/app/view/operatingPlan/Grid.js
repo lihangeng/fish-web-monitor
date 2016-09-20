@@ -82,11 +82,11 @@ Ext.define('Eway.view.operatingPlan.Grid', {
 				width : 120,
 				dataIndex : 'planStateType'
 			}, {
-				header : EwayLocale.machine.serviceplan.openDate,
+				header : EwayLocale.machine.plan.startDate,
 				width : 130,
 				dataIndex : 'startDate'
 			}, {
-				header : EwayLocale.machine.serviceplan.closeDate,
+				header : EwayLocale.machine.plan.endDate,
 				width : 130,
 				dataIndex : 'endDate'
 			}, {
