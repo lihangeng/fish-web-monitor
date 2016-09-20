@@ -50,15 +50,16 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 				menuDisabled:true,
 				header : EwayLocale.machine.device.onBankSignal,
 				dataIndex : 'awayFlagName',
-				width : 160
+				width : 140
 			}, {
 				menuDisabled:true,
 				header :  EwayLocale.boxInfo.cashboxInLimit,
 				dataIndex : 'maxAlarm',
-				width : 120,    
+				width : 140,    
 				editor: {
 	                xtype: 'numberfield',
 	                minValue:0,
+	                step:100,
 	                msgTarget :'side',
 	                allowBlank: false
 	            }
@@ -70,12 +71,15 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 				editor: {
 	                xtype: 'numberfield',
 	                msgTarget :'side',
+	                minValue:0,
+	                step:100,
 	                allowBlank: false
 	            }
 			} ,{
 		        text: EwayLocale.boxInfo.ansynLimitAmt,
 				flex : 1,    
 				menuDisabled:true,
+				align:'center',
 		        code:'cashBoxInfoSync',
 		        // This is our Widget column
 		        xtype: 'widgetcolumn',
@@ -83,6 +87,8 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 		        // Its "value" setting is taken from the column's dataIndex
 		        widget: {
 		        	xtype: 'button',
+					width : 60,    
+					tooltip:EwayLocale.boxInfo.ansyntooltip,
 			        action:'cashBoxInfoSync',
 		        	text:EwayLocale.boxInfo.ansyn
 		        },
@@ -96,10 +102,13 @@ Ext.define('Eway.view.cash.boxInfo.Grid', {
 		        code:'showBoxDetail',
 		        // This is our Widget column
 		        xtype: 'widgetcolumn',
-	
+
+				align:'center',
 		        // This is the widget definition for each cell.
 		        // Its "value" setting is taken from the column's dataIndex
 		        widget: {
+					width : 80,   
+					tooltip:EwayLocale.boxInfo.boxDetailtooltip, 
 		        	xtype: 'button',
 			        action:'showBoxDetail',
 		        	text:EwayLocale.boxInfo.boxDetail

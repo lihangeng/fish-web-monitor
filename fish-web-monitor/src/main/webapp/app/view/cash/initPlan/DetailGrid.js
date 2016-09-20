@@ -81,6 +81,8 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 				dataIndex : 'actualAmt',
 				editor: {
 	                xtype: 'numberfield',
+	                minValue:0,
+	                step:100,
 	                allowBlank: false,
 	                msgTarget :'side'
 	            }

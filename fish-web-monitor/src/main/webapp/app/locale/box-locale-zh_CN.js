@@ -1,10 +1,13 @@
 Ext.apply(EwayLocale,{
 	boxInfo:{
-		title:'钞箱信息',//EwayLocale.boxInfo.title
-		cashboxOutLimit:'取款预警',//EwayLocale.boxInfo.cashboxOutLimit
-		cashboxInLimit:'存款预警',//	EwayLocale.boxInfo.cashboxInLimit
+		title:'钞箱预警管理',//EwayLocale.boxInfo.title
+		cashboxOutLimit:'取款预警(单位:元)',//EwayLocale.boxInfo.cashboxOutLimit
+		cashboxInLimit:'存款预警(单位:元)',//	EwayLocale.boxInfo.cashboxInLimit
 		ansynLimitAmt:'同步预警金额',//	EwayLocale.boxInfo.ansynLimitAmt
 		ansyn:'同步',//	EwayLocale.boxInfo.ansyn
+
+		ansyntooltip:'同步当前登录人员所在机构下同型号设备的预警金额',//	EwayLocale.boxInfo.ansyntooltip
+		boxDetailtooltip:'查看当前设备的钞箱明细信息', //	EwayLocale.boxInfo.boxDetailtooltip
 		lookAtBoxInfo:'查看钞箱信息',//	EwayLocale.boxInfo.lookAtBoxInfo
 		billAmtLess:'取款预警不能超过',//	EwayLocale.boxInfo.billAmtLess
 		cashAmtLess:'存款预警不能超过',//	EwayLocale.boxInfo.cashAmtLess
@@ -30,16 +33,16 @@ Ext.apply(EwayLocale,{
 		actualMaxAmt:'最大加钞额度为',//EwayLocale.initPlan.addDeviceFailer
 		cashInitCode:'单号',//EwayLocale.initPlan.cashInitCode
 		orgName:'机构',//EwayLocale.initPlan.orgName
-		lastAmt:'上次加钞金额',//EwayLocale.initPlan.lastAmt
+		lastAmt:'上次加钞金额(单位:元)',//EwayLocale.initPlan.lastAmt
 		lastDate:'上次加钞日期',//EwayLocale.initPlan.lastDate
-		adviceAmt:'推荐加钞金额',//EwayLocale.initPlan.adviceAmt
+		adviceAmt:'建议加钞金额(单位:元)',//EwayLocale.initPlan.adviceAmt
 		addDeviceWin:'增加加钞设备',//EwayLocale.initPlan.addDeviceWin
-		maxAmt:'最大加钞金额',//EwayLocale.initPlan.maxAmt
-		billAmt:'取款余额',//EwayLocale.initPlan.billAmt
-		cashInAmt:'存款余额',//EwayLocale.initPlan.cashInAmt
+		maxAmt:'最大加钞金额(单位:元)',//EwayLocale.initPlan.maxAmt
+		billAmt:'取款余额(单位:元)',//EwayLocale.initPlan.billAmt
+		cashInAmt:'存款余额(单位:元)',//EwayLocale.initPlan.cashInAmt
 		lastPlan:'上一条加钞计划',//EwayLocale.initPlan.lastPlan
 		nextPlan:'下一条加钞计划',//EwayLocale.initPlan.nextPlan
-		actualAmt:'实际加钞金额'//EwayLocale.initPlan.actualAmt
+		actualAmt:'实际加钞金额(单位:元)'//EwayLocale.initPlan.actualAmt
 	},
 	initDevice:{
 		title:'加钞设备管理'
