@@ -130,9 +130,17 @@ public class PersonController {
             if (OrganizationType.BANK.equals(userSession.getOrgType())) {
                 pageResult = devicePersonRelation.pageDeviceByTypePerson(start, limit, service.get(guid), filter,
                         String.valueOf(userSession.getOrgId()), true);
+                if(pageResult.list().size()==0){
+                	pageResult = devicePersonRelation.pageDeviceByTypePerson(0, limit, service.get(guid), filter,
+                            String.valueOf(userSession.getOrgId()), true);
+                }
             } else if (OrganizationType.MAINTAINER.equals(userSession.getOrgType())) {
                 pageResult = devicePersonRelation.pageDeviceByTypePerson(start, limit, service.get(guid), filter,
                         String.valueOf(userSession.getOrgId()), false);
+                if(pageResult.list().size()==0){
+                	pageResult = devicePersonRelation.pageDeviceByTypePerson(0, limit, service.get(guid), filter,
+                            String.valueOf(userSession.getOrgId()), false);
+                }
             } else {
                 pageResult = devicePersonRelation.pageDeviceByPerson(start, limit, service.get(guid), filter);
                 if(pageResult.list().size()==0){
@@ -148,17 +156,33 @@ public class PersonController {
                 if (OrganizationType.BANK.equals(type)) {
                     pageResult = devicePersonRelation.pageUnlinkDeviceByPerson(start, limit, service.get(guid), filter,
                             organizationId, organizationService.getRoot().get(0).getGuid());
+                    if(pageResult.list().size()==0){
+                    	pageResult = devicePersonRelation.pageUnlinkDeviceByPerson(0, limit, service.get(guid), filter,
+                                organizationId, organizationService.getRoot().get(0).getGuid());
+                    }
                 } else {
                     pageResult = devicePersonRelation.pageUnlinkDeviceByPerson(start, limit, service.get(guid), filter,
                             String.valueOf(userSession.getOrgId()), organizationId);
+                    if(pageResult.list().size()==0){
+                    	pageResult = devicePersonRelation.pageUnlinkDeviceByPerson(0, limit, service.get(guid), filter,
+                                String.valueOf(userSession.getOrgId()), organizationId);
+                    }
                 }
             } else if (OrganizationType.MAINTAINER.equals(userSession.getOrgType())) {
                 if (OrganizationType.BANK.equals(type)) {
                     pageResult = devicePersonRelation.pageUnlinkDeviceByPerson(start, limit, service.get(guid), filter,
                             organizationId, String.valueOf(userSession.getOrgId()));
+                    if(pageResult.list().size()==0){
+                    	pageResult = devicePersonRelation.pageUnlinkDeviceByPerson(0, limit, service.get(guid), filter,
+                                organizationId, String.valueOf(userSession.getOrgId()));
+                    }
                 } else {
                     pageResult = devicePersonRelation.pageUnlinkDeviceByPerson(start, limit, service.get(guid), filter,
                             organizationService.getRoot().get(0).getGuid(), organizationId);
+                    if(pageResult.list().size()==0){
+                    	pageResult = devicePersonRelation.pageUnlinkDeviceByPerson(0, limit, service.get(guid), filter,
+                                organizationService.getRoot().get(0).getGuid(), organizationId);
+                    }
                 }
             } else {
                 if (OrganizationType.BANK.equals(type)) {
