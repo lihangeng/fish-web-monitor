@@ -110,7 +110,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 			closeCount = fault.getCloseCount();
 			amountFault = fault.getOpenCount() + fault.getCloseCount();
 		}
-		pdf.addParagraph("1.上周共产生故障数" + amountFault + "个，其中已关闭" + openCount + "个，未关闭" + closeCount + "个。");
+		pdf.addParagraph("1.上周共产生故障数" + amountFault + "个，其中已关闭" + closeCount + "个，未关闭" + openCount + "个。");
 		pdf.addParagraph("2.上周按照故障类型统计故障数量");
 
 		pdf.addChart(PdfChart.generateBarChart(createBarFault(weekOfYear)), devChartWidth, 260);

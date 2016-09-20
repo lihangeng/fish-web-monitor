@@ -109,7 +109,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 			closeCount = fault.getCloseCount();
 			amountFault = fault.getOpenCount() + fault.getCloseCount();
 		}
-		pdf.addParagraph("1.上月共产生故障数" + amountFault + "个，其中已关闭" + openCount + "个，未关闭" + closeCount + "个。");
+		pdf.addParagraph("1.上月共产生故障数" + amountFault + "个，其中已关闭" + closeCount + "个，未关闭" + openCount + "个。");
 		pdf.addParagraph("2.上月按照故障类型统计故障数量");
 
 		pdf.addChart(PdfChart.generateBarChart(createBarFaultMonth(month)), devChartWidth, 260);
