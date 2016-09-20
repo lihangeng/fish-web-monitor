@@ -3,7 +3,8 @@ Ext.apply(EwayLocale,{
 		title:'BoxInfo',//EwayLocale.boxInfo.title
 		cashboxOutLimit:'Cashbox Bill Limit',//EwayLocale.boxInfo.cashboxOutLimit
 		cashboxInLimit:'Cashbox In Limit',//	EwayLocale.boxInfo.cashboxInLimit
-		
+		billLessZero:'Cashbox Bill Limit Zero',//	EwayLocale.boxInfo.billLessZero
+		cashLessZero:'Cashbox In Limit Zero'//	EwayLocale.boxInfo.cashLessZero
 	},
 	initRule:{
 		title:'Cash Init Rule Manager',//EwayLocale.initRule.title

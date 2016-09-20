@@ -49,7 +49,7 @@ public class QuartzService implements IQuartzService{
 			if(name == null){
 				sql.append(" WHERE 1=1");
 			}else{
-				sql.append(" WHERE TRIGGERS.TRIGGER_NAME like'%").append(name).append("%'");
+				sql.append(" WHERE TRIGGERS.JOB_NAME like'%").append(name).append("%'");
 			}
 	        SQLQuery query = dao.getSQLQuery(TASK_LIST_SQL+sql.toString());
 	        return query.list();

@@ -8,8 +8,9 @@ Ext.apply(EwayLocale,{
 		lookAtBoxInfo:'查看钞箱信息',//	EwayLocale.boxInfo.lookAtBoxInfo
 		billAmtLess:'取款预警不能超过',//	EwayLocale.boxInfo.billAmtLess
 		cashAmtLess:'存款预警不能超过',//	EwayLocale.boxInfo.cashAmtLess
-		boxDetail:'钞箱明细'//	EwayLocale.boxInfo.boxDetail
-		
+		boxDetail:'钞箱明细',//	EwayLocale.boxInfo.boxDetail
+		billLessZero:'取款预警不能小于0',//	EwayLocale.boxInfo.billLessZero
+		cashLessZero:'存款预警不能小于0'//	EwayLocale.boxInfo.cashLessZero
 	},
 	initRule:{
 		title:'加钞规则管理',//EwayLocale.initRule.title
