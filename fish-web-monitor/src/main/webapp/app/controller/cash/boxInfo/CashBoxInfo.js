@@ -88,8 +88,16 @@ Ext.define('Eway.controller.cash.boxInfo.CashBoxInfo', {
     		Eway.alert(EwayLocale.boxInfo.billAmtLess+defaultBill);
     		return false;
     	}
+    	if(0>context.newValues.minAlarm){
+    		Eway.alert(EwayLocale.boxInfo.billLessZero);
+    		return false;
+    	}
     	if(defaultCashIn<context.newValues.maxAlarm){
     		Eway.alert(EwayLocale.boxInfo.cashAmtLess+defaultCashIn);
+    		return false;
+    	}
+    	if(0>context.newValues.maxAlarm){
+    		Eway.alert(EwayLocale.boxInfo.cashLessZero);
     		return false;
     	}
 		context.record.save({

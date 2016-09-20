@@ -91,7 +91,23 @@ public class RetainCardCountReportController {
 				.getRealPath("/resources/report/w_retain_card_count.jasper");
 		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("title", getEnumI18n(ReportTitle.RetainCardCount.getText()));
-		parameters.put("reportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + " : " + DateUtils.getDate(new Date()));
+		
+		if (filter.getFilterEntry("startDate") != null) {
+			String startReportDateValue = DateUtils.getDate((Date)filter.getFilterEntry("startDate").getValue());
+			parameters.put("startDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + " : " + startReportDateValue);
+		} else {
+			parameters.put("startDate", "");
+		}
+		if (filter.getFilterEntry("endDate") != null) {
+			String endReportDateValue = DateUtils.getDate((Date) filter.getFilterEntry("endDate").getValue());
+			parameters.put("endDate", endReportDateValue);
+
+		} else {
+			parameters.put("endDate", "");
+		}
+		
+		
+//		parameters.put("reportDate", messageSource.getMessage("runtimeInfo.date", null, FishCfg.locale) + " : " + DateUtils.getDate(new Date()));
 
 		List<IRetainCardCountRpt> data = retainCardRptService.listRetainCardCount(filter);
 
@@ -171,11 +187,11 @@ public class RetainCardCountReportController {
 				continue;
 			}
 
-			if (name.equals("endDataTime")) {
-				filter.eq("endData", DateUtils.getTimestamp(value));
+			if (name.equals("endDateTime")) {
+				filter.eq("endDate", DateUtils.getTimestamp(value));
 
-			} else if (name.equals("startDataTime")) {
-				filter.eq("startData", DateUtils.getTimestamp(value));
+			} else if (name.equals("startDateTime")) {
+				filter.eq("startDate", DateUtils.getTimestamp(value));
 
 			} else if (name.equals("endDate")) {
 				filter.eq("endDate", value);
