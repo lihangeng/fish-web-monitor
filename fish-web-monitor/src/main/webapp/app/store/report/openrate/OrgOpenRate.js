@@ -4,7 +4,7 @@ Ext.define('Eway.store.report.openrate.OrgOpenRate', {
 	root : {
 		terminalId : Eway.user.getOrgName(),
 		openRate : '-1',
-		expanded : true
+		expanded : false
 	},
 	defaultRootId : Eway.user.getOrgId(),
 	proxy : {
