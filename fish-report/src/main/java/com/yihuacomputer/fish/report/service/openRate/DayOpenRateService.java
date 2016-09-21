@@ -326,24 +326,6 @@ public class DayOpenRateService implements IDayOpenRateService {
             }
         }
         
-        entry = filter.getFilterEntry("(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100");
-        if (entry != null) {
-            hql.append(" and ").append(entry.getKey());
-            if (entry.getOperator() == Operator.LIKE) {
-                hql.append(" like ?");
-                values.add("%" + entry.getValue());
-            } else if (entry.getOperator() == Operator.EQ) {
-                hql.append(" = ?");
-                values.add(entry.getValue());
-            } else if(entry.getOperator() == Operator.GT){
-            	hql.append("> ?");
-            	values.add(entry.getValue());
-            }else if(entry.getOperator()==Operator.LE){
-            	hql.append("<= ?");
-            	values.add(entry.getValue());
-            }
-        }
-        
         entry = filter.getFilterEntry("info.devType.id");
         if (entry != null) {
             hql.append(" and ").append(entry.getKey());
@@ -417,6 +399,24 @@ public class DayOpenRateService implements IDayOpenRateService {
         SQLQuery query=dao.getSQLQuery(sql.toString());
         @SuppressWarnings("unchecked")
 		List<Object> avg = query.list();
+        
+        entry = filter.getFilterEntry("(cast(rate.healthyTimeReal as int)*1.00)/(cast(rate.openTimes as int)*1.00)*100");
+        //是否进行比较
+        boolean compare = false;
+        //是否大于
+        boolean gl = true;
+        double rateValue = 0.0;
+        if (entry != null) {
+        	compare = true;
+            if(entry.getOperator() == Operator.GT){
+            	gl = true;
+            	rateValue=Double.parseDouble(entry.getValue().toString());
+            }else if(entry.getOperator()==Operator.LE){
+            	gl=false;
+            	rateValue=Double.parseDouble(entry.getValue().toString());
+            }
+        }
+        
         double avgOpenRate=1;
         if(avg.get(0)!=null){
         avgOpenRate=Double.parseDouble(avg.get(0).toString());
@@ -436,6 +436,19 @@ public class DayOpenRateService implements IDayOpenRateService {
             int faultTimeReal = valueToInteger(status[5]);
             int atmpTimeReal = valueToInteger(status[6]);
             int stopTimeReal = valueToInteger(status[7]);
+            if(compare){
+            	if(gl){
+            		if(healthyTimeReal*1.0/openTimes*100<=rateValue){
+            			continue;
+            		}
+            	}
+            	else{
+
+            		if(healthyTimeReal*1.0/openTimes*100>rateValue){
+            			continue;
+            		}
+            	}
+            }
             String orgName = "";
             String catalogName ="";
             String typeName="";
