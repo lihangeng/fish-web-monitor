@@ -17,6 +17,8 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.NumUtils;
+import com.yihuacomputer.fish.api.monitor.business.ITransType;
+import com.yihuacomputer.fish.api.monitor.business.ITransTypeService;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryMonth;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryMonthService;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryMonth;
@@ -37,7 +39,7 @@ import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateMonth;
 import com.yihuacomputer.fish.api.report.openRate.etl.IOrgOpenRateEtlService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IOrgOpenRateMonth;
 import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeEtlService;
-import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeMonth;
+import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeWeek;
 import com.yihuacomputer.fish.report.engine.pdf.FontMgr;
 import com.yihuacomputer.fish.report.engine.pdf.ParagraphMgr;
 import com.yihuacomputer.fish.report.engine.pdf.Pdf;
@@ -70,6 +72,9 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 	private IOrgOpenRateEtlService orgOpenRateEtlService;
 	@Autowired
 	private IDeviceOpenRateEtlService deviceOpenRateEtlService;
+	@Autowired
+	private ITransTypeService transTypeService;
+	
 	private int chartWidth = (int) (PageSize.A4.getWidth() * 0.8);
 	private int devChartWidth = (int) (PageSize.A4.getWidth() * 0.95);
 	DecimalFormat df = new DecimalFormat("0.00");
@@ -166,11 +171,17 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		pdf.addParagraph("2.上月按照交易类型统计的交易次数和交易金额");
 		PdfPTable transTable = pdf.addTableHeader(3, 83, new float[] { 27, 27, 27 }, new String[] { "交易类型", "交易数量(次)", "交易金额(次)" });
 
-		List<ITransTypeMonth> transList = transTypeEtlService.getMonth(month);
-		for (ITransTypeMonth it : transList) {
-			pdf.addTableCell(transTable, it.getTransCode(),false);
-			pdf.addTableCell(transTable, String.valueOf(it.getTransCount()),false);
-			pdf.addTableCell(transTable, String.valueOf(it.getTransAmount()),true);
+		IFilter filter = new Filter();
+		List<ITransType> transType = transTypeService.list(filter);
+		List<ITransTypeWeek> transList = transTypeEtlService.getWeek(month);
+		for (ITransTypeWeek it : transList) {
+			for(ITransType itt:transType){
+				if(itt.getTransCode().equals(it.getTransCode())){
+					pdf.addTableCell(transTable, itt.getCodeDesc(),false);
+					pdf.addTableCell(transTable, String.valueOf(it.getTransCount()),false);
+					pdf.addTableCell(transTable, String.valueOf(it.getTransAmount()),true);
+				}
+			}
 		}
 		pdf.getDocument().add(transTable);
 	}

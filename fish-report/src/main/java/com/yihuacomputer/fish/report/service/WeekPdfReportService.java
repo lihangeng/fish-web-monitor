@@ -18,6 +18,8 @@ import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.NumUtils;
+import com.yihuacomputer.fish.api.monitor.business.ITransType;
+import com.yihuacomputer.fish.api.monitor.business.ITransTypeService;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryWeek;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryWeekService;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryWeek;
@@ -71,6 +73,9 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 	private IOrgOpenRateEtlService orgOpenRateEtlService;
 	@Autowired
 	private IDeviceOpenRateEtlService deviceOpenRateEtlService;
+	@Autowired
+	private ITransTypeService transTypeService;
+	
 	private int chartWidth = (int) (PageSize.A4.getWidth() * 0.8);
 	private int devChartWidth = (int) (PageSize.A4.getWidth() * 0.92);
 	DecimalFormat df = new DecimalFormat("0.00");
@@ -157,11 +162,17 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 
 		pdf.addParagraph("2.上周按照交易类型统计的交易次数和交易金额");
 		PdfPTable table = pdf.addTableHeader(3, 83, new float[] { 27, 27, 27 }, new String[] { "交易类型", "交易数量(次)", "交易金额(元)" });
+		IFilter filter = new Filter();
+		List<ITransType> transType = transTypeService.list(filter);
 		List<ITransTypeWeek> transList = transTypeEtlService.getWeek(weekOfYear);
 		for (ITransTypeWeek it : transList) {
-			pdf.addTableCell(table, it.getTransCode(),false);
-			pdf.addTableCell(table, String.valueOf(it.getTransCount()),false);
-			pdf.addTableCell(table, String.valueOf(it.getTransAmount()),true);
+			for(ITransType itt:transType){
+				if(itt.getTransCode().equals(it.getTransCode())){
+					pdf.addTableCell(table, itt.getCodeDesc(),false);
+					pdf.addTableCell(table, String.valueOf(it.getTransCount()),false);
+					pdf.addTableCell(table, String.valueOf(it.getTransAmount()),true);
+				}
+			}
 		}
 		pdf.getDocument().add(table);
 	}
