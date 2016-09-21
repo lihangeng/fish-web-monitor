@@ -34,16 +34,17 @@ Ext.apply(EwayLocale,{
 		actualMaxAmt:'最大加钞额度为',//EwayLocale.initPlan.addDeviceFailer
 		cashInitCode:'单号',//EwayLocale.initPlan.cashInitCode
 		orgName:'机构',//EwayLocale.initPlan.orgName
-		lastAmt:'上次加钞金额(单位:元)',//EwayLocale.initPlan.lastAmt
-		lastDate:'上次加钞日期',//EwayLocale.initPlan.lastDate
-		adviceAmt:'建议加钞金额(单位:元)',//EwayLocale.initPlan.adviceAmt
+		lastAmt:'上次加钞金额<br/>(单位:元)',//EwayLocale.initPlan.lastAmt
+		lastDate:'上次加钞<br/>日期',//EwayLocale.initPlan.lastDate
+		adviceAmt:'建议加钞金额<br/>(单位:元)',//EwayLocale.initPlan.adviceAmt
 		addDeviceWin:'增加加钞设备',//EwayLocale.initPlan.addDeviceWin
-		maxAmt:'最大加钞金额(单位:元)',//EwayLocale.initPlan.maxAmt
-		billAmt:'取款余额(单位:元)',//EwayLocale.initPlan.billAmt
-		cashInAmt:'存款余额(单位:元)',//EwayLocale.initPlan.cashInAmt
+		maxAmt:'最大加钞金额<br/>(单位:元)',//EwayLocale.initPlan.maxAmt
+		billAmt:'取款余额<br/>(单位:元)',//EwayLocale.initPlan.billAmt
+		cashInAmt:'存款余额<br/>(单位:元)',//EwayLocale.initPlan.cashInAmt
 		lastPlan:'上一条加钞计划',//EwayLocale.initPlan.lastPlan
-		nextPlan:'下一条加钞计划',//EwayLocale.initPlan.nextPlan
-		actualAmt:'实际加钞金额(单位:元)'//EwayLocale.initPlan.actualAmt
+		nextPlan:'下一条加钞计划',//EwayLocale.initPlan.nextPlan All
+		actualAmtAll:'实际加钞金额(单位:元)',//EwayLocale.initPlan.actualAmtAll
+		actualAmt:'实际加钞金额<br/>(单位:元)'//EwayLocale.initPlan.actualAmt
 	},
 	initDevice:{
 		title:'加钞设备管理'
