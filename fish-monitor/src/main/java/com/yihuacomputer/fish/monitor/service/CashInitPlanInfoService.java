@@ -134,13 +134,13 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 					//此机器上次加钞信息
 					ICashInitUnique cashInitUnique = cashInitMap.get(device.getTerminalId());
 					IMonthDailyTradingVolume monthDailyTradingVolume = monthDailyVolume.get(device.getTerminalId());
-					double dailyVolume = 0.0;
+					long dailyVolume = 0;
 					if(monthDailyTradingVolume!=null){
 						if(monthDailyTradingVolume.getLastYearAmtOutAvg()==0){
-							dailyVolume = monthDailyTradingVolume.getMonthAmtOutAvg()*cashInitDays;
+							dailyVolume = (long)monthDailyTradingVolume.getMonthAmtOutAvg()*cashInitDays;
 						}
 						else{
-							dailyVolume = monthDailyTradingVolume.getLastYearAmtOutAvg()+monthDailyTradingVolume.getMonthAmtOutAvg();
+							dailyVolume = (long)monthDailyTradingVolume.getLastYearAmtOutAvg()+(long)monthDailyTradingVolume.getMonthAmtOutAvg();
 							dailyVolume = dailyVolume/2*cashInitDays;
 						}
 					}
@@ -178,13 +178,13 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 					ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
 					//此机器日均交易
 					IMonthDailyTradingVolume monthDailyTradingVolume = monthDailyVolume.get(cashInitUnique.getTerminalId());
-					double dailyVolume = 0.0;
+					long dailyVolume = 0;
 					if(monthDailyTradingVolume!=null){
 						if(monthDailyTradingVolume.getLastYearAmtOutAvg()==0){
-							dailyVolume = monthDailyTradingVolume.getMonthAmtOutAvg()*cashInitDays;
+							dailyVolume = (long)monthDailyTradingVolume.getMonthAmtOutAvg()*cashInitDays;
 						}
 						else{
-							dailyVolume = monthDailyTradingVolume.getLastYearAmtOutAvg()+monthDailyTradingVolume.getMonthAmtOutAvg();
+							dailyVolume = (long)monthDailyTradingVolume.getLastYearAmtOutAvg()+(long)monthDailyTradingVolume.getMonthAmtOutAvg();
 							dailyVolume = dailyVolume/2*cashInitDays;
 						}
 					}
