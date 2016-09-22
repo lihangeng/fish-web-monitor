@@ -776,10 +776,27 @@ Ext.exporter.Excel.override({
 
 Ext.form.field.Date.override({
 	getErrors: function(value) {
+		var me = this;
+		 var flag = false;
+		 var dateNow;
+         try{
+        	 dateNow = Ext.Date.parse(value,"Y-m-d H:i:s");
+              if(Ext.isDate(dateNow)){
+                     flag = true;
+              }
+          }catch(e){
+ 
+          }
+          if(!flag){
+        	  if(value==undefined){
+        		  return "";
+        	  }
+        	  return me.callParent([value]);
+              
+          }
         value = arguments.length > 0 ? value : this.formatDate(this.processRawValue(this.getRawValue()));
 
-        var me = this,errors,
-            format = Ext.String.format,
+        var format = Ext.String.format,
             clearTime = Ext.Date.clearTime;
         if(value==""||value == undefined){
         	return;
