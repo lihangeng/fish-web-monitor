@@ -49,7 +49,8 @@ Ext.define('Eway.view.operatingPlan.Update', {
 							format : 'Y-m-d',
 							allowBlank : false,
 							editable : false,
-			        //		minValue : Ext.Date.format(new Date(), 'Y-m-d'),
+							msgTarget:'side',
+			        		maxValue : Ext.Date.format(Ext.Date.add(new Date(), Ext.Date.YEAR, 2),'Y-m-d'),
 							value:Ext.Date.format(new Date(), 'Y-m-d'),
 							vtype : 'daterange',
 							endDateField : 'endDate',
@@ -72,6 +73,8 @@ Ext.define('Eway.view.operatingPlan.Update', {
 							allowBlank : false,						
 							editable : false,
 							vtype : 'daterange',
+							msgTarget:'side',
+							minValue : Ext.Date.format(new Date(), 'Y-m-d'),
 							startDateField : 'startDate',
 							listeners : {
 								blur : {

@@ -185,7 +185,7 @@ Ext.define('Eway.view.report.openrate.device.FilterForm', {
 					boxLabel :EwayLocale.report.openrate.device.allBank,
 					name : 'awayFlag',
 					checked : true,
-					width:60,
+					width:90,
 					inputValue :""
 				}]
 
