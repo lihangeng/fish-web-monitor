@@ -49,7 +49,7 @@ Ext.define("Ext.ux.form.DateTimeField",{
 
 
         if (!me.allowBlank && (me.value ==""||me.value ==null)) {
-            errors.push(me.blankText);
+//            errors.push(me.blankText);
         }
 
         if (value === null || value.length < 1) { // if it's blank and textfield didn't flag it then it's valid
@@ -60,17 +60,17 @@ Ext.define("Ext.ux.form.DateTimeField",{
         value = me.parseDate(value);
 
         if (!value) {
-            errors.push(format(me.invalidText, svalue, Ext.Date.unescapeFormat(me.format)));
+//            errors.push(format(me.invalidText, svalue, Ext.Date.unescapeFormat(me.format)));
             return errors;
         }
 
         time = value.getTime();
         if (minValue && time < minValue.getTime()) {
-            errors.push(format(me.minText, me.formatDate(minValue)));
+//            errors.push(format(me.minText, me.formatDate(minValue)));
         }
 
         if (maxValue && time > maxValue.getTime()) {
-            errors.push(format(me.maxText, me.formatDate(maxValue)));
+//            errors.push(format(me.maxText, me.formatDate(maxValue)));
         }
 
         if (disabledDays) {
@@ -78,7 +78,7 @@ Ext.define("Ext.ux.form.DateTimeField",{
 
             for(; i < len; i++) {
                 if (day === disabledDays[i]) {
-                    errors.push(me.disabledDaysText);
+//                    errors.push(me.disabledDaysText);
                     break;
                 }
             }
@@ -86,7 +86,7 @@ Ext.define("Ext.ux.form.DateTimeField",{
 
         fvalue = me.formatDate(value);
         if (disabledDatesRE && disabledDatesRE.test(fvalue)) {
-            errors.push(format(me.disabledDatesText, fvalue));
+//            errors.push(format(me.disabledDatesText, fvalue));
         }
 
         return errors;
