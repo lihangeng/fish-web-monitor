@@ -470,7 +470,11 @@ public class CashInitPlanDeviceDetailController {
 			cell.setCellValue(cellValue(planDeviceInfo.getActualAmt()));
 
 			cell = row.createCell(2);
-			cell.setCellValue(cellValue(planDeviceInfo.getMaxAmt()));
+			if(planDeviceInfo.getMaxAmt()==-1){
+				cell.setCellValue(cellValue(getEnumI18n("cashInitPlanDevice.unknown")));
+			}else{
+				cell.setCellValue(cellValue(planDeviceInfo.getMaxAmt()));
+			}
 
 			cell = row.createCell(3);
 			cell.setCellValue(cellValue(planDeviceInfo.getAdviceAmt()));
