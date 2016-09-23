@@ -39,7 +39,7 @@ import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateMonth;
 import com.yihuacomputer.fish.api.report.openRate.etl.IOrgOpenRateEtlService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IOrgOpenRateMonth;
 import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeEtlService;
-import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeWeek;
+import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeMonth;
 import com.yihuacomputer.fish.report.engine.pdf.FontMgr;
 import com.yihuacomputer.fish.report.engine.pdf.ParagraphMgr;
 import com.yihuacomputer.fish.report.engine.pdf.Pdf;
@@ -173,8 +173,8 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 
 		IFilter filter = new Filter();
 		List<ITransType> transType = transTypeService.list(filter);
-		List<ITransTypeWeek> transList = transTypeEtlService.getWeek(month);
-		for (ITransTypeWeek it : transList) {
+		List<ITransTypeMonth> transList = transTypeEtlService.getMonth(month);
+		for (ITransTypeMonth it : transList) {
 			for(ITransType itt:transType){
 				if(itt.getTransCode().equals(it.getTransCode())){
 					pdf.addTableCell(transTable, itt.getCodeDesc(),false);
