@@ -28,7 +28,7 @@ Ext.define('Eway.view.operatingPlan.FilterForm', {
 				columnWidth : .35,
 				items : [ {
 					xtype : 'datefield',
-					fieldLabel : EwayLocale.machine.serviceplan.openDate,
+					fieldLabel : EwayLocale.machine.plan.startDate,
 					editable : false,
 					name : 'startDate',
 					format : 'Y-m-d',
@@ -43,7 +43,7 @@ Ext.define('Eway.view.operatingPlan.FilterForm', {
 				items : [ {
 					xtype : 'datefield',
 					editable : false,
-					fieldLabel : EwayLocale.machine.serviceplan.closeDate,
+					fieldLabel : EwayLocale.machine.plan.endDate,
 					name : 'endDate',
 					format : 'Y-m-d',
 					vtype : 'daterange',
