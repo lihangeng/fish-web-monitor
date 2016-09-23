@@ -2,7 +2,6 @@ package com.yihuacomputer.fish.report.service;
 
 import java.io.File;
 import java.text.DecimalFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.jfree.chart.JFreeChart;
@@ -16,7 +15,6 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.filter.Filter;
-import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.NumUtils;
 import com.yihuacomputer.fish.api.monitor.business.ITransType;
 import com.yihuacomputer.fish.api.monitor.business.ITransTypeService;
@@ -315,9 +313,10 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 
 	private DefaultCategoryDataset createDatasetRate(int weekOfYear) {
 		DefaultCategoryDataset dataSet = new DefaultCategoryDataset();
-		Date week = DateUtils.get(String.valueOf(weekOfYear), DateUtils.STANDARD_WEEK);
-		Long[] dates = DateUtils.getFirstAndLastDayofWeek(week);
-		List<IAvgDayOpenRate> rates = avgOpenRateEtlService.getAvgDays(dates[0].intValue(), dates[1].intValue());
+		String[] dates = PdfConfig.getDayByWeek(weekOfYear);
+		String firstDay = dates[0]+dates[1].substring(0, 2)+dates[1].substring(3);
+		String endDay = dates[0]+dates[2].substring(0, 2)+dates[2].substring(3);
+		List<IAvgDayOpenRate> rates = avgOpenRateEtlService.getAvgDays(Long.parseLong(firstDay), Long.parseLong(endDay));
 		String day = "01";
 		for (IAvgDayOpenRate ia : rates) {
 			day = String.valueOf(ia.getDate()).substring(6) + "日";

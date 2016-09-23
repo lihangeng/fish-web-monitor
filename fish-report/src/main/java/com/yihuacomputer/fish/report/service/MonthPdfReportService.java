@@ -263,7 +263,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 			pdf.addTableCell(devTableLast, ido.getOrgName(),false);
 			pdf.addTableCell(devTableLast, String.valueOf(secondToDay(ido.getOpenTimes())),false);
 			pdf.addTableCell(devTableLast, String.valueOf(secondToDay(ido.getHealthyTimeReal())),false);
-			pdf.addTableCell(devTableLast, String.valueOf(ido.getOpenRate()),true);
+			pdf.addTableCell(devTableLast, NumUtils.format(ido.getOpenRate()),true);
 		}
 		pdf.getDocument().add(devTableLast);
 	}

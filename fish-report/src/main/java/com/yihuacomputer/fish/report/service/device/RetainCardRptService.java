@@ -119,8 +119,8 @@ public class RetainCardRptService implements IRetainCardRptService {
 		StringBuffer hql = new StringBuffer();
 		List<Object> valueObj = new ArrayList<Object>();
 		IFilterEntry orgFlag = filter.getFilterEntry("orgFlag");
-		IFilterEntry endData = filter.getFilterEntry("endData");
-		IFilterEntry startData = filter.getFilterEntry("startData");
+		IFilterEntry endData = filter.getFilterEntry("endDate");
+		IFilterEntry startData = filter.getFilterEntry("startDate");
 
 		hql.append("select count(r.id),o.name,d.devType.name from Retaincard r,Device d,Organization o ");
 		hql.append("where r.terminalId = d.terminalId and d.organization.id = o.id");
