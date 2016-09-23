@@ -273,7 +273,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		}
 
 		String[] dates = PdfConfig.getDayByWeek(weekOfYear);
-		String nowDate = dates[0] + "年" + dates[1].substring(0, 2) + "月" + dates[2].substring(3) + "日";
+		String nowDate = dates[0] + "年" + dates[2].substring(0, 2) + "月" + dates[2].substring(3) + "日";
 		mgr.addChunk("1. 截止" + nowDate + "，共有设备" + devNum + "台，其中", FontMgr.getFont12());
 		for (IDeviceCatalogSummaryWeek device : list1) {
 			mgr.addChunk(device.getCatalog(),FontMgr.getFont12()).addChunk("有" + device.getNum() + "台，", FontMgr.getFont12());
