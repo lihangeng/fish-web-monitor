@@ -44,6 +44,9 @@ Ext.define('Eway.controller.report.baseReport.RetainCardCountReport', {
 		var centerPanel = view.down('reportDownloadBody');
 		centerPanel.removeAll(true);
 		var values = form.getValues();
+		if(values.endDateTime < values.startDateTime){
+			Eway.alert(EwayLocale.tip.dateReSelect);
+		}
 		values.exportType = 'html';
 //		var fileName = '吞卡统计表.html';
 		var fileName = 'RetainCardCount';

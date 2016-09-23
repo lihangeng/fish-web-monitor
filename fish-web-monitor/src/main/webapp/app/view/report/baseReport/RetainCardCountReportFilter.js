@@ -69,8 +69,9 @@ Ext.define('Eway.view.report.baseReport.RetainCardCountReportFilter', {
 									format: 'Y-m-d H:i:s',
 									editable : false,
 									value : Ext.Date.add(new Date(), Ext.Date.MONTH, -1),
+									maxValue:new Date(),
 									 dateRange : {
-									 begin : 'beginDateTime',
+									 begin : 'startDateTime',
 									 end : 'endDateTime'
 									 },
 									 vtype : 'cardInfoDateRange',
@@ -94,7 +95,7 @@ Ext.define('Eway.view.report.baseReport.RetainCardCountReportFilter', {
 									editable : false,
 									format: 'Y-m-d H:i:s',
 									dateRange : {
-										begin : 'beginDateTime',
+										begin : 'startDateTime',
 										end : 'endDateTime'
 									},
 									value : new Date(),
