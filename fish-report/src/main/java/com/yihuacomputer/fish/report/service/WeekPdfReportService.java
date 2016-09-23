@@ -179,7 +179,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		pdf.addL1Chapter("二、开机率汇总");
 		Object[] obj = avgOpenRateEtlService.getWeekTotal(weekOfYear);
 		String avgRate = String.valueOf(obj[2]);
-		pdf.addParagraph("1. 上周所有设备平均开机率为" + avgRate + "%");
+		pdf.addParagraph("1. 上周所有设备平均开机率为" + NumUtils.format(Double.parseDouble(avgRate)) + "%");
 		pdf.addParagraph("2.上周每日的开机率趋势");
 		DefaultCategoryDataset openRateDataset2 = createDatasetRate(weekOfYear);
 		pdf.addChart(PdfChart.generateLineChart(openRateDataset2,"","百分比"), chartWidth, 260);
@@ -192,7 +192,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 			pdf.addTableCell(table, idt.getDevType(),false);
 			pdf.addTableCell(table, secondToDay(idt.getOpenTimes()),false);
 			pdf.addTableCell(table, secondToDay(idt.getHealthyTimeReal()),false);
-			pdf.addTableCell(table, String.valueOf(idt.getOpenRate()),true);
+			pdf.addTableCell(table, NumUtils.format(idt.getOpenRate()),true);
 		}
 		pdf.getDocument().add(table);
 		pdf.addParagraph("4.上周各网点开机率汇总");
@@ -320,7 +320,7 @@ public class WeekPdfReportService extends PdfReportService implements IWeekPdfRe
 		String day = "01";
 		for (IAvgDayOpenRate ia : rates) {
 			day = String.valueOf(ia.getDate()).substring(6) + "日";
-			dataSet.setValue(ia.getOpenRate(), "开机率", day);
+			dataSet.setValue(Double.parseDouble(NumUtils.format(ia.getOpenRate())), "开机率", day);
 		}
 		return dataSet;
 	}

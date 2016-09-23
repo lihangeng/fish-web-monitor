@@ -190,7 +190,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		pdf.addL1Chapter("二、开机率汇总");
 		Object[] obj = avgOpenRateEtlService.getMonthTotal(month);
 		String avgRate = String.valueOf(obj[2]);
-		pdf.addParagraph("1. 上月所有设备平均开机率为" + avgRate + "%");
+		pdf.addParagraph("1. 上月所有设备平均开机率为" + NumUtils.format(Double.parseDouble(avgRate)) + "%");
 		pdf.addParagraph("2.上月每日的开机率趋势");
 		DefaultCategoryDataset openRateDataset2 = createDatasetRateMonth(month);
 		pdf.addChart(PdfChart.generateLineChart(openRateDataset2,"单位(/日)","百分比"), devChartWidth, 260);
@@ -331,7 +331,7 @@ public class MonthPdfReportService extends PdfReportService implements IMonthPdf
 		String day = "01";
 		for (IAvgDayOpenRate ia : rates) {
 			day = String.valueOf(ia.getDate()).substring(6);
-			dataSet.setValue(ia.getOpenRate(), "开机率", day);
+			dataSet.setValue(Double.parseDouble(NumUtils.format(ia.getOpenRate())), "开机率", day);
 		}
 		return dataSet;
 	}
