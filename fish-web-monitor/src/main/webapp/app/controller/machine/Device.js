@@ -83,7 +83,7 @@ Ext.define('Eway.controller.machine.Device', {
 
 		// 查询输入验证
 		if (bool == false) {
-			return
+			return;
 		}
 		var values = form.getValues();
 
@@ -118,7 +118,16 @@ Ext.define('Eway.controller.machine.Device', {
 		if (values.terminalId) {
 			params += '&terminalId=' + values.terminalId;
 		}
-
+		var columns = this.getGrid().getColumns();
+		var headerName = new Array();
+		var colIndex = new Array();
+		var colWidth = new Array();
+		Ext.Array.forEach(columns,function(item,index,opt){
+			headerName.push(item.text);
+			colWidth.push(item.width);
+			colIndex.push(item.dataIndex);
+		},this);
+		params+="&gridInfoHeaderNames="+headerName+"&gridInfoColIndexs="+colIndex+"&gridInfoColWidths="+colWidth;
 		window.location.href = 'api/machine/device/export?_dc=' + params;
 	},
 	onOpenPlan : function() {
