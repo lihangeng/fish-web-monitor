@@ -29,7 +29,7 @@ Ext.define('Eway.view.advert.Update', {
 					text: EwayLocale.button.reset,//'重置',
 					handler: this.onReset
 				}, {
-					text: '返回',
+					text: EwayLocale.button.back,//'返回'
 					handler: this.onOver
 				}]
 			}

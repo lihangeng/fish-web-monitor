@@ -66,9 +66,9 @@ Ext.apply(EwayLocale,{
 			orgName:'Source Org',//EwayLocale.machine.atmMove.orgName
 			targetAddress:'Target Address',//EwayLocale.machine.atmMove.targetAddress
 			targetOrganization:'Target Organization',//EwayLocale.machine.atmMove.targetOrganization
-			targetPerson:'目标机构负责人',//EwayLocale.machine.atmMove.targetPerson
-			responsibility:'负责人',//EwayLocale.machine.atmMove.responsibility
-			destPerson:'源机构负责人',//EwayLocale.machine.atmMove.destPerson
+			targetPerson:'Target Organization Responsible Person',//EwayLocale.machine.atmMove.targetPerson
+			responsibility:' Responsible Person',//EwayLocale.machine.atmMove.responsibility
+			destPerson:'Former Organization Responsible Person',//EwayLocale.machine.atmMove.destPerson
 			date:'Date',//EwayLocale.machine.atmMove.date
 			recoverDate:'Recover Date',//EwayLocale.machine.atmMove.recoverDate
 			notice:'Remark',//EwayLocale.machine.atmMove.notice
@@ -633,7 +633,8 @@ Ext.apply(EwayLocale,{
 		noLog:'No Log',//EwayLocale.atmLog.noLog
 		connectFail:'Connect Fail',//EwayLocale.atmLog.connectFail
 		fileSize:'File Size',//EwayLocale.atmLog.fileSize
-		searchIllegal:'Query Option Has Illegal Input,Can Not Export.'//EwayLocale.atmLog.searchIllegal
+		searchIllegal:'Query Option Has Illegal Input,Can Not Export.',//EwayLocale.atmLog.searchIllegal
+		analysis:'Analysis'//EwayLocale.atmLog.analysis
 	},
 	
 	card:{

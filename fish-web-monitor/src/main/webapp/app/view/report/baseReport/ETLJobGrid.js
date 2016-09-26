@@ -92,7 +92,7 @@ Ext.define('Eway.view.report.baseReport.ETLJobGrid', {
 				}]
 			
 			},{
-				header : '错误提示',
+				header : EwayLocale.batch.errorPrompt,
 				xtype:'actioncolumn',
 				width : 150,
 				items:[{
@@ -108,7 +108,7 @@ Ext.define('Eway.view.report.baseReport.ETLJobGrid', {
                     handler:function(grid,rowIndex,colIndex){
                        var rec=grid.getStore().getAt(rowIndex);
                        var id = rec.get('id');
-					   Ext.MessageBox.confirm(EwayLocale.tip.tips,"获取提示",callBack);
+					   Ext.MessageBox.confirm(EwayLocale.tip.tips,EwayLocale.tip.achieveTips,callBack);
 					    function callBack(button){
 					    	if(button=='yes'){
 					    		Ext.Ajax.request({

@@ -6,7 +6,7 @@ Ext.define('Eway.view.monitor.newTransaction.View', {
 			'Eway.view.monitor.newTransaction.RightGrid',
             'Eway.view.monitor.newTransaction.Chart'],
 
-	title : '新实时交易监控',
+	title : EwayLocale.monitor.business.newTransaction.title,
 	layout : 'border',
 	initComponent : function() {
 		Ext.apply(this, {

@@ -173,6 +173,7 @@ Ext.apply(EwayLocale,{
 				}
 			},
 			newTransaction:{
+				title:'New Transaction Monitor',//EwayLocale.monitor.business.newTransaction.title
 				interval: 'Statistics Interval',//EwayLocale.monitor.business.newTransaction.interval
 				type: 'Statistics Type',//EwayLocale.monitor.business.newTransaction.type
 				result: 'Statistics Result',//EwayLocale.monitor.business.newTransaction.result
@@ -285,6 +286,7 @@ Ext.apply(EwayLocale,{
 				backgroundColor:'Host Background-Color',//EwayLocale.monitor.business.transactionColor.backgroundColor
 				fontColor:'Host Font-Color',//EwayLocale.monitor.business.transactionColor.fontColor
 				hostRetDes:'Host Return Describe',//EwayLocale.monitor.business.transactionColor.hostRetDes
+				RetDes:'Return Describe',//EwayLocale.monitor.business.transactionColor.retDes
 				localRet:'Local Return',//EwayLocale.monitor.business.transactionColor.localRet
 				localBackgroundColor:'Local Background-Color',//EwayLocale.monitor.business.transactionColor.localBackgroundColor
 				localFontColor:'Local Font-Color',//EwayLocale.monitor.business.transactionColor.localFontColor

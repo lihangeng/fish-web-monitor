@@ -65,6 +65,9 @@ Ext.apply(EwayLocale,{
 			vendorDetail : '品牌下的所有型号故障率情况',//EwayLocale.report.faultRateReport.vendorDetail
 			typeDetail : '型号下所有模块故障率情况',//EwayLocale.report.faultRateReport.typeDetail
 		},
+		moduleFaultRateReport:{
+			Title:'模块故障率报表'//EwayLocale.report.moduleFaultRateReport.Title
+		},
 		openrate:{
 			device:{
 				statisticsMethod:'统计方式',//EwayLocale.report.openrate.device.statisticsMethod

@@ -633,7 +633,8 @@ Ext.apply(EwayLocale,{
 		noLog:'无日志',//EwayLocale.atmLog.noLog
 		connectFail:'连接失败',//EwayLocale.atmLog.connectFail
 		fileSize:'文件大小',//EwayLocale.atmLog.fileSize
-		searchIllegal:'查询项中存在不合法的输入,不能导出.'//EwayLocale.atmLog.searchIllegal
+		searchIllegal:'查询项中存在不合法的输入,不能导出.',//EwayLocale.atmLog.searchIllegal
+		analysis:'分析',//EwayLocale.atmLog.analysis
 	},
 	
 	card:{

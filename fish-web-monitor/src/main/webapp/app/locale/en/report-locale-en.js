@@ -80,6 +80,9 @@ Ext.apply(EwayLocale,{
 				openRateAvg:'AvgOpenRate',//EwayLocale.report.openrate.device.openRateAvg
 				orgAvg:'AvgOpnRateByOrg',//EwayLocale.report.openrate.device.orgAvg
 			},
+			moduleFaultRateReport:{
+				Title:'Module Fault Rate Report',//EwayLocale.report.moduleFaultRateReport.Title
+			},
 			org:{
 				orgOpenRate:'Banks Open Rate'//EwayLocale.report.openrate.org.orgOpenRate
 			},

@@ -15,7 +15,7 @@ Ext.define('Eway.view.system.quartz.QuartzFilterForm', {
 					xtype : 'textfield',
 					labelAlign : 'right',
 					name : 'name',
-					fieldLabel : '任务名称',
+					fieldLabel : EwayLocale.quartz.jobName,
 					msgTarget : 'side'
 				}]
 			}]

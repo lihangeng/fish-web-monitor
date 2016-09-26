@@ -5,7 +5,7 @@ Ext.define('Eway.view.report.baseReport.ModuleFaultRateReportView', {
 	requires : ['Eway.view.report.baseReport.ModuleFaultRateReportFilter',
 			    'Eway.view.report.baseReport.ModuleFaultRateReportGrid' ],
 
-	title : '模块故障率报表',
+	title : EwayLocale.report.moduleFaultRateReport.Title,
 	layout : 'border',
 
 	initComponent : function() {

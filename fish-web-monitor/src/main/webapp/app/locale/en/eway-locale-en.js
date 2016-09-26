@@ -67,6 +67,8 @@ Ext.apply(EwayLocale,{
 		link:'Binding',//EwayLocale.button.link
 		unlink:'Delete',//EwayLocale.button.unlink
 		active:'Active',//EwayLocale.button.active
+		recover:'Recover',//EwayLocale.button.recover
+		immediatelyExecute:'Immediately Execute',//EwayLocale.button.immediatelyExecute
 
 		bankOrgMove:'Migrate',//EwayLocale.button.bankOrgMove
 		bankOrgAdmin:'Manager',//EwayLocale.button.bankOrgAdmin
@@ -178,6 +180,7 @@ Ext.apply(EwayLocale,{
 		devRelatedPlan:'Device Has Been Bound With The Service Plan!',//EwayLocale.tip.devRelatedPlan
 
 		tips:'Tips',//EwayLocale.tip.tips
+		achieveTips:'Achieve Tips',//EwayLocale.tip.achieveTips
 		input:'Please Enter The Right Item',//EwayLocale.tip.input
 		roleName:'Just For Character ‘a-z’ Or ‘A-Z’ Or Numbers ‘0-9’ ,Max Length Is 40',//EwayLocale.tip.roleName
 		notNull:'Can Not Be Null',//EwayLocale.tip.notNull
@@ -403,8 +406,42 @@ Ext.apply(EwayLocale,{
 			doAgain:'Redo？',//EwayLocale.batch.doAgain
 			doAgainSu:'Redo success！',//EwayLocale.batch.doAgainSu
 			doAgainFa:'Redo failed！',//EwayLocale.batch.doAgainFa
+			errorPrompt:'Error Prompt'//EwayLocale.batch.errorPrompt
 		 },
 
+		 quartz:{
+			 title:'Timing Job Manage',//EwayLocale.quartz.title
+			 jobName:'Job Name',//EwayLocale.quartz.jobName 
+			 jobClassName:'Job Class Name',//EwayLocale.quartz.jobClassName
+			 jobDescription:'Job Description',//EwayLocale.quartz.jobDescription
+			 cronExpression:'Job  Execute Rule',//EwayLocale.quartz.cronExpression
+			 triggerState:'Job Current State',//EwayLocale.quartz.triggerState
+			 nextFireTime:'Next Trigger Time',//EwayLocale.quartz.nextFireTime
+			 prevFireTime:'Last Time Trigger Time',//EwayLocale.quartz.prevFireTime
+			 startTime:'Job Found Time',//EwayLocale.quartz.startTime
+			 endTime:'Job End Time'//EwayLocale.quartz.endTime
+		 },
+		 
+		 thread:{
+			 title:'System maintenance',//EwayLocale.thread.title 
+			 backThreadManage:'Log Backups Thread Manage',//EwayLocale.thread.backThreadManage
+			 noFiringThreadState:'Up To Now No Firing Thread State.',//EwayLocale.thread.noFiringThreadState
+			 workingThreadState:'Can Working Thread State.',//EwayLocale.thread.workingThreadState
+			 blockThreadState:'Inflict Block And Wait Monitor Thread State.',//EwayLocale.thread.blockThreadState
+			 waitThreadState:'Wait Thread State.',//EwayLocale.thread.waitThreadState
+			 specifyTimeThreadState:'Specify Time ThreadS tate.',//EwayLocale.thread.specifyTimeThreadState
+			 endThreadState:'End Thread State.',//EwayLocale.thread.endThreadState
+			 daybackThreadState:'Day Back Thread State',//EwayLocale.thread.daybackThreadState
+			 redoBackTreadState:'Fail Job Backups Tread State',//EwayLocale.thread.redoBackTreadState
+			 activeRuners:'Supervene  Execute Job Count',//EwayLocale.thread.activeRuners
+			 grantVersion:'Grant Version Thread Manage',//EwayLocale.thread.grantVersion
+			 jobManagerState:'Job Manager State',//EwayLocale.thread.jobManagerState
+			 taskMangerState:'Task Manger State',//EwayLocale.thread.taskMangerState
+			 maxJobCount:'Max Job Count',//EwayLocale.thread.maxJobCount
+			 jobQueueCount:'Job Queue Count',//EwayLocale.thread.jobQueueCount
+			 activeTaskCount:'Active Task Count'//EwayLocale.thread.activeTaskCount
+		 },
+		 
 	commen:{
 		jobNum:'Job Number',//EwayLocale.commen.jobNum
 		name:'Name',//EwayLocale.commen.name

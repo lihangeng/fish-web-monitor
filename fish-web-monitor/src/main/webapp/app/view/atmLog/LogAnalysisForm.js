@@ -92,7 +92,7 @@ Ext.define('Eway.view.atmLog.LogAnalysisForm', {
 				}],
 				buttons: [{
 					xtype : 'button',
-					text: '分析',
+					text: EwayLocale.atmLog.analysis,
 					handler : function(btn){
 						var win = btn.up('form');
 						var form = win.down("form");

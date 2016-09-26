@@ -9,7 +9,7 @@ Ext.define('Eway.view.thread.ThreadWin', {
 	maximizable : true,
 	modal : true,
 	border : false,
-	title:'系统运维',
+	title : EwayLocale.thread.title ,
 	layout : 'fit',
 	constrain : true,
 	constrainHeader : true,
@@ -24,7 +24,7 @@ Ext.define('Eway.view.thread.ThreadWin', {
 			},
 			items : [ {
 				xtype : 'fieldset',
-				title : '日志备份线程信息',
+				title : EwayLocale.thread.backThreadManage,
 				collapsible : true,
 				defaults : {
 					border : false,
@@ -35,55 +35,55 @@ Ext.define('Eway.view.thread.ThreadWin', {
 				items : [ {
 					defaultType : 'displayfield',
 					items : [ {
-						fieldLabel : '每日备份主线程状态',
+						fieldLabel : EwayLocale.thread.daybackThreadState,
 						name : 'daybackThreadState',
 						renderer:function(value,record){
 							if(value=='NEW'){
-								return '<font color="#45b97c">'+value+'<font>'+'（至今尚未启动的线程的状态。）';
+								return '<font color="#45b97c">'+value+'<font>'+'（'+EwayLocale.thread.noFiringThreadState+'）';
 							}else if(value=='RUNNABLE'){
-								return '<font color="#1d953f">'+value+'<font>'+'（可运行线程的线程状态。）';
+								return '<font color="#1d953f">'+value+'<font>'+'（'+EwayLocale.thread.workingThreadState+'）';
 							}else if(value=='BLOCKED'){
-								return '<font color="#ae6642">'+value+'<font>'+'（受阻塞并且正在等待监视器锁的某一线程的线程状态。）';
+								return '<font color="#ae6642">'+value+'<font>'+'（'+EwayLocale.thread.blockThreadState+'）';
 							}else if(value=='WAITING'){
-								return '<font color="#f47920">'+value+'<font>'+'（某一等待线程的线程状态。）';
+								return '<font color="#f47920">'+value+'<font>'+'（'+EwayLocale.thread.waitThreadState+'）';
 							}else if(value=='TIMED_WAITING'){
-								return '<font color="#ffd400">'+value+'<font>'+'（具有指定等待时间的某一等待线程的线程状态。）';
+								return '<font color="#ffd400">'+value+'<font>'+'（'+EwayLocale.thread.specifyTimeThreadState+'）';
 							}else if(value=='TERMINATED'){
-								return '<font color="#d71345">'+value+'<font>'+'（已终止线程的线程状态。）';
+								return '<font color="#d71345">'+value+'<font>'+'（'+EwayLocale.thread.endThreadState+'）';
 							}
 						}
 					} ]
 				}, {
 					defaultType : 'displayfield',
 					items : [ {
-						fieldLabel : '失败任务备份主线程状态',
+						fieldLabel : EwayLocale.thread.redoBackTreadState,
 						name : 'redoBackTreadState',
 						renderer:function(value,record){
 							if(value=='NEW'){
-								return '<font color="#45b97c">'+value+'<font>'+'（至今尚未启动的线程的状态。）';
+								return '<font color="#45b97c">'+value+'<font>'+'（'+EwayLocale.thread.noFiringThreadState+'）';
 							}else if(value=='RUNNABLE'){
-								return '<font color="#1d953f">'+value+'<font>'+'（可运行线程的线程状态。）';
+								return '<font color="#1d953f">'+value+'<font>'+'（'+EwayLocale.thread.workingThreadState+'）';
 							}else if(value=='BLOCKED'){
-								return '<font color="#ae6642">'+value+'<font>'+'（受阻塞并且正在等待监视器锁的某一线程的线程状态。）';
+								return '<font color="#ae6642">'+value+'<font>'+'（'+EwayLocale.thread.blockThreadState+'）';
 							}else if(value=='WAITING'){
-								return '<font color="#f47920">'+value+'<font>'+'（某一等待线程的线程状态。）';
+								return '<font color="#f47920">'+value+'<font>'+'（'+EwayLocale.thread.waitThreadState+'）';
 							}else if(value=='TIMED_WAITING'){
-								return '<font color="#ffd400">'+value+'<font>'+'（具有指定等待时间的某一等待线程的线程状态。）';
+								return '<font color="#ffd400">'+value+'<font>'+'（'+EwayLocale.thread.specifyTimeThreadState+'）';
 							}else if(value=='TERMINATED'){
-								return '<font color="#d71345">'+value+'<font>'+'（已终止线程的线程状态。）';
+								return '<font color="#d71345">'+value+'<font>'+'（'+EwayLocale.thread.endThreadState+'）';
 							}
 						}
 					} ]
 				}, {
 					defaultType : 'displayfield',
 					items : [ {
-						fieldLabel : '并发执行任务数',
+						fieldLabel : EwayLocale.thread.activeRuners,
 						name : 'activeRuners'
 					} ]
 				} ]
 			}, {
 				xtype : 'fieldset',
-				title : '下发版本线程信息',
+				title : EwayLocale.thread.grantVersion,
 				collapsible : true,
 //				height : 120,
 				defaults : {
@@ -95,61 +95,61 @@ Ext.define('Eway.view.thread.ThreadWin', {
 				items : [ {
 					defaultType : 'displayfield',
 					items : [ {
-						fieldLabel : '版本下发作业状态',
+						fieldLabel : EwayLocale.thread.jobManagerState,
 						name : 'jobManagerState',
 						renderer:function(value,record){
 							if(value=='NEW'){
-								return '<font color="#45b97c">'+value+'<font>'+'（至今尚未启动的线程的状态。）';
+								return '<font color="#45b97c">'+value+'<font>'+'（'+EwayLocale.thread.noFiringThreadState+'）';
 							}else if(value=='RUNNABLE'){
-								return '<font color="#1d953f">'+value+'<font>'+'（可运行线程的线程状态。）';
+								return '<font color="#1d953f">'+value+'<font>'+'（'+EwayLocale.thread.workingThreadState+'）';
 							}else if(value=='BLOCKED'){
-								return '<font color="#ae6642">'+value+'<font>'+'（受阻塞并且正在等待监视器锁的某一线程的线程状态。）';
+								return '<font color="#ae6642">'+value+'<font>'+'（'+EwayLocale.thread.blockThreadState+'）';
 							}else if(value=='WAITING'){
-								return '<font color="#f47920">'+value+'<font>'+'（某一等待线程的线程状态。）';
+								return '<font color="#f47920">'+value+'<font>'+'（'+EwayLocale.thread.waitThreadState+'）';
 							}else if(value=='TIMED_WAITING'){
-								return '<font color="#ffd400">'+value+'<font>'+'（具有指定等待时间的某一等待线程的线程状态。）';
+								return '<font color="#ffd400">'+value+'<font>'+'（'+EwayLocale.thread.specifyTimeThreadState+'）';
 							}else if(value=='TERMINATED'){
-								return '<font color="#d71345">'+value+'<font>'+'（已终止线程的线程状态。）';
+								return '<font color="#d71345">'+value+'<font>'+'（'+EwayLocale.thread.endThreadState+'）';
 							}
 						}
 					} ]
 				}, {
 					defaultType : 'displayfield',
 					items : [ {
-						fieldLabel : '版本下发任务执行状态',
+						fieldLabel : EwayLocale.thread.taskMangerState,
 						name : 'taskMangerState',
 						renderer:function(value,record){
 							if(value=='NEW'){
-								return '<font color="#45b97c">'+value+'<font>'+'（至今尚未启动的线程的状态。）';
+								return '<font color="#45b97c">'+value+'<font>'+'（'+EwayLocale.thread.noFiringThreadState+'）';
 							}else if(value=='RUNNABLE'){
-								return '<font color="#1d953f">'+value+'<font>'+'（可运行线程的线程状态。）';
+								return '<font color="#1d953f">'+value+'<font>'+'（'+EwayLocale.thread.workingThreadState+'）';
 							}else if(value=='BLOCKED'){
-								return '<font color="#ae6642">'+value+'<font>'+'（受阻塞并且正在等待监视器锁的某一线程的线程状态。）';
+								return '<font color="#ae6642">'+value+'<font>'+'（'+EwayLocale.thread.blockThreadState+'）';
 							}else if(value=='WAITING'){
-								return '<font color="#f47920">'+value+'<font>'+'（某一等待线程的线程状态。）';
+								return '<font color="#f47920">'+value+'<font>'+'（'+EwayLocale.thread.waitThreadState+'）';
 							}else if(value=='TIMED_WAITING'){
-								return '<font color="#ffd400">'+value+'<font>'+'（具有指定等待时间的某一等待线程的线程状态。）';
+								return '<font color="#ffd400">'+value+'<font>'+'（'+EwayLocale.thread.specifyTimeThreadState+'）';
 							}else if(value=='TERMINATED'){
-								return '<font color="#d71345">'+value+'<font>'+'（已终止线程的线程状态。）';
+								return '<font color="#d71345">'+value+'<font>'+'（'+EwayLocale.thread.endThreadState+'）';
 							}
 						}
 					} ]
 				}, {
 					defaultType : 'displayfield',
 					items : [ {
-						fieldLabel : '最大作业队列数',
+						fieldLabel : EwayLocale.thread.maxJobCount,
 						name : 'maxJobCount'
 					} ]
 				}, {
 					defaultType : 'displayfield',
 					items : [ {
-						fieldLabel : '队列中作业数',
+						fieldLabel : EwayLocale.thread.jobQueueCount,
 						name : 'jobQueueCount'
 					} ]
 				}, {
 					defaultType : 'displayfield',
 					items : [ {
-						fieldLabel : '正在执行任务数',
+						fieldLabel : EwayLocale.thread.activeTaskCount,
 						name : 'activeTaskCount'
 					} ]
 				} ]

@@ -69,6 +69,8 @@ Ext.apply(EwayLocale,{
 		link:'关联',//EwayLocale.button.link
 		unlink:'解除',//EwayLocale.button.unlink
 		active:'激活',//EwayLocale.button.active
+		recover:'恢复',//EwayLocale.button.recover
+		immediatelyExecute:'立即执行',//EwayLocale.button.immediatelyExecute
 
 		bankOrgMove:'组织迁移',//EwayLocale.button.bankOrgMove
 		bankOrgAdmin:'管理员',//EwayLocale.button.bankOrgAdmin
@@ -181,6 +183,7 @@ Ext.apply(EwayLocale,{
 		devRelatedPlan:'设备已关联开机方案！',//EwayLocale.tip.devRelatedPlan
 
 		tips:'提示',//EwayLocale.tip.tips
+		achieveTips:'获取提示',//EwayLocale.tip.achieveTips
 		input:'请正确输入',//EwayLocale.tip.input
 		roleName:'由字母‘a-z’或‘A-Z’、数字‘0-9’或中文，最多可输入 40位',//EwayLocale.tip.roleName
 		notNull:'不能为空',//EwayLocale.tip.notNull
@@ -406,6 +409,40 @@ Ext.apply(EwayLocale,{
 		doAgain:'是否重做？',//EwayLocale.batch.doAgain
 		doAgainSu:'重做成功！',//EwayLocale.batch.doAgainSu
 		doAgainFa:'重做失败！',//EwayLocale.batch.doAgainFa
+		errorPrompt:'错误提示'//EwayLocale.batch.errorPrompt
+	 },
+	 
+	 quartz:{
+		 title:' 定时任务管理 ',//EwayLocale.quartz.title
+		 jobName:'任务名称',//EwayLocale.quartz.jobName 
+		 jobClassName:'任务实现类',//EwayLocale.quartz.jobClassName
+		 jobDescription:'任务描述',//EwayLocale.quartz.jobDescription
+		 cronExpression:'任务执行规则',//EwayLocale.quartz.cronExpression
+		 triggerState:'任务当前状态',//EwayLocale.quartz.triggerState
+		 nextFireTime:'下次触发时间',//EwayLocale.quartz.nextFireTime
+		 prevFireTime:'上次触发时间',//EwayLocale.quartz.prevFireTime
+		 startTime:'任务创建时间',//EwayLocale.quartz.startTime
+		 endTime:'任务结束时间 '//EwayLocale.quartz.endTime
+	 },
+	 
+	 thread:{
+		 title:'系统运维',//EwayLocale.thread.title 
+		 backThreadManage:'日志备份线程信息',//EwayLocale.thread.backThreadManage
+		 noFiringThreadState:'至今尚未启动的线程的状态。',//EwayLocale.thread.noFiringThreadState
+		 workingThreadState:'可运行线程的线程状态。',//EwayLocale.thread.workingThreadState
+		 blockThreadState:'受阻塞并且正在等待监视器锁的某一线程的线程状态。',//EwayLocale.thread.blockThreadState
+		 waitThreadState:'某一等待线程的线程状态。',//EwayLocale.thread.waitThreadState
+		 specifyTimeThreadState:'具有指定等待时间的某一等待线程的线程状态。',//EwayLocale.thread.specifyTimeThreadState
+		 endThreadState:'已终止线程的线程状态。',//EwayLocale.thread.endThreadState
+		 daybackThreadState:'每日备份主线程状态',//EwayLocale.thread.endThreadState
+		 redoBackTreadState:'失败任务备份主线程状态',//EwayLocale.thread.daybackThreadState
+		 activeRuners:'并发执行任务数',//EwayLocale.thread.activeRuners
+		 grantVersion:'下发版本线程信息',//EwayLocale.thread.grantVersion
+		 jobManagerState:'版本下发作业状态',//EwayLocale.thread.jobManagerState
+		 taskMangerState:'版本下发任务执行状态',//EwayLocale.thread.taskMangerState
+		 maxJobCount:'最大作业队列数',//EwayLocale.thread.maxJobCount
+		 jobQueueCount:'队列中作业数',//EwayLocale.thread.jobQueueCount
+		 activeTaskCount:'正在执行任务数'//EwayLocale.thread.activeTaskCount
 	 },
 	
 	commen:{

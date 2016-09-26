@@ -7,7 +7,7 @@ Ext.define('Eway.view.system.quartz.QuartzView', {
 	           'Eway.view.system.quartz.QuartzFilterForm'
 	           ],
 
-	title: '定时任务管理',
+	title: EwayLocale.quartz.title,
 	layout: 'border',
 
 	initComponent: function() {

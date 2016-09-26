@@ -60,20 +60,50 @@ Ext.define('Eway.view.bsAdvert.BsAdvertResourceConfigForm', {
 		    	editable: false,
 		        format: 'Y-m-d',
 		        width: 240,
-		        hidden:false,
-		        value:new Date()
+		        vtype : 'daterange',
+		        value:new Date(),
+		        minValue : new Date,
+		    	endDateField : 'endDate',
+				listeners : {
+					blur : {
+						fn : function(This,options) {
+							var value = this.getValue();
+							if (!value) {
+								var endField = this.up('form').getForm().findField(this.endDateField);
+								endField.setMinValue(null);
+							}
+						}
+					}
+				}
+
 		    },{
 		    	xtype:'datefield',
 		    	fieldLabel: EwayLocale.bsAdvert.endDate,
 		    	labelAlign :'right',
 		    	name:'endDate',
 		    	disabled: false,
-		    	editable: false,
-		        format: 'Y-m-d',
-		        hidden: false,
-		        labelWidth: 100,
-		        width: 240,
-		        bodyStyle:'margin-right:-20px'
+			    editable: false,
+			    format: 'Y-m-d',
+			    vtype : 'daterange',
+			    labelWidth: 100,
+			    width: 240,
+			    bodyStyle:'margin-right:-20px',
+		    	vtype : 'daterange',
+				editable : false,
+				minValue : new Date(),
+				startDateField : 'beginDate',
+				listeners : {
+					blur : {
+						fn : function(This,options) {
+							var value = this.getValue();
+							if (!value) {
+								var startField = this.up('form').getForm().findField(this.startDateField);
+								startField.setMaxValue(null);
+							}
+						}
+					}
+				}
+		    	
 		     },{
 		        xtype: 'fieldcontainer',
 		        fieldLabel: EwayLocale.bsAdvert.beginTime,
@@ -133,8 +163,9 @@ Ext.define('Eway.view.bsAdvert.BsAdvertResourceConfigForm', {
 		            hideLabel: true
 		        },
 		        items: [
-		            /*{xtype: 'displayfield', value: '结束时间：'
-		            },*/{
+		            /*
+					 * {xtype: 'displayfield', value: '结束时间：' },
+					 */{
 		            	xtype: 'combobox',
 		            	fieldLabel: 'hour',
 				    	editable: false,

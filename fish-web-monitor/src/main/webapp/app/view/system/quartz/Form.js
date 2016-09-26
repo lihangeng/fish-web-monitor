@@ -19,13 +19,13 @@ Ext.define('Eway.view.system.quartz.Form',{
 				msgTarget : 'side'
 			},
 			items: [{
-					fieldLabel: '任务名称',
+					fieldLabel: EwayLocale.quartz.jobName,
 					xtype : 'quartz_jobName',
 					maxLength : 128,
 					allowBlank: false,
 					editable:false
 			},{
-					fieldLabel: '<font color="red">*</font>'+ '任务执行规则',
+					fieldLabel: '<font color="red">*</font>'+ EwayLocale.quartz.cronExpression,
 					xtype : 'quartz_jobCron',
 					maxLength : 128,
 					allowBlank: false

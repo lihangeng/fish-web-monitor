@@ -42,7 +42,7 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '暂停',
+				text: EwayLocale.button.pause,
 				glyph : 0xf28b,
 				action: 'pause',
 				code : 'quartzPause',
@@ -50,7 +50,7 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '恢复',
+				text: EwayLocale.button.recover,
 				glyph : 0xf144,
 				action: 'resume',
 				code : 'quartzResume',
@@ -58,7 +58,7 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 					'beforerender': Eway.lib.ButtonUtils.onButtonBeforeRender
 				}
 			},{
-				text: '立即执行',
+				text: EwayLocale.button.immediatelyExecute,
 				glyph : 0xf04b,
 				action: 'executeJob',
 				code : 'quartzExecute',
@@ -71,7 +71,7 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				stripeRows : true
 			},
 			columns : [{
-				header : '任务名称',
+				header : EwayLocale.quartz.jobName,
 				dataIndex : 'jobName',
 				width : 200
 			},/*{
@@ -87,36 +87,36 @@ Ext.define('Eway.view.system.quartz.QuartzGrid', {
 				dataIndex : 'triggerGroup',
 				width : 140
 			},*/{
-				header : '任务实现类',
+				header : EwayLocale.quartz.jobClassName,
 				dataIndex : 'jobClassName',
 				width : 400,
 				hidden:true
 			},{
-				header : '任务描述',
+				header : EwayLocale.quartz.jobDescription,
 				dataIndex : 'jobDescription',
 				flex:1
 			},{
-				header : '任务执行规则',
+				header : EwayLocale.quartz.cronExpression,
 				dataIndex : 'cronExpression',
 				width : 140
 			},{
-				header : '任务当前状态',
+				header : EwayLocale.quartz.triggerState,
 				dataIndex : 'triggerState',
 				width : 140
 			},{
-				header : '下次触发时间',
+				header : EwayLocale.quartz.nextFireTime,
 				dataIndex : 'nextFireTime',
 				width : 140
 			},{
-				header : '上次触发时间',
+				header : EwayLocale.quartz.prevFireTime,
 				dataIndex : 'prevFireTime',
 				width : 140
 			},{
-				header : '任务创建时间',
+				header : EwayLocale.quartz.startTime,
 				dataIndex : 'startTime',
 				width : 140
 			}/*,{
-				header : 'Job结束时间',
+				header : EwayLocale.quartz.endTime,
 				dataIndex : 'endTime',
 				width : 140
 			}*/],

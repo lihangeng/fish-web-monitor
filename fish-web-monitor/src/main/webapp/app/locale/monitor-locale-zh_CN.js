@@ -172,6 +172,7 @@ Ext.apply(EwayLocale,{
 				}
 			},
 			newTransaction:{
+				title:'新实时交易监控',//EwayLocale.monitor.business.newTransaction.title
 				interval: '统计间隔',//EwayLocale.monitor.business.newTransaction.interval
 				type: '统计纬度',//EwayLocale.monitor.business.newTransaction.type
 				result: '统计结果',//EwayLocale.monitor.business.newTransaction.result
@@ -284,6 +285,7 @@ Ext.apply(EwayLocale,{
 				backgroundColor:'主机背景颜色',//EwayLocale.monitor.business.transactionColor.backgroundColor
 				fontColor:'主机字体颜色',//EwayLocale.monitor.business.transactionColor.fontColor
 				hostRetDes:'主机返回码描述',//EwayLocale.monitor.business.transactionColor.hostRetDes
+				RetDes:'返回码描述',//EwayLocale.monitor.business.transactionColor.retDes
 				localRet:'本地返回码',//EwayLocale.monitor.business.transactionColor.localRet
 				localBackgroundColor:'本地背景颜色',//EwayLocale.monitor.business.transactionColor.localBackgroundColor
 				localFontColor:'本地字体颜色',//EwayLocale.monitor.business.transactionColor.localFontColor
