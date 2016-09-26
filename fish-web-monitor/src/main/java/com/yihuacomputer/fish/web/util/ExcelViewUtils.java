@@ -51,16 +51,22 @@ public class ExcelViewUtils extends AbstractXlsxView {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String title = model.get(TITLE) == null ? "aaa" : String.valueOf(model.get(TITLE));
-		String fileName = model.get(FILE_NAME) == null ? "aaa" : String.valueOf(model.get(FILE_NAME));
-		String sheetName = model.get(SHEET_NAME) == null ? "aaa" : String.valueOf(model.get(SHEET_NAME));
+		String title = model.get(TITLE) == null ? "" : String.valueOf(model.get(TITLE));
+		String fileName = model.get(FILE_NAME) == null ? null : String.valueOf(model.get(FILE_NAME));
+		String sheetName = model.get(SHEET_NAME) == null ? null : String.valueOf(model.get(SHEET_NAME));
 		String headerStr = request.getParameter(HEADER_NAMES);
 		Object contextObjects = model.get(BODY_CONTEXTS);
 		String colIndexStrs = request.getParameter(COLUMN_DATA_INDEXS);
 		String colWidthStrs = request.getParameter(COLUMN_WIDTH);
-		
-		Sheet sheet = workbook.createSheet(sheetName);
+		Sheet sheet = null;
+		//sheetName不存在则创建默认的sheet
+		if(null!=sheetName&&!"".equals(sheetName)){
+			sheet = workbook.createSheet(sheetName);
+		}else{
+			sheet = workbook.createSheet();
+		}
 		List<Object> contextList = null;
+		//没有设备列宽，列宽则为默认
 		if ( null != colWidthStrs) {
 			String[]colWidthArrays = colWidthStrs.split(",");
 			int columnIndex=0;
@@ -79,10 +85,19 @@ public class ExcelViewUtils extends AbstractXlsxView {
 			contextList = (List<Object>) contextObjects;
 			createContext(sheet, contextList, colIndexs);
 		}
-		response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName(request, String.valueOf(fileName) + ".xlsx") + "\"");
-		response.setContentType("application/x-msdownload;charset=UTF-8");
+		if(fileName!=null&&!"".equals(fileName)){
+			response.setHeader("Content-Disposition", "attachment; filename=\"" + getFileName(request, String.valueOf(fileName) + ".xlsx") + "\"");
+			response.setContentType("application/x-msdownload;charset=UTF-8");
+		}
 	}
 
+	/**
+	 * 浏览器中文乱码处理
+	 * @param request
+	 * @param name
+	 * @return
+	 * @throws Exception
+	 */
 	private String getFileName(HttpServletRequest request, String name) throws Exception {
 		if (request.getHeader("User-Agent").toUpperCase().indexOf("CHROME") > 0 || request.getHeader("User-Agent").toUpperCase().indexOf("FIREFOX") > 0) {
 			return new String(name.getBytes("UTF-8"), "ISO8859-1");
@@ -92,15 +107,27 @@ public class ExcelViewUtils extends AbstractXlsxView {
 		}
 	}
 
+	/**
+	 * 设置Excel的主标题
+	 * @param sheet
+	 * @param cols
+	 * @param title
+	 */
 	private void createSheetTitle(Sheet sheet, int cols, String title) {
 		Row sheetTitleRow = sheet.createRow(0);
 		Cell cellTitle = sheetTitleRow.createCell(0);
+		//主标题的单元格合并
 		CellRangeAddress cellRange = new CellRangeAddress(0, 0, 0, cols-1);
 		sheet.addMergedRegion(cellRange);
 		cellTitle.setCellValue(title);
 		cellTitle.setCellStyle(getTitleFont(sheet.getWorkbook()));
 	}
 
+	/**
+	 * 创建excel的header名称
+	 * @param sheet
+	 * @param headerList
+	 */
 	private void createHeaderTitle(Sheet sheet, String[] headerList) {
 		Row headerRow = sheet.createRow(1);
 		for (int i = 0; i < headerList.length; i++) {
@@ -110,6 +137,11 @@ public class ExcelViewUtils extends AbstractXlsxView {
 		}
 	}
 
+	/**
+	 * 主标题单元格字体样式
+	 * @param workbook
+	 * @return
+	 */
 	private CellStyle getTitleFont(Workbook workbook) {
 		Font font = workbook.createFont();
 		font.setFontHeightInPoints((short) 16);// 设置字体大小
@@ -120,6 +152,11 @@ public class ExcelViewUtils extends AbstractXlsxView {
 		return style;
 	}
 
+	/**
+	 * 数据表头字体样式
+	 * @param workbook
+	 * @return
+	 */
 	private CellStyle getHeaderFont(Workbook workbook) {
 		Font font = (Font) workbook.createFont();
 		font.setFontHeightInPoints((short) 14);// 设置字体大小
@@ -130,6 +167,11 @@ public class ExcelViewUtils extends AbstractXlsxView {
 		return style;
 	}
 
+	/**
+	 * 数据区字体样式
+	 * @param workbook
+	 * @return
+	 */
 	private CellStyle getOtherFont(Workbook workbook) {
 		Font font = (Font) workbook.createFont();
 		font.setFontHeightInPoints((short) 12);// 设置字体大小
@@ -139,6 +181,12 @@ public class ExcelViewUtils extends AbstractXlsxView {
 		return style;
 	}
 
+	/**
+	 * 向表中填充数据内容
+	 * @param sheet
+	 * @param contextList
+	 * @param colIndexList
+	 */
 	private void createContext(Sheet sheet, List<Object> contextList, String[] colIndexList) {
 		int rowNumber = 2;
 		Workbook workBook = sheet.getWorkbook();
@@ -151,12 +199,22 @@ public class ExcelViewUtils extends AbstractXlsxView {
 		}
 	}
 
+	/**
+	 * 通过反射机制一行一行填写数据
+	 * @param row
+	 * @param obj
+	 * @param colIndexList
+	 * @param clazz
+	 * @param cellStyle
+	 */
 	private void initRowData(Row row, Object obj, String[] colIndexList, Class<? extends Object> clazz, CellStyle cellStyle) {
 		int cellNumber = 0;
 		for (String colIndex : colIndexList) {
 			Cell cell = row.createCell(cellNumber);
 			try {
+				//获取填充的对象属性
 				Field field = clazz.getDeclaredField(colIndex);
+				//使得私有字段可反射
 				field.setAccessible(true);
 				cell.setCellStyle(cellStyle);
 				cell.setCellValue(String.valueOf(field.get(obj)));
