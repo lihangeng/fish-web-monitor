@@ -90,7 +90,7 @@
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/param-locale-zh_CN.js");
 		}else{
 			Ext.Loader.loadScript(Ext.cxtPath+"/ext/locale/locale-en.js");
-			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/box-locale-en.js");
+			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/box-locale-en.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/eway-locale-en.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/system-locale-en.js");
 			Ext.Loader.loadScript(Ext.cxtPath+"/app/locale/en/machine-locale-en.js");
