@@ -113,36 +113,11 @@ Ext.define('Eway.view.machine.device.Grid', {
 				width : 120
 			}, {
 				header : EwayLocale.machine.atmGroup.status,
-				dataIndex : 'status',
-				renderer : function(value, metadata, record) {
-					if (value == 1) {
-						return EwayLocale.commen.comboxDevStatus.upOpen;
-					}
-					if (value == 2) {
-						return EwayLocale.commen.comboxDevStatus.open;
-					}
-					if (value == 3) {
-						return EwayLocale.commen.comboxDevStatus.stop;
-					}
-					if (value == 4) {
-						return EwayLocale.commen.comboxDevStatus.scrapped;
-					}
-				},
+				dataIndex : 'statusName',
 				width : 100
 			}, {
 				header : EwayLocale.machine.device.onBankSignal,
-				dataIndex : 'awayFlag',
-				renderer : function(value, metadata, record) {
-					if (value == 1) {
-						return EwayLocale.machine.device.inBank;
-					}
-					if (value == 2) {
-						return EwayLocale.machine.device.outBank;
-					}
-					if (value == 3) {
-						return EwayLocale.machine.device.clickBank;
-					}
-				},
+				dataIndex : 'awayFlagName',
 				width : 160
 			}, {
 				header : EwayLocale.machine.atmGroup.devServiceName,
@@ -158,20 +133,8 @@ Ext.define('Eway.view.machine.device.Grid', {
 				width : 120
 			}, {
 				header : EwayLocale.machine.device.installStyle,
-				dataIndex : 'setupType',
-				renderer:function(value, metadata, record){
-					if(value == 1){
-						return EwayLocale.machine.device.crossWall;
-					}
-					if(value == 2){
-						return EwayLocale.machine.device.mainRoom;
-					}
-				},
+				dataIndex : 'setupTypeName',
 				width : 120
-			}, {
-				header :  EwayLocale.machine.atmGroup.cashboxLimit,
-				dataIndex : 'cashboxLimit',
-				width : 160
 			} ],
 			bbar : Ext.create('Ext.PagingToolbar', {
 				store : store,

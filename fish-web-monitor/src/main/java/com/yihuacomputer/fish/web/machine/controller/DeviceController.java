@@ -1,29 +1,13 @@
 package com.yihuacomputer.fish.web.machine.controller;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.RandomAccessFile;
-import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFDataFormat;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
@@ -56,6 +41,7 @@ import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.device.NetType;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IPerson;
@@ -65,6 +51,7 @@ import com.yihuacomputer.fish.api.version.IVersionTypeAtmTypeRelationService;
 import com.yihuacomputer.fish.web.machine.form.AtmTypeForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.system.form.PersonForm;
+import com.yihuacomputer.fish.web.util.ExcelViewUtils;
 
 @Controller
 @RequestMapping("/machine/device")
@@ -154,7 +141,7 @@ public class DeviceController {
 			return model;
 		}
 
-		model.addAttribute(FishConstant.DATA, new DeviceForm(device));
+		model.addAttribute(FishConstant.DATA, toFrom(device));
 		return model;
 	}
 
@@ -246,24 +233,15 @@ public class DeviceController {
 			return model;
 		}
 		model.addAttribute(FishConstant.SUCCESS, true);
-		model.addAttribute(FishConstant.DATA, new DeviceForm(device));
+		model.addAttribute(FishConstant.DATA, toFrom(device));
 		return model;
 	}
-
-	/**
-	 *
-	 * 根据条件得到设备列表
-	 *
-	 * @param form
-	 * @return ModelMap<String, Object>
-	 * @throws Exception
-	 */
+	
 	@RequestMapping(value = "export", method = RequestMethod.GET)
 	@MethodNameDescrible(describle="userlog.deviceController.export",hasArgs=false)
-	public void export(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-
-		// IFilter filter = new Filter();
+	public @ResponseBody
+	ModelAndView export( WebRequest webRequest, HttpServletRequest request) {
+		logger.info(String.format("search device : "));
 		UserSession userSession = (UserSession) request.getSession().getAttribute("SESSION_USER");
 		String organization = String.valueOf(userSession.getOrgId());
 
@@ -274,192 +252,22 @@ public class DeviceController {
 		// 获得机构下所有的设备信息
 		List<IDevice> data = deviceService.list(hql.toString(), fixedFilters);
 
-		String path = createExls(data, messageSource.getMessage("device.devinfo", null, FishCfg.locale));
-
-		File file = new File(path);
-
-		response.setHeader("Content-Disposition",
-				"attachment; filename=\"" + getFileName(request, path.substring(path.lastIndexOf(File.separator)))
-						+ "\"");
-		response.addHeader("Content-Length", "" + file.length());
-		response.setContentType("application/x-msdownload;charset=UTF-8");
-		OutputStream out = null;
-		RandomAccessFile randomFile = new RandomAccessFile(file, "r");
-		try {
-			out = response.getOutputStream();
-			int len = 0;
-			long contentLength = 0;
-			contentLength = contentLength + randomFile.length();
-			randomFile.seek(0);
-			byte[] cache = new byte[1024];
-			while ((len = randomFile.read(cache)) != -1) {
-				out.write(cache, 0, len);
-				contentLength += len;
-			}
-		} catch (Exception ex) {
-			logger.error(ex.getMessage());
-		} finally {
-			if (out != null) {
-				out.close();
-			}
-			if (randomFile != null) {
-				randomFile.close();
-			}
-		}
-
+		Map<String,Object> map = new HashMap<String,Object>();
+		String theme = String.format("%s_%s",userSession.getOrgName(),getI18N("device.devinfo"));
+		map.put(ExcelViewUtils.SHEET_NAME, theme);//device.devinfo
+		map.put(ExcelViewUtils.TITLE, theme);
+		map.put(ExcelViewUtils.FILE_NAME, theme);
+		// 获得机构下所有的设备信息
+		List<DeviceForm> formList = convert(data);
+		map.put(ExcelViewUtils.BODY_CONTEXTS, formList);
+		ExcelViewUtils excelUtils = new ExcelViewUtils();
+		return new ModelAndView(excelUtils,map);
 	}
 
-	private String getFileName(HttpServletRequest request, String name) throws Exception {
-		if (request.getHeader("User-Agent").toUpperCase().indexOf("CHROME") > 0||request.getHeader("User-Agent").toUpperCase().indexOf("FIREFOX") > 0) {
-			return new String(name.getBytes("UTF-8"), "ISO8859-1");
-		} else {
-			// IE浏览器
-			return URLEncoder.encode(name, "UTF-8");
-		}
+	private String getI18N(String code){
+		return messageSource.getMessage(code, null, FishCfg.locale);
 	}
 
-	@Autowired
-	private MessageSource messageSourceEnum;
-    private String getEnumI18n(String enumText){
-    	if(null==enumText){
-    		return "";
-    	}
-    	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
-    }
-	private String createExls(List<IDevice> data, String sheetName) {
-
-		String pathname = FishCfg.getTempDir() + File.separator + DateUtils.getDate(new Date()) + ".xls";
-
-		HSSFWorkbook workBook = new HSSFWorkbook();
-
-		HSSFSheet sheet = workBook.createSheet(sheetName);
-
-		HSSFRow row = sheet.createRow(0);
-
-		HSSFCell cell = row.createCell(0);
-		cell.setCellValue(messageSource.getMessage("device.terminalId", null, FishCfg.locale));
-		
-		cell = row.createCell(1);
-		cell.setCellValue(messageSource.getMessage("device.devIp", null, FishCfg.locale));
-		
-		cell = row.createCell(2);
-		cell.setCellValue(messageSource.getMessage("device.devOrg", null, FishCfg.locale));
-		
-		cell = row.createCell(3);
-		cell.setCellValue(messageSource.getMessage("device.devType", null, FishCfg.locale));
-		
-		cell = row.createCell(4);
-		cell.setCellValue(messageSource.getMessage("device.devVender", null,FishCfg.locale));
-		
-		
-		cell = row.createCell(5);
-		cell.setCellValue(messageSource.getMessage("device.devCatalog", null,FishCfg.locale));
-		
-		cell = row.createCell(6);
-		cell.setCellValue(messageSource.getMessage("device.devStatus", null, FishCfg.locale));
-		
-		cell = row.createCell(7);
-		cell.setCellValue(messageSource.getMessage("device.devInsideOutside", null, FishCfg.locale));
-		
-		cell = row.createCell(8);
-		cell.setCellValue(messageSource.getMessage("device.devSer", null, FishCfg.locale));
-		
-
-		cell = row.createCell(9);
-		cell.setCellValue(messageSource.getMessage("device.devAddress", null, FishCfg.locale));
-
-		cell = row.createCell(10);
-		cell.setCellValue(messageSource.getMessage("device.devInstallDate", null, FishCfg.locale));
-
-		cell = row.createCell(11);
-		cell.setCellValue(messageSource.getMessage("device.devInstallWay", null, FishCfg.locale));
-		
-		cell = row.createCell(12);
-		cell.setCellValue(messageSource.getMessage("device.devCashWarn", null, FishCfg.locale));
-
-
-		HSSFCellStyle cellStyle = workBook.createCellStyle();
-		HSSFDataFormat format = workBook.createDataFormat();
-
-		cellStyle.setDataFormat(format.getFormat("@"));
-
-		int count = 1;
-		for (IDevice device : data) {
-			row = sheet.createRow(count);
-			count++;
-			cell = row.createCell(0);
-			cell.setCellType(Cell.CELL_TYPE_STRING);
-			cell.setCellStyle(cellStyle);
-			cell.setCellValue(cellValue(device.getTerminalId()));
-
-			cell = row.createCell(1);
-			cell.setCellValue(cellValue(device.getIp() == null ? "" : device.getIp().toString()));
-
-			cell = row.createCell(2);
-			cell.setCellValue(cellValue(device.getOrganization() == null ? "" : device.getOrganization().getName()));
-
-			cell = row.createCell(3);
-			cell.setCellValue(cellValue(device.getDevType() == null ? "" : device.getDevType().getName()));
-
-			cell = row.createCell(4);
-			cell.setCellValue(cellValue(device.getDevType() == null ? "" : device.getDevType().getDevVendor().getName()));
-
-			cell = row.createCell(5);
-			cell.setCellValue(cellValue(device.getDevType() == null ? "" : device.getDevType().getDevCatalog().getName()));
-
-			cell = row.createCell(6);
-			cell.setCellValue(cellValue(device.getStatus()==null ? "" : getEnumI18n(device.getStatus().getText())));
-
-			cell = row.createCell(7);
-			cell.setCellValue(cellValue(device.getSetupType()==null ? "" : getEnumI18n(device.getAwayFlag().getText())));
-			
-			cell = row.createCell(8);
-			cell.setCellValue(cellValue(device.getDevService().getName()==null?"":device.getDevService().getName()));
-			
-			cell = row.createCell(9);
-			cell.setCellValue(cellValue(device.getAddress()==null?"":device.getAddress()));
-			
-			cell = row.createCell(10);
-			cell.setCellValue(cellValue(device.getInstallDate()==null?"":device.getInstallDate()));
-			
-			cell = row.createCell(11);
-			cell.setCellValue(cellValue(device.getSetupType()==null?"":getEnumI18n(device.getSetupType().getText())));
-
-			cell = row.createCell(12);
-			cell.setCellValue(cellValue(device.getCashboxLimit()));
-
-		}
-
-		FileOutputStream fos = null;
-		try {
-			fos = new FileOutputStream(pathname);
-			workBook.write(fos);
-		} catch (FileNotFoundException e) {
-		} catch (IOException e) {
-		} finally {
-			if (fos != null) {
-				try {
-					fos.close();
-				} catch (IOException e) {
-				}
-			}
-		}
-		return pathname;
-	}
-
-	private String cellValue(Object obj) {
-		if (obj == null) {
-			return "";
-		}
-		if (obj instanceof String) {
-			return obj.toString();
-		} else if (obj instanceof Date) {
-			return DateUtils.getDate((Date) obj);
-		} else if (obj instanceof Integer || obj instanceof Long || obj instanceof Double) {
-			return String.valueOf(obj.toString());
-		}
-		return obj.toString();
-	}
 
 	/**
 	 *
@@ -484,7 +292,7 @@ public class DeviceController {
 
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA, DeviceForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 		return result;
 	}
 
@@ -507,7 +315,7 @@ public class DeviceController {
 
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL,  pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA, DeviceForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 		return result;
 	}
 
@@ -525,7 +333,7 @@ public class DeviceController {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			IPageResult<IDevice> pageResult = new PageResult<IDevice>();
 			result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-			result.addAttribute(FishConstant.DATA, DeviceForm.convert(pageResult.list()));
+			result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 			return result;
 		}
 		filter.like("organization.orgFlag", "%" + organizationID);
@@ -535,7 +343,7 @@ public class DeviceController {
 
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA, DeviceForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 		return result;
 	}
 
@@ -555,7 +363,7 @@ public class DeviceController {
 
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA, DeviceForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 		return result;
 	}
 
@@ -564,10 +372,62 @@ public class DeviceController {
 	ModelMap search(@RequestParam String terminalId) {
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, true);
-		result.addAttribute(FishConstant.DATA, new DeviceForm(deviceService.get(terminalId)));
+		result.addAttribute(FishConstant.DATA, toFrom(deviceService.get(terminalId)));
 		return result;
 	}
 
+	
+	public List<DeviceForm> convert(List<IDevice> list) {
+		List<DeviceForm> result = new ArrayList<DeviceForm>();
+		for (IDevice item : list) {
+			result.add(toFrom(item));
+		}
+		return result;
+	}
+	/**
+	 * 将接口数据保存至本地
+	 *
+	 * @param device
+	 *            接口
+	 * @param isDate
+	 *            是否需要转换日期
+	 */
+	public DeviceForm toFrom(IDevice device) {
+		DeviceForm deviceForm = new DeviceForm();
+		deviceForm.setAddress(device.getAddress());
+		deviceForm.setCashboxLimit(device.getCashboxLimit());
+		deviceForm.setAwayFlag(device.getAwayFlag() == null ? null : String.valueOf(device.getAwayFlag().getId()));
+		deviceForm.setAwayFlagName(device.getAwayFlag() == null ? null : getI18N(device.getAwayFlag().getText()));
+		deviceForm.setSetupType(device.getSetupType() == null ? null : String.valueOf(device.getSetupType().getId()));
+		deviceForm.setSetupTypeName(device.getSetupType() == null ? null : getI18N(device.getSetupType().getText()));
+		deviceForm.setWorkType(device.getWorkType() == null ? null : String.valueOf(device.getWorkType().getId()));
+		deviceForm.setVirtual(device.getVirtual());
+		deviceForm.setSerial(device.getSerial());
+		deviceForm.setNetType(device.getNetType() == null ? String.valueOf(NetType.CABLE.getId()) : String.valueOf(device.getNetType().getId()));
+		if (device.getDevService() != null) {
+			deviceForm.setDevServiceName(device.getDevService().getName());
+			deviceForm.setDevServiceId(device.getDevService().getGuid());
+		}
+
+		if (device.getDevType() != null) {
+			deviceForm.setDevTypeId(device.getDevType().getId());
+			deviceForm.setDevTypeName(device.getDevType().getName());
+			deviceForm.setDevCatalogName(device.getDevType().getDevCatalog().getName());
+			deviceForm.setDevVendorName(device.getDevType().getDevVendor().getName());
+		}
+		deviceForm.setId(String.valueOf(device.getId()));
+		deviceForm.setIp(device.getIp().toString());
+		if (device.getOrganization() != null) {
+			deviceForm.setOrgId(device.getOrganization().getGuid());
+			deviceForm.setOrgName(device.getOrganization().getName());
+		}
+		deviceForm.setStatus(device.getStatus() == null ? null : String.valueOf(device.getStatus().getId()));
+		deviceForm.setStatusName(device.getStatus() == null ? null : getI18N(device.getStatus().getText()));
+		deviceForm.setTerminalId(device.getTerminalId());
+		deviceForm.setInstallDate(device.getInstallDate() != null ? DateUtils.getDate(device.getInstallDate()) : "");
+		return deviceForm;
+	}
+	
 	/**
 	 * 获取所有品牌信息
 	 *
@@ -780,7 +640,7 @@ public class DeviceController {
 	private boolean isNotFilterName(String name) {
 		return "devServiceName".equals(name) || "organizationID".equals(name) || "orgName".equals(name)
 				|| "page".equals(name) || "start".equals(name) || "limit".equals(name) || "_dc".equals(name)
-				|| "sort".equals(name);
+				|| "sort".equals(name)||name.startsWith("gridInfo");
 	}
 
 }

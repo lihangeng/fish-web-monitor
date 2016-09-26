@@ -35,6 +35,7 @@ import com.yihuacomputer.fish.api.atm.IAtmGroupService;
 import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.device.NetType;
 import com.yihuacomputer.fish.api.person.OrganizationType;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.relation.IDeviceGroupRelation;
@@ -219,7 +220,7 @@ public class AtmGroupController {
 			pageResult = deviceService.page(start, limit, filter, String.valueOf(userSession.getOrgId()));
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-			result.addAttribute(FishConstant.DATA, DeviceForm.convert(pageResult.list()));
+			result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 			return result;
 		}
 		Long groupId = Long.valueOf(request.getParameter("groupId"));
@@ -233,7 +234,7 @@ public class AtmGroupController {
 		}
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA, DeviceForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 		return result;
 	}
 
@@ -257,7 +258,7 @@ public class AtmGroupController {
 		if (groupId == 0) {
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("total", 0);
-			result.addAttribute(FishConstant.DATA, DeviceForm.convert(new ArrayList<IDevice>()));
+			result.addAttribute(FishConstant.DATA, convert(new ArrayList<IDevice>()));
 			return result;
 		}
 		// 获得机构下所有的设备信息
@@ -270,7 +271,7 @@ public class AtmGroupController {
 		}
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("total", pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA, DeviceForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 		return result;
 	}
 
@@ -386,4 +387,61 @@ public class AtmGroupController {
 		map.addAttribute(FishConstant.DATA, forms);
 		return map;
 	}
+	
+	public List<DeviceForm> convert(List<IDevice> list) {
+		List<DeviceForm> result = new ArrayList<DeviceForm>();
+		for (IDevice item : list) {
+			result.add(toFrom(item));
+		}
+		return result;
+	}
+	/**
+	 * 将接口数据保存至本地
+	 *
+	 * @param device
+	 *            接口
+	 * @param isDate
+	 *            是否需要转换日期
+	 */
+	public DeviceForm toFrom(IDevice device) {
+		DeviceForm deviceForm = new DeviceForm();
+		deviceForm.setAddress(device.getAddress());
+		deviceForm.setCashboxLimit(device.getCashboxLimit());
+
+		deviceForm.setAwayFlag(device.getAwayFlag() == null ? null : String.valueOf(device.getAwayFlag().getId()));
+		deviceForm.setAwayFlagName(device.getAwayFlag() == null ? null : getI18N(device.getAwayFlag().getText()));
+		deviceForm.setSetupType(device.getSetupType() == null ? null : String.valueOf(device.getSetupType().getId()));
+		deviceForm.setSetupTypeName(device.getSetupType() == null ? null : getI18N(device.getSetupType().getText()));
+		deviceForm.setWorkType(device.getWorkType() == null ? null : String.valueOf(device.getWorkType().getId()));
+		deviceForm.setVirtual(device.getVirtual());
+		deviceForm.setSerial(device.getSerial());
+		deviceForm.setNetType(device.getNetType() == null ? String.valueOf(NetType.CABLE.getId()) : String.valueOf(device.getNetType().getId()));
+		if (device.getDevService() != null) {
+			deviceForm.setDevServiceName(device.getDevService().getName());
+			deviceForm.setDevServiceId(device.getDevService().getGuid());
+		}
+
+		if (device.getDevType() != null) {
+			deviceForm.setDevTypeId(device.getDevType().getId());
+			deviceForm.setDevTypeName(device.getDevType().getName());
+			deviceForm.setDevCatalogName(device.getDevType().getDevCatalog().getName());
+			deviceForm.setDevVendorName(device.getDevType().getDevVendor().getName());
+		}
+		deviceForm.setId(String.valueOf(device.getId()));
+		deviceForm.setIp(device.getIp().toString());
+		if (device.getOrganization() != null) {
+			deviceForm.setOrgId(device.getOrganization().getGuid());
+			deviceForm.setOrgName(device.getOrganization().getName());
+		}
+		deviceForm.setStatus(device.getStatus() == null ? null : String.valueOf(device.getStatus().getId()));
+		deviceForm.setStatusName(device.getStatus() == null ? null : getI18N(device.getStatus().getText()));
+		deviceForm.setTerminalId(device.getTerminalId());
+		deviceForm.setInstallDate(device.getInstallDate() != null ? DateUtils.getDate(device.getInstallDate()) : "");
+		return deviceForm;
+	}
+	
+	private String getI18N(String code){
+		return messageSource.getMessage(code, null, FishCfg.locale);
+	}
+
 }
