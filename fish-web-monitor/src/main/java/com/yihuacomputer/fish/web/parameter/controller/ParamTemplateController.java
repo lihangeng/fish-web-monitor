@@ -36,6 +36,7 @@ import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.device.NetType;
 import com.yihuacomputer.fish.api.parameter.IParamDeviceDetailService;
 import com.yihuacomputer.fish.api.parameter.IParamElement;
 import com.yihuacomputer.fish.api.parameter.IParamElementService;
@@ -315,7 +316,7 @@ public class ParamTemplateController {
 					templateService.get(Long.parseLong(guid)),userSession.getOrgId(), filter);
 
 			result.addAttribute("total", pageResult.getTotal());
-			result.addAttribute("data", DeviceForm.convert(pageResult.list()));
+			result.addAttribute("data", convertDevice(pageResult.list()));
 		} else {
 			// 可以关联的设备
 			IFilter filter = getFilterDevice(request);
@@ -325,7 +326,7 @@ public class ParamTemplateController {
 
 			result.addAttribute(FishConstant.SUCCESS, true);
 			result.addAttribute("total", pageResult.getTotal());
-			result.addAttribute("data", DeviceForm.convert(pageResult.list()));
+			result.addAttribute("data", convertDevice(pageResult.list()));
 		}
 		return result;
 	}
@@ -608,4 +609,57 @@ public class ParamTemplateController {
     	}
 		return messageSource.getMessage(code, null, code, FishCfg.locale);
 	}
+	
+	public List<DeviceForm> convertDevice(List<IDevice> list) {
+		List<DeviceForm> result = new ArrayList<DeviceForm>();
+		for (IDevice item : list) {
+			result.add(toFrom(item));
+		}
+		return result;
+	}
+	/**
+	 * 将接口数据保存至本地
+	 *
+	 * @param device
+	 *            接口
+	 * @param isDate
+	 *            是否需要转换日期
+	 */
+	public DeviceForm toFrom(IDevice device) {
+		DeviceForm deviceForm = new DeviceForm();
+		deviceForm.setAddress(device.getAddress());
+		deviceForm.setCashboxLimit(device.getCashboxLimit());
+
+		deviceForm.setAwayFlag(device.getAwayFlag() == null ? null : String.valueOf(device.getAwayFlag().getId()));
+		deviceForm.setAwayFlagName(device.getAwayFlag() == null ? null : getI18N(device.getAwayFlag().getText()));
+		deviceForm.setSetupType(device.getSetupType() == null ? null : String.valueOf(device.getSetupType().getId()));
+		deviceForm.setSetupTypeName(device.getSetupType() == null ? null : getI18N(device.getSetupType().getText()));
+		deviceForm.setWorkType(device.getWorkType() == null ? null : String.valueOf(device.getWorkType().getId()));
+		deviceForm.setVirtual(device.getVirtual());
+		deviceForm.setSerial(device.getSerial());
+		deviceForm.setNetType(device.getNetType() == null ? String.valueOf(NetType.CABLE.getId()) : String.valueOf(device.getNetType().getId()));
+		if (device.getDevService() != null) {
+			deviceForm.setDevServiceName(device.getDevService().getName());
+			deviceForm.setDevServiceId(device.getDevService().getGuid());
+		}
+
+		if (device.getDevType() != null) {
+			deviceForm.setDevTypeId(device.getDevType().getId());
+			deviceForm.setDevTypeName(device.getDevType().getName());
+			deviceForm.setDevCatalogName(device.getDevType().getDevCatalog().getName());
+			deviceForm.setDevVendorName(device.getDevType().getDevVendor().getName());
+		}
+		deviceForm.setId(String.valueOf(device.getId()));
+		deviceForm.setIp(device.getIp().toString());
+		if (device.getOrganization() != null) {
+			deviceForm.setOrgId(device.getOrganization().getGuid());
+			deviceForm.setOrgName(device.getOrganization().getName());
+		}
+		deviceForm.setStatus(device.getStatus() == null ? null : String.valueOf(device.getStatus().getId()));
+		deviceForm.setStatusName(device.getStatus() == null ? null : getI18N(device.getStatus().getText()));
+		deviceForm.setTerminalId(device.getTerminalId());
+		deviceForm.setInstallDate(device.getInstallDate() != null ? DateUtils.getDate(device.getInstallDate()) : "");
+		return deviceForm;
+	}
+	
 }

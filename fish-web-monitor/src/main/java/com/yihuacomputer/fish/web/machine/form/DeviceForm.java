@@ -1,8 +1,6 @@
 package com.yihuacomputer.fish.web.machine.form;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.IP;
@@ -47,6 +45,10 @@ public class DeviceForm {
 	 * 设备状态
 	 */
 	private String status;
+	/**
+	 * 设备状态
+	 */
+	private String statusName;
 
 	/**
 	 * 设备维护商name
@@ -77,6 +79,10 @@ public class DeviceForm {
 	 * 安装方式
 	 */
 	private String setupType;
+	/**
+	 * 安装方式
+	 */
+	private String setupTypeName;
 
 	/**
 	 * 网络类型
@@ -87,6 +93,10 @@ public class DeviceForm {
 	 * 在行离行标志
 	 */
 	private String awayFlag;
+	/**
+	 * 在行离行标志
+	 */
+	private String awayFlagName;
 
 	/**
 	 * 经营方式
@@ -106,45 +116,7 @@ public class DeviceForm {
 	public DeviceForm() {
 	}
 
-	/**
-	 * 将接口数据保存至本地
-	 *
-	 * @param device
-	 *            接口
-	 * @param isDate
-	 *            是否需要转换日期
-	 */
-	public DeviceForm(IDevice device) {
-		setAddress(device.getAddress());
-		setCashboxLimit(device.getCashboxLimit());
-		setAwayFlag(device.getAwayFlag() == null ? null : String.valueOf(device.getAwayFlag().getId()));
-		setSetupType(device.getSetupType() == null ? null : String.valueOf(device.getSetupType().getId()));
-		setWorkType(device.getWorkType() == null ? null : String.valueOf(device.getWorkType().getId()));
-		setVirtual(device.getVirtual());
-		setSerial(device.getSerial());
-		setNetType(device.getNetType() == null ? String.valueOf(NetType.CABLE.getId()) : String.valueOf(device.getNetType().getId()));
-		if (device.getDevService() != null) {
-			setDevServiceName(device.getDevService().getName());
-			setDevServiceId(device.getDevService().getGuid());
-		}
-
-		if (device.getDevType() != null) {
-			setDevTypeId(device.getDevType().getId());
-			setDevTypeName(device.getDevType().getName());
-			setDevCatalogName(device.getDevType().getDevCatalog().getName());
-			setDevVendorName(device.getDevType().getDevVendor().getName());
-		}
-		setId(String.valueOf(device.getId()));
-		setIp(device.getIp().toString());
-		if (device.getOrganization() != null) {
-			setOrgId(device.getOrganization().getGuid());
-			setOrgName(device.getOrganization().getName());
-		}
-		setStatus(device.getStatus() == null ? null : String.valueOf(device.getStatus().getId()));
-		setTerminalId(device.getTerminalId());
-		this.installDate = device.getInstallDate() != null ? DateUtils.getDate(device.getInstallDate()) : "";
-
-	}
+	
 
 	/**
 	 * 本地数据保存至接口
@@ -167,14 +139,7 @@ public class DeviceForm {
 
 	}
 
-	public static List<DeviceForm> convert(List<IDevice> list) {
-		List<DeviceForm> result = new ArrayList<DeviceForm>();
-		for (IDevice item : list) {
-			result.add(new DeviceForm(item));
-		}
-		return result;
-	}
-
+	
 	public String getId() {
 		return id;
 	}
@@ -355,5 +320,29 @@ public class DeviceForm {
 
 	public void setInstallDate(String installDate) {
 		this.installDate = installDate;
+	}
+
+	public String getStatusName() {
+		return statusName;
+	}
+
+	public void setStatusName(String statusName) {
+		this.statusName = statusName;
+	}
+
+	public String getSetupTypeName() {
+		return setupTypeName;
+	}
+
+	public void setSetupTypeName(String setupTypeName) {
+		this.setupTypeName = setupTypeName;
+	}
+
+	public String getAwayFlagName() {
+		return awayFlagName;
+	}
+
+	public void setAwayFlagName(String awayFlagName) {
+		this.awayFlagName = awayFlagName;
 	}
 }

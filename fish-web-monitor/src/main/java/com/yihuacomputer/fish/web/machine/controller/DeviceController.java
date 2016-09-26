@@ -41,6 +41,7 @@ import com.yihuacomputer.fish.api.device.AwayFlag;
 import com.yihuacomputer.fish.api.device.DevStatus;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
+import com.yihuacomputer.fish.api.device.NetType;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IPerson;
@@ -140,7 +141,7 @@ public class DeviceController {
 			return model;
 		}
 
-		model.addAttribute(FishConstant.DATA, new DeviceForm(device));
+		model.addAttribute(FishConstant.DATA, toFrom(device));
 		return model;
 	}
 
@@ -232,7 +233,7 @@ public class DeviceController {
 			return model;
 		}
 		model.addAttribute(FishConstant.SUCCESS, true);
-		model.addAttribute(FishConstant.DATA, new DeviceForm(device));
+		model.addAttribute(FishConstant.DATA, toFrom(device));
 		return model;
 	}
 	
@@ -257,7 +258,7 @@ public class DeviceController {
 		map.put(ExcelViewUtils.TITLE, theme);
 		map.put(ExcelViewUtils.FILE_NAME, theme);
 		// 获得机构下所有的设备信息
-		List<DeviceForm> formList = DeviceForm.convert(data);
+		List<DeviceForm> formList = convert(data);
 		map.put(ExcelViewUtils.BODY_CONTEXTS, formList);
 		ExcelViewUtils excelUtils = new ExcelViewUtils();
 		return new ModelAndView(excelUtils,map);
@@ -291,7 +292,7 @@ public class DeviceController {
 
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA, DeviceForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 		return result;
 	}
 
@@ -314,7 +315,7 @@ public class DeviceController {
 
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL,  pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA, DeviceForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 		return result;
 	}
 
@@ -332,7 +333,7 @@ public class DeviceController {
 			result.addAttribute(FishConstant.SUCCESS, false);
 			IPageResult<IDevice> pageResult = new PageResult<IDevice>();
 			result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-			result.addAttribute(FishConstant.DATA, DeviceForm.convert(pageResult.list()));
+			result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 			return result;
 		}
 		filter.like("organization.orgFlag", "%" + organizationID);
@@ -342,7 +343,7 @@ public class DeviceController {
 
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA, DeviceForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 		return result;
 	}
 
@@ -362,7 +363,7 @@ public class DeviceController {
 
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute(FishConstant.TOTAL, pageResult.getTotal());
-		result.addAttribute(FishConstant.DATA, DeviceForm.convert(pageResult.list()));
+		result.addAttribute(FishConstant.DATA, convert(pageResult.list()));
 		return result;
 	}
 
@@ -371,10 +372,62 @@ public class DeviceController {
 	ModelMap search(@RequestParam String terminalId) {
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, true);
-		result.addAttribute(FishConstant.DATA, new DeviceForm(deviceService.get(terminalId)));
+		result.addAttribute(FishConstant.DATA, toFrom(deviceService.get(terminalId)));
 		return result;
 	}
 
+	
+	public List<DeviceForm> convert(List<IDevice> list) {
+		List<DeviceForm> result = new ArrayList<DeviceForm>();
+		for (IDevice item : list) {
+			result.add(toFrom(item));
+		}
+		return result;
+	}
+	/**
+	 * 将接口数据保存至本地
+	 *
+	 * @param device
+	 *            接口
+	 * @param isDate
+	 *            是否需要转换日期
+	 */
+	public DeviceForm toFrom(IDevice device) {
+		DeviceForm deviceForm = new DeviceForm();
+		deviceForm.setAddress(device.getAddress());
+		deviceForm.setCashboxLimit(device.getCashboxLimit());
+		deviceForm.setAwayFlag(device.getAwayFlag() == null ? null : String.valueOf(device.getAwayFlag().getId()));
+		deviceForm.setAwayFlagName(device.getAwayFlag() == null ? null : getI18N(device.getAwayFlag().getText()));
+		deviceForm.setSetupType(device.getSetupType() == null ? null : String.valueOf(device.getSetupType().getId()));
+		deviceForm.setSetupTypeName(device.getSetupType() == null ? null : getI18N(device.getSetupType().getText()));
+		deviceForm.setWorkType(device.getWorkType() == null ? null : String.valueOf(device.getWorkType().getId()));
+		deviceForm.setVirtual(device.getVirtual());
+		deviceForm.setSerial(device.getSerial());
+		deviceForm.setNetType(device.getNetType() == null ? String.valueOf(NetType.CABLE.getId()) : String.valueOf(device.getNetType().getId()));
+		if (device.getDevService() != null) {
+			deviceForm.setDevServiceName(device.getDevService().getName());
+			deviceForm.setDevServiceId(device.getDevService().getGuid());
+		}
+
+		if (device.getDevType() != null) {
+			deviceForm.setDevTypeId(device.getDevType().getId());
+			deviceForm.setDevTypeName(device.getDevType().getName());
+			deviceForm.setDevCatalogName(device.getDevType().getDevCatalog().getName());
+			deviceForm.setDevVendorName(device.getDevType().getDevVendor().getName());
+		}
+		deviceForm.setId(String.valueOf(device.getId()));
+		deviceForm.setIp(device.getIp().toString());
+		if (device.getOrganization() != null) {
+			deviceForm.setOrgId(device.getOrganization().getGuid());
+			deviceForm.setOrgName(device.getOrganization().getName());
+		}
+		deviceForm.setStatus(device.getStatus() == null ? null : String.valueOf(device.getStatus().getId()));
+		deviceForm.setStatusName(device.getStatus() == null ? null : getI18N(device.getStatus().getText()));
+		deviceForm.setTerminalId(device.getTerminalId());
+		deviceForm.setInstallDate(device.getInstallDate() != null ? DateUtils.getDate(device.getInstallDate()) : "");
+		return deviceForm;
+	}
+	
 	/**
 	 * 获取所有品牌信息
 	 *
