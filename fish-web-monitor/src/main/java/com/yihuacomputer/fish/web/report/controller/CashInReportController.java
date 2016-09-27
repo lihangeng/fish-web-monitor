@@ -35,6 +35,7 @@ import com.yihuacomputer.fish.api.report.engine.IReportExport;
 import com.yihuacomputer.fish.api.report.trans.ICashInRpt;
 import com.yihuacomputer.fish.api.report.trans.ICashInRptService;
 import com.yihuacomputer.fish.report.engine.ReportParam;
+import com.yihuacomputer.fish.web.report.form.ReportTitle;
 
 /**
  * 加钞统计报表

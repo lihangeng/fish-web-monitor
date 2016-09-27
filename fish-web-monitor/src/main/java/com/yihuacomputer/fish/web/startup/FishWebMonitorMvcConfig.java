@@ -20,11 +20,11 @@ import com.yihuacomputer.fish.web.mvc.BrowseMvcConfig;
 			"com.yihuacomputer.fish.web.machine.controller",
 			"com.yihuacomputer.fish.web.advert.controller",
 			"com.yihuacomputer.fish.web.bsadvert.controller",
-			"com.yihuacomputer.fish.web.command",
+			"com.yihuacomputer.fish.web.command.controller",
 			"com.yihuacomputer.fish.web.daily.controller",
 			"com.yihuacomputer.fish.web.fault.controller",
-			"com.yihuacomputer.fish.web.mock",//默认的事故发送服务
-			"com.yihuacomputer.fish.web.monitor",
+			"com.yihuacomputer.fish.web.mock.service",//默认的事故发送服务
+			"com.yihuacomputer.fish.web.monitor.controller",
 			"com.yihuacomputer.fish.web.report.controller",
 			"com.yihuacomputer.fish.web.version.controller",
 			"com.yihuacomputer.fish.web.parameter.controller",

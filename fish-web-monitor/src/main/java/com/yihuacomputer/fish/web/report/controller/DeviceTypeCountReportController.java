@@ -35,6 +35,7 @@ import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.report.device.IDeviceTypeCountRpt;
 import com.yihuacomputer.fish.api.report.device.IDeviceTypeCountRptService;
 import com.yihuacomputer.fish.api.report.engine.IExportReportService;
+import com.yihuacomputer.fish.web.report.form.ReportTitle;
 
 @Controller
 @RequestMapping(value = "/report")

@@ -38,6 +38,7 @@ import com.yihuacomputer.fish.api.report.device.IDeviceBoxDetailRptService;
 import com.yihuacomputer.fish.api.report.engine.IExportReportService;
 import com.yihuacomputer.fish.api.report.engine.IReportExport;
 import com.yihuacomputer.fish.report.engine.ReportParam;
+import com.yihuacomputer.fish.web.report.form.ReportTitle;
 
 @Controller
 @RequestMapping(value = "/report")

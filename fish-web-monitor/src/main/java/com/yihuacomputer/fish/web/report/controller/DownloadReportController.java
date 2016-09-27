@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.yihuacomputer.common.FishCfg;
+import com.yihuacomputer.fish.web.report.form.ReportTitle;
 
 /**
  * 报表下载

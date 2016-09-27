@@ -36,6 +36,7 @@ import com.yihuacomputer.fish.api.report.engine.IReportExport;
 import com.yihuacomputer.fish.api.report.trans.ITransCountRpt;
 import com.yihuacomputer.fish.api.report.trans.ITransRptService;
 import com.yihuacomputer.fish.report.engine.ReportParam;
+import com.yihuacomputer.fish.web.report.form.ReportTitle;
 
 /**
  * 交易统计报表

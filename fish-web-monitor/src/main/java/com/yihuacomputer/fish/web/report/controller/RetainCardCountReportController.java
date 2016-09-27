@@ -36,6 +36,7 @@ import com.yihuacomputer.fish.api.report.device.IRetainCardRptService;
 import com.yihuacomputer.fish.api.report.engine.IExportReportService;
 import com.yihuacomputer.fish.api.report.engine.IReportExport;
 import com.yihuacomputer.fish.report.engine.ReportParam;
+import com.yihuacomputer.fish.web.report.form.ReportTitle;
 
 /**
  * 吞卡统计报表控制器

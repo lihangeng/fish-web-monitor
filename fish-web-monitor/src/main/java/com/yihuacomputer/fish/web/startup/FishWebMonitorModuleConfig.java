@@ -16,9 +16,9 @@ import com.yihuacomputer.fish.monitor.MonitorModule;
 import com.yihuacomputer.fish.report.ReportModule;
 import com.yihuacomputer.fish.system.SystemModule;
 import com.yihuacomputer.fish.version.VersionModule;
-import com.yihuacomputer.fish.web.mock.DefaultDeviceCaseService;
-import com.yihuacomputer.fish.web.mock.DefaultHwFaultService;
 import com.yihuacomputer.fish.web.mock.NotifyContentService;
+import com.yihuacomputer.fish.web.mock.service.DefaultDeviceCaseService;
+import com.yihuacomputer.fish.web.mock.service.DefaultHwFaultService;
 
 /**
  * fish-web-base依赖项目的的模块配置

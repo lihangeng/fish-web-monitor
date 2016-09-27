@@ -15,7 +15,7 @@ import com.yihuacomputer.fish.web.mvc.CommonSpringMvcConfig;
 @EnableWebMvc
 @ComponentScan(basePackages =
 		{
-			"com.yihuacomputer.fish.web.atm"
+			"com.yihuacomputer.fish.web.atm.controller"
 		})
 public class AtmMvcConfig extends CommonSpringMvcConfig {
 
