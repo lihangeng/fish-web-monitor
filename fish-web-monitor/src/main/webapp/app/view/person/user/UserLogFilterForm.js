@@ -22,7 +22,7 @@ Ext.define('Eway.view.person.user.UserLogFilterForm', {
 					name : 'operTimeStart',
 					format : 'Y-m-d H:i:s',
 					msgTarget : 'side',
-					labelWidth:140,
+					labelWidth:170,
 					editable: false,
 					value:Ext.Date.parse(Ext.Date.format(new Date(), 'Y-m-d') + " 00:00:00","Y-m-d H:i:s"),
 					 msgTarget : 'side',
