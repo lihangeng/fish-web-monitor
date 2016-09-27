@@ -577,6 +577,7 @@ Ext.apply(EwayLocale,{
 			tipExportSuccess:'Article Data Successfully Imported',//EwayLocale.machine.serviceplan.tipExportSuccess
 			tipLookUp:'Bar, Click View Import Details!',//EwayLocale.machine.serviceplan.tipLookUp
 			tipAddError:'Article Adding Failed. Please Refresh View',//EwayLocale.machine.serviceplan.tipAddError
+			tipRelevanceError:'Article Relevance Failed. Please Refresh View!',//EwayLocale.machine.serviceplan.tipRelevanceError
 
 			chooseOne:'At Least One',//EwayLocale.machine.serviceplan.chooseOne
 			linkSuccess:'Associate Success',//EwayLocale.machine.serviceplan.linkSuccess

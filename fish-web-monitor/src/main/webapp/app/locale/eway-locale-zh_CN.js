@@ -413,6 +413,17 @@ Ext.apply(EwayLocale,{
 	 },
 	 
 	 quartz:{
+		 timingJob:'定时任务',//EwayLocale.quartz.timingJob
+	     pauseSucceed:'暂停成功',//EwayLocale.quartz.pauseSucceed
+	     pauseFail:'暂停失败',//EwayLocale.quartz.pauseFail
+	     selectJob:'请选择需要操作的任务',//EwayLocale.quartz.selectJob
+	     recoverSucceed:'恢复成功',//EwayLocale.quartz.recoverSucceed
+	     recoverFail:'恢复失败',//EwayLocale.quartz.recoverFail
+	     deleteSucceed:'删除成功',//EwayLocale.quartz.deleteSucceed
+	     deleteFail:'删除失败',//EwayLocale.quartz.deleteFail
+	     executeSucceed:'执行任务成功',//EwayLocale.quartz.executeSucceed
+	     executeFail:'执行任务失败',//EwayLocale.quartz.executeFail
+	     
 		 title:' 定时任务管理 ',//EwayLocale.quartz.title
 		 jobName:'任务名称',//EwayLocale.quartz.jobName 
 		 jobClassName:'任务实现类',//EwayLocale.quartz.jobClassName
@@ -422,7 +433,7 @@ Ext.apply(EwayLocale,{
 		 nextFireTime:'下次触发时间',//EwayLocale.quartz.nextFireTime
 		 prevFireTime:'上次触发时间',//EwayLocale.quartz.prevFireTime
 		 startTime:'任务创建时间',//EwayLocale.quartz.startTime
-		 endTime:'任务结束时间 '//EwayLocale.quartz.endTime
+		 endTime:'任务结束时间 '//EwayLocale.quartz.endTime			 
 	 },
 	 
 	 thread:{

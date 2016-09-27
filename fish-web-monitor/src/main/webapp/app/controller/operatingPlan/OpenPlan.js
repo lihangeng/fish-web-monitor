@@ -936,7 +936,7 @@ Ext.define('Eway.controller.operatingPlan.OpenPlan', {
 					winEl.unmask();
 				},
 				failure: function(response){
-					Eway.alert( Ext.decode(response.responseText).errorMsg+"条关联失败，请刷新后查看！");
+					Eway.alert( Ext.decode(response.responseText).errorMsg+EwayLocale.machine.serviceplan.tipRelevanceError);
 					 var field = linkingDeviceForm.findField("deviceIds");
 	                 field.setValue("");
 	                 idArray = new Array();
