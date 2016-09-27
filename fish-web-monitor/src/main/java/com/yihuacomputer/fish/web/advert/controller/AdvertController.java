@@ -352,6 +352,11 @@ public class AdvertController {
 
 				protected void beforeZip(IAdvert advert) {
 					// 二代应用需要
+					String advertVersionFilePath = VersionCfg.getVersionDir() + File.separator + "advert" + File.separator;
+			        File advertFile = new File(advertVersionFilePath);
+			        if(!advertFile.exists()||!advertFile.isDirectory()){
+			        	advertFile.mkdirs();
+			        }
 					genenateMetaFile(advert);
 				}
 
