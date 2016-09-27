@@ -179,6 +179,8 @@ Ext.apply(EwayLocale,{
 				result: 'Statistics Result',//EwayLocale.monitor.business.newTransaction.result
 				time: 'Statistics Time',//EwayLocale.monitor.business.newTransaction.time
 				timeUnit: 'Minute',//EwayLocale.monitor.business.newTransaction.timeUnit
+				fullScreen: 'Full Screen',//EwayLocale.monitor.business.newTransaction.fullScreen
+				restore: 'restore',//EwayLocale.monitor.business.newTransaction.restore
 				
 				total: 'Transaction Total',//EwayLocale.monitor.business.newTransaction.total
 				localW: 'Local Withdrawl',//EwayLocale.monitor.business.newTransaction.localW

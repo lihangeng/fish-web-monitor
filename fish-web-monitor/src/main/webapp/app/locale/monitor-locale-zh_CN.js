@@ -178,6 +178,8 @@ Ext.apply(EwayLocale,{
 				result: '统计结果',//EwayLocale.monitor.business.newTransaction.result
 				time: '统计时间',//EwayLocale.monitor.business.newTransaction.time
 				timeUnit: '分钟',//EwayLocale.monitor.business.newTransaction.timeUnit
+				fullScreen: '全屏',//EwayLocale.monitor.business.newTransaction.fullScreen
+				restore: '还原',//EwayLocale.monitor.business.newTransaction.restore
 
 				total: '交易总数',//EwayLocale.monitor.business.newTransaction.total
 				localW: '本行卡取款数',//EwayLocale.monitor.business.newTransaction.localW

@@ -23,7 +23,7 @@ Ext.define('Eway.controller.monitor.timeline.ShowBoxDetail',{
 		},
 		expandBoxDetails:function(_this){
 			if(_this.parentElement.nextElementSibling.className == "detailsTwoShow"){
-				_this.innerText = '钞箱详情';
+				_this.innerText = EwayLocale.monitor.devMonitor.cash.boxDetail;
 				_this.style.width = "80px";
 				_this.className = 'news-toggle';
 				_this.style.cursor='pointer';

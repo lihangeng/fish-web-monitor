@@ -498,7 +498,7 @@ Ext.define('Eway.controller.monitor.newTransaction.NewTransactionMonitor', {
 
         if(btn.hasCls('.showMax')) {
 
-            btn.setText('全屏');
+            btn.setText(EwayLocale.monitor.business.newTransaction.fullScreen);
 
             // 当前已经是最大化
             btn.removeCls('.showMax');
@@ -508,7 +508,7 @@ Ext.define('Eway.controller.monitor.newTransaction.NewTransactionMonitor', {
             workspace.setHeight($(window).height());
         } else {
 
-            btn.setText('还原');
+            btn.setText(EwayLocale.monitor.business.newTransaction.restore);
 
             // 当前是正常化
             btn.addCls('.showMax');

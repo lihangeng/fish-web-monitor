@@ -582,6 +582,7 @@ Ext.apply(EwayLocale,{
 			tipExportSuccess:'条数据,成功导入',//EwayLocale.machine.serviceplan.tipExportSuccess
 			tipLookUp:'条,点击查看导入详情!',//EwayLocale.machine.serviceplan.tipLookUp
 			tipAddError:'条添加失败,请刷新后查看',//EwayLocale.machine.serviceplan.tipAddError
+			tipRelevanceError:'条关联失败，请刷新后查看！',//EwayLocale.machine.serviceplan.tipRelevanceError
 			chooseOne:'至少选择一个',//EwayLocale.machine.serviceplan.chooseOne
 			linkSuccess:'关联成功',//EwayLocale.machine.serviceplan.linkSuccess
 			Mon:'一',//EwayLocale.machine.serviceplan.Mon

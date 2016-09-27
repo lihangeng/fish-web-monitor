@@ -30,7 +30,7 @@ Ext.define('Eway.controller.system.quartz.Quartz', {
 				xtype : 'system_quartz_form',
 				width: 500,
 				height:280,
-				title : '定时任务'
+				title : EwayLocale.quartz.timingJob
 			},	
 			
 			onPause:function(){
@@ -50,17 +50,17 @@ Ext.define('Eway.controller.system.quartz.Quartz', {
 						jobGroup : jobGroup
 					},
 					success:function(ed){
-							Eway.alert('暂停成功');
+							Eway.alert(EwayLocale.quartz.pauseSucceed);
 							this.onQuery();
 						
 					},
 					failure:function(response){
-						Eway.alert('暂停失败');
+						Eway.alert(EwayLocale.quartz.pauseFail);
 					},
 					scope:this
 				});
 				}else {
-					Eway.alert('请选择需要操作的任务');
+					Eway.alert(EwayLocale.quartz.selectJob);
 				}
 			},
 			onResume:function(){
@@ -80,17 +80,17 @@ Ext.define('Eway.controller.system.quartz.Quartz', {
 						jobGroup : jobGroup
 					},
 					success:function(ed){
-							Eway.alert('恢复成功');
+							Eway.alert(EwayLocale.quartz.recoverSucceed);
 							this.onQuery();
 						
 					},
 					failure:function(response){
-						Eway.alert('恢复失败');
+						Eway.alert(EwayLocale.quartz.recoverFail);
 					},
 					scope:this
 				});
 				}else {
-					Eway.alert('请选择需要操作的任务');
+					Eway.alert(EwayLocale.quartz.selectJob);
 				}
 			},
 			onDelJob:function(){
@@ -118,12 +118,12 @@ Ext.define('Eway.controller.system.quartz.Quartz', {
 						jobGroup : jobGroup
 					},
 					success:function(ed){
-							Eway.alert('删除成功');
+							Eway.alert(EwayLocale.quartz.deleteSucceed);
 							this.onQuery();
 						
 					},
 					failure:function(response){
-						Eway.alert('删除失败');
+						Eway.alert(EwayLocale.quartz.deleteFail);
 					},
 					scope:this
 				});
@@ -145,17 +145,17 @@ Ext.define('Eway.controller.system.quartz.Quartz', {
 						jobGroup : jobGroup
 					},
 					success:function(ed){
-							Eway.alert('执行任务成功');
+							Eway.alert(EwayLocale.quartz.executeSucceed);
 							this.onQuery();
 						
 					},
 					failure:function(response){
-						Eway.alert('执行任务失败');
+						Eway.alert(EwayLocale.quartz.executeFail);
 					},
 					scope:this
 				});
 				}else {
-					Eway.alert('请选择需要操作的任务');
+					Eway.alert(EwayLocale.quartz.selectJob);
 				}
 			},
 			beforeUpdateSave:function(win,grid,record){
