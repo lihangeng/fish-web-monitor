@@ -1,9 +1,12 @@
 package com.yihuacomputer.fish.web.startup;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import com.yihuacomputer.fish.web.interceptor.UserLogAopAspect;
 import com.yihuacomputer.fish.web.mvc.BrowseMvcConfig;
 
 /**
@@ -31,7 +34,10 @@ import com.yihuacomputer.fish.web.mvc.BrowseMvcConfig;
 			"com.yihuacomputer.fish.web.cashbox.controller"
 		},
 basePackageClasses = {})
-//@ImportResource(value={"classpath:/fish-aop.xml"})
+@EnableAspectJAutoProxy
 public class FishWebMonitorMvcConfig extends BrowseMvcConfig {
-
+	@Bean
+    public UserLogAopAspect controllerAspect(){
+        return new UserLogAopAspect();
+    }
 }
