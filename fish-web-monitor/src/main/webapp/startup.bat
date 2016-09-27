@@ -29,6 +29,7 @@ goto :eof
 
 SET CLASSPATH=%CLASSPATH%;WEB-INF\classes
 SET CLASSPATH
+echo developer model -Xms128m -Xmx256m -XX:PermSize=64m -XX:MaxPermSize=128m 
 java -server -Xms512m -Xmx1024m -XX:PermSize=512m -XX:MaxPermSize=1024m -verbosegc -Xloggc:logs/atmvs_gc_log.log -Dfile.encoding=UTF-8 com.yihuacomputer.fish.web.FishConsole
 goto end
 
