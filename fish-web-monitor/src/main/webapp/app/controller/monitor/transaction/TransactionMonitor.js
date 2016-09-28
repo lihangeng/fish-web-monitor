@@ -111,7 +111,7 @@ Ext.define('Eway.controller.monitor.transaction.TransactionMonitor', {
     	grid.down('button[action="stop"]').setDisabled(false);
     	
     	var form = this.getTransactionFilterForm().getForm();
-        form.findField('terminalId').setReadOnly(true);
+        form.findField('terminalId').setDisabled(true);
         var data = form.getValues();
        
         this.cometdConnect(data);
@@ -133,7 +133,7 @@ Ext.define('Eway.controller.monitor.transaction.TransactionMonitor', {
 
         // 停止监控后,开放条件
         var form = this.getTransactionFilterForm();
-        form.getForm().findField('terminalId').setReadOnly(false);
+        form.getForm().findField('terminalId').setDisabled(false);
 
         this.cometdDisconnect();
     },
