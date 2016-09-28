@@ -89,7 +89,7 @@ public class DeviceController {
 	private IDevicePersonRelation devicePersonRelation;
 
 	@RequestMapping(method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.deviceController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.deviceController.add",hasReqBodyParam=true,reqBodyClass=DeviceForm.class,bodyProperties="terminalId")
 	public @ResponseBody
 	ModelMap add(@RequestBody DeviceForm request) {
 		logger.info("add Device");
@@ -153,7 +153,7 @@ public class DeviceController {
 	 * @return ModelMap<String, Object>
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	@MethodNameDescrible(describle="userlog.deviceController.delete",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.deviceController.delete",urlArgs=true)
 	public @ResponseBody
 	ModelMap delete(@PathVariable long id) {
 		logger.info(" delete device: device.id = " + id);
@@ -183,7 +183,7 @@ public class DeviceController {
 	 */
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.deviceController.update",hasArgs=false,urlArgs=true )
+	@MethodNameDescrible(describle="userlog.deviceController.update",hasReqBodyParam=true,reqBodyClass=DeviceForm.class,bodyProperties="terminalId" )
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody DeviceForm request) {
 		logger.info("update Device: device.id = " + id);

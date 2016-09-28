@@ -17,34 +17,36 @@ public @interface MethodNameDescrible{
 	 * 是否有参数需要记录
 	 * @return
 	 */
-	boolean hasArgs() default true;
+	boolean hasArgs() default false;
 	/**
 	 * 参数主标识key;能够标识当前操作对象的 key
 	 * 列如:/api/person?name=abc&orgId=1(此处主标识key应该为name)
 	 * @return
 	 */
 	String argsContext() default "";
+	
 	/**
 	 * 是否有请求体需要记录
 	 * @return
 	 */
-	long argsContext2() default 0;
-//	boolean hasReqBodyParam() default false;
+	boolean hasReqBodyParam() default false;
 
 	/**
 	 * 请求体类的别名
 	 * @return
 	 */
-//	String reqBodyClass() default "";
+	@SuppressWarnings("rawtypes")
+	Class reqBodyClass() default Object.class;
 	
 	/**
-	 * 记录的请求类的关键字
+	 * 记录的请求体的关键字
 	 * @return
 	 */
-//	String bodyProperties() default "";
+	String bodyProperties() default "";
 	/**
 	 * 参数是否在uri中
 	 * @return
 	 */
 	boolean urlArgs() default false;
+
 }
