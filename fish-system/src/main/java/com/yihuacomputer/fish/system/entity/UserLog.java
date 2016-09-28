@@ -68,6 +68,25 @@ public class UserLog implements IUserLog,Serializable {
      */
     @Column(name = "OPER_RESULT", nullable = false, length = 10)
     private String operResult;
+    
+
+    /**
+     * 浏览器IP
+     */
+    @Column(name = "CLIENT_IP", nullable = false, length = 20)
+    private String clientIP;
+    
+    /**
+     * 服务器IP
+     */
+    @Column(name = "SERVER_IP", nullable = false, length = 20)
+    private String serverIp;
+
+    /**
+     * 执行时间
+     */
+    @Column(name = "TIMES", nullable = false, length = 20)
+    private long times;
 
     public UserLog() {
     }
@@ -131,4 +150,28 @@ public class UserLog implements IUserLog,Serializable {
     public void setOperResult(String operResult) {
         this.operResult = operResult;
     }
+
+	public String getClientIP() {
+		return clientIP;
+	}
+
+	public void setClientIP(String clientIP) {
+		this.clientIP = clientIP;
+	}
+
+	public String getServerIp() {
+		return serverIp;
+	}
+
+	public void setServerIp(String serverIp) {
+		this.serverIp = serverIp;
+	}
+
+	public long getTimes() {
+		return times;
+	}
+
+	public void setTimes(long times) {
+		this.times = times;
+	}
 }

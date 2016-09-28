@@ -35,4 +35,24 @@ public interface IUserLog {
 
     public void setOperResult(String operResult);
 
+	/**
+	 * 浏览器IP
+	 * @return
+	 */
+	public String getClientIP();
+	public void setClientIP(String clientIP);
+
+	/**
+	 * 服务器IP
+	 * @return
+	 */
+	public String getServerIp();
+	public void setServerIp(String serverIp);
+	
+	/**
+	 * 执行动作所需时间
+	 * @return
+	 */
+	public long getTimes();
+	public void setTimes(long times);
 }
