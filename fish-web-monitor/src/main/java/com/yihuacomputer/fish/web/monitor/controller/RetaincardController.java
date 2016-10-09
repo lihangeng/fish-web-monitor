@@ -1,26 +1,16 @@
 package com.yihuacomputer.fish.web.monitor.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFDataFormat;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
@@ -55,6 +46,7 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.monitor.form.RetainCardForm;
+import com.yihuacomputer.fish.web.util.ExcelViewUtils;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 /**
@@ -501,7 +493,23 @@ public class RetaincardController {
 		}
 		return flag;
 	}
-
+	public List<RetainCardForm> convert(List<IRetaincard> list) {
+		List<RetainCardForm> result = new ArrayList<RetainCardForm>();
+		for (IRetaincard item : list) {
+			RetainCardForm rcf = new RetainCardForm();
+			rcf.setTerminalId(item.getTerminalId());
+			IDevice device = deviceService.get(item.getTerminalId());
+			IOrganization org = device.getOrganization();
+			rcf.setSubsidiaryorganName(org.getName());
+			rcf.setAccountNo(item.getAccountNo());
+			rcf.setCardRetainType(getI18N(item.getCardRetainType().getText()));
+			rcf.setCardRetainTime(DateUtils.getTimestamp(item.getCardRetainTime()));
+			rcf.setCardDistributionBank(item.getCardDistributionBank());
+			rcf.setReason(item.getReason());
+			result.add(rcf);
+		}
+		return result;
+	}
 	/**
 	 * 导出吞卡信息 生成Excel
 	 *
@@ -510,10 +518,24 @@ public class RetaincardController {
 	@MethodNameDescrible(describle="userlog.RetaincardController.poiExcel",hasArgs=false)
 	@RequestMapping(value = "/poiExcel", method = RequestMethod.GET)
 	public @ResponseBody
-	ModelMap poiExcel(WebRequest wRequest, HttpServletRequest request,
+	ModelAndView poiExcel(WebRequest wRequest, HttpServletRequest request,
 			HttpServletResponse response) {
+		logger.info(String.format("Export Retain Card Information : "));
+		IFilter filter = request2filter(wRequest);
+		UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
+		List<IRetaincard> entities = retaincardService.listCardByOrgId(userSession.getOrgId(), filter);
+		Map<String,Object> map = new HashMap<String,Object>();
+		String theme = String.format("%s",getI18N("retaincard.info"));
+		map.put(ExcelViewUtils.SHEET_NAME, theme);//device.devinfo
+		map.put(ExcelViewUtils.TITLE, theme);
+		map.put(ExcelViewUtils.FILE_NAME, theme);
+		// 获得机构下所有的设备信息
+		List<RetainCardForm> formList = convert(entities);
+		map.put(ExcelViewUtils.BODY_CONTEXTS, formList);
+		ExcelViewUtils excelUtils = new ExcelViewUtils();
+		return new ModelAndView(excelUtils,map);
 
-		// 创建一个webbook，对应一个Excel文件
+		/*// 创建一个webbook，对应一个Excel文件
 		HSSFWorkbook wb = new HSSFWorkbook();
 		// 在webbook中添加一个sheet,对应Excel文件中的sheet
 		HSSFSheet sheet = wb.createSheet("吞卡表");
@@ -529,13 +551,13 @@ public class RetaincardController {
 		cell = row.createCell(1);
 		cell.setCellValue(messageSource.getMessage("device.devOrg", null, FishCfg.locale));
 		cell.setCellStyle(style);
-		/**
+		*//**
 		 * 上海农商行暂不需要
-		 */
-		/*
+		 *//*
+		
 		 * cell = row.createCell(2); cell.setCellValue("移交到机构");
 		 * cell.setCellStyle(style);
-		 */
+		 
 		cell = row.createCell(2);
 		cell.setCellValue(messageSource.getMessage("retaincard.cardNo", null, FishCfg.locale));
 		cell.setCellStyle(style);
@@ -554,9 +576,9 @@ public class RetaincardController {
 		cell.setCellValue(messageSource.getMessage("retaincard.retainReason", null, FishCfg.locale));
 		cell.setCellStyle(style);
 
-		/**
+		*//**
 		 * 设置格式，解决当编号以‘0’开头时，点击单元格后‘0’会消失
-		 */
+		 *//*
 		HSSFCellStyle cellStyle = wb.createCellStyle();
 		HSSFDataFormat format = wb.createDataFormat();
 		cellStyle.setDataFormat(format.getFormat("@"));
@@ -609,11 +631,11 @@ public class RetaincardController {
 		File file = new File(FishCfg.getTempDir()
 				+ System.getProperty("file.separator") + name);
 		this.download(file, response, "gb2312", "application/x-xls");
-		return null;
+		return null;*/
 	}
 	@Autowired
 	private MessageSource messageSourceEnum;
-    private String getEnumI18n(String enumText){
+    private String getI18N(String enumText){
     	if(null==enumText){
     		return "";
     	}
@@ -631,7 +653,7 @@ public class RetaincardController {
 	 * @param contentType
 	 *            头信息
 	 */
-	private void download(File file, HttpServletResponse response,
+	/*private void download(File file, HttpServletResponse response,
 			String encoding, String contentType) {
 		response.setCharacterEncoding(encoding);
 		response.setContentType(contentType);
@@ -685,7 +707,7 @@ public class RetaincardController {
 			// }
 			// }
 		}
-	}
+	}*/
 
 	/**
 	 * 手动添加时检查卡片状态，若卡片为待领或者调出状态时则不能添加此卡片信息
@@ -813,7 +835,7 @@ public class RetaincardController {
 		return filter;
 	}
 
-	private String cellValue(Object obj) {
+	/*private String cellValue(Object obj) {
 		if (obj == null) {
 			return "";
 		}
@@ -826,5 +848,5 @@ public class RetaincardController {
 			return String.valueOf(obj.toString());
 		}
 		return obj.toString();
-	}
+	}*/
 }
