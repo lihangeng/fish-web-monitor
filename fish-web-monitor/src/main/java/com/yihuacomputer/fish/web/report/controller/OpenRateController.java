@@ -1,28 +1,16 @@
 package com.yihuacomputer.fish.web.report.controller;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.RandomAccessFile;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFFont;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.hssf.util.HSSFColor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
@@ -58,6 +47,7 @@ import com.yihuacomputer.fish.api.report.openRate.IDayOpenRateService;
 import com.yihuacomputer.fish.machine.service.AtmTypeService;
 import com.yihuacomputer.fish.web.report.form.OpenRateForm;
 import com.yihuacomputer.fish.web.report.form.OpenRateTreeForm;
+import com.yihuacomputer.fish.web.util.ExcelViewUtils;
 
 /**
  * 开机率
@@ -82,10 +72,6 @@ public class OpenRateController {
     @Autowired
 	protected MessageSource messageSource;
 
-    /**
-     * 导出excel文件名称 ,response/file目录下
-     */
-    private String importFileName;
 
     /**
      * 日志
@@ -223,7 +209,7 @@ public class OpenRateController {
 	@MethodNameDescrible(describle="userlog.OpenRateController.exportDevice",hasArgs=false)
     @RequestMapping(value = "device/importStat", method = RequestMethod.GET)
     public @ResponseBody
-    void deviceImportStat(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView deviceImportStat(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) {
 
         IFilter filter = request2filter(webRequest, "rate.statDate");
 
@@ -282,14 +268,16 @@ public class OpenRateController {
         	  filter.eq("info.devType.devCatalog.id", Long.valueOf(devCatalogId));
         }
 
-        List<OpenRateForm> date = OpenRateForm.convert(dayOpenRateService.listDev(filter));
-
-        String path = createExls(date, messageSource.getMessage("device.terminalId", null, FishCfg.locale), true);
-        try {
-            download(path, webRequest, response);
-        }
-        catch (Exception e) {
-        }
+        List<OpenRateForm> data = OpenRateForm.convert(dayOpenRateService.listDev(filter));
+        Map<String,Object> map = new HashMap<String,Object>();
+		String theme = messageSource.getMessage("openRateReport.device", null, FishCfg.locale);
+		map.put(ExcelViewUtils.SHEET_NAME, theme);//device.devinfo
+		map.put(ExcelViewUtils.TITLE, theme);
+		map.put(ExcelViewUtils.FILE_NAME, theme);
+		// 获得机构下所有的设备信息
+		map.put(ExcelViewUtils.BODY_CONTEXTS, data);
+		ExcelViewUtils excelUtils = new ExcelViewUtils();
+		return new ModelAndView(excelUtils,map);
     }
 
 	/**
@@ -301,7 +289,7 @@ public class OpenRateController {
 	@MethodNameDescrible(describle="userlog.OpenRateController.exportType",hasArgs=false)
     @RequestMapping(value = "type/importStat", method = RequestMethod.GET)
     public @ResponseBody
-    void typeImportStat(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView typeImportStat(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) {
 
         Iterable<IAtmType> iterable = typeService.list();
 
@@ -319,15 +307,17 @@ public class OpenRateController {
         if(awayFlag != null&&awayFlag !=""){
         filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
         }
-        List<OpenRateForm> date = listType2Form(EntityUtils.<IAtmType> convert(iterable), filter);
+        List<OpenRateForm> data = listType2Form(EntityUtils.<IAtmType> convert(iterable), filter);
 
-        String path = createExls(date, messageSource.getMessage("openRateReport.devType", null, FishCfg.locale), false);
-
-        try {
-            download(path, webRequest, response);
-        }
-        catch (Exception e) {
-        }
+        Map<String,Object> map = new HashMap<String,Object>();
+		String theme = messageSource.getMessage("openRateReport.devType", null, FishCfg.locale);
+		map.put(ExcelViewUtils.SHEET_NAME, theme);//device.devicetype
+		map.put(ExcelViewUtils.TITLE, theme);
+		map.put(ExcelViewUtils.FILE_NAME, theme);
+		// 获得机构下所有的设备信息
+		map.put(ExcelViewUtils.BODY_CONTEXTS, data);
+		ExcelViewUtils excelUtils = new ExcelViewUtils();
+		return new ModelAndView(excelUtils,map);
     }
 
     /**
@@ -339,7 +329,7 @@ public class OpenRateController {
     @MethodNameDescrible(describle="userlog.OpenRateController.exportOrg",hasArgs=false)
     @RequestMapping(value = "org/importStat", method = RequestMethod.GET)
     public @ResponseBody
-    void orgImportStat(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) {
+    ModelAndView orgImportStat(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response) {
 
         IFilter orgFilter = new Filter();
 
@@ -362,353 +352,17 @@ public class OpenRateController {
         if(awayFlag != null&&awayFlag !=""){
         filter.eq("info.awayFlag", AwayFlag.getById(Integer.valueOf(awayFlag)));
         }
-        List<OpenRateForm> date = listOrg2Form(treeFormList, filter);
-
-        String path = createExls(date, messageSource.getMessage("openRateReport.org", null, FishCfg.locale), false);
-
-        try {
-            download(path, webRequest, response);
-        }
-        catch (Exception e) {
-        }
-    }
-
-    private void download(String path, WebRequest request, HttpServletResponse response) throws Exception {
-
-        File file = new File(path);
-
-        response.setHeader("Content-Disposition",
-                "attachment; filename=\"" + getFileName(request, path.substring(path.lastIndexOf(File.separator)+1))
-                        + "\"");
-        response.addHeader("Content-Length", "" + file.length());
-        response.setContentType("application/x-msdownload;charset=UTF-8");
-        OutputStream out = null;
-        RandomAccessFile randomFile = new RandomAccessFile(file, "r");
-        try {
-            out = response.getOutputStream();
-            int len = 0;
-            long contentLength = 0;
-            contentLength = contentLength + randomFile.length();
-            randomFile.seek(0);
-            byte[] cache = new byte[1024];
-            while ((len = randomFile.read(cache)) != -1) {
-                out.write(cache, 0, len);
-                contentLength += len;
-            }
-        }
-        catch (Exception ex) {
-        	logger.error(ex.getMessage());
-        }
-        finally {
-            if (out != null) {
-                out.close();
-            }
-            if (randomFile != null) {
-                randomFile.close();
-            }
-        }
-    }
-
-    private String getFileName(WebRequest request, String name) throws Exception {
-    	if (request.getHeader("User-Agent").toUpperCase().indexOf("CHROME") > 0||request.getHeader("User-Agent").toUpperCase().indexOf("FIREFOX") > 0) {
-			return new String(name.getBytes("UTF-8"), "ISO8859-1");
-		} else {
-			// IE浏览器
-			return URLEncoder.encode(name, "UTF-8");
-		}
-    }
-
-    private String createExls(List<OpenRateForm> data, String sheetName, boolean isProg) {
-
-    	importFileName = sheetName.substring(0, 2) + messageSource.getMessage("report.openRate.title", null, FishCfg.locale);
-        String pathname = FishCfg.getTempDir() + File.separator + importFileName;
-
-        HSSFWorkbook workBook = new HSSFWorkbook();
-
-        HSSFCellStyle bodyCellStyle = workBook.createCellStyle();
-        bodyCellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-        bodyCellStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-
-        bodyCellStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
-        bodyCellStyle.setBottomBorderColor(HSSFColor.BLACK.index);
-
-        bodyCellStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);
-        bodyCellStyle.setLeftBorderColor(HSSFColor.BLACK.index);
-
-        bodyCellStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);
-        bodyCellStyle.setRightBorderColor(HSSFColor.BLACK.index);
-
-        bodyCellStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);
-        bodyCellStyle.setTopBorderColor(HSSFColor.BLACK.index);
-        
-        bodyCellStyle.setFillForegroundColor(HSSFColor.RED.index);
-        
-        
-        HSSFCellStyle bodyCellStyleRed = workBook.createCellStyle();
-        bodyCellStyleRed.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-        bodyCellStyleRed.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-
-        bodyCellStyleRed.setBorderBottom(HSSFCellStyle.BORDER_THIN);
-        bodyCellStyleRed.setBottomBorderColor(HSSFColor.BLACK.index);
-
-        bodyCellStyleRed.setBorderLeft(HSSFCellStyle.BORDER_THIN);
-        bodyCellStyleRed.setLeftBorderColor(HSSFColor.BLACK.index);
-
-        bodyCellStyleRed.setBorderRight(HSSFCellStyle.BORDER_THIN);
-        bodyCellStyleRed.setRightBorderColor(HSSFColor.BLACK.index);
-
-        bodyCellStyleRed.setBorderTop(HSSFCellStyle.BORDER_THIN);
-        bodyCellStyleRed.setTopBorderColor(HSSFColor.BLACK.index);
-        
-        bodyCellStyleRed.setFillForegroundColor(HSSFColor.RED.index);
-        
-        HSSFFont font=workBook.createFont();
-    	font.setColor(HSSFColor.RED.index);
-    	bodyCellStyleRed.setFont(font);
-
-        HSSFCellStyle titleCellStyle = workBook.createCellStyle();
-        titleCellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-        titleCellStyle.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-
-        titleCellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-        titleCellStyle.setFillForegroundColor(HSSFColor.AQUA.index);
-
-        titleCellStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
-        titleCellStyle.setBottomBorderColor(HSSFColor.BLACK.index);
-
-        titleCellStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);
-        titleCellStyle.setLeftBorderColor(HSSFColor.BLACK.index);
-
-        titleCellStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);
-        titleCellStyle.setRightBorderColor(HSSFColor.BLACK.index);
-
-        titleCellStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);
-        titleCellStyle.setTopBorderColor(HSSFColor.BLACK.index);
-
-        HSSFFont titleFont = workBook.createFont();
-        titleFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
-
-        titleFont.setFontHeight((short) 300);
-        titleCellStyle.setFont(titleFont);
-
-        HSSFSheet sheet = workBook.createSheet(sheetName);
-
-        HSSFRow row = sheet.createRow(0);
-        row.setHeight((short) 700);
-
-        int columnIndex = 0;
-
-        sheet.setColumnWidth(columnIndex++, 5500);
-        sheet.setColumnWidth(columnIndex++, 6500);
-
-        if (isProg) {
-            sheet.setColumnWidth(columnIndex++, 4500);
-            sheet.setColumnWidth(columnIndex++, 4500);
-        }
-        sheet.setColumnWidth(columnIndex++, 8000);
-        sheet.setColumnWidth(columnIndex++, 8000);
-        sheet.setColumnWidth(columnIndex++, 8000);
-        sheet.setColumnWidth(columnIndex++, 8000);
-        sheet.setColumnWidth(columnIndex++, 8000);
-        sheet.setColumnWidth(columnIndex++, 8000);
-
-        sheet.setColumnWidth(columnIndex++, 8000);
-        sheet.setColumnWidth(columnIndex++, 8000);
-        sheet.setColumnWidth(columnIndex++, 8000);
-        sheet.setColumnWidth(columnIndex++, 3500);
-
-        if (isProg) {
-            sheet.setColumnWidth(columnIndex++, 3500);
-        }
-
-        columnIndex = 0;
-
-        HSSFCell cell = row.createCell(columnIndex++);
-        cell.setCellValue(sheetName);
-        cell.setCellStyle(titleCellStyle);
-        if(isProg)
-        {
-        	 cell = row.createCell(columnIndex++);
-             cell.setCellValue(messageSource.getMessage("device.devOrg", null, FishCfg.locale));
-             cell.setCellStyle(titleCellStyle);
-
-             cell = row.createCell(columnIndex++);
-             cell.setCellValue(messageSource.getMessage("openRateReport.devCatalog", null, FishCfg.locale));
-             cell.setCellStyle(titleCellStyle);
-
-        }
-        cell = row.createCell(columnIndex++);
-        cell.setCellValue(messageSource.getMessage("openRateReport.date", null, FishCfg.locale));
-        cell.setCellStyle(titleCellStyle);
-
-        /*
-         * if (isProg) { cell = row.createCell(columnIndex++);
-         * cell.setCellValue("方案开机时间"); cell.setCellStyle(titleCellStyle);
-         *
-         * cell = row.createCell(columnIndex++); cell.setCellValue("方案关机时间");
-         * cell.setCellStyle(titleCellStyle);
-         *
-         * cell = row.createCell(columnIndex++);
-         * cell.setCellValue("方案应开机时长(分钟)"); cell.setCellStyle(titleCellStyle);
-         *
-         * cell = row.createCell(columnIndex++);
-         * cell.setCellValue("方案有效开机时长(分钟)"); cell.setCellStyle(titleCellStyle);
-         * }
-         */
-
-        cell = row.createCell(columnIndex++);
-        cell.setCellValue(messageSource.getMessage("openRateReport.totalTime", null, FishCfg.locale));
-        cell.setCellStyle(titleCellStyle);
-
-        cell = row.createCell(columnIndex++);
-        cell.setCellValue(messageSource.getMessage("openRateReport.normalTime", null, FishCfg.locale));
-        cell.setCellStyle(titleCellStyle);
-
-        cell = row.createCell(columnIndex++);
-        cell.setCellValue(messageSource.getMessage("openRateReport.managerTime", null, FishCfg.locale));
-        cell.setCellStyle(titleCellStyle);
-
-        cell = row.createCell(columnIndex++);
-        cell.setCellValue(messageSource.getMessage("openRateReport.netErrorTime", null, FishCfg.locale));
-        cell.setCellStyle(titleCellStyle);
-
-        cell = row.createCell(columnIndex++);
-        cell.setCellValue(messageSource.getMessage("openRateReport.hardErrorTime", null, FishCfg.locale));
-        cell.setCellStyle(titleCellStyle);
-
-        cell = row.createCell(columnIndex++);
-        cell.setCellValue(messageSource.getMessage("openRateReport.pErrorTime", null, FishCfg.locale));
-        cell.setCellStyle(titleCellStyle);
-
-        cell = row.createCell(columnIndex++);
-        cell.setCellValue(messageSource.getMessage("openRateReport.otherTime", null, FishCfg.locale));
-        cell.setCellStyle(titleCellStyle);
-
-        cell = row.createCell(columnIndex++);
-        cell.setCellValue(messageSource.getMessage("openRateReport.openRate", null, FishCfg.locale));
-        cell.setCellStyle(titleCellStyle);
-
-       /* if (isProg) {
-            cell = row.createCell(columnIndex++);
-            cell.setCellValue("方案开机率");
-            cell.setCellStyle(titleCellStyle);
-        }*/
-
-        for (int i = 0; i < data.size(); i++) {
-             
-            OpenRateForm form = data.get(i);
-            
-            double openRate=form.getOpenRate();
-            double avgOpenRate=form.getAvgOpenRate();
-
-
-            row = sheet.createRow(i + 1);
-            row.setHeight((short) 350);
-
-            columnIndex = 0;
-
-            cell = row.createCell(columnIndex++);
-            cell.setCellValue(form.getTerminalId());
-            cell.setCellStyle(bodyCellStyle);
-
-			if (isProg) {
-				cell = row.createCell(columnIndex++);
-				cell.setCellValue(form.getOrgName());
-				cell.setCellStyle(bodyCellStyle);
-
-				cell = row.createCell(columnIndex++);
-				cell.setCellValue(form.getDevCatalogName());
-				cell.setCellStyle(bodyCellStyle);
-			}
-            cell = row.createCell(columnIndex++);
-            cell.setCellValue(form.getStatDate());
-            cell.setCellStyle(bodyCellStyle);
-
-            /*
-             * if (isProg) { cell = row.createCell(columnIndex++);
-             * cell.setCellValue(form.getProgramOpenTime());
-             * cell.setCellStyle(bodyCellStyle);
-             *
-             * cell = row.createCell(columnIndex++);
-             * cell.setCellValue(form.getProgramCloseTime());
-             * cell.setCellStyle(bodyCellStyle);
-             *
-             * cell = row.createCell(columnIndex++);
-             * cell.setCellValue(form.getProgramTimes());
-             * cell.setCellStyle(bodyCellStyle);
-             *
-             * cell = row.createCell(columnIndex++);
-             * cell.setCellValue(form.getProgramTimeReal());
-             * cell.setCellStyle(bodyCellStyle); }
-             */
-
-            cell = row.createCell(columnIndex++);
-            cell.setCellValue(form.getOpenTimes());
-            cell.setCellStyle(bodyCellStyle);
-
-            cell = row.createCell(columnIndex++);
-            cell.setCellValue(form.getHealthyTimeReal());
-            cell.setCellStyle(bodyCellStyle);
-
-            cell = row.createCell(columnIndex++);
-            cell.setCellValue(form.getMaintainTimeReal());
-            cell.setCellStyle(bodyCellStyle);
-
-            cell = row.createCell(columnIndex++);
-            cell.setCellValue(form.getUnknownTimeReal());
-            cell.setCellStyle(bodyCellStyle);
-
-            cell = row.createCell(columnIndex++);
-            cell.setCellValue(form.getFaultTimeReal());
-            cell.setCellStyle(bodyCellStyle);
-
-            cell = row.createCell(columnIndex++);
-            cell.setCellValue(form.getAtmpTimeReal());
-            cell.setCellStyle(bodyCellStyle);
-
-            cell = row.createCell(columnIndex++);
-            cell.setCellValue(form.getStopTimeReal());
-            cell.setCellStyle(bodyCellStyle);
-            
-            if(openRate<avgOpenRate){
-            	cell = row.createCell(columnIndex++);
-                cell.setCellValue(form.getOpenRate() + "%");
-                cell.setCellStyle(bodyCellStyleRed);
-            }else{
-            	cell = row.createCell(columnIndex++);
-                cell.setCellValue(form.getOpenRate() + "%");
-                cell.setCellStyle(bodyCellStyle);
-            }
-            
-            
-
-            /*if (isProg) {
-                cell = row.createCell(columnIndex++);
-                cell.setCellValue(form.getProgramOpenRate() + "%");
-                cell.setCellStyle(bodyCellStyle);
-            }*/
-
-        }
-
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(pathname);
-            workBook.write(fos);
-        }
-        catch (FileNotFoundException e) {
-        }
-        catch (IOException e) {
-        }
-        finally {
-            if (fos != null) {
-                try {
-                    fos.close();
-                }
-                catch (IOException e) {
-                }
-            }
-        }
-        return pathname;
+        List<OpenRateForm> data = listOrg2Form(treeFormList, filter);
+
+        Map<String,Object> map = new HashMap<String,Object>();
+		String theme = messageSource.getMessage("openRateReport.org", null, FishCfg.locale);
+		map.put(ExcelViewUtils.SHEET_NAME, theme);//device.devicetype
+		map.put(ExcelViewUtils.TITLE, theme);
+		map.put(ExcelViewUtils.FILE_NAME, theme);
+		// 获得机构下所有的设备信息
+		map.put(ExcelViewUtils.BODY_CONTEXTS, data);
+		ExcelViewUtils excelUtils = new ExcelViewUtils();
+		return new ModelAndView(excelUtils,map);
     }
 
     private IFilter request2filter(WebRequest request, String key) {

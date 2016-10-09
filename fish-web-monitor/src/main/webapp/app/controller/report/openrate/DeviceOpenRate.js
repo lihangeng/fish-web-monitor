@@ -35,8 +35,12 @@ Ext.define('Eway.controller.report.openrate.DeviceOpenRate', {
 	onImport : function() {
 		var view = this.getEwayView();
 		var form = view.down('form').getForm();
+		var bool =  form.isValid();
+		if(bool==false){
+			return false;
+		}
 		var values = form.getValues();
-		var param = 'statType='+values.statType+
+		var param = '&statType='+values.statType+
 		'&day='+values.day+
 		'&month='+values.month+
 		'&year='+values.year+
@@ -48,6 +52,16 @@ Ext.define('Eway.controller.report.openrate.DeviceOpenRate', {
 		'&org='+values.organization+
 		'&openRate='+values.openrate+
 		'&compare='+values.compare;
-		window.location.href = 'api/report/openrate/device/importStat?' + param;
+		var columns = this.getEwayView().down('grid').getColumns();
+        var headerName = new Array();
+		   var colIndex = new Array();
+		   var colWidth = new Array();
+		   Ext.Array.forEach(columns,function(item,index,opt){
+				headerName.push(item.text);
+				colWidth.push(item.cellWidth);
+				colIndex.push(item.dataIndex);
+			},this);
+		   param+="&gridInfoHeaderNames="+headerName+"&gridInfoColIndexs="+colIndex+"&gridInfoColWidths="+colWidth;
+		window.location.href = 'api/report/openrate/device/importStat?_dc=' + param;
 	}
 });
