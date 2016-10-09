@@ -27,6 +27,13 @@ public class CashInitPlanDeviceInfoForm {
 	private String address;
 	//最大加钞金额
 	private long maxAmt;
+	private String strMaxAmt;
+	public String getStrMaxAmt() {
+		return strMaxAmt;
+	}
+	public void setStrMaxAmt(String strMaxAmt) {
+		this.strMaxAmt = strMaxAmt;
+	}
 	//剩余的金额(取款箱)
 	private double billAmt;
 	//剩余的金额(存款箱)

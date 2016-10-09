@@ -1,12 +1,5 @@
 package com.yihuacomputer.fish.web.cashbox.controller;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.RandomAccessFile;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,15 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFDataFormat;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
@@ -54,6 +40,7 @@ import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfo;
 import com.yihuacomputer.fish.api.monitor.box.ICashInitPlanInfoService;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
+import com.yihuacomputer.fish.web.util.ExcelViewUtils;
 
 /**
  * @author GQ
@@ -107,58 +94,32 @@ public class CashInitPlanDeviceDetailController {
 	 */
 	@RequestMapping(value = "export", method = RequestMethod.GET)
 	@MethodNameDescrible(describle="userlog.deviceController.export",hasArgs=false)
-	public void export(WebRequest webRequest, HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
-
+	public @ResponseBody
+	ModelAndView export( WebRequest webRequest, HttpServletRequest request) {
 		IFilter filter = getCashInitPlanInfoFilter(webRequest);
 		List<ICashInitPlanDeviceInfo> cashInitPlanPageResult = cashInitPlanDeviceInfoService.list(filter);
 		ICashInitPlanInfo planInfo = cashInitPlanInfoService.get(Long.parseLong(request.getParameter("cashInitPlanInfoId")));
 		Map<String, IDeviceBoxInfo> deviceBoxInfoMap = deviceBoxInfoService.getDeviceBoxInfo(planInfo.getOrg().getOrgFlag());
 		List<CashInitPlanDeviceInfoForm> dcbirList = convert(cashInitPlanPageResult, deviceBoxInfoMap);
-		String fileName = messageSource.getMessage("cashInitPlanDevice.title", new Object[]{planInfo.getOrg().getName(),planInfo.getCashInitCode()}, FishCfg.locale);
-		String path = createExls(dcbirList, fileName);
-
-		File file = new File(path);
-
-		response.setHeader("Content-Disposition",
-				"attachment; filename=\"" + getFileName(request, path.substring(path.lastIndexOf(File.separator)))
-						+ "\"");
-		response.addHeader("Content-Length", "" + file.length());
-		response.setContentType("application/x-msdownload;charset=UTF-8");
-		OutputStream out = null;
-		RandomAccessFile randomFile = new RandomAccessFile(file, "r");
-		try {
-			out = response.getOutputStream();
-			int len = 0;
-			long contentLength = 0;
-			contentLength = contentLength + randomFile.length();
-			randomFile.seek(0);
-			byte[] cache = new byte[1024];
-			while ((len = randomFile.read(cache)) != -1) {
-				out.write(cache, 0, len);
-				contentLength += len;
-			}
-		} catch (Exception ex) {
-			logger.error(ex.getMessage());
-		} finally {
-			if (out != null) {
-				out.close();
-			}
-			if (randomFile != null) {
-				randomFile.close();
-			}
-		}
+		Map<String,Object> map = new HashMap<String,Object>();
+		String theme = String.format("%s",messageSource.getMessage("cashInitPlanDevice.title", new Object[]{planInfo.getOrg().getName(),planInfo.getCashInitCode()}, FishCfg.locale));
+		map.put(ExcelViewUtils.SHEET_NAME, theme);
+		map.put(ExcelViewUtils.TITLE, theme);
+		map.put(ExcelViewUtils.FILE_NAME, theme);
+		map.put(ExcelViewUtils.BODY_CONTEXTS, dcbirList);
+		ExcelViewUtils excelUtils = new ExcelViewUtils();
+		return new ModelAndView(excelUtils,map);
 
 	}
 
-	private String getFileName(HttpServletRequest request, String name) throws Exception {
+	/*private String getFileName(HttpServletRequest request, String name) throws Exception {
 		if (request.getHeader("User-Agent").toUpperCase().indexOf("CHROME") > 0||request.getHeader("User-Agent").toUpperCase().indexOf("FIREFOX") > 0) {
 			return new String(name.getBytes("UTF-8"), "ISO8859-1");
 		} else {
 			// IE浏览器
 			return URLEncoder.encode(name, "UTF-8");
 		}
-	}
+	}*/
 	/**
 	 * 获取当前可选的设备列表
 	 * 
@@ -350,11 +311,11 @@ public class CashInitPlanDeviceDetailController {
 			form.setTerminalId(cashInitPlanDevice.getTerminalId());
 			IDeviceBoxInfo deviceBoxInfo = deviceBoxInfoMap.get(cashInitPlanDevice.getTerminalId());
 			if (null != deviceBoxInfo) {
-				form.setMaxAmt(deviceBoxInfo.getDefaultBill());
+				form.setStrMaxAmt(deviceBoxInfo.getDefaultBill()+"");
 				form.setBillAmt(deviceBoxInfo.getBillValue());
 				form.setCashInAmt(deviceBoxInfo.getCashInValue());
 			} else {
-				form.setMaxAmt(-1);
+				form.setStrMaxAmt(getEnumI18n("cashInitPlanDevice.unknown"));
 			}
 			formList.add(form);
 		}
@@ -405,134 +366,4 @@ public class CashInitPlanDeviceDetailController {
     	}
     	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
     }
-	private String createExls(List<CashInitPlanDeviceInfoForm> data, String sheetName) {
-
-		String pathname = FishCfg.getTempDir() + File.separator + sheetName + ".xls";
-
-		HSSFWorkbook workBook = new HSSFWorkbook();
-
-		HSSFSheet sheet = workBook.createSheet(sheetName);
-
-		HSSFRow row = sheet.createRow(0);
-
-		HSSFCell cell = row.createCell(0);
-		cell.setCellValue(getEnumI18n("cashInitPlanDevice.terminalId"));
-				
-		cell = row.createCell(1);
-		cell.setCellValue(getEnumI18n("cashInitPlanDevice.actualAmt"));
-		
-		cell = row.createCell(2);
-		cell.setCellValue(getEnumI18n("cashInitPlanDevice.maxAmt"));
-		
-		cell = row.createCell(3);
-		cell.setCellValue(getEnumI18n("cashInitPlanDevice.adviceAmt"));
-		
-		cell = row.createCell(4);
-		cell.setCellValue(getEnumI18n("cashInitPlanDevice.devTypeName"));
-		
-		
-		cell = row.createCell(5);
-		cell.setCellValue(getEnumI18n("cashInitPlanDevice.billAmt"));
-		
-		cell = row.createCell(6);
-		cell.setCellValue(getEnumI18n("cashInitPlanDevice.cashInAmt"));
-		
-		cell = row.createCell(7);
-		cell.setCellValue(getEnumI18n("cashInitPlanDevice.onBankSignal"));
-		
-		cell = row.createCell(8);
-		cell.setCellValue(getEnumI18n("cashInitPlanDevice.orgName"));
-
-		cell = row.createCell(9);
-		cell.setCellValue(getEnumI18n("cashInitPlanDevice.lastAmt"));
-
-		cell = row.createCell(10);
-		cell.setCellValue(getEnumI18n("cashInitPlanDevice.lastDate"));
-
-		cell = row.createCell(11);
-		cell.setCellValue(getEnumI18n("cashInitPlanDevice.devAddress"));
-		
-		HSSFCellStyle cellStyle = workBook.createCellStyle();
-		HSSFDataFormat format = workBook.createDataFormat();
-
-		cellStyle.setDataFormat(format.getFormat("@"));
-
-		int count = 1;
-		for (CashInitPlanDeviceInfoForm planDeviceInfo : data) {
-			row = sheet.createRow(count);
-			count++;
-			cell = row.createCell(0);
-			cell.setCellType(Cell.CELL_TYPE_STRING);
-			cell.setCellStyle(cellStyle);
-			cell.setCellValue(cellValue(planDeviceInfo.getTerminalId()));
-
-			cell = row.createCell(1);
-			cell.setCellValue(cellValue(planDeviceInfo.getActualAmt()));
-
-			cell = row.createCell(2);
-			if(planDeviceInfo.getMaxAmt()==-1){
-				cell.setCellValue(cellValue(getEnumI18n("cashInitPlanDevice.unknown")));
-			}else{
-				cell.setCellValue(cellValue(planDeviceInfo.getMaxAmt()));
-			}
-
-			cell = row.createCell(3);
-			cell.setCellValue(cellValue(planDeviceInfo.getAdviceAmt()));
-
-			cell = row.createCell(4);
-			cell.setCellValue(cellValue(planDeviceInfo.getDevType()));
-
-			cell = row.createCell(5);
-			cell.setCellValue(cellValue(planDeviceInfo.getBillAmt()));
-
-			cell = row.createCell(6);
-			cell.setCellValue(cellValue(planDeviceInfo.getCashInAmt()));
-
-			cell = row.createCell(7);
-			cell.setCellValue(cellValue(planDeviceInfo.getAwayFlag()));
-			
-			cell = row.createCell(8);
-			cell.setCellValue(cellValue(planDeviceInfo.getOrgName()));
-			
-			cell = row.createCell(9);
-			cell.setCellValue(cellValue(planDeviceInfo.getLastAmt()));
-			
-			cell = row.createCell(10);
-			cell.setCellValue(cellValue(planDeviceInfo.getLastDate()));
-			
-			cell = row.createCell(11);
-			cell.setCellValue(cellValue(planDeviceInfo.getAddress()));
-
-		}
-
-		FileOutputStream fos = null;
-		try {
-			fos = new FileOutputStream(pathname);
-			workBook.write(fos);
-		} catch (FileNotFoundException e) {
-		} catch (IOException e) {
-		} finally {
-			if (fos != null) {
-				try {
-					fos.close();
-				} catch (IOException e) {
-				}
-			}
-		}
-		return pathname;
-	}
-
-	private String cellValue(Object obj) {
-		if (obj == null) {
-			return "";
-		}
-		if (obj instanceof String) {
-			return obj.toString();
-		} else if (obj instanceof Date) {
-			return DateUtils.getDate((Date) obj);
-		} else if (obj instanceof Integer || obj instanceof Long || obj instanceof Double) {
-			return String.valueOf(obj.toString());
-		}
-		return obj.toString();
-	}
 }

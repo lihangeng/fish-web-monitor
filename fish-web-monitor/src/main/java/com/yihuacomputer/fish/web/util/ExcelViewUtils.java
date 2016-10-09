@@ -54,7 +54,7 @@ public class ExcelViewUtils extends AbstractXlsxView {
 		String title = model.get(TITLE) == null ? "" : String.valueOf(model.get(TITLE));
 		String fileName = model.get(FILE_NAME) == null ? null : String.valueOf(model.get(FILE_NAME));
 		String sheetName = model.get(SHEET_NAME) == null ? null : String.valueOf(model.get(SHEET_NAME));
-		String headerStr = request.getParameter(HEADER_NAMES);
+		String headerStr = request.getParameter(HEADER_NAMES).replaceAll("<br/>","");
 		Object contextObjects = model.get(BODY_CONTEXTS);
 		String colIndexStrs = request.getParameter(COLUMN_DATA_INDEXS);
 		String colWidthStrs = request.getParameter(COLUMN_WIDTH);
@@ -71,8 +71,10 @@ public class ExcelViewUtils extends AbstractXlsxView {
 			String[]colWidthArrays = colWidthStrs.split(",");
 			int columnIndex=0;
 			for(String width:colWidthArrays){
-				sheet.setColumnWidth(columnIndex, Integer.parseInt(width)*30);
+				if(!"".equals(width)&&width!=null){
+				sheet.setColumnWidth(columnIndex, Integer.parseInt(width)*35);
 				columnIndex++;
+				}
 			}
 		}
 		if (headerStr != null) {
@@ -159,11 +161,13 @@ public class ExcelViewUtils extends AbstractXlsxView {
 	 */
 	private CellStyle getHeaderFont(Workbook workbook) {
 		Font font = (Font) workbook.createFont();
-		font.setFontHeightInPoints((short) 14);// 设置字体大小
+		font.setFontHeightInPoints((short) 11);// 设置字体大小
 		font.setBoldweight(Font.BOLDWEIGHT_BOLD);// 粗体显示
 		CellStyle style = workbook.createCellStyle();
 		style.setAlignment(CellStyle.ALIGN_CENTER);
+		style.setVerticalAlignment(CellStyle.VERTICAL_CENTER);
 		style.setFont(font);
+		style.setWrapText(true);
 		return style;
 	}
 
