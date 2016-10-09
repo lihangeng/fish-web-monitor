@@ -9,12 +9,22 @@ Ext.define('Eway.view.Header', {
     style:{
     	backgroundColor: '#1c396f'//'#3892d3'
     },
+
     items: [
         {
             xtype : 'label',
             text : EwayLocale.ATMV,
             style : 'font-size : 18px; color : white;'
         },"->",{
+        	xtype:'textfield',
+        	name:'terminalId',
+        	 enableKeyEvents :true,
+        	emptyText :'设备号'
+        },{
+        	tooltip:EwayLocale.button.search,
+        	glyph : 0xf002,
+        	action:'signleQuery'
+        },{
         	xtype:'tbtext',
         	text: EwayLocale.welcome+Eway.user.getName(),
         	style : 'font-size : 14px; color : white;'

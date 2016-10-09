@@ -6,6 +6,9 @@ Ext.define('Eway.controller.Main', {
 	refs: [{
 		ref: 'ewayView',
 		selector: '#workspace'
+	},{
+		ref: 'appheader',
+		selector: 'appheader'
 	}],
 
 	init: function() {
@@ -23,7 +26,13 @@ Ext.define('Eway.controller.Main', {
 			},/*F5刷新的功能，未完全实现,*/
 			'#workspace' : {
 	           tabchange : 'onTabChange'
-	        }
+	        },
+	        '#appheader button[action=signleQuery]' :{
+            	click:this.searchDeviceDetail
+            },
+	        '#appheader textfield' :{
+	        	keydown:this.onEnter
+            }
 		});
 
 	   this.callParent(arguments);
@@ -48,7 +57,39 @@ Ext.define('Eway.controller.Main', {
 			}
 		});
 	},
-
+	onEnter:function( _this, e, eOpts){
+		if(e.keyCode==13){
+			this.searchDeviceDetail();
+		}
+	},
+	searchDeviceDetail:function(){
+		var termianlId = this.getAppheader().down("textfield[name=terminalId]").getValue();
+		if(termianlId!=""){
+			var me = this;
+			Ext.Ajax.request({
+				method : 'GET',
+				url : 'api/machine/devicedetail',
+				params:{'termianlId':termianlId},
+				success : function(response) {
+					var object = Ext.decode(response.responseText);
+					if (object.success == true) {
+						Ext.typeLinkModData = object.data.typeLink;
+						var controller =  me.activeController('machine.detail.Detail');
+						var view = controller.getEwayView();
+						view.setTitle(termianlId+"设备信息");
+						view.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data.deviceForm));
+					}
+					else{
+						Eway.alert(object.errorMsg);
+					}
+				}
+			});
+			
+		}
+		else{
+			Eway.alert("请输入设备号!");
+		}
+	},
 	initTabPanel:function(){
 		// 从cookie中找到最后一次打开的页面，找不到则使用worspace中默认配置的首页
 		var lastEwayPage = Ext.util.Cookies.get("lastEwayPage");
@@ -66,7 +107,9 @@ Ext.define('Eway.controller.Main', {
     	}
         var hash = newItem.controllers;
         this.redirectTo(hash);
-        Ext.util.Cookies.set("lastEwayPage",hash)
+        if(hash!="machine.detail.Detail"){
+        	Ext.util.Cookies.set("lastEwayPage",hash)
+        }
     },
 
     //打开帮助

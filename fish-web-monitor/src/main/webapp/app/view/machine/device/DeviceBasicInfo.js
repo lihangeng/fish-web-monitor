@@ -1,8 +1,6 @@
 Ext.define("Eway.view.machine.device.DeviceBasicInfo", {
 	extend : 'Eway.view.base.FilterForm',
 	alias : 'widget.device.deviceBasicInfo',
-
-//	id : 'deviceBasicInfoId',
 	title : EwayLocale.machine.device.deviceBasicInfo,
 	bodyStyle : 'padding: 10px 10px 10px 10px',
 
