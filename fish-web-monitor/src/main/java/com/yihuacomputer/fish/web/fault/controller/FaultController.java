@@ -1,25 +1,14 @@
 package com.yihuacomputer.fish.web.fault.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFDataFormat;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
@@ -49,6 +39,7 @@ import com.yihuacomputer.fish.api.fault.ICaseFaultService;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.fault.form.CaseFaultForm;
+import com.yihuacomputer.fish.web.util.ExcelViewUtils;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 @Controller
@@ -142,12 +133,60 @@ public class FaultController
         return result;
     }
 
+    public List<CaseFaultForm> convert(List<ICaseFault> list) {
+		List<CaseFaultForm> result = new ArrayList<CaseFaultForm>();
+		for (ICaseFault item : list) {
+			CaseFaultForm cff = new CaseFaultForm();
+			cff.setOrg(item.getOrg().getName());
+			cff.setTerminalId(item.getTerminalId());
+			if (null == item.getDevMod())
+            {
+                cff.setDevModName("");
+            }else{
+                cff.setDevModName(getEnumI18n(item.getDevMod().getText()));;
+            }
+			if (null == item.getFaultClassify())
+            {
+                cff.setFaultClassify("");;
+            }else{
+            	cff.setFaultClassify(item.getFaultClassify().getClassifyName());
+            }
+			cff.setVendorHwCode(item.getVendorHwCode());
+			cff.setFaultTime(DateUtils.getTimestamp(item.getFaultTime()));
+			cff.setClosedTime(DateUtils.getTimestamp(item.getClosedTime()));
+			cff.setDuration(item.getDuration());
+			if (item.getFaultStatus().equals(FaultStatus.OPEN))
+            {
+                cff.setFaultStatusName(messageSource.getMessage("fault.unClosed", null, FishCfg.locale));
+            }else if (item.getFaultStatus().equals(FaultStatus.CLOSED)){
+                cff.setFaultStatusName(messageSource.getMessage("fault.closed", null, FishCfg.locale));
+            }
+			cff.setUpgrade(item.getUpgrade());
+			if (FaultCloseType.FORCE.equals(item.getCloseType()))
+            {
+                cff.setCloseTypeName(messageSource.getMessage("fault.force", null, FishCfg.locale));
+            }
+            else if (FaultCloseType.NORMAL.equals(item.getCloseType()))
+            {
+                cff.setCloseTypeName(messageSource.getMessage("fault.normal", null, FishCfg.locale));
+            }
+            else
+            {
+            	cff.setCloseTypeName("");;
+            }
+			cff.setBankPer(listPersonName(item.getBankPerson()));
+			cff.setSerPer(listPersonName(item.getServicePerson()));
+			result.add(cff);
+		}
+		return result;
+	}
     @RequestMapping(value = "/export", method = RequestMethod.GET)
 	@MethodNameDescrible(describle="userlog.faultController.export",hasArgs=false)
     public @ResponseBody
-    ModelMap poi(WebRequest request, HttpServletRequest req, HttpServletResponse response)
+    ModelAndView poi(WebRequest request, HttpServletRequest req, HttpServletResponse response)
     {
         logger.info(String.format("export caseFault"));
+        Map<String,Object> map = new HashMap<String,Object>();
         UserSession userSession = (UserSession) req.getSession().getAttribute("SESSION_USER");
         long orgId = userSession.getOrgId();
         IFilter filter = new Filter();
@@ -158,306 +197,39 @@ public class FaultController
             if (FishWebUtils.isIgnoreRequestName(name))
             {
                 continue;
-            }
-            else
-            {
+            }else{
                 if (request.getParameter(name).isEmpty())
                 {
                     continue;
-                }
-
-                else
-                {
+                }else{
                     if ("sort".equals(name))
                     { // 去掉前端页面传来的sort排序字段
                         continue;
-                    }
-                    else
-                    {
+                    }else{
                         String value = req.getParameter(name);
                         if ("undefined".equals(value))
                         {
                             continue;
-                        }
-                        else
-                        {
+                        }else{
                             filter.eq(name, request.getParameter(name));
                         }
                     }
                 }
             }
         }
-
-        // 创建一个webbook，对应一个Excel文件
-        HSSFWorkbook wb = new HSSFWorkbook();
-        // 在webbook中添加一个sheet,对应Excel文件中的sheet
-        HSSFSheet sheet = wb.createSheet(messageSource.getMessage("fault.faultList", null, FishCfg.locale));
-        // 在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
-        HSSFRow row = sheet.createRow(0);
-        // 创建单元格，并设置值表头 设置表头居中
-        HSSFCellStyle style = wb.createCellStyle();
-        style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
-        
-        
-        HSSFCell cell = row.createCell(0);
-        cell.setCellValue(messageSource.getMessage("device.devOrg", null, FishCfg.locale));
-
-        cell = row.createCell(1);
-        cell.setCellValue(messageSource.getMessage("device.terminalId", null, FishCfg.locale));
-        cell.setCellStyle(style);
-
-        cell = row.createCell(2);
-        cell.setCellValue(messageSource.getMessage("fault.faultMod", null, FishCfg.locale));
-        cell.setCellStyle(style);
-
-        cell = row.createCell(3);
-        cell.setCellValue(messageSource.getMessage("fault.type", null, FishCfg.locale));
-        cell.setCellStyle(style);
-
-        cell = row.createCell(4);
-        cell.setCellValue(messageSource.getMessage("fault.faultCode", null, FishCfg.locale));
-        cell.setCellStyle(style);
-
-        cell = row.createCell(5);
-        cell.setCellValue(messageSource.getMessage("fault.beginTime", null, FishCfg.locale));
-        cell.setCellStyle(style);
-
-        cell = row.createCell(6);
-        cell.setCellValue(messageSource.getMessage("fault.endTime", null, FishCfg.locale));
-        cell.setCellStyle(style);
-
-        cell = row.createCell(7);
-        cell.setCellValue(messageSource.getMessage("fault.lastTime", null, FishCfg.locale));
-        cell.setCellStyle(style);
-
-        cell = row.createCell(8);
-        cell.setCellValue(messageSource.getMessage("fault.status", null, FishCfg.locale));
-        cell.setCellStyle(style);
-
-        cell = row.createCell(9);
-        cell.setCellValue(messageSource.getMessage("fault.updateTimes", null, FishCfg.locale));
-        cell.setCellStyle(style);
-
-        cell = row.createCell(10);
-        cell.setCellValue(messageSource.getMessage("fault.closeType", null, FishCfg.locale));
-        cell.setCellStyle(style);
-        
-        cell = row.createCell(11);
-        cell.setCellValue(messageSource.getMessage("fault.bankPer", null, FishCfg.locale));
-        cell.setCellStyle(style);
-        
-        cell = row.createCell(12);
-        cell.setCellValue(messageSource.getMessage("fault.serPer", null, FishCfg.locale));
-        cell.setCellStyle(style);
-        
-        HSSFCellStyle cellStyle = wb.createCellStyle();
-        HSSFDataFormat format = wb.createDataFormat();
-        cellStyle.setDataFormat(format.getFormat("@"));
-
         List<ICaseFault> list = service.list(orgId, filter);
-        for (int i = 0; i < list.size(); i++)
-        {
-            row = sheet.createRow(i + 1);
-            ICaseFault fault = list.get(i);
-            
-            cell = row.createCell(0);
-            cell.setCellType(Cell.CELL_TYPE_STRING);
-            cell.setCellStyle(cellStyle);
-            cell.setCellValue(cellValue(fault.getOrg().getName()));
-            
-            
-
-            cell = row.createCell(1);
-            cell.setCellStyle(cellStyle);
-            cell.setCellValue(cellValue(fault.getTerminalId()));
-
-            cell = row.createCell(2);
-            cell.setCellStyle(cellStyle);
-            if (null == fault.getDevMod())
-            {
-                cell.setCellValue(cellValue(""));
-            }
-            else
-            {
-                cell.setCellValue(cellValue(getEnumI18n(fault.getDevMod().getText())));
-            }
-
-            cell = row.createCell(3);
-            cell.setCellStyle(cellStyle);
-            if (null == fault.getFaultClassify())
-            {
-                cell.setCellValue(cellValue(""));
-            }
-            else
-            {
-                cell.setCellValue(cellValue(fault.getFaultClassify().getClassifyName()));
-            }
-
-            cell = row.createCell(4);
-            cell.setCellStyle(cellStyle);
-            cell.setCellValue(cellValue(fault.getVendorHwCode()));
-
-            cell = row.createCell(5);
-            cell.setCellStyle(cellStyle);
-            cell.setCellValue(cellValue(fault.getFaultTime()));
-
-            cell = row.createCell(6);
-            cell.setCellStyle(cellStyle);
-            cell.setCellValue(cellValue(fault.getClosedTime()));
-
-            cell = row.createCell(7);
-            cell.setCellStyle(cellStyle);
-            cell.setCellValue(cellValue(fault.getDuration()));
-
-            cell = row.createCell(8);
-            cell.setCellStyle(cellStyle);
-            if (fault.getFaultStatus().equals(FaultStatus.OPEN))
-            {
-                cell.setCellValue(messageSource.getMessage("fault.unClosed", null, FishCfg.locale));
-            }
-            else if (fault.getFaultStatus().equals(FaultStatus.CLOSED))
-            {
-                cell.setCellValue(messageSource.getMessage("fault.closed", null, FishCfg.locale));
-            }
-
-            cell = row.createCell(9);
-            cell.setCellStyle(cellStyle);
-            cell.setCellValue(cellValue(fault.getUpgrade()));
-
-            cell = row.createCell(10);
-            cell.setCellStyle(cellStyle);
-            if (FaultCloseType.FORCE.equals(fault.getCloseType()))
-            {
-                cell.setCellValue(messageSource.getMessage("fault.force", null, FishCfg.locale));
-            }
-            else if (FaultCloseType.NORMAL.equals(fault.getCloseType()))
-            {
-                cell.setCellValue(messageSource.getMessage("fault.normal", null, FishCfg.locale));
-            }
-            else
-            {
-            	cell.setCellValue("") ;
-            }
-            
-            
-            cell = row.createCell(11);
-            cell.setCellStyle(cellStyle);
-            cell.setCellValue(listPersonName(fault.getBankPerson()));
-            
-            cell = row.createCell(12);
-            cell.setCellStyle(cellStyle);
-            cell.setCellValue(listPersonName(fault.getServicePerson()));
-        }
-
-        String date = DateUtils.getDate(new Date());
-        String name = "caseFault_" + date + ".xls";
-        try
-        {
-            FileOutputStream fout = new FileOutputStream(FishCfg.getTempDir() + File.separator + name);
-            wb.write(fout);
-        }
-        catch (Exception e)
-        {
-            logger.error(e.getMessage());
-        }
-
-        File file = new File(FishCfg.getTempDir() + System.getProperty("file.separator") + name);
-        this.download(file, response, "gb2312", "application/x-xls");
-
-        return null;
+		String theme = String.format("%s",messageSource.getMessage("fault.info", null, FishCfg.locale));
+		map.put(ExcelViewUtils.SHEET_NAME, theme);//device.devinfo
+		map.put(ExcelViewUtils.TITLE, theme);
+		map.put(ExcelViewUtils.FILE_NAME, theme);
+		// 获得机构下所有的设备信息
+		List<CaseFaultForm> formList = convert(list);
+		map.put(ExcelViewUtils.BODY_CONTEXTS, formList);
+		ExcelViewUtils excelUtils = new ExcelViewUtils();
+		return new ModelAndView(excelUtils,map);
+       
     }
 
-    /**
-     * 下载文件
-     *
-     * @param file
-     *            文件
-     * @param response
-     *            请求响应
-     * @param encoding
-     *            编码
-     * @param contentType
-     *            头信息
-     */
-    private void download(File file, HttpServletResponse response, String encoding, String contentType)
-    {
-        response.setCharacterEncoding(encoding);
-        response.setContentType(contentType);
-        response.setHeader("Content-disposition", "attachment;filename=" + file.getName());
-
-        // response.setHeader("charset", "UTF-8");
-
-        // OutputStream os = null;
-        InputStream is = null;
-        // InputStreamReader isr = null;
-        // OutputStreamWriter osw = null;
-        ServletOutputStream out = null;
-        try
-        {
-            is = new FileInputStream(file);
-            // osw = new OutputStreamWriter(os, encoding);
-
-            out = response.getOutputStream();
-            // os = response.getOutputStream();
-
-            int len = 0;
-            byte[] buffer = new byte[1024];
-            while ((len = is.read(buffer)) != -1)
-            {
-                out.write(buffer, 0, len);
-            }
-        }
-        catch (Exception e)
-        {
-            logger.error(e.getMessage());
-        }
-        finally
-        {
-            if (out != null)
-            {
-                try
-                {
-                    out.close();
-                }
-                catch (IOException e)
-                {
-                    logger.error(e.getMessage());
-                }
-            }
-            if (is != null)
-            {
-                try
-                {
-                    is.close();
-                }
-                catch (IOException e)
-                {
-                    logger.error(e.getMessage());
-                }
-            }
-        }
-    }
-
-    private String cellValue(Object obj)
-    {
-        if (obj == null)
-        {
-            return "";
-        }
-        if (obj instanceof String)
-        {
-            return obj.toString();
-        }
-        else if (obj instanceof Date)
-        {
-            return DateUtils.getTimestamp((Date) obj);
-        }
-        else if (obj instanceof Integer || obj instanceof Long || obj instanceof Double)
-        {
-            return String.valueOf(obj.toString());
-        }
-        return obj.toString();
-    }
     @Autowired
 	private MessageSource messageSourceEnum;
     private String getEnumI18n(String enumText){

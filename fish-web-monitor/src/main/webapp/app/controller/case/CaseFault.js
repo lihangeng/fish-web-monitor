@@ -48,17 +48,39 @@ Ext.define('Eway.controller.case.CaseFault', {
 	},
 
 	onExport : function(){
-		var data = this.getFilterForm().getForm().getValues();
-		var terminalId = data.terminalId;
-		var closedTime = data.closedTime;
-		var devMod = data.devMod;
-		var faultClassify = data.faultClassify;
-		var faultStatus = data.faultStatus;
-		var faultTime = data.faultTime;
-
-		window.location.href = 'api/case/caseFault/export?devMod=' + devMod + '&terminalId=' + terminalId
-														+ '&closedTime=' + closedTime + '&faultClassify=' + faultClassify
-														+ '&faultStatus=' + faultStatus + '&faultTime=' + faultTime;
+		var form = this.getFilterForm().getForm();
+		var bool = form.isValid();
+		if(bool == false){
+			return false;
+		}
+		var data = form.getValues();
+		var params = "";
+		for(var key in data){
+			if(!Ext.isEmpty(data[key])){
+				params += '&'+ key + "=" + data[key];
+			}
+		}
+		var columns = this.getGrid().getColumns();
+        var headerName = new Array();
+	    var colIndex = new Array();
+	    var colWidth = new Array();
+	    Ext.Array.forEach(columns,function(item,index,opt){
+	    	if(item.cellWidth){
+	    		headerName.push(item.text);
+				colWidth.push(item.cellWidth);
+				if(item.dataIndex=="devMod"){
+					colIndex.push("devModName");
+				}else if(item.dataIndex=="faultStatus"){
+					colIndex.push("faultStatusName");
+				}else if(item.dataIndex=="faultCloseType"){
+					colIndex.push("closeTypeName");
+				}else{
+					colIndex.push(item.dataIndex);
+				}
+	    	}
+		 },this);
+	    params+="&gridInfoHeaderNames="+headerName+"&gridInfoColIndexs="+colIndex+"&gridInfoColWidths="+colWidth;
+		window.location.href = 'api/case/caseFault/export?_dc='+params;
 
 	},
 	onCellClik : function (grid, td, cellIndex, record, tr, rowIndex, e, eOpts) {//当单击超链接的时候
