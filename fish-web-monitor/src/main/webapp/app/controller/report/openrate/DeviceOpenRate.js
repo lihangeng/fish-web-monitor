@@ -53,15 +53,7 @@ Ext.define('Eway.controller.report.openrate.DeviceOpenRate', {
 		'&openRate='+values.openrate+
 		'&compare='+values.compare;
 		var columns = this.getEwayView().down('grid').getColumns();
-        var headerName = new Array();
-		   var colIndex = new Array();
-		   var colWidth = new Array();
-		   Ext.Array.forEach(columns,function(item,index,opt){
-				headerName.push(item.text);
-				colWidth.push(item.cellWidth);
-				colIndex.push(item.dataIndex);
-			},this);
-		   param+="&gridInfoHeaderNames="+headerName+"&gridInfoColIndexs="+colIndex+"&gridInfoColWidths="+colWidth;
+		param = this.getToExcel(columns,param);
 		window.location.href = 'api/report/openrate/device/importStat?_dc=' + param;
 	}
 });
