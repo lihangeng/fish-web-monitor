@@ -28,8 +28,14 @@ Ext.define('Eway.controller.report.openrate.TypeOpenRate', {
 	onImport : function() {
 		var view = this.getEwayView();
 		var form = view.down('form').getForm();
+		var bool =  form.isValid();
+		if(bool==false){
+			return false;
+		}
 		var values = form.getValues();
-		var param = 'statType='+values.statType+'&day='+values.day+'&month='+values.month+'&year='+values.year+'&orgId='+values.orgId+'&orgName'+values.orgName+'&awayFlag='+values.awayFlag;
-		window.location.href = 'api/report/openrate/type/importStat?' + param;
+		var params = '&statType='+values.statType+'&day='+values.day+'&month='+values.month+'&year='+values.year+'&orgId='+values.orgId+'&orgName'+values.orgName+'&awayFlag='+values.awayFlag;
+		var columns = this.getEwayView().down('grid').getColumns();
+		params = this.getToExcel(columns,params);
+		window.location.href = 'api/report/openrate/type/importStat?_dc' + params;
 	}
 });

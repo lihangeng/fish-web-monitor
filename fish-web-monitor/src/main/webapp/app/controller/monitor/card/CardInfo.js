@@ -55,14 +55,15 @@ Ext.define('Eway.controller.monitor.card.CardInfo', {
 				}
 
                var values = form.getValues();
-               var params = "?";
+               var params = "";
                for(var key in values){
             	   if(!Ext.isEmpty(values[key])){
-            		   var prefix = params == "?" ? "" : "&";
-            		   params = params + prefix + key + "=" + values[key];
+            		   params = params + '&' + key + "=" + values[key];
             	   }
                }
-			   window.location.href = 'api/monitor/retainCard/poiExcel'+params;
+               var columns = this.getCardInfoGrid().getColumns();
+               params = this.getToExcel(columns,params);
+			   window.location.href = 'api/monitor/retainCard/poiExcel?_dc='+params;
 			},
 
 			onAdd : function() {

@@ -1,26 +1,16 @@
 package com.yihuacomputer.fish.web.monitor.controller;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFDataFormat;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
@@ -55,6 +46,7 @@ import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.web.monitor.form.RetainCardForm;
+import com.yihuacomputer.fish.web.util.ExcelViewUtils;
 import com.yihuacomputer.fish.web.util.FishWebUtils;
 
 /**
@@ -501,7 +493,23 @@ public class RetaincardController {
 		}
 		return flag;
 	}
-
+	public List<RetainCardForm> convert(List<IRetaincard> list) {
+		List<RetainCardForm> result = new ArrayList<RetainCardForm>();
+		for (IRetaincard item : list) {
+			RetainCardForm rcf = new RetainCardForm();
+			rcf.setTerminalId(item.getTerminalId());
+			IDevice device = deviceService.get(item.getTerminalId());
+			IOrganization org = device.getOrganization();
+			rcf.setSubsidiaryorganName(org.getName());
+			rcf.setAccountNo(item.getAccountNo());
+			rcf.setCardRetainType(getI18N(item.getCardRetainType().getText()));
+			rcf.setCardRetainTime(DateUtils.getTimestamp(item.getCardRetainTime()));
+			rcf.setCardDistributionBank(item.getCardDistributionBank());
+			rcf.setReason(item.getReason());
+			result.add(rcf);
+		}
+		return result;
+	}
 	/**
 	 * 导出吞卡信息 生成Excel
 	 *
@@ -510,182 +518,31 @@ public class RetaincardController {
 	@MethodNameDescrible(describle="userlog.RetaincardController.poiExcel",hasArgs=false)
 	@RequestMapping(value = "/poiExcel", method = RequestMethod.GET)
 	public @ResponseBody
-	ModelMap poiExcel(WebRequest wRequest, HttpServletRequest request,
+	ModelAndView poiExcel(WebRequest wRequest, HttpServletRequest request,
 			HttpServletResponse response) {
-
-		// 创建一个webbook，对应一个Excel文件
-		HSSFWorkbook wb = new HSSFWorkbook();
-		// 在webbook中添加一个sheet,对应Excel文件中的sheet
-		HSSFSheet sheet = wb.createSheet("吞卡表");
-		// 在sheet中添加表头第0行,注意老版本poi对Excel的行数列数有限制short
-		HSSFRow row = sheet.createRow(0);
-		// 创建单元格，并设置值表头 设置表头居中
-		HSSFCellStyle style = wb.createCellStyle();
-		style.setAlignment(HSSFCellStyle.ALIGN_CENTER); // 创建一个居中格式
-
-		HSSFCell cell = row.createCell(0);
-		cell.setCellValue(messageSource.getMessage("device.terminalId", null, FishCfg.locale));
-		cell.setCellStyle(style);
-		cell = row.createCell(1);
-		cell.setCellValue(messageSource.getMessage("device.devOrg", null, FishCfg.locale));
-		cell.setCellStyle(style);
-		/**
-		 * 上海农商行暂不需要
-		 */
-		/*
-		 * cell = row.createCell(2); cell.setCellValue("移交到机构");
-		 * cell.setCellStyle(style);
-		 */
-		cell = row.createCell(2);
-		cell.setCellValue(messageSource.getMessage("retaincard.cardNo", null, FishCfg.locale));
-		cell.setCellStyle(style);
-
-		cell = row.createCell(3);
-		cell.setCellValue(messageSource.getMessage("retaincard.retainType", null, FishCfg.locale));
-		cell.setCellStyle(style);
-
-		cell = row.createCell(4);
-		cell.setCellValue(messageSource.getMessage("retaincard.retainTime", null, FishCfg.locale));
-		cell.setCellStyle(style);
-		cell = row.createCell(5);
-		cell.setCellValue(messageSource.getMessage("retaincard.cardHoldBank", null, FishCfg.locale));
-		cell.setCellStyle(style);
-		cell = row.createCell(6);
-		cell.setCellValue(messageSource.getMessage("retaincard.retainReason", null, FishCfg.locale));
-		cell.setCellStyle(style);
-
-		/**
-		 * 设置格式，解决当编号以‘0’开头时，点击单元格后‘0’会消失
-		 */
-		HSSFCellStyle cellStyle = wb.createCellStyle();
-		HSSFDataFormat format = wb.createDataFormat();
-		cellStyle.setDataFormat(format.getFormat("@"));
-
+		logger.info(String.format("Export Retain Card Information : "));
 		IFilter filter = request2filter(wRequest);
-		UserSession userSession = (UserSession) request.getSession()
-				.getAttribute(FishWebUtils.USER);
-		List<IRetaincard> entities = retaincardService.listCardByOrgId(
-				userSession.getOrgId(), filter);
-
-		int rowNum = 1;
-		for (IRetaincard retaincard : entities) {
-			row = sheet.createRow(rowNum++);
-			row.createCell(0).setCellValue(retaincard.getTerminalId());
-			IDevice device = deviceService.get(retaincard.getTerminalId());
-			IOrganization org = device.getOrganization();
-			row.createCell(1).setCellValue(org.getName());
-			row.createCell(2)
-					.setCellValue(cellValue(retaincard.getAccountNo()));
-			row.createCell(3).setCellValue(
-					cellValue(getEnumI18n(retaincard.getCardRetainType().getText())));
-			row.createCell(4).setCellValue(
-					cellValue(DateUtils.getTimestamp(retaincard
-							.getCardRetainTime())));
-			row.createCell(5).setCellValue(
-					cellValue(retaincard.getCardDistributionBank()));
-			row.createCell(6).setCellValue(cellValue(retaincard.getReason()));
-		}
-
-		String date = DateUtils.getDate(new Date());
-		String name = "retaincard" + date + ".xls";
-		FileOutputStream fout = null;
-		try {
-			fout = new FileOutputStream(FishCfg.getTempDir()
-					+ File.separator + name);
-			wb.write(fout);
-			fout.close();
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-		}finally{
-			if(fout!=null){
-				try {
-					fout.close();
-				} catch (IOException e) {
-					logger.error(e.getMessage());
-				}
-			}
-		}
-
-		File file = new File(FishCfg.getTempDir()
-				+ System.getProperty("file.separator") + name);
-		this.download(file, response, "gb2312", "application/x-xls");
-		return null;
+		UserSession userSession = (UserSession) request.getSession().getAttribute(FishWebUtils.USER);
+		List<IRetaincard> entities = retaincardService.listCardByOrgId(userSession.getOrgId(), filter);
+		Map<String,Object> map = new HashMap<String,Object>();
+		String theme = String.format("%s",getI18N("retaincard.info"));
+		map.put(ExcelViewUtils.SHEET_NAME, theme);//device.devinfo
+		map.put(ExcelViewUtils.TITLE, theme);
+		map.put(ExcelViewUtils.FILE_NAME, theme);
+		// 获得机构下所有的设备信息
+		List<RetainCardForm> formList = convert(entities);
+		map.put(ExcelViewUtils.BODY_CONTEXTS, formList);
+		ExcelViewUtils excelUtils = new ExcelViewUtils();
+		return new ModelAndView(excelUtils,map);
 	}
 	@Autowired
 	private MessageSource messageSourceEnum;
-    private String getEnumI18n(String enumText){
+    private String getI18N(String enumText){
     	if(null==enumText){
     		return "";
     	}
     	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
     }
-	/**
-	 * 下载文件
-	 *
-	 * @param file
-	 *            文件
-	 * @param response
-	 *            请求响应
-	 * @param encoding
-	 *            编码
-	 * @param contentType
-	 *            头信息
-	 */
-	private void download(File file, HttpServletResponse response,
-			String encoding, String contentType) {
-		response.setCharacterEncoding(encoding);
-		response.setContentType(contentType);
-		response.setHeader("Content-disposition",
-				"attachment;filename=" + file.getName());
-
-		// response.setHeader("charset", "UTF-8");
-
-		// OutputStream os = null;
-		InputStream is = null;
-		// InputStreamReader isr = null;
-		// OutputStreamWriter osw = null;
-		ServletOutputStream out = null;
-		try {
-			is = new FileInputStream(file);
-			// osw = new OutputStreamWriter(os, encoding);
-
-			out = response.getOutputStream();
-			// os = response.getOutputStream();
-
-			int len = 0;
-			byte[] buffer = new byte[1024];
-			while ((len = is.read(buffer)) != -1) {
-				out.write(buffer, 0, len);
-			}
-			// osa.close();
-		} catch (Exception e) {
-			logger.error(e.getMessage());
-		} finally {
-			if (out != null) {
-				try {
-					out.close();
-				} catch (IOException e) {
-					logger.error(e.getMessage());
-				}
-			}
-			if (is != null) {
-				try {
-					is.close();
-				} catch (IOException e) {
-					logger.error(e.getMessage());
-				}
-			}
-
-			// if (osw != null) {
-			// try {
-			// osw.close();
-			// }
-			// catch (IOException e) {
-			// logger.error(e.getMessage());
-			// }
-			// }
-		}
-	}
 
 	/**
 	 * 手动添加时检查卡片状态，若卡片为待领或者调出状态时则不能添加此卡片信息
@@ -813,18 +670,4 @@ public class RetaincardController {
 		return filter;
 	}
 
-	private String cellValue(Object obj) {
-		if (obj == null) {
-			return "";
-		}
-		if (obj instanceof String) {
-			return obj.toString();
-		} else if (obj instanceof Date) {
-			return DateUtils.getDate((Date) obj);
-		} else if (obj instanceof Integer || obj instanceof Long
-				|| obj instanceof Double) {
-			return String.valueOf(obj.toString());
-		}
-		return obj.toString();
-	}
 }

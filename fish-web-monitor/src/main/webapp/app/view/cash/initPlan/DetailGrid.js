@@ -88,7 +88,7 @@ Ext.define('Eway.view.cash.initPlan.DetailGrid', {
 	            }
 			}, {
 				header : EwayLocale.initPlan.maxAmt,
-				dataIndex : 'maxAmt',
+				dataIndex : 'strMaxAmt',
 				renderer : function(value){
 					if(value == -1){
 						return EwayLocale.tip.unCertain;

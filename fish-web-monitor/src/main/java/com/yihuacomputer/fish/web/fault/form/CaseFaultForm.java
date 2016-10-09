@@ -17,6 +17,8 @@ public class CaseFaultForm {
 	private String terminalId;
 
 	private DeviceMod devMod;
+	
+	private String devModName;
 
 	private String faultClassify;
 
@@ -31,6 +33,8 @@ public class CaseFaultForm {
 	private double duration;
 
 	private FaultStatus faultStatus;
+	
+	private String faultStatusName;
 
 	private int upgrade;
 
@@ -40,6 +44,16 @@ public class CaseFaultForm {
 	private String serPer;
 
 	private FaultCloseType faultCloseType ;
+	
+	private String closeTypeName;
+
+	public String getCloseTypeName() {
+		return closeTypeName;
+	}
+
+	public void setCloseTypeName(String closeTypeName) {
+		this.closeTypeName = closeTypeName;
+	}
 
 	public CaseFaultForm(){
 
@@ -222,6 +236,22 @@ public class CaseFaultForm {
 
 	public void setFaultCloseType(FaultCloseType faultCloseType) {
 		this.faultCloseType = faultCloseType;
+	}
+
+	public String getDevModName() {
+		return devModName;
+	}
+
+	public void setDevModName(String devModName) {
+		this.devModName = devModName;
+	}
+
+	public String getFaultStatusName() {
+		return faultStatusName;
+	}
+
+	public void setFaultStatusName(String faultStatusName) {
+		this.faultStatusName = faultStatusName;
 	}
 
 }

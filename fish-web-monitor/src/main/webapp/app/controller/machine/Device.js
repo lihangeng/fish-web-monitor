@@ -124,7 +124,7 @@ Ext.define('Eway.controller.machine.Device', {
 		var colWidth = new Array();
 		Ext.Array.forEach(columns,function(item,index,opt){
 			headerName.push(item.text);
-			colWidth.push(item.width);
+			colWidth.push(item.cellWidth);
 			colIndex.push(item.dataIndex);
 		},this);
 		params+="&gridInfoHeaderNames="+headerName+"&gridInfoColIndexs="+colIndex+"&gridInfoColWidths="+colWidth;

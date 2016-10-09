@@ -45,8 +45,14 @@ Ext.define('Eway.controller.report.openrate.OrgOpenRate', {
 	onImport : function() {
 		var view = this.getEwayView();
 		var form = view.down('form').getForm();
+		var bool =  form.isValid();
+		if(bool==false){
+			return false;
+		}
 		var values = form.getValues();
-		var param = 'statType='+values.statType+'&day='+values.day+'&month='+values.month+'&year='+values.year+'&orgId='+values.orgId+'&orgName'+values.orgName+'&awayFlag='+values.awayFlag;
-		window.location.href = 'api/report/openrate/org/importStat?' + param;
+		var params = '&statType='+values.statType+'&day='+values.day+'&month='+values.month+'&year='+values.year+'&orgId='+values.orgId+'&orgName'+values.orgName+'&awayFlag='+values.awayFlag;
+		var columns = this.getEwayView().getComponent('gridItemId').getColumns();
+		params = this.getToExcel(columns,params);
+		window.location.href = 'api/report/openrate/org/importStat?_dc' + params;
 	}
 });
