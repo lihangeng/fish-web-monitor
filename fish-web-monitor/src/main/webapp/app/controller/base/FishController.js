@@ -181,6 +181,19 @@ Ext.define('Eway.controller.base.FishController', {
 				});
 	 	}
 	},
+	//Excel导出功能获取grid的header name和列宽
+	getToExcel:function(columns,param){
+		var headerName = new Array();
+		var colIndex = new Array();
+		var colWidth = new Array();
+		Ext.Array.forEach(columns,function(item,index,opt){
+			headerName.push(item.text);
+			colWidth.push(item.cellWidth);
+			colIndex.push(item.dataIndex);
+		},this);
+		param+="&gridInfoHeaderNames="+headerName+"&gridInfoColIndexs="+colIndex+"&gridInfoColWidths="+colWidth;
+		return param;
+	},
 
 	//在显示增加页面之前
 	beforeShowAddWin : function(win,grid){

@@ -119,15 +119,7 @@ Ext.define('Eway.controller.machine.Device', {
 			params += '&terminalId=' + values.terminalId;
 		}
 		var columns = this.getGrid().getColumns();
-		var headerName = new Array();
-		var colIndex = new Array();
-		var colWidth = new Array();
-		Ext.Array.forEach(columns,function(item,index,opt){
-			headerName.push(item.text);
-			colWidth.push(item.cellWidth);
-			colIndex.push(item.dataIndex);
-		},this);
-		params+="&gridInfoHeaderNames="+headerName+"&gridInfoColIndexs="+colIndex+"&gridInfoColWidths="+colWidth;
+		params = this.getToExcel(columns,params);
 		window.location.href = 'api/machine/device/export?_dc=' + params;
 	},
 	onOpenPlan : function() {
