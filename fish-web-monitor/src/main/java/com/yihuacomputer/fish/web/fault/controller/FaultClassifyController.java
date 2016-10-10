@@ -69,7 +69,7 @@ public class FaultClassifyController
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.faultClassifyController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.faultClassifyController.update",hasReqBodyParam=true,reqBodyClass=FaultClassifyForm.class,bodyProperties="classifyName")
     public @ResponseBody
     ModelMap update(@PathVariable String id,
             @RequestBody FaultClassifyForm request)

@@ -76,7 +76,7 @@ public class CashInitRuleController {
 	 * @return ModelMap<String, Object>
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle = "userlog.CashBoxInitRuleController.update", hasArgs = false, urlArgs = true)
+	@MethodNameDescrible(describle = "userlog.CashBoxInitRuleController.update",hasReqBodyParam=true,reqBodyClass=CashInitRuleFrom.class,bodyProperties="name")
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody CashInitRuleFrom request) {
 		logger.info("update InitRule Info: InitRule.id = " + id);
 		request.setId(id);

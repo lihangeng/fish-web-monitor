@@ -77,7 +77,7 @@ public class QuittingNoticeController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.quittingNoticeController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.quittingNoticeController.add",hasReqBodyParam=true,reqBodyClass=QuittingNoticeForm.class,bodyProperties="deviceCode")
 	public @ResponseBody
 	ModelMap add(@RequestBody QuittingNoticeForm form) {
 		logger.info("add QuittingNotice");
@@ -218,7 +218,7 @@ public class QuittingNoticeController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.quittingNoticeController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.quittingNoticeController.update",hasReqBodyParam=true,reqBodyClass=QuittingNoticeForm.class,bodyProperties="deviceCode")
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody QuittingNoticeForm form) {
 		logger.info("update QuittingNotice: quittingNotice.id = " + id);

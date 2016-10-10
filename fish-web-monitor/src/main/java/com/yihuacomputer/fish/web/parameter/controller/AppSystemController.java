@@ -70,7 +70,8 @@ public class AppSystemController {
 	}
 
 	@RequestMapping(value="/{id}",method=RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.AppSystemController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.AppSystemController.update",hasReqBodyParam=true,reqBodyClass=AppSystemForm.class,bodyProperties="name")
+
 	public @ResponseBody
 	ModelMap update(@PathVariable long id,@RequestBody AppSystemForm request){
 		logger.info("update appSystem:appSystem.id="+id);

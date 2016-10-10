@@ -240,7 +240,7 @@ public class FaultController
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.faultController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.faultController.update",hasReqBodyParam=true,reqBodyClass=CaseFaultForm.class,bodyProperties="terminalId")
     public @ResponseBody
     ModelMap update(@PathVariable String id,
             @RequestBody CaseFaultForm request)

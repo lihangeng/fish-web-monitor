@@ -254,7 +254,7 @@ public class CashInitPlanDeviceDetailController {
 	 * @return ModelMap<String, Object>
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle = "userlog.DeviceCashInitPlanDetailController.update", hasArgs = false, urlArgs = true)
+	@MethodNameDescrible(describle = "userlog.DeviceCashInitPlanDetailController.update", hasReqBodyParam=true,reqBodyClass=CashInitPlanDeviceInfoForm.class,bodyProperties="terminalId")
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody CashInitPlanDeviceInfoForm request) {
 		logger.info("update CashBox Limit Info: CashBoxInfo.id = " + id);
 		request.setId(id);

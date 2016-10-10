@@ -214,7 +214,7 @@ public class VersionController {
 	// 增加,
 	@SuppressWarnings("deprecation")
 	@RequestMapping(method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.VersionController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.VersionController.add",hasReqBodyParam=true,reqBodyClass=VersionForm.class,bodyProperties="versionNo")
 	public @ResponseBody ModelMap add(@RequestBody VersionForm form, HttpServletRequest request) {
 		logger.info(" add version...");
 		ModelMap result = new ModelMap();
@@ -269,7 +269,7 @@ public class VersionController {
 
 	// 修改版本信息
 	@SuppressWarnings("deprecation")
-	@MethodNameDescrible(describle="userlog.VersionController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.VersionController.update",hasReqBodyParam=true,reqBodyClass=VersionForm.class,bodyProperties="versionNo")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody VersionForm form) {
 		logger.info(" update version : version.id = " + id);

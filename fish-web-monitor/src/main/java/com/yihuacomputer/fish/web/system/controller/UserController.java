@@ -83,7 +83,7 @@ public class UserController {
 	 * @param request
 	 * @return
 	 */
-	@MethodNameDescrible(describle="userlog.UserController.addRole",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.UserController.addRole",hasReqBodyParam=true,reqBodyClass=UserRoleForm.class,bodyProperties="roleId")
 	@RequestMapping(value = "/addRole", method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap addRole(@RequestBody UserRoleForm request) {
@@ -142,7 +142,7 @@ public class UserController {
 	 * @return ModelMap<String, Object>
 	 */
 	@Transactional
-	@MethodNameDescrible(describle="userlog.UserController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.UserController.add",hasReqBodyParam=true,reqBodyClass=UserForm.class,bodyProperties="name")
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap add(@RequestBody UserForm form) {
@@ -243,7 +243,7 @@ public class UserController {
 	 * @param request
 	 * @return ModelMap<String, Object>
 	 */
-	@MethodNameDescrible(describle="userlog.UserController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.UserController.update",hasReqBodyParam=true,reqBodyClass=UserForm.class,bodyProperties="name")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody UserForm form) {

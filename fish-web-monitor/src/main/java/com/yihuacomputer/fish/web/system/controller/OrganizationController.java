@@ -75,7 +75,7 @@ public class OrganizationController {
 	 * @param form
 	 * @return ModelMap
 	 */
-	@MethodNameDescrible(describle="userlog.OrganizationController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.OrganizationController.add",hasReqBodyParam=true,reqBodyClass=OrganizationForm.class,bodyProperties="displayName")
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap add(@RequestBody OrganizationForm form) {
 		logger.info(" add org...");
@@ -181,7 +181,7 @@ public class OrganizationController {
 	 * @param form
 	 * @return Map<String, Object>
 	 */
-	@MethodNameDescrible(describle="userlog.OrganizationController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.OrganizationController.update",hasReqBodyParam=true,reqBodyClass=OrganizationForm.class,bodyProperties="displayName")
 	@RequestMapping(value = "/{guid}", method = RequestMethod.PUT)
 	public @ResponseBody ModelMap update(@PathVariable String guid, @RequestBody OrganizationForm form, HttpServletRequest req) {
 		logger.info(" update org : org.id = " + guid);

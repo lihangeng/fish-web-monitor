@@ -92,7 +92,7 @@ public class ParamElementController {
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.ParamElementController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.ParamElementController.add",hasReqBodyParam=true,reqBodyClass=ParamElementForm.class,bodyProperties="paramName")
 	public @ResponseBody
 	ModelMap add(@RequestBody ParamElementForm request){
 		logger.info("add elementelement");
@@ -124,7 +124,7 @@ public class ParamElementController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.ParamElementController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.ParamElementController.update",hasReqBodyParam=true,reqBodyClass=ParamElementForm.class,bodyProperties="paramName")
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody ParamElementForm request) {
 		logger.info("update elemet: elemet.id = " + id);

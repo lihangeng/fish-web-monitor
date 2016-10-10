@@ -76,7 +76,7 @@ public class RetaincardController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
-	@MethodNameDescrible(describle="userlog.RetaincardController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.RetaincardController.add",hasReqBodyParam=true,reqBodyClass=RetainCardForm.class,bodyProperties="terminalId")
 	ModelMap add(@RequestBody RetainCardForm request) {
 		ModelMap result = new ModelMap();
 		try {

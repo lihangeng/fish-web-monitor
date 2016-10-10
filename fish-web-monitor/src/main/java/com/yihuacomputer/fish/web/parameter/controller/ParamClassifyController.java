@@ -60,7 +60,7 @@ public class ParamClassifyController {
 	}
 
 	@RequestMapping(method=RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.ParamClassifyController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.ParamClassifyController.add",hasReqBodyParam=true,reqBodyClass=ParamClassifyForm.class,bodyProperties="name")
 	public @ResponseBody
 	ModelMap add(@RequestBody ParamClassifyForm request){
 		logger.info("add classify");
@@ -112,7 +112,7 @@ public class ParamClassifyController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.ParamClassifyController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.ParamClassifyController.update",hasReqBodyParam=true,reqBodyClass=ParamClassifyForm.class,bodyProperties="name")
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody ParamClassifyForm request) {
 		logger.info("update classify: classify.id = " + id);
