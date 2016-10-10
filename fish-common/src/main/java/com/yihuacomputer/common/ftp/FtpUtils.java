@@ -95,12 +95,13 @@ public class FtpUtils {
             if (!"".equals(s)) {
             	sb.append("/").append(s);
                 resultPath = sb.toString();
-                if (!"".equals(resultPath) && !isDirExist(resultPath, ftp)) {
+                if ((!"".equals(resultPath)) && (!isDirExist(resultPath, ftp))) {
                     // 创建文件夹
                     ftp.makeDirectory(resultPath);
                 }
             }
         }
+        ftp.enterLocalPassiveMode();
         ftp.changeWorkingDirectory(path);
         // 将上传文件存储到指定目录
         ftp.storeFile(UTFToiso8859(filename,encode), input);
