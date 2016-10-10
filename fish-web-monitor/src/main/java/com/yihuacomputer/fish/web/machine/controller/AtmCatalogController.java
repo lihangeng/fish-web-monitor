@@ -70,6 +70,7 @@ public class AtmCatalogController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
+	@MethodNameDescrible(describle="userlog.atmCatalogController.add",hasReqBodyParam=true,reqBodyClass=AtmCatalogForm.class,bodyProperties="name")
 	public @ResponseBody
 	ModelMap add(@RequestBody AtmCatalogForm request) {
 		logger.info("add atmCatalog");
@@ -84,7 +85,7 @@ public class AtmCatalogController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.atmCatalogController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.atmCatalogController.update",hasReqBodyParam=true,reqBodyClass=AtmCatalogForm.class,bodyProperties="name")
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody AtmCatalogForm request) {
 		logger.info("update AtmCatalog: atmCatalog.id = " + id);

@@ -139,7 +139,7 @@ public class AtmTypeController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.atmTypeController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.atmTypeController.add",hasReqBodyParam=true,reqBodyClass=AtmTypeForm.class,bodyProperties="name")
     public @ResponseBody ModelMap add(@RequestBody AtmTypeForm form) {
         logger.info("add atmType");
         ModelMap result = new ModelMap();
