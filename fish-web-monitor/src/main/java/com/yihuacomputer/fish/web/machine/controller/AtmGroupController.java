@@ -106,8 +106,7 @@ public class AtmGroupController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.atmGroupController.add",hasArgs=false)
-	public @ResponseBody
+	@MethodNameDescrible(describle="userlog.atmGroupController.add",hasReqBodyParam=true,reqBodyClass=AtmGroupForm.class,bodyProperties="name")
 	ModelMap add(@RequestBody AtmGroupForm request) {
 		logger.info("add atmGroup");
 		ModelMap result = new ModelMap();
@@ -131,7 +130,7 @@ public class AtmGroupController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.atmGroupController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.atmGroupController.update",hasReqBodyParam=true,reqBodyClass=AtmGroupForm.class,bodyProperties="name")
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody AtmGroupForm request) {
 		logger.info("update atmGroup: atmGroup.id = " + id);
@@ -171,7 +170,7 @@ public class AtmGroupController {
 	 * @return
 	 */
 	@RequestMapping(value = "/addDevice", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.atmGroupController.link",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.atmGroupController.link",hasReqBodyParam=true,reqBodyClass=GroupDeviceForm.class,bodyProperties="deviceId")
 	public @ResponseBody
 	ModelMap link(@RequestBody GroupDeviceForm request) {
 		logger.info(String.format("device %s linked  %s", request.getGroupId(), request.getDeviceId()));

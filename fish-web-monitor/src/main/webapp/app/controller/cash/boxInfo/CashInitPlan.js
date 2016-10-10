@@ -1,5 +1,5 @@
 Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
-	extend : 'Ext.app.Controller',
+	extend : 'Eway.controller.base.FishController',
 
 	stores : ['cash.initPlan.CashInitPlan','machine.DeviceAtmType',
 				'machine.DeviceAwayFlagComboBox'],
@@ -128,16 +128,7 @@ Ext.define('Eway.controller.cash.boxInfo.CashInitPlan', {
 		var params="&cashInitPlanInfoId="+planId;
 		
 		var columns = this.getDetailGrid().getColumns();
-		var headerName = new Array();
-		var colIndex = new Array();
-		var colWidth = new Array();
-		Ext.Array.forEach(columns,function(item,index,opt){
-			headerName.push(item.text);
-			colWidth.push(item.cellWidth);
-			colIndex.push(item.dataIndex);
-		},this);
-		params+="&gridInfoHeaderNames="+headerName+"&gridInfoColIndexs="+colIndex+"&gridInfoColWidths="+colWidth;
-	
+		params = this.getToExcel(columns,params);
 		window.location.href = 'api/cashInitPlanDevice/export?_dc=' + params;
 	},
 	//加钞计划增加设备的查询条件

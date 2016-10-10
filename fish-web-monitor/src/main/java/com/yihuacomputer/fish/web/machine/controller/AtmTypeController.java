@@ -139,7 +139,7 @@ public class AtmTypeController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.atmTypeController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.atmTypeController.add",hasReqBodyParam=true,reqBodyClass=AtmTypeForm.class,bodyProperties="name")
     public @ResponseBody ModelMap add(@RequestBody AtmTypeForm form) {
         logger.info("add atmType");
         ModelMap result = new ModelMap();
@@ -179,7 +179,7 @@ public class AtmTypeController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.atmTypeController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.atmTypeController.update",hasReqBodyParam=true,reqBodyClass=AtmTypeForm.class,bodyProperties="name")
     public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody AtmTypeForm form) {
         logger.info("update AtmType: atmType.id = " + id);
         form.setId(id);
