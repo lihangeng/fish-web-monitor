@@ -64,7 +64,7 @@ public class NotifyMouldController
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.notifyMouldController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.notifyMouldController.update",hasReqBodyParam=true,reqBodyClass=NotifyMouldForm.class,bodyProperties="classifyName")
     public @ResponseBody
     ModelMap update(@PathVariable long id, @RequestBody NotifyMouldForm request)
     {

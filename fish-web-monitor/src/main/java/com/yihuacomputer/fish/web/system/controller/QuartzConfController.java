@@ -214,7 +214,7 @@ public class QuartzConfController {
 	 * @param form
 	 * @return ModelMap<String, Object>
 	 */
-	@MethodNameDescrible(describle="userlog.QuartzConfController.updateJob",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.QuartzConfController.updateJob",hasReqBodyParam=true,reqBodyClass=QuartzConfForm.class,bodyProperties="jobName")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody QuartzConfForm request) {
 		logger.info("update quartz: job.id = " + id);

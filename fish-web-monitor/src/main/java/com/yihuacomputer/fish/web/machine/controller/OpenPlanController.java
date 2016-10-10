@@ -316,7 +316,7 @@ public class OpenPlanController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.openPlanController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.openPlanController.add",hasReqBodyParam=true,reqBodyClass=OpenPlanForm.class,bodyProperties="name")
 	public @ResponseBody
 	ModelMap add(@RequestBody OpenPlanForm form, WebRequest webRequest, HttpSession session, HttpServletRequest request) {
 		ModelMap result = new ModelMap();
@@ -372,7 +372,7 @@ public class OpenPlanController {
 	 * @return Map<String, Object>
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.openPlanController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.openPlanController.update",hasReqBodyParam=true,reqBodyClass=OpenPlanForm.class,bodyProperties="name")
 	public @ResponseBody
 	ModelMap update(@PathVariable String id, @RequestBody OpenPlanForm form) {
 		logger.info(" update plan : plan.id = " + id);

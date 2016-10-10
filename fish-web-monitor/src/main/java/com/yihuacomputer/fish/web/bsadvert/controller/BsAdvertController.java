@@ -395,7 +395,7 @@ public class BsAdvertController {
 	 * @return
 	 */
 	@RequestMapping(method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.BsAdvertController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.BsAdvertController.add",hasReqBodyParam=true,reqBodyClass=BsAdvertForm.class,bodyProperties="advertName")
 	@ResponseBody
 	public ModelMap add(@RequestBody BsAdvertForm form, HttpServletRequest request) {
 		logger.info(" add advert...");
@@ -475,7 +475,7 @@ public class BsAdvertController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.BsAdvertController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.BsAdvertController.update",hasReqBodyParam=true,reqBodyClass=BsAdvertForm.class,bodyProperties="advertName")
 	public @ResponseBody ModelMap updateBsAdvert(@PathVariable long id, @RequestBody BsAdvertForm form, HttpServletRequest request) {
 		logger.info("update bsAdvert: bsAdvert.id = " + id);
 		form.setId(id);

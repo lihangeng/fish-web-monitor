@@ -95,7 +95,7 @@ public class VersionTypeController {
 	 * @param form
 	 * @return
 	 */
-	@MethodNameDescrible(describle="userlog.VersionTypeController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.VersionTypeController.add",hasReqBodyParam=true,reqBodyClass=VersionTypeForm.class,bodyProperties="typeName")
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap add(@RequestBody VersionTypeForm form) {
 		logger.info(" add versionType...");
@@ -149,7 +149,7 @@ public class VersionTypeController {
         return result;
     }
 
-	@MethodNameDescrible(describle="userlog.VersionTypeController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.VersionTypeController.update",hasReqBodyParam=true,reqBodyClass=VersionTypeForm.class,bodyProperties="typeName")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody ModelMap update(@PathVariable long id,@RequestBody VersionTypeForm form) {
 		logger.info(" update versionType : versionType.id = " + form.getId());

@@ -110,7 +110,7 @@ public class ParamTemplateController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.ParamTemplateController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.ParamTemplateController.add",hasReqBodyParam=true,reqBodyClass=ParamTemplateForm.class,bodyProperties="name")
 	public @ResponseBody ModelMap add(@RequestBody ParamTemplateForm request) {
 		logger.info("add template");
 		ModelMap result = new ModelMap();
@@ -163,7 +163,7 @@ public class ParamTemplateController {
 	 * @return
 	 */
 	@RequestMapping(value = "/{templateDetail}", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.ParamTemplateController.updateTemplateDetail",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.ParamTemplateController.updateTemplateDetail",hasReqBodyParam=true,reqBodyClass=ParamTempDetailForm.class,bodyProperties="name")
 	@ResponseBody
 	public ModelMap updateTemplateDetail(@RequestBody ParamTempDetailForm form , HttpServletRequest request) {
 
@@ -337,7 +337,7 @@ public class ParamTemplateController {
 	 * @return
 	 */
 	@RequestMapping(value = "/link", method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.ParamTemplateController.link",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.ParamTemplateController.link",hasReqBodyParam=true,reqBodyClass=ParamTemplateDeviceform.class,bodyProperties="deviceId")
 	public @ResponseBody ModelMap link(@RequestBody ParamTemplateDeviceform request) {
 
 		logger.info(String.format("device %s linked  %s", request.getGroupId(),request.getDeviceId()));

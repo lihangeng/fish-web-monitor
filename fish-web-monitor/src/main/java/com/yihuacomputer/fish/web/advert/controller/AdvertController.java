@@ -318,7 +318,7 @@ public class AdvertController {
 	 */
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseBody
-	@MethodNameDescrible(describle="userlog.AdvertController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.AdvertController.add",hasReqBodyParam=true,reqBodyClass=AdvertForm.class,bodyProperties="advertType")
 	public ModelMap add(@RequestBody AdvertForm form, HttpServletRequest request) {
 		logger.info(" add advert...");
 

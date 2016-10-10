@@ -46,7 +46,7 @@ public class TransactionColorController {
     private Logger logger = LoggerFactory.getLogger(TransactionColorController.class);
 
     @RequestMapping(method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.TransactionColorController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.TransactionColorController.add",hasReqBodyParam=true,reqBodyClass=TransactionColorForm.class,bodyProperties="hostRet")
     public @ResponseBody ModelMap add(@RequestBody TransactionColorForm form, HttpServletRequest request) {
         logger.info("add transaction/color");
         ModelMap model = new ModelMap();
@@ -127,7 +127,7 @@ public class TransactionColorController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.TransactionColorController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.TransactionColorController.update",hasReqBodyParam=true,reqBodyClass=TransactionColorForm.class,bodyProperties="hostRet")
     public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody TransactionColorForm request) {
         logger.info("update transaction/color: transaction/color.id = " + id);
         ModelMap model = new ModelMap();

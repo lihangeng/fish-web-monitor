@@ -298,7 +298,7 @@ public class DevParameterController {
 	 * @PathVariable long id, 更改设备参数
 	 */
 	@RequestMapping(value = "/paramInfo/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.DevParameterController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.DevParameterController.update",hasReqBodyParam=true,reqBodyClass=DeviceParam.class,bodyProperties="paramName")
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody DeviceParam paramForm, HttpServletRequest request) {
 		logger.info("update device's parameter deviceId=" + id);
 		ModelMap result = new ModelMap();

@@ -262,7 +262,7 @@ public class PersonController {
      * @param request
      * @return
      */
-    @MethodNameDescrible(describle="userlog.PersonController.link",hasArgs=false)
+    @MethodNameDescrible(describle="userlog.PersonController.link",hasReqBodyParam=true,reqBodyClass=PersonDeviceForm.class,bodyProperties="id")
     @RequestMapping(value = "/link", method = RequestMethod.POST)
     public @ResponseBody
     ModelMap link(@RequestBody PersonDeviceForm request) {
@@ -288,7 +288,7 @@ public class PersonController {
      * @param form
      * @return ModelMap<String, Object>
      */
-    @MethodNameDescrible(describle="userlog.PersonController.add",hasArgs=false)
+    @MethodNameDescrible(describle="userlog.PersonController.add",hasReqBodyParam=true,reqBodyClass=PersonForm.class,bodyProperties="name")
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody
     ModelMap add(@RequestBody PersonForm form) {
@@ -406,7 +406,7 @@ public class PersonController {
      * @param request
      * @return ModelMap<String, Object>
      */
-    @MethodNameDescrible(describle="userlog.PersonController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.UserController.update",hasArgs=false,urlArgs=true)
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public @ResponseBody
     ModelMap update(@PathVariable String id, @RequestBody PersonForm form) {

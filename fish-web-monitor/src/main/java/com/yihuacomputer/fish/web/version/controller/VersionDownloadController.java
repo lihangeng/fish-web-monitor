@@ -194,7 +194,7 @@ public class VersionDownloadController {
 	}
 
 	// 增加
-	@MethodNameDescrible(describle="userlog.VersionDownloadController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.VersionDownloadController.add",hasReqBodyParam=true,reqBodyClass=JobForm.class,bodyProperties="jobName")
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody ModelMap add(@RequestBody JobForm form, HttpServletRequest request) {
 		logger.info(" add job...");

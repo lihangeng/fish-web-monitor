@@ -69,7 +69,7 @@ public class RoleController {
 	 * @param form
 	 * @return ModelMap<String, Object>
 	 */
-	@MethodNameDescrible(describle="userlog.RoleController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.RoleController.add",hasReqBodyParam=true,reqBodyClass=RoleForm.class,bodyProperties="name")
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
 	ModelMap add(@RequestBody RoleForm form) {
@@ -164,7 +164,7 @@ public class RoleController {
 	 * @param request
 	 * @return ModelMap<String, Object>
 	 */
-	@MethodNameDescrible(describle="userlog.RoleController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.RoleController.update",hasReqBodyParam=true,reqBodyClass=RoleForm.class,bodyProperties="name")
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody RoleForm form) {

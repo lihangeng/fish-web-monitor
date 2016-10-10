@@ -73,7 +73,7 @@ public class ParamController {
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.paramController.update",hasArgs=false,urlArgs=true)
+	@MethodNameDescrible(describle="userlog.paramController.update",hasReqBodyParam=true,reqBodyClass=ParamForm.class,bodyProperties="paramKey")
 	public @ResponseBody
 	ModelMap update(@PathVariable long id, @RequestBody ParamForm request) {
 		logger.info("update Param: param.id = " + id);

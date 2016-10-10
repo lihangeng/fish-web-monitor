@@ -150,7 +150,7 @@ public class BsAdvertGroupController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.add",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.add",hasReqBodyParam=true,reqBodyClass=BsAdvertGroupForm.class,bodyProperties="groupName")
 	public @ResponseBody ModelMap add(@RequestBody BsAdvertGroupForm request, HttpServletRequest Httprequest) {
 		logger.info("add bsAdvertGroup");
 		UserSession userSession = (UserSession) Httprequest.getSession().getAttribute(FishWebUtils.USER);
@@ -200,7 +200,7 @@ public class BsAdvertGroupController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.update",hasArgs=false)
+	@MethodNameDescrible(describle="userlog.bsAdvertGroupController.update",hasReqBodyParam=true,reqBodyClass=BsAdvertGroupForm.class,bodyProperties="groupName")
 	public @ResponseBody ModelMap update(@PathVariable long id, @RequestBody BsAdvertGroupForm request) {
 		logger.info("update bsAdvertGroup: bsAdvertGroup.id = " + id);
 
