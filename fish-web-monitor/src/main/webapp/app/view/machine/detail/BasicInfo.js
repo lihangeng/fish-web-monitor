@@ -16,16 +16,17 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
     
     bodyPadding: 10,
 
-    defaults: {
-        frame: true,
-        bodyPadding: 10,
-        collapsible :true
-    },
+  
 
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [{
 				xtype:'form',
+				defaults: {
+			        frame: true,
+			        bodyPadding: 10,
+			        collapsible :true
+			    },
 				items:[{
 					xtype: 'detail_basic_deviceInfo',
 		            title: '设备基础信息',

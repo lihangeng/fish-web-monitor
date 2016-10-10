@@ -30,7 +30,7 @@ Ext.define('Eway.view.machine.detail.View', {
 			}],
 
 			listeners : {
-				activate : function(panel) {
+				beforeactivate : function(panel) {
 					// 获取所有型号关联的模板
 					var me = this;
 					Ext.Ajax.request({

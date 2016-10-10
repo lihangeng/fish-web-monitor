@@ -66,24 +66,37 @@ Ext.define('Eway.controller.Main', {
 		var termianlId = this.getAppheader().down("textfield[name=terminalId]").getValue();
 		if(termianlId!=""){
 			var me = this;
+
 			Ext.Ajax.request({
 				method : 'GET',
-				url : 'api/machine/devicedetail',
-				params:{'termianlId':termianlId},
+				url : 'api/machine/atmType/atmLinkModule',
 				success : function(response) {
 					var object = Ext.decode(response.responseText);
 					if (object.success == true) {
 						Ext.typeLinkModData = object.data.typeLink;
-						var controller =  me.activeController('machine.detail.Detail');
-						var view = controller.getEwayView();
-						view.setTitle(termianlId+"设备信息");
-						view.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data.deviceForm));
-					}
-					else{
-						Eway.alert(object.errorMsg);
+						Ext.Ajax.request({
+							method : 'GET',
+							url : 'api/machine/devicedetail',
+							params:{'termianlId':termianlId},
+							success : function(response) {
+								var object = Ext.decode(response.responseText);
+								if (object.success == true) {
+									var controller =  me.activeController('machine.detail.Detail');
+									var view = controller.getEwayView();
+									view.setTitle(termianlId+"设备信息");
+									view.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data.deviceForm));
+									view.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
+								}
+								else{
+									Eway.alert(object.errorMsg);
+								}
+							}
+						});
 					}
 				}
 			});
+		
+			
 			
 		}
 		else{

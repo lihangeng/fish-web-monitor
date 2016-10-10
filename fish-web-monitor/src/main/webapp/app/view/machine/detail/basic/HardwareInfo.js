@@ -21,21 +21,19 @@ Ext.define('Eway.view.machine.detail.basic.HardwareInfo', {
 				fieldLabel : EwayLocale.monitor.devMonitor.mod.idc,
 				name : 'idcStatus',
 				a_link : true,
-				code : 'IDC'
-//					,
-//				listeners : {
-//					'beforerender': this.isHidden
-//				}
+				code : 'IDC',
+				listeners : {
+					'beforerender': this.isHidden
+				}
 			},{
 				columnWidth : .25,
 				fieldLabel : EwayLocale.monitor.devMonitor.mod.nfc,
 				name : 'nfcStatus',
 				a_link : true,
-				code : 'NFC'
-//					,
-//				listeners : {
-//					'beforerender': this.isHidden
-//				}
+				code : 'NFC',
+				listeners : {
+					'beforerender': this.isHidden
+				}
 			},{
 				columnWidth : .25,
 				fieldLabel : EwayLocale.monitor.devMonitor.mod.jpr,
@@ -175,20 +173,20 @@ Ext.define('Eway.view.machine.detail.basic.HardwareInfo', {
 		});
 
 		this.callParent(arguments);
-	}
-//    ,
-//	isHidden : function(field) {
-//		var record = field.up('window').record;
+	},
+	isHidden : function(field) {
+		var type = field.up('form').down("displayfield[name='devTypeName']").getValue();
 //		var type = record.get('type');
-//		var typeData = Ext.typeLinkModData
-//		var strs = typeData[type];
-//		var has = false;
-//		Ext.each(strs, function(item) {
-//			if(item == field.code) {
-//				has = true;
-//				return false;
-//			}
-//		});
-//		return has;
-//	}
+		var typeData = Ext.typeLinkModData;
+		var strs = typeData[type];
+		var has = false;
+		Ext.each(strs, function(item) {
+			if(item == field.code) {
+				has = true;
+				return false;
+			}
+		});
+		return has;
+		
+	}
 });

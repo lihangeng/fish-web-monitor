@@ -88,6 +88,7 @@ public class DeviceForm {
 	 * 网络类型
 	 */
 	private String netType;
+	private String netTypeName;
 
 	/**
 	 * 在行离行标志
@@ -102,6 +103,8 @@ public class DeviceForm {
 	 * 经营方式
 	 */
 	private String workType;
+	private String workTypeName;
+
 
 	/**
 	 * 虚拟柜员号
@@ -344,5 +347,29 @@ public class DeviceForm {
 
 	public void setAwayFlagName(String awayFlagName) {
 		this.awayFlagName = awayFlagName;
+	}
+
+
+
+	public String getNetTypeName() {
+		return netTypeName;
+	}
+
+
+
+	public void setNetTypeName(String netTypeName) {
+		this.netTypeName = netTypeName;
+	}
+
+
+
+	public String getWorkTypeName() {
+		return workTypeName;
+	}
+
+
+
+	public void setWorkTypeName(String workTypeName) {
+		this.workTypeName = workTypeName;
 	}
 }

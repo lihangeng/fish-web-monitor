@@ -18,6 +18,9 @@ public class StatusCam implements IStatusCam, Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+    public StatusCam(){
+    	this.cam = DeviceStatus.Unknown;
+    }
 	@Enumerated(EnumType.STRING)
     @Column(name = "CAM_STATUS")
     private DeviceStatus cam;

@@ -39,6 +39,9 @@ public class StatusUkr implements IStatusUkr, Serializable {
 		return this.ukr;
 	}
 
+    public StatusUkr(){
+    	this.ukr = DeviceStatus.Unknown;
+    }
 	/**
 	 * 获取状态代码
 	 *

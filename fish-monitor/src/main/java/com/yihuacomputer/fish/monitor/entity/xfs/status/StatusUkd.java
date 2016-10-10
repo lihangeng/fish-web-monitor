@@ -19,6 +19,9 @@ public class StatusUkd implements IStatusUkd, Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
+    public StatusUkd(){
+    	this.ukd = DeviceStatus.Unknown;
+    }
 	@Enumerated(EnumType.STRING)
 	@Column(name = "UKD_STATUS")
 	private DeviceStatus ukd;

@@ -23,6 +23,7 @@ import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.device.NetType;
+import com.yihuacomputer.fish.api.device.WorkType;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfo;
 import com.yihuacomputer.fish.api.monitor.box.IDeviceBoxInfoService;
 import com.yihuacomputer.fish.api.monitor.business.IRegistService;
@@ -181,9 +182,11 @@ public class DeviceDetailController
 		deviceForm.setSetupType(device.getSetupType() == null ? null : String.valueOf(device.getSetupType().getId()));
 		deviceForm.setSetupTypeName(device.getSetupType() == null ? null : getEnumI18n(device.getSetupType().getText()));
 		deviceForm.setWorkType(device.getWorkType() == null ? null : String.valueOf(device.getWorkType().getId()));
+		deviceForm.setWorkTypeName(device.getWorkType() == null ? getEnumI18n(WorkType.FROM_OPERATING.getText()) :getEnumI18n(device.getWorkType().getText()));
 		deviceForm.setVirtual(device.getVirtual());
 		deviceForm.setSerial(device.getSerial());
 		deviceForm.setNetType(device.getNetType() == null ? String.valueOf(NetType.CABLE.getId()) : String.valueOf(device.getNetType().getId()));
+		deviceForm.setNetTypeName(device.getNetType() == null ? getEnumI18n(NetType.CABLE.getText()) : getEnumI18n(device.getNetType().getText()));
 		if (device.getDevService() != null) {
 			deviceForm.setDevServiceName(device.getDevService().getName());
 			deviceForm.setDevServiceId(device.getDevService().getGuid());

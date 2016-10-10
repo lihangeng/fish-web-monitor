@@ -23,6 +23,10 @@ private static final long serialVersionUID = 1L;
 
     @Transient
     private String bcrHwCode;
+    
+    public StatusBcr(){
+    	this.bcr = DeviceStatus.Unknown;
+    }
     /**
      * 获取硬件主状态
      *
