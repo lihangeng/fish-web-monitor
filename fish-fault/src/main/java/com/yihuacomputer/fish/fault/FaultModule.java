@@ -3,6 +3,7 @@ package com.yihuacomputer.fish.fault;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import com.yihuacomputer.fish.api.fault.ICaseFaultFlowService;
 import com.yihuacomputer.fish.api.fault.ICaseFaultService;
 import com.yihuacomputer.fish.api.fault.ICaseNotifyService;
 import com.yihuacomputer.fish.api.fault.IFaultClassifyService;
@@ -18,6 +19,7 @@ import com.yihuacomputer.fish.fault.monitor.FaultManager;
 import com.yihuacomputer.fish.fault.monitor.MessagHandleCollection;
 import com.yihuacomputer.fish.fault.service.CaseFaultService;
 import com.yihuacomputer.fish.fault.service.CaseNotifyService;
+import com.yihuacomputer.fish.fault.service.DefaultCaseFaultFlowService;
 import com.yihuacomputer.fish.fault.service.FaultClassifyService;
 import com.yihuacomputer.fish.fault.service.FaultFilter;
 import com.yihuacomputer.fish.fault.service.FaultStatisticsService;
@@ -87,5 +89,9 @@ public class FaultModule {
 	public IFaultManager faultManager(){
 		return new FaultManager();
 	}
-
+	
+	@Bean
+	public ICaseFaultFlowService caseFaultFlowService(){
+		return new DefaultCaseFaultFlowService();
+	}
 }

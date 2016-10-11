@@ -13,6 +13,7 @@ import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
 import com.yihuacomputer.fish.api.fault.FaultStatus;
 import com.yihuacomputer.fish.api.fault.ICaseFault;
+import com.yihuacomputer.fish.api.fault.ICaseFaultFlowService;
 import com.yihuacomputer.fish.api.fault.ICaseFaultService;
 import com.yihuacomputer.fish.api.fault.ICaseNotifyService;
 import com.yihuacomputer.fish.api.fault.IFaultClassify;
@@ -33,7 +34,7 @@ public class DefaultHwFaultService {
 	private IFaultClassifyService faultClassifyService;
 
 	@Autowired
-	private ICaseNotifyService caseNotifyService;
+	private ICaseFaultFlowService caseFaultFlowService;
 
 	@Autowired
 	private ICaseFaultService caseFaultService;
@@ -287,7 +288,7 @@ public class DefaultHwFaultService {
 		}
 		caseFault.setFaultClassify(faultClassify);
 		caseFaultService.createCaseFault(caseFault);
-		caseNotifyService.createCaseNotify(faultClassify, caseFault);
+		caseFaultFlowService.execute(faultClassify, caseFault);
 	}
 
     /**
