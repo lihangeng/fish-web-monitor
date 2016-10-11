@@ -1,10 +1,13 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<!-- <meta charset="UTF-8">
+<title>自助设备监控系统</title>
+<link rel="stylesheet" type="text/css" href="resources/css/login.css"> -->
+
 <fmt:setLocale value="zh_CN" scope="session" />
 <title><spring:message code="login.title" text="" /></title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -56,8 +59,8 @@
 				if (myObject.isRegister == false) {
 					window.location.href = 'register.jsp';
 				} else if (myObject.success == false) {
-					document.getElementById("loginError").style.display = '';
 					document.getElementById("loginError").innerHTML = myObject.message;
+					document.getElementById("loginError").style.display = '';
 				} else if (myObject.userState == 1) {
 					window.location.href = 'updatePwd.jsp?userCode='
 							+ getValue($('username'));//_updatePassword();
@@ -102,101 +105,80 @@
 	}
 </script>
 </head>
-<form name="form1">
-	<body onLoad="textFocus()">
-		<div class="container">
-			<div class="top"></div>
-			<div class="bg"></div>
-			<div class="left">
-				<div class="left-content"></div>
+<script>  
+  function change(obj){ 
+	  obj.style.display = "none";  
+	  if(obj.type=="text")  {       
+		  document.getElementById('password').style.display = "block";     
+		  document.getElementById('password').focus();//加上    
+  }
+  else{     
+	  document.getElementById('txt').style.display = "block";    
+	  }  
+  }   
+  </script> 
+<body>
+<div class="container">
+	<div class="top"></div>
+	<div class="bg"></div>
+	<div class="main">
+		<div class="left">
+			<div class="left-content">
+	
 			</div>
-			<div class="right">
-				<div class="right-content">
+		</div>
+		<div class="right">
+			<div class="loginForm">
+				<div class="loginForm1">
+					<div class="head"><spring:message code="login.title" text="" /></div>
+					<div id="loginError" class="tips"></div>
 					<div class="content">
-						<div class="text" align="center">
-							<div class="line"></div>
-							<div id="loginError" class="form-message error"
-								style="display: none"></div>
-							<div class="content">
-								<div class="username">
-									<div class="imgusername"></div>
-									<%-- <div
-								style="width: 241px; height: 35px; border: 1px solid #dedede; margin-top: 15px;">
-								<label class="laber1"></label> <input autocomplete="off"
-									placeholder="<spring:message code='login.username' />"
-									class="txt" id="username" type="text" maxlength=20 size="10" />
+						<div class="username">
+							<div class="imgusername">
+								
 							</div>
-
-							<div
-								style="width: 241px; height: 35px; border: 1px solid #dedede; margin-top: 25px;">
-								<label class="laber2"></label> <input autocomplete="off"
-									placeholder="<spring:message code='login.password' />"
-									class="txt" id="password" type="password" maxlength=20
-									size="10" />
-							</div> --%>
-									<div class="usernameinput">
+							<div class="usernameinput">
 										<input class="input_username"
 											onblur="if(this.value==''){this.value='<spring:message code='login.username' />'; this.style.color='#999'}"
 											onfocus="if(this.value=='<spring:message code='login.username' />')this.value=''; this.style.color='black'"
 											value="<spring:message code='login.username' />"
 											id="username" type="text" maxlength="20" />
 									</div>
-								</div>
+						</div>
 
-								<div class="password">
-									<div class="imgpassword"></div>
-									<!-- <div class="passwordinput">
-								<input class="input_password" id="txt" type="text"  value="请输入密码" onfocus="change(this)" maxlength="20" style="color:#999"/>		
+						<div class="password">
+							<div class="imgpassword">
+								
+							</div>
+							<div class="passwordinput">
+								<input class="input_password" id="txt" type="text"  value="<spring:message code='login.password' />" onfocus="change(this)" maxlength="20" style="color:#999"/>		
 								<input class="input_password" id="password" type="password"   maxlength="20" onblur="if(this.value==''){change(this)}" style="display:none;"/>				
-							</div> -->
-									<div class="passwordinput">
-									
-										<label class="laber2"></label> <input class="input_password"
-											autocomplete="off"
-											placeholder="<spring:message code='login.password' />"
-											class="txt" id="password" type="password" maxlength=20
-											size="10" />
-									</div>
-								</div>
-								<div style="width: 241px; margin-top: 15px; font-size: 15px;">
-									<input style="width: 12px; height: 12px;" type="checkbox"
-										id='forceLogin' />
-									<spring:message code='login.forceLoginIn' />
-								</div>
-								<!-- <div class="checkboxlogin">
-									<input type="checkbox" name='forceLogin' class="checkboxlogin1" id='forceLogin'/>强制登录
-								</div>  -->
-								<input  class="login" id="loginButton"
+							</div>
+						</div>
+						<div  class="checkboxlogin">
+								<input type="checkbox" name = 'forceLogin' class="checkboxlogin1" id='forceLogin'/><spring:message code='login.forceLoginIn' />
+						</div>
+							<input  class="login" id="loginButton"
 									type="button" name="submit"
 									value="<spring:message code='login.submit' />" onclick="ajax()">
 
 								<div class="finally"></div>
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="bottom">
-
-				<table align="center" border="0" cellpadding="0" spacpadding="0">
-					<tr>
-						<td><font style="font-size: 14px; color: #fff;"><spring:message
-									code='login.footer' /></font></td>
-					</tr>
-				</table>
-			</div>
-			<div class="footer">©深圳市怡化电脑股份有限公司&nbsp;【建议使用IE9.0+、FireFox、Google浏览器】</div>
-			<div class="bottom">
-				<div class="bottom1"></div>
-				<div class="bottom2"></div>
-				<div class="bottom3"></div>
-				<div class="bottom4"></div>
-				<div class="bottom5"></div>
-				<div class="bottom6"></div>
+					</div>	
+				
+				</div>	
 			</div>
 		</div>
-
-	</body>
-</form>
+	
+	</div>
+	<div class="footer">©深圳市怡化电脑股份有限公司&nbsp;【建议使用IE9.0+、FireFox、Google浏览器】</div>
+	<div class="bottom">	
+		<div class="bottom1"></div>
+		<div class="bottom2"></div>
+		<div class="bottom3"></div>
+		<div class="bottom4"></div>
+		<div class="bottom5"></div>
+		<div class="bottom6"></div>
+	</div>
+</div>
+</body>
 </html>
