@@ -93,7 +93,7 @@ public class FtpUtils {
         StringBuilder sb = new StringBuilder();
         for (String s : str) {
             if (!"".equals(s)) {
-            	sb.append("/").append(s);
+            	sb.append(s).append("/");
                 resultPath = sb.toString();
                 if ((!"".equals(resultPath)) && (!isDirExist(resultPath, ftp))) {
                     // 创建文件夹
@@ -102,7 +102,7 @@ public class FtpUtils {
             }
         }
         ftp.enterLocalPassiveMode();
-        ftp.changeWorkingDirectory(path);
+        ftp.changeWorkingDirectory(resultPath);
         // 将上传文件存储到指定目录
         ftp.storeFile(UTFToiso8859(filename,encode), input);
         // 关闭输入流
