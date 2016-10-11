@@ -6,7 +6,7 @@
 <head>
 <!-- <meta charset="UTF-8">
 <title>自助设备监控系统</title>
-<link rel="stylesheet" type="text/css" href="resources/css/login.css"> -->
+<link rel="stylesheet" type="text/css" href="resources/css/login1.css"> -->
 
 <fmt:setLocale value="zh_CN" scope="session" />
 <title><spring:message code="login.title" text="" /></title>
@@ -56,11 +56,16 @@
 		if (xmlHttpReq.readyState == 4) {
 			if (xmlHttpReq.status == 200) {
 				var myObject = eval('(' + xmlHttpReq.responseText + ')');
-				if (myObject.isRegister == false) {
+				if (myObject.isRegister ==false) {
 					window.location.href = 'register.jsp';
 				} else if (myObject.success == false) {
-					document.getElementById("loginError").innerHTML = myObject.message;
-					document.getElementById("loginError").style.display = '';
+					//当用户名为空时直接提示用户
+					if(getValue($('username'))=="<spring:message code='login.username' />"){
+						document.getElementById("loginError").innerHTML = "用户名不能为空";
+					}else{
+						document.getElementById("loginError").innerHTML = myObject.message;
+						document.getElementById("loginError").style.display = '';
+					}
 				} else if (myObject.userState == 1) {
 					window.location.href = 'updatePwd.jsp?userCode='
 							+ getValue($('username'));//_updatePassword();

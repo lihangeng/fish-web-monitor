@@ -33,6 +33,10 @@
 	color:#e70303;
 	font-size: 15px;
 	letter-spacing: 1px;
+	height:35px;
+	line-height:40px;
+	width:500px;
+	margin-left:-92px;
 /* 	display: none; */
 }
 .loginForm{
