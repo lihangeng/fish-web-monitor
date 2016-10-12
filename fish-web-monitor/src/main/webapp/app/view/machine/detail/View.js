@@ -6,11 +6,9 @@ Ext.define('Eway.view.machine.detail.View', {
 
 	title : '设备信息明细',
 	layout : 'fit',
-//	scrollable :'y',
-	itemId : 'catalog',
 	tabPosition: 'bottom',
 	isLoad : false,
-
+	closable:true,
 	initComponent : function() {
 		Ext.apply(this, {
 			items:[{
@@ -27,24 +25,7 @@ Ext.define('Eway.view.machine.detail.View', {
 				title : '设备运行信息'
 				//交易，日志，故障,清机加钞,吞卡
 //							交易信息，应用日志(10条)，最近的设备故障信息（10条），清机加钞信息，设备吞卡信息（10条）
-			}],
-
-			listeners : {
-				beforeactivate : function(panel) {
-					// 获取所有型号关联的模板
-					var me = this;
-					Ext.Ajax.request({
-						method : 'GET',
-						url : 'api/machine/atmType/atmLinkModule',
-						success : function(response) {
-							var object = Ext.decode(response.responseText);
-							if (object.success == true) {
-								Ext.typeLinkModData = object.data.typeLink;
-							}
-						}
-					});
-				}
-			}
+			}]
 		});
 
 		this.callParent(arguments);

@@ -176,7 +176,6 @@ Ext.define('Eway.view.machine.detail.basic.HardwareInfo', {
 	},
 	isHidden : function(field) {
 		var type = field.up('form').down("displayfield[name='devTypeName']").getValue();
-//		var type = record.get('type');
 		var typeData = Ext.typeLinkModData;
 		var strs = typeData[type];
 		var has = false;
