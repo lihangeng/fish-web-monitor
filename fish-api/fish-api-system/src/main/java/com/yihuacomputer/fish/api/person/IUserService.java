@@ -1,7 +1,10 @@
 package com.yihuacomputer.fish.api.person;
 
+import java.util.List;
+
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.fish.api.permission.IRole;
 
 /**
  * 账户信息
@@ -49,6 +52,15 @@ public interface IUserService {
      * @return
      */
     public IUser add(IUser user);
+    
+    /**
+     * 根据人员，用户名和角色增加账户信息
+     * @param code
+     * @param person
+     * @param roleList
+     * @return
+     */
+    public IUser add(String code, IPerson person,List<IRole> roleList);
 
     /**
      * 根据ID删除一条账户信息

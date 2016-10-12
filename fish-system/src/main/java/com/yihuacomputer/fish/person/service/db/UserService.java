@@ -24,11 +24,14 @@ import com.yihuacomputer.common.filter.FilterFactory;
 import com.yihuacomputer.common.util.MsgDigestAlgorithm;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.domain.util.DBType;
+import com.yihuacomputer.fish.api.permission.IRole;
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.IUser;
 import com.yihuacomputer.fish.api.person.UserState;
+import com.yihuacomputer.fish.api.person.UserType;
+import com.yihuacomputer.fish.api.relation.IUserRoleRelation;
 import com.yihuacomputer.fish.person.service.base.DomainUserService;
 import com.yihuacomputer.fish.system.entity.User;
 
@@ -57,6 +60,9 @@ public class UserService extends DomainUserService {
 
 	@Autowired
 	private MessageSource messageSourceVersion;
+	
+	@Autowired
+	private IUserRoleRelation userRoleRelation;
 
 	private final long FREEZEMILLISECONDS =300000l;
 	
@@ -311,6 +317,21 @@ public class UserService extends DomainUserService {
         //不存在
         return true;
     }
+
+	@Override
+	public IUser add(String code, IPerson person, List<IRole> roleList) {
+		IUser user = this.make();
+		user.setCode(code);
+		user.setUserType(UserType.NORMAlUSER);
+		user.setPerson(person);
+		user.setAccessTime(new Date());
+		user.setState(UserState.NEW);
+		user = this.add(user);
+		for(IRole role:roleList){
+			userRoleRelation.link(user, role);
+		}
+		return user;
+	}
 
 
 }

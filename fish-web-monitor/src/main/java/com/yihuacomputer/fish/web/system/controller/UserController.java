@@ -1,5 +1,6 @@
 package com.yihuacomputer.fish.web.system.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -11,7 +12,6 @@ import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -37,7 +37,6 @@ import com.yihuacomputer.fish.api.person.IUserLogService;
 import com.yihuacomputer.fish.api.person.IUserService;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.person.UserState;
-import com.yihuacomputer.fish.api.person.UserType;
 import com.yihuacomputer.fish.api.relation.IUserRoleRelation;
 import com.yihuacomputer.fish.web.system.form.RoleForm;
 import com.yihuacomputer.fish.web.system.form.UserForm;
@@ -151,21 +150,13 @@ public class UserController {
 		if (!flag) {
 			if (!isExistCode(String.valueOf(form.getId()), form.getCode())) {
 				try {
-					IUser user = userService.make();
-					user.setCode(form.getCode());
-					user.setUserType(UserType.getById(form.getUserType()));
 					IPerson person = personService.get(form.getUserGuid());
 					if(person==null){
 						result.put(FishConstant.ERROR_MSG, messageSource.getMessage("user.addExist", null, FishCfg.locale));
 						result.put(FishConstant.SUCCESS, false);
 						return result;
 					}
-					user.setPerson(person);
-					user.setAccessTime(new Date());
-					if (form.getUserState() != null && form.getUserState() != "") {
-						user.setState(UserState.getById(Integer.parseInt(form.getUserState())));
-					}
-					userService.add(user);
+					List<IRole> roleList = new ArrayList<IRole>();
 					if (StringUtils.isNotEmpty(form.getRoles())) {
 						String[] permissions = form.getRoles().split(",");
 						for (String roleId : permissions) {
@@ -175,9 +166,10 @@ public class UserController {
 								result.put(FishConstant.SUCCESS, false);
 								return result;
 							}
-							userRoleRelation.link(user, role);
+							roleList.add(role);
 						}
 					}
+					IUser user = userService.add(form.getCode(), person, roleList);
 					form.setId(user.getId());
 					form.setName(user.getPerson().getName());
 					form.setMobile(user.getPerson().getMobile());
