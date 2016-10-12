@@ -36,6 +36,16 @@ public class DeviceParam {
 	private String paramValue;
 	
 	private String data;
+	
+	private String terminalId;
+
+	public String getTerminalId() {
+		return terminalId;
+	}
+
+	public void setTerminalId(String terminalId) {
+		this.terminalId = terminalId;
+	}
 
 	public long getId() {
 		return id;

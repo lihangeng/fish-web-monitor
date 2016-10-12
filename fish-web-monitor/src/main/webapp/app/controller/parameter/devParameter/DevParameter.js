@@ -181,11 +181,13 @@ Ext.define('Eway.controller.parameter.devParameter.DevParameter',{
 			}
 			data=data+"]";
 			
+			//var terminalId=view.down('parameter_devParameter_devGrid').getSelectionModel().getLastSelected();
 			var deviceGrid=view.down('parameter_devParameter_devGrid');
 			var deviceRecord = deviceGrid.getSelectionModel().getLastSelected();
 			var record=Ext.create('Eway.model.parameter.devParameter.ParamInfo',{
 				id:deviceRecord.get('id'),
-				data:data
+				data:data,
+				terminalId:deviceRecord.get('terminalId')
 			});
 			
 			record.save({
