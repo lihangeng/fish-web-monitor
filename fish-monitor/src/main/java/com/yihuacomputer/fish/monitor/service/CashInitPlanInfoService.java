@@ -42,7 +42,6 @@ import com.yihuacomputer.fish.monitor.entity.cashplan.CashInitPlanInfo;
 @Transactional
 public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 
-
 	private Logger logger = LoggerFactory.getLogger(CashInitPlanInfoService.class);
 	@Autowired
 	private IGenericDao dao;
@@ -52,246 +51,109 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 
 	@Autowired
 	private IDeviceBoxInfoService deviceBoxInfoService;
-	
+
 	@Autowired
 	private IDeviceService deviceService;
 
 	@Autowired
 	private ICashInitPlanDeviceInfoService cashInitPlanDeviceInfoService;
-	
 
 	@Autowired
 	private ICashInitUniqueService cashInitUniqueService;
-	
+
 	@Autowired
 	private IOrganizationService orgService;
 
 	@Autowired
 	private IMonthDailyTradingVolumeService monthDailyTradingVolumeService;
-	
+
 	@Autowired
 	private IParamService paramService;
-	
+
 	@Override
 	public void generalCashInitPlan() {
 		IOrganization organization = orgService.get("1");
 		String date = DateUtils.getTodayDate();
-		generalCashInitPlan(organization,date);
+		generalCashInitPlan(organization, date);
 	}
-	
-	public void generalCashInitPlan(IOrganization organization,String cashInitDate){
+
+	public void generalCashInitPlan(IOrganization organization, String cashInitDate) {
 		IParam cashInitUnitParam = paramService.getParam("cashinit_orglevel");
 		OrganizationLevel orgLevel = OrganizationLevel.TOTAL;
 		IParam cashInitDaysParam = paramService.getParam("cashinit_days");
-		IParam cashInitMinParam = paramService.getParam("cashinit_minofday");
+		IParam cashInParam = paramService.getParam("trading_volume_in");
+		IParam cashOutParam = paramService.getParam("trading_volume_out");
 		int cashInitDays = 7;
-		//获取加钞天数
-		if(cashInitDaysParam!=null){
-			try{
+		// 获取加钞天数
+		if (cashInitDaysParam != null) {
+			try {
 				cashInitDays = Integer.parseInt(cashInitDaysParam.getParamValue());
-			}catch(Exception e){
+			} catch (Exception e) {
 				logger.error(e.getMessage());
 			}
 		}
-		//获取加钞计划机构单位(总分支行)
-		if(cashInitUnitParam!=null){
-			try{
+		// 获取加钞计划机构单位(总分支行)
+		if (cashInitUnitParam != null) {
+			try {
 				orgLevel = OrganizationLevel.getById(Integer.parseInt(cashInitUnitParam.getParamValue()));
-			}catch(Exception e){
+			} catch (Exception e) {
 				logger.error(e.getMessage());
 			}
 		}
-		//获取日均交易信息
+		long tradingVolumeIn = 50000l;
+		long tradingVolumeOut = 50000l;
+		// 获取日均交易预警金额
+		if (cashInParam != null) {
+			try {
+				tradingVolumeIn = Long.valueOf(cashInParam.getParamValue());
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+		}
+		if (cashOutParam != null) {
+			try {
+				tradingVolumeOut = Long.valueOf(cashOutParam.getParamValue());
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+		}
+		// 获取日均交易信息
 		Date generalDate = DateUtils.getDateShort(cashInitDate);
 		String lastMonthYear = DateUtils.lastMonthFormatWithYM(generalDate);
-		IFilter filterVolume  = new Filter();
+		IFilter filterVolume = new Filter();
 		filterVolume.eq("transMonth", Integer.parseInt(lastMonthYear));
-		Map<String,IMonthDailyTradingVolume> monthDailyVolume = monthDailyTradingVolumeService.getMonthDailyMap(filterVolume);
-		
-		Map<String, IDeviceBoxInfo> deviceBoxInfoMap = deviceBoxInfoService.getDeviceBoxInfo(organization.getOrgFlag());
+		Map<String, IMonthDailyTradingVolume> monthDailyVolume = monthDailyTradingVolumeService.getMonthDailyMap(filterVolume);
+
 		IFilter filter = new Filter();
-		filter.like("orgFlag", organization.getOrgFlag()+"%");
+		filter.like("orgFlag", organization.getOrgFlag() + "%");
 		filter.eq("organizationLevel", orgLevel);
-		//获取当前机构下可以进行操作加钞操作的机构
+		// 获取当前机构下可以进行操作加钞操作的机构
 		List<IOrganization> orgList = orgService.listMatching(filter);
-		//获取当前加钞规则状态
+		// 获取当前加钞规则状态
 		ICashInitRule cashLimitRule = deviceBoxInitRuleService.get(BoxInitRuleType.CASHLIMIT);
 		ICashInitRule daysLimitRule = deviceBoxInitRuleService.get(BoxInitRuleType.DAYSLIMIT);
-		ICashInitRule transDayRule = deviceBoxInitRuleService.get(BoxInitRuleType.UNKNOW);
-		for(IOrganization org:orgList){
-
-			//获取所有加钞历史
+		ICashInitRule tradingVolumeRule = deviceBoxInitRuleService.get(BoxInitRuleType.TRADINGVOLUME);
+		for (IOrganization org : orgList) {
+			// 获取所有加钞历史
 			Map<String, ICashInitUnique> cashInitMap = cashInitUniqueService.getCashInitMap(org);
 			ICashInitPlanInfo cashInitPlanInfo = this.make();
-			Map<String,IDevice> initDeviceMap = new HashMap<String,IDevice>();
-			//当前加钞总金额
-			double amt=0;
-			//除非设置为不启用，否则按规则进行生成加钞计划
-			if(null==cashLimitRule||cashLimitRule.isStartUsing()){
-				List<IDeviceBoxInfo> deviceBoxInfoList = deviceBoxInfoService.getCashLimitRuleDevice(org.getOrgFlag());
-				for(IDeviceBoxInfo deviceBoxInfo:deviceBoxInfoList){
-					ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
-					IDevice device = deviceBoxInfo.getDeviceId();
-					//此机器上次加钞信息
-					ICashInitUnique cashInitUnique = cashInitMap.get(device.getTerminalId());
-					IMonthDailyTradingVolume monthDailyTradingVolume = monthDailyVolume.get(device.getTerminalId());
-					long dailyVolume = 0;
-					if(monthDailyTradingVolume!=null){
-						if(monthDailyTradingVolume.getLastYearAmtOutAvg()==0){
-							dailyVolume = (long)monthDailyTradingVolume.getMonthAmtOutAvg()*cashInitDays;
-						}
-						else{
-							dailyVolume = (long)monthDailyTradingVolume.getLastYearAmtOutAvg()+(long)monthDailyTradingVolume.getMonthAmtOutAvg();
-							dailyVolume = dailyVolume/2*cashInitDays;
-						}
-					}
-					dailyVolume = deviceBoxInfo.getDefaultBill()>dailyVolume?dailyVolume:deviceBoxInfo.getDefaultBill();
-					amt+=dailyVolume;
-					cashInitPlanDeviceInfo.setActualAmt(dailyVolume);
-					cashInitPlanDeviceInfo.setAdviceAmt(dailyVolume);
-					cashInitPlanDeviceInfo.setAddress(device.getAddress());
-					cashInitPlanDeviceInfo.setFlag(BoxInitRuleType.CASHLIMIT);
-					cashInitPlanDeviceInfo.setDevType(device.getDevType().getName());
-					cashInitPlanDeviceInfo.setAwayFlag(device.getAwayFlag());
-					if(cashInitUnique!=null){
-						cashInitPlanDeviceInfo.setLastAmt(cashInitUnique.getAmt());
-						cashInitPlanDeviceInfo.setLastDate(cashInitUnique.getDate());
-					}
-					cashInitPlanDeviceInfo.setOrgName(device.getOrganization().getName());
-					cashInitPlanDeviceInfo.setTerminalId(device.getTerminalId());
-					cashInitPlanDeviceInfo.setCashInitPlanInfo(cashInitPlanInfo);
-					initDeviceMap.put(device.getTerminalId(), device);
-					cashInitPlanInfo.add(cashInitPlanDeviceInfo);
-				}
+			Map<String, IDevice> initDeviceMap = new HashMap<String, IDevice>();
+			// 当前加钞总金额
+			double amt = 0;
+			// 除非设置为不启用，否则按规则进行生成加钞计划
+			if (null == cashLimitRule || cashLimitRule.isStartUsing()) {
+				amt = getCashLimit(cashInitMap,monthDailyVolume,initDeviceMap,cashInitPlanInfo,org, amt, cashInitDays, tradingVolumeOut);
 			}
-			//除非设置为不启用，否则按规则进行生成加钞计划
-			if(null==daysLimitRule||daysLimitRule.isStartUsing()){
-				IFilter cashInitFilter = new Filter();
-				String date = DateUtils.getDate(DateUtils.getDate(-cashInitDays));
-				cashInitFilter.lt("date", date+" 00:0:00");
-				List<ICashInitUnique> cashInitList = cashInitUniqueService.getCashInitByOrg(org,cashInitDays);
-				for(ICashInitUnique cashInitUnique:cashInitList){
-					//如果己经加入到加钞计划中,则跳过不做处理
-					if(initDeviceMap.get(cashInitUnique.getTerminalId())!=null){
-						continue;
-					}
-					IDeviceBoxInfo deviceBoxInfo = deviceBoxInfoMap.get(cashInitUnique.getTerminalId());
-					ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
-					//此机器日均交易
-					IMonthDailyTradingVolume monthDailyTradingVolume = monthDailyVolume.get(cashInitUnique.getTerminalId());
-					long dailyVolume = 0;
-					if(monthDailyTradingVolume!=null){
-						if(monthDailyTradingVolume.getLastYearAmtOutAvg()==0){
-							dailyVolume = (long)monthDailyTradingVolume.getMonthAmtOutAvg()*cashInitDays;
-						}
-						else{
-							dailyVolume = (long)monthDailyTradingVolume.getLastYearAmtOutAvg()+(long)monthDailyTradingVolume.getMonthAmtOutAvg();
-							dailyVolume = dailyVolume/2*cashInitDays;
-						}
-					}
-					amt+=dailyVolume;
-					IDevice device = null;
-					if(deviceBoxInfo!=null){
-						device = deviceBoxInfo.getDeviceId();
-						dailyVolume = deviceBoxInfo.getDefaultBill()>dailyVolume?dailyVolume:deviceBoxInfo.getDefaultBill();
-					}
-					else{
-						device = deviceService.get(cashInitUnique.getTerminalId());
-					}
-					//如果设备不存在，不做处理
-					if(device==null){
-						continue;
-					}
-					cashInitPlanDeviceInfo.setDevType(device.getDevType().getName());
-					cashInitPlanDeviceInfo.setAwayFlag(device.getAwayFlag());
-					cashInitPlanDeviceInfo.setActualAmt(dailyVolume);
-					cashInitPlanDeviceInfo.setAdviceAmt(dailyVolume);
-					cashInitPlanDeviceInfo.setAddress(device.getAddress());
-					cashInitPlanDeviceInfo.setFlag(BoxInitRuleType.DAYSLIMIT);
-					if(cashInitUnique!=null){
-						cashInitPlanDeviceInfo.setLastAmt(cashInitUnique.getAmt());
-						cashInitPlanDeviceInfo.setLastDate(cashInitUnique.getDate());
-					}
-					cashInitPlanDeviceInfo.setOrgName(device.getOrganization().getName());
-					cashInitPlanDeviceInfo.setTerminalId(device.getTerminalId());
-					cashInitPlanDeviceInfo.setCashInitPlanInfo(cashInitPlanInfo);
-					initDeviceMap.put(device.getTerminalId(), device);
-					cashInitPlanInfo.add(cashInitPlanDeviceInfo);
-				}
+			// 除非设置为不启用，否则按规则进行生成加钞计划
+			if (null == daysLimitRule || daysLimitRule.isStartUsing()) {
+				amt = getCashInitDays(cashInitMap,monthDailyVolume,initDeviceMap,cashInitPlanInfo,org, amt, cashInitDays, tradingVolumeOut);
 			}
-			if(transDayRule.isStartUsing() || transDayRule == null){
-				long transCash = 0l;
-				//获取日均交易预警金额
-				if(cashInitMinParam != null){
-					try{
-						transCash = Long.valueOf(cashInitMinParam.getParamValue()); 
-					}catch(Exception e){
-						logger.error(e.getMessage());
-					}
-				}
-				for(Map.Entry<String, IDeviceBoxInfo> entry:deviceBoxInfoMap.entrySet()){
-					
-					//此机器上次加钞信息
-					ICashInitUnique cashInitUnique = cashInitMap.get(entry.getKey());
-					//如果己经加入到加钞计划中,则跳过不做处理
-					if(cashInitUnique !=null && initDeviceMap.get(cashInitUnique.getTerminalId())!=null){
-						continue;
-					}
-					IMonthDailyTradingVolume monthDailyTradingVolume = monthDailyVolume.get(entry.getKey());
-					long dailyVolume = 0;
-					if(monthDailyTradingVolume!=null){
-						if(monthDailyTradingVolume.getLastYearAmtOutAvg()==0){
-							dailyVolume = (long)monthDailyTradingVolume.getMonthAmtOutAvg()*cashInitDays;
-						}
-						else{
-							dailyVolume = (long)monthDailyTradingVolume.getLastYearAmtOutAvg()+(long)monthDailyTradingVolume.getMonthAmtOutAvg();
-							dailyVolume = dailyVolume/2*cashInitDays;
-						}
-						dailyVolume = entry.getValue().getDefaultBill()>dailyVolume?dailyVolume:entry.getValue().getDefaultBill();
-						amt+=dailyVolume;
-						if(entry.getValue().getBillValue() < monthDailyTradingVolume.getMonthAmtOutAvg()){
-							ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
-							IDevice device = deviceService.get(entry.getKey());
-							if(device == null){
-								continue;
-							}
-							cashInitPlanDeviceInfo.setDevType(device.getDevType().getName());
-							cashInitPlanDeviceInfo.setAwayFlag(device.getAwayFlag());
-							cashInitPlanDeviceInfo.setActualAmt(dailyVolume);
-							cashInitPlanDeviceInfo.setAdviceAmt(dailyVolume);
-							cashInitPlanDeviceInfo.setAddress(device.getAddress());
-							cashInitPlanDeviceInfo.setFlag(BoxInitRuleType.UNKNOW);
-							if(cashInitUnique!=null){
-								cashInitPlanDeviceInfo.setLastAmt(cashInitUnique.getAmt());
-								cashInitPlanDeviceInfo.setLastDate(cashInitUnique.getDate());
-							}
-							cashInitPlanDeviceInfo.setOrgName(device.getOrganization().getName());
-							cashInitPlanDeviceInfo.setTerminalId(device.getTerminalId());
-							cashInitPlanDeviceInfo.setCashInitPlanInfo(cashInitPlanInfo);
-							cashInitPlanInfo.add(cashInitPlanDeviceInfo);
-						}
-					}else if(entry.getValue().getBillValue() < transCash){
-						ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
-						IDevice device = deviceService.get(entry.getKey());
-						if(device == null){
-							continue;
-						}
-						cashInitPlanDeviceInfo.setDevType(device.getDevType().getName());
-						cashInitPlanDeviceInfo.setAwayFlag(device.getAwayFlag());
-						cashInitPlanDeviceInfo.setActualAmt(dailyVolume);
-						cashInitPlanDeviceInfo.setAdviceAmt(dailyVolume);
-						cashInitPlanDeviceInfo.setAddress(device.getAddress());
-						cashInitPlanDeviceInfo.setFlag(BoxInitRuleType.UNKNOW);
-						if(cashInitUnique!=null){
-							cashInitPlanDeviceInfo.setLastAmt(cashInitUnique.getAmt());
-							cashInitPlanDeviceInfo.setLastDate(cashInitUnique.getDate());
-						}
-						cashInitPlanDeviceInfo.setOrgName(device.getOrganization().getName());
-						cashInitPlanDeviceInfo.setTerminalId(device.getTerminalId());
-						cashInitPlanDeviceInfo.setCashInitPlanInfo(cashInitPlanInfo);
-						cashInitPlanInfo.add(cashInitPlanDeviceInfo);
-					}
-				}
+			if (tradingVolumeRule.isStartUsing() || tradingVolumeRule == null) {
+				amt = getTradingVolume(cashInitMap,monthDailyVolume,initDeviceMap,cashInitPlanInfo,org, amt, cashInitDays, tradingVolumeOut,tradingVolumeIn);
+			}
+			//当前机构没有加钞的设备，不生成加钞计划
+			if(initDeviceMap.size()==0){
+				continue;
 			}
 			cashInitPlanInfo.setOrg(org);
 			cashInitPlanInfo.setAmt(amt);
@@ -300,7 +162,185 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 			this.save(cashInitPlanInfo);
 		}
 	}
+	
+	/**
+	 * 获取钞箱预警加钞设备
+	 * @param cashInitMap
+	 * @param monthDailyVolume
+	 * @param initDeviceMap
+	 * @param cashInitPlanInfo
+	 * @param org
+	 * @param amt
+	 * @param cashInitDays
+	 * @param tradingVolumeOut
+	 * @return
+	 */
+	private double getCashLimit(Map<String,ICashInitUnique>cashInitMap,Map<String,IMonthDailyTradingVolume>monthDailyVolume,
+			Map<String,IDevice>initDeviceMap,ICashInitPlanInfo cashInitPlanInfo,IOrganization org,double amt,int cashInitDays,long tradingVolumeOut){
 
+		List<IDeviceBoxInfo> deviceBoxInfoList = deviceBoxInfoService.getCashLimitRuleDevice(org.getOrgFlag());
+		for (IDeviceBoxInfo deviceBoxInfo : deviceBoxInfoList) {
+			ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
+			IDevice device = deviceBoxInfo.getDeviceId();
+			// 此机器上次加钞信息
+			ICashInitUnique cashInitUnique = cashInitMap.get(device.getTerminalId());
+			// 此机器日均交易
+			long dailyVolume = getDailyTradingVolume(monthDailyVolume,deviceBoxInfo,device.getTerminalId(),cashInitDays,tradingVolumeOut);
+			amt += dailyVolume;
+			cashInitPlanDeviceInfo.setActualAmt(dailyVolume);
+			cashInitPlanDeviceInfo.setAdviceAmt(dailyVolume);
+			cashInitPlanDeviceInfo.setAddress(device.getAddress());
+			cashInitPlanDeviceInfo.setFlag(BoxInitRuleType.CASHLIMIT);
+			cashInitPlanDeviceInfo.setDevType(device.getDevType().getName());
+			cashInitPlanDeviceInfo.setAwayFlag(device.getAwayFlag());
+			if (cashInitUnique != null) {
+				cashInitPlanDeviceInfo.setLastAmt(cashInitUnique.getAmt());
+				cashInitPlanDeviceInfo.setLastDate(cashInitUnique.getDate());
+			}
+			cashInitPlanDeviceInfo.setOrgName(device.getOrganization().getName());
+			cashInitPlanDeviceInfo.setTerminalId(device.getTerminalId());
+			cashInitPlanDeviceInfo.setCashInitPlanInfo(cashInitPlanInfo);
+			initDeviceMap.put(device.getTerminalId(), device);
+			cashInitPlanInfo.add(cashInitPlanDeviceInfo);
+		}
+		return amt;
+	}
+
+	
+	/**
+	 * 获取上次加钞时间过期设备
+	 * @param cashInitMap
+	 * @param monthDailyVolume
+	 * @param initDeviceMap
+	 * @param cashInitPlanInfo
+	 * @param org
+	 * @param amt
+	 * @param cashInitDays
+	 * @param tradingVolumeOut
+	 * @return
+	 */
+	private double getCashInitDays(Map<String,ICashInitUnique>cashInitMap,Map<String,IMonthDailyTradingVolume>monthDailyVolume,
+			Map<String,IDevice>initDeviceMap,ICashInitPlanInfo cashInitPlanInfo,IOrganization org,double amt,int cashInitDays,long tradingVolumeOut){
+		Map<String, IDeviceBoxInfo> deviceBoxInfoMap = deviceBoxInfoService.getDeviceBoxInfo(org.getOrgFlag());
+		IFilter cashInitFilter = new Filter();
+		String date = DateUtils.getDate(DateUtils.getDate(-cashInitDays));
+		cashInitFilter.lt("date", date + " 00:0:00");
+		List<ICashInitUnique> cashInitList = cashInitUniqueService.getCashInitByOrg(org, cashInitDays);
+		for (ICashInitUnique cashInitUnique : cashInitList) {
+			// 如果己经加入到加钞计划中,则跳过不做处理
+			if (initDeviceMap.get(cashInitUnique.getTerminalId()) != null) {
+				continue;
+			}
+			IDeviceBoxInfo deviceBoxInfo = deviceBoxInfoMap.get(cashInitUnique.getTerminalId());
+			ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
+			
+			IDevice device = null;
+			if (deviceBoxInfo != null) {
+				device = deviceBoxInfo.getDeviceId();
+			} else {
+				device = deviceService.get(cashInitUnique.getTerminalId());
+			}
+			// 如果设备不存在，不做处理
+			if (device == null) {
+				continue;
+			}
+			// 此机器日均交易
+			long dailyVolume = getDailyTradingVolume(monthDailyVolume,deviceBoxInfo,device.getTerminalId(),cashInitDays,tradingVolumeOut);
+			
+			amt += dailyVolume;
+			cashInitPlanDeviceInfo.setDevType(device.getDevType().getName());
+			cashInitPlanDeviceInfo.setAwayFlag(device.getAwayFlag());
+			cashInitPlanDeviceInfo.setActualAmt(dailyVolume);
+			cashInitPlanDeviceInfo.setAdviceAmt(dailyVolume);
+			cashInitPlanDeviceInfo.setAddress(device.getAddress());
+			cashInitPlanDeviceInfo.setFlag(BoxInitRuleType.DAYSLIMIT);
+			if (cashInitUnique != null) {
+				cashInitPlanDeviceInfo.setLastAmt(cashInitUnique.getAmt());
+				cashInitPlanDeviceInfo.setLastDate(cashInitUnique.getDate());
+			}
+			cashInitPlanDeviceInfo.setOrgName(device.getOrganization().getName());
+			cashInitPlanDeviceInfo.setTerminalId(device.getTerminalId());
+			cashInitPlanDeviceInfo.setCashInitPlanInfo(cashInitPlanInfo);
+			initDeviceMap.put(device.getTerminalId(), device);
+			cashInitPlanInfo.add(cashInitPlanDeviceInfo);
+		}
+		return amt;
+	}
+	
+	/**
+	 * 获取不能维持一天运行的设备(和日均交易量比较)
+	 * @param cashInitMap
+	 * @param monthDailyVolume
+	 * @param initDeviceMap
+	 * @param cashInitPlanInfo
+	 * @param org
+	 * @param amt
+	 * @param cashInitDays
+	 * @param tradingVolumeOut
+	 * @param tradingVolumeIn
+	 * @return
+	 */
+	private double getTradingVolume(Map<String,ICashInitUnique>cashInitMap,Map<String,IMonthDailyTradingVolume>monthDailyVolume,
+			Map<String,IDevice>initDeviceMap,ICashInitPlanInfo cashInitPlanInfo,IOrganization org,double amt,int cashInitDays,long tradingVolumeOut,long tradingVolumeIn){
+
+		Map<String, IDeviceBoxInfo> orgDeviceBoxInfoMap = deviceBoxInfoService.getDeviceBoxInfo(org.getOrgFlag());
+		for (Map.Entry<String, IDeviceBoxInfo> entry : orgDeviceBoxInfoMap.entrySet()) {
+			String terminalId = entry.getKey();
+			IDeviceBoxInfo deviceBoxInfo = entry.getValue();
+			// 此机器上次加钞信息
+			ICashInitUnique cashInitUnique = cashInitMap.get(terminalId);
+			// 如果己经加入到加钞计划中,则跳过不做处理
+			if (initDeviceMap.get(terminalId) != null) {
+				continue;
+			}
+			long dailyVolume = getDailyTradingVolume(monthDailyVolume,deviceBoxInfo,terminalId,cashInitDays,tradingVolumeOut);
+			amt += dailyVolume;
+			if (deviceBoxInfo.getBillValue() < dailyVolume||(deviceBoxInfo.getCashInValue()+tradingVolumeIn)>deviceBoxInfo.getDefaultCashIn()) {
+				ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
+				IDevice device = deviceService.get(terminalId);
+				if (device == null) {
+					continue;
+				}
+				cashInitPlanDeviceInfo.setDevType(device.getDevType().getName());
+				cashInitPlanDeviceInfo.setAwayFlag(device.getAwayFlag());
+				cashInitPlanDeviceInfo.setActualAmt(dailyVolume);
+				cashInitPlanDeviceInfo.setAdviceAmt(dailyVolume);
+				cashInitPlanDeviceInfo.setAddress(device.getAddress());
+				cashInitPlanDeviceInfo.setFlag(BoxInitRuleType.TRADINGVOLUME);
+				if (cashInitUnique != null) {
+					cashInitPlanDeviceInfo.setLastAmt(cashInitUnique.getAmt());
+					cashInitPlanDeviceInfo.setLastDate(cashInitUnique.getDate());
+				}
+				cashInitPlanDeviceInfo.setOrgName(device.getOrganization().getName());
+				cashInitPlanDeviceInfo.setTerminalId(device.getTerminalId());
+				cashInitPlanDeviceInfo.setCashInitPlanInfo(cashInitPlanInfo);
+				initDeviceMap.put(device.getTerminalId(), device);
+				cashInitPlanInfo.add(cashInitPlanDeviceInfo);
+			}
+
+		}
+		return amt;
+	}
+	
+	private long getDailyTradingVolume(Map<String,IMonthDailyTradingVolume>monthDailyVolume,IDeviceBoxInfo deviceBoxInfo,String terminalId,int cashInitDays,long tradingVolumeOut){
+		IMonthDailyTradingVolume monthDailyTradingVolume = monthDailyVolume.get(terminalId);
+		long dailyVolume = 0;
+		if (monthDailyTradingVolume != null) {
+			if (monthDailyTradingVolume.getLastYearAmtOutAvg() == 0) {
+				dailyVolume = (long) monthDailyTradingVolume.getMonthAmtOutAvg() * cashInitDays;
+			} else {
+				dailyVolume = (long) monthDailyTradingVolume.getLastYearAmtOutAvg() + (long) monthDailyTradingVolume.getMonthAmtOutAvg();
+				dailyVolume = dailyVolume / 2 * cashInitDays;
+			}
+		} else {
+			dailyVolume = tradingVolumeOut;
+		}
+		if (deviceBoxInfo != null) {
+			dailyVolume = deviceBoxInfo.getDefaultBill() > dailyVolume ? dailyVolume : deviceBoxInfo.getDefaultBill();
+		} 
+		return dailyVolume;
+	}
+	
 	@Override
 	public ICashInitPlanInfo make() {
 		return new CashInitPlanInfo();
@@ -308,21 +348,21 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 
 	/**
 	 * 获取指定日期内的加钞计划单号,如果之前没有单号,直接返回日期+"0000"否则返回最大单号+1
+	 * 
 	 * @param cashInitDate
 	 * @return
 	 */
-	public String getCashInitPlanInfoNextCode(String cashInitDate){
+	public String getCashInitPlanInfoNextCode(String cashInitDate) {
 		StringBuffer sb = new StringBuffer();
-		sb.append("select cashInitCode from ").append(CashInitPlanInfo.class.getSimpleName())
-		.append(" where date=? order by cashInitCode desc");
-		List<String> list = dao.findByHQL(sb.toString(), new Object[]{Integer.parseInt(cashInitDate)});
-		if(null==list||list.size()==0){
-			return cashInitDate+"0000";
+		sb.append("select cashInitCode from ").append(CashInitPlanInfo.class.getSimpleName()).append(" where date=? order by cashInitCode desc");
+		List<String> list = dao.findByHQL(sb.toString(), new Object[] { Integer.parseInt(cashInitDate) });
+		if (null == list || list.size() == 0) {
+			return cashInitDate + "0000";
 		}
 		long nowCode = Long.parseLong(list.get(0));
-		return ++nowCode+"";
+		return ++nowCode + "";
 	}
-	
+
 	@Override
 	public ICashInitPlanInfo save(ICashInitPlanInfo cashInitPlanInfo) {
 		return dao.save(cashInitPlanInfo);
@@ -348,7 +388,7 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 		return dao.page(offset, limit, filter, CashInitPlanInfo.class);
 	}
 
-	public List<ICashInitPlanInfo> list(IFilter filter){
+	public List<ICashInitPlanInfo> list(IFilter filter) {
 		return dao.findByFilter(filter, ICashInitPlanInfo.class);
 	}
 }

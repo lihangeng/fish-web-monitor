@@ -18,7 +18,10 @@ public enum BoxInitRuleType {
      */
     MANAUL(2),
     
-    UNKNOW(3);
+    /**
+     * 日均交易量预警加钞
+     */
+    TRADINGVOLUME(3);
     private BoxInitRuleType(int x){
     	this.seqNo= x;
     }
@@ -35,6 +38,6 @@ public enum BoxInitRuleType {
     			return boxInitRuleType;
     		}
     	}
-    	return BoxInitRuleType.UNKNOW;
+    	return BoxInitRuleType.TRADINGVOLUME;
     }
 }

@@ -141,7 +141,6 @@ public class UserController {
 	 * @param form
 	 * @return ModelMap<String, Object>
 	 */
-	@Transactional
 	@MethodNameDescrible(describle="userlog.UserController.add",hasReqBodyParam=true,reqBodyClass=UserForm.class,bodyProperties="name")
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody
