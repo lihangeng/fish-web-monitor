@@ -80,10 +80,10 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 	}
 	
 	public void generalCashInitPlan(IOrganization organization,String cashInitDate){
-		
 		IParam cashInitUnitParam = paramService.getParam("cashinit_orglevel");
 		OrganizationLevel orgLevel = OrganizationLevel.TOTAL;
 		IParam cashInitDaysParam = paramService.getParam("cashinit_days");
+		IParam cashInitMinParam = paramService.getParam("cashinit_minofday");
 		int cashInitDays = 7;
 		//获取加钞天数
 		if(cashInitDaysParam!=null){
@@ -117,6 +117,7 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 		//获取当前加钞规则状态
 		ICashInitRule cashLimitRule = deviceBoxInitRuleService.get(BoxInitRuleType.CASHLIMIT);
 		ICashInitRule daysLimitRule = deviceBoxInitRuleService.get(BoxInitRuleType.DAYSLIMIT);
+		ICashInitRule transDayRule = deviceBoxInitRuleService.get(BoxInitRuleType.UNKNOW);
 		for(IOrganization org:orgList){
 
 			//获取所有加钞历史
@@ -214,7 +215,82 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 					cashInitPlanDeviceInfo.setOrgName(device.getOrganization().getName());
 					cashInitPlanDeviceInfo.setTerminalId(device.getTerminalId());
 					cashInitPlanDeviceInfo.setCashInitPlanInfo(cashInitPlanInfo);
+					initDeviceMap.put(device.getTerminalId(), device);
 					cashInitPlanInfo.add(cashInitPlanDeviceInfo);
+				}
+			}
+			if(transDayRule.isStartUsing() || transDayRule == null){
+				long transCash = 0l;
+				//获取日均交易预警金额
+				if(cashInitMinParam != null){
+					try{
+						transCash = Long.valueOf(cashInitMinParam.getParamValue()); 
+					}catch(Exception e){
+						logger.error(e.getMessage());
+					}
+				}
+				for(Map.Entry<String, IDeviceBoxInfo> entry:deviceBoxInfoMap.entrySet()){
+					
+					//此机器上次加钞信息
+					ICashInitUnique cashInitUnique = cashInitMap.get(entry.getKey());
+					//如果己经加入到加钞计划中,则跳过不做处理
+					if(cashInitUnique !=null && initDeviceMap.get(cashInitUnique.getTerminalId())!=null){
+						continue;
+					}
+					IMonthDailyTradingVolume monthDailyTradingVolume = monthDailyVolume.get(entry.getKey());
+					long dailyVolume = 0;
+					if(monthDailyTradingVolume!=null){
+						if(monthDailyTradingVolume.getLastYearAmtOutAvg()==0){
+							dailyVolume = (long)monthDailyTradingVolume.getMonthAmtOutAvg()*cashInitDays;
+						}
+						else{
+							dailyVolume = (long)monthDailyTradingVolume.getLastYearAmtOutAvg()+(long)monthDailyTradingVolume.getMonthAmtOutAvg();
+							dailyVolume = dailyVolume/2*cashInitDays;
+						}
+						dailyVolume = entry.getValue().getDefaultBill()>dailyVolume?dailyVolume:entry.getValue().getDefaultBill();
+						amt+=dailyVolume;
+						if(entry.getValue().getBillValue() < monthDailyTradingVolume.getMonthAmtOutAvg()){
+							ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
+							IDevice device = deviceService.get(entry.getKey());
+							if(device == null){
+								continue;
+							}
+							cashInitPlanDeviceInfo.setDevType(device.getDevType().getName());
+							cashInitPlanDeviceInfo.setAwayFlag(device.getAwayFlag());
+							cashInitPlanDeviceInfo.setActualAmt(dailyVolume);
+							cashInitPlanDeviceInfo.setAdviceAmt(dailyVolume);
+							cashInitPlanDeviceInfo.setAddress(device.getAddress());
+							cashInitPlanDeviceInfo.setFlag(BoxInitRuleType.UNKNOW);
+							if(cashInitUnique!=null){
+								cashInitPlanDeviceInfo.setLastAmt(cashInitUnique.getAmt());
+								cashInitPlanDeviceInfo.setLastDate(cashInitUnique.getDate());
+							}
+							cashInitPlanDeviceInfo.setOrgName(device.getOrganization().getName());
+							cashInitPlanDeviceInfo.setTerminalId(device.getTerminalId());
+							cashInitPlanDeviceInfo.setCashInitPlanInfo(cashInitPlanInfo);
+							cashInitPlanInfo.add(cashInitPlanDeviceInfo);
+						}
+					}else if(entry.getValue().getBillValue() < transCash){
+						ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
+						IDevice device = deviceService.get(entry.getKey());
+						if(device == null){
+							continue;
+						}
+						cashInitPlanDeviceInfo.setDevType(device.getDevType().getName());
+						cashInitPlanDeviceInfo.setAwayFlag(device.getAwayFlag());
+						cashInitPlanDeviceInfo.setActualAmt(dailyVolume);
+						cashInitPlanDeviceInfo.setAdviceAmt(dailyVolume);
+						cashInitPlanDeviceInfo.setAddress(device.getAddress());
+						cashInitPlanDeviceInfo.setFlag(BoxInitRuleType.UNKNOW);
+						if(cashInitUnique!=null){
+							cashInitPlanDeviceInfo.setLastAmt(cashInitUnique.getAmt());
+							cashInitPlanDeviceInfo.setLastDate(cashInitUnique.getDate());
+						}
+						cashInitPlanDeviceInfo.setOrgName(device.getOrganization().getName());
+						cashInitPlanDeviceInfo.setTerminalId(device.getTerminalId());
+						cashInitPlanDeviceInfo.setCashInitPlanInfo(cashInitPlanInfo);
+						cashInitPlanInfo.add(cashInitPlanDeviceInfo);
+					}
 				}
 			}
 			cashInitPlanInfo.setOrg(org);
