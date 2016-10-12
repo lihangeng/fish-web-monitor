@@ -63,10 +63,11 @@ Ext.define('Eway.controller.Main', {
 		}
 	},
 	searchDeviceDetail:function(){
+		var ewayView = this.getEwayView();
 		var termianlId = this.getAppheader().down("textfield[name=terminalId]").getValue();
 		if(termianlId!=""){
 			var me = this;
-
+			ewayView.mask();
 			Ext.Ajax.request({
 				method : 'GET',
 				url : 'api/machine/atmType/atmLinkModule',
@@ -86,13 +87,30 @@ Ext.define('Eway.controller.Main', {
 									view.setTitle(termianlId+"设备信息");
 									view.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data.deviceForm));
 									view.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
+									view.down("detail_personInfo").getStore().removeAll();
+									view.down("detail_versionInfo").getStore().removeAll();
+									var displayfields = Ext.ComponentQuery.query("detail_basic_hardwareInfo displayfield");
+									Ext.Array.forEach(displayfields,function(displayfield,index,items){
+										displayfield.setHidden(!view.down("detail_basic_hardwareInfo").isHidden(displayfield));
+										
+									});
+									Ext.Array.forEach(object.data.personList,function(item,index,items){
+										view.down("detail_personInfo").getStore().add(Ext.create('Eway.model.person.person.BankPerson',item))
+									});
+									Ext.Array.forEach(object.data.versionDeviceList,function(item,index,items){
+										view.down("detail_versionInfo").getStore().add(Ext.create('Eway.model.version.DeviceVersionHistory',item))
+									});
 								}
 								else{
 									Eway.alert(object.errorMsg);
 								}
+								ewayView.unmask();
 							}
 						});
 					}
+				},
+				failure:function(){
+					ewayView.unmask();
 				}
 			});
 		

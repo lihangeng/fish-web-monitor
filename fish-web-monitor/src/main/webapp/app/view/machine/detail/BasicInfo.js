@@ -4,8 +4,9 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
 
 	requires : ['Eway.view.machine.detail.basic.DeviceInfo',
 	            'Eway.view.machine.detail.basic.HardwareInfo',
-	            'Eway.view.machine.detail.basic.CashLimitInfo',
-	            'Eway.view.version.deviceVersion.VersionHistoryGrid'
+	            'Eway.view.machine.detail.basic.OtherInfo',
+	            'Eway.view.machine.detail.basic.PersonInfo',
+	            'Eway.view.machine.detail.basic.VersionInfo'
 	            ],
 	title : '设备基本信息',
    layout: {
@@ -28,30 +29,35 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
 			        collapsible :true
 			    },
 				items:[{
-					xtype: 'detail_basic_deviceInfo',
-		            title: '设备基础信息',
-				},{
-					xtype: 'detail_basic_hardwareInfo',
-		            title: '硬件状态'
-				},{
-					xtype: 'detail_basic_cashLimitInfo'
-				}
+						xtype: 'detail_basic_deviceInfo',
+			            title: '设备基础信息',
+					},{
+						xtype: 'detail_basic_hardwareInfo',
+			            title: '硬件状态'
+					},{
+						xtype: 'detail_basic_otherInfo'
+					}
 				]},{
-					xtype: 'panel',
+					xtype: 'detail_personInfo',
 		            title: '设备人员信息',
-		            html:'设备人员信息'
+			        frame: true,
+			        margin: 10,
+			        collapsible :true
 				},{
-					xtype: 'versionHistory_grid',
-		            title: '版本信息'
+					xtype: 'detail_versionInfo',
+		            title: '版本信息',
+			        frame: true,
+			        margin: 10,
+			        collapsible :true
 			}],
 
 			listeners : {
 				activate : function(panel) {
-					var hisGrid = this.down('versionHistory_grid');
-					var historyStore = hisGrid.getStore();
-					historyStore.cleanUrlParam();
-					historyStore.proxy.extraParams = {deviceId:this.up("viewport").down("appheader textfield[name=terminalId]").getValue()};
-					historyStore.load();
+//					var hisGrid = this.down('versionHistory_grid');
+//					var historyStore = hisGrid.getStore();
+//					historyStore.cleanUrlParam();
+//					historyStore.proxy.extraParams = {deviceId:this.up("viewport").down("appheader textfield[name=terminalId]").getValue()};
+//					historyStore.load();
 				}
 			}
 		});

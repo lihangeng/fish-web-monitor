@@ -1,39 +1,56 @@
-Ext.define('Eway.view.machine.detail.PersonInfo', {
+Ext.define('Eway.view.machine.detail.basic.PersonInfo', {
 	extend : 'Ext.grid.Panel',
 	alias : 'widget.detail_personInfo',
 	title : '设备人员信息',
     
     initComponent : function() {
+    	var store = Ext.create("Eway.store.person.person.BankPerson")
 		Ext.apply(this, {
+			store:store,
 			columns: [{
 			              text: '姓名',
-			              dataIndex: 'name',
-			              flex: 1
+			              dataIndex: 'name'
 			          },{
-			              text: '性别',
-			              dataIndex: 'sex',
-			              flex: 1
+			        	  header : EwayLocale.commen.gender,
+			        	  dataIndex : 'gender',
+			        	  renderer: function(value,metadata,record){
+			        		  if(value=="MALE"||value==0){
+			                	   return EwayLocale.commen.comboxGender.male;
+			                   }else if(value=="FEMALE"||value==1){
+			                	   return EwayLocale.commen.comboxGender.female;
+			                   }else{
+			                	   return EwayLocale.commen.comboxGender.unknow;
+			                   }
+			        	  }
 			          },{
 			              text: '机构',
-			              dataIndex: 'orgName'
+			              dataIndex: 'organizationName',
+			              flex:1
 			          },{
 			              text: '手机',
-			              dataIndex: 'phone',
+			              dataIndex: 'mobile',
 			              width: 100
 			          },{
 			              text: '人员类型',
-			              dataIndex: 'personType',
-			              hidden: true
+			              dataIndex: 'type',
+			              renderer: function(value,metadata,record){
+			            	  if(value==0){
+			            		  return "银行人员";
+			            	  }
+			            	  else{
+			            		  return "维护商人员";
+			            	  }
+			              }
 			          },{
 			              text: '邮箱',
-			              dataIndex: 'phone',
-			              width: 100
+			              dataIndex: 'email',
+			              width: 250
 			          },{
 			              text: '固定电话',
 			              dataIndex: 'phone',
-			              width: 100
+			              width: 200
 			          }
-			      ]
+			      ],
 			listeners : {
 				activate : function(panel) {}
 			}

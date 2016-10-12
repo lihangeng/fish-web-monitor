@@ -87,7 +87,7 @@ Ext.define('Eway.view.machine.detail.basic.DeviceInfo', {
 				name : 'workTypeName',
 				code :'workTypeName'
 			}],
-
+			
 			listeners : {
 				activate : function(panel) {}
 			}
