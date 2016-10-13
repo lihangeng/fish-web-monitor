@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.CashInitPlanCfg;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.filter.Filter;
@@ -34,8 +35,6 @@ import com.yihuacomputer.fish.api.monitor.volume.IMonthDailyTradingVolumeService
 import com.yihuacomputer.fish.api.person.IOrganization;
 import com.yihuacomputer.fish.api.person.IOrganizationService;
 import com.yihuacomputer.fish.api.person.OrganizationLevel;
-import com.yihuacomputer.fish.api.system.config.IParam;
-import com.yihuacomputer.fish.api.system.config.IParamService;
 import com.yihuacomputer.fish.monitor.entity.cashplan.CashInitPlanInfo;
 
 @Service
@@ -67,9 +66,6 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 	@Autowired
 	private IMonthDailyTradingVolumeService monthDailyTradingVolumeService;
 
-	@Autowired
-	private IParamService paramService;
-
 	@Override
 	public void generalCashInitPlan() {
 		IOrganization organization = orgService.get("1");
@@ -78,45 +74,18 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 	}
 
 	public void generalCashInitPlan(IOrganization organization, String cashInitDate) {
-		IParam cashInitUnitParam = paramService.getParam("cashinit_orglevel");
-		OrganizationLevel orgLevel = OrganizationLevel.TOTAL;
-		IParam cashInitDaysParam = paramService.getParam("cashinit_days");
-		IParam cashInParam = paramService.getParam("trading_volume_in");
-		IParam cashOutParam = paramService.getParam("trading_volume_out");
-		int cashInitDays = 7;
-		// 获取加钞天数
-		if (cashInitDaysParam != null) {
-			try {
-				cashInitDays = Integer.parseInt(cashInitDaysParam.getParamValue());
-			} catch (Exception e) {
-				logger.error(e.getMessage());
-			}
-		}
 		// 获取加钞计划机构单位(总分支行)
-		if (cashInitUnitParam != null) {
-			try {
-				orgLevel = OrganizationLevel.getById(Integer.parseInt(cashInitUnitParam.getParamValue()));
-			} catch (Exception e) {
-				logger.error(e.getMessage());
-			}
+		OrganizationLevel orgLevel = OrganizationLevel.TOTAL;
+		try {
+			orgLevel = OrganizationLevel.getById(CashInitPlanCfg.getCashInitPlanUtils());
+		} catch (Exception e) {
+			logger.error(e.getMessage());
 		}
-		long tradingVolumeIn = 50000l;
-		long tradingVolumeOut = 50000l;
+		// 获取规定的清机加钞周期
+		int cashInitDays = CashInitPlanCfg.getCashInitDays();
 		// 获取日均交易预警金额
-		if (cashInParam != null) {
-			try {
-				tradingVolumeIn = Long.valueOf(cashInParam.getParamValue());
-			} catch (Exception e) {
-				logger.error(e.getMessage());
-			}
-		}
-		if (cashOutParam != null) {
-			try {
-				tradingVolumeOut = Long.valueOf(cashOutParam.getParamValue());
-			} catch (Exception e) {
-				logger.error(e.getMessage());
-			}
-		}
+		long tradingVolumeIn = CashInitPlanCfg.getDaliyTradingVolumeCashIn();
+		long tradingVolumeOut = CashInitPlanCfg.getDaliyTradingVolumeBill();
 		// 获取日均交易信息
 		Date generalDate = DateUtils.getDateShort(cashInitDate);
 		String lastMonthYear = DateUtils.lastMonthFormatWithYM(generalDate);
@@ -180,32 +149,43 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 
 		List<IDeviceBoxInfo> deviceBoxInfoList = deviceBoxInfoService.getCashLimitRuleDevice(org.getOrgFlag());
 		for (IDeviceBoxInfo deviceBoxInfo : deviceBoxInfoList) {
-			ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
 			IDevice device = deviceBoxInfo.getDeviceId();
 			// 此机器上次加钞信息
 			ICashInitUnique cashInitUnique = cashInitMap.get(device.getTerminalId());
 			// 此机器日均交易
 			long dailyVolume = getDailyTradingVolume(monthDailyVolume,deviceBoxInfo,device.getTerminalId(),cashInitDays,tradingVolumeOut);
 			amt += dailyVolume;
-			cashInitPlanDeviceInfo.setActualAmt(dailyVolume);
-			cashInitPlanDeviceInfo.setAdviceAmt(dailyVolume);
-			cashInitPlanDeviceInfo.setAddress(device.getAddress());
-			cashInitPlanDeviceInfo.setFlag(BoxInitRuleType.CASHLIMIT);
-			cashInitPlanDeviceInfo.setDevType(device.getDevType().getName());
-			cashInitPlanDeviceInfo.setAwayFlag(device.getAwayFlag());
-			if (cashInitUnique != null) {
-				cashInitPlanDeviceInfo.setLastAmt(cashInitUnique.getAmt());
-				cashInitPlanDeviceInfo.setLastDate(cashInitUnique.getDate());
-			}
-			cashInitPlanDeviceInfo.setOrgName(device.getOrganization().getName());
-			cashInitPlanDeviceInfo.setTerminalId(device.getTerminalId());
-			cashInitPlanDeviceInfo.setCashInitPlanInfo(cashInitPlanInfo);
+			initCashInitPlanDeviceInfo(BoxInitRuleType.CASHLIMIT,dailyVolume,cashInitPlanInfo,device,cashInitUnique);
 			initDeviceMap.put(device.getTerminalId(), device);
-			cashInitPlanInfo.add(cashInitPlanDeviceInfo);
 		}
 		return amt;
 	}
 
+	/**
+	 * 初始化设备加钞信息
+	 * @param type
+	 * @param tradingVolume
+	 * @param cashInitPlanInfo
+	 * @param device
+	 * @param cashInitUnique
+	 */
+	private void initCashInitPlanDeviceInfo(BoxInitRuleType type, long tradingVolume,ICashInitPlanInfo cashInitPlanInfo,IDevice device,ICashInitUnique cashInitUnique){
+		ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
+		cashInitPlanDeviceInfo.setActualAmt(tradingVolume);
+		cashInitPlanDeviceInfo.setAdviceAmt(tradingVolume);
+		cashInitPlanDeviceInfo.setAddress(device.getAddress());
+		cashInitPlanDeviceInfo.setFlag(BoxInitRuleType.CASHLIMIT);
+		cashInitPlanDeviceInfo.setDevType(device.getDevType().getName());
+		cashInitPlanDeviceInfo.setAwayFlag(device.getAwayFlag());
+		if (cashInitUnique != null) {
+			cashInitPlanDeviceInfo.setLastAmt(cashInitUnique.getAmt());
+			cashInitPlanDeviceInfo.setLastDate(cashInitUnique.getDate());
+		}
+		cashInitPlanDeviceInfo.setOrgName(device.getOrganization().getName());
+		cashInitPlanDeviceInfo.setTerminalId(device.getTerminalId());
+		cashInitPlanDeviceInfo.setCashInitPlanInfo(cashInitPlanInfo);
+		cashInitPlanInfo.add(cashInitPlanDeviceInfo);
+	}
 	
 	/**
 	 * 获取上次加钞时间过期设备
@@ -232,7 +212,6 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 				continue;
 			}
 			IDeviceBoxInfo deviceBoxInfo = deviceBoxInfoMap.get(cashInitUnique.getTerminalId());
-			ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
 			
 			IDevice device = null;
 			if (deviceBoxInfo != null) {
@@ -248,21 +227,8 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 			long dailyVolume = getDailyTradingVolume(monthDailyVolume,deviceBoxInfo,device.getTerminalId(),cashInitDays,tradingVolumeOut);
 			
 			amt += dailyVolume;
-			cashInitPlanDeviceInfo.setDevType(device.getDevType().getName());
-			cashInitPlanDeviceInfo.setAwayFlag(device.getAwayFlag());
-			cashInitPlanDeviceInfo.setActualAmt(dailyVolume);
-			cashInitPlanDeviceInfo.setAdviceAmt(dailyVolume);
-			cashInitPlanDeviceInfo.setAddress(device.getAddress());
-			cashInitPlanDeviceInfo.setFlag(BoxInitRuleType.DAYSLIMIT);
-			if (cashInitUnique != null) {
-				cashInitPlanDeviceInfo.setLastAmt(cashInitUnique.getAmt());
-				cashInitPlanDeviceInfo.setLastDate(cashInitUnique.getDate());
-			}
-			cashInitPlanDeviceInfo.setOrgName(device.getOrganization().getName());
-			cashInitPlanDeviceInfo.setTerminalId(device.getTerminalId());
-			cashInitPlanDeviceInfo.setCashInitPlanInfo(cashInitPlanInfo);
+			initCashInitPlanDeviceInfo(BoxInitRuleType.DAYSLIMIT,dailyVolume,cashInitPlanInfo,device,cashInitUnique);
 			initDeviceMap.put(device.getTerminalId(), device);
-			cashInitPlanInfo.add(cashInitPlanDeviceInfo);
 		}
 		return amt;
 	}
@@ -296,26 +262,12 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 			long dailyVolume = getDailyTradingVolume(monthDailyVolume,deviceBoxInfo,terminalId,cashInitDays,tradingVolumeOut);
 			amt += dailyVolume;
 			if (deviceBoxInfo.getBillValue() < dailyVolume||(deviceBoxInfo.getCashInValue()+tradingVolumeIn)>deviceBoxInfo.getDefaultCashIn()) {
-				ICashInitPlanDeviceInfo cashInitPlanDeviceInfo = cashInitPlanDeviceInfoService.make();
 				IDevice device = deviceService.get(terminalId);
 				if (device == null) {
 					continue;
 				}
-				cashInitPlanDeviceInfo.setDevType(device.getDevType().getName());
-				cashInitPlanDeviceInfo.setAwayFlag(device.getAwayFlag());
-				cashInitPlanDeviceInfo.setActualAmt(dailyVolume);
-				cashInitPlanDeviceInfo.setAdviceAmt(dailyVolume);
-				cashInitPlanDeviceInfo.setAddress(device.getAddress());
-				cashInitPlanDeviceInfo.setFlag(BoxInitRuleType.TRADINGVOLUME);
-				if (cashInitUnique != null) {
-					cashInitPlanDeviceInfo.setLastAmt(cashInitUnique.getAmt());
-					cashInitPlanDeviceInfo.setLastDate(cashInitUnique.getDate());
-				}
-				cashInitPlanDeviceInfo.setOrgName(device.getOrganization().getName());
-				cashInitPlanDeviceInfo.setTerminalId(device.getTerminalId());
-				cashInitPlanDeviceInfo.setCashInitPlanInfo(cashInitPlanInfo);
+				initCashInitPlanDeviceInfo(BoxInitRuleType.TRADINGVOLUME,dailyVolume,cashInitPlanInfo,device,cashInitUnique);
 				initDeviceMap.put(device.getTerminalId(), device);
-				cashInitPlanInfo.add(cashInitPlanDeviceInfo);
 			}
 
 		}

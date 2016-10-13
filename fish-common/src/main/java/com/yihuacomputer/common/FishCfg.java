@@ -146,4 +146,10 @@ public class FishCfg {
 	public static String getVersionDir() {
 		return FishCfg.getFishHome() + FishCfg.fileSep + "version";
 	}
+
+	public static Map<String, String> getEntities() {
+		return entities;
+	}
+	
+	
 }
