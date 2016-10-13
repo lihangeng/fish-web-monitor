@@ -27,6 +27,10 @@ public class CashInitPlanCfg {
 	}
 	
 	
+	/**
+	 * 加钞计划执行单位
+	 * @return
+	 */
 	public static int getCashInitPlanUtils(){
 		int orgLevel = 0;
 		// 获取加钞计划机构单位(总分支行)
@@ -43,7 +47,6 @@ public class CashInitPlanCfg {
 	 */
 	public static long getDaliyTradingVolumeCashIn(){
 		long tradingVolumeCashIn = 50000l;
-		// 获取加钞计划机构单位(总分支行)
 		try {
 			tradingVolumeCashIn = Long.parseLong(FishCfg.getEntities().get("trading_volume_in"));
 		} catch (Exception e) {
@@ -57,7 +60,6 @@ public class CashInitPlanCfg {
 	 */
 	public static long getDaliyTradingVolumeBill(){
 		long tradingVolumeBill = 50000l;
-		// 获取加钞计划机构单位(总分支行)
 		try {
 			tradingVolumeBill = Long.parseLong(FishCfg.getEntities().get("trading_volume_out"));
 		} catch (Exception e) {
@@ -65,8 +67,5 @@ public class CashInitPlanCfg {
 		}
 		return tradingVolumeBill;
 	}
-	
-//	IParam cashInParam = paramService.getParam("trading_volume_in");
-//	IParam cashOutParam = paramService.getParam("trading_volume_out");
 	
 }

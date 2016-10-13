@@ -56,7 +56,7 @@ public class ParamController {
 			if(param.getParamKey().equals("mail_password")){
 				param.setParamValue("********");
 			}
-			if(param.getParamKey().equals("cashinit_orglevel")){
+			else if(param.getParamKey().equals("cashinit_orglevel")){
 				param.setParamValue(getI18N(OrganizationLevel.getById(Integer.parseInt(param.getParamValue())).getText()));
 			}
 		}

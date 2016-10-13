@@ -109,15 +109,16 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 			Map<String, IDevice> initDeviceMap = new HashMap<String, IDevice>();
 			// 当前加钞总金额
 			double amt = 0;
-			// 除非设置为不启用，否则按规则进行生成加钞计划
+			// （设备钞箱阈值预警）除非设置为不启用，否则按规则进行生成加钞计划
 			if (null == cashLimitRule || cashLimitRule.isStartUsing()) {
 				amt = getCashLimit(cashInitMap,monthDailyVolume,initDeviceMap,cashInitPlanInfo,org, amt, cashInitDays, tradingVolumeOut);
 			}
-			// 除非设置为不启用，否则按规则进行生成加钞计划
+			// （清机加钞时间超期）除非设置为不启用，否则按规则进行生成加钞计划
 			if (null == daysLimitRule || daysLimitRule.isStartUsing()) {
 				amt = getCashInitDays(cashInitMap,monthDailyVolume,initDeviceMap,cashInitPlanInfo,org, amt, cashInitDays, tradingVolumeOut);
 			}
-			if (tradingVolumeRule.isStartUsing() || tradingVolumeRule == null) {
+			// 加载符合日均交易预警的设备
+			if (tradingVolumeRule == null||tradingVolumeRule.isStartUsing() ) {
 				amt = getTradingVolume(cashInitMap,monthDailyVolume,initDeviceMap,cashInitPlanInfo,org, amt, cashInitDays, tradingVolumeOut,tradingVolumeIn);
 			}
 			//当前机构没有加钞的设备，不生成加钞计划
