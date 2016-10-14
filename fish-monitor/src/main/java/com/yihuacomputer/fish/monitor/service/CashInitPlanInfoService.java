@@ -154,9 +154,12 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 			// 此机器上次加钞信息
 			ICashInitUnique cashInitUnique = cashInitMap.get(device.getTerminalId());
 			// 此机器日均交易
-			long dailyVolume = getDailyTradingVolume(monthDailyVolume,deviceBoxInfo,device.getTerminalId(),cashInitDays,tradingVolumeOut);
-			amt += dailyVolume;
-			initCashInitPlanDeviceInfo(BoxInitRuleType.CASHLIMIT,dailyVolume,cashInitPlanInfo,device,cashInitUnique);
+			//获取日均交易量
+			long dailyVolume = getDailyTradingVolume(monthDailyVolume,deviceBoxInfo,device.getTerminalId(),tradingVolumeOut);
+			//根据日均交易量推荐加钞金额
+			long adviceAmt = getAdviceAmt(dailyVolume,cashInitDays,deviceBoxInfo);
+			amt += adviceAmt;
+			initCashInitPlanDeviceInfo(BoxInitRuleType.CASHLIMIT,adviceAmt,cashInitPlanInfo,device,cashInitUnique);
 			initDeviceMap.put(device.getTerminalId(), device);
 		}
 		return amt;
@@ -224,11 +227,12 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 			if (device == null) {
 				continue;
 			}
-			// 此机器日均交易
-			long dailyVolume = getDailyTradingVolume(monthDailyVolume,deviceBoxInfo,device.getTerminalId(),cashInitDays,tradingVolumeOut);
-			
-			amt += dailyVolume;
-			initCashInitPlanDeviceInfo(BoxInitRuleType.DAYSLIMIT,dailyVolume,cashInitPlanInfo,device,cashInitUnique);
+			//获取日均交易量
+			long dailyVolume = getDailyTradingVolume(monthDailyVolume,deviceBoxInfo,device.getTerminalId(),tradingVolumeOut);
+			//根据日均交易量推荐加钞金额
+			long adviceAmt = getAdviceAmt(dailyVolume,cashInitDays,deviceBoxInfo);
+			amt += adviceAmt;
+			initCashInitPlanDeviceInfo(BoxInitRuleType.DAYSLIMIT,adviceAmt,cashInitPlanInfo,device,cashInitUnique);
 			initDeviceMap.put(device.getTerminalId(), device);
 		}
 		return amt;
@@ -260,14 +264,17 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 			if (initDeviceMap.get(terminalId) != null) {
 				continue;
 			}
-			long dailyVolume = getDailyTradingVolume(monthDailyVolume,deviceBoxInfo,terminalId,cashInitDays,tradingVolumeOut);
-			amt += dailyVolume;
+			//获取日均交易量
+			long dailyVolume = getDailyTradingVolume(monthDailyVolume,deviceBoxInfo,terminalId,tradingVolumeOut);
+			//根据日均交易量推荐加钞金额
+			long adviceAmt = getAdviceAmt(dailyVolume,cashInitDays,deviceBoxInfo);
+			amt += adviceAmt;
 			if (deviceBoxInfo.getBillValue() < dailyVolume||(deviceBoxInfo.getCashInValue()+tradingVolumeIn)>deviceBoxInfo.getDefaultCashIn()) {
 				IDevice device = deviceService.get(terminalId);
 				if (device == null) {
 					continue;
 				}
-				initCashInitPlanDeviceInfo(BoxInitRuleType.TRADINGVOLUME,dailyVolume,cashInitPlanInfo,device,cashInitUnique);
+				initCashInitPlanDeviceInfo(BoxInitRuleType.TRADINGVOLUME,adviceAmt,cashInitPlanInfo,device,cashInitUnique);
 				initDeviceMap.put(device.getTerminalId(), device);
 			}
 
@@ -275,23 +282,36 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 		return amt;
 	}
 	
-	private long getDailyTradingVolume(Map<String,IMonthDailyTradingVolume>monthDailyVolume,IDeviceBoxInfo deviceBoxInfo,String terminalId,int cashInitDays,long tradingVolumeOut){
+	/**
+	 * 获取日均交易量
+	 * @param monthDailyVolume
+	 * @param deviceBoxInfo
+	 * @param terminalId
+	 * @param tradingVolumeOut
+	 * @return
+	 */
+	private long getDailyTradingVolume(Map<String,IMonthDailyTradingVolume>monthDailyVolume,IDeviceBoxInfo deviceBoxInfo,String terminalId,long tradingVolumeOut){
 		IMonthDailyTradingVolume monthDailyTradingVolume = monthDailyVolume.get(terminalId);
 		long dailyVolume = 0;
 		if (monthDailyTradingVolume != null) {
 			if (monthDailyTradingVolume.getLastYearAmtOutAvg() == 0) {
-				dailyVolume = (long) monthDailyTradingVolume.getMonthAmtOutAvg() * cashInitDays;
+				dailyVolume = (long) monthDailyTradingVolume.getMonthAmtOutAvg();
 			} else {
 				dailyVolume = (long) monthDailyTradingVolume.getLastYearAmtOutAvg() + (long) monthDailyTradingVolume.getMonthAmtOutAvg();
-				dailyVolume = dailyVolume / 2 * cashInitDays;
+				dailyVolume = dailyVolume / 2;
 			}
 		} else {
 			dailyVolume = tradingVolumeOut;
 		}
-		if (deviceBoxInfo != null) {
-			dailyVolume = deviceBoxInfo.getDefaultBill() > dailyVolume ? dailyVolume : deviceBoxInfo.getDefaultBill();
-		} 
 		return dailyVolume;
+	}
+	
+	private long getAdviceAmt(long dailyVolume,int cashInitDays,IDeviceBoxInfo deviceBoxInfo){
+		long adviceAmt = dailyVolume*cashInitDays;
+		if (deviceBoxInfo != null) {
+			adviceAmt = deviceBoxInfo.getDefaultBill() > adviceAmt ? adviceAmt : deviceBoxInfo.getDefaultBill();
+		} 
+		return adviceAmt;
 	}
 	
 	@Override
