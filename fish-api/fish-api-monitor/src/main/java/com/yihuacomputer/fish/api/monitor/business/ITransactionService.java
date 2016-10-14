@@ -79,4 +79,11 @@ public interface ITransactionService
      * @return
      */
     public List<Object> statisticsTransHourTrend(IFilter filter);
+    
+	/**
+	 * 单台设备指定时间内各种交易次数
+	 * @param filter
+	 * @return
+	 */
+	public List<Object> statisticsTransCountForDevice(IFilter filter);
 }

@@ -152,4 +152,24 @@ public class TransactionService implements ITransactionService {
 		return dao.findByHQL(hql.toString(), paramList.toArray());
 	}
 
+	@Override
+	public List<Object> statisticsTransCountForDevice(IFilter filter) {
+		IFilterEntry startDate = filter.getFilterEntry("startDate") ;
+		IFilterEntry endDate = filter.getFilterEntry("endDate") ;
+		IFilterEntry terminalId = filter.getFilterEntry("terminalId") ;
+		List<Object> paramList = new ArrayList<Object>() ;
+		paramList.add(Integer.parseInt(startDate.getValue().toString())) ;
+		paramList.add(Integer.parseInt(endDate.getValue().toString())) ;
+		StringBuffer hql = new StringBuffer();
+		hql.append("select transaction.transCode,count(transaction.id) as transCount from TransactionView transaction");
+
+		hql.append(" where transaction.transDate >= ? and transaction.transDate <= ?");
+		paramList.add(Integer.parseInt(startDate.getValue().toString())) ;
+		paramList.add(Integer.parseInt(endDate.getValue().toString())) ;
+		hql.append(" and transaction.terminalId= ?") ;
+		paramList.add(terminalId.getValue().toString()+"%") ;
+		hql.append(" group by transaction.transCode");
+		return dao.findByHQL(hql.toString(), paramList.toArray());
+	}
+	
 }
