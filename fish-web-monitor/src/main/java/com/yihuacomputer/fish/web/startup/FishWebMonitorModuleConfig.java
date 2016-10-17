@@ -2,6 +2,7 @@ package com.yihuacomputer.fish.web.startup;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
@@ -16,6 +17,7 @@ import com.yihuacomputer.fish.monitor.MonitorModule;
 import com.yihuacomputer.fish.report.ReportModule;
 import com.yihuacomputer.fish.system.SystemModule;
 import com.yihuacomputer.fish.version.VersionModule;
+import com.yihuacomputer.fish.web.interceptor.EntitySaveInterceptor;
 import com.yihuacomputer.fish.web.mock.NotifyContentService;
 import com.yihuacomputer.fish.web.mock.service.DefaultDeviceCaseService;
 import com.yihuacomputer.fish.web.mock.service.DefaultHwFaultService;
@@ -38,6 +40,7 @@ import com.yihuacomputer.fish.web.mock.service.DefaultHwFaultService;
 		ReportModule.class
 		})
 @ImportResource(value = {"classpath:/fish.xml"})
+@EnableAspectJAutoProxy
 public class FishWebMonitorModuleConfig {
 
 	@Bean
@@ -59,5 +62,9 @@ public class FishWebMonitorModuleConfig {
 	public SystemService systemService(){
 		return new SystemService();
 	}
-
+	
+	@Bean
+    public EntitySaveInterceptor serviceAspect(){
+        return new EntitySaveInterceptor();
+    }
 }
