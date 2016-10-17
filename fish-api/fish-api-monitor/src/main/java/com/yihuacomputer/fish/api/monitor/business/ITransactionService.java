@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.util.ThreeTuple;
 
 public interface ITransactionService
 {
@@ -85,5 +86,5 @@ public interface ITransactionService
 	 * @param filter
 	 * @return
 	 */
-	public List<Object> statisticsTransCountForDevice(IFilter filter);
+	public List<ThreeTuple<String, Integer,Double>> statisticsTransCountForDevice(IFilter filter);
 }

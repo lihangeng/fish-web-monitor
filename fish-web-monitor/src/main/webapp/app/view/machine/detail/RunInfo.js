@@ -2,20 +2,19 @@ Ext.define('Eway.view.machine.detail.RunInfo', {
 	extend : 'Eway.view.base.Panel',
 	alias : 'widget.detail_runInfo',
 
-	requires : [  ],
+	requires : ['Eway.view.machine.detail.run.TradingInfo'],
 	height:800,
 	closable:false,
 	width:1024,
 	title : '设备运行信息',
 	layout: 'responsivecolumn',
     scrollable : 'y',
-
 	isLoad : false,
 
 	initComponent : function() {
 		Ext.apply(this, {
 			items : [ {
-				xtype: 'panel',
+				xtype: 'tradingInfo',
 		    	responsiveCls: 'big-50 small-100',
 	            title: '交易信息',
 	            html:'交易信息'
@@ -42,7 +41,15 @@ Ext.define('Eway.view.machine.detail.RunInfo', {
 			}],
 
 			listeners : {
-				activate : function(panel) {}
+				activate : function(panel) {
+					if(!panel.isLoad){
+					var terminalId = panel.up("tabpanel").getTerminalId();
+					var store = panel.down("tradingInfo").myDataStore;
+					store.setBaseParam("terminalId",terminalId);
+					store.load();
+					panel.isLoad = true;
+					}
+				}
 			}
 		});
 

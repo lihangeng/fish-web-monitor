@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.util.ThreeTuple;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.monitor.business.IHostRet;
 import com.yihuacomputer.fish.api.monitor.business.ITransaction;
@@ -153,23 +154,28 @@ public class TransactionService implements ITransactionService {
 	}
 
 	@Override
-	public List<Object> statisticsTransCountForDevice(IFilter filter) {
+	public List<ThreeTuple<String, Integer,Double>> statisticsTransCountForDevice(IFilter filter) {
 		IFilterEntry startDate = filter.getFilterEntry("startDate") ;
 		IFilterEntry endDate = filter.getFilterEntry("endDate") ;
 		IFilterEntry terminalId = filter.getFilterEntry("terminalId") ;
 		List<Object> paramList = new ArrayList<Object>() ;
-		paramList.add(Integer.parseInt(startDate.getValue().toString())) ;
-		paramList.add(Integer.parseInt(endDate.getValue().toString())) ;
 		StringBuffer hql = new StringBuffer();
-		hql.append("select transaction.transCode,count(transaction.id) as transCount from TransactionView transaction");
+		hql.append("select transaction.transCode,count(transaction.id) as transCount,sum(transaction.amt) from TransactionView transaction");
 
 		hql.append(" where transaction.transDate >= ? and transaction.transDate <= ?");
 		paramList.add(Integer.parseInt(startDate.getValue().toString())) ;
 		paramList.add(Integer.parseInt(endDate.getValue().toString())) ;
 		hql.append(" and transaction.terminalId= ?") ;
-		paramList.add(terminalId.getValue().toString()+"%") ;
+		paramList.add(terminalId.getValue().toString()) ;
 		hql.append(" group by transaction.transCode");
-		return dao.findByHQL(hql.toString(), paramList.toArray());
+		List<Object> list = dao.findByHQL(hql.toString(), paramList.toArray());
+		List<ThreeTuple<String, Integer,Double>> result = new ArrayList<ThreeTuple<String, Integer,Double>>();
+		for(Object obj:list){
+			Object[] objs = (Object[])obj;
+			ThreeTuple<String, Integer,Double> threeTuple = new ThreeTuple<String, Integer,Double>(String.valueOf(objs[0]),Integer.parseInt(String.valueOf(objs[1])),Double.parseDouble(String.valueOf(objs[2])));
+			result.add(threeTuple);
+		}
+		return result;
 	}
 	
 }

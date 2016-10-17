@@ -3,12 +3,15 @@ Ext.define('Eway.view.machine.detail.View', {
 	alias : 'widget.detail.view',
 	requires : [ 'Eway.view.machine.detail.BasicInfo',
 	             'Eway.view.machine.detail.RunInfo'],
-
+	config:{
+		terminalId:''
+	},
 	title : '设备信息明细',
 	layout : 'fit',
 	tabPosition: 'bottom',
 	isLoad : false,
 	closable:true,
+
 	initComponent : function() {
 		Ext.apply(this, {
 			items:[{
