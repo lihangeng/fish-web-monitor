@@ -24,23 +24,17 @@ public class EntitySaveInterceptor {
 	@Autowired
     private IGenericDao dao;
 	
-	@Pointcut("execution(* com.yihuacomputer.domain.dao.Hibernate4Dao.save(..))")
-	public void methodPointcut() {
-	}
-	
 	@Pointcut("@within(org.springframework.stereotype.Service)")
 	public void service() {
 	}
 
-	/*@Pointcut("@annotation(com.yihuacomputer.common.annotation.EntityKeyDescrible)")
-	public void entityKey() {
-	}*/
-
 	@Before("service()")
 	public void aroundControllerMethod(JoinPoint joinPoint) throws Throwable {
-		System.out.println("999999999999999999ppppppppppppppppppppppp");
 		Method aopMethod = getPointCutMethod(joinPoint);
 		SaveMethodDescrible saveMethod = aopMethod.getAnnotation(SaveMethodDescrible.class);
+		if(saveMethod !=null && saveMethod.isUpdate()==false){
+			return;
+		}
 		if(saveMethod !=null){
 			Object entity = joinPoint.getArgs()[0];
 			EntityKeyDescrible entityKeyDescrible = entity.getClass().getAnnotation(EntityKeyDescrible.class);
