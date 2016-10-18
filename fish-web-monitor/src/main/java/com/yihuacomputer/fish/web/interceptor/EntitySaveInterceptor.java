@@ -1,13 +1,18 @@
 package com.yihuacomputer.fish.web.interceptor;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +33,13 @@ public class EntitySaveInterceptor {
 	public void service() {
 	}
 
-	@Before("service()")
-	public void aroundControllerMethod(JoinPoint joinPoint) throws Throwable {
+	@Around("service()")
+	public Object aroundControllerMethod(ProceedingJoinPoint joinPoint) throws Throwable {
 		Method aopMethod = getPointCutMethod(joinPoint);
 		SaveMethodDescrible saveMethod = aopMethod.getAnnotation(SaveMethodDescrible.class);
+		Object obj = null;
 		if(saveMethod !=null && saveMethod.isUpdate()==false){
-			return;
+			return obj;
 		}
 		if(saveMethod !=null){
 			Object entity = joinPoint.getArgs()[0];
@@ -47,15 +53,41 @@ public class EntitySaveInterceptor {
 				}
 				Object entityDB = dao.findUniqueByFilter(filter, entity.getClass());
 				if(entityDB != null){
-					 String[] idCode = {"id"}; 
-					 Map<String,String> ID = this.getValue(entityDB,idCode);
-					 Object obj = this.setId(entity,ID.get("id"));
-					 dao.delete(Long.valueOf(ID.get("id")), entityDB.getClass());
-					 dao.save(obj);
+					//获取数据库实体的属性集合
+					 Field[] dbFields = entityDB.getClass().getDeclaredFields();
+					 for(Field dbField:dbFields){
+						 //属性注解
+						 Annotation[] annotations= dbField.getDeclaredAnnotations();
+						 //无注解不做处理
+						 if(annotations.length==0){
+							 continue;
+						 }
+						 boolean isTransient = false;
+						 //临时注解不做处理
+						 for(Annotation annotation:annotations){
+							 if(annotation.annotationType().equals(Transient.class)||annotation.annotationType().equals(Id.class)){
+								 isTransient = true;
+								 break;
+							 }
+						 }
+						 if(isTransient){
+							 continue;
+						 }
+						 //数据库实体属性可访问
+						 dbField.setAccessible(true);
+						 
+						 //获取更新数据的相应属性 
+						 Field field = entity.getClass().getDeclaredField(dbField.getName());
+						 field.setAccessible(true);
+						 //将更新实体属性的数据赋予数据库实体属性
+						 dbField.set(entityDB, field.get(entity));;
+					 }
+					 dao.update(entityDB);
 				}
+				return obj;
 			}
 		}
-		
+		return joinPoint.proceed();
 	}
 
 	private Method getPointCutMethod(JoinPoint joinPoint) {
@@ -85,13 +117,4 @@ public class EntitySaveInterceptor {
 		return map;
 	}
 	
-	//根据已有实体和ID号对更改的实体赋值
-	private Object setId(Object entity,String id) throws Exception, Throwable{
-		Class<? extends Object> clazz = entity.getClass();
-		Method method = clazz.getDeclaredMethod("setId",long.class);
-		method.invoke(entity, Long.valueOf(id));
-        return entity;
-	}
-	
-
 }
