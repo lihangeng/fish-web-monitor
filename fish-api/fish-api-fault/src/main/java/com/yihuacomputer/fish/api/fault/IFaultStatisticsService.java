@@ -12,5 +12,14 @@ import java.util.List;
 public interface IFaultStatisticsService {
 
 	public List<Object> statisticsFaultTrend(Date start, Date end);
+	
+	/**
+	 * 指定时间范围和设备统计故障信息
+	 * @param start
+	 * @param end
+	 * @param terminalId
+	 * @return
+	 */
+	public List<Object> statisticsFaultTrendByTerminalId(Date start, Date end,String terminalId);
 
 }

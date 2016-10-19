@@ -36,6 +36,13 @@ public interface IDayOpenRateService {
     public List<IDayOpenRate> listOrg(IFilter filter);
 
     public List<IDayOpenRate> listDev(IFilter filter);
+
+    /**
+     * 根据设备号获取近一个月的开机率信息
+     * @param terminalId
+     * @return
+     */
+    public List<IDayOpenRate> listByDev(String terminalId);
     
     public IPageResult<IDayOpenRate> pageDev(int offset, int limit, IFilter filter);
 }

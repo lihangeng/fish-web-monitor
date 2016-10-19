@@ -36,4 +36,15 @@ public class FaultStatisticsService implements IFaultStatisticsService{
 		return dao.findByHQL(hql.toString(), startDate,endDate);
 	}
 
+	@Override
+	public List<Object> statisticsFaultTrendByTerminalId(Date start, Date end,String terminalId) {
+		StringBuffer hql = new StringBuffer();
+		hql.append("select caseFault.faultDate,count(*) as faultCount from ").append(CaseFault.class.getName());
+		hql.append(" caseFault where faultDate >= ? and faultDate <= ?  and caseFault.terminalId=? ");
+		hql.append(" group by caseFault.faultDate");
+		hql.append(" order by caseFault.faultDate");
+		Long startDate = Long.parseLong(DateUtils.get(start, DateUtils.STANDARD_DATE_SHORT));
+		Long endDate = Long.parseLong(DateUtils.get(end, DateUtils.STANDARD_DATE_SHORT));
+		return dao.findByHQL(hql.toString(), startDate,endDate,terminalId);
+	}
 }

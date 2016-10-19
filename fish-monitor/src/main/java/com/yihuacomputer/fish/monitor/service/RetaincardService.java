@@ -325,6 +325,16 @@ public class RetaincardService implements IRetaincardService{
 		hql.append(" order by ").append(timeStr);
 		return dao.findByHQL(hql.toString(),DateUtils.getDate(days));
 	}
-
+	
+	@Override
+	public List<Object> statisticsReatainCardTrendByTerminalId(String terminalId) {
+		StringBuffer hql = new StringBuffer();
+		String timeStr = "CONCAT(CONCAT(CONCAT(YEAR(retaincard.cardRetainTime),'-'),CONCAT(MONTH(retaincard.cardRetainTime),'-')),DAY(retaincard.cardRetainTime))";
+		hql.append("select ").append(timeStr).append(" as retainTime,count(*) as cardCount from ").append(Retaincard.class.getName());
+		hql.append(" retaincard where retaincard.cardRetainTime > ? and ").append("retaincard.terminalId =? ");
+		hql.append(" group by ").append(timeStr);
+		hql.append(" order by ").append(timeStr);
+		return dao.findByHQL(hql.toString(),DateUtils.getLastMonth(),terminalId);
+	}
 
 }

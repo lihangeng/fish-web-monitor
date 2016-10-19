@@ -13,6 +13,7 @@ import com.yihuacomputer.common.IFilterEntry;
 import com.yihuacomputer.common.IPageResult;
 import com.yihuacomputer.common.Operator;
 import com.yihuacomputer.common.filter.Filter;
+import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.PageResult;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.device.IDevice;
@@ -518,5 +519,13 @@ public class DayOpenRateService implements IDayOpenRateService {
 	@Override
 	public IDayOpenRate make() {
 		return new DayOpenRate();
+	}
+
+	@Override
+	public List<IDayOpenRate> listByDev(String terminalId) {
+		StringBuilder sb = new StringBuilder();
+		sb.append("from ").append(DayOpenRate.class.getSimpleName()).append(" as dayopenrate where")
+		.append(" dayopenrate.statDate>? and dayopenrate.terminalId=?");
+		return dao.findByHQL(sb.toString(), DateUtils.getDate(DateUtils.getLastMonth()),terminalId);
 	}
 }

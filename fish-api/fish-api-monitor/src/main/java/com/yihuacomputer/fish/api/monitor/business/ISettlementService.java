@@ -81,4 +81,11 @@ public interface ISettlementService {
      * @return　分页信息　
      */
     public IPageResult<ISettlement> page(int offset, int limit, IFilter filter);
+    
+    /**
+     * 根据设备号获取设备清机加钞信息集合
+     * @param terminalId
+     * @return
+     */
+    public List<CashSettleInit> getCashSettleInitListByDev(String terminalId);
 }

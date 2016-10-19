@@ -88,4 +88,11 @@ public interface IRetaincardService {
 	public IPageResult<IRetaincard> page(int offset, int limit, IFilter filter,long orgId,CardStatus status1,CardStatus status2);
 	
 	 public List<Object> statisticsReatainCardTrend(int days);
+	 
+	 /**
+	  * 根据设备号查找近一个月的吞卡统计信息
+	 * @param terminalId
+	 * @return
+	 */
+	public List<Object> statisticsReatainCardTrendByTerminalId(String terminalId);
 }

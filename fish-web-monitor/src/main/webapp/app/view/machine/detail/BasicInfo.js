@@ -14,7 +14,7 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
         pack: 'start',
         align: 'stretch'
     },
-    
+    closable:false,
     bodyPadding: 10,
 
   

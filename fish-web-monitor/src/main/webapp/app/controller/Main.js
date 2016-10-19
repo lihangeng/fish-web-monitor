@@ -93,7 +93,6 @@ Ext.define('Eway.controller.Main', {
 									var displayfields = Ext.ComponentQuery.query("detail_basic_hardwareInfo displayfield");
 									Ext.Array.forEach(displayfields,function(displayfield,index,items){
 										displayfield.setHidden(!view.down("detail_basic_hardwareInfo").isHidden(displayfield));
-										
 									});
 									Ext.Array.forEach(object.data.personList,function(item,index,items){
 										view.down("detail_personInfo").getStore().add(Ext.create('Eway.model.person.person.BankPerson',item))
@@ -101,6 +100,8 @@ Ext.define('Eway.controller.Main', {
 									Ext.Array.forEach(object.data.versionDeviceList,function(item,index,items){
 										view.down("detail_versionInfo").getStore().add(Ext.create('Eway.model.version.DeviceVersionHistory',item))
 									});
+									var panel = view.down('detail_runInfo');
+									panel.refreshInfo(panel);
 								}
 								else{
 									Eway.alert(object.errorMsg);

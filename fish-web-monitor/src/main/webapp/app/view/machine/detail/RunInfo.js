@@ -2,7 +2,10 @@ Ext.define('Eway.view.machine.detail.RunInfo', {
 	extend : 'Eway.view.base.Panel',
 	alias : 'widget.detail_runInfo',
 
-	requires : ['Eway.view.machine.detail.run.TradingInfo'],
+	requires : ['Eway.view.machine.detail.run.TradingInfo',
+	            'Eway.view.machine.detail.run.RetainCardInfo',
+	            'Eway.view.machine.detail.run.CaseFaultInfo',
+	            'Eway.view.machine.detail.run.OpenRateInfo'],
 	height:800,
 	closable:false,
 	width:1024,
@@ -15,44 +18,51 @@ Ext.define('Eway.view.machine.detail.RunInfo', {
 		Ext.apply(this, {
 			items : [ {
 				xtype: 'tradingInfo',
-		    	responsiveCls: 'big-50 small-100',
-	            title: '交易信息',
-	            html:'交易信息'
+		    	responsiveCls: 'big-50 small-100'
 			},{
-				xtype: 'panel',
-		    	responsiveCls: 'big-50 small-100',
-	            title: '故障信息',
-	            html:'故障信息'
+				xtype: 'faultTrend',
+		    	responsiveCls: 'big-50 small-100'
 			},{
-				xtype: 'panel',
-		    	responsiveCls: 'big-50 small-100',
-	            title: '吞卡信息',
-	            html:'吞卡信息'
+				xtype: 'retainCardInfo',
+		    	responsiveCls: 'big-50 small-100'
 			},{
-				xtype: 'panel',
-		    	responsiveCls: 'big-50 small-100',
-	            title: '日志备份',
-	            html:'日志备份'
+				xtype: 'openRateInfo',
+		    	responsiveCls: 'big-50 small-100'
 			},{
 				xtype: 'panel',
 		    	responsiveCls: 'big-50 small-100',
 	            title: '清机加钞',
 	            html:'清机加钞'
 			}],
-
 			listeners : {
 				activate : function(panel) {
 					if(!panel.isLoad){
-					var terminalId = panel.up("tabpanel").getTerminalId();
-					var store = panel.down("tradingInfo").myDataStore;
-					store.setBaseParam("terminalId",terminalId);
-					store.load();
-					panel.isLoad = true;
+						this.refreshInfo(panel);
+						panel.isLoad = true;
 					}
 				}
 			}
 		});
 
 		this.callParent(arguments);
+	},
+	refreshInfo:function(panel){
+		var terminalId = panel.up("tabpanel").getTerminalId();
+		
+		var store = panel.down("tradingInfo").myDataStore;
+		var retainStore = panel.down("retainCardInfo").myDataStore;
+		var faultStore = panel.down("faultTrend").myDataStore;
+		var openRateStore = panel.down("openRateInfo").myDataStore;
+		
+		faultStore.setBaseParam("terminalId",terminalId);
+		openRateStore.setBaseParam("terminalId",terminalId);
+		store.setBaseParam("terminalId",terminalId);
+		retainStore.setBaseParam("terminalId",terminalId);
+		
+		store.load();
+		retainStore.load();
+		faultStore.load();
+		openRateStore.load();
 	}
+	
 });
