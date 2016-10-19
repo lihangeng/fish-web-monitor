@@ -107,7 +107,7 @@ public class AtmGroupController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	@MethodNameDescrible(describle="userlog.atmGroupController.add",hasReqBodyParam=true,reqBodyClass=AtmGroupForm.class,bodyProperties="name")
-	ModelMap add(@RequestBody AtmGroupForm request) {
+	public @ResponseBody ModelMap add(@RequestBody AtmGroupForm request) {
 		logger.info("add atmGroup");
 		ModelMap result = new ModelMap();
 		try {
