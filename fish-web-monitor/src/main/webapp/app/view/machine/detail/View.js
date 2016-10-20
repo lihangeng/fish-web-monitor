@@ -2,7 +2,8 @@ Ext.define('Eway.view.machine.detail.View', {
 	extend : 'Ext.tab.Panel',
 	alias : 'widget.detail.view',
 	requires : [ 'Eway.view.machine.detail.BasicInfo',
-	             'Eway.view.machine.detail.RunInfo'],
+	             'Eway.view.machine.detail.RunInfo',
+	             'Eway.view.machine.detail.ControllerInfo'],
 	config:{
 		terminalId:''
 	},
@@ -28,6 +29,11 @@ Ext.define('Eway.view.machine.detail.View', {
 				title : '设备运行信息'
 				//交易，日志，故障,清机加钞,吞卡
 //							交易信息，应用日志(10条)，最近的设备故障信息（10条），清机加钞信息，设备吞卡信息（10条）
+			},{
+				name : 'deviceControllerInfo',
+				xtype : 'detail_ControllerInfo',
+				autoScroll :true,
+				title : '设备控制信息'				
 			}]
 		});
 
