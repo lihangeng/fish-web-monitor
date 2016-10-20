@@ -1,10 +1,10 @@
-Ext.define('Eway.view.machine.detail.run.CaseFaultInfo', {
+Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
     extend: 'Ext.Panel',
-    xtype: 'faultTrend',
-    requires:['Eway.store.machine.detail.FaultTrend'],
+    xtype: 'cashInitInfo',
+    requires:['Eway.store.machine.detail.CashSettleInit'],
 
     title : {
-    	text :EwayLocale.index.dailyFaultPic,
+    	text :'清机加钞信息',
     	height:24
     },
 
@@ -18,14 +18,17 @@ Ext.define('Eway.view.machine.detail.run.CaseFaultInfo', {
 
     initComponent: function() {
         var me = this;
-        me.myDataStore = Ext.create('Eway.store.machine.detail.FaultTrend');
+        me.myDataStore = Ext.create('Eway.store.machine.detail.CashSettleInit');
         me.items = [{
             xtype: 'cartesian',
             width: '100%',
-            height: 260,
+            height: 500,
             interactions: {
                 type: 'itemhighlight',
                 zoomOnPanGesture: false
+            },
+            legend: {
+                docked: 'bottom'
             },
             store: this.myDataStore,
             insetPadding: 40,
@@ -43,7 +46,7 @@ Ext.define('Eway.view.machine.detail.run.CaseFaultInfo', {
             }],
             axes: [{
                 type: 'numeric',
-                fields: 'data1',
+                fields: ['initAmt','leftAmt', 'depositAmt', 'withdrawalAmt'],
                 position: 'left',
                 grid: true,
                 minimum: 0,
@@ -52,8 +55,16 @@ Ext.define('Eway.view.machine.detail.run.CaseFaultInfo', {
                 }
             }, {
                 type: 'category',
-                fields: 'month',
+                fields: 'date',
                 position: 'bottom',
+                grid: true,
+                renderer: function (axis, label, layoutContext) {
+                    return layoutContext.renderer(label);
+                }
+            }, {
+                type: 'numeric',
+                fields: [ 'deposit','withdrawal'],
+                position: 'right',
                 grid: true,
                 renderer: function (axis, label, layoutContext) {
                     return layoutContext.renderer(label);
@@ -61,8 +72,9 @@ Ext.define('Eway.view.machine.detail.run.CaseFaultInfo', {
             }],
             series: [{
                 type: 'line',
-                xField: 'month',
-                yField: 'data1',
+                title:'加钞金额',
+                xField: 'date',
+                yField: 'initAmt',
                 style: {
                     lineWidth: 4
                 },
@@ -70,7 +82,7 @@ Ext.define('Eway.view.machine.detail.run.CaseFaultInfo', {
                     radius: 4
                 },
                 label: {
-                    field: 'data1',
+                    field: 'initAmt',
                     display: 'over'
                 },
                 highlight: {
@@ -86,9 +98,169 @@ Ext.define('Eway.view.machine.detail.run.CaseFaultInfo', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                    	storeItem.setHtml(item.get('month') + EwayLocale.index.faultAmount + item.get('data1'));
+                    	storeItem.setHtml(item.get('date') + '加钞金额' + item.get('initAmt'));
                     }
                 }
+            },{
+                type: 'line',
+                xField: 'date',
+                yField: 'leftAmt',
+                title:'清机金额',
+                style: {
+                    lineWidth: 4
+                },
+                marker: {
+                    radius: 4
+                },
+                label: {
+                    field: 'leftAmt',
+                    display: 'over'
+                },
+                highlight: {
+                    fillStyle: '#000',
+                    radius: 5,
+                    lineWidth: 2,
+                    strokeStyle: '#fff'
+                },
+                tooltip: {
+                    trackMouse: true,
+                    style: 'background: #fff',
+                    showDelay: 0,
+                    dismissDelay: 0,
+                    hideDelay: 0,
+                    renderer: function(storeItem, item) {
+                    	storeItem.setHtml(item.get('date') + '清机金额' + item.get('leftAmt'));
+                    }
+                }
+            
+            },{
+                type: 'line',
+                xField: 'date',
+                yField: 'depositAmt',
+                title:'存款金额',
+                style: {
+                    lineWidth: 4
+                },
+                marker: {
+                    radius: 4
+                },
+                label: {
+                    field: 'depositAmt',
+                    display: 'over'
+                },
+                highlight: {
+                    fillStyle: '#000',
+                    radius: 5,
+                    lineWidth: 2,
+                    strokeStyle: '#fff'
+                },
+                tooltip: {
+                    trackMouse: true,
+                    style: 'background: #fff',
+                    showDelay: 0,
+                    dismissDelay: 0,
+                    hideDelay: 0,
+                    renderer: function(storeItem, item) {
+                    	storeItem.setHtml(item.get('date') + '存款金额' + item.get('depositAmt'));
+                    }
+                }
+            
+            },{
+                type: 'line',
+                xField: 'date',
+                yField: 'withdrawalAmt',
+                title:'取款金额',
+                style: {
+                    lineWidth: 4
+                },
+                marker: {
+                    radius: 4
+                },
+                label: {
+                    field: 'withdrawalAmt',
+                    display: 'over'
+                },
+                highlight: {
+                    fillStyle: '#000',
+                    radius: 5,
+                    lineWidth: 2,
+                    strokeStyle: '#fff'
+                },
+                tooltip: {
+                    trackMouse: true,
+                    style: 'background: #fff',
+                    showDelay: 0,
+                    dismissDelay: 0,
+                    hideDelay: 0,
+                    renderer: function(storeItem, item) {
+                    	storeItem.setHtml(item.get('date') + '取款金额' + item.get('withdrawalAmt'));
+                    }
+                }
+            
+            },{
+                type: 'line',
+                xField: 'date',
+                yField: 'withdrawal',
+                title:'取款次数',
+                style: {
+                    lineWidth: 4
+                },
+                marker: {
+                    radius: 4
+                },
+                label: {
+                    field: 'withdrawal',
+                    display: 'over'
+                },
+                highlight: {
+                    fillStyle: '#000',
+                    radius: 5,
+                    lineWidth: 2,
+                    strokeStyle: '#fff'
+                },
+                tooltip: {
+                    trackMouse: true,
+                    style: 'background: #fff',
+                    showDelay: 0,
+                    dismissDelay: 0,
+                    hideDelay: 0,
+                    renderer: function(storeItem, item) {
+                    	storeItem.setHtml(item.get('date') + '取款次数' + item.get('withdrawal'));
+                    }
+                }
+            
+            },{
+                type: 'line',
+                xField: 'date',
+                yField: 'deposit',
+                title:'存款次数',
+                style: {
+                    lineWidth: 4
+                },
+                marker: {
+                    radius: 4
+                },
+                label: {
+                    field: 'deposit',
+                    display: 'over'
+                },
+                highlight: {
+                    fillStyle: '#000',
+                    radius: 5,
+                    lineWidth: 2,
+                    strokeStyle: '#fff'
+                },
+                tooltip: {
+                    trackMouse: true,
+                    style: 'background: #fff',
+                    showDelay: 0,
+                    dismissDelay: 0,
+                    hideDelay: 0,
+                    renderer: function(storeItem, item) {
+                    	storeItem.setHtml(item.get('date') + '存款次数' + item.get('deposit'));
+                    }
+                }
+            
             }]
         }];
 

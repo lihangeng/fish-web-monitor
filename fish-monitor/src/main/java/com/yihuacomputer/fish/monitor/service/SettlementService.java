@@ -77,7 +77,7 @@ public class SettlementService implements ISettlementService {
     	sb.append("sum(settle.withdrawal),sum(settle.withdrawalAmt),settle.date,init.date from ")
     	.append(CashInit.class.getSimpleName()).append(" init,");
     	sb.append(Settlement.class.getSimpleName()).append(" settle ");
-    	sb.append("where settle.uuId = init.uuId and settle.date>? and init.date>?");
+    	sb.append("where settle.uuId = init.uuId and settle.date>? and init.date>? and ");
     	sb.append("settle.terminalId=? and init.terminalId=? ");
     	sb.append(" group by settle.date");
     	String date = DateUtils.getTimestamp(DateUtils.getLastMonth());
