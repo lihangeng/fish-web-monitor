@@ -15,7 +15,7 @@ Ext.define('Eway.view.Header', {
             xtype : 'label',
             text : EwayLocale.ATMV,
             style : 'font-size : 18px; color : white;'
-        },"->",/*{
+        },"->",{
         	xtype:'textfield',
         	name:'terminalId',
         	enableKeyEvents :true,
@@ -24,7 +24,7 @@ Ext.define('Eway.view.Header', {
         	tooltip:EwayLocale.button.search,
         	glyph : 0xf002,
         	action:'signleQuery'
-        },*/{
+        },{
         	xtype:'tbtext',
         	text: EwayLocale.welcome+Eway.user.getName(),
         	style : 'font-size : 14px; color : white;'

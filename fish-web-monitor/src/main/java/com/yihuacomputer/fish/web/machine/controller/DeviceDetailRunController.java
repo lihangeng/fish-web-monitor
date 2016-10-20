@@ -182,7 +182,7 @@ public class DeviceDetailRunController {
 	@ResponseBody
 	public ModelMap cashSettleInit(WebRequest wReq, HttpServletRequest req) {
 		logger.info("cashSettleInit...");
-		List <CashSettleInit> settleList = settlementService.getCashSettleInitListByDev( req.getParameter("termianlId"));
+		List <CashSettleInit> settleList = settlementService.getCashSettleInitListByDev( req.getParameter("terminalId"));
 		ModelMap result = new ModelMap();
 		result.addAttribute(FishConstant.SUCCESS, true);
 		result.addAttribute("data", settleList);

@@ -5,7 +5,8 @@ Ext.define('Eway.view.machine.detail.RunInfo', {
 	requires : ['Eway.view.machine.detail.run.TradingInfo',
 	            'Eway.view.machine.detail.run.RetainCardInfo',
 	            'Eway.view.machine.detail.run.CaseFaultInfo',
-	            'Eway.view.machine.detail.run.OpenRateInfo'],
+	            'Eway.view.machine.detail.run.OpenRateInfo',
+	            'Eway.view.machine.detail.run.CashInitInfo'],
 	height:800,
 	closable:false,
 	width:1024,
@@ -29,15 +30,12 @@ Ext.define('Eway.view.machine.detail.RunInfo', {
 				xtype: 'openRateInfo',
 		    	responsiveCls: 'big-50 small-100'
 			},{
-				xtype: 'panel',
-		    	responsiveCls: 'big-50 small-100',
-	            title: '清机加钞',
-	            html:'清机加钞'
+				xtype: 'cashInitInfo'
 			}],
 			listeners : {
 				activate : function(panel) {
 					if(!panel.isLoad){
-						this.refreshInfo(panel);
+//						this.refreshInfo(panel);
 						panel.isLoad = true;
 					}
 				}
@@ -53,16 +51,18 @@ Ext.define('Eway.view.machine.detail.RunInfo', {
 		var retainStore = panel.down("retainCardInfo").myDataStore;
 		var faultStore = panel.down("faultTrend").myDataStore;
 		var openRateStore = panel.down("openRateInfo").myDataStore;
+		var cashInitStore = panel.down("cashInitInfo").myDataStore;
 		
 		faultStore.setBaseParam("terminalId",terminalId);
 		openRateStore.setBaseParam("terminalId",terminalId);
 		store.setBaseParam("terminalId",terminalId);
 		retainStore.setBaseParam("terminalId",terminalId);
-		
+		cashInitStore.setBaseParam("terminalId",terminalId);
 		store.load();
 		retainStore.load();
 		faultStore.load();
 		openRateStore.load();
+		cashInitStore.load();
 	}
 	
 });

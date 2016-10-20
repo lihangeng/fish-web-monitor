@@ -269,7 +269,12 @@ public class CashInitPlanInfoService implements ICashInitPlanInfoService {
 			//根据日均交易量推荐加钞金额
 			long adviceAmt = getAdviceAmt(dailyVolume,cashInitDays,deviceBoxInfo);
 			amt += adviceAmt;
-			if (deviceBoxInfo.getBillValue() < dailyVolume||(deviceBoxInfo.getCashInValue()+tradingVolumeIn)>deviceBoxInfo.getDefaultCashIn()) {
+			//如果取款箱默认取款最大为0，不存在取款箱，不用考虑取款日均预警
+			if ((deviceBoxInfo.getDefaultBill()!=0&&
+					deviceBoxInfo.getBillValue() < dailyVolume)||
+					//如果存款箱默认存款最大为0，不存在存款箱，不用考虑存款日均预警
+					(deviceBoxInfo.getDefaultCashIn()!=0&&
+					(deviceBoxInfo.getCashInValue()+tradingVolumeIn)>deviceBoxInfo.getDefaultCashIn())) {
 				IDevice device = deviceService.get(terminalId);
 				if (device == null) {
 					continue;
