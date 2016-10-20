@@ -33,7 +33,7 @@ public class HttpTransactionClientTest {
         int count = 10;
         
         // 设备号
-        String termId = "13050001";
+        String termId = "13050004";
 
         // 发送交易数据间隔
         int sleep = 2;
@@ -50,7 +50,7 @@ public class HttpTransactionClientTest {
 				msg.setDebitAccount("9559912345678901234");// 对方帐号
 				msg.setDateTime(System.currentTimeMillis());// 交易时间
 				msg.setTransDate(Integer.parseInt(DateUtils.get(new Date(), "yyyyMMdd")));
-				msg.setTransCode("DEP");// 交易类型
+				msg.setTransCode("CIM2");// 交易类型
 				msg.setHostRet("00");// 主机返回码
 				msg.setLocalRet("OK");// 本地返回码
 				msg.setCurrency("CNY");// 币种

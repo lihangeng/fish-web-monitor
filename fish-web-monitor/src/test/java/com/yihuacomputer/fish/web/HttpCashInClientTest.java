@@ -31,8 +31,9 @@ public class HttpCashInClientTest {
 		CashInitalMsg msg =new CashInitalMsg();
 		msg.setTermId("13050001");
 		msg.setAmt(100000);
-		msg.setUuId("201010101");
-		msg.setDate("2015-01-02 00:00:00");
+
+		msg.setUuId("201610191");
+		msg.setDate("2016-10-19 11:00:00");
 		
 		List<BoxInitDetail> boxDetail = new ArrayList<BoxInitDetail>();
      

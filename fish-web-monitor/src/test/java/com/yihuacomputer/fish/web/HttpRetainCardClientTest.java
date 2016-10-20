@@ -28,7 +28,7 @@ public class HttpRetainCardClientTest {
 
 		RetaincardMsg msg = new RetaincardMsg();
 
-		msg.setTermId("0001");
+		msg.setTermId("13050004");
 		msg.setAccountNo("1111111111111");
 		msg.setReason("telet");
 		msg.setRetainTime("2015-10-25 12:23:23");

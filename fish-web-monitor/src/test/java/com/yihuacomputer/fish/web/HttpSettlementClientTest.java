@@ -29,9 +29,9 @@ public class HttpSettlementClientTest {
 		HttpClient httpClient = new DefaultHttpClient();
 		
 		SettlementMsg msg =new SettlementMsg();
-		msg.setTermId("ATM001");
-		msg.setUuId("201010101");
-		msg.setDate("2012-10-22");
+		msg.setTermId("13050003");
+		msg.setUuId("201610191");
+		msg.setDate("2016-10-19 10:50:00");
 		msg.setLeftAmt(111111);
 		msg.setDeposit(23565);
 		msg.setDepositAmt(3556454);
@@ -56,7 +56,7 @@ public class HttpSettlementClientTest {
 			String json = JsonUtils.toJson(msg);
 			System.out.println(json);
 			try {
-				HttpPost httpPost = new HttpPost("http://172.18.30.25:8085/fish-web-monitor/atm/msg/checkoutcash");
+				HttpPost httpPost = new HttpPost("http://127.0.0.1:8080/atmv/atm/msg/checkoutcash");
 				
 				StringEntity entity = new StringEntity(json, "UTF-8");
 				
