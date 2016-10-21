@@ -103,7 +103,7 @@ Ext.define('Eway.controller.Main', {
 						Ext.Array.forEach(displayfields,function(displayfield,index,items){
 							displayfield.setHidden(!view.down("detail_basic_hardwareInfo").isHidden(displayfield));
 
-						}
+						});
 						Ext.Array.forEach(object.data.personList,function(item,index,items){
 							view.down("detail_personInfo").getStore().add(Ext.create('Eway.model.person.person.BankPerson',item))
 						});
