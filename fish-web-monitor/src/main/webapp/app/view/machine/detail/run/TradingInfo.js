@@ -2,7 +2,7 @@ Ext.define('Eway.view.machine.detail.run.TradingInfo', {
     extend: 'Ext.panel.Panel',
     alias : 'widget.tradingInfo',
     title : {
-    	text:EwayLocale.deviceInfo.controllerInfo,
+    	text:EwayLocale.deviceInfo.tradingInfoChart,
     	height:24
     },
     requires: ['Ext.chart.theme.Muted'],
