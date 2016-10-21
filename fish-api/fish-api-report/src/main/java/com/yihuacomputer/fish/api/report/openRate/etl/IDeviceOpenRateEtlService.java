@@ -52,5 +52,15 @@ public interface IDeviceOpenRateEtlService {
 	 * @return
 	 */
 	public List<IDeviceOpenRateMonth> getLastDeviceMonth(long month,int limit);
+	
+	/**
+	 * 保存每周设备开机率
+	 */
+	public IDeviceOpenRateWeek saveByWeek(IDeviceOpenRateWeek deviceOpenRateWeek);
+	
+	/**
+	 * 保存每月开机率
+	 */
+	public IDeviceOpenRateMonth saveByMonth(IDeviceOpenRateMonth deviceOpenRateMonth);
 
 }

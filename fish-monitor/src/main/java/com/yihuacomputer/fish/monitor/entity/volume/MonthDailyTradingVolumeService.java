@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.annotation.SaveMethodDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
@@ -66,7 +67,9 @@ public class MonthDailyTradingVolumeService implements IMonthDailyTradingVolumeS
 			}
 			list.add(monthDailyTradingVolume);
 		}
-		dao.batchSave(list);
+		for(IMonthDailyTradingVolume im:list){
+			this.save(im);
+		}
 	}
 
 	@Override
@@ -74,6 +77,7 @@ public class MonthDailyTradingVolumeService implements IMonthDailyTradingVolumeS
 		return new MonthDailyTradingVolume();
 	}
 
+	@SaveMethodDescrible(isUpdate=true,keyName={"terminalId","transMonth"})
 	@Override
 	public IMonthDailyTradingVolume save(IMonthDailyTradingVolume monthDailyTradingVolume) {
 		return dao.save(monthDailyTradingVolume);

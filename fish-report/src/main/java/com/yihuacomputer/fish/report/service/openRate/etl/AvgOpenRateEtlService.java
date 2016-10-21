@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.annotation.SaveMethodDescrible;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.NumUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
@@ -49,7 +50,7 @@ public class AvgOpenRateEtlService implements IAvgOpenRateEtlService{
 			avgDay.setOpenTimes(Long.valueOf(each[0].toString()));
 			avgDay.setHealthyTimeReal(Long.valueOf(each[1].toString()));
 			avgDay.setOpenRate(NumUtils.getPercent(avgDay.getHealthyTimeReal(),avgDay.getOpenTimes()));
-			dao.save(avgDay);
+			this.saveByDay(avgDay);
 		}
 	}
 
@@ -67,7 +68,7 @@ public class AvgOpenRateEtlService implements IAvgOpenRateEtlService{
 				avgWeek.setOpenTimes(Long.valueOf(each[0].toString()));
 				avgWeek.setHealthyTimeReal(Long.valueOf(each[1].toString()));
 				avgWeek.setOpenRate(NumUtils.getPercent(avgWeek.getHealthyTimeReal(),avgWeek.getOpenTimes()));
-				dao.save(avgWeek);
+				this.saveByWeek(avgWeek);
 			}
 		}
 	}
@@ -84,7 +85,7 @@ public class AvgOpenRateEtlService implements IAvgOpenRateEtlService{
 				avgMonth.setOpenTimes(Long.valueOf(each[0].toString()));
 				avgMonth.setHealthyTimeReal(Long.valueOf(each[1].toString()));
 				avgMonth.setOpenRate(NumUtils.getPercent(avgMonth.getHealthyTimeReal(),avgMonth.getOpenTimes()));
-				dao.save(avgMonth);
+				this.saveByMonth(avgMonth);
 			}
 		}
 	}
@@ -128,5 +129,23 @@ public class AvgOpenRateEtlService implements IAvgOpenRateEtlService{
 	@Override
 	public List<IAvgDayOpenRate> getAvgDays(long start, long end) {
 		return dao.findByHQL("from AvgDayOpenRate where date >= ?  and date <= ? ORDER BY date ASC", start,end);
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"date"})
+	@Override
+	public IAvgDayOpenRate saveByDay(IAvgDayOpenRate avgDayOpenRate) {
+		return dao.save(avgDayOpenRate);
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"date"})
+	@Override
+	public IAvgWeekOpenRate saveByWeek(IAvgWeekOpenRate avgWeekOpenRatee) {
+		return dao.save(avgWeekOpenRatee);
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"date"})
+	@Override
+	public IAvgMonthOpenRate saveByMonth(IAvgMonthOpenRate avgMonthOpenRate) {
+		return dao.save(avgMonthOpenRate);
 	}
 }

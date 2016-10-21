@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.annotation.SaveMethodDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
@@ -36,6 +37,7 @@ public class DeviceTypeSummaryMonthService implements IDeviceTypeSummaryMonthSer
 		return dao.update(dtsm);
 	}
 
+	@SaveMethodDescrible(isUpdate=true,keyName={"devType","date"})
 	@Override
 	public IDeviceTypeSummaryMonth save(IDeviceTypeSummaryMonth dtsm) {
 		return dao.save(dtsm);

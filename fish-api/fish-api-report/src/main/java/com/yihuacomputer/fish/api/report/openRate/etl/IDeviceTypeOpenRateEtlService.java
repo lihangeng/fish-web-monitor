@@ -39,4 +39,14 @@ public interface IDeviceTypeOpenRateEtlService {
 	 * @return
 	 */
 	public List<IDeviceTypeOpenRateMonth> getDeviceTypeMonth(long month);
+	
+	/**
+	 * 保存某周数据
+	 */
+	IDeviceTypeOpenRateWeek saveByWeek(IDeviceTypeOpenRateWeek deviceTypeOpenRateWeek);
+	
+	/**
+	 * 保存某月数据
+	 */
+	IDeviceTypeOpenRateMonth saveByMonth(IDeviceTypeOpenRateMonth deviceTypeOpenRateMonth);
 }

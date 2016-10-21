@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.annotation.SaveMethodDescrible;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.fault.etl.IFaultClassifyMonth;
@@ -50,7 +51,7 @@ public class FaultEtlService implements IFaultEtlService {
 				day.setDate(DateUtils.getWeek(date));
 				day.setOpenCount(Long.parseLong(each[0].toString()));
 				day.setCloseCount(Long.parseLong(each[1].toString()));
-				dao.save(day);
+				this.saveByFaultWeek(day);
 			}
 		}
 	}
@@ -82,7 +83,7 @@ public class FaultEtlService implements IFaultEtlService {
 				faultMonth.setDate(lastMonth);
 				faultMonth.setOpenCount(Long.parseLong(each[0].toString()));
 				faultMonth.setCloseCount(Long.parseLong(each[1].toString()));
-				dao.saveOrUpdate(faultMonth);
+				this.saveByFaultMonth(faultMonth);
 			}
 		}
 	}
@@ -112,7 +113,7 @@ public class FaultEtlService implements IFaultEtlService {
 				day.setClassifyId(each[0].toString());
 				day.setClassifyName(each[1].toString());
 				day.setCount(Long.parseLong(each[2].toString()));
-				dao.save(day);
+				this.saveByFaultClassifyWeek(day);
 			}
 		}
 	}
@@ -141,7 +142,7 @@ public class FaultEtlService implements IFaultEtlService {
 				day.setClassifyId(each[0].toString());
 				day.setClassifyName(each[1].toString());
 				day.setCount(Long.parseLong(each[2].toString()));
-				dao.save(day);
+				this.saveByFaultClassifyMonth(day);
 			}
 		}
 	}
@@ -161,7 +162,7 @@ public class FaultEtlService implements IFaultEtlService {
 					day.setDate(DateUtils.getWeek(date));
 					day.setDuration(i);
 					day.setCount(Long.parseLong(each[i-1].toString()));
-					dao.save(day);
+					this.saveByFaultDurationWeek(day);
 				}
 			}
 		}
@@ -196,7 +197,7 @@ public class FaultEtlService implements IFaultEtlService {
 					day.setDate(Long.parseLong(DateUtils.getYM(date)));
 					day.setDuration(i);
 					day.setCount(Long.parseLong(each[i-1].toString()));
-					dao.save(day);
+					this.saveByFaultDurationMonth(day);
 				}
 			}
 		}
@@ -234,6 +235,42 @@ public class FaultEtlService implements IFaultEtlService {
 	@Override
 	public List<IFaultDurationMonth> getDurationMonth(long month) {
 		return dao.findByHQL("from FaultDurationMonth where date = ?", month);
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"date"})
+	@Override
+	public IFaultWeek saveByFaultWeek(IFaultWeek faultWeek) {
+		return dao.save(faultWeek);
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"date"})
+	@Override
+	public IFaultMonth saveByFaultMonth(IFaultMonth faultMonth) {
+		return dao.save(faultMonth);
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"date","classifyId"})
+	@Override
+	public IFaultClassifyWeek saveByFaultClassifyWeek(IFaultClassifyWeek faultClassifyWeek) {
+		return dao.save(faultClassifyWeek);
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"date","classifyId"})
+	@Override
+	public IFaultClassifyMonth saveByFaultClassifyMonth(IFaultClassifyMonth faultClassifyMonth) {
+		return dao.save(faultClassifyMonth);
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"date","duration"})
+	@Override
+	public IFaultDurationWeek saveByFaultDurationWeek(IFaultDurationWeek faultDurationWeek) {
+		return dao.save(faultDurationWeek);
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"date","duration"})
+	@Override
+	public IFaultDurationMonth saveByFaultDurationMonth(IFaultDurationMonth faultDurationMonth) {
+		return dao.save(faultDurationMonth);
 	}
 
 }
