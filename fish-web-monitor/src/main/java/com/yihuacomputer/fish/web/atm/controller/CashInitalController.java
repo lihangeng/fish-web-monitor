@@ -59,14 +59,20 @@ public class CashInitalController {
 	ModelMap reciveMsg(@RequestBody CashInitalMsg msg) {
 		ModelMap result = new ModelMap();
 		result.put(FishConstant.SUCCESS, true);
-        result.addAttribute("ret", "RET_00");
-		result.put("data", msg);
 
 		ICashInit cashInitInfo = cashInitService.make();
 		cashInitInfo.setUuId(msg.getUuId());
 		cashInitInfo.setTerminalId(msg.getTermId());
 		cashInitInfo.setAmt(msg.getAmt());
 		cashInitInfo.setDate(msg.getDate());
+		String initDate = msg.getDate();
+		if(null==initDate){
+			result.addAttribute("ret", "RET_01");
+			result.put("data", msg);
+			return result;
+		}
+		int dates = Integer.parseInt(initDate.substring(0, 10).replaceAll("-", ""));
+		cashInitInfo.setDates(dates);
 		List<IBoxInitDetail> boxDetailList = new ArrayList<IBoxInitDetail>();
 		boxDetailList.addAll(msg.getBoxDetail());
 		cashInitInfo.setBoxDetail(boxDetailList);
@@ -83,6 +89,9 @@ public class CashInitalController {
 		try{
 			collectService.collectCashInit(msg.getTermId(), cashInitInfo);
 			cashInitUnique = isNewDevice?cashInitUniqueService.save(cashInitUnique):cashInitUniqueService.update(cashInitUnique);
+
+	        result.addAttribute("ret", "RET_00");
+			result.put("data", msg);
 		}catch(Exception e){
 			logger.error(String.format(messageSource.getMessage("cashInital.processError", null, FishCfg.locale),e,JsonUtils.toJson(msg)));
 		}
