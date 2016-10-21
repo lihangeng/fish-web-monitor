@@ -74,14 +74,14 @@ public class SettlementService implements ISettlementService {
     public List<CashSettleInit> getCashSettleInitListByDev(String terminalId){
     	StringBuilder sb = new StringBuilder();
     	sb.append("select sum(init.amt),sum(settle.leftAmt),sum(settle.depositAmt),sum(settle.deposit),");
-    	sb.append("sum(settle.withdrawal),sum(settle.withdrawalAmt),settle.date,init.date from ")
+    	sb.append("sum(settle.withdrawal),sum(settle.withdrawalAmt),settle.dates,init.dates from ")
     	.append(CashInit.class.getSimpleName()).append(" init,");
     	sb.append(Settlement.class.getSimpleName()).append(" settle ");
-    	sb.append("where settle.uuId = init.uuId and settle.date>? and init.date>? and ");
-    	sb.append("settle.terminalId=? and init.terminalId=? ");
-    	sb.append(" group by settle.date");
-    	String date = DateUtils.getTimestamp(DateUtils.getLastMonth());
-    	List<Object> list = dao.findByHQL(sb.toString(), date,date,terminalId,terminalId);
+    	sb.append("where settle.uuId = init.uuId and  init.dates>=? and ");
+    	sb.append("settle.terminalId=init.terminalId and init.terminalId=? ");
+    	sb.append(" group by settle.dates");
+    	int date = Integer.parseInt(DateUtils.getDateShort(DateUtils.getLastMonth()));
+    	List<Object> list = dao.findByHQL(sb.toString(), date,terminalId);
     	List<CashSettleInit> settleInitList = new ArrayList<CashSettleInit>();
     	for(Object obj:list){
     		Object objs[] = (Object[])obj;
