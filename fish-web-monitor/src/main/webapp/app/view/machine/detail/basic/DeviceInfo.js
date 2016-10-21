@@ -17,75 +17,45 @@ Ext.define('Eway.view.machine.detail.basic.DeviceInfo', {
 				width : '50%'
 			},
 			items : [ {
-				columnWidth : .5,
+				columnWidth : .25,
 				fieldLabel : EwayLocale.machine.atmGroup.terminalId,
-				name : 'terminalId',
-				code : 'terminalId'
+				name : 'terminalId'
 			},{
-				columnWidth : .5,
+				columnWidth : .25,
 				fieldLabel : EwayLocale.machine.atmGroup.ip,
-				name : 'ip',
-				code :'ip'
+				name : 'ip'
 			},{
-				columnWidth : .5,
+				columnWidth : .25,
 				fieldLabel : EwayLocale.commen.devStatus,
-				name : 'statusName',
-				code :'statusName'
+				name : 'statusName'
 			},{
-				columnWidth : .5,
+				columnWidth : .25,
 				fieldLabel : EwayLocale.machine.device.serial,
-				name : 'serial',
-				code :'serial'
+				name : 'serial'
+			},{
+				columnWidth : .25,
+				fieldLabel : EwayLocale.machine.device.virtual,
+				name : 'virtual'
+			},{
+				columnWidth : .25,
+				fieldLabel : EwayLocale.machine.atmGroup.devTypeName,
+				name : 'devTypeName'
+			},{
+				columnWidth : .25,
+				fieldLabel : EwayLocale.machine.atmGroup.devServiceName,
+				name : 'devServiceName'
+			},{
+				columnWidth : .25,
+				fieldLabel : EwayLocale.machine.device.installDate,
+				name : 'installDate'
 			},{
 				columnWidth : .5,
 				fieldLabel : EwayLocale.machine.atmGroup.orgName,
-				name : 'orgName',
-				code :'orgName'
+				name : 'orgName'
 			},{
 				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.atmGroup.devTypeName,
-				name : 'devTypeName',
-				code :'devTypeName'
-			},{
-				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.atmGroup.devServiceName,
-				name : 'devServiceName',
-				code :'devServiceName'
-			},{
-				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.device.devAddress,
-				name : 'installDate',
-				code :'installDate'
-			},{
-				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.device.virtual,
-				name : 'virtual',
-				code :'virtual'
-			},{
-				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.device.virtual,
-				name : 'virtual',
-				code :'virtual'
-			},{
-				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.device.installStyle,
-				name : 'setupTypeName',
-				code :'setupTypeName'
-			},{
-				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.device.netType,
-				name : 'netTypeName',
-				code :'netTypeName'
-			},{
-				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.device.onBankSignal,
-				name : 'awayFlagName',
-				code :'awayFlagName'
-			},{
-				columnWidth : .5,
-				fieldLabel : EwayLocale.machine.device.operation,
-				name : 'workTypeName',
-				code :'workTypeName'
+				fieldLabel : EwayLocale.machine.atmGroup.address,
+				name : 'address'
 			}],
 			
 			listeners : {

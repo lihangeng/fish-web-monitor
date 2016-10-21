@@ -34,10 +34,24 @@ Ext.define('Eway.controller.Main', {
 	        	keydown:this.onEnter
             }
 		});
-
+	   this.getAtmLinkModule();
 	   this.callParent(arguments);
 	},
-
+	getAtmLinkModule:function(){
+		Ext.Ajax.request({
+			method : 'GET',
+			url : 'api/machine/atmType/atmLinkModule',
+			success : function(response) {
+				var object = Ext.decode(response.responseText);
+				if (object.success == true) {
+					Ext.typeLinkModData = object.data.typeLink;
+				}
+				else{
+					Eway.alert(object.errorMsg);
+				}
+			}
+		});
+	},
 	// 系统启动时调用的方法
 	onLaunch : function() {
 		// 加载按钮数据
@@ -68,52 +82,43 @@ Ext.define('Eway.controller.Main', {
 		if(termianlId!=""){
 			var me = this;
 			ewayView.mask();
+			
 			Ext.Ajax.request({
 				method : 'GET',
-				url : 'api/machine/atmType/atmLinkModule',
+				url : 'api/machine/devicedetail',
+				params:{'termianlId':termianlId},
 				success : function(response) {
 					var object = Ext.decode(response.responseText);
 					if (object.success == true) {
-						Ext.typeLinkModData = object.data.typeLink;
-						Ext.Ajax.request({
-							method : 'GET',
-							url : 'api/machine/devicedetail',
-							params:{'termianlId':termianlId},
-							success : function(response) {
-								var object = Ext.decode(response.responseText);
-								if (object.success == true) {
-									var controller =  me.activeController('machine.detail.Detail');
-									var view = controller.getEwayView();
-									view.setTitle(termianlId+"设备信息");
-									view.setTerminalId(termianlId);
-									view.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data.deviceForm));
-									view.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
-									view.down("detail_personInfo").getStore().removeAll();
-									view.down("detail_versionInfo").getStore().removeAll();
-									var displayfields = Ext.ComponentQuery.query("detail_basic_hardwareInfo displayfield");
-									Ext.Array.forEach(displayfields,function(displayfield,index,items){
-										displayfield.setHidden(!view.down("detail_basic_hardwareInfo").isHidden(displayfield));
-									});
-									Ext.Array.forEach(object.data.personList,function(item,index,items){
-										view.down("detail_personInfo").getStore().add(Ext.create('Eway.model.person.person.BankPerson',item))
-									});
-									Ext.Array.forEach(object.data.versionDeviceList,function(item,index,items){
-										view.down("detail_versionInfo").getStore().add(Ext.create('Eway.model.version.DeviceVersionHistory',item))
-									});
-									var panel = view.down('detail_runInfo');
-									panel.refreshInfo(panel);
-								}
-								else{
-									Eway.alert(object.errorMsg);
-								}
-								ewayView.unmask();
-							}
+						var controller =  me.activeController('machine.detail.Detail');
+						var view = controller.getEwayView();
+						view.setTitle(termianlId+"设备信息");
+						view.setTerminalId(termianlId);
+						view.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data.deviceForm));
+						view.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
+						view.down("detail_personInfo").getStore().removeAll();
+						view.down("detail_versionInfo").getStore().removeAll();
+						var displayfields = Ext.ComponentQuery.query("detail_basic_hardwareInfo displayfield");
+						Ext.Array.forEach(displayfields,function(displayfield,index,items){
+							displayfield.setHidden(!view.down("detail_basic_hardwareInfo").isHidden(displayfield));
 						});
+						Ext.Array.forEach(object.data.personList,function(item,index,items){
+							view.down("detail_personInfo").getStore().add(Ext.create('Eway.model.person.person.BankPerson',item))
+						});
+						Ext.Array.forEach(object.data.versionDeviceList,function(item,index,items){
+							view.down("detail_versionInfo").getStore().add(Ext.create('Eway.model.version.DeviceVersionHistory',item))
+						});
+
+						ewayView.unmask();	
+						//刷新运行页面信息
+						var panel = view.down('detail_runInfo');
+						panel.refreshInfo(panel);
+	
+						}
+					},
+					failure:function(){
+						ewayView.unmask();
 					}
-				},
-				failure:function(){
-					ewayView.unmask();
-				}
 			});
 		
 			
