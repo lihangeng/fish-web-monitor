@@ -49,4 +49,14 @@ public interface IRetainCardEtlService {
 	 * @return
 	 */
 	public Long [] getMonthTotal(long month);
+	
+	/**
+	 * 保存吞卡每周数据
+	 */
+	public IRetainCardWeek saveByWeek(IRetainCardWeek retainCardWeek);
+	
+	/**
+	 * 保存吞卡每月数据
+	 */
+	public IRetainCardMonth saveByMonth(IRetainCardMonth retainCardMonth);
 }

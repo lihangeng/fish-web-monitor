@@ -55,4 +55,19 @@ public interface ITransTypeEtlService {
 	 */
 	public Long [] getMonthTotal(long month);
 	
+	/**
+	 * 保存交易类型/日
+	 */
+	public ITransTypeDay saveByDay(ITransTypeDay transTypeDay);
+	
+	/**
+	 * 保存交易类型/周
+	 */
+	public ITransTypeWeek saveByWeek(ITransTypeWeek transTypeWeek);
+	
+	/**
+	 * 保存交易类型/月
+	 */
+	public ITransTypeMonth saveByMonth(ITransTypeMonth transTypeMonth);
+	
 }

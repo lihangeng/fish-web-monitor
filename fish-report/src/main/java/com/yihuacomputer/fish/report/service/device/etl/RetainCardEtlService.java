@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.annotation.SaveMethodDescrible;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.device.etl.IRetainCardEtlService;
@@ -63,7 +64,7 @@ public class RetainCardEtlService implements IRetainCardEtlService {
 			day.setRetainCount(Long.parseLong(each[1].toString()));
 			day.setDeviceCount(Long.parseLong(each[2].toString()));
 			day.setLastRetainCount(this.getLastWeekRetainCard(date,each[0].toString()));
-			dao.save(day);
+			this.saveByWeek(day);
 		}
 	}
 
@@ -113,7 +114,7 @@ public class RetainCardEtlService implements IRetainCardEtlService {
 			day.setRetainCount(Long.parseLong(each[1].toString()));
 			day.setDeviceCount(Long.parseLong(each[2].toString()));
 			day.setLastRetainCount(this.getLastMonthRetainCard(date,each[0].toString()));
-			dao.save(day);
+			this.saveByMonth(day);
 		}
 	}
 	
@@ -185,6 +186,18 @@ public class RetainCardEtlService implements IRetainCardEtlService {
 			}
 		}
 		return new Long[]{0L,0L,0L};
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"devType","date"})
+	@Override
+	public IRetainCardWeek saveByWeek(IRetainCardWeek retainCardWeek) {
+		return dao.save(retainCardWeek);
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"devType","date"})
+	@Override
+	public IRetainCardMonth saveByMonth(IRetainCardMonth retainCardMonth) {
+		return dao.save(retainCardMonth);
 	}
 
 }

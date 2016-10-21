@@ -55,4 +55,14 @@ public interface IOrgOpenRateEtlService {
 	 * @return
 	 */
 	public List<IOrgOpenRateMonth> getLastOrgMonth(long month,int limit);
+	
+	/**
+	 * 保存每周数据
+	 */
+	public IOrgOpenRateWeek saveByWeek(IOrgOpenRateWeek orgOpenRateWeek);
+	
+	/**
+	 * 保存每月数据
+	 */
+	public IOrgOpenRateMonth saveByMonth(IOrgOpenRateMonth orgOpenRateMonth);
 }

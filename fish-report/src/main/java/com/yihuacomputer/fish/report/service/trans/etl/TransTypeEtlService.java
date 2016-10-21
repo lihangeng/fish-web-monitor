@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.annotation.SaveMethodDescrible;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeDay;
@@ -49,7 +50,7 @@ public class TransTypeEtlService implements ITransTypeEtlService{
 			day.setTransCode(each[1].toString());
 			day.setTransAmount(Double.parseDouble(each[2].toString()));
 			day.setTransCount(Long.parseLong(each[3].toString()));
-			dao.save(day);
+			this.saveByDay(day);
 		}
 	}
 
@@ -67,7 +68,7 @@ public class TransTypeEtlService implements ITransTypeEtlService{
 			day.setTransCode(each[0].toString());
 			day.setTransAmount(Double.parseDouble(each[1].toString()));
 			day.setTransCount(Long.parseLong(each[2].toString()));
-			dao.save(day);
+			this.saveByWeek(day);
 		}
 		
 	}
@@ -94,7 +95,7 @@ public class TransTypeEtlService implements ITransTypeEtlService{
 			day.setTransCode(each[0].toString());
 			day.setTransAmount(Double.parseDouble(each[1].toString()));
 			day.setTransCount(Long.parseLong(each[2].toString()));
-			dao.save(day);
+			this.saveByMonth(day);
 		}
 	}
 
@@ -148,6 +149,24 @@ public class TransTypeEtlService implements ITransTypeEtlService{
 			}
 		}
 		return new Long[]{0L,0L};
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"date","transCode"})
+	@Override
+	public ITransTypeDay saveByDay(ITransTypeDay transTypeDay) {
+		return dao.save(transTypeDay);
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"date","transCode"})
+	@Override
+	public ITransTypeWeek saveByWeek(ITransTypeWeek transTypeWeek) {
+		return dao.save(transTypeWeek);
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"date","transCode"})
+	@Override
+	public ITransTypeMonth saveByMonth(ITransTypeMonth transTypeMonth) {
+		return dao.save(transTypeMonth);
 	}
 	
 
