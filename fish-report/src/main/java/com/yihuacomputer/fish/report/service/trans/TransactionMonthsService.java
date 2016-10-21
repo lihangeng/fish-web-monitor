@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.yihuacomputer.common.annotation.SaveMethodDescrible;
 import com.yihuacomputer.domain.dao.IGenericDao;
 import com.yihuacomputer.fish.api.report.trans.ITransactionMonths;
 import com.yihuacomputer.fish.api.report.trans.ITransactionMonthsService;
@@ -24,6 +25,7 @@ public class TransactionMonthsService implements ITransactionMonthsService {
 		return new TransactionMonths();
 	}
 
+	@SaveMethodDescrible(isUpdate=true,keyName={"vendorName","devType","transCode","cardType","transDate"})
 	@Override
 	public void save(ITransactionMonths transactionMonths) {
 		dao.save(transactionMonths);

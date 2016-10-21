@@ -73,4 +73,15 @@ public interface ICashInit {
      * @return
      */
     public List<IBoxInitDetail> getBoxDetail();
+
+	/**
+	 * 转化为日期 yyyymmdd
+	 * @return
+	 */
+	public int getDates();
+	/**
+	 * 转化为日期 yyyymmdd
+	 * @param dates
+	 */
+	public void setDates(int dates);
 }

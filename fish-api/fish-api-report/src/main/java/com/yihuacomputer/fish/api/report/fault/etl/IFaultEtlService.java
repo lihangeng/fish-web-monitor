@@ -86,4 +86,44 @@ public interface IFaultEtlService {
 	 * @return
 	 */
 	public List<IFaultDurationMonth> getDurationMonth(long month);
+	
+	/**
+	 * 保存每周故障数
+	 * @param faultWeek
+	 * @return
+	 */
+	public IFaultWeek saveByFaultWeek(IFaultWeek faultWeek);
+	
+	/**
+	 * 保存每月故障数
+	 * @param faultMonth
+	 * @return
+	 */
+	public IFaultMonth saveByFaultMonth(IFaultMonth faultMonth);
+	
+	/**
+	 * 保存每周故障分类数
+	 * @param faultClassifyWeek
+	 * @return
+	 */
+	public IFaultClassifyWeek saveByFaultClassifyWeek(IFaultClassifyWeek faultClassifyWeek);
+	
+	/**
+	 * 保存每月故障分类数
+	 * @param faultClassifyMonth
+	 * @return
+	 */
+	public IFaultClassifyMonth saveByFaultClassifyMonth(IFaultClassifyMonth faultClassifyMonth);
+	
+	/**
+	 * 保存每周故障持续时长数据
+	 * @param faultDurationWeek
+	 * @return
+	 */
+	public IFaultDurationWeek saveByFaultDurationWeek(IFaultDurationWeek faultDurationWeek);
+	
+	/**
+	 * 保存每月故障持续时长数据
+	 */
+	public IFaultDurationMonth saveByFaultDurationMonth(IFaultDurationMonth faultDurationMonth);
 }

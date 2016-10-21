@@ -53,5 +53,20 @@ public interface IAvgOpenRateEtlService {
 	 */
 	public List<IAvgDayOpenRate> getAvgDays(long start, long end);
 	
+	/**
+	 * 保存每日数据
+	 */
+	public IAvgDayOpenRate saveByDay(IAvgDayOpenRate avgDayOpenRate);
+	
+	/**
+	 * 保存每周数据
+	 */
+	public IAvgWeekOpenRate saveByWeek(IAvgWeekOpenRate avgWeekOpenRate);
+	
+	/**
+	 * 保存每月数据
+	 */
+	public IAvgMonthOpenRate saveByMonth(IAvgMonthOpenRate avgMonthOpenRate);
+	
 	
 }

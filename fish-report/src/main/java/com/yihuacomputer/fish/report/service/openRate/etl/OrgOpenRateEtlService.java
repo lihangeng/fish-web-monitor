@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.SaveMethodDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.NumUtils;
@@ -56,7 +57,7 @@ public class OrgOpenRateEtlService implements IOrgOpenRateEtlService{
 			week.setStartDate(each[4].toString());
 			week.setEndDate(each[5].toString());
 			week.setOpenRate(NumUtils.getPercent(week.getHealthyTimeReal(),week.getOpenTimes()));
-			dao.save(week);
+			this.saveByWeek(week);
 		}
 	}
 
@@ -81,7 +82,7 @@ public class OrgOpenRateEtlService implements IOrgOpenRateEtlService{
 			dorMonth.setOpenTimes(Long.parseLong(each[2].toString()));
 			dorMonth.setHealthyTimeReal(Long.parseLong(each[3].toString()));
 			dorMonth.setOpenRate(NumUtils.getPercent(dorMonth.getHealthyTimeReal(),dorMonth.getOpenTimes()));
-			dao.save(dorMonth);
+			this.saveByMonth(dorMonth);
 		}
 	}
 
@@ -119,6 +120,18 @@ public class OrgOpenRateEtlService implements IOrgOpenRateEtlService{
 		filter.order("openRate");
 		IPageResult<IOrgOpenRateMonth> page = dao.page(0, limit, filter, OrgOpenRateMonth.class);
 		return page.list();
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"orgCode","date"})
+	@Override
+	public IOrgOpenRateWeek saveByWeek(IOrgOpenRateWeek orgOpenRateWeek) {
+		return dao.save(orgOpenRateWeek);
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"orgCode","date"})
+	@Override
+	public IOrgOpenRateMonth saveByMonth(IOrgOpenRateMonth orgOpenRateMonth) {
+		return dao.save(orgOpenRateMonth);
 	}
 
 }

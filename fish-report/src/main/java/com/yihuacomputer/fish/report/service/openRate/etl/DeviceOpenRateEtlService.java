@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.yihuacomputer.common.IFilter;
 import com.yihuacomputer.common.IPageResult;
+import com.yihuacomputer.common.annotation.SaveMethodDescrible;
 import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.common.util.NumUtils;
@@ -59,7 +60,7 @@ public class DeviceOpenRateEtlService implements IDeviceOpenRateEtlService{
 			week.setTypeId(Long.parseLong(each[5].toString()));
 			week.setDevType(each[6].toString());
 			week.setOpenRate(NumUtils.getPercent(week.getHealthyTimeReal(),week.getOpenTimes()));
-			dao.save(week);
+			this.saveByWeek(week);
 		}
 	}
 	
@@ -95,7 +96,7 @@ public class DeviceOpenRateEtlService implements IDeviceOpenRateEtlService{
 			dorMonth.setTypeId(Long.parseLong(each[5].toString()));
 			dorMonth.setDevType(each[6].toString());
 			dorMonth.setOpenRate(NumUtils.getPercent(dorMonth.getHealthyTimeReal(),dorMonth.getOpenTimes()));
-			dao.save(dorMonth);
+			this.saveByMonth(dorMonth);
 		}
 	}
 
@@ -134,6 +135,18 @@ public class DeviceOpenRateEtlService implements IDeviceOpenRateEtlService{
 		filter.order("openRate");
 		IPageResult<IDeviceOpenRateMonth> page = dao.page(0, limit, filter, DeviceOpenRateMonth.class);
 		return page.list();
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"terminalId","date"})
+	@Override
+	public IDeviceOpenRateWeek saveByWeek(IDeviceOpenRateWeek deviceOpenRateWeek) {
+		return dao.save(deviceOpenRateWeek);
+	}
+
+	@SaveMethodDescrible(isUpdate=true,keyName={"terminalId","date"})
+	@Override
+	public IDeviceOpenRateMonth saveByMonth(IDeviceOpenRateMonth deviceOpenRateMonth) {
+		return dao.save(deviceOpenRateMonth);
 	}
 
 }

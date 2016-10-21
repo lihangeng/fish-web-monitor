@@ -65,6 +65,14 @@ public class SettlementController {
 		ISettlement settlementInfo=settlementService.make();
 		settlementInfo.setTerminalId(msg.getTermId());
 		settlementInfo.setDate(msg.getDate());
+		String settleDate = msg.getDate();
+		if(null==settleDate){
+			result.addAttribute("ret", "RET_01");
+			result.put("data", msg);
+			return result;
+		}
+		int dates = Integer.parseInt(settleDate.substring(0, 10).replaceAll("-", ""));
+		settlementInfo.setDates(dates);
 		settlementInfo.setUuId(msg.getUuId());
 		settlementInfo.setLeftAmt(msg.getLeftAmt());
 		settlementInfo.setDeposit(msg.getDeposit());

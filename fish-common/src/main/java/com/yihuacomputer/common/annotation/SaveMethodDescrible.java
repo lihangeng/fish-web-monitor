@@ -15,4 +15,9 @@ public @interface SaveMethodDescrible {
 	 * @return
 	 */
 	boolean isUpdate() default false;
+	
+	/**
+	 * 实体名称（判重主键）
+	 */
+	String[] keyName() default "" ;
 }
