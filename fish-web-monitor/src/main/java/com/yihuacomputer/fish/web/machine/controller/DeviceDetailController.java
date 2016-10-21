@@ -121,7 +121,6 @@ public class DeviceDetailController
         deviceDetailForm.setMinAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMinAlarm()));
         deviceDetailForm.setPersonList(PersonForm.convert(personList));
         deviceDetailForm.setVersionDeviceList(getHistoryForms(lists, device));
-//        List<DeviceVersionHistory> forms = getHistoryForms(lists , deviceId);
         result.addAttribute(FishConstant.DATA, deviceDetailForm);
         result.addAttribute(FishConstant.SUCCESS, true);
         return result;
