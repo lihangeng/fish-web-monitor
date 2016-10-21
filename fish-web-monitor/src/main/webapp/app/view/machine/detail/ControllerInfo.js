@@ -3,7 +3,7 @@ Ext.define('Eway.view.machine.detail.ControllerInfo', {
 	alias : 'widget.detail_ControllerInfo',
 
 	requires : [],
-	title : '设备控制信息',
+	title : EwayLocale.deviceInfo.controllerInfo,
 	layout: {
         type: 'column',
     },

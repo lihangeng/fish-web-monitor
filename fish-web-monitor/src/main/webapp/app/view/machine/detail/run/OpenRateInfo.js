@@ -3,7 +3,7 @@ Ext.define('Eway.view.machine.detail.run.OpenRateInfo', {
     xtype: 'openRateInfo',
 
     title : {
-    	text: '开机率日均趋势图',
+    	text: EwayLocale.deviceInfo.OpenRateInfo,
     	height:24
     }, 
 

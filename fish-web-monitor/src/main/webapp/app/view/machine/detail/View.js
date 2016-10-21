@@ -26,14 +26,14 @@ Ext.define('Eway.view.machine.detail.View', {
 				name : 'deviceRunInfo',
 				xtype : 'detail_runInfo',
 				autoScroll :true,
-				title : '设备运行信息'
+				title :EwayLocale.deviceInfo.runInfo
 				//交易，日志，故障,清机加钞,吞卡
 //							交易信息，应用日志(10条)，最近的设备故障信息（10条），清机加钞信息，设备吞卡信息（10条）
 			},{
 				name : 'deviceControllerInfo',
 				xtype : 'detail_ControllerInfo',
 				autoScroll :true,
-				title : '设备控制信息'				
+				title : EwayLocale.deviceInfo.controllerInfo		
 			}]
 		});
 

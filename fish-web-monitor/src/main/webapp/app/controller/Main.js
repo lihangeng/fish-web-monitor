@@ -84,7 +84,7 @@ Ext.define('Eway.controller.Main', {
 								if (object.success == true) {
 									var controller =  me.activeController('machine.detail.Detail');
 									var view = controller.getEwayView();
-									view.setTitle(termianlId+"设备信息");
+									view.setTitle(termianlId+EwayLocale.deviceInfo.title);
 									view.setTerminalId(termianlId);
 									view.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data.deviceForm));
 									view.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
@@ -120,7 +120,7 @@ Ext.define('Eway.controller.Main', {
 			
 		}
 		else{
-			Eway.alert("请输入设备号!");
+			Eway.alert(EwayLocale.deviceInfo.importTerminalId);
 		}
 	},
 	initTabPanel:function(){

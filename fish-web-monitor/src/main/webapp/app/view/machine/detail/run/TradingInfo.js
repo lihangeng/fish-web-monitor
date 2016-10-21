@@ -2,7 +2,7 @@ Ext.define('Eway.view.machine.detail.run.TradingInfo', {
     extend: 'Ext.panel.Panel',
     alias : 'widget.tradingInfo',
     title : {
-    	text: '交易信息图',
+    	text:EwayLocale.deviceInfo.controllerInfo,
     	height:24
     },
     requires: ['Ext.chart.theme.Muted'],
@@ -56,7 +56,7 @@ Ext.define('Eway.view.machine.detail.run.TradingInfo', {
                 tooltip: {
                     trackMouse: true,
                     renderer: function(storeItem, item) {
-                    	storeItem.setHtml(item.get('transName') + '( 交易笔数:' + item.get('transCount')+' 交易金额:'+item.get('transAmt')+')');
+                    	storeItem.setHtml(item.get('transName') + '('+EwayLocale.deviceInfo.tradingCount + item.get('transCount')+EwayLocale.deviceInfo.tradingMoney+item.get('transAmt')+')');
                     }
                 }
             }]

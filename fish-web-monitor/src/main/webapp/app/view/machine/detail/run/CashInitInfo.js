@@ -4,7 +4,7 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
     requires:['Eway.store.machine.detail.CashSettleInit'],
 
     title : {
-    	text :'清机加钞信息',
+    	text :EwayLocale.deviceInfo.CashSettleInit,
     	height:24
     },
 
@@ -72,7 +72,7 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
             }],
             series: [{
                 type: 'line',
-                title:'加钞金额',
+                title:EwayLocale.monitor.business.cashInit.amt,
                 xField: 'date',
                 yField: 'initAmt',
                 style: {
@@ -98,14 +98,14 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                    	storeItem.setHtml(item.get('date') + '加钞金额' + item.get('initAmt'));
+                    	storeItem.setHtml(item.get('date') + EwayLocale.monitor.business.cashInit.amt + item.get('initAmt'));
                     }
                 }
             },{
                 type: 'line',
                 xField: 'date',
                 yField: 'leftAmt',
-                title:'清机金额',
+                title:EwayLocale.deviceInfo.clearAmt,
                 style: {
                     lineWidth: 4
                 },
@@ -129,7 +129,7 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                    	storeItem.setHtml(item.get('date') + '清机金额' + item.get('leftAmt'));
+                    	storeItem.setHtml(item.get('date') + EwayLocale.deviceInfo.clearAmt + item.get('leftAmt'));
                     }
                 }
             
@@ -137,7 +137,7 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
                 type: 'line',
                 xField: 'date',
                 yField: 'depositAmt',
-                title:'存款金额',
+                title:EwayLocale.monitor.business.settlement.cimAmt,
                 style: {
                     lineWidth: 4
                 },
@@ -161,7 +161,7 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                    	storeItem.setHtml(item.get('date') + '存款金额' + item.get('depositAmt'));
+                    	storeItem.setHtml(item.get('date') + EwayLocale.monitor.business.settlement.cimAmt+ item.get('depositAmt'));
                     }
                 }
             
@@ -169,7 +169,7 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
                 type: 'line',
                 xField: 'date',
                 yField: 'withdrawalAmt',
-                title:'取款金额',
+                title:EwayLocale.monitor.business.settlement.cdmAmt,
                 style: {
                     lineWidth: 4
                 },
@@ -193,7 +193,7 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                    	storeItem.setHtml(item.get('date') + '取款金额' + item.get('withdrawalAmt'));
+                    	storeItem.setHtml(item.get('date') + EwayLocale.monitor.business.settlement.cdmAmt + item.get('withdrawalAmt'));
                     }
                 }
             
@@ -201,7 +201,7 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
                 type: 'line',
                 xField: 'date',
                 yField: 'withdrawal',
-                title:'取款次数',
+                title:EwayLocale.deviceInfo.withdrawalCount,
                 style: {
                     lineWidth: 4
                 },
@@ -225,7 +225,7 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                    	storeItem.setHtml(item.get('date') + '取款次数' + item.get('withdrawal'));
+                    	storeItem.setHtml(item.get('date') + EwayLocale.deviceInfo.withdrawalCount + item.get('withdrawal'));
                     }
                 }
             
@@ -233,7 +233,7 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
                 type: 'line',
                 xField: 'date',
                 yField: 'deposit',
-                title:'存款次数',
+                title:EwayLocale.deviceInfo.depositCount,
                 style: {
                     lineWidth: 4
                 },
@@ -257,7 +257,7 @@ Ext.define('Eway.view.machine.detail.run.CashInitInfo', {
                     dismissDelay: 0,
                     hideDelay: 0,
                     renderer: function(storeItem, item) {
-                    	storeItem.setHtml(item.get('date') + '存款次数' + item.get('deposit'));
+                    	storeItem.setHtml(item.get('date') + EwayLocale.deviceInfo.depositCount + item.get('deposit'));
                     }
                 }
             
