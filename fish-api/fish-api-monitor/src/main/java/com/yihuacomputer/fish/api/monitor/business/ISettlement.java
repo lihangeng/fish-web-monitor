@@ -50,4 +50,15 @@ public interface ISettlement {
 	public long getTransaction();
 
 	public void setTransaction(long transaction);
+
+	/**
+	 * 转化为日期yyyymmdd
+	 * @return
+	 */
+	public int getDates();
+	/**
+	 * 转化为日期yyyymmdd
+	 * @param dates
+	 */
+	public void setDates(int dates);
 }

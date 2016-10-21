@@ -29,9 +29,11 @@ public class Settlement implements ISettlement {
 	
 	@Column(name = "TERMINAL_ID",length = 20,nullable=false)
 	private String terminalId;
-	
+
 	@Column(name = "SETTLE_DATE",length = 20)
 	private String date;
+	@Column(name = "DATES",length = 20)
+	private int dates;
 	
 	@Column(name = "LEFT_AMT")
 	private long leftAmt;
@@ -132,5 +134,11 @@ public class Settlement implements ISettlement {
 	}
 	public void setTransactionAmt(long transactionAmt) {
 		this.transactionAmt = transactionAmt;
+	}
+	public int getDates() {
+		return dates;
+	}
+	public void setDates(int dates) {
+		this.dates = dates;
 	}
 }

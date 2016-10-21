@@ -35,6 +35,9 @@ public class CashInit implements ICashInit {
 	@Column(name = "CASH_DATE",length=20)
 	private String date;
 	
+    @Column(name = "DATES", length = 12)
+    private int dates;
+	
 	@Column(name = "UUID",length=20)
 	private String uuId;
 	
@@ -81,4 +84,11 @@ public class CashInit implements ICashInit {
 	public void setBoxDetail(List<IBoxInitDetail> boxDetail) {
 		this.boxDetail = boxDetail;
 	}
+	public int getDates() {
+		return dates;
+	}
+	public void setDates(int dates) {
+		this.dates = dates;
+	}
+	
 }
