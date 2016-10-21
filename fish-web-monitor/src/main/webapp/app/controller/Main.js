@@ -90,6 +90,7 @@ Ext.define('Eway.controller.Main', {
 				success : function(response) {
 					var object = Ext.decode(response.responseText);
 					if (object.success == true) {
+
 						var controller =  me.activeController('machine.detail.Detail');
 						var view = controller.getEwayView();
 						view.setTitle(termianlId+"设备信息");
@@ -101,7 +102,8 @@ Ext.define('Eway.controller.Main', {
 						var displayfields = Ext.ComponentQuery.query("detail_basic_hardwareInfo displayfield");
 						Ext.Array.forEach(displayfields,function(displayfield,index,items){
 							displayfield.setHidden(!view.down("detail_basic_hardwareInfo").isHidden(displayfield));
-						});
+
+						}
 						Ext.Array.forEach(object.data.personList,function(item,index,items){
 							view.down("detail_personInfo").getStore().add(Ext.create('Eway.model.person.person.BankPerson',item))
 						});
@@ -125,7 +127,7 @@ Ext.define('Eway.controller.Main', {
 			
 		}
 		else{
-			Eway.alert("请输入设备号!");
+			Eway.alert(EwayLocale.deviceInfo.importTerminalId);
 		}
 	},
 	initTabPanel:function(){

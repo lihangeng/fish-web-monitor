@@ -651,5 +651,20 @@ Ext.apply(EwayLocale,{
 		startData:'吞卡起始日期',//EwayLocale.card.startData
 		add:'添加',//EwayLocale.card.add
 		dell:'删除'//EwayLocale.card.dell
+	},
+	deviceInfo:{
+		title:'设备信息',//EwayLocale.deviceInfo.title
+		importTerminalId:'请输入设备号!',//EwayLocale.deviceInfo.importTerminalId
+		runInfo:'设备运行信息',//EwayLocale.deviceInfo.runInfo
+		tradingInfoChart:'交易信息图',//EwayLocale.deviceInfo.tradingInfoChart
+		tradingCount:'交易笔数:',//EwayLocale.deviceInfo.tradingCount
+		tradingAmt:'交易金额:',//EwayLocale.deviceInfo.tradingAmt
+		OpenRateInfo:'开机率日均趋势图',//EwayLocale.deviceInfo.OpenRateInfo
+		CashSettleInit:'清机加钞信息',//EwayLocale.deviceInfo.CashSettleInit
+		clearAmt:'清机金额',//EwayLocale.deviceInfo.clearAmt
+		withdrawalCount:'取款次数',//EwayLocale.deviceInfo.withdrawalCount
+		depositCount:'存款次数',//EwayLocale.deviceInfo.depositCount
+		controllerInfo:'设备控制信息'//EwayLocale.deviceInfo.controllerInfo
 	}
+	
 });

@@ -10,7 +10,7 @@ Ext.define('Eway.view.machine.detail.RunInfo', {
 	height:800,
 	closable:false,
 	width:1024,
-	title : '设备运行信息',
+	title : EwayLocale.deviceInfo.runInfo,
 	layout: 'responsivecolumn',
     scrollable : 'y',
 	isLoad : false,

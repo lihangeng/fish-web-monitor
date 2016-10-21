@@ -651,7 +651,20 @@ Ext.apply(EwayLocale,{
 		startData:'StartData',//EwayLocale.card.startData
 		add:'Add',//EwayLocale.card.add
 		dell:'Delete'//EwayLocale.card.dell
-	}
-	
+	},
+	deviceInfo:{
+		title:'Device Info',//EwayLocale.deviceInfo.title
+		importTerminalId:' Please Import TerminalId!',//EwayLocale.deviceInfo.importTerminalId
+		runInfo:'Atm Run Info',//EwayLocale.deviceInfo.runInfo
+		controllerInfo:'Device Controller Info',//EwayLocale.deviceInfo.controllerInfo
+		tradingInfoChart:'Trading Info Chart',//EwayLocale.deviceInfo.tradingInfoChart
+		tradingCount:'Trading Count:',//EwayLocale.deviceInfo.tradingCount
+		tradingAmt:'Trading Sum Of Money:',//EwayLocale.deviceInfo.tradingAmt
+		OpenRateInfo:'Open Atm Average Rate Info With Each Passing Day',//EwayLocale.deviceInfo.OpenRateInfo
+		CashSettleInit:'Cash Settle Init',//EwayLocale.deviceInfo.CashSettleInit
+		clearAmt:'Clear Atm Sum Of Money',//EwayLocale.deviceInfo.clearAmt
+		withdrawalCount:'Withdrawal Count',//EwayLocale.deviceInfo.withdrawalCount
+		depositCount:'Deposit Count'//EwayLocale.deviceInfo.depositCount
+	}	
 
 });
