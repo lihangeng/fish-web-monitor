@@ -334,7 +334,7 @@ public class RetaincardService implements IRetaincardService{
 		hql.append(" retaincard where retaincard.cardRetainTime > ? and ").append("retaincard.terminalId =? ");
 		hql.append(" group by ").append(timeStr);
 		hql.append(" order by ").append(timeStr);
-		return dao.findByHQL(hql.toString(),DateUtils.getLastMonth(),terminalId);
+		return dao.findByHQL(hql.toString(),DateUtils.getLastWeek(),terminalId);
 	}
 
 }

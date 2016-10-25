@@ -1,7 +1,10 @@
 Ext.define('Eway.view.machine.detail.run.CaseFaultInfo', {
     extend: 'Ext.Panel',
     xtype: 'faultTrend',
-    requires:['Eway.store.machine.detail.FaultTrend'],
+    requires:['Eway.store.machine.detail.FaultTrend',
+              'Eway.view.case.caseFault.FaultView',
+              'Eway.view.case.caseFault.FaultGrid',
+              'Eway.view.case.caseFault.FilterForm'],
 
     title : {
     	text :EwayLocale.index.dailyFaultPic,
@@ -23,6 +26,12 @@ Ext.define('Eway.view.machine.detail.run.CaseFaultInfo', {
             xtype: 'cartesian',
             width: '100%',
             height: 260,
+            plugins: {
+                ptype: 'chartitemevents',
+                moveEvents: true,
+                clickEvents: true,
+                dbClickEvents: true
+            },
             interactions: {
                 type: 'itemhighlight',
                 zoomOnPanGesture: false
@@ -89,7 +98,32 @@ Ext.define('Eway.view.machine.detail.run.CaseFaultInfo', {
                     	storeItem.setHtml(item.get('month') + EwayLocale.index.faultAmount + item.get('data1'));
                     }
                 }
-            }]
+            }],
+            listeners:{
+            	//点击表格进行查看当前版本详情对应的设备信息
+            	itemclick:function( series, item, event, eOpts ){
+            		var window = Ext.create("Ext.window.Window",{
+            			width:500,
+            			height:300,
+            			modal : true,
+            			maximized:true,
+            			layout:'border',
+            		    items: { 
+            		    	region:'center',
+            		        xtype: 'case_faultView'
+            		    }
+            		});
+            		window.show();
+//            		this.up("pie-donut").setZIndex(1000000);
+            		var grid = window.down("caseFault_faultGrid");
+            		var store = grid.getStore();
+//            		store.setBaseParam("args",item.record.get("filterStr"));
+            		store.loadPage(1);
+            	},
+            	itemmouseout:function( series, item, event, eOpts ){
+//            		this.up("pie-donut").setZIndex(1000);
+            	}
+            }
         }];
 
         me.callParent();

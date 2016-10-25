@@ -1,6 +1,5 @@
 package com.yihuacomputer.fish.api.report.device.etl;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -23,9 +22,4 @@ public interface IDeviceTypeSummaryWeekService {
 	 */
 	Map<String,IDeviceTypeSummaryWeek> get(String date);
 
-	/**
-	 * 加载基础数据
-	 * @param date 执行时间点 40周执行39周汇总，此时传入的日期为40周周一,得出的是39新增及汇总数据
-	 */
-	void loadBaseData(Date date);
 }

@@ -526,6 +526,6 @@ public class DayOpenRateService implements IDayOpenRateService {
 		StringBuilder sb = new StringBuilder();
 		sb.append("from ").append(DayOpenRate.class.getSimpleName()).append(" as dayopenrate where")
 		.append(" dayopenrate.statDate>? and dayopenrate.terminalId=?");
-		return dao.findByHQL(sb.toString(), DateUtils.getDate(DateUtils.getLastMonth()),terminalId);
+		return dao.findByHQL(sb.toString(), DateUtils.getDate(DateUtils.getLastWeek()),terminalId);
 	}
 }

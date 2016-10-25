@@ -38,7 +38,7 @@ public interface IDayOpenRateService {
     public List<IDayOpenRate> listDev(IFilter filter);
 
     /**
-     * 根据设备号获取近一个月的开机率信息
+     * 根据设备号获取近一个周的开机率信息
      * @param terminalId
      * @return
      */

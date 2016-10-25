@@ -80,7 +80,7 @@ public class SettlementService implements ISettlementService {
     	sb.append("where settle.uuId = init.uuId and  init.dates>=? and ");
     	sb.append("settle.terminalId=init.terminalId and init.terminalId=? ");
     	sb.append(" group by settle.dates");
-    	int date = Integer.parseInt(DateUtils.getDateShort(DateUtils.getLastMonth()));
+    	int date = Integer.parseInt(DateUtils.getDateShort(DateUtils.getLastWeek()));
     	List<Object> list = dao.findByHQL(sb.toString(), date,terminalId);
     	List<CashSettleInit> settleInitList = new ArrayList<CashSettleInit>();
     	for(Object obj:list){

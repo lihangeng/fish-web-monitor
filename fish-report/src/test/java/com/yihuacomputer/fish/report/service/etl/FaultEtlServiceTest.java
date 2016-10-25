@@ -12,7 +12,7 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.yihuacomputer.fish.api.report.fault.etl.IFaultEtlService;
+import com.yihuacomputer.fish.api.report.fault.etl.IFaultExtractDataService;
 import com.yihuacomputer.fish.report.H2TestConfig;
 
 @DirtiesContext(classMode = ClassMode.AFTER_CLASS)
@@ -21,7 +21,7 @@ import com.yihuacomputer.fish.report.H2TestConfig;
 public class FaultEtlServiceTest {
 	
 	@Autowired
-	private IFaultEtlService faultEtlService;
+	private IFaultExtractDataService faultExtractDataService;
 	
 	
 	@Before
@@ -40,7 +40,7 @@ public class FaultEtlServiceTest {
 //		faultEtlService.extractFaultClassifyByWeek(date);
 //		faultEtlService.extractFaultClassifyByMonth(date);
 //		faultEtlService.extractDurationByWeek(date);
-		faultEtlService.extractDurationByMonth(date);
+		faultExtractDataService.extractDurationByMonth(date);
 	}
 	
 }

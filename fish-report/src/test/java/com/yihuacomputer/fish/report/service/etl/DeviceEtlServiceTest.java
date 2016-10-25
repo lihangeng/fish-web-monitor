@@ -14,9 +14,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.yihuacomputer.common.util.DateUtils;
-import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryMonthService;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryWeekService;
-import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryMonthService;
+import com.yihuacomputer.fish.api.report.device.etl.IDeviceExtractDataMonthService;
+import com.yihuacomputer.fish.api.report.device.etl.IDeviceExtractDataWeekService;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryWeekService;
 import com.yihuacomputer.fish.report.H2TestConfig;
 
@@ -32,10 +32,10 @@ public class DeviceEtlServiceTest {
 	private IDeviceCatalogSummaryWeekService deviceCatalogSummaryWeekService;
 	
 	@Autowired
-	private IDeviceCatalogSummaryMonthService deviceCatalogSummaryMonthService;
-
+	private IDeviceExtractDataMonthService deviceExtractDataMonthService;
+	
 	@Autowired
-	private IDeviceTypeSummaryMonthService deviceTypeSummaryMonthService;
+	private IDeviceExtractDataWeekService deviceExtractDataWeekService;
 
 	@Before
 	public void setUp() throws Exception {
@@ -50,7 +50,7 @@ public class DeviceEtlServiceTest {
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
 		c.set(Calendar.MONTH, 7);
-		deviceCatalogSummaryMonthService.loadBaseData(c.getTime());
+		deviceExtractDataMonthService.loadCatalogBaseData(c.getTime());
 	}
 
 	@Test
@@ -60,7 +60,7 @@ public class DeviceEtlServiceTest {
 		c.add(Calendar.DAY_OF_MONTH, -35);
 		for (int i = 5; i >= 0; i--) {
 			System.out.println(DateUtils.getDate(c.getTime()));
-			deviceCatalogSummaryWeekService.loadBaseData(c.getTime());
+			deviceExtractDataWeekService.loadCatalogBaseData(c.getTime());
 			c.add(Calendar.DAY_OF_MONTH, 7);
 		}
 	}
@@ -70,7 +70,7 @@ public class DeviceEtlServiceTest {
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
 		c.set(Calendar.MONTH, 7);
-		deviceTypeSummaryMonthService.loadBaseData(c.getTime());
+		deviceExtractDataMonthService.loadTypeBaseData(c.getTime());
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class DeviceEtlServiceTest {
 		c.add(Calendar.DAY_OF_MONTH, -35);
 		for (int i = 5; i >= 0; i--) {
 			System.out.println(DateUtils.getDate(c.getTime()));
-			deviceTypeSummaryWeekService.loadBaseData(c.getTime());
+			deviceExtractDataWeekService.loadTypeBaseData(c.getTime());
 			c.add(Calendar.DAY_OF_MONTH, 7);
 		}
 	}

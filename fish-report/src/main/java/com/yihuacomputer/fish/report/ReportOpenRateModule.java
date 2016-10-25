@@ -6,15 +6,23 @@ import org.springframework.context.annotation.Configuration;
 import com.yihuacomputer.fish.api.report.device.IDeviceOpenRateService;
 import com.yihuacomputer.fish.api.report.openRate.IDayOpenRateService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateEtlService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateExtractDataService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceOpenRateEtlService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceOpenRateExtractDataService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateEtlService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateExtractDataService;
 import com.yihuacomputer.fish.api.report.openRate.etl.IOrgOpenRateEtlService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IOrgOpenRateExtractDataService;
 import com.yihuacomputer.fish.report.service.openRate.DayOpenRateService;
 import com.yihuacomputer.fish.report.service.openRate.DeviceOpenRateService;
 import com.yihuacomputer.fish.report.service.openRate.etl.AvgOpenRateEtlService;
+import com.yihuacomputer.fish.report.service.openRate.etl.AvgOpenRateExtractDataService;
 import com.yihuacomputer.fish.report.service.openRate.etl.DeviceOpenRateEtlService;
+import com.yihuacomputer.fish.report.service.openRate.etl.DeviceOpenRateExtractDataService;
 import com.yihuacomputer.fish.report.service.openRate.etl.DeviceTypeOpenRateEtlService;
+import com.yihuacomputer.fish.report.service.openRate.etl.DeviceTypeOpenRateExtractDataService;
 import com.yihuacomputer.fish.report.service.openRate.etl.OrgOpenRateEtlService;
+import com.yihuacomputer.fish.report.service.openRate.etl.OrgOpenRateExtractDataService;
 
 /**
  * 开机率数据抽取模块配置
@@ -54,6 +62,26 @@ public class ReportOpenRateModule {
 	@Bean
 	public IOrgOpenRateEtlService orgOpenRateEtlService(){
 		return new OrgOpenRateEtlService();
+	}
+	
+	@Bean
+	public IAvgOpenRateExtractDataService avgOpenRateExtractDataService(){
+		return new AvgOpenRateExtractDataService();
+	}
+	
+	@Bean
+	public IDeviceOpenRateExtractDataService deviceOpenRateExtractDataService(){
+		return new DeviceOpenRateExtractDataService();
+	}
+	
+	@Bean
+	public IDeviceTypeOpenRateExtractDataService deviceTypeOpenRateExtractDataService(){
+		return new DeviceTypeOpenRateExtractDataService();
+	}
+	
+	@Bean
+	public IOrgOpenRateExtractDataService orgOpenRateExtractDataService(){
+		return new OrgOpenRateExtractDataService();
 	}
 
 }

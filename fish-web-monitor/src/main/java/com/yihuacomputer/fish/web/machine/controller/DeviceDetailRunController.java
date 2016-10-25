@@ -120,7 +120,7 @@ public class DeviceDetailRunController {
 	public @ResponseBody ModelMap getTransInfo(HttpServletRequest httpRequest,WebRequest request){
 		IFilter filter  = new Filter();
 		filter.eq("terminalId", httpRequest.getParameter("terminalId"));
-		filter.eq("startDate",DateUtils.getDateShort(DateUtils.getLastMonth()));
+		filter.eq("startDate",DateUtils.getDateShort(DateUtils.getLastWeek()));
 		filter.eq("endDate",DateUtils.getTodayDate());
 		
 		List<ThreeTuple<String, Integer,Double>> list = transactionService.statisticsTransCountForDevice(filter);
@@ -152,7 +152,7 @@ public class DeviceDetailRunController {
 	@ResponseBody
 	public ModelMap faultTrendByDev(WebRequest wReq, HttpServletRequest req) {
 		logger.info("faultTrendByDev...");
-		Date start = DateUtils.getLastMonth();
+		Date start = DateUtils.getLastWeek();
 		Date end = new Date();
 		List<Object> objects = faultStatisticsService.statisticsFaultTrendByTerminalId(start,end,req.getParameter("terminalId"));
 		List<ChartForm> forms = new ArrayList<ChartForm>();
