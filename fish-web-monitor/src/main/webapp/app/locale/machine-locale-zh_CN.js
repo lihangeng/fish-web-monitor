@@ -664,7 +664,8 @@ Ext.apply(EwayLocale,{
 		clearAmt:'清机金额',//EwayLocale.deviceInfo.clearAmt
 		withdrawalCount:'取款次数',//EwayLocale.deviceInfo.withdrawalCount
 		depositCount:'存款次数',//EwayLocale.deviceInfo.depositCount
-		controllerInfo:'设备控制信息'//EwayLocale.deviceInfo.controllerInfo
+		controllerInfo:'设备控制信息',//EwayLocale.deviceInfo.controllerInfo
+		appReleaseInfo:'可升级版本信息'//EwayLocale.deviceInfo.appReleaseInfo
 	}
 	
 });

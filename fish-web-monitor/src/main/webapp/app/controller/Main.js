@@ -93,12 +93,13 @@ Ext.define('Eway.controller.Main', {
 
 						var controller =  me.activeController('machine.detail.Detail');
 						var view = controller.getEwayView();
-						view.setTitle(termianlId+"设备信息");
+						view.setTitle(termianlId+EwayLocale.deviceInfo.title);
 						view.setTerminalId(termianlId);
 						view.down("form").loadRecord(Ext.create('Eway.model.machine.Device',object.data.deviceForm));
 						view.down("form").loadRecord(Ext.create('Eway.model.monitor.device.DeviceMonitorList',object.data.statusReport));
 						view.down("detail_personInfo").getStore().removeAll();
 						view.down("detail_versionInfo").getStore().removeAll();
+						view.down("detail_appRelease").getStore().removeAll();
 						var displayfields = Ext.ComponentQuery.query("detail_basic_hardwareInfo displayfield");
 						Ext.Array.forEach(displayfields,function(displayfield,index,items){
 							displayfield.setHidden(!view.down("detail_basic_hardwareInfo").isHidden(displayfield));
@@ -109,6 +110,9 @@ Ext.define('Eway.controller.Main', {
 						});
 						Ext.Array.forEach(object.data.versionDeviceList,function(item,index,items){
 							view.down("detail_versionInfo").getStore().add(Ext.create('Eway.model.version.DeviceVersionHistory',item))
+						});
+						Ext.Array.forEach(object.data.appReleaseList,function(item,index,items){
+							view.down("detail_appRelease").getStore().add(Ext.create('Eway.model.version.AppReleaseList',item))
 						});
 
 						ewayView.unmask();	

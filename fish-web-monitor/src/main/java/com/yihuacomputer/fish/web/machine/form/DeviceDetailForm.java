@@ -6,6 +6,7 @@ import java.util.List;
 import com.yihuacomputer.fish.api.monitor.report.IStatusReport;
 import com.yihuacomputer.fish.web.system.form.PersonForm;
 import com.yihuacomputer.fish.web.version.form.DeviceVersionHistory;
+import com.yihuacomputer.fish.web.version.form.VersionForm;
 
 public class DeviceDetailForm {
 	
@@ -20,6 +21,7 @@ public class DeviceDetailForm {
 	private String minAlarm;
 
 	private List<PersonForm> personList = new ArrayList<PersonForm>();
+	private List<VersionForm> appReleaseList = new ArrayList<VersionForm>();
 	private List<DeviceVersionHistory> versionDeviceList= new ArrayList<DeviceVersionHistory>();
 	
 	public String getMaxAlarm() {
@@ -57,6 +59,12 @@ public class DeviceDetailForm {
 	}
 	public void setStatusReport(IStatusReport statusReport) {
 		this.statusReport = statusReport;
+	}
+	public List<VersionForm> getAppReleaseList() {
+		return appReleaseList;
+	}
+	public void setAppReleaseList(List<VersionForm> appReleaseList) {
+		this.appReleaseList = appReleaseList;
 	}
 	
 }

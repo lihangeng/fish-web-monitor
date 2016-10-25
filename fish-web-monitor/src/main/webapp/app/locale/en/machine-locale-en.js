@@ -664,7 +664,8 @@ Ext.apply(EwayLocale,{
 		CashSettleInit:'Cash Settle Init',//EwayLocale.deviceInfo.CashSettleInit
 		clearAmt:'Clear Atm Sum Of Money',//EwayLocale.deviceInfo.clearAmt
 		withdrawalCount:'Withdrawal Count',//EwayLocale.deviceInfo.withdrawalCount
-		depositCount:'Deposit Count'//EwayLocale.deviceInfo.depositCount
+		depositCount:'Deposit Count',//EwayLocale.deviceInfo.depositCount
+		appReleaseInfo:'Approve Update Version Info'//EwayLocale.deviceInfo.appReleaseInfo
 	}	
 
 });

@@ -10,9 +10,9 @@ Ext.define('Eway.view.machine.detail.basic.DeviceInfo', {
 	initComponent : function() {
 		Ext.apply(this, {
 			defaults : {
-				labelAlign : 'right',
+				labelAlign : 'left',
 				xtype : 'displayfield',
-				labelWidth : 150,
+				labelWidth : 80,
 				readOnly : true,
 				width : '50%'
 			},
@@ -22,7 +22,7 @@ Ext.define('Eway.view.machine.detail.basic.DeviceInfo', {
 				name : 'terminalId'
 			},{
 				columnWidth : .25,
-				fieldLabel : EwayLocale.machine.atmGroup.ip,
+				fieldLabel : 'IP地址',
 				name : 'ip'
 			},{
 				columnWidth : .25,
@@ -30,23 +30,23 @@ Ext.define('Eway.view.machine.detail.basic.DeviceInfo', {
 				name : 'statusName'
 			},{
 				columnWidth : .25,
-				fieldLabel : EwayLocale.machine.device.serial,
+				fieldLabel : EwayLocale.machine.atmGroup.devTypeName,
+				name : 'devTypeName'
+			},{
+				columnWidth : .25,
+				fieldLabel : '序列号',
 				name : 'serial'
+			},{
+				columnWidth : .25,
+				fieldLabel :'维护商',
+				name : 'devServiceName'
 			},{
 				columnWidth : .25,
 				fieldLabel : EwayLocale.machine.device.virtual,
 				name : 'virtual'
 			},{
 				columnWidth : .25,
-				fieldLabel : EwayLocale.machine.atmGroup.devTypeName,
-				name : 'devTypeName'
-			},{
-				columnWidth : .25,
-				fieldLabel : EwayLocale.machine.atmGroup.devServiceName,
-				name : 'devServiceName'
-			},{
-				columnWidth : .25,
-				fieldLabel : EwayLocale.machine.device.installDate,
+				fieldLabel : '安装日期',
 				name : 'installDate'
 			},{
 				columnWidth : .5,

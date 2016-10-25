@@ -11,7 +11,7 @@ Ext.define('Eway.view.machine.detail.basic.OtherInfo', {
 	initComponent : function() {
 		Ext.apply(this, {
 			defaults : {
-				labelAlign : 'right',
+				labelAlign : 'left',
 				xtype : 'displayfield',
 				labelWidth : 150,
 				readOnly : true,
@@ -43,6 +43,10 @@ Ext.define('Eway.view.machine.detail.basic.OtherInfo', {
 				code : 'boxCurrentCount'
 			},{
 				columnWidth : .25,
+				fieldLabel : '设备吞卡数量',
+				name : 'retainCardCount'
+			},{
+				columnWidth : .25,
 				fieldLabel : EwayLocale.machine.device.installStyle,
 				name : 'setupTypeName'
 			},{
@@ -57,10 +61,6 @@ Ext.define('Eway.view.machine.detail.basic.OtherInfo', {
 				columnWidth : .25,
 				fieldLabel : EwayLocale.machine.device.operation,
 				name : 'workTypeName'
-			},{
-				columnWidth : .25,
-				fieldLabel : '设备吞卡数量',
-				name : 'retainCardCount'
 			},{
 				columnWidth : .25,
 				fieldLabel : '运行状态',
@@ -83,8 +83,13 @@ Ext.define('Eway.view.machine.detail.basic.OtherInfo', {
 				name : 'registerStatus'
 			},{
 				columnWidth : .25,
-				fieldLabel : 'ATMC应用版本号',
-				name : 'appRelease'
+				fieldLabel :'ATMC应用版本号',
+				name : 'appRelease',
+			   // a_link : true
+				//value:'<a href="#" class="link">'+value+'</a>'
+				renderer: function(value,meta,record) {
+					return '<a href="#" class="link">'+value+'</font></a>';
+				}
 			}],
 			listeners : {
 				activate : function(panel) {}
@@ -93,4 +98,5 @@ Ext.define('Eway.view.machine.detail.basic.OtherInfo', {
 
 		this.callParent(arguments);
 	}
+   
 });

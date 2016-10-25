@@ -15,6 +15,10 @@ import com.yihuacomputer.fish.api.version.job.task.ITask;
  * @author xuxigang
  *
  */
+/**
+ * @author YH
+ *
+ */
 public interface IVersionService {
     public IVersion make();
 
@@ -143,4 +147,12 @@ public interface IVersionService {
      * @return
      */
     public ITask collectUpdateReport(long taskId, String ret, double size, String startTime, String endTime);
+
+ /**
+ *获取可以更新的版本 
+ * @param maybeVersions 所有同类型的版本
+ * @param currentVersion 当前版本
+ * @return
+ */
+public List<IVersion> getUpdateVersion(List<IVersion> maybeVersions,IVersion currentVersion);
 }

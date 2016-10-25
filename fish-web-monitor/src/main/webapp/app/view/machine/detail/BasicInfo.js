@@ -6,7 +6,8 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
 	            'Eway.view.machine.detail.basic.HardwareInfo',
 	            'Eway.view.machine.detail.basic.OtherInfo',
 	            'Eway.view.machine.detail.basic.PersonInfo',
-	            'Eway.view.machine.detail.basic.VersionInfo'
+	            'Eway.view.machine.detail.basic.VersionInfo',
+	            'Eway.view.machine.detail.basic.AppReleaseInfo'
 	            ],
 	title : '设备基本信息',
    layout: {
@@ -38,6 +39,14 @@ Ext.define('Eway.view.machine.detail.BasicInfo', {
 						xtype: 'detail_basic_otherInfo'
 					}
 				]},{
+					xtype: 'detail_appRelease',
+		            title: '可升级版本信息',
+			        frame: true,
+			        margin: 10,
+			        collapsible :true,
+			        hidden:true,
+			        id:'appRelease'
+				},{
 					xtype: 'detail_personInfo',
 		            title: '设备人员信息',
 			        frame: true,

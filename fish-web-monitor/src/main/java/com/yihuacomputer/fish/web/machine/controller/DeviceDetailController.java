@@ -19,6 +19,8 @@ import org.springframework.web.context.request.WebRequest;
 
 import com.yihuacomputer.common.FishCfg;
 import com.yihuacomputer.common.FishConstant;
+import com.yihuacomputer.common.IFilter;
+import com.yihuacomputer.common.filter.Filter;
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.device.IDevice;
 import com.yihuacomputer.fish.api.device.IDeviceService;
@@ -34,6 +36,8 @@ import com.yihuacomputer.fish.api.person.IPerson;
 import com.yihuacomputer.fish.api.person.UserSession;
 import com.yihuacomputer.fish.api.relation.IDevicePersonRelation;
 import com.yihuacomputer.fish.api.version.IVersion;
+import com.yihuacomputer.fish.api.version.IVersionService;
+import com.yihuacomputer.fish.api.version.IVersionTypeService;
 import com.yihuacomputer.fish.api.version.job.task.ITask;
 import com.yihuacomputer.fish.api.version.job.task.ITaskService;
 import com.yihuacomputer.fish.monitor.entity.business.DeviceRegister;
@@ -44,6 +48,7 @@ import com.yihuacomputer.fish.web.machine.form.DeviceDetailForm;
 import com.yihuacomputer.fish.web.machine.form.DeviceForm;
 import com.yihuacomputer.fish.web.system.form.PersonForm;
 import com.yihuacomputer.fish.web.version.form.DeviceVersionHistory;
+import com.yihuacomputer.fish.web.version.form.VersionForm;
 
 @Controller
 @RequestMapping("/machine/devicedetail")
@@ -69,6 +74,14 @@ public class DeviceDetailController
     private IRegistService registService;
     
     @Autowired
+    private IVersionService VersionService;  
+    
+    @Autowired
+    private IVersionTypeService VersionTypeService;   
+    
+    
+    
+    @Autowired
     private  IDeviceBoxInfoService devcieBoxInfoService;
     /**
      * 
@@ -83,6 +96,7 @@ public class DeviceDetailController
     {
         logger.info(String.format("search device detail "));
         String terminalId = request.getParameter("termianlId");
+        String typeName="gump-professional";
         IDevice device = deviceService.get(terminalId);
         ModelMap result = new ModelMap();
         if(null==device){
@@ -116,6 +130,7 @@ public class DeviceDetailController
 		statusReport.setStatusReport(deviceReport, messageSourceEnum);
         deviceDetailForm.setStatusReport(statusReport);
         deviceDetailForm.setDeviceForm(toFrom(device));
+        deviceDetailForm.setAppReleaseList(getVersionForm(typeName,terminalId));
         
         deviceDetailForm.setMaxAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMaxAlarm()));
         deviceDetailForm.setMinAlarm(devcieBoxInfo==null?"未知":String.valueOf(devcieBoxInfo.getMinAlarm()));
@@ -164,7 +179,35 @@ public class DeviceDetailController
     	return messageSourceEnum.getMessage(enumText, null, FishCfg.locale);
     }
     
-    /**
+    private List<VersionForm> getVersionForm(String typeName,String terminalId) {
+        List<VersionForm> appReleaseList = new ArrayList<VersionForm>();
+        String versionNo=registService.load(terminalId).getAtmcVersion();
+        IVersion currentVersion=VersionService.findVersion(typeName, versionNo);
+        IFilter filter=new Filter();
+        filter.eq("typeName", typeName);
+        long typeId=VersionTypeService.list(filter).get(0).getId();
+        IFilter filter2=new Filter();
+        filter2.descOrder("versionStr");
+        filter2.eq("versionType.id", typeId);
+        List<IVersion> maybeVersions=VersionService.list(filter2);
+        List<IVersion> versions= VersionService.getUpdateVersion(maybeVersions,currentVersion);
+        appReleaseList=toVersionForm(versions);
+        return appReleaseList;
+    }
+    
+    private List<VersionForm> toVersionForm(List<IVersion> versions) {
+		List<VersionForm> forms = new ArrayList<VersionForm>();
+		for (IVersion v : versions) {
+			VersionForm form = new VersionForm(v);
+			if (v.getCreateUser() != null) {
+				form.setUserName(v.getCreateUser().getName());
+			}
+			forms.add(form);
+		}
+		return forms;
+	}
+
+	/**
 	 * 将接口数据保存至本地
 	 *
 	 * @param device

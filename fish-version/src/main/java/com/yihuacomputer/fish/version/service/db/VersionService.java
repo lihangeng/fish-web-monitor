@@ -365,6 +365,16 @@ public class VersionService implements IDomainVersionService {
         }
         return version;
     }
+      
+	public List<IVersion> getUpdateVersion(List<IVersion> maybeVersions, IVersion currentVersion){
+    	 List<IVersion>  versions = new ArrayList<IVersion>();
+          for (IVersion version : maybeVersions) {
+              if (version.isAfter(currentVersion)) {
+            	  versions.add(version);
+              }
+          }      
+          return versions;   	
+    } 
 
     /**
      * 登记软件版本信息
