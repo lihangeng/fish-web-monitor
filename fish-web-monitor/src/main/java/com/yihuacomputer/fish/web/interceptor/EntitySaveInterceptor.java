@@ -3,9 +3,6 @@ package com.yihuacomputer.fish.web.interceptor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
@@ -35,6 +32,7 @@ public class EntitySaveInterceptor {
 	@Pointcut("@annotation(com.yihuacomputer.common.annotation.SaveMethodDescrible)")
 	public void save() {
 	}
+	
 
 	@Around("service() && save()")
 	public Object aroundControllerMethod(ProceedingJoinPoint joinPoint) throws Throwable {
@@ -47,31 +45,14 @@ public class EntitySaveInterceptor {
 		if(saveMethod !=null){
 			Object entity = joinPoint.getArgs()[0];
 			String[] keyNameArgs = saveMethod.keyName();
-			Map<String,String> values = getValue(entity,keyNameArgs);
-			IFilter filter = new Filter();
-			for(Map.Entry<String,String> m:values.entrySet()){
-				filter.eq(m.getKey(), m.getValue());
-			}
+			IFilter filter = getFilter(entity,keyNameArgs);
 			Object entityDB = dao.findUniqueByFilter(filter, entity.getClass());
 			if(entityDB != null){
 				//获取数据库实体的属性集合
 				 Field[] dbFields = entityDB.getClass().getDeclaredFields();
 				 for(Field dbField:dbFields){
-					 //属性注解
-					 Annotation[] annotations= dbField.getDeclaredAnnotations();
-					 //无注解不做处理
-					 if(annotations.length==0){
-						 continue;
-					 }
-					 boolean isTransient = false;
-					 //临时注解不做处理
-					 for(Annotation annotation:annotations){
-						 if(annotation.annotationType().equals(Transient.class)||annotation.annotationType().equals(Id.class)){
-							 isTransient = true;
-							 break;
-						 }
-					 }
-					 if(isTransient){
+					 boolean isDo = isHandle(dbField);
+					 if(!isDo){
 						 continue;
 					 }
 					 //数据库实体属性可访问
@@ -84,8 +65,8 @@ public class EntitySaveInterceptor {
 					 dbField.set(entityDB, field.get(entity));;
 				 }
 				 dao.update(entityDB);
+				 return obj;
 			}
-				return obj;
 		}
 		return joinPoint.proceed();
 	}
@@ -98,23 +79,44 @@ public class EntitySaveInterceptor {
 	}
 	
 	//根据实体和字段获取字段值
-	private Map<String,String> getValue(Object entity,String[] name) throws Exception, IllegalAccessException{
-		String value = null;
-		Map<String,String> map = new HashMap<String,String>();
+	private IFilter getFilter(Object entity,String[] name) throws Exception, IllegalAccessException{
 		Class<? extends Object> entityClass = (Class<? extends Object>)entity.getClass();
 		Field[] fs =entityClass.getDeclaredFields();
+		IFilter filter = new Filter();
 		for(int i=0;i<fs.length;i++){
 			Field f = fs[i];
+			boolean isDo = isHandle(f);
+			if(!isDo){
+				continue;
+			}
 			for(int j=0;j<name.length;j++){
 				if(f.getName().equals(name[j])){
 					f.setAccessible(true);
-					value = String.valueOf(f.get(entity));
-					map.put(name[j], value);
+					filter.eq(name[j], f.get(entity));
 				}
 			}
 			
 		}
-		return map;
+		return filter;
+	}
+	
+	//判断无需处理的域
+	private boolean isHandle(Field field){
+		boolean b =true;
+		//属性注解
+		 Annotation[] annotations= field.getDeclaredAnnotations();
+		 //无注解不做处理
+		 if(annotations.length==0){
+			 b = false;
+		 }
+		 //临时注解不做处理
+		 for(Annotation annotation:annotations){
+			 if(annotation.annotationType().equals(Transient.class)||annotation.annotationType().equals(Id.class)){
+				 b = false;;
+				 break;
+			 }
+		 }
+		 return b;
 	}
 	
 }

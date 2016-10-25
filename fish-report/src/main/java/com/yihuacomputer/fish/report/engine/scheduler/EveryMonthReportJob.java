@@ -9,18 +9,17 @@ import org.springframework.stereotype.Service;
 
 import com.yihuacomputer.common.util.DateUtils;
 import com.yihuacomputer.fish.api.monitor.volume.IMonthDailyTradingVolumeService;
-import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryMonthService;
-import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryMonthService;
-import com.yihuacomputer.fish.api.report.device.etl.IRetainCardEtlService;
+import com.yihuacomputer.fish.api.report.device.etl.IDeviceExtractDataMonthService;
+import com.yihuacomputer.fish.api.report.device.etl.IRetainCardExtractDataService;
 import com.yihuacomputer.fish.api.report.engine.IMonthPdfReportService;
 import com.yihuacomputer.fish.api.report.fault.IEveryMonthFaultCountService;
-import com.yihuacomputer.fish.api.report.fault.etl.IFaultEtlService;
-import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateEtlService;
-import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceOpenRateEtlService;
-import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateEtlService;
-import com.yihuacomputer.fish.api.report.openRate.etl.IOrgOpenRateEtlService;
+import com.yihuacomputer.fish.api.report.fault.etl.IFaultExtractDataService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IAvgOpenRateExtractDataService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceOpenRateExtractDataService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IDeviceTypeOpenRateExtractDataService;
+import com.yihuacomputer.fish.api.report.openRate.etl.IOrgOpenRateExtractDataService;
 import com.yihuacomputer.fish.api.report.trans.ITransactionMonthsService;
-import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeEtlService;
+import com.yihuacomputer.fish.api.report.trans.etl.ITransTypeExtractDataService;
 
 /**
  * 每月报表数据生成
@@ -44,31 +43,28 @@ public class EveryMonthReportJob {
 	private IMonthDailyTradingVolumeService monthDailyTradingVolumeService;
 	
 	@Autowired
-	private IAvgOpenRateEtlService avgOpenRateEtlService;
+	private IAvgOpenRateExtractDataService avgOpenRateExtractDataService;
 	
 	@Autowired
-	private IDeviceOpenRateEtlService deviceOpenRateEtlService;
+	private IDeviceOpenRateExtractDataService deviceOpenRateExtractDataService;
 	
 	@Autowired
-	private IDeviceTypeOpenRateEtlService deviceTypeOpenRateEtlService;
+	private IDeviceTypeOpenRateExtractDataService deviceTypeOpenRateExtractDataService;
 	
 	@Autowired
-	private IOrgOpenRateEtlService orgOpenRateEtlService;
+	private IOrgOpenRateExtractDataService orgOpenRateExtractDataService;
 	
 	@Autowired
-	private ITransTypeEtlService transTypeEtlService;
+	private ITransTypeExtractDataService transTypeExtractDataService;
 	
 	@Autowired
-	private IRetainCardEtlService retainCardEtlService;
+	private IRetainCardExtractDataService retainCardExtractDataService;
 
 	@Autowired
-	private IFaultEtlService faultEtlService;
+	private IFaultExtractDataService faultExtractDataService;
 	
 	@Autowired
-	private IDeviceCatalogSummaryMonthService deviceCatalogSummaryMonthService;
-	
-	@Autowired
-	private IDeviceTypeSummaryMonthService deviceTypeSummaryMonthService;
+	private IDeviceExtractDataMonthService deviceExtractDataMonthService;
 	
 	@Autowired
 	private IMonthPdfReportService pdfReportService;
@@ -108,9 +104,9 @@ public class EveryMonthReportJob {
 		
 		//2.每月故障类型统计(2016年3季度需求综合报告之故障信息汇总)
 		Date lastMonth =DateUtils.getLastMonth();
-		faultEtlService.extractStatusByMonth(lastMonth);
-		faultEtlService.extractFaultClassifyByMonth(lastMonth);
-		faultEtlService.extractDurationByMonth(lastMonth);
+		faultExtractDataService.extractStatusByMonth(lastMonth);
+		faultExtractDataService.extractFaultClassifyByMonth(lastMonth);
+		faultExtractDataService.extractDurationByMonth(lastMonth);
 		logger.info(String.format("executeMonthFault SPEND [%s]ms",System.currentTimeMillis() - start));
 	}
 
@@ -121,13 +117,13 @@ public class EveryMonthReportJob {
 		long start = System.currentTimeMillis();
 		Date lastMonth =DateUtils.getLastMonth();
 		//1.每月开机率统计(2016年3季度需求综合报告之开机率信息汇总)
-		avgOpenRateEtlService.extractByMonth(lastMonth);
+		avgOpenRateExtractDataService.extractByMonth(lastMonth);
 		//2.每月设备开机率统计(2016年3季度需求综合报告之开机率信息汇总)
-		deviceOpenRateEtlService.extractByMonth(lastMonth);
+		deviceOpenRateExtractDataService.extractByMonth(lastMonth);
 		//3.每月设备型号开机率统计(2016年3季度需求综合报告之开机率信息汇总)
-		deviceTypeOpenRateEtlService.extractByMonth(lastMonth);
+		deviceTypeOpenRateExtractDataService.extractByMonth(lastMonth);
 		//4.每月机构开机率统计(2016年3季度需求综合报告之开机率信息汇总)
-		orgOpenRateEtlService.extractByMonth(lastMonth);
+		orgOpenRateExtractDataService.extractByMonth(lastMonth);
 		logger.info(String.format("executeMonthOpenRate SPEND [%s]ms",System.currentTimeMillis() - start));
 
 	}
@@ -144,7 +140,7 @@ public class EveryMonthReportJob {
 		monthDailyTradingVolumeService.generalMonthDailyTradingVolumeByDate(curdate);
 		//3.每月交易类型统计(2016年3季度需求综合报告之交易信息汇总)
 		Date lastMonth =DateUtils.getLastMonth();
-		transTypeEtlService.extractByMonth(lastMonth);
+		transTypeExtractDataService.extractByMonth(lastMonth);
 		logger.info(String.format("executeMonthTrans SPEND [%s]ms",System.currentTimeMillis() - start));
 
 	}
@@ -156,12 +152,12 @@ public class EveryMonthReportJob {
 		long start = System.currentTimeMillis();
 		//1.设备类型统计
 		Date dateNow = new Date();
-		deviceCatalogSummaryMonthService.loadBaseData(dateNow);
+		deviceExtractDataMonthService.loadCatalogBaseData(dateNow);
 		//2.设备型号统计
-		deviceTypeSummaryMonthService.loadBaseData(dateNow);
+		deviceExtractDataMonthService.loadTypeBaseData(dateNow);
 		//3.每月吞卡统计(2016年3季度需求综合报告之吞卡信息汇总)
 		Date lastMonth =DateUtils.getLastMonth();
-		retainCardEtlService.extractByMonth(lastMonth);
+		retainCardExtractDataService.extractByMonth(lastMonth);
 		logger.info(String.format("executeMonthDevice SPEND [%s]ms",System.currentTimeMillis() - start));
 
 	}	

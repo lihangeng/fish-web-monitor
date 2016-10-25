@@ -1,6 +1,5 @@
 package com.yihuacomputer.fish.api.report.device.etl;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -22,11 +21,7 @@ public interface IDeviceCatalogSummaryMonthService {
 	 */
 	Map<String,IDeviceCatalogSummaryMonth> get(String date);
 
-	/**
-	 * 加载基础数据
-	 * @param date 执行时间点 7月份执行6月份汇总，此时传入的日期为7月份,得出的是2016-06月份的新增数据
-	 */
-	void loadBaseData(Date date);
+	
 	
 	/**
 	 * 月设备趋势

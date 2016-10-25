@@ -11,9 +11,12 @@ import com.yihuacomputer.fish.api.report.device.IDeviceUseCountRptService;
 import com.yihuacomputer.fish.api.report.device.IRetainCardRptService;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryMonthService;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceCatalogSummaryWeekService;
+import com.yihuacomputer.fish.api.report.device.etl.IDeviceExtractDataMonthService;
+import com.yihuacomputer.fish.api.report.device.etl.IDeviceExtractDataWeekService;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryMonthService;
 import com.yihuacomputer.fish.api.report.device.etl.IDeviceTypeSummaryWeekService;
 import com.yihuacomputer.fish.api.report.device.etl.IRetainCardEtlService;
+import com.yihuacomputer.fish.api.report.device.etl.IRetainCardExtractDataService;
 import com.yihuacomputer.fish.report.service.device.DeviceBoxDetailRptService;
 import com.yihuacomputer.fish.report.service.device.DeviceHardwareRptService;
 import com.yihuacomputer.fish.report.service.device.DeviceRptService;
@@ -22,9 +25,12 @@ import com.yihuacomputer.fish.report.service.device.DeviceUseCountRptService;
 import com.yihuacomputer.fish.report.service.device.RetainCardRptService;
 import com.yihuacomputer.fish.report.service.device.etl.DeviceCatalogSummaryMonthService;
 import com.yihuacomputer.fish.report.service.device.etl.DeviceCatalogSummaryWeekService;
+import com.yihuacomputer.fish.report.service.device.etl.DeviceExtractDataMonthService;
+import com.yihuacomputer.fish.report.service.device.etl.DeviceExtractDataWeekService;
 import com.yihuacomputer.fish.report.service.device.etl.DeviceTypeSummaryMonthService;
 import com.yihuacomputer.fish.report.service.device.etl.DeviceTypeSummaryWeekService;
 import com.yihuacomputer.fish.report.service.device.etl.RetainCardEtlService;
+import com.yihuacomputer.fish.report.service.device.etl.RetainCardExtractDataService;
 
 /**
  * 设备关联报表模块配置
@@ -91,5 +97,19 @@ public class ReportDeviceModule {
 		return new DeviceTypeSummaryWeekService();
 	}
 	
+	@Bean
+	public IDeviceExtractDataMonthService deviceExtractDataMonthService(){
+		return new DeviceExtractDataMonthService();
+	}
+	
+	@Bean 
+	public IDeviceExtractDataWeekService deviceExtractDataWeekService(){
+		return new DeviceExtractDataWeekService();
+	}
+	
+	@Bean
+	public IRetainCardExtractDataService retainCardExtractDataService(){
+		return new RetainCardExtractDataService();
+	}
 
 }
