@@ -90,7 +90,7 @@ public interface IRetaincardService {
 	 public List<Object> statisticsReatainCardTrend(int days);
 	 
 	 /**
-	  * 根据设备号查找近一个月的吞卡统计信息
+	  * 根据设备号查找近一个周的吞卡统计信息
 	 * @param terminalId
 	 * @return
 	 */
