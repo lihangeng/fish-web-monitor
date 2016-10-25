@@ -152,8 +152,8 @@ public class FaultController
             	cff.setFaultClassify(item.getFaultClassify().getClassifyName());
             }
 			cff.setVendorHwCode(item.getVendorHwCode());
-			cff.setFaultTime(DateUtils.getTimestamp(item.getFaultTime()));
-			cff.setClosedTime(DateUtils.getTimestamp(item.getClosedTime()));
+			cff.setFaultTime(item.getFaultTime()==null?"":DateUtils.getTimestamp(item.getFaultTime()));
+			cff.setClosedTime(item.getClosedTime()==null?"":DateUtils.getTimestamp(item.getClosedTime()));
 			cff.setDuration(item.getDuration());
 			if (item.getFaultStatus().equals(FaultStatus.OPEN))
             {
